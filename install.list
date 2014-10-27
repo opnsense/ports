@@ -1,0 +1,17 @@
+dhcpleases 	/usr/ports/sysutils/dhcpleases
+dhcpleases6	/usr/ports/sysutils/dhcpleases6
+ipfw-classifyd	/usr/ports/net/ipfw-classifyd
+filterdns	/usr/ports/net/filterdns
+cpustats	/usr/ports/sysutils/cpustats
+mpd4		/usr/ports/net/mpd4
+minicron	/usr/ports/sysutils/minicron
+3gstat_um175 	/usr/ports/comms/3gstat_um175
+voucher		/usr/ports/sysutils/voucher
+gzsig		/usr/ports/sysutils/gzsig
+clog 		/usr/ports/sysutils/clog
+filterlog 	/usr/ports/sysutils/filterlog
+check_reload_status	/usr/ports/sysutils/check_reload_status
+php55-zmq	/usr/ports/devel/php55-zmq
+rate 		/usr/ports/net-mgmt/rate
+beep		/usr/ports/audio/beep
+php55-pfSense-module	/usr/ports/devel/php55-pfSense-module
