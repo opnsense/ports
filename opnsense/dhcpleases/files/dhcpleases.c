@@ -457,7 +457,7 @@ cleanup() {
 static void
 signal_process() {
 	FILE *fd;
-	size_t size = 0;
+	int size = 0;
 	char *pid = NULL, *pc;
 	int c, pidno;
 
@@ -499,13 +499,13 @@ error:
 
 static void
 handle_signal(int sig) {
-	size_t size;
+	int size;
 
         switch(sig) {
         case SIGHUP:
 		size = fsize(HOSTS);
-		if (hostssize < 0)
-			break; /* XXX: exit?! */
+		if (size < 0)
+			syslog(LOG_ERR, "file `%s' size unknown", HOSTS);
 		else
 			hostssize = size;
                 break;
@@ -581,6 +581,8 @@ main(int argc, char **argv) {
 	}
 
 	if (!foreground) {
+		int size;
+
 		if (HOSTS == NULL) {
 			syslog(LOG_ERR, "You need to specify the hosts file path.");
 			perror("You need to specify the hosts file path.");
@@ -592,7 +594,8 @@ main(int argc, char **argv) {
 			exit(8);
 		}
 
-		if ((hostssize = fsize(HOSTS)) < 0) {
+		hostssize = size = fsize(HOSTS);
+		if (size < 0) {
 			syslog(LOG_ERR, "Error while getting %s file size.", HOSTS);
 			perror("Error while getting /etc/hosts file size.");
 			exit(6);
@@ -669,7 +672,7 @@ reopen:
 	if (!foreground) {
 		/* Initialise kevent structure */
 		EV_SET(&chlist, leasefd, EVFILT_VNODE, EV_ADD | EV_CLEAR | EV_ENABLE | EV_ONESHOT,
-			NOTE_WRITE | NOTE_ATTRIB | NOTE_DELETE | NOTE_RENAME, 0, NULL);
+			NOTE_WRITE | NOTE_ATTRIB | NOTE_DELETE | NOTE_RENAME | NOTE_LINK, 0, NULL);
 		/* Loop forever */
 		for (;;) {
 			nev = kevent(kq, &chlist, 1, &evlist, 1, NULL);
@@ -683,7 +686,7 @@ reopen:
 					close(leasefd);
 					goto reopen;
 				}
-				if ((evlist.fflags & NOTE_DELETE) || (evlist.fflags & NOTE_RENAME)) {
+				if (evlist.fflags & (NOTE_DELETE | NOTE_RENAME | NOTE_LINK)) {
 					close(leasefd);
 					goto reopen;
 				}

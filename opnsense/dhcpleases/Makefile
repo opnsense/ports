@@ -1,16 +1,13 @@
-# Created by: Ermal Luçi <eri@pfsense.org>
-# $FreeBSD$
-
 PORTNAME=	dhcpleases
 PORTVERSION=	0.1
-PORTREVISION?=	0
-CATEGORIES?=	sysutils
+PORTREVISION=	1
+CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER?=	eri@pfsense.org
-COMMENT?=	read dhpcd.lease file and add it to hosts file
+MAINTAINER=	franco@lastsummer.de
+COMMENT=	read dhpcd.lease file and add it to hosts file
 
 WHERE=		sbin
 PLIST_FILES=    ${WHERE}/${PORTNAME}

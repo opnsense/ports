@@ -416,13 +416,13 @@ cleanup() {
 
 static void
 handle_signal(int sig) {
-	size_t size;
+	int size;
 
         switch(sig) {
         case SIGHUP:
 		size = fsize(HOSTS);
-		if (hostssize < 0)
-			break; /* XXX: exit?! */
+		if (size < 0)
+			syslog(LOG_ERR, "file `%s' size unknown", HOSTS);
 		else
 			hostssize = size;
                 break;
@@ -539,7 +539,7 @@ reopen:
 
 	/* Initialise kevent structure */
 	EV_SET(&chlist, leasefd, EVFILT_VNODE, EV_ADD | EV_CLEAR | EV_ENABLE | EV_ONESHOT,
-		NOTE_WRITE | NOTE_ATTRIB | NOTE_DELETE | NOTE_RENAME, 0, NULL);
+		NOTE_WRITE | NOTE_ATTRIB | NOTE_DELETE | NOTE_RENAME | NOTE_LINK, 0, NULL);
 	/* Loop forever */
 	for (;;) {
 		nev = kevent(kq, &chlist, 1, &evlist, 1, NULL);
@@ -550,7 +550,7 @@ reopen:
 				syslog(LOG_ERR, "EV_ERROR: %s\n", strerror(evlist.data));
 				break;
 			}
-			if ((evlist.fflags & NOTE_DELETE) || (evlist.fflags & NOTE_RENAME)) {
+			if (evlist.fflags & (NOTE_DELETE | NOTE_RENAME | NOTE_LINK)) {
 				close(leasefd);
 				goto reopen;
 			}
