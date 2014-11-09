@@ -1,28 +1,26 @@
-# New ports collection makefile for:	beep
-# Date Created:				June 9, 2002
-# Whom:					Tyler Spivey
-#
-# $FreeBSD: ports/audio/beep/Makefile,v 1.8 2006/05/22 20:40:52 ehaupt Exp $
-
 PORTNAME=	beep
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	http://freebsd.unixfreunde.de/sources/ \
-		http://ftp.osuosl.org/pub/FreeBSD/distfiles/
+DISTFILES=
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	franco@lastsummer.de
 COMMENT=	Beeps a certain duration and pitch out of the PC Speaker
-
-MAN1=		beep.1
-MANCOMPRESSED=	maybe
-WRKSRC=		${WRKDIR}/${PORTNAME}
 
 ONLY_FOR_ARCHS=	i386 amd64 pc98
 
-PLIST_FILES=	bin/beep
+PLIST_FILES=	bin/beep man/man1/beep.1.gz
 
-post-patch:	.SILENT
-	${REINPLACE_CMD} 's|machine/speaker\.h|dev/speaker/speaker.h|' \
-		${WRKSRC}/beep.c
+do-extract:
+	mkdir -p ${WRKSRC}
+
+do-build:
+	${CC} ${CFLAGS} -o ${WRKSRC}/beep ${FILESDIR}/beep.c
+	cp ${FILESDIR}/beep.1 ${WRKSRC}
+	gzip ${WRKSRC}/beep.1
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/beep ${STAGEDIR}${PREFIX}/bin/
+	${INSTALL_MAN} ${WRKSRC}/beep.1.gz ${STAGEDIR}${PREFIX}/man/man1
 
 .include <bsd.port.mk>
