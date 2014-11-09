@@ -5,16 +5,12 @@
 #include "TSRM.h"
 #endif
 
-#ifdef IPFW_FUNCTIONS
 #include "php_dummynet.h"
-#endif
 
 ZEND_BEGIN_MODULE_GLOBALS(pfSense)
 	int s;
 	int inets;
-#ifdef IPFW_FUNCTIONS
 	int ipfw;
-#endif
 	int csock;
 ZEND_END_MODULE_GLOBALS(pfSense)
 
@@ -59,12 +55,9 @@ PHP_FUNCTION(pfSense_sync);
 PHP_FUNCTION(pfSense_kill_states);
 PHP_FUNCTION(pfSense_kill_srcstates);
 PHP_FUNCTION(pfSense_ip_to_mac);
-
-#ifdef IPFW_FUNCTIONS
 PHP_FUNCTION(pfSense_ipfw_getTablestats);
 PHP_FUNCTION(pfSense_ipfw_Tableaction);
 PHP_FUNCTION(pfSense_pipe_action);
-#endif
 
 extern zend_module_entry pfSense_module_entry;
 #define phpext_pfSense_ptr &pfSense_module_entry
