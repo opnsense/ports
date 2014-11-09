@@ -149,9 +149,7 @@ static int
 do_cmd(int optname, void *optval, uintptr_t optlen)
 {
         int i;
-        
-        return -1 ;
-/*
+
         if (PFSENSE_G(ipfw) == -1)
                 PFSENSE_G(ipfw) = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
         if (PFSENSE_G(ipfw) < 0)
@@ -171,7 +169,6 @@ do_cmd(int optname, void *optval, uintptr_t optlen)
                 i = setsockopt(PFSENSE_G(ipfw), IPPROTO_IP, optname, optval, optlen);
 
         return i;
-*/
 }
 
 /**

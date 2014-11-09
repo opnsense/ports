@@ -525,11 +525,6 @@ PHP_FUNCTION(pfSense_kill_states)
 	    sizeof(psk.psk_src.addr.v.a.mask));
 	memset(&last_src, 0xff, sizeof(last_src));
 	memset(&last_dst, 0xff, sizeof(last_dst));
-#if 0
-	if (iface != NULL && strlcpy(psk.psk_ifname, iface,
-	    sizeof(psk.psk_ifname)) >= sizeof(psk.psk_ifname))
-		errx(1, "invalid interface: %s", iface);
-#endif
 
 	if (pfctl_addrprefix(ip1, &psk.psk_src.addr.v.a.mask) < 0)
 		RETURN_NULL();
@@ -1033,7 +1028,6 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 			md = mb->ifa_data;
 			if (md->ifi_link_state == LINK_STATE_UP)
 				add_assoc_long(return_value, "linkstateup", 1);
-			//add_assoc_long(return_value, "hwassistflag", md->ifi_hwassist);
 			add_assoc_long(return_value, "mtu", md->ifi_mtu);
 			switch (md->ifi_type) {
 			case IFT_IEEE80211:
@@ -1059,11 +1053,6 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 			case IFT_PFSYNC:
 				add_assoc_string(return_value, "iftype", "virtual", 1);
 				break;
-#if (__FreeBSD_version < 1000000)
-			case IFT_CARP:
-				add_assoc_string(return_value, "iftype", "carp", 1);
-				break;
-#endif
 			default:
 				add_assoc_string(return_value, "iftype", "other", 1);
 			}
@@ -1107,10 +1096,6 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 				add_assoc_long(caps, "toe6", 1);
 			if (ifr.ifr_reqcap & IFCAP_VLAN_HWFILTER)
 				add_assoc_long(caps, "vlanhwfilter", 1);
-#if 0
-			if (ifr.ifr_reqcap & IFCAP_POLLING_NOCOUNT)
-				add_assoc_long(caps, "pollingnocount", 1);
-#endif
 			add_assoc_long(encaps, "flags", ifr.ifr_curcap);
 			if (ifr.ifr_curcap & IFCAP_POLLING)
 				add_assoc_long(encaps, "polling", 1);
@@ -1144,10 +1129,6 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 				add_assoc_long(encaps, "toe6", 1);
 			if (ifr.ifr_curcap & IFCAP_VLAN_HWFILTER)
 				add_assoc_long(encaps, "vlanhwfilter", 1);
-#if 0
-			if (ifr.ifr_reqcap & IFCAP_POLLING_NOCOUNT)
-				add_assoc_long(caps, "pollingnocount", 1);
-#endif
 		}
 		add_assoc_zval(return_value, "caps", caps);
 		add_assoc_zval(return_value, "encaps", encaps);
@@ -1483,7 +1464,7 @@ PHP_FUNCTION(pfSense_ngctl_name) {
 	}
 
 	/* Send message */
-	if (NgNameNode(PFSENSE_G(csock), ifname, newifname) < 0)
+	if (NgNameNode(PFSENSE_G(csock), ifname, "%s", newifname) < 0)
 		RETURN_NULL();
 
 	RETURN_TRUE;
@@ -1821,10 +1802,6 @@ PHP_FUNCTION(pfSense_get_pf_stats) {
 		add_assoc_long(return_value, "srcnodessearch", (unsigned long long)status.scounters[SCNT_SRC_NODE_SEARCH]);
 		add_assoc_long(return_value, "srcnodesinsert", (unsigned long long)status.scounters[SCNT_SRC_NODE_INSERT]);
 		add_assoc_long(return_value, "srcnodesremovals", (unsigned long long)status.scounters[SCNT_SRC_NODE_REMOVALS]);
-
-#if (__FreeBSD_version < 1000000)
-		add_assoc_long(return_value, "stateid", (unsigned long long)status.stateid);
-#endif
 
 		add_assoc_long(return_value, "running", status.running);
 		add_assoc_long(return_value, "states", status.states);
