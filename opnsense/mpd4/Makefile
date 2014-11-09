@@ -1,16 +1,13 @@
-# Created by: Archie Cobbs
-# $FreeBSD: head/net/mpd4/Makefile 319824 2013-06-04 06:34:05Z bapt $
-
 PORTNAME=	mpd
 DISTVERSION=	4.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	mpd/Mpd4/Mpd-${DISTVERSION}
 DIST_SUBDIR=	mpd4
 PKGNAMESUFFIX=	4
 
-MAINTAINER=	mav@FreeBSD.org
+MAINTAINER=	franco@lastsummer.de
 COMMENT=	Multi-link PPP daemon based on netgraph(4)
 
 LIB_DEPENDS=	libpdel.so.0:${PORTSDIR}/devel/libpdel
@@ -49,5 +46,8 @@ PORTDOCS=	${HTMLNUM:S/^/mpd/:S/$/.html/} mpd.html mpd.ps README	\
 		mpd_toc.html
 PLIST_DIRS=	etc/mpd4
 PLIST_FILES=	${CONFSUF:S/^/etc\/mpd4\/mpd./:S/$/.sample/} sbin/mpd4 man/man8/mpd4.8.gz
+
+do-install:
+	make -C${WRKSRC} install PREFIX=${STAGEDIR}/usr/local
 
 .include <bsd.port.mk>
