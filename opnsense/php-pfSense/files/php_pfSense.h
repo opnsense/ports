@@ -4,13 +4,6 @@
 #ifdef ZTS
 #include "TSRM.h"
 #endif
-#ifdef DHCP_INTEGRATION
-#define DNS_TSEC_H 1
-
-typedef char dns_tsec_t;
-
-#include <dhcpctl.h>
-#endif
 
 #ifdef IPFW_FUNCTIONS
 #include "php_dummynet.h"
@@ -30,13 +23,6 @@ ZEND_END_MODULE_GLOBALS(pfSense)
 extern int pfSense_globals_id;
 #else
 #define PFSENSE_G(v) (pfSense_globals.v)
-#endif
-
-#ifdef DHCP_INTEGRATION
-typedef struct _omapi_data {
-	dhcpctl_handle handle;
-} omapi_data;
-#define PHP_PFSENSE_RES_NAME "DHCP data"
 #endif
 
 #define PHP_PFSENSE_WORLD_VERSION "1.0"
@@ -73,12 +59,6 @@ PHP_FUNCTION(pfSense_sync);
 PHP_FUNCTION(pfSense_kill_states);
 PHP_FUNCTION(pfSense_kill_srcstates);
 PHP_FUNCTION(pfSense_ip_to_mac);
-#ifdef DHCP_INTEGRATION
-PHP_FUNCTION(pfSense_open_dhcpd);
-PHP_FUNCTION(pfSense_close_dhcpd);
-PHP_FUNCTION(pfSense_register_lease);
-PHP_FUNCTION(pfSense_delete_lease);
-#endif
 
 #ifdef IPFW_FUNCTIONS
 PHP_FUNCTION(pfSense_ipfw_getTablestats);
