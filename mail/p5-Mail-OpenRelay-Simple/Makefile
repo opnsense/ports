@@ -1,0 +1,22 @@
+# Created by: Jin-Shan Tseng <tjs@cdpa.nsysu.edu.tw>
+# $FreeBSD$
+
+PORTNAME=	Mail-OpenRelay-Simple
+PORTVERSION=	0.02
+CATEGORIES=	mail perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	5u623l20@gmail.com
+COMMENT=	Check if a mail server runs as an open relay
+
+LICENSE=	ART10
+
+BUILD_DEPENDS=	p5-Class-Accessor>=0.25:${PORTSDIR}/devel/p5-Class-Accessor \
+		p5-Net-Telnet>=3.03:${PORTSDIR}/net/p5-Net-Telnet
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		perl5
+USE_PERL5=	configure
+
+.include <bsd.port.mk>

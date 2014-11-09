@@ -1,0 +1,3 @@
+bin/keyprint
+%%DATADIR%%/keyblank.ps
+@dirrm share/keyprint

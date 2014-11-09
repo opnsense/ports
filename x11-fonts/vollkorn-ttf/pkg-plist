@@ -1,0 +1,12 @@
+%%FONTDIR%%/Vollkorn-Bold.ttf
+%%FONTDIR%%/Vollkorn-BoldItalic.ttf
+%%FONTDIR%%/Vollkorn-Italic.ttf
+%%FONTDIR%%/Vollkorn-Medium.ttf
+%%FONTDIR%%/Vollkorn-MediumItalic.ttf
+%%FONTDIR%%/Vollkorn-Regular.ttf
+%%FONTDIR%%/Vollkorn-Semibold.ttf
+%%FONTDIR%%/Vollkorn-SemiboldItalic.ttf
+@dirrm %%FONTDIR%%
+%%PORTDOCS%%%%DOCSDIR%%/OFL-FAQ.txt
+%%PORTDOCS%%%%DOCSDIR%%/Fontlog.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

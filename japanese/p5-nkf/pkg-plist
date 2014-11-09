@@ -1,0 +1,5 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/NKF.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/NKF/NKF.so
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/NKF/.packlist
+%%PERL5_MAN3%%/NKF.3.gz
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/NKF

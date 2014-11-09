@@ -1,0 +1,18 @@
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/Package.fpc
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/apr.ppu
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/apriconv.ppu
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/aprutil.ppu
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/httpd.ppu
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/apr.o
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/apriconv.o
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/aprutil.o
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/httpd.o
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/libpapr.a
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/libpapriconv.a
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/libpaprutil.a
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22/libphttpd.a
+@dirrm lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/httpd22
+@dirrmtry lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%
+@dirrmtry lib/fpc/%%PORTVERSION%%/units
+@dirrmtry lib/fpc/%%PORTVERSION%%
+@dirrmtry lib/fpc

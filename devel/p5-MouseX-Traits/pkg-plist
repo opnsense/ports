@@ -1,0 +1,3 @@
+%%SITE_PERL%%/MouseX/Traits.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/MouseX/Traits/.packlist
+%%PERL5_MAN3%%/MouseX::Traits.3.gz

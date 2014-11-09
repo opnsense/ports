@@ -1,0 +1,36 @@
+--- SConstruct.orig	2012-07-18 12:25:59.000000000 +0800
++++ SConstruct	2013-09-14 14:44:54.603035259 +0800
+@@ -176,10 +176,12 @@
+ 
+     libln_builder = Builder(action='ln -s ${SOURCE.name} ${TARGET.name}',
+                             chdir=True)
+-    env = Environment(ENV=os.environ, CFLAGS=cflags, CXXFLAGS=cflags,
+-                      TAR=tar, MAKE=make, WGET=wget,
+-                      CPPPATH=['.'] + allinc(),
+-                      tools=['default', 'textfile'])
++    env = Environment(tools=['default', 'textfile'], **ARGUMENTS)
++    env['ENV'] = os.environ
++    env['TAR'] = tar
++    env['MAKE'] = make
++    env['CPPPATH'] = ['.'] + allinc()
++
+     env.Append(BUILDERS={'InstallAsSymlink': libln_builder})
+     return env
+ 
+@@ -324,7 +326,6 @@
+     conf.CheckFunc('getopt_long')
+     conf.CheckFunc('getpagesize')
+     conf.CheckFunc('get_opt')
+-    conf.CheckCHeader('iconv.h')
+     conf.CheckCHeader('inttypes.h')
+     conf.CheckCHeader('locale.h')
+     conf.CheckCHeader('libintl.h')
+@@ -420,7 +421,7 @@
+                                  lib_target_bin),
+             ]
+ 
+-    lib_pkgconfig_target = env.Install(os.path.join(libdir, 'pkgconfig'),
++    lib_pkgconfig_target = env.Install(os.path.join(env['PREFIX'], 'libdata/pkgconfig'),
+                                        ['sunpinyin-2.0.pc'])
+     libdata_target = env.Install(libdatadir,
+                                  ['data/lm_sc.t3g',

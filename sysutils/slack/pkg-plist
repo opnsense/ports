@@ -1,0 +1,20 @@
+bin/slack-diff
+@sample etc/slack.conf.sample
+lib/slack/Slack.pm
+libexec/slack/slack-getroles
+libexec/slack/slack-installfiles
+libexec/slack/slack-rolediff
+libexec/slack/slack-runscript
+libexec/slack/slack-stage
+libexec/slack/slack-sync
+man/man1/slack-diff.1.gz
+man/man5/slack.conf.5.gz
+man/man8/slack.8.gz
+sbin/slack
+@exec install -d -m 0700 /var/lib/slack
+@exec install -d -m 0700 /var/cache/slack
+@unexec rmdir /var/lib/slack 2>/dev/null || true
+@unexec rmdir /var/lib 2>/dev/null || true
+@unexec rmdir /var/cache/slack 2>/dev/null || true
+@dirrm lib/slack
+@dirrm libexec/slack

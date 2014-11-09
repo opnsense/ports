@@ -1,0 +1,4 @@
+HTML::Stream provides an object-oriented and
+subclassable way of outputting HTML.
+
+WWW: http://search.cpan.org/dist/HTML-Stream/

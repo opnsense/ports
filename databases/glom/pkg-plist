@@ -1,0 +1,253 @@
+bin/glom
+include/glom-1.12/libglom/appstate.h
+include/glom-1.12/libglom/data_structure/field.h
+include/glom-1.12/libglom/data_structure/fieldtypes.h
+include/glom-1.12/libglom/data_structure/foundset.h
+include/glom-1.12/libglom/data_structure/glomconversions.h
+include/glom-1.12/libglom/data_structure/groupinfo.h
+include/glom-1.12/libglom/data_structure/layout/custom_title.h
+include/glom-1.12/libglom/data_structure/layout/fieldformatting.h
+include/glom-1.12/libglom/data_structure/layout/layoutgroup.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_button.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_calendarportal.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_field.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_image.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_line.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_notebook.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_placeholder.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_portal.h
+include/glom-1.12/libglom/data_structure/layout/layoutitem_text.h
+include/glom-1.12/libglom/data_structure/layout/report_parts/layoutitem_fieldsummary.h
+include/glom-1.12/libglom/data_structure/layout/report_parts/layoutitem_footer.h
+include/glom-1.12/libglom/data_structure/layout/report_parts/layoutitem_groupby.h
+include/glom-1.12/libglom/data_structure/layout/report_parts/layoutitem_header.h
+include/glom-1.12/libglom/data_structure/layout/report_parts/layoutitem_summary.h
+include/glom-1.12/libglom/data_structure/layout/report_parts/layoutitem_verticalgroup.h
+include/glom-1.12/libglom/data_structure/layout/usesrelationship.h
+include/glom-1.12/libglom/data_structure/numeric_format.h
+include/glom-1.12/libglom/data_structure/parameternamegenerator.h
+include/glom-1.12/libglom/data_structure/print_layout.h
+include/glom-1.12/libglom/data_structure/privileges.h
+include/glom-1.12/libglom/data_structure/relationship.h
+include/glom-1.12/libglom/data_structure/report.h
+include/glom-1.12/libglom/data_structure/system_prefs.h
+include/glom-1.12/libglom/data_structure/tableinfo.h
+include/glom-1.12/libglom/data_structure/translatable_item.h
+include/glom-1.12/libglom/document/bakery/document.h
+include/glom-1.12/libglom/document/bakery/document_xml.h
+include/glom-1.12/libglom/document/bakery/view/view.h
+include/glom-1.12/libglom/document/bakery/view/view_composite.h
+include/glom-1.12/libglom/document/bakery/view/viewbase.h
+include/glom-1.12/libglom/document/document.h
+include/glom-1.12/libglom/document/view.h
+include/glom-1.12/libglom/init.h
+include/glom-1.12/libglom/libglom_config.h
+include/glom-1.12/libglom/sharedptr.h
+include/glom-1.12/libglom/standard_table_prefs_fields.h
+lib/libglom-1.12.so
+lib/libglom-1.12.so.0
+lib/libglom-1.12.so.0.0.0
+%%PYTHON_SITELIBDIR%%/glom_1_12.so
+libdata/pkgconfig/glom-1.12.pc
+share/applications/glom.desktop
+%%DATADIR%%/glade/glom_developer.glade
+%%DATADIR%%/glade/glom.glade
+%%DATADIR%%/glom_document.dtd
+%%DATADIR%%/pixmaps/glom-button.png
+%%DATADIR%%/pixmaps/glom-field.png
+%%DATADIR%%/pixmaps/glom-group.png
+%%DATADIR%%/pixmaps/glom-line-horizontal.png
+%%DATADIR%%/pixmaps/glom-line-vertical.png
+%%DATADIR%%/pixmaps/glom-image.png
+%%DATADIR%%/pixmaps/glom-notebook.png
+%%DATADIR%%/pixmaps/glom-related-records.png
+%%DATADIR%%/pixmaps/glom-text.png
+%%DATADIR%%/xslt/print_details_to_html.xsl
+%%DATADIR%%/xslt/print_report_to_html.xsl
+%%DOCSDIR%%/examples/README
+%%DOCSDIR%%/examples/example_film_manager.glom
+%%DOCSDIR%%/examples/example_lesson_planner.glom
+%%DOCSDIR%%/examples/example_music_collection.glom
+%%DOCSDIR%%/examples/example_project_manager.glom
+%%DOCSDIR%%/examples/example_smallbusiness.glom
+share/gnome/help/glom/C/figures/glom_data_details.png
+share/gnome/help/glom/C/figures/glom_data_list.png
+share/gnome/help/glom/C/figures/glom_design_fields.png
+share/gnome/help/glom/C/figures/glom_design_fields_dialog_calculated.png
+share/gnome/help/glom/C/figures/glom_design_layout_details.png
+share/gnome/help/glom/C/figures/glom_design_layout_list.png
+share/gnome/help/glom/C/figures/glom_design_reports.png
+share/gnome/help/glom/C/figures/glom_design_reports_details.png
+share/gnome/help/glom/C/figures/glom_design_reports_group_by.png
+share/gnome/help/glom/C/figures/glom_design_reports_vertical_group.png
+share/gnome/help/glom/C/figures/glom_design_translations.png
+share/gnome/help/glom/C/figures/glom_import.png
+share/gnome/help/glom/C/figures/glom_initial_dialog_local_network.png
+share/gnome/help/glom/C/figures/glom_report_result.png
+share/gnome/help/glom/C/figures/glom_tables.png
+share/gnome/help/glom/C/figures/start.png
+share/gnome/help/glom/C/glom.xml
+share/gnome/help/glom/C/legal.xml
+share/gnome/help/glom/de/figures/glom_data_details.png
+share/gnome/help/glom/de/figures/glom_data_list.png
+share/gnome/help/glom/de/figures/glom_design_fields.png
+share/gnome/help/glom/de/figures/glom_design_fields_dialog_calculated.png
+share/gnome/help/glom/de/figures/glom_design_layout_details.png
+share/gnome/help/glom/de/figures/glom_design_layout_list.png
+share/gnome/help/glom/de/figures/glom_design_reports.png
+share/gnome/help/glom/de/figures/glom_design_reports_details.png
+share/gnome/help/glom/de/figures/glom_design_reports_group_by.png
+share/gnome/help/glom/de/figures/glom_design_reports_vertical_group.png
+share/gnome/help/glom/de/figures/glom_design_translations.png
+share/gnome/help/glom/de/figures/glom_import.png
+share/gnome/help/glom/de/figures/glom_initial_dialog_local_network.png
+share/gnome/help/glom/de/figures/glom_report_result.png
+share/gnome/help/glom/de/figures/glom_tables.png
+share/gnome/help/glom/de/figures/start.png
+share/gnome/help/glom/de/glom.xml
+share/gnome/help/glom/de/legal.xml
+share/gnome/help/glom/en_GB/figures/glom_data_details.png
+share/gnome/help/glom/en_GB/figures/glom_data_list.png
+share/gnome/help/glom/en_GB/figures/glom_design_fields.png
+share/gnome/help/glom/en_GB/figures/glom_design_fields_dialog_calculated.png
+share/gnome/help/glom/en_GB/figures/glom_design_layout_details.png
+share/gnome/help/glom/en_GB/figures/glom_design_layout_list.png
+share/gnome/help/glom/en_GB/figures/glom_design_reports.png
+share/gnome/help/glom/en_GB/figures/glom_design_reports_details.png
+share/gnome/help/glom/en_GB/figures/glom_design_reports_group_by.png
+share/gnome/help/glom/en_GB/figures/glom_design_reports_vertical_group.png
+share/gnome/help/glom/en_GB/figures/glom_design_translations.png
+share/gnome/help/glom/en_GB/figures/glom_import.png
+share/gnome/help/glom/en_GB/figures/glom_initial_dialog_local_network.png
+share/gnome/help/glom/en_GB/figures/glom_report_result.png
+share/gnome/help/glom/en_GB/figures/glom_tables.png
+share/gnome/help/glom/en_GB/figures/start.png
+share/gnome/help/glom/en_GB/glom.xml
+share/gnome/help/glom/en_GB/legal.xml
+share/gnome/help/glom/es/figures/glom_data_details.png
+share/gnome/help/glom/es/figures/glom_data_list.png
+share/gnome/help/glom/es/figures/glom_design_fields.png
+share/gnome/help/glom/es/figures/glom_design_fields_dialog_calculated.png
+share/gnome/help/glom/es/figures/glom_design_layout_details.png
+share/gnome/help/glom/es/figures/glom_design_layout_list.png
+share/gnome/help/glom/es/figures/glom_design_reports.png
+share/gnome/help/glom/es/figures/glom_design_reports_details.png
+share/gnome/help/glom/es/figures/glom_design_reports_group_by.png
+share/gnome/help/glom/es/figures/glom_design_reports_vertical_group.png
+share/gnome/help/glom/es/figures/glom_design_translations.png
+share/gnome/help/glom/es/figures/glom_import.png
+share/gnome/help/glom/es/figures/glom_initial_dialog_local_network.png
+share/gnome/help/glom/es/figures/glom_report_result.png
+share/gnome/help/glom/es/figures/glom_tables.png
+share/gnome/help/glom/es/figures/start.png
+share/gnome/help/glom/es/glom.xml
+share/gnome/help/glom/es/legal.xml
+share/gnome/help/glom/fr/figures/glom_data_details.png
+share/gnome/help/glom/fr/figures/glom_data_list.png
+share/gnome/help/glom/fr/figures/glom_design_fields.png
+share/gnome/help/glom/fr/figures/glom_design_fields_dialog_calculated.png
+share/gnome/help/glom/fr/figures/glom_design_layout_details.png
+share/gnome/help/glom/fr/figures/glom_design_layout_list.png
+share/gnome/help/glom/fr/figures/glom_design_reports.png
+share/gnome/help/glom/fr/figures/glom_design_reports_details.png
+share/gnome/help/glom/fr/figures/glom_design_reports_group_by.png
+share/gnome/help/glom/fr/figures/glom_design_reports_vertical_group.png
+share/gnome/help/glom/fr/figures/glom_design_translations.png
+share/gnome/help/glom/fr/figures/glom_import.png
+share/gnome/help/glom/fr/figures/glom_initial_dialog_local_network.png
+share/gnome/help/glom/fr/figures/glom_report_result.png
+share/gnome/help/glom/fr/figures/glom_tables.png
+share/gnome/help/glom/fr/figures/start.png
+share/gnome/help/glom/fr/glom.xml
+share/gnome/help/glom/fr/legal.xml
+share/gnome/help/glom/sv/figures/glom_data_details.png
+share/gnome/help/glom/sv/figures/glom_data_list.png
+share/gnome/help/glom/sv/figures/glom_design_fields.png
+share/gnome/help/glom/sv/figures/glom_design_fields_dialog_calculated.png
+share/gnome/help/glom/sv/figures/glom_design_layout_details.png
+share/gnome/help/glom/sv/figures/glom_design_layout_list.png
+share/gnome/help/glom/sv/figures/glom_design_reports.png
+share/gnome/help/glom/sv/figures/glom_design_reports_details.png
+share/gnome/help/glom/sv/figures/glom_design_reports_group_by.png
+share/gnome/help/glom/sv/figures/glom_design_reports_vertical_group.png
+share/gnome/help/glom/sv/figures/glom_design_translations.png
+share/gnome/help/glom/sv/figures/glom_import.png
+share/gnome/help/glom/sv/figures/glom_initial_dialog_local_network.png
+share/gnome/help/glom/sv/figures/glom_report_result.png
+share/gnome/help/glom/sv/figures/glom_tables.png
+share/gnome/help/glom/sv/figures/start.png
+share/gnome/help/glom/sv/glom.xml
+share/gnome/help/glom/sv/legal.xml
+share/icons/hicolor/16x16/apps/glom.png
+share/icons/hicolor/22x22/apps/glom.png
+share/icons/hicolor/24x24/apps/glom.png
+share/icons/hicolor/32x32/apps/glom.png
+share/icons/hicolor/48x48/apps/glom.png
+share/icons/hicolor/scalable/apps/glom.svg
+share/locale/ar/LC_MESSAGES/glom.mo
+share/locale/ca/LC_MESSAGES/glom.mo
+share/locale/cs/LC_MESSAGES/glom.mo
+share/locale/de/LC_MESSAGES/glom.mo
+share/locale/dz/LC_MESSAGES/glom.mo
+share/locale/en_CA/LC_MESSAGES/glom.mo
+share/locale/en_GB/LC_MESSAGES/glom.mo
+share/locale/es/LC_MESSAGES/glom.mo
+share/locale/fi/LC_MESSAGES/glom.mo
+share/locale/fr/LC_MESSAGES/glom.mo
+share/locale/gl/LC_MESSAGES/glom.mo
+share/locale/gu/LC_MESSAGES/glom.mo
+share/locale/hu/LC_MESSAGES/glom.mo
+share/locale/it/LC_MESSAGES/glom.mo
+share/locale/nb/LC_MESSAGES/glom.mo
+share/locale/ne/LC_MESSAGES/glom.mo
+share/locale/nl/LC_MESSAGES/glom.mo
+share/locale/oc/LC_MESSAGES/glom.mo
+share/locale/pa/LC_MESSAGES/glom.mo
+share/locale/pt/LC_MESSAGES/glom.mo
+share/locale/pt_BR/LC_MESSAGES/glom.mo
+share/locale/rw/LC_MESSAGES/glom.mo
+share/locale/sq/LC_MESSAGES/glom.mo
+share/locale/sv/LC_MESSAGES/glom.mo
+share/locale/tr/LC_MESSAGES/glom.mo
+share/locale/vi/LC_MESSAGES/glom.mo
+share/locale/zh_CN/LC_MESSAGES/glom.mo
+share/mime/packages/glom.xml
+share/omf/glom/glom-C.omf
+share/omf/glom/glom-de.omf
+share/omf/glom/glom-en_GB.omf
+share/omf/glom/glom-es.omf
+share/omf/glom/glom-fr.omf
+share/omf/glom/glom-sv.omf
+@dirrm share/omf/glom
+@dirrm share/gnome/help/glom/sv/figures
+@dirrm share/gnome/help/glom/sv
+@dirrm share/gnome/help/glom/fr/figures
+@dirrm share/gnome/help/glom/fr
+@dirrm share/gnome/help/glom/es/figures
+@dirrm share/gnome/help/glom/es
+@dirrm share/gnome/help/glom/en_GB/figures
+@dirrm share/gnome/help/glom/en_GB
+@dirrm share/gnome/help/glom/de/figures
+@dirrm share/gnome/help/glom/de
+@dirrm share/gnome/help/glom/C/figures
+@dirrm share/gnome/help/glom/C
+@dirrm share/gnome/help/glom
+@dirrm %%DOCSDIR%%/examples
+@dirrm %%DOCSDIR%%
+@dirrm %%DATADIR%%/xslt
+@dirrm %%DATADIR%%/pixmaps
+@dirrm %%DATADIR%%/glade
+@dirrm %%DATADIR%%
+@dirrmtry share/locale/rw/LC_MESSAGES
+@dirrmtry share/locale/rw
+@dirrmtry share/locale/dz/LC_MESSAGES
+@dirrmtry share/locale/dz
+@dirrm include/glom-1.12/libglom/document/bakery/view
+@dirrm include/glom-1.12/libglom/document/bakery
+@dirrm include/glom-1.12/libglom/document
+@dirrm include/glom-1.12/libglom/data_structure/layout/report_parts
+@dirrm include/glom-1.12/libglom/data_structure/layout
+@dirrm include/glom-1.12/libglom/data_structure
+@dirrm include/glom-1.12/libglom
+@dirrm include/glom-1.12

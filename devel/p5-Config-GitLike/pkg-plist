@@ -1,0 +1,7 @@
+%%PERL5_MAN3%%/Config::GitLike.3.gz
+%%PERL5_MAN3%%/Config::GitLike::Cascaded.3.gz
+%%PERL5_MAN3%%/Config::GitLike::Git.3.gz
+%%SITE_PERL%%/Config/GitLike.pm
+%%SITE_PERL%%/Config/GitLike/Cascaded.pm
+%%SITE_PERL%%/Config/GitLike/Git.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Config/GitLike/.packlist

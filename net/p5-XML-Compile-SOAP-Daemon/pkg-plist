@@ -1,0 +1,28 @@
+%%PERL5_MAN3%%/XML::Compile::SOAP::Daemon.3.gz
+%%PERL5_MAN3%%/XML::Compile::SOAP::Daemon::AnyDaemon.3.gz
+%%PERL5_MAN3%%/XML::Compile::SOAP::Daemon::CGI.3.gz
+%%PERL5_MAN3%%/XML::Compile::SOAP::Daemon::LWPutil.3.gz
+%%PERL5_MAN3%%/XML::Compile::SOAP::Daemon::NetServer.3.gz
+%%PERL5_MAN3%%/XML::Compile::SOAP::Daemon::PSGI.3.gz
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon.pm
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon.pod
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/AnyDaemon.pm
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/AnyDaemon.pod
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/CGI.pm
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/CGI.pod
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/LWPutil.pm
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/LWPutil.pod
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/NetServer.pm
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/NetServer.pod
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/PSGI.pm
+%%SITE_PERL%%/XML/Compile/SOAP/Daemon/PSGI.pod
+%%SITE_PERL%%/XML/Compile/SOAP/HTTPDaemon.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Compile/SOAP/Daemon/.packlist
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Compile/SOAP/Daemon
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Compile/SOAP
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/Compile
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
+@dirrmtry %%SITE_PERL%%/XML/Compile/SOAP/Daemon
+@dirrmtry %%SITE_PERL%%/XML/Compile/SOAP
+@dirrmtry %%SITE_PERL%%/XML/Compile
+@dirrmtry %%SITE_PERL%%/XML

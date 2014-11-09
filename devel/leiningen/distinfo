@@ -1,0 +1,4 @@
+SHA256 (leiningen-2.5.0.tar.gz) = 55ff713f2ed15199fdd29fd87f76f2cb93ce308aa0483324edb1ca03e1db0f13
+SIZE (leiningen-2.5.0.tar.gz) = 671607
+SHA256 (leiningen-2.5.0-standalone.jar) = e96ee50fbfa5a4725e99baa6dcaed8874847323c917e6d870d5dab2433f6a739
+SIZE (leiningen-2.5.0-standalone.jar) = 14952359

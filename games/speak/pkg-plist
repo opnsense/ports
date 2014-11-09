@@ -1,0 +1,7 @@
+bin/speak
+share/speak/README
+share/speak/speak.actions
+share/speak/speak.leadins
+share/speak/speak.nouns
+share/speak/speak.wrk
+@dirrm share/speak

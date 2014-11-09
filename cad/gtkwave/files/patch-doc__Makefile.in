@@ -1,0 +1,11 @@
+--- doc/Makefile.in.orig	2013-05-13 14:24:11.641084031 +0200
++++ doc/Makefile.in	2013-05-13 14:24:58.487075336 +0200
+@@ -32,7 +32,7 @@
+     esac; \
+     test $$am__dry = yes; \
+   }
+-pkgdatadir = $(datadir)/@PACKAGE@
++pkgdatadir = $(datadir)/doc/@PACKAGE@
+ pkgincludedir = $(includedir)/@PACKAGE@
+ pkglibdir = $(libdir)/@PACKAGE@
+ pkglibexecdir = $(libexecdir)/@PACKAGE@

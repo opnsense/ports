@@ -1,0 +1,15 @@
+===============================================================================
+
+extract_url has been installed.
+
+If you don't have ~/.extract_urlview
+
+the extract_url configuration file can be copied, please type as user:
+
+    su - user
+
+    cp %%PREFIX%%/etc/extract_urlview.sample ~/.extract_urlview
+
+    exit
+
+===============================================================================

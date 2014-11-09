@@ -1,0 +1,4 @@
+@sample %%ETCDIR%%/postfix-logwatch.conf.sample
+@dirrmtry %%ETCDIR%%
+bin/postfix-logwatch
+man/man1/postfix-logwatch.1.gz

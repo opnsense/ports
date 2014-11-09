@@ -1,0 +1,4 @@
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/rsvg/Package.fpc
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/rsvg/rsvg.ppu
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/rsvg/rsvg.o
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/rsvg/libprsvg.a

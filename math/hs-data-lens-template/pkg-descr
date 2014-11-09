@@ -1,0 +1,3 @@
+Automatically derive Lenses for your data type for use with Data.Lens.
+
+WWW: http://github.com/roconnor/data-lens-template/

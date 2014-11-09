@@ -1,0 +1,31 @@
+--- bin/netbeans.orig	2012-11-07 00:53:26.000000000 +0100
++++ bin/netbeans	2012-12-04 14:42:26.000000000 +0100
+@@ -161,6 +161,10 @@
+         mem=`/usr/sbin/sysctl hw.memsize | tr -d [:alpha:][:space:].:`
+         mem=`expr $mem / 1048576`
+         ;;
++	 FreeBSD*)
++		  mem=`/sbin/sysctl -n hw.realmem`
++		  mem=`expr $mem / 1048576`
++		  ;;
+         *) 
+         ;;
+     esac
+@@ -188,7 +192,7 @@
+ if grep -v -- "-J-XX:MaxPermSize" >/dev/null <<EOF ; then
+ ${netbeans_default_options}
+ EOF
+-	netbeans_default_options="-J-XX:MaxPermSize=384m ${netbeans_default_options}"
++	netbeans_default_options="-J-XX:MaxPermSize=512m ${netbeans_default_options} --nosplash"
+ fi
+ 
+ launchNbexec() {
+@@ -237,6 +241,8 @@
+             --jdkhome '"$netbeans_jdkhome"' \
+             --branding nb \
+             --clusters '"$netbeans_clusters"' \
++            --nosplash \
++            -J-Dawt.useSystemAAFontSettings=on \
+             -J-Dnetbeans.importclass=org.netbeans.upgrade.AutoUpgrade \
+             -J-Dnetbeans.accept_license_class=org.netbeans.license.AcceptLicense \
+             ${netbeans_default_options} \

@@ -1,0 +1,18 @@
+# Created by: Cheng-Lung Sung <clsung@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	venusian
+PORTVERSION=	1.0a8
+CATEGORIES=	devel python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	clsung@FreeBSD.org
+COMMENT=	Python library for deferring decorator actions
+
+LICENSE=	BSD4CLAUSE
+
+USES=		python
+USE_PYTHON=	distutils autoplist
+
+.include <bsd.port.mk>

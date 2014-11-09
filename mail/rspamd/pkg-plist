@@ -1,0 +1,63 @@
+bin/rspamd-%%RSPAMDVERSION%%
+bin/rspamd
+bin/rspamc-%%RSPAMDVERSION%%
+bin/rspamc
+%%REDIRECTOR%%bin/rspamd-redirector
+etc/rspamd/lua/regexp/drugs.lua
+etc/rspamd/lua/regexp/fraud.lua
+etc/rspamd/lua/regexp/headers.lua
+etc/rspamd/lua/regexp/lotto.lua
+etc/rspamd/lua/rspamd.classifiers.lua
+etc/rspamd/lua/rspamd.lua
+etc/rspamd/lua/hfilter.lua
+%%DATADIR%%/lua/emails.lua
+%%DATADIR%%/lua/forged_recipients.lua
+%%DATADIR%%/lua/ip_score.lua
+%%DATADIR%%/lua/maillist.lua
+%%DATADIR%%/lua/multimap.lua
+%%DATADIR%%/lua/once_received.lua
+%%DATADIR%%/lua/phishing.lua
+%%DATADIR%%/lua/ratelimit.lua
+%%DATADIR%%/lua/rbl.lua
+%%DATADIR%%/lua/settings.lua
+%%DATADIR%%/lua/trie.lua
+%%DATADIR%%/lua/whitelist.lua
+%%DATADIR%%/www/index.html
+%%DATADIR%%/www/plugins.txt
+%%DATADIR%%/www/img/spinner.gif
+%%DATADIR%%/www/img/desc.png
+%%DATADIR%%/www/img/asc.png
+%%DATADIR%%/www/img/spinner.png
+%%DATADIR%%/www/README.md
+%%DATADIR%%/www/js/rspamd.js
+%%DATADIR%%/www/js/jquery.paginatetable.js
+%%DATADIR%%/www/css/rspamd.css
+@sample etc/rspamd/rspamd.conf.sample
+@sample etc/rspamd/2tld.inc.sample
+@sample etc/rspamd/composites.conf.sample
+@sample etc/rspamd/logging.conf.sample
+@sample etc/rspamd/metrics.conf.sample
+@sample etc/rspamd/modules.conf.sample
+@sample etc/rspamd/options.conf.sample
+@sample etc/rspamd/statistic.conf.sample
+@sample etc/rspamd/surbl-whitelist.inc.sample
+@sample etc/rspamd/workers.conf.sample
+man/man1/rspamc.1.gz
+man/man8/rspamd.8.gz
+@dirrmtry %%DATADIR%%/lua
+@dirrmtry %%DATADIR%%/www/js
+@dirrmtry %%DATADIR%%/www/css
+@dirrmtry %%DATADIR%%/www/img
+@dirrmtry %%DATADIR%%/www
+@dirrmtry %%DATADIR%%
+@dirrmtry etc/rspamd/lua/regexp
+@dirrmtry etc/rspamd/lua
+@dirrmtry etc/rspamd
+%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%
+@owner nobody
+@group nobody
+@dirrmtry /var/db/rspamd
+@dirrmtry /var/log/rspamd
+@dirrm /var/run/rspamd
+@owner
+@group

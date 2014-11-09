@@ -1,0 +1,3 @@
+lib/libunrar.so
+lib/libunrar.so.3
+include/libunrar3/dll.hpp

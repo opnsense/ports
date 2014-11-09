@@ -1,0 +1,22 @@
+--- gnokiid/Makefile.in.orig	2010-04-21 15:49:27.000000000 +0200
++++ gnokiid/Makefile.in	2010-04-25 18:04:37.105945495 +0200
+@@ -53,7 +53,7 @@
+ am__installdirs = "$(DESTDIR)$(bindir)"
+ PROGRAMS = $(bin_PROGRAMS)
+ am_gnokiid_OBJECTS = gnokiid-gnokiid.$(OBJEXT)
+-gnokiid_OBJECTS = $(am_gnokiid_OBJECTS)
++gnokiid_OBJECTS = $(am_gnokiid_OBJECTS) /usr/lib/libsdp.so
+ am__DEPENDENCIES_1 =
+ gnokiid_DEPENDENCIES = $(top_builddir)/common/libgnokii.la \
+ 	$(top_builddir)/common/data/libDATA.la $(am__DEPENDENCIES_1)
+@@ -328,8 +328,8 @@
+ 	while read type dir files; do \
+ 	    if test "$$dir" = .; then dir=; else dir=/$$dir; fi; \
+ 	    test -z "$$files" || { \
+-	    echo " $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(bindir)$$dir'"; \
+-	    $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(bindir)$$dir" || exit $$?; \
++	    echo " $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files '$(DESTDIR)$(sbindir)$$dir'"; \
++	    $(INSTALL_PROGRAM_ENV) $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(INSTALL_PROGRAM) $$files "$(DESTDIR)$(sbindir)$$dir" || exit $$?; \
+ 	    } \
+ 	; done
+ 

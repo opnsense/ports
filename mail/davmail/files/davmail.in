@@ -1,0 +1,55 @@
+#!/bin/sh
+
+# $FreeBSD$
+#
+# PROVIDE: davmail
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following lines to /etc/rc.conf or /etc/rc.conf.local to
+# enable davmail:
+# davmail_enable (bool):	Set to "NO" by default.
+# davmail_config (path):	Set to 
+#				"%%PREFIX%%/etc/davmail.properties"
+#				by default
+
+. /etc/rc.subr
+
+name="davmail"
+rcvar=davmail_enable
+
+load_rc_config $name
+
+: ${davmail_enable="NO"}
+: ${davmail_config="%%PREFIX%%/etc/davmail.properties"}
+
+start_cmd="${name}_start"
+
+davmail_procname()
+{
+	JAVAVM_DRYRUN=yes "%%LOCALBASE%%/bin/java" | \
+	    /usr/bin/awk -F= '{if ($1=="JAVAVM_PROG") print $2}' 2> /dev/null
+}
+
+procname="$(davmail_procname)"
+pidfile="/var/run/davmail.pid"
+required_files=${davmail_config}
+
+davmail_daemon()
+{
+	%%LOCALBASE%%/bin/java \
+	    -cp "%%DATADIR%%/davmail.jar:%%DATADIR%%/lib/*" \
+	    davmail.DavGateway "${davmail_config}" & echo -n $! > ${pidfile}
+}
+
+davmail_start()
+{
+	if [ -z "$rc_fast" -a -n "$rc_pid" ]; then
+		echo 1>&2 "${name} already running? (pid=$rc_pid)."
+		return 1
+	fi
+	echo "Starting ${name}."
+	{ davmail_daemon 2>&1 | /usr/bin/logger -p daemon.info -t davmail; } &
+}
+
+run_rc_command "$1"

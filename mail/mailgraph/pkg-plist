@@ -1,0 +1,6 @@
+%%CGIDIR%%/mailgraph.cgi
+%%WWWROOT%%/mailgraph/mailgraph.css
+sbin/mailgraph.pl
+@dirrmtry %%CGIDIR%%
+@dirrmtry %%WWWROOT%%/mailgraph
+@dirrmtry %%WWWROOT%%

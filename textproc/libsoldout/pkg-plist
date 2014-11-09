@@ -1,0 +1,10 @@
+bin/mkd2latex
+bin/mkd2html
+bin/mkd2man
+include/soldout/array.h
+include/soldout/buffer.h
+include/soldout/markdown.h
+include/soldout/renderers.h
+lib/libsoldout.so
+lib/libsoldout.so.1
+@dirrm include/soldout

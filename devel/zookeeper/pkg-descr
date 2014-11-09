@@ -1,0 +1,8 @@
+ZooKeeper is a distributed, open-source coordination service for
+distributed applications. It exposes a simple set of primitives that
+applications can build upon to implement higher level services
+for synchronization, configuration maintenance, and groups and naming.
+It is designed to be easy to program to, and uses a data model
+styled after the familiar directory tree structure of filesystems.
+
+WWW: http://zookeeper.apache.org/

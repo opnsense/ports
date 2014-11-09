@@ -1,0 +1,28 @@
+# Created by: Rodrigo Osorio <rodrigo@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	libmrss
+PORTVERSION=	0.19.2
+PORTREVISION=	2
+CATEGORIES=	textproc
+MASTER_SITES=	http://www.autistici.org/bakunin/libmrss/
+PKGNAMESUFFIX=	-php
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	PHP library for parsing, writing, and creating RSS
+
+LIB_DEPENDS=	libmrss.so:${PORTSDIR}/textproc/libmrss
+
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+USES=		libtool
+USE_LDCONFIG=	yes
+
+USE_PHP=	yes
+USE_PHPEXT=	yes
+PHP_MODNAME=	mrss
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/phpmrss
+
+.include <bsd.port.mk>

@@ -1,0 +1,10 @@
+--- Makefile.in.orig	2012-06-28 23:14:25.000000000 +0900
++++ Makefile.in	2012-10-01 02:41:14.000000000 +0900
+@@ -284,7 +284,6 @@
+ SUBDIRS = \
+ 	autoconf \
+ 	utils \
+-	libarc \
+ 	libunimod \
+ 	interface \
+ 	timidity \

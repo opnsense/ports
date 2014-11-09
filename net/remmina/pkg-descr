@@ -1,0 +1,20 @@
+Remmina is a remote desktop client written in GTK+, aiming to be useful for
+system administrators and travellers, who need to work with lots of remote
+computers in front of either large monitors or tiny netbooks. Remmina supports
+multiple network protocols in an integrated and consistant user interface.
+
+The Remmina main program:
+
+ * A pure GTK+ 2.0 application!
+ * Maintain a list of remote desktop files, organized by groups
+ * Make quick connections by directly putting in the server name
+ * Remote desktops with higher resolutions are scrollable/scalable in both
+   window and fullscreen mode
+ * Viewport fullscreen mode: remote desktop automatically scrolls when the
+   mouse moves over the screen edge.
+ * Floating toolbar in fullscreen mode, allows you to switch between modes,
+   toggle keyboard grabbing, minimize, etc.
+ * Tabbed interface, optionally managed by groups
+ * Supported network protocols: RDP, NX, Telepathy, VNC, XDMCP, SSH, Avahi
+
+WWW: http://remmina.sourceforge.net/

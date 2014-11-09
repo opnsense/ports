@@ -1,0 +1,4 @@
+bin/uzbl-core
+bin/uzbl-browser
+bin/uzbl-event-manager
+bin/uzbl-tabbed

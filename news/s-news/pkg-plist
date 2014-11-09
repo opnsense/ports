@@ -1,0 +1,33 @@
+bin/inews
+etc/s-news/access.sample
+etc/s-news/active.sample
+etc/s-news/expire.sample
+etc/s-news/newsfeeds.sample
+etc/s-news/newsgroups.sample
+etc/s-news/overview.fmt.sample
+etc/s-news/put.news
+man/man1/inews.1.gz
+man/man8/expire.8.gz
+man/man8/listactive.8.gz
+man/man8/makehistory.8.gz
+man/man8/newgroup.8.gz
+man/man8/nntpd.8.gz
+man/man8/overview.8.gz
+man/man8/qnews.8.gz
+man/man8/rmgroup.8.gz
+man/man8/rnews.8.gz
+sbin/expire
+sbin/fetchnews
+sbin/listactive
+sbin/makehistory
+sbin/newfeed
+sbin/newgroup
+sbin/nntpd
+sbin/overview
+sbin/qnews
+sbin/rmfeed
+sbin/rmgroup
+sbin/rnews
+@dirrm etc/s-news
+@exec install -d -o news -g news -m 755 /var/spool/s-news
+@unexec rmdir /var/spool/s-news 2>/dev/null || true

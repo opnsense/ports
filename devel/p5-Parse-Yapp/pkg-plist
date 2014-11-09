@@ -1,0 +1,11 @@
+bin/yapp
+%%SITE_PERL%%/Parse/Yapp/Options.pm
+%%SITE_PERL%%/Parse/Yapp/Driver.pm
+%%SITE_PERL%%/Parse/Yapp/Grammar.pm
+%%SITE_PERL%%/Parse/Yapp/Output.pm
+%%SITE_PERL%%/Parse/Yapp/Lalr.pm
+%%SITE_PERL%%/Parse/Yapp/Parse.pm
+%%SITE_PERL%%/Parse/Yapp.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Parse/Yapp/.packlist
+%%PERL5_MAN3%%/Parse::Yapp.3.gz
+man/man1/yapp.1.gz

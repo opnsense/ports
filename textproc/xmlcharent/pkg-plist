@@ -1,0 +1,26 @@
+@unexec %%XMLCATMGR%% -sc %%CATALOG_PORTS_SGML%% remove CATALOG %%XMLDIR%%/catalog
+share/xml/xmlcharent/catalog
+@exec %%XMLCATMGR%% -sc %%CATALOG_PORTS_SGML%% add CATALOG %%XMLDIR%%/catalog
+@unexec %%XMLCATMGR%% -c %%CATALOG_PORTS_XML%% remove nextCatalog %%XMLDIR%%/catalog.xml
+share/xml/xmlcharent/catalog.xml
+@exec %%XMLCATMGR%% -c %%CATALOG_PORTS_XML%% add nextCatalog %%XMLDIR%%/catalog.xml
+share/xml/xmlcharent/iso-amsa.ent
+share/xml/xmlcharent/iso-amsb.ent
+share/xml/xmlcharent/iso-amsc.ent
+share/xml/xmlcharent/iso-amsn.ent
+share/xml/xmlcharent/iso-amso.ent
+share/xml/xmlcharent/iso-amsr.ent
+share/xml/xmlcharent/iso-box.ent
+share/xml/xmlcharent/iso-cyr1.ent
+share/xml/xmlcharent/iso-cyr2.ent
+share/xml/xmlcharent/iso-dia.ent
+share/xml/xmlcharent/iso-grk1.ent
+share/xml/xmlcharent/iso-grk2.ent
+share/xml/xmlcharent/iso-grk3.ent
+share/xml/xmlcharent/iso-grk4.ent
+share/xml/xmlcharent/iso-lat1.ent
+share/xml/xmlcharent/iso-lat2.ent
+share/xml/xmlcharent/iso-num.ent
+share/xml/xmlcharent/iso-pub.ent
+share/xml/xmlcharent/iso-tech.ent
+@dirrm share/xml/xmlcharent

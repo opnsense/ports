@@ -1,0 +1,11 @@
+bin/gather
+man/man1/gather.1.gz
+%%PORTDOCS%%%%DOCSDIR%%/Changelog
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/gather.map.freebsd
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/gather.map.linux
+%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%
+%%PORTDOCS%%@dirrmtry %%DOCSDIR%%
+@sample etc/gather/gather.cfg.sample
+@sample etc/gather/gather.map.sample
+@dirrmtry etc/gather

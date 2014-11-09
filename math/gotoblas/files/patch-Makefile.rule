@@ -1,0 +1,15 @@
+--- Makefile.rule	2009-12-16 11:26:22.000000000 +0900
++++ Makefile.rule	2009-12-31 19:16:48.000000000 +0900
+@@ -14,10 +14,10 @@
+ 
+ # C compiler including binary type(32bit / 64bit). Default is gcc.
+ # Don't use Intel Compiler or PGI, it won't generate right codes as I expect.
+-# CC = gcc
++CC = %%CC%%
+ 
+ # Fortran compiler. Default is g77.
+-# FC = gfortran
++FC = %%FC%%
+ 
+ # Even you can specify cross compiler
+ # CC = x86_64-w64-mingw32-gcc

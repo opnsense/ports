@@ -1,0 +1,32 @@
+# Created by: Kirill Ponomarew <ponomarew@oberon.net>
+# $FreeBSD$
+
+PORTNAME=	lookat
+PORTVERSION=	1.4.3
+CATEGORIES=	sysutils
+MASTER_SITES=	http://www.wagemakers.be/downloads/lookat/
+DISTNAME=	${PORTNAME}_bekijk-${PORTVERSION}
+
+MAINTAINER=	pawel@FreeBSD.org
+COMMENT=	Program to view Un*x text files and manual pages
+
+GNU_CONFIGURE=	yes
+USES=		gmake
+
+PORTDOCS=	README
+
+OPTIONS_DEFINE=	DOCS
+
+post-patch:
+	@${REINPLACE_CMD} 's|/etc/lookat.conf|${PREFIX}&|g' \
+		${WRKSRC}/${PORTNAME}.1
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/lookat ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/lookat.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_DATA} ${WRKSRC}/lookat.conf.default \
+		${STAGEDIR}${PREFIX}/etc/lookat.conf.sample
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

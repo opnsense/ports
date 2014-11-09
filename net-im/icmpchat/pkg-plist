@@ -1,0 +1,7 @@
+bin/icmpchat
+%%PORTDOCS%%%%DOCSDIR%%/Changes
+%%PORTDOCS%%%%DOCSDIR%%/License
+%%PORTDOCS%%%%DOCSDIR%%/Problems
+%%PORTDOCS%%%%DOCSDIR%%/Readme
+%%PORTDOCS%%%%DOCSDIR%%/Todo
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

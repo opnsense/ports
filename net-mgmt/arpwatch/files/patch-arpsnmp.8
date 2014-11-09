@@ -1,0 +1,34 @@
+--- arpsnmp.8.orig	Sun Sep 17 16:34:48 2000
++++ arpsnmp.8	Fri Jul  7 10:07:53 2006
+@@ -30,6 +30,9 @@
+ ] [
+ .B -f
+ .I datafile
++] [
++.B -m
++.I email
+ ]
+ .I file
+ [
+@@ -55,6 +58,12 @@
+ The default is
+ .IR arp.dat .
+ .LP
++The
++.B -m
++flag specifies the address that will receive the emails.
++The default is
++.IR root .
++.LP
+ Note that an empty
+ .I arp.dat
+ file must be created before the first time you run
+@@ -69,7 +78,7 @@
+ .na
+ .nh
+ .nf
+-/usr/operator/arpwatch - default directory
++/usr/local/arpwatch - default directory
+ arp.dat - ethernet/ip address database
+ ethercodes.dat - vendor ethernet block list
+ .ad

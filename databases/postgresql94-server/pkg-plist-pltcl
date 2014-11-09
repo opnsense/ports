@@ -1,0 +1,16 @@
+%%DATADIR%%/extension/pltcl--1.0.sql
+%%DATADIR%%/extension/pltcl.control
+%%DATADIR%%/extension/pltclu.control
+%%DATADIR%%/extension/pltclu--1.0.sql
+%%DATADIR%%/extension/pltcl--unpackaged--1.0.sql
+%%DATADIR%%/extension/pltclu--unpackaged--1.0.sql
+%%DOCSDIR%%/README-pltcl
+lib/postgresql/pltcl.so
+@dir lib/postgresql
+bin/pltcl_loadmod
+bin/pltcl_delmod
+bin/pltcl_listmod
+share/postgresql/unknown.pltcl
+@dir %%DATADIR%%/extension
+@dir %%DATADIR%%
+@dir %%DOCSDIR%%

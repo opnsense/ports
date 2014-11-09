@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Class/Std/Utils.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/Std/Utils/.packlist
+%%PERL5_MAN3%%/Class::Std::Utils.3.gz

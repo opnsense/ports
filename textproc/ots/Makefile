@@ -1,0 +1,30 @@
+# Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	ots
+PORTVERSION=	0.5.0
+PORTREVISION=	4
+CATEGORIES=	textproc
+MASTER_SITES=	SF/lib${PORTNAME}/lib${PORTNAME}/${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Open Text Summarizer
+
+LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt
+
+USES=		gettext libtool pathfix pkgconfig
+PATHFIX_MAKEFILEIN=	Makefile.am
+USE_AUTOTOOLS=	libtoolize aclocal autoconf autoheader automake
+AUTOMAKE_ARGS=	-a -c -f
+USE_GNOME=	glib20 libxml2
+USE_LDCONFIG=	yes
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+MAKE_JOBS_UNSAFE=yes
+
+post-patch:
+	@${REINPLACE_CMD} -e '/^SUBDIRS/s|doc||' ${WRKSRC}/Makefile.am
+	@${REINPLACE_CMD} -e '\|doc/Makefile|d' ${WRKSRC}/configure.in
+
+.include <bsd.port.mk>

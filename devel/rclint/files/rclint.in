@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# $FreeBSD$
+#
+
+exec %%PYTHON_CMD%% %%DATADIR%%/rclint.py ${1+"$@"}

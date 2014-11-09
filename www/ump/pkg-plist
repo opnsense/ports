@@ -1,0 +1,2 @@
+%%WEBPLUGIN_DIR%%/ump.so
+@dirrmtry %%WEBPLUGIN_DIR%%

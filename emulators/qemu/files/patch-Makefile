@@ -1,0 +1,47 @@
+Index: qemu/Makefile
+@@ -25,7 +25,11 @@
+ LDFLAGS += -static
+ endif
+ ifdef BUILD_DOCS
++ifdef NOPORTDOCS
++DOCS=qemu.1 qemu-img.1 qemu-nbd.8
++else
+ DOCS=qemu-doc.html qemu-tech.html qemu.1 qemu-img.1 qemu-nbd.8
++endif
+ else
+ DOCS=
+ endif
+@@ -190,6 +190,8 @@
+ obj-$(CONFIG_XEN) += xen_backend.o xen_devconfig.o
+ obj-$(CONFIG_XEN) += xen_console.o xenfb.o xen_disk.o xen_nic.o
+ 
++QEMU_CFLAGS+=$(CURL_CFLAGS)
++
+ LIBS+=$(CURL_LIBS)
+ 
+ cocoa.o: cocoa.m
+@@ -260,13 +264,13 @@
+ endif
+ 
+ install-doc: $(DOCS)
++ifndef NOPORTDOCS
+ 	$(INSTALL_DIR) "$(DESTDIR)$(docdir)"
+ 	$(INSTALL_DATA) qemu-doc.html  qemu-tech.html "$(DESTDIR)$(docdir)"
++endif
+ ifndef CONFIG_WIN32
+ 	$(INSTALL_DIR) "$(DESTDIR)$(mandir)/man1"
+ 	$(INSTALL_DATA) qemu.1 qemu-img.1 "$(DESTDIR)$(mandir)/man1"
+-	$(INSTALL_DIR) "$(DESTDIR)$(mandir)/man8"
+-	$(INSTALL_DATA) qemu-nbd.8 "$(DESTDIR)$(mandir)/man8"
+ endif
+ 
+ install: all $(if $(BUILD_DOCS),install-doc)
+@@ -321,7 +321,7 @@ cscope:
+ 
+ # documentation
+ %.html: %.texi
+-	$(call quiet-command,texi2html -I=. -monolithic -number $<,"  GEN   $@")
++	$(call quiet-command,texi2html -I=. -monolithic --number-sections $<,"  GEN   $@")
+ 
+ %.info: %.texi
+ 	$(call quiet-command,makeinfo -I . $< -o $@,"  GEN   $@")

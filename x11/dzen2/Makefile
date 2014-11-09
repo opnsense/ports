@@ -1,0 +1,44 @@
+# Created by: Morten Slot Kristensen
+# $FreeBSD$
+
+PORTNAME=	dzen2
+PORTVERSION=	0.8.5
+PORTREVISION=	2
+CATEGORIES=	x11
+MASTER_SITES=	http://gotmor.googlepages.com/
+
+MAINTAINER=	udvzsolt@gmail.com
+COMMENT=	General purpose messaging, notification and menuing program for X11
+
+LICENSE=	MIT
+
+USE_XORG=	x11
+
+OPTIONS_DEFINE=	EXAMPLES GADGETS XPM XINERAMA
+OPTIONS_DEFAULT=	XPM XINERAMA
+GADGETS_DESC=Build and install gadgets
+OPTIONS_SUB=yes
+
+LDFLAGS+=	-L${LOCALBASE}/lib
+CFLAGS+=		-I${LOCALBASE}/include
+GADGETS_ALL_TARGET=all gadgets
+GADGETS_INSTALL_TARGET=install install-gadgets
+
+XPM_USE=	XORG=xpm
+XPM_CFLAGS=	-DDZEN_XPM
+XPM_LDFLAGS=	-lXpm
+XINERAMA_USE=	XORG=xinerama
+XINERAMA_LDFLAGS=	-lXinerama
+XINERAMA_CLAGS=	-DDZEN_XINERAMA
+
+MAKE_ARGS+=	LDFLAGS="${LDFLAGS} \$${LIBS}" \
+		CFLAGS="${CFLAGS} ${INCS} -DVERSION=\\\"\$${VERSION}\\\""
+
+post-install:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_MAN} ${WRKSRC}/README.dzen ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/gadgets/README.* ${STAGEDIR}${DOCSDIR}
+	${INSTALL_MAN} ${WRKSRC}/gadgets/*.sh ${STAGEDIR}${EXAMPLESDIR}
+
+.include <bsd.port.mk>

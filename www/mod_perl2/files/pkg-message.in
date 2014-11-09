@@ -1,0 +1,20 @@
+===================================================================
+Simple config:
+
+  LoadModule perl_module %%APACHEMODDIR%%/mod_perl.so
+  #PerlModule Apache::compat
+  # your config comes here
+
+For a more detailed version (including more options) refer to:
+
+  docs/user/intro/start_fast.pod
+
+or online:
+
+  http://perl.apache.org/docs/2.0/user/intro/start_fast.html
+
+%AP24%  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+%AP24%    Use this mod_perl2 version at own risk, it is a current
+%AP24%     development snapshot and not marked production ready!
+%AP24%  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+===================================================================

@@ -1,0 +1,5 @@
+bin/yasql
+@sample etc/yasql.conf.sample
+man/man1/yasql.1.gz
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/yasql.html

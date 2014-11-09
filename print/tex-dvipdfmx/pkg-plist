@@ -1,0 +1,34 @@
+bin/dvipdfm
+bin/dvipdfmx
+bin/dvipdft
+bin/ebb
+bin/extractbb
+bin/xdvipdfmx
+man/man1/dvipdfm.1.gz
+man/man1/dvipdfmx.1.gz
+man/man1/dvipdft.1.gz
+man/man1/ebb.1.gz
+man/man1/extractbb.1.gz
+man/man1/xdvipdfmx.1.gz
+%%TEXMFDISTDIR%%/doc/dvipdfmx/dvipdfmx-special.pdf
+%%TEXMFDISTDIR%%/doc/dvipdfmx/dvipdfmx-special.tex
+%%TEXMFDISTDIR%%/dvipdfmx/dvipdfmx.cfg
+%%TEXMFDISTDIR%%/fonts/cmap/adobe-cmaps
+%%TEXMFDISTDIR%%/fonts/cmap/dvipdfmx/EUC-UCS2
+%%TEXMFDISTDIR%%/fonts/cmap/dvipdfmx/README
+%%TEXMFDISTDIR%%/fonts/cmap/dvipdfmx/UTF8-UCS2
+%%TEXMFDISTDIR%%/fonts/map/dvipdfm/lm/lm-ec.map
+%%TEXMFDISTDIR%%/fonts/map/dvipdfm/lm/lm-math.map
+%%TEXMFDISTDIR%%/fonts/map/dvipdfm/lm/lm-rm.map
+%%TEXMFDISTDIR%%/fonts/map/dvipdfm/lm/lm-texnansi.map
+%%TEXMFDISTDIR%%/fonts/map/dvipdfmx/cid-x.map
+%%TEXMFDISTDIR%%/fonts/map/dvipdfmx/ckx.map
+@dirrmtry %%TEXMFDISTDIR%%/fonts/map/dvipdfmx/updmap
+@dirrmtry %%TEXMFDISTDIR%%/fonts/map/dvipdfmx
+@dirrm %%TEXMFDISTDIR%%/fonts/map/dvipdfm/lm
+@dirrmtry %%TEXMFDISTDIR%%/fonts/map/dvipdfm
+@dirrmtry %%TEXMFDISTDIR%%/fonts/map
+@dirrm %%TEXMFDISTDIR%%/fonts/cmap/dvipdfmx
+@dirrmtry %%TEXMFDISTDIR%%/fonts/cmap
+@dirrm %%TEXMFDISTDIR%%/dvipdfmx
+@dirrm %%TEXMFDISTDIR%%/doc/dvipdfmx

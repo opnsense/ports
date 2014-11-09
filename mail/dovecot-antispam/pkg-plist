@@ -1,0 +1,2 @@
+lib/dovecot/imap/lib90_antispam_plugin.so
+man/man7/dovecot-antispam.7.gz

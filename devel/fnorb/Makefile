@@ -1,0 +1,25 @@
+# Created by: Johann Visagie <johann@egenetics.com>
+# $FreeBSD$
+
+PORTNAME=	Fnorb
+PORTVERSION=	1.3
+PORTREVISION=	2
+CATEGORIES=	devel python
+MASTER_SITES=	SF/${PORTNAME:tl}/${PORTNAME:tl}/${PORTNAME}%20${PORTVERSION}
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	CORBA 2.0 ORB written in Python
+
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tkinter>0:${PORTSDIR}/x11-toolkits/py-tkinter
+
+USES=		python
+USE_PYTHON=	distutils noegginfo
+
+PYDISTUTILS_INSTALLNOSINGLE=	yes
+PYDISTUTILS_SETUP=	${PYSETUP}
+
+PLIST_SUB=	PYDISTUTILS_EGGINFO=${PYDISTUTILS_EGGINFO}
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.mk>

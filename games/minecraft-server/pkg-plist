@@ -1,0 +1,17 @@
+bin/minecraft-server
+@owner mcserver
+@group mcserver
+%%DATADIR%%/banned-ips.json
+%%DATADIR%%/banned-players.json
+%%DATADIR%%/debug
+%%DATADIR%%/logs
+%%DATADIR%%/minecraft_server.1.8.jar
+%%DATADIR%%/ops.json
+%%DATADIR%%/server.properties
+%%DATADIR%%/usercache.json
+%%DATADIR%%/whitelist.json
+%%DATADIR%%/world
+@dir /var/db/minecraft-server
+@dir /var/log/minecraft-server
+@owner
+@group

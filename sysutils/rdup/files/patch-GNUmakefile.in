@@ -1,0 +1,33 @@
+--- GNUmakefile.in.orig	2013-01-20 00:33:20.000000000 -0800
++++ GNUmakefile.in	2013-03-23 10:00:18.000000000 -0700
+@@ -19,7 +19,7 @@
+ sbindir=@sbindir@
+ mandir=@mandir@
+ sysconfdir=@sysconfdir@
+-datadir=@datadir@/rdup
++datadir=@datadir@
+ 
+ ARCHIVE_L=@ARCHIVE_L@
+ NETTLE_L=@NETTLE_L@
+@@ -28,7 +28,7 @@
+ GLIB_LIBS=@GLIB_LIBS@
+ LIBS=@LIBS@
+ DEBUG=@DEBUG@
+-CFLAGS=-Wall -W -Werror @CFLAGS@ @DEFS@ -DLOCALEROOTDIR=\"@localedir@\" -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -Os -Wpointer-arith -Wstrict-prototypes 
++CFLAGS=-Wall -W @CFLAGS@ @DEFS@ -DLOCALEROOTDIR=\"@localedir@\" -D_FILE_OFFSET_BITS=64 -D_LARGE_FILES -Os -Wpointer-arith -Wstrict-prototypes 
+ INSTALL=./install-sh -c
+ INSTALL_DATA=$(INSTALL) -m 644
+ 
+@@ -56,10 +56,10 @@
+ 	${GCC} ${OBJ} ${GLIB_LIBS} ${LDFLAGS} ${LIBS} -o rdup
+ 
+ ifeq (${ARCHIVE_L},no)
+-strip:	
++strip:	rdup rdup-up
+ 	strip rdup rdup-up
+ else
+-strip:	
++strip:	rdup rdup-tr rdup-up
+ 	strip rdup rdup-tr rdup-up
+ endif
+ 

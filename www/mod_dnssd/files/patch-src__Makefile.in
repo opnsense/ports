@@ -1,0 +1,24 @@
+--- src/Makefile.in.orig
++++ src/Makefile.in
+@@ -15,9 +15,10 @@
+ # permissions and limitations under the License.
+ 
+ APXS=@APXS@
++APXS_STAGE=@APXS_STAGE@
+ APACHECTL=@APACHECTL@
+-LIBS=-Wl,"@LIBS@" @AVAHI_LIBS@
+-CFLAGS=-Wc,"@CFLAGS@" @AVAHI_CFLAGS@
++LIBS=-Wl,"@LIBS@ @AVAHI_LIBS@"
++CFLAGS=-Wc,"@CFLAGS@ @AVAHI_CFLAGS@"
+ 
+ all: mod_dnssd.la
+ 
+@@ -25,7 +26,7 @@
+ 	$(APXS) -c $(CFLAGS) $(LIBS) @srcdir@/mod_dnssd.c
+ 
+ install: all
+-	$(APXS) -i -a mod_dnssd.la 
++	$(APXS) $(APXS_STAGE) -i mod_dnssd.la
+ 
+ clean:
+ 	rm -rf *.o *.so *.loT .deps/ *.la *.lo *.slo .libs/

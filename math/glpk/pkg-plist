@@ -1,0 +1,7 @@
+bin/glpsol
+include/glpk.h
+include/glplpx.h
+lib/libglpk.a
+lib/libglpk.so
+lib/libglpk.so.36
+lib/libglpk.so.36.0.1

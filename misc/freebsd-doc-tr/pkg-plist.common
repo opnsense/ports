@@ -1,0 +1,5 @@
+%%DOCSDIR%%/tr
+@dirrmtry %%DOCSDIR%%/%%DOCLANG%%/articles/explaining-bsd
+@dirrmtry %%DOCSDIR%%/%%DOCLANG%%/articles
+@dirrmtry %%DOCSDIR%%/%%DOCLANG%%
+@dirrmtry %%DOCSDIR%%

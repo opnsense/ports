@@ -1,0 +1,13 @@
+--- utils/CMakeLists.txt.orig	2013-10-01 16:13:22.000000000 +0200
++++ utils/CMakeLists.txt	2013-10-01 16:13:47.000000000 +0200
+@@ -29,4 +29,8 @@
+ 
+ if(ENABLE_TERRASYNC)
+     add_subdirectory(TerraSync)
+-endif()
+\ No newline at end of file
++endif()
++
++if(ENABLE_JS_SERVER)
++    add_subdirectory(js_server)
++endif()

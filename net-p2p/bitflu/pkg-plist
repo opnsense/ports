@@ -1,0 +1,14 @@
+bin/bitflu
+%%DATADIR%%/plugins/Bitflu/00_StorageVFS.pm
+%%DATADIR%%/plugins/Bitflu/10_AdminHTTP.pm
+%%DATADIR%%/plugins/Bitflu/10_AdminTelnet.pm
+%%DATADIR%%/plugins/Bitflu/20_DownloadBitTorrent.pm
+%%DATADIR%%/plugins/Bitflu/20_DownloadHTTP.pm
+%%DATADIR%%/plugins/Bitflu/30_SourcesBitTorrent.pm
+%%DATADIR%%/plugins/Bitflu/30_SourcesBitTorrentKademlia.pm
+%%DATADIR%%/plugins/Bitflu/99_Cron.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/bitflu.config
+@dirrmtry %%DATADIR%%/plugins/Bitflu
+@dirrmtry %%DATADIR%%/plugins
+@dirrmtry %%DATADIR%%
+%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%

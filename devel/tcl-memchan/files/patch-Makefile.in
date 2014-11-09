@@ -1,0 +1,19 @@
+--- Makefile.in.orig	2010-12-10 22:24:41.000000000 +0100
++++ Makefile.in	2014-02-17 15:55:10.000000000 +0100
+@@ -237,7 +237,7 @@
+ 	@for i in $(DOC_NROFF); do \
+ 	    echo "Installing $$i"; \
+ 	    rm -f $(DESTDIR)$(mandir)/mann/`basename $$i`; \
+-	    $(INSTALL_DATA) $$i $(DESTDIR)$(mandir)/mann ; \
++	    $(INSTALL_DATA) doc/$$i $(DESTDIR)$(mandir)/mann ; \
+ 	done
+ 
+ test: binaries libraries
+@@ -419,6 +419,7 @@
+ 	  if test -f $$p; then \
+ 	    echo " $(INSTALL_PROGRAM) $$p $(DESTDIR)$(pkglibdir)/$$p"; \
+ 	    $(INSTALL_PROGRAM) $$p $(DESTDIR)$(pkglibdir)/$$p; \
++	    chmod 755 $(DESTDIR)$(pkglibdir)/$$p; \
+ 	    stub=`echo $$p|sed -e "s/.*\(stub\).*/\1/"`; \
+ 	    if test "x$$stub" = "xstub"; then \
+ 		echo " $(RANLIB_STUB) $(DESTDIR)$(pkglibdir)/$$p"; \

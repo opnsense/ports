@@ -1,0 +1,19 @@
+@unexec if cmp -s %D/etc/portshaker.conf.sample-config %D/etc/portshaker.conf; then rm -f %D/etc/portshaker.conf; fi
+etc/portshaker.conf.sample-config
+@exec if [ ! -f %D/etc/portshaker.conf ] ; then cp -p %D/%F %B/portshaker.conf; fi
+etc/portshaker.d/bsd_sharp
+etc/portshaker.d/bsd_sharp_releng_2_0
+etc/portshaker.d/bsd_sharp_releng_2_2
+etc/portshaker.d/bsd_sharp_releng_2_4
+etc/portshaker.d/enlightenment
+etc/portshaker.d/freebsd_texlive
+etc/portshaker.d/freebsd_texlive_ports
+etc/portshaker.d/freebsd_texlive_ports_marcuscom
+etc/portshaker.d/freebsd_texlive_releng
+etc/portshaker.d/gecko
+etc/portshaker.d/haskell
+etc/portshaker.d/marcuscom_ports
+etc/portshaker.d/marcuscom_ports_stable
+etc/portshaker.d/ports
+etc/portshaker.d/redports
+etc/portshaker.d/xorg

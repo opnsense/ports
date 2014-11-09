@@ -1,0 +1,44 @@
+--- port.h.in.orig	2008-12-24 01:16:16.000000000 +0100
++++ port.h.in	2014-05-10 12:05:20.000000000 +0200
+@@ -4,12 +4,12 @@
+ #include "conf.h"
+ 
+ #ifndef HAVE_MIN_MAX
+-#if defined(HAVE_ALGO_H) || defined(HAVE_ALGO)
+-#ifdef HAVE_ALGO
++#if defined(HAVE_ALGORITHM)
++#include <algorithm>
++#elif defined(HAVE_ALGO)
+ #include <algo>
+-#else
++#elif defined(HAVE_ALGO_H)
+ #include <algo.h>
+-#endif
+ #else
+ #define min(XX,YY) ((XX) < (YY) ? (XX) : (YY))
+ #define max(XX,YY) ((XX) > (YY) ? (XX) : (YY))
+@@ -19,14 +19,7 @@
+ @semun@
+ @bool@
+ @snprintf@
+-#ifndef _LARGEFILE64_SOURCE
+-@large_file@
+-#endif
+-#ifdef _LARGEFILE64_SOURCE
+-#define OFF_T_PRINTF "%lld"
+-#else
+-#define OFF_T_PRINTF "%d"
+-#endif
++#define OFF_T_PRINTF "%ld"
+ 
+ #if @true_false@
+ #define false 0
+@@ -49,8 +42,6 @@
+ #endif
+ 
+ typedef int FILE_TYPE;
+-#define __min min
+-#define __max max
+ typedef unsigned int UINT;
+ typedef unsigned long ULONG;
+ typedef const char * PCCHAR;

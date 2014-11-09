@@ -1,0 +1,9 @@
+%%PERL5_MAN3%%/Math::Random::MT.3.gz
+%%SITE_PERL%%/%%PERL_ARCH%%/Math/Random/MT.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Math/Random/MT/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Math/Random/MT/MT.so
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Math/Random/MT
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Math/Random
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Math
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Math/Random
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Math

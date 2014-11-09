@@ -1,0 +1,20 @@
+--- hacks/config/sonar.xml.orig	2013-12-04 23:42:00.000000000 +0100
++++ hacks/config/sonar.xml	2013-12-09 12:29:34.301395635 +0100
+@@ -29,7 +29,7 @@
+ 
+      <option id="ssh" _label="Ping known SSH hosts"      arg-set="-ping /etc/hosts,$HOME/.ssh/known_hosts,$HOME/.ssh/known_hosts2"/>
+ 
+-     <option id="popular" _label="Ping Google, Facebook, etc." arg-set="-ping google.com,facebook.com,twitter.com,yahoo.com,flickr.com,www.apple.com,wikipedia.org,linux.org,youtube.com,disqus.com,blogger.com,wordpress.com,tumblr.com,whitehouse.gov"/>
++     <option id="popular" _label="Ping Google, Facebook, etc." arg-set="-ping google.com,facebook.com,twitter.com,yahoo.com,flickr.com,www.apple.com,wikipedia.org,freebsd.org,youtube.com,disqus.com,blogger.com,wordpress.com,tumblr.com,whitehouse.gov"/>
+ 
+      <option id="sim" _label="Simulation (don't ping)"   arg-set="-ping simulation"/>
+     </select>
+@@ -76,6 +76,8 @@
+ 
+ Alternately, it can run a simulation that doesn't involve hosts.
+ 
++To ping, use the port build option to install this suid.
++
+ http://en.wikipedia.org/wiki/Ping#History
+ 
+ Written by Jamie Zawinski and Stephen Martin; 1998.

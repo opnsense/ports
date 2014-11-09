@@ -1,0 +1,33 @@
+# Created by: jfieber
+# $FreeBSD$
+
+PORTNAME=	iso8879
+PORTVERSION=	1986
+PORTREVISION=	3
+CATEGORIES=	textproc
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	kuriyama
+DISTNAME=	isoENTS
+
+MAINTAINER=	kuriyama@FreeBSD.org
+COMMENT=	Character entity sets from ISO 8879:1986 (SGML)
+
+RUN_DEPENDS=	${XMLCATMGR}:${PORTSDIR}/textproc/xmlcatmgr
+
+USES=		zip
+NO_BUILD=	yes
+NO_WRKSUBDIR=	yes
+PLIST_SUB=	DTD_NAME=${PORTNAME} XMLCATMGR=${XMLCATMGR}
+PLIST_SUB+=	CATALOG_PORTS_SGML=${CATALOG_PORTS_SGML}
+
+INSTDIR=	${PREFIX}/share/sgml/iso8879
+XMLCATMGR=	${LOCALBASE}/bin/xmlcatmgr
+CATALOG_PORTS_SGML=	${PREFIX}/share/sgml/catalog.ports
+
+do-install:
+	@${MKDIR} ${STAGEDIR}${INSTDIR}
+	@${INSTALL_DATA} ${WRKSRC}/ISO* ${STAGEDIR}${INSTDIR}
+	@${INSTALL_DATA} ${FILESDIR}/catalog ${STAGEDIR}${INSTDIR}/catalog
+
+
+.include <bsd.port.mk>

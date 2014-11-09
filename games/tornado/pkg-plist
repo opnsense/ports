@@ -1,0 +1,31 @@
+bin/tornado
+man/de/man6/tornado.6.gz
+man/fr/man6/tornado.6.gz
+man/it/man6/tornado.6.gz
+man/man6/tornado.6.gz
+man/nl/man6/tornado.6.gz
+man/no/man6/tornado.6.gz
+man/ru/man6/tornado.6.gz
+share/locale/de/LC_MESSAGES/tornado.mo
+share/locale/es/LC_MESSAGES/tornado.mo
+share/locale/fr/LC_MESSAGES/tornado.mo
+share/locale/it/LC_MESSAGES/tornado.mo
+share/locale/nl/LC_MESSAGES/tornado.mo
+share/locale/no/LC_MESSAGES/tornado.mo
+share/locale/pt/LC_MESSAGES/tornado.mo
+share/locale/ru/LC_MESSAGES/tornado.mo
+%%DATADIR%%/tornado.scores.init
+@dirrm %%DATADIR%%
+@dirrmtry man/ru/man6
+@dirrmtry man/ru
+@dirrmtry man/no/man6
+@dirrmtry man/no
+@dirrmtry man/nl/man6
+@dirrmtry man/nl
+@dirrmtry man/it/man6
+@dirrmtry man/it
+@dirrmtry man/fr/man6
+@dirrmtry man/fr
+@dirrmtry man/de/man6
+@dirrmtry man/de
+@unexec if cmp -s %D/%%DATADIR%%/tornado.scores.init /var/games/tornado.scores; then rm -f /var/games/tornado.scores; else true; fi

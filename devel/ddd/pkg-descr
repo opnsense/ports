@@ -1,0 +1,17 @@
+DDD is the Data Display Debugger, a common graphical front-end for
+GDB, DBX, and XDB debuggers.
+
+DDD is an Motif application that besides the "usual" features such as viewing
+source texts and breakpoints, DDD provides a _graphical_data_display_, where
+data structures are displayed as graphs.  A simple mouse click dereferences
+pointers or reveals structure contents.  Complex data structures can be
+explored incrementally and interactively, using automatic layout if
+preferred.  Each time the program stops, the data display reflects the
+current variable values.
+
+WWW: http://www.gnu.org/software/ddd/
+
+Also daily CVS snapshots are at
+	ftp://ftp.ips.cs.tu-bs.de/pub/local/softech/ddd/current/
+Binaries for other systems are at:
+	ftp://ftp.ips.cs.tu-bs.de/pub/local/softech/ddd/bin/

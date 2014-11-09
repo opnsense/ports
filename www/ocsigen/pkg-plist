@@ -1,0 +1,38 @@
+bin/ocsigenserver
+bin/ocsigenserver.opt
+@unexec if cmp -s %D/etc/ocsigenserver.conf.sample %D/etc/ocsigenserver.conf; then rm -f %D/etc/ocsigenserver.conf; fi
+etc/ocsigenserver.conf.sample
+@exec if [ ! -f %D/etc/ocsigenserver.conf ] ; then cp -p %D/%F %B/ocsigenserver.conf; fi
+etc/mime.types
+man/man1/ocsigenserver.1.gz
+share/ocsigen/www/index.html
+share/ocsigen/www/ocsigenstuff/back.png
+share/ocsigen/www/ocsigenstuff/cdimage.png
+share/ocsigen/www/ocsigenstuff/deb.png
+share/ocsigen/www/ocsigenstuff/dvi.png
+share/ocsigen/www/ocsigenstuff/folder_open.png
+share/ocsigen/www/ocsigenstuff/html.png
+share/ocsigen/www/ocsigenstuff/image.png
+share/ocsigen/www/ocsigenstuff/ocsigen5.png
+share/ocsigen/www/ocsigenstuff/pdf.png
+share/ocsigen/www/ocsigenstuff/postscript.png
+share/ocsigen/www/ocsigenstuff/readme.png
+share/ocsigen/www/ocsigenstuff/rpm.png
+share/ocsigen/www/ocsigenstuff/sound.png
+share/ocsigen/www/ocsigenstuff/source_c.png
+share/ocsigen/www/ocsigenstuff/source_java.png
+share/ocsigen/www/ocsigenstuff/source_pl.png
+share/ocsigen/www/ocsigenstuff/source_py.png
+share/ocsigen/www/ocsigenstuff/tar.png
+share/ocsigen/www/ocsigenstuff/tex.png
+share/ocsigen/www/ocsigenstuff/tgz.png
+share/ocsigen/www/ocsigenstuff/txt.png
+share/ocsigen/www/ocsigenstuff/unknown.png
+share/ocsigen/www/ocsigenstuff/video.png
+share/ocsigen/www/ocsigenstuff/style.css
+@dirrm %%OCAML_SITELIBDIR%%/ocsigenserver/extensions
+@dirrm share/ocsigen/www/ocsigenstuff
+@dirrm share/ocsigen/www
+@dirrm share/ocsigen
+@dirrmtry var/ocsigen
+@dirrmtry var

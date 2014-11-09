@@ -1,0 +1,7 @@
+bin/kcharselect
+share/applications/kde4/KCharSelect.desktop
+share/apps/kcharselect/kcharselectui.rc
+share/doc/HTML/en/kcharselect/common
+share/doc/HTML/en/kcharselect/index.cache.bz2
+share/doc/HTML/en/kcharselect/index.docbook
+share/doc/HTML/en/kcharselect/kcharselect.png

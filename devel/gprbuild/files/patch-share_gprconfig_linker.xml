@@ -1,0 +1,56 @@
+--- share/gprconfig/linker.xml.orig	2014-02-13 04:59:56.000000000 +0000
++++ share/gprconfig/linker.xml
+@@ -599,11 +599,14 @@
+     </config>
+   </configuration>
+ 
+-  <!-- linux, freebsd and Irix-->
++  <!-- linux, bsd and Irix-->
+   <configuration>
+     <targets>
+        <target name="^.*linux.*$" />
+        <target name="^.*freebsd.*$" />
++       <target name="^.*dragonfly.*$" />
++       <target name="^.*openbsd.*$" />
++       <target name="^.*netbsd.*$" />
+        <target name="^.*irix.*$" />
+     </targets>
+     <config>
+@@ -675,10 +678,13 @@
+     </config>
+   </configuration>
+ 
+-  <!-- freebsd -->
++  <!-- bsd -->
+   <configuration>
+     <targets>
+        <target name="^.*freebsd.*$" />
++       <target name="^.*dragonfly.*$" />
++       <target name="^.*openbsd.*$" />
++       <target name="^.*netbsd.*$" />
+     </targets>
+     <config>
+    for Run_Path_Option  use ("-Wl,-rpath,");
+@@ -1181,6 +1187,12 @@
+        <target name="^.*mingw.*$" />
+        <target name="^.*linux.*$" />
+        <target name="^.*freebsd.*$" />
++       <target name="^.*dragonfly.*$" />
++       <target name="^.*openbsd.*$" />
++       <target name="^.*netbsd.*$" />
++       <target name="^.*dragonfly.*$" />
++       <target name="^.*openbsd.*$" />
++       <target name="^.*netbsd.*$" />
+      </targets>
+     <compilers negate="true">
+        <compiler language="C++" />
+@@ -1265,6 +1277,9 @@
+        <target name="^.*mingw.*$" />
+        <target name="^.*linux.*$" />
+        <target name="^.*freebsd.*$" />
++       <target name="^.*dragonfly.*$" />
++       <target name="^.*openbsd.*$" />
++       <target name="^.*netbsd.*$" />
+      </targets>
+     <compilers>
+        <compiler language="C++" />

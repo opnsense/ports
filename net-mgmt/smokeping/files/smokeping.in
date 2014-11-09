@@ -1,0 +1,50 @@
+#!/bin/sh
+# Created by: Sean McAfee <smcafee@collaborativefusion.com>
+
+# $FreeBSD$
+
+# PROVIDE: smokeping
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+# Define these smokeping_* variables in one of these files:
+#       /etc/rc.conf
+#       /etc/rc.conf.local
+#       /etc/rc.conf.d/smokeping
+#
+# DO NOT CHANGE THESE DEFAULT VALUES HERE
+#
+# smokeping_flags="<set as needed>"
+
+
+. /etc/rc.subr
+
+name=smokeping
+
+rcvar=smokeping_enable
+
+load_rc_config $name
+
+: ${smokeping_enable:=NO}
+: ${smokeping_pidfile="%%PREFIX%%/var/smokeping/smokeping.pid"}
+: ${smokeping_logfile=/var/log/smokeping.log}
+: ${smokeping_user="%%USERS%%"}
+: ${smokeping_group="%%GROUPS%%"}
+
+command=%%PREFIX%%/bin/smokeping
+command_args="--logfile=${smokeping_logfile}"
+pidfile="${smokeping_pidfile}"
+command_interpreter=%%PREFIX%%/bin/perl
+
+extra_commands=reload
+reload_cmd="${command} --reload"
+
+smokeping_startprecmd()
+{
+	if [ ! -e ${smokeping_logfile} ];
+	then
+		install -o %%USERS%% -g %%GROUPS%% /dev/null ${smokeping_logfile} || echo "ERROR: Could not initialize logfile at ${smokeping_logfile}.";
+	fi
+}
+
+run_rc_command "$1"

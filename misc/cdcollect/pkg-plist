@@ -1,0 +1,7 @@
+bin/cdcollect
+lib/cdcollect/cdcollect.exe
+share/locale/cs/LC_MESSAGES/cdcollect.mo
+share/locale/es/LC_MESSAGES/cdcollect.mo
+share/pixmaps/cdcollect.png
+share/applications/cdcollect.desktop
+@dirrm lib/cdcollect

@@ -1,0 +1,20 @@
+# Created by: Lars Thegler <lth@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	URI-imaps
+PORTVERSION=	1.02
+CATEGORIES=	mail perl5
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:ALEXM
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	lth@FreeBSD.org
+COMMENT=	Support IMAPS URI
+
+BUILD_DEPENDS=	p5-URI>=0:${PORTSDIR}/net/p5-URI
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		perl5
+USE_PERL5=	configure
+
+.include <bsd.port.mk>

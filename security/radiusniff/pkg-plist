@@ -1,0 +1,4 @@
+bin/radiusniff
+%%DATADIR%%/clients
+%%DATADIR%%/dictionary
+@dirrm %%DATADIR%%

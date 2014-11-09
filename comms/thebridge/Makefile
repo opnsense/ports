@@ -1,0 +1,29 @@
+# Created by: db
+# $FreeBSD$
+
+PORTNAME=	thebridge
+PORTVERSION=	1.09
+CATEGORIES=	comms hamradio
+MASTER_SITES=	SF/cqinet/${PORTNAME}/${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	db@FreeBSD.org
+COMMENT=	Amateur Radio Echolink conference bridge
+
+LICENSE=	GPLv2
+
+USES=		gmake tar:tgz
+GNU_CONFIGURE=	yes
+PORTDOCS=	README
+USE_RC_SUBR=	tbd
+MAKE_ARGS=	AUTOMAKE="${TRUE}"
+
+INSTALL_TARGET=	install-strip
+
+post-install:
+	@${MKDIR} ${STAGEDIR}/${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}/${DOCSDIR}
+	${MKDIR} ${STAGEDIR}/${DATADIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/addons/usermgmt.cgi ${STAGEDIR}/${DATADIR}
+	${INSTALL_DATA} ${WRKSRC}/addons/README ${STAGEDIR}/${DATADIR}
+
+.include <bsd.port.mk>

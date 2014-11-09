@@ -1,0 +1,4 @@
+bin/solitaire
+%%PORTDOCS%%%%DOCSDIR%%/sol.pl
+%%PORTDOCS%%%%DOCSDIR%%/sol-test.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

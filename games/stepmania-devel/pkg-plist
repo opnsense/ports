@@ -1,0 +1,128 @@
+bin/stepmania
+lib/stepmania/GtkModule.so
+lib/stepmania/Packages/GameData.smzip
+lib/stepmania/stepmania
+share/applications/stepmania.desktop
+%%PORTDOCS%%%%DOCSDIR%%/Changelog_SSCformat.txt
+%%PORTDOCS%%%%DOCSDIR%%/Changelog_sm-ssc.txt
+%%PORTDOCS%%%%DOCSDIR%%/Changelog_sm5.txt
+%%PORTDOCS%%%%DOCSDIR%%/CommandLineArgs.txt
+%%PORTDOCS%%%%DOCSDIR%%/Copying.MAD
+%%PORTDOCS%%%%DOCSDIR%%/CourseFormat.txt
+%%PORTDOCS%%%%DOCSDIR%%/CustomMissionReference.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/BuildingFfmpegOnMac.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/CodingStyle.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/CompileFlags.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/GoldenRules.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/NegBPMsTutorial.html
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/SMLanProtocol.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/SMO_protocol-aj.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/SMXML.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/TextEntry.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/WarpNotes.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/ezsockets.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/interesting_sm4_commit_logs.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/negbpmtut/screen00214.jpg
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/negbpmtut/screen00215.jpg
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/negbpmtut/screen00216.jpg
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/negbpmtut/screen00217.jpg
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/negbpmtut/screen00218.jpg
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/negbpmtut/screen00221.jpg
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/possible memory leaks.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/rivaldata.txt
+%%PORTDOCS%%%%DOCSDIR%%/Devdocs/versioning.txt
+%%PORTDOCS%%%%DOCSDIR%%/Doxyfile
+%%PORTDOCS%%%%DOCSDIR%%/KnownIssues.txt
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/Lua.xml
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/Lua.xsd
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/Lua.xsl
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/LuaDocumentation.xml
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/bgline.png
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/closed.gif
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/favicon.ico
+%%PORTDOCS%%%%DOCSDIR%%/Luadoc/open.gif
+%%PORTDOCS%%%%DOCSDIR%%/README-GUIDELINES
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/BMS/BM98Data_format_specification.html
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/BMS/BM98FinalSecret.html
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/BMS/BMS_Reading_Tutorial.rtf
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/BMS/BMS_Reading_Tutorial.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/BMS/_src.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/BMS/tmp.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/DWI/DWI.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/DWI/readme.html
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/KSF/_src.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/KSF/ksf-format.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/KSF/sample.ksf
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/README
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/SDF/SDF.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/SDF/ssc-banner.png
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/SDF/ssc-bg.png
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/SDF/test-1bpm.sdf
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/SDF/test.sdf
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/SDF/test.sm
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/dance-spec.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/misc.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/new format draft.txt
+%%PORTDOCS%%%%DOCSDIR%%/SimfileFormats/ssc_msd5.txt
+%%PORTDOCS%%%%DOCSDIR%%/Stats.xml
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/Noteskin elements Reference.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/ScreenMessages.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/ScreenTextEntry.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/ThemePrefs.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/ThemePrefsRows.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/actordef.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/conditional_music.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/fontini.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/gamecommands.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/included_scripts.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/moremsg.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/recommended_practices.txt
+%%PORTDOCS%%%%DOCSDIR%%/Themerdocs/sm-ssc_themeguide.txt
+%%PORTDOCS%%%%DOCSDIR%%/Userdocs/sm5_beginner.txt
+%%PORTDOCS%%%%DOCSDIR%%/WindowsNotes.txt
+%%PORTDOCS%%%%DOCSDIR%%/credits.txt
+%%PORTDOCS%%%%DOCSDIR%%/docpack.zip
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/Scoring-jp.txt
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/readme
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/theme_lang-ja.txt
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/Changelog
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/LICENSE
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/LICENSE.en
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/LICENSE_E.mplus
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/LICENSE_J.mplus
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/README
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/README.sazanami
+%%PORTDOCS%%%%DOCSDIR%%/license-ext/vlgothic/README_J.mplus
+%%PORTDOCS%%%%DOCSDIR%%/midiman.wishlist
+%%PORTDOCS%%%%DOCSDIR%%/old_changelog.txt
+%%PORTDOCS%%%%DOCSDIR%%/opensource_simulators.txt
+%%PORTDOCS%%%%DOCSDIR%%/steps.lua
+%%PORTDOCS%%%%DOCSDIR%%/versioning.txt
+share/icons/hicolor/128x128/apps/stepmania-ssc.png
+share/icons/hicolor/16x16/apps/stepmania-ssc.png
+share/icons/hicolor/192x192/apps/stepmania-ssc.png
+share/icons/hicolor/22x22/apps/stepmania-ssc.png
+share/icons/hicolor/24x24/apps/stepmania-ssc.png
+share/icons/hicolor/256x256/apps/stepmania-ssc.png
+share/icons/hicolor/32x32/apps/stepmania-ssc.png
+share/icons/hicolor/36x36/apps/stepmania-ssc.png
+share/icons/hicolor/48x48/apps/stepmania-ssc.png
+share/icons/hicolor/64x64/apps/stepmania-ssc.png
+share/icons/hicolor/72x72/apps/stepmania-ssc.png
+share/icons/hicolor/96x96/apps/stepmania-ssc.png
+share/icons/hicolor/scalable/apps/stepmania-ssc.svg
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/license-ext/vlgothic
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/license-ext
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/Userdocs
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/Themerdocs
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/SimfileFormats/SDF
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/SimfileFormats/KSF
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/SimfileFormats/DWI
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/SimfileFormats/BMS
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/SimfileFormats
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/Luadoc
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/Devdocs/negbpmtut
+%%PORTDOCS%%@dirrm %%DOCSDIR%%/Devdocs
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@dirrm lib/stepmania/Packages
+@dirrmtry lib/stepmania

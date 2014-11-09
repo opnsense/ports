@@ -1,0 +1,15 @@
+--- gdb/gdb.c	Thu Feb 13 13:07:24 2003
++++ gdb/gdb.c	Wed May 17 00:24:39 2006
+@@ -31,5 +32,11 @@
+   args.argc = argc;
+   args.argv = argv;
+-  args.interpreter_p = INTERP_CONSOLE;
++  if (strncmp(basename(argv[0]), "insight", 7) == 0) {
++    args.interpreter_p = "insight";
++  } else if (strncmp(basename(argv[0]), "gdbtui", 6) == 0) {
++    args.interpreter_p = INTERP_TUI;
++  } else {
++    args.interpreter_p = INTERP_CONSOLE;
++  }
+   return gdb_main (&args);
+ }

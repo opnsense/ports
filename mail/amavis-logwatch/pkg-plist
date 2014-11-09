@@ -1,0 +1,4 @@
+%%ETCDIR%%/amavis-logwatch.conf.sample
+man/man1/amavis-logwatch.1.gz
+@dirrmtry %%ETCDIR%%
+bin/amavis-logwatch

@@ -1,0 +1,9 @@
+@(%%USERS%%,%%GROUPS%%,4555) %%QPOPAUTH%%bin/qapopauth
+@(%%USERS%%,%%GROUPS%%,4555) %%QPOPAUTH%%bin/qpopauth
+@sample(%%USERS%%,%%GROUPS%%,0444) %%ETCDIR%%/popusers.sample
+libexec/qpopper
+man/man8/qpopper.8.gz
+%%QPOPAUTH%%man/man8/qpopauth.8.gz
+%%EPOPPASSD%%libexec/qpoppassd
+%%PORTDOCS%%%%DOCSDIR%%/GUIDE.pdf
+@dir(%%USERS%%,%%GROUPS%%,) %%ETCDIR%%

@@ -1,0 +1,4 @@
+etc/avahi/avahi-autoipd.action
+sbin/avahi-autoipd
+man/man8/avahi-autoipd.8.gz
+@dirrmtry etc/avahi

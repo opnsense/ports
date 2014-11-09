@@ -1,0 +1,24 @@
+# Created by: Zhihao Yuan <lichray@gmail.com>
+# $FreeBSD$
+
+PORTNAME=	fcitx-rime
+PORTVERSION=	0.1.2
+PORTREVISION=	1
+CATEGORIES=	chinese
+MASTER_SITES=	GOOGLE_CODE
+DIST_SUBDIR=	fcitx
+
+MAINTAINER=	lichray@gmail.com
+COMMENT=	RIME support for Fcitx
+
+LIB_DEPENDS=	libfcitx-config.so:${PORTSDIR}/chinese/fcitx \
+		librime.so:${PORTSDIR}/chinese/librime
+
+USE_LDCONFIG=	${PREFIX}/lib/fcitx/
+USES=		tar:xz cmake gettext
+USE_GNOME=	intltool
+INSTALLS_ICONS=	yes
+
+PROJECTHOST=	fcitx
+
+.include <bsd.port.mk>

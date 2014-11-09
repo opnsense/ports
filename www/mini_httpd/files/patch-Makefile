@@ -1,0 +1,22 @@
+--- Makefile.orig	2014-08-11 21:13:49.000000000 +0200
++++ Makefile	2014-08-15 13:12:30.099236617 +0200
+@@ -15,16 +15,16 @@
+ # tree with your OpenSSL installation - depending on how you installed it,
+ # it may be in /usr/local instead of /usr/local/ssl.
+ #SSL_TREE =	/usr/local/ssl
+-#SSL_DEFS =	-DUSE_SSL
++SSL_DEFS =	-DUSE_SSL
+ #SSL_INC =	-I$(SSL_TREE)/include
+-#SSL_LIBS =	-L$(SSL_TREE)/lib -lssl -lcrypto
++SSL_LIBS =	-lssl -lcrypto
+ 
+ 
+ BINDIR =	/usr/local/sbin
+ MANDIR =	/usr/local/man
+ CC =		cc
+ CDEFS =		$(SSL_DEFS) $(SSL_INC)
+-CFLAGS =	-O $(CDEFS) -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wpointer-arith -Wshadow -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wno-long-long
++CFLAGS +=	$(CDEFS) -ansi -pedantic -U__STRICT_ANSI__ -Wall -Wpointer-arith -Wshadow -Wcast-qual -Wcast-align -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wno-long-long
+ LDFLAGS =	-s
+ LDLIBS =	$(CRYPT_LIB) $(SSL_LIBS) $(SYSV_LIBS)
+ 

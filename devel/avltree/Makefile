@@ -1,0 +1,15 @@
+# Created by: Bill Ross <bross@nas.nasa.gov>
+# $FreeBSD$
+
+PORTNAME=	avltree
+PORTVERSION=	1.1
+PORTREVISION=	1
+CATEGORIES=	devel
+MASTER_SITES=	http://www.gtlib.gatech.edu/pub/FreeBSD/distfiles/
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	In-memory index w/ binary and string keys and key counts
+
+MAKE_ARGS=	PREFIX=${STAGEDIR}${PREFIX}
+
+.include <bsd.port.mk>

@@ -1,0 +1,27 @@
+# $FreeBSD$
+
+PORTNAME=	systempreferences
+PORTVERSION=	1.2.0
+PORTREVISION=	2
+CATEGORIES=	deskutils gnustep
+MASTER_SITES=	${MASTER_SITE_GNUSTEP}
+MASTER_SITE_SUBDIR=usr-apps
+DISTNAME=	SystemPreferences-${PORTVERSION}
+
+MAINTAINER=	theraven@FreeBSD.org
+COMMENT=	System Preferences application for GNUstep
+
+LICENSE=	GPLv2
+
+PREFERENCEPANES_PORT?=	deskutils/preferencepanes
+
+USE_GNUSTEP=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+USE_GNUSTEP_BACK=	yes
+USE_GNUSTEP_SYSTEM_LIBS+=	PreferencePanes:${PREFERENCEPANES_PORT}
+
+USE_GNUSTEP_MAKE_DIRS=	SystemPreferences Modules
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DOMAIN=SYSTEM
+
+.include <bsd.port.mk>

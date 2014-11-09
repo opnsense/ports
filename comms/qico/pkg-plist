@@ -1,0 +1,5 @@
+%%WITH_QICO_MORDA%%bin/qcc
+etc/qico.conf.sample
+libexec/qico
+%%PORTDOCS%%%%DOCSDIR%%/FAQ.ru
+%%PORTDOCS%%%%DOCSDIR%%/README.ru

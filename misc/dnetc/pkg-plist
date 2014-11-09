@@ -1,0 +1,14 @@
+@owner dnetc
+@group dnetc
+distributed.net/dnetc
+@sample distributed.net/dnetc.ini.sample
+@group
+@owner
+man/man1/dnetc.1.gz
+@owner dnetc
+@group dnetc
+@mode 0775
+@dirrm distributed.net
+@mode
+@group
+@owner

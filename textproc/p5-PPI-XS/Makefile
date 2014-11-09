@@ -1,0 +1,22 @@
+# $FreeBSD$
+
+PORTNAME=	PPI-XS
+PORTVERSION=	0.902
+CATEGORIES=	textproc perl5
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	PPI
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	lth@FreeBSD.org
+COMMENT=	XS acceleration for the PPI perl parser
+
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
+
+RUN_DEPENDS=	p5-PPI>=1.000:${PORTSDIR}/textproc/p5-PPI
+BUILD_DEPENDS:=	${RUN_DEPENDS}
+
+USES=		perl5
+USE_PERL5=	configure
+
+.include <bsd.port.mk>

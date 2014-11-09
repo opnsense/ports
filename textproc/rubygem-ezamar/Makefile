@@ -1,0 +1,17 @@
+# Created by: Jyun-Yan You <jyyou@cs.nctu.edu.tw>
+# $FreeBSD$
+
+PORTNAME=	ezamar
+PORTVERSION=	2009.06
+CATEGORIES=	textproc rubygems
+MASTER_SITES=	RG
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Lightweight and simple templating engine for Ruby
+
+USE_RUBY=	yes
+
+USE_RUBYGEMS=	yes
+RUBYGEM_AUTOPLIST=	yes
+
+.include <bsd.port.mk>

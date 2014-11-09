@@ -1,0 +1,346 @@
+bin/seahorse
+bin/seahorse-daemon
+include/libcryptui/cryptui-key-chooser.h
+include/libcryptui/cryptui-key-combo.h
+include/libcryptui/cryptui-key-list.h
+include/libcryptui/cryptui-key-store.h
+include/libcryptui/cryptui-keyset.h
+include/libcryptui/cryptui.h
+lib/libcryptui.a
+lib/libcryptui.la
+lib/libcryptui.so
+lib/libcryptui.so.0
+lib/libcryptui.so.0.0.0
+lib/seahorse/seahorse-ssh-askpass
+lib/seahorse/xloadimage
+libdata/pkgconfig/cryptui-0.0.pc
+man/man1/seahorse-daemon.1.gz
+man/man1/seahorse.1.gz
+share/applications/seahorse.desktop
+share/dbus-1/services/org.gnome.seahorse.service
+share/doc/libcryptui/ch01.html
+share/doc/libcryptui/home.png
+share/doc/libcryptui/index.html
+share/doc/libcryptui/index.sgml
+share/doc/libcryptui/left.png
+share/doc/libcryptui/libcryptui-cryptui-defines.html
+share/doc/libcryptui/libcryptui-cryptui-key-chooser.html
+share/doc/libcryptui/libcryptui-cryptui-key-combo.html
+share/doc/libcryptui/libcryptui-cryptui-key-list.html
+share/doc/libcryptui/libcryptui-cryptui-key-store.html
+share/doc/libcryptui/libcryptui-cryptui-keyset.html
+share/doc/libcryptui/libcryptui-cryptui-marshal.html
+share/doc/libcryptui/libcryptui-cryptui.html
+share/doc/libcryptui/libcryptui.devhelp
+share/doc/libcryptui/libcryptui.devhelp2
+share/doc/libcryptui/right.png
+share/doc/libcryptui/style.css
+share/doc/libcryptui/up.png
+share/doc/libseahorse/api-index-full.html
+share/doc/libseahorse/ch01.html
+share/doc/libseahorse/home.png
+share/doc/libseahorse/index.html
+share/doc/libseahorse/index.sgml
+share/doc/libseahorse/left.png
+share/doc/libseahorse/libseahorse-SeahorseKeyserverControl.html
+share/doc/libseahorse/libseahorse-SeahorseObjectModel.html
+share/doc/libseahorse/libseahorse-SeahorseObjectWidget.html
+share/doc/libseahorse/libseahorse-SeahorseOperation.html
+share/doc/libseahorse/libseahorse-SeahorseSecureEntry.html
+share/doc/libseahorse/libseahorse-SeahorseUnknown.html
+share/doc/libseahorse/libseahorse-SeahorseWidget.html
+share/doc/libseahorse/libseahorse-seahorse-check-button-control.html
+share/doc/libseahorse/libseahorse-seahorse-combo-keys.html
+share/doc/libseahorse/libseahorse-seahorse-commands.html
+share/doc/libseahorse/libseahorse-seahorse-context.html
+share/doc/libseahorse/libseahorse-seahorse-dns-sd.html
+share/doc/libseahorse/libseahorse-seahorse-gconf.html
+share/doc/libseahorse/libseahorse-seahorse-gtkstock.html
+share/doc/libseahorse/libseahorse-seahorse-libdialogs.html
+share/doc/libseahorse/libseahorse-seahorse-marshal.html
+share/doc/libseahorse/libseahorse-seahorse-object.html
+share/doc/libseahorse/libseahorse-seahorse-passphrase.html
+share/doc/libseahorse/libseahorse-seahorse-prefs.html
+share/doc/libseahorse/libseahorse-seahorse-progress.html
+share/doc/libseahorse/libseahorse-seahorse-secure-memory.html
+share/doc/libseahorse/libseahorse-seahorse-servers.html
+share/doc/libseahorse/libseahorse-seahorse-set-model.html
+share/doc/libseahorse/libseahorse-seahorse-set.html
+share/doc/libseahorse/libseahorse-seahorse-source.html
+share/doc/libseahorse/libseahorse-seahorse-transfer-operation.html
+share/doc/libseahorse/libseahorse-seahorse-types.html
+share/doc/libseahorse/libseahorse-seahorse-unix-signal.html
+share/doc/libseahorse/libseahorse-seahorse-unknown-source.html
+share/doc/libseahorse/libseahorse-seahorse-util.html
+share/doc/libseahorse/libseahorse-seahorse-validity.html
+share/doc/libseahorse/libseahorse-seahorse-view.html
+share/doc/libseahorse/libseahorse-seahorse-xxx.html
+share/doc/libseahorse/libseahorse.devhelp
+share/doc/libseahorse/libseahorse.devhelp2
+share/doc/libseahorse/object-tree.html
+share/doc/libseahorse/right.png
+share/doc/libseahorse/style.css
+share/doc/libseahorse/up.png
+share/gnome/help/seahorse/C/figures/seahorse-window.png
+share/gnome/help/seahorse/C/legal.xml
+share/gnome/help/seahorse/C/seahorse.xml
+share/gnome/help/seahorse/ca/figures/seahorse-window.png
+share/gnome/help/seahorse/ca/seahorse.xml
+share/gnome/help/seahorse/cs/figures/seahorse-window.png
+share/gnome/help/seahorse/cs/seahorse.xml
+share/gnome/help/seahorse/de/figures/seahorse-window.png
+share/gnome/help/seahorse/de/seahorse.xml
+share/gnome/help/seahorse/el/figures/seahorse-window.png
+share/gnome/help/seahorse/el/seahorse.xml
+share/gnome/help/seahorse/en_GB/figures/seahorse-window.png
+share/gnome/help/seahorse/en_GB/seahorse.xml
+share/gnome/help/seahorse/es/figures/seahorse-window.png
+share/gnome/help/seahorse/es/seahorse.xml
+share/gnome/help/seahorse/eu/figures/seahorse-window.png
+share/gnome/help/seahorse/eu/seahorse.xml
+share/gnome/help/seahorse/fr/figures/seahorse-window.png
+share/gnome/help/seahorse/fr/seahorse.xml
+share/gnome/help/seahorse/it/figures/seahorse-window.png
+share/gnome/help/seahorse/it/seahorse.xml
+share/gnome/help/seahorse/ja/figures/seahorse-window.png
+share/gnome/help/seahorse/ja/seahorse.xml
+share/gnome/help/seahorse/oc/figures/seahorse-window.png
+share/gnome/help/seahorse/oc/seahorse.xml
+share/gnome/help/seahorse/ru/figures/seahorse-window.png
+share/gnome/help/seahorse/ru/seahorse.xml
+share/gnome/help/seahorse/sv/figures/seahorse-window.png
+share/gnome/help/seahorse/sv/seahorse.xml
+share/gnome/help/seahorse/vi/figures/seahorse-window.png
+share/gnome/help/seahorse/vi/seahorse.xml
+share/gnome/help/seahorse/zh_CN/figures/seahorse-window.png
+share/gnome/help/seahorse/zh_CN/seahorse.xml
+share/icons/hicolor/16x16/apps/seahorse-preferences.png
+share/icons/hicolor/16x16/apps/seahorse.png
+share/icons/hicolor/22x22/apps/seahorse-preferences.png
+share/icons/hicolor/22x22/apps/seahorse.png
+share/icons/hicolor/24x24/apps/seahorse-preferences.png
+share/icons/hicolor/24x24/apps/seahorse.png
+share/icons/hicolor/32x32/apps/seahorse-preferences.png
+share/icons/hicolor/32x32/apps/seahorse.png
+share/icons/hicolor/48x48/apps/seahorse-preferences.png
+share/icons/hicolor/48x48/apps/seahorse.png
+share/locale/ar/LC_MESSAGES/seahorse.mo
+share/locale/as/LC_MESSAGES/seahorse.mo
+share/locale/ast/LC_MESSAGES/seahorse.mo
+share/locale/az/LC_MESSAGES/seahorse.mo
+share/locale/be@latin/LC_MESSAGES/seahorse.mo
+share/locale/bg/LC_MESSAGES/seahorse.mo
+share/locale/bn/LC_MESSAGES/seahorse.mo
+share/locale/bn_IN/LC_MESSAGES/seahorse.mo
+share/locale/br/LC_MESSAGES/seahorse.mo
+share/locale/ca/LC_MESSAGES/seahorse.mo
+share/locale/ca@valencia/LC_MESSAGES/seahorse.mo
+share/locale/cs/LC_MESSAGES/seahorse.mo
+share/locale/cy/LC_MESSAGES/seahorse.mo
+share/locale/da/LC_MESSAGES/seahorse.mo
+share/locale/de/LC_MESSAGES/seahorse.mo
+share/locale/dz/LC_MESSAGES/seahorse.mo
+share/locale/el/LC_MESSAGES/seahorse.mo
+share/locale/en_CA/LC_MESSAGES/seahorse.mo
+share/locale/en_GB/LC_MESSAGES/seahorse.mo
+share/locale/en@shaw/LC_MESSAGES/seahorse.mo
+share/locale/es/LC_MESSAGES/seahorse.mo
+share/locale/et/LC_MESSAGES/seahorse.mo
+share/locale/eu/LC_MESSAGES/seahorse.mo
+share/locale/fi/LC_MESSAGES/seahorse.mo
+share/locale/fr/LC_MESSAGES/seahorse.mo
+share/locale/ga/LC_MESSAGES/seahorse.mo
+share/locale/gl/LC_MESSAGES/seahorse.mo
+share/locale/gu/LC_MESSAGES/seahorse.mo
+share/locale/he/LC_MESSAGES/seahorse.mo
+share/locale/hi/LC_MESSAGES/seahorse.mo
+share/locale/hr/LC_MESSAGES/seahorse.mo
+share/locale/hu/LC_MESSAGES/seahorse.mo
+share/locale/id/LC_MESSAGES/seahorse.mo
+share/locale/it/LC_MESSAGES/seahorse.mo
+share/locale/ja/LC_MESSAGES/seahorse.mo
+share/locale/kn/LC_MESSAGES/seahorse.mo
+share/locale/ku/LC_MESSAGES/seahorse.mo
+share/locale/ko/LC_MESSAGES/seahorse.mo
+share/locale/lt/LC_MESSAGES/seahorse.mo
+share/locale/lv/LC_MESSAGES/seahorse.mo
+share/locale/mai/LC_MESSAGES/seahorse.mo
+share/locale/mk/LC_MESSAGES/seahorse.mo
+share/locale/ml/LC_MESSAGES/seahorse.mo
+share/locale/mr/LC_MESSAGES/seahorse.mo
+share/locale/ms/LC_MESSAGES/seahorse.mo
+share/locale/nb/LC_MESSAGES/seahorse.mo
+share/locale/ne/LC_MESSAGES/seahorse.mo
+share/locale/nl/LC_MESSAGES/seahorse.mo
+share/locale/nn/LC_MESSAGES/seahorse.mo
+share/locale/oc/LC_MESSAGES/seahorse.mo
+share/locale/or/LC_MESSAGES/seahorse.mo
+share/locale/pa/LC_MESSAGES/seahorse.mo
+share/locale/pl/LC_MESSAGES/seahorse.mo
+share/locale/pt/LC_MESSAGES/seahorse.mo
+share/locale/pt_BR/LC_MESSAGES/seahorse.mo
+share/locale/ro/LC_MESSAGES/seahorse.mo
+share/locale/ru/LC_MESSAGES/seahorse.mo
+share/locale/rw/LC_MESSAGES/seahorse.mo
+share/locale/si/LC_MESSAGES/seahorse.mo
+share/locale/sk/LC_MESSAGES/seahorse.mo
+share/locale/sl/LC_MESSAGES/seahorse.mo
+share/locale/sq/LC_MESSAGES/seahorse.mo
+share/locale/sr/LC_MESSAGES/seahorse.mo
+share/locale/sr@latin/LC_MESSAGES/seahorse.mo
+share/locale/sv/LC_MESSAGES/seahorse.mo
+share/locale/ta/LC_MESSAGES/seahorse.mo
+share/locale/te/LC_MESSAGES/seahorse.mo
+share/locale/th/LC_MESSAGES/seahorse.mo
+share/locale/tr/LC_MESSAGES/seahorse.mo
+share/locale/uk/LC_MESSAGES/seahorse.mo
+share/locale/vi/LC_MESSAGES/seahorse.mo
+share/locale/zh_CN/LC_MESSAGES/seahorse.mo
+share/locale/zh_HK/LC_MESSAGES/seahorse.mo
+share/locale/zh_TW/LC_MESSAGES/seahorse.mo
+share/omf/seahorse/seahorse-C.omf
+share/omf/seahorse/seahorse-ca.omf
+share/omf/seahorse/seahorse-cs.omf
+share/omf/seahorse/seahorse-de.omf
+share/omf/seahorse/seahorse-el.omf
+share/omf/seahorse/seahorse-en_GB.omf
+share/omf/seahorse/seahorse-es.omf
+share/omf/seahorse/seahorse-eu.omf
+share/omf/seahorse/seahorse-fr.omf
+share/omf/seahorse/seahorse-it.omf
+share/omf/seahorse/seahorse-ja.omf
+share/omf/seahorse/seahorse-oc.omf
+share/omf/seahorse/seahorse-ru.omf
+share/omf/seahorse/seahorse-sv.omf
+share/omf/seahorse/seahorse-vi.omf
+share/omf/seahorse/seahorse-zh_CN.omf
+share/pixmaps/seahorse/22x22/seahorse-key-personal.png
+share/pixmaps/seahorse/22x22/seahorse-key-ssh.png
+share/pixmaps/seahorse/22x22/seahorse-key.png
+share/pixmaps/seahorse/22x22/seahorse-person.png
+share/pixmaps/seahorse/22x22/seahorse-share-keys.png
+share/pixmaps/seahorse/22x22/seahorse-sign-bad.png
+share/pixmaps/seahorse/22x22/seahorse-sign-ok.png
+share/pixmaps/seahorse/22x22/seahorse-sign.png
+share/pixmaps/seahorse/48x48/seahorse-key-personal.png
+share/pixmaps/seahorse/48x48/seahorse-key-ssh.png
+share/pixmaps/seahorse/48x48/seahorse-key.png
+share/pixmaps/seahorse/48x48/seahorse-person.png
+share/pixmaps/seahorse/48x48/seahorse-share-keys.png
+share/pixmaps/seahorse/48x48/seahorse-sign-bad.png
+share/pixmaps/seahorse/48x48/seahorse-sign-ok.png
+share/pixmaps/seahorse/48x48/seahorse-sign-unknown.png
+share/pixmaps/seahorse/48x48/seahorse-sign.png
+share/pixmaps/seahorse/scalable/seahorse-key-personal.svg
+share/pixmaps/seahorse/scalable/seahorse-key-ssh.svg
+share/pixmaps/seahorse/scalable/seahorse-key.svg
+share/pixmaps/seahorse/scalable/seahorse-person.svg
+share/pixmaps/seahorse/scalable/seahorse-share-keys.svg
+share/pixmaps/seahorse/scalable/seahorse-sign-bad.svg
+share/pixmaps/seahorse/scalable/seahorse-sign-ok.svg
+share/pixmaps/seahorse/scalable/seahorse-sign-unknown.svg
+share/pixmaps/seahorse/scalable/seahorse-sign.svg
+%%DATADIR%%/ui/seahorse-add-keyring.xml
+%%DATADIR%%/ui/seahorse-add-keyserver.xml
+%%DATADIR%%/ui/seahorse-add-subkey.xml
+%%DATADIR%%/ui/seahorse-add-uid.xml
+%%DATADIR%%/ui/seahorse-change-passphrase.xml
+%%DATADIR%%/ui/seahorse-expires.xml
+%%DATADIR%%/ui/seahorse-generate-select.xml
+%%DATADIR%%/ui/seahorse-gkr-add-item.xml
+%%DATADIR%%/ui/seahorse-gkr-item-properties.xml
+%%DATADIR%%/ui/seahorse-gkr-keyring.xml
+%%DATADIR%%/ui/seahorse-key-manager.ui
+%%DATADIR%%/ui/seahorse-key-manager.xml
+%%DATADIR%%/ui/seahorse-keyserver-results.ui
+%%DATADIR%%/ui/seahorse-keyserver-results.xml
+%%DATADIR%%/ui/seahorse-keyserver-search.xml
+%%DATADIR%%/ui/seahorse-keyserver-sync.xml
+%%DATADIR%%/ui/seahorse-notify.xml
+%%DATADIR%%/ui/seahorse-pgp-generate.xml
+%%DATADIR%%/ui/seahorse-pgp-private-key-properties.xml
+%%DATADIR%%/ui/seahorse-pgp-public-key-properties.xml
+%%DATADIR%%/ui/seahorse-prefs.xml
+%%DATADIR%%/ui/seahorse-progress.xml
+%%DATADIR%%/ui/seahorse-revoke.xml
+%%DATADIR%%/ui/seahorse-sign.xml
+%%DATADIR%%/ui/seahorse-signer.xml
+%%DATADIR%%/ui/seahorse-ssh-generate.xml
+%%DATADIR%%/ui/seahorse-ssh-key-properties.xml
+%%DATADIR%%/ui/seahorse-ssh-upload.xml
+@dirrm %%DATADIR%%/ui
+@dirrm %%DATADIR%%
+@dirrm share/pixmaps/seahorse/scalable
+@dirrm share/pixmaps/seahorse/48x48
+@dirrm share/pixmaps/seahorse/22x22
+@dirrm share/pixmaps/seahorse
+@dirrm share/omf/seahorse
+@dirrm share/gnome/help/seahorse/zh_CN/figures
+@dirrm share/gnome/help/seahorse/zh_CN
+@dirrm share/gnome/help/seahorse/vi/figures
+@dirrm share/gnome/help/seahorse/vi
+@dirrm share/gnome/help/seahorse/sv/figures
+@dirrm share/gnome/help/seahorse/sv
+@dirrm share/gnome/help/seahorse/ru/figures
+@dirrm share/gnome/help/seahorse/ru
+@dirrm share/gnome/help/seahorse/oc/figures
+@dirrm share/gnome/help/seahorse/oc
+@dirrm share/gnome/help/seahorse/ja/figures
+@dirrm share/gnome/help/seahorse/ja
+@dirrm share/gnome/help/seahorse/it/figures
+@dirrm share/gnome/help/seahorse/it
+@dirrm share/gnome/help/seahorse/fr/figures
+@dirrm share/gnome/help/seahorse/fr
+@dirrm share/gnome/help/seahorse/eu/figures
+@dirrm share/gnome/help/seahorse/eu
+@dirrm share/gnome/help/seahorse/es/figures
+@dirrm share/gnome/help/seahorse/es
+@dirrm share/gnome/help/seahorse/en_GB/figures
+@dirrm share/gnome/help/seahorse/en_GB
+@dirrm share/gnome/help/seahorse/el/figures
+@dirrm share/gnome/help/seahorse/el
+@dirrm share/gnome/help/seahorse/de/figures
+@dirrm share/gnome/help/seahorse/de
+@dirrm share/gnome/help/seahorse/cs/figures
+@dirrm share/gnome/help/seahorse/cs
+@dirrm share/gnome/help/seahorse/ca/figures
+@dirrm share/gnome/help/seahorse/ca
+@dirrm share/gnome/help/seahorse/C/figures
+@dirrm share/gnome/help/seahorse/C
+@dirrm share/gnome/help/seahorse
+@dirrm share/doc/libseahorse
+@dirrm share/doc/libcryptui
+@dirrm lib/seahorse
+@dirrm include/libcryptui
+@dirrmtry share/locale/zh_HK/LC_MESSAGES
+@dirrmtry share/locale/zh_HK
+@dirrmtry share/locale/te/LC_MESSAGES
+@dirrmtry share/locale/te
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
+@dirrmtry share/locale/si/LC_MESSAGES
+@dirrmtry share/locale/si
+@dirrmtry share/locale/rw/LC_MESSAGES
+@dirrmtry share/locale/rw
+@dirrmtry share/locale/oc/LC_MESSAGES
+@dirrmtry share/locale/oc
+@dirrmtry share/locale/mr/LC_MESSAGES
+@dirrmtry share/locale/mr
+@dirrmtry share/locale/mai/LC_MESSAGES
+@dirrmtry share/locale/mai
+@dirrmtry share/locale/ku/LC_MESSAGES
+@dirrmtry share/locale/ku
+@dirrmtry share/locale/en@shaw/LC_MESSAGES
+@dirrmtry share/locale/en@shaw
+@dirrmtry share/locale/dz/LC_MESSAGES
+@dirrmtry share/locale/dz
+@dirrmtry share/locale/ca@valencia/LC_MESSAGES
+@dirrmtry share/locale/ca@valencia
+@dirrmtry share/locale/bn_IN/LC_MESSAGES
+@dirrmtry share/locale/bn_IN
+@dirrmtry share/locale/be@latin/LC_MESSAGES
+@dirrmtry share/locale/be@latin
+@dirrmtry share/locale/ast/LC_MESSAGES
+@dirrmtry share/locale/ast
+@dirrmtry share/locale/as/LC_MESSAGES
+@dirrmtry share/locale/as

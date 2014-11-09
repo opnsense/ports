@@ -1,0 +1,19 @@
+# Created by: Mark Felder <feld@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	pyechonest
+PORTVERSION=	8.0.1
+PORTREVISION=	1
+CATEGORIES=	devel python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	feld@FreeBSD.org
+COMMENT=	Python interface to The Echo Nest APIs
+
+LICENSE=	MIT
+
+USES=		python
+USE_PYTHON=	distutils
+
+.include <bsd.port.mk>

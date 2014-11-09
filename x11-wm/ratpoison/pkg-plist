@@ -1,0 +1,20 @@
+bin/ratpoison
+bin/rpws
+man/man1/ratpoison.1.gz
+%%DATADIR%%/allwindows.sh
+%%DATADIR%%/clickframe.pl
+%%DATADIR%%/genrpbindings
+%%DATADIR%%/ratpoison.el
+%%DATADIR%%/rpshowall.sh
+%%DATADIR%%/rpws
+%%DATADIR%%/split.sh
+%%DATADIR%%/sloppy.c
+%%DATADIR%%/unrat.c
+%%PORTDOCS%%%%DOCSDIR%%/AUTHORS
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%WITH_GDM%%etc/dm/Sessions/ratpoison.desktop
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+@dirrm %%DATADIR%%

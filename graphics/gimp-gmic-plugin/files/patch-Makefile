@@ -1,0 +1,64 @@
+--- Makefile.orig	2014-08-21 07:47:10 UTC
++++ Makefile
+@@ -48,7 +48,7 @@
+ # Set correct variables and paths.
+ #----------------------------------
+ OS := $(shell uname)
+-CC = g++
++CC = $(CXX)
+ ifeq ($(OS),Linux)
+ OS = Unix
+ endif
+@@ -63,7 +63,7 @@
+ USR = /opt/local
+ else
+ PLUGINDIR = `gimptool-2.0 --gimpplugindir`/plug-ins
+-USR = /usr
++USR = /usr/X11R6
+ endif
+ ifeq ($(OSTYPE),msys)
+ EXE = .exe
+@@ -136,7 +136,7 @@
+ # This requires the presence of the X11 extension include and library files.
+ # (package 'libx11-dev' on Debian).
+ XSHM_CFLAGS = -Dcimg_use_xshm
+-XSHM_LIBS = -L$(USR)/X11R6/lib -lXext
++XSHM_LIBS = -L/usr/X11R6/lib -lXext
+ 
+ # Flags to enable image display, using GDI32.
+ # This requires the presence of the GDI32 include and library files.
+@@ -293,6 +293,12 @@
+ 	@echo "**"
+ 	$(MAKE) linux gimp lib  # zart
+ else
++ifeq ($(OS),FreeBSD)
++	@echo "**"
++	@echo "** FreeBSD configuration"
++	@echo "**"
++	$(MAKE) freebsd gimp
++else
+ ifeq ($(OS),Darwin)
+ 	@echo "**"
+ 	@echo "** MacOSX configuration."
+@@ -305,9 +311,10 @@
+ 	$(MAKE) windows gimp
+ endif
+ endif
++endif
+ 
+ gimp:
+-	$(MAKE) "CFLAGS=$(STD_GIMP_CFLAGS) $(OPT_CFLAGS)" "LIBS+=$(STD_GIMP_LIBS) $(OPT_LIBS)" "STRIP_EXE=1" gmic_gimp
++	$(MAKE) "CFLAGS=$(STD_GIMP_CFLAGS)" "LIBS=$(STD_GIMP_LIBS)" "STRIP_EXE=1" gmic_gimp
+ 
+ lib:
+ 	$(MAKE) "CFLAGS=$(STD_LIB_CFLAGS) $(OPT_CFLAGS)" "LIBS+=$(STD_LIB_LIBS) $(OPT_LIBS)" gmic_lib
+@@ -323,6 +330,9 @@
+ linux:
+ 	$(MAKE) "CFLAGS=$(STD_UNIX_CFLAGS) $(OPT_CFLAGS)" "LIBS=$(STD_UNIX_LIBS)" "STRIP_EXE=1" gmic
+ 
++freebsd:
++	$(MAKE) "CFLAGS+=$(STD_UNIX_CFLAGS)" "LIBS=$(STD_UNIX_LIBS)" "STRIP_EXE=1" gmic
++
+ solaris:
+ 	$(MAKE) "CFLAGS=$(STD_UNIX_CFLAGS) $(OPT_CFLAGS)" "LIBS=$(STD_UNIX_LIBS) -R$(USR)/X11R6/lib -lrt -lnsl -lsocket" "STRIP_EXE=1" gmic
+ 

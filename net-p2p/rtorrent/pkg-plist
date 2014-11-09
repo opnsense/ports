@@ -1,0 +1,3 @@
+bin/rtorrent
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/rtorrent.rc
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%

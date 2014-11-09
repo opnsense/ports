@@ -1,0 +1,38 @@
+# Created by: Jason Helfman <jgh@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	ecj
+PORTVERSION=	3.8.2
+CATEGORIES=	java devel
+MASTER_SITES=	http://archive.eclipse.org/eclipse/downloads/drops/
+MASTER_SITE_SUBDIR=	R-${PORTVERSION}-${DROPDATE}
+PKGNAMEPREFIX=	eclipse-
+DISTNAME=	ecjsrc-${PORTVERSION}
+EXTRACT_SUFX=	.jar
+
+MAINTAINER=	jgh@FreeBSD.org
+COMMENT=	Eclipse Java Compiler
+
+LICENSE=	EPL
+
+EXTRACT_CMD=	${TAR}
+EXTRACT_BEFORE_ARGS=	xf
+EXTRACT_AFTER_ARGS=	-C ${WRKDIR}
+
+USE_ANT=	yes
+USE_JAVA=	yes
+JAVA_VERSION=	1.6+
+SUB_FILES=	ecj.sh
+SUB_LIST=	PORTVERSION=${PORTVERSION}
+NO_WRKSUBDIR=	yes
+
+DROPDATE=	201301310800
+PLIST_FILES=	bin/${PORTNAME}.sh \
+		%%JAVAJARDIR%%/${PORTNAME}-${PORTVERSION}.jar
+
+do-install:
+	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKDIR}/${PORTNAME}.jar ${STAGEDIR}${JAVAJARDIR}/${PORTNAME}-${PORTVERSION}.jar
+	${INSTALL_SCRIPT} ${WRKDIR}/ecj.sh ${STAGEDIR}/${PREFIX}/bin
+
+.include <bsd.port.mk>

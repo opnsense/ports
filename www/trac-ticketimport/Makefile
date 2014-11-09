@@ -1,0 +1,35 @@
+# $FreeBSD$
+
+PORTNAME=	ticketimport
+PORTVERSION=	0.7c
+PORTREVISION=	3
+CATEGORIES=	www devel python
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	brooks
+PKGNAMEPREFIX=	trac-
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Import or update tickets from a CSV file or Excel file
+
+RUN_DEPENDS+=	tracd:${PORTSDIR}/www/trac \
+		${PYTHON_PKGNAMEPREFIX}xlrd>=0.7.1:${PORTSDIR}/textproc/py-xlrd
+
+USE_PYTHON=		2
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
+
+# Maintainter targets below this point
+
+# Retrieve the latest version from SVN and package in a tarball.
+.if defined(BOOTSTRAP)
+FETCH_DEPENDS+=	svn:${PORTSDIR}/devel/subversion
+do-fetch:
+	${MKDIR} ${WRKDIR}
+	cd ${WRKDIR} && \
+	    svn export http://trac-hacks.org/svn/ticketimportplugin/0.11/ \
+	    ${DISTNAME}
+	cd ${WRKDIR} && tar cvf ${DISTDIR}/${DISTNAME}.tar.gz ${DISTNAME}
+.endif
+
+.include "${.CURDIR}/../../www/trac/plugin.mk"
+.include <bsd.port.mk>

@@ -1,0 +1,23 @@
+--- makefile.orig	2011-06-11 14:13:08.000000000 +0000
++++ makefile	2011-08-09 10:58:25.000000000 +0000
+@@ -22,18 +22,9 @@
+ # THIS SOFTWARE.
+ # ****************************************************************/
+ 
+-CFLAGS = -g
+-CFLAGS = -O2
+-CFLAGS =
+-
+-CC = gcc -Wall -g
+-CC = cc
+-CC = gcc -Wall -g -Wwrite-strings
+-CC = gcc -fprofile-arcs -ftest-coverage # then gcov f1.c; cat f1.c.gcov
+-CC = gcc -O4 -Wall -pedantic -fno-strict-aliasing
++CC ?= cc
+ 
+-YACC = bison -y
+-YACC = yacc
++YACC ?= yacc
+ YFLAGS = -d
+ 
+ OFILES = b.o main.o parse.o proctab.o tran.o lib.o run.o lex.o

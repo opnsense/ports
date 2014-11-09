@@ -1,0 +1,63 @@
+# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@sunpoet.net>
+# $FreeBSD$
+
+PORTNAME=	weather
+PORTVERSION=	2.0
+PORTREVISION=	1
+CATEGORIES=	astro python
+MASTER_SITES=	http://fungi.yuggoth.org/weather/src/ \
+		LOCAL/sunpoet
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Utility to provide current weather conditions and forecasts
+
+LICENSE=	ISCL
+
+USES=		python shebangfix tar:xz
+
+PLIST_FILES=	bin/${PORTNAME} \
+		%%PYTHON_SITELIBDIR%%/${PORTNAME}.py \
+		man/man1/${PORTNAME}.1.gz \
+		man/man5/${PORTNAME}rc.5.gz
+PORTDATA=	airports places stations zctas zones
+
+SHEBANG_FILES=	${PORTNAME}
+python_OLD_CMD=	${SETENV} python
+python_CMD=	${PYTHON_CMD}
+
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 320
+PYCACHE_DIR=	# empty
+PYCACHE_FILE=	${PORTNAME}
+.else
+PLIST_DIRS=	%%PYTHON_SITELIBDIR%%/__pycache__
+PYCACHE_DIR=	__pycache__/
+PYCACHE_FILE=	${PORTNAME}.cpython-${PYTHON_SUFFIX}
+.endif
+
+PLIST_FILES+=	%%PYTHON_SITELIBDIR%%/${PYCACHE_DIR}${PYCACHE_FILE}.pyc \
+		%%PYTHON_SITELIBDIR%%/${PYCACHE_DIR}${PYCACHE_FILE}.pyo
+
+do-build:
+	@${PYTHON_CMD} -m compileall ${WRKSRC}/${PORTNAME}.py
+	@${PYTHON_CMD} -O -m compileall ${WRKSRC}/${PORTNAME}.py
+
+do-install:
+	${MKDIR} ${STAGEDIR}${PYTHON_SITELIBDIR}/ ${STAGEDIR}${PYTHON_SITELIBDIR}/${PYCACHE_DIR}
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.py ${STAGEDIR}${PYTHON_SITELIBDIR}/
+	${INSTALL_DATA} ${WRKSRC}/${PYCACHE_DIR}${PYCACHE_FILE}.pyc ${STAGEDIR}${PYTHON_SITELIBDIR}/${PYCACHE_DIR}
+	${INSTALL_DATA} ${WRKSRC}/${PYCACHE_DIR}${PYCACHE_FILE}.pyo ${STAGEDIR}${PYTHON_SITELIBDIR}/${PYCACHE_DIR}
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${MANPREFIX}/man/man1/${PORTNAME}.1
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}rc.5 ${STAGEDIR}${MANPREFIX}/man/man5/${PORTNAME}rc.5
+	${MKDIR} ${STAGEDIR}${DATADIR}/
+	cd ${WRKSRC}/ && ${INSTALL_DATA} ${PORTDATA} ${STAGEDIR}${DATADIR}/
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "Please add the following to your .weatherrc in order to use installed data files:"
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "[default]"
+	@${ECHO_MSG} "setpath = ${DATADIR}"
+	@${ECHO_MSG} ""
+
+.include <bsd.port.post.mk>

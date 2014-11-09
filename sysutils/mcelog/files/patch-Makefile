@@ -1,0 +1,49 @@
+--- Makefile.orig	2010-01-21 02:36:52 UTC
++++ Makefile
+@@ -1,5 +1,4 @@
+-CFLAGS := -g -Os
+-prefix := /usr
++prefix := /usr/local
+ etcprefix :=
+ # Define appropiately for your distribution
+ # DOCDIR := /usr/share/doc/packages/mcelog
+@@ -28,11 +27,18 @@ all: mcelog
+ 
+ .PHONY: install clean depend
+ 
++LIBS :=
+ OBJ := p4.o k8.o mcelog.o dmi.o tsc.o core2.o bitfield.o intel.o \
+        nehalem.o dunnington.o tulsa.o config.o memutil.o msg.o   \
+-       eventloop.o leaky-bucket.o memdb.o server.o trigger.o 	 \
+-       client.o cache.o sysfs.o yellow.o page.o rbtree.o 	 \
+-       xeon75xx.o
++       eventloop.o leaky-bucket.o memdb.o server.o client.o 	 \
++       cache.o rbtree.o xeon75xx.o
++ifndef FREEBSD
++OBJ += page.o trigger.o sysfs.o yellow.o
++endif
++ifdef FREEBSD
++OBJ += memstream.o
++LIBS += -lkvm
++endif
+ DISKDB_OBJ := diskdb.o dimm.o db.o
+ CLEAN := mcelog dmi tsc dbquery .depend .depend.X dbquery.o ${DISKDB_OBJ}
+ DOC := mce.pdf
+@@ -48,7 +54,7 @@ endif
+ 
+ SRC := $(OBJ:.o=.c)
+ 
+-mcelog: ${OBJ}
++mcelog: ${OBJ} ${LIBS}
+ 
+ # dbquery intentionally not installed by default
+ install: mcelog
+@@ -82,8 +88,6 @@ depend: .depend
+ .depend: ${SRC}
+ 	${CC} -MM -I. ${SRC} > .depend.X && mv .depend.X .depend
+ 
+-include .depend
+-
+ Makefile: .depend
+ 
+ .PHONY: iccverify src test

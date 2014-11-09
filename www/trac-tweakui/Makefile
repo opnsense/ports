@@ -1,0 +1,34 @@
+# Created by: glarkin
+# $FreeBSD$
+
+PORTNAME=	tweakui
+PORTVERSION=	0.1.7413
+PORTREVISION=	3
+CATEGORIES=	www devel python
+MASTER_SITES=	http://www.sourcehosting.net/freebsd/distfiles/ \
+		LOCAL/glarkin
+PKGNAMEPREFIX=	trac-
+DISTNAME=	${PORTNAME}plugin-${PORTVERSION}
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Easily tweak Trac pages with JavaScript expressions
+
+RUN_DEPENDS+=	tracd:${PORTSDIR}/www/trac
+
+USES=		dos2unix zip
+DOS2UNIX_REGEX=	.*\.(css|html|js|py|txt)$
+
+EXAMPLESDIR=	${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
+PORTEXAMPLES=	*
+
+SUB_FILES=	pkg-message
+
+WRKSRC=		${WRKDIR}/trac${PORTNAME}plugin/0.11
+USE_PYTHON=	yes
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
+
+post-install:
+	cd ${WRKSRC}/tractweakui/htdocs && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR}
+
+.include <bsd.port.mk>

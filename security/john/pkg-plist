@@ -1,0 +1,31 @@
+bin/john
+bin/unshadow
+bin/xtract
+@unexec if cmp -s %D/etc/john.conf %D/etc/john.conf.default; then rm -f %D/etc/john.conf; fi
+etc/john.conf.default
+@exec [ -f %B/john.conf ] || cp %B/%f %B/john.conf
+%%DATADIR%%/all.chr
+%%DATADIR%%/alnum.chr
+%%DATADIR%%/alpha.chr
+%%DATADIR%%/cracf2john.py
+%%DATADIR%%/digits.chr
+%%DATADIR%%/dumb16.conf
+%%DATADIR%%/dumb32.conf
+%%DATADIR%%/dynamic.conf
+%%DATADIR%%/genincstats.rb
+%%DATADIR%%/lanman.chr
+%%DATADIR%%/ldif2john.pl
+%%DATADIR%%/lion2john-alt.pl
+%%DATADIR%%/lion2john.pl
+%%DATADIR%%/mailer
+%%DATADIR%%/netntlm.pl
+%%DATADIR%%/netscreen.py
+%%DATADIR%%/odf2john.py
+%%DATADIR%%/pass_gen.pl
+%%DATADIR%%/password.lst
+%%DATADIR%%/radius2john.pl
+%%DATADIR%%/sap2john.pl
+%%DATADIR%%/sha-dump.pl
+%%DATADIR%%/sha-test.pl
+%%DATADIR%%/sipdump2john.py
+@dirrm %%DATADIR%%

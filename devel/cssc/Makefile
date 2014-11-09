@@ -1,0 +1,23 @@
+# Created by: Oliver Fromme
+# $FreeBSD$
+
+PORTNAME=	cssc
+PORTVERSION=	1.3.0
+CATEGORIES=	devel
+MASTER_SITES=	GNU
+DISTNAME=	CSSC-${PORTVERSION}
+
+MAINTAINER=	oliver@fromme.com
+COMMENT=	Workalike for the source code control system SCCS
+
+LICENSE=	GPLv3
+
+GNU_CONFIGURE=	yes
+INFO=		cssc
+
+OPTIONS_DEFINE=			BINARY
+OPTIONS_DEFAULT=		BINARY
+BINARY_DESC=			Support binary SCCS files (Solaris interoperability)
+BINARY_CONFIGURE_ENABLE=	binary
+
+.include <bsd.port.mk>

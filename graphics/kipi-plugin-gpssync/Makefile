@@ -1,0 +1,15 @@
+# $FreeBSD$
+
+PORTNAME=	kipi-plugin-${KIPI_PLUGIN}
+PORTVERSION=	${DIGIKAM_VER}
+PORTREVISION=	4
+CATEGORIES=	graphics kde
+
+MAINTAINER=	kde@FreeBSD.org
+COMMENT=	${${KIPI_PLUGIN}_DESC}
+
+LIB_DEPENDS=	libkgeomap.so:${PORTSDIR}/astro/libkgeomap
+
+KIPI_PLUGIN=	gpssync
+.include "${.CURDIR}/../digikam-kde4/Makefile.common"
+.include <bsd.port.mk>

@@ -1,0 +1,326 @@
+bin/yacas
+bin/ytxt2tex
+%%DATADIR%%/array.rep/code.ys
+%%DATADIR%%/array.rep/code.ys.def
+%%DATADIR%%/assoc.rep/code.ys
+%%DATADIR%%/assoc.rep/code.ys.def
+%%DATADIR%%/base.rep/math.ys
+%%DATADIR%%/base.rep/math.ys.def
+%%DATADIR%%/c_form.rep/code.ys
+%%DATADIR%%/c_form.rep/code.ys.def
+%%DATADIR%%/calendar.rep/code.ys
+%%DATADIR%%/calendar.rep/code.ys.def
+%%DATADIR%%/complex.rep/code.ys
+%%DATADIR%%/complex.rep/code.ys.def
+%%DATADIR%%/complex.rep/om.ys
+%%DATADIR%%/constants.rep/code.ys
+%%DATADIR%%/constants.rep/code.ys.def
+%%DATADIR%%/constants.rep/om.ys
+%%DATADIR%%/controlflow.rep/code.ys
+%%DATADIR%%/controlflow.rep/code.ys.def
+%%DATADIR%%/corefunctions.ys
+%%DATADIR%%/debug.rep/code.ys
+%%DATADIR%%/debug.rep/code.ys.def
+%%DATADIR%%/deffunc.rep/code.ys
+%%DATADIR%%/deffunc.rep/code.ys.def
+%%DATADIR%%/deriv.rep/code.ys
+%%DATADIR%%/deriv.rep/code.ys.def
+%%DATADIR%%/documentation/hints
+%%DATADIR%%/documentation/yacaslogo.png
+%%DATADIR%%/example.rep/code.ys
+%%DATADIR%%/example.rep/code.ys.def
+%%DATADIR%%/examples/ABIN.ys
+%%DATADIR%%/examples/MinimumSpanningTree.ys
+%%DATADIR%%/examples/benchbuild.ys
+%%DATADIR%%/examples/benchmark.ys
+%%DATADIR%%/examples/benchmark2.ys
+%%DATADIR%%/examples/findsum.ys
+%%DATADIR%%/examples/goldbach.ys
+%%DATADIR%%/examples/pi.ys
+%%DATADIR%%/examples/queens.ys
+%%DATADIR%%/examples/series.ys
+%%DATADIR%%/examples/wordproblems.ys
+%%DATADIR%%/factors.rep/binaryfactors.ys
+%%DATADIR%%/factors.rep/binaryfactors.ys.def
+%%DATADIR%%/factors.rep/code.ys
+%%DATADIR%%/factors.rep/code.ys.def
+%%DATADIR%%/functional.rep/code.ys
+%%DATADIR%%/functional.rep/code.ys.def
+%%DATADIR%%/functional.rep/om.ys
+%%DATADIR%%/graph.rep/code.ys
+%%DATADIR%%/graph.rep/code.ys.def
+%%DATADIR%%/html.rep/code.ys
+%%DATADIR%%/html.rep/code.ys.def
+%%DATADIR%%/include/GPL_stuff.h
+%%DATADIR%%/include/anumber.h
+%%DATADIR%%/include/anumber.inl
+%%DATADIR%%/include/arggetter.h
+%%DATADIR%%/include/arrayclass.h
+%%DATADIR%%/include/arrayclass.inl
+%%DATADIR%%/include/choices.h
+%%DATADIR%%/include/commandline.h
+%%DATADIR%%/include/core_yacasmain.h
+%%DATADIR%%/include/corefunctions.h
+%%DATADIR%%/include/debugmem.h
+%%DATADIR%%/include/deffile.h
+%%DATADIR%%/include/deffile.inl
+%%DATADIR%%/include/errors.h
+%%DATADIR%%/include/evalfunc.h
+%%DATADIR%%/include/genericobject.h
+%%DATADIR%%/include/genericstructs.h
+%%DATADIR%%/include/grower.h
+%%DATADIR%%/include/grower.inl
+%%DATADIR%%/include/infixparser.h
+%%DATADIR%%/include/lispassert.h
+%%DATADIR%%/include/lispatom.h
+%%DATADIR%%/include/lispcleanupstack.h
+%%DATADIR%%/include/lispenvironment.h
+%%DATADIR%%/include/lisperror.h
+%%DATADIR%%/include/lispeval.h
+%%DATADIR%%/include/lispevalhash.h
+%%DATADIR%%/include/lispglobals.h
+%%DATADIR%%/include/lisphash.h
+%%DATADIR%%/include/lisphash.inl
+%%DATADIR%%/include/lispio.h
+%%DATADIR%%/include/lispobject.h
+%%DATADIR%%/include/lispobject.inl
+%%DATADIR%%/include/lispparser.h
+%%DATADIR%%/include/lispstring.h
+%%DATADIR%%/include/lispstring.inl
+%%DATADIR%%/include/lisptype.h
+%%DATADIR%%/include/lispuserfunc.h
+%%DATADIR%%/include/mathcommands.h
+%%DATADIR%%/include/mathenvironment.h
+%%DATADIR%%/include/mathuserfunc.h
+%%DATADIR%%/include/mathutil.h
+%%DATADIR%%/include/numbers.h
+%%DATADIR%%/include/patcher.h
+%%DATADIR%%/include/patternclass.h
+%%DATADIR%%/include/patterns.h
+%%DATADIR%%/include/platfileio.h
+%%DATADIR%%/include/platmath.h
+%%DATADIR%%/include/refcount.h
+%%DATADIR%%/include/standard.h
+%%DATADIR%%/include/standard.inl
+%%DATADIR%%/include/stdcommandline.h
+%%DATADIR%%/include/stdfileio.h
+%%DATADIR%%/include/stringio.h
+%%DATADIR%%/include/stubs.h
+%%DATADIR%%/include/substitute.h
+%%DATADIR%%/include/tokenizer.h
+%%DATADIR%%/include/unixcommandline.h
+%%DATADIR%%/include/version.h
+%%DATADIR%%/include/xmltokenizer.h
+%%DATADIR%%/include/yacas.h
+%%DATADIR%%/include/yacasbase.h
+%%DATADIR%%/include/yacasprivate.h
+%%DATADIR%%/integrate.rep/code.ys
+%%DATADIR%%/integrate.rep/code.ys.def
+%%DATADIR%%/integrate.rep/om.ys
+%%DATADIR%%/io.rep/code.ys
+%%DATADIR%%/io.rep/code.ys.def
+%%DATADIR%%/io.rep/defaultprint.ys
+%%DATADIR%%/io.rep/defaultprint.ys.def
+%%DATADIR%%/io.rep/errors.ys
+%%DATADIR%%/io.rep/formula.ys
+%%DATADIR%%/io.rep/print.ys
+%%DATADIR%%/limit.rep/code.ys
+%%DATADIR%%/limit.rep/code.ys.def
+%%DATADIR%%/limit.rep/om.ys
+%%DATADIR%%/linalg.rep/code.ys
+%%DATADIR%%/linalg.rep/code.ys.def
+%%DATADIR%%/lists.rep/code.ys
+%%DATADIR%%/lists.rep/code.ys.def
+%%DATADIR%%/lists.rep/scopestack.ys
+%%DATADIR%%/lists.rep/scopestack.ys.def
+%%DATADIR%%/localrules.rep/code.ys
+%%DATADIR%%/localrules.rep/code.ys.def
+%%DATADIR%%/logic.rep/code.ys
+%%DATADIR%%/logic.rep/code.ys.def
+%%DATADIR%%/logic.rep/om.ys
+%%DATADIR%%/manmake/book2TeX.sh
+%%DATADIR%%/manmake/book2TeX.ys
+%%DATADIR%%/manmake/txt2yacasdoc.pl
+%%DATADIR%%/multivar.rep/code.ys
+%%DATADIR%%/multivar.rep/code.ys.def
+%%DATADIR%%/multivar.rep/makemulti.ys
+%%DATADIR%%/multivar.rep/sparsenomial.ys
+%%DATADIR%%/multivar.rep/sparsetree.ys
+%%DATADIR%%/multivar.rep/sparsetree.ys.def
+%%DATADIR%%/newly.rep/code.ys
+%%DATADIR%%/newly.rep/code.ys.def
+%%DATADIR%%/numbers.rep/GaussianIntegers.ys
+%%DATADIR%%/numbers.rep/GaussianIntegers.ys.def
+%%DATADIR%%/numbers.rep/NumberTheory.ys
+%%DATADIR%%/numbers.rep/NumberTheory.ys.def
+%%DATADIR%%/numbers.rep/code.ys
+%%DATADIR%%/numbers.rep/code.ys.def
+%%DATADIR%%/numbers.rep/nthroot.ys
+%%DATADIR%%/numbers.rep/nthroot.ys.def
+%%DATADIR%%/numbers.rep/om.ys
+%%DATADIR%%/odesolver.rep/code.ys
+%%DATADIR%%/odesolver.rep/code.ys.def
+%%DATADIR%%/openmath.rep/code.ys
+%%DATADIR%%/openmath.rep/code.ys.def
+%%DATADIR%%/orthopoly.rep/code.ys
+%%DATADIR%%/orthopoly.rep/code.ys.def
+%%DATADIR%%/packages.ys
+%%DATADIR%%/padic.rep/code.ys
+%%DATADIR%%/padic.rep/code.ys.def
+%%DATADIR%%/patterns.rep/code.ys
+%%DATADIR%%/patterns.rep/code.ys.def
+%%DATADIR%%/plots.rep/backends-2d.ys
+%%DATADIR%%/plots.rep/backends-3d.ys
+%%DATADIR%%/plots.rep/code.ys
+%%DATADIR%%/plots.rep/code.ys.def
+%%DATADIR%%/plots.rep/plot2d.ys
+%%DATADIR%%/plots.rep/plot2d.ys.def
+%%DATADIR%%/plots.rep/plot3d.ys
+%%DATADIR%%/plots.rep/plot3d.ys.def
+%%DATADIR%%/predicates.rep/code.ys
+%%DATADIR%%/predicates.rep/code.ys.def
+%%DATADIR%%/probability.rep/code.ys
+%%DATADIR%%/probability.rep/code.ys.def
+%%DATADIR%%/pslq.rep/code.ys
+%%DATADIR%%/pslq.rep/code.ys.def
+%%DATADIR%%/rabinmiller.rep/code.ys
+%%DATADIR%%/rabinmiller.rep/code.ys.def
+%%DATADIR%%/radsimp.rep/code.ys
+%%DATADIR%%/radsimp.rep/code.ys.def
+%%DATADIR%%/random.rep/code.ys
+%%DATADIR%%/random.rep/code.ys.def
+%%DATADIR%%/simplify.rep/code.ys
+%%DATADIR%%/simplify.rep/code.ys.def
+%%DATADIR%%/simplify.rep/factorial.ys
+%%DATADIR%%/simplify.rep/factorial.ys.def
+%%DATADIR%%/solve.rep/code.ys
+%%DATADIR%%/solve.rep/code.ys.def
+%%DATADIR%%/specfunc.rep/bernou.ys
+%%DATADIR%%/specfunc.rep/bernou.ys.def
+%%DATADIR%%/specfunc.rep/bessel.ys
+%%DATADIR%%/specfunc.rep/bessel.ys.def
+%%DATADIR%%/specfunc.rep/code.ys
+%%DATADIR%%/specfunc.rep/code.ys.def
+%%DATADIR%%/specfunc.rep/gamma.ys
+%%DATADIR%%/specfunc.rep/gamma.ys.def
+%%DATADIR%%/specfunc.rep/gammaconst.ys
+%%DATADIR%%/specfunc.rep/gammaconst.ys.def
+%%DATADIR%%/specfunc.rep/om.ys
+%%DATADIR%%/specfunc.rep/zeta.ys
+%%DATADIR%%/specfunc.rep/zeta.ys.def
+%%DATADIR%%/standard.ys
+%%DATADIR%%/standard.ys.def
+%%DATADIR%%/statistics.rep/distributions.ys
+%%DATADIR%%/statistics.rep/distributions.ys.def
+%%DATADIR%%/statistics.rep/hypothesystest.ys
+%%DATADIR%%/statistics.rep/hypothesystest.ys.def
+%%DATADIR%%/statistics.rep/incompletegamma.ys
+%%DATADIR%%/statistics.rep/incompletegamma.ys.def
+%%DATADIR%%/statistics.rep/randomtest.ys
+%%DATADIR%%/statistics.rep/regression.ys
+%%DATADIR%%/statistics.rep/regression.ys.def
+%%DATADIR%%/statistics.rep/statistics.ys
+%%DATADIR%%/statistics.rep/statistics.ys.def
+%%DATADIR%%/stats.rep/code.ys
+%%DATADIR%%/stats.rep/code.ys.def
+%%DATADIR%%/stdarith.ys
+%%DATADIR%%/stdarith.ys.def
+%%DATADIR%%/stdfuncs.rep/code.ys
+%%DATADIR%%/stdfuncs.rep/code.ys.def
+%%DATADIR%%/stdfuncs.rep/elemfuncs.ys
+%%DATADIR%%/stdfuncs.rep/elemfuncs.ys.def
+%%DATADIR%%/stdfuncs.rep/numerical.ys
+%%DATADIR%%/stdfuncs.rep/numerical.ys.def
+%%DATADIR%%/stdfuncs.rep/nummethods.ys
+%%DATADIR%%/stdfuncs.rep/nummethods.ys.def
+%%DATADIR%%/stdfuncs.rep/om.ys
+%%DATADIR%%/stdopers.ys
+%%DATADIR%%/stubs.rep/code.ys
+%%DATADIR%%/stubs.rep/code.ys.def
+%%DATADIR%%/stubs.rep/om.ys
+%%DATADIR%%/substitute.rep/code.ys
+%%DATADIR%%/substitute.rep/code.ys.def
+%%DATADIR%%/sums.rep/code.ys
+%%DATADIR%%/sums.rep/code.ys.def
+%%DATADIR%%/sums.rep/om.ys
+%%DATADIR%%/sums.rep/taylor.ys
+%%DATADIR%%/sums.rep/taylor.ys.def
+%%DATADIR%%/sums.rep/taylor3.ys
+%%DATADIR%%/sums.rep/taylor3.ys.def
+%%DATADIR%%/tensor.rep/code.ys
+%%DATADIR%%/tensor.rep/code.ys.def
+%%DATADIR%%/testers.rep/code.ys
+%%DATADIR%%/testers.rep/code.ys.def
+%%DATADIR%%/texform.rep/code.ys
+%%DATADIR%%/texform.rep/code.ys.def
+%%DATADIR%%/transforms.rep/code.ys
+%%DATADIR%%/transforms.rep/code.ys.def
+%%DATADIR%%/trigsimp.rep/code.ys
+%%DATADIR%%/trigsimp.rep/code.ys.def
+%%DATADIR%%/univar.rep/Cyclotomic.ys
+%%DATADIR%%/univar.rep/Cyclotomic.ys.def
+%%DATADIR%%/univar.rep/code.ys
+%%DATADIR%%/univar.rep/code.ys.def
+%%DATADIR%%/univar.rep/sparse.ys
+%%DATADIR%%/univar.rep/sparse.ys.def
+%%DATADIR%%/univar.rep/sturm.ys
+%%DATADIR%%/univar.rep/sturm.ys.def
+%%DATADIR%%/yacasinit.ys
+@dirrm %%DATADIR%%/univar.rep
+@dirrm %%DATADIR%%/trigsimp.rep
+@dirrm %%DATADIR%%/transforms.rep
+@dirrm %%DATADIR%%/texform.rep
+@dirrm %%DATADIR%%/testers.rep
+@dirrm %%DATADIR%%/tensor.rep
+@dirrm %%DATADIR%%/sums.rep
+@dirrm %%DATADIR%%/substitute.rep
+@dirrm %%DATADIR%%/stubs.rep
+@dirrm %%DATADIR%%/stdfuncs.rep
+@dirrm %%DATADIR%%/stats.rep
+@dirrm %%DATADIR%%/statistics.rep
+@dirrm %%DATADIR%%/specfunc.rep
+@dirrm %%DATADIR%%/solve.rep
+@dirrm %%DATADIR%%/simplify.rep
+@dirrm %%DATADIR%%/random.rep
+@dirrm %%DATADIR%%/radsimp.rep
+@dirrm %%DATADIR%%/rabinmiller.rep
+@dirrm %%DATADIR%%/pslq.rep
+@dirrm %%DATADIR%%/probability.rep
+@dirrm %%DATADIR%%/predicates.rep
+@dirrm %%DATADIR%%/plots.rep
+@dirrm %%DATADIR%%/patterns.rep
+@dirrm %%DATADIR%%/padic.rep
+@dirrm %%DATADIR%%/orthopoly.rep
+@dirrm %%DATADIR%%/openmath.rep
+@dirrm %%DATADIR%%/odesolver.rep
+@dirrm %%DATADIR%%/numbers.rep
+@dirrm %%DATADIR%%/newly.rep
+@dirrm %%DATADIR%%/multivar.rep
+@dirrm %%DATADIR%%/manmake
+@dirrm %%DATADIR%%/logic.rep
+@dirrm %%DATADIR%%/localrules.rep
+@dirrm %%DATADIR%%/lists.rep
+@dirrm %%DATADIR%%/linalg.rep
+@dirrm %%DATADIR%%/limit.rep
+@dirrm %%DATADIR%%/io.rep
+@dirrm %%DATADIR%%/integrate.rep
+@dirrm %%DATADIR%%/include
+@dirrm %%DATADIR%%/html.rep
+@dirrm %%DATADIR%%/graph.rep
+@dirrm %%DATADIR%%/functional.rep
+@dirrm %%DATADIR%%/factors.rep
+@dirrm %%DATADIR%%/examples
+@dirrm %%DATADIR%%/example.rep
+@dirrm %%DATADIR%%/documentation
+@dirrm %%DATADIR%%/deriv.rep
+@dirrm %%DATADIR%%/deffunc.rep
+@dirrm %%DATADIR%%/debug.rep
+@dirrm %%DATADIR%%/controlflow.rep
+@dirrm %%DATADIR%%/constants.rep
+@dirrm %%DATADIR%%/complex.rep
+@dirrm %%DATADIR%%/calendar.rep
+@dirrm %%DATADIR%%/c_form.rep
+@dirrm %%DATADIR%%/base.rep
+@dirrm %%DATADIR%%/assoc.rep
+@dirrm %%DATADIR%%/array.rep
+@dirrm %%DATADIR%%

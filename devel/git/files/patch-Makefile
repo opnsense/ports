@@ -1,0 +1,83 @@
+--- Makefile.orig	2013-06-12 14:17:51.000000000 -0400
++++ Makefile	2013-06-12 14:24:27.000000000 -0400
+@@ -349,8 +349,8 @@
+ 
+ # CFLAGS and LDFLAGS are for the users to override from the command line.
+ 
+-CFLAGS = -g -O2 -Wall
+-LDFLAGS =
++CFLAGS ?= -g -O2 -Wall
++LDFLAGS ?=
+ ALL_CFLAGS = $(CPPFLAGS) $(CFLAGS)
+ ALL_LDFLAGS = $(LDFLAGS)
+ STRIP ?= strip
+@@ -372,15 +372,15 @@
+ prefix = $(HOME)
+ bindir_relative = bin
+ bindir = $(prefix)/$(bindir_relative)
+-mandir = $(prefix)/share/man
+-infodir = $(prefix)/share/info
++mandir = $(prefix)/man
++infodir = $(prefix)/info
+ gitexecdir = libexec/git-core
+ mergetoolsdir = $(gitexecdir)/mergetools
+ sharedir = $(prefix)/share
+-gitwebdir = $(sharedir)/gitweb
++gitwebdir = $(sharedir)/examples/git/gitweb
+ localedir = $(sharedir)/locale
+ template_dir = share/git-core/templates
+-htmldir = $(prefix)/share/doc/git-doc
++htmldir = $(prefix)/share/doc/git
+ ETC_GITCONFIG = $(sysconfdir)/gitconfig
+ ETC_GITATTRIBUTES = $(sysconfdir)/gitattributes
+ lib = lib
+@@ -393,21 +393,21 @@
+ 
+ export prefix bindir sharedir sysconfdir gitwebdir localedir
+ 
+-CC = cc
+-AR = ar
+-RM = rm -f
+-DIFF = diff
+-TAR = tar
+-FIND = find
+-INSTALL = install
+-RPMBUILD = rpmbuild
+-TCL_PATH = tclsh
+-TCLTK_PATH = wish
+-XGETTEXT = xgettext
+-MSGFMT = msgfmt
+-PTHREAD_LIBS = -lpthread
+-PTHREAD_CFLAGS =
+-GCOV = gcov
++CC ?= cc
++AR ?= ar
++RM ?= rm -f
++DIFF ?= diff
++TAR ?= tar
++FIND ?= find
++INSTALL ?= install
++RPMBUILD ?= rpmbuild
++TCL_PATH ?= tclsh
++TCLTK_PATH ?= wish
++XGETTEXT ?= xgettext
++MSGFMT ?= msgfmt
++PTHREAD_LIBS ?= -lpthread
++PTHREAD_CFLAGS ?=
++GCOV ?= gcov
+ 
+ export TCL_PATH TCLTK_PATH
+ 
+@@ -1154,9 +1154,9 @@
+ 
+ ifndef NO_OPENSSL
+ 	OPENSSL_LIBSSL = -lssl
+-	ifdef OPENSSLDIR
+-		BASIC_CFLAGS += -I$(OPENSSLDIR)/include
+-		OPENSSL_LINK = -L$(OPENSSLDIR)/$(lib) $(CC_LD_DYNPATH)$(OPENSSLDIR)/$(lib)
++	ifdef OPENSSLBASE
++		BASIC_CFLAGS += -I$(OPENSSLBASE)/include
++		OPENSSL_LINK = -L$(OPENSSLBASE)/$(lib) $(CC_LD_DYNPATH)$(OPENSSLBASE)/$(lib)
+ 	else
+ 		OPENSSL_LINK =
+ 	endif

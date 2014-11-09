@@ -1,0 +1,9 @@
+bin/trickle
+bin/tricklectl
+bin/trickled
+etc/trickled.conf.default
+man/man1/trickle.1.gz
+man/man5/trickled.conf.5.gz
+man/man8/trickled.8.gz
+lib/trickle/trickle-overload.so
+@dirrm lib/trickle

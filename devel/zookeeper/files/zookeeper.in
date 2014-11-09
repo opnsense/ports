@@ -1,0 +1,45 @@
+#!/bin/sh
+
+# $FreeBSD$
+#
+# PROVIDE: zookeeper
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following line to /etc/rc.conf to enable zookeeper:
+#
+# zookeeper_enable="YES"
+
+. /etc/rc.subr
+
+name=zookeeper
+rcvar=zookeeper_enable
+
+load_rc_config $name
+
+# set defaults
+: ${zookeeper_enable:="NO"}
+: ${zookeeper_logdir="%%ZOOKEEPER_LOGDIR%%"}
+: ${zookeeper_rundir="%%ZOOKEEPER_RUNDIR%%"}
+: ${zookeeper_jmx:="YES"}
+
+command="%%PREFIX%%/zookeeper/bin/zkServer.sh"
+
+start_cmd="zookeeper_command start"
+stop_cmd="zookeeper_command stop"
+restart_cmd="zookeeper_command restart"
+status_cmd="zookeeper_command status"
+
+export ZOO_LOG_DIR=${zookeeper_logdir}
+export ZOOPIDFILE=${zookeeper_rundir}/zookeeper.pid
+
+zookeeper_command()
+{
+	export JAVA_HOME=%%JAVA_HOME%%
+	if ! checkyesno zookeeper_jmx; then
+		export JMXDISABLE=yes
+	fi
+	${command} ${rc_arg}
+}
+
+run_rc_command "$1"

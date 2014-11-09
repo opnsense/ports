@@ -1,0 +1,20 @@
+--- configure.orig	2012-11-07 05:55:37.000000000 -0500
++++ configure	2012-11-07 07:02:34.000000000 -0500
+@@ -844,7 +844,7 @@
+ psdir='${docdir}'
+ libdir='${exec_prefix}/lib'
+ localedir='${datarootdir}/locale'
+-mandir='${datarootdir}/man'
++mandir='${prefix}/man'
+ 
+ ac_prev=
+ ac_dashdash=
+@@ -7265,7 +7265,7 @@
+ int
+ main ()
+ {
+-
++#include <stdio.h>
+ /* ensure backward compatibility */
+ #if !defined(SND_LIB_MAJOR) && defined(SOUNDLIB_VERSION_MAJOR)
+ #define SND_LIB_MAJOR SOUNDLIB_VERSION_MAJOR

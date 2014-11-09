@@ -1,0 +1,10 @@
+bin/proxy
+include/proxy.h
+lib/libmodman.so
+lib/libmodman.so.1
+lib/libproxy.so
+lib/libproxy.so.1
+libdata/pkgconfig/libproxy-1.0.pc
+share/cmake/Modules/Findlibproxy.cmake
+share/vala/vapi/libproxy-1.0.vapi
+@dir lib/libproxy/%%VERSION%%/modules

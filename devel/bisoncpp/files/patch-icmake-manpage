@@ -1,0 +1,35 @@
+--- icmake/manpage.orig	2013-06-21 11:16:34.000000000 +0200
++++ icmake/manpage	2013-11-27 17:42:34.000000000 +0100
+@@ -3,14 +3,29 @@
+ 
+ void manpage()
+ {
+-    md("tmp/man tmp/manhtml");
++    md("tmp/man");
+ 
+     chdir("documentation/man");
+ 
+     if (PROGRAM ".yo" younger MANPAGE || "release.yo" younger MANPAGE)
+     {
+-        run("yodl2man  -o " MANPAGE " "  PROGRAM);
+-        run("yodl2html  -o " MANHTML " " PROGRAM);
++        run("yodl2man -l3 -o " MANPAGE " " PROGRAM);
+     }
+     exit(0);
+ }
++
++void manhtmlpage()
++{
++    md("tmp/manhtml");
++
++    special();
++
++    chdir("documentation/man");
++
++    if (PROGRAM ".yo" younger MANHTML || "release.yo" younger MANHTML)
++    {
++        run("yodl2html -l3 -o " MANHTML " " PROGRAM);
++    }
++
++    chdir("../..");
++}

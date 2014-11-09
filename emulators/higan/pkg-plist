@@ -1,0 +1,19 @@
+bin/higan
+lib/libananke.so.1
+lib/libananke.so
+share/applications/higan.desktop
+%%DATADIR%%/Famicom.sys/manifest.bml
+%%DATADIR%%/Game Boy Advance.sys/manifest.bml
+%%DATADIR%%/Game Boy Color.sys/boot.rom
+%%DATADIR%%/Game Boy Color.sys/manifest.bml
+%%DATADIR%%/Game Boy.sys/boot.rom
+%%DATADIR%%/Game Boy.sys/manifest.bml
+%%DATADIR%%/Super Famicom.sys/ipl.rom
+%%DATADIR%%/Super Famicom.sys/manifest.bml
+%%DATADIR%%/shaders/Curvature.shader/curvature.fs
+%%DATADIR%%/shaders/Curvature.shader/manifest.bml
+%%DATADIR%%/shaders/Edge Detection.shader/edge-detection.fs
+%%DATADIR%%/shaders/Edge Detection.shader/manifest.bml
+%%DATADIR%%/shaders/Scanline.shader/manifest.bml
+%%DATADIR%%/shaders/Scanline.shader/scanline.fs
+share/pixmaps/higan.png

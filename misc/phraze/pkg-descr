@@ -1,0 +1,7 @@
+Phraze takes a telephone number and produces a list of combinations of 
+valid words that can be derived from it, using the keypad of a US phone.  
+
+Requires ruby.
+
+Author:		Jeff Pace <jpace@incava.org>
+WWW:		http://phraze.sourceforge.net/

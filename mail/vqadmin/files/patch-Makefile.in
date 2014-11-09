@@ -1,0 +1,11 @@
+--- Makefile.in.orig	Sat Jan 18 12:25:01 2003
++++ Makefile.in	Sat Jan 18 12:26:45 2003
+@@ -120,7 +120,7 @@
+ DEFAULT_INCLUDES =  -I. -I$(srcdir) -I. 
+ CPPFLAGS = @CPPFLAGS@
+ LDFLAGS = @LDFLAGS@
+-LIBS = @LIBS@
++LIBS = -L%%LOCALBASE%%/lib @LIBS@
+ depcomp =
+ am__depfiles_maybe =
+ COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \

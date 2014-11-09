@@ -1,0 +1,22 @@
+--- configure.orig	2008-03-03 06:48:08.000000000 +0100
++++ configure	2008-03-12 19:43:37.000000000 +0100
+@@ -27301,7 +27301,7 @@
+                 ;;
+         *)
+                 DEBUG="-g"
+-                CFLAGS="-O"
++                CFLAGS=""
+                 PROFILE="-g -p"
+                 ;;
+         esac
+@@ -27324,8 +27324,8 @@
+                 ;;
+         *)
+                 DEBUG="-g -Wall -fsigned-char"
+-                CFLAGS="-O2 -fsigned-char"
+-                PROFILE="-O2 -g -pg -fsigned-char"
++                CFLAGS="-fsigned-char"
++                PROFILE="-g -pg -fsigned-char"
+                 ;;
+         esac
+ fi

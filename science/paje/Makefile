@@ -1,0 +1,29 @@
+# Created by: gurkan@phys.ethz.ch
+# $FreeBSD$
+
+PORTNAME=	paje
+PORTVERSION=	1.97
+PORTREVISION=	4
+CATEGORIES=	science gnustep
+MASTER_SITES=	SF/${PORTNAME}/Releases
+DISTNAME=	Paje_${PORTVERSION}
+EXTRACT_SUFX=	.tar.gz.gz
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Generic visualization tool for GNUstep (Gantt chart and more)
+
+LICENSE=	LGPL21
+
+USE_GNUSTEP=	yes
+USE_GNUSTEP_BACK=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+
+WRKSRC=		${WRKDIR}/${DISTNAME}
+MAKE_ENV+=	GNUSTEP_INSTALLATION_DIR=${GNUSTEP_LOCAL_ROOT}
+
+post-patch:
+	${REINPLACE_CMD} -e 's|^GNUSTEP_INSTALLATION_DOMAIN|#GNUSTEP_INSTALLATION_DOMAIN|' \
+		${WRKSRC}/GNUmakefile
+
+.include <bsd.port.mk>

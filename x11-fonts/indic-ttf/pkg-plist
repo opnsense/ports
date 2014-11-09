@@ -1,0 +1,86 @@
+%%BENGALI%%%%CONFAVAILDIR%%/90-ttf-bengali-fonts.conf
+%%DEVANAGARI%%%%CONFAVAILDIR%%/90-ttf-devanagari-fonts.conf
+%%GUJARATI%%%%CONFAVAILDIR%%/90-ttf-gujarati-fonts.conf
+%%KANNADA%%%%CONFAVAILDIR%%/90-ttf-kannada-fonts.conf
+%%MALAYALAM%%%%CONFAVAILDIR%%/90-ttf-malayalam-fonts.conf
+%%ORIYA%%%%CONFAVAILDIR%%/90-ttf-oriya-fonts.conf
+%%PUNJABI%%%%CONFAVAILDIR%%/90-ttf-punjabi-fonts.conf
+%%TAMIL%%%%CONFAVAILDIR%%/90-ttf-tamil-fonts.conf
+%%TELUGU%%%%CONFAVAILDIR%%/90-ttf-telugu-fonts.conf
+%%BENGALI%%%%FONTSDIR%%/bengali/JamrulNormal.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/LikhanNormal.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/MuktiNarrow.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/MuktiNarrowBold.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/ani.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/lohit_as.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/lohit_bn.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/mitra.ttf
+%%BENGALI%%%%FONTSDIR%%/bengali/ttf-bengali-fonts.copyright
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/Samyak-Devanagari.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/Sarai_07.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/chandas1-2.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/gargi.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/kalimati.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_hi.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_kok.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_ks.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_mai.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_mr.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_ne.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/lohit_sd.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/nakula.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/sahadeva.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/samanata.ttf
+%%DEVANAGARI%%%%FONTSDIR%%/devanagari/ttf-devanagari-fonts.copyright
+%%GUJARATI%%%%FONTSDIR%%/gujarati/Rekha.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/Samyak-Gujarati.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/aakar-medium.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/lohit_gu.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/padmaa-Bold.1.1.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/padmaa-Medium-0.5.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/padmaa.ttf
+%%GUJARATI%%%%FONTSDIR%%/gujarati/ttf-gujarati-fonts.copyright
+%%KANNADA%%%%FONTSDIR%%/kannada/Kedage-b.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Kedage-i.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Kedage-n.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Kedage-t.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Malige-b.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Malige-i.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Malige-n.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/Malige-t.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/lohit_kn.ttf
+%%KANNADA%%%%FONTSDIR%%/kannada/ttf-kannada-fonts.copyright
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/AnjaliOldLipi.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/Dyuthi3.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/Kalyani121.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/Meera_04.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/Rachana_04.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/RaghuMalayalamSans2.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/Samyak-Malayalam.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/lohit_ml.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/suruma2.ttf
+%%MALAYALAM%%%%FONTSDIR%%/malayalam/ttf-malayalam-fonts.copyright
+%%ORIYA%%%%FONTSDIR%%/oriya/Samyak-Oriya.ttf
+%%ORIYA%%%%FONTSDIR%%/oriya/lohit_or.ttf
+%%ORIYA%%%%FONTSDIR%%/oriya/ttf-oriya-fonts.copyright
+%%ORIYA%%%%FONTSDIR%%/oriya/utkal.ttf
+%%PUNJABI%%%%FONTSDIR%%/punjabi/Saab.ttf
+%%PUNJABI%%%%FONTSDIR%%/punjabi/lohit_pa.ttf
+%%PUNJABI%%%%FONTSDIR%%/punjabi/ttf-punjabi-fonts.copyright
+%%TAMIL%%%%FONTSDIR%%/tamil/Samyak-Tamil.ttf
+%%TAMIL%%%%FONTSDIR%%/tamil/lohit_ta.ttf
+%%TAMIL%%%%FONTSDIR%%/tamil/ttf-tamil-fonts.copyright
+%%TELUGU%%%%FONTSDIR%%/telugu/Pothana2000.ttf
+%%TELUGU%%%%FONTSDIR%%/telugu/Vemana.ttf
+%%TELUGU%%%%FONTSDIR%%/telugu/lohit_te.ttf
+%%TELUGU%%%%FONTSDIR%%/telugu/ttf-telugu-fonts.copyright
+%%TELUGU%%@fcfontsdir %%FONTSDIR%%/telugu
+%%TAMIL%%@fcfontsdir %%FONTSDIR%%/tamil
+%%PUNJABI%%@fcfontsdir %%FONTSDIR%%/punjabi
+%%ORIYA%%@fcfontsdir %%FONTSDIR%%/oriya
+%%MALAYALAM%%@fcfontsdir %%FONTSDIR%%/malayalam
+%%KANNADA%%@fcfontsdir %%FONTSDIR%%/kannada
+%%GUJARATI%%@fcfontsdir %%FONTSDIR%%/gujarati
+%%DEVANAGARI%%@fcfontsdir %%FONTSDIR%%/devanagari
+%%BENGALI%%@fcfontsdir %%FONTSDIR%%/bengali
+@dirrm %%FONTSDIR%%

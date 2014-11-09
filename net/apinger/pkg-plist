@@ -1,0 +1,6 @@
+sbin/apinger
+etc/apinger.conf.sample
+%%DOCSDIR%%/README
+%%DOCSDIR%%/NEWS
+%%DOCSDIR%%/AUTHORS
+@dirrm %%DOCSDIR%%

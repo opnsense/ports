@@ -1,0 +1,11 @@
+--- xgnokii/Makefile.in.orig	2008-10-06 08:57:20.000000000 +0200
++++ xgnokii/Makefile.in	2009-02-26 17:33:22.000000000 +0100
+@@ -62,7 +62,7 @@
+ 	xgnokii-xgnokii_xring.$(OBJEXT) \
+ 	xgnokii-xgnokii_lowlevel.$(OBJEXT) \
+ 	xgnokii-xgnokii_data.$(OBJEXT)
+-xgnokii_OBJECTS = $(am_xgnokii_OBJECTS)
++xgnokii_OBJECTS = $(am_xgnokii_OBJECTS) /usr/lib/libsdp.so
+ am__DEPENDENCIES_1 =
+ xgnokii_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+ 	$(am__DEPENDENCIES_1) $(top_builddir)/common/libgnokii.la \

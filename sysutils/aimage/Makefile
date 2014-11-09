@@ -1,0 +1,20 @@
+# Created by: Chris Calvey <chris@securityforensics.co.uk>
+# $FreeBSD$
+
+PORTNAME=	aimage
+PORTVERSION=	3.2.5
+CATEGORIES=	sysutils
+MASTER_SITES=	http://digitalcorpora.org/downloads/
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Advanced Disk Imager
+
+LIB_DEPENDS=	libafflib.so:${PORTSDIR}/sysutils/afflib
+
+USE_OPENSSL=	yes
+USES=		gmake
+GNU_CONFIGURE=	yes
+
+PLIST_FILES=	bin/aimage
+
+.include <bsd.port.mk>

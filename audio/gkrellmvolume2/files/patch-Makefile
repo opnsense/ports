@@ -1,0 +1,37 @@
+Index: Makefile
+diff -u Makefile.orig Makefile
+--- Makefile.orig	Thu Nov  7 01:50:59 2002
++++ Makefile	Thu Nov  7 04:49:05 2002
+@@ -3,12 +3,12 @@
+ GTK_CONFIG = pkg-config gtk+-2.0
+ 
+ PLUGIN_DIR ?= /usr/local/lib/gkrellm2/plugins
+-GKRELLM_INCLUDE = -I/usr/local/include
++GKRELLM_INCLUDE = -I${PREFIX}/include
+ 
+ GTK_CFLAGS = `$(GTK_CONFIG) --cflags` 
+ GTK_LIB = `$(GTK_CONFIG) --libs`
+ 
+-FLAGS = -O2 -Wall -fPIC $(GTK_CFLAGS) $(GKRELLM_INCLUDE)
++CFLAGS += -fPIC $(GTK_CFLAGS) $(GKRELLM_INCLUDE)
+ LIBS = $(GTK_LIB)
+ LFLAGS = -shared
+ 
+@@ -22,8 +22,6 @@
+ FLAGS += -DPACKAGE="\"$(PACKAGE)\"" 
+ export PACKAGE LOCALEDIR
+ 
+-CC = gcc $(CFLAGS) $(FLAGS)
+-
+ INSTALL = install -c
+ INSTALL_PROGRAM = $(INSTALL) -s
+ 
+@@ -33,7 +31,7 @@
+ 	(cd po && ${MAKE} all )
+ 
+ volume.so: $(OBJS)
+-	$(CC) $(OBJS) -o volume.so $(LIBS) $(LFLAGS)
++	$(CC) $(CFLAGS) $(OBJS) -o volume.so $(LIBS) $(LFLAGS)
+ 
+ clean:
+ 	rm -f *.o core *.so* *.bak *~

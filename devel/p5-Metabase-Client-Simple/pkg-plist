@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Metabase/Client/Simple.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Metabase/Client/Simple/.packlist
+%%PERL5_MAN3%%/Metabase::Client::Simple.3.gz

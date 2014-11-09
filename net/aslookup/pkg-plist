@@ -1,0 +1,4 @@
+bin/aslookup
+%%PORTDOCS%%%%DOCSDIR%%/readme-eng.txt
+%%PORTDOCS%%%%DOCSDIR%%/readme-jp.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

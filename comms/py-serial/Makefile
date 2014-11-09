@@ -1,0 +1,29 @@
+# Created by: Hye-Shik Chang <perky@fallin.lv>
+# $FreeBSD$
+
+PORTNAME=	serial
+PORTVERSION=	2.7
+CATEGORIES=	comms python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+DISTNAME=	py${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	sbz@FreeBSD.org
+COMMENT=	Serial port encapsulation library for Python
+
+USES=			python
+USE_PYTHON=		distutils pythonprefix
+PYDISTUTILS_PKGNAME=	py${PORTNAME}
+
+DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
+EXAMPLESDIR=	${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/*.txt ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
+
+.include <bsd.port.mk>

@@ -1,0 +1,46 @@
+# Created by: Ying-Chieh Liao <ijliao@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	imc
+PORTVERSION=	4.3
+PORTREVISION=	7
+CATEGORIES=	graphics
+MASTER_SITES=	http://www.peterverthez.net/projects/imc/
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Image Compiler
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+LICENSE=	GPLv2
+
+BUILD_DEPENDS=	p5-GD>=0:${PORTSDIR}/graphics/p5-GD \
+		p5-CGI.pm>=0:${PORTSDIR}/www/p5-CGI.pm
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+USES=		gmake perl5
+GNU_CONFIGURE=	yes
+
+PLIST_FILES=	bin/${PORTNAME} \
+		man/man1/${PORTNAME}.1.gz
+
+PORTDOCS=	*
+
+DOCSRCDIR1=	${WRKSRC}
+DOC_FILES1=	AUTHORS ChangeLog NEWS README THANKS Todo
+
+DOCSRCDIR2=	${WRKSRC}/doc
+DOCSDIR2=	${DOCSDIR}/doc
+DOC_FILES2=	*.html *.ref *.txt
+
+PORTEXAMPLES=	*
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOC_FILES1:S|^|${DOCSRCDIR1}/|} ${STAGEDIR}${DOCSDIR}
+	${MKDIR} ${STAGEDIR}${DOCSDIR2}
+	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${STAGEDIR}${DOCSDIR2}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
+
+.include <bsd.port.mk>

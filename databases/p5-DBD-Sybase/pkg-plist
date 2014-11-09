@@ -1,0 +1,5 @@
+%%PERL5_MAN3%%/DBD::Sybase.3.gz
+%%SITE_PERL%%/%%PERL_ARCH%%/DBD/Sybase.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/DBD/dbd-sybase.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD/Sybase/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/DBD/Sybase/Sybase.so

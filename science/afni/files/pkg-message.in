@@ -1,0 +1,35 @@
+=============================================================================
+For quick info, run "man afni".
+
+For AFNI configuration and usage, please visit the AFNI WEB site at 
+
+http://afni.nimh.nih.gov.
+
+---
+
+SUMA requires the nVidia graphics driver (x11/nvidia-driver*)
+or DRI (graphics/dri).
+
+---
+
+For large 3dDeconvolve analyses, you may need to increase one or
+more of the following shared memory limits using sysctl (and
+/etc/sysctl.conf to make the changes permanent):
+
+    kern.ipc.shmall
+    kern.ipc.shmmax
+    kern.ipc.shmmin
+    kern.ipc.shmmni
+    kern.ipc.shmseg
+
+---
+
+The program "abut" has been renamed "afni_abut" to resolve a collision
+with the unixstat port.
+
+---
+
+AFNI_PLUGIN_PATH should be set to %%PREFIX%%/lib/afni:%%DATADIR%%
+AFNI_GLOBAL_SESSION should be set to %%DATADIR%%.
+
+=============================================================================

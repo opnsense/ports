@@ -1,0 +1,8 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/Digest/Tiger.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Digest/Tiger/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Digest/Tiger/autosplit.ix
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Digest/Tiger/Tiger.so
+%%PERL5_MAN3%%/Digest::Tiger.3.gz
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Digest/Tiger
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Digest
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Digest/

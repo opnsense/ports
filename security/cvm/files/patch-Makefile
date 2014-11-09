@@ -1,0 +1,30 @@
+--- Makefile.orig	2010-01-21 23:51:26.000000000 +0100
++++ Makefile	2014-08-21 05:42:52.000000000 +0200
+@@ -155,10 +155,10 @@
+ 	./compile cvm-v1testclient.c
+ 
+ cvm-vchkpw: cvm-vchkpw.o ltload libcvm-module.la crypt.lib shadow.lib s.lib socket.lib
+-	./ltload cvm-vchkpw libcvm-module.la -L/usr/local/vpopmail/lib -L/var/vpopmail/lib -L/usr/local/lib/mysql -lbg -lvpopmail -lmysqlclient `cat crypt.lib` `cat shadow.lib` `cat s.lib` `cat socket.lib`
++	./ltload cvm-vchkpw libcvm-module.la `cat /usr/local/vpopmail/etc/lib_deps` -lbg `cat crypt.lib` `cat shadow.lib` `cat s.lib` `cat socket.lib`
+ 
+ cvm-vchkpw.o: compile cvm-vchkpw.c module.h credentials.h errors.h facts.h
+-	./compile cvm-vchkpw.c
++	./compile cvm-vchkpw.c `cat /usr/local/vpopmail/etc/inc_deps`
+ 
+ cvm-vmailmgr: cvm-vmailmgr.o ltload vmautoconvert.o vmlookup.o getpwnam.o libcvm-module.la libcvm-qmail.la socket.lib crypt.lib
+ 	./ltload cvm-vmailmgr vmautoconvert.o vmlookup.o getpwnam.o libcvm-module.la libcvm-qmail.la -lbg `cat socket.lib` `cat crypt.lib`
+@@ -249,12 +249,12 @@
+ 	) >ltload
+ 	chmod 755 ltload
+ 
+-makeshlib: conf-ld conf-lib LIBVERSION Makefile
++makeshlib: conf-home conf-ld conf-lib LIBVERSION Makefile
+ 	( if libtool --tag=CC --help >/dev/null 2>&1; then tag='--tag=CC'; fi; \
+ 	  echo '#!/bin/sh'; \
+ 	  echo 'lib="$$1"; shift';\
+ 	  echo 'rm -f "$$lib"';\
+-	  echo libtool --mode=link --silent $$tag `head -n 1 conf-ld` '-o "$$lib" -rpath' `head -n 1 conf-lib` -version-info `head -n 1 LIBVERSION` '$${1+"$$@"}';\
++	  echo libtool --mode=link --silent $$tag `head -n 1 conf-ld` '-o "$$lib" -rpath' `head -n 1 conf-home`/lib -version-info `head -n 1 LIBVERSION` '$${1+"$$@"}';\
+ 	) >makeshlib
+ 	chmod 755 makeshlib
+ 

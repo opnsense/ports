@@ -1,0 +1,32 @@
+# Created by: Lung-Pin Chang <changlp@cs.nctu.edu.tw>
+# $FreeBSD$
+
+PORTNAME=	django_compressor
+PORTVERSION=	1.1.2
+PORTREVISION=	1
+CATEGORIES=	www python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	changlp@cs.nctu.edu.tw
+COMMENT=	Compresses linked and inline JavaScript/CSS into a single cached file
+
+LICENSE=	MIT
+
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}versiontools>=1.8.2:${PORTSDIR}/devel/py-versiontools
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django-appconf>=0.4:${PORTSDIR}/www/py-django-appconf
+
+USE_PYTHON=	2
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
+
+OPTIONS_DEFINE=	BEAUTIFULSOUP LXML HTML5LIB
+BEAUTIFULSOUP_DESC=	Enable BeautifulSoupParser
+LXML_DESC=		Enable LxmlParser
+HTML5LIB_DESC=		Enable Html5LibParser
+
+BEAUTIFULSOUP_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/BeautifulSoup.py:${PORTSDIR}/www/py-beautifulsoup32
+LXML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:${PORTSDIR}/devel/py-lxml
+HTML5LIB_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}html5lib>0:${PORTSDIR}/www/py-html5lib
+
+.include <bsd.port.mk>

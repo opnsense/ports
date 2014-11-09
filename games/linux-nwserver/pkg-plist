@@ -1,0 +1,4 @@
+bin/fixinstall
+bin/nwserver
+%%PORTDOCS%%%%DOCSDIR%%/readme.linuxserver.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

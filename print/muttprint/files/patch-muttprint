@@ -1,0 +1,48 @@
+--- muttprint.orig	Wed Apr  7 19:27:31 2004
++++ muttprint	Sun May 23 17:37:08 2004
+@@ -92,13 +92,13 @@
+ ######## 'private' variables for the rest
+ %Config = (
+ 	PRINTER			=> 	'',
+-	PRINT_COMMAND	=>	'lpr -P$PRINTER',
++	PRINT_COMMAND	=>	'%%PRINT_COMMAND%%',
+ 	PENGUIN			=>	'on',
+ 	DUPLEX			=>	'off',
+ 	SPEED			=>	'30',
+ 	PAPERSAVE		=>	'off',
+ 	FONT			=>	'Latex',
+-	PAPER			=>	'A4',
++	PAPER			=>	'%%PAPERSIZE%%',
+ 	DEBUG			=>	'0',
+ 	REM_SIG			=>	'off',
+ 	REM_QUOTE		=>	'off',
+@@ -196,16 +196,16 @@
+ 	}
+ }
+ 
+-$Config{PAPER} = getPaperConfig ();
+-readConfig ("/etc/Muttprintrc", "$ENV{HOME}/.muttprintrc");
++#$Config{PAPER} = getPaperConfig ();
++readConfig ("%%PREFIX%%/etc/Muttprintrc", "$ENV{HOME}/.muttprintrc");
+ 
+ 
+ @print = readOpts ();
+ 
+ if ($Config{PENGUIN} eq "on") {
+ 	my $sharedir = findCommonDir("share");
+-	$Config{PENGUIN} = (-r "$sharedir/penguin.eps")
+-			? "$sharedir/penguin.eps" 
++	$Config{PENGUIN} = (-r "$sharedir/Beastie.eps")
++			? "$sharedir/Beastie.eps" 
+ 			: "off";
+ }
+ 
+@@ -1978,7 +1978,7 @@
+ Options:
+ 
+ PLEASE NOTICE: These options override the corresponding settings in 
+-~/.muttprintrc and /etc/Muttprintrc.
++~/.muttprintrc and %%PREFIX%%/etc/Muttprintrc.
+ 
+ -h, --help
+        This help.

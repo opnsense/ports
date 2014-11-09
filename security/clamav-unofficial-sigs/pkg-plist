@@ -1,0 +1,12 @@
+bin/clamav-unofficial-sigs.sh
+@sample etc/clamav-unofficial-sigs.conf.sample
+man/man8/clamav-unofficial-sigs.8.gz
+%%PORTDOCS%%%%DOCSDIR%%/CHANGELOG
+%%PORTDOCS%%%%DOCSDIR%%/INSTALL
+%%PORTDOCS%%%%DOCSDIR%%/LICENSE
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/clamav-unofficial-sigs-cron
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/clamav-unofficial-sigs-logrotate
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/clamd-status.sh
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%

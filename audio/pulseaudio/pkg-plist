@@ -1,0 +1,212 @@
+bin/esdcompat
+%%AVAHI%%bin/pabrowse
+bin/pacat
+bin/pacmd
+bin/pactl
+bin/padsp
+bin/pamon
+bin/paplay
+bin/parec
+bin/parecord
+bin/pasuspender
+bin/pax11publish
+bin/pulseaudio
+bin/start-pulseaudio-kde
+bin/start-pulseaudio-x11
+etc/dbus-1/system.d/pulseaudio-system.conf
+@unexec if cmp -s %D/etc/pulse/client.conf %D/etc/pulse/client.conf-dist; then rm -f %D/etc/pulse/client.conf; fi
+etc/pulse/client.conf-dist
+@exec [ -f %B/client.conf ] || cp %B/%f %B/client.conf
+@unexec if cmp -s %D/etc/pulse/daemon.conf %D/etc/pulse/daemon.conf-dist; then rm -f %D/etc/pulse/daemon.conf; fi
+etc/pulse/daemon.conf-dist
+@exec [ -f %B/daemon.conf ] || cp %B/%f %B/daemon.conf
+@unexec if cmp -s %D/etc/pulse/default.pa %D/etc/pulse/default.pa-dist; then rm -f %D/etc/pulse/default.pa; fi
+etc/pulse/default.pa-dist
+@exec [ -f %B/default.pa ] || cp %B/%f %B/default.pa
+@unexec if cmp -s %D/etc/pulse/system.pa %D/etc/pulse/system.pa-dist; then rm -f %D/etc/pulse/system.pa; fi
+etc/pulse/system.pa-dist
+@exec [ -f %B/system.pa ] || cp %B/%f %B/system.pa
+etc/xdg/autostart/pulseaudio.desktop
+etc/xdg/autostart/pulseaudio-kde.desktop
+%%AVAHI%%include/pulse/browser.h
+include/pulse/cdecl.h
+include/pulse/channelmap.h
+include/pulse/context.h
+include/pulse/def.h
+include/pulse/error.h
+include/pulse/ext-device-manager.h
+include/pulse/ext-stream-restore.h
+include/pulse/gccmacro.h
+include/pulse/glib-mainloop.h
+include/pulse/introspect.h
+include/pulse/mainloop-api.h
+include/pulse/mainloop-signal.h
+include/pulse/mainloop.h
+include/pulse/operation.h
+include/pulse/proplist.h
+include/pulse/pulseaudio.h
+include/pulse/rtclock.h
+include/pulse/sample.h
+include/pulse/scache.h
+include/pulse/simple.h
+include/pulse/stream.h
+include/pulse/subscribe.h
+include/pulse/thread-mainloop.h
+include/pulse/timeval.h
+include/pulse/utf8.h
+include/pulse/util.h
+include/pulse/version.h
+include/pulse/volume.h
+include/pulse/xmalloc.h
+%%AVAHI%%lib/libpulse-browse.so
+%%AVAHI%%lib/libpulse-browse.so.0
+%%AVAHI%%lib/libpulse-browse.so.0.1.1
+lib/libpulse-mainloop-glib.so
+lib/libpulse-mainloop-glib.so.0
+lib/libpulse-mainloop-glib.so.0.0.4
+lib/libpulse-simple.so
+lib/libpulse-simple.so.0
+lib/libpulse-simple.so.0.0.3
+lib/libpulse.so
+lib/libpulse.so.0
+lib/libpulse.so.0.12.4
+lib/libpulsecommon-%%PULSE_VERSION%%.so
+lib/libpulsecore-%%PULSE_VERSION%%.so
+lib/libpulsedsp.so
+%%AVAHI%%lib/pulse-%%PULSE_VERSION%%/modules/libavahi-wrap.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-device-manager.so
+lib/pulse-%%PULSE_VERSION%%/modules/libcli.so
+lib/pulse-%%PULSE_VERSION%%/modules/liboss-util.so
+lib/pulse-%%PULSE_VERSION%%/modules/libprotocol-cli.so
+lib/pulse-%%PULSE_VERSION%%/modules/libprotocol-esound.so
+lib/pulse-%%PULSE_VERSION%%/modules/libprotocol-http.so
+lib/pulse-%%PULSE_VERSION%%/modules/libprotocol-native.so
+lib/pulse-%%PULSE_VERSION%%/modules/libprotocol-simple.so
+lib/pulse-%%PULSE_VERSION%%/modules/libraop.so
+lib/pulse-%%PULSE_VERSION%%/modules/librtp.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-always-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-augment-properties.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-card-restore.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-cli-protocol-tcp.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-cli-protocol-unix.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-cli.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-combine.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-console-kit.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-cork-music-on-phone.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-default-device-restore.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-detect.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-device-restore.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-echo-cancel.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-esound-compat-spawnfd.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-esound-compat-spawnpid.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-esound-protocol-tcp.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-esound-protocol-unix.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-esound-sink.so
+%%GCONF%%lib/pulse-%%PULSE_VERSION%%/modules/module-gconf.so
+%%HAL%%lib/pulse-%%PULSE_VERSION%%/modules/module-hal-detect.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-http-protocol-tcp.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-http-protocol-unix.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-intended-roles.so
+%%JACK%%lib/pulse-%%PULSE_VERSION%%/modules/module-jack-sink.so
+%%JACK%%lib/pulse-%%PULSE_VERSION%%/modules/module-jack-source.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-ladspa-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-loopback.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-match.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-native-protocol-fd.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-native-protocol-tcp.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-native-protocol-unix.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-null-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-oss.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-pipe-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-pipe-source.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-position-event-sounds.so
+%%AVAHI%%lib/pulse-%%PULSE_VERSION%%/modules/module-raop-discover.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-raop-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-remap-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-rescue-streams.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-rtp-recv.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-rtp-send.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-rygel-media-server.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-simple-protocol-tcp.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-simple-protocol-unix.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-sine.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-sine-source.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-stream-restore.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-suspend-on-idle.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-tunnel-sink.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-tunnel-source.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-volume-restore.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-x11-bell.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-x11-cork-request.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-x11-publish.so
+lib/pulse-%%PULSE_VERSION%%/modules/module-x11-xsmp.so
+%%AVAHI%%lib/pulse-%%PULSE_VERSION%%/modules/module-zeroconf-discover.so
+%%AVAHI%%lib/pulse-%%PULSE_VERSION%%/modules/module-zeroconf-publish.so
+%%AVAHI%%libdata/pkgconfig/libpulse-browse.pc
+libdata/pkgconfig/libpulse-mainloop-glib.pc
+libdata/pkgconfig/libpulse-simple.pc
+libdata/pkgconfig/libpulse.pc
+%%GCONF%%libexec/pulse/gconf-helper
+man/man1/esdcompat.1.gz
+man/man1/pabrowse.1.gz
+man/man1/pacat.1.gz
+man/man1/pacmd.1.gz
+man/man1/pactl.1.gz
+man/man1/padsp.1.gz
+man/man1/paplay.1.gz
+man/man1/pasuspender.1.gz
+man/man1/pax11publish.1.gz
+man/man1/pulseaudio.1.gz
+man/man5/default.pa.5.gz
+man/man5/pulse-client.conf.5.gz
+man/man5/pulse-daemon.conf.5.gz
+share/locale/as/LC_MESSAGES/pulseaudio.mo
+share/locale/bn_IN/LC_MESSAGES/pulseaudio.mo
+share/locale/ca/LC_MESSAGES/pulseaudio.mo
+share/locale/cs/LC_MESSAGES/pulseaudio.mo
+share/locale/de/LC_MESSAGES/pulseaudio.mo
+share/locale/de_CH/LC_MESSAGES/pulseaudio.mo
+share/locale/el/LC_MESSAGES/pulseaudio.mo
+share/locale/es/LC_MESSAGES/pulseaudio.mo
+share/locale/fi/LC_MESSAGES/pulseaudio.mo
+share/locale/fr/LC_MESSAGES/pulseaudio.mo
+share/locale/gu/LC_MESSAGES/pulseaudio.mo
+share/locale/hi/LC_MESSAGES/pulseaudio.mo
+share/locale/hu/LC_MESSAGES/pulseaudio.mo
+share/locale/it/LC_MESSAGES/pulseaudio.mo
+share/locale/ja/LC_MESSAGES/pulseaudio.mo
+share/locale/kn/LC_MESSAGES/pulseaudio.mo
+share/locale/ml/LC_MESSAGES/pulseaudio.mo
+share/locale/mr/LC_MESSAGES/pulseaudio.mo
+share/locale/nl/LC_MESSAGES/pulseaudio.mo
+share/locale/or/LC_MESSAGES/pulseaudio.mo
+share/locale/pa/LC_MESSAGES/pulseaudio.mo
+share/locale/pl/LC_MESSAGES/pulseaudio.mo
+share/locale/pt/LC_MESSAGES/pulseaudio.mo
+share/locale/pt_BR/LC_MESSAGES/pulseaudio.mo
+share/locale/sr/LC_MESSAGES/pulseaudio.mo
+share/locale/sr@latin/LC_MESSAGES/pulseaudio.mo
+share/locale/sv/LC_MESSAGES/pulseaudio.mo
+share/locale/ta/LC_MESSAGES/pulseaudio.mo
+share/locale/te/LC_MESSAGES/pulseaudio.mo
+share/locale/uk/LC_MESSAGES/pulseaudio.mo
+share/locale/zh_CN/LC_MESSAGES/pulseaudio.mo
+share/vala/vapi/libpulse.deps
+share/vala/vapi/libpulse.vapi
+share/vala/vapi/libpulse-mainloop-glib.deps
+share/vala/vapi/libpulse-mainloop-glib.vapi
+%%GCONF%%@dirrm libexec/pulse
+@dirrm lib/pulse-%%PULSE_VERSION%%/modules
+@dirrm lib/pulse-%%PULSE_VERSION%%
+@dirrm include/pulse
+@dirrm etc/pulse
+@dirrmtry share/locale/sr@latin/LC_MESSAGES
+@dirrmtry share/locale/sr@latin
+@dirrmtry share/locale/mr/LC_MESSAGES
+@dirrmtry share/locale/mr
+@dirrmtry share/locale/de_CH/LC_MESSAGES
+@dirrmtry share/locale/de_CH
+@dirrmtry share/locale/bn_IN/LC_MESSAGES
+@dirrmtry share/locale/bn_IN
+@dirrmtry share/locale/as/LC_MESSAGES
+@dirrmtry share/locale/as

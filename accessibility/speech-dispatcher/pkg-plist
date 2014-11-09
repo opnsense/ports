@@ -1,0 +1,98 @@
+%%PYTHON%%bin/spd-conf
+bin/spd-say
+bin/spdsend
+bin/speech-dispatcher
+@sample %%ETCDIR%%/clients/emacs.conf.sample
+@sample %%ETCDIR%%/clients/gnome-speech.conf.sample
+@sample %%ETCDIR%%/modules/cicero.conf.sample
+@sample %%ETCDIR%%/modules/dtk-generic.conf.sample
+@sample %%ETCDIR%%/modules/epos-generic.conf.sample
+@sample %%ETCDIR%%/modules/espeak-generic.conf.sample
+@sample %%ETCDIR%%/modules/espeak-mbrola-generic.conf.sample
+@sample %%ETCDIR%%/modules/espeak.conf.sample
+@sample %%ETCDIR%%/modules/festival.conf.sample
+@sample %%ETCDIR%%/modules/flite.conf.sample
+@sample %%ETCDIR%%/modules/ibmtts.conf.sample
+@sample %%ETCDIR%%/modules/ivona.conf.sample
+@sample %%ETCDIR%%/modules/llia_phon-generic.conf.sample
+@sample %%ETCDIR%%/modules/swift-generic.conf.sample
+@sample %%ETCDIR%%/speechd.conf.sample
+include/speech-dispatcher/libspeechd.h
+include/speech-dispatcher/spd_audio_plugin.h
+include/speech-dispatcher/speechd_types.h
+lib/libspeechd.a
+lib/libspeechd.so
+lib/libspeechd.so.2
+lib/libspeechd.so.2.4.0
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/__init__.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/__init__.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/__init__.pyo
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/_test.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/_test.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/_test.pyo
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/client.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/client.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/client.pyo
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/paths.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/paths.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd/paths.pyo
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/__init__.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/__init__.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/__init__.pyo
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/config.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/config.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/config.pyo
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/paths.py
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/paths.pyc
+%%PYTHON%%%%PYTHON_SITELIBDIR%%/speechd_config/paths.pyo
+lib/speech-dispatcher-modules/sd_cicero
+lib/speech-dispatcher-modules/sd_dummy
+%%ESPEAK%%lib/speech-dispatcher-modules/sd_espeak
+lib/speech-dispatcher-modules/sd_festival
+%%FLITE%%lib/speech-dispatcher-modules/sd_flite
+lib/speech-dispatcher-modules/sd_generic
+%%ALSA%%lib/speech-dispatcher/spd_alsa.a
+%%ALSA%%lib/speech-dispatcher/spd_alsa.so
+%%AO%%lib/speech-dispatcher/spd_libao.a
+%%AO%%lib/speech-dispatcher/spd_libao.so
+%%NAS%%lib/speech-dispatcher/spd_nas.a
+%%NAS%%lib/speech-dispatcher/spd_nas.so
+lib/speech-dispatcher/spd_oss.a
+lib/speech-dispatcher/spd_oss.so
+%%PULSEAUDIO%%lib/speech-dispatcher/spd_pulse.a
+%%PULSEAUDIO%%lib/speech-dispatcher/spd_pulse.so
+libdata/pkgconfig/speech-dispatcher.pc
+share/locale/cs/LC_MESSAGES/speech-dispatcher.mo
+share/locale/hu/LC_MESSAGES/speech-dispatcher.mo
+share/sounds/speech-dispatcher/dummy-message.wav
+%%PYTHON%%share/sounds/speech-dispatcher/test.wav
+%%DATADIR%%/conf/clients/emacs.conf
+%%DATADIR%%/conf/clients/gnome-speech.conf
+%%DATADIR%%/conf/modules/cicero.conf
+%%DATADIR%%/conf/modules/dtk-generic.conf
+%%DATADIR%%/conf/modules/epos-generic.conf
+%%DATADIR%%/conf/modules/espeak-generic.conf
+%%DATADIR%%/conf/modules/espeak-mbrola-generic.conf
+%%DATADIR%%/conf/modules/espeak.conf
+%%DATADIR%%/conf/modules/festival.conf
+%%DATADIR%%/conf/modules/flite.conf
+%%DATADIR%%/conf/modules/ibmtts.conf
+%%DATADIR%%/conf/modules/ivona.conf
+%%DATADIR%%/conf/modules/llia_phon-generic.conf
+%%DATADIR%%/conf/modules/swift-generic.conf
+%%DATADIR%%/conf/speechd.conf
+@dirrm %%DATADIR%%/conf/modules
+@dirrm %%DATADIR%%/conf/clients
+@dirrm %%DATADIR%%/conf
+@dirrm %%DATADIR%%
+@dirrm share/sounds/speech-dispatcher
+@dirrm lib/speech-dispatcher-modules
+@dirrm lib/speech-dispatcher
+%%PYTHON%%@dirrm %%PYTHON_SITELIBDIR%%/speechd_config
+%%PYTHON%%@dirrm %%PYTHON_SITELIBDIR%%/speechd
+%%PYTHON%%@dirrmtry %%PYTHON_SITELIBDIR%%
+%%PYTHON%%@dirrmtry %%PYTHON_LIBDIR%%
+@dirrm include/speech-dispatcher
+@dirrmtry %%ETCDIR%%/modules
+@dirrmtry %%ETCDIR%%/clients
+@dirrmtry %%ETCDIR%%

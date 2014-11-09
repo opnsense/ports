@@ -1,0 +1,12 @@
+bin/wkhtmltopdf
+bin/wkhtmltoimage
+include/wkhtmltox/dllbegin.inc
+include/wkhtmltox/dllend.inc
+include/wkhtmltox/image.h
+include/wkhtmltox/pdf.h
+lib/libwkhtmltox.so
+lib/libwkhtmltox.so.0
+lib/libwkhtmltox.so.0.12
+lib/libwkhtmltox.so.0.12.1
+man/man1/wkhtmltoimage.1.gz
+man/man1/wkhtmltopdf.1.gz

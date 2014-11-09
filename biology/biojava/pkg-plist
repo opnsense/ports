@@ -1,0 +1,4 @@
+%%JAVAJARDIR%%/biojava.jar
+%%JAVAJARDIR%%/bytecode.jar
+%%PORTDOCS%%%%DOCSDIR%%/LICENSE
+%%PORTDOCS%%%%DOCSDIR%%/README

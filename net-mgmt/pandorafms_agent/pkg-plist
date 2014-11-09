@@ -1,0 +1,37 @@
+@mode 555
+bin/pandora_agent
+bin/pandora_agent_exec
+bin/pandora_revent
+%%TENTACLE_SERVER%%bin/tentacle_server
+bin/tentacle_client
+etc/rc.d/pandora_agent
+@mode 400
+@owner pandora
+@sample %%ETCDIR%%/pandora_agent.conf.sample
+@owner
+@mode
+man/man1/tentacle_client.1.gz
+man/man1/pandora_agent.1.gz
+@mode 555
+%%DATADIR%%/plugins/files_indir
+%%DATADIR%%/plugins/grep_log
+%%DATADIR%%/plugins/grep_log_module
+%%DATADIR%%/plugins/inventory
+%%DATADIR%%/plugins/nagios_plugin_wrapper
+%%DATADIR%%/plugins/pandora_df
+%%DATADIR%%/plugins/pandora_df_free
+%%DATADIR%%/plugins/pandora_mem
+%%DATADIR%%/plugins/pandora_netusage
+%%DATADIR%%/plugins/pandora_update
+%%DATADIR%%/plugins/top.sh
+%%DATADIR%%/plugins/who.sh
+@owner pandora
+@mode 700
+@dirrmtry %%DATADIR%%/collections
+@dirrmtry %%DATADIR%%/plugins
+@owner
+@mode
+@dirrmtry %%DATADIR%%
+%%ETCDIR%%/plugins
+%%ETCDIR%%/collections
+@dirrmtry %%ETCDIR%%

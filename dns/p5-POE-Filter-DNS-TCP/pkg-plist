@@ -1,0 +1,3 @@
+%%SITE_PERL%%/POE/Filter/DNS/TCP.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/POE/Filter/DNS/TCP/.packlist
+%%PERL5_MAN3%%/POE::Filter::DNS::TCP.3.gz

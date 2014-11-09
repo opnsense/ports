@@ -1,0 +1,11 @@
+--- Makefile.orig	Sat Sep  2 13:27:40 2006
++++ Makefile	Sat Sep  2 13:29:30 2006
+@@ -96,7 +96,7 @@
+ 
+ .SUFFIXES: .c $O
+ .c$O:
+-	$(CC) $(CFLAGS) $(INC) -c $*.c
++	$(CC) $(OUT) $@ $(CFLAGS) $(INC) -c $*.c
+ 
+ netio$O: netio.c netbios.h getopt.h
+ netbios$O: netbios.c netbios.h

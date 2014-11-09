@@ -1,0 +1,17 @@
+sbin/riak
+sbin/riak-admin
+sbin/riak-debug
+sbin/search-cmd
+man/man1/riak-admin.1.gz
+man/man1/riak-debug.1.gz
+man/man1/riak.1.gz
+man/man1/search-cmd.1.gz
+@dir %%RIAK_CONFDIR%%
+@dir %%RIAK_LOGDIR%%
+@dir %%RIAK_DBDIR%%
+@dir %%RIAK_HOMEDIR%%
+@dir %%RIAK_LIBDIR%%
+@sample %%ETCDIR%%/vm.args.sample
+@sample %%ETCDIR%%/app.config.sample
+@sample %%ETCDIR%%/cert.pem.sample
+@sample %%ETCDIR%%/key.pem.sample

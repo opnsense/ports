@@ -1,0 +1,4 @@
+bin/belote
+%%DATADIR%%/belote.jar
+%%DATADIR%%/data.bin
+share/pixmaps/belote.gif

@@ -1,0 +1,197 @@
+# Created by: Shaun Amott <shaun@inerd.com>
+# $FreeBSD$
+
+PORTNAME=	lazarus
+PORTVERSION=	1.2.4
+PORTREVISION?=	1
+CATEGORIES=	editors devel
+MASTER_SITES=	SF/${PORTNAME}/Lazarus%20Zip%20_%20GZip/Lazarus%20${PORTVERSION} \
+		${MASTER_SITE_LOCAL:S|$|acm/freepascal/|}
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/$/-0/}
+DIST_SUBDIR=	freepascal
+
+MAINTAINER?=	acm@FreeBSD.org
+COMMENT?=	A portable Delphi-like IDE for the FreePascal compiler
+
+BUILD_DEPENDS?=	#
+RUN_DEPENDS?=	#
+
+ONLY_FOR_ARCHS=	i386 amd64
+
+USES=		gmake
+USE_GNOME=	#
+USE_FPC?=	fcl-base fcl-db fcl-fpcunit fcl-image fcl-process fcl-registry \
+		fcl-res fcl-xml iconvenc numlib pasjpeg x11
+OPT?=		"-Sgic "
+
+MAKE_ENV=	OPT=${OPT}
+PLIST=		${WRKDIR}/pkg-plist
+WRKSRC?=	${WRKDIR}/${PORTNAME}
+DATADIR?=	${PREFIX}/share/${PORTNAME}-${PORTVERSION}
+
+.if !defined(PKGNAMESUFFIX)
+OPTIONS_DEFINE=		GDB
+OPTIONS_SINGLE=		LCL
+OPTIONS_SINGLE_LCL=	GTK1 GTK2 QT4
+
+GDB_DESC=		Install a newest version  of gdb
+GTK1_DESC=		Use gtk12 interface
+GTK2_DESC=		Use gtk20 interface
+QT4_DESC=		Use qt4 interface
+
+OPTIONS_DEFAULT=	GTK2 GDB
+.endif
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == "i386"
+LAZARUS_ARCH=	i386
+.elif ${ARCH} == "amd64"
+LAZARUS_ARCH=	x86_64
+.endif
+
+BUILDNAME=	${LAZARUS_ARCH}-freebsd
+LCL_UNITS_DIR=	${LOCALBASE}/share/${PORTNAME}-${PORTVERSION}/lcl/units/${BUILDNAME}
+
+.if !defined(PKGNAMESUFFIX)
+BUILD_DEPENDS+=	fpcres:${PORTSDIR}/lang/fpc-utils \
+		${LCL_UNITS_DIR}/alllclunits.ppu:${PORTSDIR}/editors/lazarus-lcl-units \
+		${LCL_UNITS_DIR}/nogui/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-nogui
+RUN_DEPENDS+=	fpcres:${PORTSDIR}/lang/fpc-utils \
+		${LCL_UNITS_DIR}/alllclunits.ppu:${PORTSDIR}/editors/lazarus-lcl-units \
+		${LCL_UNITS_DIR}/nogui/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-nogui
+
+USES+=	gettext iconv
+
+MAN1S=		lazarus-ide.1 lazbuild.1 startlazarus.1
+SUB_FILES=	pkg-message
+SUB_LIST+=	PORTSDIR="${PORTSDIR}"
+
+.if ${PORT_OPTIONS:MGDB}
+RUN_DEPENDS+=	${LOCALBASE}/bin/gdb:${PORTSDIR}/devel/gdb
+.endif
+
+.if ${PORT_OPTIONS:MGTK2}
+USE_FPC+=	gtk2
+USE_GNOME=	gtk20 gdkpixbuf
+LCL_PLATFORM=	gtk2
+BUILD_DEPENDS+=	${LCL_UNITS_DIR}/${LCL_PLATFORM}/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-gtk2
+RUN_DEPENDS+=	${LCL_UNITS_DIR}/${LCL_PLATFORM}/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-gtk2
+.endif
+
+.if ${PORT_OPTIONS:MGTK1}
+USE_FPC+=	gtk1
+USE_GNOME=	gtk12 gdkpixbuf
+LCL_PLATFORM=	gtk
+BUILD_DEPENDS+=	${LCL_UNITS_DIR}/${LCL_PLATFORM}/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-gtk
+RUN_DEPENDS+=	${LCL_UNITS_DIR}/${LCL_PLATFORM}/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-gtk
+.endif
+
+.if ${PORT_OPTIONS:MQT4}
+LIB_DEPENDS+=	libQt4Pas.so:${PORTSDIR}/x11-toolkits/qt4pas
+LCL_PLATFORM=	qt
+BUILD_DEPENDS+=	${LCL_UNITS_DIR}/${LCL_PLATFORM}/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-qt
+RUN_DEPENDS+=	${LCL_UNITS_DIR}/${LCL_PLATFORM}/interfaces.ppu:${PORTSDIR}/editors/lazarus-lcl-qt
+#OPT_EXTRA=	"-dUSE_QT_45"
+.endif
+
+post-extract:
+	@${MKDIR} ${WRKDIR}/man1
+	@${MV} ${WRKSRC}/install/man/man1/lazarus-ide.1 ${WRKDIR}/man1/
+	@${MV} ${WRKSRC}/install/man/man1/lazbuild.1 ${WRKDIR}/man1/
+	@${MV} ${WRKSRC}/install/man/man1/startlazarus.1 ${WRKDIR}/man1/
+	@${MV} ${WRKSRC}/examples ${WRKDIR}/examples
+	@${MV} ${WRKSRC}/docs ${WRKDIR}/docs
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' -e 's|%%DATADIR%%|${DATADIR}|g' \
+			-e 's|tools: lcl|tools:|g' -e '2840d' -e '2842d' -e '2843d' -e '2844d' ${WRKSRC}/${MAKEFILE}
+
+pre-build:
+	@${LN} -s ${LOCALBASE}/share/${PORTNAME}-${PORTVERSION}/lcl/units ${WRKSRC}/lcl/units
+	@${LN} -s ${LOCALBASE}/share/${PORTNAME}-${PORTVERSION}/components/ideintf/units ${WRKSRC}/components/ideintf/units
+	@${LN} -s ${LOCALBASE}/share/${PORTNAME}-${PORTVERSION}/components/synedit/units ${WRKSRC}/components/synedit/units
+	@${LN} -s ${LOCALBASE}/share/${PORTNAME}-${PORTVERSION}/components/lazcontrols/lib ${WRKSRC}/components/lazcontrols/lib
+
+do-build:
+	@cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} registration lazutils codetools bigide starter lazbuild LCL_PLATFORM=${LCL_PLATFORM}
+	@cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} tools LCL_PLATFORM=${LCL_PLATFORM}
+
+post-build:
+	@cd ${WRKSRC} && \
+		${RM} -Rf COPYING* README* debian localize.bat test *.orig *.bak startlazarus.app \
+			ide/Makefile*.orig ide/Makefile*.bak lcl/units components/ideintf/units \
+				components/synedit/units components/lazcontrols/lib
+
+pre-install:
+	@${ECHO} "#!/bin/sh" > ${WRKDIR}/lazarus-wrapper
+	@${ECHO} "cd ${DATADIR} || exit 1 " >> ${WRKDIR}/lazarus-wrapper
+	@${ECHO} "exec ./startlazarus" >> ${WRKDIR}/lazarus-wrapper
+
+	@${RM} -f ${PLIST}
+	@${RM} -f ${WRKSRC}/lcl/units
+
+.	for FILE in bin/lazarus bin/lazbuild
+		@${ECHO_CMD} ${FILE} >> ${PLIST}
+.	endfor
+.	for m in ${MAN1S}
+		@${ECHO_CMD} man/man1/${m}.gz >> ${PLIST}
+.	endfor
+
+	@${ECHO_CMD} "%%DATADIR%%/docs" >> ${PLIST}
+	@cd ${WRKDIR}/docs && \
+		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%DOCSDIR%%/|' >> ${PLIST} && \
+			${FIND} * -type d | ${SORT} -r | ${SED} -e 's|^|@dirrm %%DOCSDIR%%/|' >> ${PLIST}
+	@${ECHO_CMD} "@dirrm %%DOCSDIR%%" >> ${PLIST}
+
+	@${ECHO_CMD} "%%DATADIR%%/examples" >> ${PLIST}
+	@cd ${WRKDIR}/examples && \
+		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%EXAMPLESDIR%%/|' >> ${PLIST} && \
+			${FIND} * -type d | ${SORT} -r | ${SED} -e 's|^|@dirrm %%EXAMPLESDIR%%/|' >> ${PLIST}
+	@${ECHO_CMD} "@dirrm %%EXAMPLESDIR%%" >> ${PLIST}
+
+	@cd ${WRKSRC} && \
+		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%DATADIR%%/|' >> ${PLIST} && \
+			${FIND} * -type d | ${SORT} -r | ${SED} -e 's|^|@dirrmtry %%DATADIR%%/|' >> ${PLIST}
+	@${ECHO_CMD} "@dirrmtry %%DATADIR%%" >> ${PLIST}
+
+do-install:
+.for DIRE in components converter debugger designer doceditor ide images install languages lazarus.app lcl \
+	packager tools units
+		@${MKDIR} ${STAGEDIR}${DATADIR}/${DIRE}
+		@cd ${WRKSRC}/${DIRE} && \
+			${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${DATADIR}/${DIRE}/{}" \; && \
+				${FIND} * -type f -exec ${INSTALL_DATA} "{}" "${STAGEDIR}${DATADIR}/${DIRE}/{}" \;
+.endfor
+	@${CHMOD} +x ${STAGEDIR}${DATADIR}/tools/svn2revisioninc ${STAGEDIR}${DATADIR}/tools/lazres ${STAGEDIR}${DATADIR}/tools/lrstolfm \
+		${STAGEDIR}${DATADIR}/tools/updatepofiles
+
+.for FILE in lazarus startlazarus lazbuild
+	${INSTALL_PROGRAM} ${WRKSRC}/${FILE} ${STAGEDIR}${DATADIR}
+.endfor
+
+	@cd ${WRKDIR}/docs && \
+		${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${DOCSDIR}/{}" \; && \
+			${FIND} * -type f -exec ${INSTALL_DATA} "{}" "${STAGEDIR}${DOCSDIR}/{}" \;
+	@${LN} -s ${DOCSDIR} ${STAGEDIR}${DATADIR}/docs
+
+	@cd ${WRKDIR}/examples && \
+		${FIND} * -type d -exec ${MKDIR} "${STAGEDIR}${EXAMPLESDIR}/{}" \; && \
+			${FIND} * -type f -exec ${INSTALL_DATA} "{}" "${STAGEDIR}${EXAMPLESDIR}/{}" \;
+	@${LN} -s ${EXAMPLESDIR} ${STAGEDIR}${DATADIR}/examples
+
+	${INSTALL_SCRIPT} ${WRKSRC}/localize.sh ${STAGEDIR}${DATADIR}
+	${INSTALL_SCRIPT} ${WRKDIR}/lazarus-wrapper ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	${INSTALL_DATA}	${WRKSRC}/Makefile* ${WRKSRC}/fpmake*  ${STAGEDIR}${DATADIR}
+.for FILE in ${MAN1S}
+	${INSTALL_MAN} ${WRKDIR}/man1/${FILE} ${STAGEDIR}${MAN1PREFIX}/man/man1
+.endfor
+	${LN} -s ${DATADIR}/lazbuild ${STAGEDIR}${PREFIX}/bin/lazbuild
+
+.else
+.include "${MASTERDIR}/Makefile.common"
+.endif
+
+.include <bsd.port.mk>

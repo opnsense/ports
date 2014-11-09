@@ -1,0 +1,41 @@
+Index: configure
+diff -u configure.orig configure
+--- configure.orig	2011-09-14 13:19:05.073252913 +0900
++++ configure	2011-09-14 13:21:19.010068209 +0900
+@@ -606,6 +606,7 @@
+ IMAP_COM_ERR_LIBS
+ LIB_RT
+ LIB_UCDSNMP
++LDFLAGS_UCDSNMP
+ SNMP_CONFIG
+ LIB_WRAP
+ SNMP_SUBDIRS
+@@ -7171,7 +7172,7 @@
+ 
+ done
+ 
+-	if test "$ac_cv_header_pcreposix_h" == "yes"; then
++	if test "$ac_cv_header_pcreposix_h" = "yes"; then
+ 		LIBS="$LIBS -lpcre -lpcreposix";
+ 
+ $as_echo "#define ENABLE_REGEX /**/" >>confdefs.h
+@@ -10688,7 +10689,9 @@
+ 
+     if test -n "$SNMP_LIBS" && test -n "$SNMP_PREFIX"; then
+       CPPFLAGS="$CPPFLAGS -I${SNMP_PREFIX}/include"
+-      LIB_UCDSNMP=$SNMP_LIBS
++      LIB_UCDSNMP="$SNMP_LIBS -lwrap"
++      PERLLIBDIR=`$PERL -e 'use Config; print "$Config{archlibexp}/CORE";'`
++      LDFLAGS_UCDSNMP="-L${PERLLIBDIR} -R${PERLLIBDIR}"
+ 
+ $as_echo "#define HAVE_NETSNMP 1" >>confdefs.h
+ 
+@@ -10781,7 +10784,7 @@
+ 
+ $as_echo "#define HAVE_UCDSNMP 1" >>confdefs.h
+ 
+-      LIB_UCDSNMP="-lucdagent -lucdmibs -lsnmp"
++      LIB_UCDSNMP="-lucdagent -lucdmibs -lsnmp -lkvm -ldevstat -lwrap"
+       { $as_echo "$as_me:${as_lineno-$LINENO}: checking for rpmdbOpen in -lrpm" >&5
+ $as_echo_n "checking for rpmdbOpen in -lrpm... " >&6; }
+ if ${ac_cv_lib_rpm_rpmdbOpen+:} false; then :

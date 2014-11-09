@@ -1,0 +1,16 @@
+--- ./docs/conf/extra/httpd-userdir.conf.in.orig	2007-03-07 02:33:58.000000000 -0500
++++ ./docs/conf/extra/httpd-userdir.conf.in	2010-05-06 19:37:54.222730166 -0400
+@@ -8,7 +8,7 @@
+ # the default access control for these directories, as in the example below.
+ #
+ UserDir public_html
+-
++UserDir disabled %%FTPUSERS%%
+ #
+ # Control access to UserDir directories.  The following is an example
+ # for a site where these directories are restricted to read-only.
+@@ -25,4 +25,3 @@
+         Deny from all
+     </LimitExcept>
+ </Directory>
+-

@@ -1,0 +1,15 @@
+etc/periodic/daily/smart
+etc/smartd.conf.sample
+etc/smartd_warning.sh
+man/man5/smartd.conf.5.gz
+man/man8/smartd.8.gz
+man/man8/smartctl.8.gz
+man/man8/update-smart-drivedb.8.gz
+sbin/smartctl
+sbin/smartd
+sbin/update-smart-drivedb
+%%DATADIR%%/drivedb.h
+@dirrm %%DATADIR%%
+@dirrmtry etc/periodic/daily
+@dirrmtry etc/periodic
+@dirrmtry etc/smartd_warning.d

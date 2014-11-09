@@ -1,0 +1,21 @@
+--- Configure.orig	2014-10-01 01:32:59 UTC
++++ Configure
+@@ -4730,7 +4730,7 @@
+ libpth=''
+ for xxx in $dlist
+ do
+-    if $test -d $xxx; then
++    if $test -d $xxx || [ $xxx = $prefix/lib ]; then
+ 		case " $libpth " in
+ 		*" $xxx "*) ;;
+ 		*) libpth="$libpth $xxx";;
+@@ -9143,8 +9143,7 @@
+ 
+ : determine where add-on public executable scripts go
+ case "$sitescript" in
+-'')	dflt=$siteprefix/script
+-	$test -d $dflt || dflt=$sitebin ;;
++'')	dflt=$sitebin ;;
+ *)  dflt="$sitescript" ;;
+ esac
+ fn=d~+

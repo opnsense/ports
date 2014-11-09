@@ -1,0 +1,5 @@
+This is an attempt at implementing a mailing list manager with the same
+functionality as the brilliant ezmlm, but with a decent license and mail server
+independency.
+
+WWW: http://mlmmj.org/

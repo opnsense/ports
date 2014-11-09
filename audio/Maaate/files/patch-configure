@@ -1,0 +1,10 @@
+--- configure.orig	2002-10-09 03:30:34.000000000 +0200
++++ configure	2013-12-18 12:38:19.000000000 +0100
+@@ -5699,7 +5699,6 @@
+ 
+ 
+ 
+-LDFLAGS="$LDFLAGS -lstdc++"
+ 
+ echo $ac_n "checking for cos in -lm""... $ac_c" 1>&6
+ echo "configure:5706: checking for cos in -lm" >&5

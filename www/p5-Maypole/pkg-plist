@@ -1,0 +1,131 @@
+%%SITE_PERL%%/Apache/MVC.pm
+%%SITE_PERL%%/CGI/Maypole.pm
+%%SITE_PERL%%/CGI/Untaint/Maypole.pm
+%%SITE_PERL%%/Maypole.pm
+%%SITE_PERL%%/Maypole/Application.pm
+%%SITE_PERL%%/Maypole/CLI.pm
+%%SITE_PERL%%/Maypole/Config.pm
+%%SITE_PERL%%/Maypole/Constants.pm
+%%SITE_PERL%%/Maypole/HTTPD.pm
+%%SITE_PERL%%/Maypole/HTTPD/Frontend.pm
+%%SITE_PERL%%/Maypole/Headers.pm
+%%SITE_PERL%%/Maypole/Manual.pod
+%%SITE_PERL%%/Maypole/Manual/About.pod
+%%SITE_PERL%%/Maypole/Manual/Beer.pod
+%%SITE_PERL%%/Maypole/Manual/BuySpy.pod
+%%SITE_PERL%%/Maypole/Manual/Cookbook.pod
+%%SITE_PERL%%/Maypole/Manual/Flox.pod
+%%SITE_PERL%%/Maypole/Manual/Inheritance.pod
+%%SITE_PERL%%/Maypole/Manual/Install.pod
+%%SITE_PERL%%/Maypole/Manual/Model.pod
+%%SITE_PERL%%/Maypole/Manual/Plugins.pod
+%%SITE_PERL%%/Maypole/Manual/StandardTemplates.pod
+%%SITE_PERL%%/Maypole/Manual/View.pod
+%%SITE_PERL%%/Maypole/Manual/Workflow.pod
+%%SITE_PERL%%/Maypole/Model/Base.pm
+%%SITE_PERL%%/Maypole/Model/CDBI.pm
+%%SITE_PERL%%/Maypole/Model/CDBI/AsForm.pm
+%%SITE_PERL%%/Maypole/Model/CDBI/Base.pm
+%%SITE_PERL%%/Maypole/Model/CDBI/DFV.pm
+%%SITE_PERL%%/Maypole/Model/CDBI/FromCGI.pm
+%%SITE_PERL%%/Maypole/Model/CDBI/Plain.pm
+%%SITE_PERL%%/Maypole/Session.pm
+%%SITE_PERL%%/Maypole/View/Base.pm
+%%SITE_PERL%%/Maypole/View/TT.pm
+%%SITE_PERL%%/Maypole/templates/beer/addnew
+%%SITE_PERL%%/Maypole/templates/factory/addnew
+%%SITE_PERL%%/Maypole/templates/factory/edit
+%%SITE_PERL%%/Maypole/templates/factory/footer
+%%SITE_PERL%%/Maypole/templates/factory/frontpage
+%%SITE_PERL%%/Maypole/templates/factory/header
+%%SITE_PERL%%/Maypole/templates/factory/list
+%%SITE_PERL%%/Maypole/templates/factory/login
+%%SITE_PERL%%/Maypole/templates/factory/macros
+%%SITE_PERL%%/Maypole/templates/factory/maypole
+%%SITE_PERL%%/Maypole/templates/factory/maypole.css
+%%SITE_PERL%%/Maypole/templates/factory/navbar
+%%SITE_PERL%%/Maypole/templates/factory/pager
+%%SITE_PERL%%/Maypole/templates/factory/search_form
+%%SITE_PERL%%/Maypole/templates/factory/title
+%%SITE_PERL%%/Maypole/templates/factory/view
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Maypole/.packlist
+%%PERL5_MAN3%%/Apache::MVC.3.gz
+%%PERL5_MAN3%%/CGI::%%AP_NAME%%.3.gz
+%%PERL5_MAN3%%/CGI::Untaint::%%AP_NAME%%.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Application.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::CLI.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Config.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Constants.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::HTTPD.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::HTTPD::Frontend.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Headers.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::About.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Beer.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::BuySpy.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Cookbook.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Flox.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Inheritance.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Install.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Model.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Plugins.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::StandardTemplates.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::View.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Manual::Workflow.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::Base.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::CDBI.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::CDBI::AsForm.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::CDBI::Base.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::CDBI::DFV.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::CDBI::FromCGI.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Model::CDBI::Plain.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::Session.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::View::Base.3.gz
+%%PERL5_MAN3%%/%%AP_NAME%%::View::TT.3.gz
+%%PORTDOCS%%%%DOCSDIR%%/About.pod
+%%PORTDOCS%%%%DOCSDIR%%/Beer.pod
+%%PORTDOCS%%%%DOCSDIR%%/BuySpy.pod
+%%PORTDOCS%%%%DOCSDIR%%/Flox.pod
+%%PORTDOCS%%%%DOCSDIR%%/Manual.pod
+%%PORTDOCS%%%%DOCSDIR%%/Model.pod
+%%PORTDOCS%%%%DOCSDIR%%/StandardTemplates.pod
+%%PORTDOCS%%%%DOCSDIR%%/View.pod
+%%PORTDOCS%%%%DOCSDIR%%/Workflow.pod
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/BeerDB.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/BeerDB/Base.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/BeerDB/Beer.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/beerdb.sql
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/BeerDB.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/BeerDB/Base.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/BeerDB/Beer.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/BeerDB/Brewery.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/BeerDB/Drinker.pm
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/beerdb.sql
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/addnew
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/display_inputs
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/display_search_inputs
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/edit
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/header
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/maypole.css
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/metadata
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/fancy_example/templates/custom/search_form
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/fancy_example/templates/custom
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/fancy_example/templates
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/fancy_example/BeerDB
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/fancy_example
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/BeerDB
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Maypole
+@dirrmtry %%SITE_PERL%%/Maypole/templates/factory
+@dirrmtry %%SITE_PERL%%/Maypole/templates/beer
+@dirrmtry %%SITE_PERL%%/Maypole/templates
+@dirrmtry %%SITE_PERL%%/Maypole/View
+@dirrmtry %%SITE_PERL%%/Maypole/Model/CDBI
+@dirrmtry %%SITE_PERL%%/Maypole/Model
+@dirrmtry %%SITE_PERL%%/Maypole/Manual
+@dirrmtry %%SITE_PERL%%/Maypole/HTTPD
+@dirrmtry %%SITE_PERL%%/Maypole
+@dirrmtry %%SITE_PERL%%/CGI
+@dirrmtry %%SITE_PERL%%/Apache

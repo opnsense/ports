@@ -1,0 +1,19 @@
+--- glib/Makefile.in.orig	2011-10-03 23:55:25.000000000 +0200
++++ glib/Makefile.in	2011-10-03 23:56:20.000000000 +0200
+@@ -84,7 +84,6 @@ am__installdirs = "$(DESTDIR)$(libdir)" 
+ LTLIBRARIES = $(lib_LTLIBRARIES)
+ am__DEPENDENCIES_1 =
+ libpoppler_glib_la_DEPENDENCIES =  \
+-	$(top_builddir)/poppler/libpoppler.la \
+ 	$(top_builddir)/poppler/libpoppler-cairo.la \
+ 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
+ 	$(am__DEPENDENCIES_1)
+@@ -433,7 +432,7 @@ libpoppler_glib_la_SOURCES = \
+ 	poppler-private.h
+ 
+ libpoppler_glib_la_LIBADD = \
+-	$(top_builddir)/poppler/libpoppler.la		\
++	-lpoppler		\
+ 	$(top_builddir)/poppler/libpoppler-cairo.la	\
+ 	$(POPPLER_GLIB_LIBS)				\
+ 	$(FREETYPE_LIBS)				\

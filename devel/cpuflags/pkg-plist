@@ -1,0 +1,4 @@
+bin/cpuflags
+%%DATADIR%%/subr_FreeBSD
+%%DATADIR%%/subr_gcc
+%%DATADIR%%/subr_x86

@@ -1,0 +1,42 @@
+--- ./configure.orig	2014-05-27 14:33:29.000000000 -0400
++++ ./configure	2014-07-01 13:49:23.000000000 -0400
+@@ -566,6 +566,7 @@
+ # Factoring default headers for most tests.
+ ac_includes_default="\
+ #include <stdio.h>
++#include <netinet/in.h>
+ #ifdef HAVE_SYS_TYPES_H
+ # include <sys/types.h>
+ #endif
+@@ -5238,7 +5239,7 @@
+ 
+ 
+ if test "x$PKGCONFIG" != x; then
+-	if test x$enable_libusb = xyes -o $uname != Darwin; then
++	if test x$enable_libusb = xyes; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for libusb-1.0" >&5
+ $as_echo_n "checking for libusb-1.0... " >&6; }
+ 		if $PKGCONFIG --exists libusb-1.0; then
+@@ -5249,6 +5250,13 @@
+ 			CFLAGS="$CFLAGS `$PKGCONFIG --cflags libusb-1.0`"
+ 			LIBUSB="`$PKGCONFIG --libs libusb-1.0`"
+ 			USBQUIRKS="\$(DATADIR)/usb"
++		elif test -f /usr/lib/libusb.so; then
++			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++$as_echo "yes" >&6; }
++			$as_echo "#define HAVE_LIBUSB 1" >>confdefs.h
++
++			LIBUSB="-lusb"
++			USBQUIRKS="\$(DATADIR)/usb"
+ 		else
+ 			{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+ $as_echo "no" >&6; }
+@@ -5527,7 +5535,7 @@
+ 		CFLAGS="$CFLAGS `$PKGCONFIG --cflags dbus-1` -DDBUS_API_SUBJECT_TO_CHANGE"
+ 		SERVERLIBS="$SERVERLIBS `$PKGCONFIG --libs dbus-1`"
+ 		DBUS_NOTIFIER="dbus"
+-		DBUS_NOTIFIERLIBS="`$PKGCONFIG --libs dbus-1`"
++		DBUS_NOTIFIERLIBS="`$PKGCONFIG --libs dbus-1` -pthread"
+ 		SAVELIBS="$LIBS"
+ 		LIBS="$LIBS $DBUS_NOTIFIERLIBS"
+ 		ac_fn_c_check_func "$LINENO" "dbus_message_iter_init_append" "ac_cv_func_dbus_message_iter_init_append"

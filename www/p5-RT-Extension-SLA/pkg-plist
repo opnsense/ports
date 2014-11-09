@@ -1,0 +1,39 @@
+%%RTHOME%%/plugins/RT-Extension-SLA/etc/initialdata
+%%RTHOME%%/plugins/RT-Extension-SLA/etc/upgrade/0.06/content
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Action/SLA.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Action/SLA_SetDefault.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Action/SLA_SetDue.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Action/SLA_SetStarts.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Condition/SLA.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Condition/SLA_RequireDefault.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Condition/SLA_RequireDueSet.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Condition/SLA_RequireStartsSet.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Extension/SLA/Test.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Extension/SLA/Test.pm.in
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Extension/SLA.pm
+%%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Queue_SLA.pm
+man/man3/RT::Action::SLA.3.gz
+man/man3/RT::Action::SLA_SetDefault.3.gz
+man/man3/RT::Action::SLA_SetDue.3.gz
+man/man3/RT::Action::SLA_SetStarts.3.gz
+man/man3/RT::Condition::SLA.3.gz
+man/man3/RT::Condition::SLA_RequireDefault.3.gz
+man/man3/RT::Condition::SLA_RequireDueSet.3.gz
+man/man3/RT::Condition::SLA_RequireStartsSet.3.gz
+man/man3/RT::Extension::SLA.3.gz
+man/man3/RT::Queue_SLA.3.gz
+man/auto/RT/Extension/SLA/.packlist.gz
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Extension/SLA
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Extension
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Condition
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/lib/RT/Action
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/lib/RT
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/lib
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/etc/upgrade/0.06
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/etc/upgrade
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA/etc
+@dirrm %%RTHOME%%/plugins/RT-Extension-SLA
+@dirrm man/auto/RT/Extension/SLA
+@dirrmtry man/auto/RT/Extension
+@dirrmtry man/auto/RT
+@dirrmtry man/auto

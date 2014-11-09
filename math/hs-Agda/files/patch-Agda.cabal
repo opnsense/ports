@@ -1,0 +1,11 @@
+--- ./Agda.cabal.orig	2014-06-16 12:42:15.000000000 +0200
++++ ./Agda.cabal	2014-07-13 13:20:32.000000000 +0200
+@@ -76,7 +76,7 @@
+                     transformers == 0.3.*,
+                     -- mtl-2.1 contains a severe bug
+                     mtl >= 2.1.1 && < 2.2,
+-                    QuickCheck >= 2.7.5 && < 2.8,
++                    QuickCheck >= 2.6 && < 2.7,
+                     haskell-src-exts >= 1.9.6 && < 1.16,
+                     containers >= 0.1 && < 0.6,
+                     unordered-containers == 0.2.*,

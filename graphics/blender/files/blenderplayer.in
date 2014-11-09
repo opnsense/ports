@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export BLENDER_SYSTEM_SCRIPTS=%%DATADIR%%/scripts
+export BLENDER_SYSTEM_DATAFILES=%%DATADIR%%/datafiles
+exec %%PREFIX%%/bin/blenderplayer-bin "$@"

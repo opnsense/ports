@@ -1,0 +1,29 @@
+%%GTK2%%bin/gtk-youtube-viewer
+bin/youtube-viewer
+%%PERL5_MAN3%%/WWW::YoutubeViewer.3.gz
+%%PERL5_MAN3%%/WWW::YoutubeViewer::ConfigData.3.gz
+%%PERL5_MAN3%%/WWW::YoutubeViewer::GetCaption.3.gz
+%%PERL5_MAN3%%/WWW::YoutubeViewer::Itags.3.gz
+%%PERL5_MAN3%%/WWW::YoutubeViewer::ParseXML.3.gz
+%%PERL5_MAN3%%/WWW::YoutubeViewer::RegularExpressions.3.gz
+%%PERL5_MAN3%%/WWW::YoutubeViewer::Utils.3.gz
+%%SITE_PERL%%/WWW/YoutubeViewer.pm
+%%SITE_PERL%%/WWW/YoutubeViewer/ConfigData.pm
+%%SITE_PERL%%/WWW/YoutubeViewer/GetCaption.pm
+%%SITE_PERL%%/WWW/YoutubeViewer/Itags.pm
+%%SITE_PERL%%/WWW/YoutubeViewer/ParseXML.pm
+%%SITE_PERL%%/WWW/YoutubeViewer/RegularExpressions.pm
+%%SITE_PERL%%/WWW/YoutubeViewer/Utils.pm
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/gtk-youtube-viewer.desktop
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/gtk-youtube-viewer.glade
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/icons/default_thumb.jpg
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/icons/feed_icon.png
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/icons/gtk-youtube-viewer.png
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/icons/spinner.gif
+%%GTK2%%%%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/icons/user.png
+man/man1/youtube-viewer.1.gz
+%%GTK2%%share/applications/gtk-youtube-viewer.desktop
+%%GTK2%%share/pixmaps/gtk-youtube-viewer.png
+%%GTK2%%@dirrm %%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer/icons
+%%GTK2%%@dirrm %%SITE_PERL%%/auto/share/dist/WWW-YoutubeViewer
+@dirrm %%SITE_PERL%%/WWW/YoutubeViewer

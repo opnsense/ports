@@ -1,0 +1,4 @@
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/zlib/Package.fpc
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/zlib/zlib.ppu
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/zlib/zlib.o
+lib/fpc/%%PORTVERSION%%/units/%%BUILDNAME%%/zlib/libpzlib.a

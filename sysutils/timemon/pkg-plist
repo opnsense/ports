@@ -1,0 +1,15 @@
+GNUstep/Local/Applications/TimeMon.app/Resources/Info-gnustep.plist
+GNUstep/Local/Applications/TimeMon.app/Resources/README.rtf
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.desktop
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.gorm/data.classes
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.gorm/data.info
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.gorm/icon.png
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.gorm/objects.gorm
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.tiff
+GNUstep/Local/Applications/TimeMon.app/Resources/TimeMonP.tiff
+GNUstep/Local/Applications/TimeMon.app/TimeMon
+GNUstep/Local/Applications/TimeMon.app/stamp.make
+GNUstep/Local/Tools/TimeMon
+@dirrm GNUstep/Local/Applications/TimeMon.app/Resources/TimeMon.gorm
+@dirrm GNUstep/Local/Applications/TimeMon.app/Resources
+@dirrm GNUstep/Local/Applications/TimeMon.app

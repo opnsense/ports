@@ -1,0 +1,22 @@
+# $FreeBSD$
+
+PORTNAME=	performance
+PORTVERSION=	0.4.0
+PORTREVISION=	1
+CATEGORIES=	devel gnustep
+MASTER_SITES=	${MASTER_SITE_GNUSTEP}
+MASTER_SITE_SUBDIR=	libs
+DISTNAME=	Performance-${PORTVERSION}
+
+MAINTAINER=	theraven@FreeBSD.org
+COMMENT=	Help improve the performance of GNUstep applications
+
+LICENSE=	LGPL3
+
+USE_GNUSTEP=	yes
+USE_GNUSTEP_BASE=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+USE_GNUSTEP_LDCONFIG=	${GNUSTEP_LOCAL_LIBRARIES}
+
+.include <bsd.port.mk>

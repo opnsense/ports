@@ -1,0 +1,34 @@
+# Created by: Meethune Bhowmick <meethune@gmail.com>
+# $FreeBSD$
+
+PORTNAME=	libnotify
+PORTVERSION=	0.14
+PORTREVISION=	12
+CATEGORIES=	net-im
+MASTER_SITES=	SF/gaim-${PORTNAME}/pidgin-${PORTNAME}/pidgin-${PORTNAME}-${PORTVERSION}
+PKGNAMEPREFIX=	pidgin-
+DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
+
+MAINTAINER=	meethune@gmail.com
+COMMENT=	This plugin adds a libnotify interface to Pidgin
+
+BUILD_DEPENDS=	${LOCALBASE}/bin/pidgin:${PORTSDIR}/net-im/pidgin \
+    		${LOCALBASE}/libdata/pkgconfig/libnotify.pc:${PORTSDIR}/devel/libnotify
+LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify \
+		libpurple.so:${PORTSDIR}/net-im/libpurple
+
+GNU_CONFIGURE=	yes
+USES=		gmake libtool pkgconfig
+USE_LDCONFIG=	yes
+USE_GNOME=	gtk20
+
+CONFIGURE_ARGS=	--disable-static
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext
+
+.include <bsd.port.mk>

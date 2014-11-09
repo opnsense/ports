@@ -1,0 +1,7 @@
+   GNU `m4' is an implementation of the traditional UNIX macro
+processor.  It is mostly SVR4 compatible, although it has some
+extensions (for example, handling more than 9 positional parameters to
+macros).  `m4' also has builtin functions for including files, running
+shell commands, doing arithmetic, etc.
+
+WWW: http://www.gnu.org/software/m4/m4.html

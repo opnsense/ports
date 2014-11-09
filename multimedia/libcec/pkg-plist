@@ -1,0 +1,11 @@
+bin/cec-client
+include/libcec/cec.h
+include/libcec/cecc.h
+include/libcec/cecloader.h
+include/libcec/cectypes.h
+lib/libcec.a
+lib/libcec.so
+lib/libcec.so.2
+lib/libcec.so.2.0.1
+libdata/pkgconfig/libcec.pc
+@dirrm include/libcec

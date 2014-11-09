@@ -1,0 +1,29 @@
+--- Makefile.orig	2014-09-28 18:41:10.000000000 +0200
++++ Makefile	2014-09-28 18:43:30.000000000 +0200
+@@ -261,7 +261,6 @@
+ 	gstreamer-base-1.0 \
+ 	gstreamer-pbutils-1.0 \
+ 	gtk+-3.0 \
+-	gudev-1.0 \
+ 	libexif \
+ 	libgphoto2 \
+ 	json-glib-1.0 \
+@@ -293,7 +292,6 @@
+ 	gstreamer-plugins-base-1.0 >= 1.0.0 \
+ 	gstreamer-pbutils-1.0 >= 1.0.0 \
+ 	gtk+-3.0 >= 3.6.0 \
+-	gudev-1.0 >= 145 \
+ 	libexif >= 0.6.16 \
+ 	libgphoto2 >= 2.4.2 \
+ 	libraw >= 0.13.2 \
+@@ -543,8 +541,8 @@
+ 	glib-compile-schemas $(DESTDIR)$(PREFIX)/share/glib-2.0/schemas
+ endif
+ ifndef DISABLE_GSETTINGS_CONVERT_INSTALL
+-	mkdir -p $(DESTDIR)/usr/share/GConf/gsettings
+-	$(INSTALL_DATA) misc/shotwell.convert $(DESTDIR)/usr/share/GConf/gsettings
++	mkdir -p $(DESTDIR)$(PREFIX)/share/GConf/gsettings
++	$(INSTALL_DATA) misc/shotwell.convert $(DESTDIR)$(PREFIX)/share/GConf/gsettings
+ endif
+ ifndef DISABLE_ICON_UPDATE
+ 	-gtk-update-icon-cache -t -f $(DESTDIR)$(PREFIX)/share/icons/hicolor || :

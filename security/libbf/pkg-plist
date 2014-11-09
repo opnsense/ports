@@ -1,0 +1,4 @@
+bin/bftest
+bin/bfspeed
+include/blowfish.h
+lib/libblowfish.a

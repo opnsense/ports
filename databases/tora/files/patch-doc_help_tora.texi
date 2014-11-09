@@ -1,0 +1,13 @@
+--- doc/help/tora.texi.orig	2008-09-14 23:54:41.000000000 +0200
++++ doc/help/tora.texi	2009-05-07 21:36:32.058998814 +0200
+@@ -7,6 +7,10 @@
+ @c @image{images/tora_manual}
+ @c %**end of header
+ 
++@direntry
++* Tora: (tora).                 Toolkit for Oracle
++@end direntry
++
+ @copying
+ This manual is for TOra, version 1.4.0.
+ @end copying

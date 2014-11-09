@@ -1,0 +1,17 @@
+%%SITE_PERL%%/Mail/Graph.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Mail-Graph/.packlist
+%%EXAMPLESDIR%%/sample.pl
+%%EXAMPLESDIR%%/convert.pl
+%%EXAMPLESDIR%%/index/dummy.txt
+%%EXAMPLESDIR%%/index.tpl
+%%EXAMPLESDIR%%/output/w3c.png
+%%EXAMPLESDIR%%/output/spam.css
+%%EXAMPLESDIR%%/archive/sample.txt.gz
+%%EXAMPLESDIR%%/archive/sample2.txt.gz
+%%PERL5_MAN3%%/Mail::Graph.3.gz
+@dirrm %%EXAMPLESDIR%%/archive
+@dirrm %%EXAMPLESDIR%%/index
+@dirrm %%EXAMPLESDIR%%/output
+@dirrm %%EXAMPLESDIR%%
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/Mail-Graph
+@dirrmtry %%SITE_PERL%%/Mail

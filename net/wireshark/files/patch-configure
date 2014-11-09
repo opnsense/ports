@@ -1,0 +1,20 @@
+--- configure.orig	2012-11-28 13:51:02.000000000 -0500
++++ configure	2012-12-17 01:11:49.000000000 -0500
+@@ -26487,7 +26487,7 @@ $as_echo "yes" >&6; }
+ 	  # searches the specified directory.
+ 	  #
+ 	  CPPFLAGS="$CPPFLAGS -I$krb5_dir/include"
+-	  ac_heimdal_version=`grep heimdal $krb5_dir/include/krb5.h | head -n 1 | sed 's/^.*heimdal.*$/HEIMDAL/'`
++	  ac_heimdal_version=`grep heimdal $krb5_dir/include/krb5.h | head -n 1 | tr "[:lower:]" "[:upper:]" sed 's/^.*heimdal.*$/HEIMDAL/'`
+ 	  # MIT Kerberos moved krb5.h to krb5/krb5.h starting with release 1.5
+ 	  ac_mit_version_olddir=`grep 'Massachusetts Institute of Technology' $krb5_dir/include/krb5.h | head -n 1 | sed 's/^.*Massachusetts Institute of Technology.*$/MIT/'`
+ 	  ac_mit_version_newdir=`grep 'Massachusetts Institute of Technology' $krb5_dir/include/krb5/krb5.h | head -n 1 | sed 's/^.*Massachusetts Institute of Technology.*$/MIT/'`
+@@ -26547,7 +26547,7 @@ fi
+ 
+ 	  if test -x "$KRB5_CONFIG"
+ 	  then
+-	    KRB5_FLAGS=`"$KRB5_CONFIG" --cflags`
++	    KRB5_FLAGS=`"$KRB5_CONFIG" --cflags | sed -e 's/@INCLUDE_des@//g'`
+ 	    KRB5_LIBS=`"$KRB5_CONFIG" --libs`
+ 	    CPPFLAGS="$CPPFLAGS $KRB5_FLAGS"
+ 	    #

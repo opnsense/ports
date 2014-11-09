@@ -1,0 +1,64 @@
+# Created by: Stas Timokhin <stast@bsdportal.ru>
+# $FreeBSD$
+
+PORTNAME=	eiskaltdcpp
+PORTREVISION=	1
+CATEGORIES=	net-p2p
+PKGNAMESUFFIX=	-qt
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	EiskaltDC++ Direct Connect client Qt GUI
+
+LICENSE=	GPLv3
+
+RUN_DEPENDS=	eiskaltdcpp-data>=0:${PORTSDIR}/net-p2p/eiskaltdcpp-data
+LIB_DEPENDS=	libeiskaltdcpp.so:${PORTSDIR}/net-p2p/eiskaltdcpp-lib
+
+MASTERDIR=	${.CURDIR}/../eiskaltdcpp-lib
+
+USES=		cmake gettext compiler:c++11-lib desktop-file-utils
+USE_OPENSSL=	yes
+USE_QT4=	gui xml network qmake_build uic_build \
+		moc_build rcc_build linguist_build
+
+OPTIONS_DEFINE=	ASPELL FREE_SPACE DBUS_NOTIFY QTSCRIPT QML SQLITE
+OPTIONS_DEFAULT=	FREE_SPACE DBUS_NOTIFY
+OPTIONS_SUB=	yes
+FREE_SPACE_DESC=	Free space bar in status panel
+DBUS_NOTIFY_DESC=	DBus notification support
+QTSCRIPT_DESC=		QtScript support
+QML_DESC=		Qt Declarative ui support
+
+CMAKE_ARGS+=	-DUSE_QT:BOOL=ON
+CMAKE_ARGS+=	-DUSE_GTK:BOOL=OFF
+CMAKE_ARGS+=	-DCREATE_MO:BOOL=OFF
+CMAKE_ARGS+=	-DINSTALL_DATA:BOOL=OFF
+
+BUILD_WRKSRC=	${WRKSRC}/${PORTNAME}${PKGNAMESUFFIX}
+INSTALL_WRKSRC=	${WRKSRC}/${PORTNAME}${PKGNAMESUFFIX}
+
+ASPELL_LIB_DEPENDS=	libaspell.so:${PORTSDIR}/textproc/aspell
+ASPELL_CMAKE_ON=	-DUSE_ASPELL:BOOL=ON
+ASPELL_CMAKE_OFF=	-DUSE_ASPELL:BOOL=OFF
+
+FREE_SPACE_CMAKE_ON=	-DFREE_SPACE_BAR_C:BOOL=ON
+FREE_SPACE_CMAKE_OFF=	-DFREE_SPACE_BAR_C:BOOL=OFF
+
+DBUS_NOTIFY_USE=	QT4=dbus
+DBUS_NOTIFY_CMAKE_ON=	-DDBUS_NOTIFY:BOOL=ON
+DBUS_NOTIFY_CMAKE_OFF=	-DDBUS_NOTIFY:BOOL=OFF
+
+QTSCRIPT_USE=		QT4=script
+QTSCRIPT_RUN_DEPENDS=	${LOCALBASE}/lib/qt4/plugins/script/libqtscript_core.so:${PORTSDIR}/devel/qtscriptgenerator
+QTSCRIPT_CMAKE_ON=	-DUSE_JS:BOOL=ON
+QTSCRIPT_CMAKE_OFF=	-DUSE_JS:BOOL=OFF
+
+QML_USE=		QT4=declarative
+QML_CMAKE_ON=		-DUSE_QT_QML:BOOL=ON
+QML_CMAKE_OFF=		-DUSE_QT_QML:BOOL=OFF
+
+SQLITE_USE=		QT4=sql-sqlite3
+SQLITE_CMAKE_ON=	-DUSE_QT_SQLITE:BOOL=ON
+SQLITE_CMAKE_OFF=	-DUSE_QT_SQLITE:BOOL=OFF
+
+.include "${MASTERDIR}/Makefile"

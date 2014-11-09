@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# $FreeBSD$
+#
+
+case $2 in
+POST-DEINSTALL)
+	if find /var/lib/pacman /var/cache/pacman -type f 2>/dev/null | grep -q ''; then
+		echo ""
+		echo "To completely remove the port, please remove the following"
+		echo "directories and the content manualy if its no longer needed:"
+		echo ""
+		echo "    /var/cache/pacman"
+		echo "    /var/lib/pacman"
+		echo ""
+	fi
+	;;
+esac

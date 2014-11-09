@@ -1,0 +1,8 @@
+%%MONO%%bin/quassel
+%%CLIENT%%bin/quasselclient
+%%CORE%%bin/quasselcore
+%%MONO%%share/applications/quassel.desktop
+%%CLIENT%%share/applications/quasselclient.desktop
+%%MONO_OR_CLIENT%%share/apps/quassel/scripts/inxi
+%%MONO_OR_CLIENT%%share/apps/quassel/scripts/mpris
+%%MONO_OR_CLIENT%%share/icons/hicolor/48x48/apps/quassel.png

@@ -1,0 +1,17 @@
+--- CMakeLists.txt.orig	2014-07-24 20:53:44.000000000 +0200
++++ CMakeLists.txt	2014-07-29 12:53:28.000000000 +0200
+@@ -261,14 +261,6 @@
+   SET(CPACK_GENERATOR "TGZ")
+ ENDIF(WIN32)
+ 
+-INSTALL(FILES
+-	${CPACK_RESOURCE_FILE_README}
+-	${CPACK_RESOURCE_FILE_INSTALL}
+-	${CPACK_RESOURCE_FILE_LICENSE}
+-	"${CMAKE_SOURCE_DIR}/Licenses_for_Third-Party_Components.txt"
+-	"${CMAKE_SOURCE_DIR}/ANNOUNCEMENT"
+-	DESTINATION "." OPTIONAL)
+-
+ SET(COMMON_IGNORE_FILES "/CMakeFiles/" "/Testing/" "/.bzr/" "_CPack_Packages/"
+     "~" ".swp" ".log" ".gz" ".directory$" "CMakeCache.txt" "Makefile"
+ 	"install_manifest.txt")

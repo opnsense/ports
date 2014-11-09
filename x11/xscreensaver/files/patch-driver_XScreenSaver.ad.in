@@ -1,0 +1,55 @@
+--- driver/XScreenSaver.ad.in.orig	2013-12-09 12:01:40.000000000 +0100
++++ driver/XScreenSaver.ad.in	2013-12-17 19:34:28.222008084 +0100
+@@ -56,7 +56,7 @@
+ *splashDuration:	0:00:05
+ *visualID:		default
+ *captureStderr: 	True
+-*ignoreUninstalledPrograms: False
++*ignoreUninstalledPrograms: True
+ 
+ *textMode:		file
+ *textLiteral:		XScreenSaver
+@@ -122,7 +122,7 @@
+ 
+ ! The format used for printing the date and time in the password dialog box
+ ! (see the strftime(3) manual page for details.)
+-*dateFormat:		%d-%b-%y (%a); %I:%M %p
++*dateFormat:		%Y-%m-%d %H:%M:%S
+ ! To show the time only:
+ ! *dateFormat:		%I:%M %p
+ ! For 24 hour time:
+@@ -156,6 +156,18 @@
+ ! screen savers interactively.
+ !
+ *programs:								      \
++				xaos -root -autopilot -nogui -delay 10000     \
++                                  -maxframerate 30                            \
++                                  -incoloring -1 -outcoloring -1            \n\
++				xdaliclock -root -font BUILTIN3 -cycle	    \n\
++				xearth -nofork -ncolors 50 -night 3	      \
++				  -pos sunrel/38/-30 -wait 0		    \n\
++				xmountains -b -M -Z 0 -r 1		    \n\
++	"XMountains (top)"	xmountains -b -M -Z 0 -r 1 -m		    \n\
++				xplanet -vroot -wait 1 -timewarp 400	      \
++                                  -label -origin moon			    \n\
++-				xsnow -bg SkyBlue3 -solidbg		    \n\
++@GL_KLUDGE@ GL:					fireflies -root                             \n\
+ 				maze -root				    \n\
+ @GL_KLUDGE@ GL: 				superquadrics -root			    \n\
+ 				attraction -root			    \n\
+@@ -251,7 +263,6 @@
+ 				xspirograph -root			    \n\
+ @GL_KLUDGE@ GL: 				circuit -root				    \n\
+ @GL_KLUDGE@ GL: 				dangerball -root			    \n\
+-- GL: 				dnalogo -root				    \n\
+ @GL_KLUDGE@ GL: 				engine -root				    \n\
+ @GL_KLUDGE@ GL: 				flipscreen3d -root			    \n\
+ @GL_KLUDGE@ GL: 				gltext -root				    \n\
+@@ -449,7 +460,6 @@
+ *hacks.cwaves.name:         CWaves
+ *hacks.dangerball.name:     DangerBall
+ *hacks.decayscreen.name:    DecayScreen
+-*hacks.dnalogo.name:        DNA Logo
+ *hacks.euler2d.name:        Euler2D
+ *hacks.fadeplot.name:       FadePlot
+ *hacks.flipflop.name:       FlipFlop

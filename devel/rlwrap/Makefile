@@ -1,0 +1,31 @@
+# Created by: ijliao
+# $FreeBSD$
+
+PORTNAME=	rlwrap
+PORTVERSION=	0.37
+CATEGORIES=	devel
+MASTER_SITES=	http://utopia.knoware.nl/~hlub/uck/rlwrap/ \
+		${MASTER_SITE_LOCAL} \
+		http://dryice.name/computer/FreeBSD/distfiles/
+MASTER_SITE_SUBDIR=	dryice
+
+MAINTAINER=	gamato@users.sf.net
+COMMENT=	Readline wrapper
+
+USES=		readline
+GNU_CONFIGURE=	yes
+
+PORTDOCS=	AUTHORS BUGS NEWS PLEA README TODO
+
+OPTIONS_DEFINE=	DOCS
+
+post-patch:	.SILENT
+	${REINPLACE_CMD} 's|/dev/ptmx|${NONEXISTENT}|' ${WRKSRC}/configure
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for i in ${PORTDOCS}
+	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
+.endfor
+
+.include <bsd.port.mk>

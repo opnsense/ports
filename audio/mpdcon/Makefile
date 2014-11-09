@@ -1,0 +1,29 @@
+# $FreeBSD$
+
+PORTNAME=	mpdcon
+PORTVERSION=	1.5.1
+PORTREVISION=	2
+CATEGORIES=	audio gnustep
+MASTER_SITES=	${MASTER_SITE_SAVANNAH}
+MASTER_SITE_SUBDIR=	gap
+DISTNAME=	MPDCon-${PORTVERSION}
+
+MAINTAINER=	theraven@FreeBSD.org
+COMMENT=	MPD client for GNUstep
+
+LICENSE=	GPLv2
+
+USE_GNUSTEP=		yes
+USE_GNUSTEP_BACK=	yes
+USE_GNUSTEP_BUILD=	yes
+USE_GNUSTEP_INSTALL=	yes
+USE_GNUSTEP_LOCAL_LIBS+=	SQLClient:databases/sqlclient
+
+LIB_DEPENDS+=   libmpdclient.so.2:${PORTSDIR}/audio/libmpdclient
+
+post-patch:
+	${REINPLACE_CMD} -e \
+		's|^GNUSTEP_INSTALLATION_DIR|#GNUSTEP_INSTALLATION_DIR|' \
+			${WRKSRC}/GNUmakefile
+
+.include <bsd.port.mk>

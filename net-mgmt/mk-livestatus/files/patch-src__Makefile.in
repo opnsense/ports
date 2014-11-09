@@ -1,0 +1,11 @@
+--- ./src/Makefile.in.orig	2014-02-10 10:54:03.000000000 +0100
++++ ./src/Makefile.in	2014-02-20 22:47:49.000000000 +0100
+@@ -260,7 +260,7 @@
+ am__quote = @am__quote@
+ am__tar = @am__tar@
+ am__untar = @am__untar@
+-bindir = @bindir@
++bindir = $(pkglibdir)
+ build_alias = @build_alias@
+ builddir = @builddir@
+ datadir = @datadir@

@@ -1,0 +1,13 @@
+
+$FreeBSD$
+
+--- configure.orig
++++ configure
+@@ -149,6 +149,7 @@
+ all_platforms="${all_platforms} universal-darwin11-gcc"
+ all_platforms="${all_platforms} universal-darwin12-gcc"
+ all_platforms="${all_platforms} universal-darwin13-gcc"
++all_platforms="${all_platforms} ia64-linux-gcc"
+ all_platforms="${all_platforms} generic-gnu"
+ 
+ # all_targets is a list of all targets that can be configured

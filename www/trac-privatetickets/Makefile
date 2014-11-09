@@ -1,0 +1,22 @@
+# Created by: Li-Wen Hsu <lwhsu@lwhsu.org>
+# $FreeBSD$
+
+PORTNAME=	privatetickets
+PORTVERSION=	2.0.2
+PORTREVISION=	3
+CATEGORIES=	www devel python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	trac-
+DISTNAME=	TracPrivateTickets-${PORTVERSION}
+
+MAINTAINER=	lwhsu@FreeBSD.org
+COMMENT=	Modified ticket security for Trac
+
+RUN_DEPENDS=	tracd:${PORTSDIR}/www/trac
+
+USE_PYTHON=		yes
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
+
+.include "${.CURDIR}/../../www/trac/plugin.mk"
+.include <bsd.port.mk>

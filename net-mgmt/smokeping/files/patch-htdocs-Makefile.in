@@ -1,0 +1,15 @@
+--- htdocs/Makefile.in.orig	2013-03-04 13:07:55.000000000 +0000
++++ htdocs/Makefile.in	2014-07-19 10:42:00.470292529 +0000
+@@ -432,9 +432,9 @@
+ 
+ install-data-local:
+ 	$(MKDIR) -p $(DESTDIR)$(HTDOCSDIR)
+-	$(ECHO)	"#!/bin/sh" > $(DESTDIR)$(HTDOCSDIR)/smokeping.fcgi.dist
+-	$(ECHO)	"exec $(prefix)/bin/smokeping_cgi $(prefix)/etc/config" >> $(DESTDIR)$(HTDOCSDIR)/smokeping.fcgi.dist
+-	chmod +x $(DESTDIR)$(HTDOCSDIR)/smokeping.fcgi.dist
++	$(ECHO)	"#!/bin/sh" > $(DESTDIR)$(HTDOCSDIR)/smokeping.fcgi.sample
++	$(ECHO)	"exec $(prefix)/bin/smokeping_cgi $(sysconfdir)/config" >> $(DESTDIR)$(HTDOCSDIR)/smokeping.fcgi.sample
++	chmod +x $(DESTDIR)$(HTDOCSDIR)/smokeping.fcgi.sample
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.

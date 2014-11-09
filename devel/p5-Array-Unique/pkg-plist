@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Array/Unique.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Array/Unique/.packlist
+%%PERL5_MAN3%%/Array::Unique.3.gz

@@ -1,0 +1,6 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/autobox/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/autobox/autobox.so
+%%SITE_PERL%%/%%PERL_ARCH%%/autobox.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/autobox.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/autobox/universal.pm
+%%PERL5_MAN3%%/autobox.3.gz

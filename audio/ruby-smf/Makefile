@@ -1,0 +1,33 @@
+# Created by: Akinori MUSHA aka knu <knu@idaemons.org>
+# $FreeBSD$
+
+PORTNAME=	smf
+PORTVERSION=	0.15.12
+CATEGORIES=	audio ruby
+MASTER_SITES=	http://www.funaba.org/archive/
+PKGNAMEPREFIX=	${RUBY_PKGNAMEPREFIX}
+DIST_SUBDIR=	ruby
+
+MAINTAINER=	ruby@FreeBSD.org
+COMMENT=	Ruby module to handle Standard MIDI Files
+
+USE_RUBY=	yes
+USE_RUBY_SETUP=	yes
+RUBY_SETUP=	install.rb
+RUBY_SHEBANG_FILES=	sample/*.rb
+
+DOCS_EN=	MANUAL.en MANUAL.en.html MANUAL.en.rd README.en
+DOCS_JA=	MANUAL MANUAL.html MANUAL.rd README
+EXAMPLES=	sample/*
+
+OPTIONS_DEFINE=	DOCS
+
+post-install:
+	${MKDIR} ${STAGEDIR}${RUBY_MODDOCDIR}/en
+	${MKDIR} ${STAGEDIR}${RUBY_MODDOCDIR}/ja
+	${MKDIR} ${STAGEDIR}${RUBY_MODEXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLES:S,^,${WRKSRC}/,} ${STAGEDIR}${RUBY_MODEXAMPLESDIR}/
+	${INSTALL_DATA} ${DOCS_EN:S,^,${WRKSRC}/,} ${STAGEDIR}${RUBY_MODDOCDIR}/en/
+	${INSTALL_DATA} ${DOCS_JA:S,^,${WRKSRC}/,} ${STAGEDIR}${RUBY_MODDOCDIR}/ja/
+
+.include <bsd.port.mk>

@@ -1,0 +1,3 @@
+%%SITE_PERL%%/File/Find/Rule/Perl.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/File/Find/Rule/Perl/.packlist
+%%PERL5_MAN3%%/File::Find::Rule::Perl.3.gz

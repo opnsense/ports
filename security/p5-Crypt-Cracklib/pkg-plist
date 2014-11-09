@@ -1,0 +1,7 @@
+%%PERL5_MAN3%%/Crypt::Cracklib.3.gz
+%%SITE_PERL%%/%%PERL_ARCH%%/Crypt/Cracklib.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/Cracklib/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/Cracklib/Cracklib.so
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/Cracklib
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Crypt

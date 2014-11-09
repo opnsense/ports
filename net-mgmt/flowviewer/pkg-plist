@@ -1,0 +1,74 @@
+%%FLOWVIEWERDIR%%/FV.cgi
+%%FLOWVIEWERDIR%%/FV_Relay.cgi
+%%FLOWVIEWERDIR%%/FlowGrapher.cgi
+%%FLOWVIEWERDIR%%/FlowGrapher_Colors
+%%FLOWVIEWERDIR%%/FlowGrapher_Main.cgi
+%%FLOWVIEWERDIR%%/FlowGrapher_Replay.cgi
+%%FLOWVIEWERDIR%%/FlowGrapher_Sort.cgi
+%%FLOWVIEWERDIR%%/FlowTracker.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_AltDashboard
+%%FLOWVIEWERDIR%%/FlowTracker_Collector
+%%FLOWVIEWERDIR%%/FlowTracker_Dashboard.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Display.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_DisplayPublic.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Dumper.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Grapher
+%%FLOWVIEWERDIR%%/FlowTracker_Group.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Main.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Management.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Recreate
+%%FLOWVIEWERDIR%%/FlowTracker_Replay.cgi
+%%FLOWVIEWERDIR%%/FlowTracker_Thumbnail
+%%FLOWVIEWERDIR%%/FlowViewer.cgi
+%%FLOWVIEWERDIR%%/FlowViewer_CleanASCache
+%%FLOWVIEWERDIR%%/FlowViewer_CleanFiles
+%%FLOWVIEWERDIR%%/FlowViewer_CleanHostCache
+%%FLOWVIEWERDIR%%/FlowViewer_CleanSiLK
+%%FLOWVIEWERDIR%%/FlowViewer_Configuration.pm.dist
+%%FLOWVIEWERDIR%%/FlowViewer_Main.cgi
+%%FLOWVIEWERDIR%%/FlowViewer_Replay.cgi
+%%FLOWVIEWERDIR%%/FlowViewer_Save.cgi
+%%FLOWVIEWERDIR%%/FlowViewer_SaveManage.cgi
+%%FLOWVIEWERDIR%%/FlowViewer_Sort.cgi
+%%FLOWVIEWERDIR%%/FlowViewer_UI.pm
+%%FLOWVIEWERDIR%%/FlowViewer_Utilities.pm
+%%FLOWVIEWERDIR%%/NamedInterfaces_Devices
+%%FLOWVIEWERDIR%%/NamedInterfaces_Exporters
+%%FLOWVIEWERDIR%%/dscan.suppress.dst
+%%FLOWVIEWERDIR%%/dscan.suppress.src
+%%FLOWVIEWERDIR%%/tools/analyze_flowtracker_debug
+%%FLOWVIEWERDIR%%/tools/analyze_netflow_packets
+%%FLOWVIEWERDIR%%/tools/convert_pre40_filters
+%%FLOWVIEWERDIR%%/tools/date_to_epoch_gm
+%%FLOWVIEWERDIR%%/tools/date_to_epoch_local
+%%FLOWVIEWERDIR%%/tools/epoch_to_date_gm
+%%FLOWVIEWERDIR%%/tools/epoch_to_date_local
+%%FLOWVIEWERDIR%%/tools/flow-capture-table.conf
+%%FLOWVIEWERDIR%%/tools/flowcapture_restart
+%%FLOWVIEWERDIR%%/tools/flowtracker_archive_restore
+%%FLOWVIEWERDIR%%/tools/flowtracker_grapher_nonlazy
+%%FLOWVIEWERDIR%%/tools/flowtracker_grapher_recent
+%%FLOWVIEWERDIR%%/tools/flowtracker_restart
+%%FLOWVIEWERDIR%%/tools/performance_check
+%%FLOWVIEWERDIR%%/tools/resize_rrdtools
+%%FLOWVIEWERDIR%%/tools/rsync_flows
+%%FLOWVIEWERDIR%%/tools/rsync_htmls
+%%FLOWVIEWERDIR%%/tools/rsync_trackings
+%%FLOWVIEWERDIR%%/tools/rwflowpack_start
+%%FLOWVIEWERDIR%%/reports/FG_button.png
+%%FLOWVIEWERDIR%%/reports/FT_button.png
+%%FLOWVIEWERDIR%%/reports/FV_button.png
+%%FLOWVIEWERDIR%%/reports/FlowViewer.css
+@exec /usr/sbin/chown %%WWWOWN%%:%%WWWGRP%% %%FLOWVIEWERDIR%%/tmp %%FLOWVIEWERDIR%%/reports %%FLOWVIEWERDIR%%/graphs %%FLOWVIEWERDIR%%/tracker  %%FLOWVIEWERDIR%%/working %%FLOWVIEWERDIR%%/saves %%FLOWVIEWERDIR%%/names %%FLOWVIEWERDIR%%/filters %%FLOWVIEWERDIR%%/rrdtools %%FLOWVIEWERDIR%%/FlowViewer_Dashboard %%FLOWVIEWERDIR%%/tools
+@dirrmtry %%FLOWVIEWERDIR%%/working
+@dirrmtry %%FLOWVIEWERDIR%%/tracker
+@dirrmtry %%FLOWVIEWERDIR%%/tools
+@dirrmtry %%FLOWVIEWERDIR%%/tmp
+@dirrmtry %%FLOWVIEWERDIR%%/saves
+@dirrmtry %%FLOWVIEWERDIR%%/rrdtools
+@dirrmtry %%FLOWVIEWERDIR%%/reports
+@dirrmtry %%FLOWVIEWERDIR%%/names
+@dirrmtry %%FLOWVIEWERDIR%%/graphs
+@dirrmtry %%FLOWVIEWERDIR%%/filters
+@dirrmtry %%FLOWVIEWERDIR%%/FlowViewer_Dashboard
+@dirrmtry %%FLOWVIEWERDIR%%

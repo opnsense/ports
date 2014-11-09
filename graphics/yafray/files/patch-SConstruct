@@ -1,0 +1,16 @@
+--- SConstruct.orig	2006-06-20 19:24:00.000000000 +0200
++++ SConstruct	2014-04-28 22:26:00.000000000 +0200
+@@ -8,6 +8,13 @@
+ ficheros = {
+ 'darwin' : 'darwin-settings',
+ 'linux2' : 'linux-settings',
++'freebsd5' : 'freebsd-settings',
++'freebsd6' : 'freebsd-settings',
++'freebsd7' : 'freebsd-settings',
++'freebsd8' : 'freebsd-settings',
++'freebsd9' : 'freebsd-settings',
++'freebsd10' : 'freebsd-settings',
++'freebsd11' : 'freebsd-settings',
+ 'win32' : 'win32-settings',
+ 'sunos5' : 'sunos5-settings'
+ }

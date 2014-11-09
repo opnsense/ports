@@ -1,0 +1,4 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/POSIX/strptime.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/POSIX/strptime/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/POSIX/strptime/strptime.so
+%%PERL5_MAN3%%/POSIX::strptime.3.gz

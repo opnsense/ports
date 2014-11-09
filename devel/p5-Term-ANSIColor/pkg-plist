@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Term/ANSIColor.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Term/ANSIColor/.packlist
+%%PERL5_MAN3%%/Term::ANSIColor.3.gz

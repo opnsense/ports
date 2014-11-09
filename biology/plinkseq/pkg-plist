@@ -1,0 +1,10 @@
+bin/behead
+bin/browser
+bin/gcol
+bin/mm
+bin/mongoose
+bin/pdas
+bin/pseq
+bin/smp
+bin/tab2vcf
+lib/libplinkseq.a

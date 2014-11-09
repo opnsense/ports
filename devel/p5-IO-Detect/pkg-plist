@@ -1,0 +1,3 @@
+%%SITE_PERL%%/IO/Detect.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/IO/Detect/.packlist
+%%PERL5_MAN3%%/IO::Detect.3.gz

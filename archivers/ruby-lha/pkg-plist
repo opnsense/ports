@@ -1,0 +1,2 @@
+%%RUBY_SITELIBDIR%%/%%RUBY_ARCH%%/lhalib.so
+%%PORTDOCS%%%%RUBY_MODEXAMPLESDIR%%/test.rb

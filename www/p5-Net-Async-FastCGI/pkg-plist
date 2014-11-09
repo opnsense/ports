@@ -1,0 +1,21 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Net/Async/FastCGI/.packlist
+%%SITE_PERL%%/Net/Async/FastCGI.pm
+%%SITE_PERL%%/Net/Async/FastCGI/PSGI.pm
+%%SITE_PERL%%/Net/Async/FastCGI/Protocol.pm
+%%SITE_PERL%%/Net/Async/FastCGI/Request.pm
+%%SITE_PERL%%/Net/Async/FastCGI/ServerProtocol.pm
+%%SITE_PERL%%/Plack/Handler/Net/Async/FastCGI.pm
+%%PERL5_MAN3%%/Net::Async::FastCGI.3.gz
+%%PERL5_MAN3%%/Net::Async::FastCGI::PSGI.3.gz
+%%PERL5_MAN3%%/Net::Async::FastCGI::Request.3.gz
+%%PERL5_MAN3%%/Plack::Handler::Net::Async::FastCGI.3.gz
+@dirrmtry %%SITE_PERL%%/Plack/Handler/Net/Async
+@dirrmtry %%SITE_PERL%%/Plack/Handler/Net
+@dirrmtry %%SITE_PERL%%/Plack/Handler
+@dirrmtry %%SITE_PERL%%/Plack
+@dirrmtry %%SITE_PERL%%/Net/Async/FastCGI
+@dirrmtry %%SITE_PERL%%/Net/Async
+@dirrmtry %%SITE_PERL%%/Net
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Net/Async/FastCGI
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Net/Async
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Net

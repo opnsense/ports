@@ -1,0 +1,10 @@
+bin/ggz-txt
+lib/ggz/tttxt
+man/man6/ggz-txt.6.gz
+share/applications/ggz-txt.desktop
+@unexec ggz-config -D --remove --modfile=%D/share/ggz/tttxt.dsc --force
+share/ggz/tttxt.dsc
+@exec ggz-config -D --install --modfile=%D/share/ggz/tttxt.dsc --force
+%%NLS%%share/locale/de/LC_MESSAGES/ggz-txt.mo
+@dirrmtry share/ggz
+@dirrmtry lib/ggz

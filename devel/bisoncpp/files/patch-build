@@ -1,0 +1,13 @@
+--- ./build.orig	2013-11-27 18:04:34.000000000 +0100
++++ ./build	2013-11-27 18:04:34.000000000 +0100
+@@ -40,7 +40,10 @@
+         manpage();
+ 
+     if (option == "manual")
++    {
++        manhtmlpage();
+         manual();
++    }
+ 
+     if (option == "library")
+     {

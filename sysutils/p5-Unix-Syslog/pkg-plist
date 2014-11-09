@@ -1,0 +1,7 @@
+%%PERL5_MAN3%%/Unix::Syslog.3.gz
+%%SITE_PERL%%/%%PERL_ARCH%%/Unix/Syslog.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Unix/Syslog/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Unix/Syslog/Syslog.so
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Unix/Syslog
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Unix
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Unix

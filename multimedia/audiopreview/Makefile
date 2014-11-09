@@ -1,0 +1,22 @@
+# Created by: kevlo 
+# $FreeBSD$
+
+PORTNAME=	audiopreview
+PORTVERSION=	0.6
+PORTREVISION=	1
+CATEGORIES=	multimedia
+MASTER_SITES=	http://audiopreview.codealpha.net/files/
+
+MAINTAINER=	kevlo@FreeBSD.org
+COMMENT=	Command-line tool to play previews of audio and video files
+
+USES=		gmake pkgconfig
+USE_GSTREAMER=	core
+USE_GNOME=	intltool
+GNU_CONFIGURE=	yes
+LDFLAGS+=	-L${LOCALBASE}/lib
+CFLAGS+=	-I${LOCALBASE}/include
+
+PLIST_FILES=	bin/audiopreview man/man1/audiopreview.1.gz
+
+.include <bsd.port.mk>

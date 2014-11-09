@@ -1,0 +1,3 @@
+%%SITE_PERL%%/MooseX/Types/URI.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/MooseX/Types/URI/.packlist
+%%PERL5_MAN3%%/MooseX::Types::URI.3.gz

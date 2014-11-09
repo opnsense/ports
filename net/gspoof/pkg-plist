@@ -1,0 +1,6 @@
+bin/gspoof
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%DATADIR%%/pixmap/icon.png
+@dirrm %%DATADIR%%/pixmap
+@dirrm %%DATADIR%%

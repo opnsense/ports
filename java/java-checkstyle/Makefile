@@ -1,0 +1,49 @@
+# Created by: Dave Glowacki <dglo@ssec.wisc.edu>
+# $FreeBSD$
+
+PORTNAME=	checkstyle
+PORTVERSION=	5.8
+CATEGORIES=	java devel
+MASTER_SITES=	SF
+PKGNAMEPREFIX=	java-
+DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
+
+MAINTAINER=	5u623l20@gmail.com
+COMMENT=	Java style checker
+
+LICENSE=	LGPL21 APACHE20
+LICENSE_COMB=	dual
+
+USE_JAVA=	yes
+JAVA_VERSION=	1.6+
+NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+
+JAR_FILE=	${PORTNAME}-${PORTVERSION}-all.jar
+
+PLIST_FILES=	bin/${PORTNAME} \
+		%%JAVAJARDIR%%/${PORTNAME}.jar
+PORTDOCS=	*
+PORTEXAMPLES=	*
+
+SUB_FILES=	${PORTNAME}.sh
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+do-install:
+	@-${MKDIR} ${STAGEDIR}${JAVAJARDIR}
+	${INSTALL_DATA} ${WRKSRC}/${JAR_FILE} \
+		${STAGEDIR}${JAVAJARDIR}/${PORTNAME}.jar
+	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh \
+		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+	@-${MKDIR} ${STAGEDIR}${DOCSDIR}
+	(cd ${WRKSRC} && ${INSTALL_DATA} LICENSE* RIGHTS.antlr \
+		${STAGEDIR}${DOCSDIR})
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} site ${STAGEDIR}${DOCSDIR})
+	@-${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+.for EXAMPLEFILE in checkstyle_checks import-control sun_checks suppressions
+	${INSTALL_DATA} ${WRKSRC}/${EXAMPLEFILE}.xml ${STAGEDIR}${EXAMPLESDIR}
+.endfor
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} contrib ${STAGEDIR}${EXAMPLESDIR})
+
+.include <bsd.port.mk>

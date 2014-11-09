@@ -1,0 +1,9 @@
+--- Makefile.orig	2013-08-14 12:38:50.000000000 -0700
++++ Makefile	2013-08-14 12:40:16.000000000 -0700
+@@ -1,5 +1,5 @@
+ DESTDIR=
+-PREFIX=/usr/local
++PREFIX=%%PREFIX%%
+ DATADIR=$(PREFIX)/share
+ version=1.08.`date +%Y%m%d`
+ releasedir=freedink-data-$(version)

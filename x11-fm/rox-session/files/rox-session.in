@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# $FreeBSD$
+
+echo "ROX Session: Starting up..." 
+cd "%%DATADIR%%"
+./AppRun -w < /dev/null

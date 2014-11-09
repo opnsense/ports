@@ -1,0 +1,22 @@
+bin/xsh
+%%PERL5_MAN3%%/XSH.3.gz
+%%SITE_PERL%%/Inline/XSH.pm
+%%SITE_PERL%%/XML/XSH.pm
+%%SITE_PERL%%/XML/XSH.pod
+%%SITE_PERL%%/XML/XSH/Completion.pm
+%%SITE_PERL%%/XML/XSH/CompletionList.pm
+%%SITE_PERL%%/XML/XSH/DummyXPathContext.pm
+%%SITE_PERL%%/XML/XSH/Functions.pm
+%%SITE_PERL%%/XML/XSH/GDOMECompat.pm
+%%SITE_PERL%%/XML/XSH/Grammar.pm
+%%SITE_PERL%%/XML/XSH/Help.pm
+%%SITE_PERL%%/XML/XSH/Iterators.pm
+%%SITE_PERL%%/XML/XSH/LibXMLCompat.pm
+%%SITE_PERL%%/XML/XSH/Parser.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/XSH/.packlist
+man/man1/xsh.1.gz
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML/XSH
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/XML
+@dirrmtry %%SITE_PERL%%/XML/XSH
+@dirrmtry %%SITE_PERL%%/XML
+@dirrmtry %%SITE_PERL%%/Inline

@@ -1,0 +1,37 @@
+@shell bin/ch
+%%DATADIR%%/docs/images/softIntegration.gif
+%%DATADIR%%/docs/README
+%%DATADIR%%/docs/index.html
+%%DATADIR%%/docs/chsdk.pdf
+%%DATADIR%%/docs/chinstall.pdf
+%%DATADIR%%/docs/chguide.pdf
+%%DATADIR%%/docs/chref.pdf
+%%DATADIR%%/docs/qanimate.pdf
+%%DATADIR%%/docs/chide.pdf
+%%DATADIR%%/docs/jp/chide.pdf
+%%DATADIR%%/docs/jp/chguide.pdf
+%%DATADIR%%/docs/jp/chref.pdf
+%%DATADIR%%/docs/jp/qanimate.pdf
+%%DATADIR%%/docs/cn/chide.pdf
+%%DATADIR%%/docs/man/man1/ch.1.gz
+%%DATADIR%%/docs/man/man1/createpkg.1.gz
+%%DATADIR%%/docs/man/man1/foreach.1.gz
+%%DATADIR%%/docs/man/man1/gnuplot.1.gz
+%%DATADIR%%/docs/man/man1/installpkg.1.gz
+%%DATADIR%%/docs/man/man1/pkginstall.1.gz
+%%DATADIR%%/docs/man/man1/splint.1.gz
+%%DATADIR%%/docs/man/man1/str2ascii.1.gz
+%%DATADIR%%/docs/man/man1/str2mat.1.gz
+%%DATADIR%%/docs/man/man1/stradd.1.gz
+%%DATADIR%%/docs/man/man1/strconcat.1.gz
+%%DATADIR%%/docs/man/man1/strgetc.1.gz
+%%DATADIR%%/docs/man/man1/strjoin.1..gz
+%%DATADIR%%/docs/man/man1/strputc.1.gz
+%%DATADIR%%/docs/man/man1/strrep.1.gz
+@dirrmtry %%DATADIR%%/docs/cn
+@dirrmtry %%DATADIR%%/docs/jp
+@dirrmtry %%DATADIR%%/docs/jp
+@dirrmtry %%DATADIR%%/docs/images
+@dirrmtry %%DATADIR%%/docs/man/man1
+@dirrmtry %%DATADIR%%/docs/man
+@dirrmtry %%DATADIR%%/docs

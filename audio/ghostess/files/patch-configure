@@ -1,0 +1,15 @@
+--- configure.orig	2010-09-24 02:36:53.000000000 +0900
++++ configure	2011-03-14 08:06:46.000000000 +0900
+@@ -10932,10 +10932,10 @@
+ 
+ 
+ case "${host_os}" in
+-darwin*)
++darwin* | freebsd*)
+   darwin=yes
+ 
+-$as_echo "#define MIDI_COREMIDI 1" >>confdefs.h
++
+ 
+ 
+ 

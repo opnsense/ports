@@ -1,0 +1,4 @@
+bin/scamp.sh
+man/man1/scamp.1.gz
+@sample etc/scamp/default.sample
+@dirrmtry etc/scamp

@@ -1,0 +1,29 @@
+sbin/portfwd
+man/man5/portfwd.cfg.5.gz
+man/man8/portfwd.8.gz
+%%PORTDOCS%%%%DOCSDIR%%/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/CREDITS
+%%PORTDOCS%%%%DOCSDIR%%/FAQ
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/TODO
+%%PORTDOCS%%%%DOCSDIR%%/conf.txt
+%%PORTDOCS%%@dirrm %%DOCSDIR%%
+%%EXAMPLESDIR%%/alias.cfg
+%%EXAMPLESDIR%%/bind-new.cfg
+%%EXAMPLESDIR%%/bind.cfg
+%%EXAMPLESDIR%%/chain.cfg
+%%EXAMPLESDIR%%/debug_ftp.cfg
+%%EXAMPLESDIR%%/dns.cfg
+%%EXAMPLESDIR%%/empty.cfg
+%%EXAMPLESDIR%%/external-director.cfg
+%%EXAMPLESDIR%%/fragile.cfg
+%%EXAMPLESDIR%%/ftp.cfg
+%%EXAMPLESDIR%%/load-balance.cfg
+%%EXAMPLESDIR%%/mail.cfg
+%%EXAMPLESDIR%%/portfwd1.cfg
+%%EXAMPLESDIR%%/portfwd2.cfg
+%%EXAMPLESDIR%%/single.cfg
+%%EXAMPLESDIR%%/test.cfg
+%%EXAMPLESDIR%%/udp.cfg
+%%EXAMPLESDIR%%/x.cfg
+@dirrm %%EXAMPLESDIR%%

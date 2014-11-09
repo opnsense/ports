@@ -1,0 +1,43 @@
+@exec if ! pw groupshow smmsp 2>/dev/null; then pw groupadd smmsp -g 25; fi
+@exec if ! pw usershow smmsp 2>/dev/null; then pw useradd smmsp -g smmsp -u 25 -h - -d /nonexistent -s /nonexistent -c "Sendmail Queue"; fi
+@exec mkdir -p /var/spool/clientmqueue
+@exec chown smmsp:smmsp /var/spool/clientmqueue
+@exec chmod 770 /var/spool/clientmqueue
+@unexec if pw usershow smmsp | grep -q 90:90; then pw userdel smmsp; fi
+@comment (removed by userdel) pw groupdel smmsp
+bin/hoststat
+bin/mailq
+bin/newaliases
+bin/purgestat
+bin/rmail
+bin/vacation
+libexec/mail.local
+libexec/smrsh
+%%MANPREFIX%%man/man1/mailq.1.gz
+%%MANPREFIX%%man/man1/newaliases.1.gz
+%%MANPREFIX%%man/man1/vacation.1.gz
+%%MANPREFIX%%man/man5/aliases.5.gz
+%%MANPREFIX%%man/man8/sendmail.8.gz
+%%MANPREFIX%%man/man8/mailstats.8.gz
+%%MANPREFIX%%man/man8/makemap.8.gz
+%%MANPREFIX%%man/man8/praliases.8.gz
+%%MANPREFIX%%man/man8/smrsh.8.gz
+%%MANPREFIX%%man/man8/mail.local.8.gz
+%%MANPREFIX%%man/man8/rmail.8.gz
+%%MANPREFIX%%man/man8/editmap.8.gz
+sbin/editmap
+sbin/mailstats
+sbin/makemap
+sbin/praliases
+@group smmsp
+sbin/sendmail
+@group
+@comment (overwritten by pkg_add) chown root:smmsp sbin/sendmail
+@exec chmod 2555 %D/sbin/sendmail
+share/sendmail/helpfile
+%%PORTDOCS%%%%DOCSDIR%%/op.ps
+%%PORTDOCS%%%%DOCSDIR%%/op.txt
+%%PORTDOCS%%%%DOCSDIR%%/DEVTOOLS
+%%PORTDOCS%%%%DOCSDIR%%/SENDMAIL
+%%PORTDOCS%%%%DOCSDIR%%/MAIL.LOCAL
+%%PORTDOCS%%%%DOCSDIR%%/SMRSH

@@ -1,0 +1,42 @@
+@sample etc/ss5/ss5.ha.sample
+@sample etc/ss5/ss5.conf.sample
+@sample etc/ss5/ss5.passwd.sample
+lib/ss5/mod_authentication.so
+lib/ss5/mod_authorization.so
+lib/ss5/mod_balance.so
+lib/ss5/mod_bandwidth.so
+lib/ss5/mod_dump.so
+lib/ss5/mod_filter.so
+lib/ss5/mod_log.so
+lib/ss5/mod_proxy.so
+lib/ss5/mod_socks4.so
+lib/ss5/mod_socks5.so
+lib/ss5/mod_statistics.so
+man/man1/ss5.1.gz
+man/man1/ss5srv.1.gz
+man/man5/ss5.conf.5.gz
+man/man5/ss5.pam.5.gz
+man/man5/ss5.passwd.5.gz
+man/man5/ss5.ha.5.gz
+man/man5/ss5_gss.5.gz
+man/man5/ss5_supa.5.gz
+sbin/ss5
+sbin/ss5srv
+%%DATADIR%%/SS5Logo.jpg
+%%DATADIR%%/balamgr.cgi
+%%DATADIR%%/statmgr.cgi
+%%EXAMPLESDIR%%/entries.ldif
+%%EXAMPLESDIR%%/slapd.conf
+%%EXAMPLESDIR%%/ss5.pam
+%%DOCSDIR%%/License
+%%DOCSDIR%%/README.balamgr
+%%DOCSDIR%%/README.ldap
+%%DOCSDIR%%/README.pam
+%%DOCSDIR%%/README.statmgr
+@exec mkdir -p /var/run/ss5
+@unexec rmdir >/dev/null 2>&1 /var/log/ss5 || :
+@dirrm %%DATADIR%%
+@dirrm %%DOCSDIR%%
+@dirrm %%EXAMPLESDIR%%
+@dirrmtry etc/ss5
+@dirrm lib/ss5

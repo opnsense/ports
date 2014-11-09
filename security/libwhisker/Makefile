@@ -1,0 +1,37 @@
+# Created by: pandzilla
+# $FreeBSD$
+
+PORTNAME=	libwhisker
+PORTVERSION=	2.5
+CATEGORIES=	security perl5
+MASTER_SITES=	SF/whisker/${PORTNAME}/${PORTVERSION}
+DISTNAME=	${PORTNAME}2-${PORTVERSION}
+
+MAINTAINER=	se@FreeBSD.org
+COMMENT=	Perl module to create HTTP test scripts
+
+LICENSE=	BSD2CLAUSE
+
+NO_BUILD=	yes
+USES=		perl5
+MAN3PREFIX=	${PREFIX}/lib/perl5/${PERL_VER}
+PLIST_FILES=	${SITE_PERL_REL}/LW2.pm \
+		%%PERL5_MAN3%%/LW2.3pm.gz
+
+OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	*
+
+do-install:
+	@${MKDIR} ${STAGEDIR}${SITE_PERL}
+	@${MKDIR} ${STAGEDIR}${MAN3PREFIX}/man/man3
+	cd ${WRKSRC} && ${SETENV} DESTDIR=${STAGEDIR} ${PERL5} Makefile.pl install
+	@${CHMOD} 444 ${STAGEDIR}${SITE_PERL}/LW2.pm
+	@${CHMOD} 444 ${STAGEDIR}${MAN3PREFIX}/man/man3/LW2.3pm
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/docs
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}/scripts
+	cd ${WRKSRC} && ${INSTALL_DATA} README CHANGES KNOWNBUGS ${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC}/docs/ && ${INSTALL_DATA} * ${STAGEDIR}${DOCSDIR}/docs
+	cd ${WRKSRC}/scripts/ && ${INSTALL_SCRIPT} * ${STAGEDIR}${DOCSDIR}/scripts
+
+.include <bsd.port.mk>

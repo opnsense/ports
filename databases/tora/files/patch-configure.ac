@@ -1,0 +1,12 @@
+--- configure.ac.orig	2008-09-14 23:54:41.000000000 +0200
++++ configure.ac	2009-05-07 19:16:01.329388208 +0200
+@@ -54,6 +54,9 @@
+ AX_PATH_LIB_PCRE
+ AM_PATH_CPPUNIT([1.10.2], found_cppunit=yes)
+ AM_CONDITIONAL([CPPUNIT], [test "x$found_cppunit" = "xyes"])
++# is mandatory check for libcompat
++AC_CHECK_LIB(compat, main, [LIBCOMPAT="-lcompat"]) dnl for *BSD
++AC_SUBST(LIBCOMPAT)
+ 
+ # Makefile.am uses these
+ AM_CONDITIONAL(HAVE_ORACLE, test "$enable_oracle" = yes)

@@ -1,0 +1,15 @@
+********************
+To enable monthly reporting, add these lines to /etc/periodic.conf:
+	monthly_statistics_enable="YES"
+	monthly_statistics_report_devices="YES"
+	monthly_statistics_report_ports="YES"
+
+To enable reporting on bootup, add this line to /etc/rc.conf:
+	bsdstats_enable="YES"
+
+To run it manually the first time:
+	%%PREFIX%%/etc/periodic/monthly/300.statistics -nodelay
+
+To view current statistics, go to:
+	http://www.bsdstats.org/
+********************

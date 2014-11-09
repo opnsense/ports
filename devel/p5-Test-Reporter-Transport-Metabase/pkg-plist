@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Test/Reporter/Transport/Metabase.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Test/Reporter/Transport/Metabase/.packlist
+%%PERL5_MAN3%%/Test::Reporter::Transport::Metabase.3.gz

@@ -1,0 +1,26 @@
+%%JPEG%%etc/libmap.d/jpeg-turbo.conf
+%%JPEG%%bin/cjpeg-turbo
+%%JPEG%%bin/djpeg-turbo
+%%JPEG%%bin/jpegtran-turbo
+%%JPEG%%bin/rdjpgcom-turbo
+%%JPEG%%bin/wrjpgcom-turbo
+@comment %%JPEG%%include/jconfig.h
+@comment %%JPEG%%include/jerror.h
+@comment %%JPEG%%include/jmorecfg.h
+@comment %%JPEG%%include/jpeglib.h
+@comment %%JPEG%%lib/libjpeg.a
+@comment %%JPEG%%lib/libjpeg.so
+%%JPEG%%lib/libjpeg.so.62
+%%JPEG%%lib/libjpeg.so.62.0.2
+%%JPEG%%man/man1/cjpeg-turbo.1.gz
+%%JPEG%%man/man1/djpeg-turbo.1.gz
+%%JPEG%%man/man1/jpegtran-turbo.1.gz
+%%JPEG%%man/man1/rdjpgcom-turbo.1.gz
+%%JPEG%%man/man1/wrjpgcom-turbo.1.gz
+@comment bin/tjbench-turbo
+%%LIBTURBOJPEG%%bin/tjbench
+%%LIBTURBOJPEG%%include/turbojpeg.h
+%%LIBTURBOJPEG%%lib/libturbojpeg.a
+%%LIBTURBOJPEG%%lib/libturbojpeg.so
+%%LIBTURBOJPEG%%lib/libturbojpeg.so.0
+%%LIBTURBOJPEG%%lib/libturbojpeg.so.0.0.0

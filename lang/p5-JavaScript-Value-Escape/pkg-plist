@@ -1,0 +1,3 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/JavaScript/Value/Escape/.packlist
+%%SITE_PERL%%/JavaScript/Value/Escape.pm
+%%PERL5_MAN3%%/JavaScript::Value::Escape.3.gz

@@ -1,0 +1,2 @@
+%%DATADIR%%/%%DISTNAME%%
+@dirrmtry %%DATADIR%%

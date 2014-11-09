@@ -1,0 +1,13 @@
+--- Makefile.in.orig	2010-05-17 11:55:17.000000000 +0200
++++ Makefile.in	2010-05-17 12:44:57.000000000 +0200
+@@ -35,8 +35,8 @@
+ 
+ 
+ install: all
+-	mkdir -p "$(DESTDIR)$(PREFIX)/share/doc/ocp$(DIR_SUFFIX)"
+-	$(CP) AUTHORS BUGS COPYING CREDITS KEYBOARD_REMAPS SUID TODO "$(DESTDIR)$(PREFIX)/share/doc/ocp$(DIR_SUFFIX)"
++	$(DOCS)mkdir -p "$(DESTDIR)$(PREFIX)/share/doc/ocp$(DIR_SUFFIX)"
++	$(DOCS)$(CP) AUTHORS BUGS COPYING CREDITS KEYBOARD_REMAPS SUID TODO "$(DESTDIR)$(PREFIX)/share/doc/ocp$(DIR_SUFFIX)"
+ 	mkdir -p "$(DESTDIR)$(PREFIX)/share/ocp$(DIR_SUFFIX)/data"
+ 	$(CP) ocp.hlp "$(DESTDIR)$(PREFIX)/share/ocp$(DIR_SUFFIX)/data"
+ 	mkdir -p "$(DESTDIR)$(PREFIX)/share/ocp$(DIR_SUFFIX)/etc"

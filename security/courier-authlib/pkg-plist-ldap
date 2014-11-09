@@ -1,0 +1,6 @@
+@sample(%%MAILOWN%%,%%MAILGRP%%,660) etc/authlib/authldaprc.sample
+@sample etc/openldap/schema/authldap.schema.sample
+lib/courier-authlib/libauthldap.so
+%%PORTDOCS%%%%DOCSDIR%%/README.ldap
+@dirrmtry etc/openldap/schema
+@dirrmtry etc/openldap

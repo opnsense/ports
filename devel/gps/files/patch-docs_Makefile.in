@@ -1,0 +1,37 @@
+--- docs/Makefile.in.orig	2014-05-23 09:12:23.000000000 +0000
++++ docs/Makefile.in
+@@ -1,6 +1,6 @@
+ prefix = @prefix@
+-docdir = $(prefix)/share/doc/gps
+-sharedir = $(prefix)/share/gps
++docdir = $(DESTDIR)$(prefix)/share/doc/gps
++sharedir = $(DESTDIR)$(prefix)/share/gps
+ 
+ MKDIR = mkdir -p
+ INSTALL = @INSTALL@
+@@ -12,20 +12,20 @@ all: ug tutorial gps_pg relnotes gnatdoc
+ static:
+ 
+ gps_pg:
+-	make -C programmers_guide html
++	$(MAKE) -C programmers_guide html
+ 
+ relnotes:
+-	make -C release_notes singlehtml
++	$(MAKE) -C release_notes singlehtml
+ 
+ ug:
+-	make -C users_guide html latexpdf
++	$(MAKE) -C users_guide html
+ 
+ gnatdoc:
+-	make -C ../gnatdoc/docs/users_guide html latexpdf
++	$(MAKE) -C ../gnatdoc/docs/users_guide html
+ 
+ .PHONY: tutorial
+ tutorial:
+-	make -C tutorial html
++	$(MAKE) -C tutorial html
+ 
+ install:
+ 	$(MKDIR) $(docdir)

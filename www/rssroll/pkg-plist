@@ -1,0 +1,16 @@
+bin/rssroll
+@sample etc/rssrollrc.sample
+@owner %%WWWOWN%%
+@group %%WWWGRP%%
+www/cgi-bin/rssroll.cgi
+www/data/rssroll/css/common.css
+www/data/rssroll/css/default.css
+www/data/rssroll/html/header.html
+www/data/rssroll/html/main.html
+www/data/rssroll/html/feed.html
+www/data/rssroll/html/footer.html
+@dirrm www/data/rssroll/html
+@dirrm www/data/rssroll/css
+@dirrm www/data/rssroll
+@dirrmtry www/data
+@dirrmtry www/cgi-bin

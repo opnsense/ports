@@ -1,0 +1,16 @@
+bin/mocp
+man/man1/mocp.1.gz
+share/doc/moc/config.example
+share/doc/moc/THANKS
+share/doc/moc/README
+share/doc/moc/keymap.example
+share/moc/themes/black_theme
+share/moc/themes/darkdot_theme
+share/moc/themes/example_theme
+share/moc/themes/green_theme
+share/moc/themes/moca_theme
+share/moc/themes/nightly_theme
+share/moc/themes/red_theme
+share/moc/themes/transparent-background
+share/moc/themes/yellow_red_theme
+@dir lib/moc/decoder_plugins

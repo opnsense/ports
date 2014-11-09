@@ -1,0 +1,7 @@
+bin/boa_indexer
+bin/hydra
+bin/webindex.pl
+@sample %%ETCDIR%%/hydra.conf.sample
+@sample %%ETCDIR%%/mime.types.sample
+@dirrmtry %%ETCDIR%%
+@exec install -d -o www -g www %%LOGDIR%%

@@ -1,0 +1,44 @@
+--- PATCHES Dec 2002 17:44:54 -0000	3.6
++++ PATCHES Feb 2004 13:19:42 -0000
+@@ -0,0 +1 @@
++patch-1.5.7.ust.maildir-mtime.2
+--- browser.c.orig	Tue Feb  8 10:29:57 2005
++++ browser.c	Tue Feb  8 10:29:58 2005
+@@ -31,4 +31,5 @@
+ #include "nntp.h"
+ #endif
++#include "mx.h"
+ 
+ #include <stdlib.h>
+@@ -473,4 +474,19 @@
+ }
+ 
++static void check_maildir_times (BUFFY *buf, struct stat *st)
++{
++  char buffer[_POSIX_PATH_MAX + SHORT_STRING];
++  struct stat s;
++
++  if(!buf || buf->magic != M_MAILDIR)
++    return;
++
++  snprintf (buffer, sizeof (buffer), "%s/tmp", buf->path);
++  if (lstat (buffer, &s) != 0)
++    return;
++
++  st->st_mtime = s.st_mtime;
++}
++
+ /* get list of all files/newsgroups with mask */
+ static int examine_directory (MUTTMENU *menu, struct browser_state *state,
+@@ -562,4 +578,5 @@
+     while (tmp && mutt_strcmp (buffer, tmp->path))
+       tmp = tmp->next;
++    check_maildir_times (tmp, &s);
+     add_folder (menu, state, de->d_name, &s, NULL, (tmp) ? tmp->new : 0);
+   }
+@@ -637,4 +654,5 @@
+     mutt_pretty_mailbox (buffer);
+ 
++    check_maildir_times (tmp, &s);
+     add_folder (menu, state, buffer, &s, NULL, tmp->new);
+   }

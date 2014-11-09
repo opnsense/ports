@@ -1,0 +1,24 @@
+--- unix/Makefile.in.orig	2004-06-08 04:16:40.000000000 +0200
++++ unix/Makefile.in	2013-11-06 15:14:48.000000000 +0100
+@@ -219,17 +219,17 @@
+ # a make clobber and try LITTLE_ENDIAN.  If that fails, ask a wizard
+ # for help.
+ #
+-BYTE_ORDER=
++#BYTE_ORDER=
+ #BYTE_ORDER= BIG_ENDIAN
+-#BYTE_ORDER= LITTLE_ENDIAN
++BYTE_ORDER= LITTLE_ENDIAN
+ 
+ # Determine the number of bits in a long
+ #
+ # If in doubt, leave LONG_BITS empty.  This makefile will run
+ # the longbits program to determine the length.
+ #
+-LONG_BITS=
+-#LONG_BITS= 32
++#LONG_BITS=
++LONG_BITS= 32
+ #LONG_BITS= 64
+ 
+ 

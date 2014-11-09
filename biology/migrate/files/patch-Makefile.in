@@ -1,0 +1,18 @@
+--- Makefile.in.orig	2013-05-25 14:59:22.000000000 +0000
++++ Makefile.in	2013-05-25 14:59:37.000000000 +0000
+@@ -89,7 +89,7 @@
+ # -DINTEGRATEDLIKE may be used to get a marginal likelihood different to the current thermodynamic integr and harmonic mean [does not work]
+ # -UEP calculates unique event polymorphism [not checked in a long time -- most likely does not work]
+ NEWSTUFF          =  -DNEXUSTREE
+-COMMONFLAGS       = $(ARCH) $(MACOSVERSION) $(NEWSTUFF) $(HAVE_ZNZ) -DHIGHBITS -DHAVE_CONFIG_H -DHAVE_MALLOCWRAP $(CFLAGS_MT) $(HARDWARECFLAGS)
++COMMONFLAGS       = $(MACOSVERSION) $(NEWSTUFF) $(HAVE_ZNZ) -DHIGHBITS -DHAVE_CONFIG_H -DHAVE_MALLOCWRAP $(CFLAGS_MT) $(HARDWARECFLAGS)
+ #
+ # combine the common flags with the version number and subversion number
+ COMMONVFLAGS      =  $(COMMONFLAGS)  -DMIGRATESUBVERSION=\"\\\"$(MIGRATESUBVERSION)\\\"\" 
+@@ -544,4 +544,4 @@
+ #----------------------------------------------------------------
+ # BEAGLE
+ beagle:
+-	$(MAKE) $(NAME) "CFLAGS = $(DEBUGCFLAGS)  $(BEAGLEFLAGS) $(PRETTYCFLAGS)" "LIBS = $(PDFLIB) $(LIBS)"  "LDFLAGS =$(LDFLAGS) $(EXCEPTIONS) `pkg-config /Users/beerli/src/beagle-lib/hmsbeagle-1.0.pc --cflags --libs` -framework OpenCL"
+\ No newline at end of file
++	$(MAKE) $(NAME) "CFLAGS = $(DEBUGCFLAGS)  $(BEAGLEFLAGS) $(PRETTYCFLAGS)" "LIBS = $(PDFLIB) $(LIBS)"  "LDFLAGS =$(LDFLAGS) $(EXCEPTIONS) `pkg-config /Users/beerli/src/beagle-lib/hmsbeagle-1.0.pc --cflags --libs` -framework OpenCL"

@@ -1,0 +1,59 @@
+--- Makefile.in.orig	2014-03-17 20:00:59.000000000 +0900
++++ Makefile.in	2014-08-21 13:04:38.000000000 +0900
+@@ -85,6 +85,7 @@
+ 	pdftosrc$(EXEEXT) luatex$(EXEEXT) luajittex$(EXEEXT) \
+ 	txt2zlib$(EXEEXT) xetex$(EXEEXT) $(am__EXEEXT_6) \
+ 	aleph$(EXEEXT)
++inst_bin_PROGRAMS = aleph$(EXEEXT) $(am__EXEEXT_24) $(am__append_79)
+ bin_PROGRAMS = tangle$(EXEEXT) ctangle$(EXEEXT) $(am__EXEEXT_7) \
+ 	ctie$(EXEEXT) cweave$(EXEEXT) tie$(EXEEXT) $(am__EXEEXT_8) \
+ 	$(am__EXEEXT_9) $(am__EXEEXT_10) $(am__EXEEXT_11) \
+@@ -1973,7 +1974,7 @@
+ AM_CXXFLAGS = ## $(WARNING_CXXFLAGS)
+ AM_OBJCXXFLAGS = ## $(WARNING_OBJCXXFLAGS)
+ version = $(WEB2CVERSION)
+-SUBDIRS = doc lib man web2c . window omegafonts otps
++SUBDIRS = man . omegafonts otps
+ proglib = lib/lib.a
+ dist_man_MANS = synctexdir/man1/synctex.1 synctexdir/man5/synctex.5
+ nodist_man_MANS = 
+@@ -2298,8 +2299,7 @@
+ TRIPTRAP = $(am__append_8) $(am__append_16) $(am__append_25) \
+ 	$(am__append_30) $(am__append_36) $(am__append_42) \
+ 	$(am__append_48) $(am__append_54)
+-bin_links = $(am__append_5) $(am__append_13) $(am__append_22) \
+-	$(am__append_63) $(am__append_68)
++bin_links =
+ install_exe_links = $(am__append_20) $(am__append_61) $(am__append_66)
+ uninstall_exe_links = $(am__append_21) $(am__append_62) \
+ 	$(am__append_67)
+@@ -4437,9 +4437,9 @@
+ 	$(AM_V_at)-rm -f libxetex.a
+ 	$(AM_V_AR)$(libxetex_a_AR) libxetex.a $(libxetex_a_OBJECTS) $(libxetex_a_LIBADD)
+ 	$(AM_V_at)$(RANLIB) libxetex.a
+-install-binPROGRAMS: $(bin_PROGRAMS)
++install-binPROGRAMS: $(inst_bin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
++	@list='$(inst_bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+ 	if test -n "$$list"; then \
+ 	  echo " $(MKDIR_P) '$(DESTDIR)$(bindir)'"; \
+ 	  $(MKDIR_P) "$(DESTDIR)$(bindir)" || exit 1; \
+@@ -4469,7 +4469,7 @@
+ 
+ uninstall-binPROGRAMS:
+ 	@$(NORMAL_UNINSTALL)
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
++	@list='$(inst_bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+ 	files=`for p in $$list; do echo "$$p"; done | \
+ 	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
+ 	      -e 's/$$/$(EXEEXT)/' \
+@@ -13649,7 +13649,7 @@
+ uninstall: uninstall-recursive
+ 
+ install-am: all-am
+-	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
++	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am
+ 
+ installcheck: installcheck-recursive
+ install-strip:

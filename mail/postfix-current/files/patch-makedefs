@@ -1,0 +1,13 @@
+--- makedefs.orig	2014-01-20 23:24:30.000000000 +0000
++++ makedefs	2014-01-20 23:25:24.000000000 +0000
+@@ -158,6 +158,10 @@
+ 		;;
+   FreeBSD.9*)	SYSTYPE=FREEBSD9
+ 		;;
++  FreeBSD.10*)	SYSTYPE=FREEBSD10
++		;;
++  FreeBSD.11*)	SYSTYPE=FREEBSD11
++		;;
+  DragonFly.*)	SYSTYPE=DRAGONFLY
+ 		;;
+   OpenBSD.2*)	SYSTYPE=OPENBSD2

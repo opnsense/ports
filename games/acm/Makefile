@@ -1,0 +1,33 @@
+# Created by: joerg
+# $FreeBSD$
+
+PORTNAME=	acm
+PORTVERSION=	5.0
+PORTREVISION=	2
+CATEGORIES=	games
+MASTER_SITES=	# none
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Arial combat simulator for X11
+
+LICENSE=	GPLv2
+
+OPTIONS_DEFINE=	SOUND
+
+USES=		perl5
+USE_XORG=	x11
+GNU_CONFIGURE=	yes
+CONFIGURE_ENV=	ac_cv_lib_Xm_XmCreateBulletinBoard=no \
+		ac_cv_lib_gdbm_dbm_fetch=no
+USE_PERL5=	build
+MAKE_ARGS+=	prefix=${STAGEDIR}${PREFIX}/ OBVDIR=${STAGEDIR}${DATADIR}/
+
+SOUND_LIB_DEPENDS=	libaudio.so:${PORTSDIR}/audio/nas
+
+.include <bsd.port.options.mk>
+
+.if empty(PORT_OPTIONS:MSOUND)
+CONFIGURE_ENV+=	ac_cv_lib_audio_AuCloseServer=no
+.endif
+
+.include <bsd.port.mk>

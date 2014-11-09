@@ -1,0 +1,13 @@
+include/Mesa/GL/gl.h
+include/Mesa/GL/gl_mangle.h
+include/Mesa/GL/glext.h
+include/Mesa/GL/glx.h
+include/Mesa/GL/glx_mangle.h
+include/Mesa/GL/glxext.h
+include/Mesa/GL/osmesa.h
+include/Mesa/GL/wglext.h
+include/Mesa/GL/wmesa.h
+lib/libOSMesa.so
+lib/libOSMesa.so.9
+lib/libOSMesa.so.9.0.0
+libdata/pkgconfig/osmesa.pc

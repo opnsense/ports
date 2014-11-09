@@ -1,0 +1,7 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys/Load/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys/Load/Load.so
+%%SITE_PERL%%/%%PERL_ARCH%%/Sys/Load.pm
+%%PERL5_MAN3%%/Sys::Load.3.gz
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys/Load
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Sys
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Sys

@@ -1,0 +1,46 @@
+
+$FreeBSD$
+
+--- Makefile.orig
++++ Makefile
+@@ -4,34 +4,34 @@
+ 	@echo "-------------------"
+ 	@echo "*** ALC library ***"
+ 	@echo "-------------------"
+-	mkdir lib; cd alclib; make clean; make                   
++	mkdir lib; cd alclib; gmake clean; gmake                   
+ 	@echo "done"
+ 
+ sdplib ::
+ 	@echo "-------------------"
+ 	@echo "*** SDP library ***"
+ 	@echo "-------------------"
+-	mkdir lib; cd sdplib; make clean; make                   
++	mkdir lib; cd sdplib; gmake clean; gmake                   
+ 	@echo "done"
+ 
+ flute ::
+ 	@echo "-------------------------"
+ 	@echo "*** flute application ***"
+ 	@echo "-------------------------"
+-	mkdir bin; cd flute; make clean; make
++	mkdir bin; cd flute; gmake clean; gmake
+ 	@echo "done"
+ 
+ clean :
+ 	@echo "----------------------------"
+ 	@echo "*** Cleaning ALC library ***"
+ 	@echo "----------------------------"
+-	cd alclib; make clean
++	cd alclib; gmake clean
+ 	@echo "----------------------------"
+ 	@echo "*** Cleaning SDP library ***"
+ 	@echo "----------------------------"
+-	cd sdplib; make clean
++	cd sdplib; gmake clean
+ 	@echo "----------------------------------"
+ 	@echo "*** Cleaning flute application ***"
+ 	@echo "----------------------------------"
+-	cd flute; make clean
++	cd flute; gmake clean
+ 	@echo "done"

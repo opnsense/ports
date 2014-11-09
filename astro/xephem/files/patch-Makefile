@@ -1,0 +1,63 @@
+--- Makefile.orig	2013-01-20 04:42:02.000000000 +0100
++++ Makefile	2013-10-20 13:58:27.000000000 +0200
+@@ -10,9 +10,9 @@
+ # one executable, xephem.
+ 
+ # These -I and -L flags point to the supporting XEphem libraries
+-LIBINC = -I../../libastro -I../../libip -I../../liblilxml -I../../libjpegd -I../../libpng -I../../libz
+-LIBLNK = -L../../libastro -L../../libip -L../../liblilxml -L../../libjpegd -L../../libpng -L../../libz
+-LIBLIB = -lastro -lip -llilxml -ljpegd -lpng -lz
++LIBINC = -I../../libastro -I../../libip -I../../liblilxml -I%%LOCALBASE%%/include
++LIBLNK = -L../../libastro -L../../libip -L../../liblilxml -L%%LOCALBASE%%/lib
++LIBLIB = -lastro -lip -llilxml -ljpeg -lpng -lz
+ 
+ # MOTIFI is the directory containing the Xm directory of include files.
+ # MOTIFL is the directory containing the libXm.a library.
+@@ -24,19 +24,19 @@
+ MOTIFL = $(MOTIF)
+ endif
+ ifndef MOTIFI
+-MOTIFI = /usr/X11R6/include
++MOTIFI = %%LOCALBASE%%/include
+ endif
+ ifndef MOTIFL
+-MOTIFL = /usr/X11R6/lib
++MOTIFL = %%LOCALBASE%%/lib
+ endif
+ 
+ # for linux and Apple OS X
+ # some systems now use just /usr/X11 (not /usr/X11R6)
+ CC = gcc
+ CLDFLAGS = -g
+-CFLAGS = $(LIBINC) $(CLDFLAGS) -O2 -Wall -I$(MOTIFI) -I/usr/X11R6/include
+-LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L/usr/X11R6/lib
+-XLIBS = -lXm -lXp -lXt -lXext -lXmu -lX11
++CFLAGS = $(LIBINC) $(CLDFLAGS) -Wall -I$(MOTIFI) -I%%LOCALBASE%%/include
++LDFLAGS = $(LIBLNK) $(CLDFLAGS) -L$(MOTIFL) -L%%LOCALBASE%%/lib
++XLIBS = -lXm -lXp -lXt -lXext -lXmu -lX11 -lXft
+ LIBS = $(XLIBS) $(LIBLIB) -lm
+ 
+ # for ppc Apple OS X to make universal (i386 and ppc binary), requires
+@@ -181,18 +181,15 @@
+ all: libs xephem xephem.1
+ 
+ xephem: $(INCS) $(OBJS)
+-	$(CC) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
++	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)
+ 
+ xephem.1: xephem.man
+ 	nroff -man $? > $@
+ 
+ libs:
+-	cd ../../libastro; make
+-	cd ../../libip; make
+-	cd ../../libjpegd; make
+-	cd ../../liblilxml; make
+-	cd ../../libpng; make
+-	cd ../../libz; make
++	cd ../../libastro; $(MAKE)
++	cd ../../libip; $(MAKE)
++	cd ../../liblilxml; $(MAKE)
+ 
+ clean:
+ 	rm -fr *.o ../../lib*/*.[ao]

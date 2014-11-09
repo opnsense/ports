@@ -1,0 +1,46 @@
+%%FONTDIR%%/README
+%%FONTDIR%%/aneirin.pfb
+%%FONTDIR%%/aneirin.shareware
+%%FONTDIR%%/alfdrake.pfb
+%%FONTDIR%%/alfdrake.shareware
+%%FONTDIR%%/apollo.pfb
+%%FONTDIR%%/apollo.shareware
+%%FONTDIR%%/blackfor.pfb
+%%FONTDIR%%/blackfor.shareware
+%%FONTDIR%%/bodidlyb.pfb
+%%FONTDIR%%/bu______.pfb
+%%FONTDIR%%/bu______.shareware
+%%FONTDIR%%/cartwrig.pfb
+%%FONTDIR%%/cartwrig.shareware
+%%FONTDIR%%/comics.pfb
+%%FONTDIR%%/comics.shareware
+%%FONTDIR%%/daod____.pfb
+%%FONTDIR%%/daod____.shareware
+%%FONTDIR%%/davyding.pfb
+%%FONTDIR%%/davyding.shareware
+%%FONTDIR%%/duncan.pfb
+%%FONTDIR%%/duncan.shareware
+%%FONTDIR%%/fonts.dir
+%%FONTDIR%%/grc_____.pfb
+%%FONTDIR%%/grc_____.shareware
+%%FONTDIR%%/lmccrary.pfb
+%%FONTDIR%%/lmccrary.shareware
+%%FONTDIR%%/mesozic.pfb
+%%FONTDIR%%/mesozic.shareware
+%%FONTDIR%%/perrygot.pfb
+%%FONTDIR%%/perrygot.shareware
+%%FONTDIR%%/polosems.pfb
+%%FONTDIR%%/polosems.shareware
+%%FONTDIR%%/romeo.pfb
+%%FONTDIR%%/romeo.shareware
+%%FONTDIR%%/sharktoo.pfb
+%%FONTDIR%%/sharktoo.shareware
+%%FONTDIR%%/sumdumgo.pfb
+%%FONTDIR%%/sumdumgo.shareware
+%%FONTDIR%%/upperwes.pfb
+%%FONTDIR%%/upperwes.shareware
+%%FONTDIR%%/westslnt.pfb
+%%FONTDIR%%/westslnt.shareware
+@unexec rm %D/%%FONTDIR%%/fonts.cache-1 2>/dev/null || true
+@dirrm %%FONTDIR%%
+@exec %%LOCALBASE%%/bin/fc-cache -f -v %D/%%FONTDIR%% || true

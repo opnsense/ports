@@ -1,0 +1,9 @@
+bin/gbsplay
+bin/gbsinfo
+@sample etc/gbsplayrc.sample
+share/locale/de/LC_MESSAGES/gbsplay.mo
+share/locale/en/LC_MESSAGES/gbsplay.mo
+man/man1/gbsinfo.1.gz
+man/man1/gbsplay.1.gz
+man/man5/gbsplayrc.5.gz
+%%EXAMPLESDIR%%/nightmode.gbs

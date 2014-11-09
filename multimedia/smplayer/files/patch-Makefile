@@ -1,0 +1,31 @@
+--- ./Makefile.orig	2012-11-01 23:42:16.000000000 +0100
++++ ./Makefile	2014-04-01 17:55:58.516961711 +0200
+@@ -5,7 +5,6 @@
+ CONF_PREFIX=$(PREFIX)
+ 
+ DATA_PATH=$(PREFIX)/share/smplayer
+-DOC_PATH=$(PREFIX)/share/doc/packages/smplayer
+ TRANSLATION_PATH=$(PREFIX)/share/smplayer/translations
+ THEMES_PATH=$(PREFIX)/share/smplayer/themes
+ SHORTCUTS_PATH=$(PREFIX)/share/smplayer/shortcuts
+@@ -22,7 +21,7 @@
+ 
+ DEFS=DATA_PATH=\\\"$(DATA_PATH)\\\" \
+      TRANSLATION_PATH=\\\"$(TRANSLATION_PATH)\\\" \
+-     DOC_PATH=\\\"$(DOC_PATH)\\\" THEMES_PATH=\\\"$(THEMES_PATH)\\\" \
++     THEMES_PATH=\\\"$(THEMES_PATH)\\\" \
+      SHORTCUTS_PATH=\\\"$(SHORTCUTS_PATH)\\\"
+ 
+ 
+@@ -55,11 +54,6 @@
+ 	install -m 644 src/input.conf $(DESTDIR)$(DATA_PATH)
+ 	-install -d $(DESTDIR)$(TRANSLATION_PATH)
+ 	install -m 644 src/translations/*.qm $(DESTDIR)$(TRANSLATION_PATH)
+-	-install -d $(DESTDIR)$(DOC_PATH)
+-	install -m 644 Changelog *.txt $(DESTDIR)$(DOC_PATH)
+-
+-	-install -d $(DESTDIR)$(DOC_PATH)
+-	tar -C docs/ --exclude=.svn -c -f - . | tar -C $(DESTDIR)$(DOC_PATH) -x -f -
+ 
+ 	-install -d $(DESTDIR)$(SHORTCUTS_PATH)
+ 	cp src/shortcuts/* $(DESTDIR)$(SHORTCUTS_PATH)

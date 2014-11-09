@@ -1,0 +1,14 @@
+$FreeBSD$
+
+Patch to allow the JDK API location to be passed to Ant using -Djdk.api
+
+--- build.xml.orig	Mon Jul  3 00:53:38 2006
++++ build.xml	Sun Mar 11 12:16:31 2007
+@@ -400,6 +400,7 @@
+         <include name="**"/>
+         <exclude name="org/jgrapht/experimental/**"/>
+       </packageset>
++      <link offline="true" packagelistLoc="${jdk.api}" href="${jdk.api}"/>
+     </javadoc>
+   </target>
+ 

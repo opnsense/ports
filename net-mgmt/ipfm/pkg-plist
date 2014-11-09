@@ -1,0 +1,5 @@
+etc/ipfm.conf
+man/man5/ipfm.conf.5.gz
+man/man8/ipfm.8.gz
+sbin/ipfm
+@dir /var/log/ipfm

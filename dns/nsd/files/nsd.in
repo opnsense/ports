@@ -1,0 +1,34 @@
+#!/bin/sh
+#
+# $FreeBSD$
+#
+# PROVIDE: nsd
+# REQUIRE: DAEMON
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+#
+# Add the following line to /etc/rc.conf to enable nsd:
+#
+# nsd_enable="YES"
+#
+
+. /etc/rc.subr
+
+name=nsd
+rcvar=nsd_enable
+
+# read settings, set default values
+load_rc_config "${name}"
+: ${nsd_enable="NO"}
+
+config=${nsd_config:=%%PREFIX%%/etc/nsd/nsd.conf}
+required_files=${config}
+pidfile=`%%PREFIX%%/sbin/nsd-checkconf -o pidfile ${config}`
+command="%%PREFIX%%/sbin/${name}"
+command_args="-c ${required_files}"
+extra_commands="reload"
+
+load_rc_config $name
+
+run_rc_command "$1"
+

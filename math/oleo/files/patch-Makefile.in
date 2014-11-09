@@ -1,0 +1,19 @@
+--- Makefile.in.orig	Sat Jul 22 18:51:35 2000
++++ Makefile.in	Fri Jul 28 04:28:46 2000
+@@ -124,14 +124,14 @@
+ 
+ D = `date +%G%m%d.%H%M%S`
+ 
+-SUBDIRS = doc lib intl src m4 po Xresources examples afm
++SUBDIRS = doc lib intl src m4 po Xresources examples
+ 
+ # Remove this file here (it is created via configure), not from within intl.
+ DISTCLEANFILES = intl/libintl.h
+ 
+ EXTRA_DIST = oleobug.in FAQ oleo.spec.in oleo.spec
+ 
+-docdir = $(prefix)/Oleo
++docdir = $(datadir)/doc/oleo
+ doc_DATA = AUTHORS FAQ
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+ mkinstalldirs = $(SHELL) $(top_srcdir)/mkinstalldirs

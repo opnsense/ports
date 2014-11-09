@@ -1,0 +1,29 @@
+# Created by: hrs
+# $FreeBSD$
+
+PORTNAME=	amsfonts
+PORTVERSION=	3.02
+PORTREVISION=	2
+CATEGORIES=	print
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	hrs
+PKGNAMEPREFIX=	font-
+DIST_SUBDIR=	teTeX
+
+MAINTAINER=	hrs@FreeBSD.org
+COMMENT=	Computer Modern and standard fonts for TeX
+
+PLIST_SUB=	FONTSDIR=${FONTSDIR}
+NO_BUILD=	yes
+
+FONTSDIR=	share/fonts/${PORTNAME}
+
+RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
+
+PLIST_SUB=	FONTSDIR=${FONTSDIR}
+
+do-install:
+	${MKDIR} ${STAGEDIR}${PREFIX}/${FONTSDIR}
+	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${FONTSDIR}
+
+.include <bsd.port.mk>

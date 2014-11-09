@@ -1,0 +1,24 @@
+bin/ssi-cgi
+@sample %%ETCDIR%%/cgi-wrapper.conf.sample
+@sample %%ETCDIR%%/error.xslt.sample
+@sample %%ETCDIR%%/hiawatha.conf.sample
+@sample %%ETCDIR%%/index.xslt.sample
+@sample %%ETCDIR%%/mimetype.conf.sample
+@sample %%ETCDIR%%/toolkit.conf.sample
+sbin/cgi-wrapper
+sbin/hiawatha
+sbin/wigwam
+lib/hiawatha/libpolarssl.so
+lib/hiawatha/libpolarssl.so.1.3.8
+lib/hiawatha/libpolarssl.so.7
+man/man1/cgi-wrapper.1.gz
+man/man1/hiawatha.1.gz
+man/man1/ssi-cgi.1.gz
+man/man1/wigwam.1.gz
+@sample %%WWWDIR%%/index.html.sample
+@dir %%WWWDIR%%
+@dir lib/hiawatha
+@dir %%ETCDIR%%
+@dir /var/log/hiawatha
+@dir /var/lib/hiawatha
+@dir /var/lib

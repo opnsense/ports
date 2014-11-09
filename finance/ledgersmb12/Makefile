@@ -1,0 +1,42 @@
+# Created by: anarcat@anarcat.ath.cx
+# $FreeBSD$
+
+PORTNAME=	ledgersmb
+PORTVERSION=	1.2.17
+PORTREVISION=	1
+CATEGORIES=	finance perl5
+MASTER_SITES=	SF/ledger-smb/${PORTNAME}/${PORTVERSION}
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Double entry accounting system
+
+BUILD_DEPENDS=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg \
+		p5-MIME-Lite>=0:${PORTSDIR}/mail/p5-MIME-Lite \
+		p5-Config-Std>=0:${PORTSDIR}/devel/p5-Config-Std
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+LATEST_LINK=	ledgersmb12
+
+WRKSRC=		${WRKDIR}/${PORTNAME}
+NO_BUILD=	yes
+USES=		perl5
+USE_PERL5=	run build patch
+PLIST_SUB=	WWWOWN="${WWWOWN}" WWWGRP="${WWWGRP}"
+SUB_FILES=	pkg-message
+
+.include <bsd.port.pre.mk>
+
+post-patch:
+	@${PERL} -pi -e 's|/usr/bin/perl|${PERL}|' \
+		`${FIND} ${WRKSRC} -name \*.pl`
+	@${PERL} -pe 's|%%PREFIX%%|${PREFIX}|g' \
+		${FILESDIR}/ledger-smb-httpd.conf.in \
+		> ${WRKDIR}/ledger-smb-httpd.conf
+
+do-install:
+	@${CP} -R ${WRKSRC} ${STAGEDIR}${PREFIX}
+	@cd ${STAGEDIR}${PREFIX}/${PORTNAME} ; \
+		${CHMOD} 711 templates css spool
+	@${INSTALL_DATA} ${WRKDIR}/ledger-smb-httpd.conf ${STAGEDIR}${PREFIX}/etc/
+
+.include <bsd.port.post.mk>

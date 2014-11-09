@@ -1,0 +1,40 @@
+# Created by: Nick Hilliard <nick@foobar.org>
+# $FreeBSD$
+
+PORTNAME=	tinymce
+PORTVERSION=	4.1.6
+CATEGORIES=	www
+MASTER_SITES=	http://download.moxiecode.com/${PORTNAME}/ \
+		LOCAL/sunpoet
+DISTNAME=	${PORTNAME}_${PORTVERSION}
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Open source JavaScript HTML WYSIWYG editor for web sites
+
+LICENSE=	LGPL21
+
+CONFLICTS_INSTALL=	tinymce-[0-35-9]* tinymce3-[0-9]*
+
+NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}
+USES=		zip
+
+post-extract:
+	@cd ${WRKSRC}/ && ${FIND} -s * -type d -empty | ${XARGS} -I % ${TOUCH} %/.keepme
+
+do-install:
+	cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/
+
+# maintainer section:
+
+MS_PLIST=	${WRKDIR}/.ms-pkg-plist
+
+genplist: do-clean extract
+	${ECHO} "@owner www" > ${MS_PLIST}
+	${ECHO} "@group www" >> ${MS_PLIST}
+	cd ${WRKSRC}/ && ${FIND} -s * -type f | ${SED} 's|^|%%WWWDIR%%/|' >> ${MS_PLIST}
+	${ECHO} "@owner" >> ${MS_PLIST}
+	${ECHO} "@group" >> ${MS_PLIST}
+	${INSTALL} -m 600 ${MS_PLIST} ${PLIST}
+
+.include <bsd.port.mk>

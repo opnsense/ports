@@ -1,0 +1,29 @@
+# Created by: Bjorn Lindstrom <bkhl@elektrubadur.se>
+# $FreeBSD$
+
+PORTNAME=	dtach
+PORTVERSION=	0.8
+PORTREVISION=	1
+CATEGORIES=	misc
+MASTER_SITES=	SF
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Emulates the detach feature of screen
+
+GNU_CONFIGURE=	yes
+ALL_TARGET=	dtach
+
+PORTDOCS=	README
+PLIST_FILES=	bin/dtach man/man1/dtach.1.gz
+
+OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.options.mk>
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/dtach ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/dtach.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${STAGEDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

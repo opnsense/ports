@@ -1,0 +1,9 @@
+bin/qsynth
+share/applications/qsynth.desktop
+share/icons/hicolor/32x32/apps/qsynth.png
+%%DATADIR%%/qsynth_cs.qm
+%%DATADIR%%/qsynth_de.qm
+%%DATADIR%%/qsynth_es.qm
+%%DATADIR%%/qsynth_fr.qm
+%%DATADIR%%/qsynth_ru.qm
+%%DATADIR%%/qsynth_sr.qm

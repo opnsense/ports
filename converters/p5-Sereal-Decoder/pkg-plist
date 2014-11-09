@@ -1,0 +1,5 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Sereal/Decoder/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Sereal/Decoder/Decoder.so
+%%SITE_PERL%%/%%PERL_ARCH%%/Sereal/Decoder.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/Sereal/Decoder/Constants.pm
+%%PERL5_MAN3%%/Sereal::Decoder.3.gz

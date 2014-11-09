@@ -1,0 +1,5 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/Astro/FITS/CFITSIO.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Astro/FITS/CFITSIO/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Astro/FITS/CFITSIO/autosplit.ix
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Astro/FITS/CFITSIO/CFITSIO.so
+%%PERL5_MAN3%%/Astro::FITS::CFITSIO.3.gz

@@ -1,0 +1,10 @@
+--- rplayd/Makefile.in.orig	Wed Jun  9 15:27:43 1999
++++ rplayd/Makefile.in	Wed Jun 21 23:04:00 2000
+@@ -54,7 +54,6 @@
+ install:	all
+ 		$(MKINSTALLDIRS) $(sbindir)
+ 		$(INSTALL_PROGRAM) $(TARGET) $(sbindir)/$(TARGET)
+-		@test -x $(bindir)/$(TARGET) && echo "" && echo "    Note: Consider removing $(bindir)/$(TARGET)" && echo ""
+ 
+ uninstall:
+ 		$(RM) $(bindir)/$(TARGET)

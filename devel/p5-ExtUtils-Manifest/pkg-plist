@@ -1,0 +1,4 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/ExtUtils/Manifest/.packlist
+%%SITE_PERL%%/ExtUtils/MANIFEST.SKIP
+%%SITE_PERL%%/ExtUtils/Manifest.pm
+%%PERL5_MAN3%%/ExtUtils::Manifest.3.gz

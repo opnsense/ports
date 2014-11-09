@@ -1,0 +1,20 @@
+--- f_check.orig	2014-08-18 12:16:14.000000000 +0900
++++ f_check	2014-09-03 23:08:18.000000000 +0900
+@@ -259,7 +259,7 @@
+ 
+     foreach $flags (@flags) {
+ 	if (
+-	    ($flags =~ /^\-L/)
++	    ($flags =~ /^\-L\S/)
+ 	    && ($flags !~ /^-LIST:/)
+ 	    && ($flags !~ /^-LANG:/)
+ 	    ) {
+@@ -290,7 +290,7 @@
+ 	}
+ 
+ 	if (
+-	    ($flags =~ /^\-l/)
++	    ($flags =~ /^\-l\S/)
+ 	    && ($flags !~ /gfortranbegin/)
+ 	    && ($flags !~ /frtbegin/)
+ 	    && ($flags !~ /pathfstart/)

@@ -1,0 +1,36 @@
+--- Makefile.in.orig	Tue Sep  1 02:40:14 1998
++++ Makefile.in	Wed Nov  4 17:32:21 1998
+@@ -64,7 +64,8 @@
+ 
+ CLITARGETS =	hattrib hcd hcopy hdel hdir hformat hls hmkdir hmount hpwd  \
+ 		hrename hrmdir humount hvol
+-TCLTARGETS =	hfssh hfs
++TCLTARGETS =	hfssh
++TCLSCRIPTS =	hfs
+ TKTARGETS =	xhfs
+ 
+ LIBHFS =	libhfs/libhfs.a
+@@ -96,7 +97,7 @@
+ all  :: @MAKE_TARGETS@
+ 
+ all_cli :: $(CLITARGETS)
+-all_tcl :: $(TCLTARGETS)
++all_tcl :: $(TCLTARGETS) $(TCLSCRIPTS)
+ all_tk  :: $(TKTARGETS)
+ all_lib :: $(LIBHFS) $(LIBRSRC)
+ 
+@@ -129,9 +130,13 @@
+ 		$(BININSTALL) $$file "$(BINDEST)/.";  \
+ 	done
+ 
++	for file in $(TCLSCRIPTS); do  \
++		$(LIBINSTALL) $$file "$(BINDEST)/.";  \
++	done
++
+ 	if [ -f "$(BINDEST)/hfs" ]; then  \
+ 		sed -e '1d' "$(BINDEST)/hfs" > "$(BINDEST)/hfs.new";  \
+-		$(BININSTALL) "$(BINDEST)/hfs.new" "$(BINDEST)/hfs";  \
++		$(LIBINSTALL) "$(BINDEST)/hfs.new" "$(BINDEST)/hfs";  \
+ 		rm -f "$(BINDEST)/hfs.new";  \
+ 	fi
+ 

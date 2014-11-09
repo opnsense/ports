@@ -1,0 +1,3 @@
+%%CERTDIR%%/ca-root-nss.crt
+%%ETCSYMLINK%%@cwd /
+%%ETCSYMLINK%%etc/ssl/cert.pem

@@ -1,0 +1,8 @@
+@group games
+@mode 2555
+bin/kobodl
+@mode
+@group
+man/man6/kobodl.6.gz
+share/applications/kobodeluxe.desktop
+share/pixmaps/kobo-icon.xpm

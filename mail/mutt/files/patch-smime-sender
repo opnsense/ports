@@ -1,0 +1,54 @@
+--- commands.c.orig	Thu Mar 20 20:37:21 2003
++++ commands.c	Thu Mar 20 20:40:29 2003
+@@ -178,7 +178,7 @@
+     {
+       if (cur->security & GOODSIGN)
+       {
+-	if (!crypt_smime_verify_sender(cur))
++	if (option(OPTSMIMENOSENDER) || !crypt_smime_verify_sender(cur))
+ 	  mutt_message ( _("S/MIME signature successfully verified."));
+ 	else
+ 	  mutt_error ( _("S/MIME certificate owner does not match sender."));
+--- init.h.orig2	Fri May 31 10:14:05 2002
++++ init.h	Fri May 31 10:54:55 2002
+@@ -1435,6 +1435,15 @@
+   ** This flag controls wether you want to be asked to enter a label for a certificate
+   ** about to be added to the database or not. It is set by default.
+   */
++  { "smime_dont_check_sender",	DT_BOOL, R_NONE, OPTSMIMENOSENDER, 0 },
++  /*
++  ** .pp
++  ** This flag controls wether you want the skip the check for the sender's
++  ** email address against the email address stored in the certificate. 
++  ** This can be useful if most of your email senders use SMIMEv3 which no
++  ** longer needs email-addresses as part of the certificates.
++  ** It is not set by default.
++  */
+   { "smime_decrypt_use_default_key",	DT_BOOL, R_NONE, OPTSDEFAULTDECRYPTKEY, 1 },
+   /*
+   ** .pp
+--- mutt.h.orig2	Fri May 31 10:14:06 2002
++++ mutt.h	Fri May 31 10:24:03 2002
+@@ -453,6 +453,7 @@
+ #ifdef HAVE_SMIME
+   OPTSMIMEISDEFAULT,
+   OPTASKCERTLABEL,
++  OPTSMIMENOSENDER,
+   OPTSDEFAULTDECRYPTKEY,
+ #endif
+ #ifdef HAVE_PGP
+--- contrib/smime.rc.orig	Sat Oct 25 17:57:35 2003
++++ contrib/smime.rc	Sat Oct 25 17:57:35 2003
+@@ -6,8 +6,11 @@
+ # will be the default method unless the following option is set
+ set smime_is_default
+ 
+-# Uncoment this if you don't want to set labels for certificates you add.
++# Uncomment this if you don't want to set labels for certificates you add.
+ # unset smime_ask_cert_label
++
++# Uncomment this if you don't want to check for sender's email address
++# set smime_dont_check_sender = yes
+ 
+ # Passphrase expiration
+ set smime_timeout=300

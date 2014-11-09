@@ -1,0 +1,7 @@
+Sieve language support by a plugin for the Dovecot deliver LDA
+
+    * Mail filtering
+    * Mail forwarding
+    * Vacation auto-reply
+
+WWW:	http://Wiki.Dovecot.org/LDA/Sieve

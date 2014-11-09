@@ -1,0 +1,6 @@
+bin/cplay
+man/man1/cplay.1.gz
+share/locale/da/LC_MESSAGES/cplay.mo
+share/locale/de/LC_MESSAGES/cplay.mo
+share/locale/hu/LC_MESSAGES/cplay.mo
+share/locale/pl/LC_MESSAGES/cplay.mo

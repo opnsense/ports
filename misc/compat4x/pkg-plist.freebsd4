@@ -1,0 +1,6 @@
+%%FORBIDDEN:%%lib/compat/libcrypto.so.1
+%%FORBIDDEN:%%lib/compat/libcrypto.so.2
+lib/compat/libfetch.so.2
+%%FORBIDDEN:%%lib/compat/libssl.so.1
+%%FORBIDDEN:%%lib/compat/libssl.so.2
+@dirrmtry lib/compat

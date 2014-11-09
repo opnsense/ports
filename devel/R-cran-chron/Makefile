@@ -1,0 +1,17 @@
+# Created by: Steven Kreuzer <skreuzer@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	chron
+DISTVERSION=	2.3-43
+PORTREVISION=	7
+CATEGORIES=	devel
+DISTNAME=	${PORTNAME}_${DISTVERSION}
+
+MAINTAINER=	skreuzer@FreeBSD.org
+COMMENT=	R package for creating objects which can handle dates and times
+
+LICENSE=	GPLv2
+
+USES=	cran:auto-plist
+
+.include <bsd.port.mk>

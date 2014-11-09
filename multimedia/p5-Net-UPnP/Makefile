@@ -1,0 +1,21 @@
+# $FreeBSD$
+
+PORTNAME=	Net-UPnP
+PORTVERSION=	1.4.2
+CATEGORIES=	multimedia devel
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:SKONNO
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	perl@FreeBSD.org
+COMMENT=	Perl extension for UPnP
+
+LICENSE=	BSD
+LICENSE_FILE=	${WRKSRC}/README
+
+USES=		perl5
+USE_PERL5=	configure
+
+PORTSCOUT=	ignore:1.41
+
+.include <bsd.port.mk>

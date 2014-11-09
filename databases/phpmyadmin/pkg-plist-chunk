@@ -1,0 +1,1 @@
+@sample(,%%PMA_GRP%%,640) %%WWWDIR%%/config.inc.php.sample

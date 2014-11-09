@@ -1,0 +1,9 @@
+cplay is a curses-based front-end to various audio players.  Supported
+players currently include:
+
+  - mpg123
+  - ogg123
+  - madplay
+  - mikmod
+  - mpg321
+  - splay

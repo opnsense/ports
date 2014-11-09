@@ -1,0 +1,5 @@
+bin/cpansite
+man/man1/cpansite.1.gz
+%%SITE_PERL%%/CPAN/Site.pm
+%%SITE_PERL%%/CPAN/Site/Index.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/CPAN/Site/.packlist

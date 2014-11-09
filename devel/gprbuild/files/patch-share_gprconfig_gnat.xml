@@ -1,0 +1,20 @@
+--- share/gprconfig/gnat.xml.orig	2013-09-16 15:29:28.000000000 +0000
++++ share/gprconfig/gnat.xml
+@@ -63,7 +63,7 @@
+    </config>
+   </configuration>
+ 
+-  <!-- GNAT -->
++  <!-- GNAT (tailored to lang/gcc-aux) -->
+   <configuration>
+    &filter_gnat;
+    <config>
+@@ -75,7 +75,7 @@
+    end Naming;
+ 
+    package Compiler is
+-      for Driver                   ("Ada") use "${PATH(ada)}${PREFIX(ada)}gcc";
++      for Driver                   ("Ada") use "${PATH(ada)}${PREFIX(ada)}ada";
+       for Language_Kind            ("Ada") use "unit_based";
+       for Dependency_Kind          ("Ada") use "ALI_File";
+       for Leading_Required_Switches        ("Ada") use

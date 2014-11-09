@@ -1,0 +1,3 @@
+bin/peeper
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

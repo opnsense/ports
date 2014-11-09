@@ -1,0 +1,20 @@
+--- doc/Makefile.in.orig	2014-09-23 16:23:48.662499737 +0600
++++ doc/Makefile.in	2014-09-23 16:24:52.193494422 +0600
+@@ -671,16 +671,7 @@
+ 
+ # If we built the documentation ourselves, install that, 
+ # else if we have access to distributed documentation, install that.  
+-install-data-local: $(INSTALLDIRS) $(noinst_DATA)
+-	$(MKDIR_P) $(DOCDIR) 2>&1
+-	if test -r $(DOCDIR)/userguide ; then d=.; else d="$(srcdir)"; fi; \
+-	find $$d/$(DOCDIR)/userguide \( -type f -o -type l \) \
+-		-exec $(INSTALL) {} $(TARGET_DOCDIR)/userguide ';'
+-	if test -r $(DOCDIR)/reference ; then d=.; else d="$(srcdir)"; fi; \
+-	find $$d/$(DOCDIR)/reference \( -type f -o -type l \) \
+-		-exec $(INSTALL) {} $(TARGET_DOCDIR)/reference ';'
+-	find $(srcdir)/images -name \*.gif \
+-		-exec  $(INSTALL) {} $(TARGET_DOCDIR)/images/ ';'
++install-data-local:
+ 
+ uninstall-local:
+ 	rm -rf $(TARGET_DOCDIR)

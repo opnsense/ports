@@ -1,0 +1,4 @@
+%%SITE_PERL%%/Business/OnlinePayment/TCLink.pm
+%%SITE_PERL%%/auto/Business/OnlinePayment/TCLink/autosplit.ix
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Business/OnlinePayment/TCLink/.packlist
+%%PERL5_MAN3%%/Business::OnlinePayment::TCLink.3.gz

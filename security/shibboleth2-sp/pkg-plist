@@ -1,0 +1,195 @@
+bin/mdquery
+bin/resolvertest
+etc/shibboleth/metagen.sh
+@unexec if cmp -s %D/etc/shibboleth/native.logger.dist %D/etc/shibboleth/native.logger; then rm -f %D/etc/shibboleth/native.logger; fi
+etc/shibboleth/native.logger.dist
+@exec if [ ! -f %D/etc/shibboleth/native.logger ] ; then cp -p %D/etc/shibboleth/native.logger.dist %D/etc/shibboleth/native.logger; fi
+@unexec if cmp -s %D/etc/shibboleth/shibd.logger.dist %D/etc/shibboleth/shibd.logger; then rm -f %D/etc/shibboleth/shibd.logger; fi
+etc/shibboleth/shibd.logger.dist
+@exec if [ ! -f %D/etc/shibboleth/shibd.logger ] ; then cp -p %D/etc/shibboleth/shibd.logger.dist %D/etc/shibboleth/shibd.logger; fi
+@unexec if cmp -s %D/etc/shibboleth/shibboleth2.xml.dist %D/etc/shibboleth/shibboleth2.xml; then rm -f %D/etc/shibboleth/shibboleth2.xml; fi
+etc/shibboleth/shibboleth2.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/shibboleth2.xml ] ; then cp -p %D/etc/shibboleth/shibboleth2.xml.dist %D/etc/shibboleth/shibboleth2.xml; fi
+@unexec if cmp -s %D/etc/shibboleth/attribute-map.xml.dist %D/etc/shibboleth/attribute-map.xml; then rm -f %D/etc/shibboleth/attribute-map.xml; fi
+etc/shibboleth/attribute-map.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/attribute-map.xml ] ; then cp -p %D/etc/shibboleth/attribute-map.xml.dist %D/etc/shibboleth/attribute-map.xml; fi
+@unexec if cmp -s %D/etc/shibboleth/attribute-policy.xml.dist %D/etc/shibboleth/attribute-policy.xml; then rm -f %D/etc/shibboleth/attribute-policy.xml; fi
+etc/shibboleth/attribute-policy.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/attribute-policy.xml ] ; then cp -p %D/etc/shibboleth/attribute-policy.xml.dist %D/etc/shibboleth/attribute-policy.xml; fi
+@unexec if cmp -s %D/etc/shibboleth/example-metadata.xml.dist %D/etc/shibboleth/example-metadata.xml; then rm -f %D/etc/shibboleth/example-metadata.xml; fi
+etc/shibboleth/example-metadata.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/example-metadata.xml ] ; then cp -p %D/etc/shibboleth/example-metadata.xml.dist %D/etc/shibboleth/example-metadata.xml; fi
+@unexec if cmp -s %D/etc/shibboleth/console.logger.dist %D/etc/shibboleth/console.logger; then rm -f %D/etc/shibboleth/console.logger; fi
+etc/shibboleth/console.logger.dist
+@exec if [ ! -f %D/etc/shibboleth/console.logger ] ; then cp -p %D/etc/shibboleth/console.logger.dist %D/etc/shibboleth/console.logger; fi
+@unexec if cmp -s %D/etc/shibboleth/syslog.logger.dist %D/etc/shibboleth/syslog.logger; then rm -f %D/etc/shibboleth/syslog.logger; fi
+etc/shibboleth/syslog.logger.dist
+@exec if [ ! -f %D/etc/shibboleth/syslog.logger ] ; then cp -p %D/etc/shibboleth/syslog.logger.dist %D/etc/shibboleth/syslog.logger; fi
+@unexec if cmp -s %D/etc/shibboleth/accessError.html.dist %D/etc/shibboleth/accessError.html; then rm -f %D/etc/shibboleth/accessError.html; fi
+etc/shibboleth/accessError.html.dist
+@exec if [ ! -f %D/etc/shibboleth/accessError.html ] ; then cp -p %D/etc/shibboleth/accessError.html.dist %D/etc/shibboleth/accessError.html; fi
+@unexec if cmp -s %D/etc/shibboleth/sessionError.html.dist %D/etc/shibboleth/sessionError.html; then rm -f %D/etc/shibboleth/sessionError.html; fi
+etc/shibboleth/sessionError.html.dist
+@exec if [ ! -f %D/etc/shibboleth/sessionError.html ] ; then cp -p %D/etc/shibboleth/sessionError.html.dist %D/etc/shibboleth/sessionError.html; fi
+@unexec if cmp -s %D/etc/shibboleth/metadataError.html.dist %D/etc/shibboleth/metadataError.html; then rm -f %D/etc/shibboleth/metadataError.html; fi
+etc/shibboleth/metadataError.html.dist
+@exec if [ ! -f %D/etc/shibboleth/metadataError.html ] ; then cp -p %D/etc/shibboleth/metadataError.html.dist %D/etc/shibboleth/metadataError.html; fi
+@unexec if cmp -s %D/etc/shibboleth/bindingTemplate.html.dist %D/etc/shibboleth/bindingTemplate.html; then rm -f %D/etc/shibboleth/bindingTemplate.html; fi
+etc/shibboleth/bindingTemplate.html.dist
+@exec if [ ! -f %D/etc/shibboleth/bindingTemplate.html ] ; then cp -p %D/etc/shibboleth/bindingTemplate.html.dist %D/etc/shibboleth/bindingTemplate.html; fi
+@unexec if cmp -s %D/etc/shibboleth/discoveryTemplate.html.dist %D/etc/shibboleth/discoveryTemplate.html; then rm -f %D/etc/shibboleth/discoveryTemplate.html; fi
+etc/shibboleth/discoveryTemplate.html.dist
+@exec if [ ! -f %D/etc/shibboleth/discoveryTemplate.html ] ; then cp -p %D/etc/shibboleth/discoveryTemplate.html.dist %D/etc/shibboleth/discoveryTemplate.html; fi
+@unexec if cmp -s %D/etc/shibboleth/localLogout.html.dist %D/etc/shibboleth/localLogout.html; then rm -f %D/etc/shibboleth/localLogout.html; fi
+etc/shibboleth/localLogout.html.dist
+@exec if [ ! -f %D/etc/shibboleth/localLogout.html ] ; then cp -p %D/etc/shibboleth/localLogout.html.dist %D/etc/shibboleth/localLogout.html; fi
+@unexec if cmp -s %D/etc/shibboleth/globalLogout.html.dist %D/etc/shibboleth/globalLogout.html; then rm -f %D/etc/shibboleth/globalLogout.html; fi
+etc/shibboleth/globalLogout.html.dist
+@exec if [ ! -f %D/etc/shibboleth/globalLogout.html ] ; then cp -p %D/etc/shibboleth/globalLogout.html.dist %D/etc/shibboleth/globalLogout.html; fi
+@unexec if cmp -s %D/etc/shibboleth/sslError.html.dist %D/etc/shibboleth/sslError.html; then rm -f %D/etc/shibboleth/sslError.html; fi
+etc/shibboleth/sslError.html.dist
+@exec if [ ! -f %D/etc/shibboleth/sslError.html ] ; then cp -p %D/etc/shibboleth/sslError.html.dist %D/etc/shibboleth/sslError.html; fi
+@unexec if cmp -s %D/etc/shibboleth/example-shibboleth2.xml.dist %D/etc/shibboleth/example-shibboleth2.xml; then rm -f %D/etc/shibboleth/example-shibboleth2.xml; fi
+etc/shibboleth/example-shibboleth2.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/example-shibboleth2.xml ] ; then cp -p %D/etc/shibboleth/example-shibboleth2.xml.dist %D/etc/shibboleth/example-shibboleth2.xml; fi
+@unexec if cmp -s %D/etc/shibboleth/protocols.xml.dist %D/etc/shibboleth/protocols.xml; then rm -f %D/etc/shibboleth/protocols.xml; fi
+etc/shibboleth/protocols.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/protocols.xml ] ; then cp -p %D/etc/shibboleth/protocols.xml.dist %D/etc/shibboleth/protocols.xml; fi
+@unexec if cmp -s %D/etc/shibboleth/security-policy.xml.dist %D/etc/shibboleth/security-policy.xml; then rm -f %D/etc/shibboleth/security-policy.xml; fi
+etc/shibboleth/security-policy.xml.dist
+@exec if [ ! -f %D/etc/shibboleth/security-policy.xml ] ; then cp -p %D/etc/shibboleth/security-policy.xml.dist %D/etc/shibboleth/security-policy.xml; fi
+etc/shibboleth/shibd-redhat
+etc/shibboleth/shibd-debian
+etc/shibboleth/shibd-suse
+etc/shibboleth/shibd-osx.plist
+etc/shibboleth/apache.config
+etc/shibboleth/apache2.config
+@unexec if cmp -s %D/etc/shibboleth/attrChecker.html.dist %D/etc/shibboleth/attrChecker.html; then rm -f %D/etc/shibboleth/attrChecker.html; fi
+etc/shibboleth/attrChecker.html.dist
+@exec if [ ! -f %D/etc/shibboleth/attrChecker.html ] ; then cp -p %D/etc/shibboleth/attrChecker.html.dist %D/etc/shibboleth/attrChecker.html; fi
+etc/shibboleth/apache22.config
+etc/shibboleth/apache24.config
+etc/shibboleth/keygen.sh
+etc/shibboleth/upgrade.xsl
+@unexec if cmp -s %D/etc/shibboleth/postTemplate.html.dist %D/etc/shibboleth/postTemplate.html; then rm -f %D/etc/shibboleth/postTemplate.html; fi
+etc/shibboleth/postTemplate.html.dist
+@exec if [ ! -f %D/etc/shibboleth/postTemplate.html ] ; then cp -p %D/etc/shibboleth/postTemplate.html.dist %D/etc/shibboleth/postTemplate.html; fi
+@unexec if cmp -s %D/etc/shibboleth/partialLogout.html.dist %D/etc/shibboleth/partialLogout.html; then rm -f %D/etc/shibboleth/partialLogout.html; fi
+etc/shibboleth/partialLogout.html.dist
+@exec if [ ! -f %D/etc/shibboleth/partialLogout.html ] ; then cp -p %D/etc/shibboleth/partialLogout.html.dist %D/etc/shibboleth/partialLogout.html; fi
+include/shibsp/AbstractSPRequest.h
+include/shibsp/AccessControl.h
+include/shibsp/Application.h
+include/shibsp/GSSRequest.h
+include/shibsp/RequestMapper.h
+include/shibsp/SPConfig.h
+include/shibsp/SPRequest.h
+include/shibsp/ServiceProvider.h
+include/shibsp/SessionCache.h
+include/shibsp/SessionCacheEx.h
+include/shibsp/TransactionLog.h
+include/shibsp/attribute/Attribute.h
+include/shibsp/attribute/AttributeDecoder.h
+include/shibsp/attribute/BinaryAttribute.h
+include/shibsp/attribute/ExtensibleAttribute.h
+include/shibsp/attribute/NameIDAttribute.h
+include/shibsp/attribute/ScopedAttribute.h
+include/shibsp/attribute/SimpleAttribute.h
+include/shibsp/attribute/XMLAttribute.h
+include/shibsp/attribute/filtering/AttributeFilter.h
+include/shibsp/attribute/filtering/BasicFilteringContext.h
+include/shibsp/attribute/filtering/FilterPolicyContext.h
+include/shibsp/attribute/filtering/FilteringContext.h
+include/shibsp/attribute/filtering/MatchFunctor.h
+include/shibsp/attribute/resolver/AttributeExtractor.h
+include/shibsp/attribute/resolver/AttributeResolver.h
+include/shibsp/attribute/resolver/ResolutionContext.h
+include/shibsp/base.h
+include/shibsp/binding/ArtifactResolver.h
+include/shibsp/binding/ProtocolProvider.h
+include/shibsp/binding/SOAPClient.h
+include/shibsp/config_pub.h
+include/shibsp/exceptions.h
+include/shibsp/handler/AbstractHandler.h
+include/shibsp/handler/AssertionConsumerService.h
+include/shibsp/handler/Handler.h
+include/shibsp/handler/LogoutHandler.h
+include/shibsp/handler/LogoutInitiator.h
+include/shibsp/handler/RemotedHandler.h
+include/shibsp/handler/SecuredHandler.h
+include/shibsp/handler/SessionInitiator.h
+include/shibsp/lite/CommonDomainCookie.h
+include/shibsp/lite/SAMLConstants.h
+include/shibsp/metadata/MetadataExt.h
+include/shibsp/metadata/MetadataProviderCriteria.h
+include/shibsp/paths.h
+include/shibsp/remoting/ListenerService.h
+include/shibsp/remoting/ddf.h
+include/shibsp/security/PKIXTrustEngine.h
+include/shibsp/security/SecurityPolicy.h
+include/shibsp/security/SecurityPolicyProvider.h
+include/shibsp/util/CGIParser.h
+include/shibsp/util/DOMPropertySet.h
+include/shibsp/util/IPRange.h
+include/shibsp/util/PropertySet.h
+include/shibsp/util/SPConstants.h
+include/shibsp/util/TemplateParameters.h
+include/shibsp/version.h
+lib/libshibsp.so.6
+lib/libshibsp.so
+lib/shibboleth/adfs.so
+lib/shibboleth/adfs-lite.so
+lib/shibboleth/odbc-store.so
+lib/shibboleth/plugins-lite.so
+lib/shibboleth/plugins.so
+%%WITH_APACHE_22%%lib/shibboleth/mod_shib_22.so
+%%WITH_APACHE_24%%lib/shibboleth/mod_shib_24.so
+lib/libshibsp-lite.so.6
+lib/libshibsp-lite.so
+sbin/shibd
+share/xml/shibboleth/catalog.xml
+share/xml/shibboleth/shibboleth-2.0-afp-mf-basic.xsd
+share/xml/shibboleth/shibboleth-2.0-afp-mf-saml.xsd
+share/xml/shibboleth/shibboleth-2.0-afp.xsd
+share/xml/shibboleth/shibboleth-2.0-attribute-map.xsd
+share/xml/shibboleth/shibboleth-2.0-native-sp-config.xsd
+share/xml/shibboleth/shibboleth-2.0-native-sp-protocols.xsd
+share/xml/shibboleth/shibboleth-2.0-sp-notify.xsd
+share/xml/shibboleth/shibboleth-metadata-1.0.xsd
+share/xml/shibboleth/shibboleth.xsd
+share/xml/shibboleth/WS-Trust.xsd
+share/doc/shibboleth/CREDITS.txt
+share/doc/shibboleth/FASTCGI.LICENSE
+share/doc/shibboleth/LICENSE.txt
+share/doc/shibboleth/LOG4CPP.LICENSE
+share/doc/shibboleth/NOTICE.txt
+share/doc/shibboleth/OPENSSL.LICENSE
+share/doc/shibboleth/README.txt
+share/doc/shibboleth/RELEASE.txt
+share/doc/shibboleth/main.css
+@dirrmtry share/doc/shibboleth/api
+@dirrmtry share/doc/shibboleth
+@dirrmtry lib/shibboleth
+@dirrmtry share/xml/shibboleth
+@dirrmtry include/shibsp/util
+@dirrmtry include/shibsp/security
+@dirrmtry include/shibsp/remoting
+@dirrmtry include/shibsp/metadata
+@dirrmtry include/shibsp/lite
+@dirrmtry include/shibsp/handler
+@dirrmtry include/shibsp/binding
+@dirrmtry include/shibsp/attribute/resolver
+@dirrmtry include/shibsp/attribute/filtering
+@dirrmtry include/shibsp/attribute
+@dirrmtry include/shibsp
+@dirrmtry etc/shibboleth
+@exec install -d -o %%SHIBD_USER%% -g %%SHIBD_GROUP%% -m 755 /var/log/shibboleth
+@exec install -d -o %%SHIBD_USER%% -g %%SHIBD_GROUP%% -m 755 /var/cache/shibboleth
+@exec install -d -o %%SHIBD_USER%% -g %%WWWGRP%% -m 750 /var/run/shibboleth
+@owner %%SHIBD_USER%%
+@group %%SHIBD_GROUP%%
+@dirrmtry /var/log/shibboleth
+@dirrmtry /var/cache/shibboleth
+@mode 750
+@group %%WWWGRP%%
+@dirrmtry /var/run/shibboleth

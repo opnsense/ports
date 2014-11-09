@@ -1,0 +1,4 @@
+Proc::Daemon provides a method for a Perl script to run as a Unix
+daemon process.
+
+WWW: http://search.cpan.org/dist/Proc-Daemon/

@@ -1,0 +1,4 @@
+bin/mapcatcher
+bin/mapdownloader
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%%%DOCSDIR%%/changelog

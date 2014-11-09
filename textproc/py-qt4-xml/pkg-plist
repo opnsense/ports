@@ -1,0 +1,10 @@
+bin/pylupdate4
+bin/pyrcc4
+%%PYTHON_SITELIBDIR%%/PyQt4/QtXml.so
+share/py-sip/QtXml/QtXmlmod.sip
+share/py-sip/QtXml/qdom.sip
+share/py-sip/QtXml/qxml.sip
+share/py-sip/QtXml/qxmlstream.sip
+%%API%%share/qt4/qsci/api/python/QtXml.api
+@dirrm share/py-sip/QtXml
+@dirrmtry %%PYTHON_SITELIBDIR%%/PyQt4

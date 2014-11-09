@@ -1,0 +1,14 @@
+
+$FreeBSD$
+
+--- doc/Makefile.in.orig
++++ doc/Makefile.in
+@@ -161,7 +161,7 @@
+ builddir = @builddir@
+ datadir = @datadir@
+ datarootdir = @datarootdir@
+-docdir = $(datadir)/doc/$(PACKAGE)-$(VERSION)
++docdir = $(datadir)/doc/$(PACKAGE)
+ dvidir = @dvidir@
+ exec_prefix = @exec_prefix@
+ host = @host@

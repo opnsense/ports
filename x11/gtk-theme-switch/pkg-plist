@@ -1,0 +1,4 @@
+bin/gtk-theme-switch
+man/man1/gtk-theme-switch.1.gz
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%PORTDOCS%%@dirrmtry %%DOCSDIR%%

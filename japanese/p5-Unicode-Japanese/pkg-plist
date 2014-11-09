@@ -1,0 +1,15 @@
+bin/ujconv
+bin/ujguess
+%%SITE_PERL%%/%%PERL_ARCH%%/Unicode/Japanese.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/Unicode/Japanese.mlpod
+%%SITE_PERL%%/%%PERL_ARCH%%/Unicode/Japanese/JA.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Unicode/Japanese/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Unicode/Japanese/Japanese.so
+%%PERL5_MAN3%%/Unicode::Japanese.3.gz
+%%PERL5_MAN3%%/Unicode::Japanese::JA.3.gz
+man/man1/ujconv.1.gz
+man/man1/ujguess.1.gz
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Unicode/Japanese
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Unicode
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Unicode/Japanese
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Unicode

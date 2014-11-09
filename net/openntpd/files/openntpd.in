@@ -1,0 +1,33 @@
+#!/bin/sh
+#
+# $FreeBSD$
+#
+# PROVIDE: openntpd
+# REQUIRE: DAEMON ntpdate
+# BEFORE:  LOGIN
+# KEYWORD: nojail shutdown
+#
+# Add the following lines to /etc/rc.conf.local or /etc/rc.conf
+# to enable this service:
+#
+# openntpd_enable (bool):	Set to NO by default.
+#				Set it to YES to enable openntpd.
+
+. /etc/rc.subr
+
+check_process()
+{
+        /bin/pgrep -f 'ntpd: \[priv\]'
+}
+
+name=openntpd
+rcvar=openntpd_enable
+
+command=%%PREFIX%%/sbin/ntpd
+required_files=%%PREFIX%%/etc/ntpd.conf
+
+load_rc_config $name
+
+: ${openntpd_enable="NO"}
+
+run_rc_command "$1"

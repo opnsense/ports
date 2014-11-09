@@ -1,0 +1,18 @@
+# $FreeBSD$
+
+GCC_BRANCH=		4.9
+GCC_POINT=		2
+GCC_VERSION=		${GCC_BRANCH}.${GCC_POINT}
+SNAPSHOT=		20141023
+MAIN_PR=		0
+UTIL_PR=		0
+ARMV5_PR=		0
+ARMV7_PR=		0
+
+# Snapshot naming pattern
+#IDENTIFICATION=	gcc-${GCC_BRANCH}-${SNAPSHOT}
+#MS_SUBDIR=		snapshots/${GCC_BRANCH}-${SNAPSHOT}
+
+# Release naming pattern
+IDENTIFICATION=		gcc-${GCC_VERSION}
+MS_SUBDIR=		releases/gcc-${GCC_VERSION}

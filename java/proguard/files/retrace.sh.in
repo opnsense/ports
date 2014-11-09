@@ -1,0 +1,5 @@
+#!/bin/sh
+#
+# $FreeBSD$
+
+exec "%%LOCALBASE%%/bin/java" -Xmx256m  -jar "%%DATADIR%%/retrace.jar" "$@"

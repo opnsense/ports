@@ -1,0 +1,17 @@
+# $FreeBSD$
+
+PORTNAME=	topic
+PORTVERSION=	1.03
+CATEGORIES=	textproc
+MASTER_SITES=	http://freebsd.hypermart.net/code/
+
+MAINTAINER=	email@freebsd.hypermart.net
+COMMENT=	Topic markup parser
+
+LICENSE=	BSD2CLAUSE
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/topic ${STAGEDIR}${PREFIX}/bin/topic
+	${INSTALL_MAN} ${WRKSRC}/topic.1 ${STAGEDIR}${PREFIX}/man/man1/topic.1
+
+.include <bsd.port.mk>

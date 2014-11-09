@@ -1,0 +1,72 @@
+# Created by: nemysis <nemysis@gmx.ch>
+# $FreeBSD$
+
+PORTNAME=	alure
+PORTVERSION=	1.2
+PORTREVISION=	3
+CATEGORIES=	audio
+MASTER_SITES=	http://kcat.strangesoft.net/alure-releases/
+
+MAINTAINER=	nemysis@FreeBSD.org
+COMMENT=	Utility library to help manage common tasks with OpenAL
+
+LICENSE=	MIT
+
+USES=		cmake openal:soft pkgconfig
+USE_LDCONFIG=	yes
+CMAKE_ARGS=	-DBUILD_STATIC:BOOL=FALSE
+
+PORTDOCS=	*
+PORTEXAMPLES=	*
+
+OPTIONS_DEFINE=		DOCS DUMB EXAMPLES FLAC FLUIDSYNTH MPG123 MODPLUG VORBIS SNDFILE
+OPTIONS_DEFAULT=	DUMB FLAC VORBIS SNDFILE
+
+DUMB_DESC=		DUMB audio library decoding support
+FLUIDSYNTH_DESC=	MIDI support via FluidSynth
+MODPLUG_DESC=		MOD decoding via ModPlug
+
+DOCS_BUILD_DEPENDS=	NaturalDocs:${PORTSDIR}/devel/naturaldocs
+DUMB_BUILD_DEPENDS=	${LOCALBASE}/include/dumb.h:${PORTSDIR}/audio/dumb
+DUMB_CMAKE_ON=		-DDUMB:BOOL=TRUE
+DUMB_CMAKE_OFF=		-DDUMB:BOOL=FALSE
+FLAC_LIB_DEPENDS=	libFLAC.so:${PORTSDIR}/audio/flac
+FLAC_CMAKE_ON=		-DFLAC:BOOL=TRUE
+FLAC_CMAKE_OFF=		-DFLAC:BOOL=FALSE
+FLUIDSYNTH_LIB_DEPENDS=	libfluidsynth.so:${PORTSDIR}/audio/fluidsynth
+FLUIDSYNTH_CMAKE_ON=	-DFLUIDSYNTH:BOOL=TRUE
+FLUIDSYNTH_CMAKE_OFF=	-DFLUIDSYNTH:BOOL=FALSE
+MPG123_LIB_DEPENDS=	libmpg123.so:${PORTSDIR}/audio/mpg123
+MPG123_CMAKE_ON=	-DMPG123:BOOL=TRUE
+MPG123_CMAKE_OFF=	-DMPG123:BOOL=FALSE
+MODPLUG_LIB_DEPENDS=	libmodplug.so:${PORTSDIR}/audio/libmodplug
+MODPLUG_CMAKE_ON=	-DMODPLUG:BOOL=TRUE
+MODPLUG_CMAKE_OFF=	-DMODPLUG:BOOL=FALSE
+VORBIS_LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
+VORBIS_CMAKE_ON=	-DVORBIS:BOOL=TRUE
+VORBIS_CMAKE_OFF=	-DVORBIS:BOOL=FALSE
+SNDFILE_LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile
+SNDFILE_CMAKE_ON=	-DSNDFILE:BOOL=TRUE
+SNDFILE_CMAKE_OFF=	-DSNDFILE:BOOL=FALSE
+
+.include <bsd.port.options.mk>
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|lib$${LIB_SUFFIX}/pkgconfig|libdata/pkgconfig|' \
+		-e 's|LIBFLAC_LIBRARIES|FLAC_LIBRARIES|' \
+		${WRKSRC}/CMakeLists.txt
+
+.if ${PORT_OPTIONS:MDOCS}
+	@${REINPLACE_CMD} \
+		-e 's|INSTALL(DIRECTORY "$${ALURE_SOURCE_DIR}/docs/html"|INSTALL(DIRECTORY "$${ALURE_SOURCE_DIR}/docs/html" "$${ALURE_SOURCE_DIR}/docs/naturaldocs"|' \
+		${WRKSRC}/CMakeLists.txt
+.else
+	@${REINPLACE_CMD} -i '' '/FIND_PROGRAM(NATDOCS_BIN NaturalDocs)/,/ENDIF(NATDOCS_BIN)/s/^/#/' ${WRKSRC}/CMakeLists.txt
+	@${REINPLACE_CMD} -i '' -e '/INSTALL(DIRECTORY "$${ALURE_SOURCE_DIR}/,+2d' ${WRKSRC}/CMakeLists.txt
+.endif
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
+
+.include <bsd.port.mk>

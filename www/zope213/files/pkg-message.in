@@ -1,0 +1,23 @@
+**********************************************************************
+
+Zope Successfull installed.
+
+To create an instance of Zope please run
+make instance
+
+You can set the following Variables in /etc/make.conf
+
+ZOPEINSTANCEBASE	Directory where Zope instance should go
+			(default: %%ZOPEINSTANCEBASE%%)
+ZOPEINSTANCENAME	Default name for a new Zope instance
+			(default: none)
+
+If you want have multiple Zope you should run
+make instance INSTANCENAME=<somename>
+
+You may also define BATCH option if you want instance to be created with
+default username/password pair for instance administartor (admin:test123):
+make instance BATCH=yes
+
+Zope instances, created by `make instance', will not be removed when the
+port is deinstalled. You'll have to delete them yourself.

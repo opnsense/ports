@@ -1,0 +1,17 @@
+# $FreeBSD$
+
+PORTNAME=	persistent-sqlite
+PORTVERSION=	1.3.0.5
+PORTREVISION=	1
+CATEGORIES=	databases haskell
+
+MAINTAINER=	haskell@FreeBSD.org
+COMMENT=	Backend for the persistent library using sqlite3
+
+LICENSE=	MIT
+
+USE_CABAL=	aeson>=0.5 conduit>=0.5.3 monad-control>=0.2 \
+		monad-logger>=0.2.4 persistent>=1.3 resourcet text>=0.7
+
+.include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
+.include <bsd.port.mk>

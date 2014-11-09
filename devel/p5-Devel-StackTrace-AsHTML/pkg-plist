@@ -1,0 +1,3 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Devel/StackTrace/AsHTML/.packlist
+%%SITE_PERL%%/Devel/StackTrace/AsHTML.pm
+%%PERL5_MAN3%%/Devel::StackTrace::AsHTML.3.gz

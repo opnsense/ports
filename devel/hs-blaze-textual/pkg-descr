@@ -1,0 +1,3 @@
+A library for efficiently rendering Haskell datatypes to bytestrings.
+
+WWW: http://github.com/bos/blaze-textual

@@ -1,0 +1,5 @@
+The Par monad offers a simple API for parallel programming.  The library
+works for parallelising both pure and IO computations, although only the
+pure version is deterministic.
+
+WWW: http://github.com/simonmar/monad-par

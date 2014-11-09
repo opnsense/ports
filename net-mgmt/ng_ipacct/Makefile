@@ -1,0 +1,36 @@
+# Created by: Sergey Skvortsov <skv@protey.ru>
+# $FreeBSD$
+
+PORTNAME=	ng_ipacct
+PORTVERSION=	20061223
+PORTREVISION=	3
+CATEGORIES=	net-mgmt
+MASTER_SITES=	${MASTER_SITE_LOCAL:S!$!skv/!} \
+		http://highsecure.ru/distfiles/
+
+MAINTAINER=	vsevolod@FreeBSD.org
+COMMENT=	Netgraph IP accounting
+
+LICENSE=	BSD2CLAUSE
+
+USES=		kmod uidfix
+
+MAKE_ENV=	BINDIR="${PREFIX}/sbin"
+
+USE_RC_SUBR=	ng_ipacct
+SUB_FILES=	pkg-message
+CFLAGS+=	-DMEM_USE_ZONE
+
+post-extract:
+	@${MV} ${WRKDIR}/${PORTNAME} ${WRKSRC}
+
+post-patch:
+	@${REINPLACE_CMD} 's,{MANDIR},{DESTDIR}$$&,' ${WRKSRC}/man_ru/Makefile
+
+post-install:
+	@${MKDIR} ${STAGEDIR}${PREFIX}/include/netgraph
+	${INSTALL_DATA} ${WRKSRC}/ng_ipacct/ng_ipacct.h ${STAGEDIR}${PREFIX}/include/netgraph
+	${INSTALL_DATA} ${FILESDIR}/ng_ipacct.conf \
+		${STAGEDIR}${PREFIX}/etc/ng_ipacct.conf.sample
+
+.include <bsd.port.mk>

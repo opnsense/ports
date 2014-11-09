@@ -1,0 +1,12 @@
+bin/DllPlugInTester
+bin/cppunit-config
+lib/libcppunit-1.12.so.1
+lib/libcppunit-1.12.so.1.0.0
+lib/libcppunit.a
+lib/libcppunit.so
+libdata/pkgconfig/cppunit.pc
+man/man1/cppunit-config.1.gz
+share/aclocal/cppunit.m4
+%%PORTDOCS%%%%DOCSDIR%%/FAQ
+%%PORTDOCS%%%%DOCSDIR%%/NEWS
+%%PORTDOCS%%%%DOCSDIR%%/README

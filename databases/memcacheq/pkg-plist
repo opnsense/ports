@@ -1,0 +1,2 @@
+bin/memcacheq
+@dir(nobody,nobody,) %%MCQDIR%%

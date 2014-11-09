@@ -1,0 +1,10 @@
+bin/gnushogi
+man/man6/gnushogi.6.gz
+%%PORTDOCS%%%%DOCSDIR%%/BOOKFILES
+%%PORTDOCS%%%%DOCSDIR%%/PORTING
+%%PORTDOCS%%%%DOCSDIR%%/shogi.rules
+%%PORTDOCS%%%%DOCSDIR%%/tutorial1.gam
+%%PORTDOCS%%%%DOCSDIR%%/tutorial2.gam
+%%DATADIR%%/gnushogi.bbk
+@dirrm %%DATADIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

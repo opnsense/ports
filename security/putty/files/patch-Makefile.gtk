@@ -1,0 +1,61 @@
+--- ./Makefile.gtk.orig	2011-07-12 20:29:31.000000000 +0200
++++ ./Makefile.gtk	2011-07-17 14:56:18.000000000 +0200
+@@ -119,7 +119,7 @@
+ 
+ unexport CFLAGS # work around a weird issue with krb5-config
+ 
+-CFLAGS = -O2 -Wall -Werror -g -I.././ -I../charset/ -I../windows/ -I../unix/ \
++CFLAGS := $(CFLAGS) -Wall -Werror -I.././ -I../charset/ -I../windows/ -I../unix/ \
+ 		-I../macosx/ $(shell $(GTK_CONFIG) --cflags) -D _FILE_OFFSET_BITS=64
+ XLDFLAGS = $(LDFLAGS) $(shell $(GTK_CONFIG) --libs)
+ ULDFLAGS = $(LDFLAGS)
+@@ -146,7 +146,11 @@
+ .SUFFIXES:
+ 
+ 
++ifdef PUTTY_WITH_GTK
+ all: plink pscp psftp pterm putty puttygen puttytel
++else
++all: plink pscp psftp puttygen
++endif
+ 
+ plink: be_all_s.o cmdline.o cproxy.o ldisc.o logging.o misc.o pgssapi.o \
+ 		pinger.o portfwd.o proxy.o raw.o rlogin.o settings.o ssh.o \
+@@ -851,7 +855,7 @@
+ 	$(CC) $(COMPAT) $(CFLAGS) $(XFLAGS) -c ../unix/xpmputty.c
+ 
+ version.o: FORCE
+-	if test -z "$(VER)" && (cd ..; md5sum -c manifest); then \
++	if test -z "$(VER)" ; then \
+ 		$(CC) $(COMPAT) $(XFLAGS) $(CFLAGS) `cat ../version.def` -c ../version.c; \
+ 	else \
+ 		$(CC) $(COMPAT) $(XFLAGS) $(CFLAGS) $(VER) -c ../version.c; \
+@@ -861,6 +865,8 @@
+ 	$(INSTALL_PROGRAM) -m 755 plink $(DESTDIR)$(bindir)/plink
+ 	$(INSTALL_PROGRAM) -m 755 pscp $(DESTDIR)$(bindir)/pscp
+ 	$(INSTALL_PROGRAM) -m 755 psftp $(DESTDIR)$(bindir)/psftp
++	$(INSTALL_PROGRAM) -m 755 puttygen $(DESTDIR)$(bindir)/puttygen
++ifdef PUTTY_WITH_GTK
+ 	$(INSTALL_PROGRAM) -m 755 pterm $(DESTDIR)$(bindir)/pterm
+ 	if test -n "$(UTMP_GROUP)"; then \
+ 	  chgrp $(UTMP_GROUP) $(DESTDIR)$(bindir)/pterm && \
+@@ -870,15 +876,17 @@
+ 	    chmod 4755 $(DESTDIR)$(bindir)/pterm; \
+ 	fi
+ 	$(INSTALL_PROGRAM) -m 755 putty $(DESTDIR)$(bindir)/putty
+-	$(INSTALL_PROGRAM) -m 755 puttygen $(DESTDIR)$(bindir)/puttygen
+ 	$(INSTALL_PROGRAM) -m 755 puttytel $(DESTDIR)$(bindir)/puttytel
++endif
+ 	$(INSTALL_DATA) -m 644 ../doc/plink.1 $(DESTDIR)$(man1dir)/plink.1
+ 	$(INSTALL_DATA) -m 644 ../doc/pscp.1 $(DESTDIR)$(man1dir)/pscp.1
+ 	$(INSTALL_DATA) -m 644 ../doc/psftp.1 $(DESTDIR)$(man1dir)/psftp.1
++	$(INSTALL_DATA) -m 644 ../doc/puttygen.1 $(DESTDIR)$(man1dir)/puttygen.1
++ifdef PUTTY_WITH_GTK
+ 	$(INSTALL_DATA) -m 644 ../doc/pterm.1 $(DESTDIR)$(man1dir)/pterm.1
+ 	$(INSTALL_DATA) -m 644 ../doc/putty.1 $(DESTDIR)$(man1dir)/putty.1
+-	$(INSTALL_DATA) -m 644 ../doc/puttygen.1 $(DESTDIR)$(man1dir)/puttygen.1
+ 	$(INSTALL_DATA) -m 644 ../doc/puttytel.1 $(DESTDIR)$(man1dir)/puttytel.1
++endif
+ 
+ install-strip:
+ 	$(MAKE) install INSTALL_PROGRAM="$(INSTALL_PROGRAM) -s"

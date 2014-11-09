@@ -1,0 +1,20 @@
+--- doc/modulefile.5.in.orig	2014-09-04 09:37:33 UTC
++++ doc/modulefile.5.in
+@@ -1,6 +1,6 @@
+-.\" .TH MODULEFILE 4 "1 July 1994"
++.\" .TH MODULEFILE 5 "1 July 1994"
+ .\"  minor editorial edits grenker 20090711
+-.TH MODULEFILE 4 "July 2009" "Modules version @VERSION@" "Modules configuration"
++.TH MODULEFILE 5 "July 2009" "Modules version @VERSION@" "Modules configuration"
+ .nh
+ .SH NAME
+ modulefile \- files containing Tcl code for the Modules package
+@@ -656,7 +656,7 @@
+ .RE
+ .RS
+ .I a syslog facility
+-- directs logging to the syslog. See \fBsyslog.conf(4)\fP for detailed
++- directs logging to the syslog. See \fBsyslog.conf(5)\fP for detailed
+ description of the valid syslog facilities.
+ .RE
+ .RS

@@ -1,0 +1,5 @@
+GNUstep/Local/Library/Libraries/libSlideShow.so
+GNUstep/Local/Library/Libraries/libSlideShow.so.%%MAJORVERSION%%
+GNUstep/Local/Library/Libraries/libSlideShow.so.%%VERSION%%
+GNUstep/Local/Library/Headers/SlideShow/SlideShow.h
+GNUstep/Local/Library/Headers/SlideShow/SlideShowWindow.h

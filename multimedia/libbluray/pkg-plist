@@ -1,0 +1,17 @@
+bin/bd_info
+include/libbluray/bluray-version.h
+include/libbluray/bluray.h
+include/libbluray/clpi_data.h
+include/libbluray/filesystem.h
+include/libbluray/keys.h
+include/libbluray/log_control.h
+include/libbluray/meta_data.h
+include/libbluray/overlay.h
+lib/libbluray.a
+lib/libbluray.so
+lib/libbluray.so.1
+lib/libbluray.so.1.5.0
+libdata/pkgconfig/libbluray.pc
+@dirrm include/libbluray
+%%JAVA%%lib/libbluray/libbluray.jar
+%%JAVA%%@dirrm lib/libbluray

@@ -1,0 +1,4 @@
+%%PERL5_MAN3%%/Term::Shell.3.gz
+%%SITE_PERL%%/Term/Shell.pm
+%%SITE_PERL%%/Term/Shell.pod
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Term/Shell/.packlist

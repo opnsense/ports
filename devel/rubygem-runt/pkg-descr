@@ -1,0 +1,7 @@
+RUNT -- Ruby Temporal Expressions
+
+Runt is a Ruby implementation of select Martin Fowler patterns
+[http://www.martinfowler.com/articles].  TemporalExpressions allow a developer
+to define patterns of date recurrence using set expressions.
+
+WWW: http://rubygems.org/gems/runt/

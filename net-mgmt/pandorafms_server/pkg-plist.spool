@@ -1,0 +1,22 @@
+@comment /var/log/pandora
+@mode 770
+@owner pandora
+@group wheel
+%%USE_LOGDIR%%@unexec rmdir %%LOGDIR%% 2>/dev/null || :
+@comment /var/spool/pandora/data_out
+@mode 700
+%%USE_SPOOL_OUT%%@unexec rmdir %%SPOOLDIR%%/data_out 2>/dev/null || :
+@comment /var/spool/pandora/data_in and subdirectories
+@mode 770
+@group www
+%%USE_SPOOL_IN%%@unexec rmdir %%SPOOLDIR%%/data_in/collections 2>/dev/null || :
+%%USE_SPOOL_IN%%@unexec rmdir %%SPOOLDIR%%/data_in/conf 2>/dev/null || :
+%%USE_SPOOL_IN%%@unexec rmdir %%SPOOLDIR%%/data_in/md5 2>/dev/null || :
+%%USE_SPOOL_IN%%@unexec rmdir %%SPOOLDIR%%/data_in/netflow 2>/dev/null || :
+%%USE_SPOOL_IN%%@unexec rmdir %%SPOOLDIR%%/data_in 2>/dev/null || :
+@comment /var/spool/pandora
+@unexec rmdir %%SPOOLDIR%% 2>/dev/null || :
+@comment unset mode/owner/group
+@mode
+@owner
+@group

@@ -1,0 +1,28 @@
+--- Makefile.orig	Wed May 14 02:53:34 1997
++++ Makefile	Fri Feb  2 04:20:41 2001
+@@ -8,7 +8,7 @@
+ ##############################################################
+ 
+ #Your compiler.  If gcc doesn't work, try CC
+-CC = gcc
++#CC = gcc
+ #CC = cc
+ 
+ #On Suns, SGIs, and other Unix systems uncomment the following
+@@ -17,12 +17,12 @@
+ #C_OPTS = 
+ #L_OPTS = -lcurses
+ 
+-#On Linux, uncomment the following
++#On FreeBSD/Linux, uncomment the following
+ #
+-PLATFORM = Linux
+-C_OPTS = -O2 -Wall
++PLATFORM = FreeBSD/Linux
++DATADIR = ${PREFIX}/share/seabattle
++C_OPTS = ${CFLAGS} -DDATADIR=\"${DATADIR}\"
+ L_OPTS = -lncurses
+-
+ 
+ #For Dos/Windows DJGPP (you need the curses lib)
+ #PLATFORM = DOS_DJGPP

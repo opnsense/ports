@@ -1,0 +1,194 @@
+--- ./Makefile.orig	2013-09-27 08:55:28.000000000 +0000
++++ ./Makefile	2014-07-31 11:42:54.000000000 +0000
+@@ -585,7 +585,7 @@
+ 
+ #INCDIR= /usr/local/include
+ #INCDIR= /dev/env/DJDIR/include
+-INCDIR= /usr/include
++INCDIR= ${PREFIX}/include
+ 
+ # Where to install calc related things
+ #
+@@ -624,15 +624,15 @@
+ #
+ #BINDIR= /usr/local/bin
+ #BINDIR= /dev/env/DJDIR/bin
+-BINDIR= /usr/bin
++BINDIR= ${PREFIX}/bin
+ 
+ #LIBDIR= /usr/local/lib
+ #LIBDIR= /dev/env/DJDIR/lib
+-LIBDIR= /usr/lib
++LIBDIR= ${PREFIX}/lib
+ 
+ #CALC_SHAREDIR= /usr/local/lib/calc
+ #CALC_SHAREDIR= /dev/env/DJDIR/share/calc
+-CALC_SHAREDIR= /usr/share/calc
++CALC_SHAREDIR= ${PREFIX}/share/calc
+ 
+ # NOTE: Do not set CALC_INCDIR to /usr/include or /usr/local/include!!!
+ #	Always be sure that the CALC_INCDIR path ends in /calc to avoid
+@@ -699,7 +699,7 @@
+ #
+ # If in doubt, use T=
+ #
+-T=
++T=${DESTDIR}
+ 
+ # where man pages are installed
+ #
+@@ -710,7 +710,7 @@
+ #MANDIR=
+ #MANDIR= /usr/local/man/man1
+ #MANDIR= /usr/man/man1
+-MANDIR= /usr/share/man/man1
++MANDIR= ${PREFIX}/man/man1
+ #MANDIR= /dev/env/DJDIR/man/man1
+ #MANDIR= /usr/man/u_man/man1
+ #MANDIR= /usr/contrib/man/man1
+@@ -837,14 +837,14 @@
+ #
+ # If in doubt, set USE_READLINE, READLINE_LIB and READLINE_INCLUDE to nothing.
+ #
+-USE_READLINE=
+-#USE_READLINE= -DUSE_READLINE
++#USE_READLINE=
++USE_READLINE= -DUSE_READLINE
+ #
+-READLINE_LIB=
+-READLINE_EXTRAS=
++#READLINE_LIB=
++#READLINE_EXTRAS=
+ #
+-#READLINE_LIB= -lreadline
+-#READLINE_EXTRAS= -lhistory -lncurses
++READLINE_LIB= -lreadline
++READLINE_EXTRAS= -lhistory -lncurses
+ #
+ #READLINE_LIB= -L/usr/gnu/lib -lreadline
+ #READLINE_EXTRAS= -lhistory -lncurses
+@@ -869,7 +869,7 @@
+ #CALCPAGER= more
+ #CALCPAGER= pg
+ #CALCPAGER= cat
+-CALCPAGER= less
++#CALCPAGER= less
+ #CALCPAGER= less.exe -ci
+ 
+ # Debug/Optimize options for ${CC} and ${LCC}
+@@ -1012,35 +1012,36 @@
+ 
+ # standard utilities used during make
+ #
+-SHELL= /bin/sh
++#SHELL= /bin/sh
+ LANG= C
+-MAKE= make
++#MAKE= make
+ AWK= awk
+-SED= sed
++#SED= sed
+ DIFF= diff
+ GREP= egrep
+ SORT= sort
+ TEE= tee
+ CTAGS= ctags
+-CHMOD= chmod
++#CHMOD= chmod
+ FMT= fmt
+ XARGS= xargs
+ CMP= cmp
+-MKDIR= mkdir
++#MKDIR= mkdir
+ SPLINT= splint
+ SPLINT_OPTS=
+-RM= rm
+-TOUCH= touch
++#RM= rm
++#TOUCH= touch
+ RMDIR= rmdir
+-CP= cp
+-MV= mv
++#CP= cp
++#MV= mv
+ CO= co
+ AR= ar
+-TRUE= true
+-CAT= cat
++#TRUE= true
++#CAT= cat
+ COL= col
+-LN= ln
+-LDCONFIG= ldconfig
++#LN= ln
++#LDCONFIG= ldconfig
++LDCONFIG=
+ # assume the X11 makedepend tool for the depend rule
+ MAKEDEPEND= makedepend
+ STRIP= strip
+@@ -1248,13 +1249,15 @@
+ #
+ CCWARN= -Wall -W -Wno-comment
+ CCWERR=
+-CCOPT= ${DEBUG}
++#CCOPT= ${DEBUG}
++CCOPT=
+ CCMISC=
+ #
+-LCC= gcc
+-CC= ${PURIFY} ${LCC} ${CCWERR}
++LCC= ${CC}
++#CC= ${PURIFY} ${LCC} ${CCWERR}
+ #
+-MAKE= gmake
++#MAKE= gmake
++MAKE= ${GMAKE}
+ #
+ endif
+ 
+@@ -1516,7 +1519,8 @@
+ else
+ ICFLAGS= ${COMMON_CFLAGS} ${CC_SHARE}
+ endif
+-CFLAGS= ${ICFLAGS} ${CCOPT}
++#CFLAGS= ${ICFLAGS} ${CCOPT}
++CFLAGS+= ${ICFLAGS} ${CCOPT}
+ 
+ # Required flags to link files for calc
+ #
+@@ -1728,7 +1732,7 @@
+     PURIFY="${PURIFY}" \
+     Q="${Q}" \
+     RANLIB="${RANLIB}" \
+-    RM=${RM} \
++    RM="${RM}" \
+     RMDIR=${RMDIR} \
+     SCRIPTDIR="${SCRIPTDIR}" \
+     SED=${SED} \
+@@ -1768,7 +1772,7 @@
+     MKDIR=${MKDIR} \
+     MV=${MV} \
+     Q="${Q}" \
+-    RM=${RM} \
++    RM="${RM}" \
+     RMDIR=${RMDIR} \
+     SCRIPTDIR="${SCRIPTDIR}" \
+     SED=${SED} \
+@@ -1797,7 +1801,7 @@
+     MKDIR=${MKDIR} \
+     MV=${MV} \
+     Q="${Q}" \
+-    RM=${RM} \
++    RM="${RM}" \
+     RMDIR=${RMDIR} \
+     SCRIPTDIR="${SCRIPTDIR}" \
+     T=${T} \
+@@ -1826,7 +1830,7 @@
+     MKDIR=${MKDIR} \
+     MV=${MV} \
+     Q="${Q}" \
+-    RM=${RM} \
++    RM="${RM}" \
+     RMDIR=${RMDIR} \
+     SCRIPTDIR="${SCRIPTDIR}" \
+     SED=${SED} \

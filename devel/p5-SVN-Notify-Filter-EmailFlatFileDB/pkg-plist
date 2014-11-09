@@ -1,0 +1,3 @@
+%%SITE_PERL%%/SVN/Notify/Filter/EmailFlatFileDB.pm
+%%PERL5_MAN3%%/SVN::Notify::Filter::EmailFlatFileDB.3.gz
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/SVN/Notify/Filter/EmailFlatFileDB/.packlist

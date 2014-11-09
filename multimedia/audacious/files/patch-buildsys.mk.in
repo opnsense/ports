@@ -1,0 +1,20 @@
+--- buildsys.mk.in.orig	2012-10-28 10:42:20.000000000 +0100
++++ buildsys.mk.in	2012-10-28 10:43:37.000000000 +0100
+@@ -132,7 +132,7 @@
+ 	done; \
+ 	if test x"$$regen" = x"1" -a x"$$deps" != x""; then \
+ 		${DEPEND_STATUS}; \
+-		if ${MAKE} ${MFLAGS} $$deps && cat $$deps >.deps; then \
++		if ${MAKE} ${MFLAGS} $$deps && sed 's|/[^ ]*/include/audacious/dbus.h||g' $$deps >.deps; then \
+ 			rm -f $$deps; \
+ 			${DEPEND_OK}; \
+ 		else \
+@@ -151,7 +151,7 @@
+ 
+ ${PROG} ${PROG_NOINST}: ${EXT_DEPS} ${OBJS} ${OBJS_EXTRA}
+ 	${LINK_STATUS}
+-	if ${LD} -o $@ ${OBJS} ${OBJS_EXTRA} ${LDFLAGS} ${LIBS}; then \
++	if ${LD} -o $@ ${OBJS} ${OBJS_EXTRA} ${LIBS} ${LDFLAGS}; then \
+ 		${LINK_OK}; \
+ 	else \
+ 		${LINK_FAILED}; \

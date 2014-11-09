@@ -1,0 +1,10 @@
+/* ================================================================= */
+Edit /etc/rc.conf and set
+
+proxsmtpd_enable="YES"
+
+to enable proxsmtpd. 
+
+To make it work with Postfix, see: 
+http://memberwebs.com/stef/software/proxsmtp/postfix.html
+/* ================================================================= */

@@ -1,0 +1,30 @@
+--- cgx_2.7/src/Makefile.orig	2014-02-18 13:47:05.000000000 -0500
++++ cgx_2.7/src/Makefile	2014-02-26 15:01:59.000000000 -0500
+@@ -1,14 +1,14 @@
+ CFLAGS = -O3 -Wall \
+   -I./ \
+   -I/usr/include \
+-  -I/usr/include/GL \
++  -I$(LOCALBASE)/GL \
+   -I../../libSNL/src \
+   -I../../glut-3.5/src \
+-  -I/usr/X11/include 
++  -I$(LOCALBASE)/include 
+ 
+ LFLAGS = \
+-  -L/usr/lib64 -lGL -lGLU \
+-  -L/usr/X11R6/lib64 -lX11 -lXi -lXmu -lXext -lXt -lSM -lICE \
++  -L$(LOCALBASE) -lGL -lGLU \
++  -lX11 -lXi -lXmu -lXext -lXt -lSM -lICE \
+   -lm -lpthread -lrt
+ 
+ 
+@@ -62,7 +62,7 @@
+ OUTIL = $(SUTIL:.c=.o)
+ 
+ cgx: $(OLIB) $(OUTIL)
+-	g++   $(OLIB) $(OUTIL)  $(CFLAGS) $(LFLAGS) -o  $@
++	${CXX} $(OLIB) $(OUTIL)  $(CFLAGS) $(LFLAGS) -o  $@
+ 
+ 
+ 

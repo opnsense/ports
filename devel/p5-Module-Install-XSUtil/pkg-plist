@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Module/Install/XSUtil.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Module/Install/XSUtil/.packlist
+%%PERL5_MAN3%%/Module::Install::XSUtil.3.gz

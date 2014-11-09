@@ -1,0 +1,8 @@
+bin/xgraph
+man/man1/xgraph.1.gz
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/bar.xg
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/surface.xg
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/surface2.xg
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/surface3.xg
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/xgtest.xg
+%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%

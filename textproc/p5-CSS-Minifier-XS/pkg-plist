@@ -1,0 +1,9 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/CSS/Minifier/XS.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/CSS/Minifier/XS/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/CSS/Minifier/XS/XS.so
+%%PERL5_MAN3%%/CSS::Minifier::XS.3.gz
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/CSS/Minifier/XS
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/CSS/Minifier
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/CSS
+@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/CSS/Minifier
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/CSS

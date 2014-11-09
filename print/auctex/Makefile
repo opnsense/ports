@@ -1,0 +1,39 @@
+# Created by: Martin Kammerhofer
+# $FreeBSD$
+
+PORTNAME=	auctex
+PORTVERSION=	11.88
+PORTREVISION=	1
+CATEGORIES=	print elisp
+MASTER_SITES=	${MASTER_SITE_GNU}
+MASTER_SITE_SUBDIR=	${PORTNAME}
+PKGNAMESUFFIX=		-${EMACS_PORT_NAME}
+
+MAINTAINER=	hrs@FreeBSD.org
+COMMENT=	Integrated environment for writing LaTeX using GNU Emacs
+
+LICENSE=	GPLv3
+
+NOT_FOR_ARCHS=	ia64
+USE_TEX=	latex
+USE_GHOSTSCRIPT=yes
+USE_EMACS=	yes
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-lispdir=${PREFIX}/${LISPDIR} \
+		--with-auto-dir=${PREFIX}/${LISPDIR}/auctex/auto \
+		--with-texmf-dir=${PREFIX}/${TEXMFDIR}
+DOCS_CONFIGURE_ON=	--docdir=${DOCSDIR}
+DOCS_CONFIGURE_OFF=	WITHOUT_AUCTEX_DOCSDIR=yes
+PORTDOCS=	tex-ref.pdf
+INFO=		auctex preview-latex
+LISPDIR=	${EMACS_VERSION_SITE_LISPDIR}
+PLIST_SUB+=	LISPDIR=${LISPDIR} \
+		TEXMFDIR=${TEXMFDIR} \
+		MKTEXLSR=${MKTEXLSR}
+SUB_FILES=	pkg-message
+PKGMESSAGE=	${WRKDIR}/pkg-message
+
+OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFAULT=DOCS
+
+.include <bsd.port.mk>

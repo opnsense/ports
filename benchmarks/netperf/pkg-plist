@@ -1,0 +1,13 @@
+bin/netperf
+bin/netserver
+man/man1/netperf.1.gz
+man/man1/netserver.1.gz
+%%EXAMPLESDIR%%/arr_script
+%%EXAMPLESDIR%%/packet_byte_script
+%%EXAMPLESDIR%%/sctp_stream_script
+%%EXAMPLESDIR%%/snapshot_script
+%%EXAMPLESDIR%%/tcp_range_script
+%%EXAMPLESDIR%%/tcp_rr_script
+%%EXAMPLESDIR%%/tcp_stream_script
+%%EXAMPLESDIR%%/udp_rr_script
+%%EXAMPLESDIR%%/udp_stream_script

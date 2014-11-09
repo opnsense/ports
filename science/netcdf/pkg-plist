@@ -1,0 +1,21 @@
+bin/nc-config
+bin/nccopy
+bin/ncdump
+bin/ncgen
+bin/ncgen3
+include/netcdf.h
+lib/libnetcdf.so
+lib/libnetcdf.so.%%PORTVERSION%%
+lib/libnetcdf.so.7.2.0
+libdata/pkgconfig/netcdf.pc
+man/man1/nccopy.1.gz
+man/man1/ncdump.1.gz
+man/man1/ncgen.1.gz
+man/man1/ncgen3.1.gz
+man/man3/netcdf.3.gz
+share/cmake/Modules/netcdf-config-version.cmake
+share/cmake/Modules/netcdf-config.cmake
+share/cmake/Modules/netcdf-targets-%%CMAKE_BUILD_TYPE%%.cmake
+share/cmake/Modules/netcdf-targets.cmake
+@dirrmtry share/cmake/Modules
+@dirrmtry share/cmake

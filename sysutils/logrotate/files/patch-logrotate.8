@@ -1,0 +1,24 @@
+--- logrotate.8.orig	2012-11-09 19:10:08.054188039 +0800
++++ logrotate.8	2012-11-09 19:10:57.749187879 +0800
+@@ -59,7 +59,7 @@
+ \fB-s, -\-state <statefile>\fR
+ Tells \fBlogrotate\fR to use an alternate state file.  This is useful
+ if logrotate is being run as a different user for various sets of
+-log files.  The default state file is \fI/var/lib/logrotate.status\fR.
++log files.  The default state file is \fI/var/run/logrotate.status\fR.
+ 
+ .TP
+ \fB-\-usage\fR
+@@ -507,10 +507,10 @@
+ .SH FILES
+ .PD 0
+ .TP 27
+-\fI/var/lib/logrotate.status\fR
++\fI/var/run/logrotate.status\fR
+ Default state file.
+ .TP 27
+-\fI/etc/logrotate.conf\fR
++\fI/usr/local/etc/logrotate.conf\fR
+ Configuration options.
+ 
+ .SH SEE ALSO

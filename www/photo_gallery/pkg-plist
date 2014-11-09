@@ -1,0 +1,5 @@
+%%WWWDIR%%/index.cgi
+%%WWWDIR%%/readme.html
+%%WWWDIR%%/.header.html
+%%WWWDIR%%/.footer.html
+@dirrm %%WWWDIR%%

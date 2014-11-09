@@ -1,0 +1,24 @@
+# Created by: Alexey V. Degtyarev <alexey@renatasystems.org>
+# $FreeBSD$
+
+PORTNAME=	wikigoodies
+PORTVERSION=	0.3.3522
+PORTREVISION=	3
+CATEGORIES=	www devel python
+MASTER_SITES=	ftp://ftp.renatasystems.org/pub/FreeBSD/ports/distfiles/
+PKGNAMEPREFIX=	trac-
+DISTNAME=	${PORTNAME}plugin.${PORTVERSION}
+
+MAINTAINER=	alexey@renatasystems.org
+COMMENT=	Plugin for Trac which extends the Wiki with some goodies
+
+RUN_DEPENDS=	tracd:${PORTSDIR}/www/trac
+
+WRKSRC=		${WRKDIR}/${PORTNAME}plugin/0.11
+
+USE_PYTHON=		yes
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
+
+.include "${.CURDIR}/../../www/trac/plugin.mk"
+.include <bsd.port.mk>

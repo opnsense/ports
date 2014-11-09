@@ -1,0 +1,301 @@
+--- Makefile	Thu Jan  1 01:00:00 1970
++++ Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,4 @@
++
++SUBDIR= lib apps
++
++.include <bsd.subdir.mk>
+--- apps/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,6 @@
++
++SUBDIR= atodtst counter coupler fish gethumd memutil mweather shaapp \
++	swtsngl temp tstfind
++
++.include <bsd.subdir.mk>
++
+--- apps/atodtst/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/atodtst/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		atodtst
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/counter/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/counter/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		counter
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/coupler/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/coupler/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		coupler
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/fish/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/fish/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		fish
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/gethumd/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/gethumd/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		gethumd
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/memutil/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/memutil/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		memutil
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/mweather/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/mweather/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		mweather
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/shaapp/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/shaapp/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		shaapp
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/swtloop/Makefile.app	Thu Jan  1 01:00:00 1970
++++ apps/swtloop/Makefile.app	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,8 @@
++PROG=		tstfind
++CFLAGS=         -I. -Wall -I ../../common
++LDFLAGS=	-L ../../common -L ../../lib/userial
++LDADD=		-lmlanser -lmlancom 
++NO_MAN=		true
++SRCS=           tstfind.c
++
++.include	<bsd.prog.mk>
+--- apps/swtsngl/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/swtsngl/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		swtsngl
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/temp/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/temp/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		temp
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- apps/thermo/Makefile.app	Thu Jan  1 01:00:00 1970
++++ apps/thermo/Makefile.app	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,8 @@
++PROG=		tstfind
++CFLAGS=         -I. -Wall -I ../../common
++LDFLAGS=	-L ../../common -L ../../lib/userial
++LDADD=		-lmlanser -lmlancom 
++NO_MAN=		true
++SRCS=           tstfind.c
++
++.include	<bsd.prog.mk>
+--- apps/tstfind/Makefile	Thu Jan  1 01:00:00 1970
++++ apps/tstfind/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,15 @@
++PROG=		tstfind
++PREFIX?=	/usr/local
++BINDIR=		${PREFIX}/bin
++MLANCOM=	${.CURDIR}/../../common
++MLANLIB=	${.CURDIR}/../../lib/userial
++CFLAGS=         -I. -Wall -I${MLANCOM}
++LDADD=		-L${MLANLIB} -lmlan
++DPADD=		${MLANLIB}/libmlan.a
++NO_MAN=		1
++SRCS=           ${PROG}.c
++
++test:		${PROG}
++		./${PROG} /dev/cuaa0
++
++.include	<bsd.prog.mk>
+--- common/ownet.h	Fri Sep 28 21:42:02 2001
++++ common/ownet.h	Wed Oct 27 17:03:17 2004
+@@ -133,6 +133,10 @@
+          typedef unsigned short ushort;
+          typedef unsigned long  ulong;
+       #endif
++      #if (__FreeBSD__)
++         #include <sys/types.h>
++         typedef unsigned long  ulong;
++      #endif
+    #endif
+    #ifdef SDCC
+       //intent of ushort is 2 bytes unsigned.
+--- lib/Makefile	Thu Jan  1 01:00:00 1970
++++ lib/Makefile	Wed Oct 27 17:03:17 2004
+@@ -0,0 +1,3 @@
++SUBDIR= userial
++
++.include <bsd.subdir.mk>
+--- lib/userial/Link/linuxlnk.c	Fri Sep 28 21:42:14 2001
++++ lib/userial/Link/linuxlnk.c	Wed Oct 27 17:03:17 2004
+@@ -93,6 +93,7 @@
+ #include <termios.h>
+ #include <errno.h>
+ #include <sys/time.h>
++#include <string.h>
+ 
+ #include "ds2480.h"
+ #include "ownet.h"
+--- lib/userial/Makefile	Thu Jan  1 01:00:00 1970
++++ lib/userial/Makefile	Wed Oct 27 17:03:56 2004
+@@ -0,0 +1,33 @@
++MLANCOM=	${.CURDIR}/../../common
++MLANLNK=	${.CURDIR}/Link
++LIB=		mlan
++CFLAGS=		-I. -Wall -I${MLANCOM}
++NOPROFILE=	yes
++PREFIX?=	/usr/local
++LIBDIR=		${PREFIX}/lib
++
++
++.PATH: ${MLANCOM} ${MLANLNK}
++
++SRCS=	ds2480ut.c owllu.c ownetu.c owsesu.c owtrnu.c 
++
++SRCS+=	linuxlnk.c
++
++SRCS+=	ad26.c atod20.c cnt1d.c \
++	crcutil.c findtype.c ibsha33o.c \
++	ioutil.c mbappreg.c mbee.c \
++	mbeprom.c mbnv.c mbnvcrc.c \
++	mbscr.c mbscrcrc.c mbscree.c \
++	mbscrex.c mbsha.c mbshaee.c \
++	owcache.c owerr.c owfile.c \
++	owpgrw.c owprgm.c rawmem.c \
++	screenio.c sha18.c sha33.c \
++	shadebit.c shadebitvm.c shaibutton.c \
++	swt05.c swt12.c swt1f.c \
++	temp10.c thermo21.c weather.c
++
++beforeinstall:
++	${INSTALL} ${COPY} -o ${LIBOWN} -g ${LIBGRP} -m ${LIBMODE} \
++		${_INSTALLFLAGS} ${MLANCOM}/ownet.h ${DESTDIR}/${PREFIX}/include
++
++.include <bsd.lib.mk>

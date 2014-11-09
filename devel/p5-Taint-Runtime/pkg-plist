@@ -1,0 +1,5 @@
+%%PERL5_MAN3%%/Taint::Runtime.3.gz
+%%SITE_PERL%%/%%PERL_ARCH%%/Taint/Runtime.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/Taint/is_taint_bench.pl
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Taint/Runtime/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Taint/Runtime/Runtime.so

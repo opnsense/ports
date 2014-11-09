@@ -1,0 +1,138 @@
+# Created by: Andrew Pantyukhin <infofarmer@FreeBSD.org>
+# $FreeBSD$
+.if defined(OVERRIDE_LINUX_NONBASE_PORTS) && \
+    ${OVERRIDE_LINUX_NONBASE_PORTS} != "f10"
+.undef WANT_GTK218
+.endif
+
+CATEGORIES+=	linux
+MASTER_SITES?=	MOZILLA/${PORTNAME}/releases/${PORTVERSION}esr/linux-i686/en-US
+PKGNAMEPREFIX?=		linux-
+
+.if defined(WANT_GTK218)
+MASTER_SITES+=	https://archives.fedoraproject.org/pub/archive/fedora/linux/releases/12/Everything/i386/os/Packages/:f12
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
+		glib2-2.22.2-2.fc12.i686.rpm:f12 \
+		gtk2-2.18.3-19.fc12.i686.rpm:f12
+GTK218_FILES=	lib/libgio-2.0.so.0 \
+		lib/libglib-2.0.so.0 \
+		usr/lib/libgdk-x11-2.0.so.0 \
+		usr/lib/libgtk-x11-2.0.so.0
+.endif
+
+USES+=		cpe
+CPE_VENDOR?=	mozilla
+CPE_TARGET_SW?=	linux
+NO_BUILD=	yes
+ONLY_FOR_ARCHS=	i386 amd64
+APP_NAME=	${PKGBASE}
+BIN_NAME?=	${PORTNAME}
+USE_LINUX=	yes
+USE_LINUX_APPS+=alsalib alsa-plugins-oss atk dbusglib dbuslibs \
+		fontconfig gtk2 hicontheme pango
+
+WRKSRC?=	${WRKDIR}/${BIN_NAME}
+FDIR=		${STAGEDIR}${PREFIX}/lib/${APP_NAME}
+COMMON_DIR=	${.CURDIR}/../../www/linux-seamonkey
+
+APP_ENV+=	MOZ_CRASHREPORTER_DISABLE=1
+
+PLIST_SUB+=	APP_NAME=${APP_NAME}
+SUB_LIST+=	APP_NAME=${APP_NAME}
+SUB_FILES=	${APP_NAME}.desktop
+PREFS_FILE?=	${WRKSRC}/defaults/pref/browser-prefs.js
+.if defined(PKGNAMESUFFIX) && ${PKGNAMESUFFIX:M*devel*}
+DESKTOP_SUFFIX?=	(Linux, devel)
+.endif
+DESKTOP_SUFFIX?=	(Linux)
+
+.if defined(WANT_GTK218)
+PLIST_SUB+=	GTK218=""
+.else
+PLIST_SUB+=	GTK218="@comment "
+.endif
+
+_A=	>> ${TMPPLIST}
+_Q=	2>/dev/null || true
+
+.if !target(post-extract)
+post-extract:
+	@${RM} -rf ${WRKSRC}/updates
+	@${LN} -sf ${LOCALBASE}/lib/browser_plugins/symlinks/${APP_NAME} \
+		${WRKSRC}/${APP_SUBDIR}plugins
+. if defined(WANT_GTK218)
+.  for f in ${GTK218_FILES}
+	@${CP} -p ${WRKDIR}/${f} ${WRKSRC}
+	@${ECHO_CMD} ${f:T} >>${WRKSRC}/dependentlibs.list
+.  endfor
+	@${REINPLACE_CMD} -i '' '/libxul/ { h; d; }; $$G' \
+		${WRKSRC}/dependentlibs.list
+. endif
+.endif
+
+
+.if !target(post-patch)
+post-patch:
+	@${MKDIR} ${PREFS_FILE:H}
+
+	# disable SSL 3.0 per bug 1076983
+	${ECHO} 'pref("security.tls.version.min", 1);' >> ${PREFS_FILE}
+.endif
+
+.if !target(do-install)
+do-install:
+	@${INSTALL_DATA} ${WRKDIR}/${APP_NAME}.desktop ${STAGEDIR}${PREFIX}/share/applications/
+	@${CP} -pR ${WRKSRC}/ ${FDIR}/
+	@${PRINTF} '#! /bin/sh\n${APP_ENV} \
+		${PREFIX}/lib/${APP_NAME}/${BIN_NAME} "$$@"\n' \
+		>>${STAGEDIR}${PREFIX}/bin/${APP_NAME}
+	@${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${APP_NAME}
+	@${CP} -R ${LOCALBASE}/lib/xpi/symlinks/${APP_NAME}/ \
+		${FDIR}/${APP_SUBDIR}extensions/ ${_Q}
+.endif
+
+# Keep empty directories with pkg_* tools
+.if !target(post-extract-script)
+post-extract-script:
+	@if [ "${PKG_BIN:T}" != "pkg-static" ]; then \
+	    for d in $$(${FIND} ${WRKSRC} -type d -empty); do \
+		${TOUCH} $$d/.keep_me; \
+		${ECHO_CMD} lib/${APP_NAME}/$${d#${WRKSRC}/}/.keep_me \
+			>> ${WRKDIR}/.PLIST.opkg; \
+	    done; \
+	fi
+.endif
+
+.if !target(post-install-script)
+post-install-script:
+	@if [ -f ${WRKDIR}/.PLIST.opkg ]; then \
+		${CAT} ${TMPPLIST} >> ${WRKDIR}/.PLIST.opkg; \
+		${MV} ${WRKDIR}/.PLIST.opkg ${TMPPLIST}; \
+	fi
+.endif
+
+# Maintainer section
+create-plist: build
+	${ECHO_CMD} bin/%%APP_NAME%% > ${PLIST}
+	${ECHO_CMD} share/applications/%%APP_NAME%%.desktop >> ${PLIST}
+	cd ${WRKSRC} && ${FIND} -s . -type f -or -type l | \
+		${SED} -e "s#^\.#lib/%%APP_NAME%%#" | ${SORT} >> ${PLIST}
+	${ECHO_CMD} '@exec ${CP} -R %%LOCALBASE%%/lib/xpi/symlinks/%%APP_NAME%%/ \
+		%D/lib/%%APP_NAME%%/${APP_SUBDIR}extensions/ ${_Q}' >> ${PLIST}
+	${ECHO_CMD} '@unexec ${FIND} %D/lib/%%APP_NAME%%/${APP_SUBDIR}extensions/ \
+		-depth 1 -type l -delete ${_Q}' >> ${PLIST}
+.if defined(WANT_GTK218)
+. for f in ${GTK218_FILES}
+	${REINPLACE_CMD} -i '' '/${f:T}/s/^/%%GTK218%%/' ${PLIST}
+. endfor
+.endif
+
+snatch-desktop:
+	${SED} -E -e 's/${PORTNAME}/${APP_NAME}/' \
+		-e "s,@MOZILLA_NAME@,$$(echo ${PORTNAME} | ${SED} 's/\b./\u&/g')," \
+		-e 's/@MOZILLA@|%%MOZILLA%%/${APP_NAME}/' \
+		-e 's/^(Name.*=.+)$$/\1 ${DESKTOP_SUFFIX}/' \
+		-e 's/^(GenericName.*=.+)$$/\1 ${DESKTOP_SUFFIX}/' \
+		-e 's!^Icon=.*$$!Icon=%%PREFIX%%/lib/%%APP_NAME%%/chrome/icons/default/default.xpm!' \
+		${PORTSDIR}/${PKGCATEGORY}/${PORTNAME}/files/${PORTNAME}.desktop.in > \
+		${FILESDIR}/${APP_NAME}.desktop.in

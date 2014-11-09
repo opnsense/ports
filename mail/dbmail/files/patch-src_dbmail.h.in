@@ -1,0 +1,14 @@
+--- src/dbmail.h.in.orig
++++ src/dbmail.h.in
+@@ -154,6 +160,11 @@
+ #include <endian.h>
+ #endif
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
++
+ #define GETCONFIGVALUE(key, sect, var) \
+        config_get_value(key, sect, var); \
+        if (strlen(var) > 0) \

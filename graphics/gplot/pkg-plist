@@ -1,0 +1,4 @@
+bin/gplot
+bin/gtex
+lib/libcgm.a
+man/man1/gplot.1.gz

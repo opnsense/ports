@@ -1,0 +1,3 @@
+bin/jalingo
+%%DATADIR%%/%%JALINGOJAR%%
+@dirrm %%DATADIR%%

@@ -1,0 +1,110 @@
+Index: cardlayer/src/cache.cpp
+===================================================================
+--- cardlayer/src/cache.cpp	(revision 1614)
++++ cardlayer/src/cache.cpp	(working copy)
+@@ -203,10 +203,8 @@ void CCache::DiskStoreFile(const std::st
+ 		; // TODO: log
+ 	else
+ 	{
+-		size_t tmpHeader = fwrite(&header, sizeof(tCacheHeader), 1, f);
+-		tmpHeader = tmpHeader;	//avoid warning
+-		size_t tmpData   = fwrite(oData.GetBytes(), 1, oData.Size(), f);
+-		tmpData = tmpData;	//avoid warning
++		(void)fwrite(&header, sizeof(tCacheHeader), 1, f);
++		(void)fwrite(oData.GetBytes(), 1, oData.Size(), f);
+ 		fclose(f);
+ 	}
+ }
+Index: cardlayer/src/card.cpp
+===================================================================
+--- cardlayer/src/card.cpp	(revision 1614)
++++ cardlayer/src/card.cpp	(working copy)
+@@ -301,7 +301,7 @@ tCacheInfo CCard::GetCacheInfo(const std
+ {
+ 	// By default no caching, card must implement this method
+ 	// to allow certain files to be cached (in a certain way).
+-	tCacheInfo dontCache = {DONT_CACHE};
++	tCacheInfo dontCache = {DONT_CACHE,0};
+ 
+ 	return dontCache;
+ }
+Index: cardlayer/src/pkcs15.cpp
+===================================================================
+--- cardlayer/src/pkcs15.cpp	(revision 1614)
++++ cardlayer/src/pkcs15.cpp	(working copy)
+@@ -27,7 +27,7 @@ namespace eIDMW
+ {
+ 
+   const static tPin PinInvalid = {false, "",0,0,0,0,0,0, 0, 0, 0, 0, 0,PIN_ENC_BCD,"",""};
+-  const static tCert CertInvalid = {false, "", 0, 0,0,0};
++  const static tCert CertInvalid = {false, "", 0, 0,0,0,false,false,""};
+   const static tPrivKey PrivKeyInvalid = {false, "", 0,0,0,0,0,0,0,"", 0,false};
+ 
+   // Hardcoded Beid V1 PINs, keys, certs -- to be removed
+@@ -59,13 +59,12 @@ namespace eIDMW
+   const std::string defaultEFODF       = "3F00DF005031";
+ 
+ 
+-  CPKCS15::CPKCS15(void) : m_poContext(NULL), m_poParser(NULL)
++  CPKCS15::CPKCS15(void) : m_poParser(NULL)
+   {
+     Clear();
+   }
+ 
+   CPKCS15::CPKCS15(CContext *poContext) :
+-    m_poContext(poContext),
+     m_poParser(NULL)
+   {
+     Clear();
+Index: cardlayer/src/pkcs15.h
+===================================================================
+--- cardlayer/src/pkcs15.h	(revision 1614)
++++ cardlayer/src/pkcs15.h	(working copy)
+@@ -90,7 +90,6 @@ namespace eIDMW
+ 
+   private:
+     CCard *m_poCard;
+-    CContext *m_poContext;
+     PKCS15Parser *m_poParser;
+ 
+ #ifdef WIN32
+Index: cardlayer/src/reader.cpp
+===================================================================
+--- cardlayer/src/reader.cpp	(revision 1614)
++++ cardlayer/src/reader.cpp	(working copy)
+@@ -280,8 +280,7 @@ std::string CReader::GetSerialNr()
+     }
+     catch(CMWException &e)
+     {
+-	unsigned long err = e.GetError();
+-	err = err;
++	(void)e.GetError();
+         return m_oPKCS15.GetSerialNr();
+     }
+ }
+Index: cardlayer/src/threadpool.cpp
+===================================================================
+--- cardlayer/src/threadpool.cpp	(revision 1614)
++++ cardlayer/src/threadpool.cpp	(working copy)
+@@ -79,7 +79,7 @@ void CEventCallbackThread::Run()
+ 	m_bRunning = false;
+ }
+ 
+-void CEventCallbackThread::Stop()
++void CEventCallbackThread::Stop(unsigned long ulSleepFrequency)
+ {
+ 	m_bStop = true;
+ }
+Index: cardlayer/src/threadpool.h
+===================================================================
+--- cardlayer/src/threadpool.h	(revision 1614)
++++ cardlayer/src/threadpool.h	(working copy)
+@@ -42,7 +42,7 @@ public:
+ 
+ 	void Run();
+ 
+-	void Stop();
++	void Stop(unsigned long ulSleepFrequency=100);
+ 
+ 	bool HasStopped();
+ 

@@ -1,0 +1,4 @@
+bin/pouetChess
+@unexec if cmp -s %D/etc/pouetChess.conf %D/etc/pouetChess.conf.sample; then rm -f %D/etc/pouetChess.conf; fi
+etc/pouetChess.conf.sample
+@exec if [ ! -f %D/etc/pouetChess.conf ]; then cp -p %D/etc/pouetChess.conf.sample %D/etc/pouetChess.conf; fi

@@ -1,0 +1,21 @@
+# $FreeBSD$
+
+PORTNAME=	HTML-ExtractContent
+PORTVERSION=	0.10
+CATEGORIES=	www perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	kuriyama@FreeBSD.org
+COMMENT=	Perl extension for HTML content extractor with scoring heuristics
+
+RUN_DEPENDS=	\
+	p5-Class-Accessor-Lvalue>0:${PORTSDIR}/devel/p5-Class-Accessor-Lvalue \
+	p5-Exporter-Lite>0:${PORTSDIR}/devel/p5-Exporter-Lite \
+	p5-HTML-Parser>0:${PORTSDIR}/www/p5-HTML-Parser
+BUILD_DEPENDS:=	${RUN_DEPENDS}
+
+USES=		perl5
+USE_PERL5=	configure
+
+.include <bsd.port.mk>

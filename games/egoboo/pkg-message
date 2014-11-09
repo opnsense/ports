@@ -1,0 +1,3 @@
+On first run, egoboo creates and populates ~/.egoboo directory. If
+egooboo doesn't start, try deleting ~/.egoboo so the game can
+recreate it.

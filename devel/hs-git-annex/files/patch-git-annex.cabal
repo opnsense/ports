@@ -1,0 +1,16 @@
+--- ./git-annex.cabal.orig	2014-08-17 16:50:18.000000000 +0200
++++ ./git-annex.cabal	2014-08-25 13:15:46.000000000 +0200
+@@ -185,10 +185,11 @@
+     CPP-Options: -DANDROID_SPLICES
+ 
+   if flag(Webapp)
++    extensions: TemplateHaskell
+     Build-Depends:
+-     yesod, yesod-default, yesod-static, yesod-form, yesod-core,
++     yesod (>= 1.2), yesod-static, yesod-form, yesod-core,
+      wai, wai-extra, warp, warp-tls,
+-     blaze-builder, crypto-api, hamlet, clientsession,
++     blaze-builder, crypto-api, clientsession,
+      template-haskell, data-default, aeson, path-pieces,
+      shakespeare
+     CPP-Options: -DWITH_WEBAPP

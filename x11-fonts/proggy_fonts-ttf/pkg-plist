@@ -1,0 +1,10 @@
+%%FONTDIR%%/ProggyClean.ttf
+%%FONTDIR%%/ProggyCleanCE.ttf
+%%FONTDIR%%/ProggyCleanSZ.ttf
+%%FONTDIR%%/ProggyCleanSZBP.ttf
+%%FONTDIR%%/ProggySmall.ttf
+%%FONTDIR%%/ProggySquare.ttf
+%%FONTDIR%%/ProggySquareSZ.ttf
+%%FONTDIR%%/ProggyTiny.ttf
+%%FONTDIR%%/ProggyTinySZ.ttf
+@fcfontsdir %%FONTDIR%%

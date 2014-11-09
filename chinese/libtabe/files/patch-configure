@@ -1,0 +1,46 @@
+--- configure.orig	Mon Sep 20 01:16:48 2004
++++ configure	Sat Apr 22 01:18:43 2006
+@@ -18984,6 +18984,10 @@
+ else
+   ac_check_lib_save_LIBS=$LIBS
+ LIBS="-l$dbname  $LIBS"
++__db_create="db_create"
++if [ "$dbname" = "db-4.2" ]; then
++  __db_create="db_create_4002"
++fi
+ cat >conftest.$ac_ext <<_ACEOF
+ /* confdefs.h.  */
+ _ACEOF
+@@ -18997,11 +19001,11 @@
+ #endif
+ /* We use char because int might match the return type of a gcc2
+    builtin and then its argument prototype would still apply.  */
+-char db_create ();
++char $__db_create ();
+ int
+ main ()
+ {
+-db_create ();
++$__db_create ();
+   ;
+   return 0;
+ }
+@@ -19253,7 +19257,9 @@
+ #endif
+ if(errno) return errno;
+ 
+-#if DB_VERSION >= 303011
++#if DB_VERSION >= 403000
++errno = dbp->stat(dbp, NULL, &sp, 0);
++#elif DB_VERSION >= 303011
+ errno = dbp->stat(dbp, &sp, 0);
+ #else
+ errno = dbp->stat(dbp, &sp, NULL, 0);
+@@ -20833,6 +20839,7 @@
+ s,@with_db_inc@,$with_db_inc,;t t
+ s,@with_db_lib@,$with_db_lib,;t t
+ s,@with_db_bin@,$with_db_bin,;t t
++s,@with_db_name@,$with_db_name,;t t
+ s,@x_includes@,$x_includes,;t t
+ s,@x_libraries@,$x_libraries,;t t
+ s,@build_supports@,$build_supports,;t t

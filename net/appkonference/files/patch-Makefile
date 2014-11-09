@@ -1,0 +1,58 @@
+--- ./Makefile.orig	2012-01-25 20:40:01.000000000 +0100
++++ ./Makefile	2014-08-22 10:44:57.000000000 +0200
+@@ -16,11 +16,11 @@
+ ASTERISK_SRC_DIR =
+ 
+ # asterisk release or subversion working copy
+-ASTERISK_SRC_VERSION = $(shell if [ -e $(ASTERISK_SRC_DIR)/.version ] ; then echo release; elif [ -e $(ASTERISK_SRC_DIR)/.svn ] ; then echo subversion; else echo unknown; fi)
++ASTERISK_SRC_VERSION = release
+ 
+ # asterisk release version or subversion branch
+ ifeq ($(ASTERISK_SRC_VERSION),release)
+- ASTERISK = $(shell cat $(ASTERISK_SRC_DIR)/.version | cut -d "." -f1,2 | sed -e 's/\.//')
++ ASTERISK = 18
+ else
+  ifeq ($(ASTERISK_SRC_VERSION),subversion)
+   ASTERISK = $(shell svn info $(ASTERISK_SRC_DIR) | grep URL | sed -e 's:^.*/::' | cut -d "." -f 1,2 | sed -e 's/\.//')
+@@ -31,10 +31,10 @@
+ endif
+ 
+ # asterisk include directory
+-ASTERISK_INCLUDE_DIR = $(ASTERISK_SRC_DIR)/include
++ASTERISK_INCLUDE_DIR = ${LOCALBASE}/include
+ 
+ # asterisk module directory
+-INSTALL_MODULES_DIR = /usr/lib/asterisk/modules
++INSTALL_MODULES_DIR = ${LOCALBASE}/lib/asterisk/modules
+ 
+ # module release
+ RELEASE = 2.1
+@@ -86,7 +86,7 @@
+ # compiler flags
+ #
+ 
+-CFLAGS = -pipe -Wall -Wmissing-prototypes -Wmissing-declarations -MD -MP $(DEBUG)
++CFLAGS += -pipe -Wall -Wmissing-prototypes -Wmissing-declarations -MD -MP $(DEBUG)
+ #CFLAGS += -O3 -march=pentium3 -msse -mfpmath=sse,387 -ffast-math
+ # PERF: below is 10% faster than -O2 or -O3 alone.
+ #CFLAGS += -O3 -ffast-math -funroll-loops
+@@ -103,7 +103,7 @@
+ # preprocessor flags
+ #
+ 
+-CPPFLAGS = $(INCLUDE) -D_REENTRANT -D_GNU_SOURCE
++CPPFLAGS += $(INCLUDE) -D_REENTRANT -D_GNU_SOURCE
+ CPPFLAGS += -DRELEASE=\"$(RELEASE)\"
+ CPPFLAGS += -DASTERISK=$(ASTERISK)
+ CPPFLAGS += -DCHANNEL_TABLE_SIZE=$(CHANNEL_TABLE_SIZE)
+@@ -182,7 +182,8 @@
+ $(OBJS): $(INCS)
+ 
+ $(TARGET): $(OBJS)
+-	$(CC) $(SOLINK) -o $@ $(OBJS)
++	$(CC) $(LDFLAGS) $(SOLINK) -o $@ $(OBJS)
+ 
+ install:
+-	$(INSTALL) -m 755 $(TARGET) $(INSTALL_MODULES_DIR)
++	mkdir -p $(DESTDIR)$(INSTALL_MODULES_DIR)
++	$(INSTALL) -m 755 $(TARGET) $(DESTDIR)$(INSTALL_MODULES_DIR)

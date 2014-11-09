@@ -1,0 +1,18 @@
+# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	simplegeneric
+PORTVERSION=	0.8.1
+CATEGORIES=	devel python
+MASTER_SITES=	CHEESESHOP
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Simple generic functions
+
+LICENSE=	ZPL21
+
+USE_PYTHON=	autoplist distutils
+USES=		python zip
+
+.include <bsd.port.mk>

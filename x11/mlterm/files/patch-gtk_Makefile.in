@@ -1,0 +1,33 @@
+--- gtk/Makefile.in.orig	2012-04-20 09:03:22.000000000 +0900
++++ gtk/Makefile.in	2012-04-29 02:29:44.000000000 +0900
+@@ -25,10 +25,10 @@
+ 
+ OBJ = vte.o marshal.o vtetypebuiltins.o reaper.o
+ 
+-all: libvte@LIBVTE_SUFFIX@.la
++all: libvte-mlterm@LIBVTE_SUFFIX@.la
+ 
+-libvte@LIBVTE_SUFFIX@.la: $(OBJ)
+-	$(LIBTOOL_LINK) -o libvte@LIBVTE_SUFFIX@.la $(OBJ:.o=.lo) ../mlterm/*.lo \
++libvte-mlterm@LIBVTE_SUFFIX@.la: $(OBJ)
++	$(LIBTOOL_LINK) -o libvte-mlterm@LIBVTE_SUFFIX@.la $(OBJ:.o=.lo) ../mlterm/*.lo \
+ 	`echo ../xwindow/*.lo| \
+ 	sed 's/..\/xwindow\/x_sb_screen.lo//g' | \
+ 	sed 's/..\/xwindow\/x_scrollbar.lo//g' | \
+@@ -46,13 +46,13 @@
+ 		-I$(top_builddir)/xwindow -I../mkf/include -I../kiklib/include -g -c $<
+ 
+ clean:
+-	rm -rf $(OBJ) $(OBJ:.o=.lo) libvte@LIBVTE_SUFFIX@.la *.core .libs
++	rm -rf $(OBJ) $(OBJ:.o=.lo) libvte-mlterm@LIBVTE_SUFFIX@.la *.core .libs
+ 
+ distclean: clean
+ 	rm -f Makefile
+ 
+ install:
+-	$(LIBTOOL_INSTALL) libvte@LIBVTE_SUFFIX@.la $(LIBDIR)
++	$(LIBTOOL_INSTALL) libvte-mlterm@LIBVTE_SUFFIX@.la $(LIBDIR)
+ 
+ uninstall:
+-	rm -f $(LIBDIR)/libvte@LIBVTE_SUFFIX@.*
++	rm -f $(LIBDIR)/libvte-mlterm@LIBVTE_SUFFIX@.*

@@ -1,0 +1,27 @@
+# Created by: TAKAHASHI Kaoru <kaoru@kaisei.org>
+# $FreeBSD$
+
+PORTNAME=	Crypt-GCrypt
+PORTVERSION=	1.26
+PORTREVISION=	1
+CATEGORIES=	security perl5
+MASTER_SITES=	CPAN
+PKGNAMEPREFIX=	p5-
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Perl interface to the GNU Cryptographic library
+
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
+
+LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt
+
+CONFIGURE_ARGS=	GCRYPTINCPATH=${LOCALBASE}/include \
+		GCRYPTLIBPATH=${LOCALBASE}/lib
+USE_PERL5=	configure
+USES=		perl5
+
+post-stage:
+	${STRIP_CMD} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/Crypt/GCrypt/GCrypt.so
+
+.include <bsd.port.mk>

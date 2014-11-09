@@ -1,0 +1,14 @@
+--- Makefile.in.orig	2006-05-22 11:49:21.000000000 -0500
++++ Makefile.in	2011-03-25 14:18:34.000000000 -0500
+@@ -48,3 +48,3 @@
+ INCLUDEFLAGS =
+-LDFLAGS =
++LDFLAGS = @LDFLAGS@
+ 
+@@ -56,4 +56,4 @@
+ # Installation locations
+-if [ ! $bindir ] ; then bindir = $(exec_prefix)/bin; fi
+-if [ ! $mandir ] ; then mandir = $(prefix)/man; fi
++# if [ ! $bindir ] ; then bindir = $(exec_prefix)/bin; fi
++# if [ ! $mandir ] ; then mandir = $(prefix)/man; fi
+ 

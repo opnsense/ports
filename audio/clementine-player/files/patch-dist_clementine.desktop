@@ -1,0 +1,13 @@
+--- dist/clementine.desktop.orig	2011-12-31 16:23:15.690338600 +0000
++++ dist/clementine.desktop	2011-12-31 16:23:58.392741839 +0000
+@@ -6,8 +6,8 @@
+ GenericName[pt]=Reprodutor de músicas Clementine
+ Comment=Plays music and last.fm streams
+ Comment[pt]=Reprodução de músicas e emissões last.fm
+-Exec=clementine %U
+-TryExec=clementine
++Exec=clementine-player %U
++TryExec=clementine-player
+ Icon=application-x-clementine
+ Terminal=false
+ Categories=AudioVideo;Player;Qt;

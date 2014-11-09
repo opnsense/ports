@@ -1,0 +1,70 @@
+lib/netmagis/functions.sql
+lib/netmagis/schema-mac.sql
+lib/netmagis/schema-main.sql
+lib/netmagis/sql22/functions.sql
+lib/netmagis/sql22/schema-mac.sql
+lib/netmagis/sql22/schema-main.sql
+lib/netmagis/sql22/triggers.sql
+lib/netmagis/triggers.sql
+lib/netmagis/upgrade/12-13/upgrade.sql
+lib/netmagis/upgrade/13-14/upgrade.sql
+lib/netmagis/upgrade/14-15/upgrade.sql
+lib/netmagis/upgrade/15-20/README.pgauth
+lib/netmagis/upgrade/15-20/pgauth.sed
+lib/netmagis/upgrade/15-20/upgrade.sql
+lib/netmagis/upgrade/20-21/upgrade.sql
+lib/netmagis/upgrade/21-22/upgrade.sql
+sbin/netmagis-dbcreate
+sbin/netmagis-dbimport
+sbin/netmagis-dbmaint
+sbin/netmagis-dbupgrade
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/crontab.database
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/README
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/domain.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/group.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/mailrelay.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/mailrole.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/network.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/rrsup.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/run-all.sh
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/view.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/1.168.192.in-addr.arpa
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/16.172.in-addr.arpa
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/4.3.2.1.8.b.d.0.1.0.0.2.ip6.arpa
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/example.com
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/example.org
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/plant1.example.com
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/no-view/zones/subsid.co.zz
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/README
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/domain.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/group.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/mailrelay.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/mailrole.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/network.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/rrsup.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/run-all.sh
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/view.txt
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/zones/100.51.198.in-addr.arpa
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/zones/16.172.in-addr.arpa
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/zones/4.3.2.1.8.b.d.0.1.0.0.2.ip6.arpa
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/zones/example.com-ext
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/zones/example.com-int
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/with-views/zones/example.org
+@dirrmtry var/netmagis/dbdump
+@dirrmtry var/netmagis
+@dirrmtry var
+@dirrmtry lib/netmagis/sql22
+@dirrmtry lib/netmagis/upgrade/12-13
+@dirrmtry lib/netmagis/upgrade/13-14
+@dirrmtry lib/netmagis/upgrade/14-15
+@dirrmtry lib/netmagis/upgrade/15-20
+@dirrmtry lib/netmagis/upgrade/20-21
+@dirrmtry lib/netmagis/upgrade/21-22
+@dirrmtry lib/netmagis/upgrade
+@dirrmtry lib/netmagis
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/with-views/zones
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/with-views
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/no-view/zones
+%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/no-view
+%%PORTEXAMPLES%%@dirrmtry %%EXAMPLESDIR%%
+@exec mkdir -p %D/var/netmagis/dbdump

@@ -1,0 +1,10 @@
+date2 is an alternative date class for Ruby.
+
+This class handles calculations about dates.  The day of reform can be
+specified freely in this class.  The procedures about holiday
+(holiday.rb) and date format (parsedate2.rb, strftime.rb and
+strptime.rb) are also available.
+
+
+Author:	Tadayoshi Funaba <tadf@funaba.org>
+WWW:	http://www.funaba.org/en/ruby.html#date2

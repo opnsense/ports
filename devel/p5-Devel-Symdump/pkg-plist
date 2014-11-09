@@ -1,0 +1,4 @@
+%%PERL5_MAN3%%/Devel::Symdump.3.gz
+%%SITE_PERL%%/Devel/Symdump.pm
+%%SITE_PERL%%/Devel/Symdump/Export.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Devel/Symdump/.packlist

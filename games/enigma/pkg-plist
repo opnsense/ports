@@ -1,0 +1,15 @@
+bin/enigma
+man/man6/enigma.6.gz
+share/applications/enigma.desktop
+share/icons/hicolor/48x48/apps/enigma.png
+%%NLS%%share/locale/de/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/es/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/fi/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/fr/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/hu/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/it/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/nl/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/pt/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/ru/LC_MESSAGES/enigma.mo
+%%NLS%%share/locale/sv/LC_MESSAGES/enigma.mo
+share/pixmaps/enigma.png

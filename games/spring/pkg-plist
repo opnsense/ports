@@ -1,0 +1,19 @@
+%%PR_DOWNLOADER%%bin/pr-downloader
+bin/spring
+bin/spring-dedicated
+bin/spring-headless
+bin/spring-multithreaded
+%%PR_DOWNLOADER%%lib/libpr-downloader_shared.so
+%%PR_DOWNLOADER%%lib/libpr-downloader_static.a
+lib/libspringserver.so
+lib/libunitsync.so
+%%MANPAGES%%man/man6/spring-dedicated.6.gz
+%%MANPAGES%%man/man6/spring-headless.6.gz
+%%MANPAGES%%man/man6/spring-multithreaded.6.gz
+%%MANPAGES%%man/man6/spring.6.gz
+share/applications/spring.desktop
+share/mime/packages/spring.xml
+share/pixmaps/application-x-spring-demo.png
+share/pixmaps/spring.png
+@dirrmtry share/mime/packages
+@dirrmtry share/mime

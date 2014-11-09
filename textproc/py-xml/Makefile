@@ -1,0 +1,58 @@
+# Created by: nectar@FreeBSD.org
+# $FreeBSD$
+
+PORTNAME=		xml
+PORTVERSION=		0.8.4
+PORTREVISION=		2
+CATEGORIES=		textproc python
+MASTER_SITES=		SF/py${PORTNAME}/py${PORTNAME}/${PORTVERSION}
+PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
+DISTNAME=		PyXML-${PORTVERSION}
+
+MAINTAINER=		ports@FreeBSD.org
+COMMENT=		Python XML library enhancements
+
+USE_PYTHON=		yes
+USE_PYDISTUTILS=	yes
+PYDISTUTILS_AUTOPLIST=	yes
+
+OPTIONS_DEFINE=	DOCS XSLT XPATH
+OPTIONS_DEFAULT=XPATH
+
+.include <bsd.port.pre.mk>
+
+CPIOARGS=		--quiet -pdum -R
+DOCSDIR=		${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
+EXAMPLESDIR=		${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}
+PLIST_SUB+=		PACKAGE_DIR=_xmlplus
+PORTEXAMPLES=	*
+PORTDOCS=	*
+
+.if ${PORT_OPTIONS:MXSLT}
+PYDISTUTILS_BUILDARGS+=		--with-xslt
+PYDISTUTILS_INSTALLARGS+=	--with-xslt
+.else
+PYDISTUTILS_BUILDARGS+=		--without-xslt
+PYDISTUTILS_INSTALLARGS+=	--without-xslt
+.endif
+.if ${PORT_OPTIONS:MXPATH}
+PYDISTUTILS_BUILDARGS+=		--with-xpath
+PYDISTUTILS_INSTALLARGS+=	--with-xpath
+.else
+PYDISTUTILS_BUILDARGS+=		--without-xpath
+PYDISTUTILS_INSTALLARGS+=	--without-xpath
+.endif
+
+post-install:
+	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR}/${PACKAGE_DIR} -name '*.so' | ${XARGS} ${STRIP_CMD}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for docfile in ANNOUNCE CREDITS LICENCE README* TODO
+	@${INSTALL_DATA} ${WRKSRC}/${docfile} ${STAGEDIR}${DOCSDIR}
+.endfor
+	@cd ${WRKSRC}/doc && ${FIND} * \
+	  | ${CPIO} ${CPIOARGS} ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DOCSDIR}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@cd ${WRKSRC} && ${FIND} demo test \
+	  | ${CPIO} ${CPIOARGS} ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${EXAMPLESDIR}
+
+.include <bsd.port.post.mk>

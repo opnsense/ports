@@ -1,0 +1,20 @@
+--- wscript.orig	2013-03-02 08:57:47.000000000 +0000
++++ wscript	2013-06-30 06:22:09.109879947 +0000
+@@ -90,7 +90,7 @@
+         SRC += ' tevent_epoll.c'
+ 
+     if bld.env.standalone_tevent:
+-        bld.env.PKGCONFIGDIR = '${LIBDIR}/pkgconfig'
++        bld.env.PKGCONFIGDIR = '%%PKGCONFIGDIR%%'
+         private_library = False
+     else:
+         private_library = True
+@@ -120,7 +120,7 @@
+                          pattern='tevent.py',
+                          installdir='python')
+ 
+-        bld.INSTALL_WILDCARD('${PYTHONARCHDIR}', 'tevent.py', flat=False)
++        bld.INSTALL_WILDCARD('${PYTHONARCHDIR}', 'tevent.py*', flat=False)
+ 
+ 
+ def test(ctx):

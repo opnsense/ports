@@ -1,0 +1,56 @@
+%%PERL5_MAN3%%/Catalyst::Action::Deserialize.3.gz
+%%PERL5_MAN3%%/Catalyst::Action::DeserializeMultiPart.3.gz
+%%PERL5_MAN3%%/Catalyst::Action::REST.3.gz
+%%PERL5_MAN3%%/Catalyst::Action::REST::ForBrowsers.3.gz
+%%PERL5_MAN3%%/Catalyst::Action::Serialize.3.gz
+%%PERL5_MAN3%%/Catalyst::Action::SerializeBase.3.gz
+%%PERL5_MAN3%%/Catalyst::Controller::REST.3.gz
+%%PERL5_MAN3%%/Catalyst::Request::REST.3.gz
+%%PERL5_MAN3%%/Catalyst::Request::REST::ForBrowsers.3.gz
+%%PERL5_MAN3%%/Catalyst::TraitFor::Request::REST.3.gz
+%%PERL5_MAN3%%/Catalyst::TraitFor::Request::REST::ForBrowsers.3.gz
+%%SITE_PERL%%/Catalyst/Action/Deserialize.pm
+%%SITE_PERL%%/Catalyst/Action/Deserialize/Callback.pm
+%%SITE_PERL%%/Catalyst/Action/Deserialize/JSON.pm
+%%SITE_PERL%%/Catalyst/Action/Deserialize/JSON/XS.pm
+%%SITE_PERL%%/Catalyst/Action/Deserialize/View.pm
+%%SITE_PERL%%/Catalyst/Action/Deserialize/XML/Simple.pm
+%%SITE_PERL%%/Catalyst/Action/Deserialize/YAML.pm
+%%SITE_PERL%%/Catalyst/Action/DeserializeMultiPart.pm
+%%SITE_PERL%%/Catalyst/Action/REST.pm
+%%SITE_PERL%%/Catalyst/Action/REST/ForBrowsers.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/Callback.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/JSON.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/JSON/XS.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/JSONP.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/View.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/XML/Simple.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/YAML.pm
+%%SITE_PERL%%/Catalyst/Action/Serialize/YAML/HTML.pm
+%%SITE_PERL%%/Catalyst/Action/SerializeBase.pm
+%%SITE_PERL%%/Catalyst/Controller/REST.pm
+%%SITE_PERL%%/Catalyst/Request/REST.pm
+%%SITE_PERL%%/Catalyst/Request/REST/ForBrowsers.pm
+%%SITE_PERL%%/Catalyst/TraitFor/Request/REST.pm
+%%SITE_PERL%%/Catalyst/TraitFor/Request/REST/ForBrowsers.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Action/REST/.packlist
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Action/REST
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Action
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst
+@dirrmtry %%SITE_PERL%%/Catalyst/TraitFor/Request/REST
+@dirrmtry %%SITE_PERL%%/Catalyst/TraitFor/Request
+@dirrmtry %%SITE_PERL%%/Catalyst/TraitFor
+@dirrmtry %%SITE_PERL%%/Catalyst/Request/REST
+@dirrmtry %%SITE_PERL%%/Catalyst/Request
+@dirrmtry %%SITE_PERL%%/Catalyst/Controller
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Serialize/YAML
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Serialize/XML
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Serialize/JSON
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Serialize
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/REST
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Deserialize/XML
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Deserialize/JSON
+@dirrmtry %%SITE_PERL%%/Catalyst/Action/Deserialize
+@dirrmtry %%SITE_PERL%%/Catalyst/Action
+@dirrmtry %%SITE_PERL%%/Catalyst

@@ -1,0 +1,2 @@
+@sample etc/lighttpd/conf.d/geoip.conf.sample
+lib/lighttpd/mod_geoip.so

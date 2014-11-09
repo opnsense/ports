@@ -1,0 +1,46 @@
+--- Makefile.in.orig	2014-03-17 20:00:59.000000000 +0900
++++ Makefile.in	2014-08-21 15:45:36.000000000 +0900
+@@ -85,6 +85,7 @@
+ 	pdftosrc$(EXEEXT) luatex$(EXEEXT) luajittex$(EXEEXT) \
+ 	txt2zlib$(EXEEXT) xetex$(EXEEXT) $(am__EXEEXT_6) \
+ 	aleph$(EXEEXT)
++inst_bin_PROGRAMS = luatex$(EXEEXT) luajittex$(EXEEXT)
+ bin_PROGRAMS = tangle$(EXEEXT) ctangle$(EXEEXT) $(am__EXEEXT_7) \
+ 	ctie$(EXEEXT) cweave$(EXEEXT) tie$(EXEEXT) $(am__EXEEXT_8) \
+ 	$(am__EXEEXT_9) $(am__EXEEXT_10) $(am__EXEEXT_11) \
+@@ -1973,7 +1974,7 @@
+ AM_CXXFLAGS = ## $(WARNING_CXXFLAGS)
+ AM_OBJCXXFLAGS = ## $(WARNING_OBJCXXFLAGS)
+ version = $(WEB2CVERSION)
+-SUBDIRS = doc lib man web2c . window omegafonts otps
++SUBDIRS = .
+ proglib = lib/lib.a
+ dist_man_MANS = synctexdir/man1/synctex.1 synctexdir/man5/synctex.5
+ nodist_man_MANS = 
+@@ -4439,7 +4440,7 @@
+ 	$(AM_V_at)$(RANLIB) libxetex.a
+ install-binPROGRAMS: $(bin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
++	@list='$(inst_bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+ 	if test -n "$$list"; then \
+ 	  echo " $(MKDIR_P) '$(DESTDIR)$(bindir)'"; \
+ 	  $(MKDIR_P) "$(DESTDIR)$(bindir)" || exit 1; \
+@@ -4469,7 +4470,7 @@
+ 
+ uninstall-binPROGRAMS:
+ 	@$(NORMAL_UNINSTALL)
+-	@list='$(bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
++	@list='$(inst_bin_PROGRAMS)'; test -n "$(bindir)" || list=; \
+ 	files=`for p in $$list; do echo "$$p"; done | \
+ 	  sed -e 'h;s,^.*/,,;s/$(EXEEXT)$$//;$(transform)' \
+ 	      -e 's/$$/$(EXEEXT)/' \
+@@ -13649,7 +13650,7 @@
+ uninstall: uninstall-recursive
+ 
+ install-am: all-am
+-	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am install-data-am
++	@$(MAKE) $(AM_MAKEFLAGS) install-exec-am
+ 
+ installcheck: installcheck-recursive
+ install-strip:

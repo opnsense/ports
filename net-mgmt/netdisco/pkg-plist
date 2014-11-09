@@ -1,0 +1,131 @@
+bin/netdisco
+bin/parse_kismet_ap
+bin/parse_mac
+bin/port_control
+%%SITE_PERL%%/netdisco.pm
+%%DATADIR%%/sql/admin.sql
+%%DATADIR%%/sql/device.sql
+%%DATADIR%%/sql/device_ip.sql
+%%DATADIR%%/sql/device_module.sql
+%%DATADIR%%/sql/device_port.sql
+%%DATADIR%%/sql/device_port_log.sql
+%%DATADIR%%/sql/device_port_power.sql
+%%DATADIR%%/sql/device_port_ssid.sql
+%%DATADIR%%/sql/device_port_vlan.sql
+%%DATADIR%%/sql/device_port_wireless.sql
+%%DATADIR%%/sql/device_power.sql
+%%DATADIR%%/sql/device_vlan.sql
+%%DATADIR%%/sql/log.sql
+%%DATADIR%%/sql/node.sql
+%%DATADIR%%/sql/node_ip.sql
+%%DATADIR%%/sql/node_monitor.sql
+%%DATADIR%%/sql/node_nbt.sql
+%%DATADIR%%/sql/node_vlan.sql
+%%DATADIR%%/sql/node_wireless.sql
+%%DATADIR%%/sql/node_wireless_ssid.sql
+%%DATADIR%%/sql/oui.sql
+%%DATADIR%%/sql/pg
+%%DATADIR%%/sql/process.sql
+%%DATADIR%%/sql/sessions.sql
+%%DATADIR%%/sql/subnets.sql
+%%DATADIR%%/sql/topology.sql
+%%DATADIR%%/sql/upgrade-0.92-to-0.93.sql
+%%DATADIR%%/sql/upgrade-0.93-to-0.94.sql
+%%DATADIR%%/sql/upgrade-0.94-to-0.95.sql
+%%DATADIR%%/sql/upgrade-0.95-to-1.0.sql
+%%DATADIR%%/sql/upgrade-1.0-to-1.1.sql
+%%DATADIR%%/sql/upgrade-1.1-to-1.2.sql
+%%DATADIR%%/sql/upgrade-1.2-to-1.3.sql
+%%DATADIR%%/sql/user_log.sql
+%%DATADIR%%/sql/users.sql
+%%DATADIR%%/Makefile
+@owner %%WWWOWN%%
+@group %%WWWGRP%%
+%%WEBUI%%%%WWWDIR%%/admin.html
+%%WEBUI%%%%WWWDIR%%/admin_chimp.gif
+%%WEBUI%%%%WWWDIR%%/admin_dev.html
+%%WEBUI%%%%WWWDIR%%/admin_plug.gif
+%%WEBUI%%%%WWWDIR%%/admin_reconfig.html
+%%WEBUI%%%%WWWDIR%%/admin_user.html
+%%WEBUI%%%%WWWDIR%%/apache_login.html
+%%WEBUI%%%%WWWDIR%%/autohandler
+%%WEBUI%%%%WWWDIR%%/bullet.gif
+%%WEBUI%%%%WWWDIR%%/change_pw.html
+%%WEBUI%%%%WWWDIR%%/corner-bl.png
+%%WEBUI%%%%WWWDIR%%/corner-br.png
+%%WEBUI%%%%WWWDIR%%/corner-tl.png
+%%WEBUI%%%%WWWDIR%%/corner-tr.png
+%%WEBUI%%%%WWWDIR%%/device.html
+%%WEBUI%%%%WWWDIR%%/device_inv.html
+%%WEBUI%%%%WWWDIR%%/device_module.html
+%%WEBUI%%%%WWWDIR%%/device_module_search.html
+%%WEBUI%%%%WWWDIR%%/device_search.html
+%%WEBUI%%%%WWWDIR%%/discoball2.gif
+%%WEBUI%%%%WWWDIR%%/doc/index.html
+%%WEBUI%%%%WWWDIR%%/doc/netdisco-api-backend.html
+%%WEBUI%%%%WWWDIR%%/doc/netdisco-api-shared.html
+%%WEBUI%%%%WWWDIR%%/duplex.html
+%%WEBUI%%%%WWWDIR%%/frontpanel.html
+%%WEBUI%%%%WWWDIR%%/icon_down.gif
+%%WEBUI%%%%WWWDIR%%/icon_info.gif
+%%WEBUI%%%%WWWDIR%%/icon_lock.gif
+%%WEBUI%%%%WWWDIR%%/icon_note.gif
+%%WEBUI%%%%WWWDIR%%/icon_up.gif
+%%WEBUI%%%%WWWDIR%%/icon_v.gif
+%%WEBUI%%%%WWWDIR%%/index.html
+%%WEBUI%%%%WWWDIR%%/ip_search.html
+%%WEBUI%%%%WWWDIR%%/jack_search.html
+%%WEBUI%%%%WWWDIR%%/log.html
+%%WEBUI%%%%WWWDIR%%/login.html
+%%WEBUI%%%%WWWDIR%%/logout.html
+%%WEBUI%%%%WWWDIR%%/minus.gif
+%%WEBUI%%%%WWWDIR%%/mktree.css
+%%WEBUI%%%%WWWDIR%%/mktree.js
+%%WEBUI%%%%WWWDIR%%/netdisco.css
+%%WEBUI%%%%WWWDIR%%/netdisco.ico
+%%WEBUI%%%%WWWDIR%%/netdiscoball.gif
+%%WEBUI%%%%WWWDIR%%/netmap.html
+%%WEBUI%%%%WWWDIR%%/node.html
+%%WEBUI%%%%WWWDIR%%/plus.gif
+%%WEBUI%%%%WWWDIR%%/port_info.html
+%%WEBUI%%%%WWWDIR%%/port_report.html
+%%WEBUI%%%%WWWDIR%%/portcontrol.html
+%%WEBUI%%%%WWWDIR%%/powered_by_mason.jpg
+%%WEBUI%%%%WWWDIR%%/public_debugging.html
+%%WEBUI%%%%WWWDIR%%/reports.html
+%%WEBUI%%%%WWWDIR%%/search.html
+%%WEBUI%%%%WWWDIR%%/sidebar.html
+%%WEBUI%%%%WWWDIR%%/stats.html
+%%WEBUI%%%%WWWDIR%%/traceroute.html
+%%WEBUI%%%%WWWDIR%%/valid-html401.png
+%%WEBUI%%%%WWWDIR%%/vcss.gif
+%%WEBUI%%%%WWWDIR%%/port_usage.html
+%%WEBUI%%%%WWWDIR%%/traffic.png
+%%WEBUI%%%%WWWDIR%%/graphs_sample.mas
+%%WEBUI%%%%WWWDIR%%/port_search.html
+%%WEBUI%%@dir %%WWWDIR%%/mason
+@owner
+@group
+%%DOCSDIR%%/ChangeLog
+%%DOCSDIR%%/DiscoveryDatabase.pod
+%%DOCSDIR%%/INSTALL.pod
+%%DOCSDIR%%/IPv6ArpNip.pod
+%%DOCSDIR%%/README.pod
+%%DOCSDIR%%/UPGRADE.pod
+%%DOCSDIR%%/WISHLIST.pod
+%%DOCSDIR%%/INSTALL
+%%DOCSDIR%%/README
+%%DOCSDIR%%/README-API-BACKEND
+%%DOCSDIR%%/README-API-SHARED
+%%DOCSDIR%%/UPGRADE
+@owner %%NETDISCO_USER%%
+@group %%NETDISCO_GROUP%%
+@sample %%ETCDIR%%/netdisco.conf.sample
+@sample %%ETCDIR%%/netdisco-topology.txt.sample
+@sample %%ETCDIR%%/netdisco.crontab.sample
+@sample %%ETCDIR%%/netdisco_apache.conf.sample
+@sample %%ETCDIR%%/netdisco_apache_dir.conf.sample
+@unexec if [ -L %%APACHEETCDIR%%/Includes/netdisco_apache_dir.conf ] ; then rm %%APACHEETCDIR%%/Includes/netdisco_apache_dir.conf; fi
+@unexec if [ -L %%APACHEETCDIR%%/Includes/netdisco_apache.conf ] ; then rm %%APACHEETCDIR%%/Includes/netdisco_apache.conf; fi
+@owner
+@group

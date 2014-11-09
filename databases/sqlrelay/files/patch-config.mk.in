@@ -1,0 +1,11 @@
+--- config.mk.in.orig	2013-09-22 03:52:29.000000000 +0200
++++ config.mk.in	2013-10-28 18:58:41.039873864 +0100
+@@ -9,7 +9,7 @@
+ exec_prefix= @exec_prefix@
+ includedir = @includedir@
+ libdir = @libdir@
+-javadir = ${exec_prefix}/java
++javadir = ${exec_prefix}/share/java/classes
+ libexecdir = @libexecdir@/sqlrelay
+ bindir = @bindir@
+ localstatedir = @localstatedir@

@@ -1,0 +1,30 @@
+# Created by: hashiz
+# $FreeBSD$
+
+PORTNAME=	alsa-plugins-oss
+PORTVERSION=	1.0.21
+PORTREVISION=	3
+CATEGORIES=	audio linux
+
+MAINTAINER=	emulation@FreeBSD.org
+COMMENT=	OSS plugin for ALSA (Linux Fedora 10)
+
+ONLY_FOR_ARCHS=	i386 amd64
+USE_LINUX=	f10
+USE_LINUX_RPM=	yes
+USE_LINUX_APPS=	alsalib
+
+RPMVERSION=	3.fc10
+SRC_DISTFILES=	${PORTNAME:S/-oss//}-${PORTVERSION}-${RPMVERSION}${SRC_SUFX}
+USE_LDCONFIG=	yes
+
+CONF_FILE=	etc/alsa/pcm/pcm-oss.conf
+
+post-patch:
+	@${RM} ${WRKSRC}/${CONF_FILE}.orig
+	@${MV} ${WRKSRC}/${CONF_FILE} ${WRKSRC}/${CONF_FILE}-dist
+
+post-install:
+	${MV} ${STAGEDIR}${PREFIX}/${CONF_FILE}-dist ${STAGEDIR}${PREFIX}/${CONF_FILE}.sample
+
+.include <bsd.port.mk>

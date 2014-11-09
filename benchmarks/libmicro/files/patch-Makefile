@@ -1,0 +1,11 @@
+--- Makefile.orig	Tue Jan  8 12:11:55 2008
++++ Makefile	Tue Jan  8 12:12:21 2008
+@@ -68,7 +68,7 @@
+ 	wrapper.sh	\
+ 	README
+ 
+-default $(ALL) run cstyle lint tattle: $(BINS)
++all $(ALL) run cstyle lint tattle: $(BINS)
+ 	@cp bench.sh bench
+ 	@cp multiview.sh multiview
+ 	@cp wrapper.sh wrapper

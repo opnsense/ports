@@ -1,0 +1,35 @@
+--- Makefile.orig	2014-08-05 16:50:32.000000000 +0400
++++ Makefile	2014-09-13 02:29:01.000000000 +0400
+@@ -24,28 +24,28 @@
+ OBJ  := $(patsubst %.c,$(ODIR)/%.o,$(SRC)) $(ODIR)/bytecode.o
+ 
+ LDIR     = deps/luajit/src
+-LIBS    := -lluajit $(LIBS)
+ CFLAGS  += -I$(LDIR)
+ LDFLAGS += -L$(LDIR)
++PREFIX	:= ${PREFIX}
++LIBS    := -lluajit-5.1 $(LIBS) -L$(PREFIX)/lib
+ 
+ all: $(BIN)
+ 
+ clean:
+ 	$(RM) $(BIN) obj/*
+-	@$(MAKE) -C deps/luajit clean
+ 
+ $(BIN): $(OBJ)
+ 	@echo LINK $(BIN)
+ 	@$(CC) $(LDFLAGS) -o $@ $^ $(LIBS)
+ 
+-$(OBJ): config.h Makefile $(LDIR)/libluajit.a | $(ODIR)
++$(OBJ): config.h Makefile | $(ODIR)
+ 
+ $(ODIR):
+ 	@mkdir -p $@
+ 
+ $(ODIR)/bytecode.o: src/wrk.lua
+ 	@echo LUAJIT $<
+-	@$(SHELL) -c 'cd $(LDIR) && ./luajit -b $(CURDIR)/$< $(CURDIR)/$@'
++	@$(SHELL) -c 'cd $(LDIR) && ${PREFIX}/bin/luajit -b $(CURDIR)/$< $(CURDIR)/$@'
+ 
+ $(ODIR)/%.o : %.c
+ 	@echo CC $<

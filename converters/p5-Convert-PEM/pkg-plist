@@ -1,0 +1,5 @@
+%%PERL5_MAN3%%/Convert::PEM.3.gz
+%%PERL5_MAN3%%/Convert::PEM::CBC.3.gz
+%%SITE_PERL%%/Convert/PEM.pm
+%%SITE_PERL%%/Convert/PEM/CBC.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Convert/PEM/.packlist

@@ -1,0 +1,34 @@
+--- Makefile.orig	Mon May  1 07:29:07 2006
++++ Makefile	Sun Nov 12 14:57:38 2006
+@@ -5,8 +5,7 @@
+ # USE_SOCKET_SSL=yto enable SSL socket
+ #
+ 
+-CC = cc
+-FLAGS = -ansi -pedantic -Wall -O2 -fno-strict-aliasing
++FLAGS = -ansi -Wall -O2 -fno-strict-aliasing # -pedantic
+ 
+ BIN_PROGRAM = opendd
+ 
+@@ -49,15 +49,13 @@
+ 	fi
+ 	@echo ""
+ .c.o:
+-	@echo "===>  Compiling `basename $*.o` ..."
+-	@if [ "$*" = "./include/socket" ]\
+-	|| [ "$*" = "./main" ]\
+- 	&& [ "${USE_SOCKET_SSL}" ]; then\
+-		echo '${CC} ${FLAGS} ${MACROS} -c -o $*.o $*.c';\
+-		${CC} ${FLAGS} ${MACROS} -c -o $*.o $*.c;\
++	@echo "===>  Compiling `basename $@` ..."
++	@if [ "${USE_SOCKET_SSL}" ]; then\
++		echo '${CC} ${FLAGS} ${MACROS} -c -o $@ $<';\
++		${CC} ${FLAGS} ${MACROS} -c -o $@ $<;\
+ 	else\
+-		echo '${CC} ${FLAGS} -c -o $*.o $*.c';\
+-		${CC} ${FLAGS} -c -o $*.o $*.c;\
++		echo '${CC} ${FLAGS} -c -o $@ $<';\
++		${CC} ${FLAGS} -c -o $@ $<;\
+ 	fi
+ clean:
+ 	if [ -f opendd ];then rm -f opendd; fi

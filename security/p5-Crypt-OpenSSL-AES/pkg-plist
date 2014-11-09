@@ -1,0 +1,9 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/Crypt/OpenSSL/AES.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/OpenSSL/AES/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/OpenSSL/AES/AES.so
+%%PERL5_MAN3%%/Crypt::OpenSSL::AES.3.gz
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/OpenSSL/AES
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt/OpenSSL
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Crypt
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Crypt/OpenSSL
+@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/Crypt

@@ -1,0 +1,116 @@
+# Created by: Eric F Crist <ecrist@secure-computing.net>
+# $FreeBSD$
+
+PORTNAME=	openvpn
+DISTVERSION=	201425
+CATEGORIES=	security net
+MASTER_SITES=	ftp://ftp.secure-computing.net/pub/FreeBSD/ports/openvpn-devel/ \
+		ftp://ftp2.secure-computing.net/pub/FreeBSD/ports/openvpn-devel/
+PKGNAMESUFFIX=	-devel
+
+MAINTAINER=	ecrist@secure-computing.net
+COMMENT=	Secure IP/Ethernet tunnel daemon
+
+LICENSE=	GPLv2
+
+WRKSRC=		${WRKDIR}/${PORTNAME}${PKGNAMESUFFIX}
+
+
+CONFLICTS_INSTALL=	openvpn-[0-9]* openvpn-beta-[0-9]*
+GNU_CONFIGURE=		yes
+USES=			libtool pkgconfig shebangfix tar:xz
+SHEBANG_FILES=		sample/sample-scripts/verify-cn \
+			sample/sample-scripts/auth-pam.pl \
+			sample/sample-scripts/ucn.pl
+
+# let OpenVPN's configure script pick up the requisite libraries:
+CPPFLAGS+=		-I${LOCALBASE}/include
+LDFLAGS+=		-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=		PW_SAVE PKCS11 EASYRSA LZO SNAPPY DOCS EXAMPLES
+OPTIONS_DEFAULT=	EASYRSA OPENSSL
+OPTIONS_SINGLE=		SSL
+OPTIONS_SINGLE_SSL=	OPENSSL POLARSSL
+PW_SAVE_DESC=		Interactive passwords may be read from a file
+SNAPPY_DESC=		Enable the Snappy compression library
+LZO_DESC=		Enable the LZO compression library
+PKCS11_DESC=		Use security/pkcs11-helper
+EASYRSA_DESC=		Install security/easy-rsa RSA helper package
+POLARSSL_DESC=		SSL/TLS support via PolarSSL
+
+EASYRSA_RUN_DEPENDS=	easy-rsa>=0:${PORTSDIR}/security/easy-rsa
+
+PKCS11_LIB_DEPENDS=	libpkcs11-helper.so:${PORTSDIR}/security/pkcs11-helper
+PKCS11_CONFIGURE_ENABLE=	pkcs11
+
+PW_SAVE_CONFIGURE_ENABLE=	password-save
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MPOLARSSL}
+LIB_DEPENDS+=	libpolarssl.so:${PORTSDIR}/security/polarssl
+CONFIGURE_ARGS+=--with-crypto-library=polarssl
+.else
+USE_OPENSSL=	yes
+CONFIGURE_ARGS+=--with-crypto-library=openssl
+.endif
+
+USE_RC_SUBR=	openvpn
+USE_LDCONFIG=	${PREFIX}/lib
+
+SUB_FILES=	pkg-message
+
+.ifdef (LOG_OPENVPN)
+CFLAGS+=	-DLOG_OPENVPN=${LOG_OPENVPN}
+.endif
+
+.if ${PORT_OPTIONS:MLZO}
+LIB_DEPENDS+=	liblzo2.so:${PORTSDIR}/archivers/lzo2
+.else
+CONFIGURE_ARGS+=--disable-lzo
+.endif
+
+.if ${PORT_OPTIONS:MSNAPPY}
+LIB_DEPENDS+=	libsnappy.so:${PORTSDIR}/archivers/snappy
+.else
+CONFIGURE_ARGS+=--disable-snappy
+.endif
+
+PORTDOCS=	*
+PORTEXAMPLES=	*
+
+pre-configure:
+.ifdef (LOG_OPENVPN)
+		@${ECHO} "Building with LOG_OPENVPN=${LOG_OPENVPN}"
+.else
+		@${ECHO} ""
+		@${ECHO} "You may use the following build options:"
+		@${ECHO} ""
+		@${ECHO} "      LOG_OPENVPN={Valid syslog facility, default LOG_DAEMON}"
+		@${ECHO} "      EXAMPLE:  make LOG_OPENVPN=LOG_LOCAL6"
+		@${ECHO} ""
+.endif
+
+post-build:
+		@# self-tests here
+.if !defined(WITHOUT_CHECK)
+		@${ECHO} ; ${ECHO} "### Note that you can skip these lengthy selftests with WITHOUT_CHECK=yes ###" ; ${ECHO}
+		cd ${WRKSRC} && ${DO_MAKE_BUILD} check
+.endif
+
+post-install:
+		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-auth-pam.so
+		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/openvpn/plugins/openvpn-plugin-down-root.so
+		${MKDIR} ${STAGEDIR}${PREFIX}/include
+.if ${PORT_OPTIONS:MDOCS}
+		${MKDIR} ${STAGEDIR}${DOCSDIR}/
+.for i in AUTHORS ChangeLog PORTS
+		${INSTALL_MAN} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}/
+.endfor
+.endif
+.if ${PORT_OPTIONS:MEXAMPLES}
+		(cd ${WRKSRC}/sample && ${COPYTREE_SHARE} \* ${STAGEDIR}${EXAMPLESDIR}/)
+		${CHMOD} ${BINMODE} ${STAGEDIR}${EXAMPLESDIR}/sample-scripts/*
+.endif
+
+.include <bsd.port.mk>

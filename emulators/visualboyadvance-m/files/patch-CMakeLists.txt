@@ -1,0 +1,19 @@
+--- CMakeLists.txt.orig	2013-09-24 04:49:26.000000000 -0700
++++ CMakeLists.txt	2014-04-29 15:02:57.323817303 -0700
+@@ -1,5 +1,5 @@
+ # The project's name is VBA-M it uses C and C++ code
+-PROJECT(VBA-M C CXX)
++PROJECT(VBA-M)
+ 
+ cmake_minimum_required( VERSION 2.6.0 )
+ if( COMMAND cmake_policy )
+@@ -427,8 +427,7 @@
+ 
+     INSTALL(PROGRAMS ${CMAKE_CURRENT_BINARY_DIR}/vbam DESTINATION bin)
+     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/sdl/vbam.cfg-example
+-            DESTINATION ${SYSCONFDIR}
+-            RENAME vbam.cfg)
++            DESTINATION ${SYSCONFDIR})
+     INSTALL(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/vba-over.ini DESTINATION ${DATA_INSTALL_DIR})
+ ENDIF( ENABLE_SDL )
+ 

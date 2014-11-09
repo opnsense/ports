@@ -1,0 +1,9 @@
+bin/relay
+bin/rport
+bin/xgospel
+%%PORTDOCS%%%%DOCSDIR%%/FAQ
+%%PORTDOCS%%%%DOCSDIR%%/README
+%%DATADIR%%/board.xpm
+%%DATADIR%%/pagoda.xpm
+@dirrmtry %%DATADIR%%
+%%PORTDOCS%%@dirrmtry %%DOCSDIR%%

@@ -1,0 +1,13 @@
+bin/RetroShare
+bin/retroshare-nogui
+lib/retroshare/extensions/libLinksCloud.so
+lib/retroshare/extensions/libLinksCloud.so.1
+lib/retroshare/extensions/libVOIP.so
+lib/retroshare/extensions/libVOIP.so.1
+lib/retroshare/extensions/libFeedReader.so
+lib/retroshare/extensions/libFeedReader.so.1
+%%DATADIR%%/bdboot.txt
+%%DATADIR%%/retrosharelogo1.png
+@dirrm %%DATADIR%%
+@dirrm lib/retroshare/extensions
+@dirrm lib/retroshare

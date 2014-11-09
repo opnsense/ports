@@ -1,0 +1,44 @@
+# $Tecnik: ports/misc/fortune-mod-culmea-culmilor/Makefile.fortune,v 1.9 2006/01/26 14:25:23 itetcu Exp $
+
+NO_WRKSUBDIR=	yes
+
+_STRFILE=		/usr/games/strfile
+_STRFILE_ARGS?=		-C
+_FORTUNE_DIR=		share/games/fortune
+FORTUNE_DIR=		${PREFIX}/${_FORTUNE_DIR}
+FORTUNE_FILE=		${PORTNAME:S/fortune-mod-//}
+FORTUNE_FILE_O=		${FORTUNE_FILE}-o
+
+PLIST_FILES+=	${_FORTUNE_DIR}/${FORTUNE_FILE} ${_FORTUNE_DIR}/${FORTUNE_FILE}.dat
+
+post-extract:
+	@( ${ECHO} ""; \
+		${ECHO} "******************************************************"; \
+		${ECHO} "Usage:"; \
+		${ECHO} "fortune ${FORTUNE_DIR}/${FORTUNE_FILE}"; \
+		${ECHO} "See fortune(6) for details."; \
+		${ECHO} "******************************************************"; \
+		${ECHO} ""; ) > ${WRKDIR}/pkg-message
+
+PKGMESSAGE=	${WRKDIR}/pkg-message
+
+do-build:
+	@cd ${WRKSRC} && ${_STRFILE} ${_STRFILE_ARGS} ${PORTNAME}
+	@if [ -f ${WRKSRC}/${PORTNAME}-o ]; then \
+		cd ${WRKSRC} && ${_STRFILE} ${_STRFILE_ARGS} ${PORTNAME}-o; \
+	fi
+do-install:
+	@${MKDIR} ${STAGEDIR}${FORTUNE_DIR}
+	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${FORTUNE_DIR}/${FORTUNE_FILE}
+	@${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.dat ${STAGEDIR}${FORTUNE_DIR}/${FORTUNE_FILE}.dat
+	@if [ -f ${WRKSRC}/${PORTNAME}-o ]; then \
+		${INSTALL_DATA} ${WRKSRC}/${PORTNAME}-o ${STAGEDIR}${FORTUNE_DIR}/${FORTUNE_FILE_O}; \
+		${INSTALL_DATA} ${WRKSRC}/${PORTNAME}-o.dat ${STAGEDIR}${FORTUNE_DIR}/${FORTUNE_FILE_O}.dat; \
+	fi
+post-install:
+	@if [ -f ${WRKSRC}/${PORTNAME}-o ]; then \
+		${ECHO_CMD} ${_FORTUNE_DIR}/${FORTUNE_FILE_O} >> ${TMPPLIST}; \
+		${ECHO_CMD} ${_FORTUNE_DIR}/${FORTUNE_FILE_O}.dat >> ${TMPPLIST}; \
+	fi
+	@${ECHO_CMD} "@unexec rmdir %D/${_FORTUNE_DIR} 2>/dev/null || true" >> ${TMPPLIST}
+	@${ECHO_CMD} "@unexec rmdir %D/share/games 2>/dev/null || true" >> ${TMPPLIST}

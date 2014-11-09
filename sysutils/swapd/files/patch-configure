@@ -1,0 +1,36 @@
+--- ./configure.orig	2013-10-06 17:11:43.000000000 +0100
++++ ./configure	2013-11-22 21:48:41.875104078 +0000
+@@ -4850,6 +4850,7 @@
+ for ac_func in swapoff
+ do :
+   ac_fn_c_check_func "$LINENO" "swapoff" "ac_cv_func_swapoff"
++ac_cv_func_swapoff=no
+ if test "x$ac_cv_func_swapoff" = xyes; then :
+   cat >>confdefs.h <<_ACEOF
+ #define HAVE_SWAPOFF 1
+@@ -4861,6 +4862,7 @@
+ 
+ 
+ 	ac_fn_c_check_func "$LINENO" "swapon" "ac_cv_func_swapon"
++ac_cv_func_swapon=no
+ if test "x$ac_cv_func_swapon" = xyes; then :
+ 
+ 
+@@ -5114,6 +5116,17 @@
+ $as_echo "#define SWAPD_SWAPOFF_CMDLINE \"/sbin/swapctl -d \\\"%s\\\"\"" >>confdefs.h
+ 
+ 			;;
++		freebsd*)
++
++cat >>confdefs.h <<\_ACEOF
++#define SWAPD_SWAPON_CMDLINE "/usr/local/sbin/swapd_swapon \"%s\""
++_ACEOF
++
++cat >>confdefs.h <<\_ACEOF
++#define SWAPD_SWAPOFF_CMDLINE "/usr/local/sbin/swapd_swapoff \"%s\""
++_ACEOF
++
++			;;
+ 	esac
+ 
+ 

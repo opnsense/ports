@@ -1,0 +1,13 @@
+#!/bin/sh
+# $FreeBSD$
+#
+
+[ "$2" = "POST_INSTALL" ] || exit 0
+
+for conf in sympa.conf wwsympa.conf
+do	[ ! -f ${PKG_PREFIX}/etc/${conf} ] && \
+	 cp -p ${PKG_PREFIX}/etc/${conf}.sample ${PKG_PREFIX}/etc/${conf} && \
+	 chmod u+w ${PKG_PREFIX}/etc/${conf}
+done
+
+exit 0

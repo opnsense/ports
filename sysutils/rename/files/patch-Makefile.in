@@ -1,0 +1,37 @@
+--- Makefile.in.orig	2005-07-12 10:27:47.000000000 +0800
++++ Makefile.in	2014-06-28 01:02:55.654057074 +0800
+@@ -8,7 +8,7 @@ BINDIR = @prefix@/bin
+ MANDIR = @prefix@/man/man1
+ 
+ DEFINES = -DHAVE_CONFIG_H ${VERSION}
+-CFLAGS = -Wall -O3 ${DEBUG} ${DEFINES}
++CFLAGS += -Wall ${DEBUG} ${DEFINES}
+ 
+ 
+ OBJS = rename.o fixtoken.o misc.o @LIBOBJS@
+@@ -16,7 +16,7 @@ OBJS = rename.o fixtoken.o misc.o @LIBOB
+ all: rename
+ 
+ rename:	$(OBJS)
+-	$(CC) $(CFLAGS) -o $@ $^
++	$(CC) $(CFLAGS) @LDFLAGS@ -o $@ $^
+ 	strip $@
+ 
+ static:	$(OBJS)
+@@ -30,11 +30,13 @@ clean-all:
+ 	rm -f core rename *.o config.status config.cache config.h config.log Makefile
+ 
+ install:
+-	install -o root -g wheel -m 0755 -s rename $(BINDIR)
+-	install -o root -g wheel -m 0644 rename.1 $(MANDIR)
+-	
++	$(BSD_INSTALL_PROGRAM) rename $(DESTDIR)$(BINDIR)
++	$(BSD_INSTALL_MAN) rename.1 $(DESTDIR)$(MANDIR)
++
+ rename.o: rename.c rename.h
+ regex.o: regex.c regex.h
+ fixtoken.o: fixtoken.c
+ misc.o: misc.c
+ 
++.c.o:
++	$(CC) $(CFLAGS) @CPPFLAGS@ -o $@ -c $<

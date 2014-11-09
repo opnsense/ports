@@ -1,0 +1,18 @@
+# Created by: Pav Lucistnik <pav@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	Spreadsheet_Excel_Writer
+PORTVERSION=	0.9.3
+CATEGORIES=	textproc www pear
+
+MAINTAINER=	5u623l20@gmail.com
+COMMENT=	PEAR class for writing Microsoft Excel files
+
+LICENSE=	LGPL3
+
+BUILD_DEPENDS=	${PEARDIR}/OLE.php:${PORTSDIR}/devel/pear-OLE
+RUN_DEPENDS=	${PEARDIR}/OLE.php:${PORTSDIR}/devel/pear-OLE
+
+USES=	pear
+
+.include <bsd.port.mk>

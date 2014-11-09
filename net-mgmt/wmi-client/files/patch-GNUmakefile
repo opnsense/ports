@@ -1,0 +1,45 @@
+--- GNUmakefile.orig	2011-12-23 22:58:36.000000000 +0900
++++ GNUmakefile	2014-08-21 13:05:52.000000000 +0900
+@@ -36,7 +36,7 @@
+ # Install dir for libasync_wmi_lib.so.* and pysamba wrapper code.
+ # e.g., Samba/source/bin/shared/libasync_wmi_lib.so.0.0.1 --> $(PY_LIBDIR)
+ #
+-PY_LIBDIR     = $(ZENHOME)/lib/python
++PY_LIBDIR?    = $(ZENHOME)/lib/python
+ 
+ #-------------------------------------------------------------------------#
+ # A key deliverable of this build process is the libasync_wmi shared      #
+@@ -70,7 +70,7 @@
+ #-------------------------------------------------------------------------#
+ # Comment out the next line to disable google-breakpad dependency.
+ ifneq ($(shell uname), Darwin)
+-USE_BREAKPAD = 1
++#USE_BREAKPAD = 1
+ endif
+ 
+ ifneq ($(USE_BREAKPAD),)
+@@ -124,7 +124,7 @@
+ endif
+ 	@touch $@
+ 
+-install-prereqs:
++install-prereqs: $(DESTDIR)$(PY_LIBDIR)
+ 	@echo
+ 	@echo "Checking prequisites for installing WMI"
+ 	$(call check,directory,$(ZENHOME),"ZENHOME")
+@@ -157,12 +157,12 @@
+ $(SAMBA_SRCDIR)/Makefile: $(SAMBA_SRCDIR)/autogen.sh
+ 	cd $(SAMBA_SRCDIR) ;\
+ 	./autogen.sh ;\
+-	CPPFLAGS="$(WMI_CPPFLAGS)" ./configure --without-readline --enable-debug
++	CPPFLAGS="$(WMI_CPPFLAGS)" SMB_GNUTLS=NO ./configure --prefix=$(PREFIX) --without-readline
+ 
+ ifeq ($(USE_BREAKPAD),)
+-pywmi-build: build-prereqs $(LIBRPC_CONFIG_MK) $(SAMBA_SRCDIR)/Makefile
++pywmi-build: $(LIBRPC_CONFIG_MK) $(SAMBA_SRCDIR)/Makefile
+ else
+-pywmi-build: build-prereqs $(LIBRPC_CONFIG_MK) $(SAMBA_SRCDIR)/Makefile $(breakpad_LIB_SYMLINK)
++pywmi-build: $(LIBRPC_CONFIG_MK) $(SAMBA_SRCDIR)/Makefile $(breakpad_LIB_SYMLINK)
+ endif
+ 	cd $(SAMBA_SRCDIR);\
+ 	$(MAKE) $(WMI_BUILD_TARGETS) ;\

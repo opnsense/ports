@@ -1,0 +1,34 @@
+bin/suricata
+%%DOCSDIR%%/AUTHORS
+%%DOCSDIR%%/Basic_Setup.txt
+%%DOCSDIR%%/CentOS5.txt
+%%DOCSDIR%%/CentOS_56_Installation.txt
+%%DOCSDIR%%/Debian_Installation.txt
+%%DOCSDIR%%/Fedora_Core.txt
+%%DOCSDIR%%/FreeBSD_8.txt
+%%DOCSDIR%%/GITGUIDE
+%%DOCSDIR%%/HTP_library_installation.txt
+%%DOCSDIR%%/INSTALL
+%%DOCSDIR%%/INSTALL.PF_RING
+%%DOCSDIR%%/INSTALL.WINDOWS
+%%DOCSDIR%%/Installation_from_GIT_with_PCRE-JIT.txt
+%%DOCSDIR%%/Installation_from_GIT_with_PF_RING_on_Ubuntu_server_1104.txt
+%%DOCSDIR%%/Installation_with_CUDA_and_PFRING_on_Scientific_Linux_6.txt
+%%DOCSDIR%%/Installation_with_CUDA_and_PF_RING_on_Ubuntu_server_1104.txt
+%%DOCSDIR%%/Installation_with_CUDA_on_Scientific_Linux_6.txt
+%%DOCSDIR%%/Installation_with_CUDA_on_Ubuntu_server_1104.txt
+%%DOCSDIR%%/Installation_with_PF_RING.txt
+%%DOCSDIR%%/Mac_OS_X_106x.txt
+%%DOCSDIR%%/NEWS
+%%DOCSDIR%%/OpenBSD_Installation_from_GIT.txt
+%%DOCSDIR%%/README
+%%DOCSDIR%%/Setting_up_IPSinline_for_Linux.txt
+%%DOCSDIR%%/TODO
+%%DOCSDIR%%/Third_Party_Installation_Guides.txt
+%%DOCSDIR%%/Ubuntu_Installation.txt
+%%DOCSDIR%%/Ubuntu_Installation_from_GIT.txt
+%%DOCSDIR%%/Windows.txt
+@sample etc/suricata/suricata.yaml-sample
+@sample etc/suricata/classification.config-sample
+@sample etc/suricata/reference.config-sample
+@dir etc/suricata/rules

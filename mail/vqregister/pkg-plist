@@ -1,0 +1,18 @@
+%%PORTDOCS%%%%DOCSDIR%%/CONFIG
+%%PORTDOCS%%%%DOCSDIR%%/CONTRIBUTORS
+%%PORTDOCS%%%%DOCSDIR%%/FORM
+%%PORTDOCS%%%%DOCSDIR%%/HISTORY
+%%PORTDOCS%%%%DOCSDIR%%/TEMPLATE
+%%WWWDIR%%/html/error.html
+%%WWWDIR%%/html/failure.html
+%%WWWDIR%%/html/init_error.html
+%%WWWDIR%%/html/register.html
+%%WWWDIR%%/html/register.with.password.html
+%%WWWDIR%%/html/success.html
+%%WWWDIR%%/html/success.with.password.html
+%%WWWDIR%%/vqregister.cgi
+%%WWWDIR%%/vqregister.conf
+%%WWWDIR%%/vqregister.email
+@dirrm %%WWWDIR%%/html
+@dirrm %%WWWDIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

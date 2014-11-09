@@ -1,0 +1,29 @@
+--- src/Makefile.orig	2010-06-16 14:02:36.000000000 +0200
++++ src/Makefile	2010-07-06 22:00:30.303633098 +0200
+@@ -1,7 +1,7 @@
+ # In case of windows, use os_cygwin=yes setting in the configuration file (smsd.conf).
+ 
+ # Select your setup size:
+-CFLAGS = -D NUMBER_OF_MODEMS=64
++CFLAGS += -DNUMBER_OF_MODEMS=64
+ 
+ # Uncomment for Solaris
+ # CFLAGS += -D SOLARIS
+@@ -9,7 +9,7 @@
+ # CC=gcc
+ 
+ # Comment this out, to enable statistics
+-CFLAGS += -D NOSTATS
++#CFLAGS += -D NOSTATS
+ 
+ # Comment this out if iconv is not available on the system
+ #CFLAGS += -D USE_ICONV
+@@ -50,7 +50,7 @@
+ ifneq (,$(findstring NOSTATS,$(CFLAGS)))
+ 	$(CC) $(CFLAGS) -o $@ $^ $(LFLAGS)
+ else 
+-	$(CC) `mm-config --cflags` $(CFLAGS) -o $@ $^ `mm-config --ldflags --libs` $(LFLAGS)
++	$(CC) `$(LOCALBASE)/bin/mm-config --cflags` $(CFLAGS) -o $@ $^ `$(LOCALBASE)/bin/mm-config --ldflags --libs` $(LFLAGS)
+ endif
+ 
+ clean:

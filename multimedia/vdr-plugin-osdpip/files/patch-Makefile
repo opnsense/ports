@@ -1,0 +1,18 @@
+--- osdpip-0.1.0/Makefile.orig
++++ osdpip-0.1.0/Makefile
+@@ -107,7 +107,7 @@ endif
+ 
+ ### The object files (add further files here):
+ 
+-OBJS = $(PLUGIN).o osd_info.o remux.o osd.o receiver.o setup.o i18n.o pes.o quantize.o decoder.o
++OBJS = $(PLUGIN).o osd_info.o remux.o osd.o receiver.o setup.o pes.o quantize.o decoder.o
+ 
+ ### The main target:
+ 
+@@ -171,3 +173,6 @@ dist: clean
+ 
+ clean:
+ 	@-rm -f $(OBJS) $(DEPFILE) *.so *.tgz core* *~ $(PODIR)/*.mo $(PODIR)/*.pot
++
++install:
++	${INSTALL_PROGRAM} $(LIBDIR)/libvdr-$(PLUGIN).so.$(APIVERSION) ${DESTDIR}$(PREFIX)/lib/vdr/libvdr-$(PLUGIN).so.$(APIVERSION)

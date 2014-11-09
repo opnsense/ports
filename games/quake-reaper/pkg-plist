@@ -1,0 +1,3 @@
+%%DATADIR%%/autoexec.cfg
+%%DATADIR%%/progs.dat
+@dirrm %%DATADIR%%

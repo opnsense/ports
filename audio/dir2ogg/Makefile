@@ -1,0 +1,38 @@
+# Created by: chinsan
+# $FreeBSD$
+
+PORTNAME=	dir2ogg
+PORTVERSION=	0.11.8
+PORTREVISION=	4
+CATEGORIES=	audio
+MASTER_SITES=	http://jak-linux.org/projects/dir2ogg/%SUBDIR%/
+MASTER_SITE_SUBDIR=	${PORTVERSION:R}
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Command-line {wav,mp3,m4a} to ogg converter
+
+LICENSE=	GPLv2
+
+RUN_DEPENDS=	faad:${PORTSDIR}/audio/faad \
+		mutagen-inspect:${PORTSDIR}/audio/py-mutagen \
+		mplayer:${PORTSDIR}/multimedia/mplayer \
+		oggenc:${PORTSDIR}/audio/vorbis-tools
+
+USES=		python:2 shebangfix
+
+SHEBANG_FILES=	${PORTNAME}
+NO_BUILD=	yes
+
+PORTDOCS=	NEWS README
+PLIST_FILES=	bin/${PORTNAME} \
+		man/man1/${PORTNAME}.1.gz
+
+OPTIONS_DEFINE=	DOCS
+
+do-install:
+	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+
+.include <bsd.port.mk>

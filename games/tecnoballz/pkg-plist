@@ -1,0 +1,6 @@
+@group games
+@mode 2555
+bin/tecnoballz
+@mode
+@group
+man/man6/tecnoballz.6.gz

@@ -1,0 +1,25 @@
+--- BlockOut/Makefile.orig	2008-01-10 00:29:06.000000000 +0600
++++ BlockOut/Makefile	2014-02-09 13:17:22.000000000 +0700
+@@ -34,17 +34,17 @@
+ 
+ #---------------------------------------------------------------------
+ 
+-SDL_ROOT	= /users/pons/test/opengl/SDL
+-IMGLIB_ROOT	= ../ImageLib
++SDL_ROOT	= /usr/local
++IMGLIB_ROOT	= ../ImageLib/src
+ 
+-CXX		= g++
++#CXX		= g++
+ 
+ CXXFLAGS =     -g -D_DEBUG -Dlinux -c \
+-               -I$(SDL_ROOT)/include/SDL -I$(IMGLIB_ROOT) -I.
++               -I/usr/include -I$(SDL_ROOT)/include/SDL -I$(SDL_ROOT)/include -I$(IMGLIB_ROOT) -I.
+ 
+ LIBS	 =     -L$(SDL_ROOT)/lib -L$(IMGLIB_ROOT)
+ 
+-LFLAGS   =      $(LIBS) -limagelib -lGL -lGLU -lSDL_mixer -lSDL -lpthread -lm -ldl 
++LFLAGS   =      $(LIBS) -limagelib -lGL -lGLU -lSDL_mixer -lSDL -lpthread -lm 
+ 
+ #--------------------------------------------------------------------
+ 

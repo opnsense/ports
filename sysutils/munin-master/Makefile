@@ -1,0 +1,65 @@
+# Created by: Lupe Christoph <lupe@lupe-christoph.de>
+# $FreeBSD$
+
+PORTNAME=	munin
+PORTVERSION=	${MUNIN_VERSION}
+CATEGORIES=	sysutils perl5
+MASTER_SITES=	${MUNIN_SITES}
+PKGNAMESUFFIX=	-master
+
+MAINTAINER=	mat@FreeBSD.org
+COMMENT=	Collector part of Munin
+
+BUILD_DEPENDS=	p5-Module-Build>=0:${PORTSDIR}/devel/p5-Module-Build \
+		munin-common>=0:${PORTSDIR}/sysutils/munin-common \
+		rrdtool>=0:${PORTSDIR}/databases/rrdtool \
+		p5-Storable>=0:${PORTSDIR}/devel/p5-Storable \
+		p5-CGI.pm>=0:${PORTSDIR}/www/p5-CGI.pm \
+		p5-DateTime-HiRes>=0:${PORTSDIR}/devel/p5-DateTime-HiRes \
+		p5-File-Copy-Recursive>=0:${PORTSDIR}/devel/p5-File-Copy-Recursive \
+		p5-Getopt-Long>=0:${PORTSDIR}/devel/p5-Getopt-Long \
+		p5-HTML-Template>=0:${PORTSDIR}/www/p5-HTML-Template \
+		p5-IO-Socket-INET6>=0:${PORTSDIR}/net/p5-IO-Socket-INET6 \
+		p5-Log-Log4perl>=0:${PORTSDIR}/devel/p5-Log-Log4perl \
+		p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay \
+		p5-Params-Validate>=0:${PORTSDIR}/devel/p5-Params-Validate \
+		p5-Text-Balanced>=0:${PORTSDIR}/textproc/p5-Text-Balanced
+RUN_DEPENDS=	munin-common>=0:${PORTSDIR}/sysutils/munin-common \
+		rrdtool>=0:${PORTSDIR}/databases/rrdtool \
+		p5-CGI.pm>=0:${PORTSDIR}/www/p5-CGI.pm \
+		p5-Storable>=0:${PORTSDIR}/devel/p5-Storable \
+		p5-DateTime-HiRes>=0:${PORTSDIR}/devel/p5-DateTime-HiRes \
+		p5-File-Copy-Recursive>=0:${PORTSDIR}/devel/p5-File-Copy-Recursive \
+		p5-Getopt-Long>=0:${PORTSDIR}/devel/p5-Getopt-Long \
+		p5-HTML-Template>=0:${PORTSDIR}/www/p5-HTML-Template \
+		p5-IO-Socket-INET6>=0:${PORTSDIR}/net/p5-IO-Socket-INET6 \
+		p5-Log-Log4perl>=0:${PORTSDIR}/devel/p5-Log-Log4perl \
+		p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay \
+		p5-Params-Validate>=0:${PORTSDIR}/devel/p5-Params-Validate \
+		p5-Text-Balanced>=0:${PORTSDIR}/textproc/p5-Text-Balanced \
+		p5-URI>=0:${PORTSDIR}/net/p5-URI \
+		p5-Date-Manip>=0:${PORTSDIR}/devel/p5-Date-Manip \
+		p5-FCGI>=0:${PORTSDIR}/www/p5-FCGI
+
+USES=		gmake perl5
+
+PKGMESSAGE=	${WRKDIR}/pkg-message
+
+.include "${.CURDIR}/../munin-common/munin.mk"
+
+ALL_TARGET=	infiles build-master build-man
+INSTALL_TARGET=	install-master-prime
+NO_ARCH=	yes
+
+SUB_FILES=	pkg-message
+PLIST_SUB+=	WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
+
+post-install:
+	(cd ${WRKSRC}/build/doc; \
+		${INSTALL_MAN} munin.conf.5 ${STAGEDIR}${MAN5PREFIX}/man/man5; \
+		${INSTALL_MAN} munin-cron.8 munin-graph.8 munin-html.8 munin-limits.8 munin-update.8 ${STAGEDIR}${MAN8PREFIX}/man/man8; \
+	)
+	(cd ${STAGEDIR}${ETCDIR}; for i in `find . -type f`; do mv $$i $$i.sample; done)
+	${MV} ${STAGEDIR}${WWWDIR}/.htaccess ${STAGEDIR}${WWWDIR}/.htaccess.sample
+
+.include <bsd.port.mk>

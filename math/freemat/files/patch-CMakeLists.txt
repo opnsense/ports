@@ -1,0 +1,20 @@
+--- CMakeLists.txt.orig
++++ CMakeLists.txt
+@@ -204,7 +204,7 @@
+ FIND_PACKAGE(PORTAUDIO)
+ 
+ if (PORTAUDIO_FOUND)
+-  ADD_DEFINITIONS(-DHAVE_PORTAUDIO19)
++  ADD_DEFINITIONS(-DHAVE_PORTAUDIO18)
+   SET(OPTIONAL_LIBS ${OPTIONAL_LIBS} ${PORTAUDIO_LIBS})
+   INCLUDE_DIRECTORIES(${PORTAUDIO_INCLUDE})
+ endif()
+@@ -257,7 +257,7 @@
+   add_definitions(-DHAVE_LLVM)
+   include_directories(${LLVM_INCLUDE_DIRS})
+   link_directories(${LLVM_LIBRARY_DIRS})
+-  llvm_map_components_to_libraries(REQ_LLVM_LIBRARIES jit interpreter nativecodegen asmparser bitreader bitwriter codegen ipo linker selectiondag instrumentation)
++  llvm_map_components_to_libraries(REQ_LLVM_LIBRARIES jit interpreter nativecodegen asmparser bitreader bitwriter codegen ipo linker selectiondag instrumentation irreader)
+   set(OPTIONAL_LIBS ${OPTIONAL_LIBS} ${CLANG_LIBRARIES} ${REQ_LLVM_LIBRARIES})
+ ENDIF()
+ 

@@ -1,0 +1,24 @@
+--- Makefile.orig	2011-08-10 11:59:34 UTC
++++ Makefile
+@@ -13,17 +13,15 @@
+ 	rm -f devices.tar.gz
+ 	rm -rf dev
+ 
+-DSDIR=$(DESTDIR)/usr/share/debootstrap
++DSDIR=$(DESTDIR)%%DATADIR%%
+ install:
+ 	mkdir -p $(DSDIR)/scripts
+-	mkdir -p $(DESTDIR)/usr/sbin
++	mkdir -p $(DESTDIR)%%PREFIX%%/sbin
+ 
+ 	cp -a scripts/* $(DSDIR)/scripts/
+-	install -o root -g root -m 0644 functions $(DSDIR)/
++	cp -a functions $(DSDIR)/
+ 
+-	sed 's/@VERSION@/$(VERSION)/g' debootstrap >$(DESTDIR)/usr/sbin/debootstrap
+-	chown root:root $(DESTDIR)/usr/sbin/debootstrap
+-	chmod 0755 $(DESTDIR)/usr/sbin/debootstrap
++	sed 's/@VERSION@/$(VERSION)/g' debootstrap >$(DESTDIR)%%PREFIX%%/sbin/debootstrap
+ 
+ ifeq ($(shell uname),Linux)
+ 	install -o root -g root -m 0644 devices.tar.gz $(DSDIR)/

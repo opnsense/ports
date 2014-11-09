@@ -1,0 +1,11 @@
+**********************************************************************
+
+In order to start using clamav-unofficial-sigs, you need to configure
+modify the configuration file according to your needs:
+
+%%PREFIX%%/etc/clamav-unofficial-sigs.conf
+
+To run the script periodically by cron, you also need to add it to 
+your crontab.
+
+**********************************************************************

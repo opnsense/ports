@@ -1,0 +1,5 @@
+bin/miau
+bin/miau-check
+man/man1/miau.1.gz
+%%EXAMPLESDIR%%/miaurc
+%%PORTDOCS%%%%DOCSDIR%%/ChangeLog

@@ -1,0 +1,30 @@
+bin/magicor
+@unexec if cmp -s %D/etc/magicor/magicor.conf.dist %D/etc/magicor/magicor.conf; then rm -f %D/etc/magicor/magicor.conf; fi
+etc/magicor/magicor.conf.dist
+@exec if [ ! -f %B/magicor.conf ]; then cp -p %D/%F %B/magicor.conf; fi
+%%EDITOR%%bin/magicor-editor
+%%EDITOR%%@unexec if cmp -s %D/etc/magicor/magicor-editor.conf.dist %D/etc/magicor/magicor-editor.conf; then rm -f %D/etc/magicor/magicor-editor.conf; fi
+%%EDITOR%%etc/magicor/magicor-editor.conf.dist
+%%EDITOR%%@exec if [ ! -f %B/magicor-editor.conf ]; then cp -p %D/%F %B/magicor-editor.conf; fi
+%%PYTHON_SITELIBDIR%%/magicor/__init__.py
+%%PYTHON_SITELIBDIR%%/magicor/editor/__init__.py
+%%PYTHON_SITELIBDIR%%/magicor/editor/brushes.py
+%%PYTHON_SITELIBDIR%%/magicor/editor/gtkgui.py
+%%PYTHON_SITELIBDIR%%/magicor/level.py
+%%PYTHON_SITELIBDIR%%/magicor/resources.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/__init__.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/blocks.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/decorations.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/enemies.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/fires.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/lights.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/misc.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/player.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/seekers.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/stones.py
+%%PYTHON_SITELIBDIR%%/magicor/sprites/world.py
+%%PYTHON_SITELIBDIR%%/magicor/states/__init__.py
+%%PYTHON_SITELIBDIR%%/magicor/states/intro.py
+%%PYTHON_SITELIBDIR%%/magicor/states/options.py
+%%PYTHON_SITELIBDIR%%/magicor/states/play.py
+%%PYTHON_SITELIBDIR%%/magicor/states/title.py

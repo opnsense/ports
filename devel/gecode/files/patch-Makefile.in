@@ -1,0 +1,13 @@
+--- Makefile.in.orig
++++ Makefile.in
+@@ -812,8 +812,8 @@
+ #
+ 
+ 
+-INTEXAMPLEHDR0 =						\
+-	scowl
++# INTEXAMPLEHDR0 =						\
++# 	scowl
+ INTEXAMPLESRC0 =						\
+ 	alpha bacp bibd donald efpa eq20 golomb-ruler		\
+ 	graph-color grocery ind-set magic-sequence magic-square	\

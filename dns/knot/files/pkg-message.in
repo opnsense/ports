@@ -1,0 +1,11 @@
+####################################################################
+#
+# To start using Knot DNS, you should complete the following tasks:
+#
+# cp %%ETCDIR%%/knot.sample.conf %%ETCDIR%%/knot.conf
+# $EDITOR %%ETCDIR%%/knot.conf
+# echo knot_enable=\"YES\" >> /etc/rc.conf
+# echo knot_config=\"%%PREFIX%%/etc/knot/knot.conf\" >> /etc/rc.conf
+# %%PREFIX%%/etc/rc.d/knot start
+#
+####################################################################

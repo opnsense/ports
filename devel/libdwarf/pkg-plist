@@ -1,0 +1,8 @@
+include/dwarf.h
+include/libdwarf.h
+lib/libdwarf.a
+share/doc/libdwarf/dwarf.v2.pdf
+share/doc/libdwarf/index.v2.pdf
+share/doc/libdwarf/libdwarf2.1.pdf
+share/doc/libdwarf/libdwarf2p.1.pdf
+share/doc/libdwarf/mips_extensions.pdf

@@ -1,0 +1,30 @@
+# Created by: Robert Withrow <witr@rwwa.com>
+# $FreeBSD$
+
+PORTNAME=	findutils
+PORTVERSION=	4.5.14
+CATEGORIES=	misc
+MASTER_SITES=	${MASTER_SITE_GNU_ALPHA}
+MASTER_SITE_SUBDIR=	findutils
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${DISTNAME}${EXTRACT_SUFX}.sig
+EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+
+MAINTAINER=	aehlig@linta.de
+COMMENT=	GNU find utilities
+
+USES+=		charsetfix gmake
+SIG_FILES=	${DISTNAME}${EXTRACT_SUFX}.sig
+GNU_CONFIGURE=	yes
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+CONFIGURE_ARGS+=	--program-prefix=g --localstatedir=${LOCALSTATEDIR}
+MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
+
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+NLS_CONFIGURE_ENABLE=	nls
+NLS_USES=	gettext
+
+LOCALSTATEDIR?=	/var/db
+
+.include <bsd.port.mk>

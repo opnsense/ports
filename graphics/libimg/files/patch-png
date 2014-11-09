@@ -1,0 +1,39 @@
+--- png/png.c	2013-11-21 17:03:12.000000000 -0500
++++ png/png.c	2014-06-09 13:57:22.000000000 -0400
+@@ -36,7 +36,8 @@
+  */
+ 
+-#include "pngtcl.h"
++#include <png.h>
+ #include <string.h>
+ #include <stdlib.h>
++#include <tcl.h>
+ 
+ static int SetupPngLibrary(Tcl_Interp *interp);
+@@ -171,7 +172,4 @@
+     Tcl_Interp *interp;
+ {
+-    if (Pngtcl_InitStubs(interp, PNGTCL_VERSION, 0) == NULL) {
+-        return TCL_ERROR;
+-    }
+     return TCL_OK;
+ }
+@@ -465,7 +463,7 @@
+     }
+ 
+-    if (png_get_sRGB && png_get_sRGB(png_ptr, info_ptr, &intent)) {
++    if (png_get_sRGB(png_ptr, info_ptr, &intent)) {
+         png_set_sRGB(png_ptr, info_ptr, intent);
+-    } else if (png_get_gAMA) {
++    } else {
+         double gamma;
+         if (!png_get_gAMA(png_ptr, info_ptr, &gamma)) {
+@@ -659,7 +657,5 @@
+             PNG_FILTER_TYPE_BASE);
+ 
+-    if (png_set_gAMA) {
+-        png_set_gAMA(png_ptr, info_ptr, 1.0);
+-    }
++    png_set_gAMA(png_ptr, info_ptr, 1.0);
+ 
+     if (tagcount > 0) {

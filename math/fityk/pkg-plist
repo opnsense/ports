@@ -1,0 +1,29 @@
+bin/cfityk
+bin/fityk
+bin/xyconv
+include/fityk.h
+lib/libfityk.so
+lib/libfityk.so.3
+lib/libfityk.so.3.0.0
+man/man1/fityk.1.gz
+man/man1/xyconv.1.gz
+share/applications/fityk.desktop
+share/mime/packages/fityk.xml
+share/pixmaps/fityk.png
+share/fityk/samples/hello.lua
+share/fityk/samples/SiC_Zn.dat
+share/fityk/samples/hello.cc
+share/fityk/samples/SiC_Zn.fit
+share/fityk/samples/hello.pl
+share/fityk/samples/hello.py
+share/fityk/samples/enso.fit
+share/fityk/samples/nacl01.dat
+share/fityk/samples/enso.dat
+share/fityk/samples/nacl01.fit
+share/fityk/samples/README
+share/fityk/samples/test_syntax.fit
+share/fityk/samples/read-shockley.fit
+@dirrm share/fityk/samples
+@dirrm share/fityk
+@exec %%LOCALBASE%%/bin/update-mime-database %D/share/mime
+@unexec %%LOCALBASE%%/bin/update-mime-database %D/share/mime

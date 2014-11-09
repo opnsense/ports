@@ -1,0 +1,18 @@
+@unexec %D/etc/rc.d/dhcp6s.sh forcestop 2>/dev/null || true
+@unexec %D/etc/rc.d/dhcp6relay.sh forcestop 2>/dev/null || true
+@unexec %D/etc/rc.d/dhcp6c.sh forcestop 2>/dev/null || true
+@unexec %D/etc/rc.d/dhcp6s forcestop 2>/dev/null || true
+@unexec %D/etc/rc.d/dhcp6relay  forcestop 2>/dev/null || true
+@unexec %D/etc/rc.d/dhcp6c forcestop 2>/dev/null || true
+etc/dhcp6s.conf.sample
+etc/dhcp6c.conf.sample
+sbin/dhcp6c
+sbin/dhcp6relay
+sbin/dhcp6s
+sbin/dhcp6ctl
+man/man5/dhcp6c.conf.5.gz
+man/man5/dhcp6s.conf.5.gz
+man/man8/dhcp6c.8.gz
+man/man8/dhcp6ctl.8.gz
+man/man8/dhcp6relay.8.gz
+man/man8/dhcp6s.8.gz

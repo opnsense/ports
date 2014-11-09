@@ -1,0 +1,42 @@
+# $FreeBSD$
+
+PORTNAME=	postgresql
+PORTVERSION=	09.01.0200
+PORTREVISION=	1
+CATEGORIES=	databases
+MASTER_SITES=	${MASTER_SITE_PGSQL}
+MASTER_SITE_SUBDIR=	odbc/versions/src
+PKGNAMESUFFIX=	-odbc
+DISTNAME=	psqlodbc-${PORTVERSION}
+DIST_SUBDIR=	postgresql
+
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	PostgreSQL ODBC driver
+
+LICENSE=	LGPL20
+
+USES+=		libtool pgsql
+USE_OPENSSL=	yes
+USE_LDCONFIG=	yes
+
+GNU_CONFIGURE=	yes
+
+PORTDOCS=	odbc/
+PORTEXAMPELS=	odbc/
+PLIST_FILES=	lib/psqlodbcw.so
+
+LIB_DEPENDS+=	libodbc.so:${PORTSDIR}/databases/unixODBC
+BUILD_DEPENDS+=	unixODBC>=2.2.14_1:${PORTSDIR}/databases/unixODBC
+CONFIGURE_ARGS+=	--with-unixodbc=${LOCALBASE}
+
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+DATADIR_1=	${EXAMPLESDIR}/odbc
+DOCSDIR_1=	${DOCSDIR}/odbc
+post-install:
+	@${MKDIR} ${STAGEDIR}${DATADIR_1}
+	${INSTALL_DATA} ${WRKSRC}/*.sql ${STAGEDIR}${DATADIR_1}
+	@${MKDIR} ${STAGEDIR}${DOCSDIR_1}
+	${INSTALL_DATA} ${WRKSRC}/docs/*.html ${STAGEDIR}${DOCSDIR_1}
+
+.include <bsd.port.mk>

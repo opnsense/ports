@@ -1,0 +1,24 @@
+# Created by: Sunpoet Po-Chuan Hsieh <sunpoet@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	agedu
+PORTVERSION=	10126
+CATEGORIES=	sysutils
+MASTER_SITES=	LOCAL/sunpoet \
+		http://www.chiark.greenend.org.uk/~sgtatham/${PORTNAME}/
+DISTNAME=	${PORTNAME}-r${PORTVERSION}
+
+MAINTAINER=	sunpoet@FreeBSD.org
+COMMENT=	Unix utility for tracking down wasted disk space
+
+LICENSE=	MIT
+
+GNU_CONFIGURE=	yes
+
+PLIST_FILES=	bin/${PORTNAME} \
+		man/man1/${PORTNAME}.1.gz
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|HOST_NAME_MAX|_POSIX_&|' ${WRKSRC}/httpd.c
+
+.include <bsd.port.mk>

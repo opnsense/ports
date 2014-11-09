@@ -1,0 +1,11 @@
+--- ./XMmix.ad.orig	1996-07-14 13:48:58.000000000 -0400
++++ ./XMmix.ad	2012-01-07 00:24:32.000000000 -0500
+@@ -26,7 +26,7 @@
+ !*
+ 
+ ! This points to the on-line help file
+-XMmix*helpPath:					/usr/lib/X11/xmmix.hlp
++XMmix*helpPath:					/usr/X11R6/lib/X11/xmmix.hlp
+ 
+ ! This points to a mixer settings file that is automatically loaded
+ ! upon startup.  If set to /dev/null, then no file will be auto-loaded.

@@ -1,0 +1,4 @@
+%%SITE_PERL%%/%%PERL_ARCH%%/Devel/Callsite.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Devel/Callsite/.packlist
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Devel/Callsite/Callsite.so
+%%PERL5_MAN3%%/Devel::Callsite.3.gz

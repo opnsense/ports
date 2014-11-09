@@ -1,0 +1,35 @@
+--- Makefile.in.orig	2008-02-06 18:40:19.000000000 +0100
++++ Makefile.in	2008-04-06 14:31:07.000000000 +0200
+@@ -7,6 +7,7 @@
+ man1dir     = @mandir@/man1
+ INSTALL     = @INSTALL@
+ INSTALL_PROGRAM = @INSTALL_PROGRAM@
++INSTALL_SCRIPT  = @INSTALL_SCRIPT@
+ INSTALL_DATA    = @INSTALL_DATA@
+ SHELL = @SHELL@
+ top_srcdir=@top_srcdir@
+@@ -63,13 +64,13 @@
+ 	    @MKDIR@ $(man1dir) ; fi
+ 	@if [ ! -d $(man1dir) ] ; then \
+ 	    echo "Please create $(man1dir)" ; exit 1 ; fi
+-	$(INSTALL_PROGRAM) bin/bib2html $(bindir)/bib2html
++	$(INSTALL_SCRIPT) bin/bib2html $(bindir)/bib2html
+ 	$(INSTALL_PROGRAM) src/doctext/doctext $(bindir)/doctext
+ 	$(INSTALL_PROGRAM) src/doctext/doc2lt $(bindir)/doc2lt
+ 	$(INSTALL_PROGRAM) src/tohtml/tohtml  $(bindir)/tohtml
+ 	if [ "`cd bin && pwd`" != "`cd $(bindir) && pwd`" ] ; then \
+-	    $(INSTALL_PROGRAM) bin/pstoxbm $(bindir)/pstoxbm ; \
+-	    $(INSTALL_PROGRAM) bin/pstogif $(bindir)/pstogif ; \
++	    $(INSTALL_SCRIPT) bin/pstoxbm $(bindir)/pstoxbm ; \
++	    $(INSTALL_SCRIPT) bin/pstogif $(bindir)/pstogif ; \
+ 	fi
+ 	$(INSTALL_PROGRAM) src/bfort/bfort $(bindir)/bfort
+ 	$(INSTALL_PROGRAM) src/mapnames/mapnames $(bindir)/mapnames
+@@ -91,6 +92,7 @@
+ 	    $(INSTALL_DATA)    ${top_srcdir}/share/refman.sty $(datadir)/refman.sty ;\
+ 	    $(INSTALL_DATA)    ${top_srcdir}/share/doctext/html.def $(datadir)/doctext/html.def ;\
+ 	    $(INSTALL_DATA)    ${top_srcdir}/share/doctext/htmltabl.def $(datadir)/doctext/htmltabl.def ;\
++	    $(INSTALL_DATA)    ${top_srcdir}/share/doctext/htmlcolor.def $(datadir)/doctext/htmlcolor.def ;\
+ 	    $(INSTALL_DATA)    ${top_srcdir}/share/doctext/htmlargtbl.def $(datadir)/doctext/htmlargtbl.def ;\
+ 	    $(INSTALL_DATA)    ${top_srcdir}/share/doctext/latex.def $(datadir)/doctext/latex.def ;\
+ 	    $(INSTALL_DATA)    ${top_srcdir}/share/doctext/latexargtbl.def $(datadir)/doctext/latexargtbl.def ;\

@@ -1,0 +1,4 @@
+A GTK-based mp3 front-end.  Uses mpg123 for decoding and supports
+winamp themes.
+
+WWW: http://gqmpeg.sourceforge.net/

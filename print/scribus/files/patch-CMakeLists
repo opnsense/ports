@@ -1,0 +1,44 @@
+--- CMakeLists.txt.orig	2011-12-31 00:46:04.000000000 +0400
++++ CMakeLists.txt	2012-01-12 13:31:25.064693826 +0400
+@@ -251,7 +251,7 @@ ENDIF (APPLEBUNDLE)
+ #Setp all the directories we will use
+ #MAN
+ CMAKE_POLICY(SET CMP0005 OLD)
+-SET(MANDIR "share/man/")
++SET(MANDIR "man/")
+ IF(WANT_VERSIONING)
+     SET(SHAREDIR "share/${MAIN_DIR_NAME}${TAG_VERSION}/")
+ ELSE(WANT_VERSIONING)
+@@ -322,7 +322,7 @@ IF(WANT_LIB64)
+   ENDIF(NOT ARCH_X86_64)
+   SET(LIB_SUFFIX "64" CACHE TYPE STRING)
+ ENDIF(WANT_LIB64)
+-SET(LIB_DIR_NAME "lib${LIB_SUFFIX}")
++SET(LIB_DIR_NAME "lib")
+ SET(LIBDIR "${LIB_DIR_NAME}/${MAIN_DIR_NAME}${TAG_VERSION}/")
+ ADD_DEFINITIONS("-DLIBDIR=\\\"${CMAKE_INSTALL_PREFIX}/${LIBDIR}\\\"")
+ 
+@@ -689,7 +689,7 @@ ENDIF (WITH_ASPELL)
+ #>>ASPELL for Speelling support
+ 
+ #<<HUNSPELL for Speelling support
+-OPTION(WANT_HUNSPELL "Enable support for spell checking with hunspell" OFF)
++OPTION(WANT_HUNSPELL "Enable support for spell checking with hunspell" ON)
+ IF (WANT_HUNSPELL)
+   FIND_PACKAGE(HUNSPELL)
+   IF (HUNSPELL_FOUND)
+@@ -825,10 +825,10 @@ INSTALL(FILES
+ 
+ ## PL We may not need this anymore
+ #Install the desktop file
+-## INSTALL(FILES
+- # scribus.desktop
+- # #DESTINATION ${DESKTOPDIR}
+-#)
++INSTALL(FILES
++  scribus.desktop
++  DESTINATION ${DESKTOPDIR}
++)
+ 
+ #If building an Apple bundle, install these specific files
+ IF(APPLEBUNDLE)

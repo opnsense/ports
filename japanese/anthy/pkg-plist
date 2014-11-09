@@ -1,0 +1,36 @@
+bin/anthy-agent
+bin/anthy-dic-tool
+bin/anthy-morphological-analyzer
+etc/anthy-conf
+include/anthy/anthy.h
+include/anthy/dicutil.h
+include/anthy/input.h
+lib/libanthy.a
+lib/libanthy.la
+lib/libanthy.so
+lib/libanthy.so.1
+lib/libanthydic.a
+lib/libanthydic.la
+lib/libanthydic.so
+lib/libanthydic.so.1
+lib/libanthyinput.a
+lib/libanthyinput.la
+lib/libanthyinput.so
+lib/libanthyinput.so.0
+libdata/pkgconfig/anthy.pc
+share/anthy/anthy.dic
+share/anthy/dic-tool-usage.txt
+share/anthy/typetab
+share/anthy/zipcode.t
+%%PORTDOCS%%%%DOCSDIR%%/ELISP
+%%ELISPDIR%%/anthy-azik.el
+%%ELISPDIR%%/anthy-conf.el
+%%ELISPDIR%%/anthy-dic.el
+%%ELISPDIR%%/anthy-isearch.el
+%%ELISPDIR%%/anthy-kyuri.el
+%%ELISPDIR%%/anthy.el
+%%ELISPDIR%%/leim-list.el
+@dirrm share/anthy
+@dirrm include/anthy
+@dirrm %%ELISPDIR%%
+%%PORTDOCS%%@dirrm %%DOCSDIR%%

@@ -1,0 +1,36 @@
+$FreeBSD$
+--- I2Ohash/src/util.c	1998-05-31 07:45:12.000000000 +0900
++++ I2Ohash/src/util.c	2013-03-06 14:59:43.000000000 +0900
+@@ -39,7 +39,9 @@
+ */
+ loc1 = (key1 + 1) % hashtable->nlist ;
+ loc2 = (key2 + 1) % hashtable->nlist ;
+-loc  = (loc1*loc2) % hashtable->nlist ;
++/*loc  = (loc1*loc2) % hashtable->nlist ;*/
++long int loc3  = (long int)loc1*(long int)loc2 % hashtable->nlist ;
++loc=(int)loc3;
+ #if MYDEBUG > 0
+ fprintf(stdout, "\n loc1 = %d, loc2 = %d, loc3 = %d", loc1, loc2, loc) ;
+ fflush(stdout) ;
+@@ -158,7 +160,9 @@
+ #endif
+ loc1 = (key1 + 1) % hashtable->nlist ;
+ loc2 = (key2 + 1) % hashtable->nlist ;
+-loc  = (loc1*loc2) % hashtable->nlist ;
++/*loc  = (loc1*loc2) % hashtable->nlist ;*/
++long int loc3  = (long int)loc1*(long int)loc2 % hashtable->nlist ;
++loc=(int)loc3;
+ #if MYDEBUG > 0
+ fprintf(stdout, "\n loc1 = %d, loc2 = %d, loc3 = %d", loc1, loc2, loc) ;
+ fflush(stdout) ;
+@@ -229,7 +233,9 @@
+ }
+ loc1 = (key1 + 1) % hashtable->nlist ;
+ loc2 = (key2 + 1) % hashtable->nlist ;
+-loc  = (loc1*loc2) % hashtable->nlist ;
++/*loc  = (loc1*loc2) % hashtable->nlist ;*/
++long int loc3  = (long int)loc1*(long int)loc2 % hashtable->nlist ;
++loc=(int)loc3;
+ /*
+    ---------------------------------------------------
+    find the location of the first (key1,key2,*) triple

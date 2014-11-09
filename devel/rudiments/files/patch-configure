@@ -1,0 +1,71 @@
+--- configure.orig	2014-06-21 04:23:02 UTC
++++ configure
+@@ -15765,6 +15765,9 @@
+ 	*mingw32* )
+ 		WERROR=""
+ 		;;
++	freebsd* )
++		WERROR=""
++		;;
+ 	*)
+ 		;;
+ esac
+@@ -30750,47 +30747,47 @@
+ # prepend DESTDIR where appropriate
+ if ( test "`echo $ac_default_prefix | cut -c1`" = "/" )
+ then
+-	ac_default_prefix='${DESTDIR}'"$ac_default_prefix"
++	ac_default_prefix="$ac_default_prefix"
+ fi
+ if ( test "`echo $prefix | cut -c1`" = "/" )
+ then
+-	prefix='${DESTDIR}'"$prefix"
++	prefix="$prefix"
+ fi
+ if ( test "`echo $exec_prefix | cut -c1`" = "/" )
+ then
+-	exec_prefix='${DESTDIR}'"$exec_prefix"
++	exec_prefix="$exec_prefix"
+ fi
+ if ( test "`echo $includedir | cut -c1`" = "/" )
+ then
+-	includedir='${DESTDIR}'"$includedir"
++	includedir="$includedir"
+ fi
+ if ( test "`echo $libdir | cut -c1`" = "/" )
+ then
+-	libdir='${DESTDIR}'"$libdir"
++	libdir="$libdir"
+ fi
+ if ( test "`echo $libexecdir | cut -c1`" = "/" )
+ then
+-	libexecdir='${DESTDIR}'"$libexecdir"
++	libexecdir="$libexecdir"
+ fi
+ if ( test "`echo $bindir | cut -c1`" = "/" )
+ then
+-	bindir='${DESTDIR}'"$bindir"
++	bindir="$bindir"
+ fi
+ if ( test "`echo $localstatedir | cut -c1`" = "/" )
+ then
+-	localstatedir='${DESTDIR}'"$localstatedir"
++	localstatedir="$localstatedir"
+ fi
+ if ( test "`echo $sysconfdir | cut -c1`" = "/" )
+ then
+-	sysconfdir='${DESTDIR}'"$sysconfdir"
++	sysconfdir="$sysconfdir"
+ fi
+ if ( test "`echo $mandir | cut -c1`" = "/" )
+ then
+-	mandir='${DESTDIR}'"$mandir"
++	mandir="$mandir"
+ fi
+ if ( test "`echo $datadir | cut -c1`" = "/" )
+ then
+-	datadir='${DESTDIR}'"$datadir"
++	datadir="$datadir"
+ fi
+ 
+ 

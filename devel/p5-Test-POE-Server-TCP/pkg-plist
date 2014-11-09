@@ -1,0 +1,3 @@
+%%SITE_PERL%%/Test/POE/Server/TCP.pm
+%%SITE_PERL%%/%%PERL_ARCH%%/auto/Test/POE/Server/TCP/.packlist
+%%PERL5_MAN3%%/Test::POE::Server::TCP.3.gz

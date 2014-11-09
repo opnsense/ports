@@ -1,0 +1,13 @@
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+* cplay is just a front-end; to use it, you need to install one or more *
+* of the following ports (audio players):                               *
+*                                                                       *
+*   audio/madplay                                                       *
+*   audio/mikmod                                                        *
+*   audio/mpg123                                                        *
+*   audio/mpg321                                                        *
+*   audio/splay                                                         *
+*   audio/vorbis-tools                                                  *
+*   multimedia/mplayer                                                  *
+*                                                                       *
+* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *

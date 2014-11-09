@@ -1,0 +1,65 @@
+bin/pgnfix
+bin/pgnscid
+bin/sc_addmove
+bin/sc_eco
+bin/sc_epgn
+bin/sc_import
+bin/sc_remote
+bin/sc_spell
+bin/sc_tree
+bin/scid
+bin/scidlet
+bin/scidpgn
+bin/scidt
+bin/scmerge
+bin/spf2spi
+bin/spliteco
+bin/tcscid
+bin/tkscid
+%%DATADIR%%/scid.gif
+%%DATADIR%%/books/Elo2400.bin
+%%DATADIR%%/books/Performance.bin
+%%DATADIR%%/books/gm2600.bin
+%%DATADIR%%/books/readme.txt
+%%DATADIR%%/books/varied.bin
+%%DATADIR%%/data/scid.eco
+%%DATADIR%%/engines/phalanx-scid/phalanx-scid
+%%DATADIR%%/engines/togaII1.2.1a/togaII
+%%DATADIR%%/html/scid.css
+%%DATADIR%%/html/scid.js
+%%DATADIR%%/html/bitmaps/bb.gif
+%%DATADIR%%/html/bitmaps/bk.gif
+%%DATADIR%%/html/bitmaps/bn.gif
+%%DATADIR%%/html/bitmaps/bp.gif
+%%DATADIR%%/html/bitmaps/bq.gif
+%%DATADIR%%/html/bitmaps/br.gif
+%%DATADIR%%/html/bitmaps/sq.gif
+%%DATADIR%%/html/bitmaps/wb.gif
+%%DATADIR%%/html/bitmaps/wk.gif
+%%DATADIR%%/html/bitmaps/wn.gif
+%%DATADIR%%/html/bitmaps/wp.gif
+%%DATADIR%%/html/bitmaps/wq.gif
+%%DATADIR%%/html/bitmaps/wr.gif
+%%DATADIR%%/html/bitmaps/mini/bb.gif
+%%DATADIR%%/html/bitmaps/mini/bk.gif
+%%DATADIR%%/html/bitmaps/mini/bn.gif
+%%DATADIR%%/html/bitmaps/mini/bp.gif
+%%DATADIR%%/html/bitmaps/mini/bq.gif
+%%DATADIR%%/html/bitmaps/mini/br.gif
+%%DATADIR%%/html/bitmaps/mini/sq.gif
+%%DATADIR%%/html/bitmaps/mini/wb.gif
+%%DATADIR%%/html/bitmaps/mini/wk.gif
+%%DATADIR%%/html/bitmaps/mini/wn.gif
+%%DATADIR%%/html/bitmaps/mini/wp.gif
+%%DATADIR%%/html/bitmaps/mini/wq.gif
+%%DATADIR%%/html/bitmaps/mini/wr.gif
+@dirrm %%DATADIR%%/books
+@dirrm %%DATADIR%%/bases
+@dirrm %%DATADIR%%/data
+@dirrm %%DATADIR%%/engines/phalanx-scid
+@dirrm %%DATADIR%%/engines/togaII1.2.1a
+@dirrm %%DATADIR%%/engines
+@dirrm %%DATADIR%%/html/bitmaps/mini
+@dirrm %%DATADIR%%/html/bitmaps
+@dirrm %%DATADIR%%/html
+@dirrm %%DATADIR%%

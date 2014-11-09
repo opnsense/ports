@@ -1,0 +1,54 @@
+BUILDNAME=		${FPC_ARCH}-freebsd
+
+PLIST_SUB+=		PORTVERSION=${PORTVERSION} \
+			BUILDNAME=${BUILDNAME}
+
+PLIST=			${.CURDIR}/pkg-plist
+PATCHDIR=		${.CURDIR}/files
+FILESDIR=		${.CURDIR}/files
+WRKSRC=			${WRKDIR}/${PORTNAME}-${PORTVERSION}
+BUILD_WRKSRC=		${WRKDIR}/${WRKUNITDIR}
+INSTALL_WRKSRC=		${WRKDIR}/${WRKUNITDIR}
+
+FPCDIR?=		${LOCALBASE}/lib/${PORTNAME}/${PORTVERSION}
+UNITPREFIX=    		unit-
+UNITEXTRACT_SUFX=	.tar.gz
+UNITNAME=		${UNITPREFIX}${PKGNAMESUFFIX:S/-//}${BUILDNAME:S/^/./}${UNITEXTRACT_SUFX}
+UNITDIR=		lib/fpc/${PORTVERSION}/units/${BUILDNAME}
+
+EXTRACT_AFTER_ARGS=	${EXTRACTUNITDIR}
+OPT+=			-Ur -CX
+
+MAKE_ARGS=		PP=${LOCALBASE}/bin/${PPNAME} \
+			FPCDIR=${FPCDIR} \
+			FPCMAKE=${LOCALBASE}/bin/fpcmake \
+			FPCTARGET=${BUILDNAME} \
+			ARCH=${FPC_ARCH} \
+			OPT="${OPT}" \
+			BSDHIER=1 \
+			INSTALL_PREFIX=${STAGEDIR}${PREFIX}
+MAKE_ENV+=		FPCDIR=${UNITDIR}
+
+.if ${PORT_OPTIONS:MEXAMPLES} && defined(HAVE_EXAMPLES)
+LATE_INSTALL_ARGS=	fpc_exampleinstall
+.endif
+
+post-extract:
+	@cd ${WRKDIR}/${WRKUNITDIR} && \
+		${FIND} ${WRKSRC} -type d -name .svn | ${XARGS} ${RM} -rf
+
+post-patch:
+.if ${PKGNAMESUFFIX} == "-fpmkunit"
+	@${REINPLACE_CMD} -e 's|\[Linux\]|\[Linux,FreeBSD,NetBSD,OpenBSD\]|g' \
+		${WRKDIR}/${WRKUNITDIR}/src/${PKGNAMESUFFIX:S/-//}.pp
+.endif
+.if ${PKGNAMESUFFIX} == "-fppkg"
+	@${REINPLACE_CMD} -e 's|packages_freebsd=fcl-net fcl-web|packages_freebsd=fcl-net|g' \
+		${WRKDIR}/${WRKUNITDIR}/Makefile.fpc
+.endif
+.if ${PKGNAMESUFFIX} == "-utils"
+	@${REINPLACE_CMD} -e 's| fpcmkcfg||g' -e 's| fpcm||g' ${WRKDIR}/${WRKUNITDIR}/Makefile \
+		${WRKDIR}/${WRKUNITDIR}/Makefile.fpc
+	@${REINPLACE_CMD} -e 's|$$(INSTALL) Package.fpc $$(INSTALL_UNITDIR)||g' \
+		${WRKDIR}/${WRKUNITDIR}/fppkg/Makefile
+.endif
