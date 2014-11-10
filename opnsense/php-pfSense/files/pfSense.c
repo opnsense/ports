@@ -703,7 +703,7 @@ PHP_FUNCTION(pfSense_ipfw_Tableaction)
 	long action = IP_FW_TABLE_ADD;
 	int err;
 
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "llls|l!sl", &zone, &action, &table, &ip, &ip_len, &mask, &mac, &mac_len, &pipe) == FAILURE) {
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "llls|lsl", &zone, &action, &table, &ip, &ip_len, &mask, &mac, &mac_len, &pipe) == FAILURE) {
 		RETURN_FALSE;
 	}
 
