@@ -1,0 +1,31 @@
+--- syslogd.c.orig	2011-08-17 20:05:45.030802085 +1200
++++ syslogd.c	2011-08-17 20:07:31.277844887 +1200
+@@ -2301,8 +2301,11 @@
+ waitdaemon(int nochdir, int noclose, int maxwait)
+ {
+ 	int fd;
++#if 0
+ 	int status;
+-	pid_t pid, childpid;
++	pid_t pid;
++#endif
++	pid_t childpid;
+ 
+ 	switch (childpid = fork()) {
+ 	case -1:
+@@ -2311,6 +2314,7 @@
+ 		break;
+ 	default:
+ 		signal(SIGALRM, timedout);
++#if 0
+ 		alarm(maxwait);
+ 		while ((pid = wait3(&status, 0, NULL)) != -1) {
+ 			if (WIFEXITED(status))
+@@ -2324,6 +2328,7 @@
+ 			if (pid == childpid)	/* it's gone... */
+ 				break;
+ 		}
++#endif
+ 		exit(0);
+ 	}
+ 

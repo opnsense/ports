@@ -1,0 +1,21 @@
+diff -urN syslogd.c syslogd.c
+--- syslogd.c	2011-06-21 08:36:44.000000000 +1200
++++ syslogd.c	2011-06-21 08:37:14.392379103 +1200
+@@ -1947,9 +1947,16 @@
+ 			tp = f->f_un.f_forw.f_hname;
+ 			p++;
+ 
+-			while (*p && (*p != ':') && (i-- > 0)) {
++			while (*p && (*p != ':') && (*p != '[') && (i-- > 0)) {
+ 				*tp++ = *p++;
+ 			}
++			if (*p == '[') {
++				p++;
++				while (*p && (*p != ']') && (i-- > 0)) {
++					*tp++ = *p++;
++				}
++				p++;
++			}
+ 			*tp = '\0';
+ 		}
+ 		/* See if we copied a domain and have a port */
