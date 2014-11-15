@@ -1,17 +1,11 @@
-# Ports collection makefile for:  3gstat
-# Date created:			  Tue Dec 15, 2009
-# Whom:				  Andrew Thompson <thompsa@freebsd.org>
-#
-# $FreeBSD$
-#
-
 PORTNAME=	3gstat
 PORTVERSION=	20091215
+PORTREVISION=	1
 CATEGORIES=	comms
 MASTER_SITES=	# none
 DISTFILES=	# none
 
-MAINTAINER=	thompsa@FreeBSD.org
+MAINTAINER=	franco@lastsummer.de
 COMMENT=	3G status
 
 NO_WRKSUBDIR=	yes
