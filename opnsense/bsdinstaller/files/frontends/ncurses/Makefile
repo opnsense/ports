@@ -17,8 +17,8 @@ CFLAGS+=	-I/usr/local/include -I/usr/pkg/include
 CFLAGS+=	${NLS_CFLAGS}
 CFLAGS+=	${EXTRA_CFLAGS}
 
-LDFLAGS+=	-L../../lib/libaura -L../../lib/libdfui -ldfui -laura
-LDFLAGS+=	-L/usr/local/lib -L/usr/pkg/lib -lpanel -lncurses
+LDFLAGS+=	-L../../lib/libdfui -ldfui
+LDFLAGS+=	-lpanel -lncurses
 LDFLAGS+=	${NLS_LDFLAGS}
 
 LANGUAGES=	ru

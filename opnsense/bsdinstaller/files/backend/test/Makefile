@@ -11,12 +11,10 @@ OBJS=	be_test.o
 
 CFLAGS+=	${WARNS}
 CFLAGS+=	-I../../lib/libaura -I../../lib/libdfui
-CFLAGS+=	-I/usr/local/include -I/usr/pkg/include
 CFLAGS+=	${NLS_CFLAGS}
 CFLAGS+=	${EXTRA_CFLAGS}
 
-LDFLAGS+=	-L../../lib/libaura -L../../lib/libdfui -L/usr/local/lib/
-LDFLAGS+=	-L/usr/pkg/lib -ldfui -laura
+LDFLAGS+=	-L../../lib/libdfui -ldfui
 LDFLAGS+=	${NLS_LDFLAGS}
 
 LANGUAGES=	ru

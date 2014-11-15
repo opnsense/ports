@@ -16,9 +16,8 @@ CFLAGS+=	${WARNS} -fPIC
 CFLAGS+=	-I${LUA}/include -I${COMPAT} -I../../libdfui
 CFLAGS+=	-I/usr/local/include -I/usr/pkg/include
 CFLAGS+=	${EXTRA_CFLAGS}
-LDFLAGS+=	-L../../libdfui -L../../libaura -L${LUA}/lib/
-LDFLAGS+=	-L/usr/local/lib -L/usr/pkg/lib
-LDFLAGS+=	-ldfui -laura -lm -llua50 -llualib50
+LDFLAGS+=	-L../../libdfui -L${LUA}/lib/
+LDFLAGS+=	-ldfui -lm -llua50 -llualib50
 
 all: ${LIB}
 

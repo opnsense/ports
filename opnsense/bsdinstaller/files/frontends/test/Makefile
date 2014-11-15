@@ -10,7 +10,7 @@ PROG=	dfuife_test
 OBJS=	fe_test.o
 
 CFLAGS+=	${EXTRA_CFLAGS} ${WARNS} -I../../lib/libdfui
-LDFLAGS+=	-L../../lib/libdfui -L../../lib/libaura -ldfui -laura
+LDFLAGS+=	-L../../lib/libdfui -ldfui
 
 all: ${PROG}
 

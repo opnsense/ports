@@ -1,11 +1,3 @@
-lib/libaura.a
-lib/libaura.so
-lib/libaura.so.3
-include/aura/buffer.h
-include/aura/dict.h
-include/aura/fspred.h
-include/aura/popen.h
-include/aura/mem.h
 lib/libdfui.a
 lib/libdfui.so
 lib/libdfui.so.4

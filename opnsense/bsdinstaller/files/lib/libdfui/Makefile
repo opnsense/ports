@@ -9,15 +9,10 @@ LIB_VER=4
 
 OBJS=	encode.o decode.o conn_tcp.o \
 	connection.o conn_caps.o conn_npipe.o \
-	form.o \
-	dump.o system.o lang.o
+	form.o dump.o system.o lang.o
 
 CFLAGS+=	${EXTRA_CFLAGS} ${WARNS} -fPIC -I../libaura
-CFLAGS+=	-I/usr/src/lib -I/usr/src/lib/libcaps/${MACHINE_ARCH} -DSMP
-CFLAGS+=	-I/usr/local/include -I/usr/pkg/include
-LDFLAGS+=	-L../libaura
-LDFLAGS+=	-L/usr/local/lib -L/usr/pkg/lib
-LDFLAGS+=	-laura
+LDFLAGS+=	../libaura/libaura.a
 
 # Default target:
 
