@@ -17,7 +17,8 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	CURVE DEBUG PGM
-OPTIONS_DEFAULT=	CURVE PGM
+# XXX PGM pulls perl5, which is bonkers
+#OPTIONS_DEFAULT=	CURVE PGM
 CURVE_DESC=	CURVE security mechanism via libsodium
 PGM_DESC=	Reliable multicast transport using PGM via OpenPGM
 
