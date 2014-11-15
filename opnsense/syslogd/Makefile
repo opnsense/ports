@@ -1,6 +1,6 @@
 PORTNAME=	syslogd
 PORTVERSION=	222550
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTNAME=	${PORTNAME}-r${PORTVERSION}
@@ -8,7 +8,7 @@ DISTNAME=	${PORTNAME}-r${PORTVERSION}
 MAINTAINER=	franco@lastsummer.de
 COMMENT=	FreeBSD syslogd with clog and zmq additions
 
-LIB_DEPENDS=	czmq:${PORTSDIR}/net/czmq
+LIB_DEPENDS=	libczmq.so:${PORTSDIR}/net/czmq
 RUN_DEPENDS=	clog:${PORTSDIR}/opnsense/clog
 
 DISTDIR=	${FILESDIR}
