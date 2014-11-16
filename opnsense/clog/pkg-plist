@@ -1,0 +1,3 @@
+include/clog.h
+man/man8/clog.8.gz
+sbin/clog
