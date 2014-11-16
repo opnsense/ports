@@ -46,8 +46,6 @@ SOLINK=	lib${LIB}.so
 #
 SKIP_LUA_BACKEND?=false
 SKIP_NCURSES_FRONTEND?=false
-SKIP_CGI_FRONTEND?=true
-SKIP_QT_FRONTEND?=true
 
 #
 # For 'make distribution'
