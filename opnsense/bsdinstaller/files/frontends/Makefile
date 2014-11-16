@@ -6,15 +6,15 @@ include $(BASE)/Config
 
 all:
 	(cd test && ${MAKE} all) && \
-	(cd ncurses && ${SKIP_NCURSES_FRONTEND} || ${MAKE} all)
+	(cd ncurses && ${MAKE} all)
 
 nls:
 	(cd test && ${MAKE} all) && \
-	(cd ncurses && ${SKIP_NCURSES_FRONTEND} || ${MAKE} nls)
+	(cd ncurses && ${MAKE} nls)
 
 clean:
 	(cd test && ${MAKE} clean) && \
-	(cd ncurses && ${SKIP_NCURSES_FRONTEND} || ${MAKE} clean)
+	(cd ncurses && ${MAKE} clean)
 
 distribution:
-	(cd ncurses && ${SKIP_NCURSES_FRONTEND} || ${MAKE} distribution)
+	(cd ncurses && ${MAKE} distribution)

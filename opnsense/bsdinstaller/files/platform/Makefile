@@ -5,10 +5,10 @@ BASE=..
 include $(BASE)/Config
 
 all:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} all)
+	(cd lua && ${MAKE} all)
 
 clean:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} clean)
+	(cd lua && ${MAKE} clean)
 
 distribution:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} distribution)
+	(cd lua && ${MAKE} distribution)

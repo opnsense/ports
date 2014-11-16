@@ -41,13 +41,6 @@ SOLINK=	lib${LIB}.so
 #DLLIB= -ldl		# for Lua, uncomment on systems that need it
 
 #
-# Determine what components to build.
-# Note that these should either be 'true' or 'false'.
-#
-SKIP_LUA_BACKEND?=false
-SKIP_NCURSES_FRONTEND?=false
-
-#
 # For 'make distribution'
 #
 DESTDIR?=/tmp/bsdinstaller/

@@ -9,19 +9,19 @@ include $(BASE)/Config
 all:
 	(cd libaura && ${MAKE} all) && \
 	(cd libdfui && ${MAKE} all) && \
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} all)
+	(cd lua && ${MAKE} all)
 
 nls:
 	(cd libaura && ${MAKE} all) && \
 	(cd libdfui && ${MAKE} all) && \
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} nls)
+	(cd lua && ${MAKE} nls)
 
 clean:
 	(cd libaura && ${MAKE} clean) && \
 	(cd libdfui && ${MAKE} clean) && \
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} clean)
+	(cd lua && ${MAKE} clean)
 
 distribution:
 	(cd libaura && ${MAKE} distribution) && \
 	(cd libdfui && ${MAKE} distribution) && \
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} distribution)
+	(cd lua && ${MAKE} distribution)

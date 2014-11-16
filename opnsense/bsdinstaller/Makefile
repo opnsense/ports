@@ -1,6 +1,6 @@
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.0
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -11,15 +11,8 @@ COMMENT=	BSD Installer mega-package
 
 MAKE_JOBS_UNSAFE=yes
 
-OPTIONS_SUB=	yes
-
-OPTIONS_DEFINE=	CURSES LUA_BACKEND
-OPTIONS_DEFAULT=CURSES LUA_BACKEND
-
 DFUIBE_LUA_DIR=	${PREFIX}/share/dfuibe_lua
 CFLAGS+=        -fPIC
-
-PLIST_SUB=	DISTNAME="${DISTNAME}"
 
 do-extract:
 	cp -r ${FILESDIR} ${WRKSRC}
@@ -27,7 +20,6 @@ do-extract:
 do-install:
 	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/lib/libdfui/libdfui.so.4 ${STAGEDIR}${PREFIX}/lib/
 	${LN} -sf ${PREFIX}/lib/libdfui.so.4 ${STAGEDIR}${PREFIX}/lib/libdfui.so
-	${MKDIR} -p ${STAGEDIR}${PREFIX}/share/dfuife_curses
 	${INSTALL_PROGRAM} -o root -g wheel ${WRKSRC}/frontends/ncurses/dfuife_curses ${STAGEDIR}${PREFIX}/sbin/
 	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/platform/lua/lib/liblua50.so ${STAGEDIR}${PREFIX}/lib/
 	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/platform/lua/lib/liblualib50.so ${STAGEDIR}${PREFIX}/lib/

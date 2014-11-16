@@ -5,16 +5,16 @@ BASE=..
 include $(BASE)/Config
 
 all:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} all) && \
+	(cd lua && ${MAKE} all) && \
 	cd test && ${MAKE} all
 
 nls:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} nls) && \
+	(cd lua && ${MAKE} nls) && \
 	cd test && ${MAKE} nls
 
 clean:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} clean) && \
+	(cd lua && ${MAKE} clean) && \
 	cd test && ${MAKE} clean
 
 distribution:
-	(cd lua && ${SKIP_LUA_BACKEND} || ${MAKE} distribution)
+	(cd lua && ${MAKE} distribution)
