@@ -1,6 +1,6 @@
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -13,7 +13,7 @@ MAKE_JOBS_UNSAFE=yes
 
 OPTIONS_SUB=	yes
 
-OPTIONS_DEFINE=	CGI CURSES C_BACKEND LUA_BACKEND
+OPTIONS_DEFINE=	CGI CURSES LUA_BACKEND
 OPTIONS_DEFAULT=CGI CURSES LUA_BACKEND
 
 DFUIBE_LUA_DIR=	${PREFIX}/share/dfuibe_lua
@@ -33,22 +33,9 @@ do-install:
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libdfui/dump.h ${STAGEDIR}${PREFIX}/include/dfui/
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libdfui/lang.h ${STAGEDIR}${PREFIX}/include/dfui/
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libdfui/system.h ${STAGEDIR}${PREFIX}/include/dfui/
-	${MKDIR} -p ${STAGEDIR}${PREFIX}/include/installer
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/libinstaller.a ${STAGEDIR}${PREFIX}/lib/
-	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/libinstaller.so.5 ${STAGEDIR}${PREFIX}/lib/
-	${LN} -sf ${PREFIX}/lib/libinstaller.so.5 ${STAGEDIR}${PREFIX}/lib/libinstaller.so
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/commands.h ${STAGEDIR}${PREFIX}/include/installer/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/confed.h ${STAGEDIR}${PREFIX}/include/installer/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/diskutil.h ${STAGEDIR}${PREFIX}/include/installer/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/functions.h ${STAGEDIR}${PREFIX}/include/installer/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/package.h ${STAGEDIR}${PREFIX}/include/installer/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libinstaller/uiutil.h ${STAGEDIR}${PREFIX}/include/installer/
 	${MKDIR} -p ${STAGEDIR}${PREFIX}/share/dfuife_curses
 	${INSTALL_PROGRAM} -o root -g wheel ${WRKSRC}/frontends/ncurses/dfuife_curses ${STAGEDIR}${PREFIX}/sbin/
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/frontends/ncurses/fred.txt ${STAGEDIR}${PREFIX}/share/dfuife_curses/
-	${INSTALL_PROGRAM} -s -o root -g wheel -m 555 ${WRKSRC}/backend/installer/dfuibe_installer ${STAGEDIR}${PREFIX}/sbin
-	${MKDIR} -p ${PREFIX}/share/dfuibe_installer
-	${INSTALL_DATA} -o root -g wheel -m 555 ${WRKSRC}/backend/installer/conf/cmdnames.conf ${STAGEDIR}${PREFIX}/share/dfuibe_installer
 	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/platform/lua/lib/liblua50.so ${STAGEDIR}${PREFIX}/lib/
 	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/platform/lua/lib/liblualib50.so ${STAGEDIR}${PREFIX}/lib/
 	${INSTALL_PROGRAM} -o root -g wheel -m 555 ${WRKSRC}/platform/lua/bin/lua ${STAGEDIR}${PREFIX}/bin/lua50

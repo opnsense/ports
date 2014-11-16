@@ -44,7 +44,7 @@ SOLINK=	lib${LIB}.so
 # Determine what components to build.
 # Note that these should either be 'true' or 'false'.
 #
-SKIP_C_BACKEND?=false
+SKIP_C_BACKEND?=true
 SKIP_LUA_BACKEND?=false
 SKIP_NCURSES_FRONTEND?=false
 SKIP_CGI_FRONTEND?=false
