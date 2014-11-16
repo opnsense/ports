@@ -1,6 +1,6 @@
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -25,15 +25,6 @@ do-extract:
 	cp -r ${FILESDIR} ${WRKSRC}
 
 do-install:
-	${MKDIR} -p ${STAGEDIR}${PREFIX}/include/aura
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/libaura.a ${STAGEDIR}${PREFIX}/lib/
-	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/libaura.so.3 ${STAGEDIR}${PREFIX}/lib/
-	${LN} -sf ${STAGEDIR}${PREFIX}/lib/libaura.so.3 ${STAGEDIR}${PREFIX}/lib/libaura.so
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/buffer.h ${STAGEDIR}${PREFIX}/include/aura/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/dict.h ${STAGEDIR}${PREFIX}/include/aura/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/popen.h ${STAGEDIR}${PREFIX}/include/aura/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/fspred.h ${STAGEDIR}${PREFIX}/include/aura/
-	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libaura/mem.h ${STAGEDIR}${PREFIX}/include/aura/
 	${MKDIR} -p ${STAGEDIR}${PREFIX}/include/dfui
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/lib/libdfui/libdfui.a ${STAGEDIR}${PREFIX}/lib/
 	${INSTALL_PROGRAM} -o root -g wheel -m 444 ${WRKSRC}/lib/libdfui/libdfui.so.4 ${STAGEDIR}${PREFIX}/lib/
