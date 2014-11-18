@@ -57,13 +57,13 @@ return {
 
 	-- Make sure source disk containing config.xml is selected
 	if not disk1 then
-		return step:prev()
+		return Menu.CONTINUE
 	end
 
 	-- make sure that we have partition we reference after
 	if POSIX.stat("/dev/" .. disk1 .."s1a", "type") == nil then
 		App.ui:inform(_("Disk is not partitioned."))
-		return step:prev()
+		return Menu.CONTINUE
 	end
 
 	local cmds = CmdChain.new()
@@ -77,7 +77,7 @@ return {
 		replacements = { disk1 = disk1, }
 	}
 	if not cmds:execute() then
-		return step:prev()
+		return Menu.CONTINUE
 	end 
 
 	cmds = CmdChain.new()
@@ -99,7 +99,7 @@ return {
 	cmds:add("${root}bin/rm -f /tmp/config.cache");
 	cmds:add("${root}sbin/umount /tmp/hdrescue");
 	if not cmds:execute() then
-		return step:prev()
+		return Menu.CONTINUE
 	end
 
 	App.ui:inform(_(
