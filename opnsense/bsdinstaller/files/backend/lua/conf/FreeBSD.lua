@@ -1,13 +1,10 @@
 --
--- conf/FreeBSD.lua
--- $Id: FreeBSD.lua,v 1.8.2.1 2006/07/28 16:19:53 sullrich Exp $
---
--- This file contains FreeBSD-specific overrides to BSDInstaller.lua.
+-- This file contains FreeBSD-specific overrides to BSDInstaller.lua
 --
 
 os = {
 	name = "FreeBSD",
-	version = "6.0"
+	version = "10.0"
 }
 
 install_items = {
@@ -72,4 +69,3 @@ use_cpdup = false
 --
 -- example: offlimits_mounts  = { "unionfs" }
 offlimits_mounts = { }
-

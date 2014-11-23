@@ -1,36 +1,36 @@
 --
--- This file contains OPNsense-specific overrides to BSDInstaller.lua.
+-- This file contains product-specific overrides to BSDInstaller.lua
 --
 
 product = {
 	name = "OPNsense",
-	version = "10"
+	version = "15"
 }
 
 mountpoints = function(part_cap, ram_cap)
 
-        --
-        -- First, calculate suggested swap size:
-        --
-        local swap = 2 * ram_cap
-        if ram_cap > (part_cap / 2) or part_cap < 4096 then
-                swap = ram_cap
-        end
-        swap = tostring(swap) .. "M"
+	--
+	-- First, calculate suggested swap size:
+	--
+	local swap = 2 * ram_cap
+	if ram_cap > (part_cap / 2) or part_cap < 4096 then
+		swap = ram_cap
+	end
+	swap = tostring(swap) .. "M"
 
-        --
-        -- Now, based on the capacity of the partition,
-        -- return an appropriate list of suggested mountpoints.
-        --
+	--
+	-- Now, based on the capacity of the partition,
+	-- return an appropriate list of suggested mountpoints.
+	--
 
-        --
-        -- pfSense: We want to only setup / and swap.
-        --
+	--
+	-- We want to only setup / and swap.
+	--
 
-        return {
-                { mountpoint = "/",     capstring = "*" },
-                { mountpoint = "swap",  capstring = swap },
-        }
+	return {
+		{ mountpoint = "/",     capstring = "*" },
+		{ mountpoint = "swap",  capstring = swap },
+	}
 
 end
 
@@ -38,25 +38,29 @@ cmd_names = cmd_names + {
 	DMESG_BOOT = "var/log/dmesg.boot"
 }
 
-mtrees_post_copy = {
-     ["usr/local"] = "etc/mtree/BSD.local.dist",
-}
+mtrees_post_copy = {} -- none
 
 install_items = {
-        "boot",
-        "COPYRIGHT",
-        "bin",
-        "conf",
-        "conf.default",
-        "dev",
-        "etc",
-	"home", 
-        "libexec",
-        "lib",
-        "root",
-        "sbin",
-        "usr",
-        "var"
+	".cshrc",
+	".profile",
+	"COPYRIGHT",
+	"bin",
+	"boot",
+	"boot.config",
+	"conf",
+	"dev",
+	"etc",
+	"home",
+	"lib",
+	"libexec",
+	"media",
+	"proc",
+	"rescue",
+	"root",
+	"sbin",
+	"sys",
+	"usr",
+	"var",
 }
 
 ui_nav_control = {

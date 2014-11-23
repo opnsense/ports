@@ -350,6 +350,10 @@ TargetSystem.new = function(tab)
 		--
 		local add_copy_command = function(src, dest)
 			local filename = App.expand("${root}" .. src)
+
+			-- ignore nonexisting files (e.g. boot.config)
+			if POSIX.stat(filename, "type") == nil then return end
+
 			local link = POSIX.readlink(filename)
 			if link ~= nil then
 				cmds:add{
@@ -392,6 +396,11 @@ TargetSystem.new = function(tab)
 
 		if App.conf.use_cpdup then
 			add_copy_command = function(src, dest)
+				local filename = App.expand("${root}" .. src)
+
+				-- ignore nonexisting files (e.g. boot.config)
+				if POSIX.stat(filename, "type") == nil then return end
+
 				cmds:add{
 				    cmdline = "${root}${CPDUP} "	..
 					"${cleanout}${root}${src} "	..

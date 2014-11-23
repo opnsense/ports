@@ -21,10 +21,7 @@ share/dfuibe_lua/600_upgrade.lua
 share/dfuibe_lua/800_netboot.lua
 share/dfuibe_lua/950_reboot.lua
 share/dfuibe_lua/conf/BSDInstaller.lua
-share/dfuibe_lua/conf/DragonFly.lua
 share/dfuibe_lua/conf/FreeBSD.lua
-share/dfuibe_lua/conf/NetBSD.lua
-share/dfuibe_lua/conf/OpenBSD.lua
 share/dfuibe_lua/conf/pfSense.lua
 share/dfuibe_lua/configure/100_choose_where_from.lua
 share/dfuibe_lua/configure/200_select_disk.lua

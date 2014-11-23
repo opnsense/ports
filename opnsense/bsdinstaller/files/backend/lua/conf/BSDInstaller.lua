@@ -1,7 +1,4 @@
 --
--- conf/BSDInstaller.lua
--- $Id: BSDInstaller.lua,v 1.14.2.2 2006/08/29 01:20:41 sullrich Exp $
---
 -- The monolithic default configuration file for the BSD Installer.
 --
 -- Many of the defaults in here are appropriate to DragonFly BSD,
@@ -140,9 +137,7 @@ install_items = {
 -- i.e., boot from CD-ROM.  This is clearly inapplicable to a HDD boot.
 --
 
-cleanup_items = {
-    "/boot/loader.conf"
-}
+cleanup_items = { }
 
 
 --
