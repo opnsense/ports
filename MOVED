@@ -4450,7 +4450,6 @@ audio/xmms-kde||2013-07-26|Has expired: Depends on Qt 3.x
 audio/yammi||2013-07-26|Has expired: Depends on Qt 3.x
 biology/xdrawchem||2013-07-26|Has expired: Depends on Qt 3.x
 cad/opencascade-tutorial||2013-07-26|Has expired: Depends on Qt 3.x
-cad/qucs||2013-07-26|Has expired: Depends on Qt 3.x
 cad/vipec||2013-07-26|Has expired: Depends on Qt 3.x
 chinese/kde3-i18n-zh_CN||2013-07-26|Has expired: Depends on Qt 3.x
 chinese/kde3-i18n-zh_TW||2013-07-26|Has expired: Depends on Qt 3.x
@@ -6597,7 +6596,6 @@ editors/color-mate||2014-09-01|Not staged
 editors/gnuserv||2014-09-01|Not staged
 editors/jext||2014-09-01|Not staged
 editors/komodo-ide||2014-09-01|Not staged
-editors/psgml||2014-09-01|Not staged
 editors/setedit||2014-09-01|Not staged
 editors/softmaker-office||2014-09-01|Not staged
 editors/textedit||2014-09-01|Not staged
@@ -6624,7 +6622,6 @@ graphics/linux_glide||2014-09-01|Not staged
 graphics/mingplot||2014-09-01|Not staged
 graphics/orca||2014-09-01|Not staged
 graphics/php5-chartdirector||2014-09-01|Not staged
-graphics/pinta||2014-09-01|Not staged
 graphics/ruby-rmagick||2014-09-01|Not staged
 graphics/sane-epkowa||2014-09-01|Not staged
 graphics/uDrawGraph||2014-09-01|Not staged
@@ -6982,11 +6979,6 @@ sysutils/boxbackup||2014-09-01|Not staged
 www/webcalendar-devel|www/webcalendar|2014-09-04|Removed, use www/webcalendar instead
 devel/ruby-memoize||2014-09-06|Has expired: RubyForge shutdown May 15 2014
 www/oops||2014-09-06|Development stops long ago, domain has been expired
-print/ghostscript7||2014-09-06|Not staged
-print/ghostscript7-commfont||2014-09-06|Not staged
-print/ghostscript7-jpnfont||2014-09-06|Not staged
-print/ghostscript7-korfont||2014-09-06|Not staged
-print/ghostscript7-nox11||2014-09-06|Not staged
 net/freeswitch-core-devel||2014-09-06|Not staged
 net/freeswitch-devel||2014-09-06|Not staged
 audio/freeswitch-sounds||2014-09-06|Not staged
@@ -7183,3 +7175,60 @@ science/elmergrid|cad/elmerfem|2014-11-07|Has expired: Obsoleted by cad/elmerfem
 security/pinentry-gtk||2014-11-13|Removed: upstream ended support for GTK+ 1
 audio/cuberok||2014-11-15|Has expired: Upstream development has stalled
 sysutils/cfengine36-rc|sysutils/cfengine36|2014-11-18|Has gone GA
+deskutils/gdesklets||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+deskutils/gdesklets-recentlyused||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+deskutils/gdesklets-starterbar||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+deskutils/global-menu||2014-11-19|Depends on removed gnome-panel and incompatible with updated gnome-desktop
+deskutils/labyrinth||2014-11-19|Is not compatible with updated gnome-desktop
+deskutils/libopensync-plugin-evolution2||2014-11-19|Is not compatible with updated evolution
+deskutils/libopensync-plugin-evolution2-devel||2014-11-19|Is not compatible with updated evolution
+devel/bug-buddy||2014-11-19|No longer used in GNOME
+devel/gnome2-hacker-tools||2014-11-19|GNOME 2 was removed
+editors/gnome2-office||2014-11-19|GNOME 2 was removed
+games/gnomesudoku|games/gnome-sudoku|2014-11-19|Renamed to what the actualy name
+lang/vala-vapigen|lang/vala|2014-11-19|vapigen merged into vala
+mail/evolution-exchange|mail/evolution-ews|2014-11-19|Replaced by evolution-ews
+mail/gmail-notify||2014-11-19|Depends on removed x11-toolkits/py-gnome-extras
+math/gcalctool|math/gnome-calculator|2014-11-19|Project renamed
+misc/gnome2-reference||2014-11-19|GNOME 2 was removed
+misc/xmonad-log-applet||2014-11-19|Depends on removed gnome-panel
+net/gnome-netstatus||2014-11-19|Depends on removed gnome-panel
+security/seahorse-plugins||2014-11-19|Removed, not used in GNOME 3
+sysutils/gnome-system-tools||2014-11-19|Depends on removed nautilus2
+sysutils/tacker-client|sysutils/tracker|2014-11-19|Merged into sysutils/tracker
+sysutils/tracker-gnome|sysutils/tracker|2014-11-19|Merged into sysutils/tracker
+sysutils/tracker-libtrackergtk|sysutils/tracker|2014-11-19|Merged into sysutils/tracker
+www/epiphany-extensions||2014-11-19|Removed, not used in GNOME 3
+www/evolution-webcal||2014-11-19|Not compatible with evolution 3
+x11-clocks/gdesklets-clock||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+x11-clocks/gdesklets-countdown||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+x11-clocks/gdesklets-ebichuclock||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+x11-toolkits/libpanelappletmm||2014-11-19|Depends on removed GNOME 2 ports
+x11-toolkits/py-gnome-desktop||2014-11-19|Depends on removed GNOME 2 ports
+x11-toolkits/py-gnome-extras||2014-11-19|Depends on removed GNOME 2 ports
+x11/gdesklets-tasklist||2014-11-19|Depends on removed x11-toolkits/py-gnome-extra
+x11/gnome-applets||2014-11-19|GNOME 2 was removed
+x11/gnome-panel||2014-11-19|GNOME 2 was removed
+x11/gnome-panel-reference||2014-11-19|GNOME 2 was removed
+x11/gnome-pie||2014-11-19|Is not compatible with updated gnome-menus
+x11/gnome-screensaver||2014-11-19|Is not compatible with updated gnome-desktop
+x11/gnome-swallow||2014-11-19|Removed, depends on removed gnome-panel
+x11/gnome2||2014-11-19|GNOME 2 was removed
+x11/gnome2-fifth-toe||2014-11-19|GNOME 2 was removed
+x11/gnome2-lite||2014-11-19|GNOME 2 was removed
+x11/gnome2-power-tools||2014-11-19|GNOME 2 was removed
+x11/xfce4-xfapplet-plugin||2014-11-19|Depends on removed gnome-panel
+net-im/telegram-cli||2014-11-19|Duplicate of net-im/tg
+emulation/wine-doors||2014-11-19|Abandonware, depends on non existing USE_GNOME components
+x11/gtstarter||2014-11-19|Abandonware, depends on non existing USE_GNOME components
+sysutils/serpentine||2014-11-19|Abandonware, depends on non existing USE_GNOME components
+sysutils/pessulus||2014-11-19|Abandonware, depends on non existing USE_GNOME components
+x11-toolkits/libzvt||2014-11-19|Abandonware, not depended on anymore
+net-p2p/gtkhx||2014-11-19|Does not work anymore
+korean/ami||2014-11-19|Does not work anymore
+graphics/xzgv||2014-11-19|Abandonware since at least 2008
+deskutils/gtkjournal||2014-11-19|Abandonware, not working anymore
+deskutils/splashsetter||2014-11-19|Abandonware, useless without gnome2
+editors/emacs23|editors/emacs|2014-11-19|Has expired: Unmaintained upstream, use editors/emacs
+net-im/tg|net-im/telegram|2014-11-20|Renamed to more specific name
+net-mgmt/virtinst|deskutils/virt-manager|2014-11-20|Obsoleted by deskutils/virt-manager
