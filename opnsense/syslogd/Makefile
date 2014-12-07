@@ -1,27 +1,25 @@
 PORTNAME=	syslogd
 PORTVERSION=	222550
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	sysutils
-MASTER_SITES=	# empty
-DISTNAME=	${PORTNAME}-r${PORTVERSION}
+DISTFILES=
 
 MAINTAINER=	franco@lastsummer.de
 COMMENT=	FreeBSD syslogd with clog and zmq additions
 
 LIB_DEPENDS=	libczmq.so:${PORTSDIR}/net/czmq
-RUN_DEPENDS=	clog:${PORTSDIR}/opnsense/clog
+CFLAGS+=	-DWITH_ZMQ -I/usr/local/include
+LDFLAGS+=	-lczmq -lzmq -lpthread -lstdc++
+LDFLAGS+=	-L/usr/local/lib
 
-DISTDIR=	${FILESDIR}
-PLIST_FILES=	sbin/syslogd
+RUN_DEPENDS=	clog:${PORTSDIR}/opnsense/clog
 
 # apply in order
 EXTRA_PATCHES+=	${PATCHDIR}/clog-support.diff
 EXTRA_PATCHES+=	${PATCHDIR}/zmq-support.diff
+EXTRA_PATCHES+=	${PATCHDIR}/ipv6-parsing.diff
 
-do-fetch:
-
-post-patch:
-	@${SED} -i '' -e 's|%%PREFIX%%|${PREFIX}|g' \
-		-e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/Makefile
+do-extract:
+	cp -r ${FILESDIR}/src ${WRKSRC}
 
 .include <bsd.port.mk>

@@ -1,6 +1,6 @@
 diff -urN syslogd.c syslogd.c
---- syslogd.c	2011-06-01 12:44:59.002094254 +1200
-+++ syslogd.c	2011-06-01 12:45:29.840070134 +1200
+--- usr.sbin/syslogd/syslogd.c	2011-06-01 12:44:59.002094254 +1200
++++ usr.sbin/syslogd/syslogd.c	2011-06-01 12:45:29.840070134 +1200
 @@ -88,6 +88,7 @@
  #include <sys/resource.h>
  #include <sys/syslimits.h>

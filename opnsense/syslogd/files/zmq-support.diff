@@ -1,17 +1,6 @@
-diff -urN Makefile Makefile
---- Makefile	2011-06-29 14:24:38.452192218 +1200
-+++ Makefile	2011-06-29 14:27:47.379193306 +1200
-@@ -20,4 +20,7 @@
- 
- CFLAGS+= -I%%LOCALBASE%%/include -L%%LOCALBASE%%/lib
- 
-+CFLAGS+= -DWITH_ZMQ
-+LDADD+= -lczmq -lzmq -lpthread -lstdc++
-+
- .include <bsd.prog.mk>
 diff -urN syslogd.c syslogd.c
---- syslogd.c	2011-07-19 07:41:13.646453076 +1200
-+++ syslogd.c	2011-07-19 07:41:26.460496953 +1200
+--- usr.sbin/syslogd/syslogd.c	2011-07-19 07:41:13.646453076 +1200
++++ usr.sbin/syslogd/syslogd.c	2011-07-19 07:41:26.460496953 +1200
 @@ -89,6 +89,7 @@
  #include <sys/syslimits.h>
  #include <sys/types.h>
