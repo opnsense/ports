@@ -29,7 +29,7 @@
 
 #include <sys/cdefs.h>
 
-__FBSDID("$FreeBSD: head/usr.bin/wall/ttymsg.c 216370 2010-12-11 08:32:16Z joel $");
+__FBSDID("$FreeBSD$");
 
 #ifndef lint
 static const char sccsid[] = "@(#)ttymsg.c	8.2 (Berkeley) 11/16/93";

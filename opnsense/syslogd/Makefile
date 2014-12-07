@@ -1,6 +1,6 @@
 PORTNAME=	syslogd
-PORTVERSION=	222550
-PORTREVISION=	6
+PORTVERSION=	10.0
+#PORTREVISION=	1
 CATEGORIES=	sysutils
 DISTFILES=
 
@@ -17,7 +17,6 @@ RUN_DEPENDS=	clog:${PORTSDIR}/opnsense/clog
 # apply in order
 EXTRA_PATCHES+=	${PATCHDIR}/clog-support.diff
 EXTRA_PATCHES+=	${PATCHDIR}/zmq-support.diff
-EXTRA_PATCHES+=	${PATCHDIR}/ipv6-parsing.diff
 
 do-extract:
 	cp -r ${FILESDIR}/src ${WRKSRC}

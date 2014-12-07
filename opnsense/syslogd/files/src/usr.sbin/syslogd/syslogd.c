@@ -40,7 +40,7 @@ static char sccsid[] = "@(#)syslogd.c	8.3 (Berkeley) 4/4/94";
 #endif /* not lint */
 
 #include <sys/cdefs.h>
-__FBSDID("$FreeBSD: head/usr.sbin/syslogd/syslogd.c 217589 2011-01-19 17:17:37Z dwmalone $");
+__FBSDID("$FreeBSD$");
 
 /*
  *  syslogd -- log system messages
@@ -106,11 +106,7 @@ __FBSDID("$FreeBSD: head/usr.sbin/syslogd/syslogd.c 217589 2011-01-19 17:17:37Z 
 #include <string.h>
 #include <sysexits.h>
 #include <unistd.h>
-#if __FreeBSD_version >= 900007
 #include <utmpx.h>
-#else
-#include <utmp.h>
-#endif
 
 #include "pathnames.h"
 #include "ttymsg.h"
@@ -282,6 +278,7 @@ static int	fklog = -1;	/* /dev/klog */
 static int	Initialized;	/* set when we have initialized ourselves */
 static int	MarkInterval = 20 * 60;	/* interval between marks in seconds */
 static int	MarkSeq;	/* mark sequence number */
+static int	NoBind;		/* don't bind() as suggested by RFC 3164 */
 static int	SecureMode;	/* when true, receive only unix domain socks */
 #ifdef INET6
 static int	family = PF_UNSPEC; /* protocol family (IPv4, IPv6 or both) */
@@ -362,7 +359,7 @@ main(int argc, char *argv[])
 		dprintf("madvise() failed: %s\n", strerror(errno));
 
 	bindhostname = NULL;
-	while ((ch = getopt(argc, argv, "468Aa:b:cCdf:kl:m:nop:P:sS:Tuv"))
+	while ((ch = getopt(argc, argv, "468Aa:b:cCdf:kl:m:nNop:P:sS:Tuv"))
 	    != -1)
 		switch (ch) {
 		case '4':
@@ -440,6 +437,10 @@ main(int argc, char *argv[])
 		   }
 		case 'm':		/* mark interval */
 			MarkInterval = atoi(optarg) * 60;
+			break;
+		case 'N':
+			NoBind = 1;
+			SecureMode = 1;
 			break;
 		case 'n':
 			resolve = 0;
@@ -1347,7 +1348,6 @@ fprintlog(struct filed *f, int flags, const char *msg)
 static void
 wallmsg(struct filed *f, struct iovec *iov, const int iovlen)
 {
-#if __FreeBSD_version >= 900007
 	static int reenter;			/* avoid calling ourselves */
 	struct utmpx *ut;
 	int i;
@@ -1384,7 +1384,6 @@ wallmsg(struct filed *f, struct iovec *iov, const int iovlen)
 	}
 	endutxent();
 	reenter = 0;
-#endif
 }
 
 static void
@@ -1872,8 +1871,9 @@ cfline(const char *line, struct filed *f, const char *prog, const char *host)
 			for (i = strlen(buf) - 1; i >= 0 && buf[i] == ' '; i--)
 				buf[i] = '\0';
 
-			pri = decode(buf, &prioritynames[0]);
+			pri = decode(buf, prioritynames);
 			if (pri < 0) {
+				errno = 0;
 				(void)snprintf(ebuf, sizeof ebuf,
 				    "unknown priority name \"%s\"", buf);
 				logerror(ebuf);
@@ -1902,6 +1902,7 @@ cfline(const char *line, struct filed *f, const char *prog, const char *host)
 			} else {
 				i = decode(buf, facilitynames);
 				if (i < 0) {
+					errno = 0;
 					(void)snprintf(ebuf, sizeof ebuf,
 					    "unknown facility name \"%s\"",
 					    buf);
@@ -1932,6 +1933,7 @@ cfline(const char *line, struct filed *f, const char *prog, const char *host)
 	case '@':
 		{
 			char *tp;
+			char endkey = ':';
 			/*
 			 * scan forward to see if there is a port defined.
 			 * so we can't use strlcpy..
@@ -1940,9 +1942,19 @@ cfline(const char *line, struct filed *f, const char *prog, const char *host)
 			tp = f->f_un.f_forw.f_hname;
 			p++;
 
-			while (*p && (*p != ':') && (i-- > 0)) {
+			/*
+			 * an ipv6 address should start with a '[' in that case
+			 * we should scan for a ']'
+			 */
+			if (*p == '[') {
+				p++;
+				endkey = ']';
+			}
+			while (*p && (*p != endkey) && (i-- > 0)) {
 				*tp++ = *p++;
 			}
+			if (endkey == ']' && *p == endkey)
+				p++;
 			*tp = '\0';
 		}
 		/* See if we copied a domain and have a port */
@@ -2464,7 +2476,7 @@ validate(struct sockaddr *sa, const char *hname)
 static int
 p_open(const char *prog, pid_t *rpid)
 {
-	int pfd[2], nulldesc, i;
+	int pfd[2], nulldesc;
 	pid_t pid;
 	sigset_t omask, mask;
 	char *argv[4]; /* sh -c cmd NULL */
@@ -2514,8 +2526,7 @@ p_open(const char *prog, pid_t *rpid)
 		dup2(pfd[0], STDIN_FILENO);
 		dup2(nulldesc, STDOUT_FILENO);
 		dup2(nulldesc, STDERR_FILENO);
-		for (i = getdtablesize(); i > 2; i--)
-			(void)close(i);
+		closefrom(3);
 
 		(void)execvp(_PATH_BSHELL, argv);
 		_exit(255);
@@ -2677,6 +2688,7 @@ socksetup(int af, char *bindhostname)
 			logerror("socket");
 			continue;
 		}
+#ifdef INET6
 		if (r->ai_family == AF_INET6) {
 			if (setsockopt(*s, IPPROTO_IPV6, IPV6_V6ONLY,
 				       (char *)&on, sizeof (on)) < 0) {
@@ -2685,19 +2697,31 @@ socksetup(int af, char *bindhostname)
 				continue;
 			}
 		}
+#endif
 		if (setsockopt(*s, SOL_SOCKET, SO_REUSEADDR,
 			       (char *)&on, sizeof (on)) < 0) {
 			logerror("setsockopt");
 			close(*s);
 			continue;
 		}
-		if (bind(*s, r->ai_addr, r->ai_addrlen) < 0) {
-			close(*s);
-			logerror("bind");
-			continue;
-		}
+		/*
+		 * RFC 3164 recommends that client side message
+		 * should come from the privileged syslogd port.
+		 *
+		 * If the system administrator choose not to obey
+		 * this, we can skip the bind() step so that the
+		 * system will choose a port for us.
+		 */
+		if (!NoBind) {
+			if (bind(*s, r->ai_addr, r->ai_addrlen) < 0) {
+				logerror("bind");
+				close(*s);
+				continue;
+			}
 
-		double_rbuf(*s);
+			if (!SecureMode)
+				double_rbuf(*s);
+		}
 
 		(*socks)++;
 		s++;
