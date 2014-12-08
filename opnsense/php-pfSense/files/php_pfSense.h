@@ -56,8 +56,6 @@ PHP_FUNCTION(pfSense_kill_states);
 PHP_FUNCTION(pfSense_kill_srcstates);
 PHP_FUNCTION(pfSense_ip_to_mac);
 
-PHP_FUNCTION(pfSense_ipfw_getTablestats);
-PHP_FUNCTION(pfSense_ipfw_Tableaction);
 PHP_FUNCTION(pfSense_pipe_action);
 
 extern zend_module_entry pfSense_module_entry;
