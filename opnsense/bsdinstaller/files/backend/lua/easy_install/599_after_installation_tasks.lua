@@ -13,7 +13,7 @@ return {
     name = _("pfSense after installation routines"),
     effect = function(step)
 	local cmds = CmdChain.new()
-	local filename = "/scripts/after_installation_routines.sh"
+	local filename = "/usr/local/installer/after_installation_routines.sh"
 	local line
         
 	for line in io.lines(filename) do
