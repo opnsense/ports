@@ -1,6 +1,8 @@
 bin/lua50
 bin/lua50c
 bin/lua50c51
+installer/after_installation_routines.sh
+installer/cleargpt.sh
 lib/libdfui.so
 lib/libdfui.so.4
 lib/liblua50.so

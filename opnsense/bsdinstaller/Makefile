@@ -1,12 +1,12 @@
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	BSD Installer mega-package
 
 MAKE_JOBS_UNSAFE=yes
@@ -64,6 +64,7 @@ do-install:
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/backend/lua/configure/menu/*.lua ${STAGEDIR}${DFUIBE_LUA_DIR}/configure/menu/
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/backend/lua/upgrade/*.lua ${STAGEDIR}${DFUIBE_LUA_DIR}/upgrade/
 	${INSTALL_DATA} -o root -g wheel -m 444 ${WRKSRC}/backend/lua/netboot/*.lua ${STAGEDIR}${DFUIBE_LUA_DIR}/netboot/
-	echo ${DISTNAME}
+	mkdir -p ${STAGEDIR}/usr/local/installer
+	${INSTALL_SCRIPT} -o root -g wheel ${WRKSRC}/extra/* ${STAGEDIR}/usr/local/installer
 
 .include <bsd.port.mk>
