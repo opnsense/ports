@@ -31,9 +31,6 @@ cp /tmp/installer.log /mnt/var/installer_logs
 cp /tmp/install-session.sh /mnt/var/installer_logs
 cp /tmp/new.fdisk /mnt/var/installer_logs
 
-mkdir -p /mnt/var/db/pkg
-cd /var/db/pkg ; tar -cpf - . | (cd /mnt/var/db/pkg ; tar -xpf -)
-
 # If the platform is vmware, lets do some fixups.
 if [ -f /var/IS_VMWARE ]; then echo "" >> /mnt/etc/sysctl.conf; echo "kern.timecounter.hardware=i8254" >> /mnt/etc/sysctl.conf;  echo kern.hz="100" >> /mnt/boot/loader.conf; fi;
 

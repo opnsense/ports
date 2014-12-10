@@ -85,16 +85,6 @@ return {
 	App.state.target:cmds_install_srcs(cmds, App.conf.install_items)
 
 	--
-	-- Remove any databases that might have been copied over but
-	-- will no longer be accurate, e.g. the installed-package database.
-	--
-	cmds:add(
-	    "${root}${RM} -rf ${root}${base}/var/db/pkg",
-	    "${root}${MKDIR} -p ${root}${base}/var/db/pkg",
-	    "${root}${CHMOD} 755 ${root}${base}/var/db/pkg"
-	)
-
-	--
 	-- Some directories may not have been copied to the HDD, but
 	-- may still be required/desired on a default install.  For
 	-- example, we generally don't want to copy the entire
