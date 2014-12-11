@@ -4,7 +4,7 @@
 
 product = {
 	name = "OPNsense",
-	version = "15"
+	version = "15.1"
 }
 
 mountpoints = function(part_cap, ram_cap)
@@ -47,6 +47,7 @@ install_items = {
 	"bin",
 	"boot",
 	"boot.config",
+	"cf",
 	"conf",
 	"dev",
 	"etc",

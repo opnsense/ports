@@ -24,7 +24,7 @@ share/dfuibe_lua/800_netboot.lua
 share/dfuibe_lua/950_reboot.lua
 share/dfuibe_lua/conf/BSDInstaller.lua
 share/dfuibe_lua/conf/FreeBSD.lua
-share/dfuibe_lua/conf/pfSense.lua
+share/dfuibe_lua/conf/Product.lua
 share/dfuibe_lua/configure/100_choose_where_from.lua
 share/dfuibe_lua/configure/200_select_disk.lua
 share/dfuibe_lua/configure/300_select_part.lua
