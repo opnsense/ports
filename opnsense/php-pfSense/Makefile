@@ -6,7 +6,7 @@ MASTER_SITES=
 DISTFILES=
 PKGNAMEPREFIX=	php-
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Library for getting useful info
 
 USE_PHP=	yes

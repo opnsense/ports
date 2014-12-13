@@ -6,7 +6,7 @@ MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	read dhpcd.lease file and add it to hosts file
 
 WHERE=		sbin

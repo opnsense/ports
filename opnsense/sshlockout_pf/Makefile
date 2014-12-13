@@ -6,7 +6,7 @@ MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Automatically block IPs with failed SSH logins using pf(4)
 
 PLIST_FILES=    sbin/sshlockout_pf

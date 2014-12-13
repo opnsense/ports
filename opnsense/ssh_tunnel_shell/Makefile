@@ -6,7 +6,7 @@ MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	SSH Tunneling Shell
 
 do-extract:

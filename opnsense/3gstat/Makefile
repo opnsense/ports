@@ -5,7 +5,7 @@ CATEGORIES=	comms
 MASTER_SITES=	# none
 DISTFILES=	# none
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	3G status
 
 NO_WRKSUBDIR=	yes

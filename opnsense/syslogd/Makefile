@@ -4,7 +4,7 @@ PORTVERSION=	10.0
 CATEGORIES=	sysutils
 DISTFILES=
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	FreeBSD syslogd with clog and zmq additions
 
 LIB_DEPENDS=	libczmq.so:${PORTSDIR}/net/czmq

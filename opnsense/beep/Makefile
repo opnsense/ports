@@ -4,7 +4,7 @@ PORTREVISION=	1
 CATEGORIES=	audio
 DISTFILES=
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Beeps a certain duration and pitch out of the PC Speaker
 
 ONLY_FOR_ARCHS=	i386 amd64 pc98

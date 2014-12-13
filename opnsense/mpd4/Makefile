@@ -7,7 +7,7 @@ MASTER_SITE_SUBDIR=	mpd/Mpd4/Mpd-${DISTVERSION}
 DIST_SUBDIR=	mpd4
 PKGNAMESUFFIX=	4
 
-MAINTAINER=	franco@lastsummer.de
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Multi-link PPP daemon based on netgraph(4)
 
 LIB_DEPENDS=	libpdel.so.0:${PORTSDIR}/devel/libpdel
