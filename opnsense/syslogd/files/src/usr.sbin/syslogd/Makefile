@@ -14,9 +14,9 @@ LDADD=	-lutil
 
 WARNS?= 3
 
-.if ${MK_INET6_SUPPORT} != "no"
-CFLAGS+= -DINET6
-.endif
+#.if ${MK_INET6_SUPPORT} != "no"
+#CFLAGS+= -DINET6
+#.endif
 
 CFLAGS+= -I${.CURDIR}/../../usr.bin/wall
 

@@ -1,6 +1,6 @@
 PORTNAME=	syslogd
 PORTVERSION=	10.0
-#PORTREVISION=	1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 DISTFILES=
 
@@ -8,7 +8,7 @@ MAINTAINER=	franco@opnsense.org
 COMMENT=	FreeBSD syslogd with clog and zmq additions
 
 LIB_DEPENDS=	libczmq.so:${PORTSDIR}/net/czmq
-CFLAGS+=	-DWITH_ZMQ -I/usr/local/include
+CFLAGS+=	-DWITH_ZMQ -I/usr/local/include -DINET6
 LDFLAGS+=	-lczmq -lzmq -lpthread -lstdc++
 LDFLAGS+=	-L/usr/local/lib
 
