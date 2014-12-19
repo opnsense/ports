@@ -907,7 +907,6 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 				break;
 			case IFT_TUNNEL:
 			case IFT_GIF:
-			case IFT_FAITH:
 			case IFT_ENC:
 			case IFT_PFLOG: 
 			case IFT_PFSYNC:
