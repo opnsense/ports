@@ -6831,7 +6831,6 @@ print/latex-acm||2014-09-01|Not staged
 print/latex-auto-greek||2014-09-01|Not staged
 print/latex-timing||2014-09-01|Not staged
 print/latex||2014-09-01|Not staged
-print/lgrind||2014-09-01|Not staged
 print/pdfcolorsplit||2014-09-01|Not staged
 print/pdq||2014-09-01|Not staged
 print/phppdflib||2014-09-01|Not staged
@@ -7321,3 +7320,5 @@ textproc/xerces-c2-devel|textproc/xerces-c3|2014-12-12|Unused, conflicting with 
 games/empire|games/vms-empire|2014-12-15|Moved to match upstream name
 devel/preps-gui||2014-12-15|Has expired: upstream disappeared
 devel/prepstools||2014-12-15|Has expired: upstream disappeared
+devel/llvm32||2014-12-18|Obsolete and unmaintained upstream
+lang/clang32||2014-12-18|Obsolete and unmaintained upstream

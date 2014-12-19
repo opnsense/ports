@@ -5,12 +5,47 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
-20141216:
+20141218:
   AFFECTS: users of security/openssh-portable
+  AUTHOR: bdrewery@FreeBSD.org
+
+  OpenSSH 6.7 disables some insecure ciphers by default, such as arcfour
+  and blowfish. You may have clients using these over LAN where security is
+  considered less important for the connection. For these cases you may need
+  to update your Ciphers entry in your sshd_config to enable them again.
+
+  See http://mgalgs.github.io/2014/10/22/enable-arcfour-and-other-fast-ciphers-on-recent-versions-of-openssh.html
+
+20141217:
+  AFFECTS: users of lang/perl5.*
+  AUTHOR: mat@FreeBSD.org
+
+  Perl now links all .so it builds with libperl.so, it makes upgrading from one
+  Perl major version to another way easier.  For binary package users, it means
+  pkg upgrade will detect the libperl.so.x.yy change, and reinstall the
+  affected packages.  For users using ports, it will save rebuild time as it's
+  easier to detect what ports really need to be rebuilt.
+
+  Ports users are encouraged to rebuild ports that install files in SITE_ARCH.
+  If using Perl 5.18, run:
+
+  With portupgrade:
+
+    portupgrade -f `find /usr/local/lib/perl5/site_perl/mach/5.18 -name '*.so'|xargs pkg which -qo|sort -u`
+
+  With portmaster:
+
+    portmaster `find /usr/local/lib/perl5/site_perl/mach/5.18 -name '*.so'|xargs pkg which -qo|sort -u`
+
+20141216:
+  AFFECTS: users of security/openssh-portable, security/openssh-portable66
   AUTHOR: bdrewery@FreeBSD.org
 
   All patches have been fixed for version 6.7. It is no longer required to use
   the security/openssh-portable66 port.
+
+  The LPK option was removed from security/openssh-portable as it has been
+  deprecated since May 2013. Use AuthorizedKeysCommand as a replacement.
 
 20141215:
   AFFECTS: users of comms/spandsp-devel
