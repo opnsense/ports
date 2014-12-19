@@ -1,6 +1,6 @@
 PORTNAME=	voucher
 PORTVERSION=	0.1
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -16,7 +16,7 @@ do-extract:
 	mkdir -p ${WRKSRC}
 
 do-build:
-	${CC} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} -l ssl \
+	${CC} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} -lssl -lcrypto \
 		${FILESDIR}/${PORTNAME}.c
 
 do-install:
