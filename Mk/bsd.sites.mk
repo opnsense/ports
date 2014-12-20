@@ -104,8 +104,7 @@ MASTER_SITE_APACHE_XML+= \
 
 .if !defined(IGNORE_MASTER_SITE_BERLIOS)
 MASTER_SITE_BERLIOS+= \
-	http://download.berlios.de/%SUBDIR%/ \
-	http://download2.berlios.de/%SUBDIR%/
+	${MASTER_SITE_SOURCEFORGE}
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_CENKES)
@@ -1138,12 +1137,6 @@ MASTER_SITE_RUBY+= \
 	ftp://ftp.iDaemons.org/pub/mirror/ftp.ruby-lang.org/ruby/%SUBDIR%/
 .endif
 
-# See http://rubyforge.org/credits/
-.if !defined(IGNORE_MASTER_SITE_RUBYFORGE)
-MASTER_SITE_RUBYFORGE+= \
-	http://files.rubyforge.vm.bytemark.co.uk/%SUBDIR%/
-.endif
-
 # See http://rubygems.org/pages/about
 .if !defined(IGNORE_MASTER_SITE_RUBYGEMS)
 MASTER_SITE_RUBYGEMS+= \
@@ -1520,10 +1513,9 @@ MASTER_SITES_ABBREVS=	CPAN:PERL_CPAN \
 			NL:NETLIB \
 			SF:SOURCEFORGE \
 			SFJP:SOURCEFORGE_JP \
-			RG:RUBYGEMS \
-			RF:RUBYFORGE
+			RG:RUBYGEMS
 MASTER_SITES_SUBDIRS=	APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
-			BERLIOS:${PORTNAME:tl} \
+			BERLIOS:${PORTNAME:tl}.berlios \
 			CENKES:myports \
 			CHEESESHOP:source/${DISTNAME:C/(.).*/\1/}/${DISTNAME:C/(.*)-[0-9].*/\1/} \
 			CSME:myports \
@@ -1546,8 +1538,7 @@ MASTER_SITES_SUBDIRS=	APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
 			RUBY_DBI:${RUBY_DBI_MASTER_SITE_SUBDIR} \
 			RUBY_GNOME:${RUBY_GNOME_MASTER_SITE_SUBDIR} \
 			SAVANNAH:${PORTNAME:tl} \
-			SOURCEFORGE:${PORTNAME:tl}/${PORTNAME:tl}/${PORTVERSION} \
-			RUBYFORGE:${PORTNAME:tl}
+			SOURCEFORGE:${PORTNAME:tl}/${PORTNAME:tl}/${PORTVERSION}
 
 .if defined(MASTER_SITES) && ${MASTER_SITES:N*\:/*}
 
