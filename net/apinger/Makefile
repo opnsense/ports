@@ -3,7 +3,7 @@
 
 PORTNAME=	apinger
 PORTVERSION=	0.6.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://freebsdcluster.org/~mich/software/ \
 		http://www.bnet.pl/~jajcus/apinger/
@@ -11,11 +11,15 @@ MASTER_SITES=	http://freebsdcluster.org/~mich/software/ \
 MAINTAINER=	mich@FreeBSD.org
 COMMENT=	IP device monitoring tool
 
+LICENSE=	GPLv2
+
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	apinger
 SUB_FILES=	pkg-message
 
 OPTIONS_DEFINE=	IPV6
+
+USES=		bison
 
 .include <bsd.port.options.mk>
 
