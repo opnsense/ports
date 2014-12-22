@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	php5
-PORTVERSION=	5.4.34
+PORTVERSION=	5.4.35
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
@@ -163,6 +163,9 @@ CONFIGURE_ARGS+=--enable-debug
 IGNORE=		cannot be built with DTrace support on FreeBSD < 9.x
 .endif
 CONFIGURE_ARGS+=--enable-dtrace
+PLIST_SUB+=	DTRACE=""
+.else
+PLIST_SUB+=	DTRACE="@comment "
 .endif
 
 .if empty(PORT_OPTIONS:MIPV6)
