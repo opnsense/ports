@@ -3,7 +3,6 @@
 
 PORTNAME=	strongswan
 PORTVERSION=	5.2.1
-PORTREVISION=   2
 CATEGORIES=	security
 MASTER_SITES=	http://download.strongswan.org/ \
 		http://download2.strongswan.org/
@@ -11,7 +10,7 @@ MASTER_SITES=	http://download.strongswan.org/ \
 MAINTAINER=	strongswan@nanoteq.com
 COMMENT=	Open Source IKEv2 IPsec-based VPN solution
 
-USES=		execinfo libtool:keepla tar:bzip2
+USES=		execinfo libtool:keepla tar:bzip2 pkgconfig
 USE_OPENSSL=	yes
 USE_RC_SUBR=	strongswan
 GNU_CONFIGURE=	yes
@@ -24,7 +23,6 @@ CONFIGURE_ARGS=	--enable-kernel-pfkey \
 		--disable-scripts  \
 		--disable-gmp \
 		--enable-openssl \
-		--enable-smp \
 		--enable-eap-identity \
 		--enable-eap-md5 \
 		--enable-eap-tls \
@@ -37,12 +35,11 @@ CONFIGURE_ARGS=	--enable-kernel-pfkey \
 		--enable-whitelist \
 		--enable-cmd \
 		--with-group=wheel  \
-		--sysconfdir=/var/etc/ipsec \
 		--with-lib-prefix=${PREFIX}
 
 OPTIONS_DEFINE=	CURL EAPAKA3GPP2 EAPDYNAMIC EAPRADIUS EAPSIMFILE IKEv1 \
 		IPSECKEY KERNELLIBIPSEC LOADTESTER LDAP MYSQL PKI SCEP SQLITE \
-		TESTVECTOR UNBOUND XAUTH
+		TESTVECTOR UNBOUND XAUTH OPNSENSE
 OPTIONS_SUB=	yes
 CURL_DESC=	Enable CURL to fetch CRL/OCSP
 EAPAKA3GPP2_DESC=	Enable EAP AKA with 3gpp2 backend
@@ -58,6 +55,7 @@ PKI_DESC=	Enable PKI tools
 SCEP_DESC=	Enable Simple Certificate Enrollment Protocol
 UNBOUND_DESC=	Enable DNSSEC-enabled resolver
 XAUTH_DESC=	Enable XAuth password verification
+OPNSENSE_DESC=	Enable extra options for OPNsense
 
 # Extra options
 CURL_CONFIGURE_ON=	--enable-curl
@@ -83,6 +81,7 @@ SCEP_CONFIGURE_OFF=	--disable-scepclient
 UNBOUND_CONFIGURE_ON=	--enable-unbound
 UNBOUND_LIB_DEPENDS=	libunbound.so:${PORTSDIR}/dns/unbound
 XAUTH_CONFIGURE_ON=	--enable-xauth-eap --enable-xauth-generic
+OPNSENSE_CONFIGURE_ON=	--enable-smp --enable-gcm
 
 .include <bsd.port.options.mk>
 
