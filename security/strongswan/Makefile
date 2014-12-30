@@ -81,6 +81,8 @@ SCEP_CONFIGURE_OFF=	--disable-scepclient
 UNBOUND_CONFIGURE_ON=	--enable-unbound
 UNBOUND_LIB_DEPENDS=	libunbound.so:${PORTSDIR}/dns/unbound
 XAUTH_CONFIGURE_ON=	--enable-xauth-eap --enable-xauth-generic
+# SMP (XML) interface requires libxml
+OPNSENSE_LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 OPNSENSE_CONFIGURE_ON=	--enable-smp --enable-gcm
 
 .include <bsd.port.options.mk>
