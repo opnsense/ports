@@ -1392,12 +1392,11 @@ MASTER_SITE_TUCOWS+= \
 .endif
 
 # List:		http://www.vim.org/mirrors.php
-# Updated:	2014-02-28
+# Updated:	2015-01-03
 .if !defined(IGNORE_MASTER_SITE_VIM)
 MASTER_SITE_VIM+= \
+	http://ftp.tw.vim.org/vim/unix/ \
 	http://ftp.vim.org/pub/vim/unix/ \
-	http://vim.mirrors.hostinginnederland.nl/unix/ \
-	http://ftp.tw.vim.org/pub/vim/unix/ \
 	http://ftp2.tw.vim.org/pub/vim/unix/ \
 	http://artfiles.org/vim.org/unix/ \
 	http://vim.cybermirror.org/unix/ \
@@ -1406,7 +1405,6 @@ MASTER_SITE_VIM+= \
 	http://vim.mirror.fr/unix/ \
 	http://ftp.gr.vim.org/pub/vim/unix/ \
 	http://mirror.netinch.com/pub/vim/unix/ \
-	http://servingzone.com/mirrors/vim/unix/ \
 	http://ftp2.uk.vim.org/pub/vim/unix/ \
 	http://ftp2.jp.vim.org/pub/vim/unix/ \
 	http://ftp2.kr.vim.org/pub/vim/unix/ \
