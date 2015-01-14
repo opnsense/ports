@@ -105,6 +105,10 @@ PLIST_SUB+=	NO_NIS="@comment "
 PLIST_SUB+=	NO_NIS=""
 .endif
 
+.if defined(WITH_OPENSSL_PORT)
+CONFIGURE_ARGS+=	CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e \
 		's,/usr/doc/python-docs-,${PREFIX}/share/doc/python,g' \
