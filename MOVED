@@ -6774,7 +6774,6 @@ net/ct||2014-09-01|Not staged
 net/entitymib||2014-09-01|Not staged
 net/freedbd||2014-09-01|Not staged
 net/frickin||2014-09-01|Not staged
-net/fspd||2014-09-01|Not staged
 net/hawknl-devel||2014-09-01|Not staged
 net/hawknl||2014-09-01|Not staged
 net/heybuddy||2014-09-01|Not staged
@@ -7403,3 +7402,4 @@ games/vdrift-data||2015-01-16|vdrift engine was removed from ports four months e
 x11/rxvt-devel||2015-01-17|Has expired: No longer developed nor maintained and deprecated by x11/xvt and x11/rxvt-unicode
 comms/spandsp-devel|comms/spandsp|2015-01-17|Has expired: Use newer comms/spandsp
 multimedia/universal-media-server||2015-01-17|Has expired: RC script broken, especially prestart target
+www/qupzilla|www/qupzilla-qt4|2015-01-18|Renamed to differentiate from www/qupzilla-qt5 
