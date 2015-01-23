@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	openssh
-DISTVERSION=	6.6p1
-PORTREVISION=	4
+DISTVERSION=	6.7p1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	security ipv6
 MASTER_SITES=	${MASTER_SITE_OPENBSD}
@@ -33,11 +33,8 @@ ETCOLD=			${PREFIX}/etc
 SUDO?=		# empty
 MAKE_ENV+=	SUDO="${SUDO}"
 
-# https://github.com/openssh/openssh-portable/commit/5618210618256bbf5f4f71b2887ff186fd451736.patch
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-openssh661
-
 OPTIONS_DEFINE=		PAM TCP_WRAPPERS LIBEDIT BSM \
-			HPN LPK X509 KERB_GSSAPI \
+			HPN X509 KERB_GSSAPI \
 			OVERWRITE_BASE SCTP AES_THREADED LDNS NONECIPHER
 OPTIONS_DEFAULT=	LIBEDIT PAM TCP_WRAPPERS HPN LDNS NONECIPHER
 OPTIONS_RADIO=		KERBEROS
@@ -46,11 +43,10 @@ TCP_WRAPPERS_DESC=	tcp_wrappers support
 BSM_DESC=		OpenBSM Auditing
 KERB_GSSAPI_DESC=	Kerberos/GSSAPI patch (req: GSSAPI)
 HPN_DESC=		HPN-SSH patch
-LPK_DESC=		LDAP Public Key (LPK) [OBSOLETE]
 LDNS_DESC=		SSHFP/LDNS support
 X509_DESC=		x509 certificate patch
 SCTP_DESC=		SCTP support
-OVERWRITE_BASE_DESC=	OpenSSH overwrite base
+OVERWRITE_BASE_DESC=	EOL, No longer supported.
 HEIMDAL_DESC=		Heimdal Kerberos (security/heimdal)
 HEIMDAL_BASE_DESC=	Heimdal Kerberos (base)
 MIT_DESC=		MIT Kerberos (security/krb5)
@@ -59,6 +55,8 @@ NONECIPHER_DESC=	NONE Cipher support
 
 OPTIONS_SUB=		yes
 PLIST_SUB+=		MANPREFIX=${MANPREFIX}
+
+TCP_WRAPPERS_EXTRA_PATCHES=${FILESDIR}/extra-patch-tcpwrappers
 
 LDNS_CONFIGURE_WITH=	ldns
 LDNS_LIB_DEPENDS=	libldns.so:${PORTSDIR}/dns/ldns
@@ -72,30 +70,14 @@ HPN_CONFIGURE_WITH=		hpn
 NONECIPHER_CONFIGURE_WITH=	nonecipher
 AES_THREADED_CONFIGURE_WITH=	aes-threaded
 
-# See http://code.google.com/p/openssh-lpk/wiki/Main
-# and svn repo described here:
-# http://code.google.com/p/openssh-lpk/source/checkout
-# LPK is now OBSOLETE with 6.2: https://code.google.com/p/openssh-lpk/issues/detail?id=15#c1
-LPK_PATCHFILES=		${PORTNAME}-lpk-6.3p1.patch.gz
-LPK_CPPFLAGS=		-I${LOCALBASE}/include
-LPK_CONFIGURE_ON=	--with-ldap=yes \
-			--with-ldflags='-L${LOCALBASE}/lib' \
-			--with-cppflags='${CPPFLAGS}'
-LPK_USE=		OPENLDAP=yes
-
 # See http://www.roumenpetrov.info/openssh/
-X509_VERSION=		7.9
+X509_VERSION=		8.2
 X509_PATCH_SITES=	http://www.roumenpetrov.info/openssh/x509-${X509_VERSION}/:x509
-X509_PATCHFILES=	${PORTNAME}-6.6p1+x509-${X509_VERSION}.diff.gz:-p1:x509
+X509_PATCHFILES=	${PORTNAME}-6.7p1+x509-${X509_VERSION}.diff.gz:-p1:x509
 
 # See https://bugzilla.mindrot.org/show_bug.cgi?id=2016
-SCTP_PATCHFILES=	${PORTNAME}-6.6p1-sctp-2329.patch.gz
+SCTP_PATCHFILES=	${PORTNAME}-6.7p1-sctp-2496.patch.gz:-p1
 SCTP_CONFIGURE_WITH=	sctp
-
-# 6.6 patch taken from http://www.stacken.kth.se/~haba/ which was originally
-# based on 5.7 patch at http://www.sxw.org.uk/computing/patches/
-KERB_GSSAPI_PATCHFILES=	openssh-6.6p1-gsskex-all-20140318.patch.gz:-p1:gsskex
-#KERB_GSSAPI_PATCH_SITES=http://www.stacken.kth.se/~haba/:gsskex
 
 MIT_LIB_DEPENDS=		libkrb5.so.3:${PORTSDIR}/security/krb5
 HEIMDAL_LIB_DEPENDS=		libkrb5.so.26:${PORTSDIR}/security/heimdal
@@ -110,13 +92,18 @@ BSM_CONFIGURE_ON=	--with-audit=bsm
 
 PATCH_SITES+=		http://mirror.shatow.net/freebsd/${PORTNAME}/:DEFAULT,x509,hpn,gsskex
 
+# X509 patch includes TCP Wrapper support already
+.if ${PORT_OPTIONS:MX509}
+EXTRA_PATCHES:=		${EXTRA_PATCHES:N${TCP_WRAPPERS_EXTRA_PATCHES}}
+.endif
+
 # http://www.psc.edu/index.php/hpn-ssh
 .if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MAES_THREADED} || ${PORT_OPTIONS:MNONECIPHER}
 PORTDOCS+=		HPN-README
-HPN_VERSION=		14v2
-HPN_DISTVERSION=	6.6.1p1
-PATCH_SITES+=		${MASTER_SITE_SOURCEFORGE:S/$/:hpn/}
-PATCH_SITE_SUBDIR+=	hpnssh/HPN-SSH%20${HPN_VERSION}%20${HPN_DISTVERSION}/:hpn
+HPN_VERSION=		14v5
+HPN_DISTVERSION=	6.7p1
+#PATCH_SITES+=		${MASTER_SITE_SOURCEFORGE:S/$/:hpn/}
+#PATCH_SITE_SUBDIR+=	hpnssh/HPN-SSH%20${HPN_VERSION}%20${HPN_DISTVERSION}/:hpn
 PATCHFILES+=		${PORTNAME}-${HPN_DISTVERSION}-hpnssh${HPN_VERSION}.diff.gz:-p1:hpn
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hpn-build-options
 # Remove HPN if only AES requested
@@ -124,6 +111,16 @@ EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hpn-build-options
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hpn-no-hpn
 .  endif
 .endif
+
+# Must add this patch after HPN due to conflicts
+.if ${PORT_OPTIONS:MKERB_GSSAPI}
+# 6.7 patch taken from
+# http://sources.debian.net/data/main/o/openssh/1:6.7p1-3/debian/patches/gssapi.patch
+# which was originally based on 5.7 patch from
+# http://www.sxw.org.uk/computing/patches/
+PATCHFILES+=	openssh-6.7p1-gsskex-all-20141021-284f364.patch.gz:-p1:gsskex
+.endif
+
 
 .if ${OSVERSION} >= 900000
 CONFIGURE_LIBS+=	-lutil
@@ -143,10 +140,6 @@ BROKEN=		X509 patch and HPN patch do not apply cleanly together
 
 .  if ${PORT_OPTIONS:MSCTP}
 BROKEN=		X509 patch and SCTP patch do not apply cleanly together
-.  endif
-
-.  if ${PORT_OPTIONS:MLPK}
-BROKEN=		X509 patch and LPK patch do not apply cleanly together
 .  endif
 
 .  if ${PORT_OPTIONS:MKERB_GSSAPI}
@@ -171,10 +164,6 @@ IGNORE=		PAM must be installed in base
 IGNORE=		required /usr/include/tcpd.h missing
 .endif
 
-.if defined(OPENSSH_OVERWRITE_BASE)
-PORT_OPTIONS+=		OVERWRITE_BASE
-.endif
-
 .if ${PORT_OPTIONS:MMIT} || ${PORT_OPTIONS:MHEIMDAL} || ${PORT_OPTIONS:MHEIMDAL_BASE}
 .	if ${PORT_OPTIONS:MHEIMDAL_BASE}
 CONFIGURE_LIBS+=	-lgssapi_krb5
@@ -196,16 +185,10 @@ IGNORE=	KERB_GSSAPI requires one of MIT HEIMDAL or HEIMDAL_BASE
 CONFIGURE_ARGS+=	--with-ssl-dir=${OPENSSLBASE}
 .endif
 
-.if ${PORT_OPTIONS:MLPK}
-CONFIGURE_LIBS+=	-lldap
-.endif
-
 EMPTYDIR=		/var/empty
 
-.if ${PORT_OPTIONS:MOVERWRITE_BASE}
-# XXX: Mark this BROKEN rather than remove the option to force people to notice for POLA.
-DEPRECATED=		Overwrite-base option/port/pkg will be removed. There is no real need for foot-shooting.
-EXPIRATION_DATE=	2015-01-01
+.if ${PORT_OPTIONS:MOVERWRITE_BASE} || defined(OPENSSH_OVERWRITE_BASE)
+IGNORE=	Overwrite base option is no longer supported.
 WITH_OPENSSL_BASE=	yes
 CONFIGURE_ARGS+=	--localstatedir=/var
 PREFIX=			/usr
@@ -239,10 +222,8 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|' \
 			${WRKSRC}/pathnames.h ${WRKSRC}/sshd_config.5 \
 			${WRKSRC}/ssh_config.5
-.if !${PORT_OPTIONS:MOVERWRITE_BASE}
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${LOCALBASE}|' \
 		-e 's|%%RC_SCRIPT_NAME%%|${RC_SCRIPT_NAME}|' ${WRKSRC}/sshd.8
-.endif
 	@${REINPLACE_CMD} -E -e 's|SSH_VERSION|TMP_SSH_VERSION|' \
 		-e 's|.*SSH_RELEASE.*||' ${WRKSRC}/version.h
 	@${ECHO_CMD} '#define FREEBSD_PORT_VERSION	" FreeBSD-${PKGNAME}"' >> \
@@ -254,12 +235,6 @@ post-patch:
 .if ${PORT_OPTIONS:MHPN}
 	@${REINPLACE_CMD} -e 's|TMP_SSH_VERSION SSH_PORTABLE|TMP_SSH_VERSION SSH_PORTABLE SSH_HPN|' \
 		${WRKSRC}/version.h
-.endif
-
-pre-install:
-# Workaround not running mtree BSD.root.dist on / since PREFIX=/usr
-.if ${PORT_OPTIONS:MOVERWRITE_BASE}
-	${MKDIR} ${STAGEDIR}/etc/rc.d
 .endif
 
 post-install:
