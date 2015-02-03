@@ -57,6 +57,163 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="1c7cfd05-aaee-11e4-83b4-14dae9d210b8">
+    <topic>Xymon -- buffer overrun</topic>
+    <affects>
+      <package>
+	<name>xymon-server</name>
+	<range><ge>4.3.4</ge><lt>4.3.18</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Debian reports:</p>
+	<blockquote cite="https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=776007">
+	  <p>web/acknowledge.c uses a string twice in a format string, but only
+	    allocates memory for one copy.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.openwall.com/lists/oss-security/2015/01/31/4</url>
+      <url>https://security-tracker.debian.org/tracker/CVE-2015-1430</url>
+      <cvename>CVE-2015-1430</cvename>
+    </references>
+    <dates>
+      <discovery>2014-09-28</discovery>
+      <entry>2015-02-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="734bcd49-aae6-11e4-a0c1-c485083ca99c">
+    <topic>Adobe Flash Player -- critical vulnerability</topic>
+    <affects>
+      <package>
+	<name>linux-c6-flashplugin11</name>
+	<range><le>11.2r202.440</le></range>
+      </package>
+      <package>
+	<name>linux-f10-flashplugin11</name>
+	<range><le>11.2r202.440</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Adobe reports:</p>
+	<blockquote cite="https://helpx.adobe.com/security/products/flash-player/apsa15-02.html">
+	  <p>A critical vulnerability (CVE-2015-0313) exists in Adobe Flash
+	    Player 16.0.0.296 and earlier versions for Windows, Macintosh, and
+	    Linux. Successful exploitation could cause a crash and potentially
+	    allow an attacker to take control of the affected system.  We are
+	    aware of reports that this vulnerability is being actively exploited
+	    in the wild via drive-by-download attacks against systems running
+	    Internet Explorer and Firefox on Windows 8.1 and below. </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://helpx.adobe.com/security/products/flash-player/apsa15-02.html</url>
+      <cvename>CVE-2015-0313</cvename>
+    </references>
+    <dates>
+      <discovery>2015-02-02</discovery>
+      <entry>2015-02-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8469d41c-a960-11e4-b18e-bcaec55be5e5">
+    <topic>rabbitmq -- Security issues in management plugin</topic>
+    <affects>
+      <package>
+	<name>rabbitmq</name>
+	<range><lt>3.4.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The RabbitMQ project reports:</p>
+	<blockquote cite="http://www.rabbitmq.com/news.html#2015-01-08T10:14:05+0100">
+	  <p>Some user-controllable content was not properly HTML-escaped
+	  before being presented to a user in the management web UI:</p>
+	  <ul>
+	    <li>When a user unqueued a message from the management UI,
+	    message details (header names, arguments, etc.) were displayed
+	    unescaped. An attacker could publish a specially crafted
+	    message to add content or execute arbitrary Javascript code on
+	    behalf of a user, if this user unqueued the message from the
+	    management UI.</li>
+	    <li>When viewing policies, their name was displayed unescaped.
+	    An attacker could create a policy with a specially crafted name
+	    to add content or execute arbitrary Javascript code on behalf
+	    of a user who is viewing policies.</li>
+	    <li>When listing connected AMQP network clients, client details
+	    such as its version were displayed unescaped. An attacker could
+	    use a client with a specially crafted version field to add
+	    content or execute arbitrary Javascript code on behalf of a
+	    user who is viewing connected clients.</li>
+	  </ul>
+	  <p>In all cases, the attacker needs a valid user account on the
+	  targetted RabbitMQ cluster.</p>
+	  <p>Furthermore, some admin-controllable content was not properly
+	  escaped:</p>
+	  <ul>
+	    <li>user names;</li>
+	    <li>the cluster name.</li>
+	  </ul>
+	  <p>Likewise, an attacker could add content or execute arbitrary
+	  Javascript code on behalf of a user using the management web UI.
+	  However, the attacker must be an administrator on the RabbitMQ
+	  cluster, thus a trusted user.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.rabbitmq.com/news.html#2015-01-08T10:14:05+0100</url>
+      <url>http://www.rabbitmq.com/release-notes/README-3.4.3.txt</url>
+      <cvename>CVE-2015-0862</cvename>
+    </references>
+    <dates>
+      <discovery>2015-01-08</discovery>
+      <entry>2015-01-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5804b9d4-a959-11e4-9363-20cf30e32f6d">
+    <topic>apache24 -- several vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.12</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Apache HTTP SERVER PROJECT reports:</h1>
+	<blockquote cite="http://www.apache.org/dist/httpd/Announcement2.4.html">
+	  <p>mod_proxy_fcgi: Fix a potential crash due to buffer over-read,
+	    with response headers' size above 8K.</p>
+	  <p>mod_cache: Avoid a crash when Content-Type has an empty value. PR 56924.</p>
+	  <p>mod_lua: Fix handling of the Require line when a LuaAuthzProvider is used
+	    in multiple Require directives with different arguments. PR57204.</p>
+	  <p>core: HTTP trailers could be used to replace HTTP headers late during
+	    request processing, potentially undoing or otherwise confusing modules
+	    that examined or modified request headers earlier. Adds "MergeTrailers"
+	    directive to restore legacy behavior.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-3583</cvename>
+      <cvename>CVE-2014-3581</cvename>
+      <cvename>CVE-2014-8109</cvename>
+      <cvename>CVE-2013-5704</cvename>
+    </references>
+    <dates>
+      <discovery>2015-01-29</discovery>
+      <entry>2015-01-31</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7656fc62-a7a7-11e4-96ba-001999f8d30b">
     <topic>asterisk -- Mitigation for libcURL HTTP request injection vulnerability</topic>
     <affects>
@@ -147,6 +304,14 @@ Notes:
 	<name>linux_base-f10</name>
 	<range><ge>0</ge></range>
       </package>
+      <package>
+	<name>linux-c6-devtools</name>
+	<range><lt>6.6_3</lt></range>
+      </package>
+      <package>
+	<name>linux-f10-devtools</name>
+	<range><ge>0</ge></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -173,6 +338,7 @@ Notes:
     <dates>
       <discovery>2015-01-27</discovery>
       <entry>2015-01-28</entry>
+      <modified>2015-02-02</modified>
     </dates>
   </vuln>
 
