@@ -4821,7 +4821,6 @@ comms/hso-kmod||2013-08-26|Has expired: Broken on FreeBSD 8 and newer
 lang/ldc-devel||2013-08-27|Has expired: Broken for more than 6 month
 www/mod_smooth_streaming||2013-08-27|Has expired: Broken for more than 6 month
 www/p5-Apache2-Scoreboard||2013-08-27|Has expired: Broken for more than 6 month
-sysutils/avfs||2013-08-27|Has expired: Broken for more than 6 month
 multimedia/mp4split||2013-08-27|Has expired: Broken for more than 6 month
 net-mgmt/noc||2013-08-27|Has expired: Broken for more than 6 month
 sysutils/empower||2013-08-27|Has expired: Broken for more than 6 month
@@ -4932,7 +4931,6 @@ cad/tkgate||2013-09-24|Removed
 x11/libXtrans||2013-09-26|Has expired: Project is obsoleted, use x11/xtrans instead
 sysutils/libpcbsd||2013-09-26|Obsolete: Use sysutils/pcbsd-utils-qt4 instead
 sysutils/pbreg||2013-09-26|Obsolete: Use sysutils/pcbsd-utils instead
-sysutils/warden||2013-09-26|Obsolete: Use sysutils/pcbsd-utils instead
 ports-mgmt/pbi-manager||2013-09-26|Obsolete: Use sysutils/pcbsd-utils instead
 net/pcbsd-netmanager||2013-09-26|Obsolete: Use sysutils/pcbsd-utils-qt4 instead
 archivers/ruby-bz2||2013-10-01|Has expired: Does not work with Ruby 1.9
