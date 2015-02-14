@@ -1,4 +1,4 @@
-PORTNAME=	opnsense-update
+PORTNAME=	os-update
 PORTVERSION=	1.0
 #PORTREVISION=	1
 CATEGORIES=	sysutils
