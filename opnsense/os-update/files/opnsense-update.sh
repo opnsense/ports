@@ -27,6 +27,8 @@
 
 set -e
 
+# Usage: opnsense-update [version] [mirror]
+
 if [ "$(id -u)" != "0" ]; then
 	echo "Must be root."
 	exit 1
@@ -35,34 +37,30 @@ fi
 # clean up old stale working directories
 rm -rf /tmp/opnsense-update.*
 
-if [ -z "${1}" ]; then
-	echo "Usage: opnsense-update mirror [version]"
-	exit 1
-fi
-
-SETSURL=${1}
-VERSION="15.1.5"
+SETSURL="http://pkg.opnsense.org/sets"
+VERSION="15.1.6"
 ARCH=$(uname -m)
 
 OBSOLETESHA=""
 KERNELSHA=""
 BASESHA=""
 
-if [ -z "${2}" ]; then
-	if [ ${ARCH} = "amd64" ]; then
-		OBSOLETESHA="053d1d0fcc6b7cb135f512f438f00119a7c073a2d9e97372972d782ae4c0e820"
-		KERNELSHA="d27439ee477a89ac6000e7b71253a9a9503c3bc0d35c6ac74be9932d0b91744e"
-		BASESHA="dc4d7ac58fe5b41d376e95df6e65bf507765ddbf3a27659855234ffea028e393"
-	elif [ ${ARCH} = "i386" ]; then
-		OBSOLETESHA="XXX"
-		KERNELSHA="c12b2a151da78e8d26274a8d46de3391b4d14d86253b3f72c786089c91fd1d19"
-		BASESHA="1fcda86b81baca09a8b86b166ecb1ac3a2b07876774f004821e9345a8afde2c9"
-	fi
-else
+if [ -n "${1}" ]; then
 	# switches off checksumming!!
-	VERSION=${2}
+	VERSION="${1}"
+elif [ ${ARCH} = "amd64" ]; then
+	OBSOLETESHA="053d1d0fcc6b7cb135f512f438f00119a7c073a2d9e97372972d782ae4c0e820"
+	KERNELSHA="d2743429b043a6f422e5eb1fafba6c4d635c4b46467d717d2890d50b0d8ec3ad"
+	BASESHA="1afeb1796a0dc31be23d1ac7124e0d074c0fe33c2dd984e1918d58c2aa3314b3"
+elif [ ${ARCH} = "i386" ]; then
+	OBSOLETESHA="7e6044cfcdb4ac03309974e08a6f6a83bda0359944e78e4d09b10a5849986d3c"
+	KERNELSHA="f664a40c722d2bc2179fd2342ee3edef0584b7687dc9796bf8be3a334001e557"
+	BASESHA="ee1166892c36e44e8a284567028f3b7620c13a8e4e492cb3c05e14e809ca6a34"
 fi
 
+if [ -n "${2}" ]; then
+	SETSURL="${2}"
+fi
 
 WORKDIR=/tmp/opnsense-update.${$}
 KERNELSET=kernel-${VERSION}-${ARCH}.txz
