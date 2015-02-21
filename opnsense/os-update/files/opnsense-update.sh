@@ -107,6 +107,9 @@ apply_base()
 	    /usr/bin /usr/sbin /usr/lib && \
 	    tar -C/ -xjpf ${WORKDIR}/${BASESET} \
 	    --exclude="./etc/pkg/FreeBSD.conf" \
+	    --exclude="./etc/group" \
+	    --exclude="./etc/master.passwd" \
+	    --exclude="./etc/passwd" \
 	    --exclude="./etc/shells" \
 	    --exclude="./etc/rc" && \
 	    kldxref ${KERNELDIR} && \
