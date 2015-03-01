@@ -27,8 +27,6 @@
 
 set -e
 
-# Usage: opnsense-update [version] [mirror]
-
 if [ "$(id -u)" != "0" ]; then
 	echo "Must be root."
 	exit 1
@@ -37,18 +35,12 @@ fi
 # clean up old stale working directories
 rm -rf /tmp/opnsense-update.*
 
-SETSURL="http://pkg.opnsense.org/sets"
-VERSION="15.1.7"
+MARKER="/usr/local/opnsense/version/os-update"
+MIRROR="http://pkg.opnsense.org/sets"
+RELEASE="15.1.7"
 ARCH=$(uname -m)
 
-OBSOLETESHA=""
-KERNELSHA=""
-BASESHA=""
-
-if [ -n "${1}" ]; then
-	# switches off checksumming!!
-	VERSION="${1}"
-elif [ ${ARCH} = "amd64" ]; then
+if [ ${ARCH} = "amd64" ]; then
 	OBSOLETESHA="053d1d0fcc6b7cb135f512f438f00119a7c073a2d9e97372972d782ae4c0e820"
 	KERNELSHA="5d1c24196ee05c927e084b3188d1b49663083c550148da561ee82886dd414318"
 	BASESHA="982f838e375287f1df64945c2c1e6d5ffd96cd53e64b765224f2e9e89797e7f0"
@@ -56,16 +48,56 @@ elif [ ${ARCH} = "i386" ]; then
 	OBSOLETESHA="7e6044cfcdb4ac03309974e08a6f6a83bda0359944e78e4d09b10a5849986d3c"
 	KERNELSHA="bffbf3485eb69817ea2001767cc400775cd000d5d059276f0e2ae26224ae3556"
 	BASESHA="e7cee8909d946af804afa428e4640af65d61f9394cdd27ae864d3a2ff5a0f5dc"
+else
+	echo "Unknown architecture ${ARCH}" >&2
+	exit 1
 fi
 
-if [ -n "${2}" ]; then
-	SETSURL="${2}"
+if [ -f ${MARKER} ]; then
+	INSTALLED=$(cat ${MARKER})
+fi
+
+while getopts cfm:r:v OPT; do
+	case ${OPT} in
+	c)
+		if [ ${RELEASE} = "${INSTALLED}" ]; then
+			exit 1
+		fi
+		exit 0
+		;;
+	f)
+		FORCE=1
+		;;
+	m)
+		MIRROR=${OPTARG}
+		;;
+	r)
+		RELEASE=${OPTARG}
+		# switches off checksumming!!
+		OBSOLETESHA=""
+		KERNELSHA=""
+		BASESHA=""
+		;;
+	v)
+		echo ${RELEASE}-${ARCH}
+		exit 0
+		;;
+	*)
+		echo "Usage: opnsense-update [-cfv] [-m mirror] [-r release]" >&2
+		exit 1
+		;;
+	esac
+done
+
+if [ ${RELEASE} = "${INSTALLED}" -a -z "${FORCE}" ]; then
+	echo "You are up to date."
+	exit 0
 fi
 
 WORKDIR=/tmp/opnsense-update.${$}
-KERNELSET=kernel-${VERSION}-${ARCH}.txz
-BASESET=base-${VERSION}-${ARCH}.txz
-OBSOLETESET=base-${VERSION}-${ARCH}.obsolete
+KERNELSET=kernel-${RELEASE}-${ARCH}.txz
+BASESET=base-${RELEASE}-${ARCH}.txz
+OBSOLETESET=base-${RELEASE}-${ARCH}.obsolete
 KERNELDIR=/boot/kernel
 
 fetch_set()
@@ -73,7 +105,7 @@ fetch_set()
 	echo -n "Fetching ${1}... "
 
 	mkdir -p ${WORKDIR} && \
-	    fetch -q ${SETSURL}/${1} -o ${WORKDIR}/${1} && \
+	    fetch -q ${MIRROR}/${1} -o ${WORKDIR}/${1} && \
 	    [ -z "${2}" -o "`sha256 -q ${WORKDIR}/${1}`" = "${2}" ] && \
 	    echo "ok" && return
 
@@ -137,6 +169,9 @@ fetch_set ${OBSOLETESET} ${OBSOLETESHA}
 apply_kernel
 apply_base
 apply_obsolete
+
+mkdir -p $(dirname ${MARKER})
+echo ${RELEASE}-${ARCH} > ${MARKER}
 
 rm -r ${WORKDIR}
 

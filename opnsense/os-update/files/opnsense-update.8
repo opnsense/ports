@@ -1,0 +1,70 @@
+.\"
+.\" Copyright (c) 2015 Franco Fichtner <franco@opnsense.org>
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\"
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\"
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.Dd March 1, 2015
+.Dt OPNSENSE-UPDATE 8
+.Os
+.Sh NAME
+.Nm opnsense-update
+.Nd OPNsense system update utility
+.Sh SYNOPSIS
+.Nm
+.Op Fl cfv
+.Op Fl m Ar mirror
+.Op Fl r Ar release
+.Sh DESCRIPTION
+The
+.Nm
+utility offers combined kernel and base file upgrades based on binary
+sets fetched from a remote mirror.
+If no options are given, it updates to the embedded version using
+checksum verification fetched from the standard mirror.
+.Pp
+The options are as follows:
+.Bl -tag -width ".Fl r Ar release" -offset indent
+.It Fl c
+Check wether an update can be performed, but don't install it.
+.It Fl f
+Force an update even when the latest one is already installed.
+.It Fl m Ar mirror
+Change the set fetch location to
+.Ar mirror .
+.It Fl r Ar release
+Select the release to be installed and switch of checksumming.
+This is intended for development or custom builds only.
+.It Fl v
+Print the embedded version info.
+.El
+.Sh FILES
+.Bl -tag -width ".Pa /usr/local/opnsense/version/os-update" -compact
+.It Pa /usr/local/opnsense/version/os-update
+The file is used to check if an upgrade is necessary.
+After a successful update, the file is rewritten.
+.El
+.Sh EXIT STATUS
+.Ex -std
+.Sh AUTHORS
+.An Franco Fichtner Aq Mt franco@opnsense.org
