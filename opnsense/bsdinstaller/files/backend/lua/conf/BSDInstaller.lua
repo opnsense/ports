@@ -323,20 +323,6 @@ limits = {
 
 
 --
--- deafult_packages: a list of packages to install without asking
--- during the install phase.
---
--- Note that these packages are specified by Lua regular expressions
--- that will be passed to string.find().  This allows us to specify
--- packages regardless of their version number, etc.
---
-
-default_packages = {
-	-- empty by default
-}
-
-
---
 -- use_cpdup: a boolean which indicates whether the 'cpdup' utility
 -- will be used to copy files and directories to the target system.
 -- If false, 'tar' and 'cp' will be used instead.
