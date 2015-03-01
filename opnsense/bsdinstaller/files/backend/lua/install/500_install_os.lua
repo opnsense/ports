@@ -13,7 +13,7 @@
 return {
     id = "install_os",
     name = _("Install OS"),
-    req_state = { "storage", "sel_disk", "sel_part", "sel_pkgs" },
+    req_state = { "storage", "sel_disk", "sel_part" },
     effect = function(step)
 	local spd, cmds
 
@@ -215,20 +215,6 @@ return {
 	--
 	App.state.target:cmds_write_fstab(cmds, {
 	    extra_fs = App.state.extra_fs
-	})
-
-	--
-	-- Install requested packages.
-	--
-	-- Note that we have to explicitly say what the temporary directory
-	-- will be, because the symlink (if any) won't be created yet.
-	--
-	local pkg_graph = App.state.sel_pkgs:to_graph(function(pkg)
-	    return pkg:get_prerequisites(App.state.source)
-	end, true)
-	local pkg_list = pkg_graph:topological_sort()
-	pkg_list:cmds_install_all(cmds, App.state.target, {
-	    tmp_dir = real_tmp_dir
 	})
 
 	--

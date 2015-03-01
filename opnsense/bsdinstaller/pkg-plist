@@ -63,7 +63,6 @@ share/dfuibe_lua/install/400_select_subparts.lua
 share/dfuibe_lua/install/405_warn_omitted_subparts.lua
 share/dfuibe_lua/install/407_create_subparts.lua
 share/dfuibe_lua/install/410_select_additional_filesystems.lua
-share/dfuibe_lua/install/450_select_packages.lua
 share/dfuibe_lua/install/490_confirm_install_os.lua
 share/dfuibe_lua/install/500_install_os.lua
 share/dfuibe_lua/install/599_after_installation_tasks.lua
