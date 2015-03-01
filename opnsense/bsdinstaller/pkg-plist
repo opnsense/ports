@@ -42,7 +42,6 @@ share/dfuibe_lua/configure/menu/400_change_console_settings.lua
 share/dfuibe_lua/configure/menu/500_install_packages.lua
 share/dfuibe_lua/configure/menu/550_remove_packages.lua
 share/dfuibe_lua/configure/menu/main.lua
-share/dfuibe_lua/easy_install/100_confirm_basic_install.lua
 share/dfuibe_lua/easy_install/200_select_disk.lua
 share/dfuibe_lua/easy_install/220_format_disk.lua
 share/dfuibe_lua/easy_install/250_partition_disk.lua

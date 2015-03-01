@@ -26,26 +26,16 @@ return {
 		return nil
 	end
 
-	local dd = {}
-
-	for ddd in App.state.storage:get_disks() do
-		local desc = ddd:get_desc()
-		if desc == "mirror/pfSenseMirror" then
-			print("\nAuto-selecting first disk...")
-			print("\npfSense mirror found.  Auto selecting.")
-			dd = ddd
-			break
-		end
-	end
-
-	if next(dd) == nil then
-		for ddd in App.state.storage:get_disks() do
-			dd = ddd
-			print("\nAuto-selecting first disk...")
-			print(dd:get_desc() .. "\n")
-			break
-		end
-	end
+	local dd = StorageUI.select_disk{
+	    sd = App.state.storage,
+	    short_desc = _(
+		"This will automatically install %s without asking any questions.\n\n" ..
+		"WARNING: All contents of the selected hard disk will be erased! " ..
+		"This action is irreversible. Do you really want to continue?\n\n" ..
+		"Select a disk to continue.",
+	        App.conf.product.name),
+	    cancel_desc = _("Return to %s", step:get_prev_name())
+	}
 
 	if dd then
 		App.state.sel_disk = dd
