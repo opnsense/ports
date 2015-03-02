@@ -90,7 +90,7 @@ while getopts cfm:r:v OPT; do
 done
 
 if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${FORCE}" ]; then
-	echo "You are up to date."
+	echo "Your system is up to date."
 	exit 0
 fi
 
