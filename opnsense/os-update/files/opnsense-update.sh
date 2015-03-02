@@ -60,7 +60,7 @@ fi
 while getopts cfm:r:v OPT; do
 	case ${OPT} in
 	c)
-		if [ ${RELEASE} = "${INSTALLED}" ]; then
+		if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" ]; then
 			exit 1
 		fi
 		exit 0
@@ -89,15 +89,15 @@ while getopts cfm:r:v OPT; do
 	esac
 done
 
-if [ ${RELEASE} = "${INSTALLED}" -a -z "${FORCE}" ]; then
+if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${FORCE}" ]; then
 	echo "You are up to date."
 	exit 0
 fi
 
-WORKDIR=/tmp/opnsense-update.${$}
+OBSOLETESET=base-${RELEASE}-${ARCH}.obsolete
 KERNELSET=kernel-${RELEASE}-${ARCH}.txz
 BASESET=base-${RELEASE}-${ARCH}.txz
-OBSOLETESET=base-${RELEASE}-${ARCH}.obsolete
+WORKDIR=/tmp/opnsense-update.${$}
 KERNELDIR=/boot/kernel
 
 fetch_set()

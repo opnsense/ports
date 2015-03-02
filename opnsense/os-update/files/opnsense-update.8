@@ -38,28 +38,31 @@
 .Sh DESCRIPTION
 The
 .Nm
-utility offers combined kernel and base file upgrades based on binary
-sets fetched from a remote mirror.
-If no options are given, it updates to the embedded version using
-checksum verification fetched from the standard mirror.
+utility offers combined kernel and base system upgrades using
+remotely-fetched binary sets.
+If no options are given, it updates to the latest version using
+checksum verification fetched from the standard mirror, or skips
+the installation if the system is up to date.
 .Pp
 The options are as follows:
 .Bl -tag -width ".Fl r Ar release" -offset indent
 .It Fl c
 Check wether an update can be performed, but don't install it.
 .It Fl f
-Force an update even when the latest one is already installed.
+Force an update even when the latest release is already installed.
 .It Fl m Ar mirror
 Change the set fetch location to
 .Ar mirror .
 .It Fl r Ar release
-Select the release to be installed and switch of checksumming.
-This is intended for development or custom builds only.
+Select the
+.Ar release
+to be installed and switch of checksumming.
+(This is intended for development or custom builds only.)
 .It Fl v
-Print the embedded version info.
+Print the latest version string.
 .El
 .Sh FILES
-.Bl -tag -width ".Pa /usr/local/opnsense/version/os-update" -compact
+.Bl -tag -width Ds
 .It Pa /usr/local/opnsense/version/os-update
 The file is used to check if an upgrade is necessary.
 After a successful update, the file is rewritten.
