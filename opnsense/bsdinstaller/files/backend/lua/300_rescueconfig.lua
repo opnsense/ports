@@ -1,6 +1,7 @@
 --
--- Copyright (c) 2009 Scott Ullrich.  All rights reserved.
--- Copyright (c) 2014 Franco Fichtner <franco@lastsummer.de>
+-- Copyright (c) 2009 Scott Ullrich <sullrich@gmail.com>
+-- Copyright (c) 2014-2015 Franco Fichtner <franco@opnsense.org>
+-- All rights reserved.
 --
 -- Redistribution and use in source and binary forms, with or without
 -- modification, are permitted provided that the following conditions
@@ -81,7 +82,24 @@ return {
 	end 
 
 	cmds = CmdChain.new()
-	if POSIX.stat("/tmp/hdrescue/cf/conf", "type") == "directory" then
+	if POSIX.stat("/tmp/hdrescue/conf", "type") == "directory" then
+		cmds:add("${root}bin/cp /tmp/hdrescue/conf/config.xml /conf/config.xml");
+		if POSIX.stat("/tmp/hdrescue/conf/backup", "type") == "directory" then
+			cmds:add("${root}bin/cp -r /tmp/hdrescue/conf/backup /conf");
+		end
+		if POSIX.stat("/tmp/hdrescue/conf/sshd", "type") == "directory" then
+			cmds:add("${root}bin/cp -r /tmp/hdrescue/conf/sshd /conf");
+		end
+		if POSIX.stat("/tmp/hdrescue/conf/rrd.tgz", "type") == "regular" then
+			cmds:add("${root}bin/cp /tmp/hdrescue/conf/rrd.tgz /conf");
+		end
+		if POSIX.stat("/tmp/hdrescue/conf/dhcpleases.tgz", "type") == "regular" then
+			cmds:add("${root}bin/cp /tmp/hdrescue/conf/dhcpleases.tgz /conf");
+		end
+	elseif POSIX.stat("/tmp/hdrescue/cf/conf", "type") == "directory" then
+		-- <= 15.1.7 /cf/conf layout backwards compatibility
+		-- (breaks above because /conf is an absolute link
+		-- escaping /tmp/hdrescue in the process...)
 		cmds:add("${root}bin/cp /tmp/hdrescue/cf/conf/config.xml /conf/config.xml");
 		if POSIX.stat("/tmp/hdrescue/cf/conf/backup", "type") == "directory" then
 			cmds:add("${root}bin/cp -r /tmp/hdrescue/cf/conf/backup /conf");
@@ -95,6 +113,8 @@ return {
 		if POSIX.stat("/tmp/hdrescue/cf/conf/dhcpleases.tgz", "type") == "regular" then
 			cmds:add("${root}bin/cp /tmp/hdrescue/cf/conf/dhcpleases.tgz /conf");
 		end
+	else
+		-- XXX should warn that no config could be imported
 	end
 	cmds:add("${root}bin/rm -f /tmp/config.cache");
 	cmds:add("${root}sbin/umount /tmp/hdrescue");
