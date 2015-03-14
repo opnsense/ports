@@ -409,7 +409,7 @@ cmd_names = {
 	CPDUP		= "bin/cpdup -vvv -I",
 
 	ATACONTROL	= "sbin/atacontrol",
-	MOUNT		= "sbin/mount",
+	MOUNT		= "sbin/mount -o async",
 	MOUNT_MFS	= "sbin/mount_mfs",
 	UMOUNT		= "sbin/umount",
 	SWAPON		= "sbin/swapon",

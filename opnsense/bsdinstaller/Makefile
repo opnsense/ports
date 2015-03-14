@@ -1,6 +1,6 @@
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.1.1
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -44,13 +44,11 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/lib/lua/transceiver/transceiver.lua ${STAGEDIR}${PREFIX}/share/lua/5.0/
 	${INSTALL_PROGRAM} ${WRKSRC}/lib/lua/lcurses/lcurses.so ${STAGEDIR}${PREFIX}/lib/lua/5.0
 	${INSTALL_DATA} ${WRKSRC}/lib/lua/lcurses/curses.lua ${STAGEDIR}${PREFIX}/share/lua/5.0/
-	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/lib
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/conf
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/easy_install
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/pit
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/install
-	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/configure
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/configure/menu
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/upgrade
 	${MKDIR} -p ${STAGEDIR}${DFUIBE_LUA_DIR}/netboot
