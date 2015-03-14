@@ -2,13 +2,7 @@
 
 --
 -- Menu.Item scriptlet that generates the install menu item.
--- Note that, if we detect that we weren't started from the
--- installation media, we don't provide this menu item.
 --
-
-if not App.conf.booted_from_install_media then
-	return nil, "not booted from install media"
-end
 
 return {
     id = "install_os",

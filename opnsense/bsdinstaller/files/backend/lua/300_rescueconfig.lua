@@ -31,13 +31,7 @@
 -- POSSIBILITY OF SUCH DAMAGE.
 --
 
--- BEGIN 300_rescueconfig.lua --
-
 local POSIX = require("posix")
-
-if not App.conf.booted_from_install_media then
-	return nil, "not booted from install media"
-end
 
 return {
 	id = "rescue_config",

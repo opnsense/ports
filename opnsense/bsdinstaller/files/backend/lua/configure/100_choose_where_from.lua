@@ -3,15 +3,6 @@
 --
 -- Allow the user to select which system to configure.
 --
--- If this detects that it was started from the install media, this
--- step does not apply; that is, we're not allowed to configure the
--- running system in this case (it is assumed to be immutable) and
--- we skip straight to selecting which disk/partition to configure.
---
-
-if App.conf.booted_from_install_media then
-	return nil, "was booted from install media"
-end
 
 return {
     id = "choose_target_system",

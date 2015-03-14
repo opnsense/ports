@@ -620,14 +620,6 @@ fake_execution = false
 confirm_execution = false
 
 --
--- booted_from_install_media: if true, force the "install" style menus
--- to come up; if false, force the "configure this system" style menus.
--- If not set (or set to nil,) try to auto-detect (might not work.)
---
-
-booted_from_install_media = nil
-
---
 -- fatal_errors: if true, errors always cause the application to abort.
 --
 

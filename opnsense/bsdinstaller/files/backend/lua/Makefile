@@ -41,7 +41,7 @@ test:
 	LUA_CPATH='../../lib/lua/posix/?.so;../../lib/lua/pty/?.so;../../lib/lua/dfui/?.so;../../lib/lua/luasocket/?.so' \
 	$(LUA)/bin/lua -lcompat-5.1 main.lua \
 	./conf/BSDInstaller.lua ./conf/${OSNAME}.lua \
-	dir.root=${MEDIAROOT} booted_from_install_media=true"
+	dir.root=${MEDIAROOT}"
 
 # Create directory layout for binary distribution.
 

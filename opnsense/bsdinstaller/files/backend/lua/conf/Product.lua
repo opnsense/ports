@@ -94,8 +94,6 @@ ui_nav_control = {
 	["*/configure/*"] = "ignore",				-- do not configure, we've already did it.
 }
 
-booted_from_install_media=true
-
 dir = { root = "/", tmp = "/tmp/" }
 
 limits.part_min = "100M"
