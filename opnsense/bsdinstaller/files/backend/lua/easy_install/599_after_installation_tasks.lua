@@ -1,34 +1,16 @@
-
---
---  pfSense after installation routines
---
---  Loop through io.lines(filename) and
---  run each command listed in file.
 --
 --  This file cleans up after a normal install.
 --
 
 return {
-    id = "pfsense_after_install",
-    name = _("pfSense after installation routines"),
-    effect = function(step)
-	local cmds = CmdChain.new()
-	local filename = "/usr/local/installer/after_installation_routines.sh"
-	local line
-        
-	for line in io.lines(filename) do
-		cmds:set_replacements{
-		    line = line,
-		    base = App.state.target:get_base()
-		}
-		if not string.find(line, "^%#") then
-		    cmds:add("${line}")
-		end
-	end
+	id = "after_install_routines",
+	name = _("Post-installation tasks"),
+	effect = function(step)
+		local cmdsAIR = CmdChain.new()
 
-	cmds:execute()
+		cmdsAIR:add("/usr/local/installer/after_installation_routines.sh");
+		cmdsAIR:execute()
 	
-	return step:next()
-
-    end
+		return step:next()
+	end
 }
