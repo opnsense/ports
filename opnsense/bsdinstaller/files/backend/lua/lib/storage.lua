@@ -540,32 +540,6 @@ Storage.System.new = function()
 	end
 
 	--
-	-- Return the total amount of swap (virtual) memory,
-	-- as a Storage.Capacity object, activated on all disks
-	-- on this system.
-	--
-	method.get_activated_swap = function(self)
-		local pty, line
-		local swap = 0
-		local found, len, devname, amount
-
-		local cmd = App.expand("${root}${SWAPINFO} -k")
-		local pty = Pty.Logged.open(cmd, App.log_string)
-		line = pty:readline()
-		while line do
-			if not string.find(line, "^Device") then
-				found, len, devname, amount =
-				    string.find(line, "^([^%s]+)%s+(%d+)")
-				swap = swap + tonumber(amount)
-			end
-			line = pty:readline()
-		end
-		pty:close()
-
-		return Storage.Capacity.new(swap, "K")
-	end
-
-	--
 	-- Print the contents this Storage.System, for debugging purposes.
 	--
 	method.dump = function(self)
@@ -1654,32 +1628,6 @@ Storage.Partition.new = function(params)
 		end
 		-- XXX depends on operating system
 		return parent.get_name() .. "s" .. number -- .. "c"
-	end
-
-	--
-	-- Return the total amount of swap (virtual) memory,
-	-- as a Storage.Capacity object, activated on this partition.
-	--
-	method.get_activated_swap = function(self)
-		local swap = 0
-		local found, len, devname, amount
-
-		local cmd = App.expand("${root}${SWAPINFO} -k")
-		local pty = Pty.Logged.open(cmd, App.log_string)
-		local line = pty:readline()
-		while line do
-			if not string.find(line, "^Device") then
-				found, len, devname, amount =
-				    string.find(line, "^([^%s]+)%s+(%d+)")
-				if string.find(devname, self:get_device_name()) then
-					swap = swap + tonumber(amount)
-				end
-			end
-			line = pty:readline()
-		end
-		pty:close()
-
-		return Storage.Capacity.new(swap, "K")
 	end
 
 	--

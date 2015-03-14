@@ -412,7 +412,6 @@ cmd_names = {
 	MOUNT		= "sbin/mount -o async",
 	MOUNT_MFS	= "sbin/mount_mfs",
 	UMOUNT		= "sbin/umount",
-	SWAPON		= "sbin/swapon",
 	DISKLABEL	= "sbin/disklabel",
 	MBRLABEL	= "sbin/mbrlabel",
 	NEWFS		= "sbin/newfs",
