@@ -110,7 +110,6 @@ return {
 	else
 		-- XXX should warn that no config could be imported
 	end
-	cmds:add("${root}bin/rm -f /tmp/config.cache");
 	cmds:add("${root}sbin/umount /tmp/hdrescue");
 	if not cmds:execute() then
 		return Menu.CONTINUE
