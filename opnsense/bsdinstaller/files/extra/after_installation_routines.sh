@@ -1,7 +1,5 @@
 #!/bin/sh
 
-echo "pfSense" > /mnt/usr/local/etc/platform
-
 # Let parent script know that a install really happened
 touch /tmp/install_complete
 
