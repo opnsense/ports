@@ -37,21 +37,8 @@ rm -rf /tmp/opnsense-update.*
 
 MARKER="/usr/local/opnsense/version/os-update"
 MIRROR="http://pkg.opnsense.org/sets"
-RELEASE="15.1.7"
+MY_RELEASE="15.1.8"
 ARCH=$(uname -m)
-
-if [ ${ARCH} = "amd64" ]; then
-	OBSOLETESHA="053d1d0fcc6b7cb135f512f438f00119a7c073a2d9e97372972d782ae4c0e820"
-	KERNELSHA="5d1c24196ee05c927e084b3188d1b49663083c550148da561ee82886dd414318"
-	BASESHA="982f838e375287f1df64945c2c1e6d5ffd96cd53e64b765224f2e9e89797e7f0"
-elif [ ${ARCH} = "i386" ]; then
-	OBSOLETESHA="7e6044cfcdb4ac03309974e08a6f6a83bda0359944e78e4d09b10a5849986d3c"
-	KERNELSHA="bffbf3485eb69817ea2001767cc400775cd000d5d059276f0e2ae26224ae3556"
-	BASESHA="e7cee8909d946af804afa428e4640af65d61f9394cdd27ae864d3a2ff5a0f5dc"
-else
-	echo "Unknown architecture ${ARCH}" >&2
-	exit 1
-fi
 
 if [ -f ${MARKER} ]; then
 	INSTALLED=$(cat ${MARKER})
@@ -60,7 +47,7 @@ fi
 while getopts cfm:r:v OPT; do
 	case ${OPT} in
 	c)
-		if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" ]; then
+		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED}" ]; then
 			exit 1
 		fi
 		exit 0
@@ -73,13 +60,9 @@ while getopts cfm:r:v OPT; do
 		;;
 	r)
 		RELEASE=${OPTARG}
-		# switches off checksumming!!
-		OBSOLETESHA=""
-		KERNELSHA=""
-		BASESHA=""
 		;;
 	v)
-		echo ${RELEASE}-${ARCH}
+		echo ${MY_RELEASE}-${ARCH}
 		exit 0
 		;;
 	*)
@@ -88,6 +71,24 @@ while getopts cfm:r:v OPT; do
 		;;
 	esac
 done
+
+# if no release was selected we use the embedded defaults
+if [ -z "${RELEASE}" ]; then
+	RELEASE=${MY_RELEASE}
+
+	if [ ${ARCH} = "amd64" ]; then
+		OBSOLETESHA="053d1d0fcc6b7cb135f512f438f00119a7c073a2d9e97372972d782ae4c0e820"
+		KERNELSHA="dfc6adb05eff81f44d2d68a88e81bd79d7c93130ef390953a96b3c91e60f3a8e"
+		BASESHA="1fb4214f242818cc05baf4e06fd917a40310e732ab491044f56303664bc3e021"
+	elif [ ${ARCH} = "i386" ]; then
+		OBSOLETESHA="7e6044cfcdb4ac03309974e08a6f6a83bda0359944e78e4d09b10a5849986d3c"
+		KERNELSHA="0be79f961cffc82d0f274a3c87db45c804e4c4801a63efee49e9637ed05a4e03"
+		BASESHA="5cf49ac9edb0c6d34fd310138c4f09d4e57eb62b3d9924ee8046a0074479ecec"
+	else
+		echo "Unknown architecture ${ARCH}" >&2
+		exit 1
+	fi
+fi
 
 if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${FORCE}" ]; then
 	echo "Your system is up to date."
