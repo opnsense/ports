@@ -24,7 +24,7 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.Dd March 1, 2015
+.Dd April 2, 2015
 .Dt OPNSENSE-UPDATE 8
 .Os
 .Sh NAME
@@ -32,7 +32,7 @@
 .Nd OPNsense system update utility
 .Sh SYNOPSIS
 .Nm
-.Op Fl cfv
+.Op Fl bcfkv
 .Op Fl m Ar mirror
 .Op Fl r Ar release
 .Sh DESCRIPTION
@@ -46,10 +46,22 @@ the installation if the system is up to date.
 .Pp
 The options are as follows:
 .Bl -tag -width ".Fl r Ar release" -offset indent
+.It Fl b
+Update the base system, but not the kernel.
+Overrides
+.Sq Fl k ;
+last option wins.
+For development only.
 .It Fl c
 Check wether an update can be performed, but don't install it.
 .It Fl f
 Force an update even when the latest release is already installed.
+.It Fl k
+Update the kernel, but not the base system.
+Overrides
+.Sq Fl b ;
+last option wins.
+For development only.
 .It Fl m Ar mirror
 Change the set fetch location to
 .Ar mirror .

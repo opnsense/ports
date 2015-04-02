@@ -44,8 +44,18 @@ if [ -f ${MARKER} ]; then
 	INSTALLED=$(cat ${MARKER})
 fi
 
-while getopts cfm:r:v OPT; do
+NOKERNEL=
+NOBASE=
+FORCE=
+DIRTY=
+
+while getopts bcfkm:r:v OPT; do
 	case ${OPT} in
+	b)
+		DIRTY="-base"
+		NOKERNEL=1
+		NOBASE=
+		;;
 	c)
 		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED}" ]; then
 			exit 1
@@ -54,6 +64,11 @@ while getopts cfm:r:v OPT; do
 		;;
 	f)
 		FORCE=1
+		;;
+	k)
+		DIRTY="-kernel"
+		NOKERNEL=
+		NOBASE=1
 		;;
 	m)
 		MIRROR=${OPTARG}
@@ -66,7 +81,7 @@ while getopts cfm:r:v OPT; do
 		exit 0
 		;;
 	*)
-		echo "Usage: opnsense-update [-cfv] [-m mirror] [-r release]" >&2
+		echo "Usage: opnsense-update [-bcfkv] [-m mirror] [-r release]" >&2
 		exit 1
 		;;
 	esac
@@ -163,16 +178,26 @@ apply_obsolete()
 	echo "ok"
 }
 
-fetch_set ${KERNELSET} ${KERNELSHA}
-fetch_set ${BASESET} ${BASESHA}
-fetch_set ${OBSOLETESET} ${OBSOLETESHA}
+if [ -z "${NOKERNEL}" ]; then
+	fetch_set ${KERNELSET} ${KERNELSHA}
+fi
 
-apply_kernel
-apply_base
-apply_obsolete
+if [ -z "${NOBASE}" ]; then
+	fetch_set ${BASESET} ${BASESHA}
+	fetch_set ${OBSOLETESET} ${OBSOLETESHA}
+fi
+
+if [ -z "${NOKERNEL}" ]; then
+	apply_kernel
+fi
+
+if [ -z "${NOBASE}" ]; then
+	apply_base
+	apply_obsolete
+fi
 
 mkdir -p $(dirname ${MARKER})
-echo ${RELEASE}-${ARCH} > ${MARKER}
+echo ${RELEASE}-${ARCH}${DIRTY} > ${MARKER}
 
 rm -r ${WORKDIR}
 
