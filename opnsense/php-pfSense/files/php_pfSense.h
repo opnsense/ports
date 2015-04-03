@@ -50,11 +50,6 @@ PHP_FUNCTION(pfSense_interface_capabilities);
 PHP_FUNCTION(pfSense_ngctl_name);
 PHP_FUNCTION(pfSense_ngctl_attach);
 PHP_FUNCTION(pfSense_ngctl_detach);
-PHP_FUNCTION(pfSense_get_modem_devices);
-PHP_FUNCTION(pfSense_sync);
-PHP_FUNCTION(pfSense_kill_states);
-PHP_FUNCTION(pfSense_kill_srcstates);
-PHP_FUNCTION(pfSense_ip_to_mac);
 
 PHP_FUNCTION(pfSense_pipe_action);
 
