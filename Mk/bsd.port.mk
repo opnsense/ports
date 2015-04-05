@@ -1084,9 +1084,9 @@ EXPIRATION_DATE?=	2014-08-31
 IGNORE=	Cross building can only be done when using bmake(1) as make(1)
 .endif
 # Do not define CPP on purpose
-.if !defined(HCC)
-HCC:=	${CC}
-HCXX:=	${CXX}
+.if !defined(HOSTCC)
+HOSTCC:=	${CC}
+HOSTCXX:=	${CXX}
 .endif
 .if !exists(/usr/${X_BUILD_FOR}/usr/bin/cc)
 X_SYSROOT=	${LOCALBASE}/${X_BUILD_FOR}
