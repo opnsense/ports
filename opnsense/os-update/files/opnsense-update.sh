@@ -37,7 +37,7 @@ rm -rf /tmp/opnsense-update.*
 
 MARKER="/usr/local/opnsense/version/os-update"
 MIRROR="http://pkg.opnsense.org/sets"
-MY_RELEASE="15.1.8"
+MY_RELEASE="15.1.9"
 ARCH=$(uname -m)
 
 if [ -f ${MARKER} ]; then
@@ -93,12 +93,12 @@ if [ -z "${RELEASE}" ]; then
 
 	if [ ${ARCH} = "amd64" ]; then
 		OBSOLETESHA="053d1d0fcc6b7cb135f512f438f00119a7c073a2d9e97372972d782ae4c0e820"
-		KERNELSHA="dfc6adb05eff81f44d2d68a88e81bd79d7c93130ef390953a96b3c91e60f3a8e"
-		BASESHA="1fb4214f242818cc05baf4e06fd917a40310e732ab491044f56303664bc3e021"
+		KERNELSHA="d5d1da7f529e1e33eae9c224686b170cd9e2214c5372e0a41a3e4d187bbb4014"
+		BASESHA="492a9b723173bec616a11eea30c4c8f502d59fd4adcd832c472aba7474389952"
 	elif [ ${ARCH} = "i386" ]; then
 		OBSOLETESHA="7e6044cfcdb4ac03309974e08a6f6a83bda0359944e78e4d09b10a5849986d3c"
-		KERNELSHA="0be79f961cffc82d0f274a3c87db45c804e4c4801a63efee49e9637ed05a4e03"
-		BASESHA="5cf49ac9edb0c6d34fd310138c4f09d4e57eb62b3d9924ee8046a0074479ecec"
+		KERNELSHA="2b08f76ba32c09639842f91635bd1e31f29382d14b8ee6e7c4637e684898a39a"
+		BASESHA="12ff90403943d1aa53441a2b1a2234844b072785c49a8232cb5fa97b69b6b49d"
 	else
 		echo "Unknown architecture ${ARCH}" >&2
 		exit 1
