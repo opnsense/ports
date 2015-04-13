@@ -1,6 +1,6 @@
---- configure.ac.orig	2014-08-25 16:56:53 UTC
+--- configure.ac.orig	2015-03-02 23:50:57 UTC
 +++ configure.ac
-@@ -1415,7 +1415,7 @@
+@@ -1219,7 +1219,7 @@ AC_SUBST(LIB_REGEX)
  dnl ------------------
  dnl check Net-SNMP library
  dnl ------------------
