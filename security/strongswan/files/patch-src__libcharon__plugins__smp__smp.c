@@ -1,6 +1,6 @@
---- src/libcharon/plugins/smp/smp.c.orig	2015-04-13 05:54:30.000000000 +0000
-+++ src/libcharon/plugins/smp/smp.c	2015-04-13 05:56:27.000000000 +0000
-@@ -737,7 +737,7 @@
+--- src/libcharon/plugins/smp/smp.c.orig	2013-11-01 10:40:35 UTC
++++ src/libcharon/plugins/smp/smp.c
+@@ -737,7 +737,7 @@ METHOD(plugin_t, destroy, void,
   */
  plugin_t *smp_plugin_create()
  {
@@ -9,14 +9,14 @@
  	private_smp_t *this;
  	mode_t old;
  
-@@ -766,6 +766,11 @@
+@@ -766,6 +766,11 @@ plugin_t *smp_plugin_create()
  		return NULL;
  	}
  
 +	strlcpy(unix_addr.sun_path, IPSEC_PIDDIR "/charon.xml",
 +	    sizeof(unix_addr.sun_path));
 +	unix_addr.sun_len = sizeof(unix_addr);
-+ 	unix_addr.sun_family = PF_LOCAL;
++	unix_addr.sun_family = PF_LOCAL;
 +
  	unlink(unix_addr.sun_path);
  	old = umask(S_IRWXO);
