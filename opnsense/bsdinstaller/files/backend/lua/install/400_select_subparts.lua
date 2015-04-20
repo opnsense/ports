@@ -132,30 +132,6 @@ return {
 			end
 		end
 	
-		if App.conf.enable_crashdumps then
-			local num_swap_subparts = 0
-			local num_dumponable = 0
-	
-			for spd in pd:get_subparts() do
-				if spd:is_swap() then
-					num_swap_subparts = num_swap_subparts + 1
-				end
-			end
-
-			if num_swap_subparts == 0 then
-				if not App.ui:confirm(_(
-				    "Note: no swap subpartitions configured thus "	..
-				    "holding a crash dump (an image of the "	..
-				    "computers' memory at the time of failure.) "	..
-				    "Because this complicates troubleshooting, "	..
-				    "we recommend that you create a swap partition "	..
-				    "Proceed anyway?",
-				    mtpt, min_cap)) then
-					return false
-				end
-			end
-		end
-
 		return true
 	end
 

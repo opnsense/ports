@@ -581,20 +581,6 @@ TargetSystem.new = function(tab)
 			-- Make a swap subpartition entry.
 			--
 			if spd:is_swap() then
-				--
-				-- If this swap subpart is large enough to be
-				-- used as a dump device, and no dump device
-				-- has been configured yet, activate it as the
-				-- dump device and record the choice for later
-				-- writing to rc.conf.
-				--
-				if App.conf.enable_crashdumps then
-					spd:cmds_ensure_dev(cmds)
-					cmds:add("${root}${DUMPON} -v ${root}dev/${dev}")
-					App.state.rc_conf:set("dumpdev", "/dev/" ..
-					    spd:get_device_name())
-					App.state.rc_conf:set("dumpdir", "/var/crash")
-				end
 				fstab[mtpt] = {
 				    device  = "/dev/" .. dev,
 				    fstype  = "swap",

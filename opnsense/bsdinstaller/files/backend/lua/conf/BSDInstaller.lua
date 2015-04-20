@@ -485,13 +485,6 @@ cmd_names = {
 package_suffix = "tgz"
 
 --
--- enable_crashdumps: Whether crashdumps (to a suitable swap partition)
--- will be enabled upon installation, or not.
---
-
-enable_crashdumps = true
-
---
 -- mount_info_regexp: A Lua regular expression which describes
 -- what the output of the 'mount' command looks like, so that
 -- it can be parsed to extract mountpoint and filesystem info.

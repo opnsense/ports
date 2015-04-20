@@ -132,38 +132,6 @@ return {
 			end
 		end
 	
-		if App.conf.enable_crashdumps then
-			local num_swap_subparts = 0
-			local num_dumponable = 0
-	
-			for spd in pd:get_subparts() do
-				if spd:is_swap() then
-					num_swap_subparts = num_swap_subparts + 1
-					if spd:get_capacity():exceeds_or_equals(
-					     App.state.storage:get_ram_capacity()
-					   ) then
-						num_dumponable = num_dumponable + 1
-					end
-				end
-			end
-
-			if num_swap_subparts > 0 and num_dumponable == 0 then
-				if not App.ui:confirm(_(
-				    "Note: none of the swap subpartitions that "	..
-				    "you have selected are large enough to hold "	..
-				    "the contents of memory, and thus cannot be "	..
-				    "used to hold a crash dump (an image of the "	..
-				    "computers' memory at the time of failure.) "	..
-				    "Because this complicates troubleshooting, "	..
-				    "we recommend that you increase the size of "	..
-				    "one of your swap subpartitions.\n\n"		..
-				    "Proceed anyway?",
-				    mtpt, min_cap)) then
-					return false
-				end
-			end
-		end
-
 		return true
 	end
 
