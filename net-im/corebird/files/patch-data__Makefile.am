@@ -1,0 +1,10 @@
+--- data/Makefile.am.orig	2015-03-19 18:38:24.000000000 +0100
++++ data/Makefile.am	2015-03-30 18:12:15.956014000 +0200
+@@ -1,6 +1,6 @@
+ 
+ desktopdir = $(prefix)/share/applications
+-desktop_in_files = org.baedert.corebird.desktop.in
++desktop_in_files = corebird.desktop.in
+ desktop_DATA = $(desktop_in_files:.desktop.in=.desktop)
+ @INTLTOOL_DESKTOP_RULE@
+ 

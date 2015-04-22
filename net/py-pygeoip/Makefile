@@ -1,0 +1,24 @@
+# Created by: Nobutaka Mantani <nobutaka@FreeBSD.org>
+# $FreeBSD$
+
+PORTNAME=	pygeoip
+PORTVERSION=	0.3.2
+CATEGORIES=	net python geography
+PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
+
+MAINTAINER=	nobutaka@FreeBSD.org
+COMMENT=	Pure Python GeoIP API
+
+LICENSE=	LGPL3
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+USES=		python
+USE_PYTHON=	distutils autoplist
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	appliedsec
+GH_PROJECT=	${PORTNAME}
+GH_TAGNAME=	v${PORTVERSION}
+GH_COMMIT=	7501c93
+
+.include <bsd.port.mk>

@@ -1,0 +1,11 @@
+--- CMakeLists.txt.orig	2015-02-25 13:04:40.000000000 +0100
++++ CMakeLists.txt	2015-02-25 13:05:18.000000000 +0100
+@@ -168,7 +168,7 @@
+     FILES
+     "${CMAKE_CURRENT_BINARY_DIR}/liblucene++.pc"
+     "${CMAKE_CURRENT_BINARY_DIR}/liblucene++-contrib.pc"
+-    DESTINATION "${LIB_DESTINATION}/pkgconfig")
++    DESTINATION "libdata/pkgconfig")
+ endif()
+ 
+ #################################

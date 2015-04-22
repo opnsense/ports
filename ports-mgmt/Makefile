@@ -1,0 +1,72 @@
+# $FreeBSD$
+#
+
+    COMMENT = Ports for managing, installing, and developing FreeBSD ports and packages
+
+    SUBDIR += bpm
+    SUBDIR += chucky
+    SUBDIR += dialog4ports
+    SUBDIR += dialog4ports-static
+    SUBDIR += distilator
+    SUBDIR += fastest_sites
+    SUBDIR += fbsdmon
+    SUBDIR += genplist
+    SUBDIR += gnome-packagekit
+    SUBDIR += hs-porte
+    SUBDIR += jailaudit
+    SUBDIR += kpackagekit
+    SUBDIR += lsknobs
+    SUBDIR += managepkg
+    SUBDIR += mkreadmes
+    SUBDIR += p5-FreeBSD-Portindex
+    SUBDIR += p5-FreeBSD-Ports
+    SUBDIR += p5-FreeBSD-Ports-INDEXhash
+    SUBDIR += packagekit
+    SUBDIR += packagekit-qt4
+    SUBDIR += pchecker
+    SUBDIR += pkg
+    SUBDIR += pkg-devel
+    SUBDIR += pkg-plist
+    SUBDIR += pkg-rmleaf
+    SUBDIR += pkg_cleanup
+    SUBDIR += pkg_cutleaves
+    SUBDIR += pkg_jail
+    SUBDIR += pkg_replace
+    SUBDIR += pkg_rmleaves
+    SUBDIR += pkg_search
+    SUBDIR += pkg_tree
+    SUBDIR += pkgcompare
+    SUBDIR += pkgs_which
+    SUBDIR += port-authoring-tools
+    SUBDIR += port-maintenance-tools
+    SUBDIR += portconf
+    SUBDIR += portdowngrade
+    SUBDIR += porteasy
+    SUBDIR += portell
+    SUBDIR += portfind
+    SUBDIR += portless
+    SUBDIR += portlint
+    SUBDIR += portmaster
+    SUBDIR += portrac
+    SUBDIR += portscout
+    SUBDIR += portsearch
+    SUBDIR += portshaker
+    SUBDIR += portshaker-config
+    SUBDIR += portsopt
+    SUBDIR += portsreinstall
+    SUBDIR += porttools
+    SUBDIR += porttree
+    SUBDIR += portupdate-scan
+    SUBDIR += portupgrade
+    SUBDIR += portupgrade-devel
+    SUBDIR += poudriere
+    SUBDIR += poudriere-devel
+    SUBDIR += psearch
+    SUBDIR += symports
+    SUBDIR += tinderbox
+    SUBDIR += tinderbox-devel
+    SUBDIR += vulnerability-test-port
+    SUBDIR += wanted-ports
+    SUBDIR += xps
+
+.include <bsd.port.subdir.mk>
