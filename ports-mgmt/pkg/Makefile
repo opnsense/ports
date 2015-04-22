@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pkg
-DISTVERSION=	1.4.12
+DISTVERSION=	1.5.1
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	\
@@ -14,9 +14,6 @@ COMMENT=	Package manager
 
 LICENSE=	BSD2CLAUSE
 
-# Disable CCACHE support because of the chicken/egg problem pkg should always
-# With no dependency at all
-NO_CCACHE=	yes
 USE_LDCONFIG=	yes
 USES=		libtool tar:xz
 GNU_CONFIGURE=	yes
