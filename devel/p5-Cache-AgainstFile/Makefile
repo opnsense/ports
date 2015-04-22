@@ -3,13 +3,13 @@
 
 PORTNAME=	Cache-AgainstFile
 PORTVERSION=	1.016
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	Cache
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Cache data structures parsed from files, watching for updates
 
 LICENSE=	GPLv2

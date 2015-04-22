@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tea
-PORTVERSION=	38.0.0
+PORTVERSION=	41.0.0
 CATEGORIES=	editors
 MASTER_SITES=	http://semiletov.org/tea/dloads/
 
@@ -17,7 +17,7 @@ OPTIONS_RADIO_SPELL=	ASPELL HUNSPELL
 OPTIONS_DEFAULT=	ASPELL
 
 USES=		qmake tar:bzip2
-USE_QT4=	gui moc_build rcc_build
+USE_QT4=	gui moc_build network rcc_build
 
 PLIST_FILES=	bin/tea share/pixmaps/tea_icon_v2.png
 PORTDOCS=	*

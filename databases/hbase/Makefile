@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	hbase
-PORTVERSION=	0.98.4
+PORTVERSION=	0.98.9
 CATEGORIES=	databases java
 MASTER_SITES=	${MASTER_SITE_APACHE} \
 		LOCAL/demon/:maven \
@@ -22,6 +22,8 @@ BUILD_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		yarn:${PORTSDIR}/devel/hadoop2
 
+USES=		cpe
+CPE_VENDOR=	apache
 USE_JAVA=	yes
 JAVA_VERSION=	1.7+
 
@@ -48,10 +50,11 @@ SUB_LIST=	HBASE_USER="${HBASE_USER}" \
 PLIST_SUB=	HBASE_USER=${HBASE_USER} \
 		HBASE_GROUP=${HBASE_GROUP} \
 		HBASE_LOGDIR=${HBASE_LOGDIR} \
-		HBASE_RUNDIR=${HBASE_RUNDIR}
+		HBASE_RUNDIR=${HBASE_RUNDIR} \
+		PORTVERSION="${PORTVERSION}"
 
 post-patch:
-	${REINPLACE_CMD} -e "s#%%ETCDIR%%#${ETCDIR}#" ${WRKSRC}/conf/hbase-env.sh
+	${REINPLACE_CMD} -e "s#%%ETCDIR%%#${ETCDIR}#" ${WRKSRC}/conf/hbase-env.sh ${WRKSRC}/bin/hbase
 	${RM} ${WRKSRC}/conf/hbase-env.sh.bak ${WRKSRC}/conf/hbase-env.sh.orig
 
 do-build:
@@ -65,7 +68,7 @@ post-build:
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/hbase/bin
-	cd ${HBASE_DIST}/bin && ${INSTALL_SCRIPT} *.sh hbase ${STAGEDIR}${PREFIX}/hbase/bin/
+	cd ${HBASE_DIST}/bin && ${INSTALL_SCRIPT} *.sh hbase hirb.rb ${STAGEDIR}${PREFIX}/hbase/bin/
 	${MKDIR} ${STAGEDIR}${ETCDIR} ${STAGEDIR}${EXAMPLESDIR}
 	cd ${HBASE_DIST} && ${COPYTREE_SHARE} conf ${STAGEDIR}${EXAMPLESDIR}/
 	${INSTALL_DATA} ${WRKDIR}/hbase-env-dist.sh ${STAGEDIR}${ETCDIR}/

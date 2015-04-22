@@ -3,7 +3,7 @@
 
 PORTNAME=	rawstudio
 PORTVERSION=	2.0
-PORTREVISION=	7
+PORTREVISION=	10
 CATEGORIES=	graphics
 MASTER_SITES=	http://rawstudio.org/files/release/
 
@@ -13,7 +13,7 @@ COMMENT=	Open-source program to read and manipulate RAW photo images
 LICENSE=	GPLv2
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		liblcms.so:${PORTSDIR}/graphics/lcms \
 		libexiv2.so:${PORTSDIR}/graphics/exiv2 \
 		libdbus-1.so:${PORTSDIR}/devel/dbus \
@@ -28,6 +28,7 @@ GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20 libxml2 gconf2
 USE_SQLITE=	3
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -35,5 +36,8 @@ LIBS+=		`pkg-config --libs gthread-2.0`
 
 post-patch:
 	@${REINPLACE_CMD} -e 's, libssl,,' ${WRKSRC}/configure
+# lensfun 0.3.0 had removed support for LF_MODIFY_CCI
+	@${REINPLACE_CMD} -e 's, | LF_MODIFY_CCI,,' \
+		${WRKSRC}/plugins/lensfun/lensfun.c
 
 .include <bsd.port.mk>

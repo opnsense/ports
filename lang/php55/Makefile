@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	php55
-PORTVERSION=	5.5.19
+PORTVERSION=	5.5.23
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	${MASTER_SITE_PHP}
@@ -143,7 +143,7 @@ CONFIGURE_ENV+=	ac_cv_pthreads_lib="" \
 		lt_cv_path_SED="sed"
 
 .if ${PORT_OPTIONS:MLINKTHR}
-LIBS+=		${PTHREAD_LIBS}
+LIBS+=		-lpthread
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG}
@@ -159,6 +159,9 @@ CONFIGURE_ARGS+=--enable-maintainer-zts
 IGNORE=		cannot be built with DTrace support on FreeBSD < 9.x
 .endif
 CONFIGURE_ARGS+=--enable-dtrace
+PLIST_SUB+=	DTRACE=""
+.else
+PLIST_SUB+=	DTRACE="@comment "
 .endif
 
 .if empty(PORT_OPTIONS:MIPV6)

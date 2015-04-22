@@ -23,16 +23,12 @@ CONFIGURE_ARGS=	--with-dps-includes=${LOCALBASE}/include \
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-BROKEN_alpha=	Does not compile on alpha
-
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
 NLS_USES=	gettext
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|$${CONFIG_SHELL-/bin/sh} $$ac_aux_dir|$$ac_aux_dir|' \
-		${WRKSRC}/configure
 	@${REINPLACE_CMD} 's|gnulocaledir)|DESTDIR)$$(&|' \
 		${WRKSRC}/po/Makefile.in.in
 

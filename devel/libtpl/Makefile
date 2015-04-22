@@ -5,14 +5,15 @@ PORTNAME=	libtpl
 PORTVERSION=	1.6
 PORTREVISION=	1
 CATEGORIES=	devel
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	culot@FreeBSD.org
 COMMENT=	Tpl is a library for serializing C data
 
 OPTIONS_DEFINE=	DOCS
 
-LICENSE=	BSD
+LICENSE=	GPLv3 MIT
+LICENSE_COMB=	multi
 
 USES=		libtool tar:bzip2
 USE_GITHUB=	yes

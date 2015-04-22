@@ -3,11 +3,12 @@
 
 PORTNAME=	Iterator-Misc
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Miscellaneous iterator functions
 
 LICENSE=	ART10 GPLv1

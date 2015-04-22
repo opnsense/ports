@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mbuffer
-PORTVERSION=	2014.03.10
+PORTVERSION=	2014.12.27
 CATEGORIES=	misc
 MASTER_SITES=	http://www.maier-komor.de/software/mbuffer/
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//g}
@@ -40,9 +40,6 @@ USE_OPENSSL=	yes
 CONFIGURE_ARGS+=ac_cv_search_sendfile=no
 
 .include <bsd.port.pre.mk>
-
-post-patch:
-	@${REINPLACE_CMD} -e 's,-lpthread,${PTHREAD_LIBS},' ${WRKSRC}/configure
 
 post-configure:
 	# Rename variables to make sure they aren't redefined through mhash.h

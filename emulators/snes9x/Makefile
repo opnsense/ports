@@ -3,7 +3,7 @@
 
 PORTNAME=	snes9x
 PORTVERSION=	1.51
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	emulators
 MASTER_SITES=	http://files.ipherswipsite.com/snes9x/ \
 		http://www.lysator.liu.se/snes9x/${PORTVERSION}/
@@ -20,8 +20,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--without-extensions
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ARGS=	INCLUDES="-I${WRKSRC}/unzip -I${WRKSRC} -I${LOCALBASE}/include \
-		${PTHREAD_CFLAGS}" LDLIBS="-L${LOCALBASE}/lib ${PTHREAD_LIBS}" \
+MAKE_ARGS=	INCLUDES="-I${WRKSRC}/unzip -I${WRKSRC} -I${LOCALBASE}/include" \
+		LDLIBS="-lpthread -L${LOCALBASE}/lib" \
 		OPTIMISE="${CXXFLAGS}"
 WRKSRC=		${WRKDIR}/${DISTNAME}
 

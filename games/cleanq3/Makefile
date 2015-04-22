@@ -11,6 +11,9 @@ DISTNAME=	CleanQ3_v${PORTVERSION}-srcbin
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cleaned up copy of the original Quake III Arena source code
 
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING.txt
+
 USES=		dos2unix gmake zip
 WRKSRC=		${WRKDIR}/CleanQ3
 BUILD_WRKSRC=	${WRKSRC}/code/unix
@@ -63,7 +66,7 @@ PLIST_SUB+=	CLIENT="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSMP_CLIENT}
-MAKE_ENV+=	SMP=YES PTHREAD_LIBS="${PTHREAD_LIBS}"
+MAKE_ENV+=	SMP=YES
 PLIST_SUB+=	SMP_CLIENT=""
 Q3BIN+=		cleanq3-smp
 .else

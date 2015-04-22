@@ -3,11 +3,11 @@
 
 PORTNAME=	libeXosip2
 PORTVERSION=	4.1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	SAVANNAH/exosip
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	GPL library that extends the capability of the oSIP library
 
 LICENSE=	GPLv2
@@ -20,6 +20,7 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		libtool
 USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
 SHLIB_VER=	11
 
 PLIST_SUB+=	SHLIB_VER=${SHLIB_VER}

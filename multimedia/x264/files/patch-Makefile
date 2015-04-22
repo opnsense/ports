@@ -1,6 +1,6 @@
---- Makefile.orig	2013-08-27 22:45:07.000000000 +0200
-+++ Makefile	2014-02-04 20:59:54.000000000 +0100
-@@ -86,13 +86,13 @@
+--- Makefile.orig	2014-08-27 20:45:08 UTC
++++ Makefile
+@@ -85,12 +85,12 @@ X86SRC0 += sad-a.asm
  endif
  X86SRC = $(X86SRC0:%=common/x86/%)
  
@@ -8,15 +8,14 @@
 +ifeq ($(ARCH),i386)
  ARCH_X86 = yes
  ASMSRC   = $(X86SRC) common/x86/pixel-32.asm
- ASFLAGS += -DARCH_X86_64=0
  endif
  
 -ifeq ($(ARCH),X86_64)
 +ifeq ($(ARCH),amd64)
  ARCH_X86 = yes
  ASMSRC   = $(X86SRC:-32.asm=-64.asm) common/x86/trellis-64.asm
- ASFLAGS += -DARCH_X86_64=1
-@@ -108,7 +108,14 @@
+ endif
+@@ -104,7 +104,14 @@ endif
  endif
  
  # AltiVec optims
@@ -32,3 +31,12 @@
  ifneq ($(AS),)
  SRCS += common/ppc/mc.c common/ppc/pixel.c common/ppc/dct.c \
          common/ppc/quant.c common/ppc/deblock.c \
+@@ -113,7 +120,7 @@ endif
+ endif
+ 
+ # NEON optims
+-ifeq ($(ARCH),ARM)
++ifeq ($(ARCH),armv6)
+ ifneq ($(AS),)
+ ASMSRC += common/arm/cpu-a.S common/arm/pixel-a.S common/arm/mc-a.S \
+           common/arm/dct-a.S common/arm/quant-a.S common/arm/deblock-a.S \

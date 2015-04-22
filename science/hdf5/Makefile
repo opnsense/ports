@@ -2,10 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	hdf5
-PORTVERSION=	1.8.13
+PORTVERSION=	1.8.14
 PORTREVISION=	1
 CATEGORIES=	science archivers graphics
-MASTER_SITES=	http://www.hdfgroup.org/ftp/HDF5/releases/${DISTNAME}/src/ \
+MASTER_SITES=	http://www.hdfgroup.org/ftp/HDF5/current/src/ \
+		ftp://ftp.hdfgroup.org/HDF5/current/src/ \
+		http://www.hdfgroup.org/ftp/HDF5/releases/${DISTNAME}/src/ \
 		ftp://ftp.hdfgroup.org/HDF5/releases/${DISTNAME}/src/ \
 		LOCAL/sunpoet
 
@@ -19,7 +21,6 @@ CONFLICTS_INSTALL=	hdf-4.[0-9]* hdf5-1.6.[0-9]*
 OPTIONS_DEFINE=	DEBUG EXAMPLES FORTRAN SZIP
 OPTIONS_SUB=	yes
 
-#CFLAGS+=	-D__BSD_VISIBLE
 CONFIGURE_ARGS=	--enable-cxx \
 		--enable-hl \
 		--enable-instrument \
@@ -27,7 +28,7 @@ CONFIGURE_ARGS=	--enable-cxx \
 		--with-pthread=/usr \
 		--with-zlib=/usr
 GNU_CONFIGURE=	yes
-MAKE_ENV=	INSTALL_STRIP_FLAG=${STRIP}
+INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
 USE_LDCONFIG=	yes
 USES=		libtool tar:bzip2
@@ -43,11 +44,10 @@ FORTRAN_CONFIGURE_ENV=	F9X=${FC}
 FORTRAN_CONFIGURE_OFF=	--disable-fortran --disable-fortran2003
 FORTRAN_CONFIGURE_ON=	--enable-fortran --enable-fortran2003
 FORTRAN_USES=		fortran
-SZIP_CONFIGURE_ARGS=	--with-szlib=${LOCALBASE}
+SZIP_CONFIGURE_ON=	--with-szlib=${LOCALBASE}
 SZIP_LIB_DEPENDS=	libsz.so:${PORTSDIR}/science/szip
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|-pthread|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|-O3||g' ${WRKSRC}/config/gnu-flags
 	@${REINPLACE_CMD} \
 		-e '/LD_LIBRARY_PATH/ s|^|#|' \

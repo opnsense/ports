@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	snmp
-PORTVERSION=	5.7.2
-PORTREVISION=	16
+PORTVERSION=	5.7.3
+PORTREVISION=	7
 CATEGORIES=	net-mgmt ipv6
 MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION}
 PKGNAMEPREFIX=	net-
@@ -16,17 +16,18 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	IPV6 MFD_REWRITES PERL PERL_EMBEDDED PYTHON DUMMY TKMIB \
-		DMALLOC MYSQL AX_SOCKONLY UNPRIVILEGED SMUX DOCS
+		MYSQL AX_SOCKONLY UNPRIVILEGED SMUX DOCS JAIL
 OPTIONS_DEFAULT=IPV6 PERL PERL_EMBEDDED DUMMY SMUX
 
 MFD_REWRITES_DESC=	Build with 64-bit Interface Counters
 PERL_EMBEDDED_DESC=	Build embedded perl
 DUMMY_DESC=		Enable dummy values as placeholders
 TKMIB_DESC=		Install graphical MIB browser
-DMALLOC_DESC=		Enable dmalloc debug memory allocator
+#DMALLOC_DESC=		Enable dmalloc debug memory allocator
 AX_SOCKONLY_DESC=	Disable UDP/TCP transports for agentx
 UNPRIVILEGED_DESC=	Allow unprivileged users to execute net-snmp
 SMUX_DESC=		Build with SNMP multiplexing (SMUX) support
+JAIL_DESC=		Options for running snmpd within a jail(8)
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -37,7 +38,8 @@ USE_RC_SUBR=	snmpd snmptrapd
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 USES=		perl5 libtool
-USE_PERL5=	build run fixpacklist
+USE_PERL5=	build run
+USE_CSTD=	c99
 
 CFLAGS+=	-I${LOCALBASE}/include -I${PKG_PREFIX}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -49,7 +51,8 @@ CONFIGURE_ARGS+=--enable-shared --enable-internal-md5 \
 		--with-logfile="${NET_SNMP_LOGFILE}" \
 		--with-persistent-directory="${NET_SNMP_PERSISTENTDIR}" \
 		--with-gnu-ld --with-libwrap \
-		--with-ldflags="-lm -lkvm -ldevstat -lpkg -L${LOCALBASE}/lib -L${PKG_PREFIX}/lib ${LCRYPTO}"
+		--with-libs="-lssp_nonshared" \
+		--with-ldflags="-lm -lkvm -ldevstat -L${PKG_PREFIX}/lib -L${LOCALBASE}/lib ${LCRYPTO}"
 SUB_FILES=	pkg-message
 
 .if defined(BATCH)
@@ -104,10 +107,12 @@ PLIST_SUB+=	WITH_PERL_EMBEDDED="@comment "
 PLIST_SUB+=	WITH_PERL="@comment "
 .endif
 
-.if ${PORT_OPTIONS:MDMALLOC}
-LIB_DEPENDS+=	libdmalloc.so:${PORTSDIR}/devel/dmalloc
-CONFIGURE_ARGS+=--with-dmalloc=${LOCALBASE}
-.endif
+#.if ${PORT_OPTIONS:MDMALLOC}
+#LIB_DEPENDS+=	libdmalloc.so:${PORTSDIR}/devel/dmalloc
+#CONFIGURE_ARGS+=--with-dmalloc=${LOCALBASE}
+#.else
+#CONFIGURE_ARGS+=--without-dmalloc
+#.endif
 
 .if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=	yes
@@ -132,7 +137,7 @@ CONFIGURE_ARGS+=--without-root-access
 .endif
 
 SHLIB_VERSION=	30
-SHLIB_VERSION2=	.0.2
+SHLIB_VERSION2=	.0.3
 PLIST_SUB+=	SHLIB_VERSION=${SHLIB_VERSION} SHLIB_VERSION2=${SHLIB_VERSION2}
 SCRIPTS_SUB=	PREFIX=${PREFIX} PERL=${PERL}
 
@@ -141,23 +146,25 @@ NET_SNMP_SYS_CONTACT?=	nobody@nowhere.invalid
 NET_SNMP_SYS_LOCATION?=	somewhere
 NET_SNMP_LOGFILE?=	/var/log/snmpd.log
 NET_SNMP_PERSISTENTDIR?=/var/net-snmp
-NET_SNMP_WITH_MIB_MODULE_LIST+=	host disman/event-mib mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio
+NET_SNMP_WITH_MIB_MODULE_LIST+=	host disman/event-mib mibII/mta_sendmail mibII/tcpTable ucd-snmp/diskio sctp-mib
 
-.if ${OSVERSION} >= 700028
-NET_SNMP_WITH_MIB_MODULE_LIST+=	sctp-mib
-.endif
-
-.if ${OSVERSION} >= 800000
-CONFIGURE_ARGS+=	--with-libs="-lssp_nonshared"
-.endif
-
-.if ${OSVERSION} >= 1000000
+.if ${OSVERSION} >= 1000000 && ${OSVERSION} < 1100062
 CFLAGS+=	-D_WANT_IFADDR
+.endif
+
+.if ${OSVERSION} >= 1100062
+CONFIGURE_ARGS+=	--with-out-mib-modules="mibII/ipv6"
 .endif
 
 .if ${PORT_OPTIONS:MMFD_REWRITES}
 CONFIGURE_ARGS+=--enable-mfd-rewrites
 NET_SNMP_WITH_MIB_MODULE_LIST+=	if-mib
+.endif
+
+.if ${PORT_OPTIONS:MJAIL}
+NET_SNMP_WITHOUT_MIB_MODULE_LIST+=	host
+NET_SNMP_WITHOUT_MIB_MODULE_LIST+=	ucd-snmp/memory
+CONFIGURE_ARGS+=			--without-kmem-usage
 .endif
 
 .if ${PORT_OPTIONS:MSMUX}
@@ -187,8 +194,7 @@ LIB_FILES=	libnetsnmp.so.${SHLIB_VERSION}${SHLIB_VERSION2} \
 		libnetsnmptrapd.so.${SHLIB_VERSION}${SHLIB_VERSION2}
 SBIN_FILES=	snmpd snmptrapd
 STARTUP_DIR=	${PREFIX}/etc/rc.d
-SCRIPT_FILES=	snmpcheck.def mib2c fixproc ipf-mod.pl snmpconf \
-		traptoemail
+SCRIPT_FILES=	snmpcheck.def mib2c fixproc ipf-mod.pl traptoemail
 .if ${PORT_OPTIONS:MTKMIB}
 SCRIPT_FILES+=	tkmib
 .endif
@@ -233,11 +239,13 @@ post-patch:
 	@${REINPLACE_CMD} -e 's!utmp_p->ut_name!utmp_p->ut_user!' \
 	    ${WRKSRC}/agent/mibgroup/host/hr_system.c
 .endif
+	@${REINPLACE_CMD} -E -e 's|return pci_lookup_name|disabled broken|g' \
+		${WRKSRC}/configure
 
 post-configure:
 	@${FIND} ${WRKSRC} -name Makefile | \
 		${XARGS} ${REINPLACE_CMD} -E -e '/^INSTALL[ 	]+=/s|$$| -m 755|'
-.for hdr in sys/mbuf.h netinet/in_pcb.h netinet/in_var.h netinet/ip6.h
+.for hdr in sys/mbuf.h netinet/in_pcb.h netinet/in_var.h netinet/ip6.h pkg.h
 	@${REINPLACE_CMD} -E -e '\
 		s!^.*#undef.*(HAVE_${hdr:tu:S/./_/g:S/\//_/g}).*$$!#define \1 1!g' \
 			${WRKSRC}/include/net-snmp/net-snmp-config.h
@@ -283,7 +291,7 @@ install-doc-files:
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 . for filename in ${DOC_FILES}
-	@${INSTALL_DATA} ${WRKSRC}/${filename} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${filename} ${STAGEDIR}${DOCSDIR}
 . endfor
 .endif
 

@@ -3,12 +3,12 @@
 
 PORTNAME=	GD-SVG
 PORTVERSION=	0.33
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Seamlessly enable SVG output from scripts written using GD
 
 LICENSE=	ART10 GPLv1

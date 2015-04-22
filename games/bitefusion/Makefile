@@ -3,7 +3,7 @@
 
 PORTNAME=	bitefusion
 PORTVERSION=	1.0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	http://www.junoplay.com/files/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -27,7 +27,7 @@ DESKTOP_ENTRIES="Bitefusion" \
 		""
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-linux-gnu|-portbld-freebsd|' \
+	@${REINPLACE_CMD} -e 's|-linux-gnu|-portbld-${OPSYS:tl}|' \
 		${WRKSRC}/configure
 
 .include <bsd.port.mk>

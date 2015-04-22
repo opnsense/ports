@@ -2,14 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	Sub-Uplevel
-PORTVERSION=	0.2400
+PORTVERSION=	0.2500
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:DAGOLDEN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-${PORTVERSION:C/00$//}
 
 MAINTAINER=	perl@FreeBSD.org
-COMMENT=	Sub::Uplevel - apparently run a function in a higher stack frame
+COMMENT=	Appear to run a function in a higher stack frame
 
 USES=		perl5
 USE_PERL5=	configure

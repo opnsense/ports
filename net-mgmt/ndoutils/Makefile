@@ -5,7 +5,7 @@ PORTVERSION=	2.0.0
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/nagios/${PORTNAME}-2.x/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Keep Nagios perfdata in MySQL database
 
 LICENSE=	GPLv2
@@ -31,6 +31,8 @@ USE_MYSQL=	yes
 USES=		perl5
 USE_RC_SUBR=	ndo2db
 SUB_FILES=	pkg-message
+
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.options.mk>
 

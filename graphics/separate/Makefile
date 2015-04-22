@@ -10,7 +10,7 @@ MASTER_SITES=	SFJP
 MASTER_SITE_SUBDIR=	separate-plus/47873
 DISTNAME=	${PORTNAME}+-${PORTVERSION}
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	CMYK plugin for The GIMP
 
 LICENSE=	GPLv2
@@ -21,7 +21,7 @@ BUILD_DEPENDS=	gccmakedep:${PORTSDIR}/devel/gccmakedep
 LIB_DEPENDS=	liblcms.so.1:${PORTSDIR}/graphics/lcms \
 		libgimp-2.0.so:${PORTSDIR}/graphics/gimp-app
 
-USES=		gmake pkgconfig zip
+USES=		gettext-tools gmake pkgconfig zip
 
 BIN_TARGETS=	separate separate_import icc_colorspace
 L10N_TARGETS=	cs es fr ja ko pl ru

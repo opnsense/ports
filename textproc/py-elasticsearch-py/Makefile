@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	elasticsearch-py
-PORTVERSION=	1.0.0
-PORTREVISION=	1
+PORTVERSION=	1.3.0
 CATEGORIES=	textproc python
 MASTER_SITES=	#
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,9 +14,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}urllib3>=1.8.2:${PORTSDIR}/net/py-urllib3
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	elasticsearch
-GH_COMMIT=	9bd4303
-USE_PYTHON=	yes
-USE_PYDISTUTILS=yes
-PYDISTUTILS_AUTOPLIST=yes
+GH_COMMIT=	e3bfeee
+USES=		python
+USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>

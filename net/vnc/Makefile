@@ -3,7 +3,7 @@
 
 PORTNAME=	vnc
 PORTVERSION=	4.1.3
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://home.bluelife.at/ports/distfiles/${DIST_SUBDIR}/:vnc
 DISTNAME=	vnc-4_1_3-unixsrc
@@ -55,8 +55,8 @@ MAKE_ARGS=	AR='ar rc'
 .endif
 
 RUN_DEPENDS+=	xauth:${PORTSDIR}/x11/xauth \
-		${PREFIX}/lib/X11/fonts/misc/6x13-ISO8859-1.pcf.gz:${PORTSDIR}/x11-fonts/xorg-fonts-miscbitmaps \
-		${LOCALBASE}/lib/X11/fonts/misc/fonts.alias:${PORTSDIR}/x11-fonts/font-alias
+		xorg-fonts-miscbitmaps>0:${PORTSDIR}/x11-fonts/xorg-fonts-miscbitmaps \
+		${LOCALBASE}/share/fonts/misc/fonts.alias:${PORTSDIR}/x11-fonts/font-alias
 
 EXTRA_PATCHES+=	${WRKSRC}/xc.patch \
 		${PATCHDIR}/vnc.def-patch \
@@ -101,9 +101,6 @@ pre-install:
 .if ${PORT_OPTIONS:MSERVER}
 	@if [ -f ${WRKSRC}/xc/programs/Xserver/vnc/module/vnc.so ]; then \
 		${ECHO_CMD} lib/modules/extensions/vnc.so ; \
-		${ECHO_CMD} "@dirrmtry lib/modules/extensions" ; \
-		${ECHO_CMD} "@dirrmtry lib/modules" ; \
-		${ECHO_CMD} "@dirrmtry lib" ; \
 	fi >> ${PLIST}
 .endif
 

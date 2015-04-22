@@ -2,8 +2,7 @@
 #   $MCom: ports/finance/gnucash/Makefile,v 1.26 2008/12/31 03:25:18 mezz Exp $
 
 PORTNAME=	gnucash
-PORTVERSION=	2.6.4
-PORTREVISION=	1
+PORTVERSION=	2.6.6
 CATEGORIES=	finance gnome
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}%20%28stable%29/${PORTVERSION}
 
@@ -47,19 +46,20 @@ DATABASE_RUN_DEPENDS=	libdbi-drivers>=0:${PORTSDIR}/databases/libdbi-drivers
 DATABASE_CONFIGURE_ON=	--with-dbi-dbd-dir=${LOCALBASE}/lib/dbd
 LOCALE_TAX_CONFIGURE_ON=--enable-locale-specific-tax
 PYTHON_CONFIGURE_ON=	--enable-python
-PYTHON_USE=		PYTHON=yes
+PYTHON_USES=		python
 GTKMM_USE=		GNOME=gtkmm24
 GTKMM_CONFIGURE_ON=	--enable-gtkmm
 GTKMM_CONFIGURE_OFF=	--disable-gtkmm
 GUILE1_LIB_DEPENDS=     libguile.so:${PORTSDIR}/lang/guile
-GUILE1_BUILD_DEPENDS=	${LOCALBASE}/share/guile/1.8/slibcat:${PORTSDIR}/lang/slib-guile
-GUILE1_RUN_DEPENDS=	${LOCALBASE}/share/guile/1.8/slibcat:${PORTSDIR}/lang/slib-guile
+GUILE1_BUILD_DEPENDS=	slib-guile>0:${PORTSDIR}/lang/slib-guile
+GUILE1_RUN_DEPENDS=	slib-guile>0:${PORTSDIR}/lang/slib-guile
 GUILE2_LIB_DEPENDS=     libguile-2.0.so:${PORTSDIR}/lang/guile2
-GUILE2_BUILD_DEPENDS=	${LOCALBASE}/share/guile/2.0/slibcat:${PORTSDIR}/lang/slib-guile2
-GUILE2_RUN_DEPENDS=	${LOCALBASE}/share/guile/2.0/slibcat:${PORTSDIR}/lang/slib-guile2
+GUILE2_BUILD_DEPENDS=	slib-guile2>0:${PORTSDIR}/lang/slib-guile2
+GUILE2_RUN_DEPENDS=	slib-guile2>0:${PORTSDIR}/lang/slib-guile2
 
 USE_XORG=	x11
-USES=		desktop-file-utils gettext gmake libtool perl5 pkgconfig shebangfix tar:bzip2
+USES=		compiler:c++11-lib desktop-file-utils gettext gmake libtool perl5 \
+		pkgconfig shebangfix tar:bzip2
 INSTALLS_ICONS=	yes
 USE_GNOME+=	gtk20 libgnomecanvas libxml2 libxslt:build
 GNU_CONFIGURE=	yes
@@ -97,15 +97,23 @@ GLIB_SCHEMAS+=	org.gnucash.dialogs.import.hbci.gschema.xml
 GLIB_SCHEMAS+=	org.gnucash.dialogs.import.ofx.gschema.xml
 .endif
 
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc
+LDFLAGS+=	-lstdc++
+.endif
+
 post-install:
 .if ${PORT_OPTIONS:MPYTHON}
-	@${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
-		${STAGEDIR}${PYTHON_SITELIBDIR:S|${LOCALBASE}|${PREFIX}|}/${PORTNAME}
-	@${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
-		${STAGEDIR}${PYTHON_SITELIBDIR:S|${LOCALBASE}|${PREFIX}|}/${PORTNAME}
+	@(cd ${STAGEDIR}${PREFIX} \
+		&& ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}/${PORTNAME})
+	@(cd ${STAGEDIR}${PREFIX} \
+		&& ${PYTHON_CMD} -O ${PYTHON_LIBDIR}/compileall.py \
+		-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;}/${PORTNAME})
 	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/gnucash/_gnucash_core_c.so
 .endif
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lib*so*
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gnucash/lib*.so
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

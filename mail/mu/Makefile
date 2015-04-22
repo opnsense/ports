@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	mu
-PORTVERSION=	0.9.9.6
-PORTREVISION=	1
+PORTVERSION=	0.9.10
 CATEGORIES=	mail
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Mail searching frontend for Xapian
@@ -19,13 +18,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	djcb
 GH_PROJECT=	${PORTNAME}
 GH_TAGNAME=	${PORTVERSION:S/^/v/}
-GH_COMMIT=	ab58307
+GH_COMMIT=	7888ba3
 
-USES=		gmake libtool makeinfo pkgconfig
+USES=		autoreconf gmake libtool makeinfo pkgconfig
 USE_GNOME=	glib20
-USE_AUTOTOOLS=	libtoolize aclocal autoheader automake autoconf
-AUTOMAKE_ARGS=	--add-missing
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules --disable-gtk
+INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

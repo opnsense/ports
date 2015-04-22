@@ -28,13 +28,13 @@ PLIST_FILES=	${BINS:S,^,bin/,} ${SCRIPTS:S,^,bin/,} \
 		${DATA:S,^,%%DATADIR%%/pixmaps/,} \
 		man/man1/swm.1.gz man/man1/swmbg.1.gz man/man1/swmswitch.1.gz \
 		man/de/man1/swm.1.gz man/de/man1/swmbg.1.gz man/de/man1/swmswitch.1.gz
-PLIST_DIRS=	%%DATADIR%%/pixmaps %%DATADIR%%
-PLIST_DIRSTRY=	man/de/man1 man/de
 
 BINS=		swm swmbg swmswitch
 SCRIPTS=	startswm
 DATA=		background.xpm closebox.xpm maxbox.xpm stickybox.xpm \
 		swm.colors unstickybox.xpm
+
+MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|monotype|fixed|g ; \
@@ -47,11 +47,11 @@ post-build:
 		*.c -o ${WRKSRC}/swmswitch -lX11 -L${LOCALBASE}/lib
 
 do-install:
-.for file in ${BINS}
-	${INSTALL_PROGRAM} ${WRKSRC}/${file} ${STAGEDIR}${PREFIX}/bin
+.for f in ${BINS}
+	${INSTALL_PROGRAM} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin
 .endfor
-.for file in ${SCRIPTS}
-	${INSTALL_SCRIPT} ${WRKSRC}/${file} ${STAGEDIR}${PREFIX}/bin
+.for f in ${SCRIPTS}
+	${INSTALL_SCRIPT} ${WRKSRC}/${f} ${STAGEDIR}${PREFIX}/bin
 .endfor
 	${INSTALL_MAN} ${WRKSRC}/swm.1x ${STAGEDIR}${MANPREFIX}/man/man1/swm.1
 	${INSTALL_MAN} ${WRKSRC}/../swmbg/swmbg.1x ${STAGEDIR}${MANPREFIX}/man/man1/swmbg.1

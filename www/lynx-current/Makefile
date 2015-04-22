@@ -2,22 +2,21 @@
 # $FreeBSD$
 
 PORTNAME=	lynx
-PORTVERSION=	2.8.8p5
-PORTREVISION=	1
-PKGNAMESUFFIX=	-current
+PORTVERSION=	2.8.9d5
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://lynx.isc.org/current/
-DISTNAME=	${PORTNAME}${PORTVERSION:S/p/pre./}
+PKGNAMESUFFIX=	-current
+DISTNAME=	${PORTNAME}${PORTVERSION:S/p/pre./:S/d/dev./}
 
 MAINTAINER=	johans@FreeBSD.org
 COMMENT=	Non-graphical, text-based World-Wide Web client
 
 RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:${PORTSDIR}/misc/mime-support
 
-CONFLICTS_INSTALL=	lynx-2.8.[0-7].* ja-lynx-[0-9]*
+CONFLICTS_INSTALL=	lynx-2.8.[0-8].* ja-lynx-[0-9]*
 
-WRKSRC=		${WRKDIR}/${DISTNAME:S/./-/g:C/p.*//}
-USES=		iconv shebangfix tar:bzip2
+WRKSRC=		${WRKDIR}/${DISTNAME:S/./-/g:C/[pd].*//}
+USES=		cpe iconv shebangfix tar:bzip2
 USE_OPENSSL=	yes
 SHEBANG_FILES=	samples/mailto-form.pl
 GNU_CONFIGURE=	yes
@@ -32,6 +31,8 @@ CONFIGURE_ARGS=	--with-zlib --libdir="${L_LIB}" \
 		${ICONV_CONFIGURE_ARG} \
 		--with-screen=ncursesw \
 		--with-ssl=${OPENSSLBASE}
+CPE_VERSION=	${PORTVERSION:C/[pd].+//}
+CPE_UPDATE=	${PORTVERSION:E:C/[0-9]+//:S/p/pre./:S/d/dev./}
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -53,5 +54,9 @@ NLS_CONFIGURE_ENABLE=	nls
 
 IDN_LIB_DEPENDS=	libidn.so:${PORTSDIR}/dns/libidn
 IDN_CONFIGURE_ENABLE=	idna
+
+post-patch:
+	${REINPLACE_CMD} -Ee 's/lynx\.(cfg|lss)\.default/lynx.\1.sample/g' \
+		-e '/SYSCONFDIR)\/lynx\.(cfg|lss)$$/d' ${WRKSRC}/makefile.in
 
 .include <bsd.port.mk>

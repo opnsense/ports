@@ -3,6 +3,7 @@
 
 PORTNAME=	Convert-Bencode_XS
 PORTVERSION=	0.06
+PORTREVISION=	1
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -14,6 +15,8 @@ RUN_DEPENDS=	p5-Convert-Bencode>=0:${PORTSDIR}/converters/p5-Convert-Bencode
 
 USES=		perl5
 USE_PERL5=	configure
+
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

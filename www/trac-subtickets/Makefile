@@ -13,7 +13,7 @@ DISTNAME=	itota-trac-subtickets-plugin-a0fc153
 MAINTAINER=	gaod@hychen.org
 COMMENT=	Offers sub-ticket feature for managing tickets
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 RUN_DEPENDS=	tracd:${PORTSDIR}/www/trac
 
@@ -21,9 +21,8 @@ GITVERSION=	a0fc153
 GITDATE=	20130328
 
 WRKSRC=		${WRKDIR}/itota-trac-${PORTNAME}-plugin-${GITVERSION}
-USE_PYTHON=		2
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_AUTOPLIST=	yes
+USES=		python:2
+USE_PYTHON=	distutils autoplist
 
 .include "${.CURDIR}/../../www/trac/plugin.mk"
 .include <bsd.port.mk>

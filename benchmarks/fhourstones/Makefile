@@ -11,9 +11,9 @@ DISTNAME=	Fhourstones
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The Fhourstones Benchmark
 
+BROKEN=		Unfetchable
 NO_WRKSUBDIR=	yes
 PLIST_FILES=	bin/fhourstones lib/fhourstones/SearchGame lib/fhourstones/inputs
-PLIST_DIRS=	lib/fhourstones
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/Makefile

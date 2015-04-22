@@ -37,6 +37,12 @@ post-patch:
 	${REINPLACE_CMD} -e 's|-ws|-ws --autoconf=dummy.cgpr|' \
 		${WRKSRC}/scripts/buildutil.sh
 
+post-configure:
+	# The header generated with MySQL 5.6 comes with two instances of
+	# double underscore variables, which is illegal in Ada
+	${REINPLACE_CMD} -e 's|__|_|' \
+		${WRKDIR}/build/include/apq-mysql/apq-mysql.ads
+
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/gnat \
 		${STAGEDIR}${PREFIX}/lib/apq-mysql/static \

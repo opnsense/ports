@@ -6,14 +6,13 @@ PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	${LUA_PKGNAMEPREFIX}
 
-MAINTAINER=	lua@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Small sysctl(3) interface for lua
 
 USE_GITHUB=	yes
 USES=		pkgconfig lua
 PLIST_FILES=	%%LUA_MODSHAREDIR%%/sysctl.lua \
 		%%LUA_MODLIBDIR%%/sysctl/core.so
-PLIST_DIRS=	%%LUA_MODLIBDIR%%/sysctl
 
 GH_ACCOUNT=	kAworu
 GH_PROJECT=	lua-${PORTNAME}

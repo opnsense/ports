@@ -372,7 +372,7 @@ gst_libmms_PLIST_FILES=	${GST_LIB_DIR}/libgstmms.so \
 gst_libmms_DIST=	bad
 
 # libpng and the snapshot plugin
-gst_libpng_LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+gst_libpng_LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 gst_libpng_GST_PLUGIN_DIR=	ext/libpng
 gst_libpng_PLIST_FILES=	${GST_LIB_DIR}/libgstpng.so \
 		${GST_LIB_DIR}/libgstpng.la
@@ -415,7 +415,7 @@ gst_nas_PLIST_FILES=	${GST_LIB_DIR}/libgstnassink.la \
 		${GST_LIB_DIR}/libgstnassink.so
 
 # neon
-gst_neon_LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
+gst_neon_LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon
 gst_neon_CONFIGURE_ENV+=	NEON_CFLAGS="-I${LOCALBASE}/include/neon"
 gst_neon_PLIST_FILES=	${GST_LIB_DIR}/libgstneonhttpsrc.la \
 			${GST_LIB_DIR}/libgstneonhttpsrc.so
@@ -536,7 +536,7 @@ gst_twolame_DIST=		ugly
 
 # gst_v4l2
 gst_gst_v4l2_LIB_DEPENDS+=	libv4l2.so:${PORTSDIR}/multimedia/libv4l
-.if ${OSVERSION} >= 800000
+.if ${OPSYS} == FreeBSD
 gst_gst_v4l2_RUN_DEPENDS+=	webcamd:${PORTSDIR}/multimedia/webcamd
 .endif
 gst_gst_v4l2_PLIST_FILES=	${GST_LIB_DIR}/libgstvideo4linux2.la \
@@ -584,7 +584,7 @@ gst_vp8_PLIST_FILES=	${GST_LIB_DIR}/libgstvp8.la \
 gst_vp8_DIST=		bad
 
 # x264
-gst_x264_LIB_DEPENDS+=	libx264.so:${PORTSDIR}/multimedia/x264
+gst_x264_LIB_DEPENDS+=	libx264.so:${PORTSDIR}/multimedia/libx264
 gst_x264_PLIST_FILES=	${GST_LIB_DIR}/libgstx264.la \
 		${GST_LIB_DIR}/libgstx264.so \
 		share/gstreamer-${VERSION}/presets/GstX264Enc.prs

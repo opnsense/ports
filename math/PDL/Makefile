@@ -3,32 +3,36 @@
 
 PORTNAME=	PDL
 PORTVERSION=	2.007
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	math perl5
-MASTER_SITES=	CPAN/${PORTNAME} SF/pdl/PDL_2013/PDL-${PORTVERSION}
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:CHM
 
 MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Perl Data Language
 
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
+
 BUILD_DEPENDS=	p5-Astro-FITS-Header>=0:${PORTSDIR}/astro/p5-Astro-FITS-Header \
 		p5-Convert-UU>=0:${PORTSDIR}/converters/p5-Convert-UU \
 		p5-File-Map>=0.47:${PORTSDIR}/devel/p5-File-Map \
-		p5-Module-Compile>=0.23:${PORTSDIR}/devel/p5-Module-Compile \
-		p5-Inline>=0.43:${PORTSDIR}/devel/p5-Inline
+		p5-Inline>=0.43:${PORTSDIR}/devel/p5-Inline \
+		p5-Module-Compile>=0.23:${PORTSDIR}/devel/p5-Module-Compile
 RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 USES=		gmake perl5
 USE_PERL5=	configure
 MAKE_ENV=	PERL5LIB=${WRKSRC}/blib/lib
-PLIST_DIRS=	${SITE_PERL_REL}/${PERL_ARCH}/Inline
-PLIST_FILES=	bin/pdl bin/pdldoc bin/perldl bin/pptemplate \
-		${SITE_PERL_REL}/${PERL_ARCH}/Inline/Pdlpp.pm \
-		${SITE_PERL_REL}/${PERL_ARCH}/Inline/MakePdlppInstallable.pm
+PLIST_FILES=	bin/pdl bin/pdl2 bin/pdldoc bin/perldl bin/pptemplate \
+		${SITE_ARCH_REL}/Inline/Pdlpp.pm \
+		${SITE_ARCH_REL}/Inline/MakePdlppInstallable.pm
 MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=	PGPLOT PLPLOT OPENGL GD FFTW GSL HDF PROJ F77 READLINE SINK
-OPTIONS_DEFAULT=	PGPLOT FFTW F77
+OPTIONS_DEFAULT=PGPLOT FFTW F77
 
 # graphics/p5-OpenGL require manual building
 .if empty(PACKAGE_BUILDING)
@@ -51,8 +55,8 @@ PGPLOT_BUILD_DEPENDS=	p5-PGPLOT>=0:${PORTSDIR}/graphics/p5-PGPLOT
 PLPLOT_LIB_DEPENDS=	libplplotd.so:${PORTSDIR}/math/plplot
 OPENGL_BUILD_DEPENDS=	p5-OpenGL>=0.65:${PORTSDIR}/graphics/p5-OpenGL
 OPENGL_RUN_DEPENDS:=	${OPENGL_BUILD_DEPENDS}
-OPENGL_USE=	gl=yes
-GD_LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd
+OPENGL_USE=		gl=yes
+GD_LIB_DEPENDS=		libgd.so:${PORTSDIR}/graphics/gd
 F77_BUILD_DEPENDS=	p5-ExtUtils-F77>=0:${PORTSDIR}/lang/p5-ExtUtils-F77
 FFTW_LIB_DEPENDS=	libfftw.so:${PORTSDIR}/math/fftw
 GSL_LIB_DEPENDS=	libgsl.so:${PORTSDIR}/math/gsl
@@ -67,11 +71,8 @@ SINK_RUN_DEPENDS=	ppmtogif:${PORTSDIR}/graphics/netpbm \
 post-patch:
 	@${GREP} -lR '#!/.*bin/perl' ${WRKSRC}/ | ${XARGS} ${SED} -e 's|#!/.*bin/perl|#!${PERL}|' -i ''
 	@${GREP} -lR 'x86_64' ${WRKSRC}/ | ${XARGS} ${SED} -e 's|x86_64|amd64|g' -i ''
-	@${REINPLACE_CMD} -e "/POSIX_THREADS_LIBS/ s|undef|'${PTHREAD_LIBS}'|" \
+	@${REINPLACE_CMD} -e "/POSIX_THREADS_LIBS/ s|undef|'-lpthread'|" \
 		${WRKSRC}/perldl.conf
-
-test: build
-	@cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} make test
 
 # autogen plist
 post-install:
@@ -81,13 +82,10 @@ post-install:
 		>> ${TMPPLIST} ; \
 	  cd ${WRKSRC}/blib/man1 ; \
 	  ${FIND} *.1 | ${SED} "s,^,man/man1/,;s/1$$/1.gz/" >> ${TMPPLIST})
-	@(${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/PDL* -type f | \
+	@(${FIND} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/PDL* -type f | \
 		${SED} "s,^${STAGEDIR}${PREFIX}/,," >> ${TMPPLIST} ; \
-	  ${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/PDL -type f ! -name '*.bs' | \
-		${SED} "s,^${STAGEDIR}${PREFIX}/,," >> ${TMPPLIST} ; \
-	  ${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/PDL* -type d | ${SORT} -r | \
-		${SED} "s,^${STAGEDIR}${PREFIX}/,@dirrm ," >> ${TMPPLIST} ; \
-	  ${FIND} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/PDL -type d | ${SORT} -r | \
-		${SED} "s,^${STAGEDIR}${PREFIX}/,@dirrm ," >> ${TMPPLIST})
+	  ${FIND} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/PDL -type f \
+	  	-name "[A-Z]*" | ${SED} "s,^${STAGEDIR}${PREFIX}/,," \
+	  	>> ${TMPPLIST})
 
 .include <bsd.port.mk>

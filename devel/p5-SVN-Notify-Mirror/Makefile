@@ -3,12 +3,13 @@
 
 PORTNAME=	SVN-Notify-Mirror
 PORTVERSION=	0.040
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Keep a mirrored working copy of a repository path
 
 LICENSE=	ART10 GPLv1

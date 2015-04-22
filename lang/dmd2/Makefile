@@ -3,7 +3,7 @@
 
 PORTNAME=	dmd
 PKGNAMESUFFIX=	2
-PORTVERSION=	2.066.0
+PORTVERSION=	2.067.0
 CATEGORIES=	lang
 MASTER_SITES=	http://ftp.digitalmars.com/
 DISTNAME=	dmd.${PORTVERSION}
@@ -27,10 +27,6 @@ OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 800000
-BROKEN=		does not compile
-.endif
-
 NOT_FOR_ARCHS=		powerpc
 NOT_FOR_ARCHS_REASON=	not yet ported to this architecture
 
@@ -40,8 +36,10 @@ BROKEN=		Does not install on sparc64: divide-by-zero error
 
 .if ${ARCH} == "amd64"
 MAKE_ARGS+=	MODEL=64
+MODEL=		64
 .else
 MAKE_ARGS+=	MODEL=32
+MODEL=		32
 .endif
 
 .if defined(WITH_DEBUG)
@@ -63,24 +61,18 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|%@P%/../../src/phobos|${MODULEDIR}|"	\
 			  -e "s|%@P%/../lib|${PREFIX}/lib|"		\
 			  -e "s|%@P%/../../src/druntime|${PREFIX}/include/d/druntime|"	\
-			  ${WRKDIR}/dmd2/linux/bin32/dmd.conf
-	@${ECHO_CMD} >> ${WRKDIR}/dmd2/linux/bin32/dmd.conf
-	@${SED} -e "s|Environment32|Environment64|" ${WRKDIR}/dmd2/linux/bin32/dmd.conf >>${WRKDIR}/dmd2/linux/bin32/dmd.conf
+			  ${WRKDIR}/dmd2/freebsd/bin${MODEL}/dmd.conf
+	@${ECHO_CMD} >> ${WRKDIR}/dmd2/freebsd/bin${MODEL}/dmd.conf
 
 do-install:
 	${INSTALL_MAN} ${WRKDIR}/dmd2/man/man1/dmd.1 ${STAGEDIR}${MANPREFIX}/man/man1/dmd.1
 	${INSTALL_MAN} ${WRKDIR}/dmd2/man/man5/dmd.conf.5 ${STAGEDIR}${MANPREFIX}/man/man5/dmd.conf.5
-.if !exists(${STAGEDIR}${PREFIX}/etc/dmd.conf)
-	${INSTALL_DATA} ${WRKDIR}/dmd2/linux/bin32/dmd.conf ${STAGEDIR}${PREFIX}/etc/dmd.conf
-.endif
+	${INSTALL_DATA} ${WRKDIR}/dmd2/freebsd/bin${MODEL}/dmd.conf ${STAGEDIR}${PREFIX}/etc/dmd.conf.sample
 	${INSTALL_PROGRAM} ${WRKSRC}/dmd ${STAGEDIR}${PREFIX}/bin/dmd
-.if ${ARCH} == "amd64"
-	${INSTALL_DATA} ${WRKSRC}/../../freebsd/lib64/libphobos2.a ${STAGEDIR}${PREFIX}/lib
-.else
-	${INSTALL_DATA} ${WRKSRC}/../../freebsd/lib32/libphobos2.a ${STAGEDIR}${PREFIX}/lib
-.endif
+	${INSTALL_DATA} ${WRKSRC}/../../freebsd/lib${MODEL}/libphobos2.a ${STAGEDIR}${PREFIX}/lib
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	${INSTALL_DATA} ${WRKDIR}/dmd2/linux/bin32/dmd.conf ${STAGEDIR}${EXAMPLESDIR}/dmd.conf
+	${INSTALL_DATA} ${WRKDIR}/dmd2/freebsd/bin32/dmd.conf ${STAGEDIR}${EXAMPLESDIR}/dmd32.conf
+	${INSTALL_DATA} ${WRKDIR}/dmd2/freebsd/bin64/dmd.conf ${STAGEDIR}${EXAMPLESDIR}/dmd64.conf
 	cd ${WRKDIR}/dmd2 && ${COPYTREE_SHARE} samples ${STAGEDIR}${EXAMPLESDIR}
 	${MKDIR} ${STAGEDIR}${MODULEDIR}/etc/c
 	${INSTALL_DATA} ${WRKSRC}/../phobos/*.d ${STAGEDIR}${MODULEDIR}

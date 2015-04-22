@@ -13,6 +13,8 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	petr@petrovich.kiev.ua
 COMMENT=	XnView Multi Platform, graphics viewer and converter
 
+BROKEN=		No public distfiles
+
 NO_CDROM=	For commercial use and distribution, it is necessary to register
 ONLY_FOR_ARCHS=	i386 amd64
 NO_BUILD=	yes
@@ -23,7 +25,6 @@ USE_LINUX_APPS=	xorglibs
 
 PLIST_FILES=	bin/xnview-mp lib/xnview-mp/libQtCore.so.4 \
 		lib/xnview-mp/libQtGui.so.4 lib/xnview-mp/xnview
-PLIST_DIRS=	lib/xnview-mp
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|\.|${PREFIX}/lib/xnview-mp|" ${WRKSRC}/xnview.sh

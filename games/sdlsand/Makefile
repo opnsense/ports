@@ -3,14 +3,15 @@
 
 PORTNAME=	sdlsand
 PORTVERSION=	20061017
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Simulation of falling sand and other materials
 
-USES=		zip
+USES=		dos2unix zip
+DOS2UNIX_FILES=	CmdLine.cpp
 USE_SDL=	sdl
 
 WRKSRC=		${WRKDIR}/SDL\ Sand/SDL\ Sand

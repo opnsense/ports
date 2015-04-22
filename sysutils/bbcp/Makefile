@@ -2,16 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	bbcp
-PORTVERSION=	20120520
+PORTVERSION=	20150116
 CATEGORIES=	sysutils net
-MASTER_SITES=	https://bitbucket.org/jhein/bbcp/downloads/
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${PORTNAME}-20100818.pdf
-EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
+MASTER_SITES=	http://BSDforge.com/projects/source/sysutils/bbcp/
 
-MAINTAINER=	jhein@symmetricom.com
-COMMENT=	Secure and fast copy utility
+MAINTAINER=	portmaster@BSDforge.com
+COMMENT=	Secure, fast, and IPv6 capable Copy utility
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	LGPL20
+LICENSE_FILE=	${WRKSRC}/src/COPYING.LESSER
 
 USES=		tar:xz
 
@@ -29,7 +28,7 @@ post-patch:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/FreeBSD/bbcp ${STAGEDIR}${PREFIX}/bin
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${DISTDIR}/${PORTNAME}-20100818.pdf \
+	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.pdf \
 		${STAGEDIR}${DOCSDIR}/${PORTNAME}.pdf
 
 .include <bsd.port.mk>

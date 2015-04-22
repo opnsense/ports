@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xpaint
-PORTVERSION=	2.9.10.2
-PORTREVISION=	2
+PORTVERSION=	2.9.10.3
 CATEGORIES=	graphics
 MASTER_SITES=	SF/sf-${PORTNAME}/sf-${PORTNAME}/${PORTNAME}-${PORTVERSION:R}
 
@@ -12,7 +11,7 @@ COMMENT=	Simple paint program
 
 LICENSE=	GPLv3
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libopenjpeg.so:${PORTSDIR}/graphics/openjpeg15 \
 		libtiff.so:${PORTSDIR}/graphics/tiff \

@@ -3,12 +3,12 @@
 
 PORTNAME=	Catalyst-Plugin-Scheduler
 PORTVERSION=	0.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Schedule events to run in a cron-like manner
 
 LICENSE=	ART10 GPLv1

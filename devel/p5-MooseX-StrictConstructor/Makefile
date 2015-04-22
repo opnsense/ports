@@ -3,11 +3,12 @@
 
 PORTNAME=	MooseX-StrictConstructor
 PORTVERSION=	0.19
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Make your MooseX object constructors blow up on unknown attributes
 
 LICENSE=	ART20

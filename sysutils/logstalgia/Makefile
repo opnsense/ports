@@ -3,9 +3,9 @@
 
 PORTNAME=	logstalgia
 PORTVERSION=	1.0.3
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	sysutils www
-MASTER_SITES=	GOOGLE_CODE CRITICAL
+MASTER_SITES=	GOOGLE_CODE LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Website access log visualization tool
@@ -13,7 +13,7 @@ COMMENT=	Website access log visualization tool
 LICENSE=	GPLv3
 
 LIB_DEPENDS=	libftgl.so:${PORTSDIR}/graphics/ftgl \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpcre.so:${PORTSDIR}/devel/pcre
 

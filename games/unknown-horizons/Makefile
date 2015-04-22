@@ -6,7 +6,7 @@ PORTVERSION=	2013.3
 PORTREVISION=	1
 CATEGORIES=	games
 #MASTER_SITES=	SF/unknownhorizons/Unknown%20Horizons/${PORTVERSION}/
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	fiziologus@gmail.com
 COMMENT=	Real time simulation game
@@ -25,7 +25,7 @@ GH_ACCOUNT=	${PORTNAME}
 GH_COMMIT=	ac7af43
 
 USE_GNOME=	intltool
-USES=		gettext:build python:2 tar:xz
+USES=		gettext-tools python:2 tar:xz
 USE_PYTHON=	distutils
 PYDISTUTILS_PKGNAME=	UnknownHorizons
 

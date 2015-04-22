@@ -3,12 +3,13 @@
 
 PORTNAME=	Perl-Critic-Deprecated
 PORTVERSION=	1.119
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	perl@FreeBSD.org
-COMMENT=	Policies were included with Perl::Critic but superseded by others
+COMMENT=	Policies that are no longer included with Perl::Critic
 
 LICENSE=	ART10 GPLv1
 LICENSE_COMB=	dual

@@ -3,7 +3,7 @@
 
 PORTNAME=	FuzzyOcr
 DISTVERSION=	3.6.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	mail perl5
 MASTER_SITES=	http://users.own-hero.net/~decoder/${PORTNAME:tl}/
 PKGNAMEPREFIX=	p5-
@@ -19,7 +19,7 @@ RUN_DEPENDS=	giftopnm:${PORTSDIR}/graphics/netpbm			\
 		gifsicle:${PORTSDIR}/graphics/gifsicle			\
 		gocr:${PORTSDIR}/graphics/gocr				\
 		ocrad:${PORTSDIR}/graphics/ocrad			\
-		gifasm:${PORTSDIR}/graphics/giflib			\
+		giftext:${PORTSDIR}/graphics/giflib			\
 		spamassassin:${PORTSDIR}/mail/spamassassin	\
 		p5-MLDBM>=0:${PORTSDIR}/databases/p5-MLDBM	\
 		p5-MLDBM-Sync>=0:${PORTSDIR}/databases/p5-MLDBM-Sync \
@@ -50,7 +50,6 @@ PLIST_FILES=	%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr.pm		\
 		%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr/Preprocessor.pm \
 		%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr/Scanset.pm \
 		%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr/Scoring.pm
-PLIST_DIRS=	%%SITE_PERL%%/${SA_PLUGINDIR}/FuzzyOcr
 
 #.if defined(WITH_OCRAD)
 #RUN_DEPENDS+=	ocrad:${PORTSDIR}/graphics/ocrad
@@ -73,9 +72,9 @@ post-patch:
 	                  ${WRKSRC}/FuzzyOcr.pm
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${STAGEDIR}${SITE_PERL}/${SA_PLUGINDIR}/FuzzyOcr
-	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr.pm ${STAGEDIR}${SITE_PERL}/${SA_PLUGINDIR}
-	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr/*.pm ${STAGEDIR}${SITE_PERL}/${SA_PLUGINDIR}/FuzzyOcr
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/${SA_PLUGINDIR}/FuzzyOcr
+	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/${SA_PLUGINDIR}
+	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/${SA_PLUGINDIR}/FuzzyOcr
 	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr.cf ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr.words ${STAGEDIR}${EXAMPLESDIR}/FuzzyOcr.words
 	${INSTALL_DATA} ${WRKSRC}/FuzzyOcr.scansets ${STAGEDIR}${EXAMPLESDIR}/FuzzyOcr.scansets

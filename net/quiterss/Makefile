@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	quiterss
-PORTVERSION=	0.16.1
-PORTREVISION=	1
+PORTVERSION=	0.17.6
 CATEGORIES=	net
 MASTER_SITES=	http://quiterss.org/files/${PORTVERSION}/
 DISTNAME=	QuiteRSS-${PORTVERSION}-src
 
 MAINTAINER=	coder@tuxfamily.org
-COMMENT=	open-source cross-platform RSS/Atom news feeds reader
+COMMENT=	Open-source cross-platform RSS/Atom news feeds reader
 
 LICENSE=	GPLv3
 

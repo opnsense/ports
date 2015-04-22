@@ -2,13 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	cimg
-PORTVERSION=	1.5.9
-PORTREVISION=	6
+PORTVERSION=	1.6.2
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 MASTER_SITES=	SF/${PORTNAME}		\
-		SF/${PORTNAME}/old
-DISTNAME=	CImg-${DISTVERSION}
+		SF/${PORTNAME}/older_versions
+DISTNAME=	CImg_${PORTVERSION}
 DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}_${TARBALLREVISION}
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -26,13 +25,22 @@ LICENSE_PERMS_CeCILL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	"invokes i386 asm"
 
-TARBALLREVISION=3
+TARBALLREVISION=0
 USES=		zip
+
+.if !defined(WITHOUT_LAPACK)
+. if defined(WITH_ATLAS)
+USES+=		blaslapack:atlas
+. else
+USES+=		blaslapack
+. endif
+.endif
+
 WRKSRC=		${WRKDIR}/${DISTNAME:C/_/-/}
 BUILD_WRKSRC=	${WRKSRC}/examples
 MAKE_ENV=	X11PATH=${LOCALBASE} LOCALBASE=${LOCALBASE}
-CPPFLAGS+=	${CFLAGS} ${PTHREAD_CFLAGS}
-LDFLAGS+=	${PTHREAD_LIBS}
+CPPFLAGS+=	${CFLAGS}
+LDFLAGS+=	-lpthread
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
@@ -44,7 +52,7 @@ REINPLACE_ARGS=	-i ""
 LIB_DEPENDS+=	libboard.so:${PORTSDIR}/graphics/libboard
 
 . if !defined(WITH_DEBUG)
-LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png		\
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png		\
 		libjpeg.so:${PORTSDIR}/graphics/jpeg		\
 		libtiff.so:${PORTSDIR}/graphics/tiff		\
 		libIlmImf.so:${PORTSDIR}/graphics/OpenEXR	\
@@ -92,22 +100,6 @@ NO_BUILD=	yes
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MDOCS}
-. if !defined(WITHOUT_LAPACK)
-.  if exists(${LOCALBASE}/lib/libatlas.so) && !defined(WITH_BLAS)
-WITH_ATLAS=	yes
-.  endif
-.  if defined(WITH_ATLAS)
-LIB_DEPENDS+=	libatlas.so:${PORTSDIR}/math/atlas
-LAPACK_LIB=	-L${LOCALBASE}/lib -lalapack -lcblas -lf77blas
-.  else
-LIB_DEPENDS+=	libblas.so:${PORTSDIR}/math/blas
-LIB_DEPENDS+=	liblapack.so:${PORTSDIR}/math/lapack
-LAPACK_LIB=	-L${LOCALBASE}/lib -llapack -lblas
-.  endif
-. endif
-.endif
-
 pre-configure:
 .if ${PORT_OPTIONS:MDOCS}
 	${REINPLACE_CMD} -e 's|make|${MAKE_CMD}|' ${BUILD_WRKSRC}/Makefile
@@ -120,9 +112,9 @@ pre-configure:
 		${BUILD_WRKSRC}/Makefile
 . endif
 . if !defined(WITHOUT_LAPACK)
-	${REINPLACE_CMD} -e 's|#CIMG_LAPACK_CFLAGS|CIMG_LAPACK_CFLAGS|'	\
-		-e 's|#CIMG_LAPACK_LDFLAGS|CIMG_LAPACK_LDFLAGS|'	\
-		-e 's|-lblas -llapack|${LAPACK_LIB}|'			\
+	${REINPLACE_CMD} -e 's|#CIMG_LAPACK_CFLAGS|CIMG_LAPACK_CFLAGS|'			\
+		-e 's|#CIMG_LAPACK_LIBS|CIMG_LAPACK_LIBS|'			\
+		-e 's|-lblas -llapack|-L${LOCALBASE}/lib ${BLASLIB} ${LAPACKLIB}|'	\
 		${BUILD_WRKSRC}/Makefile
 . endif
 . if defined(WITH_XSHM)
@@ -130,8 +122,7 @@ pre-configure:
 		-e 's|CIMG_XSHM_LDFLAGS = #|CIMG_XSHM_LDFLAGS =|'		\
 		${BUILD_WRKSRC}/Makefile
 . endif
-	${REINPLACE_CMD} -e 's|-pedantic|${CFLAGS}|'			\
-		-e 's|-lpthread|${PTHREAD_LIBS}|' ${BUILD_WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's|-pedantic|${CFLAGS}|' ${BUILD_WRKSRC}/Makefile
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/CImg.h ${STAGEDIR}${PREFIX}/include
@@ -139,7 +130,6 @@ do-install:
 	${INSTALL_PROGRAM} ${PROGS:C|^|${BUILD_WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DOCBASE:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC}/html && ${COPYTREE_SHARE} \* ${STAGEDIR}${DOCSDIR}
 .endif
 .if ${PORT_OPTIONS:MEXAMPLES}
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

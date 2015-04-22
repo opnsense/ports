@@ -11,7 +11,7 @@ MASTER_SITE_SUBDIR=	UNIX/cgi-scanners
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Powerful webserver security scanner for network
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 USE_RUBY=	yes
 USE_RUBY_EXTCONF=	yes
@@ -20,6 +20,7 @@ USE_LIBRUBY=	yes
 USE_OPENSSL=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include/ruby-${RUBY_VER} -I${LOCALBASE}/include/ruby-${RUBY_VER}/${RUBY_ARCH}
+CFLAGS+=	-DRUBY_19
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/arirang ${STAGEDIR}${PREFIX}/sbin
@@ -28,10 +29,4 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/scanrule/*.uxe ${STAGEDIR}${PREFIX}/share/arirang
 	${INSTALL_DATA} ${WRKSRC}/script/*.rb ${STAGEDIR}${PREFIX}/share/arirang
 
-.include <bsd.port.pre.mk>
-
-.if ${RUBY_VER} >= 2.0
-BROKEN=		Does not build with Ruby 2.0 or newer
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

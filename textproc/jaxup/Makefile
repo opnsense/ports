@@ -12,8 +12,7 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Java XUpdate engine
 
 BUILD_DEPENDS=	${JAR_DEPENDS}
-RUN_DEPENDS=	${JAR_DEPENDS} \
-		java:${PORTSDIR}/java/javavmwrapper
+RUN_DEPENDS=	${JAR_DEPENDS}
 
 JAR_DEPENDS=	${JAVALIBDIR}/jdom.jar:${PORTSDIR}/java/jdom \
 		${JAVALIBDIR}/jaxen-full.jar:${PORTSDIR}/java/jaxen \
@@ -35,7 +34,6 @@ DOCS_ALL_TARGET=docs
 
 PLIST_FILES+=	%%DATADIR%%/jaxup-xupdater.jar bin/jaxup-xupdater \
 		%%JAVAJARDIR%%/${PORTNAME}.jar
-PLIST_DIRS=	%%DATADIR%%
 
 PORTDOCS=	LICENSE.txt api index.html jaxup_files xupdate-wd.html xupdate-wd_files
 

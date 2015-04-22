@@ -2,19 +2,22 @@
 # $FreeBSD$
 
 PORTNAME=	pen
-PORTVERSION=	0.18.0
+PORTVERSION=	0.27.5
 CATEGORIES=	net
-MASTER_SITES=	ftp://siag.nu/pub/pen/ \
-		http://siag.nu/pub/pen/
+MASTER_SITES=	http://siag.nu/pub/pen/
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Load balancer for simple TCP based protocols
+MAINTAINER=	danilo@FreeBSD.org
+COMMENT=	Load balancer for UDP and TCP based protocols
+
+LIB_DEPENDS=	libGeoIP.so:${PORTSDIR}/net/GeoIP
 
 GNU_CONFIGURE=	yes
 USE_OPENSSL=	yes
 USE_RC_SUBR=	pen
-CONFIGURE_ARGS=	--with-daemon --with-docdir=${DOCSDIR} \
+CONFIGURE_ARGS=	--with-daemon --with-docdir=${DOCSDIR} --with-geoip \
 		--with-ssl=${OPENSSLBASE}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 
 PORTDOCS=	penstats HOWTO AUTHORS README ChangeLog COPYING
 PLIST_FILES=	bin/mergelogs bin/pen bin/penctl bin/penlog \
@@ -22,7 +25,7 @@ PLIST_FILES=	bin/mergelogs bin/pen bin/penctl bin/penlog \
 		man/man1/pen.1.gz man/man1/penctl.1.gz \
 		man/man1/penlog.1.gz man/man1/penlogd.1.gz
 
-OPTIONS_DEFINE=	DOCS KQUEUE
+OPTIONS_DEFINE=	DEBUG DOCS KQUEUE
 OPTIONS_DEFAULT=KQUEUE
 KQUEUE_DESC=	Use kqueue backend
 
@@ -32,7 +35,9 @@ CONFIGURE_ARGS+=	--with-fd_setsize=${WITH_FDSETSIZE}
 
 KQUEUE_CONFIGURE_ON=	--with-kqueue
 KQUEUE_CONFIGURE_OFF=	--with-poll
+DEBUG_CONFIGURE_ENABLE=	debugging
 
-DOCS_MAKE_ARGS_OFF=	-DNOPORTDOCS
+post-patch:
+	@${REINPLACE_CMD} 's/-pg//' ${WRKSRC}/configure
 
 .include <bsd.port.mk>

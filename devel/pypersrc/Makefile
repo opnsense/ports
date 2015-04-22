@@ -8,13 +8,13 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.jimbrooks.org/software/pypersrc/
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python/Tkinter based source browser
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE_GPL2.txt
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/Pmw:${PORTSDIR}/x11-toolkits/py-Pmw
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Pmw>0:${PORTSDIR}/x11-toolkits/py-Pmw
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}

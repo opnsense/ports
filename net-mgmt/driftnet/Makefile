@@ -3,7 +3,7 @@
 
 PORTNAME=	driftnet
 PORTVERSION=	0.1.6
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://www.ex-parrot.com/~chris/driftnet/ \
 		http://www.vanheusden.com/mirrors/
@@ -22,8 +22,6 @@ USE_GNOME=	gtk12
 USES=		gmake
 
 ALL_TARGET=	default
-MAKE_ENV=	PTHREAD_LIBS="${PTHREAD_LIBS}" PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"
-
 PLIST_FILES=	bin/driftnet man/man1/driftnet.1.gz
 
 do-install:

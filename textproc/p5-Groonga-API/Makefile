@@ -2,6 +2,7 @@
 
 PORTNAME=	Groonga-API
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:ISHIGAKI
@@ -12,6 +13,8 @@ COMMENT=	Perl extension for raw interface to Groonga
 
 LICENSE=	ART10 GPLv1
 LICENSE_COMB=	dual
+
+BROKEN=		Fails to build
 
 RUN_DEPENDS=	\
 	p5-JSON-XS>0:${PORTSDIR}/converters/p5-JSON-XS \

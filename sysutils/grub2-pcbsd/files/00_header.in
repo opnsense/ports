@@ -32,6 +32,9 @@ export TEXTDOMAINDIR="/usr/local/share/locale"
 # Set indicator that we haven't written device access yet
 haveDevAccess=0
 
+# Work-around for systems with GPTID enabled still
+echo "insmod part_gpt"
+
 # Do this as early as possible, since other commands might depend on it.
 # (e.g. the `loadfont' command might need lvm or raid modules)
 for i in ${GRUB_PRELOAD_MODULES} ; do
@@ -44,25 +47,8 @@ else
   BEADM="beadm"
 fi
 
-# If GRUB_DEFAULT is unset, lets figure out which beadm wants to use by default
 if [ "x${GRUB_DEFAULT}" = "x" ] ; then 
   GRUB_DEFAULT=0
-  beCount=0
-  $BEADM list -H >/tmp/.grub-beadm.$$ 2>/dev/null
-  while read line
-  do 
-    flags=`echo $line | awk '{print $2}'`
-
-    # Is this BE marked as wanting to be used for next boot? Make it default if so
-    if [ "$flags" = "NR" -o "$flags" = "R" ] ; then
-       GRUB_DEFAULT="$beCount"
-       break
-    fi
-
-    # Moving onto next target
-    beCount=`expr $beCount + 1`
-  done < /tmp/.grub-beadm.$$
-  rm /tmp/.grub-beadm.$$
 fi
 if [ "x${GRUB_DEFAULT}" = "xsaved" ] ; then GRUB_DEFAULT='${saved_entry}' ; fi
 if [ "x${GRUB_TIMEOUT}" = "x" ] ; then GRUB_TIMEOUT=5 ; fi
@@ -105,7 +91,7 @@ fi
 export menuentry_id_option
 
 if [ x"\${gelipassphrase}" != x ]; then
-  set pass=\$gelipassphrase
+  set pass="\$gelipassphrase"
   export pass
 fi
 

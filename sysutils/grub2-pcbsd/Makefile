@@ -3,11 +3,11 @@
 
 PORTNAME=	grub2-pcbsd
 PORTVERSION=	2.02p
-PORTREVISION=	11
+PORTREVISION=	26
 CATEGORIES=	sysutils
 MASTER_SITES=   http://www.pcbsd.org/~kris/software/ \
 		ftp://ftp.pcbsd.org/pub/software/
-DISTNAME=	grub-2.02_3
+DISTNAME=	grub-2.02_5
 
 MAINTAINER=	kmoore@FreeBSD.org
 COMMENT=	Multiboot boot loader
@@ -25,16 +25,19 @@ USE_GCC=	yes
 USE_AUTOTOOLS=	automake aclocal autoconf
 ACLOCAL_ARGS=	-Im4
 GNU_CONFIGURE=	yes
-USES=		bison gettext gmake makeinfo python tar:xz
+USES=		bison cpe gettext gmake makeinfo python tar:xz
 ONLY_FOR_ARCHS=	i386 amd64
 INFO=		grub grub-dev
 MAKE_JOBS_UNSAFE=	yes
+
+CPE_PRODUCT=	grub
+CPE_VENDOR=	gnu
 
 CONFIGURE_ARGS=	--disable-werror --localedir=${PREFIX}/share/locale
 CONFIGURE_ENV=	CPP="${CC} -E" \
 		LEX=${LOCALBASE}/bin/flex
 
-SUB_FILES=	00_header 10_kfreebsd 10_ktrueos 30_os-prober
+SUB_FILES=	00_header 10_kfreebsd 10_ktrueos 30_os-prober 50_otherbe
 
 OPTIONS_DEFINE=	MKFONT FUSE
 OPTIONS_DEFAULT=MKFONT
@@ -51,8 +54,8 @@ PLIST_SUB+=	EFIEMU=${EFIEMU}
 
 .if ${PORT_OPTIONS:MMKFONT}
 LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
-BUILD_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu \
-		${LOCALBASE}/lib/X11/fonts/local/unifont.pcf.gz:${PORTSDIR}/x11-fonts/gnu-unifont
+BUILD_DEPENDS+=	${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu \
+		${LOCALBASE}/share/fonts/gnu-unifont/unifont.pcf.gz:${PORTSDIR}/x11-fonts/gnu-unifont
 MAN1+=		grub-mkfont.1
 CONFIGURE_ARGS+=	--enable-grub-mkfont
 .else
@@ -88,6 +91,7 @@ post-install:
 	@${INSTALL_SCRIPT} ${WRKDIR}/10_kfreebsd ${STAGEDIR}${PREFIX}/etc/grub.d/
 	@${INSTALL_SCRIPT} ${WRKDIR}/10_ktrueos ${STAGEDIR}${PREFIX}/etc/grub.d/
 	@${INSTALL_SCRIPT} ${WRKDIR}/30_os-prober ${STAGEDIR}${PREFIX}/etc/grub.d/
+	@${INSTALL_SCRIPT} ${WRKDIR}/50_otherbe ${STAGEDIR}${PREFIX}/etc/grub.d/
 	@${MV} ${STAGEDIR}${PREFIX}/etc/grub.d/40_custom ${STAGEDIR}/${PREFIX}/etc/grub.d/40_custom.dist
 
 .include <bsd.port.post.mk>

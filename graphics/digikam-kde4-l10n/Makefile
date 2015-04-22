@@ -2,7 +2,6 @@
 
 PORTNAME=	digikam-l10n
 PORTVERSION=	${DIGIKAM_VER}
-PORTREVISION=	3
 CATEGORIES=	graphics kde
 
 MAINTAINER=	kde@FreeBSD.org
@@ -10,7 +9,7 @@ COMMENT=	l10n for digiKam, showFoto, and Kipi-plugins
 
 CONFLICTS_INSTALL=	digikam-2.* kipi-plugins-2.* libkgeomap-2.*
 
-USES=		gettext:build
+USES=		gettext-tools
 WRKSRC=		${WRKDIR}/${DISTNAME}/po
 
 pre-configure:

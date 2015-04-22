@@ -1,7 +1,7 @@
---- chrome/common/pref_names.h.orig	2014-10-02 19:39:46.000000000 +0200
-+++ chrome/common/pref_names.h	2014-10-15 11:59:52.000000000 +0200
+--- chrome/common/pref_names.h.orig	2015-01-21 20:28:16 UTC
++++ chrome/common/pref_names.h
 @@ -291,7 +291,7 @@
- extern const char kForceSafeSearch[];
+ extern const char kRecordHistory[];
  extern const char kDeleteTimePeriod[];
  extern const char kLastClearBrowsingDataTime[];
 -#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
@@ -9,11 +9,12 @@
  extern const char kUsesSystemTheme[];
  #endif
  extern const char kCurrentThemePackFilename[];
-@@ -405,6 +405,7 @@
- extern const char kCertRevocationCheckingRequiredLocalAnchors[];
- extern const char kSSLVersionMin[];
- extern const char kSSLVersionMax[];
-+extern const char kSSLVersionFallbackMin[];
- extern const char kCipherSuiteBlacklist[];
- extern const char kDisableSSLRecordSplitting[];
- 
+@@ -486,7 +486,7 @@
+ extern const char kDownloadDefaultDirectory[];
+ extern const char kDownloadExtensionsToOpen[];
+ extern const char kDownloadDirUpgraded[];
+-#if defined(OS_WIN) || defined(OS_LINUX) || \
++#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD) || \
+     (defined(OS_MACOSX) && !defined(OS_IOS))
+ extern const char kOpenPdfDownloadInSystemReader[];
+ #endif

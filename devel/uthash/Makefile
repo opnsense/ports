@@ -4,12 +4,15 @@
 PORTNAME=	uthash
 PORTVERSION=	1.9.8p2
 CATEGORIES=	devel
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	zi@FreeBSD.org
 COMMENT=	hash table for C structures
 
-LICENSE=	BSD
+LICENSE=	BSD1CLAUSE
+LICENSE_NAME=	BSD 1-Clause License
+LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 OPTIONS_DEFINE=	DOCS
 

@@ -8,21 +8,22 @@ MASTER_SITES=	http://www.eskimo.com/~pburns/Poe/files/
 DISTNAME=	Poe-${PORTVERSION}
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	vorbis comment editor for GNUstep
+COMMENT=	Vorbis comment editor for GNUstep
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
 
 LIB_DEPENDS=	libvorbis.so:${PORTSDIR}/audio/libvorbis
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
 
 PORTSCOUT=	skipv:0.5.2
 
 post-patch:
 	${REINPLACE_CMD} -e 's|-lvorbisfile$$|-lvorbisfile -logg|' \
 		${WRKSRC}/GNUmakefile
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/Poe.app/Poe
 
 .include <bsd.port.mk>

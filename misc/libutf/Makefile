@@ -11,7 +11,7 @@ MASTER_SITES=	ftp://ftp.cs.yorku.ca/pub/wily/misc/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	UTF-8 character set support library, including regular expressions
 
-LICENSE=	BSD
+LICENSE=	BSD4CLAUSE
 
 GNU_CONFIGURE=	yes
 MAKE_ARGS=	ETCDIR="${DATADIR}"
@@ -19,7 +19,6 @@ ALL_TARGET=	tst
 
 PLIST_FILES=	include/ure.h include/utf.h lib/libutf.a \
 		man/man3/ure.3.gz man/man3/utf.3.gz %%DATADIR%%/langcoll.utf
-PLIST_DIRS=	%%DATADIR%%
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/ure.h ${STAGEDIR}${PREFIX}/include

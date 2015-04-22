@@ -54,13 +54,14 @@
 %%SITE_PERL%%/HTML/FormHandler/Fields.pm
 %%SITE_PERL%%/HTML/FormHandler/Foo.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N.pm
+%%SITE_PERL%%/HTML/FormHandler/I18N/ar_kw.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/bg_bg.pm
+%%SITE_PERL%%/HTML/FormHandler/I18N/cs_cz.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/de_de.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/en_us.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/hu_hu.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/it_it.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/ja_jp.pm
-%%SITE_PERL%%/HTML/FormHandler/I18N/ar_kw.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/pt_br.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/ru_ru.pm
 %%SITE_PERL%%/HTML/FormHandler/I18N/sv_se.pm
@@ -120,6 +121,7 @@
 %%SITE_PERL%%/HTML/FormHandler/Widget/Field/CheckboxGroup.pm
 %%SITE_PERL%%/HTML/FormHandler/Widget/Field/Compound.pm
 %%SITE_PERL%%/HTML/FormHandler/Widget/Field/Hidden.pm
+%%SITE_PERL%%/HTML/FormHandler/Widget/Field/HorizCheckboxGroup.pm
 %%SITE_PERL%%/HTML/FormHandler/Widget/Field/NoRender.pm
 %%SITE_PERL%%/HTML/FormHandler/Widget/Field/Password.pm
 %%SITE_PERL%%/HTML/FormHandler/Widget/Field/RadioGroup.pm
@@ -180,7 +182,6 @@
 %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/wrapper/none.tt
 %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/wrapper/simple.tt
 %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/wrapper/wrap_label.tt
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/FormHandler/.packlist
 %%PERL5_MAN3%%/HTML::FormHandler.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Base.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Blocks.3.gz
@@ -237,13 +238,14 @@
 %%PERL5_MAN3%%/HTML::FormHandler::Fields.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Foo.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N.3.gz
+%%PERL5_MAN3%%/HTML::FormHandler::I18N::ar_kw.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::bg_bg.3.gz
+%%PERL5_MAN3%%/HTML::FormHandler::I18N::cs_cz.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::de_de.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::en_us.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::hu_hu.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::it_it.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::ja_jp.3.gz
-%%PERL5_MAN3%%/HTML::FormHandler::I18N::ar_kw.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::pt_br.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::ru_ru.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::I18N::sv_se.3.gz
@@ -303,6 +305,7 @@
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::CheckboxGroup.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::Compound.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::Hidden.3.gz
+%%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::HorizCheckboxGroup.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::NoRender.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::Password.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Field::RadioGroup.3.gz
@@ -332,32 +335,3 @@
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Wrapper::Table.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Widget::Wrapper::TableInline.3.gz
 %%PERL5_MAN3%%/HTML::FormHandler::Wizard.3.gz
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML/FormHandler
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/HTML
-@dirrmtry %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/wrapper
-@dirrmtry %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/form
-@dirrmtry %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/foo
-@dirrmtry %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates/field
-@dirrmtry %%SITE_PERL%%/auto/share/dist/HTML-FormHandler/templates
-@dirrmtry %%SITE_PERL%%/auto/share/dist/HTML-FormHandler
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Wrapper
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Theme
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Form/Role
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Form
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Field/Role
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Field
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget/Block
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Widget
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/TraitFor
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Result
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Render
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Page
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Moose
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Model
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Meta
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Manual
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/I18N
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Field/Repeatable
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler/Field
-@dirrmtry %%SITE_PERL%%/HTML/FormHandler
-@dirrmtry %%SITE_PERL%%/HTML

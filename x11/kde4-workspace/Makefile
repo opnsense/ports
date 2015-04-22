@@ -2,6 +2,7 @@
 
 PORTNAME=	kde-workspace
 PORTVERSION=	${KDE4_WORKSPACE_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11 kde
 MASTER_SITES=	KDE/${KDE4_BRANCH}/${KDE4_VERSION}/src
 DIST_SUBDIR=	KDE/${PORTVERSION}
@@ -19,7 +20,7 @@ LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
 		libdbusmenu-qt.so:${PORTSDIR}/devel/libdbusmenu-qt \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libxcb-render-util.so:${PORTSDIR}/x11/xcb-util-renderutil \
 		libxcb-image.so:${PORTSDIR}/x11/xcb-util-image \
@@ -69,7 +70,7 @@ OPTIONS_DEFINE=	GLES GPS KACTIVITY UPOWER WALLPAPERS
 OPTIONS_GROUP=	PHONON PLASMA
 OPTIONS_GROUP_PHONON=	GSTREAMER VLC
 OPTIONS_GROUP_PLASMA=	PYTHON RUBY
-OPTIONS_DEFAULT=	GLES GPS GSTREAMER KACTIVITY UPOWER WALLPAPERS
+OPTIONS_DEFAULT=	GLES GPS KACTIVITY UPOWER VLC WALLPAPERS
 OPTIONS_SUB=	yes # GPS GLES
 
 GLES_DESC=	OpenGL ES 2.0 support in kwin and kinfocenter
@@ -82,7 +83,6 @@ GPS_CMAKE_ON=	-DWITH_libgps:BOOL=ON
 GPS_CMAKE_OFF=	-DWITH_libgps:BOOL=OFF
 
 GSTREAMER_DESC=	Multimedia via Phonon-GStreamer
-GSTREAMER_USE=	GSTREAMER=core
 GSTREAMER_USE=	QT4=phonon-gst_run
 
 KACTIVITY_DESC=		Activity Manager daemon
@@ -105,10 +105,6 @@ WALLPAPERS_RUN_DEPENDS=	${KDE4_PREFIX}/share/wallpapers/Horos/metadata.desktop:$
 			${KDE4_PREFIX}/share/wallpapers/stripes-freebsd-blue/metadata.desktop:${PORTSDIR}/x11-themes/kde4-wallpapers-freebsd
 
 .include <bsd.port.options.mk>
-
-.ifndef(WITH_NEW_XORG)
-IGNORE=		requires modern libGL. Please, set WITH_NEW_XORG and update your ports
-.endif
 
 .if !exists(/usr/lib/libutempter.so)
 LIB_DEPENDS+=	libutempter.so:${PORTSDIR}/sysutils/libutempter

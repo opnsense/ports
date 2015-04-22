@@ -2,6 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	bacula
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
 PKGNAMEPREFIX=	nagios-check_
 PKGNAMESUFFIX=	#
@@ -13,7 +14,6 @@ LIB_DEPENDS+=	libbac.so:${PORTSDIR}/sysutils/bacula-client
 
 PLIST=		${.CURDIR}/pkg-plist
 PLIST_FILES=	libexec/nagios/check_bacula
-PLIST_DIRS=	libexec/nagios
 WITH_NAGIOS_CHECK_ONLY=	yes
 MASTERDIR=	${.CURDIR}/../../sysutils/bacula-server
 
@@ -24,5 +24,6 @@ CONFIGURE_ARGS=	--enable-client-only	\
 		--disable-xatt
 
 OPTIONS_DEFINE=	#
+OPTIONS_DEFAULT=#
 
 .include "${MASTERDIR}/Makefile"

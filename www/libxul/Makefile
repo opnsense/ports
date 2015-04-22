@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libxul
-DISTVERSION=	31.2.0
+DISTVERSION=	31.6.0
 CATEGORIES?=	www devel
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source
 DISTNAME=	firefox-${DISTVERSION}esr.source
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	nspr>=4.10.6:${PORTSDIR}/devel/nspr \
 		soundtouch>=1.8.0:${PORTSDIR}/audio/soundtouch \
 		harfbuzz>=0.9.25:${PORTSDIR}/print/harfbuzz \
 		graphite2>=1.2.4:${PORTSDIR}/graphics/graphite2 \
-		libvorbis>=1.3.4:${PORTSDIR}/audio/libvorbis \
+		libvorbis>=1.3.5:${PORTSDIR}/audio/libvorbis \
 		opus>=1.1:${PORTSDIR}/audio/opus \
 		libvpx>=1.3.0:${PORTSDIR}/multimedia/libvpx \
 		sqlite3>=3.8.4.2:${PORTSDIR}/databases/sqlite3 \
@@ -32,12 +32,8 @@ LIB_DEPENDS=	libv4l2.so:${PORTSDIR}/multimedia/libv4l
 WRKSRC=		${WRKDIR}/mozilla-esr31
 CONFLICTS=	libxul-1.9.*
 
-WANT_GNOME=	yes
 USE_QT5=	# empty
 QT_NONSTANDARD=	yes
-WANT_PERL=	yes
-ALL_TARGET=	default
-GNU_CONFIGURE=	yes
 USE_GL=		gl
 USES=		dos2unix pathfix tar:bzip2
 DOS2UNIX_FILES=	media/webrtc/trunk/webrtc/system_wrappers/source/spreadsortlib/spreadsort.hpp
@@ -48,7 +44,6 @@ USE_LDCONFIG=	${PREFIX}/lib/${MOZILLA}
 MOZ_OPTIONS?=	--enable-application=xulrunner
 USE_GECKO=	gecko
 CPE_PRODUCT=	firefox_esr
-OBJDIR_BUILD=	# in-tree build broken after bug 789837
 MOZILLA_EXEC_NAME=xulrunner
 USE_MOZILLA=	# empty
 MOZILLA_PLIST_DIRS=	bin include lib share/idl libdata
@@ -60,23 +55,6 @@ MOZ_PKGCONFIG_FILES=	libxul-embedding libxul mozilla-js \
 
 .if ${USE_MOZILLA:M-nss}
 MOZ_PKGCONFIG_FILES+=	mozilla-nss
-.endif
-
-# avoid clang 3.2/3.3 crash in js/src/jsgc.cpp on refillFreeList<(js::AllowGC)1>
-# To be removed when 9.2R goes EOL. http://llvm.org/PR15840
-.if ${ARCH} == i386 && ${CHOSEN_COMPILER_TYPE} == clang && ${COMPILER_VERSION:M3[23]}
-. if ${PORT_OPTIONS:MOPTIMIZED_CFLAGS}
-BROKEN=		Cannot build with OPTIMIZED_CFLAGS option due to \
-		a ${CHOSEN_COMPILER_TYPE} bug: unset the option or \
-		use FAVORITE_COMPILER=gcc in Makefile.local/make.conf
-# apply workaround only for -O2 or greater
-. elif ${CXXFLAGS:M-O*} && ! ${CXXFLAGS:M-O[01]}
-.  if ${MACHINE_CPU:Msse2}
-CXXFLAGS+=	-msse2
-.  else
-CXXFLAGS+=	-O1
-.  endif
-. endif
 .endif
 
 .if ${PORT_OPTIONS:MALSA}

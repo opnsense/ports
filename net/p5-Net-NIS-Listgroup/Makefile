@@ -3,7 +3,7 @@
 
 PORTNAME=	Net-NIS-Listgroup
 PORTVERSION=	1.0.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -19,7 +19,7 @@ USES=		perl5
 USE_PERL5=	configure
 
 post-patch:
-	${MKDIR} ${WRKSRC}/lib
+	@${MKDIR} ${WRKSRC}/lib
 	${MV} ${WRKSRC}/Net ${WRKSRC}/lib
 
 .include <bsd.port.mk>

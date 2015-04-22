@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ruby-build
-PORTVERSION=	20141028
+PORTVERSION=	20150303
 CATEGORIES=	devel ruby
 
 MAINTAINER=	meta+ports@vmeta.jp
@@ -9,7 +9,7 @@ COMMENT=	Compile and install different ruby versions
 
 LICENSE=	MIT
 
-RUN_DEPENDS=	autoconf:${PORTSDIR}/devel/autoconf \
+RUN_DEPENDS=	autoconf>0:${PORTSDIR}/devel/autoconf \
 		curl:${PORTSDIR}/ftp/curl \
 		gmake:${PORTSDIR}/devel/gmake
 
@@ -20,7 +20,7 @@ RBENV_RUN_DEPENDS=	rbenv:${PORTSDIR}/devel/rbenv
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sstephenson
-GH_COMMIT=	81807c6
+GH_COMMIT=	7f3cc01
 GH_TAGNAME=	v${PORTVERSION}
 
 NO_BUILD=	yes

@@ -3,11 +3,12 @@
 
 PORTNAME=	Pod-Abstract
 PORTVERSION=	0.20
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Abstract document tree for Perl POD documents
 
 LICENSE=	ART10 GPLv1

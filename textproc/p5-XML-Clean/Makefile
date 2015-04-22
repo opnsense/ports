@@ -3,11 +3,12 @@
 
 PORTNAME=	XML-Clean
 PORTVERSION=	1.06
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	rafan@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ensure, that *(HTML)* text pass throught an XML parser
 
 USES=		perl5

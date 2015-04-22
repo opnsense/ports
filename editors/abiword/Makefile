@@ -4,7 +4,7 @@
 
 PORTNAME=	abiword
 PORTVERSION=	2.8.6
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	editors
 MASTER_SITES=	http://www.abisource.com/downloads/%SUBDIR%/${PORTVERSION}/source/
 MASTER_SITE_SUBDIR=	abiword
@@ -14,14 +14,14 @@ MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Open-source, cross-platform WYSIWYG word processor
 
 LIB_DEPENDS=	libpopt.so:${PORTSDIR}/devel/popt \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libwv.so:${PORTSDIR}/textproc/wv \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libfribidi.so:${PORTSDIR}/converters/fribidi \
 		libpsiconv.so:${PORTSDIR}/converters/psiconv \
 		libgoffice-0.8.so:${PORTSDIR}/devel/goffice
-RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSerif.ttf:${PORTSDIR}/x11-fonts/dejavu
+RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSerif.ttf:${PORTSDIR}/x11-fonts/dejavu
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -37,6 +37,7 @@ CONFIGURE_ARGS=	--without-gnomevfs --enable-plugins="${ABIWORD_PLUGINS}" \
 		--enable-collab-backend-sugar
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
 
 ABIVERSION=	2.8
 PLIST_SUB+=	ABIVERSION=${ABIVERSION}

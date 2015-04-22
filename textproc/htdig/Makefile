@@ -3,7 +3,7 @@
 
 PORTNAME=	htdig
 PORTVERSION=	3.2.0.b6
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	textproc www
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}/3.2.0b6
@@ -11,6 +11,9 @@ DISTNAME=	htdig-3.2.0b6
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	WWW indexing and searching system
+
+LICENSE=	LGPL20
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-config-dir=${PREFIX}/etc/htdig \
@@ -24,13 +27,14 @@ CONFIGURE_ARGS=	--with-config-dir=${PREFIX}/etc/htdig \
 		--with-ssl
 USES=		libtool
 USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	APACHE DOCS
 OPTIONS_DEFAULT=	APACHE
 
 APACHE_USE=	APACHE=22+
 APACHE_CONFIGURE_ON=	--with-apache=${LOCALBASE}/sbin
-APACHE_PLIST_DIRSTRY=	www/cgi-bin www/data www/icons
 
 PORTDOCS=	*
 

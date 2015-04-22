@@ -3,6 +3,7 @@
 
 PORTNAME=	HTTP-MHTTP
 PORTVERSION=	0.15
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,6 +16,8 @@ USE_PERL5=	configure patch
 USE_OPENSSL=	yes
 CONFIGURE_ENV=	GOTSSL=yes
 CONFIGURE_ARGS=	--default
+
+MAKE_JOBS_UNSAFE=	yes
 
 post-patch:
 	@${PERL} -pi -e 's!(?<=POSSIBLE_SSL_DIRS = qw\().*(?=\);)!${OPENSSLBASE}!;' \

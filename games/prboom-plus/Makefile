@@ -3,7 +3,7 @@
 
 PORTNAME=	prboom-plus
 PORTVERSION=	2.5.1.3
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
@@ -17,7 +17,6 @@ LIB_DEPENDS=	libsmpeg.so:${PORTSDIR}/multimedia/smpeg \
 
 USES=		gmake
 USE_SDL=	mixer net sdl
-NEED_ROOT=	yes
 
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include

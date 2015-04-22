@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	smokeping
-PORTVERSION=	2.6.9
-PORTREVISION=	3
+PORTVERSION=	2.6.11
+PORTREVISION=	1
 CATEGORIES=	net-mgmt www
 MASTER_SITES=	http://oss.oetiker.ch/smokeping/pub/ \
 		http://smokeping.cs.pu.edu.tw/pub/
@@ -16,12 +16,19 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	librrd.so:${PORTSDIR}/databases/rrdtool
 BUILD_DEPENDS=	p5-CGI-Session>=0:${PORTSDIR}/www/p5-CGI-Session \
 		p5-Digest-HMAC>=0:${PORTSDIR}/security/p5-Digest-HMAC \
+		p5-Net-SNMP>=0:${PORTSDIR}/net-mgmt/p5-Net-SNMP \
+		p5-Net-DNS>=0:${PORTSDIR}/dns/p5-Net-DNS \
+		p5-IO-Pty-Easy>=0:${PORTSDIR}/devel/p5-IO-Pty-Easy \
 		p5-SNMP_Session>=0:${PORTSDIR}/net-mgmt/p5-SNMP_Session \
 		p5-libwww>=0:${PORTSDIR}/www/p5-libwww \
-		p5-CGI.pm>=0:${PORTSDIR}/www/p5-CGI.pm \
+		p5-CGI>=0:${PORTSDIR}/www/p5-CGI \
 		p5-FCGI>=0:${PORTSDIR}/www/p5-FCGI \
 		p5-Config-Grammar>=0:${PORTSDIR}/devel/p5-Config-Grammar \
-		p5-Socket6>=0:${PORTSDIR}/net/p5-Socket6
+		p5-Socket6>=0:${PORTSDIR}/net/p5-Socket6 \
+		p5-IO-Socket-SSL>=0:${PORTSDIR}/security/p5-IO-Socket-SSL \
+		p5-Net-Telnet>=0:${PORTSDIR}/net/p5-Net-Telnet \
+		p5-Net-OpenSSH>=0:${PORTSDIR}/net/p5-Net-OpenSSH \
+		p5-perl-ldap>=0:${PORTSDIR}/net/p5-perl-ldap
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		gmake perl5
@@ -29,6 +36,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	PERL=${PERL} PERL5LIB=${PREFIX}/smokeping/lib
 CONFIGURE_ARGS+=	\
 		--sysconfdir=${ETCDIR} \
+		--localstatedir="${PREFIX}/var" \
 		--with-htdocs-dir=${PREFIX}/smokeping/htdocs \
 		--libdir=${PREFIX}/smokeping/lib
 HTDOCSDIR=	${PREFIX}/smokeping/htdocs
@@ -47,13 +55,11 @@ SUB_LIST=	USERS=${USERS} \
 FPING_DESC=	Support for fping probes
 ECHOPING_DESC=	Support for EchoPing probes
 CURL_DESC=	Support for Curl probes
-LDAP_DESC=	Support for LDAP probes
-LDAPSSL_DESC=	Support for SSL-enabled LDAP probes
 RADIUS_DESC=	Support for Radius probes
 TELNET_DESC=	Support for TelnetIOSPing probes
 DNS_DESC=	Support for AnotherDNS probes
 
-OPTIONS_DEFINE=	ECHOPING CURL RADIUS TELNET DNS FPING LDAP LDAPSSL
+OPTIONS_DEFINE=	ECHOPING CURL RADIUS TELNET DNS FPING
 OPTIONS_DEFAULT=	FPING
 
 .include <bsd.port.options.mk>
@@ -70,16 +76,8 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/echoping:${PORTSDIR}/net/echoping
 RUN_DEPENDS+=	${LOCALBASE}/bin/curl:${PORTSDIR}/ftp/curl
 .endif
 
-.if ${PORT_OPTIONS:MLDAP} || ${PORT_OPTIONS:MLDAPSSL}
-RUN_DEPENDS+=	p5-perl-ldap>=0:${PORTSDIR}/net/p5-perl-ldap
-.endif
-
 .if ${PORT_OPTIONS:MRADIUS}
 RUN_DEPENDS+=	p5-Authen-Radius>=0:${PORTSDIR}/security/p5-Authen-Radius
-.endif
-
-.if ${PORT_OPTIONS:MLDAPSSL}
-RUN_DEPENDS+=	p5-IO-Socket-SSL>=0:${PORTSDIR}/security/p5-IO-Socket-SSL
 .endif
 
 .if ${PORT_OPTIONS:MTELNET}
@@ -91,6 +89,11 @@ RUN_DEPENDS+=	p5-Net-DNS>=0:${PORTSDIR}/dns/p5-Net-DNS
 .endif
 
 .include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} >= 502100
+BUILD_DEPENDS+=	p5-CGI-Fast>=0:${PORTSDIR}/www/p5-CGI-Fast
+RUN_DEPENDS+=	p5-CGI-Fast>=0:${PORTSDIR}/www/p5-CGI-Fast
+.endif
 
 # We will take these from CPAN instead
 post-extract:

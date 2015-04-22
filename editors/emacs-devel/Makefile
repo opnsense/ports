@@ -3,7 +3,6 @@
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}.${EMACS_REV}
-PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	editors ipv6
 MASTER_SITES=	http://distfiles.pirateparty.in/%SUBDIR%/ \
@@ -23,18 +22,19 @@ CONFLICTS=	emacs-19.* emacs21-[0-9]* emacs22-[0-9]* emacs23-[0-9]* \
 		emacs-nox11-[0-9]*
 
 EMACS_VER=	25.0.50
-EMACS_REV=	118251
+EMACS_REV=	20150321.4a50af93
 GNU_CONFIGURE=	yes
-USES=		gmake makeinfo ncurses pkgconfig shebangfix tar:xz
+USES=		cpe gmake makeinfo ncurses pkgconfig shebangfix tar:xz
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INFO_PATH=	${DATADIR_REL}/info
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_AUTOTOOLS=	autoconf:env aclocal:env automake:env autoheader:env
+CPE_VENDOR=	gnu
+CPE_VERSION=	${EMACS_VER}
 
 SUB_FILES=	pkg-install
 SUB_LIST+=	ARCHLIBDIR=${PREFIX}/libexec/emacs/${EMACS_VER}/${CONFIGURE_TARGET}
-SHEBANG_FILES=	${WRKSRC}/lib-src/grep-changelog
 
 # Append --without-compress-install to prevent emacs from compressing info
 # which bsd.port.mk is not able to detect
@@ -55,7 +55,7 @@ INFO=		ada-mode auth autotype bovine calc ccmode cl dbus dired-x \
 		srecode todo-mode tramp url vhdl-mode vip viper widget wisent woman
 
 OPTIONS_DEFINE=	X11 ACL DBUS GCONF GIF JPEG M17N OTF PNG SOUND SOURCES SVG TIFF SCROLLBARS \
-		XFT XIM XML XPM MAGICK GNUTLS GSETTINGS LTO FILENOTIFY
+		XFT XIM XML XPM MAGICK GNUTLS GSETTINGS LTO FILENOTIFY LLDB
 
 OPTIONS_SINGLE=	X11 SOUND
 
@@ -71,6 +71,7 @@ M17N_DESC=		M17N support for text-shaping
 OTF_DESC=		Opentype fonts suport
 FILENOTIFY_DESC=	File notification support
 LTO_DESC=		Enable link-time optimization (requires GCC 4.6+)
+LLDB_DESC=		Enable lldb support for GUD (from llvm.org) 
 
 OPTIONS_SINGLE_X11=	GTK2 GTK3 XAW XAW3D MOTIF
 OPTIONS_SINGLE_SOUND=		ALSA OSS
@@ -79,6 +80,8 @@ OPTIONS_DEFAULT=ACL DBUS GCONF GIF GTK2 JPEG M17N OTF PNG SOUND SOURCES SVG TIFF
 		SCROLLBARS XFT XIM XML XPM MAGICK GNUTLS GSETTINGS FILENOTIFY OSS X11
 
 OPTIONS_SUB=		SOURCES
+
+LLDB_EXTRA_PATCHES=	${PATCHDIR}/extrapatch-lldb-gud.el
 
 SOUND_CONFIGURE_OFF=	--with-sound=no
 ALSA_CONFIGURE_ON=		--with-sound=alsa
@@ -100,21 +103,6 @@ SVG_CONFIGURE_WITH=	rsvg
 X11_CONFIGURE_WITH=	x
 X11_USE=	XORG=x11
 X11_USES=		desktop-file-utils
-X11_PLIST_DIRSTRY_OFF=	share/icons/hicolor/scalable/mimetypes \
-			share/icons/hicolor/scalable/apps \
-			share/icons/hicolor/scalable \
-			share/icons/hicolor/48x48/apps \
-			share/icons/hicolor/48x48 \
-			share/icons/hicolor/32x32/apps \
-			share/icons/hicolor/32x32 \
-			share/icons/hicolor/24x24/apps \
-			share/icons/hicolor/24x24 \
-			share/icons/hicolor/16x16/apps \
-			share/icons/hicolor/16x16 \
-			share/icons/hicolor/128x128/apps \
-			share/icons/hicolor/128x128 \
-			share/icons/hicolor \
-			share/icons
 
 GTK2_USE=	GNOME=gtk20
 GTK2_CONFIGURE_ON=	--with-x-toolkit=gtk2
@@ -144,7 +132,7 @@ TIFF_CONFIGURE_WITH=	tiff
 GIF_LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib
 GIF_CONFIGURE_WITH=	gif
 
-PNG_LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 PNG_CONFIGURE_WITH=	png
 
 XPM_USE=		XORG=xpm
@@ -160,7 +148,7 @@ M17N_CONFIGURE_WITH=	m17n-flt
 OTF_LIB_DEPENDS=	libotf.so:${PORTSDIR}/print/libotf
 OTF_CONFIGURE_WITH=	libotf
 
-MAGICK_LIB_DEPENDS=	libMagickCore-6.Q16.so:${PORTSDIR}/graphics/ImageMagick
+MAGICK_LIB_DEPENDS=	libMagickCore-6.so:${PORTSDIR}/graphics/ImageMagick
 MAGICK_CONFIGURE_WITH=	imagemagick
 
 GSETTINGS_USE=			gnome=glib20

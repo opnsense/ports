@@ -3,7 +3,7 @@
 
 PORTNAME=	gnomebreakout
 PORTVERSION=	0.5.3
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	games gnome
 MASTER_SITES=	SF/${PORTNAME:S/eb/e-b/}/${PORTNAME:S/eb/e-b/}/${PORTVERSION}/ \
 		http://www.users.on.net/~mipearson/
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNOME version of the classic breakout game
 
-USES=		pathfix pkgconfig
+USES=		gettext-tools pathfix pkgconfig
 USE_GNOME=	gnomeprefix libgnomeui
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
@@ -29,7 +29,7 @@ PORTDOCS=	AUTHORS ChangeLog NEWS README
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
-NLS_USES=	gettext:run
+NLS_USES=	gettext-runtime:run
 
 .include <bsd.port.options.mk>
 

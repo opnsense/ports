@@ -3,11 +3,11 @@
 
 PORTNAME=	smasher
 PORTVERSION=	1.1.7
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	chris@bsdjunk.com
 COMMENT=	Cross platform audio loop slicer
 
 LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile \

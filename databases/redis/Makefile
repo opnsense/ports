@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-DISTVERSION=	2.8.17
+DISTVERSION=	3.0.0
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 
@@ -42,9 +42,9 @@ USES+=		tcl:build
 .endif
 
 CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS} -lm -lexecinfo
+LDFLAGS+=	-L${LOCALBASE}/lib -lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis-devel-2.*
+CONFLICTS?=	redis-devel-3.*
 
 USES+=		gmake
 MAKE_ENV=	"V=yo"
@@ -76,7 +76,7 @@ PLIST_SUB+=	REDIS_USER=${USERS} \
 
 .if ${PORT_OPTIONS:MLUAJIT} || ${PORT_OPTIONS:MLUA}
 post-patch:
-	@cd ${WRKSRC}/deps/lua/src && ${CP} lua_* strbuf.* ${WRKSRC}/src/
+	@cd ${WRKSRC}/deps/lua/src && ${CP} fpconv.* lua_* strbuf.* ${WRKSRC}/src/
 .endif
 
 post-build:

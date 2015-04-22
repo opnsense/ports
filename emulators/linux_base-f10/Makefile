@@ -3,9 +3,10 @@
 
 PORTNAME=		f10
 PORTVERSION=		10
-PORTREVISION=		7
+PORTREVISION=		9
 CATEGORIES=		emulators linux
-MASTER_SITES=		CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
+MASTER_SITES=		LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION} \
+			FEDORA_LINUX/../releases/${PORTVERSION}/Everything/${LINUX_RPM_ARCH}/os/Packages/
 PKGNAMEPREFIX=		linux_base-
 DISTFILES=		${BIN_DISTFILES} ${SRC_DISTFILES}
 DIST_SUBDIR=		rpm/${LINUX_RPM_ARCH}/fedora/${PORTVERSION}
@@ -35,6 +36,7 @@ BIN_DISTFILES=	basesystem-10.0-1.noarch.rpm \
 		glib2-2.18.4-2.fc10.${LINUX_RPM_ARCH}.rpm \
 		glibc-2.9-3.${LINUX_RPM_ARCH}.rpm \
 		glibc-common-2.9-3.${LINUX_RPM_ARCH}.rpm \
+		gmp-4.2.2-8.fc10.${LINUX_RPM_ARCH}.rpm \
 		grep-2.5.1a-61.fc10.${LINUX_RPM_ARCH}.rpm \
 		info-4.12-4.fc10.${LINUX_RPM_ARCH}.rpm \
 		keyutils-libs-1.2-3.fc9.${LINUX_RPM_ARCH}.rpm \
@@ -75,11 +77,13 @@ SRC_DISTFILES+=	acl-2.2.47-3.fc10.src.rpm \
 		fedora-release-10-1.src.rpm \
 		filesystem-2.4.19-1.fc10.src.rpm \
 		freetype-2.3.7-1.fc10.src.rpm \
+		gamin-0.1.9-6.fc10.src.rpm \
 		gcc-4.3.2-7.src.rpm \
 		gdbm-1.8.0-29.fc10.src.rpm \
 		glib-1.2.10-32.fc10.src.rpm \
 		glib2-2.18.2-3.fc10.src.rpm \
 		glibc-2.9-2.src.rpm \
+		gmp-4.2.2-8.fc10.src.rpm \
 		grep-2.5.1a-61.fc10.src.rpm \
 		keyutils-1.2-3.fc9.src.rpm \
 		krb5-1.6.3-16.fc10.src.rpm \
@@ -107,7 +111,7 @@ LINUX_RPM_ARCH=		i386
 USE_LINUX_PREFIX=	yes
 NO_WRKSUBDIR=		yes
 DISTINFO_FILE?=		${MASTERDIR}/distinfo.${LINUX_RPM_ARCH}
-PLIST_SUB=		GLIBCVER="2.9"
+PLIST_SUB=		GLIBCVER="2.9" LINUXBASE=${LINUXBASE}
 
 EXTRACT_ONLY=		${BIN_DISTFILES}
 

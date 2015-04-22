@@ -12,6 +12,8 @@ DISTNAME=	sqlite3_${PORTVERSION:R}-mobigroup.${PORTVERSION:E}
 MAINTAINER=	pavelivolkov@googlemail.com
 COMMENT=	Mobigroup functions library for SQLite
 
+BROKEN=		Unfetchable
+
 USE_SQLITE=	yes
 
 DIST_SUBDIR=	sqlite-ext
@@ -25,7 +27,6 @@ ENV_DESC=	implements the getenv
 INET_DESC=	provide the ipv4 functions in SQL queries
 MD5_DESC=	implements the MD5 message-digest algorithm
 
-PLIST_DIRS=	libexec/${DIST_SUBDIR}
 PORTDOCS=	*
 PORTEXAMPLES=	*
 

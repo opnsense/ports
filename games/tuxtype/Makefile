@@ -3,7 +3,7 @@
 
 PORTNAME=	tuxtype
 PORTVERSION=	1.8.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	http://alioth.debian.org/frs/download.php/3270/ \
 		http://alioth.debian.org/frs/download.php/3540/:t4k_common
@@ -13,7 +13,8 @@ DISTFILES=	${PORTNAME}_w_fonts-${PORTVERSION}${EXTRACT_SUFX} \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Educational typing tutor starring Tux the Linux Penguin
 
-LICENSE=	GPLv3 # (or later)
+LICENSE=	GPLv2 # (or later)
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gsed:${PORTSDIR}/textproc/gsed
 
@@ -23,6 +24,7 @@ USES=		gmake iconv perl5 pkgconfig
 USE_GNOME=	libxml2
 USE_SDL=	image mixer net pango sdl
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir=/var/games
 CONFIGURE_ENV=	T4K_COMMON_CFLAGS="-I${T4K_WRKSRC}/src" \
 		T4K_COMMON_LIBS="${T4K_WRKSRC}/src/.libs/libt4k_common.a" \
 		ac_cv_lib_m_csin=yes

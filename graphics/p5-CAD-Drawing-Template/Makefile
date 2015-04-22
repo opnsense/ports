@@ -3,12 +3,12 @@
 
 PORTNAME=	CAD-Drawing-Template
 PORTVERSION=	0.01
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Replace tags with text and geometry
 
 LICENSE=	ART10 GPLv1

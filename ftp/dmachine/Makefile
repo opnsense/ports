@@ -9,8 +9,6 @@ MASTER_SITES=	SF
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Non interactive, non graphical, batch download manager
 
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
-
 OPTIONS_DEFINE=	DOCS
 
 USE_JAVA=	yes
@@ -19,7 +17,6 @@ SUB_FILES=	dmachine.sh
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/dmachine.sh ${STAGEDIR}${PREFIX}/bin/dmachine
-	@${MKDIR} ${STAGEDIR}${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/dmachine-${PORTVERSION}.jar ${STAGEDIR}${PREFIX}/share/java/classes/dmachine.jar
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}

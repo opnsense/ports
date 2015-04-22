@@ -17,17 +17,12 @@ LIB_DEPENDS+=	libfltk.so:${PORTSDIR}/x11-toolkits/fltk
 GNU_CONFIGURE=	yes
 USE_GHOSTSCRIPT=yes
 USES=		desktop-file-utils gmake
-PLIST_DIRSTRY=	share/icons
 PLIST_FILES=	bin/flpsed \
 		man/man1/flpsed.1.gz \
 		share/applications/flpsed.desktop \
 		share/icons/flpsed.png \
 		share/icons/flpsed.svg
 PORTDOCS=	README
-
-post-configure:
-	@${FIND} -X ${WRKSRC} -type f -name Makefile | ${XARGS} \
-	${REINPLACE_CMD} -e "s|-lpthread|${PTHREAD_LIBS}|g"
 
 OPTIONS_DEFINE=	DOCS
 

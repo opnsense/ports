@@ -3,6 +3,7 @@
 
 PORTNAME=	Tk-JPEG-Lite
 PORTVERSION=	2.01500
+PORTREVISION=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -12,7 +13,7 @@ MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Very simplistic image viewer that loads JPEG images
 
 BUILD_DEPENDS=	p5-Tk>=0:${PORTSDIR}/x11-toolkits/p5-Tk
-LIB_DEPENDS=	libjpeg.so.11:${PORTSDIR}/graphics/jpeg
+LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5

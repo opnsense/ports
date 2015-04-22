@@ -3,11 +3,12 @@
 
 PORTNAME=	POE-Component-IRC-Plugin-CoreList
 PORTVERSION=	1.02
+PORTREVISION=	1
 CATEGORIES=	irc perl5 devel
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	IRC plugin that provides CoreList goodness
 
 BUILD_DEPENDS=	p5-POE>=0:${PORTSDIR}/devel/p5-POE \

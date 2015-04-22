@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	Audio-M4P
-PORTVERSION=	0.55
+PORTVERSION=	0.57
 CATEGORIES=	multimedia perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	M4P / MP4 / m4a Quicktime audio and video tools
 
 LICENSE=	ART10 GPLv1

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	svnup
-PORTVERSION=	1.06
+PORTVERSION=	1.07
 PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://jcm.dsl.visi.com/freebsd/svnup/ \
@@ -16,6 +16,7 @@ OPTIONS_DEFINE=	DOCS
 
 LDFLAGS+=	-lmd -lssl
 USES=		tar:xz
+USE_OPENSSL=	yes
 
 PORTDOCS=	ChangeLog
 

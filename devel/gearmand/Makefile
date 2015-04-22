@@ -3,7 +3,7 @@
 
 PORTNAME=	gearmand
 PORTVERSION=	1.0.6
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	http://launchpad.net/gearmand/1.0/${PORTVERSION}/+download/
 
@@ -44,12 +44,6 @@ HIREDIS_DESC=	Hiredis support for persistent queue
 TOKYOCAB_DESC=	Tokyo Cabinet support for persistent queue
 
 .include <bsd.port.options.mk>
-
-# Workaround for missing sigignore that wasn't introduced until
-# FreeBSD 8.0
-.if ${OSVERSION} < 800041
-BROKEN=	Does not compile without POSIX spawn() support
-.endif
 
 .if ${PORT_OPTIONS:MDRIZZLE}
 LIB_DEPENDS+=		libdrizzle.so:${PORTSDIR}/databases/libdrizzle

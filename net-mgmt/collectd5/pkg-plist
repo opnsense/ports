@@ -43,11 +43,12 @@ lib/collectd/memory.so
 %%MYSQL%%lib/collectd/mysql.so
 lib/collectd/network.so
 %%CURL%%lib/collectd/nginx.so
+%%NOTIFYEMAIL%%lib/collectd/notify_email.so
+%%NOTIFYDESKTOP%%lib/collectd/notify_desktop.so
 lib/collectd/ntpd.so
 %%NUTUPS%%lib/collectd/nut.so
 lib/collectd/openvpn.so
 %%PERL%%lib/collectd/perl.so
-%%PERL%%lib/perl5/%%PERL_VER%%/%%PERL_ARCH%%/perllocal.pod.gz
 %%PERL%%%%PERL5_MAN3%%/Collectd::Unixsock.3.gz
 %%PERL%%%%SITE_PERL%%/Collectd/Plugins/OpenVZ.pm
 %%PING%%lib/collectd/ping.so
@@ -81,6 +82,7 @@ lib/collectd/unixsock.so
 lib/collectd/uptime.so
 %%USERS%%lib/collectd/users.so
 lib/collectd/uuid.so
+%%VARNISH%%lib/collectd/varnish.so
 %%VIRT%%lib/collectd/libvirt.so
 lib/collectd/write_graphite.so
 %%CURL%%lib/collectd/write_http.so
@@ -97,7 +99,6 @@ libdata/pkgconfig/libcollectdclient.pc
 %%DATADIR%%/types.db
 %%PERL%%%%SITE_PERL%%/Collectd.pm
 %%PERL%%%%SITE_PERL%%/Collectd/Unixsock.pm
-%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/Collectd/.packlist
 man/man1/collectd-nagios.1.gz
 man/man1/collectd-tg.1.gz
 man/man1/collectd.1.gz

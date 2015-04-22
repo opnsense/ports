@@ -7,12 +7,12 @@ PORTREVISION=	1
 CATEGORIES=	net-im python
 MASTER_SITES=	http://fugu.gale.org/dist/
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Graphical client for the Gale instant messaging system
 
 LICENSE=	GPLv2
 
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/Pmw:${PORTSDIR}/x11-toolkits/py-Pmw
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}Pmw>0:${PORTSDIR}/x11-toolkits/py-Pmw
 
 USE_OPENSSL=	yes
 USES=		python

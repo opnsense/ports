@@ -17,7 +17,7 @@ COMMENT?=	High performance MTA for Unix systems on the Internet
 
 LICENSE=	GPLv2
 
-USES=	tar:bzip2 perl5
+USES=		cpe tar:bzip2 perl5
 USE_PERL5=	run
 
 # Exim build system is job unsafe atm
@@ -51,7 +51,7 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so:${PORTSDIR}/security/gnutls
 ICONV_USES=	iconv:lib,build
 MYSQL_USE=	mysql=yes
 OPENLDAP_USE=	openldap=yes
-PGSQL_USE=	pgsql=yes
+PGSQL_USES=	pgsql
 REDIS_LIB_DEPENDS=	libhiredis.so:${PORTSDIR}/databases/hiredis
 SASLAUTHD_RUN_DEPENDS=	${LOCALBASE}/sbin/saslauthd:${PORTSDIR}/security/cyrus-sasl2-saslauthd
 SA_EXIM_RUN_DEPENDS=	${LOCALBASE}/bin/spamc:${PORTSDIR}/mail/spamassassin
@@ -59,22 +59,36 @@ SPF_LIB_DEPENDS=	libspf2.so:${PORTSDIR}/mail/libspf2
 SQLITE_USE=	sqlite=yes
 SQLITE_USES=	pkgconfig
 XCLIENT_EXTRA_PATCHES=	${FILESDIR}/extra-patch-xclient
+RSPAMD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-rspamd
 
 .include <bsd.port.options.mk>
 
 # OCSP is supported for openssl only
 .if ${PORT_OPTIONS:MOCSP}
 .if ! ${PORT_OPTIONS:MTLS}
-IGNORE=	You cannot enable OCSP stapling without TLS support
+IGNORE=	you cannot enable OCSP stapling without TLS support
 .elif ${PORT_OPTIONS:MGNUTLS}
-IGNORE=	You cannot enable OCSP stapling with gnutls
+IGNORE=	you cannot enable OCSP stapling with gnutls
 .endif
 .endif
 
 # DMARC implies SPF
 .if ${PORT_OPTIONS:MDMARC}
 .if ! ${PORT_OPTIONS:MSPF} || ! ${PORT_OPTIONS:MDKIM}
-IGNORE=	You cannot enable DMARC without SPF and DKIM support
+IGNORE=	you cannot enable DMARC without SPF and DKIM support
+.endif
+.endif
+
+# DANE implies DNSSEC
+.if ${PORT_OPTIONS:MDANE}
+.if ! ${PORT_OPTIONS:MDNSSEC} || ! ${PORT_OPTIONS:MTLS}
+IGNORE=	you cannot enable DANE without DNSSEC support or without TLS support
+.endif
+# Use Openssl from the ports
+.if ${OSVERSION} < 1000000
+. if ! ${PORT_OPTIONS:MGNUTLS}
+WITH_OPENSSL_PORT=	yes
+. endif
 .endif
 .endif
 
@@ -85,7 +99,7 @@ MASTER_SITE_SUBDIR+=	sa-exim/:sa_exim
 DISTFILES+=	sa-exim-${SA_EXIM_VERSION}.tar.gz:sa_exim
 .endif
 
-EXIM_VERSION=	4.84
+EXIM_VERSION=	4.85
 SA_EXIM_VERSION=4.2
 EXIM_INSTALL_ARG+=	"-no_chown" "-no_symlink"
 
@@ -199,6 +213,14 @@ SEDLIST+=	-e 's,^\# (EXPERIMENTAL_CERTNAMES=),\1,'
 
 .if ${PORT_OPTIONS:MDSN}
 SEDLIST+=	-e 's,^\# (EXPERIMENTAL_DSN=),\1,'
+.endif
+
+.if ${PORT_OPTIONS:MDANE}
+SEDLIST+=	-e 's,^\# (EXPERIMENTAL_DANE=),\1,'
+.endif
+
+.if ${PORT_OPTIONS:MEVENT}
+SEDLIST+=	-e 's,^\# (EXPERIMENTAL_EVENT=),\1,'
 .endif
 
 .if !${PORT_OPTIONS:MPRDR}
@@ -425,7 +447,7 @@ SEDLIST+=	-e 's,^(ALT_CONFIG_PREFIX=),\# \1,'
 
 .if ${PORT_OPTIONS:MSPF}
 SEDLIST+=	-e 's,XX_SPF_FLAGS_XX,-DSPF,' \
-		-e 's,XX_SPF_LIBS_XX,-L${LOCALBASE}/lib -lspf2 ${PTHREAD_LIBS:S/,/\\,/g},' \
+		-e 's,XX_SPF_LIBS_XX,-L${LOCALBASE}/lib -lspf2 -lpthread,' \
 		-e 's,^\# (EXPERIMENTAL_SPF=),\1,'
 .else
 SEDLIST+=	-e 's,XX_SPF_FLAGS_XX,,' \
@@ -433,10 +455,6 @@ SEDLIST+=	-e 's,XX_SPF_FLAGS_XX,,' \
 .endif
 
 .if ${PORT_OPTIONS:MSRS}
-LIB_DEPENDS+=	libsrs2.so:${PORTSDIR}/mail/libsrs2
-SEDLIST+=	-e 's,XX_SRS_FLAGS_XX,-DSRS,' \
-		-e 's,XX_SRS_LIBS_XX,-L${LOCALBASE}/lib -lsrs2,'
-.elif ${PORT_OPTIONS:MSRS_ALT}
 LIB_DEPENDS+=	libsrs_alt.so:${PORTSDIR}/mail/libsrs_alt
 SEDLIST+=	-e 's,XX_SRS_FLAGS_XX,-DEXPERIMENTAL_SRS,' \
 		-e 's,XX_SRS_LIBS_XX,-L${LOCALBASE}/lib -lsrs_alt,'

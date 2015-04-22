@@ -13,15 +13,12 @@ COMMENT=	Java Network Browser
 
 LICENSE=	GPLv2
 
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
-
 JAVA_VERSION=	1.6+
 NO_BUILD=	yes
 USE_JAVA=	yes
 WRKSRC=		${WRKDIR}/j-ftp
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
-PLIST_DIRS=	%%DATADIR%%
 PLIST_FILES=	bin/jftp %%DATADIR%%/jftp.jar
 SUB_FILES=	jftp.sh
 

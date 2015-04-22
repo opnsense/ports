@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	liveMedia
-PORTVERSION=	2013.11.29
+PORTVERSION=	2014.12.17
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	net devel
 MASTER_SITES=	LOCAL/wg \
@@ -40,5 +41,11 @@ BROKEN=		Does not compile
 
 post-extract:
 	${CP} ${FILESDIR}/config.fixed-freebsd ${WRKSRC}
+
+.if ${PREFIX} != "/usr/local"
+post-configure:
+	${REINPLACE_CMD} -e 's,^PREFIX = /usr/local,PREFIX = "${PREFIX}",' \
+		${WRKSRC}/Makefile ${WRKSRC}/*/Makefile
+.endif
 
 .include <bsd.port.post.mk>

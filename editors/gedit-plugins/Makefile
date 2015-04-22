@@ -1,49 +1,50 @@
 # Created by: Adam Weinberger <adamw@FreeBSD.org>
 # $FreeBSD$
-#   $MCom: ports/editors/gedit-plugins/Makefile,v 1.48 2010/10/29 14:47:24 kwm Exp $
+#   $MCom: ports/trunk/editors/gedit-plugins/Makefile 20070 2014-11-12 11:53:48Z gusi $
 
 PORTNAME=	gedit-plugins
-PORTVERSION=	2.32.0
-PORTREVISION=	4
+PORTVERSION=	3.14.1
+PORTREVISION=	2
 CATEGORIES=	editors gnome
 MASTER_SITES=	GNOME
-DIST_SUBDIR=	gnome2
+DIST_SUBDIR=	gnome3
 
 MAINTAINER=	gnome@FreeBSD.org
-COMMENT=	Plugins for GEdit 2
+COMMENT=	Plugins for GEdit 3
 
-BUILD_DEPENDS=	gedit:${PORTSDIR}/editors/gedit \
-		gucharmap:${PORTSDIR}/deskutils/gucharmap
-RUN_DEPENDS=	gedit:${PORTSDIR}/editors/gedit \
-		gucharmap:${PORTSDIR}/deskutils/gucharmap
+BUILD_DEPENDS=	gedit>=0:${PORTSDIR}/editors/gedit \
+		itstool:${PORTSDIR}/textproc/itstool
+LIB_DEPENDS=	libpeas-1.0.so:${PORTSDIR}/devel/libpeas
+RUN_DEPENDS=	gedit>=0:${PORTSDIR}/editors/gedit
 
-CONFLICTS=	gedit-plugins-3.[0-9]*
-
+USES=		gettext gmake libtool pathfix pkgconfig \
+		python:3 tar:xz
+USE_GNOME=	gnomeprefix gtk30 gtksourceview3 intlhack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-USES=		gettext gmake libtool:keepla pathfix pkgconfig tar:bzip2
-USE_GNOME=	gnomeprefix intlhack gnomevfs2
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
-GCONF_SCHEMAS=	gedit-show-tabbar-plugin.schemas \
-		gedit-drawspaces.schemas
+GLIB_SCHEMAS=	org.gnome.gedit.plugins.drawspaces.gschema.xml \
+		org.gnome.gedit.plugins.wordcompletion.gschema.xml
+
+PLIST_SUB+=	PYVER=${PYTHON_VER:S/.//}
 
 OPTIONS_DEFINE=	PYTHON
+OPTIONS_DEFAULT=PYTHON
+PYTHON_DESC=	Build plugins that depend on python
 
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MPYTHON}
 USES+=		python
-USE_GNOME+=	pygtksourceview
-BUILD_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte \
-		${PYTHON_SITELIBDIR}/dbus/bus.py:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_SITELIBDIR}/gtksourceview2.so:${PORTSDIR}/x11-toolkits/py-gtksourceview
-RUN_DEPENDS+=	${PYTHON_SITELIBDIR}/gtk-2.0/vtemodule.so:${PORTSDIR}/x11-toolkits/py-vte \
-		${PYTHON_SITELIBDIR}/dbus/bus.py:${PORTSDIR}/devel/py-dbus \
-		${PYTHON_SITELIBDIR}/gtksourceview2.so:${PORTSDIR}/x11-toolkits/py-gtksourceview
+BUILD_DEPENDS+=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus
+LIB_DEPENDS+=	libgucharmap_2_90.so:${PORTSDIR}/deskutils/gucharmap
+RUN_DEPENDS+=	py3?-dbus>=0:${PORTSDIR}/devel/py3-dbus
+USE_GNOME+=	vte3
 CONFIGURE_ARGS+=--enable-python
+GLIB_SCHEMAS+=	org.gnome.gedit.plugins.terminal.gschema.xml
 PLIST_SUB+=	PYTHON=""
 .else
 CONFIGURE_ARGS+=--disable-python
@@ -55,3 +56,4 @@ post-patch:
 	    	${WRKSRC}/configure
 
 .include <bsd.port.mk>
+

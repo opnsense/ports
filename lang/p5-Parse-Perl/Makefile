@@ -3,6 +3,7 @@
 
 PORTNAME=	Parse-Perl
 PORTVERSION=	0.007
+PORTREVISION=	1
 CATEGORIES=	lang perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -17,6 +18,6 @@ TEST_DEPENDS=	p5-Devel-Declare>=0:${PORTSDIR}/devel/p5-Devel-Declare \
 		p5-Sub-Identify>=0:${PORTSDIR}/devel/p5-Sub-Identify
 
 USES=		perl5
-USE_PERL5=	configure
+USE_PERL5=	modbuild
 
 .include <bsd.port.mk>

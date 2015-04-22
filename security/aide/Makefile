@@ -8,14 +8,12 @@ CATEGORIES=	security
 MASTER_SITES=	SF \
 		http://www.cs.tut.fi/~rammer/
 
-
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Replacement and extension for Tripwire
 
 LIB_DEPENDS=	libmhash.so:${PORTSDIR}/security/mhash
-USES=		bison gmake
 
-.include <bsd.port.pre.mk>
+USES=		bison gmake
 
 USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
@@ -24,15 +22,14 @@ CONFIGURE_ARGS+=--with-mhash \
 		--mandir=${MANPREFIX}/man \
 		--with-config_file=${PREFIX}/etc/aide.conf
 
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 CFLAGS+=	-I${LOCALBASE}/include
 
 SUB_FILES=	pkg-message
 
 post-install:
-	@${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${STAGEDIR}${PREFIX}/etc/aide.conf.sample
-	@if [ ! -f ${STAGEDOIR}${PREFIX}/etc/aide.conf ]; then \
-		${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${STAGEDIR}${PREFIX}/etc/aide.conf ; \
-	fi
+	${INSTALL_DATA} ${FILESDIR}/aide.conf.freebsd ${STAGEDIR}${PREFIX}/etc/aide.conf.sample
+	${MKDIR} ${STAGEDIR}/var/db/aide/databases
+	${CHMOD} 0700 ${STAGEDIR}/var/db/aide ${STAGEDIR}/var/db/aide/databases
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

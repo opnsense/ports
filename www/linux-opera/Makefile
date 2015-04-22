@@ -11,8 +11,7 @@ MASTER_SITES=	ftp://ftp.opera.com/pub/opera/linux/${OPERA_VER:S/.//}/ \
 		http://mirrors.pmmf.hu/mirror/opera/linux/${OPERA_VER:S/.//}/ \
 		ftp://ftp.task.gda.pl/pub/opera/linux/${OPERA_VER:S/.//}/ \
 		ftp://ftp.planetmirror.com/pub/opera/linux/${OPERA_VER:S/.//}/ \
-		http://gd.tuwien.ac.at/infosys/browsers/opera/linux/${OPERA_VER:S/.//}/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/www/opera/linux/${OPERA_VER:S/.//}/&,}
+		http://gd.tuwien.ac.at/infosys/browsers/opera/linux/${OPERA_VER:S/.//}/
 PKGNAMEPREFIX=	linux-
 DISTNAME=	${PORTNAME}-${OPERA_VER}-${OPERA_BUILD}.i386.linux
 
@@ -22,7 +21,7 @@ COMMENT=	Blazingly fast, full-featured, standards-compliant browser
 RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
 USE_LINUX=	yes
-USE_LINUX_APPS=	gdkpixbuf gtk2 naslibs png sqlite3 xorglibs
+USE_LINUX_APPS=	gtk2 naslibs png sqlite3 xorglibs
 ONLY_FOR_ARCHS=	i386 amd64
 USES=		desktop-file-utils shared-mime-info tar:xz
 WANT_GNOME=	yes

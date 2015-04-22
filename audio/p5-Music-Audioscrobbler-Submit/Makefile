@@ -3,12 +3,12 @@
 
 PORTNAME=	Music-Audioscrobbler-Submit
 PORTVERSION=	0.05
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Module to submit songs to last.fm from MPD
 
 BUILD_DEPENDS=	p5-libwww>=0:${PORTSDIR}/www/p5-libwww \

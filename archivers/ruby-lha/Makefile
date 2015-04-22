@@ -25,12 +25,15 @@ RUBY_SHEBANG_FILES=	${EXAMPLES}
 
 OPTIONS_DEFINE=	DOCS
 
+# We don't have executables in this package, but rake uses
+# INSTALL_PROG for shared libraries:
+MAKE_ARGS=	INSTALL_PROG="${INSTALL_LIB}"
+
 post-install:
 	@${MKDIR} ${STAGEDIR}${RUBY_MODEXAMPLESDIR}
 	${INSTALL_SCRIPT} ${EXAMPLES:S,^,${WRKSRC}/,} ${STAGEDIR}${RUBY_MODEXAMPLESDIR}
 
-.include <bsd.port.pre.mk>
-.if ${RUBY_VER} == 2.0
-BROKEN=	Does not build with Ruby 2.0
-.endif
-.include <bsd.port.post.mk>
+test check regression-test: build
+	cd ${WRKSRC}/test && ${RUBY} -I${WRKSRC} test.rb
+
+.include <bsd.port.mk>

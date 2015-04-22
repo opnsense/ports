@@ -3,7 +3,7 @@
 
 PORTNAME=	dolphin-emu
 PORTVERSION=	4.0.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
 
 MAINTAINER=	martymac@FreeBSD.org
@@ -15,7 +15,7 @@ LIB_DEPENDS=	libexecinfo.so:${PORTSDIR}/devel/libexecinfo \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		liblzo2.so:${PORTSDIR}/archivers/lzo2 \
 		libSoundTouch.so:${PORTSDIR}/audio/soundtouch \
-		libpolarssl.so:${PORTSDIR}/security/polarssl
+		libpolarssl.so.5:${PORTSDIR}/security/polarssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME}
@@ -30,6 +30,8 @@ USE_GL=		gl glew glu
 
 USES=		dos2unix cmake iconv openal pkgconfig tar:tgz compiler:c++11-lib
 DOS2UNIX_REGEX=	.*\.(h|c|cpp)
+
+NOT_FOR_ARCHS=	armv6
 
 # Disable ALSA (emulated) and ao (buggy)
 CMAKE_ARGS+=	-DOPENMP:BOOL=OFF \

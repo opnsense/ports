@@ -2,7 +2,7 @@
 
 PORTNAME=	llvm
 PORTVERSION=	3.3
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/releases/${PORTVERSION}/
 DISTNAME=	${PORTNAME}-${PORTVERSION}.src
@@ -85,6 +85,9 @@ CONFIGURE_ARGS+=--enable-experimental-targets=R600
 
 .include <bsd.port.options.mk>
 
+# keep in sync with /usr/src/lib/clang/clang.build.mk
+CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/:C/armv6hf/armv6/}-portbld-${OPSYS:tl}${OSREL}
+
 .if ${PORT_OPTIONS:MASSERTS}
 CONFIGURE_ARGS+=	--enable-assertions
 RELEASE_TYPE=		Release+Asserts
@@ -113,7 +116,7 @@ MAN1SRCS+=		lit.1
 USES+=			python:-2.9
 LIT_COMMANDS=		lit llvm-lit FileCheck
 .else
-USES+=			python:-2.9:build
+USES+=			python:-2.9,build
 .endif
 
 .if ${PORT_OPTIONS:MLTOPLUGIN}

@@ -1,18 +1,13 @@
 @unexec if cmp -s %D/%%MMDIR%%/Mailman/mm_cfg.py %D/%%MMDIR%%/Mailman/mm_cfg.py.dist; then rm -f %D/%%MMDIR%%/Mailman/mm_cfg.py; fi
-@rmtry %%MMDIR%%/Mailman/mm_cfg.pyc
-@dir %%MMDIR%%/archives
-%%SUB_HTDIG%%@dir %%MMDIR%%/archives/htdig
-@dir %%MMDIR%%/archives/private
-@dir %%MMDIR%%/archives/public
-@dir %%MMDIR%%/lists
-@dir %%MMDIR%%/locks
-@dir %%MMDIR%%/logs
-@dir %%MMDIR%%/qfiles
-@dir %%MMDIR%%/spam
-%%IMGDIR%%/PythonPowered.png
+@unexec rm -f %D/%%MMDIR%%/Mailman/mm_cfg.pyc
+%%IMGDIR%%/mailman-large.jpg
+%%IMGDIR%%/gnu-head-tiny.jpg
 %%IMGDIR%%/mailman.jpg
+%%IMGDIR%%/mm-icon-large.ico
+%%IMGDIR%%/mm-icon.ico
 %%IMGDIR%%/mm-icon.png
-%%IMGDIR%%/powerlogo.gif
+%%IMGDIR%%/powerlogo.png
+%%IMGDIR%%/PythonPowered.png
 @group %%MM_GROUPNAME%%
 %%MMDIR%%/Mailman/Archiver/Archiver.py
 %%MMDIR%%/Mailman/Archiver/Archiver.pyc
@@ -316,6 +311,7 @@
 @exec [ -f %B/mm_cfg.py ] || cp %B/%f %B/mm_cfg.py
 %%MMDIR%%/Mailman/versions.py
 %%MMDIR%%/Mailman/versions.pyc
+%%MMDIR%%/bin/FreeBSD-post-install
 %%MMDIR%%/bin/add_members
 %%MMDIR%%/bin/arch
 %%MMDIR%%/bin/b4b5-archfix
@@ -397,6 +393,7 @@
 %%MMDIR%%/icons/mm-icon-large.ico
 %%MMDIR%%/icons/mm-icon.ico
 %%MMDIR%%/icons/mm-icon.png
+%%MMDIR%%/icons/powerlogo.png
 %%MMDIR%%/mail/mailman
 %%NLS%%%%MMDIR%%/messages/ar/LC_MESSAGES/mailman.mo
 %%NLS%%%%MMDIR%%/messages/ar/LC_MESSAGES/mailman.po
@@ -474,6 +471,7 @@
 %%NLS%%%%MMDIR%%/messages/sl/LC_MESSAGES/mailman.po
 %%NLS%%%%MMDIR%%/messages/sr/LC_MESSAGES/mailman.mo
 %%NLS%%%%MMDIR%%/messages/sr/LC_MESSAGES/mailman.po
+%%NLS%%%%MMDIR%%/messages/sr/README.sr
 %%NLS%%%%MMDIR%%/messages/sv/LC_MESSAGES/mailman.mo
 %%NLS%%%%MMDIR%%/messages/sv/LC_MESSAGES/mailman.po
 %%NLS%%%%MMDIR%%/messages/sv/README.sv
@@ -808,6 +806,7 @@
 %%NLS%%%%MMDIR%%/templates/el/verify.txt
 %%SUB_HTDIG%%%%MMDIR%%/templates/en/htdig.html
 %%SUB_HTDIG%%%%MMDIR%%/templates/en/TOC_htsearch.html
+%%MMDIR%%/templates/en/adminaddrchgack.txt
 %%MMDIR%%/templates/en/admindbdetails.html
 %%MMDIR%%/templates/en/admindbpreamble.html
 %%MMDIR%%/templates/en/admindbsummary.html
@@ -1262,6 +1261,7 @@
 %%NLS%%%%MMDIR%%/templates/hu/unsubauth.txt
 %%NLS%%%%MMDIR%%/templates/hu/userpass.txt
 %%NLS%%%%MMDIR%%/templates/hu/verify.txt
+%%NLS%%%%MMDIR%%/templates/ia/adminaddrchgack.txt
 %%NLS%%%%MMDIR%%/templates/ia/admindbdetails.html
 %%NLS%%%%MMDIR%%/templates/ia/admindbpreamble.html
 %%NLS%%%%MMDIR%%/templates/ia/admindbsummary.html
@@ -1726,6 +1726,7 @@
 %%NLS%%%%MMDIR%%/templates/ro/verify.txt
 %%NLS%%%%MMDIR%%/templates/ru/archtocnombox.html
 %%NLS%%%%MMDIR%%/templates/ru/probe.txt
+%%NLS%%%%MMDIR%%/templates/ru/adminaddrchgack.txt
 %%NLS%%%%MMDIR%%/templates/ru/admindbdetails.html
 %%NLS%%%%MMDIR%%/templates/ru/admindbpreamble.html
 %%NLS%%%%MMDIR%%/templates/ru/admindbsummary.html
@@ -2258,4 +2259,35 @@
 %%MMDIR%%/tests/test_smtp.py
 %%MMDIR%%/tests/testall.py
 %%PYTHON_SITELIBDIR%%/mailman-info.txt
+@dir %%MMDIR%%/tests/msgs
+@dir %%MMDIR%%/tests/bounces
+@dir %%MMDIR%%/tests
+@dir %%MMDIR%%/scripts
+@dir %%MMDIR%%/mail
+@dir %%MMDIR%%/icons
+@dir %%MMDIR%%/cron
+@dir %%MMDIR%%/pythonlib
+@dir %%MMDIR%%/cgi-bin
+@dir %%MMDIR%%/bin
+@dir %%MMDIR%%/Mailman/Queue
+@dir %%MMDIR%%/Mailman/MTA
+@dir %%MMDIR%%/Mailman/Logging
+@dir %%MMDIR%%/Mailman/Handlers
+@dir %%MMDIR%%/Mailman/Gui
+@dir %%MMDIR%%/Mailman/Commands
+@dir %%MMDIR%%/Mailman/Cgi
+@dir %%MMDIR%%/Mailman/Bouncers
+@dir %%MMDIR%%/Mailman/Archiver
+@dir %%IMGDIR%%
+@dir %%MMDIR%%/spam
+@dir %%MMDIR%%/qfiles
+@dir %%MMDIR%%/logs
+@dir %%MMDIR%%/locks
+@dir %%MMDIR%%/lists
+@dir %%MMDIR%%/data
+@dir %%MMDIR%%/archives/public
+@comment @dir %%MMDIR%%/archives/private
+%%SUB_HTDIG%%@dir %%MMDIR%%/archives/htdig
+@dir %%MMDIR%%/archives
+@dir %%MMDIR%%/Mailman
 @group

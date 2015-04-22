@@ -3,11 +3,12 @@
 
 PORTNAME=	LEGO-RCX
 PORTVERSION=	1.01
+PORTREVISION=	1
 CATEGORIES=	misc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl module for communicating with the Lego RCX brick via the IR tower
 
 LICENSE=	ART10 GPLv1

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	audacious-plugins
-PORTVERSION=	3.5
-PORTREVISION=	2
+PORTVERSION=	3.5.2
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://distfiles.audacious-media-player.org/
 
@@ -21,7 +20,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--disable-mpris2
 USE_GNOME=	glib20
-WANT_EFL=	yes
 WANT_SDL=	yes
 
 PORTDOCS=	AUTHORS
@@ -172,10 +170,10 @@ PLIST_SUB+=	FLACPLUGIN="@comment "
 
 .if ${PORT_OPTIONS:MFFAUDIO}
 LIB_DEPENDS+=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg
-CONFIGURE_ARGS+=--enable-ffaudio
+CONFIGURE_ARGS+=--with-ffmpeg=ffmpeg
 PLIST_SUB+=	FFAUDIOPLUGIN=""
 .else
-CONFIGURE_ARGS+=--disable-ffaudio
+CONFIGURE_ARGS+=--with-ffmpeg=none
 PLIST_SUB+=	FFAUDIOPLUGIN="@comment "
 .endif
 
@@ -262,7 +260,7 @@ PLIST_SUB+=	CDAUDIOPLUGIN="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MNEON}
-LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
+LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon
 CONFIGURE_ARGS+=--enable-neon
 PLIST_SUB+=	NEONPLUGIN=""
 .else

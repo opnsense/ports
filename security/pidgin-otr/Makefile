@@ -2,13 +2,13 @@
 
 PORTNAME=	otr
 PORTVERSION=	4.0.0
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	security net-im net
 MASTER_SITES=	http://www.cypherpunks.ca/otr/
 PKGNAMEPREFIX=	pidgin-
 DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	jgh@FreeBSD.org
+MAINTAINER=	chris@bsdjunk.com
 COMMENT=	Allows deniable private conversations using Pidgin
 
 LICENSE=	GPLv2

@@ -4,7 +4,7 @@
 
 PORTNAME=	anjuta
 PORTVERSION=	2.32.1.1
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -29,6 +29,7 @@ RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		yelp:${PORTSDIR}/x11/yelp
 
 CONFLICTS=	anjuta-3.[0-9]*
+IGNORE=		Needs update after gnome 3 import
 
 USES=		desktop-file-utils gmake gettext libtool pathfix \
 		perl5 pkgconfig python shared-mime-info shebangfix tar:bzip2
@@ -71,7 +72,7 @@ DEVHELP_DESC=	Devhelp support
 .if ${PORT_OPTIONS:MSVN}
 BUILD_DEPENDS+=	svn:${PORTSDIR}/devel/subversion
 LIB_DEPENDS+=	libapr-1.so:${PORTSDIR}/devel/apr1
-LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon29
+LIB_DEPENDS+=	libneon.so:${PORTSDIR}/www/neon
 RUN_DEPENDS+=	svn:${PORTSDIR}/devel/subversion
 PLIST_SUB+=	SVN=""
 .else

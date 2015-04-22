@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	mkvtoolnix
-PORTVERSION=	7.2.0
+PORTVERSION=	7.7.0
 CATEGORIES=	multimedia audio
 MASTER_SITES=	http://www.bunkus.org/videotools/mkvtoolnix/sources/ \
-		CRITICAL
+		LOCAL/ehaupt
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Tools to extract from/get info about/create Matroska media streams
@@ -52,10 +52,17 @@ FLAC_CONFIGURE_WITH=	flac
 MAKE_ENV+=	V=1
 .endif
 
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MWXGTK}
+INSTALLS_ICONS=	yes
+.endif
+
 do-build:
-	@(cd ${WRKSRC}/; unset PREFIX; ./drake ${_MAKE_JOBS})
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV:NPREFIX=*} ./drake ${_MAKE_JOBS})
 
 do-install:
-	@(cd ${WRKSRC}/; unset PREFIX;  ./drake ${_MAKE_JOBS} ${MAKE_ARGS} install)
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV:NPREFIX=*} \
+		./drake ${_MAKE_JOBS} ${MAKE_ARGS} install)
 
 .include <bsd.port.mk>

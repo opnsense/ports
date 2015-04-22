@@ -11,10 +11,9 @@ COMMENT=	Download videos from the Dutch uitzending gemist site
 
 LICENSE=	MIT
 
-USE_PYTHON=	yes
+USES=		python
 NO_BUILD=	yes
 
-PLIST_DIRS=	%%DOCSDIR%%
 PLIST_FILES=	bin/download-gemist \
 		bin/download-gemist-guide \
 		%%DOCSDIR%%/README.md

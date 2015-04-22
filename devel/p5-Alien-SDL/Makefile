@@ -2,7 +2,7 @@
 
 PORTNAME=	Alien-SDL
 PORTVERSION=	1.440
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -23,4 +23,11 @@ USE_PERL5=	modbuild
 USE_SDL=	gfx image mixer pango sdl ttf
 CONFIGURE_ARGS=	--with-sdl-config=${SDL_CONFIG}
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PERL_LEVEL} >= 502000
+BUILD_DEPENDS+=	p5-Archive-Extract>=0:${PORTSDIR}/archivers/p5-Archive-Extract
+RUN_DEPENDS+=	p5-Archive-Extract>=0:${PORTSDIR}/archivers/p5-Archive-Extract
+.endif
+
+.include <bsd.port.post.mk>

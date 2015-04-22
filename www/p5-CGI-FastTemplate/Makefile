@@ -3,11 +3,12 @@
 
 PORTNAME=	CGI-FastTemplate
 PORTVERSION=	1.09
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl module for manage templates and parses templates
 
 LICENSE=	ART10 GPLv1

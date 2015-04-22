@@ -3,6 +3,7 @@
 
 PORTNAME=	quassel
 PORTVERSION=	0.11.0
+PORTREVISION=	1
 CATEGORIES=	irc
 MASTER_SITES=	http://www.quassel-irc.org/pub/
 
@@ -41,7 +42,7 @@ CLIENT_CMAKE_OFF=	-DWANT_QTCLIENT=off
 
 KDE_DESC=	KDE 4 integration (for clients only)
 
-NLS_USE=	QT4=linguist_build
+NLS_USE=	QT4=linguisttools_build
 
 .include <bsd.port.options.mk>
 

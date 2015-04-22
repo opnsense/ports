@@ -2,19 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	lua
-PORTVERSION=	5.2.3
-PORTREVISION=	2
+PORTVERSION=	5.2.4
 CATEGORIES=	lang
 MASTER_SITES=	http://www.lua.org/ftp/
 PKGNAMESUFFIX=	52
 
-MAINTAINER=	lua@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Small, compilable scripting language providing easy access to C code
 
 LICENSE=	MIT
 
 LUA_VER=	5.2
-USES=		readline
+LIB_DEPENDS=	libedit.so.0:${PORTSDIR}/devel/libedit
 USE_LDCONFIG=	yes
 
 # Overriding __MAKE_CONF makes sure that we don't re-parse
@@ -26,10 +25,12 @@ USE_LDCONFIG=	yes
 MAKE_ARGS=	__MAKE_CONF=${NONEXISTENT}
 # liblua.so requires libm, so make sure it has an explicit dependency
 # so that applications need not second-guess lua's dependencies.
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-lm -pthread
 BUILD_WRKSRC=	${WRKSRC}/src
 MAKE_ARGS+=	MYCFLAGS="${CFLAGS} ${CPPFLAGS} -DLUA_USE_LINUX" \
-		MYLDFLAGS="${LDFLAGS} -Wl,-E -lreadline" \
+		MYLDFLAGS="${LDFLAGS}" \
+		MYLIBS="-Wl,-E -L${LOCALBASE}/lib -ledit" \
 		CC="${CC}" \
 		LUA_T=lua52 \
 		LUAC_T=luac52 \
@@ -62,8 +63,10 @@ CFLAGS_powerpc=	-fPIC
 post-patch:
 	@${REINPLACE_CMD} -e 's,rand *(,random(,g' \
 		${WRKSRC}/src/lmathlib.c
-	@${REINPLACE_CMD} -e "/LUA_ROOT/s|/usr/local|${LUA_PREFIX}|" \
-		${WRKSRC}/src/luaconf.h
+	@${REINPLACE_CMD} -e "/LUA_ROOT/s|/usr/local|${LUA_PREFIX}| ; \
+		s,readline/,editline/,g ; \
+		/history\.h/d" \
+		${WRKSRC}/src/luaconf.h ${WRKSRC}/src/lua.c
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/liblua-${LUA_VER}.so

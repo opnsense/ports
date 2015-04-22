@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=		radicale
-PORTVERSION=		0.8
-PORTREVISION=		1
+PORTVERSION=		0.10
+PORTREVISION=		0
 CATEGORIES=		www python
 MASTER_SITES=		CHEESESHOP
 PKGNAMEPREFIX=		${PYTHON_PKGNAMEPREFIX}
@@ -14,8 +14,7 @@ COMMENT=		Python based CalDAV/CardDAV server
 
 LICENSE=		GPLv3
 
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
+USE_PYTHON=		distutils
 PYDISTUTILS_PKGNAME=	Radicale
 
 USERS=			radicale
@@ -28,14 +27,18 @@ HTTP_DESC=		HTTP authentication support
 
 .include <bsd.port.options.mk>
 
+.if ${PORT_OPTIONS:MHTTP} || ${PORT_OPTIONS:MLDAP}
+USES+=		python:2
+.else
+USES+=		python
+.endif
+
 .if ${PORT_OPTIONS:MHTTP}
-RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}requests1>=0:${PORTSDIR}/www/py-requests1
-USE_PYTHON=		2
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}requests1>=0:${PORTSDIR}/www/py-requests1
 .endif
 
 .if ${PORT_OPTIONS:MLDAP}
-RUN_DEPENDS+=		${PYTHON_PKGNAMEPREFIX}ldap2>=0:${PORTSDIR}/net/py-ldap2
-USE_PYTHON=		2
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}ldap2>=0:${PORTSDIR}/net/py-ldap2
 .endif
 
 post-patch:
@@ -44,6 +47,7 @@ post-patch:
 
 post-install:
 	${MKDIR} ${STAGEDIR}/${ETCDIR}
+	${MKDIR} ${STAGEDIR}/${DATADIR}
 	${INSTALL_DATA} ${WRKSRC}/config ${STAGEDIR}/${ETCDIR}/config.sample
 	${INSTALL_DATA} ${WRKSRC}/logging ${STAGEDIR}/${ETCDIR}/logging.sample
 

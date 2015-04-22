@@ -3,7 +3,7 @@
 
 PORTNAME=	emacs
 PORTVERSION=	${EMACS_VER}
-PORTREVISION=	1
+PORTREVISION=	6
 PORTEPOCH=	3
 CATEGORIES=	editors ipv6
 MASTER_SITES=	${MASTER_SITE_GNU}
@@ -26,19 +26,18 @@ CONFLICTS=	emacs-19.* emacs21-[0-9]* emacs22-[0-9]* emacs23-[0-9]* \
 
 EMACS_VER=	24.4
 GNU_CONFIGURE=	yes
-USES=		gmake makeinfo ncurses pkgconfig shebangfix tar:xz
+USES=		cpe gmake makeinfo ncurses pkgconfig shebangfix tar:xz
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INFO_PATH=	${DATADIR_REL}/info
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
+CPE_VENDOR=	gnu
 
 SUB_FILES=	pkg-install
 SUB_LIST+=	ARCHLIBDIR=${PREFIX}/libexec/emacs/${EMACS_VER}/${CONFIGURE_TARGET}
 SHEBANG_FILES=	lib-src/grep-changelog
 
-# Append --without-compress-install to prevent emacs from compressing info
-# which bsd.port.mk is not able to detect
-CONFIGURE_ARGS=	--localstatedir=/var --without-compress-install
+CONFIGURE_ARGS=	--localstatedir=/var
 
 PLIST_SUB=	EMACS_VER=${EMACS_VER} GNU_HOST=${CONFIGURE_TARGET}
 
@@ -75,7 +74,7 @@ OPTIONS_SINGLE_X11=	GTK2 GTK3 XAW XAW3D MOTIF
 OPTIONS_SINGLE_SOUND=	ALSA OSS
 
 .if !defined(EMACS_NO_X11_SLAVE)
-OPTIONS_DEFAULT=DBUS GCONF GIF GTK2 JPEG M17N OTF PNG SOUND SOURCES SVG TIFF SYNC_INPUT \
+OPTIONS_DEFAULT=DBUS GCONF GIF GTK2 JPEG M17N OTF PNG SOUND SOURCES SVG TIFF \
 		SCROLLBARS XFT XIM XML XPM MAGICK GNUTLS GSETTINGS OSS X11
 CONFLICTS+=	emacs-nox11-[0-9]*
 .else
@@ -112,21 +111,6 @@ SVG_CONFIGURE_WITH=	rsvg
 X11_CONFIGURE_WITH=	x
 X11_USE=		XORG=x11
 X11_USES=		desktop-file-utils
-X11_PLIST_DIRSTRY_OFF=	share/icons/hicolor/scalable/mimetypes \
-			share/icons/hicolor/scalable/apps \
-			share/icons/hicolor/scalable \
-			share/icons/hicolor/48x48/apps \
-			share/icons/hicolor/48x48 \
-			share/icons/hicolor/32x32/apps \
-			share/icons/hicolor/32x32 \
-			share/icons/hicolor/24x24/apps \
-			share/icons/hicolor/24x24 \
-			share/icons/hicolor/16x16/apps \
-			share/icons/hicolor/16x16 \
-			share/icons/hicolor/128x128/apps \
-			share/icons/hicolor/128x128 \
-			share/icons/hicolor \
-			share/icons
 
 GTK2_USE=		GNOME=gtk20
 GTK2_CONFIGURE_ON=	--with-x-toolkit=gtk2
@@ -145,8 +129,6 @@ MOTIF_CONFIGURE_ON+=	--with-x-toolkit=motif
 
 SCROLLBARS_CONFIGURE_WITH=	toolkit-scroll-bars
 
-SYNC_INPUT_CONFIGURE_WITH=	sync-input
-
 JPEG_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 JPEG_CONFIGURE_WITH=	jpeg
 
@@ -156,7 +138,7 @@ TIFF_CONFIGURE_WITH=	tiff
 GIF_LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib
 GIF_CONFIGURE_WITH=	gif
 
-PNG_LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 PNG_CONFIGURE_WITH=	png
 
 XPM_USE=		XORG=xpm
@@ -172,7 +154,7 @@ M17N_CONFIGURE_WITH=	m17n-flt
 OTF_LIB_DEPENDS=	libotf.so:${PORTSDIR}/print/libotf
 OTF_CONFIGURE_WITH=	libotf
 
-MAGICK_LIB_DEPENDS=	libMagickCore-6.Q16.so:${PORTSDIR}/graphics/ImageMagick
+MAGICK_LIB_DEPENDS=	libMagickCore-6.so:${PORTSDIR}/graphics/ImageMagick
 MAGICK_CONFIGURE_WITH=	imagemagick
 
 GSETTINGS_USE=		gnome=glib20
@@ -259,6 +241,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/*.[ch] ${STAGEDIR}${DATADIR}/${EMACS_VER}/src
 	${INSTALL_DATA} ${WRKSRC}/sources.el ${STAGEDIR}${DATADIR}/${EMACS_VER}/site-lisp/site-start.el
 .endif
+	@${FIND} ${STAGEDIR}${PREFIX}/${INFO_PATH} -type f -name '*.gz' -exec ${GUNZIP_CMD} '{}' \;
 
 .if !defined(WITHOUT_X11)
 pre-everything::

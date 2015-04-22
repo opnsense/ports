@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	asterisk
-PORTVERSION=	1.8.31.1
+PORTVERSION=	1.8.32.3
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://downloads.asterisk.org/pub/telephony/asterisk/ \
 		http://downloads.asterisk.org/pub/telephony/asterisk/old-releases/
@@ -25,6 +26,7 @@ GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/openh323
 USE_GCC=	yes
+USE_CSTD=	gnu89
 USE_GNOME=	libxml2
 USES=		alias bison cpe gmake shebangfix
 CPE_VENDOR=	digium
@@ -33,8 +35,7 @@ SHEBANG_FILES=	agi/agi-test.agi \
 STRIP=
 
 USE_RC_SUBR=	asterisk
-MAKE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+MAKE_ENV=	PTHREAD_LIBS="-lpthread" \
 		MKDIR="${MKDIR}" \
 		PWLIBDIR=${LOCALBASE}/share/pwlib \
 		OPENH323DIR=${LOCALBASE}/share/openh323 \
@@ -44,10 +45,10 @@ MAKE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
 		ASTCFLAGS="${CFLAGS}"
 
 CONFLICTS_BUILD=	linuxthreads-*
-CONFLICTS_INSTALL=	asterisk*-1.4* asterisk*-1.6* asterisk*-10*
+CONFLICTS_INSTALL=	asterisk*-11* asterisk*-13*
 
 OPTIONS_DEFINE=	VORBIS PGSQL MYSQL ODBC RADIUS SNMP H323 FREETDS JABBER SQLITE GSM \
-		CURL SPANDSP EXCHANGE NEWG711 SRTP LUA LDAP OOH323
+		CURL SPANDSP EXCHANGE NEWG711 SRTP LUA LDAP OOH323 SYSINFO
 OPTIONS_DEFAULT=	VORBIS ODBC PGSQL RADIUS SNMP H323 FREETDS JABBER GSM \
 		SQLITE CURL LUA
 
@@ -64,6 +65,7 @@ NEWG711_DESC?=	New G711 Codec
 SRTP_DESC?=	SecureRTP support
 OOH323_DESC?=	ooh323 support
 DAHDI_DESC?=	DAHDI support
+SYSINFO_DESC?=	Use devel/libsysinfo to get system information
 
 OPTIONS_SUB=	yes
 H323_CONFIGURE_WITH=	h323
@@ -104,9 +106,9 @@ CURL_CONFIGURE_ON=	--with-libcurl
 CURL_CONFIGURE_OFF=	--with-libcurl=no
 CURL_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 SPANDSP_CONFIGURE_WITH=	spandsp
-SPANDSP_LIB_DEPENDS=	libspandsp.so.2:${PORTSDIR}/comms/spandsp-devel
+SPANDSP_LIB_DEPENDS=	libspandsp.so:${PORTSDIR}/comms/spandsp
 EXCHANGE_CONFIGURE_OFF=	--without-neon --without-neon29
-EXCHANGE_LIB_DEPENDS=	libneon.so:${PORTSDIR}/www/neon29
+EXCHANGE_LIB_DEPENDS=	libneon.so:${PORTSDIR}/www/neon
 SRTP_CONFIGURE_WITH=	srtp
 SRTP_BUILD_DEPENDS=	libsrtp>=1.4.4:${PORTSDIR}/net/libsrtp
 LUA_CONFIGURE_WITH=	lua
@@ -115,6 +117,7 @@ LUA_CFLAGS=		-I${LUA_INCDIR}
 LUA_LDFLAGS=		-L${LUA_LIBDIR}
 LDAP_CONFIGURE_WITH=	ldap
 LDAP_USE=		OPENLDAP=yes
+SYSINFO_LIB_DEPENDS=	libsysinfo.so:${PORTSDIR}/devel/libsysinfo
 
 PORTSCOUT=	limit:^1\.8\.
 
@@ -138,10 +141,16 @@ PLIST_SUB+=	ASTERISK_GROUP=${ASTERISK_GROUP}
 PLIST_SUB+=	VARDIR=${VARDIR}
 
 post-extract:
-	${FIND} ${WRKSRC} -name '*.d' -delete
+	@${FIND} ${WRKSRC} -name '*.d' -delete
 
 post-patch:
-	${REINPLACE_CMD} -e 's|/var/lib|${PREFIX}/share|g' ${WRKSRC}/configs/musiconhold.conf.sample
+	@${REINPLACE_CMD} -e 's|/var/lib|${PREFIX}/share|g' ${WRKSRC}/configs/musiconhold.conf.sample
+.if ${PORT_OPTIONS:MSYSINFO}
+	@${REINPLACE_CMD} -e 's/%%LIBSYSINFO%%/-lsysinfo/' ${WRKSRC}/main/Makefile
+.else
+	@${REINPLACE_CMD} -e '/#define HAVE_SYSINFO 1/d' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e '/%%LIBSYSINFO%%/d' ${WRKSRC}/main/Makefile
+.endif
 
 post-configure:
 	@cd ${WRKSRC} && ${MAKE_CMD} menuselect.makeopts

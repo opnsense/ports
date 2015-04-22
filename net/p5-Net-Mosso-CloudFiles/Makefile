@@ -3,11 +3,12 @@
 
 PORTNAME=	Net-Mosso-CloudFiles
 PORTVERSION=	0.44
+PORTREVISION=	1
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl interface to the Mosso CloudFiles service
 
 LICENSE=	ART10 GPLv1

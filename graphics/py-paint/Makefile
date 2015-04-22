@@ -3,7 +3,7 @@
 
 PORTNAME=	paint
 PORTVERSION=	0.3
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	graphics python
 MASTER_SITES=	SF/py${PORTNAME}/py${PORTNAME}/py${PORTNAME}%20${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,7 +12,10 @@ DISTNAME=	pypaint-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple and flexible painting adaptor to libart for Python
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LICENSE=	BSD3CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
+
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libttf.so:${PORTSDIR}/print/freetype
 
 USES=		python
@@ -30,6 +33,7 @@ post-patch:
 	@${REINPLACE_CMD} -e "s,art_lgpl,art_lgpl_2," ${WRKSRC}/setup.py
 
 post-install:
+	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/paint.so
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${CP} ${WRKSRC}/test* ${STAGEDIR}${EXAMPLESDIR}
 

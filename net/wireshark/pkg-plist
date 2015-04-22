@@ -1,7 +1,11 @@
 %%CAPINFOS%%
 %%CAPTYPE%%
 %%DFTEST%%
+@group network
+@mode 2555
 bin/dumpcap
+@mode
+@group
 %%EDITCAP%%
 %%WIRESHARK%%
 %%MERGECAP%%
@@ -12,16 +16,16 @@ bin/tshark
 %%TEXT2PCAP%%
 lib/libfiletap.so
 lib/libfiletap.so.0
-lib/libfiletap.so.0.0.1
+lib/libfiletap.so.0.0.4
 lib/libwireshark.so
 lib/libwireshark.so.5
-lib/libwireshark.so.5.0.1
+lib/libwireshark.so.5.0.4
 lib/libwiretap.so
 lib/libwiretap.so.4
-lib/libwiretap.so.4.0.1
+lib/libwiretap.so.4.0.4
 lib/libwsutil.so
 lib/libwsutil.so.4
-lib/libwsutil.so.4.0.0
+lib/libwsutil.so.4.1.0
 lib/wireshark/plugins/%%PORTVERSION%%/docsis.so
 lib/wireshark/plugins/%%PORTVERSION%%/ethercat.so
 lib/wireshark/plugins/%%PORTVERSION%%/gryphon.so
@@ -271,16 +275,3 @@ man/man4/wireshark-filter.4.gz
 %%DATADIR%%/wireshark-filter.html
 %%DATADIR%%/wireshark.html
 %%DATADIR%%/ws.css
-@dirrm lib/wireshark/plugins/%%PORTVERSION%%
-@dirrm lib/wireshark/plugins
-@dirrm lib/wireshark
-@dirrm %%DATADIR%%/wimaxasncp
-@dirrm %%DATADIR%%/tpncp
-@dirrm %%DATADIR%%/radius
-@dirrm %%DATADIR%%/profiles/Classic
-@dirrm %%DATADIR%%/profiles/Bluetooth
-@dirrm %%DATADIR%%/profiles
-@dirrm %%DATADIR%%/help
-@dirrm %%DATADIR%%/dtds
-@dirrm %%DATADIR%%/diameter
-@dirrm %%DATADIR%%

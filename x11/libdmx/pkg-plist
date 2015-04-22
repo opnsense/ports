@@ -1,6 +1,5 @@
 include/X11/extensions/dmxext.h
 lib/libdmx.a
-lib/libdmx.la
 lib/libdmx.so
 lib/libdmx.so.1
 lib/libdmx.so.1.0.0
@@ -22,4 +21,3 @@ man/man3/DMXQueryVersion.3.gz
 man/man3/DMXRemoveInput.3.gz
 man/man3/DMXRemoveScreen.3.gz
 man/man3/DMXSync.3.gz
-@dirrmtry include/X11/extensions

@@ -6,14 +6,14 @@ CATEGORIES=	ports-mgmt
 MASTER_SITES=	LOCAL/bdrewery/${PORTNAME}/ \
   		http://mirror.shatow.net/freebsd/${PORTNAME}/ \
 		GH
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Manage your ports without external databases or languages
 
 LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
-GH_COMMIT=	94ed670
+GH_TAGNAME=	94ed670
 
 OPTIONS_DEFINE=	BASH ZSH
 
@@ -25,12 +25,10 @@ PLIST_FILES=	sbin/portmaster \
 
 .if ${PORT_OPTIONS:MBASH}
 PLIST_FILES+=	etc/bash_completion.d/portmaster.sh
-PLIST_DIRSTRY+=	etc/bash_completion.d
 .endif
 
 .if ${PORT_OPTIONS:MZSH}
 PLIST_FILES+=	share/zsh/site-functions/_portmaster
-PLIST_DIRSTRY+=	share/zsh/site-functions share/zsh
 .endif
 
 verify: checksum

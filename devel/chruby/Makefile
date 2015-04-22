@@ -4,7 +4,7 @@
 PORTNAME=	chruby
 PORTVERSION=	0.3.8
 CATEGORIES=	devel ruby
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	ross@rosstimson.com
 COMMENT=	Changes the current Ruby
@@ -15,7 +15,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
 
 PLIST_FILES=	bin/chruby-exec share/chruby/auto.sh share/chruby/chruby.sh
-PLIST_DIRS=	share/chruby
 
 SUB_FILES=	pkg-message
 

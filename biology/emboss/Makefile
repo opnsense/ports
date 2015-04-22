@@ -3,6 +3,7 @@
 
 PORTNAME=	emboss
 PORTVERSION=	6.6.0
+PORTREVISION=	2
 CATEGORIES=	biology
 MASTER_SITES=	ftp://emboss.open-bio.org/pub/EMBOSS/
 DISTNAME=	${PORTNAME:tu}-${PORTVERSION}
@@ -16,7 +17,7 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	clustalw:${PORTSDIR}/biology/clustalw \
 		primer3:${PORTSDIR}/biology/primer3
 LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 CONFLICTS=	qmail-ldap-[0-9]* digest-[0-9]*
 
@@ -30,6 +31,7 @@ SUB_FILES=	pkg-message
 SUB_LIST=	PREFIX=${PREFIX} DATADIR=${DATADIR}
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=${ICONV_CONFIGURE_ARG}
+INSTALL_TARGET=	install-strip
 
 DOCSDIR=	${PREFIX}/share/${PORTNAME:tu}/doc
 DATADIR=	${PREFIX}/share/${PORTNAME:tu}
@@ -40,7 +42,7 @@ DOCS_CONFIGURE_ON=	--with-docroot=${DOCSDIR}
 X11_USE=	XORG=x11
 X11_USES=	motif
 X11_LIB_DEPENDS=	libgd.so:${PORTSDIR}/graphics/gd \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 X11_CONFIGURE_OFF=	--without-x
 
 CONFIG_FILE=	${WRKSRC}/emboss/emboss.default.template
@@ -53,6 +55,5 @@ pre-install:
 
 post-install:
 	${INSTALL_DATA} ${CONFIG_FILE} ${STAGEDIR}${DATADIR}
-	${CHOWN} ${SHAREOWN}:${SHAREGRP} ${STAGEDIR}${DATADIR}/emboss.default.template
 
 .include <bsd.port.mk>

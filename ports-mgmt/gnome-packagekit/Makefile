@@ -11,6 +11,8 @@ MASTER_SITES=	GNOME
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	PackageKit client programs for the GNOME desktop
 
+BROKEN=		Uses unknown GNOME component gnomemenus
+
 BUILD_DEPENDS=	${LOCALBASE}/bin/docbook2man:${PORTSDIR}/textproc/docbook-utils
 LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libpackagekit-glib2.so:${PORTSDIR}/ports-mgmt/packagekit \
@@ -18,6 +20,8 @@ LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libunique-1.0.so:${PORTSDIR}/x11-toolkits/unique \
 		libupower-glib.so:${PORTSDIR}/sysutils/upower \
 		libcanberra-gtk.so:${PORTSDIR}/audio/libcanberra
+
+IGNORE=		Packagekit needs attention before this port can be updated.
 
 USE_GNOME=	gnomeprefix intlhack gconf2 gnomemenus gnomedocutils
 USES=		desktop-file-utils gettext iconv pathfix gmake pkgconfig \

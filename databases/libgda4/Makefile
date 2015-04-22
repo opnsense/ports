@@ -4,7 +4,7 @@
 
 PORTNAME=	libgda
 PORTVERSION=	4.2.12
-PORTREVISION?=	5
+PORTREVISION?=	6
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	4
@@ -14,6 +14,7 @@ MAINTAINER=	gnome@FreeBSD.org
 COMMENT?=	Provides uniform access to different kinds of data sources
 
 CONFLICTS=	libgda5-ui-[0-9]*
+PORTSCOUT=	ignore:1
 
 USES=		tar:xz
 LIBGDA4_SLAVE?=	no

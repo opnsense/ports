@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	slony1v2
-PORTVERSION=	2.2.3
+PORTVERSION=	2.2.4
 CATEGORIES=	databases
 MASTER_SITES=	http://main.slony.info/downloads/2.2/source/
 DISTNAME=	slony1-${PORTVERSION}
@@ -12,12 +12,11 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 MAINTAINER=	olgeni@FreeBSD.org
 COMMENT=	PostgreSQL master to multiple replicas replication system
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex \
-		${LOCALBASE}/bin/postmaster:${PORTSDIR}/databases/postgresql${PGSQL_VER}-server
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 
 GNU_CONFIGURE=	yes
-USES=		bison gmake shebangfix tar:bzip2
-USE_PGSQL=	yes
+USES=		bison gmake shebangfix tar:bzip2 pgsql
+WANT_PGSQL=	server
 USE_RC_SUBR=	slon
 SHEBANG_FILES=	tools/altperl/slonik_restart_node.pl
 
@@ -25,25 +24,21 @@ SUB_FILES=	pkg-message slon-mkservice.sh
 SUB_LIST+=	NAME=slon
 
 OPTIONS_DEFINE=	DOCS PERLTOOLS
+OPTIONS_SUB=	yes
 PERLTOOLS_DESC=	Install perl configuration tools
 
 CONFLICTS?=	slony1-1*
 
 CONFIGURE_ENV+=	FLEX=${LOCALBASE}/bin/flex
 
-.include <bsd.port.options.mk>
+PERLTOOLS_DESC=	Install perl configuration tools
+PERLTOOLS_USES=	perl5
+PERLTOOLS_CONFIGURE_ENV=	PERL=${PERL}
+PERLTOOLS_CONFIGURE_ON=		--with-perltools=${LOCALBASE}/sbin
+PERLTOOLS_BUILD_DEPENDS=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
+PERLTOOLS_RUN_DEPENDS=		p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
 
-.if ${PORT_OPTIONS:MPERLTOOLS}
-USES+=		perl5
-CONFIGURE_ARGS+=--with-perltools=${LOCALBASE}/sbin
-RUN_DEPENDS+=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
-BUILD_DEPENDS+=	p5-DBD-Pg>=0:${PORTSDIR}/databases/p5-DBD-Pg
-PLIST_SUB+=	PERLTOOLS=""
-SUB_LIST+=	PERLTOOLS=""
-.else
-PLIST_SUB+=	PERLTOOLS="@comment "
-SUB_LIST+=	PERLTOOLS="@comment "
-.endif
+.include <bsd.port.options.mk>
 
 # let configure find postgres stuff in non-standard places
 CONFIGURE_ARGS+=--with-pgconfigdir=${LOCALBASE}/bin \
@@ -54,17 +49,6 @@ CONFIGURE_ARGS+=--with-pgconfigdir=${LOCALBASE}/bin \
 		--with-pgpkglibdir=${LOCALBASE}/lib/postgresql \
 		--with-pgsharedir=${LOCALBASE}/share/postgresql
 
-# Setting/finding PostgreSQL version we want.
-.if exists(${LOCALBASE}/bin/postmaster)
-PGSQL_VER!=	${LOCALBASE}/bin/postmaster -V | \
-		${SED} -En 's/.*PostgreSQL[^0-9]*([0-9]+)\.([0-9]+)\..*/\1\2/p'
-.elif exists(${LOCALBASE}/bin/pg_config)
-PGSQL_VER!=	${LOCALBASE}/bin/pg_config --version | \
-		${SED} -En 's/PostgreSQL[^0-9]*([0-9]*)\.([0-9]+)\..*/\1\2/p'
-.else
-PGSQL_VER=	${DEFAULT_PGSQL_VER}
-.endif
-
 PORTDOCS=	*
 
 DOCS=		COPYRIGHT INSTALL README README.Unicode RELEASE \
@@ -72,7 +56,7 @@ DOCS=		COPYRIGHT INSTALL README README.Unicode RELEASE \
 
 post-patch:
 	@for _file in ${WRKSRC}/doc/adminguide/man7/*.7; do \
-		mv "$${_file}" $$(echo $${_file} | sed -e 's/ [ ]*/_/g'); \
+		${MV} "$${_file}" $$(echo $${_file} | ${SED} -e 's/ [ ]*/_/g'); \
 	done
 	@for _file in ${WRKSRC}/doc/adminguide/man7/*.7; do \
 		${REINPLACE_CMD} -e '/^.TH/s/  [ ]*/ /g' $${_file}; \

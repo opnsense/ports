@@ -5,7 +5,7 @@ PORTREVISION=	0
 CATEGORIES=	databases lang
 PKGNAMESUFFIX=	-postgres
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER=	freebsd-fpc@FreeBSD.org
 COMMENT=	Free Pascal interface to PostGreSQL
 
 USE_FPC=	yes
@@ -18,6 +18,6 @@ OPTIONS_DEFINE=	PGSQL
 PGSQL_DESC=	Install PostgreSQL client
 OPTIONS_DEFAULT=	PGSQL
 
-PGSQL_USE=	PGSQL=yes
+PGSQL_USES=	pgsql
 
 .include "${MASTERDIR}/Makefile"

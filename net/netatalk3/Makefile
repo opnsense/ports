@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	netatalk
-PORTVERSION=	3.1.6
+PORTVERSION=	3.1.7
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	SF
@@ -136,12 +137,6 @@ CONFIGURE_ARGS+=--without-acls
 CONFIGURE_ARGS+=--enable-tcp-wrappers
 .else
 CONFIGURE_ARGS+=--disable-tcp-wrappers
-.endif
-
-.if ${OSVERSION} < 800031
-PLIST_SUB+=	ATFUNCS="@comment "
-.else
-PLIST_SUB+=	ATFUNCS=""
 .endif
 
 post-patch:

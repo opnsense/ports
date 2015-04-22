@@ -10,8 +10,6 @@ PKGNAMEPREFIX=	java-
 MAINTAINER=	glewis@FreeBSD.org
 COMMENT=	Find Bugs in Java Programs
 
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
-
 LICENSE=	LGPL21
 USE_JAVA=	yes
 NO_BUILD=	yes
@@ -40,9 +38,6 @@ PLIST_FILES+=		%%DATADIR%%/lib/${f}
 .endfor
 PLIST_FILES+=		%%DATADIR%%/bin/${PORTNAME} \
 			bin/${PORTNAME}
-PLIST_DIRS+=		%%DATADIR%%/lib \
-			%%DATADIR%%/bin \
-			%%DATADIR%%
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

@@ -3,6 +3,7 @@
 
 PORTNAME=	WordNet-Similarity
 PORTVERSION=	2.05
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -27,6 +28,7 @@ post-patch:
 	@${FIND} ${WRKSRC}/utils -type f| ${XARGS} ${REINPLACE_CMD} -e \
 		's|/usr/local/bin/perl|${PERL}|; \
 		 /wnUnixPath/s|/usr/local/WordNet-3.0|${WNHOME}|; \
+		 /wnUnixPath/s|/cntlist|&.rev|; \
 		 /wnUnixPath/s|/dict||'
 
 .include <bsd.port.pre.mk>

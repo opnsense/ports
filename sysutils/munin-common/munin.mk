@@ -1,11 +1,7 @@
-MUNIN_VERSION=	2.0.24
+MUNIN_VERSION=	2.0.25
 MUNIN_SITES=	SF/${PORTNAME}/stable/${MUNIN_VERSION}
 DISTINFO_FILE=	${PORTSDIR}/sysutils/munin-common/distinfo
-
-.if ${PKGNAMESUFFIX} != -common
-EXTRA_PATCHES+=	${PORTSDIR}/sysutils/munin-common/files/patch-Makefile \
-		${PORTSDIR}/sysutils/munin-common/files/patch-Makefile.config
-.endif
+PATCHDIR=	${.CURDIR}/../../sysutils/munin-common/files
 
 PORTSCOUT=	limit:^2\.0\.
 
@@ -33,3 +29,5 @@ MAKE_ARGS=	${MUNIN_DIRS} \
 USERS=		munin
 GROUPS=		munin
 PLIST_SUB=	${MUNIN_DIRS} USER=${USERS} GROUP=${GROUPS}
+
+CPE_VENDOR=	munin-monitoring

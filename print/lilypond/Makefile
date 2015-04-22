@@ -7,7 +7,7 @@ PORTREVISION=	2
 CATEGORIES=	print audio
 MASTER_SITES=	http://download.linuxaudio.org/lilypond/sources/v${PORTVERSION:R}/
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The GNU music typesetter
 
 LICENSE=	GPLv3
@@ -28,7 +28,7 @@ BUILD_DEPENDS=	pdftexi2dvi:${PORTSDIR}/print/texinfo \
 		${LOCALBASE}/share/ghostscript/fonts/c059033l.pfb:${PORTSDIR}/print/gsfonts
 
 RUN_DEPENDS=	mftrace:${PORTSDIR}/print/mftrace \
-		${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSans-Bold.ttf:${PORTSDIR}/x11-fonts/dejavu
+		${LOCALBASE}/share/fonts/dejavu/DejaVuSans-Bold.ttf:${PORTSDIR}/x11-fonts/dejavu
 
 LIB_DEPENDS=	libguile.so:${PORTSDIR}/lang/guile \
 		libgmp.so:${PORTSDIR}/math/gmp \

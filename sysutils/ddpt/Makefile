@@ -2,14 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	ddpt
-PORTVERSION=	0.94
+PORTVERSION=	0.95
 CATEGORIES=	sysutils
 MASTER_SITES=	http://sg.danny.cz/sg/p/
 
 MAINTAINER=	delphij@FreeBSD.org
 COMMENT=	dd tool that specializes in files that are block devices
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake tar:tgz

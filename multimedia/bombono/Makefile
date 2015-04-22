@@ -3,7 +3,7 @@
 
 PORTNAME=	bombono
 PORTVERSION=	1.2.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	multimedia
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-dvd/${PORTVERSION:R}
 DISTNAME=	${PORTNAME}-dvd-${PORTVERSION}
@@ -24,7 +24,7 @@ RUN_DEPENDS=	gm:${PORTSDIR}/graphics/GraphicsMagick \
 		growisofs:${PORTSDIR}/sysutils/dvd+rw-tools \
 		toolame:${PORTSDIR}/audio/toolame
 
-USES=		pkgconfig scons tar:bzip2
+USES=		gettext pkgconfig scons tar:bzip2
 USE_GCC=	any
 INSTALLS_ICONS=	yes
 
@@ -35,6 +35,12 @@ MAKE_ARGS=	DVDREAD_INCLUDE=${LOCALBASE}/include \
 		CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" \
 		CC="${CC}" CXX="${CXX}"
 
+.include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000000
+BROKEN=		does not build on 10.x+
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|-O2||' ${WRKSRC}/SConstruct
 
@@ -42,4 +48,4 @@ post-install:
 	cd ${WRKSRC}/docs/man/man1 && ${INSTALL_MAN} bombono-dvd.1 \
 		mpeg2demux.1 ${STAGEDIR}${MANPREFIX}/man/man1
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

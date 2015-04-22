@@ -3,15 +3,20 @@
 
 PORTNAME=	valgrind
 DISTVERSIONPREFIX=	freebsd-
-DISTVERSION=	3.9.0.rc1
+PORTVERSION=	3.10.0.20150126
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel
-MASTER_SITES=	http://cdn.bitbucket.org/stass/valgrind-freebsd/downloads/ \
+MASTER_SITES=	https://bitbucket.org/${BB_ACCOUNT}/${BB_PROJECT}/get/${BB_COMMIT}.tar.gz?dummy=/ \
 		http://mirror.shatow.net/freebsd/${PORTNAME}/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	bdrewery@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Memory debugging and profiling tool
+
+BB_COMMIT=	963c4a777573
+BB_ACCOUNT=	stass
+BB_PROJECT=	valgrind-freebsd
 
 LICENSE=	GPLv2
 
@@ -26,33 +31,31 @@ BUILD_DEPENDS+=		docbook-xsl>=0:${PORTSDIR}/textproc/docbook-xsl \
 
 OPTIONS_DEFINE=		MPI DOCS
 OPTIONS_DEFINE_amd64=	32BIT
-#.if exists(${LIB32_PATH})
-#OPTIONS_DEFAULT_amd64=	32BIT
-#.endif
+.if exists(${LIB32_PATH})
+OPTIONS_DEFAULT_amd64=	32BIT
+.endif
 32BIT_DESC=	Enable debugging of 32-bit programs (requires lib32)
 MPI_DESC=	Enable build of MPI wrappers
 
 MPI_LIB_DEPENDS=	libmpich.so:${PORTSDIR}/net/mpich2
 
 OPTIONS_SUB=	yes
-USES=		pathfix pkgconfig gmake perl5 shebangfix tar:bzip2
+USES=		pathfix pkgconfig gmake perl5 shebangfix autoreconf
+PATHFIX_MAKEFILEIN=	Makefile.am
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+SHEBANG_FILES=	callgrind/callgrind_annotate.in callgrind/callgrind_control.in
 
 PORTDOCS=	html
 
-WRKSRC=		${WRKDIR}/${DISTNAME}
+WRKSRC=		${WRKDIR}/${BB_ACCOUNT}-${BB_PROJECT}-${BB_COMMIT}
 
 CONFIGURE_ENV+=	ac_cv_path_PERL=${PERL}
 
-BROKEN_amd64=	Fails to build
+USE_GCC=	yes
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:M32BIT}
-BROKEN=	Currently does not build with 32bit support
-.endif
 
 .if ${ARCH} == "amd64"
 PLIST_SUB+=	AMD64="" ARCH=amd64
@@ -76,9 +79,7 @@ post-patch:
 	@${RM} -rf ${WRKSRC}/docs/html
 .endif
 
-do-build: do-man-pages
-
-do-man-pages:
+post-build:
 	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} man-pages
 .if ${PORT_OPTIONS:MDOCS}
 	cd ${WRKSRC}/docs && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} html-docs

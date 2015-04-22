@@ -4,6 +4,7 @@
 PORTNAME=	silo
 PORTVERSION=	4.10
 DISTVERSIONSUFFIX=	-bsd
+PORTREVISION=	1
 CATEGORIES=	science
 MASTER_SITES=	https://wci.llnl.gov/codes/${PORTNAME}/silo-${PORTVERSION}/
 
@@ -35,7 +36,7 @@ PYTHON_CONFIGURE_ENABLE=	pythonmodule
 PYTHON_USES=			python:2
 
 QT4_USE=			XORG=xext,xi,xmu,xt \
-				QT4=gui,linguist_build,moc_build,uic_build
+				QT4=gui,linguisttools_build,moc_build,uic_build
 QT4_CONFIGURE_ON=		--with-Qt-dir=${QT_PREFIX} \
 				--with-Qt-lib="QtGui -lQtCore"
 QT4_CONFIGURE_ENABLE=		silex

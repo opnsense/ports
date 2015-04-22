@@ -3,11 +3,12 @@
 
 PORTNAME=	Text-Decorator
 PORTVERSION=	1.65
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Apply a chain of filters to text
 
 LICENSE=	ART10 GPLv1

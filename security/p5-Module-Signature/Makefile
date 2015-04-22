@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Module-Signature
-PORTVERSION=	0.73
+PORTVERSION=	0.78
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,30 +10,25 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Module signature file manipulation
 
-BUILD_DEPENDS=	p5-IPC-Run>=0:${PORTSDIR}/devel/p5-IPC-Run \
-		p5-PAR-Dist>=0:${PORTSDIR}/devel/p5-PAR-Dist
+BUILD_DEPENDS=	p5-PAR-Dist>=0:${PORTSDIR}/devel/p5-PAR-Dist
 RUN_DEPENDS:=	${BUILD_DEPENDS}
+TEST_DEPENDS=	p5-IPC-Run>=0:${PORTSDIR}/devel/p5-IPC-Run
 
 CONFIGURE_ENV=	PERL_MM_USE_DEFAULT="yes"
 USES=		perl5
 USE_PERL5=	configure
 
 OPTIONS_DEFAULT=	GPG2
-OPTIONS_MULTI=	GPG
+OPTIONS_MULTI=		GPG
 OPTIONS_MULTI_GPG=	GPG1 GPG2
+
 GPG1_DESC=	Use GnuPG version 1
 GPG2_DESC=	Use GnuPG version 2
 
-.include <bsd.port.pre.mk>
+GPG1_BUILD_DEPENDS=	gpgv:${PORTSDIR}/security/gnupg1
+GPG1_RUN_DEPENDS=	${GPG1_BUILD_DEPENDS}
 
-.if ${PORT_OPTIONS:MGPG1}
-BUILD_DEPENDS+=	${LOCALBASE}/bin/gpgv:${PORTSDIR}/security/gnupg1
-RUN_DEPENDS+=	${LOCALBASE}/bin/gpgv:${PORTSDIR}/security/gnupg1
-.endif
+GPG2_BUILD_DEPENDS=	gpgv2:${PORTSDIR}/security/gnupg
+GPG2_RUN_DEPENDS=	${GPG2_BUILD_DEPENDS}
 
-.if ${PORT_OPTIONS:MGPG2}
-BUILD_DEPENDS+=	${LOCALBASE}/bin/gpgv2:${PORTSDIR}/security/gnupg
-RUN_DEPENDS+=	${LOCALBASE}/bin/gpgv2:${PORTSDIR}/security/gnupg
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

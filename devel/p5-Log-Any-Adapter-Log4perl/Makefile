@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Log-Any-Adapter-Log4perl
-PORTVERSION=	0.06
+PORTVERSION=	0.08
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,10 +10,12 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Log::Any adapter for Log4perl
 
-RUN_DEPENDS=	p5-File-Temp>=0.20:${PORTSDIR}/devel/p5-File-Temp \
-		p5-Log-Any-Adapter>0:${PORTSDIR}/devel/p5-Log-Any-Adapter \
-		p5-Log-Log4perl>0:${PORTSDIR}/devel/p5-Log-Log4perl
-BUILD_DEPENDS:=	${RUN_DEPENDS}
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
+
+BUILD_DEPENDS=	p5-Log-Any>=1.03:${PORTSDIR}/devel/p5-Log-Any \
+		p5-Log-Log4perl>=1.32:${PORTSDIR}/devel/p5-Log-Log4perl
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
 USE_PERL5=	configure

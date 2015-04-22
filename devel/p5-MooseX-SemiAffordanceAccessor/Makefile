@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	MooseX-SemiAffordanceAccessor
-PORTVERSION=	0.09
+PORTVERSION=	0.10
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DROLSKY
@@ -10,6 +10,8 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Name your accessors foo() and set_foo()
+
+LICENSE=	ART20
 
 BUILD_DEPENDS=	p5-Moose>=0.94:${PORTSDIR}/devel/p5-Moose
 RUN_DEPENDS:=	${BUILD_DEPENDS}

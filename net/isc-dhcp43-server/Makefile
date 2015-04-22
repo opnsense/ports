@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dhcp
-DISTVERSION=	4.3.1
+DISTVERSION=	4.3.2
 PORTREVISION=	${DHCP_PORTREVISION}
 CATEGORIES=	net
 MASTER_SITES=	${MASTER_SITE_ISC}
@@ -12,7 +12,7 @@ PKGNAMESUFFIX=	43-${SUBSYS}
 #DISTNAME=	${PORTNAME}-${DISTVERSION}-${PATCHLEVEL}
 
 MAINTAINER=	zi@FreeBSD.org
-COMMENT?=	The ISC Dynamic Host Configuration Protocol server
+COMMENT?=	ISC Dynamic Host Configuration Protocol server
 
 LICENSE=	ISCL
 
@@ -150,9 +150,10 @@ do-install:
 	${SETENV} DESTDIR=${STAGEDIR} ${MAKE} -C ${WRKSRC}/includes install
 	${SETENV} DESTDIR=${STAGEDIR} ${MAKE} -C ${WRKSRC}/common install
 	${INSTALL_DATA} ${WRKSRC}/dhcpctl/dhcpctl.h ${STAGEDIR}${PREFIX}/include
+	${MV} ${STAGEDIR}${PREFIX}/etc/dhcpd.conf.example ${STAGEDIR}${PREFIX}/etc/dhcpd.conf.sample
 .if ${PORT_OPTIONS:MIPV6}
 	${INSTALL_DATA} ${WRKSRC}/doc/examples/dhcpd-dhcpv6.conf \
-		${STAGEDIR}${PREFIX}/etc/dhcpd6.conf.example
+		${STAGEDIR}${PREFIX}/etc/dhcpd6.conf.sample
 .endif
 .if ${PORT_OPTIONS:MLDAP}
 	@${MKDIR} ${STAGEDIR}${SCHEMA_DIR}

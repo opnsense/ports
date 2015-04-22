@@ -3,11 +3,12 @@
 
 PORTNAME=	Math-FFT
 PORTVERSION=	1.28
+PORTREVISION=	1
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl module providing an interface to Fast Fourier Transform routines
 
 LICENSE=	ART10 GPLv1

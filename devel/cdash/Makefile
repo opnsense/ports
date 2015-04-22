@@ -8,7 +8,7 @@ CATEGORIES=	devel
 MASTER_SITES=	http://www.cdash.org/download/
 DISTNAME=	CDash-${PORTVERSION}
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Web-based software testing server
 
 LICENSE=	BSD3CLAUSE
@@ -37,7 +37,7 @@ DB_TYPE=	mysql
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 USE_PHP+=	pgsql
 DB_TYPE=	pgsql
 .endif

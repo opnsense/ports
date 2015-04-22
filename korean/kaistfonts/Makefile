@@ -1,11 +1,12 @@
 # Created by: Junho CHOI <junho.choi@gmail.com>
 # $FreeBSD$
 
-PORTNAME=	kaistfonts-ksc
+PORTNAME=	kaistfonts
 PORTVERSION=	1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	korean x11-fonts
 MASTER_SITES=	ftp://ftp.kr.freebsd.org/pub/FreeBSD-kr/distfiles/
+PKGNAMESUFFIX=	-ksc
 DISTNAME=	${PKGNAME}
 DISTFILES=	kaist-newmj18.bdf.gz ks_philgi16.bdf.gz \
 		kaist-newmj16.bdf.gz ks_iyagi16.bdf.gz
@@ -13,13 +14,13 @@ DISTFILES=	kaist-newmj18.bdf.gz ks_philgi16.bdf.gz \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	X11 KAIST font(ksc5601.1987-0 encoding) collection
 
-BUILD_DEPENDS=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf
-RUN_DEPENDS=	mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
-		mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
+SUB_FILES=	pkg-message
 
-USES=		gmake
+BUILD_DEPENDS=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf
+
+USES=		fonts gmake
 NO_WRKSUBDIR=	yes
-MAKE_ENV=	DISTDIR=${DISTDIR} DISTFILES="${DISTFILES}"
+MAKE_ENV=	DISTDIR=${DISTDIR} DISTFILES="${DISTFILES}" FONTSDIR="${FONTSDIR}"
 
 do-extract:
 	@${RM} -fr ${WRKDIR} && \

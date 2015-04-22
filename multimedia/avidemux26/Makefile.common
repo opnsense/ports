@@ -9,7 +9,7 @@ BUILD_DEPENDS+=	yasm:${PORTSDIR}/devel/yasm \
 		bash:${PORTSDIR}/shells/bash
 LIB_DEPENDS+=	libmad.so:${PORTSDIR}/audio/libmad \
 		libdca.so:${PORTSDIR}/multimedia/libdca \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 LICENSE=	GPLv2
 
@@ -97,7 +97,7 @@ USE_GNOME+=	libxslt
 .endif
 
 .if ${PORT_OPTIONS:MGTK3}
-USE_GNOME+=	gnomeprefix gnomehack gtk30
+USE_GNOME+=	gnomeprefix gtk30
 PLIST_SUB+=	GTK=""
 .else
 CMAKE_ARGS+=	-DGTK:BOOL=OFF
@@ -195,7 +195,7 @@ PLIST_SUB+=	FAAD="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MX264}
-LIB_DEPENDS+=	libx264.so:${PORTSDIR}/multimedia/x264
+LIB_DEPENDS+=	libx264.so:${PORTSDIR}/multimedia/libx264
 PLIST_SUB+=	X264=""
 .else
 CMAKE_ARGS+=	-DX264:BOOL=OFF
@@ -258,10 +258,10 @@ BROKEN=		Does not compile on ia64, powerpc, or sparc64
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} 's|-lpthread|${PTHREAD_LIBS}|g' ${WRKSRC}/*/*/Makefile
 	@${MKDIR} ${CONFIGURE_WRKSRC}/config
 	@${LN} -s ${LOCALBASE}/include/iconv.h ${CONFIGURE_WRKSRC}/config
 	@${REINPLACE_CMD} 's|-ldl||' ${WRKSRC}/avidemux_core/CMakeLists.txt
 
 post-configure-common:
-	@${FIND} ${CONFIGURE_WRKSRC} -name link.txt -print0 |${XARGS} -0 ${REINPLACE_CMD} 's|-ldl||g'
+	@${FIND} ${CONFIGURE_WRKSRC} -name link.txt -print0 | \
+		${XARGS} -0 ${REINPLACE_CMD} 's|-ldl||g'

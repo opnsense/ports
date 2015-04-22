@@ -3,6 +3,7 @@
 
 PORTNAME=	DBIx-Class-Schema-Loader
 PORTVERSION=	0.07042
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -52,7 +53,7 @@ USE_PERL5=	configure
 MYSQL_USE=		MYSQL=yes
 ORACLE_BUILD_DEPENDS=	p5-DBD-Oracle>=0.19:${PORTSDIR}/databases/p5-DBD-Oracle
 ORACLE_RUN_DEPENDS=	p5-DBD-Oracle>=0.19:${PORTSDIR}/databases/p5-DBD-Oracle
-PGSQL_USE=		PGSQL=yes
+PGSQL_USES=		pgsql
 SQLITE_USE=		SQLITE=yes
 
 .include <bsd.port.mk>

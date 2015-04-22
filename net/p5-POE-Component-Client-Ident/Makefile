@@ -3,11 +3,12 @@
 
 PORTNAME=	POE-Component-Client-Ident
 PORTVERSION=	1.16
+PORTREVISION=	1
 CATEGORIES=	net perl5 devel
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	POE component for non-blocking ident lookups
 
 BUILD_DEPENDS=	p5-POE>=0.9999:${PORTSDIR}/devel/p5-POE

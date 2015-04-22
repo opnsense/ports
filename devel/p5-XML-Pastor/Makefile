@@ -3,11 +3,12 @@
 
 PORTNAME=	XML-Pastor
 PORTVERSION=	1.0.4
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Generate Perl classes with XML bindings from a W3C XSD schema
 
 LICENSE=	ART10 GPLv1

@@ -3,9 +3,9 @@
 
 PORTNAME=	openvsp
 PORTVERSION=	2.3.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	cad
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	fernando.apesteguia@gmail.com
 COMMENT=	Create a 3D model of an aircraft defined by engineering parameters
@@ -19,7 +19,7 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libopenNURBS.a:${PORTSDIR}/graphics/opennurbs
 LIB_DEPENDS=	libpthread-stubs.so:${PORTSDIR}/devel/libpthread-stubs \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libdrm.so:${PORTSDIR}/graphics/libdrm \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \

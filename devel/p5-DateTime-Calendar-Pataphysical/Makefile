@@ -3,6 +3,7 @@
 
 PORTNAME=	DateTime-Calendar-Pataphysical
 PORTVERSION=	0.05
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -20,12 +21,8 @@ OPTIONS_DEFINE= DOCS
 
 PORTDOCS=	Changes README
 
-.include <bsd.port.options.mk>
-
 post-install:
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-.endif
 
 .include <bsd.port.mk>

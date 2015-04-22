@@ -3,11 +3,12 @@
 
 PORTNAME=	DBIx-Class-InflateColumn-IP
 PORTVERSION=	0.02003
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Component to auto-create NetAddr::IP objects from columns
 
 BUILD_DEPENDS=	p5-DBIx-Class>=0.06002:${PORTSDIR}/databases/p5-DBIx-Class \

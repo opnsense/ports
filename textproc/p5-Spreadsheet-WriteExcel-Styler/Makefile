@@ -3,11 +3,12 @@
 
 PORTNAME=	Spreadsheet-WriteExcel-Styler
 PORTVERSION=	1.02
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Styles for formatting Spreadsheet::WriteExcel
 
 LICENSE=	ART10 GPLv1

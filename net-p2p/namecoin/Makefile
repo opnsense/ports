@@ -5,7 +5,7 @@ PORTNAME=	namecoin
 PORTVERSION=	Q.3.72
 PORTREVISION=	3
 CATEGORIES=	net-p2p dns
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	milios@ccsys.com
 COMMENT=	Decentralized, open DNS system and general purpose key/value store
@@ -76,7 +76,6 @@ post-patch:
 	@cd ${WRKSRC}/src && ${CP} ${FILESDIR}/makefile.unix Makefile
 	@${REINPLACE_CMD} \
 		-e 's|^USE_UPNP.*$$|USE_UPNP=${QMAKE_USE_UPNP}|' \
-		-e 's|-l pthread|${PTHREAD_LIBS}|g' \
 		${WRKSRC}/src/Makefile
 .endif
 

@@ -2,40 +2,63 @@
 # $FreeBSD$
 
 PORTNAME=	tulip
-PORTVERSION=	4.6.0
+PORTVERSION=	4.6.1
+DISTVERSIONSUFFIX=	_src
 CATEGORIES=	graphics
 MASTER_SITES=	SF/auber/${PORTNAME}/${PORTNAME}-${PORTVERSION}
-DISTNAME=	${PORTNAME}-${PORTVERSION}_src
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	System dedicated to the visualization of huge graphs
 
-LIB_DEPENDS=	libexecinfo.so:${PORTSDIR}/devel/libexecinfo \
-		libQxtCore.so:${PORTSDIR}/devel/libqxt \
-		libOGDF.so:${PORTSDIR}/math/ogdf \
-		libpng.so:${PORTSDIR}/graphics/png \
-		libjpeg.so:${PORTSDIR}/graphics/jpeg
+LICENSE=	LGPL3
 
-USES=		cmake:outsource compiler:c++11-lib dos2unix python shebangfix
+LIB_DEPENDS=	libquazip.so:${PORTSDIR}/archivers/quazip \
+		libjpeg.so:${PORTSDIR}/graphics/jpeg \
+		libpng.so:${PORTSDIR}/graphics/png \
+		libOGDF.so:${PORTSDIR}/math/ogdf \
+		libfreetype.so:${PORTSDIR}/print/freetype2
+
+WRKSRC=		${WRKDIR}/${PORTNAME}
+
+USES=		cmake:outsource compiler:c++11-lib dos2unix execinfo python \
+		shebangfix
 SHEBANG_FILES=	tulip-config.in
 DOS2UNIX_FILES=	software/tulip/src/main.cpp
 USE_CXXSTD=	c++11
 USE_GL=		glew glut
 USE_GNOME=	libxml2
-USE_QT4=	corelib moc_build uic_build rcc_build gui opengl xml network qmake_build \
-		designer assistant assistantclient
-CXXFLAGS+=	-fPIC -I${LOCALBASE}/include -DNDEBUG -DOGDF_DLL
-LDFLAGS+=	-L${LOCALBASE}/lib
-CMAKE_ARGS+=	-DPYTHON_INCLUDEDIR:PATH=${PYTHON_INCLUDEDIR} \
-    		-DLOCALBASE:PATH=${LOCALBASE} \
-		-DOGDFLibrary=${LOCALBASE}/lib/libOGDF.so \
-		-DOGDFInclude=${LOCALBASE}/include \
-		-DBUILD_DOC:BOOL=false
+CMAKE_ARGS=	-DBUILD_DOC:BOOL=OFF \
+		-DOGDFInclude:STRING=${LOCALBASE}/include \
+		-DOGDFLibrary:STRING=${LOCALBASE}/lib/libOGDF.so
 USE_LDCONFIG=	${PREFIX}/lib/tulip
 
-WRKSRC=		${WRKDIR}/${PORTNAME}
+CXXFLAGS+=	-fPIC -I${LOCALBASE}/include -DNDEBUG -DOGDF_DLL
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-PLIST_SUB+=	TULIP_VERSION=${PORTVERSION} \
-		TULIP_VERS=${PORTVERSION:R}
+PLIST_SUB=	TULIP_VERSION="${PORTVERSION}" \
+		TULIP_VERS="${PORTVERSION:R}"
+
+DESKTOP_ENTRIES="Tulip" "" "${PREFIX}/share/pixmaps.tulip.png" "tulip" "" ""
+
+OPTIONS_SINGLE=		GUI
+OPTIONS_SINGLE_GUI=	QT4 QT5
+OPTIONS_DEFAULT=	QT4
+
+QT4_USE=		qt4=corelib,gui,network,opengl,webkit \
+			qt4=xml,xmlpatterns \
+			qt4=moc_build,qmake_build,rcc_build,uic_build
+QT4_CMAKE_ON=		-DUSE_QT5_IF_INSTALLED:BOOL=OFF
+QT5_USE=		qt5=core,gui,network,opengl,webkit,widgets \
+			qt5=xml,xmlpatterns \
+			qt5=buildtools_build,qmake_build
+QT5_CMAKE_ON=		-DUSE_QT5_IF_INSTALLED:BOOL=ON
+
+post-build:
+	@${LN} -sf logo32x32.png \
+		${WRKSRC}/library/tulip-gui/resources/icons/tulip.png
+
+post-install:
+	(cd ${WRKSRC}/library/tulip-gui/resources/icons && ${INSTALL_DATA} \
+		tulip.png ${STAGEDIR}${PREFIX}/share/pixmaps)
 
 .include <bsd.port.mk>

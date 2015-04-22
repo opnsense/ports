@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pciids
-PORTVERSION=	20141004
+PORTVERSION=	20150417
 CATEGORIES=	misc
 MASTER_SITES=	LOCAL/sunpoet
 
@@ -16,7 +16,6 @@ NO_BUILD=	yes
 USES=		tar:xz
 
 PLIST_FILES=	%%DATADIR%%/pci.ids
-PLIST_DIRS=	%%DATADIR%%
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/

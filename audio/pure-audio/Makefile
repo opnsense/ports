@@ -3,7 +3,7 @@
 
 PORTNAME=	pure-audio
 PORTVERSION=	0.5
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	https://cdn.bitbucket.org/purelang/pure-lang/downloads/
 DIST_SUBDIR=	pure
@@ -13,6 +13,7 @@ COMMENT=	Digital audio interface for the Pure language
 
 LICENSE=	BSD3CLAUSE
 
+BROKEN=		Unfetchable
 LIB_DEPENDS=	libportaudio.so.2:${PORTSDIR}/audio/portaudio2 \
 		libsamplerate.so:${PORTSDIR}/audio/libsamplerate \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile \

@@ -3,6 +3,7 @@
 
 PORTNAME=	Algorithm-CheckDigits
 PORTVERSION=	1.3.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
@@ -17,6 +18,6 @@ LICENSE_COMB=	dual
 TEST_DEPENDS=	p5-Probe-Perl>=0:${PORTSDIR}/sysutils/p5-Probe-Perl
 
 USES=		perl5
-USE_PERL5=	configure
+USE_PERL5=	modbuild
 
 .include <bsd.port.mk>

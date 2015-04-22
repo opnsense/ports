@@ -5,6 +5,7 @@ bin/catalyst.pl
 %%SITE_PERL%%/Catalyst/ActionContainer.pm
 %%SITE_PERL%%/Catalyst/ActionRole/ConsumesContent.pm
 %%SITE_PERL%%/Catalyst/ActionRole/HTTPMethods.pm
+%%SITE_PERL%%/Catalyst/ActionRole/Scheme.pm
 %%SITE_PERL%%/Catalyst/Base.pm
 %%SITE_PERL%%/Catalyst/ClassData.pm
 %%SITE_PERL%%/Catalyst/Component.pm
@@ -32,8 +33,10 @@ bin/catalyst.pl
 %%SITE_PERL%%/Catalyst/PSGI.pod
 %%SITE_PERL%%/Catalyst/Plugin/Unicode/Encoding.pm
 %%SITE_PERL%%/Catalyst/Request.pm
+%%SITE_PERL%%/Catalyst/Request/PartData.pm
 %%SITE_PERL%%/Catalyst/Request/Upload.pm
 %%SITE_PERL%%/Catalyst/Response.pm
+%%SITE_PERL%%/Catalyst/Response/Writer.pm
 %%SITE_PERL%%/Catalyst/Runtime.pm
 %%SITE_PERL%%/Catalyst/Script/CGI.pm
 %%SITE_PERL%%/Catalyst/Script/Create.pm
@@ -44,16 +47,17 @@ bin/catalyst.pl
 %%SITE_PERL%%/Catalyst/ScriptRunner.pm
 %%SITE_PERL%%/Catalyst/Stats.pm
 %%SITE_PERL%%/Catalyst/Test.pm
+%%SITE_PERL%%/Catalyst/UTF8.pod
 %%SITE_PERL%%/Catalyst/Upgrading.pod
 %%SITE_PERL%%/Catalyst/Utils.pm
 %%SITE_PERL%%/Catalyst/View.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Runtime/.packlist
 %%PERL5_MAN3%%/Catalyst.3.gz
 %%PERL5_MAN3%%/Catalyst::Action.3.gz
 %%PERL5_MAN3%%/Catalyst::ActionChain.3.gz
 %%PERL5_MAN3%%/Catalyst::ActionContainer.3.gz
 %%PERL5_MAN3%%/Catalyst::ActionRole::ConsumesContent.3.gz
 %%PERL5_MAN3%%/Catalyst::ActionRole::HTTPMethods.3.gz
+%%PERL5_MAN3%%/Catalyst::ActionRole::Scheme.3.gz
 %%PERL5_MAN3%%/Catalyst::Base.3.gz
 %%PERL5_MAN3%%/Catalyst::ClassData.3.gz
 %%PERL5_MAN3%%/Catalyst::Component.3.gz
@@ -81,8 +85,10 @@ bin/catalyst.pl
 %%PERL5_MAN3%%/Catalyst::PSGI.3.gz
 %%PERL5_MAN3%%/Catalyst::Plugin::Unicode::Encoding.3.gz
 %%PERL5_MAN3%%/Catalyst::Request.3.gz
+%%PERL5_MAN3%%/Catalyst::Request::PartData.3.gz
 %%PERL5_MAN3%%/Catalyst::Request::Upload.3.gz
 %%PERL5_MAN3%%/Catalyst::Response.3.gz
+%%PERL5_MAN3%%/Catalyst::Response::Writer.3.gz
 %%PERL5_MAN3%%/Catalyst::Runtime.3.gz
 %%PERL5_MAN3%%/Catalyst::Script::CGI.3.gz
 %%PERL5_MAN3%%/Catalyst::Script::Create.3.gz
@@ -93,20 +99,8 @@ bin/catalyst.pl
 %%PERL5_MAN3%%/Catalyst::ScriptRunner.3.gz
 %%PERL5_MAN3%%/Catalyst::Stats.3.gz
 %%PERL5_MAN3%%/Catalyst::Test.3.gz
+%%PERL5_MAN3%%/Catalyst::UTF8.3.gz
 %%PERL5_MAN3%%/Catalyst::Upgrading.3.gz
 %%PERL5_MAN3%%/Catalyst::Utils.3.gz
 %%PERL5_MAN3%%/Catalyst::View.3.gz
 man/man1/catalyst.pl.1.gz
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Runtime
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst
-@dirrmtry %%SITE_PERL%%/Catalyst/Script
-@dirrmtry %%SITE_PERL%%/Catalyst/Request
-@dirrmtry %%SITE_PERL%%/Catalyst/Plugin/Unicode
-@dirrmtry %%SITE_PERL%%/Catalyst/Plugin
-@dirrmtry %%SITE_PERL%%/Catalyst/Middleware
-@dirrmtry %%SITE_PERL%%/Catalyst/Exception
-@dirrmtry %%SITE_PERL%%/Catalyst/Engine
-@dirrmtry %%SITE_PERL%%/Catalyst/DispatchType
-@dirrmtry %%SITE_PERL%%/Catalyst/Component
-@dirrmtry %%SITE_PERL%%/Catalyst/ActionRole
-@dirrmtry %%SITE_PERL%%/Catalyst

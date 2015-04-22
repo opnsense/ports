@@ -3,12 +3,12 @@
 
 PORTNAME=	freetds
 PORTVERSION=	0.91.103
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/stable/
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Sybase/Microsoft TDS protocol library
 
 LICENSE=	GPLv2

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Graphics-Primitive-Driver-Cairo
-PORTVERSION=	0.45
+PORTVERSION=	0.46
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

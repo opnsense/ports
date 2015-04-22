@@ -7,6 +7,7 @@
 
 PORTNAME=	sphinxsearch
 PORTVERSION=	2.2.1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	textproc databases
 MASTER_SITES=	http://sphinxsearch.com/files/ \
@@ -76,14 +77,13 @@ OPTIMIZED_CFLAGS_CXXFLAGS=-O3 -fomit-frame-pointer
 PGSQL_CONFIGURE_WITH=	pgsql
 PGSQL_CONFIGURE_ON=	--with-pgsql-includes=${LOCALBASE}/include \
 			--with-pgsql-libs=${LOCALBASE}/lib
-PGSQL_USE=		pgsql
+PGSQL_USES=		pgsql
 
 SYSLOG_DESC=		Enable logging via syslog
 SYSLOG_CONFIGURE_WITH=	syslog
 
 UNIXODBC_CONFIGURE_WITH=unixodbc
 UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
-
 
 CONFLICTS=	sphinxsearch-[0-9]* dpsearch-[0-9]* rdb-[0-9]* \
 		swish++-[0-9]* xaira-[0-9]*
@@ -167,7 +167,7 @@ install-man:
 install-examples:
 .if ${PORT_OPTIONS:MEXAMPLES}
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} ${EXAMPLES} ${STAGEDIR}${EXAMPLESDIR})
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} "${EXAMPLES}" ${STAGEDIR}${EXAMPLESDIR})
 .endif
 
 .include <bsd.port.mk>

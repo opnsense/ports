@@ -3,7 +3,7 @@
 
 PORTNAME=	darkice
 PORTVERSION=	1.2
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	audio net
 MASTER_SITES=	GOOGLE_CODE
 
@@ -19,9 +19,8 @@ OPTIONS_DEFAULT=	VORBIS
 
 AACPLUS_DESC=	AAC HEv2 and libsamplerate support
 
-USE_AUTOTOOLS=	aclocal automake autoconf
-ACLOCAL_ARGS=	# none
-AUTOMAKE_ARGS=	--add-missing --copy --foreign
+USES=		autoreconf
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_prog_acx_pthread_config=no
 CONFIGURE_ARGS=	--without-alsa
 

@@ -3,7 +3,7 @@
 
 PORTNAME=	rocksndiamonds
 PORTVERSION=	3.3.1.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	http://www.artsoft.org/RELEASES/unix/rocksndiamonds/:game \
 		http://www.artsoft.org/RELEASES/rocksndiamonds/levels/:levels_artsoft \
@@ -24,6 +24,7 @@ MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Colorful Boulderdash'n'Emerald Mine'n'Sokoban'n'Stuff
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libsmpeg.so:${PORTSDIR}/multimedia/smpeg
 EXTRACT_DEPENDS=${UNZIP_CMD}:${PORTSDIR}/archivers/unzip
@@ -110,8 +111,6 @@ do-install:
 	${INSTALL_DATA} ${DOC_FILES2:S|^|${DOCSRCDIR2}/|} ${STAGEDIR}${DOCSDIR2}
 
 	@cd ${STAGEDIR}${PREFIX} && ${FIND} ${DATADIR_REL}/levels \
-		-type f >> ${TMPPLIST} && \
-		${FIND} ${DATADIR_REL}/levels -type d -o -type l | ${SORT} -r | \
-		${SED} 's|^|@dirrm |' >> ${TMPPLIST}
+		-type f >> ${TMPPLIST}
 
 .include <bsd.port.mk>

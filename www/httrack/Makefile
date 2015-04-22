@@ -2,9 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	httrack
-PORTVERSION=	3.48.19
+PORTVERSION=	3.48.21
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://download.httrack.com/ \
+		http://mirror.httrack.com/ \
 		http://mirror.httrack.com/historical/ \
 		LOCAL/sunpoet
 
@@ -23,14 +25,19 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_LDCONFIG=	${PREFIX}/lib/httrack
-USES=		alias gmake iconv libtool shebangfix
+USE_OPENSSL=	yes
+USES=		alias execinfo gmake iconv libtool shebangfix
 
 PORTDATA=	*
 PORTDOCS=	*
 
 SHEBANG_FILES=	src/webhttrack
 
-.include <bsd.port.options.mk>
+.include <bsd.port.pre.mk>
+
+.if empty(ICONV_LIB)
+CONFIGURE_ARGS+=ac_cv_lib_iconv_iconv=no
+.endif
 
 .if ${PORT_OPTIONS:MICONS}
 INSTALLS_ICONS=	yes
@@ -44,4 +51,4 @@ post-patch:
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/html/httrack.css ${STAGEDIR}${DOCSDIR}/httrack.css
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

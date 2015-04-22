@@ -1,3 +1,4 @@
+lib/rsyslog/im3195.so
 lib/rsyslog/imdiag.so
 lib/rsyslog/imfile.so
 lib/rsyslog/imklog.so
@@ -17,9 +18,10 @@ lib/rsyslog/lmtcpsrv.so
 lib/rsyslog/lmzlibw.so
 lib/rsyslog/mmexternal.so
 lib/rsyslog/ommail.so
+lib/rsyslog/omprog.so
 lib/rsyslog/omstdout.so
 lib/rsyslog/omtesting.so
+lib/rsyslog/omuxsock.so
 man/man5/rsyslog.conf.5.gz
 man/man8/rsyslogd.8.gz
 sbin/rsyslogd
-@dirrmtry lib/rsyslog

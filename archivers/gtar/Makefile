@@ -3,6 +3,7 @@
 
 PORTNAME=	tar
 PORTVERSION=	1.28
+PORTREVISION=	2
 CATEGORIES=	archivers sysutils
 MASTER_SITES=	GNU
 PKGNAMEPREFIX=	g
@@ -14,7 +15,8 @@ LICENSE=	GPLv3
 
 INFO=		tar
 
-USES=		iconv:${STATIC_ARGS} tar:xz charsetfix makeinfo
+USES=		charsetfix cpe iconv:${STATIC_ARGS} makeinfo tar:xz
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--disable-silent-rules
@@ -28,7 +30,7 @@ CONFIGURE_ENV+=	gl_cv_func_mknod_works=yes
 OPTIONS_DEFINE=	NLS STATIC
 OPTIONS_SUB=	yes
 
-NLS_USES=	gettext:${STATIC_ARGS}
+NLS_USES=	gettext-runtime:${STATIC_ARGS}
 NLS_CONFIGURE_ENABLE=	nls
 
 STATIC_LDFLAGS=	-static

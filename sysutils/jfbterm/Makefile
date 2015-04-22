@@ -4,7 +4,7 @@
 PORTNAME=	jfbterm
 PORTVERSION=	0.6.1
 DISTVERSIONPREFIX=FreeBSD-
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.ac.auone-net.jp/~baba/jfbterm/
 
@@ -58,7 +58,7 @@ MAKE_ENV+=	WITHOUT_ICONV=
 
 .if ${PORT_OPTIONS:MPNG}
 . if !defined(NO_SHARED)
-LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png
 . else
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libpng.a:${PORTSDIR}/graphics/png
 . endif
@@ -90,7 +90,7 @@ TERMCAP_DEL_RECORD=	${DO_NADA}
 .endif
 
 .if ${PORT_OPTIONS:MUNIFONT}
-RUN_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/local/unifont.pcf.gz:${PORTSDIR}/x11-fonts/gnu-unifont
+RUN_DEPENDS+=	${LOCALBASE}/share/fonts/gnu-unifont/unifont.pcf.gz:${PORTSDIR}/x11-fonts/gnu-unifont
 .endif
 
 post-extract:	.SILENT

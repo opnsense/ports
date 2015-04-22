@@ -11,6 +11,8 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple OpenGL-based firework simulator
 
+BROKEN=		No public distfiles
+
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 USE_GL=		gl glut
@@ -18,7 +20,6 @@ USE_XORG=	xi xmu xext
 
 EXAMPLES=	pyro.dsp water.jpg
 PLIST_FILES=	bin/pyro ${EXAMPLES:S|^|%%EXAMPLESDIR%%/|}
-PLIST_DIRS=	%%EXAMPLESDIR%%
 PORTDOCS=	README
 
 OPTIONS_DEFINE=	DOCS

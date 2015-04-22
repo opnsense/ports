@@ -3,7 +3,7 @@
 
 PORTNAME=	REminiscence
 PORTVERSION=	0.2.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	http://cyxdown.free.fr/reminiscence/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -21,7 +21,7 @@ SUB_FILES=	pkg-message
 PORTDOCS=	README
 
 PLIST_FILES=	bin/remin
-PLIST_DIRSTRY=	%%DATADIR%%/data %%DATADIR%%
+PLIST_DIRS=	%%DATADIR%%/data
 
 OPTIONS_DEFINE=	DOCS
 

@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	typo3
-PORTVERSION=	6.2.4
+PORTVERSION=	6.2.11
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/TYPO3%20Source%20and%20Dummy/TYPO3%20${PORTVERSION}
 PKGNAMESUFFIX=	-lts
 
 MAINTAINER=	freebsd-ports@charlieroot.de
-COMMENT=	The typo3 content management system
+COMMENT=	Typo3 content management system
 
 LICENSE=	GPLv2
 
@@ -19,8 +19,8 @@ USE_PHP=	ctype fileinfo filter hash json mysqli openssl pcre session soap xml
 WANT_PHP_WEB=	yes
 
 TYPO3WWW=	www
-TYPO3RELEASE=	LTS
 TYPO3SRC=	${PORTNAME}_src-${PORTVERSION}
+TYPO3DIR=	${PORTNAME}-LTS
 
 USERS=		${WWWOWN}
 GROUPS=		${WWWGRP}
@@ -53,38 +53,24 @@ RUN_DEPENDS+=	convert:${PORTSDIR}/graphics/ImageMagick-nox11
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}
+	${MKDIR} ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${TYPO3DIR}
 	${CP} -R ${WRKDIR}/${TYPO3SRC} ${STAGEDIR}${PREFIX}/${TYPO3WWW}/
-	${LN} -fs ../${TYPO3SRC} ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/typo3_src
-	${LN} -fs typo3_src/index.php ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/index.php
-	${LN} -fs typo3_src/typo3 ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/typo3
-	${CP} ${WRKDIR}/${TYPO3SRC}/_.htaccess ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/.htaccess
+	${LN} -fs ../${TYPO3SRC} ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${TYPO3DIR}/typo3_src
+	${LN} -fs typo3_src/index.php ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${TYPO3DIR}/index.php
+	${LN} -fs typo3_src/typo3 ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${TYPO3DIR}/typo3
+	${CP} ${WRKDIR}/${TYPO3SRC}/_.htaccess ${STAGEDIR}${PREFIX}/${TYPO3WWW}/${TYPO3DIR}/.htaccess
 
 post-install:
 	@cd ${STAGEDIR}${PREFIX}; \
-		${FIND} * \( -type f -or -type l \) -path "${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/*" | \
+		${FIND} * \( -type f -or -type l \) -path "${TYPO3WWW}/${TYPO3DIR}/*" | \
 		${SORT} >> ${TMPPLIST}
-	@${ECHO_CMD} -e "@owner ${WWWOWN}\n@group ${WWWGRP}" >> ${TMPPLIST}
+	@cd ${STAGEDIR}${PREFIX}; \
+		${FIND} * \( -type f -or -type l \) \( -path "${TYPO3WWW}/${TYPO3SRC}/*" -and \
+		-not -path "${TYPO3WWW}/${TYPO3SRC}/typo3/ext/*" \) | \
+		${SORT} >> ${TMPPLIST}
 	@cd ${STAGEDIR}${PREFIX}; \
 		${FIND} * \( -type f -or -type l \) -path "${TYPO3WWW}/${TYPO3SRC}/typo3/ext/*" | \
-		${SORT} >> ${TMPPLIST}
-	@${ECHO_CMD} -e "@owner root\n@group wheel" >> ${TMPPLIST}
-	@cd ${STAGEDIR}${PREFIX}; \
-		${FIND} * \( -type f -or -type l \) \
-		-not \( -path "${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/*" -or \
-		-path "${TYPO3WWW}/${TYPO3SRC}/typo3/ext/*" \) | \
-		${SORT} >> ${TMPPLIST}
-	@${ECHO_CMD} -e "@owner ${WWWOWN}\n@group ${WWWGRP}" >> ${TMPPLIST}
-	@cd ${STAGEDIR}${PREFIX}; ${FIND} -d * -type d -regex "${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/*.*" | \
-		${SORT} | ${SED} -ne 's#^#@dirrmtry #p' >> ${TMPPLIST}
-	@${ECHO_CMD} -e "@owner ${WWWOWN}\n@group ${WWWGRP}" >> ${TMPPLIST}
-	@cd ${STAGEDIR}${PREFIX}; ${FIND} -d * -type d -regex "${TYPO3WWW}/${TYPO3SRC}/typo3/ext/*.*" | \
-		${SORT} | ${SED} -ne 's#^#@dirrmtry #p' >> ${TMPPLIST}
-	@${ECHO_CMD} -e "@owner root\n@group wheel" >> ${TMPPLIST}
-	@cd ${STAGEDIR}${PREFIX}; ${FIND} * -type d \
-		-path "${TYPO3WWW}/*" \
-		-not \( -regex "${TYPO3WWW}/${PORTNAME}-${TYPO3RELEASE}/*.*" -or \
-		-regex "${TYPO3WWW}/${TYPO3SRC}/typo3/ext/*.*" \) | \
-		${SORT} | ${SED} -ne 's#^#@dirrmtry #p' >> ${TMPPLIST}
+		${SORT} | ${SED} -ne 's#^#@(${WWWOWN},${WWWGRP},) #p' >> ${TMPPLIST}
+	@${ECHO} "@dir(${WWWOWN},${WWWGRP},) ${TYPO3WWW}/${TYPO3SRC}/typo3/ext" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

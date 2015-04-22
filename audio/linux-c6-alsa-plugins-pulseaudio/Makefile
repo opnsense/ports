@@ -3,7 +3,7 @@
 
 PORTNAME=	alsa-plugins-pulseaudio
 PORTVERSION=	1.0.21
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio linux
 PKGNAMEPREFIX=	linux-${USE_LINUX}-
 
@@ -25,5 +25,9 @@ USE_LINUX_RPM=	yes
 RPMVERSION=	3.el6
 
 USE_LDCONFIG=	yes
+
+# We will use native configuration file, so delete a linux one
+post-extract:
+	@${RM} -r ${WRKSRC}/etc
 
 .include <bsd.port.mk>

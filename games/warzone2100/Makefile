@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	warzone2100
-PORTVERSION=	3.1.1
-PORTREVISION=	3
+PORTVERSION=	3.1.2
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/releases/${PORTVERSION}/
 
@@ -23,7 +22,7 @@ LIB_DEPENDS=	libphysfs.so:${PORTSDIR}/devel/physfs \
 		libfribidi.so:${PORTSDIR}/converters/fribidi \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu
+RUN_DEPENDS=	${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu
 
 USES=		tar:xz bison gmake openal:al pkgconfig compiler:c++11-lang # actually, old gcc fails on unknown -W flag
 GNU_CONFIGURE=	yes

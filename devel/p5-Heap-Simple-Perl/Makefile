@@ -3,11 +3,12 @@
 
 PORTNAME=	Heap-Simple-Perl
 PORTVERSION=	0.14
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Pure perl implementation of the Heap::Simple interface
 
 LICENSE=	ART10 GPLv1

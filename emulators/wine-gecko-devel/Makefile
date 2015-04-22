@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine-gecko
-DISTVERSION=	2.24
+DISTVERSION=	2.36
 CATEGORIES=	emulators
 MASTER_SITES=	SF/wine/Wine%20Gecko/${DISTVERSION}
 PKGNAMESUFFIX=	-devel
@@ -20,7 +20,6 @@ NO_BUILD=	yes
 PLIST_SUB+=	GECKO_VERSION="${DISTVERSION}"
 DATADIR=	${PREFIX}/share/wine
 PLIST_FILES=	%%DATADIR%%/gecko/wine_gecko-%%GECKO_VERSION%%-x86.msi
-PLIST_DIRSTRY=	%%DATADIR%%/gecko %%DATADIR%%
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/gecko

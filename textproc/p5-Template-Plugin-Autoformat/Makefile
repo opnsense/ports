@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Template-Plugin-Autoformat
-PORTVERSION=	2.71
+PORTVERSION=	2.77
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-

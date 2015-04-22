@@ -6,7 +6,7 @@ PORTVERSION=	0.10.5
 CATEGORIES=	www
 MASTER_SITES=	http://www.clearsilver.net/downloads/
 
-MAINTAINER=	clsung@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Fast, powerful, and language-neutral template system
 
 GNU_CONFIGURE=	yes
@@ -17,7 +17,7 @@ CONFIGURE_ARGS=	--disable-apache --disable-perl --disable-ruby \
 
 .if defined(WITH_PYTHON)
 CONFIGURE_ARGS+=	--with-python=${PYTHON_CMD}
-USE_PYTHON=	yes
+USES+=		python
 PLIST_SUB+=	PYTHON=""
 PKGNAMESUFFIX=	-python
 .else

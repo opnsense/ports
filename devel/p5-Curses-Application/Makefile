@@ -3,12 +3,13 @@
 
 PORTNAME=	Curses-Application
 PORTVERSION=	0.2
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	CursesApplication-${PORTVERSION}
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Curses application development framework
 
 LICENSE=	GPLv2

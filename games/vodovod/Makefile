@@ -3,7 +3,7 @@
 
 PORTNAME=	vodovod
 PORTVERSION=	1.10
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	http://download.gna.org/vodovod/ \
 		SF/nemysisfreebsdp/:icons
@@ -14,7 +14,8 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}-src${EXTRACT_SUFX}
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Cross-platform pipe connecting action puzzle game
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}-src
 

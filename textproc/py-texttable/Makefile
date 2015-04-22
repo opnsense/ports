@@ -2,16 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	texttable
-PORTVERSION=	0.8.1
+PORTVERSION=	0.8.3
 CATEGORIES=	textproc python
 MASTER_SITES=	http://foutaise.org/code/texttable/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Module for creating simple ASCII tables
 
-USE_PYTHON=	yes
-USE_PYDISTUTILS=	yes
+LICENSE=	LGPL3
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USES=		python
+USE_PYTHON=	distutils
 
 PLIST_FILES=	%%PYTHON_SITELIBDIR%%/texttable.py \
 		%%PYTHON_SITELIBDIR%%/texttable.pyc \

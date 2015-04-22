@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	alsa-plugins
-PORTVERSION=	1.0.28
+PORTVERSION=	1.0.29
 CATEGORIES=	audio
 MASTER_SITES=	ALSA/plugins \
 		GENTOO/distfiles
 
-MAINTAINER=	jbeich@vfemail.net
+MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	ALSA compatibility library plugins
 
 LICENSE=	LGPL21 # or any later version
@@ -21,7 +21,7 @@ INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${.CURDIR}/../alsa-lib/files
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS_DEFAULT=BUFSZ_P2 IO_PTR
+OPTIONS_DEFAULT=IO_PTR
 OPTIONS_DEFINE=	JACK FFMPEG PULSEAUDIO SAMPLERATE SPEEX
 OPTIONS_SUB=	yes
 

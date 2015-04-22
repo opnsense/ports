@@ -3,14 +3,12 @@
 
 PORTNAME=	guile
 PORTVERSION=	2.0.11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang scheme
 MASTER_SITES=	GNU
-#MASTER_SITES=	${MASTER_SITE_GNU}
-#MASTER_SITE_SUBDIR=	guile
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	GNU Ubiquitous Intelligent Language for Extension
 
 LICENSE=	LGPL21
@@ -37,7 +35,7 @@ OPTIONS_SUB=	yes
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=	gettext
 THREADS_CONFIGURE_WITH=	threads
-THREADS_LIB_DEPENDS=	libgc.so:${PORTSDIR}/devel/boehm-gc-threaded
+THREADS_LIB_DEPENDS=	libgc-threaded.so:${PORTSDIR}/devel/boehm-gc-threaded
 THREADS_LIB_DEPENDS_OFF=	libgc.so:${PORTSDIR}/devel/boehm-gc
 
 REINPLACE_FILES=	libguile/smob.c libguile/filesys.c libguile/gc.c \

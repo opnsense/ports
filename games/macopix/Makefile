@@ -3,7 +3,7 @@
 
 PORTNAME=	macopix
 PORTVERSION=	1.7.4
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	games
 MASTER_SITES=	http://rosegray.sakura.ne.jp/macopix/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${RESTRICTED_FILES}
@@ -11,9 +11,15 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} ${RESTRICTED_FILES}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Window sitter for X11
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libtiff.so:${PORTSDIR}/graphics/tiff
+
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RESTRICTED=	'contains commercial character data'
 
@@ -107,7 +113,7 @@ post-install:
 		&& ${INSTALL_DATA} *.mcpx *.menu ${STAGEDIR}${DATADIR} \
 		&& ${INSTALL_DATA} README.jp ${STAGEDIR}${DATADIR}/README.HxB.jp
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_MAN} NKR.README.ja README README.ja \
-		${STAGEDIR}${DOCSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} NKR.README.ja README README.ja \
+		${STAGEDIR}${DOCSDIR}/
 
 .include <bsd.port.mk>

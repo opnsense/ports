@@ -3,11 +3,12 @@
 
 PORTNAME=	HTML-Pager
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl module for handling CGI HTML paging of arbitrary data
 
 LICENSE=	GPLv2

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	subversion
-PORTVERSION=	1.7.18
+PORTVERSION=	1.7.20
 PORTREVISION?=	0
 CATEGORIES+=	devel
 MASTER_SITES=	${MASTER_SITE_APACHE}
@@ -59,7 +59,7 @@ MOD_DAV_SVN_USE=		APACHE=22+
 
 NEON_CONFIGURE_OFF=		--without-neon
 NEON_CONFIGURE_ON=		--with-neon=${LOCALBASE}
-NEON_LIB_DEPENDS=		libneon.so:${PORTSDIR}/www/neon29
+NEON_LIB_DEPENDS=		libneon.so:${PORTSDIR}/www/neon
 
 NLS_CONFIGURE_OFF=		--disable-nls
 NLS_USES=			gettext
@@ -114,7 +114,7 @@ post-patch:
 	@${REINPLACE_CMD} "s#^swig_pydir =.*#swig_pydir = ${PYTHON_SITELIBDIR}/libsvn#" ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} "s#^swig_pydir_extra =.*#swig_pydir_extra = ${PYTHON_SITELIBDIR}/svn#" ${WRKSRC}/Makefile.in
 .if defined(SVN_BUILD_BINDINGS)
-	${CP} ${FILESDIR}/build-outputs.mk ${WRKSRC}
+	${CP} ${FILESDIR}/build-outputs.mk.addons ${WRKSRC}
 .endif
 .if ${PORT_OPTIONS:MFREEBSD_TEMPLATE} && defined(ORGANIZATION)
 	@${ECHO_CMD} "#define ORGANIZATION_NAME \"${ORGANIZATION}\"" > ${WRKSRC}/subversion/freebsd-organization.h

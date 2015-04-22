@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	38.0.2125.111
+PORTVERSION=	40.0.2214.115
 CATEGORIES=	www
 MASTER_SITES=	http://commondatastorage.googleapis.com/chromium-browser-official/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -13,7 +13,7 @@ COMMENT=	Google web browser based on WebKit
 LICENSE=	BSD3CLAUSE LGPL21 MPL
 LICENSE_COMB=	multi
 
-CFLAGS+=	-fno-stack-protector -isystem${LOCALBASE}/include
+CFLAGS+=	-isystem${LOCALBASE}/include
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/gperf:${PORTSDIR}/devel/gperf \
 		bash:${PORTSDIR}/shells/bash \
@@ -41,7 +41,6 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libjsoncpp.so:${PORTSDIR}/devel/jsoncpp \
 		libnspr4.so:${PORTSDIR}/devel/nspr \
-		libprotobuf.so:${PORTSDIR}/devel/protobuf \
 		libpng.so:${PORTSDIR}/graphics/png \
 		libre2.so:${PORTSDIR}/devel/re2 \
 		libsnappy.so:${PORTSDIR}/archivers/snappy \
@@ -51,7 +50,7 @@ LIB_DEPENDS=	libcairo.so:${PORTSDIR}/graphics/cairo \
 		libwebp.so:${PORTSDIR}/graphics/webp
 
 RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:${PORTSDIR}/audio/alsa-plugins \
-		${LOCALBASE}/lib/X11/fonts/Droid/fonts.dir:${PORTSDIR}/x11-fonts/droid-fonts-ttf \
+		droid-fonts-ttf>0:${PORTSDIR}/x11-fonts/droid-fonts-ttf \
 		xdg-open:${PORTSDIR}/devel/xdg-utils
 
 ONLY_FOR_ARCHS=	i386 amd64
@@ -66,6 +65,7 @@ SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper
 ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes
 
+#TODO bz@ : if you do undestand the gyp stuff, third_party/widevine/cdm/widevine_cdm.gyp talks about it (plz install libwidevinecdm.so)
 # See build/common.gypi for all the available variables.
 GYP_DEFINES+=	\
 		clang_use_chrome_plugins=0 \
@@ -105,7 +105,7 @@ GYP_DEFINES+=	\
 		use_system_libxml=1 \
 		use_system_libxslt=1 \
 		use_system_nspr=1 \
-		use_system_protobuf=1 \
+		use_system_protobuf=0 \
 		use_system_re2=1 \
 		use_system_snappy=1 \
 		use_system_speex=1 \
@@ -125,10 +125,10 @@ GYP_DEFINES+=	google_api_key=AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8 \
 SUB_FILES=	chromium-browser.desktop chrome
 SUB_LIST+=	COMMENT="${COMMENT}"
 
-OPTIONS_DEFINE=	CODECS GCONF PULSEAUDIO TEST DEBUG
+OPTIONS_DEFINE=	CODECS GCONF PULSEAUDIO TEST KERBEROS DEBUG
 CODECS_DESC=	Compile and enable patented codecs like H.264
 
-OPTIONS_DEFAULT=	CODECS GCONF
+OPTIONS_DEFAULT=	CODECS GCONF KERBEROS
 
 GCONF_USE=	GNOME=gconf2
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
@@ -169,7 +169,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libusb-pc
 .if !exists(/usr/lib/libexecinfo.so)
 CFLAGS+=	-fno-omit-frame-pointer
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-fixup-ffmpeg
-PORTREVISION=	1
 .endif
 
 .if ${PORT_OPTIONS:MTEST}
@@ -179,6 +178,7 @@ ALL_TARGET+=	${TEST_TARGETS}
 
 DEBUG_MAKE_ENV=	V=1
 .if ${PORT_OPTIONS:MDEBUG}
+BROKEN=		Produces empty binary
 BUILDTYPE=	Debug
 .else
 BUILDTYPE=	Release
@@ -197,11 +197,16 @@ MAKE_ARGS=	-C out/${BUILDTYPE}
 .if ${CHOSEN_COMPILER_TYPE} == gcc
 GYP_DEFINES+=	gcc_version=${CXX:S/g++//}
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gcc
+CFLAGS+=	-fno-stack-protector # gcc 4.8 cannot find __stack_chk_fail_local
 .else
 GYP_DEFINES+=	clang=1
 CFLAGS+=	-Wno-unknown-warning-option
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-clang
 CONFIGURE_ENV+=	AR=/usr/bin/ar
+.endif
+
+.if ! ${PORT_OPTIONS:MKERBEROS}
+GYP_DEFINES+=	use_kerberos=0
 .endif
 
 # according to portlint the below is passed via bsd.port.mk,
@@ -213,7 +218,7 @@ CONFIGURE_ENV+=	CFLAGS="${CFLAGS}" \
 
 pre-everything::
 	@${ECHO_MSG}
-	@${ECHO_MSG} "To build Chromium, you should have around 1 GB of memory"
+	@${ECHO_MSG} "To build Chromium, you should have around 2 GB of memory"
 .if ${PORT_OPTIONS:MDEBUG}
 	@${ECHO_MSG} "and lots of free diskspace (~ 8.5GB)."
 .else
@@ -265,8 +270,12 @@ pre-configure:
 		'third_party/dom_distiller_js' \
 		'third_party/dom_distiller_js/package/proto_gen/third_party/dom_distiller_js' \
 		'third_party/ffmpeg' \
+		'third_party/gardiner_mod' \
 		'third_party/fips181' \
 		'third_party/flot' \
+		'third_party/google_input_tools' \
+		'third_party/google_input_tools/third_party/closure_library' \
+		'third_party/google_input_tools/third_party/closure_library/third_party/closure' \
 		'third_party/hunspell' \
 		'third_party/iccjpeg' \
 		'third_party/icu/icu.isolate' \
@@ -291,12 +300,14 @@ pre-configure:
 		'third_party/modp_b64' \
 		'third_party/mt19937ar' \
 		'third_party/npapi' \
+		'third_party/openmax_dl' \
 		'third_party/opus' \
 		'third_party/ots' \
 		'third_party/pdfium' \
 		'third_party/pdfium/third_party' \
 		'third_party/ply' \
 		'third_party/polymer' \
+		'third_party/protobuf' \
 		'third_party/pywebsocket' \
 		'third_party/qcms' \
 		'third_party/qunit' \
@@ -321,7 +332,7 @@ pre-configure:
 		'third_party/zlib' \
 		'url/third_party/mozilla' \
 		'v8/src/third_party/valgrind' \
-		'v8/third_party/fdlibm' \
+		'v8/src/third_party/fdlibm' \
 		--do-remove || ${FALSE}
 	cd ${WRKSRC} && ${PYTHON_CMD} \
 		./build/linux/unbundle/replace_gyp_files.py \
@@ -356,6 +367,8 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/out/${BUILDTYPE}/chrome \
 		${STAGEDIR}${DATADIR}
 	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libffmpegsumo.so \
+		${STAGEDIR}${DATADIR}
+	${INSTALL_LIB} ${WRKSRC}/out/${BUILDTYPE}/libpdf.so \
 		${STAGEDIR}${DATADIR}
 	cd ${WRKSRC}/out/${BUILDTYPE} && \
 		${COPYTREE_SHARE} "locales resources" ${STAGEDIR}${DATADIR}

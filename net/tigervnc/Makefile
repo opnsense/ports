@@ -2,17 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	tigervnc
-PORTVERSION=	1.3.1
-PORTREVISION=	6
+PORTVERSION=	1.4.3
 CATEGORIES=	net x11-servers
-MASTER_SITES=	SF:tigervnc
-MASTER_SITE_SUBDIR=	${PORTNAME}/${PORTNAME}/${PORTVERSION}/:tigervnc
-DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}:tigervnc
+MASTER_SITES=	https://github.com/TigerVNC/tigervnc/archive/v${PORTVERSION}${EXTRACT_SUFX}?dummy=/
 
 MAINTAINER=	meta+ports@vmeta.jp
 COMMENT=	High-performance, platform-neutral implementation of VNC
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/LICENCE.TXT
 
 PATCH_DEPENDS=	${NONEXISTENT}:${PORTSDIR}/x11-servers/xorg-server:patch
 BUILD_DEPENDS=	${LOCALBASE}/include/GL/internal/dri_interface.h:${PORTSDIR}/graphics/dri \
@@ -26,9 +24,8 @@ CONFLICTS=	tridiavnc-[0-9]* \
 		tightvnc-[0-9]* \
 		vnc-[0-9]*
 
-USES=		cmake gmake libtool pkgconfig python
+USES=		autoreconf:build cmake cpe gmake libtool pkgconfig python
 USE_GL=		gl
-USE_AUTOTOOLS=	autoconf:env automake:env libtoolize:env
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 
@@ -76,10 +73,10 @@ CMAKE_ARGS+=	-DENABLE_PAM=0
 
 .if ${PORT_OPTIONS:MVIEWER}
 CMAKE_ARGS+=	-DBUILD_VIEWER=1
-LIB_DEPENDS+=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS+=	libpng.so:${PORTSDIR}/graphics/png \
 		libfltk.so:${PORTSDIR}/x11-toolkits/fltk
 # ImageMagick is required to generate icons during build process
-BUILD_DEPENDS+= ${LOCALBASE}/bin/convert:${PORTSDIR}/graphics/ImageMagick
+BUILD_DEPENDS+=	${LOCALBASE}/bin/convert:${PORTSDIR}/graphics/ImageMagick
 USE_XORG+=	xcursor xfixes xft xinerama
 PLIST_SUB+=	VIEWER=""
 INSTALLS_ICONS=	yes
@@ -100,7 +97,7 @@ MAKE_ARGS+=	TIGERVNC_SRCDIR=${WRKSRC}
 CONFIGURE_ARGS+=	\
 		--prefix=${PREFIX} --mandir=${PREFIX}/man/ \
 		--docdir=${PREFIX}/share/doc/${PORTNAME}/ --with-pic --without-dtrace \
-		--disable-static --disable-dri \
+		--disable-static --disable-dri --disable-unit-tests \
 		--disable-xinerama --disable-xvfb --disable-xnest --disable-xorg \
 		--disable-dmx --disable-xwin --disable-xephyr --disable-kdrive \
 		--disable-config-dbus --disable-config-hal \
@@ -109,26 +106,19 @@ CONFIGURE_ARGS+=	\
 		--with-xkb-path=${LOCALBASE}/share/X11/xkb \
 		--with-xkb-bin-directory=${LOCALBASE}/bin \
 		--with-serverconfig-path=${LOCALBASE}/lib/X11 \
-		--disable-selective-werror
-.ifdef WITH_NEW_XORG
-CONFIGURE_ARGS+=	--with-fontrootdir=${LOCALBASE}/share/fonts
-.else
-CONFIGURE_ARGS+=	--with-fontdir=${LOCALBASE}/share/fonts
-.endif
+		--disable-selective-werror \
+		--with-fontrootdir=${LOCALBASE}/share/fonts
 
 .include <bsd.port.pre.mk>
 
-.ifdef WITH_NEW_XORG
-TIGERVNC_XORG_PATCH_VER=	112
-.else
-TIGERVNC_XORG_PATCH_VER=	17
-.endif
+TIGERVNC_XORG_PATCH_VER=	114
 
 # import from x11-server/xorg-server/Makefile
 .ifdef WITH_OPENSSL_BASE
-# The reason why I use this is cause openssl from base doesn't install a .pc file
-# and configure will fail trying to find it. Setting both of those variables to
-# a *non-empty* value by-passes the pkg-config check.
+# The reason why I use this is cause openssl from base doesn't
+# install a .pc file and configure will fail trying to find it.
+# Setting both of those variables to a *non-empty* value by-passes
+# the pkg-config check.
 CONFIGURE_ENV=	SHA1_LIB="-L/usr/lib -lcrypto" SHA1_CFLAGS="-I/usr/include"
 .endif
 
@@ -141,7 +131,7 @@ post-patch:
 	@cd ${WRKSRC}/unix/xserver/ && ${PATCH} -p1 < ${WRKSRC}/unix/xserver${TIGERVNC_XORG_PATCH_VER}.patch
 
 post-configure:
-	@cd ${WRKSRC}/unix/xserver/ && ${SETENV} ${CONFIGURE_ENV} ${AUTORECONF} -fiv
+	@cd ${WRKSRC}/unix/xserver/ && ${SETENV} ${CONFIGURE_ENV} ${LOCALBASE}/bin/autoreconf -fiv
 	@cd ${WRKSRC}/unix/xserver/ && ${SETENV} ${CONFIGURE_ENV} ./configure ${CONFIGURE_ARGS}
 
 post-build:

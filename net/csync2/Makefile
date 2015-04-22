@@ -3,7 +3,7 @@
 
 PORTNAME=	csync2
 PORTVERSION=	1.34
-PORTREVISION=	19
+PORTREVISION=	20
 CATEGORIES=	net
 MASTER_SITES=	http://oss.linbit.com/csync2/ \
 		http://people.freebsd.org/~aaron/distfiles/
@@ -40,7 +40,7 @@ SUB_FILES=	pkg-install
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MCSYNC2_COMPARE}
-RUN_DEPENDS+=	bash>=0:${PORTSDIR}/shells/bash
+RUN_DEPENDS+=	bash:${PORTSDIR}/shells/bash
 PLIST_FILES+=	sbin/csync2-compare
 CSYNC2_COMPARE=	csync2-compare
 .else

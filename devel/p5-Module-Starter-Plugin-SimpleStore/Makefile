@@ -3,11 +3,12 @@
 
 PORTNAME=	Module-Starter-Plugin-SimpleStore
 PORTVERSION=	0.144
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Provide methods of retrieving templates for Module::Starter
 
 LICENSE=	ART10 GPLv1

@@ -2,8 +2,6 @@
 # $FreeBSD$
 
 PORTNAME=	pandora_server
-PORTREVISION=	1
-
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	koichiro@rworks.jp
@@ -21,14 +19,13 @@ PANDORA_DEPS=	p5-DBI>=0:${PORTSDIR}/databases/p5-DBI \
 		p5-XML-Simple>=0:${PORTSDIR}/textproc/p5-XML-Simple \
 		p5-XML-Twig>=0:${PORTSDIR}/textproc/p5-XML-Twig \
 		p5-JSON>=0:${PORTSDIR}/converters/p5-JSON
-
 BUILD_DEPENDS=	${PANDORA_DEPS}
-
 RUN_DEPENDS=	p5-libwww>=0:${PORTSDIR}/www/p5-libwww \
 		p5-DBD-mysql>=4:${PORTSDIR}/databases/p5-DBD-mysql \
 		${LOCALBASE}/bin/wmic:${PORTSDIR}/net-mgmt/wmi-client \
 		${LOCALBASE}/bin/nmap:${PORTSDIR}/security/nmap \
 		p5-Storable>=0:${PORTSDIR}/devel/p5-Storable \
+		p5-Encode-Locale>=0:${PORTSDIR}/converters/p5-Encode-Locale \
 		${PANDORA_DEPS}
 
 OPTIONS_DEFINE=	DOCS TENTACLE XPROBE PGSQL ORACLE EXTRAS
@@ -41,7 +38,7 @@ ORACLE_DESC=	Use Oracle backend (experimental)
 EXTRAS_DESC=	Extra dependencies for util scripts
 
 USES=		perl5
-USE_PERL5+=	fixpacklist
+USE_PERL5=	build run
 SUB_LIST+=	PERL="${PERL}" DATADIR="${DATADIR}"
 SUB_FILES=	pkg-message
 
@@ -96,7 +93,6 @@ post-patch:
 		`${GREP} -rl /usr/bin/perl ${WRKSRC} | ${GREP} -v pandora_server_installer`
 
 post-install:
-	@${RM} -f ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/perllocal.pod
 	@${FIND} ${STAGEDIR}${DATADIR} -type l -name PandoraFMS -delete
 .for x in pandora_server tentacle_server
 	@cd ${STAGEDIR}${PREFIX}/etc/rc.d && test -f ${x} \
@@ -105,7 +101,7 @@ post-install:
 	@${MV} ${STAGEDIR}${ETCDIR}/pandora_server.conf ${STAGEDIR}${ETCDIR}/pandora_server.conf.sample
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for x in ${PORTDOCS}
-	@${INSTALL_DATA} ${WRKSRC}/${x} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/${x} ${STAGEDIR}${DOCSDIR}
 .endfor
 
 .include <bsd.port.post.mk>

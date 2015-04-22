@@ -3,8 +3,9 @@
 
 PORTNAME=	json-c
 PORTVERSION=	0.12
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
+MASTER_SITES=	https://s3.amazonaws.com/json-c_releases/releases/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	JSON (JavaScript Object Notation) implementation in C
@@ -15,14 +16,11 @@ CONFLICTS_INSTALL=	cocaine-core-[0-9]*
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
+USE_AUTOTOOLS=	autoheader
 USE_LDCONFIG=	yes
-USES=		gmake libtool pathfix pkgconfig
+USES=		cpe gmake libtool pathfix pkgconfig
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	${PORTNAME}
-GH_COMMIT=	2a03577
-GH_PROJECT=	${PORTNAME}
-GH_TAGNAME=	${PORTNAME}-${PORTVERSION}-20140410
+CPE_VENDOR=	json-c_project
 
 post-patch:
 	@${REINPLACE_CMD} -e 's| -Werror||g' ${WRKSRC}/Makefile.in

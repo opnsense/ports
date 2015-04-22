@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	lsof
-DISTVERSION=	4.88
+DISTVERSION=	4.89D
 PORTEPOCH=	8
 CATEGORIES=	sysutils
 MASTER_SITES=	http://ftp.cerias.purdue.edu/pub/tools/unix/sysutils/lsof/ \
@@ -26,7 +26,7 @@ MAINTAINER=	ler@lerctr.org
 COMMENT=	Lists information about open files (similar to fstat(1))
 
 #Please leave the below line in for the next clean up.
-#FIXUP_RELEASE=	YES
+FIXUP_RELEASE=	YES
 .if defined(FIXUP_RELEASE)
 DISTNAME_SUFFIX=.freebsd
 .else
@@ -41,13 +41,14 @@ SHEBANG_FILES=	scripts/sort_res.perl5
 
 .include <bsd.port.pre.mk>
 
-.if ${ARCH} == "arm"
-BROKEN=		Does not compile on arm
+.if !empty(ARCH:Marm*) && ((${OSVERSION} < 1001505) || (${OSVERSION} > 1100000 && ${OSVERSION} < 1100052))
+BROKEN=	Not supported on ARM platform below release 10.1 or a more recent current
 .endif
 
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	-n freebsd
 CONFIGURE_ENV=	LSOF_CC="${CC}" FREEBSD_SYS="${SRC_BASE}/sys"
+
 
 .if !exists(${SRC_BASE}/sys/kern/kern_lockf.c)
 IGNORE=		requires kernel sources

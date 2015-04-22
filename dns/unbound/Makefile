@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	unbound
-PORTVERSION=	1.4.22
-PORTREVISION=	5
+PORTVERSION=	1.5.3
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	http://unbound.net/downloads/
 
@@ -29,13 +29,14 @@ PORTDOCS=	CREDITS Changelog FEATURES LICENSE README README.svn \
 		ietf67-design-02.pdf requirements.txt
 PLIST_SUB+=	PYTHON=${PYTHON} MUNIN=${MUNIN}
 
-OPTIONS_DEFINE=	THREADS PYTHON GOST ECDSA MUNIN DOCS LIBEVENT
+OPTIONS_DEFINE=	THREADS PYTHON GOST ECDSA MUNIN DOCS LIBEVENT FILTER_AAAA
 OPTIONS_DEFAULT=THREADS ECDSA
 
-LIBEVENT_DESC=	Build against libevent (devel/libevent2) (BROKEN on >=10)
+LIBEVENT_DESC=	Build against libevent
 GOST_DESC=	Enable GOST support (requires OpenSSL >= 1.0)
 ECDSA_DESC=	Enable ECDSA (elliptic curve) support (OpenSSL >= 1.0)
 MUNIN_DESC=	Install Munin plugin
+FILTER_AAAA_DESC=	Build with AAAA filter functionality (contrib)
 
 .include <bsd.port.options.mk>
 
@@ -46,9 +47,10 @@ STRIP_FILES=	.libs/libunbound.so unbound-checkconf unbound \
 		unbound-control .libs/unbound-host .libs/unbound-anchor
 
 .if ${PORT_OPTIONS:MPYTHON}
-USES+=		python
-CONFIGURE_ARGS+=--with-pyunbound=yes --with-pythonmodule=yes
+USES+=		python:2
+CONFIGURE_ARGS+=--with-pyunbound=yes --with-pythonmodule=yes LDFLAGS="-L${LOCALBASE}/lib"
 BUILD_DEPENDS+=	swig:${PORTSDIR}/devel/swig13
+STRIP_FILES+=	.libs/_unbound.so
 PYTHON=
 .else
 PYTHON=		"@comment "
@@ -79,9 +81,6 @@ MUNIN=		"@comment "
 .endif
 
 .if ${PORT_OPTIONS:MLIBEVENT}
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1000015
-BROKEN=	Unbound with libevent crashes on FreeBSD 10+ due to Capsicum
-.endif
 LIB_DEPENDS+=	libevent.so:${PORTSDIR}/devel/libevent2
 USES+=		pkgconfig
 CONFIGURE_ARGS+=--with-libevent
@@ -98,11 +97,20 @@ CONFIGURE_ARGS+=--without-pthreads
 post-patch:
 	@${MKDIR} ${WRKSRC}/balancer
 	@${RM} ${WRKSRC}/util/configlexer.c
+	@${REINPLACE_CMD} -e 's|if test ! -e $$(DESTDIR)$$(configfile); then || ; \
+		s|$$(configfile); fi|$$(configfile).sample|' \
+		${WRKSRC}/Makefile.in
+.if ${PORT_OPTIONS:MFILTER_AAAA}
+	cat ${WRKSRC}/contrib/aaaa-filter-iterator.patch | ${PATCH} -d ${WRKSRC} -p1 -s
+.endif
 
 post-build:
 	@for s in ${STRIP_FILES}; do ${STRIP_CMD} ${WRKSRC}/$$s; done
 
 post-install:
+.if ${PORT_OPTIONS:MPYTHON}
+	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/_unbound.so
+.endif
 .if ${PORT_OPTIONS:MMUNIN}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/munin/plugins
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/munin/plugins

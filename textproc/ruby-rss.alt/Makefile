@@ -20,7 +20,6 @@ CONFLICTS=	ruby-rss-*
 
 USE_RUBY=	yes
 USE_RUBY_SETUP=	yes
-USE_RUBY_FEATURES=	rexml
 SADIR=	lib/ruby/site_ruby/${RUBY_VER}/${RUBY_ARCH}
 
 DOCS_EN=	README.en Tutorial.en
@@ -31,4 +30,10 @@ post-install:
 	${INSTALL_DATA} ${DOCS_EN:S,^,${WRKSRC}/,} ${STAGEDIR}${RUBY_MODDOCDIR}/
 	${INSTALL_DATA} ${DOCS_JA:S,^,${WRKSRC}/,} ${STAGEDIR}${RUBY_MODDOCDIR}/ja/
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${RUBY_VER} >= 2.2
+BROKEN=		Does not build
+.endif
+
+.include <bsd.port.post.mk>

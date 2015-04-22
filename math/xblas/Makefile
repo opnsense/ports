@@ -10,7 +10,7 @@ DISTNAME=	xblas
 MAINTAINER=	bf@FreeBSD.org
 COMMENT=	Extra Precise Basic Linear Algebra Subroutines (BLAS)
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 USE_LDCONFIG=	yes
 
@@ -24,7 +24,6 @@ OPTIONS_DEFINE=	SHARED STATIC DOCS
 OPTIONS_DEFAULT=	SHARED
 SHARED_DESC=	Build a shared library and PIC archive
 STATIC_DESC=	Build a non-PIC archive
-PLIST_DIRS=	${HDIR}
 PLIST_FILES=	${HEADERS:S|^|${HDIR}/|}
 SHLIB_MAJOR=	0
 WRKSRC=		${WRKDIR}/xblas-${PORTVERSION}

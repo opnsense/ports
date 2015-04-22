@@ -8,10 +8,12 @@ MASTER_SITES=	${MASTER_SITE_MYSQL}
 MASTER_SITE_SUBDIR=	Connector-C
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	MySQL database connector for C
 
 LICENSE=	GPLv2
+
+BROKEN=		Fails to configure
 
 USE_MYSQL=	51+
 USE_OPENSSL=	yes

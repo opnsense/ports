@@ -2,17 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	xlockmore
-PORTVERSION=	5.43
-PORTREVISION=	3
+PORTVERSION=	5.46
 CATEGORIES?=	x11
-MASTER_SITES=	http://www.tux.org/~bagleyd/xlock/${PORTNAME}-${PORTVERSION}/ \
-		ftp://ibiblio.org/pub/Linux/X11/screensavers/ \
-		CRITICAL
+MASTER_SITES=	http://www.tux.org/~bagleyd/xlock/ \
+		LOCAL/jgh/x11/${PORTNAME}/
 
-MAINTAINER?=	jgh@FreeBSD.org
+MAINTAINER=	jgh@FreeBSD.org
 COMMENT=	Like XLock session locker/screen saver, but just more
 
-USES=		tar:bzip2
+USES=		tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-motif --without-ttf --without-editres \
 		--without-dtsaver --without-rplay --without-nas \
@@ -24,7 +22,7 @@ USE_XORG=	x11 xaw ice
 LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2
 
 OPTIONS_DEFINE=	MESAGL MB SYSLOG DISABLE_ALLOW_ROOT NICE_ONLY BLANK_ONLY \
-		KERBEROS4 BAD_PAM GTK2 TIME_BOMB CUSTOMIZATION MAGICK
+		KERBEROS4 BAD_PAM GTK2 TIME_BOMB CUSTOMIZATION MAGICK JP
 OPTIONS_SUB=	yes
 
 MESAGL_DESC=	Mesa 3D (for GL modes)
@@ -38,6 +36,7 @@ GTK2_DESC=	Build Gtk2 graphical shell
 XLOCK_GROUP_DESC=	Allow xlock group to logout
 TIME_BOMB_DESC=	Allow autologout
 CUSTOMIZATION_DESC=	Allow tune through resource file
+JP_DESC=	Japanese Language Support
 
 OPTIONS_RADIO=	ONE
 OPTIONS_RADIO_ONE=	PAM XLOCK_GROUP
@@ -63,7 +62,7 @@ KRB5LIB=	-L${KRB5_HOME}/lib
 
 .if ${PORT_OPTIONS:MMESAGL}
 CONFIGURE_ARGS+=	--with-mesa
-MESALIB=${PTHREAD_LIBS}
+MESALIB=	-lpthread
 USE_GL=	yes
 CFLAGS+=	-I${LOCALBASE}/include/FTGL
 .else
@@ -94,7 +93,13 @@ CONFIGURE_ARGS+=	--enable-blank-only
 CONFIGURE_ARGS+=	--enable-use-mb
 .endif
 
-.if ${PORT_OPTIONS:MXLOCKMORE_LANG}
+.if ${PORT_OPTIONS:MJP}
+XLOCKMORE_LANG=	ja
+CATEGORIES+=	japanese
+PORT_OPTIONS+=	MB
+.endif
+
+.if defined(XLOCKMORE_LANG)
 CONFIGURE_ARGS+=	--with-lang=${XLOCKMORE_LANG}
 .endif
 
@@ -124,7 +129,7 @@ CONFIGURE_ARGS+=	--enable-customization
 .endif
 
 .if ${PORT_OPTIONS:MMAGICK}
-LIB_DEPENDS+=	libMagickCore-6.Q16.so:${PORTSDIR}/graphics/ImageMagick
+LIB_DEPENDS+=	libMagickCore-6.so:${PORTSDIR}/graphics/ImageMagick
 .else
 CONFIGURE_ARGS+=	--without-magick
 .endif

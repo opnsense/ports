@@ -3,11 +3,12 @@
 
 PORTNAME=	Unix-ConfigFile
 PORTVERSION=	0.06
+PORTREVISION=	1
 CATEGORIES=	sysutils perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl modules that provides a simple interface to reading /etc files
 
 LICENSE=	ART10 GPLv1

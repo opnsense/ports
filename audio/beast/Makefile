@@ -3,7 +3,7 @@
 
 PORTNAME=	beast
 PORTVERSION=	0.7.8
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	audio
 MASTER_SITES=	http://dist.testbit.eu/beast/%SUBDIR%/
 MASTER_SITE_SUBDIR=	v${PORTVERSION:R}
@@ -22,14 +22,17 @@ RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 OPTIONS_DEFINE=		DEBUG
 OPTIONS_DEFINE_i386=	SSE
 
-USES=		tar:bzip2 desktop-file-utils gmake gettext pathfix pkgconfig shared-mime-info libtool
-USE_GCC=	yes
-USE_GNOME=	gnomehier libgnomecanvas
+USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig shared-mime-info shebangfix tar:bzip2
+SHEBANG_FILES=	autotools/intltool-merge
+# Fails to build with GCC 4.9, cf. PR 196849.
+USE_GCC=	4.8
+USE_GNOME=	libgnomecanvas
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules \
 		--enable-osspcm=/dev/dsp \
 		--enable-ossmidi=/dev/midi
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 CXXFLAGS+=	-fpermissive
 CPPFLAGS+=	-I${LOCALBASE}/include

@@ -12,6 +12,7 @@
 %%SITE_PERL%%/Net/CLI/Interact/Role/Prompt.pm
 %%SITE_PERL%%/Net/CLI/Interact/Transport/Base.pm
 %%SITE_PERL%%/Net/CLI/Interact/Transport/Loopback.pm
+%%SITE_PERL%%/Net/CLI/Interact/Transport/Net_OpenSSH.pm
 %%SITE_PERL%%/Net/CLI/Interact/Transport/Platform/Unix.pm
 %%SITE_PERL%%/Net/CLI/Interact/Transport/Platform/Win32.pm
 %%SITE_PERL%%/Net/CLI/Interact/Transport/Role/ConnectCore.pm
@@ -32,10 +33,10 @@
 %%SITE_PERL%%/Net/CLI/Interact/phrasebook/cisco/pixos/fwsm/fwsm3/pb
 %%SITE_PERL%%/Net/CLI/Interact/phrasebook/cisco/pixos/pb
 %%SITE_PERL%%/Net/CLI/Interact/phrasebook/cisco/pixos/pixos7/pb
+%%SITE_PERL%%/Net/CLI/Interact/phrasebook/ovmcli/pb
 %%SITE_PERL%%/Net/CLI/Interact/phrasebook/unix/bash/pb
 %%SITE_PERL%%/Net/CLI/Interact/phrasebook/unix/csh/pb
 %%SITE_PERL%%/Net/CLI/Interact/phrasebook/unix/csh/sdf/pb
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Net/CLI/Interact/.packlist
 %%PERL5_MAN3%%/Net::CLI::Interact.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::Action.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::ActionSet.3.gz
@@ -49,6 +50,7 @@
 %%PERL5_MAN3%%/Net::CLI::Interact::Role::Prompt.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::Transport::Base.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::Transport::Loopback.3.gz
+%%PERL5_MAN3%%/Net::CLI::Interact::Transport::Net_OpenSSH.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::Transport::SSH.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::Transport::Serial.3.gz
 %%PERL5_MAN3%%/Net::CLI::Interact::Transport::Telnet.3.gz

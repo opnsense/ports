@@ -5,11 +5,11 @@ PORTNAME?=	proftpd
 .if !defined(DISTVERSION)
 PORTVERSION?=	${PROFTPD_VERSION}
 .endif
-PORTREVISION?=	3
+PORTREVISION?=	6
 CATEGORIES?=	ftp
 MASTER_SITES=	ftp://ftp.proftpd.org/distrib/source/ \
 		https://github.com/downloads/proftpd/proftpd.github.com/ \
-		ftp://proftpd.networkedsystems.co.uk/distrib/source/ \
+		ftp://ftpmirror.uk/ftp.proftpd.org/distrib/source/ \
 		http://www.mirrorservice.org/sites/ftp.proftpd.org/distrib/source/
 .if defined(_BUILDING_PROFTPD_MODULE)
 DISTNAME=	proftpd-${PROFTPD_VERSION}
@@ -85,7 +85,6 @@ PLIST=		${WRKDIR}/PLIST
 PLIST_FILES+=	libexec/proftpd/${m}.a \
 		libexec/proftpd/${m}.so
 .endfor
-PLIST_DIRSTRY+=	libexec/proftpd
 .else
 OPTIONS_DEFINE=	DOCS HTMLDOCS IPV6 NLS MEMCACHE PCRE
 OPTIONS_DEFAULT=	IPV6 NLS PCRE
@@ -102,6 +101,7 @@ PLIST_SUB+=	LOCALSTATEDIR="${LOCALSTATEDIR}"
 .if !defined(_BUILDING_PROFTPD_MODULE)
 CPPFLAGS+=	-DHAVE_OPENSSL -I${OPENSSLINC}
 LIBS+=		-lssl -lcrypto -L${OPENSSLLIB}
+LDFLAGS+=	-lpthread
 .endif
 
 .if !defined(_BUILDING_PROFTPD_MODULE)
@@ -141,18 +141,6 @@ MODULES+=	mod_ban \
 		mod_wrap2 \
 		mod_wrap2_file \
 		mod_wrap2_sql
-
-# FreeBSD-SA-11:07.chroot
-.if ${OSVERSION} < 800000
-CHROOT_TEST !=	${GREP} __FreeBSD_libc_enter_restricted_mode \
-	/usr/include/unistd.h > /dev/null || ${ECHO_CMD} error
-. if ${CHROOT_TEST} == "error"
-BROKEN=__FreeBSD_libc_enter_restricted_mode is not supported
-. endif
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-7-src-fsio.c
-.else
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-8-src-fsio.c
-.endif
 
 .if ${PORT_OPTIONS:MIPV6}
 CONFIGURE_ARGS+=	--enable-ipv6

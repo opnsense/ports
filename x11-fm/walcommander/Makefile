@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	walcommander
-PORTVERSION=	0.17.0
+PORTVERSION=	0.19.0.1
 CATEGORIES=	x11-fm
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -15,16 +15,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	corporateshark
 GH_PROJECT=	WalCommander
 GH_TAGNAME=	release-${PORTVERSION}
-GH_COMMIT=	a73beeb
+GH_COMMIT=	d5f3264
 
-USES=		compiler:c++11-lib cmake
+USES=		compiler:c++11-lib cmake:outsource
+CMAKE_ARGS=	-DDATADIR="${DATADIR_REL}"
 USE_XORG=	x11
 
-PORTDOCS=	CHANGELOG CHANGELOG.GitHub README.md readme_eng.txt
-
-PLIST_FILES=	bin/wcm \
-		share/applications/wcm.desktop \
-		share/pixmaps/wcm.ico
+PORTDOCS=	CHANGELOG.GitHub README.md readme_eng.txt
 
 OPTIONS_DEFINE=	FREETYPE SMB SSH DOCS
 OPTIONS_DEFAULT=FREETYPE SMB SSH
@@ -39,10 +36,20 @@ SSH_LIB_DEPENDS=	libssh2.so:${PORTSDIR}/security/libssh2
 SSH_CMAKE_ON=		-DWITH_LIBSSH2=ON
 SSH_CMAKE_OFF=		-DWITH_LIBSSH2=OFF
 
+.include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 900000
+BROKEN=		does not build on 8.x (lack of long long support)
+.endif
+
+.if ${COMPILER_TYPE} == gcc
+CXXFLAGS+=	-D_GLIBCXX_USE_C99 # gcc c++11 support is broken on FreeBSD
+.endif
+
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for f in ${PORTDOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}/
 .endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

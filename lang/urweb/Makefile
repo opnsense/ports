@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	urweb
-PORTVERSION=	20140704
+PORTVERSION=	20150214
 CATEGORIES=	lang www
 MASTER_SITES=	http://www.impredicative.com/ur/
 
@@ -42,7 +42,8 @@ CONFIGURE_ARGS+=	with_emacs=no
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	server
+USES+=		pgsql
+WANT_PGSQL=	server
 .else
 CONFIGURE_ENV+=	PGHEADER="no"
 .endif

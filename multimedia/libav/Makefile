@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	libav
-PORTVERSION=	10.2
-PORTREVISION=	4
+PORTVERSION=	11.3
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://libav.org/releases/
 
@@ -29,8 +28,7 @@ CONFIGURE_ARGS+=	--prefix="${PREFIX}" \
 			--enable-shared \
 			--enable-runtime-cpudetect \
 			--disable-debug \
-			--cc="${CC}" \
-			--disable-avserver
+			--cc="${CC}"
 
 OPTIONS_DEFINE=	ALSA AMR_NB AMR_WB BZIP2 CDIO FAAC FDK_AAC DOCS FREETYPE \
 		FREI0R GNUTLS GSM ILBC JACK LAME OPENCV OPENJPEG OPENSSL \
@@ -57,7 +55,8 @@ AMR_WB_CONFIGURE_ENABLE=	libopencore-amrwb
 
 BZIP2_CONFIGURE_ENABLE=		bzlib
 
-CDIO_LIB_DEPENDS=		libcdio.so:${PORTSDIR}/sysutils/libcdio
+CDIO_LIB_DEPENDS=		libcdio.so:${PORTSDIR}/sysutils/libcdio \
+				libcdio_paranoia.so:${PORTSDIR}/sysutils/libcdio-paranoia
 CDIO_CONFIGURE_ENABLE=		libcdio
 
 # --enable-libdc1394
@@ -86,7 +85,8 @@ ILBC_BUILD_DEPENDS=		${LOCALBASE}/include/ilbc.h:${PORTSDIR}/net/libilbc
 ILBC_CONFIGURE_ENABLE=		libilbc
 
 JACK_LIB_DEPENDS=		libjack.so:${PORTSDIR}/audio/jack
-JACK_CONFIGURE_ENABLE=		indev=jack
+JACK_CONFIGURE_ON=		--enable-indev=jack
+JACK_CONFIGURE_OFF=		--disable-indev=jack
 
 LAME_LIB_DEPENDS=		libmp3lame.so:${PORTSDIR}/audio/lame
 LAME_CONFIGURE_ENABLE=		libmp3lame
@@ -118,7 +118,8 @@ THEORA_LIB_DEPENDS=		libtheora.so:${PORTSDIR}/multimedia/libtheora
 THEORA_CONFIGURE_ENABLE=	libtheora
 
 V4L_BUILD_DEPENDS=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
-V4L_CONFIGURE_ENABLE=		indev=v4l2
+V4L_CONFIGURE_ON=		--enable-indev=v4l2
+V4L_CONFIGURE_OFF=		--disable-indev=v4l2
 
 VAAPI_LIB_DEPENDS=		libva.so:${PORTSDIR}/multimedia/libva
 VAAPI_CONFIGURE_ENABLE=		vaapi
@@ -146,7 +147,7 @@ WEBP_CONFIGURE_ENABLE=		libwebp
 
 X11GRAB_USE=			XORG=x11,xext,xfixes
 
-X264_LIB_DEPENDS=		libx264.so:${PORTSDIR}/multimedia/x264
+X264_LIB_DEPENDS=		libx264.so:${PORTSDIR}/multimedia/libx264
 X264_CONFIGURE_ENABLE=		libx264
 
 XVID_LIB_DEPENDS=		libxvidcore.so:${PORTSDIR}/multimedia/xvid
@@ -165,6 +166,10 @@ USE_OPENSSL=	yes
 .endif
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH} == "armv6"
+CONFIGURE_ENV+=	ASFLAGS=-no-integrated-as
+.endif
 
 .if ${ARCH} == "i386"
 CONFIGURE_ARGS+=	--extra-cflags=-m32
@@ -220,7 +225,7 @@ post-patch:
 		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|gsm/gsm.h|gsm.h|' \
 		${WRKSRC}/configure \
-		${WRKSRC}/libavcodec/libgsm.c
+		${WRKSRC}/libavcodec/libgsmdec.c
 	@${REINPLACE_CMD} -e 's|$$(LIBDIR)/pkgconfig|${STAGEDIR}${PREFIX}/libdata/pkgconfig|' \
 		${WRKSRC}/library.mak
 
@@ -228,5 +233,13 @@ post-configure:
 .if !${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -e 's|CONFIG_TEXI2HTML=yes|!CONFIG_TEXI2HTML=yes|' ${WRKSRC}/config.mak
 .endif
+
+post-stage:
+.for a in bin/avconv bin/avprobe lib/libav/libavdevice.so.55.0.0\
+	lib/libav/libavfilter.so.5.0.0 lib/libav/libavformat.so.56.1.0\
+	lib/libav/libavcodec.so.56.1.0 lib/libav/libavresample.so.2.1.0\
+	lib/libav/libswscale.so.3.0.0 lib/libav/libavutil.so.54.3.0
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${a}
+.endfor
 
 .include <bsd.port.post.mk>

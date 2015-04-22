@@ -3,14 +3,14 @@
 
 PORTNAME=	paintown
 PORTVERSION=	3.6.0
-PORTREVISION=	4
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	SF
 
 MAINTAINER=	decke@FreeBSD.org
 COMMENT=	Fighting game similar to Streets of Rage and TMNT
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 LIB_DEPENDS=	liballeg.so:${PORTSDIR}/devel/allegro \
 		libpng.so:${PORTSDIR}/graphics/png \
@@ -26,10 +26,11 @@ DESKTOP_ENTRIES="Paintown" "Fighting game similar to Streets of Rage and TMNT" \
 		"paintown" "Game;ActionGame;" false
 
 do-install:
-		${MKDIR} ${STAGEDIR}${DATADIR}
-		(cd ${WRKSRC} && ./install.sh -d ${STAGEDIR}${DATADIR} -b ${STAGEDIR}${PREFIX}/bin)
-		${MKDIR} ${STAGEDIR}${LOCALBASE}/share/icons/hicolor/32x32/apps
-		${INSTALL_DATA} ${WRKSRC}/misc/icon.png \
-			${STAGEDIR}${LOCALBASE}/share/icons/hicolor/32x32/apps/paintown.png
+	${MKDIR} ${STAGEDIR}${DATADIR}
+	(cd ${WRKSRC} && ${SETENV} DESTDIR=${STAGEDIR} ./install.sh -d ${DATADIR} -b ${PREFIX}/bin)
+	${MKDIR} ${STAGEDIR}${LOCALBASE}/share/icons/hicolor/32x32/apps
+	${INSTALL_DATA} ${WRKSRC}/misc/icon.png \
+		${STAGEDIR}${LOCALBASE}/share/icons/hicolor/32x32/apps/paintown.png
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/share/paintown/paintown-bin
 
 .include <bsd.port.mk>

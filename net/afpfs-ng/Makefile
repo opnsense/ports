@@ -3,7 +3,7 @@
 
 PORTNAME=	afpfs-ng
 PORTVERSION=	0.8.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net
 MASTER_SITES=	SF
 
@@ -12,10 +12,9 @@ COMMENT=	Apple Filing Protocol client library
 
 LICENSE=	GPLv2
 
+GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gmake iconv libtool tar:bzip2 readline
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtoolize
-AUTOMAKE_ARGS=	--add-missing --copy --force
+USES=		autoreconf gmake iconv libtool readline tar:bzip2
 USE_LDCONFIG=	yes
 
 CFLAGS+=	-Wno-return-type

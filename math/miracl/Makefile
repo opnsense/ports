@@ -25,6 +25,7 @@ LICENSE_PERMS_COMMERCIAL=	dist-mirror dist-sell pkg-mirror pkg-sell no-auto-acce
 ONLY_FOR_ARCHS=	i386 amd64
 
 USES=		zip
+USE_GCC=	yes
 USE_LDCONFIG=	yes
 
 EXTRACT_BEFORE_ARGS=	-j -L -q
@@ -41,27 +42,23 @@ BUILDCMD=	linux
 BUILDCMD=	linux64
 .endif
 
+.if ${ARCH} == "amd64"
+CFLAGS+=	-fPIC
+.endif
+
 post-patch:
 # C{C,XX} safeness
 # CFLAGS safeness
-.if ${ARCH} == "i386"
 	@${REINPLACE_CMD} -E \
 		-e 's|gcc|${CC}|' \
 		-e 's|g\+\+|${CXX}|' \
 		-e 's|-O2|${CFLAGS}|' \
 		${WRKSRC}/${BUILDCMD}
-.else
-	@${REINPLACE_CMD} -E \
-		-e 's|gcc|${CC}|' \
-		-e 's|g\+\+|${CXX}|' \
-		-e 's|-O2|${CFLAGS} -fPIC|' \
-		${WRKSRC}/${BUILDCMD}
-.endif
 # Don't error when files not found
-# Fix mrmuldv.cc not existing
+# Fix mrmuldv.cc not existing due to s/gcc/CC/ replacement above.
 	@${REINPLACE_CMD} -E \
 		-e 's|^rm |${RM} -f |' \
-		-e 's|^cp mrmuldv\.cc mrmuldv\.c|${CP} mrmuldv.gcc mrmuldv.c|' \
+		-e 's|^cp mrmuldv\.${CC} mrmuldv\.c|${CP} mrmuldv.gcc mrmuldv.c|' \
 		${WRKSRC}/${BUILDCMD}
 
 do-build:

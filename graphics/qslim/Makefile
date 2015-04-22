@@ -3,17 +3,16 @@
 
 PORTNAME=	qslim
 PORTVERSION=	2.1
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	graphics
-MASTER_SITES=	http://mgarland.org/files/dist/ \
-		CENKES
+MASTER_SITES=	http://mgarland.org/files/dist/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	SlimKit surface modeling tools
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
 		libgfx.so:${PORTSDIR}/graphics/libgfx
 

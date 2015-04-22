@@ -3,11 +3,12 @@
 
 PORTNAME=	String-TT
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl interface to interpolate lexical variables
 
 RUN_DEPENDS=	p5-PadWalker>=1:${PORTSDIR}/devel/p5-PadWalker \

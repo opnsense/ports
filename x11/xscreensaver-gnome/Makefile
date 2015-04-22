@@ -20,7 +20,7 @@ LIB_DEPENDS=	libgle.so:${PORTSDIR}/graphics/gle \
 USE_XORG=	x11 xpm
 USE_GL=		gl
 USE_PERL5=	run
-USE_GNOME=	gnomehier libglade2
+USE_GNOME=	libglade2
 USES+=		dos2unix gettext gmake perl5 pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-gtk --with-gl --with-gle --with-pixbuf --with-xpm \
@@ -73,8 +73,7 @@ CFLAGS+=	-O0
 
 DOS2UNIX_FILES=	hacks/glx/topblock.c
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g ; \
-	    	s|malloc.h|stdlib.h|g ; \
+	@${REINPLACE_CMD} -e 's|malloc.h|stdlib.h|g ; \
 		s|/usr/X11R6|${LOCALBASE}|g' \
 		${WRKSRC}/configure
 .if ${PORT_OPTIONS:MPAM}

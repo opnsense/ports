@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	uTox
-DISTVERSION=	0.1.8.git20141012
+DISTVERSION=	0.2.o.20150402
 CATEGORIES=	net-im net-p2p
 
 MAINTAINER=	fidaj@ukr.net
@@ -15,14 +15,15 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libtoxcore.a:${PORTSDIR}/net-im/tox \
 LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libv4lconvert.so:${PORTSDIR}/multimedia/libv4l \
-		libvpx.so:${PORTSDIR}/multimedia/libvpx
+		libvpx.so:${PORTSDIR}/multimedia/libvpx \
+		libfilteraudio.so:${PORTSDIR}/audio/filter_audio
 RUN_DEPENDS=	${LOCALBASE}/lib/libtoxcore.a:${PORTSDIR}/net-im/tox
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	notsecure
 GH_PROJECT=	${PORTNAME}
 GH_TAGNAME=	${GH_COMMIT}
-GH_COMMIT=	265d723
+GH_COMMIT=	15b1ad9
 
 USES=		compiler:c11 desktop-file-utils gmake openal:al pkgconfig
 USE_XORG=	x11 xext xrender
@@ -35,6 +36,8 @@ DBUS_LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus
 DBUS_MAKE_ARGS_OFF=	DBUS=0
 
 post-install:
+	${MV} ${WRKSRC}/utox.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${RM} -rf ${STAGEDIR}${MAN1PREFIX}/share/man
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/utox
 
 .include <bsd.port.mk>

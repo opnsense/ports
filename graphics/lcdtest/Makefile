@@ -3,7 +3,7 @@
 
 PORTNAME=	lcdtest
 PORTVERSION=	1.18
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.brouhaha.com/~eric/software/lcdtest/download/ \
 		SF/nemysisfreebsdp/${CATEGORIES}/:icons
@@ -21,7 +21,7 @@ RUN_DEPENDS=	liberation-fonts-ttf>0:${PORTSDIR}/x11-fonts/liberation-fonts-ttf
 USE_SDL=	sdl image ttf
 
 CFLAGS+=	-I${LOCALBASE}/include -DRELEASE=1.18
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS} -lSDL -lSDL_image -lSDL_ttf
+LDFLAGS+=	-L${LOCALBASE}/lib -lpthread -lSDL -lSDL_image -lSDL_ttf
 
 PLIST_FILES=	bin/${PORTNAME} \
 		man/man1/${PORTNAME}.1.gz \
@@ -33,7 +33,7 @@ OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${REINPLACE_CMD} -e \
-		's|/usr/share/fonts/liberation/|${LOCALBASE}/lib/X11/fonts/Liberation/|' \
+		's|/usr/share/fonts/liberation/|${LOCALBASE}/share/fonts/Liberation/|' \
 		${WRKSRC}/src/lcdtest.c
 
 do-build:

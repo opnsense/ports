@@ -3,12 +3,13 @@
 
 PORTNAME=	Kwalify
 PORTVERSION=	1.22
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:SREZIC
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Implementation of Kwalify parser, validator and data binding tool
 
 LICENSE=	ART10 GPLv1

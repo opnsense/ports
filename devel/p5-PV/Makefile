@@ -3,12 +3,13 @@
 
 PORTNAME=	PV
 PORTVERSION=	1.5
+PORTREVISION=	1
 CATEGORIES=	devel net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	PerlVision-${PORTVERSION}
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl5 library for text-mode user interface widgets
 
 LICENSE=	ART10 GPLv1

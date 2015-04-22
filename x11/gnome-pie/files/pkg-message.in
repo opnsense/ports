@@ -1,13 +1,10 @@
 ***************************************************************
 
-If you do not use GNOME as window manager, and do not see any
-icon in Gnome-Pie preferences, then run the following command:
+If you do not see any pie, create keyboard shortcuts manually
+binding commands such as:
 
-  (cd %%PORTSDIR%%/x11/gnome-pie && make gnome-pie-user)
+  gnome-pie -o ID
 
-and add this line to your ~/.xinitrc
-
-  %%LOCALBASE%%/libexec/gnome-settings-daemon&
-  (sleep 2 && gnome-pie)&
+(Open Preferences to take the value of the pie ID)
 
 ***************************************************************

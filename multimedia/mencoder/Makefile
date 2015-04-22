@@ -9,19 +9,17 @@ COMMENT=	Convenient video file and movie encoder
 
 .include "${.CURDIR}/../mplayer/Makefile.shared"
 
-OPTIONS_DEFINE=	AMR_NB AMR_WB BLURAY CDIO CDPARANOIA DEBUG DIRAC \
-		DV FAAC FONTCONFIG FRIBIDI GIF GSM IPV6 JACK \
-		LADSPA LIBMNG LZO MAD MEMALIGN NAS OCFLAGS OPENAL \
-		OPENJPEG OPUS OTCHAIN PROFILE PULSEAUDIO REAL RTCPU RTMP \
-		SCHROEDINGER SMB THEORA TWOLAME V4L VPX WIN32 X264 XVID
+OPTIONS_DEFINE=	AMR_NB AMR_WB BLURAY CDIO DEBUG DV FAAC FONTCONFIG \
+		FRIBIDI GIF GNUTLS GSM IPV6 JACK LADSPA LIBMNG LZO \
+		MAD NAS OCFLAGS OPENAL OPENJPEG OPUS PULSEAUDIO REAL \
+		RTCPU RTMP SCHROEDINGER SMB THEORA TWOLAME V4L VPX \
+		WIN32 X264 XVID
 
-OPTIONS_DEFAULT=GIF IPV6 OCFLAGS RTCPU WIN32 X264 XVID
+OPTIONS_DEFAULT=GIF GNUTLS IPV6 OCFLAGS RTCPU WIN32 X264 XVID
 
 BLURAY_DESC?=	BluRay support
 LZO_DESC?=	Enable external liblzo library
-MEMALIGN_DESC?=	Avoid memory alignment hacks (EXPERIMENTAL)
 OCFLAGS_DESC?=	Use optimized compiler flags
-OTCHAIN_DESC?=	Use gcc 4.6+ toolchain on legacy systems
 REAL_DESC?=	Enable realplayer plugin
 RTCPU_DESC?=	Use runtime CPU detection on supported archs
 WIN32_DESC?=	Install win32 binary codecs
@@ -41,7 +39,7 @@ TOOLFILES=	aconvert.sh binary_codecs.sh calcbpp.pl \
 		subedit.pl subsearch.sh vobshift.py \
 		w32codec_dl.pl wma2ogg.pl
 
-USES+=		alias shebangfix
+USES+=		alias iconv pkgconfig shebangfix
 SHEBANG_FILES=	TOOLS/calcbpp.pl TOOLS/checktree.sh TOOLS/countquant.pl	\
 		TOOLS/divx2svcd.sh TOOLS/dvd2divxscript.pl TOOLS/mencvcd.sh \
 		TOOLS/mphelp_check.py TOOLS/plotpsnr.pl TOOLS/psnr-video.sh \
@@ -95,6 +93,7 @@ post-patch:
 		-e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		-e 's|-lbz2|/usr/lib/libbz2.so|' \
 		-e 's|-lncurses|/usr/lib/libncurses.so|' \
+		-e 's|-liconv|${ICONV_LIB}|' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${FIND} -E ${WRKSRC} -type f \
 		-iregex ".*(configure|.sh|Makefile)" -print0 | \
@@ -110,16 +109,16 @@ post-patch:
 		 s|/dev/\\:(cdrom[[:alnum:]]*[[:>:]])|${DEFAULT_CDROM_DEVICE:S/dev\//dev\/\\\:/}|g'
 
 do-install:
-	@${INSTALL_PROGRAM} ${WRKSRC}/mencoder ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/mencoder ${STAGEDIR}${PREFIX}/bin
 
 post-install:
-	@${INSTALL_MAN} ${WRKSRC}/DOCS/man/en/mplayer.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/mencoder.1
+	${INSTALL_MAN} ${WRKSRC}/DOCS/man/en/mplayer.1 ${STAGEDIR}${MAN1PREFIX}/man/man1/mencoder.1
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	@${CHMOD} 755 ${STAGEDIR}${DATADIR}
 	@${MKDIR} ${STAGEDIR}${DATADIR}/tools
 	@${CHMOD} 755 ${STAGEDIR}${DATADIR}/tools
 .for tool in ${TOOLFILES}
-	@${INSTALL_SCRIPT} ${WRKSRC}/TOOLS/${tool} ${STAGEDIR}${DATADIR}/tools
+	${INSTALL_SCRIPT} ${WRKSRC}/TOOLS/${tool} ${STAGEDIR}${DATADIR}/tools
 .endfor
 
 .include <bsd.port.post.mk>

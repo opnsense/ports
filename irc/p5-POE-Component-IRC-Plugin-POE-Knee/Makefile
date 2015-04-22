@@ -3,12 +3,12 @@
 
 PORTNAME=	POE-Component-IRC-Plugin-POE-Knee
 PORTVERSION=	1.08
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	irc perl5 devel
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	POE::Component::IRC plugin that runs Acme::POE::Knee races
 
 BUILD_DEPENDS=	p5-Math-Random>=0.69:${PORTSDIR}/math/p5-Math-Random \
@@ -25,10 +25,8 @@ OPTIONS_DEFINE=	EXAMPLES
 PORTEXAMPLES=	*
 SHEBANG_FILES=	examples/*.pl
 
-.include <bsd.port.options.mk>
-
 post-install:
-	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/examples/* ${STAGEDIR}${EXAMPLESDIR}
 
 .include <bsd.port.mk>

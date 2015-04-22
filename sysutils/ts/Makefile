@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	ts
-PORTVERSION=	0.7.4
+PORTVERSION=	0.7.5
 CATEGORIES=	sysutils
-MASTER_SITES=	http://vicerveza.homeunix.net/~viric/soft/ts/ CENKES
+MASTER_SITES=	http://vicerveza.homeunix.net/~viric/soft/ts/
 
 MAINTAINER=	demon@FreeBSD.org
 COMMENT=	Serial task spooler
@@ -17,6 +17,8 @@ PORTDOCS=	OBJECTIVES PROTOCOL README TRICKS
 post-patch:
 	${REINPLACE_CMD} -e '/^GLIBCFLAGS/d;/^CFLAGS/d'\
 		${WRKSRC}/Makefile
+	${REINPLACE_CMD} -e 's/\.TH TS 1/.TH TS 8/'\
+		${WRKSRC}/ts.1
 
 # Install man page as ts.8 to avoid conflict with security/openssl
 do-install:

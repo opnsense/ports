@@ -2,17 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	socat
-PORTVERSION=	1.7.2.4
+PORTVERSION=	1.7.3.0
+PORTREVISION=	2
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.dest-unreach.org/socat/download/ \
-		CRITICAL
+		LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Multipurpose relay and more
 
 LICENSE=	GPLv2
 
-USES=		compiler tar:bzip2
+USES=		compiler tar:bzip2 cpe
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	socat
 USE_OPENSSL=	yes

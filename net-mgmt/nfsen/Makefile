@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	nfsen
-PORTVERSION=	1.3.6p1
-PORTREVISION=	3
+PORTVERSION=	1.3.7
+PORTREVISION=	0
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION} \
 		http://nfsen.sourceforge.net/
@@ -11,7 +11,7 @@ MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION} \
 MAINTAINER=	feld@FreeBSD.org
 COMMENT=	Web based frontend to nfdump netflow collector
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/BSD-license.txt
 
 RUN_DEPENDS=	rrdtool>=0:${PORTSDIR}/databases/rrdtool \
@@ -49,6 +49,7 @@ post-patch:
 .endfor
 	${CP} ${FILESDIR}/conf.php ${WRKSRC}
 	@${REINPLACE_CMD} ${_SUB_LIST_TEMP} ${WRKSRC}/conf.php
+	@${REINPLACE_CMD} "s|/usr/bin/perl|${perl_CMD}|" ${WRKSRC}/libexec/Nfcomm.pm
 
 do-install:
 	${INSTALL} -d ${STAGEDIR}/${PREFIX}/var/${PORTNAME}/profiles-data/live

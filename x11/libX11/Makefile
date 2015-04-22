@@ -3,7 +3,7 @@
 
 PORTNAME=	libX11
 PORTVERSION=	1.6.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	x11
 
@@ -12,12 +12,13 @@ COMMENT=	X11 library
 
 LICENSE=	MIT
 
-USES=		perl5
+USES=		cpe perl5
 XORG_CAT=	lib
 USE_XORG=	bigreqsproto xau xcmiscproto xdmcp xextproto xtrans \
 		kbproto:both inputproto xf86bigfontproto xproto:both \
 		xcb
 USE_PERL5=	build
+CPE_VENDOR=	x
 
 CONFIGURE_ARGS+=	--datadir=${PREFIX}/lib \
 			--without-xmlto \

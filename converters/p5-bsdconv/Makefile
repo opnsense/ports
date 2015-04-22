@@ -3,6 +3,7 @@
 
 PORTNAME=	bsdconv
 PORTVERSION=	11.1.0
+PORTREVISION=	1
 CATEGORIES=	converters perl5
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${GH_ACCOUNT}-${GH_PROJECT}-${PORTVERSION}-0-g${GH_COMMIT}
@@ -10,7 +11,7 @@ DISTNAME=	${GH_ACCOUNT}-${GH_PROJECT}-${PORTVERSION}-0-g${GH_COMMIT}
 MAINTAINER=	buganini@gmail.com
 COMMENT=	Perl wrapper for bsdconv
 
-LICENSE=	BSD
+LICENSE=	ISCL
 
 LIB_DEPENDS=	libbsdconv.so:${PORTSDIR}/converters/bsdconv
 

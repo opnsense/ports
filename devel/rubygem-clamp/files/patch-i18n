@@ -1,21 +1,19 @@
-diff --git a/clamp-0.6.3.gemspec b/clamp-0.6.3.gemspec
-index 8f51cc3..acab485 100644
---- clamp-0.6.3.gemspec
-+++ clamp-0.6.3.gemspec
-@@ -43,6 +43,7 @@
- - lib/clamp/command.rb
- - lib/clamp/errors.rb
- - lib/clamp/help.rb
-+- lib/clamp/messages.rb
- - lib/clamp/option/declaration.rb
- - lib/clamp/option/definition.rb
- - lib/clamp/option/parsing.rb
-
+--- clamp.gemspec.orig	2015-02-28 19:33:22.833353000 +0000
++++ clamp.gemspec	2015-02-28 19:33:51.000931000 +0000
+@@ -11,7 +11,7 @@
+   s.date = "2015-02-26"
+   s.description = "Clamp provides an object-model for command-line utilities.\nIt handles parsing of command-line options, and generation of usage help.\n"
+   s.email = "mdub@dogbiscuit.org"
+-  s.files = [".autotest", ".gitignore", ".rspec", ".travis.yml", "CHANGES.md", "Gemfile", "LICENSE", "README.md", "Rakefile", "clamp.gemspec", "examples/admin", "examples/flipflop", "examples/fubar", "examples/gitdown", "examples/scoop", "examples/speak", "lib/clamp.rb", "lib/clamp/attribute/declaration.rb", "lib/clamp/attribute/definition.rb", "lib/clamp/attribute/instance.rb", "lib/clamp/command.rb", "lib/clamp/errors.rb", "lib/clamp/help.rb", "lib/clamp/option/declaration.rb", "lib/clamp/option/definition.rb", "lib/clamp/option/parsing.rb", "lib/clamp/parameter/declaration.rb", "lib/clamp/parameter/definition.rb", "lib/clamp/parameter/parsing.rb", "lib/clamp/subcommand/declaration.rb", "lib/clamp/subcommand/definition.rb", "lib/clamp/subcommand/execution.rb", "lib/clamp/subcommand/parsing.rb", "lib/clamp/truthy.rb", "lib/clamp/version.rb", "spec/clamp/command_group_spec.rb", "spec/clamp/command_spec.rb", "spec/clamp/option/definition_spec.rb", "spec/clamp/option_module_spec.rb", "spec/clamp/parameter/definition_spec.rb", "spec/spec_helper.rb"]
++  s.files = [".autotest", ".gitignore", ".rspec", ".travis.yml", "CHANGES.md", "Gemfile", "LICENSE", "README.md", "Rakefile", "clamp.gemspec", "examples/admin", "examples/flipflop", "examples/fubar", "examples/gitdown", "examples/scoop", "examples/speak", "lib/clamp.rb", "lib/clamp/attribute/declaration.rb", "lib/clamp/attribute/definition.rb", "lib/clamp/attribute/instance.rb", "lib/clamp/command.rb", "lib/clamp/errors.rb", "lib/clamp/help.rb", "lib/clamp/messages.rb", "lib/clamp/option/declaration.rb", "lib/clamp/option/definition.rb", "lib/clamp/option/parsing.rb", "lib/clamp/parameter/declaration.rb", "lib/clamp/parameter/definition.rb", "lib/clamp/parameter/parsing.rb", "lib/clamp/subcommand/declaration.rb", "lib/clamp/subcommand/definition.rb", "lib/clamp/subcommand/execution.rb", "lib/clamp/subcommand/parsing.rb", "lib/clamp/truthy.rb", "lib/clamp/version.rb", "spec/clamp/command_group_spec.rb", "spec/clamp/command_spec.rb", "spec/clamp/option/definition_spec.rb", "spec/clamp/option_module_spec.rb", "spec/clamp/parameter/definition_spec.rb", "spec/spec_helper.rb"]
+   s.homepage = "http://github.com/mdub/clamp"
+   s.licenses = ["MIT"]
+   s.rubygems_version = "2.4.5"
 diff --git a/lib/clamp/attribute/instance.rb b/lib/clamp/attribute/instance.rb
 index 8f51cc3..acab485 100644
 --- lib/clamp/attribute/instance.rb
 +++ lib/clamp/attribute/instance.rb
-@@ -72,7 +72,7 @@ def default_from_environment
+@@ -69,7 +69,7 @@ def default_from_environment
          begin
            take(value)
          rescue ArgumentError => e
@@ -46,7 +44,29 @@ diff --git a/lib/clamp/help.rb b/lib/clamp/help.rb
 index e09731a..1e57530 100644
 --- lib/clamp/help.rb
 +++ lib/clamp/help.rb
-@@ -61,7 +61,7 @@ def string
+@@ -1,4 +1,5 @@
+ require 'stringio'
++require 'clamp/messages'
+ 
+ module Clamp
+ 
+@@ -41,12 +42,12 @@ def help(invocation_path, builder = Builder.new)
+       help.add_usage(invocation_path, usage_descriptions)
+       help.add_description(description)
+       if has_parameters?
+-        help.add_list("Parameters", parameters)
++        help.add_list(Clamp.message(:parameters_heading), parameters)
+       end
+       if has_subcommands?
+-        help.add_list("Subcommands", recognised_subcommands)
++        help.add_list(Clamp.message(:subcommands_heading), recognised_subcommands)
+       end
+-      help.add_list("Options", recognised_options)
++      help.add_list(Clamp.message(:options_heading), recognised_options)
+       help.string
+     end
+ 
+@@ -61,7 +62,7 @@ def string
        end
  
        def add_usage(invocation_path, usage_descriptions)
@@ -55,14 +75,14 @@ index e09731a..1e57530 100644
          usage_descriptions.each do |usage|
            puts "    #{invocation_path} #{usage}".rstrip
          end
-@@ -87,6 +87,12 @@ def add_list(heading, items)
+@@ -87,6 +88,12 @@ def add_list(heading, items)
          end
        end
  
 +      protected
 +
 +      def usage_heading
-+        "Usage:"
++        Clamp.message(:usage_heading) + ":"
 +      end
 +
        private
@@ -73,7 +93,7 @@ new file mode 100644
 index 0000000..61cce94
 --- /dev/null
 +++ lib/clamp/messages.rb
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,43 @@
 +module Clamp
 +
 +  def self.messages=(messages)
@@ -96,7 +116,11 @@ index 0000000..61cce94
 +      :env_argument_error => "$%<env>s: %<message>s",
 +      :unrecognised_option => "Unrecognised option '%<switch>s'",
 +      :no_such_subcommand => "No such sub-command '%<name>s'",
-+      :no_value_provided => "no value provided"
++      :no_value_provided => "no value provided",
++      :usage_heading => "Usage",
++      :parameters_heading => "Parameters",
++      :subcommands_heading => "Subcommands",
++      :options_heading => "Options"
 +    }
 +  end
 +

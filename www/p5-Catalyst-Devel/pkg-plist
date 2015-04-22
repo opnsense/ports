@@ -1,9 +1,3 @@
-%%PERL5_MAN3%%/Catalyst::Devel.3.gz
-%%PERL5_MAN3%%/Catalyst::Helper.3.gz
-%%PERL5_MAN3%%/Catalyst::Restarter.3.gz
-%%PERL5_MAN3%%/Catalyst::Restarter::Forking.3.gz
-%%PERL5_MAN3%%/Catalyst::Restarter::Win32.3.gz
-%%PERL5_MAN3%%/Module::Install::Catalyst.3.gz
 %%SITE_PERL%%/Catalyst/Devel.pm
 %%SITE_PERL%%/Catalyst/Helper.pm
 %%SITE_PERL%%/Catalyst/Restarter.pm
@@ -37,22 +31,9 @@
 %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/t/02pod.t.tt
 %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/t/03podcoverage.t.tt
 %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/t/comptest.tt
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Devel/.packlist
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst/Devel
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Catalyst
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/t
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/script
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/root/static/images
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/root/static
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/root
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/lib/MyApp/Controller
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/lib/MyApp
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/lib/Helper
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel/lib
-@dirrmtry %%SITE_PERL%%/auto/share/dist/Catalyst-Devel
-@dirrmtry %%SITE_PERL%%/auto/share/dist
-@dirrmtry %%SITE_PERL%%/auto/share
-@dirrmtry %%SITE_PERL%%/Module/Install
-@dirrmtry %%SITE_PERL%%/Module
-@dirrmtry %%SITE_PERL%%/Catalyst/Restarter
-@dirrmtry %%SITE_PERL%%/Catalyst
+%%PERL5_MAN3%%/Catalyst::Devel.3.gz
+%%PERL5_MAN3%%/Catalyst::Helper.3.gz
+%%PERL5_MAN3%%/Catalyst::Restarter.3.gz
+%%PERL5_MAN3%%/Catalyst::Restarter::Forking.3.gz
+%%PERL5_MAN3%%/Catalyst::Restarter::Win32.3.gz
+%%PERL5_MAN3%%/Module::Install::Catalyst.3.gz

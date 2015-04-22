@@ -2,37 +2,41 @@
 # $FreeBSD$
 
 PORTNAME=	policyd2
-PORTVERSION=	2.0.12
-PORTREVISION=	2
+PORTVERSION=	2.0.14
+PORTREVISION=	0
 CATEGORIES=	mail
-MASTER_SITES=	http://devlabs.linuxassist.net/attachments/download/${DOWNLOAD_FOLDER}/
-DISTNAME=	cluebringer-${PORTVERSION}
+MASTER_SITES=	http://download.policyd.org/v${PORTVERSION}/
+DISTNAME=	cluebringer-v${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	mat@FreeBSD.org
 COMMENT=	Policyd v2 is a multi-platform policy server for popular MTAs
+
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	p5-Net-Server>=0:${PORTSDIR}/net/p5-Net-Server \
 		p5-Net-CIDR>=0:${PORTSDIR}/net-mgmt/p5-Net-CIDR \
 		p5-Config-IniFiles>=0:${PORTSDIR}/devel/p5-Config-IniFiles \
 		p5-Cache-FastMmap>=0:${PORTSDIR}/devel/p5-Cache-FastMmap
 
-USES=		perl5 shebangfix
+USES=		perl5 shebangfix tar:xz
 NO_BUILD=	yes
-BINMODE=	0755
 USE_RC_SUBR=	policyd2
-DOWNLOAD_FOLDER=	222
 BASH_CMD=	/bin/sh
 SHEBANG_FILES=	cbpadmin \
 		cbpolicyd \
 		database/convert-tsql \
 		database/whitelists/parse*
 
-WEBUIDIR=	${PREFIX}/www/policyd
+WWWDIR=		${PREFIX}/www/policyd
 PORTDOCS=	AUTHORS ChangeLog INSTALL TODO WISHLIST
-PORTDATA=	*
 
 OPTIONS_DEFINE=	MYSQL PGSQL SQLITE WEBUI
 OPTIONS_DEFAULT=MYSQL WEBUI
+MYSQL_DESC=	Add a dependency on DBD::mysql
+PGSQL_DESC=	Add a dependency on DBD::Pg
+SQLITE_DESC=	Add a dependency on DBD:SQLite
+WEBUI_DESC=	Add a dependency on the corresponding PHP pdo driver
 
 MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:${PORTSDIR}/databases/p5-DBD-mysql
 SQLITE_RUN_DEPENDS=	p5-DBD-SQLite>=0:${PORTSDIR}/databases/p5-DBD-SQLite
@@ -57,20 +61,18 @@ post-patch:
 		${WRKSRC}/cbpolicyd
 
 do-install:
-	@${INSTALL} -d ${STAGEDIR}${WEBUIDIR} ${STAGEDIR}${SITE_PERL}/cbp
-	cd ${WRKSRC}/webui && ${COPYTREE_SHARE} \* ${STAGEDIR}${WEBUIDIR}
-	cd ${WRKSRC}/cbp && ${COPYTREE_SHARE} \* ${STAGEDIR}${SITE_PERL}/cbp
+	@${MKDIR} ${STAGEDIR}${WWWDIR} \
+		${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/cbp \
+		${STAGEDIR}${DATADIR} \
+		${STAGEDIR}${DOCSDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/cbpadmin ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKSRC}/cbpolicyd ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/cluebringer.conf ${STAGEDIR}${PREFIX}/etc/cluebringer.conf.sample
-	@${INSTALL} -d ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} contrib ${STAGEDIR}${DATADIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} database ${STAGEDIR}${DATADIR}
-	@${INSTALL} -d ${STAGEDIR}${DOCSDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR}
-
-	@${ECHO_MSG}
-	@${ECHO_MSG} "Please check INSTALL file to configure!"
-	@${ECHO_MSG}
+	${INSTALL_DATA} ${WRKSRC}/cluebringer.conf \
+		${STAGEDIR}${PREFIX}/etc/cluebringer.conf.sample
+	(cd ${WRKSRC}/webui && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR})
+	(cd ${WRKSRC}/cbp && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/cbp)
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} contrib ${STAGEDIR}${DATADIR})
+	(cd ${WRKSRC} && ${COPYTREE_SHARE} database ${STAGEDIR}${DATADIR})
+	(cd ${WRKSRC} && ${INSTALL_DATA} ${PORTDOCS} ${STAGEDIR}${DOCSDIR})
 
 .include <bsd.port.mk>

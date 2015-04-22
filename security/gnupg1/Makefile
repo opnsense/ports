@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	1.4.18
-PORTREVISION=	1
+PORTVERSION=	1.4.19
+#PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	gnupg
@@ -13,8 +13,9 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	kuriyama@FreeBSD.org
 COMMENT=	The GNU Privacy Guard
 
-USES=		charsetfix gmake tar:bzip2
+USES=		charsetfix cpe gmake tar:bzip2
 GNU_CONFIGURE=	YES
+CPE_VENDOR=	gnupg
 .if ${MACHINE_CPU:Mi586}
 MACHINE_ARCH=	i586
 .endif
@@ -80,7 +81,6 @@ CONFIGURE_ARGS+=--without-libcurl
 .endif
 
 post-install:
-
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for i in DETAILS FAQ HACKING OpenPGP
 	${INSTALL_DATA} ${WRKSRC}/doc/${i} ${STAGEDIR}${DOCSDIR}

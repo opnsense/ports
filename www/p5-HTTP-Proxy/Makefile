@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	HTTP-Proxy
-PORTVERSION=	0.301
+PORTVERSION=	0.302
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -18,6 +18,6 @@ BUILD_DEPENDS=	p5-HTTP-Daemon>=1.25:${PORTSDIR}/www/p5-HTTP-Daemon \
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
-USE_PERL5=	modbuild
+USE_PERL5=	configure
 
 .include <bsd.port.mk>

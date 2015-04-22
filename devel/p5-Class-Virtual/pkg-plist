@@ -1,5 +1,4 @@
-%%PERL5_MAN3%%/Class::Virtual.3.gz
-%%PERL5_MAN3%%/Class::Virtually::Abstract.3.gz
 %%SITE_PERL%%/Class/Virtual.pm
 %%SITE_PERL%%/Class/Virtually/Abstract.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Class/Virtual/.packlist
+%%PERL5_MAN3%%/Class::Virtual.3.gz
+%%PERL5_MAN3%%/Class::Virtually::Abstract.3.gz

@@ -17,7 +17,10 @@ OPTIONS_DEFINE=		THREADSAFE
 OPTIONS_DEFAULT=	THREADSAFE
 THREADSAFE_DESC=	Build thread-safe client
 
-CONFLICTS=	mysql[0-9][0-9]-client-* mariadb5.[0-24-9]-client-* mariadb[0-46-9][0-9]-client-* percona[0-9][0-9]-client-*
+CONFLICTS=	mariadb5[4-9]-client-* \
+		mariadb1[0-9][0-9]-client-* \
+		mysql*-client-* \
+		percona*-client-* 
 
 PATCHDIR=	${.CURDIR}/files
 PLIST=		${.CURDIR}/pkg-plist
@@ -35,8 +38,12 @@ post-patch:
 	@${REINPLACE_CMD} -e "s|install-exec-am: install-binPROGRAMS|install-exec-am:|g" ${WRKSRC}/extra/Makefile.in
 	@${REINPLACE_CMD} -e "s|%%MANS%%|${MANS}|" ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e "s|^\(install-man: install-man1\).*|\1|" ${WRKSRC}/man/Makefile.in
+	@${REINPLACE_CMD} -e "s|-fno-implicit-templates||g" ${WRKSRC}/configure
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/support-files/mysql.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
+
+post-stage:
+	@${RM} -rf ${STAGEDIR}/${PREFIX}/include/mysql/private
 
 .include "${MASTERDIR}/Makefile"

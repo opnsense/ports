@@ -3,11 +3,12 @@
 
 PORTNAME=	CGI-Application-Plugin-Session
 PORTVERSION=	1.05
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Plugin that adds session support to CGI::Application
 
 LICENSE=	ART10 GPLv1

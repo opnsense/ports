@@ -4,7 +4,7 @@
 #
 # $FreeBSD$
 
-MPLAYER_SNAPSHOT_DATE=	2014-08-24
+MPLAYER_SNAPSHOT_DATE=	2015-04-03
 MPLAYER_PORT_VERSION=	1.1.r${MPLAYER_SNAPSHOT_DATE:S/-//g}
 CATEGORIES?=	multimedia audio
 MASTER_SITES=	${MASTER_SITE_LOCAL}
@@ -16,16 +16,15 @@ MAINTAINER?=	riggs@FreeBSD.org
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
-		libfreetype.so:${PORTSDIR}/print/freetype2
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
+		libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libdvdnav.so:${PORTSDIR}/multimedia/libdvdnav
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/yasm:${PORTSDIR}/devel/yasm
 
-USES=		gmake iconv ncurses tar:xz
+USES=		compiler:c11 gmake iconv ncurses tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" \
-		TMPDIR="${WRKSRC}"
+CONFIGURE_ENV=	TMPDIR="${WRKSRC}"
 CONFIGURE_ARGS=	--cc="${CC}" \
 		--host-cc="${CC}" \
 		--as="${AS}" \
@@ -40,6 +39,7 @@ CONFIGURE_ARGS=	--cc="${CC}" \
 		--disable-ggiwmh \
 		--disable-liba52 \
 		--disable-libbs2b \
+		--disable-libdirac-lavc \
 		--disable-libilbc \
 		--disable-libnut \
 		--disable-libvorbis \

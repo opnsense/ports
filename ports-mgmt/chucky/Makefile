@@ -5,7 +5,7 @@ PORTNAME=	chucky
 PORTVERSION=	1.0
 PORTREVISION=	1
 CATEGORIES=	ports-mgmt
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 DISTNAME=	${GH_ACCOUNT}-${GH_PROJECT}-${PORTVERSION}-0-g${GH_COMMIT}
 
 MAINTAINER=	waitman@waitman.net
@@ -16,7 +16,7 @@ LICENSE_NAME=	CHUCKY BSD LICENSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-LIB_DEPENDS=	libpkg.so:${PORTSDIR}/ports-mgmt/pkg \
+LIB_DEPENDS=	libpkg.so:${PORTSDIR}/${PKG_ORIGIN} \
 		libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 USE_GITHUB=	yes

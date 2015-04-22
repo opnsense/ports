@@ -9,7 +9,7 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-1.X/${PORTVERSION} \
 		http://www1.corest.com/download/msyslog/
 DISTNAME=	${PORTNAME}-v${PORTVERSION}-src
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Flexible and easy to integrate syslog daemon
 
 LICENSE=	BSD4CLAUSE MIT
@@ -19,7 +19,7 @@ OPTIONS_DEFINE=	MYSQL PGSQL EXAMPLES
 OPTIONS_SUB=	yes
 MYSQL_USE=	MYSQL=yes
 MYSQL_CONFIGURE_OFF=	--without-mysql
-PGSQL_USE=	PGSQL=yes
+PGSQL_USES=	pgsql
 PGSQL_CONFIGURE_OFF=	--without-pgsql
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S/-src//}

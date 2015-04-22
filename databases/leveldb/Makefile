@@ -28,7 +28,6 @@ SHLIB_MINOR=	${PORTVERSION:E}
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
-GH_COMMIT=	803d692
 GH_PROJECT=	${PORTNAME}
 GH_TAGNAME=	v${PORTVERSION}
 
@@ -44,7 +43,6 @@ SNAPPY=		0
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lpthread|-pthread|' ${WRKSRC}/build_detect_platform
 	@${REINPLACE_CMD} -e '/PLATFORM_IS_LITTLE_ENDIAN/ s|__|_|g' ${WRKSRC}/port/port_posix.h
 .if !${PORT_OPTIONS:MGPERFTOOLS}
 	@${REINPLACE_CMD} -e 's| -ltcmalloc||' ${WRKSRC}/build_detect_platform

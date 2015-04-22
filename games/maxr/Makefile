@@ -3,7 +3,7 @@
 
 PORTNAME=	maxr
 PORTVERSION=	0.2.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	http://www.maxr.org/downloads/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -19,6 +19,10 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDATA=	*
+PLIST_DIRS=	%%DATADIR%%/voices \
+		%%DATADIR%%/vehicles/sub/sub \
+		%%DATADIR%%/save \
+		%%DATADIR%%/mve
 
 DESKTOP_ENTRIES="M.A.X.R." \
 		"Mechanized Assault and Exploration Reloaded" \

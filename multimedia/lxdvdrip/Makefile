@@ -3,7 +3,7 @@
 
 PORTNAME=	lxdvdrip
 PORTVERSION=	1.62
-PORTREVISION=	14
+PORTREVISION=	16
 CATEGORIES=	multimedia
 MASTER_SITES=	http://download.berlios.de/lxdvdrip/
 EXTRACT_SUFX=	.tgz
@@ -38,8 +38,8 @@ LXDVDRIPSRC=	cputest.c \
 		systools.c \
 		tcmemcpy.c \
 		vaporize.c
-CFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS} -ldvdread -lm
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lpthread -ldvdread -lm
 
 DOCS=	Changelog.de Changelog.en Changelog.fr \
 		README.de  README.en README.fr \

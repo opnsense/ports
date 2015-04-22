@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	plaso
-PORTVERSION=	1.1.0
+PORTVERSION=	1.2.0
 PORTREVISION=	1
 CATEGORIES=	security python
-MASTER_SITES=	https://googledrive.com/host/0B30H7z4S52FleW5vUHBnblJfcjg/${PORTVERSION}/release/ \
+MASTER_SITES=	https://googledrive.com/host/0B30H7z4S52FleW5vUHBnblJfcjg/${PORTVERSION}/final/ \
 		LOCAL/antoine
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -20,6 +20,7 @@ RUN_DEPENDS=	hachoir-core>=0:${PORTSDIR}/devel/hachoir-core \
 		libesedb>=e:${PORTSDIR}/devel/libesedb \
 		libevt>=a:${PORTSDIR}/devel/libevt \
 		libevtx>=a:${PORTSDIR}/devel/libevtx \
+		libfwsi>=e:${PORTSDIR}/devel/libfwsi \
 		liblnk>=0:${PORTSDIR}/devel/liblnk \
 		libmsiecf>=a:${PORTSDIR}/devel/libmsiecf \
 		libolecf>=a:${PORTSDIR}/devel/libolecf \
@@ -37,13 +38,14 @@ RUN_DEPENDS=	hachoir-core>=0:${PORTSDIR}/devel/hachoir-core \
 		${PYTHON_PKGNAMEPREFIX}pyelasticsearch>=0:${PORTSDIR}/textproc/py-pyelasticsearch \
 		${PYTHON_PKGNAMEPREFIX}pytsk>=0:${PORTSDIR}/sysutils/py-pytsk \
 		${PYTHON_PKGNAMEPREFIX}pytz>=0:${PORTSDIR}/devel/py-pytz \
+		${PYTHON_PKGNAMEPREFIX}requests>=0:${PORTSDIR}/www/py-requests \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>=0:${PORTSDIR}/databases/py-sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}yaml>=0:${PORTSDIR}/devel/py-yaml
 
 USES=		python:2
 USE_PYTHON=	distutils autoplist
 
-PORTDOCS=	ACKNOWLEDGEMENTS AUTHORS
+PORTDOCS=	ACKNOWLEDGEMENTS AUTHORS README
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
@@ -53,5 +55,7 @@ post-install:
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/extra/* ${STAGEDIR}${EXAMPLESDIR}
+
+# Note: for regression tests set LANG to en_US.UTF-8
 
 .include <bsd.port.mk>

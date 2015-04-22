@@ -7,11 +7,11 @@
 # Starting with version 1.0-7667, NVidia has dropped support for numerous
 # "legacy" GPUs.  Consult NVidia README (the Appendix) to find out whether
 # you need to use legacy driver version and install one of corresponding
-# `x11/nvidia-driver-71', `x11/nvidia-driver-96', `x11/nvidia-driver-173',
-# or `x11/nvidia-driver-304' slave ports.
+# slave ports instead (`x11/nvidia-driver-173', `x11/nvidia-driver-304',
+# or `x11/nvidia-driver-340').
 
 PORTNAME=	nvidia-driver
-DISTVERSION?=	340.46
+DISTVERSION?=	346.47
 # Always try to set PORTREVISION as it can be overridden by the slave ports
 PORTREVISION?=	0
 CATEGORIES=	x11
@@ -77,7 +77,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src-Makefile \
 		${FILESDIR}/extra-patch-src-nv-misc.h
 .endif
 
-.if ${NVVERSION} >= 331.020
+.if ${NVVERSION} >= 304.125 # 331.020
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-x11-driver-Makefile
 .else
 EXTRA_PATCHES+=	${FILESDIR}/legacy-patch-x11-driver-Makefile
@@ -117,13 +117,8 @@ PLIST_SUB+=	LINUXBASE=${LINUXBASE} SHLIB_VERSION=${PORTVERSION} \
 
 .include <bsd.port.options.mk>
 
-# FreeBSD src SVN r254138 had broken 71.86.xx legacy series :(
-.if ${OSVERSION} > 1000041 && ${NVVERSION} <= 71.08615
-BROKEN=		does not compile
-.endif
-
 .if ${PORT_OPTIONS:MLINUX}
-CONFLICTS=	linux[-_]dri-[0-9]* linux-f10-dri-[0-9]*
+CONFLICTS_INSTALL=	linux[-_]dri-[0-9]* linux-f10-dri-[0-9]*
 USE_LINUX=	yes
 PLIST_SUB+=	LINUX=""
 .else
@@ -180,12 +175,6 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -e '/kmem_/s/kernel_map/kernel_arena/' \
 		${WRKSRC}/src/nvidia_subr.c
 .endif
-# Adopt to cap_rights_t type change in FreeBSD src SVN r255219
-.if ${OSVERSION} > 1000052 && ${NVVERSION} < 331.067
-	${REINPLACE_CMD} -e 's/u_long cmd;/& cap_rights_t rights;/ ; \
-		s/CAP_IOCTL/cap_rights_init(\&rights, &)/' \
-			${WRKSRC}/src/nvidia_linux.c
-.endif
 # Argument count of vm_map_find() changed in FreeBSD src SVN r255426
 .if ${OSVERSION} > 1000054 && ${NVVERSION} < 304.123 # < 331.067
 	${REINPLACE_CMD} -e 's/virtual_address, size,/& 0,/' \
@@ -197,13 +186,13 @@ post-patch: .SILENT
 		s/^[[:blank:]]*CTLFLAG_RD/CTLTYPE_STRING |&/' \
 			${WRKSRC}/src/nvidia_sysctl.c
 .endif
+# Replace d_thread_t (compat shim to support FreeBSD 4) with `struct thread'
+	${REINPLACE_CMD} -e 's/d_thread_t/struct thread/' \
+		${WRKSRC}/src/nvidia_ctl.c ${WRKSRC}/src/nvidia_dev.c \
+		${WRKSRC}/src/nvidia_linux.c
 # Fix stack buffer overflow in nvidia_sysctl_bus_type()
-.if ${NVVERSION} < 304.123 # < 319.023
-	${REINPLACE_CMD} -E '/bus_type\[4\]/d ; \
-		s/sprintf\(bus_type, (".+")/return SYSCTL_OUT(req, \1, sizeof(\1)/ ; \
-		/return SYSCTL_OUT\(req, bus_type/d' \
-			${WRKSRC}/src/nvidia_sysctl.c
-.endif
+	${REINPLACE_CMD} -e 's/8 bus_type\[4\]/8 bus_type[8]/' \
+		${WRKSRC}/src/nvidia_sysctl.c
 # Unbreak the build of 173.14.xx legacy series on recent -CURRENT
 .if ${NVVERSION} < 195.022 && ${NVVERSION} >= 169.004
 	${REINPLACE_CMD} -E 's/os_(alloc|free)_contig_pages/NV_API_CALL &/' \
@@ -246,16 +235,26 @@ post-patch: .SILENT
 	${REINPLACE_CMD} -E 's/(lib).*/\1/' ${WRKSRC}/x11/Makefile
 .endif
 	${REINPLACE_CMD} -e '/bin/d ; /man/d' ${WRKSRC}/x11/Makefile
+# Also do not install libnvidia-gtk* libraries which are for nvidia-settings
+.if ${NVVERSION} >= 346.016
+	${REINPLACE_CMD} -e '/libnvidia-gtk/d' ${WRKSRC}/lib/Makefile
+.endif
 # Conditionally install documentation (but you generally want it)
 .if ! ${PORT_OPTIONS:MDOCS}
 	${REINPLACE_CMD} -E 's/(x11).*/\1/ ; /doc/d' ${WRKSRC}/Makefile
 .endif
 # Adjust installation paths of some conflicting files (shared also between
-# libGL and xorg-server) to ease package manager work, esp. with pkgng
+# libGL, libEGL, libglesv2 and xorg-server) to ease package manager work.
 	${REINPLACE_CMD} -e '/LIBDIR/s:xorg/modules/extensions:&/.nvidia:' \
 		${WRKSRC}/x11/extension/Makefile
 	${REINPLACE_CMD} -e '/LIBDIR/s:lib:&/.nvidia:' \
 		${WRKSRC}/lib/libGL/Makefile
+.if ${NVVERSION} >= 331.013
+	${REINPLACE_CMD} -e '/LIBDIR/s:lib:&/.nvidia:' \
+		${WRKSRC}/lib/libEGL/Makefile
+	${REINPLACE_CMD} -e '/LIBDIR/s:lib:&/.nvidia:' \
+		${WRKSRC}/lib/libGLESv2/Makefile
+.endif
 # Do not execute afterinstall target (prevent automatic module registration
 # and "smart" installation of conflicting files heuristics)
 	${REINPLACE_CMD} -e 's/afterinstall/&_dontexecute/' ${WRKSRC}/Makefile

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME?=	postgresql
-DISTVERSION?=	9.2.9
+DISTVERSION?=	9.2.10
 PORTREVISION?=	0
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL
@@ -20,7 +20,7 @@ CONFLICTS?=	${PORTNAME}[^${PORTVERSION:R:R}]?-client* \
 WRKSRC=		${WRKDIR}/postgresql-${DISTVERSION}
 DIST_SUBDIR=	postgresql
 
-ICU_PATCHFILE?=	pg-928-icu-2014-06-09.diff.gz
+ICU_PATCHFILE?=	pg-929-icu-2015-04-18.diff.gz
 
 .if !defined(SLAVE_ONLY)
 UNIQUENAME?=	${PORTNAME}${DISTVERSION:R:S/.//}
@@ -29,7 +29,7 @@ UNIQUENAME?=	${PORTNAME}${DISTVERSION:R:S/.//}${PKGNAMESUFFIX}
 .endif
 
 PKGINSTALL?=	${PKGDIR}/pkg-install${COMPONENT}
-USES+=		tar:bzip2
+USES+=		tar:bzip2 cpe
 .if !defined(NO_BUILD)
 USES+=	gmake
 GNU_CONFIGURE=	yes
@@ -45,9 +45,9 @@ CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 		--with-includes=${PREFIX}/include \
 		--enable-thread-safety
 CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
-		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+		PTHREAD_LIBS="-lpthread" \
 		LDFLAGS_SL="${LDFLAGS_SL}"
+LDFLAGS+=	-lpthread
 
 PLIST=		${PKGDIR}/pkg-plist${COMPONENT}
 
@@ -61,6 +61,7 @@ BUILD_DIRS?=	src/port ${INSTALL_DIRS}
 
 .if !defined(CLIENT_ONLY) && !defined(SLAVE_ONLY)
 SERVER_ONLY=	yes
+PORTREVISION=	1
 COMPONENT=	-server
 USE_RC_SUBR=	postgresql
 USES+=		pgsql:${DISTVERSION:C/([0-9][0-9]*\.[0-9][0-9]*).*/\1/g}
@@ -69,7 +70,10 @@ GROUPS=	${PG_GROUP}
 SUB_FILES+=	502.pgsql
 .endif
 
-.if !defined(CLIENT_ONLY)
+.if defined(CLIENT_ONLY)
+OPTIONS_DEFINE+=LIBEDIT
+LIBEDIT_DESC=	Use non-GPL libedit instead of readline
+.else
 MAKE_ENV=	PATH=${PREFIX}/bin:${PATH}
 CONFIGURE_ENV+=	PATH=${PREFIX}/bin:${PATH}
 .endif
@@ -108,6 +112,15 @@ OPTIONS_DEFAULT=	NLS XML TZDATA INTDATE SSL
 .endif # !SLAVE_ONLY
 
 .include <bsd.port.options.mk>
+
+.if defined(CLIENT_ONLY)
+.  if ${PORT_OPTIONS:MLIBEDIT}
+CONFIGURE_ARGS+=--with-libedit-preferred
+LIB_DEPENDS=    libedit.so.0:${PORTSDIR}/devel/libedit
+.  else
+USES+=		readline
+.  endif
+.endif # CLIENT_ONLY
 
 .if ${PORT_OPTIONS:MSSL}
 USE_OPENSSL=	yes

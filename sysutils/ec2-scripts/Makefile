@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ec2-scripts
-PORTVERSION=	1.9
+PORTVERSION=	1.10
 CATEGORIES=	sysutils
 MASTER_SITES=	http://freebsd-ec2-dist.s3.amazonaws.com/
 EXTRACT_SUFX=	.tgz
@@ -10,7 +10,7 @@ EXTRACT_SUFX=	.tgz
 MAINTAINER=	cperciva@FreeBSD.org
 COMMENT=	Startup scripts for FreeBSD/EC2 environment
 
-LICENSE=	BSD
+LICENSE=	BSD2CLAUSE
 
 OPTIONS_DEFINE=	NOFIRSTBOOT
 NOFIRSTBOOT_DESC=	Use old (pre-firstboot support) version of scripts

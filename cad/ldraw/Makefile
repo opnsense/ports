@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	ldraw
-PORTVERSION=	201302
+PORTVERSION=	201501
 PORTEPOCH=	1
 CATEGORIES=	cad
 MASTER_SITES=	http://www.ldraw.org/library/updates/
 DISTNAME=	complete
-DIST_SUBDIR=	${PORTNAME}
+DIST_SUBDIR=	ldraw/${PORTVERSION}
 
 MAINTAINER=	koalative@gmail.com
 COMMENT=	LDraw parts library
@@ -23,6 +23,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 USES=		dos2unix gmake zip:infozip
 DOS2UNIX_GLOB=	*.h makefile mklist.c *.txt *.dat
 
+PORTDATA=	*
 PORTDOCS=	Readme.txt
 OPTIONS_DEFINE=	DOCS
 
@@ -53,10 +54,5 @@ do-install:
 
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
-
-	@cd ${STAGEDIR}${PREFIX} && ${FIND} ${DATADIR_REL} \
-		-type f >> ${TMPPLIST} && \
-		${FIND} ${DATADIR_REL} -type d -o -type l | ${SORT} -r | \
-		${SED} 's|^|@dirrm |' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

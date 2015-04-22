@@ -12,6 +12,9 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	GNOME text-to-speech API
 
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 USE_GNOME=	gnomeprefix libbonobo
 USES=		gmake libtool:keepla pathfix pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
@@ -24,24 +27,14 @@ OPTIONS_DEFINE=	ESPEAK FESTIVAL
 ESPEAK_DESC=	Espeak speech synthesizer support
 FESTIVAL_DESC=	Festival speech synthesis support
 
-.include <bsd.port.options.mk>
+OPTIONS_SUB=	yes
 
-.if ${PORT_OPTIONS:MESPEAK}
-LIB_DEPENDS+=	libespeak.so:${PORTSDIR}/audio/espeak
-CONFIGURE_ARGS+=--with-espeak-dir=${LOCALBASE}
-PLIST_SUB+=	ESPEAK:=""
-.else
-CONFIGURE_ARGS+=--without-espeak
-PLIST_SUB+=	ESPEAK:="@comment "
-.endif
+ESPEAK_LIB_DEPENDS=	libespeak.so:${PORTSDIR}/audio/espeak
+ESPEAK_CONFIGURE_ON=--with-espeak-dir=${LOCALBASE}
+ESPEAK_CONFIGURE_OFF=--without-espeak
 
-.if ${PORT_OPTIONS:MFESTIVAL}
-RUN_DEPENDS+=	festival:${PORTSDIR}/audio/festival
-PLIST_SUB+=	FESTIVAL=""
-.else
-CONFIGURE_ARGS+=--without-festival
-PLIST_SUB+=	FESTIVAL="@comment "
-.endif
+FESTIVAL_RUN_DEPENDS=	festival:${PORTSDIR}/audio/festival
+FESTIVAL_CONFIGURE_OFF=--without-festival
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|== x|= x|g' \

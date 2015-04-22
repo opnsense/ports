@@ -3,11 +3,12 @@
 
 PORTNAME=		Number-Format
 PORTVERSION=		1.73
+PORTREVISION=	1
 CATEGORIES=		textproc perl5
 MASTER_SITES=		CPAN
 PKGNAMEPREFIX=		p5-
 
-MAINTAINER=		clsung@FreeBSD.org
+MAINTAINER=		ports@FreeBSD.org
 COMMENT=		Perl extension for formatting numbers
 
 LICENSE=	ART10 GPLv1

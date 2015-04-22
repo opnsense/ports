@@ -3,7 +3,7 @@
 
 PORTNAME=	graphviz
 PORTVERSION=	2.38.0
-PORTREVISION=	2
+PORTREVISION=	6
 CATEGORIES=	graphics tk
 MASTER_SITES=	http://www.graphviz.org/pub/graphviz/ARCHIVE/
 
@@ -12,13 +12,13 @@ COMMENT=	Graph Visualization Software from AT&T and Bell Labs
 
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libgd.so:${PORTSDIR}/${GD_PORT}
 
-USES=		gmake bison libtool:oldver pkgconfig pathfix shebangfix
+USES=		cpe gmake bison libtool:keepla pkgconfig pathfix shebangfix
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -94,7 +94,7 @@ GVEDIT_USE=	qt4=qmake_build,moc_build,rcc_build,uic_build \
 GHOSTSCRIPT_USE=GHOSTSCRIPT=yes
 PERL_USES=	perl5
 PHP_USE=	PHP=yes PHP_BUILD=yes
-PYTHON_USE=	PYTHON_BUILD=2.7
+PYTHON_USES=	python:2.7,build
 RUBY_USE=	RUBY=yes
 LUA_USES=	lua
 TCL_USES=	tcl:build
@@ -148,8 +148,7 @@ TK_CPPFLAGS=		-I${TK_INCLUDEDIR}
 TK_CONFIGURE_ON=	--with-wish=${WISH}
 TK_CONFIGURE_ENV=	TKCONFIG="${TK_LIBDIR}/tkConfig.sh"
 GUILE_CONFIGURE_ENABLE=		guile
-NVTHREADS_CFLAGS+=	${PTHREAD_CFLAGS}
-NVTHREADS_LDFLAGS+=	${PTHREAD_LIBS}
+NVTHREADS_LDFLAGS=	-lpthread
 
 .include <bsd.port.options.mk>
 
@@ -172,10 +171,6 @@ BROKEN=	guile is too old
 
 .if ${PORT_OPTIONS:MMING}
 BROKEN=	Ming incomplete, uses removed libgraph
-.endif
-
-.if ${PORT_OPTIONS:MRUBY}
-BROKEN=	illegal macro in libdata/pkgconfig/ruby-1.9.pc
 .endif
 
 .if ${OSVERSION} > 1100000
@@ -303,12 +298,15 @@ post-patch:
 	${REINPLACE_CMD} -e "s|/usr/include/php|${LOCALBASE}/include/php|g" \
 		-e "s|vendorarchdir|sitearchdir|g" \
 		-e "s|-lruby|-lruby${RUBY_SUFFIX}|g" \
+		-e "s|ruby-1[.]9|ruby-${RUBY_VER}|g" \
 		-e "s|Config::|RbConfig::|" \
 		-e 's|PHP_INSTALL_DIR=.*|PHP_INSTALL_DIR="${PREFIX}/lib/php/${PHP_EXT_DIR}"|' \
 		-e 's|PHP_INSTALL_DATADIR=.*|PHP_INSTALL_DATADIR="${PREFIX}/share/php"|' \
 		-e '/if test/ s| == | = |g' ${WRKSRC}/configure
 	${REINPLACE_CMD} -e 's|#include "gui.h"|#include "gui/gui.h"|' \
 		${WRKSRC}/cmd/smyrna/tvnodes.h
+	${REINPLACE_CMD} -e 's|GTS_LIBS)|GTS_LIBS) $$(MATH_LIBS)|' \
+		${WRKSRC}/cmd/smyrna/Makefile.in
 	${CP} ${WRKSRC}/lib/cgraph/cgraph.h ${WRKSRC}/plugin/ming/
 .if ! ${PORT_OPTIONS:MDOCS}
 	${REINPLACE_CMD} -e 's| install-txtDATA$$||' \

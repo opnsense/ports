@@ -1,9 +1,9 @@
---- qtox.pro.orig	2014-10-28 21:27:51.000000000 +0100
-+++ qtox.pro	2014-10-29 19:21:51.000000000 +0100
-@@ -213,3 +213,15 @@
-     src/video/netvideosource.cpp \
-     src/widget/form/tabcompleter.cpp \
-     src/video/videoframe.cpp
+--- qtox.pro
++++ qtox.pro
+@@ -451,3 +451,15 @@
+     src/widget/gui.h \
+     src/toxme.h \
+     src/misc/qrwidget.h
 +
 +unix {
 +    target.path  = $$PREFIX/bin

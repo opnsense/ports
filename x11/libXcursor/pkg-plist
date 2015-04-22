@@ -1,6 +1,5 @@
 include/X11/Xcursor/Xcursor.h
 lib/libXcursor.a
-lib/libXcursor.la
 lib/libXcursor.so
 lib/libXcursor.so.1
 lib/libXcursor.so.1.0.2
@@ -37,4 +36,3 @@ man/man3/XcursorSetDefaultSize.3.gz
 man/man3/XcursorGetDefaultSize.3.gz
 man/man3/XcursorSetTheme.3.gz
 man/man3/XcursorGetTheme.3.gz
-@dirrm include/X11/Xcursor

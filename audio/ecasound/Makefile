@@ -3,7 +3,7 @@
 
 PORTNAME=	ecasound
 PORTVERSION=	2.9.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://ecasound.seul.org/download/ \
 		http://nosignal.fi/download/ \
@@ -44,7 +44,7 @@ LIBOIL_CONFIGURE_ENABLE=liboil
 LIBOIL_LIB_DEPENDS=	liboil-0.3.so:${PORTSDIR}/devel/liboil
 PYTHON_CONFIGURE_ENABLE=pyecasound
 PYTHON_CONFIGURE_ENV=	PYTHONPATH="${PYTHON_CMD}"
-PYTHON_USE=		PYTHON=yes
+PYTHON_USES=		python
 SAMPLERATE_CONFIGURE_ENABLE=	libsamplerate
 SAMPLERATE_LIB_DEPENDS=	libsamplerate.so:${PORTSDIR}/audio/libsamplerate
 SNDFILE_CONFIGURE_ENABLE=	sndfile

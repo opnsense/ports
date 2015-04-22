@@ -4,16 +4,16 @@
 PORTNAME=	wizznic
 PORTVERSION=	0.9.9
 DISTVERSIONSUFFIX=-src
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/Source%20Releases/
 
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Implementation of the arcade classic Puzznic
 
-LICENSE=	GPLv3
+LICENSE=	GPLv3 # or later
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-src
 

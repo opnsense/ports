@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tinker
-PORTVERSION=	6.2.6
-PORTREVISION=	6
+PORTVERSION=	7.1.2
 CATEGORIES=	biology
 MASTER_SITES=	http://dasher.wustl.edu/tinker/downloads/
 
@@ -27,8 +26,9 @@ INSTALL_WRKSRC=	${WRKSRC}/source
 USES=		fortran
 MAKE_ENV=	HAVE_G2C=yes
 MAKEFILE=	${WRKSRC}/make/Makefile
-ALL_TARGET=	all listing
+ALL_TARGET=	all
 INSTALL_TARGET=	rename
+EXTRACT_AFTER_ARGS=--exclude fftw --exclude windows --exclude macosx
 
 SUB_FILES=	pkg-message
 
@@ -49,10 +49,9 @@ pre-build:
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
-	(cd ${INSTALL_WRKSRC} && ${INSTALL_DATA} tinker.txt ${STAGEDIR}${DATADIR})
 	${MKDIR} ${STAGEDIR}${DATADIR}/bench
 	(cd ${WRKSRC}/bench && ${INSTALL_DATA} \
-		0README *.dyn0 *.log *.key *.run *.xyz results* \
+		0README *.log *.key *.run *.xyz results* \
 		${STAGEDIR}${DATADIR}/bench)
 	${MKDIR} ${STAGEDIR}${DATADIR}/params
 	(cd ${WRKSRC}/params && ${INSTALL_DATA} * ${STAGEDIR}${DATADIR}/params)

@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	postgis
-PORTVERSION=	2.1.3
-PORTREVISION=	1
+PORTVERSION=	2.1.5
 CATEGORIES=	databases geography
 MASTER_SITES=	http://download.osgeo.org/postgis/source/
 
@@ -37,6 +36,7 @@ TOPOLOGY_DESC=	Topology support
 SFCGAL_DESC=	Enable sfcgal
 LOADERGUI_CONFIGURE_WITH=	gui
 LOADERGUI_USE=	GNOME=gtk20
+RASTER_USES=	alias
 RASTER_CONFIGURE_WITH=	raster
 RASTER_LIB_DEPENDS=		libgdal.so:${PORTSDIR}/graphics/gdal
 RASTER_CONFIGURE_ON=	--with-gdalconfig=${LOCALBASE}/bin/gdal-config
@@ -69,7 +69,7 @@ post-install: .SILENT
 	(cd ${WRKSRC}/utils/ && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR}/utils/ "! ( -name *\.orig -o -name *\.bak )" )
 	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/shp2pgsql
 	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/pgsql2shp
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/liblwgeom-2.1.3.so
+	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/liblwgeom-${PORTVERSION}.so
 	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/postgresql/postgis-2.1.so
 
 .include <bsd.port.mk>

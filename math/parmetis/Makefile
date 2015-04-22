@@ -3,7 +3,7 @@
 
 PORTNAME=	ParMetis
 PORTVERSION=	4.0
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	math parallel
 MASTER_SITES=	http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/%SUBDIR%/
 MASTER_SITE_SUBDIR=	. OLD
@@ -32,9 +32,6 @@ PLIST_FILES=	include/parmetis/metis.h \
 		lib/parmetis/libmetis.a \
 		lib/parmetis/libparmetis.a \
 		${DOCSDIR}/manual.pdf
-PLIST_DIRS=	include/parmetis \
-		lib/parmetis \
-		${DOCSDIR}
 
 .include <bsd.port.options.mk>
 

@@ -27,6 +27,10 @@ bin/qmc2-sdlmess
 %%PORTDOCS%%%%DOCSDIR%%/html/us/index.html
 %%PORTDOCS%%%%DOCSDIR%%/html/us/readme.html
 %%PORTDOCS%%%%DOCSDIR%%/html/us/todo.html
+%%DATADIR%%/img/1.png
+%%DATADIR%%/img/2.png
+%%DATADIR%%/img/3.png
+%%DATADIR%%/img/4.png
 %%DATADIR%%/img/7z-compressed.png
 %%DATADIR%%/img/activity_green.png
 %%DATADIR%%/img/activity_red.png
@@ -44,6 +48,10 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/cd.png
 %%DATADIR%%/img/characters.png
 %%DATADIR%%/img/checkpoint.png
+%%DATADIR%%/img/circles/1.png
+%%DATADIR%%/img/circles/2.png
+%%DATADIR%%/img/circles/3.png
+%%DATADIR%%/img/circles/4.png
 %%DATADIR%%/img/circles/7z-compressed.png
 %%DATADIR%%/img/circles/activity_green.png
 %%DATADIR%%/img/circles/activity_red.png
@@ -65,6 +73,20 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/circles/clock.png
 %%DATADIR%%/img/circles/clone.png
 %%DATADIR%%/img/circles/colors.png
+%%DATADIR%%/img/circles/component_arrangement_00.png
+%%DATADIR%%/img/circles/component_arrangement_01.png
+%%DATADIR%%/img/circles/component_arrangement_02.png
+%%DATADIR%%/img/circles/component_arrangement_03.png
+%%DATADIR%%/img/circles/component_arrangement_04.png
+%%DATADIR%%/img/circles/component_arrangement_05.png
+%%DATADIR%%/img/circles/component_arrangement_06.png
+%%DATADIR%%/img/circles/component_arrangement_07.png
+%%DATADIR%%/img/circles/component_arrangement_08.png
+%%DATADIR%%/img/circles/component_arrangement_09.png
+%%DATADIR%%/img/circles/component_arrangement_10.png
+%%DATADIR%%/img/circles/component_arrangement_11.png
+%%DATADIR%%/img/circles/component_arrangement_12.png
+%%DATADIR%%/img/circles/component_arrangement_13.png
 %%DATADIR%%/img/circles/compressed.png
 %%DATADIR%%/img/circles/configure.png
 %%DATADIR%%/img/circles/controller.png
@@ -97,6 +119,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/circles/east.png
 %%DATADIR%%/img/circles/edit.png
 %%DATADIR%%/img/circles/editcopy.png
+%%DATADIR%%/img/circles/editcopybad.png
 %%DATADIR%%/img/circles/editcut.png
 %%DATADIR%%/img/circles/editdelete.png
 %%DATADIR%%/img/circles/editpaste.png
@@ -120,6 +143,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/circles/filter.png
 %%DATADIR%%/img/circles/find.png
 %%DATADIR%%/img/circles/find_negate.png
+%%DATADIR%%/img/circles/find_softlist.png
 %%DATADIR%%/img/circles/flat.png
 %%DATADIR%%/img/circles/flip.png
 %%DATADIR%%/img/circles/folders-first.png
@@ -232,6 +256,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/circles/rank_bg.png
 %%DATADIR%%/img/circles/rank_flat.png
 %%DATADIR%%/img/circles/rebuild.png
+%%DATADIR%%/img/circles/rebuild_multiple.png
 %%DATADIR%%/img/circles/redo.png
 %%DATADIR%%/img/circles/refresh.png
 %%DATADIR%%/img/circles/release.png
@@ -248,6 +273,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/circles/romalyzer.png
 %%DATADIR%%/img/circles/romalyzer_flipped.png
 %%DATADIR%%/img/circles/romalyzer_multiple.png
+%%DATADIR%%/img/circles/romalyzer_sw.png
 %%DATADIR%%/img/circles/search.png
 %%DATADIR%%/img/circles/search_multiple.png
 %%DATADIR%%/img/circles/sleep.png
@@ -328,6 +354,10 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/circles/zoom-none.png
 %%DATADIR%%/img/circles/zoom-out.png
 %%DATADIR%%/img/circuit.png
+%%DATADIR%%/img/classic/1.png
+%%DATADIR%%/img/classic/2.png
+%%DATADIR%%/img/classic/3.png
+%%DATADIR%%/img/classic/4.png
 %%DATADIR%%/img/classic/7z-compressed.png
 %%DATADIR%%/img/classic/activity_green.png
 %%DATADIR%%/img/classic/activity_red.png
@@ -349,6 +379,20 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/classic/clock.png
 %%DATADIR%%/img/classic/clone.png
 %%DATADIR%%/img/classic/colors.png
+%%DATADIR%%/img/classic/component_arrangement_00.png
+%%DATADIR%%/img/classic/component_arrangement_01.png
+%%DATADIR%%/img/classic/component_arrangement_02.png
+%%DATADIR%%/img/classic/component_arrangement_03.png
+%%DATADIR%%/img/classic/component_arrangement_04.png
+%%DATADIR%%/img/classic/component_arrangement_05.png
+%%DATADIR%%/img/classic/component_arrangement_06.png
+%%DATADIR%%/img/classic/component_arrangement_07.png
+%%DATADIR%%/img/classic/component_arrangement_08.png
+%%DATADIR%%/img/classic/component_arrangement_09.png
+%%DATADIR%%/img/classic/component_arrangement_10.png
+%%DATADIR%%/img/classic/component_arrangement_11.png
+%%DATADIR%%/img/classic/component_arrangement_12.png
+%%DATADIR%%/img/classic/component_arrangement_13.png
 %%DATADIR%%/img/classic/compressed.png
 %%DATADIR%%/img/classic/configure.png
 %%DATADIR%%/img/classic/controller.png
@@ -381,6 +425,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/classic/east.png
 %%DATADIR%%/img/classic/edit.png
 %%DATADIR%%/img/classic/editcopy.png
+%%DATADIR%%/img/classic/editcopybad.png
 %%DATADIR%%/img/classic/editcut.png
 %%DATADIR%%/img/classic/editdelete.png
 %%DATADIR%%/img/classic/editpaste.png
@@ -404,6 +449,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/classic/filter.png
 %%DATADIR%%/img/classic/find.png
 %%DATADIR%%/img/classic/find_negate.png
+%%DATADIR%%/img/classic/find_softlist.png
 %%DATADIR%%/img/classic/flat.png
 %%DATADIR%%/img/classic/flip.png
 %%DATADIR%%/img/classic/folders-first.png
@@ -516,6 +562,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/classic/rank_bg.png
 %%DATADIR%%/img/classic/rank_flat.png
 %%DATADIR%%/img/classic/rebuild.png
+%%DATADIR%%/img/classic/rebuild_multiple.png
 %%DATADIR%%/img/classic/redo.png
 %%DATADIR%%/img/classic/refresh.png
 %%DATADIR%%/img/classic/release.png
@@ -532,6 +579,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/classic/romalyzer.png
 %%DATADIR%%/img/classic/romalyzer_flipped.png
 %%DATADIR%%/img/classic/romalyzer_multiple.png
+%%DATADIR%%/img/classic/romalyzer_sw.png
 %%DATADIR%%/img/classic/search.png
 %%DATADIR%%/img/classic/search_multiple.png
 %%DATADIR%%/img/classic/sleep.png
@@ -614,9 +662,27 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/clock.png
 %%DATADIR%%/img/clone.png
 %%DATADIR%%/img/colors.png
+%%DATADIR%%/img/component_arrangement_00.png
+%%DATADIR%%/img/component_arrangement_01.png
+%%DATADIR%%/img/component_arrangement_02.png
+%%DATADIR%%/img/component_arrangement_03.png
+%%DATADIR%%/img/component_arrangement_04.png
+%%DATADIR%%/img/component_arrangement_05.png
+%%DATADIR%%/img/component_arrangement_06.png
+%%DATADIR%%/img/component_arrangement_07.png
+%%DATADIR%%/img/component_arrangement_08.png
+%%DATADIR%%/img/component_arrangement_09.png
+%%DATADIR%%/img/component_arrangement_10.png
+%%DATADIR%%/img/component_arrangement_11.png
+%%DATADIR%%/img/component_arrangement_12.png
+%%DATADIR%%/img/component_arrangement_13.png
 %%DATADIR%%/img/compressed.png
 %%DATADIR%%/img/configure.png
 %%DATADIR%%/img/controller.png
+%%DATADIR%%/img/crazy-black/1.png
+%%DATADIR%%/img/crazy-black/2.png
+%%DATADIR%%/img/crazy-black/3.png
+%%DATADIR%%/img/crazy-black/4.png
 %%DATADIR%%/img/crazy-black/7z-compressed.png
 %%DATADIR%%/img/crazy-black/activity_green.png
 %%DATADIR%%/img/crazy-black/activity_red.png
@@ -638,6 +704,20 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy-black/clock.png
 %%DATADIR%%/img/crazy-black/clone.png
 %%DATADIR%%/img/crazy-black/colors.png
+%%DATADIR%%/img/crazy-black/component_arrangement_00.png
+%%DATADIR%%/img/crazy-black/component_arrangement_01.png
+%%DATADIR%%/img/crazy-black/component_arrangement_02.png
+%%DATADIR%%/img/crazy-black/component_arrangement_03.png
+%%DATADIR%%/img/crazy-black/component_arrangement_04.png
+%%DATADIR%%/img/crazy-black/component_arrangement_05.png
+%%DATADIR%%/img/crazy-black/component_arrangement_06.png
+%%DATADIR%%/img/crazy-black/component_arrangement_07.png
+%%DATADIR%%/img/crazy-black/component_arrangement_08.png
+%%DATADIR%%/img/crazy-black/component_arrangement_09.png
+%%DATADIR%%/img/crazy-black/component_arrangement_10.png
+%%DATADIR%%/img/crazy-black/component_arrangement_11.png
+%%DATADIR%%/img/crazy-black/component_arrangement_12.png
+%%DATADIR%%/img/crazy-black/component_arrangement_13.png
 %%DATADIR%%/img/crazy-black/compressed.png
 %%DATADIR%%/img/crazy-black/configure.png
 %%DATADIR%%/img/crazy-black/controller.png
@@ -670,6 +750,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy-black/east.png
 %%DATADIR%%/img/crazy-black/edit.png
 %%DATADIR%%/img/crazy-black/editcopy.png
+%%DATADIR%%/img/crazy-black/editcopybad.png
 %%DATADIR%%/img/crazy-black/editcut.png
 %%DATADIR%%/img/crazy-black/editdelete.png
 %%DATADIR%%/img/crazy-black/editpaste.png
@@ -693,6 +774,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy-black/filter.png
 %%DATADIR%%/img/crazy-black/find.png
 %%DATADIR%%/img/crazy-black/find_negate.png
+%%DATADIR%%/img/crazy-black/find_softlist.png
 %%DATADIR%%/img/crazy-black/flat.png
 %%DATADIR%%/img/crazy-black/flip.png
 %%DATADIR%%/img/crazy-black/folders-first.png
@@ -805,6 +887,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy-black/rank_bg.png
 %%DATADIR%%/img/crazy-black/rank_flat.png
 %%DATADIR%%/img/crazy-black/rebuild.png
+%%DATADIR%%/img/crazy-black/rebuild_multiple.png
 %%DATADIR%%/img/crazy-black/redo.png
 %%DATADIR%%/img/crazy-black/refresh.png
 %%DATADIR%%/img/crazy-black/release.png
@@ -821,6 +904,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy-black/romalyzer.png
 %%DATADIR%%/img/crazy-black/romalyzer_flipped.png
 %%DATADIR%%/img/crazy-black/romalyzer_multiple.png
+%%DATADIR%%/img/crazy-black/romalyzer_sw.png
 %%DATADIR%%/img/crazy-black/search.png
 %%DATADIR%%/img/crazy-black/search_multiple.png
 %%DATADIR%%/img/crazy-black/sleep.png
@@ -900,6 +984,10 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy-black/zoom-in.png
 %%DATADIR%%/img/crazy-black/zoom-none.png
 %%DATADIR%%/img/crazy-black/zoom-out.png
+%%DATADIR%%/img/crazy/1.png
+%%DATADIR%%/img/crazy/2.png
+%%DATADIR%%/img/crazy/3.png
+%%DATADIR%%/img/crazy/4.png
 %%DATADIR%%/img/crazy/7z-compressed.png
 %%DATADIR%%/img/crazy/activity_green.png
 %%DATADIR%%/img/crazy/activity_red.png
@@ -921,6 +1009,20 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy/clock.png
 %%DATADIR%%/img/crazy/clone.png
 %%DATADIR%%/img/crazy/colors.png
+%%DATADIR%%/img/crazy/component_arrangement_00.png
+%%DATADIR%%/img/crazy/component_arrangement_01.png
+%%DATADIR%%/img/crazy/component_arrangement_02.png
+%%DATADIR%%/img/crazy/component_arrangement_03.png
+%%DATADIR%%/img/crazy/component_arrangement_04.png
+%%DATADIR%%/img/crazy/component_arrangement_05.png
+%%DATADIR%%/img/crazy/component_arrangement_06.png
+%%DATADIR%%/img/crazy/component_arrangement_07.png
+%%DATADIR%%/img/crazy/component_arrangement_08.png
+%%DATADIR%%/img/crazy/component_arrangement_09.png
+%%DATADIR%%/img/crazy/component_arrangement_10.png
+%%DATADIR%%/img/crazy/component_arrangement_11.png
+%%DATADIR%%/img/crazy/component_arrangement_12.png
+%%DATADIR%%/img/crazy/component_arrangement_13.png
 %%DATADIR%%/img/crazy/compressed.png
 %%DATADIR%%/img/crazy/configure.png
 %%DATADIR%%/img/crazy/controller.png
@@ -953,6 +1055,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy/east.png
 %%DATADIR%%/img/crazy/edit.png
 %%DATADIR%%/img/crazy/editcopy.png
+%%DATADIR%%/img/crazy/editcopybad.png
 %%DATADIR%%/img/crazy/editcut.png
 %%DATADIR%%/img/crazy/editdelete.png
 %%DATADIR%%/img/crazy/editpaste.png
@@ -976,6 +1079,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy/filter.png
 %%DATADIR%%/img/crazy/find.png
 %%DATADIR%%/img/crazy/find_negate.png
+%%DATADIR%%/img/crazy/find_softlist.png
 %%DATADIR%%/img/crazy/flat.png
 %%DATADIR%%/img/crazy/flip.png
 %%DATADIR%%/img/crazy/folders-first.png
@@ -1088,6 +1192,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy/rank_bg.png
 %%DATADIR%%/img/crazy/rank_flat.png
 %%DATADIR%%/img/crazy/rebuild.png
+%%DATADIR%%/img/crazy/rebuild_multiple.png
 %%DATADIR%%/img/crazy/redo.png
 %%DATADIR%%/img/crazy/refresh.png
 %%DATADIR%%/img/crazy/release.png
@@ -1104,6 +1209,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy/romalyzer.png
 %%DATADIR%%/img/crazy/romalyzer_flipped.png
 %%DATADIR%%/img/crazy/romalyzer_multiple.png
+%%DATADIR%%/img/crazy/romalyzer_sw.png
 %%DATADIR%%/img/crazy/search.png
 %%DATADIR%%/img/crazy/search_multiple.png
 %%DATADIR%%/img/crazy/sleep.png
@@ -1183,6 +1289,10 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/crazy/zoom-in.png
 %%DATADIR%%/img/crazy/zoom-none.png
 %%DATADIR%%/img/crazy/zoom-out.png
+%%DATADIR%%/img/cubes/1.png
+%%DATADIR%%/img/cubes/2.png
+%%DATADIR%%/img/cubes/3.png
+%%DATADIR%%/img/cubes/4.png
 %%DATADIR%%/img/cubes/7z-compressed.png
 %%DATADIR%%/img/cubes/activity_green.png
 %%DATADIR%%/img/cubes/activity_red.png
@@ -1204,6 +1314,20 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/cubes/clock.png
 %%DATADIR%%/img/cubes/clone.png
 %%DATADIR%%/img/cubes/colors.png
+%%DATADIR%%/img/cubes/component_arrangement_00.png
+%%DATADIR%%/img/cubes/component_arrangement_01.png
+%%DATADIR%%/img/cubes/component_arrangement_02.png
+%%DATADIR%%/img/cubes/component_arrangement_03.png
+%%DATADIR%%/img/cubes/component_arrangement_04.png
+%%DATADIR%%/img/cubes/component_arrangement_05.png
+%%DATADIR%%/img/cubes/component_arrangement_06.png
+%%DATADIR%%/img/cubes/component_arrangement_07.png
+%%DATADIR%%/img/cubes/component_arrangement_08.png
+%%DATADIR%%/img/cubes/component_arrangement_09.png
+%%DATADIR%%/img/cubes/component_arrangement_10.png
+%%DATADIR%%/img/cubes/component_arrangement_11.png
+%%DATADIR%%/img/cubes/component_arrangement_12.png
+%%DATADIR%%/img/cubes/component_arrangement_13.png
 %%DATADIR%%/img/cubes/compressed.png
 %%DATADIR%%/img/cubes/configure.png
 %%DATADIR%%/img/cubes/controller.png
@@ -1236,6 +1360,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/cubes/east.png
 %%DATADIR%%/img/cubes/edit.png
 %%DATADIR%%/img/cubes/editcopy.png
+%%DATADIR%%/img/cubes/editcopybad.png
 %%DATADIR%%/img/cubes/editcut.png
 %%DATADIR%%/img/cubes/editdelete.png
 %%DATADIR%%/img/cubes/editpaste.png
@@ -1259,6 +1384,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/cubes/filter.png
 %%DATADIR%%/img/cubes/find.png
 %%DATADIR%%/img/cubes/find_negate.png
+%%DATADIR%%/img/cubes/find_softlist.png
 %%DATADIR%%/img/cubes/flat.png
 %%DATADIR%%/img/cubes/flip.png
 %%DATADIR%%/img/cubes/folders-first.png
@@ -1371,6 +1497,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/cubes/rank_bg.png
 %%DATADIR%%/img/cubes/rank_flat.png
 %%DATADIR%%/img/cubes/rebuild.png
+%%DATADIR%%/img/cubes/rebuild_multiple.png
 %%DATADIR%%/img/cubes/redo.png
 %%DATADIR%%/img/cubes/refresh.png
 %%DATADIR%%/img/cubes/release.png
@@ -1387,6 +1514,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/cubes/romalyzer.png
 %%DATADIR%%/img/cubes/romalyzer_flipped.png
 %%DATADIR%%/img/cubes/romalyzer_multiple.png
+%%DATADIR%%/img/cubes/romalyzer_sw.png
 %%DATADIR%%/img/cubes/search.png
 %%DATADIR%%/img/cubes/search_multiple.png
 %%DATADIR%%/img/cubes/sleep.png
@@ -1495,6 +1623,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/east.png
 %%DATADIR%%/img/edit.png
 %%DATADIR%%/img/editcopy.png
+%%DATADIR%%/img/editcopybad.png
 %%DATADIR%%/img/editcut.png
 %%DATADIR%%/img/editdelete.png
 %%DATADIR%%/img/editpaste.png
@@ -1518,6 +1647,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/filter.png
 %%DATADIR%%/img/find.png
 %%DATADIR%%/img/find_negate.png
+%%DATADIR%%/img/find_softlist.png
 %%DATADIR%%/img/flat.png
 %%DATADIR%%/img/flip.png
 %%DATADIR%%/img/folders-first.png
@@ -1630,6 +1760,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/rank_bg.png
 %%DATADIR%%/img/rank_flat.png
 %%DATADIR%%/img/rebuild.png
+%%DATADIR%%/img/rebuild_multiple.png
 %%DATADIR%%/img/redo.png
 %%DATADIR%%/img/refresh.png
 %%DATADIR%%/img/release.png
@@ -1646,6 +1777,7 @@ bin/qmc2-sdlmess
 %%DATADIR%%/img/romalyzer.png
 %%DATADIR%%/img/romalyzer_flipped.png
 %%DATADIR%%/img/romalyzer_multiple.png
+%%DATADIR%%/img/romalyzer_sw.png
 %%DATADIR%%/img/search.png
 %%DATADIR%%/img/search_multiple.png
 %%DATADIR%%/img/sleep.png
@@ -1745,24 +1877,3 @@ bin/qmc2-sdlmess
 %%DATADIR%%/opt/SDLUME/template.xml
 %%DATADIR%%/opt/UME/template.xml
 %%DATADIR%%/opt/template.xml
-@dir %%ETCDIR%%
-%%PORTDOCS%%@dir %%DOCSDIR%%/html/de
-%%PORTDOCS%%@dir %%DOCSDIR%%/html/images
-%%PORTDOCS%%@dir %%DOCSDIR%%/html/us
-%%PORTDOCS%%@dir %%DOCSDIR%%/html
-%%PORTDOCS%%@dir %%DOCSDIR%%
-@dir %%DATADIR%%/img/circles
-@dir %%DATADIR%%/img/classic
-@dir %%DATADIR%%/img/crazy
-@dir %%DATADIR%%/img/crazy-black
-@dir %%DATADIR%%/img/cubes
-@dir %%DATADIR%%/img
-@dir %%DATADIR%%/lng
-@dir %%DATADIR%%/opt/MAME
-@dir %%DATADIR%%/opt/MESS
-@dir %%DATADIR%%/opt/SDLMAME
-@dir %%DATADIR%%/opt/SDLMESS
-@dir %%DATADIR%%/opt/SDLUME
-@dir %%DATADIR%%/opt/UME
-@dir %%DATADIR%%/opt
-@dir %%DATADIR%%

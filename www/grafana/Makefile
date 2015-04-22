@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	grafana
-PORTVERSION=	1.8.1
+PORTVERSION=	1.9.1
 CATEGORIES=	www
 MASTER_SITES=	http://grafanarel.s3.amazonaws.com/
 
@@ -16,7 +16,6 @@ NO_BUILD=	yes
 
 do-install:
 	@cd ${WRKSRC}/ && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}/
-	@${CHOWN} -R ${WWWOWN}:${WWWGRP} ${STAGEDIR}${WWWDIR}/
 	@${ECHO_CMD} '@exec ${CHOWN} -R ${WWWOWN}:${WWWGRP} ${WWWDIR}' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

@@ -3,7 +3,7 @@
 
 PORTNAME=	estraier
 PORTVERSION=	1.2.30
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://fallabs.com/estraier/
 
@@ -23,8 +23,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-sysqdbm \
 		--enable-dlfilter \
 		--enable-devel
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/include ${PTHREAD_LIBS}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/include
 
 CHASEN_LIB_DEPENDS=	libchasen.so:${PORTSDIR}/japanese/chasen-base
 CHASEN_CONFIGURE_ENABLE=	chasen
@@ -40,14 +40,15 @@ CONFIGURE_ARGS+=	--enable-mecab
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's|-lc||' -e 's|-liconv|${ICONV_LIB}|' \
+		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e \
-		's|-lc ||g' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e \
-		's|-O2|@CFLAGS@|g ; \
+		's|$$(RELCFLAGS)|@CFLAGS@| ; \
+		 s|^LDFLAGS =|& @LDFLAGS@ | ; \
 		 s|HOME|LOCALBASE|g ; \
 		 s|:/usr/local/lib||g ; \
-		 s|-I/usr/local/include|${PTHREAD_CFLAGS}|g ; \
-		 s|-L/usr/local/lib|${PTHREAD_LIBS}|g' ${WRKSRC}/Makefile.in
+		 s|-I/usr/local/include||g ; \
+		 s|-L/usr/local/lib||g' ${WRKSRC}/Makefile.in
 
 post-install:
 .for file in estindex estmbtomh estserver estsiutil estxview

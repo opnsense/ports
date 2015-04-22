@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	tiff
-PORTVERSION=	4.0.3
-PORTREVISION=	4
+DISTVERSION=	4.0.4beta
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://download.osgeo.org/libtiff/
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	portmgr@FreeBSD.org
 COMMENT=	Tools and library routines for working with TIFF images
 
 LICENSE=	BSD3CLAUSE
@@ -17,13 +17,16 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libjbig.so:${PORTSDIR}/graphics/jbigkit
 
-#TODO: Remove :oldver together with VERSION_INFO patching in pre-configure.
-USES=		libtool:oldver
+USES=		cpe libtool
+CPE_PRODUCT=	libtiff
+CPE_VERSION=	${DISTVERSION:C/[a-z]+//}
+CPE_UPDATE=	${DISTVERSION:C/[0-9.]+//}
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
 			--with-jpeg-lib-dir=${LOCALBASE}/lib \
 			--without-x
+INSTALL_TARGET=	install-strip
 
 MLNKS=	TIFFError.3tiff          TIFFSetErrorHandler.3tiff \
 	TIFFFlush.3tiff          TIFFFlushData.3tiff \
@@ -96,10 +99,10 @@ __pmlinks3!= ${ECHO_CMD} '${MLNKS:S/    / /}' | ${AWK} \
 	} }'
 .endif
 
+post-patch:
+	@${REINPLACE_CMD} "/\.po 0/d" ${WRKSRC}/man/*
+
 pre-configure:
-	${REINPLACE_CMD} \
-		-e 's|^LIBTIFF_VERSION_INFO =.*$$|LIBTIFF_VERSION_INFO = 4:0:0|' \
-		${WRKSRC}/libtiff/Makefile.in
 	${REINPLACE_CMD} \
 		-e 's|tiffgt.1 ||' \
 		${WRKSRC}/man/Makefile.in
@@ -107,6 +110,7 @@ pre-configure:
 		-e 's|man html|man|' ${WRKSRC}/Makefile.in
 
 post-install:
+	${LN} -s libtiff.so.5 ${STAGEDIR}${PREFIX}/lib/libtiff.so.4
 	( cd ${STAGEDIR}${PREFIX}/man/man3 && ${__pmlinks3} )
 .if ${PORT_OPTIONS:MDOCS}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/images ${STAGEDIR}${DOCSDIR}/man

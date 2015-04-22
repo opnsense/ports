@@ -3,7 +3,7 @@
 
 PORTNAME=	gladtex
 PORTVERSION=	1.3
-PORTREVISION=	0
+PORTREVISION=	3
 CATEGORIES=	textproc math www
 MASTER_SITES=	SF
 MASTER_SITE_SUBDIR=	${PORTNAME}
@@ -14,7 +14,7 @@ COMMENT=	Program to replace LaTeX formulas in HTML files with images
 LICENSE=	GPLv2
 
 LIB_DEPENDS=	libgif.so:${PORTSDIR}/graphics/giflib \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 USE_TEX=	latex dvipsk
 BINPATH=	${PREFIX}/bin

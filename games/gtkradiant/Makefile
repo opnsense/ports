@@ -3,9 +3,9 @@
 
 PORTNAME=	gtkradiant
 PORTVERSION=	1.5.0
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	games cad
-MASTER_SITES=	${MASTER_SITE_IDSOFTWARE:S|$|source/:id|} \
+MASTER_SITES=	IDSOFTWARE/source/:id \
 		http://www.bsd-geek.de/FreeBSD/distfiles/:fb
 DISTNAME=	GtkRadiant-GPL
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:id \
@@ -18,12 +18,12 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libgtkglext-x11-1.0.so:${PORTSDIR}/x11-toolkits/gtkglext \
 		libmhash.so:${PORTSDIR}/security/mhash \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
-SSP_UNSAFE=	yes
 USES=		pkgconfig python:build scons zip
 USE_GNOME=	gtk20 libxml2
 MAKE_ARGS=	${MAKE_ENV} BUILD=release
+SSP_UNSAFE=	yes
 
 DATADIR=	${PREFIX}/lib/${PORTNAME}
 WRKSRC=		${WRKDIR}/GPL/GtkRadiant
@@ -54,8 +54,8 @@ post-patch:
 			${WRKSRC}/plugins/mapq3/parse.h
 # Fix warnings of "GtkSpinButton: setting an adjustment with non-zero
 # page size is deprecated" (very annoying)
-	@${FIND} ${WRKSRC} -name '*.cpp' | ${XARGS} ${REINPLACE_CMD} \
-		-E 's|(gtk_adjustment_new[^)]*,)[^)]*|\1 0|'
+	@${GREP} -Rl --null gtk_adjustment_new ${WRKSRC} | ${XARGS} -0 \
+		${REINPLACE_CMD} -E 's|(gtk_adjustment_new[^)]*,)[^)]*|\1 0|'
 
 pre-install:
 	cd ${WRKSRC} && ${PYTHON_CMD} install.py

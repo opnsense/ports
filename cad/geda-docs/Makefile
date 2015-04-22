@@ -13,9 +13,11 @@ DISTNAME=	${PKGNAMEPREFIX}${PORTNAME}-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The gEDA's documentation
 
+BROKEN=		Unfetchable
 DOCSDIR=	${PREFIX}/share/doc/geda
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-docdir=${DOCSDIR}
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

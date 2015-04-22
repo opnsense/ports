@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	pkg-plist
-PORTVERSION=	1.2
+PORTVERSION=	1.4
 CATEGORIES=	ports-mgmt python
-MASTER_SITES=	http://code.arp242.net/pkg-plist/downloads/
+MASTER_SITES=	http://code.arp242.net/${BB_PROJECT}/get/${BB_COMMIT}.tar.gz?dummy=/
 
 MAINTAINER=	martin@arp242.net
 COMMENT=	Generate a pkg-plist for a port
@@ -13,11 +13,13 @@ LICENSE=	MIT
 
 USES=		python
 NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${BB_ACCOUNT}-${BB_PROJECT}-${BB_COMMIT}
+
+BB_ACCOUNT=	Carpetsmoker
+BB_PROJECT=	${PORTNAME}
+BB_COMMIT=	ff040a64c20b
 
 PLIST_FILES=	bin/pkg-plist man/man1/pkg-plist.1.gz
-
-DEPRECATED=	Generate incorrect plists
-EXPIRATION_DATE=	2014-11-30
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/pkg-plist ${STAGEDIR}${PREFIX}/bin

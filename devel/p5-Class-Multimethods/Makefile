@@ -3,11 +3,12 @@
 
 PORTNAME=	Class-Multimethods
 PORTVERSION=	1.70
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Support multimethods and function overloading in Perl
 
 LICENSE=	ART10 GPLv1

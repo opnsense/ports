@@ -3,6 +3,7 @@
 
 PORTNAME=	libcdio
 PORTVERSION=	0.92
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	libcdio
@@ -16,7 +17,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USES=		pathfix pkgconfig iconv libtool ncurses gmake perl5
+USES=		cpe pathfix pkgconfig iconv libtool ncurses gmake perl5
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS+=${ICONV_CONFIGURE_ARG}
 USE_PERL5=	build
@@ -24,6 +25,7 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib ${ICONV_LIB}
 
 INFO=		libcdio
+CPE_VENDOR=	gnu
 
 .include <bsd.port.pre.mk>
 

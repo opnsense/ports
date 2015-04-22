@@ -13,7 +13,7 @@ COMMENT=	Data viewing and plotting tool
 LIB_DEPENDS=	libgsl.so:${PORTSDIR}/math/gsl
 
 USES=		cmake:outsource pkgconfig
-_USE_QT4=	gui xml designer svg linguist_build \
+_USE_QT4=	gui xml designer svg linguisttools_build \
 		qmake_build moc_build rcc_build uic_build
 _USE_QT5=	concurrent network printsupport widgets xml \
 		buildtools_build linguisttools_build qmake_build
@@ -36,7 +36,7 @@ FITS_LIB_DEPENDS=	libcfitsio.so:${PORTSDIR}/astro/cfitsio
 MATLAB_DESC=	Support for data in MATLAB format
 MATLAB_LIB_DEPENDS=	libmatio.so:${PORTSDIR}/math/matio
 
-NETCDF_DESC=	Support for data in NetCDF format
+NETCDF_DESC=	Support for data in NetCDF format (broken)
 NETCDF_LIB_DEPENDS=	libnetcdf.so:${PORTSDIR}/science/netcdf
 
 TOOLKIT_DESC=	Qt toolkit
@@ -62,6 +62,8 @@ pre-configure:
 .if !${PORT_OPTIONS:MNETCDF}
 	${REINPLACE_CMD} -e '/find_package(Netcdf)/d' \
 		${CMAKE_SOURCE_PATH}/CMakeLists.txt
+.else
+IGNORE=		does not support NetCDF 4
 .endif
 
 .include <bsd.port.mk>

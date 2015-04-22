@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	libetpan
-PORTVERSION=	1.5
-PORTREVISION=	4
+PORTVERSION=	1.6
+PORTREVISION=	1
 CATEGORIES=	mail ipv6
 
 MAINTAINER=	pawel@FreeBSD.org
@@ -17,7 +17,6 @@ LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dinhviethoa
-GH_COMMIT=	34bab37
 
 USES=		autoreconf gmake iconv libtool
 GNU_CONFIGURE=	yes
@@ -42,6 +41,6 @@ OPENSSL_CONFIGURE_ON=	--with-openssl="${OPENSSLBASE}"
 OPENSSL_USE=		OPENSSL=yes
 
 pre-configure:
-	(cd ${WRKSRC} && ${LN} -s README.md README)
+	@(cd ${WRKSRC} && ${LN} -s README.md README)
 
 .include <bsd.port.mk>

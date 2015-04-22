@@ -3,7 +3,7 @@
 
 PORTNAME=	im-ja
 PORTVERSION=	1.5
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	japanese x11-toolkits
 MASTER_SITES=	http://im-ja.sourceforge.net/
 
@@ -16,7 +16,7 @@ ANTHY_DESC=	Use Anthy
 CANNA_DESC=	Use Canna
 WNN_DESC=	Use FreeWnn
 
-USES=		gmake libtool pathfix perl5 pkgconfig
+USES=		gettext gmake libtool pathfix perl5 pkgconfig
 USE_GNOME=	gconf2 gnomeprefix intlhack libglade2
 USE_PERL5=	build
 GNU_CONFIGURE=	yes

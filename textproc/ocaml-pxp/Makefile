@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pxp
-PORTVERSION=	1.2.4
+PORTVERSION=	1.2.7
 CATEGORIES=	textproc
 MASTER_SITES=	http://download.camlcity.org/download/
 PKGNAMEPREFIX=	ocaml-
@@ -38,7 +38,5 @@ post-extract:
 post-install:
 	@${FIND} ${STAGEDIR}${PREFIX}/lib/ocaml/site-lib/pxp* -type f | \
 		${SED} "s,^${STAGEDIR}${PREFIX}/,," >> ${TMPPLIST}
-	@${FIND} ${STAGEDIR}${PREFIX}/lib/ocaml/site-lib/ -type d -name 'pxp*' | ${SORT} -r | \
-		${SED} 's,^${STAGEDIR}${PREFIX}/,@dirrm ,' >> ${TMPPLIST}
 
 .include <bsd.port.mk>

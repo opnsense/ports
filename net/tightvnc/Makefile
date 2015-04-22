@@ -3,7 +3,7 @@
 
 PORTNAME=	tightvnc
 PORTVERSION=	1.3.10
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net java
 MASTER_SITES=	SF/vnc-tight/TightVNC-unix/${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}_unixsrc
@@ -22,7 +22,7 @@ RUN_DEPENDS=	showrgb:${PORTSDIR}/x11/rgb \
 MAKE_JOBS_UNSAFE=	yes
 CONFLICTS=	tridiavnc-[0-9]* vnc-[0-9]*
 WRKSRC=		${WRKDIR}/vnc_unixsrc
-USES=		imake shebangfix perl5 tar:bzip2
+USES=		cpe imake shebangfix perl5 tar:bzip2
 SHEBANG_FILES=	vncserver
 CFLAGS+=	-Wno-return-type
 USE_XORG=	xaw

@@ -3,12 +3,14 @@
 
 PORTNAME=	wmglobe
 PORTVERSION=	1.3
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	astro windowmaker geography
 MASTER_SITES=	http://hamete.org/static/wmg/
 
 MAINTAINER=	will@FreeBSD.org
 COMMENT=	Neat xearth-like WindowMaker dockapp
+
+BROKEN=		No public distfiles
 
 LIB_DEPENDS=	libwraster.so:${PORTSDIR}/x11-wm/libwraster
 

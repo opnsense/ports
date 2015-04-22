@@ -1,11 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	sendmail
-PORTVERSION=	8.14.9
-PORTREVISION=	3
+PORTVERSION=	8.15.1
 CATEGORIES=	mail ipv6
-MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/ \
-		${MASTER_SITE_RINGSERVER:S,%SUBDIR%,net/mail/sendmail/&,}
+MASTER_SITES=	ftp://ftp.sendmail.org/pub/sendmail/
 PKGNAMESUFFIX?=	${TLS_SUFFIX}${SASL_SUFFIX}${LDAP_SUFFIX}${BDB_SUFFIX}${PKGNAMESUFFIX2}
 DISTNAME=	${PORTNAME}.${PORTVERSION}
 
@@ -82,9 +80,6 @@ EXTRA_PATCHES+=	${FILESDIR}/cyruslookup.patch
 .if ${PORT_OPTIONS:MTLS}
 TLS_SUFFIX?=	+tls
 CONFLICTS+=	sendmail-ldap-8.* sendmail-sasl-8.* sendmail-sasl2-8.*
-.if ! ${PORT_OPTIONS:MTLSEXT_PADDING}
-EXTRA_PATCHES+=	${FILESDIR}/tlsext.patch
-.endif
 .endif
 
 MAKE_PKGNAMES=	for i in "" +tls; do \
@@ -126,8 +121,7 @@ PLIST_SUB+=	MILTER_SHARED="@comment "
 .endif
 .endif
 
-SED_SCRIPT=	-e "s|\`-pthread\'|\`${PTHREAD_LIBS}\'|" \
-		-e "s|\`-O\'|\`${CFLAGS}\'|" \
+SED_SCRIPT=	-e "s|\`-O\'|\`${CFLAGS}\'|" \
 		-e 's|%%CC%%|${CC}|' -e 's|%%LD%%|${LD}|'
 
 .if ! ${PORT_OPTIONS:MNIS}

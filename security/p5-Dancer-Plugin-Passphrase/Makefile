@@ -3,12 +3,13 @@
 
 PORTNAME=	Dancer-Plugin-Passphrase
 PORTVERSION=	2.0.1
+PORTREVISION=	1
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:JAITKEN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Passphrases and Passwords as objects for Dancer
 
 LICENSE=	ART10 GPLv1

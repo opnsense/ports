@@ -759,6 +759,8 @@ lib/lib%%RUBY_NAME%%.so.%%RUBY_SHLIBVER%%
 %%RUBY_LIBDIR%%/rubygems/source_specific_file.rb
 %%RUBY_LIBDIR%%/rubygems/spec_fetcher.rb
 %%RUBY_LIBDIR%%/rubygems/specification.rb
+%%RUBY_LIBDIR%%/rubygems/ssl_certs/AddTrustExternalCARoot-2048.pem
+%%RUBY_LIBDIR%%/rubygems/ssl_certs/AddTrustExternalCARoot.pem
 %%RUBY_LIBDIR%%/rubygems/ssl_certs/Class3PublicPrimaryCertificationAuthority.pem
 %%RUBY_LIBDIR%%/rubygems/ssl_certs/DigiCertHighAssuranceEVRootCA.pem
 %%RUBY_LIBDIR%%/rubygems/ssl_certs/EntrustnetSecureServerCertificationAuthority.pem
@@ -1070,6 +1072,8 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%RUBY_EXAMPLESDIR%%/webrick/httpproxy.rb
 %%RUBY_EXAMPLESDIR%%/webrick/httpsd.rb
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/.timestamp
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/arrowdown.png
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/arrowright.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/annotated.html
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/bc_s.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/bdwn.png
@@ -1709,6 +1713,7 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d21/psych__to__ruby_8h__incl.map
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d21/psych__to__ruby_8h__incl.md5
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d21/psych__to__ruby_8h__incl.png
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d2d/structmethod__entry__arg.html
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d26/sha2ossl_8h__incl.map
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d26/sha2ossl_8h__incl.md5
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/d4/d26/sha2ossl_8h__incl.png
@@ -3515,23 +3520,13 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/dir_f31b4e64177b4fa91891089086fd6e81.html
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/dir_f3bfeebb553c3f6ecfb19202628b4493.html
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/dir_fb071e2f6c50cd43f2add8f920c45dd3.html
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/doc.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/doxygen.css
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/doxygen.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/dynsections.js
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/files.html
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2blank.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2doc.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2folderclosed.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2folderopen.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2lastnode.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2link.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2mlastnode.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2mnode.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2node.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2plastnode.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2pnode.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2splitbar.png
-%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/ftv2vertline.png
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/folderclosed.png
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/folderopen.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/functions.html
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/functions_a.html
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/functions_b.html
@@ -3750,6 +3745,7 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/nav_g.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/nav_h.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/open.png
+%%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/splitbar.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/sync_off.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/sync_on.png
 %%CAPIDOCS%%%%RUBY_DOCDIR%%/capi/html/tab_a.png
@@ -12491,6 +12487,7 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/REXML/Document/cdesc-Document.ri
 %%RDOC%%%%RUBY_RIDIR%%/REXML/Document/clone-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/REXML/Document/doctype-i.ri
+%%RDOC%%%%RUBY_RIDIR%%/REXML/Document/document-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/REXML/Document/encoding-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/REXML/Document/entity_expansion_count-i.ri
 %%RDOC%%%%RUBY_RIDIR%%/REXML/Document/entity_expansion_limit%3d-c.ri
@@ -16907,3 +16904,9 @@ man/man1/%%RUBY_NAME%%.1.gz
 %%RDOC%%%%RUBY_RIDIR%%/syntax/page-precedence_rdoc.ri
 %%RDOC%%%%RUBY_RIDIR%%/syntax/page-refinements_rdoc.ri
 %%RDOC%%%%RUBY_RIDIR%%/unknown/cdesc-unknown.ri
+@dir %%RUBY_LIBDIR%%/racc/rdoc
+@dir %%RUBY_SITEARCHLIBDIR%%
+@dir %%RUBY_VENDORARCHLIBDIR%%
+@dir %%RUBY_EXAMPLESDIR%%/curses
+%%RDOC%%@dir %%RUBY_SITERIDIR%%
+%%CAPIDOCS%%@dir %%RUBY_RIDIR%%

@@ -17,4 +17,10 @@ USE_RUBY=	yes
 USE_RUBYGEMS=	yes
 RUBYGEM_AUTOPLIST=	yes
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${RUBY_VER} >= 2.1
+BROKEN=		Does not build
+.endif
+
+.include <bsd.port.post.mk>

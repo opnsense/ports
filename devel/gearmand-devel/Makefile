@@ -3,7 +3,7 @@
 
 PORTNAME=	gearmand
 PORTVERSION=	1.1.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel
 MASTER_SITES=	http://launchpad.net/gearmand/1.2/${PORTVERSION}/+download/
 
@@ -47,12 +47,6 @@ TOKYOCAB_DESC=	Tokyo Cabinet support for persistent queue
 
 .include <bsd.port.options.mk>
 
-# Workaround for missing sigignore that wasn't introduced until
-# FreeBSD 8.0
-.if ${OSVERSION} < 800041
-BROKEN=	Does not compile without POSIX spawn() support
-.endif
-
 .if ${PORT_OPTIONS:MDRIZZLE}
 LIB_DEPENDS+=		libdrizzleso:${PORTSDIR}/databases/libdrizzle
 CONFIGURE_ARGS+=	--enable-libdrizzle
@@ -88,7 +82,7 @@ CONFIGURE_ARGS+=	--with-mysql=no
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=		yes
+USES+=			pgsql
 CONFIGURE_ARGS+=	--enable-libpq
 .else
 CONFIGURE_ARGS+=	--disable-libpq

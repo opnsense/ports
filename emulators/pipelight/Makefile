@@ -3,7 +3,7 @@
 
 PORTNAME=	pipelight
 DISTVERSION=	0.2.7.3
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	emulators
 MASTER_SITES=	https://bitbucket.org/mmueller2012/pipelight/get/ \
 		http://repos.fds-team.de/pluginloader/v${DISTVERSION}/:plg
@@ -12,7 +12,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} pluginloader.tar.gz:plg pluginloader.tar.g
 DIST_SUBDIR=	pipelight
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	kmoore@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Wrapper for using windows plugins in web browsers
 
 LICENSE=	LGPL21

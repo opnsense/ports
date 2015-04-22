@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	sawfish
-PORTVERSION=	1.10
+PORTVERSION=	1.11
 PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	x11-wm
-MASTER_SITES=	http://download.tuxfamily.org/sawfish/%SUBDIR%/
-MASTER_SITE_SUBDIR=	. Archive
+MASTER_SITES=	http://download.tuxfamily.org/sawfish/
+DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Lisp configurable window manager
+COMMENT=	Extensible window manager using Lisp-based scripting language
 
 LICENSE=	ART20 GPLv2
 LICENSE_COMB=	multi
@@ -19,9 +19,9 @@ BUILD_DEPENDS=	rep-gtk2>=0.90:${PORTSDIR}/x11-toolkits/rep-gtk2
 LIB_DEPENDS=	librep.so:${PORTSDIR}/lang/librep
 RUN_DEPENDS=	rep-gtk2>=0.90:${PORTSDIR}/x11-toolkits/rep-gtk2
 
-USES=		gettext gmake makeinfo pathfix pkgconfig tar:xz libtool
+USES=		gmake libtool makeinfo pathfix pkgconfig tar:xz
 USE_XORG=	ice sm x11 xft xinerama xrandr xtst
-USE_GNOME=	cairo gnomehier gtk20
+USE_GNOME=	cairo gtk20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=${PREFIX}/share \
 		--datadir=${PREFIX}/share
@@ -32,13 +32,20 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 INFO=		sawfish
 
+OPTIONS_DEFINE=	NLS
+OPTIONS_SUB=	yes
+
+NLS_USES=	gettext
+NLS_CONFIGURE_OFF=	--without-nls
+
+post-extract:
+	@${RM} ${WRKSRC}/themes/StyleTab/Flat/.directory
+
 post-patch:
 	@${REINPLACE_CMD} -e \
 		'/dnsdomainname/d' ${WRKSRC}/build-info
 	@${REINPLACE_CMD} -e \
 		'/KDEDIR/s|^|#|g' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e \
-		's|/share/man/|/man/|g' ${WRKSRC}/man/Makefile.in
 	@${REINPLACE_CMD} -e \
 		's|prog_name|program_name|g' ${WRKSRC}/src/main.c
 

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	hunspell
-PORTVERSION=	20141005
+PORTVERSION=	20150419
 CATEGORIES=	polish textproc
 MASTER_SITES=	LOCAL/sunpoet/${PORTNAME}
 DISTNAME=	sjp-myspell-pl-${PORTVERSION}
@@ -18,7 +18,6 @@ NO_BUILD=	yes
 
 PLIST_FILES=	%%DATADIR%%/pl_PL.aff \
 		%%DATADIR%%/pl_PL.dic
-PLIST_DIRSTRY=	%%DATADIR%%
 
 post-extract:
 	@${MKDIR} ${WRKSRC}

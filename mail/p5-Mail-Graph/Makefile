@@ -3,7 +3,7 @@
 
 PORTNAME=	Mail-Graph
 PORTVERSION=	0.14
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	mail perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -25,6 +25,8 @@ EXAMPLEOUTPUT=	samples/output/w3c.png samples/output/spam.css
 EXAMPLEARCHIVE=	samples/archive/*.gz
 
 SHEBANG_FILES=	samples/*.pl
+
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/archive \

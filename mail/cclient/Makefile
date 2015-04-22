@@ -3,7 +3,7 @@
 
 PORTNAME=	cclient
 PORTVERSION=	2007f
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	mail devel ipv6
 MASTER_SITES=	ftp://ftp.cac.washington.edu/imap/%SUBDIR%/ \
@@ -14,29 +14,30 @@ MASTER_SITE_SUBDIR=	. old
 DISTNAME=	imap-${PORTVERSION}
 
 MAINTAINER=	ports@FreeBSD.org
-COMMENT=	Mark Crispin's C-client mail access routines
+COMMENT=	C-client mail access routines by Mark Crispin
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+CONFLICTS_INSTALL=	panda-cclient-20*
 
 OPTIONS_DEFINE=	SSL SSL_AND_PLAINTEXT IPV6 MBX_DEFAULT
 OPTIONS_DEFAULT=	SSL
 SSL_AND_PLAINTEXT_DESC=	Allow plain text passwords and SSL
 MBX_DEFAULT_DESC=	Use MBX as default mailbox format
 
+ALL_TARGET=	bsf
 MAKE_JOBS_UNSAFE=	yes
+USE_LDCONFIG=	yes
+
+SSL_USE=		OPENSSL=yes
 
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-USE_OPENSSL=	yes
 PKGMESSAGE=	pkg-message-ssl
 .endif
 
-.include <bsd.port.pre.mk>
-
-USE_LDCONFIG=	yes
-ALL_TARGET=	bsf
 .if ! ${PORT_OPTIONS:MSSL}
 MAKE_ARGS+=	SSLTYPE=none SSLDIR=${OPENSSLBASE}
 .else
@@ -110,4 +111,4 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/c-client/OSCFLAGS ${STAGEDIR}${PREFIX}/include/c-client
 	${INSTALL_DATA} ${PORTREV_H} ${STAGEDIR}${PREFIX}/include/c-client
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

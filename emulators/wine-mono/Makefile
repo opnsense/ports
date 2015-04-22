@@ -14,11 +14,12 @@ COMMENT=	Mono .NET implementation for Wine development branch (HTML support)
 LICENSE=	MIT GPLv2 LGPL20
 LICENSE_COMB=	multi
 
+PORTSCOUT=	ignore:1	# for newer versions see emulators/wine-mono-devel
+
 NO_BUILD=	yes
 PLIST_SUB+=	MONO_VERSION="${DISTVERSION}"
 DATADIR=	${PREFIX}/share/wine
 PLIST_FILES=	%%DATADIR%%/mono/wine-mono-%%MONO_VERSION%%.msi
-PLIST_DIRSTRY=	%%DATADIR%%/mono %%DATADIR%%
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/mono

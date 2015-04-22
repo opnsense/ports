@@ -3,13 +3,13 @@
 
 PORTNAME=	Gnome2-Canvas
 PORTVERSION=	1.002
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	x11-toolkits gnome perl5
 MASTER_SITES=	CPAN/Gnome2 \
 		SF/gtk2-perl/Gnome2_Canvas/${PORTVERSION}
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Allows a perl developer to use the GnomeCanvas widget with Gtk2-Perl
 
 LICENSE=	GPLv2

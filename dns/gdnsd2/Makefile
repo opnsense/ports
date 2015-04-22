@@ -2,26 +2,27 @@
 # $FreeBSD$
 
 PORTNAME=	gdnsd
-PORTVERSION=	2.1.0
+PORTVERSION=	2.2.0
 CATEGORIES=	dns
 MASTER_SITES=	https://github.com/blblack/gdnsd/releases/download/v${PORTVERSION}/ \
 		http://mirrors.rit.edu/zi/ \
 		http://gdnsd.scaleengine.net/gdnsd/
 PKGNAMESUFFIX=	2
 
-MAINTAINER=	zi@freebsd.org
+MAINTAINER=	zi@FreeBSD.org
 COMMENT=	Authoritative-only GeoIP-aware DNS server
 
 LICENSE=	GPLv3
 
 LIB_DEPENDS=	libev.so:${PORTSDIR}/devel/libev
+BUILD_DEPENDS=	ragel>0:${PORTSDIR}/devel/ragel
 
 FETCH_ARGS=	-Fpr
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var
 USE_LDCONFIG=	yes
-USES=		pkgconfig libtool tar:xz perl5
+USES=		pkgconfig libtool tar:xz perl5 gmake
 USE_PERL5=	build
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
@@ -42,6 +43,12 @@ URCU_DESC=		Read-Copy-Update Support (Faster Zone Parsing)
 URCU_CONFIGURE_WITH=	urcu
 URCU_LIB_DEPENDS=	liburcu.so:${PORTSDIR}/sysutils/liburcu
 
+.include <bsd.port.pre.mk>
+
+.if (${OSVERSION} >= 900000 && ${OSVERSION} < 903000)
+IGNORE=		you must be running FreeBSD 9.3 or higher
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|$${localstatedir}/lib/$${PACKAGE_NAME}|/var/db/${PORTNAME}|g' \
 		${WRKSRC}/configure
@@ -53,4 +60,4 @@ post-install:
 		${STAGEDIR}${PREFIX}/etc/gdnsd/zones \
 		${STAGEDIR}/var/run/gdnsd
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

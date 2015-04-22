@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	ortp
-PORTVERSION=	0.23.0
+PORTVERSION=	0.24.1
 CATEGORIES=	net
-MASTER_SITES=	SAVANNAH/linphone/ortp
+MASTER_SITES=	SAVANNAH/linphone/ortp/sources
 
 MAINTAINER=	sobomax@FreeBSD.org
 COMMENT=	Real-time Transport Protocol (RTP) library
@@ -16,7 +16,6 @@ CONFLICTS_INSTALL=	linphone-base-[0-9]*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-silent-rules --disable-strict
-CPPFLAGS+=	-DHAVE_DEV_RANDOM
 INSTALL_TARGET=	install-strip
 USES=		libtool pathfix pkgconfig
 USE_LDCONFIG=	yes

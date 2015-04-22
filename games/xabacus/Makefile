@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xabacus
-PORTVERSION=	8.0.0
+PORTVERSION=	8.0.2
 CATEGORIES=	games
 MASTER_SITES=	http://www.tux.org/~bagleyd/abacus/ \
 		http://ftp.tux.org/pub/tux/bagleyd/xabacus/
@@ -10,13 +10,14 @@ MASTER_SITES=	http://www.tux.org/~bagleyd/abacus/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Abacus for X Window System
 
-LICENSE=	BSD
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:bzip2
 USE_XORG=	xpm
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-nas
 CONFIGURE_ENV=	ac_cv_x_app_defaults=${PREFIX}/lib/X11/app-defaults
+CONFIGURE_ARGS=	--without-nas
 INSTALLS_ICONS=	yes
 
 DESKTOP_ENTRIES="XAbacus" "" "abacus" "${PORTNAME}" "" ""
@@ -29,7 +30,7 @@ ESOUND_USE=		gnome=esound
 ESOUND_CONFIGURE_ON=	--without-rplay --with-esound
 ESOUND_CONFIGURE_OFF=	--with-rplay --without-esound
 ESOUND_LDFLAGS=		-L${LOCALBASE}/lib -laudiofile
-MOTIF_USES=	motif
+MOTIF_USES=		motif
 MOTIF_CONFIGURE_WITH=	motif
 
 post-patch:

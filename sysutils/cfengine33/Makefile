@@ -3,7 +3,7 @@
 
 PORTNAME=	cfengine
 PORTVERSION=	3.3.8
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	sysutils
 MASTER_SITES=	https://s3.amazonaws.com/cfengine.package-repos/tarballs/
 PKGNAMESUFFIX=	33
@@ -11,6 +11,7 @@ PKGNAMESUFFIX=	33
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
 COMMENT=	Systems administration tool for networks
+CPE_VENDOR=	gnu
 
 FETCH_BEFORE_ARGS=	-o ${DISTDIR}/${DISTFILES}
 
@@ -18,7 +19,7 @@ CONFLICTS=	cfengine-2* cfengine-3.[245]* cfengine-devel-*
 
 USE_RC_SUBR=	cf-execd cf-serverd
 
-USES=		gmake libtool
+USES=		cpe gmake libtool
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
@@ -59,9 +60,8 @@ LIB_DEPENDS+=	libqdbm.so:${PORTSDIR}/databases/qdbm
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=		yes
+USES+=			pgsql
 CONFIGURE_ARGS+=	--with-postgresql=${LOCALBASE}
-LIB_DEPENDS+=		libpq.so:${PORTSDIR}/databases/postgresql${PGSQL_VER}-client
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}

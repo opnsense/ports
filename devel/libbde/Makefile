@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	libbde
-DISTVERSION=	alpha-20141023
+DISTVERSION=	alpha-20150204
 CATEGORIES=	devel
-MASTER_SITES=	https://googledrive.com/host/0B3fBvzttpiiSX2VCRk16TnpDd0U/ \
+MASTER_SITES=	https://github.com/libyal/libbde/releases/download/${PORTVERSION:E}/ \
 		LOCAL/antoine
 
 MAINTAINER=	antoine@FreeBSD.org
@@ -13,11 +13,12 @@ COMMENT=	Library and tools to access the BitLocker Drive Encryption volumes
 LICENSE=	LGPL3
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-python --with-libintl-prefix=${LOCALBASE} ${ICONV_CONFIGURE_ARG}
-USES=		fuse gettext iconv libtool pathfix pkgconfig python:2
+CONFIGURE_ARGS=	--enable-python --with-libintl-prefix=${LOCALBASE}
+USES=		fuse gettext libtool pathfix pkgconfig python
 USE_OPENSSL=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+LIBS+=		-L${OPENSSLLIB}
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:E}
 
 PORTDOCS=	AUTHORS ChangeLog

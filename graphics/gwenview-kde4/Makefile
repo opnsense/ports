@@ -10,7 +10,8 @@ MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Image viewer and browser for KDE 4
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libexiv2.so:${PORTSDIR}/graphics/exiv2
+		libexiv2.so:${PORTSDIR}/graphics/exiv2 \
+		libpng.so:${PORTSDIR}/graphics/png
 
 USE_KDE4=	kactivities kdelibs kdeprefix baloo kfilemetadata \
 		libkdcraw libkipi libkonq automoc4 soprano

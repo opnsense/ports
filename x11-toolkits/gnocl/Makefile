@@ -9,8 +9,10 @@ MASTER_SITES=	SF/${PORTNAME}/Gnocl-Nightly-Build/
 MAINTAINER=	tcltk@FreeBSD.org
 COMMENT=	GTK+ and Gnome extension for Tcl
 
-LICENSE=	BSD
+LICENSE=	TclTk
+LICENSE_NAME=	Tcl/Tk License
 LICENSE_FILE=	${WRKSRC}/license.terms
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LIB_DEPENDS=	libcanberra.so:${PORTSDIR}/audio/libcanberra \
    		libnotify.so:${PORTSDIR}/devel/libnotify \
@@ -31,7 +33,6 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 BASEDIR=	lib/${PORTNAME}${BASE_VERSION}
 PLIST_FILES=	${BASEDIR}/${PORTNAME}.so \
 		${BASEDIR}/pkgIndex.tcl
-PLIST_DIRS=	${BASEDIR}
 
 post-patch:
 	${REINPLACE_CMD} -e 's|tclsh|${TCLSH}|; \

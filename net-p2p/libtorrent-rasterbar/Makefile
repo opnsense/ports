@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	libtorrent-rasterbar
-PORTVERSION=	0.16.17
+PORTVERSION=	0.16.19
 PORTREVISION=	1
 CATEGORIES?=	net-p2p ipv6
 MASTER_SITES=	SF/${PORTNAME:S/-rasterbar//}/${PORTNAME:S/-rasterbar//}/
 
-MAINTAINER=	nemysis@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	C++ library implementing a BitTorrent client
 
 LICENSE=	BSD3CLAUSE
@@ -15,7 +15,7 @@ LICENSE=	BSD3CLAUSE
 LIB_DEPENDS?=	libboost_date_time.so:${PORTSDIR}/devel/boost-libs \
 		libGeoIP.so:${PORTSDIR}/net/GeoIP
 
-USES=		compiler:c++11-lang libtool pathfix pkgconfig iconv
+USES+=		compiler:c++11-lang libtool pathfix pkgconfig iconv
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -35,8 +35,6 @@ CONFIGURE_ARGS=	--disable-static \
 SHLIB_VER=	7
 PLIST_SUB+=	SHLIB_VER="${SHLIB_VER}"
 
-SUB_FILES=	pkg-message
-
 PORTDOCS=	*
 
 DOCSRCDIR1=	${WRKSRC}
@@ -54,6 +52,10 @@ OPTIONS_DEFAULT=	STRIP
 DEBUG_CONFIGURE_ENABLE=	debug
 
 .include <bsd.port.options.mk>
+
+# Restrict to stable (even) versions, indicated by the second component.
+# With Versions 1.x not build yet net-p2p/qbittorrent
+PORTSCOUT=	limit:^0.16\..*
 
 .if defined(SLAVE_PORT) && ${SLAVE_PORT:tl} == "yes" && defined(USE_PYTHON)
 CONFIGURE_ARGS+=	--enable-python-binding \

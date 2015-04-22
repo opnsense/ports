@@ -3,7 +3,7 @@
 
 PORTNAME=	xgalaga-sdl
 PORTVERSION=	2.1.1.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/ \
 		SF/nemysisfreebsdp/${CATEGORIES}/:icons
@@ -14,7 +14,8 @@ EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}-sdl${EXTRACT_SUFX}
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Classic single screen vertical shoot em up SDL
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}-sdl
 

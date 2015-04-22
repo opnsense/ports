@@ -3,18 +3,18 @@
 
 PORTNAME=	libgroove
 PORTVERSION=	4.1.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Audio dispatching library
 
 LICENSE=	MIT
 
-LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/libav \
+LIB_DEPENDS=	libavcodec.so:${PORTSDIR}/multimedia/ffmpeg \
     		libchromaprint.so:${PORTSDIR}/audio/chromaprint \
 		libebur128.so:${PORTSDIR}/audio/libebur128 \
-		libspeexdsp.so:${PORTSDIR}/audio/speex \
+		libspeexdsp.so:${PORTSDIR}/audio/speexdsp \
 		libSDL2.so:${PORTSDIR}/devel/sdl20
 
 USES=		cmake:outsource

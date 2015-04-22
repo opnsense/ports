@@ -2,15 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	yodl
-PORTVERSION=	3.03.0
-PORTREVISION=	1
+PORTVERSION=	3.05.00
 CATEGORIES=	textproc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 EXTRACT_SUFX=	.orig.tar.gz
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Easy to use but powerful document formatting/preparation language
+
+LICENSE=	GPLv3
 
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash \
 		${LOCALBASE}/bin/getopt:${PORTSDIR}/misc/getopt
@@ -18,7 +19,7 @@ BUILD_DEPENDS=	icmake:${PORTSDIR}/devel/icmake \
 		bash:${PORTSDIR}/shells/bash \
 		gsed:${PORTSDIR}/textproc/gsed
 
-USES=		perl5 shebangfix
+USES=		perl5 shebangfix compiler:c++11-lib
 USE_PERL5=	build
 
 SHEBANG_LANG=	icmake
@@ -62,7 +63,8 @@ post-patch:
 		s|"/share/man"|"/man"| ; \
 		s|"/share/doc/yodl"|"/share/doc/${PORTNAME}-${PORTVERSION}"| ; \
 		s|"/share/doc/yodl-doc"|"/share/doc/${PORTNAME}-${PORTVERSION}/doc"| ; \
-		s|"gcc"|"${CC}"|' \
+		s|"gcc"|"${CC}"| ; \
+		s|"g++"|"${CXX}"|' \
 		${WRKSRC}/INSTALL.im
 	@${REINPLACE_CMD} -e 's|yodlconverters.1|yodlconverters.1.gz| ; \
 		s|".1"|".1.gz"|' \

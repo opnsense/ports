@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	hunspell
-PORTVERSION=	1.2
+PORTVERSION=	1.3
 CATEGORIES=	hebrew textproc
 MASTER_SITES=	http://hspell.ivrix.org.il/ \
 		LOCAL/sunpoet/${PORTNAME}
@@ -22,7 +22,6 @@ SHEBANG_FILES=	${WRKSRC}/pmerge
 
 PLIST_FILES=	%%DATADIR%%/he.aff \
 		%%DATADIR%%/he.dic
-PLIST_DIRSTRY=	%%DATADIR%%
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/

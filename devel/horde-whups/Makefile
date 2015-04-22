@@ -1,17 +1,17 @@
 # $FreeBSD$
 
 PORTNAME=	whups
-PORTVERSION=	3.0.1
+PORTVERSION=	3.0.2
 CATEGORIES=	devel www pear
 PKGNAMEPREFIX=	horde-
 
 MAINTAINER=	horde@FreeBSD.org
 COMMENT=	Horde bug tracking/ticketing system
 
-LICENSE=	BSD
+LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=	horde
+USES=	horde cpe
 USE_PHP=	gettext json
 USE_HORDE_BUILD=	Horde_Role
 USE_HORDE_RUN=	Horde_Role \

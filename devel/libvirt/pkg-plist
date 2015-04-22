@@ -123,7 +123,6 @@ share/augeas/lenses/tests/test_virtlockd.aug
 %%DOCSDIR%%%%PORTVERSION%%/html/html/home.png
 %%DOCSDIR%%%%PORTVERSION%%/html/html/index.html
 %%DOCSDIR%%%%PORTVERSION%%/html/html/left.png
-%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt.html
 %%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-virterror.html
 %%DOCSDIR%%%%PORTVERSION%%/html/html/right.png
 %%DOCSDIR%%%%PORTVERSION%%/html/html/up.png
@@ -131,6 +130,8 @@ share/augeas/lenses/tests/test_virtlockd.aug
 %%DOCSDIR%%%%PORTVERSION%%/html/index.html
 %%DOCSDIR%%%%PORTVERSION%%/html/internals/command.html
 %%DOCSDIR%%%%PORTVERSION%%/html/internals/locking.html
+%%PORTDOCS%%%%DOCSDIR%%%%PORTVERSION%%/html/locking-lockd.html
+%%PORTDOCS%%%%DOCSDIR%%%%PORTVERSION%%/html/locking-sanlock.html
 %%DOCSDIR%%%%PORTVERSION%%/html/internals/rpc.html
 %%DOCSDIR%%%%PORTVERSION%%/html/intro.html
 %%DOCSDIR%%%%PORTVERSION%%/html/java.html
@@ -174,11 +175,21 @@ share/augeas/lenses/tests/test_virtlockd.aug
 %%DOCSDIR%%%%PORTVERSION%%/html/drvbhyve.html
 %%DOCSDIR%%%%PORTVERSION%%/html/governance.html
 %%DOCSDIR%%%%PORTVERSION%%/html/internals/oomtesting.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-domain-snapshot.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-domain.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-event.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-host.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-interface.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-network.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-nodedev.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-nwfilter.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-secret.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-storage.html
+%%DOCSDIR%%%%PORTVERSION%%/html/html/libvirt-libvirt-stream.html
 share/gtk-doc/html/libvirt/general.html
 share/gtk-doc/html/libvirt/home.png
 share/gtk-doc/html/libvirt/index.html
 share/gtk-doc/html/libvirt/left.png
-share/gtk-doc/html/libvirt/libvirt-libvirt.html
 share/gtk-doc/html/libvirt/libvirt-virterror.html
 share/gtk-doc/html/libvirt/libvirt.devhelp
 share/gtk-doc/html/libvirt/right.png
@@ -204,15 +215,11 @@ share/gtk-doc/html/libvirt/up.png
 %%DATADIR%%/schemas/storagecommon.rng
 %%DATADIR%%/schemas/storagepool.rng
 %%DATADIR%%/schemas/storagevol.rng
-%%NLS%%share/locale/af/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/am/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/ar/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/as/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/be/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/bg/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/bn/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/bn_IN/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/bo/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/bs/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/ca/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/cs/LC_MESSAGES/libvirt.mo
@@ -223,17 +230,13 @@ share/gtk-doc/html/libvirt/up.png
 %%NLS%%share/locale/en_GB/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/es/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/et/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/eu_ES/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/fa/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/fi/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/gl/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/gu/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/he/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/hi/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/hr/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/hu/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/hy/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/id/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/is/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/it/LC_MESSAGES/libvirt.mo
@@ -241,15 +244,12 @@ share/gtk-doc/html/libvirt/up.png
 %%NLS%%share/locale/ka/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/kn/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/ku/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/lo/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/lv/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/mk/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/ml/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/mr/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/ms/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/my/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/nb/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/nl/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/nn/LC_MESSAGES/libvirt.mo
@@ -275,40 +275,33 @@ share/gtk-doc/html/libvirt/up.png
 %%NLS%%share/locale/uk/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/ur/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/libvirt.mo
-%%NLS%%share/locale/vi_VN/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/zh_CN/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/zh_TW/LC_MESSAGES/libvirt.mo
 %%NLS%%share/locale/zu/LC_MESSAGES/libvirt.mo
 %%QEMU%%lib/libvirt/connection-driver/libvirt_driver_qemu.so
-%%BHYVE%%lib/libvirt/connection-driver/libvirt_driver_bhyve.so
 lib/libvirt/connection-driver/libvirt_driver_network.so
 lib/libvirt/connection-driver/libvirt_driver_secret.so
 lib/libvirt/connection-driver/libvirt_driver_storage.so
 lib/libvirt/connection-driver/libvirt_driver_vbox.so
-lib/libvirt/connection-driver/libvirt_driver_vbox_network.so
-lib/libvirt/connection-driver/libvirt_driver_vbox_storage.so
-%%QEMU%%@unexec rmdir /var/run/libvirt/qemu
-%%QEMU%%@unexec rmdir /var/lib/libvirt/qemu/channel/target
-%%QEMU%%@unexec rmdir /var/lib/libvirt/qemu/channel
-%%QEMU%%@unexec rmdir /var/lib/libvirt/qemu
-%%QEMU%%@unexec rmdir /var/cache/libvirt/qemu
-@unexec rmdir /var/cache/libvirt
-@unexec rmdir /var/cache
-@unexec rmdir /var/lib/libvirt/boot
-@unexec rmdir /var/lib/libvirt/dnsmasq
-@unexec rmdir /var/lib/libvirt/filesystems
-@unexec rmdir /var/lib/libvirt/images
-@unexec rmdir /var/lib/libvirt/lockd/files
-@unexec rmdir /var/lib/libvirt/lockd
-@unexec rmdir /var/lib/libvirt/network
-@unexec rmdir /var/lib/libvirt
-@unexec rmdir /var/lib
-@unexec rmdir /var/log/libvirt/lxc
-@unexec rmdir /var/log/libvirt/qemu
-@unexec rmdir /var/log/libvirt/uml
-@unexec rmdir /var/log/libvirt
-@unexec rmdir /var/log
-@unexec rmdir /var/run/libvirt/lockd
-@unexec rmdir /var/run/libvirt/network
-@unexec rmdir /var/run/libvirt
-@unexec rmdir /var/run
+%%QEMU%%@dir /var/run/libvirt/qemu
+%%QEMU%%@dir /var/lib/libvirt/qemu/channel/target
+%%QEMU%%@dir /var/lib/libvirt/qemu/channel
+%%QEMU%%@dir /var/lib/libvirt/qemu
+%%QEMU%%@dir /var/cache/libvirt/qemu
+@dir /var/cache/libvirt
+@dir /var/lib/libvirt/boot
+@dir /var/lib/libvirt/dnsmasq
+@dir /var/lib/libvirt/filesystems
+@dir /var/lib/libvirt/images
+@dir /var/lib/libvirt/lockd/files
+@dir /var/lib/libvirt/lockd
+@dir /var/lib/libvirt/network
+@dir /var/lib/libvirt
+@dir /var/lib
+@dir /var/log/libvirt/lxc
+@dir /var/log/libvirt/qemu
+@dir /var/log/libvirt/uml
+@dir /var/log/libvirt
+@dir /var/run/libvirt/lockd
+@dir /var/run/libvirt/network
+@dir /var/run/libvirt

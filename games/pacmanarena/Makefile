@@ -3,7 +3,7 @@
 
 PORTNAME=	pacmanarena
 PORTVERSION=	0.15
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/v0.0/ \
 		SF/nemysisfreebsdp/${CATEGORIES}/${PORTNAME}/:icons
@@ -14,7 +14,8 @@ DISTFILES=	${DISTNAME:S/na/n-a/}.tar.bz2 \
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Pacman clone in full 3D with a few surprises
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 EXTRACT_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip
 

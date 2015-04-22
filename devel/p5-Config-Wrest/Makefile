@@ -3,13 +3,13 @@
 
 PORTNAME=	Config-Wrest
 PORTVERSION=	1.036
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	Config
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl module for reading and writing configuration data
 
 LICENSE=	GPLv2

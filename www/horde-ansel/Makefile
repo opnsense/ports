@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ansel
-DISTVERSION=	3.0.1
+PORTVERSION=	3.0.2
 CATEGORIES=	www pear graphics
 PKGNAMEPREFIX=	horde-
 
@@ -11,7 +11,7 @@ COMMENT=	Horde Photo Management and Web Gallery
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=	horde
+USES=	horde cpe
 USE_PHP=	gettext hash
 USE_HORDE_BUILD=	Horde_Role
 USE_HORDE_RUN=	Horde_Role \

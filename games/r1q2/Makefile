@@ -3,7 +3,7 @@
 
 PORTNAME=	r1q2
 PORTVERSION=	8012
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	http://old.r1ch.net/stuff/r1q2/src/
 DISTNAME=	${PORTNAME}-b${PORTVERSION}-src
@@ -24,7 +24,7 @@ BUILD_WRKSRC=	${WRKSRC}/binaries
 ALL_TARGET=	#
 
 LIBDIR=		${PREFIX}/lib/${PORTNAME}
-MAKE_ENV=	LIBDIR="${LIBDIR}" PTHREAD_LIBS="${PTHREAD_LIBS}"
+MAKE_ENV=	LIBDIR="${LIBDIR}"
 PLIST_SUB=	LIBDIR="${LIBDIR:S|${PREFIX}/||}"
 
 OPTIONS_DEFINE=	GAME REF_GL DOCS
@@ -65,9 +65,8 @@ PLIST_SUB+=	GAME="@comment "
 USE_GL=		gl
 USE_SDL=	sdl
 LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 ALL_TARGET+=	ref_gl
-CFLAGS+=	-I${LOCALBASE}/include/libpng15
 PLIST_SUB+=	REF_GL=""
 .else
 PLIST_SUB+=	REF_GL="@comment "

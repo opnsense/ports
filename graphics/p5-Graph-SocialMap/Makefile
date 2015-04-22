@@ -3,12 +3,12 @@
 
 PORTNAME=	Graph-SocialMap
 PORTVERSION=	0.12
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Easy tool to create social network maps
 
 LICENSE=	ART10 GPLv1

@@ -5,7 +5,7 @@ PORTNAME=	libglade2
 PORTVERSION=	2.6.3
 PORTREVISION=	2
 CATEGORIES=	devel linux
-MASTER_SITES=	CRITICAL/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
+MASTER_SITES=	LOCAL/ehaupt/rpm/${LINUX_RPM_ARCH}/fedora/${LINUX_DIST_VER}
 
 MAINTAINER=	emulation@FreeBSD.org
 COMMENT=	RPM of libglade2 (Linux Fedora 10)
@@ -20,8 +20,7 @@ USE_LDCONFIG=	yes
 
 PLIST_FILES=	usr/lib/libglade-2.0.so.0 usr/lib/libglade-2.0.so.0.0.7 \
 		usr/share/xml/libglade/glade-2.0.dtd
-PLIST_DIRS=	usr/share/xml/libglade usr/share/xml \
-		usr/lib/libglade/2.0 usr/lib/libglade
+PLIST_DIRS=	usr/lib/libglade/2.0
 DOCSDIR=	usr/share/doc/${PORTNAME}-${PORTVERSION}
 PORTDOCS=	AUTHORS COPYING NEWS README
 DESCR=		${.CURDIR}/../${PORTNAME}/pkg-descr

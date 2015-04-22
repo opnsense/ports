@@ -3,7 +3,7 @@
 
 PORTNAME=	xpilot-ng
 PORTVERSION=	4.7.3
-PORTREVISION=	3
+PORTREVISION?=	3
 CATEGORIES=	games
 MASTER_SITES=	SF/xpilot/xpilot_ng/${PORTNAME}-${PORTVERSION}
 PKGNAMESUFFIX?=	-server
@@ -11,7 +11,8 @@ PKGNAMESUFFIX?=	-server
 MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	Enhanced version of XPilot (server program)
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
 

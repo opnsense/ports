@@ -3,20 +3,19 @@
 
 PORTNAME=	libghthash
 PORTVERSION=	0.6.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	devel
 MASTER_SITES=	http://www.ipd.bth.se/ska/sim_home/filer/
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Generic Hash Table
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-USES=		libtool
+USES=		autoreconf libtool
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtoolize
-AUTOMAKE_ARGS=	-a -c -f
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 PLIST_FILES=	include/ght_hash_table.h \
 		lib/libghthash.a \

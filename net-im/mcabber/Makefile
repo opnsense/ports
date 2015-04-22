@@ -3,9 +3,9 @@
 
 PORTNAME=	mcabber
 PORTVERSION=	0.10.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	net-im
-MASTER_SITES=	http://www.lilotux.net/~mikael/mcabber/files/ CENKES
+MASTER_SITES=	http://www.lilotux.net/~mikael/mcabber/files/
 
 MAINTAINER=	dhn@FreeBSD.org
 COMMENT=	Small Jabber console client

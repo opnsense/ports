@@ -3,7 +3,7 @@
 
 PORTNAME=	ossec-hids
 PORTVERSION=	2.8.1
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.ossec.net/files/ \
 		http://www.ossec.net/files/old/
@@ -17,6 +17,7 @@ USE_RC_SUBR=	ossec-hids
 CFLAGS+=	-ferror-limit=0
 
 USES=		readline
+USE_OPENSSL=	yes
 
 .if defined(MAINTAINER_MODE)
 UID_FILES+=	../../UIDs
@@ -36,10 +37,6 @@ PLIST_SUB=	PORTNAME=${PORTNAME}
 PORTDOCS=	BUGS CONFIG CONTRIBUTORS INSTALL LICENSE
 
 .include <bsd.port.pre.mk>
-.if ${OSVERSION} < 800067
-# Add string function that didn't exist until 8.x
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src__os_csyslogd__csyslogd.c
-.endif
 
 .if !defined(CLIENT_ONLY)
 .if ${PORT_OPTIONS:MMYSQL}
@@ -49,7 +46,7 @@ USE_MYSQL=	client
 
 .if ${PORT_OPTIONS:MPGSQL}
 WITH_DB=	yes
-USE_PGSQL=	yes
+USES+=		pgsql
 .endif
 .endif
 

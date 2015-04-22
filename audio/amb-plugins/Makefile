@@ -13,6 +13,8 @@ DIST_SUBDIR=	${PORTNAME}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ambisonics plugins, mainly to be used within Ardour
 
+BROKEN=		Distfile size mismatch
+
 BUILD_DEPENDS=	${LOCALBASE}/include/ladspa.h:${PORTSDIR}/audio/ladspa
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
@@ -23,7 +25,6 @@ USES=		tar:bzip2 gmake
 PLIST_FILES=	lib/ladspa/ambisonic0.so lib/ladspa/ambisonic1.so \
 		lib/ladspa/ambisonic2.so lib/ladspa/ambisonic3.so \
 		share/ladspa/rdf/fa-plugins.rdf
-PLIST_DIRSTRY=	share/ladspa/rdf share/ladspa
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|[[:space:]]-O3||g ; \

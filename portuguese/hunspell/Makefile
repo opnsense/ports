@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	hunspell
-PORTVERSION=	20140704
+PORTVERSION=	20150102
 CATEGORIES=	portuguese textproc
 MASTER_SITES=	http://natura.di.uminho.pt/download/sources/Dictionaries/hunspell/ \
 		http://www.broffice.org/files/:BR \
-		LOCAL/sunpoet/${PORTNAME}:BR
+		LOCAL/sunpoet/${PORTNAME}
 DISTFILES=	hunspell-pt_PT-${PORTVERSION}.tar.gz \
 		pt_BR-2012-06-09AOC.zip:BR
 DIST_SUBDIR=	${PORTNAME}
@@ -25,7 +25,6 @@ PLIST_FILES=	%%DATADIR%%/pt_BR.aff \
 		%%DATADIR%%/pt_BR.dic \
 		%%DATADIR%%/pt_PT.aff \
 		%%DATADIR%%/pt_PT.dic
-PLIST_DIRSTRY=	%%DATADIR%%
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/

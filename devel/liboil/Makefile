@@ -14,11 +14,14 @@ COMMENT=	Library of optimized inner loops
 LICENSE=	BSD2CLAUSE BSD3CLAUSE MIT
 LICENSE_COMB=	multi
 
+BROKEN_powerpc64=	fails to compile vec_memcpy.S
+
 USES=		libtool pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc \
 		--disable-glib
+INSTALL_TARGET=	install-strip
 CFLAGS:=	${CFLAGS:N-O*} -O2
 
 post-patch:

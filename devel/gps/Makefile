@@ -3,7 +3,7 @@
 
 PORTNAME=	gps
 PORTVERSION=	6.1.0.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	http://downloads.dragonlace.net/src/
 PKGNAMESUFFIX=	-ide
@@ -19,6 +19,7 @@ BUILD_DEPENDS=	gprbuild>=20140417:${PORTSDIR}/devel/gprbuild \
 		templates_parser>11:${PORTSDIR}/textproc/templates_parser
 LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp \
 		libgtkada.so:${PORTSDIR}/x11-toolkits/gtkada3
+RUN_DEPENDS=	rsvg-convert:${PORTSDIR}/graphics/librsvg2   # See note
 
 GNU_CONFIGURE=		yes
 USES=			ada gmake perl5 pkgconfig python tar:bzip2
@@ -30,6 +31,13 @@ AWKREVDATE=		'/Last Changed Date/ {print "\"s|unknown date|" $$4 "|\""}'
 GPSVER=			GPS_VERSION=${PORTVERSION}
 ALL_TARGET=		default
 NO_MTREE=		yes
+SUB_FILES=		gps
+
+# note: librsvg2 is needed to display the svg icons in the menu.  Actually
+# needed is lib/gdk-pixbuf-2.0/%%GTK2_VER%%/loaders/libpixbufloader-svg.so ,
+# but it's a variable library needed only at runtime, which is obnoxious so
+# we just request the sole binary to pull in the package which effectively
+# accomplishes what is desired.
 
 OPTIONS_DEFINE=		READLINE SYSLOG PGSQL DEBUG DOCS EXAMPLES
 OPTIONS_DEFAULT=	READLINE SYSLOG
@@ -50,6 +58,8 @@ MAKE_ARGS+=		PROCESSORS=${MAKE_JOBS_NUMBER}
 MAKE_ARGS+=		PYTHON_CMD=${PYTHON_CMD}
 
 .include <bsd.port.options.mk>
+
+SUB_LIST=		ADA_PATH=${PREFIX}/${ADAXX}-aux/bin
 
 .if ${PORT_OPTIONS:MDEBUG}
 MAKE_ARGS+=		Build=Debug
@@ -106,6 +116,12 @@ post-patch:
 		${WRKSRC}/configure
 	@${AWK} ${AWKREVDATE} ${WRKSRC}/REVISION | ${XARGS} -I sub \
 		${SED} -i.bak -e sub ${WRKSRC}/common/core/src/config.ads.in
+	@${SED} -i '' -e \
+		's|= "gnat"|= "${LOCALBASE}/${ADAXX}-aux/bin/gnat"|' \
+		${WRKSRC}/share/support/core/gps_utils/gnat_rules.py
+	@${REINPLACE_CMD} -e \
+		's|@UTILSHARE@|${LOCALBASE}/share/gnat_util|' \
+		${WRKSRC}/Makefile.in
 
 do-build:
 	@${CP} ${PREFIX}/include/gnat_util/impunit.* ${WRKSRC}/distrib
@@ -119,10 +135,10 @@ do-build:
 post-install:
 	${RM} -rf ${STAGEDIR}${PREFIX}/share/doc/gps/html/users_guide/_sources
 	${RM} -rf ${STAGEDIR}${PREFIX}/share/doc/gps/html/tutorial/_sources
-	echo "This is the GPS GPL Edition for the FreeBSD Ports Collection." \
+	${INSTALL_SCRIPT} ${WRKDIR}/gps ${STAGEDIR}${PREFIX}/bin
+	echo "This is the GPS GPL Edition for the ${OPSYS} Ports Collection." \
 		> ${STAGEDIR}${PREFIX}/share/gps/about.txt
-	@(cd ${STAGEDIR}${PREFIX} ; \
-		${FIND} * -type d -empty -print | ${XARGS} ${RMDIR})
+	${FIND} ${STAGEDIR}${PREFIX} -type d -empty -delete
 	@(cd ${STAGEDIR}${PREFIX} ; \
 		${FIND} * \( -type f -or -type l \) | ${SORT} >> ${TMPPLIST})
 

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	edgar
-DISTVERSION=	1.17-1
-PORTREVISION=	1
+DISTVERSION=	1.20-1
 CATEGORIES=	games
 MASTER_SITES=	SF/legendof${PORTNAME}/${PORTVERSION:R}/
 PKGNAMEPREFIX=	legend-of-
@@ -37,6 +36,7 @@ post-patch:
 		s|$$(DESTDIR)/usr|$$(DESTDIR)/usr/local|; \
 		s|$$(PREFIX)/games/|$$(PREFIX)/bin/|; \
 		s|/share/games/edgar/|/share/edgar/|; \
+		s|/share/man/|/man/|; \
 		s|-Wall ||; \
 		s|sdl-config|$(SDL_CONFIG)|; \
 		s|-s ||' \
@@ -47,6 +47,8 @@ post-patch:
 		${WRKSRC}/src/graphics/save_png.c
 	@${REINPLACE_CMD} -e 's|self->dirY =- 13|self->dirY -= 13|g' \
 		${WRKSRC}/src/boss/golem_boss.c
+	@${REINPLACE_CMD} -e 's|Categories=Game|Categories=Game;ArcadeGame;|' \
+		${WRKSRC}/icons/${PORTNAME}.desktop
 
 .if ! ${PORT_OPTIONS:MDOCS}
 	@${REINPLACE_CMD} -i '' -e '/mkdir -p $$(DOC_DIR)/d' \

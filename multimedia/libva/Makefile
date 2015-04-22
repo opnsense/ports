@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	libva
-PORTVERSION=	1.4.0
+PORTVERSION=	1.5.1
 CATEGORIES=	multimedia
 MASTER_SITES=	http://cgit.freedesktop.org/${PORTNAME}/snapshot/
 
@@ -14,17 +14,16 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
 LIB_DEPENDS=	libdrm.so:${PORTSDIR}/graphics/libdrm
 
-USES=		alias autoreconf libtool pkgconfig tar:bzip2
+USES=		alias autoreconf gmake libtool pkgconfig tar:bzip2
 USE_XORG=	glproto pciaccess xext xfixes
 USE_GL=		gl
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=va
 USE_LDCONFIG=	yes
 
-CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 # prevent types conflict: videodev2.h vs. drm.h
-CFLAGS+=	-DHAVE_LINUX_INTEGER_TYPES
+CFLAGS+=	-I${LOCALBASE}/include -DHAVE_LINUX_INTEGER_TYPES
 
 OPTIONS_DEFINE=	DEBUG
 
@@ -55,9 +54,5 @@ post-patch:	.SILENT
 	${REINPLACE_CMD} '/^export VA_HEADER_/d' \
 		${WRKSRC}/doc/Makefile.am
 	${REINPLACE_CMD} 's/-ldl//' ${WRKSRC}/va/Makefile.am
-
-post-configure:	.SILENT
-	${REINPLACE_CMD} 's/-lpthread/${PTHREAD_LIBS}/' \
-		${WRKSRC}/test/putsurface/Makefile
 
 .include <bsd.port.post.mk>

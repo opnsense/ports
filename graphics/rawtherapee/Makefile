@@ -3,6 +3,7 @@
 
 PORTNAME=	rawtherapee
 PORTVERSION=	4.2
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://rawtherapee.com/shared/source/
 
@@ -15,7 +16,7 @@ LIB_DEPENDS=	libgtkmm-2.4.so:${PORTSDIR}/x11-toolkits/gtkmm24 \
 		libiptcdata.so:${PORTSDIR}/graphics/libiptcdata \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		liblcms2.so:${PORTSDIR}/graphics/lcms2 \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
 		libsigc-2.0.so:${PORTSDIR}/devel/libsigc++20 \
 		libfftw3.so:${PORTSDIR}/math/fftw3 \
@@ -26,9 +27,9 @@ USES=		cmake:outsource pkgconfig compiler:features desktop-file-utils dos2unix t
 DOS2UNIX_REGEX=	.*\.(cc|h)
 USE_GNOME=	gtk20 glib20
 USE_LDCONFIG=	yes
-CFLAGS+=	-I${LOCALBASE}/include -fPIC ${PTHREAD_CFLAGS}
-CXXFLAGS+=	-I${LOCALBASE}/include -fPIC ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+CFLAGS+=	-I${LOCALBASE}/include -fPIC
+CXXFLAGS+=	-I${LOCALBASE}/include -fPIC
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 CMAKE_ENV=	CFLAGS="${CFLAGS}" \
 		LDFLAGS="${LDFLAGS:C|-Wl,-rpath=${_GCC_RUNTIME}||:C|-L${_GCC_RUNTIME}||}"
 CMAKE_ARGS+=	-DDOCDIR="${DOCSDIR}" \

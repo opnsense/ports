@@ -4,7 +4,7 @@ PORTNAME=	barnyard2
 PORTVERSION=	1.13
 CATEGORIES=	security
 
-MAINTAINER=	pauls@utdallas.edu
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Interpreter for Snort unified2 binary output files
 
 LICENSE=	GPLv2
@@ -14,8 +14,9 @@ GH_ACCOUNT=	firnsy
 GH_TAGNAME=	v2-${PORTVERSION}
 GH_COMMIT=	272eaf7
 
-OPTIONS_DEFINE=	64BIT ARUBA BRO GRE IPV6 MPLS MYSQL MYSQL_SSL ODBC PGSQL \
-		PORT_PCAP DOCS
+OPTIONS_DEFINE=	64BIT ARUBA BRO GRE IPV6 MPLS PORT_PCAP DOCS EXAMPLES
+OPTIONS_RADIO=	DATABASE
+OPTIONS_RADIO_DATABASE=	MYSQL MYSQL_SSL ODBC PGSQL
 NO_OPTIONS_SORT=yes
 
 64BIT_DESC=	Enable 64bit compilation (experimental)
@@ -31,10 +32,7 @@ OPTIONS_DESC=	Enable tcl support for sguil
 OPTIONS_DEFAULT+=	TCL
 .endif
 
-USE_AUTOTOOLS=	libtoolize aclocal autoheader automake autoconf
-AUTOMAKE_ARGS=	--add-missing --copy
-ACLOCAL_ARGS=	-I m4 -I ${LOCALBASE}/share/aclocal
-
+USES=		autoreconf libtool
 USE_RC_SUBR=	barnyard2
 GNU_CONFIGURE=	yes
 
@@ -59,7 +57,7 @@ MYSQL_CONFIGURE_ON=	--with-mysql-includes=${LOCALBASE}/include/mysql \
 MYSQL_SSL_CONFIGURE_ENABLE=	mysql-ssl-support
 ODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
 ODBC_WITH=		odbc
-PGSQL_USE=		PGSQL=yes
+PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ON=	--with-postgresql=${LOCALBASE}/bin/pg_config --with-pgsql-includes=${LOCALBASE}/include/postgresql/server
 PGSQL_CONFIGURE_OFF=	--without-postgresql
 TCL_USES=		tcl

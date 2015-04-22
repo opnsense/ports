@@ -2,17 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	ffmpegthumbnailer
-PORTVERSION=	2.0.8
-PORTREVISION=	3
+PORTVERSION=	2.0.9
+PORTREVISION=	1
 CATEGORIES=	multimedia graphics
-MASTER_SITES=	GOOGLE_CODE
+MASTER_SITES=	${MASTER_SITE_LOCAL}
+MASTER_SITE_SUBDIR=	riggs/${PORTNAME}
 
 MAINTAINER=	clutton@zoho.com
 COMMENT=	Lightweight video thumbnailer that can be used by file managers
 
 LICENSE=	GPLv2 # (or later)
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libswscale.so:${PORTSDIR}/multimedia/ffmpeg \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg
 
@@ -22,26 +24,15 @@ CONFIGURE_ARGS=	--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig --enable-gio
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool pathfix pkgconfig
+USES=		compiler:c++11-lib libtool pathfix pkgconfig
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 
-OPTIONS_DEFINE=	GNOME MATE
+OPTIONS_DEFINE=	THUMBNAILER
+THUMBNAILER_DESC=Register as a system thumbnailer
 OPTIONS_SUB=	yes
+OPTIONS_DEFAULT=THUMBNAILER
 
-MATE_CONFIGURE_ENABLE=	thumbnailer
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MGNOME}
-USE_GNOME+=	gconf2
-GCONF_SCHEMAS=	ffmpegthumbnailer.schemas
-.endif
-
-post-install:
-.if ${PORT_OPTIONS:MGNOME}
-	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/gconf/schemas
-	${INSTALL_DATA} ${FILESDIR}/${GCONF_SCHEMAS} ${STAGEDIR}${PREFIX}/etc/gconf/schemas
-.endif
+THUMBNAILER_CONFIGURE_ENABLE=	thumbnailer
 
 .include <bsd.port.mk>

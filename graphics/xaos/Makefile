@@ -3,14 +3,14 @@
 
 PORTNAME=	xaos
 PORTVERSION=	3.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics math
 MASTER_SITES=	SF/${PORTNAME}/XaoS/${PORTVERSION}
 
 MAINTAINER=	makc@FreeBSD.org
 COMMENT=	Real-time fractal browser
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libgsl.so:${PORTSDIR}/math/gsl
 
 USES=		gmake
@@ -40,7 +40,7 @@ NLS_CONFIGURE_ENABLE=	nls
 
 THREADS_DESC=	Enable SMP support (experimental)
 THREADS_CONFIGURE_WITH=	pthread
-THREADS_LIBS=	${PTHREAD_LIBS}
+THREADS_LIBS=	-lpthread
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
@@ -49,6 +49,7 @@ INFO=		xaos
 
 PLIST_SUB+=	XAOSDIR="share/XaoS"
 
+MAKE_JOBS_UNSAFE=	yes
 DESKTOP_ENTRIES=	"XaoS" "" "${PREFIX}/share/pixmaps/xaos.png" \
 			"xaos" "" false
 

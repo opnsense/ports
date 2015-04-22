@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	ipsumdump
-PORTVERSION=	1.84
+PORTVERSION=	1.85
 CATEGORIES=	net
 MASTER_SITES=	http://www.cs.ucla.edu/~kohler/ipsumdump/
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Produce ASCII summary of network traffic or tcpdump(1) file
 
 USES=		gmake perl5
@@ -36,5 +36,8 @@ CATEGORIES+=	ipv6
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ipsumdump
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ipaggcreate
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ipaggmanip
 
 .include <bsd.port.mk>

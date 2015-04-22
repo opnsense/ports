@@ -3,12 +3,12 @@
 
 PORTNAME=	CGI-Application-Plugin-Authorization
 PORTVERSION=	0.07
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Support for authorization of requests in CGI::Application
 
 LICENSE=	ART10 GPLv1

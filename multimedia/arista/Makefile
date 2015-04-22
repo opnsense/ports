@@ -11,6 +11,8 @@ MASTER_SITES=	http://programmer-art.org/media/releases/arista-transcoder/ \
 MAINTAINER=	swills@FreeBSD.org
 COMMENT=	Easy to use multimedia transcoder for the GNOME Desktop
 
+BROKEN=		Uses unknown GNOME component pygnomedesktop
+
 USES=		desktop-file-utils gettext python
 USE_GSTREAMER=	faac x264 lame mpeg2enc
 USE_GNOME=	pygnomedesktop
@@ -25,6 +27,5 @@ post-patch:
 post-install:
 	@${INSTALL_DATA} ${WRKSRC}/ui/icon.svg \
 		${STAGEDIR}${PREFIX}/share/pixmaps/arista.svg
-	@-update-desktop-database
 
 .include <bsd.port.mk>

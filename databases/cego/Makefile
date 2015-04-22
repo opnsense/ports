@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cego
-PORTVERSION=	2.20.16
+PORTVERSION=	2.21.1
 CATEGORIES=	databases
 MASTER_SITES=	http://www.lemke-it.com/
 
@@ -12,12 +12,12 @@ LICENSE=	GPLv3
 
 LIB_DEPENDS=	liblfcbase.so:${PORTSDIR}/devel/lfcbase \
 		liblfcxml.so:${PORTSDIR}/devel/lfcxml
+RUN_DEPENDS=	${LOCALBASE}/bin/sudo:${PORTSDIR}/security/sudo
 
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 
 USE_LDCONFIG=	yes
-USE_RC_SUBR=	cego
 
 USES=		ncurses readline libtool
 
@@ -35,6 +35,9 @@ post-patch:
 post-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
 	${CP} ${WRKSRC}/tools/* ${STAGEDIR}${DATADIR}
+	${MKDIR} ${STAGEDIR}${PREFIX}/etc/rc.d
+	${REINPLACE_CMD} -e 's/%%USER%%/${USERS}/g' ${WRKSRC}/samples/rc/cego
+	${CP} ${WRKSRC}/samples/rc/cego ${STAGEDIR}${PREFIX}/etc/rc.d/
 
 post-stage:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libcego.so.1.0.0

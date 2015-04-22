@@ -3,7 +3,7 @@
 
 PORTNAME=	ipager
 PORTVERSION=	1.1.0
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	x11
 MASTER_SITES=	http://useperl.ru/ipager/src/
 
@@ -12,8 +12,9 @@ COMMENT=	X11 pager program
 
 LICENSE=	MIT
 
+LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
+
 USES=		scons
-USE_EFL=	imlib2
 
 SUB_FILES=	pkg-message
 
@@ -34,7 +35,7 @@ post-patch:
 
 pre-build:
 	# scons is too stupid to create DESTDIR by itself
-	@${MKDIR} ${WRKDIR}/stage
+	@${MKDIR} ${STAGEDIR}
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}

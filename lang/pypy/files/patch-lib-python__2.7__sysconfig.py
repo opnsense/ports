@@ -4,16 +4,16 @@
          'data'   : '{base}',
          },
      'pypy': {
--        'stdlib': '{base}/lib-python/{py_version_short}',
--        'platstdlib': '{base}/lib-python/{py_version_short}',
--        'purelib': '{base}/lib-python/{py_version_short}',
--        'platlib': '{base}/lib-python/{py_version_short}',
+-        'stdlib': '{base}/lib-{implementation_lower}/{py_version_short}',
+-        'platstdlib': '{base}/lib-{implementation_lower}/{py_version_short}',
+-        'purelib': '{base}/lib-{implementation_lower}/{py_version_short}',
+-        'platlib': '{base}/lib-{implementation_lower}/{py_version_short}',
 -        'include': '{base}/include',
 -        'platinclude': '{base}/include',
 +        'stdlib': '{base}/lib/pypy-{pypy_version_short}',
 +        'platstdlib': '{platbase}/lib/pypy-{pypy_version_short}',
-+        'purelib': '{base}/lib/pypy-{pypy_version_short}',
-+        'platlib': '{platbase}/lib/pypy-{pypy_version_short}',
++        'purelib': '{base}/lib/pypy-{pypy_version_short}/site-packages',
++        'platlib': '{platbase}/lib/pypy-{pypy_version_short}/site-packages',
 +        'include': '{base}/include/pypy-{pypy_version_short}',
 +        'platinclude': '{platbase}/include/pypy-{pypy_version_short}',
          'scripts': '{base}/bin',
@@ -32,7 +32,7 @@
          _CONFIG_VARS['py_version'] = _PY_VERSION
          _CONFIG_VARS['py_version_short'] = _PY_VERSION_SHORT
          _CONFIG_VARS['py_version_nodot'] = _PY_VERSION[0] + _PY_VERSION[2]
-+        _CONFIG_VARS['py_version'] = _PYPY_VERSION
++        _CONFIG_VARS['pypy_version'] = _PYPY_VERSION
 +        _CONFIG_VARS['pypy_version_short'] = _PYPY_VERSION_SHORT
 +        _CONFIG_VARS['pypy_version_nodot'] = _PYPY_VERSION[0] + _PYPY_VERSION[2]
          _CONFIG_VARS['base'] = _PREFIX

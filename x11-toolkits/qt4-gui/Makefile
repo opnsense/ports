@@ -3,14 +3,14 @@
 
 PORTNAME=	gui
 DISTVERSION=	${QT4_VERSION}
-PORTREVISION=	2
+PORTREVISION=	5
 CATEGORIES=	x11-toolkits
 PKGNAMEPREFIX=	qt4-
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt graphical user interface module
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
 RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 
@@ -46,8 +46,8 @@ INSTALL_WRKSRC=	${BUILD_WRKSRC}
 CONFIGURE_ARGS+=	-I../../include/QtCore -I../../include/QtGui \
 			-I../../include/Qt -I../../include
 
-FONTSCALE=	${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf
-FONTENCOD=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir
+FONTSCALE=	${LOCALBASE}/share/fonts/TTF/luximb.ttf
+FONTENCOD=	${LOCALBASE}/share/fonts/encodings/encodings.dir
 
 .include "${.CURDIR}/../../devel/qt4/files/Makefile.options"
 
@@ -71,7 +71,7 @@ CONFIGURE_ARGS+=-no-gtkstyle
 .endif
 
 .if defined(PACKAGE_BUILDING)
-RUN_DEPENDS+=	${FONTSCALE}:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
+RUN_DEPENDS+=	xorg-fonts-truetype>0:${PORTSDIR}/x11-fonts/xorg-fonts-truetype \
 		${FONTENCOD}:${PORTSDIR}/x11-fonts/encodings
 .endif
 

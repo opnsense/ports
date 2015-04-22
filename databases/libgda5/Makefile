@@ -1,10 +1,9 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 # $FreeBSD$
-#   $MCom: ports/trunk/databases/libgda5/Makefile 18610 2013-06-30 16:33:05Z marcus $
 
 PORTNAME=	libgda
-PORTVERSION?=	5.0.3
-PORTREVISION?=	3
+PORTVERSION?=	5.2.2
+PORTREVISION?=	1
 CATEGORIES=	databases gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX?=	5
@@ -18,6 +17,7 @@ LIBGDA5_SLAVE?=	no
 
 .if !defined(REFERENCE_PORT)
 
+BUILD_DEPENDS=	itstool:${PORTSDIR}/textproc/itstool
 LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt \
 		libsoup-2.4.so:${PORTSDIR}/devel/libsoup \
 		libjson-glib-1.0.so:${PORTSDIR}/devel/json-glib
@@ -27,11 +27,11 @@ USE_GNOME=	gnomeprefix glib20 libxslt intlhack referencehack
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-MAKE_JOBS_UNSAFE=yes
+#MAKE_JOBS_UNSAFE=yes
 CONFIGURE_ARGS=	--without-oracle \
 		--disable-crypto \
 		--disable-default-binary \
-		--disable-introspection
+		--enable-introspection
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 
@@ -90,7 +90,7 @@ CONFIGURE_ARGS+=	--without-mdb
 
 .if ${LIBGDA5_SLAVE}==jdbc
 USE_JAVA=		yes
-JAVA_VERSION=		1.6
+JAVA_VERSION=		1.6+
 JAVA_VENDOR=		bsdjava openjdk
 .else
 CONFIGURE_ARGS+=	--without-java
@@ -107,12 +107,21 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|<db\.h>|<db${BDB_VER}/db.h>|' \
 	    	${WRKSRC}/providers/bdb/gda-bdb-provider.c \
 		${WRKSRC}/providers/bdb/gda-bdb-test.c
+.if ${LIBGDA5_SLAVE} == jdbc
+	@${REINPLACE_CMD} -e 's|lib/amd64|lib/${ARCH}|g' \
+		${WRKSRC}/getsp.java
+.endif
 .if ${LIBGDA5_SLAVE}!="no"
 	@${FIND} ${WRKSRC} -name Makefile.in -exec ${REINPLACE_CMD} \
 		-e 's|$$(top_builddir)/libgda/libgda-5.0.la|-lgda-5.0|g' \
 		-e 's|../libgda/libgda-5.0.la|-lgda-5.0|g' \
 		{} \;
 .endif
+
+.if ${LIBGDA5_SLAVE} == jdbc
+pre-configure:
+	@cd ${WRKSRC} && ${LOCALBASE}/bin/javac getsp.java
+.endif	
 
 pre-build:
 .if ${LIBGDA5_SLAVE}==postgresql

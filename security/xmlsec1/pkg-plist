@@ -53,25 +53,25 @@ include/xmlsec1/xmlsec/xmlenc.h
 include/xmlsec1/xmlsec/xmlsec.h
 include/xmlsec1/xmlsec/xmltree.h
 lib/libxmlsec1-gcrypt.a
-lib/libxmlsec1-gcrypt.la
 lib/libxmlsec1-gcrypt.so
-lib/libxmlsec1-gcrypt.so.3
+lib/libxmlsec1-gcrypt.so.1
+lib/libxmlsec1-gcrypt.so.1.2.20
 %%GNUTLS%%lib/libxmlsec1-gnutls.a
-%%GNUTLS%%lib/libxmlsec1-gnutls.la
 %%GNUTLS%%lib/libxmlsec1-gnutls.so
-%%GNUTLS%%lib/libxmlsec1-gnutls.so.3
+%%GNUTLS%%lib/libxmlsec1-gnutls.so.1
+%%GNUTLS%%lib/libxmlsec1-gnutls.so.1.2.20
 %%NSS%%lib/libxmlsec1-nss.a
-%%NSS%%lib/libxmlsec1-nss.la
 %%NSS%%lib/libxmlsec1-nss.so
-%%NSS%%lib/libxmlsec1-nss.so.3
+%%NSS%%lib/libxmlsec1-nss.so.1
+%%NSS%%lib/libxmlsec1-nss.so.1.2.20
 lib/libxmlsec1-openssl.a
-lib/libxmlsec1-openssl.la
 lib/libxmlsec1-openssl.so
-lib/libxmlsec1-openssl.so.3
+lib/libxmlsec1-openssl.so.1
+lib/libxmlsec1-openssl.so.1.2.20
 lib/libxmlsec1.a
-lib/libxmlsec1.la
 lib/libxmlsec1.so
-lib/libxmlsec1.so.3
+lib/libxmlsec1.so.1
+lib/libxmlsec1.so.1.2.20
 libdata/pkgconfig/xmlsec1-gcrypt.pc
 %%GNUTLS%%libdata/pkgconfig/xmlsec1-gnutls.pc
 %%NSS%%libdata/pkgconfig/xmlsec1-nss.pc
@@ -226,14 +226,3 @@ share/aclocal/xmlsec1.m4
 %%PORTDOCS%%%%DOCSDIR%%/xmldsig.html
 %%PORTDOCS%%%%DOCSDIR%%/xmlenc.html
 %%PORTDOCS%%%%DOCSDIR%%/xmlsec-man.html
-%%PORTDOCS%%@dirrmtry %%DOCSDIR%%/images
-%%PORTDOCS%%@dirrmtry %%DOCSDIR%%/api/images
-%%PORTDOCS%%@dirrmtry %%DOCSDIR%%/api
-%%PORTDOCS%%@dirrmtry %%DOCSDIR%%
-@dirrmtry include/xmlsec1/xmlsec/private
-@dirrmtry include/xmlsec1/xmlsec/openssl
-%%NSS%%@dirrmtry include/xmlsec1/xmlsec/nss
-%%GNUTLS%%@dirrmtry include/xmlsec1/xmlsec/gnutls
-@dirrmtry include/xmlsec1/xmlsec/gcrypt
-@dirrmtry include/xmlsec1/xmlsec
-@dirrmtry include/xmlsec1

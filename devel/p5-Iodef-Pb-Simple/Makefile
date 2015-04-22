@@ -2,12 +2,13 @@
 
 PORTNAME=	Iodef-Pb-Simple
 PORTVERSION=	0.21
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:SAXJAZMAN/iodef
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	pauls@utdallas.edu
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl extension providing high level API access to Iodef-Pb
 
 LICENSE=	ART10 GPLv1

@@ -2,20 +2,20 @@
 # $FreeBSD$
 
 PORTNAME=	minetest
-PORTVERSION=	0.4.10
-PORTREVISION=	1
+PORTVERSION=	0.4.12
 CATEGORIES=	games
 
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Infiniminer/Minecraft inspired game
 
-LICENSE=	LGPL21
+LICENSE=	LGPL21 # or later
+LICENSE_FILE=	${WRKSRC}/doc/lgpl-2.1.txt
 
 LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	minetest
-GH_COMMIT=	e14c4cd
+GH_COMMIT=	7993a40
 
 USES=		cmake
 CMAKE_ARGS=	-DCUSTOM_MANDIR="${PREFIX}/man" \
@@ -89,8 +89,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-irrlichtdepend
 post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
 		${WRKSRC}/cmake/Modules/*.cmake
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|' \
-		${WRKSRC}/src/CMakeLists.txt
 .if ! ${PORT_OPTIONS:MLUAJIT}
 	@${REINPLACE_CMD} -e '/find_/ s|LUA_|NO&|g' \
 		${WRKSRC}/src/CMakeLists.txt

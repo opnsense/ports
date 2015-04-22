@@ -2,19 +2,17 @@
 # $FreeBSD$
 
 PORTNAME=	freetds
-PORTVERSION=	0.92.812
+PORTVERSION=	0.92.1003
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	ftp://ftp.freetds.org/pub/freetds/current/
 PKGNAMESUFFIX=	-devel
 DISTNAME=	${PORTNAME}-dev.${PORTVERSION}
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Sybase/Microsoft TDS protocol library
 
 LICENSE=	LGPL20
-
-BROKEN=		Fails to build
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-dev.${PORTVERSION}
 TDS_VER?=	7.2
@@ -49,6 +47,8 @@ UNIXODBC_LIB_DEPENDS=	libodbc.so:${PORTSDIR}/databases/unixODBC
 UNIXODBC_CONFIGURE_ON=	--with-unixodbc=${LOCALBASE}
 ODBCWIDE_CONFIGURE_ON=	--enable-odbc-wide
 
+PORTDOCS=	*
+
 CONFLICTS=	freetds-0.64.[0-9]
 
 .include <bsd.port.options.mk>
@@ -77,7 +77,7 @@ post-patch:
 		s|$$ODBC_INC/isqlext.h|$$ODBC_INC/libiodbc/isqlext.h|g' ${WRKSRC}/configure
 
 post-install:
-	@${INSTALL_DATA} ${WRKSRC}/interfaces ${STAGEDIR}${ETCDIR}/interfaces.sample
+	${INSTALL_DATA} ${WRKSRC}/interfaces ${STAGEDIR}${ETCDIR}/interfaces.sample
 .if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/userguide
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/reference

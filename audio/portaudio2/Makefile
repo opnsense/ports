@@ -25,8 +25,8 @@ CONFIGURE_ARGS+=PKG_CONFIG_LIBDIR=${PREFIX}/libdata/pkgconfig \
 USES=		dos2unix gmake libtool pathfix pkgconfig tar:tgz
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}${PKGNAMESUFFIX}
 
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
@@ -38,7 +38,7 @@ DOCSRCDIR1=	${WRKSRC}
 DOC_FILES1=	README.txt index.html
 
 OPTIONS_DEFINE=	DOCS DOXYGEN EXAMPLES JACK PATEST
-OPTIONS_DEFAULT=PATEST DOXYGEN
+OPTIONS_DEFAULT=PATEST
 
 PATEST_DESC=	PortAudio Test Programs
 DOXYGEN_DESC=	Install API documentation (requires DOCS)
@@ -59,7 +59,6 @@ BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|#include <malloc.h>|#include <stdlib.h>|' ${WRKSRC}/ltmain.sh
 	@${REINPLACE_CMD} -e 's|machine/soundcard.h|sys/soundcard.h|' ${WRKSRC}/configure.in \
 		${WRKSRC}/src/hostapi/oss/pa_unix_oss.c ${WRKSRC}/src/SConscript
 	@${REINPLACE_CMD} -e 's|PACKAGE_NAME=|PACKAGE_NAME=portaudio2|' ${WRKSRC}/configure

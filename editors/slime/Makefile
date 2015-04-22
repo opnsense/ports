@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	slime
-PORTVERSION=	2.10.1
-PORTREVISION=	1
+PORTVERSION=	2.12
 CATEGORIES=	editors elisp
 MASTER_SITES=	https://codeload.github.com/slime/slime/legacy.tar.gz/v${PORTVERSION}?dummy=/
 
@@ -21,7 +20,7 @@ USES=		gmake
 USE_EMACS=	yes
 
 SLIME_LISPDIR=	${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/slime
-WRKSRC=		${WRKDIR}/slime-slime-295edb8
+WRKSRC=		${WRKDIR}/slime-slime-69e6eb2
 
 SUB_FILES=	pkg-message
 SUB_LIST=	SLIME_LISPDIR="${SLIME_LISPDIR}"
@@ -38,12 +37,18 @@ do-build:
 		-f batch-byte-compile *.el
 
 do-install:
-	@${MKDIR} ${STAGEDIR}${SLIME_LISPDIR}/contrib
+	@${MKDIR} ${STAGEDIR}${SLIME_LISPDIR}/contrib/test
 	@${MKDIR} ${STAGEDIR}${SLIME_LISPDIR}/lib
+	@${MKDIR} ${STAGEDIR}${SLIME_LISPDIR}/swank
 	cd ${WRKSRC} && ${INSTALL_DATA} *.elc *.el *.lisp ${STAGEDIR}${SLIME_LISPDIR}
 	cd ${WRKSRC}/lib && ${INSTALL_DATA} *.el ${STAGEDIR}${SLIME_LISPDIR}/lib
-	cd ${WRKSRC}/contrib && ${INSTALL_DATA} *.el *.lisp \
+	cd ${WRKSRC}/contrib && ${INSTALL_DATA} \
+		*.el *.lisp *.scm *.sml *.ss \
 		${STAGEDIR}${SLIME_LISPDIR}/contrib
+	cd ${WRKSRC}/contrib/test && ${INSTALL_DATA} *.el *.txt \
+		${STAGEDIR}${SLIME_LISPDIR}/contrib/test
+	cd ${WRKSRC}/swank && ${INSTALL_DATA} *.lisp \
+		${STAGEDIR}${SLIME_LISPDIR}/swank
 	${INSTALL_DATA} ${WRKSRC}/ChangeLog ${STAGEDIR}${SLIME_LISPDIR}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}

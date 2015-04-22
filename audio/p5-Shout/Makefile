@@ -3,7 +3,7 @@
 
 PORTNAME=	Shout
 PORTVERSION=	2.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio perl5
 MASTER_SITES=	http://downloads.us.xiph.org/releases/libshout/
 PKGNAMEPREFIX=	p5-
@@ -25,12 +25,13 @@ post-patch:
 	${REINPLACE_CMD} -i '' -e 's/CCFLAGS/INC/' ${WRKSRC}/Makefile.PL
 
 post-configure:
-	@${PERL} -i -pe '$$_ .= " ${PTHREAD_LIBS}" if /^LDDLFLAGS/;' ${WRKSRC}/Makefile
+	@${PERL} -i -pe '$$_ .= " -lpthread" if /^LDDLFLAGS/;' \
+		${WRKSRC}/Makefile
 
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/Shout/Shout.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Shout/Shout.so
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_SCRIPT} ${WRKSRC}/example*.pl ${STAGEDIR}${DOCSDIR}
 

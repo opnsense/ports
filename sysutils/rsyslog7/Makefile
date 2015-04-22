@@ -2,6 +2,7 @@
 
 PORTNAME=	rsyslog
 PORTVERSION=	7.6.7
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 
@@ -73,7 +74,7 @@ CONFIGURE_ARGS+=--disable-mysql
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 CONFIGURE_ARGS+=--enable-pgsql
 PLIST_FILES+=	lib/rsyslog/ompgsql.so
 .else

@@ -3,7 +3,7 @@
 
 PORTNAME=	libdbi-drivers
 PORTVERSION=	0.9.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	databases devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${DISTVERSION}
 
@@ -15,12 +15,18 @@ LIB_DEPENDS=	libdbi.so:${PORTSDIR}/databases/libdbi
 USES=		gmake libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-static \
-		--with-dbi-incdir=${LOCALBASE}/include
+		--with-dbi-incdir=${LOCALBASE}/include \
+		--with-dbi-dbdir=/var/lib/libdbi
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}-${DISTVERSION}
 INSTALL_TARGET=	install-strip
 
 PORTDOCS=	*
-PLIST_DIRSTRY=	lib/dbd
+
+PLIST_DIRS=	/var/lib/libdbi/firebird \
+		/var/lib/libdbi/sqlite \
+		/var/lib/libdbi/sqlite3 \
+		/var/lib/libdbi \
+		/var/lib
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_MULTI=	DRIVER
@@ -31,7 +37,7 @@ OPTIONS_SUB=	yes
 MYSQL_USE=	MYSQL=yes
 MYSQL_CONFIGURE_WITH=	mysql
 MYSQL_PLIST_FILES=	lib/dbd/libdbdmysql.so
-PGSQL_USE=	PGSQL=yes
+PGSQL_USES=	pgsql
 PGSQL_CONFIGURE_WITH=	pgsql
 PGSQL_PLIST_FILES=	lib/dbd/libdbdpgsql.so
 SQLITE3_LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3

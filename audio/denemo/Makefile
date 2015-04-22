@@ -3,7 +3,7 @@
 
 PORTNAME=	denemo
 PORTVERSION=	1.1.8
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	audio
 MASTER_SITES=	GNU
 
@@ -12,22 +12,22 @@ COMMENT=	Graphical score editor
 
 LICENSE=	GPLv3
 
-BUILD_DEPENDS=	portaudio2>0:${PORTSDIR}/audio/portaudio2
 LIB_DEPENDS=	libaubio.so:${PORTSDIR}/audio/aubio \
 		libfluidsynth.so:${PORTSDIR}/audio/fluidsynth \
 		libjack.so:${PORTSDIR}/audio/jack \
+		libportaudio.so.2:${PORTSDIR}/audio/portaudio2 \
 		libsmf.so:${PORTSDIR}/audio/libsmf \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile \
 		librubberband.so:${PORTSDIR}/audio/rubberband \
 		libguile.so:${PORTSDIR}/lang/guile \
 		libfftw3.so:${PORTSDIR}/math/fftw3
-RUN_DEPENDS=	portaudio2>0:${PORTSDIR}/audio/portaudio2 \
-		xdg-open:${PORTSDIR}/devel/xdg-utils
+RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils
 
 USES=		bison gettext gmake pkgconfig
 USE_GNOME=	librsvg2 libxml2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-jack \
+		--disable-evince \
 		--disable-portmidi \
 		--sysconfdir=${PREFIX}/etc
 
@@ -45,9 +45,7 @@ LILYPOND_RUN_DEPENDS=	lilypond:${PORTSDIR}/print/lilypond
 
 .if ${PORT_OPTIONS:MGTK3}
 USE_GNOME+=	gtk30 gtksourceview3
-CONFIGURE_ARGS+=--disable-evince
 .else
-LIB_DEPENDS+=	libevview.so:${PORTSDIR}/graphics/evince
 USE_GNOME+=	gtk20 gtksourceview2
 CONFIGURE_ARGS+=--enable-gtk2
 .endif

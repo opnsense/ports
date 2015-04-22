@@ -3,11 +3,12 @@
 
 PORTNAME=	Math-Random-OO
 PORTVERSION=	0.22
+PORTREVISION=	1
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Consistent object-oriented interface for generating random numbers
 
 LICENSE=	APACHE20

@@ -3,14 +3,15 @@
 
 PORTNAME=	numptyphysics
 DISTVERSION=	0.3.r20090104
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	games
-MASTER_SITES=	http://mirror.amdmi3.ru/distfiles/ \
-		ftp://ftp.openbsd.org/pub/OpenBSD/distfiles/ \
-		ftp://ftp3.usa.openbsd.org/pub/OpenBSD/distfiles/
+MASTER_SITES=	http://mirror.amdmi3.ru/distfiles/
 
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Drawing physics-based puzzle game
+
+LICENSE=	GPLv3 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		tar:bzip2 desktop-file-utils
 GNU_CONFIGURE=	yes
@@ -18,7 +19,7 @@ USE_SDL=	sdl image
 INSTALLS_ICONS=	yes
 
 CONFIGURE_ENV=	AUTOMAKE="${TRUE}" ACLOCAL="${TRUE}" MISSING="${TRUE}"
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+LDFLAGS+=	-L${LOCALBASE}/lib -pthread
 CPPFLAGS+=	-I${LOCALBASE}/include -DINSTALL_BASE_PATH=\"\\\"${DATADIR}\\\"\"
 
 WRKSRC=		${WRKDIR}/${PORTNAME}

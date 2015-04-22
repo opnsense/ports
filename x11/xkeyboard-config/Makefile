@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xkeyboard-config
-PORTVERSION=	2.13
+PORTVERSION=	2.14
 CATEGORIES=	x11
 MASTER_SITE_SUBDIR=	individual/${XORG_CAT}/${PORTNAME}
 
@@ -34,7 +34,7 @@ ETERSOFT_EXTRA_PATCHES=	${FILESDIR}/etersoft-patch-symbols-typo
 
 # !nls case doesn't work correctly, comment it out.
 #.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext:build iconv
+USES+=		gettext-tools iconv
 PLIST_SUB+=	NLS=""
 #.else
 #CONFIGURE_ARGS+=--disable-nls

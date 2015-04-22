@@ -12,25 +12,24 @@ COMMENT=	Ultrafast implementation of ping
 
 LICENSE=	BSD3CLAUSE
 
-OPTIONS_DEFINE=	SUID
-SUID_DESC=	Install with the sticky bit (mode 4110)
+OPTIONS_DEFINE=	SUID DOCS
+OPTIONS_SUB=	yes
+SUID_DESC=	Install with the setuid bit to allow use by non-root users
+EXTRACT_AFTER_ARGS=netselect/netselect.c netselect/README
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-PLIST_FILES=	bin/${PORTNAME}
+do-build:
+	${CC} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} ${WRKSRC}/${PORTNAME}.c
+	${REINPLACE_CMD} -E -i "" -e 's|[[:blank:]]+$$||' ${WRKSRC}/README
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MSUID}
-BINMODE=	4110
-.else
-BINMODE=	0100
-.endif
-
-do-build:
-	${CC} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} ${WRKSRC}/${PORTNAME}.c
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
+.if ${PORT_OPTIONS:MDOCS}
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+.endif
 
 .include <bsd.port.mk>

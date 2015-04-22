@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	mutagen
-PORTVERSION=	1.22
+PORTVERSION=	1.28
 CATEGORIES=	audio python
-MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
+MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	johnson.peter@gmail.com
@@ -14,11 +14,6 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		python
-USE_PYTHON=	distutils
+USE_PYTHON=	autoplist distutils
 
-.include <bsd.port.pre.mk>
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|share/man/man1|man/man1|' ${WRKSRC}/setup.py
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

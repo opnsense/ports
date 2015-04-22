@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libraw
-PORTVERSION=	0.15.4
-PORTREVISION=	1
+PORTVERSION=	0.16.0
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.libraw.org/data/
 DISTNAME=	LibRaw-${PORTVERSION}
@@ -18,7 +17,7 @@ LICENSE_COMB=	dual
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 
 USE_LDCONFIG=	yes
-USES=		pathfix pkgconfig libtool
+USES=		cpe pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-examples --disable-jasper
 CFLAGS+=	-fPIC

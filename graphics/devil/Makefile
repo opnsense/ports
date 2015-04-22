@@ -3,7 +3,7 @@
 
 PORTNAME=	devil
 PORTVERSION=	1.7.8
-PORTREVISION=	18
+PORTREVISION=	20
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	SF/openil/DevIL/${PORTVERSION}
@@ -99,6 +99,7 @@ post-patch:
 
 post-install:
 	@${RMDIR} ${STAGEDIR}${DATADIR}/examples
+	@${RMDIR} ${STAGEDIR}${DATADIR}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 .for file in AUTHORS CREDITS ChangeLog Libraries.txt README TODO
 	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}

@@ -6,14 +6,14 @@ PORTVERSION=	3.0.2
 CATEGORIES=	archivers pear
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
-EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	PECL extension to create and read RAR files
 
 LICENSE=	PHP301
 
+USES=		tar:tgz
 USE_PHP=	spl
 USE_PHPEXT=	yes
 USE_PHP_BUILD=	yes

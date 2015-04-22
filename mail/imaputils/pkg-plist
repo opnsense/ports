@@ -20,5 +20,4 @@ bin/iu-purge
 bin/iu-restore
 bin/iu-sync
 bin/iu-trash
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/imaputils/.packlist
-@dirrm %%SITE_PERL%%/%%PERL_ARCH%%/auto/imaputils
+%%SITE_PERL%%/IMAP/Utils.pm

@@ -1,5 +1,4 @@
-%%PERL5_MAN3%%/Tie::DBI.3.gz
-%%PERL5_MAN3%%/Tie::RDBM.3.gz
 %%SITE_PERL%%/Tie/DBI.pm
 %%SITE_PERL%%/Tie/RDBM.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Tie/DBI/.packlist
+%%PERL5_MAN3%%/Tie::DBI.3.gz
+%%PERL5_MAN3%%/Tie::RDBM.3.gz

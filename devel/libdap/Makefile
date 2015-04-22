@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libdap
-PORTVERSION=	3.13.1
-PORTREVISION=	1
+PORTVERSION=	3.13.3
 CATEGORIES=	devel
 MASTER_SITES=	http://www.opendap.org/pub/source/ \
 		LOCAL/sunpoet
@@ -19,8 +18,8 @@ LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV=	INSTALL_STRIP_FLAG=${STRIP}
 USE_LDCONFIG=	yes
 USES=		charsetfix gmake libtool pathfix
 

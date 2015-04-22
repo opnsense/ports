@@ -6,7 +6,7 @@ PORTVERSION=	1.4.5
 CATEGORIES=	security
 MASTER_SITES=	SF/secureideas/BASE/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Basic Analysis and Security Engine - analyzing Snort alerts
 
 RUN_DEPENDS=	${ADODB_DIR}/adodb.inc.php:${PORTSDIR}/databases/adodb5 \
@@ -31,7 +31,7 @@ USE_MYSQL=	yes
 USE_PHP+=	mysql
 .endif
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 USE_PHP+=	pgsql
 .endif
 .if ${PORT_OPTIONS:MPDF}

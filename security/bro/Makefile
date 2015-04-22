@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	bro
-PORTVERSION=	2.3
-PORTREVISION=	2
+PORTVERSION=	2.3.2
 CATEGORIES=	security
 MASTER_SITES=	http://www.bro.org/downloads/release/
 
@@ -16,9 +15,9 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/bison:${PORTSDIR}/devel/bison \
 		${LOCALBASE}/bin/swig:${PORTSDIR}/devel/swig13
 LIB_DEPENDS=	libGeoIP.so:${PORTSDIR}/net/GeoIP
 
-SUB_LIST+=	PYTHON_CMD="${PYTHON_CMD}"
-
 USES=		cmake:outsource perl5 python
+
+CMAKE_ARGS+=	-D PYTHON_EXECUTABLE:PATH=${PYTHON_CMD}
 
 SUB_FILES=	pkg-message
 NO_MTREE=	yes
@@ -42,17 +41,21 @@ CMAKE_ARGS+=	-D CMAKE_INSTALL_PREFIX:PATH=${PREFIX} \
 
 BROUSER?=	bro
 BROGROUP?=	bro
-PLIST_SUB+=	BROUSER="$(BROUSER)" BROGROUP="$(BROGROUP)"
+PLIST_SUB+=	BROUSER=${BROUSER} \
+		BROGROUP=${BROGROUP}
 
 USERS=		${BROUSER}
 GROUPS=		${BROGROUP}
 
-OPTIONS_DEFINE=	BROCCOLI BROCTL DEBUG IPSUMDUMP LBL_CF LBL_HF PERFTOOLS PORTS_SSL
+USE_OPENSSL=	yes
+
+OPTIONS_DEFINE=	BROCCOLI BROCTL DEBUG ELASTICSEARCH IPSUMDUMP LBL_CF LBL_HF PERFTOOLS PORTS_SSL
 OPTIONS_DEFAULT=BROCCOLI BROCTL IPSUMDUMP LBL_CF LBL_HF PORTS_SSL
 
 BROCCOLI_DESC=	Build support for libbroccoli communications
 BROCTL_DESC=	Build BroControl support (requires BROCCOLI)
 DEBUG_DESC=	Compile in debugging mode
+ELASTICSEARCH_DESC=	Build the ElasticSearch log writer (requires curl)
 IPSUMDUMP_DESC=	Enables traffic summaries
 LBL_CF_DESC=	Unix time to formated time/date filter support
 LBL_HF_DESC=	Address to hostname filter support
@@ -93,6 +96,13 @@ CMAKE_ARGS+=	-D INSTALL_BROCTL:BOOL=false
 PLIST_SUB+=	BROCTL="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MELASTICSEARCH}
+CMAKE_ARGS+=	-D DISABLE_ELASTICSEARCH:BOOL=false
+LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl
+.else
+CMAKE_ARGS+=	-D DISABLE_ELASTICSEARCH:BOOL=true
+.endif
+
 .if ${PORT_OPTIONS:MDEBUG}
 CMAKE_ARGS+=	-D ENABLE_DEBUG:BOOL=true
 .else
@@ -115,8 +125,13 @@ CMAKE_ARGS+=	-D ENABLE_PERFTOOLS:BOOL=false
 .endif
 
 .if ${PORT_OPTIONS:MPORTS_SSL}
-WITH_OPENSSL_PORT=yes
 CMAKE_ARGS+=	-D CMAKE_EXE_LINKER_FLAGS="${OPENSSL_LDFLAGS}"
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:${PORTSDIR}/security/openssl
+RUN_DEPENDS+=	${LOCALBASE}/lib/libcrypto.so:${PORTSDIR}/security/openssl
+.else
+.if defined(WITH_OPENSSL_PORT)
+IGNORE=		the SSL option is requred when WITH_OPENSSL_PORT is enabled
+.endif
 .endif
 
 .if ${PORT_OPTIONS:MIPSUMDUMP}

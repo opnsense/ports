@@ -3,11 +3,12 @@
 
 PORTNAME=	MooseX-Types-DateTime-ButMaintained
 PORTVERSION=	0.16
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	DateTime related constraints and coercions for Moose
 
 LICENSE=	ART10 GPLv1

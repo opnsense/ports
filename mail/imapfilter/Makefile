@@ -6,7 +6,7 @@ PORTVERSION=	2.5.6
 PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.gegenunendlich.de/distfiles/ \
-		GH
+		GHL
 
 MAINTAINER=	stefan@FreeBSD.org
 COMMENT=	IMAP mail filtering utility
@@ -39,7 +39,6 @@ PLIST_FILES=	bin/imapfilter \
 		%%DATADIR%%/set.lua \
 		%%EXAMPLESDIR%%/config.lua \
 		%%EXAMPLESDIR%%/extend.lua
-PLIST_DIRS=	%%DATADIR%% %%EXAMPLESDIR%%
 MAKE_ARGS=	PREFIX=${PREFIX} \
 		MYCFLAGS="${CPPFLAGS}" \
 		MYLDFLAGS="${LDFLAGS}" \

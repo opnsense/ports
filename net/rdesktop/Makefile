@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	rdesktop
-PORTVERSION=	1.8.2
+PORTVERSION=	1.8.3
 CATEGORIES=	net comms ipv6
 MASTER_SITES=	SF
 

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	aircrack-ng
-DISTVERSION=	1.2-beta3
-PORTREVISION=	1
+DISTVERSION=	1.2-rc1
 CATEGORIES=	net-mgmt security
 MASTER_SITES=	http://download.aircrack-ng.org/ \
 		http://bsd-geek.de/FreeBSD/distfiles/
@@ -51,9 +50,6 @@ post-patch:
 	@${REINPLACE_CMD} \
 		-E 's/air(driver|mon)-ng\.1 //' \
 			${WRKSRC}/manpages/Makefile
-	@${REINPLACE_CMD} \
-		-e 's|-lpthread|${PTHREAD_LIBS}|' \
-			${WRKSRC}/src/Makefile
 
 post-install:
 	@${STRIP_CMD} ${BIN_FILES:S,^,${STAGEDIR}${PREFIX}/bin/,} \

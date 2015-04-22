@@ -3,12 +3,13 @@
 
 PORTNAME=	Math-Geometry-Planar
 PORTVERSION=	1.18
+PORTREVISION=	1
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-withoutworldwriteables
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Collection of planar geometry functions
 
 LICENSE=	ART10

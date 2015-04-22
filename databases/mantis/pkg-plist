@@ -1,3 +1,5 @@
+@owner %%WWWOWN%%
+@group %%WWWGRP%%
 %%WWWDIR%%/account_delete.php
 %%WWWDIR%%/account_manage_columns_page.php
 %%WWWDIR%%/account_page.php
@@ -191,12 +193,6 @@
 %%WWWDIR%%/doc/INSTALL
 %%WWWDIR%%/doc/LICENSE
 %%WWWDIR%%/doc/RELEASE
-%%WWWDIR%%/doc/en/administration_guide.html
-%%WWWDIR%%/doc/en/administration_guide.pdf
-%%WWWDIR%%/doc/en/administration_guide.txt
-%%WWWDIR%%/doc/en/developers.html
-%%WWWDIR%%/doc/en/developers.pdf
-%%WWWDIR%%/doc/en/developers.txt
 %%WWWDIR%%/excel_xml_export.php
 %%WWWDIR%%/file_download.php
 %%WWWDIR%%/history_inc.php
@@ -1026,6 +1022,8 @@
 %%WWWDIR%%/plugins/XmlImportExport/lang/strings_ukrainian.txt
 %%WWWDIR%%/plugins/XmlImportExport/lang/strings_vietnamese.txt
 %%WWWDIR%%/plugins/XmlImportExport/mantis.dtd
+%%WWWDIR%%/plugins/XmlImportExport/pages/config.php
+%%WWWDIR%%/plugins/XmlImportExport/pages/config_page.php
 %%WWWDIR%%/plugins/XmlImportExport/pages/export.php
 %%WWWDIR%%/plugins/XmlImportExport/pages/import.php
 %%WWWDIR%%/plugins/XmlImportExport/pages/import_action.php

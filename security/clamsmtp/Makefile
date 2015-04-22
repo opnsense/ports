@@ -7,7 +7,7 @@ PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://thewalter.net/stef/software/clamsmtp/
 
-MAINTAINER=	clsung@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	ClamAV anti-virus SMTP Filter
 
 GNU_CONFIGURE=	yes
@@ -34,7 +34,6 @@ SUB_LIST+=	CLAMD=
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e "s,%%PTHREAD_LIBS%%,${PTHREAD_LIBS}," ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e "s,/var/run/clamav/clamd,/var/run/clamav/clamd.sock," \
 		${WRKSRC}/doc/clamsmtpd.conf \
 		${WRKSRC}/doc/clamsmtpd.conf.5 \

@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	ocp
-PORTVERSION=	0.1.20
-PORTREVISION=	8
+PORTVERSION=	0.1.21
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio
-MASTER_SITES=	http://stian.cubic.org/ocp/ \
-		CRITICAL
+MASTER_SITES=	SF/opencubicplayer/${DISTNAME} \
+		LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
-COMMENT=	The legendary Open Cubic Player
+COMMENT=	Legendary Open Cubic Player
 
 LICENSE=	GPLv2
 
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libid3tag.so:${PORTSDIR}/audio/libid3tag \
 ONLY_FOR_ARCHS=	i386 amd64
 
 GNU_CONFIGURE=	yes
-USES=		ncurses gmake pkgconfig desktop-file-utils compiler:nestedfct makeinfo
+USES=		ncurses gmake pkgconfig desktop-file-utils makeinfo tar:xz iconv
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
 
@@ -41,16 +41,6 @@ INFO=		ocp
 
 TIMIDITY_CFG=	${LOCALBASE}/share/timidity/timidity.cfg
 
-PFILES=		configure cpiface/cpianal.c cpiface/cpidots.c \
-		cpiface/cpiface.c cpiface/cpigraph.c cpiface/cpiinst.c \
-		cpiface/cpikube.c cpiface/cpilinks.c cpiface/cpimsg.c \
-		cpiface/cpiphase.c cpiface/cpiscope.c cpiface/cpitrack.c \
-		cpiface/mcpedit.c cpiface/volctrl.c filesel/cphlpfs.c \
-		filesel/pfilesel.c filesel/pfilesel.c.bak help/cphelper.c \
-		medialib/medialib.c playcda/cdapplay.c stuff/poutput-curses.c \
-		stuff/poutput-dga.c stuff/poutput-keyboard.c \
-		stuff/poutput-vcsa.c stuff/poutput-x11.c
-
 OPTIONS_DEFINE=	ADPLUG FLAC MIDI X11 SDL DOCS
 
 ADPLUG_DESC=	adplug support
@@ -61,7 +51,7 @@ OPTIONS_DEFAULT=ADPLUG FLAC MIDI X11 SDL
 .include <bsd.port.options.mk>
 
 .if exists(${TIMIDITY_CFG}) || ${PORT_OPTIONS:MMIDI}
-RUN_DEPENDS+=	${TIMIDITY_CFG}:${PORTSDIR}/audio/eawpats
+RUN_DEPENDS+=	eawpats>0:${PORTSDIR}/audio/eawpats
 .endif
 
 .if ${PORT_OPTIONS:MX11}

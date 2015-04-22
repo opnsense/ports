@@ -19,13 +19,12 @@ USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.pre.mk>
 
-# Multi-IPv4/v6/no-IP jails.
-.if ${OSVERSION} >= 800056 || \
-    (${OSVERSION} < 800000 && ${OSVERSION} >= 701103)
-EXTRA_PATCHES+=	${FILESDIR}/freebsd8_patch-src-jail.c
-.endif
 .if ${OSVERSION} >= 900030
 EXTRA_PATCHES+=	${FILESDIR}/freebsd9_patch-src-sysctl.c
+.endif
+.if ${OSVERSION} >= 1100002
+EXTRA_PATCHES+=	${FILESDIR}/freebsd11_patch-src__.const.def \
+		${FILESDIR}/freebsd11_patch-src__netstat.c
 .endif
 
 .include <bsd.port.post.mk>

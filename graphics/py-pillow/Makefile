@@ -3,6 +3,7 @@
 
 PORTNAME=	pillow
 PORTVERSION=	2.6.0
+PORTREVISION=	1
 CATEGORIES=	graphics python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME:C/p/P/}-${PORTVERSION}
@@ -16,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/docs/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 OPTIONS_DEFINE=		FREETYPE JPEG LCMS PNG TIFF TKINTER WEBP
-OPTIONS_DEFAULT=	FREETYPE JPEG PNG
+OPTIONS_DEFAULT=	FREETYPE JPEG PNG TKINTER
 
 LCMS_DESC=		Little Color Management System
 TKINTER_DESC=		Tkinter (Tcl/Tk) BitmapImage & PhotoImage support
@@ -26,6 +27,8 @@ JPEG_LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
 LCMS_LIB_DEPENDS=	liblcms2.so:${PORTSDIR}/graphics/lcms2
 TIFF_LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff
 TKINTER_USES=		tk:build
+TKINTER_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tkinter>0:${PORTSDIR}/x11-toolkits/py-tkinter
+TKINTER_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tkinter>0:${PORTSDIR}/x11-toolkits/py-tkinter
 WEBP_LIB_DEPENDS=	libwebp.so:${PORTSDIR}/graphics/webp
 
 USE_GITHUB=		yes

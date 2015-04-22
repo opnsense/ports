@@ -2,6 +2,7 @@
 
 PORTNAME=	HTML-SuperForm
 PORTVERSION=	1.09
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:JALLWINE
@@ -13,7 +14,7 @@ COMMENT=	HTML form generator
 USES=		perl5
 USE_PERL5=	configure
 
-WRKSRC=	${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}
 
 post-extract:
 	@${RM} ${WRKSRC}/lib/HTML/SuperForm.pm.orig

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	freeradius
-DISTVERSION=	2.2.5
+DISTVERSION=	2.2.6
 PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	ftp://ftp.freeradius.org/pub/freeradius/%SUBDIR%/ \
@@ -28,9 +28,9 @@ CONFLICTS_INSTALL=	gnu-radius-[0-9].* openradius-[0-9].* radiusd-cistron-[0-9].*
 
 USE_RC_SUBR=	radiusd
 
-USES=		gmake libtool shebangfix tar:bzip2
+GNU_CONFIGURE=	yes
+USES=		autoreconf gmake libtool shebangfix tar:bzip2
 SHEBANG_FILES=	scripts/radsqlrelay src/modules/rlm_counter/rad_counter
-USE_AUTOTOOLS=	libtoolize aclocal autoconf autoheader
 USE_OPENSSL=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 CFLAGS+=	${CPPFLAGS}
@@ -158,7 +158,7 @@ PLIST_SUB+=	MYSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	YES
+USES+=		pgsql
 CONFIGURE_ARGS+=--with-rlm_sql_postgresql
 PLIST_SUB+=	PGSQL=""
 _REQUIRE+=	postgresql
@@ -238,21 +238,21 @@ EXPM=		yes
 .endif
 
 # No SMB option yet; rlm_smb is still unbuildable
-.if ${PORT_OPTIONS:MSMB}
-LIB_DEPENDS=	libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
-CONFIGURE_ARGS+=--with-rlm_smb
-CONFIGURE_ARGS+=--with-rlm-smb-lib-dir=${LOCALBASE}/lib
-CONFIGURE_ARGS+=--with-rlm-smb-include-dir=${LOCALBASE}/include
-PLIST_SUB+=	SMB=""
-.else
-CONFIGURE_ARGS+=--without-rlm_smb
-PLIST_SUB+=	SMB="@comment "
-.endif
-
-# SMB module is still experimental
-.if ${PORT_OPTIONS:MSMB} && empty(PORT_OPTIONS:MSMB)
-EXPM=		yes
-.endif
+#.if ${PORT_OPTIONS:MSMB}
+#LIB_DEPENDS=	libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
+#CONFIGURE_ARGS+=--with-rlm_smb
+#CONFIGURE_ARGS+=--with-rlm-smb-lib-dir=${LOCALBASE}/lib
+#CONFIGURE_ARGS+=--with-rlm-smb-include-dir=${LOCALBASE}/include
+#PLIST_SUB+=	SMB=""
+#.else
+#CONFIGURE_ARGS+=--without-rlm_smb
+#PLIST_SUB+=	SMB="@comment "
+#.endif
+#
+## SMB module is still experimental
+#.if ${PORT_OPTIONS:MSMB} && empty(PORT_OPTIONS:MSMB)
+#EXPM=		yes
+#.endif
 
 # Oracle support is experimental under FreeBSD
 .if ${PORT_OPTIONS:MOCI8}
@@ -309,14 +309,14 @@ CONFIGURE_ARGS+=--with-openssl-libraries=${OPENSSLLIB}
 
 post-patch:
 # never try to find execinfo.h (needed until we can enable/disable backtrace
-	@${REINPLACE_CMD} -e '/execinfo.h/d' ${WRKSRC}/configure \
-		${WRKSRC}/configure.in
+	@${REINPLACE_CMD} '/execinfo.h/d' ${WRKSRC}/configure.in
 # Patch raddb/certs/Makefile for the full path to the openssl binary (using
 # ports OpenSSL if installed)
 	@${REINPLACE_CMD} -E \
 		-e "s:^([[:space:]])+openssl:\1${OPENSSLBASE}/bin/openssl:g" \
 		${WRKSRC}/raddb/certs/Makefile
 # If we're using Heimdal from base, alter the LIBS variable
+# XXX Should patch configure.in instead of configure because it is regenerated
 .if ${PORT_OPTIONS:MHEIMDAL} && empty(PORT_OPTIONS:MHEIMDAL_PORT)
 	@${REINPLACE_CMD} -e 's|LIBS|KRB5LIBS|g' ${WRKSRC}/src/modules/rlm_krb5/configure
 	@${REINPLACE_CMD} -e 's|-lkrb5|$$(${KRB5_CONFIG})|g' \
@@ -331,15 +331,9 @@ post-patch:
 	@${REINPLACE_CMD} -Ee 's:^(.+rc\.radiusd.+)$$:#\1:g' \
 		${WRKSRC}/scripts/Makefile
 
-pre-configure:
-# Force the rebuild of some configures from configure.in, as we're patching
-# the configure.in
-# NOTE: ${WRKSRC}/configure is rebuilt automatically once autoconf is
-# added to USE_AUTOTOOLS
-	@cd ${WRKSRC}/src/modules/rlm_ldap && ${AUTOCONF} -I ${WRKSRC}
-	@cd ${WRKSRC}/src/modules/rlm_sql/drivers/rlm_sql_mysql \
-		&& ${AUTOCONF} -I ${WRKSRC}
-	@cd ${WRKSRC}/src/modules/rlm_perl && ${AUTOCONF} -I ${WRKSRC}
-	@cd ${WRKSRC}/src/modules/rlm_python && ${AUTOCONF} -I ${WRKSRC}
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}-${PORTVERSION}/*.so
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rlm_* \
+		${STAGEDIR}${PREFIX}/sbin/radiusd
 
 .include <bsd.port.post.mk>

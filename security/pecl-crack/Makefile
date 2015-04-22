@@ -2,27 +2,35 @@
 # $FreeBSD$
 
 PORTNAME=	crack
-PORTVERSION=	0.4.1
-PORTREVISION=	5
+PORTVERSION=	0.4
+PORTEPOCH=	1
 CATEGORIES=	security www
-MASTER_SITES=	http://www.osuweb.net/~ahaning/
+MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
-EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
-MAINTAINER=	wmoran@collaborativefusion.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	PECL extension to cracklib
+
+LICENSE=	PHP30
 
 LIB_DEPENDS=	libcrack.so:${PORTSDIR}/security/cracklib
 
+USES=		tar:tgz
 USE_PHP=	yes
 USE_PHPIZE=	yes
 USE_PHP_BUILD=	yes
 USE_PHPEXT=	yes
 PHP_MODNAME=	crack
-DEFAULT_PHP_VER=53
-IGNORE_WITH_PHP=5
+EXTRACT_AFTER_ARGS=--no-same-permissions --no-same-owner --exclude libcrack
+CONFIGURE_ARGS=	--with-crack=${LOCALBASE}
+CFLAGS+=	-Wno-deprecated
 
-WRKSRC=		${WRKDIR}/crack-0.4
+post-configure:
+	${REINPLACE_CMD} -e 's|^\$$ini_overwrites.*|&'"'"'crack.default_dictionary=\"${LOCALBASE}/libdata/cracklib/pw_dict\"'"'"',|' \
+		${WRKSRC}/run-tests.php
+
+test check regression-test: build
+	${MAKE} -C ${WRKSRC} test < /dev/null
 
 .include <bsd.port.mk>

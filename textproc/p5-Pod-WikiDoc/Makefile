@@ -3,11 +3,12 @@
 
 PORTNAME=	Pod-WikiDoc
 PORTVERSION=	0.20
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	mat@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Generate Pod from inline wiki style text
 
 LICENSE=	APACHE20
@@ -19,7 +20,7 @@ RUN_DEPENDS=	p5-File-pushd>=0:${PORTSDIR}/devel/p5-File-pushd \
 		p5-Parse-RecDescent>=1.967.006:${PORTSDIR}/devel/p5-Parse-RecDescent \
 		p5-Probe-Perl>=0.01:${PORTSDIR}/sysutils/p5-Probe-Perl
 
-USES=	perl5
+USES=		perl5
 USE_PERL5=	configure
 
 .include <bsd.port.mk>

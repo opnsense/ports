@@ -3,7 +3,7 @@
 
 PORTNAME=	digikam
 PORTVERSION=	${DIGIKAM_VER}
-PORTREVISION=	5
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	graphics kde
 
@@ -15,7 +15,7 @@ COMMENT=	KDE4 digital photo management application
 BUILD_DEPENDS=	${LOCALBASE}/include/eigen3/Eigen/Eigen:${PORTSDIR}/math/eigen3
 LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
 		liblcms.so:${PORTSDIR}/graphics/lcms \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libjasper.so:${PORTSDIR}/graphics/jasper \
 		liblensfun.so:${PORTSDIR}/graphics/lensfun \
 		liblqr-1.so:${PORTSDIR}/graphics/liblqr-1 \
@@ -28,7 +28,7 @@ USES+=		pkgconfig shebangfix
 USE_KDE4+=	libkdcraw libkexiv2 libkipi
 USE_QT4+=	sql-sqlite3_run
 USE_LDCONFIG=	yes
-CMAKE_ARGS+=	-DWITH_Sqlite2=off
+CMAKE_ARGS+=	-DWITH_Sqlite2:BOOL=OFF
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/core
 SHEBANG_FILES=	utilities/scripts/digitaglinktree/digitaglinktree
@@ -42,13 +42,14 @@ DOCS_RUN_DEPENDS=	digikam-doc>=${DIGIKAM_VER}:${PORTSDIR}/graphics/digikam-kde4-
 
 NLS_RUN_DEPENDS=	digikam-l10n>=${DIGIKAM_VER}:${PORTSDIR}/graphics/digikam-kde4-l10n
 
-GPHOTO2_DESC=		Enable gphoto2 camera support
+GPHOTO2_DESC=		Gphoto2 camera support
 GPHOTO2_LIB_DEPENDS=	libgphoto2.so:${PORTSDIR}/graphics/libgphoto2
 GPHOTO2_CMAKE_OFF=	-DWITH_Gphoto2:BOOL=OFF
 
-PIMLIBS_DESC=		Enable address book support
+PIMLIBS_DESC=		Address book support
 PIMLIBS_USE=		KDE4=pimlibs
-PIMLIBS_CMAKE_OFF=	-DWITH_KdepimLibs:BOOL=OFF
+PIMLIBS_CMAKE_ON=	-DENABLE_KDEPIMLIBSSUPPORT:BOOL=ON
+PIMLIBS_CMAKE_OFF=	-DENABLE_KDEPIMLIBSSUPPORT:BOOL=OFF
 
 MYSQL_USE=		MYSQL=server QT4=sql-mysql_run
 MYSQL_BUILD_DEPENDS=	${LOCALBASE}/lib/mysql/libmysqld.a:${PORTSDIR}/${_MYSQL_SERVER}

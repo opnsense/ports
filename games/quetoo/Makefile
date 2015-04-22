@@ -3,7 +3,7 @@
 
 PORTNAME=	quetoo
 PORTVERSION=	0.6.1
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	games
 MASTER_SITES=	http://tastyspleen.net/~jdolan/ \
 		http://freebsd.nsu.ru/distfiles/
@@ -86,7 +86,8 @@ BROKEN=		Does not compile on sparc64
 post-patch: .SILENT
 	${REINPLACE_CMD} -E 's,^(eval PKGDATADIR=).*$$,\1"${Q2DIR}", ; \
 		19752s,sdl-config,${SDL_CONFIG}, ; \
-		s,^(GAME_MODULES=")baseq2",\1",' ${WRKSRC}/configure
+		s,^(GAME_MODULES=")baseq2",\1", ; \
+		s,-Werror,,' ${WRKSRC}/configure
 	${REINPLACE_CMD} -e 's,-ldl,,' ${WRKSRC}/src/Makefile.in
 
 do-install:

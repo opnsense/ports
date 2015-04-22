@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	owncloud
-PORTVERSION=	7.0.2
+PORTVERSION=	8.0.2
 CATEGORIES=	www
 MASTER_SITES=	http://download.owncloud.org/community/
 
@@ -17,8 +17,8 @@ USE_PHP=	bz2 ctype curl dom fileinfo filter gd hash iconv json \
 		xsl wddx zip zlib
 WANT_PHP_WEB=	yes
 
-OWNCLOUD_USERNAME?=	www
-OWNCLOUD_GROUPNAME?=	${OWNCLOUD_USERNAME}
+OWNCLOUD_USERNAME?=	${WWWOWN}
+OWNCLOUD_GROUPNAME?=	${WWWGRP}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 NO_BUILD=	yes
@@ -39,7 +39,8 @@ LDAP_USE=	PHP=ldap
 MP3INFO_BUILD_DEPENDS=	mp3info:${PORTSDIR}/audio/mp3info
 MP3INFO_RUN_DEPENDS=	${MP3INFO_BUILD_DEPENDS}
 MYSQL_USE=	MYSQL=client PHP=mysql,pdo_mysql
-PGSQL_USE=	PGSQL=yes PHP=pdo_pgsql,pgsql
+PGSQL_USES=	pgsql
+PGSQL_USE=	PHP=pdo_pgsql,pgsql
 SQLITE_USE=	PHP=pdo_sqlite,sqlite3
 SSL_USE=	PHP=openssl
 

@@ -3,16 +3,16 @@
 
 PORTNAME=	st
 PORTVERSION=	1.9
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}ate-threads/${PORTNAME}ate-threads/${PORTVERSION}
 
-MAINTAINER=	lippe@FreeBSD.org
+MAINTAINER=	tobez@FreeBSD.org
 COMMENT=	State Threads Library for Internet Applications
 
 USES=		uidfix
 USE_LDCONFIG=	yes
-ONLY_FOR_ARCHS=	i386 alpha amd64
+ONLY_FOR_ARCHS=	i386 amd64
 
 DOCS=		fig.gif notes.html reference.html st.html \
 		timeout_heap.txt

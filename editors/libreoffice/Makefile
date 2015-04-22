@@ -16,6 +16,7 @@ BUILD_DEPENDS=	p5-Archive-Zip>=0:${PORTSDIR}/archivers/p5-Archive-Zip \
 		gpatch:${PORTSDIR}/devel/patch \
 		ucpp:${PORTSDIR}/devel/ucpp \
 		vigra-config:${PORTSDIR}/graphics/vigra \
+		${LOCALBASE}/include/glm/glm.hpp:${PORTSDIR}/math/glm \
 		bash:${PORTSDIR}/shells/bash \
 		gsed:${PORTSDIR}/textproc/gsed
 
@@ -34,10 +35,11 @@ LIB_DEPENDS=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libfreehand-0.1.so:${PORTSDIR}/graphics/libfreehand \
 		libgltf-0.0.so:${PORTSDIR}/graphics/libgltf \
 		libwpg-0.3.so:${PORTSDIR}/graphics/libwpg03 \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libGeneratedSaxParser.so:${PORTSDIR}/graphics/opencollada \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libpoppler.so:${PORTSDIR}/graphics/poppler \
 		liblpsolve55.so:${PORTSDIR}/math/lp_solve \
-		libcmis-0.4.so:${PORTSDIR}/net/libcmis \
+		libcmis-0.5.so:${PORTSDIR}/net/libcmis \
 		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
 		libmspub-0.1.so:${PORTSDIR}/print/libmspub01 \
 		libnss3.so:${PORTSDIR}/security/nss \
@@ -60,12 +62,12 @@ LIB_DEPENDS=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		librdf.so:${PORTSDIR}/textproc/redland \
 		libserf-1.so:${PORTSDIR}/www/serf
 
-RUN_DEPENDS=	${LOCALBASE}/lib/X11/fonts/Caladea/Caladea-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-caladea-ttf \
-		${LOCALBASE}/lib/X11/fonts/Carlito/Carlito-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-carlito-ttf \
-		${LOCALBASE}/lib/X11/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu \
-		${LOCALBASE}/lib/X11/fonts/GentiumBasic/GenBasI.ttf:${PORTSDIR}/x11-fonts/gentium-basic \
-		${LOCALBASE}/lib/X11/fonts/Liberation/LiberationMono-Bold.ttf:${PORTSDIR}/x11-fonts/liberation-fonts-ttf \
-		${LOCALBASE}/lib/X11/fonts/LinLibertineG/LinLibertine_DR_G.ttf:${PORTSDIR}/x11-fonts/linuxlibertine-g
+RUN_DEPENDS=	${LOCALBASE}/share/fonts/Caladea/Caladea-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-caladea-ttf \
+		${LOCALBASE}/share/fonts/Carlito/Carlito-Bold.ttf:${PORTSDIR}/x11-fonts/crosextrafonts-carlito-ttf \
+		${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf:${PORTSDIR}/x11-fonts/dejavu \
+		${LOCALBASE}/share/fonts/GentiumBasic/GenBasI.ttf:${PORTSDIR}/x11-fonts/gentium-basic \
+		${LOCALBASE}/share/fonts/Liberation/LiberationMono-Bold.ttf:${PORTSDIR}/x11-fonts/liberation-fonts-ttf \
+		${LOCALBASE}/share/fonts/LinLibertineG/LinLibertine_DR_G.ttf:${PORTSDIR}/x11-fonts/linuxlibertine-g
 
 _MAKE_JOBS=	#
 
@@ -85,15 +87,23 @@ DISTFILES+=	${PORTNAME}-help-${LOVERSION}${EXTRACT_SUFX}
 EXTRACT_ONLY:=	${DISTFILES}
 
 DISTFILES+=	1f24ab1d39f4a51faf22244c94a6203f-xmlsec1-1.2.14.tar.gz:src \
-		4b87018f7fff1d054939d19920b751a0-collada2gltf-master-cb1d97788a.tar.bz2:src \
-		OpenCOLLADA-master-6509aa13af.tar.bz2:src
+		4b87018f7fff1d054939d19920b751a0-collada2gltf-master-cb1d97788a.tar.bz2:src
 
 DIST_SUBDIR=	libreoffice
+EXTRA_PATCHES=	${FILESDIR}/enable-opencollada:-p1
 WRKSRC=		${WRKDIR}/${PORTNAME}-${LOVERSION}
+
+COLLADA_MODS=		COLLADABaseUtils COLLADAFramework \
+			COLLADASaxFrameworkLoader GeneratedSaxParser
+COLLADA_CFLAGS=		${COLLADA_MODS:S|^|-I${LOCALBASE}/include/opencollada/|}
+COLLADA_LIBS=		-L${LOCALBASE}/lib/opencollada \
+			${COLLADA_MODS:S|^COLLADA|OpenCOLLADA|:S|^|-l|}
 
 CONFIGURE_ENV=		DMAKE=${LOCALBASE}/bin/dmake \
 			GNUTAR="${TAR}" \
 			GPERF=${LOCALBASE}/bin/gperf \
+			OPENCOLLADA_CFLAGS="${COLLADA_CFLAGS}" \
+			OPENCOLLADA_LIBS="${COLLADA_LIBS}" \
 			OPENSSL_CFLAGS="-I/usr/include" \
 			OPENSSL_LIBS="-lcrypto -lssl" \
 			PYTHON_CFLAGS="`${PYTHON_VERSION}-config --cflags`" \
@@ -114,7 +124,7 @@ CONFIGURE_ARGS+=	--disable-coinmp \
 			--disable-epm \
 			--disable-firebird-sdbc \
 			--disable-gnome-vfs \
-			--disable-gstreamer \
+			--disable-gstreamer-0-10 \
 			--disable-kde \
 			--disable-kdeab \
 			--disable-mergelibs \
@@ -136,6 +146,7 @@ CONFIGURE_ARGS+=	--disable-coinmp \
 			--with-system-dicts \
 			--with-system-expat \
 			--with-system-glew \
+			--with-system-glm \
 			--with-system-graphite \
 			--with-system-harfbuzz \
 			--with-system-hunspell \
@@ -167,6 +178,7 @@ CONFIGURE_ARGS+=	--disable-coinmp \
 			--with-system-mythes \
 			--with-system-neon \
 			--with-system-nss \
+			--with-system-opencollada \
 			--with-system-openldap \
 			--with-system-openssl \
 			--with-system-orcus \
@@ -204,7 +216,7 @@ DEBUG_CONFIGURE_OFF=	--enable-release-build
 
 GNOME_LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib
 GNOME_USE=	GNOME=gconf2
-GNOME_CONFIGURE_ENABLE=	dbus gconf gio lockdown
+GNOME_CONFIGURE_ENABLE=	dbus gconf lockdown
 
 GTK3_USE=		GNOME=gtk30
 GTK3_CONFIGURE_ENABLE=	gtk3
@@ -243,15 +255,15 @@ JAVA_CONFIGURE_OFF=	--without-java
 JAVA_BUILD=	yes
 JAVA_USE=	JAVA=yes
 
-KDE4_USE=	KDE4=kdelibs QT4=moc_build QT4=qmake_build
+KDE4_USE=	KDE4=kdelibs QT4=moc_build,qmake_build
 KDE4_CONFIGURE_ENABLE=	kde4
 KDE4_CONFIGURE_ENV=	KDE4DIR="${KDE4_PREFIX}" \
 			QT4DIR="${QT_PREFIX}" \
 			QT4INC="${QT_INCDIR}" \
 			QT4LIB="${QT_LIBDIR}"
 
-MMEDIA_USE=	GSTREAMER=yes
-MMEDIA_CONFIGURE_ENABLE=	gstreamer-0-10
+MMEDIA_USE=	GSTREAMER1=yes
+MMEDIA_CONFIGURE_ENABLE=	gstreamer
 
 PGSQL_USES=	pgsql:9.0+
 PGSQL_CONFIGURE_ENABLE=	postgresql-sdbc
@@ -267,13 +279,15 @@ SYSTRAY_CONFIGURE_ENABLE=	systray
 
 TEST_CONFIGURE_ENABLE=	cve-tests
 
-WEBDAV_LIB_DEPENDS=	libneon.so:${PORTSDIR}/www/neon29
+WEBDAV_LIB_DEPENDS=	libneon.so:${PORTSDIR}/www/neon
 WEBDAV_CONFIGURE_ENABLE=	neon
 
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MDEBUG}
 IGNORE=			is broken with DEBUG option
+.else
+EXTRA_PATCHES+=		${FILESDIR}/extra-Makefile.in
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG} || ${PORT_OPTIONS:MVERBOSE}
@@ -289,7 +303,10 @@ CONFIGURE_ARGS+=	--disable-gtk
 
 .if ${PORT_OPTIONS:MGNOME} || ${PORT_OPTIONS:MGTK2} || ${PORT_OPTIONS:MGTK3}
 USES+=		desktop-file-utils
+CONFIGURE_ARGS+=	--enable-gio
 INSTALLS_ICONS=	yes
+.else
+CONFIGURE_ARGS+=	--disable-gio
 .endif
 
 .if empty(PORT_OPTIONS:MTEST)
@@ -303,13 +320,8 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-libc++:-p1
 EXTRA_PATCHES+=	${FILESDIR}/extra-libc++.i386:-p0
 .endif
 
-.if ${COMPILER_FEATURES:Mlibstdc++} && ${CHOSEN_COMPILER_TYPE} == clang
-DISTFILES+=	bae83fa5dc7f081768daace6e199adc3-glm-0.9.4.6-libreoffice.zip:src
-EXTRA_PATCHES+=	${FILESDIR}/extra-collada2gltf \
-		${FILESDIR}/extra-configure.ac
-.else
-BUILD_DEPENDS+=		${LOCALBASE}/include/glm/glm.hpp:${PORTSDIR}/math/glm
-CONFIGURE_ARGS+=	--with-system-glm
+.if ${COMPILER_FEATURES:Mlibstdc++}
+EXTRA_PATCHES+=	${FILESDIR}/extra-configure.ac
 .endif
 
 .if ${OSVERSION} < 900506

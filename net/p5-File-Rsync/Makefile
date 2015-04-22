@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	File-Rsync
-PORTVERSION=	0.43
+PORTVERSION=	0.45
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl convenience wrapper for the rsync(1) program
 
 LICENSE=	ART10 GPLv1

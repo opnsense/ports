@@ -3,7 +3,7 @@
 
 PORTNAME=	lopster
 PORTVERSION=	1.2.2
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	net-p2p
 MASTER_SITES=	SF \
 		http://lopster.sourceforge.net/download/
@@ -43,8 +43,6 @@ CONFIGURE_ARGS+=	--without-zlib
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e "s|-lpthread|${PTHREAD_LIBS}|g" \
-		${WRKSRC}/configure
 	@${REINPLACE_CMD} -e "s/www.naplist.com/www.gotnap.com/" \
 		${WRKSRC}/src/lopster.h
 

@@ -3,7 +3,7 @@
 
 PORTNAME=	sdlCC
 PORTVERSION=	0.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	http://jcatki.no-ip.org/files/
 
@@ -22,9 +22,6 @@ OPTIONS_DEFINE=	DOCS
 
 DESKTOP_ENTRIES="Chinese Checkers" "" "${PORTNAME}" \
 		"${PORTNAME}" "Game;ArcadeGame;" ""
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' ${WRKSRC}/libltdl/configure
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

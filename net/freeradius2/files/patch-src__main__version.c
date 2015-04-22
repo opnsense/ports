@@ -1,11 +1,18 @@
---- ./src/main/version.c.orig	2014-08-16 16:17:41.000000000 -0400
-+++ ./src/main/version.c	2014-08-16 16:18:31.000000000 -0400
-@@ -60,21 +60,8 @@
- 		       (unsigned long) ssl_built,
- 		       (unsigned long) ssl_linked);
- 
+--- src/main/version.c.orig	2014-11-18 19:56:52 UTC
++++ src/main/version.c
+@@ -66,8 +66,7 @@ int ssl_check_version(int allow_vulnerab
+ 	mismatch:
+ 		radlog(L_ERR, "libssl version mismatch.  built: %lx linked: %lx",
+ 		       (unsigned long) ssl_built, (unsigned long) ssl_linked);
+-
 -		return -1;
- 	};
++		return 0;
+ 	}
+ 
+ 	/*
+@@ -84,18 +83,6 @@ int ssl_check_version(int allow_vulnerab
+ 	 */
+ 	} else if ((ssl_built & 0xffffff) != (ssl_linked & 0xffffff)) goto mismatch;
  
 -	if (!allow_vulnerable) {
 -		/* Check for bad versions */

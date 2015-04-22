@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pacman
-PORTVERSION=	4.0.3
-PORTREVISION=	4
+PORTVERSION=	4.2.0
 CATEGORIES=	sysutils
 MASTER_SITES=	ftp://ftp.archlinux.org/other/pacman/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -11,15 +10,17 @@ MASTER_SITES=	ftp://ftp.archlinux.org/other/pacman/ \
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Package manager from ArchLinux
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	asciidoc:${PORTSDIR}/textproc/asciidoc \
 		gm4:${PORTSDIR}/devel/m4 \
 		bash:${PORTSDIR}/shells/bash
 RUN_DEPENDS=	bash:${PORTSDIR}/shells/bash
+LIB_DEPENDS=	libarchive.so.13:${PORTSDIR}/archivers/libarchive
 
-USES=		gmake libtool
+USES=		gmake libtool perl5 pkgconfig shebangfix
+SHEBANG_FILES=	${WRKSRC}/scripts/makepkg-template.pl.in
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-root-dir="${PACMAN_ROOT}" \
 		--localstatedir=/var
@@ -28,9 +29,9 @@ USE_LDCONFIG=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-SUB_FILES=	pkg-message
-SUB_LIST=	PACMAN_ROOT="${PACMAN_ROOT}"
-PLIST_SUB=	PACMAN_ROOT="${PACMAN_ROOT}"
+SUB_FILES=	pkg-message pkg-deinstall
+SUB_LIST=	PACMAN_ROOT="${PACMAN_ROOT}" PREFIX="${PREFIX}"
+PLIST_SUB=	PACMAN_ROOT="${PACMAN_ROOT:C/^${PREFIX}//}"
 
 PACMAN_ROOT?=	"${PREFIX}/pacman"
 
@@ -66,6 +67,7 @@ PLIST_SUB+=	NLS="@comment "
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|m4|gm4|' ${WRKSRC}/scripts/Makefile.in
+	@${REINPLACE_CMD} -e '2 s/.*/exit 0/' ${WRKSRC}/build-aux/missing
 	@${REINPLACE_CMD} -e '/INSTALL_DATA.*sysconfdir/ d' ${WRKSRC}/etc/Makefile.in
 .for tool in curl wget rsync lftpget
 	@${REINPLACE_CMD} -e 's|/usr/bin/${tool}|${LOCALBASE}/bin/${tool}|' \
@@ -80,7 +82,7 @@ post-patch:
 
 post-install:
 .for f in makepkg.conf pacman.conf
-	${INSTALL_DATA} ${WRKSRC}/etc/${f} ${STAGEDIR}${PREFIX}/etc/${f}.dist
+	${INSTALL_DATA} ${WRKSRC}/etc/${f} ${STAGEDIR}${PREFIX}/etc/${f}.sample
 .endfor
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKSRC}/doc/PKGBUILD-example.txt ${STAGEDIR}${EXAMPLESDIR}/

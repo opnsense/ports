@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	prelink
-PORTVERSION=	20111012
+PORTVERSION=	20130503
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://people.redhat.com/jakub/prelink/
@@ -12,11 +12,8 @@ COMMENT=	ELF prelinking utility to speed up dynamic linking
 
 LIB_DEPENDS=	libargp.so:${PORTSDIR}/devel/argp-standalone
 
-USES=		gmake tar:bzip2 libtool
+USES=		autoreconf gmake tar:bzip2 libtool
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtoolize
-ACLOCAL_ARGS=	-I . -I ${LOCALBASE}/share/aclocal
-AUTOMAKE_ARGS=	-c -a
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

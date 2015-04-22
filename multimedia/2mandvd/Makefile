@@ -3,7 +3,7 @@
 
 PORTNAME=	2ManDVD
 PORTVERSION=	1.8.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia kde
 MASTER_SITES=	http://download.tuxfamily.org/2mandvd/
 
@@ -33,7 +33,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 USES=		desktop-file-utils gmake perl5 qmake:norecursive shebangfix
 SHEBANG_FILES=	fake.pl
 USE_QT4=	corelib gui opengl \
-		linguist_build moc_build rcc_build uic_build
+		linguisttools_build moc_build rcc_build uic_build
 USE_GL=		glu
 USE_SDL=	sdl
 USE_PERL5=	run

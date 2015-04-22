@@ -1,14 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	tiffgt
-PORTVERSION=	4.0.3
-PORTREVISION=	2
+DISTVERSION=	4.0.4beta
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.remotesensing.org/pub/libtiff/ \
 		http://download.osgeo.org/libtiff/
-DISTNAME=	tiff-${PORTVERSION}
+DISTNAME=	tiff-${DISTVERSION}
 
-MAINTAINER=	dinoex@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	X11 Tools for working with TIFF images
 
 LICENSE=	BSD3CLAUSE
@@ -18,8 +17,10 @@ LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libjbig.so:${PORTSDIR}/graphics/jbigkit \
 		libtiff.so:${PORTSDIR}/${PKGCATEGORY}/tiff
 
-#TODO: Remove :oldver together with VERSION_INFO patching in pre-configure.
-USES=		libtool:oldver
+USES=		cpe libtool
+CPE_PRODUCT=	libtiff
+CPE_VERSION=	${DISTVERSION:C/[a-z]+//}
+CPE_UPDATE=	${DISTVERSION:C/[0-9.]+//}
 USE_XORG=	sm ice xmu xi x11
 USE_GL=		glut glu gl
 USE_LDCONFIG=	yes
@@ -30,9 +31,6 @@ CONFIGURE_ARGS+=	--with-jpeg-include-dir=${LOCALBASE}/include \
 PLIST_FILES=	bin/tiffgt man/man1/tiffgt.1.gz
 
 pre-configure:
-	${REINPLACE_CMD} \
-		-e 's|^LIBTIFF_VERSION_INFO =.*$$|LIBTIFF_VERSION_INFO = 4:0:0|' \
-		${WRKSRC}/libtiff/Makefile.in
 	${REINPLACE_CMD} -e 's|^docfiles|no-docfiles|' \
 		-e 's|man html|man|' ${WRKSRC}/Makefile.in
 

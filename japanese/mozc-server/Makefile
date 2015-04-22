@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mozc
-PORTVERSION=	1.15.1868.102
+PORTVERSION=	2.16.2051.102
 PORTREVISION=	2
 CATEGORIES=	japanese
 MASTER_SITES=	LOCAL/hrs
@@ -47,6 +47,8 @@ USE_XORG=	xcb
 USE_GNOME=	glib20 gtk20
 .elif ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 USE_EMACS=	yes
+.elif ${BUILD_MOZC_LIST:Mfcitx_mozc}
+USES+=		gettext-tools
 .endif
 
 # Use GCC only when the stock clang does not have libc++.so.
@@ -58,10 +60,6 @@ _CCTYPE=	gcc
 .endif
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 800107
-BROKEN=		Does not compile on FreeBSD 7.X
-.endif
 
 .if ${ARCH} == "ia64" || ${ARCH} == "powerpc" || ${ARCH} == "sparc64"
 BROKEN=		Does not compile: segfault
@@ -115,6 +113,8 @@ post-configure: ${WRKSRC}/mozcmake
 	${BUILD_MOZC_CMD} gyp \
 	    --gypdir=${WRKSRC}/third_party/gyp \
 	    --server_dir="${PREFIX}/bin" \
+	    --tool_dir="${PREFIX}/libexec" \
+	    --renderer_dir="${PREFIX}/libexec" \
 	    --localbase="${LOCALBASE}" \
 	    --ldflags="${LDFLAGS} -fstack-protector -L${LOCALBASE}/lib" \
 	    --cflags="${CFLAGS:Q}" \
@@ -136,8 +136,10 @@ DISTFILES+= \
 
 EXTRACT_DEPENDS+=	lha:${PORTSDIR}/archivers/lha
 
-PLIST_FILES+=	bin/mozc_server \
-		bin/mozc_emacs_helper
+PLIST_FILES+=	bin/mozc \
+		bin/mozc_server \
+		libexec/mozc_emacs_helper
+SUB_FILES+=	mozc
 
 post-extract-mozc_server:
 	@for F in jigyosyo-20130628.lzh ken_all-20130628.lzh; do \
@@ -157,8 +159,12 @@ do-build-mozc_server:
 do-install-mozc_server:
 	${INSTALL_PROGRAM} \
 	    ${WRKSRC}/out_linux/${BUILD_MODE}/mozc_server \
-	    ${WRKSRC}/out_linux/${BUILD_MODE}/mozc_emacs_helper \
 	    ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} \
+	    ${WRKSRC}/out_linux/${BUILD_MODE}/mozc_emacs_helper \
+	    ${STAGEDIR}${PREFIX}/libexec
+	${INSTALL_SCRIPT} \
+	    ${WRKDIR}/mozc ${STAGEDIR}/${PREFIX}/bin
 .endif
 
 # mozc_tool
@@ -172,7 +178,6 @@ PLIST_FILES+=	libexec/mozc_tool \
 		bin/mozc_tool \
 		%%DATADIR%%/icons/product_logo.png \
 		%%DATADIR%%/icons/update_uptodate.png
-PLIST_DIRS+=	%%DATADIR%%/icons ${DATADIR_REL}
 SUB_FILES+=	mozc_tool
 
 do-build-mozc_tool:
@@ -201,10 +206,9 @@ GYP_DEFINES+=	use_libibus=1 \
 LIB_DEPENDS+=	libibus-1.0.so:${PORTSDIR}/textproc/ibus
 RUN_DEPENDS+=	mozc_server:${PORTSDIR}/japanese/mozc-server \
 		mozc_tool:${PORTSDIR}/japanese/mozc-tool \
-		mozc_server_start:${PORTSDIR}/japanese/mozc-additions \
 		${PYTHON_SITELIBDIR}/gtk-2.0/pynotify/__init__.py:${PORTSDIR}/devel/py-notify
 
-PLIST_FILES+=	bin/mozc_renderer \
+PLIST_FILES+=	libexec/mozc_renderer \
 		libexec/ibus-engine-mozc \
 		%%DATADIR%%/icons/alpha_full.png \
 		%%DATADIR%%/icons/alpha_half.png \
@@ -227,7 +231,7 @@ do-build-ibus_mozc:
 do-install-ibus_mozc:
 	${INSTALL_PROGRAM} \
 	    ${WRKSRC}/out_linux/${BUILD_MODE}/mozc_renderer \
-	    ${STAGEDIR}${PREFIX}/bin/mozc_renderer
+	    ${STAGEDIR}${PREFIX}/libexec/mozc_renderer
 	${INSTALL_PROGRAM} \
 	    ${WRKSRC}/out_linux/${BUILD_MODE}/ibus_mozc \
 	    ${STAGEDIR}${PREFIX}/libexec/ibus-engine-mozc
@@ -250,13 +254,13 @@ do-install-ibus_mozc:
 # fcitx_mozc
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc" || make(makesum)
 PATCH_SITES=	http://download.fcitx-im.org/fcitx-mozc/
-PATCHFILES=	fcitx-mozc-1.15.1834.102.1.patch
+PATCHFILES=	fcitx-mozc-2.16.2037.102.2.patch
 .endif
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
 PATCH_DIST_STRIP=-p2
-EXTRA_PATCHES=	${FILESDIR}/extra-patch-unix-fcitx-eim.cc \
-		${FILESDIR}/extra-patch-unix-fcitx-mozc_response_parser.cc \
-		${FILESDIR}/extra-patch-unix-fcitx-surrounding_text_util.cc
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-unix-fcitx-eim.cc \
+		${PATCHDIR}/extra-patch-unix-fcitx-mozc_response_parser.cc \
+		${PATCHDIR}/extra-patch-unix-fcitx-surrounding_text_util.cc
 
 GYP_OPTIONS+=	--noqt
 GYP_DEFINES+=	use_libibus=0 \
@@ -264,8 +268,7 @@ GYP_DEFINES+=	use_libibus=0 \
 
 LIB_DEPENDS+=	libfcitx-core.so:${PORTSDIR}/chinese/fcitx
 RUN_DEPENDS+=	mozc_server:${PORTSDIR}/japanese/mozc-server \
-		mozc_tool:${PORTSDIR}/japanese/mozc-tool \
-		mozc_server_start:${PORTSDIR}/japanese/mozc-additions
+		mozc_tool:${PORTSDIR}/japanese/mozc-tool
 
 PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
 		share/fcitx/addon/fcitx-mozc.conf \
@@ -284,6 +287,16 @@ PLIST_FILES+=	lib/fcitx/fcitx-mozc.so \
 		share/locale/zh_CN/LC_MESSAGES/fcitx-mozc.mo \
 		share/locale/zh_TW/LC_MESSAGES/fcitx-mozc.mo
 PLIST_DIRS+=	%%DATADIR%%/icon ${DATADIR_REL}
+
+post-extract-fcitx_mozc:
+	${RM} ${WRKSRC}/unix/fcitx/fcitx.gyp
+
+post-extract: post-extract-fcitx_mozc
+
+post-patch-fcitx_mozc:
+	cd ${PATCH_WRKSRC} && ${PATCH} < ${PATCHDIR}/extra-patch-unix_fcitx_fcitx_mozc.cc 
+
+post-patch: post-patch-fcitx_mozc
 
 do-build-fcitx_mozc:
 	${BUILD_MOZC_CMD_BUILD} unix/fcitx/fcitx.gyp:fcitx-mozc
@@ -322,13 +335,17 @@ do-install-fcitx_mozc:
 # mozc_el
 .if ${BUILD_MOZC_LIST:Mmozc_el} == "mozc_el"
 CATEGORIES+=	elisp
-RUN_DEPENDS+=	mozc_server:${PORTSDIR}/japanese/mozc-server \
-		mozc_server_start:${PORTSDIR}/japanese/mozc-additions
+RUN_DEPENDS+=	mozc_server:${PORTSDIR}/japanese/mozc-server
 
-PLIST_FILES+=	${EMACS_VERSION_SITE_LISPDIR}/mozc/mozc.el \
-		${EMACS_VERSION_SITE_LISPDIR}/mozc/mozc.elc \
+PLIST_FILES+=	${EMACS_VERSION_SITE_LISPDIR}/mozc/mozc.elc \
 		${EMACS_VERSION_SITE_LISPDIR}/mozc/leim-list.el
 PLIST_DIRS+=	${EMACS_VERSION_SITE_LISPDIR}/mozc
+
+post-patch-mozc_el:
+	${REINPLACE_CMD} "s,%%PREFIX%%,${PREFIX}," \
+	    ${WRKSRC}/unix/emacs/mozc.el
+
+post-patch: post-patch-mozc_el
 
 do-build-mozc_el:
 	cd ${WRKSRC}/unix/emacs && \
@@ -338,7 +355,6 @@ do-build-mozc_el:
 do-install-mozc_el:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc
 	${INSTALL_DATA} \
-	    ${WRKSRC}/unix/emacs/mozc.el \
 	    ${WRKSRC}/unix/emacs/mozc.elc \
 	    ${FILESDIR}/leim-list.el \
 	    ${STAGEDIR}${PREFIX}/${EMACS_VERSION_SITE_LISPDIR}/mozc/

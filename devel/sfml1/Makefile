@@ -3,7 +3,7 @@
 
 PORTNAME=	sfml
 PORTVERSION=	1.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	SF
 DISTNAME=	SFML-${PORTVERSION}-sdk-linux-32
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libsndfile.so:${PORTSDIR}/audio/libsndfile \
 		libfreetype.so:${PORTSDIR}/print/freetype2
 
 USES=		gmake openal:al pkgconfig dos2unix
-DOS2UNIX_GLOB=	Makefile
+DOS2UNIX_GLOB=	Makefile ResourcePtr.inl
 USE_XORG=	x11 xrandr
 USE_GL=		gl glu
 USE_LDCONFIG=	yes

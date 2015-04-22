@@ -3,7 +3,7 @@
 
 PORTNAME=	mwlib
 PORTVERSION=	0.15.14
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}apipkg>=1.2:${PORTSDIR}/devel/py-apipkg \
 		${PYTHON_PKGNAMEPREFIX}timelib>=0.2:${PORTSDIR}/devel/py-timelib \
 		${PYTHON_PKGNAMEPREFIX}pdf>=1.12:${PORTSDIR}/print/py-pdf \
 		${PYTHON_PKGNAMEPREFIX}pillow>0:${PORTSDIR}/graphics/py-pillow \
-		${PYTHON_PKGNAMEPREFIX}pylib>=1.4.0:${PORTSDIR}/devel/py-pylib \
+		${PYTHON_PKGNAMEPREFIX}py>=1.4.0:${PORTSDIR}/devel/py-py \
 		${PYTHON_PKGNAMEPREFIX}qserve>=0:${PORTSDIR}/devel/py-qserve \
 		${PYTHON_PKGNAMEPREFIX}roman>=0:${PORTSDIR}/math/py-roman \
 		${PYTHON_PKGNAMEPREFIX}simplejson>2.0.8:${PORTSDIR}/devel/py-simplejson \
@@ -36,11 +36,16 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}apipkg>=1.2:${PORTSDIR}/devel/py-apipkg \
 USES=		python:2 zip
 USE_PYTHON=	autoplist distutils
 USE_RC_SUBR=	mwqserve nserve nslave postman
+
 SUB_LIST=	PYTHON_CMD=${PYTHON_CMD}
 
 post-patch:
 	${REINPLACE_CMD} \
 		-e 's|lockfile==|lockfile>=|' \
 		${WRKSRC}/setup.py
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/mwlib/_uscan.so
+	${STRIP_CMD} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/mwlib/templ/*.so
 
 .include <bsd.port.mk>

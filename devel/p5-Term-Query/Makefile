@@ -3,11 +3,12 @@
 
 PORTNAME=	Term-Query
 PORTVERSION=	2.0
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Interactive question-response user interface module
 
 LICENSE=	GPLv2 GPLv3

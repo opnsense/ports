@@ -3,11 +3,12 @@
 
 PORTNAME=	String-Tokenizer
 PORTVERSION=	0.05
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Simple string tokenizer
 
 LICENSE=	ART10 GPLv1

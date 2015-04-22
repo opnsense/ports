@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	pytsk
-PORTVERSION=	20140506
+PORTVERSION=	20150406
 CATEGORIES=	sysutils security devel python
-MASTER_SITES=	https://googledrive.com/host/0B3fBvzttpiiScUxsUm54cG02RDA/ \
+MASTER_SITES=	https://github.com/py4n6/pytsk/releases/download/${PORTVERSION}/ \
 		LOCAL/antoine
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libtsk.so:${PORTSDIR}/sysutils/sleuthkit
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-USES=		python:2 shebangfix tar:tgz
+USES=		python shebangfix tar:tgz
 SHEBANG_FILES=	samples/*.py
 python_OLD_CMD=	.*
 python_CMD=	${PYTHON_CMD}
@@ -29,7 +29,7 @@ PORTEXAMPLES=	*
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-patch:
-	${REINPLACE_CMD} -e "s|'/', 'usr', 'local'|'${LOCALBASE}'|" \
+	${REINPLACE_CMD} 's|"/", "usr", "local"|"${LOCALBASE}"|' \
 		${WRKSRC}/setup.py
 
 post-install:

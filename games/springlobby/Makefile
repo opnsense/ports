@@ -14,6 +14,9 @@ COMMENT=	Cross-platform lobby client for the Spring RTS project
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Depends on expiring games/spring
+EXPIRATION_DATE=	2015-04-30
+
 RUN_DEPENDS=	spring:${PORTSDIR}/games/spring
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 		libboost_thread.so:${PORTSDIR}/devel/boost-libs
@@ -48,7 +51,7 @@ NOTIFY_LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify
 
 .include <bsd.port.options.mk>
 
-.if ${OSVERSION} < 901000
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 901000
 IGNORE=		does not build (no strtoll(3) support)
 .endif
 

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	collectd
-PORTVERSION=	5.4.1
-PORTREVISION=	14
+PORTVERSION=	5.4.2
+PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://collectd.org/files/
 PKGNAMESUFFIX=	5
@@ -26,7 +26,8 @@ OPTIONS_GROUP=		INPUT OUTPUT
 OPTIONS_GROUP_OUTPUT=	RRDTOOL NOTIFYEMAIL NOTIFYDESKTOP RIEMANN
 OPTIONS_GROUP_INPUT=	CURL DBI JSON MEMCACHEC MODBUS MONGODB MYSQL \
 			NUTUPS PERL PGSQL PING PYTHON RABBITMQ REDIS \
-			ROUTEROS SIGROK SNMP STATGRAB TOKYOTYRANT XML XMMS
+			ROUTEROS SIGROK SNMP STATGRAB TOKYOTYRANT VARNISH \
+			XML XMMS
 
 CGI_DESC=		Install collection.cgi (requires rrdtool)
 CURL_DESC=		Enable curl-based plugins (apache, nginx, etc)
@@ -54,6 +55,7 @@ SIGROK_DESC=		Enable sigrok plugin
 SNMP_DESC=		Enable SNMP plugin
 STATGRAB_DESC=		Enable statgrab-based plugins (disk, interface, etc)
 TOKYOTYRANT_DESC=	Enable tokyotyrant plugin
+VARNISH_DESC=		Enable varnish 3.x cache statistics
 VIRT_DESC=		Enable libvirt plugin (requires XML)
 XML_DESC=		Enable XML plugins
 XMMS_DESC=		Enable xmms plugin
@@ -87,7 +89,6 @@ CONFIGURE_ARGS=	--localstatedir=/var \
 		--without-libowcapi \
 		--without-libperfstat \
 		--without-libsensors \
-		--without-libvarnish \
 		--without-lvm \
 		--without-mic \
 		--without-oracle
@@ -299,7 +300,7 @@ PLIST_SUB+=	PERL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 CONFIGURE_ARGS+=--with-postgresql=${LOCALBASE} --enable-postgresql --with-libpq
 PLIST_SUB+=	PGSQL=""
 .else
@@ -317,7 +318,7 @@ PLIST_SUB+=	PING="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
-USES+=		python
+USES+=		python:2
 CONFIGURE_ARGS+=--with-python=${PYTHON_CMD} --enable-python
 PLIST_SUB+=	PYTHON=""
 .else
@@ -431,6 +432,15 @@ CONFIGURE_ARGS+=--without-libtokyotyrant --disable-tokyotyrant
 PLIST_SUB+=	TOKYOTYRANT="@comment "
 .endif
 
+.if ${PORT_OPTIONS:MVARNISH}
+LIB_DEPENDS+=	libvarnishapi.so:${PORTSDIR}/www/varnish
+CONFIGURE_ARGS+=--with-libvarnish=${LOCALBASE} --enable-varnish
+PLIST_SUB+=	VARNISH=""
+.else
+CONFIGURE_ARGS+=--without-libvarnish
+PLIST_SUB+=	VARNISH="@comment "
+.endif
+
 .if ${PORT_OPTIONS:MVIRT}
 .if empty(PORT_OPTIONS:MXML)
 IGNORE=		VIRT requires XML. Either select XML or deselect VIRT.
@@ -458,6 +468,8 @@ CONFIGURE_ARGS+=--without-libxmms --disable-xmms
 PLIST_SUB+=	XMMS="@comment "
 .endif
 
+INSTALL_TARGET=install-strip
+
 post-patch:
 	@${REINPLACE_CMD} 's/-Werror//' \
 		${WRKSRC}/configure.ac ${WRKSRC}/src/Makefile.am \
@@ -482,11 +494,6 @@ post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/collection.cgi ${STAGEDIR}${WWWDIR}/
 	${INSTALL_DATA} ${WRKSRC}/contrib/collection.conf \
 		${STAGEDIR}${WWWDIR}/collection.conf.sample
-.endif
-
-post-stage:
-.if ${PORT_OPTIONS:MPERL}
-	@${SED} -i '' -e 's,${STAGEDIR},,g' ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/Collectd/.packlist
 .endif
 
 .include <bsd.port.mk>

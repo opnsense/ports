@@ -2,28 +2,38 @@
 # $FreeBSD$
 
 PORTNAME=	fortune-mod-epictetus
-PORTVERSION=	0.1
-PORTREVISION=	1
+PORTVERSION=	0.2
 CATEGORIES=	misc
-MASTER_SITES=	http://github.com/akosela/fortune-mod-epictetus/releases/download/v0.1/
+MASTER_SITES=	GHL
 
 MAINTAINER=	akosela@andykosela.com
 COMMENT=	Quotes from Epictetus
 
-USES=		tar:bzip2
+LICENSE=	BSD2CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	akosela
+GH_PROJECT=	${PORTNAME}
+GH_TAGNAME=	v${PORTVERSION}
+GH_COMMIT=	5550bf8
 
 PLIST_FILES=	share/games/fortune/epictetus \
 		share/games/fortune/epictetus.dat
-PLIST_DIRSTRY=	share/games/fortune \
-		share/games
 
+.if exists(/usr/games/strfile)
 STRFILE=	/usr/games/strfile
+.elif exists(/usr/bin/strfile)
+STRFILE=	/usr/bin/strfile
+.else
+IGNORE=		needs strfile command. Please install games distribution of base system
+.endif
 
 do-build:
 	@(cd ${WRKSRC} && ${STRFILE} epictetus)
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/games/fortune
-	@${INSTALL_DATA} ${WRKSRC}/epictetus* ${STAGEDIR}${PREFIX}/share/games/fortune
+	${INSTALL_DATA} ${WRKSRC}/epictetus* ${STAGEDIR}${PREFIX}/share/games/fortune
 
 .include <bsd.port.mk>

@@ -21,7 +21,3 @@ lib/libscribe.a
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/hdfs_example2.conf
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/scribe_cat
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/scribe_ctrl
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
-@dirrm %%PYTHON_SITELIBDIR%%/scribe
-@dirrm %%SITE_PERL%%/Scribe/Thrift
-@dirrm %%SITE_PERL%%/Scribe

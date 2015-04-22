@@ -3,7 +3,7 @@
 
 PORTNAME=	Tie-LevelDB
 PORTVERSION=	0.07
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -18,7 +18,13 @@ LIB_DEPENDS=	libleveldb.so:${PORTSDIR}/databases/leveldb
 
 MAKE_ARGS=	CC="${CXX}"
 USE_PERL5=	configure
-USES=		gmake perl5
+USES=		compiler gmake perl5
+
+.include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang
+CFLAGS+=	-Wno-reserved-user-defined-literal
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/build_detect_platform/d' \
@@ -29,4 +35,4 @@ post-patch:
 		-e 's|g++|${CXX}|' \
 			${WRKSRC}/Makefile.PL
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

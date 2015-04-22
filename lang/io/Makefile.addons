@@ -128,7 +128,7 @@ LIB_DEPENDS+=	libglfw.so.0:${PORTSDIR}/graphics/glfw2
 #
 .if ${PORT_OPTIONS:MImage}
 LIB_DEPENDS+=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff
 .endif
 
@@ -194,7 +194,7 @@ USE_XORG+=	xmu
 # PostgreSQL
 #
 .if ${PORT_OPTIONS:MPostgreSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 .endif
 
 #

@@ -2,13 +2,14 @@
 
 PORTNAME=	Prophet
 PORTVERSION=	0.751
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:IOANR
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	perl@FreeBSD.org
-COMMENT=	Prophet is a distributed database system
+COMMENT=	Distributed database system
 
 LICENSE=	MIT
 

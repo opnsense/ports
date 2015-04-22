@@ -2,11 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	xterm
-PORTVERSION=	312
+PORTVERSION=	318
 CATEGORIES=	x11
 MASTER_SITES=	ftp://invisible-island.net/xterm/:src1 \
-		CRITICAL:src1 CRITICAL:src2
-EXTRACT_SUFX=	.tgz
+		LOCAL/ehaupt:src1 LOCAL/ehaupt:src2
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:src1 \
 		bsd-xterm-icons-${ICONVERSION}${EXTRACT_SUFX}:src2
 
@@ -15,6 +14,7 @@ COMMENT=	Terminal emulator for the X Window System
 
 CONFLICTS=	x11iraf-[0-9]*
 
+USES=		tar:tgz
 USE_XORG=	xft
 GNU_CONFIGURE=	yes
 

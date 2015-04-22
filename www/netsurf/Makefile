@@ -3,7 +3,7 @@
 
 PORTNAME=	netsurf
 PORTVERSION=	3.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	www
 MASTER_SITES=	http://download.netsurf-browser.org/netsurf/releases/source-full/
 DISTNAME=	${PORTNAME}-${PORTVERSION}-full-src
@@ -17,7 +17,7 @@ LICENSE_COMB=	multi
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 ALL_TARGET=	#empty
 CFLAGS+=	-I${LOCALBASE}/include
@@ -57,6 +57,7 @@ post-patch:
 	@${REINPLACE_CMD} \
 		-e '/OpenSSL/d' -e '/lcms/d' -e 's| -g||' \
 		-e 's/-DG_DISABLE_DEPRECATED//' \
+		-e 's/-DGDK_PIXBUF_DISABLE_DEPRECATED//' \
 		${WRKSRC}/src/netsurf-${PORTVERSION}/gtk/Makefile.target
 	@${REINPLACE_CMD} -e 's| -g|| ; s|flex|${LOCALBASE}/bin/&|' \
 		${WRKSRC}/src/nsgenbind-0.0.1/src/Makefile

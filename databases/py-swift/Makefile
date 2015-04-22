@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	swift
-PORTVERSION=	2.2.0
+PORTVERSION=	2.2.1
 CATEGORIES=	databases python
-MASTER_SITES=	http://launchpadlibrarian.net/187486124/
+MASTER_SITES=	http://launchpadlibrarian.net/193017975/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	trociny@FreeBSD.org
@@ -33,8 +33,16 @@ USE_RC_SUBR=	swift
 USERS=		swift
 GROUPS=		swift
 
+post-extract:
+	@(cd ${WRKSRC}/etc; \
+	for f in *-sample; do\
+	${MV} $${f} $${f%%-sample}.sample;\
+	done)
+
 post-patch:
 	@${REINPLACE_CMD} -e "s|/etc/swift|${PREFIX}/etc/${PORTNAME}|" \
+		-e "s|conf-sample|conf.sample|" \
+		-e "s|types-sample|types.sample|" \
 		${WRKSRC}/bin/swift-account-audit \
 		${WRKSRC}/bin/swift-account-info \
 		${WRKSRC}/bin/swift-container-info \
@@ -55,13 +63,15 @@ post-patch:
 		${WRKSRC}/doc/manpages/swift-dispersion-report.1 \
 		${WRKSRC}/doc/manpages/swift-get-nodes.1 \
 		${WRKSRC}/doc/manpages/swift-recon.1 \
-		${WRKSRC}/etc/account-server.conf-sample \
-		${WRKSRC}/etc/container-reconciler.conf-sample \
-		${WRKSRC}/etc/container-server.conf-sample \
-		${WRKSRC}/etc/dispersion.conf-sample \
-		${WRKSRC}/etc/object-expirer.conf-sample \
-		${WRKSRC}/etc/object-server.conf-sample \
-		${WRKSRC}/etc/proxy-server.conf-sample \
+		${WRKSRC}/etc/account-server.conf.sample \
+		${WRKSRC}/etc/container-reconciler.conf.sample \
+		${WRKSRC}/etc/container-server.conf.sample \
+		${WRKSRC}/etc/dispersion.conf.sample \
+		${WRKSRC}/etc/object-expirer.conf.sample \
+		${WRKSRC}/etc/object-server.conf.sample \
+		${WRKSRC}/etc/proxy-server.conf.sample \
+		${WRKSRC}/etc/swift.conf.sample \
+		${WRKSRC}/swift.egg-info/SOURCES.txt \
 		${WRKSRC}/swift/account/reaper.py \
 		${WRKSRC}/swift/cli/info.py \
 		${WRKSRC}/swift/cli/recon.py \
@@ -69,12 +79,14 @@ post-patch:
 		${WRKSRC}/swift/common/db_replicator.py \
 		${WRKSRC}/swift/common/manager.py \
 		${WRKSRC}/swift/common/middleware/account_quotas.py \
+		${WRKSRC}/swift/common/middleware/container_quotas.py \
 		${WRKSRC}/swift/common/middleware/container_sync.py \
 		${WRKSRC}/swift/common/middleware/gatekeeper.py \
 		${WRKSRC}/swift/common/middleware/list_endpoints.py \
 		${WRKSRC}/swift/common/middleware/memcache.py \
 		${WRKSRC}/swift/common/middleware/recon.py \
 		${WRKSRC}/swift/common/middleware/staticweb.py \
+		${WRKSRC}/swift/common/middleware/tempauth.py \
 		${WRKSRC}/swift/common/utils.py \
 		${WRKSRC}/swift/container/reconciler.py \
 		${WRKSRC}/swift/container/server.py \

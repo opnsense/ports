@@ -4,7 +4,7 @@
 
 PORTNAME=	gstreamer
 PORTVERSION=	0.10.13
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia
 MASTER_SITES=	http://gstreamer.freedesktop.org/src/gst-ffmpeg/:ffmpeg \
 		http://libav.org/releases/:libav
@@ -59,6 +59,14 @@ FFMPEG_CFLAGS_OFF+=-msse
 .endif
 
 .include <bsd.port.pre.mk>
+
+.if ${ARCH} == armv6
+CONFIGURE_ENV+=	ASFLAGS=-no-integrated-as
+CFLAGS=	-no-integrated-as
+BUILD_DEPENDS+=	${LOCALBASE}/bin/as:${PORTSDIR}/devel/binutils
+CONFIGURE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+MAKE_ENV+=	COMPILER_PATH=${LOCALBASE}/bin
+.endif
 
 .if ! ${PORT_OPTIONS:MFFMPEG}
 .if ${OSVERSION} < 900033 || ${ARCH} == ia64

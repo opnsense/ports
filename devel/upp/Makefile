@@ -33,6 +33,7 @@ MAKE_ARGS=	UPPOUT="../_out/" OutFile="../theide" \
 		-I${LOCALBASE}/include/gtk-2.0 -I${LOCALBASE}/include/atk-1.0 \
 		-I${LOCALBASE}/include/cairo -I${LOCALBASE}/include/gdk-pixbuf-2.0 \
 		-I${LOCALBASE}/include/pango-1.0 -I${LOCALBASE}/include/glib-2.0 \
+		-I${LOCALBASE}/lib/glib-2.0/include \
 		-I${LOCALBASE}/include/libpng -I/usr/include"
 
 PORTDATA=	bazaar examples reference tutorial uppsrc GCC.bm
@@ -49,7 +50,7 @@ PLIST_FILES=	bin/theide
 SDL_USE=	sql
 OPENGL_USE=	gl
 MYSQL_USE=	mysql=yes
-PHSQL_USE=	pgsql=yes
+PGSQL_USES=	pgsql
 
 .include <bsd.port.options.mk>
 

@@ -2,13 +2,14 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${JDK_UPDATE_VERSION}.${JDK_BUILD_NUMBER:S/^0//}
+PORTREVISION=	3
 CATEGORIES=	java devel
 MASTER_SITES=	http://download.java.net/openjdk/jdk${JDK_MAJOR_VERSION}/promoted/b${DIST_BUILD_NUMBER}/:jdk \
 		https://adopt-openjdk.ci.cloudbees.com/job/jtreg/${JTREG_JENKINS_BUILD}/artifact/:jtreg \
 		LOCAL/jkim:jdk,jtreg
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 DISTNAME=	${PORTNAME}-${JDK_MAJOR_VERSION}-src-b${DIST_BUILD_NUMBER}-03_mar_2014
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:jdk
+DISTFILES=	${DISTNAME}.zip:jdk
 
 MAINTAINER=	java@FreeBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
@@ -23,9 +24,9 @@ LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libgif.so:${PORTSDIR}/graphics/giflib
 RUN_DEPENDS=	javavm:${PORTSDIR}/java/javavmwrapper \
-		${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+		dejavu>0:${PORTSDIR}/x11-fonts/dejavu
 
-USES=		compiler:features dos2unix gmake iconv pkgconfig shebangfix zip
+USES=		compiler:features dos2unix gmake iconv pkgconfig shebangfix
 USE_AUTOTOOLS=	autoconf
 USE_XORG=	x11 xext xi xrender xt xtst
 
@@ -36,17 +37,37 @@ BUILD_DEPENDS+=	${UNZIP_CMD}:${PORTSDIR}/archivers/unzip
 ONLY_FOR_ARCHS=	i386 amd64
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
-DOS2UNIX_FILES=	jdk/src/share/classes/com/sun/org/apache/xml/internal/security/resource/xmlsecurity_en.properties \
-		jdk/src/bsd/doc/man/java.1 \
+DOS2UNIX_FILES= jdk/src/bsd/doc/man/java.1 \
 		jdk/src/bsd/doc/man/javac.1 \
+		jdk/src/bsd/doc/man/javadoc.1 \
 		jdk/src/bsd/doc/man/javap.1 \
+		jdk/src/bsd/doc/man/jcmd.1 \
+		jdk/src/bsd/doc/man/jjs.1 \
+		jdk/src/bsd/doc/man/jstat.1 \
+		jdk/src/bsd/doc/man/keytool.1 \
+		jdk/src/bsd/doc/man/policytool.1 \
 		jdk/src/linux/doc/man/java.1 \
 		jdk/src/linux/doc/man/javac.1 \
+		jdk/src/linux/doc/man/javadoc.1 \
 		jdk/src/linux/doc/man/javap.1 \
+		jdk/src/linux/doc/man/jcmd.1 \
+		jdk/src/linux/doc/man/jjs.1 \
+		jdk/src/linux/doc/man/jstat.1 \
+		jdk/src/linux/doc/man/keytool.1 \
+		jdk/src/linux/doc/man/policytool.1 \
+		jdk/src/share/classes/com/sun/org/apache/xml/internal/security/resource/xmlsecurity_en.properties \
 		jdk/src/solaris/doc/sun/man/man1/java.1 \
 		jdk/src/solaris/doc/sun/man/man1/javac.1 \
+		jdk/src/solaris/doc/sun/man/man1/javadoc.1 \
 		jdk/src/solaris/doc/sun/man/man1/javap.1 \
-		nashorn/test/script/jfx.js
+		jdk/src/solaris/doc/sun/man/man1/jcmd.1 \
+		jdk/src/solaris/doc/sun/man/man1/jjs.1 \
+		jdk/src/solaris/doc/sun/man/man1/jstat.1 \
+		jdk/src/solaris/doc/sun/man/man1/keytool.1 \
+		jdk/src/solaris/doc/sun/man/man1/policytool.1 \
+		nashorn/test/script/jfx.js \
+		nashorn/test/script/jfx/kaleidoscope.js \
+		nashorn/test/script/jfx/spread.js
 SHEBANG_FILES=	configure
 
 _MAKE_JOBS=	#
@@ -55,6 +76,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV=	LANG="C" LC_ALL="C"
 MAKE_ENV+=	CLASSPATH="" JAVA_HOME="" LD_LIBRARY_PATH="" MAKEFLAGS=""
 MAKE_ENV+=	IGNORE_OLD_CONFIG=true
+MAKE_ENV+=	COMPILER_WARNINGS_FATAL="false"
 
 JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-normal-server-${JDK_BUILD_TYPE}
 .if !defined(BUILD_JRE)
@@ -70,8 +92,8 @@ NO_CCACHE=		yes
 NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	8
-JDK_UPDATE_VERSION=	25
-JDK_BUILD_NUMBER=	17
+JDK_UPDATE_VERSION=	40
+JDK_BUILD_NUMBER=	25
 DIST_BUILD_NUMBER=	132
 JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
@@ -104,7 +126,7 @@ POLICY_DESC=		Install the Unlimited Strength Policy Files
 TZUPDATE_DESC=		Update the time zone data
 
 POLICY_CONFIGURE_ENABLE=unlimited-crypto
-TZUPDATE_RUN_DEPENDS=	${LOCALBASE}/share/java/zi:${PORTSDIR}/java/java-zoneinfo
+TZUPDATE_RUN_DEPENDS=	java-zoneinfo>0:${PORTSDIR}/java/java-zoneinfo
 
 JAVAVMS_COMMENT=	OpenJDK${JDK_MAJOR_VERSION}
 
@@ -119,10 +141,11 @@ DEBUGFAST_DESC=		Build for debugging (with optimizations)
 RELEASE_DESC=		Build for release (default)
 TEST_DESC=		Run regression tests
 
+RELEASE_BUILD_DEPENDS_OFF=	${LOCALBASE}/bin/objcopy:${PORTSDIR}/devel/binutils
 RELEASE_CONFIGURE_ON=	--disable-debug-symbols
 TEST_ALL_TARGET=	test
 TEST_CONFIGURE_ON=	--with-jtreg=${WRKDIR}/jtreg
-TEST_DISTFILES=		jtreg${JTREG_VERSION}-${JTREG_BUILD_NUMBER}.tar.gz:jtreg
+TEST_DISTFILES=		jtreg${JTREG_VERSION}-${JTREG_BUILD_NUMBER}${EXTRACT_SUFX}:jtreg
 .else
 CONFIGURE_ARGS+=	--disable-debug-symbols
 JAVAVMS_COMMENT+=	JRE
@@ -136,6 +159,9 @@ JDK_BUILD_TYPE=	slowdebug
 JDK_BUILD_TYPE=	fastdebug
 .else
 JDK_BUILD_TYPE=	release
+.endif
+.if empty(PORT_OPTIONS:MRELEASE)
+OBJCOPY=	${LOCALBASE}/bin/objcopy
 .endif
 
 .include <bsd.port.pre.mk>
@@ -157,10 +183,18 @@ BUILD_DEPENDS+=		${BOOTSTRAPJDKDIR}/bin/javac:${PORTSDIR}/java/openjdk7
 .endif
 
 .if ${COMPILER_TYPE} == clang
+.if ${COMPILER_VERSION} >= 35
+MAKE_ENV+=	COMPILER_WARNINGS_FATAL=false
+.endif
 MAKE_ENV+=	USE_CLANG=true
 .if ${COMPILER_FEATURES:Mlibc++}
 CONFIGURE_ENV=	LIBCXX="-lc++"
 .endif
+.endif
+
+# GCC is broken with PCH: https://lists.freebsd.org/pipermail/svn-src-all/2015-March/101722.html
+.if ${COMPILER_TYPE} == gcc
+MAKE_ARGS+=	USE_PRECOMPILED_HEADER=0
 .endif
 
 .if empty(ICONV_LIB)
@@ -189,8 +223,9 @@ post-patch:
 	    ${FILESDIR}/bsd.fontconfig.properties.in > \
 	    ${WRKSRC}/jdk/src/solaris/classes/sun/awt/fontconfigs/bsd.fontconfig.properties
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
-	    ${WRKSRC}/common/autoconf/toolchain.m4 \
+	    -e 's|%%OBJCOPY%%|${OBJCOPY}|' \
 	    ${WRKSRC}/configure \
+	    ${WRKSRC}/common/autoconf/toolchain.m4 \
 	    ${WRKSRC}/jdk/src/share/classes/com/sun/java/swing/plaf/gtk/Metacity.java \
 	    ${WRKSRC}/jdk/src/share/classes/sun/print/PSPrinterJob.java \
 	    ${WRKSRC}/jdk/src/solaris/classes/sun/nio/fs/BsdFileSystemProvider.java
@@ -228,11 +263,13 @@ do-install:
 	    ${FIND} bin jre/bin -type f -exec ${CHMOD} ${BINMODE} {} \; && \
 	    ${CHMOD} ${BINMODE} jre/lib/${ARCH}/jexec \
 	    jre/lib/${ARCH}/jspawnhelper lib/${ARCH}/jexec
+	@${ECHO} "@dir ${INSTALLDIR}/jre/lib/applet" >> ${TMPPLIST}
 .else
 	@cd ${JRE_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
 	@cd ${STAGEDIR}${INSTALLDIR} && \
 	    ${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \; && \
 	    ${CHMOD} ${BINMODE} lib/${ARCH}/jexec lib/${ARCH}/jspawnhelper
+	@${ECHO} "@dir ${INSTALLDIR}/lib/applet" >> ${TMPPLIST}
 .endif
 	@${ECHO} "@unexec ${LOCALBASE}/bin/unregistervm ${INSTALLDIR}/bin/java" >> ${TMPPLIST}
 	@${FIND} -s ${STAGEDIR}${INSTALLDIR} -not -type d | ${SORT} | \

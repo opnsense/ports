@@ -29,8 +29,8 @@ bin/morbo
 %%SITE_PERL%%/Mojo/IOLoop/Delay.pm
 %%SITE_PERL%%/Mojo/IOLoop/Server.pm
 %%SITE_PERL%%/Mojo/IOLoop/Stream.pm
-%%SITE_PERL%%/Mojo/IOLoop/server.crt
-%%SITE_PERL%%/Mojo/IOLoop/server.key
+%%SITE_PERL%%/Mojo/IOLoop/certs/server.crt
+%%SITE_PERL%%/Mojo/IOLoop/certs/server.key
 %%SITE_PERL%%/Mojo/JSON.pm
 %%SITE_PERL%%/Mojo/JSON/Pointer.pm
 %%SITE_PERL%%/Mojo/Loader.pm
@@ -62,7 +62,6 @@ bin/morbo
 %%SITE_PERL%%/Mojo/UserAgent/Server.pm
 %%SITE_PERL%%/Mojo/UserAgent/Transactor.pm
 %%SITE_PERL%%/Mojo/Util.pm
-%%SITE_PERL%%/Mojo/entities.txt
 %%SITE_PERL%%/Mojolicious.pm
 %%SITE_PERL%%/Mojolicious/Command.pm
 %%SITE_PERL%%/Mojolicious/Command/cgi.pm
@@ -90,6 +89,7 @@ bin/morbo
 %%SITE_PERL%%/Mojolicious/Guides/Growing.pod
 %%SITE_PERL%%/Mojolicious/Guides/Rendering.pod
 %%SITE_PERL%%/Mojolicious/Guides/Routing.pod
+%%SITE_PERL%%/Mojolicious/Guides/Tutorial.pod
 %%SITE_PERL%%/Mojolicious/Lite.pm
 %%SITE_PERL%%/Mojolicious/Plugin.pm
 %%SITE_PERL%%/Mojolicious/Plugin/Charset.pm
@@ -122,38 +122,8 @@ bin/morbo
 %%SITE_PERL%%/Mojolicious/public/mojo/notfound.png
 %%SITE_PERL%%/Mojolicious/public/mojo/pinstripe-dark.png
 %%SITE_PERL%%/Mojolicious/public/mojo/pinstripe-light.png
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-apollo.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-basic.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-clj.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-css.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-dart.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-erlang.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-go.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-hs.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-lisp.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-llvm.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-lua.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-matlab.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-ml.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-mumps.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-n.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-pascal.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-proto.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-r.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-rd.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-scala.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-sql.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-tcl.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-tex.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-vb.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-vhdl.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-wiki.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-xq.js
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/lang-yaml.js
 %%SITE_PERL%%/Mojolicious/public/mojo/prettify/prettify-mojo-dark.css
 %%SITE_PERL%%/Mojolicious/public/mojo/prettify/prettify-mojo-light.css
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/prettify.css
-%%SITE_PERL%%/Mojolicious/public/mojo/prettify/prettify.js
 %%SITE_PERL%%/Mojolicious/public/mojo/prettify/run_prettify.js
 %%SITE_PERL%%/Mojolicious/public/mojo/stripes.png
 %%SITE_PERL%%/Mojolicious/templates/development.html.ep
@@ -162,7 +132,6 @@ bin/morbo
 %%SITE_PERL%%/Mojolicious/templates/not_found.html.ep
 %%SITE_PERL%%/Mojolicious/templates/perldoc.html.ep
 %%SITE_PERL%%/Test/Mojo.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/Mojolicious/.packlist
 %%SITE_PERL%%/ojo.pm
 %%PERL5_MAN3%%/Mojo.3.gz
 %%PERL5_MAN3%%/Mojo::Asset.3.gz
@@ -250,6 +219,7 @@ bin/morbo
 %%PERL5_MAN3%%/Mojolicious::Guides::Growing.3.gz
 %%PERL5_MAN3%%/Mojolicious::Guides::Rendering.3.gz
 %%PERL5_MAN3%%/Mojolicious::Guides::Routing.3.gz
+%%PERL5_MAN3%%/Mojolicious::Guides::Tutorial.3.gz
 %%PERL5_MAN3%%/Mojolicious::Lite.3.gz
 %%PERL5_MAN3%%/Mojolicious::Plugin.3.gz
 %%PERL5_MAN3%%/Mojolicious::Plugin::Charset.3.gz
@@ -278,29 +248,3 @@ bin/morbo
 man/man1/hypnotoad.1.gz
 man/man1/mojo.1.gz
 man/man1/morbo.1.gz
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/Mojolicious
-@dirrmtry %%SITE_PERL%%/Test
-@dirrm %%SITE_PERL%%/Mojolicious/templates
-@dirrm %%SITE_PERL%%/Mojolicious/public/mojo/prettify
-@dirrm %%SITE_PERL%%/Mojolicious/public/mojo/jquery
-@dirrm %%SITE_PERL%%/Mojolicious/public/mojo
-@dirrm %%SITE_PERL%%/Mojolicious/public
-@dirrm %%SITE_PERL%%/Mojolicious/Validator
-@dirrm %%SITE_PERL%%/Mojolicious/Routes
-@dirrmtry %%SITE_PERL%%/Mojolicious/Plugin
-@dirrm %%SITE_PERL%%/Mojolicious/Guides
-@dirrm %%SITE_PERL%%/Mojolicious/Command/generate
-@dirrm %%SITE_PERL%%/Mojolicious/Command
-@dirrmtry %%SITE_PERL%%/Mojolicious
-@dirrm %%SITE_PERL%%/Mojo/UserAgent
-@dirrm %%SITE_PERL%%/Mojo/Transaction
-@dirrm %%SITE_PERL%%/Mojo/Server
-@dirrm %%SITE_PERL%%/Mojo/Reactor
-@dirrm %%SITE_PERL%%/Mojo/Message
-@dirrm %%SITE_PERL%%/Mojo/JSON
-@dirrm %%SITE_PERL%%/Mojo/IOLoop
-@dirrm %%SITE_PERL%%/Mojo/DOM
-@dirrm %%SITE_PERL%%/Mojo/Cookie
-@dirrm %%SITE_PERL%%/Mojo/Content
-@dirrm %%SITE_PERL%%/Mojo/Asset
-@dirrm %%SITE_PERL%%/Mojo

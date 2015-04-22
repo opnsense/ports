@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	twister-core
-PORTVERSION=	0.141008
+PORTVERSION=	0.9.29
+PORTEPOCH=	1
 CATEGORIES=	net-p2p
 
 MAINTAINER=	thierry@FreeBSD.org
@@ -21,22 +22,18 @@ OPTIONS_DEFINE=	DOCS
 USE_GITHUB=	yes
 GH_ACCOUNT=	miguelfreitas
 GH_PROJECT=	${PORTNAME}
-GH_TAGNAME=	${GH_COMMIT}
-GH_COMMIT=	377870f
+GH_TAGNAME=	v${PORTVERSION}
 
 USE_BDB=	yes
 WANT_BDB_VER=	48
 USE_OPENSSL=	yes
-USES=		gmake iconv
+USES=		autoreconf:build gmake iconv libtool
 
-USE_AUTOTOOLS=	libtoolize:env aclocal:env autoconf:env autoheader:env automake:env
 GNU_CONFIGURE=	yes
 CONFIGURE_WRKSRC=${WRKSRC}/libtorrent
 CONFIGURE_ARGS=	--with-libiconv			\
 		--with-boost=${LOCALBASE}	\
 		--with-boost-system=boost_system
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}"	\
-		PTHREAD_LIBS="${PTHREAD_LIBS}"
 MAKEFILE=	makefile.freebsd
 BUILD_WRKSRC=	${WRKSRC}/src
 MAKE_ENV=	BOOST_INCLUDE_PATH=${LOCALBASE}/include	\
@@ -53,6 +50,10 @@ PORTDOCS=	README.md
 .if (${OPSYS} == FreeBSD && ${OSVERSION} < 1000000)
 WITH_OPENSSL_PORT=	yes
 .endif
+
+post-patch:
+	@${REINPLACE_CMD} 's|%%PORTVERSION%%|${PORTVERSION}|'	\
+		${WRKSRC}/share/genbuild.sh
 
 pre-configure:
 	(cd ${CONFIGURE_WRKSRC} && ./autotool.sh)

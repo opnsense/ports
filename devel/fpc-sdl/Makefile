@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTVERSION=	0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel lang
 PKGNAMESUFFIX=	-sdl
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER=	freebsd-fpc@FreeBSD.org
 COMMENT=	Free Pascal interface to SDL library
 
 USE_FPC=	pthreads x11

@@ -3,11 +3,12 @@
 
 PORTNAME=	Catalyst-Plugin-Params-Nested
 PORTVERSION=	0.05
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Nested params (ala Ruby on Rails or PHP-style param arrays)
 
 LICENSE=	ART10 GPLv1

@@ -1,4 +1,5 @@
 bin/bibtool
+lib/BibTool/biblatex.rsc
 lib/BibTool/braces.rsc
 lib/BibTool/check_y.rsc
 lib/BibTool/default.rsc
@@ -10,4 +11,3 @@ lib/BibTool/opt.rsc
 lib/BibTool/sort_fld.rsc
 lib/BibTool/tex_def.rsc
 man/man1/bibtool.1.gz
-@dirrm lib/BibTool

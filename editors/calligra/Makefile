@@ -2,7 +2,7 @@
 
 PORTNAME=	calligra
 PORTVERSION=	${CALLIGRA_VERSION}
-PORTREVISION=	12
+PORTREVISION=	15
 CATEGORIES=	editors kde
 MASTER_SITES=	${MASTER_SITE_KDE}
 MASTER_SITE_SUBDIR=	${CALLIGRA_BRANCH}/${PORTNAME}-${PORTVERSION}/
@@ -11,7 +11,7 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE graphic art and office suite
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
 		libboost_thread.so:${PORTSDIR}/devel/boost-libs \
 		libqca.so:${PORTSDIR}/devel/qca \
@@ -38,7 +38,7 @@ CONFLICTS_BUILD=qt-3.*
 
 USE_GL=		glew
 USE_GNOME=	glib20 libxml2 libxslt
-USE_KDE4=	kactivities kdehier kdelibs kdeprefix libkdcraw nepomuk-core \
+USE_KDE4=	kactivities kdelibs kdeprefix libkdcraw nepomuk-core \
 		okular pimlibs attica automoc4 soprano
 USE_QT4=	corelib dbus designer_build gui opengl phonon porting_build \
 		qt3support qtestlib_build script sql svg webkit xml xmlpatterns \
@@ -70,7 +70,7 @@ MYSQL_CMAKE_OFF=-DWITH_MySQL:BOOL=FALSE
 
 PGSQL_DESC=	PostgreSQL database support in Kexi
 PGSQL_LIB_DEPENDS=libpqxx-3.1.so:${PORTSDIR}/databases/postgresql-libpqxx3
-PGSQL_USE=	PGSQL=yes
+PGSQL_USES=	pgsql
 PGSQL_CMAKE_OFF=-DWITH_PostgreSQL:BOOL=FALSE
 
 SYBASE_DESC=	Sybase database support in Kexi

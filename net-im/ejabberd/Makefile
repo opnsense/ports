@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	ejabberd
-PORTVERSION=	14.07
-PORTREVISION=	2
+PORTVERSION=	15.02
 CATEGORIES=	net-im
 MASTER_SITES=	http://www.process-one.net/downloads/${PORTNAME}/${PORTVERSION}/:p1 \
 		http://distfiles.pirateparty.in/%SUBDIR%/:deps \
 		${MASTER_SITE_LOCAL:S/$/:deps/}
 MASTER_SITE_SUBDIR=	ashish/:deps
-DISTFILES+=	${PORTNAME}-${PORTVERSION}.tgz:p1 ejabberd-deps-1.tar.xz:deps
+DISTFILES+=	${PORTNAME}-${PORTVERSION}.tgz:p1 ejabberd-deps-2.tar.xz:deps
 
 MAINTAINER=	ashish@FreeBSD.org
 COMMENT=	Free and Open Source distributed fault-tolerant Jabber server
@@ -27,11 +26,12 @@ USERS=		ejabberd
 GROUPS=		${USERS}
 
 GNU_CONFIGURE=	yes
-USES=		gmake pkgconfig
+USES=		cpe gmake pkgconfig
 USE_RC_SUBR=	${PORTNAME}
 NOPRECIOUSMAKEVARS=	yes
+CPE_VENDOR=	process-one
 
-OPTIONS_DEFINE=	ODBC PAM DOCS HTTP JSON MYSQL PGSQL LAGER ICONV
+OPTIONS_DEFINE=	ODBC PAM DOCS JSON MYSQL PGSQL LAGER ICONV RIAK
 OPTIONS_DEFAULT=	LAGER ICONV
 
 MAKE_ENV=	PORTVERSION=${PORTVERSION}
@@ -49,15 +49,15 @@ SUB_LIST=	PORTNAME=${PORTNAME} PORTVERSION=${PORTVERSION} \
 		SHAREOWN=${SHAREOWN} SHAREGRP=${SHAREGRP}
 
 OPTIONS_SUB=		yes
-HTTP_DESC=	HTTP support
 LAGER_DESC=	LAGER logger
+RIAK_DESC=	Riak database support
 PAM_CONFIGURE_ENABLE=	pam
 ODBC_CONFIGURE_ENABLE=	odbc
 LAGER_CONFIGURE_ENABLE=	lager
-HTTP_CONFIGURE_ENABLE=	http
 JSON_CONFIGURE_ENABLE=	json
 MYSQL_CONFIGURE_ENABLE=	mysql
 PGSQL_CONFIGURE_ENABLE=	pgsql
+RIAK_CONFIGURE_ENABLE=	riak
 ICONV_CONFIGURE_ENABLE=	iconv
 ICONV_USES=		iconv:wchar_t
 ICONV_LDFLAGS=		${ICONV_LIB}
@@ -72,6 +72,7 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/usr/local,${LOCALBASE},g' ${WRKSRC}/configure
+	@${REINPLACE_CMD} -e 's,%%LOCALBASE%%,${LOCALBASE},g' ${WRKSRC}/deps/p1_iconv/rebar.config
 
 post-install:
 .if ${PORT_OPTIONS:MPAM}

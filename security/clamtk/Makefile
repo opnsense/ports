@@ -3,6 +3,7 @@
 
 PORTNAME=	clamtk
 PORTVERSION=	4.45
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/ClamTk/${PORTVERSION}
 
@@ -23,10 +24,9 @@ RUN_DEPENDS=	p5-Config-Tiny>=2.12:${PORTSDIR}/devel/p5-Config-Tiny \
 		p5-Gtk2>=1.144:${PORTSDIR}/x11-toolkits/p5-Gtk2
 
 NO_BUILD=	yes
-USES=		gettext:run perl5
+USES=		gettext-runtime:run perl5 shebangfix
 USE_PERL5=	run
-
-MAN1=		${PORTNAME}.1
+SHEBANG_FILES=	clamtk
 
 LINGUAS=	`${LS} ${WRKSRC}/po/*.mo | ${XARGS} ${BASENAME} -s .mo`
 
@@ -44,8 +44,8 @@ post-patch:
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
-	@${MKDIR} ${STAGEDIR}${SITE_PERL}/ClamTk
-	${INSTALL_DATA} ${WRKSRC}/lib/*.pm ${STAGEDIR}${SITE_PERL}/ClamTk
+	@${MKDIR} ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/ClamTk
+	${INSTALL_DATA} ${WRKSRC}/lib/*.pm ${STAGEDIR}${PREFIX}/${SITE_PERL_REL}/ClamTk
 	${INSTALL_DATA} ${WRKSRC}/${PORTNAME}.desktop ${STAGEDIR}${PREFIX}/share/applications
 	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.png ${STAGEDIR}${PREFIX}/share/pixmaps
 	${INSTALL_DATA} ${WRKSRC}/images/${PORTNAME}.xpm ${STAGEDIR}${PREFIX}/share/pixmaps

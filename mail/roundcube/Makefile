@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	roundcube
-DISTVERSION=	1.0.3
+DISTVERSION=	1.1.1
 PORTEPOCH=	1
 CATEGORIES?=	mail www
 MASTER_SITES=	SF/${PORTNAME}mail/${PORTNAME}mail/${DISTVERSION:tu}
-DISTNAME=	${PORTNAME}mail-${DISTVERSION}
+DISTNAME=	${PORTNAME}mail-${DISTVERSION}-complete
 
 MAINTAINER?=	ale@FreeBSD.org
 COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
@@ -13,9 +13,14 @@ COMMENT=	Fully skinnable XHTML/CSS webmail written in PHP
 LICENSE=	GPLv3
 
 NO_BUILD=	yes
+WRKSRC=		${WRKDIR}/${PORTNAME}mail-${DISTVERSION}
 
-RCUBECOMP=	SQL config index.php installer logs plugins program robots.txt skins temp
+RCUBECOMP=	SQL config index.php installer logs plugins program robots.txt skins temp vendor
 PORTDOCS=	CHANGELOG INSTALL README.md UPGRADING
+
+USES=		cpe
+CPE_PRODUCT=	webmail
+CPE_VENDOR=	roundcube
 
 WANT_PHP_WEB=	yes
 USE_PHP=	pcre mbstring session iconv dom xml json intl zip filter

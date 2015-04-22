@@ -5,8 +5,7 @@ PORTNAME=	libquvi
 PORTVERSION=	0.4.1
 PORTREVISION=	4
 CATEGORIES=	multimedia devel
-MASTER_SITES=	SF/quvi/${PORTVERSION:R}/${PORTNAME}/ \
-		GOOGLE_CODE
+MASTER_SITES=	SF/quvi/${PORTVERSION:R}/${PORTNAME}/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Cross-platform library for parsing flash media stream URLs
@@ -29,7 +28,7 @@ INSTALL_TARGET=	install-strip
 USES=		iconv libtool pathfix pkgconfig tar:xz
 USE_LDCONFIG=	yes
 
-PROJECTHOST=	quvi
+PORTDOCS=	*
 
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
 LUAJIT_USES_OFF=	lua

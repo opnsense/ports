@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	lazarus
-PORTVERSION=	1.2.4
-PORTREVISION?=	1
+PORTVERSION=	1.2.6
+PORTREVISION?=	0
 CATEGORIES=	editors devel
 MASTER_SITES=	SF/${PORTNAME}/Lazarus%20Zip%20_%20GZip/Lazarus%20${PORTVERSION} \
 		${MASTER_SITE_LOCAL:S|$|acm/freepascal/|}
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/$/-0/}
 DIST_SUBDIR=	freepascal
 
-MAINTAINER?=	acm@FreeBSD.org
+MAINTAINER?=	freebsd-fpc@FreeBSD.org
 COMMENT?=	A portable Delphi-like IDE for the FreePascal compiler
 
 BUILD_DEPENDS?=	#
@@ -132,6 +132,9 @@ pre-install:
 
 	@${RM} -f ${PLIST}
 	@${RM} -f ${WRKSRC}/lcl/units
+	@${RM} -r ${WRKSRC}/components/chmhelp/lhelp/lhelp.app/Contents/MacOS \
+		${WRKSRC}/lazarus.app/Contents/MacOS \
+		${WRKSRC}/lazarus.app/Contents/Resources/startlazarus.app/Contents/MacOS
 
 .	for FILE in bin/lazarus bin/lazbuild
 		@${ECHO_CMD} ${FILE} >> ${PLIST}
@@ -142,20 +145,16 @@ pre-install:
 
 	@${ECHO_CMD} "%%DATADIR%%/docs" >> ${PLIST}
 	@cd ${WRKDIR}/docs && \
-		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%DOCSDIR%%/|' >> ${PLIST} && \
-			${FIND} * -type d | ${SORT} -r | ${SED} -e 's|^|@dirrm %%DOCSDIR%%/|' >> ${PLIST}
-	@${ECHO_CMD} "@dirrm %%DOCSDIR%%" >> ${PLIST}
+		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%DOCSDIR%%/|' >> ${PLIST}
 
 	@${ECHO_CMD} "%%DATADIR%%/examples" >> ${PLIST}
 	@cd ${WRKDIR}/examples && \
 		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%EXAMPLESDIR%%/|' >> ${PLIST} && \
-			${FIND} * -type d | ${SORT} -r | ${SED} -e 's|^|@dirrm %%EXAMPLESDIR%%/|' >> ${PLIST}
-	@${ECHO_CMD} "@dirrm %%EXAMPLESDIR%%" >> ${PLIST}
+		${FIND} * -type d -empty | ${SORT} | ${SED} -e 's|^|@dir %%EXAMPLESDIR%%/|' >> ${PLIST}
 
 	@cd ${WRKSRC} && \
 		${FIND} * -type f | ${SORT} | ${SED} -e 's|^|%%DATADIR%%/|' >> ${PLIST} && \
-			${FIND} * -type d | ${SORT} -r | ${SED} -e 's|^|@dirrmtry %%DATADIR%%/|' >> ${PLIST}
-	@${ECHO_CMD} "@dirrmtry %%DATADIR%%" >> ${PLIST}
+		${FIND} * -type d -empty | ${SORT} | ${SED} -e 's|^|@dir %%DATADIR%%/|' >> ${PLIST}
 
 do-install:
 .for DIRE in components converter debugger designer doceditor ide images install languages lazarus.app lcl \

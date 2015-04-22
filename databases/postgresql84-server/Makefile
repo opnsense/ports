@@ -3,7 +3,7 @@
 
 PORTNAME?=	postgresql
 DISTVERSION?=	8.4.22
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL
 MASTER_SITE_SUBDIR=	source/v${DISTVERSION}
@@ -20,7 +20,12 @@ CONFLICTS?=	${PORTNAME}[^${PORTVERSION:R:R}]?-client* \
 WRKSRC=		${WRKDIR}/postgresql-${DISTVERSION}
 DIST_SUBDIR=	postgresql
 
-ICU_PATCHFILE?=	pg-8421-icu-2014-06-09.diff.gz
+# EOL was reached in July 2014
+# http://www.postgresql.org/support/versioning/
+DEPRECATED=	"EOL was reached in July 2014"
+EXPIRATION_DATE=2015-05-10
+
+ICU_PATCHFILE?=	pg-8421-icu-2015-04-18.diff.gz
 
 UNIQUENAME?=	${PORTNAME}${DISTVERSION:R:S/.//}
 
@@ -41,9 +46,9 @@ CONFIGURE_ARGS+=--with-libraries=${PREFIX}/lib \
 		--with-includes=${PREFIX}/include \
 		--enable-thread-safety
 CONFIGURE_ENV+=	INCLUDES="${INCLUDES}" \
-		PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" \
+		PTHREAD_LIBS="-lpthread" \
 		LDFLAGS_SL="${LDFLAGS_SL}"
+LDFLAGS+=	-lpthread
 
 PLIST=		${PKGDIR}/pkg-plist${COMPONENT}
 
@@ -55,6 +60,7 @@ INSTALL_DIRS?=	${BUILD_DIRS}
 
 .if !defined(CLIENT_ONLY) && !defined(SLAVE_ONLY)
 SERVER_ONLY=	yes
+PORTREVISION=	2
 COMPONENT=	-server
 USE_RC_SUBR=	postgresql
 USES+=		pgsql:${DISTVERSION:C/([0-9][0-9]*\.[0-9][0-9]*).*/\1/g}

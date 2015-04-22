@@ -3,7 +3,7 @@
 
 PORTNAME=	DJabberd
 PORTVERSION=	0.85
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MART
@@ -22,6 +22,8 @@ BUILD_DEPENDS=	p5-Danga-Socket>=0:${PORTSDIR}/devel/p5-Danga-Socket \
 		p5-Unicode-Stringprep>=0:${PORTSDIR}/converters/p5-Unicode-Stringprep
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 TEST_DEPENDS=	p5-Digest-SHA1>=0:${PORTSDIR}/security/p5-Digest-SHA1
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 USES=		perl5
 USE_PERL5=	configure

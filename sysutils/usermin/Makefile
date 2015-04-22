@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	usermin
-PORTVERSION=	1.600
+PORTVERSION=	1.650
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.webmin.com/uupdates/:up \
 		SF/webadmin/${PORTNAME}/${PORTVERSION}:sf \
@@ -18,7 +18,8 @@ RUN_DEPENDS=	p5-Net-SSLeay>=0:${PORTSDIR}/security/p5-Net-SSLeay \
 		p5-Authen-PAM>=0:${PORTSDIR}/security/p5-Authen-PAM
 
 NO_BUILD=	yes
-USES=		perl5
+USES=		cpe perl5
+CPE_VENDOR=	webmin
 USE_RC_SUBR=	usermin
 SUB_LIST=	PERL5=${PERL}
 SUB_FILES=	pkg-message

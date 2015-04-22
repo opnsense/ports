@@ -1,7 +1,5 @@
 %%EMACS_LIBDIR_WITH_VER%%/etc/navi2ch/icons/plugged.xpm
 %%EMACS_LIBDIR_WITH_VER%%/etc/navi2ch/icons/unplugged.xpm
-@dirrm %%EMACS_LIBDIR_WITH_VER%%/etc/navi2ch/icons
-@dirrm %%EMACS_LIBDIR_WITH_VER%%/etc/navi2ch
 %%LISPDIR%%/navi2ch/navi2ch-article.el
 %%LISPDIR%%/navi2ch/navi2ch-article.elc
 %%LISPDIR%%/navi2ch/navi2ch-articles.el
@@ -69,4 +67,7 @@
 %%LISPDIR%%/navi2ch/navi2ch-xmas.elc
 %%LISPDIR%%/navi2ch/navi2ch.el
 %%LISPDIR%%/navi2ch/navi2ch.elc
-@dirrm %%LISPDIR%%/navi2ch
+%%LISPDIR%%/navi2ch/navi2ch-p2.el
+%%LISPDIR%%/navi2ch/navi2ch-p2.elc
+%%LISPDIR%%/navi2ch/navi2ch-thumbnail.el
+%%LISPDIR%%/navi2ch/navi2ch-thumbnail.elc

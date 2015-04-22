@@ -3,8 +3,10 @@
 
 PORTNAME=	umph
 PORTVERSION=	0.2.5
+PORTREVISION=	1
 CATEGORIES=	multimedia
-MASTER_SITES=	GOOGLE_CODE
+MASTER_SITES=	GOOGLE_CODE \
+		LOCAL/sunpoet
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	YouTube video playlist parser for cclive and alike tools
@@ -19,9 +21,6 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 USE_PERL5=	configure
 USES=		perl5
 
-PLIST_DIRS=	${SITE_PERL_REL}/${PERL_ARCH}/auto/umph
-PLIST_FILES=	bin/umph \
-		${SITE_PERL_REL}/${PERL_ARCH}/auto/umph/.packlist \
-		man/man1/umph.1.gz
+PLIST_FILES=	bin/umph man/man1/umph.1.gz
 
 .include <bsd.port.mk>

@@ -16,10 +16,15 @@ LIB_DEPENDS=	libbotan-1.10.so:${PORTSDIR}/security/botan110 \
 		libsqlite3.so:${PORTSDIR}/databases/sqlite3
 
 GNU_CONFIGURE=	yes
+# !!!!!!!!!!!!
+# Changing the localstatedir is a huge POLA violation. Please leave it alone.
+# !!!!!!!!!!!!!!
 CONFIGURE_ARGS=	--with-botan=${LOCALBASE} --with-sqlite3=${LOCALBASE} \
 		--localstatedir=/var
 INSTALL_TARGET=	install-strip
 USES=		libtool
 USE_LDCONFIG=	yes
+
+CONFLICTS=	softhsm2-2.0.*
 
 .include <bsd.port.mk>

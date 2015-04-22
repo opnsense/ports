@@ -3,7 +3,7 @@
 
 PORTNAME=	cfengine
 PORTVERSION=	3.5.3
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	sysutils
 MASTER_SITES=	https://s3.amazonaws.com/cfengine.package-repos/tarballs/
 
@@ -12,6 +12,8 @@ MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Systems administration tool for networks
 
 LICENSE=	GPLv3
+
+CPE_VENDOR=	gnu
 
 LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 
@@ -25,7 +27,7 @@ CONFLICTS=	cfengine-[234]*
 
 USE_RC_SUBR=	cf-execd cf-serverd cf-monitord
 
-USES=		gmake libtool
+USES=		cpe gmake libtool
 USE_LDCONFIG=	yes
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
@@ -49,7 +51,7 @@ TOKYOCABINET_DESC=	Enable TokyoCabinet database backend
 QDBM_DESC=	Enable QDBM database backend
 OPTIONS_DEFAULT=TOKYOCABINET
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MTOKYOCABINET}
 CONFIGURE_ARGS+=	--with-tokyocabinet=${LOCALBASE}
@@ -62,9 +64,8 @@ LIB_DEPENDS+=	libqdbm.so:${PORTSDIR}/databases/qdbm
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=		yes
+USES+=			pgsql
 CONFIGURE_ARGS+=	--with-postgresql=${LOCALBASE}
-LIB_DEPENDS+=		libpq.so:${PORTSDIR}/databases/postgresql${PGSQL_VER}-client
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
@@ -79,4 +80,4 @@ CONFIGURE_ARGS+=	--with-libvirt=${LOCALBASE}
 LIB_DEPENDS+=		libvirt.so:${PORTSDIR}/devel/libvirt
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

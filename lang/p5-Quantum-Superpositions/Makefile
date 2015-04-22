@@ -3,11 +3,12 @@
 
 PORTNAME=	Quantum-Superpositions
 PORTVERSION=	2.02
+PORTREVISION=	1
 CATEGORIES=	lang science perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	QM-like superpositions in Perl
 
 LICENSE=	ART10 GPLv1

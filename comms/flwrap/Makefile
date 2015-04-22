@@ -9,7 +9,7 @@ MASTER_SITES=	http://www.w1hkj.com/downloads/flwrap/ \
 		${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	db
 
-MAINTAINER=	db@FreeBSD.org
+MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Flwrap is a companion utility for fldigi
 
 LICENSE=	GPLv2
@@ -23,12 +23,11 @@ CONFIGURE_ENV=	FLTK_CONFIG="${LOCALBASE}/bin/fltk-config"
 OPTIONS_DEFINE=	DOCS
 
 post-configure:
-	@${REINPLACE_CMD} -e 's|-pthread|${PTHREAD_LIBS}|' \
-		-e 's|^CPPFLAGS|#CPPFLAGS|' \
+	@${REINPLACE_CMD} -e 's|^CPPFLAGS|#CPPFLAGS|' \
 		${WRKSRC}/src/Makefile
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	@${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

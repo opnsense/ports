@@ -10,6 +10,7 @@
 %%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qrawwebview_p.h
 %%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qrawwebview_p_p.h
 %%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qtwebsecurityorigin_p.h
+%%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qwebchannelwebkittransport_p.h
 %%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qwebdatabase_p.h
 %%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qwebdownloaditem_p.h
 %%QT_INCDIR%%/QtWebKit/%%FULLVER%%/QtWebKit/private/qwebdownloaditem_p_p.h
@@ -100,7 +101,6 @@
 %%QT_MKSPECDIR%%/modules/qt_lib_webkit_private.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_webkitwidgets.pri
 %%QT_MKSPECDIR%%/modules/qt_lib_webkitwidgets_private.pri
-%%QT_PLUGINDIR%%/webkit/libplatformplugin.so
 %%QT_QMLDIR%%/QtWebKit/experimental/libqmlwebkitexperimentalplugin.so
 %%QT_QMLDIR%%/QtWebKit/experimental/qmldir
 %%QT_QMLDIR%%/QtWebKit/libqmlwebkitplugin.so

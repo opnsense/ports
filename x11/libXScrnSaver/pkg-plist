@@ -1,6 +1,5 @@
 include/X11/extensions/scrnsaver.h
 lib/libXss.a
-lib/libXss.la
 lib/libXss.so
 lib/libXss.so.1
 lib/libXss.so.1.0.0
@@ -17,4 +16,3 @@ man/man3/XScreenSaverSetAttributes.3.gz
 man/man3/XScreenSaverSuspend.3.gz
 man/man3/XScreenSaverUnregister.3.gz
 man/man3/XScreenSaverUnsetAttributes.3.gz
-@dirrmtry include/X11/extensions

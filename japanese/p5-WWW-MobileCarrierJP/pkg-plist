@@ -1,5 +1,4 @@
 bin/www-mobilecarrierjp-dump_all.pl
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/WWW/MobileCarrierJP/.packlist
 %%SITE_PERL%%/WWW/MobileCarrierJP/AirHPhone/CIDR.pm
 %%SITE_PERL%%/WWW/MobileCarrierJP/DoCoMo/Display.pm
 %%SITE_PERL%%/WWW/MobileCarrierJP/DoCoMo/Flash.pm
@@ -51,12 +50,3 @@ bin/www-mobilecarrierjp-dump_all.pl
 %%PERL5_MAN3%%/WWW::MobileCarrierJP::Softbank::Service.3.gz
 %%PERL5_MAN3%%/WWW::MobileCarrierJP::ThirdForce::UserAgent.3.gz
 man/man1/www-mobilecarrierjp-dump_all.pl.1.gz
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/WWW/MobileCarrierJP
-@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/WWW
-@dirrmtry %%SITE_PERL%%/WWW/MobileCarrierJP/AirHPhone
-@dirrmtry %%SITE_PERL%%/WWW/MobileCarrierJP/DoCoMo
-@dirrmtry %%SITE_PERL%%/WWW/MobileCarrierJP/EZWeb
-@dirrmtry %%SITE_PERL%%/WWW/MobileCarrierJP/ThirdForce
-@dirrmtry %%SITE_PERL%%/WWW/MobileCarrierJP/Softbank
-@dirrmtry %%SITE_PERL%%/WWW/MobileCarrierJP
-@dirrmtry %%SITE_PERL%%/WWW

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	Geo-Coder-Geocoder-US
-PORTVERSION=	0.004
+PORTVERSION=	0.005
 CATEGORIES=	misc geography perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:WYANT
@@ -18,6 +18,8 @@ BUILD_DEPENDS=	p5-Text-CSV>=0:${PORTSDIR}/textproc/p5-Text-CSV \
 		p5-URI>=0:${PORTSDIR}/net/p5-URI \
 		p5-libwww>=0:${PORTSDIR}/www/p5-libwww
 RUN_DEPENDS:=	${BUILD_DEPENDS}
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 USE_PERL5=	configure
 USES=		perl5

@@ -1,4 +1,4 @@
---- doc/CMakeLists.txt.orig	2013-08-04 06:20:27 UTC
+--- doc/CMakeLists.txt.orig	2014-10-11 11:24:38 UTC
 +++ doc/CMakeLists.txt
 @@ -24,7 +24,7 @@ ADD_CUSTOM_COMMAND(
    DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/stellarium.1

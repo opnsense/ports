@@ -55,6 +55,7 @@
 %%WWWDIR_REL%%/wwwroot/js/portinfo.js
 %%WWWDIR_REL%%/wwwroot/js/racktables.js
 %%WWWDIR_REL%%/wwwroot/js/slb_editor.js
+%%WWWDIR_REL%%/wwwroot/js/tabindex_auto.js
 %%WWWDIR_REL%%/wwwroot/js/tag-cb.js
 %%WWWDIR_REL%%/wwwroot/js/tag-it-local.js
 %%WWWDIR_REL%%/wwwroot/js/tag-it.js
@@ -172,13 +173,4 @@
 %%WWWDIR_REL%%/wwwroot/pix/tango-view-refresh-32x32.png
 %%WWWDIR_REL%%/wwwroot/pix/unchecked.png
 %%WWWDIR_REL%%/wwwroot/pix/virtualresources.png
-@dirrm %%WWWDIR_REL%%/wwwroot/css
-@dirrm %%WWWDIR_REL%%/wwwroot/inc
-@dirrm %%WWWDIR_REL%%/wwwroot/js/codemirror
-@dirrm %%WWWDIR_REL%%/wwwroot/js
-@dirrm %%WWWDIR_REL%%/wwwroot/pix/jquery-ui-1.8.22.redmond
-@dirrm %%WWWDIR_REL%%/wwwroot/pix
-@dirrmtry %%WWWDIR_REL%%/gateways
-@dirrmtry %%WWWDIR_REL%%/wwwroot
-@dirrmtry %%WWWDIR_REL%%
 @unexec if [ -d %D/%%WWWDIR_REL%% ]; then echo "==> If you are permanently removing this port, you should do a ``rm -rf %%WWWDIR%%/`` to remove any configuration files left."; fi

@@ -6,16 +6,17 @@ PORTVERSION=	1.0.2
 CATEGORIES=	devel pear
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
-EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Bytecode compiler extension
 
+LICENSE=	PHP202
+
+USES=		tar:tgz
 USE_PHP=	bz2
 USE_PHPEXT=	yes
-DEFAULT_PHP_VER=53
-IGNORE_WITH_PHP=5
+IGNORE_WITH_PHP=5 56
 
 CONFIGURE_ARGS=	--enable-bcompiler
 

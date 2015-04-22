@@ -1,18 +1,33 @@
---- gyp/common.gypi.orig	2014-08-31 03:36:19.000000000 +0900
-+++ gyp/common.gypi	2014-09-17 04:33:49.000000000 +0900
-@@ -171,9 +171,9 @@
+--- gyp/common.gypi.orig	2015-02-15 04:18:51.000000000 +0900
++++ gyp/common.gypi	2015-02-17 18:08:07.000000000 +0900
+@@ -161,9 +161,9 @@
        ['target_platform=="Linux"', {
          # enable_gtk_renderer represents if mozc_renderer is supported on Linux
          # or not.
--        'compiler_target': 'gcc',
+-        'compiler_target': 'clang',
 +        'compiler_target': '<(compiler_target)',
-         'compiler_target_version_int': 406,  # GCC 4.6 or higher
--        'compiler_host': 'gcc',
+         'compiler_target_version_int': 305,  # Clang 3.5 or higher
+-        'compiler_host': 'clang',
 +        'compiler_host': '<(compiler_host)',
-         'compiler_host_version_int': 406,  # GCC 4.6 or higher
+         'compiler_host_version_int': 305,  # Clang 3.5 or higher
          'enable_gtk_renderer%': 1,
        }, {  # else
-@@ -631,17 +631,20 @@
+@@ -208,6 +208,14 @@
+     # installed. This option is only for Linux.
+     'server_dir%': '/usr/lib/mozc',
+ 
++    # renderer_dir represents the directory where mozc_renderer is
++    # installed. This option is only for Linux.
++    'renderer_dir%': '/usr/lib/mozc',
++
++    # tool_dir represents the directory where mozc_tool is
++    # installed. This option is only for Linux.
++    'tool_dir%': '/usr/lib/mozc',
++
+     # Represents the directory where the source code of protobuf is
+     # extracted. This value is ignored when 'use_libprotobuf' is 1.
+     'protobuf_root': '<(third_party_dir)/protobuf',
+@@ -621,17 +629,20 @@
            ['compiler_target=="clang"', {
              'cflags': [
                '-Wtype-limits',
@@ -36,7 +51,7 @@
              ],
            }],
          ],
-@@ -651,17 +654,20 @@
+@@ -641,17 +652,20 @@
            ['compiler_host=="clang"', {
              'cflags': [
                '-Wtype-limits',
@@ -60,7 +75,7 @@
              ],
            }],
          ],
-@@ -759,16 +765,27 @@
+@@ -744,16 +758,27 @@
        ['OS=="linux"', {
          'defines': [
            'OS_LINUX',

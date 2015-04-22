@@ -1,12 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	libslang2
-PORTVERSION=	2.2.4
-PORTREVISION=	6
+PORTVERSION=	2.3.0
 CATEGORIES=	devel
-MASTER_SITES=	ftp://space.mit.edu/pub/davis/slang/v${PORTVERSION:R}/ \
-		ftp://ftp.fu-berlin.de/pub/unix/misc/slang/v${PORTVERSION:R}/ \
-		ftp://ftp.ntua.gr/pub/lang/slang/slang/v${PORTVERSION:R}/
+MASTER_SITES=	http://www.jedsoft.org/releases/slang/
 DISTNAME=	slang-${PORTVERSION}
 
 MAINTAINER=	garga@FreeBSD.org
@@ -41,7 +38,7 @@ PORTDOCS=	*
 PCRE_CONFIGURE_WITH=	pcre
 PCRE_LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 PNG_CONFIGURE_WITH=	png
-PNG_LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 ICONV_USES=		iconv
 ONIG_CONFIGURE_WITH=	onig
 ONIG_LIB_DEPENDS=	libonig.so:${PORTSDIR}/devel/oniguruma4
@@ -67,5 +64,6 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
 .endfor
 	(cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/slsh
 
 .include <bsd.port.post.mk>

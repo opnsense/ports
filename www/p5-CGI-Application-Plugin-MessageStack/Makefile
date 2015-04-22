@@ -3,11 +3,12 @@
 
 PORTNAME=	CGI-Application-Plugin-MessageStack
 PORTVERSION=	0.34
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Message stack for your CGI::Application
 
 LICENSE=	ART10 GPLv1

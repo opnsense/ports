@@ -1,17 +1,19 @@
+@comment bin/README
+@comment bin/bdf2gdfont.PLS
 bin/bdf2gdfont.pl
+@comment bin/bdftogd
+@comment bin/cvtbdf.pl
+%%SITE_ARCH%%/GD.pm
+%%SITE_ARCH%%/GD/Group.pm
+%%SITE_ARCH%%/GD/Image.pm
+%%SITE_ARCH%%/GD/Polygon.pm
+%%SITE_ARCH%%/GD/Polyline.pm
+%%SITE_ARCH%%/GD/Simple.pm
+%%SITE_ARCH%%/auto/GD/GD.so
 %%PERL5_MAN3%%/GD.3.gz
 %%PERL5_MAN3%%/GD::Image.3.gz
 %%PERL5_MAN3%%/GD::Polygon.3.gz
 %%PERL5_MAN3%%/GD::Polyline.3.gz
 %%PERL5_MAN3%%/GD::Simple.3.gz
-%%SITE_PERL%%/%%PERL_ARCH%%/GD.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/GD/Group.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/GD/Image.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/GD/Polygon.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/GD/Polyline.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/GD/Simple.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/GD/.packlist
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/GD/GD.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/GD/autosplit.ix
-%%SITE_PERL%%/%%PERL_ARCH%%/qd.pl
+@comment man/man1/bdf2gdfont.PLS.1.gz
 man/man1/bdf2gdfont.pl.1.gz

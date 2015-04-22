@@ -2,6 +2,7 @@
 
 PORTNAME=	gmic
 PORTVERSION=	1.6.0.0
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/older_versions/ \
 		SF/${PORTNAME}/
@@ -14,7 +15,7 @@ COMMENT=	GREYC's Magic Image Converter
 
 LIB_DEPENDS=	libGraphicsMagick++.so:${PORTSDIR}/graphics/GraphicsMagick \
 		libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
-		libMagick++-6.Q16.so:${PORTSDIR}/graphics/ImageMagick \
+		libMagick++-6.so:${PORTSDIR}/graphics/ImageMagick \
 		libavcodec.so:${PORTSDIR}/multimedia/ffmpeg \
 		libfftw3.so:${PORTSDIR}/math/fftw3 \
 		libgimp-2.0.so:${PORTSDIR}/graphics/gimp-app
@@ -25,7 +26,7 @@ BASH_RUN_DEPENDS=	${LOCALBASE}/bin/bash:${PORTSDIR}/shells/bash
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/src
 
-USES=		gmake
+USES=		gmake pkgconfig
 USE_GCC=	yes
 USE_GNOME=	gtk20
 USE_XORG=	x11 xext xrandr
@@ -42,7 +43,6 @@ PLIST_FILES=	bin/gmic \
 		man/man1/gmic.1.gz \
 		%%BASH%%etc/bash_completion.d/gmic_bashcompletion.sh \
 		%%PLUGIN_DIR%%/gmic_gimp
-PLIST_DIRSTRY=	%%PLUGIN_DIR%%
 
 EXAMPLESDIR=	${PREFIX}/share/examples/${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PORTEXAMPLES=	gmic_in_script.scm gmic_use_lib.cpp

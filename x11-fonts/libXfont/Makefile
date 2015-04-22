@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libXfont
-PORTVERSION=	1.4.8
+PORTVERSION=	1.4.9
 PORTEPOCH=	2
 CATEGORIES=	x11-fonts
 
@@ -14,6 +14,9 @@ LIB_DEPENDS=	libfreetype.so:${PORTSDIR}/print/freetype2
 XORG_CAT=	lib
 USE_XORG=	xproto:both xtrans fontsproto:both fontenc
 INSTALL_TARGET=	install-strip
+USES+=	cpe
+CPE_PRODUCT=	libxfont
+CPE_VENDOR=	x
 
 CONFIGURE_ARGS=--without-xmlto --disable-devel-docs
 

@@ -2,14 +2,15 @@
 
 PORTNAME=	xcftools
 PORTVERSION=	1.0.8.20130212
+PORTREVISION=	1
 CATEGORIES=	graphics
-MASTER_SITES=	GH \
+MASTER_SITES=	GHL \
 		http://freeheimdall.spdns.org/files/
 
 MAINTAINER=	kalten@gmx.at
 COMMENT=	Command-line tools for extracting from XCF format (graphics/gimp)
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 # xcftools is under a public domain licence
 
@@ -36,7 +37,7 @@ PLIST_FILES=	bin/xcf2png \
 		bin/xcfinfo \
 		bin/xcfview
 
-CFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/libpng15
+CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lintl
 
 MAKE_JOBS_UNSAFE=	yes

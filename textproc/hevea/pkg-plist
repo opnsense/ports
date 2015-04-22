@@ -25,6 +25,7 @@ lib/hevea/figcut.hva
 lib/hevea/french-common.hva
 lib/hevea/german-common.hva
 lib/hevea/hanging.hva
+lib/hevea/portuguese.hva
 lib/hevea/hevea.sty
 lib/hevea/html/amsfonts.hva
 lib/hevea/html/amssymb.hva
@@ -145,8 +146,3 @@ lib/hevea/winstyles.hva
 lib/hevea/xspace.hva
 lib/hevea/xxcharset.exe
 lib/hevea/xxdate.exe
-@dirrm lib/hevea/text
-@dirrm lib/hevea/mappings
-@dirrm lib/hevea/info
-@dirrm lib/hevea/html
-@dirrm lib/hevea

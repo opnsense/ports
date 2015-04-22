@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	mythes
-PORTVERSION=	2014.10.05
+PORTVERSION=	2015.04.19
 CATEGORIES=	german textproc
 MASTER_SITES=	LOCAL/sunpoet/${PORTNAME}/
 DISTNAME=	Deutscher-Thesaurus-${PORTVERSION:C/\.//g}
@@ -18,7 +18,6 @@ NO_WRKSUBDIR=	yes
 
 PLIST_FILES=	%%DATADIR%%/th_de_DE_v2.idx \
 		%%DATADIR%%/th_de_DE_v2.dat
-PLIST_DIRSTRY=	%%DATADIR%%
 
 DEALIASES=	de_AT de_BE de_CH de_LI de_LU
 

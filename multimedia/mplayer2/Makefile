@@ -2,16 +2,16 @@
 
 PORTNAME=	mplayer2
 PORTVERSION=	${MPLAYER2_PORT_VERSION}
-PORTREVISION=	9
+PORTREVISION=	11
 CATEGORIES=	multimedia audio
 MASTER_SITES=	LOCAL/gblach/
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	chris@bsdjunk.com
 COMMENT=	Advanced general-purpose video player
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png \
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libdvdread.so:${PORTSDIR}/multimedia/libdvdread
 BUILD_DEPENDS=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg \
@@ -21,9 +21,7 @@ RUN_DEPENDS=	ffmpeg:${PORTSDIR}/multimedia/ffmpeg
 
 USES=		gmake iconv ncurses pkgconfig tar:xz
 HAS_CONFIGURE=	yes
-CONFIGURE_ENV=	PTHREAD_CFLAGS="${PTHREAD_CFLAGS}" \
-		PTHREAD_LIBS="${PTHREAD_LIBS}" \
-		TMPDIR="${WRKSRC}"
+CONFIGURE_ENV=	TMPDIR="${WRKSRC}"
 CONFIGURE_ARGS=	--cc=${CC} \
 		--extra-cflags='-I${LOCALBASE}/include/portaudio2' \
 		--extra-libs='-lavresample' \
@@ -46,7 +44,7 @@ MPLAYER2_SNAPSHOT_DATE=	2013-04-28
 MPLAYER2_PORT_VERSION=	2.0.${MPLAYER2_SNAPSHOT_DATE:S/-//g}
 
 
-OPTIONS_DEFINE=	DEBUG RTC IPV6 SMB LIBBLURAY V4L DV THEORA \
+OPTIONS_DEFINE=	DEBUG RTC IPV6 SMB LIBBLURAY DV THEORA \
 		X11 XINERAMA OPENGL SDL VDPAU GIF CACA \
 		MAD SPEEX LIBCDIO LADSPA REALPLAYER \
 		JACK PULSE PORTAUDIO ASS LIRC
@@ -75,10 +73,6 @@ CONFLICTS=	mplayer-1.*
 
 .if ${ARCH} == "sparc64"
 BROKEN=		Does not compile on sparc64
-.endif
-
-.if ${OSVERSION} < 803000
-CONFIGURE_ARGS+=	--disable-ssse3
 .endif
 
 WITH_CDROM_DEVICE?=	/dev/cd0
@@ -194,18 +188,18 @@ BUILD_DEPENDS+=		realplay:${PORTSDIR}/multimedia/linux-realplayer
 CONFIGURE_ARGS+=	--disable-real
 .endif
 
-.if ${PORT_OPTIONS:MV4L}
-BUILD_DEPENDS+=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
-LIB_DEPENDS+=		libv4l2.so:${PORTSDIR}/multimedia/libv4l
-CONFIGURE_ARGS+=	--enable-tv-v4l2
-EXTRA_LIBS+=		-lv4l2
-.else
+#.if ${PORT_OPTIONS:MV4L}
+#BUILD_DEPENDS+=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
+#LIB_DEPENDS+=		libv4l2.so:${PORTSDIR}/multimedia/libv4l
+#CONFIGURE_ARGS+=	--enable-tv-v4l2
+#EXTRA_LIBS+=		-lv4l2
+#.else
 CONFIGURE_ARGS+=	--disable-tv-v4l2
-.endif
+#.endif
 
-.if defined(EXTRA_LIBS)
-CONFIGURE_ARGS+=	--extra-libs="${EXTRA_LIBS}"
-.endif
+#.if defined(EXTRA_LIBS)
+#CONFIGURE_ARGS+=	--extra-libs="${EXTRA_LIBS}"
+#.endif
 
 .if ${PORT_OPTIONS:MASS}
 LIB_DEPENDS+=		libass.so:${PORTSDIR}/multimedia/libass

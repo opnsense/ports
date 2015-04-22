@@ -3,11 +3,12 @@
 
 PORTNAME=	aprsd
 PORTVERSION=	2.2.515
+PORTREVISION=	1
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/2.2.5-15
 DISTNAME=	aprsd-2.2.5-15
 
-MAINTAINER=	db@FreeBSD.org
+MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Server daemon providing Internet access to APRS packet data
 
 GNU_CONFIGURE=	yes
@@ -23,10 +24,6 @@ post-patch:
 		    ${WRKSRC}/src/aprsd.cpp
 	@${REINPLACE_CMD} -e 's|%%LOGPATH%%|/var/log/aprsd/|' \
 	    ${WRKSRC}/src/utils.cpp
-
-post-configure:
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|' \
-	    ${WRKSRC}/Makefile
 
 pre-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/aprsd

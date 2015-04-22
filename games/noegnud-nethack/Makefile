@@ -3,7 +3,7 @@
 
 PORTNAME=	noegnud
 PORTVERSION=	0.8.3
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	games
 MASTER_SITES=	http://www.darkarts.co.za/projects/noegnud/downloads/${PORTVERSION}/:noegnud	\
 		SF/nethack/nethack/3.4.3:nethack
@@ -15,7 +15,7 @@ EXTRACT_ONLY=	${DISTNAME}_linux_src-minimal${EXTRACT_SUFX}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The noeGNUd UI for the vanilla Nethack
 
-RUN_DEPENDS=	${LOCALBASE}/share/${NOEGNUDVERSION}/data/gui:${PORTSDIR}/games/noegnud-data
+RUN_DEPENDS=	noegnud-data>0:${PORTSDIR}/games/noegnud-data
 
 NOEGNUDVERSION=	${PORTNAME}-0.8.0
 USES=		bison gmake tar:bzip2

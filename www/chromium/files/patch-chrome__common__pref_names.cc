@@ -1,19 +1,20 @@
---- chrome/common/pref_names.cc.orig	2014-10-02 19:39:46.000000000 +0200
-+++ chrome/common/pref_names.cc	2014-10-15 11:59:52.000000000 +0200
-@@ -898,7 +898,7 @@
- // Boolean controlling whether SafeSearch is mandatory for Google Web Searches.
- const char kForceSafeSearch[] = "settings.force_safesearch";
+--- chrome/common/pref_names.cc.orig	2015-01-21 20:28:16 UTC
++++ chrome/common/pref_names.cc
+@@ -895,7 +895,7 @@
+ // supervised users.
+ const char kRecordHistory[] = "settings.history_recorded";
  
 -#if defined(OS_LINUX) && !defined(OS_CHROMEOS)
-+#if (defined(OS_LINUX) && !defined(OS_CHROMEOS)) || defined(OS_BSD)
++#if defined(OS_LINUX) && !defined(OS_CHROMEOS) || defined(OS_BSD)
  // Linux specific preference on whether we should match the system theme.
  const char kUsesSystemTheme[] = "extensions.theme.use_system";
  #endif
-@@ -1288,6 +1288,7 @@
-     "ssl.rev_checking.required_for_local_anchors";
- const char kSSLVersionMin[] = "ssl.version_min";
- const char kSSLVersionMax[] = "ssl.version_max";
-+const char kSSLVersionFallbackMin[] = "ssl.version_fallback_min";
- const char kCipherSuiteBlacklist[] = "ssl.cipher_suites.blacklist";
- const char kDisableSSLRecordSplitting[] = "ssl.ssl_record_splitting.disabled";
+@@ -1425,7 +1425,7 @@
+ // upgrade a unsafe location to a safe location.
+ const char kDownloadDirUpgraded[] = "download.directory_upgrade";
  
+-#if defined(OS_WIN) || defined(OS_LINUX) || \
++#if defined(OS_WIN) || defined(OS_LINUX) || defined(OS_BSD) || \
+     (defined(OS_MACOSX) && !defined(OS_IOS))
+ const char kOpenPdfDownloadInSystemReader[] =
+     "download.open_pdf_in_system_reader";

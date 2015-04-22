@@ -4,20 +4,19 @@ PORTNAME=	sudoku
 PORTVERSION=	0.7
 PORTREVISION=	2
 CATEGORIES=	games gnustep
-MASTER_SITES=	${MASTER_SITE_SAVANNAH}
-MASTER_SITE_SUBDIR=	gap
-
+MASTER_SITES=	SAVANNAH/gap
 PKGNAMEPREFIX=	gnustep-
 DISTNAME=	Sudoku-${PORTVERSION}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Sudoku solver and generator
 
-LICENSE=	GPLv2
+LICENSE=	GPLv3 # or later
 
-USE_GNUSTEP=	yes
-USE_GNUSTEP_BACK=	yes
-USE_GNUSTEP_BUILD=	yes
-USE_GNUSTEP_INSTALL=	yes
+USES=		gnustep
+USE_GNUSTEP=	back build
+
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/GNUstep/Local/Applications/Sudoku.app/Sudoku
 
 .include <bsd.port.mk>

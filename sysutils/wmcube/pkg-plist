@@ -1,4 +1,4 @@
-bin/wmcube
+@(,kmem,) bin/wmcube
 %%DATADIR%%/2planes-solid.wmc
 %%DATADIR%%/4d.wmc
 %%DATADIR%%/8star-small.wmc
@@ -33,4 +33,3 @@ bin/wmcube
 %%DATADIR%%/star.wmc
 %%DATADIR%%/starcube.wmc
 %%DATADIR%%/wmlogo.wmc
-@dirrm %%DATADIR%%

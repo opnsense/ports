@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cracklib
-PORTVERSION=	2.9.2
+PORTVERSION=	2.9.4
 CATEGORIES=	security
 .if defined(PYTHON_SLAVEPORT)
 CATEGORIES+=	python
@@ -18,7 +18,7 @@ LICENSE=	LGPL21
 DICTPATH=	${PREFIX}/libdata/${PORTNAME}
 DICTFILE=	${DICTPATH}/pw_dict
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-default-dict=${DICTPATH}
+CONFIGURE_ARGS=	--with-default-dict=${DICTFILE}
 INSTALL_TARGET=	install-strip
 USES=		gettext libtool
 USE_LDCONFIG=	yes
@@ -36,18 +36,6 @@ PLIST_FILES=	%%PYTHON_SITELIBDIR%%/_cracklib.a \
 		%%PYTHON_SITELIBDIR%%/test_cracklib.pyo
 .else
 CONFIGURE_ARGS+=--without-python
-PLIST_DIRS=	libdata/cracklib \
-		share/cracklib \
-		share/locale/as/LC_MESSAGES \
-		share/locale/as \
-		share/locale/bn_IN/LC_MESSAGES \
-		share/locale/bn_IN \
-		share/locale/mr/LC_MESSAGES \
-		share/locale/mr \
-		share/locale/sl_SI/LC_MESSAGES \
-		share/locale/sl_SI \
-		share/locale/te/LC_MESSAGES \
-		share/locale/te
 
 PLIST_FILES=	include/crack.h \
 		include/packer.h \

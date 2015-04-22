@@ -3,7 +3,7 @@
 
 PORTNAME=	transfig
 PORTVERSION=	3.2.5e
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	SF/mcj/mcj-source/
 DISTNAME=	${PORTNAME}.${PORTVERSION}
@@ -12,19 +12,18 @@ MAINTAINER=	pi@FreeBSD.org
 COMMENT=	Tools to convert Xfig .fig files
 
 RUN_DEPENDS=	ppmtogif:${PORTSDIR}/graphics/netpbm
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 USES=		alias imake
 CFLAGS+=	-Wno-return-type
 USE_GHOSTSCRIPT_RUN=	yes
 USE_XORG=	xpm
 
-CFLAGS+=	-I${LOCALBASE}/include/libpng15
 MAKE_ARGS+=	INSTALLFLAGS="${COPY}" \
-		INSTPGMFLAGS="${STRIP} ${_BINOWNGRP} -m ${BINMODE}" \
-		INSTBINFLAGS="${_BINOWNGRP} -m ${BINMODE}" \
-		INSTDATFLAGS="${_SHROWNGRP} -m ${SHAREMODE}" \
-		INSTMANFLAGS="${_MANOWNGRP} -m ${MANMODE}"
+		INSTPGMFLAGS="${STRIP}" \
+		INSTBINFLAGS="-m ${BINMODE}" \
+		INSTDATFLAGS="-m ${SHAREMODE}" \
+		INSTMANFLAGS="-m ${MANMODE}"
 
 post-install:
 	for i in hr_HR hu_HU pl_PL ro_RO; do \

@@ -3,7 +3,7 @@
 
 PORTNAME=	XML-CanonicalizeXML
 PORTVERSION=	0.03
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -18,5 +18,7 @@ LIB_DEPENDS=	libxml2.so:${PORTSDIR}/textproc/libxml2
 
 USE_PERL5=	configure
 USES=		perl5
+
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.mk>

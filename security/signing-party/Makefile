@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	signing-party
-PORTVERSION=	1.1.10
+PORTVERSION=	2.0
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.stack.nl/pub/users/johans/signing-party/ \
 		${MASTER_SITE_DEBIAN}
@@ -15,10 +15,12 @@ COMMENT=	Various OpenPGP related tools
 RUN_DEPENDS=	gpg:${PORTSDIR}/security/gnupg \
 		p5-Net-IDN-Encode>=0:${PORTSDIR}/textproc/p5-Net-IDN-Encode \
 		p5-Class-MethodMaker>=0:${PORTSDIR}/devel/p5-Class-MethodMaker \
+		p5-Getopt-Long>=0:${PORTSDIR}/devel/p5-Getopt-Long \
 		p5-GnuPG-Interface>=0:${PORTSDIR}/security/p5-GnuPG-Interface \
 		p5-Mail-Tools>=0:${PORTSDIR}/mail/p5-Mail-Tools \
 		p5-MIME-Tools>=0:${PORTSDIR}/mail/p5-MIME-Tools \
 		p5-Convert-Recode>=0:${PORTSDIR}/converters/p5-Convert-Recode \
+		p5-Term-ReadKey>=0:${PORTSDIR}/devel/p5-Term-ReadKey \
 		p5-Text-Template>=0:${PORTSDIR}/textproc/p5-Text-Template \
 		p5-GD>=0:${PORTSDIR}/graphics/p5-GD
 
@@ -30,8 +32,10 @@ NO_WRKSUBDIR=	yes
 
 BINS=		keyanalyze/keyanalyze keyanalyze/process_keys \
 		gpgwrap/bin/gpgwrap
-SCRIPTS=	caff/caff caff/pgp-clean caff/pgp-fixkey gpglist/gpglist \
+SCRIPTS=	caff/caff caff/pgp-clean caff/pgp-fixkey \
+		gpgdir/gpgdir gpglist/gpglist \
 		gpgparticipants/gpgparticipants gpgsigs/gpgsigs \
+		gpg-key2latex/gpg-key2latex \
 		gpg-key2ps/gpg-key2ps gpg-mailkeys/gpg-mailkeys \
 		keyart/keyart keylookup/keylookup \
 		sig2dot/sig2dot springgraph/springgraph \
@@ -54,13 +58,13 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|gcc|${CC}|' ${WRKSRC}/gpgwrap/src/Makefile
 
 do-install:
-	@${INSTALL_PROGRAM} ${BINS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
-	@${INSTALL_SCRIPT} ${SCRIPTS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
-	@${INSTALL_MAN} ${MANUALS1:S|^|${WRKSRC}/|} \
+	${INSTALL_PROGRAM} ${BINS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_SCRIPT} ${SCRIPTS:S|^|${WRKSRC}/|} ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_MAN} ${MANUALS1:S|^|${WRKSRC}/|} \
 		${STAGEDIR}${MAN1PREFIX}/man/man1
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-	@${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/|} ${STAGEDIR}${EXAMPLESDIR}
+	${INSTALL_DATA} ${EXAMPLES:S|^|${WRKSRC}/|} ${STAGEDIR}${EXAMPLESDIR}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/caff
-	@${INSTALL_DATA} ${WRKSRC}/caff/README* ${STAGEDIR}${DOCSDIR}/caff
+	${INSTALL_DATA} ${WRKSRC}/caff/README* ${STAGEDIR}${DOCSDIR}/caff
 
 .include <bsd.port.mk>

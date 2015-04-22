@@ -3,11 +3,12 @@
 
 PORTNAME=	File-Sort
 PORTVERSION=	1.01
+PORTREVISION=	1
 CATEGORIES=	misc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Sort a file or merge sort multiple files
 
 LICENSE=	ART10 GPLv1

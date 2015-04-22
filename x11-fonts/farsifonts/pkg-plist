@@ -1,5 +1,4 @@
 %%FONTSDIR%%/elham.ttf
-%%FONTSDIR%%/fonts.dir
 %%FONTSDIR%%/homa.ttf
 %%FONTSDIR%%/koodak.ttf
 %%FONTSDIR%%/nazli.ttf
@@ -9,4 +8,3 @@
 %%FONTSDIR%%/terafik.ttf
 %%FONTSDIR%%/terafikb.ttf
 %%FONTSDIR%%/titr.ttf
-@dirrm %%FONTSDIR%%

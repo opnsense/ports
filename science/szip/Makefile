@@ -19,23 +19,16 @@ COMMENT=	Lossless compression library for scientific data
 OPTIONS_DEFINE=	DOCS
 
 GNU_CONFIGURE=	yes
-LDFLAGS+=	-lm
+INSTALL_TARGET=	install-strip
+LIBS+=		-lm
 USE_LDCONFIG=	yes
 USES=		libtool
 
-PLIST_FILES=	include/ricehdf.h \
-		include/szip_adpt.h \
-		include/szlib.h \
-		lib/libsz.a \
-		lib/libsz.so \
-		lib/libsz.so.2 \
-		lib/libsz.so.2.0.0
 PORTDOCS=	Release_notes_2_0.pdf
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/
 	${INSTALL_DATA} ${DISTDIR}/${PORTDOCS} ${STAGEDIR}${DOCSDIR}/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libsz.so.2.0.0
 
 regression-test test: build
 	cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} check

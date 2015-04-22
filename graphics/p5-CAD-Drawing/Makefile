@@ -3,7 +3,7 @@
 
 PORTNAME=	CAD-Drawing
 PORTVERSION=	0.26
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	graphics perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -19,7 +19,7 @@ BUILD_DEPENDS=	p5-CAD-Calc>=0:${PORTSDIR}/math/p5-CAD-Calc \
 		p5-Math-MatrixReal>=0:${PORTSDIR}/math/p5-Math-MatrixReal \
 		p5-Math-Vec>=0:${PORTSDIR}/math/p5-Math-Vec \
 		p5-Stream>=0:${PORTSDIR}/devel/p5-Stream \
-		${LOCALBASE}/bin/convert:${PORTSDIR}/graphics/ImageMagick
+		convert:${PORTSDIR}/graphics/ImageMagick
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5

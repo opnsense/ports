@@ -3,7 +3,7 @@
 
 PORTNAME=	xneur
 PORTVERSION=	0.15.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	deskutils
 MASTER_SITES=	http://dists.xneur.ru/release-${DISTVERSION}/tgz/ \
 		http://mirror.amdmi3.ru/distfiles/
@@ -14,15 +14,15 @@ COMMENT=	Auto keyboard switcher
 LIB_DEPENDS=	libnotify.so:${PORTSDIR}/devel/libnotify \
 		libpcre.so:${PORTSDIR}/devel/pcre
 
-USES=		pkgconfig iconv tar:bzip2 libtool
-USE_GNOME=	gnomehack
+USES=		pathfix pkgconfig iconv tar:bzip2 libtool
 GNU_CONFIGURE=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS=	--disable-static --libdir=${PREFIX}/lib/xneur
 
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
+INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	ASPELL XOSD NLS X11
 OPTIONS_DEFAULT=	GSTREAMER ASPELL
@@ -73,6 +73,7 @@ CONFIGURE_ARGS+=	--without-xosd
 .endif
 
 post-patch:
+	@${REINPLACE_CMD} -e 's,-Werror,,g; s,-ldl,,g' ${WRKSRC}/configure
 	@${MV} ${WRKSRC}/etc/xneurrc ${WRKSRC}/etc/xneurrc.sample
 
 .include <bsd.port.mk>

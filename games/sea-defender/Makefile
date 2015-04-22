@@ -3,7 +3,7 @@
 
 PORTNAME=	sea-defender
 PORTVERSION=	0.9
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	http://mirror.amdmi3.ru/distfiles/:DEFAULT,icon \
 		SF/nemysisfreebsdp/:icon
@@ -46,10 +46,6 @@ DESKTOP_ENTRIES="Sea Defender" \
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.options.mk>
-
-.if defined(WITH_NEW_XORG)
-EXTRA_PATCHES+=	${FILESDIR}/extra-snoutlib_gldefs.h
-.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/sea ${STAGEDIR}${PREFIX}/libexec/${PORTNAME}

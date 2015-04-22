@@ -3,7 +3,7 @@
 
 PORTNAME=	Padre
 PORTVERSION=	1.00
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	editors perl5
 MASTER_SITES=	${MASTER_SITE_PERL_CPAN} ${MASTER_SITE_PERL_CPAN:S/$/:wxsc/}
 MASTER_SITE_SUBDIR=	${PORTNAME}/:DEFAULT Wx/:wxsc
@@ -50,7 +50,6 @@ BUILD_DEPENDS=	p5-JSON-XS>=2.29:${PORTSDIR}/converters/p5-JSON-XS \
 		p5-Test-MockObject>=1.09:${PORTSDIR}/devel/p5-Test-MockObject \
 		p5-Test-NoWarnings>=0.084:${PORTSDIR}/devel/p5-Test-NoWarnings \
 		p5-Test-Script>=1.07:${PORTSDIR}/devel/p5-Test-Script \
-		p5-version>=0.80:${PORTSDIR}/devel/p5-version \
 		p5-URI>0:${PORTSDIR}/net/p5-URI \
 		p5-Pod-POM>=0.17:${PORTSDIR}/textproc/p5-Pod-POM \
 		p5-POD2-Base>=0.043:${PORTSDIR}/textproc/p5-POD2-Base \
@@ -67,7 +66,7 @@ BUILD_DEPENDS=	p5-JSON-XS>=2.29:${PORTSDIR}/converters/p5-JSON-XS \
 		p5-Wx-Perl-ProcessStream>=0.25:${PORTSDIR}/x11-toolkits/p5-Wx-Perl-ProcessStream
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USES=		gettext perl5
+USES=		compiler:c++11-lib gettext perl5
 USE_PERL5=	configure
 USE_WX=		3.0
 WX_COMPS=	wx
@@ -76,9 +75,9 @@ MAKE_JOBS_UNSAFE=	yes
 
 DESKTOP_ENTRIES="Padre" \
 		"The Perl IDE" \
-		"${SITE_PERL}/auto/share/dist/Padre/icons/padre/64x64/logo.png" \
+		"${PREFIX}/${SITE_PERL_REL}/auto/share/dist/Padre/icons/padre/64x64/logo.png" \
 		"padre" \
-		"Development;Perl;IDE;" \
+		"Development;IDE;" \
 		""
 
 WXSC_NAME=	Wx-Scintilla
@@ -102,6 +101,7 @@ IGNORE=		needs a threaded Perl, build with enabling THREADS option and try again
 post-patch:
 	@${REINPLACE_CMD} -e \
 		'/my /s|wx-config|${WX_CONFIG:T}|g' \
+		-e '/ret/ s|urn .flags;|urn $$flags . " -std=c++11";|' \
 		${WRKDIR}/${WXSC_DISTNAME}/inc/Module/Build/Scintilla.pm
 	@${REINPLACE_CMD} -e \
 		's|_scintilla-|_scintilla| ; \
@@ -110,7 +110,8 @@ post-patch:
 		 s|-lgtk-x11-2.0.*-lpangoft2-1.0|-lm| ; \
 		 /-lgobject-2.0/d ; \
 		 /-lglib-2.0/d ; \
-		 s|\\$$ORIGIN|${SITE_PERL}/${PERL_ARCH}/auto/Wx/Scintilla|' \
+		 s|{ccflags}|{ccflags} . " -std=c++11"| ; \
+		 s|\\$$ORIGIN|${SITE_ARCH}/auto/Wx/Scintilla|' \
 		${WRKDIR}/${WXSC_DISTNAME}/inc/Module/Build/Scintilla/GTK.pm
 
 pre-configure:
@@ -126,7 +127,9 @@ pre-install:
 		${PERL} Build install)
 
 post-install:
-	@(cd ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/Wx/Scintilla && \
-		${STRIP_CMD} libwx_gtk2u_scintilla.so)
+	@(cd ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Wx/Scintilla && \
+		${CHMOD} u+w libwx_gtk2u_scintilla.so && \
+		${STRIP_CMD} libwx_gtk2u_scintilla.so && \
+		${CHMOD} u-w libwx_gtk2u_scintilla.so)
 
 .include <bsd.port.post.mk>

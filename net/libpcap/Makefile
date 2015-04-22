@@ -2,12 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	libpcap
-PORTVERSION=	1.5.2
+PORTVERSION=	1.7.2
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.tcpdump.org/release/
 
-MAINTAINER=	wxs@FreeBSD.org
+MAINTAINER=	garga@FreeBSD.org
 COMMENT=	Ubiquitous network traffic capture library
+
+LICENSE=	BSD3CLAUSE
 
 GNU_CONFIGURE=	yes
 USES=		bison gmake
@@ -25,6 +27,7 @@ PLIST_FILES+=	bin/pcap-config \
 		include/pcap/bpf.h \
 		include/pcap/ipnet.h \
 		include/pcap/namedb.h \
+		include/pcap/nflog.h \
 		include/pcap/pcap.h \
 		include/pcap/sll.h \
 		include/pcap/usb.h \
@@ -96,7 +99,6 @@ PLIST_FILES+=	bin/pcap-config \
 		man/man7/pcap-filter.7.gz \
 		man/man7/pcap-linktype.7.gz \
 		man/man7/pcap-tstamp.7.gz
-PLIST_DIRS+=	include/pcap
 
 OPTIONS_DEFINE=	DAG IPV6
 
@@ -128,9 +130,7 @@ post-install:
 # package will be run on a system that does not have cloning (7.x).
 # Always use bpf device, but specify CFLAGS if we have cloning.
 CONFIGURE_ARGS+=	--with-pcap=bpf
-.if ${OSVERSION} > 800043
 CFLAGS+=	-DHAVE_DEVICE_CLONING=1
-.endif
 
 .if ${ARCH} == "amd64" || ${ARCH} == "sparc64"
 CFLAGS+=	-fPIC

@@ -2,11 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	mikmod
-PORTVERSION=	3.2.5
-PORTREVISION=	1
+PORTVERSION=	3.2.6
 CATEGORIES=	audio
 MASTER_SITES=	SF \
-		CRITICAL
+		LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Mod player which plays MTM, STM, XM, MOD, S3M, ULT, UNI, and IT mods
@@ -21,7 +20,6 @@ GNU_CONFIGURE=	yes
 PLIST_FILES=	bin/mikmod \
 		man/man1/mikmod.1.gz \
 		%%DATADIR%%/mikmodrc
-PLIST_DIRS=	%%DATADIR%%
 PORTDOCS=	AUTHORS NEWS README
 
 OPTIONS_DEFINE=	DOCS

@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tcltls
-PORTVERSION=	1.6
-PORTREVISION=	2
+PORTVERSION=	1.6.4
 CATEGORIES=	devel tcl
 MASTER_SITES=	SF/tls/tls/${PORTVERSION}
 DISTNAME=	tls${PORTVERSION}-src
@@ -28,17 +27,16 @@ CONFIGURE_ARGS+=--exec-prefix=${PREFIX} \
 TCLPKG=		tls${PORTVERSION}
 WRKSRC=		${WRKDIR}/${TCLPKG}
 PLIST_FILES=	include/tls.h \
-		lib/${TCLPKG}/lib${TCLPKG}.so \
+		lib/${TCLPKG}/libtls.so.1 \
 		lib/${TCLPKG}/pkgIndex.tcl \
 		lib/${TCLPKG}/tls.tcl
-PLIST_DIRS=	lib/${TCLPKG}
 PORTDOCS=	*
 
 .include <bsd.port.options.mk>
 
 post-patch:
 	${REINPLACE_CMD} -e \
-		's,package require tls.*,load ${WRKSRC}/lib${TCLPKG}.so;\
+		's,package require tls.*,load ${WRKSRC}/libtls.so.1;\
 			source ${WRKSRC}/tls.tcl,' \
 		${WRKSRC}/tests/*.test
 	# The tests in ciphers.test are meaningless so far:
@@ -50,7 +48,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/tls.htm ${STAGEDIR}${DOCSDIR}
 .endif
 
-regression-test:
+xregression-test test check: build
 	cd ${WRKSRC}/tests && ${SETENV} TCL_LIBRARY="${WRKSRC}" \
 		tclsh${TCL_VER} all.tcl
 

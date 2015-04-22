@@ -3,6 +3,7 @@
 
 PORTNAME=	CatalystX-Profile
 PORTVERSION=	0.01
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:CYCLES
@@ -19,11 +20,7 @@ BUILD_DEPENDS=	p5-Catalyst-Runtime>=5.80020:${PORTSDIR}/www/p5-Catalyst-Runtime 
 		devel/p5-Devel-NYTProf>=3.01:${PORTSDIR}/devel/p5-Devel-NYTProf \
 		p5-Moose>=0.93:${PORTSDIR}/devel/p5-Moose \
 		p5-namespace-autoclean>=0:${PORTSDIR}/devel/p5-namespace-autoclean
-RUN_DEPENDS=	p5-Catalyst-Runtime>=5.80020:${PORTSDIR}/www/p5-Catalyst-Runtime \
-		p5-CatalystX-InjectComponent>=0.024:${PORTSDIR}/www/p5-CatalystX-InjectComponent \
-		devel/p5-Devel-NYTProf>=3.01:${PORTSDIR}/devel/p5-Devel-NYTProf \
-		p5-Moose>=0.93:${PORTSDIR}/devel/p5-Moose \
-		p5-namespace-autoclean>=0:${PORTSDIR}/devel/p5-namespace-autoclean
+RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
 USE_PERL5=	configure

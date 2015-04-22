@@ -10,8 +10,6 @@ DISTNAME=	org.tmatesoft.svn_${PORTVERSION}.standalone
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	The only pure Java Subversion client library in the world
 
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
-
 OPTIONS_DEFINE=	DOCS
 
 USES=		zip
@@ -32,7 +30,6 @@ PLIST_FILES=	bin/jsvn bin/jsvnadmin bin/jsvnlook \
 		bin/jsvnsync bin/jsvnversion \
 		bin/jsvndumpfilter \
 		${DATA_FILES:S,^,%%DATADIR%%/,}
-PLIST_DIRS=	%%DATADIR%%
 
 SUB_FILES=	javasvn.sh svnsync.sh jsvnadmin.sh jsvnlook.sh jsvnversion.sh jsvndumpfilter.sh
 PORTDOCS=	*
@@ -48,9 +45,7 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/jsvnlook.sh ${STAGEDIR}${PREFIX}/bin/jsvnlook
 	${INSTALL_SCRIPT} ${WRKDIR}/jsvnversion.sh ${STAGEDIR}${PREFIX}/bin/jsvnversion
 	${INSTALL_SCRIPT} ${WRKDIR}/jsvndumpfilter.sh ${STAGEDIR}${PREFIX}/bin/jsvndumpfilter
-	cd ${WRKSRC}/doc/javadoc && \
-		${FIND} . -type d -exec ${MKDIR} ${STAGEDIR}${DOCSDIR}/{} \;
-	cd ${WRKSRC}/doc/javadoc && \
-		${FIND} . -not -type d -exec ${INSTALL_DATA} {} ${STAGEDIR}${DOCSDIR}/{} \;
+	cd ${WRKSRC}/doc/javadoc && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/
+	${RMDIR} ${STAGEDIR}${DOCSDIR}/org/tmatesoft/svn/core/io/doc-files
 
 .include <bsd.port.mk>

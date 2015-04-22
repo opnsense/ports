@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	wicked
-DISTVERSION=	2.0.2
+DISTVERSION=	2.0.3
 CATEGORIES=	www pear
 PKGNAMEPREFIX=	horde-
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS+=	${PEARDIR}/Text/Wiki.php:${PORTSDIR}/www/pear-Text_Wiki
 
-USES=	horde
+USES=	horde cpe
 USE_PHP=	gettext
 USE_HORDE_BUILD=	Horde_Role
 USE_HORDE_RUN=	Horde_Role \

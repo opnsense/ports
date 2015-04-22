@@ -3,11 +3,10 @@
 
 PORTNAME=	agame
 PORTVERSION=	1577
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	games
 MASTER_SITES=	http://zevv.nl/play/code/game/ \
-		http://critical.ch/distfiles/ \
-		http://energy.critical.ch/distfiles/
+		LOCAL/ehaupt
 DISTNAME=	game-src-${PORTVERSION}
 
 MAINTAINER=	amdmi3@FreeBSD.org

@@ -2,14 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	create-cert
-PORTVERSION=	2.4
+PORTVERSION=	2.5
 CATEGORIES=	security
 MASTER_SITES=	ftp://ee.lbl.gov/
 
 MAINTAINER=	leres@ee.lbl.gov
 COMMENT=	Create openssl client key and certificates
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 PLIST_FILES=	sbin/create-cert \
 		man/man8/create-cert.8.gz

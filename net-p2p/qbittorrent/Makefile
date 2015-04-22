@@ -2,22 +2,21 @@
 # $FreeBSD$
 
 PORTNAME=	qbittorrent
-PORTVERSION=	3.1.10
+PORTVERSION=	3.1.12
 PORTREVISION?=	0
 CATEGORIES=	net-p2p ipv6
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}/
 
-MAINTAINER=	nemysis@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	Bittorrent client using Qt4 and libtorrent-rasterbar
 
 LICENSE=	GPLv2
 
 # ABI versions specified on purpose for libtorrent-rasterbar
-LIB_DEPENDS=	libtorrent-rasterbar.so:${PORTSDIR}/net-p2p/libtorrent-rasterbar \
-		libexecinfo.so:${PORTSDIR}/devel/libexecinfo
+LIB_DEPENDS=	libtorrent-rasterbar.so:${PORTSDIR}/net-p2p/libtorrent-rasterbar
 
-USES=		pkgconfig
-USE_QT4=	corelib network qmake_build linguist_build moc_build \
+USES=		execinfo pkgconfig tar:xz
+USE_QT4=	corelib network qmake_build linguisttools_build moc_build \
 		rcc_build uic_build
 QT_NONSTANDARD=	yes
 DESTDIRNAME=	INSTALL_ROOT

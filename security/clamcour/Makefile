@@ -3,7 +3,7 @@
 
 PORTNAME=	clamcour
 PORTVERSION=	0.3.8
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	security mail
 MASTER_SITES=	http://www.becrux.com/pages/projects/clamcour/
 
@@ -18,11 +18,10 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-clamav-config=${LOCALBASE}/bin \
 		--with-courier-config=${LOCALBASE}/bin
 CPPFLAGS+=	-I${LOCALBASE}/include
-CFLAGS+=	${PTHREAD_CFLAGS} -I${LOCALBASE}/include
-LDFLAGS+=	${PTHREAD_LIBS} -L${LOCALBASE}/lib
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 
 PLIST_DIRS=	etc/courier/clamcour
-PLIST_DIRSTRY=	etc/courier libexec/filters
 PLIST_FILES=	libexec/filters/clamcour man/man1/clamcour.1.gz
 
 post-patch:

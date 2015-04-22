@@ -2,7 +2,7 @@
 
 PORTNAME=	usrp
 PORTVERSION=	3.4.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	comms hamradio
 MASTER_SITES=	${MASTER_SITE_LOCAL}
 MASTER_SITE_SUBDIR=	adrian
@@ -35,10 +35,6 @@ USRP1_DESC=	Build Ettus USRP1 firmware
 USRP2_DESC=	Build Ettus USRP2 firmware
 
 .include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 800000
-IGNORE=	needs libusb 1.0
-.endif
 
 .if ${PORT_OPTIONS:MDOCS}
 BUILD_DEPENDS+=	doxygen:${PORTSDIR}/devel/doxygen

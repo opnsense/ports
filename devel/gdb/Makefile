@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	gdb
-PORTVERSION=	7.8
-PORTREVISION=	3
+PORTVERSION=	7.8.2
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -12,8 +12,9 @@ COMMENT=	GNU GDB of newer version than comes with the system
 
 LICENSE=	GPLv3
 
-USES=		iconv gmake libtool tar:xz
+USES=		cpe iconv gmake libtool tar:xz
 USE_CSTD=	gnu89
+CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CONFIGURED_M4=m4 CONFIGURED_BISON=byacc
 CONFIGURE_ARGS=	--program-suffix=${PORTVERSION:S/.//g} \
@@ -32,15 +33,15 @@ PLIST_SUB=	VER=${VER}
 
 ONLY_FOR_ARCHS=	i386 amd64 powerpc powerpc64	# untested elsewhere, might work
 
-OPTIONS_DEFINE=	DEBUG EXPAT GDB_LINK PYTHON THREADS TUI
+OPTIONS_DEFINE=	DEBUG EXPAT GDB_LINK GUILE PYTHON THREADS TUI
 
 OPTIONS_DEFAULT=	GDB_LINK THREADS TUI PORT_READLINE
 
 OPTIONS_SINGLE=	READLINE
 OPTIONS_SINGLE_READLINE=	BASE_READLINE BUNDLED_READLINE PORT_READLINE
 
-GDB_LINK_DESC=		Create the gdb link
-BASE_READLINE_DESC=	from base system(EXPERIMENTAL)
+GDB_LINK_DESC=		Create ${PREFIX}/bin/gdb symlink
+BASE_READLINE_DESC=	from base system (experimental)
 BUNDLED_READLINE_DESC=	from gdb distfile
 PORT_READLINE_DESC=	from devel/readline port
 TUI_DESC=		Text User Interface enabled
@@ -54,6 +55,9 @@ DEBUG_CFLAGS=		-g
 EXPAT_CONFIGURE_ON=	--with-expat=yes
 EXPAT_CONFIGURE_OFF=	--without-expat
 EXPAT_LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2
+GUILE_CONFIGURE_ON=	--with-guile
+GUILE_USES=		pkgconfig
+GUILE_LIB_DEPENDS=	libguile-2.0.so:${PORTSDIR}/lang/guile2
 PYTHON_CONFIGURE_ON=	--with-python=${PYTHON_CMD}
 PYTHON_CONFIGURE_OFF=	--without-python
 PYTHON_USES=		python:2
@@ -67,11 +71,6 @@ TUI_CONFIGURE_ENABLE=	tui
 EXCLUDE+=	readline
 .endif
 
-.if ${PORT_OPTIONS:MTHREADS}
-EXTRA_PATCHES+=	${FILESDIR}/extrapatch-gdb-configure.tgt \
-		${FILESDIR}/extrapatch-gdb-Makefile.in
-.endif
-
 .if ${ARCH} == "amd64"
 CONFIGURE_TARGET=	x86_64-portbld-freebsd${OSREL}
 .endif
@@ -79,9 +78,9 @@ CONFIGURE_TARGET=	x86_64-portbld-freebsd${OSREL}
 post-patch:
 	@${REINPLACE_CMD} -e 's|$$| [GDB v${PORTVERSION} for FreeBSD]|' \
 		${WRKSRC}/gdb/version.in
-
 .if ${PORT_OPTIONS:MTHREADS}
 	@${CP} ${FILESDIR}/fbsd-threads.c ${WRKSRC}/gdb/
+	@${PATCH} ${PATCH_ARGS} < ${FILESDIR}/extrapatch-threads
 .endif
 
 do-install:
@@ -102,6 +101,12 @@ do-install:
 	(cd ${WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-python )
 	(cd ${WRKSRC}/gdb/data-directory ; \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-python )
+.endif
+
+.if ${PORT_OPTIONS:MGUILE}
+	(cd ${WRKSRC}/gdb; ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-guile )
+	(cd ${WRKSRC}/gdb/data-directory ; \
+		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-guile )
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}

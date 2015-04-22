@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nfdump
-PORTVERSION=	1.6.12
+PORTVERSION=	1.6.13
 PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTNAME}-${PORTVERSION}
@@ -22,7 +22,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 #flow-tools support
 OPTIONS_DEFINE=		DOCS FT2NFDUMP NFPROFILE FIXTIMEBUG READPCAP NFTRACK \
-			SFLOW NFDUMP15
+			SFLOW NFDUMP15 NSEL
 OPTIONS_DEFAULT=	NFPROFILE
 
 FT2NFDUMP_DESC=		With Flow-tools to nfdump converter
@@ -32,6 +32,7 @@ READPCAP_DESC=		With pcap support
 NFTRACK_DESC=		With PortTracker support
 SFLOW_DESC=		Build sflow collector daemon also
 NFDUMP15_DESC=		Enable compatibility with version 1.5
+NSEL_DESC=		Read and process ASA/NSEL/NEL event data
 
 post-patch:
 	@${REINPLACE_CMD} 's|-ggdb||' ${WRKSRC}/bin/Makefile.in
@@ -46,10 +47,16 @@ CONFIGURE_ARGS+=	--enable-compat15
 CONFIGURE_ARGS+=	--disable-compat15
 .endif
 
+.if ${PORT_OPTIONS:MNSEL}
+CONFIGURE_ARGS+=	--enable-nsel
+.else
+CONFIGURE_ARGS+=	--disable-nsel
+.endif
+
 PLIST_FILES=	bin/nfanon bin/nfcapd bin/nfdump bin/nfexpire bin/nfreplay \
 		man/man1/nfanon.1.gz man/man1/nfcapd.1.gz man/man1/nfdump.1.gz \
 		man/man1/nfexpire.1.gz man/man1/nfreplay.1.gz
-PORTDOCS=	AUTHORS ChangeLog INSTALL NEWS README ToDo
+PORTDOCS=	AUTHORS ChangeLog INSTALL NEWS README
 
 .if ${PORT_OPTIONS:MFIXTIMEBUG}
 CONFIGURE_ARGS+=	--enable-fixtimebug

@@ -2,20 +2,20 @@
 # $FreeBSD$
 
 PORTNAME=	linrad
-PORTVERSION=	4.00
+PORTVERSION=	4.02
 PORTREVISION=	1
 CATEGORIES=	comms hamradio
 MASTER_SITES=	http://www.nitehawk.com/sm5bsz/linuxdsp/archive/\
 		http://g7rau.demon.co.uk/sm5bsz/linuxdsp/archive/\
 		http://www.sm5bsz.com/linuxdsp/archive/
-DISTNAME=	lir04-00
+DISTNAME=	lir04-02
 EXTRACT_SUFX=	.tbz
 
 MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Amateur Radio DSP utility (SDR)
 
 LIB_DEPENDS=	librtlsdr.so:${PORTSDIR}/comms/rtl-sdr \
-		libportaudio.so:${PORTSDIR}/audio/portaudio2 \
+		libportaudio.so.2:${PORTSDIR}/audio/portaudio2 \
 		libftdi.so:${PORTSDIR}/devel/libftdi
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
@@ -47,8 +47,7 @@ post-patch:
 # These extensions seem to be Windows only
 #	@${CP} ${WRKSRC}/extra_w3sz.c ${WRKSRC}/users_extra.c
 #	@${CP} ${WRKSRC}/users_tr.c ${WRKSRC}/users_hwaredriver.c
-	@${REINPLACE_CMD} -e 's|-lpthread|${PTHREAD_LIBS}|g'\
- 	    -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
+	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		 ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR}/|' \
 		${WRKSRC}/help.c
@@ -56,10 +55,8 @@ post-patch:
 		${WRKSRC}/libfind1.c
 # NOTE: The code that actually does anything in users.c is currently
 #       #ifdef'd out because it's just a non-working example
-.if	${OSVERSION} >= 800000
 	@${REINPLACE_CMD} -e "s|ttyd|ttyu|" \
 	    ${WRKSRC}/lxsys.c
-.endif
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}

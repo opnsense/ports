@@ -3,11 +3,12 @@
 
 PORTNAME=	NetAddr-IP-Find
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Iterates over all IP addresses in a text similar to Email::Find
 
 LICENSE=	ART10 GPLv1

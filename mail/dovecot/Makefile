@@ -3,7 +3,7 @@
 
 PORTNAME=	dovecot
 PORTVERSION=	1.2.17
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	mail ipv6
 MASTER_SITES=	http://www.dovecot.org/releases/${PORTVERSION:R}/ \
 		http://www.rename-it.nl/dovecot/${PORTVERSION:R}/
@@ -75,7 +75,7 @@ LDAP_USE=		OPENLDAP=yes
 MYSQL_CONFIGURE_WITH=	mysql
 MYSQL_USE=		MYSQL=yes
 PGSQL_CONFIGURE_WITH=	pgsql
-PGSQL_USE=		PGSQL=yes
+PGSQL_USES=		pgsql
 SQLITE_CONFIGURE_WITH=	sqlite
 SQLITE_USE=		SQLITE=3
 SSL_CONFIGURE_OFF=	--without-ssl

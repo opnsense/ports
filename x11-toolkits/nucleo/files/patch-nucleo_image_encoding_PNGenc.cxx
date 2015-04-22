@@ -1,14 +1,32 @@
---- nucleo/image/encoding/PNGenc.cxx.orig	2008-06-05 14:52:33.000000000 +0200
-+++ nucleo/image/encoding/PNGenc.cxx	2012-05-05 08:40:18.000000000 +0200
-@@ -16,6 +16,7 @@
- #include <nucleo/image/encoding/PNGenc.H>
+--- nucleo/image/encoding/PNGenc.cxx.orig	2008-06-05 12:52:33 UTC
++++ nucleo/image/encoding/PNGenc.cxx
+@@ -9,6 +9,7 @@
+  *
+  */
  
- #include <png.h>
-+#include <pngpriv.h>
++#include <cstring>
+ #include <nucleo/config.H>
  
- namespace nucleo {
+ #include <nucleo/image/Image.H>
+@@ -35,7 +36,7 @@ namespace nucleo {
+   static void
+   png_memory_write_data(png_structp png_ptr,
+ 				    png_bytep data, png_size_t length) {
+-    png_in_memory *pim = (png_in_memory*)png_ptr->io_ptr ;
++    png_in_memory *pim = (png_in_memory*)png_get_io_ptr(png_ptr);
+     
+     void *pdst = pim->data+pim->p ;
+     // std::cerr << "PNG: writing " << length << " bytes from " << (void *)data << " to " << pdst << std::endl ;
+@@ -130,7 +131,7 @@ namespace nucleo {
  
-@@ -170,7 +171,7 @@
+   static void
+   png_memory_read_data(png_structp png_ptr, png_bytep data, png_size_t length) {
+-    png_in_memory *pim = (png_in_memory*)png_ptr->io_ptr ;
++    png_in_memory *pim = (png_in_memory*)png_get_io_ptr(png_ptr);
+     memmove(data, pim->data+pim->p, length) ;
+     pim->p+=length ;
+   }
+@@ -170,7 +171,7 @@ namespace nucleo {
  			  &compression_type, &filter_type) ;
  
      if (color_type == PNG_COLOR_TYPE_GRAY && bit_depth < 8)

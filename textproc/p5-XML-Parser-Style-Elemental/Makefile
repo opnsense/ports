@@ -3,12 +3,13 @@
 
 PORTNAME=	XML-Parser-Style-Elemental
 PORTVERSION=	0.50
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:TIMA
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	More advanced and flexible object tree style for XML::Parser
 
 LICENSE=	ART10

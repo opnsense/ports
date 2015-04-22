@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	puppet
-PORTVERSION=	3.6.2
-PORTREVISION=	2
+PORTVERSION=	3.7.4
 CATEGORIES=	sysutils
 MASTER_SITES=	http://downloads.puppetlabs.com/puppet/
 
@@ -32,8 +31,8 @@ SUB_LIST=	RUBY=${RUBY}
 
 OPTIONS_DEFINE=		DOCS EXAMPLES
 OPTIONS_DEFAULT=	PACKAGE_ORIGIN
-OPTIONS_SINGLE=		PATCHES
-OPTIONS_SINGLE_PATCHES=	PACKAGE_ORIGIN PACKAGE_ROOT
+OPTIONS_RADIO=		PATCHES
+OPTIONS_RADIO_PATCHES=	PACKAGE_ORIGIN PACKAGE_ROOT
 PACKAGE_ORIGIN_DESC=	Use port origin as package name
 PACKAGE_ROOT_DESC=	Use PACKAGEROOT instead of PACKAGESITE
 PATCHES_DESC=		Optional exclusive patches
@@ -44,11 +43,16 @@ PATCHES_DESC=		Optional exclusive patches
 .if ! ${PORT_OPTIONS:MPACKAGE_ORIGIN}
 EXTRA_PATCHES+=	${FILESDIR}/optpatch-package_root
 .else
-BROKEN=	PACKAGE_ROOT option patch is incompatable with PACKAGE_ORIGIN patch.
+BROKEN=	PACKAGE_ROOT option patch is incompatible with PACKAGE_ORIGIN patch.
 .endif
 .endif
 
 .include <bsd.port.pre.mk>
+
+# puppet 4.x should support ruby 2.2.x
+.if ${RUBY_VER} >= 2.2
+BROKEN=		Does not work with Ruby 2.2
+.endif
 
 .if ${PORT_OPTIONS:MPACKAGE_ORIGIN}
 EXTRA_PATCHES+=	${FILESDIR}/optpatch-package_origin
@@ -75,10 +79,11 @@ do-install:
 	@cd ${WRKSRC} && ${SETENV} PREFIX=${PREFIX} ${RUBY} ${WRKSRC}/install.rb --no-configs --destdir=${STAGEDIR}
 
 post-install:
+	${MKDIR} ${STAGEDIR}${ETCDIR}/manifests
 	${MKDIR} ${STAGEDIR}${ETCDIR}/modules
 	${MKDIR} ${STAGEDIR}/var/puppet
 	${INSTALL_DATA} ${WRKSRC}/conf/auth.conf ${STAGEDIR}${ETCDIR}/auth.conf-dist
-	${RUBY} -I ${STAGEDIR}/${RUBY_SITELIBDIR} ${STAGEDIR}${PREFIX}/bin/puppet master --genconfig \
+	${RUBY} -I ${STAGEDIR}/${RUBY_SITELIBDIR} ${STAGEDIR}${PREFIX}/bin/puppet agent --genconfig \
 		--confdir=${ETCDIR} \
 		--rundir=/var/run/puppet \
 		--vardir=/var/puppet \

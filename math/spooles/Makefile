@@ -60,8 +60,12 @@ do-extract:
 
 post-patch:
 	${MKDIR} ${WRKSRC}_SHARED ; ${CP} -r ${WRKSRC}/* ${WRKSRC}_SHARED
-	@${REINPLACE_CMD} -e 's+%%LOCALBASE%%+${LOCALBASE}+g;' -e 's+%%CFLAGS%%+${PTHREAD_CFLAGS} ${CFLAGS}+g;' -e 's+%%PTHREAD_LIBS%%+${PTHREAD_LIBS}+g;' -e 's+%%CC%%+${CC}+g;' ${WRKSRC}/Make.inc
-	@${REINPLACE_CMD} -e 's+%%LOCALBASE%%+${LOCALBASE}+g;' -e 's+%%CFLAGS%%+${CFLAGS} ${PTHREAD_CFLAGS} ${PICFLAG}+g;' -e 's+%%PTHREAD_LIBS%%+${PTHREAD_LIBS}+g;' -e 's+%%CC%%+${CC}+g;' ${WRKSRC}_SHARED/Make.inc
+	@${REINPLACE_CMD} -e 's+%%LOCALBASE%%+${LOCALBASE}+g;' \
+		-e 's+%%CFLAGS%%+${CFLAGS}+g;' \
+		-e 's+%%CC%%+${CC}+g;' ${WRKSRC}/Make.inc
+	@${REINPLACE_CMD} -e 's+%%LOCALBASE%%+${LOCALBASE}+g;' \
+		-e 's+%%CFLAGS%%+${CFLAGS} ${PICFLAG}+g;' \
+		-e 's+%%CC%%+${CC}+g;' ${WRKSRC}_SHARED/Make.inc
 
 do-build:
 .if defined(WITH_MPI)
@@ -98,6 +102,7 @@ do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/include/spooles/${i}
 	${INSTALL_DATA} ${WRKSRC}/${i}/*.h ${STAGEDIR}${PREFIX}/include/spooles/${i}
 .endfor
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/AllInOne.ps.gz	${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Eigen.ps.gz		${STAGEDIR}${DOCSDIR}
@@ -106,5 +111,6 @@ do-install:
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/Ordering.ps.gz	${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/PP99.ps.gz		${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${DISTDIR}/${DIST_SUBDIR}/ReferenceManual.ps.gz	${STAGEDIR}${DOCSDIR}
+.endif
 
 .include <bsd.port.post.mk>

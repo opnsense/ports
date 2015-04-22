@@ -2,53 +2,49 @@
 # $FreeBSD$
 
 PORTNAME=	ntp
-PORTVERSION?=	4.2.6p5.r1
-PORTREVISION=	4
+PORTVERSION=	4.2.8p2.r3
 CATEGORIES=	net ipv6
-PKGNAMESUFFIX=	-rc
-MASTER_SITES=	ftp://ftp.udel.edu/pub/ntp/ntp4/ \
-		http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
-		ftp://ftp.archive.de.uu.net/pub/unix/ntp/ntp4/ntp-4.2/ \
-		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/ntp-4.2/
-DISTNAME=	${PORTNAME}-${PORTVERSION:S/P/p/:S/.r/-RC/:S/.b/-beta/}
+MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
+		http://archive.ntp.org/ntp4/ntp-4.2/ \
+		ftp://ftp.netlab.is.tsukuba.ac.jp/pub/network/ntp/ntp4/
+PKGNAMESUFFIX=  -rc
+DISTNAME=	${PORTNAME}-${PORTVERSION:S/P/p/:S/.r/-RC/}
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	The Network Time Protocol Distribution
-IGNORE=		RC branch not currently active
-FORBIDDEN=	CVE-2013-5211 / VU#348126
-BROKEN=		Does not configure
+
+IGNORE=		VuXML ebd84c96-dd7e-11e4-854e-3c970e169bc2
+DEPRECATED=	Upline no longer has RC branch.
+EXPIRATION_DATE=	2015-04-30
+
+CONFLICTS=	ntp-[0-9].* ntp-devel-*
 
 GNU_CONFIGURE=	yes
-USE_AUTOTOOLS=	automake libtool
+OPTIONS_SUB=	yes
+USES=		pathfix shebangfix libtool
+LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
+
+NTP_SHEBANG_FILES=	sbin/ntp-wait sbin/ntptrace
 
 .include "Makefile.inc"
 
-.include <bsd.port.options.mk>
+PERL_UTILS_USES=	perl5
 
-.if ${PORT_OPTIONS:MNTPSNMPD}
-PLIST_FILES+=		bin/ntpsnmpd
-BUILD_DEPENDS+=		${LOCALBASE}/include/net-snmp/net-snmp-config.h:${PORTSDIR}/net-mgmt/net-snmp
-RUN_DEPENDS+=		${LOCALBASE}/include/net-snmp/net-snmp-config.h:${PORTSDIR}/net-mgmt/net-snmp
-.else
-CONFIGURE_ARGS+=	--without-ntpsnmpd
-.endif
+SSL_USE=		OPENSSL=yes
+SSL_CONFIGURE_OFF=	--without-crypto
+
+IPV6_CONFIGURE_ENABLE=	ipv6
+
+NTP_SIGND_CONFIGURE_ENABLE=	ntp-signd
+
+NTPSNMPD_LIB_DEPENDS=	libnetsnmp.so:${PORTSDIR}/net-mgmt/net-snmp
+NTPSNMPD_CONFIGURE_OFF=	--without-ntpsnmpd
+
+.include <bsd.port.pre.mk>
 
 .if ${PORT_OPTIONS:MSSL}
-USE_OPENSSL=		yes
 CONFIGURE_ARGS+=	--with-openssl-incdir=${OPENSSLINC} \
 			--with-openssl-libdir=${OPENSSLLIB}
-PLIST_SUB+=		SSL=""
-.else
-CONFIGURE_ARGS+=	--without-crypto
-PLIST_SUB+=		SSL="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=        --enable-ipv6
-.endif
-
-.if ${PORT_OPTIONS:MNTP_SIGND}
-CONFIGURE_ARGS+=        --enable-ntp-signd
 .endif
 
 .for D in ${NTP_DRIVERS}
@@ -57,14 +53,19 @@ CONFIGURE_ARGS+=	--enable-${D}
 .endif
 .endfor
 
+# XXX Temporary hack. Remember to remove this next commit.
+post-extract:
+	@/usr/bin/touch ${WRKSRC}/scripts/build/checkHtmlFileDates
+	@${CHMOD} +x ${WRKSRC}/scripts/build/checkHtmlFileDates
+
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	@${INSTALL_DATA} ${WRKSRC}/conf/* ${STAGEDIR}${EXAMPLESDIR}
-.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	@${FIND} ${WRKSRC}/html -type f | ${XARGS} ${CHMOD} ${SHAREMODE}
 	@cd ${WRKSRC}/html && ${FIND} . -print | \
 		${CPIO} -pdu -R ${SHAREOWN}:${SHAREGRP} --quiet ${STAGEDIR}${DOCSDIR}
-.endif
+	@cd ${STAGEDIR}${PREFIX}; \
+		${ECHO_CMD} ${NTP_SHEBANG_FILES} | ${XARGS} ${SED} -i '' ${_SHEBANG_REINPLACE_ARGS}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

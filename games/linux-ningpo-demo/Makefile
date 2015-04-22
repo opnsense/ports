@@ -22,6 +22,8 @@ DATADIR=	${PREFIX}/lib/${PKGNAMEPREFIX}${PORTNAME}
 SUB_FILES=	ningpo
 PORTDOCS=	README README.licenses license.txt
 
+BROKEN=		Does not fetch
+
 .include <bsd.port.pre.mk>
 
 do-extract:

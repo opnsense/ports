@@ -8,7 +8,7 @@ CATEGORIES=	www databases
 MASTER_SITES=	http://www.mnogosearch.org/Download/ \
 		http://udmsearch.real-time.com/Download/
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Full featured SQL-based hypertext search engine
 
 LICENSE=	GPLv2
@@ -25,7 +25,7 @@ OPTIONS_DEFAULT=	MYSQL
 
 MYSQL_USE=	MYSQL=YES
 MYSQL_CONFIGURE_ON+=	--with-mysql=${LOCALBASE}
-PGSQL_USE=	PGSQL=YES
+PGSQL_USES=	pgsql
 PGSQL_CONFIGURE_ON+=	--with-pgsql=${LOCALBASE}/pgsql
 
 PORTDOCS=	*

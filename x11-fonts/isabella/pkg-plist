@@ -1,4 +1,2 @@
-%%FONTDIR%%/Isabella.ttf
-@fontsdir %%FONTDIR%%
+%%FONTSDIR%%/Isabella.ttf
 %%PORTDOCS%%%%DOCSDIR%%/README.txt
-%%PORTDOCS%%@dirrm %%DOCSDIR%%

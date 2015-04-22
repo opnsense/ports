@@ -3,12 +3,11 @@
 
 PORTNAME=	ezquake
 PORTVERSION=	1.9
-PORTREVISION=	7
+PORTREVISION=	8
 PORTEPOCH=	2
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/stable/${PORTVERSION}:ezquake \
 		http://www.winimage.com/zLibDll/:minizip
-
 DISTFILES=	${PORTNAME}_source_${PORTVERSION}.7z:ezquake \
 		${PORTNAME}_linux-x86_${PORTVERSION}${EXTRACT_SUFX}:ezquake \
 		unzip101e.zip:minizip
@@ -20,7 +19,7 @@ EXTRACT_DEPENDS=${UNZIP_CMD}:${PORTSDIR}/archivers/unzip \
 		7z:${PORTSDIR}/archivers/p7zip
 LIB_DEPENDS=	libexpat.so:${PORTSDIR}/textproc/expat2 \
 		libpcre.so:${PORTSDIR}/devel/pcre \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 USES=		gmake tcl dos2unix
 DOS2UNIX_GLOB=	*.[ch] Makefile*

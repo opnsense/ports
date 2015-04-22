@@ -3,7 +3,7 @@
 
 PORTNAME=	xlogical
 PORTVERSION=	1.0p8
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	games
 MASTER_SITES=	http://changeling.ixionstudios.com/xlogical/downloads/ \
 		http://freebsd.portsreview.info/downloads/
@@ -14,11 +14,10 @@ COMMENT=	Remake of the classic puzzle game Logical
 
 LICENSE=	GPLv2
 
-USES=		gmake tar:bzip2 dos2unix
-USE_AUTOTOOLS=	aclocal automake autoconf
-AUTOMAKE_ARGS=	--add-missing
-USE_SDL=	sdl image mixer
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir="${PREFIX}/var"
+USES=		autoreconf dos2unix gmake tar:bzip2
+USE_SDL=	sdl image mixer
 
 OPTIONS_DEFINE=	DOCS
 

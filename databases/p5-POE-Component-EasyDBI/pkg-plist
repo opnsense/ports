@@ -1,5 +1,4 @@
-%%PERL5_MAN3%%/POE::Component::EasyDBI.3.gz
-%%PERL5_MAN3%%/POE::Component::EasyDBI::SubProcess.3.gz
 %%SITE_PERL%%/POE/Component/EasyDBI.pm
 %%SITE_PERL%%/POE/Component/EasyDBI/SubProcess.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/POE/Component/EasyDBI/.packlist
+%%PERL5_MAN3%%/POE::Component::EasyDBI.3.gz
+%%PERL5_MAN3%%/POE::Component::EasyDBI::SubProcess.3.gz

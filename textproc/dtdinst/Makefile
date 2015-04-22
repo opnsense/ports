@@ -11,7 +11,7 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//g}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Converts DTDs to XML instance, in a specific or RELAX NG format
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/copying.txt
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
@@ -24,8 +24,6 @@ USE_JAVA=	yes
 PORTDOCS=	*
 PORTEXAMPLES=	*
 PLIST_FILES=	%%JAVAJARDIR%%/dtdinst.jar share/xsl/dtdinst/dtdinst2rng.xsl
-PLIST_DIRS=	share/xsl/dtdinst
-PLIST_DIRSTRY=	share/xsl
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${JAVAJARDIR}

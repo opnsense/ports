@@ -3,50 +3,51 @@
 #
 # $FreeBSD$
 #
-# PROVIDE: plexmediaserver_plexpass
+# PROVIDE: %%PORTNAME%%
 # REQUIRE: LOGIN
 # KEYWORD: shutdown
 #
 # Add the following lines to /etc/rc.conf to enable the Plex Media Server:
 #
-# plexmediaserver_plexpass_enable="YES"
+# %%PORTNAME%%_enable="YES"
 #
-# plexmediaserver_plexpass_support_path="%%SUPPORT_PATH%%" # Plex data: logs, media metadata, settings, etc
+# %%PORTNAME%%_support_path="%%PREFIX%%/plexdata" # Plex data: logs, media metadata, settings, etc
 #
-# plexmediaserver_plexpass_tmp="/var/tmp/plex" # configure tmp directory used for the transcoding process if desired
+# %%PORTNAME%%_tmp="/var/tmp/plex" # configure tmp directory used for the transcoding process if desired
 #
-# plexmediaserver_plexpass_maxplugins="6" # Maximum number of background plugin procs. May have to raise in rare cases.
+# %%PORTNAME%%_maxplugins="6" # Maximum number of background plugin procs. May have to raise in rare cases.
 #
 
 . /etc/rc.subr
 
-name=plexmediaserver_plexpass
-rcvar=plexmediaserver_plexpass_enable
+name=%%PORTNAME%%
+rcvar=%%PORTNAME%%_enable
 load_rc_config $name
 
-: ${plexmediaserver_plexpass_enable:=NO}
-: ${plexmediaserver_plexpass_support_path="%%SUPPORT_PATH%%"}
-: ${plexmediaserver_plexpass_user="%%USERS%%"}
-: ${plexmediaserver_plexpass_group="%%GROUPS%%"}
-: ${plexmediaserver_plexpass_maxplugins=6}
+: ${%%PORTNAME%%_enable:=NO}
+: ${%%PORTNAME%%_support_path="%%PREFIX%%/plexdata-plexpass"}
+: ${%%PORTNAME%%_user="%%USERS%%"}
+: ${%%PORTNAME%%_group="%%GROUPS%%"}
+: ${%%PORTNAME%%_maxplugins=6}
 
-extra_commands=status
-start_precmd=plex_precmd
-start_cmd=plex_startcmd
-status_cmd=plex_statuscmd
-stop_cmd=plex_stopcmd
+command=/usr/sbin/daemon
+procname="%%DATADIR%%/Plex_Media_Server"
+command_args="-f ${procname}"
 pidfile=/var/run/plex/plex.pid
+start_precmd=plex_precmd
+stop_precmd=plex_stop_precmd
+stop_postcmd=plex_stop_postcmd
 
 plex_precmd()
 {
-	export SUPPORT_PATH="${plexmediaserver_plexpass_support_path}"
-	export HOME="${plexmediaserver_plexpass_support_path}/Plex Media Server"
-	export PYTHONHOME="%%SCRIPT_PATH%%/Resources/Python"
-	export SCRIPTPATH="%%SCRIPT_PATH%%"
+	export SUPPORT_PATH="${%%PORTNAME%%_support_path}"
+	export HOME="${%%PORTNAME%%_support_path}/Plex Media Server"
+	export PYTHONHOME="%%DATADIR%%/Resources/Python"
+	export SCRIPTPATH="%%DATADIR%%"
 	export LD_LIBRARY_PATH="${SCRIPTPATH}"
 	export PLEX_MEDIA_SERVER_HOME="${SCRIPTPATH}"
-	export PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=${plexmediaserver_plexpass_maxplugins}
-	export PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=${plexmediaserver_plexpass_support_path}
+	export PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS=${%%PORTNAME%%_maxplugins}
+	export PLEX_MEDIA_SERVER_APPLICATION_SUPPORT_DIR=${%%PORTNAME%%_support_path}
 	export PLEX_MEDIA_SERVER_PIDFILE=${pidfile}
 	export PATH="${SCRIPTPATH}/Resources/Python/bin:${PATH}"
 	export LC_ALL="C"
@@ -54,52 +55,32 @@ plex_precmd()
 	ulimit -s 3000
 
 	if [ ! -d ${pidfile%/*} ]; then
-		install -d -o ${plexmediaserver_plexpass_user} ${pidfile%/*};
+		install -d -o ${%%PORTNAME%%_user} ${pidfile%/*};
 	fi
 	
-	if [ ! -d "${plexmediaserver_plexpass_support_path}/Plex Media Server" ]; then
-		install -d -g ${plexmediaserver_plexpass_group} -o ${plexmediaserver_plexpass_user} "${plexmediaserver_plexpass_support_path}/Plex Media Server";
+	if [ ! -d "${%%PORTNAME%%_support_path}/Plex Media Server" ]; then
+		install -d -g ${%%PORTNAME%%_group} -o ${%%PORTNAME%%_user} "${%%PORTNAME%%_support_path}/Plex Media Server";
 	fi
-
-	if [ ${plexmediaserver_plexpass_tmp} ]; then 
-		export TMPDIR=${plexmediaserver_plexpass_tmp};
-		install -d -g ${plexmediaserver_plexpass_group} -o ${plexmediaserver_plexpass_user} "${plexmediaserver_plexpass_tmp}";
-	fi
-}
-
-plex_startcmd()
-{
-	if [ -f "${pidfile}" ] && (pgrep -F ${pidfile} Plex >/dev/null); then
-		echo "${name} is already running with pid: $(cat ${pidfile})";
-	else
-		echo "Starting ${name}."
-		/usr/sbin/daemon -u ${plexmediaserver_plexpass_user} -f '%%SCRIPT_PATH%%/Plex Media Server'
+	
+	if [ ${%%PORTNAME%%_tmp} ]; then 
+		export TMPDIR=${%%PORTNAME%%_tmp};
+		install -d -g ${%%PORTNAME%%_group} -o ${%%PORTNAME%%_user} "${%%PORTNAME%%_tmp}";
 	fi
 }
 
-plex_statuscmd()
+plex_stop_precmd()
 {
-	if [ -f "${pidfile}" ] && (pgrep -F ${pidfile} Plex >/dev/null); then
-		echo "${name} is running with pid: $(cat ${pidfile})";
-	else
-		echo "${name} is not running.";
-		exit 1;
-	fi	
+	if [ -r ${pidfile} ]; then
+		export _PLEXPID=$(check_pidfile ${pidfile} ${procname})
+	fi
 }
 
-plex_stopcmd()
+plex_stop_postcmd()
 {
-	if [ -f "${pidfile}" ] && (pgrep -F ${pidfile} Plex >/dev/null); then
-		main_pid=$(cat ${pidfile});
-		child_pids=$(pgrep -P ${main_pid});
-		all_pids="${main_pid} ${child_pids}"
-		kill ${sig_stop} ${all_pids};
-		wait_for_pids ${all_pids};
-		rm ${pidfile}
-	else
-		echo "${name} is not running.";
-		exit 1;
-	fi
+	_PLEX_CHILDREN=$(pgrep -g ${_PLEXPID})
+	echo "Cleaning up leftover child processes."
+	kill $sig_stop ${_PLEX_CHILDREN}
+	wait_for_pids ${_PLEX_CHILDREN}
 }
 
 run_rc_command "$1"

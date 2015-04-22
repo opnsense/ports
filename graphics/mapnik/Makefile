@@ -4,7 +4,7 @@
 PORTNAME=	mapnik
 PORTVERSION=	2.2.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	9
+PORTREVISION=	11
 CATEGORIES=	graphics geography
 MASTER_SITES=	http://mapnik.s3.amazonaws.com/dist/v${PORTVERSION}/
 
@@ -81,7 +81,7 @@ LIB_DEPENDS+=	libcurl.so:${PORTSDIR}/ftp/curl
 
 .if ${PORT_OPTIONS:MPOSTGIS}
 INPUT_PLUGINS+=	postgis
-USE_PGSQL=	yes
+USES+=		pgsql
 .endif
 
 .if ${PORT_OPTIONS:MSQLITE3}
@@ -97,7 +97,7 @@ MAKE_ARGS+=	JPEG=False
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=   libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=   libpng.so:${PORTSDIR}/graphics/png
 .else
 MAKE_ARGS+=	PNG=False
 .endif

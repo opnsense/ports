@@ -3,11 +3,11 @@
 
 PORTNAME=	dclib
 PORTVERSION=	0.3.23
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	net-p2p
 MASTER_SITES=	SF/wxdcgui/${PORTNAME}/${PORTVERSION}
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Direct connect interface library for valknut
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg
@@ -17,8 +17,9 @@ WRKSRC=	${WRKDIR}/${DISTNAME}
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		libtool pathfix tar:bzip2
-USE_LDCONFIG=	yes
 USE_GNOME=	libxml2
+USE_LDCONFIG=	yes
+USE_OPENSSL=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib

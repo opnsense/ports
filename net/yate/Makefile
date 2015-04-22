@@ -3,7 +3,7 @@
 
 PORTNAME=	yate
 DISTVERSION=	5.4.0p1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	http://yate.null.ro/tarballs/yate5/
 DISTNAME=	${PORTNAME}-5.4.0-1
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib \
 		libspeex.so:${PORTSDIR}/audio/speex \
 		libgsm.so:${PORTSDIR}/audio/gsm
 
-ONLY_FOR_ARCHS=	i386 amd64 sparc64
+ONLY_FOR_ARCHS=	i386 amd64 sparc64 armv6
 
 USE_AUTOTOOLS=	autoconf
 USES=		bison gmake
@@ -60,7 +60,7 @@ PLIST_SUB+=		WITH_MYSQL="@comment "
 .if ${PORT_OPTIONS:MPGSQL}
 CONFIGURE_ARGS+=	--with-libpq=${LOCALBASE}
 PLIST_SUB+=		WITH_PGSQL=""
-USE_PGSQL=		yes
+USES+=			pgsql
 .else
 CONFIGURE_ARGS+=	--without-libpq
 PLIST_SUB+=		WITH_PGSQL="@comment "
@@ -105,7 +105,7 @@ PLIST_SUB+=		WITH_AMRNB="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSPANDSP}
-LIB_DEPENDS+=	libspandsp.so.2:${PORTSDIR}/comms/spandsp-devel
+LIB_DEPENDS+=	libspandsp.so:${PORTSDIR}/comms/spandsp
 CONFIGURE_ARGS+=	--with-spandsp
 PLIST_SUB+=		WITH_SPANDSP=""
 .else

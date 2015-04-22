@@ -3,7 +3,7 @@
 
 PORTNAME=	w3af
 DISTVERSION=	1.0-rc4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	security python www
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${DISTVERSION}
 
@@ -12,14 +12,13 @@ COMMENT=	Web Application Attack and Audit Framework
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libtidy.so:${PORTSDIR}/www/py-utidy
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>=2.1:${PORTSDIR}/devel/py-lxml \
 		${PYTHON_PKGNAMEPREFIX}simplejson>=2.0:${PORTSDIR}/devel/py-simplejson \
 		${PYTHON_PKGNAMEPREFIX}openssl>=0:${PORTSDIR}/security/py-openssl \
 		${PYTHON_PKGNAMEPREFIX}soappy>=0:${PORTSDIR}/net/py-soappy \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3 \
 		${PYTHON_PKGNAMEPREFIX}fpconst>0:${PORTSDIR}/math/py-fpconst \
-		nltk>0:${PORTSDIR}/textproc/nltk \
+		${PYTHON_PKGNAMEPREFIX}nltk>0:${PORTSDIR}/textproc/py-nltk \
 		${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}pdf>0:${PORTSDIR}/print/py-pdf \
 		scapy>0:${PORTSDIR}/net/scapy \

@@ -2,7 +2,7 @@
 
 PORTNAME=	projectM-libvisual
 PORTVERSION=	2.0.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics audio
 MASTER_SITES=	SF/${PORTNAME:tl:S/-libvisual//}/${PORTVERSION}
 DISTNAME=	${PORTNAME:S/-/_/}-${DISTVERSION}-Source
@@ -22,8 +22,6 @@ CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 LIBVISUAL_VER=	0.4
 
 PLIST_FILES=	lib/libvisual-${LIBVISUAL_VER}/actor/libprojectM_libvisual.so
-PLIST_DIRS=	lib/libvisual-${LIBVISUAL_VER}/actor \
-		lib/libvisual-${LIBVISUAL_VER}
 
 post-patch:
 	@${FIND} ${WRKSRC} -name "*.[hc]*" | ${XARGS} ${REINPLACE_CMD} \

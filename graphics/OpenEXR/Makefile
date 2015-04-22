@@ -3,10 +3,13 @@
 
 PORTNAME=	OpenEXR
 PORTVERSION=	2.2.0
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	graphics devel
-MASTER_SITES=	SAVANNAH/openexr/
+MASTER_SITES=	SAVANNAH/openexr/:dist \
+		LOCAL/mandree/:test
 DISTNAME=	openexr-${DISTVERSION}
+DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:dist \
+		openexr-2.2.0-comp_dwa-test-images.tar.xz:test
 
 MAINTAINER=	mandree@FreeBSD.org
 COMMENT=	High dynamic-range (HDR) image file format
@@ -18,14 +21,14 @@ LIB_DEPENDS=	libImath-2_2.so.12:${PORTSDIR}/graphics/ilmbase
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
-USES=		compiler:features gmake libtool:keepla pathfix pkgconfig
+USES=		compiler:features gmake libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-ilmbasetest --enable-imfexamples
 USE_LDCONFIG=	yes
 CPPFLAGS+=	-I. -I../IlmImf
 
 # must be linked with -l{thr|pthread} explicitly
-LDFLAGS+=	${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread
 
 PORTDOCS=	*
 PORTEXAMPLES=	*
@@ -45,13 +48,6 @@ OPTIONS_SUB=	yes
 LARGE_STACK_CONFIGURE_ENABLE=	large-stack
 
 .include <bsd.port.pre.mk>
-
-# If default compiler is GCC, upgrade it because
-# g++ 4.2 is too old to auto-upgrade 0xffffffffffffffffl to
-# a long long integer constant - and has likely more issues.
-.if ${COMPILER_TYPE} == gcc
-USE_GCC=	yes
-.endif
 
 MAJORVER=	2_2
 VER=		22
@@ -79,13 +75,12 @@ pre-configure:
 		${ECHO_CMD} "*** same C++ std. library before trying to build OpenEXR.  Abort.   ***" ; \
 		exit 1; }
 
-
 .if ! ${PORT_OPTIONS:MEXAMPLES}
 EXTRA_PATCHES+=${FILESDIR}/extra-patch-IlmImfExamples__Makefile.in
 .endif
 
 regression-test regression test check:	build
-	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} check)
+	@(cd ${WRKSRC}; ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${_MAKE_JOBS} check)
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libIlmImf-${MAJORVER}.so.${VER}

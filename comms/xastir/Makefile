@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xastir
-PORTVERSION=	2.0.4
-PORTREVISION=	8
+PORTVERSION=	2.0.6
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-stable/${PORTNAME}-${PORTVERSION}
 
@@ -14,7 +13,7 @@ BUILD_DEPENDS=	xfontsel:${PORTSDIR}/x11-fonts/xfontsel
 RUN_DEPENDS=	wget:${PORTSDIR}/ftp/wget
 LIB_DEPENDS=	libtiff.so:${PORTSDIR}/graphics/tiff \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
 USES=		gettext gmake motif

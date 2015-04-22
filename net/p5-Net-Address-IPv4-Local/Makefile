@@ -3,11 +3,12 @@
 
 PORTNAME=	Net-Address-IPv4-Local
 PORTVERSION=	0.12
+PORTREVISION=	1
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Class for discovering the local system's IP address
 
 LICENSE=	ART10 GPLv1

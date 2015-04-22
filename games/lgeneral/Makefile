@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	lgeneral
-PORTVERSION=	1.2.3
-PORTREVISION=	1
+PORTVERSION=	1.2.5
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME} \
 		SF/${PORTNAME}/${PORTNAME}-data:data
@@ -13,13 +12,8 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:DEFAULT \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Turn-based strategy engine inspired by Panzer General
 
-LICENSE=	GPLv2
-
-CONFLICTS=	lgeneral-data-[0-9]*
-
-OPTIONS_DEFINE=	SOUND NLS DOCS
-OPTIONS_DEFAULT=	SOUND
-SOUND_DESC=	Enable sound support
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_SDL=	sdl
 USES=		gmake
@@ -28,6 +22,10 @@ USE_CSTD=	gnu89
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+OPTIONS_DEFINE=	SOUND NLS DOCS
+OPTIONS_DEFAULT=	SOUND
+SOUND_DESC=	Enable sound support
 
 .include <bsd.port.options.mk>
 
@@ -54,6 +52,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/icons|/pixmaps|' ${WRKSRC}/Makefile.in
 
 post-install:
+	${MKDIR} ${STAGEDIR}${DATADIR}/gfx/flags
+	${MKDIR} ${STAGEDIR}${DATADIR}/gfx/units/
+	${MKDIR} ${STAGEDIR}${DATADIR}/gfx/terrain/pg/
 	${STAGEDIR}${PREFIX}/bin/lgc-pg -s ${WRKDIR}/pg-data -d ${STAGEDIR}${DATADIR}
 	@${FIND} ${STAGEDIR}${DATADIR} -type d | ${XARGS} ${CHMOD} a+rx
 	@${FIND} ${STAGEDIR}${DATADIR} -type f | ${XARGS} ${CHMOD} ${SHAREMODE}

@@ -20,7 +20,7 @@ CONFIGURE_ARGS=	--enable-ipv6 \
 		--disable-arts
 
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	ESOUND VORBIS
 OPTIONS_DEFAULT=VORBIS
@@ -42,12 +42,7 @@ CPPFLAGS+=	"-D_M_IX86"
 CONFIGURE_ARGS+=	--disable-x86opts
 .endif
 
-.if ${ARCH} == "alpha"
-CPPFLAGS+=	"-D_M_ALPHA"
-.endif
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|echo aout|echo elf|' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|Player::||' ${WRKSRC}/base/include/player.h
 
 post-install:

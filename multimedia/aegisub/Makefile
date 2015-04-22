@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	aegisub
-PORTVERSION=	3.2.1
+PORTVERSION=	3.2.2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://ftp.aegisub.org/pub/archives/releases/source/:aegisub \
 		ftp://ftp.aegisub.org/pub/archives/releases/source/:aegisub \
 		ftp://ftp2.aegisub.org/pub/archives/releases/source/:aegisub \
-		GH
+		GHL
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:aegisub ${FFMS_DISTFILE}
 
 MAINTAINER=	ports@FreeBSD.org

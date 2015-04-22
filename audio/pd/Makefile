@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pd
-DISTVERSION=	0.46-2
+DISTVERSION=	0.46-5
 DISTVERSIONSUFFIX=	.src
 CATEGORIES=	audio
 MASTER_SITES=	http://msp.ucsd.edu/Software/
@@ -19,15 +19,13 @@ RUN_DEPENDS=	xdg-open:${PORTSDIR}/devel/xdg-utils \
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S,${DISTVERSIONSUFFIX},,}
 
-USES=		gettext gmake libtool pkgconfig shebangfix tcl:wrapper \
-		tk:wrapper
+USES=		autoreconf gettext gmake libtool pkgconfig shebangfix \
+		tcl:wrapper tk:wrapper
 SHEBANG_FILES=	tcl/pkg_mkIndex.tcl
 SHEBANG_LANG=	tclsh
 tclsh_OLD_CMD=	/usr/bin/tclsh
 tclsh_CMD=	${LOCALBASE}/bin/tclsh
-USE_AUTOTOOLS=	aclocal libtoolize autoconf automake
-ACLOCAL_ARGS=	-I m4/generated -I m4
-AUTOMAKE_ARGS=	--add-missing --copy --force-missing
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_lib_pthread_pthread_create=no
 
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -71,12 +69,6 @@ post-patch:
 		 s|-lc ||g' ${WRKSRC}/extra/expr~/makefile
 	@${REINPLACE_CMD} -e \
 		'/libpthread/s|_ERROR|_WARN|' ${WRKSRC}/portaudio/configure.in
-
-pre-configure:
-	@(cd ${WRKSRC}/portaudio \
-		&& ${SETENV} ${AUTOTOOLS_ENV} ${ACLOCAL} \
-		&& ${SETENV} ${AUTOTOOLS_ENV} ${LIBTOOLIZE} ${LIBTOOLIZE_ARGS} \
-		&& ${SETENV} ${AUTOTOOLS_ENV} ${AUTOCONF})
 
 do-install:
 .for i in src man tcl po extra

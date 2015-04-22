@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	unifi3
-PORTVERSION=	3.2.5
+PORTVERSION=	3.2.10
+PORTREVISION=	1
 CATEGORIES=	net-mgmt java
 MASTER_SITES=	http://dl.ubnt.com/unifi/${PORTVERSION}/
 DISTNAME=	UniFi.unix
@@ -34,7 +35,7 @@ GROUPS=	unifi
 WRKSRC=	${WRKDIR}/UniFi
 
 RESTRICTED=	Redistribution of bundled firmware images is not permitted
-CONFLICTS=	unifi2-* unifi4-*
+CONFLICTS=	unifi2-[0-9]* unifi4-[0-9]* tomcat-native-[0-9]*
 
 post-extract:
 	${MKDIR} ${WRKSRC}/webapps/ROOT
@@ -44,5 +45,10 @@ do-install:
 	${MKDIR} ${STAGEDIR}${JAVASHAREDIR}/unifi
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}${JAVASHAREDIR}/unifi/)
 	${LN} -sf ${PREFIX}/bin/mongod ${STAGEDIR}${JAVASHAREDIR}/unifi/bin/mongod
+
+# Create directories that will be writable by unifi
+.for i in data logs run work
+	${MKDIR} ${STAGEDIR}/${JAVASHAREDIR}/unifi/${i}
+.endfor
 
 .include <bsd.port.mk>

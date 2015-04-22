@@ -1,9 +1,9 @@
-# Created by: Heiner <h.eichmann@gmx.de>
+# Created by: Heiner Eichmann <h.eichmann@gmx.de>
 # $FreeBSD$
 
 PORTNAME=	k3b
 PORTVERSION=	2.0.2
-PORTREVISION=	21
+PORTREVISION=	22
 CATEGORIES=	sysutils multimedia kde
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}
 
@@ -15,7 +15,7 @@ LIB_DEPENDS=	libcdda_paranoia.so:${PORTSDIR}/audio/cdparanoia \
 RUN_DEPENDS=	cdrecord:${PORTSDIR}/sysutils/cdrtools
 BUILD_DEPENDS=	cdrecord:${PORTSDIR}/sysutils/cdrtools
 
-USES=		cmake shared-mime-info pkgconfig tar:bzip2
+USES=		cmake gettext pkgconfig shared-mime-info tar:bzip2
 CMAKE_ARGS=	-DK3B_BUILD_K3BSETUP:BOOL=OFF \
 		-DK3B_ENABLE_MUSICBRAINZ:BOOL=OFF
 USE_KDE4=	automoc4 kdeprefix kdelibs libkcddb
@@ -34,7 +34,7 @@ OPTIONS_SUB=	yes # FFMPEG FLAC MAD MUSEPACK SNDFILE VORBIS_ENC VORBIS_DEC LIBDVD
 CDRDAO_DESC=		Burning: cdrdao
 CDRDAO_RUN_DEPENDS=	cdrdao:${PORTSDIR}/sysutils/cdrdao
 
-DVDPLUSRW_DESC=		Burning: DVD+RW Tools (DVD+/-R(W))
+DVDPLUSRW_DESC=		Burning: DVD+RW tools (DVD+/-R(W))
 DVDPLUSRW_RUN_DEPENDS=	dvd+rw-format:${PORTSDIR}/sysutils/dvd+rw-tools
 
 EMOVIX_DESC=		Burning: eMovix (bootable video CDs)

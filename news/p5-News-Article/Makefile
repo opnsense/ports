@@ -3,7 +3,7 @@
 
 PORTNAME=	News-Article
 PORTVERSION=	1.27
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	news perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -18,14 +18,10 @@ USES=		perl5
 USE_PERL5=	configure
 
 OPTIONS_DEFINE=	PGP_SIGN
-OPTIONS_DEFAULT=	PGP_SIGN
+OPTIONS_DEFAULT=PGP_SIGN
 PGP_SIGN_DESC=	PGP::Sign support for header signing
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MPGP_SIGN}
-BUILD_DEPENDS+=	p5-PGP-Sign>=0:${PORTSDIR}/security/p5-PGP-Sign
-RUN_DEPENDS+=	p5-PGP-Sign>=0:${PORTSDIR}/security/p5-PGP-Sign
-.endif
+PGP_SIGN_BUILD_DEPENDS=	p5-PGP-Sign>=0:${PORTSDIR}/security/p5-PGP-Sign
+PGP_SIGN_RUN_DEPENDS=	p5-PGP-Sign>=0:${PORTSDIR}/security/p5-PGP-Sign
 
 .include <bsd.port.mk>

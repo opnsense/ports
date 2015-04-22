@@ -2,7 +2,7 @@
 # $FreeBSD$
 #   $MCom: ports/trunk/textproc/py3-libxml2/Makefile 19293 2014-03-24 20:46:10Z kwm $
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	textproc gnome python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -17,8 +17,7 @@ PLIST=		${.CURDIR}/pkg-plist
 
 USE_GNOME+=	libxml2
 USES=		python:3
-USE_PYDISTUTILS=yes
-#USE_PYTHON=	distutils:3
+USE_PYTHON=	distutils
 PYDISTUTILS_EGGINFO=	libxml2_python-${PORTVERSION}-py${PYTHON_VER}.egg-info
 PLIST_SUB+=	PYTVER=${PYTHON_VER:S/.//}
 

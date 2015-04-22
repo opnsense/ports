@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	moodle
-PORTVERSION=	2.7.2
+PORTVERSION=	2.7.7
 CATEGORIES=	www
 MASTER_SITES=	SF/moodle/Moodle/stable27/
 PKGNAMESUFFIX=	${PKGORIGIN:T:S/moodle//}
@@ -16,7 +16,7 @@ LICENSE=	GPLv3
 BUILD_DEPENDS=	${PHPBASE}/lib/php/${PHP_EXT_DIR}/intl.so:${PORTSDIR}/devel/pecl-intl
 RUN_DEPENDS=	${PHPBASE}/lib/php/${PHP_EXT_DIR}/intl.so:${PORTSDIR}/devel/pecl-intl
 
-CONFLICTS=	moodle-1.*.* moodle24-2.4.* moodle25-2.5.[0-9]* moodle26-2.6.[0-9]*
+CONFLICTS=	moodle26-2.6.[0-9]* moodle28-2.8.[0-9]*
 
 USE_PHP=	session gd pcre mbstring iconv tokenizer curl xml xmlrpc ctype \
 		soap openssl simplexml spl dom json zip zlib hash
@@ -63,8 +63,8 @@ pre-install:
 	@${ECHO_CMD} "@group ${WWWGRP}" >> ${PLIST}
 	@${ECHO_CMD} "@mode 755" >> ${PLIST}
 	@${FIND} -s -d ${WRKSRC} -type f | ${SED} "s?${WRKSRC}?${MOODLEDIR}?g" >>${PLIST}
-	@${FIND} -s -d ${WRKSRC} -type d  | ${SED} "s?${WRKSRC}?@dirrm ${MOODLEDIR}?g" >> ${PLIST}
-	@${ECHO} @dirrm ${MOODLEDATADIR} >> ${PLIST}
+	@${FIND} -s -d ${WRKSRC} -type d  | ${SED} "s?${WRKSRC}?@dir ${MOODLEDIR}?g" >> ${PLIST}
+	@${ECHO} @dir ${MOODLEDATADIR} >> ${PLIST}
 	@${ECHO_CMD} "@mode" >> ${PLIST}
 	@${ECHO_CMD} "@group" >> ${PLIST}
 	@${ECHO_CMD} "@owner" >> ${PLIST}

@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	hasklig
-PORTVERSION=	0.3
+PORTVERSION=	0.4
+PORTREVISION=	1
 CATEGORIES=	x11-fonts
 MASTER_SITES=	https://github.com/i-tu/Hasklig/releases/download/${PORTVERSION}/
 DISTNAME=	Hasklig-${PORTVERSION}
@@ -10,13 +11,9 @@ DISTNAME=	Hasklig-${PORTVERSION}
 MAINTAINER=	6yearold@gmail.com
 COMMENT=	Haskell code font with monospaced ligatures
 
-RUN_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
-
-USES=		zip
+USES=		fonts zip
 NO_BUILD=	yes
-
-PLIST_SUB=	FONTSDIR="${FONTSDIR:S|${PREFIX}/||}"
-FONTSDIR=	${PREFIX}/lib/X11/fonts/${PORTNAME}
+NO_ARCH=	yes
 
 do-install:
 	${MKDIR} ${STAGEDIR}${FONTSDIR}

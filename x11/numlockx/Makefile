@@ -5,10 +5,13 @@ PORTNAME=	numlockx
 PORTVERSION=	1.2
 CATEGORIES=	x11
 MASTER_SITES=	http://home.kde.org/~seli/numlockx/ \
-		CRITICAL
+		LOCAL/ehaupt
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Turns on numlock in X
+
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_XORG=	x11 xext xtst
 GNU_CONFIGURE=	yes

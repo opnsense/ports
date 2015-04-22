@@ -25,14 +25,16 @@ PORTDOCS=	SECURITY CREDITS ChangeLog FAQ.html FAQ-1.html FAQ-2.html \
 		FAQ-8.html
 PLIST_FILES=	sbin/frox ${EXAMPLESDIR:S,${PREFIX}/,,}/frox.conf \
 		man/man1/frox.1.gz man/man5/frox.conf.5.gz
-PLIST_DIRS=	${EXAMPLESDIR:S,${PREFIX}/,,}
 
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
 CONFIGURE_ARGS=	--enable-configfile=${PREFIX}/etc/frox.conf
 
-OPTIONS_DEFINE=	IPFILTER PF VIRUS_SCAN HTTP_CACHE LOCAL_CACHE CCP ROOT_RUN DOCS
+OPTIONS_DEFINE=	VIRUS_SCAN HTTP_CACHE LOCAL_CACHE CCP ROOT_RUN DOCS
 OPTIONS_DEFAULT=	HTTP_CACHE CCP
+
+OPTIONS_RADIO=	PFILTER
+OPTIONS_RADIO_PFILTER=	IPFILTER PF
 
 IPFILTER_DESC=		Use ipfilter instead of ipfw
 PF_DESC=		Build with pf(4) support
@@ -43,7 +45,7 @@ CCP_DESC=	 	Ftp-proxy style command control programs
 ROOT_RUN_DESC=	 	Allow frox running as root (not recomended)
 
 IPFILTER_CONFIGURE_ENABLE=	ipfilter
-PF_CPPFLAGS=		DPF
+PF_CPPFLAGS=		-DPF
 VIRUS_SCAN_CONFIGURE_ENABLE=	virus-scan
 HTTP_CACHE_CONFIGURE_ENABLE=	http-cache
 LOCAL_CACHE_CONFIGURE_ENABLE=	local-cache

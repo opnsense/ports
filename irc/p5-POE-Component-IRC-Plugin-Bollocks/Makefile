@@ -3,12 +3,12 @@
 
 PORTNAME=	POE-Component-IRC-Plugin-Bollocks
 PORTVERSION=	1.00
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	irc perl5 devel
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	POE::Component::IRC plugin that talks bollocks
 
 BUILD_DEPENDS=	p5-Dev-Bollocks>=0.06:${PORTSDIR}/textproc/p5-Dev-Bollocks \

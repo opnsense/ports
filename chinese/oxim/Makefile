@@ -8,7 +8,7 @@ CATEGORIES=	chinese textproc
 MASTER_SITES=	ftp://ftp.opendesktop.org.tw/odp/OXIM/Source/ \
 		ftp://140.111.128.66/odp/OXIM/Source/
 
-MAINTAINER=	clsung@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Open X Input Method server
 
 LIB_DEPENDS=	libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig
@@ -20,6 +20,7 @@ GTK2_DESC=	 GTK2 input method module
 CHEWING_DESC=	 Chewing input module
 UNICODE_DESC=	 Unicode input module
 
+BROKEN=		Unfetchable
 USES=		iconv libtool pkgconfig
 USE_XORG=	x11 xft xpm xtst xext
 WANT_GNOME=	yes

@@ -3,6 +3,7 @@
 
 PORTNAME=	xine
 PORTVERSION=	1.2.6
+PORTREVISION=	3
 CATEGORIES=	multimedia ipv6
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-lib/${PORTVERSION}
 PKGNAMEPREFIX=	lib
@@ -17,7 +18,7 @@ LIB_DEPENDS=	libFLAC.so:${PORTSDIR}/audio/flac \
 		libvorbis.so:${PORTSDIR}/audio/libvorbis \
 		libspeex.so:${PORTSDIR}/audio/speex \
 		libmng.so:${PORTSDIR}/graphics/libmng \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libdvdread.so:${PORTSDIR}/multimedia/libdvdread \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libfame.so:${PORTSDIR}/multimedia/libfame \
@@ -36,8 +37,10 @@ LIB_DEPENDS=	libFLAC.so:${PORTSDIR}/audio/flac \
 LIB_DEPENDS+=	libdvdcss.so.2:${PORTSDIR}/multimedia/libdvdcss
 .endif
 
-USES=		compiler gmake iconv libtool:keepla pathfix perl5 pkgconfig \
-		execinfo tar:xz
+USES=		compiler cpe gmake iconv libtool:keepla pathfix perl5 \
+			pkgconfig execinfo tar:xz
+CPE_PRODUCT =	xine-lib
+CPE_VENDOR=	xine
 GNU_CONFIGURE=	yes
 USE_XORG=	x11 xv xinerama xext sm ice
 USE_GL=		gl glu
@@ -156,7 +159,7 @@ CONFIGURE_ARGS+=	--disable-aalib --disable-aalibtest
 .endif
 
 .if ${PORT_OPTIONS:MIMAGEMAGICK}
-LIB_DEPENDS+=	libMagickWand-6.Q16.so:${PORTSDIR}/graphics/ImageMagick
+LIB_DEPENDS+=	libMagickWand-6.so:${PORTSDIR}/graphics/ImageMagick
 PLIST_SUB+=	WITH_IMAGEMAGICK=""
 .else
 PLIST_SUB+=	WITH_IMAGEMAGICK="@comment "

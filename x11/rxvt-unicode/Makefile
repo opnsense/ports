@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	rxvt-unicode
-PORTVERSION=	9.20
+PORTVERSION=	9.21
 CATEGORIES=	x11
 MASTER_SITES=	http://dist.schmorp.de/rxvt-unicode/%SUBDIR%/
 MASTER_SITE_SUBDIR=	. Attic
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	tic:${PORTSDIR}/devel/ncurses	\
 RUN_DEPENDS=	${LOCALBASE}/bin/fc-cache:${PORTSDIR}/x11-fonts/fontconfig	\
 		${LOCALBASE}/share/misc/terminfo.db:${PORTSDIR}/devel/ncurses
 
-USES=			pkgconfig shebangfix tar:bzip2
+USES=			cpe pkgconfig shebangfix tar:bzip2
 USE_XORG=		xpm xft xrender
 GNU_CONFIGURE=		yes
 CPPFLAGS+=		-I${LOCALBASE}/include
@@ -25,6 +25,7 @@ LIBS+=			-lutil
 CONFIGURE_ENV=		TIC=${LOCALBASE}/bin/tic
 CONFIGURE_ARGS=		--enable-everything --with-term=rxvt	\
 			--with-terminfo=${LOCALBASE}/share/misc/terminfo.db
+CPE_VENDOR=		marc_lehmann
 
 OPTIONS_DEFINE=	PERL XIM UNICODE3 ISO14755 COMBINING RXVT_SCROLLBAR	\
 		NEXT_SCROLLBAR XTERM_SCROLLBAR BACKSPACE_KEY DELETE_KEY	\
@@ -206,8 +207,6 @@ post-build:
 .endif
 
 post-install:
-	${CHMOD} 4711 ${STAGEDIR}${PREFIX}/bin/urxvt	\
-		${STAGEDIR}${PREFIX}/bin/urxvtd
 	${INSTALL_DATA} ${WRKSRC}/doc/etc/rxvt-unicode.terminfo	\
 		${STAGEDIR}${PREFIX}/share/misc/
 .if ${PORT_OPTIONS:MDOCS}

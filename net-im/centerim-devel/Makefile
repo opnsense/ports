@@ -3,7 +3,7 @@
 
 PORTNAME=	centerim
 PORTVERSION=	4.22.10.11
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net-im
 MASTER_SITES=	http://www.centerim.org/download/mobshots/ \
 		ftp://ftp.centerim.org/mobshots/
@@ -21,6 +21,7 @@ USE_PERL5=	run
 USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ssl --with-openssl
+CPPFLAGS+=	-I${LOCALBASE}/include
 CONFLICTS=	centericq-[0-9]* centerim-[0-9]*
 
 SHEBANG_FILES=	misc/cimformathistory misc/cimextracthistory.pl
@@ -58,7 +59,7 @@ IRC_CONFIGURE_ENABLE=	irc
 JABBER_CONFIGURE_ENABLE=jabber
 RSS_CONFIGURE_ENABLE=	rss
 LJ_CONFIGURE_ENABLE=	lj
-GG_LIB_DEPENDS=		libgadu.so:${PORTSDIR}/polish/ekg
+GG_LIB_DEPENDS=		libgadu.so:${PORTSDIR}/polish/libgadu
 GG_CONFIGURE_ENABLE=	gg
 GPGME_LIB_DEPENDS=	libgpgme.so:${PORTSDIR}/security/gpgme
 GPGME_CONFIGURE_OFF=	--with-gpgme-prefix=/nonexistent

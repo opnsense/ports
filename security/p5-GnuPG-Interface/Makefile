@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	GnuPG-Interface
-PORTVERSION=	0.50
+PORTVERSION=	0.52
+PORTREVISION=	1
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -16,7 +17,7 @@ LICENSE_COMB=	dual
 RUN_DEPENDS=	gpg2:${PORTSDIR}/security/gnupg \
 		p5-MooX-HandlesVia>=0.04:${PORTSDIR}/devel/p5-MooX-HandlesVia \
 		p5-MooX-late>=0.14:${PORTSDIR}/devel/p5-MooX-late \
-		p5-Any-Moose>=0.04:${PORTSDIR}/devel/p5-Any-Moose
+		p5-Moo>=0.091011:${PORTSDIR}/devel/p5-Moo
 BUILD_DEPENDS:=	${RUN_DEPENDS}
 
 USES=		perl5

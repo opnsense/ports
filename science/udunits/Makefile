@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	udunits
-PORTVERSION=	2.2.17
+PORTVERSION=	2.2.19
 CATEGORIES=	science math
 MASTER_SITES=	ftp://ftp.unidata.ucar.edu/pub/udunits/ \
 		LOCAL/sunpoet
@@ -17,8 +17,8 @@ OPTIONS_DEFINE=	DOCS
 CONFIGURE_ENV=	ac_cv_header_CUnit_CUnit_h=no
 CPPFLAGS+=	-I${LOCALBASE}/include
 GNU_CONFIGURE=	yes
+INSTALL_TARGET=	install-strip
 LDFLAGS+=	-L${LOCALBASE}/lib
-MAKE_ENV=	INSTALL_STRIP_FLAG=${STRIP}
 USE_LDCONFIG=	yes
 USES=		libtool
 

@@ -3,10 +3,10 @@
 
 PORTNAME=	sidplayer
 PORTVERSION=	4.4
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	audio
 MASTER_SITES=	http://sidplayer.cebix.net/downloads/ \
-		CRITICAL
+		LOCAL/ehaupt
 DISTNAME=	SIDPlayer-${PORTVERSION}
 
 MAINTAINER=	ehaupt@FreeBSD.org

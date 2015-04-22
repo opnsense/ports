@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	vlc
-DISTVERSION=	2.1.5
-PORTREVISION=	9
+DISTVERSION=	2.2.0
+PORTREVISION=	4
 PORTEPOCH=	4
 CATEGORIES=	multimedia audio ipv6 net www
 MASTER_SITES=	http://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSION:S/a$//}/ \
@@ -11,7 +11,7 @@ MASTER_SITES=	http://download.videolan.org/pub/videolan/${PORTNAME}/${DISTVERSIO
 		ftp://ftp.crans.org/pub/videolan/${PORTNAME}/${DISTVERSION:S/a$//}/
 
 MAINTAINER=	multimedia@FreeBSD.org
-COMMENT=	Qt4 based multimedia player and streaming server
+COMMENT?=	Qt based multimedia player and streaming server
 
 LICENSE=	GPLv2
 
@@ -20,7 +20,8 @@ LIB_DEPENDS=	libgcrypt.so:${PORTSDIR}/security/libgcrypt \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
 		libidn.so:${PORTSDIR}/dns/libidn
-BUILD_DEPENDS=	ffmpeg>=2.0:${PORTSDIR}/multimedia/ffmpeg
+BUILD_DEPENDS=	ffmpeg>=2.0:${PORTSDIR}/multimedia/ffmpeg \
+		yasm:${PORTSDIR}/devel/yasm
 RUN_DEPENDS=	ffmpeg>=2.0:${PORTSDIR}/multimedia/ffmpeg
 
 USES=		compiler:c11 desktop-file-utils gmake iconv libtool pathfix \
@@ -28,6 +29,8 @@ USES=		compiler:c11 desktop-file-utils gmake iconv libtool pathfix \
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
+
+CONFLICTS?=	vlc-qt4-*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-avcodec --enable-avformat --enable-dvbpsi \
@@ -52,17 +55,17 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 CFLAGS_i386=	-fomit-frame-pointer
 
 OPTIONS_DEFINE=	A52 AALIB ASS AVAHI CACA DBUS DCA DIRAC DOCS DVDREAD \
-		DVDNAV FAAD FLAC FLUID FREERDP FRIBIDI GME GNOMEVFS2 GNUTLS \
+		DVDNAV FAAD FLAC FLUID FRIBIDI GME GNOMEVFS2 GNUTLS \
 		GOOM HTTPD JACK KATE LIBBLURAY LIBRSVG2 LIBSSH2 LIRC \
 		LIVEMEDIA LUA MAD MATROSKA MODPLUG \
 		MPEG2 MTP MUSEPACK NCURSES NLS NOTIFY OGG OPTIMIZED_CFLAGS \
-		OPUS PNG PULSEAUDIO QT4 REALRTSP RUNROOT SAMPLERATE \
-		SCHROEDINGER SDL SHOUTCAST SIDPLAY SKINS SMB STREAM SPEEX \
+		OPUS PNG PULSEAUDIO QT4 QT5 REALRTSP RUNROOT SAMPLERATE \
+		SCHROEDINGER SDL SHOUTCAST SKINS SMB STREAM SPEEX \
 		TAGLIB THEORA TWOLAME UPNP V4L VAAPI VCD VDPAU VORBIS \
-		X11 X264 ZVBI
+		X11 X264 X265 ZVBI
 OPTIONS_DEFAULT=A52 AVAHI DBUS DCA DVDREAD DVDNAV FAAD FLAC GNUTLS \
-		HTTPD LUA MAD MATROSKA MPEG2 OGG OPTIMIZED_CFLAGS OPUS PNG \
-		QT4 SAMPLERATE STREAM SPEEX TAGLIB THEORA TWOLAME V4L \
+		HTTPD LIVEMEDIA LUA MAD MATROSKA MPEG2 OGG OPTIMIZED_CFLAGS \
+		OPUS PNG QT5 SAMPLERATE STREAM SPEEX TAGLIB THEORA TWOLAME V4L \
 		VCD VORBIS X11
 OPTIONS_SUB=	yes
 
@@ -126,8 +129,10 @@ FLAC_CONFIGURE_ENABLE=	flac
 FLUID_LIB_DEPENDS=	libfluidsynth.so:${PORTSDIR}/audio/fluidsynth
 FLUID_CONFIGURE_ENABLE=	fluidsynth
 
-FREERDP_LIB_DEPENDS=	libfreerdp-core.so:${PORTSDIR}/net/freerdp
-FREERDP_CONFIGURE_ENABLE=	libfreerdp
+# XXX vlc doesn't seem to like the freerdp version in ports
+#FREERDP_LIB_DEPENDS=	libfreerdp-core.so:${PORTSDIR}/net/freerdp
+#FREERDP_CONFIGURE_ENABLE=	libfreerdp
+CONFIGURE_ARGS+=	-disable-freerdp
 
 FRIBIDI_LIB_DEPENDS=	libfribidi.so:${PORTSDIR}/converters/fribidi
 FRIBIDI_CONFIGURE_ENABLE=	fribidi
@@ -222,14 +227,19 @@ OPTIMIZED_CFLAGS_CONFIGURE_ENABLE=	optimizations
 OPUS_LIB_DEPENDS=	libopus.so:${PORTSDIR}/audio/opus
 OPUS_CONFIGURE_ENABLE=	opus
 
-PNG_LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 PNG_CONFIGURE_ENABLE=	png
 
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
 PULSEAUDIO_CONFIGURE_ENABLE=	pulse
 
-QT4_CONFIGURE_ENABLE=	qt
 QT4_USE=		QT4=gui,corelib,moc_build,rcc_build,uic_build
+# QT_CFLAGS:	pkg-config --cflags "QtCore QtGui >= 4.6.0"
+# QT_LIBS:	pkg-config --libs "QtCore QtGui >= 4.6.0"
+QT4_CONFIGURE_ENV=	QT_CFLAGS="-I${QT_INCDIR}/QtGui -DQT_SHARED -I${QT_INCDIR} -I${QT_INCDIR}/QtCore" \
+			QT_LIBS="-lQtGui -L${QT_LIBDIR} -lQtCore"
+
+QT5_USE=		QT5=gui,core,widgets,x11extras,buildtools_build
 
 REALRTSP_CONFIGURE_ENABLE=	realrtsp
 
@@ -244,9 +254,12 @@ SCHROEDINGER_CONFIGURE_ENABLE=	schroedinger
 SDL_USE=		SDL=image
 SDL_CONFIGURE_ENABLE=	sdl sdl-image
 
-SIDPLAY_LIB_DEPENDS=	libsidplay2.so:${PORTSDIR}/audio/libsidplay2
-SIDPLAY_LDFLAGS=	-L${LOCALBASE}/lib/sidplay/builders
-SIDPLAY_CONFIGURE_ENABLE=	sid
+# libsidplay build broken with:
+# /usr/bin/ld: /usr/local/lib/sidplay/builders/libresid-builder.a(resid-builder.o): relocation R_X86_64_32S against `_ZTV12ReSIDBuilder' can not be used when making a shared object; recompile with -fPIC
+#SIDPLAY_LIB_DEPENDS=	libsidplay2.so:${PORTSDIR}/audio/libsidplay2
+#SIDPLAY_LDFLAGS=	-L${LOCALBASE}/lib/sidplay/builders
+#SIDPLAY_CONFIGURE_ENABLE=	sid
+CONFIGURE_ARGS+=	--disable-sid
 
 SHOUTCAST_LIB_DEPENDS=	libshout.so:${PORTSDIR}/audio/libshout
 SHOUTCAST_CONFIGURE_ENABLE=	shout
@@ -291,8 +304,11 @@ X11_LIB_DEPENDS=	libxcb-keysyms.so:${PORTSDIR}/x11/xcb-util-keysyms
 X11_CONFIGURE_ENABLE=	glx xcb xvideo
 X11_CONFIGURE_WITH=	x
 
-X264_LIB_DEPENDS=	libx264.so:${PORTSDIR}/multimedia/x264
+X264_LIB_DEPENDS=	libx264.so:${PORTSDIR}/multimedia/libx264
 X264_CONFIGURE_ENABLE=	x264
+
+X265_LIB_DEPENDS=	libx265.so:${PORTSDIR}/multimedia/x265
+X265_CONFIGURE_ENABLE=	x265
 
 ZVBI_LIB_DEPENDS=	libzvbi.so:${PORTSDIR}/devel/libzvbi
 ZVBI_CONFIGURE_ENABLE=	zvbi
@@ -306,14 +322,28 @@ PORTDOCS=	*
 IGNORE=		Pulseaudio is unsupported with rtld prior to FreeBSD-9.x
 .endif
 
+.if ${PORT_OPTIONS:MX11}
+INSTALLS_ICONS=	yes
+.endif
+
+.if ${PORT_OPTIONS:MQT5} || ${PORT_OPTIONS:MQT4}
+CONFIGURE_ARGS+=	--enable-qt
+.else
+CONFIGURE_ARGS+=	--disable-qt
+.endif
+
+.if ${PORT_OPTIONS:MQT5} && ${PORT_OPTIONS:MQT4}
+IGNORE=	please choose one of QT4 or QT5
+.endif
+
 .if ${PORT_OPTIONS:MSKINS}
-.if ${PORT_OPTIONS:MQT4}
+.if ${PORT_OPTIONS:MQT5} || ${PORT_OPTIONS:MQT4}
 LIB_DEPENDS+=	libminizip.so:${PORTSDIR}/archivers/minizip \
 		libtar.so:${PORTSDIR}/devel/libtar
 USE_XORG+=	xext xinerama xpm
 CONFIGURE_ARGS+=--enable-skins2 --enable-libtar
 .else
-IGNORE=	SKINS option requires QT4 option
+IGNORE=	SKINS option requires QT4 or QT5 option
 .endif
 .else
 CONFIGURE_ARGS+=--disable-skins2 --disable-libtar
@@ -338,11 +368,17 @@ post-patch:
 		-e 's|/dev/dvd|${WITH_DVD_DEVICE}|g' \
 		${WRKSRC}/src/libvlc-module.c
 	@${RM} -rf ${WRKSRC}/modules/access/v4l2/linux
+# XXX FreeBSD doesn't have strerror_l() - use the android version of error.c
+	@${CP} ${WRKSRC}/src/android/error.c ${WRKSRC}/src/posix
+.if ${PORT_OPTIONS:MQT4}
+# XXX no sane way to tell configure not to pick up Qt5X11Extras with qt4
+	@${REINPLACE_CMD} s/Qt5X11Extras/Qt5X11Extras-not/ \
+		${WRKSRC}/configure
+.endif
 
 post-install:
 	@(cd ${STAGEDIR}${PREFIX} && ${FIND} -s lib/vlc -not -name '*.la' \
 		-type f -o -type l >> ${TMPPLIST})
-	@(cd ${STAGEDIR}${PREFIX} && ${FIND} -s -d lib/vlc -type d | \
-		${SED} 's/^/@dirrm /' >> ${TMPPLIST})
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/vlc/plugins/*/*.so
 
 .include <bsd.port.mk>

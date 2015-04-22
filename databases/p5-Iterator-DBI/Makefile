@@ -3,11 +3,12 @@
 
 PORTNAME=	Iterator-DBI
 PORTVERSION=	0.02
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Iterator for returning DBI query results
 
 LICENSE=	ART10 GPLv1

@@ -3,11 +3,12 @@
 
 PORTNAME=	SVN-Notify-Filter-EmailFlatFileDB
 PORTVERSION=	1.01
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Converts account names to email address based on a flat-file database
 
 LICENSE=	ART10 GPLv1

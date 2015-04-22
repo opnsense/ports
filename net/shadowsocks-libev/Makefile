@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	shadowsocks-libev
-PORTVERSION=	1.4.0
-PORTREVISION=	1
+DISTVERSIONPREFIX=v
+PORTVERSION=	1.6.4
 CATEGORIES=	net
-MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/archive/${GH_TAGNAME}.tar.gz?dummy=/
 
 MAINTAINER=	xiaoding+freebsd@xiaoding.org
 COMMENT=	Lightweight tunnel proxy which can help you get through firewalls
@@ -15,13 +14,17 @@ LICENSE=	GPLv3
 # fetch from github repo
 USE_GITHUB=	yes
 GH_ACCOUNT=	madeye
-GH_TAGNAME=	v1.4.0
-WRKSRC=		${WRKDIR}/${DISTNAME}
 
 GNU_CONFIGURE=	yes
-USES=		gmake
+USES=		gmake libtool:keepla
+# Help solve building error since the integrated libsodium enables this option.
+CFLAGS+=	-fstack-protector
 
 USE_RC_SUBR=	shadowsocks_libev
+
+post-patch:
+	${REINPLACE_CMD} -e 's|^pkgconfiglibdir.*|pkgconfiglibdir = ${PREFIX}/libdata/pkgconfig|g' \
+		${WRKSRC}/Makefile.in
 
 post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}

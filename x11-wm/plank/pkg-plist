@@ -13,6 +13,7 @@ share/icons/hicolor/24x24/apps/plank.svg
 share/icons/hicolor/32x32/apps/plank.svg
 share/icons/hicolor/48x48/apps/plank.svg
 share/icons/hicolor/64x64/apps/plank.svg
+%%NLS%%share/locale/am/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/ar/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/bg/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/bs/LC_MESSAGES/plank.mo
@@ -35,6 +36,7 @@ share/icons/hicolor/64x64/apps/plank.svg
 %%NLS%%share/locale/hu/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/id/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/it/LC_MESSAGES/plank.mo
+%%NLS%%share/locale/ja/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/ko/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/lt/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/lv/LC_MESSAGES/plank.mo
@@ -50,10 +52,13 @@ share/icons/hicolor/64x64/apps/plank.svg
 %%NLS%%share/locale/sk/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/sl/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/sma/LC_MESSAGES/plank.mo
+%%NLS%%share/locale/sq/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/sr/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/sr@latin/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/ta/LC_MESSAGES/plank.mo
+%%NLS%%share/locale/te/LC_MESSAGES/plank.mo
+%%NLS%%share/locale/th/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/tr/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/uk/LC_MESSAGES/plank.mo
 %%NLS%%share/locale/vi/LC_MESSAGES/plank.mo
@@ -64,13 +69,3 @@ share/icons/hicolor/64x64/apps/plank.svg
 %%DATADIR%%/themes/Transparent/dock.theme
 share/vala/vapi/plank.deps
 share/vala/vapi/plank.vapi
-@dirrm %%DATADIR%%/themes/Transparent
-@dirrm %%DATADIR%%/themes/Matte
-@dirrm %%DATADIR%%/themes/Default
-@dirrm %%DATADIR%%/themes
-@dirrm %%DATADIR%%
-%%NLS%%@dirrmtry share/locale/sr@latin/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/sr@latin
-%%NLS%%@dirrmtry share/locale/sma/LC_MESSAGES
-%%NLS%%@dirrmtry share/locale/sma
-@dirrm include/plank

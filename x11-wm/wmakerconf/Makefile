@@ -4,7 +4,7 @@
 
 PORTNAME=	wmakerconf
 PORTVERSION=	2.12
-PORTREVISION=	9
+PORTREVISION=	11
 CATEGORIES=	x11-wm
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -14,7 +14,7 @@ COMMENT=	Configuration tool for Window Maker
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libwraster.so:${PORTSDIR}/x11-wm/windowmaker
+LIB_DEPENDS=	libWINGs.so:${PORTSDIR}/x11-wm/windowmaker
 RUN_DEPENDS=	rpm:${PORTSDIR}/archivers/rpm4
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

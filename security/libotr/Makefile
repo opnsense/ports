@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	libotr
-PORTVERSION=	4.0.0
-PORTREVISION=	4
+PORTVERSION=	4.1.0
+PORTREVISION=	1
 CATEGORIES=	security net-im net
 MASTER_SITES=	https://otr.cypherpunks.ca/ \
 		http://www.c-s.li/ports/
@@ -22,6 +22,7 @@ CONFLICTS=	libotr3-*
 GNU_CONFIGURE=	yes
 USES=		libtool pathfix cpe
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 CPE_VENDOR=	cypherpunks
 
 .include <bsd.port.options.mk>

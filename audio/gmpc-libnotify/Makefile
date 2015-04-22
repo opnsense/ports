@@ -7,7 +7,7 @@ PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	http://download.sarine.nl/Programs/gmpc/${PORTVERSION}/
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Libnotify for gmpc
 
 LIB_DEPENDS=	libmpd.so:${PORTSDIR}/audio/libmpd \
@@ -20,6 +20,5 @@ USE_GNOME=	glib20 gtk20 intltool
 USES=		gettext gmake libtool pkgconfig
 
 PLIST_FILES=	lib/gmpc/plugins/libnotifyplugin.so
-PLIST_DIRSTRY=	lib/gmpc/plugins lib/gmpc
 
 .include <bsd.port.mk>

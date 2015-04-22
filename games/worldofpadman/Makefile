@@ -3,7 +3,7 @@
 
 PORTNAME=	worldofpadman
 PORTVERSION=	1.2.20080621
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	games
 MASTER_SITES=	ftp://ftp.snt.utwente.nl/pub/games/worldofpadman/linux/:full,update \
 		${MASTER_SITE_LOCAL:S|$|alepulver/:source|}
@@ -16,14 +16,18 @@ EXTRACT_ONLY=	worldofpadman.run \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Open source FPS game inspired by the Padman comic strip
 
-NO_PACKAGE=	package will be ~600MB; set FORCE_PACKAGE if you really want it
+MANUAL_PACKAGE_BUILD=	huge (~600MB)
 
 USES=		gmake makeself
-MAKE_ENV=	DEFAULT_BASEDIR="${DATADIR}" PTHREAD_LIBS="${PTHREAD_LIBS}"
+MAKE_ENV=	DEFAULT_BASEDIR="${DATADIR}" PTHREAD_LIBS="-lpthread"
 ALL_TARGET=	release
 
 SRC_FILE=	${PORTNAME}-${PORTVERSION}
 VM_ARCHS=	amd64 i386 powerpc
+
+PLIST_FILES=	share/pixmaps/worldofpadman.png
+PORTDOCS=	*
+PORTDATA=	*
 
 OPTIONS_DEFINE=		CURL CURL_DLOPEN GAMELIBS MP3 OPENAL OPENAL_DLOPEN \
 			OPTIMIZED_CFLAGS VORBIS DOCS
@@ -83,11 +87,13 @@ MAKE_ENV+=	USE_CODEC_VORBIS=1
 .if ${PORT_OPTIONS:MCLIENT}
 MAKE_ENV+=	BUILD_CLIENT=1
 WOPBIN+=	wop
+PLIST_FILES+=	bin/worldofpadman
 .endif
 
 .if ${PORT_OPTIONS:MSERVER}
 MAKE_ENV+=	BUILD_SERVER=1
 WOPBIN+=	wopded
+PLIST_FILES+=	bin/worldofpadmanded
 .endif
 
 .if ${PORT_OPTIONS:MGAMELIBS} || !defined(HAVE_VM_COMPILED)
@@ -106,6 +112,7 @@ MAKE_ENV+=	USE_OPTIMIZED_CFLAGS=1
 .if ${PORT_OPTIONS:MSMP_CLIENT}
 MAKE_ENV+=	BUILD_CLIENT_SMP=1
 WOPBIN+=	wop-smp
+PLIST_FILES+=	bin/worldofpadman-smp
 .endif
 
 post-extract:
@@ -122,6 +129,8 @@ post-patch:
 		${WRKSRC}/code/botlib/be_interface.c
 	@${REINPLACE_CMD} '/callMask/ s|static||' \
 		${WRKSRC}/code/qcommon/vm_x86.c
+	@${REINPLACE_CMD} 's|-falign-loops=2||; s|-falign-jumps=2||' \
+		${WRKSRC}/Makefile
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/wop

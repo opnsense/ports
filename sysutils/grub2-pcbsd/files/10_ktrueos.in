@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Copyright 2013 iXsystems (Kris Moore)
+# Copyright 2014 iXsystems (Kris Moore)
 # All rights reserved
 #
 # Redistribution and use in source and binary forms, with or without
@@ -139,7 +139,14 @@ display_loaderopts()
     done < /tmp/.lRObjs.$$
   fi
 
-  # Any sysctls to set?
+  # Add our compat kenv lines
+  echo "    set kFreeBSD.bootfile=\"kernel\""
+  echo "    set kFreeBSD.kernel=\"kernel\""
+  echo "    set kFreeBSD.kernel_options=\"\""
+  echo "    set kFreeBSD.kernelname=\"/boot/kernel/kernel\""
+  echo "    set kFreeBSD.module_path=\"/boot/kernel;/boot/modules\""
+
+  # Any kenv to set?
   if [ "$haveSysCtls" = "1" ] ; then
     while read line
     do
@@ -147,8 +154,11 @@ display_loaderopts()
       echo "$line" | grep -q "vfs.root.mountfrom"
       if [ $? -eq 0 ] ; then continue ; fi
 
-      val="`echo $line | sed 's|"||g'`"
-      echo "    set kFreeBSD.${val}"
+      line="`echo $line | sed 's|"||g'`"
+      key="`echo $line | cut -d '=' -f 1`"
+      val="`echo $line | cut -d '=' -f 2`"
+      if [ -z "$key" -o -z "$val" ] ; then continue ; fi
+      echo "    set kFreeBSD.${key}=\"${val}\""
     done < /tmp/.lSysCtls.$$
   fi
 
@@ -160,24 +170,31 @@ display_loaderopts()
   fi
 
   # Set the grub.platform kenv variable
-  echo "    set kFreeBSD.grub.platform=\$grub_platform"
+  echo "    set kFreeBSD.grub.platform=\"\$grub_platform\""
 
   # See if we need to do GELI passphrase passthrough
   if [ "$haveGELI" = "true" ] ; then
-    echo "    set kFreeBSD.kern.geom.eli.passphrase=\$pass"
+    echo "    set kFreeBSD.kern.geom.eli.passphrase=\"\$pass\""
   fi
 }
 
 detect_beadm()
 {
-   which -s beadm
+   /usr/bin/which -s beadm >/dev/null 2>/dev/null
    if [ $? -ne 0 ] ; then return 0; fi
 
    # Check if we are running from the installer and use its beadm
    if [ -e "/root/beadm.install" ] ; then
       BEADM="/root/beadm.install"
+
+      # Check if this is valid
+      testBE=`$BEADM list`
+      if [ -z "$testBE" ] ; then
+        # No BE's, lets switch back to regular mode
+        BEADM="`/usr/bin/which beadm`"
+      fi
    else
-      BEADM="`which beadm`"
+      BEADM="`/usr/bin/which beadm`"
    fi
 
    ${BEADM} list >/dev/null 2>/dev/null
@@ -190,8 +207,23 @@ detect_beadm()
       NICK="TrueOS"
    fi
 
+   # Only list the default BE here
+   $BEADM list -H >/tmp/.grub-beadm.$$ 2>/dev/null
+   while read line
+   do
+     be=`echo $line | awk '{print $1}'`
+     flags=`echo $line | awk '{print $2}'`
+
+     # Is this BE marked as wanting to be used for next boot? Make it the first one if so
+     if [ "$flags" = "NR" -o "$flags" = "R" ] ; then
+        BE_LIST="$be"
+        break
+     fi
+   done < /tmp/.grub-beadm.$$
+   rm /tmp/.grub-beadm.$$
+
    # Get list of beadm datasets
-   for b in `${BEADM} list -H 2>/dev/null | awk '{print $1}'`
+   for b in $BE_LIST
    do 
       # Got a beadm snapshot, lets get the complete dataset name
       beLine=`${BEADM} list -a | grep "/$BEDS/${b}"`
@@ -200,6 +232,11 @@ detect_beadm()
       cdatatime=`echo $beLine | awk '{print $6}'`
       ztank=`echo $cdataset | cut -d '/' -f 1`
       shortdataset="/`echo $cdataset | cut -d '/' -f 2-5`"
+      # Get the BE nickname if it exists
+      beNickName=`${BEADM} list | grep "^${b} " | tr -s ' ' | cut -d ' ' -f 7-12`
+      if [ -z "$beNickName" ] ; then
+         beNickName="$b"
+      fi
 
       # First part of this dataset
       cat > /tmp/.grubdataset.$$.1 << EOF
@@ -225,8 +262,8 @@ EOF
 
       # Lets start a submenu for each BE
 cat << EOF
-# Start TrueOS BE Submenu
-submenu "${NICK} ($b) - ${cdatadate} ${cdatatime}" {
+
+submenu "${NICK} (${beNickName}) - ${cdatadate} ${cdatatime}" {
 EOF
   
   # Lets do the default entry first
@@ -310,13 +347,28 @@ EOF
     set kFreeBSD.xvesa=YES
   }
 EOF
+    # Now for non-xorg mode
+    #################################
+    cat << EOF
+  menuentry "Boot to console (Disable X)" {
+EOF
+    # Get the dataset guts
+    cat /tmp/.grubdataset.$$.1
+    echo "    kfreebsd ${shortdataset}/@/boot/kernel/kernel"
+    echo "    kfreebsd_loadenv ${shortdataset}@/boot/device.hints"
+    cat /tmp/.grubdataset.$$.2
+
+    # Set any options
+    cat << EOF
+    set kFreeBSD.noxorg=YES
+  }
+EOF
   fi
 
 
       # Lastly lets close the submenu section
       cat << EOF
 }
-# End TrueOS BE
 
 EOF
    done

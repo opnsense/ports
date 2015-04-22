@@ -3,7 +3,7 @@
 
 PORTNAME=	check_postgres
 PORTVERSION=	2.21.0
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	net-mgmt databases perl5
 MASTER_SITES=	http://bucardo.org/downloads/
 PKGNAMEPREFIX=	nagios-
@@ -17,7 +17,7 @@ NO_ARCH=	yes
 
 USES=		perl5
 USE_PERL5=	configure
-USE_PGSQL=	yes
+USES+=		pgsql
 
 # This script is primarily used for monitoring via Nagios, but it also
 # has output styles compatible with cacti or mrtg.  The options
@@ -92,6 +92,9 @@ CACTI_SCRIPTS=	${PREFIX}/share/cacti/scripts
 CACTI_LINKS=	dbstats
 
 .include <bsd.port.options.mk>
+
+post-patch:
+	${REINPLACE_CMD} -e s,%%LOCALBASE%%,${LOCALBASE}, ${WRKSRC}/check_postgres.pl
 
 post-install:
 .if ${PORT_OPTIONS:MNAGIOS}

@@ -7,10 +7,9 @@ PORTREVISION=	2
 CATEGORIES=	devel pear
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
-EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Php Interface to the Spread Toolkit API
 
 LICENSE=	PHP301
@@ -18,10 +17,11 @@ LICENSE=	PHP301
 BUILD_DEPENDS=	${LOCALBASE}/include/sp.h:${PORTSDIR}/net/spread4
 RUN_DEPENDS=	${LOCALBASE}/include/sp.h:${PORTSDIR}/net/spread4
 
+USES=		tar:tgz
 USE_PHP=	yes
 USE_PHPEXT=	yes
-DEFAULT_PHP_VER=53
+IGNORE_WITH_PHP=	56
 
-CONFIGURE_ARGS+=--with-spread=${LOCALBASE}
+CONFIGURE_ARGS+=	--with-spread=${LOCALBASE}
 
 .include <bsd.port.mk>

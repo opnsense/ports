@@ -3,6 +3,7 @@
 
 PORTNAME=	check_netsnmp
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	# none
 PKGNAMEPREFIX=	nagios-
@@ -18,7 +19,6 @@ USES=		perl5
 USE_PERL5=	run
 NO_BUILD=	yes
 PLIST_FILES=	libexec/nagios/check_netsnmp %%DOCSDIR%%/check_netsnmp.html
-PLIST_DIRS=	%%DOCSDIR%%
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/libexec/nagios

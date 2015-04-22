@@ -3,11 +3,12 @@
 
 PORTNAME=	Algorithm-Bucketizer
 PORTVERSION=	0.13
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Distribute sized items to buckets with limited size
 
 LICENSE=	ART10 GPLv1

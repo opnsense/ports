@@ -3,7 +3,7 @@
 
 PORTNAME=	dlpoly
 PORTVERSION=	1.8
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	science java
 MASTER_SITES=	http://ccpforge.cse.rl.ac.uk/gf/download/frsrelease/238/2028/
 PKGNAMESUFFIX=	classic
@@ -30,7 +30,6 @@ MPIF90=		${LOCALBASE}/mpi/openmpi/bin/mpif90
 GUI_USE=		JAVA=yes
 GUI_PLIST_FILES=	bin/dlpoly-gui \
 			${DATADIR_REL}/GUI.jar
-GUI_PLIST_DIRS=		${DATADIR_REL}
 
 post-patch:
 	${CP} ${WRKSRC}/build/MakePAR ${WRKSRC}/build/MakeSEQ ${BUILD_WRKSRC}

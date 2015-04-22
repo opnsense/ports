@@ -8,7 +8,7 @@ CATEGORIES=	mail
 MASTER_SITES=	http://www.dbmail.org/download/2.2/
 PKGNAMESUFFIX=	22
 
-MAINTAINER=	ahicks@p-o.co.uk
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	SQL database-based mail system (POP3 and IMAP)
 
 LICENSE=	GPLv2
@@ -29,7 +29,7 @@ MYSQL_USE=	MYSQL=yes
 MYSQL_CONFIGURE_WITH=	mysql
 SQLITE_USE=	SQLITE=3
 SQLITE_CONFIGURE_WITH=	sqlite
-PGSQL_USE=	PGSQL=yes
+PGSQL_USES=	pgsql
 PGSQL_CONFIGURE_WITH=	pgsql
 SIEVE_CONFIGURE_WITH=	sieve
 SIEVE_LIB_DEPENDS=	libsieve.so:${PORTSDIR}/mail/libsieve

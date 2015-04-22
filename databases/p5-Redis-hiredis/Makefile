@@ -3,12 +3,13 @@
 
 PORTNAME=	Redis-hiredis
 PORTVERSION=	0.11.0
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:NEOPHENIX
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple wrapper around hiredis C client
 
 USES=		perl5

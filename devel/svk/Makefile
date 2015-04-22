@@ -3,14 +3,17 @@
 
 PORTNAME=	svk
 PORTVERSION=	2.2.3
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:CLKAO
 DISTNAME=	SVK-v${PORTVERSION}
 
-MAINTAINER=	rafan@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Distributed Version Control System
+
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
 
 BUILD_DEPENDS=	p5-List-MoreUtils>=0:${PORTSDIR}/lang/p5-List-MoreUtils \
 		p5-subversion>=0:${PORTSDIR}/devel/p5-subversion \
@@ -45,22 +48,16 @@ BUILD_DEPENDS=	p5-List-MoreUtils>=0:${PORTSDIR}/lang/p5-List-MoreUtils \
 		p5-SVN-Mirror>=0.71:${PORTSDIR}/devel/p5-SVN-Mirror \
 		p5-Time-Progress>=0:${PORTSDIR}/devel/p5-Time-Progress \
 		p5-YAML-Syck>=0.60:${PORTSDIR}/textproc/p5-YAML-Syck \
-		p5-libwww>=0:${PORTSDIR}/www/p5-libwww \
-		p5-version>=0.68:${PORTSDIR}/devel/p5-version
+		p5-libwww>=0:${PORTSDIR}/www/p5-libwww
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
 USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
-
 pre-everything::
-	@${ECHO} ""
-	@${ECHO} "If you see some missing dependency, please update your"
-	@${ECHO} "ports tree and upgrade it with 'portupgrade -R svk'."
-	@${ECHO} ""
+	@${ECHO_MSG} ""
+	@${ECHO_MSG} "If you see some missing dependency, please update your"
+	@${ECHO_MSG} "ports tree and upgrade it with 'portupgrade -R svk'."
+	@${ECHO_MSG} ""
 
-regression-test:
-	cd ${WRKSRC} && ${MAKE} test
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

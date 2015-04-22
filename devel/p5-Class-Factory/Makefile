@@ -3,12 +3,12 @@
 
 PORTNAME=	Class-Factory
 PORTVERSION=	1.06
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Base class for dynamic factory classes
 
 LICENSE=	ART10 GPLv1

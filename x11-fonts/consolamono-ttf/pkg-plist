@@ -1,3 +1,2 @@
-%%FONTDIR%%/ConsolaMono.ttf
-%%FONTDIR%%/ConsolaMono-Bold.ttf
-@dirrm %%FONTDIR%%
+%%FONTSDIR%%/ConsolaMono.ttf
+%%FONTSDIR%%/ConsolaMono-Bold.ttf

@@ -3,7 +3,7 @@
 
 PORTNAME=	heroes
 PORTVERSION=	0.21
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	games
 MASTER_SITES=	SF \
 		SF/${PORTNAME}/${PORTNAME}-data/${DATAVERSION}:data \
@@ -42,12 +42,12 @@ OPTIMIZED_CFLAGS_CONFIGURE_ENABLE=	optimizations
 
 INFO=		heroes
 
-CPPFLAGS+=	-I${LOCALBASE}/include ${PTHREAD_CFLAGS}
-LDFLAGS+=	-L${LOCALBASE}/lib -lsmpeg -lm ${PTHREAD_LIBS}
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib -lsmpeg -lm
 
 post-patch:
 	@for dir in ${DATASRC} ${SOUNDSRC} ${MUSICSRC}; do \
-		${FIND} $${dir} -name "Makefile*" | ${XARGS} ${RM}; \
+		${FIND} $${dir} -name "Makefile*" -delete; \
 	done
 	@${RM} -f ${WRKSRC}/lib/getopt.h
 	@${RM} -f ${WRKSRC}/doc/*.info*

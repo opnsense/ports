@@ -3,6 +3,7 @@
 
 PORTNAME=	gnunet
 PORTVERSION=	0.10.1
+PORTREVISION=	1
 CATEGORIES=	net-p2p ipv6 security
 MASTER_SITES=	GNU
 
@@ -66,7 +67,7 @@ NLS_USES=		gettext
 NLS_CONFIGURE_ON=	--with-libintl-prefix=${LOCALBASE}
 NLS_CONFIGURE_OFF=	--disable-nls
 PGSQL_DESC=		Use PostgreSQL for the data store and cache
-PGSQL_USE=		pgsql=yes
+PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ON=	--with-postgres=${LOCALBASE}
 PGSQL_CONFIGURE_OFF=	--without-postgres
 SQLITE_DESC=		Use SQLite for the data store and cache

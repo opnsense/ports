@@ -3,11 +3,12 @@
 
 PORTNAME=	CGI-Application-Plugin-ViewCode
 PORTVERSION=	1.02
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	View the source of the running application
 
 LICENSE=	ART10 GPLv1

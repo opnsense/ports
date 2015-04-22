@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	snort
-PORTVERSION=	2.9.7.0
+PORTVERSION=	2.9.7.2
 CATEGORIES=	security
 MASTER_SITES=	SF/snort/snort \
 		http://mirrors.rit.edu/zi/
@@ -64,7 +64,7 @@ BARNYARD_RUN_DEPENDS=	barnyard2:${PORTSDIR}/security/barnyard2
 PULLEDPORK_RUN_DEPENDS=	pulledpork.pl:${PORTSDIR}/security/pulledpork
 APPID_LIB_DEPENDS=	libluajit-5.1.so:${PORTSDIR}/lang/luajit
 APPID_CONFIGURE_ENV+=	luajit_CFLAGS="-I${LOCALBASE}/include/luajit-2.0" \
-			luajit_LIBS="-L${LOCALBASE}/lib"
+			luajit_LIBS="-L${LOCALBASE}/lib -lluajit-5.1"
 
 .include <bsd.port.options.mk>
 
@@ -81,7 +81,7 @@ PREPROC_RULE_DIR=	${ETCDIR}/preproc_rules
 LOGS_DIR=		/var/log/snort
 
 CONFIG_FILES=	classification.config gen-msg.map reference.config \
-		snort.conf threshold.conf unicode.map
+		snort.conf threshold.conf unicode.map file_magic.conf
 
 DOCS=		RELEASE.NOTES doc/AUTHORS doc/BUGS doc/CREDITS \
 		doc/README* doc/USAGE doc/*.pdf
@@ -107,8 +107,8 @@ CONFIGURE_ARGS+=--enable-reload \
 		--with-dnet-libraries=${LIBNET_LIBDIR}
 
 post-patch:
-	@${FIND} ${WRKSRC} \( -name 'Makefile.in' -o -name snort.conf \) -print0 | \
-		${XARGS} -0 ${REINPLACE_CMD} -e 's|lib/snort_|lib/snort/|g'
+#@${FIND} ${WRKSRC} \( -name 'Makefile.in' -o -name snort.conf \) -print0 | \
+#${XARGS} -0 ${REINPLACE_CMD} -e 's|lib/snort_|lib/snort/|g'
 
 	@${REINPLACE_CMD} "s,/etc/snort.conf,${ETCDIR}/snort.conf," \
 		${WRKSRC}/src/snort.c ${WRKSRC}/snort.8

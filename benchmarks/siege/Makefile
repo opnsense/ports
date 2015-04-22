@@ -2,20 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	siege
-PORTVERSION=	3.0.8
+PORTVERSION=	3.0.9
 CATEGORIES=	benchmarks www
 MASTER_SITES=	http://www.joedog.org/pub/siege/ \
 		http://fossies.org/linux/www/
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	HTTP regression testing and benchmarking utility
 
 LICENSE=	GPLv2
 
-USES=		perl5
+USES=		autoreconf libtool perl5
 USE_OPENSSL=	yes
-USE_AUTOTOOLS=	libtoolize aclocal autoheader automake autoconf
-AUTOMAKE_ARGS=	--add-missing --copy
+GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PERL="${PERL}"
 CONFIGURE_ARGS=	--with-ssl=${OPENSSLBASE} --disable-shared \
 		--sysconfdir=${ETCDIR}

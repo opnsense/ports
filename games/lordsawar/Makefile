@@ -2,7 +2,7 @@
 
 PORTNAME=	lordsawar
 PORTVERSION=	0.2.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games
 MASTER_SITES=	SAVANNAH
 
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libtar.so:${PORTSDIR}/devel/libtar \
 		libgnet-2.0.so:${PORTSDIR}/net/gnet2
 
 USES=		gettext gmake pkgconfig
-USE_GNOME=	gnomehier gtkmm24
+USE_GNOME=	gtkmm24
 USE_SDL=	sdl image mixer
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-boost-includedir=${LOCALBASE}/include

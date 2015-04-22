@@ -33,13 +33,10 @@ bin/wftopfa
 include/ghostscript/gdevdsp.h
 include/ghostscript/iapi.h
 include/ghostscript/ierrors.h
-@dirrm include/ghostscript
 lib/libgs.so
 lib/libgs.so.%%SHLIB_VER%%
 lib/libgs.so.%%GS_VERSION%%
 %%X11BITS%%lib/ghostscript/%%GS_VERSION%%/X11.so
-%%X11BITS%%@dirrm lib/ghostscript/%%GS_VERSION%%
-%%X11BITS%%@dirrmtry lib/ghostscript
 man/man1/dvipdf.1.gz
 man/man1/eps2eps.1.gz
 man/man1/font2c.1.gz
@@ -54,7 +51,6 @@ man/man1/gsnd.1.gz
 %%GS_pcl3%%man/man1/pcl3opts.1.gz
 man/man1/pdf2dsc.1.gz
 man/man1/pdf2ps.1.gz
-man/man1/pdfopt.1.gz
 man/man1/pf2afm.1.gz
 man/man1/pfbtopfa.1.gz
 man/man1/printafm.1.gz
@@ -248,6 +244,10 @@ man/man1/wftopfa.1.gz
 %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding/Latin1
 %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding/StandardEncoding
 %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding/Unicode
+%%DATADIR%%/%%GS_VERSION%%/Resource/Encoding/CEEncoding
+%%DATADIR%%/%%GS_VERSION%%/Resource/Encoding/ExpertEncoding
+%%DATADIR%%/%%GS_VERSION%%/Resource/Encoding/ExpertSubsetEncoding
+%%DATADIR%%/%%GS_VERSION%%/Resource/Encoding/NotDefEncoding
 %%DATADIR%%/%%GS_VERSION%%/Resource/Encoding/Wingdings
 %%DATADIR%%/%%GS_VERSION%%/Resource/Font/CenturySchL-Bold
 %%DATADIR%%/%%GS_VERSION%%/Resource/Font/CenturySchL-BoldItal
@@ -284,6 +284,7 @@ man/man1/wftopfa.1.gz
 %%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-BoldItal
 %%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-Ital
 %%DATADIR%%/%%GS_VERSION%%/Resource/Font/URWPalladioL-Roma
+%%DATADIR%%/%%GS_VERSION%%/Resource/IdiomSet/Pscript5Idiom
 %%DATADIR%%/%%GS_VERSION%%/iccprofiles/default_cmyk.icc
 %%DATADIR%%/%%GS_VERSION%%/iccprofiles/default_gray.icc
 %%DATADIR%%/%%GS_VERSION%%/iccprofiles/default_rgb.icc
@@ -443,12 +444,10 @@ man/man1/wftopfa.1.gz
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/pdf_rbld.ps
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/pdf_sec.ps
 %%DATADIR%%/%%GS_VERSION%%/Resource/Init/xlatmap
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Init
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/CNS1-WMode
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/GB1-WMode
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/Japan1-WMode
 %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID/Korea1-WMode
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/SubstCID
 %%DATADIR%%/%%GS_VERSION%%/lib/ht_ccsto.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/acctest.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/addxchar.ps
@@ -510,7 +509,6 @@ man/man1/wftopfa.1.gz
 %%DATADIR%%/%%GS_VERSION%%/lib/pdf2dsc.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/gs_ce_e.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/gs_cmdl.ps
-%%DATADIR%%/%%GS_VERSION%%/lib/gs_fform.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/gs_il2_e.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/gs_kanji.ps
 %%DATADIR%%/%%GS_VERSION%%/lib/gs_ksb_e.ps
@@ -646,19 +644,3 @@ man/man1/wftopfa.1.gz
 %%DATADIR%%/%%GS_VERSION%%/Resource/CIDFSubst/DroidSansFallback.ttf
 %%DATADIR%%/%%GS_VERSION%%/Resource/CIDFont/fonts
 %%DATADIR%%/%%GS_VERSION%%/Resource/CIDFont/ArtifexBullet
-%%GS_pcl3%%@dirrm %%DATADIR%%/%%GS_VERSION%%/pcl3
-@dirrm %%DATADIR%%/%%GS_VERSION%%/lib
-@dirrm %%DATADIR%%/%%GS_VERSION%%/examples/cjk
-@dirrm %%DATADIR%%/%%GS_VERSION%%/examples
-@dirrm %%DATADIR%%/%%GS_VERSION%%/doc
-@dirrm %%DATADIR%%/%%GS_VERSION%%/iccprofiles
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Font
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Encoding
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/Decoding
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/ColorSpace
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/CMap
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/CIDFSubst
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource/CIDFont
-@dirrm %%DATADIR%%/%%GS_VERSION%%/Resource
-@dirrmtry %%DATADIR%%/%%GS_VERSION%%
-@dirrmtry %%DATADIR%%

@@ -3,21 +3,24 @@
 
 PORTNAME=	wbar
 PORTVERSION=	2.3.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	x11
 MASTER_SITES=	${MASTER_SITE_GOOGLE_CODE}
 
 MAINTAINER=	nivit@FreeBSD.org
-COMMENT=	quick launch bar for fluxbox, WindowMaker, Xfce, etc
+COMMENT=	Simple and highly customizable quick launch bar
 
 LICENSE=	GPLv3
+
+BUILD_DEPENDS=	intltool-update:${PORTSDIR}/textproc/intltool
+LIB_DEPENDS=	libImlib2.so:${PORTSDIR}/graphics/imlib2
 
 CONFIGURE_ARGS=	--exec-prefix=${PREFIX}
 
 USES=		pkgconfig gettext gmake tar:tgz
-USE_EFL=	imlib2
 
 GNU_CONFIGURE=	yes
+LDFLAGS+=	-L${LOCALBASE}/lib
 
 OPTIONS_DEFINE=	NLS WBARCONFIG
 OPTIONS_DEFAULT=	NLS WBARCONFIG

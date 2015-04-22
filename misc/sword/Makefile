@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	sword
-PORTVERSION=	1.7.2
-PORTREVISION=	3
+PORTVERSION=	1.7.4
 CATEGORIES=	misc
 MASTER_SITES=	ftp://ftp.crosswire.org/pub/sword/source/v${PORTVERSION:R}/ \
 		http://crosswire.org/ftpmirror/pub/sword/source/v${PORTVERSION:R}/
@@ -49,7 +48,7 @@ post-patch:
 	@${REINPLACE_CMD} 's|-O3||' ${WRKSRC}/configure
 
 post-install:
-	@(cd ${WRKSRC} && ${MAKE_CMD} install_config)
+	@(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install_config)
 	${MV} ${STAGEDIR}${PREFIX}/etc/sword.conf \
 		${STAGEDIR}${PREFIX}/etc/sword.conf.sample
 

@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	Net_SMS
-PORTVERSION=	0.2.0
+PORTVERSION=	0.2.1
 CATEGORIES=	net pear
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	PEAR SMS functionality
 
 BUILD_DEPENDS=	${PEARDIR}/Mail.php:${PORTSDIR}/mail/pear-Mail \

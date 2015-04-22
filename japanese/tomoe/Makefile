@@ -35,7 +35,8 @@ MYSQL_DESC=		Enable MySQL dictionary module
 MYSQL_USE=		MYSQL=yes
 MYSQL_CONFIGURE_WITH=	mysql
 PYTHON_DESC=		Enable Python module
-PYTHON_USE=		PYTHON=yes GNOME=pygtk2
+PYTHON_USE=		GNOME=pygtk2
+PYTHON_USES=		python
 PYTHON_CONFIGURE_OFF=	--with-python=no
 RUBY_DESC=		Enable Ruby module
 RUBY_USE=		RUBY=yes
@@ -54,12 +55,7 @@ BROKEN=		Broken with gem version of glib2
 .endif
 
 .if ${PORT_OPTIONS:MUNIHAN}
-.if ${OSVERSION} >= 700042
 BROKEN=		Broken with Unihan with gcc 4.2
-.endif
-.if ${ARCH} == "sparc64"
-BROKEN=	Not buildable with Unihan on sparc64
-.endif
 MASTER_SITES+=	ftp://ftp.unicode.org/Public/UNIDATA/:unihan
 DISTFILES+=	Unihan.zip:unihan
 EXTRACT_DEPENDS+=	${UNZIP_CMD}:${PORTSDIR}/archivers/unzip

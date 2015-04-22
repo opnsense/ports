@@ -3,7 +3,7 @@
 
 PORTNAME=	ircd-ratbox
 PORTVERSION=	3.0.8
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	irc ipv6
 MASTER_SITES=	http://www.ratbox.org/download/				\
 		http://www.ratbox.org/download/old/
@@ -67,7 +67,7 @@ OPTIONS_EXCLUDE=	NLS EXAMPLES
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MOPENSSL}
-WITH_OPENSSL_BASE=yes
+USE_OPENSSL=	yes
 CONFIGURE_ARGS+=	--enable-openssl
 .else
 CONFIGURE_ARGS+=	--disable-openssl

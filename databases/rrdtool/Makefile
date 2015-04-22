@@ -3,7 +3,7 @@
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.4.8
-PORTREVISION=	4
+PORTREVISION=	7
 CATEGORIES=	databases graphics
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/
 
@@ -60,7 +60,7 @@ PLIST_SUB+=	WITH_RUBY="@comment "
 
 .if ${PORT_OPTIONS:MPERL_MODULE}
 USES+=		perl5
-USE_PERL5+=	build run fixpacklist
+USE_PERL5+=	build run
 CONFIGURE_ARGS+=	--enable-perl --enable-perl-site-install
 PLIST_SUB+=	WITH_PERL=""
 .else
@@ -78,7 +78,7 @@ EXTRA_PATCHES+=		${FILESDIR}/thirdparty-json.diff
 
 .if ${PORT_OPTIONS:MGRAPH}
 LIB_DEPENDS+=	libfreetype.so:${PORTSDIR}/print/freetype2 \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 USE_GNOME+=	cairo pango
 PLIST_SUB+=	WITH_GRAPH=""
 .else
@@ -93,8 +93,8 @@ USE_GNOME+=	intltool
 CONFIGURE_ARGS+=--disable-nls
 .endif
 
-.if exists(${LOCALBASE}/lib/X11/fonts/dejavu) || ${PORT_OPTIONS:MDEJAVU}
-RUN_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/dejavu:${PORTSDIR}/x11-fonts/dejavu
+.if exists(${LOCALBASE}/share/fonts/dejavu) || ${PORT_OPTIONS:MDEJAVU}
+RUN_DEPENDS+=	dejavu>0:${PORTSDIR}/x11-fonts/dejavu
 .endif
 
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2
@@ -122,7 +122,7 @@ post-install:
 	@${ECHO_MSG} "############################################################################"
 .endif
 .if ${PORT_OPTIONS:MPERL_MODULE}
-	${STRIP_CMD} ${STAGEDIR}${SITE_PERL}/${PERL_ARCH}/auto/RRDs/RRDs.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/RRDs/RRDs.so
 .endif
 
 .include <bsd.port.mk>

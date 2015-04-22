@@ -3,7 +3,7 @@
 
 PORTNAME=	sdl
 PORTVERSION=	1.2.15
-PORTREVISION=	5
+PORTREVISION=	6
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	http://www.libsdl.org/release/
@@ -16,7 +16,7 @@ LICENSE=	LGPL21
 
 BUILD_DEPENDS=	nasm:${PORTSDIR}/devel/nasm
 
-USES=		gmake iconv libtool:oldver pathfix pkgconfig
+USES=		gmake iconv libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_libusbhid_h=no

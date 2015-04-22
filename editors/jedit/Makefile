@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	jedit
-PORTVERSION=	5.1.0
+PORTVERSION=	5.2.0
 PORTEPOCH=	1
 CATEGORIES=	editors java
 MASTER_SITES=	SF
@@ -13,8 +13,6 @@ MAINTAINER=	danilo@FreeBSD.org
 COMMENT=	Powerful programmer's text editor written in Java
 
 LICENSE=	GPLv2
-
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
 OPTIONS_DEFINE=	MACROS DOCS
 MACROS_DESC=	Install default set of macros (highly recommended)

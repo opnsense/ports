@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	checkstyle
-PORTVERSION=	5.8
+PORTVERSION=	6.3
 CATEGORIES=	java devel
 MASTER_SITES=	SF
 PKGNAMEPREFIX=	java-
 DISTNAME=	${PORTNAME}-${PORTVERSION}-bin
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Java style checker
 
 LICENSE=	LGPL21 APACHE20
@@ -39,9 +39,8 @@ do-install:
 	@-${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKSRC} && ${INSTALL_DATA} LICENSE* RIGHTS.antlr \
 		${STAGEDIR}${DOCSDIR})
-	(cd ${WRKSRC} && ${COPYTREE_SHARE} site ${STAGEDIR}${DOCSDIR})
 	@-${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
-.for EXAMPLEFILE in checkstyle_checks import-control sun_checks suppressions
+.for EXAMPLEFILE in checkstyle_checks import-control suppressions
 	${INSTALL_DATA} ${WRKSRC}/${EXAMPLEFILE}.xml ${STAGEDIR}${EXAMPLESDIR}
 .endfor
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} contrib ${STAGEDIR}${EXAMPLESDIR})

@@ -3,11 +3,12 @@
 
 PORTNAME=	DNS-Config
 PORTVERSION=	0.66
+PORTREVISION=	1
 CATEGORIES=	dns perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	DNS::Config is set of perl modules for name service configurations
 
 LICENSE=	ART10 GPLv1

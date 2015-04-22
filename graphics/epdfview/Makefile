@@ -3,7 +3,7 @@
 
 PORTNAME=	epdfview
 PORTVERSION=	0.1.8
-PORTREVISION=	6
+PORTREVISION=	8
 CATEGORIES=	graphics print gnome
 MASTER_SITES=	http://trac.emma-soft.com/epdfview/chrome/site/releases/ \
 		http://mirror.slitaz.org/sources/packages/e/
@@ -12,6 +12,8 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Lightweight PDF document viewer
 
 LICENSE=	GPLv2
+
+BROKEN=		No public distfiles
 
 BUILD_DEPENDS=	cppunit-config:${PORTSDIR}/devel/cppunit
 LIB_DEPENDS=	libpoppler-glib.so:${PORTSDIR}/graphics/poppler-glib

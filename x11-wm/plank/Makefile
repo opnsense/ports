@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	plank
-PORTVERSION=	0.6.1
+PORTVERSION=	0.9.0
 CATEGORIES=	x11-wm
-MASTER_SITES=	https://launchpadlibrarian.net/175961829/ \
+MASTER_SITES=	https://launchpadlibrarian.net/202964163/ \
 	https://launchpad.net/${PORTNAME}/1.0/${PORTVERSION}/+download/
 
 MAINTAINER=	olivierd@FreeBSD.org
@@ -13,7 +13,7 @@ COMMENT=	Elegant, simple, and clean dock
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vapigen:${PORTSDIR}/lang/vala-vapigen
+BUILD_DEPENDS=	vapigen:${PORTSDIR}/lang/vala
 LIB_DEPENDS=	libbamf3.so:${PORTSDIR}/sysutils/bamf \
 		libgee-0.8.so:${PORTSDIR}/devel/libgee
 
@@ -21,8 +21,9 @@ USES=		tar:xz pkgconfig gmake pathfix libtool
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
+CFLAGS+=	-Wno-return-type
 USE_GNOME=	glib20 gtk30 gdkpixbuf2 intlhack libxml2 libwnck3
-USE_XORG=	x11
+USE_XORG=	x11 xfixes xi
 INSTALLS_ICONS=	yes
 OPTIONS_SUB=	yes
 
@@ -35,9 +36,14 @@ CONFIGURE_ARGS=	--enable-gee-0.8 \
 	--disable-apport
 
 NLS_USES=		gettext
+NLS_USES_OFF=		gettext-tools
 NLS_CONFIGURE_ENABLE=	nls
 
 DBUSMENU_LIB_DEPENDS=		libdbusmenu-gtk3.so:${PORTSDIR}/devel/libdbusmenu
 DBUSMENU_CONFIGURE_ENABLE=	dbusmenu
+
+post-patch:
+	${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' \
+		${WRKSRC}/lib/Widgets/PreferencesWindow.vala
 
 .include <bsd.port.mk>

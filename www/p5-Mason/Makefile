@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	Mason
-PORTVERSION=	2.22
+PORTVERSION=	2.23
 CATEGORIES=	www textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:JSWARTZ
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	High-performance, dynamic web site authoring system
 
 LICENSE=	ART10 GPLv1

@@ -3,6 +3,7 @@
 
 PORTNAME=	Array-Compare
 PORTVERSION=	2.11
+PORTREVISION=	1
 CATEGORIES=	misc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DAVECROSS
@@ -25,6 +26,5 @@ USE_PERL5=	modbuild
 PLIST_FILES=	%%SITE_PERL%%/Array/Compare.pm \
 		%%PERL5_MAN3%%/Array::Compare.3.gz
 
-PLIST_DIRSTRY=	%%SITE_PERL%%/Array
 
 .include <bsd.port.mk>

@@ -2,6 +2,7 @@
 
 PORTNAME=	CGI.pm
 PORTVERSION=	3.63
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
@@ -13,6 +14,8 @@ COMMENT=	Simple Common Gateway Interface Class for Perl
 
 LICENSE=	ART20 GPLv1
 LICENSE_COMB=	dual
+
+CONFLICTS=	p5-CGI-[4-9]* p5-CGI-Fast-[0-9]*
 
 USES=		perl5
 USE_PERL5=	configure

@@ -9,7 +9,7 @@ MASTER_SITES=	${MASTER_SITE_GNU}
 MASTER_SITE_SUBDIR=	radius
 DISTNAME=	radius-${PORTVERSION}
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNU RADIUS server
 
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
@@ -17,10 +17,12 @@ LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
 CONFLICTS=	freeradius-0.* openradius-0.* radiusd-cistron-1.*
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		gmake libtool
+USES=		cpe gmake libtool
 USE_RC_SUBR=	radiusd
 USE_SUBMAKE=	yes
 USE_LDCONFIG=	yes
+CPE_PRODUCT=	radius
+CPE_VENDOR=	gnu
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 DATADIR=	${PREFIX}/share/radius
@@ -69,7 +71,7 @@ PLIST_SUB+=	MYSQL="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 CONFIGURE_ARGS+=--with-postgres
 PLIST_SUB+=	PGSQL=""
 .else

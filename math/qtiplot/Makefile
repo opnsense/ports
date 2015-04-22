@@ -3,7 +3,7 @@
 
 PORTNAME=	qtiplot
 DISTVERSION=	0.9.8.9
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	math science
 MASTER_SITES=	BERLIOS http://soft.proindependent.com/src/
 
@@ -12,7 +12,7 @@ COMMENT=	Data analysis and scientific plotting
 
 LIB_DEPENDS=	libgsl.so:${PORTSDIR}/math/gsl \
 		libmuparser.so:${PORTSDIR}/math/muparser \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 # use bundled modified libraries
 # 		qwt.5:${PORTSDIR}/x11-toolkits/qwt5 \
 # 		qwtplot3d-qt4:${PORTSDIR}/math/qwtplot3d-qt4
@@ -34,8 +34,6 @@ OPTIONS_DEFAULT=	DOCS PYTHON NLS
 DOCS_DESC=	Install the QtiPlot Handbook
 PYTHON_DESC=	Python scripting support
 
-STRIP_FILES=	bin/qtiplot share/qtiplot/fitPlugins/*.so.1.0.0
-
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MPYTHON}
@@ -55,7 +53,7 @@ USE_QT4+=	assistant-adp_run
 .endif
 
 .if ${PORT_OPTIONS:MNLS}
-USE_QT4+=	linguist_build
+USE_QT4+=	linguisttools_build
 PLIST_SUB+=	NLS=""
 .else
 PLIST_SUB+=	NLS="@comment "
@@ -99,7 +97,6 @@ pre-configure:
 .endif
 
 post-install:
-	${STRIP_CMD} ${STRIP_FILES:S,^,${STAGEDIR}${PREFIX}/,}
 	${INSTALL_DATA} ${WRKSRC}/qtiplot_logo.png ${STAGEDIR}${PREFIX}/share/pixmaps/qtiplot.png
 .if ${PORT_OPTIONS:MPYTHON}
 .for s in qtiplotrc.py qtiUtil.py

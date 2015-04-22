@@ -3,6 +3,7 @@
 
 PORTNAME=	RT-Extension-MandatoryOnTransition
 DISTVERSION=	0.09
+PORTREVISION=	1
 CATEGORIES=	www net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -11,6 +12,8 @@ MAINTAINER=	matthew@FreeBSD.org
 COMMENT=	Extension to require core and ticket custom fields on status changes
 
 LICENSE=	GPLv2
+
+NEED_ROOT=	yes
 
 OPTIONS_SINGLE=                 RTVERSION
 OPTIONS_SINGLE_RTVERSION=       RT40 RT42
@@ -47,5 +50,9 @@ do-configure:
 		unset PREFIX && \
 		${SETENV} ${CONFIGURE_ENV} ${PERL5} -I${SITE_PERL} ./${CONFIGURE_SCRIPT} && \
 		${PERL5} -pi -e 's/ doc_(perl|site|\$$\(INSTALLDIRS\))_install$$//' Makefile
+
+post-install:
+	${RM} ${STAGEDIR}${PREFIX}/man/auto/RT/Extension/MandatoryOnTransition/.packlist
+	${RMDIR} -p ${STAGEDIR}${PREFIX}/man/auto/RT/Extension/MandatoryOnTransition 2>/dev/null || :
 
 .include <bsd.port.mk>

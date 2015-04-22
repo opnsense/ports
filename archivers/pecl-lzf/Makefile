@@ -6,12 +6,15 @@ PORTVERSION=	1.6.2
 CATEGORIES=	archivers pear
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
-EXTRACT_SUFX=	.tgz
 DIST_SUBDIR=	PECL
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Handles LZF de/compression
 
+LICENSE=	PHP202
+
+BROKEN=		No public distfiles
+USES=		tar:tgz
 USE_PHP=	yes
 USE_PHPEXT=	yes
 

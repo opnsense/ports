@@ -2,6 +2,7 @@
 
 PORTNAME=	Plack-Middleware-IEnosniff
 PORTVERSION=	0.02
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:BAYASHI
@@ -15,6 +16,6 @@ RUN_DEPENDS=	\
 BUILD_DEPENDS:=	${RUN_DEPENDS}
 
 USES=		perl5
-USE_PERL5=	configure
+USE_PERL5=	modbuild
 
 .include <bsd.port.mk>

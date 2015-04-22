@@ -2,7 +2,7 @@
 
 PORTNAME=	sec
 PORTVERSION=	2.7.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 MASTER_SITES=	SF/simple-evcorr/${PORTNAME}/${PORTVERSION}
 
@@ -15,6 +15,7 @@ USE_RC_SUBR=	sec
 
 USES=		perl5 shebangfix
 SHEBANG_FILES=	sec
+SUB_LIST=	PERL=${PERL}
 USE_PERL5=	run
 NO_BUILD=	yes
 
@@ -23,7 +24,6 @@ PORTDOCS=	ChangeLog README
 PLIST_FILES=	bin/sec man/man8/sec.8.gz
 PORTCONTRIB=	convert.pl itostream.c swatch2sec.pl
 PLIST_FILES+=	${PORTCONTRIB:S|^|%%DATADIR%%/|}
-PLIST_DIRS+=	%%DATADIR%%
 
 OPTIONS_DEFINE=	DOCS
 

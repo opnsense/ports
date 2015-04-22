@@ -64,7 +64,7 @@ include/dar/wrapperlib.hpp
 lib/libdar.a
 lib/libdar.so
 lib/libdar.so.5000
-lib/libdar.so.5000.6.1
+lib/libdar.so.5000.6.4
 libdata/pkgconfig/libdar.pc
 man/man1/dar.1.gz
 man/man1/dar_cp.1.gz
@@ -131,8 +131,3 @@ man/man1/dar_xform.1.gz
 %%NLS%%share/locale/de/LC_MESSAGES/dar.mo
 %%NLS%%share/locale/fr/LC_MESSAGES/dar.mo
 %%NLS%%share/locale/sv/LC_MESSAGES/dar.mo
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/samples
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/mini-howto
-%%PORTDOCS%%@dirrm %%DOCSDIR%%/man
-%%PORTDOCS%%@dirrm %%DOCSDIR%%
-@dirrm include/dar

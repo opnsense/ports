@@ -20,15 +20,12 @@ RUN_DEPENDS+=	epstool:${PORTSDIR}/graphics/epstool \
 
 NO_CDROM=	Can only be distributed for free
 
-MAKE_ENV+=	PTHREAD_LIBS=${PTHREAD_LIBS} PTHREAD_CFLAGS=${PTHREAD_CFLAGS}
-
 MAKE_JOBS_UNSAFE=	yes
 
 PLIST_FILES=	bin/gsview \
 		bin/gsview-help \
 		etc/gsview/printer.ini \
 		man/man1/gsview.1.gz
-PLIST_DIRS=	etc/gsview
 PORTDOCS=	gsview.css cdorder.txt regorder.txt Readme.htm LICENCE \
 		gvxct.htm gvxde.htm gvxen.htm gvxes.htm gvxfr.htm gvxgr.htm \
 		gvxit.htm gvxnl.htm gvxru.htm gvxse.htm gvxsk.htm

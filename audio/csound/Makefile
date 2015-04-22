@@ -3,7 +3,7 @@
 
 PORTNAME=	csound
 PORTVERSION=	5.19.01
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	audio lang
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}5/${PORTNAME}${PORTVERSION:R} \
 		SF/${PORTNAME}/${PORTNAME}5/${PORTNAME}${PORTVERSION:R}/manual:manual
@@ -11,7 +11,7 @@ DISTFILES=	${PORTNAME:S/c/C/}${PORTVERSION}${EXTRACT_SUFX} \
 		${CSOUND_DOCS:S/$/:manual/}
 DIST_SUBDIR=	csound
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	chris@bsdjunk.com
 COMMENT=	Sound synthesizer
 
 LICENSE=	LGPL21
@@ -52,6 +52,7 @@ SSP_UNSAFE=	yes
 
 CFLAGS+=	-fPIC -fopenmp -DUSE_OPENMP
 LDFLAGS+=	-pthread -Wl,-export-dynamic
+LINKFLAGS=	# empty
 
 SUB_FILES=	pkg-message
 

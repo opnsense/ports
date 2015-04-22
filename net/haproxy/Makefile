@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	haproxy
-PORTVERSION=	1.5.8
+PORTVERSION=	1.5.11
 CATEGORIES=	net www
 MASTER_SITES=	http://www.haproxy.org/download/1.5/src/
 
@@ -14,11 +14,10 @@ LICENSE_COMB=	multi
 
 CONFLICTS=	haproxy-devel-[0-9]*
 
-USES=		gmake
+USES=		cpe gmake
 USE_RC_SUBR=	haproxy
-SUB_FILES=	pkg-message
 
-OPTIONS_DEFINE=		OPENSSL DOCS
+OPTIONS_DEFINE=		DOCS EXAMPLES OPENSSL
 OPTIONS_RADIO=		PCRE
 OPTIONS_RADIO_PCRE=	DPCRE SPCRE
 DPCRE_DESC=		Link dynamically

@@ -3,6 +3,7 @@
 
 PORTNAME=	Math-BigInt-FastCalc
 PORTVERSION=	0.31
+PORTREVISION=	1
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -10,7 +11,7 @@ PKGNAMEPREFIX=	p5-
 MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Math::BigInt::Calc with some XS for more speed
 
-BUILD_DEPENDS=	p5-Math-BigInt>=1.997:${PORTSDIR}/math/p5-Math-BigInt
+BUILD_DEPENDS=	p5-Math-BigInt>=1.9993:${PORTSDIR}/math/p5-Math-BigInt
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5

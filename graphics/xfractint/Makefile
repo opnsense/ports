@@ -11,18 +11,14 @@ MASTER_SITES=	http://www.fractint.org/ftp/current/linux/	\
 MAINTAINER=	onemda@gmail.com
 COMMENT=	The Unix port of fractint
 
+BROKEN=		No public distfiles
+
 USES=		gmake
 USE_XORG=	x11 xft
 
 ALL_TARGET=	${PORTNAME}
 
 DESKTOP_ENTRIES+="Xfracint" "${COMMENT}" "" "${PORTNAME}" "" "false"
-
-.include <bsd.port.pre.mk>
-
-.if ${OSVERSION} < 800000
-EXTRA_PATCHES+=	${FILESDIR}/extra-unix__fpu087.c
-.endif
 
 do-install:
 	@${INSTALL_PROGRAM} ${WRKSRC}/xfractint ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
@@ -34,4 +30,4 @@ do-install:
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} ${dir} ${STAGEDIR}${DATADIR}
 .endfor
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

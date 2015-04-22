@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	sqlite3
-PORTVERSION=	1.3.9
-PORTREVISION=	1
+PORTVERSION=	1.3.10
+PORTREVISION=	0
 CATEGORIES=	databases rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	ruby@FreeBSD.org
 COMMENT=	Ruby interface to the SQLite DB engine version 3
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/swig:${PORTSDIR}/devel/swig13
 LIB_DEPENDS=	libsqlite3.so:${PORTSDIR}/databases/sqlite3

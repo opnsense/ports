@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	Crypt-GeneratePassword
-PORTVERSION=	0.03
+PORTVERSION=	0.04
 CATEGORIES=	security perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Generate secure random pronounceable passwords
 
 LICENSE=	ART10 GPLv1

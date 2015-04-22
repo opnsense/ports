@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	simgear
-PORTVERSION=	3.2.0
+PORTVERSION=	3.4.0
 CATEGORIES=	devel games
 MASTER_SITES=	http://mirrors.ibiblio.org/simgear/ftp/Source/ \
 		ftp://ftp.de.flightgear.org/pub/simgear/Source/ \
@@ -27,7 +27,7 @@ USES=		tar:bzip2 cmake compiler openal:al,alut
 
 # When building with Gcc, needs Gcc 4.6+
 .if ${COMPILER_TYPE} == gcc && ${COMPILER_VERSION} < 46
-USE_GCC=	4.6+
+USE_GCC=	yes
 .endif
 
 .include <bsd.port.post.mk>

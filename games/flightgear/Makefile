@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	flightgear
-PORTVERSION=	3.2.0
+PORTVERSION=	3.4.0
+PORTREVISION=	1
 CATEGORIES=	games
 # see http://www.flightgear.org/templates.js
 MASTER_SITES=	http://mirrors.ibiblio.org/flightgear/ftp/Source/ \
@@ -17,7 +18,7 @@ COMMENT=	The FlightGear flight simulator
 LICENSE=	GPLv2
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libboost_thread.so:${PORTSDIR}/devel/boost-libs \
 		libfltk.so:${PORTSDIR}/x11-toolkits/fltk \
 		libosg.so:${PORTSDIR}/graphics/osg \
@@ -31,6 +32,7 @@ RUN_DEPENDS=	${LOCALBASE}/lib/libplibsl.a:${PORTSDIR}/x11-toolkits/plib \
 USE_XORG=	ice sm x11 xext xft xi xinerama xt xmu
 USE_GL=		gl glu glut
 USE_SQLITE=	3
+USE_QT5=	core buildtools qmake widgets
 
 USES=		tar:bzip2 dos2unix cmake compiler openal:al,alut
 DOS2UNIX_REGEX=	.*\.(c|h|cxx|cpp|hxx|hpp)
@@ -50,7 +52,7 @@ DBUS_CMAKE_OFF=	-DUSE_DBUS:BOOL=OFF
 
 # Chase devel/simgear compiler version
 .if ${COMPILER_TYPE} == gcc && ${COMPILER_VERSION} < 46
-USE_GCC=	4.6+
+USE_GCC=	yes
 .endif
 
 post-install:

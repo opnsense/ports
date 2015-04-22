@@ -2,12 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	cgicc
-PORTVERSION=	3.2.14
-PORTREVISION=	1
+PORTVERSION=	3.2.16
 CATEGORIES=	www devel
 MASTER_SITES=	GNU
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	C++ class library for writing CGI applications
 
 LICENSE=	LGPL3 # (or later)
@@ -19,6 +18,7 @@ GNU_CONFIGURE=	yes
 MAKE_ARGS=	ACLOCAL="${TRUE}" AUTOCONF="${TRUE}" AUTOHEADER="${TRUE}" \
 		AUTOMAKE="${TRUE}"
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 CXXFLAGS+=	-Wno-unknown-pragmas
 

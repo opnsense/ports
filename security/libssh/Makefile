@@ -2,23 +2,24 @@
 # $FreeBSD$
 
 PORTNAME=	libssh
-DISTVERSION=	0.6.3
+DISTVERSION=	0.6.4
 CATEGORIES=	security devel
-MASTER_SITES=	https://red.libssh.org/attachments/download/87/
+MASTER_SITES=	https://red.libssh.org/attachments/download/107/
 
-MAINTAINER=	fluffy@FreeBSD.org
+MAINTAINER=	johans@FreeBSD.org
 COMMENT=	Library implementing the SSH1 and SSH2 protocol
 
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 OPTIONS_DEFINE=	SSH1 STATIC
-OPTIONS_RADIO=	CRYPTO
-OPTIONS_RADIO_CRYPTO=	GCRYPT OPENSSL
-OPTIONS_DEFAULT=	OPENSSL STATIC
+# Version 0.6.4 does not build with GCRYPT
+#OPTIONS_RADIO=	CRYPTO
+#OPTIONS_RADIO_CRYPTO=	GCRYPT OPENSSL
+#OPTIONS_DEFAULT=	OPENSSL STATIC
 OPTIONS_SUB=	yes
 
-USES=		cmake:outsource cpe tar:xz
+USES=		cmake:outsource cpe
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DWITH_EXAMPLES:BOOL=OFF \
@@ -45,8 +46,9 @@ post-patch:
 		-e 's|LIB_INSTALL_DIR}|CMAKE_INSTALL_PREFIX}/libdata|' \
 		-e 's|CMAKE_INSTALL_DIR}|CMAKE_INSTALL_DIR}/libssh|' \
 		${WRKSRC}/CMakeLists.txt
-	@${REINPLACE_CMD} -e 's|-lssh_threads|-lssh_threads ${PTHREAD_LIBS}|' \
-		-e 's|$${INCLUDE_INSTALL_DIR}|$${INCLUDE_INSTALL_DIR} ${PTHREAD_CFLAGS}|' \
+	@${REINPLACE_CMD} -e 's|-lssh_threads|-lssh_threads -lpthread|' \
 		${WRKSRC}/libssh_threads.pc.cmake
+	@${REINPLACE_CMD} -e 's| -pedantic-errors||' \
+		${WRKSRC}/cmake/Modules/DefineCompilerFlags.cmake
 
 .include <bsd.port.mk>

@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	Validation-Class
-PORTVERSION=	7.900054
+PORTVERSION=	7.900056
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:AWNCORP
@@ -9,6 +10,9 @@ PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	kuriyama@FreeBSD.org
 COMMENT=	Perl extension for centralized input validation for any application
+
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
 
 RUN_DEPENDS=	\
 	p5-Class-Forward>0:${PORTSDIR}/devel/p5-Class-Forward \
@@ -24,5 +28,6 @@ TEST_DEPENDS=	\
 
 USES=	perl5
 USE_PERL5=	configure
+NO_ARCH=	YES
 
 .include <bsd.port.mk>

@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	createrepo
-PORTVERSION=	0.10.3
+PORTVERSION=	0.10.4
 CATEGORIES=	sysutils
 MASTER_SITES=	http://createrepo.baseurl.org/download/
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Utility to create and manage RPM metadata repositories
 
 LICENSE=	GPLv2

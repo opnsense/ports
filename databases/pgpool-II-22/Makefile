@@ -11,6 +11,8 @@ PKGNAMESUFFIX=	22
 MAINTAINER=	kuriyama@FreeBSD.org
 COMMENT=	Connection pool server for PostgreSQL
 
+LICENSE=	MIT
+
 USES=		gmake pgsql libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -27,8 +29,6 @@ PORTDOCShtml+=	tutorial-en.html tutorial-ja.html
 OPTIONS_DEFINE=	DOCS
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|echo aout|echo elf|g' \
-	${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's| pg_config| ${LOCALBASE}/bin/pg_config|g' \
 	${WRKSRC}/sql/pgpool-recovery/Makefile
 

@@ -2,11 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	slrn
-PORTVERSION=	1.0.1
-PORTREVISION=	1
+PORTVERSION=	1.0.2
 CATEGORIES=	news ipv6
-MASTER_SITES=	SF/${PORTNAME}/${PORTNAME} \
-		http://www.jedsoft.org/slrn/download/
+MASTER_SITES=	http://www.jedsoft.org/releases/slrn/
 
 MAINTAINER=	johans@FreeBSD.org
 COMMENT=	SLang-based newsreader
@@ -15,13 +13,15 @@ LIB_DEPENDS=	libslang.so:${PORTSDIR}/devel/libslang2
 
 CONFLICTS_INSTALL=	ja-slrn-[0-9]*
 
-USES=		gmake iconv
+USES=		gmake iconv tar:bz2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--enable-ipv6 --disable-inews --with-slrnpull \
+CONFIGURE_ARGS+=--disable-inews --with-slrnpull \
 		--with-non-gnu-iconv ${ICONV_CONFIGURE_ARG}
 
 ALL_TARGET=	all
+
+MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=	NLS SSL DEVIEW DOCS
 OPTIONS_DEFAULT=NLS SSL

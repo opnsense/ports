@@ -3,14 +3,15 @@
 
 PORTNAME=	Net-Printer
 PORTVERSION=	1.12
+PORTREVISION=	1
 CATEGORIES=	print perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl extension for direct-to-lpd printing
 
-LICENSE=	BSD
+LICENSE=	BSD2CLAUSE
 
 USES=		perl5
 USE_PERL5=	configure

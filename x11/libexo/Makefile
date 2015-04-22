@@ -2,52 +2,44 @@
 # $FreeBSD$
 
 PORTNAME=	libexo
-PORTVERSION=	0.10.2
-PORTREVISION=	3
+PORTVERSION=	0.10.4
 CATEGORIES=	x11 xfce
-MASTER_SITES=	${MASTER_SITE_XFCE}
-MASTER_SITE_SUBDIR=	src/xfce/exo/${PORTVERSION:R}
+MASTER_SITES=	XFCE/src/xfce/${PORTNAME:C/lib//}/${PORTVERSION:R}
 DISTNAME=	exo-${PORTVERSION}
 DIST_SUBDIR=	xfce4
 
 MAINTAINER=	xfce@FreeBSD.org
 COMMENT=	Application library for the Xfce desktop environment
 
+LICENSE=	GPLv2 LGPL21
+LICENSE_COMB=	multi
+LICENSE_DISTFILES=	${WRKSRC}/COPYING \
+	${WRKSRC}/COPYING.LIB
+
 BUILD_DEPENDS=	p5-URI>=1.60:${PORTSDIR}/net/p5-URI
 RUN_DEPENDS=	p5-URI>=1.60:${PORTSDIR}/net/p5-URI
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
-DOCSDIR=	${PREFIX}/share/doc/${PORTNAME:S/lib//}
 
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
-USES=		desktop-file-utils gmake libtool:oldver pathfix perl5 \
-		pkgconfig tar:bzip2
+USES=		desktop-file-utils gmake libtool pathfix perl5 \
+		pkgconfig gettext-tools xfce tar:bzip2
 USE_GNOME=	glib20 gtk20 intltool intlhack
 USE_LDCONFIG=	yes
-USE_XFCE=	configenv libmenu libutil
+USE_XFCE=	libmenu
 USE_XORG=	x11
 
-OPTIONS_DEFINE=	DOCS NLS
+CONFIGURE_ARGS=--without-html-dir
 
-.include <bsd.port.options.mk>
+OPTIONS_DEFINE=	NLS
+NLS_USES=	gettext-runtime
+NLS_CONFIGURE_ENABLE=	nls
+OPTIONS_SUB=	yes
 
-.if ${PORT_OPTIONS:MDOCS}
-CONFIGURE_ARGS+=--with-html-dir=${PREFIX}/share/gtk-doc/html
-PLIST_SUB+=	APIDOCS=""
-.else
-CONFIGURE_ARGS+=--without-html-dir
-PLIST_SUB+=	APIDOCS="@comment "
-.endif
-
-.if ${PORT_OPTIONS:MNLS}
-USES+=		gettext
-CONFIGURE_ARGS+=--enable-nls
-PLIST_SUB+=	NLS=""
-.else
-CONFIGURE_ARGS+=--disable-nls
-PLIST_SUB+=	NLS="@comment "
-.endif
+post-patch:
+	${REINPLACE_CMD} -e 's|internet-mail|mail-send|' \
+		${WRKSRC}/exo-open/exo-mail-reader.desktop.in
 
 .include <bsd.port.mk>

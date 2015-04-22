@@ -3,15 +3,9 @@
 
 PORTNAME=	perl
 PORTVERSION=	${PERL_VERSION}
-PORTREVISION=	15
+PORTREVISION=	20
 CATEGORIES=	lang devel perl5
-MASTER_SITES=	CPAN \
-		${MASTER_SITE_LOCAL:S/$/:local/} \
-		http://protey.ru/freebsd/distfiles/:local
-MASTER_SITE_SUBDIR=	../../src \
-			skv/:local
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		BSDPAN-${BSDPAN_VERSION}${EXTRACT_SUFX}:local
+MASTER_SITES=	CPAN/../../src/5.0
 DIST_SUBDIR=	perl
 
 MAINTAINER=	perl@FreeBSD.org
@@ -29,13 +23,13 @@ CONFLICTS_INSTALL=	perl5.*-*
 
 OPTIONS_DEFINE=	DEBUG GDBM PERL_MALLOC PERL_64BITINT THREADS PTHREAD \
 		MULTIPLICITY SITECUSTOMIZE USE_PERL
-OPTIONS_DEFAULT=	PERL_64BITINT THREADS PTHREAD USE_PERL
+OPTIONS_DEFAULT=	PERL_64BITINT THREADS PTHREAD USE_PERL MULTIPLICITY
 OPTIONS_SUB=
 GDBM_DESC=	GDBM_File extension
 PERL_MALLOC_DESC=	Use Perl malloc
 PERL_64BITINT_DESC=	Use 64 bit integers (on i386)
 THREADS_DESC=		Build threaded perl
-PTHREAD_DESC=		Build with -pthread
+PTHREAD_DESC=		Build with -lpthread
 MULTIPLICITY_DESC=	Use multiplicity
 SITECUSTOMIZE_DESC=	Run-time customization of @INC
 USE_PERL_DESC=		Rewrite links in /usr/bin
@@ -50,16 +44,20 @@ SITE_PERL_REL?=	lib/perl5/site_perl
 SITE_PERL?=	${PREFIX}/${SITE_PERL_REL}
 SITE_ARCH_REL?=	${SITE_PERL_REL}/${PERL_ARCH}/${PERL_VER}
 SITE_ARCH?=	${PREFIX}/${SITE_ARCH_REL}
-SITE_MAN3_REL?=	${SITE_PERL_REL}/man/man3
+SITE_MAN3_PREFIX=	${SITE_PERL_REL}
+SITE_MAN3_REL?=	${SITE_MAN3_PREFIX}/man/man3
 SITE_MAN3?=	${PREFIX}/${SITE_MAN3_REL}
+
+_PRIV_LIB=	lib/perl5/${PERL_VER}
+_ARCH_LIB=	${_PRIV_LIB}/${PERL_ARCH}
 
 USES=	tar:bzip2 cpe
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=Configure
 CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
-	-Dlibperl=libperl.so.${PERL_VER} \
-	-Darchlib=${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH} \
-	-Dprivlib=${PREFIX}/lib/perl5/${PERL_VER} \
+	-Dlibperl=libperl.so.${PERL_VERSION} \
+	-Darchlib=${PREFIX}/${_ARCH_LIB} \
+	-Dprivlib=${PREFIX}/${_PRIV_LIB} \
 	-Dman3dir=${PREFIX}/${MAN3PREFIX_REL}/man/man3 \
 	-Dman1dir=${PREFIX}/man/man1 \
 	-Dsitearch=${SITE_ARCH} \
@@ -67,9 +65,16 @@ CONFIGURE_ARGS=	-sde -Dprefix=${PREFIX} \
 	-Dsiteman3dir=${SITE_MAN3} \
 	-Dsiteman1dir=${PREFIX}/man/man1 \
 	-Dotherlibdirs=${PREFIX}/lib/perl5/site_perl/${PERL_VER}:${PREFIX}/lib/perl5/site_perl/${PERL_VER}/${PERL_ARCH} \
-	-Ui_malloc -Ui_iconv -Uinstallusrbinperl \
+	-Ui_malloc -Ui_iconv -Uinstallusrbinperl -Dusenm=n \
 	-Dcc="${CC}" -Duseshrplib -Dinc_version_list=none \
-	-Dccflags=-DAPPLLIB_EXP=\"${BSDPAN_DEST}\"
+	-Dcf_by=${MAINTAINER:C,@.*,,} -Dcf_email=${MAINTAINER} \
+	-Dcf_time="`env LANG=C ${STAT} -t \"%a %b %d %T %Z %Y\" -f %Sm ${_DISTDIR}/${DISTNAME}${EXTRACT_SUFX}`"
+# Keep the following two in sync.
+# lddlflags is used for all .so linking
+# shrpldflags is used for libperl.so, so remove all the extra bits inherited from lddlflags.
+CONFIGURE_ARGS+= \
+	-Alddlflags='-L${WRKSRC} -L${PREFIX}/${_ARCH_LIB}/CORE -Wl,-rpath=${PREFIX}/${_ARCH_LIB}/CORE -lperl' \
+	-Dshrpldflags='$$(LDDLFLAGS:N-L${WRKSRC}:N-L${PREFIX}/${_ARCH_LIB}/CORE:N-Wl,-rpath=${PREFIX}/${_ARCH_LIB}/CORE:N-lperl) -Wl,-soname,$$(LIBPERL:R)'
 LOCALE_CLEANUP=	LANG="" LC_ALL="" LC_COLLATE="" LC_CTYPE="" \
 		LC_MESSAGES="" LC_MONETARY="" LC_NUMERIC="" \
 		LC_TIME=""
@@ -79,6 +84,9 @@ MAKE_ENV+=	${LOCALE_CLEANUP}
 SUB_LIST+=	PERL_VERSION=${PERL_VERSION} \
 		PERL_VER=${PERL_VER} \
 		SITE_PERL=${SITE_PERL_REL} \
+		PRIV_LIB=${_PRIV_LIB} \
+		MAN3PREFIX=${MAN3PREFIX_REL} \
+		SITEMAN3PREFIX=${SITE_MAN3_PREFIX} \
 		PERL_ARCH=${PERL_ARCH}
 
 SUB_FILES=	perl5_version use.perl perl-man.conf
@@ -104,10 +112,10 @@ CONFLICTS_INSTALL+=	perl5-*
 .if defined(PERL_VENDOR_PREFIX)
 CONFIGURE_ARGS+=	\
 	-Dvendorprefix=${PERL_VENDOR_PREFIX} \
-	-Dvendorarch=${PERL_VENDOR_PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH} \
+	-Dvendorarch=${PERL_VENDOR_PREFIX}/${_ARCH_LIB} \
 	-Dvendorbin=${PERL_VENDOR_PREFIX}/bin \
-	-Dvendorlib=${PERL_VENDOR_PREFIX}/lib/perl5/${PERL_VER} \
-	-Dvendorman3dir=${PERL_VENDOR_PREFIX}/lib/perl5/${PERL_VER}/man/man3 \
+	-Dvendorlib=${PERL_VENDOR_PREFIX}/${_PRIV_LIB} \
+	-Dvendorman3dir=${PERL_VENDOR_PREFIX}/${_PRIV_LIB}/man/man3 \
 	-Dvendorman1dir=${PERL_VENDOR_PREFIX}/man/man1
 .endif
 
@@ -118,7 +126,7 @@ CONFIGURE_ARGS+=	\
     -Accflags=-DPERLIOBUF_DEFAULT_BUFSIZ=${PERLIOBUF_DEFAULT_BUFSIZ}
 .endif
 
-MAN3PREFIX_REL=	lib/perl5/${PERL_VER}/perl
+MAN3PREFIX_REL=	${_PRIV_LIB}/perl
 MAN3PREFIX=	${PREFIX}/${MAN3PREFIX_REL}
 MANDIRS+=	${MAN3PREFIX}/man
 
@@ -126,8 +134,12 @@ PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 		PERL_VER=${PERL_VER} \
 		PERL_ARCH=${PERL_ARCH} \
 		MAN3=${MAN3PREFIX_REL}/man/man3 \
+		MAN3PREFIX=${MAN3PREFIX_REL} \
+		SITEMAN3PREFIX=${SITE_MAN3_PREFIX} \
 		SITE_PERL=${SITE_PERL_REL} \
-		SITE_ARCH=${SITE_ARCH_REL}
+		SITE_ARCH=${SITE_ARCH_REL} \
+		PRIV_LIB=${_PRIV_LIB} \
+		ARCH_LIB=${_ARCH_LIB}
 
 .if ${PORT_OPTIONS:MDEBUG}
 CONFIGURE_ARGS+=	-Doptimize="-g" -DDEBUGGING
@@ -175,6 +187,8 @@ CONFIGURE_ARGS+=	-Duse64bitint
 
 .if ${PORT_OPTIONS:MMULTIPLICITY}
 CONFIGURE_ARGS+=	-Dusemultiplicity=y
+.else
+CONFIGURE_ARGS+=	-Dusemultiplicity=n
 .endif
 
 .if ${PORT_OPTIONS:MSITECUSTOMIZE}
@@ -188,27 +202,19 @@ LINK_USRBIN=	no
 .endif
 SUB_LIST+=	LINK_USRBIN=${LINK_USRBIN}
 
-BSDPAN_DEST=	${PREFIX}/lib/perl5/${PERL_VER}/BSDPAN
-BSDPAN_FILES=	BSDPAN.pm BSDPAN/Override.pm Config.pm \
-		ExtUtils/MM_Unix.pm \
-		ExtUtils/MakeMaker.pm \
-		ExtUtils/Packlist.pm
-BSDPAN_VERSION=	20111107
-BSDPAN_WRKSRC=	${WRKDIR}/BSDPAN-${BSDPAN_VERSION}
+# Put a symlink to the future libperl.so.x.yy so that -lperl works.
+post-extract:
+	${LN} -s libperl.so.${PERL_VERSION} ${WRKSRC}/libperl.so
+	${LN} -s libperl.so.${PERL_VERSION} ${WRKSRC}/libperl.so.${PERL_VER}
 
 post-patch:
-	${SED} -i '' -e 's|%%PERL_PKGNAME%%|${PKGNAME}|g; s|%%PERL_VER%%|${PERL_VER}|g;' \
-		-e 's!%%BSDPAN_VERSION%%!${BSDPAN_VERSION}!g;' \
-		${BSDPAN_WRKSRC}/ExtUtils/*.pm
 	${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/Configure ${WRKSRC}/hints/freebsd.sh
 .if ${PORT_OPTIONS:MPTHREAD}
-	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|${PTHREAD_LIBS}|g;' \
-		-e 's|%%PTHREAD_CFLAGS%%|${PTHREAD_CFLAGS}|g;' \
+	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%|-lpthread|g;' \
 		${WRKSRC}/hints/freebsd.sh
 .else
 	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%||g;' \
-		-e 's|%%PTHREAD_CFLAGS%%||g;' \
 		${WRKSRC}/hints/freebsd.sh
 .endif
 
@@ -217,8 +223,8 @@ post-install:
 	${MKDIR} ${STAGEDIR}${SITE_ARCH}/auto
 	${MKDIR} ${STAGEDIR}${SITE_PERL}/auto
 	${LN} ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION} ${STAGEDIR}${PREFIX}/bin/perl5
-	${LN} -s libperl.so.${PERL_VER} ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/CORE/libperl.so
-	${LN} -s libperl.so.${PERL_VER} ${STAGEDIR}${PREFIX}/lib/perl5/${PERL_VER}/${PERL_ARCH}/CORE/libperl.so.${PERL_VERSION}
+	${LN} -sf libperl.so.${PERL_VERSION} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so
+	${LN} -sf libperl.so.${PERL_VERSION} ${STAGEDIR}${PREFIX}/${_ARCH_LIB}/CORE/libperl.so.${PERL_VER}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/perl${PERL_VERSION}
 	${INSTALL_DATA} ${WRKDIR}/perl5_version ${STAGEDIR}${PREFIX}/etc
 	${FIND} ${STAGEDIR} -name '*.bs' -size 0 -delete
@@ -230,14 +236,15 @@ post-install:
 		${WRKSRC}/perl -I ${WRKSRC}/lib ${STAGEDIR}${PREFIX}/bin/h2ph \
 		-d ${STAGEDIR}${SITE_ARCH} *.h machine/*.h sys/*.h >/dev/null)
 	@${FIND} ${STAGEDIR}${SITE_ARCH} -name '*.ph' | sed -e 's|${STAGEDIR}||' >> ${TMPPLIST}
+	${FIND} ${STAGEDIR} -name '*.so*' -type f | while read f; \
+		do \
+			${CHMOD} 644 $$f; \
+			${STRIP_CMD} $$f; \
+			${CHMOD} 444 $$f; \
+		done
 .if ${OSVERSION} >= 900022
 	${INSTALL_DATA} ${WRKDIR}/perl-man.conf ${STAGEDIR}${PREFIX}/etc/man.d/perl${PERL_VER}.conf
 .endif
-.for files in ${BSDPAN_FILES}
-	${MKDIR} ${STAGEDIR}${BSDPAN_DEST}/${files:H}
-	${INSTALL_DATA} \
-		${BSDPAN_WRKSRC}/${files} ${STAGEDIR}${BSDPAN_DEST}/${files}
-.endfor
 
 test: build
 	(cd ${WRKSRC}; TEST_JOBS=${MAKE_JOBS_NUMBER} make test_harness)

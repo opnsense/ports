@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	monit
-PORTVERSION=	5.10
+PORTVERSION=	5.12.2
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.mmonit.com/monit/dist/
 
@@ -14,9 +14,6 @@ LICENSE=	AGPLv3
 GNU_CONFIGURE=	yes
 USES=		bison gmake
 USE_RC_SUBR=	${PORTNAME}
-
-CONFIGURE_ENV=	CONFIG_SHELL="${SH}" \
-		LOCALBASE="${LOCALBASE}"
 
 OPTIONS_DEFINE=	DOCS SSL
 OPTIONS_DEFAULT=SSL
@@ -30,6 +27,7 @@ SUB_FILES=	pkg-message
 PORTDOCS=	COPYING README
 
 SSL_CONFIGURE_OFF=	--without-ssl
+SSL_USE=		OPENSSL=yes
 
 post-install:
 	${INSTALL} -m 600 ${WRKSRC}/monitrc ${STAGEDIR}${PREFIX}/etc/monitrc.sample

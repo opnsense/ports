@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	busybox
-PORTVERSION=	1.22.0
-PORTREVISION=	2
+PORTVERSION=	1.23.0
 CATEGORIES=	sysutils misc shells
 MASTER_SITES=	http://www.busybox.net/downloads/
 PKGNAMESUFFIX=	-unstable
 
 PATCH_SITES=	http://www.busybox.net/downloads/fixes-${PORTVERSION}/
 PATCH_DIST_STRIP=	-p1
-PATCHFILES=	#
+PATCHFILES=	busybox-1.23.0-ash.patch \
+		busybox-1.23.0-modprobe.patch
 
 MAINTAINER=	mandree@FreeBSD.org
 COMMENT=	Busybox for FreeBSD
@@ -23,7 +23,7 @@ CONFLICTS_INSTALL=	busybox-[1-9]*
 
 IGNORE=		is older than stable version. Use sysutils/busybox
 
-PORTSCOUT=	skipv:1.22.1
+PORTSCOUT=	limit:.*\.0$$
 
 MAKE_ARGS+=	SKIP_STRIP=y CC="${CC}" HOSTCC="${CC}" CXX="${CXX}" HOSTCXX="${CXX}"
 # findutils/find.c l. 752+, uses a GCC extension/invalid C code:

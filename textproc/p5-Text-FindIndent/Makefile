@@ -3,12 +3,13 @@
 
 PORTNAME=	Text-FindIndent
 PORTVERSION=	0.10
+PORTREVISION=	1
 CATEGORIES=	textproc perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:SMUELLER
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl5 module to heuristically determine the indent style of a file
 
 LICENSE=	ART10 GPLv1

@@ -3,11 +3,12 @@
 
 PORTNAME=	AI-Perceptron
 PORTVERSION=	1.0
+PORTREVISION=	1
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl module for introducing to internal operations of neural networks
 
 LICENSE=	ART10 GPLv1

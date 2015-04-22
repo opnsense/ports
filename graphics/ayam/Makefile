@@ -8,10 +8,13 @@ CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/Ayam/${PORTVERSION}
 DISTNAME=	${PORTNAME}${PORTVERSION}.src
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	3D modeling environment for the RenderMan interface
 
-LICENSE=	BSD
+LICENSE=	Ayam # similar to tcl/tk license
+LICENSE_NAME=	Ayam License
+LICENSE_FILE=	${WRKSRC}/../License.txt
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LIB_DEPENDS=	libaqsis_util.so:${PORTSDIR}/graphics/aqsis \
 		libtiff.so:${PORTSDIR}/graphics/tiff
@@ -25,17 +28,12 @@ USE_LDCONFIG=	${PREFIX}/lib/ayam
 USES=		gmake tk:84
 WRKSRC=		${WRKDIR}/${PORTNAME}/src
 MAKEFILE=	Makefile.shared
-MAKE_ENV=	PTHREAD_LIBS="${PTHREAD_LIBS}"
 MAKE_JOBS_UNSAFE=	yes
 
 AYAM_PLUGINS=	csphere mfio
 PLUGINS_DIR=	${PREFIX}/lib/${PORTNAME}
 
 .include <bsd.port.options.mk>
-
-.if ${ARCH} == "alpha"
-BROKEN=		Does not build on alpha
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR}|' ${WRKSRC}/tcl/ayam.tcl

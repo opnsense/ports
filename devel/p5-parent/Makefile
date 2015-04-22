@@ -2,19 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	parent
-PORTVERSION=	0.228
+PORTVERSION=	0.232
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:CORION
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	rafan@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Establish an ISA relationship with base classes at compile time
 
-USES=		perl5
-USE_PERL5=	configure
+LICENSE=	ART10 GPLv1
+LICENSE_COMB=	dual
 
-regression-test:
-	cd ${WRKSRC} && ${MAKE} test
+USE_PERL5=	configure
+USES=		perl5
 
 .include <bsd.port.mk>

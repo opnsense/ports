@@ -53,7 +53,6 @@ lib/%%APP_NAME%%/chrome/icons/default/seamonkey.png
 lib/%%APP_NAME%%/components/components.manifest
 lib/%%APP_NAME%%/components/libdbusservice.so
 lib/%%APP_NAME%%/components/libmozgnome.so
-lib/%%APP_NAME%%/components/libnkgnomevfs.so
 lib/%%APP_NAME%%/components/libsuite.so
 lib/%%APP_NAME%%/crashreporter
 lib/%%APP_NAME%%/crashreporter-override.ini
@@ -63,7 +62,6 @@ lib/%%APP_NAME%%/defaults/pref/browser-prefs.js
 lib/%%APP_NAME%%/defaults/pref/channel-prefs.js
 lib/%%APP_NAME%%/defaults/profile/chrome/userChrome-example.css
 lib/%%APP_NAME%%/defaults/profile/chrome/userContent-example.css
-lib/%%APP_NAME%%/defaults/profile/localstore.rdf
 lib/%%APP_NAME%%/defaults/profile/mimeTypes.rdf
 lib/%%APP_NAME%%/defaults/profile/panels.rdf
 lib/%%APP_NAME%%/dependentlibs.list
@@ -106,7 +104,6 @@ lib/%%APP_NAME%%/libsoftokn3.so
 lib/%%APP_NAME%%/libssl3.so
 lib/%%APP_NAME%%/libxul.so
 lib/%%APP_NAME%%/license.txt
-lib/%%APP_NAME%%/mozilla-xremote-client
 lib/%%APP_NAME%%/omni.ja
 lib/%%APP_NAME%%/platform.ini
 lib/%%APP_NAME%%/plugin-container
@@ -116,7 +113,7 @@ lib/%%APP_NAME%%/removed-files
 lib/%%APP_NAME%%/run-mozilla.sh
 lib/%%APP_NAME%%/seamonkey
 lib/%%APP_NAME%%/seamonkey-bin
-lib/%%APP_NAME%%/searchplugins/creativecommons.xml
+lib/%%APP_NAME%%/searchplugins/duckduckgo.xml
 lib/%%APP_NAME%%/searchplugins/google.xml
 lib/%%APP_NAME%%/searchplugins/wikipedia.xml
 lib/%%APP_NAME%%/searchplugins/yahoo.xml

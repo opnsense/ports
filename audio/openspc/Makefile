@@ -6,7 +6,7 @@ PORTVERSION=	0.3.1
 PORTREVISION=	2
 CATEGORIES=	audio
 MASTER_SITES=	http://membres.lycos.fr/pixels/ \
-		CRITICAL
+		LOCAL/ehaupt
 DISTNAME=	OpenSPC-${PORTVERSION}
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -15,9 +15,7 @@ COMMENT=	Command-line player for .spc and .zst files
 ONLY_FOR_ARCHS=	i386	# contains x86 asm code
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		libtool
-USE_AUTOTOOLS=	libtoolize aclocal autoconf autoheader automake
-AUTOMAKE_ARGS=	-a -c -f
+USES=		autoreconf libtool
 USE_GCC=	any
 USE_LDCONFIG=	yes
 

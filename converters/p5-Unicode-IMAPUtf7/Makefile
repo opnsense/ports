@@ -3,7 +3,7 @@
 
 PORTNAME=	Unicode-IMAPUtf7
 PORTVERSION=	2.01
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:FABPOT
@@ -21,7 +21,13 @@ RUN_DEPENDS=	p5-Unicode-String>=0:${PORTSDIR}/converters/p5-Unicode-String
 USES=		perl5
 USE_PERL5=	configure
 
-post-extract:	# breaks non-root build otherwise
-	@${FIND} ${WRKSRC} -type d | ${XARGS} ${CHMOD} a+rx
+# Fixing non root builds.
+# Distfile has directories with mode 644, which is not nice.  Cannot
+# use ${FIND} because it will not be able to read because it is not
+# root and will not override the directories non executable status.
+post-extract:
+.for d in / /lib /lib/Unicode /t
+	@${CHMOD} 755 ${WRKSRC}${d}
+.endfor
 
 .include <bsd.port.mk>

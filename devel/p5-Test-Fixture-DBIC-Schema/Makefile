@@ -3,11 +3,12 @@
 
 PORTNAME=	Test-Fixture-DBIC-Schema
 PORTVERSION=	0.04
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Module providing a DBIx::Class::Schema fixture data loader
 
 BUILD_DEPENDS=	p5-DBIx-Class>=0.07005:${PORTSDIR}/databases/p5-DBIx-Class \

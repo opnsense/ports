@@ -3,7 +3,7 @@
 
 PORTNAME=	transcode
 PORTVERSION=	1.1.7
-PORTREVISION=	18
+PORTREVISION=	22
 CATEGORIES=	multimedia
 MASTER_SITES=	http://cdn.bitbucket.org/france/transcode-tcforge/downloads/
 
@@ -21,7 +21,7 @@ WANT_SDL=	yes
 WANT_GNOME=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-oss
-CPPFLAGS+=	-isystem ${LOCALBASE}/include
+CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
 
@@ -56,7 +56,7 @@ XVID_LIB_DEPENDS=		libxvidcore.so:${PORTSDIR}/multimedia/xvid
 XVID_CONFIGURE_ENABLE=		xvid
 XVID_CONFIGURE_ON=		--with-xvid-prefix=${LOCALBASE}
 
-X264_LIB_DEPENDS=		libx264.so:${PORTSDIR}/multimedia/x264
+X264_LIB_DEPENDS=		libx264.so:${PORTSDIR}/multimedia/libx264
 X264_CONFIGURE_ENABLE=		x264
 
 OGG_LIB_DEPENDS=		libogg.so:${PORTSDIR}/audio/libogg
@@ -100,7 +100,7 @@ SDL_USE=			SDL=sdl
 SDL_CONFIGURE_ENABLE=		sdl
 SDL_CONFIGURE_ENV_ON=		SDL_CONFIG="${SDL_CONFIG}"
 
-IMAGEMAGICK_LIB_DEPENDS=	libMagickWand-6.Q16.so:${PORTSDIR}/graphics/ImageMagick
+IMAGEMAGICK_LIB_DEPENDS=	libMagickWand-6.so:${PORTSDIR}/graphics/ImageMagick
 IMAGEMAGICK_CONFIGURE_ENABLE=	imagemagick
 IMAGEMAGICK_CONFIGURE_ON=	--with-imagemagick-prefix=${LOCALBASE}
 
@@ -110,12 +110,17 @@ JPEG_CONFIGURE_ON=		--with-libjpeg-prefix=${LOCALBASE}
 
 ICONV_USES=			iconv
 ICONV_CONFIGURE_ENABLE=		iconv
-ICONV_CONFIGURE_ON=		${ICONV_CONFIGURE_ARG}
+ICONV_CONFIGURE_ON=		--with-iconv-prefix=${ICONV_PREFIX}
 
 V4L_BUILD_DEPENDS=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedia/v4l_compat
 V4L_CONFIGURE_ENABLE=		v4l
 
-.include <bsd.port.options.mk>
+.include <bsd.port.pre.mk>
+
+.if empty(ICONV_LIB)
+CONFIGURE_ARGS+=ac_cv_lib_iconv_iconv_open=no \
+		ac_cv_lib_iconv_libiconv_open=no
+.endif
 
 post-extract:
 	@${RM} ${WRKSRC}/import/v4l/videodev*
@@ -153,4 +158,4 @@ post-stage:
 	@(cd ${STAGEDIR}${PREFIX} && \
 		${FIND} -s lib/transcode -type f -or -type l >> ${TMPPLIST})
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

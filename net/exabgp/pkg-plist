@@ -5,24 +5,26 @@ man/man1/exabgp.1.gz
 sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/application/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/application/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/application/bgp.py
 %%PYTHON_SITELIBDIR%%/exabgp/application/bgp.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/application/bmp.py
 %%PYTHON_SITELIBDIR%%/exabgp/application/bmp.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/application/cli.py
+%%PYTHON_SITELIBDIR%%/exabgp/application/cli.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/__init__.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/direction.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/direction.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/keepalive.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/keepalive.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/message.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/message.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/nop.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/nop.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/notification.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/notification.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/operational.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/operational.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/asn.py
@@ -31,10 +33,14 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/addpath.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/addpath.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/asn4.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/asn4.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/capabilities.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/capabilities.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/capability.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/capability.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/graceful.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/graceful.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/id.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/id.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/mp.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/mp.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/ms.py
@@ -45,12 +51,16 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/operational.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/refresh.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/refresh.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/unknown.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability/unknown.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/holdtime.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/holdtime.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/routerid.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/routerid.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/version.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/version.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/operational.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/operational.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/refresh.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/refresh.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/unknown.py
@@ -59,22 +69,44 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/__init__.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aigp.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aigp.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aggregator.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aggregator.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aigp.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aigp.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aspath.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/aspath.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/atomicaggregate.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/atomicaggregate.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/attribute.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/attribute.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/attributes.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/attributes.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/clusterlist.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/clusterlist.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/communities.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/communities.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/flag.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/flag.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/id.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/id.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/communities.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/communities.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/community.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/community.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/communities.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/communities.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/community.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/community.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/encapsulation.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/encapsulation.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/l2info.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/l2info.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/origin.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/origin.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/rt.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/rt.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/traffic.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/community/extended/traffic.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/generic.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/generic.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/localpref.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/localpref.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/med.py
@@ -89,28 +121,52 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/origin.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/originatorid.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/originatorid.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/unknown.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/unknown.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attributes/__init__.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attributes/__init__.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attributes/factory.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attributes/factory.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/pmsi.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute/pmsi.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/eor.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/eor.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/factory.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/factory.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/__init__.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/bgp.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/bgp.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/eor.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/eor.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/factory.py
-%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/factory.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/cidr.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/cidr.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/ethernetad.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/ethernetad.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/mac.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/mac.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/multicast.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/multicast.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/nlri.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/nlri.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/segment.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/evpn/segment.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/flow.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/flow.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/mpls.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/mpls.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/nlri.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/nlri.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/prefix.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/prefix.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/esi.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/esi.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/etag.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/etag.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/labels.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/labels.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/mac.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/mac.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/path.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/path.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/rd.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/qualifier/rd.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/rtc.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/rtc.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/vpls.py
+%%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri/vpls.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/neighbor.py
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/neighbor.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bgp/timer.py
@@ -125,40 +181,88 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/bmp/negotiated.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/bmp/peer.py
 %%PYTHON_SITELIBDIR%%/exabgp/bmp/peer.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/compatibility/__init__.py
-%%PYTHON_SITELIBDIR%%/exabgp/compatibility/__init__.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/compatibility/ipaddress.py
-%%PYTHON_SITELIBDIR%%/exabgp/compatibility/ipaddress.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/compatibility/ordereddict.py
-%%PYTHON_SITELIBDIR%%/exabgp/compatibility/ordereddict.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/configuration/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/configuration/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/ancient.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/ancient.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/asn.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/asn.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/capability.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/capability.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/family.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/family.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/neighbor.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/neighbor.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/process.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/process.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/session.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bgp/session.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bmp/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/bmp/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/check.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/check.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/location.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/location.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/parser.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/parser.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/raised.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/raised.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/reader.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/reader.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/section.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/section.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/tokeniser.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/engine/tokeniser.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/configuration/environment.py
 %%PYTHON_SITELIBDIR%%/exabgp/configuration/environment.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/file.py
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/file.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/json.py
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/json.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/loader.py
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/loader.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/validation.py
-%%PYTHON_SITELIBDIR%%/exabgp/configuration/validation.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/format.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/format.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/neighbor/capability.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/neighbor/capability.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/setup.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/setup.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/show/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/show/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/usage.py
+%%PYTHON_SITELIBDIR%%/exabgp/configuration/usage.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/data/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/data/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/data/check.py
 %%PYTHON_SITELIBDIR%%/exabgp/data/check.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/debug.py
 %%PYTHON_SITELIBDIR%%/exabgp/debug.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/cmd2.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/cmd2.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/counter.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/counter.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/docopt.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/docopt.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/gcdump.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/gcdump.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/ipaddress.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/ipaddress.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/lsprofcalltree.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/lsprofcalltree.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/objgraph.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/objgraph.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/ordereddict.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/ordereddict.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/profiler.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/profiler.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/dep/pyparsing.py
+%%PYTHON_SITELIBDIR%%/exabgp/dep/pyparsing.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/logger.py
 %%PYTHON_SITELIBDIR%%/exabgp/logger.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/memory/__init__.py
-%%PYTHON_SITELIBDIR%%/exabgp/memory/__init__.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/memory/gcdump.py
-%%PYTHON_SITELIBDIR%%/exabgp/memory/gcdump.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/memory/objgraph.py
-%%PYTHON_SITELIBDIR%%/exabgp/memory/objgraph.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/memory/profiler.py
-%%PYTHON_SITELIBDIR%%/exabgp/memory/profiler.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/netlink/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/netlink/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/netlink/route.py
+%%PYTHON_SITELIBDIR%%/exabgp/netlink/route.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/family.py
@@ -171,8 +275,6 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/fragment.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/icmp.py
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/icmp.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/inet.py
-%%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/inet.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/tcp/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/tcp/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/tcp/flag.py
@@ -181,6 +283,16 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/api/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/api/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/command.py
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/command.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/control.py
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/control.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/decoder/__init__.py
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/decoder/__init__.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/decoder/json.py
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/decoder/json.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/decoder/text.py
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/api/decoder/text.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/api/encoding.py
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/api/encoding.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/api/processes.py
@@ -189,6 +301,8 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/daemon.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/listener.py
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/listener.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/loop.py
+%%PYTHON_SITELIBDIR%%/exabgp/reactor/loop.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/network/__init__.py
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/network/__init__.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/reactor/network/connection.py
@@ -217,107 +331,39 @@ sbin/exabgp
 %%PYTHON_SITELIBDIR%%/exabgp/util/cache.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/coroutine.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/coroutine.pyc
-%%PYTHON_SITELIBDIR%%/exabgp/util/counter.py
-%%PYTHON_SITELIBDIR%%/exabgp/util/counter.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/util/dictionary.py
+%%PYTHON_SITELIBDIR%%/exabgp/util/dictionary.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/enumeration.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/enumeration.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/errstr.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/errstr.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/util/hashtable.py
+%%PYTHON_SITELIBDIR%%/exabgp/util/hashtable.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/ip.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/ip.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/od.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/od.pyc
+%%PYTHON_SITELIBDIR%%/exabgp/util/panic.py
+%%PYTHON_SITELIBDIR%%/exabgp/util/panic.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/trace.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/trace.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/util/usage.py
 %%PYTHON_SITELIBDIR%%/exabgp/util/usage.pyc
 %%PYTHON_SITELIBDIR%%/exabgp/version.py
 %%PYTHON_SITELIBDIR%%/exabgp/version.pyc
-%%PYTHON_SITELIBDIR%%/netlink/__init__.py
-%%PYTHON_SITELIBDIR%%/netlink/__init__.pyc
-%%PYTHON_SITELIBDIR%%/netlink/route.py
-%%PYTHON_SITELIBDIR%%/netlink/route.pyc
-%%PYTHON_SITELIBDIR%%/netlink/test/get.py
-%%PYTHON_SITELIBDIR%%/netlink/test/get.pyc
-%%PYTHON_SITELIBDIR%%/netlink/test/route.py
-%%PYTHON_SITELIBDIR%%/netlink/test/route.pyc
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ibgpd.conf.v46
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ibgpd.conf.v4.parse.large
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ibgpd.conf.v4.parse
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ibgpd.conf.v4.md5
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ebgpd.conf.v6
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ebgpd.conf.v46
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/quagga/ebgpd.conf.v4
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/watchdog-1.pl
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/watchdog-1.sh
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/tcp-server
+%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/stderr-1.py
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/syslog-1.py
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/read-write.py
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/healthcheck.py
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/dynamic-1.pl
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/processes/dynamic-1.sh
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp6-simple.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-withdrawn.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-watchdog.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-watchdog-dynamic.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-ttl.txt
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-tcpcontrol.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-split.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-simple.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-parse.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-md5.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-multiple-process.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-label4.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-holdtime.txt
 %%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-healthcheck.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-group.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-group-updates.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-graceful.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-dynamic.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-add-path-sendreceive
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ibgp4-add-path-receive
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp6-simple.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-simple.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-selfcheck
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-peer-update.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-multisession.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-large.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-juniper-flow.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-family.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-collector.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-cisco.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/ebgp4-asn32.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/exabgp/dual-neighbor.txt
-%%PORTEXAMPLES%%%%EXAMPLESDIR%%/cisco/ibgp4-helper.txt
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/quagga
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/exabgp/processes
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/exabgp
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%/cisco
-%%PORTEXAMPLES%%@dirrm %%EXAMPLESDIR%%
-@dirrmtry %%PYTHON_SITELIBDIR%%/netlink/test
-@dirrmtry %%PYTHON_SITELIBDIR%%/netlink
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/util
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/rib
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/reactor/network
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/reactor/api
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/reactor
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip/tcp
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/protocol/ip
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/protocol
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/memory
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/data
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/configuration
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/compatibility
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bmp
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/nlri
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attributes
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update/attribute
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/update
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open/capability
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message/open
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp/message
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/bgp
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp/application
-@dirrm %%PYTHON_SITELIBDIR%%/exabgp
-@dirrmtry etc/exabgp
+%%PORTEXAMPLES%%@dir %%EXAMPLESDIR%%/exabgp/processes
+%%PORTEXAMPLES%%@dir %%EXAMPLESDIR%%/exabgp
+%%PORTEXAMPLES%%@dir %%EXAMPLESDIR%%
+@dir etc/exabgp
 @unexec if [ -d %D/%%ETCDIR%% ]; then echo "==> If you are permanently removing this port, you should do a ``rm -rf ${PKG_PREFIX}/etc/exabgp`` to remove any configuration files left."; fi

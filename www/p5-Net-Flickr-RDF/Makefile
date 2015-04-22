@@ -3,6 +3,7 @@
 
 PORTNAME=	Net-Flickr-RDF
 PORTVERSION=	2.2
+PORTREVISION=	1
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -19,6 +20,6 @@ BUILD_DEPENDS=	p5-Net-Flickr-API>=1.7:${PORTSDIR}/www/p5-Net-Flickr-API \
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
 USES=		perl5
-USE_PERL5=	configure
+USE_PERL5=	modbuild
 
 .include <bsd.port.mk>

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	sbt
-PORTVERSION=	0.13.6
+PORTVERSION=	0.13.8
 CATEGORIES=	devel java
 MASTER_SITES=	http://dl.bintray.com/sbt/native-packages/sbt/${PORTVERSION}/
 
@@ -21,7 +21,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 PLIST_FILES=	bin/sbt \
 		%%DATADIR%%/sbt-launch.jar
-PLIST_DIRS=	%%DATADIR%%
 
 .include <bsd.port.options.mk>
 

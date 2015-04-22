@@ -22,14 +22,12 @@ include/harfbuzz/hb-shape.h
 include/harfbuzz/hb-unicode.h
 include/harfbuzz/hb-version.h
 include/harfbuzz/hb.h
-lib/libharfbuzz-icu.la
 lib/libharfbuzz-icu.so
 lib/libharfbuzz-icu.so.0
-lib/libharfbuzz-icu.so.0.928.0
-lib/libharfbuzz.la
+lib/libharfbuzz-icu.so.%%LIBVER%%
 lib/libharfbuzz.so
 lib/libharfbuzz.so.0
-lib/libharfbuzz.so.0.928.0
+lib/libharfbuzz.so.%%LIBVER%%
 libdata/pkgconfig/harfbuzz-icu.pc
 libdata/pkgconfig/harfbuzz.pc
 share/gtk-doc/html/harfbuzz/annotation-glossary.html
@@ -70,7 +68,3 @@ share/gtk-doc/html/harfbuzz/right.png
 share/gtk-doc/html/harfbuzz/style.css
 share/gtk-doc/html/harfbuzz/up-insensitive.png
 share/gtk-doc/html/harfbuzz/up.png
-@dirrm share/gtk-doc/html/harfbuzz
-@dirrmtry share/gtk-doc/html
-@dirrmtry share/gtk-doc
-@dirrm include/harfbuzz

@@ -1,6 +1,5 @@
 include/X11/extensions/xf86vmode.h
 lib/libXxf86vm.a
-lib/libXxf86vm.la
 lib/libXxf86vm.so
 lib/libXxf86vm.so.1
 lib/libXxf86vm.so.1.0.0
@@ -27,4 +26,3 @@ man/man3/XF86VidModeGetPermissions.3.gz
 man/man3/XF86VidModeSwitchToMode.3.gz
 man/man3/XF86VidModeGetViewPort.3.gz
 man/man3/XF86VidModeValidateModeLine.3.gz
-@dirrmtry include/X11/extensions

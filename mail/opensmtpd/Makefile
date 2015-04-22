@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	opensmtpd
-PORTVERSION=	5.4.2
-PORTREVISION=	4
+PORTVERSION=	5.4.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://www.opensmtpd.org/archives/ \
@@ -11,23 +11,30 @@ MASTER_SITES=	http://www.opensmtpd.org/archives/ \
 DISTNAME=	${PORTNAME}-${PORTVERSION}p1
 
 MAINTAINER=	ashish@FreeBSD.org
-COMMENT=	OpenSMTPD is a free MTA
+COMMENT=	Security- and simplicity-focused SMTP server from OpenBSD
 
 LICENSE=	ISCL
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libevent.so:${PORTSDIR}/devel/libevent2
 
-OPTIONS_DEFINE=	CA_BUNDLE PAM SQLITE MYSQL PGSQL LDAP REDIS
+OPTIONS_DEFINE=	CA_BUNDLE PAM SQLITE MYSQL PGSQL LDAP REDIS LIBASRDEVEL \
+		MAILERCONF
 
 OPTIONS_DEFAULT=	CA_BUNDLE PAM
 
 CA_BUNDLE_DESC=	Install CA bundle for OpenSSL
+LIBASRDEVEL_DESC=	Use development version of libasr
+MAILERCONF_DESC=	Activate OpenSMTPD in mailer.conf(5)
 
-USES=		libtool
+USES=		cpe libtool
 USE_OPENSSL=	yes
+WITH_OPENSSL_PORT=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libevent-dir=${LOCALBASE} --sysconfdir=${PREFIX}/etc/mail/ \
-		--with-mailwrapper
+		--with-mailwrapper --with-ssl-dir=${OPENSSLBASE}
+
+CPE_VENDOR=	openbsd
 
 USE_RC_SUBR=	smtpd
 SUB_FILES=	pkg-install pkg-deinstall pkg-message
@@ -38,6 +45,9 @@ USERS=		_smtpd _smtpq
 GROUPS=		_smtpd
 
 OPTIONS_SUB=	yes
+
+LIBASRDEVEL_LIB_DEPENDS_OFF=	libasr.so:${PORTSDIR}/dns/libasr
+LIBASRDEVEL_LIB_DEPENDS=	libasr.so:${PORTSDIR}/dns/libasr-devel
 
 CA_BUNDLE_CONFIGURE_ON=	--with-ca-file=${LOCALBASE}/share/certs/ca-root-nss.crt
 CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:${PORTSDIR}/security/ca_root_nss
@@ -52,7 +62,7 @@ SQLITE_CFLAGS=		-I${LOCALBASE}/include
 SQLITE_LDFLAGS=		-L${LOCALBASE}/lib
 SQLITE_CONFIGURE_ON=	--with-experimental-sqlite
 
-PGSQL_USE=		PGSQL=yes
+PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_ON=	--with-experimental-postgres
 
 LDAP_CONFIGURE_ON=	--with-experimental-ldap

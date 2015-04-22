@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	moreutils
-PORTVERSION=	0.52
+PORTVERSION=	0.53
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	DEBIAN_POOL
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -33,12 +34,15 @@ CANNED_MANPAGES=errno.1 \
 		sponge.1
 PERL_MANPAGES=	chronic.1 \
 		combine.1 \
-		ts.1 \
+		moreutils-ts.1 \
 		vidir.1 \
 		vipe.1 \
 		zrun.1
 
 SHEBANG_FILES=	${PERL_MANPAGES:R}
+
+post-extract:
+	@${MV} ${WRKSRC}/ts ${WRKSRC}/moreutils-ts
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|parallel|moreutils-&|g' ${WRKSRC}/Makefile

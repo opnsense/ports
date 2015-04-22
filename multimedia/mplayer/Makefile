@@ -3,32 +3,26 @@
 
 PORTNAME=	mplayer
 PORTVERSION=	${MPLAYER_PORT_VERSION}
-PORTREVISION=	3
+PORTREVISION=	1
 
 COMMENT=	High performance media player supporting many formats
 
 .include "${.CURDIR}/Makefile.shared"
 
-OPTIONS_DEFINE=	AALIB AMR_NB AMR_WB BLURAY CACA DEBUG DV \
-		ENCA FONTCONFIG FRIBIDI GIF GSM GUI IPV6 JACK \
-		LADSPA LIBMNG LIRC LZO MEMALIGN NAS OCFLAGS \
-		OPENAL OPENGL OPENJPEG OPUS OTCHAIN PROFILE \
-		PULSEAUDIO REAL RTC RTCPU RTMP SCHROEDINGER SDL \
-		SKINS SMB SVGALIB V4L VDPAU VPX WIN32 \
-		X11 X11DGA X11VM XINERAMA XVIDEO XVMC
+OPTIONS_DEFINE=	AALIB AMR_NB AMR_WB BLURAY CACA CDIO DEBUG DV \
+		ENCA FONTCONFIG FRIBIDI GIF GNUTLS GSM GUI IPV6 JACK \
+		LADSPA LIBMNG LIRC LZO NAS OCFLAGS  OPENAL OPENGL \
+		OPENJPEG OPUS PULSEAUDIO REAL RTC RTCPU RTMP \
+		SCHROEDINGER SDL SKINS SMB SVGALIB V4L VDPAU VPX \
+		WIN32 X11 X11DGA X11VM XINERAMA XVIDEO XVMC
 
-OPTIONS_RADIO=	RGCD
-OPTIONS_RADIO_RGCD=	CDIO CDPARANOIA
-
-OPTIONS_DEFAULT=FONTCONFIG FRIBIDI IPV6 OCFLAGS OPENGL RTCPU SKINS \
-		WIN32 X11 X11DGA X11VM XINERAMA XVIDEO
+OPTIONS_DEFAULT=FONTCONFIG FRIBIDI GNUTLS IPV6 OCFLAGS OPENGL RTCPU \
+		SKINS WIN32 X11 X11DGA X11VM XINERAMA XVIDEO
 
 BLURAY_DESC?=	BluRay support
 ENCA_DESC?=	Charset conversion via enca
 LZO_DESC?=	External liblzo support
-MEMALIGN_DESC?=	Avoid memory alignment hacks (EXPERIMENTAL)
 OCFLAGS_DESC?=	Use optimized compiler flags
-OTCHAIN_DESC?=	Use gcc 4.6+ toolchain on legacy systems
 REAL_DESC?=	Enable realplayer plugin
 RTC_DESC?=	Add support for kernel real time clock
 RTCPU_DESC?=	Use runtime CPU detection on supported archs
@@ -42,7 +36,7 @@ SUB_FILES=	pkg-message
 CONFLICTS=	mplayer2-2.*
 
 CONFFILES=	example.conf input.conf menu.conf dvb-menu.conf
-USES+=		pkgconfig
+USES+=		iconv pkgconfig
 
 .include "${.CURDIR}/Makefile.optvars"
 .include <bsd.port.pre.mk>
@@ -67,7 +61,7 @@ CONFIGURE_ARGS+=	--disable-arts \
 PLIST_SUB+=	GMPLAYER=""
 DESKTOP_ENTRIES=	"MPlayer" "High performance media player" "mplayer" "gmplayer" "" false
 .if ${PORT_OPTIONS:MSKINS}
-RUN_DEPENDS+=	${LOCALBASE}/share/mplayer/skins:${PORTSDIR}/multimedia/mplayer-skins
+RUN_DEPENDS+=	mplayer-skins>=0:${PORTSDIR}/multimedia/mplayer-skins
 .endif
 
 USE_GNOME+=	gtk20
@@ -90,8 +84,7 @@ USE_XORG+=	xxf86dga
 CONFIGURE_ARGS+=--disable-dga1 --disable-dga2
 .endif
 .if ${PORT_OPTIONS:MOPENGL}
-USE_XORG+=	glproto
-LIB_DEPENDS+=	libGL.so:${PORTSDIR}/graphics/libGL
+USE_GL+=	gl
 .else
 CONFIGURE_ARGS+=--disable-gl
 .endif
@@ -142,6 +135,7 @@ post-patch:
 		-e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		-e 's|-lbz2|/usr/lib/libbz2.so|' \
 		-e 's|-lncurses|/usr/lib/libncurses.so|' \
+		-e 's|-liconv|${ICONV_LIB}|' \
 		${CONFIGURE_WRKSRC}/${CONFIGURE_SCRIPT}
 	@${FIND} -E ${WRKSRC} -type f \
 		-iregex ".*(configure|.sh|Makefile)" -print0 | \

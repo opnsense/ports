@@ -9,7 +9,9 @@
 #    - graphics/libEGL
 #    - graphics/libGL
 #    - graphics/libglapi
-#    - grahpics/libglesv2
+#    - graphics/libglesv2
+#    - graphics/libosmesa
+#    - lang/clover
 #
 # $FreeBSD$
 
@@ -28,15 +30,11 @@ MESAVERSION=	${MESABASEVERSION}${MESASUBVERSION:C/^(.)/.\1/}
 MESADISTVERSION=${MESABASEVERSION}${MESASUBVERSION:C/^(.)/-\1/}
 
 .if defined(WITH_NEW_MESA)
-MESABASEVERSION=	10.3.2
+MESABASEVERSION=	10.4.6
 # if there is a subversion, don't include the '-' between 7.11-rc2.
-MESASUBVERSION=	
+MESASUBVERSION=
 
-.if ${MESASUBVERSION} == "" && ${MESABASEVERSION:E} != 0
 MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/${MESABASEVERSION}/
-.else
-MASTER_SITES=	ftp://ftp.freedesktop.org/pub/mesa/${MESABASEVERSION:R}/
-.endif
 PLIST_SUB+=	OLD="@comment " NEW=""
 
 # work around libarchive bug?
@@ -58,13 +56,16 @@ BUILD_DEPENDS+=	makedepend:${PORTSDIR}/devel/makedepend \
 
 LIB_DEPENDS+=	libdevq.so:${PORTSDIR}/devel/libdevq
 
-USES+=		bison gmake libtool pathfix pkgconfig python:2,build \
-		shebangfix tar:bzip2
+USES+=		bison gettext-tools gmake libtool pathfix pkgconfig \
+		python:2,build shebangfix tar:bzip2
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-Wl,-Y${LOCALBASE}/lib
+
+PKGINSTALL=	${.CURDIR}/pkg-install
+PKGDEINSTALL=	${.CURDIR}/pkg-deinstall
 
 .if ${OSVERSION} < 1000033
 BUILD_DEPENDS+=	${LOCALBASE}/bin/flex:${PORTSDIR}/textproc/flex
@@ -95,6 +96,12 @@ INSTALL_TARGET=		install-strip
 
 COMPONENT=		${PORTNAME:tl:C/^lib//:C/mesa-//}
 
+.if defined(WITH_NEW_MESA)
+MESA_LLVM_VER=35
+.else
+MESA_LLVM_VER=33
+.endif
+
 .if ${COMPONENT:Mglesv2} == ""
 CONFIGURE_ARGS+=	--disable-gles2
 .else
@@ -107,13 +114,13 @@ CONFIGURE_ARGS+=	--disable-egl
 CONFIGURE_ARGS+=	--enable-egl
 .endif
 
-.if ${COMPONENT:Mopencl} == ""
+.if ${COMPONENT:Mclover} == ""
 CONFIGURE_ARGS+=	--disable-opencl
 .else
 CONFIGURE_ARGS+=	--enable-opencl
 .endif
 
-.if ${COMPONENT:Mdri} == ""
+.if ${COMPONENT:Mdri} == "" && ${COMPONENT:Mclover} == ""
 CONFIGURE_ARGS+=--with-dri-drivers=no
 CONFIGURE_ARGS+=--enable-gallium-llvm=no --without-gallium-drivers
 .else

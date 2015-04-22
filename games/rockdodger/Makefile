@@ -3,7 +3,7 @@
 
 PORTNAME=	rockdodger
 PORTVERSION=	0.9.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	GOOGLE_CODE \
 		SF/nemysisfreebsdp/${CATEGORIES}/${PORTNAME}/:addons
@@ -16,6 +16,7 @@ MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Addictive rock-dodging greeblie-killing platform game
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libogg.so:${PORTSDIR}/audio/libogg
 

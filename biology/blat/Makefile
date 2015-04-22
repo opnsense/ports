@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	blat
-PORTVERSION=	35
+PORTVERSION=	36
 CATEGORIES=	biology
 MASTER_SITES=	http://hgwdev.cse.ucsc.edu/~kent/src/ \
 		http://users.soe.ucsc.edu/~kent/src/
@@ -11,7 +11,7 @@ DISTNAME=	${PORTNAME}Src${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Fast tool for local sequence similarity searches
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 OPTIONS_DEFINE=	DOCS
 
@@ -23,17 +23,17 @@ MAKEFILE=	makefile
 MAKE_ENV=	MACHTYPE="${ARCH}" STRIP="${TRUE}"
 MAKE_ARGS=	HOME="${WRKSRC}/${BINDIR}"
 
+USE_MYSQL=		yes
+LDFLAGS+=		-L${LOCALBASE}/lib/mysql
+
 CPPFLAGS+=	$$(libpng-config --cflags)
 LDFLAGS+=	$$(libpng-config --ldflags)
 
 SUB_FILES=	pkg-message
 
-PORTDOCS=	README
 PLIST_FILES=	${EXECUTABLES:S,^,bin/,} \
 		lib/blat/webBlat/webBlat \
 		lib/blat/webBlat/install.txt
-PLIST_DIRS=	lib/blat/webBlat \
-		lib/blat
 
 EXECUTABLES=	blat faToNib faToTwoBit gfClient gfServer nibFrag \
 		pslPretty pslReps pslSort twoBitInfo twoBitToFa
@@ -63,7 +63,5 @@ do-install:
 		${STAGEDIR}${PREFIX}/lib/blat/webBlat)
 	(cd ${WRKSRC}/webBlat && ${INSTALL_DATA} install.txt \
 		${STAGEDIR}${PREFIX}/lib/blat/webBlat)
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	(cd ${WRKSRC} && ${INSTALL_DATA} README ${STAGEDIR}${DOCSDIR})
 
 .include <bsd.port.mk>

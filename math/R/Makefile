@@ -91,6 +91,10 @@ X11_DESC=		X11() graphics device
 OPTIONS_DEFAULT+=	GHOSTSCRIPT INFO_MANUALS JPEG LIBR PANGOCAIRO PNG \
 			TCLTK TIFF X11
 
+OPTIONS_DEFAULT_armv6+=		MISSING
+OPTIONS_DEFAULT_powerpc+=	MISSING
+OPTIONS_DEFAULT_powerpc64+=	MISSING
+
 .endif # !LIBR_SLAVEPORT
 PLIST_SUB=		R_SOVERSION="${R_SOVERSION}" \
 			RBLAS_SOVERSION="${RBLAS_SOVERSION}" \
@@ -224,7 +228,7 @@ PLIST_SUB+=		PANGOCAIRO="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MPNG}
-LIB_DEPENDS+=		libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS+=		libpng.so:${PORTSDIR}/graphics/png
 CONFIGURE_ARGS+=	--with-libpng
 .else
 CONFIGURE_ARGS+=	--without-libpng
@@ -312,9 +316,6 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|(libdir)/pkgconfig|(prefix)/libdata/pkgconfig|g' \
 		${WRKSRC}/src/nmath/standalone/Makefile.in \
 		${WRKSRC}/src/unix/Makefile.in
-	@${REINPLACE_CMD} -e "s|-lpthread|${PTHREAD_LIBS}|g" \
-		${WRKSRC}/configure \
-		${WRKSRC}/src/scripts/javareconf.in
 	@${REINPLACE_CMD} -e "s|/usr/local|${LOCALBASE}|g" \
 		${WRKSRC}/configure \
 		${WRKSRC}/src/library/profile/Rprofile.unix \

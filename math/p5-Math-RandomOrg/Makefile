@@ -3,12 +3,12 @@
 
 PORTNAME=	Math-RandomOrg
 PORTVERSION=	0.04
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Retrieve random numbers and data from random.org
 
 LICENSE=	ART10 GPLv1

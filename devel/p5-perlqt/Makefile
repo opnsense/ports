@@ -19,12 +19,12 @@ USE_QT4=	corelib dbus gui network xml \
 USES=		cmake:outsource perl5 tar:xz
 
 # Respect PREFIX
-CMAKE_ARGS+=	-DCUSTOM_PERL_SITE_ARCH_DIR=${PREFIX}/${SITE_PERL_REL}/${PERL_ARCH}
+CMAKE_ARGS+=	-DCUSTOM_PERL_SITE_ARCH_DIR=${PREFIX}/${SITE_ARCH_REL}
 # Fix build PREFIX != KDE4_PREFIX
 CMAKE_ARGS+=	-DSmoke_DIR=${KDE4_PREFIX}/lib/cmake/smoke
 
 SUB_FILES=	perl-kdebindings-env.sh pkg-message
-SUB_LIST+=	PERL5LIBDIR="${PREFIX}/${SITE_PERL_REL}/${PERL_ARCH}:\
+SUB_LIST+=	PERL5LIBDIR="${PREFIX}/${SITE_ARCH_REL}:\
 				${PREFIX}/${SITE_PERL_REL}"
 
 post-install:

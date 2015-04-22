@@ -2,13 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	eaglemode
-PORTVERSION=	0.85.0
-PORTREVISION=	2
+PORTVERSION=	0.88.0
 CATEGORIES=	x11
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Futuristic zoomable user environment
+
+LICENSE=	GPLv3
 
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libpng.so:${PORTSDIR}/graphics/png \
@@ -76,7 +77,8 @@ post-patch:
 .endif
 
 do-build:
-	cd ${WRKSRC} && ${PERL} make.pl build ${BUILD_ARGS}
+	(cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} \
+		${PERL} make.pl build ${BUILD_ARGS})
 
 do-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}
@@ -85,7 +87,15 @@ do-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/eaglemode/bin/* \
 		${STAGEDIR}${PREFIX}/lib/eaglemode/lib/*.so \
 		${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emClock/emTimeZonesProc \
-		${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emTmpConv/emTmpConvProc \
-		${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emAv/emAvServerProc_xine
+		${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emTmpConv/emTmpConvProc
+.if ${PORT_OPTIONS:MXINE}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emAv/emAvServerProc_xine
+.endif
+.if ${PORT_OPTIONS:MRSVG}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emSvg/emSvgServerProc
+.endif
+.if ${PORT_OPTIONS:MPDF}
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/eaglemode/lib/emPdf/emPdfServerProc
+.endif
 
 .include <bsd.port.mk>

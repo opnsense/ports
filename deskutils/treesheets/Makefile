@@ -2,8 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	treesheets
-PORTVERSION=	0.0.20141016
+PORTVERSION=	0.0.20150405
 CATEGORIES=	deskutils
+DISTNAME=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	lightside@gmx.com
 COMMENT=	Free form data organizer
@@ -13,14 +14,12 @@ LICENSE_FILE=	${WRKSRC}/ZLIB_LICENSE.txt
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	aardappel
-GH_PROJECT=	${PORTNAME}
-GH_COMMIT=	2cca487
-GH_TAGNAME=	${GH_COMMIT}
+GH_TAGNAME=	b994c63
 
 BUILD_WRKSRC=	${WRKSRC}/src
 EXTRACT_AFTER_ARGS=	--exclude .gitignore
 
-USES=		compiler:c++11-lang
+USES=		compiler:c++11-lib
 USE_WX=		3.0+
 WX_UNICODE=	yes
 
@@ -39,25 +38,17 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} < 900014
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 900014
 CXXFLAGS+=	-D__LONG_LONG_SUPPORTED
 .endif
 
 post-patch: .SILENT
-	${REINPLACE_CMD} -e 's|c++|${CXX}|; \
-		s|-O3|${CXXFLAGS}| ; \
-		s|wx-config|${WX_CONFIG}| ; \
-		/^mv treesheets/d' \
-		${BUILD_WRKSRC}/build.sh
-	${REINPLACE_CMD} -e 's|sys->frame->exepath+L"|L"${DOCSDIR}|' \
+	${REINPLACE_CMD} -e 's|sys->frame->GetPath(L"|(L"${DOCSDIR}/|' \
 		${BUILD_WRKSRC}/document.h
 	${REINPLACE_CMD} -e 's|wxFileName(exename).GetPath()|L"${DATADIR}"|' \
 		${BUILD_WRKSRC}/myframe.h
-	${REINPLACE_CMD} -e 's|frame->exepath+L"/examples|L"${EXAMPLESDIR}|' \
+	${REINPLACE_CMD} -e 's|frame->GetPath(L"examples|(L"${EXAMPLESDIR}|' \
 		${BUILD_WRKSRC}/system.h
-
-do-build:
-	(cd ${BUILD_WRKSRC} && ${SH} build.sh)
 
 do-install:
 	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin

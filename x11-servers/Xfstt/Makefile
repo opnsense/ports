@@ -2,37 +2,37 @@
 # $FreeBSD$
 
 PORTNAME=	xfstt
-PORTVERSION=	1.6
-PORTREVISION=	3
+PORTVERSION=	1.9.1
+PORTREVISION=	1
 CATEGORIES=	x11-servers
-MASTER_SITES=	${MASTER_SITE_BERLIOS}
-MASTER_SITE_SUBDIR=	${PORTNAME}
+MASTER_SITES=	http://archive.hadrons.org/software/xfstt/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	TrueType font server for X11
 
 OPTIONS_DEFINE=	DOCS
 
+USES=		tar:xz pkgconfig
 USE_XORG=	fontsproto xproto
+USE_RC_SUBR=	xfstt
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --disable-nls
 
-TTFONTDIR=	${PREFIX}/lib/X11/fonts/TrueType
+TTFONTDIR=	${PREFIX}/share/fonts/TrueType
 
 SUB_FILES=	pkg-message
 
 post-patch:
-.for file in INSTALL doc/xfstt.1x src/Makefile.in
-	@${REINPLACE_CMD} -e 's|%%TTFONTDIR%%|${TTFONTDIR}|g' ${WRKSRC}/${file}
+.for file in INSTALL doc/Makefile.in src/Makefile.in
+	${REINPLACE_CMD} -e 's|%%TTFONTDIR%%|${TTFONTDIR}|g' ${WRKSRC}/${file}
 .endfor
-	@${SED} -e "s:%%PREFIX%%:${PREFIX}:g" ${FILESDIR}/xfstt.sh \
-		> ${WRKSRC}/xfstt.sh
 
 post-install:
-	${INSTALL_SCRIPT} ${WRKSRC}/xfstt.sh ${STAGEDIR}${PREFIX}/etc/rc.d
-	@${MKDIR} ${STAGEDIR}${TTFONTDIR}
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for _file in CHANGES INSTALL THANKS
+	${SED} -e "s:%%PREFIX%%:${PREFIX}:g" ${FILESDIR}/xfstt.in \
+		> ${WRKSRC}/xfstt
+	${INSTALL_SCRIPT} ${WRKSRC}/xfstt ${STAGEDIR}${PREFIX}/etc/rc.d/
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+.for _file in INSTALL THANKS
 	${INSTALL_DATA} ${WRKSRC}/${_file} ${STAGEDIR}${DOCSDIR}
 .endfor
 

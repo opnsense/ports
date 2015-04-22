@@ -3,12 +3,13 @@
 
 PORTNAME=	DBICx-TestDatabase
 PORTVERSION=	0.05
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:JROCKWAY
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Module to create temporary database from a DBIx::Class::Schema
 
 LICENSE=	ART10 GPLv1

@@ -3,7 +3,7 @@
 
 PORTNAME=	dirmngr
 PORTVERSION=	1.1.0
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	security
 MASTER_SITES=	${MASTER_SITE_GNUPG}
 MASTER_SITE_SUBDIR=	dirmngr
@@ -12,6 +12,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	umq@ueo.co.jp
 COMMENT=	Client for managing and downloading certificate revocation lists
+
+LICENSE=	GPLv2
 
 LIB_DEPENDS=	libassuan.so:${PORTSDIR}/security/libassuan \
 		libgcrypt.so:${PORTSDIR}/security/libgcrypt \

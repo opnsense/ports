@@ -17,9 +17,8 @@ BUILD_DEPENDS=	cython:${PORTSDIR}/lang/cython
 
 MAKE_ENV=	KIVY_NO_CONFIG=yes KIVY_NO_FILELOG=yes PYTHONPATH=${WRKSRC}
 MAKE_JOBS_UNSAFE=	yes  # does not (really) use make
+
 USE_GITHUB=	yes
-GH_ACCOUNT=	${PORTNAME}
-GH_COMMIT=	d602d4b
 USES=		python:2.7+ shebangfix
 USE_GL=		gl
 PYDISTUTILS_BUILD_TARGET=	build_ext
@@ -60,10 +59,10 @@ PDF_BUILD_DEPENDS=	sphinx-build:${PORTSDIR}/textproc/py-sphinx
 PDF_USE=		TEX=texlive,pdftex:build,dvipsk:build
 PDF_USES=		gmake
 PIL_DESC=		Text and window rendering support via PIL
-PIL_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/PIL:${PORTSDIR}/graphics/py-imaging
+PIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}imaging>0:${PORTSDIR}/graphics/py-imaging
 PYGAME_DESC=		Window, text and image rendering support via PyGame
-PYGAME_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/pygame:${PORTSDIR}/devel/py-game
-PYGLET_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/pyglet:${PORTSDIR}/graphics/py-pyglet
+PYGAME_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}game>0:${PORTSDIR}/devel/py-game
+PYGLET_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyglet>0:${PORTSDIR}/graphics/py-pyglet
 SDL2_DESC=		Simple Direct Media Layer v2.0 support
 SDL2_MAKE_ENV=		USE_SDL=1
 SDL2_USE=		SDL=sdl2,ttf2,mixer2
@@ -81,12 +80,6 @@ OPTIONS_GROUP_VIDEO+=	PYGLET
 .endif
 
 .include <bsd.port.options.mk>
-
-.if ${ARCH} == i386
-.if !defined(WITH_NEW_XORG)
-BROKEN=		Does not compile with old libGL on i386: Undefined symbol glBlendEquationSeparate
-.endif
-.endif
 
 .if ${PORT_OPTIONS:MPDF}
 .if empty(PORT_OPTIONS:MDOCS)

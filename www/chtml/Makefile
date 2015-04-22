@@ -3,7 +3,7 @@
 
 PORTNAME=	chtml
 PORTVERSION=	0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www devel lang
 MASTER_SITES=	http://people.delphiforums.com/gjc/
 DISTNAME=	chtml
@@ -11,12 +11,15 @@ DISTNAME=	chtml
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Chunked HTML templating engine
 
+LICENSE=	MIT
+
 BUILD_DEPENDS=	${LOCALBASE}/bin/csiod:${PORTSDIR}/lang/siod
 
 USES=		perl5 tar:tgz
 USE_PERL5=	run
-MAKE_ENV=	SITE_PERL=${SITE_PERL}
+MAKE_ENV=	SITE_PERL=${PREFIX}/${SITE_PERL_REL}
 NO_WRKSUBDIR=	yes
 MAKEFILE=	makefile
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.mk>

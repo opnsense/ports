@@ -173,13 +173,16 @@ lib/usermin/blue-theme/at/images/icon.gif
 lib/usermin/blue-theme/backup-config/images/icon.gif
 lib/usermin/blue-theme/bandwidth/images/icon.gif
 lib/usermin/blue-theme/bind8/images/A.gif
+lib/usermin/blue-theme/bind8/images/AAAA.gif
 lib/usermin/blue-theme/bind8/images/ALL.gif
 lib/usermin/blue-theme/bind8/images/CNAME.gif
+lib/usermin/blue-theme/bind8/images/DMARC.gif
 lib/usermin/blue-theme/bind8/images/HINFO.gif
 lib/usermin/blue-theme/bind8/images/KEY.gif
 lib/usermin/blue-theme/bind8/images/LOC.gif
 lib/usermin/blue-theme/bind8/images/MX.gif
 lib/usermin/blue-theme/bind8/images/NS.gif
+lib/usermin/blue-theme/bind8/images/NSEC3PARAM.gif
 lib/usermin/blue-theme/bind8/images/PTR.gif
 lib/usermin/blue-theme/bind8/images/RP.gif
 lib/usermin/blue-theme/bind8/images/SPF.gif
@@ -249,11 +252,6 @@ lib/usermin/blue-theme/cpan/images/icon.gif
 lib/usermin/blue-theme/cpan/images/mod.gif
 lib/usermin/blue-theme/cron/images/icon.gif
 lib/usermin/blue-theme/custom/images/icon.gif
-lib/usermin/blue-theme/dhcpd-2.0/images/group.gif
-lib/usermin/blue-theme/dhcpd-2.0/images/host.gif
-lib/usermin/blue-theme/dhcpd-2.0/images/icon.gif
-lib/usermin/blue-theme/dhcpd-2.0/images/shared.gif
-lib/usermin/blue-theme/dhcpd-2.0/images/subnet.gif
 lib/usermin/blue-theme/dhcpd/images/group.gif
 lib/usermin/blue-theme/dhcpd/images/host.gif
 lib/usermin/blue-theme/dhcpd/images/icon.gif
@@ -268,7 +266,6 @@ lib/usermin/blue-theme/dovecot/images/manual.gif
 lib/usermin/blue-theme/dovecot/images/net.gif
 lib/usermin/blue-theme/dovecot/images/ssl.gif
 lib/usermin/blue-theme/download/images/icon.gif
-lib/usermin/blue-theme/escputil/images/icon.gif
 lib/usermin/blue-theme/exports/images/export.gif
 lib/usermin/blue-theme/exports/images/icon.gif
 lib/usermin/blue-theme/fdisk/images/ext.gif
@@ -325,13 +322,14 @@ lib/usermin/blue-theme/frox/images/icon.gif
 lib/usermin/blue-theme/frox/images/iptables.gif
 lib/usermin/blue-theme/frox/images/net.gif
 lib/usermin/blue-theme/fsdump/images/icon.gif
-lib/usermin/blue-theme/generate-acls/images/icon.gif
 lib/usermin/blue-theme/gnupg/images/decrypt.gif
 lib/usermin/blue-theme/gnupg/images/encrypt.gif
 lib/usermin/blue-theme/gnupg/images/keys.gif
 lib/usermin/blue-theme/gnupg/images/secret.gif
 lib/usermin/blue-theme/gnupg/images/sign.gif
 lib/usermin/blue-theme/gnupg/images/verify.gif
+lib/usermin/blue-theme/gray-left.css
+lib/usermin/blue-theme/gray-theme-lib.pl
 lib/usermin/blue-theme/grub/images/chain.gif
 lib/usermin/blue-theme/grub/images/icon.gif
 lib/usermin/blue-theme/grub/images/kernel.gif
@@ -343,34 +341,86 @@ lib/usermin/blue-theme/help/images/icon.gif
 lib/usermin/blue-theme/htaccess-htpasswd/images/icon.gif
 lib/usermin/blue-theme/htpasswd-file/images/icon.gif
 lib/usermin/blue-theme/idmapd/images/icon.gif
-lib/usermin/blue-theme/images/blank.gif
+lib/usermin/blue-theme/images/address-small.gif
+lib/usermin/blue-theme/images/audio.gif
+lib/usermin/blue-theme/images/autoreply.gif
+lib/usermin/blue-theme/images/binary.gif
 lib/usermin/blue-theme/images/blue.gif
+lib/usermin/blue-theme/images/bw.gif
+lib/usermin/blue-theme/images/bw.png
 lib/usermin/blue-theme/images/closed.gif
+lib/usermin/blue-theme/images/closed.png
+lib/usermin/blue-theme/images/config.gif
+lib/usermin/blue-theme/images/dir.gif
 lib/usermin/blue-theme/images/down.gif
+lib/usermin/blue-theme/images/feedback.gif
+lib/usermin/blue-theme/images/filter.gif
 lib/usermin/blue-theme/images/first-grey.gif
 lib/usermin/blue-theme/images/first.gif
+lib/usermin/blue-theme/images/forward.gif
 lib/usermin/blue-theme/images/gohome.gif
-lib/usermin/blue-theme/images/iepngfix.htc
+lib/usermin/blue-theme/images/gohome.png
+lib/usermin/blue-theme/images/graph.png
+lib/usermin/blue-theme/images/gray-closed.gif
+lib/usermin/blue-theme/images/gray-open.gif
+lib/usermin/blue-theme/images/grey.gif
+lib/usermin/blue-theme/images/help.gif
+lib/usermin/blue-theme/images/history.png
+lib/usermin/blue-theme/images/image.gif
+lib/usermin/blue-theme/images/index.gif
+lib/usermin/blue-theme/images/index.png
 lib/usermin/blue-theme/images/last-grey.gif
 lib/usermin/blue-theme/images/last.gif
 lib/usermin/blue-theme/images/lc1.gif
 lib/usermin/blue-theme/images/lc2.gif
+lib/usermin/blue-theme/images/left-arrow.gif
 lib/usermin/blue-theme/images/left-grey.gif
 lib/usermin/blue-theme/images/left.gif
 lib/usermin/blue-theme/images/logs.gif
 lib/usermin/blue-theme/images/mail-small.gif
-lib/usermin/blue-theme/images/oc.gif
+lib/usermin/blue-theme/images/mail-small.png
+lib/usermin/blue-theme/images/newplan.gif
+lib/usermin/blue-theme/images/newplan.png
+lib/usermin/blue-theme/images/ok.gif
 lib/usermin/blue-theme/images/open.gif
+lib/usermin/blue-theme/images/open.png
+lib/usermin/blue-theme/images/pass.gif
+lib/usermin/blue-theme/images/pass.png
 lib/usermin/blue-theme/images/purple.gif
 lib/usermin/blue-theme/images/rc1.gif
 lib/usermin/blue-theme/images/rc2.gif
 lib/usermin/blue-theme/images/red.gif
 lib/usermin/blue-theme/images/refresh-small.gif
+lib/usermin/blue-theme/images/refresh-small.png
+lib/usermin/blue-theme/images/reload.png
 lib/usermin/blue-theme/images/right-grey.gif
 lib/usermin/blue-theme/images/right.gif
-lib/usermin/blue-theme/images/square-green.png
+lib/usermin/blue-theme/images/smallconfig.gif
+lib/usermin/blue-theme/images/smallleft.gif
+lib/usermin/blue-theme/images/smallright.gif
+lib/usermin/blue-theme/images/start.png
 lib/usermin/blue-theme/images/stock_quit.gif
+lib/usermin/blue-theme/images/stock_quit.png
+lib/usermin/blue-theme/images/stock_quit_16.png
+lib/usermin/blue-theme/images/stock_quitbg.png
+lib/usermin/blue-theme/images/stop.png
+lib/usermin/blue-theme/images/text.gif
+lib/usermin/blue-theme/images/title-bar-selected.png
+lib/usermin/blue-theme/images/title-bar.png
+lib/usermin/blue-theme/images/undo.png
+lib/usermin/blue-theme/images/unknown.gif
+lib/usermin/blue-theme/images/up.gif
+lib/usermin/blue-theme/images/usermin-small.gif
+lib/usermin/blue-theme/images/usermin-small.png
+lib/usermin/blue-theme/images/virtualmin-small.gif
+lib/usermin/blue-theme/images/virtualmin-small.png
+lib/usermin/blue-theme/images/virtualmin-smallbg.gif
+lib/usermin/blue-theme/images/virtualminlogo.gif
+lib/usermin/blue-theme/images/vm2-small.gif
+lib/usermin/blue-theme/images/vm2-small.png
 lib/usermin/blue-theme/images/webmin-small.gif
+lib/usermin/blue-theme/images/webmin-small.png
+lib/usermin/blue-theme/images/white.gif
 lib/usermin/blue-theme/index.cgi
 lib/usermin/blue-theme/inetd/images/inetd.gif
 lib/usermin/blue-theme/init/images/icon.gif
@@ -413,14 +463,12 @@ lib/usermin/blue-theme/iscsi-target/images/manual.gif
 lib/usermin/blue-theme/iscsi-target/images/targets.gif
 lib/usermin/blue-theme/iscsi-target/images/timeout.gif
 lib/usermin/blue-theme/jabber/images/icon.gif
-lib/usermin/blue-theme/jsample/images/icon.gif
 lib/usermin/blue-theme/krb5/images/icon.gif
 lib/usermin/blue-theme/lang/ca
 lib/usermin/blue-theme/lang/de
 lib/usermin/blue-theme/lang/en
 lib/usermin/blue-theme/lang/fr
 lib/usermin/blue-theme/lang/ja_JP.euc
-lib/usermin/blue-theme/lang/ms_MY
 lib/usermin/blue-theme/lang/nl
 lib/usermin/blue-theme/lang/no
 lib/usermin/blue-theme/lang/pl
@@ -428,7 +476,6 @@ lib/usermin/blue-theme/lang/pt_BR
 lib/usermin/blue-theme/lang/ru_SU
 lib/usermin/blue-theme/ldap-useradmin/images/icon.gif
 lib/usermin/blue-theme/left.cgi
-lib/usermin/blue-theme/left.css
 lib/usermin/blue-theme/lilo/images/icon.gif
 lib/usermin/blue-theme/lilo/images/image.gif
 lib/usermin/blue-theme/lilo/images/other.gif
@@ -441,7 +488,6 @@ lib/usermin/blue-theme/lvm/images/pv.gif
 lib/usermin/blue-theme/lvm/images/smallicon.gif
 lib/usermin/blue-theme/lvm/images/snap.gif
 lib/usermin/blue-theme/lvm/images/vg.gif
-lib/usermin/blue-theme/lvs/images/icon.gif
 lib/usermin/blue-theme/mailboxes/images/attach.gif
 lib/usermin/blue-theme/mailboxes/images/boxes.gif
 lib/usermin/blue-theme/mailboxes/images/error.gif
@@ -489,7 +535,6 @@ lib/usermin/blue-theme/net/images/hosts.gif
 lib/usermin/blue-theme/net/images/icon.gif
 lib/usermin/blue-theme/net/images/ifcs.gif
 lib/usermin/blue-theme/net/images/routes.gif
-lib/usermin/blue-theme/nettools/images/icon.gif
 lib/usermin/blue-theme/nis/images/client.gif
 lib/usermin/blue-theme/nis/images/icon.gif
 lib/usermin/blue-theme/nis/images/security.gif
@@ -562,7 +607,6 @@ lib/usermin/blue-theme/pptp-server/images/smallicon.gif
 lib/usermin/blue-theme/proc/images/icon.gif
 lib/usermin/blue-theme/proc/images/smallicon.gif
 lib/usermin/blue-theme/procmail/images/icon.gif
-lib/usermin/blue-theme/procyonguide/images/icon.gif
 lib/usermin/blue-theme/proftpd/images/anon.gif
 lib/usermin/blue-theme/proftpd/images/dir.gif
 lib/usermin/blue-theme/proftpd/images/dirs.gif
@@ -703,10 +747,6 @@ lib/usermin/blue-theme/squid/images/ports.gif
 lib/usermin/blue-theme/squid/images/progs.gif
 lib/usermin/blue-theme/squid/images/smem.gif
 lib/usermin/blue-theme/squid/images/sports.gif
-lib/usermin/blue-theme/squidguard/images/icon.gif
-lib/usermin/blue-theme/squidinfo/images/icon.gif
-lib/usermin/blue-theme/squidreports/images/icon.gif
-lib/usermin/blue-theme/squidstat/images/icon.gif
 lib/usermin/blue-theme/ssh/images/access.gif
 lib/usermin/blue-theme/ssh/images/auths.gif
 lib/usermin/blue-theme/ssh/images/host.gif
@@ -732,19 +772,6 @@ lib/usermin/blue-theme/status/images/icon.gif
 lib/usermin/blue-theme/status/images/not.gif
 lib/usermin/blue-theme/status/images/up.gif
 lib/usermin/blue-theme/stunnel/images/icon.gif
-lib/usermin/blue-theme/swell-wizard/images/icon.gif
-lib/usermin/blue-theme/sysgraph/images/icon.gif
-lib/usermin/blue-theme/sysgraph/images/mem.png
-lib/usermin/blue-theme/sysinfo/images/connections.gif
-lib/usermin/blue-theme/sysinfo/images/cpu.gif
-lib/usermin/blue-theme/sysinfo/images/fs.gif
-lib/usermin/blue-theme/sysinfo/images/icon.gif
-lib/usermin/blue-theme/sysinfo/images/irq.gif
-lib/usermin/blue-theme/sysinfo/images/mem.gif
-lib/usermin/blue-theme/sysinfo/images/network.gif
-lib/usermin/blue-theme/sysinfo/images/sockets.gif
-lib/usermin/blue-theme/sysinfo/images/usockets.gif
-lib/usermin/blue-theme/sysinfo/images/who.gif
 lib/usermin/blue-theme/syslog/images/icon.gif
 lib/usermin/blue-theme/sysstats/images/icon.gif
 lib/usermin/blue-theme/sysstats/images/mem.png
@@ -753,19 +780,56 @@ lib/usermin/blue-theme/template/images/icon.gif
 lib/usermin/blue-theme/theme.info
 lib/usermin/blue-theme/theme.pl
 lib/usermin/blue-theme/time/images/icon.gif
-lib/usermin/blue-theme/tsunamiguide/images/icon.gif
 lib/usermin/blue-theme/tunnel/images/icon.gif
-lib/usermin/blue-theme/unauthenticated/bl.gif
-lib/usermin/blue-theme/unauthenticated/br.gif
-lib/usermin/blue-theme/unauthenticated/h.gif
+lib/usermin/blue-theme/unauthenticated/gray-reset-fonts-base.css
+lib/usermin/blue-theme/unauthenticated/gray-reset-fonts-grids-base.css
+lib/usermin/blue-theme/unauthenticated/gray-virtual-server-style.css
+lib/usermin/blue-theme/unauthenticated/images/Thumbs.db
+lib/usermin/blue-theme/unauthenticated/images/audio.gif
+lib/usermin/blue-theme/unauthenticated/images/binary.gif
+lib/usermin/blue-theme/unauthenticated/images/blue.gif
+lib/usermin/blue-theme/unauthenticated/images/closed.gif
+lib/usermin/blue-theme/unauthenticated/images/closedbg.gif
+lib/usermin/blue-theme/unauthenticated/images/config.gif
+lib/usermin/blue-theme/unauthenticated/images/dir.gif
+lib/usermin/blue-theme/unauthenticated/images/feedback.gif
+lib/usermin/blue-theme/unauthenticated/images/first-grey.gif
+lib/usermin/blue-theme/unauthenticated/images/first.gif
+lib/usermin/blue-theme/unauthenticated/images/gohome.gif
+lib/usermin/blue-theme/unauthenticated/images/grey.gif
+lib/usermin/blue-theme/unauthenticated/images/help.gif
+lib/usermin/blue-theme/unauthenticated/images/image.gif
+lib/usermin/blue-theme/unauthenticated/images/last-grey.gif
+lib/usermin/blue-theme/unauthenticated/images/last.gif
+lib/usermin/blue-theme/unauthenticated/images/left-arrow.gif
+lib/usermin/blue-theme/unauthenticated/images/left-grey.gif
+lib/usermin/blue-theme/unauthenticated/images/left.gif
+lib/usermin/blue-theme/unauthenticated/images/ok.gif
+lib/usermin/blue-theme/unauthenticated/images/open.gif
+lib/usermin/blue-theme/unauthenticated/images/openbg.gif
+lib/usermin/blue-theme/unauthenticated/images/red.gif
+lib/usermin/blue-theme/unauthenticated/images/right-grey.gif
+lib/usermin/blue-theme/unauthenticated/images/right.gif
+lib/usermin/blue-theme/unauthenticated/images/smallconfig.gif
+lib/usermin/blue-theme/unauthenticated/images/smallleft.gif
+lib/usermin/blue-theme/unauthenticated/images/smallright.gif
+lib/usermin/blue-theme/unauthenticated/images/stock_quit.gif
+lib/usermin/blue-theme/unauthenticated/images/stock_quit.png
+lib/usermin/blue-theme/unauthenticated/images/stock_quit_16.png
+lib/usermin/blue-theme/unauthenticated/images/stock_quitbg.png
+lib/usermin/blue-theme/unauthenticated/images/text.gif
+lib/usermin/blue-theme/unauthenticated/images/title-bar-selected.png
+lib/usermin/blue-theme/unauthenticated/images/title-bar.png
+lib/usermin/blue-theme/unauthenticated/images/undo.png
+lib/usermin/blue-theme/unauthenticated/images/unknown.gif
+lib/usermin/blue-theme/unauthenticated/images/virtualmin-small.gif
+lib/usermin/blue-theme/unauthenticated/images/virtualmin-smallbg.gif
+lib/usermin/blue-theme/unauthenticated/images/virtualminlogo.gif
+lib/usermin/blue-theme/unauthenticated/images/webmin-small.gif
+lib/usermin/blue-theme/unauthenticated/images/white.gif
 lib/usermin/blue-theme/unauthenticated/pngfix.js
 lib/usermin/blue-theme/unauthenticated/sorttable.js
-lib/usermin/blue-theme/unauthenticated/square-green.png
-lib/usermin/blue-theme/unauthenticated/style.css
-lib/usermin/blue-theme/unauthenticated/tl.gif
 lib/usermin/blue-theme/unauthenticated/toggleview.js
-lib/usermin/blue-theme/unauthenticated/tr.gif
-lib/usermin/blue-theme/unauthenticated/v.gif
 lib/usermin/blue-theme/updown/images/icon.gif
 lib/usermin/blue-theme/updown/images/left.gif
 lib/usermin/blue-theme/updown/images/pack.gif
@@ -802,59 +866,8 @@ lib/usermin/blue-theme/vgetty/images/messages.gif
 lib/usermin/blue-theme/vgetty/images/options.gif
 lib/usermin/blue-theme/vgetty/images/received.gif
 lib/usermin/blue-theme/vgetty/images/vgetty.gif
-lib/usermin/blue-theme/virtual-server/images/aliases.gif
-lib/usermin/blue-theme/virtual-server/images/blue.gif
-lib/usermin/blue-theme/virtual-server/images/down.gif
-lib/usermin/blue-theme/virtual-server/images/icon.gif
-lib/usermin/blue-theme/virtual-server/images/newbw.gif
-lib/usermin/blue-theme/virtual-server/images/newchroot.gif
-lib/usermin/blue-theme/virtual-server/images/newfields.gif
-lib/usermin/blue-theme/virtual-server/images/newips.gif
-lib/usermin/blue-theme/virtual-server/images/newmxs.gif
-lib/usermin/blue-theme/virtual-server/images/newnotify.gif
-lib/usermin/blue-theme/virtual-server/images/newplan.gif
-lib/usermin/blue-theme/virtual-server/images/newplugin.gif
-lib/usermin/blue-theme/virtual-server/images/newquotas.gif
-lib/usermin/blue-theme/virtual-server/images/newresels.gif
-lib/usermin/blue-theme/virtual-server/images/newscripts.gif
-lib/usermin/blue-theme/virtual-server/images/newtmpl.gif
-lib/usermin/blue-theme/virtual-server/images/newupdate.gif
-lib/usermin/blue-theme/virtual-server/images/newuser.gif
-lib/usermin/blue-theme/virtual-server/images/newvalidate.gif
-lib/usermin/blue-theme/virtual-server/images/newweb.gif
-lib/usermin/blue-theme/virtual-server/images/red.gif
-lib/usermin/blue-theme/virtual-server/images/up.gif
-lib/usermin/blue-theme/virtual-server/images/usage-ftp.gif
-lib/usermin/blue-theme/virtual-server/images/usage-mail.gif
-lib/usermin/blue-theme/virtual-server/images/usage-unix.gif
-lib/usermin/blue-theme/virtual-server/images/usage-web.gif
-lib/usermin/blue-theme/virtual-server/images/users.gif
-lib/usermin/blue-theme/virtual-server/images/view.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/access.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/dig.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/digest.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/head.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/icon.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/list.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/members.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/mesg.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/misc.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/mod.gif
-lib/usermin/blue-theme/virtualmin-mailman/images/subs.gif
-lib/usermin/blue-theme/virtualmin-svn/images/access.gif
-lib/usermin/blue-theme/virtualmin-svn/images/config.gif
-lib/usermin/blue-theme/virtualmin-svn/images/cvsweb.gif
-lib/usermin/blue-theme/virtualmin-svn/images/icon.gif
-lib/usermin/blue-theme/virtualmin-svn/images/passwd.gif
 lib/usermin/blue-theme/webalizer/images/icon.gif
 lib/usermin/blue-theme/webfetch/images/icon.gif
-lib/usermin/blue-theme/webmin-iptables/images/chain.forward.gif
-lib/usermin/blue-theme/webmin-iptables/images/chain.input.gif
-lib/usermin/blue-theme/webmin-iptables/images/chain.other.gif
-lib/usermin/blue-theme/webmin-iptables/images/chain.output.gif
-lib/usermin/blue-theme/webmin-iptables/images/chain.postrouting.gif
-lib/usermin/blue-theme/webmin-iptables/images/chain.prerouting.gif
-lib/usermin/blue-theme/webmin-iptables/images/icon.gif
 lib/usermin/blue-theme/webmin/images/access.gif
 lib/usermin/blue-theme/webmin/images/advanced.gif
 lib/usermin/blue-theme/webmin/images/anon.gif
@@ -887,7 +900,6 @@ lib/usermin/blue-theme/webmin/images/webmincron.gif
 lib/usermin/blue-theme/webminguide/images/icon.gif
 lib/usermin/blue-theme/webminlog/images/icon.gif
 lib/usermin/blue-theme/webminlog/images/star.gif
-lib/usermin/blue-theme/wpad-wizard/images/icon.gif
 lib/usermin/blue-theme/wuftpd/images/acl.gif
 lib/usermin/blue-theme/wuftpd/images/alias.gif
 lib/usermin/blue-theme/wuftpd/images/aliases.gif
@@ -1138,6 +1150,7 @@ lib/usermin/changepass/config.info.de.UTF-8
 lib/usermin/changepass/config.info.el
 lib/usermin/changepass/config.info.nl
 lib/usermin/changepass/config.info.nl.UTF-8
+lib/usermin/changepass/images/changepass.gif
 lib/usermin/changepass/images/icon.gif
 lib/usermin/changepass/index.cgi
 lib/usermin/changepass/lang/ca
@@ -1175,7 +1188,9 @@ lib/usermin/changepass/lang/zh_TW.Big5
 lib/usermin/changepass/lang/zh_TW.UTF-8
 lib/usermin/changepass/md5-lib.pl
 lib/usermin/changepass/module.info
+lib/usermin/changepass/recovery.cgi
 lib/usermin/changepass/uconfig.info.de
+lib/usermin/changepass/webmin_menu.pl
 lib/usermin/chfn/CHANGELOG
 lib/usermin/chfn/chfn-lib.pl
 lib/usermin/chfn/config
@@ -1429,10 +1444,12 @@ lib/usermin/cron/help/intro.sv.UTF-8.html
 lib/usermin/cron/help/intro.sv.html
 lib/usermin/cron/help/intro.zh_TW.Big5.html
 lib/usermin/cron/help/intro.zh_TW.UTF-8.html
+lib/usermin/cron/images/bottom.gif
 lib/usermin/cron/images/down.gif
 lib/usermin/cron/images/gap.gif
 lib/usermin/cron/images/icon.gif
 lib/usermin/cron/images/smallicon.gif
+lib/usermin/cron/images/top.gif
 lib/usermin/cron/images/up.gif
 lib/usermin/cron/index.cgi
 lib/usermin/cron/lang/bg
@@ -1496,6 +1513,7 @@ lib/usermin/cron/uconfig.info.cz
 lib/usermin/cron/uconfig.info.de
 lib/usermin/cron/uconfig.info.fr
 lib/usermin/cron/uconfig.info.nl
+lib/usermin/cron/uconfig.info.pl
 lib/usermin/cshrc/cshrc-lib.pl
 lib/usermin/cshrc/images/icon.gif
 lib/usermin/cshrc/index.cgi
@@ -1589,6 +1607,7 @@ lib/usermin/fetchmail/ulang/cz
 lib/usermin/fetchmail/ulang/de
 lib/usermin/fetchmail/ulang/en
 lib/usermin/fetchmail/ulang/nl
+lib/usermin/fetchmail/ulang/pl
 lib/usermin/fetchmail/ulang/ru_RU
 lib/usermin/fetchmail/ulang/tr
 lib/usermin/file/CHANGELOG
@@ -2196,13 +2215,16 @@ lib/usermin/gray-theme/at/images/icon.gif
 lib/usermin/gray-theme/backup-config/images/icon.gif
 lib/usermin/gray-theme/bandwidth/images/icon.gif
 lib/usermin/gray-theme/bind8/images/A.gif
+lib/usermin/gray-theme/bind8/images/AAAA.gif
 lib/usermin/gray-theme/bind8/images/ALL.gif
 lib/usermin/gray-theme/bind8/images/CNAME.gif
+lib/usermin/gray-theme/bind8/images/DMARC.gif
 lib/usermin/gray-theme/bind8/images/HINFO.gif
 lib/usermin/gray-theme/bind8/images/KEY.gif
 lib/usermin/gray-theme/bind8/images/LOC.gif
 lib/usermin/gray-theme/bind8/images/MX.gif
 lib/usermin/gray-theme/bind8/images/NS.gif
+lib/usermin/gray-theme/bind8/images/NSEC3PARAM.gif
 lib/usermin/gray-theme/bind8/images/PTR.gif
 lib/usermin/gray-theme/bind8/images/RP.gif
 lib/usermin/gray-theme/bind8/images/SPF.gif
@@ -2349,6 +2371,7 @@ lib/usermin/gray-theme/gnupg/images/secret.gif
 lib/usermin/gray-theme/gnupg/images/sign.gif
 lib/usermin/gray-theme/gnupg/images/verify.gif
 lib/usermin/gray-theme/gray-left.css
+lib/usermin/gray-theme/gray-theme-lib.pl
 lib/usermin/gray-theme/grub/images/chain.gif
 lib/usermin/gray-theme/grub/images/icon.gif
 lib/usermin/gray-theme/grub/images/kernel.gif
@@ -2489,6 +2512,7 @@ lib/usermin/gray-theme/lang/en
 lib/usermin/gray-theme/lang/fr
 lib/usermin/gray-theme/lang/ja_JP.euc
 lib/usermin/gray-theme/lang/nl
+lib/usermin/gray-theme/lang/no
 lib/usermin/gray-theme/lang/pl
 lib/usermin/gray-theme/lang/pt_BR
 lib/usermin/gray-theme/lang/ru_SU
@@ -3172,11 +3196,13 @@ lib/usermin/htaccess/uconfig.info.ca
 lib/usermin/htaccess/uconfig.info.cz
 lib/usermin/htaccess/uconfig.info.de
 lib/usermin/htaccess/uconfig.info.nl
+lib/usermin/htaccess/uconfig.info.pl
 lib/usermin/htaccess/ulang/ca
 lib/usermin/htaccess/ulang/de
 lib/usermin/htaccess/ulang/en
 lib/usermin/htaccess/ulang/fi
 lib/usermin/htaccess/ulang/nl
+lib/usermin/htaccess/ulang/pl
 lib/usermin/htaccess/ulang/ru_RU
 lib/usermin/htaccess/ulang/tr
 lib/usermin/htaccess/worker.pl
@@ -3250,6 +3276,8 @@ lib/usermin/lang/de.UTF-8
 lib/usermin/lang/el
 lib/usermin/lang/en
 lib/usermin/lang/en.UTF-8
+lib/usermin/lang/en_GB
+lib/usermin/lang/en_GB.UTF-8
 lib/usermin/lang/es
 lib/usermin/lang/es.UTF-8
 lib/usermin/lang/eu
@@ -3377,20 +3405,27 @@ lib/usermin/mailbox/edit_pop3.cgi
 lib/usermin/mailbox/edit_sig.cgi
 lib/usermin/mailbox/edit_virt.cgi
 lib/usermin/mailbox/folders-lib.pl
+lib/usermin/mailbox/images/address.gif
 lib/usermin/mailbox/images/attach.gif
+lib/usermin/mailbox/images/autoreply.gif
 lib/usermin/mailbox/images/box.gif
 lib/usermin/mailbox/images/boxes.gif
 lib/usermin/mailbox/images/dsn.gif
 lib/usermin/mailbox/images/error.gif
 lib/usermin/mailbox/images/filter.gif
+lib/usermin/mailbox/images/filters.gif
+lib/usermin/mailbox/images/forward.gif
 lib/usermin/mailbox/images/icon.gif
+lib/usermin/mailbox/images/mail.gif
 lib/usermin/mailbox/images/ok.gif
 lib/usermin/mailbox/images/p1.gif
 lib/usermin/mailbox/images/p2.gif
+lib/usermin/mailbox/images/prefs.gif
 lib/usermin/mailbox/images/read.gif
 lib/usermin/mailbox/images/red.gif
 lib/usermin/mailbox/images/replied.gif
 lib/usermin/mailbox/images/search.gif
+lib/usermin/mailbox/images/sig.gif
 lib/usermin/mailbox/images/special.gif
 lib/usermin/mailbox/import.cgi
 lib/usermin/mailbox/inbox_login.cgi
@@ -3463,6 +3498,7 @@ lib/usermin/mailbox/search_form.cgi
 lib/usermin/mailbox/send_mail.cgi
 lib/usermin/mailbox/slideshow.cgi
 lib/usermin/mailbox/sort.cgi
+lib/usermin/mailbox/system_info.pl
 lib/usermin/mailbox/uconfig.info
 lib/usermin/mailbox/uconfig.info.ca
 lib/usermin/mailbox/uconfig.info.cz
@@ -3493,6 +3529,7 @@ lib/usermin/mailbox/ulang/ru_SU
 lib/usermin/mailbox/ulang/tr
 lib/usermin/mailbox/view_mail.cgi
 lib/usermin/mailbox/virtualize.cgi
+lib/usermin/mailbox/webmin_menu.pl
 lib/usermin/mailbox/xinha/Xinha.css
 lib/usermin/mailbox/xinha/XinhaCore.js
 lib/usermin/mailbox/xinha/contrib/php-xinha.php
@@ -4067,6 +4104,8 @@ lib/usermin/mysql/help/cnf.it.UTF-8.html
 lib/usermin/mysql/help/cnf.it.html
 lib/usermin/mysql/help/cnf.nl.UTF-8.html
 lib/usermin/mysql/help/cnf.nl.html
+lib/usermin/mysql/help/cnf.no.UTF-8.html
+lib/usermin/mysql/help/cnf.no.html
 lib/usermin/mysql/help/cpriv.ca.UTF-8.html
 lib/usermin/mysql/help/cpriv.ca.html
 lib/usermin/mysql/help/cpriv.es.UTF-8.html
@@ -4078,6 +4117,8 @@ lib/usermin/mysql/help/cpriv.it.UTF-8.html
 lib/usermin/mysql/help/cpriv.it.html
 lib/usermin/mysql/help/cpriv.nl.UTF-8.html
 lib/usermin/mysql/help/cpriv.nl.html
+lib/usermin/mysql/help/cpriv.no.UTF-8.html
+lib/usermin/mysql/help/cpriv.no.html
 lib/usermin/mysql/help/cpriv.sv.UTF-8.html
 lib/usermin/mysql/help/cpriv.sv.html
 lib/usermin/mysql/help/cpriv.zh_TW.Big5.html
@@ -4093,6 +4134,8 @@ lib/usermin/mysql/help/cprivs.it.UTF-8.html
 lib/usermin/mysql/help/cprivs.it.html
 lib/usermin/mysql/help/cprivs.nl.UTF-8.html
 lib/usermin/mysql/help/cprivs.nl.html
+lib/usermin/mysql/help/cprivs.no.UTF-8.html
+lib/usermin/mysql/help/cprivs.no.html
 lib/usermin/mysql/help/cprivs.sv.UTF-8.html
 lib/usermin/mysql/help/cprivs.sv.html
 lib/usermin/mysql/help/cprivs.zh_TW.Big5.html
@@ -5497,6 +5540,8 @@ lib/usermin/procmail/lang/nl
 lib/usermin/procmail/lang/nl.UTF-8
 lib/usermin/procmail/lang/no
 lib/usermin/procmail/lang/no.UTF-8
+lib/usermin/procmail/lang/pl
+lib/usermin/procmail/lang/pl.UTF-8
 lib/usermin/procmail/lang/ru.UTF-8
 lib/usermin/procmail/lang/ru_RU
 lib/usermin/procmail/lang/ru_SU
@@ -5595,12 +5640,14 @@ lib/usermin/quota/old-quota-lib.pl
 lib/usermin/quota/openbsd-lib.pl
 lib/usermin/quota/quota-lib.pl
 lib/usermin/quota/solaris-lib.pl
+lib/usermin/quota/system_info.pl
 lib/usermin/quota/ulang/ca
 lib/usermin/quota/ulang/de
 lib/usermin/quota/ulang/el
 lib/usermin/quota/ulang/en
 lib/usermin/quota/ulang/fr
 lib/usermin/quota/ulang/nl
+lib/usermin/quota/ulang/pl
 lib/usermin/quota/ulang/ru_RU
 lib/usermin/quota/ulang/ru_SU
 lib/usermin/quota/ulang/tr
@@ -5786,10 +5833,12 @@ lib/usermin/spam/uconfig.info.cz
 lib/usermin/spam/uconfig.info.de
 lib/usermin/spam/uconfig.info.fr
 lib/usermin/spam/uconfig.info.nl
+lib/usermin/spam/uconfig.info.pl
 lib/usermin/spam/ulang/ca
 lib/usermin/spam/ulang/de
 lib/usermin/spam/ulang/en
 lib/usermin/spam/ulang/nl
+lib/usermin/spam/ulang/pl
 lib/usermin/spam/view_mail.cgi
 lib/usermin/ssh/CHANGELOG
 lib/usermin/ssh/delete_knowns.cgi
@@ -5928,11 +5977,13 @@ lib/usermin/telnet/uconfig.info
 lib/usermin/telnet/uconfig.info.ca
 lib/usermin/telnet/uconfig.info.de
 lib/usermin/telnet/uconfig.info.nl
+lib/usermin/telnet/uconfig.info.pl
 lib/usermin/telnet/ulang/ca
 lib/usermin/telnet/ulang/de
 lib/usermin/telnet/ulang/el
 lib/usermin/telnet/ulang/en
 lib/usermin/telnet/ulang/nl
+lib/usermin/telnet/ulang/pl
 lib/usermin/telnet/ulang/ru_RU
 lib/usermin/telnet/ulang/tr
 lib/usermin/theme/change_theme.cgi
@@ -6122,6 +6173,7 @@ lib/usermin/usermount/ulang/ca
 lib/usermin/usermount/ulang/de
 lib/usermin/usermount/ulang/en
 lib/usermin/usermount/ulang/nl
+lib/usermin/usermount/ulang/pl
 lib/usermin/usermount/ulang/ru_RU
 lib/usermin/usermount/ulang/tr
 lib/usermin/usermount/usermount-lib.pl
@@ -6130,822 +6182,5 @@ lib/usermin/web-lib-funcs.pl
 lib/usermin/web-lib.pl
 lib/usermin/webmin-search-lib.pl
 lib/usermin/webmin_search.cgi
-@exec /bin/mkdir -p %D/lib/usermin/file/xinha/plugins
-@exec /bin/mkdir -p %D/lib/usermin/mailbox/xinha/plugins
-@dirrm lib/usermin/usermount/ulang
-@dirrm lib/usermin/usermount/lang
-@dirrm lib/usermin/usermount/images
-@dirrm lib/usermin/usermount
-@dirrm lib/usermin/updown/lang
-@dirrm lib/usermin/updown/images
-@dirrm lib/usermin/updown
-@dirrm lib/usermin/ulang
-@dirrm lib/usermin/tunnel/lang
-@dirrm lib/usermin/tunnel/images
-@dirrm lib/usermin/tunnel
-@dirrm lib/usermin/theme/lang
-@dirrm lib/usermin/theme/images
-@dirrm lib/usermin/theme
-@dirrm lib/usermin/telnet/ulang
-@dirrm lib/usermin/telnet/lang
-@dirrm lib/usermin/telnet/images
-@dirrm lib/usermin/telnet
-@dirrm lib/usermin/ssh/ulang
-@dirrm lib/usermin/ssh/lang
-@dirrm lib/usermin/ssh/images
-@dirrm lib/usermin/ssh
-@dirrm lib/usermin/spam/ulang
-@dirrm lib/usermin/spam/lang
-@dirrm lib/usermin/spam/images
-@dirrm lib/usermin/spam
-@dirrm lib/usermin/shell/lang
-@dirrm lib/usermin/shell/images
-@dirrm lib/usermin/shell
-@dirrm lib/usermin/schedule/lang
-@dirrm lib/usermin/schedule/images
-@dirrm lib/usermin/schedule
-@dirrm lib/usermin/quota/ulang
-@dirrm lib/usermin/quota/lang
-@dirrm lib/usermin/quota/images
-@dirrm lib/usermin/quota
-@dirrm lib/usermin/procmail/ulang
-@dirrm lib/usermin/procmail/lang
-@dirrm lib/usermin/procmail/images
-@dirrm lib/usermin/procmail
-@dirrm lib/usermin/proc/lang
-@dirrm lib/usermin/proc/images
-@dirrm lib/usermin/proc/help
-@dirrm lib/usermin/proc
-@dirrm lib/usermin/postgresql/ulang
-@dirrm lib/usermin/postgresql/lang
-@dirrm lib/usermin/postgresql/images
-@dirrm lib/usermin/postgresql/help
-@dirrm lib/usermin/postgresql
-@dirrm lib/usermin/plan/lang
-@dirrm lib/usermin/plan/images
-@dirrm lib/usermin/plan
-@dirrm lib/usermin/mysql/ulang
-@dirrm lib/usermin/mysql/lang
-@dirrm lib/usermin/mysql/images
-@dirrm lib/usermin/mysql/help
-@dirrm lib/usermin/mysql
-@dirrm lib/usermin/mscstyle3/unauthenticated/nav
-@dirrm lib/usermin/mscstyle3/unauthenticated
-@dirrm lib/usermin/mscstyle3/images/top_bar
-@dirrm lib/usermin/mscstyle3/images/tabs
-@dirrm lib/usermin/mscstyle3/images/nav
-@dirrm lib/usermin/mscstyle3/images/cats_over
-@dirrm lib/usermin/mscstyle3/images/cats
-@dirrm lib/usermin/mscstyle3/images
-@dirrm lib/usermin/mscstyle3
-@dirrm lib/usermin/man/ulang
-@dirrm lib/usermin/man/lang
-@dirrm lib/usermin/man/images
-@dirrm lib/usermin/man/help
-@dirrm lib/usermin/man
-@dirrm lib/usermin/mailcap/lang
-@dirrm lib/usermin/mailcap/images
-@dirrm lib/usermin/mailcap
-@dirrm lib/usermin/mailbox/xinha/skins/xp-green
-@dirrm lib/usermin/mailbox/xinha/skins/xp-blue
-@dirrm lib/usermin/mailbox/xinha/skins/titan
-@dirrm lib/usermin/mailbox/xinha/skins/silva
-@dirrm lib/usermin/mailbox/xinha/skins/inditreuse
-@dirrm lib/usermin/mailbox/xinha/skins/green-look
-@dirrm lib/usermin/mailbox/xinha/skins/blue-metallic
-@dirrm lib/usermin/mailbox/xinha/skins/blue-look
-@dirrm lib/usermin/mailbox/xinha/skins
-@dirrm lib/usermin/mailbox/xinha/popups
-@dirrm lib/usermin/mailbox/xinha/plugins
-@dirrm lib/usermin/mailbox/xinha/modules/WebKit
-@dirrm lib/usermin/mailbox/xinha/modules/Opera
-@dirrm lib/usermin/mailbox/xinha/modules/InternetExplorer
-@dirrm lib/usermin/mailbox/xinha/modules/InsertTable
-@dirrm lib/usermin/mailbox/xinha/modules/InsertImage
-@dirrm lib/usermin/mailbox/xinha/modules/InlineStyler
-@dirrm lib/usermin/mailbox/xinha/modules/GetHtml/lang
-@dirrm lib/usermin/mailbox/xinha/modules/GetHtml
-@dirrm lib/usermin/mailbox/xinha/modules/Gecko
-@dirrm lib/usermin/mailbox/xinha/modules/FullScreen/lang
-@dirrm lib/usermin/mailbox/xinha/modules/FullScreen
-@dirrm lib/usermin/mailbox/xinha/modules/Dialogs
-@dirrm lib/usermin/mailbox/xinha/modules/CreateLink/lang
-@dirrm lib/usermin/mailbox/xinha/modules/CreateLink
-@dirrm lib/usermin/mailbox/xinha/modules/ColorPicker/lang
-@dirrm lib/usermin/mailbox/xinha/modules/ColorPicker
-@dirrm lib/usermin/mailbox/xinha/modules/AboutBox
-@dirrm lib/usermin/mailbox/xinha/modules
-@dirrm lib/usermin/mailbox/xinha/lang
-@dirrm lib/usermin/mailbox/xinha/images/tango/32x32/places
-@dirrm lib/usermin/mailbox/xinha/images/tango/32x32/mimetypes
-@dirrm lib/usermin/mailbox/xinha/images/tango/32x32/apps
-@dirrm lib/usermin/mailbox/xinha/images/tango/32x32
-@dirrm lib/usermin/mailbox/xinha/images/tango/16x16/places
-@dirrm lib/usermin/mailbox/xinha/images/tango/16x16/mimetypes
-@dirrm lib/usermin/mailbox/xinha/images/tango/16x16/apps
-@dirrm lib/usermin/mailbox/xinha/images/tango/16x16/actions
-@dirrm lib/usermin/mailbox/xinha/images/tango/16x16
-@dirrm lib/usermin/mailbox/xinha/images/tango
-@dirrm lib/usermin/mailbox/xinha/images/fr
-@dirrm lib/usermin/mailbox/xinha/images/de
-@dirrm lib/usermin/mailbox/xinha/images
-@dirrm lib/usermin/mailbox/xinha/iconsets/Classic/fr
-@dirrm lib/usermin/mailbox/xinha/iconsets/Classic/de
-@dirrm lib/usermin/mailbox/xinha/iconsets/Classic
-@dirrm lib/usermin/mailbox/xinha/iconsets
-@dirrm lib/usermin/mailbox/xinha/examples/files
-@dirrm lib/usermin/mailbox/xinha/examples
-@dirrm lib/usermin/mailbox/xinha/contrib
-@dirrm lib/usermin/mailbox/xinha
-@dirrm lib/usermin/mailbox/ulang
-@dirrm lib/usermin/mailbox/lang
-@dirrm lib/usermin/mailbox/images
-@dirrm lib/usermin/mailbox
-@dirrm lib/usermin/language/lang
-@dirrm lib/usermin/language/images
-@dirrm lib/usermin/language
-@dirrm lib/usermin/lang
-@dirrm lib/usermin/images
-@dirrm lib/usermin/htaccess/ulang
-@dirrm lib/usermin/htaccess/lang
-@dirrm lib/usermin/htaccess/images
-@dirrm lib/usermin/htaccess-htpasswd/lang
-@dirrm lib/usermin/htaccess-htpasswd/images
-@dirrm lib/usermin/htaccess-htpasswd
-@dirrm lib/usermin/htaccess
-@dirrm lib/usermin/gray-theme/zones/images
-@dirrm lib/usermin/gray-theme/zones
-@dirrm lib/usermin/gray-theme/xinetd/images
-@dirrm lib/usermin/gray-theme/xinetd
-@dirrm lib/usermin/gray-theme/wuftpd/images
-@dirrm lib/usermin/gray-theme/wuftpd
-@dirrm lib/usermin/gray-theme/webminlog/images
-@dirrm lib/usermin/gray-theme/webminlog
-@dirrm lib/usermin/gray-theme/webminguide/images
-@dirrm lib/usermin/gray-theme/webminguide
-@dirrm lib/usermin/gray-theme/webmin/images
-@dirrm lib/usermin/gray-theme/webmin
-@dirrm lib/usermin/gray-theme/webfetch/images
-@dirrm lib/usermin/gray-theme/webfetch
-@dirrm lib/usermin/gray-theme/webalizer/images
-@dirrm lib/usermin/gray-theme/webalizer
-@dirrm lib/usermin/gray-theme/vgetty/images
-@dirrm lib/usermin/gray-theme/vgetty
-@dirrm lib/usermin/gray-theme/usermin/images
-@dirrm lib/usermin/gray-theme/usermin
-@dirrm lib/usermin/gray-theme/useradmin/images
-@dirrm lib/usermin/gray-theme/useradmin
-@dirrm lib/usermin/gray-theme/updown/images
-@dirrm lib/usermin/gray-theme/updown
-@dirrm lib/usermin/gray-theme/unauthenticated/images
-@dirrm lib/usermin/gray-theme/unauthenticated
-@dirrm lib/usermin/gray-theme/tunnel/images
-@dirrm lib/usermin/gray-theme/tunnel
-@dirrm lib/usermin/gray-theme/time/images
-@dirrm lib/usermin/gray-theme/time
-@dirrm lib/usermin/gray-theme/template/images
-@dirrm lib/usermin/gray-theme/template
-@dirrm lib/usermin/gray-theme/telnet/images
-@dirrm lib/usermin/gray-theme/telnet
-@dirrm lib/usermin/gray-theme/sysstats/images
-@dirrm lib/usermin/gray-theme/sysstats
-@dirrm lib/usermin/gray-theme/syslog/images
-@dirrm lib/usermin/gray-theme/syslog
-@dirrm lib/usermin/gray-theme/stunnel/images
-@dirrm lib/usermin/gray-theme/stunnel
-@dirrm lib/usermin/gray-theme/status/images
-@dirrm lib/usermin/gray-theme/status
-@dirrm lib/usermin/gray-theme/sshd/images
-@dirrm lib/usermin/gray-theme/sshd
-@dirrm lib/usermin/gray-theme/ssh/images
-@dirrm lib/usermin/gray-theme/ssh
-@dirrm lib/usermin/gray-theme/squid/images
-@dirrm lib/usermin/gray-theme/squid
-@dirrm lib/usermin/gray-theme/spam/images
-@dirrm lib/usermin/gray-theme/spam
-@dirrm lib/usermin/gray-theme/software/images
-@dirrm lib/usermin/gray-theme/software
-@dirrm lib/usermin/gray-theme/smart-status/images
-@dirrm lib/usermin/gray-theme/smart-status
-@dirrm lib/usermin/gray-theme/simple-firewall/images
-@dirrm lib/usermin/gray-theme/simple-firewall
-@dirrm lib/usermin/gray-theme/shorewall/images
-@dirrm lib/usermin/gray-theme/shorewall
-@dirrm lib/usermin/gray-theme/shell/images
-@dirrm lib/usermin/gray-theme/shell
-@dirrm lib/usermin/gray-theme/servers/images
-@dirrm lib/usermin/gray-theme/servers
-@dirrm lib/usermin/gray-theme/sentry/images
-@dirrm lib/usermin/gray-theme/sentry
-@dirrm lib/usermin/gray-theme/sendmail/images
-@dirrm lib/usermin/gray-theme/sendmail
-@dirrm lib/usermin/gray-theme/sargreports/images
-@dirrm lib/usermin/gray-theme/sargreports
-@dirrm lib/usermin/gray-theme/sarg/images
-@dirrm lib/usermin/gray-theme/sarg
-@dirrm lib/usermin/gray-theme/samba/images
-@dirrm lib/usermin/gray-theme/samba
-@dirrm lib/usermin/gray-theme/raid/images
-@dirrm lib/usermin/gray-theme/raid
-@dirrm lib/usermin/gray-theme/quota/images
-@dirrm lib/usermin/gray-theme/quota
-@dirrm lib/usermin/gray-theme/qmailadmin/images
-@dirrm lib/usermin/gray-theme/qmailadmin
-@dirrm lib/usermin/gray-theme/pserver/images
-@dirrm lib/usermin/gray-theme/pserver
-@dirrm lib/usermin/gray-theme/proftpd/images
-@dirrm lib/usermin/gray-theme/proftpd
-@dirrm lib/usermin/gray-theme/procmail/images
-@dirrm lib/usermin/gray-theme/procmail
-@dirrm lib/usermin/gray-theme/proc/images
-@dirrm lib/usermin/gray-theme/proc
-@dirrm lib/usermin/gray-theme/pptp-server/images
-@dirrm lib/usermin/gray-theme/pptp-server
-@dirrm lib/usermin/gray-theme/pptp-client/images
-@dirrm lib/usermin/gray-theme/pptp-client
-@dirrm lib/usermin/gray-theme/ppp-client/images
-@dirrm lib/usermin/gray-theme/ppp-client
-@dirrm lib/usermin/gray-theme/postgresql/images
-@dirrm lib/usermin/gray-theme/postgresql
-@dirrm lib/usermin/gray-theme/postfix/images
-@dirrm lib/usermin/gray-theme/postfix
-@dirrm lib/usermin/gray-theme/phpini/images
-@dirrm lib/usermin/gray-theme/phpini
-@dirrm lib/usermin/gray-theme/passwd/images
-@dirrm lib/usermin/gray-theme/passwd
-@dirrm lib/usermin/gray-theme/pap/images
-@dirrm lib/usermin/gray-theme/pap
-@dirrm lib/usermin/gray-theme/pam/images
-@dirrm lib/usermin/gray-theme/pam
-@dirrm lib/usermin/gray-theme/openslp/images
-@dirrm lib/usermin/gray-theme/openslp
-@dirrm lib/usermin/gray-theme/nis/images
-@dirrm lib/usermin/gray-theme/nis
-@dirrm lib/usermin/gray-theme/net/images
-@dirrm lib/usermin/gray-theme/net
-@dirrm lib/usermin/gray-theme/mysql/images
-@dirrm lib/usermin/gray-theme/mysql
-@dirrm lib/usermin/gray-theme/mount/images
-@dirrm lib/usermin/gray-theme/mount
-@dirrm lib/usermin/gray-theme/mon/images
-@dirrm lib/usermin/gray-theme/mon
-@dirrm lib/usermin/gray-theme/man/images
-@dirrm lib/usermin/gray-theme/man
-@dirrm lib/usermin/gray-theme/majordomo/images
-@dirrm lib/usermin/gray-theme/majordomo
-@dirrm lib/usermin/gray-theme/mailboxes/images
-@dirrm lib/usermin/gray-theme/mailboxes
-@dirrm lib/usermin/gray-theme/lvm/images
-@dirrm lib/usermin/gray-theme/lvm
-@dirrm lib/usermin/gray-theme/lpadmin/images
-@dirrm lib/usermin/gray-theme/lpadmin
-@dirrm lib/usermin/gray-theme/logrotate/images
-@dirrm lib/usermin/gray-theme/logrotate
-@dirrm lib/usermin/gray-theme/lilo/images
-@dirrm lib/usermin/gray-theme/lilo
-@dirrm lib/usermin/gray-theme/ldap-useradmin/images
-@dirrm lib/usermin/gray-theme/ldap-useradmin
-@dirrm lib/usermin/gray-theme/lang
-@dirrm lib/usermin/gray-theme/krb5/images
-@dirrm lib/usermin/gray-theme/krb5
-@dirrm lib/usermin/gray-theme/jabber/images
-@dirrm lib/usermin/gray-theme/jabber
-@dirrm lib/usermin/gray-theme/iscsi-target/images
-@dirrm lib/usermin/gray-theme/iscsi-target
-@dirrm lib/usermin/gray-theme/iscsi-server/images
-@dirrm lib/usermin/gray-theme/iscsi-server
-@dirrm lib/usermin/gray-theme/iscsi-client/images
-@dirrm lib/usermin/gray-theme/iscsi-client
-@dirrm lib/usermin/gray-theme/iptables/images
-@dirrm lib/usermin/gray-theme/iptables
-@dirrm lib/usermin/gray-theme/ipsec/images
-@dirrm lib/usermin/gray-theme/ipsec
-@dirrm lib/usermin/gray-theme/ipchains/images
-@dirrm lib/usermin/gray-theme/ipchains
-@dirrm lib/usermin/gray-theme/inittab/images
-@dirrm lib/usermin/gray-theme/inittab
-@dirrm lib/usermin/gray-theme/init/images
-@dirrm lib/usermin/gray-theme/init
-@dirrm lib/usermin/gray-theme/inetd/images
-@dirrm lib/usermin/gray-theme/inetd
-@dirrm lib/usermin/gray-theme/images
-@dirrm lib/usermin/gray-theme/idmapd/images
-@dirrm lib/usermin/gray-theme/idmapd
-@dirrm lib/usermin/gray-theme/htpasswd-file/images
-@dirrm lib/usermin/gray-theme/htpasswd-file
-@dirrm lib/usermin/gray-theme/htaccess-htpasswd/images
-@dirrm lib/usermin/gray-theme/htaccess-htpasswd
-@dirrm lib/usermin/gray-theme/help/images
-@dirrm lib/usermin/gray-theme/help
-@dirrm lib/usermin/gray-theme/heartbeat/images
-@dirrm lib/usermin/gray-theme/heartbeat
-@dirrm lib/usermin/gray-theme/grub/images
-@dirrm lib/usermin/gray-theme/grub
-@dirrm lib/usermin/gray-theme/gnupg/images
-@dirrm lib/usermin/gray-theme/gnupg
-@dirrm lib/usermin/gray-theme/fsdump/images
-@dirrm lib/usermin/gray-theme/fsdump
-@dirrm lib/usermin/gray-theme/frox/images
-@dirrm lib/usermin/gray-theme/frox
-@dirrm lib/usermin/gray-theme/firewall/images
-@dirrm lib/usermin/gray-theme/firewall
-@dirrm lib/usermin/gray-theme/file/images
-@dirrm lib/usermin/gray-theme/file
-@dirrm lib/usermin/gray-theme/fetchmail/images
-@dirrm lib/usermin/gray-theme/fetchmail
-@dirrm lib/usermin/gray-theme/fdisk/images
-@dirrm lib/usermin/gray-theme/fdisk
-@dirrm lib/usermin/gray-theme/exports/images
-@dirrm lib/usermin/gray-theme/exports
-@dirrm lib/usermin/gray-theme/download/images
-@dirrm lib/usermin/gray-theme/download
-@dirrm lib/usermin/gray-theme/dovecot/images
-@dirrm lib/usermin/gray-theme/dovecot
-@dirrm lib/usermin/gray-theme/dnsadmin/images
-@dirrm lib/usermin/gray-theme/dnsadmin
-@dirrm lib/usermin/gray-theme/dhcpd/images
-@dirrm lib/usermin/gray-theme/dhcpd
-@dirrm lib/usermin/gray-theme/custom/images
-@dirrm lib/usermin/gray-theme/custom
-@dirrm lib/usermin/gray-theme/cron/images
-@dirrm lib/usermin/gray-theme/cron
-@dirrm lib/usermin/gray-theme/cpan/images
-@dirrm lib/usermin/gray-theme/cpan
-@dirrm lib/usermin/gray-theme/cluster-webmin/images
-@dirrm lib/usermin/gray-theme/cluster-webmin
-@dirrm lib/usermin/gray-theme/cluster-useradmin/images
-@dirrm lib/usermin/gray-theme/cluster-useradmin
-@dirrm lib/usermin/gray-theme/cluster-software/images
-@dirrm lib/usermin/gray-theme/cluster-software
-@dirrm lib/usermin/gray-theme/cluster-shell/images
-@dirrm lib/usermin/gray-theme/cluster-shell
-@dirrm lib/usermin/gray-theme/cluster-passwd/images
-@dirrm lib/usermin/gray-theme/cluster-passwd
-@dirrm lib/usermin/gray-theme/cluster-cron/images
-@dirrm lib/usermin/gray-theme/cluster-cron
-@dirrm lib/usermin/gray-theme/cluster-copy/images
-@dirrm lib/usermin/gray-theme/cluster-copy
-@dirrm lib/usermin/gray-theme/change-user/images
-@dirrm lib/usermin/gray-theme/change-user
-@dirrm lib/usermin/gray-theme/cfengine/images
-@dirrm lib/usermin/gray-theme/cfengine
-@dirrm lib/usermin/gray-theme/burner/images
-@dirrm lib/usermin/gray-theme/burner
-@dirrm lib/usermin/gray-theme/bsdfdisk/images
-@dirrm lib/usermin/gray-theme/bsdfdisk
-@dirrm lib/usermin/gray-theme/bind8/images
-@dirrm lib/usermin/gray-theme/bind8
-@dirrm lib/usermin/gray-theme/bandwidth/images
-@dirrm lib/usermin/gray-theme/bandwidth
-@dirrm lib/usermin/gray-theme/backup-config/images
-@dirrm lib/usermin/gray-theme/backup-config
-@dirrm lib/usermin/gray-theme/at/images
-@dirrm lib/usermin/gray-theme/at
-@dirrm lib/usermin/gray-theme/apache/images
-@dirrm lib/usermin/gray-theme/apache
-@dirrm lib/usermin/gray-theme/adsl-client/images
-@dirrm lib/usermin/gray-theme/adsl-client
-@dirrm lib/usermin/gray-theme/acl/images
-@dirrm lib/usermin/gray-theme/acl
-@dirrm lib/usermin/gray-theme
-@dirrm lib/usermin/gnupg/ulang
-@dirrm lib/usermin/gnupg/lang
-@dirrm lib/usermin/gnupg/images
-@dirrm lib/usermin/gnupg
-@dirrm lib/usermin/forward/lang
-@dirrm lib/usermin/forward/images
-@dirrm lib/usermin/forward
-@dirrm lib/usermin/filter/lang
-@dirrm lib/usermin/filter/images
-@dirrm lib/usermin/filter
-@dirrm lib/usermin/file/xinha/skins/xp-green
-@dirrm lib/usermin/file/xinha/skins/xp-blue
-@dirrm lib/usermin/file/xinha/skins/titan
-@dirrm lib/usermin/file/xinha/skins/silva
-@dirrm lib/usermin/file/xinha/skins/inditreuse
-@dirrm lib/usermin/file/xinha/skins/green-look
-@dirrm lib/usermin/file/xinha/skins/blue-metallic
-@dirrm lib/usermin/file/xinha/skins/blue-look
-@dirrm lib/usermin/file/xinha/skins
-@dirrm lib/usermin/file/xinha/popups
-@dirrm lib/usermin/file/xinha/plugins
-@dirrm lib/usermin/file/xinha/modules/WebKit
-@dirrm lib/usermin/file/xinha/modules/Opera
-@dirrm lib/usermin/file/xinha/modules/InternetExplorer
-@dirrm lib/usermin/file/xinha/modules/InsertTable
-@dirrm lib/usermin/file/xinha/modules/InsertImage
-@dirrm lib/usermin/file/xinha/modules/InlineStyler
-@dirrm lib/usermin/file/xinha/modules/GetHtml/lang
-@dirrm lib/usermin/file/xinha/modules/GetHtml
-@dirrm lib/usermin/file/xinha/modules/Gecko
-@dirrm lib/usermin/file/xinha/modules/FullScreen/lang
-@dirrm lib/usermin/file/xinha/modules/FullScreen
-@dirrm lib/usermin/file/xinha/modules/Dialogs
-@dirrm lib/usermin/file/xinha/modules/CreateLink/lang
-@dirrm lib/usermin/file/xinha/modules/CreateLink
-@dirrm lib/usermin/file/xinha/modules/ColorPicker/lang
-@dirrm lib/usermin/file/xinha/modules/ColorPicker
-@dirrm lib/usermin/file/xinha/modules/AboutBox
-@dirrm lib/usermin/file/xinha/modules
-@dirrm lib/usermin/file/xinha/lang
-@dirrm lib/usermin/file/xinha/images/tango/32x32/places
-@dirrm lib/usermin/file/xinha/images/tango/32x32/mimetypes
-@dirrm lib/usermin/file/xinha/images/tango/32x32/apps
-@dirrm lib/usermin/file/xinha/images/tango/32x32
-@dirrm lib/usermin/file/xinha/images/tango/16x16/places
-@dirrm lib/usermin/file/xinha/images/tango/16x16/mimetypes
-@dirrm lib/usermin/file/xinha/images/tango/16x16/apps
-@dirrm lib/usermin/file/xinha/images/tango/16x16/actions
-@dirrm lib/usermin/file/xinha/images/tango/16x16
-@dirrm lib/usermin/file/xinha/images/tango
-@dirrm lib/usermin/file/xinha/images/fr
-@dirrm lib/usermin/file/xinha/images/de
-@dirrm lib/usermin/file/xinha/images
-@dirrm lib/usermin/file/xinha/iconsets/Classic/fr
-@dirrm lib/usermin/file/xinha/iconsets/Classic/de
-@dirrm lib/usermin/file/xinha/iconsets/Classic
-@dirrm lib/usermin/file/xinha/iconsets
-@dirrm lib/usermin/file/xinha/examples/files
-@dirrm lib/usermin/file/xinha/examples
-@dirrm lib/usermin/file/xinha/contrib
-@dirrm lib/usermin/file/xinha
-@dirrm lib/usermin/file/lang
-@dirrm lib/usermin/file/images
-@dirrm lib/usermin/file
-@dirrm lib/usermin/fetchmail/ulang
-@dirrm lib/usermin/fetchmail/lang
-@dirrm lib/usermin/fetchmail/images
-@dirrm lib/usermin/fetchmail
-@dirrm lib/usermin/cshrc/lang
-@dirrm lib/usermin/cshrc/images
-@dirrm lib/usermin/cshrc
-@dirrm lib/usermin/cron/lang
-@dirrm lib/usermin/cron/images
-@dirrm lib/usermin/cron/help
-@dirrm lib/usermin/cron
-@dirrm lib/usermin/commands/ulang
-@dirrm lib/usermin/commands/lang
-@dirrm lib/usermin/commands/images
-@dirrm lib/usermin/commands
-@dirrm lib/usermin/chfn/lang
-@dirrm lib/usermin/chfn/images
-@dirrm lib/usermin/chfn
-@dirrm lib/usermin/changepass/lang
-@dirrm lib/usermin/changepass/images
-@dirrm lib/usermin/changepass
-@dirrm lib/usermin/caldera/usermount/images
-@dirrm lib/usermin/caldera/usermount
-@dirrm lib/usermin/caldera/updown/images
-@dirrm lib/usermin/caldera/updown
-@dirrm lib/usermin/caldera/tunnel/images
-@dirrm lib/usermin/caldera/tunnel
-@dirrm lib/usermin/caldera/theme/images
-@dirrm lib/usermin/caldera/theme
-@dirrm lib/usermin/caldera/telnet/images
-@dirrm lib/usermin/caldera/telnet
-@dirrm lib/usermin/caldera/ssh/images
-@dirrm lib/usermin/caldera/ssh
-@dirrm lib/usermin/caldera/spam/images
-@dirrm lib/usermin/caldera/spam-assassin/images
-@dirrm lib/usermin/caldera/spam-assassin
-@dirrm lib/usermin/caldera/spam
-@dirrm lib/usermin/caldera/shell/images
-@dirrm lib/usermin/caldera/shell
-@dirrm lib/usermin/caldera/schedule/images
-@dirrm lib/usermin/caldera/schedule
-@dirrm lib/usermin/caldera/quota/images
-@dirrm lib/usermin/caldera/quota
-@dirrm lib/usermin/caldera/procmail/images
-@dirrm lib/usermin/caldera/procmail
-@dirrm lib/usermin/caldera/proc/images
-@dirrm lib/usermin/caldera/proc
-@dirrm lib/usermin/caldera/postgresql/images
-@dirrm lib/usermin/caldera/postgresql
-@dirrm lib/usermin/caldera/plan/images
-@dirrm lib/usermin/caldera/plan
-@dirrm lib/usermin/caldera/mysql/images
-@dirrm lib/usermin/caldera/mysql
-@dirrm lib/usermin/caldera/motd/images
-@dirrm lib/usermin/caldera/motd
-@dirrm lib/usermin/caldera/man/images
-@dirrm lib/usermin/caldera/man
-@dirrm lib/usermin/caldera/mailcap/images
-@dirrm lib/usermin/caldera/mailcap
-@dirrm lib/usermin/caldera/mailbox/images
-@dirrm lib/usermin/caldera/mailbox
-@dirrm lib/usermin/caldera/link/images
-@dirrm lib/usermin/caldera/link
-@dirrm lib/usermin/caldera/language/images
-@dirrm lib/usermin/caldera/language
-@dirrm lib/usermin/caldera/images/letters
-@dirrm lib/usermin/caldera/images
-@dirrm lib/usermin/caldera/htaccess/images
-@dirrm lib/usermin/caldera/htaccess-htpasswd/images
-@dirrm lib/usermin/caldera/htaccess-htpasswd
-@dirrm lib/usermin/caldera/htaccess
-@dirrm lib/usermin/caldera/gnupg/images
-@dirrm lib/usermin/caldera/gnupg
-@dirrm lib/usermin/caldera/forward/images
-@dirrm lib/usermin/caldera/forward
-@dirrm lib/usermin/caldera/file/images
-@dirrm lib/usermin/caldera/file
-@dirrm lib/usermin/caldera/fetchmail/images
-@dirrm lib/usermin/caldera/fetchmail
-@dirrm lib/usermin/caldera/exim-virtual/images
-@dirrm lib/usermin/caldera/exim-virtual
-@dirrm lib/usermin/caldera/exim-majordomo/images
-@dirrm lib/usermin/caldera/exim-majordomo
-@dirrm lib/usermin/caldera/cshrc/images
-@dirrm lib/usermin/caldera/cshrc
-@dirrm lib/usermin/caldera/cron/images
-@dirrm lib/usermin/caldera/cron
-@dirrm lib/usermin/caldera/commands/images
-@dirrm lib/usermin/caldera/commands
-@dirrm lib/usermin/caldera/chfn/images
-@dirrm lib/usermin/caldera/chfn
-@dirrm lib/usermin/caldera/changepass/images
-@dirrm lib/usermin/caldera/changepass
-@dirrm lib/usermin/caldera/bandwidth-limit/images
-@dirrm lib/usermin/caldera/bandwidth-limit
-@dirrm lib/usermin/caldera/at/images
-@dirrm lib/usermin/caldera/at
-@dirrm lib/usermin/caldera
-@dirrm lib/usermin/blue-theme/zones/images
-@dirrm lib/usermin/blue-theme/zones
-@dirrm lib/usermin/blue-theme/xinetd/images
-@dirrm lib/usermin/blue-theme/xinetd
-@dirrm lib/usermin/blue-theme/wuftpd/images
-@dirrm lib/usermin/blue-theme/wuftpd
-@dirrm lib/usermin/blue-theme/wpad-wizard/images
-@dirrm lib/usermin/blue-theme/wpad-wizard
-@dirrm lib/usermin/blue-theme/webminlog/images
-@dirrm lib/usermin/blue-theme/webminlog
-@dirrm lib/usermin/blue-theme/webminguide/images
-@dirrm lib/usermin/blue-theme/webminguide
-@dirrm lib/usermin/blue-theme/webmin/images
-@dirrm lib/usermin/blue-theme/webmin-iptables/images
-@dirrm lib/usermin/blue-theme/webmin-iptables
-@dirrm lib/usermin/blue-theme/webmin
-@dirrm lib/usermin/blue-theme/webfetch/images
-@dirrm lib/usermin/blue-theme/webfetch
-@dirrm lib/usermin/blue-theme/webalizer/images
-@dirrm lib/usermin/blue-theme/webalizer
-@dirrm lib/usermin/blue-theme/virtualmin-svn/images
-@dirrm lib/usermin/blue-theme/virtualmin-svn
-@dirrm lib/usermin/blue-theme/virtualmin-mailman/images
-@dirrm lib/usermin/blue-theme/virtualmin-mailman
-@dirrm lib/usermin/blue-theme/virtual-server/images
-@dirrm lib/usermin/blue-theme/virtual-server
-@dirrm lib/usermin/blue-theme/vgetty/images
-@dirrm lib/usermin/blue-theme/vgetty
-@dirrm lib/usermin/blue-theme/usermin/images
-@dirrm lib/usermin/blue-theme/usermin
-@dirrm lib/usermin/blue-theme/useradmin/images
-@dirrm lib/usermin/blue-theme/useradmin
-@dirrm lib/usermin/blue-theme/updown/images
-@dirrm lib/usermin/blue-theme/updown
-@dirrm lib/usermin/blue-theme/unauthenticated
-@dirrm lib/usermin/blue-theme/tunnel/images
-@dirrm lib/usermin/blue-theme/tunnel
-@dirrm lib/usermin/blue-theme/tsunamiguide/images
-@dirrm lib/usermin/blue-theme/tsunamiguide
-@dirrm lib/usermin/blue-theme/time/images
-@dirrm lib/usermin/blue-theme/time
-@dirrm lib/usermin/blue-theme/template/images
-@dirrm lib/usermin/blue-theme/template
-@dirrm lib/usermin/blue-theme/telnet/images
-@dirrm lib/usermin/blue-theme/telnet
-@dirrm lib/usermin/blue-theme/sysstats/images
-@dirrm lib/usermin/blue-theme/sysstats
-@dirrm lib/usermin/blue-theme/syslog/images
-@dirrm lib/usermin/blue-theme/syslog
-@dirrm lib/usermin/blue-theme/sysinfo/images
-@dirrm lib/usermin/blue-theme/sysinfo
-@dirrm lib/usermin/blue-theme/sysgraph/images
-@dirrm lib/usermin/blue-theme/sysgraph
-@dirrm lib/usermin/blue-theme/swell-wizard/images
-@dirrm lib/usermin/blue-theme/swell-wizard
-@dirrm lib/usermin/blue-theme/stunnel/images
-@dirrm lib/usermin/blue-theme/stunnel
-@dirrm lib/usermin/blue-theme/status/images
-@dirrm lib/usermin/blue-theme/status
-@dirrm lib/usermin/blue-theme/sshd/images
-@dirrm lib/usermin/blue-theme/sshd
-@dirrm lib/usermin/blue-theme/ssh/images
-@dirrm lib/usermin/blue-theme/ssh
-@dirrm lib/usermin/blue-theme/squidstat/images
-@dirrm lib/usermin/blue-theme/squidstat
-@dirrm lib/usermin/blue-theme/squidreports/images
-@dirrm lib/usermin/blue-theme/squidreports
-@dirrm lib/usermin/blue-theme/squidinfo/images
-@dirrm lib/usermin/blue-theme/squidinfo
-@dirrm lib/usermin/blue-theme/squidguard/images
-@dirrm lib/usermin/blue-theme/squidguard
-@dirrm lib/usermin/blue-theme/squid/images
-@dirrm lib/usermin/blue-theme/squid
-@dirrm lib/usermin/blue-theme/spam/images
-@dirrm lib/usermin/blue-theme/spam
-@dirrm lib/usermin/blue-theme/software/images
-@dirrm lib/usermin/blue-theme/software
-@dirrm lib/usermin/blue-theme/smart-status/images
-@dirrm lib/usermin/blue-theme/smart-status
-@dirrm lib/usermin/blue-theme/simple-firewall/images
-@dirrm lib/usermin/blue-theme/simple-firewall
-@dirrm lib/usermin/blue-theme/shorewall/images
-@dirrm lib/usermin/blue-theme/shorewall
-@dirrm lib/usermin/blue-theme/shell/images
-@dirrm lib/usermin/blue-theme/shell
-@dirrm lib/usermin/blue-theme/servers/images
-@dirrm lib/usermin/blue-theme/servers
-@dirrm lib/usermin/blue-theme/sentry/images
-@dirrm lib/usermin/blue-theme/sentry
-@dirrm lib/usermin/blue-theme/sendmail/images
-@dirrm lib/usermin/blue-theme/sendmail
-@dirrm lib/usermin/blue-theme/sargreports/images
-@dirrm lib/usermin/blue-theme/sargreports
-@dirrm lib/usermin/blue-theme/sarg/images
-@dirrm lib/usermin/blue-theme/sarg
-@dirrm lib/usermin/blue-theme/samba/images
-@dirrm lib/usermin/blue-theme/samba
-@dirrm lib/usermin/blue-theme/raid/images
-@dirrm lib/usermin/blue-theme/raid
-@dirrm lib/usermin/blue-theme/quota/images
-@dirrm lib/usermin/blue-theme/quota
-@dirrm lib/usermin/blue-theme/qmailadmin/images
-@dirrm lib/usermin/blue-theme/qmailadmin
-@dirrm lib/usermin/blue-theme/pserver/images
-@dirrm lib/usermin/blue-theme/pserver
-@dirrm lib/usermin/blue-theme/proftpd/images
-@dirrm lib/usermin/blue-theme/proftpd
-@dirrm lib/usermin/blue-theme/procyonguide/images
-@dirrm lib/usermin/blue-theme/procyonguide
-@dirrm lib/usermin/blue-theme/procmail/images
-@dirrm lib/usermin/blue-theme/procmail
-@dirrm lib/usermin/blue-theme/proc/images
-@dirrm lib/usermin/blue-theme/proc
-@dirrm lib/usermin/blue-theme/pptp-server/images
-@dirrm lib/usermin/blue-theme/pptp-server
-@dirrm lib/usermin/blue-theme/pptp-client/images
-@dirrm lib/usermin/blue-theme/pptp-client
-@dirrm lib/usermin/blue-theme/ppp-client/images
-@dirrm lib/usermin/blue-theme/ppp-client
-@dirrm lib/usermin/blue-theme/postgresql/images
-@dirrm lib/usermin/blue-theme/postgresql
-@dirrm lib/usermin/blue-theme/postfix/images
-@dirrm lib/usermin/blue-theme/postfix
-@dirrm lib/usermin/blue-theme/phpini/images
-@dirrm lib/usermin/blue-theme/phpini
-@dirrm lib/usermin/blue-theme/passwd/images
-@dirrm lib/usermin/blue-theme/passwd
-@dirrm lib/usermin/blue-theme/pap/images
-@dirrm lib/usermin/blue-theme/pap
-@dirrm lib/usermin/blue-theme/pam/images
-@dirrm lib/usermin/blue-theme/pam
-@dirrm lib/usermin/blue-theme/openslp/images
-@dirrm lib/usermin/blue-theme/openslp
-@dirrm lib/usermin/blue-theme/nis/images
-@dirrm lib/usermin/blue-theme/nis
-@dirrm lib/usermin/blue-theme/nettools/images
-@dirrm lib/usermin/blue-theme/nettools
-@dirrm lib/usermin/blue-theme/net/images
-@dirrm lib/usermin/blue-theme/net
-@dirrm lib/usermin/blue-theme/mysql/images
-@dirrm lib/usermin/blue-theme/mysql
-@dirrm lib/usermin/blue-theme/mount/images
-@dirrm lib/usermin/blue-theme/mount
-@dirrm lib/usermin/blue-theme/mon/images
-@dirrm lib/usermin/blue-theme/mon
-@dirrm lib/usermin/blue-theme/man/images
-@dirrm lib/usermin/blue-theme/man
-@dirrm lib/usermin/blue-theme/majordomo/images
-@dirrm lib/usermin/blue-theme/majordomo
-@dirrm lib/usermin/blue-theme/mailboxes/images
-@dirrm lib/usermin/blue-theme/mailboxes
-@dirrm lib/usermin/blue-theme/lvs/images
-@dirrm lib/usermin/blue-theme/lvs
-@dirrm lib/usermin/blue-theme/lvm/images
-@dirrm lib/usermin/blue-theme/lvm
-@dirrm lib/usermin/blue-theme/lpadmin/images
-@dirrm lib/usermin/blue-theme/lpadmin
-@dirrm lib/usermin/blue-theme/logrotate/images
-@dirrm lib/usermin/blue-theme/logrotate
-@dirrm lib/usermin/blue-theme/lilo/images
-@dirrm lib/usermin/blue-theme/lilo
-@dirrm lib/usermin/blue-theme/ldap-useradmin/images
-@dirrm lib/usermin/blue-theme/ldap-useradmin
-@dirrm lib/usermin/blue-theme/lang
-@dirrm lib/usermin/blue-theme/krb5/images
-@dirrm lib/usermin/blue-theme/krb5
-@dirrm lib/usermin/blue-theme/jsample/images
-@dirrm lib/usermin/blue-theme/jsample
-@dirrm lib/usermin/blue-theme/jabber/images
-@dirrm lib/usermin/blue-theme/jabber
-@dirrm lib/usermin/blue-theme/iscsi-target/images
-@dirrm lib/usermin/blue-theme/iscsi-target
-@dirrm lib/usermin/blue-theme/iscsi-server/images
-@dirrm lib/usermin/blue-theme/iscsi-server
-@dirrm lib/usermin/blue-theme/iscsi-client/images
-@dirrm lib/usermin/blue-theme/iscsi-client
-@dirrm lib/usermin/blue-theme/iptables/images
-@dirrm lib/usermin/blue-theme/iptables
-@dirrm lib/usermin/blue-theme/ipsec/images
-@dirrm lib/usermin/blue-theme/ipsec
-@dirrm lib/usermin/blue-theme/ipchains/images
-@dirrm lib/usermin/blue-theme/ipchains
-@dirrm lib/usermin/blue-theme/inittab/images
-@dirrm lib/usermin/blue-theme/inittab
-@dirrm lib/usermin/blue-theme/init/images
-@dirrm lib/usermin/blue-theme/init
-@dirrm lib/usermin/blue-theme/inetd/images
-@dirrm lib/usermin/blue-theme/inetd
-@dirrm lib/usermin/blue-theme/images
-@dirrm lib/usermin/blue-theme/idmapd/images
-@dirrm lib/usermin/blue-theme/idmapd
-@dirrm lib/usermin/blue-theme/htpasswd-file/images
-@dirrm lib/usermin/blue-theme/htpasswd-file
-@dirrm lib/usermin/blue-theme/htaccess-htpasswd/images
-@dirrm lib/usermin/blue-theme/htaccess-htpasswd
-@dirrm lib/usermin/blue-theme/help/images
-@dirrm lib/usermin/blue-theme/help
-@dirrm lib/usermin/blue-theme/heartbeat/images
-@dirrm lib/usermin/blue-theme/heartbeat
-@dirrm lib/usermin/blue-theme/grub/images
-@dirrm lib/usermin/blue-theme/grub
-@dirrm lib/usermin/blue-theme/gnupg/images
-@dirrm lib/usermin/blue-theme/gnupg
-@dirrm lib/usermin/blue-theme/generate-acls/images
-@dirrm lib/usermin/blue-theme/generate-acls
-@dirrm lib/usermin/blue-theme/fsdump/images
-@dirrm lib/usermin/blue-theme/fsdump
-@dirrm lib/usermin/blue-theme/frox/images
-@dirrm lib/usermin/blue-theme/frox
-@dirrm lib/usermin/blue-theme/firewall/images
-@dirrm lib/usermin/blue-theme/firewall
-@dirrm lib/usermin/blue-theme/file/images
-@dirrm lib/usermin/blue-theme/file
-@dirrm lib/usermin/blue-theme/fetchmail/images
-@dirrm lib/usermin/blue-theme/fetchmail
-@dirrm lib/usermin/blue-theme/fdisk/images
-@dirrm lib/usermin/blue-theme/fdisk
-@dirrm lib/usermin/blue-theme/exports/images
-@dirrm lib/usermin/blue-theme/exports
-@dirrm lib/usermin/blue-theme/escputil/images
-@dirrm lib/usermin/blue-theme/escputil
-@dirrm lib/usermin/blue-theme/download/images
-@dirrm lib/usermin/blue-theme/download
-@dirrm lib/usermin/blue-theme/dovecot/images
-@dirrm lib/usermin/blue-theme/dovecot
-@dirrm lib/usermin/blue-theme/dnsadmin/images
-@dirrm lib/usermin/blue-theme/dnsadmin
-@dirrm lib/usermin/blue-theme/dhcpd/images
-@dirrm lib/usermin/blue-theme/dhcpd-2.0/images
-@dirrm lib/usermin/blue-theme/dhcpd-2.0
-@dirrm lib/usermin/blue-theme/dhcpd
-@dirrm lib/usermin/blue-theme/custom/images
-@dirrm lib/usermin/blue-theme/custom
-@dirrm lib/usermin/blue-theme/cron/images
-@dirrm lib/usermin/blue-theme/cron
-@dirrm lib/usermin/blue-theme/cpan/images
-@dirrm lib/usermin/blue-theme/cpan
-@dirrm lib/usermin/blue-theme/cluster-webmin/images
-@dirrm lib/usermin/blue-theme/cluster-webmin
-@dirrm lib/usermin/blue-theme/cluster-useradmin/images
-@dirrm lib/usermin/blue-theme/cluster-useradmin
-@dirrm lib/usermin/blue-theme/cluster-software/images
-@dirrm lib/usermin/blue-theme/cluster-software
-@dirrm lib/usermin/blue-theme/cluster-shell/images
-@dirrm lib/usermin/blue-theme/cluster-shell
-@dirrm lib/usermin/blue-theme/cluster-passwd/images
-@dirrm lib/usermin/blue-theme/cluster-passwd
-@dirrm lib/usermin/blue-theme/cluster-cron/images
-@dirrm lib/usermin/blue-theme/cluster-cron
-@dirrm lib/usermin/blue-theme/cluster-copy/images
-@dirrm lib/usermin/blue-theme/cluster-copy
-@dirrm lib/usermin/blue-theme/change-user/images
-@dirrm lib/usermin/blue-theme/change-user
-@dirrm lib/usermin/blue-theme/cfengine/images
-@dirrm lib/usermin/blue-theme/cfengine
-@dirrm lib/usermin/blue-theme/burner/images
-@dirrm lib/usermin/blue-theme/burner
-@dirrm lib/usermin/blue-theme/bsdfdisk/images
-@dirrm lib/usermin/blue-theme/bsdfdisk
-@dirrm lib/usermin/blue-theme/bind8/images
-@dirrm lib/usermin/blue-theme/bind8
-@dirrm lib/usermin/blue-theme/bandwidth/images
-@dirrm lib/usermin/blue-theme/bandwidth
-@dirrm lib/usermin/blue-theme/backup-config/images
-@dirrm lib/usermin/blue-theme/backup-config
-@dirrm lib/usermin/blue-theme/at/images
-@dirrm lib/usermin/blue-theme/at
-@dirrm lib/usermin/blue-theme/apache/images
-@dirrm lib/usermin/blue-theme/apache
-@dirrm lib/usermin/blue-theme/adsl-client/images
-@dirrm lib/usermin/blue-theme/adsl-client
-@dirrm lib/usermin/blue-theme/acl/images
-@dirrm lib/usermin/blue-theme/acl
-@dirrm lib/usermin/blue-theme
-@dirrm lib/usermin/at/lang
-@dirrm lib/usermin/at/images
-@dirrm lib/usermin/at
-@dirrm lib/usermin/Webmin
-@dirrmtry lib/usermin
+@dir lib/usermin/mailbox/xinha/plugins
+@dir lib/usermin/file/xinha/plugins

@@ -2,26 +2,30 @@
 # $FreeBSD$
 
 PORTNAME=	metaf2xml
-PORTVERSION=	1.55
+PORTVERSION=	1.56
 CATEGORIES=	science perl5
 MASTER_SITES=	SF/${PORTNAME}/${PORTVERSION}
 
-MAINTAINER=	clsung@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Parse and Decode METAR, TAF, SYNOP and BUOY and Store as XML
 
 OPTIONS_DEFINE=	APACHE DOCS
 OPTIONS_SUB=	yes
 APACHE_DESC=	Install Apache config file for metaf2xml (depends on Apache)
 
-MAKE_ARGS=	CGI_BIN_DIR=${PREFIX}/www/metaf2xml/cgi-bin \
-		HTDOCS_DIR=${PREFIX}/www/metaf2xml/htdocs \
+MAKE_ARGS=	CGI_BIN_DIR=${WWWDIR}/cgi-bin \
+		HTDOCS_DIR=${WWWDIR}/htdocs \
 		METAF2XML=${PREFIX} \
 		METAF2XML_LIB=${PREFIX}/${SITE_PERL_REL} \
 		METAF2XML_DOC=${DOCSDIR} \
-		METAF2XML_XSL=${DATADIR}
+		METAF2XML_XSL=${DATADIR} \
+		BUILD_ROOT=${STAGEDIR}
 NO_BUILD=	yes
-USES=		perl5 tar:tgz
+USES=		perl5 shebangfix tar:tgz
 USE_PERL5=	install run
+SHEBANG_FILES=	metaf.pl metaf2xml.pl metafsrc2raw.pl
+
+PLIST_SUB=	VERSION=${PORTVERSION}
 
 .include <bsd.port.options.mk>
 
@@ -29,12 +33,5 @@ USE_PERL5=	install run
 USE_APACHE_RUN=	22+
 MAKE_ARGS+=	CONF_DIR=${PREFIX}/${APACHEETCDIR}/Includes
 .endif
-
-pre-install:
-	${MKDIR} ${STAGEDIR}${PREFIX}/www/metaf2xml/cgi-bin \
-		${STAGEDIR}${PREFIX}/www/metaf2xml/htdocs
-
-do-install:
-	cd ${WRKSRC}; ${MAKE} ${MAKE_ARGS} install-all
 
 .include <bsd.port.mk>

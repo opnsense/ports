@@ -3,11 +3,12 @@
 
 PORTNAME=	POE-Component-IRC-Plugin-QueryDNS
 PORTVERSION=	1.04
+PORTREVISION=	1
 CATEGORIES=	irc perl5 devel
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	POE::Component::IRC plugin for IRC based DNS queries
 
 BUILD_DEPENDS=	p5-Net-IP>=1.25:${PORTSDIR}/net-mgmt/p5-Net-IP \
@@ -18,6 +19,8 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 PLIST_SUB=	EXAMPLESDIR="share/examples/${PORTNAME}"
 USES=		perl5
 USE_PERL5=	configure
+
+OPTIONS_DEFINE=	EXAMPLES
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}

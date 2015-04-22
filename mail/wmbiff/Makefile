@@ -3,7 +3,7 @@
 
 PORTNAME=	wmbiff
 PORTVERSION=	0.4.27
-PORTREVISION=	15
+PORTREVISION=	16
 CATEGORIES=	mail windowmaker afterstep
 MASTER_SITES=	SF
 
@@ -24,9 +24,6 @@ PLIST_FILES=	bin/wmbiff \
 		%%DATADIR%%/sample.wmbiffrc \
 		%%DATADIR%%/skins/wmbiff-master-contrast.xpm \
 		%%DATADIR%%/skins/wmbiff-master-led.xpm
-PLIST_DIRS=	%%DATADIR%%/skins \
-		%%DATADIR%% \
-		lib/wmbiff
 
 .include <bsd.port.pre.mk>
 

@@ -3,11 +3,12 @@
 
 PORTNAME=	Stanford-DNSserver
 PORTVERSION=	1.2.0
+PORTREVISION=	1
 CATEGORIES=	dns perl5
 MASTER_SITES=	http://www.stanford.edu/~riepel/lbnamed/Stanford-DNSserver/
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	DNS name server framework with a Perl backend
 
 LICENSE=	BSD3CLAUSE

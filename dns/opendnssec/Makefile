@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	opendnssec
-PORTVERSION=	1.4.6
-PORTREVISION=	1
+PORTVERSION=	1.4.7
 CATEGORIES=	dns
 MASTER_SITES=	http://dist.opendnssec.org/source/
 
@@ -16,6 +15,7 @@ BUILD_DEPENDS=	ldns>=1.6.16:${PORTSDIR}/dns/ldns
 LIB_DEPENDS=	libldns.so:${PORTSDIR}/dns/ldns
 
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--localstatedir="${PREFIX}/var"
 USE_RC_SUBR=	opendnssec
 USE_GNOME=	libxml2
 USES=		perl5

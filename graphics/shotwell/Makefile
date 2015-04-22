@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	shotwell
-PORTVERSION=	0.20.1
+PORTVERSION=	0.22.0
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME/sources/shotwell/${PORTVERSION:R}
 
@@ -12,7 +13,7 @@ COMMENT=	Open source photo manager for GNOME
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	vala>=0.18.0:${PORTSDIR}/lang/vala \
+BUILD_DEPENDS=	vala>=0.20.1:${PORTSDIR}/lang/vala \
 		bash:${PORTSDIR}/shells/bash
 LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		libgee-0.8.so:${PORTSDIR}/devel/libgee \
@@ -27,24 +28,21 @@ LIB_DEPENDS=	libdbus-glib-1.so:${PORTSDIR}/devel/dbus-glib \
 		librest-0.7.so:${PORTSDIR}/devel/librest
 
 USES=		shebangfix gettext desktop-file-utils gmake pkgconfig tar:xz
-USE_GNOME=	dconf gnomehier gtk30 gnomedocutils
+USE_GNOME=	dconf gtk30 gnomedocutils
 USE_SQLITE=	3
 USE_GSTREAMER1=	yes
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX} --disable-icon-update
 CONFIGURE_ENV+=	--define=NO_CAMERA
 INSTALLS_ICONS=	yes
+PORTSCOUT=	limitw:1,even
 
 OPTIONS_DEFINE=	OPENMP
 OPTIONS_DEFAULT=
 OPENMP_DESC=	libraw uses OpenMP (implies GCC 4.6+)
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MOPENMP}
-USE_GCC=	yes
-LDFLAGS+=	-lc++
-.endif
+OPENMP_USES=		compiler:gcc-c++11-lib
+OPENMP_USES_OFF=	compiler:c++11-lib
 
 SHEBANG_FILES=	${WRKSRC}/${CONFIGURE_SCRIPT} ${WRKSRC}/chkver
 

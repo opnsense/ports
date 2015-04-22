@@ -4,7 +4,9 @@
 PORTNAME?=	Net-SinFP
 PORTVERSION=	2.09
 .ifdef DBDATE
-PORTREVISION=	${DBDATE}
+PORTREVISION=	${DBDATE}1
+.else
+PORTREVISION=	1
 .endif
 CATEGORIES=	security ipv6 perl5
 MASTER_SITES=	CPAN
@@ -45,7 +47,7 @@ regression-test:
 	@(cd ${WRKSRC} && ${PERL} ${CONFIGURE_SCRIPT} && ${MAKE} test)
 .endif
 
-ONLY_FOR_ARCHS=		i386 amd64 alpha
+ONLY_FOR_ARCHS=		i386 amd64
 ONLY_FOR_ARCHS_REASON=	Big endian architectures not supported yet
 
 .include <bsd.port.mk>

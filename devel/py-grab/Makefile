@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	grab
-PORTVERSION=	0.4.13
-PORTREVISION=	1
+PORTVERSION=	0.5.5
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -10,13 +9,13 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	rm@FreeBSD.org
 COMMENT=	Site scraping framework
 
-LICENSE=	BSD
+LICENSE=	MIT
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:${PORTSDIR}/devel/py-lxml
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>0:${PORTSDIR}/devel/py-lxml \
 		${PYTHON_PKGNAMEPREFIX}curl>0:${PORTSDIR}/ftp/py-curl
 
-USES=		python:2
-USE_PYTHON=	distutils autoplist
+USES=		python
+USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

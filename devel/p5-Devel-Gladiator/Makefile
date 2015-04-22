@@ -2,16 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	Devel-Gladiator
-PORTVERSION=	0.04
+PORTVERSION=	0.07
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Perl 5 module to walk Perls arena
 
 USES=		perl5
 USE_PERL5=	configure
-
 
 .include <bsd.port.mk>

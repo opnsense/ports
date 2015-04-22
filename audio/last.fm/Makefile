@@ -4,7 +4,7 @@
 PORTNAME=	last.fm
 PORTVERSION=	1.5.4.26862
 DISTVERSIONSUFFIX=	.src
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio net
 MASTER_SITES=	http://cdn.last.fm/client/src/
 
@@ -37,6 +37,7 @@ post-patch:
 	@${REINPLACE_CMD} -e \
 		's|/usr/include/gpod|${LOCALBASE}/include/gpod| ; \
 		 s|/usr/include/glib|${LOCALBASE}/include/glib| ; \
+		 s|/usr/lib/glib|${LOCALBASE}/lib/glib| ; \
 		 s|linux|freebsd|' ${WRKSRC}/src/mediadevices/ipod/ipod.pro
 	@${REINPLACE_CMD} -e \
 		's|^RUNDIR.*|RUNDIR=${PREFIX}/lib/last.fm|' \

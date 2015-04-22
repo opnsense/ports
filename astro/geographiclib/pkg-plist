@@ -51,8 +51,8 @@ include/GeographicLib/UTMUPS.hpp
 include/GeographicLib/Utility.hpp
 lib/libGeographic.a
 lib/libGeographic.so
-lib/libGeographic.so.13
-lib/libGeographic.so.13.0.1
+lib/libGeographic.so.14
+lib/libGeographic.so.14.0.2
 %%PYTHON_SITELIBDIR%%/geographiclib/__init__.py
 %%PYTHON_SITELIBDIR%%/geographiclib/accumulator.py
 %%PYTHON_SITELIBDIR%%/geographiclib/constants.py
@@ -116,6 +116,7 @@ libexec/GeographicLib/matlab/private/C3coeff.m
 libexec/GeographicLib/matlab/private/C3f.m
 libexec/GeographicLib/matlab/private/C4coeff.m
 libexec/GeographicLib/matlab/private/C4f.m
+libexec/GeographicLib/matlab/private/G4coeff.m
 libexec/GeographicLib/matlab/private/SinCosNorm.m
 libexec/GeographicLib/matlab/private/SinCosSeries.m
 libexec/GeographicLib/matlab/private/atanhee.m
@@ -184,5 +185,9 @@ share/cmake/GeographicLib/FindGeographicLib.cmake
 %%MAGNETIC_EMM2010%%%%DATADIR%%/magnetic/emm2010.wmm.cof
 %%MAGNETIC_IGRF11%%%%DATADIR%%/magnetic/igrf11.wmm
 %%MAGNETIC_IGRF11%%%%DATADIR%%/magnetic/igrf11.wmm.cof
+%%MAGNETIC_IGRF12%%%%DATADIR%%/magnetic/igrf12.wmm
+%%MAGNETIC_IGRF12%%%%DATADIR%%/magnetic/igrf12.wmm.cof
 %%MAGNETIC_WMM2010%%%%DATADIR%%/magnetic/wmm2010.wmm
 %%MAGNETIC_WMM2010%%%%DATADIR%%/magnetic/wmm2010.wmm.cof
+%%MAGNETIC_WMM2015%%%%DATADIR%%/magnetic/wmm2015.wmm
+%%MAGNETIC_WMM2015%%%%DATADIR%%/magnetic/wmm2015.wmm.cof

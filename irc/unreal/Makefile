@@ -28,8 +28,10 @@ USE_RC_SUBR=	unrealircd
 
 USERS=		ircd
 GROUPS=		ircd
+CPE_VENDOR=	unrealircd
+CPE_PRODUCT=	unrealircd
 
-USES=		pkgconfig
+USES=		pkgconfig cpe
 
 SUB_LIST+=	RUNDIR=${RUNDIR}
 SUB_LIST+=	USERS=${USERS}
@@ -72,8 +74,7 @@ IPV6_CONFIGURE_ENABLE=	inet6
 SSL_CONFIGURE_ENABLE=	ssl
 SSL_USE=	OPENSSL=yes
 REMOTE_LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
-REMOTE_CONFIGURE_ON=	--enable-libcurl=${LOCALBASE}
-REMOTE_CONFIGURE_OFF=	--disable-libcurl
+REMOTE_CONFIGURE_ENABLE=	--enable-libcurl=${LOCALBASE}
 PREFIXAQ_CONFIGURE_ENABLE=	prefixaq
 
 SQLMOD=		${PORTNAME}/SQLMod.tar.gz

@@ -16,9 +16,8 @@ LICENSE_FILE=	${WRKSRC}/license
 
 BUILD_DEPENDS=	unzip:${PORTSDIR}/archivers/unzip \
 		zip:${PORTSDIR}/archivers/zip
-RUN_DEPENDS=	java:${PORTSDIR}/java/javavmwrapper
 
-USES=		zip:infozip
+USES=		cpe zip:infozip
 USE_JAVA=	yes
 JAVA_VERSION=	1.6+
 

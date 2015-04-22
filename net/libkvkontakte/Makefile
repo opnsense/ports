@@ -2,7 +2,6 @@
 
 PORTNAME=	libkvkontakte
 PORTVERSION=	${DIGIKAM_VER}
-PORTREVISION=	3
 CATEGORIES=	net kde
 
 MAINTAINER=	kde@FreeBSD.org
@@ -12,5 +11,6 @@ COMMENT=	KDE library for accessing vk.com
 
 LIB_DEPENDS=	libqjson.so:${PORTSDIR}/devel/qjson
 USE_LDCONFIG=	yes
+USES+=		pkgconfig
 
 .include <bsd.port.mk>

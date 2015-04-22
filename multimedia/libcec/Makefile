@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	libcec
-PORTVERSION=	2.1.4
+PORTVERSION=	2.2.0
 CATEGORIES=	multimedia
-MASTER_SITES=	GH
+MASTER_SITES=	GHL
 
 MAINTAINER=	manuel.creach@icloud.com
 COMMENT=	Library to control Pulse-Eight's HDMI-CEC adapter
@@ -14,19 +14,15 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Pulse-Eight
-GH_COMMIT=	81e3821
+GH_COMMIT=	2a80b46
 GH_TAGNAME=	${PORTNAME}-${PORTVERSION}-repack
 
-USES=		pathfix pkgconfig libtool
+GNU_CONFIGURE=	yes
+USES=		alias autoreconf pathfix pkgconfig libtool
 PATHFIX_MAKEFILEIN=Makefile.am
-USE_AUTOTOOLS=	aclocal autoheader automake autoconf libtoolize
-ACLOCAL_ARGS=	-I.
-AUTOMAKE_ARGS=	--add-missing
+USE_XORG=	x11 xproto xrandr
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-
-post-patch:
-	${REINPLACE_CMD} 's;-Wno-psabi;;' ${WRKSRC}/configure.ac
 
 .include <bsd.port.options.mk>
 

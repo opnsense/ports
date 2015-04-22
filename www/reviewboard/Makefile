@@ -10,6 +10,7 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Web-based code review tool
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	python:${PORTSDIR}/lang/python \
 		${PYTHON_PKGNAMEPREFIX}django14>=1.4.3:${PORTSDIR}/www/py-django14 \
@@ -36,8 +37,8 @@ BUILD_DEPENDS=	python:${PORTSDIR}/lang/python \
 		${PYTHON_PKGNAMEPREFIX}jsmin>0:${PORTSDIR}/devel/py-jsmin \
 		uglifyjs:${PORTSDIR}/www/uglifyjs
 
-USE_PYTHON=	2
-USE_PYDISTUTILS=	yes
+USES=		python:2
+USE_PYTHON=	distutils
 PYDISTUTILS_PKGNAME=	ReviewBoard
 # avoid leftover /root/.subversion
 MAKE_ENV+=		HOME=${WRKDIR}
@@ -47,11 +48,7 @@ OPTIONS_DEFAULT=	SVN
 
 SVN_DESC=	Support reviews for SVN repository
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MSVN}
-RUN_DEPENDS+=	pysvn>0:${PORTSDIR}/devel/pysvn
-.endif
+SVN_RUN_DEPENDS=	pysvn>0:${PORTSDIR}/devel/pysvn
 
 post-patch:
 	@${REINPLACE_CMD} -e  "s|TIME_ZONE = 'UTC'|TIME_ZONE = 'Etc/UTC'|" ${WRKSRC}/reviewboard/settings.py

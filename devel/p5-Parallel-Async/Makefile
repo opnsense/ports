@@ -2,6 +2,7 @@
 
 PORTNAME=	Parallel-Async
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -19,6 +20,5 @@ BUILD_DEPENDS=	${RUN_DEPENDS}
 
 USES=		perl5
 USE_PERL5=	modbuild
-PLIST_DIRS=	%%SITE_PERL%%/Parallel/Async %%SITE_PERL%%/Parallel
 
 .include <bsd.port.mk>

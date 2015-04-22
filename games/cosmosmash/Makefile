@@ -3,7 +3,7 @@
 
 PORTNAME=	cosmosmash
 DISTVERSION=	1.4.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	games
 MASTER_SITES=	http://perso.b2b2c.ca/sarrazip/dev/ \
 		LOCAL/martymac
@@ -23,7 +23,7 @@ USE_XORG=	x11 xau xdmcp
 USES=		iconv pkgconfig desktop-file-utils
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include `${SDL_CONFIG} --cflags`
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS} `${SDL_CONFIG} --libs`
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib `${SDL_CONFIG} --libs`
 
 OPTIONS_DEFINE=	DOCS
 

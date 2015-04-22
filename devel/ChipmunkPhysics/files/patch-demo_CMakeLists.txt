@@ -1,0 +1,13 @@
+--- demo/CMakeLists.txt.orig	2015-02-20 13:46:16 UTC
++++ demo/CMakeLists.txt
+@@ -27,6 +27,10 @@ if(NOT MSVC)
+   list(APPEND chipmunk_demos_libraries m)
+ endif(NOT MSVC)
+ 
++if(NOT APPLE AND FORCE_CLANG_BLOCKS)
++  list(APPEND chipmunk_demos_libraries BlocksRuntime)
++endif(NOT APPLE AND FORCE_CLANG_BLOCKS)
++
+ file(GLOB chipmunk_demos_source_files "*.c")
+ 
+ include_directories(${chipmunk_demos_include_dirs})

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	x2goclient
-PORTVERSION=	4.0.2.1
+PORTVERSION=	4.0.3.2
 CATEGORIES=	net
 MASTER_SITES=	http://code.x2go.org/releases/source/x2goclient/
 
@@ -21,7 +21,7 @@ RUN_DEPENDS=	nxproxy:${PORTSDIR}/net/nxproxy \
 USES=		qmake
 USE_XORG=	xpm
 USE_QT4=	gui network svg \
-		linguist_build moc_build rcc_build uic_build
+		linguisttools_build moc_build rcc_build uic_build
 QMAKE_ARGS=	QMAKE_LRELEASE="${LRELEASE}"
 INSTALLS_ICONS=	yes
 

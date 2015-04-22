@@ -3,7 +3,7 @@
 
 PORTNAME=	gri
 PORTVERSION=	2.12.23
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	math
 MASTER_SITES=	SF
 
@@ -32,7 +32,6 @@ PLIST_FILES=	bin/gri bin/gri_merge bin/gri_unpage \
 		%%DATADIR%%/logo.dat \
 		%%DATADIR%%/rgb.txt \
 		%%DATADIR%%/startup.msg
-PLIST_DIRS=	%%DATADIR%%
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

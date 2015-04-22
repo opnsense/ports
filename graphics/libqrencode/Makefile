@@ -3,6 +3,7 @@
 
 PORTNAME=	libqrencode
 PORTVERSION=	3.4.4
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://fukuchi.org/works/qrencode/
 DISTNAME=	qrencode-${PORTVERSION}
@@ -12,7 +13,7 @@ COMMENT=	C library for encoding data in a QR Code symbol
 
 LICENSE=	LGPL21
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 USES=		pathfix pkgconfig libtool
 USE_LDCONFIG=	yes
@@ -31,6 +32,6 @@ PLIST_FILES=	bin/qrencode \
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,libpng12,libpng,' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e '9s|$$| ${PTHREAD_LIBS}|' ${WRKSRC}/libqrencode.pc.in
+	@${REINPLACE_CMD} -e '9s|$$| -lpthread|' ${WRKSRC}/libqrencode.pc.in
 
 .include <bsd.port.mk>

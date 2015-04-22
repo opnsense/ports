@@ -1,17 +1,13 @@
---- ./setup.py.orig	2014-03-06 10:50:27.000000000 +0200
-+++ ./setup.py	2014-03-06 10:52:20.000000000 +0200
-@@ -451,12 +451,12 @@
-                                     'virt/*.jinja'
-                                     ],
-                                 },
--                'data_files': [('share/man/man1',
-+                'data_files': [('man/man1',
-                                 ['doc/man/salt-cp.1',
-                                  'doc/man/salt-call.1',
-                                  'doc/man/salt-minion.1',
-                                  ]),
--                               ('share/man/man7',
-+                               ('man/man7',
-                                 ['doc/man/salt.7',
-                                  ]),
-                                ],
+--- setup.py.orig	2015-01-24 14:55:05.507732433 -0700
++++ setup.py	2015-01-24 14:59:07.595716022 -0700
+@@ -621,8 +621,8 @@
+     def _property_data_files(self):
+         # Data files common to all scenarios
+         data_files = [
+-            ('share/man/man1', ['doc/man/salt-call.1']),
+-            ('share/man/man7', ['doc/man/salt.7'])
++            ('man/man1', ['doc/man/salt-call.1']),
++            ('man/man7', ['doc/man/salt.7'])
+         ]
+         if self.ssh_packaging or PACKAGED_FOR_SALT_SSH:
+             data_files[0][1].append('doc/man/salt-ssh.1')

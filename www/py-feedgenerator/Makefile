@@ -11,14 +11,13 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 MAINTAINER=	jlaffaye@FreeBSD.org
 COMMENT=	Standalone version of django.utils.feedgenerator
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:${PORTSDIR}/devel/py-pytz \
 		${PYTHON_PKGNAMEPREFIX}six>0:${PORTSDIR}/devel/py-six
 
-PYDISTUTILS_AUTOPLIST=	yes
-USE_PYDISTUTILS=	yes
-USE_PYTHON=		yes
+USES=		python
+USE_PYTHON=	distutils autoplist
 
 regression-test: build
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYSETUP} test

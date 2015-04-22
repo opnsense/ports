@@ -1,15 +1,10 @@
---- src/include/qrunner.h.orig	2013-11-17 20:26:40.966731568 -0500
-+++ src/include/qrunner.h	2013-11-18 18:52:20.902610641 -0500
-@@ -64,9 +64,10 @@
-         qexception(const char *msg_) : msg(msg_) { }
-         qexception(int e) : msg(strerror(e)) { }
-         ~qexception() throw() { }
--        const char *what(void) const throw() { return msg.c_str(); }
-+        const char *what(void) const throw() { return msg; }
- private:
--        std::string msg;
-+//        std::string msg;
-+	const char *msg;
- };
+--- src/include/qrunner.h.orig	2014-11-27 01:43:12.000000000 -0800
++++ src/include/qrunner.h	2014-11-27 01:43:46.000000000 -0800
+@@ -32,6 +32,7 @@
+ #include <cerrno>
+ #include <stdexcept>
+ #include <cstring>
++#include <string>
  
- struct fsignal
+ #if HAVE_STD_BIND
+ #   include <functional>

@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	webware
-DISTVERSION=	1.1.1
+PORTVERSION=	1.1.1
+PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	SF/${PORTNAME}/Webware/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,13 +14,15 @@ COMMENT=	Versatile web application server written in Python
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}mx-base>0:${PORTSDIR}/lang/py-mx-base
 
-USE_PYTHON=	2
+BROKEN=		Too creative
+
+USES=		python:2
 NO_BUILD=	yes
 
 WEBWARE_USER?=	webkit
 WEBWARE_GROUP?=	${WEBWARE_USER}
-USERS=${WEBWARE_USER}
-GROUPS=${WEBWARE_GROUP}
+USERS=		${WEBWARE_USER}
+GROUPS=		${WEBWARE_GROUP}
 WEBWARE_MASTER_DIR?=${PREFIX}/share/webware
 WEBKIT_HOME_DIR?=${PREFIX}/www/webkit
 INSTALL_ENV=	PKG_PREFIX=${PREFIX} \
@@ -49,8 +52,7 @@ do-install:
 	${SED} -e "s|%%WEBKIT_HOME_DIR%%|${WEBKIT_HOME_DIR}|g" \
 		< ${FILESDIR}/webkit.sh.tmpl \
 		> ${STAGEDIR}${PREFIX}/etc/rc.d/webkit.sh-dist
-	${CHMOD} 755 ${STAGEDIR}${PREFIX}/etc/rc.d/webkit.sh-dist && \
-	${CHOWN} root:wheel ${STAGEDIR}${PREFIX}/etc/rc.d/webkit.sh-dist
+	${CHMOD} 755 ${STAGEDIR}${PREFIX}/etc/rc.d/webkit.sh-dist
 
 post-install:
 	@ ${ECHO} '---> Compiling Python files and making webkit home directory'

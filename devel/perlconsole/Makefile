@@ -3,7 +3,7 @@
 
 PORTNAME=	perlconsole
 PORTVERSION=	0.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:SUKRIA
@@ -29,8 +29,6 @@ PLIST_FILES=	bin/perlconsole \
 		${SITE_PERL_REL}/PerlConsole/Console.pm \
 		${SITE_PERL_REL}/PerlConsole/Preferences.pm \
 		${SITE_PERL_REL}/PerlConsole.pm
-
-PLIST_DIRS=	${SITE_PERL_REL}/PerlConsole
 
 OPTIONS_DEFINE=	DOCS
 

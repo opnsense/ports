@@ -2,6 +2,7 @@
 
 PORTNAME=	gui
 DISTVERSION=	${QT5_VERSION}
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits graphics
 PKGNAMEPREFIX=	qt5-
 
@@ -11,8 +12,9 @@ COMMENT=	Qt graphical user interface module
 LIB_DEPENDS=	libdbus-1.so:${PORTSDIR}/devel/dbus \
 		libfontconfig.so:${PORTSDIR}/x11-fonts/fontconfig \
 		libfreetype.so:${PORTSDIR}/print/freetype2 \
+		libharfbuzz.so:${PORTSDIR}/print/harfbuzz \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libxcb.so:${PORTSDIR}/x11/libxcb \
 		libxcb-image.so:${PORTSDIR}/x11/xcb-util-image \
 		libxcb-keysyms.so:${PORTSDIR}/x11/xcb-util-keysyms \
@@ -28,7 +30,8 @@ QT_DIST=	base
 USE_XORG=	x11 xi xrender
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	-no-eglfs \
-		-no-evdev
+		-no-evdev \
+		-system-harfbuzz
 USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 BUILD_WRKSRC=	${WRKSRC}/src/${PORTNAME}
@@ -56,8 +59,8 @@ QT_CONFIG=	accessibility accessibility-atspi-bridge dbus \
 
 # Inherited from Qt 4.
 .if defined(PACKAGE_BUILDING)
-RUN_DEPENDS+=	${LOCALBASE}/lib/X11/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings \
-		${LOCALBASE}/lib/X11/fonts/TTF/luximb.ttf:${PORTSDIR}/x11-fonts/xorg-fonts-truetype
+RUN_DEPENDS+=	${LOCALBASE}/share/fonts/encodings/encodings.dir:${PORTSDIR}/x11-fonts/encodings \
+		xorg-fonts-truetype>0:${PORTSDIR}/x11-fonts/xorg-fonts-truetype
 .endif
 
 CFLAGS_powerpc64=	-mminimal-toc

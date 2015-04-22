@@ -3,7 +3,7 @@
 
 PORTNAME=	rrdtool
 PORTVERSION=	1.0.50
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	databases
 MASTER_SITES=	http://oss.oetiker.ch/rrdtool/pub/rrdtool-1.0.x/
 PKGNAMESUFFIX=	10
@@ -17,10 +17,8 @@ MAKE_ENV=	PERL=${PERL}
 
 CONFLICTS=	rrdtool12-1.* rrdtool-1.*
 
-USES=		pkgconfig perl5 libtool
-USE_AUTOTOOLS=	libtoolize aclocal autoconf autoheader automake
-AUTOMAKE_ARGS=	-a -c -f
-USE_PERL5=	build run fixpacklist
+USES=		autoreconf pkgconfig perl5 libtool
+USE_PERL5=	build run
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-shared --enable-local-zlib

@@ -3,12 +3,13 @@
 
 PORTNAME=	ogdf
 PORTVERSION=	2012.07
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	LOCAL/gahr \
 		http://people.freebsd.org/~gahr/distfiles/
 DISTNAME=	${PORTNAME}.v${PORTVERSION}
 
-MAINTAINER=	gahr@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	C++ class library for the automatic layout of diagrams
 
 LICENSE=	GPLv2

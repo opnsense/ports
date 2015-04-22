@@ -16,7 +16,7 @@ USES=		tar:bzip2
 
 .if !defined(REFERENCE_PORT)
 
-RUN_DEPENDS=	${LOCALBASE}/share/mime/magic:${PORTSDIR}/misc/shared-mime-info
+RUN_DEPENDS=	update-mime-database:${PORTSDIR}/misc/shared-mime-info
 
 USES+=		gettext gmake libtool:keepla pathfix pkgconfig
 USE_GNOME=	gnomeprefix intlhack gnomemimedata gconf2 \
@@ -98,9 +98,6 @@ pre-configure:
 	@${ECHO_CMD} "${PKGNAME}: KERBEROS is required."
 	@${FALSE}
 .endif
-
-post-install:
-	@${SETENV} PKG_PREFIX=${PREFIX} ${SH} ${PKGINSTALL} ${PKGNAME} POST-INSTALL
 
 .include <bsd.port.mk>
 

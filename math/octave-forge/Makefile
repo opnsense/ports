@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	octave-forge
-PORTVERSION=	20141008
+PORTVERSION=	20150220
 CATEGORIES=	math
 MASTER_SITES=	#none
 DISTFILES=	#none
@@ -20,11 +20,12 @@ OPTIONS_DEFINE=	ACTUARIAL AD AUDIO BENCHMARK BIM BIOINFO CGI \
 		DATABASE DATAFRAME DICOM DIVAND ECONOMETRICS ENGINE FENV FITS \
 		FINANCIAL FL_CORE FPL FUZZY_LOGIC_TOOLKIT GA GEOMETRY GENERAL \
 		GENERATE_HTML GNUPLOT GSL IDENT IMAGE \
-		INFORMATIONTHEORY INTEGRATION IO IRSA LINEAR_ALGEBRA LSSA \
-		MAPPING MECHANICS MISCELLANEOUS MISSING_FUNCTIONS MSH \
+		INFORMATIONTHEORY INTEGRATION INTERVAL IO IRSA LEVEL_SET \
+		LINEAR_ALGEBRA \
+		LSSA MAPPING MECHANICS MISCELLANEOUS MISSING_FUNCTIONS MSH \
 		MULTICORE MVN NAN NCARRAY NETCDF NLWING2 NNET NURBS OCS \
-		OCT2MAT OCTCDF OCTCLIP OCTGPR OCTPROJ ODEBVP ODEPKG OPTIM \
-		OPTIMINTERP OUTLIERS PARALLEL PDB PLOT PT_BR QUATERNION \
+		OCT2MAT OCTCDF OCTCLIP OCTGPR OCTPROJ ODEBVP ODEPKG OPTICS \
+		OPTIM OPTIMINTERP OUTLIERS PARALLEL PDB PLOT PT_BR QUATERNION \
 		QUEUEING SECS1D SECS2D SECS3D SIGNAL SIMP SOCKETS SPECFUN \
 		SPECIAL_MATRIX SPLINE_GCVSPL SPLINES STATISTICS STK STRINGS \
 		STRUCT SYMBAND SYMBOLIC TCL_OCTAVE TSA VIDEO XRAYLIB ZENITY
@@ -62,8 +63,10 @@ IDENT_DESC=		Install package: ident
 IMAGE_DESC=		Install package: image
 INFORMATIONTHEORY_DESC=	Install package: informationtheory
 INTEGRATION_DESC=	Install package: integration
+INTERVAL_DESC=		Install package: interval
 IO_DESC=		Install package: io
 IRSA_DESC=		Install package: irsa
+LEVEL_SET_DESC=		Install package: level-set
 LINEAR_ALGEBRA_DESC=	Install package: linear-algebra
 LSSA_DESC=		Install package: lssa
 # Do not reenable without testing first
@@ -89,6 +92,7 @@ OCTGPR_DESC=		Install package: octgpr
 OCTPROJ_DESC=		Install package: octproj
 ODEBVP_DESC=		Install package: odebvp
 ODEPKG_DESC=		Install package: odepkg
+OPTICS_DESC=		Install package: optics
 OPTIM_DESC=		Install package: optim
 OPTIMINTERP_DESC=	Install package: optiminterp
 OUTLIERS_DESC=		Install package: outliers
@@ -223,11 +227,17 @@ RUN_DEPENDS+=	${TARBALLS_DIR}/informationtheory.tar.gz:${PORTSDIR}/math/octave-f
 .if ${PORT_OPTIONS:MINTEGRATION}
 RUN_DEPENDS+=	${TARBALLS_DIR}/integration.tar.gz:${PORTSDIR}/math/octave-forge-integration
 .endif
+.if ${PORT_OPTIONS:MINTERVAL}
+RUN_DEPENDS+=	${TARBALLS_DIR}/interval.tar.gz:${PORTSDIR}/math/octave-forge-interval
+.endif
 .if ${PORT_OPTIONS:MIO}
 RUN_DEPENDS+=	${TARBALLS_DIR}/io.tar.gz:${PORTSDIR}/math/octave-forge-io
 .endif
 .if ${PORT_OPTIONS:MIRSA}
 RUN_DEPENDS+=	${TARBALLS_DIR}/irsa.tar.gz:${PORTSDIR}/math/octave-forge-irsa
+.endif
+.if ${PORT_OPTIONS:MLEVEL_SET}
+RUN_DEPENDS+=	${TARBALLS_DIR}/level-set.tar.gz:${PORTSDIR}/math/octave-forge-level-set
 .endif
 .if ${PORT_OPTIONS:MLINEAR_ALGEBRA}
 RUN_DEPENDS+=	${TARBALLS_DIR}/linear-algebra.tar.gz:${PORTSDIR}/math/octave-forge-linear-algebra
@@ -300,6 +310,9 @@ RUN_DEPENDS+=	${TARBALLS_DIR}/odebvp.tar.gz:${PORTSDIR}/math/octave-forge-odebvp
 .endif
 .if ${PORT_OPTIONS:MODEPKG}
 RUN_DEPENDS+=	${TARBALLS_DIR}/odepkg.tar.gz:${PORTSDIR}/math/octave-forge-odepkg
+.endif
+.if ${PORT_OPTIONS:MOPTICS}
+RUN_DEPENDS+=	${TARBALLS_DIR}/optics.tar.gz:${PORTSDIR}/math/octave-forge-optics
 .endif
 .if ${PORT_OPTIONS:MOPTIM}
 RUN_DEPENDS+=	${TARBALLS_DIR}/optim.tar.gz:${PORTSDIR}/math/octave-forge-optim

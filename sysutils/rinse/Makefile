@@ -6,13 +6,15 @@ CATEGORIES=	sysutils
 MASTER_SITES=	DEBIAN
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
-MAINTAINER=	jbeich@vfemail.net
+MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Install RPM-based system into a directory
 
 LICENSE=	ARTPERL10
 
 RUN_DEPENDS=	p5-Term-Size>0:${PORTSDIR}/devel/p5-Term-Size \
 		p5-libwww>0:${PORTSDIR}/www/p5-libwww
+
+PORTSCOUT=	skipv:3.0.7 # only debian/control changed
 
 NO_ARCH=	yes
 NO_BUILD=	yes

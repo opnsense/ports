@@ -21,6 +21,7 @@ share/locale/it/LC_MESSAGES/ktp-auth-handler.mo
 share/locale/ja/LC_MESSAGES/ktp-auth-handler.mo
 share/locale/kk/LC_MESSAGES/ktp-auth-handler.mo
 share/locale/km/LC_MESSAGES/ktp-auth-handler.mo
+share/locale/ko/LC_MESSAGES/ktp-auth-handler.mo
 share/locale/lt/LC_MESSAGES/ktp-auth-handler.mo
 share/locale/mr/LC_MESSAGES/ktp-auth-handler.mo
 share/locale/nb/LC_MESSAGES/ktp-auth-handler.mo
@@ -45,7 +46,3 @@ share/locale/zh_TW/LC_MESSAGES/ktp-auth-handler.mo
 share/telepathy/clients/KTp.ConfAuthObserver.client
 share/telepathy/clients/KTp.SASLHandler.client
 share/telepathy/clients/KTp.TLSHandler.client
-@dirrmtry share/telepathy/clients
-@dirrmtry share/telepathy
-@dirrmtry share/locale/ia/LC_MESSAGES
-@dirrmtry share/locale/ia

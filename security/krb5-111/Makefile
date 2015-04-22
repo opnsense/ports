@@ -2,13 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=		krb5
-PORTVERSION=		1.11.5
-PORTREVISION=		3
+PORTVERSION=		1.11.6
+PORTREVISION=		1
 CATEGORIES=		security
 MASTER_SITES=		http://web.mit.edu/kerberos/dist/krb5/${PORTVERSION:C/^[0-9]*\.[0-9]*/&X/:C/X\.[0-9]*$//:C/X//}/
 PKGNAMESUFFIX=		-111
 DISTNAME=		krb5-${PORTVERSION}-signed
 EXTRACT_SUFX=		.tar
+
+DEPRECATED=		EOLed by MIT in December 2014.
+EXPIRATION_DATE=	2015-08-31
 
 PATCH_SITES=		http://web.mit.edu/kerberos/advisories/
 PATCH_DIST_STRIP=	-p2
@@ -24,14 +27,19 @@ CONFLICTS=		heimdal-[0-9]* srp-[0-9]* krb5-[0-9]* krb5-maint-112-*
 
 LATEST_LINK=		${PORTNAME}-111
 KERBEROSV_URL=		http://web.mit.edu/kerberos/
-USES=			gettext gmake perl5
+USES=			cpe gettext gmake perl5
 USE_PERL5=		build
 USE_LDCONFIG=		yes
 USE_CSTD=		gnu99
 GNU_CONFIGURE=		yes
-CONFIGURE_ARGS?=	--without-system-verto
-CONFIGURE_ENV=		INSTALL="${INSTALL}" YACC="${YACC}"
-MAKE_ARGS=		INSTALL="${INSTALL}"
+CONFIGURE_ARGS?=	--without-system-verto --disable-rpath \
+			--localstatedir="${PREFIX}/var"
+CONFIGURE_ENV=		NSTALL="${INSTALL}" INSTALL_LIB="${INSTALL_LIB}" YACC="${YACC}"
+MAKE_ARGS=		INSTALL="${INSTALL}" INSTALL_LIB="${INSTALL_LIB}"
+
+CPE_VENDOR=		mit
+CPE_VERSION=		5-${PORTVERSION}
+CPE_PRODUCT=		kerberos
 
 OPTIONS_DEFINE=		KRB5_PDF KRB5_HTML DNS_FOR_REALM LDAP
 OPTIONS_DEFAULT=	KRB5_PDF KRB5_HTML
@@ -42,18 +50,28 @@ LDAP=			Enable LDAP support
 
 .if defined(KRB5_HOME)
 PREFIX=			${KRB5_HOME}
-CFLAGS+=		-Wl,-rpath=${KRB5_HOME}/lib
-LDFLAGS+=		-Wl,-rpath=${KRB5_HOME}/lib
 .if ${KRB5_HOME} != ${LOCALBASE}
 BROKEN=			LIB_DEPENDS when using KRB5_HOME is broken
 .endif
 .endif
-LDFLAGS+=		-L${LOCALBASE}/lib
-CFLAGS+=		-I${LOCALBASE}/include
+LDFLAGS+=		-L${LOCALBASE}/lib -L${OPENSSLLIB}
+CFLAGS+=		-I${LOCALBASE}/include -I${OPENSSLINC}
 
 USE_OPENSSL=		yes
 
 .include <bsd.port.pre.mk>
+
+.if !empty(KRB5_HOME)
+_RPATH=		${KRB5_HOME}/lib:
+.else
+_RPATH=		${LOCALBASE}/lib:
+.endif
+.if !empty(LDFLAGS:M-Wl,-rpath,*)
+.for F in ${LDFLAGS:M-Wl,-rpath,*}
+LDFLAGS:=	-Wl,-rpath,${_RPATH}${F:S/-Wl,-rpath,//} \
+		${LDFLAGS:N-Wl,-rpath,*}
+.endfor
+.endif
 
 .if ${PORT_OPTIONS:MDNS_FOR_REALM}
 CONFIGURE_ARGS+=	--enable-dns-for-realm
@@ -67,8 +85,6 @@ PLIST_SUB+=		LDAP=""
 PLIST_SUB+=		LDAP="@comment "
 .endif
 
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
-
 .if defined(PROGRAM_TRANSFORM_NAME) && ${PROGRAM_TRANSFORM_NAME} != ""
 CONFIGURE_ARGS+=	--program-transform-name="${PROGRAM_TRANSFORM_NAME}"
 .endif
@@ -78,17 +94,9 @@ WRKSRC=			${WRKDIR}/krb5-${PORTVERSION}/src
 HTML_DOC_DIR=		${WRKDIR}/krb5-${PORTVERSION}/doc/html
 PDF_DOC_DIR=		${WRKDIR}/krb5-${PORTVERSION}/doc/pdf
 
-CONFIGURE_ARGS+=	CPPFLAGS="-I${OPENSSLINC} -L${OPENSSLLIB} -L${LOCALBASE}/include"
-
 post-extract:
-	@${TAR} -C ${WRKDIR} -xzf ${WRKDIR}/krb5-${PORTVERSION}.tar.gz
+	@${TAR} -C ${WRKDIR} -xzf ${WRKDIR}/krb5-${PORTVERSION}.tar.gz --no-same-owner --no-same-permissions
 	@${RM} ${WRKDIR}/krb5-${PORTVERSION}.tar.gz ${WRKDIR}/krb5-${PORTVERSION}.tar.gz.asc
-.if !defined(EXTRACT_PRESERVE_OWNERSHIP)
-	@if [ `id -u` = 0 ]; then \
-		${CHMOD} -R ug-s,go-w ${WRKDIR}/krb5-${PORTVERSION}; \
-		${CHOWN} -R 0:0 ${WRKDIR}/krb5-${PORTVERSION}; \
-	fi
-.endif
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/krb5
@@ -117,15 +125,15 @@ post-install:
 .endif
 .if ${PORT_OPTIONS:MKRB5_PDF}
 	for i in $${pdf_dirs}; do \
-		${ECHO_CMD} @dirrm share/doc/krb5/$${i} >> ${TMPPLIST}; \
+		${ECHO_CMD} @dir share/doc/krb5/$${i} >> ${TMPPLIST}; \
 	done | ${TAIL} -r >> ${TMPPLIST}
 .endif
 .if ${PORT_OPTIONS:MKRB5_HTML}
 	for i in $${html_dirs}; do \
-		${ECHO_CMD} @dirrm share/doc/krb5/$${i} >> ${TMPPLIST}; \
+		${ECHO_CMD} @dir share/doc/krb5/$${i} >> ${TMPPLIST}; \
 	done | ${TAIL} -r >> ${TMPPLIST}
 .endif
-	${ECHO_CMD} @dirrm share/doc/krb5 >> ${TMPPLIST}
+	${ECHO_CMD} @dir share/doc/krb5 >> ${TMPPLIST}
 	@${SED} "s%\${PREFIX}%${PREFIX}%" ${FILESDIR}/README.FreeBSD > ${STAGEDIR}${PREFIX}/share/doc/krb5/README.FreeBSD
 	@${CHMOD} 444 ${STAGEDIR}${PREFIX}/share/doc/krb5/README.FreeBSD
 	@${ECHO} "------------------------------------------------------"

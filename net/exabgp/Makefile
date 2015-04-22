@@ -2,22 +2,22 @@
 # $FreeBSD$
 
 PORTNAME=	exabgp
-PORTVERSION=	3.3.1
+PORTVERSION=	3.4.8
 CATEGORIES=	net
-MASTER_SITES=	GH GHC \
+MASTER_SITES=	GHL \
 		http://mirrors.rit.edu/zi/
-EXTRACT_SUFX=	.tgz
 
 MAINTAINER=	zi@FreeBSD.org
 COMMENT=	BGP engine and route injector
 
-LICENSE=	BSD
+LICENSE=	BSD3CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Exa-Networks
 GH_TAGNAME=	${PORTVERSION}
-GH_COMMIT=	2224194
-USES=		python
+GH_COMMIT=	70c4305
+GH_REVNUM=	5375472
+USES=		tar:tgz python:2
 SUB_FILES=	pkg-message exabgp.sh
 SUB_LIST=	PYTHON_LIBDIR=${PYTHON_LIBDIR} PYTHON_CMD=${PYTHON_CMD} \
 		PYTHON_SITELIBDIR=${PYTHON_SITELIBDIR}
@@ -31,6 +31,8 @@ OPTIONS_DEFINE=	EXAMPLES
 .include <bsd.port.options.mk>
 
 post-extract:
+	@${LN} -s ${WRKDIR}/${GH_ACCOUNT}-${PORTNAME}-${GH_REVNUM} \
+		${WRKSRC}
 	@${MV} -f ${WRKSRC}/etc/systemd ${WRKSRC}
 
 do-build:

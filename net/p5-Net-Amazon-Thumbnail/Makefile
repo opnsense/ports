@@ -3,12 +3,12 @@
 
 PORTNAME=	Net-Amazon-Thumbnail
 PORTVERSION=	0.06
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Perl interface to Amazon Alexa Site Thumbnail web service
 
 LICENSE=	ART10 GPLv1

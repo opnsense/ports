@@ -3,7 +3,6 @@
 
 PORTNAME=	kdelibs
 PORTVERSION=	${KDE4_VERSION}
-PORTREVISION=	1
 CATEGORIES=	x11 kde
 MASTER_SITES=	KDE/${KDE4_BRANCH}/${PORTVERSION}/src
 DIST_SUBDIR=	KDE/${PORTVERSION}
@@ -17,7 +16,7 @@ LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
 		libavahi-core.so:${PORTSDIR}/net/avahi-app \
 		libenchant.so:${PORTSDIR}/textproc/enchant \
 		libgif.so:${PORTSDIR}/graphics/giflib \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		libhal.so:${PORTSDIR}/sysutils/hal \
 		libqca.so:${PORTSDIR}/devel/qca \
@@ -26,12 +25,12 @@ LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
 		libdbusmenu-qt.so:${PORTSDIR}/devel/libdbusmenu-qt \
 		libgrantlee_gui.so:${PORTSDIR}/devel/grantlee
 
-BUILD_DEPENDS=	${LOCALBASE}/share/xml/docbook/4.2:${PORTSDIR}/textproc/docbook-xml \
+BUILD_DEPENDS=	docbook-xml>0:${PORTSDIR}/textproc/docbook-xml \
 		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
 
 RUN_DEPENDS=	${LOCALBASE}/share/icons/hicolor/index.theme:${PORTSDIR}/misc/hicolor-icon-theme \
 		xauth:${PORTSDIR}/x11/xauth \
-		${LOCALBASE}/share/xml/docbook/4.2:${PORTSDIR}/textproc/docbook-xml \
+		docbook-xml>0:${PORTSDIR}/textproc/docbook-xml \
 		${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:${PORTSDIR}/textproc/docbook-xsl
 
 USE_GNOME=	libxml2 libxslt

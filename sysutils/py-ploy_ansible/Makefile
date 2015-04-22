@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ploy_ansible
-DISTVERSION=	1.0.0
+DISTVERSION=	1.2.4
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,9 +14,9 @@ LICENSE=	GPLv3
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}ploy>=1.0.0:${PORTSDIR}/sysutils/py-ploy \
 		${PYTHON_PKGNAMEPREFIX}execnet>0:${PORTSDIR}/sysutils/py-execnet \
-		ansible>0:${PORTSDIR}/sysutils/ansible
+		ansible>=1.8.0:${PORTSDIR}/sysutils/ansible
 
-USES=		python:-2.7 zip
-USE_PYTHON=	distutils autoplist
+USES=		python:-2.7
+USE_PYTHON=	autoplist distutils
 
 .include <bsd.port.mk>

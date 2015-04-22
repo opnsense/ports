@@ -3,7 +3,7 @@
 
 PORTNAME=	nagios
 PORTVERSION=	4.0.8
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-4.x/${PORTNAME}-${PORTVERSION}
 PKGNAMESUFFIX=	4
@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl \
 		libgd.so:${PORTSDIR}/graphics/gd
 
-USES=		gmake iconv perl5
+USES=		cpe gmake perl5
 USE_PERL5=	build
 USE_PHP=	xml
 USE_RC_SUBR=	nagios
@@ -38,7 +38,8 @@ CONFIGURE_ARGS=	--with-command-user=${NAGIOSUSER} \
 		--with-httpd-conf=${PREFIX}/etc \
 		--with-checkresult-dir=${NAGIOSDIR}/checkresults \
 		--disable-statuswrl \
-		--enable-event-broker
+		--enable-event-broker \
+		ac_cv_lib_iconv_main=no
 CONFIGURE_ENV=	PERL=${PERL}
 
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -88,9 +89,6 @@ NANOSLEEP_CONFIGURE_ENABLE=	nanosleep
 # sed -e 's#;serviceprops=42\&#;serviceprops=10\&#g' -e \
 #	 's#;hostprops=42\"#;hostprops=10\"#g' ${WRKSRC}/html/side.php
 UNHANDLED_HACK_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-html__side.php
-
-post-patch:
-	@${REINPLACE_CMD} '/^INSTALL_OPTS=/d;/COMMAND_OPTS=/d' ${WRKSRC}/configure
 
 post-install:
 	@${MV} ${STAGEDIR}${PREFIX}/${NAGIOSWWWDIR}/config.inc.php ${STAGEDIR}${PREFIX}/${NAGIOSWWWDIR}/config.inc.php.sample

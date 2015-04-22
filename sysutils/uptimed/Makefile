@@ -11,13 +11,13 @@ MASTER_SITES=	http://podgorny.cz/uptimed/releases/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Uptime daemon
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # only
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake libtool tar:bzip2
-USE_AUTOTOOLS=	libtoolize aclocal autoheader automake autoconf
-ACLOCAL_ARGS=	# empty
-AUTOMAKE_ARGS=	--copy --add-missing --foreign
+USES=		autoreconf gmake libtool tar:bzip2
+GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 USE_RC_SUBR=	${PORTNAME}
 

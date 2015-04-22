@@ -3,15 +3,17 @@
 
 PORTNAME=	bacula
 DISTVERSION=	7.0.5
+PORTREVISION?=	3
 CATEGORIES?=	sysutils
 MASTER_SITES=	SF/bacula/bacula/${PORTVERSION}
 PKGNAMEPREFIX?=	#
 PKGNAMESUFFIX?=	-server
 
-MAINTAINER=	dan@langille.org
+MAINTAINER=	dvl@FreeBSD.org
 COMMENT?=	Network backup solution (server)
 
-USES+=		libtool:oldver
+USES+=		libtool
+USE_OPENSSL=	yes
 
 CONFLICTS?=	bacula5-server-*
 
@@ -28,13 +30,13 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I/usr/include/readline -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS_DEFINE?=	SQLITE3 MYSQL PGSQL MTX PYTHON NLS OPENSSL
-OPTIONS_DEFAULT?=	NLS OPENSSL PGSQL
+OPTIONS_DEFINE?=	SQLITE3 MYSQL PGSQL MTX PYTHON NLS
+OPTIONS_DEFAULT?=	NLS PGSQL
 MTX_DESC=		Install mtx for control of autochanger devices
 
 .if ${PKGNAMESUFFIX} == "-client" || ${PKGNAMESUFFIX} == "-server"  #Till end of the file
 
-PYTHON_USE=		PYTHON=yes
+PYTHON_USES=		python
 PYTHON_CONFIGURE_ON=	--with-python=yes
 
 .if !defined(WITH_CLIENT_ONLY)
@@ -142,7 +144,7 @@ MAKE_ENV+=	MAN8="${MP8}" MAN1="${MP1}"
 
 post-patch:
 	# This port does not install docs.  See bacula-docs for that
-	${REINPLACE_CMD} -e '/docdir/d' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e '/docdir/d' ${WRKSRC}/Makefile.in
 	# Change $(ECHO) to echo in some Makefile.in files
 	@${REINPLACE_CMD} -e 's|$$(ECHO)|echo|g'  \
 		${WRKSRC}/src/filed/Makefile.in   \
@@ -159,18 +161,19 @@ post-patch:
 	# In client port only install startup script out of script dir (see below post-install)
 	# Dont mkdir ${PREFIX}/share/bacula cause it's empty
 	@${REINPLACE_CMD} -e 's|^\(fd_subdirs = .*\)scripts\(.*\)|\1\2|g' ${WRKSRC}/Makefile.in
-	${REINPLACE_CMD} -e 's|\(.*$${MKDIR} $${DESTDIR}$${scriptdir}\)|#\1|g' ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|\(.*$${MKDIR} $${DESTDIR}$${scriptdir}\)|#\1|g' ${WRKSRC}/Makefile.in
 .else
 	# In server port don't install filed
 	@${REINPLACE_CMD} -e '/^fd_subdirs = /s|src/filed||' -e 's|src/console||' \
 		-e 's|src/lib||' -e 's|src/findlib||' -e 's|@FD_PLUGIN_DIR@||' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|../lib/|$$(LOCALBASE)/lib/|g' -e 's|../findlib/|$$(LOCALBASE)/lib/|g' ${WRKSRC}/src/dird/Makefile.in \
-		${WRKSRC}/src/stored/Makefile.in ${WRKSRC}/src/tools/Makefile.in
+	@${REINPLACE_CMD} \
+		-e 's|../lib/[^[:space:]]*||g' \
+		-e 's|../findlib/[^[:space:]]*||g' \
+		${WRKSRC}/src/dird/Makefile.in \
+		${WRKSRC}/src/stored/Makefile.in \
+		${WRKSRC}/src/tools/Makefile.in
 .endif
 
-
-pre-install:
-	${MKDIR} ${STAGEDIR}${BACULA_DIR}
 
 .if !target(post-install)
 post-install:

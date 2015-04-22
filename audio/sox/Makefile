@@ -3,7 +3,7 @@
 
 PORTNAME=	sox
 PORTVERSION=	14.4.1
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
@@ -18,9 +18,8 @@ LIB_DEPENDS=	libltdl.so:${PORTSDIR}/devel/libltdl
 CONFLICTS=	play-[0-9]*
 
 GNU_CONFIGURE=	yes
-USES=		pkgconfig libtool
+USES=		autoreconf pkgconfig libtool
 USE_LDCONFIG=	yes
-USE_AUTOTOOLS=	aclocal autoconf automake
 
 OPTIONS_DEFINE=	ALSA AO AMRNB AMRWB FFMPEG FLAC GSM ID3TAG LADSPA LAME \
 		MAD PNG PULSEAUDIO SNDFILE VORBIS WAVPACK
@@ -36,7 +35,7 @@ GSM_DESC=	Use libgsm from ports (else use bundled lib)
 PNG_DESC=	PNG spectrogram creation
 
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--with-pkgconfigdir="${PREFIX}/libdata/pkgconfig"
 CONFIGURE_ARGS+=	--with-distro="${CONFIGURE_TARGET} ${PKGNAME}" \
 			--with-gsm
@@ -77,7 +76,7 @@ MAD_CONFIGURE_WITH=	mad
 MAD_LIB_DEPENDS=	libmad.so:${PORTSDIR}/audio/libmad
 
 PNG_CONFIGURE_WITH=	png
-PNG_LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+PNG_LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 PULSEAUDIO_CONFIGURE_WITH=	pulseaudio
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio

@@ -3,9 +3,9 @@
 
 PORTNAME=	textmail
 PORTVERSION=	20070803
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	mail
-MASTER_SITES=	http://raf.org/textmail/ CENKES
+MASTER_SITES=	http://raf.org/textmail/
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Converts e-mail attachments to plain-text

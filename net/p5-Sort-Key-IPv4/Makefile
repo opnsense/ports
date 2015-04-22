@@ -3,11 +3,12 @@
 
 PORTNAME=	Sort-Key-IPv4
 PORTVERSION=	0.03
+PORTREVISION=	1
 CATEGORIES=	net devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Perl extension for sorting IPv4 addresses
 
 BUILD_DEPENDS=	p5-Sort-Key>=0:${PORTSDIR}/devel/p5-Sort-Key

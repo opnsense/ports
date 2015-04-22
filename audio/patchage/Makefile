@@ -11,8 +11,8 @@ MASTER_SITES=	http://download.drobilla.net/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Modular patch bay for Jack
 
-LICENSE=	GPLv2 GPLv3
-LICENSE_COMB=	dual
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack \
 		libraul.so:${PORTSDIR}/audio/raul \
@@ -22,18 +22,17 @@ LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack \
 		libglademm-2.4.so:${PORTSDIR}/devel/libglademm24 \
 		libflowcanvas.so:${PORTSDIR}/x11-toolkits/flowcanvas
 
-USES=		pkgconfig python:build tar:bzip2
+USES=		pkgconfig tar:bzip2 waf
 INSTALLS_ICONS=	yes
+CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
+			--no-alsa \
+			--no-lash
 
 CFLAGS+=	-I${LOCALBASE}/include
 
-.include <bsd.port.pre.mk>
-
 .if defined(BATCH) || defined(PACKAGE_BUILDING)
-WAF_VERBOSE=	--verbose
+MAKE_ARGS=	--verbose
 .endif
-
-WAF_JOBS=	--jobs=${MAKE_JOBS_NUMBER}
 
 post-patch:
 	@${REINPLACE_CMD} -e \
@@ -41,14 +40,7 @@ post-patch:
 		 s|-fshow-column'|-fshow-column ${CXXFLAGS}'|" \
 			${WRKSRC}/autowaf/autowaf.py
 
-do-configure:
-	@(cd ${WRKSRC} && ./waf ${WAF_VERBOSE} --prefix=${PREFIX} \
-		--mandir=${MANPREFIX}/man --no-alsa --no-lash configure)
+post-install:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
-do-build:
-	@(cd ${WRKSRC} && ./waf ${WAF_VERBOSE} ${WAF_JOBS} build)
-
-do-install:
-	@(cd ${WRKSRC} && ./waf ${WAF_VERBOSE} --destdir=${STAGEDIR} install)
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

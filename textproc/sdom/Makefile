@@ -12,7 +12,7 @@ COMMENT=	Implementation of the W3C DOM recommendation in Scheme
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	guile>=0:${PORTSDIR}/devel/guile-lib
+RUN_DEPENDS=	guile-lib>=0:${PORTSDIR}/devel/guile-lib
 
 NO_BUILD=	yes
 
@@ -22,7 +22,6 @@ PLIST_FILES=	share/guile/sdom/common.scm \
 		share/guile/sdom/events.scm \
 		share/guile/sdom/ls.scm \
 		share/guile/sdom/parser.scm
-PLIST_DIRS=	share/guile/sdom
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/guile/sdom

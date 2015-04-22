@@ -3,16 +3,18 @@
 
 PORTNAME=	log4cplus
 PORTVERSION=	1.1.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-stable/${PORTVERSION}
 
 MAINTAINER=	reed@reedmedia.net
 COMMENT=	Logging library for C++
 
+LICENSE=	APACHE20
+
 OPTIONS_DEFINE=	DOCS
 
-USES=		libtool:keepla pathfix tar:xz
+USES=		libtool pathfix tar:xz
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-threads=yes

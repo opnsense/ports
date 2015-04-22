@@ -3,12 +3,12 @@
 
 PORTNAME=	File-Append-TempFile
 PORTVERSION=	0.05
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Append data to files using a temporary copy
 
 LICENSE=	ART10 GPLv1

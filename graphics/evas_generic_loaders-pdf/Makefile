@@ -2,33 +2,33 @@
 # $FreeBSD$
 
 PORTNAME=	pdf
-PORTVERSION=	1.7.9
-PORTREVISION=	1
+PORTVERSION=	1.13.2
 CATEGORIES=	graphics enlightenment
-MASTER_SITES=	http://download.enlightenment.org/releases/ \
-		LOCAL/gblach/e17/
+MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PKGNAMEPREFIX:S/-//}/
 PKGNAMEPREFIX=	evas_generic_loaders-
-DISTNAME=	${PKGNAMEPREFIX}${PORTVERSION}
+DISTNAME=	${PKGNAMEPREFIX}${DISTVERSION}
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	enlightenment@FreeBSD.org
 COMMENT=	Additional loader for Evas (pdf)
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libpoppler.so:${PORTSDIR}/graphics/poppler
+LIB_DEPENDS=	libefl.so:${PORTSDIR}/devel/efl \
+		libpoppler.so:${PORTSDIR}/graphics/poppler
 
-USES=		pkgconfig tar:bzip2
-DIST_SUBDIR=	e17
+DIST_SUBDIR=	enlightenment
 GNU_CONFIGURE=	yes
-USE_EFL=	eina
+USES=		compiler:c11 pkgconfig tar:xz
 USE_LDCONFIG=	yes
+
+CPPFLAGS+=	-I${LOCALBASE}/include
 
 BINSRC=		${WRKSRC}/src/bin/${PORTNAME}
 
 do-build:
-	${MAKE} ${MAKE_ARGS} -C ${BINSRC}
+	${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} -C ${BINSRC}
 
 do-install:
-	${MAKE} ${MAKE_ARGS} -C ${BINSRC} install
+	${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_ARGS} -C ${BINSRC} install
 
 .include <bsd.port.mk>

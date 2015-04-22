@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rsyslog
-PORTVERSION=	8.4.2
+PORTVERSION=	8.9.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.rsyslog.com/files/download/rsyslog/
 
@@ -20,10 +20,10 @@ LIB_DEPENDS=	libee.so:${PORTSDIR}/devel/libee \
 USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
 
-PORTSCOUT=	limit:^8\.2
+PORTSCOUT=	limit:^8\.8
 PKGNAMESUFFIX=	8
 
-OPTIONS_DEFINE=	DBI DOCS GNUTLS GSSAPI MYSQL PGSQL RELP RFC3195 SNMP
+OPTIONS_DEFINE=	DBI DOCS GNUTLS GSSAPI MYSQL PGSQL RELP SNMP
 
 DBI_DESC=	LibDBI output module for rsyslog
 GNUTLS_DESC=	GNUTLS module for rsyslog
@@ -31,7 +31,6 @@ GSSAPI_DESC=	GSS API input/output module for rsyslog
 MYSQL_DESC=	MySQL output module for rsyslog
 PGSQL_DESC=	PostgreSQL output module for rsyslog
 RELP_DESC=	RELP input/output module for rsyslog
-RFC3195_DESC=	RFC3195 input support for rsyslog
 SNMP_DESC=	SNMP trap sender for rsyslog
 
 USES=		libtool pkgconfig
@@ -73,7 +72,7 @@ CONFIGURE_ARGS+=--disable-mysql
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
-USE_PGSQL=	yes
+USES+=		pgsql
 CONFIGURE_ARGS+=--enable-pgsql
 PLIST_FILES+=	lib/rsyslog/ompgsql.so
 .else
@@ -87,14 +86,6 @@ PLIST_FILES+=	lib/rsyslog/imrelp.so \
 		lib/rsyslog/omrelp.so
 .else
 CONFIGURE_ARGS+=--disable-relp
-.endif
-
-.if ${PORT_OPTIONS:MRFC3195}
-LIB_DEPENDS+=	liblogging.so:${PORTSDIR}/devel/liblogging
-CONFIGURE_ARGS+=--enable-rfc3195
-PLIST_FILES+=	lib/rsyslog/im3195.so
-.else
-CONFIGURE_ARGS+=--disable-rfc3195
 .endif
 
 .if ${PORT_OPTIONS:MSNMP}
@@ -135,7 +126,7 @@ CFLAGS+=	${CPPFLAGS}
 USE_RC_SUBR=	${PORTNAME}d
 SUB_FILES=	pkg-message
 
-CONFIGURE_ARGS+=	--enable-imfile --enable-mail --enable-imdiag --enable-impstats --enable-omstdout --enable-cached-man-pages --disable-testbench
+CONFIGURE_ARGS+=	--enable-cached-man-pages --enable-imdiag --enable-imfile --enable-impstats --enable-mail --enable-omprog --enable-omstdout --enable-omuxsock --enable-rfc3195 --disable-testbench
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/lib/rsyslog/|${PREFIX}/lib/rsyslog/|'\
@@ -146,7 +137,7 @@ post-patch:
 	@${FIND} ${WRKSRC} -name '*.bak' -delete
 
 post-install:
-.for l in lmregexp lmzlibw lmnet lmnetstrms lmstrmsrv lmnsd_ptcp lmcry_gcry lmtcpsrv lmtcpclt immark imuxsock imtcp imudp omtesting imklog impstats omstdout imfile imdiag ommail
+.for l in im3195 imdiag imfile imklog immark impstats imtcp imudp imuxsock lmcry_gcry lmnet lmnetstrms lmnsd_ptcp lmregexp lmstrmsrv lmtcpclt lmtcpsrv lmzlibw mmexternal ommail omprog omstdout omtesting omuxsock
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/rsyslog/${l}.so
 .endfor
 

@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	ilias
-PORTVERSION=	4.4.5
+PORTVERSION=	5.0.0
 CATEGORIES=	www
-MASTER_SITES=	SF/${PORTNAME}/01.%20ILIAS%204.4/ILIAS%20${PORTVERSION}
+MASTER_SITES=	SF/${PORTNAME}/ILIAS%205.0/ILIAS%20${PORTVERSION}
 
 MAINTAINER=	wen@FreeBSD.org
 COMMENT=	Powerful, dynamic, PHP and MySQL based e-learning platform
@@ -19,7 +19,7 @@ RUN_DEPENDS=	convert:${PORTSDIR}/graphics/ImageMagick \
 		${LOCALBASE}/share/pear/MDB2.php:${PORTSDIR}/databases/pear-MDB2 \
 		${LOCALBASE}/share/pear/HTML/Template/IT.php:${PORTSDIR}/devel/pear-HTML_Template_IT
 LIB_DEPENDS=	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-		libpng15.so:${PORTSDIR}/graphics/png
+		libpng.so:${PORTSDIR}/graphics/png
 
 NO_BUILD=		yes
 PLIST=			${WRKDIR}/plist
@@ -52,9 +52,9 @@ pre-install:
 	@${ECHO_CMD} "@owner ${WWWOWN}" >> ${PLIST}
 	@${ECHO_CMD} "@group ${WWWGRP}" >> ${PLIST}
 	@${ECHO_CMD} "@mode 755" >> ${PLIST}
-	@${FIND} -s -d ${WRKSRC} -type f | ${SED} "s?${WRKSRC}?${ILIASDIR}?g" >${PLIST}
-	@${FIND} -s -d ${WRKSRC} -type d  | ${SED} "s?${WRKSRC}?@dirrm ${ILIASDIR}?g" >> ${PLIST}
-	@${ECHO} @dirrm ${ILIASDATADIR} >> ${PLIST}
+	@${FIND} -s -d ${WRKSRC} -type f | ${SED} "s?${WRKSRC}?${ILIASDIR}?g" >> ${PLIST}
+	@${FIND} -s -d ${WRKSRC} -type d  | ${SED} "s?${WRKSRC}?@dir ${ILIASDIR}?g" >> ${PLIST}
+	@${ECHO} @dir ${ILIASDATADIR} >> ${PLIST}
 	@${ECHO_CMD} "@mode" >> ${PLIST}
 	@${ECHO_CMD} "@group" >> ${PLIST}
 	@${ECHO_CMD} "@owner" >> ${PLIST}

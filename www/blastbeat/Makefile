@@ -3,9 +3,9 @@
 
 PORTNAME=	blastbeat
 PORTVERSION=	20121205
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
-MASTER_SITES=	GH GHC
+MASTER_SITES=	GHL
 
 MAINTAINER=	vg@FreeBSD.org
 COMMENT=	High-performance HTTP/HTTPS/SPDY proxy
@@ -20,6 +20,7 @@ LIB_DEPENDS=	libev.so:${PORTSDIR}/devel/libev \
 		libzmq.so:${PORTSDIR}/net/libzmq2
 
 USES=		gmake
+USE_OPENSSL=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	zloidemon
 GH_COMMIT=	cdac9a9
@@ -31,7 +32,6 @@ LIBS+=		-L${LOCALBASE}/lib -lm
 
 PLIST_FILES=	bin/blastbeat \
 		%%ETCDIR%%/blastbeat.ini.sample
-PLIST_DIRSTRY=	%%ETCDIR%%
 
 OPTIONS_DEFINE=	EXAMPLES
 

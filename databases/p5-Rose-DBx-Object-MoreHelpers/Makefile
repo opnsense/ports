@@ -3,12 +3,13 @@
 
 PORTNAME=	Rose-DBx-Object-MoreHelpers
 PORTVERSION=	0.100
+PORTREVISION=	1
 CATEGORIES=	databases perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	Rose/KARMAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Perl 5 module to deploy a DBIx::Class schema
 
 LICENSE=	ART10 GPLv1

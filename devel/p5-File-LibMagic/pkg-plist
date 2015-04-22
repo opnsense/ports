@@ -1,4 +1,5 @@
-%%SITE_PERL%%/%%PERL_ARCH%%/File/LibMagic.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/File/LibMagic/LibMagic.so
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/File/LibMagic/.packlist
+%%SITE_ARCH%%/File/LibMagic.pm
+%%SITE_ARCH%%/File/LibMagic.xs
+%%SITE_ARCH%%/File/typemap
+%%SITE_ARCH%%/auto/File/LibMagic/LibMagic.so
 %%PERL5_MAN3%%/File::LibMagic.3.gz

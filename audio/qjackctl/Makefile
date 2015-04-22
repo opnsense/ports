@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	qjackctl
-DISTVERSION=	0.3.11
+DISTVERSION=	0.3.13
 CATEGORIES=	audio
 MASTER_SITES=	SF
 
@@ -16,7 +16,7 @@ LIB_DEPENDS=	libasound.so:${PORTSDIR}/audio/alsa-lib \
 
 USES=		gmake
 USE_QT4=	corelib dbus gui xml \
-		linguist_build moc_build qmake_build rcc_build uic_build
+		linguisttools_build moc_build qmake_build rcc_build uic_build
 QT_NONSTANDARD=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_ac_moc=${MOC} \
@@ -31,8 +31,5 @@ MAKE_JOBS_UNSAFE=yes
 post-configure:
 	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${QMAKE} -o ${PORTNAME}.mak \
 		${QMAKE_ARGS}
-
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

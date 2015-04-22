@@ -3,11 +3,12 @@
 
 PORTNAME=	Tree-Binary-Dictionary
 PORTVERSION=	1.01
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Dictionary API to a binary tree
 
 LICENSE=	ART10 GPLv1

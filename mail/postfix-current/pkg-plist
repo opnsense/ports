@@ -8,17 +8,30 @@ bin/qshape
 bin/rmail
 %%TEST%%bin/smtp-sink
 %%TEST%%bin/smtp-source
-%%BASE%%@cwd /
+%%INST_BASE%%@cwd /
 etc/postfix/LICENSE
 etc/postfix/TLS_LICENSE
 etc/postfix/bounce.cf.default
 etc/postfix/main.cf.default
 @cwd %%RESETPREFIX%%
+lib/postfix/libpostfix-dns.so
+lib/postfix/libpostfix-global.so
+lib/postfix/libpostfix-master.so
+lib/postfix/libpostfix-tls.so
+lib/postfix/libpostfix-util.so
+%%CDB%%lib/postfix/postfix-cdb.so
+%%OPENLDAP%%lib/postfix/postfix-ldap.so
+%%LMDB%%lib/postfix/postfix-lmdb.so
+%%MYSQL%%lib/postfix/postfix-mysql.so
+%%PCRE%%lib/postfix/postfix-pcre.so
+%%PGSQL%%lib/postfix/postfix-pgsql.so
+%%SQLITE%%lib/postfix/postfix-sqlite.so
 libexec/postfix/anvil
 libexec/postfix/bounce
 libexec/postfix/cleanup
 libexec/postfix/discard
 libexec/postfix/dnsblog
+libexec/postfix/dynamicmaps.cf
 libexec/postfix/error
 libexec/postfix/flush
 libexec/postfix/lmtp
@@ -64,6 +77,7 @@ libexec/postfix/virtual
 %%BMAN%%man/man1/postmulti.1.gz
 %%BMAN%%man/man1/postqueue.1.gz
 %%BMAN%%man/man1/postsuper.1.gz
+%%BMAN%%man/man1/posttls-finger.1.gz
 %%TEST%%%%BMAN%%man/man1/qmqp-sink.1.gz
 %%TEST%%%%BMAN%%man/man1/qmqp-source.1.gz
 %%BMAN%%man/man1/qshape.1.gz
@@ -127,32 +141,33 @@ libexec/postfix/virtual
 sbin/postalias
 sbin/postcat
 sbin/postconf
-sbin/postdrop
+@(,maildrop,2755) sbin/postdrop
 sbin/postfix
 sbin/postkick
 sbin/postlock
 sbin/postlog
 sbin/postmap
 sbin/postmulti
-sbin/postqueue
+@(,maildrop,2755) sbin/postqueue
 sbin/postsuper
+sbin/posttls-finger
 sbin/sendmail
-@dir /var/db/postfix
-@dir /var/spool/postfix/active
-@dir /var/spool/postfix/bounce
-@dir /var/spool/postfix/corrupt
-@dir /var/spool/postfix/defer
-@dir /var/spool/postfix/deferred
-@dir /var/spool/postfix/flush
-@dir /var/spool/postfix/hold
-@dir /var/spool/postfix/incoming
-@dir /var/spool/postfix/maildrop
-@dir /var/spool/postfix/pid
-@dir /var/spool/postfix/private
-@dir /var/spool/postfix/public
-@dir /var/spool/postfix/saved
-@dir /var/spool/postfix/trace
-@dir /var/spool/postfix
-%%BASE%%@cwd /
-@dir etc/postfix
-@cwd %%RESETPREFIX%%
+@dir libexec/postfix/dynamicmaps.cf.d
+@dir libexec/postfix/postfix-files.d
+@dir %%PFETC%%
+@dir(postfix,,700) /var/db/postfix
+@dir(postfix,,700) /var/spool/postfix/active
+@dir(postfix,,700) /var/spool/postfix/bounce
+@dir(postfix,,700) /var/spool/postfix/corrupt
+@dir(postfix,,700) /var/spool/postfix/defer
+@dir(postfix,,700) /var/spool/postfix/deferred
+@dir(postfix,,700) /var/spool/postfix/flush
+@dir(postfix,,700) /var/spool/postfix/hold
+@dir(postfix,,700) /var/spool/postfix/incoming
+@dir(postfix,maildrop,730) /var/spool/postfix/maildrop
+@dir(,postfix,755) /var/spool/postfix/pid
+@dir(postfix,,700) /var/spool/postfix/private
+@dir(postfix,maildrop,710) /var/spool/postfix/public
+@dir(postfix,,700) /var/spool/postfix/saved
+@dir(postfix,,700) /var/spool/postfix/trace
+@dir(,,755) /var/spool/postfix

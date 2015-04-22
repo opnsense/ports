@@ -2,7 +2,7 @@
 
 PORTNAME=	check_memcached_paranoid
 PORTVERSION=	0.20131004
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/nagiosplug/nagiosplug/1.5
 DISTFILES=	nagios-plugins-1.5.tar.gz
@@ -10,13 +10,12 @@ DISTFILES=	nagios-plugins-1.5.tar.gz
 MAINTAINER=	kuriyama@FreeBSD.org
 COMMENT=	Nagios plugin for checking memcached
 
-BROKEN=		Fails to link with nagios-plugins-2.0.3
-
 LIB_DEPENDS=	libmemcached.so:${PORTSDIR}/databases/libmemcached
 BUILD_DEPENDS=	nagios-plugins>0:${PLUGINS} \
 		${EXTRA_DEPENDS} \
 		${NONEXISTENT}:${PLUGINS}:build
 
+USES=		gettext-runtime
 FILE=		${PORTNAME}.c
 PLUGINS=	${PORTSDIR}/net-mgmt/nagios-plugins
 NDIR_CMD=	cd ${PLUGINS} && ${MAKE} -VWRKSRC
@@ -29,6 +28,8 @@ do-extract:
 	${MKDIR} ${WRKSRC}
 	${CP} ${FILESDIR}/${FILE} ${WRKSRC}
 
+# HACK: Linking objects may be changed by nagios-plugins OPTIONS
+# setting (EXTRAOPTS, NLS).
 do-build:
 	cd ${WRKSRC}; \
 	NDIR=$$(${NDIR_CMD}); \
@@ -36,9 +37,10 @@ do-build:
 		-I$${NDIR} -I$${NDIR}/plugins -I$${NDIR}/gl -I$${NDIR}/lib -I${LOCALBASE}/include \
 		-o ${PORTNAME} \
 		$${NDIR}/plugins/netutils.o $${NDIR}/plugins/utils.o \
-		$${NDIR}/lib/utils_base.o $${NDIR}/lib/extra_opts.o $${NDIR}/lib/parse_ini.o \
+		$${NDIR}/lib/utils_base.o \
+		`ls $${NDIR}/lib/*.o | ${GREP} -E '(extra_opts|parse_ini).o$$'` \
 		$${NDIR}/gl/getopt.o $${NDIR}/gl/getopt1.o \
-		$${NDIR}/gl/sha1.o \
+		$${NDIR}/gl/idpriv-droptemp.o $${NDIR}/gl/sha1.o \
 		-L${LOCALBASE}/lib -lintl -lmemcached ${FILE}
 
 do-install:

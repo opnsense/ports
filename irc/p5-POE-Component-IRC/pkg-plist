@@ -5,8 +5,8 @@
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/BasicBot.pod
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/Disconnecting.pod
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/Gtk2.pod
-%%SITE_PERL%%/POE/Component/IRC/Cookbook/Reload.pod
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/Hailo.pod
+%%SITE_PERL%%/POE/Component/IRC/Cookbook/Reload.pod
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/Resolver.pod
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/Seen.pod
 %%SITE_PERL%%/POE/Component/IRC/Cookbook/Translator.pod
@@ -34,7 +34,6 @@
 %%SITE_PERL%%/POE/Component/IRC/State.pm
 %%SITE_PERL%%/POE/Filter/IRC.pm
 %%SITE_PERL%%/POE/Filter/IRC/Compat.pm
-%%SITE_PERL%%/%%PERL_ARCH%%/auto/POE/Component/IRC/.packlist
 %%PERL5_MAN3%%/POE::Component::IRC.3.gz
 %%PERL5_MAN3%%/POE::Component::IRC::Common.3.gz
 %%PERL5_MAN3%%/POE::Component::IRC::Constants.3.gz

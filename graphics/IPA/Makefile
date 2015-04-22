@@ -3,7 +3,7 @@
 
 PORTNAME=	IPA
 PORTVERSION=	1.08
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.prima.eu.org/IPA/ CPAN/Prima/KARASIK
 
@@ -17,5 +17,10 @@ USES=		perl5
 USE_PERL5=	configure
 INSTALL_TARGET=	pure_install
 MAKE_JOBS_UNSAFE=	yes
+
+post-install:
+	${CHMOD} u+w ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/IPA/IPA.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/IPA/IPA.so
+	${CHMOD} u-w ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/IPA/IPA.so
 
 .include <bsd.port.mk>

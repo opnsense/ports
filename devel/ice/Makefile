@@ -3,7 +3,7 @@
 
 PORTNAME=		Ice
 PORTVERSION=		3.5.1
-PORTREVISION=		4
+PORTREVISION=		7
 CATEGORIES=		devel
 MASTER_SITES=		http://download.zeroc.com/Ice/3.5/
 
@@ -17,6 +17,7 @@ SLAVE_PORT?=		no
 .if ${SLAVE_PORT} == "no"
 LIB_DEPENDS=		libexpat.so:${PORTSDIR}/textproc/expat2 \
 			libmcpp.so:${PORTSDIR}/devel/mcpp
+USE_OPENSSL=		yes
 .else
 LIB_VRS=		${PORTVERSION:R:S|.||g}
 LIB_DEPENDS+=		libIce.so.${LIB_VRS}:${PORTSDIR}/devel/ice
@@ -134,10 +135,10 @@ post-patch:
 
 .if ${PORT_OPTIONS:MTESTS}
 TEST_CMD=		@cd ${BUILD_WRKSRC} && ${PYTHON_CMD} ./allTests.py
-post-build:
+check regression-test test: build
 	${TEST_CMD}
-regression-test test: build
-	${TEST_CMD}
+
+pre-install: regression-test
 .endif
 
 .include <bsd.port.post.mk>

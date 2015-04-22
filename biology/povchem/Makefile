@@ -17,6 +17,7 @@ COMMENT=	Simple yet powerful tool to generate POV from a PDB file
 
 RUN_DEPENDS=	povray:${PORTSDIR}/graphics/povray-meta
 
+BROKEN=		Unfetchable
 NO_WRKSUBDIR=	yes
 
 USES=		dos2unix
@@ -25,7 +26,6 @@ CPPFLAGS+=	-DDATADIR=\"${DATADIR}\" \
 		-DSYSCONFDIR=\"${PREFIX}/etc\"
 
 PLIST_FILES=	bin/povchem etc/povchem.cfg %%DATADIR%%/periodic.tab
-PLIST_DIRS=	%%DATADIR%%
 
 post-extract:
 	@(cd ${DISTDIR}/${DIST_SUBDIR} && ${TAR} -cf - ${DISTFILES}) | \

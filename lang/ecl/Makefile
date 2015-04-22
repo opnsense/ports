@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	ecl
-PORTVERSION=	13.5.1
+PORTVERSION=	15.2.21
+PORTREVISION=	1
 CATEGORIES=	lang lisp
-MASTER_SITES=	SF/${PORTNAME}s/${PORTNAME}s/13.5/
+MASTER_SITES=	SF/${PORTNAME}s/${PORTNAME}s/15.2/
 
 MAINTAINER=	olgeni@FreeBSD.org
 COMMENT=	ANSI Common Lisp implementation
-
-BROKEN=		Fails to link with new libgc
 
 LIB_DEPENDS=	libgmp.so:${PORTSDIR}/math/gmp
 
@@ -30,6 +29,7 @@ CLX_DESC=	Enable X11 interface
 SOCKETS_DESC=	Enable socket interface
 DFFI_DESC=	Dynamic foreign-function support
 
+OPTIONS_SUB=	yes
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
 .include <bsd.port.pre.mk>
@@ -40,27 +40,21 @@ BROKEN=		Does not compile on ${ARCH}
 
 .if ${PORT_OPTIONS:MASDF}
 CONFIGURE_ARGS+=--with-asdf=yes
-PLIST_SUB+=	ASDF=""
 .else
 CONFIGURE_ARGS+=--with-asdf=no
-PLIST_SUB+=	ASDF="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MCLX}
 USE_XORG=	x11
 CONFIGURE_ARGS+=--with-clx=yes
-PLIST_SUB+=	CLX=""
 .else
 CONFIGURE_ARGS+=--with-clx=no
-PLIST_SUB+=	CLX="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MSOCKETS}
 CONFIGURE_ARGS+=--with-tcp=yes
-PLIST_SUB+=	SOCKETS=""
 .else
 CONFIGURE_ARGS+=--with-tcp=no
-PLIST_SUB+=	SOCKETS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MDFFI}
@@ -72,19 +66,16 @@ CONFIGURE_ARGS+=--with-dffi=no
 
 .if ${PORT_OPTIONS:MTHREADS}
 CONFIGURE_ARGS+=--enable-threads=yes
-LDFLAGS+=	${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread
 LIB_DEPENDS+=	libgc-threaded.so:${PORTSDIR}/devel/boehm-gc-threaded
-PLIST_SUB+=	THREADS=""
 .else
 CONFIGURE_ARGS+=--enable-threads=no
 LIB_DEPENDS+=	libgc.so:${PORTSDIR}/devel/boehm-gc
-PLIST_SUB+=	THREADS="@comment "
 .endif
 
 .if ${PORT_OPTIONS:MTHREADS}
 post-patch:
-	@${REINPLACE_CMD} -e 's|-lgc|-lgc-threaded|' \
- 		-e 's|-lpthread|${PTHREAD_LIBS}|' ${WRKSRC}/src/configure
+	@${REINPLACE_CMD} -e 's|-lgc|-lgc-threaded|' ${WRKSRC}/src/configure
 .endif
 
 .include <bsd.port.post.mk>

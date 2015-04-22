@@ -2,15 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	mpv
-PORTVERSION=	0.6.2
+PORTVERSION=	0.8.3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
-MASTER_SITES=	GH:0 GHC:0 http://ftp.waf.io/pub/release/:1 \
+MASTER_SITES=	GHL:0 http://ftp.waf.io/pub/release/:1 \
 		http://www.freehackers.org/~tnagy/release/:1
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:0 waf-${WAF_VERSION}:1
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	gblach@FreeBSD.org
+MAINTAINER=	chris@bsdjunk.com
 COMMENT=	Free and open-source general-purpose video player
 
 LICENSE=	GPLv2
@@ -24,11 +24,11 @@ BUILD_DEPENDS=	rst2man:${PORTSDIR}/textproc/py-docutils
 USE_GITHUB=	yes
 GH_ACCOUNT=	mpv-player
 GH_TAGNAME=	v${PORTVERSION}
-GH_COMMIT=	973b555
+GH_COMMIT=	ff4c1cc
 
-WAF_VERSION=	1.7.16
+WAF_VERSION=	1.8.7
 
-USES=		compiler:c11 desktop-file-utils iconv pkgconfig python:build
+USES=		compiler:c11 desktop-file-utils iconv pkgconfig python:build waf
 USE_XORG=	x11 xv xxf86vm
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
@@ -37,28 +37,27 @@ CPPFLAGS+=	-I.. -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS=	--prefix=${PREFIX} \
+		--docdir=${EXAMPLESDIR} \
 		--mandir=${MANPREFIX}/man \
 		--disable-debug-build \
 		--disable-optimize \
 		--enable-libmpv-shared \
 		--disable-mpg123 \
 		--disable-alsa \
-		--disable-portaudio \
-		--disable-pulse \
 		--disable-pdf
 
 OPTIONS_DEFINE=		BS2B DOCS ENCA LADSPA LCMS2 LIBGUESS LIRC LUAJIT ZSH
 OPTIONS_GROUP=		IN VO AO
-OPTIONS_GROUP_IN=	CDIO LIBBLURAY V4L QUVI SMB
+OPTIONS_GROUP_IN=	CDIO LIBBLURAY V4L YTDL SMB
 OPTIONS_GROUP_VO=	CACA OPENGL VAAPI VDPAU XINERAMA
-OPTIONS_GROUP_AO=	JACK #PULSEAUDIO
+OPTIONS_GROUP_AO=	JACK PULSEAUDIO
 OPTIONS_SUB=		yes
 
 BS2B_DESC=	Enable Bauer Stereophonic-to-Binaural DSP support
 ENCA_DESC=	Enable encoding detection support
 LIBGUESS_DESC=	Enable high-speed character set detection support
-LUAJIT_DESC=	Use LuaJIT instead of Lua (Don't use with QUVI)
-QUVI_DESC=	Enable flash media stream support (Don't use with LUAJIT)
+LUAJIT_DESC=	Use LuaJIT instead of Lua
+YTDL_DESC=	Install youtube-dl
 IN_DESC=	Input
 VO_DESC=	Video Output
 AO_DESC=	Audio Output
@@ -100,8 +99,7 @@ V4L_BUILD_DEPENDS=		${LOCALBASE}/include/linux/videodev2.h:${PORTSDIR}/multimedi
 V4L_LIB_DEPENDS=		libv4l2.so:${PORTSDIR}/multimedia/libv4l
 V4L_CONFIGURE_ENABLE=		tv-v4l2
 
-QUVI_LIB_DEPENDS=		libquvi.so:${PORTSDIR}/multimedia/libquvi
-QUVI_CONFIGURE_ENABLE=		libquvi
+YTDL_RUN_DEPENDS=		youtube-dl:${PORTSDIR}/www/youtube_dl
 
 SMB_LIB_DEPENDS=		libsmbclient.so:${PORTSDIR}/net/samba-libsmbclient
 SMB_CONFIGURE_ENABLE=		libsmbclient
@@ -125,10 +123,8 @@ XINERAMA_CONFIGURE_ENABLE=	xinerama
 JACK_LIB_DEPENDS=		libjack.so:${PORTSDIR}/audio/jack
 JACK_CONFIGURE_ENABLE=		jack
 
-#PULSEAUDIO_LIB_DEPENDS=	libpulse.so:${PORTSDIR}/audio/pulseaudio
-#PULSEAUDIO_CONFIGURE_ENABLE=	pulse
-
-.include <bsd.port.options.mk>
+PULSEAUDIO_LIB_DEPENDS=		libpulse.so:${PORTSDIR}/audio/pulseaudio
+PULSEAUDIO_CONFIGURE_ENABLE=	pulse
 
 post-extract:
 	${CP} ${DISTDIR}/waf-${WAF_VERSION} ${WRKSRC}/waf
@@ -136,22 +132,9 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/pkgconfig/mpv.pc|data/pkgconfig/mpv.pc|g' \
-		-e 's|/zsh/vendor-completions|/zsh/site-functions|' \
 		${WRKSRC}/wscript_build.py
 	@${FIND} ${WRKSRC}/DOCS/man -name '*.rst' | ${XARGS} ${REINPLACE_CMD} \
 		-e 's|/usr/local|${PREFIX}|g'
-
-do-configure:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
-		waf configure ${_MAKE_JOBS} ${CONFIGURE_ARGS}
-
-do-build:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
-		waf build ${_MAKE_JOBS}
-
-do-install:
-	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${PYTHON_CMD} \
-		waf install --destdir=${STAGEDIR}
 
 post-stage:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/mpv

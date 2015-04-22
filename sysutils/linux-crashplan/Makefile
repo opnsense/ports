@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	linux-crashplan
-DISTVERSION=	3.6.4
+DISTVERSION=	3.7.0
 CATEGORIES=	sysutils linux
 MASTER_SITES=	http://download.crashplan.com/installs/linux/install/CrashPlan/
 DISTNAME=	CrashPlan_${DISTVERSION}_Linux
@@ -11,7 +11,7 @@ MAINTAINER=	wg@FreeBSD.org
 COMMENT=	Backs up data to remote servers or hard drives
 
 RUN_DEPENDS=	linux-sun-jre17>=0:${PORTSDIR}/java/linux-sun-jre17 \
-		bash>=0:${PORTSDIR}/shells/bash
+		bash:${PORTSDIR}/shells/bash
 
 WRKSRC=		${WRKDIR}/CrashPlan-install
 

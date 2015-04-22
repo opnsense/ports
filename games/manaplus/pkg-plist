@@ -4,6 +4,7 @@ man/man6/manaplus.6.gz
 man/man6/manaplustest.6.gz
 share/applications/manaplus.desktop
 share/applications/manaplustest.desktop
+share/locale/ca/LC_MESSAGES/manaplus.mo
 share/locale/cs/LC_MESSAGES/manaplus.mo
 share/locale/de/LC_MESSAGES/manaplus.mo
 share/locale/es/LC_MESSAGES/manaplus.mo
@@ -12,13 +13,16 @@ share/locale/fr/LC_MESSAGES/manaplus.mo
 share/locale/id/LC_MESSAGES/manaplus.mo
 share/locale/it/LC_MESSAGES/manaplus.mo
 share/locale/ja/LC_MESSAGES/manaplus.mo
+share/locale/nl/LC_MESSAGES/manaplus.mo
 share/locale/nl_BE/LC_MESSAGES/manaplus.mo
 share/locale/pl/LC_MESSAGES/manaplus.mo
 share/locale/pt/LC_MESSAGES/manaplus.mo
 share/locale/pt_BR/LC_MESSAGES/manaplus.mo
 share/locale/ru/LC_MESSAGES/manaplus.mo
+share/locale/sv/LC_MESSAGES/manaplus.mo
 share/locale/sv_SE/LC_MESSAGES/manaplus.mo
 share/locale/tr/LC_MESSAGES/manaplus.mo
+share/locale/uk/LC_MESSAGES/manaplus.mo
 share/locale/zh_CN/LC_MESSAGES/manaplus.mo
 %%DATADIR%%/data/fonts/dejavusans-bold.ttf
 %%DATADIR%%/data/fonts/dejavusans.ttf
@@ -205,6 +209,7 @@ share/locale/zh_CN/LC_MESSAGES/manaplus.mo
 %%DATADIR%%/data/perserver/default/charcreation.xml
 %%DATADIR%%/data/perserver/default/chatcommands.txt
 %%DATADIR%%/data/perserver/default/deadmessages.xml
+%%DATADIR%%/data/perserver/default/defaultcommands.xml
 %%DATADIR%%/data/perserver/default/features.xml
 %%DATADIR%%/data/perserver/default/gmcommands.txt
 %%DATADIR%%/data/perserver/default/weapons.xml
@@ -564,35 +569,3 @@ share/locale/zh_CN/LC_MESSAGES/manaplus.mo
 %%DATADIR%%/data/translations/help/ru.po
 %%DATADIR%%/data/translations/help/zh_CN.po
 share/pixmaps/manaplus.png
-@dirrm %%DATADIR%%/data/translations/help
-@dirrm %%DATADIR%%/data/translations
-@dirrm %%DATADIR%%/data/themes/wood
-@dirrm %%DATADIR%%/data/themes/unity
-@dirrm %%DATADIR%%/data/themes/pink
-@dirrm %%DATADIR%%/data/themes/mana
-@dirrm %%DATADIR%%/data/themes/jewelry
-@dirrm %%DATADIR%%/data/themes/golden-delicious
-@dirrm %%DATADIR%%/data/themes/enchilado
-@dirrm %%DATADIR%%/data/themes/blackwood
-@dirrm %%DATADIR%%/data/themes/blacknblack
-@dirrm %%DATADIR%%/data/themes
-@dirrm %%DATADIR%%/data/sfx/system
-@dirrm %%DATADIR%%/data/sfx
-@dirrm %%DATADIR%%/data/perserver/default
-@dirrm %%DATADIR%%/data/perserver
-@dirrm %%DATADIR%%/data/icons
-@dirrm %%DATADIR%%/data/help/tips
-@dirrm %%DATADIR%%/data/help
-@dirrm %%DATADIR%%/data/graphics/sprites
-@dirrm %%DATADIR%%/data/graphics/shaders
-@dirrm %%DATADIR%%/data/graphics/images
-@dirrm %%DATADIR%%/data/graphics/gui
-@dirrm %%DATADIR%%/data/graphics/flags
-@dirrm %%DATADIR%%/data/graphics
-@dirrm %%DATADIR%%/data/fonts
-@dirrm %%DATADIR%%/data
-@dirrm %%DATADIR%%
-@dirrmtry share/locale/sv_SE/LC_MESSAGES
-@dirrmtry share/locale/sv_SE
-@dirrmtry share/locale/nl_BE/LC_MESSAGES
-@dirrmtry share/locale/nl_BE

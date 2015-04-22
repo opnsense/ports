@@ -7,7 +7,7 @@ PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
-MAINTAINER=	miwi@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Yet Another Nopaste
 
 NO_BUILD=	yes
@@ -26,7 +26,7 @@ create-plist:
 		| ${SED} -e 's,^${WRKSRC},%%WWWDIR%%,' > ${PLIST}
 	@${ECHO_CMD} '@exec touch %D/%%WWWDIR%%/config.php;chown ${WWWOWN} %D/%%WWWDIR%%/config.php' >> ${PLIST}
 	@${ECHO_CMD} '@unexec if [ ! -s %D/%%WWWDIR%%/config.php ];then rm -f %D/%%WWWDIR%%/config.php;fi' >> ${PLIST}
-	@${FIND} -ds ${WRKSRC}/${file} -type d \
-	| ${SED} -e 's,^${WRKSRC},@dirrm %%WWWDIR%%,' >> ${PLIST}
+	@${FIND} -ds ${WRKSRC}/${file} -type d -empty \
+	| ${SED} -e 's,^${WRKSRC},@dir %%WWWDIR%%,' >> ${PLIST}
 
 .include <bsd.port.mk>

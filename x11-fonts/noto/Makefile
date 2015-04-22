@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	noto
-PORTVERSION=	1.0
+PORTVERSION=	1.0.1
+PORTREVISION=	2
 CATEGORIES=	x11-fonts
 MASTER_SITES=	http://www.google.com/get/noto/pkgs/
 
@@ -11,21 +12,14 @@ MAINTAINER=	kevlo@FreeBSD.org
 COMMENT=	Google font family
 
 LICENSE=	APACHE20
-LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	fc-cache:${PORTSDIR}/x11-fonts/fontconfig
-RUN_DEPENDS:=	${BUILD_DEPENDS}
-
-USES=		zip
+USES=		fonts zip
 NO_BUILD=	yes
-
-FONTDIR=	${PREFIX}/lib/X11/fonts/${PORTNAME}
-PLIST_SUB=	FONTDIR="${FONTDIR:S|${PREFIX}/||}"
-WRKSRC=		${WRKDIR}
+NO_WRKSUBDIR=	yes
 
 do-install:
-	${MKDIR} ${STAGEDIR}${FONTDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} *.otf ${STAGEDIR}${FONTDIR}
-	cd ${WRKSRC} && ${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTDIR}
+	${MKDIR} ${STAGEDIR}${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} *.otf ${STAGEDIR}${FONTSDIR}
+	cd ${WRKSRC} && ${INSTALL_DATA} *.ttf ${STAGEDIR}${FONTSDIR}
 
 .include <bsd.port.mk>

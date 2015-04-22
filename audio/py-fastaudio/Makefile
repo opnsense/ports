@@ -16,11 +16,10 @@ MAINTAINER=	ninjin@kth.se
 COMMENT=	Python bindings for the PortAudio multi-platform audio library
 
 BUILD_DEPENDS=	pyrex>=0.9.6.2:${PORTSDIR}/devel/pyrex
-LIB_DEPENDS=	libportaudio.so:${PORTSDIR}/audio/portaudio \
+LIB_DEPENDS=	libportaudio.so.0:${PORTSDIR}/audio/portaudio \
 		libsndfile.so:${PORTSDIR}/audio/libsndfile
 
 PLIST_FILES=	%%PYTHON_SITELIBDIR%%/fastaudio.so
-PLIST_DIRS=
 EXAMPLESDIR=	${LOCALBASE}/share/examples/py-${PORTNAME}
 
 USES=		python zip:infozip
@@ -31,7 +30,6 @@ PORTA_SRCFILE=	portaudio_v18_1.zip
 PORTASRC_DIR=	${WRKDIR}/portaudio_v18_1/
 
 .if !defined(WITHOUT_EXAMPLES)
-PLIST_DIRS+=	share/examples/py-${PORTNAME}
 PLIST_FILES+=	share/examples/py-${PORTNAME}/demo.py
 .endif
 

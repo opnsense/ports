@@ -1,11 +1,11 @@
 # Created by: Alonso Cardenas Marquez <acm@FreeBSD.org>
 # $FreeBSD$
 
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-utils
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER=	freebsd-fpc@FreeBSD.org
 COMMENT=	Free Pascal Compiler utils
 
 USE_FPC=	chm fcl-base fcl-net fcl-passrc fcl-process fcl-res fppkg libcurl

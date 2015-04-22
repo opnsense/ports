@@ -3,14 +3,14 @@
 
 PORTNAME=	freebsd-uucp
 PORTVERSION=	1.07.3
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	net comms ipv6
 PKGNAMESUFFIX?=	${PAM_SUFFIX}${PKGNAMESUFFIX2}
 
 MAINTAINER=	dinoex@FreeBSD.org
 COMMENT=	FreeBSD-modified Taylor UUCP (unix-to-unix copy program)
 
-NEED_ROOT=	yes
+USES=		fakeroot
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dinoex

@@ -4,12 +4,12 @@
 
 PORTNAME=	gtorrentviewer
 PORTVERSION=	0.2b
-PORTREVISION=	18
+PORTREVISION=	19
 CATEGORIES=	net-p2p
 MASTER_SITES=	SF/${PORTNAME}/GTorrentViewer/${PORTVERSION}
 DISTNAME=	GTorrentViewer-${PORTVERSION}
 
-MAINTAINER=	5u623l20@gmail.com
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	GTK+2 viewer and editor for BitTorrent meta files
 
 LICENSE=	GPLv2
@@ -17,8 +17,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcurl.so:${PORTSDIR}/ftp/curl
 
-USES=		gmake pkgconfig
-USE_GNOME=	gtk20 gnomehier intlhack
+USES=		gmake pkgconfig desktop-file-utils
+USE_GNOME=	gtk20 intlhack
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-pixmapsdir=${PREFIX}/share/pixmaps \
 		--with-desktopdir=${PREFIX}/share/applications

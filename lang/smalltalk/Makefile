@@ -3,7 +3,7 @@
 
 PORTNAME=	smalltalk
 PORTVERSION=	3.2.5
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	lang
 MASTER_SITES=	GNU
 
@@ -21,7 +21,7 @@ OPTIONS_DEFAULT=TK PGSQL SDL
 OPTIONS_SUB=	yes
 TK_USES=	tk:84
 TK_CONFIGURE_WITH=tcl=${LOCALBASE}/lib/tcl8.4 tk=${LOCALBASE}/lib/tk8.4
-PGSQL_USE=	PGSQL=yes
+PGSQL_USES=	pgsql
 SDL_USE=	SDL=image,mixer,sdl,sound,ttf
 
 USES=		gmake iconv libtool makeinfo pkgconfig shebangfix tar:xz
@@ -33,6 +33,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_prog_EMACS=no ac_cv_prog_AWK=gawk
 CONFIGURE_ARGS=	--enable-generational-gc=no \
 		--enable-gtk=no \
+		--localstatedir="${PREFIX}/var" \
 		--with-emacs=no \
 		--with-gmp=no
 USE_LDCONFIG=	yes

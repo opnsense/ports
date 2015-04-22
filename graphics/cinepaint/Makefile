@@ -3,7 +3,7 @@
 
 PORTNAME=	cinepaint
 DISTVERSION=	1.0-4
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/CinePaint/CinePaint-${DISTVERSION}
 
@@ -17,7 +17,7 @@ LIB_DEPENDS=	libIlmImf.so:${PORTSDIR}/graphics/OpenEXR \
 		libftgl.so:${PORTSDIR}/graphics/ftgl \
 		libjpeg.so:${PORTSDIR}/graphics/jpeg \
 		liblcms.so:${PORTSDIR}/graphics/lcms \
-		libpng15.so:${PORTSDIR}/graphics/png \
+		libpng.so:${PORTSDIR}/graphics/png \
 		libtiff.so:${PORTSDIR}/graphics/tiff \
     		libfltk.so:${PORTSDIR}/x11-toolkits/fltk
 
@@ -25,14 +25,14 @@ OPTIONS_DEFINE=	OYRANOS PRINT
 OYRANOS_DESC=	ICC profile support via Oyranos
 PRINT_DESC=	Gutenprint (gimp-print) plugin
 
-USES=		desktop-file-utils gettext gmake libtool pkgconfig python
+GNU_CONFIGURE=	yes
+USES=		autoreconf desktop-file-utils gettext gmake libtool \
+		pkgconfig python
 USE_XORG=	xmu
 USE_GNOME=	gtk20
 USE_GHOSTSCRIPT_RUN=yes
-USE_AUTOTOOLS=	libtoolize aclocal automake autoconf
-ACLOCAL_ARGS=	-I aclocal
-AUTOMAKE_ARGS=	--copy --force-missing --foreign --add-missing
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

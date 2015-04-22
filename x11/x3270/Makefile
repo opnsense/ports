@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	x3270
-PORTVERSION=	3.3.13
+PORTVERSION=	3.3.15
+PORTREVISION=	2
 CATEGORIES=	x11 net
 MASTER_SITES=	http://x3270.bgp.nu/download/current/
 EXTRACT_SUFX=	ga7-src.tgz
@@ -10,17 +11,19 @@ EXTRACT_SUFX=	ga7-src.tgz
 MAINTAINER=	ecrist@secure-computing.net
 COMMENT=	3270 Terminal emulator
 
-# Conflict due to x3270if
-CONFLICTS=	c3270-*
-
 BUILD_DEPENDS=	bdftopcf:${PORTSDIR}/x11-fonts/bdftopcf \
 		mkfontdir:${PORTSDIR}/x11-fonts/mkfontdir \
 		mkfontscale:${PORTSDIR}/x11-fonts/mkfontscale
 
-USES=		iconv imake:env
+# Conflict due to x3270if
+CONFLICTS=	c3270-*
+
+USES=		iconv fonts imake:env
 USE_XORG=	ice sm x11 xaw xext xmu xt
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=	--with-fontdir=${PREFIX}/lib/X11/fonts/local --disable-dbcs
+CONFIGURE_ARGS=	--with-fontdir=${FONTSDIR} \
+		--disable-dbcs \
+		ac_cv_search_libiconv=no
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 .if defined(WITHOUT_OPENSSL)
@@ -30,10 +33,10 @@ USE_OPENSSL=	yes
 .endif
 MAKE_ARGS+=	COMPRESSMANCMD="${DO_NADA}" \
 		INSTALL="${INSTALL}" INSTALLFLAGS="${COPY}" \
-		INSTPGMFLAGS="${STRIP} ${_BINOWNGRP} -m ${BINMODE}" \
-		INSTBINFLAGS="${_BINOWNGRP} -m ${BINMODE}" \
-		INSTDATFLAGS="${_SHROWNGRP} -m ${SHAREMODE}" \
-		INSTMANFLAGS="${_MANOWNGRP} -m ${MANMODE}"
+		INSTPGMFLAGS="${STRIP} -m ${BINMODE}" \
+		INSTBINFLAGS="-m ${BINMODE}" \
+		INSTDATFLAGS="-m ${SHAREMODE}" \
+		INSTMANFLAGS="-m ${MANMODE}"
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:R}
 

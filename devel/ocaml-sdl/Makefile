@@ -3,7 +3,7 @@
 
 PORTNAME=	sdl
 PORTVERSION=	0.9.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 MASTER_SITES=	SF/ocaml${PORTNAME}/OCamlSDL/ocaml${PORTNAME}-${PORTVERSION}
 PKGNAMEPREFIX=	ocaml-
@@ -64,10 +64,6 @@ CONFIGURE_ARGS+=--disable-sdl-mixer
 USE_SDL+=	ttf
 .else
 CONFIGURE_ARGS+=--disable-sdl-ttf
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-PLIST_DIRSTRY+=	${OCAML_DOCSDIR:S,^${PREFIX}/,,}
 .endif
 
 post-install:

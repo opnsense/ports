@@ -3,7 +3,7 @@
 
 PORTNAME=	openalchemist
 PORTVERSION=	0.3
-PORTREVISION=	17
+PORTREVISION=	19
 CATEGORIES=	games
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
@@ -20,13 +20,13 @@ LICENSE_PERMS_CCbySA=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 BUILD_DEPENDS=	zip:${PORTSDIR}/archivers/zip
 LIB_DEPENDS=	libclanCore.so:${PORTSDIR}/devel/clanlib1 \
 	libjpeg.so:${PORTSDIR}/graphics/jpeg \
-	libpng15.so:${PORTSDIR}/graphics/png
+	libpng.so:${PORTSDIR}/graphics/png
 
 USE_AUTOTOOLS=	aclocal automake autoconf
 # Necessary to find pkg.m4 (PKG_CHECK_MODULES)
 ACLOCAL_ARGS+=	-I ${LOCALBASE}/share/aclocal
 CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib ${PTHREAD_LIBS}
+LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 USE_GNOME=	pygtk2
 USE_XORG=	xxf86vm xi x11 xmu xext xdamage xfixes xau xdmcp xt sm ice

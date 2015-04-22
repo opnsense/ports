@@ -11,7 +11,7 @@
 
 PORTNAME=	afni
 PORTVERSION=	2012.04.17.2129
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	science biology graphics
 MASTER_SITES=	http://personalpages.tds.net/~jwbacon/Ports/distfiles/AFNI/${PORTVERSION}/ \
 		http://www.acadix.biz/Ports/distfiles/AFNI/${PORTVERSION}/
@@ -28,7 +28,7 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libXm.so:${PORTSDIR}/x11-toolkits/open-motif \
 		libR.so:${PORTSDIR}/math/R \
 		libgsl.so:${PORTSDIR}/math/gsl \
-		libnetcdf.so:${PORTSDIR}/science/netcdf-fortran
+		libnetcdff.so:${PORTSDIR}/science/netcdf-fortran
 RUN_DEPENDS=	cjpeg:${PORTSDIR}/graphics/jpeg \
 		mpeg_encode:${PORTSDIR}/multimedia/mpeg_encode \
 		whirlgif:${PORTSDIR}/graphics/whirlgif \
@@ -40,7 +40,8 @@ CONFLICTS=	im-[0-9]* \
 		nifticlib-[0-9]* \
 		open-usp-tukubai-[0-9]*
 
-USES=		gettext iconv gmake motif perl5
+USES=		gettext iconv gmake motif perl5 shebangfix
+SHEBANG_FILES=	suma_change_spec 3dPAR2AFNI.pl
 
 # Some prereqs use gcc anyway
 USE_GCC=	yes

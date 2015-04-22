@@ -3,7 +3,7 @@
 
 PORTNAME=	quakeforge
 PORTVERSION=	0.5.5
-PORTREVISION=	14
+PORTREVISION=	16
 CATEGORIES=	games
 MASTER_SITES=	SF/quake/quake/${PORTVERSION}:sf
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:sf
@@ -13,9 +13,10 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Cleaned up copy of the GPL'ed Quake 1 source code
 
-LICENSE=	GPLv2
+LICENSE=	GPLv2 # or later
+LICENSE_FILE=	${WRKSRC}/COPYING
 
-LIB_DEPENDS=	libpng15.so:${PORTSDIR}/graphics/png
+LIB_DEPENDS=	libpng.so:${PORTSDIR}/graphics/png
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tornado
-PORTVERSION=	4.0.2
+PORTVERSION=	4.1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,9 +14,8 @@ LICENSE=	APACHE20
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}certifi>0:${PORTSDIR}/security/py-certify
 
-USE_PYTHON=		yes
-USE_PYDISTUTILS=	yes
-PYDISTUTILS_AUTOPLIST=	yes
+USES=		python
+USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.pre.mk>
 
@@ -24,6 +23,9 @@ PYDISTUTILS_AUTOPLIST=	yes
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}backports.ssl_match_hostname>0:${PORTSDIR}/security/py-backports.ssl_match_hostname \
 		${PYTHON_PKGNAMEPREFIX}futures>0:${PORTSDIR}/devel/py-futures
 .endif
+
+post-build:
+	@${FIND} ${WRKSRC}/build -name speedups.so -exec ${STRIP_CMD} {} \;
 
 regression-test: build
 	@cd ${WRKSRC} && ${PYTHON_CMD} -m tornado.test.runtests

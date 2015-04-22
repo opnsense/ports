@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	weechat
-PORTVERSION=	1.0.1
+PORTVERSION=	1.1.1
 PORTREVISION=	1
 CATEGORIES=	irc
 MASTER_SITES=	http://weechat.org/files/src/ \
@@ -56,7 +56,8 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so.28:${PORTSDIR}/security/gnutls
 
 LUA_CMAKE_OFF=		-DENABLE_LUA=no
 LUA_CMAKE_ON=		-DBSD_LUA_LIBDIR=${LUA_LIBDIR} \
-					-DBSD_LUA_INCDIR=${LUA_INCDIR}
+					-DBSD_LUA_INCDIR=${LUA_INCDIR} \
+					-DBSD_LUA_VER=${LUA_VER}
 LUA_USES=			lua:51
 
 NLS_CMAKE_OFF=		-DENABLE_NLS=no
@@ -127,5 +128,9 @@ post-install:
 	${INSTALL_DATA} ${WRKDIR}/docs/* ${STAGEDIR}${DOCSDIR}/
 .endif
 	${LN} -sf ${PREFIX}/bin/weechat ${STAGEDIR}${PREFIX}/bin/weechat-curses
+# Make build fail to be able to take the generated manpages/docs from the archived wrkdir
+.if defined(MAINTAINER_MODE) && defined(MAINTAINER_BREAK_BUILD)
+	@${FALSE}
+.endif
 
 .include <bsd.port.mk>

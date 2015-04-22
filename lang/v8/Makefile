@@ -11,9 +11,9 @@ COMMENT=	Open source JavaScript engine by Google
 
 LICENSE=	BSD3CLAUSE
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/python:${PORTSDIR}/lang/python
-
 CONFLICTS_INSTALL=	v8-devel-[0-9]*
+
+ONLY_FOR_ARCHS=	i386 amd64
 
 PORTSCOUT=	limit:^3.18.*
 
@@ -21,19 +21,26 @@ ALL_TARGET=	native
 MAKE_ARGS=	library=shared
 MAKE_ENV=	CC.host=${CC} CXX.host=${CXX} LINK.host=${CXX} LINK.target=${CXX}
 USE_LDCONFIG=	yes
-USES=		alias compiler cpe execinfo gmake python:2 tar:xz
+USES=		alias compiler cpe execinfo gmake python:2 shebangfix tar:xz
 
 CPE_VENDOR=	google
+
+SHEBANG_FILES=	build/gyp/gyp
+python_OLD_CMD=	${SETENV} python
+python_CMD=	${PYTHON_CMD}
 
 .include <bsd.port.pre.mk>
 
 .if ${COMPILER_TYPE} == clang
-CFLAGS+=	-Wno-unused-private-field
+CXXFLAGS+=	-Wno-nested-anon-types -Wno-unused-function -Wno-unused-private-field
 MAKE_ENV+=	LINK=clang++
-.if ${COMPILER_VERSION} >= 33
-CFLAGS+=	-Wno-nested-anon-types -Wno-unused-function
 .if ${COMPILER_VERSION} >= 34
-CFLAGS+=	-Wno-unused-const-variable
+CXXFLAGS+=	-Wno-unused-const-variable
+.if ${COMPILER_VERSION} >= 35
+CXXFLAGS+=	-Wno-tautological-undefined-compare
+.if ${COMPILER_VERSION} >= 36
+CXXFLAGS+=	-Wno-unused-local-typedef
+.endif
 .endif
 .endif
 .else
@@ -41,12 +48,12 @@ MAKE_ARGS+=	strictaliasing=off
 USE_GCC=	any
 .endif
 
-ONLY_FOR_ARCHS=	i386 amd64
-
 post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
-		${WRKSRC}/build/common.gypi ${WRKSRC}/tools/gyp/v8.gyp
-	@${REINPLACE_CMD} -e '1 s|${SETENV} python|&2|' ${WRKSRC}/build/gyp/gyp
+	@${REINPLACE_CMD} -e 's|test/cctest/cctest.gyp||' ${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e '/test\/cctest\/cctest.gyp/d' ${WRKSRC}/build/all.gyp
+	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' ${WRKSRC}/build/common.gypi ${WRKSRC}/tools/gyp/v8.gyp
+	@${REINPLACE_CMD} -e 's, | MAP_NORESERVE,,' ${WRKSRC}/src/platform-freebsd.cc
+	@${REINPLACE_CMD} -e 's|python|${PYTHON_CMD}|' ${WRKSRC}/tools/gyp/v8.gyp
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/out/native/d8 ${STAGEDIR}${PREFIX}/bin/d8

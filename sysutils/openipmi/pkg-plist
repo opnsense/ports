@@ -99,8 +99,6 @@ man/man1/solterm.1.gz
 man/man7/ipmi_cmdlang.7.gz
 man/man7/openipmi_conparms.7.gz
 man/man8/ipmilan.8.gz
-@dirrmtry include/OpenIPMI/internal
-@dirrmtry include/OpenIPMI
 %%GLIB12%%@comment files list for GLIB12
 %%GLIB12%%lib/libOpenIPMIglib12.a
 %%GLIB12%%lib/libOpenIPMIglib12.so
@@ -120,9 +118,8 @@ man/man8/ipmilan.8.gz
 %%TCL%%lib/libOpenIPMItcl.so.0.0.1
 %%TCL%%libdata/pkgconfig/OpenIPMItcl.pc
 %%PERL%%@comment files list for PERL
-%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/OpenIPMI.pm
-%%PERL%%%%SITE_PERL%%/%%PERL_ARCH%%/auto/OpenIPMI/OpenIPMI.so
-%%PERL%%@dirrmtry %%SITE_PERL%%/%%PERL_ARCH%%/auto/OpenIPMI
+%%PERL%%%%SITE_ARCH%%/OpenIPMI.pm
+%%PERL%%%%SITE_ARCH%%/auto/OpenIPMI/OpenIPMI.so
 %%PYTHON%%@comment files list for PYTHON
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/OpenIPMI.py
 %%PYTHON%%%%PYTHON_SITELIBDIR%%/OpenIPMI.pyc
@@ -218,4 +215,3 @@ man/man8/ipmilan.8.gz
 %%TKINTER%%%%PYTHON_SITELIBDIR%%/openipmigui/gui_treelist.py
 %%TKINTER%%%%PYTHON_SITELIBDIR%%/openipmigui/gui_treelist.pyc
 %%TKINTER%%%%PYTHON_SITELIBDIR%%/openipmigui/gui_treelist.pyo
-%%TKINTER%%@dirrmtry %%PYTHON_SITELIBDIR%%/openipmigui

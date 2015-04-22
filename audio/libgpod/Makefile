@@ -39,16 +39,16 @@ MONO_CONFIGURE_WITH=	mono
 PYTHON_BUILD_DEPENDS=	swig2.0:${PORTSDIR}/devel/swig20 \
 			${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen
 PYTHON_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/mutagen/__init__.py:${PORTSDIR}/audio/py-mutagen
-PYTHON_USE=		GNOME=pygobject PYTHON=yes
+PYTHON_USE=		GNOME=pygobject
+PYTHON_USES=		python
 PYTHON_CONFIGURE_ENV=	SWIG="${LOCALBASE}/bin/swig2.0"
 PYTHON_CONFIGURE_WITH=	python
 
 PORTDOCS=	ChangeLog NEWS README*
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MIMOBILE} && (${OSVERSION} > 900002 || \
-	${OSVERSION} < 900000 && ${OSVERSION} > 800107)
+.if ${PORT_OPTIONS:MIMOBILE}
 COMMENT:=	${COMMENT:S,iPod,&/iPhone,}
 LIB_DEPENDS+=	libimobiledevice.so:${PORTSDIR}/comms/libimobiledevice
 CONFIGURE_ENV+=	LIBUSB_CFLAGS=" " LIBUSB_LIBS="-lusb"
@@ -64,4 +64,4 @@ post-patch:
 post-install:
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

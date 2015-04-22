@@ -23,15 +23,11 @@ PORTDOCS=	README README.FreeBSD
 OPTIONS_DEFINE=	PYTHON
 OPTIONS_SUB=	yes
 
-PYTHON_USE=	PYTHON=yes
+PYTHON_USES=	python
 PYTHON_CFLAGS=	-I${PYTHON_INCLUDEDIR}
 PYTHON_LDFLAGS=	-L${PYTHON_LIBDIR}
 PYTHON_CONFIGURE_ON=	--with-python=yes
 PYTHON_CONFIGURE_OFF=	--with-python=no
-
-post-patch:
-	@${REINPLACE_CMD} -E -e 's,(objformat=).*,\1elf,' \
-		${WRKSRC}/configure
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

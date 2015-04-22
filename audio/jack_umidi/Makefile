@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	jack_umidi
-PORTVERSION=	1.0.5
+PORTVERSION=	1.0.8
 CATEGORIES=	audio
 MASTER_SITES=	http://www.selasky.org/hans_petter/distfiles/ \
 		http://home.selasky.org:8192/distfiles/
@@ -17,16 +17,30 @@ LIB_DEPENDS=	libjack.so:${PORTSDIR}/audio/jack
 USES=		tar:bzip2 uidfix
 PLIST_FILES=	sbin/jack_umidi \
 		man/man8/jack_umidi.8.gz
+SUB_FILES=	jack_umidi.conf
 
-OPTIONS_DEFINE=        DEBUG
+OPTIONS_DEFINE=        DEBUG DEVD_SCRIPT
+
+DEVD_SCRIPT_DESC=	Install devd script to auto-launch jack_umidi
 
 .include <bsd.port.options.mk>
 
-MAKE_ARGS+=" HAVE_MAN=YES"
-MAKE_ARGS+=" PTHREAD_LIBS=${PTHREAD_LIBS}"
+.if ${PORT_OPTIONS:MDEVD_SCRIPT}
+PLIST_FILES+=	etc/devd/jack_umidi.conf
+.endif
+
+MAKE_ARGS+=	HAVE_MAN="YES"
+MAKE_ARGS+=	PTHREAD_LIBS="-lpthread"
 
 .if ${PORT_OPTIONS:MDEBUG}
-MAKE_ARGS+=" HAVE_DEBUG=YES"
+MAKE_ARGS+=	HAVE_DEBUG="YES"
+.endif
+
+post-install:
+.if ${PORT_OPTIONS:MDEVD_SCRIPT}
+	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/devd
+	${INSTALL_DATA} ${WRKDIR}/jack_umidi.conf \
+		 ${STAGEDIR}${PREFIX}/etc/devd
 .endif
 
 .include <bsd.port.mk>

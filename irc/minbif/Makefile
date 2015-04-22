@@ -3,7 +3,7 @@
 
 PORTNAME=	minbif
 PORTVERSION=	1.0.5
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	irc net-im
 MASTER_SITES=	https://symlink.me/attachments/download/148/
 
@@ -38,7 +38,6 @@ SUB_LIST=	USERS="${USERS}"
 PORTDOCS=	*
 PLIST_FILES=	bin/minbif %%ETCDIR%%/minbif.conf-dist \
 		%%ETCDIR%%/minbif.motd-dist man/man8/minbif.8.gz
-PLIST_DIRS=	%%ETCDIR%%
 
 CACA_LIB_DEPENDS=	libcaca.so:${PORTSDIR}/graphics/libcaca
 CACA_CMAKE_ON=		-DENABLE_CACA:BOOL=ON -DENABLE_IMLIB:BOOL=ON
@@ -65,7 +64,7 @@ CMAKE_ARGS+=	-DENABLE_VIDEO:BOOL=OFF
 .endif
 
 .if ${PORT_OPTIONS:MCACA}
-USE_EFL=	imlib2
+LIB_DEPENDS+=	libImlib2.so:${PORTSDIR}/graphics/imlib2
 .endif
 
 .if ${PORT_OPTIONS:MVIDEO} && empty(PORT_OPTIONS:MCACA)

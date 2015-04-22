@@ -61,7 +61,7 @@ ENHANCED_KEYWORD_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-enhanced-keyword
 SVNREPOS?=	/home/svn/repos
 SVNFSTYPE?=	fsfs
 
-SUB_FILES=	pkg-install
+SUB_FILES=	pkg-message 220_subversion.conf.sample
 
 .if !${PORT_OPTIONS:MMAINTAINER_DEBUG}
 EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-Makefile.in
@@ -90,7 +90,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:${PORTSDIR}/databases/py-sqlite3
 
 .if ${PORT_OPTIONS:MSTATIC}
 .  if ${PORT_OPTIONS:MNLS}
-USES+=			gettext:build
+USES+=			gettext-tools
 .  endif
 .  if ${PORT_OPTIONS:MBDB}
 BDB_BUILD_DEPENDS=	yes
@@ -200,8 +200,8 @@ post-build:
 post-install:	${MKREPOS_TARGET}
 .if ${PORT_OPTIONS:MTOOLS}
 	@${MAKE} -C ${WRKSRC} install-tools ${MAKE_ARGS}
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/svn-tools/*
+	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
+	-${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/svn-tools/*
 .endif
 	@${MKDIR} ${STAGEDIR}${DATADIR}
 	@(cd ${WRKSRC}/tools.examples && ${TAR} --exclude '*.in' --exclude '*.bak' -cf - * | ${TAR} -C ${STAGEDIR}${DATADIR} -xof - )
@@ -210,11 +210,13 @@ post-install:	${MKREPOS_TARGET}
 	${INSTALL_MAN} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
 .if ${PORT_OPTIONS:MSVNSERVE_WRAPPER}
-	@${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${STAGEDIR}${PREFIX}/bin/svnserve
+	${INSTALL_SCRIPT} ${FILESDIR}/svnserve.wrapper ${STAGEDIR}${PREFIX}/bin/svnserve
 .endif
 
 .if ${PORT_OPTIONS:MMOD_DAV_SVN}
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/*.so
+	${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
+	${CP} ${WRKDIR}/220_subversion.conf.sample ${STAGEDIR}${PREFIX}/${APACHEETCDIR}/modules.d
 .endif
 
 .if !${PORT_OPTIONS:MSTATIC}
@@ -278,7 +280,7 @@ _mkrepos:	.USE
 .endif
 
 svn-build-outputs-hack:
-	(cd ${WRKSRC} && python2 ./gen-make.py --release --installed-libs libsvn_client,libsvn_delta,libsvn_diff,libsvn_fs,libsvn_ra,libsvn_repos,libsvn_subr,libsvn_wc)
+	(cd ${WRKSRC} && python2.7 ./gen-make.py --release --installed-libs libsvn_client,libsvn_delta,libsvn_diff,libsvn_fs,libsvn_ra,libsvn_repos,libsvn_subr,libsvn_wc)
 	${MV} ${WRKSRC}/build-outputs.mk ${FILESDIR}/build-outputs.mk.addons
 
 .include <bsd.port.post.mk>

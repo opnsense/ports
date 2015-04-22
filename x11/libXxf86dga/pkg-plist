@@ -1,7 +1,6 @@
 include/X11/extensions/Xxf86dga.h
 include/X11/extensions/xf86dga1.h
 lib/libXxf86dga.a
-lib/libXxf86dga.la
 lib/libXxf86dga.so
 lib/libXxf86dga.so.1
 lib/libXxf86dga.so.1.0.0
@@ -27,4 +26,3 @@ man/man3/XDGASync.3.gz
 man/man3/XDGAKeyEventToXKeyEvent.3.gz
 man/man3/XF86DGA.3.gz
 man/man3/XFree86-DGA.3.gz
-@dirrmtry include/X11/extensions

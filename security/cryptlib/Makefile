@@ -10,7 +10,7 @@ DISTNAME=		cl${PORTVERSION:S/.//g}
 MAINTAINER=		ale@FreeBSD.org
 COMMENT=		Powerful security programming toolkit
 
-ONLY_FOR_ARCHS=		i386 amd64
+ONLY_FOR_ARCHS=		i386 amd64 armv6
 
 OPTIONS_DEFINE=		DOCS
 
@@ -30,8 +30,6 @@ PORTDOCS=		README
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/%%CFLAGS%%/${CFLAGS}/' ${WRKSRC}/makefile
-	@${REINPLACE_CMD} -e 's/%%PTHREAD_CFLAGS%%/${PTHREAD_CFLAGS}/' ${WRKSRC}/makefile
-	@${REINPLACE_CMD} -e 's/%%PTHREAD_LIBS%%/${PTHREAD_LIBS}/' ${WRKSRC}/tools/getlibs.sh
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/libcl.a ${WRKSRC}/libcl.so.${PORTVERSION} \

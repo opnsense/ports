@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	CGI-Deurl-XS
-PORTVERSION=	0.07
+PORTVERSION=	0.08
 CATEGORIES=	www perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
@@ -15,5 +15,7 @@ LICENSE_COMB=	dual
 
 USES=		perl5
 USE_PERL5=	configure
+
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.mk>
