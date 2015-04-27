@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.321
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.321
+Problem:    Can't build with strawberry perl 5.20 + mingw-w64-4.9.0.
+Solution:   Define save_strlen. (Ken Takata)
+Files:	    src/if_perl.xs
+
+
+*** ../vim-7.4.320/src/if_perl.xs	2014-03-12 17:08:01.508807656 +0100
+--- src/if_perl.xs	2014-06-12 16:02:25.584044368 +0200
+***************
+*** 191,196 ****
+--- 191,199 ----
+  # define Perl_pop_scope dll_Perl_pop_scope
+  # define Perl_push_scope dll_Perl_push_scope
+  # define Perl_save_int dll_Perl_save_int
++ # if (PERL_REVISION == 5) && (PERL_VERSION >= 20)
++ #  define Perl_save_strlen dll_Perl_save_strlen
++ # endif
+  # define Perl_stack_grow dll_Perl_stack_grow
+  # define Perl_set_context dll_Perl_set_context
+  # if (PERL_REVISION == 5) && (PERL_VERSION >= 14)
+***************
+*** 311,316 ****
+--- 314,322 ----
+  static void (*Perl_pop_scope)(pTHX);
+  static void (*Perl_push_scope)(pTHX);
+  static void (*Perl_save_int)(pTHX_ int*);
++ #if (PERL_REVISION == 5) && (PERL_VERSION >= 20)
++ static void (*Perl_save_strlen)(pTHX_ STRLEN* ptr);
++ #endif
+  static SV** (*Perl_stack_grow)(pTHX_ SV**, SV**p, int);
+  static SV** (*Perl_set_context)(void*);
+  #if (PERL_REVISION == 5) && (PERL_VERSION >= 14)
+***************
+*** 440,445 ****
+--- 446,454 ----
+      {"Perl_pop_scope", (PERL_PROC*)&Perl_pop_scope},
+      {"Perl_push_scope", (PERL_PROC*)&Perl_push_scope},
+      {"Perl_save_int", (PERL_PROC*)&Perl_save_int},
++ #if (PERL_REVISION == 5) && (PERL_VERSION >= 20)
++     {"Perl_save_strlen", (PERL_PROC*)&Perl_save_strlen},
++ #endif
+      {"Perl_stack_grow", (PERL_PROC*)&Perl_stack_grow},
+      {"Perl_set_context", (PERL_PROC*)&Perl_set_context},
+  #if (PERL_REVISION == 5) && (PERL_VERSION >= 14)
+*** ../vim-7.4.320/src/version.c	2014-06-12 14:01:27.583769788 +0200
+--- src/version.c	2014-06-12 16:02:37.156044806 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     321,
+  /**/
+
+-- 
+Microsoft's definition of a boolean: TRUE, FALSE, MAYBE
+"Embrace and extend"...?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

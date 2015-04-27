@@ -1,0 +1,78 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.500
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.500
+Problem:    Test 72 still fails once in a while.
+Solution:   Don't set 'fileformat' to unix, reset it. (Ken Takata)
+Files:	    src/testdir/test72.in
+
+
+*** ../vim-7.4.499/src/testdir/test72.in	2014-08-16 17:34:31.186128463 +0200
+--- src/testdir/test72.in	2014-11-05 16:34:30.068573320 +0100
+***************
+*** 8,14 ****
+  :" Test 'undofile': first a simple one-line change.
+  :set nocompatible viminfo+=nviminfo visualbell
+  :set ul=100 undofile nomore
+- :set ff=unix
+  :e! Xtestfile
+  ggdGithis is one line:set ul=100
+  :s/one/ONE/
+--- 8,13 ----
+***************
+*** 83,89 ****
+  :" With encryption, cryptmethod=blowfish
+  :e! Xtestfile
+  rubbish
+! :set undofile cm=blowfish
+  ggdGijan
+  feb
+  mar
+--- 82,88 ----
+  :" With encryption, cryptmethod=blowfish
+  :e! Xtestfile
+  rubbish
+! :set undofile cm=blowfish ff&
+  ggdGijan
+  feb
+  mar
+***************
+*** 109,115 ****
+  :" With encryption, cryptmethod=blowfish2
+  :e! Xtestfile
+  rubbish
+! :set undofile cm=blowfish2
+  ggdGijan
+  feb
+  mar
+--- 108,114 ----
+  :" With encryption, cryptmethod=blowfish2
+  :e! Xtestfile
+  rubbish
+! :set undofile cm=blowfish2 ff&
+  ggdGijan
+  feb
+  mar
+*** ../vim-7.4.499/src/version.c	2014-11-05 16:03:40.588617886 +0100
+--- src/version.c	2014-11-05 16:34:20.368573554 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     500,
+  /**/
+
+-- 
+No letters of the alphabet were harmed in the creation of this message.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,132 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.543
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.543
+Problem:    Since patch 7.4.232 "1,3s/\n//" joins two lines instead of three.
+	    (Eliseo Martínez)  Issue 287
+Solution:   Correct the line count. (Christian Brabandt)
+	    Also set the last used search pattern.
+Files:	    src/ex_cmds.c, src/search.c, src/proto/search.pro
+
+
+*** ../vim-7.4.542/src/ex_cmds.c	2014-11-30 13:34:16.889626728 +0100
+--- src/ex_cmds.c	2014-12-13 03:11:09.032894963 +0100
+***************
+*** 4408,4413 ****
+--- 4408,4415 ----
+  	    && (*cmd == NUL || (cmd[1] == NUL && (*cmd == 'g' || *cmd == 'l'
+  					     || *cmd == 'p' || *cmd == '#'))))
+      {
++ 	linenr_T    joined_lines_count;
++ 
+  	curwin->w_cursor.lnum = eap->line1;
+  	if (*cmd == 'l')
+  	    eap->flags = EXFLAG_LIST;
+***************
+*** 4416,4425 ****
+  	else if (*cmd == 'p')
+  	    eap->flags = EXFLAG_PRINT;
+  
+! 	(void)do_join(eap->line2 - eap->line1 + 1, FALSE, TRUE, FALSE, TRUE);
+! 	sub_nlines = sub_nsubs = eap->line2 - eap->line1 + 1;
+! 	(void)do_sub_msg(FALSE);
+! 	ex_may_print(eap);
+  	return;
+      }
+  
+--- 4418,4444 ----
+  	else if (*cmd == 'p')
+  	    eap->flags = EXFLAG_PRINT;
+  
+! 	/* The number of lines joined is the number of lines in the range plus
+! 	 * one.  One less when the last line is included. */
+! 	joined_lines_count = eap->line2 - eap->line1 + 1;
+! 	if (eap->line2 < curbuf->b_ml.ml_line_count)
+! 	    ++joined_lines_count;
+! 	if (joined_lines_count > 1)
+! 	{
+! 	    (void)do_join(joined_lines_count, FALSE, TRUE, FALSE, TRUE);
+! 	    sub_nsubs = joined_lines_count - 1;
+! 	    sub_nlines = 1;
+! 	    (void)do_sub_msg(FALSE);
+! 	    ex_may_print(eap);
+! 	}
+! 
+! 	if (!cmdmod.keeppatterns)
+! 	    save_re_pat(RE_SUBST, pat, p_magic);
+! #ifdef FEAT_CMDHIST
+! 	/* put pattern in history */
+! 	add_to_history(HIST_SEARCH, pat, TRUE, NUL);
+! #endif
+! 
+  	return;
+      }
+  
+*** ../vim-7.4.542/src/search.c	2014-11-27 17:29:52.770188864 +0100
+--- src/search.c	2014-12-13 03:12:18.032159491 +0100
+***************
+*** 12,18 ****
+  
+  #include "vim.h"
+  
+- static void save_re_pat __ARGS((int idx, char_u *pat, int magic));
+  #ifdef FEAT_EVAL
+  static void set_vv_searchforward __ARGS((void));
+  static int first_submatch __ARGS((regmmatch_T *rp));
+--- 12,17 ----
+***************
+*** 272,278 ****
+  }
+  #endif
+  
+!     static void
+  save_re_pat(idx, pat, magic)
+      int		idx;
+      char_u	*pat;
+--- 271,277 ----
+  }
+  #endif
+  
+!     void
+  save_re_pat(idx, pat, magic)
+      int		idx;
+      char_u	*pat;
+*** ../vim-7.4.542/src/proto/search.pro	2013-08-10 13:37:25.000000000 +0200
+--- src/proto/search.pro	2014-12-13 03:12:21.440123253 +0100
+***************
+*** 2,7 ****
+--- 2,8 ----
+  int search_regcomp __ARGS((char_u *pat, int pat_save, int pat_use, int options, regmmatch_T *regmatch));
+  char_u *get_search_pat __ARGS((void));
+  char_u *reverse_text __ARGS((char_u *s));
++ void save_re_pat __ARGS((int idx, char_u *pat, int magic));
+  void save_search_patterns __ARGS((void));
+  void restore_search_patterns __ARGS((void));
+  void free_search_patterns __ARGS((void));
+*** ../vim-7.4.542/src/version.c	2014-12-08 04:16:26.273702793 +0100
+--- src/version.c	2014-12-13 02:54:27.295570327 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     543,
+  /**/
+
+-- 
+For large projects, Team Leaders use sophisticated project management software
+to keep track of who's doing what.  The software collects the lies and guesses
+of the project team and organizes them in to instantly outdated charts that
+are too boring to look at closely.  This is called "planning".
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

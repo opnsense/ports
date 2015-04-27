@@ -1,0 +1,89 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.610
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.610
+Problem:    Some function headers may be missing from generated .pro files.
+Solution:   Add PROTO to the #ifdef.
+Files:	    src/option.c, src/syntax.c
+
+
+*** ../vim-7.4.609/src/option.c	2015-01-27 15:58:37.198395525 +0100
+--- src/option.c	2015-02-03 12:57:39.718500650 +0100
+***************
+*** 11212,11218 ****
+      return FALSE;
+  }
+  
+! #ifdef FEAT_LANGMAP
+  /*
+   * Any character has an equivalent 'langmap' character.  This is used for
+   * keyboards that have a special language mode that sends characters above
+--- 11212,11218 ----
+      return FALSE;
+  }
+  
+! #if defined(FEAT_LANGMAP) || defined(PROTO)
+  /*
+   * Any character has an equivalent 'langmap' character.  This is used for
+   * keyboards that have a special language mode that sends characters above
+***************
+*** 11226,11232 ****
+   * langmap_entry_T.  This does the same as langmap_mapchar[] for characters >=
+   * 256.
+   */
+! # ifdef FEAT_MBYTE
+  /*
+   * With multi-byte support use growarray for 'langmap' chars >= 256
+   */
+--- 11226,11232 ----
+   * langmap_entry_T.  This does the same as langmap_mapchar[] for characters >=
+   * 256.
+   */
+! # if defined(FEAT_MBYTE) || defined(PROTO)
+  /*
+   * With multi-byte support use growarray for 'langmap' chars >= 256
+   */
+*** ../vim-7.4.609/src/syntax.c	2014-11-19 19:33:13.369532180 +0100
+--- src/syntax.c	2015-02-03 12:59:13.377443499 +0100
+***************
+*** 6537,6543 ****
+  }
+  #endif
+  
+! #ifdef FEAT_PROFILE
+  /*
+   * ":syntime".
+   */
+--- 6537,6543 ----
+  }
+  #endif
+  
+! #if defined(FEAT_PROFILE) || defined(PROTO)
+  /*
+   * ":syntime".
+   */
+*** ../vim-7.4.609/src/version.c	2015-02-03 12:55:11.140179551 +0100
+--- src/version.c	2015-02-03 12:58:24.829991354 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     610,
+  /**/
+
+-- 
+Microsoft says that MS-Windows is much better for you than Linux.
+That's like the Pope saying that catholicism is much better for
+you than protestantism.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.288
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.288
+Problem:    When 'spellfile' is set the screen is not redrawn.
+Solution:   Redraw when updating the spelling info. (Christian Brabandt)
+Files:	    src/spell.c
+
+
+*** ../vim-7.4.287/src/spell.c	2014-03-23 15:12:29.939264336 +0100
+--- src/spell.c	2014-05-13 14:01:59.165610391 +0200
+***************
+*** 4508,4513 ****
+--- 4508,4514 ----
+  theend:
+      vim_free(spl_copy);
+      recursive = FALSE;
++     redraw_win_later(wp, NOT_VALID);
+      return ret_msg;
+  }
+  
+*** ../vim-7.4.287/src/version.c	2014-05-13 13:52:34.821605451 +0200
+--- src/version.c	2014-05-13 13:55:26.865606957 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     288,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+151. You find yourself engaged to someone you've never actually met,
+     except through e-mail.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

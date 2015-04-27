@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.468
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.468
+Problem:    Issue 26: CTRL-C does not interrupt after it was mapped and then
+	    unmapped.
+Solution:   Reset mapped_ctrl_c. (Christian Brabandt)
+Files:	    src/getchar.c
+
+
+*** ../vim-7.4.467/src/getchar.c	2014-07-30 16:00:45.539553496 +0200
+--- src/getchar.c	2014-10-09 13:34:09.988888496 +0200
+***************
+*** 3707,3712 ****
+--- 3707,3715 ----
+      {
+  	if (!did_it)
+  	    retval = 2;			    /* no match */
++ 	else if (*keys == Ctrl_C)
++ 	    /* If CTRL-C has been unmapped, reuse it for Interrupting. */
++ 	    mapped_ctrl_c = FALSE;
+  	goto theend;
+      }
+  
+***************
+*** 3739,3745 ****
+  	goto theend;
+      }
+  
+!     /* If CTRL-C has been mapped, don't always use it for Interrupting */
+      if (*keys == Ctrl_C)
+  	mapped_ctrl_c = TRUE;
+  
+--- 3742,3748 ----
+  	goto theend;
+      }
+  
+!     /* If CTRL-C has been mapped, don't always use it for Interrupting. */
+      if (*keys == Ctrl_C)
+  	mapped_ctrl_c = TRUE;
+  
+*** ../vim-7.4.467/src/version.c	2014-10-09 13:22:41.808886993 +0200
+--- src/version.c	2014-10-09 13:29:56.252887942 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     468,
+  /**/
+
+-- 
+Marriage isn't a word.  It's a sentence.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

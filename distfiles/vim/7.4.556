@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.556
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.556
+Problem:    Failed commands in Python interface not handled correctly.
+Solution:   Restore window and buffer on failure.
+Files:	    src/if_py_both.h
+
+
+*** ../vim-7.4.555/src/if_py_both.h	2014-08-29 13:49:48.678436915 +0200
+--- src/if_py_both.h	2014-09-19 14:21:33.474404353 +0200
+***************
+*** 3172,3177 ****
+--- 3172,3178 ----
+  	    if (switch_win(&save_curwin, &save_curtab, (win_T *)from,
+  			      win_find_tabpage((win_T *)from), FALSE) == FAIL)
+  	    {
++ 		restore_win(save_curwin, save_curtab, TRUE);
+  		if (VimTryEnd())
+  		    return -1;
+  		PyErr_SET_VIM(N_("problem while switching windows"));
+***************
+*** 4032,4040 ****
+      win_T	*wp;
+      tabpage_T	*tp;
+  
+!     if (find_win_for_buf(buf, &wp, &tp) == FAIL
+! 	    || switch_win(save_curwinp, save_curtabp, wp, tp, TRUE) == FAIL)
+  	switch_buffer(save_curbufp, buf);
+  }
+  
+      static void
+--- 4033,4045 ----
+      win_T	*wp;
+      tabpage_T	*tp;
+  
+!     if (find_win_for_buf(buf, &wp, &tp) == FAIL)
+  	switch_buffer(save_curbufp, buf);
++     else if (switch_win(save_curwinp, save_curtabp, wp, tp, TRUE) == FAIL)
++     {
++ 	restore_win(*save_curwinp, *save_curtabp, TRUE);
++ 	switch_buffer(save_curbufp, buf);
++     }
+  }
+  
+      static void
+*** ../vim-7.4.555/src/version.c	2014-12-17 14:42:42.990240206 +0100
+--- src/version.c	2014-12-17 14:44:33.304877367 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     556,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+4. Your eyeglasses have a web site burned in on them.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

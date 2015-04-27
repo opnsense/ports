@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.511
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.511
+Problem:    Generating proto for if_ruby.c uses type not defined elsewhere.
+Solution:   Do not generate a prototype for
+	    rb_gc_writebarrier_unprotect_promoted()
+Files:	    src/if_ruby.c
+
+
+*** ../vim-7.4.510/src/if_ruby.c	2014-03-28 21:58:17.878256914 +0100
+--- src/if_ruby.c	2014-11-12 15:28:07.971812917 +0100
+***************
+*** 418,424 ****
+  #  endif
+  # endif
+  
+! # if defined(USE_RGENGC) && USE_RGENGC
+  void rb_gc_writebarrier_unprotect_promoted_stub(VALUE obj)
+  {
+      return dll_rb_gc_writebarrier_unprotect_promoted(obj);
+--- 418,425 ----
+  #  endif
+  # endif
+  
+!    /* Do not generate a prototype here, VALUE isn't always defined. */
+! # if defined(USE_RGENGC) && USE_RGENGC && !defined(PROTO)
+  void rb_gc_writebarrier_unprotect_promoted_stub(VALUE obj)
+  {
+      return dll_rb_gc_writebarrier_unprotect_promoted(obj);
+*** ../vim-7.4.510/src/version.c	2014-11-12 15:45:16.595789120 +0100
+--- src/version.c	2014-11-12 16:04:18.698532684 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     511,
+  /**/
+
+-- 
+TIM: To the north there lies a cave,  the cave of Caerbannog, wherein, carved
+     in mystic runes, upon the very living rock, the last words of Olfin
+     Bedwere of Rheged make plain the last resting place of the most Holy
+     Grail.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

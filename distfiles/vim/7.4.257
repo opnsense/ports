@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.257
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.257
+Problem:    Compiler warning, possibly for mismatch in parameter name.
+Solution:   Rename the parameter in the declaration.
+Files:	    src/ops.c
+
+*** ../vim-7.4.256/src/ops.c	2014-04-02 22:17:00.003482236 +0200
+--- src/ops.c	2014-04-12 12:23:59.308424067 +0200
+***************
+*** 113,119 ****
+  #endif
+  static void	block_prep __ARGS((oparg_T *oap, struct block_def *, linenr_T, int));
+  #if defined(FEAT_CLIPBOARD) || defined(FEAT_EVAL)
+! static void	str_to_reg __ARGS((struct yankreg *y_ptr, int type, char_u *str, long len, long blocklen, int str_list));
+  #endif
+  static int	ends_in_white __ARGS((linenr_T lnum));
+  #ifdef FEAT_COMMENTS
+--- 113,119 ----
+  #endif
+  static void	block_prep __ARGS((oparg_T *oap, struct block_def *, linenr_T, int));
+  #if defined(FEAT_CLIPBOARD) || defined(FEAT_EVAL)
+! static void	str_to_reg __ARGS((struct yankreg *y_ptr, int yank_type, char_u *str, long len, long blocklen, int str_list));
+  #endif
+  static int	ends_in_white __ARGS((linenr_T lnum));
+  #ifdef FEAT_COMMENTS
+*** ../vim-7.4.256/src/version.c	2014-04-11 10:22:46.288219453 +0200
+--- src/version.c	2014-04-12 12:25:44.176424296 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     257,
+  /**/
+
+-- 
+The real
+trick is
+this: to
+keep the
+lines as
+short as
+possible
+and keep
+the size
+the same
+yet free
+from the
+need for
+hyphena-
+Dammit!!  (Matthew Winn)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

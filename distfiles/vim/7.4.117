@@ -1,0 +1,263 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.117
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.117
+Problem:    Can't build with Cygwin/MingW and Perl 5.18.
+Solution:   Add a linker argument for the Perl library. (Cesar Romani)
+	    Adjust CFLAGS and LIB. (Cesar Romani)
+	    Move including inline.h further down. (Ken Takata)
+Files:	    src/Make_cyg.mak, src/Make_ming.mak, src/if_perl.xs
+
+
+*** ../vim-7.4.116/src/Make_cyg.mak	2013-11-28 16:32:34.000000000 +0100
+--- src/Make_cyg.mak	2013-12-11 14:59:12.000000000 +0100
+***************
+*** 1,6 ****
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Nov 28
+  #
+  # Also read INSTALLpc.txt!
+  #
+--- 1,6 ----
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Dec 11
+  #
+  # Also read INSTALLpc.txt!
+  #
+***************
+*** 155,161 ****
+  ifeq (yes, $(DYNAMIC_PERL))
+  DEFINES += -DDYNAMIC_PERL -DDYNAMIC_PERL_DLL=\"perl$(PERL_VER).dll\"
+  else
+! EXTRA_LIBS += $(PERL)/lib/CORE/perl$(PERL_VER).lib
+  endif
+  endif
+  
+--- 155,161 ----
+  ifeq (yes, $(DYNAMIC_PERL))
+  DEFINES += -DDYNAMIC_PERL -DDYNAMIC_PERL_DLL=\"perl$(PERL_VER).dll\"
+  else
+! EXTRA_LIBS += -L$(PERL)/lib/CORE -lperl$(PERL_VER)
+  endif
+  endif
+  
+*** ../vim-7.4.116/src/Make_ming.mak	2013-07-06 13:32:11.000000000 +0200
+--- src/Make_ming.mak	2013-12-07 20:02:52.000000000 +0100
+***************
+*** 359,364 ****
+--- 359,365 ----
+  
+  CFLAGS = -Iproto $(DEFINES) -pipe -w -march=$(ARCH) -Wall
+  WINDRES_FLAGS = --preprocessor="$(WINDRES_CC) -E -xc" -DRC_INVOKED
++ EXTRA_LIBS =
+  
+  ifdef GETTEXT
+  DEFINES += -DHAVE_GETTEXT -DHAVE_LOCALE_H
+***************
+*** 377,385 ****
+  endif
+  
+  ifdef PERL
+! CFLAGS += -I$(PERLLIBS) -DFEAT_PERL -L$(PERLLIBS)
+  ifeq (yes, $(DYNAMIC_PERL))
+  CFLAGS += -DDYNAMIC_PERL -DDYNAMIC_PERL_DLL=\"perl$(PERL_VER).dll\"
+  endif
+  endif
+  
+--- 378,387 ----
+  endif
+  
+  ifdef PERL
+! CFLAGS += -I$(PERLLIBS) -DFEAT_PERL
+  ifeq (yes, $(DYNAMIC_PERL))
+  CFLAGS += -DDYNAMIC_PERL -DDYNAMIC_PERL_DLL=\"perl$(PERL_VER).dll\"
++ EXTRA_LIBS += -L$(PERLLIBS) -lperl$(PERL_VER)
+  endif
+  endif
+  
+***************
+*** 632,638 ****
+  
+  ifdef PERL
+  ifeq (no, $(DYNAMIC_PERL))
+! LIB += -lperl$(PERL_VER)
+  endif
+  endif
+  
+--- 634,640 ----
+  
+  ifdef PERL
+  ifeq (no, $(DYNAMIC_PERL))
+! LIB += -L$(PERLLIBS) -lperl$(PERL_VER)
+  endif
+  endif
+  
+*** ../vim-7.4.116/src/if_perl.xs	2013-08-02 19:28:50.000000000 +0200
+--- src/if_perl.xs	2013-12-11 15:02:58.000000000 +0100
+***************
+*** 14,20 ****
+  #define IN_PERL_FILE	/* don't include if_perl.pro from proto.h */
+  
+  /*
+!  * Currently 32-bit version of ActivePerl is built with VC6.
+   * (http://community.activestate.com/faq/windows-compilers-perl-modules)
+   * It means that time_t should be 32-bit. However the default size of
+   * time_t is 64-bit since VC8. So we have to define _USE_32BIT_TIME_T.
+--- 14,21 ----
+  #define IN_PERL_FILE	/* don't include if_perl.pro from proto.h */
+  
+  /*
+!  * Currently 32-bit version of ActivePerl is built with VC6 (or MinGW since
+!  * ActivePerl 5.18).
+   * (http://community.activestate.com/faq/windows-compilers-perl-modules)
+   * It means that time_t should be 32-bit. However the default size of
+   * time_t is 64-bit since VC8. So we have to define _USE_32BIT_TIME_T.
+***************
+*** 23,28 ****
+--- 24,45 ----
+  # define _USE_32BIT_TIME_T
+  #endif
+  
++ /* Work around for perl-5.18.
++  * Don't include "perl\lib\CORE\inline.h" for now,
++  * include it after Perl_sv_free2 is defined. */
++ #define PERL_NO_INLINE_FUNCTIONS
++ 
++ /*
++  * Prevent including winsock.h.  perl.h tries to detect whether winsock.h is
++  * already included before including winsock2.h, because winsock2.h isn't
++  * compatible with winsock.h.  However the detection doesn't work with some
++  * versions of MinGW.  If WIN32_LEAN_AND_MEAN is defined, windows.h will not
++  * include winsock.h.
++  */
++ #ifdef WIN32
++ # define WIN32_LEAN_AND_MEAN
++ #endif
++ 
+  #include "vim.h"
+  
+  #include <EXTERN.h>
+***************
+*** 81,90 ****
+  # define PERL5101_OR_LATER
+  #endif
+  
+- #if (PERL_REVISION == 5) && (PERL_VERSION >= 18)
+- # define PERL5180_OR_LATER
+- #endif
+- 
+  #ifndef pTHX
+  #    define pTHX void
+  #    define pTHX_
+--- 98,103 ----
+***************
+*** 145,155 ****
+  # define perl_free dll_perl_free
+  # define Perl_get_context dll_Perl_get_context
+  # define Perl_croak dll_Perl_croak
+- # ifndef PERL5180_OR_LATER
+  # ifdef PERL5101_OR_LATER
+  #  define Perl_croak_xs_usage dll_Perl_croak_xs_usage
+  # endif
+- # endif
+  # ifndef PROTO
+  #  define Perl_croak_nocontext dll_Perl_croak_nocontext
+  #  define Perl_call_argv dll_Perl_call_argv
+--- 158,166 ----
+***************
+*** 262,271 ****
+  static int (*perl_parse)(PerlInterpreter*, XSINIT_t, int, char**, char**);
+  static void* (*Perl_get_context)(void);
+  static void (*Perl_croak)(pTHX_ const char*, ...);
+- #ifndef PERL5180_OR_LATER
+  #ifdef PERL5101_OR_LATER
+  static void (*Perl_croak_xs_usage)(pTHX_ const CV *const, const char *const params);
+! #endif
+  #endif
+  static void (*Perl_croak_nocontext)(const char*, ...);
+  static I32 (*Perl_dowantarray)(pTHX);
+--- 273,285 ----
+  static int (*perl_parse)(PerlInterpreter*, XSINIT_t, int, char**, char**);
+  static void* (*Perl_get_context)(void);
+  static void (*Perl_croak)(pTHX_ const char*, ...);
+  #ifdef PERL5101_OR_LATER
++ /* Perl-5.18 has a different Perl_croak_xs_usage signature. */
++ # if (PERL_REVISION == 5) && (PERL_VERSION >= 18)
++ static void (*Perl_croak_xs_usage)(const CV *const, const char *const params);
++ # else
+  static void (*Perl_croak_xs_usage)(pTHX_ const CV *const, const char *const params);
+! # endif
+  #endif
+  static void (*Perl_croak_nocontext)(const char*, ...);
+  static I32 (*Perl_dowantarray)(pTHX);
+***************
+*** 337,343 ****
+--- 351,362 ----
+  static XPV** (*Perl_TXpv_ptr)(register PerlInterpreter*);
+  static STRLEN* (*Perl_Tna_ptr)(register PerlInterpreter*);
+  #else
++ /* Perl-5.18 has a different Perl_sv_free2 signature. */
++ # if (PERL_REVISION == 5) && (PERL_VERSION >= 18)
++ static void (*Perl_sv_free2)(pTHX_ SV*, const U32);
++ # else
+  static void (*Perl_sv_free2)(pTHX_ SV*);
++ # endif
+  static void (*Perl_sys_init)(int* argc, char*** argv);
+  static void (*Perl_sys_term)(void);
+  static void (*Perl_call_list)(pTHX_ I32, AV*);
+***************
+*** 384,394 ****
+      {"perl_parse", (PERL_PROC*)&perl_parse},
+      {"Perl_get_context", (PERL_PROC*)&Perl_get_context},
+      {"Perl_croak", (PERL_PROC*)&Perl_croak},
+- #ifndef PERL5180_OR_LATER
+  #ifdef PERL5101_OR_LATER
+      {"Perl_croak_xs_usage", (PERL_PROC*)&Perl_croak_xs_usage},
+  #endif
+- #endif
+      {"Perl_croak_nocontext", (PERL_PROC*)&Perl_croak_nocontext},
+      {"Perl_dowantarray", (PERL_PROC*)&Perl_dowantarray},
+      {"Perl_free_tmps", (PERL_PROC*)&Perl_free_tmps},
+--- 403,411 ----
+***************
+*** 492,497 ****
+--- 509,522 ----
+      {"", NULL},
+  };
+  
++ /* Work around for perl-5.18.
++  * The definitions of S_SvREFCNT_inc and S_SvREFCNT_dec are needed, so include
++  * "perl\lib\CORE\inline.h", after Perl_sv_free2 is defined.
++  * The linker won't complain about undefined __impl_Perl_sv_free2. */
++ #if (PERL_REVISION == 5) && (PERL_VERSION >= 18)
++ # include <inline.h>
++ #endif
++ 
+  /*
+   * Make all runtime-links of perl.
+   *
+*** ../vim-7.4.116/src/version.c	2013-12-11 14:54:58.000000000 +0100
+--- src/version.c	2013-12-11 15:00:12.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     117,
+  /**/
+
+-- 
+Despite the cost of living, have you noticed how it remains so popular?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

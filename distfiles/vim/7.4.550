@@ -1,0 +1,147 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.550
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.550
+Problem:    curs_rows() function is always called with the second argument
+            false.
+Solution:   Remove the argument. (Christian Brabandt)
+            validate_botline_win() can then also be removed.
+Files:      src/move.c
+
+
+*** ../vim-7.4.549/src/move.c	2014-09-23 18:37:52.422823701 +0200
+--- src/move.c	2014-12-13 20:54:33.687102446 +0100
+***************
+*** 23,30 ****
+  static void redraw_for_cursorline __ARGS((win_T *wp));
+  static int scrolljump_value __ARGS((void));
+  static int check_top_offset __ARGS((void));
+! static void curs_rows __ARGS((win_T *wp, int do_botline));
+! static void validate_botline_win __ARGS((win_T *wp));
+  static void validate_cheight __ARGS((void));
+  
+  typedef struct
+--- 23,29 ----
+  static void redraw_for_cursorline __ARGS((win_T *wp));
+  static int scrolljump_value __ARGS((void));
+  static int check_top_offset __ARGS((void));
+! static void curs_rows __ARGS((win_T *wp));
+  static void validate_cheight __ARGS((void));
+  
+  typedef struct
+***************
+*** 609,625 ****
+  }
+  
+  /*
+-  * Make sure the value of wp->w_botline is valid.
+-  */
+-     static void
+- validate_botline_win(wp)
+-     win_T	*wp;
+- {
+-     if (!(wp->w_valid & VALID_BOTLINE))
+- 	comp_botline(wp);
+- }
+- 
+- /*
+   * Mark curwin->w_botline as invalid (because of some change in the buffer).
+   */
+      void
+--- 608,613 ----
+***************
+*** 678,697 ****
+      update_topline();
+      check_cursor_moved(curwin);
+      if (!(curwin->w_valid & VALID_CROW))
+! 	curs_rows(curwin, FALSE);
+  }
+  #endif
+  
+  /*
+   * Compute wp->w_cline_row and wp->w_cline_height, based on the current value
+   * of wp->w_topline.
+-  *
+-  * Returns OK when cursor is in the window, FAIL when it isn't.
+   */
+      static void
+! curs_rows(wp, do_botline)
+      win_T	*wp;
+-     int		do_botline;		/* also compute w_botline */
+  {
+      linenr_T	lnum;
+      int		i;
+--- 666,682 ----
+      update_topline();
+      check_cursor_moved(curwin);
+      if (!(curwin->w_valid & VALID_CROW))
+! 	curs_rows(curwin);
+  }
+  #endif
+  
+  /*
+   * Compute wp->w_cline_row and wp->w_cline_height, based on the current value
+   * of wp->w_topline.
+   */
+      static void
+! curs_rows(wp)
+      win_T	*wp;
+  {
+      linenr_T	lnum;
+      int		i;
+***************
+*** 810,818 ****
+      redraw_for_cursorline(curwin);
+      wp->w_valid |= VALID_CROW|VALID_CHEIGHT;
+  
+-     /* validate botline too, if update_screen doesn't do it */
+-     if (do_botline && all_invalid)
+- 	validate_botline_win(wp);
+  }
+  
+  /*
+--- 795,800 ----
+***************
+*** 986,992 ****
+       * Next make sure that w_cline_row is valid.
+       */
+      if (!(curwin->w_valid & VALID_CROW))
+! 	curs_rows(curwin, FALSE);
+  
+      /*
+       * Compute the number of virtual columns.
+--- 968,974 ----
+       * Next make sure that w_cline_row is valid.
+       */
+      if (!(curwin->w_valid & VALID_CROW))
+! 	curs_rows(curwin);
+  
+      /*
+       * Compute the number of virtual columns.
+*** ../vim-7.4.549/src/version.c	2014-12-13 21:00:52.059036480 +0100
+--- src/version.c	2014-12-13 21:04:26.080739460 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     550,
+  /**/
+
+-- 
+For humans, honesty is a matter of degree.  Engineers are always honest in
+matters of technology and human relationships.  That's why it's a good idea
+to keep engineers away from customers, romantic interests, and other people
+who can't handle the truth.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

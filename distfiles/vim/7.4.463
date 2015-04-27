@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.463
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.463
+Problem:    Test 86 and 87 may hang on MS-Windows.
+Solution:   Call inputrestore() after inputsave(). (Ken Takata)
+Files:	    src/testdir/test86.in, src/testdir/test87.in
+
+
+*** ../vim-7.4.462/src/testdir/test86.in	2014-03-12 15:26:36.428714415 +0100
+--- src/testdir/test86.in	2014-09-29 18:03:03.539951504 +0200
+***************
+*** 1384,1389 ****
+--- 1384,1390 ----
+  :debug silent! py test_keyboard_interrupt()
+  :redir END
+  :0 debuggreedy
++ :call inputrestore()
+  :silent $put =output
+  :unlet output
+  :py del test_keyboard_interrupt
+*** ../vim-7.4.462/src/testdir/test87.in	2014-03-12 15:26:36.432714415 +0100
+--- src/testdir/test87.in	2014-09-29 18:03:23.719951548 +0200
+***************
+*** 1361,1366 ****
+--- 1361,1367 ----
+  :debug silent! py3 test_keyboard_interrupt()
+  :redir END
+  :0 debuggreedy
++ :call inputrestore()
+  :silent $put =output
+  :unlet output
+  :py3 del test_keyboard_interrupt
+*** ../vim-7.4.462/src/version.c	2014-09-29 17:15:09.963945227 +0200
+--- src/version.c	2014-09-29 18:06:08.299951907 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     463,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+198. You read all the quotes at Netaholics Anonymous and keep thinking
+     "What's wrong with that?"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

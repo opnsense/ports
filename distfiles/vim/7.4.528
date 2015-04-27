@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.528
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.528
+Problem:    Crash when using matchadd() (Yasuhiro Matsumoto)
+Solution:   Copy the match regprog.
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.527/src/screen.c	2014-11-19 13:21:24.984724043 +0100
+--- src/screen.c	2014-11-27 13:26:05.754837048 +0100
+***************
+*** 7588,7593 ****
+--- 7588,7599 ----
+  	shl->lnum = lnum;
+  	if (shl->rm.regprog != NULL)
+  	{
++ 	    /* Remember whether shl->rm is using a copy of the regprog in
++ 	     * cur->match. */
++ 	    int regprog_is_copy = (shl != &search_hl && cur != NULL
++ 				&& shl == &cur->hl
++ 				&& cur->match.regprog == cur->hl.rm.regprog);
++ 
+  	    nmatched = vim_regexec_multi(&shl->rm, win, shl->buf, lnum,
+  		    matchcol,
+  #ifdef FEAT_RELTIME
+***************
+*** 7596,7601 ****
+--- 7602,7611 ----
+  		    NULL
+  #endif
+  		    );
++ 	    /* Copy the regprog, in case it got freed and recompiled. */
++ 	    if (regprog_is_copy)
++ 		cur->match.regprog = cur->hl.rm.regprog;
++ 
+  	    if (called_emsg || got_int)
+  	    {
+  		/* Error while handling regexp: stop using this regexp. */
+*** ../vim-7.4.527/src/version.c	2014-11-23 15:57:45.568009419 +0100
+--- src/version.c	2014-11-27 13:28:07.393495013 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     528,
+  /**/
+
+-- 
+FATAL ERROR! SYSTEM HALTED! - Press any key to continue doing nothing.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

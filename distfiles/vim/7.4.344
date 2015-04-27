@@ -1,0 +1,180 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.344
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.344
+Problem:    Unessecary initializations and other things related to
+	    matchaddpos().
+Solution:   Code cleanup. (Alexey Radkov)
+Files:	    runtime/doc/eval.txt, src/screen.c, src/window.c
+
+
+*** ../vim-7.4.343/runtime/doc/eval.txt	2014-06-25 17:31:04.934737863 +0200
+--- runtime/doc/eval.txt	2014-06-25 18:08:50.790823583 +0200
+***************
+*** 4353,4369 ****
+  		required, for example to highlight matching parentheses.
+  
+  		The list {pos} can contain one of these items:
+! 		- A number.  This while line will be highlighted.  The first
+  		  line has number 1.
+  		- A list with one number, e.g., [23]. The whole line with this
+  		  number will be highlighted.
+  		- A list with two numbers, e.g., [23, 11]. The first number is
+! 		  the line number, the second one the column number (first
+! 		  column is 1).  The character at this position will be
+! 		  highlighted.
+  		- A list with three numbers, e.g., [23, 11, 3]. As above, but
+! 		  the third number gives the length of the highlight in screen
+! 		  cells.
+  		
+  		The maximum number of positions is 8.
+  
+--- 4391,4407 ----
+  		required, for example to highlight matching parentheses.
+  
+  		The list {pos} can contain one of these items:
+! 		- A number.  This whole line will be highlighted.  The first
+  		  line has number 1.
+  		- A list with one number, e.g., [23]. The whole line with this
+  		  number will be highlighted.
+  		- A list with two numbers, e.g., [23, 11]. The first number is
+! 		  the line number, the second one is the column number (first
+! 		  column is 1, the value must correspond to the byte index as
+! 		  |col()| would return).  The character at this position will
+! 		  be highlighted.
+  		- A list with three numbers, e.g., [23, 11, 3]. As above, but
+! 		  the third number gives the length of the highlight in bytes.
+  		
+  		The maximum number of positions is 8.
+  
+*** ../vim-7.4.343/src/screen.c	2014-06-25 14:39:35.110348584 +0200
+--- src/screen.c	2014-06-25 18:10:11.906826652 +0200
+***************
+*** 7531,7537 ****
+      colnr_T	    mincol;	/* minimal column for a match */
+  {
+      int	    i;
+!     int     bot = -1;
+  
+      shl->lnum = 0;
+      for (i = posmatch->cur; i < MAXPOSMATCH; i++)
+--- 7531,7537 ----
+      colnr_T	    mincol;	/* minimal column for a match */
+  {
+      int	    i;
+!     int	    bot = -1;
+  
+      shl->lnum = 0;
+      for (i = posmatch->cur; i < MAXPOSMATCH; i++)
+*** ../vim-7.4.343/src/window.c	2014-06-25 17:58:07.346799241 +0200
+--- src/window.c	2014-06-25 18:10:45.698827930 +0200
+***************
+*** 6813,6819 ****
+      m->id = id;
+      m->priority = prio;
+      m->pattern = pat == NULL ? NULL : vim_strsave(pat);
+-     m->pos.cur = 0;
+      m->hlg_id = hlg_id;
+      m->match.regprog = regprog;
+      m->match.rmm_ic = FALSE;
+--- 6813,6818 ----
+***************
+*** 6827,6833 ****
+  	listitem_T	*li;
+  	int		i;
+  
+! 	for (i = 0, li = pos_list->lv_first; i < MAXPOSMATCH;
+  							i++, li = li->li_next)
+  	{
+  	    linenr_T	lnum = 0;
+--- 6826,6832 ----
+  	listitem_T	*li;
+  	int		i;
+  
+! 	for (i = 0, li = pos_list->lv_first; li != NULL && i < MAXPOSMATCH;
+  							i++, li = li->li_next)
+  	{
+  	    linenr_T	lnum = 0;
+***************
+*** 6837,6847 ****
+  	    listitem_T	*subli;
+  	    int		error = FALSE;
+  
+- 	    if (li == NULL)
+- 	    {
+- 		m->pos.pos[i].lnum = 0;
+- 		break;
+- 	    }
+  	    if (li->li_tv.v_type == VAR_LIST)
+  	    {
+  		subl = li->li_tv.vval.v_list;
+--- 6836,6841 ----
+***************
+*** 6853,6864 ****
+  		lnum = get_tv_number_chk(&subli->li_tv, &error);
+  		if (error == TRUE)
+  		    goto fail;
+- 		m->pos.pos[i].lnum = lnum;
+  		if (lnum == 0)
+  		{
+  		    --i;
+  		    continue;
+  		}
+  		subli = subli->li_next;
+  		if (subli != NULL)
+  		{
+--- 6847,6858 ----
+  		lnum = get_tv_number_chk(&subli->li_tv, &error);
+  		if (error == TRUE)
+  		    goto fail;
+  		if (lnum == 0)
+  		{
+  		    --i;
+  		    continue;
+  		}
++ 		m->pos.pos[i].lnum = lnum;
+  		subli = subli->li_next;
+  		if (subli != NULL)
+  		{
+***************
+*** 6879,6885 ****
+--- 6873,6882 ----
+  	    else if (li->li_tv.v_type == VAR_NUMBER)
+  	    {
+  		if (li->li_tv.vval.v_number == 0)
++ 		{
++ 		    --i;
+  		    continue;
++ 		}
+  		m->pos.pos[i].lnum = li->li_tv.vval.v_number;
+  		m->pos.pos[i].col = 0;
+  		m->pos.pos[i].len = 0;
+*** ../vim-7.4.343/src/version.c	2014-06-25 17:58:07.346799241 +0200
+--- src/version.c	2014-06-25 18:07:06.170819625 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     344,
+  /**/
+
+-- 
+    [clop clop]
+MORTICIAN:  Who's that then?
+CUSTOMER:   I don't know.
+MORTICIAN:  Must be a king.
+CUSTOMER:   Why?
+MORTICIAN:  He hasn't got shit all over him.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

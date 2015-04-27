@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.683
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.683
+Problem:    Typo in the vimtutor command.
+Solution:   Fix the typo. (Corey Farwell, github pull 349)
+Files:	    vimtutor.com
+
+
+*** ../vim-7.4.682/vimtutor.com	2013-05-06 04:04:07.000000000 +0200
+--- vimtutor.com	2015-03-25 20:19:12.886445792 +0100
+***************
+*** 6,14 ****
+  $ !	Author: Tom Wyant <Thomas.R.Wyant-III@usa.dupont.com>
+  $ !
+  $ !	This DCL command procedure executes the vimtutor command
+! $ !	(suprise, suprise!) which gives you a brief tutorial on the VIM
+! $ !	editor. Languages other than the default are supported in the
+! $ !	usual way, as are at least some of the command qualifiers,
+  $ !	though you'll need to play some fairly serious games with DCL
+  $ !	to specify ones that need quoting.
+  $ !
+--- 6,14 ----
+  $ !	Author: Tom Wyant <Thomas.R.Wyant-III@usa.dupont.com>
+  $ !
+  $ !	This DCL command procedure executes the vimtutor command
+! $ !	(surprise, surprise!) which gives you a brief tutorial on the
+! $ !	VIM editor. Languages other than the default are supported in
+! $ !	the usual way, as are at least some of the command qualifiers,
+  $ !	though you'll need to play some fairly serious games with DCL
+  $ !	to specify ones that need quoting.
+  $ !
+*** ../vim-7.4.682/src/version.c	2015-03-24 18:22:36.078072565 +0100
+--- src/version.c	2015-03-25 20:21:54.636689427 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     683,
+  /**/
+
+-- 
+TIM:   That is not an ordinary rabbit ... 'tis the most foul cruel and
+       bad-tempered thing you ever set eyes on.
+ROBIN: You tit.  I soiled my armour I was so scared!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

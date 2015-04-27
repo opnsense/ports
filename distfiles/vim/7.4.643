@@ -1,0 +1,324 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.643
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.643
+Problem:    Using the default file format for Mac files. (Issue 77)
+Solution:   Reset the try_mac counter in the right place. (Oswald)
+Files:	    src/fileio.c, src/testdir/test30.in, src/testdir/test30.ok
+
+
+*** ../vim-7.4.642/src/fileio.c	2015-02-17 16:04:50.816104407 +0100
+--- src/fileio.c	2015-02-27 17:44:07.687994962 +0100
+***************
+*** 2099,2110 ****
+  		/* First try finding a NL, for Dos and Unix */
+  		if (try_dos || try_unix)
+  		{
+  		    for (p = ptr; p < ptr + size; ++p)
+  		    {
+- 			/* Reset the carriage return counter. */
+- 			if (try_mac)
+- 			    try_mac = 1;
+- 
+  			if (*p == NL)
+  			{
+  			    if (!try_unix
+--- 2099,2110 ----
+  		/* First try finding a NL, for Dos and Unix */
+  		if (try_dos || try_unix)
+  		{
++ 		    /* Reset the carriage return counter. */
++ 		    if (try_mac)
++ 			try_mac = 1;
++ 
+  		    for (p = ptr; p < ptr + size; ++p)
+  		    {
+  			if (*p == NL)
+  			{
+  			    if (!try_unix
+*** ../vim-7.4.642/src/testdir/test30.in	2010-08-04 16:07:46.000000000 +0200
+--- src/testdir/test30.in	2015-02-27 17:42:21.697191823 +0100
+***************
+*** 7,43 ****
+  :" first write three test files, one in each format
+  :set fileformat=unix
+  :set fileformats=
+- :/^1/w! XX1
+- :/^2/w! XX2
+- :/^3/w! XX3
+- :/^4/w! XX4
+- :/^5/w! XX5
+- :/^6/w! XX6
+- :/^7/w! XX7
+- :/^8/w! XX8
+- :/^9/w! XX9
+- :/^10/w! XX10
+  :/^unix/;/eof/-1w! XXUnix
+  :/^dos/;/eof/-1w! XXDos
+  :set bin noeol
+  :$w! XXMac
+  :set nobin eol
+  :bwipe XXUnix XXDos XXMac
+  :" create mixed format files
+  :if has("vms")
+  : !copy XXUnix,XXDos XXUxDs.
+  : !copy XXUnix,XXMac XXUxMac.
+  : !copy XXDos,XXMac  XXDosMac.
+  : !copy XXUnix,XXDos,XXMac XXUxDsMc.
+  :elseif has("win32")
+  : !copy /b XXUnix+XXDos XXUxDs
+  : !copy /b XXUnix+XXMac XXUxMac
+  : !copy /b XXDos+XXMac XXDosMac
+  : !copy /b XXUnix+XXDos+XXMac XXUxDsMc
+  :else
+  : !cat XXUnix XXDos >XXUxDs
+  : !cat XXUnix XXMac >XXUxMac
+  : !cat XXDos XXMac >XXDosMac
+  : !cat XXUnix XXDos XXMac >XXUxDsMc
+  :endif
+  :"
+--- 7,39 ----
+  :" first write three test files, one in each format
+  :set fileformat=unix
+  :set fileformats=
+  :/^unix/;/eof/-1w! XXUnix
+  :/^dos/;/eof/-1w! XXDos
+  :set bin noeol
+  :$w! XXMac
++ Gonoeol
++ :$w! XXEol
+  :set nobin eol
++ :enew!
+  :bwipe XXUnix XXDos XXMac
+  :" create mixed format files
+  :if has("vms")
+  : !copy XXUnix,XXDos XXUxDs.
+  : !copy XXUnix,XXMac XXUxMac.
+  : !copy XXDos,XXMac  XXDosMac.
++ : !copy XXMac,XXEol  XXMacEol.
+  : !copy XXUnix,XXDos,XXMac XXUxDsMc.
+  :elseif has("win32")
+  : !copy /b XXUnix+XXDos XXUxDs
+  : !copy /b XXUnix+XXMac XXUxMac
+  : !copy /b XXDos+XXMac XXDosMac
++ : !copy /b XXMac+XXEol XXMacEol
+  : !copy /b XXUnix+XXDos+XXMac XXUxDsMc
+  :else
+  : !cat XXUnix XXDos >XXUxDs
+  : !cat XXUnix XXMac >XXUxMac
+  : !cat XXDos XXMac >XXDosMac
++ : !cat XXMac XXEol >XXMacEol
+  : !cat XXUnix XXDos XXMac >XXUxDsMc
+  :endif
+  :"
+***************
+*** 102,127 ****
+  :e! XXDosMac
+  :w! XXtt53
+  :bwipe XXDosMac
+  :set fileformats=dos,mac
+  :e! XXUxDs
+  :w! XXtt61
+  :bwipe XXUxDs
+  :e! XXUxMac
+! :w! XXtt62
+  :bwipe XXUxMac
+  :e! XXUxDsMc
+  :w! XXtt63
+  :bwipe XXUxDsMc
+  :"
+  :" try reading and writing with 'fileformats' set to three formats
+  :set fileformats=unix,dos,mac
+  :e! XXUxDsMc
+  :w! XXtt71
+  :bwipe XXUxDsMc
+  :set fileformats=mac,dos,unix
+  :e! XXUxDsMc
+  :w! XXtt81
+  :bwipe XXUxDsMc
+  :" try with 'binary' set
+  :set fileformats=mac,unix,dos
+  :set binary
+--- 98,145 ----
+  :e! XXDosMac
+  :w! XXtt53
+  :bwipe XXDosMac
++ :e! XXEol
++ ggO=&ffs
++ :=&ff
++ :w! XXtt54
++ :bwipe XXEol
+  :set fileformats=dos,mac
+  :e! XXUxDs
+  :w! XXtt61
+  :bwipe XXUxDs
+  :e! XXUxMac
+! ggO=&ffs
+! :=&ff
+! :w! XXtt62
+  :bwipe XXUxMac
+  :e! XXUxDsMc
+  :w! XXtt63
+  :bwipe XXUxDsMc
++ :e! XXMacEol
++ ggO=&ffs
++ :=&ff
++ :w! XXtt64
++ :bwipe XXMacEol
+  :"
+  :" try reading and writing with 'fileformats' set to three formats
+  :set fileformats=unix,dos,mac
+  :e! XXUxDsMc
+  :w! XXtt71
+  :bwipe XXUxDsMc
++ :e! XXEol
++ ggO=&ffs
++ :=&ff
++ :w! XXtt72
++ :bwipe XXEol
+  :set fileformats=mac,dos,unix
+  :e! XXUxDsMc
+  :w! XXtt81
+  :bwipe XXUxDsMc
++ :e! XXEol
++ ggO=&ffs
++ :=&ff
++ :w! XXtt82
++ :bwipe XXEol
+  :" try with 'binary' set
+  :set fileformats=mac,unix,dos
+  :set binary
+***************
+*** 155,165 ****
+--- 173,187 ----
+  :w >>XXtt51
+  :w >>XXtt52
+  :w >>XXtt53
++ :w >>XXtt54
+  :w >>XXtt61
+  :w >>XXtt62
+  :w >>XXtt63
++ :w >>XXtt64
+  :w >>XXtt71
++ :w >>XXtt72
+  :w >>XXtt81
++ :w >>XXtt82
+  :w >>XXtt91
+  :w >>XXtt92
+  :w >>XXtt93
+***************
+*** 186,196 ****
+--- 208,222 ----
+  Go5:$r XXtt51
+  :$r XXtt52
+  :$r XXtt53
++ :$r XXtt54
+  Go6:$r XXtt61
+  :$r XXtt62
+  :$r XXtt63
++ :$r XXtt64
+  Go7:$r XXtt71
++ :$r XXtt72
+  Go8:$r XXtt81
++ :$r XXtt82
+  Go9:$r XXtt91
+  :$r XXtt92
+  :$r XXtt93
+***************
+*** 200,216 ****
+  :qa!
+  ENDTEST
+  
+- 1
+- 2
+- 3
+- 4
+- 5
+- 6
+- 7
+- 8
+- 9
+- 10
+- 
+  unix
+  unix
+  eof
+--- 226,231 ----
+*** ../vim-7.4.642/src/testdir/test30.ok	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test30.ok	2015-02-27 17:28:04.602871329 +0100
+***************
+*** 70,81 ****
+--- 70,85 ----
+  dos
+  dos
+  macmacEND
++ unix,mac:unix
++ noeol
++ END
+  6
+  unix
+  unix
+  dos
+  dos
+  END
++ dos,mac:dos
+  unix
+  unix
+  macmac
+***************
+*** 86,91 ****
+--- 90,96 ----
+  dos
+  macmac
+  END
++ dos,mac:macmacmacnoeolEND
+  7
+  unix
+  unix
+***************
+*** 93,98 ****
+--- 98,106 ----
+  dos
+  macmac
+  END
++ unix,dos,mac:unix
++ noeol
++ END
+  8
+  unix
+  unix
+***************
+*** 100,105 ****
+--- 108,114 ----
+  dos
+  macmac
+  END
++ mac,dos,unix:macnoeolEND
+  9
+  unix
+  unix
+*** ../vim-7.4.642/src/version.c	2015-02-27 17:19:07.104942344 +0100
+--- src/version.c	2015-02-27 17:45:08.927303273 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     643,
+  /**/
+
+-- 
+Microsoft: "Windows NT 4.0 now has the same user-interface as Windows 95"
+    Windows 95: "Press CTRL-ALT-DEL to reboot"
+Windows NT 4.0: "Press CTRL-ALT-DEL to login"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

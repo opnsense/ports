@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.673
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.673
+Problem:    The first syntax entry gets sequence number zero, which doesn't
+	    work. (Clinton McKay)
+Solution:   Start at number one. (Bjorn Linse)
+Files:	    src/syntax.c
+
+
+*** ../vim-7.4.672/src/syntax.c	2015-03-13 12:53:32.271786748 +0100
+--- src/syntax.c	2015-03-21 21:43:25.028260237 +0100
+***************
+*** 311,317 ****
+  				       but contained groups */
+  
+  #ifdef FEAT_CONCEAL
+! static int next_seqnr = 0;		/* value to use for si_seqnr */
+  #endif
+  
+  /*
+--- 311,317 ----
+  				       but contained groups */
+  
+  #ifdef FEAT_CONCEAL
+! static int next_seqnr = 1;		/* value to use for si_seqnr */
+  #endif
+  
+  /*
+*** ../vim-7.4.672/src/version.c	2015-03-21 17:32:14.066779916 +0100
+--- src/version.c	2015-03-21 21:46:00.846499567 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     673,
+  /**/
+
+-- 
+5 out of 4 people have trouble with fractions.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

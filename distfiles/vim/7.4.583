@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.583
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.583
+Problem:    With tiny features test 16 may fail.
+Solution:   Source small.vim. (Christian Brabandt)
+Files:	    src/testdir/test16.in
+
+
+*** ../vim-7.4.582/src/testdir/test16.in	2012-10-11 04:02:11.000000000 +0200
+--- src/testdir/test16.in	2015-01-20 12:01:28.895462263 +0100
+***************
+*** 2,7 ****
+--- 2,8 ----
+  For KDE set a font, empty 'guifont' may cause a hang.
+  
+  STARTTEST
++ :so small.vim
+  :if $DISPLAY == "" | e! test.ok | wq! test.out | endif
+  :set exrc secure
+  :if has("gui_kde")
+*** ../vim-7.4.582/src/version.c	2015-01-18 16:46:28.987828395 +0100
+--- src/version.c	2015-01-20 12:02:13.234978619 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     583,
+  /**/
+
+-- 
+I AM THANKFUL...
+...for the mess to clean after a party because it means I have
+been surrounded by friends.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

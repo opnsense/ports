@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.614
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.614
+Problem:    There is no test for what patch 7.4.601 fixes.
+Solution:   Add a test. (Christian Brabandt)
+Files:	    src/testdir/test_mapping.in, src/testdir/test_mapping.ok
+
+
+*** ../vim-7.4.613/src/testdir/test_mapping.in	2015-01-14 16:08:29.210474234 +0100
+--- src/testdir/test_mapping.in	2015-02-03 16:52:28.828510717 +0100
+***************
+*** 31,36 ****
+--- 31,41 ----
+  : " expr mapping with langmap
+  :inoremap <expr> { "FAIL_iexplangmap"
+  o+
++ :" issue #212 (feedkeys insert mapping at current position)
++ :nnoremap . :call feedkeys(".", "in")<cr>
++ :/^a b
++ 0qqdw.ifooqj0@q:unmap .
++ 
+  
+  :/^test/,$w! test.out
+  :qa!
+***************
+*** 38,40 ****
+--- 43,48 ----
+  
+  test starts here:
+  
++ a b c d
++ a b c d
++ 
+*** ../vim-7.4.613/src/testdir/test_mapping.ok	2015-01-14 16:08:29.210474234 +0100
+--- src/testdir/test_mapping.ok	2015-02-03 16:52:28.828510717 +0100
+***************
+*** 1,4 ****
+--- 1,7 ----
+  test starts here:
++ 
++ fooc d
++ fooc d
+  vim
+  TEST2: CTRL-C |<ctrl-c>A|
+  
+*** ../vim-7.4.613/src/version.c	2015-02-03 16:49:20.242545503 +0100
+--- src/version.c	2015-02-03 16:52:21.200592637 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     614,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+169. You hire a housekeeper for your home page.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

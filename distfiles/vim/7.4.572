@@ -1,0 +1,257 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.572
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.572
+Problem:    Address type of :wincmd depends on the argument.
+Solution:   Check the argument.
+Files:	    src/ex_docmd.c, src/window.c, src/proto/window.pro
+
+
+*** ../vim-7.4.571/src/ex_docmd.c	2015-01-14 11:24:51.851582151 +0100
+--- src/ex_docmd.c	2015-01-14 14:48:24.586468863 +0100
+***************
+*** 2130,2151 ****
+   * is equal to the lower.
+   */
+  
+-     if (ea.cmdidx != CMD_SIZE
+- #ifdef FEAT_USR_CMDS
+- 	&& ea.cmdidx != CMD_USER
+- 	&& ea.cmdidx != CMD_USER_BUF
+- #endif
+-        )
+- 	ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
+-     else
+- #ifdef FEAT_USR_CMDS
+- 	if (ea.cmdidx != CMD_USER && ea.cmdidx != CMD_USER_BUF)
+- #endif
+- 	ea.addr_type = ADDR_LINES;
+      /* ea.addr_type for user commands is set by find_ucmd */
+!     ea.cmd = cmd;
+  
+      /* repeat for all ',' or ';' separated addresses */
+      for (;;)
+      {
+  	ea.line1 = ea.line2;
+--- 2130,2152 ----
+   * is equal to the lower.
+   */
+  
+      /* ea.addr_type for user commands is set by find_ucmd */
+!     if (!IS_USER_CMDIDX(ea.cmdidx))
+!     {
+! 	if (ea.cmdidx != CMD_SIZE)
+! 	    ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
+! 	else
+! 	    ea.addr_type = ADDR_LINES;
+! 
+! #ifdef FEAT_WINDOWS
+! 	/* :wincmd range depends on the argument. */
+! 	if (ea.cmdidx == CMD_wincmd)
+! 	    get_wincmd_addr_type(p, &ea);
+! #endif
+!     }
+  
+      /* repeat for all ',' or ';' separated addresses */
++     ea.cmd = cmd;
+      for (;;)
+      {
+  	ea.line1 = ea.line2;
+***************
+*** 2181,2187 ****
+  	{
+  	    if (*ea.cmd == '%')		    /* '%' - all lines */
+  	    {
+- 		buf_T	*buf;
+  		++ea.cmd;
+  		switch (ea.addr_type)
+  		{
+--- 2182,2187 ----
+***************
+*** 2190,2204 ****
+  			ea.line2 = curbuf->b_ml.ml_line_count;
+  			break;
+  		    case ADDR_LOADED_BUFFERS:
+! 			buf = firstbuf;
+! 			while (buf->b_next != NULL && buf->b_ml.ml_mfp == NULL)
+! 			    buf = buf->b_next;
+! 			ea.line1 = buf->b_fnum;
+! 			buf = lastbuf;
+! 			while (buf->b_prev != NULL && buf->b_ml.ml_mfp == NULL)
+! 			    buf = buf->b_prev;
+! 			ea.line2 = buf->b_fnum;
+! 			break;
+  		    case ADDR_BUFFERS:
+  			ea.line1 = firstbuf->b_fnum;
+  			ea.line2 = lastbuf->b_fnum;
+--- 2190,2209 ----
+  			ea.line2 = curbuf->b_ml.ml_line_count;
+  			break;
+  		    case ADDR_LOADED_BUFFERS:
+! 			{
+! 			    buf_T	*buf = firstbuf;
+! 
+! 			    while (buf->b_next != NULL
+! 						  && buf->b_ml.ml_mfp == NULL)
+! 				buf = buf->b_next;
+! 			    ea.line1 = buf->b_fnum;
+! 			    buf = lastbuf;
+! 			    while (buf->b_prev != NULL
+! 						  && buf->b_ml.ml_mfp == NULL)
+! 				buf = buf->b_prev;
+! 			    ea.line2 = buf->b_fnum;
+! 			    break;
+! 			}
+  		    case ADDR_BUFFERS:
+  			ea.line1 = firstbuf->b_fnum;
+  			ea.line2 = lastbuf->b_fnum;
+*** ../vim-7.4.571/src/window.c	2014-12-13 03:58:03.794672546 +0100
+--- src/window.c	2015-01-14 15:17:18.543647480 +0100
+***************
+*** 624,629 ****
+--- 624,733 ----
+      }
+  }
+  
++ /*
++  * Figure out the address type for ":wnncmd".
++  */
++     void
++ get_wincmd_addr_type(arg, eap)
++     char_u	*arg;
++     exarg_T	*eap;
++ {
++     switch (*arg)
++     {
++     case 'S':
++     case Ctrl_S:
++     case 's':
++     case Ctrl_N:
++     case 'n':
++     case 'j':
++     case Ctrl_J:
++     case 'k':
++     case Ctrl_K:
++     case 'T':
++     case Ctrl_R:
++     case 'r':
++     case 'R':
++     case 'K':
++     case 'J':
++     case '+':
++     case '-':
++     case Ctrl__:
++     case '_':
++     case '|':
++     case ']':
++     case Ctrl_RSB:
++     case 'g':
++     case Ctrl_G:
++ #ifdef FEAT_VERTSPLIT
++     case Ctrl_V:
++     case 'v':
++     case 'h':
++     case Ctrl_H:
++     case 'l':
++     case Ctrl_L:
++     case 'H':
++     case 'L':
++     case '>':
++     case '<':
++ #endif
++ #if defined(FEAT_QUICKFIX)
++     case '}':
++ #endif
++ #ifdef FEAT_SEARCHPATH
++     case 'f':
++     case 'F':
++     case Ctrl_F:
++ #endif
++ #ifdef FEAT_FIND_ID
++     case 'i':
++     case Ctrl_I:
++     case 'd':
++     case Ctrl_D:
++ #endif
++ 		/* window size or any count */
++ 		eap->addr_type = ADDR_LINES;
++ 		break;
++ 
++     case Ctrl_HAT:
++     case '^':
++ 		/* buffer number */
++ 		eap->addr_type = ADDR_BUFFERS;
++ 		break;
++ 
++     case Ctrl_Q:
++     case 'q':
++     case Ctrl_C:
++     case 'c':
++     case Ctrl_O:
++     case 'o':
++     case Ctrl_W:
++     case 'w':
++     case 'W':
++     case 'x':
++     case Ctrl_X:
++ 		/* window number */
++ 		eap->addr_type = ADDR_WINDOWS;
++ 		break;
++ 
++ #if defined(FEAT_QUICKFIX)
++     case Ctrl_Z:
++     case 'z':
++     case 'P':
++ #endif
++     case 't':
++     case Ctrl_T:
++     case 'b':
++     case Ctrl_B:
++     case 'p':
++     case Ctrl_P:
++     case '=':
++     case CAR:
++ 		/* no count */
++ 		eap->addr_type = 0;
++ 		break;
++     }
++ }
++ 
+      static void
+  cmd_with_count(cmd, bufp, bufsize, Prenum)
+      char	*cmd;
+*** ../vim-7.4.571/src/proto/window.pro	2014-12-17 14:47:52.870412129 +0100
+--- src/proto/window.pro	2015-01-14 15:16:37.544092744 +0100
+***************
+*** 1,5 ****
+--- 1,6 ----
+  /* window.c */
+  void do_window __ARGS((int nchar, long Prenum, int xchar));
++ void get_wincmd_addr_type __ARGS((char_u *arg, exarg_T *eap));
+  int win_split __ARGS((int size, int flags));
+  int win_split_ins __ARGS((int size, int flags, win_T *new_wp, int dir));
+  int win_valid __ARGS((win_T *win));
+*** ../vim-7.4.571/src/version.c	2015-01-14 14:08:40.364402377 +0100
+--- src/version.c	2015-01-14 15:46:36.136651958 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     572,
+  /**/
+
+-- 
+From "know your smileys":
+ :^[/   mean-smiley-with-cigarette
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

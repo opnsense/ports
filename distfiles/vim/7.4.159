@@ -1,0 +1,116 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.159
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.159
+Problem:    Completion hangs when scanning the current buffer after doing
+	    keywords. (Christian Brabandt)
+Solution:   Set the first match position when starting to scan the current
+	    buffer.
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.158/src/edit.c	2014-01-14 12:16:57.000000000 +0100
+--- src/edit.c	2014-01-23 22:42:20.964121311 +0100
+***************
+*** 4180,4185 ****
+--- 4180,4186 ----
+      char_u	*dict = NULL;
+      int		dict_f = 0;
+      compl_T	*old_match;
++     int		set_match_pos;
+  
+      if (!compl_started)
+      {
+***************
+*** 4198,4203 ****
+--- 4199,4205 ----
+      for (;;)
+      {
+  	found_new_match = FAIL;
++ 	set_match_pos = FALSE;
+  
+  	/* For ^N/^P pick a new entry from e_cpt if compl_started is off,
+  	 * or if found_all says this entry is done.  For ^X^L only use the
+***************
+*** 4217,4222 ****
+--- 4219,4228 ----
+  		    dec(&first_match_pos);
+  		last_match_pos = first_match_pos;
+  		type = 0;
++ 
++ 		/* Remember the first match so that the loop stops when we
++ 		 * wrap and come back there a second time. */
++ 		set_match_pos = TRUE;
+  	    }
+  	    else if (vim_strchr((char_u *)"buwU", *e_cpt) != NULL
+  		 && (ins_buf = ins_compl_next_buf(ins_buf, *e_cpt)) != curbuf)
+***************
+*** 4381,4387 ****
+  	    if (ins_buf->b_p_inf)
+  		p_scs = FALSE;
+  
+! 	    /*	buffers other than curbuf are scanned from the beginning or the
+  	     *	end but never from the middle, thus setting nowrapscan in this
+  	     *	buffers is a good idea, on the other hand, we always set
+  	     *	wrapscan for curbuf to avoid missing matches -- Acevedo,Webb */
+--- 4387,4393 ----
+  	    if (ins_buf->b_p_inf)
+  		p_scs = FALSE;
+  
+! 	    /*	Buffers other than curbuf are scanned from the beginning or the
+  	     *	end but never from the middle, thus setting nowrapscan in this
+  	     *	buffers is a good idea, on the other hand, we always set
+  	     *	wrapscan for curbuf to avoid missing matches -- Acevedo,Webb */
+***************
+*** 4408,4419 ****
+  				 compl_pattern, 1L, SEARCH_KEEP + SEARCH_NFMSG,
+  						  RE_LAST, (linenr_T)0, NULL);
+  		--msg_silent;
+! 		if (!compl_started)
+  		{
+  		    /* set "compl_started" even on fail */
+  		    compl_started = TRUE;
+  		    first_match_pos = *pos;
+  		    last_match_pos = *pos;
+  		}
+  		else if (first_match_pos.lnum == last_match_pos.lnum
+  				 && first_match_pos.col == last_match_pos.col)
+--- 4414,4426 ----
+  				 compl_pattern, 1L, SEARCH_KEEP + SEARCH_NFMSG,
+  						  RE_LAST, (linenr_T)0, NULL);
+  		--msg_silent;
+! 		if (!compl_started || set_match_pos)
+  		{
+  		    /* set "compl_started" even on fail */
+  		    compl_started = TRUE;
+  		    first_match_pos = *pos;
+  		    last_match_pos = *pos;
++ 		    set_match_pos = FALSE;
+  		}
+  		else if (first_match_pos.lnum == last_match_pos.lnum
+  				 && first_match_pos.col == last_match_pos.col)
+*** ../vim-7.4.158/src/version.c	2014-01-23 20:09:29.523869260 +0100
+--- src/version.c	2014-01-23 22:44:40.908125157 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     159,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+205. You're constantly yelling at your spouse, family, roommate, whatever,
+     for using the phone for stupid things...like talking.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

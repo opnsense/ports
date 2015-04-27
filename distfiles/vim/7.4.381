@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.381
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.381
+Problem:    Get u_undo error when backspacing in Insert mode deletes more than
+	    one line break. (Ayberk Ozgur)
+Solution:   Also decrement Insstart.lnum.
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.380/src/edit.c	2014-07-23 13:50:41.839956521 +0200
+--- src/edit.c	2014-07-23 17:35:05.747859751 +0200
+***************
+*** 8833,8838 ****
+--- 8833,8839 ----
+  		return FALSE;
+  	    --Insstart_orig.lnum;
+  	    Insstart_orig.col = MAXCOL;
++ 	    Insstart = Insstart_orig;
+  	}
+  	/*
+  	 * In replace mode:
+*** ../vim-7.4.380/src/version.c	2014-07-23 16:56:56.587876204 +0200
+--- src/version.c	2014-07-23 17:38:54.467858107 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     381,
+  /**/
+
+-- 
+Friends?  I have lots of friends!  In fact, I have all episodes ever made.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

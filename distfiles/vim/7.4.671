@@ -1,0 +1,76 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.671
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.671 (after 7.4.665)
+Problem:    Warning for shadowing a variable.
+Solution:   Rename off to mb_off. (Kazunobu Kuriyama)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.670/src/screen.c	2015-03-20 18:11:44.971196311 +0100
+--- src/screen.c	2015-03-21 14:16:32.063451426 +0100
+***************
+*** 4507,4517 ****
+  		if (wp->w_p_lbr && vim_isbreak(c) && !vim_isbreak(*ptr))
+  		{
+  # ifdef FEAT_MBYTE
+! 		    int off = has_mbyte ? (*mb_head_off)(line, ptr - 1) : 0;
+  # endif
+  		    char_u *p = ptr - (
+  # ifdef FEAT_MBYTE
+! 				off +
+  # endif
+  				1);
+  
+--- 4507,4517 ----
+  		if (wp->w_p_lbr && vim_isbreak(c) && !vim_isbreak(*ptr))
+  		{
+  # ifdef FEAT_MBYTE
+! 		    int mb_off = has_mbyte ? (*mb_head_off)(line, ptr - 1) : 0;
+  # endif
+  		    char_u *p = ptr - (
+  # ifdef FEAT_MBYTE
+! 				mb_off +
+  # endif
+  				1);
+  
+***************
+*** 4523,4529 ****
+  				       - vcol % (int)wp->w_buffer->b_p_ts - 1;
+  
+  # ifdef FEAT_MBYTE
+! 		    c_extra = off > 0 ? MB_FILLER_CHAR : ' ';
+  # else
+  		    c_extra = ' ';
+  # endif
+--- 4523,4529 ----
+  				       - vcol % (int)wp->w_buffer->b_p_ts - 1;
+  
+  # ifdef FEAT_MBYTE
+! 		    c_extra = mb_off > 0 ? MB_FILLER_CHAR : ' ';
+  # else
+  		    c_extra = ' ';
+  # endif
+*** ../vim-7.4.670/src/version.c	2015-03-20 19:06:01.986429778 +0100
+--- src/version.c	2015-03-21 14:19:33.461410898 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     671,
+  /**/
+
+-- 
+    f y cn rd ths thn y cn hv grt jb n cmptr prgrmmng
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

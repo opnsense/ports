@@ -1,0 +1,109 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.232
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.232
+Problem:    ":%s/\n//" uses a lot of memory. (Aidan Marlin)
+Solution:   Turn this into a join command. (Christian Brabandt)
+Files:	    src/ex_cmds.c, src/ex_docmd.c, src/proto/ex_docmd.pro
+
+
+*** ../vim-7.4.231/src/ex_cmds.c	2014-03-23 15:12:29.919264336 +0100
+--- src/ex_cmds.c	2014-04-01 17:37:59.560901015 +0200
+***************
+*** 4420,4425 ****
+--- 4420,4450 ----
+  	endcolumn = (curwin->w_curswant == MAXCOL);
+      }
+  
++     /* Recognize ":%s/\n//" and turn it into a join command, which is much
++      * more efficient.
++      * TODO: find a generic solution to make line-joining operations more
++      * efficient, avoid allocating a string that grows in size.
++      */
++     if (STRCMP(pat, "\\n") == 0 && STRLEN(pat) == 2
++ 	    && *sub == NUL
++ 	    && (*cmd == NUL || (cmd[1] == NUL && (*cmd == 'g' || *cmd == 'l'
++ 					     || *cmd == 'p' || *cmd == '#'))))
++     {
++ 	curwin->w_cursor.lnum = eap->line1;
++ 	if (*cmd == 'l')
++ 	    eap->flags = EXFLAG_LIST;
++ 	else if (*cmd == '#')
++ 	    eap->flags = EXFLAG_NR;
++ 	else if (*cmd == 'p')
++ 	    eap->flags = EXFLAG_PRINT;
++ 
++ 	(void)do_join(eap->line2 - eap->line1 + 1, FALSE, TRUE, FALSE);
++ 	sub_nlines = sub_nsubs = eap->line2 - eap->line1 + 1;
++ 	(void)do_sub_msg(FALSE);
++ 	ex_may_print(eap);
++ 	return;
++     }
++ 
+      /*
+       * Find trailing options.  When '&' is used, keep old options.
+       */
+*** ../vim-7.4.231/src/ex_docmd.c	2014-03-25 13:03:44.937793766 +0100
+--- src/ex_docmd.c	2014-04-01 17:31:59.708905965 +0200
+***************
+*** 316,322 ****
+  static void	ex_operators __ARGS((exarg_T *eap));
+  static void	ex_put __ARGS((exarg_T *eap));
+  static void	ex_copymove __ARGS((exarg_T *eap));
+- static void	ex_may_print __ARGS((exarg_T *eap));
+  static void	ex_submagic __ARGS((exarg_T *eap));
+  static void	ex_join __ARGS((exarg_T *eap));
+  static void	ex_at __ARGS((exarg_T *eap));
+--- 316,321 ----
+***************
+*** 8683,8689 ****
+  /*
+   * Print the current line if flags were given to the Ex command.
+   */
+!     static void
+  ex_may_print(eap)
+      exarg_T	*eap;
+  {
+--- 8682,8688 ----
+  /*
+   * Print the current line if flags were given to the Ex command.
+   */
+!     void
+  ex_may_print(eap)
+      exarg_T	*eap;
+  {
+*** ../vim-7.4.231/src/proto/ex_docmd.pro	2013-08-10 13:37:10.000000000 +0200
+--- src/proto/ex_docmd.pro	2014-04-01 17:31:59.708905965 +0200
+***************
+*** 54,57 ****
+--- 54,58 ----
+  int put_line __ARGS((FILE *fd, char *s));
+  void dialog_msg __ARGS((char_u *buff, char *format, char_u *fname));
+  char_u *get_behave_arg __ARGS((expand_T *xp, int idx));
++ void ex_may_print __ARGS((exarg_T *eap));
+  /* vim: set ft=c : */
+*** ../vim-7.4.231/src/version.c	2014-04-01 14:08:14.689074130 +0200
+--- src/version.c	2014-04-01 17:33:03.920905082 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     232,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+16. You step out of your room and realize that your parents have moved and
+    you don't have a clue when it happened.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

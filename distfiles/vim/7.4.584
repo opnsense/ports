@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.584
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.584
+Problem:    With tiny features test_command_count may fail.
+Solution:   Source small.vim. (Christian Brabandt)
+Files:	    src/testdir/test_command_count.in
+
+
+*** ../vim-7.4.583/src/testdir/test_command_count.in	2015-01-07 16:52:53.506792420 +0100
+--- src/testdir/test_command_count.in	2015-01-20 12:39:27.630490602 +0100
+***************
+*** 1,7 ****
+  Test for user command counts	    vim: set ft=vim :
+  
+  STARTTEST
+! :so tiny.vim
+  :let g:lines = []
+  :com -range=% RangeLines :call add(g:lines, 'RangeLines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+--- 1,7 ----
+  Test for user command counts	    vim: set ft=vim :
+  
+  STARTTEST
+! :so small.vim
+  :let g:lines = []
+  :com -range=% RangeLines :call add(g:lines, 'RangeLines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+*** ../vim-7.4.583/src/version.c	2015-01-20 12:13:56.975270382 +0100
+--- src/version.c	2015-01-20 12:36:04.068720526 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     584,
+  /**/
+
+-- 
+The primary purpose of the DATA statement is to give names to constants;
+instead of referring to pi as 3.141592653589793 at every appearance, the
+variable PI can be given that value with a DATA statement and used instead
+of the longer form of the constant.  This also simplifies modifying the
+program, should the value of pi change.
+	-- FORTRAN manual for Xerox Computers
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

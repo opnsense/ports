@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.644
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.644
+Problem:    Stratus VOS doesn't have sync().
+Solution:   Use fflush(). (Karli Aurelia)
+Files:	    src/memfile.c
+
+
+*** ../vim-7.4.643/src/memfile.c	2014-04-02 14:05:33.999887839 +0200
+--- src/memfile.c	2015-02-27 18:23:45.185146030 +0100
+***************
+*** 639,645 ****
+  # endif
+  	    /* OpenNT is strictly POSIX (Benzinger) */
+  	    /* Tandem/Himalaya NSK-OSS doesn't have sync() */
+! # if defined(__OPENNT) || defined(__TANDEM)
+  	    fflush(NULL);
+  # else
+  	    sync();
+--- 639,646 ----
+  # endif
+  	    /* OpenNT is strictly POSIX (Benzinger) */
+  	    /* Tandem/Himalaya NSK-OSS doesn't have sync() */
+! 	    /* No sync() on Stratus VOS */
+! # if defined(__OPENNT) || defined(__TANDEM) || defined(__VOS__)
+  	    fflush(NULL);
+  # else
+  	    sync();
+*** ../vim-7.4.643/src/version.c	2015-02-27 17:48:05.553308462 +0100
+--- src/version.c	2015-02-27 18:24:38.148547979 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     644,
+  /**/
+
+-- 
+This is an airconditioned room, do not open Windows.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

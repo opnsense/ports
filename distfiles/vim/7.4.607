@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.607
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.607 (after 7.4.598)
+Problem:    Compiler warnings for unused variables.
+Solution:   Move them inside #ifdef. (Kazunobu Kuriyama)
+Files:	    src/ui.c
+
+
+*** ../vim-7.4.606/src/ui.c	2015-01-27 14:09:29.625898193 +0100
+--- src/ui.c	2015-01-27 21:29:44.528861744 +0100
+***************
+*** 73,80 ****
+  static char_u *ta_str = NULL;
+  static int ta_off;	/* offset for next char to use when ta_str != NULL */
+  static int ta_len;	/* length of ta_str when it's not NULL*/
+- static int clipboard_needs_update; /* clipboard needs to be updated */
+- static int global_change_count = 0; /* if set, inside a start_global_changes */
+  
+      void
+  ui_inchar_undo(s, len)
+--- 73,78 ----
+***************
+*** 564,569 ****
+--- 562,569 ----
+   * prevents accessing the clipboard very often which might slow down Vim
+   * considerably.
+   */
++ static int global_change_count = 0; /* if set, inside a start_global_changes */
++ static int clipboard_needs_update; /* clipboard needs to be updated */
+  
+  /*
+   * Save clip_unnamed and reset it.
+*** ../vim-7.4.606/src/version.c	2015-01-27 20:59:26.496971751 +0100
+--- src/version.c	2015-01-27 21:31:22.247780991 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     607,
+  /**/
+
+-- 
+Never eat yellow snow.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

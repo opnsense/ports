@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.070
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.070 (after 7.4.069)
+Problem:    Can't compile with tiny features. (Tony Mechelynck)
+Solution:   Add #ifdef.
+Files:      src/buffer.c
+    
+
+*** ../vim-7.4.069/src/buffer.c	2013-11-05 07:12:59.000000000 +0100
+--- src/buffer.c	2013-11-05 17:37:27.000000000 +0100
+***************
+*** 213,219 ****
+--- 213,221 ----
+      if (curbuf->b_flags & BF_NEVERLOADED)
+      {
+  	(void)buf_init_chartab(curbuf, FALSE);
++ #ifdef FEAT_CINDENT
+  	parse_cino(curbuf);
++ #endif
+      }
+  
+      /*
+*** ../vim-7.4.069/src/version.c	2013-11-05 07:12:59.000000000 +0100
+--- src/version.c	2013-11-05 17:38:56.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     70,
+  /**/
+
+-- 
+No man may purchase alcohol without written consent from his wife.
+		[real standing law in Pennsylvania, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

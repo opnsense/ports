@@ -1,0 +1,77 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.461
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.461
+Problem:    MS-Windows: When collate is on the number of copies is too high.
+Solution:   Only set the collated/uncollated count when collate is on.
+	    (Yasuhiro Matsumoto)
+Files:	    src/os_mswin.c
+
+
+*** ../vim-7.4.460/src/os_mswin.c	2014-09-23 21:53:35.306849352 +0200
+--- src/os_mswin.c	2014-09-27 11:14:27.287520497 +0200
+***************
+*** 1673,1688 ****
+       */
+      psettings->chars_per_line = prt_get_cpl();
+      psettings->lines_per_page = prt_get_lpp();
+!     psettings->n_collated_copies = (prt_dlg.Flags & PD_COLLATE)
+! 							? prt_dlg.nCopies : 1;
+!     psettings->n_uncollated_copies = (prt_dlg.Flags & PD_COLLATE)
+! 							? 1 : prt_dlg.nCopies;
+  
+!     if (psettings->n_collated_copies == 0)
+! 	psettings->n_collated_copies = 1;
+  
+!     if (psettings->n_uncollated_copies == 0)
+  	psettings->n_uncollated_copies = 1;
+  
+      psettings->jobname = jobname;
+  
+--- 1673,1694 ----
+       */
+      psettings->chars_per_line = prt_get_cpl();
+      psettings->lines_per_page = prt_get_lpp();
+!     if (prt_dlg.Flags & PD_USEDEVMODECOPIESANDCOLLATE)
+!     {
+! 	psettings->n_collated_copies = (prt_dlg.Flags & PD_COLLATE)
+! 						    ? prt_dlg.nCopies : 1;
+! 	psettings->n_uncollated_copies = (prt_dlg.Flags & PD_COLLATE)
+! 						    ? 1 : prt_dlg.nCopies;
+  
+! 	if (psettings->n_collated_copies == 0)
+! 	    psettings->n_collated_copies = 1;
+  
+! 	if (psettings->n_uncollated_copies == 0)
+! 	    psettings->n_uncollated_copies = 1;
+!     } else {
+! 	psettings->n_collated_copies = 1;
+  	psettings->n_uncollated_copies = 1;
++     }
+  
+      psettings->jobname = jobname;
+  
+*** ../vim-7.4.460/src/version.c	2014-09-24 13:26:39.954971642 +0200
+--- src/version.c	2014-09-27 11:16:48.883520806 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     461,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+188. You purchase a laptop so you can surf while sitting on the can.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

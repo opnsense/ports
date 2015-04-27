@@ -1,0 +1,782 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.609
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.609
+Problem:    For complicated list and dict use the garbage collector can run
+	    out of stack space.
+Solution:   Use a stack of dicts and lists to be marked, thus making it
+	    iterative instead of recursive. (Ben Fritz)
+Files:	    src/eval.c, src/if_lua.c, src/if_py_both.h, src/if_python.c,
+	    src/if_python3.c, src/proto/eval.pro, src/proto/if_lua.pro,
+	    src/proto/if_python.pro, src/proto/if_python3.pro, src/structs.h
+
+
+*** ../vim-7.4.608/src/eval.c	2015-01-27 15:18:55.152333309 +0100
+--- src/eval.c	2015-02-03 12:41:59.468525906 +0100
+***************
+*** 93,99 ****
+      char_u	*ll_newkey;	/* New key for Dict in alloc. mem or NULL. */
+  } lval_T;
+  
+- 
+  static char *e_letunexp	= N_("E18: Unexpected characters in :let");
+  static char *e_listidx = N_("E684: list index out of range: %ld");
+  static char *e_undefvar = N_("E121: Undefined variable: %s");
+--- 93,98 ----
+***************
+*** 6811,6816 ****
+--- 6810,6816 ----
+  garbage_collect()
+  {
+      int		copyID;
++     int		abort = FALSE;
+      buf_T	*buf;
+      win_T	*wp;
+      int		i;
+***************
+*** 6841,6922 ****
+       * the item is referenced elsewhere the funccal must not be freed. */
+      for (fc = previous_funccal; fc != NULL; fc = fc->caller)
+      {
+! 	set_ref_in_ht(&fc->l_vars.dv_hashtab, copyID + 1);
+! 	set_ref_in_ht(&fc->l_avars.dv_hashtab, copyID + 1);
+      }
+  
+      /* script-local variables */
+      for (i = 1; i <= ga_scripts.ga_len; ++i)
+! 	set_ref_in_ht(&SCRIPT_VARS(i), copyID);
+  
+      /* buffer-local variables */
+      for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+! 	set_ref_in_item(&buf->b_bufvar.di_tv, copyID);
+  
+      /* window-local variables */
+      FOR_ALL_TAB_WINDOWS(tp, wp)
+! 	set_ref_in_item(&wp->w_winvar.di_tv, copyID);
+  #ifdef FEAT_AUTOCMD
+      if (aucmd_win != NULL)
+! 	set_ref_in_item(&aucmd_win->w_winvar.di_tv, copyID);
+  #endif
+  
+  #ifdef FEAT_WINDOWS
+      /* tabpage-local variables */
+      for (tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 	set_ref_in_item(&tp->tp_winvar.di_tv, copyID);
+  #endif
+  
+      /* global variables */
+!     set_ref_in_ht(&globvarht, copyID);
+  
+      /* function-local variables */
+      for (fc = current_funccal; fc != NULL; fc = fc->caller)
+      {
+! 	set_ref_in_ht(&fc->l_vars.dv_hashtab, copyID);
+! 	set_ref_in_ht(&fc->l_avars.dv_hashtab, copyID);
+      }
+  
+      /* v: vars */
+!     set_ref_in_ht(&vimvarht, copyID);
+  
+  #ifdef FEAT_LUA
+!     set_ref_in_lua(copyID);
+  #endif
+  
+  #ifdef FEAT_PYTHON
+!     set_ref_in_python(copyID);
+  #endif
+  
+  #ifdef FEAT_PYTHON3
+!     set_ref_in_python3(copyID);
+  #endif
+  
+!     /*
+!      * 2. Free lists and dictionaries that are not referenced.
+!      */
+!     did_free = free_unref_items(copyID);
+! 
+!     /*
+!      * 3. Check if any funccal can be freed now.
+!      */
+!     for (pfc = &previous_funccal; *pfc != NULL; )
+      {
+! 	if (can_free_funccal(*pfc, copyID))
+  	{
+! 	    fc = *pfc;
+! 	    *pfc = fc->caller;
+! 	    free_funccal(fc, TRUE);
+! 	    did_free = TRUE;
+! 	    did_free_funccal = TRUE;
+  	}
+! 	else
+! 	    pfc = &(*pfc)->caller;
+      }
+-     if (did_free_funccal)
+- 	/* When a funccal was freed some more items might be garbage
+- 	 * collected, so run again. */
+- 	(void)garbage_collect();
+  
+      return did_free;
+  }
+--- 6841,6935 ----
+       * the item is referenced elsewhere the funccal must not be freed. */
+      for (fc = previous_funccal; fc != NULL; fc = fc->caller)
+      {
+! 	abort = abort || set_ref_in_ht(&fc->l_vars.dv_hashtab, copyID + 1,
+! 									NULL);
+! 	abort = abort || set_ref_in_ht(&fc->l_avars.dv_hashtab, copyID + 1,
+! 									NULL);
+      }
+  
+      /* script-local variables */
+      for (i = 1; i <= ga_scripts.ga_len; ++i)
+! 	abort = abort || set_ref_in_ht(&SCRIPT_VARS(i), copyID, NULL);
+  
+      /* buffer-local variables */
+      for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+! 	abort = abort || set_ref_in_item(&buf->b_bufvar.di_tv, copyID,
+! 								  NULL, NULL);
+  
+      /* window-local variables */
+      FOR_ALL_TAB_WINDOWS(tp, wp)
+! 	abort = abort || set_ref_in_item(&wp->w_winvar.di_tv, copyID,
+! 								  NULL, NULL);
+  #ifdef FEAT_AUTOCMD
+      if (aucmd_win != NULL)
+! 	abort = abort || set_ref_in_item(&aucmd_win->w_winvar.di_tv, copyID,
+! 								  NULL, NULL);
+  #endif
+  
+  #ifdef FEAT_WINDOWS
+      /* tabpage-local variables */
+      for (tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 	abort = abort || set_ref_in_item(&tp->tp_winvar.di_tv, copyID,
+! 								  NULL, NULL);
+  #endif
+  
+      /* global variables */
+!     abort = abort || set_ref_in_ht(&globvarht, copyID, NULL);
+  
+      /* function-local variables */
+      for (fc = current_funccal; fc != NULL; fc = fc->caller)
+      {
+! 	abort = abort || set_ref_in_ht(&fc->l_vars.dv_hashtab, copyID, NULL);
+! 	abort = abort || set_ref_in_ht(&fc->l_avars.dv_hashtab, copyID, NULL);
+      }
+  
+      /* v: vars */
+!     abort = abort || set_ref_in_ht(&vimvarht, copyID, NULL);
+  
+  #ifdef FEAT_LUA
+!     abort = abort || set_ref_in_lua(copyID);
+  #endif
+  
+  #ifdef FEAT_PYTHON
+!     abort = abort || set_ref_in_python(copyID);
+  #endif
+  
+  #ifdef FEAT_PYTHON3
+!     abort = abort || set_ref_in_python3(copyID);
+  #endif
+  
+!     if (!abort)
+      {
+! 	/*
+! 	 * 2. Free lists and dictionaries that are not referenced.
+! 	 */
+! 	did_free = free_unref_items(copyID);
+! 
+! 	/*
+! 	 * 3. Check if any funccal can be freed now.
+! 	 */
+! 	for (pfc = &previous_funccal; *pfc != NULL; )
+  	{
+! 	    if (can_free_funccal(*pfc, copyID))
+! 	    {
+! 		fc = *pfc;
+! 		*pfc = fc->caller;
+! 		free_funccal(fc, TRUE);
+! 		did_free = TRUE;
+! 		did_free_funccal = TRUE;
+! 	    }
+! 	    else
+! 		pfc = &(*pfc)->caller;
+  	}
+! 	if (did_free_funccal)
+! 	    /* When a funccal was freed some more items might be garbage
+! 	     * collected, so run again. */
+! 	    (void)garbage_collect();
+!     }
+!     else if (p_verbose > 0)
+!     {
+! 	verb_msg((char_u *)_("Not enough memory to set references, garbage collection aborted!"));
+      }
+  
+      return did_free;
+  }
+***************
+*** 6976,7023 ****
+  
+  /*
+   * Mark all lists and dicts referenced through hashtab "ht" with "copyID".
+   */
+!     void
+! set_ref_in_ht(ht, copyID)
+!     hashtab_T	*ht;
+!     int		copyID;
+  {
+      int		todo;
+      hashitem_T	*hi;
+  
+!     todo = (int)ht->ht_used;
+!     for (hi = ht->ht_array; todo > 0; ++hi)
+! 	if (!HASHITEM_EMPTY(hi))
+  	{
+! 	    --todo;
+! 	    set_ref_in_item(&HI2DI(hi)->di_tv, copyID);
+  	}
+  }
+  
+  /*
+   * Mark all lists and dicts referenced through list "l" with "copyID".
+   */
+!     void
+! set_ref_in_list(l, copyID)
+      list_T	*l;
+      int		copyID;
+  {
+!     listitem_T *li;
+  
+!     for (li = l->lv_first; li != NULL; li = li->li_next)
+! 	set_ref_in_item(&li->li_tv, copyID);
+  }
+  
+  /*
+   * Mark all lists and dicts referenced through typval "tv" with "copyID".
+   */
+!     void
+! set_ref_in_item(tv, copyID)
+!     typval_T	*tv;
+!     int		copyID;
+  {
+      dict_T	*dd;
+      list_T	*ll;
+  
+      switch (tv->v_type)
+      {
+--- 6989,7100 ----
+  
+  /*
+   * Mark all lists and dicts referenced through hashtab "ht" with "copyID".
++  * "list_stack" is used to add lists to be marked.  Can be NULL.
++  *
++  * Returns TRUE if setting references failed somehow.
+   */
+!     int
+! set_ref_in_ht(ht, copyID, list_stack)
+!     hashtab_T	    *ht;
+!     int		    copyID;
+!     list_stack_T    **list_stack;
+  {
+      int		todo;
++     int		abort = FALSE;
+      hashitem_T	*hi;
++     hashtab_T	*cur_ht;
++     ht_stack_T	*ht_stack = NULL;
++     ht_stack_T	*tempitem;
+  
+!     cur_ht = ht;
+!     for (;;)
+!     {
+! 	if (!abort)
+  	{
+! 	    /* Mark each item in the hashtab.  If the item contains a hashtab
+! 	     * it is added to ht_stack, if it contains a list it is added to
+! 	     * list_stack. */
+! 	    todo = (int)cur_ht->ht_used;
+! 	    for (hi = cur_ht->ht_array; todo > 0; ++hi)
+! 		if (!HASHITEM_EMPTY(hi))
+! 		{
+! 		    --todo;
+! 		    abort = abort || set_ref_in_item(&HI2DI(hi)->di_tv, copyID,
+! 						       &ht_stack, list_stack);
+! 		}
+  	}
++ 
++ 	if (ht_stack == NULL)
++ 	    break;
++ 
++ 	/* take an item from the stack */
++ 	cur_ht = ht_stack->ht;
++ 	tempitem = ht_stack;
++ 	ht_stack = ht_stack->prev;
++ 	free(tempitem);
++     }
++ 
++     return abort;
+  }
+  
+  /*
+   * Mark all lists and dicts referenced through list "l" with "copyID".
++  * "ht_stack" is used to add hashtabs to be marked.  Can be NULL.
++  *
++  * Returns TRUE if setting references failed somehow.
+   */
+!     int
+! set_ref_in_list(l, copyID, ht_stack)
+      list_T	*l;
+      int		copyID;
++     ht_stack_T	**ht_stack;
+  {
+!     listitem_T	 *li;
+!     int		 abort = FALSE;
+!     list_T	 *cur_l;
+!     list_stack_T *list_stack = NULL;
+!     list_stack_T *tempitem;
+! 
+!     cur_l = l;
+!     for (;;)
+!     {
+! 	if (!abort)
+! 	    /* Mark each item in the list.  If the item contains a hashtab
+! 	     * it is added to ht_stack, if it contains a list it is added to
+! 	     * list_stack. */
+! 	    for (li = cur_l->lv_first; !abort && li != NULL; li = li->li_next)
+! 		abort = abort || set_ref_in_item(&li->li_tv, copyID,
+! 						       ht_stack, &list_stack);
+! 	if (list_stack == NULL)
+! 	    break;
+! 
+! 	/* take an item from the stack */
+! 	cur_l = list_stack->list;
+! 	tempitem = list_stack;
+! 	list_stack = list_stack->prev;
+! 	free(tempitem);
+!     }
+  
+!     return abort;
+  }
+  
+  /*
+   * Mark all lists and dicts referenced through typval "tv" with "copyID".
++  * "list_stack" is used to add lists to be marked.  Can be NULL.
++  * "ht_stack" is used to add hashtabs to be marked.  Can be NULL.
++  *
++  * Returns TRUE if setting references failed somehow.
+   */
+!     int
+! set_ref_in_item(tv, copyID, ht_stack, list_stack)
+!     typval_T	    *tv;
+!     int		    copyID;
+!     ht_stack_T	    **ht_stack;
+!     list_stack_T    **list_stack;
+  {
+      dict_T	*dd;
+      list_T	*ll;
++     int		abort = FALSE;
+  
+      switch (tv->v_type)
+      {
+***************
+*** 7027,7033 ****
+  	    {
+  		/* Didn't see this dict yet. */
+  		dd->dv_copyID = copyID;
+! 		set_ref_in_ht(&dd->dv_hashtab, copyID);
+  	    }
+  	    break;
+  
+--- 7104,7126 ----
+  	    {
+  		/* Didn't see this dict yet. */
+  		dd->dv_copyID = copyID;
+! 		if (ht_stack == NULL)
+! 		{
+! 		    abort = set_ref_in_ht(&dd->dv_hashtab, copyID, list_stack);
+! 		}
+! 		else
+! 		{
+! 		    ht_stack_T *newitem = (ht_stack_T*)malloc(
+! 							  sizeof(ht_stack_T));
+! 		    if (newitem == NULL)
+! 			abort = TRUE;
+! 		    else
+! 		    {
+! 			newitem->ht = &dd->dv_hashtab;
+! 			newitem->prev = *ht_stack;
+! 			*ht_stack = newitem;
+! 		    }
+! 		}
+  	    }
+  	    break;
+  
+***************
+*** 7037,7047 ****
+  	    {
+  		/* Didn't see this list yet. */
+  		ll->lv_copyID = copyID;
+! 		set_ref_in_list(ll, copyID);
+  	    }
+  	    break;
+      }
+!     return;
+  }
+  
+  /*
+--- 7130,7156 ----
+  	    {
+  		/* Didn't see this list yet. */
+  		ll->lv_copyID = copyID;
+! 		if (list_stack == NULL)
+! 		{
+! 		    abort = set_ref_in_list(ll, copyID, ht_stack);
+! 		}
+! 		else
+! 		{
+! 		    list_stack_T *newitem = (list_stack_T*)malloc(
+! 							sizeof(list_stack_T));
+! 		    if (newitem == NULL)
+! 			abort = TRUE;
+! 		    else
+! 		    {
+! 			newitem->list = ll;
+! 			newitem->prev = *list_stack;
+! 			*list_stack = newitem;
+! 		    }
+! 		}
+  	    }
+  	    break;
+      }
+!     return abort;
+  }
+  
+  /*
+*** ../vim-7.4.608/src/if_lua.c	2014-05-07 17:31:32.473182497 +0200
+--- src/if_lua.c	2015-02-03 12:45:41.978204997 +0100
+***************
+*** 1523,1534 ****
+      static int
+  luaV_setref (lua_State *L)
+  {
+!     int copyID = lua_tointeger(L, 1);
+!     typval_T tv;
+      luaV_getfield(L, LUAVIM_LIST);
+      luaV_getfield(L, LUAVIM_DICT);
+      lua_pushnil(L);
+!     while (lua_next(L, lua_upvalueindex(1)) != 0) /* traverse cache table */
+      {
+  	lua_getmetatable(L, -1);
+  	if (lua_rawequal(L, -1, 2)) /* list? */
+--- 1523,1536 ----
+      static int
+  luaV_setref (lua_State *L)
+  {
+!     int		copyID = lua_tointeger(L, 1);
+!     int		abort = FALSE;
+!     typval_T	tv;
+! 
+      luaV_getfield(L, LUAVIM_LIST);
+      luaV_getfield(L, LUAVIM_DICT);
+      lua_pushnil(L);
+!     while (!abort && lua_next(L, lua_upvalueindex(1)) != 0) /* traverse cache table */
+      {
+  	lua_getmetatable(L, -1);
+  	if (lua_rawequal(L, -1, 2)) /* list? */
+***************
+*** 1542,1550 ****
+  	    tv.vval.v_dict = (dict_T *) lua_touserdata(L, 4); /* key */
+  	}
+  	lua_pop(L, 2); /* metatable and value */
+! 	set_ref_in_item(&tv, copyID);
+      }
+!     return 0;
+  }
+  
+      static int
+--- 1544,1552 ----
+  	    tv.vval.v_dict = (dict_T *) lua_touserdata(L, 4); /* key */
+  	}
+  	lua_pop(L, 2); /* metatable and value */
+! 	abort = set_ref_in_item(&tv, copyID, NULL, NULL);
+      }
+!     lua_pushinteger(L, abort);
+  }
+  
+      static int
+***************
+*** 1770,1782 ****
+      lua_call(L, 3, 0);
+  }
+  
+!     void
+  set_ref_in_lua (int copyID)
+  {
+!     if (!lua_isopen()) return;
+!     luaV_getfield(L, LUAVIM_SETREF);
+!     lua_pushinteger(L, copyID);
+!     lua_call(L, 1, 0);
+  }
+  
+  #endif
+--- 1772,1794 ----
+      lua_call(L, 3, 0);
+  }
+  
+!     int
+  set_ref_in_lua (int copyID)
+  {
+!     int aborted = 0;
+! 
+!     if (lua_isopen())
+!     {
+! 	luaV_getfield(L, LUAVIM_SETREF);
+! 	/* call the function with 1 arg, getting 1 result back */
+! 	lua_pushinteger(L, copyID);
+! 	lua_call(L, 1, 1);
+! 	/* get the result */
+! 	aborted = lua_tointeger(L, -1);
+! 	/* pop result off the stack */
+! 	lua_pop(L, 1);
+!     }
+!     return aborted;
+  }
+  
+  #endif
+*** ../vim-7.4.608/src/if_py_both.h	2014-12-17 14:45:56.095854545 +0100
+--- src/if_py_both.h	2015-02-03 12:46:46.629530177 +0100
+***************
+*** 5502,5535 ****
+      PyErr_Clear();
+  }
+  
+!     static void
+  set_ref_in_py(const int copyID)
+  {
+      pylinkedlist_T	*cur;
+      dict_T	*dd;
+      list_T	*ll;
+  
+      if (lastdict != NULL)
+! 	for(cur = lastdict ; cur != NULL ; cur = cur->pll_prev)
+  	{
+  	    dd = ((DictionaryObject *) (cur->pll_obj))->dict;
+  	    if (dd->dv_copyID != copyID)
+  	    {
+  		dd->dv_copyID = copyID;
+! 		set_ref_in_ht(&dd->dv_hashtab, copyID);
+  	    }
+  	}
+  
+      if (lastlist != NULL)
+! 	for(cur = lastlist ; cur != NULL ; cur = cur->pll_prev)
+  	{
+  	    ll = ((ListObject *) (cur->pll_obj))->list;
+  	    if (ll->lv_copyID != copyID)
+  	    {
+  		ll->lv_copyID = copyID;
+! 		set_ref_in_list(ll, copyID);
+  	    }
+  	}
+  }
+  
+      static int
+--- 5502,5542 ----
+      PyErr_Clear();
+  }
+  
+!     static int
+  set_ref_in_py(const int copyID)
+  {
+      pylinkedlist_T	*cur;
+      dict_T	*dd;
+      list_T	*ll;
++     int		abort = FALSE;
+  
+      if (lastdict != NULL)
+!     {
+! 	for(cur = lastdict ; !abort && cur != NULL ; cur = cur->pll_prev)
+  	{
+  	    dd = ((DictionaryObject *) (cur->pll_obj))->dict;
+  	    if (dd->dv_copyID != copyID)
+  	    {
+  		dd->dv_copyID = copyID;
+! 		abort = abort || set_ref_in_ht(&dd->dv_hashtab, copyID, NULL);
+  	    }
+  	}
++     }
+  
+      if (lastlist != NULL)
+!     {
+! 	for(cur = lastlist ; !abort && cur != NULL ; cur = cur->pll_prev)
+  	{
+  	    ll = ((ListObject *) (cur->pll_obj))->list;
+  	    if (ll->lv_copyID != copyID)
+  	    {
+  		ll->lv_copyID = copyID;
+! 		abort = abort || set_ref_in_list(ll, copyID, NULL);
+  	    }
+  	}
++     }
++ 
++     return abort;
+  }
+  
+      static int
+*** ../vim-7.4.608/src/if_python.c	2014-07-23 16:56:56.587876204 +0200
+--- src/if_python.c	2015-02-03 12:05:13.471422753 +0100
+***************
+*** 1567,1574 ****
+  }
+  #endif /* Python 1.4 */
+  
+!     void
+  set_ref_in_python (int copyID)
+  {
+!     set_ref_in_py(copyID);
+  }
+--- 1567,1574 ----
+  }
+  #endif /* Python 1.4 */
+  
+!     int
+  set_ref_in_python (int copyID)
+  {
+!     return set_ref_in_py(copyID);
+  }
+*** ../vim-7.4.608/src/if_python3.c	2014-03-30 16:11:37.180530823 +0200
+--- src/if_python3.c	2015-02-03 12:05:13.471422753 +0100
+***************
+*** 1649,1656 ****
+      }
+  }
+  
+!     void
+  set_ref_in_python3 (int copyID)
+  {
+!     set_ref_in_py(copyID);
+  }
+--- 1649,1656 ----
+      }
+  }
+  
+!     int
+  set_ref_in_python3 (int copyID)
+  {
+!     int set_ref_in_py(copyID);
+  }
+*** ../vim-7.4.608/src/proto/eval.pro	2014-12-17 14:36:10.363090985 +0100
+--- src/proto/eval.pro	2015-02-03 12:47:58.472780049 +0100
+***************
+*** 62,70 ****
+  void list_insert __ARGS((list_T *l, listitem_T *ni, listitem_T *item));
+  void vimlist_remove __ARGS((list_T *l, listitem_T *item, listitem_T *item2));
+  int garbage_collect __ARGS((void));
+! void set_ref_in_ht __ARGS((hashtab_T *ht, int copyID));
+! void set_ref_in_list __ARGS((list_T *l, int copyID));
+! void set_ref_in_item __ARGS((typval_T *tv, int copyID));
+  dict_T *dict_alloc __ARGS((void));
+  void dict_unref __ARGS((dict_T *d));
+  void dict_free __ARGS((dict_T *d, int recurse));
+--- 62,70 ----
+  void list_insert __ARGS((list_T *l, listitem_T *ni, listitem_T *item));
+  void vimlist_remove __ARGS((list_T *l, listitem_T *item, listitem_T *item2));
+  int garbage_collect __ARGS((void));
+! int set_ref_in_ht __ARGS((hashtab_T *ht, int copyID, list_stack_T **list_stack));
+! int set_ref_in_list __ARGS((list_T *l, int copyID, ht_stack_T **ht_stack));
+! int set_ref_in_item __ARGS((typval_T *tv, int copyID, ht_stack_T **ht_stack, list_stack_T **list_stack));
+  dict_T *dict_alloc __ARGS((void));
+  void dict_unref __ARGS((dict_T *d));
+  void dict_free __ARGS((dict_T *d, int recurse));
+*** ../vim-7.4.608/src/proto/if_lua.pro	2012-04-05 16:41:35.000000000 +0200
+--- src/proto/if_lua.pro	2015-02-03 12:05:13.475422711 +0100
+***************
+*** 7,11 ****
+  void lua_buffer_free __ARGS((buf_T *buf));
+  void lua_window_free __ARGS((win_T *win));
+  void do_luaeval __ARGS((char_u *str, typval_T *arg, typval_T *rettv));
+! void set_ref_in_lua __ARGS((int copyID));
+  /* vim: set ft=c : */
+--- 7,11 ----
+  void lua_buffer_free __ARGS((buf_T *buf));
+  void lua_window_free __ARGS((win_T *win));
+  void do_luaeval __ARGS((char_u *str, typval_T *arg, typval_T *rettv));
+! int set_ref_in_lua __ARGS((int copyID));
+  /* vim: set ft=c : */
+*** ../vim-7.4.608/src/proto/if_python.pro	2013-08-10 13:37:15.000000000 +0200
+--- src/proto/if_python.pro	2015-02-03 12:48:02.936733431 +0100
+***************
+*** 9,13 ****
+  void python_window_free __ARGS((win_T *win));
+  void python_tabpage_free __ARGS((tabpage_T *tab));
+  void do_pyeval __ARGS((char_u *str, typval_T *rettv));
+! void set_ref_in_python __ARGS((int copyID));
+  /* vim: set ft=c : */
+--- 9,13 ----
+  void python_window_free __ARGS((win_T *win));
+  void python_tabpage_free __ARGS((tabpage_T *tab));
+  void do_pyeval __ARGS((char_u *str, typval_T *rettv));
+! int set_ref_in_python __ARGS((int copyID));
+  /* vim: set ft=c : */
+*** ../vim-7.4.608/src/proto/if_python3.pro	2013-08-10 13:37:16.000000000 +0200
+--- src/proto/if_python3.pro	2015-02-03 12:48:03.292729714 +0100
+***************
+*** 9,13 ****
+  void python3_window_free __ARGS((win_T *win));
+  void python3_tabpage_free __ARGS((tabpage_T *tab));
+  void do_py3eval __ARGS((char_u *str, typval_T *rettv));
+! void set_ref_in_python3 __ARGS((int copyID));
+  /* vim: set ft=c : */
+--- 9,13 ----
+  void python3_window_free __ARGS((win_T *win));
+  void python3_tabpage_free __ARGS((tabpage_T *tab));
+  void do_py3eval __ARGS((char_u *str, typval_T *rettv));
+! int set_ref_in_python3 __ARGS((int copyID));
+  /* vim: set ft=c : */
+*** ../vim-7.4.608/src/structs.h	2015-01-14 12:44:38.407422077 +0100
+--- src/structs.h	2015-02-03 12:05:13.475422711 +0100
+***************
+*** 1223,1228 ****
+--- 1223,1242 ----
+      dict_T	*dv_used_prev;	/* previous dict in used dicts list */
+  };
+  
++ /* structure used for explicit stack while garbage collecting hash tables */
++ typedef struct ht_stack_S
++ {
++     hashtab_T		*ht;
++     struct ht_stack_S	*prev;
++ } ht_stack_T;
++ 
++ /* structure used for explicit stack while garbage collecting lists */
++ typedef struct list_stack_S
++ {
++     list_T		*list;
++     struct list_stack_S	*prev;
++ } list_stack_T;
++ 
+  /* values for b_syn_spell: what to do with toplevel text */
+  #define SYNSPL_DEFAULT	0	/* spell check if @Spell not defined */
+  #define SYNSPL_TOP	1	/* spell check toplevel text */
+*** ../vim-7.4.608/src/version.c	2015-01-27 22:52:10.713524965 +0100
+--- src/version.c	2015-02-03 12:09:19.324876918 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     609,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+167. You have more than 200 websites bookmarked.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

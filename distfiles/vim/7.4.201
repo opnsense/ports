@@ -1,0 +1,273 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.201
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.201
+Problem:    'lispwords' is a global option.
+Solution:   Make 'lispwords' global-local. (Sung Pae)
+Files:	    runtime/doc/options.txt, runtime/optwin.vim, src/buffer.c,
+	    src/misc1.c, src/option.c, src/option.h, src/structs.h,
+	    src/testdir/test100.in, src/testdir/test100.ok
+
+
+*** ../vim-7.4.200/runtime/doc/options.txt	2014-02-23 23:38:58.820760280 +0100
+--- runtime/doc/options.txt	2014-03-12 18:20:30.748874299 +0100
+***************
+*** 4629,4635 ****
+  
+  						*'lispwords'* *'lw'*
+  'lispwords' 'lw'	string	(default is very long)
+! 			global
+  			{not in Vi}
+  			{not available when compiled without the |+lispindent|
+  			feature}
+--- 4629,4635 ----
+  
+  						*'lispwords'* *'lw'*
+  'lispwords' 'lw'	string	(default is very long)
+! 			global or local to buffer |global-local|
+  			{not in Vi}
+  			{not available when compiled without the |+lispindent|
+  			feature}
+*** ../vim-7.4.200/runtime/optwin.vim	2013-06-29 14:32:06.000000000 +0200
+--- runtime/optwin.vim	2014-03-12 18:20:30.748874299 +0100
+***************
+*** 855,861 ****
+    call append("$", "\t(local to buffer)")
+    call <SID>BinOptionL("lisp")
+    call append("$", "lispwords\twords that change how lisp indenting works")
+!   call <SID>OptionG("lw", &lw)
+  endif
+  
+  
+--- 855,861 ----
+    call append("$", "\t(local to buffer)")
+    call <SID>BinOptionL("lisp")
+    call append("$", "lispwords\twords that change how lisp indenting works")
+!   call <SID>OptionL("lw", &lw)
+  endif
+  
+  
+*** ../vim-7.4.200/src/buffer.c	2014-01-10 16:43:09.000000000 +0100
+--- src/buffer.c	2014-03-12 18:20:30.752874299 +0100
+***************
+*** 1978,1983 ****
+--- 1978,1986 ----
+  #endif
+      buf->b_p_ar = -1;
+      buf->b_p_ul = NO_LOCAL_UNDOLEVEL;
++ #ifdef FEAT_LISP
++     clear_string_option(&buf->b_p_lw);
++ #endif
+  }
+  
+  /*
+*** ../vim-7.4.200/src/misc1.c	2013-11-06 04:01:31.000000000 +0100
+--- src/misc1.c	2014-03-12 18:20:30.752874299 +0100
+***************
+*** 8879,8885 ****
+  {
+      char_u	buf[LSIZE];
+      int		len;
+!     char_u	*word = p_lispwords;
+  
+      while (*word != NUL)
+      {
+--- 8879,8885 ----
+  {
+      char_u	buf[LSIZE];
+      int		len;
+!     char_u	*word = *curbuf->b_p_lw != NUL ? curbuf->b_p_lw : p_lispwords;
+  
+      while (*word != NUL)
+      {
+*** ../vim-7.4.200/src/option.c	2014-01-14 16:54:53.000000000 +0100
+--- src/option.c	2014-03-12 18:20:30.752874299 +0100
+***************
+*** 134,139 ****
+--- 134,140 ----
+  #define PV_KP		OPT_BOTH(OPT_BUF(BV_KP))
+  #ifdef FEAT_LISP
+  # define PV_LISP	OPT_BUF(BV_LISP)
++ # define PV_LW		OPT_BOTH(OPT_BUF(BV_LW))
+  #endif
+  #define PV_MA		OPT_BUF(BV_MA)
+  #define PV_ML		OPT_BUF(BV_ML)
+***************
+*** 1718,1724 ****
+  			    {(char_u *)FALSE, (char_u *)0L} SCRIPTID_INIT},
+      {"lispwords",   "lw",   P_STRING|P_VI_DEF|P_COMMA|P_NODUP,
+  #ifdef FEAT_LISP
+! 			    (char_u *)&p_lispwords, PV_NONE,
+  			    {(char_u *)LISPWORD_VALUE, (char_u *)0L}
+  #else
+  			    (char_u *)NULL, PV_NONE,
+--- 1719,1725 ----
+  			    {(char_u *)FALSE, (char_u *)0L} SCRIPTID_INIT},
+      {"lispwords",   "lw",   P_STRING|P_VI_DEF|P_COMMA|P_NODUP,
+  #ifdef FEAT_LISP
+! 			    (char_u *)&p_lispwords, PV_LW,
+  			    {(char_u *)LISPWORD_VALUE, (char_u *)0L}
+  #else
+  			    (char_u *)NULL, PV_NONE,
+***************
+*** 5412,5417 ****
+--- 5413,5421 ----
+      check_string_option(&buf->b_p_dict);
+      check_string_option(&buf->b_p_tsr);
+  #endif
++ #ifdef FEAT_LISP
++     check_string_option(&buf->b_p_lw);
++ #endif
+  }
+  
+  /*
+***************
+*** 9879,9884 ****
+--- 9883,9893 ----
+  	case PV_UL:
+  	    buf->b_p_ul = NO_LOCAL_UNDOLEVEL;
+  	    break;
++ #ifdef FEAT_LISP
++ 	case PV_LW:
++ 	    clear_string_option(&buf->b_p_lw);
++ 	    break;
++ #endif
+      }
+  }
+  
+***************
+*** 9928,9933 ****
+--- 9937,9945 ----
+  	    case PV_STL:  return (char_u *)&(curwin->w_p_stl);
+  #endif
+  	    case PV_UL:   return (char_u *)&(curbuf->b_p_ul);
++ #ifdef FEAT_LISP
++ 	    case PV_LW:   return (char_u *)&(curbuf->b_p_lw);
++ #endif
+  	}
+  	return NULL; /* "cannot happen" */
+      }
+***************
+*** 9994,9999 ****
+--- 10006,10015 ----
+  #endif
+  	case PV_UL:	return curbuf->b_p_ul != NO_LOCAL_UNDOLEVEL
+  				    ? (char_u *)&(curbuf->b_p_ul) : p->var;
++ #ifdef FEAT_LISP
++ 	case PV_LW:	return *curbuf->b_p_lw != NUL
++ 				    ? (char_u *)&(curbuf->b_p_lw) : p->var;
++ #endif
+  
+  #ifdef FEAT_ARABIC
+  	case PV_ARAB:	return (char_u *)&(curwin->w_p_arab);
+***************
+*** 10567,10572 ****
+--- 10583,10591 ----
+  #ifdef FEAT_PERSISTENT_UNDO
+  	    buf->b_p_udf = p_udf;
+  #endif
++ #ifdef FEAT_LISP
++ 	    buf->b_p_lw = empty_option;
++ #endif
+  
+  	    /*
+  	     * Don't copy the options set by ex_help(), use the saved values,
+*** ../vim-7.4.200/src/option.h	2014-01-10 15:32:17.000000000 +0100
+--- src/option.h	2014-03-12 18:20:30.752874299 +0100
+***************
+*** 990,995 ****
+--- 990,996 ----
+      , BV_KP
+  #ifdef FEAT_LISP
+      , BV_LISP
++     , BV_LW
+  #endif
+      , BV_MA
+      , BV_ML
+*** ../vim-7.4.200/src/structs.h	2014-02-23 22:52:33.372764715 +0100
+--- src/structs.h	2014-03-12 18:20:30.752874299 +0100
+***************
+*** 1641,1646 ****
+--- 1641,1649 ----
+  #ifdef FEAT_PERSISTENT_UNDO
+      int		b_p_udf;	/* 'undofile' */
+  #endif
++ #ifdef FEAT_LISP
++     char_u	*b_p_lw;	/* 'lispwords' local value */
++ #endif
+  
+      /* end of buffer options */
+  
+*** ../vim-7.4.200/src/testdir/test100.in	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/test100.in	2014-03-12 18:25:27.792878851 +0100
+***************
+*** 1,4 ****
+! Tests for 'undolevel' setting being global-local
+  
+  STARTTEST
+  :so small.vim
+--- 1,4 ----
+! Tests for 'undolevel' and 'lispwords' settings being global-local
+  
+  STARTTEST
+  :so small.vim
+***************
+*** 37,42 ****
+--- 37,50 ----
+  :call UndoLevel()
+  :%w >> test.out
+  :"sleep 10
++ :"
++ :" Testing 'lispwords'
++ :"
++ :setglobal lispwords=foo,bar,baz
++ :setlocal lispwords-=foo | setlocal lispwords+=quux
++ :redir >> test.out | echon "\nTesting 'lispwords' local value" | setglobal lispwords? | setlocal lispwords? | echo &lispwords . "\n" | redir end
++ :setlocal lispwords<
++ :redir >> test.out | echon "\nTesting 'lispwords' value reset" | setglobal lispwords? | setlocal lispwords? | echo &lispwords . "\n" | redir end
+  :qa!
+  ENDTEST
+  
+*** ../vim-7.4.200/src/testdir/test100.ok	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/test100.ok	2014-03-12 18:25:27.792878851 +0100
+***************
+*** 39,41 ****
+--- 39,51 ----
+  
+    undolevels=50 global
+    undolevels=-123456 local
++ 
++ Testing 'lispwords' local value
++   lispwords=foo,bar,baz
++   lispwords=bar,baz,quux
++ bar,baz,quux
++ 
++ Testing 'lispwords' value reset
++   lispwords=foo,bar,baz
++   lispwords=foo,bar,baz
++ foo,bar,baz
+*** ../vim-7.4.200/src/version.c	2014-03-12 17:56:42.960852421 +0100
+--- src/version.c	2014-03-12 18:19:13.720873119 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     201,
+  /**/
+
+-- 
+Lawmakers made it obligatory for everybody to take at least one bath
+each week -- on Saturday night.
+		[real standing law in Vermont, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

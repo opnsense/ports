@@ -1,0 +1,267 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.231
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.231
+Problem:    An error in ":options" is not caught by the tests.
+Solution:   Add a test for ":options".  Set $VIMRUNTIME for the tests so that
+	    it uses the current runtime files instead of the installed ones.
+Files:	    src/Makefile, src/testdir/Makefile, src/testdir/test_options.in,
+	    src/testdir/test_options.ok, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms
+
+
+*** ../vim-7.4.230/src/Makefile	2014-03-27 17:40:53.384696360 +0100
+--- src/Makefile	2014-04-01 13:49:14.025089820 +0200
+***************
+*** 1867,1873 ****
+  	-if test $(VIMTARGET) != vim -a ! -r vim; then \
+  		ln -s $(VIMTARGET) vim; \
+  	fi
+! 	cd testdir; $(MAKE) -f Makefile $(GUI_TESTTARGET) VIMPROG=../$(VIMTARGET) $(GUI_TESTARG)
+  	$(MAKE) -f Makefile unittest
+  
+  unittesttargets:
+--- 1867,1873 ----
+  	-if test $(VIMTARGET) != vim -a ! -r vim; then \
+  		ln -s $(VIMTARGET) vim; \
+  	fi
+! 	cd testdir; $(MAKE) -f Makefile $(GUI_TESTTARGET) VIMPROG=../$(VIMTARGET) $(GUI_TESTARG) SCRIPTSOURCE=../$(SCRIPTSOURCE)
+  	$(MAKE) -f Makefile unittest
+  
+  unittesttargets:
+***************
+*** 1880,1885 ****
+--- 1880,1886 ----
+  
+  # Run individual test, assuming that Vim was already compiled.
+  test1 test2 test3 test4 test5 test6 test7 test8 test9 \
++ 	test_options \
+  	test10 test11 test12 test13 test14 test15 test16 test17 test18 test19 \
+  	test20 test21 test22 test23 test24 test25 test26 test27 test28 test29 \
+  	test30 test31 test32 test33 test34 test35 test36 test37 test38 test39 \
+***************
+*** 1890,1896 ****
+  	test80 test81 test82 test83 test84 test85 test86 test87 test88 test89 \
+  	test90 test91 test92 test93 test94 test95 test96 test97 test98 test99 \
+  	test100 test101 test102 test103 test104 test105 test106 test107:
+! 	cd testdir; rm $@.out; $(MAKE) -f Makefile $@.out VIMPROG=../$(VIMTARGET)
+  
+  testclean:
+  	cd testdir; $(MAKE) -f Makefile clean
+--- 1891,1897 ----
+  	test80 test81 test82 test83 test84 test85 test86 test87 test88 test89 \
+  	test90 test91 test92 test93 test94 test95 test96 test97 test98 test99 \
+  	test100 test101 test102 test103 test104 test105 test106 test107:
+! 	cd testdir; rm $@.out; $(MAKE) -f Makefile $@.out VIMPROG=../$(VIMTARGET) $(GUI_TESTARG) SCRIPTSOURCE=../$(SCRIPTSOURCE)
+  
+  testclean:
+  	cd testdir; $(MAKE) -f Makefile clean
+*** ../vim-7.4.230/src/testdir/Makefile	2014-03-12 19:41:37.100948866 +0100
+--- src/testdir/Makefile	2014-04-01 13:48:07.593090734 +0200
+***************
+*** 3,8 ****
+--- 3,9 ----
+  #
+  
+  VIMPROG = ../vim
++ SCRIPTSOURCE = ../../runtime
+  
+  # Uncomment this line to use valgrind for memory leaks and extra warnings.
+  #   The output goes into a file "valgrind.testN"
+***************
+*** 31,37 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out
+  
+  SCRIPTS_GUI = test16.out
+  
+--- 32,39 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out \
+! 		test_options.out
+  
+  SCRIPTS_GUI = test16.out
+  
+***************
+*** 53,59 ****
+  
+  RM_ON_RUN = test.out X* viminfo
+  RM_ON_START = tiny.vim small.vim mbyte.vim mzscheme.vim lua.vim test.ok
+! RUN_VIM = $(VALGRIND) $(VIMPROG) -u unix.vim -U NONE --noplugin -s dotest.in
+  
+  clean:
+  	-rm -rf *.out *.failed *.rej *.orig test.log $(RM_ON_RUN) $(RM_ON_START) valgrind.*
+--- 55,61 ----
+  
+  RM_ON_RUN = test.out X* viminfo
+  RM_ON_START = tiny.vim small.vim mbyte.vim mzscheme.vim lua.vim test.ok
+! RUN_VIM = export VIMRUNTIME=$(SCRIPTSOURCE); $(VALGRIND) $(VIMPROG) -u unix.vim -U NONE --noplugin -s dotest.in
+  
+  clean:
+  	-rm -rf *.out *.failed *.rej *.orig test.log $(RM_ON_RUN) $(RM_ON_START) valgrind.*
+*** ../vim-7.4.230/src/testdir/test_options.in	2014-04-01 14:07:21.057074867 +0200
+--- src/testdir/test_options.in	2014-04-01 13:19:34.073114305 +0200
+***************
+*** 0 ****
+--- 1,17 ----
++ Test for ":options".
++ 
++ STARTTEST
++ :so small.vim
++ :let caught = 'ok'
++ :try
++   :options
++ :catch 
++   :let caught = v:throwpoint . "\n" . v:exception
++ :endtry
++ :buf 1
++ :$put =caught
++ :/^result/,$w! test.out
++ :qa!
++ ENDTEST
++ 
++ result
+*** ../vim-7.4.230/src/testdir/test_options.ok	2014-04-01 14:07:21.065074867 +0200
+--- src/testdir/test_options.ok	2014-04-01 13:04:45.041126534 +0200
+***************
+*** 0 ****
+--- 1,2 ----
++ result
++ ok
+*** ../vim-7.4.230/src/testdir/Make_amiga.mak	2014-03-12 19:41:37.096948866 +0100
+--- src/testdir/Make_amiga.mak	2014-04-01 13:13:31.561119292 +0200
+***************
+*** 35,41 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out
+  
+  .SUFFIXES: .in .out
+  
+--- 35,42 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out \
+! 		test_options.out
+  
+  .SUFFIXES: .in .out
+  
+***************
+*** 158,160 ****
+--- 159,162 ----
+  test104.out: test104.in
+  test105.out: test105.in
+  test106.out: test106.in
++ test_options.out: test_options.in
+*** ../vim-7.4.230/src/testdir/Make_dos.mak	2014-03-12 19:41:37.096948866 +0100
+--- src/testdir/Make_dos.mak	2014-04-01 13:14:07.909118792 +0200
+***************
+*** 34,40 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 34,41 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out \
+! 		test_options.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.230/src/testdir/Make_ming.mak	2014-03-12 19:41:37.096948866 +0100
+--- src/testdir/Make_ming.mak	2014-04-01 13:14:23.889118572 +0200
+***************
+*** 54,60 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 54,61 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out \
+! 		test_options.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.230/src/testdir/Make_os2.mak	2014-03-12 19:41:37.096948866 +0100
+--- src/testdir/Make_os2.mak	2014-04-01 13:14:34.377118428 +0200
+***************
+*** 36,42 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out
+  
+  .SUFFIXES: .in .out
+  
+--- 36,43 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out \
+! 		test_options.out
+  
+  .SUFFIXES: .in .out
+  
+*** ../vim-7.4.230/src/testdir/Make_vms.mms	2014-03-12 19:41:37.096948866 +0100
+--- src/testdir/Make_vms.mms	2014-04-01 13:14:47.821118243 +0200
+***************
+*** 95,101 ****
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+! 	 test105.out test106.out
+  
+  # Known problems:
+  # test17: ?
+--- 95,102 ----
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+! 	 test105.out test106.out \
+! 	 test_options.out
+  
+  # Known problems:
+  # test17: ?
+*** ../vim-7.4.230/src/version.c	2014-04-01 12:26:40.245157964 +0200
+--- src/version.c	2014-04-01 13:14:57.549118109 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     231,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+11. You find yourself typing "com" after every period when using a word
+    processor.com
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

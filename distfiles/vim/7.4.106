@@ -1,0 +1,68 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.106
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.106
+Problem:    Can't build with Ruby using Cygwin.
+Solution:   Fix library name in makefile. (Steve Hall)
+Files:	    src/Make_cyg.mak
+
+
+*** ../vim-7.4.105/src/Make_cyg.mak	2013-09-19 20:48:59.000000000 +0200
+--- src/Make_cyg.mak	2013-11-28 16:29:52.000000000 +0100
+***************
+*** 1,6 ****
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Sep 19
+  #
+  # Also read INSTALLpc.txt!
+  #
+--- 1,6 ----
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Nov 28
+  #
+  # Also read INSTALLpc.txt!
+  #
+***************
+*** 272,278 ****
+  DEFINES += -DDYNAMIC_RUBY -DDYNAMIC_RUBY_DLL=\"$(RUBY_INSTALL_NAME).dll\"
+  DEFINES += -DDYNAMIC_RUBY_VER=$(RUBY_VER)
+  else
+! EXTRA_LIBS += $(RUBY)/lib/$(RUBY_INSTALL_NAME).lib
+  endif
+  endif
+  
+--- 272,278 ----
+  DEFINES += -DDYNAMIC_RUBY -DDYNAMIC_RUBY_DLL=\"$(RUBY_INSTALL_NAME).dll\"
+  DEFINES += -DDYNAMIC_RUBY_VER=$(RUBY_VER)
+  else
+! EXTRA_LIBS += $(RUBY)/lib/$(RUBY_INSTALL_NAME)
+  endif
+  endif
+  
+*** ../vim-7.4.105/src/version.c	2013-11-28 14:36:24.000000000 +0100
+--- src/version.c	2013-11-28 16:29:25.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     106,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+7. You finally do take that vacation, but only after buying a cellular modem
+   and a laptop.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

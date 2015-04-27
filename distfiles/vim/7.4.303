@@ -1,0 +1,85 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.303
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.303
+Problem:    When using double-width characters the text displayed on the
+	    command line is sometimes truncated.
+Solution:   Reset the string lenght. (Nobuhiro Takasaki)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.302/src/screen.c	2014-05-22 15:51:00.734399594 +0200
+--- src/screen.c	2014-05-22 16:02:24.294385701 +0200
+***************
+*** 6916,6930 ****
+   * a NUL.
+   */
+      void
+! screen_puts_len(text, len, row, col, attr)
+      char_u	*text;
+!     int		len;
+      int		row;
+      int		col;
+      int		attr;
+  {
+      unsigned	off;
+      char_u	*ptr = text;
+      int		c;
+  #ifdef FEAT_MBYTE
+      unsigned	max_off;
+--- 6916,6931 ----
+   * a NUL.
+   */
+      void
+! screen_puts_len(text, textlen, row, col, attr)
+      char_u	*text;
+!     int		textlen;
+      int		row;
+      int		col;
+      int		attr;
+  {
+      unsigned	off;
+      char_u	*ptr = text;
++     int		len = textlen;
+      int		c;
+  #ifdef FEAT_MBYTE
+      unsigned	max_off;
+***************
+*** 7169,7175 ****
+--- 7170,7180 ----
+  	    col += mbyte_cells;
+  	    ptr += mbyte_blen;
+  	    if (clear_next_cell)
++ 	    {
++ 		/* This only happens at the end, display one space next. */
+  		ptr = (char_u *)" ";
++ 		len = -1;
++ 	    }
+  	}
+  	else
+  #endif
+*** ../vim-7.4.302/src/version.c	2014-05-22 15:51:00.738399594 +0200
+--- src/version.c	2014-05-22 15:58:15.050390766 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     303,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+193. You ask your girlfriend to drive home so you can sit back with
+     your PDA and download the information to your laptop
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

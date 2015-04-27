@@ -1,0 +1,578 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.670
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.670
+Problem:    Using 'cindent' for Javascript is less than perfect.
+Solution:   Improve indenting of continuation lines. (Hirohito Higashi)
+Files:	    src/misc1.c, src/testdir/test3.in, src/testdir/test3.ok
+
+
+*** ../vim-7.4.669/src/misc1.c	2015-03-06 22:00:06.813457075 +0100
+--- src/misc1.c	2015-03-20 18:52:24.283668213 +0100
+***************
+*** 6670,6689 ****
+      pos_T	cursor_save;
+      pos_T	*trypos;
+      static pos_T pos_copy;
+  
+      cursor_save = curwin->w_cursor;
+!     if ((trypos = findmatchlimit(NULL, c, 0, ind_maxparen)) != NULL)
+      {
+  	/* check if the ( is in a // comment */
+  	if ((colnr_T)cin_skip2pos(trypos) > trypos->col)
+  	    trypos = NULL;
+  	else
+  	{
+  	    pos_copy = *trypos;	    /* copy trypos, findmatch will change it */
+  	    trypos = &pos_copy;
+  	    curwin->w_cursor = *trypos;
+! 	    if (ind_find_start_comment() != NULL) /* XXX */
+  		trypos = NULL;
+  	}
+      }
+      curwin->w_cursor = cursor_save;
+--- 6670,6712 ----
+      pos_T	cursor_save;
+      pos_T	*trypos;
+      static pos_T pos_copy;
++     int		ind_maxp_wk;
+  
+      cursor_save = curwin->w_cursor;
+!     ind_maxp_wk = ind_maxparen;
+! retry:
+!     if ((trypos = findmatchlimit(NULL, c, 0, ind_maxp_wk)) != NULL)
+      {
+  	/* check if the ( is in a // comment */
+  	if ((colnr_T)cin_skip2pos(trypos) > trypos->col)
++ 	{
++ 	    ind_maxp_wk = ind_maxparen - (int)(cursor_save.lnum - trypos->lnum);
++ 	    if (ind_maxp_wk > 0)
++ 	    {
++ 		curwin->w_cursor = *trypos;
++ 		curwin->w_cursor.col = 0;	/* XXX */
++ 		goto retry;
++ 	    }
+  	    trypos = NULL;
++ 	}
+  	else
+  	{
++ 	    pos_T	*trypos_wk;
++ 
+  	    pos_copy = *trypos;	    /* copy trypos, findmatch will change it */
+  	    trypos = &pos_copy;
+  	    curwin->w_cursor = *trypos;
+! 	    if ((trypos_wk = ind_find_start_comment()) != NULL) /* XXX */
+! 	    {
+! 		ind_maxp_wk = ind_maxparen - (int)(cursor_save.lnum
+! 			- trypos_wk->lnum);
+! 		if (ind_maxp_wk > 0)
+! 		{
+! 		    curwin->w_cursor = *trypos_wk;
+! 		    goto retry;
+! 		}
+  		trypos = NULL;
++ 	    }
+  	}
+      }
+      curwin->w_cursor = cursor_save;
+***************
+*** 7024,7030 ****
+  #define LOOKFOR_CPP_BASECLASS	9
+  #define LOOKFOR_ENUM_OR_INIT	10
+  #define LOOKFOR_JS_KEY		11
+! #define LOOKFOR_NO_COMMA	12
+  
+      int		whilelevel;
+      linenr_T	lnum;
+--- 7047,7053 ----
+  #define LOOKFOR_CPP_BASECLASS	9
+  #define LOOKFOR_ENUM_OR_INIT	10
+  #define LOOKFOR_JS_KEY		11
+! #define LOOKFOR_COMMA	12
+  
+      int		whilelevel;
+      linenr_T	lnum;
+***************
+*** 7842,7848 ****
+  		    else
+  		    {
+  			if (lookfor != LOOKFOR_TERM
+! 					  && lookfor != LOOKFOR_CPP_BASECLASS)
+  			{
+  			    amount = scope_amount;
+  			    if (theline[0] == '{')
+--- 7865,7872 ----
+  		    else
+  		    {
+  			if (lookfor != LOOKFOR_TERM
+! 					&& lookfor != LOOKFOR_CPP_BASECLASS
+! 					&& lookfor != LOOKFOR_COMMA)
+  			{
+  			    amount = scope_amount;
+  			    if (theline[0] == '{')
+***************
+*** 8134,8156 ****
+  		    amount = get_indent();
+  		    break;
+  		}
+! 		if (lookfor == LOOKFOR_NO_COMMA)
+  		{
+! 		    if (terminated != ',')
+  			/* line below current line is the one that starts a
+  			 * (possibly broken) line ending in a comma. */
+  			break;
+! 		    amount = get_indent();
+! 		    if (curwin->w_cursor.lnum - 1 == ourscope)
+! 			/* line above is start of the scope, thus current line
+! 			 * is the one that stars a (possibly broken) line
+! 			 * ending in a comma. */
+! 			break;
+  		}
+  
+  		if (terminated == 0 || (lookfor != LOOKFOR_UNTERM
+  							&& terminated == ','))
+  		{
+  		    /*
+  		     * if we're in the middle of a paren thing,
+  		     * go back to the line that starts it so
+--- 8158,8188 ----
+  		    amount = get_indent();
+  		    break;
+  		}
+! 		if (lookfor == LOOKFOR_COMMA)
+  		{
+! 		    if (tryposBrace != NULL && tryposBrace->lnum
+! 						    >= curwin->w_cursor.lnum)
+! 			break;
+! 		    if (terminated == ',')
+  			/* line below current line is the one that starts a
+  			 * (possibly broken) line ending in a comma. */
+  			break;
+! 		    else
+! 		    {
+! 			amount = get_indent();
+! 			if (curwin->w_cursor.lnum - 1 == ourscope)
+! 			    /* line above is start of the scope, thus current
+! 			     * line is the one that stars a (possibly broken)
+! 			     * line ending in a comma. */
+! 			    break;
+! 		    }
+  		}
+  
+  		if (terminated == 0 || (lookfor != LOOKFOR_UNTERM
+  							&& terminated == ','))
+  		{
++ 		    if (*skipwhite(l) == '[' || l[STRLEN(l) - 1] == '[')
++ 			amount += ind_continuation;
+  		    /*
+  		     * if we're in the middle of a paren thing,
+  		     * go back to the line that starts it so
+***************
+*** 8389,8395 ****
+--- 8421,8430 ----
+  			     *	    100 +
+  			     * ->	    here;
+  			     */
++ 			    l = ml_get_curline();
+  			    amount = cur_amount;
++ 			    if (*skipwhite(l) == ']' || l[STRLEN(l) - 1] == ']')
++ 				break;
+  
+  			    /*
+  			     * If previous line ends in ',', check whether we
+***************
+*** 8418,8425 ****
+  				     *        5,
+  				     *     6,
+  				     */
+! 				    lookfor = LOOKFOR_NO_COMMA;
+! 				    amount = get_indent();	    /* XXX */
+  				    trypos = find_match_char('[',
+  						      curbuf->b_ind_maxparen);
+  				    if (trypos != NULL)
+--- 8453,8461 ----
+  				     *        5,
+  				     *     6,
+  				     */
+! 				    if (cin_iscomment(skipwhite(l)))
+! 					break;
+! 				    lookfor = LOOKFOR_COMMA;
+  				    trypos = find_match_char('[',
+  						      curbuf->b_ind_maxparen);
+  				    if (trypos != NULL)
+***************
+*** 8449,8455 ****
+  				    cont_amount = cin_get_equal_amount(
+  						       curwin->w_cursor.lnum);
+  				if (lookfor != LOOKFOR_TERM
+! 						 && lookfor != LOOKFOR_JS_KEY)
+  				    lookfor = LOOKFOR_UNTERM;
+  			    }
+  			}
+--- 8485,8492 ----
+  				    cont_amount = cin_get_equal_amount(
+  						       curwin->w_cursor.lnum);
+  				if (lookfor != LOOKFOR_TERM
+! 						&& lookfor != LOOKFOR_JS_KEY
+! 						&& lookfor != LOOKFOR_COMMA)
+  				    lookfor = LOOKFOR_UNTERM;
+  			    }
+  			}
+*** ../vim-7.4.669/src/testdir/test3.in	2014-08-06 17:44:09.867161966 +0200
+--- src/testdir/test3.in	2015-03-20 18:48:42.478174688 +0100
+***************
+*** 2065,2070 ****
+--- 2065,2228 ----
+  JSEND
+  
+  STARTTEST
++ :set cino=j1,J1,+2
++ /^JSSTART
++ =/^JSEND
++ ENDTEST
++ 
++ JSSTART
++ // Results of JavaScript indent
++ // 1
++ (function(){
++ var a = [
++ 'a',
++ 'b',
++ 'c',
++ 'd',
++ 'e',
++ 'f',
++ 'g',
++ 'h',
++ 'i'
++ ];
++ }())
++ 
++ // 2
++ (function(){
++ var a = [
++ 0 +
++ 5 *
++ 9 *
++ 'a',
++ 'b',
++ 0 +
++ 5 *
++ 9 *
++ 'c',
++ 'd',
++ 'e',
++ 'f',
++ 'g',
++ 'h',
++ 'i'
++ ];
++ }())
++ 
++ // 3
++ (function(){
++ var a = [
++ 0 +
++ // comment 1
++ 5 *
++ /* comment 2 */
++ 9 *
++ 'a',
++ 'b',
++ 0 +
++ 5 *
++ 9 *
++ 'c',
++ 'd',
++ 'e',
++ 'f',
++ 'g',
++ 'h',
++ 'i'
++ ];
++ }())
++ 
++ // 4
++ {
++ var a = [
++ 0,
++ 1
++ ];
++ var b;
++ var c;
++ }
++ 
++ // 5
++ {
++ var a = [
++ [
++ 0
++ ],
++ 2,
++ 3
++ ];
++ }
++ 
++ // 6
++ {
++ var a = [
++ [
++ 0,
++ 1
++ ],
++ 2,
++ 3
++ ];
++ }
++ 
++ // 7
++ {
++ var a = [
++ // [
++ 0,
++ // 1
++ // ],
++ 2,
++ 3
++ ];
++ }
++ 
++ // 8
++ var x = [
++ (function(){
++ var a,
++ b,
++ c,
++ d,
++ e,
++ f,
++ g,
++ h,
++ i;
++ })
++ ];
++ 
++ // 9
++ var a = [
++ 0 +
++ 5 *
++ 9 *
++ 'a',
++ 'b',
++ 0 +
++ 5 *
++ 9 *
++ 'c',
++ 'd',
++ 'e',
++ 'f',
++ 'g',
++ 'h',
++ 'i'
++ ];
++ 
++ // 10
++ var a,
++ b,
++ c,
++ d,
++ e,
++ f,
++ g,
++ h,
++ i;
++ JSEND
++ 
++ STARTTEST
+  :g/^STARTTEST/.,/^ENDTEST/d
+  :1;/start of AUTO/,$wq! test.out
+  ENDTEST
+*** ../vim-7.4.669/src/testdir/test3.ok	2014-08-06 17:44:09.867161966 +0200
+--- src/testdir/test3.ok	2015-03-20 18:55:10.709787690 +0100
+***************
+*** 1832,1834 ****
+--- 1832,1987 ----
+  })(jQuery);
+  JSEND
+  
++ 
++ JSSTART
++ // Results of JavaScript indent
++ // 1
++ (function(){
++ 	var a = [
++ 	  'a',
++ 	  'b',
++ 	  'c',
++ 	  'd',
++ 	  'e',
++ 	  'f',
++ 	  'g',
++ 	  'h',
++ 	  'i'
++ 	];
++ }())
++ 
++ // 2
++ (function(){
++ 	var a = [
++ 	  0 +
++ 		5 *
++ 		9 *
++ 		'a',
++ 	  'b',
++ 	  0 +
++ 		5 *
++ 		9 *
++ 		'c',
++ 	  'd',
++ 	  'e',
++ 	  'f',
++ 	  'g',
++ 	  'h',
++ 	  'i'
++ 	];
++ }())
++ 
++ // 3
++ (function(){
++ 	var a = [
++ 	  0 +
++ 		// comment 1
++ 		5 *
++ 		/* comment 2 */
++ 		9 *
++ 		'a',
++ 	  'b',
++ 	  0 +
++ 		5 *
++ 		9 *
++ 		'c',
++ 	  'd',
++ 	  'e',
++ 	  'f',
++ 	  'g',
++ 	  'h',
++ 	  'i'
++ 	];
++ }())
++ 
++ // 4
++ {
++ 	var a = [
++ 	  0,
++ 	  1
++ 	];
++ 	var b;
++ 	var c;
++ }
++ 
++ // 5
++ {
++ 	var a = [
++ 	  [
++ 		0
++ 	  ],
++ 	  2,
++ 	  3
++ 	];
++ }
++ 
++ // 6
++ {
++ 	var a = [
++ 	  [
++ 		0,
++ 		1
++ 	  ],
++ 	  2,
++ 	  3
++ 	];
++ }
++ 
++ // 7
++ {
++ 	var a = [
++ 	  // [
++ 	  0,
++ 	  // 1
++ 	  // ],
++ 	  2,
++ 	  3
++ 	];
++ }
++ 
++ // 8
++ var x = [
++   (function(){
++ 	  var a,
++ 	  b,
++ 	  c,
++ 	  d,
++ 	  e,
++ 	  f,
++ 	  g,
++ 	  h,
++ 	  i;
++   })
++ ];
++ 
++ // 9
++ var a = [
++   0 +
++   5 *
++   9 *
++   'a',
++   'b',
++   0 +
++   5 *
++   9 *
++   'c',
++   'd',
++   'e',
++   'f',
++   'g',
++   'h',
++   'i'
++ ];
++ 
++ // 10
++ var a,
++ 	b,
++ 	c,
++ 	d,
++ 	e,
++ 	f,
++ 	g,
++ 	h,
++ 	i;
++ JSEND
++ 
+*** ../vim-7.4.669/src/version.c	2015-03-20 18:11:44.971196311 +0100
+--- src/version.c	2015-03-20 18:53:43.626771663 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     670,
+  /**/
+
+-- 
+ARTHUR:        What?
+BLACK KNIGHT:  None shall pass.
+ARTHUR:        I have no quarrel with you, good Sir knight, but I must cross
+               this bridge.
+BLACK KNIGHT:  Then you shall die.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

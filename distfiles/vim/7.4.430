@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.430
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.430
+Problem:    test_listlbr fails when compiled with normal features.
+Solution:   Check for the +conceal feature.
+Files:	    src/testdir/test_listlbr.in
+
+
+*** ../vim-7.4.429/src/testdir/test_listlbr.in	2014-08-29 12:08:39.686423658 +0200
+--- src/testdir/test_listlbr.in	2014-08-30 17:07:04.930651497 +0200
+***************
+*** 2,8 ****
+  
+  STARTTEST
+  :so small.vim
+! :if !exists("+linebreak") | e! test.ok | w! test.out | qa! | endif
+  :10new|:vsp|:vert resize 20
+  :put =\"\tabcdef hijklmn\tpqrstuvwxyz_1060ABCDEFGHIJKLMNOP \"
+  :norm! zt
+--- 2,8 ----
+  
+  STARTTEST
+  :so small.vim
+! :if !exists("+linebreak") || !exists("+conceal") | e! test.ok | w! test.out | qa! | endif
+  :10new|:vsp|:vert resize 20
+  :put =\"\tabcdef hijklmn\tpqrstuvwxyz_1060ABCDEFGHIJKLMNOP \"
+  :norm! zt
+*** ../vim-7.4.429/src/version.c	2014-08-30 13:32:03.406623315 +0200
+--- src/version.c	2014-08-30 17:08:01.758651621 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     430,
+  /**/
+
+-- 
+You can't have everything.  Where would you put it?
+		-- Steven Wright
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

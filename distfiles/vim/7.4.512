@@ -1,0 +1,99 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.512
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.512
+Problem:    Cannot generate prototypes for Win32 files and VMS.
+Solution:   Add typedefs and #ifdef
+Files:	    src/os_win32.c, src/gui_w32.c, src/os_vms.c
+
+
+*** ../vim-7.4.511/src/os_win32.c	2014-11-05 18:35:59.104397681 +0100
+--- src/os_win32.c	2014-11-12 15:33:13.136237810 +0100
+***************
+*** 135,140 ****
+--- 135,142 ----
+  typedef int SE_OBJECT_TYPE;
+  typedef int PSNSECINFO;
+  typedef int PSNSECINFOW;
++ typedef int STARTUPINFO;
++ typedef int PROCESS_INFORMATION;
+  #endif
+  
+  #ifndef FEAT_GUI_W32
+*** ../vim-7.4.511/src/gui_w32.c	2014-10-06 18:10:04.521273516 +0200
+--- src/gui_w32.c	2014-11-12 15:30:44.309980459 +0100
+***************
+*** 29,40 ****
+  # include "gui_dwrite.h"
+  #endif
+  
+! #if defined(FEAT_DIRECTX) || defined(PROTO)
+  static DWriteContext *s_dwc = NULL;
+  static int s_directx_enabled = 0;
+  static int s_directx_load_attempted = 0;
+  # define IS_ENABLE_DIRECTX() (s_directx_enabled && s_dwc != NULL)
+  
+      int
+  directx_enabled(void)
+  {
+--- 29,42 ----
+  # include "gui_dwrite.h"
+  #endif
+  
+! #if defined(FEAT_DIRECTX)
+  static DWriteContext *s_dwc = NULL;
+  static int s_directx_enabled = 0;
+  static int s_directx_load_attempted = 0;
+  # define IS_ENABLE_DIRECTX() (s_directx_enabled && s_dwc != NULL)
++ #endif
+  
++ #if defined(FEAT_DIRECTX) || defined(PROTO)
+      int
+  directx_enabled(void)
+  {
+*** ../vim-7.4.511/src/os_vms.c	2014-04-01 21:00:45.436733663 +0200
+--- src/os_vms.c	2014-11-12 15:34:04.223639992 +0100
+***************
+*** 12,18 ****
+  #include	"vim.h"
+  
+  /* define _generic_64 for use in time functions */
+! #ifndef VAX
+  #   include <gen64def.h>
+  #else
+  /* based on Alpha's gen64def.h; the file is absent on VAX */
+--- 12,18 ----
+  #include	"vim.h"
+  
+  /* define _generic_64 for use in time functions */
+! #if !defined(VAX) && !defined(PROTO)
+  #   include <gen64def.h>
+  #else
+  /* based on Alpha's gen64def.h; the file is absent on VAX */
+*** ../vim-7.4.511/src/version.c	2014-11-12 16:05:01.142042845 +0100
+--- src/version.c	2014-11-12 16:05:52.861446039 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     512,
+  /**/
+
+-- 
+TIM: But follow only if you are men of valour.  For the entrance to this cave
+     is guarded by a monster, a creature so foul and cruel that no man yet has
+     fought with it and lived.  Bones of full fifty men lie strewn about its
+     lair ...
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

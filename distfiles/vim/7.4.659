@@ -1,0 +1,86 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.659
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.659
+Problem:    When 'ruler' is set the preferred column is reset. (Issue 339)
+Solution:   Don't set curswant when redrawing the status lines.
+Files:	    src/option.c
+
+
+*** ../vim-7.4.658/src/option.c	2015-02-10 19:20:33.731792076 +0100
+--- src/option.c	2015-03-13 11:19:50.564937256 +0100
+***************
+*** 7193,7199 ****
+  #endif
+  
+      if (curwin->w_curswant != MAXCOL
+! 		     && (options[opt_idx].flags & (P_CURSWANT | P_RCLR)) != 0)
+  	curwin->w_set_curswant = TRUE;
+  
+  #ifdef FEAT_GUI
+--- 7193,7199 ----
+  #endif
+  
+      if (curwin->w_curswant != MAXCOL
+! 		     && (options[opt_idx].flags & (P_CURSWANT | P_RALL)) != 0)
+  	curwin->w_set_curswant = TRUE;
+  
+  #ifdef FEAT_GUI
+***************
+*** 8203,8209 ****
+  
+      comp_col();			    /* in case 'ruler' or 'showcmd' changed */
+      if (curwin->w_curswant != MAXCOL
+! 		     && (options[opt_idx].flags & (P_CURSWANT | P_RCLR)) != 0)
+  	curwin->w_set_curswant = TRUE;
+      check_redraw(options[opt_idx].flags);
+  
+--- 8203,8209 ----
+  
+      comp_col();			    /* in case 'ruler' or 'showcmd' changed */
+      if (curwin->w_curswant != MAXCOL
+! 		     && (options[opt_idx].flags & (P_CURSWANT | P_RALL)) != 0)
+  	curwin->w_set_curswant = TRUE;
+      check_redraw(options[opt_idx].flags);
+  
+***************
+*** 8738,8744 ****
+  
+      comp_col();			    /* in case 'columns' or 'ls' changed */
+      if (curwin->w_curswant != MAXCOL
+! 		     && (options[opt_idx].flags & (P_CURSWANT | P_RCLR)) != 0)
+  	curwin->w_set_curswant = TRUE;
+      check_redraw(options[opt_idx].flags);
+  
+--- 8738,8744 ----
+  
+      comp_col();			    /* in case 'columns' or 'ls' changed */
+      if (curwin->w_curswant != MAXCOL
+! 		     && (options[opt_idx].flags & (P_CURSWANT | P_RALL)) != 0)
+  	curwin->w_set_curswant = TRUE;
+      check_redraw(options[opt_idx].flags);
+  
+*** ../vim-7.4.658/src/version.c	2015-03-08 14:48:32.959696341 +0100
+--- src/version.c	2015-03-13 11:21:31.255788185 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     659,
+  /**/
+
+-- 
+"A mouse can be just as dangerous as a bullet or a bomb."
+             (US Representative Lamar Smith, R-Texas)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

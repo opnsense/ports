@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.444
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.444
+Problem:    Reversed question mark not recognized as punctuation. (Issue 258)
+Solution:   Add the Supplemental Punctuation range.
+Files:	    src/mbyte.c
+
+
+*** ../vim-7.4.443/src/mbyte.c	2014-03-12 14:54:29.920684895 +0100
+--- src/mbyte.c	2014-09-15 14:24:06.389649777 +0200
+***************
+*** 2537,2542 ****
+--- 2537,2543 ----
+  	{0x2900, 0x2998, 1},		/* arrows, brackets, etc. */
+  	{0x29d8, 0x29db, 1},
+  	{0x29fc, 0x29fd, 1},
++ 	{0x2e00, 0x2e7f, 1},		/* supplemental punctuation */
+  	{0x3000, 0x3000, 0},		/* ideographic space */
+  	{0x3001, 0x3020, 1},		/* ideographic punctuation */
+  	{0x3030, 0x3030, 1},
+*** ../vim-7.4.443/src/version.c	2014-09-11 22:49:42.212961131 +0200
+--- src/version.c	2014-09-15 14:25:14.761649927 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     444,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+136. You decide to stay in a low-paying job teaching just for the
+     free Internet access.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

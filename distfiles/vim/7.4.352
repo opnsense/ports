@@ -1,0 +1,101 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.352
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.352
+Problem:    With 'linebreak' a tab causes missing line break.
+Solution:   Count a tab for what it's worth also for shorter lines.
+	    (Christian Brabandt)
+Files:	    src/charset.c
+
+
+*** ../vim-7.4.351/src/charset.c	2014-06-25 14:39:35.098348584 +0200
+--- src/charset.c	2014-07-02 19:34:28.142352040 +0200
+***************
+*** 1078,1083 ****
+--- 1078,1084 ----
+      int		c;
+      int		size;
+      colnr_T	col2;
++     colnr_T	col_adj = 0; /* col + screen size of tab */
+      colnr_T	colmax;
+      int		added;
+  # ifdef FEAT_MBYTE
+***************
+*** 1109,1114 ****
+--- 1110,1117 ----
+       */
+      size = win_chartabsize(wp, s, col);
+      c = *s;
++     if (tab_corr)
++ 	col_adj = size - 1;
+  
+      /*
+       * If 'linebreak' set check at a blank before a non-blank if the line
+***************
+*** 1130,1141 ****
+  	 */
+  	numberextra = win_col_off(wp);
+  	col2 = col;
+! 	colmax = (colnr_T)(W_WIDTH(wp) - numberextra);
+  	if (col >= colmax)
+  	{
+! 	    n = colmax + win_col_off2(wp);
+  	    if (n > 0)
+! 		colmax += (((col - colmax) / n) + 1) * n;
+  	}
+  
+  	for (;;)
+--- 1133,1145 ----
+  	 */
+  	numberextra = win_col_off(wp);
+  	col2 = col;
+! 	colmax = (colnr_T)(W_WIDTH(wp) - numberextra - col_adj);
+  	if (col >= colmax)
+  	{
+! 	    colmax += col_adj;
+! 	    n = colmax +  win_col_off2(wp);
+  	    if (n > 0)
+! 		colmax += (((col - colmax) / n) + 1) * n - col_adj;
+  	}
+  
+  	for (;;)
+***************
+*** 1152,1158 ****
+  	    col2 += win_chartabsize(wp, s, col2);
+  	    if (col2 >= colmax)		/* doesn't fit */
+  	    {
+! 		size = colmax - col;
+  		tab_corr = FALSE;
+  		break;
+  	    }
+--- 1156,1162 ----
+  	    col2 += win_chartabsize(wp, s, col2);
+  	    if (col2 >= colmax)		/* doesn't fit */
+  	    {
+! 		size = colmax - col + col_adj;
+  		tab_corr = FALSE;
+  		break;
+  	    }
+*** ../vim-7.4.351/src/version.c	2014-07-02 19:06:14.686326091 +0200
+--- src/version.c	2014-07-02 19:32:50.218350540 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     352,
+  /**/
+
+-- 
+The early bird gets the worm. The second mouse gets the cheese.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

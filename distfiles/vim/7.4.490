@@ -1,0 +1,208 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.490
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.490
+Problem:    Cannot specify the buffer to use for "do" and "dp", making them
+	    useless for three-way diff.
+Solution:   Use the count as the buffer number. (James McCoy)
+Files:	    runtime/doc/diff.txt, src/diff.c, src/normal.c, src/proto/diff.pro
+
+
+*** ../vim-7.4.489/runtime/doc/diff.txt	2013-08-10 13:24:52.000000000 +0200
+--- runtime/doc/diff.txt	2014-10-31 13:39:22.443236141 +0100
+***************
+*** 95,101 ****
+  :difft[his]	Make the current window part of the diff windows.  This sets
+  		the options like for "vimdiff".
+  
+! :diffp[atch] {patchfile}				 *E816* *:diffp* *:diffpatch*
+  		Use the current buffer, patch it with the diff found in
+  		{patchfile} and open a buffer on the result.  The options are
+  		set as for "vimdiff".
+--- 95,101 ----
+  :difft[his]	Make the current window part of the diff windows.  This sets
+  		the options like for "vimdiff".
+  
+! :diffp[atch] {patchfile}			 *E816* *:diffp* *:diffpatch*
+  		Use the current buffer, patch it with the diff found in
+  		{patchfile} and open a buffer on the result.  The options are
+  		set as for "vimdiff".
+***************
+*** 123,132 ****
+  file for a moment and come back to the same file and be in diff mode again.
+  
+  							*:diffo* *:diffoff*
+! :diffo[ff]	Switch off diff mode for the current window.
+  
+  :diffo[ff]!	Switch off diff mode for the current window and in all windows
+! 		in the current tab page where 'diff' is set.
+  
+  The ":diffoff" command resets the relevant options to the values they had when
+  using |:diffsplit|, |:diffpatch| , |:diffthis|. or starting Vim in diff mode.
+--- 123,136 ----
+  file for a moment and come back to the same file and be in diff mode again.
+  
+  							*:diffo* *:diffoff*
+! :diffo[ff]	Switch off diff mode for the current window.  Resets related
+! 		options also when 'diff' was not set.
+  
+  :diffo[ff]!	Switch off diff mode for the current window and in all windows
+! 		in the current tab page where 'diff' is set.  Resetting
+! 		related options only happens in a window that has 'diff' set,
+! 		if the current window does not have 'diff' set then no options
+! 		in it are changed.
+  
+  The ":diffoff" command resets the relevant options to the values they had when
+  using |:diffsplit|, |:diffpatch| , |:diffthis|. or starting Vim in diff mode.
+***************
+*** 262,274 ****
+  		See below for [range].
+  
+  							*do*
+! do		Same as ":diffget" without argument or range.  The "o" stands
+! 		for "obtain" ("dg" can't be used, it could be the start of
+! 		"dgg"!). Note: this doesn't work in Visual mode.
+  
+  							*dp*
+! dp		Same as ":diffput" without argument or range.
+! 		Note: this doesn't work in Visual mode.
+  
+  
+  When no [range] is given, the diff at the cursor position or just above it is
+--- 266,282 ----
+  		See below for [range].
+  
+  							*do*
+! [count]do	Same as ":diffget" without range.  The "o" stands for "obtain"
+! 		("dg" can't be used, it could be the start of "dgg"!). Note:
+! 		this doesn't work in Visual mode.
+! 		If you give a [count], it is used as the [bufspec] argument
+! 		for ":diffget".
+  
+  							*dp*
+! [count]dp	Same as ":diffput" without range.  Note: this doesn't work in
+! 		Visual mode.
+! 		If you give a [count], it is used as the [bufspec] argument
+! 		for ":diffput".
+  
+  
+  When no [range] is given, the diff at the cursor position or just above it is
+*** ../vim-7.4.489/src/diff.c	2014-10-15 12:56:44.006015955 +0200
+--- src/diff.c	2014-10-31 13:44:20.739228953 +0100
+***************
+*** 2107,2118 ****
+   * "dp" and "do" commands.
+   */
+      void
+! nv_diffgetput(put)
+      int		put;
+  {
+      exarg_T	ea;
+  
+!     ea.arg = (char_u *)"";
+      if (put)
+  	ea.cmdidx = CMD_diffput;
+      else
+--- 2107,2126 ----
+   * "dp" and "do" commands.
+   */
+      void
+! nv_diffgetput(put, count)
+      int		put;
++     long	count;
+  {
+      exarg_T	ea;
++     char_u	buf[30];
+  
+!     if (count == 0)
+! 	ea.arg = (char_u *)"";
+!     else
+!     {
+! 	vim_snprintf((char *)buf, 30, "%ld", count);
+! 	ea.arg = buf;
+!     }
+      if (put)
+  	ea.cmdidx = CMD_diffput;
+      else
+*** ../vim-7.4.489/src/normal.c	2014-10-09 14:48:26.284898230 +0200
+--- src/normal.c	2014-10-31 13:36:32.671240232 +0100
+***************
+*** 9284,9290 ****
+  	if (cap->oap->op_type == OP_DELETE && cap->cmdchar == 'p')
+  	{
+  	    clearop(cap->oap);
+! 	    nv_diffgetput(TRUE);
+  	}
+  	else
+  #endif
+--- 9284,9290 ----
+  	if (cap->oap->op_type == OP_DELETE && cap->cmdchar == 'p')
+  	{
+  	    clearop(cap->oap);
+! 	    nv_diffgetput(TRUE, cap->opcount);
+  	}
+  	else
+  #endif
+***************
+*** 9407,9413 ****
+      if (cap->oap->op_type == OP_DELETE && cap->cmdchar == 'o')
+      {
+  	clearop(cap->oap);
+! 	nv_diffgetput(FALSE);
+      }
+      else
+  #endif
+--- 9407,9413 ----
+      if (cap->oap->op_type == OP_DELETE && cap->cmdchar == 'o')
+      {
+  	clearop(cap->oap);
+! 	nv_diffgetput(FALSE, cap->opcount);
+      }
+      else
+  #endif
+*** ../vim-7.4.489/src/proto/diff.pro	2013-08-10 13:37:07.000000000 +0200
+--- src/proto/diff.pro	2014-10-31 13:36:32.671240232 +0100
+***************
+*** 18,24 ****
+  int diffopt_horizontal __ARGS((void));
+  int diff_find_change __ARGS((win_T *wp, linenr_T lnum, int *startp, int *endp));
+  int diff_infold __ARGS((win_T *wp, linenr_T lnum));
+! void nv_diffgetput __ARGS((int put));
+  void ex_diffgetput __ARGS((exarg_T *eap));
+  int diff_mode_buf __ARGS((buf_T *buf));
+  int diff_move_to __ARGS((int dir, long count));
+--- 18,24 ----
+  int diffopt_horizontal __ARGS((void));
+  int diff_find_change __ARGS((win_T *wp, linenr_T lnum, int *startp, int *endp));
+  int diff_infold __ARGS((win_T *wp, linenr_T lnum));
+! void nv_diffgetput __ARGS((int put, long count));
+  void ex_diffgetput __ARGS((exarg_T *eap));
+  int diff_mode_buf __ARGS((buf_T *buf));
+  int diff_move_to __ARGS((int dir, long count));
+*** ../vim-7.4.489/src/version.c	2014-10-31 12:41:57.427319153 +0100
+--- src/version.c	2014-10-31 13:37:54.511238260 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     490,
+  /**/
+
+-- 
+GUARD #2:  It could be carried by an African swallow!
+GUARD #1:  Oh, yeah, an African swallow maybe, but not a European swallow,
+           that's my point.
+GUARD #2:  Oh, yeah, I agree with that...
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

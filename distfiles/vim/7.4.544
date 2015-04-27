@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.544
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.544
+Problem:    Warnings for unused arguments when compiling with a combination of
+	    features.
+Solution:   Add "UNUSED".
+Files:	    src/if_cscope.c
+
+
+*** ../vim-7.4.543/src/if_cscope.c	2013-06-30 14:59:21.000000000 +0200
+--- src/if_cscope.c	2014-11-30 13:19:06.699741651 +0100
+***************
+*** 1131,1138 ****
+      char *pat;
+      int forceit;
+      int verbose;
+!     int	use_ll;
+!     char_u *cmdline;
+  {
+      int i;
+      char *cmd;
+--- 1131,1138 ----
+      char *pat;
+      int forceit;
+      int verbose;
+!     int	use_ll UNUSED;
+!     char_u *cmdline UNUSED;
+  {
+      int i;
+      char *cmd;
+*** ../vim-7.4.543/src/version.c	2014-12-13 03:17:07.465046539 +0100
+--- src/version.c	2014-12-13 03:19:54.743238147 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     544,
+  /**/
+
+-- 
+At some point in the project somebody will start whining about the need to
+determine the project "requirements".  This involves interviewing people who
+don't know what they want but, curiously, know exactly when they need it.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

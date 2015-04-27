@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.558
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.558
+Problem:    When the X server restarts Vim may get stuck.
+Solution:   Destroy the application context and create it again.  (Issue 203)
+Files:	    src/os_unix.c
+
+
+*** ../vim-7.4.557/src/os_unix.c	2014-12-17 14:36:10.367090935 +0100
+--- src/os_unix.c	2014-12-17 17:55:23.187644328 +0100
+***************
+*** 1617,1622 ****
+--- 1617,1633 ----
+      if (xterm_dpy_was_reset)
+      {
+  	xterm_dpy_was_reset = FALSE;
++ 
++ # ifndef LESSTIF_VERSION
++ 	/* This has been reported to avoid Vim getting stuck. */
++ 	if (app_context != (XtAppContext)NULL)
++ 	{
++ 	    XtDestroyApplicationContext(app_context);
++ 	    app_context = (XtAppContext)NULL;
++ 	    x11_display = NULL; /* freed by XtDestroyApplicationContext() */
++ 	}
++ # endif
++ 
+  	setup_term_clip();
+  	get_x11_title(FALSE);
+      }
+*** ../vim-7.4.557/src/version.c	2014-12-17 14:47:52.870412129 +0100
+--- src/version.c	2014-12-17 17:57:10.026323560 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     558,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+14. You start introducing yourself as "Jim at I-I-Net dot net dot au"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

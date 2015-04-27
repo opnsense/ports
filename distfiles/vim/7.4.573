@@ -1,0 +1,110 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.573
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.573 (after 7.4.569)
+Problem:    Mapping CTRL-C in Visual mode doesn't work. (Ingo Karkat)
+Solution:   Call get_real_state() instead of using State directly.
+Files:	    src/ui.c, src/testdir/test_mapping.in, src/testdir/test_mapping.ok
+
+
+*** ../vim-7.4.572/src/ui.c	2015-01-14 12:44:38.407422077 +0100
+--- src/ui.c	2015-01-14 16:06:09.283985531 +0100
+***************
+*** 180,186 ****
+  
+  	/* ... there is no need for CTRL-C to interrupt something, don't let
+  	 * it set got_int when it was mapped. */
+! 	if ((mapped_ctrl_c | curbuf->b_mapped_ctrl_c) & State)
+  	    ctrl_c_interrupts = FALSE;
+      }
+  
+--- 180,186 ----
+  
+  	/* ... there is no need for CTRL-C to interrupt something, don't let
+  	 * it set got_int when it was mapped. */
+! 	if ((mapped_ctrl_c | curbuf->b_mapped_ctrl_c) & get_real_state())
+  	    ctrl_c_interrupts = FALSE;
+      }
+  
+*** ../vim-7.4.572/src/testdir/test_mapping.in	2015-01-14 12:44:38.407422077 +0100
+--- src/testdir/test_mapping.in	2015-01-14 16:01:45.734831292 +0100
+***************
+*** 8,14 ****
+  :inoreab чкпр   vim
+  GAчкпр 
+  
+! :" mapping of ctrl-c in insert mode
+  :set cpo-=< cpo-=k
+  :inoremap <c-c> <ctrl-c>
+  :cnoremap <c-c> dummy
+--- 8,14 ----
+  :inoreab чкпр   vim
+  GAчкпр 
+  
+! :" mapping of ctrl-c in Insert mode
+  :set cpo-=< cpo-=k
+  :inoremap <c-c> <ctrl-c>
+  :cnoremap <c-c> dummy
+***************
+*** 16,24 ****
+  GA
+  TEST2: CTRL-C |A|
+  
+! :nunmap <c-c>
+! 
+! : " langmap should not get remapped in insert mode
+  :inoremap { FAIL_ilangmap
+  :set langmap=+{ langnoremap
+  o+
+--- 16,30 ----
+  GA
+  TEST2: CTRL-C |A|
+  
+! :unmap <c-c>
+! :unmap! <c-c>
+! :"
+! :" mapping of ctrl-c in Visual mode
+! :vnoremap <c-c> :<C-u>$put ='vmap works'
+! GV
+! :vunmap <c-c>
+! :"
+! :" langmap should not get remapped in insert mode
+  :inoremap { FAIL_ilangmap
+  :set langmap=+{ langnoremap
+  o+
+*** ../vim-7.4.572/src/testdir/test_mapping.ok	2015-01-14 12:44:38.407422077 +0100
+--- src/testdir/test_mapping.ok	2015-01-14 15:58:41.092824454 +0100
+***************
+*** 2,6 ****
+--- 2,7 ----
+  vim
+  TEST2: CTRL-C |<ctrl-c>A|
+  
++ vmap works
+  +
+  +
+*** ../vim-7.4.572/src/version.c	2015-01-14 15:47:33.076036876 +0100
+--- src/version.c	2015-01-14 15:59:40.408184237 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     573,
+  /**/
+
+-- 
+From "know your smileys":
+ ;-0	Can't find shift key
+ ,-9	Kann Umschalttaste nicht finden
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

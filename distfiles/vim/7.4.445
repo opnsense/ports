@@ -1,0 +1,92 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.445
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.445
+Problem:    Clipboard may be cleared on startup.
+Solution:   Set clip_did_set_selection to -1 during startup. (Christian
+	    Brabandt)
+Files:	    src/main.c, src/ui.c
+
+
+*** ../vim-7.4.444/src/main.c	2014-09-09 17:47:34.584544079 +0200
+--- src/main.c	2014-09-19 13:38:29.802398710 +0200
+***************
+*** 958,965 ****
+--- 958,974 ----
+      if (p_im)
+  	need_start_insertmode = TRUE;
+  
++ #ifdef FEAT_CLIPBOARD
++     if (clip_unnamed)
++        /* do not overwrite system clipboard while starting up */
++        clip_did_set_selection = -1;
++ #endif
+  #ifdef FEAT_AUTOCMD
+      apply_autocmds(EVENT_VIMENTER, NULL, NULL, FALSE, curbuf);
++ # ifdef FEAT_CLIPBOARD
++     if (clip_did_set_selection < 0)
++        clip_did_set_selection = TRUE;
++ # endif
+      TIME_MSG("VimEnter autocommands");
+  #endif
+  
+*** ../vim-7.4.444/src/ui.c	2014-08-06 18:17:03.475147780 +0200
+--- src/ui.c	2014-09-19 13:39:48.442398882 +0200
+***************
+*** 571,577 ****
+  {
+      clip_unnamed_saved = clip_unnamed;
+  
+!     if (clip_did_set_selection)
+      {
+  	clip_unnamed = FALSE;
+  	clip_did_set_selection = FALSE;
+--- 571,577 ----
+  {
+      clip_unnamed_saved = clip_unnamed;
+  
+!     if (clip_did_set_selection > 0)
+      {
+  	clip_unnamed = FALSE;
+  	clip_did_set_selection = FALSE;
+***************
+*** 584,590 ****
+      void
+  end_global_changes()
+  {
+!     if (!clip_did_set_selection)
+      {
+  	clip_did_set_selection = TRUE;
+  	clip_unnamed = clip_unnamed_saved;
+--- 584,590 ----
+      void
+  end_global_changes()
+  {
+!     if (clip_did_set_selection == FALSE)  /* not when -1 */
+      {
+  	clip_did_set_selection = TRUE;
+  	clip_unnamed = clip_unnamed_saved;
+*** ../vim-7.4.444/src/version.c	2014-09-15 14:25:51.309650006 +0200
+--- src/version.c	2014-09-19 13:35:30.618398318 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     445,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+159. You get excited whenever discussing your hard drive.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

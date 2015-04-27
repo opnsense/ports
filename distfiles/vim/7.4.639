@@ -1,0 +1,208 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.639
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.639
+Problem:    Combination of linebreak and conceal doesn't work well.
+Solution:   Fix the display problems. (Christian Brabandt)
+Files:	    src/screen.c, src/testdir/test88.in, src/testdir/test88.ok,
+	    src/testdir/test_listlbr_utf8.in, src/testdir/test_listlbr_utf8.ok
+
+
+*** ../vim-7.4.638/src/screen.c	2015-02-10 19:20:33.735792024 +0100
+--- src/screen.c	2015-02-17 17:25:05.241891264 +0100
+***************
+*** 4571,4577 ****
+  			int	saved_nextra = n_extra;
+  
+  #ifdef FEAT_CONCEAL
+! 			if ((is_concealing || boguscols > 0) && vcol_off > 0)
+  			    /* there are characters to conceal */
+  			    tab_len += vcol_off;
+  			/* boguscols before FIX_FOR_BOGUSCOLS macro from above
+--- 4571,4577 ----
+  			int	saved_nextra = n_extra;
+  
+  #ifdef FEAT_CONCEAL
+! 			if (vcol_off > 0)
+  			    /* there are characters to conceal */
+  			    tab_len += vcol_off;
+  			/* boguscols before FIX_FOR_BOGUSCOLS macro from above
+***************
+*** 4609,4633 ****
+  #ifdef FEAT_CONCEAL
+  			/* n_extra will be increased by FIX_FOX_BOGUSCOLS
+  			 * macro below, so need to adjust for that here */
+! 			if ((is_concealing || boguscols > 0) && vcol_off > 0)
+  			    n_extra -= vcol_off;
+  #endif
+  		    }
+  #endif
+  #ifdef FEAT_CONCEAL
+! 		    /* Tab alignment should be identical regardless of
+! 		     * 'conceallevel' value. So tab compensates of all
+! 		     * previous concealed characters, and thus resets vcol_off
+! 		     * and boguscols accumulated so far in the line. Note that
+! 		     * the tab can be longer than 'tabstop' when there
+! 		     * are concealed characters. */
+! 		    FIX_FOR_BOGUSCOLS;
+! 		    /* Make sure, the highlighting for the tab char will be
+! 		     * correctly set further below (effectively reverts the
+! 		     * FIX_FOR_BOGSUCOLS macro */
+! 		    if (old_boguscols > 0 && n_extra > tab_len && wp->w_p_list
+  								  && lcs_tab1)
+! 			tab_len += n_extra - tab_len;
+  #endif
+  #ifdef FEAT_MBYTE
+  		    mb_utf8 = FALSE;	/* don't draw as UTF-8 */
+--- 4609,4638 ----
+  #ifdef FEAT_CONCEAL
+  			/* n_extra will be increased by FIX_FOX_BOGUSCOLS
+  			 * macro below, so need to adjust for that here */
+! 			if (vcol_off > 0)
+  			    n_extra -= vcol_off;
+  #endif
+  		    }
+  #endif
+  #ifdef FEAT_CONCEAL
+! 		    {
+! 			int vc_saved = vcol_off;
+! 
+! 			/* Tab alignment should be identical regardless of
+! 			 * 'conceallevel' value. So tab compensates of all
+! 			 * previous concealed characters, and thus resets
+! 			 * vcol_off and boguscols accumulated so far in the
+! 			 * line. Note that the tab can be longer than
+! 			 * 'tabstop' when there are concealed characters. */
+! 			FIX_FOR_BOGUSCOLS;
+! 
+! 			/* Make sure, the highlighting for the tab char will be
+! 			 * correctly set further below (effectively reverts the
+! 			 * FIX_FOR_BOGSUCOLS macro */
+! 			if (n_extra == tab_len + vc_saved && wp->w_p_list
+  								  && lcs_tab1)
+! 			    tab_len += vc_saved;
+! 		    }
+  #endif
+  #ifdef FEAT_MBYTE
+  		    mb_utf8 = FALSE;	/* don't draw as UTF-8 */
+*** ../vim-7.4.638/src/testdir/test88.in	2013-07-13 12:17:37.000000000 +0200
+--- src/testdir/test88.in	2015-02-17 17:17:40.903640757 +0100
+***************
+*** 71,76 ****
+--- 71,87 ----
+  :set lbr
+  :normal $
+  GGk
++ :set list listchars=tab:>-
++ :normal 0
++ GGk
++ :normal W
++ GGk
++ :normal W
++ GGk
++ :normal W
++ GGk
++ :normal $
++ GGk
+  :" Display result.
+  :call append('$', 'end:')
+  :call append('$', positions)
+*** ../vim-7.4.638/src/testdir/test88.ok	2013-07-13 12:18:55.000000000 +0200
+--- src/testdir/test88.ok	2015-02-17 17:17:40.903640757 +0100
+***************
+*** 22,24 ****
+--- 22,29 ----
+  9:25
+  9:26
+  9:26
++ 9:1
++ 9:9
++ 9:17
++ 9:25
++ 9:26
+*** ../vim-7.4.638/src/testdir/test_listlbr_utf8.in	2015-01-22 22:41:51.864583029 +0100
+--- src/testdir/test_listlbr_utf8.in	2015-02-17 17:17:40.903640757 +0100
+***************
+*** 56,61 ****
+--- 56,96 ----
+  :redraw!
+  :let line=ScreenChar(winwidth(0),7)
+  :call DoRecordScreen()
++ :let g:test ="Test 5: set linebreak list listchars and concealing part2"
++ :let c_defines=['bbeeeeee		;	some text']
++ :call append('$', c_defines)
++ :$
++ :norm! zt
++ :set nowrap ts=2 list linebreak listchars=tab:>- cole=2 concealcursor=n
++ :syn clear
++ :syn match meaning    /;\s*\zs.*/
++ :syn match hasword    /^\x\{8}/    contains=word
++ :syn match word       /\<\x\{8}\>/ contains=beginword,endword contained
++ :syn match beginword  /\<\x\x/     contained conceal
++ :syn match endword    /\x\{6}\>/   contained
++ :hi meaning   guibg=blue
++ :hi beginword guibg=green
++ :hi endword   guibg=red
++ :redraw!
++ :let line=ScreenChar(winwidth(0),1)
++ :call DoRecordScreen()
++ :let g:test ="Test 6: Screenattributes for comment"
++ :$put =g:test
++ :call append('$', ' /*		 and some more */')
++ :exe "set ft=c ts=7 linebreak list listchars=nbsp:\u2423,tab:\u2595\u2014,trail:\u02d1,eol:\ub6"
++ :syntax on
++ :hi SpecialKey term=underline ctermfg=red guifg=red
++ :let attr=[]
++ :nnoremap <expr> GG ":let attr += ['".screenattr(screenrow(),screencol())."']\n"
++ :$
++ :norm! zt0
++ GGlGGlGGlGGlGGlGGlGGlGGlGGlGGl
++ :call append('$', ['ScreenAttributes for test6:'])
++ :if attr[0] != attr[1] && attr[1] != attr[3] && attr[3] != attr[5]
++ :   call append('$', "Attribut 0 and 1 and 3 and 5 are different!")
++ :else
++ :   call append('$', "Not all attributes are different")
++ :endif
+  :%w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.638/src/testdir/test_listlbr_utf8.ok	2015-01-20 19:01:32.380444290 +0100
+--- src/testdir/test_listlbr_utf8.ok	2015-02-17 17:17:40.903640757 +0100
+***************
+*** 36,38 ****
+--- 36,46 ----
+  #define >_FILE>--------->--->---1       
+  #define >_CONSOLE>---------->---2       
+  #define >_FILE_AND_CONSOLE>---------3   
++ bbeeeeee		;	some text
++ 
++ Test 5: set linebreak list listchars and concealing part2
++ eeeeee>--->-;>some text                 
++ Test 6: Screenattributes for comment
++  /*		 and some more */
++ ScreenAttributes for test6:
++ Attribut 0 and 1 and 3 and 5 are different!
+*** ../vim-7.4.638/src/version.c	2015-02-17 16:28:51.369508298 +0100
+--- src/version.c	2015-02-17 17:16:55.980222281 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     639,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+244. You use more than 20 passwords.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,89 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.633
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.633
+Problem:    After 7.4.630 the problem persists.
+Solution:   Also skip redo when calling a user function.
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.632/src/eval.c	2015-02-04 23:06:39.453536117 +0100
+--- src/eval.c	2015-02-17 12:37:35.321823749 +0100
+***************
+*** 8693,8705 ****
+  		    error = ERROR_DICT;
+  		else
+  		{
+  		    /*
+  		     * Call the user function.
+  		     * Save and restore search patterns, script variables and
+  		     * redo buffer.
+  		     */
+  		    save_search_patterns();
+! 		    saveRedobuff();
+  		    ++fp->uf_calls;
+  		    call_user_func(fp, argcount, argvars, rettv,
+  					       firstline, lastline,
+--- 8693,8711 ----
+  		    error = ERROR_DICT;
+  		else
+  		{
++ 		    int did_save_redo = FALSE;
++ 
+  		    /*
+  		     * Call the user function.
+  		     * Save and restore search patterns, script variables and
+  		     * redo buffer.
+  		     */
+  		    save_search_patterns();
+! 		    if (!ins_compl_active())
+! 		    {
+! 			saveRedobuff();
+! 			did_save_redo = TRUE;
+! 		    }
+  		    ++fp->uf_calls;
+  		    call_user_func(fp, argcount, argvars, rettv,
+  					       firstline, lastline,
+***************
+*** 8709,8715 ****
+  			/* Function was unreferenced while being used, free it
+  			 * now. */
+  			func_free(fp);
+! 		    restoreRedobuff();
+  		    restore_search_patterns();
+  		    error = ERROR_NONE;
+  		}
+--- 8715,8722 ----
+  			/* Function was unreferenced while being used, free it
+  			 * now. */
+  			func_free(fp);
+! 		    if (did_save_redo)
+! 			restoreRedobuff();
+  		    restore_search_patterns();
+  		    error = ERROR_NONE;
+  		}
+*** ../vim-7.4.632/src/version.c	2015-02-17 12:17:10.837775002 +0100
+--- src/version.c	2015-02-17 12:38:41.920954954 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     633,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+242. You turn down a better-paying job because it doesn't come with
+     a free e-mail account.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

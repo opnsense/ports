@@ -1,0 +1,73 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.095
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.095 (after 7.4.093)
+Problem:    Regexp for LuaJIT version doesn't work on BSD.
+Solution:   Use "*" instead of "\+" and "\?". (Ozaki)
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.094/src/configure.in	2013-11-17 20:32:49.000000000 +0100
+--- src/configure.in	2013-11-21 12:04:46.000000000 +0100
+***************
+*** 496,502 ****
+        if test "X$vi_cv_path_luajit" != "X"; then
+  	dnl -- find LuaJIT version
+  	AC_CACHE_CHECK(LuaJIT version, vi_cv_version_luajit,
+! 	[ vi_cv_version_luajit=`${vi_cv_path_luajit} -v 2>&1 | sed 's/LuaJIT \([[0-9.]]*\)\.[[0-9]]\(-[[a-z0-9]]\+\)\? .*/\1/'` ])
+  	AC_CACHE_CHECK(Lua version of LuaJIT, vi_cv_version_lua_luajit,
+  	[ vi_cv_version_lua_luajit=`${vi_cv_path_luajit} -e "print(_VERSION)" | sed 's/.* //'` ])
+  	vi_cv_path_lua="$vi_cv_path_luajit"
+--- 496,502 ----
+        if test "X$vi_cv_path_luajit" != "X"; then
+  	dnl -- find LuaJIT version
+  	AC_CACHE_CHECK(LuaJIT version, vi_cv_version_luajit,
+! 	[ vi_cv_version_luajit=`${vi_cv_path_luajit} -v 2>&1 | sed 's/LuaJIT \([[0-9.]]*\)\.[[0-9]]\(-[[a-z0-9]]*\)* .*/\1/'` ])
+  	AC_CACHE_CHECK(Lua version of LuaJIT, vi_cv_version_lua_luajit,
+  	[ vi_cv_version_lua_luajit=`${vi_cv_path_luajit} -e "print(_VERSION)" | sed 's/.* //'` ])
+  	vi_cv_path_lua="$vi_cv_path_luajit"
+*** ../vim-7.4.094/src/auto/configure	2013-11-17 20:32:49.000000000 +0100
+--- src/auto/configure	2013-11-21 12:07:39.000000000 +0100
+***************
+*** 4743,4749 ****
+  if test "${vi_cv_version_luajit+set}" = set; then :
+    $as_echo_n "(cached) " >&6
+  else
+!    vi_cv_version_luajit=`${vi_cv_path_luajit} -v 2>&1 | sed 's/LuaJIT \([0-9.]*\)\.[0-9]\(-[a-z0-9]\+\)\? .*/\1/'`
+  fi
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $vi_cv_version_luajit" >&5
+  $as_echo "$vi_cv_version_luajit" >&6; }
+--- 4743,4749 ----
+  if test "${vi_cv_version_luajit+set}" = set; then :
+    $as_echo_n "(cached) " >&6
+  else
+!    vi_cv_version_luajit=`${vi_cv_path_luajit} -v 2>&1 | sed 's/LuaJIT \([0-9.]*\)\.[0-9]\(-[a-z0-9]*\)* .*/\1/'`
+  fi
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $vi_cv_version_luajit" >&5
+  $as_echo "$vi_cv_version_luajit" >&6; }
+*** ../vim-7.4.094/src/version.c	2013-11-17 20:32:49.000000000 +0100
+--- src/version.c	2013-11-21 12:06:26.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     95,
+  /**/
+
+-- 
+Our job was to build a computer information system for the branch banks.  We
+were the perfect people for the job: Dean had seen a computer once, and I had
+heard Dean talk about it.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,161 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.414
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.414
+Problem:    Cannot define a command only when it's used.
+Solution:   Add the CmdUndefined autocommand event. (partly by Yasuhiro
+	    Matsumoto)
+Files:	    runtime/doc/autocmd.txt, src/ex_docmd.c, src/fileio.c,
+	    src/proto/fileio.pro
+
+
+*** ../vim-7.4.413/runtime/doc/autocmd.txt	2013-11-28 18:53:47.000000000 +0100
+--- runtime/doc/autocmd.txt	2014-08-22 20:10:24.026988365 +0200
+***************
+*** 278,283 ****
+--- 278,284 ----
+  |ShellCmdPost|		after executing a shell command
+  |ShellFilterPost|	after filtering with a shell command
+  
++ |CmdUndefined|		a user command is used but it isn't defined
+  |FuncUndefined|		a user function is used but it isn't defined
+  |SpellFileMissing|	a spell file is used but it can't be found
+  |SourcePre|		before sourcing a Vim script
+***************
+*** 462,467 ****
+--- 466,481 ----
+  							*BufWritePost*
+  BufWritePost			After writing the whole buffer to a file
+  				(should undo the commands for BufWritePre).
++ 							*CmdUndefined*
++ CmdUndefined			When a user command is used but it isn't
++ 				defined.  Useful for defining a command only
++ 				when it's used.  The pattern is matched
++ 				against the command name.  Both <amatch> and
++ 				<afile> are set to the name of the command.
++ 				NOTE: Autocompletion won't work until the
++ 				command is defined.  An alternative is to
++ 				always define the user command and have it
++ 				invoke an autoloaded function.  See |autoload|.
+  							*CmdwinEnter*
+  CmdwinEnter			After entering the command-line window.
+  				Useful for setting options specifically for
+***************
+*** 663,668 ****
+--- 681,688 ----
+  				when it's used.  The pattern is matched
+  				against the function name.  Both <amatch> and
+  				<afile> are set to the name of the function.
++ 				NOTE: When writing Vim scripts a better
++ 				alternative is to use an autoloaded function.
+  				See |autoload-functions|.
+  							*GUIEnter*
+  GUIEnter			After starting the GUI successfully, and after
+*** ../vim-7.4.413/src/ex_docmd.c	2014-08-10 13:34:59.056785459 +0200
+--- src/ex_docmd.c	2014-08-22 20:23:43.426959373 +0200
+***************
+*** 2143,2148 ****
+--- 2143,2168 ----
+      /* Find the command and let "p" point to after it. */
+      p = find_command(&ea, NULL);
+  
++ #ifdef FEAT_AUTOCMD
++     /* If this looks like an undefined user command and there are CmdUndefined
++      * autocommands defined, trigger the matching autocommands. */
++     if (p != NULL && ea.cmdidx == CMD_SIZE && !ea.skip
++ 	    && ASCII_ISUPPER(*ea.cmd)
++ 	    && has_cmdundefined())
++     {
++ 	char_u *p = ea.cmd;
++ 	int ret;
++ 
++ 	while (ASCII_ISALNUM(*p))
++ 	    ++p;
++ 	p = vim_strnsave(ea.cmd, p - ea.cmd);
++ 	ret = apply_autocmds(EVENT_CMDUNDEFINED, p, p, TRUE, NULL);
++ 	vim_free(p);
++ 	if (ret && !aborting())
++ 	    p = find_command(&ea, NULL);
++     }
++ #endif
++ 
+  #ifdef FEAT_USR_CMDS
+      if (p == NULL)
+      {
+*** ../vim-7.4.413/src/fileio.c	2014-08-13 21:58:24.820885492 +0200
+--- src/fileio.c	2014-08-22 20:25:26.826955623 +0200
+***************
+*** 7641,7646 ****
+--- 7641,7647 ----
+      {"BufWriteCmd",	EVENT_BUFWRITECMD},
+      {"CmdwinEnter",	EVENT_CMDWINENTER},
+      {"CmdwinLeave",	EVENT_CMDWINLEAVE},
++     {"CmdUndefined",	EVENT_CMDUNDEFINED},
+      {"ColorScheme",	EVENT_COLORSCHEME},
+      {"CompleteDone",	EVENT_COMPLETEDONE},
+      {"CursorHold",	EVENT_CURSORHOLD},
+***************
+*** 9159,9164 ****
+--- 9160,9183 ----
+      return (first_autopat[(int)EVENT_INSERTCHARPRE] != NULL);
+  }
+  
++ /*
++  * Return TRUE when there is an CmdUndefined autocommand defined.
++  */
++     int
++ has_cmdundefined()
++ {
++     return (first_autopat[(int)EVENT_CMDUNDEFINED] != NULL);
++ }
++ 
++ /*
++  * Return TRUE when there is an FuncUndefined autocommand defined.
++  */
++     int
++ has_funcundefined()
++ {
++     return (first_autopat[(int)EVENT_FUNCUNDEFINED] != NULL);
++ }
++ 
+      static int
+  apply_autocmds_group(event, fname, fname_io, force, group, buf, eap)
+      event_T	event;
+*** ../vim-7.4.413/src/proto/fileio.pro	2014-08-10 13:34:59.060785459 +0200
+--- src/proto/fileio.pro	2014-08-22 20:25:38.862955186 +0200
+***************
+*** 47,52 ****
+--- 47,54 ----
+  int has_textchanged __ARGS((void));
+  int has_textchangedI __ARGS((void));
+  int has_insertcharpre __ARGS((void));
++ int has_cmdundefined __ARGS((void));
++ int has_funcundefined __ARGS((void));
+  void block_autocmds __ARGS((void));
+  void unblock_autocmds __ARGS((void));
+  int is_autocmd_blocked __ARGS((void));
+*** ../vim-7.4.413/src/version.c	2014-08-22 18:44:30.307175276 +0200
+--- src/version.c	2014-08-22 20:55:31.406890176 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     414,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+44. Your friends no longer send you e-mail...they just log on to your IRC
+    channel.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

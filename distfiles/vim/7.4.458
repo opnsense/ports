@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.458
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.458
+Problem:    Issue 252: Cursor moves in a zero-height window.
+Solution:   Check for zero height. (idea by Christian Brabandt)
+Files:	    src/move.c
+
+
+*** ../vim-7.4.457/src/move.c	2014-03-28 21:49:26.854248777 +0100
+--- src/move.c	2014-09-23 18:27:33.138822349 +0200
+***************
+*** 183,188 ****
+--- 183,200 ----
+      if (!screen_valid(TRUE))
+  	return;
+  
++     /* If the window height is zero just use the cursor line. */
++     if (curwin->w_height == 0)
++     {
++ 	curwin->w_topline = curwin->w_cursor.lnum;
++ 	curwin->w_botline = curwin->w_topline;
++ 	curwin->w_valid |= VALID_BOTLINE|VALID_BOTLINE_AP;
++ #ifdef FEAT_SCROLLBIND
++ 	curwin->w_scbind_pos = 1;
++ #endif
++ 	return;
++     }
++ 
+      check_cursor_moved(curwin);
+      if (curwin->w_valid & VALID_TOPLINE)
+  	return;
+*** ../vim-7.4.457/src/version.c	2014-09-23 16:49:38.798809517 +0200
+--- src/version.c	2014-09-23 17:50:55.642817549 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     458,
+  /**/
+
+-- 
+I'm so disorganized my keyboard isn't even in alphabetical order!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

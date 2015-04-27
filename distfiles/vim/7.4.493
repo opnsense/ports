@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.493
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.493
+Problem:    A TextChanged autocommand is triggered when saving a file.
+	    (William Gardner)
+Solution:   Update last_changedtick after calling unchanged(). (Christian
+	    Brabandt)
+Files:	    src/fileio.c
+
+
+*** ../vim-7.4.492/src/fileio.c	2014-09-23 15:45:04.870801055 +0200
+--- src/fileio.c	2014-10-31 19:48:35.030702344 +0100
+***************
+*** 4877,4882 ****
+--- 4877,4889 ----
+  	    )
+      {
+  	unchanged(buf, TRUE);
++ #ifdef FEAT_AUTOCMD
++ 	/* buf->b_changedtick is always incremented in unchanged() but that
++ 	 * should not trigger a TextChanged event. */
++ 	if (last_changedtick + 1 == buf->b_changedtick
++ 					       && last_changedtick_buf == buf)
++ 	    last_changedtick = buf->b_changedtick;
++ #endif
+  	u_unchanged(buf);
+  	u_update_save_nr(buf);
+      }
+*** ../vim-7.4.492/src/version.c	2014-10-31 19:20:30.782742928 +0100
+--- src/version.c	2014-10-31 19:48:53.590701897 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     493,
+  /**/
+
+-- 
+You know you use Vim too much when you have this alias in your
+~/.bashrc file: alias :e=/bin/vim             (Eljay Love-Jensen)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

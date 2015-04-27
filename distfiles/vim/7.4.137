@@ -1,0 +1,239 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.137
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.137
+Problem:    Cannot use IME with Windows 8 console.
+Solution:   Change the user of ReadConsoleInput() and PeekConsoleInput().
+	    (Nobuhiro Takasaki)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.136/src/os_win32.c	2014-01-10 13:05:12.000000000 +0100
+--- src/os_win32.c	2014-01-10 13:42:19.000000000 +0100
+***************
+*** 232,237 ****
+--- 232,306 ----
+  
+  static char_u *exe_path = NULL;
+  
++ /*
++  * Version of ReadConsoleInput() that works with IME.
++  */
++     static BOOL
++ read_console_input(
++     HANDLE hConsoleInput,
++     PINPUT_RECORD lpBuffer,
++     DWORD nLength,
++     LPDWORD lpNumberOfEventsRead)
++ {
++     enum
++     {
++ 	IRSIZE = 10, /* rough value */
++     };
++     static INPUT_RECORD irCache[IRSIZE];
++     static DWORD s_dwIndex = 0;
++     static DWORD s_dwMax = 0;
++ 
++     if (hConsoleInput == NULL || lpBuffer == NULL)
++ 	return ReadConsoleInput(hConsoleInput, lpBuffer, nLength,
++ 							lpNumberOfEventsRead);
++ 
++     if (nLength == -1)
++     {
++ 	if (s_dwMax == 0)
++ 	{
++ 	    PeekConsoleInput(hConsoleInput, lpBuffer, 1, lpNumberOfEventsRead);
++ 	    if (*lpNumberOfEventsRead == 0)
++ 		return FALSE;
++ 	    ReadConsoleInput(hConsoleInput, irCache, IRSIZE, &s_dwMax);
++ 	    s_dwIndex = 0;
++ 	}
++ 	((PINPUT_RECORD)lpBuffer)[0] = irCache[s_dwIndex];
++ 	*lpNumberOfEventsRead = 1;
++ 	return TRUE;
++     }
++ 
++     if (s_dwMax == 0)
++     {
++ 	ReadConsoleInput(hConsoleInput, irCache, IRSIZE, &s_dwMax);
++ 	s_dwIndex = 0;
++ 	if (s_dwMax == 0)
++ 	{
++ 	    *lpNumberOfEventsRead = 0;
++ 	    return FALSE;
++ 	}
++     }
++ 
++     ((PINPUT_RECORD)lpBuffer)[0] = irCache[s_dwIndex];
++     if (++s_dwIndex == s_dwMax)
++ 	s_dwMax = 0;
++     *lpNumberOfEventsRead = 1;
++     return TRUE;
++ }
++ 
++ /*
++  * Version of PeekConsoleInput() that works with IME.
++  */
++     static BOOL
++ peek_console_input(
++     HANDLE hConsoleInput,
++     PINPUT_RECORD lpBuffer,
++     DWORD nLength,
++     LPDWORD lpNumberOfEventsRead)
++ {
++     return read_console_input(hConsoleInput, lpBuffer, -1,
++ 							lpNumberOfEventsRead);
++ }
++ 
+      static void
+  get_exe_name(void)
+  {
+***************
+*** 1117,1123 ****
+  			INPUT_RECORD ir;
+  			MOUSE_EVENT_RECORD* pmer2 = &ir.Event.MouseEvent;
+  
+! 			PeekConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  
+  			if (cRecords == 0 || ir.EventType != MOUSE_EVENT
+  				|| !(pmer2->dwButtonState & LEFT_RIGHT))
+--- 1186,1192 ----
+  			INPUT_RECORD ir;
+  			MOUSE_EVENT_RECORD* pmer2 = &ir.Event.MouseEvent;
+  
+! 			peek_console_input(g_hConIn, &ir, 1, &cRecords);
+  
+  			if (cRecords == 0 || ir.EventType != MOUSE_EVENT
+  				|| !(pmer2->dwButtonState & LEFT_RIGHT))
+***************
+*** 1126,1132 ****
+  			{
+  			    if (pmer2->dwEventFlags != MOUSE_MOVED)
+  			    {
+! 				ReadConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  
+  				return decode_mouse_event(pmer2);
+  			    }
+--- 1195,1201 ----
+  			{
+  			    if (pmer2->dwEventFlags != MOUSE_MOVED)
+  			    {
+! 				read_console_input(g_hConIn, &ir, 1, &cRecords);
+  
+  				return decode_mouse_event(pmer2);
+  			    }
+***************
+*** 1134,1143 ****
+  				     s_yOldMouse == pmer2->dwMousePosition.Y)
+  			    {
+  				/* throw away spurious mouse move */
+! 				ReadConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  
+  				/* are there any more mouse events in queue? */
+! 				PeekConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  
+  				if (cRecords==0 || ir.EventType != MOUSE_EVENT)
+  				    break;
+--- 1203,1212 ----
+  				     s_yOldMouse == pmer2->dwMousePosition.Y)
+  			    {
+  				/* throw away spurious mouse move */
+! 				read_console_input(g_hConIn, &ir, 1, &cRecords);
+  
+  				/* are there any more mouse events in queue? */
+! 				peek_console_input(g_hConIn, &ir, 1, &cRecords);
+  
+  				if (cRecords==0 || ir.EventType != MOUSE_EVENT)
+  				    break;
+***************
+*** 1374,1380 ****
+  	}
+  
+  	cRecords = 0;
+! 	PeekConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  
+  #ifdef FEAT_MBYTE_IME
+  	if (State & CMDLINE && msg_row == Rows - 1)
+--- 1443,1449 ----
+  	}
+  
+  	cRecords = 0;
+! 	peek_console_input(g_hConIn, &ir, 1, &cRecords);
+  
+  #ifdef FEAT_MBYTE_IME
+  	if (State & CMDLINE && msg_row == Rows - 1)
+***************
+*** 1405,1411 ****
+  		if (ir.Event.KeyEvent.uChar.UnicodeChar == 0
+  			&& ir.Event.KeyEvent.wVirtualKeyCode == 13)
+  		{
+! 		    ReadConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  		    continue;
+  		}
+  #endif
+--- 1474,1480 ----
+  		if (ir.Event.KeyEvent.uChar.UnicodeChar == 0
+  			&& ir.Event.KeyEvent.wVirtualKeyCode == 13)
+  		{
+! 		    read_console_input(g_hConIn, &ir, 1, &cRecords);
+  		    continue;
+  		}
+  #endif
+***************
+*** 1414,1420 ****
+  		    return TRUE;
+  	    }
+  
+! 	    ReadConsoleInput(g_hConIn, &ir, 1, &cRecords);
+  
+  	    if (ir.EventType == FOCUS_EVENT)
+  		handle_focus_event(ir);
+--- 1483,1489 ----
+  		    return TRUE;
+  	    }
+  
+! 	    read_console_input(g_hConIn, &ir, 1, &cRecords);
+  
+  	    if (ir.EventType == FOCUS_EVENT)
+  		handle_focus_event(ir);
+***************
+*** 1484,1490 ****
+  	    return 0;
+  # endif
+  #endif
+! 	if (ReadConsoleInput(g_hConIn, &ir, 1, &cRecords) == 0)
+  	{
+  	    if (did_create_conin)
+  		read_error_exit();
+--- 1553,1559 ----
+  	    return 0;
+  # endif
+  #endif
+! 	if (read_console_input(g_hConIn, &ir, 1, &cRecords) == 0)
+  	{
+  	    if (did_create_conin)
+  		read_error_exit();
+*** ../vim-7.4.136/src/version.c	2014-01-10 13:05:12.000000000 +0100
+--- src/version.c	2014-01-10 13:42:34.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     137,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+131. You challenge authority and society by portnuking people
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

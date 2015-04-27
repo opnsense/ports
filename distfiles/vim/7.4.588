@@ -1,0 +1,183 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.588
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.588
+Problem:    ":0argedit foo" puts the new argument in the second place instead
+	    of the first.
+Solution:   Adjust the range type. (Ingo Karkat)
+Files:	    src/ex_cmds.h, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test_argument_0count.in,
+	    src/testdir/test_argument_0count.ok
+
+
+*** ../vim-7.4.587/src/ex_cmds.h	2015-01-20 13:29:46.397315064 +0100
+--- src/ex_cmds.h	2015-01-20 19:23:58.901739397 +0100
+***************
+*** 136,142 ****
+  			BANG|NEEDARG|EXTRA|NOTRLCOM|RANGE|NOTADR|DFLALL,
+  			ADDR_ARGUMENTS),
+  EX(CMD_argedit,		"argedit",	ex_argedit,
+! 			BANG|NEEDARG|RANGE|NOTADR|FILE1|EDITCMD|ARGOPT|TRLBAR,
+  			ADDR_ARGUMENTS),
+  EX(CMD_argglobal,	"argglobal",	ex_args,
+  			BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+--- 136,142 ----
+  			BANG|NEEDARG|EXTRA|NOTRLCOM|RANGE|NOTADR|DFLALL,
+  			ADDR_ARGUMENTS),
+  EX(CMD_argedit,		"argedit",	ex_argedit,
+! 			BANG|NEEDARG|RANGE|NOTADR|ZEROR|FILE1|EDITCMD|ARGOPT|TRLBAR,
+  			ADDR_ARGUMENTS),
+  EX(CMD_argglobal,	"argglobal",	ex_args,
+  			BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+*** ../vim-7.4.587/src/testdir/Make_amiga.mak	2014-12-13 21:00:52.059036480 +0100
+--- src/testdir/Make_amiga.mak	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 36,41 ****
+--- 36,42 ----
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out test107.out \
++ 		test_argument_0count.out \
+  		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+***************
+*** 175,180 ****
+--- 176,182 ----
+  test105.out: test105.in
+  test106.out: test106.in
+  test107.out: test107.in
++ test_argument_0count.out: test_argument_0count.in
+  test_argument_count.out: test_argument_count.in
+  test_autoformat_join.out: test_autoformat_join.in
+  test_breakindent.out: test_breakindent.in
+*** ../vim-7.4.587/src/testdir/Make_dos.mak	2014-12-13 21:00:52.059036480 +0100
+--- src/testdir/Make_dos.mak	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 35,40 ****
+--- 35,41 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out  test107.out\
++ 		test_argument_0count.out \
+  		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+*** ../vim-7.4.587/src/testdir/Make_ming.mak	2014-12-13 21:00:52.059036480 +0100
+--- src/testdir/Make_ming.mak	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 57,62 ****
+--- 57,63 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
++ 		test_argument_0count.out \
+  		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+*** ../vim-7.4.587/src/testdir/Make_os2.mak	2014-12-13 21:00:52.059036480 +0100
+--- src/testdir/Make_os2.mak	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 37,42 ****
+--- 37,43 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
++ 		test_argument_0count.out \
+  		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+*** ../vim-7.4.587/src/testdir/Make_vms.mms	2014-12-13 21:00:52.059036480 +0100
+--- src/testdir/Make_vms.mms	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 96,101 ****
+--- 96,102 ----
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+  	 test105.out test106.out test107.out \
++ 	 test_argument_0count.out \
+  	 test_argument_count.out \
+  	 test_autoformat_join.out \
+  	 test_breakindent.out \
+*** ../vim-7.4.587/src/testdir/Makefile	2014-12-13 21:00:52.059036480 +0100
+--- src/testdir/Makefile	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 33,38 ****
+--- 33,39 ----
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out test107.out \
++ 		test_argument_0count.out \
+  		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+*** ../vim-7.4.587/src/testdir/test_argument_0count.in	2015-01-20 19:30:28.969469550 +0100
+--- src/testdir/test_argument_0count.in	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 0 ****
+--- 1,28 ----
++ Tests for :0argadd and :0argedit     vim: set ft=vim :
++ 
++ STARTTEST
++ :so small.vim
++ :let arglists = []
++ :%argd
++ :arga a b c d
++ :2argu
++ :0arga added
++ :call add(arglists, argv())
++ :2argu
++ :arga third
++ :call add(arglists, argv())
++ :%argd
++ :arga a b c d
++ :2argu
++ :0arge edited
++ :call add(arglists, argv())
++ :2argu
++ :arga third
++ :call add(arglists, argv())
++ :e! test.out
++ :call append(0, map(copy(arglists), 'join(v:val, " ")'))
++ :w
++ :qa!
++ ENDTEST
++ 
++ 
+*** ../vim-7.4.587/src/testdir/test_argument_0count.ok	2015-01-20 19:30:28.973469506 +0100
+--- src/testdir/test_argument_0count.ok	2015-01-20 19:22:46.050535656 +0100
+***************
+*** 0 ****
+--- 1,5 ----
++ added a b c d
++ added a third b c d
++ edited a b c d
++ edited a third b c d
++ 
+*** ../vim-7.4.587/src/version.c	2015-01-20 19:01:32.384444246 +0100
+--- src/version.c	2015-01-20 19:21:15.335527208 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     588,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+94. Now admit it... How many of you have made "modem noises" into
+    the phone just to see if it was possible? :-)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

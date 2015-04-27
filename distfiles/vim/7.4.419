@@ -1,0 +1,124 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.419
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.419
+Problem:    When part of a list is locked it's possible to make changes.
+Solution:   Check if any of the list items is locked before make a change.
+	    (ZyX)
+Files:	    src/eval.c, src/testdir/test55.in, src/testdir/test55.ok
+
+
+*** ../vim-7.4.418/src/eval.c	2014-08-22 13:13:24.219895762 +0200
+--- src/eval.c	2014-08-29 09:37:56.930403905 +0200
+***************
+*** 2945,2950 ****
+--- 2945,2967 ----
+  	;
+      else if (lp->ll_range)
+      {
++ 	listitem_T *ll_li = lp->ll_li;
++ 	int ll_n1 = lp->ll_n1;
++ 
++ 	/*
++ 	 * Check whether any of the list items is locked
++ 	 */
++ 	for (ri = rettv->vval.v_list->lv_first; ri != NULL; )
++ 	{
++ 	    if (tv_check_lock(ll_li->li_tv.v_lock, lp->ll_name))
++ 		return;
++ 	    ri = ri->li_next;
++ 	    if (ri == NULL || (!lp->ll_empty2 && lp->ll_n2 == ll_n1))
++ 		break;
++ 	    ll_li = ll_li->li_next;
++ 	    ++ll_n1;
++ 	}
++ 
+  	/*
+  	 * Assign the List values to the list items.
+  	 */
+***************
+*** 3646,3651 ****
+--- 3663,3679 ----
+      else if (lp->ll_range)
+      {
+  	listitem_T    *li;
++ 	listitem_T    *ll_li = lp->ll_li;
++ 	int           ll_n1 = lp->ll_n1;
++ 
++ 	while (ll_li != NULL && (lp->ll_empty2 || lp->ll_n2 >= ll_n1))
++ 	{
++ 	    li = ll_li->li_next;
++ 	    if (tv_check_lock(ll_li->li_tv.v_lock, lp->ll_name))
++ 		return FAIL;
++ 	    ll_li = li;
++ 	    ++ll_n1;
++ 	}
+  
+  	/* Delete a range of List items. */
+  	while (lp->ll_li != NULL && (lp->ll_empty2 || lp->ll_n2 >= lp->ll_n1))
+*** ../vim-7.4.418/src/testdir/test55.in	2014-07-02 19:06:14.686326091 +0200
+--- src/testdir/test55.in	2014-08-29 09:37:23.474403832 +0200
+***************
+*** 282,287 ****
+--- 282,302 ----
+  :    $put =ps
+  :  endfor
+  :endfor
++ :unlet l
++ :let l = [1, 2, 3, 4]
++ :lockvar! l
++ :$put =string(l)
++ :unlockvar l[1]
++ :unlet l[0:1]
++ :$put =string(l)
++ :unlet l[1:2]
++ :$put =string(l)
++ :unlockvar l[1]
++ :let l[0:1] = [0, 1]
++ :$put =string(l)
++ :let l[1:2] = [0, 1]
++ :$put =string(l)
++ :unlet l
+  :" :lockvar/islocked() triggering script autoloading
+  :set rtp+=./sautest
+  :lockvar g:footest#x
+*** ../vim-7.4.418/src/testdir/test55.ok	2014-07-02 19:06:14.686326091 +0200
+--- src/testdir/test55.ok	2014-08-29 09:37:29.606403846 +0200
+***************
+*** 86,91 ****
+--- 86,96 ----
+  FFpFFpp
+  0000-000
+  ppppppp
++ [1, 2, 3, 4]
++ [1, 2, 3, 4]
++ [1, 2, 3, 4]
++ [1, 2, 3, 4]
++ [1, 2, 3, 4]
+  locked g:footest#x:-1
+  exists g:footest#x:0
+  g:footest#x: 1
+*** ../vim-7.4.418/src/version.c	2014-08-29 09:02:23.890399246 +0200
+--- src/version.c	2014-08-29 09:39:24.658404097 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     419,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+90. Instead of calling you to dinner, your spouse sends e-mail.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

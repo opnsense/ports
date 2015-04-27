@@ -1,0 +1,176 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.264
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.264 (after 7.4.260)
+Problem:    Can't define a function starting with "g:".  Can't assign a
+	    funcref to a buffer-local variable.
+Solution:   Skip "g:" at the start of a function name.  Don't check for colons
+	    when assigning to a variable.
+Files:	    src/eval.c, src/testdir/test_eval.in, src/testdir/test_eval.ok
+
+
+*** ../vim-7.4.263/src/eval.c	2014-04-23 19:44:26.366774008 +0200
+--- src/eval.c	2014-04-23 20:40:16.738693276 +0200
+***************
+*** 21583,21589 ****
+       * Get the function name.  There are these situations:
+       * func	    normal function name
+       *		    "name" == func, "fudi.fd_dict" == NULL
+-      * s:func	    script-local function name
+       * dict.func    new dictionary entry
+       *		    "name" == NULL, "fudi.fd_dict" set,
+       *		    "fudi.fd_di" == NULL, "fudi.fd_newkey" == func
+--- 21583,21588 ----
+***************
+*** 21593,21598 ****
+--- 21592,21599 ----
+       * dict.func    existing dict entry that's not a Funcref
+       *		    "name" == NULL, "fudi.fd_dict" set,
+       *		    "fudi.fd_di" set, "fudi.fd_newkey" == NULL
++      * s:func	    script-local function name
++      * g:func	    global function name, same as "func"
+       */
+      p = eap->arg;
+      name = trans_function_name(&p, eap->skip, 0, &fudi);
+***************
+*** 22286,22292 ****
+      }
+      else
+      {
+! 	if (lead == 2)	/* skip over "s:" */
+  	    lv.ll_name += 2;
+  	len = (int)(end - lv.ll_name);
+      }
+--- 22287,22294 ----
+      }
+      else
+      {
+! 	/* skip over "s:" and "g:" */
+! 	if (lead == 2 || (lv.ll_name[0] == 'g' && lv.ll_name[1] == ':'))
+  	    lv.ll_name += 2;
+  	len = (int)(end - lv.ll_name);
+      }
+***************
+*** 22317,22333 ****
+      else if (!(flags & TFN_INT) && builtin_function(lv.ll_name, len))
+      {
+  	EMSG2(_("E128: Function name must start with a capital or \"s:\": %s"),
+! 								  lv.ll_name);
+  	goto theend;
+      }
+!     if (!skip)
+      {
+  	char_u *cp = vim_strchr(lv.ll_name, ':');
+  
+  	if (cp != NULL && cp < end)
+  	{
+! 	    EMSG2(_("E884: Function name cannot contain a colon: %s"),
+! 								  lv.ll_name);
+  	    goto theend;
+  	}
+      }
+--- 22319,22334 ----
+      else if (!(flags & TFN_INT) && builtin_function(lv.ll_name, len))
+      {
+  	EMSG2(_("E128: Function name must start with a capital or \"s:\": %s"),
+! 								       start);
+  	goto theend;
+      }
+!     if (!skip && !(flags & TFN_QUIET))
+      {
+  	char_u *cp = vim_strchr(lv.ll_name, ':');
+  
+  	if (cp != NULL && cp < end)
+  	{
+! 	    EMSG2(_("E884: Function name cannot contain a colon: %s"), start);
+  	    goto theend;
+  	}
+      }
+*** ../vim-7.4.263/src/testdir/test_eval.in	2014-04-23 17:43:37.362948683 +0200
+--- src/testdir/test_eval.in	2014-04-23 20:36:50.494698246 +0200
+***************
+*** 144,150 ****
+  :delcommand AR
+  :call garbagecollect(1)
+  :"
+! :" function name includes a colon
+  :try
+  :func! g:test()
+  :echo "test"
+--- 144,150 ----
+  :delcommand AR
+  :call garbagecollect(1)
+  :"
+! :" function name not starting with capital
+  :try
+  :func! g:test()
+  :echo "test"
+***************
+*** 153,158 ****
+--- 153,167 ----
+  :$put =v:exception
+  :endtry
+  :"
++ :" function name includes a colon
++ :try
++ :func! b:test()
++ :echo "test"
++ :endfunc
++ :catch
++ :$put =v:exception
++ :endtry
++ :"
+  :" function name folowed by #
+  :try
+  :func! test2() "#
+***************
+*** 162,167 ****
+--- 171,183 ----
+  :$put =v:exception
+  :endtry
+  :"
++ :" function name starting with/without "g:", buffer-local funcref.
++ :function! g:Foo()
++ :  $put ='called Foo()'
++ :endfunction
++ :let b:my_func = function('Foo')
++ :call b:my_func()
++ :"
+  :/^start:/+1,$wq! test.out
+  :" vim: et ts=4 isk-=\: fmr=???,???
+  :call getchar()
+*** ../vim-7.4.263/src/testdir/test_eval.ok	2014-04-23 17:43:37.362948683 +0200
+--- src/testdir/test_eval.ok	2014-04-23 20:37:45.526696920 +0200
+***************
+*** 336,339 ****
+--- 336,341 ----
+  Executing call setreg(1, ["", "", [], ""])
+  Vim(call):E730: using List as a String
+  Vim(function):E128: Function name must start with a capital or "s:": g:test()
++ Vim(function):E128: Function name must start with a capital or "s:": b:test()
+  Vim(function):E128: Function name must start with a capital or "s:": test2() "#
++ called Foo()
+*** ../vim-7.4.263/src/version.c	2014-04-23 19:44:26.370774008 +0200
+--- src/version.c	2014-04-23 20:27:17.614712050 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     264,
+  /**/
+
+-- 
+In order for something to become clean, something else must become dirty;
+but you can get everything dirty without getting anything clean.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

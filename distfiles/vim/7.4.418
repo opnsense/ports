@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.418
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.418
+Problem:    When leaving ":append" the cursor shape is like in Insert mode.
+	    (Jacob Niehus)
+Solution:   Do not have State set to INSERT when calling getline().
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.417/src/ex_cmds.c	2014-08-06 18:17:03.471147780 +0200
+--- src/ex_cmds.c	2014-08-29 08:54:26.666398204 +0200
+***************
+*** 4011,4021 ****
+--- 4011,4029 ----
+  	    eap->nextcmd = p;
+  	}
+  	else
++ 	{
++ 	    int save_State = State;
++ 
++ 	    /* Set State to avoid the cursor shape to be set to INSERT mode
++ 	     * when getline() returns. */
++ 	    State = CMDLINE;
+  	    theline = eap->getline(
+  #ifdef FEAT_EVAL
+  		    eap->cstack->cs_looplevel > 0 ? -1 :
+  #endif
+  		    NUL, eap->cookie, indent);
++ 	    State = save_State;
++ 	}
+  	lines_left = Rows - 1;
+  	if (theline == NULL)
+  	    break;
+*** ../vim-7.4.417/src/version.c	2014-08-24 21:39:45.488526954 +0200
+--- src/version.c	2014-08-29 08:58:31.086398738 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     418,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+88. Every single time you press the 'Get mail' button...it does get new mail.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

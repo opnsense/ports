@@ -1,0 +1,126 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.067
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.067
+Problem:    After inserting comment leader, CTRL-\ CTRL-O does move the
+            cursor. (Wiktor Ruben)
+Solution:   Avoid moving the cursor. (Christian Brabandt)
+Files:      src/edit.c
+
+
+*** ../vim-7.4.066/src/edit.c	2013-09-08 20:00:45.000000000 +0200
+--- src/edit.c	2013-11-04 03:57:43.000000000 +0100
+***************
+*** 199,205 ****
+  static void spell_back_to_badword __ARGS((void));
+  static int  spell_bad_len = 0;	/* length of located bad word */
+  #endif
+! static void stop_insert __ARGS((pos_T *end_insert_pos, int esc));
+  static int  echeck_abbr __ARGS((int));
+  static int  replace_pop __ARGS((void));
+  static void replace_join __ARGS((int off));
+--- 199,205 ----
+  static void spell_back_to_badword __ARGS((void));
+  static int  spell_bad_len = 0;	/* length of located bad word */
+  #endif
+! static void stop_insert __ARGS((pos_T *end_insert_pos, int esc, int nomove));
+  static int  echeck_abbr __ARGS((int));
+  static int  replace_pop __ARGS((void));
+  static void replace_join __ARGS((int off));
+***************
+*** 6698,6704 ****
+      if (!arrow_used)	    /* something has been inserted */
+      {
+  	AppendToRedobuff(ESC_STR);
+! 	stop_insert(end_insert_pos, FALSE);
+  	arrow_used = TRUE;	/* this means we stopped the current insert */
+      }
+  #ifdef FEAT_SPELL
+--- 6698,6704 ----
+      if (!arrow_used)	    /* something has been inserted */
+      {
+  	AppendToRedobuff(ESC_STR);
+! 	stop_insert(end_insert_pos, FALSE, FALSE);
+  	arrow_used = TRUE;	/* this means we stopped the current insert */
+      }
+  #ifdef FEAT_SPELL
+***************
+*** 6787,6795 ****
+   * to another window/buffer.
+   */
+      static void
+! stop_insert(end_insert_pos, esc)
+      pos_T	*end_insert_pos;
+      int		esc;			/* called by ins_esc() */
+  {
+      int		cc;
+      char_u	*ptr;
+--- 6787,6796 ----
+   * to another window/buffer.
+   */
+      static void
+! stop_insert(end_insert_pos, esc, nomove)
+      pos_T	*end_insert_pos;
+      int		esc;			/* called by ins_esc() */
++     int		nomove;			/* <c-\><c-o>, don't move cursor */
+  {
+      int		cc;
+      char_u	*ptr;
+***************
+*** 6860,6866 ****
+  	 * Do this when ESC was used or moving the cursor up/down.
+  	 * Check for the old position still being valid, just in case the text
+  	 * got changed unexpectedly. */
+! 	if (did_ai && (esc || (vim_strchr(p_cpo, CPO_INDENT) == NULL
+  			&& curwin->w_cursor.lnum != end_insert_pos->lnum))
+  		&& end_insert_pos->lnum <= curbuf->b_ml.ml_line_count)
+  	{
+--- 6861,6867 ----
+  	 * Do this when ESC was used or moving the cursor up/down.
+  	 * Check for the old position still being valid, just in case the text
+  	 * got changed unexpectedly. */
+! 	if (!nomove && did_ai && (esc || (vim_strchr(p_cpo, CPO_INDENT) == NULL
+  			&& curwin->w_cursor.lnum != end_insert_pos->lnum))
+  		&& end_insert_pos->lnum <= curbuf->b_ml.ml_line_count)
+  	{
+***************
+*** 8377,8383 ****
+  	    disabled_redraw = TRUE;
+  	    return FALSE;	/* repeat the insert */
+  	}
+! 	stop_insert(&curwin->w_cursor, TRUE);
+  	undisplay_dollar();
+      }
+  
+--- 8378,8384 ----
+  	    disabled_redraw = TRUE;
+  	    return FALSE;	/* repeat the insert */
+  	}
+! 	stop_insert(&curwin->w_cursor, TRUE, nomove);
+  	undisplay_dollar();
+      }
+  
+*** ../vim-7.4.066/src/version.c	2013-11-04 02:53:46.000000000 +0100
+--- src/version.c	2013-11-04 03:57:29.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     67,
+  /**/
+
+-- 
+Beer & pretzels can't be served at the same time in any bar or restaurant.
+		[real standing law in North Dakota, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

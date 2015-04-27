@@ -1,0 +1,74 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.347
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.347
+Problem:    test55 fails on some systems.
+Solution:   Remove the elements that all result in zero and can end up in an
+	    arbitrary position.
+Files:	    src/testdir/test55.in, src/testdir/test55.ok
+
+
+*** ../vim-7.4.346/src/testdir/test55.in	2014-06-25 17:31:04.942737863 +0200
+--- src/testdir/test55.in	2014-06-26 22:25:33.078674909 +0200
+***************
+*** 332,339 ****
+  :$put =string(reverse(sort(l)))
+  :$put =string(sort(reverse(sort(l))))
+  :$put =string(uniq(sort(l)))
+! :let l=[7, 9, 18, 12, 22, 10.0e-16, -1, 0xff, 0, -0, 0.22, 'foo', 'FOOBAR',{}, []]
+  :$put =string(sort(copy(l), 'n'))
+  :$put =string(sort(copy(l), 1))
+  :$put =string(sort(copy(l), 'i'))
+  :$put =string(sort(copy(l)))
+--- 332,340 ----
+  :$put =string(reverse(sort(l)))
+  :$put =string(sort(reverse(sort(l))))
+  :$put =string(uniq(sort(l)))
+! :let l=[7, 9, 18, 12, 22, 10.0e-16, -1, 0xff, 0.22, 'foo']
+  :$put =string(sort(copy(l), 'n'))
++ :let l=[7, 9, 18, 12, 22, 10.0e-16, -1, 0xff, 0, -0, 0.22, 'foo', 'FOOBAR',{}, []]
+  :$put =string(sort(copy(l), 1))
+  :$put =string(sort(copy(l), 'i'))
+  :$put =string(sort(copy(l)))
+*** ../vim-7.4.346/src/testdir/test55.ok	2014-06-25 17:31:04.942737863 +0200
+--- src/testdir/test55.ok	2014-06-26 22:26:38.662677390 +0200
+***************
+*** 101,107 ****
+  [[0, 1, 2], [0, 1, 2], 4, 2, 2, 1.5, 'xaaa', 'x8', 'foo6', 'foo', 'foo', 'A11', '-0']
+  ['-0', 'A11', 'foo', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 2, 4, [0, 1, 2], [0, 1, 2]]
+  ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 4, [0, 1, 2]]
+! [-1, 0, 0, 'foo', 'FOOBAR', {}, [], 1.0e-15, 0.22, 7, 9, 12, 18, 22, 255]
+  ['foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+  ['foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+  ['FOOBAR', 'foo', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+--- 101,107 ----
+  [[0, 1, 2], [0, 1, 2], 4, 2, 2, 1.5, 'xaaa', 'x8', 'foo6', 'foo', 'foo', 'A11', '-0']
+  ['-0', 'A11', 'foo', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 2, 4, [0, 1, 2], [0, 1, 2]]
+  ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 4, [0, 1, 2]]
+! [-1, 'foo', 1.0e-15, 0.22, 7, 9, 12, 18, 22, 255]
+  ['foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+  ['foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+  ['FOOBAR', 'foo', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+*** ../vim-7.4.346/src/version.c	2014-06-26 21:24:53.134537205 +0200
+--- src/version.c	2014-06-26 22:28:15.402681050 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     347,
+  /**/
+
+-- 
+Witches prefer brooms: vacuum-cleaners need extension cords!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.474
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.474
+Problem:    AIX compiler can't handle // comment.  Issue 265.
+Solution:   Remove that line.
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.473/src/regexp_nfa.c	2014-09-09 17:18:44.008540299 +0200
+--- src/regexp_nfa.c	2014-10-11 12:44:38.033259459 +0200
+***************
+*** 4407,4413 ****
+      switch (state->c)
+      {
+  	case NFA_MATCH:
+- //	    nfa_match = TRUE;
+  	    break;
+  
+  	case NFA_SPLIT:
+--- 4407,4412 ----
+*** ../vim-7.4.473/src/version.c	2014-10-10 15:34:29.657092994 +0200
+--- src/version.c	2014-10-11 12:45:43.393259602 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     474,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+252. You vote for foreign officials.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

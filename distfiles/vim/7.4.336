@@ -1,0 +1,100 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.336
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.336
+Problem:    Setting 'history' to a big value causes out-of-memory errors.
+Solution:   Limit the value to 10000. (Hirohito Higashi)
+Files:	    runtime/doc/options.txt, src/option.c
+
+
+*** ../vim-7.4.335/runtime/doc/options.txt	2014-05-28 21:40:47.088329130 +0200
+--- runtime/doc/options.txt	2014-06-25 11:44:16.985950668 +0200
+***************
+*** 3920,3931 ****
+  	NOTE: This option is reset when 'compatible' is set.
+  
+  						*'history'* *'hi'*
+! 'history' 'hi'		number	(Vim default: 20, Vi default: 0)
+  			global
+  			{not in Vi}
+  	A history of ":" commands, and a history of previous search patterns
+! 	are remembered.  This option decides how many entries may be stored in
+  	each of these histories (see |cmdline-editing|).
+  	NOTE: This option is set to the Vi default value when 'compatible' is
+  	set and to the Vim default value when 'compatible' is reset.
+  
+--- 3920,3932 ----
+  	NOTE: This option is reset when 'compatible' is set.
+  
+  						*'history'* *'hi'*
+! 'history' 'hi'		number	(Vim default: 50, Vi default: 0)
+  			global
+  			{not in Vi}
+  	A history of ":" commands, and a history of previous search patterns
+! 	is remembered.  This option decides how many entries may be stored in
+  	each of these histories (see |cmdline-editing|).
++ 	The maximum value is 10000.
+  	NOTE: This option is set to the Vi default value when 'compatible' is
+  	set and to the Vim default value when 'compatible' is reset.
+  
+*** ../vim-7.4.335/src/option.c	2014-05-13 12:16:44.037555110 +0200
+--- src/option.c	2014-06-25 11:44:48.349951855 +0200
+***************
+*** 1392,1398 ****
+  			    SCRIPTID_INIT},
+      {"history",	    "hi",   P_NUM|P_VIM,
+  			    (char_u *)&p_hi, PV_NONE,
+! 			    {(char_u *)0L, (char_u *)20L} SCRIPTID_INIT},
+      {"hkmap",	    "hk",   P_BOOL|P_VI_DEF|P_VIM,
+  #ifdef FEAT_RIGHTLEFT
+  			    (char_u *)&p_hkmap, PV_NONE,
+--- 1392,1398 ----
+  			    SCRIPTID_INIT},
+      {"history",	    "hi",   P_NUM|P_VIM,
+  			    (char_u *)&p_hi, PV_NONE,
+! 			    {(char_u *)0L, (char_u *)50L} SCRIPTID_INIT},
+      {"hkmap",	    "hk",   P_BOOL|P_VI_DEF|P_VIM,
+  #ifdef FEAT_RIGHTLEFT
+  			    (char_u *)&p_hkmap, PV_NONE,
+***************
+*** 8595,8600 ****
+--- 8595,8605 ----
+  	errmsg = e_positive;
+  	p_hi = 0;
+      }
++     else if (p_hi > 10000)
++     {
++ 	errmsg = e_invarg;
++ 	p_hi = 10000;
++     }
+      if (p_re < 0 || p_re > 2)
+      {
+  	errmsg = e_invarg;
+*** ../vim-7.4.335/src/version.c	2014-06-18 21:38:12.216418355 +0200
+--- src/version.c	2014-06-25 11:45:08.141952604 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     336,
+  /**/
+
+-- 
+ARTHUR:    Well, it doesn't matter.  Will you go and tell your master that
+           Arthur from the Court of Camelot is here.
+GUARD #1:  Listen, in order to maintain air-speed velocity, a swallow
+           needs to beat its wings 43 times every second, right?
+ARTHUR:    Please!
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

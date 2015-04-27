@@ -1,0 +1,105 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.428
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.428
+Problem:    executable() may return a wrong result on MS-Windows.
+Solution:   Change the way SearchPath() is called. (Yasuhiro Matsumoto, Ken
+	    Takata)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.427/src/os_win32.c	2014-07-09 20:51:04.515583033 +0200
+--- src/os_win32.c	2014-08-29 17:44:01.782467612 +0200
+***************
+*** 1906,1911 ****
+--- 1906,1913 ----
+  {
+      char	*dum;
+      char	fname[_MAX_PATH];
++     char	*curpath, *newpath;
++     long	n;
+  
+  #ifdef FEAT_MBYTE
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+***************
+*** 1913,1923 ****
+  	WCHAR	*p = enc_to_utf16(name, NULL);
+  	WCHAR	fnamew[_MAX_PATH];
+  	WCHAR	*dumw;
+! 	long	n;
+  
+  	if (p != NULL)
+  	{
+! 	    n = (long)SearchPathW(NULL, p, NULL, _MAX_PATH, fnamew, &dumw);
+  	    vim_free(p);
+  	    if (n > 0 || GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
+  	    {
+--- 1915,1933 ----
+  	WCHAR	*p = enc_to_utf16(name, NULL);
+  	WCHAR	fnamew[_MAX_PATH];
+  	WCHAR	*dumw;
+! 	WCHAR	*wcurpath, *wnewpath;
+  
+  	if (p != NULL)
+  	{
+! 	    wcurpath = _wgetenv(L"PATH");
+! 	    wnewpath = (WCHAR*)alloc((unsigned)(wcslen(wcurpath) + 3)
+! 							    * sizeof(WCHAR));
+! 	    if (wnewpath == NULL)
+! 		return FALSE;
+! 	    wcscpy(wnewpath, L".;");
+! 	    wcscat(wnewpath, wcurpath);
+! 	    n = (long)SearchPathW(wnewpath, p, NULL, _MAX_PATH, fnamew, &dumw);
+! 	    vim_free(wnewpath);
+  	    vim_free(p);
+  	    if (n > 0 || GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
+  	    {
+***************
+*** 1933,1939 ****
+  	}
+      }
+  #endif
+!     if (SearchPath(NULL, name, NULL, _MAX_PATH, fname, &dum) == 0)
+  	return FALSE;
+      if (mch_isdir(fname))
+  	return FALSE;
+--- 1943,1958 ----
+  	}
+      }
+  #endif
+! 
+!     curpath = getenv("PATH");
+!     newpath = (char*)alloc((unsigned)(STRLEN(curpath) + 3));
+!     if (newpath == NULL)
+! 	return FALSE;
+!     STRCPY(newpath, ".;");
+!     STRCAT(newpath, curpath);
+!     n = (long)SearchPath(newpath, name, NULL, _MAX_PATH, fname, &dum);
+!     vim_free(newpath);
+!     if (n == 0)
+  	return FALSE;
+      if (mch_isdir(fname))
+  	return FALSE;
+*** ../vim-7.4.427/src/version.c	2014-08-29 15:53:43.714453155 +0200
+--- src/version.c	2014-08-29 17:44:50.598467718 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     428,
+  /**/
+
+-- 
+You are only young once, but you can stay immature indefinitely.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

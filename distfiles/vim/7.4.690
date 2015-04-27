@@ -1,0 +1,128 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.690
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.690
+Problem:    Memory access errors when changing indent in Ex mode. Also missing
+	    redraw when using CTRL-U. (Knil Ino)
+Solution:   Update pointers after calling ga_grow().
+Files:	    src/ex_getln.c
+
+
+*** ../vim-7.4.689/src/ex_getln.c	2015-03-21 17:32:14.054780051 +0100
+--- src/ex_getln.c	2015-04-03 16:53:12.181002764 +0200
+***************
+*** 2245,2250 ****
+--- 2245,2253 ----
+      got_int = FALSE;
+      while (!got_int)
+      {
++ 	long    sw;
++ 	char_u *s;
++ 
+  	if (ga_grow(&line_ga, 40) == FAIL)
+  	    break;
+  
+***************
+*** 2296,2308 ****
+  		msg_col = startcol;
+  		msg_clr_eos();
+  		line_ga.ga_len = 0;
+! 		continue;
+  	    }
+  
+  	    if (c1 == Ctrl_T)
+  	    {
+! 		long	    sw = get_sw_value(curbuf);
+! 
+  		p = (char_u *)line_ga.ga_data;
+  		p[line_ga.ga_len] = NUL;
+  		indent = get_indent_str(p, 8, FALSE);
+--- 2299,2310 ----
+  		msg_col = startcol;
+  		msg_clr_eos();
+  		line_ga.ga_len = 0;
+! 		goto redraw;
+  	    }
+  
+  	    if (c1 == Ctrl_T)
+  	    {
+! 		sw = get_sw_value(curbuf);
+  		p = (char_u *)line_ga.ga_data;
+  		p[line_ga.ga_len] = NUL;
+  		indent = get_indent_str(p, 8, FALSE);
+***************
+*** 2310,2318 ****
+  add_indent:
+  		while (get_indent_str(p, 8, FALSE) < indent)
+  		{
+! 		    char_u *s = skipwhite(p);
+! 
+! 		    ga_grow(&line_ga, 1);
+  		    mch_memmove(s + 1, s, line_ga.ga_len - (s - p) + 1);
+  		    *s = ' ';
+  		    ++line_ga.ga_len;
+--- 2312,2320 ----
+  add_indent:
+  		while (get_indent_str(p, 8, FALSE) < indent)
+  		{
+! 		    ga_grow(&line_ga, 2);  /* one more for the NUL */
+! 		    p = (char_u *)line_ga.ga_data;
+! 		    s = skipwhite(p);
+  		    mch_memmove(s + 1, s, line_ga.ga_len - (s - p) + 1);
+  		    *s = ' ';
+  		    ++line_ga.ga_len;
+***************
+*** 2361,2373 ****
+  		{
+  		    p[line_ga.ga_len] = NUL;
+  		    indent = get_indent_str(p, 8, FALSE);
+! 		    --indent;
+! 		    indent -= indent % get_sw_value(curbuf);
+  		}
+  		while (get_indent_str(p, 8, FALSE) > indent)
+  		{
+! 		    char_u *s = skipwhite(p);
+! 
+  		    mch_memmove(s - 1, s, line_ga.ga_len - (s - p) + 1);
+  		    --line_ga.ga_len;
+  		}
+--- 2363,2377 ----
+  		{
+  		    p[line_ga.ga_len] = NUL;
+  		    indent = get_indent_str(p, 8, FALSE);
+! 		    if (indent > 0)
+! 		    {
+! 			--indent;
+! 			indent -= indent % get_sw_value(curbuf);
+! 		    }
+  		}
+  		while (get_indent_str(p, 8, FALSE) > indent)
+  		{
+! 		    s = skipwhite(p);
+  		    mch_memmove(s - 1, s, line_ga.ga_len - (s - p) + 1);
+  		    --line_ga.ga_len;
+  		}
+*** ../vim-7.4.689/src/version.c	2015-04-03 14:56:43.940840314 +0200
+--- src/version.c	2015-04-03 17:02:19.739047689 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     690,
+  /**/
+
+-- 
+No man may purchase alcohol without written consent from his wife.
+		[real standing law in Pennsylvania, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

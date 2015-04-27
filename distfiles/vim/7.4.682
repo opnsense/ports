@@ -1,0 +1,78 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.682
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.682
+Problem:    The search highlighting and match highlighting replaces the
+	    cursorline highlighting, this doesn't look good.
+Solution:   Combine the highlighting. (Yasuhiro Matsumoto)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.681/src/screen.c	2015-03-21 14:20:11.520982748 +0100
+--- src/screen.c	2015-03-24 18:17:07.201656819 +0100
+***************
+*** 4010,4026 ****
+  
+  	    /* Decide which of the highlight attributes to use. */
+  	    attr_pri = TRUE;
+  	    if (area_attr != 0)
+! 		char_attr = area_attr;
+  	    else if (search_attr != 0)
+! 		char_attr = search_attr;
+! #ifdef LINE_ATTR
+  		/* Use line_attr when not in the Visual or 'incsearch' area
+  		 * (area_attr may be 0 when "noinvcur" is set). */
+  	    else if (line_attr != 0 && ((fromcol == -10 && tocol == MAXCOL)
+  				|| vcol < fromcol || vcol_prev < fromcol_prev
+  				|| vcol >= tocol))
+  		char_attr = line_attr;
+  #endif
+  	    else
+  	    {
+--- 4010,4031 ----
+  
+  	    /* Decide which of the highlight attributes to use. */
+  	    attr_pri = TRUE;
++ #ifdef LINE_ATTR
+  	    if (area_attr != 0)
+! 		char_attr = hl_combine_attr(line_attr, area_attr);
+  	    else if (search_attr != 0)
+! 		char_attr = hl_combine_attr(line_attr, search_attr);
+  		/* Use line_attr when not in the Visual or 'incsearch' area
+  		 * (area_attr may be 0 when "noinvcur" is set). */
+  	    else if (line_attr != 0 && ((fromcol == -10 && tocol == MAXCOL)
+  				|| vcol < fromcol || vcol_prev < fromcol_prev
+  				|| vcol >= tocol))
+  		char_attr = line_attr;
++ #else
++ 	    if (area_attr != 0)
++ 		char_attr = area_attr;
++ 	    else if (search_attr != 0)
++ 		char_attr = search_attr;
+  #endif
+  	    else
+  	    {
+*** ../vim-7.4.681/src/version.c	2015-03-24 17:57:06.210846471 +0100
+--- src/version.c	2015-03-24 18:21:08.975018758 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     682,
+  /**/
+
+-- 
+The war between Emacs and Vi is over.  Vi has won with 3 to 1.
+http://m.linuxjournal.com/files/linuxjournal.com/linuxjournal/articles/030/3044/3044s1.html
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

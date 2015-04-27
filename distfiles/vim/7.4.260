@@ -1,0 +1,281 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.260
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.260
+Problem:    It is possible to define a function with a colon in the name.  It
+	    is possible to define a function with a lower case character if a
+	    "#" appears after the name.
+Solution:   Disallow using a colon other than with "s:".  Ignore "#" after the
+	    name.
+Files:	    runtime/doc/eval.txt, src/eval.c, src/testdir/test_eval.in,
+	    src/testdir/test_eval.ok
+
+
+*** ../vim-7.4.259/runtime/doc/eval.txt	2014-04-05 19:44:36.891160723 +0200
+--- runtime/doc/eval.txt	2014-04-23 17:19:57.914982886 +0200
+***************
+*** 123,128 ****
+--- 123,129 ----
+  	:echo Fn()
+  <							*E704* *E705* *E707*
+  A Funcref variable must start with a capital, "s:", "w:", "t:" or "b:".  You
++ can use "g:" but the following name must still start with a capital.  You
+  cannot have both a Funcref variable and a function with the same name.
+  
+  A special case is defining a function and directly assigning its Funcref to a
+***************
+*** 6675,6680 ****
+--- 6691,6698 ----
+  and autocommands defined in the script.  It is also possible to call the
+  function from a mapping defined in the script, but then |<SID>| must be used
+  instead of "s:" when the mapping is expanded outside of the script.
++ There are only script-local functions, no buffer-local or window-local
++ functions.
+  
+  					*:fu* *:function* *E128* *E129* *E123*
+  :fu[nction]		List all functions and their arguments.
+***************
+*** 6698,6708 ****
+  <
+  See |:verbose-cmd| for more information.
+  
+! 							*E124* *E125* *E853*
+  :fu[nction][!] {name}([arguments]) [range] [abort] [dict]
+  			Define a new function by the name {name}.  The name
+  			must be made of alphanumeric characters and '_', and
+! 			must start with a capital or "s:" (see above).
+  
+  			{name} can also be a |Dictionary| entry that is a
+  			|Funcref|: >
+--- 6716,6727 ----
+  <
+  See |:verbose-cmd| for more information.
+  
+! 						*E124* *E125* *E853* *E884*
+  :fu[nction][!] {name}([arguments]) [range] [abort] [dict]
+  			Define a new function by the name {name}.  The name
+  			must be made of alphanumeric characters and '_', and
+! 			must start with a capital or "s:" (see above).  Note
+! 			that using "b:" or "g:" is not allowed.
+  
+  			{name} can also be a |Dictionary| entry that is a
+  			|Funcref|: >
+*** ../vim-7.4.259/src/eval.c	2014-04-11 10:22:46.288219453 +0200
+--- src/eval.c	2014-04-23 17:37:23.890957682 +0200
+***************
+*** 808,814 ****
+  static void list_func_head __ARGS((ufunc_T *fp, int indent));
+  static ufunc_T *find_func __ARGS((char_u *name));
+  static int function_exists __ARGS((char_u *name));
+! static int builtin_function __ARGS((char_u *name));
+  #ifdef FEAT_PROFILE
+  static void func_do_profile __ARGS((ufunc_T *fp));
+  static void prof_sort_list __ARGS((FILE *fd, ufunc_T **sorttab, int st_len, char *title, int prefer_self));
+--- 808,814 ----
+  static void list_func_head __ARGS((ufunc_T *fp, int indent));
+  static ufunc_T *find_func __ARGS((char_u *name));
+  static int function_exists __ARGS((char_u *name));
+! static int builtin_function __ARGS((char_u *name, int len));
+  #ifdef FEAT_PROFILE
+  static void func_do_profile __ARGS((ufunc_T *fp));
+  static void prof_sort_list __ARGS((FILE *fd, ufunc_T **sorttab, int st_len, char *title, int prefer_self));
+***************
+*** 8489,8495 ****
+  	rettv->vval.v_number = 0;
+  	error = ERROR_UNKNOWN;
+  
+! 	if (!builtin_function(fname))
+  	{
+  	    /*
+  	     * User defined function.
+--- 8489,8495 ----
+  	rettv->vval.v_number = 0;
+  	error = ERROR_UNKNOWN;
+  
+! 	if (!builtin_function(fname, -1))
+  	{
+  	    /*
+  	     * User defined function.
+***************
+*** 21584,21589 ****
+--- 21584,21590 ----
+       * Get the function name.  There are these situations:
+       * func	    normal function name
+       *		    "name" == func, "fudi.fd_dict" == NULL
++      * s:func	    script-local function name
+       * dict.func    new dictionary entry
+       *		    "name" == NULL, "fudi.fd_dict" set,
+       *		    "fudi.fd_di" == NULL, "fudi.fd_newkey" == func
+***************
+*** 22314,22324 ****
+  	    lead += (int)STRLEN(sid_buf);
+  	}
+      }
+!     else if (!(flags & TFN_INT) && builtin_function(lv.ll_name))
+      {
+! 	EMSG2(_("E128: Function name must start with a capital or contain a colon: %s"), lv.ll_name);
+  	goto theend;
+      }
+      name = alloc((unsigned)(len + lead + 1));
+      if (name != NULL)
+      {
+--- 22315,22338 ----
+  	    lead += (int)STRLEN(sid_buf);
+  	}
+      }
+!     else if (!(flags & TFN_INT) && builtin_function(lv.ll_name, len))
+      {
+! 	EMSG2(_("E128: Function name must start with a capital or \"s:\": %s"),
+! 								  lv.ll_name);
+  	goto theend;
+      }
++     if (!skip)
++     {
++ 	char_u *cp = vim_strchr(lv.ll_name, ':');
++ 
++ 	if (cp != NULL && cp < end)
++ 	{
++ 	    EMSG2(_("E884: Function name cannot contain a colon: %s"),
++ 								  lv.ll_name);
++ 	    goto theend;
++ 	}
++     }
++ 
+      name = alloc((unsigned)(len + lead + 1));
+      if (name != NULL)
+      {
+***************
+*** 22331,22337 ****
+  		STRCPY(name + 3, sid_buf);
+  	}
+  	mch_memmove(name + lead, lv.ll_name, (size_t)len);
+! 	name[len + lead] = NUL;
+      }
+      *pp = end;
+  
+--- 22345,22351 ----
+  		STRCPY(name + 3, sid_buf);
+  	}
+  	mch_memmove(name + lead, lv.ll_name, (size_t)len);
+! 	name[lead + len] = NUL;
+      }
+      *pp = end;
+  
+***************
+*** 22452,22458 ****
+  translated_function_exists(name)
+      char_u	*name;
+  {
+!     if (builtin_function(name))
+  	return find_internal_func(name) >= 0;
+      return find_func(name) != NULL;
+  }
+--- 22466,22472 ----
+  translated_function_exists(name)
+      char_u	*name;
+  {
+!     if (builtin_function(name, -1))
+  	return find_internal_func(name) >= 0;
+      return find_func(name) != NULL;
+  }
+***************
+*** 22500,22513 ****
+  
+  /*
+   * Return TRUE if "name" looks like a builtin function name: starts with a
+!  * lower case letter and doesn't contain a ':' or AUTOLOAD_CHAR.
+   */
+      static int
+! builtin_function(name)
+      char_u *name;
+  {
+!     return ASCII_ISLOWER(name[0]) && vim_strchr(name, ':') == NULL
+! 				   && vim_strchr(name, AUTOLOAD_CHAR) == NULL;
+  }
+  
+  #if defined(FEAT_PROFILE) || defined(PROTO)
+--- 22514,22533 ----
+  
+  /*
+   * Return TRUE if "name" looks like a builtin function name: starts with a
+!  * lower case letter and doesn't contain AUTOLOAD_CHAR.
+!  * "len" is the length of "name", or -1 for NUL terminated.
+   */
+      static int
+! builtin_function(name, len)
+      char_u *name;
++     int len;
+  {
+!     char_u *p;
+! 
+!     if (!ASCII_ISLOWER(name[0]))
+! 	return FALSE;
+!     p = vim_strchr(name, AUTOLOAD_CHAR);
+!     return p == NULL || (len > 0 && p > name + len);
+  }
+  
+  #if defined(FEAT_PROFILE) || defined(PROTO)
+*** ../vim-7.4.259/src/testdir/test_eval.in	2014-04-05 21:28:50.667174384 +0200
+--- src/testdir/test_eval.in	2014-04-23 17:35:12.086960858 +0200
+***************
+*** 144,149 ****
+--- 144,167 ----
+  :delcommand AR
+  :call garbagecollect(1)
+  :"
++ :" function name includes a colon
++ :try
++ :func! g:test()
++ :echo "test"
++ :endfunc
++ :catch
++ :$put =v:exception
++ :endtry
++ :"
++ :" function name folowed by #
++ :try
++ :func! test2() "#
++ :echo "test2"
++ :endfunc
++ :catch
++ :$put =v:exception
++ :endtry
++ :"
+  :/^start:/+1,$wq! test.out
+  :" vim: et ts=4 isk-=\: fmr=???,???
+  :call getchar()
+*** ../vim-7.4.259/src/testdir/test_eval.ok	2014-04-05 21:28:50.667174384 +0200
+--- src/testdir/test_eval.ok	2014-04-23 17:36:34.602958870 +0200
+***************
+*** 335,337 ****
+--- 335,339 ----
+  Vim(call):E883: search pattern and expression register may not contain two or more lines
+  Executing call setreg(1, ["", "", [], ""])
+  Vim(call):E730: using List as a String
++ Vim(function):E128: Function name must start with a capital or "s:": g:test()
++ Vim(function):E128: Function name must start with a capital or "s:": test2() "#
+*** ../vim-7.4.259/src/version.c	2014-04-23 12:52:36.499369426 +0200
+--- src/version.c	2014-04-23 17:17:50.994985945 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     260,
+  /**/
+
+-- 
+From "know your smileys":
+ ;-0	Can't find shift key
+ ,-9	Kann Umschalttaste nicht finden
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

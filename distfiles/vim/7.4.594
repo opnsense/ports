@@ -1,0 +1,105 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.594
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.594
+Problem:    Using a block delete while 'breakindent' is set does not work
+	    properly.
+Solution:   Use "line" instead of "prev_pend" as the first argument to
+	    lbr_chartabsize_adv().  (Hirohito Higashi)
+Files:	    src/ops.c, src/testdir/test_breakindent.in,
+	    src/testdir/test_breakindent.ok
+
+
+*** ../vim-7.4.593/src/ops.c	2015-01-18 14:08:52.699436994 +0100
+--- src/ops.c	2015-01-27 13:07:11.518790582 +0100
+***************
+*** 5308,5317 ****
+  	    {
+  		/* Count a tab for what it's worth (if list mode not on) */
+  		prev_pend = pend;
+! 		/* TODO: is passing prev_pend for start of the line OK?
+! 		 * perhaps it should be "line". */
+! 		incr = lbr_chartabsize_adv(prev_pend, &pend,
+! 						      (colnr_T)bdp->end_vcol);
+  		bdp->end_vcol += incr;
+  	    }
+  	    if (bdp->end_vcol <= oap->end_vcol
+--- 5308,5314 ----
+  	    {
+  		/* Count a tab for what it's worth (if list mode not on) */
+  		prev_pend = pend;
+! 		incr = lbr_chartabsize_adv(line, &pend, (colnr_T)bdp->end_vcol);
+  		bdp->end_vcol += incr;
+  	    }
+  	    if (bdp->end_vcol <= oap->end_vcol
+*** ../vim-7.4.593/src/testdir/test_breakindent.in	2014-11-27 14:09:09.490354943 +0100
+--- src/testdir/test_breakindent.in	2015-01-27 13:06:51.067014258 +0100
+***************
+*** 99,104 ****
+--- 99,121 ----
+  :$put =line1
+  :$put =line2
+  :"
++ :let g:test="Test 14: breakindent + visual blockwise delete #1"
++ :set all& breakindent
++ :30vnew
++ :normal! 3a1234567890
++ :normal! a    abcde
++ :exec "normal! 0\<C-V>tex"
++ :let line1=ScreenChar(line('.'),8)
++ :call DoRecordScreen()
++ :"
++ :let g:test="Test 15: breakindent + visual blockwise delete #2"
++ :%d
++ :normal! 4a1234567890
++ :exec "normal! >>\<C-V>3f0x"
++ :let line1=ScreenChar(line('.'),20)
++ :call DoRecordScreen()
++ :quit!
++ :"
+  :%w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.593/src/testdir/test_breakindent.ok	2014-11-27 14:09:09.490354943 +0100
+--- src/testdir/test_breakindent.ok	2015-01-27 13:06:51.067014258 +0100
+***************
+*** 62,64 ****
+--- 62,74 ----
+  Test 13: breakindent with wrapping Tab
+  d
+  w
++ 
++ Test 14: breakindent + visual blockwise delete #1
++ e       
++ ~       
++ ~       
++ 
++ Test 15: breakindent + visual blockwise delete #2
++         1234567890  
++ ~                   
++ ~                   
+*** ../vim-7.4.593/src/version.c	2015-01-27 12:59:51.859602392 +0100
+--- src/version.c	2015-01-27 13:10:18.260748209 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     594,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+122. You ask if the Netaholics Anonymous t-shirt you ordered can be
+     sent to you via e-mail.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

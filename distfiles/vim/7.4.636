@@ -1,0 +1,166 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.636
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.636
+Problem:    A search with end offset gets stuck at end of file. (Gary Johnson)
+Solution:   When a search doesn't move the cursor repeat it with a higher
+	    count. (Christian Brabandt)
+Files:	    src/normal.c, src/testdir/test44.in, src/testdir/test44.ok
+
+
+*** ../vim-7.4.635/src/normal.c	2015-01-27 20:59:26.496971751 +0100
+--- src/normal.c	2015-02-17 15:43:29.216732977 +0100
+***************
+*** 100,106 ****
+  static void	nv_dollar __ARGS((cmdarg_T *cap));
+  static void	nv_search __ARGS((cmdarg_T *cap));
+  static void	nv_next __ARGS((cmdarg_T *cap));
+! static void	normal_search __ARGS((cmdarg_T *cap, int dir, char_u *pat, int opt));
+  static void	nv_csearch __ARGS((cmdarg_T *cap));
+  static void	nv_brackets __ARGS((cmdarg_T *cap));
+  static void	nv_percent __ARGS((cmdarg_T *cap));
+--- 100,106 ----
+  static void	nv_dollar __ARGS((cmdarg_T *cap));
+  static void	nv_search __ARGS((cmdarg_T *cap));
+  static void	nv_next __ARGS((cmdarg_T *cap));
+! static int	normal_search __ARGS((cmdarg_T *cap, int dir, char_u *pat, int opt));
+  static void	nv_csearch __ARGS((cmdarg_T *cap));
+  static void	nv_brackets __ARGS((cmdarg_T *cap));
+  static void	nv_percent __ARGS((cmdarg_T *cap));
+***************
+*** 5765,5771 ****
+  	init_history();
+  	add_to_history(HIST_SEARCH, buf, TRUE, NUL);
+  #endif
+! 	normal_search(cap, cmdchar == '*' ? '/' : '?', buf, 0);
+      }
+      else
+  	do_cmdline_cmd(buf);
+--- 5765,5771 ----
+  	init_history();
+  	add_to_history(HIST_SEARCH, buf, TRUE, NUL);
+  #endif
+! 	(void)normal_search(cap, cmdchar == '*' ? '/' : '?', buf, 0);
+      }
+      else
+  	do_cmdline_cmd(buf);
+***************
+*** 6301,6307 ****
+  	return;
+      }
+  
+!     normal_search(cap, cap->cmdchar, cap->searchbuf,
+  						(cap->arg ? 0 : SEARCH_MARK));
+  }
+  
+--- 6301,6307 ----
+  	return;
+      }
+  
+!     (void)normal_search(cap, cap->cmdchar, cap->searchbuf,
+  						(cap->arg ? 0 : SEARCH_MARK));
+  }
+  
+***************
+*** 6313,6326 ****
+  nv_next(cap)
+      cmdarg_T	*cap;
+  {
+!     normal_search(cap, 0, NULL, SEARCH_MARK | cap->arg);
+  }
+  
+  /*
+   * Search for "pat" in direction "dir" ('/' or '?', 0 for repeat).
+   * Uses only cap->count1 and cap->oap from "cap".
+   */
+!     static void
+  normal_search(cap, dir, pat, opt)
+      cmdarg_T	*cap;
+      int		dir;
+--- 6313,6338 ----
+  nv_next(cap)
+      cmdarg_T	*cap;
+  {
+!     pos_T old = curwin->w_cursor;
+!     int   i = normal_search(cap, 0, NULL, SEARCH_MARK | cap->arg);
+! 
+!     if (i == 1 && equalpos(old, curwin->w_cursor))
+!     {
+! 	/* Avoid getting stuck on the current cursor position, which can
+! 	 * happen when an offset is given and the cursor is on the last char
+! 	 * in the buffer: Repeat with count + 1. */
+! 	cap->count1 += 1;
+! 	(void)normal_search(cap, 0, NULL, SEARCH_MARK | cap->arg);
+! 	cap->count1 -= 1;
+!     }
+  }
+  
+  /*
+   * Search for "pat" in direction "dir" ('/' or '?', 0 for repeat).
+   * Uses only cap->count1 and cap->oap from "cap".
++  * Return 0 for failure, 1 for found, 2 for found and line offset added.
+   */
+!     static int
+  normal_search(cap, dir, pat, opt)
+      cmdarg_T	*cap;
+      int		dir;
+***************
+*** 6354,6359 ****
+--- 6366,6372 ----
+      /* "/$" will put the cursor after the end of the line, may need to
+       * correct that here */
+      check_cursor();
++     return i;
+  }
+  
+  /*
+*** ../vim-7.4.635/src/testdir/test44.in	2013-09-19 17:00:14.000000000 +0200
+--- src/testdir/test44.in	2015-02-17 15:39:42.387675976 +0100
+***************
+*** 42,47 ****
+--- 42,53 ----
+  :put =matchstr(\"אבגד\", \"..\", 0, 2) " בג
+  :put =matchstr(\"אבגד\", \".\", 0, 0) " א
+  :put =matchstr(\"אבגד\", \".\", 4, -1) " ג
++ :new
++ :$put =['dog(a', 'cat(']
++ /(/e+
++ "ayn:bd!
++ :$put =''
++ G"ap
+  :w!
+  :qa!
+  ENDTEST
+*** ../vim-7.4.635/src/testdir/test44.ok	2013-05-26 14:16:28.000000000 +0200
+--- src/testdir/test44.ok	2015-02-17 15:31:20.586185997 +0100
+***************
+*** 22,24 ****
+--- 22,26 ----
+  בג
+  א
+  ג
++ a
++ cat(
+*** ../vim-7.4.635/src/version.c	2015-02-17 14:15:13.005523167 +0100
+--- src/version.c	2015-02-17 15:32:53.024986843 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     636,
+  /**/
+
+-- 
+Marriage isn't a word.  It's a sentence.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

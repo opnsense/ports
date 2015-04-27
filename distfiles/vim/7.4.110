@@ -1,0 +1,102 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.110
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.110
+Problem:    "gUgn" cannot be repeeated. (Dimitar Dimitrov)
+Solution:   Don't put "gn" in a different order in the redo buffer.  Restore
+	    'wrapscan' when the pattern isn't found. (Christian Wellenbrock)
+Files:	    src/normal.c, src/search.c, src/test53.in, src/test53.ok
+
+
+*** ../vim-7.4.109/src/normal.c	2013-11-04 01:41:11.000000000 +0100
+--- src/normal.c	2013-11-28 19:02:45.000000000 +0100
+***************
+*** 962,972 ****
+  #ifdef FEAT_CMDL_INFO
+  	    need_flushbuf |= add_to_showcmd(ca.nchar);
+  #endif
+- 	    /* For "gn" from redo, need to get one more char to determine the
+- 	     * operator */
+  	    if (ca.nchar == 'r' || ca.nchar == '\'' || ca.nchar == '`'
+! 						       || ca.nchar == Ctrl_BSL
+! 		  || ((ca.nchar == 'n' || ca.nchar == 'N') && !stuff_empty()))
+  	    {
+  		cp = &ca.extra_char;	/* need to get a third character */
+  		if (ca.nchar != 'r')
+--- 962,969 ----
+  #ifdef FEAT_CMDL_INFO
+  	    need_flushbuf |= add_to_showcmd(ca.nchar);
+  #endif
+  	    if (ca.nchar == 'r' || ca.nchar == '\'' || ca.nchar == '`'
+! 						       || ca.nchar == Ctrl_BSL)
+  	    {
+  		cp = &ca.extra_char;	/* need to get a third character */
+  		if (ca.nchar != 'r')
+***************
+*** 1797,1806 ****
+  		 * otherwise it might be the second char of the operator. */
+  		if (cap->cmdchar == 'g' && (cap->nchar == 'n'
+  							|| cap->nchar == 'N'))
+! 		    /* "gn" and "gN" are a bit different */
+! 		    prep_redo(oap->regname, 0L, NUL, cap->cmdchar, cap->nchar,
+! 					get_op_char(oap->op_type),
+! 					get_extra_op_char(oap->op_type));
+  		else if (cap->cmdchar != ':')
+  		    prep_redo(oap->regname, 0L, NUL, 'v',
+  					get_op_char(oap->op_type),
+--- 1794,1802 ----
+  		 * otherwise it might be the second char of the operator. */
+  		if (cap->cmdchar == 'g' && (cap->nchar == 'n'
+  							|| cap->nchar == 'N'))
+! 		    prep_redo(oap->regname, cap->count0,
+! 			    get_op_char(oap->op_type), get_extra_op_char(oap->op_type),
+! 			    oap->motion_force, cap->cmdchar, cap->nchar);
+  		else if (cap->cmdchar != ':')
+  		    prep_redo(oap->regname, 0L, NUL, 'v',
+  					get_op_char(oap->op_type),
+*** ../vim-7.4.109/src/search.c	2013-11-08 04:30:06.000000000 +0100
+--- src/search.c	2013-11-28 19:05:16.000000000 +0100
+***************
+*** 4544,4550 ****
+      /* Is the pattern is zero-width? */
+      one_char = is_one_char(spats[last_idx].pat);
+      if (one_char == -1)
+! 	return FAIL;  /* invalid pattern */
+  
+      /*
+       * The trick is to first search backwards and then search forward again,
+--- 4544,4553 ----
+      /* Is the pattern is zero-width? */
+      one_char = is_one_char(spats[last_idx].pat);
+      if (one_char == -1)
+!     {
+! 	p_ws = old_p_ws;
+! 	return FAIL;  /* pattern not found */
+!     }
+  
+      /*
+       * The trick is to first search backwards and then search forward again,
+*** ../vim-7.4.109/src/version.c	2013-11-28 18:53:47.000000000 +0100
+--- src/version.c	2013-11-28 19:20:29.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     110,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+10. And even your night dreams are in HTML.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,354 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.066
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.066
+Problem:    MS-Windows: When there is a colon in the file name (sub-stream
+            feature) the swap file name is wrong.
+Solution:   Change the colon to "%". (Yasuhiro Matsumoto)
+Files:      src/fileio.c, src/memline.c, src/misc1.c, src/proto/misc1.pro
+
+
+*** ../vim-7.4.065/src/memline.c	2013-05-06 04:01:02.000000000 +0200
+--- src/memline.c	2013-11-04 02:52:44.000000000 +0100
+***************
+*** 4014,4019 ****
+--- 4014,4026 ----
+      else
+  	retval = concat_fnames(dname, tail, TRUE);
+  
++ #ifdef WIN3264
++     if (retval != NULL)
++ 	for (t = gettail(retval); *t != NUL; mb_ptr_adv(t))
++ 	    if (*t == ':')
++ 		*t = '%';
++ #endif
++ 
+      return retval;
+  }
+  
+***************
+*** 4137,4148 ****
+  #ifndef SHORT_FNAME
+      int		r;
+  #endif
+  
+  #if !defined(SHORT_FNAME) \
+! 		     && ((!defined(UNIX) && !defined(OS2)) || defined(ARCHIE))
+  # define CREATE_DUMMY_FILE
+      FILE	*dummyfd = NULL;
+  
+      /*
+       * If we start editing a new file, e.g. "test.doc", which resides on an
+       * MSDOS compatible filesystem, it is possible that the file
+--- 4144,4172 ----
+  #ifndef SHORT_FNAME
+      int		r;
+  #endif
++     char_u	*buf_fname = buf->b_fname;
+  
+  #if !defined(SHORT_FNAME) \
+! 		&& ((!defined(UNIX) && !defined(OS2)) || defined(ARCHIE))
+  # define CREATE_DUMMY_FILE
+      FILE	*dummyfd = NULL;
+  
++ # ifdef WIN3264
++     if (buf_fname != NULL && !mch_isFullName(buf_fname)
++ 				       && vim_strchr(gettail(buf_fname), ':'))
++     {
++ 	char_u *t;
++ 
++ 	buf_fname = vim_strsave(buf_fname);
++ 	if (buf_fname == NULL)
++ 	    buf_fname = buf->b_fname;
++ 	else
++ 	    for (t = gettail(buf_fname); *t != NUL; mb_ptr_adv(t))
++ 		if (*t == ':')
++ 		    *t = '%';
++     }
++ # endif
++ 
+      /*
+       * If we start editing a new file, e.g. "test.doc", which resides on an
+       * MSDOS compatible filesystem, it is possible that the file
+***************
+*** 4150,4158 ****
+       * this problem we temporarily create "test.doc".  Don't do this when the
+       * check below for a 8.3 file name is used.
+       */
+!     if (!(buf->b_p_sn || buf->b_shortname) && buf->b_fname != NULL
+! 					     && mch_getperm(buf->b_fname) < 0)
+! 	dummyfd = mch_fopen((char *)buf->b_fname, "w");
+  #endif
+  
+      /*
+--- 4174,4182 ----
+       * this problem we temporarily create "test.doc".  Don't do this when the
+       * check below for a 8.3 file name is used.
+       */
+!     if (!(buf->b_p_sn || buf->b_shortname) && buf_fname != NULL
+! 					     && mch_getperm(buf_fname) < 0)
+! 	dummyfd = mch_fopen((char *)buf_fname, "w");
+  #endif
+  
+      /*
+***************
+*** 4171,4177 ****
+      if (dir_name == NULL)	    /* out of memory */
+  	fname = NULL;
+      else
+! 	fname = makeswapname(buf->b_fname, buf->b_ffname, buf, dir_name);
+  
+      for (;;)
+      {
+--- 4195,4201 ----
+      if (dir_name == NULL)	    /* out of memory */
+  	fname = NULL;
+      else
+! 	fname = makeswapname(buf_fname, buf->b_ffname, buf, dir_name);
+  
+      for (;;)
+      {
+***************
+*** 4204,4210 ****
+  	     * It either contains two dots, is longer than 8 chars, or starts
+  	     * with a dot.
+  	     */
+! 	    tail = gettail(buf->b_fname);
+  	    if (       vim_strchr(tail, '.') != NULL
+  		    || STRLEN(tail) > (size_t)8
+  		    || *gettail(fname) == '.')
+--- 4228,4234 ----
+  	     * It either contains two dots, is longer than 8 chars, or starts
+  	     * with a dot.
+  	     */
+! 	    tail = gettail(buf_fname);
+  	    if (       vim_strchr(tail, '.') != NULL
+  		    || STRLEN(tail) > (size_t)8
+  		    || *gettail(fname) == '.')
+***************
+*** 4273,4279 ****
+  		    {
+  			buf->b_shortname = TRUE;
+  			vim_free(fname);
+! 			fname = makeswapname(buf->b_fname, buf->b_ffname,
+  							       buf, dir_name);
+  			continue;	/* try again with b_shortname set */
+  		    }
+--- 4297,4303 ----
+  		    {
+  			buf->b_shortname = TRUE;
+  			vim_free(fname);
+! 			fname = makeswapname(buf_fname, buf->b_ffname,
+  							       buf, dir_name);
+  			continue;	/* try again with b_shortname set */
+  		    }
+***************
+*** 4344,4350 ****
+  		{
+  		    buf->b_shortname = TRUE;
+  		    vim_free(fname);
+! 		    fname = makeswapname(buf->b_fname, buf->b_ffname,
+  							       buf, dir_name);
+  		    continue;	    /* try again with '.' replaced with '_' */
+  		}
+--- 4368,4374 ----
+  		{
+  		    buf->b_shortname = TRUE;
+  		    vim_free(fname);
+! 		    fname = makeswapname(buf_fname, buf->b_ffname,
+  							       buf, dir_name);
+  		    continue;	    /* try again with '.' replaced with '_' */
+  		}
+***************
+*** 4356,4362 ****
+  	     * viewing a help file or when the path of the file is different
+  	     * (happens when all .swp files are in one directory).
+  	     */
+! 	    if (!recoverymode && buf->b_fname != NULL
+  				&& !buf->b_help && !(buf->b_flags & BF_DUMMY))
+  	    {
+  		int		fd;
+--- 4380,4386 ----
+  	     * viewing a help file or when the path of the file is different
+  	     * (happens when all .swp files are in one directory).
+  	     */
+! 	    if (!recoverymode && buf_fname != NULL
+  				&& !buf->b_help && !(buf->b_flags & BF_DUMMY))
+  	    {
+  		int		fd;
+***************
+*** 4433,4439 ****
+  		    {
+  			fclose(dummyfd);
+  			dummyfd = NULL;
+! 			mch_remove(buf->b_fname);
+  			did_use_dummy = TRUE;
+  		    }
+  #endif
+--- 4457,4463 ----
+  		    {
+  			fclose(dummyfd);
+  			dummyfd = NULL;
+! 			mch_remove(buf_fname);
+  			did_use_dummy = TRUE;
+  		    }
+  #endif
+***************
+*** 4448,4454 ****
+  		     * user anyway.
+  		     */
+  		    if (swap_exists_action != SEA_NONE
+! 			    && has_autocmd(EVENT_SWAPEXISTS, buf->b_fname, buf))
+  			choice = do_swapexists(buf, fname);
+  
+  		    if (choice == 0)
+--- 4472,4478 ----
+  		     * user anyway.
+  		     */
+  		    if (swap_exists_action != SEA_NONE
+! 			    && has_autocmd(EVENT_SWAPEXISTS, buf_fname, buf))
+  			choice = do_swapexists(buf, fname);
+  
+  		    if (choice == 0)
+***************
+*** 4549,4555 ****
+  #ifdef CREATE_DUMMY_FILE
+  		    /* Going to try another name, need the dummy file again. */
+  		    if (did_use_dummy)
+! 			dummyfd = mch_fopen((char *)buf->b_fname, "w");
+  #endif
+  		}
+  	    }
+--- 4573,4579 ----
+  #ifdef CREATE_DUMMY_FILE
+  		    /* Going to try another name, need the dummy file again. */
+  		    if (did_use_dummy)
+! 			dummyfd = mch_fopen((char *)buf_fname, "w");
+  #endif
+  		}
+  	    }
+***************
+*** 4581,4589 ****
+      if (dummyfd != NULL)	/* file has been created temporarily */
+      {
+  	fclose(dummyfd);
+! 	mch_remove(buf->b_fname);
+      }
+  #endif
+      return fname;
+  }
+  
+--- 4605,4617 ----
+      if (dummyfd != NULL)	/* file has been created temporarily */
+      {
+  	fclose(dummyfd);
+! 	mch_remove(buf_fname);
+      }
+  #endif
++ #ifdef WIN3264
++     if (buf_fname != buf->b_fname)
++ 	vim_free(buf_fname);
++ #endif
+      return fname;
+  }
+  
+*** ../vim-7.4.065/src/misc1.c	2013-10-06 17:46:48.000000000 +0200
+--- src/misc1.c	2013-11-04 02:44:28.000000000 +0100
+***************
+*** 4808,4816 ****
+  
+      if (fname == NULL)
+  	return (char_u *)"";
+!     for (p1 = p2 = fname; *p2; )	/* find last part of path */
+      {
+! 	if (vim_ispathsep(*p2))
+  	    p1 = p2 + 1;
+  	mb_ptr_adv(p2);
+      }
+--- 4808,4816 ----
+  
+      if (fname == NULL)
+  	return (char_u *)"";
+!     for (p1 = p2 = get_past_head(fname); *p2; )	/* find last part of path */
+      {
+! 	if (vim_ispathsep_nocolon(*p2))
+  	    p1 = p2 + 1;
+  	mb_ptr_adv(p2);
+      }
+***************
+*** 4929,4935 ****
+  }
+  
+  /*
+!  * return TRUE if 'c' is a path separator.
+   */
+      int
+  vim_ispathsep(c)
+--- 4929,4936 ----
+  }
+  
+  /*
+!  * Return TRUE if 'c' is a path separator.
+!  * Note that for MS-Windows this includes the colon.
+   */
+      int
+  vim_ispathsep(c)
+***************
+*** 4952,4957 ****
+--- 4953,4972 ----
+  #endif
+  }
+  
++ /*
++  * Like vim_ispathsep(c), but exclude the colon for MS-Windows.
++  */
++     int
++ vim_ispathsep_nocolon(c)
++     int c;
++ {
++     return vim_ispathsep(c)
++ #ifdef BACKSLASH_IN_FILENAME
++ 	&& c != ':'
++ #endif
++ 	;
++ }
++ 
+  #if defined(FEAT_SEARCHPATH) || defined(PROTO)
+  /*
+   * return TRUE if 'c' is a path list separator.
+*** ../vim-7.4.065/src/proto/misc1.pro	2013-08-10 13:37:20.000000000 +0200
+--- src/proto/misc1.pro	2013-11-04 02:44:30.000000000 +0100
+***************
+*** 69,74 ****
+--- 69,75 ----
+  char_u *getnextcomp __ARGS((char_u *fname));
+  char_u *get_past_head __ARGS((char_u *path));
+  int vim_ispathsep __ARGS((int c));
++ int vim_ispathsep_nocolon __ARGS((int c));
+  int vim_ispathlistsep __ARGS((int c));
+  void shorten_dir __ARGS((char_u *str));
+  int dir_of_file_exists __ARGS((char_u *fname));
+*** ../vim-7.4.065/src/version.c	2013-11-04 02:00:55.000000000 +0100
+--- src/version.c	2013-11-04 02:50:35.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     66,
+  /**/
+
+-- 
+Females are strictly forbidden to appear unshaven in public.
+		[real standing law in New Mexico, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

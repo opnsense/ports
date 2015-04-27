@@ -1,0 +1,79 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.339
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.339
+Problem:    Local function is available globally.
+Solution:   Add "static".
+Files:	    src/option.c, src/proto/option.pro
+
+
+*** ../vim-7.4.338/src/option.c	2014-06-25 14:39:35.110348584 +0200
+--- src/option.c	2014-06-25 14:42:33.986355351 +0200
+***************
+*** 3074,3079 ****
+--- 3074,3080 ----
+  static char_u *get_varp_scope __ARGS((struct vimoption *p, int opt_flags));
+  static char_u *get_varp __ARGS((struct vimoption *));
+  static void option_value2string __ARGS((struct vimoption *, int opt_flags));
++ static void check_winopt __ARGS((winopt_T *wop));
+  static int wc_use_keyname __ARGS((char_u *varp, long *wcp));
+  #ifdef FEAT_LANGMAP
+  static void langmap_init __ARGS((void));
+***************
+*** 10305,10311 ****
+  /*
+   * Check for NULL pointers in a winopt_T and replace them with empty_option.
+   */
+!     void
+  check_winopt(wop)
+      winopt_T	*wop UNUSED;
+  {
+--- 10306,10312 ----
+  /*
+   * Check for NULL pointers in a winopt_T and replace them with empty_option.
+   */
+!     static void
+  check_winopt(wop)
+      winopt_T	*wop UNUSED;
+  {
+*** ../vim-7.4.338/src/proto/option.pro	2014-06-25 14:39:35.110348584 +0200
+--- src/proto/option.pro	2014-06-25 14:42:38.702355530 +0200
+***************
+*** 40,46 ****
+  void win_copy_options __ARGS((win_T *wp_from, win_T *wp_to));
+  void copy_winopt __ARGS((winopt_T *from, winopt_T *to));
+  void check_win_options __ARGS((win_T *win));
+- void check_winopt __ARGS((winopt_T *wop));
+  void clear_winopt __ARGS((winopt_T *wop));
+  void buf_copy_options __ARGS((buf_T *buf, int flags));
+  void reset_modifiable __ARGS((void));
+--- 40,45 ----
+*** ../vim-7.4.338/src/version.c	2014-06-25 14:39:35.114348584 +0200
+--- src/version.c	2014-06-25 14:43:41.502357905 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     339,
+  /**/
+
+-- 
+MORTICIAN:    What?
+CUSTOMER:     Nothing -- here's your nine pence.
+DEAD PERSON:  I'm not dead!
+MORTICIAN:    Here -- he says he's not dead!
+CUSTOMER:     Yes, he is.
+DEAD PERSON:  I'm not!
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

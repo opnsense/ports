@@ -1,0 +1,72 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.442
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.442 (after 7.4.434)
+Problem:    Using unitinialized variable.
+Solution:   Pass the first window of the tabpage.
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.441/src/eval.c	2014-09-09 16:13:05.040531695 +0200
+--- src/eval.c	2014-09-09 22:52:50.916584088 +0200
+***************
+*** 12071,12077 ****
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     win_T	*win, *oldcurwin;
+      tabpage_T	*tp, *oldtabpage;
+      dictitem_T	*v;
+      char_u	*varname;
+--- 12071,12077 ----
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     win_T	*oldcurwin;
+      tabpage_T	*tp, *oldtabpage;
+      dictitem_T	*v;
+      char_u	*varname;
+***************
+*** 12084,12092 ****
+      tp = find_tabpage((int)get_tv_number_chk(&argvars[0], NULL));
+      if (tp != NULL && varname != NULL)
+      {
+! 	/* Set curwin to be our win, temporarily.  Also set the tabpage,
+! 	 * otherwise the window is not valid. */
+! 	switch_win(&oldcurwin, &oldtabpage, win, tp, TRUE);
+  
+  	/* look up the variable */
+  	/* Let gettabvar({nr}, "") return the "t:" dictionary. */
+--- 12084,12092 ----
+      tp = find_tabpage((int)get_tv_number_chk(&argvars[0], NULL));
+      if (tp != NULL && varname != NULL)
+      {
+! 	/* Set tp to be our tabpage, temporarily.  Also set the window to the
+! 	 * first window in the tabpage, otherwise the window is not valid. */
+! 	switch_win(&oldcurwin, &oldtabpage, tp->tp_firstwin, tp, TRUE);
+  
+  	/* look up the variable */
+  	/* Let gettabvar({nr}, "") return the "t:" dictionary. */
+*** ../vim-7.4.441/src/version.c	2014-09-09 18:45:45.888551705 +0200
+--- src/version.c	2014-09-09 23:10:27.544586396 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     442,
+  /**/
+
+-- 
+Two percent of zero is almost nothing.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

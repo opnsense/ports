@@ -1,0 +1,274 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.687
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.687
+Problem:    There is no way to use a different in Replace mode for a terminal.
+Solution:   Add t_SR. (Omar Sandoval)
+Files:	    runtime/doc/options.txt, runtime/doc/term.txt,
+	    src/option.c, src/term.c, src/term.h
+
+
+*** ../vim-7.4.686/runtime/doc/options.txt	2015-01-27 15:58:37.202395482 +0100
+--- runtime/doc/options.txt	2015-03-31 18:01:58.465823918 +0200
+***************
+*** 3419,3425 ****
+  	the height of the cursor can be changed.  This can be done by
+  	specifying a block cursor, or a percentage for a vertical or
+  	horizontal cursor.
+! 	For a console the 't_SI' and 't_EI' escape sequences are used.
+  
+  	The option is a comma separated list of parts.  Each part consist of a
+  	mode-list and an argument-list:
+--- 3420,3427 ----
+  	the height of the cursor can be changed.  This can be done by
+  	specifying a block cursor, or a percentage for a vertical or
+  	horizontal cursor.
+! 	For a console the 't_SI', 't_SR', and 't_EI' escape sequences are
+! 	used.
+  
+  	The option is a comma separated list of parts.  Each part consist of a
+  	mode-list and an argument-list:
+*** ../vim-7.4.686/runtime/doc/term.txt	2015-02-10 19:20:33.727792128 +0100
+--- runtime/doc/term.txt	2015-03-31 18:01:58.465823918 +0200
+***************
+*** 283,290 ****
+  								*t_xs* *'t_xs'*
+  	t_xs	if non-empty, standout not erased by overwriting (hpterm)
+  								*t_xn* *'t_xn'*
+! 	t_xn	if non-empty, character writing at the last cell of screen
+! 		didn't causes scrolling
+  	t_ZH	italics mode					*t_ZH* *'t_ZH'*
+  	t_ZR	italics end					*t_ZR* *'t_ZR'*
+  
+--- 283,290 ----
+  								*t_xs* *'t_xs'*
+  	t_xs	if non-empty, standout not erased by overwriting (hpterm)
+  								*t_xn* *'t_xn'*
+! 	t_xn	if non-empty, writing a character at the last screen cell
+! 		does not cause scrolling
+  	t_ZH	italics mode					*t_ZH* *'t_ZH'*
+  	t_ZR	italics end					*t_ZR* *'t_ZR'*
+  
+***************
+*** 294,300 ****
+  	t_WP	set window position (Y, X) in pixels		*t_WP* *'t_WP'*
+  	t_WS	set window size (height, width) in characters	*t_WS* *'t_WS'*
+  	t_SI	start insert mode (bar cursor shape)		*t_SI* *'t_SI'*
+! 	t_EI	end insert mode (block cursor shape)		*t_EI* *'t_EI'*
+  		|termcap-cursor-shape|
+  	t_RV	request terminal version string (for xterm)	*t_RV* *'t_RV'*
+  		|xterm-8bit| |v:termresponse| |'ttymouse'| |xterm-codes|
+--- 294,301 ----
+  	t_WP	set window position (Y, X) in pixels		*t_WP* *'t_WP'*
+  	t_WS	set window size (height, width) in characters	*t_WS* *'t_WS'*
+  	t_SI	start insert mode (bar cursor shape)		*t_SI* *'t_SI'*
+! 	t_SR	start replace mode (underline cursor shape)	*t_SR* *'t_SR'*
+! 	t_EI	end insert or replace mode (block cursor shape)	*t_EI* *'t_EI'*
+  		|termcap-cursor-shape|
+  	t_RV	request terminal version string (for xterm)	*t_RV* *'t_RV'*
+  		|xterm-8bit| |v:termresponse| |'ttymouse'| |xterm-codes|
+***************
+*** 438,450 ****
+  to reset to the default colors.
+  
+  				*termcap-cursor-shape* *termcap-cursor-color*
+! When Vim enters Insert mode the 't_SI' escape sequence is sent.  When leaving
+! Insert mode 't_EI' is used.  But only if both are defined.  This can be used
+! to change the shape or color of the cursor in Insert mode.  These are not
+! standard termcap/terminfo entries, you need to set them yourself.
+  Example for an xterm, this changes the color of the cursor: >
+      if &term =~ "xterm"
+  	let &t_SI = "\<Esc>]12;purple\x7"
+  	let &t_EI = "\<Esc>]12;blue\x7"
+      endif
+  NOTE: When Vim exits the shape for Normal mode will remain.  The shape from
+--- 439,454 ----
+  to reset to the default colors.
+  
+  				*termcap-cursor-shape* *termcap-cursor-color*
+! When Vim enters Insert mode the 't_SI' escape sequence is sent.  When Vim
+! enters Replace mode the 't_SR' escape sequence is sent if it is set, otherwise
+! 't_SI' is sent.  When leaving Insert mode or Replace mode 't_EI' is used. This
+! can be used to change the shape or color of the cursor in Insert or Replace
+! mode. These are not standard termcap/terminfo entries, you need to set them
+! yourself.
+  Example for an xterm, this changes the color of the cursor: >
+      if &term =~ "xterm"
+  	let &t_SI = "\<Esc>]12;purple\x7"
++ 	let &t_SR = "\<Esc>]12;red\x7"
+  	let &t_EI = "\<Esc>]12;blue\x7"
+      endif
+  NOTE: When Vim exits the shape for Normal mode will remain.  The shape from
+***************
+*** 670,677 ****
+  
+  							*xterm-copy-paste*
+  NOTE: In some (older) xterms, it's not possible to move the cursor past column
+! 95.  This is an xterm problem, not Vim's.  Get a newer xterm |color-xterm|.
+! Now the limit is 223 columns.
+  
+  Copy/paste in xterm with (current mode NOT included in 'mouse'):
+  1. Press left mouse button on first letter of text, move mouse pointer to last
+--- 674,681 ----
+  
+  							*xterm-copy-paste*
+  NOTE: In some (older) xterms, it's not possible to move the cursor past column
+! 95 or 223.  This is an xterm problem, not Vim's.  Get a newer xterm
+! |color-xterm|.  Also see |'ttymouse'|.
+  
+  Copy/paste in xterm with (current mode NOT included in 'mouse'):
+  1. Press left mouse button on first letter of text, move mouse pointer to last
+*** ../vim-7.4.686/src/option.c	2015-03-13 11:23:46.446245826 +0100
+--- src/option.c	2015-03-31 18:02:34.637429081 +0200
+***************
+*** 2978,2983 ****
+--- 2978,2984 ----
+      p_term("t_WS", T_CWS)
+      p_term("t_SI", T_CSI)
+      p_term("t_EI", T_CEI)
++     p_term("t_SR", T_CSR)
+      p_term("t_xn", T_XN)
+      p_term("t_xs", T_XS)
+      p_term("t_ZH", T_CZH)
+***************
+*** 8560,8566 ****
+  	    errmsg = e_invarg;
+  	    curwin->w_p_nuw = 10;
+  	}
+! 	curwin->w_nrwidth_line_count = 0;
+      }
+  #endif
+  
+--- 8561,8567 ----
+  	    errmsg = e_invarg;
+  	    curwin->w_p_nuw = 10;
+  	}
+! 	curwin->w_nrwidth_line_count = 0; /* trigger a redraw */
+      }
+  #endif
+  
+*** ../vim-7.4.686/src/term.c	2015-02-10 19:20:33.735792024 +0100
+--- src/term.c	2015-03-31 18:17:22.223741055 +0200
+***************
+*** 3567,3593 ****
+  
+  #if defined(CURSOR_SHAPE) || defined(PROTO)
+  /*
+!  * Set cursor shape to match Insert mode.
+   */
+      void
+  term_cursor_shape()
+  {
+!     static int showing_insert_mode = MAYBE;
+  
+!     if (!full_screen || *T_CSI == NUL || *T_CEI == NUL)
+  	return;
+  
+!     if (State & INSERT)
+      {
+! 	if (showing_insert_mode != TRUE)
+  	    out_str(T_CSI);	    /* Insert mode cursor */
+! 	showing_insert_mode = TRUE;
+      }
+!     else
+      {
+! 	if (showing_insert_mode != FALSE)
+! 	    out_str(T_CEI);	    /* non-Insert mode cursor */
+! 	showing_insert_mode = FALSE;
+      }
+  }
+  #endif
+--- 3567,3612 ----
+  
+  #if defined(CURSOR_SHAPE) || defined(PROTO)
+  /*
+!  * Set cursor shape to match Insert or Replace mode.
+   */
+      void
+  term_cursor_shape()
+  {
+!     static int showing_mode = NORMAL;
+!     char_u *p;
+  
+!     /* Only do something when redrawing the screen and we can restore the
+!      * mode. */
+!     if (!full_screen || *T_CEI == NUL)
+  	return;
+  
+!     if ((State & REPLACE) == REPLACE)
+      {
+! 	if (showing_mode != REPLACE)
+! 	{
+! 	    if (*T_CSR != NUL)
+! 		p = T_CSR;	/* Replace mode cursor */
+! 	    else
+! 		p = T_CSI;	/* fall back to Insert mode cursor */
+! 	    if (*p != NUL)
+! 	    {
+! 		out_str(p);
+! 		showing_mode = REPLACE;
+! 	    }
+! 	}
+!     }
+!     else if (State & INSERT)
+!     {
+! 	if (showing_mode != INSERT && *T_CSI != NUL)
+! 	{
+  	    out_str(T_CSI);	    /* Insert mode cursor */
+! 	    showing_mode = INSERT;
+! 	}
+      }
+!     else if (showing_mode != NORMAL)
+      {
+! 	out_str(T_CEI);		    /* non-Insert mode cursor */
+! 	showing_mode = NORMAL;
+      }
+  }
+  #endif
+*** ../vim-7.4.686/src/term.h	2015-02-10 19:20:33.739791972 +0100
+--- src/term.h	2015-03-31 18:01:58.469823874 +0200
+***************
+*** 81,86 ****
+--- 81,87 ----
+      KS_CRV,	/* request version string */
+      KS_CSI,	/* start insert mode (bar cursor) */
+      KS_CEI,	/* end insert mode (block cursor) */
++     KS_CSR,	/* start replace mode (underline cursor) */
+  #ifdef FEAT_VERTSPLIT
+      KS_CSV,	/* scroll region vertical */
+  #endif
+***************
+*** 159,164 ****
+--- 160,166 ----
+  #define T_CWS	(term_str(KS_CWS))	/* window size */
+  #define T_CSI	(term_str(KS_CSI))	/* start insert mode */
+  #define T_CEI	(term_str(KS_CEI))	/* end insert mode */
++ #define T_CSR	(term_str(KS_CSR))	/* start replace mode */
+  #define T_CRV	(term_str(KS_CRV))	/* request version string */
+  #define T_OP	(term_str(KS_OP))	/* original color pair */
+  #define T_U7	(term_str(KS_U7))	/* request cursor position */
+*** ../vim-7.4.686/src/version.c	2015-03-31 17:46:16.844128018 +0200
+--- src/version.c	2015-03-31 18:03:18.352951899 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     687,
+  /**/
+
+-- 
+It is illegal to rob a bank and then shoot at the bank teller with a water
+pistol.
+		[real standing law in Louisana, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

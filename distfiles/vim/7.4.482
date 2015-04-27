@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.482
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.482
+Problem:    When 'balloonexpr' results in a list, the text has a trailing
+	    newline. (Lcd)
+Solution:   Remove one trailing newline.
+Files:	    src/gui_beval.c
+
+
+*** ../vim-7.4.481/src/gui_beval.c	2014-06-25 17:44:45.850768919 +0200
+--- src/gui_beval.c	2014-10-21 14:12:13.915158215 +0200
+***************
+*** 30,35 ****
+--- 30,36 ----
+      long	winnr = 0;
+      char_u	*bexpr;
+      buf_T	*save_curbuf;
++     size_t	len;
+  # ifdef FEAT_WINDOWS
+      win_T	*cw;
+  # endif
+***************
+*** 83,88 ****
+--- 84,99 ----
+  	    vim_free(result);
+  	    result = eval_to_string(bexpr, NULL, TRUE);
+  
++ 	    /* Remove one trailing newline, it is added when the result was a
++ 	     * list and it's hardly every useful.  If the user really wants a
++ 	     * trailing newline he can add two and one remains. */
++ 	    if (result != NULL)
++ 	    {
++ 		len = STRLEN(result);
++ 		if (len > 0 && result[len - 1] == NL)
++ 		    result[len - 1] = NUL;
++ 	    }
++ 
+  	    if (use_sandbox)
+  		--sandbox;
+  	    --textlock;
+*** ../vim-7.4.481/src/version.c	2014-10-16 20:35:32.146264814 +0200
+--- src/version.c	2014-10-21 14:13:19.571158359 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     482,
+  /**/
+
+-- 
+You cannot propel yourself forward by patting yourself on the back.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

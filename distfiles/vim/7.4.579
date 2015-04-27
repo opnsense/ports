@@ -1,0 +1,169 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.579
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.579
+Problem:    Wrong cursor positioning when 'linebreak' is set and lines wrap.
+Solution:   Solve it. (Christian Brabandt)
+Files:	    src/charset.c, src/screen.c
+
+
+*** ../vim-7.4.578/src/charset.c	2014-10-31 12:41:57.427319153 +0100
+--- src/charset.c	2015-01-14 19:34:38.916109031 +0100
+***************
+*** 1178,1205 ****
+      added = 0;
+      if ((*p_sbr != NUL || wp->w_p_bri) && wp->w_p_wrap && col != 0)
+      {
+! 	numberextra = win_col_off(wp);
+  	col += numberextra + mb_added;
+  	if (col >= (colnr_T)W_WIDTH(wp))
+  	{
+  	    col -= W_WIDTH(wp);
+  	    numberextra = W_WIDTH(wp) - (numberextra - win_col_off2(wp));
+! 	    if (numberextra > 0)
+  		col %= numberextra;
+  	    if (*p_sbr != NUL)
+  	    {
+! 		colnr_T sbrlen = (colnr_T)MB_CHARLEN(p_sbr);
+  		if (col >= sbrlen)
+  		    col -= sbrlen;
+  	    }
+! 	    if (numberextra > 0)
+  		col = col % numberextra;
+  	}
+! 	if (col == 0 || col + size > (colnr_T)W_WIDTH(wp))
+  	{
+  	    added = 0;
+  	    if (*p_sbr != NUL)
+! 		added += vim_strsize(p_sbr);
+  	    if (wp->w_p_bri)
+  		added += get_breakindent_win(wp, line);
+  
+--- 1178,1227 ----
+      added = 0;
+      if ((*p_sbr != NUL || wp->w_p_bri) && wp->w_p_wrap && col != 0)
+      {
+! 	colnr_T sbrlen = 0;
+! 	int	numberwidth = win_col_off(wp);
+! 
+! 	numberextra = numberwidth;
+  	col += numberextra + mb_added;
+  	if (col >= (colnr_T)W_WIDTH(wp))
+  	{
+  	    col -= W_WIDTH(wp);
+  	    numberextra = W_WIDTH(wp) - (numberextra - win_col_off2(wp));
+! 	    if (col >= numberextra && numberextra > 0)
+  		col %= numberextra;
+  	    if (*p_sbr != NUL)
+  	    {
+! 		sbrlen = (colnr_T)MB_CHARLEN(p_sbr);
+  		if (col >= sbrlen)
+  		    col -= sbrlen;
+  	    }
+! 	    if (col >= numberextra && numberextra > 0)
+  		col = col % numberextra;
++ 	    else if (col > 0 && numberextra > 0)
++ 		col += numberwidth - win_col_off2(wp);
++ 
++ 	    numberwidth -= win_col_off2(wp);
+  	}
+! 	if (col == 0 || col + size + sbrlen > (colnr_T)W_WIDTH(wp))
+  	{
+  	    added = 0;
+  	    if (*p_sbr != NUL)
+! 	    {
+! 		if (size + sbrlen + numberwidth > (colnr_T)W_WIDTH(wp))
+! 		{
+! 		    /* calculate effective window width */
+! 		    int width = (colnr_T)W_WIDTH(wp) - sbrlen - numberwidth;
+! 		    int prev_width = col ? ((colnr_T)W_WIDTH(wp) - (sbrlen + col)) : 0;
+! 		    if (width == 0)
+! 			width = (colnr_T)W_WIDTH(wp);
+! 		    added += ((size - prev_width) / width) * vim_strsize(p_sbr);
+! 		    if ((size - prev_width) % width)
+! 			/* wrapped, add another length of 'sbr' */
+! 			added += vim_strsize(p_sbr);
+! 		}
+! 		else
+! 		    added += vim_strsize(p_sbr);
+! 	    }
+  	    if (wp->w_p_bri)
+  		added += get_breakindent_win(wp, line);
+  
+*** ../vim-7.4.578/src/screen.c	2015-01-07 19:04:25.299934570 +0100
+--- src/screen.c	2015-01-14 19:27:46.428652958 +0100
+***************
+*** 2842,2847 ****
+--- 2842,2850 ----
+      unsigned	off;			/* offset in ScreenLines/ScreenAttrs */
+      int		c = 0;			/* init for GCC */
+      long	vcol = 0;		/* virtual column (for tabs) */
++ #ifdef FEAT_LINEBREAK
++     long	vcol_sbr = -1;		/* virtual column after showbreak */
++ #endif
+      long	vcol_prev = -1;		/* "vcol" of previous character */
+      char_u	*line;			/* current line */
+      char_u	*ptr;			/* current position in "line" */
+***************
+*** 3759,3764 ****
+--- 3762,3768 ----
+  		    n_extra = (int)STRLEN(p_sbr);
+  		    char_attr = hl_attr(HLF_AT);
+  		    need_showbreak = FALSE;
++ 		    vcol_sbr = vcol + MB_CHARLEN(p_sbr);
+  		    /* Correct end of highlighted area for 'showbreak',
+  		     * required when 'linebreak' is also set. */
+  		    if (tocol == vcol)
+***************
+*** 4516,4524 ****
+  		if (c == TAB && (!wp->w_p_list || lcs_tab1))
+  		{
+  		    int tab_len = 0;
+  		    /* tab amount depends on current column */
+  		    tab_len = (int)wp->w_buffer->b_p_ts
+! 					- vcol % (int)wp->w_buffer->b_p_ts - 1;
+  #ifdef FEAT_LINEBREAK
+  		    if (!wp->w_p_lbr || !wp->w_p_list)
+  #endif
+--- 4520,4536 ----
+  		if (c == TAB && (!wp->w_p_list || lcs_tab1))
+  		{
+  		    int tab_len = 0;
++ 		    long vcol_adjusted = vcol; /* removed showbreak length */
++ #ifdef FEAT_LINEBREAK
++ 		    /* only adjust the tab_len, when at the first column
++ 		     * after the showbreak value was drawn */
++ 		    if (*p_sbr != NUL && vcol == vcol_sbr && wp->w_p_wrap)
++ 			vcol_adjusted = vcol - MB_CHARLEN(p_sbr);
++ #endif
+  		    /* tab amount depends on current column */
+  		    tab_len = (int)wp->w_buffer->b_p_ts
+! 					- vcol_adjusted % (int)wp->w_buffer->b_p_ts - 1;
+! 
+  #ifdef FEAT_LINEBREAK
+  		    if (!wp->w_p_lbr || !wp->w_p_list)
+  #endif
+*** ../vim-7.4.578/src/version.c	2015-01-14 19:00:33.842522901 +0100
+--- src/version.c	2015-01-14 19:28:47.291982266 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     579,
+  /**/
+
+-- 
+From "know your smileys":
+ O:-)	Saint
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.513
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.513
+Problem:    Crash because reference count is wrong for list returned by
+	    getreg().
+Solution:   Increment the reference count. (Kimmy Lindvall)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.512/src/eval.c	2014-11-05 18:05:48.656441306 +0100
+--- src/eval.c	2014-11-12 17:07:32.695012604 +0100
+***************
+*** 12008,12013 ****
+--- 12008,12015 ----
+  	rettv->v_type = VAR_LIST;
+  	rettv->vval.v_list = (list_T *)get_reg_contents(regname,
+  				      (arg2 ? GREG_EXPR_SRC : 0) | GREG_LIST);
++ 	if (rettv->vval.v_list != NULL)
++ 	    ++rettv->vval.v_list->lv_refcount;
+      }
+      else
+      {
+*** ../vim-7.4.512/src/version.c	2014-11-12 16:10:44.258085148 +0100
+--- src/version.c	2014-11-12 17:06:37.443703083 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     513,
+  /**/
+
+-- 
+Save the plankton - eat a whale.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

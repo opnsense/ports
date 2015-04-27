@@ -1,0 +1,76 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.385
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.385
+Problem:    When building with tiny or small features building the .mo files
+	    fails.
+Solution:   In autoconf do not setup for building the .mo files when it would
+	    fail.
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.384/src/configure.in	2014-05-22 14:44:08.094481148 +0200
+--- src/configure.in	2014-07-27 21:26:39.349275928 +0200
+***************
+*** 3818,3824 ****
+      else
+        AC_MSG_RESULT([msgfmt not found - disabled]);
+      fi
+!     if test $have_gettext = "yes"; then
+        AC_DEFINE(HAVE_GETTEXT)
+        MAKEMO=yes
+        AC_SUBST(MAKEMO)
+--- 3818,3824 ----
+      else
+        AC_MSG_RESULT([msgfmt not found - disabled]);
+      fi
+!     if test $have_gettext = "yes" -a "x$features" != "xtiny" -a "x$features" != "xsmall"; then
+        AC_DEFINE(HAVE_GETTEXT)
+        MAKEMO=yes
+        AC_SUBST(MAKEMO)
+*** ../vim-7.4.384/src/auto/configure	2014-05-22 14:44:08.098481148 +0200
+--- src/auto/configure	2014-07-27 21:26:41.969275909 +0200
+***************
+*** 12966,12972 ****
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: msgfmt not found - disabled" >&5
+  $as_echo "msgfmt not found - disabled" >&6; };
+      fi
+!     if test $have_gettext = "yes"; then
+        $as_echo "#define HAVE_GETTEXT 1" >>confdefs.h
+  
+        MAKEMO=yes
+--- 12966,12972 ----
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: msgfmt not found - disabled" >&5
+  $as_echo "msgfmt not found - disabled" >&6; };
+      fi
+!     if test $have_gettext = "yes" -a "x$features" != "xtiny" -a "x$features" != "xsmall"; then
+        $as_echo "#define HAVE_GETTEXT 1" >>confdefs.h
+  
+        MAKEMO=yes
+*** ../vim-7.4.384/src/version.c	2014-07-30 13:20:35.719622565 +0200
+--- src/version.c	2014-07-30 13:22:07.295621907 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     385,
+  /**/
+
+-- 
+"You're fired." (1980)
+"You're laid off." (1985)
+"You're downsized." (1990)
+"You're rightsized." (1992)
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

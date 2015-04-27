@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.270
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.270
+Problem:    Comparing pointers instead of the string they point to.
+Solution:   Use strcmp(). (Ken Takata)
+Files:	    src/gui_gtk_x11.c
+
+
+*** ../vim-7.4.269/src/gui_gtk_x11.c	2014-04-06 21:08:41.311360470 +0200
+--- src/gui_gtk_x11.c	2014-04-29 15:02:35.931856814 +0200
+***************
+*** 3142,3151 ****
+  	gnome_program_init(VIMPACKAGE, VIM_VERSION_SHORT,
+  			   LIBGNOMEUI_MODULE, gui_argc, gui_argv, NULL);
+  # if defined(FEAT_FLOAT) && defined(LC_NUMERIC)
+! 	/* Make sure strtod() uses a decimal point, not a comma. Gnome init
+! 	 * may change it. */
+! 	if (setlocale(LC_NUMERIC, NULL) != (char *) "C")
+! 	   setlocale(LC_NUMERIC, "C");
+  # endif
+      }
+  #endif
+--- 3142,3155 ----
+  	gnome_program_init(VIMPACKAGE, VIM_VERSION_SHORT,
+  			   LIBGNOMEUI_MODULE, gui_argc, gui_argv, NULL);
+  # if defined(FEAT_FLOAT) && defined(LC_NUMERIC)
+! 	{
+! 	    char *p = setlocale(LC_NUMERIC, NULL);
+! 
+! 	    /* Make sure strtod() uses a decimal point, not a comma. Gnome
+! 	     * init may change it. */
+! 	    if (p == NULL || strcmp(p, "C") != 0)
+! 	       setlocale(LC_NUMERIC, "C");
+! 	}
+  # endif
+      }
+  #endif
+*** ../vim-7.4.269/src/version.c	2014-04-29 14:44:31.519875819 +0200
+--- src/version.c	2014-04-29 14:59:21.799860216 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     270,
+  /**/
+
+-- 
+From "know your smileys":
+ :-| :-|   Deja' vu!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,74 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.635
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.635
+Problem:    If no NL or CR is found in the first block of a file then the
+	    'fileformat' may be set to "mac". (Issue 77)
+Solution:   Check if a CR was found. (eswald)
+Files:	    src/fileio.c
+
+
+*** ../vim-7.4.634/src/fileio.c	2015-02-17 10:58:20.479298803 +0100
+--- src/fileio.c	2015-02-17 14:06:53.660019143 +0100
+***************
+*** 2101,2106 ****
+--- 2101,2110 ----
+  		{
+  		    for (p = ptr; p < ptr + size; ++p)
+  		    {
++ 			/* Reset the carriage return counter. */
++ 			if (try_mac)
++ 			    try_mac = 1;
++ 
+  			if (*p == NL)
+  			{
+  			    if (!try_unix
+***************
+*** 2110,2115 ****
+--- 2114,2121 ----
+  				fileformat = EOL_UNIX;
+  			    break;
+  			}
++ 			else if (*p == CAR && try_mac)
++ 			    try_mac++;
+  		    }
+  
+  		    /* Don't give in to EOL_UNIX if EOL_MAC is more likely */
+***************
+*** 2133,2138 ****
+--- 2139,2148 ----
+  				fileformat = EOL_MAC;
+  			}
+  		    }
++ 		    else if (fileformat == EOL_UNKNOWN && try_mac == 1)
++ 			/* Looking for CR but found no end-of-line markers at
++ 			 * all: use the default format. */
++ 			fileformat = default_fileformat();
+  		}
+  
+  		/* No NL found: may use Mac format */
+*** ../vim-7.4.634/src/version.c	2015-02-17 13:43:35.562216149 +0100
+--- src/version.c	2015-02-17 14:00:48.312772284 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     635,
+  /**/
+
+-- 
+"Marriage is a wonderful institution...
+but who wants to live in an institution?"
+ - Groucho Marx
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

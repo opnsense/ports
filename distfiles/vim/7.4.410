@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.410
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.410
+Problem:    Fold does not open after search when there is a CmdwinLeave
+	    autocommand.
+Solution:   Restore KeyTyped. (Jacob Niehus)
+Files:	    src/ex_getln.c
+
+
+*** ../vim-7.4.409/src/ex_getln.c	2014-06-25 14:39:35.102348584 +0200
+--- src/ex_getln.c	2014-08-17 17:21:38.811022992 +0200
+***************
+*** 6363,6368 ****
+--- 6363,6371 ----
+  #ifdef FEAT_RIGHTLEFT
+      int			save_cmdmsg_rl = cmdmsg_rl;
+  #endif
++ #ifdef FEAT_FOLDING
++     int			save_KeyTyped;
++ #endif
+  
+      /* Can't do this recursively.  Can't do it when typing a password. */
+      if (cmdwin_type != 0
+***************
+*** 6497,6504 ****
+--- 6500,6518 ----
+      RedrawingDisabled = i;
+  
+  # ifdef FEAT_AUTOCMD
++ 
++ #  ifdef FEAT_FOLDING
++     save_KeyTyped = KeyTyped;
++ #  endif
++ 
+      /* Trigger CmdwinLeave autocommands. */
+      apply_autocmds(EVENT_CMDWINLEAVE, typestr, typestr, FALSE, curbuf);
++ 
++ #  ifdef FEAT_FOLDING
++     /* Restore KeyTyped in case it is modified by autocommands */
++     KeyTyped = save_KeyTyped;
++ #  endif
++ 
+  # endif
+  
+      /* Restore the command line info. */
+*** ../vim-7.4.409/src/version.c	2014-08-17 17:05:39.163057796 +0200
+--- src/version.c	2014-08-17 17:19:33.011027554 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     410,
+  /**/
+
+-- 
+Have you heard about the new Beowulf cluster? It's so fast, it executes
+an infinite loop in 6 seconds.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

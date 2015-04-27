@@ -1,0 +1,1830 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.338
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.338
+Problem:    Cannot wrap lines taking indent into account.
+Solution:   Add the 'breakindent' option. (many authors, final improvements by
+	    Christian Brabandt)
+Files:	    runtime/doc/eval.txt, runtime/doc/options.txt, runtime/optwin.vim,
+	    src/buffer.c, src/charset.c, src/edit.c, src/ex_getln.c,
+	    src/getchar.c, src/misc1.c, src/misc2.c, src/ops.c, src/option.c,
+	    src/option.h, src/proto/charset.pro, src/proto/misc1.pro,
+	    src/proto/option.pro, src/screen.c, src/structs.h,
+	    src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile,
+	    src/testdir/test_breakindent.in, src/testdir/test_breakindent.ok,
+	    src/ui.c
+
+
+*** ../vim-7.4.337/runtime/doc/eval.txt	2014-06-17 17:48:21.768628007 +0200
+--- runtime/doc/eval.txt	2014-06-25 12:57:00.986115765 +0200
+***************
+*** 6639,6646 ****
+  keymap			Compiled with 'keymap' support.
+  langmap			Compiled with 'langmap' support.
+  libcall			Compiled with |libcall()| support.
+! linebreak		Compiled with 'linebreak', 'breakat' and 'showbreak'
+! 			support.
+  lispindent		Compiled with support for lisp indenting.
+  listcmds		Compiled with commands for the buffer list |:files|
+  			and the argument list |arglist|.
+--- 6651,6658 ----
+  keymap			Compiled with 'keymap' support.
+  langmap			Compiled with 'langmap' support.
+  libcall			Compiled with |libcall()| support.
+! linebreak		Compiled with 'linebreak', 'breakat', 'showbreak' and
+! 			'breakindent' support.
+  lispindent		Compiled with support for lisp indenting.
+  listcmds		Compiled with commands for the buffer list |:files|
+  			and the argument list |arglist|.
+*** ../vim-7.4.337/runtime/doc/options.txt	2014-06-17 17:48:21.768628007 +0200
+--- runtime/doc/options.txt	2014-06-25 12:57:00.986115765 +0200
+***************
+*** 1200,1205 ****
+--- 1200,1237 ----
+  	break if 'linebreak' is on.  Only works for ASCII and also for 8-bit
+  	characters when 'encoding' is an 8-bit encoding.
+  
++ 						*'breakindent'* *'bri'*
++ 'breakindent' 'bri'	boolean (default off)
++ 			local to window
++ 			{not in Vi}
++ 			{not available when compiled without the |+linebreak|
++ 			feature}
++ 	Every wrapped line will continue visually indented (same amount of
++ 	space as the beginning of that line), thus preserving horizontal blocks
++ 	of text.
++ 
++ 						*'breakindentopt'* *'briopt'*
++ 'breakindentopt' 'briopt' string (default empty)
++ 			local to window
++ 			{not in Vi}
++ 			{not available when compiled without the |+linebreak|
++ 			feature}
++ 	Settings for 'breakindent'. It can consist of the following optional
++ 	items and must be seperated by a comma:
++ 		min:{n}	    Minimum text width that will be kept after
++ 			    applying 'breakindent', even if the resulting
++ 			    text should normally be narrower. This prevents
++ 			    text indented almost to the right window border
++ 			    occupying lot of vertical space when broken.
++ 		shift:{n}   After applying 'breakindent', wrapped line
++ 			    beginning will be shift by given number of
++ 			    characters. It permits dynamic French paragraph
++ 			    indentation (negative) or emphasizing the line
++ 			    continuation (positive).
++ 		sbr	    Display the 'showbreak' value before applying the 
++ 			    additional indent.
++ 	The default value for min is 20 and shift is 0.
++ 
+  						*'browsedir'* *'bsdir'*
+  'browsedir' 'bsdir'	string	(default: "last")
+  			global
+*** ../vim-7.4.337/runtime/optwin.vim	2014-04-01 12:26:40.241157964 +0200
+--- runtime/optwin.vim	2014-06-25 12:57:00.990115765 +0200
+***************
+*** 324,329 ****
+--- 324,335 ----
+  call append("$", "linebreak\twrap long lines at a character in 'breakat'")
+  call append("$", "\t(local to window)")
+  call <SID>BinOptionL("lbr")
++ call append("$", "breakindent\tpreserve indentation in wrapped text")
++ call append("$", "\t(local to window)")
++ call <SID>BinOptionL("bri")
++ call append("$", "breakindentopt\tadjust breakindent behaviour")
++ call append("$", "\t(local to window)")
++ call <SID>OptionL("briopt")
+  call append("$", "breakat\twhich characters might cause a line break")
+  call <SID>OptionG("brk", &brk)
+  call append("$", "showbreak\tstring to put before wrapped screen lines")
+*** ../vim-7.4.337/src/charset.c	2014-03-23 15:12:29.911264336 +0100
+--- src/charset.c	2014-06-25 13:23:05.842174966 +0200
+***************
+*** 867,875 ****
+      char_u	*s;
+  {
+      colnr_T	col = startcol;
+  
+      while (*s != NUL)
+! 	col += lbr_chartabsize_adv(&s, col);
+      return (int)col;
+  }
+  
+--- 867,876 ----
+      char_u	*s;
+  {
+      colnr_T	col = startcol;
++     char_u	*line = s; /* pointer to start of line, for breakindent */
+  
+      while (*s != NUL)
+! 	col += lbr_chartabsize_adv(line, &s, col);
+      return (int)col;
+  }
+  
+***************
+*** 877,892 ****
+   * Like linetabsize(), but for a given window instead of the current one.
+   */
+      int
+! win_linetabsize(wp, p, len)
+      win_T	*wp;
+!     char_u	*p;
+      colnr_T	len;
+  {
+      colnr_T	col = 0;
+      char_u	*s;
+  
+!     for (s = p; *s != NUL && (len == MAXCOL || s < p + len); mb_ptr_adv(s))
+! 	col += win_lbr_chartabsize(wp, s, col, NULL);
+      return (int)col;
+  }
+  
+--- 878,894 ----
+   * Like linetabsize(), but for a given window instead of the current one.
+   */
+      int
+! win_linetabsize(wp, line, len)
+      win_T	*wp;
+!     char_u	*line;
+      colnr_T	len;
+  {
+      colnr_T	col = 0;
+      char_u	*s;
+  
+!     for (s = line; *s != NUL && (len == MAXCOL || s < line + len);
+! 								mb_ptr_adv(s))
+! 	col += win_lbr_chartabsize(wp, line, s, col, NULL);
+      return (int)col;
+  }
+  
+***************
+*** 1021,1032 ****
+   * like chartabsize(), but also check for line breaks on the screen
+   */
+      int
+! lbr_chartabsize(s, col)
+      unsigned char	*s;
+      colnr_T		col;
+  {
+  #ifdef FEAT_LINEBREAK
+!     if (!curwin->w_p_lbr && *p_sbr == NUL)
+      {
+  #endif
+  #ifdef FEAT_MBYTE
+--- 1023,1035 ----
+   * like chartabsize(), but also check for line breaks on the screen
+   */
+      int
+! lbr_chartabsize(line, s, col)
+!     char_u		*line; /* start of the line */
+      unsigned char	*s;
+      colnr_T		col;
+  {
+  #ifdef FEAT_LINEBREAK
+!     if (!curwin->w_p_lbr && *p_sbr == NUL && !curwin->w_p_bri)
+      {
+  #endif
+  #ifdef FEAT_MBYTE
+***************
+*** 1036,1042 ****
+  	RET_WIN_BUF_CHARTABSIZE(curwin, curbuf, s, col)
+  #ifdef FEAT_LINEBREAK
+      }
+!     return win_lbr_chartabsize(curwin, s, col, NULL);
+  #endif
+  }
+  
+--- 1039,1045 ----
+  	RET_WIN_BUF_CHARTABSIZE(curwin, curbuf, s, col)
+  #ifdef FEAT_LINEBREAK
+      }
+!     return win_lbr_chartabsize(curwin, line == NULL ? s : line, s, col, NULL);
+  #endif
+  }
+  
+***************
+*** 1044,1056 ****
+   * Call lbr_chartabsize() and advance the pointer.
+   */
+      int
+! lbr_chartabsize_adv(s, col)
+      char_u	**s;
+      colnr_T	col;
+  {
+      int		retval;
+  
+!     retval = lbr_chartabsize(*s, col);
+      mb_ptr_adv(*s);
+      return retval;
+  }
+--- 1047,1060 ----
+   * Call lbr_chartabsize() and advance the pointer.
+   */
+      int
+! lbr_chartabsize_adv(line, s, col)
+!     char_u	*line; /* start of the line */
+      char_u	**s;
+      colnr_T	col;
+  {
+      int		retval;
+  
+!     retval = lbr_chartabsize(line, *s, col);
+      mb_ptr_adv(*s);
+      return retval;
+  }
+***************
+*** 1063,1070 ****
+   * value, init to 0 before calling.
+   */
+      int
+! win_lbr_chartabsize(wp, s, col, headp)
+      win_T	*wp;
+      char_u	*s;
+      colnr_T	col;
+      int		*headp UNUSED;
+--- 1067,1075 ----
+   * value, init to 0 before calling.
+   */
+      int
+! win_lbr_chartabsize(wp, line, s, col, headp)
+      win_T	*wp;
++     char_u	*line; /* start of the line */
+      char_u	*s;
+      colnr_T	col;
+      int		*headp UNUSED;
+***************
+*** 1086,1094 ****
+      int		n;
+  
+      /*
+!      * No 'linebreak' and 'showbreak': return quickly.
+       */
+!     if (!wp->w_p_lbr && *p_sbr == NUL)
+  #endif
+      {
+  #ifdef FEAT_MBYTE
+--- 1091,1099 ----
+      int		n;
+  
+      /*
+!      * No 'linebreak', 'showbreak' and 'breakindent': return quickly.
+       */
+!     if (!wp->w_p_lbr && !wp->w_p_bri && *p_sbr == NUL)
+  #endif
+      {
+  #ifdef FEAT_MBYTE
+***************
+*** 1163,1173 ****
+  # endif
+  
+      /*
+!      * May have to add something for 'showbreak' string at start of line
+       * Set *headp to the size of what we add.
+       */
+      added = 0;
+!     if (*p_sbr != NUL && wp->w_p_wrap && col != 0)
+      {
+  	numberextra = win_col_off(wp);
+  	col += numberextra + mb_added;
+--- 1168,1179 ----
+  # endif
+  
+      /*
+!      * May have to add something for 'breakindent' and/or 'showbreak'
+!      * string at start of line.
+       * Set *headp to the size of what we add.
+       */
+      added = 0;
+!     if ((*p_sbr != NUL || wp->w_p_bri) && wp->w_p_wrap && col != 0)
+      {
+  	numberextra = win_col_off(wp);
+  	col += numberextra + mb_added;
+***************
+*** 1180,1186 ****
+  	}
+  	if (col == 0 || col + size > (colnr_T)W_WIDTH(wp))
+  	{
+! 	    added = vim_strsize(p_sbr);
+  	    if (tab_corr)
+  		size += (added / wp->w_buffer->b_p_ts) * wp->w_buffer->b_p_ts;
+  	    else
+--- 1186,1197 ----
+  	}
+  	if (col == 0 || col + size > (colnr_T)W_WIDTH(wp))
+  	{
+! 	    added = 0;
+! 	    if (*p_sbr != NUL)
+! 		added += vim_strsize(p_sbr);
+! 	    if (wp->w_p_bri)
+! 		added += get_breakindent_win(wp, line);
+! 
+  	    if (tab_corr)
+  		size += (added / wp->w_buffer->b_p_ts) * wp->w_buffer->b_p_ts;
+  	    else
+***************
+*** 1274,1286 ****
+      colnr_T	vcol;
+      char_u	*ptr;		/* points to current char */
+      char_u	*posptr;	/* points to char at pos->col */
+      int		incr;
+      int		head;
+      int		ts = wp->w_buffer->b_p_ts;
+      int		c;
+  
+      vcol = 0;
+!     ptr = ml_get_buf(wp->w_buffer, pos->lnum, FALSE);
+      if (pos->col == MAXCOL)
+  	posptr = NULL;  /* continue until the NUL */
+      else
+--- 1285,1298 ----
+      colnr_T	vcol;
+      char_u	*ptr;		/* points to current char */
+      char_u	*posptr;	/* points to char at pos->col */
++     char_u	*line;		/* start of the line */
+      int		incr;
+      int		head;
+      int		ts = wp->w_buffer->b_p_ts;
+      int		c;
+  
+      vcol = 0;
+!     line = ptr = ml_get_buf(wp->w_buffer, pos->lnum, FALSE);
+      if (pos->col == MAXCOL)
+  	posptr = NULL;  /* continue until the NUL */
+      else
+***************
+*** 1288,1299 ****
+  
+      /*
+       * This function is used very often, do some speed optimizations.
+!      * When 'list', 'linebreak' and 'showbreak' are not set use a simple loop.
+       * Also use this when 'list' is set but tabs take their normal size.
+       */
+      if ((!wp->w_p_list || lcs_tab1 != NUL)
+  #ifdef FEAT_LINEBREAK
+! 	    && !wp->w_p_lbr && *p_sbr == NUL
+  #endif
+         )
+      {
+--- 1300,1312 ----
+  
+      /*
+       * This function is used very often, do some speed optimizations.
+!      * When 'list', 'linebreak', 'showbreak' and 'breakindent' are not set
+!      * use a simple loop.
+       * Also use this when 'list' is set but tabs take their normal size.
+       */
+      if ((!wp->w_p_list || lcs_tab1 != NUL)
+  #ifdef FEAT_LINEBREAK
+! 	    && !wp->w_p_lbr && *p_sbr == NUL && !wp->w_p_bri
+  #endif
+         )
+      {
+***************
+*** 1355,1361 ****
+  	{
+  	    /* A tab gets expanded, depending on the current column */
+  	    head = 0;
+! 	    incr = win_lbr_chartabsize(wp, ptr, vcol, &head);
+  	    /* make sure we don't go past the end of the line */
+  	    if (*ptr == NUL)
+  	    {
+--- 1368,1374 ----
+  	{
+  	    /* A tab gets expanded, depending on the current column */
+  	    head = 0;
+! 	    incr = win_lbr_chartabsize(wp, line, ptr, vcol, &head);
+  	    /* make sure we don't go past the end of the line */
+  	    if (*ptr == NUL)
+  	    {
+*** ../vim-7.4.337/src/edit.c	2014-05-28 21:40:47.092329130 +0200
+--- src/edit.c	2014-06-25 13:16:43.278160493 +0200
+***************
+*** 1956,1962 ****
+  	    else
+  #endif
+  		++new_cursor_col;
+! 	    vcol += lbr_chartabsize(ptr + new_cursor_col, (colnr_T)vcol);
+  	}
+  	vcol = last_vcol;
+  
+--- 1956,1962 ----
+  	    else
+  #endif
+  		++new_cursor_col;
+! 	    vcol += lbr_chartabsize(ptr, ptr + new_cursor_col, (colnr_T)vcol);
+  	}
+  	vcol = last_vcol;
+  
+***************
+*** 7126,7134 ****
+  	for (;;)
+  	{
+  	    coladvance(v - width);
+! 	    /* getviscol() is slow, skip it when 'showbreak' is empty and
+! 	     * there are no multi-byte characters */
+! 	    if ((*p_sbr == NUL
+  #  ifdef FEAT_MBYTE
+  			&& !has_mbyte
+  #  endif
+--- 7126,7135 ----
+  	for (;;)
+  	{
+  	    coladvance(v - width);
+! 	    /* getviscol() is slow, skip it when 'showbreak' is empty,
+! 	     * 'breakindent' is not set and there are no multi-byte
+! 	     * characters */
+! 	    if ((*p_sbr == NUL && !curwin->w_p_bri
+  #  ifdef FEAT_MBYTE
+  			&& !has_mbyte
+  #  endif
+***************
+*** 9758,9768 ****
+  	getvcol(curwin, &fpos, &vcol, NULL, NULL);
+  	getvcol(curwin, cursor, &want_vcol, NULL, NULL);
+  
+! 	/* Use as many TABs as possible.  Beware of 'showbreak' and
+! 	 * 'linebreak' adding extra virtual columns. */
+  	while (vim_iswhite(*ptr))
+  	{
+! 	    i = lbr_chartabsize((char_u *)"\t", vcol);
+  	    if (vcol + i > want_vcol)
+  		break;
+  	    if (*ptr != TAB)
+--- 9759,9769 ----
+  	getvcol(curwin, &fpos, &vcol, NULL, NULL);
+  	getvcol(curwin, cursor, &want_vcol, NULL, NULL);
+  
+! 	/* Use as many TABs as possible.  Beware of 'breakindent', 'showbreak'
+! 	 * and 'linebreak' adding extra virtual columns. */
+  	while (vim_iswhite(*ptr))
+  	{
+! 	    i = lbr_chartabsize(NULL, (char_u *)"\t", vcol);
+  	    if (vcol + i > want_vcol)
+  		break;
+  	    if (*ptr != TAB)
+***************
+*** 9784,9794 ****
+  	if (change_col >= 0)
+  	{
+  	    int repl_off = 0;
+  
+  	    /* Skip over the spaces we need. */
+  	    while (vcol < want_vcol && *ptr == ' ')
+  	    {
+! 		vcol += lbr_chartabsize(ptr, vcol);
+  		++ptr;
+  		++repl_off;
+  	    }
+--- 9785,9796 ----
+  	if (change_col >= 0)
+  	{
+  	    int repl_off = 0;
++ 	    char_u *line = ptr;
+  
+  	    /* Skip over the spaces we need. */
+  	    while (vcol < want_vcol && *ptr == ' ')
+  	    {
+! 		vcol += lbr_chartabsize(line, ptr, vcol);
+  		++ptr;
+  		++repl_off;
+  	    }
+***************
+*** 10029,10034 ****
+--- 10031,10037 ----
+      int	    c;
+      int	    temp;
+      char_u  *ptr, *prev_ptr;
++     char_u  *line;
+  
+      if (lnum < 1 || lnum > curbuf->b_ml.ml_line_count)
+      {
+***************
+*** 10038,10050 ****
+  
+      /* try to advance to the cursor column */
+      temp = 0;
+!     ptr = ml_get(lnum);
+      prev_ptr = ptr;
+      validate_virtcol();
+      while ((colnr_T)temp < curwin->w_virtcol && *ptr != NUL)
+      {
+  	prev_ptr = ptr;
+! 	temp += lbr_chartabsize_adv(&ptr, (colnr_T)temp);
+      }
+      if ((colnr_T)temp > curwin->w_virtcol)
+  	ptr = prev_ptr;
+--- 10041,10053 ----
+  
+      /* try to advance to the cursor column */
+      temp = 0;
+!     line = ptr = ml_get(lnum);
+      prev_ptr = ptr;
+      validate_virtcol();
+      while ((colnr_T)temp < curwin->w_virtcol && *ptr != NUL)
+      {
+  	prev_ptr = ptr;
+! 	temp += lbr_chartabsize_adv(line, &ptr, (colnr_T)temp);
+      }
+      if ((colnr_T)temp > curwin->w_virtcol)
+  	ptr = prev_ptr;
+*** ../vim-7.4.337/src/ex_getln.c	2014-06-25 12:26:42.230046959 +0200
+--- src/ex_getln.c	2014-06-25 12:57:00.998115765 +0200
+***************
+*** 2302,2311 ****
+  
+  		p = (char_u *)line_ga.ga_data;
+  		p[line_ga.ga_len] = NUL;
+! 		indent = get_indent_str(p, 8);
+  		indent += sw - indent % sw;
+  add_indent:
+! 		while (get_indent_str(p, 8) < indent)
+  		{
+  		    char_u *s = skipwhite(p);
+  
+--- 2302,2311 ----
+  
+  		p = (char_u *)line_ga.ga_data;
+  		p[line_ga.ga_len] = NUL;
+! 		indent = get_indent_str(p, 8, FALSE);
+  		indent += sw - indent % sw;
+  add_indent:
+! 		while (get_indent_str(p, 8, FALSE) < indent)
+  		{
+  		    char_u *s = skipwhite(p);
+  
+***************
+*** 2357,2367 ****
+  		else
+  		{
+  		    p[line_ga.ga_len] = NUL;
+! 		    indent = get_indent_str(p, 8);
+  		    --indent;
+  		    indent -= indent % get_sw_value(curbuf);
+  		}
+! 		while (get_indent_str(p, 8) > indent)
+  		{
+  		    char_u *s = skipwhite(p);
+  
+--- 2357,2367 ----
+  		else
+  		{
+  		    p[line_ga.ga_len] = NUL;
+! 		    indent = get_indent_str(p, 8, FALSE);
+  		    --indent;
+  		    indent -= indent % get_sw_value(curbuf);
+  		}
+! 		while (get_indent_str(p, 8, FALSE) > indent)
+  		{
+  		    char_u *s = skipwhite(p);
+  
+*** ../vim-7.4.337/src/getchar.c	2014-05-22 18:59:54.510169240 +0200
+--- src/getchar.c	2014-06-25 13:16:53.946160896 +0200
+***************
+*** 2675,2681 ****
+  				{
+  				    if (!vim_iswhite(ptr[col]))
+  					curwin->w_wcol = vcol;
+! 				    vcol += lbr_chartabsize(ptr + col,
+  							       (colnr_T)vcol);
+  #ifdef FEAT_MBYTE
+  				    if (has_mbyte)
+--- 2675,2681 ----
+  				{
+  				    if (!vim_iswhite(ptr[col]))
+  					curwin->w_wcol = vcol;
+! 				    vcol += lbr_chartabsize(ptr, ptr + col,
+  							       (colnr_T)vcol);
+  #ifdef FEAT_MBYTE
+  				    if (has_mbyte)
+*** ../vim-7.4.337/src/misc1.c	2014-05-22 14:00:12.698534712 +0200
+--- src/misc1.c	2014-06-25 13:39:43.598212712 +0200
+***************
+*** 32,38 ****
+      int
+  get_indent()
+  {
+!     return get_indent_str(ml_get_curline(), (int)curbuf->b_p_ts);
+  }
+  
+  /*
+--- 32,38 ----
+      int
+  get_indent()
+  {
+!     return get_indent_str(ml_get_curline(), (int)curbuf->b_p_ts, FALSE);
+  }
+  
+  /*
+***************
+*** 42,48 ****
+  get_indent_lnum(lnum)
+      linenr_T	lnum;
+  {
+!     return get_indent_str(ml_get(lnum), (int)curbuf->b_p_ts);
+  }
+  
+  #if defined(FEAT_FOLDING) || defined(PROTO)
+--- 42,48 ----
+  get_indent_lnum(lnum)
+      linenr_T	lnum;
+  {
+!     return get_indent_str(ml_get(lnum), (int)curbuf->b_p_ts, FALSE);
+  }
+  
+  #if defined(FEAT_FOLDING) || defined(PROTO)
+***************
+*** 55,61 ****
+      buf_T	*buf;
+      linenr_T	lnum;
+  {
+!     return get_indent_str(ml_get_buf(buf, lnum, FALSE), (int)buf->b_p_ts);
+  }
+  #endif
+  
+--- 55,61 ----
+      buf_T	*buf;
+      linenr_T	lnum;
+  {
+!     return get_indent_str(ml_get_buf(buf, lnum, FALSE), (int)buf->b_p_ts, FALSE);
+  }
+  #endif
+  
+***************
+*** 64,79 ****
+   * 'tabstop' at "ts"
+   */
+      int
+! get_indent_str(ptr, ts)
+      char_u	*ptr;
+      int		ts;
+  {
+      int		count = 0;
+  
+      for ( ; *ptr; ++ptr)
+      {
+! 	if (*ptr == TAB)    /* count a tab for what it is worth */
+! 	    count += ts - (count % ts);
+  	else if (*ptr == ' ')
+  	    ++count;		/* count a space for one */
+  	else
+--- 64,86 ----
+   * 'tabstop' at "ts"
+   */
+      int
+! get_indent_str(ptr, ts, list)
+      char_u	*ptr;
+      int		ts;
++     int		list; /* if TRUE, count only screen size for tabs */
+  {
+      int		count = 0;
+  
+      for ( ; *ptr; ++ptr)
+      {
+! 	if (*ptr == TAB)
+! 	{
+! 	    if (!list || lcs_tab1)    /* count a tab for what it is worth */
+! 		count += ts - (count % ts);
+! 	    else
+! 	/* in list mode, when tab is not set, count screen char width for Tab: ^I */
+! 		count += ptr2cells(ptr);
+! 	}
+  	else if (*ptr == ' ')
+  	    ++count;		/* count a space for one */
+  	else
+***************
+*** 476,481 ****
+--- 483,540 ----
+      return (int)col;
+  }
+  
++ #if defined(FEAT_LINEBREAK) || defined(PROTO)
++ /*
++  * Return appropriate space number for breakindent, taking influencing
++  * parameters into account. Window must be specified, since it is not
++  * necessarily always the current one.
++  */
++     int
++ get_breakindent_win(wp, line)
++     win_T	*wp;
++     char_u	*line; /* start of the line */
++ {
++     static int	    prev_indent = 0;  /* cached indent value */
++     static long	    prev_ts     = 0L; /* cached tabstop value */
++     static char_u   *prev_line = NULL; /* cached pointer to line */
++     int		    bri = 0;
++     /* window width minus window margin space, i.e. what rests for text */
++     const int	    eff_wwidth = W_WIDTH(wp)
++ 			    - ((wp->w_p_nu || wp->w_p_rnu)
++ 				&& (vim_strchr(p_cpo, CPO_NUMCOL) == NULL)
++ 						? number_width(wp) + 1 : 0);
++ 
++     /* used cached indent, unless pointer or 'tabstop' changed */
++     if (prev_line != line || prev_ts != wp->w_buffer->b_p_ts)
++     {
++ 	prev_line = line;
++ 	prev_ts = wp->w_buffer->b_p_ts;
++ 	prev_indent = get_indent_str(line,
++ 		  (int)wp->w_buffer->b_p_ts, wp->w_p_list) + wp->w_p_brishift;
++     }
++ 
++     /* indent minus the length of the showbreak string */
++     bri = prev_indent;
++     if (wp->w_p_brisbr)
++ 	bri -= vim_strsize(p_sbr);
++ 
++     /* Add offset for number column, if 'n' is in 'cpoptions' */
++     bri += win_col_off2(wp);
++ 
++     /* never indent past left window margin */
++     if (bri < 0)
++ 	bri = 0;
++     /* always leave at least bri_min characters on the left,
++      * if text width is sufficient */
++     else if (bri > eff_wwidth - wp->w_p_brimin)
++ 	bri = (eff_wwidth - wp->w_p_brimin < 0)
++ 			    ? 0 : eff_wwidth - wp->w_p_brimin;
++ 
++     return bri;
++ }
++ #endif
++ 
++ 
+  #if defined(FEAT_CINDENT) || defined(FEAT_SMARTINDENT)
+  
+  static int cin_is_cinword __ARGS((char_u *line));
+***************
+*** 678,684 ****
+  	/*
+  	 * count white space on current line
+  	 */
+! 	newindent = get_indent_str(saved_line, (int)curbuf->b_p_ts);
+  	if (newindent == 0 && !(flags & OPENLINE_COM_LIST))
+  	    newindent = second_line_indent; /* for ^^D command in insert mode */
+  
+--- 737,743 ----
+  	/*
+  	 * count white space on current line
+  	 */
+! 	newindent = get_indent_str(saved_line, (int)curbuf->b_p_ts, FALSE);
+  	if (newindent == 0 && !(flags & OPENLINE_COM_LIST))
+  	    newindent = second_line_indent; /* for ^^D command in insert mode */
+  
+***************
+*** 1201,1207 ****
+  					|| do_si
+  #endif
+  							   )
+! 			newindent = get_indent_str(leader, (int)curbuf->b_p_ts);
+  
+  		    /* Add the indent offset */
+  		    if (newindent + off < 0)
+--- 1260,1266 ----
+  					|| do_si
+  #endif
+  							   )
+! 			newindent = get_indent_str(leader, (int)curbuf->b_p_ts, FALSE);
+  
+  		    /* Add the indent offset */
+  		    if (newindent + off < 0)
+***************
+*** 1994,1999 ****
+--- 2053,2059 ----
+      char_u	*s;
+      int		lines = 0;
+      int		width;
++     char_u	*line;
+  
+  #ifdef FEAT_DIFF
+      /* Check for filler lines above this buffer line.  When folded the result
+***************
+*** 2009,2020 ****
+  	return lines + 1;
+  #endif
+  
+!     s = ml_get_buf(wp->w_buffer, lnum, FALSE);
+  
+      col = 0;
+      while (*s != NUL && --column >= 0)
+      {
+! 	col += win_lbr_chartabsize(wp, s, (colnr_T)col, NULL);
+  	mb_ptr_adv(s);
+      }
+  
+--- 2069,2080 ----
+  	return lines + 1;
+  #endif
+  
+!     line = s = ml_get_buf(wp->w_buffer, lnum, FALSE);
+  
+      col = 0;
+      while (*s != NUL && --column >= 0)
+      {
+! 	col += win_lbr_chartabsize(wp, line, s, (colnr_T)col, NULL);
+  	mb_ptr_adv(s);
+      }
+  
+***************
+*** 2026,2032 ****
+       * 'ts') -- webb.
+       */
+      if (*s == TAB && (State & NORMAL) && (!wp->w_p_list || lcs_tab1))
+! 	col += win_lbr_chartabsize(wp, s, (colnr_T)col, NULL) - 1;
+  
+      /*
+       * Add column offset for 'number', 'relativenumber', 'foldcolumn', etc.
+--- 2086,2092 ----
+       * 'ts') -- webb.
+       */
+      if (*s == TAB && (State & NORMAL) && (!wp->w_p_list || lcs_tab1))
+! 	col += win_lbr_chartabsize(wp, line, s, (colnr_T)col, NULL) - 1;
+  
+      /*
+       * Add column offset for 'number', 'relativenumber', 'foldcolumn', etc.
+***************
+*** 9002,9011 ****
+  		amount = 2;
+  	    else
+  	    {
+  		amount = 0;
+  		while (*that && col)
+  		{
+! 		    amount += lbr_chartabsize_adv(&that, (colnr_T)amount);
+  		    col--;
+  		}
+  
+--- 9062,9073 ----
+  		amount = 2;
+  	    else
+  	    {
++ 		char_u *line = that;
++ 
+  		amount = 0;
+  		while (*that && col)
+  		{
+! 		    amount += lbr_chartabsize_adv(line, &that, (colnr_T)amount);
+  		    col--;
+  		}
+  
+***************
+*** 9028,9034 ****
+  
+  		    while (vim_iswhite(*that))
+  		    {
+! 			amount += lbr_chartabsize(that, (colnr_T)amount);
+  			++that;
+  		    }
+  
+--- 9090,9096 ----
+  
+  		    while (vim_iswhite(*that))
+  		    {
+! 			amount += lbr_chartabsize(line, that, (colnr_T)amount);
+  			++that;
+  		    }
+  
+***************
+*** 9066,9080 ****
+  							       && !quotecount)
+  				    --parencount;
+  				if (*that == '\\' && *(that+1) != NUL)
+! 				    amount += lbr_chartabsize_adv(&that,
+! 							     (colnr_T)amount);
+! 				amount += lbr_chartabsize_adv(&that,
+! 							     (colnr_T)amount);
+  			    }
+  			}
+  			while (vim_iswhite(*that))
+  			{
+! 			    amount += lbr_chartabsize(that, (colnr_T)amount);
+  			    that++;
+  			}
+  			if (!*that || *that == ';')
+--- 9128,9143 ----
+  							       && !quotecount)
+  				    --parencount;
+  				if (*that == '\\' && *(that+1) != NUL)
+! 				    amount += lbr_chartabsize_adv(
+! 						line, &that, (colnr_T)amount);
+! 				amount += lbr_chartabsize_adv(
+! 						line, &that, (colnr_T)amount);
+  			    }
+  			}
+  			while (vim_iswhite(*that))
+  			{
+! 			    amount += lbr_chartabsize(
+! 						 line, that, (colnr_T)amount);
+  			    that++;
+  			}
+  			if (!*that || *that == ';')
+*** ../vim-7.4.337/src/misc2.c	2014-05-07 18:35:25.669216052 +0200
+--- src/misc2.c	2014-06-25 13:21:18.474170904 +0200
+***************
+*** 201,210 ****
+  	{
+  	    /* Count a tab for what it's worth (if list mode not on) */
+  #ifdef FEAT_LINEBREAK
+! 	    csize = win_lbr_chartabsize(curwin, ptr, col, &head);
+  	    mb_ptr_adv(ptr);
+  #else
+! 	    csize = lbr_chartabsize_adv(&ptr, col);
+  #endif
+  	    col += csize;
+  	}
+--- 201,210 ----
+  	{
+  	    /* Count a tab for what it's worth (if list mode not on) */
+  #ifdef FEAT_LINEBREAK
+! 	    csize = win_lbr_chartabsize(curwin, line, ptr, col, &head);
+  	    mb_ptr_adv(ptr);
+  #else
+! 	    csize = lbr_chartabsize_adv(line, &ptr, col);
+  #endif
+  	    col += csize;
+  	}
+***************
+*** 2156,2162 ****
+      }
+  }
+  
+! #if (defined(UNIX) && !defined(USE_SYSTEM)) || defined(WIN3264)
+  /*
+   * Append the text in "gap" below the cursor line and clear "gap".
+   */
+--- 2156,2163 ----
+      }
+  }
+  
+! #if (defined(UNIX) && !defined(USE_SYSTEM)) || defined(WIN3264) \
+! 	|| defined(PROTO)
+  /*
+   * Append the text in "gap" below the cursor line and clear "gap".
+   */
+*** ../vim-7.4.337/src/ops.c	2014-06-17 18:16:08.420691059 +0200
+--- src/ops.c	2014-06-25 13:18:27.082164420 +0200
+***************
+*** 420,426 ****
+  	}
+  	for ( ; vim_iswhite(*bd.textstart); )
+  	{
+! 	    incr = lbr_chartabsize_adv(&bd.textstart, (colnr_T)(bd.start_vcol));
+  	    total += incr;
+  	    bd.start_vcol += incr;
+  	}
+--- 420,428 ----
+  	}
+  	for ( ; vim_iswhite(*bd.textstart); )
+  	{
+! 	    /* TODO: is passing bd.textstart for start of the line OK? */
+! 	    incr = lbr_chartabsize_adv(bd.textstart, &bd.textstart,
+! 						    (colnr_T)(bd.start_vcol));
+  	    total += incr;
+  	    bd.start_vcol += incr;
+  	}
+***************
+*** 480,486 ****
+  
+  	while (vim_iswhite(*non_white))
+  	{
+! 	    incr = lbr_chartabsize_adv(&non_white, non_white_col);
+  	    non_white_col += incr;
+  	}
+  
+--- 482,488 ----
+  
+  	while (vim_iswhite(*non_white))
+  	{
+! 	    incr = lbr_chartabsize_adv(bd.textstart, &non_white, non_white_col);
+  	    non_white_col += incr;
+  	}
+  
+***************
+*** 505,511 ****
+  	    verbatim_copy_width -= bd.start_char_vcols;
+  	while (verbatim_copy_width < destination_col)
+  	{
+! 	    incr = lbr_chartabsize(verbatim_copy_end, verbatim_copy_width);
+  	    if (verbatim_copy_width + incr > destination_col)
+  		break;
+  	    verbatim_copy_width += incr;
+--- 507,517 ----
+  	    verbatim_copy_width -= bd.start_char_vcols;
+  	while (verbatim_copy_width < destination_col)
+  	{
+! 	    char_u *line = verbatim_copy_end;
+! 
+! 	    /* TODO: is passing verbatim_copy_end for start of the line OK? */
+! 	    incr = lbr_chartabsize(line, verbatim_copy_end,
+! 							 verbatim_copy_width);
+  	    if (verbatim_copy_width + incr > destination_col)
+  		break;
+  	    verbatim_copy_width += incr;
+***************
+*** 3617,3623 ****
+  	    for (ptr = oldp; vcol < col && *ptr; )
+  	    {
+  		/* Count a tab for what it's worth (if list mode not on) */
+! 		incr = lbr_chartabsize_adv(&ptr, (colnr_T)vcol);
+  		vcol += incr;
+  	    }
+  	    bd.textcol = (colnr_T)(ptr - oldp);
+--- 3623,3629 ----
+  	    for (ptr = oldp; vcol < col && *ptr; )
+  	    {
+  		/* Count a tab for what it's worth (if list mode not on) */
+! 		incr = lbr_chartabsize_adv(oldp, &ptr, (colnr_T)vcol);
+  		vcol += incr;
+  	    }
+  	    bd.textcol = (colnr_T)(ptr - oldp);
+***************
+*** 3651,3657 ****
+  	    /* calculate number of spaces required to fill right side of block*/
+  	    spaces = y_width + 1;
+  	    for (j = 0; j < yanklen; j++)
+! 		spaces -= lbr_chartabsize(&y_array[i][j], 0);
+  	    if (spaces < 0)
+  		spaces = 0;
+  
+--- 3657,3663 ----
+  	    /* calculate number of spaces required to fill right side of block*/
+  	    spaces = y_width + 1;
+  	    for (j = 0; j < yanklen; j++)
+! 		spaces -= lbr_chartabsize(NULL, &y_array[i][j], 0);
+  	    if (spaces < 0)
+  		spaces = 0;
+  
+***************
+*** 5203,5209 ****
+      while (bdp->start_vcol < oap->start_vcol && *pstart)
+      {
+  	/* Count a tab for what it's worth (if list mode not on) */
+! 	incr = lbr_chartabsize(pstart, (colnr_T)bdp->start_vcol);
+  	bdp->start_vcol += incr;
+  #ifdef FEAT_VISUALEXTRA
+  	if (vim_iswhite(*pstart))
+--- 5209,5215 ----
+      while (bdp->start_vcol < oap->start_vcol && *pstart)
+      {
+  	/* Count a tab for what it's worth (if list mode not on) */
+! 	incr = lbr_chartabsize(line, pstart, (colnr_T)bdp->start_vcol);
+  	bdp->start_vcol += incr;
+  #ifdef FEAT_VISUALEXTRA
+  	if (vim_iswhite(*pstart))
+***************
+*** 5272,5278 ****
+  	    {
+  		/* Count a tab for what it's worth (if list mode not on) */
+  		prev_pend = pend;
+! 		incr = lbr_chartabsize_adv(&pend, (colnr_T)bdp->end_vcol);
+  		bdp->end_vcol += incr;
+  	    }
+  	    if (bdp->end_vcol <= oap->end_vcol
+--- 5278,5287 ----
+  	    {
+  		/* Count a tab for what it's worth (if list mode not on) */
+  		prev_pend = pend;
+! 		/* TODO: is passing prev_pend for start of the line OK?
+! 		 * perhaps it should be "line". */
+! 		incr = lbr_chartabsize_adv(prev_pend, &pend,
+! 						      (colnr_T)bdp->end_vcol);
+  		bdp->end_vcol += incr;
+  	    }
+  	    if (bdp->end_vcol <= oap->end_vcol
+***************
+*** 6882,6888 ****
+  	    validate_virtcol();
+  	    col_print(buf1, sizeof(buf1), (int)curwin->w_cursor.col + 1,
+  		    (int)curwin->w_virtcol + 1);
+! 	    col_print(buf2, sizeof(buf2), (int)STRLEN(p), linetabsize(p));
+  
+  	    if (char_count_cursor == byte_count_cursor
+  		    && char_count == byte_count)
+--- 6891,6898 ----
+  	    validate_virtcol();
+  	    col_print(buf1, sizeof(buf1), (int)curwin->w_cursor.col + 1,
+  		    (int)curwin->w_virtcol + 1);
+! 	    col_print(buf2, sizeof(buf2), (int)STRLEN(p),
+! 				linetabsize(p));
+  
+  	    if (char_count_cursor == byte_count_cursor
+  		    && char_count == byte_count)
+*** ../vim-7.4.337/src/option.c	2014-06-25 11:48:40.733960646 +0200
+--- src/option.c	2014-06-25 14:31:41.630330672 +0200
+***************
+*** 188,193 ****
+--- 188,197 ----
+  #ifdef FEAT_ARABIC
+  # define PV_ARAB	OPT_WIN(WV_ARAB)
+  #endif
++ #ifdef FEAT_LINEBREAK
++ # define PV_BRI		OPT_WIN(WV_BRI)
++ # define PV_BRIOPT	OPT_WIN(WV_BRIOPT)
++ #endif
+  #ifdef FEAT_DIFF
+  # define PV_DIFF	OPT_WIN(WV_DIFF)
+  #endif
+***************
+*** 648,653 ****
+--- 652,675 ----
+  			    {(char_u *)0L, (char_u *)0L}
+  #endif
+  			    SCRIPTID_INIT},
++     {"breakindent",   "bri",  P_BOOL|P_VI_DEF|P_VIM|P_RWIN,
++ #ifdef FEAT_LINEBREAK
++ 			    (char_u *)VAR_WIN, PV_BRI,
++ 			    {(char_u *)FALSE, (char_u *)0L}
++ #else
++ 			    (char_u *)NULL, PV_NONE,
++ 			    {(char_u *)0L, (char_u *)0L}
++ #endif
++ 			    SCRIPTID_INIT},
++     {"breakindentopt", "briopt", P_STRING|P_ALLOCED|P_VI_DEF|P_RBUF|P_COMMA|P_NODUP,
++ #ifdef FEAT_LINEBREAK
++ 			    (char_u *)VAR_WIN, PV_BRIOPT,
++ 			    {(char_u *)"", (char_u *)NULL}
++ #else
++ 			    (char_u *)NULL, PV_NONE,
++ 			    {(char_u *)"", (char_u *)NULL}
++ #endif
++ 			    SCRIPTID_INIT},
+      {"browsedir",   "bsdir",P_STRING|P_VI_DEF,
+  #ifdef FEAT_BROWSE
+  			    (char_u *)&p_bsdir, PV_NONE,
+***************
+*** 5256,5261 ****
+--- 5278,5286 ----
+      /* set cedit_key */
+      (void)check_cedit();
+  #endif
++ #ifdef FEAT_LINEBREAK
++     briopt_check();
++ #endif
+  }
+  
+  /*
+***************
+*** 5709,5714 ****
+--- 5734,5747 ----
+  		     *p_pm == '.' ? p_pm + 1 : p_pm) == 0)
+  	    errmsg = (char_u *)N_("E589: 'backupext' and 'patchmode' are equal");
+      }
++ #ifdef FEAT_LINEBREAK
++     /* 'breakindentopt' */
++     else if (varp == &curwin->w_p_briopt)
++     {
++ 	if (briopt_check() == FAIL)
++ 	    errmsg = e_invarg;
++     }
++ #endif
+  
+      /*
+       * 'isident', 'iskeyword', 'isprint or 'isfname' option: refill chartab[]
+***************
+*** 10018,10023 ****
+--- 10051,10058 ----
+  	case PV_WRAP:	return (char_u *)&(curwin->w_p_wrap);
+  #ifdef FEAT_LINEBREAK
+  	case PV_LBR:	return (char_u *)&(curwin->w_p_lbr);
++ 	case PV_BRI:	return (char_u *)&(curwin->w_p_bri);
++ 	case PV_BRIOPT: return (char_u *)&(curwin->w_p_briopt);
+  #endif
+  #ifdef FEAT_SCROLLBIND
+  	case PV_SCBIND: return (char_u *)&(curwin->w_p_scb);
+***************
+*** 10207,10212 ****
+--- 10242,10249 ----
+  #endif
+  #ifdef FEAT_LINEBREAK
+      to->wo_lbr = from->wo_lbr;
++     to->wo_bri = from->wo_bri;
++     to->wo_briopt = vim_strsave(from->wo_briopt);
+  #endif
+  #ifdef FEAT_SCROLLBIND
+      to->wo_scb = from->wo_scb;
+***************
+*** 10294,10299 ****
+--- 10331,10339 ----
+  #ifdef FEAT_CONCEAL
+      check_string_option(&wop->wo_cocu);
+  #endif
++ #ifdef FEAT_LINEBREAK
++     check_string_option(&wop->wo_briopt);
++ #endif
+  }
+  
+  /*
+***************
+*** 10313,10318 ****
+--- 10353,10361 ----
+  # endif
+      clear_string_option(&wop->wo_fmr);
+  #endif
++ #ifdef FEAT_LINEBREAK
++     clear_string_option(&wop->wo_briopt);
++ #endif
+  #ifdef FEAT_RIGHTLEFT
+      clear_string_option(&wop->wo_rlc);
+  #endif
+***************
+*** 11927,11929 ****
+--- 11970,12018 ----
+  	    ++ptr;
+      }
+  }
++ 
++ #if defined(FEAT_LINEBREAK) || defined(PROTO)
++ /*
++  * This is called when 'breakindentopt' is changed and when a window is
++  * initialized.
++  */
++     int
++ briopt_check()
++ {
++     char_u	*p;
++     int		bri_shift = 0;
++     long	bri_min = 20;
++     int		bri_sbr = FALSE;
++ 
++     p = curwin->w_p_briopt;
++     while (*p != NUL)
++     {
++ 	if (STRNCMP(p, "shift:", 6) == 0
++ 		 && ((p[6] == '-' && VIM_ISDIGIT(p[7])) || VIM_ISDIGIT(p[6])))
++ 	{
++ 	    p += 6;
++ 	    bri_shift = getdigits(&p);
++ 	}
++ 	else if (STRNCMP(p, "min:", 4) == 0 && VIM_ISDIGIT(p[4]))
++ 	{
++ 	    p += 4;
++ 	    bri_min = getdigits(&p);
++ 	}
++ 	else if (STRNCMP(p, "sbr", 3) == 0)
++ 	{
++ 	    p += 3;
++ 	    bri_sbr = TRUE;
++ 	}
++ 	if (*p != ',' && *p != NUL)
++ 	    return FAIL;
++ 	if (*p == ',')
++ 	    ++p;
++     }
++ 
++     curwin->w_p_brishift = bri_shift;
++     curwin->w_p_brimin   = bri_min;
++     curwin->w_p_brisbr   = bri_sbr;
++ 
++     return OK;
++ }
++ #endif
+*** ../vim-7.4.337/src/option.h	2014-05-28 21:40:47.092329130 +0200
+--- src/option.h	2014-06-25 12:57:01.002115765 +0200
+***************
+*** 1052,1057 ****
+--- 1052,1061 ----
+  #ifdef FEAT_CURSORBIND
+      , WV_CRBIND
+  #endif
++ #ifdef FEAT_LINEBREAK
++     , WV_BRI
++     , WV_BRIOPT
++ #endif
+  #ifdef FEAT_DIFF
+      , WV_DIFF
+  #endif
+*** ../vim-7.4.337/src/proto/charset.pro	2013-08-10 13:37:07.000000000 +0200
+--- src/proto/charset.pro	2014-06-25 13:22:32.934173721 +0200
+***************
+*** 16,22 ****
+  int chartabsize __ARGS((char_u *p, colnr_T col));
+  int linetabsize __ARGS((char_u *s));
+  int linetabsize_col __ARGS((int startcol, char_u *s));
+! int win_linetabsize __ARGS((win_T *wp, char_u *p, colnr_T len));
+  int vim_isIDc __ARGS((int c));
+  int vim_iswordc __ARGS((int c));
+  int vim_iswordc_buf __ARGS((int c, buf_T *buf));
+--- 16,22 ----
+  int chartabsize __ARGS((char_u *p, colnr_T col));
+  int linetabsize __ARGS((char_u *s));
+  int linetabsize_col __ARGS((int startcol, char_u *s));
+! int win_linetabsize __ARGS((win_T *wp, char_u *line, colnr_T len));
+  int vim_isIDc __ARGS((int c));
+  int vim_iswordc __ARGS((int c));
+  int vim_iswordc_buf __ARGS((int c, buf_T *buf));
+***************
+*** 26,34 ****
+  int vim_isfilec_or_wc __ARGS((int c));
+  int vim_isprintc __ARGS((int c));
+  int vim_isprintc_strict __ARGS((int c));
+! int lbr_chartabsize __ARGS((unsigned char *s, colnr_T col));
+! int lbr_chartabsize_adv __ARGS((char_u **s, colnr_T col));
+! int win_lbr_chartabsize __ARGS((win_T *wp, char_u *s, colnr_T col, int *headp));
+  int in_win_border __ARGS((win_T *wp, colnr_T vcol));
+  void getvcol __ARGS((win_T *wp, pos_T *pos, colnr_T *start, colnr_T *cursor, colnr_T *end));
+  colnr_T getvcol_nolist __ARGS((pos_T *posp));
+--- 26,34 ----
+  int vim_isfilec_or_wc __ARGS((int c));
+  int vim_isprintc __ARGS((int c));
+  int vim_isprintc_strict __ARGS((int c));
+! int lbr_chartabsize __ARGS((char_u *line, unsigned char *s, colnr_T col));
+! int lbr_chartabsize_adv __ARGS((char_u *line, char_u **s, colnr_T col));
+! int win_lbr_chartabsize __ARGS((win_T *wp, char_u *line, char_u *s, colnr_T col, int *headp));
+  int in_win_border __ARGS((win_T *wp, colnr_T vcol));
+  void getvcol __ARGS((win_T *wp, pos_T *pos, colnr_T *start, colnr_T *cursor, colnr_T *end));
+  colnr_T getvcol_nolist __ARGS((pos_T *posp));
+*** ../vim-7.4.337/src/proto/misc1.pro	2014-05-07 15:10:17.661108310 +0200
+--- src/proto/misc1.pro	2014-06-25 12:57:01.002115765 +0200
+***************
+*** 2,10 ****
+  int get_indent __ARGS((void));
+  int get_indent_lnum __ARGS((linenr_T lnum));
+  int get_indent_buf __ARGS((buf_T *buf, linenr_T lnum));
+! int get_indent_str __ARGS((char_u *ptr, int ts));
+  int set_indent __ARGS((int size, int flags));
+  int get_number_indent __ARGS((linenr_T lnum));
+  int open_line __ARGS((int dir, int flags, int second_line_indent));
+  int get_leader_len __ARGS((char_u *line, char_u **flags, int backward, int include_space));
+  int get_last_leader_offset __ARGS((char_u *line, char_u **flags));
+--- 2,11 ----
+  int get_indent __ARGS((void));
+  int get_indent_lnum __ARGS((linenr_T lnum));
+  int get_indent_buf __ARGS((buf_T *buf, linenr_T lnum));
+! int get_indent_str __ARGS((char_u *ptr, int ts, int list));
+  int set_indent __ARGS((int size, int flags));
+  int get_number_indent __ARGS((linenr_T lnum));
++ int get_breakindent_win __ARGS((win_T *wp, char_u *ptr));
+  int open_line __ARGS((int dir, int flags, int second_line_indent));
+  int get_leader_len __ARGS((char_u *line, char_u **flags, int backward, int include_space));
+  int get_last_leader_offset __ARGS((char_u *line, char_u **flags));
+*** ../vim-7.4.337/src/proto/option.pro	2014-01-14 16:54:53.000000000 +0100
+--- src/proto/option.pro	2014-06-25 14:16:04.882295233 +0200
+***************
+*** 63,66 ****
+--- 63,67 ----
+  long get_sw_value __ARGS((buf_T *buf));
+  long get_sts_value __ARGS((void));
+  void find_mps_values __ARGS((int *initc, int *findc, int *backwards, int switchit));
++ int briopt_check __ARGS((void));
+  /* vim: set ft=c : */
+*** ../vim-7.4.337/src/screen.c	2014-06-18 21:20:07.232377308 +0200
+--- src/screen.c	2014-06-25 13:43:39.930221653 +0200
+***************
+*** 2962,2971 ****
+  # define WL_SIGN	WL_FOLD		/* column for signs */
+  #endif
+  #define WL_NR		WL_SIGN + 1	/* line number */
+  #if defined(FEAT_LINEBREAK) || defined(FEAT_DIFF)
+! # define WL_SBR		WL_NR + 1	/* 'showbreak' or 'diff' */
+  #else
+! # define WL_SBR		WL_NR
+  #endif
+  #define WL_LINE		WL_SBR + 1	/* text in the line */
+      int		draw_state = WL_START;	/* what to draw next */
+--- 2962,2976 ----
+  # define WL_SIGN	WL_FOLD		/* column for signs */
+  #endif
+  #define WL_NR		WL_SIGN + 1	/* line number */
++ #ifdef FEAT_LINEBREAK
++ # define WL_BRI		WL_NR + 1	/* 'breakindent' */
++ #else
++ # define WL_BRI		WL_NR
++ #endif
+  #if defined(FEAT_LINEBREAK) || defined(FEAT_DIFF)
+! # define WL_SBR		WL_BRI + 1	/* 'showbreak' or 'diff' */
+  #else
+! # define WL_SBR		WL_BRI
+  #endif
+  #define WL_LINE		WL_SBR + 1	/* text in the line */
+      int		draw_state = WL_START;	/* what to draw next */
+***************
+*** 3301,3307 ****
+  #endif
+  	while (vcol < v && *ptr != NUL)
+  	{
+! 	    c = win_lbr_chartabsize(wp, ptr, (colnr_T)vcol, NULL);
+  	    vcol += c;
+  #ifdef FEAT_MBYTE
+  	    prev_ptr = ptr;
+--- 3306,3312 ----
+  #endif
+  	while (vcol < v && *ptr != NUL)
+  	{
+! 	    c = win_lbr_chartabsize(wp, line, ptr, (colnr_T)vcol, NULL);
+  	    vcol += c;
+  #ifdef FEAT_MBYTE
+  	    prev_ptr = ptr;
+***************
+*** 3670,3675 ****
+--- 3675,3718 ----
+  		}
+  	    }
+  
++ #ifdef FEAT_LINEBREAK
++ 	    if (wp->w_p_brisbr && draw_state == WL_BRI - 1
++ 					     && n_extra == 0 && *p_sbr != NUL)
++ 		/* draw indent after showbreak value */
++ 		draw_state = WL_BRI;
++ 	    else if (wp->w_p_brisbr && draw_state == WL_SBR && n_extra == 0)
++ 		/* After the showbreak, draw the breakindent */
++ 		draw_state = WL_BRI - 1;
++ 
++ 	    /* draw 'breakindent': indent wrapped text accordingly */
++ 	    if (draw_state == WL_BRI - 1 && n_extra == 0)
++ 	    {
++ 		draw_state = WL_BRI;
++ # ifdef FEAT_DIFF
++ # endif
++ 		if (wp->w_p_bri && n_extra == 0 && row != startrow
++ #ifdef FEAT_DIFF
++ 			&& filler_lines == 0
++ #endif
++ 		   )
++ 		{
++ 		    char_attr = 0; /* was: hl_attr(HLF_AT); */
++ #ifdef FEAT_DIFF
++ 		    if (diff_hlf != (hlf_T)0)
++ 			char_attr = hl_attr(diff_hlf);
++ #endif
++ 		    p_extra = NUL;
++ 		    c_extra = ' ';
++ 		    n_extra = get_breakindent_win(wp,
++ 				       ml_get_buf(wp->w_buffer, lnum, FALSE));
++ 		    /* Correct end of highlighted area for 'breakindent',
++ 		     * required when 'linebreak' is also set. */
++ 		    if (tocol == vcol)
++ 			tocol += n_extra;
++ 		}
++ 	    }
++ #endif
++ 
+  #if defined(FEAT_LINEBREAK) || defined(FEAT_DIFF)
+  	    if (draw_state == WL_SBR - 1 && n_extra == 0)
+  	    {
+***************
+*** 4382,4392 ****
+  		if (wp->w_p_lbr && vim_isbreak(c) && !vim_isbreak(*ptr)
+  							     && !wp->w_p_list)
+  		{
+! 		    n_extra = win_lbr_chartabsize(wp, ptr - (
+  # ifdef FEAT_MBYTE
+  				has_mbyte ? mb_l :
+  # endif
+! 				1), (colnr_T)vcol, NULL) - 1;
+  		    c_extra = ' ';
+  		    if (vim_iswhite(c))
+  		    {
+--- 4425,4438 ----
+  		if (wp->w_p_lbr && vim_isbreak(c) && !vim_isbreak(*ptr)
+  							     && !wp->w_p_list)
+  		{
+! 		    char_u *p = ptr - (
+  # ifdef FEAT_MBYTE
+  				has_mbyte ? mb_l :
+  # endif
+! 				1);
+! 		    /* TODO: is passing p for start of the line OK? */
+! 		    n_extra = win_lbr_chartabsize(wp, p, p, (colnr_T)vcol,
+! 								    NULL) - 1;
+  		    c_extra = ' ';
+  		    if (vim_iswhite(c))
+  		    {
+***************
+*** 8916,8923 ****
+  	{
+  	    if (noinvcurs)
+  		screen_stop_highlight();
+! 	    if (row == screen_cur_row && (col > screen_cur_col) &&
+! 								*T_CRI != NUL)
+  		term_cursor_right(col - screen_cur_col);
+  	    else
+  		term_windgoto(row, col);
+--- 8962,8969 ----
+  	{
+  	    if (noinvcurs)
+  		screen_stop_highlight();
+! 	    if (row == screen_cur_row && (col > screen_cur_col)
+! 							     && *T_CRI != NUL)
+  		term_cursor_right(col - screen_cur_col);
+  	    else
+  		term_windgoto(row, col);
+*** ../vim-7.4.337/src/structs.h	2014-06-17 17:48:21.784628008 +0200
+--- src/structs.h	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 134,139 ****
+--- 134,145 ----
+      int		wo_arab;
+  # define w_p_arab w_onebuf_opt.wo_arab	/* 'arabic' */
+  #endif
++ #ifdef FEAT_LINEBREAK
++     int		wo_bri;
++ # define w_p_bri w_onebuf_opt.wo_bri	/* 'breakindent' */
++     char_u		*wo_briopt;
++ # define w_p_briopt w_onebuf_opt.wo_briopt /* 'breakindentopt' */
++ #endif
+  #ifdef FEAT_DIFF
+      int		wo_diff;
+  # define w_p_diff w_onebuf_opt.wo_diff	/* 'diff' */
+***************
+*** 2189,2194 ****
+--- 2195,2205 ----
+  #ifdef FEAT_SYN_HL
+      int		*w_p_cc_cols;	    /* array of columns to highlight or NULL */
+  #endif
++ #ifdef FEAT_LINEBREAK
++     int		w_p_brimin;	    /* minimum width for breakindent */
++     int		w_p_brishift;	    /* additional shift for breakindent */
++     int		w_p_brisbr;	    /* sbr in 'briopt' */
++ #endif
+  
+      /* transform a pointer to a "onebuf" option into a "allbuf" option */
+  #define GLOBAL_WO(p)	((char *)p + sizeof(winopt_T))
+*** ../vim-7.4.337/src/testdir/Make_amiga.mak	2014-05-29 11:47:19.804773758 +0200
+--- src/testdir/Make_amiga.mak	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 37,42 ****
+--- 37,43 ----
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
++ 		test_breakindent.out \
+  		test_eval.out \
+  		test_options.out
+  
+***************
+*** 163,167 ****
+--- 164,169 ----
+  test106.out: test106.in
+  test107.out: test107.in
+  test_autoformat_join.out: test_autoformat_join.in
++ test_breakindent.out: test_breakindent.in
+  test_eval.out: test_eval.in
+  test_options.out: test_options.in
+*** ../vim-7.4.337/src/testdir/Make_dos.mak	2014-05-29 11:47:19.804773758 +0200
+--- src/testdir/Make_dos.mak	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 36,41 ****
+--- 36,42 ----
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out  test107.out\
+  		test_autoformat_join.out \
++ 		test_breakindent.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.337/src/testdir/Make_ming.mak	2014-05-29 11:47:19.804773758 +0200
+--- src/testdir/Make_ming.mak	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 56,61 ****
+--- 56,62 ----
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
++ 		test_breakindent.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.337/src/testdir/Make_os2.mak	2014-05-29 11:47:19.804773758 +0200
+--- src/testdir/Make_os2.mak	2014-06-25 12:59:45.774121999 +0200
+***************
+*** 39,44 ****
+--- 39,45 ----
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
++ 		test_breakindent.out \
+  		test_options.out
+  
+  .SUFFIXES: .in .out
+*** ../vim-7.4.337/src/testdir/Make_vms.mms	2014-05-29 11:47:19.804773758 +0200
+--- src/testdir/Make_vms.mms	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 97,102 ****
+--- 97,103 ----
+  	 test100.out test101.out test103.out test104.out \
+  	 test105.out test106.out test107.out \
+  	 test_autoformat_join.out \
++ 	 test_breakindent.out \
+  	 test_eval.out \
+  	 test_options.out
+  
+*** ../vim-7.4.337/src/testdir/Makefile	2014-05-29 11:47:19.804773758 +0200
+--- src/testdir/Makefile	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 34,39 ****
+--- 34,40 ----
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
++ 		test_breakindent.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.337/src/testdir/test_breakindent.in	2014-06-25 14:36:28.690341532 +0200
+--- src/testdir/test_breakindent.in	2014-06-25 14:26:00.994317785 +0200
+***************
+*** 0 ****
+--- 1,79 ----
++ Test for breakindent
++ 
++ STARTTEST
++ :so small.vim
++ :if !exists("+breakindent") | e! test.ok | w! test.out | qa! | endif
++ :10new|:vsp|:vert resize 20
++ :put =\"\tabcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP\"
++ :set ts=4 sw=4 sts=4 breakindent
++ :fu! ScreenChar(width)
++ :	let c=''
++ :	for i in range(1,a:width)
++ :		let c.=nr2char(screenchar(line('.'), i))
++ :	endfor
++ :       let c.="\n"
++ :	for i in range(1,a:width)
++ :		let c.=nr2char(screenchar(line('.')+1, i))
++ :	endfor
++ :       let c.="\n"
++ :	for i in range(1,a:width)
++ :		let c.=nr2char(screenchar(line('.')+2, i))
++ :	endfor
++ :	return c
++ :endfu
++ :fu DoRecordScreen()
++ :	wincmd l
++ :	$put =printf(\"\n%s\", g:test)
++ :	$put =g:line1
++ :	wincmd p
++ :endfu
++ :let g:test="Test 1: Simple breakindent"
++ :let line1=ScreenChar(8)
++ :call DoRecordScreen()
++ :let g:test="Test 2: Simple breakindent + sbr=>>"
++ :set sbr=>>
++ :let line1=ScreenChar(8)
++ :call DoRecordScreen()
++ :let g:test ="Test 3: Simple breakindent + briopt:sbr"
++ :set briopt=sbr,min:0 sbr=++
++ :let line1=ScreenChar(8)
++ :call DoRecordScreen()
++ :let g:test ="Test 4: Simple breakindent + min width: 18"
++ :set sbr= briopt=min:18
++ :let line1=ScreenChar(8)
++ :call DoRecordScreen()
++ :let g:test =" Test 5: Simple breakindent + shift by 2"
++ :set briopt=shift:2,min:0
++ :let line1=ScreenChar(8)
++ :call DoRecordScreen()
++ :let g:test=" Test 6: Simple breakindent + shift by -1"
++ :set briopt=shift:-1,min:0
++ :let line1=ScreenChar(8)
++ :call DoRecordScreen()
++ :let g:test=" Test 7: breakindent + shift by +1 + nu + sbr=? briopt:sbr"
++ :set briopt=shift:1,sbr,min:0 nu sbr=? nuw=4
++ :let line1=ScreenChar(10)
++ :call DoRecordScreen()
++ :let g:test=" Test 8: breakindent + shift:1 + nu + sbr=# list briopt:sbr"
++ :set briopt=shift:1,sbr,min:0 nu sbr=# list
++ :let line1=ScreenChar(10)
++ :call DoRecordScreen()
++ :let g:test=" Test 9: breakindent + shift by +1 + 'nu' + sbr=# list"
++ :set briopt-=sbr
++ :let line1=ScreenChar(10)
++ :call DoRecordScreen()
++ :let g:test=" Test 10: breakindent + shift by +1 + 'nu' + sbr=~ cpo+=n"
++ :set cpo+=n sbr=~ nu nuw=4 nolist briopt=sbr,min:0
++ :let line1=ScreenChar(10)
++ :call DoRecordScreen()
++ :wincmd p
++ :let g:test="\n Test 11: strdisplaywidth when breakindent is on"
++ :set cpo-=n sbr=>> nu nuw=4 nolist briopt= ts=4
++ :let text=getline(2) "skip leading tab when calculating text width
++ :let width = strlen(text[1:])+indent(2)*4+strlen(&sbr)*3 " text wraps 3 times
++ :$put =g:test
++ :$put =printf(\"strdisplaywidth: %d == calculated: %d\", strdisplaywidth(text), width)
++ :%w! test.out
++ :qa!
++ ENDTEST
++ dummy text
+*** ../vim-7.4.337/src/testdir/test_breakindent.ok	2014-06-25 14:36:28.698341532 +0200
+--- src/testdir/test_breakindent.ok	2014-06-25 12:57:01.006115766 +0200
+***************
+*** 0 ****
+--- 1,55 ----
++ 
++ 	abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOP
++ 
++ Test 1: Simple breakindent
++     abcd
++     qrst
++     GHIJ
++ 
++ Test 2: Simple breakindent + sbr=>>
++     abcd
++     >>qr
++     >>EF
++ 
++ Test 3: Simple breakindent + briopt:sbr
++     abcd
++ ++  qrst
++ ++  GHIJ
++ 
++ Test 4: Simple breakindent + min width: 18
++     abcd
++   qrstuv
++   IJKLMN
++ 
++  Test 5: Simple breakindent + shift by 2
++     abcd
++       qr
++       EF
++ 
++  Test 6: Simple breakindent + shift by -1
++     abcd
++    qrstu
++    HIJKL
++ 
++  Test 7: breakindent + shift by +1 + nu + sbr=? briopt:sbr
++   2     ab
++ ?        m
++ ?        x
++ 
++  Test 8: breakindent + shift:1 + nu + sbr=# list briopt:sbr
++   2 ^Iabcd
++ #      opq
++ #      BCD
++ 
++  Test 9: breakindent + shift by +1 + 'nu' + sbr=# list
++   2 ^Iabcd
++        #op
++        #AB
++ 
++  Test 10: breakindent + shift by +1 + 'nu' + sbr=~ cpo+=n
++   2     ab
++ ~       mn
++ ~       yz
++ 
++  Test 11: strdisplaywidth when breakindent is on
++ strdisplaywidth: 46 == calculated: 64
+*** ../vim-7.4.337/src/ui.c	2014-06-12 13:28:26.771694851 +0200
+--- src/ui.c	2014-06-25 13:22:20.218173240 +0200
+***************
+*** 3162,3176 ****
+      /* try to advance to the specified column */
+      int		count = 0;
+      char_u	*ptr;
+!     char_u	*start;
+  
+!     start = ptr = ml_get_buf(wp->w_buffer, lnum, FALSE);
+      while (count < vcol && *ptr != NUL)
+      {
+! 	count += win_lbr_chartabsize(wp, ptr, count, NULL);
+  	mb_ptr_adv(ptr);
+      }
+!     return (int)(ptr - start);
+  }
+  #endif
+  
+--- 3162,3176 ----
+      /* try to advance to the specified column */
+      int		count = 0;
+      char_u	*ptr;
+!     char_u	*line;
+  
+!     line = ptr = ml_get_buf(wp->w_buffer, lnum, FALSE);
+      while (count < vcol && *ptr != NUL)
+      {
+! 	count += win_lbr_chartabsize(wp, line, ptr, count, NULL);
+  	mb_ptr_adv(ptr);
+      }
+!     return (int)(ptr - line);
+  }
+  #endif
+  
+*** ../vim-7.4.337/src/version.c	2014-06-25 12:26:42.230046959 +0200
+--- src/version.c	2014-06-25 13:00:26.990123558 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     338,
+  /**/
+
+-- 
+MORTICIAN:    Bring out your dead!
+              [clang]
+              Bring out your dead!
+              [clang]
+              Bring out your dead!
+CUSTOMER:     Here's one -- nine pence.
+DEAD PERSON:  I'm not dead!
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

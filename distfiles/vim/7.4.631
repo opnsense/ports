@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.631
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.631
+Problem:    The default conceal character is documented to be a space but it's
+	    initially a dash. (Christian Brabandt)
+Solution:   Make the intial value a space.
+Files:	    src/globals.h
+
+
+*** ../vim-7.4.630/src/globals.h	2015-01-27 18:43:42.134535513 +0100
+--- src/globals.h	2015-02-17 11:05:40.401595004 +0100
+***************
+*** 1167,1173 ****
+  EXTERN int	lcs_tab2 INIT(= NUL);
+  EXTERN int	lcs_trail INIT(= NUL);
+  #ifdef FEAT_CONCEAL
+! EXTERN int	lcs_conceal INIT(= '-');
+  #endif
+  
+  #if defined(FEAT_WINDOWS) || defined(FEAT_WILDMENU) || defined(FEAT_STL_OPT) \
+--- 1167,1173 ----
+  EXTERN int	lcs_tab2 INIT(= NUL);
+  EXTERN int	lcs_trail INIT(= NUL);
+  #ifdef FEAT_CONCEAL
+! EXTERN int	lcs_conceal INIT(= ' ');
+  #endif
+  
+  #if defined(FEAT_WINDOWS) || defined(FEAT_WILDMENU) || defined(FEAT_STL_OPT) \
+*** ../vim-7.4.630/src/version.c	2015-02-17 10:58:20.479298803 +0100
+--- src/version.c	2015-02-17 11:06:34.612890235 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     631,
+  /**/
+
+-- 
+You can tune a file system, but you can't tuna fish
+							-- man tunefs
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

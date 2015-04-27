@@ -1,0 +1,197 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.052
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.052
+Problem:    With 'fo' set to "a2" inserting a space in the first column may
+	    cause the cursor to jump to the previous line.
+Solution:   Handle the case when there is no comment leader properly. (Tor
+	    Perkins)  Also fix that cursor is in the wrong place when spaces
+	    get replaced with a Tab.
+Files:	    src/misc1.c, src/ops.c, src/testdir/test68.in,
+	    src/testdir/test68.ok
+
+
+*** ../vim-7.4.051/src/misc1.c	2013-09-05 21:41:35.000000000 +0200
+--- src/misc1.c	2013-10-06 17:46:18.000000000 +0200
+***************
+*** 303,312 ****
+  	ml_replace(curwin->w_cursor.lnum, newline, FALSE);
+  	if (flags & SIN_CHANGED)
+  	    changed_bytes(curwin->w_cursor.lnum, 0);
+! 	/* Correct saved cursor position if it's after the indent. */
+! 	if (saved_cursor.lnum == curwin->w_cursor.lnum
+! 				&& saved_cursor.col >= (colnr_T)(p - oldline))
+! 	    saved_cursor.col += ind_len - (colnr_T)(p - oldline);
+  	retval = TRUE;
+      }
+      else
+--- 303,320 ----
+  	ml_replace(curwin->w_cursor.lnum, newline, FALSE);
+  	if (flags & SIN_CHANGED)
+  	    changed_bytes(curwin->w_cursor.lnum, 0);
+! 	/* Correct saved cursor position if it is in this line. */
+! 	if (saved_cursor.lnum == curwin->w_cursor.lnum)
+! 	{
+! 	    if (saved_cursor.col >= (colnr_T)(p - oldline))
+! 		/* cursor was after the indent, adjust for the number of
+! 		 * bytes added/removed */
+! 		saved_cursor.col += ind_len - (colnr_T)(p - oldline);
+! 	    else if (saved_cursor.col >= (colnr_T)(s - newline))
+! 		/* cursor was in the indent, and is now after it, put it back
+! 		 * at the start of the indent (replacing spaces with TAB) */
+! 		saved_cursor.col = (colnr_T)(s - newline);
+! 	}
+  	retval = TRUE;
+      }
+      else
+***************
+*** 1581,1589 ****
+  
+  #if defined(FEAT_COMMENTS) || defined(PROTO)
+  /*
+!  * get_leader_len() returns the length of the prefix of the given string
+!  * which introduces a comment.	If this string is not a comment then 0 is
+!  * returned.
+   * When "flags" is not NULL, it is set to point to the flags of the recognized
+   * comment leader.
+   * "backward" must be true for the "O" command.
+--- 1589,1597 ----
+  
+  #if defined(FEAT_COMMENTS) || defined(PROTO)
+  /*
+!  * get_leader_len() returns the length in bytes of the prefix of the given
+!  * string which introduces a comment.  If this string is not a comment then
+!  * 0 is returned.
+   * When "flags" is not NULL, it is set to point to the flags of the recognized
+   * comment leader.
+   * "backward" must be true for the "O" command.
+*** ../vim-7.4.051/src/ops.c	2013-09-25 23:24:54.000000000 +0200
+--- src/ops.c	2013-10-06 17:11:51.000000000 +0200
+***************
+*** 4989,4995 ****
+  
+  	    /*
+  	     * When still in same paragraph, join the lines together.  But
+! 	     * first delete the comment leader from the second line.
+  	     */
+  	    if (!is_end_par)
+  	    {
+--- 4989,4995 ----
+  
+  	    /*
+  	     * When still in same paragraph, join the lines together.  But
+! 	     * first delete the leader from the second line.
+  	     */
+  	    if (!is_end_par)
+  	    {
+***************
+*** 4999,5009 ****
+  		if (line_count < 0 && u_save_cursor() == FAIL)
+  		    break;
+  #ifdef FEAT_COMMENTS
+- 		(void)del_bytes((long)next_leader_len, FALSE, FALSE);
+  		if (next_leader_len > 0)
+  		    mark_col_adjust(curwin->w_cursor.lnum, (colnr_T)0, 0L,
+  						      (long)-next_leader_len);
+  #endif
+  		curwin->w_cursor.lnum--;
+  		if (do_join(2, TRUE, FALSE, FALSE) == FAIL)
+  		{
+--- 4999,5023 ----
+  		if (line_count < 0 && u_save_cursor() == FAIL)
+  		    break;
+  #ifdef FEAT_COMMENTS
+  		if (next_leader_len > 0)
++ 		{
++ 		    (void)del_bytes((long)next_leader_len, FALSE, FALSE);
+  		    mark_col_adjust(curwin->w_cursor.lnum, (colnr_T)0, 0L,
+  						      (long)-next_leader_len);
++ 		} else
+  #endif
++ 		    if (second_indent > 0)  /* the "leader" for FO_Q_SECOND */
++ 		{
++ 		    char_u *p = ml_get_curline();
++ 		    int indent = skipwhite(p) - p;
++ 
++ 		    if (indent > 0)
++ 		    {
++ 			(void)del_bytes(indent, FALSE, FALSE);
++ 			mark_col_adjust(curwin->w_cursor.lnum,
++ 					       (colnr_T)0, 0L, (long)-indent);
++ 		      }
++ 		}
+  		curwin->w_cursor.lnum--;
+  		if (do_join(2, TRUE, FALSE, FALSE) == FAIL)
+  		{
+*** ../vim-7.4.051/src/testdir/test68.in	2012-07-25 15:57:06.000000000 +0200
+--- src/testdir/test68.in	2013-10-06 16:20:33.000000000 +0200
+***************
+*** 62,67 ****
+--- 62,81 ----
+  }
+  
+  STARTTEST
++ /^{/+3
++ :set tw=5 fo=t2a si
++ i  A_
++ ENDTEST
++ 
++ {
++ 
++   x a
++   b
++  c
++ 
++ }
++ 
++ STARTTEST
+  /^{/+1
+  :set tw=5 fo=qn comments=:#
+  gwap
+*** ../vim-7.4.051/src/testdir/test68.ok	2012-07-25 16:03:05.000000000 +0200
+--- src/testdir/test68.ok	2013-10-06 16:20:33.000000000 +0200
+***************
+*** 43,48 ****
+--- 43,57 ----
+  
+  
+  {
++ 
++   x a
++     b_
++     c
++ 
++ }
++ 
++ 
++ {
+  # 1 a
+  #   b
+  }
+*** ../vim-7.4.051/src/version.c	2013-10-06 15:46:06.000000000 +0200
+--- src/version.c	2013-10-06 17:25:27.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     52,
+  /**/
+
+-- 
+ARTHUR:    Will you ask your master if he wants to join my court at Camelot?!
+GUARD #1:  But then of course African swallows are not migratory.
+GUARD #2:  Oh, yeah...
+GUARD #1:  So they couldn't bring a coconut back anyway...
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

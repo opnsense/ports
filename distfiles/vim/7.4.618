@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.618
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.618 (after 7.4.609)
+Problem:    luaV_setref() is missing a return statement. (Ozaki Kiichi)
+Solution:   Put the return statement back.
+Files:	    src/if_lua.c
+
+
+*** ../vim-7.4.617/src/if_lua.c	2015-02-03 12:55:11.136179596 +0100
+--- src/if_lua.c	2015-02-03 23:07:59.892636921 +0100
+***************
+*** 1547,1552 ****
+--- 1547,1553 ----
+  	abort = set_ref_in_item(&tv, copyID, NULL, NULL);
+      }
+      lua_pushinteger(L, abort);
++     return 0;
+  }
+  
+      static int
+*** ../vim-7.4.617/src/version.c	2015-02-03 19:10:45.978888772 +0100
+--- src/version.c	2015-02-03 23:09:15.267493945 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     618,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+174. You know what a listserv is.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

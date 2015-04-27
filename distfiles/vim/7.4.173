@@ -1,0 +1,61 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.173
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.173
+Problem:    When using scrollbind the cursor can end up below the last line.
+	    (mvxxc)
+Solution:   Reset w_botfill when scrolling up. (Christian Brabandt)
+Files:	    src/move.c
+
+
+*** ../vim-7.4.172/src/move.c	2012-11-28 18:15:42.000000000 +0100
+--- src/move.c	2014-02-11 15:39:24.758138292 +0100
+***************
+*** 2101,2106 ****
+--- 2101,2107 ----
+      int		used;
+      lineoff_T	loff;
+      lineoff_T	boff;
++     linenr_T	old_topline = curwin->w_topline;
+  
+      loff.lnum = boff.lnum = curwin->w_cursor.lnum;
+  #ifdef FEAT_FOLDING
+***************
+*** 2156,2161 ****
+--- 2157,2164 ----
+  	curwin->w_topline = topline;
+  #ifdef FEAT_DIFF
+      curwin->w_topfill = topfill;
++     if (old_topline > curwin->w_topline + curwin->w_height)
++ 	curwin->w_botfill = FALSE;
+      check_topfill(curwin, FALSE);
+  #endif
+      curwin->w_valid &= ~(VALID_WROW|VALID_CROW|VALID_BOTLINE|VALID_BOTLINE_AP);
+*** ../vim-7.4.172/src/version.c	2014-02-11 15:23:27.942123631 +0100
+--- src/version.c	2014-02-11 15:38:34.562137523 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     173,
+  /**/
+
+-- 
+   GALAHAD hurries to the door and pushes through it.  As he leaves the room
+   we CUT TO the reverse to show that he is now in a room full of bathing
+   and romping GIRLIES, all innocent, wide-eyed and beautiful.  They smile
+   enchantingly at him as he tries to keep walking without being diverted by
+   the lovely sights assaulting his eyeballs.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

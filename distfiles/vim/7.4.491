@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.491
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.491
+Problem:    When winrestview() has a negative "topline" value there are
+	    display errors.
+Solution:   Correct a negative value to 1. (Hirohito Higashi)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.490/src/eval.c	2014-09-19 20:45:19.266454650 +0200
+--- src/eval.c	2014-10-31 15:43:55.811056060 +0100
+***************
+*** 19576,19582 ****
+  # endif
+  	changed_window_setting();
+  
+! 	if (curwin->w_topline == 0)
+  	    curwin->w_topline = 1;
+  	if (curwin->w_topline > curbuf->b_ml.ml_line_count)
+  	    curwin->w_topline = curbuf->b_ml.ml_line_count;
+--- 19576,19582 ----
+  # endif
+  	changed_window_setting();
+  
+! 	if (curwin->w_topline <= 0)
+  	    curwin->w_topline = 1;
+  	if (curwin->w_topline > curbuf->b_ml.ml_line_count)
+  	    curwin->w_topline = curbuf->b_ml.ml_line_count;
+*** ../vim-7.4.490/src/version.c	2014-10-31 13:54:21.843214469 +0100
+--- src/version.c	2014-10-31 15:44:59.555054524 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     491,
+  /**/
+
+-- 
+GUARD #2:  Wait a minute -- supposing two swallows carried it together?
+GUARD #1:  No, they'd have to have it on a line.
+GUARD #2:  Well, simple!  They'd just use a standard creeper!
+GUARD #1:  What, held under the dorsal guiding feathers?
+GUARD #2:  Well, why not?
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

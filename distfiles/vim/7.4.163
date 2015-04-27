@@ -1,0 +1,75 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.163
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.163 (after 7.4.142)
+Problem:    MS-Windows input doesn't work properly on Windows 7 and earlier.
+Solution:   Add a check for Windows 8. (Yasuhiro Matsumoto)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.162/src/os_win32.c	2014-01-24 19:55:33.078220735 +0100
+--- src/os_win32.c	2014-02-05 13:33:03.758078734 +0100
+***************
+*** 232,237 ****
+--- 232,239 ----
+  
+  static char_u *exe_path = NULL;
+  
++ static BOOL win8_or_later = FALSE;
++ 
+  /*
+   * Version of ReadConsoleInput() that works with IME.
+   * Works around problems on Windows 8.
+***************
+*** 252,257 ****
+--- 254,266 ----
+      static DWORD s_dwMax = 0;
+      DWORD dwEvents;
+  
++     if (!win8_or_later)
++     {
++ 	if (nLength == -1)
++ 	    return PeekConsoleInput(hInput, lpBuffer, 1, lpEvents);
++ 	return ReadConsoleInput(hInput, lpBuffer, 1, &dwEvents);
++     }
++ 
+      if (s_dwMax == 0)
+      {
+  	if (nLength == -1)
+***************
+*** 617,622 ****
+--- 626,635 ----
+  
+  	g_PlatformId = ovi.dwPlatformId;
+  
++ 	if ((ovi.dwMajorVersion == 6 && ovi.dwMinorVersion >= 2)
++ 		|| ovi.dwMajorVersion > 6)
++ 	    win8_or_later = TRUE;
++ 
+  #ifdef HAVE_ACL
+  	/*
+  	 * Load the ADVAPI runtime if we are on anything
+*** ../vim-7.4.162/src/version.c	2014-02-05 12:36:36.622026833 +0100
+--- src/version.c	2014-02-05 13:31:31.618077322 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     163,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+266. You hear most of your jokes via e-mail instead of in person.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

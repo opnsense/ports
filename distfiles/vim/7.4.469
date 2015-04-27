@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.469
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.469 (after 7.4.467)
+Problem:    Can't build with MSVC. (Ken Takata)
+Solution:   Move the assignment after the declarations.
+Files:	    src/normal.c
+
+
+*** ../vim-7.4.468/src/normal.c	2014-10-09 13:22:41.804886993 +0200
+--- src/normal.c	2014-10-09 14:46:05.728897923 +0200
+***************
+*** 1382,1390 ****
+      int		restart_edit_save;
+  #ifdef FEAT_LINEBREAK
+      int		lbr_saved = curwin->w_p_lbr;
+- 
+-     curwin->w_p_lbr = FALSE;	/* avoid a problem with unwanted linebreaks in
+- 				 * block mode */
+  #endif
+  
+      /* The visual area is remembered for redo */
+--- 1382,1387 ----
+***************
+*** 1396,1401 ****
+--- 1393,1402 ----
+      int		    include_line_break = FALSE;
+  #endif
+  
++ #ifdef FEAT_LINEBREAK
++     curwin->w_p_lbr = FALSE;	/* Avoid a problem with unwanted linebreaks in
++ 				 * block mode. */
++ #endif
+  #if defined(FEAT_CLIPBOARD)
+      /*
+       * Yank the visual area into the GUI selection register before we operate
+*** ../vim-7.4.468/src/version.c	2014-10-09 13:36:12.736888764 +0200
+--- src/version.c	2014-10-09 14:46:58.760898039 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     469,
+  /**/
+
+-- 
+"After a few years of marriage a man can look right at a woman
+without seeing her and a woman can see right through a man
+without looking at him."
+ - Helen Rowland
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

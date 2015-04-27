@@ -1,0 +1,131 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.585
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.585
+Problem:    Range for :bdelete does not work. (Ronald Schild)
+Solution:   Also allow unloaded buffers.
+Files:	    src/ex_cmds.h, src/testdir/test_command_count.in,
+	    src/testdir/test_command_count.ok
+
+
+*** ../vim-7.4.584/src/ex_cmds.h	2015-01-07 16:52:53.506792420 +0100
+--- src/ex_cmds.h	2015-01-20 13:22:16.778245812 +0100
+***************
+*** 173,179 ****
+  			ADDR_LINES),
+  EX(CMD_bdelete,		"bdelete",	ex_bunload,
+  			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+! 			ADDR_LOADED_BUFFERS),
+  EX(CMD_behave,		"behave",	ex_behave,
+  			NEEDARG|WORD1|TRLBAR|CMDWIN,
+  			ADDR_LINES),
+--- 173,179 ----
+  			ADDR_LINES),
+  EX(CMD_bdelete,		"bdelete",	ex_bunload,
+  			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+! 			ADDR_BUFFERS),
+  EX(CMD_behave,		"behave",	ex_behave,
+  			NEEDARG|WORD1|TRLBAR|CMDWIN,
+  			ADDR_LINES),
+*** ../vim-7.4.584/src/testdir/test_command_count.in	2015-01-20 12:39:35.918399822 +0100
+--- src/testdir/test_command_count.in	2015-01-20 13:21:55.510479070 +0100
+***************
+*** 92,102 ****
+  :call append(0, g:lines)
+  :unlet g:lines
+  :w|bd
+- :se hidden
+  :b1
+  ENDTEST
+  
+  STARTTEST
+  :only!
+  :let g:lines = []
+  :%argd
+--- 92,128 ----
+  :call append(0, g:lines)
+  :unlet g:lines
+  :w|bd
+  :b1
+  ENDTEST
+  
+  STARTTEST
++ :let g:lines = []
++ :func BufStatus()
++ :  call add(g:lines, 'aaa: ' . buflisted(g:buf_aaa) . ' bbb: ' . buflisted(g:buf_bbb) . ' ccc: ' . buflisted(g:buf_ccc))
++ :endfunc
++ :se nohidden
++ :e aaa
++ :let buf_aaa = bufnr('%')
++ :e bbb
++ :let buf_bbb = bufnr('%')
++ :e ccc
++ :let buf_ccc = bufnr('%')
++ :b1
++ :call BufStatus()
++ :exe buf_bbb . "," . buf_ccc . "bdelete"
++ :call BufStatus()
++ :exe buf_aaa . "bdelete"
++ :call BufStatus()
++ :e! test.out
++ :call append('$', g:lines)
++ :unlet g:lines
++ :delfunc BufStatus
++ :w|bd
++ :b1
++ ENDTEST
++ 
++ STARTTEST
++ :se hidden
+  :only!
+  :let g:lines = []
+  :%argd
+*** ../vim-7.4.584/src/testdir/test_command_count.ok	2015-01-14 11:24:51.851582151 +0100
+--- src/testdir/test_command_count.ok	2015-01-20 13:16:03.358341733 +0100
+***************
+*** 28,35 ****
+  $+tabe E16: Invalid range
+  0tabm x
+  
+  argdo: c d e
+  windo: 2 3 4
+! bufdo: 2 3 4 5 6 7 8 9 10 12
+  bufdo: 3 4 5 6 7
+  tabdo: 2 3 4
+--- 28,38 ----
+  $+tabe E16: Invalid range
+  0tabm x
+  
++ aaa: 1 bbb: 1 ccc: 1
++ aaa: 1 bbb: 0 ccc: 0
++ aaa: 0 bbb: 0 ccc: 0
+  argdo: c d e
+  windo: 2 3 4
+! bufdo: 2 3 4 5 6 7 8 9 10 15
+  bufdo: 3 4 5 6 7
+  tabdo: 2 3 4
+*** ../vim-7.4.584/src/version.c	2015-01-20 12:39:35.918399822 +0100
+--- src/version.c	2015-01-20 13:27:49.438597595 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     585,
+  /**/
+
+-- 
+I AM THANKFUL...
+...for a lawn that needs mowing, windows that need cleaning
+and gutters that need fixing because it means I have a home.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.545
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.545
+Problem:    Highlighting for multi-line matches is not correct.
+Solution:   Stop highlight at the end of the match. (Hirohito Higashi)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.544/src/screen.c	2014-11-27 13:37:07.399540002 +0100
+--- src/screen.c	2014-12-13 03:30:31.520358269 +0100
+***************
+*** 3864,3872 ****
+  				&& v >= (long)shl->startcol
+  				&& v < (long)shl->endcol)
+  			{
+  			    shl->attr_cur = shl->attr;
+  			}
+! 			else if (v >= (long)shl->endcol && shl->lnum == lnum)
+  			{
+  			    shl->attr_cur = 0;
+  			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+--- 3864,3878 ----
+  				&& v >= (long)shl->startcol
+  				&& v < (long)shl->endcol)
+  			{
++ #ifdef FEAT_MBYTE
++ 			    int tmp_col = v + MB_PTR2LEN(ptr);
++ 
++ 			    if (shl->endcol < tmp_col)
++ 				shl->endcol = tmp_col;
++ #endif
+  			    shl->attr_cur = shl->attr;
+  			}
+! 			else if (v == (long)shl->endcol)
+  			{
+  			    shl->attr_cur = 0;
+  			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+*** ../vim-7.4.544/src/version.c	2014-12-13 03:20:10.543067406 +0100
+--- src/version.c	2014-12-13 03:36:19.704599650 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     545,
+  /**/
+
+-- 
+You can test a person's importance in the organization by asking how much RAM
+his computer has.  Anybody who knows the answer to that question is not a
+decision-maker.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

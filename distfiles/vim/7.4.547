@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.547
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.547
+Problem:    Using "vit" does not select a multi-byte character at the end
+            correctly.
+Solution:   Advance the cursor over the multi-byte character. (Christian
+            Brabandt)
+Files:      src/search.c
+
+
+*** ../vim-7.4.546/src/search.c	2014-12-13 03:17:07.465046539 +0100
+--- src/search.c	2014-12-13 20:08:39.464238348 +0100
+***************
+*** 3932,3938 ****
+  	if (lt(end_pos, start_pos))
+  	    curwin->w_cursor = start_pos;
+  	else if (*p_sel == 'e')
+! 	    ++curwin->w_cursor.col;
+  	VIsual = start_pos;
+  	VIsual_mode = 'v';
+  	redraw_curbuf_later(INVERTED);	/* update the inversion */
+--- 3932,3938 ----
+  	if (lt(end_pos, start_pos))
+  	    curwin->w_cursor = start_pos;
+  	else if (*p_sel == 'e')
+! 	    inc_cursor();
+  	VIsual = start_pos;
+  	VIsual_mode = 'v';
+  	redraw_curbuf_later(INVERTED);	/* update the inversion */
+*** ../vim-7.4.546/src/version.c	2014-12-13 03:58:03.798672391 +0100
+--- src/version.c	2014-12-13 20:08:44.652181415 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     547,
+  /**/
+
+-- 
+Engineers will go without food and hygiene for days to solve a problem.
+(Other times just because they forgot.)
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

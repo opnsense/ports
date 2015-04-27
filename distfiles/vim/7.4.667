@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.667
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.667
+Problem:    'colorcolumn' isn't drawn in a closed fold while 'cursorcolumn'
+	    is. (Carlos Pita)
+Solution:   Make it consistent. (Christian Brabandt)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.666/src/screen.c	2015-03-20 15:58:47.417117245 +0100
+--- src/screen.c	2015-03-20 16:42:27.819592954 +0100
+***************
+*** 2740,2745 ****
+--- 2740,2767 ----
+      }
+  
+  #ifdef FEAT_SYN_HL
++     /* Show colorcolumn in the fold line, but let cursorcolumn override it. */
++     if (wp->w_p_cc_cols)
++     {
++ 	int i = 0;
++ 	int j = wp->w_p_cc_cols[i];
++ 	int old_txtcol = txtcol;
++ 
++ 	while (j > -1)
++ 	{
++ 	    txtcol += j;
++ 	    if (wp->w_p_wrap)
++ 		txtcol -= wp->w_skipcol;
++ 	    else
++ 		txtcol -= wp->w_leftcol;
++ 	    if (txtcol >= 0 && txtcol < W_WIDTH(wp))
++ 		ScreenAttrs[off + txtcol] = hl_combine_attr(
++ 				    ScreenAttrs[off + txtcol], hl_attr(HLF_MC));
++ 	    txtcol = old_txtcol;
++ 	    j = wp->w_p_cc_cols[++i];
++ 	}
++     }
++ 
+      /* Show 'cursorcolumn' in the fold line. */
+      if (wp->w_p_cuc)
+      {
+*** ../vim-7.4.666/src/version.c	2015-03-20 16:26:48.974173903 +0100
+--- src/version.c	2015-03-20 16:36:14.035803222 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     667,
+  /**/
+
+-- 
+ARTHUR:  Shut up!  Will you shut up!
+DENNIS:  Ah, now we see the violence inherent in the system.
+ARTHUR:  Shut up!
+DENNIS:  Oh!  Come and see the violence inherent in the system!
+         HELP! HELP!  I'm being repressed!
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

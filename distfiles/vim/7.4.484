@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.484
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.484 (after 7.4.483)
+Problem:    Compiler warning on MS-Windows. (Ken Takata)
+Solution:   Add type cast.
+Files:	    src/getchar.c
+
+
+*** ../vim-7.4.483/src/getchar.c	2014-10-21 16:22:01.403175226 +0200
+--- src/getchar.c	2014-10-21 18:12:33.170273428 +0200
+***************
+*** 4530,4536 ****
+  	    if (q != NULL)
+  	    {
+  		vim_unescape_csi(q);
+! 		qlen = STRLEN(q);
+  		vim_free(q);
+  	    }
+  	}
+--- 4530,4536 ----
+  	    if (q != NULL)
+  	    {
+  		vim_unescape_csi(q);
+! 		qlen = (int)STRLEN(q);
+  		vim_free(q);
+  	    }
+  	}
+*** ../vim-7.4.483/src/version.c	2014-10-21 16:22:01.407175226 +0200
+--- src/version.c	2014-10-21 18:14:13.410273647 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     484,
+  /**/
+
+-- 
+"My particular problem is with registry entries, which seem to just
+accumulate like plastic coffee cups..."           -- Paul Moore
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

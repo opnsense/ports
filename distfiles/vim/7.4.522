@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.522
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.522
+Problem:    Specifying wrong buffer size for GetLongPathName().
+Solution:   Use the actual size. (Ken Takata)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.521/src/eval.c	2014-11-12 20:09:02.875529458 +0100
+--- src/eval.c	2014-11-19 18:01:14.560028682 +0100
+***************
+*** 24762,24768 ****
+  	    p = alloc(_MAX_PATH + 1);
+  	    if (p != NULL)
+  	    {
+! 		if (GetLongPathName(*fnamep, p, MAXPATHL))
+  		{
+  		    vim_free(*bufp);
+  		    *bufp = *fnamep = p;
+--- 24762,24768 ----
+  	    p = alloc(_MAX_PATH + 1);
+  	    if (p != NULL)
+  	    {
+! 		if (GetLongPathName(*fnamep, p, _MAX_PATH))
+  		{
+  		    vim_free(*bufp);
+  		    *bufp = *fnamep = p;
+*** ../vim-7.4.521/src/version.c	2014-11-19 17:35:35.085446649 +0100
+--- src/version.c	2014-11-19 18:02:02.003491140 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     522,
+  /**/
+
+-- 
+Every person is responsible for the choices he makes.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

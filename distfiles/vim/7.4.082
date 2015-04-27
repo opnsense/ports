@@ -1,0 +1,344 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.082
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.082
+Problem:    Using "gf" in a changed buffer suggests adding "!", which is not
+            possible. (Tim Chase)
+Solution:   Pass a flag to check_changed() wether adding ! make sense.
+Files:      src/vim.h, src/ex_cmds2.c, src/proto/ex_cmds2.pro, src/globals.h,
+            src/ex_cmds.c, src/ex_docmd.c
+
+
+*** ../vim-7.4.081/src/vim.h	2013-11-08 04:30:06.000000000 +0100
+--- src/vim.h	2013-11-09 03:00:00.000000000 +0100
+***************
+*** 1176,1181 ****
+--- 1176,1190 ----
+  #define RESIZE_BOTH	15	/* resize in both directions */
+  
+  /*
++  * flags for check_changed()
++  */
++ #define CCGD_AW		1	/* do autowrite if buffer was changed */
++ #define CCGD_MULTWIN	2	/* check also when several wins for the buf */
++ #define CCGD_FORCEIT	4	/* ! used */
++ #define CCGD_ALLBUF	8	/* may write all buffers */
++ #define CCGD_EXCMD	16	/* may suggest using ! */
++ 
++ /*
+   * "flags" values for option-setting functions.
+   * When OPT_GLOBAL and OPT_LOCAL are both missing, set both local and global
+   * values, get local value.
+*** ../vim-7.4.081/src/ex_cmds2.c	2013-06-28 20:14:53.000000000 +0200
+--- src/ex_cmds2.c	2013-11-09 03:14:44.000000000 +0100
+***************
+*** 1436,1455 ****
+  }
+  
+  /*
+!  * return TRUE if buffer was changed and cannot be abandoned.
+   */
+      int
+! check_changed(buf, checkaw, mult_win, forceit, allbuf)
+      buf_T	*buf;
+!     int		checkaw;	/* do autowrite if buffer was changed */
+!     int		mult_win;	/* check also when several wins for the buf */
+!     int		forceit;
+!     int		allbuf UNUSED;	/* may write all buffers */
+  {
+      if (       !forceit
+  	    && bufIsChanged(buf)
+! 	    && (mult_win || buf->b_nwindows <= 1)
+! 	    && (!checkaw || autowrite(buf, forceit) == FAIL))
+      {
+  #if defined(FEAT_GUI_DIALOG) || defined(FEAT_CON_DIALOG)
+  	if ((p_confirm || cmdmod.confirm) && p_write)
+--- 1436,1455 ----
+  }
+  
+  /*
+!  * Return TRUE if buffer was changed and cannot be abandoned.
+!  * For flags use the CCGD_ values.
+   */
+      int
+! check_changed(buf, flags)
+      buf_T	*buf;
+!     int		flags;
+  {
++     int forceit = (flags & CCGD_FORCEIT);
++ 
+      if (       !forceit
+  	    && bufIsChanged(buf)
+! 	    && ((flags & CCGD_MULTWIN) || buf->b_nwindows <= 1)
+! 	    && (!(flags & CCGD_AW) || autowrite(buf, forceit) == FAIL))
+      {
+  #if defined(FEAT_GUI_DIALOG) || defined(FEAT_CON_DIALOG)
+  	if ((p_confirm || cmdmod.confirm) && p_write)
+***************
+*** 1457,1463 ****
+  	    buf_T	*buf2;
+  	    int		count = 0;
+  
+! 	    if (allbuf)
+  		for (buf2 = firstbuf; buf2 != NULL; buf2 = buf2->b_next)
+  		    if (bufIsChanged(buf2)
+  				     && (buf2->b_ffname != NULL
+--- 1457,1463 ----
+  	    buf_T	*buf2;
+  	    int		count = 0;
+  
+! 	    if (flags & CCGD_ALLBUF)
+  		for (buf2 = firstbuf; buf2 != NULL; buf2 = buf2->b_next)
+  		    if (bufIsChanged(buf2)
+  				     && (buf2->b_ffname != NULL
+***************
+*** 1480,1486 ****
+  	    return bufIsChanged(buf);
+  	}
+  #endif
+! 	EMSG(_(e_nowrtmsg));
+  	return TRUE;
+      }
+      return FALSE;
+--- 1480,1489 ----
+  	    return bufIsChanged(buf);
+  	}
+  #endif
+! 	if (flags & CCGD_EXCMD)
+! 	    EMSG(_(e_nowrtmsg));
+! 	else
+! 	    EMSG(_(e_nowrtmsg_nobang));
+  	return TRUE;
+      }
+      return FALSE;
+***************
+*** 1690,1696 ****
+  	{
+  	    /* Try auto-writing the buffer.  If this fails but the buffer no
+  	    * longer exists it's not changed, that's OK. */
+! 	    if (check_changed(buf, p_awa, TRUE, FALSE, TRUE) && buf_valid(buf))
+  		break;	    /* didn't save - still changes */
+  	}
+      }
+--- 1693,1701 ----
+  	{
+  	    /* Try auto-writing the buffer.  If this fails but the buffer no
+  	    * longer exists it's not changed, that's OK. */
+! 	    if (check_changed(buf, (p_awa ? CCGD_AW : 0)
+! 				 | CCGD_MULTWIN
+! 				 | CCGD_ALLBUF) && buf_valid(buf))
+  		break;	    /* didn't save - still changes */
+  	}
+      }
+***************
+*** 2274,2280 ****
+  		vim_free(p);
+  	    }
+  	    if ((!P_HID(curbuf) || !other)
+! 		  && check_changed(curbuf, TRUE, !other, eap->forceit, FALSE))
+  		return;
+  	}
+  
+--- 2279,2288 ----
+  		vim_free(p);
+  	    }
+  	    if ((!P_HID(curbuf) || !other)
+! 		  && check_changed(curbuf, CCGD_AW
+! 					 | (other ? 0 : CCGD_MULTWIN)
+! 					 | (eap->forceit ? CCGD_FORCEIT : 0)
+! 					 | CCGD_EXCMD))
+  		return;
+  	}
+  
+***************
+*** 2315,2321 ****
+       */
+      if (       P_HID(curbuf)
+  	    || eap->cmdidx == CMD_snext
+! 	    || !check_changed(curbuf, TRUE, FALSE, eap->forceit, FALSE))
+      {
+  	if (*eap->arg != NUL)		    /* redefine file list */
+  	{
+--- 2323,2331 ----
+       */
+      if (       P_HID(curbuf)
+  	    || eap->cmdidx == CMD_snext
+! 	    || !check_changed(curbuf, CCGD_AW
+! 				    | (eap->forceit ? CCGD_FORCEIT : 0)
+! 				    | CCGD_EXCMD))
+      {
+  	if (*eap->arg != NUL)		    /* redefine file list */
+  	{
+***************
+*** 2458,2464 ****
+      if (eap->cmdidx == CMD_windo
+  	    || eap->cmdidx == CMD_tabdo
+  	    || P_HID(curbuf)
+! 	    || !check_changed(curbuf, TRUE, FALSE, eap->forceit, FALSE))
+      {
+  	/* start at the first argument/window/buffer */
+  	i = 0;
+--- 2468,2476 ----
+      if (eap->cmdidx == CMD_windo
+  	    || eap->cmdidx == CMD_tabdo
+  	    || P_HID(curbuf)
+! 	    || !check_changed(curbuf, CCGD_AW
+! 				    | (eap->forceit ? CCGD_FORCEIT : 0)
+! 				    | CCGD_EXCMD))
+      {
+  	/* start at the first argument/window/buffer */
+  	i = 0;
+*** ../vim-7.4.081/src/proto/ex_cmds2.pro	2013-08-10 13:37:10.000000000 +0200
+--- src/proto/ex_cmds2.pro	2013-11-09 03:18:02.000000000 +0100
+***************
+*** 35,41 ****
+  int prof_def_func __ARGS((void));
+  int autowrite __ARGS((buf_T *buf, int forceit));
+  void autowrite_all __ARGS((void));
+! int check_changed __ARGS((buf_T *buf, int checkaw, int mult_win, int forceit, int allbuf));
+  void browse_save_fname __ARGS((buf_T *buf));
+  void dialog_changed __ARGS((buf_T *buf, int checkall));
+  int can_abandon __ARGS((buf_T *buf, int forceit));
+--- 35,41 ----
+  int prof_def_func __ARGS((void));
+  int autowrite __ARGS((buf_T *buf, int forceit));
+  void autowrite_all __ARGS((void));
+! int check_changed __ARGS((buf_T *buf, int flags));
+  void browse_save_fname __ARGS((buf_T *buf));
+  void dialog_changed __ARGS((buf_T *buf, int checkall));
+  int can_abandon __ARGS((buf_T *buf, int forceit));
+*** ../vim-7.4.081/src/globals.h	2013-07-04 19:53:44.000000000 +0200
+--- src/globals.h	2013-11-09 03:05:54.000000000 +0100
+***************
+*** 1490,1495 ****
+--- 1490,1496 ----
+  EXTERN char_u e_notopen[]	INIT(= N_("E484: Can't open file %s"));
+  EXTERN char_u e_notread[]	INIT(= N_("E485: Can't read file %s"));
+  EXTERN char_u e_nowrtmsg[]	INIT(= N_("E37: No write since last change (add ! to override)"));
++ EXTERN char_u e_nowrtmsg_nobang[]   INIT(= N_("E37: No write since last change"));
+  EXTERN char_u e_null[]		INIT(= N_("E38: Null argument"));
+  #ifdef FEAT_DIGRAPHS
+  EXTERN char_u e_number_exp[]	INIT(= N_("E39: Number expected"));
+*** ../vim-7.4.081/src/ex_cmds.c	2013-10-02 18:43:00.000000000 +0200
+--- src/ex_cmds.c	2013-11-09 03:19:25.000000000 +0100
+***************
+*** 3253,3260 ****
+      if (  ((!other_file && !(flags & ECMD_OLDBUF))
+  	    || (curbuf->b_nwindows == 1
+  		&& !(flags & (ECMD_HIDE | ECMD_ADDBUF))))
+! 	&& check_changed(curbuf, p_awa, !other_file,
+! 					(flags & ECMD_FORCEIT), FALSE))
+      {
+  	if (fnum == 0 && other_file && ffname != NULL)
+  	    (void)setaltfname(ffname, sfname, newlnum < 0 ? 0 : newlnum);
+--- 3253,3262 ----
+      if (  ((!other_file && !(flags & ECMD_OLDBUF))
+  	    || (curbuf->b_nwindows == 1
+  		&& !(flags & (ECMD_HIDE | ECMD_ADDBUF))))
+! 	&& check_changed(curbuf, (p_awa ? CCGD_AW : 0)
+! 			       | (other_file ? 0 : CCGD_MULTWIN)
+! 			       | ((flags & ECMD_FORCEIT) ? CCGD_FORCEIT : 0)
+! 			       | (eap == NULL ? 0 : CCGD_EXCMD)))
+      {
+  	if (fnum == 0 && other_file && ffname != NULL)
+  	    (void)setaltfname(ffname, sfname, newlnum < 0 ? 0 : newlnum);
+***************
+*** 7664,7670 ****
+  # ifdef FEAT_WINDOWS
+  	    ++emsg_off;
+  # endif
+! 	    split = check_changed(curbuf, TRUE, FALSE, FALSE, FALSE);
+  # ifdef FEAT_WINDOWS
+  	    --emsg_off;
+  # else
+--- 7666,7672 ----
+  # ifdef FEAT_WINDOWS
+  	    ++emsg_off;
+  # endif
+! 	    split = check_changed(curbuf, CCGD_AW | CCGD_EXCMD);
+  # ifdef FEAT_WINDOWS
+  	    --emsg_off;
+  # else
+*** ../vim-7.4.081/src/ex_docmd.c	2013-11-08 04:30:06.000000000 +0100
+--- src/ex_docmd.c	2013-11-09 03:30:10.000000000 +0100
+***************
+*** 6565,6571 ****
+      if (check_more(FALSE, eap->forceit) == OK && only_one_window())
+  	exiting = TRUE;
+      if ((!P_HID(curbuf)
+! 		&& check_changed(curbuf, p_awa, FALSE, eap->forceit, FALSE))
+  	    || check_more(TRUE, eap->forceit) == FAIL
+  	    || (only_one_window() && check_changed_any(eap->forceit)))
+      {
+--- 6565,6573 ----
+      if (check_more(FALSE, eap->forceit) == OK && only_one_window())
+  	exiting = TRUE;
+      if ((!P_HID(curbuf)
+! 		&& check_changed(curbuf, (p_awa ? CCGD_AW : 0)
+! 				       | (eap->forceit ? CCGD_FORCEIT : 0)
+! 				       | CCGD_EXCMD))
+  	    || check_more(TRUE, eap->forceit) == FAIL
+  	    || (only_one_window() && check_changed_any(eap->forceit)))
+      {
+***************
+*** 7099,7105 ****
+      if (!P_HID(curbuf) && !split)
+      {
+  	++emsg_off;
+! 	split = check_changed(curbuf, TRUE, FALSE, FALSE, FALSE);
+  	--emsg_off;
+      }
+      if (split)
+--- 7101,7107 ----
+      if (!P_HID(curbuf) && !split)
+      {
+  	++emsg_off;
+! 	split = check_changed(curbuf, CCGD_AW);
+  	--emsg_off;
+      }
+      if (split)
+***************
+*** 7361,7367 ****
+  {
+      /* Set recoverymode right away to avoid the ATTENTION prompt. */
+      recoverymode = TRUE;
+!     if (!check_changed(curbuf, p_awa, TRUE, eap->forceit, FALSE)
+  	    && (*eap->arg == NUL
+  			     || setfname(curbuf, eap->arg, NULL, TRUE) == OK))
+  	ml_recover();
+--- 7363,7373 ----
+  {
+      /* Set recoverymode right away to avoid the ATTENTION prompt. */
+      recoverymode = TRUE;
+!     if (!check_changed(curbuf, (p_awa ? CCGD_AW : 0)
+! 			     | CCGD_MULTWIN
+! 			     | (eap->forceit ? CCGD_FORCEIT : 0)
+! 			     | CCGD_EXCMD)
+! 
+  	    && (*eap->arg == NUL
+  			     || setfname(curbuf, eap->arg, NULL, TRUE) == OK))
+  	ml_recover();
+*** ../vim-7.4.081/src/version.c	2013-11-09 02:32:15.000000000 +0100
+--- src/version.c	2013-11-09 03:26:06.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     82,
+  /**/
+
+-- 
+People who want to share their religious views with you
+almost never want you to share yours with them.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

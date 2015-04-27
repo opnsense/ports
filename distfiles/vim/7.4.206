@@ -1,0 +1,72 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.206
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.206
+Problem:    Compiler warnings on 64 bit Windows.
+Solution:   Add type casts. (Mike Williams)
+Files:	    src/gui_w48.c, src/os_mswin.c
+
+
+*** ../vim-7.4.205/src/gui_w48.c	2014-03-12 19:24:32.504933166 +0100
+--- src/gui_w48.c	2014-03-19 12:32:15.129821412 +0100
+***************
+*** 3078,3084 ****
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+      {
+  	int	len;
+! 	acp_to_enc(lf.lfFaceName, strlen(lf.lfFaceName),
+  						(char_u **)&font_name, &len);
+      }
+  #endif
+--- 3078,3084 ----
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+      {
+  	int	len;
+! 	acp_to_enc(lf.lfFaceName, (int)strlen(lf.lfFaceName),
+  						(char_u **)&font_name, &len);
+      }
+  #endif
+*** ../vim-7.4.205/src/os_mswin.c	2014-03-12 19:24:32.504933166 +0100
+--- src/os_mswin.c	2014-03-19 12:32:15.129821412 +0100
+***************
+*** 2884,2890 ****
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+      {
+  	int	len;
+! 	enc_to_acp(name, strlen(name), &acpname, &len);
+  	name = acpname;
+      }
+  #endif
+--- 2884,2890 ----
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+      {
+  	int	len;
+! 	enc_to_acp(name, (int)strlen(name), &acpname, &len);
+  	name = acpname;
+      }
+  #endif
+*** ../vim-7.4.205/src/version.c	2014-03-12 21:28:09.485046816 +0100
+--- src/version.c	2014-03-19 12:33:16.253822349 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     206,
+  /**/
+
+-- 
+We apologise again for the fault in the subtitles.  Those responsible for
+sacking the people who have just been sacked have been sacked.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

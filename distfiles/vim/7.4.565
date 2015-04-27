@@ -1,0 +1,411 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.565
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.565
+Problem:    Ranges for arguments, buffers, tabs, etc. are not checked to be
+	    valid but limited to the maximum.  This can cause the wrong thing
+	    to happen.
+Solution:   Give an error for an invalid value. (Marcin Szamotulski)
+	    Use windows range for ":wincmd".
+Files:	    src/ex_docmd.c, src/ex_cmds.h, src/testdir/test62.in,
+	    src/testdir/test_argument_count.in,
+	    src/testdir/test_argument_count.ok,
+	    src/testdir/test_close_count.in,
+	    src/testdir/test_command_count.in,
+	    src/testdir/test_command_count.ok
+
+
+*** ../vim-7.4.564/src/ex_docmd.c	2015-01-07 13:15:40.605829542 +0100
+--- src/ex_docmd.c	2015-01-07 15:33:21.950217606 +0100
+***************
+*** 2161,2166 ****
+--- 2161,2168 ----
+  		break;
+  	    case ADDR_ARGUMENTS:
+  		ea.line2 = curwin->w_arg_idx + 1;
++ 		if (ea.line2 > ARGCOUNT)
++ 		    ea.line2 = ARGCOUNT;
+  		break;
+  	    case ADDR_LOADED_BUFFERS:
+  	    case ADDR_BUFFERS:
+***************
+*** 3110,3116 ****
+       * Exceptions:
+       * - the 'k' command can directly be followed by any character.
+       * - the 's' command can be followed directly by 'c', 'g', 'i', 'I' or 'r'
+!      *	    but :sre[wind] is another command, as are :scrip[tnames],
+       *	    :scs[cope], :sim[alt], :sig[ns] and :sil[ent].
+       * - the "d" command can directly be followed by 'l' or 'p' flag.
+       */
+--- 3112,3118 ----
+       * Exceptions:
+       * - the 'k' command can directly be followed by any character.
+       * - the 's' command can be followed directly by 'c', 'g', 'i', 'I' or 'r'
+!      *	    but :sre[wind] is another command, as are :scr[iptnames],
+       *	    :scs[cope], :sim[alt], :sig[ns] and :sil[ent].
+       * - the "d" command can directly be followed by 'l' or 'p' flag.
+       */
+***************
+*** 4573,4618 ****
+  		lnum -= n;
+  	    else
+  		lnum += n;
+- 
+- 	    switch (addr_type)
+- 	    {
+- 		case ADDR_LINES:
+- 		    break;
+- 		case ADDR_ARGUMENTS:
+- 		    if (lnum < 0)
+- 			lnum = 0;
+- 		    else if (lnum >= ARGCOUNT)
+- 			lnum = ARGCOUNT;
+- 		    break;
+- 		case ADDR_TABS:
+- 		    if (lnum < 0)
+- 		    {
+- 			lnum = 0;
+- 			break;
+- 		    }
+- 		    if (lnum >= LAST_TAB_NR)
+- 			lnum = LAST_TAB_NR;
+- 		    break;
+- 		case ADDR_WINDOWS:
+- 		    if (lnum < 0)
+- 		    {
+- 			lnum = 0;
+- 			break;
+- 		    }
+- 		    if (lnum >= LAST_WIN_NR)
+- 			lnum = LAST_WIN_NR;
+- 		    break;
+- 		case ADDR_LOADED_BUFFERS:
+- 		case ADDR_BUFFERS:
+- 		    if (lnum < firstbuf->b_fnum)
+- 		    {
+- 			lnum = firstbuf->b_fnum;
+- 			break;
+- 		    }
+- 		    if (lnum > lastbuf->b_fnum)
+- 			lnum = lastbuf->b_fnum;
+- 		    break;
+- 	    }
+  	}
+      } while (*cmd == '/' || *cmd == '?');
+  
+--- 4575,4580 ----
+***************
+*** 4675,4691 ****
+  invalid_range(eap)
+      exarg_T	*eap;
+  {
+      if (       eap->line1 < 0
+  	    || eap->line2 < 0
+! 	    || eap->line1 > eap->line2
+! 	    || ((eap->argt & RANGE)
+! 		&& !(eap->argt & NOTADR)
+! 		&& eap->line2 > curbuf->b_ml.ml_line_count
+  #ifdef FEAT_DIFF
+! 			+ (eap->cmdidx == CMD_diffget)
+  #endif
+! 		))
+! 	return (char_u *)_(e_invrange);
+      return NULL;
+  }
+  
+--- 4637,4701 ----
+  invalid_range(eap)
+      exarg_T	*eap;
+  {
++     buf_T	*buf;
+      if (       eap->line1 < 0
+  	    || eap->line2 < 0
+! 	    || eap->line1 > eap->line2)
+! 	return (char_u *)_(e_invrange);
+! 
+!     if (eap->argt & RANGE)
+!     {
+! 	switch(eap->addr_type)
+! 	{
+! 	    case ADDR_LINES:
+! 		if (!(eap->argt & NOTADR)
+! 			&& eap->line2 > curbuf->b_ml.ml_line_count
+  #ifdef FEAT_DIFF
+! 			    + (eap->cmdidx == CMD_diffget)
+  #endif
+! 		   )
+! 		    return (char_u *)_(e_invrange);
+! 		break;
+! 	    case ADDR_ARGUMENTS:
+! 		if (eap->line2 > ARGCOUNT + (!ARGCOUNT))    // add 1 if ARCOUNT is 0
+! 		    return (char_u *)_(e_invrange);
+! 		break;
+! 	    case ADDR_BUFFERS:
+! 		if (eap->line1 < firstbuf->b_fnum
+! 			|| eap->line2 > lastbuf->b_fnum)
+! 		    return (char_u *)_(e_invrange);
+! 		break;
+! 	    case ADDR_LOADED_BUFFERS:
+! 		buf = firstbuf;
+! 		while (buf->b_ml.ml_mfp == NULL)
+! 		{
+! 		    if (buf->b_next == NULL)
+! 			return (char_u *)_(e_invrange);
+! 		    buf = buf->b_next;
+! 		}
+! 		if (eap->line1 < buf->b_fnum)
+! 		    return (char_u *)_(e_invrange);
+! 		buf = lastbuf;
+! 		while (buf->b_ml.ml_mfp == NULL)
+! 		{
+! 		    if (buf->b_prev == NULL)
+! 			return (char_u *)_(e_invrange);
+! 		    buf = buf->b_prev;
+! 		}
+! 		if (eap->line2 > buf->b_fnum)
+! 		    return (char_u *)_(e_invrange);
+! 		break;
+! 	    case ADDR_WINDOWS:
+! 		if (eap->line1 < 1
+! 			|| eap->line2 > LAST_WIN_NR)
+! 		    return (char_u *)_(e_invrange);
+! 		break;
+! 	    case ADDR_TABS:
+! 		if (eap->line2 > LAST_TAB_NR)
+! 		    return (char_u *)_(e_invrange);
+! 		break;
+! 	}
+!     }
+      return NULL;
+  }
+  
+*** ../vim-7.4.564/src/ex_cmds.h	2014-12-17 14:36:10.363090985 +0100
+--- src/ex_cmds.h	2015-01-07 15:47:15.336518550 +0100
+***************
+*** 1574,1580 ****
+  			ADDR_LINES),
+  EX(CMD_wincmd,		"wincmd",	ex_wincmd,
+  			NEEDARG|WORD1|RANGE|NOTADR,
+! 			ADDR_LINES),
+  EX(CMD_windo,		"windo",	ex_listdo,
+  			BANG|NEEDARG|EXTRA|NOTRLCOM,
+  			ADDR_LINES),
+--- 1574,1580 ----
+  			ADDR_LINES),
+  EX(CMD_wincmd,		"wincmd",	ex_wincmd,
+  			NEEDARG|WORD1|RANGE|NOTADR,
+! 			ADDR_WINDOWS),
+  EX(CMD_windo,		"windo",	ex_listdo,
+  			BANG|NEEDARG|EXTRA|NOTRLCOM,
+  			ADDR_LINES),
+*** ../vim-7.4.564/src/testdir/test62.in	2014-04-29 11:55:26.172053624 +0200
+--- src/testdir/test62.in	2015-01-07 15:33:21.950217606 +0100
+***************
+*** 13,19 ****
+  :" Open three tab pages and use ":tabdo"
+  :0tabnew
+  :1tabnew
+! :888tabnew
+  :tabdo call append(line('$'), 'this is tab page ' . tabpagenr())
+  :tabclose! 2
+  :tabrewind
+--- 13,19 ----
+  :" Open three tab pages and use ":tabdo"
+  :0tabnew
+  :1tabnew
+! :$tabnew
+  :tabdo call append(line('$'), 'this is tab page ' . tabpagenr())
+  :tabclose! 2
+  :tabrewind
+*** ../vim-7.4.564/src/testdir/test_argument_count.in	2014-11-27 18:32:58.532564506 +0100
+--- src/testdir/test_argument_count.in	2015-01-07 15:33:21.950217606 +0100
+***************
+*** 27,36 ****
+  :1arga c
+  :1arga b
+  :$argu
+- :+arga d
+  :$arga x
+  :call add(arglists, argv())
+! :$-10arga Y
+  :call add(arglists, argv())
+  :%argd
+  :call add(arglists, argv())
+--- 27,35 ----
+  :1arga c
+  :1arga b
+  :$argu
+  :$arga x
+  :call add(arglists, argv())
+! :0arga Y
+  :call add(arglists, argv())
+  :%argd
+  :call add(arglists, argv())
+*** ../vim-7.4.564/src/testdir/test_argument_count.ok	2014-11-27 16:22:42.746412995 +0100
+--- src/testdir/test_argument_count.ok	2015-01-07 15:33:21.950217606 +0100
+***************
+*** 7,13 ****
+  a b d
+  a d
+  a
+! a b c d x
+! Y a b c d x
+  
+  a f
+--- 7,13 ----
+  a b d
+  a d
+  a
+! a b c x
+! Y a b c x
+  
+  a f
+*** ../vim-7.4.564/src/testdir/test_close_count.in	2014-12-17 14:42:42.990240206 +0100
+--- src/testdir/test_close_count.in	2015-01-07 15:33:21.950217606 +0100
+***************
+*** 28,34 ****
+  :new
+  :new
+  :2wincmd w
+! :-2close!
+  :let buffers = []
+  :windo call add(buffers, bufnr('%'))
+  :call add(tests, buffers)
+--- 28,34 ----
+  :new
+  :new
+  :2wincmd w
+! :-1close!
+  :let buffers = []
+  :windo call add(buffers, bufnr('%'))
+  :call add(tests, buffers)
+***************
+*** 61,67 ****
+  :let buffers = []
+  :windo call add(buffers, bufnr('%'))
+  :call add(tests, buffers)
+! :9hide
+  :let buffers = []
+  :windo call add(buffers, bufnr('%'))
+  :call add(tests, buffers)
+--- 61,67 ----
+  :let buffers = []
+  :windo call add(buffers, bufnr('%'))
+  :call add(tests, buffers)
+! :$hide
+  :let buffers = []
+  :windo call add(buffers, bufnr('%'))
+  :call add(tests, buffers)
+*** ../vim-7.4.564/src/testdir/test_command_count.in	2015-01-07 13:15:40.609829496 +0100
+--- src/testdir/test_command_count.in	2015-01-07 15:49:24.343016552 +0100
+***************
+*** 1,8 ****
+  Test for user command counts	    vim: set ft=vim :
+  
+  STARTTEST
+- :let g:lines = []
+  :so tiny.vim
+  :com -range=% RangeLines :call add(g:lines, 'RangeLines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+  :com -range=% -addr=arguments RangeArgumentsAll :call add(g:lines, 'RangeArgumentsAll '.<line1>.' '.<line2>)
+--- 1,8 ----
+  Test for user command counts	    vim: set ft=vim :
+  
+  STARTTEST
+  :so tiny.vim
++ :let g:lines = []
+  :com -range=% RangeLines :call add(g:lines, 'RangeLines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+  :com -range=% -addr=arguments RangeArgumentsAll :call add(g:lines, 'RangeArgumentsAll '.<line1>.' '.<line2>)
+***************
+*** 48,53 ****
+--- 48,93 ----
+  :'<,'>RangeLines
+  :com -range=% -buffer LocalRangeLines :call add(g:lines, 'LocalRangeLines '.<line1>.' '.<line2>)
+  :'<,'>LocalRangeLines
++ :b1
++ ENDTEST
++ 
++ STARTTEST
++ :call add(g:lines, '')
++ :%argd
++ :arga a b c d
++ :let v:errmsg = ''
++ :5argu
++ :call add(g:lines, '5argu ' . v:errmsg)
++ :$argu
++ :call add(g:lines, '4argu ' . expand('%:t'))
++ :let v:errmsg = ''
++ :1argu
++ :call add(g:lines, '1argu ' . expand('%:t'))
++ :let v:errmsg = ''
++ :100b
++ :call add(g:lines, '100b ' . v:errmsg)
++ :split|split|split|split
++ :let v:errmsg = ''
++ :0close
++ :call add(g:lines, '0close ' . v:errmsg)
++ :$wincmd w
++ :$close
++ :call add(g:lines, '$close ' . winnr())
++ :let v:errmsg = ''
++ :$+close
++ :call add(g:lines, '$+close ' . v:errmsg)
++ :$tabe
++ :call add(g:lines, '$tabe ' . tabpagenr())
++ :let v:errmsg = ''
++ :$+tabe
++ :call add(g:lines, '$+tabe ' . v:errmsg)
++ :only!
++ :e x
++ :0tabm
++ :normal 1gt
++ :call add(g:lines, '0tabm ' . expand('%:t'))
++ :tabonly!
++ :only!
+  :e! test.out
+  :call append(0, g:lines)
+  :w|qa!
+*** ../vim-7.4.564/src/testdir/test_command_count.ok	2015-01-07 13:15:40.609829496 +0100
+--- src/testdir/test_command_count.ok	2015-01-07 15:49:19.223076159 +0100
+***************
+*** 17,19 ****
+--- 17,30 ----
+  RangeLines 2 5
+  LocalRangeLines 2 5
+  
++ 5argu E16: Invalid range
++ 4argu d
++ 1argu a
++ 100b E16: Invalid range
++ 0close E16: Invalid range
++ $close 4
++ $+close E16: Invalid range
++ $tabe 2
++ $+tabe E16: Invalid range
++ 0tabm x
++ 
+*** ../vim-7.4.564/src/version.c	2015-01-07 14:43:35.728900384 +0100
+--- src/version.c	2015-01-07 15:32:05.899101868 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     565,
+  /**/
+
+-- 
+"I simultaneously try to keep my head in the clouds and my feet on the
+ground.  Sometimes it's a stretch, though."              -- Larry Wall
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.361
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.361
+Problem:    Lots of flickering when filling the preview window for 'omnifunc'.
+Solution:   Disable redrawing. (Hirohito Higashi)
+Files:	    src/popupmnu.c
+
+
+*** ../vim-7.4.360/src/popupmnu.c	2013-11-06 04:04:29.000000000 +0100
+--- src/popupmnu.c	2014-07-09 19:56:25.663649674 +0200
+***************
+*** 567,573 ****
+--- 567,575 ----
+  	    g_do_tagpreview = 3;
+  	    if (p_pvh > 0 && p_pvh < g_do_tagpreview)
+  		g_do_tagpreview = p_pvh;
++ 	    ++RedrawingDisabled;
+  	    resized = prepare_tagpreview(FALSE);
++ 	    --RedrawingDisabled;
+  	    g_do_tagpreview = 0;
+  
+  	    if (curwin->w_p_pvw)
+*** ../vim-7.4.360/src/version.c	2014-07-09 19:32:30.939678834 +0200
+--- src/version.c	2014-07-09 19:55:48.995650419 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     361,
+  /**/
+
+-- 
+Lose weight, NEVER Diet again with
+                  The "Invisible Weight Loss Patch"
+						(spam e-mail)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

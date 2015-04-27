@@ -1,0 +1,94 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.534
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.534
+Problem:    Warnings when compiling if_ruby.c.
+Solution:   Avoid the warnings. (Ken Takata)
+Files:	    src/if_ruby.c
+
+
+*** ../vim-7.4.533/src/if_ruby.c	2014-11-12 16:05:01.142042845 +0100
+--- src/if_ruby.c	2014-11-27 17:42:25.205922384 +0100
+***************
+*** 96,106 ****
+  # define rb_num2int rb_num2int_stub
+  #endif
+  
+! # if defined(DYNAMIC_RUBY_VER) && DYNAMIC_RUBY_VER >= 21
+  /* Ruby 2.1 adds new GC called RGenGC and RARRAY_PTR uses
+   * rb_gc_writebarrier_unprotect_promoted if USE_RGENGC  */
+! #  define rb_gc_writebarrier_unprotect_promoted rb_gc_writebarrier_unprotect_promoted_stub
+! # endif
+  
+  #include <ruby.h>
+  #ifdef RUBY19_OR_LATER
+--- 96,106 ----
+  # define rb_num2int rb_num2int_stub
+  #endif
+  
+! #if defined(DYNAMIC_RUBY_VER) && DYNAMIC_RUBY_VER >= 21
+  /* Ruby 2.1 adds new GC called RGenGC and RARRAY_PTR uses
+   * rb_gc_writebarrier_unprotect_promoted if USE_RGENGC  */
+! # define rb_gc_writebarrier_unprotect_promoted rb_gc_writebarrier_unprotect_promoted_stub
+! #endif
+  
+  #include <ruby.h>
+  #ifdef RUBY19_OR_LATER
+***************
+*** 422,428 ****
+  # if defined(USE_RGENGC) && USE_RGENGC && !defined(PROTO)
+  void rb_gc_writebarrier_unprotect_promoted_stub(VALUE obj)
+  {
+!     return dll_rb_gc_writebarrier_unprotect_promoted(obj);
+  }
+  # endif
+  
+--- 422,428 ----
+  # if defined(USE_RGENGC) && USE_RGENGC && !defined(PROTO)
+  void rb_gc_writebarrier_unprotect_promoted_stub(VALUE obj)
+  {
+!     dll_rb_gc_writebarrier_unprotect_promoted(obj);
+  }
+  # endif
+  
+***************
+*** 763,769 ****
+  	    /* suggested by Ariya Mizutani */
+  	    int argc = 1;
+  	    char *argv[] = {"gvim.exe"};
+! 	    NtInitialize(&argc, &argv);
+  #endif
+  	    {
+  #if defined(RUBY19_OR_LATER) || defined(RUBY_INIT_STACK)
+--- 763,770 ----
+  	    /* suggested by Ariya Mizutani */
+  	    int argc = 1;
+  	    char *argv[] = {"gvim.exe"};
+! 	    char **argvp = argv;
+! 	    NtInitialize(&argc, &argvp);
+  #endif
+  	    {
+  #if defined(RUBY19_OR_LATER) || defined(RUBY_INIT_STACK)
+*** ../vim-7.4.533/src/version.c	2014-11-27 17:37:53.524909964 +0100
+--- src/version.c	2014-11-27 17:42:13.626049717 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     534,
+  /**/
+
+-- 
+This message contains 78% recycled characters.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

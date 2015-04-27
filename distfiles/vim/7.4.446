@@ -1,0 +1,265 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.446
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.446
+Problem:    In some situations, when setting up an environment to trigger an
+	    autocommand, the environment is not properly restored.
+Solution:   Check the return value of switch_win() and call restore_win()
+	    always.  (Daniel Hahler)
+Files:	    src/eval.c, src/misc2.c, src/window.c
+
+
+*** ../vim-7.4.445/src/eval.c	2014-09-09 23:11:46.368586569 +0200
+--- src/eval.c	2014-09-19 14:09:27.238402767 +0200
+***************
+*** 12086,12100 ****
+      {
+  	/* Set tp to be our tabpage, temporarily.  Also set the window to the
+  	 * first window in the tabpage, otherwise the window is not valid. */
+! 	switch_win(&oldcurwin, &oldtabpage, tp->tp_firstwin, tp, TRUE);
+! 
+! 	/* look up the variable */
+! 	/* Let gettabvar({nr}, "") return the "t:" dictionary. */
+! 	v = find_var_in_ht(&tp->tp_vars->dv_hashtab, 't', varname, FALSE);
+! 	if (v != NULL)
+  	{
+! 	    copy_tv(&v->di_tv, rettv);
+! 	    done = TRUE;
+  	}
+  
+  	/* restore previous notion of curwin */
+--- 12086,12102 ----
+      {
+  	/* Set tp to be our tabpage, temporarily.  Also set the window to the
+  	 * first window in the tabpage, otherwise the window is not valid. */
+! 	if (switch_win(&oldcurwin, &oldtabpage, tp->tp_firstwin, tp, TRUE)
+! 									== OK)
+  	{
+! 	    /* look up the variable */
+! 	    /* Let gettabvar({nr}, "") return the "t:" dictionary. */
+! 	    v = find_var_in_ht(&tp->tp_vars->dv_hashtab, 't', varname, FALSE);
+! 	    if (v != NULL)
+! 	    {
+! 		copy_tv(&v->di_tv, rettv);
+! 		done = TRUE;
+! 	    }
+  	}
+  
+  	/* restore previous notion of curwin */
+***************
+*** 12233,12254 ****
+      {
+  	/* Set curwin to be our win, temporarily.  Also set the tabpage,
+  	 * otherwise the window is not valid. */
+! 	switch_win(&oldcurwin, &oldtabpage, win, tp, TRUE);
+! 
+! 	if (*varname == '&')	/* window-local-option */
+! 	{
+! 	    if (get_option_tv(&varname, rettv, 1) == OK)
+! 		done = TRUE;
+! 	}
+! 	else
+  	{
+! 	    /* Look up the variable. */
+! 	    /* Let getwinvar({nr}, "") return the "w:" dictionary. */
+! 	    v = find_var_in_ht(&win->w_vars->dv_hashtab, 'w', varname, FALSE);
+! 	    if (v != NULL)
+  	    {
+! 		copy_tv(&v->di_tv, rettv);
+! 		done = TRUE;
+  	    }
+  	}
+  
+--- 12235,12258 ----
+      {
+  	/* Set curwin to be our win, temporarily.  Also set the tabpage,
+  	 * otherwise the window is not valid. */
+! 	if (switch_win(&oldcurwin, &oldtabpage, win, tp, TRUE) == OK)
+  	{
+! 	    if (*varname == '&')	/* window-local-option */
+  	    {
+! 		if (get_option_tv(&varname, rettv, 1) == OK)
+! 		    done = TRUE;
+! 	    }
+! 	    else
+! 	    {
+! 		/* Look up the variable. */
+! 		/* Let getwinvar({nr}, "") return the "w:" dictionary. */
+! 		v = find_var_in_ht(&win->w_vars->dv_hashtab, 'w',
+! 							      varname, FALSE);
+! 		if (v != NULL)
+! 		{
+! 		    copy_tv(&v->di_tv, rettv);
+! 		    done = TRUE;
+! 		}
+  	    }
+  	}
+  
+***************
+*** 17252,17285 ****
+      if (win != NULL && varname != NULL && varp != NULL)
+      {
+  #ifdef FEAT_WINDOWS
+! 	if (switch_win(&save_curwin, &save_curtab, win, tp, TRUE) == FAIL)
+! 	    return;
+  #endif
+- 
+- 	if (*varname == '&')
+  	{
+! 	    long	numval;
+! 	    char_u	*strval;
+! 	    int		error = FALSE;
+  
+! 	    ++varname;
+! 	    numval = get_tv_number_chk(varp, &error);
+! 	    strval = get_tv_string_buf_chk(varp, nbuf);
+! 	    if (!error && strval != NULL)
+! 		set_option_value(varname, numval, strval, OPT_LOCAL);
+! 	}
+! 	else
+! 	{
+! 	    winvarname = alloc((unsigned)STRLEN(varname) + 3);
+! 	    if (winvarname != NULL)
+  	    {
+! 		STRCPY(winvarname, "w:");
+! 		STRCPY(winvarname + 2, varname);
+! 		set_var(winvarname, varp, TRUE);
+! 		vim_free(winvarname);
+  	    }
+  	}
+- 
+  #ifdef FEAT_WINDOWS
+  	restore_win(save_curwin, save_curtab, TRUE);
+  #endif
+--- 17256,17288 ----
+      if (win != NULL && varname != NULL && varp != NULL)
+      {
+  #ifdef FEAT_WINDOWS
+! 	if (switch_win(&save_curwin, &save_curtab, win, tp, TRUE) == OK)
+  #endif
+  	{
+! 	    if (*varname == '&')
+! 	    {
+! 		long	numval;
+! 		char_u	*strval;
+! 		int		error = FALSE;
+  
+! 		++varname;
+! 		numval = get_tv_number_chk(varp, &error);
+! 		strval = get_tv_string_buf_chk(varp, nbuf);
+! 		if (!error && strval != NULL)
+! 		    set_option_value(varname, numval, strval, OPT_LOCAL);
+! 	    }
+! 	    else
+  	    {
+! 		winvarname = alloc((unsigned)STRLEN(varname) + 3);
+! 		if (winvarname != NULL)
+! 		{
+! 		    STRCPY(winvarname, "w:");
+! 		    STRCPY(winvarname + 2, varname);
+! 		    set_var(winvarname, varp, TRUE);
+! 		    vim_free(winvarname);
+! 		}
+  	    }
+  	}
+  #ifdef FEAT_WINDOWS
+  	restore_win(save_curwin, save_curtab, TRUE);
+  #endif
+*** ../vim-7.4.445/src/misc2.c	2014-08-10 13:34:59.060785459 +0200
+--- src/misc2.c	2014-09-19 14:03:24.314401974 +0200
+***************
+*** 1040,1046 ****
+      entered = TRUE;
+  
+  # ifdef FEAT_AUTOCMD
+!     block_autocmds();	    /* don't want to trigger autocommands here */
+  # endif
+  
+  # ifdef FEAT_WINDOWS
+--- 1040,1047 ----
+      entered = TRUE;
+  
+  # ifdef FEAT_AUTOCMD
+!     /* Don't want to trigger autocommands from here on. */
+!     block_autocmds();
+  # endif
+  
+  # ifdef FEAT_WINDOWS
+*** ../vim-7.4.445/src/window.c	2014-07-30 14:04:49.131603494 +0200
+--- src/window.c	2014-09-19 14:06:52.538402429 +0200
+***************
+*** 1271,1277 ****
+  }
+  
+  /*
+!  * Initialize window "newp" from window"old".
+   * Only the essential things are copied.
+   */
+      static void
+--- 1271,1277 ----
+  }
+  
+  /*
+!  * Initialize window "newp" from window "old".
+   * Only the essential things are copied.
+   */
+      static void
+***************
+*** 6662,6669 ****
+  	|| defined(PROTO)
+  /*
+   * Set "win" to be the curwin and "tp" to be the current tab page.
+!  * restore_win() MUST be called to undo.
+!  * No autocommands will be executed.
+   * When "no_display" is TRUE the display won't be affected, no redraw is
+   * triggered, another tabpage access is limited.
+   * Returns FAIL if switching to "win" failed.
+--- 6662,6669 ----
+  	|| defined(PROTO)
+  /*
+   * Set "win" to be the curwin and "tp" to be the current tab page.
+!  * restore_win() MUST be called to undo, also when FAIL is returned.
+!  * No autocommands will be executed until restore_win() is called.
+   * When "no_display" is TRUE the display won't be affected, no redraw is
+   * triggered, another tabpage access is limited.
+   * Returns FAIL if switching to "win" failed.
+***************
+*** 6696,6707 ****
+  	    goto_tabpage_tp(tp, FALSE, FALSE);
+      }
+      if (!win_valid(win))
+-     {
+- # ifdef FEAT_AUTOCMD
+- 	unblock_autocmds();
+- # endif
+  	return FAIL;
+-     }
+      curwin = win;
+      curbuf = curwin->w_buffer;
+  # endif
+--- 6696,6702 ----
+*** ../vim-7.4.445/src/version.c	2014-09-19 13:46:49.550399801 +0200
+--- src/version.c	2014-09-19 14:25:34.674404880 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     446,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+160. You get in the elevator and double-click the button for the floor
+     you want.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

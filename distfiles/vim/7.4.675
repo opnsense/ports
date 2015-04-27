@@ -1,0 +1,93 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.675
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.675
+Problem:    When a FileReadPost autocommand moves the cursor inside a line it
+	    gets moved back.
+Solution:   When checking whether an autocommand moved the cursor store the
+	    column as well. (Christian Brabandt)
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.674/src/ex_cmds.c	2015-02-27 19:34:51.464777369 +0100
+--- src/ex_cmds.c	2015-03-24 11:42:38.796239766 +0100
+***************
+*** 3185,3191 ****
+  #endif
+      int		retval = FAIL;
+      long	n;
+!     linenr_T	lnum;
+      linenr_T	topline = 0;
+      int		newcol = -1;
+      int		solcol = -1;
+--- 3185,3191 ----
+  #endif
+      int		retval = FAIL;
+      long	n;
+!     pos_T	orig_pos;
+      linenr_T	topline = 0;
+      int		newcol = -1;
+      int		solcol = -1;
+***************
+*** 3678,3684 ****
+  	 * Careful: open_buffer() and apply_autocmds() may change the current
+  	 * buffer and window.
+  	 */
+! 	lnum = curwin->w_cursor.lnum;
+  	topline = curwin->w_topline;
+  	if (!oldbuf)			    /* need to read the file */
+  	{
+--- 3678,3684 ----
+  	 * Careful: open_buffer() and apply_autocmds() may change the current
+  	 * buffer and window.
+  	 */
+! 	orig_pos = curwin->w_cursor;
+  	topline = curwin->w_topline;
+  	if (!oldbuf)			    /* need to read the file */
+  	{
+***************
+*** 3719,3729 ****
+  	check_arg_idx(curwin);
+  #endif
+  
+! 	/*
+! 	 * If autocommands change the cursor position or topline, we should
+! 	 * keep it.
+! 	 */
+! 	if (curwin->w_cursor.lnum != lnum)
+  	{
+  	    newlnum = curwin->w_cursor.lnum;
+  	    newcol = curwin->w_cursor.col;
+--- 3719,3727 ----
+  	check_arg_idx(curwin);
+  #endif
+  
+! 	/* If autocommands change the cursor position or topline, we should
+! 	 * keep it.  Also when it moves within a line. */
+! 	if (!equalpos(curwin->w_cursor, orig_pos))
+  	{
+  	    newlnum = curwin->w_cursor.lnum;
+  	    newcol = curwin->w_cursor.col;
+*** ../vim-7.4.674/src/version.c	2015-03-21 22:18:37.808371766 +0100
+--- src/version.c	2015-03-24 11:44:14.240327255 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     675,
+  /**/
+
+-- 
+There are three kinds of people: Those who can count & those who can't.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

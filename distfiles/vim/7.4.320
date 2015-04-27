@@ -1,0 +1,143 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.320
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.320
+Problem:    Possible crash when an BufLeave autocommand deletes the buffer.
+Solution:   Check for the window pointer being valid.  Postpone freeing the
+	    window until autocommands are done. (Yasuhiro Matsumoto)
+Files:	    src/buffer.c, src/fileio.c, src/globals.h, src/window.c
+
+
+*** ../vim-7.4.319/src/buffer.c	2014-05-07 16:35:05.029152844 +0200
+--- src/buffer.c	2014-06-12 13:47:17.799737639 +0200
+***************
+*** 371,377 ****
+  	unload_buf = TRUE;
+  #endif
+  
+!     if (win != NULL)
+      {
+  	/* Set b_last_cursor when closing the last window for the buffer.
+  	 * Remember the last cursor position and window options of the buffer.
+--- 371,381 ----
+  	unload_buf = TRUE;
+  #endif
+  
+!     if (win != NULL
+! #ifdef FEAT_WINDOWS
+! 	&& win_valid(win)	/* in case autocommands closed the window */
+! #endif
+! 	    )
+      {
+  	/* Set b_last_cursor when closing the last window for the buffer.
+  	 * Remember the last cursor position and window options of the buffer.
+*** ../vim-7.4.319/src/fileio.c	2014-05-02 15:46:10.731268318 +0200
+--- src/fileio.c	2014-06-12 13:53:33.207751842 +0200
+***************
+*** 9549,9555 ****
+  
+      /*
+       * When stopping to execute autocommands, restore the search patterns and
+!      * the redo buffer.  Free buffers in the au_pending_free_buf list.
+       */
+      if (!autocmd_busy)
+      {
+--- 9549,9556 ----
+  
+      /*
+       * When stopping to execute autocommands, restore the search patterns and
+!      * the redo buffer.  Free any buffers in the au_pending_free_buf list and
+!      * free any windows in the au_pending_free_win list.
+       */
+      if (!autocmd_busy)
+      {
+***************
+*** 9562,9567 ****
+--- 9563,9574 ----
+  	    vim_free(au_pending_free_buf);
+  	    au_pending_free_buf = b;
+  	}
++ 	while (au_pending_free_win != NULL)
++ 	{
++ 	    win_T *w = au_pending_free_win->w_next;
++ 	    vim_free(au_pending_free_win);
++ 	    au_pending_free_win = w;
++ 	}
+      }
+  
+      /*
+*** ../vim-7.4.319/src/globals.h	2014-05-28 18:22:37.876225054 +0200
+--- src/globals.h	2014-06-12 13:54:29.163753959 +0200
+***************
+*** 387,396 ****
+   * which one is preferred, au_new_curbuf is set to it */
+  EXTERN buf_T	*au_new_curbuf INIT(= NULL);
+  
+! /* When deleting the buffer and autocmd_busy is TRUE, do not free the buffer
+!  * but link it in the list starting with au_pending_free_buf, using b_next.
+!  * Free the buffer when autocmd_busy is set to FALSE. */
+  EXTERN buf_T	*au_pending_free_buf INIT(= NULL);
+  #endif
+  
+  #ifdef FEAT_MOUSE
+--- 387,398 ----
+   * which one is preferred, au_new_curbuf is set to it */
+  EXTERN buf_T	*au_new_curbuf INIT(= NULL);
+  
+! /* When deleting a buffer/window and autocmd_busy is TRUE, do not free the
+!  * buffer/window. but link it in the list starting with
+!  * au_pending_free_buf/ap_pending_free_win, using b_next/w_next.
+!  * Free the buffer/window when autocmd_busy is being set to FALSE. */
+  EXTERN buf_T	*au_pending_free_buf INIT(= NULL);
++ EXTERN win_T	*au_pending_free_win INIT(= NULL);
+  #endif
+  
+  #ifdef FEAT_MOUSE
+*** ../vim-7.4.319/src/window.c	2014-06-12 11:49:42.219470717 +0200
+--- src/window.c	2014-06-12 13:51:54.939748124 +0200
+***************
+*** 4597,4603 ****
+      if (wp != aucmd_win)
+  #endif
+  	win_remove(wp, tp);
+!     vim_free(wp);
+  
+  #ifdef FEAT_AUTOCMD
+      unblock_autocmds();
+--- 4597,4609 ----
+      if (wp != aucmd_win)
+  #endif
+  	win_remove(wp, tp);
+!     if (autocmd_busy)
+!     {
+! 	wp->w_next = au_pending_free_win;
+! 	au_pending_free_win = wp;
+!     }
+!     else
+! 	vim_free(wp);
+  
+  #ifdef FEAT_AUTOCMD
+      unblock_autocmds();
+*** ../vim-7.4.319/src/version.c	2014-06-12 13:28:26.771694851 +0200
+--- src/version.c	2014-06-12 13:40:23.507721966 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     320,
+  /**/
+
+-- 
+Life would be so much easier if we could just look at the source code.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

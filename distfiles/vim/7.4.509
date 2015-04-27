@@ -1,0 +1,115 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.509
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.509
+Problem:    Users are not aware their encryption is weak.
+Solution:   Give a warning when prompting for the key.
+Files:	    src/crypt.c, src/ex_docmd.c, src/fileio.c, src/main.c,
+	    src/proto/crypt.pro
+
+
+*** ../vim-7.4.508/src/crypt.c	2014-08-13 22:05:49.032892299 +0200
+--- src/crypt.c	2014-11-12 15:10:22.359161977 +0100
+***************
+*** 504,509 ****
+--- 504,529 ----
+  }
+  
+  /*
++  * Check the crypt method and give a warning if it's outdated.
++  */
++     void
++ crypt_check_method(method)
++     int method;
++ {
++     if (method < CRYPT_M_BF2)
++     {
++ 	msg_scroll = TRUE;
++ 	MSG(_("Warning: Using a weak encryption method; see :help 'cm'"));
++     }
++ }
++ 
++     void
++ crypt_check_current_method()
++ {
++     crypt_check_method(crypt_get_method_nr(curbuf));
++ }
++ 
++ /*
+   * Ask the user for a crypt key.
+   * When "store" is TRUE, the new key is stored in the 'key' option, and the
+   * 'key' option value is returned: Don't free it.
+*** ../vim-7.4.508/src/ex_docmd.c	2014-11-05 09:53:19.989153321 +0100
+--- src/ex_docmd.c	2014-11-12 14:53:09.621921631 +0100
+***************
+*** 11524,11529 ****
+--- 11524,11530 ----
+  ex_X(eap)
+      exarg_T	*eap UNUSED;
+  {
++     crypt_check_current_method();
+      (void)crypt_get_key(TRUE, TRUE);
+  }
+  #endif
+*** ../vim-7.4.508/src/fileio.c	2014-10-31 19:51:33.010698056 +0100
+--- src/fileio.c	2014-11-12 15:10:44.986925300 +0100
+***************
+*** 2958,2963 ****
+--- 2958,2964 ----
+  		 * Happens when retrying to detect encoding. */
+  		smsg((char_u *)_(need_key_msg), fname);
+  		msg_scroll = TRUE;
++ 		crypt_check_method(method);
+  		cryptkey = crypt_get_key(newfile, FALSE);
+  		*did_ask = TRUE;
+  
+*** ../vim-7.4.508/src/main.c	2014-09-19 13:46:49.550399801 +0200
+--- src/main.c	2014-11-12 14:52:47.866169622 +0100
+***************
+*** 854,859 ****
+--- 854,860 ----
+  #ifdef FEAT_CRYPT
+      if (params.ask_for_key)
+      {
++ 	crypt_check_current_method();
+  	(void)crypt_get_key(TRUE, TRUE);
+  	TIME_MSG("getting crypt key");
+      }
+*** ../vim-7.4.508/src/proto/crypt.pro	2014-08-10 13:34:59.060785459 +0200
+--- src/proto/crypt.pro	2014-11-12 15:06:51.349363319 +0100
+***************
+*** 19,24 ****
+--- 19,26 ----
+  void crypt_encode_inplace __ARGS((cryptstate_T *state, char_u *buf, size_t len));
+  void crypt_decode_inplace __ARGS((cryptstate_T *state, char_u *buf, size_t len));
+  void crypt_free_key __ARGS((char_u *key));
++ void crypt_check_method __ARGS((int method));
++ void crypt_check_current_method __ARGS((void));
+  char_u *crypt_get_key __ARGS((int store, int twice));
+  void crypt_append_msg __ARGS((buf_T *buf));
+  /* vim: set ft=c : */
+*** ../vim-7.4.508/src/version.c	2014-11-12 13:07:48.774069557 +0100
+--- src/version.c	2014-11-12 14:45:09.979391243 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     509,
+  /**/
+
+-- 
+Q: How do you tell the difference between a female cat and a male cat?
+A: You ask it a question and if HE answers, it's a male but, if SHE
+   answers, it's a female.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

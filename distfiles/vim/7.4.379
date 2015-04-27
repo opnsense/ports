@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.379
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.379
+Problem:    Accessing freed memory after using setqflist(list, 'r'). (Lcd)
+Solution:   Reset qf_index.
+Files:	    src/quickfix.c
+
+
+*** ../vim-7.4.378/src/quickfix.c	2014-07-23 15:54:43.443903036 +0200
+--- src/quickfix.c	2014-07-23 16:11:59.915895586 +0200
+***************
+*** 2173,2178 ****
+--- 2173,2179 ----
+      }
+      vim_free(qi->qf_lists[idx].qf_title);
+      qi->qf_lists[idx].qf_title = NULL;
++     qi->qf_lists[idx].qf_index = 0;
+  }
+  
+  /*
+*** ../vim-7.4.378/src/version.c	2014-07-23 15:54:43.443903036 +0200
+--- src/version.c	2014-07-23 16:14:43.995894407 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     379,
+  /**/
+
+-- 
+"Lisp has all the visual appeal of oatmeal with nail clippings thrown in."
+                                                         -- Larry Wall
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

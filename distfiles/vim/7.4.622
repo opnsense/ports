@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.622
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.622
+Problem:    Compiler warning for unused argument.
+Solution:   Add UNUSED.
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.621/src/regexp_nfa.c	2015-02-03 16:49:20.242545503 +0100
+--- src/regexp_nfa.c	2015-02-05 20:28:28.268349950 +0100
+***************
+*** 6838,6844 ****
+  nfa_regtry(prog, col, tm)
+      nfa_regprog_T   *prog;
+      colnr_T	    col;
+!     proftime_T	    *tm;	/* timeout limit or NULL */
+  {
+      int		i;
+      regsubs_T	subs, m;
+--- 6838,6844 ----
+  nfa_regtry(prog, col, tm)
+      nfa_regprog_T   *prog;
+      colnr_T	    col;
+!     proftime_T	    *tm UNUSED;	/* timeout limit or NULL */
+  {
+      int		i;
+      regsubs_T	subs, m;
+*** ../vim-7.4.621/src/version.c	2015-02-04 23:07:55.932517109 +0100
+--- src/version.c	2015-02-05 20:29:00.379932874 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     622,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+181. You make up words that go with the "happy tune" your modem makes
+     while dialing your ISP.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

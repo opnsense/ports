@@ -1,0 +1,72 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.333
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.333
+Problem:    Compiler warning for unused function.
+Solution:   Put the function inside the #ifdef.
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.332/src/screen.c	2014-06-17 17:48:21.784628008 +0200
+--- src/screen.c	2014-06-17 23:16:24.121372619 +0200
+***************
+*** 139,145 ****
+  static void redraw_custom_statusline __ARGS((win_T *wp));
+  #endif
+  #ifdef FEAT_SEARCH_EXTRA
+! #define SEARCH_HL_PRIORITY 0
+  static void start_search_hl __ARGS((void));
+  static void end_search_hl __ARGS((void));
+  static void init_search_hl __ARGS((win_T *wp));
+--- 139,145 ----
+  static void redraw_custom_statusline __ARGS((win_T *wp));
+  #endif
+  #ifdef FEAT_SEARCH_EXTRA
+! # define SEARCH_HL_PRIORITY 0
+  static void start_search_hl __ARGS((void));
+  static void end_search_hl __ARGS((void));
+  static void init_search_hl __ARGS((win_T *wp));
+***************
+*** 7476,7482 ****
+  	}
+      }
+  }
+- #endif
+  
+      static int
+  next_search_hl_pos(shl, lnum, posmatch, mincol)
+--- 7476,7481 ----
+***************
+*** 7533,7538 ****
+--- 7532,7538 ----
+      }
+      return FALSE;
+  }
++ #endif
+  
+        static void
+  screen_start_highlight(attr)
+*** ../vim-7.4.332/src/version.c	2014-06-17 18:46:57.880761027 +0200
+--- src/version.c	2014-06-17 23:17:14.949374542 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     333,
+  /**/
+
+-- 
+You had connectors?  Eeee, when I were a lad we 'ad to carry the
+bits between the computer and the terminal with a spoon...
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

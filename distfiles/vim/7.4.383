@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.383
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.383
+Problem:    Bad interaction between preview window and omnifunc.
+Solution:   Avoid redrawing the status line. (Hirohito Higashi)
+Files:	    src/popupmnu.c
+
+
+*** ../vim-7.4.382/src/popupmnu.c	2014-07-09 19:58:21.111647328 +0200
+--- src/popupmnu.c	2014-07-23 20:56:17.131772989 +0200
+***************
+*** 643,648 ****
+--- 643,654 ----
+  
+  		    if (curwin != curwin_save && win_valid(curwin_save))
+  		    {
++ 			/* When the first completion is done and the preview
++ 			 * window is not resized, skip the preview window's
++ 			 * status line redrawing. */
++ 			if (ins_compl_active() && !resized)
++ 			    curwin->w_redr_status = FALSE;
++ 
+  			/* Return cursor to where we were */
+  			validate_cursor();
+  			redraw_later(SOME_VALID);
+*** ../vim-7.4.382/src/version.c	2014-07-23 20:41:09.895779510 +0200
+--- src/version.c	2014-07-23 20:58:12.079772163 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     383,
+  /**/
+
+-- 
+ARTHUR:    ... and I am your king ....
+OLD WOMAN: Ooooh!  I didn't know we had a king.  I thought we were an
+           autonomous collective ...
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

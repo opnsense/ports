@@ -1,0 +1,167 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.455
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.455
+Problem:    Completion for :buf does not use 'wildignorecase'. (Akshay H)
+Solution:   Pass the 'wildignorecase' flag around.
+Files:	    src/buffer.c
+
+
+*** ../vim-7.4.454/src/buffer.c	2014-07-16 16:30:21.647608710 +0200
+--- src/buffer.c	2014-09-23 14:18:24.470789696 +0200
+***************
+*** 28,36 ****
+  #include "vim.h"
+  
+  #if defined(FEAT_CMDL_COMPL) || defined(FEAT_LISTCMDS) || defined(FEAT_EVAL) || defined(FEAT_PERL)
+! static char_u	*buflist_match __ARGS((regprog_T *prog, buf_T *buf));
+  # define HAVE_BUFLIST_MATCH
+! static char_u	*fname_match __ARGS((regprog_T *prog, char_u *name));
+  #endif
+  static void	buflist_setfpos __ARGS((buf_T *buf, win_T *win, linenr_T lnum, colnr_T col, int copy_options));
+  static wininfo_T *find_wininfo __ARGS((buf_T *buf, int skip_diff_buffer));
+--- 28,36 ----
+  #include "vim.h"
+  
+  #if defined(FEAT_CMDL_COMPL) || defined(FEAT_LISTCMDS) || defined(FEAT_EVAL) || defined(FEAT_PERL)
+! static char_u	*buflist_match __ARGS((regprog_T *prog, buf_T *buf, int ignore_case));
+  # define HAVE_BUFLIST_MATCH
+! static char_u	*fname_match __ARGS((regprog_T *prog, char_u *name, int ignore_case));
+  #endif
+  static void	buflist_setfpos __ARGS((buf_T *buf, win_T *win, linenr_T lnum, colnr_T col, int copy_options));
+  static wininfo_T *find_wininfo __ARGS((buf_T *buf, int skip_diff_buffer));
+***************
+*** 2282,2288 ****
+  #ifdef FEAT_DIFF
+  			    && (!diffmode || diff_mode_buf(buf))
+  #endif
+! 			    && buflist_match(prog, buf) != NULL)
+  		    {
+  			if (curtab_only)
+  			{
+--- 2282,2288 ----
+  #ifdef FEAT_DIFF
+  			    && (!diffmode || diff_mode_buf(buf))
+  #endif
+! 			    && buflist_match(prog, buf, FALSE) != NULL)
+  		    {
+  			if (curtab_only)
+  			{
+***************
+*** 2396,2402 ****
+  	    {
+  		if (!buf->b_p_bl)	/* skip unlisted buffers */
+  		    continue;
+! 		p = buflist_match(prog, buf);
+  		if (p != NULL)
+  		{
+  		    if (round == 1)
+--- 2396,2402 ----
+  	    {
+  		if (!buf->b_p_bl)	/* skip unlisted buffers */
+  		    continue;
+! 		p = buflist_match(prog, buf, p_wic);
+  		if (p != NULL)
+  		{
+  		    if (round == 1)
+***************
+*** 2444,2459 ****
+   * Check for a match on the file name for buffer "buf" with regprog "prog".
+   */
+      static char_u *
+! buflist_match(prog, buf)
+      regprog_T	*prog;
+      buf_T	*buf;
+  {
+      char_u	*match;
+  
+      /* First try the short file name, then the long file name. */
+!     match = fname_match(prog, buf->b_sfname);
+      if (match == NULL)
+! 	match = fname_match(prog, buf->b_ffname);
+  
+      return match;
+  }
+--- 2444,2460 ----
+   * Check for a match on the file name for buffer "buf" with regprog "prog".
+   */
+      static char_u *
+! buflist_match(prog, buf, ignore_case)
+      regprog_T	*prog;
+      buf_T	*buf;
++     int		ignore_case;  /* when TRUE ignore case, when FALSE use 'fic' */
+  {
+      char_u	*match;
+  
+      /* First try the short file name, then the long file name. */
+!     match = fname_match(prog, buf->b_sfname, ignore_case);
+      if (match == NULL)
+! 	match = fname_match(prog, buf->b_ffname, ignore_case);
+  
+      return match;
+  }
+***************
+*** 2463,2471 ****
+   * Return "name" when there is a match, NULL when not.
+   */
+      static char_u *
+! fname_match(prog, name)
+      regprog_T	*prog;
+      char_u	*name;
+  {
+      char_u	*match = NULL;
+      char_u	*p;
+--- 2464,2473 ----
+   * Return "name" when there is a match, NULL when not.
+   */
+      static char_u *
+! fname_match(prog, name, ignore_case)
+      regprog_T	*prog;
+      char_u	*name;
++     int		ignore_case;  /* when TRUE ignore case, when FALSE use 'fic' */
+  {
+      char_u	*match = NULL;
+      char_u	*p;
+***************
+*** 2474,2480 ****
+      if (name != NULL)
+      {
+  	regmatch.regprog = prog;
+! 	regmatch.rm_ic = p_fic;	/* ignore case when 'fileignorecase' is set */
+  	if (vim_regexec(&regmatch, name, (colnr_T)0))
+  	    match = name;
+  	else
+--- 2476,2483 ----
+      if (name != NULL)
+      {
+  	regmatch.regprog = prog;
+! 	/* Ignore case when 'fileignorecase' or the argument is set. */
+! 	regmatch.rm_ic = p_fic || ignore_case;
+  	if (vim_regexec(&regmatch, name, (colnr_T)0))
+  	    match = name;
+  	else
+*** ../vim-7.4.454/src/version.c	2014-09-23 13:48:40.054785798 +0200
+--- src/version.c	2014-09-23 14:19:13.114789802 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     455,
+  /**/
+
+-- 
+If Microsoft would build a car...
+... the oil, water temperature, and alternator warning lights would
+all be replaced by a single "General Protection Fault" warning light.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

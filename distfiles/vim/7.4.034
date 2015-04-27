@@ -1,0 +1,180 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.034
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.034
+Problem:    Using "p" in Visual block mode only changes the first line.
+Solution:   Repeat the put in all text in the block. (Christian Brabandt)
+Files:	    runtime/doc/change.txt, src/ops.c, src/normal.c,
+	    src/testdir/test20.in, src/testdir/test20.ok
+
+
+*** ../vim-7.4.033/runtime/doc/change.txt	2013-08-10 13:24:52.000000000 +0200
+--- runtime/doc/change.txt	2013-09-22 15:12:20.000000000 +0200
+***************
+*** 1069,1074 ****
+--- 1069,1079 ----
+  replace and use "0p .  You can repeat this as many times as you like, the
+  unnamed register will be changed each time.
+  
++ When you use a blockwise Visual mode command and yank only a single line into
++ a register, a paste on a visual selected area will paste that single line on
++ each of the selected lines (thus replacing the blockwise selected region by a
++ block of the pasted line).
++ 
+  							*blockwise-register*
+  If you use a blockwise Visual mode command to get the text into the register,
+  the block of text will be inserted before ("P") or after ("p") the cursor
+*** ../vim-7.4.033/src/ops.c	2013-08-09 19:34:32.000000000 +0200
+--- src/ops.c	2013-09-22 15:18:03.000000000 +0200
+***************
+*** 3776,3800 ****
+  	 */
+  	if (y_type == MCHAR && y_size == 1)
+  	{
+! 	    totlen = count * yanklen;
+! 	    if (totlen)
+! 	    {
+! 		oldp = ml_get(lnum);
+! 		newp = alloc_check((unsigned)(STRLEN(oldp) + totlen + 1));
+! 		if (newp == NULL)
+! 		    goto end;		/* alloc() will give error message */
+! 		mch_memmove(newp, oldp, (size_t)col);
+! 		ptr = newp + col;
+! 		for (i = 0; i < count; ++i)
+  		{
+! 		    mch_memmove(ptr, y_array[0], (size_t)yanklen);
+! 		    ptr += yanklen;
+  		}
+! 		STRMOVE(ptr, oldp + col);
+! 		ml_replace(lnum, newp, FALSE);
+! 		/* Put cursor on last putted char. */
+! 		curwin->w_cursor.col += (colnr_T)(totlen - 1);
+! 	    }
+  	    curbuf->b_op_end = curwin->w_cursor;
+  	    /* For "CTRL-O p" in Insert mode, put cursor after last char */
+  	    if (totlen && (restart_edit != 0 || (flags & PUT_CURSEND)))
+--- 3776,3817 ----
+  	 */
+  	if (y_type == MCHAR && y_size == 1)
+  	{
+! 	    do {
+! 		totlen = count * yanklen;
+! 		if (totlen > 0)
+  		{
+! 		    oldp = ml_get(lnum);
+! 		    newp = alloc_check((unsigned)(STRLEN(oldp) + totlen + 1));
+! 		    if (newp == NULL)
+! 			goto end;	/* alloc() gave an error message */
+! 		    mch_memmove(newp, oldp, (size_t)col);
+! 		    ptr = newp + col;
+! 		    for (i = 0; i < count; ++i)
+! 		    {
+! 			mch_memmove(ptr, y_array[0], (size_t)yanklen);
+! 			ptr += yanklen;
+! 		    }
+! 		    STRMOVE(ptr, oldp + col);
+! 		    ml_replace(lnum, newp, FALSE);
+! 		    /* Place cursor on last putted char. */
+! 		    if (lnum == curwin->w_cursor.lnum)
+! 			curwin->w_cursor.col += (colnr_T)(totlen - 1);
+  		}
+! #ifdef FEAT_VISUAL
+! 		if (VIsual_active)
+! 		    lnum++;
+! #endif
+! 	    } while (
+! #ifdef FEAT_VISUAL
+! 		    VIsual_active && lnum <= curbuf->b_visual.vi_end.lnum
+! #else
+! 		    FALSE /* stop after 1 paste */
+! #endif
+! 		    );
+! #ifdef FEAT_VISUAL
+! 	    VIsual_active = FALSE;
+! #endif
+! 
+  	    curbuf->b_op_end = curwin->w_cursor;
+  	    /* For "CTRL-O p" in Insert mode, put cursor after last char */
+  	    if (totlen && (restart_edit != 0 || (flags & PUT_CURSEND)))
+*** ../vim-7.4.033/src/normal.c	2013-07-14 13:24:37.000000000 +0200
+--- src/normal.c	2013-09-22 15:15:18.000000000 +0200
+***************
+*** 9518,9523 ****
+--- 9518,9525 ----
+  		/* cursor is at the end of the line or end of file, put
+  		 * forward. */
+  		dir = FORWARD;
++ 	    /* May have been reset in do_put(). */
++ 	    VIsual_active = TRUE;
+  	}
+  #endif
+  	do_put(cap->oap->regname, dir, cap->count1, flags);
+*** ../vim-7.4.033/src/testdir/test20.in	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test20.in	2013-09-22 15:11:37.000000000 +0200
+***************
+*** 9,19 ****
+  @auY:quit!
+  GP
+  /start here$
+! jjlld
+! :/here$/,$-1w! test.out
+  :qa!
+  ENDTEST
+  
+  test text test tex start here
+  		some text
+  		test text
+--- 9,25 ----
+  @auY:quit!
+  GP
+  /start here$
+! "by$jjlld
+! /456$
+! jj"bP
+! :/56$/,$-1w! test.out
+  :qa!
+  ENDTEST
+  
++ 123456
++ 234567
++ 345678
++ 
+  test text test tex start here
+  		some text
+  		test text
+*** ../vim-7.4.033/src/testdir/test20.ok	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test20.ok	2013-09-22 15:11:37.000000000 +0200
+***************
+*** 1,3 ****
+--- 1,7 ----
++ 123start here56
++ 234start here67
++ 345start here78
++ 
+  test text test tex rt here
+  		somext
+  		tesext
+*** ../vim-7.4.033/src/version.c	2013-09-22 15:03:34.000000000 +0200
+--- src/version.c	2013-09-22 15:14:04.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     34,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+249. You've forgotten what the outside looks like.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

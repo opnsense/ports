@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.230
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.230
+Problem:    Error when using ":options".
+Solution:   Fix the entry for 'lispwords'. (Kenichi Ito)
+Files:	    runtime/optwin.vim
+
+
+*** ../vim-7.4.229/runtime/optwin.vim	2014-03-12 18:55:52.100906804 +0100
+--- runtime/optwin.vim	2014-04-01 12:25:09.825159207 +0200
+***************
+*** 855,861 ****
+    call append("$", "\t(local to buffer)")
+    call <SID>BinOptionL("lisp")
+    call append("$", "lispwords\twords that change how lisp indenting works")
+!   call <SID>OptionL("lw", &lw)
+  endif
+  
+  
+--- 855,861 ----
+    call append("$", "\t(local to buffer)")
+    call <SID>BinOptionL("lisp")
+    call append("$", "lispwords\twords that change how lisp indenting works")
+!   call <SID>OptionL("lw")
+  endif
+  
+  
+*** ../vim-7.4.229/src/version.c	2014-03-30 16:49:06.412565288 +0200
+--- src/version.c	2014-04-01 12:23:07.629160888 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     230,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+9. All your daydreaming is preoccupied with getting a faster connection to the
+   net: 28.8...ISDN...cable modem...T1...T3.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

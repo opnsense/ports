@@ -1,0 +1,132 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.421
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.421
+Problem:    Crash when searching for "\ze*". (Urtica Dioica)
+Solution:   Disallow a multi after \ze and \zs.
+Files:	    src/regexp_nfa.c, src/testdir/test64.in, src/testdir/test64.ok
+
+
+*** ../vim-7.4.420/src/regexp_nfa.c	2014-05-13 19:37:19.489786520 +0200
+--- src/regexp_nfa.c	2014-08-29 11:14:12.030416520 +0200
+***************
+*** 291,296 ****
+--- 291,297 ----
+  static int nfa_regconcat __ARGS((void));
+  static int nfa_regbranch __ARGS((void));
+  static int nfa_reg __ARGS((int paren));
++ static int re_mult_next __ARGS((char *what));
+  #ifdef DEBUG
+  static void nfa_set_code __ARGS((int c));
+  static void nfa_postfix_dump __ARGS((char_u *expr, int retval));
+***************
+*** 1323,1332 ****
+--- 1324,1337 ----
+  	    {
+  		case 's':
+  		    EMIT(NFA_ZSTART);
++ 		    if (re_mult_next("\\zs") == FAIL)
++ 			return FAIL;
+  		    break;
+  		case 'e':
+  		    EMIT(NFA_ZEND);
+  		    nfa_has_zend = TRUE;
++ 		    if (re_mult_next("\\ze") == FAIL)
++ 			return FAIL;
+  		    break;
+  #ifdef FEAT_SYN_HL
+  		case '1':
+***************
+*** 2276,2281 ****
+--- 2281,2298 ----
+      return OK;
+  }
+  
++ /*
++  * Used in a place where no * or \+ can follow.
++  */
++     static int
++ re_mult_next(what)
++     char *what;
++ {
++     if (re_multi_type(peekchr()) == MULTI_MULT)
++ 	EMSG2_RET_FAIL(_("E888: (NFA regexp) cannot repeat %s"), what);
++     return OK;
++ }
++ 
+  #ifdef DEBUG
+  static char_u code[50];
+  
+*** ../vim-7.4.420/src/testdir/test64.in	2014-05-13 16:44:25.633695709 +0200
+--- src/testdir/test64.in	2014-08-29 11:33:12.330419011 +0200
+***************
+*** 459,465 ****
+  :  let text = t[2]
+  :  let matchidx = 3
+  :  for engine in [0, 1, 2]
+! :    if engine == 2 && re == 0 || engine == 1 && re ==1
+  :      continue
+  :    endif
+  :    let &regexpengine = engine
+--- 459,465 ----
+  :  let text = t[2]
+  :  let matchidx = 3
+  :  for engine in [0, 1, 2]
+! :    if engine == 2 && re == 0 || engine == 1 && re == 1
+  :      continue
+  :    endif
+  :    let &regexpengine = engine
+***************
+*** 608,613 ****
+--- 608,624 ----
+  "ayb20gg/..\%$
+  "bybGo"apo"bp:"
+  :"
++ :" Check for detecting error
++ :set regexpengine=2
++ :for pat in [' \ze*', ' \zs*']
++ :  try
++ :    let l = matchlist('x x', pat)
++ :    $put ='E888 NOT detected for ' . pat
++ :  catch
++ :    $put ='E888 detected for ' . pat
++ :  endtry
++ :endfor
++ :"
+  :""""" Write the results """""""""""""
+  :/\%#=1^Results/,$wq! test.out
+  ENDTEST
+*** ../vim-7.4.420/src/testdir/test64.ok	2014-05-13 16:44:25.633695709 +0200
+--- src/testdir/test64.ok	2014-08-29 11:36:05.782419390 +0200
+***************
+*** 1097,1099 ****
+--- 1097,1101 ----
+  Test END
+  EN
+  E
++ E888 detected for  \ze*
++ E888 detected for  \zs*
+*** ../vim-7.4.420/src/version.c	2014-08-29 10:04:32.226407390 +0200
+--- src/version.c	2014-08-29 11:37:15.794419543 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     421,
+  /**/
+
+-- 
+From "know your smileys":
+ :----}  You lie like Pinocchio
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

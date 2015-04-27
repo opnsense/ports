@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.563
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.563
+Problem:    No test for replacing on a tab in Virtual replace mode.
+Solution:   Add a test. (Elias Diem)
+Files:	    src/testdir/test48.in, src/testdir/test48.ok
+
+
+*** ../vim-7.4.562/src/testdir/test48.in	2012-12-12 18:09:21.000000000 +0100
+--- src/testdir/test48.in	2015-01-07 13:50:22.725817323 +0100
+***************
+*** 44,49 ****
+--- 44,53 ----
+  /^"r"
+  $5lrxa<-- should be 'x'
+  :"
++ :" Test "r" on a tab
++ :" Note that for this test, 'ts' must be 8 (the default).
++ ^5lrxA<-- should be '  x  '
++ :"
+  :"   Test to make sure 'x' can delete control characters
+  :set display=uhex
+  ^xxxxxxi[This line should contain only the text between the brackets.]
+***************
+*** 72,77 ****
+--- 76,82 ----
+  this is a test
+  this is a test
+  "r"
++ "r"	
+  absd
+  abcv6efi.him0kl
+  
+*** ../vim-7.4.562/src/testdir/test48.ok	2012-12-12 18:09:25.000000000 +0100
+--- src/testdir/test48.ok	2015-01-07 13:44:09.418122081 +0100
+***************
+*** 12,17 ****
+--- 12,18 ----
+  this is a test
+  this is a test
+  "r"    x<-- should be 'x'
++ "r"  x  <-- should be '  x  '
+  [This line should contain only the text between the brackets.]
+     v   i   m   <-- should show the name of a noted text editor
+      6   .   0   <-- and its version number
+*** ../vim-7.4.562/src/version.c	2015-01-07 13:31:48.890661692 +0100
+--- src/version.c	2015-01-07 14:02:11.173641021 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     563,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+54. You start tilting your head sideways to smile. :-)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

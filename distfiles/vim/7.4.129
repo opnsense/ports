@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.129
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.129
+Problem:    getline(-1) returns zero. (mvxxc)
+Solution:   Return an empty string.
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.128/src/eval.c	2013-11-11 04:25:48.000000000 +0100
+--- src/eval.c	2013-12-14 12:11:27.000000000 +0100
+***************
+*** 11119,11124 ****
+--- 11119,11126 ----
+  {
+      char_u	*p;
+  
++     rettv->v_type = VAR_STRING;
++     rettv->vval.v_string = NULL;
+      if (retlist && rettv_list_alloc(rettv) == FAIL)
+  	return;
+  
+***************
+*** 11131,11138 ****
+  	    p = ml_get_buf(buf, start, FALSE);
+  	else
+  	    p = (char_u *)"";
+- 
+- 	rettv->v_type = VAR_STRING;
+  	rettv->vval.v_string = vim_strsave(p);
+      }
+      else
+--- 11133,11138 ----
+*** ../vim-7.4.128/src/version.c	2013-12-14 11:50:28.000000000 +0100
+--- src/version.c	2013-12-14 12:13:32.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     129,
+  /**/
+
+-- 
+Keyboard not found.  Think ENTER to continue.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

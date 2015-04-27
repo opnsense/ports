@@ -1,0 +1,211 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.213
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.213
+Problem:    It's not possible to open a new buffer without creating a swap
+	    file.
+Solution:   Add the ":noswapfile" modifier. (Christian Brabandt)
+Files:	    runtime/doc/recover.txt, src/ex_cmds.h, src/ex_docmd.c,
+	    src/memline.c, src/structs.h
+
+
+*** ../vim-7.4.212/runtime/doc/recover.txt	2013-08-10 13:25:00.000000000 +0200
+--- runtime/doc/recover.txt	2014-03-23 16:01:59.655309841 +0100
+***************
+*** 81,87 ****
+  'maxmemtot'.  And when making a change to a read-only file, the swap file is
+  created anyway.
+  
+! The 'swapfile' option can be reset to avoid creating a swapfile.
+  
+  
+  Detecting an existing swap file ~
+--- 81,94 ----
+  'maxmemtot'.  And when making a change to a read-only file, the swap file is
+  created anyway.
+  
+! The 'swapfile' option can be reset to avoid creating a swapfile.  And the
+! |:noswapfile| modifier can be used to not create a swapfile for a new buffer.
+! 
+! :noswap[file]   {command}			*:noswap* *:noswapfile*
+! 		Execute {command}. If it contains a command that loads a new
+! 		buffer, it will be loaded without creating a swapfile and the
+! 		'swapfile' option will be reset.  If a buffer already had a
+! 		swapfile it is not removed and 'swapfile' is not reset.
+  
+  
+  Detecting an existing swap file ~
+*** ../vim-7.4.212/src/ex_cmds.h	2014-03-22 13:29:57.693846167 +0100
+--- src/ex_cmds.h	2014-03-23 15:36:42.399286592 +0100
+***************
+*** 655,660 ****
+--- 655,662 ----
+  			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_noremenu,	"noremenu",	ex_menu,
+  			RANGE|NOTADR|ZEROR|BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
++ EX(CMD_noswapfile,	"noswapfile",	ex_wrongmodifier,
++ 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_normal,		"normal",	ex_normal,
+  			RANGE|BANG|EXTRA|NEEDARG|NOTRLCOM|USECTRLV|SBOXOK|CMDWIN),
+  EX(CMD_number,		"number",	ex_print,
+*** ../vim-7.4.212/src/ex_docmd.c	2014-03-23 15:12:29.919264336 +0100
+--- src/ex_docmd.c	2014-03-23 15:44:42.335293946 +0100
+***************
+*** 1874,1891 ****
+  #endif
+  			continue;
+  
+! 	    case 'n':	if (!checkforcmd(&ea.cmd, "noautocmd", 3))
+! 			    break;
+! #ifdef FEAT_AUTOCMD
+! 			if (cmdmod.save_ei == NULL)
+  			{
+! 			    /* Set 'eventignore' to "all". Restore the
+! 			     * existing option value later. */
+! 			    cmdmod.save_ei = vim_strsave(p_ei);
+! 			    set_string_option_direct((char_u *)"ei", -1,
+  					 (char_u *)"all", OPT_FREE, SID_NONE);
+! 			}
+  #endif
+  			continue;
+  
+  	    case 'r':	if (!checkforcmd(&ea.cmd, "rightbelow", 6))
+--- 1874,1896 ----
+  #endif
+  			continue;
+  
+! 	    case 'n':	if (checkforcmd(&ea.cmd, "noautocmd", 3))
+  			{
+! #ifdef FEAT_AUTOCMD
+! 			    if (cmdmod.save_ei == NULL)
+! 			    {
+! 				/* Set 'eventignore' to "all". Restore the
+! 				 * existing option value later. */
+! 				cmdmod.save_ei = vim_strsave(p_ei);
+! 				set_string_option_direct((char_u *)"ei", -1,
+  					 (char_u *)"all", OPT_FREE, SID_NONE);
+! 			    }
+  #endif
++ 			    continue;
++ 			}
++ 			if (!checkforcmd(&ea.cmd, "noswapfile", 6))
++ 			    break;
++ 			cmdmod.noswapfile = TRUE;
+  			continue;
+  
+  	    case 'r':	if (!checkforcmd(&ea.cmd, "rightbelow", 6))
+***************
+*** 2596,2601 ****
+--- 2601,2608 ----
+  	    case CMD_lua:
+  	    case CMD_match:
+  	    case CMD_mzscheme:
++ 	    case CMD_noautocmd:
++ 	    case CMD_noswapfile:
+  	    case CMD_perl:
+  	    case CMD_psearch:
+  	    case CMD_python:
+***************
+*** 3099,3104 ****
+--- 3106,3112 ----
+      {"leftabove", 5, FALSE},
+      {"lockmarks", 3, FALSE},
+      {"noautocmd", 3, FALSE},
++     {"noswapfile", 3, FALSE},
+      {"rightbelow", 6, FALSE},
+      {"sandbox", 3, FALSE},
+      {"silent", 3, FALSE},
+***************
+*** 3611,3616 ****
+--- 3619,3626 ----
+  	case CMD_keeppatterns:
+  	case CMD_leftabove:
+  	case CMD_lockmarks:
++ 	case CMD_noautocmd:
++ 	case CMD_noswapfile:
+  	case CMD_rightbelow:
+  	case CMD_sandbox:
+  	case CMD_silent:
+*** ../vim-7.4.212/src/memline.c	2014-02-11 15:23:27.942123631 +0100
+--- src/memline.c	2014-03-23 15:48:05.679297062 +0100
+***************
+*** 289,294 ****
+--- 289,297 ----
+      buf->b_ml.ml_chunksize = NULL;
+  #endif
+  
++     if (cmdmod.noswapfile)
++ 	buf->b_p_swf = FALSE;
++ 
+      /*
+       * When 'updatecount' is non-zero swap file may be opened later.
+       */
+***************
+*** 606,612 ****
+  	 * When 'updatecount' is 0 and 'noswapfile' there is no swap file.
+  	 * For help files we will make a swap file now.
+  	 */
+! 	if (p_uc != 0)
+  	    ml_open_file(buf);	    /* create a swap file */
+  	return;
+      }
+--- 609,615 ----
+  	 * When 'updatecount' is 0 and 'noswapfile' there is no swap file.
+  	 * For help files we will make a swap file now.
+  	 */
+! 	if (p_uc != 0 && !cmdmod.noswapfile)
+  	    ml_open_file(buf);	    /* create a swap file */
+  	return;
+      }
+***************
+*** 719,725 ****
+      char_u	*dirp;
+  
+      mfp = buf->b_ml.ml_mfp;
+!     if (mfp == NULL || mfp->mf_fd >= 0 || !buf->b_p_swf)
+  	return;		/* nothing to do */
+  
+  #ifdef FEAT_SPELL
+--- 722,728 ----
+      char_u	*dirp;
+  
+      mfp = buf->b_ml.ml_mfp;
+!     if (mfp == NULL || mfp->mf_fd >= 0 || !buf->b_p_swf || cmdmod.noswapfile)
+  	return;		/* nothing to do */
+  
+  #ifdef FEAT_SPELL
+*** ../vim-7.4.212/src/structs.h	2014-03-23 15:12:29.943264337 +0100
+--- src/structs.h	2014-03-23 15:36:42.407286592 +0100
+***************
+*** 545,550 ****
+--- 545,551 ----
+      int		keepjumps;		/* TRUE when ":keepjumps" was used */
+      int		lockmarks;		/* TRUE when ":lockmarks" was used */
+      int		keeppatterns;		/* TRUE when ":keeppatterns" was used */
++     int		noswapfile;		/* TRUE when ":noswapfile" was used */
+  # ifdef FEAT_AUTOCMD
+      char_u	*save_ei;		/* saved value of 'eventignore' */
+  # endif
+*** ../vim-7.4.212/src/version.c	2014-03-23 15:12:29.943264337 +0100
+--- src/version.c	2014-03-23 16:02:16.519310100 +0100
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     213,
+  /**/
+
+-- 
+Looking at Perl through Lisp glasses, Perl looks atrocious.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,164 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.655
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.655
+Problem:    Text deleted by "dit" depends on indent of closing tag.
+	    (Jan Parthey)
+Solution:   Do not adjust oap->end in do_pending_operator(). (Christian
+	    Brabandt)
+Files:	    src/normal.c, src/search.c, src/testdir/test53.in,
+	    src/testdir/test53.ok
+
+
+*** ../vim-7.4.654/src/normal.c	2015-02-27 15:03:54.368707978 +0100
+--- src/normal.c	2015-03-05 19:53:49.889414297 +0100
+***************
+*** 9198,9203 ****
+--- 9198,9211 ----
+  		flag = current_block(cap->oap, cap->count1, include, '<', '>');
+  		break;
+  	case 't': /* "at" = a tag block (xml and html) */
++ 		/* Do not adjust oap->end in do_pending_operator()
++ 		 * otherwise there are different results for 'dit'
++ 		 * (note leading whitespace in last line):
++ 		 * 1) <b>      2) <b>
++ 		 *    foobar      foobar
++ 		 *    </b>            </b>
++ 		 */
++ 		cap->retval |= CA_NO_ADJ_OP_END;
+  		flag = current_tagblock(cap->oap, cap->count1, include);
+  		break;
+  	case 'p': /* "ap" = a paragraph */
+*** ../vim-7.4.654/src/search.c	2014-12-13 22:00:18.157279625 +0100
+--- src/search.c	2015-03-05 19:55:09.112508000 +0100
+***************
+*** 1063,1069 ****
+   * Careful: If spats[0].off.line == TRUE and spats[0].off.off == 0 this
+   * makes the movement linewise without moving the match position.
+   *
+!  * return 0 for failure, 1 for found, 2 for found and line offset added
+   */
+      int
+  do_search(oap, dirc, pat, count, options, tm)
+--- 1063,1069 ----
+   * Careful: If spats[0].off.line == TRUE and spats[0].off.off == 0 this
+   * makes the movement linewise without moving the match position.
+   *
+!  * Return 0 for failure, 1 for found, 2 for found and line offset added.
+   */
+      int
+  do_search(oap, dirc, pat, count, options, tm)
+***************
+*** 3781,3786 ****
+--- 3781,3787 ----
+      int		do_include = include;
+      int		save_p_ws = p_ws;
+      int		retval = FAIL;
++     int		is_inclusive = TRUE;
+  
+      p_ws = FALSE;
+  
+***************
+*** 3895,3902 ****
+      }
+      else
+      {
+! 	/* Exclude the '<' of the end tag. */
+! 	if (*ml_get_cursor() == '<')
+  	    dec_cursor();
+      }
+      end_pos = curwin->w_cursor;
+--- 3896,3910 ----
+      }
+      else
+      {
+! 	char_u *c = ml_get_cursor();
+! 
+! 	/* Exclude the '<' of the end tag.
+! 	 * If the closing tag is on new line, do not decrement cursor, but
+! 	 * make operation exclusive, so that the linefeed will be selected */
+! 	if (*c == '<' && !VIsual_active && curwin->w_cursor.col == 0)
+! 	    /* do not decrement cursor */
+! 	    is_inclusive = FALSE;
+! 	else if (*c == '<')
+  	    dec_cursor();
+      }
+      end_pos = curwin->w_cursor;
+***************
+*** 3950,3956 ****
+  	    oap->inclusive = FALSE;
+  	}
+  	else
+! 	    oap->inclusive = TRUE;
+      }
+      retval = OK;
+  
+--- 3958,3964 ----
+  	    oap->inclusive = FALSE;
+  	}
+  	else
+! 	    oap->inclusive = is_inclusive;
+      }
+      retval = OK;
+  
+*** ../vim-7.4.654/src/testdir/test53.in	2014-12-13 22:00:18.157279625 +0100
+--- src/testdir/test53.in	2015-03-05 19:50:34.187653489 +0100
+***************
+*** 23,28 ****
+--- 23,29 ----
+  0fXdit
+  fXdat
+  0fXdat
++ dit
+  :"
+  :put =matchstr(\"abcd\", \".\", 0, 2) " b
+  :put =matchstr(\"abcd\", \"..\", 0, 2) " bc
+***************
+*** 97,102 ****
+--- 98,106 ----
+  -<b>asdX<i>a<i />sdf</i>asdf</b>-
+  -<b>asdf<i>Xasdf</i>asdf</b>-
+  -<b>asdX<i>as<b />df</i>asdf</b>-
++ -<b>
++ innertext object
++ </b>
+  </begin>
+  SEARCH:
+  foobar
+*** ../vim-7.4.654/src/testdir/test53.ok	2014-12-13 22:00:18.161279370 +0100
+--- src/testdir/test53.ok	2015-03-05 19:50:37.903610966 +0100
+***************
+*** 11,16 ****
+--- 11,17 ----
+  -<b></b>-
+  -<b>asdfasdf</b>-
+  --
++ -<b></b>
+  </begin>
+  b
+  bc
+*** ../vim-7.4.654/src/version.c	2015-03-05 19:35:20.690114997 +0100
+--- src/version.c	2015-03-05 19:52:18.674457919 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     655,
+  /**/
+
+-- 
+CONCORDE: Message for you, sir.
+   He falls forward revealing the arrow with the note.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

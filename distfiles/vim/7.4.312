@@ -1,0 +1,194 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.312
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.312
+Problem:    Cannot figure out what argument list is being used for a window.
+Solution:   Add the arglistid() function. (Marcin Szamotulski)
+Files:	    runtime/doc/eval.txt, runtime/doc/usr_41.txt, src/eval.c,
+	    src/ex_docmd.c, src/globals.h, src/structs.h, src/main.c
+
+
+*** ../vim-7.4.311/runtime/doc/eval.txt	2014-05-28 16:47:11.396174926 +0200
+--- runtime/doc/eval.txt	2014-05-28 18:00:06.248213223 +0200
+***************
+*** 1716,1721 ****
+--- 1716,1723 ----
+  append( {lnum}, {list})		Number	append lines {list} below line {lnum}
+  argc()				Number	number of files in the argument list
+  argidx()			Number	current index in the argument list
++ arglistid( [{winnr}, [ {tabnr}]])
++ 				Number	argument list id
+  argv( {nr})			String	{nr} entry of the argument list
+  argv( )				List	the argument list
+  asin( {expr})			Float	arc sine of {expr}
+***************
+*** 2103,2108 ****
+--- 2105,2122 ----
+  argidx()	The result is the current index in the argument list.  0 is
+  		the first file.  argc() - 1 is the last one.  See |arglist|.
+  
++ 							*arglistid()*
++ arglistid([{winnr}, [ {tabnr} ]])
++ 		Return the argument list ID.  This is a number which
++ 		identifies the argument list being used.  Zero is used for the
++ 		global argument list.
++ 		Return zero if the arguments are invalid.
++ 
++ 		Without arguments use the current window.
++ 		With {winnr} only use this window in the current tab page.
++ 		With {winnr} and {tabnr} use the window in the specified tab
++ 		page.
++ 
+  							*argv()*
+  argv([{nr}])	The result is the {nr}th file in the argument list of the
+  		current window.  See |arglist|.  "argv(0)" is the first one.
+*** ../vim-7.4.311/runtime/doc/usr_41.txt	2014-03-25 18:23:27.054087691 +0100
+--- runtime/doc/usr_41.txt	2014-05-28 18:07:43.096217222 +0200
+***************
+*** 770,775 ****
+--- 772,778 ----
+  Buffers, windows and the argument list:
+  	argc()			number of entries in the argument list
+  	argidx()		current position in the argument list
++ 	arglistid()		get id of the argument list
+  	argv()			get one entry from the argument list
+  	bufexists()		check if a buffer exists
+  	buflisted()		check if a buffer exists and is listed
+*** ../vim-7.4.311/src/eval.c	2014-05-28 16:47:11.392174926 +0200
+--- src/eval.c	2014-05-28 18:11:10.264219035 +0200
+***************
+*** 463,468 ****
+--- 463,469 ----
+  static void f_append __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_argc __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_argidx __ARGS((typval_T *argvars, typval_T *rettv));
++ static void f_arglistid __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_argv __ARGS((typval_T *argvars, typval_T *rettv));
+  #ifdef FEAT_FLOAT
+  static void f_asin __ARGS((typval_T *argvars, typval_T *rettv));
+***************
+*** 7875,7880 ****
+--- 7876,7882 ----
+      {"append",		2, 2, f_append},
+      {"argc",		0, 0, f_argc},
+      {"argidx",		0, 0, f_argidx},
++     {"arglistid",	0, 2, f_arglistid},
+      {"argv",		0, 1, f_argv},
+  #ifdef FEAT_FLOAT
+      {"asin",		1, 1, f_asin},	/* WJMc */
+***************
+*** 8859,8864 ****
+--- 8861,8901 ----
+  }
+  
+  /*
++  * "arglistid()" function
++  */
++     static void
++ f_arglistid(argvars, rettv)
++     typval_T	*argvars UNUSED;
++     typval_T	*rettv;
++ {
++     win_T	*wp;
++     tabpage_T	*tp = NULL;
++     long	n;
++ 
++     rettv->vval.v_number = -1;
++     if (argvars[0].v_type != VAR_UNKNOWN)
++     {
++ 	if (argvars[1].v_type != VAR_UNKNOWN)
++ 	{
++ 	    n = get_tv_number(&argvars[1]);
++ 	    if (n >= 0)
++ 		tp = find_tabpage(n);
++ 	}
++ 	else
++ 	    tp = curtab;
++ 
++ 	if (tp != NULL)
++ 	{
++ 	    wp = find_win_by_nr(&argvars[0], tp);
++ 	    if (wp != NULL)
++ 		rettv->vval.v_number = wp->w_alist->id;
++ 	}
++     }
++     else
++ 	rettv->vval.v_number = curwin->w_alist->id;
++ }
++ 
++ /*
+   * "argv(nr)" function
+   */
+      static void
+*** ../vim-7.4.311/src/ex_docmd.c	2014-05-07 21:14:42.913299714 +0200
+--- src/ex_docmd.c	2014-05-28 18:10:01.696218435 +0200
+***************
+*** 7211,7216 ****
+--- 7211,7217 ----
+      else
+      {
+  	curwin->w_alist->al_refcount = 1;
++ 	curwin->w_alist->id = ++max_alist_id;
+  	alist_init(curwin->w_alist);
+      }
+  }
+*** ../vim-7.4.311/src/globals.h	2014-05-22 18:14:27.570224664 +0200
+--- src/globals.h	2014-05-28 17:56:53.392211534 +0200
+***************
+*** 601,606 ****
+--- 601,607 ----
+   * to this when the window is using the global argument list.
+   */
+  EXTERN alist_T	global_alist;	/* global argument list */
++ EXTERN int	max_alist_id INIT(= 0);	    /* the previous argument list id */
+  EXTERN int	arg_had_last INIT(= FALSE); /* accessed last file in
+  					       global_alist */
+  
+*** ../vim-7.4.311/src/structs.h	2014-05-13 20:19:53.573808877 +0200
+--- src/structs.h	2014-05-28 17:54:18.312210177 +0200
+***************
+*** 675,680 ****
+--- 675,681 ----
+  {
+      garray_T	al_ga;		/* growarray with the array of file names */
+      int		al_refcount;	/* number of windows using this arglist */
++     int		id;		/* id of this arglist */
+  } alist_T;
+  
+  /*
+*** ../vim-7.4.311/src/main.c	2014-04-01 19:55:46.252787300 +0200
+--- src/main.c	2014-05-28 18:09:32.040218175 +0200
+***************
+*** 322,327 ****
+--- 322,328 ----
+      init_yank();		/* init yank buffers */
+  
+      alist_init(&global_alist);	/* Init the argument list to empty. */
++     global_alist.id = 0;
+  
+      /*
+       * Set the default values for the options.
+*** ../vim-7.4.311/src/version.c	2014-05-28 16:47:11.396174926 +0200
+--- src/version.c	2014-05-28 17:25:32.644195071 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     312,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+222. You send more than 20 personal e-mails a day.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

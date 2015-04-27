@@ -1,0 +1,1131 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.330
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.330
+Problem:    Using a regexp pattern to highlight a specific position can be
+	    slow.
+Solution:   Add matchaddpos() to highlight specific positions efficiently.
+	    (Alexey Radkov)
+Files:	    runtime/doc/eval.txt, runtime/doc/usr_41.txt,
+	    runtime/plugin/matchparen.vim, src/eval.c, src/ex_docmd.c,
+	    src/proto/window.pro, src/screen.c, src/structs.h,
+	    src/testdir/test63.in, src/testdir/test63.ok, src/window.c
+
+
+*** ../vim-7.4.329/runtime/doc/eval.txt	2014-05-28 20:31:37.500292805 +0200
+--- runtime/doc/eval.txt	2014-06-17 16:31:35.572453748 +0200
+***************
+*** 1887,1892 ****
+--- 1887,1894 ----
+  				Number	position where {pat} matches in {expr}
+  matchadd( {group}, {pattern}[, {priority}[, {id}]])
+  				Number	highlight {pattern} with {group}
++ matchaddpos( {group}, {list}[, {priority}[, {id}]])
++ 				Number	highlight positions with {group}
+  matcharg( {nr})			List	arguments of |:match|
+  matchdelete( {id})		Number	delete match identified by {id}
+  matchend( {expr}, {pat}[, {start}[, {count}]])
+***************
+*** 4342,4347 ****
+--- 4382,4422 ----
+  		available from |getmatches()|.	All matches can be deleted in
+  		one operation by |clearmatches()|.
+  
++ matchaddpos({group}, {pos}[, {priority}[, {id}]])		*matchaddpos()*
++ 		Same as |matchadd()|, but requires a list of positions {pos}
++ 		instead of a pattern. This command is faster than |matchadd()|
++ 		because it does not require to handle regular expressions and
++ 		sets buffer line boundaries to redraw screen. It is supposed
++ 		to be used when fast match additions and deletions are
++ 		required, for example to highlight matching parentheses.
++ 
++ 		The list {pos} can contain one of these items:
++ 		- A number.  This while line will be highlighted.  The first
++ 		  line has number 1.
++ 		- A list with one number, e.g., [23]. The whole line with this
++ 		  number will be highlighted.
++ 		- A list with two numbers, e.g., [23, 11]. The first number is
++ 		  the line number, the second one the column number (first
++ 		  column is 1).  The character at this position will be
++ 		  highlighted.
++ 		- A list with three numbers, e.g., [23, 11, 3]. As above, but
++ 		  the third number gives the length of the highlight in screen
++ 		  cells.
++ 		
++ 		The maximum number of positions is 8.
++ 
++ 		Example: >
++ 			:highlight MyGroup ctermbg=green guibg=green
++ 			:let m = matchaddpos("MyGroup", [[23, 24], 34])
++ <		Deletion of the pattern: >
++ 			:call matchdelete(m)
++ 
++ <		Matches added by |matchaddpos()| are returned by
++ 		|getmatches()| with an entry "pos1", "pos2", etc., with the
++ 		value a list like the {pos} item.
++ 		These matches cannot be set via |setmatches()|, however they
++ 		can still be deleted by |clearmatches()|.
++ 
+  matcharg({nr})							*matcharg()*
+  		Selects the {nr} match item, as set with a |:match|,
+  		|:2match| or |:3match| command.
+*** ../vim-7.4.329/runtime/doc/usr_41.txt	2014-05-28 18:22:37.872225054 +0200
+--- runtime/doc/usr_41.txt	2014-06-17 14:06:44.836124965 +0200
+***************
+*** 824,829 ****
+--- 827,833 ----
+  	synconcealed()		get info about concealing
+  	diff_hlID()		get highlight ID for diff mode at a position
+  	matchadd()		define a pattern to highlight (a "match")
++ 	matchaddpos()		define a list of positions to highlight
+  	matcharg()		get info about |:match| arguments
+  	matchdelete()		delete a match defined by |matchadd()| or a
+  				|:match| command
+*** ../vim-7.4.329/runtime/plugin/matchparen.vim	2013-05-08 05:15:53.000000000 +0200
+--- runtime/plugin/matchparen.vim	2014-06-17 14:14:45.712143158 +0200
+***************
+*** 1,6 ****
+  " Vim plugin for showing matching parens
+  " Maintainer:  Bram Moolenaar <Bram@vim.org>
+! " Last Change: 2013 May 08
+  
+  " Exit quickly when:
+  " - this plugin was already loaded (or disabled)
+--- 1,6 ----
+  " Vim plugin for showing matching parens
+  " Maintainer:  Bram Moolenaar <Bram@vim.org>
+! " Last Change: 2014 Jun 17
+  
+  " Exit quickly when:
+  " - this plugin was already loaded (or disabled)
+***************
+*** 39,45 ****
+  function! s:Highlight_Matching_Pair()
+    " Remove any previous match.
+    if exists('w:paren_hl_on') && w:paren_hl_on
+!     3match none
+      let w:paren_hl_on = 0
+    endif
+  
+--- 39,45 ----
+  function! s:Highlight_Matching_Pair()
+    " Remove any previous match.
+    if exists('w:paren_hl_on') && w:paren_hl_on
+!     silent! call matchdelete(3)
+      let w:paren_hl_on = 0
+    endif
+  
+***************
+*** 152,165 ****
+  
+    " If a match is found setup match highlighting.
+    if m_lnum > 0 && m_lnum >= stoplinetop && m_lnum <= stoplinebottom 
+!     exe '3match MatchParen /\(\%' . c_lnum . 'l\%' . (c_col - before) .
+! 	  \ 'c\)\|\(\%' . m_lnum . 'l\%' . m_col . 'c\)/'
+      let w:paren_hl_on = 1
+    endif
+  endfunction
+  
+  " Define commands that will disable and enable the plugin.
+! command! NoMatchParen windo 3match none | unlet! g:loaded_matchparen |
+  	  \ au! matchparen
+  command! DoMatchParen runtime plugin/matchparen.vim | windo doau CursorMoved
+  
+--- 152,169 ----
+  
+    " If a match is found setup match highlighting.
+    if m_lnum > 0 && m_lnum >= stoplinetop && m_lnum <= stoplinebottom 
+!     if exists('*matchaddpos')
+!       call matchaddpos('MatchParen', [[c_lnum, c_col - before], [m_lnum, m_col]], 10, 3)
+!     else
+!       exe '3match MatchParen /\(\%' . c_lnum . 'l\%' . (c_col - before) .
+! 	    \ 'c\)\|\(\%' . m_lnum . 'l\%' . m_col . 'c\)/'
+!     endif
+      let w:paren_hl_on = 1
+    endif
+  endfunction
+  
+  " Define commands that will disable and enable the plugin.
+! command! NoMatchParen windo silent! call matchdelete(3) | unlet! g:loaded_matchparen |
+  	  \ au! matchparen
+  command! DoMatchParen runtime plugin/matchparen.vim | windo doau CursorMoved
+  
+*** ../vim-7.4.329/src/eval.c	2014-06-17 12:51:13.207953527 +0200
+--- src/eval.c	2014-06-17 17:02:25.388523729 +0200
+***************
+*** 622,627 ****
+--- 622,628 ----
+  static void f_mapcheck __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_match __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_matchadd __ARGS((typval_T *argvars, typval_T *rettv));
++ static void f_matchaddpos __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_matcharg __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_matchdelete __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_matchend __ARGS((typval_T *argvars, typval_T *rettv));
+***************
+*** 8054,8059 ****
+--- 8055,8061 ----
+      {"mapcheck",	1, 3, f_mapcheck},
+      {"match",		2, 4, f_match},
+      {"matchadd",	2, 4, f_matchadd},
++     {"matchaddpos",	2, 4, f_matchaddpos},
+      {"matcharg",	1, 1, f_matcharg},
+      {"matchdelete",	1, 1, f_matchdelete},
+      {"matchend",	2, 4, f_matchend},
+***************
+*** 11767,11772 ****
+--- 11769,11775 ----
+  #ifdef FEAT_SEARCH_EXTRA
+      dict_T	*dict;
+      matchitem_T	*cur = curwin->w_match_head;
++     int		i;
+  
+      if (rettv_list_alloc(rettv) == OK)
+      {
+***************
+*** 11775,11782 ****
+  	    dict = dict_alloc();
+  	    if (dict == NULL)
+  		return;
+  	    dict_add_nr_str(dict, "group", 0L, syn_id2name(cur->hlg_id));
+- 	    dict_add_nr_str(dict, "pattern", 0L, cur->pattern);
+  	    dict_add_nr_str(dict, "priority", (long)cur->priority, NULL);
+  	    dict_add_nr_str(dict, "id", (long)cur->id, NULL);
+  	    list_append_dict(rettv->vval.v_list, dict);
+--- 11778,11813 ----
+  	    dict = dict_alloc();
+  	    if (dict == NULL)
+  		return;
++ 	    if (cur->match.regprog == NULL)
++ 	    {
++ 		/* match added with matchaddpos() */
++ 		for (i = 0; i < MAXPOSMATCH; ++i)
++ 		{
++ 		    llpos_T	*llpos;
++ 		    char	buf[6];
++ 		    list_T	*l;
++ 
++ 		    llpos = &cur->pos.pos[i];
++ 		    if (llpos->lnum == 0)
++ 			break;
++ 		    l = list_alloc();
++ 		    if (l == NULL)
++ 			break;
++ 		    list_append_number(l, (varnumber_T)llpos->lnum);
++ 		    if (llpos->col > 0)
++ 		    {
++ 			list_append_number(l, (varnumber_T)llpos->col);
++ 			list_append_number(l, (varnumber_T)llpos->len);
++ 		    }
++ 		    sprintf(buf, "pos%d", i + 1);
++ 		    dict_add_list(dict, buf, l);
++ 		}
++ 	    }
++ 	    else
++ 	    {
++ 		dict_add_nr_str(dict, "pattern", 0L, cur->pattern);
++ 	    }
+  	    dict_add_nr_str(dict, "group", 0L, syn_id2name(cur->hlg_id));
+  	    dict_add_nr_str(dict, "priority", (long)cur->priority, NULL);
+  	    dict_add_nr_str(dict, "id", (long)cur->id, NULL);
+  	    list_append_dict(rettv->vval.v_list, dict);
+***************
+*** 14313,14319 ****
+  	return;
+      }
+  
+!     rettv->vval.v_number = match_add(curwin, grp, pat, prio, id);
+  #endif
+  }
+  
+--- 14344,14401 ----
+  	return;
+      }
+  
+!     rettv->vval.v_number = match_add(curwin, grp, pat, prio, id, NULL);
+! #endif
+! }
+! 
+! /*
+!  * "matchaddpos()" function
+!  */
+!     static void
+! f_matchaddpos(argvars, rettv)
+!     typval_T	*argvars UNUSED;
+!     typval_T	*rettv UNUSED;
+! {
+! #ifdef FEAT_SEARCH_EXTRA
+!     char_u	buf[NUMBUFLEN];
+!     char_u	*group;
+!     int		prio = 10;
+!     int		id = -1;
+!     int		error = FALSE;
+!     list_T	*l;
+! 
+!     rettv->vval.v_number = -1;
+! 
+!     group = get_tv_string_buf_chk(&argvars[0], buf);
+!     if (group == NULL)
+! 	return;
+! 
+!     if (argvars[1].v_type != VAR_LIST)
+!     {
+! 	EMSG2(_(e_listarg), "matchaddpos()");
+! 	return;
+!     }
+!     l = argvars[1].vval.v_list;
+!     if (l == NULL)
+! 	return;
+! 
+!     if (argvars[2].v_type != VAR_UNKNOWN)
+!     {
+! 	prio = get_tv_number_chk(&argvars[2], &error);
+! 	if (argvars[3].v_type != VAR_UNKNOWN)
+! 	    id = get_tv_number_chk(&argvars[3], &error);
+!     }
+!     if (error == TRUE)
+! 	return;
+! 
+!     /* id == 3 is ok because matchaddpos() is supposed to substitute :3match */
+!     if (id == 1 || id == 2)
+!     {
+! 	EMSGN("E798: ID is reserved for \":match\": %ld", id);
+! 	return;
+!     }
+! 
+!     rettv->vval.v_number = match_add(curwin, group, NULL, prio, id, l);
+  #endif
+  }
+  
+***************
+*** 16816,16822 ****
+  	    match_add(curwin, get_dict_string(d, (char_u *)"group", FALSE),
+  		    get_dict_string(d, (char_u *)"pattern", FALSE),
+  		    (int)get_dict_number(d, (char_u *)"priority"),
+! 		    (int)get_dict_number(d, (char_u *)"id"));
+  	    li = li->li_next;
+  	}
+  	rettv->vval.v_number = 0;
+--- 16898,16904 ----
+  	    match_add(curwin, get_dict_string(d, (char_u *)"group", FALSE),
+  		    get_dict_string(d, (char_u *)"pattern", FALSE),
+  		    (int)get_dict_number(d, (char_u *)"priority"),
+! 		    (int)get_dict_number(d, (char_u *)"id"), NULL);
+  	    li = li->li_next;
+  	}
+  	rettv->vval.v_number = 0;
+*** ../vim-7.4.329/src/ex_docmd.c	2014-05-28 18:22:37.876225054 +0200
+--- src/ex_docmd.c	2014-06-17 14:06:44.844124966 +0200
+***************
+*** 11489,11495 ****
+  
+  	    c = *end;
+  	    *end = NUL;
+! 	    match_add(curwin, g, p + 1, 10, id);
+  	    vim_free(g);
+  	    *end = c;
+  	}
+--- 11489,11495 ----
+  
+  	    c = *end;
+  	    *end = NUL;
+! 	    match_add(curwin, g, p + 1, 10, id, NULL);
+  	    vim_free(g);
+  	    *end = c;
+  	}
+*** ../vim-7.4.329/src/proto/window.pro	2013-08-14 17:11:14.000000000 +0200
+--- src/proto/window.pro	2014-06-17 14:06:44.844124966 +0200
+***************
+*** 75,81 ****
+  void switch_buffer __ARGS((buf_T **save_curbuf, buf_T *buf));
+  void restore_buffer __ARGS((buf_T *save_curbuf));
+  int win_hasvertsplit __ARGS((void));
+! int match_add __ARGS((win_T *wp, char_u *grp, char_u *pat, int prio, int id));
+  int match_delete __ARGS((win_T *wp, int id, int perr));
+  void clear_matches __ARGS((win_T *wp));
+  matchitem_T *get_match __ARGS((win_T *wp, int id));
+--- 75,81 ----
+  void switch_buffer __ARGS((buf_T **save_curbuf, buf_T *buf));
+  void restore_buffer __ARGS((buf_T *save_curbuf));
+  int win_hasvertsplit __ARGS((void));
+! int match_add __ARGS((win_T *wp, char_u *grp, char_u *pat, int prio, int id, list_T *pos));
+  int match_delete __ARGS((win_T *wp, int id, int perr));
+  void clear_matches __ARGS((win_T *wp));
+  matchitem_T *get_match __ARGS((win_T *wp, int id));
+*** ../vim-7.4.329/src/screen.c	2014-05-28 21:40:47.092329130 +0200
+--- src/screen.c	2014-06-17 17:04:08.064527614 +0200
+***************
+*** 144,150 ****
+  static void end_search_hl __ARGS((void));
+  static void init_search_hl __ARGS((win_T *wp));
+  static void prepare_search_hl __ARGS((win_T *wp, linenr_T lnum));
+! static void next_search_hl __ARGS((win_T *win, match_T *shl, linenr_T lnum, colnr_T mincol));
+  #endif
+  static void screen_start_highlight __ARGS((int attr));
+  static void screen_char __ARGS((unsigned off, int row, int col));
+--- 144,151 ----
+  static void end_search_hl __ARGS((void));
+  static void init_search_hl __ARGS((win_T *wp));
+  static void prepare_search_hl __ARGS((win_T *wp, linenr_T lnum));
+! static void next_search_hl __ARGS((win_T *win, match_T *shl, linenr_T lnum, colnr_T mincol, matchitem_T *cur));
+! static int next_search_hl_pos __ARGS((match_T *shl, linenr_T lnum, posmatch_T *pos, colnr_T mincol));
+  #endif
+  static void screen_start_highlight __ARGS((int attr));
+  static void screen_char __ARGS((unsigned off, int row, int col));
+***************
+*** 2929,2934 ****
+--- 2930,2937 ----
+      match_T	*shl;			/* points to search_hl or a match */
+      int		shl_flag;		/* flag to indicate whether search_hl
+  					   has been processed or not */
++     int		pos_inprogress;		/* marks that position match search is
++ 					   in progress */
+      int		prevcol_hl_flag;	/* flag to indicate whether prevcol
+  					   equals startcol of search_hl or one
+  					   of the matches */
+***************
+*** 3439,3482 ****
+  	shl->startcol = MAXCOL;
+  	shl->endcol = MAXCOL;
+  	shl->attr_cur = 0;
+! 	if (shl->rm.regprog != NULL)
+! 	{
+! 	    v = (long)(ptr - line);
+! 	    next_search_hl(wp, shl, lnum, (colnr_T)v);
+! 
+! 	    /* Need to get the line again, a multi-line regexp may have made it
+! 	     * invalid. */
+! 	    line = ml_get_buf(wp->w_buffer, lnum, FALSE);
+! 	    ptr = line + v;
+  
+! 	    if (shl->lnum != 0 && shl->lnum <= lnum)
+  	    {
+- 		if (shl->lnum == lnum)
+- 		    shl->startcol = shl->rm.startpos[0].col;
+- 		else
+- 		    shl->startcol = 0;
+- 		if (lnum == shl->lnum + shl->rm.endpos[0].lnum
+- 						  - shl->rm.startpos[0].lnum)
+- 		    shl->endcol = shl->rm.endpos[0].col;
+- 		else
+- 		    shl->endcol = MAXCOL;
+- 		/* Highlight one character for an empty match. */
+- 		if (shl->startcol == shl->endcol)
+- 		{
+  #ifdef FEAT_MBYTE
+! 		    if (has_mbyte && line[shl->endcol] != NUL)
+! 			shl->endcol += (*mb_ptr2len)(line + shl->endcol);
+! 		    else
+  #endif
+! 			++shl->endcol;
+! 		}
+! 		if ((long)shl->startcol < v)  /* match at leftcol */
+! 		{
+! 		    shl->attr_cur = shl->attr;
+! 		    search_attr = shl->attr;
+! 		}
+! 		area_highlighting = TRUE;
+  	    }
+  	}
+  	if (shl != &search_hl && cur != NULL)
+  	    cur = cur->next;
+--- 3442,3484 ----
+  	shl->startcol = MAXCOL;
+  	shl->endcol = MAXCOL;
+  	shl->attr_cur = 0;
+! 	v = (long)(ptr - line);
+! 	if (cur != NULL)
+! 	    cur->pos.cur = 0;
+! 	next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+! 
+! 	/* Need to get the line again, a multi-line regexp may have made it
+! 	 * invalid. */
+! 	line = ml_get_buf(wp->w_buffer, lnum, FALSE);
+! 	ptr = line + v;
+  
+! 	if (shl->lnum != 0 && shl->lnum <= lnum)
+! 	{
+! 	    if (shl->lnum == lnum)
+! 		shl->startcol = shl->rm.startpos[0].col;
+! 	    else
+! 		shl->startcol = 0;
+! 	    if (lnum == shl->lnum + shl->rm.endpos[0].lnum
+! 						- shl->rm.startpos[0].lnum)
+! 		shl->endcol = shl->rm.endpos[0].col;
+! 	    else
+! 		shl->endcol = MAXCOL;
+! 	    /* Highlight one character for an empty match. */
+! 	    if (shl->startcol == shl->endcol)
+  	    {
+  #ifdef FEAT_MBYTE
+! 		if (has_mbyte && line[shl->endcol] != NUL)
+! 		    shl->endcol += (*mb_ptr2len)(line + shl->endcol);
+! 		else
+  #endif
+! 		    ++shl->endcol;
+  	    }
++ 	    if ((long)shl->startcol < v)  /* match at leftcol */
++ 	    {
++ 		shl->attr_cur = shl->attr;
++ 		search_attr = shl->attr;
++ 	    }
++ 	    area_highlighting = TRUE;
+  	}
+  	if (shl != &search_hl && cur != NULL)
+  	    cur = cur->next;
+***************
+*** 3488,3494 ****
+       * when Visual mode is active, because it's not clear what is selected
+       * then. */
+      if (wp->w_p_cul && lnum == wp->w_cursor.lnum
+! 					 && !(wp == curwin  && VIsual_active))
+      {
+  	line_attr = hl_attr(HLF_CUL);
+  	area_highlighting = TRUE;
+--- 3490,3496 ----
+       * when Visual mode is active, because it's not clear what is selected
+       * then. */
+      if (wp->w_p_cul && lnum == wp->w_cursor.lnum
+! 					 && !(wp == curwin && VIsual_active))
+      {
+  	line_attr = hl_attr(HLF_CUL);
+  	area_highlighting = TRUE;
+***************
+*** 3792,3798 ****
+  		    }
+  		    else
+  			shl = &cur->hl;
+! 		    while (shl->rm.regprog != NULL)
+  		    {
+  			if (shl->startcol != MAXCOL
+  				&& v >= (long)shl->startcol
+--- 3794,3804 ----
+  		    }
+  		    else
+  			shl = &cur->hl;
+! 		    if (cur != NULL)
+! 			cur->pos.cur = 0;
+! 		    pos_inprogress = TRUE;
+! 		    while (shl->rm.regprog != NULL
+! 					   || (cur != NULL && pos_inprogress))
+  		    {
+  			if (shl->startcol != MAXCOL
+  				&& v >= (long)shl->startcol
+***************
+*** 3803,3810 ****
+  			else if (v == (long)shl->endcol)
+  			{
+  			    shl->attr_cur = 0;
+! 
+! 			    next_search_hl(wp, shl, lnum, (colnr_T)v);
+  
+  			    /* Need to get the line again, a multi-line regexp
+  			     * may have made it invalid. */
+--- 3809,3817 ----
+  			else if (v == (long)shl->endcol)
+  			{
+  			    shl->attr_cur = 0;
+! 			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+! 			    pos_inprogress = cur == NULL || cur->pos.cur == 0
+! 							      ? FALSE : TRUE;
+  
+  			    /* Need to get the line again, a multi-line regexp
+  			     * may have made it invalid. */
+***************
+*** 7277,7282 ****
+--- 7284,7291 ----
+      match_T	*shl;		/* points to search_hl or a match */
+      int		shl_flag;	/* flag to indicate whether search_hl
+  				   has been processed or not */
++     int		pos_inprogress;	/* marks that position match search is
++ 				   in progress */
+      int		n;
+  
+      /*
+***************
+*** 7311,7320 ****
+  		shl->first_lnum = wp->w_topline;
+  # endif
+  	    }
+  	    n = 0;
+! 	    while (shl->first_lnum < lnum && shl->rm.regprog != NULL)
+  	    {
+! 		next_search_hl(wp, shl, shl->first_lnum, (colnr_T)n);
+  		if (shl->lnum != 0)
+  		{
+  		    shl->first_lnum = shl->lnum
+--- 7320,7335 ----
+  		shl->first_lnum = wp->w_topline;
+  # endif
+  	    }
++ 	    if (cur != NULL)
++ 		cur->pos.cur = 0;
++ 	    pos_inprogress = TRUE;
+  	    n = 0;
+! 	    while (shl->first_lnum < lnum && (shl->rm.regprog != NULL
+! 					  || (cur != NULL && pos_inprogress)))
+  	    {
+! 		next_search_hl(wp, shl, shl->first_lnum, (colnr_T)n, cur);
+! 		pos_inprogress = cur == NULL || cur->pos.cur == 0
+! 							      ? FALSE : TRUE;
+  		if (shl->lnum != 0)
+  		{
+  		    shl->first_lnum = shl->lnum
+***************
+*** 7343,7353 ****
+   * Careful: Any pointers for buffer lines will become invalid.
+   */
+      static void
+! next_search_hl(win, shl, lnum, mincol)
+!     win_T	*win;
+!     match_T	*shl;		/* points to search_hl or a match */
+!     linenr_T	lnum;
+!     colnr_T	mincol;		/* minimal column for a match */
+  {
+      linenr_T	l;
+      colnr_T	matchcol;
+--- 7358,7369 ----
+   * Careful: Any pointers for buffer lines will become invalid.
+   */
+      static void
+! next_search_hl(win, shl, lnum, mincol, cur)
+!     win_T	    *win;
+!     match_T	    *shl;	/* points to search_hl or a match */
+!     linenr_T	    lnum;
+!     colnr_T	    mincol;	/* minimal column for a match */
+!     matchitem_T	    *cur;	/* to retrieve match postions if any */
+  {
+      linenr_T	l;
+      colnr_T	matchcol;
+***************
+*** 7415,7440 ****
+  	    matchcol = shl->rm.endpos[0].col;
+  
+  	shl->lnum = lnum;
+! 	nmatched = vim_regexec_multi(&shl->rm, win, shl->buf, lnum, matchcol,
+  #ifdef FEAT_RELTIME
+! 		&(shl->tm)
+  #else
+! 		NULL
+  #endif
+! 		);
+! 	if (called_emsg || got_int)
+! 	{
+! 	    /* Error while handling regexp: stop using this regexp. */
+! 	    if (shl == &search_hl)
+  	    {
+! 		/* don't free regprog in the match list, it's a copy */
+! 		vim_regfree(shl->rm.regprog);
+! 		SET_NO_HLSEARCH(TRUE);
+  	    }
+! 	    shl->rm.regprog = NULL;
+! 	    shl->lnum = 0;
+! 	    got_int = FALSE;  /* avoid the "Type :quit to exit Vim" message */
+! 	    break;
+  	}
+  	if (nmatched == 0)
+  	{
+--- 7431,7465 ----
+  	    matchcol = shl->rm.endpos[0].col;
+  
+  	shl->lnum = lnum;
+! 	if (shl->rm.regprog != NULL)
+! 	{
+! 	    nmatched = vim_regexec_multi(&shl->rm, win, shl->buf, lnum,
+! 		    matchcol,
+  #ifdef FEAT_RELTIME
+! 		    &(shl->tm)
+  #else
+! 		    NULL
+  #endif
+! 		    );
+! 	    if (called_emsg || got_int)
+  	    {
+! 		/* Error while handling regexp: stop using this regexp. */
+! 		if (shl == &search_hl)
+! 		{
+! 		    /* don't free regprog in the match list, it's a copy */
+! 		    vim_regfree(shl->rm.regprog);
+! 		    SET_NO_HLSEARCH(TRUE);
+! 		}
+! 		shl->rm.regprog = NULL;
+! 		shl->lnum = 0;
+! 		got_int = FALSE;  /* avoid the "Type :quit to exit Vim"
+! 				     message */
+! 		break;
+  	    }
+! 	}
+! 	else if (cur != NULL)
+! 	{
+! 	    nmatched = next_search_hl_pos(shl, lnum, &(cur->pos), matchcol);
+  	}
+  	if (nmatched == 0)
+  	{
+***************
+*** 7453,7458 ****
+--- 7478,7539 ----
+  }
+  #endif
+  
++     static int
++ next_search_hl_pos(shl, lnum, posmatch, mincol)
++     match_T	    *shl;	/* points to a match */
++     linenr_T	    lnum;
++     posmatch_T	    *posmatch;	/* match positions */
++     colnr_T	    mincol;	/* minimal column for a match */
++ {
++     int	    i;
++     int     bot = -1;
++ 
++     shl->lnum = 0;
++     for (i = posmatch->cur; i < MAXPOSMATCH; i++)
++     {
++ 	if (posmatch->pos[i].lnum == 0)
++ 	    break;
++ 	if (posmatch->pos[i].col < mincol)
++ 	    continue;
++ 	if (posmatch->pos[i].lnum == lnum)
++ 	{
++ 	    if (shl->lnum == lnum)
++ 	    {
++ 		/* partially sort positions by column numbers
++ 		 * on the same line */
++ 		if (posmatch->pos[i].col < posmatch->pos[bot].col)
++ 		{
++ 		    llpos_T	tmp = posmatch->pos[i];
++ 
++ 		    posmatch->pos[i] = posmatch->pos[bot];
++ 		    posmatch->pos[bot] = tmp;
++ 		}
++ 	    }
++ 	    else
++ 	    {
++ 		bot = i;
++ 		shl->lnum = lnum;
++ 	    }
++ 	}
++     }
++     posmatch->cur = 0;
++     if (shl->lnum == lnum)
++     {
++ 	colnr_T	start = posmatch->pos[bot].col == 0
++ 					     ? 0 : posmatch->pos[bot].col - 1;
++ 	colnr_T	end = posmatch->pos[bot].col == 0
++ 				    ? MAXCOL : start + posmatch->pos[bot].len;
++ 
++ 	shl->rm.startpos[0].lnum = 0;
++ 	shl->rm.startpos[0].col = start;
++ 	shl->rm.endpos[0].lnum = 0;
++ 	shl->rm.endpos[0].col = end;
++ 	posmatch->cur = bot + 1;
++ 	return TRUE;
++     }
++     return FALSE;
++ }
++ 
+        static void
+  screen_start_highlight(attr)
+        int	attr;
+*** ../vim-7.4.329/src/structs.h	2014-05-28 18:22:37.876225054 +0200
+--- src/structs.h	2014-06-17 17:00:55.524520330 +0200
+***************
+*** 1927,1932 ****
+--- 1927,1958 ----
+  #endif
+  } match_T;
+  
++ /* number of positions supported by matchaddpos() */
++ #define MAXPOSMATCH 8
++ 
++ /*
++  * Same as lpos_T, but with additional field len.
++  */
++ typedef struct
++ {
++     linenr_T	lnum;	/* line number */
++     colnr_T	col;	/* column number */
++     int		len;	/* length: 0 - to the end of line */
++ } llpos_T;
++ 
++ /*
++  * posmatch_T provides an array for storing match items for matchaddpos()
++  * function.
++  */
++ typedef struct posmatch posmatch_T;
++ struct posmatch
++ {
++     llpos_T	pos[MAXPOSMATCH];	/* array of positions */
++     int		cur;			/* internal position counter */
++     linenr_T	toplnum;		/* top buffer line */
++     linenr_T	botlnum;		/* bottom buffer line */
++ };
++ 
+  /*
+   * matchitem_T provides a linked list for storing match items for ":match" and
+   * the match functions.
+***************
+*** 1940,1945 ****
+--- 1966,1972 ----
+      char_u	*pattern;   /* pattern to highlight */
+      int		hlg_id;	    /* highlight group ID */
+      regmmatch_T	match;	    /* regexp program for pattern */
++     posmatch_T	pos;	    /* position matches */
+      match_T	hl;	    /* struct for doing the actual highlighting */
+  };
+  
+*** ../vim-7.4.329/src/testdir/test63.in	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test63.in	2014-06-17 16:29:36.056449227 +0200
+***************
+*** 1,5 ****
+  Test for ":match", ":2match", ":3match", "clearmatches()", "getmatches()",
+! "matchadd()", "matcharg()", "matchdelete()", and "setmatches()".
+  
+  STARTTEST
+  :so small.vim
+--- 1,5 ----
+  Test for ":match", ":2match", ":3match", "clearmatches()", "getmatches()",
+! "matchadd()", "matchaddpos", "matcharg()", "matchdelete()", and "setmatches()".
+  
+  STARTTEST
+  :so small.vim
+***************
+*** 147,155 ****
+  :unlet rf1
+  :unlet rf2
+  :unlet rf3
+! :highlight clear MyGroup1
+! :highlight clear MyGroup2
+! :highlight clear MyGroup3
+  G"rp
+  :/^Results/,$wq! test.out
+  ENDTEST
+--- 147,172 ----
+  :unlet rf1
+  :unlet rf2
+  :unlet rf3
+! :" --- Check that "matchaddpos()" positions matches correctly
+! :let @r .= "*** Test 11:\n"
+! :set nolazyredraw
+! :call setline(1, 'abcdefghijklmnopq')
+! :call matchaddpos("MyGroup1", [[1, 5], [1, 8, 3]], 10, 3)
+! :1
+! :redraw!
+! :let v1 = screenattr(1, 1)
+! :let v5 = screenattr(1, 5)
+! :let v6 = screenattr(1, 6)
+! :let v8 = screenattr(1, 8)
+! :let v10 = screenattr(1, 10)
+! :let v11 = screenattr(1, 11)
+! :let @r .= string(getmatches())."\n"
+! :if v1 != v5 && v6 == v1 && v8 == v5 && v10 == v5 && v11 == v1
+! :  let @r .= "OK\n"
+! :else
+! :  let @r .= "FAILED\n"
+! :endif
+! :call clearmatches()
+  G"rp
+  :/^Results/,$wq! test.out
+  ENDTEST
+*** ../vim-7.4.329/src/testdir/test63.ok	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test63.ok	2014-06-17 17:32:57.036593023 +0200
+***************
+*** 9,11 ****
+--- 9,14 ----
+  *** Test 8: OK
+  *** Test 9: OK
+  *** Test 10: OK
++ *** Test 11:
++ [{'group': 'MyGroup1', 'id': 3, 'priority': 10, 'pos1': [1, 5, 1], 'pos2': [1, 8, 3]}]
++ OK
+*** ../vim-7.4.329/src/window.c	2014-06-17 13:52:35.868092848 +0200
+--- src/window.c	2014-06-17 17:04:51.060529240 +0200
+***************
+*** 6751,6770 ****
+   * Return ID of added match, -1 on failure.
+   */
+      int
+! match_add(wp, grp, pat, prio, id)
+      win_T	*wp;
+      char_u	*grp;
+      char_u	*pat;
+      int		prio;
+      int		id;
+  {
+!     matchitem_T *cur;
+!     matchitem_T *prev;
+!     matchitem_T *m;
+      int		hlg_id;
+!     regprog_T	*regprog;
+  
+!     if (*grp == NUL || *pat == NUL)
+  	return -1;
+      if (id < -1 || id == 0)
+      {
+--- 6751,6772 ----
+   * Return ID of added match, -1 on failure.
+   */
+      int
+! match_add(wp, grp, pat, prio, id, pos_list)
+      win_T	*wp;
+      char_u	*grp;
+      char_u	*pat;
+      int		prio;
+      int		id;
++     list_T	*pos_list;
+  {
+!     matchitem_T	*cur;
+!     matchitem_T	*prev;
+!     matchitem_T	*m;
+      int		hlg_id;
+!     regprog_T	*regprog = NULL;
+!     int		rtype = SOME_VALID;
+  
+!     if (*grp == NUL || (pat != NULL && *pat == NUL))
+  	return -1;
+      if (id < -1 || id == 0)
+      {
+***************
+*** 6789,6795 ****
+  	EMSG2(_(e_nogroup), grp);
+  	return -1;
+      }
+!     if ((regprog = vim_regcomp(pat, RE_MAGIC)) == NULL)
+      {
+  	EMSG2(_(e_invarg2), pat);
+  	return -1;
+--- 6791,6797 ----
+  	EMSG2(_(e_nogroup), grp);
+  	return -1;
+      }
+!     if (pat != NULL && (regprog = vim_regcomp(pat, RE_MAGIC)) == NULL)
+      {
+  	EMSG2(_(e_invarg2), pat);
+  	return -1;
+***************
+*** 6810,6821 ****
+      m = (matchitem_T *)alloc(sizeof(matchitem_T));
+      m->id = id;
+      m->priority = prio;
+!     m->pattern = vim_strsave(pat);
+      m->hlg_id = hlg_id;
+      m->match.regprog = regprog;
+      m->match.rmm_ic = FALSE;
+      m->match.rmm_maxcol = 0;
+  
+      /* Insert new match.  The match list is in ascending order with regard to
+       * the match priorities. */
+      cur = wp->w_match_head;
+--- 6812,6922 ----
+      m = (matchitem_T *)alloc(sizeof(matchitem_T));
+      m->id = id;
+      m->priority = prio;
+!     m->pattern = pat == NULL ? NULL : vim_strsave(pat);
+!     m->pos.cur = 0;
+      m->hlg_id = hlg_id;
+      m->match.regprog = regprog;
+      m->match.rmm_ic = FALSE;
+      m->match.rmm_maxcol = 0;
+  
++     /* Set up position matches */
++     if (pos_list != NULL)
++     {
++ 	linenr_T	toplnum = 0;
++ 	linenr_T	botlnum = 0;
++ 	listitem_T	*li;
++ 	int		i;
++ 
++ 	for (i = 0, li = pos_list->lv_first; i < MAXPOSMATCH;
++ 							i++, li = li->li_next)
++ 	{
++ 	    linenr_T	lnum = 0;
++ 	    colnr_T	col = 0;
++ 	    int		len = 1;
++ 	    list_T	*subl;
++ 	    listitem_T	*subli;
++ 	    int		error;
++ 
++ 	    if (li == NULL)
++ 	    {
++ 		m->pos.pos[i].lnum = 0;
++ 		break;
++ 	    }
++ 	    if (li->li_tv.v_type == VAR_LIST)
++ 	    {
++ 		subl = li->li_tv.vval.v_list;
++ 		if (subl == NULL)
++ 		    goto fail;
++ 		subli = subl->lv_first;
++ 		if (subli == NULL)
++ 		    goto fail;
++ 		lnum = get_tv_number_chk(&subli->li_tv, &error);
++ 		if (error == TRUE)
++ 		    goto fail;
++ 		m->pos.pos[i].lnum = lnum;
++ 		if (lnum == 0)
++ 		{
++ 		    --i;
++ 		    continue;
++ 		}
++ 		subli = subli->li_next;
++ 		if (subli != NULL)
++ 		{
++ 		    col = get_tv_number_chk(&subli->li_tv, &error);
++ 		    if (error == TRUE)
++ 			goto fail;
++ 		    subli = subli->li_next;
++ 		    if (subli != NULL)
++ 		    {
++ 			len = get_tv_number_chk(&subli->li_tv, &error);
++ 			if (error == TRUE)
++ 			    goto fail;
++ 		    }
++ 		}
++ 		m->pos.pos[i].col = col;
++ 		m->pos.pos[i].len = len;
++ 	    }
++ 	    else if (li->li_tv.v_type == VAR_NUMBER)
++ 	    {
++ 		if (li->li_tv.vval.v_number == 0)
++ 		    continue;
++ 		m->pos.pos[i].lnum = li->li_tv.vval.v_number;
++ 		m->pos.pos[i].col = 0;
++ 		m->pos.pos[i].len = 0;
++ 	    }
++ 	    else
++ 	    {
++ 		EMSG(_("List or number required"));
++ 		goto fail;
++ 	    }
++ 	    if (toplnum == 0 || lnum < toplnum)
++ 		toplnum = lnum;
++ 	    if (botlnum == 0 || lnum > botlnum)
++ 		botlnum = lnum;
++ 	}
++ 
++ 	/* Calculate top and bottom lines for redrawing area */
++ 	if (toplnum != 0)
++ 	{
++ 	    if (wp->w_buffer->b_mod_set)
++ 	    {
++ 		if (wp->w_buffer->b_mod_top > toplnum)
++ 		    wp->w_buffer->b_mod_top = toplnum;
++ 		if (wp->w_buffer->b_mod_bot < botlnum)
++ 		    wp->w_buffer->b_mod_bot = botlnum;
++ 	    }
++ 	    else
++ 	    {
++ 		wp->w_buffer->b_mod_top = toplnum;
++ 		wp->w_buffer->b_mod_bot = botlnum;
++ 	    }
++ 	    m->pos.toplnum = toplnum;
++ 	    m->pos.botlnum = botlnum;
++ 	    wp->w_buffer->b_mod_set = TRUE;
++ 	    rtype = VALID;
++ 	}
++     }
++ 
+      /* Insert new match.  The match list is in ascending order with regard to
+       * the match priorities. */
+      cur = wp->w_match_head;
+***************
+*** 6831,6838 ****
+  	prev->next = m;
+      m->next = cur;
+  
+!     redraw_later(SOME_VALID);
+      return id;
+  }
+  
+  /*
+--- 6932,6943 ----
+  	prev->next = m;
+      m->next = cur;
+  
+!     redraw_later(rtype);
+      return id;
++ 
++ fail:
++     vim_free(m);
++     return -1;
+  }
+  
+  /*
+***************
+*** 6845,6852 ****
+      int		id;
+      int		perr;
+  {
+!     matchitem_T *cur = wp->w_match_head;
+!     matchitem_T *prev = cur;
+  
+      if (id < 1)
+      {
+--- 6950,6958 ----
+      int		id;
+      int		perr;
+  {
+!     matchitem_T	*cur = wp->w_match_head;
+!     matchitem_T	*prev = cur;
+!     int		rtype = SOME_VALID;
+  
+      if (id < 1)
+      {
+***************
+*** 6872,6879 ****
+  	prev->next = cur->next;
+      vim_regfree(cur->match.regprog);
+      vim_free(cur->pattern);
+      vim_free(cur);
+!     redraw_later(SOME_VALID);
+      return 0;
+  }
+  
+--- 6978,7002 ----
+  	prev->next = cur->next;
+      vim_regfree(cur->match.regprog);
+      vim_free(cur->pattern);
++     if (cur->pos.toplnum != 0)
++     {
++ 	if (wp->w_buffer->b_mod_set)
++ 	{
++ 	    if (wp->w_buffer->b_mod_top > cur->pos.toplnum)
++ 		wp->w_buffer->b_mod_top = cur->pos.toplnum;
++ 	    if (wp->w_buffer->b_mod_bot < cur->pos.botlnum)
++ 		wp->w_buffer->b_mod_bot = cur->pos.botlnum;
++ 	}
++ 	else
++ 	{
++ 	    wp->w_buffer->b_mod_top = cur->pos.toplnum;
++ 	    wp->w_buffer->b_mod_bot = cur->pos.botlnum;
++ 	}
++ 	wp->w_buffer->b_mod_set = TRUE;
++ 	rtype = VALID;
++     }
+      vim_free(cur);
+!     redraw_later(rtype);
+      return 0;
+  }
+  
+*** ../vim-7.4.329/src/version.c	2014-06-17 13:52:35.868092848 +0200
+--- src/version.c	2014-06-17 14:11:53.764136653 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     330,
+  /**/
+
+-- 
+I'd like to meet the man who invented sex and see what he's working on now.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

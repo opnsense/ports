@@ -1,0 +1,83 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.412
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.412
+Problem:    Can't build on Windows XP with MSVC.
+Solution:   Add SUBSYSTEM_VER to the Makefile. (Yongwei Wu)
+Files:	    src/Make_mvc.mak, src/INSTALLpc.txt
+
+
+*** ../vim-7.4.411/src/Make_mvc.mak	2014-08-10 16:31:47.376709213 +0200
+--- src/Make_mvc.mak	2014-08-22 18:09:56.711250479 +0200
+***************
+*** 657,662 ****
+--- 657,666 ----
+  SUBSYSTEM = console
+  !endif
+  
++ !if "$(SUBSYSTEM_VER)" != ""
++ SUBSYSTEM = $(SUBSYSTEM),$(SUBSYSTEM_VER)
++ !endif
++ 
+  !if "$(GUI)" == "yes" && "$(DIRECTX)" == "yes"
+  CFLAGS = $(CFLAGS) $(DIRECTX_DEFS)
+  GUI_INCL = $(GUI_INCL) $(DIRECTX_INCL)
+*** ../vim-7.4.411/src/INSTALLpc.txt	2012-08-29 17:29:09.000000000 +0200
+--- src/INSTALLpc.txt	2014-08-22 18:09:56.711250479 +0200
+***************
+*** 192,197 ****
+--- 192,221 ----
+  Vim with Make_mvc.mak.
+  
+  
++ Targeting Windows XP with new MSVC      *new-msvc-windows-xp*
++ ----------------------------------
++ 
++ Beginning with Visual C++ 2010, Microsoft changed the behavior of LINK.EXE
++ so that it targets Windows 6.0 (Vista) by default.  In order to override
++ this, the target Windows version number needs to be passed to LINK like
++ follows:
++     LINK ... /subsystem:console,5.01
++ 
++ Make_mvc.mak now supports a macro SUBSYSTEM_VER to pass the Windows version.
++ Use lines like follows to target Windows XP (assuming using Visual C++ 2012
++ under 64-bit Windows):
++     set WinSdk71=%ProgramFiles(x86)%\Microsoft SDKs\Windows\v7.1A
++     set SDK_INCLUDE_DIR=%WinSdk71%\Include
++     set INCLUDE=%WinSdk71%\Include;%INCLUDE%
++     set LIB=%WinSdk71%\Lib;%LIB%
++     set PATH=%WinSdk71%\Bin;%PATH%
++     set CL=/D_USING_V110_SDK71_
++     nmake -f Make_mvc.mak ... WINVER=0x0501 SUBSYSTEM_VER=5.01
++ 
++ The following Visual C++ team blog can serve as a reference page:
++     http://blogs.msdn.com/b/vcblog/archive/2012/10/08/windows-xp-targeting-with-c-in-visual-studio-2012.aspx
++ 
++ 
+  2. MinGW
+  ========
+  
+*** ../vim-7.4.411/src/version.c	2014-08-22 13:13:24.219895762 +0200
+--- src/version.c	2014-08-22 18:09:52.611250628 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     412,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+42. Your virtual girlfriend finds a new net sweetheart with a larger bandwidth.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,854 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.497
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.497
+Problem:    With some regexp patterns the NFA engine uses many states and
+	    becomes very slow.  To the user it looks like Vim freezes.
+Solution:   When the number of states reaches a limit fall back to the old
+	    engine. (Christian Brabandt)
+Files:	    runtime/doc/options.txt, src/Makefile, src/regexp.c, src/regexp.h,
+	    src/regexp_nfa.c, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Makefile, src/testdir/samples/re.freeze.txt,
+	    src/testdir/bench_re_freeze.in, src/testdir/bench_re_freeze.vim,
+	    Filelist
+
+
+*** ../vim-7.4.496/runtime/doc/options.txt	2014-09-23 15:45:04.866801055 +0200
+--- runtime/doc/options.txt	2014-11-05 12:06:16.664961112 +0100
+***************
+*** 5622,5627 ****
+--- 5626,5635 ----
+  	Note that when using the NFA engine and the pattern contains something
+  	that is not supported the pattern will not match.  This is only useful
+  	for debugging the regexp engine.
++ 	Using automatic selection enables Vim to switch the engine, if the
++ 	default engine becomes too costly.  E.g., when the NFA engine uses too
++ 	many states.  This should prevent Vim from hanging on a combination of
++ 	a complex pattern with long text.
+  
+  		*'relativenumber'* *'rnu'* *'norelativenumber'* *'nornu'*
+  'relativenumber' 'rnu'	boolean	(default off)
+*** ../vim-7.4.496/src/Makefile	2014-08-17 17:05:39.155057796 +0200
+--- src/Makefile	2014-11-05 12:01:58.704967328 +0100
+***************
+*** 1879,1884 ****
+--- 1879,1887 ----
+  	cd testdir; $(MAKE) -f Makefile $(GUI_TESTTARGET) VIMPROG=../$(VIMTARGET) $(GUI_TESTARG) SCRIPTSOURCE=../$(SCRIPTSOURCE)
+  	$(MAKE) -f Makefile unittest
+  
++ benchmark:
++ 	cd testdir; $(MAKE) -f Makefile benchmark VIMPROG=../$(VIMTARGET) SCRIPTSOURCE=../$(SCRIPTSOURCE)
++ 
+  unittesttargets:
+  	$(MAKE) -f Makefile $(UNITTEST_TARGETS)
+  
+*** ../vim-7.4.496/src/regexp.c	2014-09-09 17:18:44.008540299 +0200
+--- src/regexp.c	2014-11-05 14:05:40.544788489 +0100
+***************
+*** 8011,8023 ****
+      bt_regcomp,
+      bt_regfree,
+      bt_regexec_nl,
+!     bt_regexec_multi
+! #ifdef DEBUG
+!     ,(char_u *)""
+! #endif
+  };
+  
+- 
+  #include "regexp_nfa.c"
+  
+  static regengine_T nfa_regengine =
+--- 8011,8020 ----
+      bt_regcomp,
+      bt_regfree,
+      bt_regexec_nl,
+!     bt_regexec_multi,
+!     (char_u *)""
+  };
+  
+  #include "regexp_nfa.c"
+  
+  static regengine_T nfa_regengine =
+***************
+*** 8025,8042 ****
+      nfa_regcomp,
+      nfa_regfree,
+      nfa_regexec_nl,
+!     nfa_regexec_multi
+! #ifdef DEBUG
+!     ,(char_u *)""
+! #endif
+  };
+  
+  /* Which regexp engine to use? Needed for vim_regcomp().
+   * Must match with 'regexpengine'. */
+  static int regexp_engine = 0;
+! #define	    AUTOMATIC_ENGINE	0
+! #define	    BACKTRACKING_ENGINE	1
+! #define	    NFA_ENGINE		2
+  #ifdef DEBUG
+  static char_u regname[][30] = {
+  		    "AUTOMATIC Regexp Engine",
+--- 8022,8035 ----
+      nfa_regcomp,
+      nfa_regfree,
+      nfa_regexec_nl,
+!     nfa_regexec_multi,
+!     (char_u *)""
+  };
+  
+  /* Which regexp engine to use? Needed for vim_regcomp().
+   * Must match with 'regexpengine'. */
+  static int regexp_engine = 0;
+! 
+  #ifdef DEBUG
+  static char_u regname[][30] = {
+  		    "AUTOMATIC Regexp Engine",
+***************
+*** 8083,8092 ****
+  	    regexp_engine = AUTOMATIC_ENGINE;
+  	}
+      }
+- #ifdef DEBUG
+      bt_regengine.expr = expr;
+      nfa_regengine.expr = expr;
+- #endif
+  
+      /*
+       * First try the NFA engine, unless backtracking was requested.
+--- 8076,8083 ----
+***************
+*** 8096,8102 ****
+      else
+  	prog = bt_regengine.regcomp(expr, re_flags);
+  
+!     if (prog == NULL)	    /* error compiling regexp with initial engine */
+      {
+  #ifdef BT_REGEXP_DEBUG_LOG
+  	if (regexp_engine != BACKTRACKING_ENGINE)   /* debugging log for NFA */
+--- 8087,8094 ----
+      else
+  	prog = bt_regengine.regcomp(expr, re_flags);
+  
+!     /* Check for error compiling regexp with initial engine. */
+!     if (prog == NULL)
+      {
+  #ifdef BT_REGEXP_DEBUG_LOG
+  	if (regexp_engine != BACKTRACKING_ENGINE)   /* debugging log for NFA */
+***************
+*** 8114,8126 ****
+  	}
+  #endif
+  	/*
+! 	 * If the NFA engine failed, the backtracking engine won't work either.
+  	 *
+  	if (regexp_engine == AUTOMATIC_ENGINE)
+  	    prog = bt_regengine.regcomp(expr, re_flags);
+  	 */
+      }
+  
+      return prog;
+  }
+  
+--- 8106,8132 ----
+  	}
+  #endif
+  	/*
+! 	 * If the NFA engine failed, try the backtracking engine.
+! 	 * Disabled for now, both engines fail on the same patterns.
+! 	 * Re-enable when regcomp() fails when the pattern would work better
+! 	 * with the other engine.
+  	 *
+  	if (regexp_engine == AUTOMATIC_ENGINE)
++ 	{
+  	    prog = bt_regengine.regcomp(expr, re_flags);
++ 	    regexp_engine == BACKTRACKING_ENGINE;
++ 	}
+  	 */
+      }
+  
++     if (prog != NULL)
++     {
++ 	/* Store the info needed to call regcomp() again when the engine turns
++ 	 * out to be very slow when executing it. */
++ 	prog->re_engine = regexp_engine;
++ 	prog->re_flags  = re_flags;
++     }
++ 
+      return prog;
+  }
+  
+***************
+*** 8135,8154 ****
+  	prog->engine->regfree(prog);
+  }
+  
+  /*
+   * Match a regexp against a string.
+   * "rmp->regprog" is a compiled regexp as returned by vim_regcomp().
+   * Uses curbuf for line count and 'iskeyword'.
+   *
+   * Return TRUE if there is a match, FALSE if not.
+   */
+      int
+  vim_regexec(rmp, line, col)
+!     regmatch_T *rmp;
+!     char_u      *line;  /* string to match against */
+!     colnr_T     col;    /* column to start looking for match */
+  {
+!     return rmp->regprog->engine->regexec_nl(rmp, line, col, FALSE);
+  }
+  
+  #if defined(FEAT_MODIFY_FNAME) || defined(FEAT_EVAL) \
+--- 8141,8215 ----
+  	prog->engine->regfree(prog);
+  }
+  
++ #ifdef FEAT_EVAL
++ static void report_re_switch __ARGS((char_u *pat));
++ 
++     static void
++ report_re_switch(pat)
++     char_u *pat;
++ {
++     if (p_verbose > 0)
++     {
++ 	verbose_enter();
++ 	MSG_PUTS(_("Switching to backtracking RE engine for pattern: "));
++ 	MSG_PUTS(pat);
++ 	verbose_leave();
++     }
++ }
++ #endif
++ 
++ static int vim_regexec_both __ARGS((regmatch_T *rmp, char_u *line, colnr_T col, int nl));
++ 
+  /*
+   * Match a regexp against a string.
+   * "rmp->regprog" is a compiled regexp as returned by vim_regcomp().
+   * Uses curbuf for line count and 'iskeyword'.
++  * When "nl" is TRUE consider a "\n" in "line" to be a line break.
+   *
+   * Return TRUE if there is a match, FALSE if not.
+   */
++     static int
++ vim_regexec_both(rmp, line, col, nl)
++     regmatch_T	*rmp;
++     char_u	*line;  /* string to match against */
++     colnr_T	col;    /* column to start looking for match */
++     int		nl;
++ {
++     int result = rmp->regprog->engine->regexec_nl(rmp, line, col, nl);
++ 
++     /* NFA engine aborted because it's very slow. */
++     if (rmp->regprog->re_engine == AUTOMATIC_ENGINE
++ 					       && result == NFA_TOO_EXPENSIVE)
++     {
++ 	int    save_p_re = p_re;
++ 	int    re_flags = rmp->regprog->re_flags;
++ 	char_u *pat = vim_strsave(((nfa_regprog_T *)rmp->regprog)->pattern);
++ 
++ 	p_re = BACKTRACKING_ENGINE;
++ 	vim_regfree(rmp->regprog);
++ 	if (pat != NULL)
++ 	{
++ #ifdef FEAT_EVAL
++ 	    report_re_switch(pat);
++ #endif
++ 	    rmp->regprog = vim_regcomp(pat, re_flags);
++ 	    if (rmp->regprog != NULL)
++ 		result = rmp->regprog->engine->regexec_nl(rmp, line, col, nl);
++ 	    vim_free(pat);
++ 	}
++ 
++ 	p_re = save_p_re;
++     }
++     return result;
++ }
++ 
+      int
+  vim_regexec(rmp, line, col)
+!     regmatch_T	*rmp;
+!     char_u	*line;
+!     colnr_T	col;
+  {
+!     return vim_regexec_both(rmp, line, col, FALSE);
+  }
+  
+  #if defined(FEAT_MODIFY_FNAME) || defined(FEAT_EVAL) \
+***************
+*** 8158,8168 ****
+   */
+      int
+  vim_regexec_nl(rmp, line, col)
+!     regmatch_T *rmp;
+!     char_u *line;
+!     colnr_T col;
+  {
+!     return rmp->regprog->engine->regexec_nl(rmp, line, col, TRUE);
+  }
+  #endif
+  
+--- 8219,8229 ----
+   */
+      int
+  vim_regexec_nl(rmp, line, col)
+!     regmatch_T	*rmp;
+!     char_u	*line;
+!     colnr_T	col;
+  {
+!     return vim_regexec_both(rmp, line, col, TRUE);
+  }
+  #endif
+  
+***************
+*** 8183,8187 ****
+      colnr_T     col;            /* column to start looking for match */
+      proftime_T	*tm;		/* timeout limit or NULL */
+  {
+!     return rmp->regprog->engine->regexec_multi(rmp, win, buf, lnum, col, tm);
+  }
+--- 8244,8275 ----
+      colnr_T     col;            /* column to start looking for match */
+      proftime_T	*tm;		/* timeout limit or NULL */
+  {
+!     int result = rmp->regprog->engine->regexec_multi(
+! 						rmp, win, buf, lnum, col, tm);
+! 
+!     /* NFA engine aborted because it's very slow. */
+!     if (rmp->regprog->re_engine == AUTOMATIC_ENGINE
+! 					       && result == NFA_TOO_EXPENSIVE)
+!     {
+! 	int    save_p_re = p_re;
+! 	int    re_flags = rmp->regprog->re_flags;
+! 	char_u *pat = vim_strsave(((nfa_regprog_T *)rmp->regprog)->pattern);
+! 
+! 	p_re = BACKTRACKING_ENGINE;
+! 	vim_regfree(rmp->regprog);
+! 	if (pat != NULL)
+! 	{
+! #ifdef FEAT_EVAL
+! 	    report_re_switch(pat);
+! #endif
+! 	    rmp->regprog = vim_regcomp(pat, re_flags);
+! 	    if (rmp->regprog != NULL)
+! 		result = rmp->regprog->engine->regexec_multi(
+! 						rmp, win, buf, lnum, col, tm);
+! 	    vim_free(pat);
+! 	}
+! 	p_re = save_p_re;
+!     }
+! 
+!     return result;
+  }
+*** ../vim-7.4.496/src/regexp.h	2014-04-23 19:06:33.702828771 +0200
+--- src/regexp.h	2014-11-05 13:09:14.136870089 +0100
+***************
+*** 27,32 ****
+--- 27,44 ----
+   */
+  #define NFA_MAX_BRACES 20
+  
++ /*
++  * In the NFA engine: how many states are allowed
++  */
++ #define NFA_MAX_STATES 100000
++ #define NFA_TOO_EXPENSIVE -1
++ 
++ /* Which regexp engine to use? Needed for vim_regcomp().
++  * Must match with 'regexpengine'. */
++ #define	    AUTOMATIC_ENGINE	0
++ #define	    BACKTRACKING_ENGINE	1
++ #define	    NFA_ENGINE		2
++ 
+  typedef struct regengine regengine_T;
+  
+  /*
+***************
+*** 38,43 ****
+--- 50,57 ----
+  {
+      regengine_T		*engine;
+      unsigned		regflags;
++     unsigned		re_engine;   /* automatic, backtracking or nfa engine */
++     unsigned		re_flags;    /* second argument for vim_regcomp() */
+  } regprog_T;
+  
+  /*
+***************
+*** 47,55 ****
+   */
+  typedef struct
+  {
+!     /* These two members implement regprog_T */
+      regengine_T		*engine;
+      unsigned		regflags;
+  
+      int			regstart;
+      char_u		reganch;
+--- 61,71 ----
+   */
+  typedef struct
+  {
+!     /* These four members implement regprog_T */
+      regengine_T		*engine;
+      unsigned		regflags;
++     unsigned		re_engine;
++     unsigned		re_flags;    /* second argument for vim_regcomp() */
+  
+      int			regstart;
+      char_u		reganch;
+***************
+*** 81,89 ****
+   */
+  typedef struct
+  {
+!     /* These two members implement regprog_T */
+      regengine_T		*engine;
+      unsigned		regflags;
+  
+      nfa_state_T		*start;		/* points into state[] */
+  
+--- 97,107 ----
+   */
+  typedef struct
+  {
+!     /* These three members implement regprog_T */
+      regengine_T		*engine;
+      unsigned		regflags;
++     unsigned		re_engine;
++     unsigned		re_flags;    /* second argument for vim_regcomp() */
+  
+      nfa_state_T		*start;		/* points into state[] */
+  
+***************
+*** 96,104 ****
+  #ifdef FEAT_SYN_HL
+      int			reghasz;
+  #endif
+- #ifdef DEBUG
+      char_u		*pattern;
+- #endif
+      int			nsubexp;	/* number of () */
+      int			nstate;
+      nfa_state_T		state[1];	/* actually longer.. */
+--- 114,120 ----
+***************
+*** 151,159 ****
+      void	(*regfree)(regprog_T *);
+      int		(*regexec_nl)(regmatch_T*, char_u*, colnr_T, int);
+      long	(*regexec_multi)(regmmatch_T*, win_T*, buf_T*, linenr_T, colnr_T, proftime_T*);
+- #ifdef DEBUG
+      char_u	*expr;
+- #endif
+  };
+  
+  #endif	/* _REGEXP_H */
+--- 167,173 ----
+*** ../vim-7.4.496/src/regexp_nfa.c	2014-10-11 12:48:22.541259950 +0200
+--- src/regexp_nfa.c	2014-11-05 13:08:43.876870818 +0100
+***************
+*** 5522,5527 ****
+--- 5522,5534 ----
+  	nextlist->n = 0;	    /* clear nextlist */
+  	nextlist->has_pim = FALSE;
+  	++nfa_listid;
++ 	if (prog->re_engine == AUTOMATIC_ENGINE && nfa_listid >= NFA_MAX_STATES)
++ 	{
++ 	    /* too many states, retry with old engine */
++ 	    nfa_match = NFA_TOO_EXPENSIVE;
++ 	    goto theend;
++ 	}
++ 
+  	thislist->id = nfa_listid;
+  	nextlist->id = nfa_listid + 1;
+  
+***************
+*** 5704,5709 ****
+--- 5711,5721 ----
+  			 */
+  			result = recursive_regmatch(t->state, NULL, prog,
+  						       submatch, m, &listids);
++ 			if (result == NFA_TOO_EXPENSIVE)
++ 			{
++ 			    nfa_match = result;
++ 			    goto theend;
++ 			}
+  
+  			/* for \@! and \@<! it is a match when the result is
+  			 * FALSE */
+***************
+*** 5817,5822 ****
+--- 5829,5839 ----
+  		/* First try matching the pattern. */
+  		result = recursive_regmatch(t->state, NULL, prog,
+  						       submatch, m, &listids);
++ 		if (result == NFA_TOO_EXPENSIVE)
++ 		{
++ 		    nfa_match = result;
++ 		    goto theend;
++ 		}
+  		if (result)
+  		{
+  		    int bytelen;
+***************
+*** 6760,6765 ****
+--- 6777,6783 ----
+      int		i;
+      regsubs_T	subs, m;
+      nfa_state_T	*start = prog->start;
++     int		result;
+  #ifdef ENABLE_LOG
+      FILE	*f;
+  #endif
+***************
+*** 6791,6798 ****
+      clear_sub(&m.synt);
+  #endif
+  
+!     if (nfa_regmatch(prog, start, &subs, &m) == FALSE)
+  	return 0;
+  
+      cleanup_subexpr();
+      if (REG_MULTI)
+--- 6809,6819 ----
+      clear_sub(&m.synt);
+  #endif
+  
+!     result = nfa_regmatch(prog, start, &subs, &m);
+!     if (result == FALSE)
+  	return 0;
++     else if (result == NFA_TOO_EXPENSIVE)
++ 	return result;
+  
+      cleanup_subexpr();
+      if (REG_MULTI)
+***************
+*** 6929,6937 ****
+      nfa_nsubexpr = prog->nsubexp;
+      nfa_listid = 1;
+      nfa_alt_listid = 2;
+- #ifdef DEBUG
+      nfa_regengine.expr = prog->pattern;
+- #endif
+  
+      if (prog->reganch && col > 0)
+  	return 0L;
+--- 6950,6956 ----
+***************
+*** 6979,6987 ****
+  
+      retval = nfa_regtry(prog, col);
+  
+- #ifdef DEBUG
+      nfa_regengine.expr = NULL;
+- #endif
+  
+  theend:
+      return retval;
+--- 6998,7004 ----
+***************
+*** 7003,7011 ****
+      if (expr == NULL)
+  	return NULL;
+  
+- #ifdef DEBUG
+      nfa_regengine.expr = expr;
+- #endif
+  
+      init_class_tab();
+  
+--- 7020,7026 ----
+***************
+*** 7082,7091 ****
+      /* Remember whether this pattern has any \z specials in it. */
+      prog->reghasz = re_has_z;
+  #endif
+- #ifdef DEBUG
+      prog->pattern = vim_strsave(expr);
+      nfa_regengine.expr = NULL;
+- #endif
+  
+  out:
+      vim_free(post_start);
+--- 7097,7104 ----
+***************
+*** 7099,7107 ****
+  #ifdef ENABLE_LOG
+      nfa_postfix_dump(expr, FAIL);
+  #endif
+- #ifdef DEBUG
+      nfa_regengine.expr = NULL;
+- #endif
+      goto out;
+  }
+  
+--- 7112,7118 ----
+***************
+*** 7115,7123 ****
+      if (prog != NULL)
+      {
+  	vim_free(((nfa_regprog_T *)prog)->match_text);
+- #ifdef DEBUG
+  	vim_free(((nfa_regprog_T *)prog)->pattern);
+- #endif
+  	vim_free(prog);
+      }
+  }
+--- 7126,7132 ----
+*** ../vim-7.4.496/src/testdir/Make_dos.mak	2014-10-21 20:57:11.534295006 +0200
+--- src/testdir/Make_dos.mak	2014-11-05 14:14:56.536775091 +0100
+***************
+*** 87,92 ****
+--- 87,93 ----
+  	-if exist Xfind rd /s /q Xfind
+  	-if exist viminfo del viminfo
+  	-del test.log
++ 	-if exists benchmark.out del benchmark.out
+  
+  .in.out:
+  	-if exist $*.failed del $*.failed
+***************
+*** 103,105 ****
+--- 104,114 ----
+  
+  nolog:
+  	-del test.log
++ 
++ benchmark:
++ 	bench_re_freeze.out
++ 
++ bench_re_freeze.out: bench_re_freeze.vim
++ 	-if exist benchmark.out del benchmark.out
++ 	$(VIMPROG) -u dos.vim -U NONE --noplugin $*.in
++ 	@IF EXIST benchmark.out ( type benchmark.out )
+*** ../vim-7.4.496/src/testdir/Make_ming.mak	2014-10-21 20:57:11.534295006 +0200
+--- src/testdir/Make_ming.mak	2014-11-05 14:15:09.608774776 +0100
+***************
+*** 12,22 ****
+--- 12,24 ----
+  DEL = rm -f
+  MV = mv
+  CP = cp
++ CAT = cat
+  DIRSLASH = /
+  else
+  DEL = del
+  MV = rename
+  CP = copy
++ CAT = type
+  DIRSLASH = \\
+  endif
+  
+***************
+*** 72,77 ****
+--- 74,81 ----
+  
+  SCRIPTS_GUI = test16.out
+  
++ SCRIPTS_BENCH = bench_re_freeze.out
++ 
+  .SUFFIXES: .in .out
+  
+  vimall:	fixff $(SCRIPTS16) $(SCRIPTS) $(SCRIPTS_GUI) $(SCRIPTS32)
+***************
+*** 80,85 ****
+--- 84,91 ----
+  nongui:	fixff $(SCRIPTS16) $(SCRIPTS)
+  	echo ALL DONE
+  
++ benchmark: $(SCRIPTS_BENCH)
++ 
+  small:
+  	echo ALL DONE
+  
+***************
+*** 114,116 ****
+--- 120,127 ----
+  	-$(DEL) X*
+  	-$(DEL) test.ok
+  	-$(DEL) viminfo
++ 
++ bench_re_freeze.out: bench_re_freeze.vim
++ 	-$(DEL) benchmark.out
++ 	$(VIMPROG) -u dos.vim -U NONE --noplugin $*.in
++ 	$(CAT) benchmark.out
+*** ../vim-7.4.496/src/testdir/Make_os2.mak	2014-10-21 20:57:11.538295006 +0200
+--- src/testdir/Make_os2.mak	2014-11-05 12:57:59.616886342 +0100
+***************
+*** 50,55 ****
+--- 50,57 ----
+  		test_signs.out \
+  		test_utf8.out
+  
++ SCRIPTS_BENCH = bench_re_freeze.out
++ 
+  .SUFFIXES: .in .out
+  
+  all:	/tmp $(SCRIPTS)
+***************
+*** 57,62 ****
+--- 59,66 ----
+  
+  $(SCRIPTS): $(VIMPROG)
+  
++ benchmark: $(SCRIPTS_BENCH)
++ 
+  clean:
+  	-rm -rf *.out Xdotest test.ok tiny.vim small.vim mbyte.vim viminfo
+  
+***************
+*** 75,77 ****
+--- 79,88 ----
+  # Create a directory for temp files
+  /tmp:
+  	-mkdir /tmp
++ 
++ bench_re_freeze.out: bench_re_freeze.vim
++ 	-del $*.failed test.ok benchmark.out
++ 	copy $*.ok test.ok
++ 	$(VIMPROG) -u os2.vim --noplugin -s dotest.in $*.in
++ 	type benchmark.out
++ 
+*** ../vim-7.4.496/src/testdir/Makefile	2014-10-21 20:57:11.538295006 +0200
+--- src/testdir/Makefile	2014-11-05 14:15:13.320774687 +0100
+***************
+*** 48,59 ****
+--- 48,63 ----
+  
+  SCRIPTS_GUI = test16.out
+  
++ SCRIPTS_BENCH = bench_re_freeze.out
++ 
+  .SUFFIXES: .in .out
+  
+  nongui:	nolog $(SCRIPTS) report
+  
+  gui:	nolog $(SCRIPTS) $(SCRIPTS_GUI) report
+  
++ benchmark: $(SCRIPTS_BENCH)
++ 
+  report:
+  	@echo
+  	@echo 'Test results:'
+***************
+*** 65,71 ****
+  $(SCRIPTS) $(SCRIPTS_GUI): $(VIMPROG)
+  
+  RM_ON_RUN = test.out X* viminfo
+! RM_ON_START = tiny.vim small.vim mbyte.vim mzscheme.vim lua.vim test.ok
+  RUN_VIM = VIMRUNTIME=$(SCRIPTSOURCE); export VIMRUNTIME; $(VALGRIND) $(VIMPROG) -u unix.vim -U NONE --noplugin -s dotest.in
+  
+  clean:
+--- 69,75 ----
+  $(SCRIPTS) $(SCRIPTS_GUI): $(VIMPROG)
+  
+  RM_ON_RUN = test.out X* viminfo
+! RM_ON_START = tiny.vim small.vim mbyte.vim mzscheme.vim lua.vim test.ok benchmark.out
+  RUN_VIM = VIMRUNTIME=$(SCRIPTSOURCE); export VIMRUNTIME; $(VALGRIND) $(VIMPROG) -u unix.vim -U NONE --noplugin -s dotest.in
+  
+  clean:
+***************
+*** 120,124 ****
+--- 124,137 ----
+  
+  test60.out: test60.vim
+  
++ bench_re_freeze.out: bench_re_freeze.vim
++ 	-rm -rf benchmark.out $(RM_ON_RUN)
++ 	# Sleep a moment to avoid that the xterm title is messed up.
++ 	# 200 msec is sufficient, but only modern sleep supports a fraction of
++ 	# a second, fall back to a second if it fails.
++ 	@-/bin/sh -c "sleep .2 > /dev/null 2>&1 || sleep 1"
++ 	-$(RUN_VIM) $*.in
++ 	@/bin/sh -c "if test -f benchmark.out; then cat benchmark.out; fi"
++ 
+  nolog:
+  	-rm -f test.log
+*** ../vim-7.4.496/src/testdir/samples/re.freeze.txt	1970-01-01 01:00:00.000000000 +0100
+--- src/testdir/samples/re.freeze.txt	2014-11-05 11:50:44.176983582 +0100
+***************
+*** 0 ****
+--- 1,6 ----
++ :set re=0 or 2
++ Search for the pattern: /\s\+\%#\@<!$/
++ vim should not freeze.
++ 
++ <td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td><td style="border-bottom windowtext 0.5pt solid; border-left windowtext;" class=abc align=right><font face=arial><font color=#ff0000><b>5</b></font></font></td> 
++ 
+*** ../vim-7.4.496/src/testdir/bench_re_freeze.in	2014-11-05 14:02:46.420792685 +0100
+--- src/testdir/bench_re_freeze.in	2014-11-05 14:24:33.000761201 +0100
+***************
+*** 0 ****
+--- 1,13 ----
++ Test for Benchmarking RE engine
++ 
++ STARTTEST
++ :so small.vim
++ :if !has("reltime") | qa! | endif
++ :set nocp cpo&vim
++ :so bench_re_freeze.vim
++ :call Measure('samples/re.freeze.txt', '\s\+\%#\@<!$', '+5')
++ :/^" Benchmark/,$w! benchmark.out
++ :qa!
++ ENDTEST
++ 
++ " Benchmark_results:
+*** ../vim-7.4.496/src/testdir/bench_re_freeze.vim	2014-11-05 14:02:46.432792684 +0100
+--- src/testdir/bench_re_freeze.vim	2014-11-05 14:09:15.668783305 +0100
+***************
+*** 0 ****
+--- 1,13 ----
++ "Test for benchmarking the RE engine
++ 
++ so small.vim
++ if !has("reltime") | finish | endif
++ func! Measure(file, pattern, arg)
++ 	for re in range(3)
++ 	    let sstart=reltime()
++ 	    let cmd=printf("../vim -u NONE -N --cmd ':set re=%d'".
++ 		\ " -c 'call search(\"%s\", \"\", \"\", 10000)' -c ':q!' %s", re, escape(a:pattern, '\\'), empty(a:arg) ? '' : a:arg)
++ 	    call system(cmd. ' '. a:file)
++ 	    $put =printf('file: %s, re: %d, time: %s', a:file, re, reltimestr(reltime(sstart)))
++ 	endfor
++ endfunc
+*** ../vim-7.4.497/Filelist	2014-11-05 13:53:13.188806497 +0100
+--- Filelist	2014-11-05 14:11:48.208779629 +0100
+***************
+*** 102,107 ****
+--- 102,110 ----
+  		src/testdir/pythonx/topmodule/submodule/subsubmodule/subsubsubmodule.py \
+  		src/testdir/python_after/*.py \
+  		src/testdir/python_before/*.py \
++ 		src/testdir/bench*.in \
++ 		src/testdir/bench*.vim \
++ 		src/testdir/samples.*.txt \
+  		src/proto.h \
+  		src/proto/blowfish.pro \
+  		src/proto/buffer.pro \
+*** ../vim-7.4.496/src/version.c	2014-11-05 13:53:13.188806497 +0100
+--- src/version.c	2014-11-05 14:02:11.728793520 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     497,
+  /**/
+
+-- 
+    With sufficient thrust, pigs fly just fine.
+                   -- RFC 1925
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

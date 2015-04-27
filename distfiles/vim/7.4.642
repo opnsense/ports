@@ -1,0 +1,163 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.642
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.642
+Problem:    When using "gf" escaped spaces are not handled.
+Solution:   Recognize escaped spaces.
+Files:	    src/vim.h, src/normal.h, src/window.c, src/misc2.c
+
+
+*** ../vim-7.4.641/src/vim.h	2015-02-10 18:47:55.225390610 +0100
+--- src/vim.h	2015-02-27 16:32:33.508503398 +0100
+***************
+*** 939,944 ****
+--- 939,945 ----
+  #define FNAME_INCL	8	/* apply 'includeexpr' */
+  #define FNAME_REL	16	/* ".." and "./" are relative to the (current)
+  				   file instead of the current directory */
++ #define FNAME_UNESC	32	/* remove backslashes used for escaping */
+  
+  /* Values for buflist_getfile() */
+  #define GETF_SETMARK	0x01	/* set pcmark before jumping */
+*** ../vim-7.4.641/src/window.c	2015-01-14 15:47:33.076036876 +0100
+--- src/window.c	2015-02-27 17:18:32.653331499 +0100
+***************
+*** 6219,6224 ****
+--- 6219,6226 ----
+      long	count;
+      linenr_T	*file_lnum;
+  {
++     int options = FNAME_MESS|FNAME_EXP|FNAME_REL|FNAME_UNESC;
++ 
+      if (VIsual_active)
+      {
+  	int	len;
+***************
+*** 6226,6236 ****
+  
+  	if (get_visual_text(NULL, &ptr, &len) == FAIL)
+  	    return NULL;
+! 	return find_file_name_in_path(ptr, len,
+! 		     FNAME_MESS|FNAME_EXP|FNAME_REL, count, curbuf->b_ffname);
+      }
+!     return file_name_at_cursor(FNAME_MESS|FNAME_HYP|FNAME_EXP|FNAME_REL, count,
+! 			       file_lnum);
+  
+  }
+  
+--- 6228,6237 ----
+  
+  	if (get_visual_text(NULL, &ptr, &len) == FAIL)
+  	    return NULL;
+! 	return find_file_name_in_path(ptr, len, options,
+! 						     count, curbuf->b_ffname);
+      }
+!     return file_name_at_cursor(options | FNAME_HYP, count, file_lnum);
+  
+  }
+  
+***************
+*** 6310,6323 ****
+       * Also allow "://" when ':' is not in 'isfname'.
+       */
+      len = 0;
+!     while (vim_isfilec(ptr[len])
+  			 || ((options & FNAME_HYP) && path_is_url(ptr + len)))
+  #ifdef FEAT_MBYTE
+  	if (has_mbyte)
+  	    len += (*mb_ptr2len)(ptr + len);
+  	else
+  #endif
+  	    ++len;
+  
+      /*
+       * If there is trailing punctuation, remove it.
+--- 6311,6329 ----
+       * Also allow "://" when ':' is not in 'isfname'.
+       */
+      len = 0;
+!     while (vim_isfilec(ptr[len]) || (ptr[len] == '\\' && ptr[len + 1] == ' ')
+  			 || ((options & FNAME_HYP) && path_is_url(ptr + len)))
++     {
++ 	if (ptr[len] == '\\')
++ 	    /* Skip over the "\" in "\ ". */
++ 	    ++len;
+  #ifdef FEAT_MBYTE
+  	if (has_mbyte)
+  	    len += (*mb_ptr2len)(ptr + len);
+  	else
+  #endif
+  	    ++len;
++     }
+  
+      /*
+       * If there is trailing punctuation, remove it.
+*** ../vim-7.4.641/src/misc2.c	2014-09-23 16:49:38.798809517 +0200
+--- src/misc2.c	2015-02-27 16:44:00.628733333 +0100
+***************
+*** 5474,5479 ****
+--- 5474,5480 ----
+   *
+   * options:
+   * FNAME_MESS	    give error message when not found
++  * FNAME_UNESC	    unescape backslashes.
+   *
+   * Uses NameBuff[]!
+   *
+***************
+*** 5491,5497 ****
+  }
+  
+      char_u *
+! find_file_in_path_option(ptr, len, options, first, path_option, find_what, rel_fname, suffixes)
+      char_u	*ptr;		/* file name */
+      int		len;		/* length of file name */
+      int		options;
+--- 5492,5499 ----
+  }
+  
+      char_u *
+! find_file_in_path_option(ptr, len, options, first, path_option,
+! 			 find_what, rel_fname, suffixes)
+      char_u	*ptr;		/* file name */
+      int		len;		/* length of file name */
+      int		options;
+***************
+*** 5530,5535 ****
+--- 5532,5544 ----
+  	    file_name = NULL;
+  	    goto theend;
+  	}
++ 	if (options & FNAME_UNESC)
++ 	{
++ 	    /* Change all "\ " to " ". */
++ 	    for (ptr = ff_file_to_find; *ptr != NUL; ++ptr)
++ 		if (ptr[0] == '\\' && ptr[1] == ' ')
++ 		    mch_memmove(ptr, ptr + 1, STRLEN(ptr));
++ 	}
+      }
+  
+      rel_to_curdir = (ff_file_to_find[0] == '.'
+*** ../vim-7.4.641/src/version.c	2015-02-27 15:03:54.372707934 +0100
+--- src/version.c	2015-02-27 16:53:33.642257892 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     642,
+  /**/
+
+-- 
+press CTRL-ALT-DEL for more information
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

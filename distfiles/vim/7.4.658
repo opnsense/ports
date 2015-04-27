@@ -1,0 +1,97 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.658
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.658
+Problem:    'formatexpr' is evaluated too often.
+Solution:   Only invoke it when beyond the 'textwidth' column, as it is
+	    documented. (James McCoy)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.657/src/edit.c	2015-03-05 18:08:38.893104412 +0100
+--- src/edit.c	2015-03-08 14:42:36.495743590 +0100
+***************
+*** 5879,5886 ****
+      char_u	*p;
+  #endif
+      int		fo_ins_blank;
+  
+!     textwidth = comp_textwidth(flags & INSCHAR_FORMAT);
+      fo_ins_blank = has_format_option(FO_INS_BLANK);
+  
+      /*
+--- 5879,5887 ----
+      char_u	*p;
+  #endif
+      int		fo_ins_blank;
++     int		force_format = flags & INSCHAR_FORMAT;
+  
+!     textwidth = comp_textwidth(force_format);
+      fo_ins_blank = has_format_option(FO_INS_BLANK);
+  
+      /*
+***************
+*** 5899,5905 ****
+       *	      before 'textwidth'
+       */
+      if (textwidth > 0
+! 	    && ((flags & INSCHAR_FORMAT)
+  		|| (!vim_iswhite(c)
+  		    && !((State & REPLACE_FLAG)
+  #ifdef FEAT_VREPLACE
+--- 5900,5906 ----
+       *	      before 'textwidth'
+       */
+      if (textwidth > 0
+! 	    && (force_format
+  		|| (!vim_iswhite(c)
+  		    && !((State & REPLACE_FLAG)
+  #ifdef FEAT_VREPLACE
+***************
+*** 5916,5924 ****
+  	/* Format with 'formatexpr' when it's set.  Use internal formatting
+  	 * when 'formatexpr' isn't set or it returns non-zero. */
+  #if defined(FEAT_EVAL)
+! 	int do_internal = TRUE;
+  
+! 	if (*curbuf->b_p_fex != NUL && (flags & INSCHAR_NO_FEX) == 0)
+  	{
+  	    do_internal = (fex_format(curwin->w_cursor.lnum, 1L, c) != 0);
+  	    /* It may be required to save for undo again, e.g. when setline()
+--- 5917,5928 ----
+  	/* Format with 'formatexpr' when it's set.  Use internal formatting
+  	 * when 'formatexpr' isn't set or it returns non-zero. */
+  #if defined(FEAT_EVAL)
+! 	int     do_internal = TRUE;
+! 	colnr_T virtcol = get_nolist_virtcol()
+! 				  + char2cells(c != NUL ? c : gchar_cursor());
+  
+! 	if (*curbuf->b_p_fex != NUL && (flags & INSCHAR_NO_FEX) == 0
+! 		&& (force_format || virtcol > (colnr_T)textwidth))
+  	{
+  	    do_internal = (fex_format(curwin->w_cursor.lnum, 1L, c) != 0);
+  	    /* It may be required to save for undo again, e.g. when setline()
+*** ../vim-7.4.657/src/version.c	2015-03-06 22:00:06.817456968 +0100
+--- src/version.c	2015-03-08 14:46:45.836912488 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     658,
+  /**/
+
+-- 
+I have to exercise early in the morning before my brain
+figures out what I'm doing.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

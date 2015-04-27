@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.296
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.296
+Problem:    Can't run tests on Solaris.
+Solution:   Change the way VIMRUNTIME is set. (Laurent Blume)
+Files:	    src/testdir/Makefile
+
+
+*** ../vim-7.4.295/src/testdir/Makefile	2014-04-29 12:15:22.852032651 +0200
+--- src/testdir/Makefile	2014-05-22 13:07:17.458599247 +0200
+***************
+*** 57,63 ****
+  
+  RM_ON_RUN = test.out X* viminfo
+  RM_ON_START = tiny.vim small.vim mbyte.vim mzscheme.vim lua.vim test.ok
+! RUN_VIM = export VIMRUNTIME=$(SCRIPTSOURCE); $(VALGRIND) $(VIMPROG) -u unix.vim -U NONE --noplugin -s dotest.in
+  
+  clean:
+  	-rm -rf *.out *.failed *.rej *.orig test.log $(RM_ON_RUN) $(RM_ON_START) valgrind.*
+--- 57,63 ----
+  
+  RM_ON_RUN = test.out X* viminfo
+  RM_ON_START = tiny.vim small.vim mbyte.vim mzscheme.vim lua.vim test.ok
+! RUN_VIM = VIMRUNTIME=$(SCRIPTSOURCE); export VIMRUNTIME; $(VALGRIND) $(VIMPROG) -u unix.vim -U NONE --noplugin -s dotest.in
+  
+  clean:
+  	-rm -rf *.out *.failed *.rej *.orig test.log $(RM_ON_RUN) $(RM_ON_START) valgrind.*
+*** ../vim-7.4.295/src/version.c	2014-05-13 20:19:53.577808878 +0200
+--- src/version.c	2014-05-22 13:10:36.114595209 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     296,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+187. You promise yourself that you'll only stay online for another
+     15 minutes...at least once every hour.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

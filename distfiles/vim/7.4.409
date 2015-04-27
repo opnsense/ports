@@ -1,0 +1,129 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.409
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.409
+Problem:    Can't build with Perl on Fedora 20.
+Solution:   Find xsubpp in another directory. (Michael Henry)
+Files:	    src/Makefile, src/config.mk.in, src/configure.in,
+	    src/auto/configure
+
+
+*** ../vim-7.4.408/src/Makefile	2014-08-10 13:34:59.052785459 +0200
+--- src/Makefile	2014-08-17 16:59:03.527072144 +0200
+***************
+*** 2477,2483 ****
+  
+  auto/if_perl.c: if_perl.xs
+  	$(PERL) -e 'unless ( $$] >= 5.005 ) { for (qw(na defgv errgv)) { print "#define PL_$$_ $$_\n" }}' > $@
+! 	$(PERL) $(PERLLIB)/ExtUtils/xsubpp -prototypes -typemap \
+  	    $(PERLLIB)/ExtUtils/typemap if_perl.xs >> $@
+  
+  auto/osdef.h: auto/config.h osdef.sh osdef1.h.in osdef2.h.in
+--- 2478,2484 ----
+  
+  auto/if_perl.c: if_perl.xs
+  	$(PERL) -e 'unless ( $$] >= 5.005 ) { for (qw(na defgv errgv)) { print "#define PL_$$_ $$_\n" }}' > $@
+! 	$(PERL) $(PERL_XSUBPP) -prototypes -typemap \
+  	    $(PERLLIB)/ExtUtils/typemap if_perl.xs >> $@
+  
+  auto/osdef.h: auto/config.h osdef.sh osdef1.h.in osdef2.h.in
+*** ../vim-7.4.408/src/config.mk.in	2014-06-12 18:03:24.936319000 +0200
+--- src/config.mk.in	2014-08-17 16:56:28.371077771 +0200
+***************
+*** 48,58 ****
+  MZSCHEME_OBJ	= @MZSCHEME_OBJ@
+  MZSCHEME_CFLAGS	= @MZSCHEME_CFLAGS@
+  MZSCHEME_PRO	= @MZSCHEME_PRO@
+! MZSCHEME_EXTRA  = @MZSCHEME_EXTRA@
+  MZSCHEME_MZC	= @MZSCHEME_MZC@
+  
+  PERL		= @vi_cv_path_perl@
+  PERLLIB		= @vi_cv_perllib@
+  PERL_LIBS	= @PERL_LIBS@
+  SHRPENV		= @shrpenv@
+  PERL_SRC	= @PERL_SRC@
+--- 48,59 ----
+  MZSCHEME_OBJ	= @MZSCHEME_OBJ@
+  MZSCHEME_CFLAGS	= @MZSCHEME_CFLAGS@
+  MZSCHEME_PRO	= @MZSCHEME_PRO@
+! MZSCHEME_EXTRA	= @MZSCHEME_EXTRA@
+  MZSCHEME_MZC	= @MZSCHEME_MZC@
+  
+  PERL		= @vi_cv_path_perl@
+  PERLLIB		= @vi_cv_perllib@
++ PERL_XSUBPP	= @vi_cv_perl_xsubpp@
+  PERL_LIBS	= @PERL_LIBS@
+  SHRPENV		= @shrpenv@
+  PERL_SRC	= @PERL_SRC@
+*** ../vim-7.4.408/src/configure.in	2014-07-30 13:22:48.263621613 +0200
+--- src/configure.in	2014-08-17 16:57:11.183076219 +0200
+***************
+*** 933,938 ****
+--- 933,946 ----
+        fi
+        vi_cv_perllib=`$vi_cv_path_perl -MConfig -e 'print $Config{privlibexp}'`
+        AC_SUBST(vi_cv_perllib)
++       vi_cv_perl_extutils=unknown_perl_extutils_path
++       for extutils_rel_path in ExtUtils vendor_perl/ExtUtils; do
++ 	xsubpp_path="$vi_cv_perllib/$extutils_rel_path/xsubpp"
++ 	if test -f "$xsubpp_path"; then
++ 	  vi_cv_perl_xsubpp="$xsubpp_path"
++ 	fi
++       done
++       AC_SUBST(vi_cv_perl_xsubpp)
+        dnl Remove "-fno-something", it breaks using cproto.
+        perlcppflags=`$vi_cv_path_perl -Mlib=$srcdir -MExtUtils::Embed \
+  	      -e 'ccflags;perl_inc;print"\n"' | sed -e 's/-fno[[^ ]]*//'`
+*** ../vim-7.4.408/src/auto/configure	2014-07-30 13:22:48.267621613 +0200
+--- src/auto/configure	2014-08-17 16:58:43.047072887 +0200
+***************
+*** 687,692 ****
+--- 687,693 ----
+  PERL_OBJ
+  PERL_SRC
+  shrpenv
++ vi_cv_perl_xsubpp
+  vi_cv_perllib
+  vi_cv_path_perl
+  MZSCHEME_MZC
+***************
+*** 5604,5609 ****
+--- 5605,5618 ----
+        fi
+        vi_cv_perllib=`$vi_cv_path_perl -MConfig -e 'print $Config{privlibexp}'`
+  
++       vi_cv_perl_extutils=unknown_perl_extutils_path
++       for extutils_rel_path in ExtUtils vendor_perl/ExtUtils; do
++ 	xsubpp_path="$vi_cv_perllib/$extutils_rel_path/xsubpp"
++ 	if test -f "$xsubpp_path"; then
++ 	  vi_cv_perl_xsubpp="$xsubpp_path"
++ 	fi
++       done
++ 
+              perlcppflags=`$vi_cv_path_perl -Mlib=$srcdir -MExtUtils::Embed \
+  	      -e 'ccflags;perl_inc;print"\n"' | sed -e 's/-fno[^ ]*//'`
+              perllibs=`cd $srcdir; $vi_cv_path_perl -MExtUtils::Embed -e 'ldopts' | \
+*** ../vim-7.4.408/src/version.c	2014-08-16 18:36:38.597993280 +0200
+--- src/version.c	2014-08-17 16:53:34.135084090 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     409,
+  /**/
+
+
+-- 
+To define recursion, we must first define recursion.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

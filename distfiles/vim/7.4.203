@@ -1,0 +1,203 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.203
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.203
+Problem:    Parsing 'errorformat' is not correct.
+Solution:   Reset "multiignore" at the start of a multi-line message. (Lcd)
+Files:	    src/quickfix.c, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test106.in,
+	    src/testdir/test106.ok
+
+
+*** ../vim-7.4.202/src/quickfix.c	2013-07-01 21:16:44.000000000 +0200
+--- src/quickfix.c	2014-03-12 19:35:22.016943118 +0100
+***************
+*** 751,757 ****
+--- 751,760 ----
+  		fmt_start = fmt_ptr;
+  
+  	    if (vim_strchr((char_u *)"AEWI", idx) != NULL)
++ 	    {
+  		multiline = TRUE;	/* start of a multi-line message */
++ 		multiignore = FALSE;	/* reset continuation */
++ 	    }
+  	    else if (vim_strchr((char_u *)"CZ", idx) != NULL)
+  	    {				/* continuation of multi-line msg */
+  		if (qfprev == NULL)
+*** ../vim-7.4.202/src/testdir/Make_amiga.mak	2014-02-23 23:38:58.808760280 +0100
+--- src/testdir/Make_amiga.mak	2014-03-12 19:32:32.192940516 +0100
+***************
+*** 35,41 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out
+  
+  .SUFFIXES: .in .out
+  
+--- 35,41 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out
+  
+  .SUFFIXES: .in .out
+  
+***************
+*** 157,159 ****
+--- 157,160 ----
+  test103.out: test103.in
+  test104.out: test104.in
+  test105.out: test105.in
++ test106.out: test106.in
+*** ../vim-7.4.202/src/testdir/Make_dos.mak	2014-02-23 23:38:58.808760280 +0100
+--- src/testdir/Make_dos.mak	2014-03-12 19:32:40.100940637 +0100
+***************
+*** 34,40 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 34,40 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.202/src/testdir/Make_ming.mak	2014-02-23 23:38:58.812760280 +0100
+--- src/testdir/Make_ming.mak	2014-03-12 19:32:44.948940712 +0100
+***************
+*** 54,60 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 54,60 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.202/src/testdir/Make_os2.mak	2014-02-23 23:38:58.812760280 +0100
+--- src/testdir/Make_os2.mak	2014-03-12 19:32:48.112940760 +0100
+***************
+*** 36,42 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out
+  
+  .SUFFIXES: .in .out
+  
+--- 36,42 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out
+  
+  .SUFFIXES: .in .out
+  
+*** ../vim-7.4.202/src/testdir/Make_vms.mms	2014-03-12 16:51:35.060792541 +0100
+--- src/testdir/Make_vms.mms	2014-03-12 19:32:51.836940817 +0100
+***************
+*** 95,101 ****
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+! 	 test105.out
+  
+  # Known problems:
+  # test17: ?
+--- 95,101 ----
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+! 	 test105.out test106.out
+  
+  # Known problems:
+  # test17: ?
+*** ../vim-7.4.202/src/testdir/Makefile	2014-03-12 15:50:18.472736205 +0100
+--- src/testdir/Makefile	2014-03-12 19:32:13.884940236 +0100
+***************
+*** 31,37 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out
+  
+  SCRIPTS_GUI = test16.out
+  
+--- 31,37 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out
+  
+  SCRIPTS_GUI = test16.out
+  
+*** ../vim-7.4.202/src/testdir/test106.in	2014-03-12 19:40:59.584948291 +0100
+--- src/testdir/test106.in	2014-03-12 19:33:30.332941407 +0100
+***************
+*** 0 ****
+--- 1,16 ----
++ Tests for errorformat.  vim: set ft=vim ts=8 :
++ 
++ STARTTEST
++ :so small.vim
++ :if !has('quickfix') | e! test.ok | wq! test.out | endif
++ :set efm=%EEEE%m,%WWWW%m,%+CCCC%.%#,%-GGGG%.%#
++ :cgetexpr ['WWWW', 'EEEE', 'CCCC']
++ :$put =strtrans(string(map(getqflist(), '[v:val.text, v:val.valid]')))
++ :cgetexpr ['WWWW', 'GGGG', 'EEEE', 'CCCC']
++ :$put =strtrans(string(map(getqflist(), '[v:val.text, v:val.valid]')))
++ :cgetexpr ['WWWW', 'GGGG', 'ZZZZ', 'EEEE', 'CCCC', 'YYYY']
++ :$put =strtrans(string(map(getqflist(), '[v:val.text, v:val.valid]')))
++ :/^Results/,$wq! test.out
++ ENDTEST
++ 
++ Results of test106:
+*** ../vim-7.4.202/src/testdir/test106.ok	2014-03-12 19:40:59.592948291 +0100
+--- src/testdir/test106.ok	2014-03-12 19:33:50.496941716 +0100
+***************
+*** 0 ****
+--- 1,4 ----
++ Results of test106:
++ [['W', 1], ['E^@CCCC', 1]]
++ [['W', 1], ['E^@CCCC', 1]]
++ [['W', 1], ['ZZZZ', 0], ['E^@CCCC', 1], ['YYYY', 0]]
+*** ../vim-7.4.202/src/version.c	2014-03-12 19:24:32.508933166 +0100
+--- src/version.c	2014-03-12 19:39:34.344946985 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     203,
+  /**/
+
+-- 
+"I know that there are people who don't love their fellow man,
+and I hate those people!" - Tom Lehrer
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.394
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.394 (after 7.4.393)
+Problem:    When using DirectX last italic character is incomplete.
+Solution:   Add one to the number of cells. (Ken Takata)
+Files:	    src/gui_w32.c
+
+
+*** ../vim-7.4.393/src/gui_w32.c	2014-08-06 14:52:05.043236174 +0200
+--- src/gui_w32.c	2014-08-06 16:45:56.927187071 +0200
+***************
+*** 2590,2597 ****
+  #if defined(FEAT_DIRECTX)
+  	if (IS_ENABLE_DIRECTX() && font_is_ttf_or_vector)
+  	{
+  	    DWriteContext_DrawText(s_dwc, s_hdc, unicodebuf, wlen,
+! 		    TEXT_X(col), TEXT_Y(row), FILL_X(cells), FILL_Y(1),
+  		    gui.char_width, gui.currFgColor);
+  	}
+  	else
+--- 2590,2598 ----
+  #if defined(FEAT_DIRECTX)
+  	if (IS_ENABLE_DIRECTX() && font_is_ttf_or_vector)
+  	{
++ 	    /* Add one to "cells" for italics. */
+  	    DWriteContext_DrawText(s_dwc, s_hdc, unicodebuf, wlen,
+! 		    TEXT_X(col), TEXT_Y(row), FILL_X(cells + 1), FILL_Y(1),
+  		    gui.char_width, gui.currFgColor);
+  	}
+  	else
+*** ../vim-7.4.393/src/version.c	2014-08-06 14:52:05.047236174 +0200
+--- src/version.c	2014-08-06 16:46:54.279186658 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     394,
+  /**/
+
+-- 
+The average life of an organization chart is six months.  You can safely
+ignore any order from your boss that would take six months to complete.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

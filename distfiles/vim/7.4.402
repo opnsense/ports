@@ -1,0 +1,103 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.402
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.402
+Problem:    Test 72 crashes under certain conditions. (Kazunobu Kuriyama)
+Solution:   Clear the whole bufinfo_T early.
+Files:	    src/undo.c
+
+
+*** ../vim-7.4.401/src/undo.c	2014-08-10 13:34:59.064785459 +0200
+--- src/undo.c	2014-08-12 20:08:23.915373819 +0200
+***************
+*** 929,935 ****
+  undo_flush(bi)
+      bufinfo_T	*bi;
+  {
+!     if (bi->bi_used > 0)
+      {
+  	crypt_encode_inplace(bi->bi_state, bi->bi_buffer, bi->bi_used);
+  	if (fwrite(bi->bi_buffer, bi->bi_used, (size_t)1, bi->bi_fp) != 1)
+--- 929,935 ----
+  undo_flush(bi)
+      bufinfo_T	*bi;
+  {
+!     if (bi->bi_buffer != NULL && bi->bi_used > 0)
+      {
+  	crypt_encode_inplace(bi->bi_state, bi->bi_buffer, bi->bi_used);
+  	if (fwrite(bi->bi_buffer, bi->bi_used, (size_t)1, bi->bi_fp) != 1)
+***************
+*** 1573,1582 ****
+  #endif
+      bufinfo_T	bi;
+  
+! #ifdef FEAT_CRYPT
+!     bi.bi_state = NULL;
+!     bi.bi_buffer = NULL;
+! #endif
+  
+      if (name == NULL)
+      {
+--- 1573,1579 ----
+  #endif
+      bufinfo_T	bi;
+  
+!     vim_memset(&bi, 0, sizeof(bi));
+  
+      if (name == NULL)
+      {
+***************
+*** 1861,1866 ****
+--- 1858,1864 ----
+  #endif
+      bufinfo_T	bi;
+  
++     vim_memset(&bi, 0, sizeof(bi));
+      if (name == NULL)
+      {
+  	file_name = u_get_undo_file_name(curbuf->b_ffname, TRUE);
+***************
+*** 1905,1914 ****
+      }
+      bi.bi_buf = curbuf;
+      bi.bi_fp = fp;
+- #ifdef FEAT_CRYPT
+-     bi.bi_state = NULL;
+-     bi.bi_buffer = NULL;
+- #endif
+  
+      /*
+       * Read the undo file header.
+--- 1903,1908 ----
+*** ../vim-7.4.401/src/version.c	2014-08-10 16:31:47.376709213 +0200
+--- src/version.c	2014-08-12 20:11:13.879372598 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     402,
+  /**/
+
+-- 
+Far back in the mists of ancient time, in the great and glorious days of the
+former Galactic Empire, life was wild, rich and largely tax free.
+Mighty starships plied their way between exotic suns, seeking adventure and
+reward among the furthest reaches of Galactic space.  In those days, spirits
+were brave, the stakes were high, men were real men, women were real women
+and small furry creatures from Alpha Centauri were real small furry creatures
+from Alpha Centauri.  And all dared to brave unknown terrors, to do mighty
+deeds, to boldly split infinitives that no man had split before -- and thus
+was the Empire forged.
+		-- Douglas Adams, "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

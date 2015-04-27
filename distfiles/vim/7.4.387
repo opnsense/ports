@@ -1,0 +1,199 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.387
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.387
+Problem:    "4gro" replaces one character then executes "ooo". (Urtica Dioica)
+Solution:   Write the ESC in the second stuff buffer.
+Files:	    src/getchar.c, src/proto/getchar.pro, src/edit.c,
+	    src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile,
+	    src/testdir/test_insertcount.in, src/testdir/test_insertcount.ok
+
+
+*** ../vim-7.4.386/src/getchar.c	2014-07-23 20:41:09.891779510 +0200
+--- src/getchar.c	2014-07-30 14:35:08.831590415 +0200
+***************
+*** 678,683 ****
+--- 678,694 ----
+      add_buff(&readbuf1, s, -1L);
+  }
+  
++ /*
++  * Append string "s" to the redo stuff buffer.
++  * CSI and K_SPECIAL must already have been escaped.
++  */
++     void
++ stuffRedoReadbuff(s)
++     char_u	*s;
++ {
++     add_buff(&readbuf2, s, -1L);
++ }
++ 
+      void
+  stuffReadbuffLen(s, len)
+      char_u	*s;
+*** ../vim-7.4.386/src/proto/getchar.pro	2014-02-11 15:10:38.134111836 +0100
+--- src/proto/getchar.pro	2014-07-30 14:36:18.851589912 +0200
+***************
+*** 15,20 ****
+--- 15,21 ----
+  void AppendCharToRedobuff __ARGS((int c));
+  void AppendNumberToRedobuff __ARGS((long n));
+  void stuffReadbuff __ARGS((char_u *s));
++ void stuffRedoReadbuff __ARGS((char_u *s));
+  void stuffReadbuffLen __ARGS((char_u *s, long len));
+  void stuffReadbuffSpec __ARGS((char_u *s));
+  void stuffcharReadbuff __ARGS((int c));
+*** ../vim-7.4.386/src/edit.c	2014-07-23 17:39:21.815857910 +0200
+--- src/edit.c	2014-07-30 14:47:56.875584895 +0200
+***************
+*** 8389,8395 ****
+  
+  	    (void)start_redo_ins();
+  	    if (cmdchar == 'r' || cmdchar == 'v')
+! 		stuffReadbuff(ESC_STR);	/* no ESC in redo buffer */
+  	    ++RedrawingDisabled;
+  	    disabled_redraw = TRUE;
+  	    return FALSE;	/* repeat the insert */
+--- 8389,8395 ----
+  
+  	    (void)start_redo_ins();
+  	    if (cmdchar == 'r' || cmdchar == 'v')
+! 		stuffRedoReadbuff(ESC_STR);	/* no ESC in redo buffer */
+  	    ++RedrawingDisabled;
+  	    disabled_redraw = TRUE;
+  	    return FALSE;	/* repeat the insert */
+*** ../vim-7.4.386/src/testdir/Make_amiga.mak	2014-07-30 14:04:49.131603494 +0200
+--- src/testdir/Make_amiga.mak	2014-07-30 15:57:52.819554737 +0200
+***************
+*** 43,48 ****
+--- 43,49 ----
+  		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
++ 		test_insertcount.out \
+  		test_options.out
+  
+  .SUFFIXES: .in .out
+***************
+*** 174,177 ****
+--- 175,179 ----
+  test_qf_title.out: test_qf_title.in
+  test_changelist.out: test_changelist.in
+  test_eval.out: test_eval.in
++ test_insertcount.out: test_insertcount.in
+  test_options.out: test_options.in
+*** ../vim-7.4.386/src/testdir/Make_dos.mak	2014-07-30 14:04:49.131603494 +0200
+--- src/testdir/Make_dos.mak	2014-07-30 15:57:59.071554692 +0200
+***************
+*** 42,47 ****
+--- 42,48 ----
+  		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
++ 		test_insertcount.out \
+  		test_options.out
+  
+  SCRIPTS32 =	test50.out test70.out
+*** ../vim-7.4.386/src/testdir/Make_ming.mak	2014-07-30 14:04:49.131603494 +0200
+--- src/testdir/Make_ming.mak	2014-07-30 15:58:02.351554669 +0200
+***************
+*** 62,67 ****
+--- 62,68 ----
+  		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
++ 		test_insertcount.out \
+  		test_options.out
+  
+  SCRIPTS32 =	test50.out test70.out
+*** ../vim-7.4.386/src/testdir/Make_os2.mak	2014-07-30 14:04:49.131603494 +0200
+--- src/testdir/Make_os2.mak	2014-07-30 15:58:05.975554643 +0200
+***************
+*** 40,45 ****
+--- 40,46 ----
+  		test_autoformat_join.out \
+  		test_changelist.out \
+  		test_eval.out \
++ 		test_insertcount.out \
+  		test_breakindent.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+*** ../vim-7.4.386/src/testdir/Make_vms.mms	2014-07-30 14:04:49.131603494 +0200
+--- src/testdir/Make_vms.mms	2014-07-30 15:58:10.099554613 +0200
+***************
+*** 103,108 ****
+--- 103,109 ----
+  	 test_qf_title.out \
+  	 test_changelist.out \
+  	 test_eval.out \
++ 	 test_insertcount.out \
+  	 test_options.out
+  
+  # Known problems:
+*** ../vim-7.4.386/src/testdir/Makefile	2014-07-30 14:04:49.131603494 +0200
+--- src/testdir/Makefile	2014-07-30 15:58:16.539554567 +0200
+***************
+*** 40,45 ****
+--- 40,46 ----
+  		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
++ 		test_insertcount.out \
+  		test_options.out
+  
+  SCRIPTS_GUI = test16.out
+*** ../vim-7.4.386/src/testdir/test_insertcount.in	2014-07-30 15:56:12.087555461 +0200
+--- src/testdir/test_insertcount.in	2014-07-30 14:47:36.335585043 +0200
+***************
+*** 0 ****
+--- 1,14 ----
++ Tests for repeating insert and replace.
++ 
++ STARTTEST
++ :so small.vim
++ :/Second
++ 4gro
++ :/^First/,$wq! test.out
++ :" get here when failed and in Insert mode
++ :.wq! test.out
++ ENDTEST
++ 
++ First line
++ Second line
++ Last line
+*** ../vim-7.4.386/src/testdir/test_insertcount.ok	2014-07-30 15:56:12.091555461 +0200
+--- src/testdir/test_insertcount.ok	2014-07-30 14:45:43.491585854 +0200
+***************
+*** 0 ****
+--- 1,3 ----
++ First line
++ ooooecond line
++ Last line
+*** ../vim-7.4.386/src/version.c	2014-07-30 14:04:49.131603494 +0200
+--- src/version.c	2014-07-30 14:48:45.039584549 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     387,
+  /**/
+
+-- 
+If your company is not involved in something called "ISO 9000" you probably
+have no idea what it is.  If your company _is_ involved in ISO 9000 then you
+definitely have no idea what it is.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

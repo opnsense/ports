@@ -1,0 +1,86 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.630
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.630
+Problem:    When using Insert mode completion combined with autocommands the
+	    redo command may not work.
+Solution:   Do not save the redo buffer when executing autocommands. (Yasuhiro
+	    Matsumoto)
+Files:	    src/fileio.c
+
+
+*** ../vim-7.4.629/src/fileio.c	2015-01-07 14:43:35.728900384 +0100
+--- src/fileio.c	2015-02-17 10:49:42.478013159 +0100
+***************
+*** 9230,9235 ****
+--- 9230,9236 ----
+  #ifdef FEAT_PROFILE
+      proftime_T	wait_time;
+  #endif
++     int		did_save_redobuff = FALSE;
+  
+      /*
+       * Quickly return if there are no autocommands for this event or
+***************
+*** 9430,9436 ****
+      if (!autocmd_busy)
+      {
+  	save_search_patterns();
+! 	saveRedobuff();
+  	did_filetype = keep_filetype;
+      }
+  
+--- 9431,9441 ----
+      if (!autocmd_busy)
+      {
+  	save_search_patterns();
+! 	if (!ins_compl_active())
+! 	{
+! 	    saveRedobuff();
+! 	    did_save_redobuff = TRUE;
+! 	}
+  	did_filetype = keep_filetype;
+      }
+  
+***************
+*** 9530,9536 ****
+      if (!autocmd_busy)
+      {
+  	restore_search_patterns();
+! 	restoreRedobuff();
+  	did_filetype = FALSE;
+  	while (au_pending_free_buf != NULL)
+  	{
+--- 9535,9542 ----
+      if (!autocmd_busy)
+      {
+  	restore_search_patterns();
+! 	if (did_save_redobuff)
+! 	    restoreRedobuff();
+  	did_filetype = FALSE;
+  	while (au_pending_free_buf != NULL)
+  	{
+*** ../vim-7.4.629/src/version.c	2015-02-10 20:03:39.389939274 +0100
+--- src/version.c	2015-02-17 10:53:04.719391852 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     630,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+237. You tattoo your email address on your forehead.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

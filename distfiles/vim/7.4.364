@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.364
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.364
+Problem:    When the viminfo file can't be renamed there is no error message.
+	    (Vladimir Berezhnoy)
+Solution:   Check for the rename to fail.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.363/src/ex_cmds.c	2014-05-22 14:00:12.694534712 +0200
+--- src/ex_cmds.c	2014-07-09 21:11:44.531557830 +0200
+***************
+*** 2004,2014 ****
+      {
+  	fclose(fp_in);
+  
+! 	/*
+! 	 * In case of an error keep the original viminfo file.
+! 	 * Otherwise rename the newly written file.
+! 	 */
+! 	if (viminfo_errcnt || vim_rename(tempname, fname) == -1)
+  	    mch_remove(tempname);
+  
+  #ifdef WIN3264
+--- 2004,2017 ----
+      {
+  	fclose(fp_in);
+  
+! 	/* In case of an error keep the original viminfo file.  Otherwise
+! 	 * rename the newly written file.  Give an error if that fails. */
+! 	if (viminfo_errcnt == 0 && vim_rename(tempname, fname) == -1)
+! 	{
+! 	    ++viminfo_errcnt;
+! 	    EMSG2(_("E886: Can't rename viminfo file to %s!"), fname);
+! 	}
+! 	if (viminfo_errcnt > 0)
+  	    mch_remove(tempname);
+  
+  #ifdef WIN3264
+*** ../vim-7.4.363/src/version.c	2014-07-09 20:51:04.519583033 +0200
+--- src/version.c	2014-07-09 21:13:18.575555919 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     364,
+  /**/
+
+-- 
+MONK: ... and the Lord spake, saying, "First shalt thou take out the Holy Pin,
+      then shalt thou count to three, no more, no less.  Three shalt be the
+      number thou shalt count, and the number of the counting shalt be three.
+      Four shalt thou not count, neither count thou two, excepting that thou
+      then proceed to three.  Five is right out.  Once the number three, being
+      the third number, be reached, then lobbest thou thy Holy Hand Grenade of
+      Antioch towards thou foe, who being naughty in my sight, shall snuff it.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,866 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.519
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.519 (after 7.4.497)
+Problem:    Crash when using syntax highlighting.
+Solution:   When regprog is freed and replaced, store the result.
+Files:	    src/buffer.c, src/regexp.c, src/syntax.c, src/spell.c,
+	    src/ex_cmds2.c, src/fileio.c, src/proto/fileio.pro,
+	    src/proto/regexp.pro, src/os_unix.c
+
+
+*** ../vim-7.4.518/src/buffer.c	2014-09-23 15:45:04.870801055 +0200
+--- src/buffer.c	2014-11-19 15:50:34.129292586 +0100
+***************
+*** 28,36 ****
+  #include "vim.h"
+  
+  #if defined(FEAT_CMDL_COMPL) || defined(FEAT_LISTCMDS) || defined(FEAT_EVAL) || defined(FEAT_PERL)
+! static char_u	*buflist_match __ARGS((regprog_T *prog, buf_T *buf, int ignore_case));
+  # define HAVE_BUFLIST_MATCH
+! static char_u	*fname_match __ARGS((regprog_T *prog, char_u *name, int ignore_case));
+  #endif
+  static void	buflist_setfpos __ARGS((buf_T *buf, win_T *win, linenr_T lnum, colnr_T col, int copy_options));
+  static wininfo_T *find_wininfo __ARGS((buf_T *buf, int skip_diff_buffer));
+--- 28,36 ----
+  #include "vim.h"
+  
+  #if defined(FEAT_CMDL_COMPL) || defined(FEAT_LISTCMDS) || defined(FEAT_EVAL) || defined(FEAT_PERL)
+! static char_u	*buflist_match __ARGS((regmatch_T *rmp, buf_T *buf, int ignore_case));
+  # define HAVE_BUFLIST_MATCH
+! static char_u	*fname_match __ARGS((regmatch_T *rmp, char_u *name, int ignore_case));
+  #endif
+  static void	buflist_setfpos __ARGS((buf_T *buf, win_T *win, linenr_T lnum, colnr_T col, int copy_options));
+  static wininfo_T *find_wininfo __ARGS((buf_T *buf, int skip_diff_buffer));
+***************
+*** 2220,2226 ****
+      int		curtab_only;	/* find buffers in current tab only */
+  {
+      buf_T	*buf;
+-     regprog_T	*prog;
+      int		match = -1;
+      int		find_listed;
+      char_u	*pat;
+--- 2220,2225 ----
+***************
+*** 2265,2278 ****
+  	{
+  	    for (attempt = 0; attempt <= 3; ++attempt)
+  	    {
+  		/* may add '^' and '$' */
+  		if (toggledollar)
+  		    *patend = (attempt < 2) ? NUL : '$'; /* add/remove '$' */
+  		p = pat;
+  		if (*p == '^' && !(attempt & 1))	 /* add/remove '^' */
+  		    ++p;
+! 		prog = vim_regcomp(p, p_magic ? RE_MAGIC : 0);
+! 		if (prog == NULL)
+  		{
+  		    vim_free(pat);
+  		    return -1;
+--- 2264,2279 ----
+  	{
+  	    for (attempt = 0; attempt <= 3; ++attempt)
+  	    {
++ 		regmatch_T	regmatch;
++ 
+  		/* may add '^' and '$' */
+  		if (toggledollar)
+  		    *patend = (attempt < 2) ? NUL : '$'; /* add/remove '$' */
+  		p = pat;
+  		if (*p == '^' && !(attempt & 1))	 /* add/remove '^' */
+  		    ++p;
+! 		regmatch.regprog = vim_regcomp(p, p_magic ? RE_MAGIC : 0);
+! 		if (regmatch.regprog == NULL)
+  		{
+  		    vim_free(pat);
+  		    return -1;
+***************
+*** 2283,2289 ****
+  #ifdef FEAT_DIFF
+  			    && (!diffmode || diff_mode_buf(buf))
+  #endif
+! 			    && buflist_match(prog, buf, FALSE) != NULL)
+  		    {
+  			if (curtab_only)
+  			{
+--- 2284,2290 ----
+  #ifdef FEAT_DIFF
+  			    && (!diffmode || diff_mode_buf(buf))
+  #endif
+! 			    && buflist_match(&regmatch, buf, FALSE) != NULL)
+  		    {
+  			if (curtab_only)
+  			{
+***************
+*** 2310,2316 ****
+  			match = buf->b_fnum;	/* remember first match */
+  		    }
+  
+! 		vim_regfree(prog);
+  		if (match >= 0)			/* found one match */
+  		    break;
+  	    }
+--- 2311,2317 ----
+  			match = buf->b_fnum;	/* remember first match */
+  		    }
+  
+! 		vim_regfree(regmatch.regprog);
+  		if (match >= 0)			/* found one match */
+  		    break;
+  	    }
+***************
+*** 2352,2358 ****
+      int		round;
+      char_u	*p;
+      int		attempt;
+-     regprog_T	*prog;
+      char_u	*patc;
+  
+      *num_file = 0;		    /* return values in case of FAIL */
+--- 2353,2358 ----
+***************
+*** 2376,2385 ****
+       */
+      for (attempt = 0; attempt <= 1; ++attempt)
+      {
+  	if (attempt > 0 && patc == pat)
+  	    break;	/* there was no anchor, no need to try again */
+! 	prog = vim_regcomp(patc + attempt * 11, RE_MAGIC);
+! 	if (prog == NULL)
+  	{
+  	    if (patc != pat)
+  		vim_free(patc);
+--- 2376,2387 ----
+       */
+      for (attempt = 0; attempt <= 1; ++attempt)
+      {
++ 	regmatch_T	regmatch;
++ 
+  	if (attempt > 0 && patc == pat)
+  	    break;	/* there was no anchor, no need to try again */
+! 	regmatch.regprog = vim_regcomp(patc + attempt * 11, RE_MAGIC);
+! 	if (regmatch.regprog == NULL)
+  	{
+  	    if (patc != pat)
+  		vim_free(patc);
+***************
+*** 2397,2403 ****
+  	    {
+  		if (!buf->b_p_bl)	/* skip unlisted buffers */
+  		    continue;
+! 		p = buflist_match(prog, buf, p_wic);
+  		if (p != NULL)
+  		{
+  		    if (round == 1)
+--- 2399,2405 ----
+  	    {
+  		if (!buf->b_p_bl)	/* skip unlisted buffers */
+  		    continue;
+! 		p = buflist_match(&regmatch, buf, p_wic);
+  		if (p != NULL)
+  		{
+  		    if (round == 1)
+***************
+*** 2419,2432 ****
+  		*file = (char_u **)alloc((unsigned)(count * sizeof(char_u *)));
+  		if (*file == NULL)
+  		{
+! 		    vim_regfree(prog);
+  		    if (patc != pat)
+  			vim_free(patc);
+  		    return FAIL;
+  		}
+  	    }
+  	}
+! 	vim_regfree(prog);
+  	if (count)		/* match(es) found, break here */
+  	    break;
+      }
+--- 2421,2434 ----
+  		*file = (char_u **)alloc((unsigned)(count * sizeof(char_u *)));
+  		if (*file == NULL)
+  		{
+! 		    vim_regfree(regmatch.regprog);
+  		    if (patc != pat)
+  			vim_free(patc);
+  		    return FAIL;
+  		}
+  	    }
+  	}
+! 	vim_regfree(regmatch.regprog);
+  	if (count)		/* match(es) found, break here */
+  	    break;
+      }
+***************
+*** 2445,2461 ****
+   * Check for a match on the file name for buffer "buf" with regprog "prog".
+   */
+      static char_u *
+! buflist_match(prog, buf, ignore_case)
+!     regprog_T	*prog;
+      buf_T	*buf;
+      int		ignore_case;  /* when TRUE ignore case, when FALSE use 'fic' */
+  {
+      char_u	*match;
+  
+      /* First try the short file name, then the long file name. */
+!     match = fname_match(prog, buf->b_sfname, ignore_case);
+      if (match == NULL)
+! 	match = fname_match(prog, buf->b_ffname, ignore_case);
+  
+      return match;
+  }
+--- 2447,2463 ----
+   * Check for a match on the file name for buffer "buf" with regprog "prog".
+   */
+      static char_u *
+! buflist_match(rmp, buf, ignore_case)
+!     regmatch_T	*rmp;
+      buf_T	*buf;
+      int		ignore_case;  /* when TRUE ignore case, when FALSE use 'fic' */
+  {
+      char_u	*match;
+  
+      /* First try the short file name, then the long file name. */
+!     match = fname_match(rmp, buf->b_sfname, ignore_case);
+      if (match == NULL)
+! 	match = fname_match(rmp, buf->b_ffname, ignore_case);
+  
+      return match;
+  }
+***************
+*** 2465,2491 ****
+   * Return "name" when there is a match, NULL when not.
+   */
+      static char_u *
+! fname_match(prog, name, ignore_case)
+!     regprog_T	*prog;
+      char_u	*name;
+      int		ignore_case;  /* when TRUE ignore case, when FALSE use 'fic' */
+  {
+      char_u	*match = NULL;
+      char_u	*p;
+-     regmatch_T	regmatch;
+  
+      if (name != NULL)
+      {
+- 	regmatch.regprog = prog;
+  	/* Ignore case when 'fileignorecase' or the argument is set. */
+! 	regmatch.rm_ic = p_fic || ignore_case;
+! 	if (vim_regexec(&regmatch, name, (colnr_T)0))
+  	    match = name;
+  	else
+  	{
+  	    /* Replace $(HOME) with '~' and try matching again. */
+  	    p = home_replace_save(NULL, name);
+! 	    if (p != NULL && vim_regexec(&regmatch, p, (colnr_T)0))
+  		match = name;
+  	    vim_free(p);
+  	}
+--- 2467,2491 ----
+   * Return "name" when there is a match, NULL when not.
+   */
+      static char_u *
+! fname_match(rmp, name, ignore_case)
+!     regmatch_T	*rmp;
+      char_u	*name;
+      int		ignore_case;  /* when TRUE ignore case, when FALSE use 'fic' */
+  {
+      char_u	*match = NULL;
+      char_u	*p;
+  
+      if (name != NULL)
+      {
+  	/* Ignore case when 'fileignorecase' or the argument is set. */
+! 	rmp->rm_ic = p_fic || ignore_case;
+! 	if (vim_regexec(rmp, name, (colnr_T)0))
+  	    match = name;
+  	else
+  	{
+  	    /* Replace $(HOME) with '~' and try matching again. */
+  	    p = home_replace_save(NULL, name);
+! 	    if (p != NULL && vim_regexec(rmp, p, (colnr_T)0))
+  		match = name;
+  	    vim_free(p);
+  	}
+*** ../vim-7.4.518/src/regexp.c	2014-11-05 14:26:30.760758363 +0100
+--- src/regexp.c	2014-11-19 16:10:43.203390451 +0100
+***************
+*** 8163,8168 ****
+--- 8163,8169 ----
+  /*
+   * Match a regexp against a string.
+   * "rmp->regprog" is a compiled regexp as returned by vim_regcomp().
++  * Note: "rmp->regprog" may be freed and changed.
+   * Uses curbuf for line count and 'iskeyword'.
+   * When "nl" is TRUE consider a "\n" in "line" to be a line break.
+   *
+***************
+*** 8203,8208 ****
+--- 8204,8232 ----
+      return result;
+  }
+  
++ /*
++  * Note: "*prog" may be freed and changed.
++  */
++     int
++ vim_regexec_prog(prog, ignore_case, line, col)
++     regprog_T	**prog;
++     int		ignore_case;
++     char_u	*line;
++     colnr_T	col;
++ {
++     int r;
++     regmatch_T regmatch;
++ 
++     regmatch.regprog = *prog;
++     regmatch.rm_ic = ignore_case;
++     r = vim_regexec_both(&regmatch, line, col, FALSE);
++     *prog = regmatch.regprog;
++     return r;
++ }
++ 
++ /*
++  * Note: "rmp->regprog" may be freed and changed.
++  */
+      int
+  vim_regexec(rmp, line, col)
+      regmatch_T	*rmp;
+***************
+*** 8216,8221 ****
+--- 8240,8246 ----
+  	|| defined(FIND_REPLACE_DIALOG) || defined(PROTO)
+  /*
+   * Like vim_regexec(), but consider a "\n" in "line" to be a line break.
++  * Note: "rmp->regprog" may be freed and changed.
+   */
+      int
+  vim_regexec_nl(rmp, line, col)
+***************
+*** 8230,8235 ****
+--- 8255,8261 ----
+  /*
+   * Match a regexp against multiple lines.
+   * "rmp->regprog" is a compiled regexp as returned by vim_regcomp().
++  * Note: "rmp->regprog" may be freed and changed.
+   * Uses curbuf for line count and 'iskeyword'.
+   *
+   * Return zero if there is no match.  Return number of lines contained in the
+*** ../vim-7.4.518/src/syntax.c	2014-06-12 12:20:50.191541385 +0200
+--- src/syntax.c	2014-11-19 15:39:08.493182536 +0100
+***************
+*** 992,1004 ****
+      linenr_T	lnum;
+  {
+      regmmatch_T regmatch;
+  
+      if (syn_block->b_syn_linecont_prog != NULL)
+      {
+  	regmatch.rmm_ic = syn_block->b_syn_linecont_ic;
+  	regmatch.regprog = syn_block->b_syn_linecont_prog;
+! 	return syn_regexec(&regmatch, lnum, (colnr_T)0,
+  				IF_SYN_TIME(&syn_block->b_syn_linecont_time));
+      }
+      return FALSE;
+  }
+--- 992,1007 ----
+      linenr_T	lnum;
+  {
+      regmmatch_T regmatch;
++     int r;
+  
+      if (syn_block->b_syn_linecont_prog != NULL)
+      {
+  	regmatch.rmm_ic = syn_block->b_syn_linecont_ic;
+  	regmatch.regprog = syn_block->b_syn_linecont_prog;
+! 	r = syn_regexec(&regmatch, lnum, (colnr_T)0,
+  				IF_SYN_TIME(&syn_block->b_syn_linecont_time));
++ 	syn_block->b_syn_linecont_prog = regmatch.regprog;
++ 	return r;
+      }
+      return FALSE;
+  }
+***************
+*** 2075,2080 ****
+--- 2078,2085 ----
+  					    cur_si->si_cont_list, &spp->sp_syn,
+  					    spp->sp_flags & HL_CONTAINED))))
+  			{
++ 			    int r;
++ 
+  			    /* If we already tried matching in this line, and
+  			     * there isn't a match before next_match_col, skip
+  			     * this item. */
+***************
+*** 2089,2098 ****
+  
+  			    regmatch.rmm_ic = spp->sp_ic;
+  			    regmatch.regprog = spp->sp_prog;
+! 			    if (!syn_regexec(&regmatch,
+  					     current_lnum,
+  					     (colnr_T)lc_col,
+! 				             IF_SYN_TIME(&spp->sp_time)))
+  			    {
+  				/* no match in this line, try another one */
+  				spp->sp_startcol = MAXCOL;
+--- 2094,2105 ----
+  
+  			    regmatch.rmm_ic = spp->sp_ic;
+  			    regmatch.regprog = spp->sp_prog;
+! 			    r = syn_regexec(&regmatch,
+  					     current_lnum,
+  					     (colnr_T)lc_col,
+! 				             IF_SYN_TIME(&spp->sp_time));
+! 			    spp->sp_prog = regmatch.regprog;
+! 			    if (!r)
+  			    {
+  				/* no match in this line, try another one */
+  				spp->sp_startcol = MAXCOL;
+***************
+*** 2963,2968 ****
+--- 2970,2976 ----
+  	for (idx = start_idx; idx < syn_block->b_syn_patterns.ga_len; ++idx)
+  	{
+  	    int lc_col = matchcol;
++ 	    int r;
+  
+  	    spp = &(SYN_ITEMS(syn_block)[idx]);
+  	    if (spp->sp_type != SPTYPE_END)	/* past last END pattern */
+***************
+*** 2973,2980 ****
+  
+  	    regmatch.rmm_ic = spp->sp_ic;
+  	    regmatch.regprog = spp->sp_prog;
+! 	    if (syn_regexec(&regmatch, startpos->lnum, lc_col,
+! 						  IF_SYN_TIME(&spp->sp_time)))
+  	    {
+  		if (best_idx == -1 || regmatch.startpos[0].col
+  					      < best_regmatch.startpos[0].col)
+--- 2981,2990 ----
+  
+  	    regmatch.rmm_ic = spp->sp_ic;
+  	    regmatch.regprog = spp->sp_prog;
+! 	    r = syn_regexec(&regmatch, startpos->lnum, lc_col,
+! 						  IF_SYN_TIME(&spp->sp_time));
+! 	    spp->sp_prog = regmatch.regprog;
+! 	    if (r)
+  	    {
+  		if (best_idx == -1 || regmatch.startpos[0].col
+  					      < best_regmatch.startpos[0].col)
+***************
+*** 3000,3013 ****
+  	if (spp_skip != NULL)
+  	{
+  	    int lc_col = matchcol - spp_skip->sp_offsets[SPO_LC_OFF];
+  
+  	    if (lc_col < 0)
+  		lc_col = 0;
+  	    regmatch.rmm_ic = spp_skip->sp_ic;
+  	    regmatch.regprog = spp_skip->sp_prog;
+! 	    if (syn_regexec(&regmatch, startpos->lnum, lc_col,
+! 					      IF_SYN_TIME(&spp_skip->sp_time))
+! 		    && regmatch.startpos[0].col
+  					     <= best_regmatch.startpos[0].col)
+  	    {
+  		/* Add offset to skip pattern match */
+--- 3010,3025 ----
+  	if (spp_skip != NULL)
+  	{
+  	    int lc_col = matchcol - spp_skip->sp_offsets[SPO_LC_OFF];
++ 	    int r;
+  
+  	    if (lc_col < 0)
+  		lc_col = 0;
+  	    regmatch.rmm_ic = spp_skip->sp_ic;
+  	    regmatch.regprog = spp_skip->sp_prog;
+! 	    r = syn_regexec(&regmatch, startpos->lnum, lc_col,
+! 					      IF_SYN_TIME(&spp_skip->sp_time));
+! 	    spp_skip->sp_prog = regmatch.regprog;
+! 	    if (r && regmatch.startpos[0].col
+  					     <= best_regmatch.startpos[0].col)
+  	    {
+  		/* Add offset to skip pattern match */
+*** ../vim-7.4.518/src/spell.c	2014-09-19 16:04:08.050417797 +0200
+--- src/spell.c	2014-11-19 16:28:49.798964748 +0100
+***************
+*** 1154,1164 ****
+  	    if (capcol != NULL && wp->w_s->b_cap_prog != NULL)
+  	    {
+  		regmatch_T	regmatch;
+  
+  		/* Check for end of sentence. */
+  		regmatch.regprog = wp->w_s->b_cap_prog;
+  		regmatch.rm_ic = FALSE;
+! 		if (vim_regexec(&regmatch, ptr, 0))
+  		    *capcol = (int)(regmatch.endp[0] - ptr);
+  	    }
+  
+--- 1154,1167 ----
+  	    if (capcol != NULL && wp->w_s->b_cap_prog != NULL)
+  	    {
+  		regmatch_T	regmatch;
++ 		int		r;
+  
+  		/* Check for end of sentence. */
+  		regmatch.regprog = wp->w_s->b_cap_prog;
+  		regmatch.rm_ic = FALSE;
+! 		r = vim_regexec(&regmatch, ptr, 0);
+! 		wp->w_s->b_cap_prog = regmatch.regprog;
+! 		if (r)
+  		    *capcol = (int)(regmatch.endp[0] - ptr);
+  	    }
+  
+***************
+*** 1786,1792 ****
+      char_u	*word;
+      char_u	*flags;
+  {
+-     regmatch_T	regmatch;
+  #ifdef FEAT_MBYTE
+      char_u	uflags[MAXWLEN * 2];
+      int		i;
+--- 1789,1794 ----
+***************
+*** 1808,1816 ****
+      else
+  #endif
+  	p = flags;
+!     regmatch.regprog = slang->sl_compprog;
+!     regmatch.rm_ic = FALSE;
+!     if (!vim_regexec(&regmatch, p, 0))
+  	return FALSE;
+  
+      /* Count the number of syllables.  This may be slow, do it last.  If there
+--- 1810,1816 ----
+      else
+  #endif
+  	p = flags;
+!     if (!vim_regexec_prog(&slang->sl_compprog, FALSE, p, 0))
+  	return FALSE;
+  
+      /* Count the number of syllables.  This may be slow, do it last.  If there
+***************
+*** 1930,1937 ****
+  {
+      int		prefcnt;
+      int		pidx;
+!     regprog_T	*rp;
+!     regmatch_T	regmatch;
+      int		prefid;
+  
+      prefid = (unsigned)flags >> 24;
+--- 1930,1936 ----
+  {
+      int		prefcnt;
+      int		pidx;
+!     regprog_T	**rp;
+      int		prefid;
+  
+      prefid = (unsigned)flags >> 24;
+***************
+*** 1950,1961 ****
+  
+  	/* Check the condition, if there is one.  The condition index is
+  	 * stored in the two bytes above the prefix ID byte.  */
+! 	rp = slang->sl_prefprog[((unsigned)pidx >> 8) & 0xffff];
+! 	if (rp != NULL)
+  	{
+! 	    regmatch.regprog = rp;
+! 	    regmatch.rm_ic = FALSE;
+! 	    if (!vim_regexec(&regmatch, word, 0))
+  		continue;
+  	}
+  	else if (cond_req)
+--- 1949,1958 ----
+  
+  	/* Check the condition, if there is one.  The condition index is
+  	 * stored in the two bytes above the prefix ID byte.  */
+! 	rp = &slang->sl_prefprog[((unsigned)pidx >> 8) & 0xffff];
+! 	if (*rp != NULL)
+  	{
+! 	    if (!vim_regexec_prog(rp, FALSE, word, 0))
+  		continue;
+  	}
+  	else if (cond_req)
+***************
+*** 6903,6909 ****
+      hashitem_T	*hi;
+      affheader_T	*ah;
+      affentry_T	*ae;
+-     regmatch_T	regmatch;
+      char_u	newword[MAXWLEN];
+      int		retval = OK;
+      int		i, j;
+--- 6900,6905 ----
+***************
+*** 6944,6958 ****
+  		     * When a previously added affix had CIRCUMFIX this one
+  		     * must have it too, if it had not then this one must not
+  		     * have one either. */
+- 		    regmatch.regprog = ae->ae_prog;
+- 		    regmatch.rm_ic = FALSE;
+  		    if ((xht != NULL || !affile->af_pfxpostpone
+  				|| ae->ae_chop != NULL
+  				|| ae->ae_flags != NULL)
+  			    && (ae->ae_chop == NULL
+  				|| STRLEN(ae->ae_chop) < wordlen)
+  			    && (ae->ae_prog == NULL
+! 				|| vim_regexec(&regmatch, word, (colnr_T)0))
+  			    && (((condit & CONDIT_CFIX) == 0)
+  				== ((condit & CONDIT_AFF) == 0
+  				    || ae->ae_flags == NULL
+--- 6940,6953 ----
+  		     * When a previously added affix had CIRCUMFIX this one
+  		     * must have it too, if it had not then this one must not
+  		     * have one either. */
+  		    if ((xht != NULL || !affile->af_pfxpostpone
+  				|| ae->ae_chop != NULL
+  				|| ae->ae_flags != NULL)
+  			    && (ae->ae_chop == NULL
+  				|| STRLEN(ae->ae_chop) < wordlen)
+  			    && (ae->ae_prog == NULL
+! 				|| vim_regexec_prog(&ae->ae_prog, FALSE,
+! 							    word, (colnr_T)0))
+  			    && (((condit & CONDIT_CFIX) == 0)
+  				== ((condit & CONDIT_AFF) == 0
+  				    || ae->ae_flags == NULL
+***************
+*** 10478,10483 ****
+--- 10473,10479 ----
+  		break;
+  	    }
+  	}
++ 	curwin->w_s->b_cap_prog = regmatch.regprog;
+      }
+  
+      vim_free(line_copy);
+*** ../vim-7.4.518/src/ex_cmds2.c	2014-08-06 18:17:03.471147780 +0200
+--- src/ex_cmds2.c	2014-11-19 16:24:22.162013396 +0100
+***************
+*** 739,745 ****
+      struct debuggy *bp;
+      int		i;
+      linenr_T	lnum = 0;
+-     regmatch_T	regmatch;
+      char_u	*name = fname;
+      int		prev_got_int;
+  
+--- 739,744 ----
+***************
+*** 771,778 ****
+  #endif
+  		(bp->dbg_lnum > after && (lnum == 0 || bp->dbg_lnum < lnum)))))
+  	{
+- 	    regmatch.regprog = bp->dbg_prog;
+- 	    regmatch.rm_ic = FALSE;
+  	    /*
+  	     * Save the value of got_int and reset it.  We don't want a
+  	     * previous interruption cancel matching, only hitting CTRL-C
+--- 770,775 ----
+***************
+*** 780,786 ****
+  	     */
+  	    prev_got_int = got_int;
+  	    got_int = FALSE;
+! 	    if (vim_regexec(&regmatch, name, (colnr_T)0))
+  	    {
+  		lnum = bp->dbg_lnum;
+  		if (fp != NULL)
+--- 777,783 ----
+  	     */
+  	    prev_got_int = got_int;
+  	    got_int = FALSE;
+! 	    if (vim_regexec_prog(&bp->dbg_prog, FALSE, name, (colnr_T)0))
+  	    {
+  		lnum = bp->dbg_lnum;
+  		if (fp != NULL)
+*** ../vim-7.4.518/src/fileio.c	2014-11-12 15:15:34.983882077 +0100
+--- src/fileio.c	2014-11-19 15:57:01.496837984 +0100
+***************
+*** 7772,7777 ****
+--- 7772,7780 ----
+  static int do_autocmd_event __ARGS((event_T event, char_u *pat, int nested, char_u *cmd, int forceit, int group));
+  static int apply_autocmds_group __ARGS((event_T event, char_u *fname, char_u *fname_io, int force, int group, buf_T *buf, exarg_T *eap));
+  static void auto_next_pat __ARGS((AutoPatCmd *apc, int stop_at_last));
++ #if defined(FEAT_AUTOCMD) || defined(FEAT_WILDIGN)
++ static int match_file_pat __ARGS((char_u *pattern, regprog_T **prog, char_u *fname, char_u *sfname, char_u *tail, int allow_dirs));
++ #endif
+  
+  
+  static event_T	last_event;
+***************
+*** 9640,9646 ****
+  	{
+  	    /* execution-condition */
+  	    if (ap->buflocal_nr == 0
+! 		    ? (match_file_pat(NULL, ap->reg_prog, apc->fname,
+  				      apc->sfname, apc->tail, ap->allow_dirs))
+  		    : ap->buflocal_nr == apc->arg_bufnr)
+  	    {
+--- 9643,9649 ----
+  	{
+  	    /* execution-condition */
+  	    if (ap->buflocal_nr == 0
+! 		    ? (match_file_pat(NULL, &ap->reg_prog, apc->fname,
+  				      apc->sfname, apc->tail, ap->allow_dirs))
+  		    : ap->buflocal_nr == apc->arg_bufnr)
+  	    {
+***************
+*** 9774,9780 ****
+      for (ap = first_autopat[(int)event]; ap != NULL; ap = ap->next)
+  	if (ap->pat != NULL && ap->cmds != NULL
+  	      && (ap->buflocal_nr == 0
+! 		? match_file_pat(NULL, ap->reg_prog,
+  					  fname, sfname, tail, ap->allow_dirs)
+  		: buf != NULL && ap->buflocal_nr == buf->b_fnum
+  	   ))
+--- 9777,9783 ----
+      for (ap = first_autopat[(int)event]; ap != NULL; ap = ap->next)
+  	if (ap->pat != NULL && ap->cmds != NULL
+  	      && (ap->buflocal_nr == 0
+! 		? match_file_pat(NULL, &ap->reg_prog,
+  					  fname, sfname, tail, ap->allow_dirs)
+  		: buf != NULL && ap->buflocal_nr == buf->b_fnum
+  	   ))
+***************
+*** 10035,10044 ****
+   * Used for autocommands and 'wildignore'.
+   * Returns TRUE if there is a match, FALSE otherwise.
+   */
+!     int
+  match_file_pat(pattern, prog, fname, sfname, tail, allow_dirs)
+      char_u	*pattern;		/* pattern to match with */
+!     regprog_T	*prog;			/* pre-compiled regprog or NULL */
+      char_u	*fname;			/* full path of file name */
+      char_u	*sfname;		/* short file name or NULL */
+      char_u	*tail;			/* tail of path */
+--- 10038,10047 ----
+   * Used for autocommands and 'wildignore'.
+   * Returns TRUE if there is a match, FALSE otherwise.
+   */
+!     static int
+  match_file_pat(pattern, prog, fname, sfname, tail, allow_dirs)
+      char_u	*pattern;		/* pattern to match with */
+!     regprog_T	**prog;			/* pre-compiled regprog or NULL */
+      char_u	*fname;			/* full path of file name */
+      char_u	*sfname;		/* short file name or NULL */
+      char_u	*tail;			/* tail of path */
+***************
+*** 10093,10099 ****
+  #endif
+      {
+  	if (prog != NULL)
+! 	    regmatch.regprog = prog;
+  	else
+  	    regmatch.regprog = vim_regcomp(pattern, RE_MAGIC);
+      }
+--- 10096,10102 ----
+  #endif
+      {
+  	if (prog != NULL)
+! 	    regmatch.regprog = *prog;
+  	else
+  	    regmatch.regprog = vim_regcomp(pattern, RE_MAGIC);
+      }
+***************
+*** 10119,10125 ****
+  		 || (!allow_dirs && vim_regexec(&regmatch, tail, (colnr_T)0)))))
+  	result = TRUE;
+  
+!     if (prog == NULL)
+  	vim_regfree(regmatch.regprog);
+      return result;
+  }
+--- 10122,10130 ----
+  		 || (!allow_dirs && vim_regexec(&regmatch, tail, (colnr_T)0)))))
+  	result = TRUE;
+  
+!     if (prog != NULL)
+! 	*prog = regmatch.regprog;
+!     else
+  	vim_regfree(regmatch.regprog);
+      return result;
+  }
+*** ../vim-7.4.518/src/proto/fileio.pro	2014-08-22 23:05:50.106606614 +0200
+--- src/proto/fileio.pro	2014-11-19 15:55:55.013602515 +0100
+***************
+*** 59,65 ****
+  char_u *get_event_name __ARGS((expand_T *xp, int idx));
+  int autocmd_supported __ARGS((char_u *name));
+  int au_exists __ARGS((char_u *arg));
+- int match_file_pat __ARGS((char_u *pattern, regprog_T *prog, char_u *fname, char_u *sfname, char_u *tail, int allow_dirs));
+  int match_file_list __ARGS((char_u *list, char_u *sfname, char_u *ffname));
+  char_u *file_pat_to_reg_pat __ARGS((char_u *pat, char_u *pat_end, char *allow_dirs, int no_bslash));
+  long read_eintr __ARGS((int fd, void *buf, size_t bufsize));
+--- 59,64 ----
+*** ../vim-7.4.518/src/proto/regexp.pro	2014-04-02 19:00:53.043644100 +0200
+--- src/proto/regexp.pro	2014-11-19 16:11:34.522800480 +0100
+***************
+*** 13,18 ****
+--- 13,19 ----
+  list_T *reg_submatch_list __ARGS((int no));
+  regprog_T *vim_regcomp __ARGS((char_u *expr_arg, int re_flags));
+  void vim_regfree __ARGS((regprog_T *prog));
++ int vim_regexec_prog __ARGS((regprog_T **prog, int ignore_case, char_u *line, colnr_T col));
+  int vim_regexec __ARGS((regmatch_T *rmp, char_u *line, colnr_T col));
+  int vim_regexec_nl __ARGS((regmatch_T *rmp, char_u *line, colnr_T col));
+  long vim_regexec_multi __ARGS((regmmatch_T *rmp, win_T *win, buf_T *buf, linenr_T lnum, colnr_T col, proftime_T *tm));
+*** ../vim-7.4.518/src/os_unix.c	2014-10-11 14:47:22.829275547 +0200
+--- src/os_unix.c	2014-11-19 16:26:48.504346537 +0100
+***************
+*** 1610,1617 ****
+      static int
+  x_connect_to_server()
+  {
+-     regmatch_T	regmatch;
+- 
+  #if defined(FEAT_CLIENTSERVER)
+      if (x_force_connect)
+  	return TRUE;
+--- 1610,1615 ----
+***************
+*** 1622,1630 ****
+      /* Check for a match with "exclude:" from 'clipboard'. */
+      if (clip_exclude_prog != NULL)
+      {
+! 	regmatch.rm_ic = FALSE;		/* Don't ignore case */
+! 	regmatch.regprog = clip_exclude_prog;
+! 	if (vim_regexec(&regmatch, T_NAME, (colnr_T)0))
+  	    return FALSE;
+      }
+      return TRUE;
+--- 1620,1626 ----
+      /* Check for a match with "exclude:" from 'clipboard'. */
+      if (clip_exclude_prog != NULL)
+      {
+! 	if (vim_regexec_prog(&clip_exclude_prog, FALSE, T_NAME, (colnr_T)0))
+  	    return FALSE;
+      }
+      return TRUE;
+*** ../vim-7.4.518/src/version.c	2014-11-19 13:40:04.903715962 +0100
+--- src/version.c	2014-11-19 15:22:36.464620036 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     519,
+  /**/
+
+-- 
+BRIDGEKEEPER: What is your favorite editor?
+GAWAIN:       Emacs ...  No, Viiiiiiiiiiimmmmmmm!
+           "Monty Python and the Holy editor wars" PYTHON (MONTY) SOFTWARE LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

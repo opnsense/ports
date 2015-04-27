@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.595
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.595
+Problem:    The test_command_count test fails when using Japanese.
+Solution:   Force the language to C. (Hirohito Higashi)
+Files:	    src/testdir/test_command_count.in
+
+
+*** ../vim-7.4.594/src/testdir/test_command_count.in	2015-01-20 13:29:46.397315064 +0100
+--- src/testdir/test_command_count.in	2015-01-27 13:27:02.409765684 +0100
+***************
+*** 2,7 ****
+--- 2,8 ----
+  
+  STARTTEST
+  :so small.vim
++ :lang C
+  :let g:lines = []
+  :com -range=% RangeLines :call add(g:lines, 'RangeLines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+*** ../vim-7.4.594/src/version.c	2015-01-27 13:22:17.176885347 +0100
+--- src/version.c	2015-01-27 13:26:28.846132779 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     595,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+124. You begin conversations with, "Who is your internet service provider?"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

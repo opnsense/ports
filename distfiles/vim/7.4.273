@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.273
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.273
+Problem:    "make autoconf" and "make reconfig" may first run configure and
+	    then remove the output.
+Solution:   Add these targets to the exceptions. (Ken Takata)
+Files:	    src/Makefile
+
+
+*** ../vim-7.4.272/src/Makefile	2014-04-29 12:15:22.852032651 +0200
+--- src/Makefile	2014-04-29 19:58:23.611545773 +0200
+***************
+*** 1670,1676 ****
+  	    ! grep -x -F 'ac_cv_env_CFLAGS_value=$(CFLAGS)' auto/config.cache > /dev/null; then \
+  		rm auto/config.cache; \
+  	fi
+! 	if test "X$(MAKECMDGOALS)" != "Xclean" -a "X$(MAKECMDGOALS)" != "Xdistclean"; then \
+  	    GUI_INC_LOC="$(GUI_INC_LOC)" GUI_LIB_LOC="$(GUI_LIB_LOC)" \
+  		CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" \
+  		LDFLAGS="$(LDFLAGS)" $(CONF_SHELL) srcdir="$(srcdir)" \
+--- 1670,1679 ----
+  	    ! grep -x -F 'ac_cv_env_CFLAGS_value=$(CFLAGS)' auto/config.cache > /dev/null; then \
+  		rm auto/config.cache; \
+  	fi
+! 	if test "X$(MAKECMDGOALS)" != "Xclean" \
+! 		-a "X$(MAKECMDGOALS)" != "Xdistclean" \
+! 		-a "X$(MAKECMDGOALS)" != "Xautoconf" \
+! 		-a "X$(MAKECMDGOALS)" != "Xreconfig"; then \
+  	    GUI_INC_LOC="$(GUI_INC_LOC)" GUI_LIB_LOC="$(GUI_LIB_LOC)" \
+  		CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" \
+  		LDFLAGS="$(LDFLAGS)" $(CONF_SHELL) srcdir="$(srcdir)" \
+*** ../vim-7.4.272/src/version.c	2014-04-29 17:41:18.351689927 +0200
+--- src/version.c	2014-04-29 19:59:21.895544751 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     273,
+  /**/
+
+-- 
+From "know your smileys":
+ <|-) Chinese
+ <|-( Chinese and doesn't like these kind of jokes
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,75 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.136
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.136 (after 7.4.096)
+Problem:    MS-Windows: When saving a file with a UNC path the file becomes
+	    read-only.
+Solution:   Don't mix up Win32 attributes and Unix attributes. (Ken Takata)
+Files:	    src/os_mswin.c, src/os_win32.c
+
+
+*** ../vim-7.4.135/src/os_mswin.c	2013-09-29 19:05:17.000000000 +0200
+--- src/os_mswin.c	2014-01-10 13:03:19.000000000 +0100
+***************
+*** 617,624 ****
+--- 617,638 ----
+      p = buf + strlen(buf);
+      if (p > buf)
+  	mb_ptr_back(buf, p);
++ 
++     /* Remove trailing '\\' except root path. */
+      if (p > buf && (*p == '\\' || *p == '/') && p[-1] != ':')
+  	*p = NUL;
++ 
++     if ((buf[0] == '\\' && buf[1] == '\\') || (buf[0] == '/' && buf[1] == '/'))
++     {
++ 	/* UNC root path must be followed by '\\'. */
++ 	p = vim_strpbrk(buf + 2, "\\/");
++ 	if (p != NULL)
++ 	{
++ 	    p = vim_strpbrk(p + 1, "\\/");
++ 	    if (p == NULL)
++ 		STRCAT(buf, "\\");
++ 	}
++     }
+  #ifdef FEAT_MBYTE
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage
+  # ifdef __BORLANDC__
+*** ../vim-7.4.135/src/os_win32.c	2014-01-05 13:29:16.000000000 +0100
+--- src/os_win32.c	2014-01-10 12:59:32.000000000 +0100
+***************
+*** 2890,2898 ****
+      struct stat st;
+      int		n;
+  
+-     if (name[0] == '\\' && name[1] == '\\')
+- 	/* UNC path */
+- 	return (long)win32_getattrs(name);
+      n = mch_stat(name, &st);
+      return n == 0 ? (long)st.st_mode : -1L;
+  }
+--- 2890,2895 ----
+*** ../vim-7.4.135/src/version.c	2014-01-06 15:51:46.000000000 +0100
+--- src/version.c	2014-01-10 13:04:43.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     136,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+128. You can access the Net -- via your portable and cellular phone.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

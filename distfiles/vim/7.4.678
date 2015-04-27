@@ -1,0 +1,120 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.678
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.678
+Problem:    When using --remote the directory may end up being wrong.
+Solution:   Use localdir() to find out what to do. (Xaizek)
+Files:	    src/main.c
+
+
+*** ../vim-7.4.677/src/main.c	2015-02-10 19:26:58.918748560 +0100
+--- src/main.c	2015-03-24 16:39:38.547390528 +0100
+***************
+*** 3914,3919 ****
+--- 3914,3920 ----
+      int		i;
+      char_u	*inicmd = NULL;
+      char_u	*p;
++     char_u	*cdp;
+      char_u	*cwd;
+  
+      if (filec > 0 && filev[0][0] == '+')
+***************
+*** 3935,3941 ****
+  	vim_free(cwd);
+  	return NULL;
+      }
+!     p = vim_strsave_escaped_ext(cwd,
+  #ifdef BACKSLASH_IN_FILENAME
+  		    "",  /* rem_backslash() will tell what chars to escape */
+  #else
+--- 3936,3942 ----
+  	vim_free(cwd);
+  	return NULL;
+      }
+!     cdp = vim_strsave_escaped_ext(cwd,
+  #ifdef BACKSLASH_IN_FILENAME
+  		    "",  /* rem_backslash() will tell what chars to escape */
+  #else
+***************
+*** 3943,3954 ****
+  #endif
+  		    '\\', TRUE);
+      vim_free(cwd);
+!     if (p == NULL)
+  	return NULL;
+      ga_init2(&ga, 1, 100);
+      ga_concat(&ga, (char_u *)"<C-\\><C-N>:cd ");
+!     ga_concat(&ga, p);
+!     vim_free(p);
+  
+      /* Call inputsave() so that a prompt for an encryption key works. */
+      ga_concat(&ga, (char_u *)"<CR>:if exists('*inputsave')|call inputsave()|endif|");
+--- 3944,3954 ----
+  #endif
+  		    '\\', TRUE);
+      vim_free(cwd);
+!     if (cdp == NULL)
+  	return NULL;
+      ga_init2(&ga, 1, 100);
+      ga_concat(&ga, (char_u *)"<C-\\><C-N>:cd ");
+!     ga_concat(&ga, cdp);
+  
+      /* Call inputsave() so that a prompt for an encryption key works. */
+      ga_concat(&ga, (char_u *)"<CR>:if exists('*inputsave')|call inputsave()|endif|");
+***************
+*** 3984,3991 ****
+  
+      /* Switch back to the correct current directory (prior to temporary path
+       * switch) unless 'autochdir' is set, in which case it will already be
+!      * correct after the :drop command. */
+!     ga_concat(&ga, (char_u *)":if !exists('+acd')||!&acd|cd -|endif<CR>");
+  
+      if (sendReply)
+  	ga_concat(&ga, (char_u *)":call SetupRemoteReplies()<CR>");
+--- 3984,4004 ----
+  
+      /* Switch back to the correct current directory (prior to temporary path
+       * switch) unless 'autochdir' is set, in which case it will already be
+!      * correct after the :drop command. With line breaks and spaces:
+!      *  if !exists('+acd') || !&acd
+!      *    if haslocaldir()
+!      *	    cd -
+!      *      lcd -
+!      *    elseif getcwd() ==# "current path"
+!      *      cd -
+!      *    endif
+!      *  endif
+!      */
+!     ga_concat(&ga, (char_u *)":if !exists('+acd')||!&acd|if haslocaldir()|");
+!     ga_concat(&ga, (char_u *)"cd -|lcd -|elseif getcwd() ==# \"");
+!     ga_concat(&ga, cdp);
+!     ga_concat(&ga, (char_u *)"\"|cd -|endif|endif<CR>");
+!     vim_free(cdp);
+  
+      if (sendReply)
+  	ga_concat(&ga, (char_u *)":call SetupRemoteReplies()<CR>");
+*** ../vim-7.4.677/src/version.c	2015-03-24 15:14:19.189039146 +0100
+--- src/version.c	2015-03-24 16:32:25.535659083 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     678,
+  /**/
+
+-- 
+Michael: There is no such thing as a dump question.
+Bernard: Sure there is.  For example "what is a core dump?"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

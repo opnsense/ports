@@ -1,0 +1,96 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.048
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.048
+Problem:    Recent clang version complains about -fno-strength-reduce.
+Solution:   Add a configure check for the clang version. (Kazunobu Kuriyama)
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.047/src/configure.in	2013-08-04 20:00:50.000000000 +0200
+--- src/configure.in	2013-10-02 17:56:25.000000000 +0200
+***************
+*** 62,67 ****
+--- 62,90 ----
+    fi
+  fi
+  
++ dnl clang-500.2.75 or around has abandoned -f[no-]strength-reduce and issues a
++ dnl warning when that flag is passed to.  Accordingly, adjust CFLAGS based on
++ dnl the version number of the clang in use.
++ dnl Note that this does not work to get the version of clang 3.1 or 3.2.
++ AC_MSG_CHECKING(for recent clang version)
++ CLANG_VERSION_STRING=`"$CC" --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\).*$/\1/p'`
++ if test x"$CLANG_VERSION_STRING" != x"" ; then
++   CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*/\1/p'`
++   CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[[0-9]][[0-9]]*\.\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*/\1/p'`
++   CLANG_REVISION=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\.\([[0-9]][[0-9]]*\)/\1/p'`
++   CLANG_VERSION=`expr $CLANG_MAJOR '*' 1000000 '+' $CLANG_MINOR '*' 1000 '+' $CLANG_REVISION`
++   AC_MSG_RESULT($CLANG_VERSION)
++   dnl If you find the same issue with versions earlier than 500.2.75,
++   dnl change the constant 500002075 below appropriately.  To get the
++   dnl integer corresponding to a version number, refer to the
++   dnl definition of CLANG_VERSION above.
++   if test "$CLANG_VERSION" -ge 500002075 ; then
++     CFLAGS=`echo "$CFLAGS" | sed -n -e 's/-fno-strength-reduce/ /p'`
++   fi
++ else
++   AC_MSG_RESULT(no)
++ fi
++ 
+  dnl If configure thinks we are cross compiling, there might be something
+  dnl wrong with the CC or CFLAGS settings, give a useful warning message
+  if test "$cross_compiling" = yes; then
+*** ../vim-7.4.047/src/auto/configure	2013-08-04 20:01:06.000000000 +0200
+--- src/auto/configure	2013-10-02 17:56:52.000000000 +0200
+***************
+*** 3989,3994 ****
+--- 3989,4012 ----
+    fi
+  fi
+  
++ { $as_echo "$as_me:${as_lineno-$LINENO}: checking for recent clang version" >&5
++ $as_echo_n "checking for recent clang version... " >&6; }
++ CLANG_VERSION_STRING=`"$CC" --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*$/\1/p'`
++ if test x"$CLANG_VERSION_STRING" != x"" ; then
++   CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*/\1/p'`
++   CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[0-9][0-9]*\.\([0-9][0-9]*\)\.[0-9][0-9]*/\1/p'`
++   CLANG_REVISION=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[0-9][0-9]*\.[0-9][0-9]*\.\([0-9][0-9]*\)/\1/p'`
++   CLANG_VERSION=`expr $CLANG_MAJOR '*' 1000000 '+' $CLANG_MINOR '*' 1000 '+' $CLANG_REVISION`
++   { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CLANG_VERSION" >&5
++ $as_echo "$CLANG_VERSION" >&6; }
++           if test "$CLANG_VERSION" -ge 500002075 ; then
++     CFLAGS=`echo "$CFLAGS" | sed -n -e 's/-fno-strength-reduce/ /p'`
++   fi
++ else
++   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++ $as_echo "no" >&6; }
++ fi
++ 
+  if test "$cross_compiling" = yes; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: cannot compile a simple program; if not cross compiling check CC and CFLAGS" >&5
+  $as_echo "cannot compile a simple program; if not cross compiling check CC and CFLAGS" >&6; }
+*** ../vim-7.4.047/src/version.c	2013-10-02 16:46:23.000000000 +0200
+--- src/version.c	2013-10-02 17:19:31.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     48,
+  /**/
+
+-- 
+I have to exercise early in the morning before my brain
+figures out what I'm doing.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

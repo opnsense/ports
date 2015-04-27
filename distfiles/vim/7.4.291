@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.291
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.291
+Problem:    Compiler warning for int to pointer of different size when DEBUG
+	    is defined.
+Solution:   use smsg() instead of EMSG3().
+Files:	    src/regexp.c
+
+
+*** ../vim-7.4.290/src/regexp.c	2014-04-23 19:06:33.702828771 +0200
+--- src/regexp.c	2014-05-13 16:39:28.833693111 +0200
+***************
+*** 8022,8029 ****
+  	    regexp_engine = expr[4] - '0';
+  	    expr += 5;
+  #ifdef DEBUG
+! 	    EMSG3("New regexp mode selected (%d): %s", regexp_engine,
+! 						    regname[newengine]);
+  #endif
+  	}
+  	else
+--- 8022,8029 ----
+  	    regexp_engine = expr[4] - '0';
+  	    expr += 5;
+  #ifdef DEBUG
+! 	    smsg((char_u *)"New regexp mode selected (%d): %s",
+! 					   regexp_engine, regname[newengine]);
+  #endif
+  	}
+  	else
+*** ../vim-7.4.290/src/version.c	2014-05-13 16:44:25.637695709 +0200
+--- src/version.c	2014-05-13 16:45:34.901696316 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     291,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+153. You find yourself staring at your "inbox" waiting for new e-mail
+     to arrive.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

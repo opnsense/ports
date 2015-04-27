@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.477
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.477
+Problem:    When using ":%diffput" and the other file is empty an extra empty
+	    line remains.
+Solution:   Set the buf_empty flag.
+Files:	    src/diff.c
+
+
+*** ../vim-7.4.476/src/diff.c	2014-05-28 11:35:33.424011248 +0200
+--- src/diff.c	2014-10-15 12:54:45.778015697 +0200
+***************
+*** 2325,2331 ****
+  		    end_skip = 0;
+  	    }
+  
+! 	    buf_empty = FALSE;
+  	    added = 0;
+  	    for (i = 0; i < count; ++i)
+  	    {
+--- 2325,2331 ----
+  		    end_skip = 0;
+  	    }
+  
+! 	    buf_empty = bufempty();
+  	    added = 0;
+  	    for (i = 0; i < count; ++i)
+  	    {
+*** ../vim-7.4.476/src/version.c	2014-10-15 12:07:07.610009454 +0200
+--- src/version.c	2014-10-15 12:37:54.338013488 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     477,
+  /**/
+
+-- 
+       We're knights of the round table
+       We dance whene'er we're able
+       We do routines and chorus scenes
+       With footwork impeccable.
+       We dine well here in Camelot
+       We eat ham and jam and spam a lot.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

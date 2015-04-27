@@ -1,0 +1,89 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.495
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.495
+Problem:    XPM isn't used correctly in the Cygwin Makefile.
+Solution:   Include the rules like in Make_ming.mak. (Ken Takata)
+Files:	    src/Make_cyg.mak
+
+
+*** ../vim-7.4.494/src/Make_cyg.mak	2014-10-15 12:07:07.610009454 +0200
+--- src/Make_cyg.mak	2014-11-05 13:38:03.688828413 +0100
+***************
+*** 485,497 ****
+  endif
+  
+  ##############################
+  ifneq ($(XPM),no)
+  # Only allow XPM for a GUI build.
+  DEFINES += -DFEAT_XPM_W32
+! INCLUDES += -I$(XPM)/include
+  EXTRA_OBJS += $(OUTDIR)/xpm_w32.o
+  EXTRA_LIBS += -L$(XPM)/lib -lXpm
+  endif
+  
+  ##############################
+  EXE = gvim$(DEBUG_SUFFIX).exe
+--- 485,516 ----
+  endif
+  
+  ##############################
++ ifndef XPM
++ ifeq ($(ARCH),i386)
++ XPM = xpm/x86
++ endif
++ ifeq ($(ARCH),i486)
++ XPM = xpm/x86
++ endif
++ ifeq ($(ARCH),i586)
++ XPM = xpm/x86
++ endif
++ ifeq ($(ARCH),i686)
++ XPM = xpm/x86
++ endif
++ ifeq ($(ARCH),x86-64)
++ XPM = xpm/x64
++ endif
++ endif
++ ifdef XPM
+  ifneq ($(XPM),no)
+  # Only allow XPM for a GUI build.
+  DEFINES += -DFEAT_XPM_W32
+! INCLUDES += -I$(XPM)/include -I$(XPM)/../include
+  EXTRA_OBJS += $(OUTDIR)/xpm_w32.o
+  EXTRA_LIBS += -L$(XPM)/lib -lXpm
+  endif
++ endif
+  
+  ##############################
+  EXE = gvim$(DEBUG_SUFFIX).exe
+*** ../vim-7.4.494/src/version.c	2014-11-05 09:53:19.989153321 +0100
+--- src/version.c	2014-11-05 13:39:27.516826393 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     495,
+  /**/
+
+-- 
+ARTHUR:  You fight with the strength of many men, Sir knight.
+         I am Arthur, King of the Britons.  [pause]
+         I seek the finest and the bravest knights in the land to join me
+         in my Court of Camelot.  [pause]
+         You have proved yourself worthy; will you join me?  [pause]
+         You make me sad.  So be it.  Come, Patsy.
+BLACK KNIGHT:  None shall pass.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,95 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.234
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.234
+Problem:    Can't get the command that was used to start Vim.
+Solution:   Add v:progpath. (Viktor Kojouharov)
+Files:	    runtime/doc/eval.txt, src/eval.c, src/main.c, src/vim.h
+
+
+*** ../vim-7.4.233/runtime/doc/eval.txt	2014-03-25 18:23:27.054087691 +0100
+--- runtime/doc/eval.txt	2014-04-01 19:33:25.516805743 +0200
+***************
+*** 1557,1562 ****
+--- 1558,1569 ----
+  		|evim| etc., or any other name you might symlink to Vim.
+  		Read-only.
+  
++ 					*v:progpath* *progpath-variable*
++ v:progpath	Contains the command with which Vim was invoked, including the
++ 		path.  Useful if you want to message a Vim server using a
++ 		|--remote-expr|.
++ 		Read-only.
++ 
+  					*v:register* *register-variable*
+  v:register	The name of the register in effect for the current normal mode
+  		command (regardless of whether that command actually used a
+*** ../vim-7.4.233/src/eval.c	2014-03-30 16:49:06.412565288 +0200
+--- src/eval.c	2014-04-01 19:34:13.164805087 +0200
+***************
+*** 361,366 ****
+--- 361,367 ----
+      {VV_NAME("hlsearch",	 VAR_NUMBER), 0},
+      {VV_NAME("oldfiles",	 VAR_LIST), 0},
+      {VV_NAME("windowid",	 VAR_NUMBER), VV_RO},
++     {VV_NAME("progpath",	 VAR_STRING), VV_RO},
+  };
+  
+  /* shorthand */
+*** ../vim-7.4.233/src/main.c	2014-03-23 15:12:29.923264336 +0100
+--- src/main.c	2014-04-01 19:34:13.164805087 +0200
+***************
+*** 1602,1607 ****
+--- 1602,1608 ----
+  
+  #ifdef FEAT_EVAL
+      set_vim_var_string(VV_PROGNAME, initstr, -1);
++     set_vim_var_string(VV_PROGPATH, (char_u *)parmp->argv[0], -1);
+  #endif
+  
+      if (TOLOWER_ASC(initstr[0]) == 'r')
+*** ../vim-7.4.233/src/vim.h	2014-03-24 19:43:56.600837795 +0100
+--- src/vim.h	2014-04-01 19:34:13.164805087 +0200
+***************
+*** 1880,1886 ****
+  #define VV_HLSEARCH	54
+  #define VV_OLDFILES	55
+  #define VV_WINDOWID	56
+! #define VV_LEN		57	/* number of v: vars */
+  
+  #ifdef FEAT_CLIPBOARD
+  
+--- 1880,1887 ----
+  #define VV_HLSEARCH	54
+  #define VV_OLDFILES	55
+  #define VV_WINDOWID	56
+! #define VV_PROGPATH	57
+! #define VV_LEN		58	/* number of v: vars */
+  
+  #ifdef FEAT_CLIPBOARD
+  
+*** ../vim-7.4.233/src/version.c	2014-04-01 18:54:44.316837673 +0200
+--- src/version.c	2014-04-01 19:28:05.092810150 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     234,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+18. Your wife drapes a blond wig over your monitor to remind you of what she
+    looks like.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

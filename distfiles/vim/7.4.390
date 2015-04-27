@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.390
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.390
+Problem:    Advancing pointer over end of a string.
+Solution:   Init quote character to -1 instead of zero. (Dominique Pelle)
+Files:	    src/misc1.c
+
+
+*** ../vim-7.4.389/src/misc1.c	2014-07-03 22:57:51.299862927 +0200
+--- src/misc1.c	2014-08-06 12:43:33.191291602 +0200
+***************
+*** 5503,5509 ****
+      char_u *text;
+  {
+      char_u *s = skipwhite(text);
+!     int	    quote = 0;
+  
+      if (*s == '\'' || *s == '"')
+      {
+--- 5503,5509 ----
+      char_u *text;
+  {
+      char_u *s = skipwhite(text);
+!     int	    quote = -1;
+  
+      if (*s == '\'' || *s == '"')
+      {
+*** ../vim-7.4.389/src/version.c	2014-07-30 17:21:53.819518506 +0200
+--- src/version.c	2014-08-06 12:44:31.643291182 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     390,
+  /**/
+
+-- 
+A radioactive cat has eighteen half-lives.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

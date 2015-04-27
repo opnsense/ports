@@ -1,0 +1,215 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.122
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.122
+Problem:    Win32: When 'encoding' is set to "utf-8" and the active codepage
+	    is cp932 then ":grep" and other commands don't work for multi-byte
+	    characters.
+Solution:   (Yasuhiro Matsumoto)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.121/src/os_win32.c	2013-12-07 14:48:06.000000000 +0100
+--- src/os_win32.c	2013-12-11 17:57:48.000000000 +0100
+***************
+*** 3788,3793 ****
+--- 3788,3837 ----
+  }
+  #endif /* FEAT_GUI_W32 */
+  
++     static BOOL
++ vim_create_process(
++     const char		*cmd,
++     DWORD		flags,
++     BOOL		inherit_handles,
++     STARTUPINFO		*si,
++     PROCESS_INFORMATION *pi)
++ {
++ #  ifdef FEAT_MBYTE
++     if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
++     {
++ 	WCHAR	*wcmd = enc_to_utf16(cmd, NULL);
++ 
++ 	if (wcmd != NULL)
++ 	{
++ 	    BOOL ret;
++ 	    ret = CreateProcessW(
++ 		NULL,			/* Executable name */
++ 		wcmd,			/* Command to execute */
++ 		NULL,			/* Process security attributes */
++ 		NULL,			/* Thread security attributes */
++ 		inherit_handles,	/* Inherit handles */
++ 		flags,			/* Creation flags */
++ 		NULL,			/* Environment */
++ 		NULL,			/* Current directory */
++ 		si,			/* Startup information */
++ 		pi);			/* Process information */
++ 	    vim_free(wcmd);
++ 	    return ret;
++ 	}
++     }
++ #endif
++     return CreateProcess(
++ 	NULL,			/* Executable name */
++ 	cmd,			/* Command to execute */
++ 	NULL,			/* Process security attributes */
++ 	NULL,			/* Thread security attributes */
++ 	inherit_handles,	/* Inherit handles */
++ 	flags,			/* Creation flags */
++ 	NULL,			/* Environment */
++ 	NULL,			/* Current directory */
++ 	si,			/* Startup information */
++ 	pi);			/* Process information */
++ }
+  
+  
+  #if defined(FEAT_GUI_W32) || defined(PROTO)
+***************
+*** 3834,3851 ****
+  	cmd += 3;
+  
+      /* Now, run the command */
+!     CreateProcess(NULL,			/* Executable name */
+! 		  cmd,			/* Command to execute */
+! 		  NULL,			/* Process security attributes */
+! 		  NULL,			/* Thread security attributes */
+! 		  FALSE,		/* Inherit handles */
+! 		  CREATE_DEFAULT_ERROR_MODE |	/* Creation flags */
+! 			CREATE_NEW_CONSOLE,
+! 		  NULL,			/* Environment */
+! 		  NULL,			/* Current directory */
+! 		  &si,			/* Startup information */
+! 		  &pi);			/* Process information */
+! 
+  
+      /* Wait for the command to terminate before continuing */
+      if (g_PlatformId != VER_PLATFORM_WIN32s)
+--- 3878,3885 ----
+  	cmd += 3;
+  
+      /* Now, run the command */
+!     vim_create_process(cmd, FALSE,
+! 	    CREATE_DEFAULT_ERROR_MODE |	CREATE_NEW_CONSOLE, &si, &pi);
+  
+      /* Wait for the command to terminate before continuing */
+      if (g_PlatformId != VER_PLATFORM_WIN32s)
+***************
+*** 4177,4198 ****
+  	    p = cmd;
+      }
+  
+!     /* Now, run the command */
+!     CreateProcess(NULL,			/* Executable name */
+! 		  p,			/* Command to execute */
+! 		  NULL,			/* Process security attributes */
+! 		  NULL,			/* Thread security attributes */
+! 
+! 		  // this command can be litigious, handle inheritance was
+! 		  // deactivated for pending temp file, but, if we deactivate
+! 		  // it, the pipes don't work for some reason.
+! 		  TRUE,			/* Inherit handles, first deactivated,
+! 					 * but needed */
+! 		  CREATE_DEFAULT_ERROR_MODE, /* Creation flags */
+! 		  NULL,			/* Environment */
+! 		  NULL,			/* Current directory */
+! 		  &si,			/* Startup information */
+! 		  &pi);			/* Process information */
+  
+      if (p != cmd)
+  	vim_free(p);
+--- 4211,4221 ----
+  	    p = cmd;
+      }
+  
+!     /* Now, run the command.
+!      * About "Inherit handles" being TRUE: this command can be litigious,
+!      * handle inheritance was deactivated for pending temp file, but, if we
+!      * deactivate it, the pipes don't work for some reason. */
+!      vim_create_process(p, TRUE, CREATE_DEFAULT_ERROR_MODE, &si, &pi);
+  
+      if (p != cmd)
+  	vim_free(p);
+***************
+*** 4410,4416 ****
+  }
+  #else
+  
+! # define mch_system(c, o) system(c)
+  
+  #endif
+  
+--- 4433,4457 ----
+  }
+  #else
+  
+! # ifdef FEAT_MBYTE
+!     static int
+! mch_system(char *cmd, int options)
+! {
+!     if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+!     {
+! 	WCHAR	*wcmd = enc_to_utf16(cmd, NULL);
+! 	if (wcmd != NULL)
+! 	{
+! 	    int ret = _wsystem(wcmd);
+! 	    vim_free(wcmd);
+! 	    return ret;
+! 	}
+!     }
+!     return system(cmd);
+! }
+! # else
+! #  define mch_system(c, o) system(c)
+! # endif
+  
+  #endif
+  
+***************
+*** 4578,4593 ****
+  	     * inherit our handles which causes unpleasant dangling swap
+  	     * files if we exit before the spawned process
+  	     */
+! 	    if (CreateProcess(NULL,		// Executable name
+! 		    newcmd,			// Command to execute
+! 		    NULL,			// Process security attributes
+! 		    NULL,			// Thread security attributes
+! 		    FALSE,			// Inherit handles
+! 		    flags,			// Creation flags
+! 		    NULL,			// Environment
+! 		    NULL,			// Current directory
+! 		    &si,			// Startup information
+! 		    &pi))			// Process information
+  		x = 0;
+  	    else
+  	    {
+--- 4619,4625 ----
+  	     * inherit our handles which causes unpleasant dangling swap
+  	     * files if we exit before the spawned process
+  	     */
+! 	    if (vim_create_process(newcmd, FALSE, flags, &si, &pi))
+  		x = 0;
+  	    else
+  	    {
+*** ../vim-7.4.121/src/version.c	2013-12-11 17:44:33.000000000 +0100
+--- src/version.c	2013-12-11 17:48:09.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     122,
+  /**/
+
+-- 
+Never overestimate a man's ability to underestimate a woman.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.628
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.628
+Problem:    Compiler warning for variable might be clobbered by longjmp.
+Solution:   Add volatile. (Michael Jarvis)
+Files:	    src/main.c
+
+
+*** ../vim-7.4.627/src/main.c	2015-01-27 14:09:29.621898236 +0100
+--- src/main.c	2015-02-10 19:24:34.032644963 +0100
+***************
+*** 1051,1057 ****
+      int		noexmode;   /* TRUE when return on entering Ex mode */
+  {
+      oparg_T	oa;				/* operator arguments */
+!     int		previous_got_int = FALSE;	/* "got_int" was TRUE */
+  #ifdef FEAT_CONCEAL
+      linenr_T	conceal_old_cursor_line = 0;
+      linenr_T	conceal_new_cursor_line = 0;
+--- 1051,1057 ----
+      int		noexmode;   /* TRUE when return on entering Ex mode */
+  {
+      oparg_T	oa;				/* operator arguments */
+!     volatile int previous_got_int = FALSE;	/* "got_int" was TRUE */
+  #ifdef FEAT_CONCEAL
+      linenr_T	conceal_old_cursor_line = 0;
+      linenr_T	conceal_new_cursor_line = 0;
+*** ../vim-7.4.627/src/version.c	2015-02-10 19:20:33.739791972 +0100
+--- src/version.c	2015-02-10 19:26:06.067440234 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     628,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+215. Your mouse-clicking forearm rivals Popeye's.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

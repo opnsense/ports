@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.354
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.354
+Problem:    Compiler warning.
+Solution:   Change NUL to NULL. (Ken Takata)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.353/src/screen.c	2014-07-02 19:59:35.454375136 +0200
+--- src/screen.c	2014-07-03 14:08:03.579375847 +0200
+***************
+*** 3704,3710 ****
+  		    if (diff_hlf != (hlf_T)0)
+  			char_attr = hl_attr(diff_hlf);
+  #endif
+! 		    p_extra = NUL;
+  		    c_extra = ' ';
+  		    n_extra = get_breakindent_win(wp,
+  				       ml_get_buf(wp->w_buffer, lnum, FALSE));
+--- 3704,3710 ----
+  		    if (diff_hlf != (hlf_T)0)
+  			char_attr = hl_attr(diff_hlf);
+  #endif
+! 		    p_extra = NULL;
+  		    c_extra = ' ';
+  		    n_extra = get_breakindent_win(wp,
+  				       ml_get_buf(wp->w_buffer, lnum, FALSE));
+*** ../vim-7.4.353/src/version.c	2014-07-02 19:59:35.454375136 +0200
+--- src/version.c	2014-07-03 14:08:38.875376388 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     354,
+  /**/
+
+-- 
+   [SIR LAUNCELOT runs back up the stairs, grabs a rope
+   of the wall and swings out over the heads of the CROWD in a
+   swashbuckling manner towards a large window.  He stops just short
+   of the window and is left swing pathetically back and forth.]
+LAUNCELOT: Excuse me ... could somebody give me a push ...
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

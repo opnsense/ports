@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.426
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.426
+Problem:    README File missing from list of files.
+Solution:   Update the list of files.
+Files:	    Filelist
+
+
+*** ../vim-7.4.425/Filelist	2014-08-10 13:46:30.424780490 +0200
+--- Filelist	2014-08-29 15:08:47.914447267 +0200
+***************
+*** 82,87 ****
+--- 82,88 ----
+  		src/xxd/xxd.c \
+  		src/main.aap \
+  		src/testdir/main.aap \
++ 		src/testdir/README.txt \
+  		src/testdir/*.in \
+  		src/testdir/sautest/autoload/*.vim \
+  		src/testdir/test[0-9]*.ok \
+*** ../vim-7.4.425/src/version.c	2014-08-29 14:20:47.418440975 +0200
+--- src/version.c	2014-08-29 15:09:33.234447366 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     426,
+  /**/
+
+-- 
+From "know your smileys":
+ :-O>-o   Smiley American tourist (note big mouth and camera)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

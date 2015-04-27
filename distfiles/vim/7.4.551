@@ -1,0 +1,205 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.551
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.551
+Problem:    "ygn" may yank too much. (Fritzophrenic)  Issue 295.
+Solution:   Check the width of the next match. (Christian Brabandt)
+Files:      src/search.c, src/testdir/test53.in, src/testdir/test53.ok
+
+
+*** ../vim-7.4.550/src/search.c	2014-12-13 20:11:29.582422289 +0100
+--- src/search.c	2014-12-13 21:55:26.608363239 +0100
+***************
+*** 4441,4452 ****
+  
+  #endif /* FEAT_TEXTOBJ */
+  
+! static int is_one_char __ARGS((char_u *pattern));
+  
+  /*
+   * Find next search match under cursor, cursor at end.
+   * Used while an operator is pending, and in Visual mode.
+-  * TODO: redo only works when used in operator pending mode
+   */
+      int
+  current_search(count, forward)
+--- 4441,4451 ----
+  
+  #endif /* FEAT_TEXTOBJ */
+  
+! static int is_one_char __ARGS((char_u *pattern, int move));
+  
+  /*
+   * Find next search match under cursor, cursor at end.
+   * Used while an operator is pending, and in Visual mode.
+   */
+      int
+  current_search(count, forward)
+***************
+*** 4491,4497 ****
+  	orig_pos = pos = start_pos = curwin->w_cursor;
+  
+      /* Is the pattern is zero-width? */
+!     one_char = is_one_char(spats[last_idx].pat);
+      if (one_char == -1)
+      {
+  	p_ws = old_p_ws;
+--- 4490,4496 ----
+  	orig_pos = pos = start_pos = curwin->w_cursor;
+  
+      /* Is the pattern is zero-width? */
+!     one_char = is_one_char(spats[last_idx].pat, TRUE);
+      if (one_char == -1)
+      {
+  	p_ws = old_p_ws;
+***************
+*** 4550,4555 ****
+--- 4549,4558 ----
+      start_pos = pos;
+      flags = forward ? SEARCH_END : 0;
+  
++     /* Check again from the current cursor position,
++      * since the next match might actually by only one char wide */
++     one_char = is_one_char(spats[last_idx].pat, FALSE);
++ 
+      /* move to match, except for zero-width matches, in which case, we are
+       * already on the next match */
+      if (!one_char)
+***************
+*** 4599,4624 ****
+  
+  /*
+   * Check if the pattern is one character or zero-width.
+   * Returns TRUE, FALSE or -1 for failure.
+   */
+      static int
+! is_one_char(pattern)
+      char_u	*pattern;
+  {
+      regmmatch_T	regmatch;
+      int		nmatched = 0;
+      int		result = -1;
+      pos_T	pos;
+      int		save_called_emsg = called_emsg;
+  
+      if (search_regcomp(pattern, RE_SEARCH, RE_SEARCH,
+  					      SEARCH_KEEP, &regmatch) == FAIL)
+  	return -1;
+  
+      /* move to match */
+!     clearpos(&pos);
+      if (searchit(curwin, curbuf, &pos, FORWARD, spats[last_idx].pat, 1,
+! 				     SEARCH_KEEP, RE_SEARCH, 0, NULL) != FAIL)
+      {
+  	/* Zero-width pattern should match somewhere, then we can check if
+  	 * start and end are in the same position. */
+--- 4602,4639 ----
+  
+  /*
+   * Check if the pattern is one character or zero-width.
++  * If move is TRUE, check from the beginning of the buffer, else from the
++  * current cursor position.
+   * Returns TRUE, FALSE or -1 for failure.
+   */
+      static int
+! is_one_char(pattern, move)
+      char_u	*pattern;
++     int		move;
+  {
+      regmmatch_T	regmatch;
+      int		nmatched = 0;
+      int		result = -1;
+      pos_T	pos;
+      int		save_called_emsg = called_emsg;
++     int		flag = 0;
+  
+      if (search_regcomp(pattern, RE_SEARCH, RE_SEARCH,
+  					      SEARCH_KEEP, &regmatch) == FAIL)
+  	return -1;
+  
+      /* move to match */
+!     if (move)
+! 	clearpos(&pos)
+!     else
+!     {
+! 	pos = curwin->w_cursor;
+! 	/* accept a match at the cursor position */
+! 	flag = SEARCH_START;
+!     }
+! 
+      if (searchit(curwin, curbuf, &pos, FORWARD, spats[last_idx].pat, 1,
+! 			      SEARCH_KEEP + flag, RE_SEARCH, 0, NULL) != FAIL)
+      {
+  	/* Zero-width pattern should match somewhere, then we can check if
+  	 * start and end are in the same position. */
+*** ../vim-7.4.550/src/testdir/test53.in	2014-02-22 22:18:39.536905522 +0100
+--- src/testdir/test53.in	2014-12-13 21:52:43.314091440 +0100
+***************
+*** 79,84 ****
+--- 79,86 ----
+  :" test repeating gUgn
+  /^Depp
+  gggUgn.
++ gg/a:0\@!\zs\d\+
++ nygnop
+  :/^start:/,/^end:/wq! test.out
+  ENDTEST
+  
+***************
+*** 108,113 ****
+--- 110,120 ----
+  uniquepattern uniquepattern
+  my very excellent mother just served us nachos
+  for (i=0; i<=10; i++)
++ a:10
++ 
++ a:1
++ 
++ a:20
+  Y
+  text
+  Y
+*** ../vim-7.4.550/src/testdir/test53.ok	2014-02-22 22:18:39.536905522 +0100
+--- src/testdir/test53.ok	2014-12-13 21:52:43.314091440 +0100
+***************
+*** 49,54 ****
+--- 49,60 ----
+   uniquepattern
+  my very excellent mongoose just served us nachos
+  for (j=0; i<=10; i++)
++ a:10
++ 
++ a:1
++ 1
++ 
++ a:20
+  
+  text
+  Y
+*** ../vim-7.4.550/src/version.c	2014-12-13 21:09:53.721226911 +0100
+--- src/version.c	2014-12-13 21:52:20.346334198 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     551,
+  /**/
+
+-- 
+While it's true that many normal people whould prefer not to _date_ an
+engineer, most normal people harbor an intense desire to _mate_ with them,
+thus producing engineerlike children who will have high-paying jobs long
+before losing their virginity.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

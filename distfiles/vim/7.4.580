@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.580
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.580
+Problem:    ":52wincmd v" still gives an invalid range error. (Charles
+	    Campbell)
+Solution:   Skip over white space.
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.579/src/ex_docmd.c	2015-01-14 15:47:33.076036876 +0100
+--- src/ex_docmd.c	2015-01-14 21:17:20.831813232 +0100
+***************
+*** 2140,2147 ****
+  
+  #ifdef FEAT_WINDOWS
+  	/* :wincmd range depends on the argument. */
+! 	if (ea.cmdidx == CMD_wincmd)
+! 	    get_wincmd_addr_type(p, &ea);
+  #endif
+      }
+  
+--- 2140,2147 ----
+  
+  #ifdef FEAT_WINDOWS
+  	/* :wincmd range depends on the argument. */
+! 	if (ea.cmdidx == CMD_wincmd && p != NULL)
+! 	    get_wincmd_addr_type(skipwhite(p), &ea);
+  #endif
+      }
+  
+*** ../vim-7.4.579/src/version.c	2015-01-14 19:35:10.967756099 +0100
+--- src/version.c	2015-01-14 21:19:22.418461266 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     580,
+  /**/
+
+-- 
+How many light bulbs does it take to change a person?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

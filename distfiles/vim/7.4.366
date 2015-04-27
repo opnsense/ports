@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.366
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.366
+Problem:    Can't run the linebreak test on MS-Windows.
+Solution:   Fix the output file name. (Taro Muraoka)
+Files:	    src/testdir/Make_dos.mak
+
+
+*** ../vim-7.4.365/src/testdir/Make_dos.mak	2014-07-02 19:59:35.454375136 +0200
+--- src/testdir/Make_dos.mak	2014-07-16 14:19:39.719768093 +0200
+***************
+*** 37,43 ****
+  		test105.out test106.out  test107.out\
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+! 		test_listlbr \
+  		test_eval.out \
+  		test_options.out
+  
+--- 37,43 ----
+  		test105.out test106.out  test107.out\
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+! 		test_listlbr.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.365/src/version.c	2014-07-16 14:16:41.519771715 +0200
+--- src/version.c	2014-07-16 14:18:43.307769239 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     366,
+  /**/
+
+-- 
+<Beeth> Girls are like internet domain names,
+        the ones I like are already taken.
+<honx>  Well, you can stil get one from a strange country :-P
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

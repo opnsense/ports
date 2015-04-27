@@ -1,0 +1,186 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.386
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.386
+Problem:    When splitting a window the changelist position is wrong.
+Solution:   Copy the changelist position. (Jacob Niehus)
+Files:	    src/window.c, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test_changelist.in,
+	    src/testdir/test_changelist.ok
+
+
+*** ../vim-7.4.385/src/window.c	2014-07-23 15:21:16.247917462 +0200
+--- src/window.c	2014-07-30 13:55:49.275607374 +0200
+***************
+*** 1178,1183 ****
+--- 1178,1188 ----
+  	    p_wh = size;
+      }
+  
++ #ifdef FEAT_JUMPLIST
++     /* Keep same changelist position in new window. */
++     wp->w_changelistidx = oldwin->w_changelistidx;
++ #endif
++ 
+      /*
+       * make the new window the current window
+       */
+*** ../vim-7.4.385/src/testdir/Make_amiga.mak	2014-07-23 15:54:43.443903036 +0200
+--- src/testdir/Make_amiga.mak	2014-07-30 13:54:06.871608110 +0200
+***************
+*** 41,46 ****
+--- 41,47 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_qf_title.out \
++ 		test_changelist.out \
+  		test_eval.out \
+  		test_options.out
+  
+***************
+*** 171,175 ****
+--- 172,177 ----
+  test_listlbr.out: test_listlbr.in
+  test_listlbr_utf8.out: test_listlbr_utf8.in
+  test_qf_title.out: test_qf_title.in
++ test_changelist.out: test_changelist.in
+  test_eval.out: test_eval.in
+  test_options.out: test_options.in
+*** ../vim-7.4.385/src/testdir/Make_dos.mak	2014-07-23 15:54:43.443903036 +0200
+--- src/testdir/Make_dos.mak	2014-07-30 13:54:16.091608044 +0200
+***************
+*** 40,45 ****
+--- 40,46 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_qf_title.out \
++ 		test_changelist.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.385/src/testdir/Make_ming.mak	2014-07-23 15:54:43.443903036 +0200
+--- src/testdir/Make_ming.mak	2014-07-30 13:54:19.775608018 +0200
+***************
+*** 60,65 ****
+--- 60,66 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_qf_title.out \
++ 		test_changelist.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.385/src/testdir/Make_os2.mak	2014-07-23 15:54:43.443903036 +0200
+--- src/testdir/Make_os2.mak	2014-07-30 13:54:24.207607986 +0200
+***************
+*** 38,43 ****
+--- 38,44 ----
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
++ 		test_changelist.out \
+  		test_eval.out \
+  		test_breakindent.out \
+  		test_listlbr.out \
+*** ../vim-7.4.385/src/testdir/Make_vms.mms	2014-07-23 15:54:43.443903036 +0200
+--- src/testdir/Make_vms.mms	2014-07-30 13:54:31.151607936 +0200
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Jul 23
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Jul 30
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 101,106 ****
+--- 101,107 ----
+  	 test_listlbr.out \
+  	 test_listlbr_utf8.out \
+  	 test_qf_title.out \
++ 	 test_changelist.out \
+  	 test_eval.out \
+  	 test_options.out
+  
+*** ../vim-7.4.385/src/testdir/Makefile	2014-07-23 15:54:43.443903036 +0200
+--- src/testdir/Makefile	2014-07-30 13:54:45.291607834 +0200
+***************
+*** 38,43 ****
+--- 38,44 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_qf_title.out \
++ 		test_changelist.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.385/src/testdir/test_changelist.in	2014-07-30 14:04:27.507603650 +0200
+--- src/testdir/test_changelist.in	2014-07-30 13:52:21.363608869 +0200
+***************
+*** 0 ****
+--- 1,22 ----
++ Test changelist position after splitting window
++ Set 'undolevels' to make changelist for sourced file
++ 
++ STARTTEST
++ :so small.vim
++ Gkylp:set ul=100
++ Gylp:set ul=100
++ gg
++ :vsplit
++ :try
++ :  normal g;
++ :  normal ggVGcpass
++ :catch
++ :  normal ggVGcfail
++ :finally
++ :  %w! test.out
++ :endtry
++ :qa!
++ ENDTEST
++ 
++ 1
++ 2
+*** ../vim-7.4.385/src/testdir/test_changelist.ok	2014-07-30 14:04:27.515603650 +0200
+--- src/testdir/test_changelist.ok	2014-07-30 13:53:41.991608289 +0200
+***************
+*** 0 ****
+--- 1 ----
++ pass
+*** ../vim-7.4.385/src/version.c	2014-07-30 13:22:48.271621613 +0200
+--- src/version.c	2014-07-30 13:56:49.951606938 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     386,
+  /**/
+
+-- 
+Our job was to build a computer information system for the branch banks.  We
+were the perfect people for the job: Dean had seen a computer once, and I had
+heard Dean talk about it.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

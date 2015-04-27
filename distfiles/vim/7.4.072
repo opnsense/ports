@@ -1,0 +1,61 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.072
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.072
+Problem:    Crash when using Insert mode completion.
+Solution:   Avoid going past the end of pum_array. (idea by Fransisco Lopes)
+Files:      src/popupmnu.c
+
+
+*** ../vim-7.4.071/src/popupmnu.c	2011-08-17 18:04:28.000000000 +0200
+--- src/popupmnu.c	2013-11-02 04:01:06.000000000 +0100
+***************
+*** 282,287 ****
+--- 282,291 ----
+      int		round;
+      int		n;
+  
++     /* Never display more than we have */
++     if (pum_first > pum_size - pum_height)
++ 	pum_first = pum_size - pum_height;
++ 
+      if (pum_scrollbar)
+      {
+  	thumb_heigth = pum_height * pum_height / pum_size;
+***************
+*** 672,681 ****
+  #endif
+      }
+  
+-     /* Never display more than we have */
+-     if (pum_first > pum_size - pum_height)
+- 	pum_first = pum_size - pum_height;
+- 
+      if (!resized)
+  	pum_redraw();
+  
+--- 676,681 ----
+*** ../vim-7.4.071/src/version.c	2013-11-06 04:01:31.000000000 +0100
+--- src/version.c	2013-11-06 04:03:18.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     72,
+  /**/
+
+-- 
+No children may attend school with their breath smelling of "wild onions."
+		[real standing law in West Virginia, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

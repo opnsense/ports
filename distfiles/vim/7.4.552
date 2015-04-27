@@ -1,0 +1,83 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.552
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.552
+Problem:    Langmap applies to Insert mode expression mappings.
+Solution:   Check for Insert mode. (Daniel Hahler)
+Files:	    src/getchar.c, src/testdir/test_mapping.in,
+	    src/testdir/test_mapping.ok
+
+
+*** ../vim-7.4.551/src/getchar.c	2014-10-21 19:35:28.406284296 +0200
+--- src/getchar.c	2014-12-14 00:35:48.712903309 +0100
+***************
+*** 2145,2151 ****
+  			    nolmaplen = 2;
+  			else
+  			{
+! 			    LANGMAP_ADJUST(c1, TRUE);
+  			    nolmaplen = 0;
+  			}
+  #endif
+--- 2145,2151 ----
+  			    nolmaplen = 2;
+  			else
+  			{
+! 			    LANGMAP_ADJUST(c1, (State & INSERT) == 0);
+  			    nolmaplen = 0;
+  			}
+  #endif
+*** ../vim-7.4.551/src/testdir/test_mapping.in	2014-10-22 22:08:58.386493141 +0200
+--- src/testdir/test_mapping.in	2014-12-14 00:35:12.713288209 +0100
+***************
+*** 8,13 ****
+--- 8,22 ----
+  :inoreab чкпр   vim
+  GAчкпр 
+  
++ 
++ : " langmap should not get remapped in insert mode
++ :inoremap { FAIL_ilangmap
++ :set langmap=+{ langnoremap
++ o+
++ : " expr mapping with langmap
++ :inoremap <expr> { "FAIL_iexplangmap"
++ o+
++ 
+  :/^test/,$w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.551/src/testdir/test_mapping.ok	2014-10-21 16:22:01.407175226 +0200
+--- src/testdir/test_mapping.ok	2014-12-14 00:29:32.216931811 +0100
+***************
+*** 1,2 ****
+--- 1,4 ----
+  test starts here:
+  vim
++ +
++ +
+*** ../vim-7.4.551/src/version.c	2014-12-13 22:00:18.161279370 +0100
+--- src/version.c	2014-12-14 00:27:36.310171797 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     552,
+  /**/
+
+-- 
+Engineers are widely recognized as superior marriage material: intelligent,
+dependable, employed, honest, and handy around the house.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,109 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.423
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.423
+Problem:    expand("$shell") does not work as documented.
+Solution:   Do not escape the $ when expanding environment variables.
+Files:	    src/os_unix.c, src/misc1.c, src/vim.h
+
+
+*** ../vim-7.4.422/src/os_unix.c	2014-07-30 17:21:53.815518506 +0200
+--- src/os_unix.c	2014-08-29 12:47:57.230428808 +0200
+***************
+*** 5939,5948 ****
+  			*p++ = '\\';
+  		    ++j;
+  		}
+! 		else if (!intick && vim_strchr(SHELL_SPECIAL,
+! 							   pat[i][j]) != NULL)
+  		    /* Put a backslash before a special character, but not
+! 		     * when inside ``. */
+  		    *p++ = '\\';
+  
+  		/* Copy one character. */
+--- 5939,5950 ----
+  			*p++ = '\\';
+  		    ++j;
+  		}
+! 		else if (!intick
+! 			 && ((flags & EW_KEEPDOLLAR) == 0 || pat[i][j] != '$')
+! 			      && vim_strchr(SHELL_SPECIAL, pat[i][j]) != NULL)
+  		    /* Put a backslash before a special character, but not
+! 		     * when inside ``. And not for $var when EW_KEEPDOLLAR is
+! 		     * set. */
+  		    *p++ = '\\';
+  
+  		/* Copy one character. */
+*** ../vim-7.4.422/src/misc1.c	2014-08-06 17:44:09.867161966 +0200
+--- src/misc1.c	2014-08-29 12:48:11.390428839 +0200
+***************
+*** 78,84 ****
+  	    if (!list || lcs_tab1)    /* count a tab for what it is worth */
+  		count += ts - (count % ts);
+  	    else
+! 	/* in list mode, when tab is not set, count screen char width for Tab: ^I */
+  		count += ptr2cells(ptr);
+  	}
+  	else if (*ptr == ' ')
+--- 78,85 ----
+  	    if (!list || lcs_tab1)    /* count a tab for what it is worth */
+  		count += ts - (count % ts);
+  	    else
+! 		/* In list mode, when tab is not set, count screen char width
+! 		 * for Tab, displays: ^I */
+  		count += ptr2cells(ptr);
+  	}
+  	else if (*ptr == ' ')
+***************
+*** 10767,10773 ****
+  		    vim_free(p);
+  		    ga_clear_strings(&ga);
+  		    i = mch_expand_wildcards(num_pat, pat, num_file, file,
+! 								       flags);
+  		    recursive = FALSE;
+  		    return i;
+  		}
+--- 10768,10774 ----
+  		    vim_free(p);
+  		    ga_clear_strings(&ga);
+  		    i = mch_expand_wildcards(num_pat, pat, num_file, file,
+! 							 flags|EW_KEEPDOLLAR);
+  		    recursive = FALSE;
+  		    return i;
+  		}
+*** ../vim-7.4.422/src/vim.h	2014-08-23 14:16:11.880625637 +0200
+--- src/vim.h	2014-08-29 12:46:47.370428655 +0200
+***************
+*** 835,840 ****
+--- 835,841 ----
+  #define EW_ICASE	0x100	/* ignore case */
+  #define EW_NOERROR	0x200	/* no error for bad regexp */
+  #define EW_NOTWILD	0x400	/* add match with literal name if exists */
++ #define EW_KEEPDOLLAR	0x800	/* do not escape $, $var is expanded */
+  /* Note: mostly EW_NOTFOUND and EW_SILENT are mutually exclusive: EW_NOTFOUND
+   * is used when executing commands and EW_SILENT for interactive expanding. */
+  
+*** ../vim-7.4.422/src/version.c	2014-08-29 12:08:39.686423658 +0200
+--- src/version.c	2014-08-29 12:48:54.138428932 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     423,
+  /**/
+
+-- 
+From "know your smileys":
+ :~)	A man with a tape recorder up his nose
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

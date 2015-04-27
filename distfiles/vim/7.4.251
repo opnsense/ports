@@ -1,0 +1,164 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.251
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.251
+Problem:    Crash when BufAdd autocommand wipes out the buffer.
+Solution:   Check for buffer to still be valid. Postpone freeing the buffer
+	    structure. (Hirohito Higashi)
+Files:	    src/buffer.c, src/ex_cmds.c, src/fileio.c, src/globals.h
+
+
+*** ../vim-7.4.250/src/buffer.c	2014-03-23 15:12:29.907264336 +0100
+--- src/buffer.c	2014-04-06 19:55:53.563350929 +0200
+***************
+*** 676,683 ****
+  #endif
+  #ifdef FEAT_AUTOCMD
+      aubuflocal_remove(buf);
+  #endif
+!     vim_free(buf);
+  }
+  
+  /*
+--- 676,691 ----
+  #endif
+  #ifdef FEAT_AUTOCMD
+      aubuflocal_remove(buf);
++     if (autocmd_busy)
++     {
++ 	/* Do not free the buffer structure while autocommands are executing,
++ 	 * it's still needed. Free it when autocmd_busy is reset. */
++ 	buf->b_next = au_pending_free_buf;
++ 	au_pending_free_buf = buf;
++     }
++     else
+  #endif
+! 	vim_free(buf);
+  }
+  
+  /*
+***************
+*** 1681,1687 ****
+--- 1689,1699 ----
+  	    buf->b_p_bl = TRUE;
+  #ifdef FEAT_AUTOCMD
+  	    if (!(flags & BLN_DUMMY))
++ 	    {
+  		apply_autocmds(EVENT_BUFADD, NULL, NULL, FALSE, buf);
++ 		if (!buf_valid(buf))
++ 		    return NULL;
++ 	    }
+  #endif
+  	}
+  	return buf;
+***************
+*** 1857,1864 ****
+--- 1869,1882 ----
+      if (!(flags & BLN_DUMMY))
+      {
+  	apply_autocmds(EVENT_BUFNEW, NULL, NULL, FALSE, buf);
++ 	if (!buf_valid(buf))
++ 	    return NULL;
+  	if (flags & BLN_LISTED)
++ 	{
+  	    apply_autocmds(EVENT_BUFADD, NULL, NULL, FALSE, buf);
++ 	    if (!buf_valid(buf))
++ 		return NULL;
++ 	}
+  # ifdef FEAT_EVAL
+  	if (aborting())		/* autocmds may abort script processing */
+  	    return NULL;
+*** ../vim-7.4.250/src/ex_cmds.c	2014-04-04 19:00:46.351940169 +0200
+--- src/ex_cmds.c	2014-04-06 20:41:37.899356924 +0200
+***************
+*** 3343,3348 ****
+--- 3343,3354 ----
+  #endif
+  	    buf = buflist_new(ffname, sfname, 0L,
+  		    BLN_CURBUF | ((flags & ECMD_SET_HELP) ? 0 : BLN_LISTED));
++ #ifdef FEAT_AUTOCMD
++ 	    /* autocommands may change curwin and curbuf */
++ 	    if (oldwin != NULL)
++ 		oldwin = curwin;
++ 	    old_curbuf = curbuf;
++ #endif
+  	}
+  	if (buf == NULL)
+  	    goto theend;
+*** ../vim-7.4.250/src/fileio.c	2014-04-02 14:05:33.999887839 +0200
+--- src/fileio.c	2014-04-06 20:34:24.063355976 +0200
+***************
+*** 9548,9560 ****
+  
+      /*
+       * When stopping to execute autocommands, restore the search patterns and
+!      * the redo buffer.
+       */
+      if (!autocmd_busy)
+      {
+  	restore_search_patterns();
+  	restoreRedobuff();
+  	did_filetype = FALSE;
+      }
+  
+      /*
+--- 9548,9566 ----
+  
+      /*
+       * When stopping to execute autocommands, restore the search patterns and
+!      * the redo buffer.  Free buffers in the au_pending_free_buf list.
+       */
+      if (!autocmd_busy)
+      {
+  	restore_search_patterns();
+  	restoreRedobuff();
+  	did_filetype = FALSE;
++ 	while (au_pending_free_buf != NULL)
++ 	{
++ 	    buf_T *b = au_pending_free_buf->b_next;
++ 	    vim_free(au_pending_free_buf);
++ 	    au_pending_free_buf = b;
++ 	}
+      }
+  
+      /*
+*** ../vim-7.4.250/src/globals.h	2014-03-23 15:12:29.943264337 +0100
+--- src/globals.h	2014-04-06 20:32:58.339355789 +0200
+***************
+*** 386,391 ****
+--- 386,396 ----
+  /* When deleting the current buffer, another one must be loaded.  If we know
+   * which one is preferred, au_new_curbuf is set to it */
+  EXTERN buf_T	*au_new_curbuf INIT(= NULL);
++ 
++ /* When deleting the buffer and autocmd_busy is TRUE, do not free the buffer
++  * but link it in the list starting with au_pending_free_buf, using b_next.
++  * Free the buffer when autocmd_busy is set to FALSE. */
++ EXTERN buf_T	*au_pending_free_buf INIT(= NULL);
+  #endif
+  
+  #ifdef FEAT_MOUSE
+*** ../vim-7.4.250/src/version.c	2014-04-05 21:59:35.939178415 +0200
+--- src/version.c	2014-04-06 19:52:46.887350521 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     251,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+37. You start looking for hot HTML addresses in public restrooms.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

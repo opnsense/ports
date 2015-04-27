@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.035
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.035
+Problem:    MS-Windows: The mouse pointer flickers when going from command
+	    line mode to Normal mode.
+Solution:   Check for WM_NCMOUSEMOVE. (Ken Takata)
+Files:	    src/gui_w48.c
+
+
+*** ../vim-7.4.034/src/gui_w48.c	2013-08-10 13:36:45.000000000 +0200
+--- src/gui_w48.c	2013-09-22 15:41:56.000000000 +0200
+***************
+*** 1008,1014 ****
+      static LPARAM last_lParam = 0L;
+  
+      /* We sometimes get a mousemove when the mouse didn't move... */
+!     if (uMsg == WM_MOUSEMOVE)
+      {
+  	if (lParam == last_lParam)
+  	    return;
+--- 1008,1014 ----
+      static LPARAM last_lParam = 0L;
+  
+      /* We sometimes get a mousemove when the mouse didn't move... */
+!     if (uMsg == WM_MOUSEMOVE || uMsg == WM_NCMOUSEMOVE)
+      {
+  	if (lParam == last_lParam)
+  	    return;
+*** ../vim-7.4.034/src/version.c	2013-09-22 15:23:38.000000000 +0200
+--- src/version.c	2013-09-22 15:41:29.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     35,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+251. You've never seen your closest friends who usually live WAY too far away.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

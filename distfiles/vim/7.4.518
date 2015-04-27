@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.518
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.518
+Problem:    Using status line height in width computations.
+Solution:   Use one instead. (Hirohito Higashi)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.517/src/window.c	2014-10-21 20:57:11.534295006 +0200
+--- src/window.c	2014-11-19 13:36:46.758016634 +0100
+***************
+*** 796,802 ****
+  		if (frp->fr_win != oldwin && frp->fr_win != NULL
+  			&& (frp->fr_win->w_width > new_size
+  			    || frp->fr_win->w_width > oldwin->w_width
+! 						   - new_size - STATUS_HEIGHT))
+  		{
+  		    do_equal = TRUE;
+  		    break;
+--- 796,802 ----
+  		if (frp->fr_win != oldwin && frp->fr_win != NULL
+  			&& (frp->fr_win->w_width > new_size
+  			    || frp->fr_win->w_width > oldwin->w_width
+! 							      - new_size - 1))
+  		{
+  		    do_equal = TRUE;
+  		    break;
+*** ../vim-7.4.517/src/version.c	2014-11-19 13:21:24.984724043 +0100
+--- src/version.c	2014-11-19 13:39:59.875774316 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     518,
+  /**/
+
+-- 
+BRIDGEKEEPER: What is your favorite colour?
+GAWAIN:       Blue ...  No yelloooooww!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

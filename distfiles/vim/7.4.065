@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.065
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.065
+Problem:    When recording, the character typed at the hit-enter prompt is
+            recorded twice. (Urtica Dioica)
+Solution:   Avoid recording the character twice. (Christian Brabandt)
+Files:      src/message.c
+
+
+*** ../vim-7.4.064/src/message.c	2013-08-09 20:30:45.000000000 +0200
+--- src/message.c	2013-11-04 01:56:09.000000000 +0100
+***************
+*** 887,892 ****
+--- 887,894 ----
+      int		oldState;
+      int		tmpState;
+      int		had_got_int;
++     int		save_Recording;
++     FILE	*save_scriptout;
+  
+      if (redraw == TRUE)
+  	must_redraw = CLEAR;
+***************
+*** 957,967 ****
+--- 959,979 ----
+  	     * typeahead buffer. */
+  	    ++no_mapping;
+  	    ++allow_keys;
++ 
++ 	    /* Temporarily disable Recording. If Recording is active, the
++ 	     * character will be recorded later, since it will be added to the
++ 	     * typebuf after the loop */
++ 	    save_Recording = Recording;
++ 	    save_scriptout = scriptout;
++ 	    Recording = FALSE;
++ 	    scriptout = NULL;
+  	    c = safe_vgetc();
+  	    if (had_got_int && !global_busy)
+  		got_int = FALSE;
+  	    --no_mapping;
+  	    --allow_keys;
++ 	    Recording = save_Recording;
++ 	    scriptout = save_scriptout;
+  
+  #ifdef FEAT_CLIPBOARD
+  	    /* Strange way to allow copying (yanking) a modeless selection at
+*** ../vim-7.4.064/src/version.c	2013-11-04 01:41:11.000000000 +0100
+--- src/version.c	2013-11-04 01:53:19.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     65,
+  /**/
+
+-- 
+Zen Microsystems: we're the om in .commmmmmmmm
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

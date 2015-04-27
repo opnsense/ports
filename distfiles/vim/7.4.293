@@ -1,0 +1,301 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.293
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.293
+Problem:    It is not possible to ignore composing characters at a specific
+	    point in a pattern.
+Solution:   Add the %C item.
+Files:	    src/regexp.c, src/regexp_nfa.c, src/testdir/test95.in,
+	    src/testdir/test95.ok, runtime/doc/pattern.txt
+
+
+*** ../vim-7.4.292/src/regexp.c	2014-05-13 18:03:55.729737466 +0200
+--- src/regexp.c	2014-05-13 18:27:08.725749659 +0200
+***************
+*** 244,249 ****
+--- 244,250 ----
+  
+  #define RE_MARK		207	/* mark cmp  Match mark position */
+  #define RE_VISUAL	208	/*	Match Visual area */
++ #define RE_COMPOSING	209	/* any composing characters */
+  
+  /*
+   * Magic characters have a special meaning, they don't match literally.
+***************
+*** 2208,2213 ****
+--- 2209,2218 ----
+  		    ret = regnode(RE_VISUAL);
+  		    break;
+  
++ 		case 'C':
++ 		    ret = regnode(RE_COMPOSING);
++ 		    break;
++ 
+  		/* \%[abc]: Emit as a list of branches, all ending at the last
+  		 * branch which matches nothing. */
+  		case '[':
+***************
+*** 4710,4720 ****
+  			    status = RA_NOMATCH;
+  		    }
+  #ifdef FEAT_MBYTE
+! 		    /* Check for following composing character. */
+  		    if (status != RA_NOMATCH
+  			    && enc_utf8
+  			    && UTF_COMPOSINGLIKE(reginput, reginput + len)
+! 			    && !ireg_icombine)
+  		    {
+  			/* raaron: This code makes a composing character get
+  			 * ignored, which is the correct behavior (sometimes)
+--- 4715,4727 ----
+  			    status = RA_NOMATCH;
+  		    }
+  #ifdef FEAT_MBYTE
+! 		    /* Check for following composing character, unless %C
+! 		     * follows (skips over all composing chars). */
+  		    if (status != RA_NOMATCH
+  			    && enc_utf8
+  			    && UTF_COMPOSINGLIKE(reginput, reginput + len)
+! 			    && !ireg_icombine
+! 			    && OP(next) != RE_COMPOSING)
+  		    {
+  			/* raaron: This code makes a composing character get
+  			 * ignored, which is the correct behavior (sometimes)
+***************
+*** 4791,4796 ****
+--- 4798,4813 ----
+  		status = RA_NOMATCH;
+  	    break;
+  #endif
++ 	  case RE_COMPOSING:
++ #ifdef FEAT_MBYTE
++ 	    if (enc_utf8)
++ 	    {
++ 		/* Skip composing characters. */
++ 		while (utf_iscomposing(utf_ptr2char(reginput)))
++ 		    mb_cptr_adv(reginput);
++ 	    }
++ #endif
++ 	    break;
+  
+  	  case NOTHING:
+  	    break;
+*** ../vim-7.4.292/src/regexp_nfa.c	2014-05-13 16:44:25.633695709 +0200
+--- src/regexp_nfa.c	2014-05-13 19:25:58.285780556 +0200
+***************
+*** 81,86 ****
+--- 81,87 ----
+      NFA_COMPOSING,		    /* Next nodes in NFA are part of the
+  				       composing multibyte char */
+      NFA_END_COMPOSING,		    /* End of a composing char in the NFA */
++     NFA_ANY_COMPOSING,		    /* \%C: Any composing characters. */
+      NFA_OPT_CHARS,		    /* \%[abc] */
+  
+      /* The following are used only in the postfix form, not in the NFA */
+***************
+*** 1418,1423 ****
+--- 1419,1428 ----
+  		    EMIT(NFA_VISUAL);
+  		    break;
+  
++ 		case 'C':
++ 		    EMIT(NFA_ANY_COMPOSING);
++ 		    break;
++ 
+  		case '[':
+  		    {
+  			int	    n;
+***************
+*** 2429,2434 ****
+--- 2434,2440 ----
+  	case NFA_MARK_LT:	STRCPY(code, "NFA_MARK_LT "); break;
+  	case NFA_CURSOR:	STRCPY(code, "NFA_CURSOR "); break;
+  	case NFA_VISUAL:	STRCPY(code, "NFA_VISUAL "); break;
++ 	case NFA_ANY_COMPOSING:	STRCPY(code, "NFA_ANY_COMPOSING "); break;
+  
+  	case NFA_STAR:		STRCPY(code, "NFA_STAR "); break;
+  	case NFA_STAR_NONGREEDY: STRCPY(code, "NFA_STAR_NONGREEDY "); break;
+***************
+*** 2967,2972 ****
+--- 2973,2979 ----
+  	    case NFA_NLOWER_IC:
+  	    case NFA_UPPER_IC:
+  	    case NFA_NUPPER_IC:
++ 	    case NFA_ANY_COMPOSING:
+  		/* possibly non-ascii */
+  #ifdef FEAT_MBYTE
+  		if (has_mbyte)
+***************
+*** 4152,4157 ****
+--- 4159,4165 ----
+  		continue;
+  
+  	    case NFA_ANY:
++ 	    case NFA_ANY_COMPOSING:
+  	    case NFA_IDENT:
+  	    case NFA_SIDENT:
+  	    case NFA_KWORD:
+***************
+*** 4395,4401 ****
+      switch (state->c)
+      {
+  	case NFA_MATCH:
+! 	    nfa_match = TRUE;
+  	    break;
+  
+  	case NFA_SPLIT:
+--- 4403,4409 ----
+      switch (state->c)
+      {
+  	case NFA_MATCH:
+! //	    nfa_match = TRUE;
+  	    break;
+  
+  	case NFA_SPLIT:
+***************
+*** 5151,5156 ****
+--- 5159,5165 ----
+  
+  	case NFA_MATCH:
+  	case NFA_MCLOSE:
++ 	case NFA_ANY_COMPOSING:
+  	    /* empty match works always */
+  	    return 0;
+  
+***************
+*** 5573,5578 ****
+--- 5582,5593 ----
+  	    {
+  	    case NFA_MATCH:
+  	      {
++ #ifdef FEAT_MBYTE
++ 		/* If the match ends before a composing characters and
++ 		 * ireg_icombine is not set, that is not really a match. */
++ 		if (enc_utf8 && !ireg_icombine && utf_iscomposing(curc))
++ 		    break;
++ #endif
+  		nfa_match = TRUE;
+  		copy_sub(&submatch->norm, &t->subs.norm);
+  #ifdef FEAT_SYN_HL
+***************
+*** 6120,6125 ****
+--- 6135,6157 ----
+  		}
+  		break;
+  
++ 	    case NFA_ANY_COMPOSING:
++ 		/* On a composing character skip over it.  Otherwise do
++ 		 * nothing.  Always matches. */
++ #ifdef FEAT_MBYTE
++ 		if (enc_utf8 && utf_iscomposing(curc))
++ 		{
++ 		    add_off = clen;
++ 		}
++ 		else
++ #endif
++ 		{
++ 		    add_here = TRUE;
++ 		    add_off = 0;
++ 		}
++ 		add_state = t->state->out;
++ 		break;
++ 
+  	    /*
+  	     * Character classes like \a for alpha, \d for digit etc.
+  	     */
+***************
+*** 6484,6495 ****
+  		if (!result && ireg_ic)
+  		    result = MB_TOLOWER(c) == MB_TOLOWER(curc);
+  #ifdef FEAT_MBYTE
+! 		/* If there is a composing character which is not being
+! 		 * ignored there can be no match. Match with composing
+! 		 * character uses NFA_COMPOSING above. */
+! 		if (result && enc_utf8 && !ireg_icombine
+! 						&& clen != utf_char2len(curc))
+! 		    result = FALSE;
+  #endif
+  		ADD_STATE_IF_MATCH(t->state);
+  		break;
+--- 6516,6525 ----
+  		if (!result && ireg_ic)
+  		    result = MB_TOLOWER(c) == MB_TOLOWER(curc);
+  #ifdef FEAT_MBYTE
+! 		/* If ireg_icombine is not set only skip over the character
+! 		 * itself.  When it is set skip over composing characters. */
+! 		if (result && enc_utf8 && !ireg_icombine)
+! 		    clen = utf_char2len(curc);
+  #endif
+  		ADD_STATE_IF_MATCH(t->state);
+  		break;
+diff: ../vim-7.4.292/src/testdir/test95.insrc/testdir/test95.ok,: No such file or directory
+diff: src/testdir/test95.insrc/testdir/test95.ok,: No such file or directory
+*** ../vim-7.4.292/runtime/doc/pattern.txt	2013-08-10 13:24:59.000000000 +0200
+--- runtime/doc/pattern.txt	2014-05-13 18:59:57.621766895 +0200
+***************
+*** 545,550 ****
+--- 545,551 ----
+  |/\%u|	\%u	\%u	match specified multibyte character (eg \%u20ac)
+  |/\%U|	\%U	\%U	match specified large multibyte character (eg
+  			\%U12345678)
++ |/\%C|	\%C	\%C	match any composing characters
+  
+  Example			matches ~
+  \<\I\i*		or
+***************
+*** 1207,1218 ****
+  8. Composing characters					*patterns-composing*
+  
+  							*/\Z*
+! When "\Z" appears anywhere in the pattern, composing characters are ignored.
+! Thus only the base characters need to match, the composing characters may be
+! different and the number of composing characters may differ.  Only relevant
+! when 'encoding' is "utf-8".
+  Exception: If the pattern starts with one or more composing characters, these
+  must match.
+  
+  When a composing character appears at the start of the pattern of after an
+  item that doesn't include the composing character, a match is found at any
+--- 1208,1225 ----
+  8. Composing characters					*patterns-composing*
+  
+  							*/\Z*
+! When "\Z" appears anywhere in the pattern, all composing characters are
+! ignored.  Thus only the base characters need to match, the composing
+! characters may be different and the number of composing characters may differ.
+! Only relevant when 'encoding' is "utf-8".
+  Exception: If the pattern starts with one or more composing characters, these
+  must match.
++ 							*/\%C*
++ Use "\%C" to skip any composing characters.  For example, the pattern "a" does
++ not match in "càt" (where the a has the composing character 0x0300), but
++ "a\%C" does.  Note that this does not match "cát" (where the á is character
++ 0xe1, it does not have a compositing character).  It does match "cat" (where
++ the a is just an a).
+  
+  When a composing character appears at the start of the pattern of after an
+  item that doesn't include the composing character, a match is found at any
+*** ../vim-7.4.292/src/version.c	2014-05-13 18:03:55.729737466 +0200
+--- src/version.c	2014-05-13 18:28:45.885750510 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     293,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+155. You forget to eat because you're too busy surfing the net.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

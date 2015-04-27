@@ -1,0 +1,83 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.504
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.504
+Problem:    Restriction of the MS-Windows installer that the path must end in
+	    "Vim" prevents installing more than one version.
+Solution:   Remove the restriction. (Tim Lebedkov)
+Files:	    nsis/gvim.nsi
+
+
+*** ../vim-7.4.503/nsis/gvim.nsi	2013-08-10 13:25:08.000000000 +0200
+--- nsis/gvim.nsi	2014-11-05 18:17:11.096424861 +0100
+***************
+*** 1,6 ****
+  # NSIS file to create a self-installing exe for Vim.
+  # It requires NSIS version 2.0 or later.
+! # Last Change:	2010 Jul 30
+  
+  # WARNING: if you make changes to this script, look out for $0 to be valid,
+  # because uninstall deletes most files in $0.
+--- 1,6 ----
+  # NSIS file to create a self-installing exe for Vim.
+  # It requires NSIS version 2.0 or later.
+! # Last Change:	2014 Nov 5
+  
+  # WARNING: if you make changes to this script, look out for $0 to be valid,
+  # because uninstall deletes most files in $0.
+***************
+*** 38,44 ****
+  RequestExecutionLevel highest
+  
+  ComponentText "This will install Vim ${VER_MAJOR}.${VER_MINOR} on your computer."
+! DirText "Choose a directory to install Vim (must end in 'vim')"
+  Icon icons\vim_16c.ico
+  # NSIS2 uses a different strategy with six different images in a strip...
+  #EnabledBitmap icons\enabled.bmp
+--- 38,44 ----
+  RequestExecutionLevel highest
+  
+  ComponentText "This will install Vim ${VER_MAJOR}.${VER_MINOR} on your computer."
+! DirText "Choose a directory to install Vim (should contain 'vim')"
+  Icon icons\vim_16c.ico
+  # NSIS2 uses a different strategy with six different images in a strip...
+  #EnabledBitmap icons\enabled.bmp
+***************
+*** 135,145 ****
+  # We only accept the directory if it ends in "vim".  Using .onVerifyInstDir has
+  # the disadvantage that the browse dialog is difficult to use.
+  Function CheckInstallDir
+-   StrCpy $0 $INSTDIR 3 -3
+-   StrCmp $0 "vim" PathGood
+-     MessageBox MB_OK "The path must end in 'vim'."
+-     Abort
+-   PathGood:
+  FunctionEnd
+  
+  Function .onInstSuccess
+--- 135,140 ----
+*** ../vim-7.4.503/src/version.c	2014-11-05 18:05:48.660441306 +0100
+--- src/version.c	2014-11-05 18:14:51.076428235 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     504,
+  /**/
+
+-- 
+-rwxr-xr-x  1 root          24 Oct 29  1929 /bin/ed
+-rwxr-xr-t  4 root      131720 Jan  1  1970 /usr/ucb/vi
+-rwxr-xr-x  1 root  5.89824e37 Oct 22  1990 /usr/bin/emacs
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,68 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.507
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.507 (after 7.4.496)
+Problem:    Building with MingW and Perl may fail.
+Solution:   Remove quotes. (Ken Takata)
+Files:	    src/Make_cyg_ming.mak
+
+
+*** ../vim-7.4.506/src/Make_cyg_ming.mak	2014-11-05 13:53:13.188806497 +0100
+--- src/Make_cyg_ming.mak	2014-11-06 09:59:51.523061961 +0100
+***************
+*** 132,138 ****
+  endif
+  XSUBPP_EXISTS=$(shell $(PERLEXE) -e "print 1 unless -e '$(XSUBPPTRY)'")
+  ifeq "$(XSUBPP_EXISTS)" ""
+! XSUBPP=$(PERLEXE) "$(XSUBPPTRY)"
+  else
+  XSUBPP=xsubpp
+  endif
+--- 132,138 ----
+  endif
+  XSUBPP_EXISTS=$(shell $(PERLEXE) -e "print 1 unless -e '$(XSUBPPTRY)'")
+  ifeq "$(XSUBPP_EXISTS)" ""
+! XSUBPP=$(PERLEXE) $(XSUBPPTRY)
+  else
+  XSUBPP=xsubpp
+  endif
+***************
+*** 809,815 ****
+  
+  if_perl.c: if_perl.xs typemap
+  	$(XSUBPP) -prototypes -typemap \
+! 	     "$(PERLTYPEMAP)" if_perl.xs > $@
+  
+  $(OUTDIR)/netbeans.o:	netbeans.c $(INCL) $(NBDEBUG_INCL) $(NBDEBUG_SRC)
+  	$(CC) -c $(CFLAGS) netbeans.c -o $(OUTDIR)/netbeans.o
+--- 809,815 ----
+  
+  if_perl.c: if_perl.xs typemap
+  	$(XSUBPP) -prototypes -typemap \
+! 	     $(PERLTYPEMAP) if_perl.xs > $@
+  
+  $(OUTDIR)/netbeans.o:	netbeans.c $(INCL) $(NBDEBUG_INCL) $(NBDEBUG_SRC)
+  	$(CC) -c $(CFLAGS) netbeans.c -o $(OUTDIR)/netbeans.o
+*** ../vim-7.4.506/src/version.c	2014-11-05 19:33:19.552314778 +0100
+--- src/version.c	2014-11-06 10:02:45.647057766 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     507,
+  /**/
+
+-- 
+Advice to worms:  Sleep late.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

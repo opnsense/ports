@@ -1,0 +1,149 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.546
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.546
+Problem:    Repeated use of vim_snprintf() with a number.
+Solution:   Move these vim_snprintf() calls into a function.
+Files:	    src/window.c
+
+
+*** ../vim-7.4.545/src/window.c	2014-11-27 16:22:42.746412995 +0100
+--- src/window.c	2014-12-13 03:54:57.760646343 +0100
+***************
+*** 11,16 ****
+--- 11,17 ----
+  
+  static int path_is_url __ARGS((char_u *p));
+  #if defined(FEAT_WINDOWS) || defined(PROTO)
++ static void cmd_with_count __ARGS((char *cmd, char_u *bufp, size_t bufsize, long Prenum));
+  static void win_init __ARGS((win_T *newp, win_T *oldp, int flags));
+  static void win_init_some __ARGS((win_T *newp, win_T *oldp));
+  static void frame_comp_pos __ARGS((frame_T *topfrp, int *row, int *col));
+***************
+*** 167,176 ****
+      case '^':
+  		CHECK_CMDWIN
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "split #");
+! 		if (Prenum)
+! 		    vim_snprintf((char *)cbuf + 7, sizeof(cbuf) - 7,
+! 							       "%ld", Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+--- 168,174 ----
+      case '^':
+  		CHECK_CMDWIN
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		cmd_with_count("split #", cbuf, sizeof(cbuf), Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+***************
+*** 199,208 ****
+      case Ctrl_Q:
+      case 'q':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "quit");
+! 		if (Prenum)
+! 		    vim_snprintf((char *)cbuf + 4, sizeof(cbuf) - 5,
+! 							    "%ld", Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+--- 197,203 ----
+      case Ctrl_Q:
+      case 'q':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		cmd_with_count("quit", cbuf, sizeof(cbuf), Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+***************
+*** 210,219 ****
+      case Ctrl_C:
+      case 'c':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "close");
+! 		if (Prenum)
+! 		    vim_snprintf((char *)cbuf + 5, sizeof(cbuf) - 5,
+! 							       "%ld", Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+--- 205,211 ----
+      case Ctrl_C:
+      case 'c':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		cmd_with_count("close", cbuf, sizeof(cbuf), Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+***************
+*** 243,252 ****
+      case 'o':
+  		CHECK_CMDWIN
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "only");
+! 		if (Prenum > 0)
+! 		    vim_snprintf((char *)cbuf + 4, sizeof(cbuf) - 4,
+! 								"%ld", Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+--- 235,241 ----
+      case 'o':
+  		CHECK_CMDWIN
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		cmd_with_count("only", cbuf, sizeof(cbuf), Prenum);
+  		do_cmdline_cmd(cbuf);
+  		break;
+  
+***************
+*** 635,640 ****
+--- 624,643 ----
+      }
+  }
+  
++     static void
++ cmd_with_count(cmd, bufp, bufsize, Prenum)
++     char	*cmd;
++     char_u	*bufp;
++     size_t	bufsize;
++     long	Prenum;
++ {
++     size_t	len = STRLEN(cmd);
++ 
++     STRCPY(bufp, cmd);
++     if (Prenum > 0)
++ 	vim_snprintf((char *)bufp + len, bufsize - len, "%ld", Prenum);
++ }
++ 
+  /*
+   * split the current window, implements CTRL-W s and :split
+   *
+*** ../vim-7.4.545/src/version.c	2014-12-13 03:36:34.992435104 +0100
+--- src/version.c	2014-12-13 03:43:58.447663037 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     546,
+  /**/
+
+-- 
+The only way the average employee can speak to an executive is by taking a
+second job as a golf caddie.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

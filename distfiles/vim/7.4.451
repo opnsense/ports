@@ -1,0 +1,68 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.451
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.451
+Problem:    Calling system() with empty input gives an error for writing the
+	    temp file.
+Solution:   Do not try writing if the string length is zero. (Olaf Dabrunz)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.450/src/eval.c	2014-09-19 14:26:29.654405000 +0200
+--- src/eval.c	2014-09-19 20:23:57.354451850 +0200
+***************
+*** 18638,18650 ****
+  	}
+  	else
+  	{
+  	    p = get_tv_string_buf_chk(&argvars[1], buf);
+  	    if (p == NULL)
+  	    {
+  		fclose(fd);
+  		goto errret;		/* type error; errmsg already given */
+  	    }
+! 	    if (fwrite(p, STRLEN(p), 1, fd) != 1)
+  		err = TRUE;
+  	}
+  	if (fclose(fd) != 0)
+--- 18638,18653 ----
+  	}
+  	else
+  	{
++ 	    size_t len;
++ 
+  	    p = get_tv_string_buf_chk(&argvars[1], buf);
+  	    if (p == NULL)
+  	    {
+  		fclose(fd);
+  		goto errret;		/* type error; errmsg already given */
+  	    }
+! 	    len = STRLEN(p);
+! 	    if (len > 0 && fwrite(p, len, 1, fd) != 1)
+  		err = TRUE;
+  	}
+  	if (fclose(fd) != 0)
+*** ../vim-7.4.450/src/version.c	2014-09-19 20:07:22.550449677 +0200
+--- src/version.c	2014-09-19 20:19:22.390451249 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     451,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+167. You have more than 200 websites bookmarked.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

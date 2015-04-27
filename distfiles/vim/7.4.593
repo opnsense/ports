@@ -1,0 +1,161 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.593
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.593
+Problem:    Crash when searching for "x\{0,90000}". (Dominique Pelle)
+Solution:   Bail out from the NFA engine when the max limit is much higher
+	    than the min limit.
+Files:	    src/regexp_nfa.c, src/regexp.c, src/vim.h
+
+
+*** ../vim-7.4.592/src/regexp_nfa.c	2015-01-18 16:46:28.983828439 +0100
+--- src/regexp_nfa.c	2015-01-27 12:47:42.515592198 +0100
+***************
+*** 244,249 ****
+--- 244,252 ----
+  static char_u e_misplaced[] = N_("E866: (NFA regexp) Misplaced %c");
+  static char_u e_ill_char_class[] = N_("E877: (NFA regexp) Invalid character class: %ld");
+  
++ /* re_flags passed to nfa_regcomp() */
++ static int nfa_re_flags;
++ 
+  /* NFA regexp \ze operator encountered. */
+  static int nfa_has_zend;
+  
+***************
+*** 2011,2020 ****
+  	     *  <atom>*  */
+  	    if (minval == 0 && maxval == MAX_LIMIT)
+  	    {
+! 		if (greedy)
+  		    /* \{}, \{0,} */
+  		    EMIT(NFA_STAR);
+! 		else
+  		    /* \{-}, \{-0,} */
+  		    EMIT(NFA_STAR_NONGREEDY);
+  		break;
+--- 2014,2023 ----
+  	     *  <atom>*  */
+  	    if (minval == 0 && maxval == MAX_LIMIT)
+  	    {
+! 		if (greedy)		/* { { (match the braces) */
+  		    /* \{}, \{0,} */
+  		    EMIT(NFA_STAR);
+! 		else			/* { { (match the braces) */
+  		    /* \{-}, \{-0,} */
+  		    EMIT(NFA_STAR_NONGREEDY);
+  		break;
+***************
+*** 2030,2035 ****
+--- 2033,2044 ----
+  		return OK;
+  	    }
+  
++ 	    /* The engine is very inefficient (uses too many states) when the
++ 	     * maximum is much larger than the minimum.  Bail out if we can
++ 	     * use the other engine. */
++ 	    if ((nfa_re_flags & RE_AUTO) && maxval > minval + 200)
++ 		return FAIL;
++ 
+  	    /* Ignore previous call to nfa_regatom() */
+  	    post_ptr = post_start + my_post_start;
+  	    /* Save parse state after the repeated atom and the \{} */
+***************
+*** 7046,7051 ****
+--- 7055,7061 ----
+  	return NULL;
+  
+      nfa_regengine.expr = expr;
++     nfa_re_flags = re_flags;
+  
+      init_class_tab();
+  
+*** ../vim-7.4.592/src/regexp.c	2014-11-20 23:07:00.515474686 +0100
+--- src/regexp.c	2015-01-27 12:49:02.170719494 +0100
+***************
+*** 8081,8087 ****
+       * First try the NFA engine, unless backtracking was requested.
+       */
+      if (regexp_engine != BACKTRACKING_ENGINE)
+!         prog = nfa_regengine.regcomp(expr, re_flags);
+      else
+  	prog = bt_regengine.regcomp(expr, re_flags);
+  
+--- 8081,8088 ----
+       * First try the NFA engine, unless backtracking was requested.
+       */
+      if (regexp_engine != BACKTRACKING_ENGINE)
+!         prog = nfa_regengine.regcomp(expr,
+! 		re_flags + (regexp_engine == AUTOMATIC_ENGINE ? RE_AUTO : 0));
+      else
+  	prog = bt_regengine.regcomp(expr, re_flags);
+  
+***************
+*** 8105,8120 ****
+  #endif
+  	/*
+  	 * If the NFA engine failed, try the backtracking engine.
+! 	 * Disabled for now, both engines fail on the same patterns.
+! 	 * Re-enable when regcomp() fails when the pattern would work better
+! 	 * with the other engine.
+! 	 *
+  	if (regexp_engine == AUTOMATIC_ENGINE)
+  	{
+  	    prog = bt_regengine.regcomp(expr, re_flags);
+- 	    regexp_engine == BACKTRACKING_ENGINE;
+  	}
+- 	 */
+      }
+  
+      if (prog != NULL)
+--- 8106,8119 ----
+  #endif
+  	/*
+  	 * If the NFA engine failed, try the backtracking engine.
+! 	 * The NFA engine also fails for patterns that it can't handle well
+! 	 * but are still valid patterns, thus a retry should work.
+! 	 */
+  	if (regexp_engine == AUTOMATIC_ENGINE)
+  	{
++ 	    regexp_engine = BACKTRACKING_ENGINE;
+  	    prog = bt_regengine.regcomp(expr, re_flags);
+  	}
+      }
+  
+      if (prog != NULL)
+*** ../vim-7.4.592/src/vim.h	2014-12-08 04:16:26.269702835 +0100
+--- src/vim.h	2015-01-27 12:41:57.483371986 +0100
+***************
+*** 1020,1025 ****
+--- 1020,1026 ----
+  #define RE_MAGIC	1	/* 'magic' option */
+  #define RE_STRING	2	/* match in string instead of buffer text */
+  #define RE_STRICT	4	/* don't allow [abc] without ] */
++ #define RE_AUTO		8	/* automatic engine selection */
+  
+  #ifdef FEAT_SYN_HL
+  /* values for reg_do_extmatch */
+*** ../vim-7.4.592/src/version.c	2015-01-27 11:26:11.041183653 +0100
+--- src/version.c	2015-01-27 12:52:44.720281369 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     593,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+121. You ask for e-mail adresses instead of telephone numbers.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,91 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.168
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.168
+Problem:    Can't compile with Ruby 2.1.0.
+Solution:   Add support for new GC. (Kohei Suzuki)
+Files:	    src/if_ruby.c
+
+
+*** ../vim-7.4.167/src/if_ruby.c	2013-05-20 12:47:48.000000000 +0200
+--- src/if_ruby.c	2014-02-05 22:35:17.378577243 +0100
+***************
+*** 96,101 ****
+--- 96,107 ----
+  # define rb_num2int rb_num2int_stub
+  #endif
+  
++ # if defined(DYNAMIC_RUBY_VER) && DYNAMIC_RUBY_VER >= 21
++ /* Ruby 2.1 adds new GC called RGenGC and RARRAY_PTR uses
++  * rb_gc_writebarrier_unprotect_promoted if USE_RGENGC  */
++ #  define rb_gc_writebarrier_unprotect_promoted rb_gc_writebarrier_unprotect_promoted_stub
++ # endif
++ 
+  #include <ruby.h>
+  #ifdef RUBY19_OR_LATER
+  # include <ruby/encoding.h>
+***************
+*** 373,378 ****
+--- 379,388 ----
+  static void* (*ruby_process_options)(int, char**);
+  # endif
+  
++ # if defined(USE_RGENGC) && USE_RGENGC
++ static void (*dll_rb_gc_writebarrier_unprotect_promoted)(VALUE);
++ # endif
++ 
+  # if defined(RUBY19_OR_LATER) && !defined(PROTO)
+  SIGNED_VALUE rb_num2long_stub(VALUE x)
+  {
+***************
+*** 406,411 ****
+--- 416,428 ----
+  #  endif
+  # endif
+  
++ # if defined(USE_RGENGC) && USE_RGENGC
++ void rb_gc_writebarrier_unprotect_promoted_stub(VALUE obj)
++ {
++     return dll_rb_gc_writebarrier_unprotect_promoted(obj);
++ }
++ # endif
++ 
+  static HINSTANCE hinstRuby = NULL; /* Instance of ruby.dll */
+  
+  /*
+***************
+*** 521,526 ****
+--- 538,546 ----
+  #  endif
+      {"ruby_init_stack", (RUBY_PROC*)&dll_ruby_init_stack},
+  # endif
++ # if defined(USE_RGENGC) && USE_RGENGC
++     {"rb_gc_writebarrier_unprotect_promoted", (RUBY_PROC*)&dll_rb_gc_writebarrier_unprotect_promoted},
++ # endif
+      {"", NULL},
+  };
+  
+*** ../vim-7.4.167/src/version.c	2014-02-05 22:25:29.982568243 +0100
+--- src/version.c	2014-02-05 22:36:14.010578111 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     168,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+10E. You start counting in hex.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

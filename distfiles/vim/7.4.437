@@ -1,0 +1,116 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.437
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.437
+Problem:    New and old regexp engine are not consistent.
+Solution:   Also give an error for "\ze*" for the old regexp engine.
+Files:	    src/regexp.c, src/regexp_nfa.c
+
+
+*** ../vim-7.4.436/src/regexp.c	2014-07-09 19:32:30.935678834 +0200
+--- src/regexp.c	2014-09-09 17:11:32.444539356 +0200
+***************
+*** 358,363 ****
+--- 358,365 ----
+  static char_u	*regprop __ARGS((char_u *));
+  #endif
+  
++ static int re_mult_next __ARGS((char *what));
++ 
+  static char_u e_missingbracket[] = N_("E769: Missing ] after %s[");
+  static char_u e_unmatchedpp[] = N_("E53: Unmatched %s%%(");
+  static char_u e_unmatchedp[] = N_("E54: Unmatched %s(");
+***************
+*** 2166,2174 ****
+--- 2168,2180 ----
+  #endif
+  
+  		case 's': ret = regnode(MOPEN + 0);
++ 			  if (re_mult_next("\\zs") == FAIL)
++ 			      return NULL;
+  			  break;
+  
+  		case 'e': ret = regnode(MCLOSE + 0);
++ 			  if (re_mult_next("\\ze") == FAIL)
++ 			      return NULL;
+  			  break;
+  
+  		default:  EMSG_RET_NULL(_("E68: Invalid character after \\z"));
+***************
+*** 7005,7010 ****
+--- 7011,7028 ----
+  }
+  #endif	    /* DEBUG */
+  
++ /*
++  * Used in a place where no * or \+ can follow.
++  */
++     static int
++ re_mult_next(what)
++     char *what;
++ {
++     if (re_multi_type(peekchr()) == MULTI_MULT)
++ 	EMSG2_RET_FAIL(_("E888: (NFA regexp) cannot repeat %s"), what);
++     return OK;
++ }
++ 
+  #ifdef FEAT_MBYTE
+  static void mb_decompose __ARGS((int c, int *c1, int *c2, int *c3));
+  
+*** ../vim-7.4.436/src/regexp_nfa.c	2014-08-29 11:56:21.350422045 +0200
+--- src/regexp_nfa.c	2014-09-09 17:10:17.572539193 +0200
+***************
+*** 291,297 ****
+  static int nfa_regconcat __ARGS((void));
+  static int nfa_regbranch __ARGS((void));
+  static int nfa_reg __ARGS((int paren));
+- static int re_mult_next __ARGS((char *what));
+  #ifdef DEBUG
+  static void nfa_set_code __ARGS((int c));
+  static void nfa_postfix_dump __ARGS((char_u *expr, int retval));
+--- 291,296 ----
+***************
+*** 2281,2298 ****
+      return OK;
+  }
+  
+- /*
+-  * Used in a place where no * or \+ can follow.
+-  */
+-     static int
+- re_mult_next(what)
+-     char *what;
+- {
+-     if (re_multi_type(peekchr()) == MULTI_MULT)
+- 	EMSG2_RET_FAIL(_("E888: (NFA regexp) cannot repeat %s"), what);
+-     return OK;
+- }
+- 
+  #ifdef DEBUG
+  static char_u code[50];
+  
+--- 2280,2285 ----
+*** ../vim-7.4.436/src/version.c	2014-09-09 16:59:34.792537789 +0200
+--- src/version.c	2014-09-09 17:12:34.352539491 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     437,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+110. You actually volunteer to become your employer's webmaster.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

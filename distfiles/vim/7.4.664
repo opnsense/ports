@@ -1,0 +1,75 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.664
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.664
+Problem:    When 'compatible' is reset 'numberwidth' is set to 4, but the
+	    effect doesn't show until a change is made.
+Solution:   Check if 'numberwidth' changed. (Christian Brabandt)
+Files:	    src/screen.c, src/structs.h
+
+
+*** ../vim-7.4.663/src/screen.c	2015-02-17 17:26:04.561123749 +0100
+--- src/screen.c	2015-03-20 15:36:11.284395407 +0100
+***************
+*** 10718,10724 ****
+  	/* cursor line shows absolute line number */
+  	lnum = wp->w_buffer->b_ml.ml_line_count;
+  
+!     if (lnum == wp->w_nrwidth_line_count)
+  	return wp->w_nrwidth_width;
+      wp->w_nrwidth_line_count = lnum;
+  
+--- 10718,10724 ----
+  	/* cursor line shows absolute line number */
+  	lnum = wp->w_buffer->b_ml.ml_line_count;
+  
+!     if (lnum == wp->w_nrwidth_line_count && wp->w_nuw_cached == wp->w_p_nuw)
+  	return wp->w_nrwidth_width;
+      wp->w_nrwidth_line_count = lnum;
+  
+***************
+*** 10734,10739 ****
+--- 10734,10740 ----
+  	n = wp->w_p_nuw - 1;
+  
+      wp->w_nrwidth_width = n;
++     wp->w_nuw_cached = wp->w_p_nuw;
+      return n;
+  }
+  #endif
+*** ../vim-7.4.663/src/structs.h	2015-02-03 12:55:11.140179551 +0100
+--- src/structs.h	2015-03-20 15:36:11.284395407 +0100
+***************
+*** 2306,2311 ****
+--- 2306,2312 ----
+  #ifdef FEAT_LINEBREAK
+      linenr_T	w_nrwidth_line_count;	/* line count when ml_nrwidth_width
+  					 * was computed. */
++     long	w_nuw_cached;		/* 'numberwidth' option cached */
+      int		w_nrwidth_width;	/* nr of chars to print line count. */
+  #endif
+  
+*** ../vim-7.4.663/src/version.c	2015-03-14 15:35:45.664866097 +0100
+--- src/version.c	2015-03-20 15:37:35.279447275 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     664,
+  /**/
+
+-- 
+Windows
+M!uqoms
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

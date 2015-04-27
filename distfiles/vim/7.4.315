@@ -1,0 +1,229 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.315
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.315 (after 7.4.309)
+Problem:    Fixes for computation of topline not tested.
+Solution:   Add test. (Hirohito Higashi)
+Files:	    src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile,
+	    src/testdir/test107.in, src/testdir/test107.ok
+
+
+*** ../vim-7.4.314/src/testdir/Make_amiga.mak	2014-04-29 12:15:22.852032651 +0200
+--- src/testdir/Make_amiga.mak	2014-05-28 13:13:32.108062709 +0200
+***************
+*** 35,41 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+--- 35,41 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+***************
+*** 161,166 ****
+--- 161,167 ----
+  test104.out: test104.in
+  test105.out: test105.in
+  test106.out: test106.in
++ test107.out: test107.in
+  test_autoformat_join.out: test_autoformat_join.in
+  test_eval.out: test_eval.in
+  test_options.out: test_options.in
+*** ../vim-7.4.314/src/testdir/Make_dos.mak	2014-04-29 12:15:22.852032651 +0200
+--- src/testdir/Make_dos.mak	2014-05-28 13:13:44.344062816 +0200
+***************
+*** 34,40 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+--- 34,40 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out  test107.out\
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+*** ../vim-7.4.314/src/testdir/Make_ming.mak	2014-04-29 12:15:22.852032651 +0200
+--- src/testdir/Make_ming.mak	2014-05-28 13:13:52.656062889 +0200
+***************
+*** 54,60 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+--- 54,60 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+*** ../vim-7.4.314/src/testdir/Make_os2.mak	2014-04-29 12:15:22.852032651 +0200
+--- src/testdir/Make_os2.mak	2014-05-28 13:14:03.616062985 +0200
+***************
+*** 36,42 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+--- 36,42 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+! 		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+*** ../vim-7.4.314/src/testdir/Make_vms.mms	2014-04-29 12:15:22.852032651 +0200
+--- src/testdir/Make_vms.mms	2014-05-28 13:14:09.724063038 +0200
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Mar 12
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 May 28
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 95,101 ****
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+! 	 test105.out test106.out \
+  	 test_autoformat_join.out \
+  	 test_eval.out \
+  	 test_options.out
+--- 95,101 ----
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+! 	 test105.out test106.out test107.out \
+  	 test_autoformat_join.out \
+  	 test_eval.out \
+  	 test_options.out
+*** ../vim-7.4.314/src/testdir/Makefile	2014-05-22 13:12:25.650592983 +0200
+--- src/testdir/Makefile	2014-05-28 13:14:28.688063204 +0200
+***************
+*** 32,38 ****
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+--- 32,38 ----
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+! 		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+*** ../vim-7.4.314/src/testdir/test107.in	2014-05-29 11:46:48.728773486 +0200
+--- src/testdir/test107.in	2014-05-29 11:40:20.096770084 +0200
+***************
+*** 0 ****
+--- 1,38 ----
++ Tests for adjusting window and contents     vim: set ft=vim :
++ 
++ STARTTEST
++ :so small.vim
++ :new
++ :call setline(1, range(1,256))
++ :let r=[]
++ :func! GetScreenStr(row)
++ :   let str = ""
++ :   for c in range(1,3)
++ :       let str .= nr2char(screenchar(a:row, c))
++ :   endfor
++ :   return str
++ :endfunc
++ :
++ :exe ":norm! \<C-W>t\<C-W>=1Gzt\<C-W>w\<C-W>+"
++ :let s3=GetScreenStr(1)
++ :wincmd p
++ :call add(r, [line("w0"), s3])
++ :
++ :exe ":norm! \<C-W>t\<C-W>=50Gzt\<C-W>w\<C-W>+"
++ :let s3=GetScreenStr(1)
++ :wincmd p
++ :call add(r, [line("w0"), s3])
++ :
++ :exe ":norm! \<C-W>t\<C-W>=59Gzt\<C-W>w\<C-W>+"
++ :let s3=GetScreenStr(1)
++ ::wincmd p
++ :call add(r, [line("w0"), s3])
++ :
++ :bwipeout!
++ :$put=r
++ :call garbagecollect(1)
++ :"
++ :/^start:/,$wq! test.out
++ ENDTEST
++ 
++ start:
+*** ../vim-7.4.314/src/testdir/test107.ok	2014-05-29 11:46:48.736773486 +0200
+--- src/testdir/test107.ok	2014-05-29 11:40:20.096770084 +0200
+***************
+*** 0 ****
+--- 1,4 ----
++ start:
++ [1, '1  ']
++ [50, '50 ']
++ [59, '59 ']
+*** ../vim-7.4.314/src/version.c	2014-05-28 21:40:47.092329130 +0200
+--- src/version.c	2014-05-29 11:41:47.640770850 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     315,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+229. You spend so much time thinking what to add on this list.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

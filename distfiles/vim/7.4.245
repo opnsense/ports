@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.245
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.245
+Problem:    Crash for "vim -u NONE -N  -c '&&'".
+Solution:   Check for the pattern to be NULL. (Dominique Pelle)
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.244/src/ex_cmds.c	2014-04-01 17:49:40.136891378 +0200
+--- src/ex_cmds.c	2014-04-04 18:56:00.159939544 +0200
+***************
+*** 4425,4431 ****
+       * TODO: find a generic solution to make line-joining operations more
+       * efficient, avoid allocating a string that grows in size.
+       */
+!     if (STRCMP(pat, "\\n") == 0 && STRLEN(pat) == 2
+  	    && *sub == NUL
+  	    && (*cmd == NUL || (cmd[1] == NUL && (*cmd == 'g' || *cmd == 'l'
+  					     || *cmd == 'p' || *cmd == '#'))))
+--- 4425,4431 ----
+       * TODO: find a generic solution to make line-joining operations more
+       * efficient, avoid allocating a string that grows in size.
+       */
+!     if (pat != NULL && STRCMP(pat, "\\n") == 0
+  	    && *sub == NUL
+  	    && (*cmd == NUL || (cmd[1] == NUL && (*cmd == 'g' || *cmd == 'l'
+  					     || *cmd == 'p' || *cmd == '#'))))
+*** ../vim-7.4.244/src/version.c	2014-04-02 23:09:23.003439001 +0200
+--- src/version.c	2014-04-04 18:52:21.519939067 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     245,
+  /**/
+
+-- 
+One difference between a man and a machine is that a machine is quiet
+when well oiled.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

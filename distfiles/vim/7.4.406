@@ -1,0 +1,78 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.406
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.406
+Problem:    Test 72 and 100 fail on MS-Windows.
+Solution:   Set fileformat to unix in the tests. (Taro Muraoka)
+Files:	    src/testdir/test72.in, src/testdir/test100.in
+
+
+*** ../vim-7.4.405/src/testdir/test72.in	2014-08-10 13:34:59.064785459 +0200
+--- src/testdir/test72.in	2014-08-16 17:31:40.426134656 +0200
+***************
+*** 8,13 ****
+--- 8,14 ----
+  :" Test 'undofile': first a simple one-line change.
+  :set nocompatible viminfo+=nviminfo visualbell
+  :set ul=100 undofile nomore
++ :set ff=unix
+  :e! Xtestfile
+  ggdGithis is one line:set ul=100
+  :s/one/ONE/
+*** ../vim-7.4.405/src/testdir/test100.in	2014-03-12 18:55:52.104906804 +0100
+--- src/testdir/test100.in	2014-08-16 17:32:17.642133306 +0200
+***************
+*** 18,23 ****
+--- 18,24 ----
+  :call FillBuffer()
+  :call feedkeys(":earlier 10\n", 't')
+  :call UndoLevel()
++ :set ff=unix
+  :%w! test.out
+  :new two
+  :0put ='TWO: expecting global undolevels: 5, local undolevels: 2 (first) then 10 (afterwards)'
+***************
+*** 27,32 ****
+--- 28,34 ----
+  :call UndoLevel()
+  :setlocal ul=10
+  :call UndoLevel()
++ :set ff=unix
+  :%w >> test.out
+  :wincmd p
+  :redir >>test.out | echo "global value shouldn't be changed and still be 5!" | echo 'ONE: expecting global undolevels: 5, local undolevels: -123456 (default)'|:setglobal undolevels? | echon ' global' | setlocal undolevels? | echon ' local' |echo "" |redir end
+***************
+*** 35,40 ****
+--- 37,43 ----
+  :1put ='global value should be changed to 50'
+  :2put ='THREE: expecting global undolevels: 50, local undolevels: -123456 (default)'
+  :call UndoLevel()
++ :set ff=unix
+  :%w >> test.out
+  :"sleep 10
+  :"
+*** ../vim-7.4.405/src/version.c	2014-08-16 16:28:31.886272055 +0200
+--- src/version.c	2014-08-16 17:32:10.130133579 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     406,
+  /**/
+
+-- 
+Time is an illusion.  Lunchtime doubly so.
+		-- Ford Prefect, in Douglas Adams'
+		   "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

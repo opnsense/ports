@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.453
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.453
+Problem:    Still can't build with tiny features.
+Solution:   Add #ifdef.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.452/src/ex_cmds.c	2014-09-19 22:05:48.606465199 +0200
+--- src/ex_cmds.c	2014-09-19 22:08:31.850465555 +0200
+***************
+*** 5906,5911 ****
+--- 5906,5912 ----
+  ex_helpclose(eap)
+      exarg_T	*eap UNUSED;
+  {
++ #if defined(FEAT_WINDOWS)
+      win_T *win;
+  
+      FOR_ALL_WINDOWS(win)
+***************
+*** 5916,5921 ****
+--- 5917,5923 ----
+  	    return;
+  	}
+      }
++ #endif
+  }
+  
+  #if defined(FEAT_MULTI_LANG) || defined(PROTO)
+*** ../vim-7.4.452/src/version.c	2014-09-19 22:05:48.610465199 +0200
+--- src/version.c	2014-09-19 22:19:43.058467021 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     453,
+  /**/
+
+
+-- 
+"Hit any key to continue" does _not_ mean you can hit the on/off button!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

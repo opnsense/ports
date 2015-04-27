@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.438
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.438
+Problem:    Cached values for 'cino' not reset for ":set all&".
+Solution:   Call parse_cino(). (Yukihiro Nakadaira)
+Files:	    src/option.c
+
+
+*** ../vim-7.4.437/src/option.c	2014-08-24 21:39:45.488526954 +0200
+--- src/option.c	2014-09-09 17:29:43.216541739 +0200
+***************
+*** 3645,3650 ****
+--- 3645,3653 ----
+  #else
+  	win_comp_scroll(curwin);
+  #endif
++ #ifdef FEAT_CINDENT
++     parse_cino(curbuf);
++ #endif
+  }
+  
+  /*
+*** ../vim-7.4.437/src/version.c	2014-09-09 17:18:44.008540299 +0200
+--- src/version.c	2014-09-09 17:32:16.108542073 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     438,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+112. You are amazed that anyone uses a phone without a modem on it...let
+     alone hear actual voices.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

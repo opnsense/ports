@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.661
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.661
+Problem:    Using "0 CTRL-D" in Insert mode may have CursorHoldI interfere.
+	    (Gary Johnson)
+Solution:   Don't store K_CURSORHOLD as the last character. (Christian
+	    Brabandt)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.660/src/edit.c	2015-03-08 14:48:32.955696408 +0100
+--- src/edit.c	2015-03-13 13:21:42.837658498 +0100
+***************
+*** 760,766 ****
+  	/*
+  	 * Get a character for Insert mode.  Ignore K_IGNORE.
+  	 */
+! 	lastc = c;			/* remember previous char for CTRL-D */
+  	do
+  	{
+  	    c = safe_vgetc();
+--- 760,767 ----
+  	/*
+  	 * Get a character for Insert mode.  Ignore K_IGNORE.
+  	 */
+! 	if (c != K_CURSORHOLD)
+! 	    lastc = c;		/* remember the previous char for CTRL-D */
+  	do
+  	{
+  	    c = safe_vgetc();
+*** ../vim-7.4.660/src/version.c	2015-03-13 12:53:32.271786748 +0100
+--- src/version.c	2015-03-13 13:22:49.460933957 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     661,
+  /**/
+
+-- 
+Computers are not intelligent.  They only think they are.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,117 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.404
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.404
+Problem:    Windows 64 bit compiler warnings.
+Solution:   Add type casts. (Mike Williams)
+Files:	    src/crypt.c, src/undo.c
+
+
+*** ../vim-7.4.403/src/crypt.c	2014-08-10 13:34:59.052785459 +0200
+--- src/crypt.c	2014-08-13 22:02:15.756889031 +0200
+***************
+*** 397,409 ****
+  	return method->encode_buffer_fn(state, from, len, newptr);
+      if (len == 0)
+  	/* Not buffering, just return EOF. */
+! 	return len;
+  
+!     *newptr = alloc(len);
+      if (*newptr == NULL)
+  	return -1;
+      method->encode_fn(state, from, len, *newptr);
+!     return len;
+  }
+  
+  /*
+--- 397,409 ----
+  	return method->encode_buffer_fn(state, from, len, newptr);
+      if (len == 0)
+  	/* Not buffering, just return EOF. */
+! 	return (long)len;
+  
+!     *newptr = alloc((long)len);
+      if (*newptr == NULL)
+  	return -1;
+      method->encode_fn(state, from, len, *newptr);
+!     return (long)len;
+  }
+  
+  /*
+*** ../vim-7.4.403/src/undo.c	2014-08-12 20:14:28.791371197 +0200
+--- src/undo.c	2014-08-13 22:02:15.760889031 +0200
+***************
+*** 992,998 ****
+      int	    bufi = 0;
+  
+      for (i = len - 1; i >= 0; --i)
+! 	buf[bufi++] = nr >> (i * 8);
+      return undo_write(bi, buf, (size_t)len);
+  }
+  
+--- 992,998 ----
+      int	    bufi = 0;
+  
+      for (i = len - 1; i >= 0; --i)
+! 	buf[bufi++] = (char_u)(nr >> (i * 8));
+      return undo_write(bi, buf, (size_t)len);
+  }
+  
+***************
+*** 1093,1099 ****
+  #ifdef FEAT_CRYPT
+      if (bi->bi_buffer != NULL)
+      {
+! 	int	size_todo = size;
+  	char_u	*p = buffer;
+  
+  	while (size_todo > 0)
+--- 1093,1099 ----
+  #ifdef FEAT_CRYPT
+      if (bi->bi_buffer != NULL)
+      {
+! 	int	size_todo = (int)size;
+  	char_u	*p = buffer;
+  
+  	while (size_todo > 0)
+***************
+*** 1119,1125 ****
+  		n = bi->bi_avail - bi->bi_used;
+  	    mch_memmove(p, bi->bi_buffer + bi->bi_used, n);
+  	    bi->bi_used += n;
+! 	    size_todo -= n;
+  	    p += n;
+  	}
+  	return OK;
+--- 1119,1125 ----
+  		n = bi->bi_avail - bi->bi_used;
+  	    mch_memmove(p, bi->bi_buffer + bi->bi_used, n);
+  	    bi->bi_used += n;
+! 	    size_todo -= (int)n;
+  	    p += n;
+  	}
+  	return OK;
+*** ../vim-7.4.403/src/version.c	2014-08-13 21:58:24.824885492 +0200
+--- src/version.c	2014-08-13 22:02:35.812889338 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     404,
+  /**/
+
+-- 
+How To Keep A Healthy Level Of Insanity:
+10. Ask people what sex they are. Laugh hysterically after they answer.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

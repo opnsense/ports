@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.121
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.121
+Problem:    Completion doesn't work for ":py3d" and ":py3f". (Bohr Shaw)
+Solution:   Skip over letters after ":py3".
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.120/src/ex_docmd.c	2013-11-21 14:21:25.000000000 +0100
+--- src/ex_docmd.c	2013-12-11 17:41:50.000000000 +0100
+***************
+*** 3261,3267 ****
+--- 3261,3271 ----
+  	    ++p;
+  	/* for python 3.x: ":py3*" commands completion */
+  	if (cmd[0] == 'p' && cmd[1] == 'y' && p == cmd + 2 && *p == '3')
++ 	{
+  	    ++p;
++ 	    while (ASCII_ISALPHA(*p) || *p == '*')
++ 		++p;
++ 	}
+  	len = (int)(p - cmd);
+  
+  	if (len == 0)
+*** ../vim-7.4.120/src/version.c	2013-12-11 17:20:14.000000000 +0100
+--- src/version.c	2013-12-11 17:43:44.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     121,
+  /**/
+
+-- 
+It was recently discovered that research causes cancer in rats.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

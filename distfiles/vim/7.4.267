@@ -1,0 +1,438 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.2
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.267 (after 7.4.178)
+Problem:    The '[ mark is in the wrong position after "gq". (Ingo Karkat)
+Solution:   Add the setmark argument to do_join(). (Christian Brabandt)
+Files:	    src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile,
+	    src/testdir/test_autoformat_join.in,
+	    src/testdir/test_autoformat_join.ok, src/Makefile, src/edit.c,
+	    src/ex_cmds.c, src/ex_docmd.c, src/normal.c, src/ops.c,
+	    src/proto/ops.pro
+
+
+*** ../vim-7.4.266/src/testdir/Make_amiga.mak	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/Make_amiga.mak	2014-04-29 12:02:34.144046123 +0200
+***************
+*** 36,41 ****
+--- 36,42 ----
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out \
++ 		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+  
+***************
+*** 160,164 ****
+--- 161,166 ----
+  test104.out: test104.in
+  test105.out: test105.in
+  test106.out: test106.in
++ test_autoformat_join.out: test_autoformat_join.in
+  test_eval.out: test_eval.in
+  test_options.out: test_options.in
+*** ../vim-7.4.266/src/testdir/Make_dos.mak	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/Make_dos.mak	2014-04-29 12:02:45.128045931 +0200
+***************
+*** 35,40 ****
+--- 35,41 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out \
++ 		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.266/src/testdir/Make_ming.mak	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/Make_ming.mak	2014-04-29 12:02:54.020045775 +0200
+***************
+*** 55,60 ****
+--- 55,61 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out \
++ 		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.266/src/testdir/Make_os2.mak	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/Make_os2.mak	2014-04-29 12:03:03.384045611 +0200
+***************
+*** 37,42 ****
+--- 37,43 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out \
++ 		test_autoformat_join.out \
+  		test_eval.out \
+  		test_options.out
+  
+*** ../vim-7.4.266/src/testdir/Make_vms.mms	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/Make_vms.mms	2014-04-29 12:03:12.200045456 +0200
+***************
+*** 96,101 ****
+--- 96,102 ----
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+  	 test105.out test106.out \
++ 	 test_autoformat_join.out \
+  	 test_eval.out \
+  	 test_options.out
+  
+*** ../vim-7.4.266/src/testdir/Makefile	2014-04-01 14:08:14.685074130 +0200
+--- src/testdir/Makefile	2014-04-29 12:02:09.152046561 +0200
+***************
+*** 33,38 ****
+--- 33,40 ----
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out \
++ 		test_autoformat_join.out \
++ 		test_eval.out \
+  		test_options.out
+  
+  SCRIPTS_GUI = test16.out
+*** ../vim-7.4.266/src/testdir/test_autoformat_join.in	2014-04-29 12:12:57.324035202 +0200
+--- src/testdir/test_autoformat_join.in	2014-04-29 12:00:35.360048205 +0200
+***************
+*** 0 ****
+--- 1,23 ----
++ Tests for setting the '[,'] marks when joining lines.
++ 
++ STARTTEST
++ :so small.vim
++ :/^\t\t/
++ 0gqj
++ :let a=string(getpos("'[")).'/'.string(getpos("']"))
++ :/^This line/;'}-join
++ :let b=string(getpos("'[")).'/'.string(getpos("']"))
++ :$put ='First test: Start/End '.string(a)
++ :$put ='Second test: Start/End '.string(b)
++ :/^\t\t/,$wq! test.out
++ ENDTEST
++ 
++ 
++ 		O sodales, ludite, vos qui
++ attamen consulite per voster honur. Tua pulchra facies me fay planszer milies
++ 
++ This line.
++ Should be joined with the next line
++ and with this line
++ 
++ Results:
+*** ../vim-7.4.266/src/testdir/test_autoformat_join.ok	2014-04-29 12:12:57.332035201 +0200
+--- src/testdir/test_autoformat_join.ok	2014-04-29 12:00:35.360048205 +0200
+***************
+*** 0 ****
+--- 1,8 ----
++ 		O sodales, ludite, vos qui attamen consulite per voster honur.
++ Tua pulchra facies me fay planszer milies
++ 
++ This line.  Should be joined with the next line and with this line
++ 
++ Results:
++ First test: Start/End '[0, 16, 1, 0]/[0, 17, 1, 0]'
++ Second test: Start/End '[0, 19, 11, 0]/[0, 19, 67, 0]'
+*** ../vim-7.4.266/src/Makefile	2014-04-02 19:54:58.275599459 +0200
+--- src/Makefile	2014-04-29 12:03:48.600044818 +0200
+***************
+*** 1880,1885 ****
+--- 1880,1886 ----
+  
+  # Run individual test, assuming that Vim was already compiled.
+  test1 test2 test3 test4 test5 test6 test7 test8 test9 \
++ 	test_autoformat_join \
+  	test_eval \
+  	test_options \
+  	test10 test11 test12 test13 test14 test15 test16 test17 test18 test19 \
+*** ../vim-7.4.266/src/edit.c	2014-03-23 15:12:29.915264336 +0100
+--- src/edit.c	2014-04-29 12:08:50.608039525 +0200
+***************
+*** 8685,8691 ****
+      {
+  	temp = curwin->w_cursor.col;
+  	if (!can_bs(BS_EOL)		/* only if "eol" included */
+! 		|| do_join(2, FALSE, TRUE, FALSE) == FAIL)
+  	    vim_beep();
+  	else
+  	    curwin->w_cursor.col = temp;
+--- 8685,8691 ----
+      {
+  	temp = curwin->w_cursor.col;
+  	if (!can_bs(BS_EOL)		/* only if "eol" included */
+! 		|| do_join(2, FALSE, TRUE, FALSE, FALSE) == FAIL)
+  	    vim_beep();
+  	else
+  	    curwin->w_cursor.col = temp;
+***************
+*** 8866,8872 ****
+  			ptr[len - 1] = NUL;
+  		}
+  
+! 		(void)do_join(2, FALSE, FALSE, FALSE);
+  		if (temp == NUL && gchar_cursor() != NUL)
+  		    inc_cursor();
+  	    }
+--- 8866,8872 ----
+  			ptr[len - 1] = NUL;
+  		}
+  
+! 		(void)do_join(2, FALSE, FALSE, FALSE, FALSE);
+  		if (temp == NUL && gchar_cursor() != NUL)
+  		    inc_cursor();
+  	    }
+*** ../vim-7.4.266/src/ex_cmds.c	2014-04-06 20:45:40.119357453 +0200
+--- src/ex_cmds.c	2014-04-29 12:08:50.612039525 +0200
+***************
+*** 4444,4450 ****
+  	else if (*cmd == 'p')
+  	    eap->flags = EXFLAG_PRINT;
+  
+! 	(void)do_join(eap->line2 - eap->line1 + 1, FALSE, TRUE, FALSE);
+  	sub_nlines = sub_nsubs = eap->line2 - eap->line1 + 1;
+  	(void)do_sub_msg(FALSE);
+  	ex_may_print(eap);
+--- 4444,4450 ----
+  	else if (*cmd == 'p')
+  	    eap->flags = EXFLAG_PRINT;
+  
+! 	(void)do_join(eap->line2 - eap->line1 + 1, FALSE, TRUE, FALSE, TRUE);
+  	sub_nlines = sub_nsubs = eap->line2 - eap->line1 + 1;
+  	(void)do_sub_msg(FALSE);
+  	ex_may_print(eap);
+*** ../vim-7.4.266/src/ex_docmd.c	2014-04-02 14:22:00.119874274 +0200
+--- src/ex_docmd.c	2014-04-29 12:08:50.616039525 +0200
+***************
+*** 8717,8723 ****
+  	}
+  	++eap->line2;
+      }
+!     (void)do_join(eap->line2 - eap->line1 + 1, !eap->forceit, TRUE, TRUE);
+      beginline(BL_WHITE | BL_FIX);
+      ex_may_print(eap);
+  }
+--- 8717,8723 ----
+  	}
+  	++eap->line2;
+      }
+!     (void)do_join(eap->line2 - eap->line1 + 1, !eap->forceit, TRUE, TRUE, TRUE);
+      beginline(BL_WHITE | BL_FIX);
+      ex_may_print(eap);
+  }
+*** ../vim-7.4.266/src/normal.c	2014-03-23 15:12:29.927264336 +0100
+--- src/normal.c	2014-04-29 12:08:50.616039525 +0200
+***************
+*** 812,818 ****
+  
+      if (text_locked() && (nv_cmds[idx].cmd_flags & NV_NCW))
+      {
+! 	/* This command is not allowed while editing a ccmdline: beep. */
+  	clearopbeep(oap);
+  	text_locked_msg();
+  	goto normal_end;
+--- 812,818 ----
+  
+      if (text_locked() && (nv_cmds[idx].cmd_flags & NV_NCW))
+      {
+! 	/* This command is not allowed while editing a cmdline: beep. */
+  	clearopbeep(oap);
+  	text_locked_msg();
+  	goto normal_end;
+***************
+*** 1905,1911 ****
+  	    else
+  	    {
+  		(void)do_join(oap->line_count, oap->op_type == OP_JOIN,
+! 								  TRUE, TRUE);
+  		auto_format(FALSE, TRUE);
+  	    }
+  	    break;
+--- 1905,1911 ----
+  	    else
+  	    {
+  		(void)do_join(oap->line_count, oap->op_type == OP_JOIN,
+! 							    TRUE, TRUE, TRUE);
+  		auto_format(FALSE, TRUE);
+  	    }
+  	    break;
+***************
+*** 9236,9242 ****
+  	{
+  	    prep_redo(cap->oap->regname, cap->count0,
+  			 NUL, cap->cmdchar, NUL, NUL, cap->nchar);
+! 	    (void)do_join(cap->count0, cap->nchar == NUL, TRUE, TRUE);
+  	}
+      }
+  }
+--- 9236,9242 ----
+  	{
+  	    prep_redo(cap->oap->regname, cap->count0,
+  			 NUL, cap->cmdchar, NUL, NUL, cap->nchar);
+! 	    (void)do_join(cap->count0, cap->nchar == NUL, TRUE, TRUE, TRUE);
+  	}
+      }
+  }
+*** ../vim-7.4.266/src/ops.c	2014-04-12 12:26:25.856424387 +0200
+--- src/ops.c	2014-04-29 12:10:29.428037794 +0200
+***************
+*** 1979,1985 ****
+  		curwin->w_cursor = curpos;	/* restore curwin->w_cursor */
+  	    }
+  	    if (curwin->w_cursor.lnum < curbuf->b_ml.ml_line_count)
+! 		(void)do_join(2, FALSE, FALSE, FALSE);
+  	}
+      }
+  
+--- 1979,1985 ----
+  		curwin->w_cursor = curpos;	/* restore curwin->w_cursor */
+  	    }
+  	    if (curwin->w_cursor.lnum < curbuf->b_ml.ml_line_count)
+! 		(void)do_join(2, FALSE, FALSE, FALSE, FALSE);
+  	}
+      }
+  
+***************
+*** 4323,4339 ****
+  /*
+   * Join 'count' lines (minimal 2) at cursor position.
+   * When "save_undo" is TRUE save lines for undo first.
+!  * Set "use_formatoptions" to FALSE when e.g. processing
+!  * backspace and comment leaders should not be removed.
+   *
+   * return FAIL for failure, OK otherwise
+   */
+      int
+! do_join(count, insert_space, save_undo, use_formatoptions)
+      long    count;
+      int	    insert_space;
+      int	    save_undo;
+      int	    use_formatoptions UNUSED;
+  {
+      char_u	*curr = NULL;
+      char_u      *curr_start = NULL;
+--- 4323,4342 ----
+  /*
+   * Join 'count' lines (minimal 2) at cursor position.
+   * When "save_undo" is TRUE save lines for undo first.
+!  * Set "use_formatoptions" to FALSE when e.g. processing backspace and comment
+!  * leaders should not be removed.
+!  * When setmark is TRUE, sets the '[ and '] mark, else, the caller is expected
+!  * to set those marks.
+   *
+   * return FAIL for failure, OK otherwise
+   */
+      int
+! do_join(count, insert_space, save_undo, use_formatoptions, setmark)
+      long    count;
+      int	    insert_space;
+      int	    save_undo;
+      int	    use_formatoptions UNUSED;
++     int	    setmark;
+  {
+      char_u	*curr = NULL;
+      char_u      *curr_start = NULL;
+***************
+*** 4384,4390 ****
+      for (t = 0; t < count; ++t)
+      {
+  	curr = curr_start = ml_get((linenr_T)(curwin->w_cursor.lnum + t));
+! 	if (t == 0)
+  	{
+  	    /* Set the '[ mark. */
+  	    curwin->w_buffer->b_op_start.lnum = curwin->w_cursor.lnum;
+--- 4387,4393 ----
+      for (t = 0; t < count; ++t)
+      {
+  	curr = curr_start = ml_get((linenr_T)(curwin->w_cursor.lnum + t));
+! 	if (t == 0 && setmark)
+  	{
+  	    /* Set the '[ mark. */
+  	    curwin->w_buffer->b_op_start.lnum = curwin->w_cursor.lnum;
+***************
+*** 4506,4514 ****
+      }
+      ml_replace(curwin->w_cursor.lnum, newp, FALSE);
+  
+!     /* Set the '] mark. */
+!     curwin->w_buffer->b_op_end.lnum = curwin->w_cursor.lnum;
+!     curwin->w_buffer->b_op_end.col  = (colnr_T)STRLEN(newp);
+  
+      /* Only report the change in the first line here, del_lines() will report
+       * the deleted line. */
+--- 4509,4520 ----
+      }
+      ml_replace(curwin->w_cursor.lnum, newp, FALSE);
+  
+!     if (setmark)
+!     {
+! 	/* Set the '] mark. */
+! 	curwin->w_buffer->b_op_end.lnum = curwin->w_cursor.lnum;
+! 	curwin->w_buffer->b_op_end.col  = (colnr_T)STRLEN(newp);
+!     }
+  
+      /* Only report the change in the first line here, del_lines() will report
+       * the deleted line. */
+***************
+*** 5009,5015 ****
+  		    }
+  		}
+  		curwin->w_cursor.lnum--;
+! 		if (do_join(2, TRUE, FALSE, FALSE) == FAIL)
+  		{
+  		    beep_flush();
+  		    break;
+--- 5015,5021 ----
+  		    }
+  		}
+  		curwin->w_cursor.lnum--;
+! 		if (do_join(2, TRUE, FALSE, FALSE, FALSE) == FAIL)
+  		{
+  		    beep_flush();
+  		    break;
+*** ../vim-7.4.266/src/proto/ops.pro	2014-04-02 22:17:00.003482236 +0200
+--- src/proto/ops.pro	2014-04-29 12:08:50.620039525 +0200
+***************
+*** 37,43 ****
+  int preprocs_left __ARGS((void));
+  int get_register_name __ARGS((int num));
+  void ex_display __ARGS((exarg_T *eap));
+! int do_join __ARGS((long count, int insert_space, int save_undo, int use_formatoptions));
+  void op_format __ARGS((oparg_T *oap, int keep_cursor));
+  void op_formatexpr __ARGS((oparg_T *oap));
+  int fex_format __ARGS((linenr_T lnum, long count, int c));
+--- 37,43 ----
+  int preprocs_left __ARGS((void));
+  int get_register_name __ARGS((int num));
+  void ex_display __ARGS((exarg_T *eap));
+! int do_join __ARGS((long count, int insert_space, int save_undo, int use_formatoptions, int setmark));
+  void op_format __ARGS((oparg_T *oap, int keep_cursor));
+  void op_formatexpr __ARGS((oparg_T *oap));
+  int fex_format __ARGS((linenr_T lnum, long count, int c));
+*** ../vim-7.4.266/src/version.c	2014-04-29 11:55:26.176053624 +0200
+--- src/version.c	2014-04-29 11:59:35.620049252 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     267,
+  /**/
+
+-- 
+I AM THANKFUL...
+...for all the complaining I hear about the government
+because it means we have freedom of speech.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

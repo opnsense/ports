@@ -1,0 +1,63 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.209
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.209
+Problem:    When repeating a filter command "%" and "#" are expanded.
+Solution:   Escape the command when storing for redo. (Christian Brabandt)
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.208/src/ex_cmds.c	2014-02-22 22:27:20.768904692 +0100
+--- src/ex_cmds.c	2014-03-19 17:40:01.138104365 +0100
+***************
+*** 1012,1018 ****
+  
+      if (bangredo)	    /* put cmd in redo buffer for ! command */
+      {
+! 	AppendToRedobuffLit(prevcmd, -1);
+  	AppendToRedobuff((char_u *)"\n");
+  	bangredo = FALSE;
+      }
+--- 1012,1029 ----
+  
+      if (bangredo)	    /* put cmd in redo buffer for ! command */
+      {
+! 	/* If % or # appears in the command, it must have been escaped.
+! 	 * Reescape them, so that redoing them does not substitute them by the
+! 	 * buffername. */
+! 	char_u *cmd = vim_strsave_escaped(prevcmd, (char_u *)"%#");
+! 
+! 	if (cmd != NULL)
+! 	{
+! 	    AppendToRedobuffLit(cmd, -1);
+! 	    vim_free(cmd);
+! 	}
+! 	else
+! 	    AppendToRedobuffLit(prevcmd, -1);
+  	AppendToRedobuff((char_u *)"\n");
+  	bangredo = FALSE;
+      }
+*** ../vim-7.4.208/src/version.c	2014-03-19 17:32:32.454097490 +0100
+--- src/version.c	2014-03-19 17:40:24.810104728 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     209,
+  /**/
+
+-- 
+System administrators are just like women: You can't live with them and you
+can't live without them.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

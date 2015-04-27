@@ -1,0 +1,204 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.624
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.624
+Problem:    May leak memory or crash when vim_realloc() returns NULL.
+Solution:   Handle a NULL value properly. (Mike Williams)
+Files:	    src/if_cscope.c, src/memline.c, src/misc1.c, src/netbeans.c
+
+
+*** ../vim-7.4.623/src/if_cscope.c	2014-12-13 03:20:10.539067382 +0100
+--- src/if_cscope.c	2015-02-10 18:33:14.764816257 +0100
+***************
+*** 1507,1515 ****
+--- 1507,1522 ----
+  	}
+  	else
+  	{
++ 	    csinfo_T *t_csinfo = csinfo;
++ 
+  	    /* Reallocate space for more connections. */
+  	    csinfo_size *= 2;
+  	    csinfo = vim_realloc(csinfo, sizeof(csinfo_T)*csinfo_size);
++ 	    if (csinfo == NULL)
++ 	    {
++ 		vim_free(t_csinfo);
++ 		csinfo_size = 0;
++ 	    }
+  	}
+  	if (csinfo == NULL)
+  	    return -1;
+***************
+*** 2059,2064 ****
+--- 2066,2072 ----
+      int num_matches;
+  {
+      char	*buf = NULL;
++     char	*t_buf;
+      int		bufsize = 0; /* Track available bufsize */
+      int		newsize = 0;
+      char	*ptag;
+***************
+*** 2120,2128 ****
+--- 2128,2140 ----
+  	newsize = (int)(strlen(csfmt_str) + 16 + strlen(lno));
+  	if (bufsize < newsize)
+  	{
++ 	    t_buf = buf;
+  	    buf = (char *)vim_realloc(buf, newsize);
+  	    if (buf == NULL)
++ 	    {
+  		bufsize = 0;
++ 		vim_free(t_buf);
++ 	    }
+  	    else
+  		bufsize = newsize;
+  	}
+***************
+*** 2143,2151 ****
+--- 2155,2167 ----
+  
+  	if (bufsize < newsize)
+  	{
++ 	    t_buf = buf;
+  	    buf = (char *)vim_realloc(buf, newsize);
+  	    if (buf == NULL)
++ 	    {
+  		bufsize = 0;
++ 		vim_free(t_buf);
++ 	    }
+  	    else
+  		bufsize = newsize;
+  	}
+*** ../vim-7.4.623/src/memline.c	2014-08-13 21:58:24.824885492 +0200
+--- src/memline.c	2015-02-10 18:26:23.158126542 +0100
+***************
+*** 5057,5062 ****
+--- 5057,5064 ----
+  	/* May resize here so we don't have to do it in both cases below */
+  	if (buf->b_ml.ml_usedchunks + 1 >= buf->b_ml.ml_numchunks)
+  	{
++ 	    chunksize_T *t_chunksize = buf->b_ml.ml_chunksize;
++ 
+  	    buf->b_ml.ml_numchunks = buf->b_ml.ml_numchunks * 3 / 2;
+  	    buf->b_ml.ml_chunksize = (chunksize_T *)
+  		vim_realloc(buf->b_ml.ml_chunksize,
+***************
+*** 5064,5069 ****
+--- 5066,5072 ----
+  	    if (buf->b_ml.ml_chunksize == NULL)
+  	    {
+  		/* Hmmmm, Give up on offset for this buffer */
++ 		vim_free(t_chunksize);
+  		buf->b_ml.ml_usedchunks = -1;
+  		return;
+  	    }
+*** ../vim-7.4.623/src/misc1.c	2014-08-29 12:58:38.246430208 +0200
+--- src/misc1.c	2015-02-10 18:26:35.405968505 +0100
+***************
+*** 3431,3440 ****
+--- 3431,3444 ----
+  	    buf = alloc(buflen);
+  	else if (maxlen < 10)
+  	{
++ 	    char_u  *t_buf = buf;
++ 
+  	    /* Need some more space. This might happen when receiving a long
+  	     * escape sequence. */
+  	    buflen += 100;
+  	    buf = vim_realloc(buf, buflen);
++ 	    if (buf == NULL)
++ 		vim_free(t_buf);
+  	    maxlen = (buflen - 6 - len) / 3;
+  	}
+  	if (buf == NULL)
+*** ../vim-7.4.623/src/netbeans.c	2014-03-23 15:12:29.927264336 +0100
+--- src/netbeans.c	2015-02-10 18:27:18.693409965 +0100
+***************
+*** 1080,1089 ****
+--- 1080,1097 ----
+      {
+  	if (bufno >= buf_list_size) /* grow list */
+  	{
++ 	    nbbuf_T *t_buf_list = buf_list;
++ 
+  	    incr = bufno - buf_list_size + 90;
+  	    buf_list_size += incr;
+  	    buf_list = (nbbuf_T *)vim_realloc(
+  				   buf_list, buf_list_size * sizeof(nbbuf_T));
++ 	    if (buf_list == NULL)
++ 	    {
++ 		vim_free(t_buf_list);
++ 		buf_list_size = 0;
++ 		return NULL;
++ 	    }
+  	    vim_memset(buf_list + buf_list_size - incr, 0,
+  						      incr * sizeof(nbbuf_T));
+  	}
+***************
+*** 3678,3688 ****
+--- 3686,3703 ----
+  	    {
+  		int incr;
+  		int oldlen = globalsignmaplen;
++ 		char **t_globalsignmap = globalsignmap;
+  
+  		globalsignmaplen *= 2;
+  		incr = globalsignmaplen - oldlen;
+  		globalsignmap = (char **)vim_realloc(globalsignmap,
+  					   globalsignmaplen * sizeof(char *));
++ 		if (globalsignmap == NULL)
++ 		{
++ 		    vim_free(t_globalsignmap);
++ 		    globalsignmaplen = 0;
++ 		    return;
++ 		}
+  		vim_memset(globalsignmap + oldlen, 0, incr * sizeof(char *));
+  	    }
+  	}
+***************
+*** 3708,3718 ****
+--- 3723,3740 ----
+  	{
+  	    int incr;
+  	    int oldlen = buf->signmaplen;
++ 	    int *t_signmap = buf->signmap;
+  
+  	    buf->signmaplen *= 2;
+  	    incr = buf->signmaplen - oldlen;
+  	    buf->signmap = (int *)vim_realloc(buf->signmap,
+  					       buf->signmaplen * sizeof(int));
++ 	    if (buf->signmap == NULL)
++ 	    {
++ 		vim_free(t_signmap);
++ 		buf->signmaplen = 0;
++ 		return;
++ 	    }
+  	    vim_memset(buf->signmap + oldlen, 0, incr * sizeof(int));
+  	}
+      }
+*** ../vim-7.4.623/src/version.c	2015-02-10 18:18:13.004452406 +0100
+--- src/version.c	2015-02-10 18:21:29.697913596 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     624,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+211. Your husband leaves you...taking the computer with him and you
+     call him crying, and beg him to bring the computer back.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

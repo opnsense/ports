@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.629
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.629
+Problem:    Coverity warning for Out-of-bounds read.
+Solution:   Increase MAXWLEN to 254. (Eliseo Martínez)
+Files:	    src/spell.c
+
+
+*** ../vim-7.4.628/src/spell.c	2014-11-19 16:38:01.512679964 +0100
+--- src/spell.c	2015-02-10 20:00:22.188514910 +0100
+***************
+*** 311,319 ****
+  # include <time.h>	/* for time_t */
+  #endif
+  
+! #define MAXWLEN 250		/* Assume max. word len is this many bytes.
+  				   Some places assume a word length fits in a
+! 				   byte, thus it can't be above 255. */
+  
+  /* Type used for indexes in the word tree need to be at least 4 bytes.  If int
+   * is 8 bytes we could use something smaller, but what? */
+--- 311,320 ----
+  # include <time.h>	/* for time_t */
+  #endif
+  
+! #define MAXWLEN 254		/* Assume max. word len is this many bytes.
+  				   Some places assume a word length fits in a
+! 				   byte, thus it can't be above 255.
+! 				   Must be >= PFD_NOTSPECIAL. */
+  
+  /* Type used for indexes in the word tree need to be at least 4 bytes.  If int
+   * is 8 bytes we could use something smaller, but what? */
+*** ../vim-7.4.628/src/version.c	2015-02-10 19:26:58.918748560 +0100
+--- src/version.c	2015-02-10 20:01:27.475662030 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     629,
+  /**/
+
+-- 
+I noticed my daughter's Disney-net password on a sticky note:
+"MickeyMinnieGoofyPluto".  I asked her why it was so long.
+"Because they say it has to have at least four characters."
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

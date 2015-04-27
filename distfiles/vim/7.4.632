@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.632
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.632 (after 7.4.592)
+Problem:    7.4.592 breaks the netrw plugin, because the autocommands are
+	    skipped.
+Solution:   Roll back the change.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.631/src/ex_cmds.c	2015-01-27 13:33:18.737649629 +0100
+--- src/ex_cmds.c	2015-02-17 12:08:56.732209558 +0100
+***************
+*** 3530,3543 ****
+  		check_fname() == FAIL)
+  	    goto theend;
+  
+- #ifdef FEAT_QUICKFIX
+- 	/* ":e foobar" when already editing "foobar" will reload the file.
+- 	 * But when 'buftype' is "nofile" there is no file to load, so don't
+- 	 * do anything. */
+- 	if (curbuf->b_p_bt[0] == 'n' && curbuf->b_p_bt[2] == 'f')
+- 	    goto theend;
+- #endif
+- 
+  	oldbuf = (flags & ECMD_OLDBUF);
+      }
+  
+--- 3530,3535 ----
+*** ../vim-7.4.631/src/version.c	2015-02-17 11:11:42.244891247 +0100
+--- src/version.c	2015-02-17 12:09:58.079410571 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     632,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+240. You think Webster's Dictionary is a directory of WEB sites.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

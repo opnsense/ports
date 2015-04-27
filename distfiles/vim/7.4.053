@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.053
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.053
+Problem:    Test75 has a wrong header. (ZyX)
+Solution:   Fix the text and remove leading ".
+Files:      src/testdir/test75.in
+    
+
+*** ../vim-7.4.052/src/testdir/test75.in	2013-06-29 13:48:42.000000000 +0200
+--- src/testdir/test75.in	2013-10-19 20:28:53.000000000 +0200
+***************
+*** 1,4 ****
+! " Tests for functions.
+  
+  STARTTEST
+  :so small.vim
+--- 1,4 ----
+! Tests for maparg().
+  
+  STARTTEST
+  :so small.vim
+*** ../vim-7.4.052/src/version.c	2013-10-06 17:46:48.000000000 +0200
+--- src/version.c	2013-11-02 04:18:07.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     53,
+  /**/
+
+-- 
+Every exit is an entrance into something else.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

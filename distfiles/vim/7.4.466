@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.466
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.466 (after 7.4.460)
+Problem:    CTRL-W } does not open preview window. (Erik Falor)
+Solution:   Don't set g_do_tagpreview for CTRL-W }.
+Files:	    src/window.c
+
+
+*** ../vim-7.4.465/src/window.c	2014-09-24 13:26:39.954971642 +0200
+--- src/window.c	2014-10-09 10:30:37.712864442 +0200
+***************
+*** 485,491 ****
+  		else
+  		    postponed_split = -1;
+  #ifdef FEAT_QUICKFIX
+! 		g_do_tagpreview = 0;
+  #endif
+  
+  		/* Execute the command right here, required when "wincmd ]"
+--- 485,492 ----
+  		else
+  		    postponed_split = -1;
+  #ifdef FEAT_QUICKFIX
+! 		if (nchar != '}')
+! 		    g_do_tagpreview = 0;
+  #endif
+  
+  		/* Execute the command right here, required when "wincmd ]"
+*** ../vim-7.4.465/src/version.c	2014-10-07 10:38:34.737403070 +0200
+--- src/version.c	2014-10-09 10:44:22.848866244 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     466,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+239. You think "surfing" is something you do on dry land.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,50 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.688
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.688
+Problem:    When "$" is in 'cpo' the popup menu isn't undrawn correctly.
+	    (Issue 166)
+Solution:   When using the popup menu remove the "$".
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.687/src/edit.c	2015-03-24 17:49:39.603748681 +0100
+--- src/edit.c	2015-03-31 19:11:44.536104891 +0200
+***************
+*** 3008,3013 ****
+--- 3008,3017 ----
+  
+      if (compl_match_array != NULL)
+      {
++ 	/* In Replace mode when a $ is displayed at the end of the line only
++ 	 * part of the screen would be updated.  We do need to redraw here. */
++ 	dollar_vcol = -1;
++ 
+  	/* Compute the screen column of the start of the completed text.
+  	 * Use the cursor to get all wrapping and other settings right. */
+  	col = curwin->w_cursor.col;
+*** ../vim-7.4.687/src/version.c	2015-03-31 18:30:09.143370872 +0200
+--- src/version.c	2015-03-31 18:55:59.934413747 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     688,
+  /**/
+
+-- 
+Biting someone with your natural teeth is "simple assault," while biting
+someone with your false teeth is "aggravated assault."
+		[real standing law in Louisana, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

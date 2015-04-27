@@ -1,0 +1,114 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.258
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.258
+Problem:    Configure fails if $CC contains options.
+Solution:   Remove quotes around $CC. (Paul Barker)
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.257/src/configure.in	2014-04-10 20:00:03.708106386 +0200
+--- src/configure.in	2014-04-12 13:00:51.332428899 +0200
+***************
+*** 46,55 ****
+  fi
+  if test "$GCC" = yes; then
+    dnl method that should work for nearly all versions
+!   gccversion=`"$CC" -dumpversion`
+    if test "x$gccversion" = "x"; then
+      dnl old method; fall-back for when -dumpversion doesn't work
+!     gccversion=`"$CC" --version | sed -e '2,$d' -e 's/darwin.//' -e 's/^[[^0-9]]*\([[0-9]]\.[[0-9.]]*\).*$/\1/g'`
+    fi
+    dnl version 4.0.1 was reported to cause trouble on Macintosh by Marcin Dalecki
+    if test "$gccversion" = "3.0.1" -o "$gccversion" = "3.0.2" -o "$gccversion" = "4.0.1"; then
+--- 46,55 ----
+  fi
+  if test "$GCC" = yes; then
+    dnl method that should work for nearly all versions
+!   gccversion=`$CC -dumpversion`
+    if test "x$gccversion" = "x"; then
+      dnl old method; fall-back for when -dumpversion doesn't work
+!     gccversion=`$CC --version | sed -e '2,$d' -e 's/darwin.//' -e 's/^[[^0-9]]*\([[0-9]]\.[[0-9.]]*\).*$/\1/g'`
+    fi
+    dnl version 4.0.1 was reported to cause trouble on Macintosh by Marcin Dalecki
+    if test "$gccversion" = "3.0.1" -o "$gccversion" = "3.0.2" -o "$gccversion" = "4.0.1"; then
+***************
+*** 68,74 ****
+  dnl the version number of the clang in use.
+  dnl Note that this does not work to get the version of clang 3.1 or 3.2.
+  AC_MSG_CHECKING(for recent clang version)
+! CLANG_VERSION_STRING=`"$CC" --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\).*$/\1/p'`
+  if test x"$CLANG_VERSION_STRING" != x"" ; then
+    CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*/\1/p'`
+    CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[[0-9]][[0-9]]*\.\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*/\1/p'`
+--- 68,74 ----
+  dnl the version number of the clang in use.
+  dnl Note that this does not work to get the version of clang 3.1 or 3.2.
+  AC_MSG_CHECKING(for recent clang version)
+! CLANG_VERSION_STRING=`$CC --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*\).*$/\1/p'`
+  if test x"$CLANG_VERSION_STRING" != x"" ; then
+    CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*\.[[0-9]][[0-9]]*/\1/p'`
+    CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[[0-9]][[0-9]]*\.\([[0-9]][[0-9]]*\)\.[[0-9]][[0-9]]*/\1/p'`
+*** ../vim-7.4.257/src/auto/configure	2014-04-10 20:00:03.716106386 +0200
+--- src/auto/configure	2014-04-12 13:00:58.436428915 +0200
+***************
+*** 4074,4082 ****
+    test "$GCC" = yes && CFLAGS="-O2 -fno-strength-reduce -Wall"
+  fi
+  if test "$GCC" = yes; then
+!     gccversion=`"$CC" -dumpversion`
+    if test "x$gccversion" = "x"; then
+!         gccversion=`"$CC" --version | sed -e '2,$d' -e 's/darwin.//' -e 's/^[^0-9]*\([0-9]\.[0-9.]*\).*$/\1/g'`
+    fi
+      if test "$gccversion" = "3.0.1" -o "$gccversion" = "3.0.2" -o "$gccversion" = "4.0.1"; then
+      echo 'GCC [34].0.[12] has a bug in the optimizer, disabling "-O#"'
+--- 4074,4082 ----
+    test "$GCC" = yes && CFLAGS="-O2 -fno-strength-reduce -Wall"
+  fi
+  if test "$GCC" = yes; then
+!     gccversion=`$CC -dumpversion`
+    if test "x$gccversion" = "x"; then
+!         gccversion=`$CC --version | sed -e '2,$d' -e 's/darwin.//' -e 's/^[^0-9]*\([0-9]\.[0-9.]*\).*$/\1/g'`
+    fi
+      if test "$gccversion" = "3.0.1" -o "$gccversion" = "3.0.2" -o "$gccversion" = "4.0.1"; then
+      echo 'GCC [34].0.[12] has a bug in the optimizer, disabling "-O#"'
+***************
+*** 4091,4097 ****
+  
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for recent clang version" >&5
+  $as_echo_n "checking for recent clang version... " >&6; }
+! CLANG_VERSION_STRING=`"$CC" --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*$/\1/p'`
+  if test x"$CLANG_VERSION_STRING" != x"" ; then
+    CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*/\1/p'`
+    CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[0-9][0-9]*\.\([0-9][0-9]*\)\.[0-9][0-9]*/\1/p'`
+--- 4091,4097 ----
+  
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for recent clang version" >&5
+  $as_echo_n "checking for recent clang version... " >&6; }
+! CLANG_VERSION_STRING=`$CC --version 2>/dev/null | sed  -n -e 's/^.*clang.*\([0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*\).*$/\1/p'`
+  if test x"$CLANG_VERSION_STRING" != x"" ; then
+    CLANG_MAJOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*/\1/p'`
+    CLANG_MINOR=`echo "$CLANG_VERSION_STRING" | sed -n -e 's/[0-9][0-9]*\.\([0-9][0-9]*\)\.[0-9][0-9]*/\1/p'`
+*** ../vim-7.4.257/src/version.c	2014-04-12 12:26:25.856424387 +0200
+--- src/version.c	2014-04-12 13:05:09.372429463 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     258,
+  /**/
+
+-- 
+Never go to the toilet in a paperless office.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

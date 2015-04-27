@@ -1,0 +1,118 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.391
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.391
+Problem:    No 'cursorline' highlighting when the cursor is on a line with
+	    diff highlighting. (Benjamin Fritz)
+Solution:   Combine the highlight attributes. (Christian Brabandt)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.390/src/screen.c	2014-07-30 16:44:17.499534723 +0200
+--- src/screen.c	2014-08-06 13:14:02.163278457 +0200
+***************
+*** 3702,3708 ****
+--- 3702,3713 ----
+  		    char_attr = 0; /* was: hl_attr(HLF_AT); */
+  #ifdef FEAT_DIFF
+  		    if (diff_hlf != (hlf_T)0)
++ 		    {
+  			char_attr = hl_attr(diff_hlf);
++ 			if (wp->w_p_cul && lnum == wp->w_cursor.lnum)
++ 			    char_attr = hl_combine_attr(char_attr,
++ 							    hl_attr(HLF_CUL));
++ 		    }
+  #endif
+  		    p_extra = NULL;
+  		    c_extra = ' ';
+***************
+*** 3753,3759 ****
+  #ifdef FEAT_SYN_HL
+  		    /* combine 'showbreak' with 'cursorline' */
+  		    if (wp->w_p_cul && lnum == wp->w_cursor.lnum)
+! 			char_attr = hl_combine_attr(char_attr, HLF_CLN);
+  #endif
+  		}
+  # endif
+--- 3758,3765 ----
+  #ifdef FEAT_SYN_HL
+  		    /* combine 'showbreak' with 'cursorline' */
+  		    if (wp->w_p_cul && lnum == wp->w_cursor.lnum)
+! 			char_attr = hl_combine_attr(char_attr,
+! 							    hl_attr(HLF_CUL));
+  #endif
+  		}
+  # endif
+***************
+*** 3931,3936 ****
+--- 3937,3944 ----
+  							      && n_extra == 0)
+  		    diff_hlf = HLF_CHD;		/* changed line */
+  		line_attr = hl_attr(diff_hlf);
++ 		if (wp->w_p_cul && lnum == wp->w_cursor.lnum)
++ 		    line_attr = hl_combine_attr(line_attr, hl_attr(HLF_CUL));
+  	    }
+  #endif
+  
+***************
+*** 4729,4735 ****
+--- 4737,4748 ----
+  		    {
+  			diff_hlf = HLF_CHD;
+  			if (attr == 0 || char_attr != attr)
++ 			{
+  			    char_attr = hl_attr(diff_hlf);
++ 			    if (wp->w_p_cul && lnum == wp->w_cursor.lnum)
++ 				char_attr = hl_combine_attr(char_attr,
++ 							    hl_attr(HLF_CUL));
++ 			}
+  		    }
+  # endif
+  		}
+***************
+*** 10174,10182 ****
+  			break;
+  		    screen_puts_len(NameBuff, len, 0, col,
+  #if defined(FEAT_SYN_HL)
+! 					   hl_combine_attr(attr, hl_attr(HLF_T))
+  #else
+! 					   attr
+  #endif
+  					       );
+  		    col += len;
+--- 10187,10195 ----
+  			break;
+  		    screen_puts_len(NameBuff, len, 0, col,
+  #if defined(FEAT_SYN_HL)
+! 					 hl_combine_attr(attr, hl_attr(HLF_T))
+  #else
+! 					 attr
+  #endif
+  					       );
+  		    col += len;
+*** ../vim-7.4.390/src/version.c	2014-08-06 12:49:06.711289205 +0200
+--- src/version.c	2014-08-06 13:19:19.135276179 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     391,
+  /**/
+
+-- 
+It's totally unfair to suggest - as many have - that engineers are socially
+inept.  Engineers simply have different objectives when it comes to social
+interaction.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

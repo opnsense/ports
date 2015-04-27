@@ -1,0 +1,443 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.672
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.672
+Problem:    When completing a shell command, directories in the current
+	    directory are not listed.
+Solution:   When "." is not in $PATH also look in the current directory for
+	    directories.
+Files:	    src/ex_getln.c, src/vim.h, src/misc1.c, src/eval.c,
+	    src/os_amiga.c, src/os_msdos.c, src/os_unix.c, src/os_vms.c,
+	    src/proto/os_amiga.pro, src/proto/os_msdos.pro,
+	    src/proto/os_unix.pro, src/proto/os_win32.pro
+
+
+*** ../vim-7.4.671/src/ex_getln.c	2015-03-05 19:35:20.690114997 +0100
+--- src/ex_getln.c	2015-03-21 16:18:22.392988057 +0100
+***************
+*** 4885,4890 ****
+--- 4885,4891 ----
+      char_u	*s, *e;
+      int		flags = flagsarg;
+      int		ret;
++     int		did_curdir = FALSE;
+  
+      if (buf == NULL)
+  	return FAIL;
+***************
+*** 4896,4902 ****
+  	if (pat[i] == '\\' && pat[i + 1] == ' ')
+  	    STRMOVE(pat + i, pat + i + 1);
+  
+!     flags |= EW_FILE | EW_EXEC;
+  
+      /* For an absolute name we don't use $PATH. */
+      if (mch_isFullName(pat))
+--- 4897,4903 ----
+  	if (pat[i] == '\\' && pat[i + 1] == ' ')
+  	    STRMOVE(pat + i, pat + i + 1);
+  
+!     flags |= EW_FILE | EW_EXEC | EW_SHELLCMD;
+  
+      /* For an absolute name we don't use $PATH. */
+      if (mch_isFullName(pat))
+***************
+*** 4913,4923 ****
+  
+      /*
+       * Go over all directories in $PATH.  Expand matches in that directory and
+!      * collect them in "ga".
+       */
+      ga_init2(&ga, (int)sizeof(char *), 10);
+!     for (s = path; *s != NUL; s = e)
+      {
+  	if (*s == ' ')
+  	    ++s;	/* Skip space used for absolute path name. */
+  
+--- 4914,4935 ----
+  
+      /*
+       * Go over all directories in $PATH.  Expand matches in that directory and
+!      * collect them in "ga".  When "." is not in $PATH also expand for the
+!      * current directory, to find "subdir/cmd".
+       */
+      ga_init2(&ga, (int)sizeof(char *), 10);
+!     for (s = path; ; s = e)
+      {
++ 	if (*s == NUL)
++ 	{
++ 	    if (did_curdir)
++ 		break;
++ 	    /* Find directories in the current directory, path is empty. */
++ 	    did_curdir = TRUE;
++ 	}
++ 	else if (*s == '.')
++ 	    did_curdir = TRUE;
++ 
+  	if (*s == ' ')
+  	    ++s;	/* Skip space used for absolute path name. */
+  
+*** ../vim-7.4.671/src/vim.h	2015-03-05 19:35:20.686115042 +0100
+--- src/vim.h	2015-03-21 16:19:12.656419663 +0100
+***************
+*** 841,846 ****
+--- 841,848 ----
+  /* Note: mostly EW_NOTFOUND and EW_SILENT are mutually exclusive: EW_NOTFOUND
+   * is used when executing commands and EW_SILENT for interactive expanding. */
+  #define EW_ALLLINKS	0x1000	/* also links not pointing to existing file */
++ #define EW_SHELLCMD	0x2000	/* called from expand_shellcmd(), don't check
++ 				 * if executable is in $PATH */
+  
+  /* Flags for find_file_*() functions. */
+  #define FINDFILE_FILE	0	/* only files */
+*** ../vim-7.4.671/src/misc1.c	2015-03-20 19:06:01.982429823 +0100
+--- src/misc1.c	2015-03-21 17:03:42.218172476 +0100
+***************
+*** 10987,10994 ****
+      if ((isdir && !(flags & EW_DIR)) || (!isdir && !(flags & EW_FILE)))
+  	return;
+  
+!     /* If the file isn't executable, may not add it.  Do accept directories. */
+!     if (!isdir && (flags & EW_EXEC) && !mch_can_exe(f, NULL))
+  	return;
+  
+      /* Make room for another item in the file list. */
+--- 10987,10996 ----
+      if ((isdir && !(flags & EW_DIR)) || (!isdir && !(flags & EW_FILE)))
+  	return;
+  
+!     /* If the file isn't executable, may not add it.  Do accept directories.
+!      * When invoked from expand_shellcmd() do not use $PATH. */
+!     if (!isdir && (flags & EW_EXEC)
+! 			     && !mch_can_exe(f, NULL, !(flags & EW_SHELLCMD)))
+  	return;
+  
+      /* Make room for another item in the file list. */
+*** ../vim-7.4.671/src/eval.c	2015-03-20 17:36:38.618949214 +0100
+--- src/eval.c	2015-03-21 16:53:45.996929428 +0100
+***************
+*** 10271,10277 ****
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     rettv->vval.v_number = mch_can_exe(get_tv_string(&argvars[0]), NULL);
+  }
+  
+  /*
+--- 10271,10281 ----
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     char_u *name = get_tv_string(&argvars[0]);
+! 
+!     /* Check in $PATH and also check directly if there is a directory name. */
+!     rettv->vval.v_number = mch_can_exe(name, NULL, TRUE)
+! 		 || (gettail(name) != name && mch_can_exe(name, NULL, FALSE));
+  }
+  
+  /*
+***************
+*** 10284,10290 ****
+  {
+      char_u *p = NULL;
+  
+!     (void)mch_can_exe(get_tv_string(&argvars[0]), &p);
+      rettv->v_type = VAR_STRING;
+      rettv->vval.v_string = p;
+  }
+--- 10288,10294 ----
+  {
+      char_u *p = NULL;
+  
+!     (void)mch_can_exe(get_tv_string(&argvars[0]), &p, TRUE);
+      rettv->v_type = VAR_STRING;
+      rettv->vval.v_string = p;
+  }
+*** ../vim-7.4.671/src/os_amiga.c	2014-04-01 21:00:45.436733663 +0200
+--- src/os_amiga.c	2015-03-21 16:54:49.456210821 +0100
+***************
+*** 881,892 ****
+  
+  /*
+   * Return 1 if "name" can be executed, 0 if not.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(name, path)
+      char_u	*name;
+      char_u	**path;
+  {
+      /* TODO */
+      return -1;
+--- 881,894 ----
+  
+  /*
+   * Return 1 if "name" can be executed, 0 if not.
++  * If "use_path" is FALSE only check if "name" is executable.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(name, path, use_path)
+      char_u	*name;
+      char_u	**path;
++     int		use_path;
+  {
+      /* TODO */
+      return -1;
+*** ../vim-7.4.671/src/os_msdos.c	2014-04-01 21:00:45.436733663 +0200
+--- src/os_msdos.c	2015-03-21 16:55:03.048056750 +0100
+***************
+*** 2942,2956 ****
+  
+  /*
+   * Return 1 if "name" can be executed, 0 if not.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(name, path)
+      char_u	*name;
+      char_u	**path;
+  {
+      char	*p;
+  
+      p = searchpath(name);
+      if (p == NULL || mch_isdir(p))
+  	return FALSE;
+--- 2942,2965 ----
+  
+  /*
+   * Return 1 if "name" can be executed, 0 if not.
++  * If "use_path" is FALSE only check if "name" is executable.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(name, path, use_path)
+      char_u	*name;
+      char_u	**path;
++     int		use_path;
+  {
+      char	*p;
++     int		mode;
+  
++     if (!use_path)
++     {
++ 	/* TODO: proper check if file is executable. */
++ 	mode = vim_chmod(name);
++ 	return mode != -1 && (mode & FA_DIREC) == 0;
++     }
+      p = searchpath(name);
+      if (p == NULL || mch_isdir(p))
+  	return FALSE;
+*** ../vim-7.4.671/src/os_unix.c	2015-03-20 16:26:48.974173903 +0100
+--- src/os_unix.c	2015-03-21 17:07:43.083443005 +0100
+***************
+*** 3104,3125 ****
+  
+  /*
+   * Return 1 if "name" can be found in $PATH and executed, 0 if not.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(name, path)
+      char_u	*name;
+      char_u	**path;
+  {
+      char_u	*buf;
+      char_u	*p, *e;
+      int		retval;
+  
+!     /* If it's an absolute or relative path don't need to use $PATH. */
+!     if (mch_isFullName(name) || (name[0] == '.' && (name[1] == '/'
+! 				      || (name[1] == '.' && name[2] == '/'))))
+!     {
+! 	if (executable_file(name))
+  	{
+  	    if (path != NULL)
+  	    {
+--- 3104,3130 ----
+  
+  /*
+   * Return 1 if "name" can be found in $PATH and executed, 0 if not.
++  * If "use_path" is FALSE only check if "name" is executable.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(name, path, use_path)
+      char_u	*name;
+      char_u	**path;
++     int		use_path;
+  {
+      char_u	*buf;
+      char_u	*p, *e;
+      int		retval;
+  
+!     /* When "use_path" is false and if it's an absolute or relative path don't
+!      * need to use $PATH. */
+!     if (!use_path || mch_isFullName(name) || (name[0] == '.'
+! 		   && (name[1] == '/' || (name[1] == '.' && name[2] == '/'))))
+!     {
+! 	/* There must be a path separator, files in the current directory
+! 	 * can't be executed. */
+! 	if (gettail(name) != name && executable_file(name))
+  	{
+  	    if (path != NULL)
+  	    {
+***************
+*** 5730,5736 ****
+  		    continue;
+  
+  		/* Skip files that are not executable if we check for that. */
+! 		if (!dir && (flags & EW_EXEC) && !mch_can_exe(p, NULL))
+  		    continue;
+  
+  		if (--files_free == 0)
+--- 5735,5742 ----
+  		    continue;
+  
+  		/* Skip files that are not executable if we check for that. */
+! 		if (!dir && (flags & EW_EXEC)
+! 			     && !mch_can_exe(p, NULL, !(flags & EW_SHELLCMD)))
+  		    continue;
+  
+  		if (--files_free == 0)
+***************
+*** 6230,6236 ****
+  	    continue;
+  
+  	/* Skip files that are not executable if we check for that. */
+! 	if (!dir && (flags & EW_EXEC) && !mch_can_exe((*file)[i], NULL))
+  	    continue;
+  
+  	p = alloc((unsigned)(STRLEN((*file)[i]) + 1 + dir));
+--- 6236,6243 ----
+  	    continue;
+  
+  	/* Skip files that are not executable if we check for that. */
+! 	if (!dir && (flags & EW_EXEC)
+! 		    && !mch_can_exe((*file)[i], NULL, !(flags & EW_SHELLCMD)))
+  	    continue;
+  
+  	p = alloc((unsigned)(STRLEN((*file)[i]) + 1 + dir));
+*** ../vim-7.4.671/src/os_vms.c	2014-11-12 16:10:44.258085148 +0100
+--- src/os_vms.c	2015-03-21 16:43:28.283924831 +0100
+***************
+*** 483,489 ****
+  		continue;
+  
+  	    /* Skip files that are not executable if we check for that. */
+! 	    if (!dir && (flags & EW_EXEC) && !mch_can_exe(vms_fmatch[i], NULL))
+  		continue;
+  
+  	    /* allocate memory for pointers */
+--- 483,490 ----
+  		continue;
+  
+  	    /* Skip files that are not executable if we check for that. */
+! 	    if (!dir && (flags & EW_EXEC)
+! 		 && !mch_can_exe(vms_fmatch[i], NULL, !(flags & EW_SHELLCMD)))
+  		continue;
+  
+  	    /* allocate memory for pointers */
+*** ../vim-7.4.671/src/proto/os_amiga.pro	2014-04-01 21:00:45.436733663 +0200
+--- src/proto/os_amiga.pro	2015-03-21 16:50:36.223078295 +0100
+***************
+*** 26,32 ****
+  void mch_hide __ARGS((char_u *name));
+  int mch_isdir __ARGS((char_u *name));
+  int mch_mkdir __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path));
+  int mch_nodetype __ARGS((char_u *name));
+  void mch_early_init __ARGS((void));
+  void mch_exit __ARGS((int r));
+--- 26,32 ----
+  void mch_hide __ARGS((char_u *name));
+  int mch_isdir __ARGS((char_u *name));
+  int mch_mkdir __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path, int use_path));
+  int mch_nodetype __ARGS((char_u *name));
+  void mch_early_init __ARGS((void));
+  void mch_exit __ARGS((int r));
+*** ../vim-7.4.671/src/proto/os_msdos.pro	2014-04-01 21:00:45.436733663 +0200
+--- src/proto/os_msdos.pro	2015-03-21 16:50:39.659039386 +0100
+***************
+*** 38,44 ****
+  int mch_setperm __ARGS((char_u *name, long perm));
+  void mch_hide __ARGS((char_u *name));
+  int mch_isdir __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path));
+  int mch_nodetype __ARGS((char_u *name));
+  int mch_dirname __ARGS((char_u *buf, int len));
+  int mch_remove __ARGS((char_u *name));
+--- 38,44 ----
+  int mch_setperm __ARGS((char_u *name, long perm));
+  void mch_hide __ARGS((char_u *name));
+  int mch_isdir __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path, int use_path));
+  int mch_nodetype __ARGS((char_u *name));
+  int mch_dirname __ARGS((char_u *buf, int len));
+  int mch_remove __ARGS((char_u *name));
+*** ../vim-7.4.671/src/proto/os_unix.pro	2014-04-01 21:00:45.440733663 +0200
+--- src/proto/os_unix.pro	2015-03-21 16:50:44.534984171 +0100
+***************
+*** 42,48 ****
+  void mch_free_acl __ARGS((vim_acl_T aclent));
+  void mch_hide __ARGS((char_u *name));
+  int mch_isdir __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path));
+  int mch_nodetype __ARGS((char_u *name));
+  void mch_early_init __ARGS((void));
+  void mch_free_mem __ARGS((void));
+--- 42,48 ----
+  void mch_free_acl __ARGS((vim_acl_T aclent));
+  void mch_hide __ARGS((char_u *name));
+  int mch_isdir __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path, int use_path));
+  int mch_nodetype __ARGS((char_u *name));
+  void mch_early_init __ARGS((void));
+  void mch_free_mem __ARGS((void));
+*** ../vim-7.4.671/src/proto/os_win32.pro	2014-04-01 21:00:45.440733663 +0200
+--- src/proto/os_win32.pro	2015-03-21 16:50:48.558938605 +0100
+***************
+*** 26,32 ****
+  int mch_is_linked __ARGS((char_u *fname));
+  int win32_fileinfo __ARGS((char_u *fname, BY_HANDLE_FILE_INFORMATION *info));
+  int mch_writable __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path));
+  int mch_nodetype __ARGS((char_u *name));
+  vim_acl_T mch_get_acl __ARGS((char_u *fname));
+  void mch_set_acl __ARGS((char_u *fname, vim_acl_T acl));
+--- 26,32 ----
+  int mch_is_linked __ARGS((char_u *fname));
+  int win32_fileinfo __ARGS((char_u *fname, BY_HANDLE_FILE_INFORMATION *info));
+  int mch_writable __ARGS((char_u *name));
+! int mch_can_exe __ARGS((char_u *name, char_u **path, int use_path));
+  int mch_nodetype __ARGS((char_u *name));
+  vim_acl_T mch_get_acl __ARGS((char_u *fname));
+  void mch_set_acl __ARGS((char_u *fname, vim_acl_T acl));
+*** ../vim-7.4.671/src/version.c	2015-03-21 14:20:11.524982691 +0100
+--- src/version.c	2015-03-21 15:54:19.693311748 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     672,
+  /**/
+
+-- 
+ARTHUR:        A scratch?  Your arm's off!
+BLACK KNIGHT:  No, it isn't.
+ARTHUR:        Well, what's that then?
+BLACK KNIGHT:  I've had worse.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

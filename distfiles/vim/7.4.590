@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.590
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.590
+Problem:    Using ctrl_x_mode as if it contains flags.
+Solution:   Don't use AND with CTRL_X_OMNI. (Hirohito Higashi)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.589/src/edit.c	2014-11-12 18:59:17.602000656 +0100
+--- src/edit.c	2015-01-20 19:43:45.376745467 +0100
+***************
+*** 3394,3400 ****
+       * allow the word to be deleted, we won't match everything. */
+      if ((int)(p - line) - (int)compl_col < 0
+  	    || ((int)(p - line) - (int)compl_col == 0
+! 		&& (ctrl_x_mode & CTRL_X_OMNI) == 0))
+  	return K_BS;
+  
+      /* Deleted more than what was used to find matches or didn't finish
+--- 3394,3400 ----
+       * allow the word to be deleted, we won't match everything. */
+      if ((int)(p - line) - (int)compl_col < 0
+  	    || ((int)(p - line) - (int)compl_col == 0
+! 		&& ctrl_x_mode != CTRL_X_OMNI))
+  	return K_BS;
+  
+      /* Deleted more than what was used to find matches or didn't finish
+*** ../vim-7.4.589/src/version.c	2015-01-20 19:39:31.655524020 +0100
+--- src/version.c	2015-01-22 22:40:04.297786215 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     590,
+  /**/
+
+-- 
+Laughing helps. It's like jogging on the inside.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.369
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.369
+Problem:    Using freed memory when exiting while compiled with EXITFREE.
+Solution:   Set curwin to NULL and check for that. (Dominique Pelle)
+Files:	    src/buffer.c, src/window.c
+
+
+*** ../vim-7.4.368/src/buffer.c	2014-06-12 14:01:27.571769788 +0200
+--- src/buffer.c	2014-07-16 16:20:04.443621254 +0200
+***************
+*** 5702,5709 ****
+      signlist_T	*next;
+  
+      /* When deleting the last sign need to redraw the windows to remove the
+!      * sign column. */
+!     if (buf->b_signlist != NULL)
+      {
+  	redraw_buf_later(buf, NOT_VALID);
+  	changed_cline_bef_curs();
+--- 5702,5709 ----
+      signlist_T	*next;
+  
+      /* When deleting the last sign need to redraw the windows to remove the
+!      * sign column. Not when curwin is NULL (this means we're exiting). */
+!     if (buf->b_signlist != NULL && curwin != NULL)
+      {
+  	redraw_buf_later(buf, NOT_VALID);
+  	changed_cline_bef_curs();
+*** ../vim-7.4.368/src/window.c	2014-07-16 15:18:22.903696486 +0200
+--- src/window.c	2014-07-16 16:15:41.063626607 +0200
+***************
+*** 2489,2494 ****
+--- 2489,2498 ----
+  
+      while (firstwin != NULL)
+  	(void)win_free_mem(firstwin, &dummy, NULL);
++ 
++     /* No window should be used after this. Set curwin to NULL to crash
++      * instead of using freed memory. */
++     curwin = NULL;
+  }
+  #endif
+  
+*** ../vim-7.4.368/src/version.c	2014-07-16 15:18:22.907696486 +0200
+--- src/version.c	2014-07-16 16:18:36.827623035 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     369,
+  /**/
+
+-- 
+ARTHUR: If you do not open these doors, we will take this castle by force ...
+   [A bucket of slops land on ARTHUR.  He tries to retain his dignity.]
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

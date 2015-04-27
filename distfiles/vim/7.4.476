@@ -1,0 +1,88 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.476
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.476
+Problem:    MingW: compiling with "XPM=no" doesn't work.
+Solution:   Check for the "no" value. (KF Leong)  Also for Cygwin. (Ken
+	    Takata)
+Files:	    src/Make_ming.mak, src/Make_cyg.mak
+
+
+*** ../vim-7.4.475/src/Make_ming.mak	2014-08-10 16:31:47.376709213 +0200
+--- src/Make_ming.mak	2014-10-15 12:00:35.986008598 +0200
+***************
+*** 22,28 ****
+  #     http://www.matcode.com/mpress.htm
+  #
+  # Maintained by Ron Aaron <ronaharon@yahoo.com> et al.
+! # Updated 2012 Sep 5.
+  
+  #>>>>> choose options:
+  # set to yes for a debug build
+--- 22,28 ----
+  #     http://www.matcode.com/mpress.htm
+  #
+  # Maintained by Ron Aaron <ronaharon@yahoo.com> et al.
+! # Updated 2014 Oct 13.
+  
+  #>>>>> choose options:
+  # set to yes for a debug build
+***************
+*** 613,619 ****
+  USE_STDCPLUS = yes
+  endif
+  endif
+! ifdef XPM
+  # Only allow XPM for a GUI build.
+  ifeq (yes, $(GUI))
+  OBJ += $(OUTDIR)/xpm_w32.o
+--- 613,619 ----
+  USE_STDCPLUS = yes
+  endif
+  endif
+! ifneq ($(XPM),no)
+  # Only allow XPM for a GUI build.
+  ifeq (yes, $(GUI))
+  OBJ += $(OUTDIR)/xpm_w32.o
+*** ../vim-7.4.475/src/Make_cyg.mak	2014-08-10 16:31:47.372709213 +0200
+--- src/Make_cyg.mak	2014-10-15 12:06:01.170009309 +0200
+***************
+*** 485,491 ****
+  endif
+  
+  ##############################
+! ifdef XPM
+  # Only allow XPM for a GUI build.
+  DEFINES += -DFEAT_XPM_W32
+  INCLUDES += -I$(XPM)/include
+--- 485,491 ----
+  endif
+  
+  ##############################
+! ifneq ($(XPM),no)
+  # Only allow XPM for a GUI build.
+  DEFINES += -DFEAT_XPM_W32
+  INCLUDES += -I$(XPM)/include
+*** ../vim-7.4.475/src/version.c	2014-10-11 14:47:22.833275547 +0200
+--- src/version.c	2014-10-15 12:03:39.186008999 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     476,
+  /**/
+
+-- 
+Women are probably the main cause of free software starvation.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

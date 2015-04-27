@@ -1,0 +1,65 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.562
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.562
+Problem:    Segfault with wide screen and error in 'rulerformat'. (Ingo Karkat)
+Solution:   Check there is enough space. (Christian Brabandt)
+Files:	    src/buffer.c, src/screen.c
+
+
+*** ../vim-7.4.561/src/buffer.c	2014-11-19 16:38:01.500680103 +0100
+--- src/buffer.c	2015-01-07 13:24:22.663808167 +0100
+***************
+*** 4409,4414 ****
+--- 4409,4416 ----
+      long	above; /* number of lines above window */
+      long	below; /* number of lines below window */
+  
++     if (buflen < 3) /* need at least 3 chars for writing */
++ 	return;
+      above = wp->w_topline - 1;
+  #ifdef FEAT_DIFF
+      above += diff_check_fill(wp, wp->w_topline) - wp->w_topfill;
+*** ../vim-7.4.561/src/screen.c	2014-12-13 03:36:34.988435244 +0100
+--- src/screen.c	2015-01-07 13:28:04.069254599 +0100
+***************
+*** 10588,10594 ****
+  	    this_ru_col = (WITH_WIDTH(width) + 1) / 2;
+  	if (this_ru_col + o < WITH_WIDTH(width))
+  	{
+! 	    while (this_ru_col + o < WITH_WIDTH(width))
+  	    {
+  #ifdef FEAT_MBYTE
+  		if (has_mbyte)
+--- 10588,10595 ----
+  	    this_ru_col = (WITH_WIDTH(width) + 1) / 2;
+  	if (this_ru_col + o < WITH_WIDTH(width))
+  	{
+! 	    /* need at least 3 chars left for get_rel_pos() + NUL */
+! 	    while (this_ru_col + o < WITH_WIDTH(width) && RULER_BUF_LEN > i + 4)
+  	    {
+  #ifdef FEAT_MBYTE
+  		if (has_mbyte)
+*** ../vim-7.4.561/src/version.c	2015-01-07 13:15:40.609829496 +0100
+--- src/version.c	2015-01-07 13:22:59.184770984 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     562,
+  /**/
+
+-- 
+"I can't complain, but sometimes I still do."   (Joe Walsh)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

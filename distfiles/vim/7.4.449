@@ -1,0 +1,114 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.449
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.449
+Problem:    Can't easily close the help window. (Chris Gaal)
+Solution:   Add ":helpclose". (Christian Brabandt)
+Files:	    runtime/doc/helphelp.txt, runtime/doc/index.txt, src/ex_cmds.c,
+	    src/ex_cmds.h, src/proto/ex_cmds.pro
+
+
+*** ../vim-7.4.448/runtime/doc/helphelp.txt	2013-08-10 13:24:54.000000000 +0200
+--- runtime/doc/helphelp.txt	2014-09-19 19:38:11.110445851 +0200
+***************
+*** 96,101 ****
+--- 96,104 ----
+  			find a tag in a file with the same language as the
+  			current file.  See |help-translated|.
+  
++ 						 	*:helpc* *:helpclose*
++ :helpc[lose]            Close one help window.
++ 
+  							*:helpg* *:helpgrep*
+  :helpg[rep] {pattern}[@xx]
+  			Search all help text files and make a list of lines
+*** ../vim-7.4.448/runtime/doc/index.txt	2013-08-10 13:24:56.000000000 +0200
+--- runtime/doc/index.txt	2014-09-19 19:38:23.694445878 +0200
+***************
+*** 1244,1249 ****
+--- 1244,1250 ----
+  |:gvim|		:gv[im]		start the GUI
+  |:hardcopy|	:ha[rdcopy]	send text to the printer
+  |:help|		:h[elp]		open a help window
++ |:helpclose|	:helpc[lose]	close one help window
+  |:helpfind|	:helpf[ind]	dialog to open a help window
+  |:helpgrep|	:helpg[rep]	like ":grep" but searches help files
+  |:helptags|	:helpt[ags]	generate help tags for a directory
+*** ../vim-7.4.448/src/ex_cmds.c	2014-08-29 09:02:23.886399246 +0200
+--- src/ex_cmds.c	2014-09-19 19:33:43.350445266 +0200
+***************
+*** 5899,5904 ****
+--- 5899,5922 ----
+      vim_free(tag);
+  }
+  
++ /*
++  * ":helpclose": Close the help window
++  */
++     void
++ ex_helpclose(eap)
++     exarg_T	*eap UNUSED;
++ {
++     win_T *win;
++ 
++     FOR_ALL_WINDOWS(win)
++     {
++ 	if (win->w_buffer->b_help)
++ 	{
++ 	    win_close(win, FALSE);
++ 	    break;
++ 	}
++     }
++ }
+  
+  #if defined(FEAT_MULTI_LANG) || defined(PROTO)
+  /*
+*** ../vim-7.4.448/src/ex_cmds.h	2014-03-23 16:03:56.163311626 +0100
+--- src/ex_cmds.h	2014-09-19 19:21:09.134443618 +0200
+***************
+*** 417,422 ****
+--- 417,424 ----
+  			BANG|FILES|EDITCMD|ARGOPT|TRLBAR|CMDWIN),
+  EX(CMD_help,		"help",		ex_help,
+  			BANG|EXTRA|NOTRLCOM),
++ EX(CMD_helpclose,	"helpclose",	ex_helpclose,
++ 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_helpfind,	"helpfind",	ex_helpfind,
+  			EXTRA|NOTRLCOM),
+  EX(CMD_helpgrep,	"helpgrep",	ex_helpgrep,
+*** ../vim-7.4.448/src/proto/ex_cmds.pro	2013-08-10 13:37:09.000000000 +0200
+--- src/proto/ex_cmds.pro	2014-09-19 19:21:09.134443618 +0200
+***************
+*** 44,49 ****
+--- 44,50 ----
+  void free_old_sub __ARGS((void));
+  int prepare_tagpreview __ARGS((int undo_sync));
+  void ex_help __ARGS((exarg_T *eap));
++ void ex_helpclose __ARGS((exarg_T *eap));
+  char_u *check_help_lang __ARGS((char_u *arg));
+  int help_heuristic __ARGS((char_u *matched_string, int offset, int wrong_case));
+  int find_help_tags __ARGS((char_u *arg, int *num_matches, char_u ***matches, int keep_lang));
+*** ../vim-7.4.448/src/version.c	2014-09-19 16:13:48.358419065 +0200
+--- src/version.c	2014-09-19 18:06:13.718433799 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     449,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+165. You have a web page burned into your glasses
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

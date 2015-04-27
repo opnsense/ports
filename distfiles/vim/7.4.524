@@ -1,0 +1,96 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.524
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.524
+Problem:    When using ":ownsyntax" spell checking is messed up. (Issue 78)
+Solution:   Use the window-local option values. (Christian Brabandt)
+Files:	    src/option.c, src/syntax.c
+
+
+*** ../vim-7.4.523/src/option.c	2014-11-05 17:44:47.676471691 +0100
+--- src/option.c	2014-11-19 19:29:49.351843116 +0100
+***************
+*** 6706,6720 ****
+  #ifdef FEAT_SPELL
+      /* When 'spelllang' or 'spellfile' is set and there is a window for this
+       * buffer in which 'spell' is set load the wordlists. */
+!     else if (varp == &(curbuf->b_s.b_p_spl) || varp == &(curbuf->b_s.b_p_spf))
+      {
+  	win_T	    *wp;
+  	int	    l;
+  
+! 	if (varp == &(curbuf->b_s.b_p_spf))
+  	{
+! 	    l = (int)STRLEN(curbuf->b_s.b_p_spf);
+! 	    if (l > 0 && (l < 4 || STRCMP(curbuf->b_s.b_p_spf + l - 4,
+  								".add") != 0))
+  		errmsg = e_invarg;
+  	}
+--- 6706,6721 ----
+  #ifdef FEAT_SPELL
+      /* When 'spelllang' or 'spellfile' is set and there is a window for this
+       * buffer in which 'spell' is set load the wordlists. */
+!     else if (varp == &(curwin->w_s->b_p_spl)
+! 	    || varp == &(curwin->w_s->b_p_spf))
+      {
+  	win_T	    *wp;
+  	int	    l;
+  
+! 	if (varp == &(curwin->w_s->b_p_spf))
+  	{
+! 	    l = (int)STRLEN(curwin->w_s->b_p_spf);
+! 	    if (l > 0 && (l < 4 || STRCMP(curwin->w_s->b_p_spf + l - 4,
+  								".add") != 0))
+  		errmsg = e_invarg;
+  	}
+*** ../vim-7.4.523/src/syntax.c	2014-11-19 16:38:01.512679964 +0100
+--- src/syntax.c	2014-11-19 19:24:56.431160659 +0100
+***************
+*** 6304,6314 ****
+  	curwin->w_s = (synblock_T *)alloc(sizeof(synblock_T));
+  	memset(curwin->w_s, 0, sizeof(synblock_T));
+  #ifdef FEAT_SPELL
+  	curwin->w_p_spell = FALSE;	/* No spell checking */
+  	clear_string_option(&curwin->w_s->b_p_spc);
+  	clear_string_option(&curwin->w_s->b_p_spf);
+- 	vim_regfree(curwin->w_s->b_cap_prog);
+- 	curwin->w_s->b_cap_prog = NULL;
+  	clear_string_option(&curwin->w_s->b_p_spl);
+  #endif
+      }
+--- 6304,6313 ----
+  	curwin->w_s = (synblock_T *)alloc(sizeof(synblock_T));
+  	memset(curwin->w_s, 0, sizeof(synblock_T));
+  #ifdef FEAT_SPELL
++ 	/* TODO: keep the spell checking as it was. */
+  	curwin->w_p_spell = FALSE;	/* No spell checking */
+  	clear_string_option(&curwin->w_s->b_p_spc);
+  	clear_string_option(&curwin->w_s->b_p_spf);
+  	clear_string_option(&curwin->w_s->b_p_spl);
+  #endif
+      }
+*** ../vim-7.4.523/src/version.c	2014-11-19 18:48:41.515814987 +0100
+--- src/version.c	2014-11-19 19:26:00.158438943 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     524,
+  /**/
+
+-- 
+A special law prohibits unmarried women from parachuting on Sunday or she
+shall risk arrest, fine, and/or jailing.
+		[real standing law in Florida, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

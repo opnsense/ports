@@ -1,0 +1,107 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.432
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.432
+Problem:    When the startup code expands command line arguments, setting
+	    'encoding' will not properly convert the arguments.
+Solution:   Call get_cmd_argsW() early in main(). (Yasuhiro Matsumoto)
+Files:	    src/os_win32.c, src/main.c, src/os_mswin.c
+
+
+*** ../vim-7.4.431/src/os_win32.c	2014-08-29 17:45:28.066467800 +0200
+--- src/os_win32.c	2014-09-09 12:14:15.768500395 +0200
+***************
+*** 6461,6466 ****
+--- 6461,6467 ----
+      int		argc = 0;
+      int		i;
+  
++     free_cmd_argsW();
+      ArglistW = CommandLineToArgvW(GetCommandLineW(), &nArgsW);
+      if (ArglistW != NULL)
+      {
+***************
+*** 6493,6499 ****
+--- 6494,6504 ----
+      global_argc = argc;
+      global_argv = argv;
+      if (argc > 0)
++     {
++ 	if (used_file_indexes != NULL)
++ 	    free(used_file_indexes);
+  	used_file_indexes = malloc(argc * sizeof(int));
++     }
+  
+      if (argvp != NULL)
+  	*argvp = argv;
+*** ../vim-7.4.431/src/main.c	2014-08-10 13:34:59.056785459 +0200
+--- src/main.c	2014-09-09 12:16:09.016500642 +0200
+***************
+*** 178,183 ****
+--- 178,191 ----
+       */
+      mch_early_init();
+  
++ #if defined(WIN32) && defined(FEAT_MBYTE)
++     /*
++      * MingW expands command line arguments, which confuses our code to
++      * convert when 'encoding' changes.  Get the unexpanded arguments.
++      */
++     argc = get_cmd_argsW(&argv);
++ #endif
++ 
+      /* Many variables are in "params" so that we can pass them to invoked
+       * functions without a lot of arguments.  "argc" and "argv" are also
+       * copied, so that they can be changed. */
+***************
+*** 1496,1501 ****
+--- 1504,1512 ----
+      if (garbage_collect_at_exit)
+  	garbage_collect();
+  #endif
++ #if defined(WIN32) && defined(FEAT_MBYTE)
++     free_cmd_argsW();
++ #endif
+  
+      mch_exit(exitval);
+  }
+*** ../vim-7.4.431/src/os_mswin.c	2014-03-19 12:37:18.537826062 +0100
+--- src/os_mswin.c	2014-09-09 12:17:25.696500810 +0200
+***************
+*** 277,286 ****
+      AnsiUpperBuff(toupper_tab, 256);
+      AnsiLowerBuff(tolower_tab, 256);
+  #endif
+- 
+- #if defined(FEAT_MBYTE) && !defined(FEAT_GUI)
+-     (void)get_cmd_argsW(NULL);
+- #endif
+  }
+  
+  
+--- 277,282 ----
+*** ../vim-7.4.431/src/version.c	2014-09-09 12:21:57.716501404 +0200
+--- src/version.c	2014-09-09 12:24:38.440501755 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     432,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+106. When told to "go to your room" you inform your parents that you
+     can't...because you were kicked out and banned.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

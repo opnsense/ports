@@ -1,0 +1,49 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.517
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.517
+Problem:    With a wrapping line the cursor may not end up in the right place.
+	    (Nazri Ramliy)
+Solution:   Adjust n_extra for a Tab that wraps. (Christian Brabandt)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.516/src/screen.c	2014-10-10 15:28:41.985092234 +0200
+--- src/screen.c	2014-11-19 12:53:37.351818719 +0100
+***************
+*** 4456,4461 ****
+--- 4456,4465 ----
+  		    /* TODO: is passing p for start of the line OK? */
+  		    n_extra = win_lbr_chartabsize(wp, line, p, (colnr_T)vcol,
+  								    NULL) - 1;
++ 		    if (c == TAB && n_extra + col > W_WIDTH(wp))
++ 			n_extra = (int)wp->w_buffer->b_p_ts
++ 				       - vcol % (int)wp->w_buffer->b_p_ts - 1;
++ 
+  		    c_extra = ' ';
+  		    if (vim_iswhite(c))
+  		    {
+*** ../vim-7.4.516/src/version.c	2014-11-12 20:09:02.879529412 +0100
+--- src/version.c	2014-11-19 12:56:19.421955598 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     517,
+  /**/
+
+-- 
+Permission is granted to read this message out aloud on Kings Cross Road,
+London, under the condition that the orator is properly dressed.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

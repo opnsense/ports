@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.051
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.051
+Problem:    Syntax highlighting a Yaml file causes a crash. (Blake Preston)
+Solution:   Copy the pim structure before calling addstate() to avoid it
+	    becoming invalide when the state list is reallocated.
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.050/src/regexp_nfa.c	2013-09-25 18:16:34.000000000 +0200
+--- src/regexp_nfa.c	2013-10-06 15:44:31.000000000 +0200
+***************
+*** 6458,6463 ****
+--- 6458,6464 ----
+  	    if (add_state != NULL)
+  	    {
+  		nfa_pim_T *pim;
++ 		nfa_pim_T pim_copy;
+  
+  		if (t->pim.result == NFA_PIM_UNUSED)
+  		    pim = NULL;
+***************
+*** 6531,6536 ****
+--- 6532,6546 ----
+  		    pim = NULL;
+  		}
+  
++ 		/* If "pim" points into l->t it will become invalid when
++ 		 * adding the state causes the list to be reallocated.  Make a
++ 		 * local copy to avoid that. */
++ 		if (pim == &t->pim)
++ 		{
++ 		    copy_pim(&pim_copy, pim);
++ 		    pim = &pim_copy;
++ 		}
++ 
+  		if (add_here)
+  		    addstate_here(thislist, add_state, &t->subs, pim, &listidx);
+  		else
+*** ../vim-7.4.050/src/version.c	2013-10-02 21:54:57.000000000 +0200
+--- src/version.c	2013-10-06 15:21:16.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     51,
+  /**/
+
+-- 
+GUARD #2:  It could be carried by an African swallow!
+GUARD #1:  Oh, yeah, an African swallow maybe, but not a European swallow,
+           that's my point.
+GUARD #2:  Oh, yeah, I agree with that...
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

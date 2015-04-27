@@ -1,0 +1,178 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.314
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.314
+Problem:    Completion messages can get in the way of a plugin.
+Solution:   Add 'c' flag to 'shortmess' option. (Shougo Matsu)
+Files:	    runtime/doc/options.txt, src/edit.c, src/option.h, src/screen.c
+
+
+*** ../vim-7.4.313/runtime/doc/options.txt	2014-03-12 18:55:52.096906804 +0100
+--- runtime/doc/options.txt	2014-05-28 20:55:14.640305211 +0200
+***************
+*** 6252,6257 ****
+--- 6254,6262 ----
+  	  A	don't give the "ATTENTION" message when an existing swap file
+  		is found.
+  	  I	don't give the intro message when starting Vim |:intro|.
++ 	  c	don't give |ins-completion-menu| messages.  For example,
++ 		"-- XXX completion (YYY)", "match 1 of 2", "The only match",
++ 		"Pattern not found", "Back at original", etc.
+  
+  	This gives you the opportunity to avoid that a change between buffers
+  	requires you to hit <Enter>, but still gives as useful a message as
+*** ../vim-7.4.313/src/edit.c	2014-04-29 14:44:31.515875819 +0200
+--- src/edit.c	2014-05-28 21:33:57.588325545 +0200
+***************
+*** 3854,3860 ****
+  	    ins_compl_free();
+  	    compl_started = FALSE;
+  	    compl_matches = 0;
+! 	    msg_clr_cmdline();		/* necessary for "noshowmode" */
+  	    ctrl_x_mode = 0;
+  	    compl_enter_selects = FALSE;
+  	    if (edit_submode != NULL)
+--- 3854,3861 ----
+  	    ins_compl_free();
+  	    compl_started = FALSE;
+  	    compl_matches = 0;
+! 	    if (!shortmess(SHM_COMPLETIONMENU))
+! 		msg_clr_cmdline();	/* necessary for "noshowmode" */
+  	    ctrl_x_mode = 0;
+  	    compl_enter_selects = FALSE;
+  	    if (edit_submode != NULL)
+***************
+*** 5285,5291 ****
+  	    {
+  		ctrl_x_mode = 0;
+  		edit_submode = NULL;
+! 		msg_clr_cmdline();
+  		return FAIL;
+  	    }
+  
+--- 5286,5293 ----
+  	    {
+  		ctrl_x_mode = 0;
+  		edit_submode = NULL;
+! 		if (!shortmess(SHM_COMPLETIONMENU))
+! 		    msg_clr_cmdline();
+  		return FAIL;
+  	    }
+  
+***************
+*** 5544,5558 ****
+  
+      /* Show a message about what (completion) mode we're in. */
+      showmode();
+!     if (edit_submode_extra != NULL)
+      {
+! 	if (!p_smd)
+! 	    msg_attr(edit_submode_extra,
+! 		    edit_submode_highl < HLF_COUNT
+! 		    ? hl_attr(edit_submode_highl) : 0);
+      }
+-     else
+- 	msg_clr_cmdline();	/* necessary for "noshowmode" */
+  
+      /* Show the popup menu, unless we got interrupted. */
+      if (!compl_interrupted)
+--- 5546,5563 ----
+  
+      /* Show a message about what (completion) mode we're in. */
+      showmode();
+!     if (!shortmess(SHM_COMPLETIONMENU))
+      {
+! 	if (edit_submode_extra != NULL)
+! 	{
+! 	    if (!p_smd)
+! 		msg_attr(edit_submode_extra,
+! 			edit_submode_highl < HLF_COUNT
+! 			? hl_attr(edit_submode_highl) : 0);
+! 	}
+! 	else
+! 	    msg_clr_cmdline();	/* necessary for "noshowmode" */
+      }
+  
+      /* Show the popup menu, unless we got interrupted. */
+      if (!compl_interrupted)
+*** ../vim-7.4.313/src/option.h	2014-03-23 15:12:29.943264337 +0100
+--- src/option.h	2014-05-28 21:34:25.244325787 +0200
+***************
+*** 212,218 ****
+  #define SHM_SEARCH	's'		/* no search hit bottom messages */
+  #define SHM_ATTENTION	'A'		/* no ATTENTION messages */
+  #define SHM_INTRO	'I'		/* intro messages */
+! #define SHM_ALL		"rmfixlnwaWtToOsAI" /* all possible flags for 'shm' */
+  
+  /* characters for p_go: */
+  #define GO_ASEL		'a'		/* autoselect */
+--- 212,219 ----
+  #define SHM_SEARCH	's'		/* no search hit bottom messages */
+  #define SHM_ATTENTION	'A'		/* no ATTENTION messages */
+  #define SHM_INTRO	'I'		/* intro messages */
+! #define SHM_COMPLETIONMENU  'c'		/* completion menu messages */
+! #define SHM_ALL		"rmfixlnwaWtToOsAIc" /* all possible flags for 'shm' */
+  
+  /* characters for p_go: */
+  #define GO_ASEL		'a'		/* autoselect */
+*** ../vim-7.4.313/src/screen.c	2014-05-22 16:05:16.338382204 +0200
+--- src/screen.c	2014-05-28 20:53:20.488304211 +0200
+***************
+*** 42,48 ****
+   *
+   * The part of the buffer that is displayed in a window is set with:
+   * - w_topline (first buffer line in window)
+!  * - w_topfill (filler line above the first line)
+   * - w_leftcol (leftmost window cell in window),
+   * - w_skipcol (skipped window cells of first line)
+   *
+--- 42,48 ----
+   *
+   * The part of the buffer that is displayed in a window is set with:
+   * - w_topline (first buffer line in window)
+!  * - w_topfill (filler lines above the first line)
+   * - w_leftcol (leftmost window cell in window),
+   * - w_skipcol (skipped window cells of first line)
+   *
+***************
+*** 9683,9689 ****
+  	    }
+  #endif
+  #ifdef FEAT_INS_EXPAND
+! 	    if (edit_submode != NULL)		/* CTRL-X in Insert mode */
+  	    {
+  		/* These messages can get long, avoid a wrap in a narrow
+  		 * window.  Prefer showing edit_submode_extra. */
+--- 9683,9690 ----
+  	    }
+  #endif
+  #ifdef FEAT_INS_EXPAND
+! 	    /* CTRL-X in Insert mode */
+! 	    if (edit_submode != NULL && !shortmess(SHM_COMPLETIONMENU))
+  	    {
+  		/* These messages can get long, avoid a wrap in a narrow
+  		 * window.  Prefer showing edit_submode_extra. */
+*** ../vim-7.4.313/src/version.c	2014-05-28 20:31:37.504292805 +0200
+--- src/version.c	2014-05-28 20:54:27.664304800 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     314,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+227. You sleep next to your monitor.  Or on top of it.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

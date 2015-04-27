@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.194
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.194
+Problem:    Can't build for Android.
+Solution:   Add #if condition. (Fredrik Fornwall)
+Files:	    src/mbyte.c
+
+
+*** ../vim-7.4.193/src/mbyte.c	2014-01-14 13:26:17.000000000 +0100
+--- src/mbyte.c	2014-03-03 22:41:30.527101306 +0100
+***************
+*** 708,714 ****
+  	     * API */
+  	    n = IsDBCSLeadByteEx(enc_dbcs, (WINBYTE)i) ? 2 : 1;
+  #else
+! # if defined(MACOS) || defined(__amigaos4__)
+  	    /*
+  	     * if mblen() is not available, character which MSB is turned on
+  	     * are treated as leading byte character. (note : This assumption
+--- 708,714 ----
+  	     * API */
+  	    n = IsDBCSLeadByteEx(enc_dbcs, (WINBYTE)i) ? 2 : 1;
+  #else
+! # if defined(MACOS) || defined(__amigaos4__) || defined(__ANDROID__)
+  	    /*
+  	     * if mblen() is not available, character which MSB is turned on
+  	     * are treated as leading byte character. (note : This assumption
+*** ../vim-7.4.193/src/version.c	2014-03-08 16:13:39.123462070 +0100
+--- src/version.c	2014-03-12 14:53:45.148684209 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     194,
+  /**/
+
+-- 
+A programmer's wife asks him: "Please run to the store and pick up a loaf of
+bread.  If they have eggs, get a dozen".  The programmer comes home with 12
+loafs of bread.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

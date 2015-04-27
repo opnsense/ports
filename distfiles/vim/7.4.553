@@ -1,0 +1,315 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.553
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.553
+Problem:    Various small issues.
+Solution:   Fix those issues.
+Files:	    src/ex_cmds.h, src/gui.h, src/message.c, src/testdir/test39.in,
+	    src/proto/eval.pro, src/proto/misc1.pro, src/proto/ops.pro,
+	    src/proto/screen.pro, src/proto/window.pro. src/os_unix.c,
+	    src/Make_vms.mms, src/proto/os_vms.pro, src/INSTALL
+
+
+*** ../vim-7.4.552/src/ex_cmds.h	2014-12-08 04:16:26.257702950 +0100
+--- src/ex_cmds.h	2014-12-17 12:41:18.536370067 +0100
+***************
+*** 63,69 ****
+  #define ADDR_WINDOWS		1
+  #define ADDR_ARGUMENTS		2
+  #define ADDR_LOADED_BUFFERS	3
+! #define ADDR_BUFFERS	4
+  #define ADDR_TABS		5
+  
+  #ifndef DO_DECLARE_EXCMD
+--- 63,69 ----
+  #define ADDR_WINDOWS		1
+  #define ADDR_ARGUMENTS		2
+  #define ADDR_LOADED_BUFFERS	3
+! #define ADDR_BUFFERS		4
+  #define ADDR_TABS		5
+  
+  #ifndef DO_DECLARE_EXCMD
+*** ../vim-7.4.552/src/gui.h	2013-06-17 22:22:49.000000000 +0200
+--- src/gui.h	2014-11-20 22:14:04.635717128 +0100
+***************
+*** 41,47 ****
+  # include <Events.h>
+  # include <Menus.h>
+  # if !(defined (TARGET_API_MAC_CARBON) && (TARGET_API_MAC_CARBON))
+! #   include <Windows.h>
+  # endif
+  # include <Controls.h>
+  /*# include <TextEdit.h>*/
+--- 41,47 ----
+  # include <Events.h>
+  # include <Menus.h>
+  # if !(defined (TARGET_API_MAC_CARBON) && (TARGET_API_MAC_CARBON))
+! #  include <Windows.h>
+  # endif
+  # include <Controls.h>
+  /*# include <TextEdit.h>*/
+*** ../vim-7.4.552/src/message.c	2014-02-23 22:52:33.368764715 +0100
+--- src/message.c	2014-10-31 13:43:15.075230535 +0100
+***************
+*** 4030,4040 ****
+   * pointer for resulting string argument if "str_m" is zero (as per ISO C99).
+   *
+   * The return value is the number of characters which would be generated
+!  * for the given input, excluding the trailing null. If this value
+   * is greater or equal to "str_m", not all characters from the result
+   * have been stored in str, output bytes beyond the ("str_m"-1) -th character
+   * are discarded. If "str_m" is greater than zero it is guaranteed
+!  * the resulting string will be null-terminated.
+   */
+  
+  /*
+--- 4030,4040 ----
+   * pointer for resulting string argument if "str_m" is zero (as per ISO C99).
+   *
+   * The return value is the number of characters which would be generated
+!  * for the given input, excluding the trailing NUL. If this value
+   * is greater or equal to "str_m", not all characters from the result
+   * have been stored in str, output bytes beyond the ("str_m"-1) -th character
+   * are discarded. If "str_m" is greater than zero it is guaranteed
+!  * the resulting string will be NUL-terminated.
+   */
+  
+  /*
+*** ../vim-7.4.552/src/testdir/test39.in	2014-08-16 18:13:00.082044726 +0200
+--- src/testdir/test39.in	2014-08-16 18:22:56.418023098 +0200
+***************
+*** 85,90 ****
+--- 85,94 ----
+  cccc
+  dddd
+  
++ yaaa
++ ¿¿¿
++ bbb
++ 
+  A23
+  4567
+  
+*** ../vim-7.4.552/src/proto/eval.pro	2014-05-07 17:31:32.473182497 +0200
+--- src/proto/eval.pro	2014-11-12 15:34:08.671587958 +0100
+***************
+*** 59,66 ****
+  int list_append_dict __ARGS((list_T *list, dict_T *dict));
+  int list_append_string __ARGS((list_T *l, char_u *str, int len));
+  int list_insert_tv __ARGS((list_T *l, typval_T *tv, listitem_T *item));
+- void vimlist_remove __ARGS((list_T *l, listitem_T *item, listitem_T *item2));
+  void list_insert __ARGS((list_T *l, listitem_T *ni, listitem_T *item));
+  int garbage_collect __ARGS((void));
+  void set_ref_in_ht __ARGS((hashtab_T *ht, int copyID));
+  void set_ref_in_list __ARGS((list_T *l, int copyID));
+--- 59,66 ----
+  int list_append_dict __ARGS((list_T *list, dict_T *dict));
+  int list_append_string __ARGS((list_T *l, char_u *str, int len));
+  int list_insert_tv __ARGS((list_T *l, typval_T *tv, listitem_T *item));
+  void list_insert __ARGS((list_T *l, listitem_T *ni, listitem_T *item));
++ void vimlist_remove __ARGS((list_T *l, listitem_T *item, listitem_T *item2));
+  int garbage_collect __ARGS((void));
+  void set_ref_in_ht __ARGS((hashtab_T *ht, int copyID));
+  void set_ref_in_list __ARGS((list_T *l, int copyID));
+*** ../vim-7.4.552/src/proto/misc1.pro	2014-06-25 14:39:35.110348584 +0200
+--- src/proto/misc1.pro	2014-11-12 15:34:16.043501712 +0100
+***************
+*** 5,11 ****
+  int get_indent_str __ARGS((char_u *ptr, int ts, int list));
+  int set_indent __ARGS((int size, int flags));
+  int get_number_indent __ARGS((linenr_T lnum));
+! int get_breakindent_win __ARGS((win_T *wp, char_u *ptr));
+  int open_line __ARGS((int dir, int flags, int second_line_indent));
+  int get_leader_len __ARGS((char_u *line, char_u **flags, int backward, int include_space));
+  int get_last_leader_offset __ARGS((char_u *line, char_u **flags));
+--- 5,11 ----
+  int get_indent_str __ARGS((char_u *ptr, int ts, int list));
+  int set_indent __ARGS((int size, int flags));
+  int get_number_indent __ARGS((linenr_T lnum));
+! int get_breakindent_win __ARGS((win_T *wp, char_u *line));
+  int open_line __ARGS((int dir, int flags, int second_line_indent));
+  int get_leader_len __ARGS((char_u *line, char_u **flags, int backward, int include_space));
+  int get_last_leader_offset __ARGS((char_u *line, char_u **flags));
+*** ../vim-7.4.552/src/proto/ops.pro	2014-04-29 12:15:22.860032651 +0200
+--- src/proto/ops.pro	2014-11-12 15:34:17.567483882 +0100
+***************
+*** 55,62 ****
+  char_u get_reg_type __ARGS((int regname, long *reglen));
+  char_u *get_reg_contents __ARGS((int regname, int flags));
+  void write_reg_contents __ARGS((int name, char_u *str, int maxlen, int must_append));
+- void write_reg_contents_ex __ARGS((int name, char_u *str, int maxlen, int must_append, int yank_type, long block_len));
+  void write_reg_contents_lst __ARGS((int name, char_u **strings, int maxlen, int must_append, int yank_type, long block_len));
+  void clear_oparg __ARGS((oparg_T *oap));
+  void cursor_pos_info __ARGS((void));
+  /* vim: set ft=c : */
+--- 55,62 ----
+  char_u get_reg_type __ARGS((int regname, long *reglen));
+  char_u *get_reg_contents __ARGS((int regname, int flags));
+  void write_reg_contents __ARGS((int name, char_u *str, int maxlen, int must_append));
+  void write_reg_contents_lst __ARGS((int name, char_u **strings, int maxlen, int must_append, int yank_type, long block_len));
++ void write_reg_contents_ex __ARGS((int name, char_u *str, int maxlen, int must_append, int yank_type, long block_len));
+  void clear_oparg __ARGS((oparg_T *oap));
+  void cursor_pos_info __ARGS((void));
+  /* vim: set ft=c : */
+*** ../vim-7.4.552/src/proto/screen.pro	2013-08-10 13:37:25.000000000 +0200
+--- src/proto/screen.pro	2014-11-12 15:34:19.455461795 +0100
+***************
+*** 26,32 ****
+  void screen_putchar __ARGS((int c, int row, int col, int attr));
+  void screen_getbytes __ARGS((int row, int col, char_u *bytes, int *attrp));
+  void screen_puts __ARGS((char_u *text, int row, int col, int attr));
+! void screen_puts_len __ARGS((char_u *text, int len, int row, int col, int attr));
+  void screen_stop_highlight __ARGS((void));
+  void reset_cterm_colors __ARGS((void));
+  void screen_draw_rectangle __ARGS((int row, int col, int height, int width, int invert));
+--- 26,32 ----
+  void screen_putchar __ARGS((int c, int row, int col, int attr));
+  void screen_getbytes __ARGS((int row, int col, char_u *bytes, int *attrp));
+  void screen_puts __ARGS((char_u *text, int row, int col, int attr));
+! void screen_puts_len __ARGS((char_u *text, int textlen, int row, int col, int attr));
+  void screen_stop_highlight __ARGS((void));
+  void reset_cterm_colors __ARGS((void));
+  void screen_draw_rectangle __ARGS((int row, int col, int height, int width, int invert));
+*** ../vim-7.4.552/src/os_unix.c	2014-11-19 18:48:41.515814987 +0100
+--- src/os_unix.c	2014-11-23 13:47:50.484703720 +0100
+***************
+*** 1609,1615 ****
+  /*
+   * If the X11 connection was lost try to restore it.
+   * Helps when the X11 server was stopped and restarted while Vim was inactive
+!  * (e.g. though tmux).
+   */
+      static void
+  may_restore_clipboard()
+--- 1609,1615 ----
+  /*
+   * If the X11 connection was lost try to restore it.
+   * Helps when the X11 server was stopped and restarted while Vim was inactive
+!  * (e.g. through tmux).
+   */
+      static void
+  may_restore_clipboard()
+*** ../vim-7.4.552/src/Make_vms.mms	2014-03-12 16:51:35.048792541 +0100
+--- src/Make_vms.mms	2014-08-10 16:27:11.040711199 +0200
+***************
+*** 2,8 ****
+  # Makefile for Vim on OpenVMS
+  #
+  # Maintainer:   Zoltan Arpadffy <arpadffy@polarhome.com>
+! # Last change:  2014 Feb 24
+  #
+  # This has script been tested on VMS 6.2 to 8.2 on DEC Alpha, VAX and IA64
+  # with MMS and MMK
+--- 2,8 ----
+  # Makefile for Vim on OpenVMS
+  #
+  # Maintainer:   Zoltan Arpadffy <arpadffy@polarhome.com>
+! # Last change:  2014 Aug 10
+  #
+  # This has script been tested on VMS 6.2 to 8.2 on DEC Alpha, VAX and IA64
+  # with MMS and MMK
+***************
+*** 309,315 ****
+  ALL_LIBS = $(LIBS) $(GUI_LIB_DIR) $(GUI_LIB) \
+  	   $(PERL_LIB) $(PYTHON_LIB) $(TCL_LIB) $(SNIFF_LIB) $(RUBY_LIB)
+  
+! SRC =	blowfish.c buffer.c charset.c diff.c digraph.c edit.c eval.c ex_cmds.c ex_cmds2.c \
+  	ex_docmd.c ex_eval.c ex_getln.c if_xcmdsrv.c fileio.c fold.c getchar.c \
+  	hardcopy.c hashtab.c main.c mark.c menu.c mbyte.c memfile.c memline.c message.c misc1.c \
+  	misc2.c move.c normal.c ops.c option.c popupmnu.c quickfix.c regexp.c search.c sha256.c\
+--- 309,315 ----
+  ALL_LIBS = $(LIBS) $(GUI_LIB_DIR) $(GUI_LIB) \
+  	   $(PERL_LIB) $(PYTHON_LIB) $(TCL_LIB) $(SNIFF_LIB) $(RUBY_LIB)
+  
+! SRC =	blowfish.c buffer.c charset.c crypt.c, crypt_zip.c diff.c digraph.c edit.c eval.c ex_cmds.c ex_cmds2.c \
+  	ex_docmd.c ex_eval.c ex_getln.c if_xcmdsrv.c fileio.c fold.c getchar.c \
+  	hardcopy.c hashtab.c main.c mark.c menu.c mbyte.c memfile.c memline.c message.c misc1.c \
+  	misc2.c move.c normal.c ops.c option.c popupmnu.c quickfix.c regexp.c search.c sha256.c\
+***************
+*** 318,324 ****
+  	$(GUI_SRC) $(PERL_SRC) $(PYTHON_SRC) $(TCL_SRC) $(SNIFF_SRC) \
+  	$(RUBY_SRC) $(HANGULIN_SRC) $(MZSCH_SRC)
+  
+! OBJ =	blowfish.obj buffer.obj charset.obj diff.obj digraph.obj edit.obj eval.obj \
+  	ex_cmds.obj ex_cmds2.obj ex_docmd.obj ex_eval.obj ex_getln.obj \
+  	if_xcmdsrv.obj fileio.obj fold.obj getchar.obj hardcopy.obj hashtab.obj main.obj mark.obj \
+  	menu.obj memfile.obj memline.obj message.obj misc1.obj misc2.obj \
+--- 318,324 ----
+  	$(GUI_SRC) $(PERL_SRC) $(PYTHON_SRC) $(TCL_SRC) $(SNIFF_SRC) \
+  	$(RUBY_SRC) $(HANGULIN_SRC) $(MZSCH_SRC)
+  
+! OBJ =	blowfish.obj buffer.obj charset.obj crypt.obj, crypt_zip.obj diff.obj digraph.obj edit.obj eval.obj \
+  	ex_cmds.obj ex_cmds2.obj ex_docmd.obj ex_eval.obj ex_getln.obj \
+  	if_xcmdsrv.obj fileio.obj fold.obj getchar.obj hardcopy.obj hashtab.obj main.obj mark.obj \
+  	menu.obj memfile.obj memline.obj message.obj misc1.obj misc2.obj \
+*** ../vim-7.4.552/src/proto/os_vms.pro	2014-03-12 16:51:35.060792541 +0100
+--- src/proto/os_vms.pro	2014-11-12 15:34:29.219347574 +0100
+***************
+*** 5,15 ****
+  char_u *mch_getenv __ARGS((char_u *lognam));
+  int mch_setenv __ARGS((char *var, char *value, int x));
+  int vms_sys __ARGS((char *cmd, char *out, char *inp));
+  int vms_sys_status __ARGS((int status));
+  int vms_read __ARGS((char *inbuf, size_t nbytes));
+- char *vms_tolower __ARGS((char *name));
+  int mch_expand_wildcards __ARGS((int num_pat, char_u **pat, int *num_file, char_u ***file, int flags));
+  int mch_expandpath __ARGS((garray_T *gap, char_u *path, int flags));
+  void *vms_fixfilename __ARGS((void *instring));
+  void vms_remove_version __ARGS((void *fname));
+  /* vim: set ft=c : */
+--- 5,16 ----
+  char_u *mch_getenv __ARGS((char_u *lognam));
+  int mch_setenv __ARGS((char *var, char *value, int x));
+  int vms_sys __ARGS((char *cmd, char *out, char *inp));
++ char *vms_tolower __ARGS((char *name));
+  int vms_sys_status __ARGS((int status));
+  int vms_read __ARGS((char *inbuf, size_t nbytes));
+  int mch_expand_wildcards __ARGS((int num_pat, char_u **pat, int *num_file, char_u ***file, int flags));
+  int mch_expandpath __ARGS((garray_T *gap, char_u *path, int flags));
+  void *vms_fixfilename __ARGS((void *instring));
+  void vms_remove_version __ARGS((void *fname));
++ int RealWaitForChar __ARGS((int fd, long msec, int *check_for_gpm));
+  /* vim: set ft=c : */
+*** ../vim-7.4.552/src/INSTALL	2011-05-19 12:36:17.000000000 +0200
+--- src/INSTALL	2014-07-06 14:30:41.411368351 +0200
+***************
+*** 316,322 ****
+  the `configure' script.  `configure' automatically checks for the
+  source code in the directory that `configure' is in and in `..'.
+  
+!    If you have to use a `make' that does not supports the `VPATH'
+  variable, you have to compile the package for one architecture at a time
+  in the source code directory.  After you have installed the package for
+  one architecture, use `make distclean' before reconfiguring for another
+--- 316,322 ----
+  the `configure' script.  `configure' automatically checks for the
+  source code in the directory that `configure' is in and in `..'.
+  
+!    If you have to use a `make' that does not support the `VPATH'
+  variable, you have to compile the package for one architecture at a time
+  in the source code directory.  After you have installed the package for
+  one architecture, use `make distclean' before reconfiguring for another
+*** ../vim-7.4.552/src/version.c	2014-12-14 00:43:50.335749455 +0100
+--- src/version.c	2014-12-17 12:39:41.933558755 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     553,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+1. You actually wore a blue ribbon to protest the Communications Decency Act.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

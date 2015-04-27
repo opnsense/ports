@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.162
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.162
+Problem:    Running tests in shadow dir doesn't work.
+Solution:   Add testdir/sautest to the shadow target. (James McCoy)
+Files:	    src/Makefile
+
+
+*** ../vim-7.4.161/src/Makefile	2013-11-07 03:25:51.000000000 +0100
+--- src/Makefile	2014-02-05 12:34:00.214024436 +0100
+***************
+*** 2381,2386 ****
+--- 2381,2387 ----
+  				 ../../testdir/*.in \
+  				 ../../testdir/*.vim \
+  				 ../../testdir/python* \
++ 				 ../../testdir/sautest \
+  				 ../../testdir/test83-tags? \
+  				 ../../testdir/*.ok .
+  
+*** ../vim-7.4.161/src/version.c	2014-01-31 14:53:59.715533645 +0100
+--- src/version.c	2014-02-05 12:34:19.766024736 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     162,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+263. You have more e-mail addresses than shorts.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,118 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.332
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.332
+Problem:    GTK: When a sign icon doesn't fit exactly there can be ugly gaps.
+Solution:   Scale the sign to fit when the aspect ratio is not too far off.
+	    (Christian Brabandt)
+Files:	    src/gui_gtk_x11.c
+
+
+*** ../vim-7.4.331/src/gui_gtk_x11.c	2014-05-13 20:19:53.573808877 +0200
+--- src/gui_gtk_x11.c	2014-06-17 18:44:39.900755807 +0200
+***************
+*** 5965,5991 ****
+  	 * Decide whether we need to scale.  Allow one pixel of border
+  	 * width to be cut off, in order to avoid excessive scaling for
+  	 * tiny differences in font size.
+  	 */
+  	need_scale = (width > SIGN_WIDTH + 2
+! 		      || height > SIGN_HEIGHT + 2
+  		      || (width < 3 * SIGN_WIDTH / 4
+  			  && height < 3 * SIGN_HEIGHT / 4));
+  	if (need_scale)
+  	{
+! 	    double aspect;
+  
+  	    /* Keep the original aspect ratio */
+  	    aspect = (double)height / (double)width;
+  	    width  = (double)SIGN_WIDTH * SIGN_ASPECT / aspect;
+  	    width  = MIN(width, SIGN_WIDTH);
+! 	    height = (double)width * aspect;
+  
+! 	    /* This doesn't seem to be worth caching, and doing so
+! 	     * would complicate the code quite a bit. */
+! 	    sign = gdk_pixbuf_scale_simple(sign, width, height,
+! 					   GDK_INTERP_BILINEAR);
+! 	    if (sign == NULL)
+! 		return; /* out of memory */
+  	}
+  
+  	/* The origin is the upper-left corner of the pixmap.  Therefore
+--- 5965,6012 ----
+  	 * Decide whether we need to scale.  Allow one pixel of border
+  	 * width to be cut off, in order to avoid excessive scaling for
+  	 * tiny differences in font size.
++ 	 * Do scale to fit the height to avoid gaps because of linespacing.
+  	 */
+  	need_scale = (width > SIGN_WIDTH + 2
+! 		      || height != SIGN_HEIGHT
+  		      || (width < 3 * SIGN_WIDTH / 4
+  			  && height < 3 * SIGN_HEIGHT / 4));
+  	if (need_scale)
+  	{
+! 	    double  aspect;
+! 	    int	    w = width;
+! 	    int	    h = height;
+  
+  	    /* Keep the original aspect ratio */
+  	    aspect = (double)height / (double)width;
+  	    width  = (double)SIGN_WIDTH * SIGN_ASPECT / aspect;
+  	    width  = MIN(width, SIGN_WIDTH);
+! 	    if (((double)(MAX(height, SIGN_HEIGHT)) /
+! 		 (double)(MIN(height, SIGN_HEIGHT))) < 1.15)
+! 	    {
+! 		/* Change the aspect ratio by at most 15% to fill the
+! 		 * available space completly. */
+! 		height = (double)SIGN_HEIGHT * SIGN_ASPECT / aspect;
+! 		height = MIN(height, SIGN_HEIGHT);
+! 	    }
+! 	    else
+! 		height = (double)width * aspect;
+  
+! 	    if (w == width && h == height)
+! 	    {
+! 		/* no change in dimensions; don't decrease reference counter
+! 		 * (below) */
+! 		need_scale = FALSE;
+! 	    }
+! 	    else
+! 	    {
+! 		/* This doesn't seem to be worth caching, and doing so would
+! 		 * complicate the code quite a bit. */
+! 		sign = gdk_pixbuf_scale_simple(sign, width, height,
+! 							 GDK_INTERP_BILINEAR);
+! 		if (sign == NULL)
+! 		    return; /* out of memory */
+! 	    }
+  	}
+  
+  	/* The origin is the upper-left corner of the pixmap.  Therefore
+*** ../vim-7.4.331/src/version.c	2014-06-17 18:16:08.420691059 +0200
+--- src/version.c	2014-06-17 18:46:49.784760721 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     332,
+  /**/
+
+-- 
+       "To whoever finds this note -
+       I have been imprisoned by my father who wishes me to marry
+       against my will.  Please please please please come and rescue me.
+       I am in the tall tower of Swamp Castle."
+   SIR LAUNCELOT's eyes light up with holy inspiration.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

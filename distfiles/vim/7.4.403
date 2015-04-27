@@ -1,0 +1,135 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.403
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.403
+Problem:    Valgrind reports errors when running test 72. (Dominique Pelle)
+Solution:   Reset the local 'cryptmethod' option before storing the seed.
+	    Set the seed in the memfile even when there is no block0 yet.
+Files:	    src/fileio.c, src/option.c, src/memline.c
+
+
+*** ../vim-7.4.402/src/fileio.c	2014-08-10 13:34:59.056785459 +0200
+--- src/fileio.c	2014-08-13 21:27:51.452857400 +0200
+***************
+*** 2944,2949 ****
+--- 2944,2950 ----
+  	 * Avoids accidentally overwriting the file with garbage. */
+  	curbuf->b_p_ro = TRUE;
+  
++ 	/* Set the cryptmethod local to the buffer. */
+  	crypt_set_cm_option(curbuf, method);
+  	if (cryptkey == NULL && !*did_ask)
+  	{
+*** ../vim-7.4.402/src/option.c	2014-08-10 13:34:59.060785459 +0200
+--- src/option.c	2014-08-13 21:48:49.924876683 +0200
+***************
+*** 6163,6168 ****
+--- 6163,6176 ----
+  		p_cm = vim_strsave((char_u *)"zip");
+  		new_value_alloced = TRUE;
+  	    }
++ 	    /* When using ":set cm=name" the local value is going to be empty.
++ 	     * Do that here, otherwise the crypt functions will still use the
++ 	     * local value. */
++ 	    if ((opt_flags & (OPT_LOCAL | OPT_GLOBAL)) == 0)
++ 	    {
++ 		free_string_option(curbuf->b_p_cm);
++ 		curbuf->b_p_cm = empty_option;
++ 	    }
+  
+  	    /* Need to update the swapfile when the effective method changed.
+  	     * Set "s" to the effective old value, "p" to the effective new
+*** ../vim-7.4.402/src/memline.c	2014-08-10 13:34:59.060785459 +0200
+--- src/memline.c	2014-08-13 21:52:40.076880210 +0200
+***************
+*** 235,240 ****
+--- 235,241 ----
+  } upd_block0_T;
+  
+  #ifdef FEAT_CRYPT
++ static void ml_set_mfp_crypt __ARGS((buf_T *buf));
+  static void ml_set_b0_crypt __ARGS((buf_T *buf, ZERO_BL *b0p));
+  #endif
+  static int ml_check_b0_id __ARGS((ZERO_BL *b0p));
+***************
+*** 433,438 ****
+--- 434,458 ----
+  
+  #if defined(FEAT_CRYPT) || defined(PROTO)
+  /*
++  * Prepare encryption for "buf" for the current key and method.
++  */
++     static void
++ ml_set_mfp_crypt(buf)
++     buf_T	*buf;
++ {
++     if (*buf->b_p_key != NUL)
++     {
++ 	int method_nr = crypt_get_method_nr(buf);
++ 
++ 	if (method_nr > CRYPT_M_ZIP)
++ 	{
++ 	    /* Generate a seed and store it in the memfile. */
++ 	    sha2_seed(buf->b_ml.ml_mfp->mf_seed, MF_SEED_LEN, NULL, 0);
++ 	}
++     }
++ }
++ 
++ /*
+   * Prepare encryption for "buf" with block 0 "b0p".
+   */
+      static void
+***************
+*** 915,922 ****
+      ZERO_BL	*b0p;
+  
+      mfp = buf->b_ml.ml_mfp;
+!     if (mfp == NULL || (hp = mf_get(mfp, (blocknr_T)0, 1)) == NULL)
+  	return;
+      b0p = (ZERO_BL *)(hp->bh_data);
+      if (ml_check_b0_id(b0p) == FAIL)
+  	EMSG(_("E304: ml_upd_block0(): Didn't get block 0??"));
+--- 935,953 ----
+      ZERO_BL	*b0p;
+  
+      mfp = buf->b_ml.ml_mfp;
+!     if (mfp == NULL)
+! 	return;
+!     hp = mf_get(mfp, (blocknr_T)0, 1);
+!     if (hp == NULL)
+!     {
+! #ifdef FEAT_CRYPT
+! 	/* Possibly update the seed in the memfile before there is a block0. */
+! 	if (what == UB_CRYPT)
+! 	    ml_set_mfp_crypt(buf);
+! #endif
+  	return;
++     }
++ 
+      b0p = (ZERO_BL *)(hp->bh_data);
+      if (ml_check_b0_id(b0p) == FAIL)
+  	EMSG(_("E304: ml_upd_block0(): Didn't get block 0??"));
+*** ../vim-7.4.402/src/version.c	2014-08-12 20:14:28.795371197 +0200
+--- src/version.c	2014-08-13 17:23:02.964632329 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     403,
+  /**/
+
+-- 
+How To Keep A Healthy Level Of Insanity:
+9. As often as possible, skip rather than walk.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

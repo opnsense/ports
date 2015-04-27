@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.357
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.357
+Problem:    After completion some characters are not redrawn.
+Solution:   Clear the command line unconditionally. (Jacob Niehus)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.356/src/edit.c	2014-06-25 14:39:35.102348584 +0200
+--- src/edit.c	2014-07-09 13:22:22.747075922 +0200
+***************
+*** 3854,3861 ****
+  	    ins_compl_free();
+  	    compl_started = FALSE;
+  	    compl_matches = 0;
+! 	    if (!shortmess(SHM_COMPLETIONMENU))
+! 		msg_clr_cmdline();	/* necessary for "noshowmode" */
+  	    ctrl_x_mode = 0;
+  	    compl_enter_selects = FALSE;
+  	    if (edit_submode != NULL)
+--- 3854,3860 ----
+  	    ins_compl_free();
+  	    compl_started = FALSE;
+  	    compl_matches = 0;
+! 	    msg_clr_cmdline();	/* necessary for "noshowmode" */
+  	    ctrl_x_mode = 0;
+  	    compl_enter_selects = FALSE;
+  	    if (edit_submode != NULL)
+*** ../vim-7.4.356/src/version.c	2014-07-09 13:43:18.399058649 +0200
+--- src/version.c	2014-07-09 13:58:35.483046034 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     357,
+  /**/
+
+-- 
+Why isn't there mouse-flavored cat food?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,99 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.523
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.523
+Problem:    When the X11 server is stopped and restarted, while Vim is kept in
+	    the background, copy/paste no longer works. (Issue 203)
+Solution:   Setup the clipboard again. (Christian Brabandt)
+Files:	    src/os_unix.c
+
+
+*** ../vim-7.4.522/src/os_unix.c	2014-11-19 16:38:01.520679869 +0100
+--- src/os_unix.c	2014-11-19 18:34:45.505245180 +0100
+***************
+*** 1586,1597 ****
+--- 1586,1600 ----
+   * An X IO Error handler, used to catch terminal errors.
+   */
+  static int x_IOerror_handler __ARGS((Display *dpy));
++ static void may_restore_clipboard __ARGS((void));
++ static int xterm_dpy_was_reset = FALSE;
+  
+      static int
+  x_IOerror_handler(dpy)
+      Display *dpy UNUSED;
+  {
+      xterm_dpy = NULL;
++     xterm_dpy_was_reset = TRUE;
+      x11_window = 0;
+      x11_display = NULL;
+      xterm_Shell = (Widget)0;
+***************
+*** 1602,1607 ****
+--- 1605,1626 ----
+      return 0;  /* avoid the compiler complains about missing return value */
+  # endif
+  }
++ 
++ /*
++  * If the X11 connection was lost try to restore it.
++  * Helps when the X11 server was stopped and restarted while Vim was inactive
++  * (e.g. though tmux).
++  */
++     static void
++ may_restore_clipboard()
++ {
++     if (xterm_dpy_was_reset)
++     {
++ 	xterm_dpy_was_reset = FALSE;
++ 	setup_term_clip();
++ 	get_x11_title(FALSE);
++     }
++ }
+  #endif
+  
+  /*
+***************
+*** 5274,5279 ****
+--- 5293,5299 ----
+  	}
+  # endif
+  # ifdef FEAT_XCLIPBOARD
++ 	may_restore_clipboard();
+  	if (xterm_Shell != (Widget)0)
+  	{
+  	    xterm_idx = nfd;
+***************
+*** 5426,5431 ****
+--- 5446,5452 ----
+  	}
+  # endif
+  # ifdef FEAT_XCLIPBOARD
++ 	may_restore_clipboard();
+  	if (xterm_Shell != (Widget)0)
+  	{
+  	    FD_SET(ConnectionNumber(xterm_dpy), &rfds);
+*** ../vim-7.4.522/src/version.c	2014-11-19 18:03:24.202559721 +0100
+--- src/version.c	2014-11-19 18:48:06.140215792 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     523,
+  /**/
+
+-- 
+There is no right or wrong, there is only your personal opinion.
+                 (Bram Moolenaar)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

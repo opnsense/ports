@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.472
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.472
+Problem:    The "precedes" entry in 'listchar' will be drawn when 'showbreak
+	    is set and list is not.
+Solution:   Only draw this character when 'list' is on. (Christian Brabandt)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.471/src/screen.c	2014-10-09 13:22:41.804886993 +0200
+--- src/screen.c	2014-10-10 15:22:41.589091447 +0200
+***************
+*** 4901,4906 ****
+--- 4901,4907 ----
+  	 * special character (via 'listchars' option "precedes:<char>".
+  	 */
+  	if (lcs_prec_todo != NUL
++ 		&& wp->w_p_list
+  		&& (wp->w_p_wrap ? wp->w_skipcol > 0 : wp->w_leftcol > 0)
+  #ifdef FEAT_DIFF
+  		&& filler_todo <= 0
+*** ../vim-7.4.471/src/version.c	2014-10-09 17:05:51.948916242 +0200
+--- src/version.c	2014-10-10 15:22:06.405091370 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     472,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+251. You've never seen your closest friends who usually live WAY too far away.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

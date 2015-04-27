@@ -1,0 +1,141 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.532
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.532
+Problem:    When using 'incsearch' "2/pattern/e" highlights the first match.
+Solution:   Move the code to set extra_col inside the loop for count.  (Ozaki
+	    Kiichi)
+Files:	    src/search.c
+
+
+*** ../vim-7.4.531/src/search.c	2014-06-17 13:50:06.148087184 +0200
+--- src/search.c	2014-11-27 17:21:49.579489220 +0100
+***************
+*** 552,557 ****
+--- 552,558 ----
+      int		match_ok;
+      long	nmatched;
+      int		submatch = 0;
++     int		first_match = TRUE;
+      int		save_called_emsg = called_emsg;
+  #ifdef FEAT_SEARCH_EXTRA
+      int		break_loop = FALSE;
+***************
+*** 565,597 ****
+  	return FAIL;
+      }
+  
+-     /* When not accepting a match at the start position set "extra_col" to a
+-      * non-zero value.  Don't do that when starting at MAXCOL, since MAXCOL +
+-      * 1 is zero. */
+-     if ((options & SEARCH_START) || pos->col == MAXCOL)
+- 	extra_col = 0;
+- #ifdef FEAT_MBYTE
+-     /* Watch out for the "col" being MAXCOL - 2, used in a closed fold. */
+-     else if (dir != BACKWARD && has_mbyte
+- 		    && pos->lnum >= 1 && pos->lnum <= buf->b_ml.ml_line_count
+- 						     && pos->col < MAXCOL - 2)
+-     {
+- 	ptr = ml_get_buf(buf, pos->lnum, FALSE) + pos->col;
+- 	if (*ptr == NUL)
+- 	    extra_col = 1;
+- 	else
+- 	    extra_col = (*mb_ptr2len)(ptr);
+-     }
+- #endif
+-     else
+- 	extra_col = 1;
+- 
+      /*
+       * find the string
+       */
+      called_emsg = FALSE;
+      do	/* loop for count */
+      {
+  	start_pos = *pos;	/* remember start pos for detecting no match */
+  	found = 0;		/* default: not found */
+  	at_first_line = TRUE;	/* default: start in first line */
+--- 566,598 ----
+  	return FAIL;
+      }
+  
+      /*
+       * find the string
+       */
+      called_emsg = FALSE;
+      do	/* loop for count */
+      {
++ 	/* When not accepting a match at the start position set "extra_col" to
++ 	 * a non-zero value.  Don't do that when starting at MAXCOL, since
++ 	 * MAXCOL + 1 is zero. */
++ 	if ((options & SEARCH_START) || pos->col == MAXCOL)
++ 	    extra_col = 0;
++ #ifdef FEAT_MBYTE
++ 	/* Watch out for the "col" being MAXCOL - 2, used in a closed fold. */
++ 	else if (dir != BACKWARD && has_mbyte
++ 		     && pos->lnum >= 1 && pos->lnum <= buf->b_ml.ml_line_count
++ 						     && pos->col < MAXCOL - 2)
++ 	{
++ 	    ptr = ml_get_buf(buf, pos->lnum, FALSE) + pos->col;
++ 	    if (*ptr == NUL)
++ 		extra_col = 1;
++ 	    else
++ 		extra_col = (*mb_ptr2len)(ptr);
++ 	}
++ #endif
++ 	else
++ 	    extra_col = 1;
++ 
+  	start_pos = *pos;	/* remember start pos for detecting no match */
+  	found = 0;		/* default: not found */
+  	at_first_line = TRUE;	/* default: start in first line */
+***************
+*** 677,683 ****
+  			 * otherwise "/$" will get stuck on end of line.
+  			 */
+  			while (matchpos.lnum == 0
+! 				&& ((options & SEARCH_END)
+  				    ?  (nmatched == 1
+  					&& (int)endpos.col - 1
+  					     < (int)start_pos.col + extra_col)
+--- 678,684 ----
+  			 * otherwise "/$" will get stuck on end of line.
+  			 */
+  			while (matchpos.lnum == 0
+! 				&& ((options & SEARCH_END) && first_match
+  				    ?  (nmatched == 1
+  					&& (int)endpos.col - 1
+  					     < (int)start_pos.col + extra_col)
+***************
+*** 908,913 ****
+--- 909,915 ----
+  		    pos->coladd = 0;
+  #endif
+  		    found = 1;
++ 		    first_match = FALSE;
+  
+  		    /* Set variables used for 'incsearch' highlighting. */
+  		    search_match_lines = endpos.lnum - matchpos.lnum;
+*** ../vim-7.4.531/src/version.c	2014-11-27 16:38:07.652261234 +0100
+--- src/version.c	2014-11-27 17:29:13.762616760 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     532,
+  /**/
+
+-- 
+The most powerful force in the universe is gossip.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

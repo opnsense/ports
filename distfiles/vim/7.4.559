@@ -1,0 +1,126 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.559
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.559
+Problem:    Appending a block in the middle of a tab does not work correctly
+	    when virtualedit is set.
+Solution:   Decrement spaces and count, don't reset them. (James McCoy)
+Files:	    src/ops.c, src/testdir/test39.in, src/testdir/test39.ok
+
+
+*** ../vim-7.4.558/src/ops.c	2014-11-19 17:35:35.081446695 +0100
+--- src/ops.c	2014-12-17 18:28:39.034973177 +0100
+***************
+*** 612,631 ****
+  #ifdef FEAT_MBYTE
+  	if (has_mbyte && spaces > 0)
+  	{
+  	    /* Avoid starting halfway a multi-byte character. */
+  	    if (b_insert)
+  	    {
+! 		int off = (*mb_head_off)(oldp, oldp + offset + spaces);
+! 		spaces -= off;
+! 		count -= off;
+  	    }
+  	    else
+  	    {
+! 		int off = (*mb_off_next)(oldp, oldp + offset);
+  		offset += off;
+- 		spaces = 0;
+- 		count = 0;
+  	    }
+  	}
+  #endif
+  
+--- 612,631 ----
+  #ifdef FEAT_MBYTE
+  	if (has_mbyte && spaces > 0)
+  	{
++ 	    int off;
++ 
+  	    /* Avoid starting halfway a multi-byte character. */
+  	    if (b_insert)
+  	    {
+! 		off = (*mb_head_off)(oldp, oldp + offset + spaces);
+  	    }
+  	    else
+  	    {
+! 		off = (*mb_off_next)(oldp, oldp + offset);
+  		offset += off;
+  	    }
++ 	    spaces -= off;
++ 	    count -= off;
+  	}
+  #endif
+  
+*** ../vim-7.4.558/src/testdir/test39.in	2014-12-17 14:36:10.363090985 +0100
+--- src/testdir/test39.in	2014-12-17 18:27:18.151974111 +0100
+***************
+*** 38,48 ****
+  /^C23$/
+  :exe ":norm! l\<C-V>j$hhAab\<Esc>"
+  :.,/^$/w >> test.out
+! :" Test for Visual block insert when virtualedit=all
+! :set ve=all
+  :/\t\tline
+  :exe ":norm! 07l\<C-V>jjIx\<Esc>"
+! :set ve=
+  :.,/^$/w >> test.out
+  :" gUe must uppercase a whole word, also when ß changes to SS
+  Gothe youtußeuu endYpk0wgUe
+--- 38,51 ----
+  /^C23$/
+  :exe ":norm! l\<C-V>j$hhAab\<Esc>"
+  :.,/^$/w >> test.out
+! :" Test for Visual block insert when virtualedit=all and utf-8 encoding
+! :set ve=all enc=utf-8
+  :/\t\tline
+  :exe ":norm! 07l\<C-V>jjIx\<Esc>"
+! :.,/^$/w >> test.out
+! :" Test for Visual block append when virtualedit=all
+! :exe ":norm! 012l\<C-v>jjAx\<Esc>"
+! :set ve= enc=latin1
+  :.,/^$/w >> test.out
+  :" gUe must uppercase a whole word, also when ß changes to SS
+  Gothe youtußeuu endYpk0wgUe
+*** ../vim-7.4.558/src/testdir/test39.ok	2014-08-16 18:13:00.082044726 +0200
+--- src/testdir/test39.ok	2014-12-17 18:18:33.090470463 +0100
+***************
+*** 26,31 ****
+--- 26,35 ----
+         x 	line2
+         x 	line3
+  
++        x     x   line1
++        x     x   line2
++        x     x   line3
++ 
+  the YOUTUSSEUU end
+  - yOUSSTUSSEXu -
+  THE YOUTUSSEUU END
+*** ../vim-7.4.558/src/version.c	2014-12-17 17:59:26.916631344 +0100
+--- src/version.c	2014-12-17 18:32:23.276199179 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     559,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+15. Your heart races faster and beats irregularly each time you see a new WWW
+    site address in print or on TV, even though you've never had heart
+    problems before.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

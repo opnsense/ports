@@ -1,0 +1,116 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.686
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.686
+Problem:    "zr" and "zm" do not take a count.
+Solution:   Implement the count, restrict the fold level to the maximum
+	    nesting depth.  (Marcin Szamotulski)
+Files:	    runtime/doc/fold.txt, src/normal.c
+
+
+*** ../vim-7.4.685/runtime/doc/fold.txt	2013-08-10 13:24:53.000000000 +0200
+--- runtime/doc/fold.txt	2015-03-31 17:40:11.592129921 +0200
+***************
+*** 364,370 ****
+  		Also forces recomputing folds, like |zx|.
+  
+  							*zm*
+! zm		Fold more: Subtract one from 'foldlevel'.  If 'foldlevel' was
+  		already zero nothing happens.
+  		'foldenable' will be set.
+  
+--- 365,371 ----
+  		Also forces recomputing folds, like |zx|.
+  
+  							*zm*
+! zm		Fold more: Subtract |v:count1| from 'foldlevel'.  If 'foldlevel' was
+  		already zero nothing happens.
+  		'foldenable' will be set.
+  
+***************
+*** 373,379 ****
+  		'foldenable' will be set.
+  
+  							*zr*
+! zr		Reduce folding: Add one to 'foldlevel'.
+  
+  							*zR*
+  zR		Open all folds.  This sets 'foldlevel' to highest fold level.
+--- 374,380 ----
+  		'foldenable' will be set.
+  
+  							*zr*
+! zr		Reduce folding: Add |v:count1| to 'foldlevel'.
+  
+  							*zR*
+  zR		Open all folds.  This sets 'foldlevel' to highest fold level.
+*** ../vim-7.4.685/src/normal.c	2015-03-05 19:57:45.322721298 +0100
+--- src/normal.c	2015-03-31 17:44:50.401075155 +0200
+***************
+*** 5098,5104 ****
+  
+  		/* "zm": fold more */
+      case 'm':	if (curwin->w_p_fdl > 0)
+! 		    --curwin->w_p_fdl;
+  		old_fdl = -1;		/* force an update */
+  		curwin->w_p_fen = TRUE;
+  		break;
+--- 5098,5108 ----
+  
+  		/* "zm": fold more */
+      case 'm':	if (curwin->w_p_fdl > 0)
+! 		{
+! 		    curwin->w_p_fdl -= cap->count1;
+! 		    if (curwin->w_p_fdl < 0)
+! 			curwin->w_p_fdl = 0;
+! 		}
+  		old_fdl = -1;		/* force an update */
+  		curwin->w_p_fen = TRUE;
+  		break;
+***************
+*** 5110,5116 ****
+  		break;
+  
+  		/* "zr": reduce folding */
+!     case 'r':	++curwin->w_p_fdl;
+  		break;
+  
+  		/* "zR": open all folds */
+--- 5114,5126 ----
+  		break;
+  
+  		/* "zr": reduce folding */
+!     case 'r':	curwin->w_p_fdl += cap->count1;
+! 		{
+! 		    int d = getDeepestNesting();
+! 
+! 		    if (curwin->w_p_fdl >= d)
+! 			curwin->w_p_fdl = d;
+! 		}
+  		break;
+  
+  		/* "zR": open all folds */
+*** ../vim-7.4.685/src/version.c	2015-03-31 14:17:22.008608243 +0200
+--- src/version.c	2015-03-31 17:41:32.839240108 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     686,
+  /**/
+
+-- 
+Kisses may last for as much as, but no more than, five minutes.
+		[real standing law in Iowa, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

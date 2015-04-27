@@ -1,0 +1,230 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.662
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.662
+Problem:    When 'M' is in the 'cpo' option then selecting a text object in
+	    parenthesis does not work correctly.
+Solution:   Keep 'M' in 'cpo' when finding a match. (Hirohito Higashi)
+Files:	    src/search.c, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test_textobjects.in,
+	    src/testdir/test_textobjects.ok
+
+
+*** ../vim-7.4.661/src/search.c	2015-03-05 19:57:45.322721298 +0100
+--- src/search.c	2015-03-13 15:02:35.446181021 +0100
+***************
+*** 3583,3592 ****
+      /*
+       * Search backwards for unclosed '(', '{', etc..
+       * Put this position in start_pos.
+!      * Ignore quotes here.
+       */
+      save_cpo = p_cpo;
+!     p_cpo = (char_u *)"%";
+      while (count-- > 0)
+      {
+  	if ((pos = findmatch(NULL, what)) == NULL)
+--- 3583,3593 ----
+      /*
+       * Search backwards for unclosed '(', '{', etc..
+       * Put this position in start_pos.
+!      * Ignore quotes here.  Keep the "M" flag in 'cpo', as that is what the
+!      * user wants.
+       */
+      save_cpo = p_cpo;
+!     p_cpo = (char_u *)(vim_strchr(p_cpo, CPO_MATCHBSL) != NULL ? "%M" : "%");
+      while (count-- > 0)
+      {
+  	if ((pos = findmatch(NULL, what)) == NULL)
+*** ../vim-7.4.661/src/testdir/Make_amiga.mak	2015-02-17 13:43:35.562216149 +0100
+--- src/testdir/Make_amiga.mak	2015-03-13 15:01:04.171209323 +0100
+***************
+*** 53,58 ****
+--- 53,59 ----
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
++ 		test_textobjects.out \
+  		test_utf8.out
+  
+  .SUFFIXES: .in .out
+***************
+*** 194,197 ****
+--- 195,199 ----
+  test_options.out: test_options.in
+  test_qf_title.out: test_qf_title.in
+  test_signs.out: test_signs.in
++ test_textobjects.out: test_textobjects.in
+  test_utf8.out: test_utf8.in
+*** ../vim-7.4.661/src/testdir/Make_dos.mak	2015-02-27 22:12:29.748834504 +0100
+--- src/testdir/Make_dos.mak	2015-03-13 15:01:12.511115356 +0100
+***************
+*** 52,57 ****
+--- 52,58 ----
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
++ 		test_textobjects.out \
+  		test_utf8.out
+  
+  SCRIPTS32 =	test50.out test70.out
+*** ../vim-7.4.661/src/testdir/Make_ming.mak	2015-02-17 13:43:35.562216149 +0100
+--- src/testdir/Make_ming.mak	2015-03-13 15:01:17.123063674 +0100
+***************
+*** 74,79 ****
+--- 74,80 ----
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
++ 		test_textobjects.out \
+  		test_utf8.out
+  
+  SCRIPTS32 =	test50.out test70.out
+*** ../vim-7.4.661/src/testdir/Make_os2.mak	2015-02-17 13:43:35.562216149 +0100
+--- src/testdir/Make_os2.mak	2015-03-13 15:01:22.603001636 +0100
+***************
+*** 54,59 ****
+--- 54,60 ----
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
++ 		test_textobjects.out \
+  		test_utf8.out
+  
+  SCRIPTS_BENCH = bench_re_freeze.out
+*** ../vim-7.4.661/src/testdir/Make_vms.mms	2015-02-17 13:43:35.562216149 +0100
+--- src/testdir/Make_vms.mms	2015-03-13 15:01:40.882795705 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Dec 13
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2015 Mar 13
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 113,118 ****
+--- 113,119 ----
+  	 test_options.out \
+  	 test_qf_title.out \
+  	 test_signs.out \
++ 	 test_textobjects.out \
+  	 test_utf8.out
+  
+  # Known problems:
+*** ../vim-7.4.661/src/testdir/Makefile	2015-02-17 13:43:35.562216149 +0100
+--- src/testdir/Makefile	2015-03-13 15:01:55.786627859 +0100
+***************
+*** 50,55 ****
+--- 50,56 ----
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
++ 		test_textobjects.out \
+  		test_utf8.out
+  
+  SCRIPTS_GUI = test16.out
+*** ../vim-7.4.661/src/testdir/test_textobjects.in	2015-03-13 15:00:20.003707055 +0100
+--- src/testdir/test_textobjects.in	2015-03-13 14:40:58.112835076 +0100
+***************
+*** 0 ****
+--- 1,40 ----
++ Tests for text-objects     vim: set ft=vim :
++ 
++ STARTTEST
++ :so small.vim
++ :if !has('textobjects') | e! test.ok | wq! test.out | endif
++ :set nocompatible
++ :"
++ :function SelectionOut(data)
++ :  new
++ :  call setline(1, a:data)
++ :  call setreg('"', '')
++ :  normal! ggfrmavi)y
++ :  $put =getreg('\"')
++ :  call setreg('"', '')
++ :  normal! `afbmavi)y
++ :  $put =getreg('\"')
++ :  call setreg('"', '')
++ :  normal! `afgmavi)y
++ :  $put =getreg('\"')
++ :  %yank a
++ :  q!
++ :  $put =getreg('a')
++ :endfunction
++ :"
++ :$put ='# Test for vi) without cpo-M'
++ :set cpo-=M
++ :call SelectionOut('(red \(blue) green)')
++ :"
++ :$put ='# Test for vi) with cpo-M #1'
++ :set cpo+=M
++ :call SelectionOut('(red \(blue) green)')
++ :"
++ :$put ='# Test for vi) with cpo-M #2'
++ :set cpo+=M
++ :call SelectionOut('(red (blue\) green)')
++ :/^Results/,$w test.out
++ :qa!
++ ENDTEST
++ 
++ Results of text-objects
+*** ../vim-7.4.661/src/testdir/test_textobjects.ok	2015-03-13 15:00:20.007707010 +0100
+--- src/testdir/test_textobjects.ok	2015-03-13 14:40:58.112835076 +0100
+***************
+*** 0 ****
+--- 1,16 ----
++ Results of text-objects
++ # Test for vi) without cpo-M
++ (red \(blue) green)
++ red \(blue
++ red \(blue
++ 
++ # Test for vi) with cpo-M #1
++ (red \(blue) green)
++ red \(blue) green
++ blue
++ red \(blue) green
++ # Test for vi) with cpo-M #2
++ (red (blue\) green)
++ red (blue\) green
++ blue\
++ red (blue\) green
+*** ../vim-7.4.661/src/version.c	2015-03-13 13:24:16.319989139 +0100
+--- src/version.c	2015-03-13 14:57:10.325845609 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     662,
+  /**/
+
+-- 
+GUARD #2:  It could be carried by an African swallow!
+GUARD #1:  Oh, yeah, an African swallow maybe, but not a European swallow,
+           that's my point.
+GUARD #2:  Oh, yeah, I agree with that...
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

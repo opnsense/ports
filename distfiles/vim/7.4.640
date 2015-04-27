@@ -1,0 +1,74 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.640
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.640
+Problem:    After deleting characters in Insert mode such that lines are
+	    joined undo does not work properly. (issue 324)
+Solution:   Use Insstart instead of Insstart_orig. (Christian Brabandt)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.639/src/edit.c	2015-01-22 22:40:16.341651464 +0100
+--- src/edit.c	2015-02-17 17:44:44.222631598 +0100
+***************
+*** 8842,8848 ****
+       */
+      if (curwin->w_cursor.col == 0)
+      {
+! 	lnum = Insstart_orig.lnum;
+  	if (curwin->w_cursor.lnum == lnum
+  #ifdef FEAT_RIGHTLEFT
+  			|| revins_on
+--- 8842,8848 ----
+       */
+      if (curwin->w_cursor.col == 0)
+      {
+! 	lnum = Insstart.lnum;
+  	if (curwin->w_cursor.lnum == lnum
+  #ifdef FEAT_RIGHTLEFT
+  			|| revins_on
+***************
+*** 8852,8860 ****
+  	    if (u_save((linenr_T)(curwin->w_cursor.lnum - 2),
+  			       (linenr_T)(curwin->w_cursor.lnum + 1)) == FAIL)
+  		return FALSE;
+! 	    --Insstart_orig.lnum;
+! 	    Insstart_orig.col = MAXCOL;
+! 	    Insstart = Insstart_orig;
+  	}
+  	/*
+  	 * In replace mode:
+--- 8852,8859 ----
+  	    if (u_save((linenr_T)(curwin->w_cursor.lnum - 2),
+  			       (linenr_T)(curwin->w_cursor.lnum + 1)) == FAIL)
+  		return FALSE;
+! 	    --Insstart.lnum;
+! 	    Insstart.col = MAXCOL;
+  	}
+  	/*
+  	 * In replace mode:
+*** ../vim-7.4.639/src/version.c	2015-02-17 17:26:04.565123636 +0100
+--- src/version.c	2015-02-17 17:49:06.787232425 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     640,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+245. You use Real Audio to listen to a radio station from a distant
+     city rather than turn on your stereo system.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

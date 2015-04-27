@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.316
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.316
+Problem:    Warning from 64-bit compiler.
+Solution:   Add type cast. (Mike Williams)
+Files:	    src/ex_getln.c
+
+
+*** ../vim-7.4.315/src/ex_getln.c	2014-05-07 18:35:25.665216052 +0200
+--- src/ex_getln.c	2014-05-29 14:32:53.584860716 +0200
+***************
+*** 5202,5208 ****
+  		    for (i = 0; i < num_p; ++i)
+  		    {
+  			((char_u **)ga->ga_data)[ga->ga_len] =
+! 					    vim_strnsave(p[i], STRLEN(p[i]));
+  			++ga->ga_len;
+  		    }
+  		}
+--- 5202,5208 ----
+  		    for (i = 0; i < num_p; ++i)
+  		    {
+  			((char_u **)ga->ga_data)[ga->ga_len] =
+! 					vim_strnsave(p[i], (int)STRLEN(p[i]));
+  			++ga->ga_len;
+  		    }
+  		}
+*** ../vim-7.4.315/src/version.c	2014-05-29 11:47:19.808773758 +0200
+--- src/version.c	2014-05-29 14:33:29.476861030 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     316,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+232. You start conversations with, "Have you gotten an ISDN line?"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,215 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.108
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.108
+Problem:    "zG" and "zW" leave temp files around on MS-Windows.
+Solution:   Delete the temp files when exiting. (Ken Takata)
+Files:	    src/memline.c, src/proto/spell.pro, src/spell.c
+
+
+*** ../vim-7.4.107/src/memline.c	2013-11-04 02:53:46.000000000 +0100
+--- src/memline.c	2013-11-28 17:27:06.000000000 +0100
+***************
+*** 841,848 ****
+      for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+  	ml_close(buf, del_file && ((buf->b_flags & BF_PRESERVED) == 0
+  				 || vim_strchr(p_cpo, CPO_PRESERVE) == NULL));
+  #ifdef TEMPDIRNAMES
+!     vim_deltempdir();	    /* delete created temp directory */
+  #endif
+  }
+  
+--- 841,851 ----
+      for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+  	ml_close(buf, del_file && ((buf->b_flags & BF_PRESERVED) == 0
+  				 || vim_strchr(p_cpo, CPO_PRESERVE) == NULL));
++ #ifdef FEAT_SPELL
++     spell_delete_wordlist();	/* delete the internal wordlist */
++ #endif
+  #ifdef TEMPDIRNAMES
+!     vim_deltempdir();		/* delete created temp directory */
+  #endif
+  }
+  
+*** ../vim-7.4.107/src/proto/spell.pro	2013-08-10 13:37:26.000000000 +0200
+--- src/proto/spell.pro	2013-11-28 17:25:59.000000000 +0100
+***************
+*** 3,8 ****
+--- 3,9 ----
+  int spell_move_to __ARGS((win_T *wp, int dir, int allwords, int curline, hlf_T *attrp));
+  void spell_cat_line __ARGS((char_u *buf, char_u *line, int maxlen));
+  char_u *did_set_spelllang __ARGS((win_T *wp));
++ void spell_delete_wordlist __ARGS((void));
+  void spell_free_all __ARGS((void));
+  void spell_reload __ARGS((void));
+  int spell_check_msm __ARGS((void));
+*** ../vim-7.4.107/src/spell.c	2013-11-21 17:42:26.000000000 +0100
+--- src/spell.c	2013-11-28 17:25:59.000000000 +0100
+***************
+*** 2180,2188 ****
+      char_u	*endp;
+      hlf_T	attr;
+      int		len;
+! # ifdef FEAT_SYN_HL
+      int		has_syntax = syntax_present(wp);
+! # endif
+      int		col;
+      int		can_spell;
+      char_u	*buf = NULL;
+--- 2180,2188 ----
+      char_u	*endp;
+      hlf_T	attr;
+      int		len;
+! #ifdef FEAT_SYN_HL
+      int		has_syntax = syntax_present(wp);
+! #endif
+      int		col;
+      int		can_spell;
+      char_u	*buf = NULL;
+***************
+*** 2280,2286 ****
+  						     : p - buf)
+  						  > wp->w_cursor.col)))
+  		    {
+! # ifdef FEAT_SYN_HL
+  			if (has_syntax)
+  			{
+  			    col = (int)(p - buf);
+--- 2280,2286 ----
+  						     : p - buf)
+  						  > wp->w_cursor.col)))
+  		    {
+! #ifdef FEAT_SYN_HL
+  			if (has_syntax)
+  			{
+  			    col = (int)(p - buf);
+***************
+*** 4701,4707 ****
+      return flags;
+  }
+  
+! # if defined(FEAT_MBYTE) || defined(EXITFREE) || defined(PROTO)
+  /*
+   * Free all languages.
+   */
+--- 4701,4725 ----
+      return flags;
+  }
+  
+! /*
+!  * Delete the internal wordlist and its .spl file.
+!  */
+!     void
+! spell_delete_wordlist()
+! {
+!     char_u	fname[MAXPATHL];
+! 
+!     if (int_wordlist != NULL)
+!     {
+! 	mch_remove(int_wordlist);
+! 	int_wordlist_spl(fname);
+! 	mch_remove(fname);
+! 	vim_free(int_wordlist);
+! 	int_wordlist = NULL;
+!     }
+! }
+! 
+! #if defined(FEAT_MBYTE) || defined(EXITFREE) || defined(PROTO)
+  /*
+   * Free all languages.
+   */
+***************
+*** 4710,4716 ****
+  {
+      slang_T	*slang;
+      buf_T	*buf;
+-     char_u	fname[MAXPATHL];
+  
+      /* Go through all buffers and handle 'spelllang'. <VN> */
+      for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+--- 4728,4733 ----
+***************
+*** 4723,4746 ****
+  	slang_free(slang);
+      }
+  
+!     if (int_wordlist != NULL)
+!     {
+! 	/* Delete the internal wordlist and its .spl file */
+! 	mch_remove(int_wordlist);
+! 	int_wordlist_spl(fname);
+! 	mch_remove(fname);
+! 	vim_free(int_wordlist);
+! 	int_wordlist = NULL;
+!     }
+  
+      vim_free(repl_to);
+      repl_to = NULL;
+      vim_free(repl_from);
+      repl_from = NULL;
+  }
+! # endif
+  
+! # if defined(FEAT_MBYTE) || defined(PROTO)
+  /*
+   * Clear all spelling tables and reload them.
+   * Used after 'encoding' is set and when ":mkspell" was used.
+--- 4740,4755 ----
+  	slang_free(slang);
+      }
+  
+!     spell_delete_wordlist();
+  
+      vim_free(repl_to);
+      repl_to = NULL;
+      vim_free(repl_from);
+      repl_from = NULL;
+  }
+! #endif
+  
+! #if defined(FEAT_MBYTE) || defined(PROTO)
+  /*
+   * Clear all spelling tables and reload them.
+   * Used after 'encoding' is set and when ":mkspell" was used.
+***************
+*** 4773,4779 ****
+  	}
+      }
+  }
+! # endif
+  
+  /*
+   * Reload the spell file "fname" if it's loaded.
+--- 4782,4788 ----
+  	}
+      }
+  }
+! #endif
+  
+  /*
+   * Reload the spell file "fname" if it's loaded.
+*** ../vim-7.4.107/src/version.c	2013-11-28 17:04:38.000000000 +0100
+--- src/version.c	2013-11-28 17:26:31.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     108,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+9. All your daydreaming is preoccupied with getting a faster connection to the
+   net: 28.8...ISDN...cable modem...T1...T3.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

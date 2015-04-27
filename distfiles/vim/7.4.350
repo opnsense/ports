@@ -1,0 +1,139 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.350
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.350
+Problem:    Using C indenting for Javascript does not work well for a {} block
+	    inside parenthesis.
+Solution:   When looking for a matching paren ignore one that is before the
+	    start of a {} block.
+Files:	    src/misc1.c, src/testdir/test3.in, src/testdir/test3.ok
+
+
+*** ../vim-7.4.349/src/misc1.c	2014-07-02 17:02:29.722212319 +0200
+--- src/misc1.c	2014-07-02 18:09:39.670274070 +0200
+***************
+*** 6614,6620 ****
+  }
+  
+  /*
+!  * Find the matching '(', failing if it is in a comment.
+   * Return NULL if no match found.
+   */
+      static pos_T *
+--- 6614,6620 ----
+  }
+  
+  /*
+!  * Find the matching '(', ignoring it if it is in a comment.
+   * Return NULL if no match found.
+   */
+      static pos_T *
+***************
+*** 6645,6650 ****
+--- 6645,6676 ----
+  }
+  
+  /*
++  * Find the matching '(', ignoring it if it is in a comment or before an
++  * unmatched {.
++  * Return NULL if no match found.
++  */
++     static pos_T *
++ find_match_paren_after_brace(ind_maxparen)	    /* XXX */
++     int		ind_maxparen;
++ {
++     pos_T	*trypos = find_match_paren(ind_maxparen);
++ 
++     if (trypos != NULL)
++     {
++ 	pos_T	*tryposBrace = find_start_brace();
++ 
++ 	/* If both an unmatched '(' and '{' is found.  Ignore the '('
++ 	 * position if the '{' is further down. */
++ 	if (tryposBrace != NULL
++ 		&& (trypos->lnum != tryposBrace->lnum
++ 		    ? trypos->lnum < tryposBrace->lnum
++ 		    : trypos->col < tryposBrace->col))
++ 	    trypos = NULL;
++     }
++     return trypos;
++ }
++ 
++ /*
+   * Return ind_maxparen corrected for the difference in line number between the
+   * cursor position and "startpos".  This makes sure that searching for a
+   * matching paren above the cursor line doesn't find a match because of
+***************
+*** 7419,7425 ****
+  		{
+  		    curwin->w_cursor.lnum = our_paren_pos.lnum;
+  		    curwin->w_cursor.col = col;
+! 		    if (find_match_paren(curbuf->b_ind_maxparen) != NULL)
+  			amount += curbuf->b_ind_unclosed2;
+  		    else
+  		    {
+--- 7445,7452 ----
+  		{
+  		    curwin->w_cursor.lnum = our_paren_pos.lnum;
+  		    curwin->w_cursor.col = col;
+! 		    if (find_match_paren_after_brace(curbuf->b_ind_maxparen)
+! 								      != NULL)
+  			amount += curbuf->b_ind_unclosed2;
+  		    else
+  		    {
+*** ../vim-7.4.349/src/testdir/test3.in	2013-03-07 12:39:35.000000000 +0100
+--- src/testdir/test3.in	2014-07-02 18:08:06.430272641 +0200
+***************
+*** 1950,1955 ****
+--- 1950,1959 ----
+  JSSTART
+  (function($){
+  
++ if (cond &&
++ cond) {
++ stmt;
++ }
+  var class_name='myclass';
+  
+  function private_method() {
+*** ../vim-7.4.349/src/testdir/test3.ok	2013-03-07 12:40:03.000000000 +0100
+--- src/testdir/test3.ok	2014-07-02 18:09:14.470273684 +0200
+***************
+*** 1728,1733 ****
+--- 1728,1737 ----
+  JSSTART
+  (function($){
+  
++ 	if (cond &&
++ 			cond) {
++ 		stmt;
++ 	}
+  	var class_name='myclass';
+  
+  	function private_method() {
+*** ../vim-7.4.349/src/version.c	2014-07-02 17:16:51.334225522 +0200
+--- src/version.c	2014-07-02 18:06:31.330271184 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     350,
+  /**/
+
+-- 
+FATHER:    You killed eight wedding guests in all!
+LAUNCELOT: Er, Well ... the thing is ... I thought your son was a lady.
+FATHER:    I can understand that.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

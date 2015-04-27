@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.362
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.362
+Problem:    When matchaddpos() uses a length smaller than the number of bytes
+	    in the (last) character the highlight continues until the end of
+	    the line.
+Solution:   Change condition from equal to larger-or-equal.
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.361/src/screen.c	2014-07-03 22:54:04.911859458 +0200
+--- src/screen.c	2014-07-09 20:14:46.611627298 +0200
+***************
+*** 3852,3858 ****
+  			{
+  			    shl->attr_cur = shl->attr;
+  			}
+! 			else if (v == (long)shl->endcol)
+  			{
+  			    shl->attr_cur = 0;
+  			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+--- 3852,3858 ----
+  			{
+  			    shl->attr_cur = shl->attr;
+  			}
+! 			else if (v >= (long)shl->endcol)
+  			{
+  			    shl->attr_cur = 0;
+  			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+*** ../vim-7.4.361/src/version.c	2014-07-09 19:58:21.115647328 +0200
+--- src/version.c	2014-07-09 20:20:14.423620635 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     362,
+  /**/
+
+-- 
+Compilation process failed successfully.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,60 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.343
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.343
+Problem:    matchdelete() does not always update the right lines.
+Solution:   Fix off-by-one error.  (Ozaki Kiichi)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.342/src/window.c	2014-06-18 21:20:07.236377308 +0200
+--- src/window.c	2014-06-25 17:55:34.190793447 +0200
+***************
+*** 6891,6898 ****
+  	    }
+  	    if (toplnum == 0 || lnum < toplnum)
+  		toplnum = lnum;
+! 	    if (botlnum == 0 || lnum > botlnum)
+! 		botlnum = lnum;
+  	}
+  
+  	/* Calculate top and bottom lines for redrawing area */
+--- 6891,6898 ----
+  	    }
+  	    if (toplnum == 0 || lnum < toplnum)
+  		toplnum = lnum;
+! 	    if (botlnum == 0 || lnum >= botlnum)
+! 		botlnum = lnum + 1;
+  	}
+  
+  	/* Calculate top and bottom lines for redrawing area */
+*** ../vim-7.4.342/src/version.c	2014-06-25 17:44:45.850768919 +0200
+--- src/version.c	2014-06-25 17:54:14.258790423 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     343,
+  /**/
+
+-- 
+CUSTOMER:     You're not fooling anyone y'know.  Look, isn't there something
+              you can do?
+DEAD PERSON:  I feel happy... I feel happy.
+    [whop]
+CUSTOMER:     Ah, thanks very much.
+MORTICIAN:    Not at all.  See you on Thursday.
+CUSTOMER:     Right.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

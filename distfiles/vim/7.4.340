@@ -1,0 +1,97 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.340
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.340
+Problem:    Error from sed about illegal bytes when installing Vim.
+Solution:   Prepend LC_ALL=C. (Itchyny)
+Files:	    src/installman.sh
+
+
+*** ../vim-7.4.339/src/installman.sh	2010-05-15 13:04:07.000000000 +0200
+--- src/installman.sh	2014-06-25 14:54:11.742381748 +0200
+***************
+*** 43,52 ****
+     fi
+  fi
+  
+  if test $what = "install"; then
+     # vim.1
+     echo installing $destdir/$exename.1
+!    sed -e s+/usr/local/lib/vim+$vimloc+ \
+  	   -e s+$vimloc/doc+$helpsubloc+ \
+  	   -e s+$vimloc/print+$printsubloc+ \
+  	   -e s+$vimloc/syntax+$synsubloc+ \
+--- 43,55 ----
+     fi
+  fi
+  
++ # Note: setting LC_ALL to C is required to avoid illegal byte errors from sed
++ # on some systems.
++ 
+  if test $what = "install"; then
+     # vim.1
+     echo installing $destdir/$exename.1
+!    LC_ALL=C sed -e s+/usr/local/lib/vim+$vimloc+ \
+  	   -e s+$vimloc/doc+$helpsubloc+ \
+  	   -e s+$vimloc/print+$printsubloc+ \
+  	   -e s+$vimloc/syntax+$synsubloc+ \
+***************
+*** 64,70 ****
+  
+     # vimtutor.1
+     echo installing $destdir/$exename""tutor.1
+!    sed -e s+/usr/local/lib/vim+$vimloc+ \
+  	   -e s+$vimloc/tutor+$tutorsubloc+ \
+  	   $helpsource/vimtutor$langadd.1 > $destdir/$exename""tutor.1
+     chmod $manmod $destdir/$exename""tutor.1
+--- 67,73 ----
+  
+     # vimtutor.1
+     echo installing $destdir/$exename""tutor.1
+!    LC_ALL=C sed -e s+/usr/local/lib/vim+$vimloc+ \
+  	   -e s+$vimloc/tutor+$tutorsubloc+ \
+  	   $helpsource/vimtutor$langadd.1 > $destdir/$exename""tutor.1
+     chmod $manmod $destdir/$exename""tutor.1
+***************
+*** 76,82 ****
+  
+     # evim.1
+     echo installing $destdir/$evimname.1
+!    sed -e s+/usr/local/lib/vim+$vimloc+ \
+  	   -e s+$vimloc/evim.vim+$scriptloc/evim.vim+ \
+  	   $helpsource/evim$langadd.1 > $destdir/$evimname.1
+     chmod $manmod $destdir/$evimname.1
+--- 79,85 ----
+  
+     # evim.1
+     echo installing $destdir/$evimname.1
+!    LC_ALL=C sed -e s+/usr/local/lib/vim+$vimloc+ \
+  	   -e s+$vimloc/evim.vim+$scriptloc/evim.vim+ \
+  	   $helpsource/evim$langadd.1 > $destdir/$evimname.1
+     chmod $manmod $destdir/$evimname.1
+*** ../vim-7.4.339/src/version.c	2014-06-25 14:44:04.458358774 +0200
+--- src/version.c	2014-06-25 14:55:14.198384111 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     340,
+  /**/
+
+-- 
+DEAD PERSON:  I'm getting better!
+CUSTOMER:     No, you're not -- you'll be stone dead in a moment.
+MORTICIAN:    Oh, I can't take him like that -- it's against regulations.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

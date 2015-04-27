@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.557
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.557
+Problem:    One more small issue.
+Solution:   Update function proto.
+Files:	    src/proto/window.pro
+
+
+*** ../vim-7.4.556/src/proto/window.pro	2014-06-17 17:48:21.780628008 +0200
+--- src/proto/window.pro	2014-11-12 15:34:22.895421553 +0100
+***************
+*** 75,81 ****
+  void switch_buffer __ARGS((buf_T **save_curbuf, buf_T *buf));
+  void restore_buffer __ARGS((buf_T *save_curbuf));
+  int win_hasvertsplit __ARGS((void));
+! int match_add __ARGS((win_T *wp, char_u *grp, char_u *pat, int prio, int id, list_T *pos));
+  int match_delete __ARGS((win_T *wp, int id, int perr));
+  void clear_matches __ARGS((win_T *wp));
+  matchitem_T *get_match __ARGS((win_T *wp, int id));
+--- 75,81 ----
+  void switch_buffer __ARGS((buf_T **save_curbuf, buf_T *buf));
+  void restore_buffer __ARGS((buf_T *save_curbuf));
+  int win_hasvertsplit __ARGS((void));
+! int match_add __ARGS((win_T *wp, char_u *grp, char_u *pat, int prio, int id, list_T *pos_list));
+  int match_delete __ARGS((win_T *wp, int id, int perr));
+  void clear_matches __ARGS((win_T *wp));
+  matchitem_T *get_match __ARGS((win_T *wp, int id));
+*** ../vim-7.4.556/src/version.c	2014-12-17 14:45:56.095854545 +0100
+--- src/version.c	2014-12-17 14:47:19.674822175 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     557,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+5. You find yourself brainstorming for new subjects to search.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

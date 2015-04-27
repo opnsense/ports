@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.433
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.433
+Problem:    Test 75 fails on MS-Windows.
+Solution:   Use ":normal" instead of feedkeys(). (Michael Soyka)
+Files:	    src/testdir/test75.in
+
+
+*** ../vim-7.4.432/src/testdir/test75.in	2014-03-12 20:17:47.752982126 +0100
+--- src/testdir/test75.in	2014-09-09 13:48:54.332512799 +0200
+***************
+*** 23,38 ****
+  Go:"
+  :" Outside of the range, minimum
+  :inoremap <Char-0x1040> a
+! :call feedkeys("a\u1040\<Esc>")
+  :" Inside of the range, minimum
+  :inoremap <Char-0x103f> b
+! :call feedkeys("a\u103f\<Esc>")
+  :" Inside of the range, maximum
+  :inoremap <Char-0xf03f> c
+! :call feedkeys("a\uf03f\<Esc>")
+  :" Outside of the range, maximum
+  :inoremap <Char-0xf040> d
+! :call feedkeys("a\uf040\<Esc>")
+  :"
+  :/^eof/+1,$w! test.out
+  :qa!
+--- 23,38 ----
+  Go:"
+  :" Outside of the range, minimum
+  :inoremap <Char-0x1040> a
+! :execute "normal a\u1040\<Esc>"
+  :" Inside of the range, minimum
+  :inoremap <Char-0x103f> b
+! :execute "normal a\u103f\<Esc>"
+  :" Inside of the range, maximum
+  :inoremap <Char-0xf03f> c
+! :execute "normal a\uf03f\<Esc>"
+  :" Outside of the range, maximum
+  :inoremap <Char-0xf040> d
+! :execute "normal a\uf040\<Esc>"
+  :"
+  :/^eof/+1,$w! test.out
+  :qa!
+*** ../vim-7.4.432/src/version.c	2014-09-09 12:25:27.768501863 +0200
+--- src/version.c	2014-09-09 13:49:55.160512932 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     433,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+107. When using your phone you forget that you don't have to use your
+     keyboard.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

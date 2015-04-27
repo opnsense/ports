@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.348
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.348
+Problem:    When using "J1" in 'cinoptions' a line below a continuation line
+	    gets too much indent.
+Solution:   Fix parenthesis in condition.
+Files:	    src/misc1.c
+
+
+*** ../vim-7.4.347/src/misc1.c	2014-06-26 21:24:53.134537205 +0200
+--- src/misc1.c	2014-07-02 16:58:08.854208322 +0200
+***************
+*** 7497,7505 ****
+  	     *			ldfd) {
+  	     *		    }
+  	     */
+! 	    if (curbuf->b_ind_js || (curbuf->b_ind_keep_case_label
+! 			   && cin_iscase(skipwhite(ml_get_curline()), FALSE)))
+  		amount = get_indent();
+  	    else
+  		amount = skip_label(lnum, &l);
+  
+--- 7497,7507 ----
+  	     *			ldfd) {
+  	     *		    }
+  	     */
+! 	    if ((curbuf->b_ind_js || curbuf->b_ind_keep_case_label)
+! 			   && cin_iscase(skipwhite(ml_get_curline()), FALSE))
+  		amount = get_indent();
++ 	    else if (curbuf->b_ind_js)
++ 		amount = get_indent_lnum(lnum);
+  	    else
+  		amount = skip_label(lnum, &l);
+  
+*** ../vim-7.4.347/src/version.c	2014-06-26 22:33:47.850693627 +0200
+--- src/version.c	2014-07-02 16:46:14.934197383 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     348,
+  /**/
+
+-- 
+5 out of 4 people have trouble with fractions.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

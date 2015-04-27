@@ -1,0 +1,191 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.502
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.502
+Problem:    Language mapping also applies to mapped characters.
+Solution:   Add the 'langnoremap' option, when on 'langmap' does not apply to
+	    mapped characters. (Christian Brabandt)
+Files:	    runtime/doc/options.txt, runtime/vimrc_example.vim, src/macros.h,
+	    src/option.c, src/option.h
+
+
+*** ../vim-7.4.501/runtime/doc/options.txt	2014-11-05 14:26:30.760758363 +0100
+--- runtime/doc/options.txt	2014-11-05 17:21:15.676505715 +0100
+***************
+*** 4533,4538 ****
+--- 4534,4543 ----
+  	be able to execute Normal mode commands.
+  	This is the opposite of the 'keymap' option, where characters are
+  	mapped in Insert mode.
++ 	Also consider setting 'langnoremap' to avoid 'langmap' applies to
++ 	characters resulting from a mapping.
++ 	This option cannot be set from a |modeline| or in the |sandbox|, for
++ 	security reasons.
+  
+  	Example (for Greek, in UTF-8):				*greek*  >
+  	    :set langmap=ΑA,ΒB,ΨC,ΔD,ΕE,ΦF,ΓG,ΗH,ΙI,ΞJ,ΚK,ΛL,ΜM,ΝN,ΟO,ΠP,QQ,ΡR,ΣS,ΤT,ΘU,ΩV,WW,ΧX,ΥY,ΖZ,αa,βb,ψc,δd,εe,φf,γg,ηh,ιi,ξj,κk,λl,μm,νn,οo,πp,qq,ρr,σs,τt,θu,ωv,ςw,χx,υy,ζz
+***************
+*** 4586,4591 ****
+--- 4591,4608 ----
+  		:source $VIMRUNTIME/menu.vim
+  <	Warning: This deletes all menus that you defined yourself!
+  
++ 					*'langnoremap'* *'lnr'*
++ 'langnoremap' 'lnr'	boolean (default off)
++ 			global
++ 			{not in Vi}
++ 			{only available when compiled with the |+langmap|
++ 			feature}
++ 	When on, setting 'langmap' does not apply to characters resulting from
++ 	a mapping.  This basically means, if you noticed that setting
++ 	'langmap' disables some of your mappings, try setting this option.
++ 	This option defaults to off for backwards compatibility.  Set it on if
++ 	that works for you to avoid mappings to break.
++ 
+  					*'laststatus'* *'ls'*
+  'laststatus' 'ls'	number	(default 1)
+  			global
+*** ../vim-7.4.501/runtime/vimrc_example.vim	2014-02-05 22:01:56.686546587 +0100
+--- runtime/vimrc_example.vim	2014-11-05 17:23:26.808502555 +0100
+***************
+*** 1,7 ****
+  " An example for a vimrc file.
+  "
+  " Maintainer:	Bram Moolenaar <Bram@vim.org>
+! " Last change:	2014 Feb 05
+  "
+  " To use it, copy it to
+  "     for Unix and OS/2:  ~/.vimrc
+--- 1,7 ----
+  " An example for a vimrc file.
+  "
+  " Maintainer:	Bram Moolenaar <Bram@vim.org>
+! " Last change:	2014 Nov 05
+  "
+  " To use it, copy it to
+  "     for Unix and OS/2:  ~/.vimrc
+***************
+*** 95,97 ****
+--- 95,104 ----
+    command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+  		  \ | wincmd p | diffthis
+  endif
++ 
++ if has('langmap') && exists('+langnoremap')
++   " Prevent that the langmap option applies to characters that result from a
++   " mapping.  If unset (default), this may break plugins (but it's backward
++   " compatible).
++   set langnoremap
++ endif
+*** ../vim-7.4.501/src/macros.h	2014-05-13 20:19:53.569808877 +0200
+--- src/macros.h	2014-11-05 17:26:42.172497848 +0100
+***************
+*** 128,140 ****
+   * Adjust chars in a language according to 'langmap' option.
+   * NOTE that there is no noticeable overhead if 'langmap' is not set.
+   * When set the overhead for characters < 256 is small.
+!  * Don't apply 'langmap' if the character comes from the Stuff buffer.
+   * The do-while is just to ignore a ';' after the macro.
+   */
+  # ifdef FEAT_MBYTE
+  #  define LANGMAP_ADJUST(c, condition) \
+      do { \
+! 	if (*p_langmap && (condition) && !KeyStuffed && (c) >= 0) \
+  	{ \
+  	    if ((c) < 256) \
+  		c = langmap_mapchar[c]; \
+--- 128,145 ----
+   * Adjust chars in a language according to 'langmap' option.
+   * NOTE that there is no noticeable overhead if 'langmap' is not set.
+   * When set the overhead for characters < 256 is small.
+!  * Don't apply 'langmap' if the character comes from the Stuff buffer or from
+!  * a mapping and the langnoremap option was set.
+   * The do-while is just to ignore a ';' after the macro.
+   */
+  # ifdef FEAT_MBYTE
+  #  define LANGMAP_ADJUST(c, condition) \
+      do { \
+! 	if (*p_langmap \
+! 		&& (condition) \
+! 		&& (!p_lnr || (p_lnr && typebuf_maplen() == 0)) \
+! 		&& !KeyStuffed \
+! 		&& (c) >= 0) \
+  	{ \
+  	    if ((c) < 256) \
+  		c = langmap_mapchar[c]; \
+***************
+*** 145,151 ****
+  # else
+  #  define LANGMAP_ADJUST(c, condition) \
+      do { \
+! 	if (*p_langmap && (condition) && !KeyStuffed && (c) >= 0 && (c) < 256) \
+  	    c = langmap_mapchar[c]; \
+      } while (0)
+  # endif
+--- 150,160 ----
+  # else
+  #  define LANGMAP_ADJUST(c, condition) \
+      do { \
+! 	if (*p_langmap \
+! 		&& (condition) \
+! 		&& (!p_lnr || (p_lnr && typebuf_maplen() == 0)) \
+! 		&& !KeyStuffed \
+! 		&& (c) >= 0 && (c) < 256) \
+  	    c = langmap_mapchar[c]; \
+      } while (0)
+  # endif
+*** ../vim-7.4.501/src/option.c	2014-09-29 17:15:09.963945227 +0200
+--- src/option.c	2014-11-05 17:17:44.208510810 +0100
+***************
+*** 1691,1696 ****
+--- 1691,1703 ----
+  			    (char_u *)NULL, PV_NONE,
+  #endif
+  			    {(char_u *)"", (char_u *)0L} SCRIPTID_INIT},
++     {"langnoremap",  "lnr",   P_BOOL|P_VI_DEF,
++ #ifdef FEAT_LANGMAP
++ 			    (char_u *)&p_lnr, PV_NONE,
++ #else
++ 			    (char_u *)NULL, PV_NONE,
++ #endif
++ 			    {(char_u *)FALSE, (char_u *)0L} SCRIPTID_INIT},
+      {"laststatus",  "ls",   P_NUM|P_VI_DEF|P_RALL,
+  #ifdef FEAT_WINDOWS
+  			    (char_u *)&p_ls, PV_NONE,
+*** ../vim-7.4.501/src/option.h	2014-09-23 15:45:04.870801055 +0200
+--- src/option.h	2014-11-05 17:17:44.212510810 +0100
+***************
+*** 576,581 ****
+--- 576,582 ----
+  EXTERN char_u	*p_km;		/* 'keymodel' */
+  #ifdef FEAT_LANGMAP
+  EXTERN char_u	*p_langmap;	/* 'langmap'*/
++ EXTERN int	p_lnr;		/* 'langnoremap' */
+  #endif
+  #if defined(FEAT_MENU) && defined(FEAT_MULTI_LANG)
+  EXTERN char_u	*p_lm;		/* 'langmenu' */
+*** ../vim-7.4.501/src/version.c	2014-11-05 17:04:10.516530418 +0100
+--- src/version.c	2014-11-05 17:15:31.820514001 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     502,
+  /**/
+
+-- 
+MARTHA'S WAY: Don't throw out all that leftover wine. Freeze into ice cubes
+              for future use in casseroles and sauces.
+MY WAY:       What leftover wine?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

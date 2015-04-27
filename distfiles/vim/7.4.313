@@ -1,0 +1,320 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.313
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.313 (after 7.4.310)
+Problem:    Changing the return value of getpos() causes an error. (Jie Zhu)
+Solution:   Revert getpos() and add getcurpos().
+Files:	    src/eval.c, src/testdir/test_eval.in, src/testdir/test_eval.ok,
+	    runtime/doc/eval.txt
+
+
+*** ../vim-7.4.312/src/eval.c	2014-05-28 18:22:37.876225054 +0200
+--- src/eval.c	2014-05-28 20:11:55.364282457 +0200
+***************
+*** 560,565 ****
+--- 560,566 ----
+  static void f_getline __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getmatches __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getpid __ARGS((typval_T *argvars, typval_T *rettv));
++ static void f_getcurpos __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getpos __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getqflist __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getreg __ARGS((typval_T *argvars, typval_T *rettv));
+***************
+*** 7967,7972 ****
+--- 7968,7974 ----
+      {"getcmdline",	0, 0, f_getcmdline},
+      {"getcmdpos",	0, 0, f_getcmdpos},
+      {"getcmdtype",	0, 0, f_getcmdtype},
++     {"getcurpos",	0, 0, f_getcurpos},
+      {"getcwd",		0, 0, f_getcwd},
+      {"getfontname",	0, 1, f_getfontname},
+      {"getfperm",	1, 1, f_getfperm},
+***************
+*** 11780,11785 ****
+--- 11782,11800 ----
+      rettv->vval.v_number = mch_get_pid();
+  }
+  
++ static void getpos_both __ARGS((typval_T *argvars, typval_T *rettv, int getcurpos));
++ 
++ /*
++  * "getcurpos()" function
++  */
++     static void
++ f_getcurpos(argvars, rettv)
++     typval_T	*argvars;
++     typval_T	*rettv;
++ {
++     getpos_both(argvars, rettv, TRUE);
++ }
++ 
+  /*
+   * "getpos(string)" function
+   */
+***************
+*** 11788,11793 ****
+--- 11803,11817 ----
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
++     getpos_both(argvars, rettv, FALSE);
++ }
++ 
++     static void
++ getpos_both(argvars, rettv, getcurpos)
++     typval_T	*argvars;
++     typval_T	*rettv;
++     int		getcurpos;
++ {
+      pos_T	*fp;
+      list_T	*l;
+      int		fnum = -1;
+***************
+*** 11795,11801 ****
+      if (rettv_list_alloc(rettv) == OK)
+      {
+  	l = rettv->vval.v_list;
+! 	fp = var2fpos(&argvars[0], TRUE, &fnum);
+  	if (fnum != -1)
+  	    list_append_number(l, (varnumber_T)fnum);
+  	else
+--- 11819,11828 ----
+      if (rettv_list_alloc(rettv) == OK)
+      {
+  	l = rettv->vval.v_list;
+! 	if (getcurpos)
+! 	    fp = &curwin->w_cursor;
+! 	else
+! 	    fp = var2fpos(&argvars[0], TRUE, &fnum);
+  	if (fnum != -1)
+  	    list_append_number(l, (varnumber_T)fnum);
+  	else
+***************
+*** 11810,11816 ****
+  				(fp != NULL) ? (varnumber_T)fp->coladd :
+  #endif
+  							      (varnumber_T)0);
+! 	if (fp == &curwin->w_cursor)
+  	    list_append_number(l, (varnumber_T)curwin->w_curswant + 1);
+      }
+      else
+--- 11837,11843 ----
+  				(fp != NULL) ? (varnumber_T)fp->coladd :
+  #endif
+  							      (varnumber_T)0);
+! 	if (getcurpos)
+  	    list_append_number(l, (varnumber_T)curwin->w_curswant + 1);
+      }
+      else
+*** ../vim-7.4.312/src/testdir/test_eval.in	2014-05-28 14:32:47.160104334 +0200
+--- src/testdir/test_eval.in	2014-05-28 20:14:27.048283785 +0200
+***************
+*** 190,198 ****
+  :$put =v:exception
+  :endtry
+  :"
+! :$put ='{{{1 setpos/getpos'
+  /^012345678
+! 6l:let sp = getpos('.')
+  0:call setpos('.', sp)
+  jyl:$put
+  :"
+--- 190,198 ----
+  :$put =v:exception
+  :endtry
+  :"
+! :$put ='{{{1 getcurpos/setpos'
+  /^012345678
+! 6l:let sp = getcurpos()
+  0:call setpos('.', sp)
+  jyl:$put
+  :"
+*** ../vim-7.4.312/src/testdir/test_eval.ok	2014-05-28 14:32:47.160104334 +0200
+--- src/testdir/test_eval.ok	2014-05-28 20:14:43.316283927 +0200
+***************
+*** 346,350 ****
+  Bar exists: 1
+  func Bar exists: 1
+  Vim(call):E116: Invalid arguments for function append
+! {{{1 setpos/getpos
+  6
+--- 346,350 ----
+  Bar exists: 1
+  func Bar exists: 1
+  Vim(call):E116: Invalid arguments for function append
+! {{{1 getcurpos/setpos
+  6
+*** ../vim-7.4.312/runtime/doc/eval.txt	2014-05-28 18:22:37.872225054 +0200
+--- runtime/doc/eval.txt	2014-05-28 20:27:57.092290876 +0200
+***************
+*** 1808,1817 ****
+  getcmdline()			String	return the current command-line
+  getcmdpos()			Number	return cursor position in command-line
+  getcmdtype()			String	return the current command-line type
+  getcwd()			String	the current working directory
+  getfperm( {fname})		String	file permissions of file {fname}
+  getfsize( {fname})		Number	size in bytes of file {fname}
+- getfontname( [{name}])		String	name of font being used
+  getftime( {fname})		Number	last modification time of file
+  getftype( {fname})		String	description of type of file {fname}
+  getline( {lnum})		String	line {lnum} of current buffer
+--- 1808,1818 ----
+  getcmdline()			String	return the current command-line
+  getcmdpos()			Number	return cursor position in command-line
+  getcmdtype()			String	return the current command-line type
++ getcurpos()			List	position of the cursor
+  getcwd()			String	the current working directory
++ getfontname( [{name}])		String	name of font being used
+  getfperm( {fname})		String	file permissions of file {fname}
+  getfsize( {fname})		Number	size in bytes of file {fname}
+  getftime( {fname})		Number	last modification time of file
+  getftype( {fname})		String	description of type of file {fname}
+  getline( {lnum})		String	line {lnum} of current buffer
+***************
+*** 2606,2613 ****
+  		with two, three or four item:
+  			[{lnum}, {col}, {off}]
+  			[{lnum}, {col}, {off}, {curswant}]
+! 		This is like the return value of |getpos()|, but without the
+! 		first item.
+  
+  		Does not change the jumplist.
+  		If {lnum} is greater than the number of lines in the buffer,
+--- 2607,2614 ----
+  		with two, three or four item:
+  			[{lnum}, {col}, {off}]
+  			[{lnum}, {col}, {off}, {curswant}]
+! 		This is like the return value of |getpos()| or |getcurpos|,
+! 		but without the first item.
+  
+  		Does not change the jumplist.
+  		If {lnum} is greater than the number of lines in the buffer,
+***************
+*** 2617,2622 ****
+--- 2618,2625 ----
+  		the cursor will be positioned at the last character in the
+  		line.
+  		If {col} is zero, the cursor will stay in the current column.
++ 		If {curswant} is given it is used to set the preferred column
++ 		for vertical movment.  Otherwise {col} is used.
+  		When 'virtualedit' is used {off} specifies the offset in
+  		screen columns from the start of the character.  E.g., a
+  		position within a <Tab> or after the last character.
+***************
+*** 3339,3344 ****
+--- 3347,3363 ----
+  		Returns an empty string otherwise.
+  		Also see |getcmdpos()|, |setcmdpos()| and |getcmdline()|.
+  
++ 							*getcurpos()*
++ getcurpos()	Get the position of the cursor.  This is like getpos('.'), but
++ 		includes an extra item in the list:
++ 		    [bufnum, lnum, col, off, curswant]
++ 		The "curswant" number is the preferred column when moving the
++ 		cursor vertically.
++ 		This can be used to save and restore the cursor position: >
++ 			let save_cursor = getcurpos()
++ 			MoveTheCursorAround
++ 			call setpos('.', save_cursor)
++ 
+  							*getcwd()*
+  getcwd()	The result is a String, which is the name of the current
+  		working directory.
+***************
+*** 4493,4502 ****
+  
+  							*getpos()*
+  getpos({expr})	Get the position for {expr}.  For possible values of {expr}
+! 		see |line()|.
+! 		The result is a |List| with four or five numbers:
+  		    [bufnum, lnum, col, off]
+- 		    [bufnum, lnum, col, off, curswant]
+  		"bufnum" is zero, unless a mark like '0 or 'A is used, then it
+  		is the buffer number of the mark.
+  		"lnum" and "col" are the position in the buffer.  The first
+--- 4517,4526 ----
+  
+  							*getpos()*
+  getpos({expr})	Get the position for {expr}.  For possible values of {expr}
+! 		see |line()|.  For getting the cursor position see
+! 		|getcurpos()|.
+! 		The result is a |List| with four numbers:
+  		    [bufnum, lnum, col, off]
+  		"bufnum" is zero, unless a mark like '0 or 'A is used, then it
+  		is the buffer number of the mark.
+  		"lnum" and "col" are the position in the buffer.  The first
+***************
+*** 4505,4520 ****
+  		it is the offset in screen columns from the start of the
+  		character.  E.g., a position within a <Tab> or after the last
+  		character.
+- 		The "curswant" number is only added for getpos('.'), it is the
+- 		preferred column when moving the cursor vertically.
+  		Note that for '< and '> Visual mode matters: when it is "V"
+  		(visual line mode) the column of '< is zero and the column of
+  		'> is a large number.
+! 		This can be used to save and restore the cursor position: >
+! 			let save_cursor = getpos(".")
+! 			MoveTheCursorAround
+! 			call setpos('.', save_cursor)
+! <		Also see |setpos()|.
+  
+  or({expr}, {expr})					*or()*
+  		Bitwise OR on the two arguments.  The arguments are converted
+--- 4529,4542 ----
+  		it is the offset in screen columns from the start of the
+  		character.  E.g., a position within a <Tab> or after the last
+  		character.
+  		Note that for '< and '> Visual mode matters: when it is "V"
+  		(visual line mode) the column of '< is zero and the column of
+  		'> is a large number.
+! 		This can be used to save and restore the position of a mark: >
+! 			let save_a_mark = getpos("'a")
+! 			...
+! 			call setpos(''a', save_a_mark
+! <		Also see |getcurpos()| and |setpos()|.
+  
+  or({expr}, {expr})					*or()*
+  		Bitwise OR on the two arguments.  The arguments are converted
+***************
+*** 5347,5353 ****
+  		Returns 0 when the position could be set, -1 otherwise.
+  		An error message is given if {expr} is invalid.
+  
+! 		Also see |getpos()|
+  
+  		This does not restore the preferred column for moving
+  		vertically; if you set the cursor position with this, |j| and
+--- 5369,5375 ----
+  		Returns 0 when the position could be set, -1 otherwise.
+  		An error message is given if {expr} is invalid.
+  
+! 		Also see |getpos()| and |getcurpos()|.
+  
+  		This does not restore the preferred column for moving
+  		vertically; if you set the cursor position with this, |j| and
+*** ../vim-7.4.312/src/version.c	2014-05-28 18:22:37.880225054 +0200
+--- src/version.c	2014-05-28 20:15:52.164284530 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     313,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+225. You sign up for free subscriptions for all the computer magazines
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

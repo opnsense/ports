@@ -1,0 +1,91 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.602
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.602
+Problem:    ":set" does not accept hex numbers as documented.
+Solution:   Use vim_str2nr(). (ZyX)
+Files:	    src/option.c, runtime/doc/options.txt
+
+
+*** ../vim-7.4.601/src/option.c	2014-11-30 13:34:16.885626772 +0100
+--- src/option.c	2015-01-27 15:51:01.455344467 +0100
+***************
+*** 4540,4560 ****
+  				goto skip;
+  			    }
+  			}
+- 				/* allow negative numbers (for 'undolevels') */
+  			else if (*arg == '-' || VIM_ISDIGIT(*arg))
+  			{
+! 			    i = 0;
+! 			    if (*arg == '-')
+! 				i = 1;
+! #ifdef HAVE_STRTOL
+! 			    value = strtol((char *)arg, NULL, 0);
+! 			    if (arg[i] == '0' && TOLOWER_ASC(arg[i + 1]) == 'x')
+! 				i += 2;
+! #else
+! 			    value = atol((char *)arg);
+! #endif
+! 			    while (VIM_ISDIGIT(arg[i]))
+! 				++i;
+  			    if (arg[i] != NUL && !vim_iswhite(arg[i]))
+  			    {
+  				errmsg = e_invarg;
+--- 4540,4550 ----
+  				goto skip;
+  			    }
+  			}
+  			else if (*arg == '-' || VIM_ISDIGIT(*arg))
+  			{
+! 			    /* Allow negative (for 'undolevels'), octal and
+! 			     * hex numbers. */
+! 			    vim_str2nr(arg, NULL, &i, TRUE, TRUE, &value, NULL);
+  			    if (arg[i] != NUL && !vim_iswhite(arg[i]))
+  			    {
+  				errmsg = e_invarg;
+*** ../vim-7.4.601/runtime/doc/options.txt	2014-11-05 17:44:47.676471691 +0100
+--- runtime/doc/options.txt	2015-01-27 15:47:53.873380762 +0100
+***************
+*** 59,67 ****
+  :se[t] {option}:{value}
+  			Set string or number option to {value}.
+  			For numeric options the value can be given in decimal,
+! 			hex (preceded with 0x) or octal (preceded with '0')
+! 			(hex and octal are only available for machines which
+! 			have the strtol() function).
+  			The old value can be inserted by typing 'wildchar' (by
+  			default this is a <Tab> or CTRL-E if 'compatible' is
+  			set).  See |cmdline-completion|.
+--- 59,65 ----
+  :se[t] {option}:{value}
+  			Set string or number option to {value}.
+  			For numeric options the value can be given in decimal,
+!  			hex (preceded with 0x) or octal (preceded with '0').
+  			The old value can be inserted by typing 'wildchar' (by
+  			default this is a <Tab> or CTRL-E if 'compatible' is
+  			set).  See |cmdline-completion|.
+*** ../vim-7.4.601/src/version.c	2015-01-27 15:18:55.156333265 +0100
+--- src/version.c	2015-01-27 15:49:28.840349899 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     602,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+128. You can access the Net -- via your portable and cellular phone.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

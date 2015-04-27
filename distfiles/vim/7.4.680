@@ -1,0 +1,348 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.680
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.680
+Problem:    CTRL-W in Insert mode does not work well for multi-byte
+	    characters.
+Solution:   Use mb_get_class(). (Yasuhiro Matsumoto)
+Files:	    src/edit.c, src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile,
+	    src/testdir/test_erasebackword.in,
+	    src/testdir/test_erasebackword.ok,
+
+
+*** ../vim-7.4.679/src/edit.c	2015-03-20 18:11:44.967196356 +0100
+--- src/edit.c	2015-03-24 17:40:27.705563807 +0100
+***************
+*** 9047,9118 ****
+  	/*
+  	 * Delete upto starting point, start of line or previous word.
+  	 */
+! 	else do
+  	{
+  #ifdef FEAT_RIGHTLEFT
+! 	    if (!revins_on) /* put cursor on char to be deleted */
+  #endif
+! 		dec_cursor();
+  
+! 	    /* start of word? */
+! 	    if (mode == BACKSPACE_WORD && !vim_isspace(gchar_cursor()))
+! 	    {
+! 		mode = BACKSPACE_WORD_NOT_SPACE;
+! 		temp = vim_iswordc(gchar_cursor());
+! 	    }
+! 	    /* end of word? */
+! 	    else if (mode == BACKSPACE_WORD_NOT_SPACE
+! 		    && (vim_isspace(cc = gchar_cursor())
+! 			    || vim_iswordc(cc) != temp))
+! 	    {
+  #ifdef FEAT_RIGHTLEFT
+! 		if (!revins_on)
+  #endif
+! 		    inc_cursor();
+  #ifdef FEAT_RIGHTLEFT
+! 		else if (State & REPLACE_FLAG)
+! 		    dec_cursor();
+  #endif
+! 		break;
+! 	    }
+! 	    if (State & REPLACE_FLAG)
+! 		replace_do_bs(-1);
+! 	    else
+! 	    {
+  #ifdef FEAT_MBYTE
+! 		if (enc_utf8 && p_deco)
+! 		    (void)utfc_ptr2char(ml_get_cursor(), cpc);
+  #endif
+! 		(void)del_char(FALSE);
+  #ifdef FEAT_MBYTE
+! 		/*
+! 		 * If there are combining characters and 'delcombine' is set
+! 		 * move the cursor back.  Don't back up before the base
+! 		 * character.
+! 		 */
+! 		if (enc_utf8 && p_deco && cpc[0] != NUL)
+! 		    inc_cursor();
+  #endif
+  #ifdef FEAT_RIGHTLEFT
+! 		if (revins_chars)
+! 		{
+! 		    revins_chars--;
+! 		    revins_legal++;
+  		}
+! 		if (revins_on && gchar_cursor() == NUL)
+  		    break;
+! #endif
+! 	    }
+! 	    /* Just a single backspace?: */
+! 	    if (mode == BACKSPACE_CHAR)
+! 		break;
+! 	} while (
+  #ifdef FEAT_RIGHTLEFT
+! 		revins_on ||
+  #endif
+! 		(curwin->w_cursor.col > mincol
+! 		 && (curwin->w_cursor.lnum != Insstart_orig.lnum
+! 		     || curwin->w_cursor.col != Insstart_orig.col)));
+  	did_backspace = TRUE;
+      }
+  #ifdef FEAT_SMARTINDENT
+--- 9047,9140 ----
+  	/*
+  	 * Delete upto starting point, start of line or previous word.
+  	 */
+! 	else
+  	{
++ #ifdef FEAT_MBYTE
++ 	    int cclass = 0, prev_cclass = 0;
++ 
++ 	    if (has_mbyte)
++ 		cclass = mb_get_class(ml_get_cursor());
++ #endif
++ 	    do
++ 	    {
+  #ifdef FEAT_RIGHTLEFT
+! 		if (!revins_on) /* put cursor on char to be deleted */
+  #endif
+! 		    dec_cursor();
+  
+! 		cc = gchar_cursor();
+! #ifdef FEAT_MBYTE
+! 		/* look multi-byte character class */
+! 		if (has_mbyte)
+! 		{
+! 		    prev_cclass = cclass;
+! 		    cclass = mb_get_class(ml_get_cursor());
+! 		}
+! #endif
+! 
+! 		/* start of word? */
+! 		if (mode == BACKSPACE_WORD && !vim_isspace(cc))
+! 		{
+! 		    mode = BACKSPACE_WORD_NOT_SPACE;
+! 		    temp = vim_iswordc(cc);
+! 		}
+! 		/* end of word? */
+! 		else if (mode == BACKSPACE_WORD_NOT_SPACE
+! 			&& ((vim_isspace(cc) || vim_iswordc(cc) != temp)
+! #ifdef FEAT_MBYTE
+! 			|| prev_cclass != cclass
+! #endif
+! 			))
+! 		{
+  #ifdef FEAT_RIGHTLEFT
+! 		    if (!revins_on)
+  #endif
+! 			inc_cursor();
+  #ifdef FEAT_RIGHTLEFT
+! 		    else if (State & REPLACE_FLAG)
+! 			dec_cursor();
+  #endif
+! 		    break;
+! 		}
+! 		if (State & REPLACE_FLAG)
+! 		    replace_do_bs(-1);
+! 		else
+! 		{
+  #ifdef FEAT_MBYTE
+! 		    if (enc_utf8 && p_deco)
+! 			(void)utfc_ptr2char(ml_get_cursor(), cpc);
+  #endif
+! 		    (void)del_char(FALSE);
+  #ifdef FEAT_MBYTE
+! 		    /*
+! 		     * If there are combining characters and 'delcombine' is set
+! 		     * move the cursor back.  Don't back up before the base
+! 		     * character.
+! 		     */
+! 		    if (enc_utf8 && p_deco && cpc[0] != NUL)
+! 			inc_cursor();
+  #endif
+  #ifdef FEAT_RIGHTLEFT
+! 		    if (revins_chars)
+! 		    {
+! 			revins_chars--;
+! 			revins_legal++;
+! 		    }
+! 		    if (revins_on && gchar_cursor() == NUL)
+! 			break;
+! #endif
+  		}
+! 		/* Just a single backspace?: */
+! 		if (mode == BACKSPACE_CHAR)
+  		    break;
+! 	    } while (
+  #ifdef FEAT_RIGHTLEFT
+! 		    revins_on ||
+  #endif
+! 		    (curwin->w_cursor.col > mincol
+! 		    && (curwin->w_cursor.lnum != Insstart_orig.lnum
+! 			|| curwin->w_cursor.col != Insstart_orig.col)));
+! 	}
+  	did_backspace = TRUE;
+      }
+  #ifdef FEAT_SMARTINDENT
+*** ../vim-7.4.679/src/testdir/Make_amiga.mak	2015-03-13 15:02:46.254059251 +0100
+--- src/testdir/Make_amiga.mak	2015-03-24 17:36:08.200314390 +0100
+***************
+*** 43,48 ****
+--- 43,49 ----
+  		test_changelist.out \
+  		test_close_count.out \
+  		test_command_count.out \
++ 		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+***************
+*** 185,190 ****
+--- 186,192 ----
+  test_changelist.out: test_changelist.in
+  test_close_count.out: test_close_count.in
+  test_command_count.out: test_command_count.in
++ test_erasebackword.out: test_erasebackword.in
+  test_eval.out: test_eval.in
+  test_insertcount.out: test_insertcount.in
+  test_listlbr.out: test_listlbr.in
+*** ../vim-7.4.679/src/testdir/Make_dos.mak	2015-03-13 15:02:46.258059206 +0100
+--- src/testdir/Make_dos.mak	2015-03-24 17:36:16.360226912 +0100
+***************
+*** 42,47 ****
+--- 42,48 ----
+  		test_changelist.out \
+  		test_close_count.out \
+  		test_command_count.out \
++ 		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.679/src/testdir/Make_ming.mak	2015-03-13 15:02:46.258059206 +0100
+--- src/testdir/Make_ming.mak	2015-03-24 17:36:20.296184745 +0100
+***************
+*** 64,69 ****
+--- 64,70 ----
+  		test_changelist.out \
+  		test_close_count.out \
+  		test_command_count.out \
++ 		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.679/src/testdir/Make_os2.mak	2015-03-13 15:02:46.258059206 +0100
+--- src/testdir/Make_os2.mak	2015-03-24 17:36:22.864157273 +0100
+***************
+*** 44,49 ****
+--- 44,50 ----
+  		test_changelist.out \
+  		test_close_count.out \
+  		test_command_count.out \
++ 		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.679/src/testdir/Make_vms.mms	2015-03-13 15:02:46.258059206 +0100
+--- src/testdir/Make_vms.mms	2015-03-24 17:36:33.368044688 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2015 Mar 13
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2015 Mar 24
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 103,108 ****
+--- 103,109 ----
+  	 test_changelist.out \
+  	 test_close_count.out \
+  	 test_command_count.out \
++ 	 test_erasebackword.out \
+  	 test_eval.out \
+  	 test_insertcount.out \
+  	 test_listlbr.out \
+*** ../vim-7.4.679/src/testdir/Makefile	2015-03-13 15:02:46.258059206 +0100
+--- src/testdir/Makefile	2015-03-24 17:36:58.747773608 +0100
+***************
+*** 40,45 ****
+--- 40,46 ----
+  		test_changelist.out \
+  		test_close_count.out \
+  		test_command_count.out \
++ 		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.679/src/testdir/test_erasebackword.in	2015-03-24 17:49:11.672057691 +0100
+--- src/testdir/test_erasebackword.in	2015-01-30 03:19:14.000000000 +0100
+***************
+*** 0 ****
+--- 1,19 ----
++ Test for erasing backword
++ 
++ STARTTEST
++ :so small.vim
++ :so mbyte.vim
++ :set encoding=utf-8
++ G
++ o wwwこんにちわ世界ワールドvim 
++ o wwwこんにちわ世界ワールドvim 
++ o wwwこんにちわ世界ワールドvim 
++ o wwwこんにちわ世界ワールドvim 
++ o wwwこんにちわ世界ワールドvim 
++ o wwwこんにちわ世界ワールドvim 
++ :/^test/,$w! test.out
++ :qa!
++ ENDTEST
++ 
++ test starts here:
++ 
+*** ../vim-7.4.679/src/testdir/test_erasebackword.ok	2015-03-24 17:49:11.676057649 +0100
+--- src/testdir/test_erasebackword.ok	2015-01-30 03:19:33.000000000 +0100
+***************
+*** 0 ****
+--- 1,8 ----
++ test starts here:
++ 
++  wwwこんにちわ世界ワールド
++  wwwこんにちわ世界
++  wwwこんにちわ
++  www
++  
++ 
+*** ../vim-7.4.679/src/version.c	2015-03-24 17:12:04.477113277 +0100
+--- src/version.c	2015-03-24 17:17:06.769333643 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     680,
+  /**/
+
+-- 
+TALL KNIGHT: We are now no longer the Knights Who Say Ni!
+ONE KNIGHT:  Ni!
+OTHERS:      Sh!
+ONE KNIGHT:  (whispers) Sorry.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.367
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.367 (after 7.4.357)
+Problem:    Other solution for redrawing after completion.
+Solution:   Schedule a window redraw instead of just clearing the command
+	    line. (Jacob Niehus)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.366/src/edit.c	2014-07-09 14:00:45.175044250 +0200
+--- src/edit.c	2014-07-16 14:36:00.679748155 +0200
+***************
+*** 3854,3860 ****
+  	    ins_compl_free();
+  	    compl_started = FALSE;
+  	    compl_matches = 0;
+! 	    msg_clr_cmdline();	/* necessary for "noshowmode" */
+  	    ctrl_x_mode = 0;
+  	    compl_enter_selects = FALSE;
+  	    if (edit_submode != NULL)
+--- 3854,3861 ----
+  	    ins_compl_free();
+  	    compl_started = FALSE;
+  	    compl_matches = 0;
+! 	    if (!shortmess(SHM_COMPLETIONMENU))
+! 		msg_clr_cmdline();	/* necessary for "noshowmode" */
+  	    ctrl_x_mode = 0;
+  	    compl_enter_selects = FALSE;
+  	    if (edit_submode != NULL)
+***************
+*** 4591,4597 ****
+--- 4592,4601 ----
+       */
+      i = compl_col + (compl_cont_status & CONT_ADDING ? compl_length : 0);
+      backspace_until_column(i);
++ 
++     /* Not sure what is still valid, better redraw everything. */
+      changed_cline_bef_curs();
++     redraw_curbuf_later(NOT_VALID);
+  }
+  
+  /* Insert the new text being completed. */
+*** ../vim-7.4.366/src/version.c	2014-07-16 14:20:38.255766903 +0200
+--- src/version.c	2014-07-16 14:42:23.059740384 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     367,
+  /**/
+
+-- 
+No children may attend school with their breath smelling of "wild onions."
+		[real standing law in West Virginia, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

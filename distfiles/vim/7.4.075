@@ -1,0 +1,290 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.075
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.075
+Problem:    Locally setting 'undolevels' is not tested.
+Solution:   Add a test. (Christian Brabandt)
+Files:      src/testdir/test100.in, src/testdir/test100.ok,
+            src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+            src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+            src/testdir/Make_vms.mms, src/testdir/Makefile, src/Makefile
+
+
+*** ../vim-7.4.074/src/testdir/test100.in	2013-11-07 03:24:56.000000000 +0100
+--- src/testdir/test100.in	2013-11-07 03:20:32.000000000 +0100
+***************
+*** 0 ****
+--- 1,42 ----
++ Tests for 'undolevel' setting being global-local
++ 
++ STARTTEST
++ :so small.vim
++ :set nocompatible viminfo+=nviminfo ul=5
++ :fu! FillBuffer()
++   :for i in range(1,13)
++     :put=i
++     :exe "setg ul=" . &g:ul
++   :endfor
++ :endfu
++ :fu! UndoLevel()
++   :redir @a | setglobal undolevels? | echon ' global' | setlocal undolevels? | echon ' local' |redir end
++   :$put a
++ :endfu
++ :new one
++ :0put ='ONE: expecting global undolevels: 5, local undolevels: -123456 (default)'
++ :call FillBuffer()
++ :call feedkeys(":earlier 10\n", 't')
++ :call UndoLevel()
++ :%w! test.out
++ :new two
++ :0put ='TWO: expecting global undolevels: 5, local undolevels: 2 (first) then 10 (afterwards)'
++ :setlocal ul=2
++ :call FillBuffer()
++ :call feedkeys(":earlier 10\n", 't')
++ :call UndoLevel()
++ :setlocal ul=10
++ :call UndoLevel()
++ :%w >> test.out
++ :wincmd p
++ :redir >>test.out | echo "global value shouldn't be changed and still be 5!" | echo 'ONE: expecting global undolevels: 5, local undolevels: -123456 (default)'|:setglobal undolevels? | echon ' global' | setlocal undolevels? | echon ' local' |echo "" |redir end
++ :new three
++ :setglobal ul=50
++ :1put ='global value should be changed to 50'
++ :2put ='THREE: expecting global undolevels: 50, local undolevels: -123456 (default)'
++ :call UndoLevel()
++ :%w >> test.out
++ :"sleep 10
++ :qa!
++ ENDTEST
++ 
+*** ../vim-7.4.074/src/testdir/test100.ok	2013-11-07 03:24:56.000000000 +0100
+--- src/testdir/test100.ok	2013-11-07 03:11:51.000000000 +0100
+***************
+*** 0 ****
+--- 1,41 ----
++ ONE: expecting global undolevels: 5, local undolevels: -123456 (default)
++ 1
++ 2
++ 3
++ 4
++ 5
++ 6
++ 7
++ 
++ 
++   undolevels=5 global
++   undolevels=-123456 local
++ TWO: expecting global undolevels: 5, local undolevels: 2 (first) then 10 (afterwards)
++ 1
++ 2
++ 3
++ 4
++ 5
++ 6
++ 7
++ 8
++ 9
++ 10
++ 
++ 
++   undolevels=5 global
++   undolevels=2 local
++ 
++   undolevels=5 global
++   undolevels=10 local
++ 
++ global value shouldn't be changed and still be 5!
++ ONE: expecting global undolevels: 5, local undolevels: -123456 (default)
++   undolevels=5 global
++   undolevels=-123456 local
++ 
++ global value should be changed to 50
++ THREE: expecting global undolevels: 50, local undolevels: -123456 (default)
++ 
++   undolevels=50 global
++   undolevels=-123456 local
+*** ../vim-7.4.074/src/testdir/Make_amiga.mak	2013-09-19 17:00:14.000000000 +0200
+--- src/testdir/Make_amiga.mak	2013-11-07 03:07:57.000000000 +0100
+***************
+*** 34,40 ****
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out
+  
+  .SUFFIXES: .in .out
+  
+--- 34,40 ----
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out
+  
+  .SUFFIXES: .in .out
+  
+***************
+*** 150,152 ****
+--- 150,153 ----
+  test97.out: test97.in
+  test98.out: test98.in
+  test99.out: test99.in
++ test100.out: test100.in
+*** ../vim-7.4.074/src/testdir/Make_dos.mak	2013-09-19 17:00:14.000000000 +0200
+--- src/testdir/Make_dos.mak	2013-11-07 03:08:05.000000000 +0100
+***************
+*** 32,38 ****
+  		test79.out test80.out test81.out test82.out test83.out \
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+! 		test94.out test95.out test96.out test98.out test99.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 32,39 ----
+  		test79.out test80.out test81.out test82.out test83.out \
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+! 		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.074/src/testdir/Make_ming.mak	2013-09-19 17:00:14.000000000 +0200
+--- src/testdir/Make_ming.mak	2013-11-07 03:08:12.000000000 +0100
+***************
+*** 52,58 ****
+  		test79.out test80.out test81.out test82.out test83.out \
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+! 		test94.out test95.out test96.out test98.out test99.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 52,59 ----
+  		test79.out test80.out test81.out test82.out test83.out \
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+! 		test94.out test95.out test96.out test98.out test99.out \
+! 		test100out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.074/src/testdir/Make_os2.mak	2013-09-19 17:00:14.000000000 +0200
+--- src/testdir/Make_os2.mak	2013-11-07 03:08:18.000000000 +0100
+***************
+*** 34,40 ****
+  		test76.out test77.out test78.out test79.out test80.out \
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+! 		test94.out test95.out test96.out test98.out test99.out
+  
+  .SUFFIXES: .in .out
+  
+--- 34,41 ----
+  		test76.out test77.out test78.out test79.out test80.out \
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+! 		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out
+  
+  .SUFFIXES: .in .out
+  
+*** ../vim-7.4.074/src/testdir/Make_vms.mms	2013-09-19 17:00:14.000000000 +0200
+--- src/testdir/Make_vms.mms	2013-11-07 03:08:24.000000000 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2013 Sep 19
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2013 Nov 07
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 78,84 ****
+  	 test77.out test78.out test79.out test80.out test81.out \
+  	 test82.out test83.out test84.out test88.out test89.out \
+  	 test90.out test91.out test92.out test93.out test94.out \
+! 	 test95.out test96.out test97.out test98.out test99.out
+  
+  # Known problems:
+  # Test 30: a problem around mac format - unknown reason
+--- 78,85 ----
+  	 test77.out test78.out test79.out test80.out test81.out \
+  	 test82.out test83.out test84.out test88.out test89.out \
+  	 test90.out test91.out test92.out test93.out test94.out \
+! 	 test95.out test96.out test97.out test98.out test99.out \
+! 	 test100.out
+  
+  # Known problems:
+  # Test 30: a problem around mac format - unknown reason
+*** ../vim-7.4.074/src/testdir/Makefile	2013-09-22 15:03:34.000000000 +0200
+--- src/testdir/Makefile	2013-11-07 03:08:31.000000000 +0100
+***************
+*** 30,36 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out
+  
+  SCRIPTS_GUI = test16.out
+  
+--- 30,36 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out
+  
+  SCRIPTS_GUI = test16.out
+  
+*** ../vim-7.4.074/src/Makefile	2013-08-10 14:21:15.000000000 +0200
+--- src/Makefile	2013-11-07 03:10:40.000000000 +0100
+***************
+*** 1882,1888 ****
+  	test60 test61 test62 test63 test64 test65 test66 test67 test68 test69 \
+  	test70 test71 test72 test73 test74 test75 test76 test77 test78 test79 \
+  	test80 test81 test82 test83 test84 test85 test86 test87 test88 test89 \
+! 	test90 test91 test92 test93 test94 test95 test96 test97 test98 test99:
+  	cd testdir; rm $@.out; $(MAKE) -f Makefile $@.out VIMPROG=../$(VIMTARGET)
+  
+  testclean:
+--- 1883,1890 ----
+  	test60 test61 test62 test63 test64 test65 test66 test67 test68 test69 \
+  	test70 test71 test72 test73 test74 test75 test76 test77 test78 test79 \
+  	test80 test81 test82 test83 test84 test85 test86 test87 test88 test89 \
+! 	test90 test91 test92 test93 test94 test95 test96 test97 test98 test99 \
+! 	test100 test101 test102 test103 test104 test105 test106 test107:
+  	cd testdir; rm $@.out; $(MAKE) -f Makefile $@.out VIMPROG=../$(VIMTARGET)
+  
+  testclean:
+*** ../vim-7.4.074/src/version.c	2013-11-07 03:04:06.000000000 +0100
+--- src/version.c	2013-11-07 03:10:10.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     75,
+  /**/
+
+-- 
+Why is "abbreviation" such a long word?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

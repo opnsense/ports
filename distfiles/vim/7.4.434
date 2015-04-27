@@ -1,0 +1,139 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.434
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.434
+Problem:    gettabvar() is not consistent with getwinvar() and getbufvar().
+Solution:   Return a dict with all variables when the varname is empty.
+	    (Yasuhiro Matsumoto)
+Files:	    src/eval.c, runtime/doc/eval.txt, src/testdir/test91.in,
+	    src/testdir/test91.ok
+
+
+*** ../vim-7.4.433/src/eval.c	2014-08-29 15:53:43.706453155 +0200
+--- src/eval.c	2014-09-09 16:03:34.372530448 +0200
+***************
+*** 12071,12077 ****
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     tabpage_T	*tp;
+      dictitem_T	*v;
+      char_u	*varname;
+      int		done = FALSE;
+--- 12071,12078 ----
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     win_T	*win, *oldcurwin;
+!     tabpage_T	*tp, *oldtabpage;
+      dictitem_T	*v;
+      char_u	*varname;
+      int		done = FALSE;
+***************
+*** 12083,12095 ****
+      tp = find_tabpage((int)get_tv_number_chk(&argvars[0], NULL));
+      if (tp != NULL && varname != NULL)
+      {
+  	/* look up the variable */
+! 	v = find_var_in_ht(&tp->tp_vars->dv_hashtab, 0, varname, FALSE);
+  	if (v != NULL)
+  	{
+  	    copy_tv(&v->di_tv, rettv);
+  	    done = TRUE;
+  	}
+      }
+  
+      if (!done && argvars[2].v_type != VAR_UNKNOWN)
+--- 12084,12104 ----
+      tp = find_tabpage((int)get_tv_number_chk(&argvars[0], NULL));
+      if (tp != NULL && varname != NULL)
+      {
++ 	/* Set curwin to be our win, temporarily.  Also set the tabpage,
++ 	 * otherwise the window is not valid. */
++ 	switch_win(&oldcurwin, &oldtabpage, win, tp, TRUE);
++ 
+  	/* look up the variable */
+! 	/* Let gettabvar({nr}, "") return the "t:" dictionary. */
+! 	v = find_var_in_ht(&tp->tp_vars->dv_hashtab, 't', varname, FALSE);
+  	if (v != NULL)
+  	{
+  	    copy_tv(&v->di_tv, rettv);
+  	    done = TRUE;
+  	}
++ 
++ 	/* restore previous notion of curwin */
++ 	restore_win(oldcurwin, oldtabpage, TRUE);
+      }
+  
+      if (!done && argvars[2].v_type != VAR_UNKNOWN)
+*** ../vim-7.4.433/runtime/doc/eval.txt	2014-08-29 15:53:43.714453155 +0200
+--- runtime/doc/eval.txt	2014-09-09 16:00:31.776530049 +0200
+***************
+*** 3535,3540 ****
+--- 3576,3583 ----
+  		Get the value of a tab-local variable {varname} in tab page
+  		{tabnr}. |t:var|
+  		Tabs are numbered starting with one.
++ 		When {varname} is empty a dictionary with all tab-local
++ 		variables is returned.
+  		Note that the name without "t:" must be used.
+  		When the tab or variable doesn't exist {def} or an empty
+  		string is returned, there is no error message.
+*** ../vim-7.4.433/src/testdir/test91.in	2013-07-24 14:53:47.000000000 +0200
+--- src/testdir/test91.in	2014-09-09 16:08:40.116531116 +0200
+***************
+*** 55,60 ****
+--- 55,61 ----
+  :tabnew
+  :tabnew
+  :let t:var_list = [1, 2, 3]
++ :let t:other = 777
+  :let def_list = [4, 5, 6, 7]
+  :tabrewind
+  :$put =string(gettabvar(3, 'var_list'))
+*** ../vim-7.4.433/src/testdir/test91.ok	2013-07-24 14:52:47.000000000 +0200
+--- src/testdir/test91.ok	2014-09-09 16:09:27.624531220 +0200
+***************
+*** 26,33 ****
+  0
+  [1, 2, 3]
+  [1, 2, 3]
+! ''
+! [4, 5, 6, 7]
+  [4, 5, 6, 7]
+  ''
+  [4, 5, 6, 7]
+--- 26,33 ----
+  0
+  [1, 2, 3]
+  [1, 2, 3]
+! {'var_list': [1, 2, 3], 'other': 777}
+! {'var_list': [1, 2, 3], 'other': 777}
+  [4, 5, 6, 7]
+  ''
+  [4, 5, 6, 7]
+*** ../vim-7.4.433/src/version.c	2014-09-09 13:52:55.028513324 +0200
+--- src/version.c	2014-09-09 16:09:17.824531199 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     434,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+108. While reading a magazine, you look for the Zoom icon for a better
+     look at a photograph.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

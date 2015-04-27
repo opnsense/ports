@@ -1,0 +1,73 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.440
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.440
+Problem:    Omni complete popup drawn incorrectly.
+Solution:   Call validate_cursor() instead of check_cursor(). (Hirohito
+	    Higashi)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.439/src/edit.c	2014-09-09 16:32:35.828534252 +0200
+--- src/edit.c	2014-09-09 17:59:17.824545615 +0200
+***************
+*** 4035,4041 ****
+  	goto theend;
+      }
+      curwin->w_cursor = pos;	/* restore the cursor position */
+!     check_cursor();
+      if (!equalpos(curwin->w_cursor, pos))
+      {
+  	EMSG(_(e_compldel));
+--- 4035,4041 ----
+  	goto theend;
+      }
+      curwin->w_cursor = pos;	/* restore the cursor position */
+!     validate_cursor();
+      if (!equalpos(curwin->w_cursor, pos))
+      {
+  	EMSG(_(e_compldel));
+***************
+*** 5273,5279 ****
+  		return FAIL;
+  	    }
+  	    curwin->w_cursor = pos;	/* restore the cursor position */
+! 	    check_cursor();
+  	    if (!equalpos(curwin->w_cursor, pos))
+  	    {
+  		EMSG(_(e_compldel));
+--- 5273,5279 ----
+  		return FAIL;
+  	    }
+  	    curwin->w_cursor = pos;	/* restore the cursor position */
+! 	    validate_cursor();
+  	    if (!equalpos(curwin->w_cursor, pos))
+  	    {
+  		EMSG(_(e_compldel));
+*** ../vim-7.4.439/src/version.c	2014-09-09 17:47:34.584544079 +0200
+--- src/version.c	2014-09-09 17:57:33.232545387 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     440,
+  /**/
+
+-- 
+Nobody will ever need more than 640 kB RAM.
+		-- Bill Gates, 1983
+Windows 98 requires 16 MB RAM.
+		-- Bill Gates, 1999
+Logical conclusion: Nobody will ever need Windows 98.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

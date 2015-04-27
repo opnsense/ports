@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.298
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.298
+Problem:    Can't have a funcref start with "t:".
+Solution:   Add "t" to the list of accepted names. (Yukihiro Nakadaira)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.297/src/eval.c	2014-05-13 13:46:30.593602262 +0200
+--- src/eval.c	2014-05-22 14:09:46.902523041 +0200
+***************
+*** 21064,21070 ****
+      char_u *name;    /* points to start of variable name */
+      int    new_var;  /* TRUE when creating the variable */
+  {
+!     if (!(vim_strchr((char_u *)"wbs", name[0]) != NULL && name[1] == ':')
+  	    && !ASCII_ISUPPER((name[0] != NUL && name[1] == ':')
+  						     ? name[2] : name[0]))
+      {
+--- 21064,21071 ----
+      char_u *name;    /* points to start of variable name */
+      int    new_var;  /* TRUE when creating the variable */
+  {
+!     /* Allow for w: b: s: and t:. */
+!     if (!(vim_strchr((char_u *)"wbst", name[0]) != NULL && name[1] == ':')
+  	    && !ASCII_ISUPPER((name[0] != NUL && name[1] == ':')
+  						     ? name[2] : name[0]))
+      {
+*** ../vim-7.4.297/src/version.c	2014-05-22 14:00:12.698534712 +0200
+--- src/version.c	2014-05-22 14:08:43.874524322 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     298,
+  /**/
+
+-- 
+I'm in shape.  Round IS a shape.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

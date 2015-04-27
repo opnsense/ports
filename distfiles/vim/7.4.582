@@ -1,0 +1,117 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.582
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.582 (after 7.4.577)
+Problem:    Can't match "%>80v" properly. (Axel Bender)
+Solution:   Correctly handle ">". (Christian Brabandt)
+Files:	    src/regexp_nfa.c, src/testdir/test64.in, src/testdir/test64.ok
+
+
+*** ../vim-7.4.581/src/regexp_nfa.c	2015-01-14 18:40:23.083769507 +0100
+--- src/regexp_nfa.c	2015-01-18 16:38:05.437339384 +0100
+***************
+*** 6441,6456 ****
+  		{
+  		    int     op = t->state->c - NFA_VCOL;
+  		    colnr_T col = (colnr_T)(reginput - regline);
+  
+  		    /* Bail out quickly when there can't be a match, avoid the
+  		     * overhead of win_linetabsize() on long lines. */
+! 		    if ((col > t->state->val && op != 1)
+! 			    || (col - 1 > t->state->val && op == 1))
+  			break;
+! 		    result = nfa_re_num_cmp(t->state->val, op,
+! 			(long_u)win_linetabsize(
+! 				reg_win == NULL ? curwin : reg_win,
+! 							   regline, col) + 1);
+  		    if (result)
+  		    {
+  			add_here = TRUE;
+--- 6441,6466 ----
+  		{
+  		    int     op = t->state->c - NFA_VCOL;
+  		    colnr_T col = (colnr_T)(reginput - regline);
++ 		    win_T   *wp = reg_win == NULL ? curwin : reg_win;
+  
+  		    /* Bail out quickly when there can't be a match, avoid the
+  		     * overhead of win_linetabsize() on long lines. */
+! 		    if (op != 1 && col > t->state->val)
+  			break;
+! 		    result = FALSE;
+! 		    if (op == 1 && col - 1 > t->state->val && col > 100)
+! 		    {
+! 			int ts = wp->w_buffer->b_p_ts;
+! 
+! 			/* Guess that a character won't use more columns than
+! 			 * 'tabstop', with a minimum of 4. */
+! 			if (ts < 4)
+! 			    ts = 4;
+! 			result = col > t->state->val * ts;
+! 		    }
+! 		    if (!result)
+! 			result = nfa_re_num_cmp(t->state->val, op,
+! 				(long_u)win_linetabsize(wp, regline, col) + 1);
+  		    if (result)
+  		    {
+  			add_here = TRUE;
+*** ../vim-7.4.581/src/testdir/test64.in	2014-08-29 11:56:21.350422045 +0200
+--- src/testdir/test64.in	2015-01-18 16:09:31.852099488 +0100
+***************
+*** 7,12 ****
+--- 7,13 ----
+  STARTTEST
+  :so small.vim
+  :" tl is a List of Lists with:
++ :"    regexp engine
+  :"    regexp pattern
+  :"    text to test the pattern on
+  :"    expected match (optional)
+***************
+*** 451,456 ****
+--- 452,460 ----
+  :"""" Skip adding state twice
+  :call add(tl, [2, '^\%(\%(^\s*#\s*if\>\|#\s*if\)\)\(\%>1c.*$\)\@=', "#if FOO", "#if", ' FOO'])
+  :"
++ :""" Test \%V atom
++ :call add(tl, [2, '\%>70vGesamt', 'Jean-Michel Charlier & Victor Hubinon\Gesamtausgabe [Salleck]    Buck Danny {Jean-Michel Charlier & Victor Hubinon}\Gesamtausgabe', 'Gesamt'])
++ :"
+  :"""" Run the tests
+  :"
+  :for t in tl
+*** ../vim-7.4.581/src/testdir/test64.ok	2014-08-29 11:56:21.350422045 +0200
+--- src/testdir/test64.ok	2015-01-18 16:09:31.852099488 +0100
+***************
+*** 1030,1035 ****
+--- 1030,1038 ----
+  OK 0 - ^\%(\%(^\s*#\s*if\>\|#\s*if\)\)\(\%>1c.*$\)\@=
+  OK 1 - ^\%(\%(^\s*#\s*if\>\|#\s*if\)\)\(\%>1c.*$\)\@=
+  OK 2 - ^\%(\%(^\s*#\s*if\>\|#\s*if\)\)\(\%>1c.*$\)\@=
++ OK 0 - \%>70vGesamt
++ OK 1 - \%>70vGesamt
++ OK 2 - \%>70vGesamt
+  multi-line tests
+  OK 0 - ^.\(.\).\_..\1.
+  OK 1 - ^.\(.\).\_..\1.
+*** ../vim-7.4.581/src/version.c	2015-01-18 14:08:52.699436994 +0100
+--- src/version.c	2015-01-18 16:12:32.682119256 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     582,
+  /**/
+
+-- 
+There's no place like $(HOME)!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

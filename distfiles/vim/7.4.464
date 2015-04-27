@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.464
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.464 (after 7.4.459)
+Problem:    Compiler warning.
+Solution:   Add type cast. (Ken Takata)
+Files:	    src/gui_w32.c
+
+
+*** ../vim-7.4.463/src/gui_w32.c	2014-09-23 21:53:35.306849352 +0200
+--- src/gui_w32.c	2014-10-06 18:05:22.109272899 +0200
+***************
+*** 1667,1673 ****
+  	HANDLE	hIcon = NULL;
+  
+  	if (mch_icon_load(&hIcon) == OK && hIcon != NULL)
+! 	    SendMessage(s_hwnd, WM_SETICON, ICON_SMALL, hIcon);
+      }
+  
+  #ifdef FEAT_MENU
+--- 1667,1673 ----
+  	HANDLE	hIcon = NULL;
+  
+  	if (mch_icon_load(&hIcon) == OK && hIcon != NULL)
+! 	    SendMessage(s_hwnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+      }
+  
+  #ifdef FEAT_MENU
+*** ../vim-7.4.463/src/version.c	2014-09-29 18:08:54.591952271 +0200
+--- src/version.c	2014-10-06 18:08:26.921273303 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     464,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+230. You spend your Friday nights typing away at your keyboard
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

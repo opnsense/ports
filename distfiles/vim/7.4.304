@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.304
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.304
+Problem:    Cannot always use Python with Vim.
+Solution:   Add the manifest to the executable. (Jacques Germishuys)
+Files:	    src/Make_mvc.mak
+
+
+*** ../vim-7.4.303/src/Make_mvc.mak	2014-02-15 19:47:46.685882910 +0100
+--- src/Make_mvc.mak	2014-05-22 16:25:40.978357314 +0200
+***************
+*** 973,978 ****
+--- 973,979 ----
+  		$(LUA_OBJ) $(MZSCHEME_OBJ) $(PERL_OBJ) $(PYTHON_OBJ) $(PYTHON3_OBJ) $(RUBY_OBJ) \
+  		$(TCL_OBJ) $(SNIFF_OBJ) $(CSCOPE_OBJ) $(NETBEANS_OBJ) \
+  		$(XPM_OBJ) $(OUTDIR)\version.obj $(LINKARGS2)
++ 	if exist $(VIM).exe.manifest mt.exe -nologo -manifest $(VIM).exe.manifest -updateresource:$(VIM).exe;1
+  
+  $(VIM): $(VIM).exe
+  
+*** ../vim-7.4.303/src/version.c	2014-05-22 16:05:16.342382204 +0200
+--- src/version.c	2014-05-22 16:20:07.534364091 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     304,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+194. Your business cards contain your e-mail and home page address.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

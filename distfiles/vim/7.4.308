@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.308
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.308
+Problem:    When using ":diffsplit" on an empty file the cursor is displayed
+	    on the command line.
+Solution:   Limit the value of w_topfill.
+Files:	    src/diff.c
+
+
+*** ../vim-7.4.307/src/diff.c	2013-09-20 20:13:48.000000000 +0200
+--- src/diff.c	2014-05-28 11:30:11.724008432 +0200
+***************
+*** 622,627 ****
+--- 622,628 ----
+  		    wp->w_topfill = (n < 0 ? 0 : n);
+  		else if (n > 0 && n > wp->w_topfill)
+  		    wp->w_topfill = n;
++ 		check_topfill(wp, FALSE);
+  	    }
+  	}
+  }
+*** ../vim-7.4.307/src/version.c	2014-05-22 21:22:15.361995652 +0200
+--- src/version.c	2014-05-28 11:34:01.064010440 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     308,
+  /**/
+
+-- 
+msdn.microsoft.com:
+ERROR_SUCCESS 0 (0x0) The operation completed successfully.
+I have always suspected that for Microsoft success is an error.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.190
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.190
+Problem:    Compiler warning for using %lld for off_t.
+Solution:   Add type cast.
+Files:      src/fileio.c
+
+
+*** ../vim-7.4.189/src/fileio.c	2014-02-23 22:52:33.368764715 +0100
+--- src/fileio.c	2014-02-23 22:31:00.824766773 +0100
+***************
+*** 5294,5300 ****
+      if (shortmess(SHM_LINES))
+  	sprintf((char *)p,
+  #ifdef LONG_LONG_OFF_T
+! 		"%ldL, %lldC", lnum, nchars
+  #else
+  		/* Explicit typecast avoids warning on Mac OS X 10.6 */
+  		"%ldL, %ldC", lnum, (long)nchars
+--- 5294,5300 ----
+      if (shortmess(SHM_LINES))
+  	sprintf((char *)p,
+  #ifdef LONG_LONG_OFF_T
+! 		"%ldL, %lldC", lnum, (long long)nchars
+  #else
+  		/* Explicit typecast avoids warning on Mac OS X 10.6 */
+  		"%ldL, %ldC", lnum, (long)nchars
+***************
+*** 5312,5318 ****
+  	else
+  	    sprintf((char *)p,
+  #ifdef LONG_LONG_OFF_T
+! 		    _("%lld characters"), nchars
+  #else
+  		    /* Explicit typecast avoids warning on Mac OS X 10.6 */
+  		    _("%ld characters"), (long)nchars
+--- 5312,5318 ----
+  	else
+  	    sprintf((char *)p,
+  #ifdef LONG_LONG_OFF_T
+! 		    _("%lld characters"), (long long)nchars
+  #else
+  		    /* Explicit typecast avoids warning on Mac OS X 10.6 */
+  		    _("%ld characters"), (long)nchars
+*** ../vim-7.4.189/src/version.c	2014-02-23 22:54:54.728764490 +0100
+--- src/version.c	2014-02-23 22:57:43.648764221 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     190,
+  /**/
+
+-- 
+Courtroom Quote #19:
+Q:  Doctor, how many autopsies have you performed on dead people?
+A:  All my autopsies have been performed on dead people.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,133 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.210
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.210
+Problem:    Visual block mode plus virtual edit doesn't work well with tabs.
+	    (Liang Li) 
+Solution:   Take coladd into account. (Christian Brabandt)
+Files:	    src/ops.c, src/testdir/test39.in, src/testdir/test39.ok
+
+
+*** ../vim-7.4.209/src/ops.c	2014-02-22 23:03:48.716901208 +0100
+--- src/ops.c	2014-03-19 18:33:54.118153904 +0100
+***************
+*** 2646,2652 ****
+  	if (oap->start.lnum == curbuf->b_op_start_orig.lnum && !bd.is_MAX)
+  	{
+  	    if (oap->op_type == OP_INSERT
+! 		    && oap->start.col != curbuf->b_op_start_orig.col)
+  	    {
+  		oap->start.col = curbuf->b_op_start_orig.col;
+  		pre_textlen -= getviscol2(oap->start.col, oap->start.coladd)
+--- 2646,2660 ----
+  	if (oap->start.lnum == curbuf->b_op_start_orig.lnum && !bd.is_MAX)
+  	{
+  	    if (oap->op_type == OP_INSERT
+! 		    && oap->start.col
+! #ifdef FEAT_VIRTUALEDIT
+! 			    + oap->start.coladd
+! #endif
+! 			!= curbuf->b_op_start_orig.col
+! #ifdef FEAT_VIRTUALEDIT
+! 			    + curbuf->b_op_start_orig.coladd
+! #endif
+! 			)
+  	    {
+  		oap->start.col = curbuf->b_op_start_orig.col;
+  		pre_textlen -= getviscol2(oap->start.col, oap->start.coladd)
+***************
+*** 2654,2660 ****
+  		oap->start_vcol = getviscol2(oap->start.col, oap->start.coladd);
+  	    }
+  	    else if (oap->op_type == OP_APPEND
+! 		    && oap->end.col >= curbuf->b_op_start_orig.col)
+  	    {
+  		oap->start.col = curbuf->b_op_start_orig.col;
+  		/* reset pre_textlen to the value of OP_INSERT */
+--- 2662,2676 ----
+  		oap->start_vcol = getviscol2(oap->start.col, oap->start.coladd);
+  	    }
+  	    else if (oap->op_type == OP_APPEND
+! 		      && oap->end.col
+! #ifdef FEAT_VIRTUALEDIT
+! 			    + oap->end.coladd
+! #endif
+! 			>= curbuf->b_op_start_orig.col
+! #ifdef FEAT_VIRTUALEDIT
+! 			    + curbuf->b_op_start_orig.coladd
+! #endif
+! 			)
+  	    {
+  		oap->start.col = curbuf->b_op_start_orig.col;
+  		/* reset pre_textlen to the value of OP_INSERT */
+*** ../vim-7.4.209/src/testdir/test39.in	2014-01-14 13:18:53.000000000 +0100
+--- src/testdir/test39.in	2014-03-19 18:35:31.382155394 +0100
+***************
+*** 35,40 ****
+--- 35,46 ----
+  /^C23$/
+  :exe ":norm! l\<C-V>j$hhAab\<Esc>"
+  :.,/^$/w >> test.out
++ :" Test for Visual block insert when virtualedit=all
++ :set ve=all
++ :/\t\tline
++ :exe ":norm! 07l\<C-V>jjIx\<Esc>"
++ :set ve=
++ :.,/^$/w >> test.out
+  :" gUe must uppercase a whole word, also when ﬂ changes to SS
+  Gothe youtuﬂeuu endYpk0wgUe
+  :" gUfx must uppercase until x, inclusive.
+***************
+*** 62,67 ****
+--- 68,77 ----
+  :qa!
+  ENDTEST
+  
++ 		line1
++ 		line2
++ 		line3
++ 
+  aaaaaa
+  bbbbbb
+  cccccc
+*** ../vim-7.4.209/src/testdir/test39.ok	2014-01-14 13:18:53.000000000 +0100
+--- src/testdir/test39.ok	2014-03-19 18:34:18.206154273 +0100
+***************
+*** 17,22 ****
+--- 17,26 ----
+  C23ab
+  456ab7
+  
++        x 	line1
++        x 	line2
++        x 	line3
++ 
+  the YOUTUSSEUU end
+  - yOUSSTUSSEXu -
+  THE YOUTUSSEUU END
+*** ../vim-7.4.209/src/version.c	2014-03-19 17:41:20.390105580 +0100
+--- src/version.c	2014-03-19 18:27:19.746147861 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     210,
+  /**/
+
+-- 
+SUPERIMPOSE "England AD 787".  After a few more seconds we hear hoofbeats in
+the distance.  They come slowly closer.  Then out of the mist comes KING
+ARTHUR followed by a SERVANT who is banging two half coconuts together.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

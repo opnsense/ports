@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.494
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.494
+Problem:    Cursor shape is wrong after a CompleteDone autocommand.
+Solution:   Update the cursor and mouse shape after ":normal" restores the
+	    state. (Jacob Niehus)
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.493/src/ex_docmd.c	2014-10-21 20:01:54.986287762 +0200
+--- src/ex_docmd.c	2014-11-05 09:37:05.829176795 +0100
+***************
+*** 9526,9533 ****
+      msg_didout |= save_msg_didout;	/* don't reset msg_didout now */
+  
+      /* Restore the state (needed when called from a function executed for
+!      * 'indentexpr'). */
+      State = save_State;
+  #ifdef FEAT_MBYTE
+      vim_free(arg);
+  #endif
+--- 9526,9540 ----
+      msg_didout |= save_msg_didout;	/* don't reset msg_didout now */
+  
+      /* Restore the state (needed when called from a function executed for
+!      * 'indentexpr'). Update the mouse and cursor, they may have changed. */
+      State = save_State;
++ #ifdef FEAT_MOUSE
++     setmouse();
++ #endif
++ #ifdef CURSOR_SHAPE
++     ui_cursor_shape();		/* may show different cursor shape */
++ #endif
++ 
+  #ifdef FEAT_MBYTE
+      vim_free(arg);
+  #endif
+*** ../vim-7.4.493/src/version.c	2014-10-31 19:51:33.014698055 +0100
+--- src/version.c	2014-11-05 09:51:06.261156543 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     494,
+  /**/
+
+-- 
+Q:   How many hardware engineers does it take to change a lightbulb?
+A:   None.  We'll fix it in software.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

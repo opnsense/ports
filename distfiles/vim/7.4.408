@@ -1,0 +1,334 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.408
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.408
+Problem:    Visual block insert breaks a multi-byte character.
+Solution:   Calculate the position properly. (Yasuhiro Matsumoto)
+Files:	    src/ops.c, src/testdir/test_utf8.in, src/testdir/test_utf8.ok,
+	    src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile
+
+
+*** ../vim-7.4.407/src/ops.c	2014-08-06 18:17:03.475147780 +0200
+--- src/ops.c	2014-08-16 18:33:34.625999952 +0200
+***************
+*** 609,614 ****
+--- 609,634 ----
+  	    }
+  	}
+  
++ #ifdef FEAT_MBYTE
++ 	if (has_mbyte && spaces > 0)
++ 	{
++ 	    /* Avoid starting halfway a multi-byte character. */
++ 	    if (b_insert)
++ 	    {
++ 		int off = (*mb_head_off)(oldp, oldp + offset + spaces);
++ 		spaces -= off;
++ 		count -= off;
++ 	    }
++ 	    else
++ 	    {
++ 		int off = (*mb_off_next)(oldp, oldp + offset);
++ 		offset += off;
++ 		spaces = 0;
++ 		count = 0;
++ 	    }
++ 	}
++ #endif
++ 
+  	newp = alloc_check((unsigned)(STRLEN(oldp)) + s_len + count + 1);
+  	if (newp == NULL)
+  	    continue;
+*** ../vim-7.4.407/src/testdir/test_utf8.in	2014-08-16 18:35:44.853995229 +0200
+--- src/testdir/test_utf8.in	2014-08-16 18:25:02.310018533 +0200
+***************
+*** 0 ****
+--- 1,18 ----
++ Tests for Unicode manipulations                vim: set ft=vim :
++  
++ STARTTEST
++ :so small.vim
++ :set encoding=utf-8
++ :" Visual block Insert adjusts for multi-byte char
++ :new
++ :call setline(1, ["aaa", "あああ", "bbb"])
++ :exe ":norm! gg0l\<C-V>jjIx\<Esc>"
++ :let r = getline(1, '$')
++ :
++ :bwipeout!
++ :$put=r
++ :call garbagecollect(1)
++ :/^start:/,$wq! test.out
++ ENDTEST
++  
++ start:
+*** ../vim-7.4.407/src/testdir/test_utf8.ok	2014-08-16 18:35:44.857995229 +0200
+--- src/testdir/test_utf8.ok	2014-08-16 18:25:35.354017334 +0200
+***************
+*** 0 ****
+--- 1,4 ----
++ start:
++ axaa
++ xあああ
++ bxbb
+*** ../vim-7.4.407/src/testdir/Make_amiga.mak	2014-07-30 16:00:45.547553496 +0200
+--- src/testdir/Make_amiga.mak	2014-08-16 18:28:17.694011447 +0200
+***************
+*** 38,50 ****
+  		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+- 		test_listlbr.out \
+- 		test_listlbr_utf8.out \
+- 		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_options.out
+  
+  .SUFFIXES: .in .out
+  
+--- 38,51 ----
+  		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_listlbr.out \
+! 		test_listlbr_utf8.out \
+! 		test_options.out \
+! 		test_qf_title.out \
+! 		test_utf8.out
+  
+  .SUFFIXES: .in .out
+  
+***************
+*** 170,179 ****
+  test107.out: test107.in
+  test_autoformat_join.out: test_autoformat_join.in
+  test_breakindent.out: test_breakindent.in
+- test_listlbr.out: test_listlbr.in
+- test_listlbr_utf8.out: test_listlbr_utf8.in
+- test_qf_title.out: test_qf_title.in
+  test_changelist.out: test_changelist.in
+  test_eval.out: test_eval.in
+  test_insertcount.out: test_insertcount.in
+  test_options.out: test_options.in
+--- 171,181 ----
+  test107.out: test107.in
+  test_autoformat_join.out: test_autoformat_join.in
+  test_breakindent.out: test_breakindent.in
+  test_changelist.out: test_changelist.in
+  test_eval.out: test_eval.in
+  test_insertcount.out: test_insertcount.in
++ test_listlbr.out: test_listlbr.in
++ test_listlbr_utf8.out: test_listlbr_utf8.in
+  test_options.out: test_options.in
++ test_qf_title.out: test_qf_title.in
++ test_utf8.out: test_utf8.in
+*** ../vim-7.4.407/src/testdir/Make_dos.mak	2014-07-30 16:00:45.547553496 +0200
+--- src/testdir/Make_dos.mak	2014-08-16 18:28:37.122010742 +0200
+***************
+*** 37,49 ****
+  		test105.out test106.out  test107.out\
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+- 		test_listlbr.out \
+- 		test_listlbr_utf8.out \
+- 		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_options.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 37,50 ----
+  		test105.out test106.out  test107.out\
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_listlbr.out \
+! 		test_listlbr_utf8.out \
+! 		test_options.out \
+! 		test_qf_title.out \
+! 		test_utf8.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.407/src/testdir/Make_ming.mak	2014-07-30 16:00:45.547553496 +0200
+--- src/testdir/Make_ming.mak	2014-08-16 18:28:56.438010041 +0200
+***************
+*** 57,69 ****
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+- 		test_listlbr.out \
+- 		test_listlbr_utf8.out \
+- 		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_options.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 57,70 ----
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_listlbr.out \
+! 		test_listlbr_utf8.out \
+! 		test_options.out \
+! 		test_qf_title.out \
+! 		test_utf8.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.407/src/testdir/Make_os2.mak	2014-07-30 16:00:45.547553496 +0200
+--- src/testdir/Make_os2.mak	2014-08-16 18:29:26.962008934 +0200
+***************
+*** 38,51 ****
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+- 		test_breakindent.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_qf_title.out \
+! 		test_options.out
+  
+  .SUFFIXES: .in .out
+  
+--- 38,52 ----
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
+  		test_autoformat_join.out \
++ 		test_breakindent.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
++ 		test_options.out \
+  		test_qf_title.out \
+! 		test_utf8.out
+  
+  .SUFFIXES: .in .out
+  
+*** ../vim-7.4.407/src/testdir/Make_vms.mms	2014-07-30 16:00:45.547553496 +0200
+--- src/testdir/Make_vms.mms	2014-08-16 18:29:42.702008364 +0200
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Jul 30
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Aug 16
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 98,110 ****
+  	 test105.out test106.out test107.out \
+  	 test_autoformat_join.out \
+  	 test_breakindent.out \
+- 	 test_listlbr.out \
+- 	 test_listlbr_utf8.out \
+- 	 test_qf_title.out \
+  	 test_changelist.out \
+  	 test_eval.out \
+  	 test_insertcount.out \
+! 	 test_options.out
+  
+  # Known problems:
+  # test17: ?
+--- 98,111 ----
+  	 test105.out test106.out test107.out \
+  	 test_autoformat_join.out \
+  	 test_breakindent.out \
+  	 test_changelist.out \
+  	 test_eval.out \
+  	 test_insertcount.out \
+! 	 test_listlbr.out \
+! 	 test_listlbr_utf8.out \
+! 	 test_options.out \
+! 	 test_qf_title.out \
+! 	 test_utf8.out
+  
+  # Known problems:
+  # test17: ?
+*** ../vim-7.4.407/src/testdir/Makefile	2014-07-30 16:00:45.547553496 +0200
+--- src/testdir/Makefile	2014-08-16 18:30:13.254007256 +0200
+***************
+*** 35,47 ****
+  		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+- 		test_listlbr.out \
+- 		test_listlbr_utf8.out \
+- 		test_qf_title.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_options.out
+  
+  SCRIPTS_GUI = test16.out
+  
+--- 35,48 ----
+  		test104.out test105.out test106.out test107.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
+  		test_eval.out \
+  		test_insertcount.out \
+! 		test_listlbr.out \
+! 		test_listlbr_utf8.out \
+! 		test_options.out \
+! 		test_qf_title.out \
+! 		test_utf8.out
+  
+  SCRIPTS_GUI = test16.out
+  
+*** ../vim-7.4.407/src/version.c	2014-08-16 18:13:00.082044726 +0200
+--- src/version.c	2014-08-16 18:35:52.937994936 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     408,
+  /**/
+
+-- 
+What a wonderfully exciting cough!  Do you mind if I join you?
+		-- Douglas Adams, "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

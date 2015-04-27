@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.382
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.382
+Problem:    Mapping characters may not work after typing Esc in Insert mode.
+Solution:   Fix the noremap flags for inserted characters. (Jacob Niehus)
+Files:	    src/getchar.c
+
+
+*** ../vim-7.4.381/src/getchar.c	2014-06-25 14:39:35.102348584 +0200
+--- src/getchar.c	2014-07-23 20:10:25.651792765 +0200
+***************
+*** 2731,2736 ****
+--- 2731,2741 ----
+  		}
+  		if (c < 0)
+  		    continue;	/* end of input script reached */
++ 
++ 		/* Allow mapping for just typed characters. When we get here c
++ 		 * is the number of extra bytes and typebuf.tb_len is 1. */
++ 		for (n = 1; n <= c; ++n)
++ 		    typebuf.tb_noremap[typebuf.tb_off + n] = RM_YES;
+  		typebuf.tb_len += c;
+  
+  		/* buffer full, don't map */
+*** ../vim-7.4.381/src/version.c	2014-07-23 17:39:21.815857910 +0200
+--- src/version.c	2014-07-23 18:26:42.663837492 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     382,
+  /**/
+
+-- 
+DENNIS: Oh, very nice. King, eh!  I expect you've got a palace and fine
+        clothes and courtiers and plenty of food.  And how d'you get that?  By
+        exploiting the workers! By hanging on to outdated imperialist dogma
+        which perpetuates the social and economic differences in our society!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

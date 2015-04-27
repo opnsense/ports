@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.376
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.376 (after 7.4.367)
+Problem:    Popup menu flickers too much.
+Solution:   Remove the forced redraw. (Hirohito Higashi)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.375/src/edit.c	2014-07-16 14:42:37.923740082 +0200
+--- src/edit.c	2014-07-23 13:49:03.535957228 +0200
+***************
+*** 4593,4601 ****
+      i = compl_col + (compl_cont_status & CONT_ADDING ? compl_length : 0);
+      backspace_until_column(i);
+  
+!     /* Not sure what is still valid, better redraw everything. */
+      changed_cline_bef_curs();
+-     redraw_curbuf_later(NOT_VALID);
+  }
+  
+  /* Insert the new text being completed. */
+--- 4593,4601 ----
+      i = compl_col + (compl_cont_status & CONT_ADDING ? compl_length : 0);
+      backspace_until_column(i);
+  
+!     /* TODO: is this sufficient for redrawing?  Redrawing everything causes
+!      * flicker, thus we can't do that. */
+      changed_cline_bef_curs();
+  }
+  
+  /* Insert the new text being completed. */
+*** ../vim-7.4.375/src/version.c	2014-07-23 13:16:26.727971292 +0200
+--- src/version.c	2014-07-23 13:48:02.031957670 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     376,
+  /**/
+
+-- 
+Why I like vim:
+> I like VIM because, when I ask a question in this newsgroup, I get a
+> one-line answer.  With xemacs, I get a 1Kb lisp script with bugs in it ;-)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

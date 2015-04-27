@@ -1,0 +1,73 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.471
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.471
+Problem:    MS-Windows: When printer name contains multi-byte, the name is
+	    displayed as ???.
+Solution:   Convert the printer name from the active codepage to 'encoding'.
+	    (Yasuhiro Matsumoto)
+Files:	    src/os_mswin.c
+
+
+*** ../vim-7.4.470/src/os_mswin.c	2014-09-27 11:18:08.179520979 +0200
+--- src/os_mswin.c	2014-10-09 17:03:20.500915911 +0200
+***************
+*** 1635,1645 ****
+--- 1635,1667 ----
+  	char_u	*printer_name = (char_u *)devname + devname->wDeviceOffset;
+  	char_u	*port_name = (char_u *)devname +devname->wOutputOffset;
+  	char_u	*text = _("to %s on %s");
++ #ifdef FEAT_MBYTE
++ 	char_u  *printer_name_orig = printer_name;
++ 	char_u	*port_name_orig = port_name;
+  
++ 	if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
++ 	{
++ 	    char_u  *to_free = NULL;
++ 	    int     maxlen;
++ 
++ 	    acp_to_enc(printer_name, STRLEN(printer_name), &to_free, &maxlen);
++ 	    if (to_free != NULL)
++ 		printer_name = to_free;
++ 	    acp_to_enc(port_name, STRLEN(port_name), &to_free, &maxlen);
++ 	    if (to_free != NULL)
++ 		port_name = to_free;
++ 	}
++ #endif
+  	prt_name = alloc((unsigned)(STRLEN(printer_name) + STRLEN(port_name)
+  							     + STRLEN(text)));
+  	if (prt_name != NULL)
+  	    wsprintf(prt_name, text, printer_name, port_name);
++ #ifdef FEAT_MBYTE
++ 	if (printer_name != printer_name_orig)
++ 	    vim_free(printer_name);
++ 	if (port_name != port_name_orig)
++ 	    vim_free(port_name);
++ #endif
+      }
+      GlobalUnlock(prt_dlg.hDevNames);
+  
+*** ../vim-7.4.470/src/version.c	2014-10-09 15:37:02.492904600 +0200
+--- src/version.c	2014-10-09 17:00:58.632915601 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     471,
+  /**/
+
+-- 
+"Marriage is the process of finding out what kind of man your wife
+would have preferred"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

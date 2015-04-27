@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.436
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.436
+Problem:    ml_get error for autocommand that moves the cursor of the current
+	    window.
+Solution:   Check the cursor position after switching back to the current
+	    buffer.  (Christian Brabandt)
+Files:	    src/fileio.c
+
+
+*** ../vim-7.4.435/src/fileio.c	2014-08-22 23:05:50.106606614 +0200
+--- src/fileio.c	2014-09-09 16:46:29.224536073 +0200
+***************
+*** 9009,9014 ****
+--- 9009,9017 ----
+  
+  	    curwin = aco->save_curwin;
+  	    curbuf = curwin->w_buffer;
++ 	    /* In case the autocommand move the cursor to a position that that
++ 	     * not exist in curbuf. */
++ 	    check_cursor();
+  	}
+      }
+  }
+*** ../vim-7.4.435/src/version.c	2014-09-09 16:32:35.828534252 +0200
+--- src/version.c	2014-09-09 16:48:14.796536303 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     436,
+  /**/
+
+-- 
+In a world without walls and borders, who needs windows and gates?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

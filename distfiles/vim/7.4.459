@@ -1,0 +1,123 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.459
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.459
+Problem:    Can't change the icon after building Vim.
+Solution:   Load the icon from a file on startup. (Yasuhiro Matsumoto)
+Files:      src/gui_w32.c, src/os_mswin.c, src/os_win32.c, 
+            src/proto/os_mswin.pro
+
+
+*** ../vim-7.4.458/src/gui_w32.c	2014-09-19 16:13:48.358419065 +0200
+--- src/gui_w32.c	2014-09-23 21:53:17.382849313 +0200
+***************
+*** 1662,1667 ****
+--- 1662,1675 ----
+      if (s_textArea == NULL)
+  	return FAIL;
+  
++     /* Try loading an icon from $RUNTIMEPATH/bitmaps/vim.ico. */
++     {
++ 	HANDLE	hIcon = NULL;
++ 
++ 	if (mch_icon_load(&hIcon) == OK && hIcon != NULL)
++ 	    SendMessage(s_hwnd, WM_SETICON, ICON_SMALL, hIcon);
++     }
++ 
+  #ifdef FEAT_MENU
+      s_menuBar = CreateMenu();
+  #endif
+*** ../vim-7.4.458/src/os_mswin.c	2014-09-09 12:25:27.768501863 +0200
+--- src/os_mswin.c	2014-09-23 21:52:50.582849254 +0200
+***************
+*** 928,933 ****
+--- 928,960 ----
+  }
+  # endif
+  
++ /*
++  * Passed to do_in_runtimepath() to load a vim.ico file.
++  */
++     static void
++ mch_icon_load_cb(char_u *fname, void *cookie)
++ {
++     HANDLE *h = (HANDLE *)cookie;
++ 
++     *h = LoadImage(NULL,
++ 		   fname,
++ 		   IMAGE_ICON,
++ 		   64,
++ 		   64,
++ 		   LR_LOADFROMFILE | LR_LOADMAP3DCOLORS);
++ }
++ 
++ /*
++  * Try loading an icon file from 'runtimepath'.
++  */
++     int
++ mch_icon_load(iconp)
++     HANDLE *iconp;
++ {
++     return do_in_runtimepath((char_u *)"bitmaps/vim.ico",
++ 					      FALSE, mch_icon_load_cb, iconp);
++ }
++ 
+      int
+  mch_libcall(
+      char_u	*libname,
+*** ../vim-7.4.458/src/os_win32.c	2014-09-09 12:25:27.764501863 +0200
+--- src/os_win32.c	2014-09-23 21:47:03.318848496 +0200
+***************
+*** 2446,2452 ****
+  	return;
+  
+      /* Extract the first icon contained in the Vim executable. */
+!     g_hVimIcon = ExtractIcon(NULL, exe_name, 0);
+      if (g_hVimIcon != NULL)
+  	g_fCanChangeIcon = TRUE;
+  }
+--- 2446,2453 ----
+  	return;
+  
+      /* Extract the first icon contained in the Vim executable. */
+!     if (mch_icon_load((HANDLE *)&g_hVimIcon) == FAIL || g_hVimIcon == NULL)
+! 	g_hVimIcon = ExtractIcon(NULL, exe_name, 0);
+      if (g_hVimIcon != NULL)
+  	g_fCanChangeIcon = TRUE;
+  }
+*** ../vim-7.4.458/src/proto/os_mswin.pro	2013-08-10 13:37:39.000000000 +0200
+--- src/proto/os_mswin.pro	2014-09-23 21:49:29.746848816 +0200
+***************
+*** 21,26 ****
+--- 21,27 ----
+  int mch_chdir __ARGS((char *path));
+  int can_end_termcap_mode __ARGS((int give_msg));
+  int mch_screenmode __ARGS((char_u *arg));
++ int mch_icon_load __ARGS((HANDLE *iconp));
+  int mch_libcall __ARGS((char_u *libname, char_u *funcname, char_u *argstring, int argint, char_u **string_result, int *number_result));
+  void DumpPutS __ARGS((const char *psz));
+  int mch_get_winpos __ARGS((int *x, int *y));
+*** ../vim-7.4.458/src/version.c	2014-09-23 18:37:52.426823701 +0200
+--- src/version.c	2014-09-23 21:36:07.806847064 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     459,
+  /**/
+
+-- 
+If Microsoft would build a car...
+... You'd have to press the "Start" button to turn the engine off.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

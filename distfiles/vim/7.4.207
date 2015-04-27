@@ -1,0 +1,176 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.207
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.207
+Problem:    The cursor report sequence is sometimes not recognized and results
+	    in entering replace mode.
+Solution:   Also check for the cursor report when not asked for.
+Files:	    src/term.c
+
+
+*** ../vim-7.4.206/src/term.c	2013-09-29 16:27:42.000000000 +0200
+--- src/term.c	2014-03-19 13:30:23.589874866 +0100
+***************
+*** 3379,3385 ****
+  	 out_str(buf);
+  	 out_str(T_U7);
+  	 u7_status = U7_SENT;
+! 	 term_windgoto(0, 0);
+  	 out_str((char_u *)"  ");
+  	 term_windgoto(0, 0);
+  	 /* check for the characters now, otherwise they might be eaten by
+--- 3379,3386 ----
+  	 out_str(buf);
+  	 out_str(T_U7);
+  	 u7_status = U7_SENT;
+! 	 out_flush();
+! 	 term_windgoto(1, 0);
+  	 out_str((char_u *)"  ");
+  	 term_windgoto(0, 0);
+  	 /* check for the characters now, otherwise they might be eaten by
+***************
+*** 4185,4208 ****
+  			    || (tp[0] == CSI && len >= 2))
+  			&& (VIM_ISDIGIT(*p) || *p == '>' || *p == '?'))
+  	    {
+  		j = 0;
+  		extra = 0;
+  		for (i = 2 + (tp[0] != CSI); i < len
+  				&& !(tp[i] >= '{' && tp[i] <= '~')
+  				&& !ASCII_ISALPHA(tp[i]); ++i)
+  		    if (tp[i] == ';' && ++j == 1)
+  			extra = i + 1;
+  		if (i == len)
+  		{
+  		    LOG_TR("Not enough characters for CRV");
+  		    return -1;
+  		}
+- 
+  #ifdef FEAT_MBYTE
+! 		/* Eat it when it has 2 arguments and ends in 'R'. Ignore it
+! 		 * when u7_status is not "sent", <S-F3> sends something
+! 		 * similar. */
+! 		if (j == 1 && tp[i] == 'R' && u7_status == U7_SENT)
+  		{
+  		    char *aw = NULL;
+  
+--- 4186,4223 ----
+  			    || (tp[0] == CSI && len >= 2))
+  			&& (VIM_ISDIGIT(*p) || *p == '>' || *p == '?'))
+  	    {
++ #ifdef FEAT_MBYTE
++ 		int col;
++ 		int row_char;
++ #endif
+  		j = 0;
+  		extra = 0;
+  		for (i = 2 + (tp[0] != CSI); i < len
+  				&& !(tp[i] >= '{' && tp[i] <= '~')
+  				&& !ASCII_ISALPHA(tp[i]); ++i)
+  		    if (tp[i] == ';' && ++j == 1)
++ 		    {
+  			extra = i + 1;
++ #ifdef FEAT_MBYTE
++ 			row_char = tp[i - 1];
++ #endif
++ 		    }
+  		if (i == len)
+  		{
+  		    LOG_TR("Not enough characters for CRV");
+  		    return -1;
+  		}
+  #ifdef FEAT_MBYTE
+! 		if (extra > 0)
+! 		    col = atoi((char *)tp + extra);
+! 		else
+! 		    col = 0;
+! 
+! 		/* Eat it when it has 2 arguments and ends in 'R'. Also when
+! 		 * u7_status is not "sent", it may be from a previous Vim that
+! 		 * just exited.  But not for <S-F3>, it sends something
+! 		 * similar, check for row and column to make sense. */
+! 		if (j == 1 && tp[i] == 'R' && row_char == '2' && col >= 2)
+  		{
+  		    char *aw = NULL;
+  
+***************
+*** 4211,4228 ****
+  # ifdef FEAT_AUTOCMD
+  		    did_cursorhold = TRUE;
+  # endif
+! 		    if (extra > 0)
+! 			extra = atoi((char *)tp + extra);
+! 		    if (extra == 2)
+  			aw = "single";
+! 		    else if (extra == 3)
+  			aw = "double";
+  		    if (aw != NULL && STRCMP(aw, p_ambw) != 0)
+  		    {
+  			/* Setting the option causes a screen redraw. Do that
+  			 * right away if possible, keeping any messages. */
+  			set_option_value((char_u *)"ambw", 0L, (char_u *)aw, 0);
+! #ifdef DEBUG_TERMRESPONSE
+  			{
+  			    char buf[100];
+  			    int  r = redraw_asap(CLEAR);
+--- 4226,4241 ----
+  # ifdef FEAT_AUTOCMD
+  		    did_cursorhold = TRUE;
+  # endif
+! 		    if (col == 2)
+  			aw = "single";
+! 		    else if (col == 3)
+  			aw = "double";
+  		    if (aw != NULL && STRCMP(aw, p_ambw) != 0)
+  		    {
+  			/* Setting the option causes a screen redraw. Do that
+  			 * right away if possible, keeping any messages. */
+  			set_option_value((char_u *)"ambw", 0L, (char_u *)aw, 0);
+! # ifdef DEBUG_TERMRESPONSE
+  			{
+  			    char buf[100];
+  			    int  r = redraw_asap(CLEAR);
+***************
+*** 4231,4239 ****
+  									   r);
+  			    log_tr(buf);
+  			}
+! #else
+  			redraw_asap(CLEAR);
+! #endif
+  		    }
+  		    key_name[0] = (int)KS_EXTRA;
+  		    key_name[1] = (int)KE_IGNORE;
+--- 4244,4252 ----
+  									   r);
+  			    log_tr(buf);
+  			}
+! # else
+  			redraw_asap(CLEAR);
+! # endif
+  		    }
+  		    key_name[0] = (int)KS_EXTRA;
+  		    key_name[1] = (int)KE_IGNORE;
+*** ../vim-7.4.206/src/version.c	2014-03-19 12:37:18.537826062 +0100
+--- src/version.c	2014-03-19 12:55:42.249842974 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     207,
+  /**/
+
+-- 
+How come wrong numbers are never busy?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

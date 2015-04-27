@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.514
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.514 (after 7.4.492)
+Problem:    Memory access error. (Dominique Pelle)
+Solution:   Update tpos. (Christian Brabandt)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.513/src/edit.c	2014-10-31 19:20:30.782742928 +0100
+--- src/edit.c	2014-11-12 18:53:10.890098796 +0100
+***************
+*** 6918,6923 ****
+--- 6918,6925 ----
+  		curwin->w_cursor = tpos;
+  	    else
+  	    {
++ 		/* reset tpos, could have been invalidated in the loop above */
++ 		tpos = curwin->w_cursor;
+  		tpos.col++;
+  		if (cc != NUL && gchar_pos(&tpos) == NUL)
+  		    ++curwin->w_cursor.col;	/* put cursor back on the NUL */
+*** ../vim-7.4.513/src/version.c	2014-11-12 18:49:12.992752234 +0100
+--- src/version.c	2014-11-12 18:52:50.738323726 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     514,
+  /**/
+
+-- 
+My girlfriend told me I should be more affectionate.
+So I got TWO girlfriends.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

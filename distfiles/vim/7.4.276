@@ -1,0 +1,302 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.276
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.276
+Problem:    The fish shell is not supported.
+Solution:   Use begin/end instead of () for fish. (Andy Russell)
+Files:	    src/ex_cmds.c, src/misc1.c, src/option.c, src/proto/misc1.pro
+
+
+*** ../vim-7.4.275/src/ex_cmds.c	2014-05-07 14:38:41.129091709 +0200
+--- src/ex_cmds.c	2014-05-07 15:09:57.797108136 +0200
+***************
+*** 1551,1558 ****
+  {
+      char_u	*buf;
+      long_u	len;
+  
+!     len = (long_u)STRLEN(cmd) + 3;			/* "()" + NUL */
+      if (itmp != NULL)
+  	len += (long_u)STRLEN(itmp) + 9;		/* " { < " + " } " */
+      if (otmp != NULL)
+--- 1551,1566 ----
+  {
+      char_u	*buf;
+      long_u	len;
++     int		is_fish_shell;
+  
+! #if (defined(UNIX) && !defined(ARCHIE)) || defined(OS2)
+!     /* Account for fish's different syntax for subshells */
+!     is_fish_shell = (fnamecmp(get_isolated_shell_name(), "fish") == 0);
+!     if (is_fish_shell)
+! 	len = (long_u)STRLEN(cmd) + 13;		/* "begin; " + "; end" + NUL */
+!     else
+! #endif
+! 	len = (long_u)STRLEN(cmd) + 3;			/* "()" + NUL */
+      if (itmp != NULL)
+  	len += (long_u)STRLEN(itmp) + 9;		/* " { < " + " } " */
+      if (otmp != NULL)
+***************
+*** 1567,1573 ****
+       * redirecting input and/or output.
+       */
+      if (itmp != NULL || otmp != NULL)
+! 	vim_snprintf((char *)buf, len, "(%s)", (char *)cmd);
+      else
+  	STRCPY(buf, cmd);
+      if (itmp != NULL)
+--- 1575,1586 ----
+       * redirecting input and/or output.
+       */
+      if (itmp != NULL || otmp != NULL)
+!     {
+! 	if (is_fish_shell)
+! 	    vim_snprintf((char *)buf, len, "begin; %s; end", (char *)cmd);
+! 	else
+! 	    vim_snprintf((char *)buf, len, "(%s)", (char *)cmd);
+!     }
+      else
+  	STRCPY(buf, cmd);
+      if (itmp != NULL)
+***************
+*** 1577,1583 ****
+      }
+  #else
+      /*
+!      * for shells that don't understand braces around commands, at least allow
+       * the use of commands in a pipe.
+       */
+      STRCPY(buf, cmd);
+--- 1590,1596 ----
+      }
+  #else
+      /*
+!      * For shells that don't understand braces around commands, at least allow
+       * the use of commands in a pipe.
+       */
+      STRCPY(buf, cmd);
+***************
+*** 4315,4321 ****
+      pos_T	old_cursor = curwin->w_cursor;
+      int		start_nsubs;
+  #ifdef FEAT_EVAL
+!     int         save_ma = 0;
+  #endif
+  
+      cmd = eap->arg;
+--- 4328,4334 ----
+      pos_T	old_cursor = curwin->w_cursor;
+      int		start_nsubs;
+  #ifdef FEAT_EVAL
+!     int		save_ma = 0;
+  #endif
+  
+      cmd = eap->arg;
+***************
+*** 5986,5992 ****
+  			       "/\\\\?", "/\\\\z(\\\\)", "\\\\=", ":s\\\\=",
+  			       "\\[count]", "\\[quotex]", "\\[range]",
+  			       "\\[pattern]", "\\\\bar", "/\\\\%\\$",
+!                                "s/\\\\\\~", "s/\\\\U", "s/\\\\L",
+  			       "s/\\\\1", "s/\\\\2", "s/\\\\3", "s/\\\\9"};
+      int flags;
+  
+--- 5999,6005 ----
+  			       "/\\\\?", "/\\\\z(\\\\)", "\\\\=", ":s\\\\=",
+  			       "\\[count]", "\\[quotex]", "\\[range]",
+  			       "\\[pattern]", "\\\\bar", "/\\\\%\\$",
+! 			       "s/\\\\\\~", "s/\\\\U", "s/\\\\L",
+  			       "s/\\\\1", "s/\\\\2", "s/\\\\3", "s/\\\\9"};
+      int flags;
+  
+***************
+*** 6026,6032 ****
+  	  /* Replace:
+  	   * "[:...:]" with "\[:...:]"
+  	   * "[++...]" with "\[++...]"
+! 	   * "\{" with "\\{"               -- matching "} \}"
+  	   */
+  	    if ((arg[0] == '[' && (arg[1] == ':'
+  			 || (arg[1] == '+' && arg[2] == '+')))
+--- 6039,6045 ----
+  	  /* Replace:
+  	   * "[:...:]" with "\[:...:]"
+  	   * "[++...]" with "\[++...]"
+! 	   * "\{" with "\\{"		   -- matching "} \}"
+  	   */
+  	    if ((arg[0] == '[' && (arg[1] == ':'
+  			 || (arg[1] == '+' && arg[2] == '+')))
+*** ../vim-7.4.275/src/misc1.c	2014-04-05 19:44:36.903160723 +0200
+--- src/misc1.c	2014-05-07 15:04:25.921105231 +0200
+***************
+*** 1405,1411 ****
+  #ifdef FEAT_SMARTINDENT
+  	if (did_si)
+  	{
+! 	    int        sw = (int)get_sw_value(curbuf);
+  
+  	    if (p_sr)
+  		newindent -= newindent % sw;
+--- 1405,1411 ----
+  #ifdef FEAT_SMARTINDENT
+  	if (did_si)
+  	{
+! 	    int sw = (int)get_sw_value(curbuf);
+  
+  	    if (p_sr)
+  		newindent -= newindent % sw;
+***************
+*** 10896,10898 ****
+--- 10896,10936 ----
+  {
+      return (p_im && stuff_empty() && typebuf_typed());
+  }
++ 
++ /*
++  * Returns the isolated name of the shell:
++  * - Skip beyond any path.  E.g., "/usr/bin/csh -f" -> "csh -f".
++  * - Remove any argument.  E.g., "csh -f" -> "csh".
++  * But don't allow a space in the path, so that this works:
++  *   "/usr/bin/csh --rcfile ~/.cshrc"
++  * But don't do that for Windows, it's common to have a space in the path.
++  */
++     char_u *
++ get_isolated_shell_name()
++ {
++     char_u *p;
++ 
++ #ifdef WIN3264
++     p = gettail(p_sh);
++     p = vim_strnsave(p, (int)(skiptowhite(p) - p));
++ #else
++     p = skiptowhite(p_sh);
++     if (*p == NUL)
++     {
++ 	/* No white space, use the tail. */
++ 	p = vim_strsave(gettail(p_sh));
++     }
++     else
++     {
++ 	char_u  *p1, *p2;
++ 
++ 	/* Find the last path separator before the space. */
++ 	p1 = p_sh;
++ 	for (p2 = p_sh; p2 < p; mb_ptr_adv(p2))
++ 	    if (vim_ispathsep(*p2))
++ 		p1 = p2 + 1;
++ 	p = vim_strnsave(p1, (int)(p - p1));
++     }
++ #endif
++     return p;
++ }
+*** ../vim-7.4.275/src/option.c	2014-03-23 15:12:29.931264336 +0100
+--- src/option.c	2014-05-07 15:05:14.117105653 +0200
+***************
+*** 3804,3840 ****
+      else
+  	do_sp = !(options[idx_sp].flags & P_WAS_SET);
+  #endif
+! 
+!     /*
+!      * Isolate the name of the shell:
+!      * - Skip beyond any path.  E.g., "/usr/bin/csh -f" -> "csh -f".
+!      * - Remove any argument.  E.g., "csh -f" -> "csh".
+!      * But don't allow a space in the path, so that this works:
+!      *   "/usr/bin/csh --rcfile ~/.cshrc"
+!      * But don't do that for Windows, it's common to have a space in the path.
+!      */
+! #ifdef WIN3264
+!     p = gettail(p_sh);
+!     p = vim_strnsave(p, (int)(skiptowhite(p) - p));
+! #else
+!     p = skiptowhite(p_sh);
+!     if (*p == NUL)
+!     {
+! 	/* No white space, use the tail. */
+! 	p = vim_strsave(gettail(p_sh));
+!     }
+!     else
+!     {
+! 	char_u  *p1, *p2;
+! 
+! 	/* Find the last path separator before the space. */
+! 	p1 = p_sh;
+! 	for (p2 = p_sh; p2 < p; mb_ptr_adv(p2))
+! 	    if (vim_ispathsep(*p2))
+! 		p1 = p2 + 1;
+! 	p = vim_strnsave(p1, (int)(p - p1));
+!     }
+! #endif
+      if (p != NULL)
+      {
+  	/*
+--- 3804,3810 ----
+      else
+  	do_sp = !(options[idx_sp].flags & P_WAS_SET);
+  #endif
+!     p = get_isolated_shell_name();
+      if (p != NULL)
+      {
+  	/*
+***************
+*** 3875,3880 ****
+--- 3845,3851 ----
+  		    || fnamecmp(p, "zsh") == 0
+  		    || fnamecmp(p, "zsh-beta") == 0
+  		    || fnamecmp(p, "bash") == 0
++ 		    || fnamecmp(p, "fish") == 0
+  #  ifdef WIN3264
+  		    || fnamecmp(p, "cmd") == 0
+  		    || fnamecmp(p, "sh.exe") == 0
+***************
+*** 8858,8865 ****
+   * opt_type). Uses
+   *
+   * Returned flags:
+!  *       0 hidden or unknown option, also option that does not have requested 
+!  *         type (see SREQ_* in vim.h)
+   *  see SOPT_* in vim.h for other flags
+   *
+   * Possible opt_type values: see SREQ_* in vim.h
+--- 8829,8836 ----
+   * opt_type). Uses
+   *
+   * Returned flags:
+!  *       0 hidden or unknown option, also option that does not have requested
+!  *	   type (see SREQ_* in vim.h)
+   *  see SOPT_* in vim.h for other flags
+   *
+   * Possible opt_type values: see SREQ_* in vim.h
+*** ../vim-7.4.275/src/proto/misc1.pro	2014-04-05 19:44:36.903160723 +0200
+--- src/proto/misc1.pro	2014-05-07 14:57:04.605101368 +0200
+***************
+*** 103,106 ****
+--- 103,107 ----
+  char_u *get_cmd_output __ARGS((char_u *cmd, char_u *infile, int flags, int *ret_len));
+  void FreeWild __ARGS((int count, char_u **files));
+  int goto_im __ARGS((void));
++ char_u *get_isolated_shell_name __ARGS((void));
+  /* vim: set ft=c : */
+*** ../vim-7.4.275/src/version.c	2014-05-07 14:38:41.129091709 +0200
+--- src/version.c	2014-05-07 14:58:59.769102376 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     276,
+  /**/
+
+-- 
+Support your right to bare arms!  Wear short sleeves!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

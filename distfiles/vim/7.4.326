@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.326
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.326
+Problem:    Can't build Tiny version. (Elimar Riesebieter)
+Solution:   Add #ifdef.
+Files:	    src/window.c
+
+
+*** ../vim-7.4.325/src/window.c	2014-06-13 20:08:41.295871990 +0200
+--- src/window.c	2014-06-14 12:51:00.010147123 +0200
+***************
+*** 4597,4608 ****
+--- 4597,4610 ----
+      if (wp != aucmd_win)
+  #endif
+  	win_remove(wp, tp);
++ #ifdef FEAT_AUTOCMD
+      if (autocmd_busy)
+      {
+  	wp->w_next = au_pending_free_win;
+  	au_pending_free_win = wp;
+      }
+      else
++ #endif
+  	vim_free(wp);
+  
+  #ifdef FEAT_AUTOCMD
+*** ../vim-7.4.325/src/version.c	2014-06-13 20:08:41.295871990 +0200
+--- src/version.c	2014-06-14 12:53:05.134151857 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     326,
+  /**/
+
+-- 
+You cannot propel yourself forward by patting yourself on the back.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

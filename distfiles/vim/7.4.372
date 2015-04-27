@@ -1,0 +1,188 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.372
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.372
+Problem:    When 'winminheight' is zero there might not be one line for the
+	    current window.
+Solution:   Change the size computations. (Yukihiro Nakadaira)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.371/src/window.c	2014-07-16 16:30:21.647608710 +0200
+--- src/window.c	2014-07-16 18:06:53.123491001 +0200
+***************
+*** 688,693 ****
+--- 688,695 ----
+      int		before;
+      int		minwidth;
+      int		minheight;
++     int		wmw1;
++     int		wmh1;
+  
+      if (flags & WSP_TOP)
+  	oldwin = firstwin;
+***************
+*** 722,740 ****
+  	 * Check if we are able to split the current window and compute its
+  	 * width.
+  	 */
+! 	needed = p_wmw + 1;
+  	if (flags & WSP_ROOM)
+! 	    needed += p_wiw - p_wmw;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
+! 	    minwidth = frame_minwidth(topframe, NULL);
+  	    available = topframe->fr_width;
+  	    needed += minwidth;
+  	}
+  	else
+  	{
+! 	    minwidth = frame_minwidth(oldwin->w_frame, NULL);
+! 	    available = oldwin->w_width;
+  	}
+  	if (available < needed && new_wp == NULL)
+  	{
+--- 724,745 ----
+  	 * Check if we are able to split the current window and compute its
+  	 * width.
+  	 */
+! 	/* Current window requires at least 1 space. */
+! 	wmw1 = (p_wmw == 0 ? 1 : p_wmw);
+! 	needed = wmw1 + 1;
+  	if (flags & WSP_ROOM)
+! 	    needed += p_wiw - wmw1;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
+! 	    minwidth = frame_minwidth(topframe, NOWIN);
+  	    available = topframe->fr_width;
+  	    needed += minwidth;
+  	}
+  	else
+  	{
+! 	    minwidth = frame_minwidth(oldwin->w_frame, NOWIN);
+! 	    available = oldwin->w_frame->fr_width;
+! 	    needed += minwidth;
+  	}
+  	if (available < needed && new_wp == NULL)
+  	{
+***************
+*** 743,754 ****
+  	}
+  	if (new_size == 0)
+  	    new_size = oldwin->w_width / 2;
+- 	if (new_size > oldwin->w_width - p_wmw - 1)
+- 	    new_size = oldwin->w_width - p_wmw - 1;
+  	if (new_size > available - minwidth - 1)
+  	    new_size = available - minwidth - 1;
+! 	if (new_size < p_wmw)
+! 	    new_size = p_wmw;
+  
+  	/* if it doesn't fit in the current window, need win_equal() */
+  	if (oldwin->w_width - new_size - 1 < p_wmw)
+--- 748,757 ----
+  	}
+  	if (new_size == 0)
+  	    new_size = oldwin->w_width / 2;
+  	if (new_size > available - minwidth - 1)
+  	    new_size = available - minwidth - 1;
+! 	if (new_size < wmw1)
+! 	    new_size = wmw1;
+  
+  	/* if it doesn't fit in the current window, need win_equal() */
+  	if (oldwin->w_width - new_size - 1 < p_wmw)
+***************
+*** 789,808 ****
+  	 * Check if we are able to split the current window and compute its
+  	 * height.
+  	 */
+! 	needed = p_wmh + STATUS_HEIGHT + need_status;
+  	if (flags & WSP_ROOM)
+! 	    needed += p_wh - p_wmh;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
+! 	    minheight = frame_minheight(topframe, NULL);
+  	    available = topframe->fr_height;
+  	    needed += minheight;
+  	}
+  	else
+  	{
+! 	    minheight = frame_minheight(oldwin->w_frame, NULL);
+! 	    available = oldwin->w_height;
+! 	    needed += p_wmh;
+  	}
+  	if (available < needed && new_wp == NULL)
+  	{
+--- 792,813 ----
+  	 * Check if we are able to split the current window and compute its
+  	 * height.
+  	 */
+! 	/* Current window requires at least 1 space. */
+! 	wmh1 = (p_wmh == 0 ? 1 : p_wmh);
+! 	needed = wmh1 + STATUS_HEIGHT;
+  	if (flags & WSP_ROOM)
+! 	    needed += p_wh - wmh1;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
+! 	    minheight = frame_minheight(topframe, NOWIN) + need_status;
+  	    available = topframe->fr_height;
+  	    needed += minheight;
+  	}
+  	else
+  	{
+! 	    minheight = frame_minheight(oldwin->w_frame, NOWIN) + need_status;
+! 	    available = oldwin->w_frame->fr_height;
+! 	    needed += minheight;
+  	}
+  	if (available < needed && new_wp == NULL)
+  	{
+***************
+*** 817,829 ****
+  	}
+  	if (new_size == 0)
+  	    new_size = oldwin_height / 2;
+- 
+- 	if (new_size > oldwin_height - p_wmh - STATUS_HEIGHT)
+- 	    new_size = oldwin_height - p_wmh - STATUS_HEIGHT;
+  	if (new_size > available - minheight - STATUS_HEIGHT)
+  	    new_size = available - minheight - STATUS_HEIGHT;
+! 	if (new_size < p_wmh)
+! 	    new_size = p_wmh;
+  
+  	/* if it doesn't fit in the current window, need win_equal() */
+  	if (oldwin_height - new_size - STATUS_HEIGHT < p_wmh)
+--- 822,831 ----
+  	}
+  	if (new_size == 0)
+  	    new_size = oldwin_height / 2;
+  	if (new_size > available - minheight - STATUS_HEIGHT)
+  	    new_size = available - minheight - STATUS_HEIGHT;
+! 	if (new_size < wmh1)
+! 	    new_size = wmh1;
+  
+  	/* if it doesn't fit in the current window, need win_equal() */
+  	if (oldwin_height - new_size - STATUS_HEIGHT < p_wmh)
+*** ../vim-7.4.371/src/version.c	2014-07-16 17:29:46.691536252 +0200
+--- src/version.c	2014-07-16 17:34:14.795530803 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     372,
+  /**/
+
+-- 
+   [The rest of the ARMY stand around looking at a loss.]
+INSPECTOR END OF FILM: (picks up megaphone) All right!  Clear off!  Go on!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

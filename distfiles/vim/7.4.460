@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.460
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.460 (after 7.4.454)
+Problem:    Can't build without the quickfix feature. (Erik Falor)
+Solution:   Add a #ifdef.
+Files:	    src/window.c
+
+
+*** ../vim-7.4.459/src/window.c	2014-09-23 13:48:40.054785798 +0200
+--- src/window.c	2014-09-24 13:24:27.318971352 +0200
+***************
+*** 484,490 ****
+--- 484,492 ----
+  		    postponed_split = Prenum;
+  		else
+  		    postponed_split = -1;
++ #ifdef FEAT_QUICKFIX
+  		g_do_tagpreview = 0;
++ #endif
+  
+  		/* Execute the command right here, required when "wincmd ]"
+  		 * was used in a function. */
+*** ../vim-7.4.459/src/version.c	2014-09-23 21:53:35.310849352 +0200
+--- src/version.c	2014-09-24 13:24:44.450971389 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     460,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+179. You wonder why your household garbage can doesn't have an
+     "empty recycle bin" button.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

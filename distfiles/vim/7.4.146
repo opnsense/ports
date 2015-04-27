@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.146
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.146
+Problem:    When starting Vim with "-u NONE" v:oldfiles is NULL.
+Solution:   Set v:oldfiles to an empty list. (Yasuhiro Matsumoto)
+Files:	    src/main.c
+
+
+*** ../vim-7.4.145/src/main.c	2013-09-29 16:27:42.000000000 +0200
+--- src/main.c	2014-01-14 12:53:28.000000000 +0100
+***************
+*** 702,707 ****
+--- 702,712 ----
+  	TIME_MSG("reading viminfo");
+      }
+  #endif
++ #ifdef FEAT_EVAL
++     /* It's better to make v:oldfiles an empty list than NULL. */
++     if (get_vim_var_list(VV_OLDFILES) == NULL)
++ 	set_vim_var_list(VV_OLDFILES, list_alloc());
++ #endif
+  
+  #ifdef FEAT_QUICKFIX
+      /*
+***************
+*** 1048,1054 ****
+      /* Setup to catch a terminating error from the X server.  Just ignore
+       * it, restore the state and continue.  This might not always work
+       * properly, but at least we don't exit unexpectedly when the X server
+!      * exists while Vim is running in a console. */
+      if (!cmdwin && !noexmode && SETJMP(x_jump_env))
+      {
+  	State = NORMAL;
+--- 1053,1059 ----
+      /* Setup to catch a terminating error from the X server.  Just ignore
+       * it, restore the state and continue.  This might not always work
+       * properly, but at least we don't exit unexpectedly when the X server
+!      * exits while Vim is running in a console. */
+      if (!cmdwin && !noexmode && SETJMP(x_jump_env))
+      {
+  	State = NORMAL;
+*** ../vim-7.4.145/src/version.c	2014-01-14 12:33:32.000000000 +0100
+--- src/version.c	2014-01-14 12:56:08.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     146,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+152. You find yourself falling for someone you've never seen or hardly
+     know, but, boy can he/she TYPE!!!!!!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

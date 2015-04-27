@@ -1,0 +1,127 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.311
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.311
+Problem:    Can't use winrestview to only restore part of the view.
+Solution:   Handle missing items in the dict. (Christian Brabandt)
+Files:	    src/eval.c, runtime/doc/eval.txt
+
+
+*** ../vim-7.4.310/src/eval.c	2014-05-28 14:32:47.156104334 +0200
+--- src/eval.c	2014-05-28 16:42:25.196172421 +0200
+***************
+*** 19231,19250 ****
+  	EMSG(_(e_invarg));
+      else
+      {
+! 	curwin->w_cursor.lnum = get_dict_number(dict, (char_u *)"lnum");
+! 	curwin->w_cursor.col = get_dict_number(dict, (char_u *)"col");
+  #ifdef FEAT_VIRTUALEDIT
+! 	curwin->w_cursor.coladd = get_dict_number(dict, (char_u *)"coladd");
+  #endif
+! 	curwin->w_curswant = get_dict_number(dict, (char_u *)"curswant");
+! 	curwin->w_set_curswant = FALSE;
+  
+! 	set_topline(curwin, get_dict_number(dict, (char_u *)"topline"));
+  #ifdef FEAT_DIFF
+! 	curwin->w_topfill = get_dict_number(dict, (char_u *)"topfill");
+  #endif
+! 	curwin->w_leftcol = get_dict_number(dict, (char_u *)"leftcol");
+! 	curwin->w_skipcol = get_dict_number(dict, (char_u *)"skipcol");
+  
+  	check_cursor();
+  	win_new_height(curwin, curwin->w_height);
+--- 19231,19260 ----
+  	EMSG(_(e_invarg));
+      else
+      {
+! 	if (dict_find(dict, (char_u *)"lnum", -1) != NULL)
+! 	    curwin->w_cursor.lnum = get_dict_number(dict, (char_u *)"lnum");
+! 	if (dict_find(dict, (char_u *)"col", -1) != NULL)
+! 	    curwin->w_cursor.col = get_dict_number(dict, (char_u *)"col");
+  #ifdef FEAT_VIRTUALEDIT
+! 	if (dict_find(dict, (char_u *)"coladd", -1) != NULL)
+! 	    curwin->w_cursor.coladd = get_dict_number(dict, (char_u *)"coladd");
+  #endif
+! 	if (dict_find(dict, (char_u *)"curswant", -1) != NULL)
+! 	{
+! 	    curwin->w_curswant = get_dict_number(dict, (char_u *)"curswant");
+! 	    curwin->w_set_curswant = FALSE;
+! 	}
+  
+! 	if (dict_find(dict, (char_u *)"topline", -1) != NULL)
+! 	    set_topline(curwin, get_dict_number(dict, (char_u *)"topline"));
+  #ifdef FEAT_DIFF
+! 	if (dict_find(dict, (char_u *)"topfill", -1) != NULL)
+! 	    curwin->w_topfill = get_dict_number(dict, (char_u *)"topfill");
+  #endif
+! 	if (dict_find(dict, (char_u *)"leftcol", -1) != NULL)
+! 	    curwin->w_leftcol = get_dict_number(dict, (char_u *)"leftcol");
+! 	if (dict_find(dict, (char_u *)"skipcol", -1) != NULL)
+! 	    curwin->w_skipcol = get_dict_number(dict, (char_u *)"skipcol");
+  
+  	check_cursor();
+  	win_new_height(curwin, curwin->w_height);
+*** ../vim-7.4.310/runtime/doc/eval.txt	2014-05-28 14:32:47.164104334 +0200
+--- runtime/doc/eval.txt	2014-05-28 16:42:25.192172421 +0200
+***************
+*** 6404,6409 ****
+--- 6414,6429 ----
+  winrestview({dict})
+  		Uses the |Dictionary| returned by |winsaveview()| to restore
+  		the view of the current window.
++ 		Note: The {dict} does not have to contain all values, that are
++ 		returned by |winsaveview()|. If values are missing, those
++ 		settings won't be restored. So you can use: >
++ 		    :call winrestview({'curswant': 4})
++ <
++ 		This will only set the curswant value (the column the cursor
++ 		wants to move on vertical movements) of the cursor to column 5
++ 		(yes, that is 5), while all other settings will remain the
++ 		same. This is useful, if you set the cursor position manually.
++ 
+  		If you have changed the values the result is unpredictable.
+  		If the window size changed the result won't be the same.
+  
+***************
+*** 6418,6424 ****
+  		not opened when moving around.
+  		The return value includes:
+  			lnum		cursor line number
+! 			col		cursor column
+  			coladd		cursor column offset for 'virtualedit'
+  			curswant	column for vertical movement
+  			topline		first line in the window
+--- 6438,6446 ----
+  		not opened when moving around.
+  		The return value includes:
+  			lnum		cursor line number
+! 			col		cursor column (Note: the first column
+! 					zero, as opposed to what getpos()
+! 					returns)
+  			coladd		cursor column offset for 'virtualedit'
+  			curswant	column for vertical movement
+  			topline		first line in the window
+*** ../vim-7.4.310/src/version.c	2014-05-28 14:32:47.164104334 +0200
+--- src/version.c	2014-05-28 16:45:19.200173944 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     311,
+  /**/
+
+-- 
+Your fault: core dumped
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

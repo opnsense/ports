@@ -1,0 +1,89 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.574
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.574
+Problem:    No error for eval('$').
+Solution:   Check for empty name. (Yasuhiro Matsumoto)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.573/src/eval.c	2014-12-13 21:00:52.059036480 +0100
+--- src/eval.c	2015-01-14 17:11:38.633570761 +0100
+***************
+*** 7867,7873 ****
+      if (evaluate)
+      {
+  	if (len == 0)
+!            return FAIL; /* can't be an environment variable */
+  
+  	cc = name[len];
+  	name[len] = NUL;
+--- 7867,7873 ----
+      if (evaluate)
+      {
+  	if (len == 0)
+! 	    return FAIL; /* invalid empty name */
+  
+  	cc = name[len];
+  	name[len] = NUL;
+***************
+*** 10117,10130 ****
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     char_u	*s;
+  
+      s = get_tv_string_chk(&argvars[0]);
+      if (s != NULL)
+  	s = skipwhite(s);
+  
+      if (s == NULL || eval1(&s, rettv, TRUE) == FAIL)
+      {
+  	rettv->v_type = VAR_NUMBER;
+  	rettv->vval.v_number = 0;
+      }
+--- 10117,10134 ----
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     char_u	*s, *p;
+  
+      s = get_tv_string_chk(&argvars[0]);
+      if (s != NULL)
+  	s = skipwhite(s);
+  
++     p = s;
+      if (s == NULL || eval1(&s, rettv, TRUE) == FAIL)
+      {
++ 	if (p != NULL && !aborting())
++ 	    EMSG2(_(e_invexpr2), p);
++ 	need_clr_eos = FALSE;
+  	rettv->v_type = VAR_NUMBER;
+  	rettv->vval.v_number = 0;
+      }
+*** ../vim-7.4.573/src/version.c	2015-01-14 16:08:29.210474234 +0100
+--- src/version.c	2015-01-14 17:05:25.357601603 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     574,
+  /**/
+
+-- 
+From "know your smileys":
+ :-)	Funny
+ |-)	Funny Oriental
+ (-:	Funny Australian
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,164 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.615
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.615
+Problem:    Vim hangs when freeing a lot of objects.
+Solution:   Do not go back to the start of the list every time.  (Yasuhiro
+	    Matsumoto and Ariya Mizutani)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.614/src/eval.c	2015-02-03 12:55:11.136179596 +0100
+--- src/eval.c	2015-02-03 17:02:59.497727303 +0100
+***************
+*** 5974,5980 ****
+  }
+  
+  /*
+!  * Free a list, including all items it points to.
+   * Ignores the reference count.
+   */
+      void
+--- 5974,5980 ----
+  }
+  
+  /*
+!  * Free a list, including all non-container items it points to.
+   * Ignores the reference count.
+   */
+      void
+***************
+*** 6941,6954 ****
+  free_unref_items(copyID)
+      int copyID;
+  {
+!     dict_T	*dd;
+!     list_T	*ll;
+      int		did_free = FALSE;
+  
+      /*
+       * Go through the list of dicts and free items without the copyID.
+       */
+      for (dd = first_dict; dd != NULL; )
+  	if ((dd->dv_copyID & COPYID_MASK) != (copyID & COPYID_MASK))
+  	{
+  	    /* Free the Dictionary and ordinary items it contains, but don't
+--- 6941,6956 ----
+  free_unref_items(copyID)
+      int copyID;
+  {
+!     dict_T	*dd, *dd_next;
+!     list_T	*ll, *ll_next;
+      int		did_free = FALSE;
+  
+      /*
+       * Go through the list of dicts and free items without the copyID.
+       */
+      for (dd = first_dict; dd != NULL; )
++     {
++ 	dd_next = dd->dv_used_next;
+  	if ((dd->dv_copyID & COPYID_MASK) != (copyID & COPYID_MASK))
+  	{
+  	    /* Free the Dictionary and ordinary items it contains, but don't
+***************
+*** 6956,6967 ****
+  	     * of dicts or list of lists. */
+  	    dict_free(dd, FALSE);
+  	    did_free = TRUE;
+- 
+- 	    /* restart, next dict may also have been freed */
+- 	    dd = first_dict;
+  	}
+! 	else
+! 	    dd = dd->dv_used_next;
+  
+      /*
+       * Go through the list of lists and free items without the copyID.
+--- 6958,6966 ----
+  	     * of dicts or list of lists. */
+  	    dict_free(dd, FALSE);
+  	    did_free = TRUE;
+  	}
+! 	dd = dd_next;
+!     }
+  
+      /*
+       * Go through the list of lists and free items without the copyID.
+***************
+*** 6969,6974 ****
+--- 6968,6975 ----
+       * are not referenced anywhere.
+       */
+      for (ll = first_list; ll != NULL; )
++     {
++ 	ll_next = ll->lv_used_next;
+  	if ((ll->lv_copyID & COPYID_MASK) != (copyID & COPYID_MASK)
+  						      && ll->lv_watch == NULL)
+  	{
+***************
+*** 6977,6989 ****
+  	     * or list of lists. */
+  	    list_free(ll, FALSE);
+  	    did_free = TRUE;
+- 
+- 	    /* restart, next list may also have been freed */
+- 	    ll = first_list;
+  	}
+! 	else
+! 	    ll = ll->lv_used_next;
+! 
+      return did_free;
+  }
+  
+--- 6978,6986 ----
+  	     * or list of lists. */
+  	    list_free(ll, FALSE);
+  	    did_free = TRUE;
+  	}
+! 	ll = ll_next;
+!     }
+      return did_free;
+  }
+  
+***************
+*** 7213,7219 ****
+  }
+  
+  /*
+!  * Free a Dictionary, including all items it contains.
+   * Ignores the reference count.
+   */
+      void
+--- 7210,7216 ----
+  }
+  
+  /*
+!  * Free a Dictionary, including all non-container items it contains.
+   * Ignores the reference count.
+   */
+      void
+*** ../vim-7.4.614/src/version.c	2015-02-03 16:53:47.155669292 +0100
+--- src/version.c	2015-02-03 16:56:07.790157478 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     615,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+170. You introduce your wife as "my_lady@home.wife" and refer to your
+     children as "forked processes."
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

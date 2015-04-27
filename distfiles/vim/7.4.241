@@ -1,0 +1,386 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.241
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.241
+Problem:    The string returned by submatch() does not distinguish between a
+	    NL from a line break and a NL that stands for a NUL character.
+Solution:   Add a second argument to return a list. (ZyX)
+Files:	    runtime/doc/eval.txt, src/eval.c, src/proto/regexp.pro,
+	    src/regexp.c, src/testdir/test79.in, src/testdir/test79.ok,
+	    src/testdir/test80.in, src/testdir/test80.ok
+
+
+*** ../vim-7.4.240/runtime/doc/eval.txt	2014-04-02 12:12:04.151981514 +0200
+--- runtime/doc/eval.txt	2014-04-02 17:56:51.163696948 +0200
+***************
+*** 1989,1995 ****
+  				Number	last index of {needle} in {haystack}
+  strtrans( {expr})		String	translate string to make it printable
+  strwidth( {expr})		Number	display cell length of the String {expr}
+! submatch( {nr})			String	specific match in ":s" or substitute()
+  substitute( {expr}, {pat}, {sub}, {flags})
+  				String	all {pat} in {expr} replaced with {sub}
+  synID( {lnum}, {col}, {trans})	Number	syntax ID at {lnum} and {col}
+--- 1990,1997 ----
+  				Number	last index of {needle} in {haystack}
+  strtrans( {expr})		String	translate string to make it printable
+  strwidth( {expr})		Number	display cell length of the String {expr}
+! submatch( {nr}[, {list}])	String or List
+! 					specific match in ":s" or substitute()
+  substitute( {expr}, {pat}, {sub}, {flags})
+  				String	all {pat} in {expr} replaced with {sub}
+  synID( {lnum}, {col}, {trans})	Number	syntax ID at {lnum} and {col}
+***************
+*** 5784,5795 ****
+  		Ambiguous, this function's return value depends on 'ambiwidth'.
+  		Also see |strlen()|, |strdisplaywidth()| and |strchars()|.
+  
+! submatch({nr})						*submatch()*
+  		Only for an expression in a |:substitute| command or
+  		substitute() function.
+  		Returns the {nr}'th submatch of the matched text.  When {nr}
+  		is 0 the whole matched text is returned.
+  		Also see |sub-replace-expression|.
+  		Example: >
+  			:s/\d\+/\=submatch(0) + 1/
+  <		This finds the first number in the line and adds one to it.
+--- 5798,5820 ----
+  		Ambiguous, this function's return value depends on 'ambiwidth'.
+  		Also see |strlen()|, |strdisplaywidth()| and |strchars()|.
+  
+! submatch({nr}[, {list}])				*submatch()*
+  		Only for an expression in a |:substitute| command or
+  		substitute() function.
+  		Returns the {nr}'th submatch of the matched text.  When {nr}
+  		is 0 the whole matched text is returned.
++ 		Note that a NL in the string can stand for a line break of a
++ 		multi-line match or a NUL character in the text.
+  		Also see |sub-replace-expression|.
++ 
++ 		If {list} is present and non-zero then submatch() returns 
++ 		a list of strings, similar to |getline()| with two arguments. 
++ 		NL characters in the text represent NUL characters in the
++ 		text.
++ 		Only returns more than one item for |:substitute|, inside
++ 		|substitute()| this list will always contain one or zero
++ 		items, since there are no real line breaks.
++ 
+  		Example: >
+  			:s/\d\+/\=submatch(0) + 1/
+  <		This finds the first number in the line and adds one to it.
+*** ../vim-7.4.240/src/eval.c	2014-04-02 12:12:04.159981514 +0200
+--- src/eval.c	2014-04-02 18:16:33.011680690 +0200
+***************
+*** 8129,8135 ****
+      {"strridx",		2, 3, f_strridx},
+      {"strtrans",	1, 1, f_strtrans},
+      {"strwidth",	1, 1, f_strwidth},
+!     {"submatch",	1, 1, f_submatch},
+      {"substitute",	4, 4, f_substitute},
+      {"synID",		3, 3, f_synID},
+      {"synIDattr",	2, 3, f_synIDattr},
+--- 8129,8135 ----
+      {"strridx",		2, 3, f_strridx},
+      {"strtrans",	1, 1, f_strtrans},
+      {"strwidth",	1, 1, f_strwidth},
+!     {"submatch",	1, 2, f_submatch},
+      {"substitute",	4, 4, f_substitute},
+      {"synID",		3, 3, f_synID},
+      {"synIDattr",	2, 3, f_synIDattr},
+***************
+*** 17890,17898 ****
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     rettv->v_type = VAR_STRING;
+!     rettv->vval.v_string =
+! 		    reg_submatch((int)get_tv_number_chk(&argvars[0], NULL));
+  }
+  
+  /*
+--- 17890,17921 ----
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+!     int		error = FALSE;
+!     char_u	**match;
+!     char_u	**s;
+!     listitem_T	*li;
+!     int		no;
+!     int		retList = 0;
+! 
+!     no = (int)get_tv_number_chk(&argvars[0], &error);
+!     if (error)
+! 	return;
+!     error = FALSE;
+!     if (argvars[1].v_type != VAR_UNKNOWN)
+! 	retList = get_tv_number_chk(&argvars[1], &error);
+!     if (error)
+! 	return;
+! 
+!     if (retList == 0)
+!     {
+! 	rettv->v_type = VAR_STRING;
+! 	rettv->vval.v_string = reg_submatch(no);
+!     }
+!     else
+!     {
+! 	rettv->v_type = VAR_LIST;
+! 	rettv->vval.v_list = reg_submatch_list(no);
+!     }
+  }
+  
+  /*
+*** ../vim-7.4.240/src/proto/regexp.pro	2013-08-10 13:37:24.000000000 +0200
+--- src/proto/regexp.pro	2014-04-02 18:19:12.415678498 +0200
+***************
+*** 10,15 ****
+--- 10,16 ----
+  int vim_regsub __ARGS((regmatch_T *rmp, char_u *source, char_u *dest, int copy, int magic, int backslash));
+  int vim_regsub_multi __ARGS((regmmatch_T *rmp, linenr_T lnum, char_u *source, char_u *dest, int copy, int magic, int backslash));
+  char_u *reg_submatch __ARGS((int no));
++ list_T *reg_submatch_list __ARGS((int no));
+  regprog_T *vim_regcomp __ARGS((char_u *expr_arg, int re_flags));
+  void vim_regfree __ARGS((regprog_T *prog));
+  int vim_regexec __ARGS((regmatch_T *rmp, char_u *line, colnr_T col));
+*** ../vim-7.4.240/src/regexp.c	2014-03-23 15:12:29.931264336 +0100
+--- src/regexp.c	2014-04-02 18:59:34.431645181 +0200
+***************
+*** 7897,7902 ****
+--- 7897,7981 ----
+  
+      return retval;
+  }
++ 
++ /*
++  * Used for the submatch() function with the optional non-zero argument: get
++  * the list of strings from the n'th submatch in allocated memory with NULs
++  * represented in NLs.
++  * Returns a list of allocated strings.  Returns NULL when not in a ":s"
++  * command, for a non-existing submatch and for any error.
++  */
++     list_T *
++ reg_submatch_list(no)
++     int		no;
++ {
++     char_u	*s;
++     linenr_T	slnum;
++     linenr_T	elnum;
++     colnr_T	scol;
++     colnr_T	ecol;
++     int		i;
++     list_T	*list;
++     int		error = FALSE;
++ 
++     if (!can_f_submatch || no < 0)
++ 	return NULL;
++ 
++     if (submatch_match == NULL)
++     {
++ 	slnum = submatch_mmatch->startpos[no].lnum;
++ 	elnum = submatch_mmatch->endpos[no].lnum;
++ 	if (slnum < 0 || elnum < 0)
++ 	    return NULL;
++ 
++ 	scol = submatch_mmatch->startpos[no].col;
++ 	ecol = submatch_mmatch->endpos[no].col;
++ 
++ 	list = list_alloc();
++ 	if (list == NULL)
++ 	    return NULL;
++ 
++ 	s = reg_getline_submatch(slnum) + scol;
++ 	if (slnum == elnum)
++ 	{
++ 	    if (list_append_string(list, s, ecol - scol) == FAIL)
++ 		error = TRUE;
++ 	}
++ 	else
++ 	{
++ 	    if (list_append_string(list, s, -1) == FAIL)
++ 		error = TRUE;
++ 	    for (i = 1; i < elnum - slnum; i++)
++ 	    {
++ 		s = reg_getline_submatch(slnum + i);
++ 		if (list_append_string(list, s, -1) == FAIL)
++ 		    error = TRUE;
++ 	    }
++ 	    s = reg_getline_submatch(elnum);
++ 	    if (list_append_string(list, s, ecol) == FAIL)
++ 		error = TRUE;
++ 	}
++     }
++     else
++     {
++ 	s = submatch_match->startp[no];
++ 	if (s == NULL || submatch_match->endp[no] == NULL)
++ 	    return NULL;
++ 	list = list_alloc();
++ 	if (list == NULL)
++ 	    return NULL;
++ 	if (list_append_string(list, s,
++ 				 (int)(submatch_match->endp[no] - s)) == FAIL)
++ 	    error = TRUE;
++     }
++ 
++     if (error)
++     {
++ 	list_free(list, TRUE);
++ 	return NULL;
++     }
++     return list;
++ }
+  #endif
+  
+  static regengine_T bt_regengine =
+*** ../vim-7.4.240/src/testdir/test79.in	2013-04-13 11:16:38.000000000 +0200
+--- src/testdir/test79.in	2014-04-02 17:51:01.807701753 +0200
+***************
+*** 181,190 ****
+--- 181,192 ----
+  :set cpo&
+  /^TEST/
+  j:s/A\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)/\=submatch(0) . submatch(9) . submatch(8) . submatch(7) . submatch(6) . submatch(5) . submatch(4) . submatch(3) . submatch(2) . submatch(1)/
++ j:s/B\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)/\=string([submatch(0, 1), submatch(9, 1), submatch(8, 1), submatch(7, 1), submatch(6, 1), submatch(5, 1), submatch(4, 1), submatch(3, 1), submatch(2, 1), submatch(1, 1)])/
+  ENDTEST
+  
+  TEST_5:
+  A123456789
++ B123456789
+  
+  STARTTEST
+  :set magic&
+***************
+*** 209,214 ****
+--- 211,219 ----
+  /^TEST_7/
+  j:s/A./\=submatch(0)/
+  j:s/B./\=submatch(0)/
++ j:s/C./\=strtrans(string(submatch(0, 1)))/
++ j:s/D.\nD/\=strtrans(string(submatch(0, 1)))/
++ j:s/E\_.\{-}E/\=strtrans(string(submatch(0, 1)))/
+  /^Q$
+  :s/Q[^\n]Q/\=submatch(0)."foobar"/
+  :" Avoid :s error breaks dotest map on Windows.
+***************
+*** 217,226 ****
+--- 222,240 ----
+  TEST_7:
+  AA
+  B B
++ C C
++ D 
++ D
++ E 
++  
++  
++  
++  E
+  Q
+  Q
+  
+  STARTTEST
+  :g/^STARTTEST/.,/^ENDTEST/d
+  :1;/^Results/,$wq! test.out
++ :call getchar()
+  ENDTEST
+*** ../vim-7.4.240/src/testdir/test79.ok	2013-03-19 17:30:51.000000000 +0100
+--- src/testdir/test79.ok	2014-04-02 17:51:01.807701753 +0200
+***************
+*** 105,110 ****
+--- 105,111 ----
+  
+  TEST_5:
+  A123456789987654321
++ [['B123456789'], ['9'], ['8'], ['7'], ['6'], ['5'], ['4'], ['3'], ['2'], ['1']]
+  
+  
+  TEST_6:
+***************
+*** 119,124 ****
+--- 120,128 ----
+  A
+  B
+  B
++ ['C^@']C
++ ['D^@', 'D']
++ ['E^@', '^@', '^@', '^@', '^@E']
+  Q
+  Q
+  
+*** ../vim-7.4.240/src/testdir/test80.in	2014-01-23 20:09:29.523869260 +0100
+--- src/testdir/test80.in	2014-04-02 17:52:14.059700759 +0200
+***************
+*** 117,122 ****
+--- 117,123 ----
+  :set cpo&
+  :$put =\"\n\nTEST_5:\"
+  :$put =substitute('A123456789', 'A\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)', '\=submatch(0) . submatch(9) . submatch(8) . submatch(7) . submatch(6) . submatch(5) . submatch(4) . submatch(3) . submatch(2) . submatch(1)', '')
++ :$put =substitute('A123456789', 'A\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)\(.\)', '\=string([submatch(0, 1), submatch(9, 1), submatch(8, 1), submatch(7, 1), submatch(6, 1), submatch(5, 1), submatch(4, 1), submatch(3, 1), submatch(2, 1), submatch(1, 1)])', '')
+  /^TEST_6
+  ENDTEST
+  
+***************
+*** 142,147 ****
+--- 143,149 ----
+  :$put =\"\n\nTEST_7:\"
+  :$put =substitute('AA', 'A.', '\=submatch(0)', '')
+  :$put =substitute(\"B\nB\", 'B.', '\=submatch(0)', '')
++ :$put =substitute(\"B\nB\", 'B.', '\=string(submatch(0, 1))', '')
+  :$put =substitute('-bb', '\zeb', 'a', 'g')
+  :$put =substitute('-bb', '\ze', 'c', 'g')
+  /^TEST_8
+*** ../vim-7.4.240/src/testdir/test80.ok	2014-01-23 20:09:29.523869260 +0100
+--- src/testdir/test80.ok	2014-04-02 17:52:44.111700346 +0200
+***************
+*** 90,95 ****
+--- 90,96 ----
+  
+  TEST_5:
+  A123456789987654321
++ [['A123456789'], ['9'], ['8'], ['7'], ['6'], ['5'], ['4'], ['3'], ['2'], ['1']]
+  
+  
+  TEST_6:
+***************
+*** 103,108 ****
+--- 104,111 ----
+  AA
+  B
+  B
++ ['B
++ ']B
+  -abab
+  c-cbcbc
+  
+*** ../vim-7.4.240/src/version.c	2014-04-02 17:18:59.051728202 +0200
+--- src/version.c	2014-04-02 17:37:44.639712719 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     241,
+  /**/
+
+-- 
+Bypasses are devices that allow some people to dash from point A to
+point B very fast while other people dash from point B to point A very
+fast.  People living at point C, being a point directly in between, are
+often given to wonder what's so great about point A that so many people
+from point B are so keen to get there and what's so great about point B
+that so many people from point A are so keen to get there.  They often
+wish that people would just once and for all work out where the hell
+they wanted to be.
+		-- Douglas Adams, "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

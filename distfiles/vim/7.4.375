@@ -1,0 +1,59 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.375
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.375
+Problem:    Test 63 fails when run with GUI-only Vim.
+Solution:   Add guibg attributes. (suggested by Mike Soyka)
+Files:	    src/testdir/test63.in
+
+
+*** ../vim-7.4.374/src/testdir/test63.in	2014-06-17 17:48:21.784628008 +0200
+--- src/testdir/test63.in	2014-07-23 13:12:20.727973060 +0200
+***************
+*** 6,14 ****
+  :" --- Check that "matcharg()" returns the correct group and pattern if a match
+  :" --- is defined.
+  :let @r = "*** Test 1: "
+! :highlight MyGroup1 ctermbg=red
+! :highlight MyGroup2 ctermbg=green
+! :highlight MyGroup3 ctermbg=blue
+  :match MyGroup1 /TODO/
+  :2match MyGroup2 /FIXME/
+  :3match MyGroup3 /XXX/
+--- 6,14 ----
+  :" --- Check that "matcharg()" returns the correct group and pattern if a match
+  :" --- is defined.
+  :let @r = "*** Test 1: "
+! :highlight MyGroup1 ctermbg=red guibg=red
+! :highlight MyGroup2 ctermbg=green guibg=green
+! :highlight MyGroup3 ctermbg=blue guibg=blue
+  :match MyGroup1 /TODO/
+  :2match MyGroup2 /FIXME/
+  :3match MyGroup3 /XXX/
+*** ../vim-7.4.374/src/version.c	2014-07-23 12:31:17.207990767 +0200
+--- src/version.c	2014-07-23 13:13:15.167972669 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     375,
+  /**/
+
+-- 
+BODY:        I'm not dead!
+CART DRIVER: 'Ere.  He says he's not dead.
+LARGE MAN:   Yes he is.
+BODY:        I'm not!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

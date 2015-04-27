@@ -1,0 +1,49 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.521
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.521
+Problem:    When using "vep" a mark is moved to the next line. (Maxi Padulo,
+	    Issue 283)
+Solution:   Decrement the line number. (Christian Brabandt)
+Files:	    src/ops.c
+
+
+*** ../vim-7.4.520/src/ops.c	2014-08-16 18:36:38.593993280 +0200
+--- src/ops.c	2014-11-19 17:29:55.697280694 +0100
+***************
+*** 3831,3836 ****
+--- 3831,3839 ----
+  		    lnum++;
+  	    } while (VIsual_active && lnum <= curbuf->b_visual.vi_end.lnum);
+  
++ 	    if (VIsual_active) /* reset lnum to the last visual line */
++ 		lnum--;
++ 
+  	    curbuf->b_op_end = curwin->w_cursor;
+  	    /* For "CTRL-O p" in Insert mode, put cursor after last char */
+  	    if (totlen && (restart_edit != 0 || (flags & PUT_CURSEND)))
+*** ../vim-7.4.520/src/version.c	2014-11-19 17:05:52.209648533 +0100
+--- src/version.c	2014-11-19 17:30:30.220890822 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     521,
+  /**/
+
+-- 
+BEDEVERE: How do you know so much about swallows?
+ARTHUR:   Well you have to know these things when you're a king, you know.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

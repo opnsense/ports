@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.189
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.189
+Problem:    Compiler warning for unused argument.
+Solution:   Add UNUSED.
+Files:      src/eval.c
+
+
+*** ../vim-7.4.188/src/eval.c	2014-02-22 22:18:39.532905522 +0100
+--- src/eval.c	2014-02-23 22:29:14.976766942 +0100
+***************
+*** 9203,9209 ****
+  byteidx(argvars, rettv, comp)
+      typval_T	*argvars;
+      typval_T	*rettv;
+!     int		comp;
+  {
+  #ifdef FEAT_MBYTE
+      char_u	*t;
+--- 9203,9209 ----
+  byteidx(argvars, rettv, comp)
+      typval_T	*argvars;
+      typval_T	*rettv;
+!     int		comp UNUSED;
+  {
+  #ifdef FEAT_MBYTE
+      char_u	*t;
+*** ../vim-7.4.188/src/version.c	2014-02-23 22:52:33.372764715 +0100
+--- src/version.c	2014-02-23 22:54:17.836764549 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     189,
+  /**/
+
+-- 
+Q: How does a UNIX Guru pick up a girl?
+A: look; grep; which; eval; nice; uname; talk; date;
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

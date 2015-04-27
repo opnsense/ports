@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.331
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.331
+Problem:    Relative numbering not updated after a linewise yank.  Issue 235.
+Solution:   Redraw after the yank. (Christian Brabandt)
+Files:	    src/ops.c
+
+
+*** ../vim-7.4.330/src/ops.c	2014-04-29 15:55:39.443801021 +0200
+--- src/ops.c	2014-06-17 18:14:36.584687585 +0200
+***************
+*** 3150,3155 ****
+--- 3150,3157 ----
+  	vim_free(y_current->y_array);
+  	y_current = curr;
+      }
++     if (curwin->w_p_rnu)
++ 	redraw_later(SOME_VALID);	/* cursor moved to start */
+      if (mess)			/* Display message about yank? */
+      {
+  	if (yanktype == MCHAR
+*** ../vim-7.4.330/src/version.c	2014-06-17 17:48:21.784628008 +0200
+--- src/version.c	2014-06-17 18:13:35.824685286 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     331,
+  /**/
+
+-- 
+CONCORDE: Message for you, sir.
+   He falls forward revealing the arrow with the note.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

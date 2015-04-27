@@ -1,0 +1,145 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.669
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.669
+Problem:    When netbeans is active the sign column always shows up.
+Solution:   Only show the sign column once a sign has been added. (Xavier de
+	    Gaye)
+Files:	    src/buffer.c, src/edit.c, src/move.c, src/netbeans.c,
+	    src/screen.c, src/structs.h
+
+
+*** ../vim-7.4.668/src/buffer.c	2015-02-27 19:34:51.460777333 +0100
+--- src/buffer.c	2015-03-20 17:56:18.289643264 +0100
+***************
+*** 5473,5478 ****
+--- 5473,5482 ----
+  
+  	    /* first sign in signlist */
+  	    buf->b_signlist = newsign;
++ #ifdef FEAT_NETBEANS_INTG
++ 	    if (netbeans_active())
++ 		buf->b_has_sign_column = TRUE;
++ #endif
+  	}
+  	else
+  	    prev->next = newsign;
+*** ../vim-7.4.668/src/edit.c	2015-03-13 13:24:16.319989139 +0100
+--- src/edit.c	2015-03-20 17:58:31.328143526 +0100
+***************
+*** 6687,6693 ****
+  #ifdef FEAT_SIGNS
+  	if (curwin->w_buffer->b_signlist != NULL
+  # ifdef FEAT_NETBEANS_INTG
+! 			    || netbeans_active()
+  # endif
+  		    )
+  	    textwidth -= 1;
+--- 6687,6693 ----
+  #ifdef FEAT_SIGNS
+  	if (curwin->w_buffer->b_signlist != NULL
+  # ifdef FEAT_NETBEANS_INTG
+! 			  || curwin->w_buffer->b_has_sign_column
+  # endif
+  		    )
+  	    textwidth -= 1;
+*** ../vim-7.4.668/src/move.c	2014-12-13 21:09:53.721226911 +0100
+--- src/move.c	2015-03-20 17:56:34.973455188 +0100
+***************
+*** 905,911 ****
+  	    + (
+  # ifdef FEAT_NETBEANS_INTG
+  		/* show glyph gutter in netbeans */
+! 		netbeans_active() ||
+  # endif
+  		wp->w_buffer->b_signlist != NULL ? 2 : 0)
+  #endif
+--- 905,911 ----
+  	    + (
+  # ifdef FEAT_NETBEANS_INTG
+  		/* show glyph gutter in netbeans */
+! 		wp->w_buffer->b_has_sign_column ||
+  # endif
+  		wp->w_buffer->b_signlist != NULL ? 2 : 0)
+  #endif
+*** ../vim-7.4.668/src/netbeans.c	2015-03-14 15:35:45.664866097 +0100
+--- src/netbeans.c	2015-03-20 17:56:49.665289529 +0100
+***************
+*** 144,149 ****
+--- 144,154 ----
+      static void
+  nb_close_socket(void)
+  {
++     buf_T	*buf;
++ 
++     for (buf = firstbuf; buf != NULL; buf = buf->b_next)
++ 	buf->b_has_sign_column = FALSE;
++ 
+  #ifdef FEAT_GUI_X11
+      if (inputHandler != (XtInputId)NULL)
+      {
+*** ../vim-7.4.668/src/screen.c	2015-03-20 17:16:23.656659419 +0100
+--- src/screen.c	2015-03-20 17:58:42.740014898 +0100
+***************
+*** 2214,2220 ****
+  {
+      return (wp->w_buffer->b_signlist != NULL
+  # ifdef FEAT_NETBEANS_INTG
+! 			    || netbeans_active()
+  # endif
+  		    );
+  }
+--- 2214,2220 ----
+  {
+      return (wp->w_buffer->b_signlist != NULL
+  # ifdef FEAT_NETBEANS_INTG
+! 				|| wp->w_buffer->b_has_sign_column
+  # endif
+  		    );
+  }
+*** ../vim-7.4.668/src/structs.h	2015-03-20 15:42:07.200377381 +0100
+--- src/structs.h	2015-03-20 17:58:09.836385801 +0100
+***************
+*** 1805,1810 ****
+--- 1805,1815 ----
+  
+  #ifdef FEAT_SIGNS
+      signlist_T	*b_signlist;	/* list of signs to draw */
++ # ifdef FEAT_NETBEANS_INTG
++     int		b_has_sign_column; /* Flag that is set when a first sign is
++ 				    * added and remains set until the end of
++ 				    * the netbeans session. */
++ # endif
+  #endif
+  
+  #ifdef FEAT_NETBEANS_INTG
+*** ../vim-7.4.668/src/version.c	2015-03-20 17:36:38.618949214 +0100
+--- src/version.c	2015-03-20 17:54:53.422600714 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     669,
+  /**/
+
+-- 
+ARTHUR:  You fight with the strength of many men, Sir knight.
+         I am Arthur, King of the Britons.  [pause]
+         I seek the finest and the bravest knights in the land to join me
+         in my Court of Camelot.  [pause]
+         You have proved yourself worthy; will you join me?  [pause]
+         You make me sad.  So be it.  Come, Patsy.
+BLACK KNIGHT:  None shall pass.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

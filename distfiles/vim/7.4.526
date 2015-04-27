@@ -1,0 +1,191 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.526
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.526
+Problem:    matchstr() fails on long text. Daniel Hahler)
+Solution:   Return NFA_TOO_EXPENSIVE from regexec_nl(). (Christian Brabandt)
+Files:	    src/regexp.c, src/regexec_nfa.c
+
+
+*** ../vim-7.4.525/src/regexp.c	2014-11-19 16:38:01.508680012 +0100
+--- src/regexp.c	2014-11-20 22:59:03.865027911 +0100
+***************
+*** 3739,3745 ****
+   * Uses curbuf for line count and 'iskeyword'.
+   * if "line_lbr" is TRUE  consider a "\n" in "line" to be a line break.
+   *
+!  * Return TRUE if there is a match, FALSE if not.
+   */
+      static int
+  bt_regexec_nl(rmp, line, col, line_lbr)
+--- 3739,3745 ----
+   * Uses curbuf for line count and 'iskeyword'.
+   * if "line_lbr" is TRUE  consider a "\n" in "line" to be a line break.
+   *
+!  * Returns 0 for failure, number of lines contained in the match otherwise.
+   */
+      static int
+  bt_regexec_nl(rmp, line, col, line_lbr)
+***************
+*** 3759,3765 ****
+      ireg_icombine = FALSE;
+  #endif
+      ireg_maxcol = 0;
+!     return (bt_regexec_both(line, col, NULL) != 0);
+  }
+  
+  static long bt_regexec_multi __ARGS((regmmatch_T *rmp, win_T *win, buf_T *buf, linenr_T lnum, colnr_T col, proftime_T *tm));
+--- 3759,3766 ----
+      ireg_icombine = FALSE;
+  #endif
+      ireg_maxcol = 0;
+! 
+!     return bt_regexec_both(line, col, NULL);
+  }
+  
+  static long bt_regexec_multi __ARGS((regmmatch_T *rmp, win_T *win, buf_T *buf, linenr_T lnum, colnr_T col, proftime_T *tm));
+***************
+*** 3781,3788 ****
+      colnr_T	col;		/* column to start looking for match */
+      proftime_T	*tm;		/* timeout limit or NULL */
+  {
+-     long	r;
+- 
+      reg_match = NULL;
+      reg_mmatch = rmp;
+      reg_buf = buf;
+--- 3782,3787 ----
+***************
+*** 3796,3809 ****
+  #endif
+      ireg_maxcol = rmp->rmm_maxcol;
+  
+!     r = bt_regexec_both(NULL, col, tm);
+! 
+!     return r;
+  }
+  
+  /*
+   * Match a regexp against a string ("line" points to the string) or multiple
+   * lines ("line" is NULL, use reg_getline()).
+   */
+      static long
+  bt_regexec_both(line, col, tm)
+--- 3795,3807 ----
+  #endif
+      ireg_maxcol = rmp->rmm_maxcol;
+  
+!     return bt_regexec_both(NULL, col, tm);
+  }
+  
+  /*
+   * Match a regexp against a string ("line" points to the string) or multiple
+   * lines ("line" is NULL, use reg_getline()).
++  * Returns 0 for failure, number of lines contained in the match otherwise.
+   */
+      static long
+  bt_regexec_both(line, col, tm)
+***************
+*** 3811,3819 ****
+      colnr_T	col;		/* column to start looking for match */
+      proftime_T	*tm UNUSED;	/* timeout limit or NULL */
+  {
+!     bt_regprog_T	*prog;
+!     char_u	*s;
+!     long	retval = 0L;
+  
+      /* Create "regstack" and "backpos" if they are not allocated yet.
+       * We allocate *_INITIAL amount of bytes first and then set the grow size
+--- 3809,3817 ----
+      colnr_T	col;		/* column to start looking for match */
+      proftime_T	*tm UNUSED;	/* timeout limit or NULL */
+  {
+!     bt_regprog_T    *prog;
+!     char_u	    *s;
+!     long	    retval = 0L;
+  
+      /* Create "regstack" and "backpos" if they are not allocated yet.
+       * We allocate *_INITIAL amount of bytes first and then set the grow size
+***************
+*** 8201,8211 ****
+  
+  	p_re = save_p_re;
+      }
+!     return result;
+  }
+  
+  /*
+   * Note: "*prog" may be freed and changed.
+   */
+      int
+  vim_regexec_prog(prog, ignore_case, line, col)
+--- 8199,8210 ----
+  
+  	p_re = save_p_re;
+      }
+!     return result > 0;
+  }
+  
+  /*
+   * Note: "*prog" may be freed and changed.
++  * Return TRUE if there is a match, FALSE if not.
+   */
+      int
+  vim_regexec_prog(prog, ignore_case, line, col)
+***************
+*** 8226,8231 ****
+--- 8225,8231 ----
+  
+  /*
+   * Note: "rmp->regprog" may be freed and changed.
++  * Return TRUE if there is a match, FALSE if not.
+   */
+      int
+  vim_regexec(rmp, line, col)
+***************
+*** 8241,8246 ****
+--- 8241,8247 ----
+  /*
+   * Like vim_regexec(), but consider a "\n" in "line" to be a line break.
+   * Note: "rmp->regprog" may be freed and changed.
++  * Return TRUE if there is a match, FALSE if not.
+   */
+      int
+  vim_regexec_nl(rmp, line, col)
+***************
+*** 8297,8301 ****
+  	p_re = save_p_re;
+      }
+  
+!     return result;
+  }
+--- 8298,8302 ----
+  	p_re = save_p_re;
+      }
+  
+!     return result <= 0 ? 0 : result;
+  }
+*** ../vim-7.4.525/src/version.c	2014-11-19 20:04:43.656099839 +0100
+--- src/version.c	2014-11-20 22:55:15.899663148 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     526,
+  /**/
+
+-- 
+Why don't cannibals eat clowns?
+Because they taste funny.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,108 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.255
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.255
+Problem:    Configure check for smack doesn't work with all shells. (David
+	    Larson)
+Solution:   Remove spaces in set command.
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.254/src/configure.in	2014-04-10 11:09:11.676036810 +0200
+--- src/configure.in	2014-04-10 19:53:38.884105545 +0200
+***************
+*** 405,411 ****
+    AC_MSG_CHECKING(for XATTR_NAME_SMACKEXEC in linux/xattr.h)
+    AC_EGREP_CPP(XATTR_NAME_SMACKEXEC, [#include <linux/xattr.h>],
+  	       AC_MSG_RESULT(yes),
+! 	       AC_MSG_RESULT(no); enable_smack = "no")
+  fi
+  if test "$enable_smack" = "yes"; then
+    AC_CHECK_LIB(attr, setxattr,
+--- 405,411 ----
+    AC_MSG_CHECKING(for XATTR_NAME_SMACKEXEC in linux/xattr.h)
+    AC_EGREP_CPP(XATTR_NAME_SMACKEXEC, [#include <linux/xattr.h>],
+  	       AC_MSG_RESULT(yes),
+! 	       AC_MSG_RESULT(no); enable_smack="no")
+  fi
+  if test "$enable_smack" = "yes"; then
+    AC_CHECK_LIB(attr, setxattr,
+***************
+*** 2643,2649 ****
+      AC_MSG_CHECKING(for XIMText in X11/Xlib.h)
+      AC_EGREP_CPP(XIMText, [#include <X11/Xlib.h>],
+  		  AC_MSG_RESULT(yes),
+! 		  AC_MSG_RESULT(no; xim has been disabled); enable_xim = "no")
+    fi
+    CPPFLAGS=$cppflags_save
+  
+--- 2643,2649 ----
+      AC_MSG_CHECKING(for XIMText in X11/Xlib.h)
+      AC_EGREP_CPP(XIMText, [#include <X11/Xlib.h>],
+  		  AC_MSG_RESULT(yes),
+! 		  AC_MSG_RESULT(no; xim has been disabled); enable_xim="no")
+    fi
+    CPPFLAGS=$cppflags_save
+  
+*** ../vim-7.4.254/src/auto/configure	2014-04-10 11:09:11.684036810 +0200
+--- src/auto/configure	2014-04-10 19:53:54.032105578 +0200
+***************
+*** 4637,4643 ****
+  $as_echo "yes" >&6; }
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+! $as_echo "no" >&6; }; enable_smack = "no"
+  fi
+  rm -f conftest*
+  
+--- 4637,4643 ----
+  $as_echo "yes" >&6; }
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+! $as_echo "no" >&6; }; enable_smack="no"
+  fi
+  rm -f conftest*
+  
+***************
+*** 9303,9309 ****
+  $as_echo "yes" >&6; }
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no; xim has been disabled" >&5
+! $as_echo "no; xim has been disabled" >&6; }; enable_xim = "no"
+  fi
+  rm -f conftest*
+  
+--- 9303,9309 ----
+  $as_echo "yes" >&6; }
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no; xim has been disabled" >&5
+! $as_echo "no; xim has been disabled" >&6; }; enable_xim="no"
+  fi
+  rm -f conftest*
+  
+*** ../vim-7.4.254/src/version.c	2014-04-10 11:09:11.684036810 +0200
+--- src/version.c	2014-04-10 19:56:55.272105974 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     255,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+40. You tell the cab driver you live at
+    http://123.elm.street/house/bluetrim.html
+41. You actually try that 123.elm.street address.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

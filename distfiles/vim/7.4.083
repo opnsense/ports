@@ -1,0 +1,136 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.083
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.083
+Problem:    It's hard to avoid adding a used pattern to the search history.
+Solution:   Add the ":keeppatterns" modifier. (Christian Brabandt)
+Files:      runtime/doc/cmdline.txt, src/ex_cmds.h, src/ex_docmd.c,
+            src/ex_getln.c, src/structs.h
+
+
+*** ../vim-7.4.082/runtime/doc/cmdline.txt	2013-08-10 13:24:52.000000000 +0200
+--- runtime/doc/cmdline.txt	2013-11-09 04:26:30.000000000 +0100
+***************
+*** 356,361 ****
+--- 356,365 ----
+  		List the recent five entries from all histories: >
+  			:history all -5,
+  
++ :keepp[atterns] {command}			*:keepp* *:keeppatterns*
++ 		Execute {command}, without adding anything to the search
++ 		history
++ 
+  ==============================================================================
+  2. Command-line completion				*cmdline-completion*
+  
+*** ../vim-7.4.082/src/ex_cmds.h	2013-06-08 15:08:20.000000000 +0200
+--- src/ex_cmds.h	2013-11-09 04:26:30.000000000 +0100
+***************
+*** 477,482 ****
+--- 477,484 ----
+  			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_keepjumps,	"keepjumps",	ex_wrongmodifier,
+  			NEEDARG|EXTRA|NOTRLCOM),
++ EX(CMD_keeppatterns,	"keeppatterns",	ex_wrongmodifier,
++ 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_keepalt,		"keepalt",	ex_wrongmodifier,
+  			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_list,		"list",		ex_print,
+*** ../vim-7.4.082/src/ex_docmd.c	2013-11-09 03:31:45.000000000 +0100
+--- src/ex_docmd.c	2013-11-09 04:31:36.000000000 +0100
+***************
+*** 1843,1848 ****
+--- 1843,1853 ----
+  			    cmdmod.keepalt = TRUE;
+  			    continue;
+  			}
++ 			if (checkforcmd(&ea.cmd, "keeppatterns", 5))
++ 			{
++ 			    cmdmod.keeppatterns = TRUE;
++ 			    continue;
++ 			}
+  			if (!checkforcmd(&ea.cmd, "keepjumps", 5))
+  			    break;
+  			cmdmod.keepjumps = TRUE;
+***************
+*** 2584,2589 ****
+--- 2589,2595 ----
+  	    case CMD_keepalt:
+  	    case CMD_keepjumps:
+  	    case CMD_keepmarks:
++ 	    case CMD_keeppatterns:
+  	    case CMD_leftabove:
+  	    case CMD_let:
+  	    case CMD_lockmarks:
+***************
+*** 3089,3094 ****
+--- 3095,3101 ----
+      {"keepalt", 5, FALSE},
+      {"keepjumps", 5, FALSE},
+      {"keepmarks", 3, FALSE},
++     {"keeppatterns", 5, FALSE},
+      {"leftabove", 5, FALSE},
+      {"lockmarks", 3, FALSE},
+      {"noautocmd", 3, FALSE},
+***************
+*** 3597,3602 ****
+--- 3604,3610 ----
+  	case CMD_keepalt:
+  	case CMD_keepjumps:
+  	case CMD_keepmarks:
++ 	case CMD_keeppatterns:
+  	case CMD_leftabove:
+  	case CMD_lockmarks:
+  	case CMD_rightbelow:
+*** ../vim-7.4.082/src/ex_getln.c	2013-11-05 07:12:59.000000000 +0100
+--- src/ex_getln.c	2013-11-09 04:26:30.000000000 +0100
+***************
+*** 5498,5503 ****
+--- 5498,5506 ----
+      if (hislen == 0)		/* no history */
+  	return;
+  
++     if (cmdmod.keeppatterns && histype == HIST_SEARCH)
++ 	return;
++ 
+      /*
+       * Searches inside the same mapping overwrite each other, so that only
+       * the last line is kept.  Be careful not to remove a line that was moved
+*** ../vim-7.4.082/src/structs.h	2013-11-06 05:26:08.000000000 +0100
+--- src/structs.h	2013-11-09 04:26:30.000000000 +0100
+***************
+*** 542,547 ****
+--- 542,548 ----
+      int		keepmarks;		/* TRUE when ":keepmarks" was used */
+      int		keepjumps;		/* TRUE when ":keepjumps" was used */
+      int		lockmarks;		/* TRUE when ":lockmarks" was used */
++     int		keeppatterns;		/* TRUE when ":keeppatterns" was used */
+  # ifdef FEAT_AUTOCMD
+      char_u	*save_ei;		/* saved value of 'eventignore' */
+  # endif
+*** ../vim-7.4.082/src/version.c	2013-11-09 03:31:45.000000000 +0100
+--- src/version.c	2013-11-09 04:29:07.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     83,
+  /**/
+
+-- 
+I am always surprised in the Linux world how quickly solutions can be
+obtained.  (Imagine sending an email to Bill Gates, asking why Windows
+crashed, and how to fix it...  and then getting an answer that fixed the
+problem... <0>_<0> !)		              -- Mark Langdon
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

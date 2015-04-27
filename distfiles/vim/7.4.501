@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.501
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.501 (after 7.4.497)
+Problem:    Typo in file pattern.
+Solution:   Insert a slash and remove a dot.
+Files:	    Filelist
+
+
+*** ../vim-7.4.500/Filelist	2014-11-05 14:29:27.708754099 +0100
+--- Filelist	2014-11-05 17:03:41.104531126 +0100
+***************
+*** 104,110 ****
+  		src/testdir/python_before/*.py \
+  		src/testdir/bench*.in \
+  		src/testdir/bench*.vim \
+! 		src/testdir/samples.*.txt \
+  		src/proto.h \
+  		src/proto/blowfish.pro \
+  		src/proto/buffer.pro \
+--- 104,110 ----
+  		src/testdir/python_before/*.py \
+  		src/testdir/bench*.in \
+  		src/testdir/bench*.vim \
+! 		src/testdir/samples/*.txt \
+  		src/proto.h \
+  		src/proto/blowfish.pro \
+  		src/proto/buffer.pro \
+*** ../vim-7.4.500/src/version.c	2014-11-05 16:39:24.712566220 +0100
+--- src/version.c	2014-11-05 17:03:19.828531639 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     501,
+  /**/
+
+-- 
+"It's so simple to be wise.  Just think of something stupid to say
+and then don't say it."        -- Sam Levenson
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

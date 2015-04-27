@@ -1,0 +1,61 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.024
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.024
+Problem:    When root edits a file the undo file is owned by root while the
+	    edited file may be owned by another user, which is not allowed.
+	    (cac2s)
+Solution:   Accept an undo file owned by the current user.
+Files:	    src/undo.c
+
+
+*** ../vim-7.4.023/src/undo.c	2013-06-10 20:13:37.000000000 +0200
+--- src/undo.c	2013-09-07 15:45:56.000000000 +0200
+***************
+*** 1604,1613 ****
+  
+  #ifdef UNIX
+  	/* For safety we only read an undo file if the owner is equal to the
+! 	 * owner of the text file. */
+  	if (mch_stat((char *)orig_name, &st_orig) >= 0
+  		&& mch_stat((char *)file_name, &st_undo) >= 0
+! 		&& st_orig.st_uid != st_undo.st_uid)
+  	{
+  	    if (p_verbose > 0)
+  	    {
+--- 1604,1614 ----
+  
+  #ifdef UNIX
+  	/* For safety we only read an undo file if the owner is equal to the
+! 	 * owner of the text file or equal to the current user. */
+  	if (mch_stat((char *)orig_name, &st_orig) >= 0
+  		&& mch_stat((char *)file_name, &st_undo) >= 0
+! 		&& st_orig.st_uid != st_undo.st_uid
+! 		&& st_undo.st_uid != getuid())
+  	{
+  	    if (p_verbose > 0)
+  	    {
+*** ../vim-7.4.023/src/version.c	2013-09-07 16:35:38.000000000 +0200
+--- src/version.c	2013-09-08 15:38:52.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     24,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+186. You overstay in the office so you can have more time surfing the net.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

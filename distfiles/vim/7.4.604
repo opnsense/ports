@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.604
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.604
+Problem:    Running tests changes viminfo.
+Solution:   Disable viminfo.
+Files:	    src/testdir/test_breakindent.in
+
+
+*** ../vim-7.4.603/src/testdir/test_breakindent.in	2015-01-27 13:22:17.176885347 +0100
+--- src/testdir/test_breakindent.in	2015-01-27 17:07:20.549557451 +0100
+***************
+*** 100,106 ****
+  :$put =line2
+  :"
+  :let g:test="Test 14: breakindent + visual blockwise delete #1"
+! :set all& breakindent
+  :30vnew
+  :normal! 3a1234567890
+  :normal! a    abcde
+--- 100,106 ----
+  :$put =line2
+  :"
+  :let g:test="Test 14: breakindent + visual blockwise delete #1"
+! :set all& breakindent viminfo+=nviminfo
+  :30vnew
+  :normal! 3a1234567890
+  :normal! a    abcde
+*** ../vim-7.4.603/src/version.c	2015-01-27 16:39:24.691804113 +0100
+--- src/version.c	2015-01-27 17:11:46.746656291 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     604,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+130. You can't get out of your desk even if it's time to eat or time
+     to go to the bathroom.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,98 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.373
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.373
+Problem:    Compiler warning for unused argument and unused variable.
+Solution:   Add UNUSED.  Move variable inside #ifdef.
+Files:	    src/charset.c, src/window.c
+
+
+*** ../vim-7.4.372/src/charset.c	2014-07-02 19:59:35.450375136 +0200
+--- src/charset.c	2014-07-16 23:36:51.211088615 +0200
+***************
+*** 1024,1030 ****
+   */
+      int
+  lbr_chartabsize(line, s, col)
+!     char_u		*line; /* start of the line */
+      unsigned char	*s;
+      colnr_T		col;
+  {
+--- 1024,1030 ----
+   */
+      int
+  lbr_chartabsize(line, s, col)
+!     char_u		*line UNUSED; /* start of the line */
+      unsigned char	*s;
+      colnr_T		col;
+  {
+***************
+*** 1069,1075 ****
+      int
+  win_lbr_chartabsize(wp, line, s, col, headp)
+      win_T	*wp;
+!     char_u	*line; /* start of the line */
+      char_u	*s;
+      colnr_T	col;
+      int		*headp UNUSED;
+--- 1069,1075 ----
+      int
+  win_lbr_chartabsize(wp, line, s, col, headp)
+      win_T	*wp;
+!     char_u	*line UNUSED; /* start of the line */
+      char_u	*s;
+      colnr_T	col;
+      int		*headp UNUSED;
+*** ../vim-7.4.372/src/window.c	2014-07-16 18:19:22.911475762 +0200
+--- src/window.c	2014-07-16 23:38:31.567086575 +0200
+***************
+*** 686,694 ****
+      int		layout;
+      frame_T	*frp, *curfrp;
+      int		before;
+-     int		minwidth;
+      int		minheight;
+-     int		wmw1;
+      int		wmh1;
+  
+      if (flags & WSP_TOP)
+--- 686,692 ----
+***************
+*** 718,723 ****
+--- 716,724 ----
+  #ifdef FEAT_VERTSPLIT
+      if (flags & WSP_VERT)
+      {
++ 	int	wmw1;
++ 	int	minwidth;
++ 
+  	layout = FR_ROW;
+  
+  	/*
+*** ../vim-7.4.372/src/version.c	2014-07-16 18:19:22.915475762 +0200
+--- src/version.c	2014-07-16 23:36:20.775089233 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     373,
+  /**/
+
+-- 
+INSPECTOR END OF FILM: Move along.  There's nothing to see!  Keep moving!
+   [Suddenly he notices the cameras.]
+INSPECTOR END OF FILM: (to Camera) All right, put that away sonny.
+   [He walks over to it and puts his hand over the lens.]
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

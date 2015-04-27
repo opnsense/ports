@@ -1,0 +1,108 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.601
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.601
+Problem:    It is not possible to have feedkeys() insert characters.
+Solution:   Add the 'i' flag.
+Files:	    src/eval.c, runtime/doc/eval.txt
+
+
+*** ../vim-7.4.600/src/eval.c	2015-01-27 13:49:27.883049396 +0100
+--- src/eval.c	2015-01-27 15:13:01.928187370 +0100
+***************
+*** 10500,10505 ****
+--- 10500,10506 ----
+      typval_T    *rettv UNUSED;
+  {
+      int		remap = TRUE;
++     int		insert = FALSE;
+      char_u	*keys, *flags;
+      char_u	nbuf[NUMBUFLEN];
+      int		typed = FALSE;
+***************
+*** 10524,10529 ****
+--- 10525,10531 ----
+  		    case 'n': remap = FALSE; break;
+  		    case 'm': remap = TRUE; break;
+  		    case 't': typed = TRUE; break;
++ 		    case 'i': insert = TRUE; break;
+  		}
+  	    }
+  	}
+***************
+*** 10534,10540 ****
+  	if (keys_esc != NULL)
+  	{
+  	    ins_typebuf(keys_esc, (remap ? REMAP_YES : REMAP_NONE),
+! 					       typebuf.tb_len, !typed, FALSE);
+  	    vim_free(keys_esc);
+  	    if (vgetc_busy)
+  		typebuf_was_filled = TRUE;
+--- 10536,10542 ----
+  	if (keys_esc != NULL)
+  	{
+  	    ins_typebuf(keys_esc, (remap ? REMAP_YES : REMAP_NONE),
+! 				  insert ? 0 : typebuf.tb_len, !typed, FALSE);
+  	    vim_free(keys_esc);
+  	    if (vgetc_busy)
+  		typebuf_was_filled = TRUE;
+*** ../vim-7.4.600/runtime/doc/eval.txt	2014-11-27 19:14:45.080940970 +0100
+--- runtime/doc/eval.txt	2015-01-27 15:12:52.908285780 +0100
+***************
+*** 2957,2965 ****
+  
+  feedkeys({string} [, {mode}])				*feedkeys()*
+  		Characters in {string} are queued for processing as if they
+! 		come from a mapping or were typed by the user.	They are added
+! 		to the end of the typeahead buffer, thus if a mapping is still
+! 		being executed these characters come after them.
+  		The function does not wait for processing of keys contained in
+  		{string}.
+  		To include special keys into {string}, use double-quotes
+--- 2965,2976 ----
+  
+  feedkeys({string} [, {mode}])				*feedkeys()*
+  		Characters in {string} are queued for processing as if they
+! 		come from a mapping or were typed by the user.
+! 		By default the string is added to the end of the typeahead
+! 		buffer, thus if a mapping is still being executed the
+! 		characters come after them.  Use the 'i' flag to insert before
+! 		other characters, they will be executed next, before any
+! 		characters from a mapping.
+  		The function does not wait for processing of keys contained in
+  		{string}.
+  		To include special keys into {string}, use double-quotes
+***************
+*** 2973,2978 ****
+--- 2984,2990 ----
+  		't'	Handle keys as if typed; otherwise they are handled as
+  			if coming from a mapping.  This matters for undo,
+  			opening folds, etc.
++ 		'i'	Insert the string instead of appending (see above).
+  		Return value is always 0.
+  
+  filereadable({file})					*filereadable()*
+*** ../vim-7.4.600/src/version.c	2015-01-27 14:54:07.944583588 +0100
+--- src/version.c	2015-01-27 15:15:35.290514092 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     601,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+127. You bring your laptop and cellular phone to church.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

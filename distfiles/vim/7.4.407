@@ -1,0 +1,116 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.407
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.407
+Problem:    Inserting text for Visual block mode, with cursor movement,
+	    repeats the wrong text. (Aleksandar Ivanov)
+Solution:   Reset the update_Insstart_orig flag. (Christian Brabandt)
+Files:	    src/edit.c, src/testdir/test39.in, src/testdir/test39.ok
+
+
+*** ../vim-7.4.406/src/edit.c	2014-07-30 16:00:45.543553496 +0200
+--- src/edit.c	2014-08-16 18:10:10.914050861 +0200
+***************
+*** 6768,6780 ****
+  {
+      if (arrow_used)
+      {
+  	if (u_save_cursor() == OK)
+  	{
+  	    arrow_used = FALSE;
+  	    ins_need_undo = FALSE;
+  	}
+! 	Insstart = curwin->w_cursor;	/* new insertion starts here */
+! 	Insstart_textlen = (colnr_T)linetabsize(ml_get_curline());
+  	ai_col = 0;
+  #ifdef FEAT_VREPLACE
+  	if (State & VREPLACE_FLAG)
+--- 6768,6786 ----
+  {
+      if (arrow_used)
+      {
++ 	Insstart = curwin->w_cursor;	/* new insertion starts here */
++ 	if (Insstart.col > Insstart_orig.col && !ins_need_undo)
++ 	    /* Don't update the original insert position when moved to the
++ 	     * right, except when nothing was inserted yet. */
++ 	    update_Insstart_orig = FALSE;
++ 	Insstart_textlen = (colnr_T)linetabsize(ml_get_curline());
++ 
+  	if (u_save_cursor() == OK)
+  	{
+  	    arrow_used = FALSE;
+  	    ins_need_undo = FALSE;
+  	}
+! 
+  	ai_col = 0;
+  #ifdef FEAT_VREPLACE
+  	if (State & VREPLACE_FLAG)
+*** ../vim-7.4.406/src/testdir/test39.in	2014-03-19 18:57:27.730175565 +0100
+--- src/testdir/test39.in	2014-08-16 17:52:23.078089588 +0200
+***************
+*** 23,28 ****
+--- 23,31 ----
+  /^aaaa/
+  :exe ":norm! l\<C-V>jjjlllI\<Right>\<Right>  \<Esc>"
+  :/^aa/,/^$/w >> test.out
++ /xaaa$/
++ :exe ":norm! \<C-V>jjjI<>\<Left>p\<Esc>"
++ :/xaaa$/,/^$/w >> test.out
+  :" Test for Visual block was created with the last <C-v>$
+  /^A23$/
+  :exe ":norm! l\<C-V>j$Aab\<Esc>"
+***************
+*** 77,82 ****
+--- 80,90 ----
+  cccccc
+  dddddd
+  
++ xaaa
++ bbbb
++ cccc
++ dddd
++ 
+  A23
+  4567
+  
+*** ../vim-7.4.406/src/testdir/test39.ok	2014-03-19 18:57:27.730175565 +0100
+--- src/testdir/test39.ok	2014-08-16 17:50:57.330092698 +0200
+***************
+*** 8,13 ****
+--- 8,18 ----
+  ccc  ccc
+  ddd  ddd
+  
++ <p>xaaa
++ <p>bbbb
++ <p>cccc
++ <p>dddd
++ 
+  A23ab
+  4567ab
+  
+*** ../vim-7.4.406/src/version.c	2014-08-16 17:34:31.186128463 +0200
+--- src/version.c	2014-08-16 17:38:30.546119782 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     407,
+  /**/
+
+-- 
+'Well, here's something to occupy you and keep your mind off things.'
+'It won't work, I have an exceptionally large mind.'
+		-- Douglas Adams, "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

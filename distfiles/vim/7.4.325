@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.325
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.325
+Problem:    When starting the gui and changing the window size the status line
+	    may not be drawn correctly.
+Solution:   Catch new_win_height() being called recursively. (Christian
+	    Brabandt)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.324/src/window.c	2014-06-12 14:01:27.579769788 +0200
+--- src/window.c	2014-06-13 20:04:59.051863582 +0200
+***************
+*** 5660,5666 ****
+      if (wp->w_height > 0)
+      {
+  	if (wp == curwin)
+! 	    validate_cursor();		/* w_wrow needs to be valid */
+  	if (wp->w_wrow != wp->w_prev_fraction_row)
+  	    set_fraction(wp);
+      }
+--- 5660,5671 ----
+      if (wp->w_height > 0)
+      {
+  	if (wp == curwin)
+! 	    /* w_wrow needs to be valid. When setting 'laststatus' this may
+! 	     * call win_new_height() recursively. */
+! 	    validate_cursor();
+! 	if (wp->w_height != prev_height)
+! 	    return;  /* Recursive call already changed the size, bail out here
+! 			to avoid the following to mess things up. */
+  	if (wp->w_wrow != wp->w_prev_fraction_row)
+  	    set_fraction(wp);
+      }
+*** ../vim-7.4.324/src/version.c	2014-06-12 19:44:45.324549030 +0200
+--- src/version.c	2014-06-13 20:06:12.947866378 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     325,
+  /**/
+
+-- 
+DINGO:   And after the spanking ... the oral sex.
+GALAHAD: Oh, dear! Well, I...
+GIRLS:   The oral sex ...  The oral sex.
+GALAHAD: Well, I suppose I could stay a BIT longer.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

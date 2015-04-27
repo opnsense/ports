@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.384
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.384
+Problem:    Test 102 fails when compiled with small features.
+Solution:   Source small.vim. (Jacob Niehus)
+Files:	    src/testdir/test102.in
+
+
+*** ../vim-7.4.383/src/testdir/test102.in	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/test102.in	2014-07-27 21:10:34.881282860 +0200
+***************
+*** 1,6 ****
+--- 1,7 ----
+  Test if fnameescape is correct for special chars like !
+  
+  STARTTEST
++ :so small.vim
+  :%d
+  :let fname = 'Xspa ce'
+  :try | exe "w! " . fnameescape(fname) | put='Space' | endtry 
+*** ../vim-7.4.383/src/version.c	2014-07-23 21:10:39.867766788 +0200
+--- src/version.c	2014-07-30 13:15:18.047624849 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     384,
+  /**/
+
+-- 
+An easy way to determine if you have enough teamwork to be doomed is simply to
+measure how long it takes from the time you decide to go to lunch together
+until the time you actually eat.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

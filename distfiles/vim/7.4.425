@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.425
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.425
+Problem:    When 'showbreak' is used "gj" may move to the wrong position.
+	    (Nazri Ramliy)
+Solution:   Adjust virtcol when 'showbreak' is set. (Christian Brabandt)
+Files:	    src/normal.c
+
+
+*** ../vim-7.4.424/src/normal.c	2014-07-23 12:31:17.207990767 +0200
+--- src/normal.c	2014-08-29 14:15:14.158440247 +0200
+***************
+*** 4509,4521 ****
+  #if defined(FEAT_LINEBREAK) || defined(FEAT_MBYTE)
+      if (curwin->w_cursor.col > 0 && curwin->w_p_wrap)
+      {
+  	/*
+  	 * Check for landing on a character that got split at the end of the
+  	 * last line.  We want to advance a screenline, not end up in the same
+  	 * screenline or move two screenlines.
+  	 */
+  	validate_virtcol();
+! 	if (curwin->w_virtcol > curwin->w_curswant
+  		&& (curwin->w_curswant < (colnr_T)width1
+  		    ? (curwin->w_curswant > (colnr_T)width1 / 2)
+  		    : ((curwin->w_curswant - width1) % width2
+--- 4509,4527 ----
+  #if defined(FEAT_LINEBREAK) || defined(FEAT_MBYTE)
+      if (curwin->w_cursor.col > 0 && curwin->w_p_wrap)
+      {
++ 	colnr_T virtcol;
++ 
+  	/*
+  	 * Check for landing on a character that got split at the end of the
+  	 * last line.  We want to advance a screenline, not end up in the same
+  	 * screenline or move two screenlines.
+  	 */
+  	validate_virtcol();
+! 	virtcol = curwin->w_virtcol;
+! 	if (virtcol > (colnr_T)width1 && *p_sbr != NUL)
+! 	    virtcol -= vim_strsize(p_sbr);
+! 
+! 	if (virtcol > curwin->w_curswant
+  		&& (curwin->w_curswant < (colnr_T)width1
+  		    ? (curwin->w_curswant > (colnr_T)width1 / 2)
+  		    : ((curwin->w_curswant - width1) % width2
+*** ../vim-7.4.424/src/version.c	2014-08-29 13:49:48.678436915 +0200
+--- src/version.c	2014-08-29 14:17:26.938440537 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     425,
+  /**/
+
+-- 
+From "know your smileys":
+ !-|	I-am-a-Cylon-Centurian-with-one-red-eye-bouncing-back-and-forth
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

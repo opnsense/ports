@@ -1,0 +1,74 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.625
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.625
+Problem:    Possible NULL pointer dereference.
+Solution:   Check for NULL before using it. (Mike Williams)
+Files:	    src/if_py_both.h
+
+
+*** ../vim-7.4.624/src/if_py_both.h	2015-02-03 12:55:11.136179596 +0100
+--- src/if_py_both.h	2015-02-10 18:39:40.531839555 +0100
+***************
+*** 747,758 ****
+      else if (our_tv->v_type == VAR_DICT)
+      {
+  
+! 	hashtab_T	*ht = &our_tv->vval.v_dict->dv_hashtab;
+! 	long_u	todo = ht->ht_used;
+  	hashitem_T	*hi;
+  	dictitem_T	*di;
+  	if (our_tv->vval.v_dict == NULL)
+  	    return NULL;
+  
+  	if (!(ret = PyDict_New()))
+  	    return NULL;
+--- 747,760 ----
+      else if (our_tv->v_type == VAR_DICT)
+      {
+  
+! 	hashtab_T	*ht;
+! 	long_u		todo;
+  	hashitem_T	*hi;
+  	dictitem_T	*di;
++ 
+  	if (our_tv->vval.v_dict == NULL)
+  	    return NULL;
++ 	ht = &our_tv->vval.v_dict->dv_hashtab;
+  
+  	if (!(ret = PyDict_New()))
+  	    return NULL;
+***************
+*** 763,768 ****
+--- 765,771 ----
+  	    return NULL;
+  	}
+  
++ 	todo = ht->ht_used;
+  	for (hi = ht->ht_array; todo > 0; ++hi)
+  	{
+  	    if (!HASHITEM_EMPTY(hi))
+*** ../vim-7.4.624/src/version.c	2015-02-10 18:33:53.240319951 +0100
+--- src/version.c	2015-02-10 18:38:37.364655345 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     625,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+212. Your Internet group window has more icons than your Accessories window.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

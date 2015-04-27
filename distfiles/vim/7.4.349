@@ -1,0 +1,111 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.349
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.349
+Problem:    When there are matches to highlight the whole window is redrawn,
+	    which is slow.
+Solution:   Only redraw everything when lines were inserted or deleted.
+	    Reset b_mod_xlines when needed.  (Alexey Radkov)
+Files:	    src/screen.c, src/window.c
+
+
+*** ../vim-7.4.348/src/screen.c	2014-06-25 18:15:18.446838249 +0200
+--- src/screen.c	2014-06-28 15:35:18.868836570 +0200
+***************
+*** 1769,1776 ****
+  					syntax_check_changed(lnum)))
+  #endif
+  #ifdef FEAT_SEARCH_EXTRA
+! 				/* match in fixed position might need redraw */
+! 				||  wp->w_match_head != NULL
+  #endif
+  				)))))
+  	{
+--- 1769,1778 ----
+  					syntax_check_changed(lnum)))
+  #endif
+  #ifdef FEAT_SEARCH_EXTRA
+! 				/* match in fixed position might need redraw
+! 				 * if lines were inserted or deleted */
+! 				|| (wp->w_match_head != NULL
+! 						    && buf->b_mod_xlines != 0)
+  #endif
+  				)))))
+  	{
+*** ../vim-7.4.348/src/window.c	2014-06-25 18:15:18.446838249 +0200
+--- src/window.c	2014-06-28 15:38:51.952839835 +0200
+***************
+*** 6904,6915 ****
+  	    }
+  	    else
+  	    {
+  		wp->w_buffer->b_mod_top = toplnum;
+  		wp->w_buffer->b_mod_bot = botlnum;
+  	    }
+  	    m->pos.toplnum = toplnum;
+  	    m->pos.botlnum = botlnum;
+- 	    wp->w_buffer->b_mod_set = TRUE;
+  	    rtype = VALID;
+  	}
+      }
+--- 6904,6916 ----
+  	    }
+  	    else
+  	    {
++ 		wp->w_buffer->b_mod_set = TRUE;
+  		wp->w_buffer->b_mod_top = toplnum;
+  		wp->w_buffer->b_mod_bot = botlnum;
++ 		wp->w_buffer->b_mod_xlines = 0;
+  	    }
+  	    m->pos.toplnum = toplnum;
+  	    m->pos.botlnum = botlnum;
+  	    rtype = VALID;
+  	}
+      }
+***************
+*** 6986,6995 ****
+  	}
+  	else
+  	{
+  	    wp->w_buffer->b_mod_top = cur->pos.toplnum;
+  	    wp->w_buffer->b_mod_bot = cur->pos.botlnum;
+  	}
+- 	wp->w_buffer->b_mod_set = TRUE;
+  	rtype = VALID;
+      }
+      vim_free(cur);
+--- 6987,6997 ----
+  	}
+  	else
+  	{
++ 	    wp->w_buffer->b_mod_set = TRUE;
+  	    wp->w_buffer->b_mod_top = cur->pos.toplnum;
+  	    wp->w_buffer->b_mod_bot = cur->pos.botlnum;
++ 	    wp->w_buffer->b_mod_xlines = 0;
+  	}
+  	rtype = VALID;
+      }
+      vim_free(cur);
+*** ../vim-7.4.348/src/version.c	2014-07-02 17:02:29.726212319 +0200
+--- src/version.c	2014-07-02 17:15:58.646224714 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     349,
+  /**/
+
+-- 
+Trees moving back and forth is what makes the wind blow.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

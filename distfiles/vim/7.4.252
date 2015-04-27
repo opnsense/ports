@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.252
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.252
+Problem:    Critical error in GTK, removing timer twice.
+Solution:   Clear the timer after removing it. (James McCoy)
+Files:	    src/gui_gtk_x11.c
+
+
+*** ../vim-7.4.251/src/gui_gtk_x11.c	2013-06-30 17:42:13.000000000 +0200
+--- src/gui_gtk_x11.c	2014-04-06 21:04:57.595359981 +0200
+***************
+*** 732,738 ****
+--- 732,741 ----
+  gui_mch_start_blink(void)
+  {
+      if (blink_timer)
++     {
+  	gtk_timeout_remove(blink_timer);
++ 	blink_timer = 0;
++     }
+      /* Only switch blinking on if none of the times is zero */
+      if (blink_waittime && blink_ontime && blink_offtime && gui.in_focus)
+      {
+*** ../vim-7.4.251/src/version.c	2014-04-06 20:45:40.127357453 +0200
+--- src/version.c	2014-04-06 21:06:25.543360173 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     252,
+  /**/
+
+-- 
+Everyone has a photographic memory. Some don't have film.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

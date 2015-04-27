@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.092
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.092 (after 7.4.088)
+Problem:    Can't build small version.
+Solution:   Add #ifdef where the b_cjk flag is used. (Ken Takata)
+Files:      src/spell.c
+
+
+*** ../vim-7.4.091/src/spell.c	2013-11-12 04:43:57.000000000 +0100
+--- src/spell.c	2013-11-14 03:51:24.000000000 +0100
+***************
+*** 4234,4240 ****
+--- 4234,4242 ----
+      if (spl_copy == NULL)
+  	goto theend;
+  
++ #ifdef FEAT_MBYTE
+      wp->w_s->b_cjk = 0;
++ #endif
+  
+      /* Loop over comma separated language names. */
+      for (splp = spl_copy; *splp != NUL; )
+***************
+*** 4246,4252 ****
+--- 4248,4256 ----
+  
+  	if (STRCMP(lang, "cjk") == 0)
+  	{
++ #ifdef FEAT_MBYTE
+  	    wp->w_s->b_cjk = 1;
++ #endif
+  	    continue;
+  	}
+  
+*** ../vim-7.4.091/src/version.c	2013-11-12 18:09:20.000000000 +0100
+--- src/version.c	2013-11-14 03:52:18.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     92,
+  /**/
+
+-- 
+ARTHUR: Old woman!
+DENNIS: Man!
+ARTHUR: Man.  I'm sorry.  Old man, What knight live in that castle over there?
+DENNIS: I'm thirty-seven.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

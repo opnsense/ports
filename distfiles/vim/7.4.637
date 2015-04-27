@@ -1,0 +1,82 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.637
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.637
+Problem:    Incorrectly read the number of buffer for which an autocommand
+            should be registered. 
+Solution:   Reverse check for "<buffer=abuf>". (Lech Lorens)
+Files:      src/fileio.c
+
+
+*** ../vim-7.4.636/src/fileio.c	2015-02-17 14:15:13.005523167 +0100
+--- src/fileio.c	2015-02-17 16:00:42.039330110 +0100
+***************
+*** 8527,8547 ****
+  	is_buflocal = FALSE;
+  	buflocal_nr = 0;
+  
+! 	if (patlen >= 7 && STRNCMP(pat, "<buffer", 7) == 0
+  						    && pat[patlen - 1] == '>')
+  	{
+! 	    /* Error will be printed only for addition. printing and removing
+! 	     * will proceed silently. */
+  	    is_buflocal = TRUE;
+  	    if (patlen == 8)
+  		buflocal_nr = curbuf->b_fnum;
+  	    else if (patlen > 9 && pat[7] == '=')
+  	    {
+! 		/* <buffer=abuf> */
+! 		if (patlen == 13 && STRNICMP(pat, "<buffer=abuf>", 13))
+  		    buflocal_nr = autocmd_bufnr;
+- 		/* <buffer=123> */
+  		else if (skipdigits(pat + 8) == pat + patlen - 1)
+  		    buflocal_nr = atoi((char *)pat + 8);
+  	    }
+  	}
+--- 8527,8548 ----
+  	is_buflocal = FALSE;
+  	buflocal_nr = 0;
+  
+! 	if (patlen >= 8 && STRNCMP(pat, "<buffer", 7) == 0
+  						    && pat[patlen - 1] == '>')
+  	{
+! 	    /* "<buffer...>": Error will be printed only for addition.
+! 	     * printing and removing will proceed silently. */
+  	    is_buflocal = TRUE;
+  	    if (patlen == 8)
++ 		/* "<buffer>" */
+  		buflocal_nr = curbuf->b_fnum;
+  	    else if (patlen > 9 && pat[7] == '=')
+  	    {
+! 		if (patlen == 13 && STRNICMP(pat, "<buffer=abuf>", 13) == 0)
+! 		    /* "<buffer=abuf>" */
+  		    buflocal_nr = autocmd_bufnr;
+  		else if (skipdigits(pat + 8) == pat + patlen - 1)
++ 		    /* "<buffer=123>" */
+  		    buflocal_nr = atoi((char *)pat + 8);
+  	    }
+  	}
+*** ../vim-7.4.636/src/version.c	2015-02-17 15:43:52.804426855 +0100
+--- src/version.c	2015-02-17 15:57:50.245559689 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     637,
+  /**/
+
+-- 
+"Marriage is when a man and woman become as one; the trouble starts
+when they try to decide which one"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

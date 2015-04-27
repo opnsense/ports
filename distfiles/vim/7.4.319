@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.319
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.319
+Problem:    Crash when putting zero bytes on the clipboard.
+Solution:   Do not support the utf8_atom target when not using an Unicode
+	    encoding. (Naofumi Honda)
+Files:	    src/ui.c
+
+
+*** ../vim-7.4.318/src/ui.c	2014-03-23 15:12:29.943264337 +0100
+--- src/ui.c	2014-06-12 13:25:21.791687853 +0200
+***************
+*** 2324,2330 ****
+      if (       *target != XA_STRING
+  #ifdef FEAT_MBYTE
+  	    && *target != vimenc_atom
+! 	    && *target != utf8_atom
+  #endif
+  	    && *target != vim_atom
+  	    && *target != text_atom
+--- 2324,2330 ----
+      if (       *target != XA_STRING
+  #ifdef FEAT_MBYTE
+  	    && *target != vimenc_atom
+! 	    && (*target != utf8_atom || !enc_utf8)
+  #endif
+  	    && *target != vim_atom
+  	    && *target != text_atom
+*** ../vim-7.4.318/src/version.c	2014-06-12 12:20:50.195541385 +0200
+--- src/version.c	2014-06-12 13:26:09.147689645 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     319,
+  /**/
+
+-- 
+FIRST HEAD:  Oh! quick! get the sword out I want to cut his head off.
+THIRD HEAD:  Oh, cut your own head off.
+SECOND HEAD: Yes - do us all a favour.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

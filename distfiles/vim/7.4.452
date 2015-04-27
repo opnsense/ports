@@ -1,0 +1,69 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.452
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.452
+Problem:    Can't build with tiny features. (Tony Mechelynck)
+Solution:   Use "return" instead of "break".
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.451/src/ex_cmds.c	2014-09-19 19:39:30.766446025 +0200
+--- src/ex_cmds.c	2014-09-19 22:03:13.506464860 +0200
+***************
+*** 5900,5906 ****
+  }
+  
+  /*
+!  * ":helpclose": Close the help window
+   */
+      void
+  ex_helpclose(eap)
+--- 5900,5906 ----
+  }
+  
+  /*
+!  * ":helpclose": Close one help window
+   */
+      void
+  ex_helpclose(eap)
+***************
+*** 5913,5919 ****
+  	if (win->w_buffer->b_help)
+  	{
+  	    win_close(win, FALSE);
+! 	    break;
+  	}
+      }
+  }
+--- 5913,5919 ----
+  	if (win->w_buffer->b_help)
+  	{
+  	    win_close(win, FALSE);
+! 	    return;
+  	}
+      }
+  }
+*** ../vim-7.4.451/src/version.c	2014-09-19 20:45:19.266454650 +0200
+--- src/version.c	2014-09-19 22:05:30.178465158 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     452,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+168. You have your own domain name.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

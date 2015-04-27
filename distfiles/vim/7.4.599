@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.599
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.599
+Problem:    Out-of-memory error.
+Solution:   Avoid trying to allocate a negative amount of memory, use size_t
+	    instead of int. (Dominique Pelle)
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.598/src/regexp_nfa.c	2015-01-27 12:59:51.855602435 +0100
+--- src/regexp_nfa.c	2015-01-27 14:33:25.798181195 +0100
+***************
+*** 5408,5414 ****
+      regsubs_T		*m;
+  {
+      int		result;
+!     int		size = 0;
+      int		flag = 0;
+      int		go_to_nextline = FALSE;
+      nfa_thread_T *t;
+--- 5408,5414 ----
+      regsubs_T		*m;
+  {
+      int		result;
+!     size_t	size = 0;
+      int		flag = 0;
+      int		go_to_nextline = FALSE;
+      nfa_thread_T *t;
+*** ../vim-7.4.598/src/version.c	2015-01-27 14:09:29.625898193 +0100
+--- src/version.c	2015-01-27 14:29:06.733017025 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     599,
+  /**/
+
+-- 
+You cannot have a baby in one month by getting nine women pregnant.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

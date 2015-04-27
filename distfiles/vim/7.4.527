@@ -1,0 +1,120 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.527
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.527
+Problem:    Still confusing regexp failure and NFA_TOO_EXPENSIVE.
+Solution:   NFA changes equivalent of 7.4.526.
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.526/src/regexp_nfa.c	2014-11-05 14:26:30.764758363 +0100
+--- src/regexp_nfa.c	2014-11-23 15:50:57.980625347 +0100
+***************
+*** 6767,6773 ****
+  
+  /*
+   * Try match of "prog" with at regline["col"].
+!  * Returns 0 for failure, number of lines contained in the match otherwise.
+   */
+      static long
+  nfa_regtry(prog, col)
+--- 6767,6773 ----
+  
+  /*
+   * Try match of "prog" with at regline["col"].
+!  * Returns <= 0 for failure, number of lines contained in the match otherwise.
+   */
+      static long
+  nfa_regtry(prog, col)
+***************
+*** 6897,6903 ****
+   * Match a regexp against a string ("line" points to the string) or multiple
+   * lines ("line" is NULL, use reg_getline()).
+   *
+!  * Returns 0 for failure, number of lines contained in the match otherwise.
+   */
+      static long
+  nfa_regexec_both(line, startcol)
+--- 6897,6903 ----
+   * Match a regexp against a string ("line" points to the string) or multiple
+   * lines ("line" is NULL, use reg_getline()).
+   *
+!  * Returns <= 0 for failure, number of lines contained in the match otherwise.
+   */
+      static long
+  nfa_regexec_both(line, startcol)
+***************
+*** 7137,7143 ****
+   * Uses curbuf for line count and 'iskeyword'.
+   * If "line_lbr" is TRUE consider a "\n" in "line" to be a line break.
+   *
+!  * Return TRUE if there is a match, FALSE if not.
+   */
+      static int
+  nfa_regexec_nl(rmp, line, col, line_lbr)
+--- 7137,7143 ----
+   * Uses curbuf for line count and 'iskeyword'.
+   * If "line_lbr" is TRUE consider a "\n" in "line" to be a line break.
+   *
+!  * Returns <= 0 for failure, number of lines contained in the match otherwise.
+   */
+      static int
+  nfa_regexec_nl(rmp, line, col, line_lbr)
+***************
+*** 7157,7163 ****
+      ireg_icombine = FALSE;
+  #endif
+      ireg_maxcol = 0;
+!     return (nfa_regexec_both(line, col) != 0);
+  }
+  
+  
+--- 7157,7163 ----
+      ireg_icombine = FALSE;
+  #endif
+      ireg_maxcol = 0;
+!     return nfa_regexec_both(line, col);
+  }
+  
+  
+***************
+*** 7166,7172 ****
+   * "rmp->regprog" is a compiled regexp as returned by vim_regcomp().
+   * Uses curbuf for line count and 'iskeyword'.
+   *
+!  * Return zero if there is no match.  Return number of lines contained in the
+   * match otherwise.
+   *
+   * Note: the body is the same as bt_regexec() except for nfa_regexec_both()
+--- 7166,7172 ----
+   * "rmp->regprog" is a compiled regexp as returned by vim_regcomp().
+   * Uses curbuf for line count and 'iskeyword'.
+   *
+!  * Return <= 0 if there is no match.  Return number of lines contained in the
+   * match otherwise.
+   *
+   * Note: the body is the same as bt_regexec() except for nfa_regexec_both()
+*** ../vim-7.4.526/src/version.c	2014-11-20 23:07:00.515474686 +0100
+--- src/version.c	2014-11-23 15:53:23.170981186 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     527,
+  /**/
+
+-- 
+"I know that there are people who don't love their fellow man,
+and I hate those people!" - Tom Lehrer
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

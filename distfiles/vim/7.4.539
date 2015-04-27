@@ -1,0 +1,258 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.539
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.539 (after 7.4.530)
+Problem:    Crash when computing buffer count.  Problem with range for user
+	    commands.  Line range wrong in Visual area.
+Solution:   Avoid segfault in compute_buffer_local_count().  Check for
+	    CMD_USER when checking type of range. (Marcin Szamotulski)
+Files:	    runtime/doc/windows.txt, src/ex_docmd.c
+
+
+*** ../vim-7.4.538/runtime/doc/windows.txt	2014-11-27 16:22:42.738413084 +0100
+--- runtime/doc/windows.txt	2014-11-30 14:34:30.241835431 +0100
+***************
+*** 1026,1032 ****
+  		Actually, the buffer isn't completely deleted, it is removed
+  		from the buffer list |unlisted-buffer| and option values,
+  		variables and mappings/abbreviations for the buffer are
+! 		cleared.
+  
+  :bdelete[!] {bufname}						*E93* *E94*
+  		Like ":bdelete[!] [N]", but buffer given by name.  Note that a
+--- 1029,1039 ----
+  		Actually, the buffer isn't completely deleted, it is removed
+  		from the buffer list |unlisted-buffer| and option values,
+  		variables and mappings/abbreviations for the buffer are
+! 		cleared. Examples: >
+! 		    :.,$-bdelete    " delete buffers from the current one to
+! 				    " last but one
+! 		    :%bdelete	    " delete all buffers
+! <
+  
+  :bdelete[!] {bufname}						*E93* *E94*
+  		Like ":bdelete[!] [N]", but buffer given by name.  Note that a
+***************
+*** 1050,1056 ****
+  		Like |:bdelete|, but really delete the buffer.  Everything
+  		related to the buffer is lost.  All marks in this buffer
+  		become invalid, option settings are lost, etc.  Don't use this
+! 		unless you know what you are doing.
+  
+  :[N]bun[load][!]				*:bun* *:bunload* *E515*
+  :bun[load][!] [N]
+--- 1057,1067 ----
+  		Like |:bdelete|, but really delete the buffer.  Everything
+  		related to the buffer is lost.  All marks in this buffer
+  		become invalid, option settings are lost, etc.  Don't use this
+! 		unless you know what you are doing. Examples: >
+! 		    :.+,$bwipeout   " wipe out all buffers after the current
+! 				    " one
+! 		    :%bwipeout	    " wipe out all buffers
+! <
+  
+  :[N]bun[load][!]				*:bun* *:bunload* *E515*
+  :bun[load][!] [N]
+*** ../vim-7.4.538/src/ex_docmd.c	2014-11-27 18:32:58.528564550 +0100
+--- src/ex_docmd.c	2014-11-30 14:40:28.521847466 +0100
+***************
+*** 1694,1699 ****
+--- 1694,1700 ----
+      int	    offset;
+  {
+      buf_T   *buf;
++     buf_T   *nextbuf;
+      int     count = offset;
+  
+      buf = firstbuf;
+***************
+*** 1701,1715 ****
+  	buf = buf->b_next;
+      while (count != 0)
+      {
+! 	count += (count < 0) ? 1 : -1;
+! 	if (buf->b_prev == NULL)
+  	    break;
+! 	buf = (count < 0) ? buf->b_prev : buf->b_next;
+  	if (addr_type == ADDR_LOADED_BUFFERS)
+  	    /* skip over unloaded buffers */
+! 	    while (buf->b_prev != NULL && buf->b_ml.ml_mfp == NULL)
+! 		buf = (count < 0) ? buf->b_prev : buf->b_next;
+      }
+      return buf->b_fnum;
+  }
+  
+--- 1702,1731 ----
+  	buf = buf->b_next;
+      while (count != 0)
+      {
+! 	count += (offset < 0) ? 1 : -1;
+! 	nextbuf = (offset < 0) ? buf->b_prev : buf->b_next;
+! 	if (nextbuf == NULL)
+  	    break;
+! 	buf = nextbuf;
+  	if (addr_type == ADDR_LOADED_BUFFERS)
+  	    /* skip over unloaded buffers */
+! 	    while (buf->b_ml.ml_mfp == NULL)
+! 	    {
+! 		nextbuf = (offset < 0) ? buf->b_prev : buf->b_next;
+! 		if (nextbuf == NULL)
+! 		    break;
+! 		buf = nextbuf;
+! 	    }
+      }
++     /* we might have gone too far, last buffer is not loadedd */
++     if (addr_type == ADDR_LOADED_BUFFERS)
++ 	while (buf->b_ml.ml_mfp == NULL)
++ 	{
++ 	    nextbuf = (offset >= 0) ? buf->b_prev : buf->b_next;
++ 	    if (nextbuf == NULL)
++ 		break;
++ 	    buf = nextbuf;
++ 	}
+      return buf->b_fnum;
+  }
+  
+***************
+*** 2113,2119 ****
+   * is equal to the lower.
+   */
+  
+!     if (ea.cmdidx != CMD_SIZE)
+  	ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
+      else
+  	ea.addr_type = ADDR_LINES;
+--- 2129,2135 ----
+   * is equal to the lower.
+   */
+  
+!     if (ea.cmdidx != CMD_USER && ea.cmdidx != CMD_SIZE)
+  	ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
+      else
+  	ea.addr_type = ADDR_LINES;
+***************
+*** 2153,2158 ****
+--- 2169,2175 ----
+  	{
+  	    if (*ea.cmd == '%')		    /* '%' - all lines */
+  	    {
++ 		buf_T	*buf;
+  		++ea.cmd;
+  		switch (ea.addr_type)
+  		{
+***************
+*** 2160,2168 ****
+  			ea.line1 = 1;
+  			ea.line2 = curbuf->b_ml.ml_line_count;
+  			break;
+- 		    case ADDR_WINDOWS:
+  		    case ADDR_LOADED_BUFFERS:
+  		    case ADDR_UNLOADED_BUFFERS:
+  		    case ADDR_TABS:
+  			errormsg = (char_u *)_(e_invrange);
+  			goto doend;
+--- 2177,2197 ----
+  			ea.line1 = 1;
+  			ea.line2 = curbuf->b_ml.ml_line_count;
+  			break;
+  		    case ADDR_LOADED_BUFFERS:
++ 			buf = firstbuf;
++ 			while (buf->b_next != NULL && buf->b_ml.ml_mfp == NULL)
++ 			    buf = buf->b_next;
++ 			ea.line1 = buf->b_fnum;
++ 			buf = lastbuf;
++ 			while (buf->b_prev != NULL && buf->b_ml.ml_mfp == NULL)
++ 			    buf = buf->b_prev;
++ 			ea.line2 = buf->b_fnum;
++ 			break;
+  		    case ADDR_UNLOADED_BUFFERS:
++ 			ea.line1 = firstbuf->b_fnum;
++ 			ea.line2 = lastbuf->b_fnum;
++ 			break;
++ 		    case ADDR_WINDOWS:
+  		    case ADDR_TABS:
+  			errormsg = (char_u *)_(e_invrange);
+  			goto doend;
+***************
+*** 4463,4469 ****
+  		n = getdigits(&cmd);
+  	    if (addr_type == ADDR_LOADED_BUFFERS
+  		    || addr_type == ADDR_UNLOADED_BUFFERS)
+! 		lnum = compute_buffer_local_count(addr_type, lnum, n);
+  	    else if (i == '-')
+  		lnum -= n;
+  	    else
+--- 4492,4498 ----
+  		n = getdigits(&cmd);
+  	    if (addr_type == ADDR_LOADED_BUFFERS
+  		    || addr_type == ADDR_UNLOADED_BUFFERS)
+! 		lnum = compute_buffer_local_count(addr_type, lnum, (i == '-') ? -1 * n : n);
+  	    else if (i == '-')
+  		lnum -= n;
+  	    else
+***************
+*** 4485,4493 ****
+  			lnum = 0;
+  			break;
+  		    }
+! 		    c = LAST_TAB_NR;
+! 		    if (lnum >= c)
+! 			lnum = c;
+  		    break;
+  		case ADDR_WINDOWS:
+  		    if (lnum < 0)
+--- 4514,4521 ----
+  			lnum = 0;
+  			break;
+  		    }
+! 		    if (lnum >= LAST_TAB_NR)
+! 			lnum = LAST_TAB_NR;
+  		    break;
+  		case ADDR_WINDOWS:
+  		    if (lnum < 0)
+***************
+*** 4495,4503 ****
+  			lnum = 0;
+  			break;
+  		    }
+! 		    c = LAST_WIN_NR;
+! 		    if (lnum > c)
+! 			lnum = c;
+  		    break;
+  		case ADDR_LOADED_BUFFERS:
+  		case ADDR_UNLOADED_BUFFERS:
+--- 4523,4530 ----
+  			lnum = 0;
+  			break;
+  		    }
+! 		    if (lnum >= LAST_WIN_NR)
+! 			lnum = LAST_WIN_NR;
+  		    break;
+  		case ADDR_LOADED_BUFFERS:
+  		case ADDR_UNLOADED_BUFFERS:
+*** ../vim-7.4.538/src/version.c	2014-11-30 13:34:16.893626683 +0100
+--- src/version.c	2014-11-30 14:33:29.622510487 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     539,
+  /**/
+
+-- 
+SOLDIER: What?  Ridden on a horse?
+ARTHUR:  Yes!
+SOLDIER: You're using coconuts!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

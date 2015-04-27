@@ -1,0 +1,98 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.388
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.388
+Problem:    With 'linebreak' set and 'list' unset a Tab is not counted
+	    properly. (Kent Sibilev)
+Solution:   Check the 'list' option. (Christian Brabandt)
+Files:	    src/screen.c, src/testdir/test_listlbr_utf8.in,
+	    src/testdir/test_listlbr_utf8.ok
+
+
+*** ../vim-7.4.387/src/screen.c	2014-07-16 17:29:46.691536252 +0200
+--- src/screen.c	2014-07-30 16:41:15.167536033 +0200
+***************
+*** 4494,4500 ****
+  		    tab_len = (int)wp->w_buffer->b_p_ts
+  					- vcol % (int)wp->w_buffer->b_p_ts - 1;
+  #ifdef FEAT_LINEBREAK
+! 		    if (!wp->w_p_lbr)
+  #endif
+  		    /* tab amount depends on current column */
+  			n_extra = tab_len;
+--- 4494,4500 ----
+  		    tab_len = (int)wp->w_buffer->b_p_ts
+  					- vcol % (int)wp->w_buffer->b_p_ts - 1;
+  #ifdef FEAT_LINEBREAK
+! 		    if (!wp->w_p_lbr || !wp->w_p_list)
+  #endif
+  		    /* tab amount depends on current column */
+  			n_extra = tab_len;
+*** ../vim-7.4.387/src/testdir/test_listlbr_utf8.in	2014-07-16 17:01:38.279570568 +0200
+--- src/testdir/test_listlbr_utf8.in	2014-07-30 16:37:26.703537675 +0200
+***************
+*** 30,40 ****
+--- 30,51 ----
+  :redraw!
+  :let line=ScreenChar(winwidth(0))
+  :call DoRecordScreen()
++ :"
+  :let g:test ="Test 2: set nolinebreak list"
+  :set list nolinebreak
+  :redraw!
+  :let line=ScreenChar(winwidth(0))
+  :call DoRecordScreen()
++ :"
++ :let g:test ="Test 3: set linebreak nolist"
++ :$put =\"\t*mask = nil;\"
++ :$
++ :norm! zt
++ :set nolist linebreak
++ :redraw!
++ :let line=ScreenChar(winwidth(0))
++ :call DoRecordScreen()
++ :"
+  :%w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.387/src/testdir/test_listlbr_utf8.ok	2014-07-16 17:01:38.279570568 +0200
+--- src/testdir/test_listlbr_utf8.ok	2014-07-30 16:40:17.043536451 +0200
+***************
+*** 12,14 ****
+--- 12,21 ----
+  +pqrstuvwxyz␣1060ABC
+  +DEFGHIJKLMNOPˑ¶    
+  ¶                   
++ 	*mask = nil;
++ 
++ Test 3: set linebreak nolist
++     *mask = nil;    
++ ~                   
++ ~                   
++ ~                   
+*** ../vim-7.4.387/src/version.c	2014-07-30 16:00:45.551553496 +0200
+--- src/version.c	2014-07-30 16:40:57.659536159 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     388,
+  /**/
+
+-- 
+You can test a person's importance in the organization by asking how much RAM
+his computer has.  Anybody who knows the answer to that question is not a
+decision-maker.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

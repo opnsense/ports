@@ -1,0 +1,122 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.289
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.289
+Problem:    Pattern with repeated backreference does not match with new regexp
+	    engine. (Urtica Dioica)
+Solution:   Also check the end of a submatch when deciding to put a state in
+	    the state list.
+Files:	    src/testdir/test64.in, src/testdir/test64.ok, src/regexp_nfa.c
+
+
+*** ../vim-7.4.288/src/testdir/test64.in	2013-11-21 17:12:55.000000000 +0100
+--- src/testdir/test64.in	2014-05-13 15:35:02.477659266 +0200
+***************
+*** 407,412 ****
+--- 407,413 ----
+  :call add(tl, [2, '^.*\.\(.*\)/.\+\(\1\)\@<=$', 'foo.bat/foo.bat', 'foo.bat/foo.bat', 'bat', 'bat'])
+  :call add(tl, [2, '\\\@<!\${\(\d\+\%(:.\{-}\)\?\\\@<!\)}', '2013-06-27${0}', '${0}', '0'])
+  :call add(tl, [2, '^\(a*\)\1$', 'aaaaaaaa', 'aaaaaaaa', 'aaaa'])
++ :call add(tl, [2, '^\(a\{-2,}\)\1\+$', 'aaaaaaaaa', 'aaaaaaaaa', 'aaa'])
+  :"
+  :"""" Look-behind with limit
+  :call add(tl, [2, '<\@<=span.', 'xxspanxx<spanyyy', 'spany'])
+*** ../vim-7.4.288/src/testdir/test64.ok	2013-11-21 17:12:55.000000000 +0100
+--- src/testdir/test64.ok	2014-05-13 15:49:21.381666784 +0200
+***************
+*** 947,952 ****
+--- 947,955 ----
+  OK 0 - ^\(a*\)\1$
+  OK 1 - ^\(a*\)\1$
+  OK 2 - ^\(a*\)\1$
++ OK 0 - ^\(a\{-2,}\)\1\+$
++ OK 1 - ^\(a\{-2,}\)\1\+$
++ OK 2 - ^\(a\{-2,}\)\1\+$
+  OK 0 - <\@<=span.
+  OK 1 - <\@<=span.
+  OK 2 - <\@<=span.
+*** ../vim-7.4.288/src/regexp_nfa.c	2014-04-23 19:06:33.702828771 +0200
+--- src/regexp_nfa.c	2014-05-13 15:49:15.065666729 +0200
+***************
+*** 3945,3950 ****
+--- 3945,3951 ----
+  
+  /*
+   * Return TRUE if "sub1" and "sub2" have the same start positions.
++  * When using back-references also check the end position.
+   */
+      static int
+  sub_equal(sub1, sub2)
+***************
+*** 3976,3981 ****
+--- 3977,3999 ----
+  	    if (s1 != -1 && sub1->list.multi[i].start.col
+  					     != sub2->list.multi[i].start.col)
+  		return FALSE;
++ 
++ 	    if (nfa_has_backref)
++ 	    {
++ 		if (i < sub1->in_use)
++ 		    s1 = sub1->list.multi[i].end.lnum;
++ 		else
++ 		    s1 = -1;
++ 		if (i < sub2->in_use)
++ 		    s2 = sub2->list.multi[i].end.lnum;
++ 		else
++ 		    s2 = -1;
++ 		if (s1 != s2)
++ 		    return FALSE;
++ 		if (s1 != -1 && sub1->list.multi[i].end.col
++ 					       != sub2->list.multi[i].end.col)
++ 		return FALSE;
++ 	    }
+  	}
+      }
+      else
+***************
+*** 3992,3997 ****
+--- 4010,4028 ----
+  		sp2 = NULL;
+  	    if (sp1 != sp2)
+  		return FALSE;
++ 	    if (nfa_has_backref)
++ 	    {
++ 		if (i < sub1->in_use)
++ 		    sp1 = sub1->list.line[i].end;
++ 		else
++ 		    sp1 = NULL;
++ 		if (i < sub2->in_use)
++ 		    sp2 = sub2->list.line[i].end;
++ 		else
++ 		    sp2 = NULL;
++ 		if (sp1 != sp2)
++ 		    return FALSE;
++ 	    }
+  	}
+      }
+  
+*** ../vim-7.4.288/src/version.c	2014-05-13 14:03:36.425611242 +0200
+--- src/version.c	2014-05-13 15:51:52.009668103 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     289,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+152. You find yourself falling for someone you've never seen or hardly
+     know, but, boy can he/she TYPE!!!!!!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

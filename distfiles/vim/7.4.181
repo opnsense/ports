@@ -1,0 +1,68 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.181
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.181
+Problem:    When using 'pastetoggle' the status lines are not updated. (Samuel
+	    Ferencik, Jan Christoph Ebersbach)
+Solution:   Update the status lines. (Nobuhiro Takasaki)
+Files:	    src/getchar.c
+
+
+*** ../vim-7.4.180/src/getchar.c	2014-02-11 15:10:38.130111835 +0100
+--- src/getchar.c	2014-02-15 16:14:34.249903278 +0100
+***************
+*** 406,412 ****
+  }
+  
+  /*
+!  * Prepare the read buffers for reading (if they contains something).
+   */
+      static void
+  start_stuff()
+--- 406,412 ----
+  }
+  
+  /*
+!  * Prepare the read buffers for reading (if they contain something).
+   */
+      static void
+  start_stuff()
+***************
+*** 2302,2307 ****
+--- 2302,2311 ----
+  				msg_row = Rows - 1;
+  				msg_clr_eos();		/* clear ruler */
+  			    }
++ #ifdef FEAT_WINDOWS
++ 			    status_redraw_all();
++ 			    redraw_statuslines();
++ #endif
+  			    showmode();
+  			    setcursor();
+  			    continue;
+*** ../vim-7.4.180/src/version.c	2014-02-15 15:58:55.081904773 +0100
+--- src/version.c	2014-02-15 16:12:22.329903488 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     181,
+  /**/
+
+-- 
+FIRST GUARD: Ah!  Now ... we're not allowed to ...
+   SIR LAUNCELOT runs him through,  grabs his spear and stabs the other
+   guard who collapses in a heap.  Hiccoughs quietly.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

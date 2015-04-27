@@ -1,0 +1,101 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.617
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.617
+Problem:    Wrong ":argdo" range does not cause an error.
+Solution:   Reset "cmd" to NULL. (Marcin Szamotulski, Ingo Karkat)
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.616/src/ex_docmd.c	2015-01-14 21:21:56.920743646 +0100
+--- src/ex_docmd.c	2015-02-03 18:50:19.036177579 +0100
+***************
+*** 4405,4410 ****
+--- 4405,4411 ----
+  		if (addr_type != ADDR_LINES)
+  		{
+  		    EMSG(_(e_invaddr));
++ 		    cmd = NULL;
+  		    goto error;
+  		}
+  		if (skip)
+***************
+*** 4436,4441 ****
+--- 4437,4443 ----
+  		if (addr_type != ADDR_LINES)
+  		{
+  		    EMSG(_(e_invaddr));
++ 		    cmd = NULL;
+  		    goto error;
+  		}
+  		if (skip)	/* skip "/pat/" */
+***************
+*** 4484,4489 ****
+--- 4486,4492 ----
+  		if (addr_type != ADDR_LINES)
+  		{
+  		    EMSG(_(e_invaddr));
++ 		    cmd = NULL;
+  		    goto error;
+  		}
+  		if (*cmd == '&')
+***************
+*** 4575,4581 ****
+  		n = getdigits(&cmd);
+  	    if (addr_type == ADDR_LOADED_BUFFERS
+  		    || addr_type == ADDR_BUFFERS)
+! 		lnum = compute_buffer_local_count(addr_type, lnum, (i == '-') ? -1 * n : n);
+  	    else if (i == '-')
+  		lnum -= n;
+  	    else
+--- 4578,4585 ----
+  		n = getdigits(&cmd);
+  	    if (addr_type == ADDR_LOADED_BUFFERS
+  		    || addr_type == ADDR_BUFFERS)
+! 		lnum = compute_buffer_local_count(
+! 				    addr_type, lnum, (i == '-') ? -1 * n : n);
+  	    else if (i == '-')
+  		lnum -= n;
+  	    else
+***************
+*** 4662,4668 ****
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_ARGUMENTS:
+! 		if (eap->line2 > ARGCOUNT + (!ARGCOUNT))    // add 1 if ARCOUNT is 0
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_BUFFERS:
+--- 4666,4673 ----
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_ARGUMENTS:
+! 		/* add 1 if ARGCOUNT is 0 */
+! 		if (eap->line2 > ARGCOUNT + (!ARGCOUNT))
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_BUFFERS:
+*** ../vim-7.4.616/src/version.c	2015-02-03 18:36:40.401033677 +0100
+--- src/version.c	2015-02-03 18:51:44.571251706 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     617,
+  /**/
+
+-- 
+Living in Hollywood is like living in a bowl of granola.  What ain't
+fruits and nuts is flakes.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

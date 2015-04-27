@@ -1,0 +1,4727 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.530
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.530
+Problem:    Many commands take a count or range that is not using line
+	    numbers.
+Solution:   For each command specify what kind of count it uses.  For windows,
+	    buffers and arguments have "$" and "." have a relevant meaning.
+	    (Marcin Szamotulski)
+Files:	    runtime/doc/editing.txt, runtime/doc/tabpage.txt,
+	    runtime/doc/windows.txt, src/Makefile, src/ex_cmds.h,
+	    src/ex_docmd.c, src/testdir/Make_amiga.mak
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test_argument_count.in,
+	    src/testdir/test_argument_count.ok,
+	    src/testdir/test_close_count.in, src/testdir/test_close_count.ok,
+	    src/window.c
+
+
+*** ../vim-7.4.529/runtime/doc/editing.txt	2014-08-10 13:34:59.048785459 +0200
+--- runtime/doc/editing.txt	2014-11-27 14:36:09.312502238 +0100
+***************
+*** 608,614 ****
+  			{not in Vi}
+  
+  :[count]arga[dd] {name} ..			*:arga* *:argadd* *E479*
+! 			Add the {name}s to the argument list.
+  			If [count] is omitted, the {name}s are added just
+  			after the current entry in the argument list.
+  			Otherwise they are added after the [count]'th file.
+--- 609,618 ----
+  			{not in Vi}
+  
+  :[count]arga[dd] {name} ..			*:arga* *:argadd* *E479*
+! :[count]arga[dd]
+! 			Add the {name}s to the argument list.  When {name} is
+! 			omitted at the current buffer name to the argument
+! 			list.
+  			If [count] is omitted, the {name}s are added just
+  			after the current entry in the argument list.
+  			Otherwise they are added after the [count]'th file.
+***************
+*** 618,624 ****
+  				:argadd x	a b x c
+  				:0argadd x	x a b c
+  				:1argadd x	a x b c
+! 				:99argadd x	a b c x
+  			There is no check for duplicates, it is possible to
+  			add a file to the argument list twice.
+  			The currently edited file is not changed.
+--- 622,629 ----
+  				:argadd x	a b x c
+  				:0argadd x	x a b c
+  				:1argadd x	a x b c
+! 				:$argadd x	a b c x
+! 				:+2argadd y	a b c x y
+  			There is no check for duplicates, it is possible to
+  			add a file to the argument list twice.
+  			The currently edited file is not changed.
+***************
+*** 640,650 ****
+  <			{not in Vi} {not available when compiled without the
+  			|+listcmds| feature}
+  
+! :{range}argd[elete]	Delete the {range} files from the argument list.
+  			When the last number in the range is too high, up to
+! 			the last argument is deleted.  Example: >
+! 				:10,1000argdel
+! <			Deletes arguments 10 and further, keeping 1-9.
+  			{not in Vi} {not available when compiled without the
+  			|+listcmds| feature}
+  
+--- 645,663 ----
+  <			{not in Vi} {not available when compiled without the
+  			|+listcmds| feature}
+  
+! :[range]argd[elete]	Delete the {range} files from the argument list.
+! 			Example: >
+! 				:10,$argdel
+! <			Deletes arguments 10 and further, keeping 1-9. >
+! 				:$argd
+! <			Deletes just the last one. >
+! 				:argd
+! 				:.argd
+! <			Deletes the current argument. >
+! 				:%argd
+! <			Removes all the files from the arglist.
+  			When the last number in the range is too high, up to
+! 			the last argument is deleted.
+  			{not in Vi} {not available when compiled without the
+  			|+listcmds| feature}
+  
+***************
+*** 1076,1084 ****
+  			the last file in the argument list has not been
+  			edited.  See |:confirm| and 'confirm'.  {not in Vi}
+  
+! :q[uit]!		Quit without writing, also when visible buffers have
+! 			changes.  Does not exit when there are changed hidden
+! 			buffers.  Use ":qall!" to exit always.
+  
+  :cq[uit]		Quit always, without writing, and return an error
+  			code.  See |:cq|.  Used for Manx's QuickFix mode (see
+--- 1089,1100 ----
+  			the last file in the argument list has not been
+  			edited.  See |:confirm| and 'confirm'.  {not in Vi}
+  
+! :q[uit]!		Quit without writing, also when currently visible
+! 			buffers have changes.  Does not exit when this is the
+! 			last window and there are is a changed hidden buffer.
+! 			In this case, the first changed hidden buffer becomes
+! 			the current buffer.
+! 			Use ":qall!" to exit always.
+  
+  :cq[uit]		Quit always, without writing, and return an error
+  			code.  See |:cq|.  Used for Manx's QuickFix mode (see
+*** ../vim-7.4.529/runtime/doc/tabpage.txt	2013-08-10 13:25:01.000000000 +0200
+--- runtime/doc/tabpage.txt	2014-11-27 14:42:13.340492837 +0100
+***************
+*** 61,76 ****
+  :[count]tabe[dit]				*:tabe* *:tabedit* *:tabnew*
+  :[count]tabnew
+  		Open a new tab page with an empty window, after the current
+! 		tab page.  For [count] see |:tab| below.
+  
+  :[count]tabe[dit] [++opt] [+cmd] {file}
+  :[count]tabnew [++opt] [+cmd] {file}
+  		Open a new tab page and edit {file}, like with |:edit|.
+! 		For [count] see |:tab| below.
+  
+  :[count]tabf[ind] [++opt] [+cmd] {file}			*:tabf* *:tabfind*
+  		Open a new tab page and edit {file} in 'path', like with
+! 		|:find|.  For [count] see |:tab| below.
+  		{not available when the |+file_in_path| feature was disabled
+  		at compile time}
+  
+--- 61,85 ----
+  :[count]tabe[dit]				*:tabe* *:tabedit* *:tabnew*
+  :[count]tabnew
+  		Open a new tab page with an empty window, after the current
+! 		tab page.  If [count] is given the new tab page appears after
+! 		the tab page [count] otherwise the new tab page will appear
+! 		after the current one. >
+! 		    :tabnew	" opens tabpage after the current one
+! 		    :.tabnew	" as above
+! 		    :+tabnew	" opens tabpage after the next tab page
+! 				" note: it is one further than :tabnew
+! 		    :-tabnew	" opens tabpage before the current one
+! 		    :0tabnew	" opens tabpage before the first one
+! 		    :$tabnew	" opens tabpage after the last one
+  
+  :[count]tabe[dit] [++opt] [+cmd] {file}
+  :[count]tabnew [++opt] [+cmd] {file}
+  		Open a new tab page and edit {file}, like with |:edit|.
+! 		For [count] see |:tabnew| above.
+  
+  :[count]tabf[ind] [++opt] [+cmd] {file}			*:tabf* *:tabfind*
+  		Open a new tab page and edit {file} in 'path', like with
+! 		|:find|.  For [count] see |:tabnew| above.
+  		{not available when the |+file_in_path| feature was disabled
+  		at compile time}
+  
+***************
+*** 110,121 ****
+  		- When 'hidden' is not set, [!] is not used, a buffer has
+  		  changes, and there is no other window on this buffer.
+  		Changes to the buffer are not written and won't get lost, so
+! 		this is a "safe" command.
+  
+  :tabc[lose][!] {count}
+  		Close tab page {count}.  Fails in the same way as `:tabclose`
+! 		above.
+! 
+  							*:tabo* *:tabonly*
+  :tabo[nly][!]	Close all other tab pages.
+  		When the 'hidden' option is set, all buffers in closed windows
+--- 119,136 ----
+  		- When 'hidden' is not set, [!] is not used, a buffer has
+  		  changes, and there is no other window on this buffer.
+  		Changes to the buffer are not written and won't get lost, so
+! 		this is a "safe" command. >
+! 		    :tabclose	    " close the current tab page
+  
++ :{count}tabc[lose][!]
+  :tabc[lose][!] {count}
+  		Close tab page {count}.  Fails in the same way as `:tabclose`
+! 		above. >
+! 		    :-tabclose	    " close the previous tab page
+! 		    :+tabclose	    " close the next tab page
+! 		    :1tabclose	    " close the first tab page
+! 		    :$tabclose	    " close the last tab page
+! <
+  							*:tabo* *:tabonly*
+  :tabo[nly][!]	Close all other tab pages.
+  		When the 'hidden' option is set, all buffers in closed windows
+***************
+*** 124,130 ****
+  		modified buffers are written.  Otherwise, windows that have
+  		buffers that are modified are not removed, unless the [!] is
+  		given, then they become hidden.  But modified buffers are
+! 		never abandoned, so changes cannot get lost.
+  
+  
+  SWITCHING TO ANOTHER TAB PAGE:
+--- 139,155 ----
+  		modified buffers are written.  Otherwise, windows that have
+  		buffers that are modified are not removed, unless the [!] is
+  		given, then they become hidden.  But modified buffers are
+! 		never abandoned, so changes cannot get lost. >
+! 		    :tabonly	    " close all tab pages except the current
+! 
+! :{count}tabo[nly][!]
+! 		Close all tab pages except the {count}th one. >
+! 		    :.tabonly	    " one
+! 		    :-tabonly	    " close all tab pages except the previous
+! 				    " one
+! 		    :+tabonly	    " close all tab pages except the next one
+! 		    :1tabonly	    " close all tab pages except the first one
+! 		    :$tabonly	    " close all tab pages except the last one
+  
+  
+  SWITCHING TO ANOTHER TAB PAGE:
+***************
+*** 176,182 ****
+  :[N]tabm[ove]
+  		Move the current tab page to after tab page N.  Use zero to
+  		make the current tab page the first one.  Without N the tab
+! 		page is made the last one.
+  
+  :tabm[ove] +[N]
+  :tabm[ove] -[N]
+--- 201,215 ----
+  :[N]tabm[ove]
+  		Move the current tab page to after tab page N.  Use zero to
+  		make the current tab page the first one.  Without N the tab
+! 		page is made the last one. >
+! 		    :-tabmove	" move the tab page to the left
+! 		    :tabmove	" move the tab page to the right
+! 		    :.tabmove	" as above
+! 		    :+tabmove	" as above
+! 		    :0tabmove	" move the tab page to the begining of the tab
+! 				" list
+! 		    :$tabmove	" move the tab page to the end of the tab list
+! <
+  
+  :tabm[ove] +[N]
+  :tabm[ove] -[N]
+*** ../vim-7.4.529/runtime/doc/windows.txt	2014-09-19 20:07:22.542449677 +0200
+--- runtime/doc/windows.txt	2014-11-27 14:52:42.261566503 +0100
+***************
+*** 263,290 ****
+  Closing a window
+  ----------------
+  
+  CTRL-W q						*CTRL-W_q*
+  CTRL-W CTRL-Q						*CTRL-W_CTRL-Q*
+! :q[uit]		Quit current window.  When quitting the last window (not
+! 		counting a help window), exit Vim.
+  		When 'hidden' is set, and there is only one window for the
+! 		current buffer, it becomes hidden.
+! 		When 'hidden' is not set, and there is only one window for the
+! 		current buffer, and the buffer was changed, the command fails.
+! 		(Note: CTRL-Q does not work on all terminals)
+! 
+! :q[uit]!	Quit current window.  If this was the last window for a buffer,
+! 		any changes to that buffer are lost.  When quitting the last
+! 		window (not counting help windows), exit Vim.  The contents of
+! 		the buffer are lost, even when 'hidden' is set.
+  
+  CTRL-W c					*CTRL-W_c* *:clo* *:close*
+! :clo[se][!]	Close current window.  When the 'hidden' option is set, or
+! 		when the buffer was changed and the [!] is used, the buffer
+! 		becomes hidden (unless there is another window editing it).
+  		When there is only one window in the current tab page and
+  		there is another tab page, this closes the current tab page.
+  		|tab-page|.
+  		This command fails when:			*E444*
+  		- There is only one window on the screen.
+  		- When 'hidden' is not set, [!] is not used, the buffer has
+--- 263,318 ----
+  Closing a window
+  ----------------
+  
++ :q[uit]
++ :{count}q[uit]
+  CTRL-W q						*CTRL-W_q*
+  CTRL-W CTRL-Q						*CTRL-W_CTRL-Q*
+! 		Without {count}: Quit the current window.  If {count} is
+! 		given quit the {count} window.
+! 
+! 		When quitting the last window (not counting a help window),
+! 		exit Vim.
+! 		
+  		When 'hidden' is set, and there is only one window for the
+! 		current buffer, it becomes hidden.  When 'hidden' is not set,
+! 		and there is only one window for the current buffer, and the
+! 		buffer was changed, the command fails.
+! 		
+! 		(Note: CTRL-Q does not
+! 		work on all terminals).  If [count] is greater than
+! 		the last window number the last window will be closed: >
+! 		    :1quit  " quit the first window
+! 		    :$quit  " quit the last window
+! 		    :9quit  " quit the last window
+! 			     " if there are less than 9 windows opened
+! 		    :-quit  " quit the previews window
+! 		    :+quit  " quit the next window
+! 		    :+2quit " will also work as expected
+! <
+! :q[uit]!
+! :{count}q[uit]!
+! 		Without {count}: Quit the current window.  If {count} is
+! 		given quit the {count} window.
+! 
+! 		If this was the last window for a buffer, any changes to that
+! 		buffer are lost.  When quitting the last window (not counting
+! 		help windows), exit Vim.  The contents of the buffer are lost,
+! 		even when 'hidden' is set.
+  
++ :clo[se][!]
++ :{count}clo[se][!]
+  CTRL-W c					*CTRL-W_c* *:clo* *:close*
+! 		Without {count}: Close the current window.  If {count} is
+! 		given close the {count} window.
+! 
+! 		When the 'hidden' option is set, or when the buffer was
+! 		changed and the [!] is used, the buffer becomes hidden (unless
+! 		there is another window editing it).
+! 		
+  		When there is only one window in the current tab page and
+  		there is another tab page, this closes the current tab page.
+  		|tab-page|.
++ 
+  		This command fails when:			*E444*
+  		- There is only one window on the screen.
+  		- When 'hidden' is not set, [!] is not used, the buffer has
+***************
+*** 298,311 ****
+  		command.
+  
+  							*:hide*
+! :hid[e]		Quit current window, unless it is the last window on the
+! 		screen.  The buffer becomes hidden (unless there is another
+! 		window editing it or 'bufhidden' is "unload" or "delete").
+! 		If the window is the last one in the current tab page the tab
+! 		page is closed. |tab-page|
+! 		The value of 'hidden' is irrelevant for this command.
+! 		Changes to the buffer are not written and won't get lost, so
+! 		this is a "safe" command.
+  
+  :hid[e] {cmd}	Execute {cmd} with 'hidden' is set.  The previous value of
+  		'hidden' is restored after {cmd} has been executed.
+--- 326,344 ----
+  		command.
+  
+  							*:hide*
+! :hid[e]
+! :{count}hid[e]
+! 		Quit the current window, unless it is the last window on the
+! 		screen.  For {count} see |:quit| command.
+! 		
+! 		The buffer becomes hidden (unless there is another window
+! 		editing it or 'bufhidden' is "unload" or "delete").  If the
+! 		window is the last one in the current tab page the tab page is
+! 		closed.  |tab-page| 
+! 		
+! 		The value of 'hidden' is irrelevant for this command.  Changes
+! 		to the buffer are not written and won't get lost, so this is a
+! 		"safe" command.
+  
+  :hid[e] {cmd}	Execute {cmd} with 'hidden' is set.  The previous value of
+  		'hidden' is restored after {cmd} has been executed.
+***************
+*** 314,325 ****
+  <		This will edit "Makefile", and hide the current buffer if it
+  		has any changes.
+  
+  CTRL-W o						*CTRL-W_o* *E445*
+  CTRL-W CTRL-O					*CTRL-W_CTRL-O* *:on* *:only*
+! :on[ly][!]	Make the current window the only one on the screen.  All other
+! 		windows are closed.
+  		When the 'hidden' option is set, all buffers in closed windows
+  		become hidden.
+  		When 'hidden' is not set, and the 'autowrite' option is set,
+  		modified buffers are written.  Otherwise, windows that have
+  		buffers that are modified are not removed, unless the [!] is
+--- 347,362 ----
+  <		This will edit "Makefile", and hide the current buffer if it
+  		has any changes.
+  
++ :on[ly][!]
++ :{count}on[ly][!]
+  CTRL-W o						*CTRL-W_o* *E445*
+  CTRL-W CTRL-O					*CTRL-W_CTRL-O* *:on* *:only*
+! 		Make the current window the only one on the screen.  All other
+! 		windows are closed.  For {count} see |:quit| command.
+! 		
+  		When the 'hidden' option is set, all buffers in closed windows
+  		become hidden.
++ 		
+  		When 'hidden' is not set, and the 'autowrite' option is set,
+  		modified buffers are written.  Otherwise, windows that have
+  		buffers that are modified are not removed, unless the [!] is
+*** ../vim-7.4.529/src/Makefile	2014-11-12 15:45:16.591789174 +0100
+--- src/Makefile	2014-11-27 14:23:18.260995560 +0100
+***************
+*** 1890,1899 ****
+  	done
+  
+  # Run individual test, assuming that Vim was already compiled.
+! test1 test2 test3 test4 test5 test6 test7 test8 test9 \
+  	test_autoformat_join \
+  	test_breakindent \
+  	test_changelist \
+  	test_eval \
+  	test_insertcount \
+  	test_listlbr \
+--- 1890,1901 ----
+  	done
+  
+  # Run individual test, assuming that Vim was already compiled.
+! test1 \
+! 	test_argument_count \
+  	test_autoformat_join \
+  	test_breakindent \
+  	test_changelist \
++ 	test_close_count \
+  	test_eval \
+  	test_insertcount \
+  	test_listlbr \
+***************
+*** 1904,1909 ****
+--- 1906,1912 ----
+  	test_signs \
+  	test_utf8 \
+  	test_writefile \
++ 	test2 test3 test4 test5 test6 test7 test8 test9 \
+  	test10 test11 test12 test13 test14 test15 test16 test17 test18 test19 \
+  	test20 test21 test22 test23 test24 test25 test26 test27 test28 test29 \
+  	test30 test31 test32 test33 test34 test35 test36 test37 test38 test39 \
+*** ../vim-7.4.529/src/ex_cmds.h	2014-10-21 20:01:54.986287762 +0200
+--- src/ex_cmds.h	2014-11-27 14:56:55.146781659 +0100
+***************
+*** 58,63 ****
+--- 58,71 ----
+  #define WORD1	(EXTRA | NOSPC)	/* one extra word allowed */
+  #define FILE1	(FILES | NOSPC)	/* 1 file allowed, defaults to current file */
+  
++ /* values for cmd_addr_type */
++ #define ADDR_LINES		0
++ #define ADDR_WINDOWS		1
++ #define ADDR_ARGUMENTS		2
++ #define ADDR_LOADED_BUFFERS	3
++ #define ADDR_UNLOADED_BUFFERS	4
++ #define ADDR_TABS		5
++ 
+  #ifndef DO_DECLARE_EXCMD
+  typedef struct exarg exarg_T;
+  #endif
+***************
+*** 74,80 ****
+  # undef EX	    /* just in case */
+  #endif
+  #ifdef DO_DECLARE_EXCMD
+! # define EX(a, b, c, d)  {(char_u *)b, c, (long_u)(d)}
+  
+  typedef void (*ex_func_T) __ARGS((exarg_T *eap));
+  
+--- 82,88 ----
+  # undef EX	    /* just in case */
+  #endif
+  #ifdef DO_DECLARE_EXCMD
+! # define EX(a, b, c, d, e)  {(char_u *)b, c, (long_u)(d), e}
+  
+  typedef void (*ex_func_T) __ARGS((exarg_T *eap));
+  
+***************
+*** 83,1146 ****
+      char_u	*cmd_name;	/* name of the command */
+      ex_func_T   cmd_func;	/* function for this command */
+      long_u	cmd_argt;	/* flags declared above */
+  }
+  # if defined(FEAT_GUI_W16)
+  _far
+  # endif
+  cmdnames[] =
+  #else
+! # define EX(a, b, c, d)  a
+  enum CMD_index
+  #endif
+  {
+  EX(CMD_append,		"append",	ex_append,
+! 			BANG|RANGE|ZEROR|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_abbreviate,	"abbreviate",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_abclear,		"abclear",	ex_abclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_aboveleft,	"aboveleft",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_all,		"all",		ex_all,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_amenu,		"amenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_anoremenu,	"anoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_args,		"args",		ex_args,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_argadd,		"argadd",	ex_argadd,
+! 			BANG|NEEDARG|RANGE|NOTADR|ZEROR|FILES|TRLBAR),
+  EX(CMD_argdelete,	"argdelete",	ex_argdelete,
+! 			BANG|RANGE|NOTADR|FILES|TRLBAR),
+  EX(CMD_argdo,		"argdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_argedit,		"argedit",	ex_argedit,
+! 			BANG|NEEDARG|RANGE|NOTADR|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_argglobal,	"argglobal",	ex_args,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_arglocal,	"arglocal",	ex_args,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_argument,	"argument",	ex_argument,
+! 			BANG|RANGE|NOTADR|COUNT|EXTRA|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_ascii,		"ascii",	do_ascii,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_autocmd,		"autocmd",	ex_autocmd,
+! 			BANG|EXTRA|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_augroup,		"augroup",	ex_autocmd,
+! 			BANG|WORD1|TRLBAR|CMDWIN),
+  EX(CMD_aunmenu,		"aunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_buffer,		"buffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|EDITCMD|TRLBAR),
+  EX(CMD_bNext,		"bNext",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_ball,		"ball",		ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_badd,		"badd",		ex_edit,
+! 			NEEDARG|FILE1|EDITCMD|TRLBAR|CMDWIN),
+  EX(CMD_bdelete,		"bdelete",	ex_bunload,
+! 			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR),
+  EX(CMD_behave,		"behave",	ex_behave,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN),
+  EX(CMD_belowright,	"belowright",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bfirst,		"bfirst",	ex_brewind,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR),
+  EX(CMD_blast,		"blast",	ex_blast,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR),
+  EX(CMD_bmodified,	"bmodified",	ex_bmodified,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_bnext,		"bnext",	ex_bnext,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_botright,	"botright",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bprevious,	"bprevious",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_brewind,		"brewind",	ex_brewind,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR),
+  EX(CMD_break,		"break",	ex_break,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_breakadd,	"breakadd",	ex_breakadd,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_breakdel,	"breakdel",	ex_breakdel,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_breaklist,	"breaklist",	ex_breaklist,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_browse,		"browse",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM|CMDWIN),
+  EX(CMD_buffers,		"buffers",	buflist_list,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_bufdo,		"bufdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bunload,		"bunload",	ex_bunload,
+! 			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR),
+  EX(CMD_bwipeout,	"bwipeout",	ex_bunload,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|TRLBAR),
+  EX(CMD_change,		"change",	ex_change,
+! 			BANG|WHOLEFOLD|RANGE|COUNT|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_cNext,		"cNext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cNfile,		"cNfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cabbrev,		"cabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cabclear,	"cabclear",	ex_abclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_caddbuffer,	"caddbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR),
+  EX(CMD_caddexpr,	"caddexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR),
+  EX(CMD_caddfile,	"caddfile",	ex_cfile,
+! 			TRLBAR|FILE1),
+  EX(CMD_call,		"call",		ex_call,
+! 			RANGE|NEEDARG|EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_catch,		"catch",	ex_catch,
+! 			EXTRA|SBOXOK|CMDWIN),
+  EX(CMD_cbuffer,		"cbuffer",	ex_cbuffer,
+! 			BANG|RANGE|NOTADR|WORD1|TRLBAR),
+  EX(CMD_cc,		"cc",		ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cclose,		"cclose",	ex_cclose,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_cd,		"cd",		ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_center,		"center",	ex_align,
+! 			TRLBAR|RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY),
+  EX(CMD_cexpr,		"cexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR|BANG),
+  EX(CMD_cfile,		"cfile",	ex_cfile,
+! 			TRLBAR|FILE1|BANG),
+  EX(CMD_cfirst,		"cfirst",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cgetfile,	"cgetfile",	ex_cfile,
+! 			TRLBAR|FILE1),
+  EX(CMD_cgetbuffer,	"cgetbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR),
+  EX(CMD_cgetexpr,	"cgetexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR),
+  EX(CMD_chdir,		"chdir",	ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_changes,		"changes",	ex_changes,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_checkpath,	"checkpath",	ex_checkpath,
+! 			TRLBAR|BANG|CMDWIN),
+  EX(CMD_checktime,	"checktime",	ex_checktime,
+! 			RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR),
+  EX(CMD_clist,		"clist",	qf_list,
+! 			BANG|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_clast,		"clast",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_close,		"close",	ex_close,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_cmap,		"cmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cmapclear,	"cmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_cmenu,		"cmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cnext,		"cnext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cnewer,		"cnewer",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_cnfile,		"cnfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cnoremap,	"cnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cnoreabbrev,	"cnoreabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cnoremenu,	"cnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_copy,		"copy",		ex_copymove,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_colder,		"colder",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_colorscheme,	"colorscheme",	ex_colorscheme,
+! 			WORD1|TRLBAR|CMDWIN),
+  EX(CMD_command,		"command",	ex_command,
+! 			EXTRA|BANG|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_comclear,	"comclear",	ex_comclear,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_compiler,	"compiler",	ex_compiler,
+! 			BANG|TRLBAR|WORD1|CMDWIN),
+  EX(CMD_continue,	"continue",	ex_continue,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_confirm,		"confirm",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM|CMDWIN),
+  EX(CMD_copen,		"copen",	ex_copen,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_cprevious,	"cprevious",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cpfile,		"cpfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cquit,		"cquit",	ex_cquit,
+! 			TRLBAR|BANG),
+  EX(CMD_crewind,		"crewind",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_cscope,		"cscope",	do_cscope,
+! 			EXTRA|NOTRLCOM|XFILE),
+  EX(CMD_cstag,		"cstag",	do_cstag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_cunmap,		"cunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cunabbrev,	"cunabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cunmenu,		"cunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_cwindow,		"cwindow",	ex_cwindow,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_delete,		"delete",	ex_operators,
+! 			RANGE|WHOLEFOLD|REGSTR|COUNT|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_delmarks,	"delmarks",	ex_delmarks,
+! 			BANG|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_debug,		"debug",	ex_debug,
+! 			NEEDARG|EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_debuggreedy,	"debuggreedy",	ex_debuggreedy,
+! 			RANGE|NOTADR|ZEROR|TRLBAR|CMDWIN),
+  EX(CMD_delcommand,	"delcommand",	ex_delcommand,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN),
+  EX(CMD_delfunction,	"delfunction",	ex_delfunction,
+! 			NEEDARG|WORD1|CMDWIN),
+  EX(CMD_display,		"display",	ex_display,
+! 			EXTRA|NOTRLCOM|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_diffupdate,	"diffupdate",	ex_diffupdate,
+! 			BANG|TRLBAR),
+  EX(CMD_diffget,		"diffget",	ex_diffgetput,
+! 			RANGE|EXTRA|TRLBAR|MODIFY),
+  EX(CMD_diffoff,		"diffoff",	ex_diffoff,
+! 			BANG|TRLBAR),
+  EX(CMD_diffpatch,	"diffpatch",	ex_diffpatch,
+! 			EXTRA|FILE1|TRLBAR|MODIFY),
+  EX(CMD_diffput,		"diffput",	ex_diffgetput,
+! 			RANGE|EXTRA|TRLBAR),
+  EX(CMD_diffsplit,	"diffsplit",	ex_diffsplit,
+! 			EXTRA|FILE1|TRLBAR),
+  EX(CMD_diffthis,	"diffthis",	ex_diffthis,
+! 			TRLBAR),
+  EX(CMD_digraphs,	"digraphs",	ex_digraphs,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_djump,		"djump",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA),
+  EX(CMD_dlist,		"dlist",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_doautocmd,	"doautocmd",	ex_doautocmd,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_doautoall,	"doautoall",	ex_doautoall,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_drop,		"drop",		ex_drop,
+! 			FILES|EDITCMD|NEEDARG|ARGOPT|TRLBAR),
+  EX(CMD_dsearch,		"dsearch",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_dsplit,		"dsplit",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA),
+  EX(CMD_edit,		"edit",		ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_earlier,		"earlier",	ex_later,
+! 			TRLBAR|EXTRA|NOSPC|CMDWIN),
+  EX(CMD_echo,		"echo",		ex_echo,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_echoerr,		"echoerr",	ex_execute,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_echohl,		"echohl",	ex_echohl,
+! 			EXTRA|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_echomsg,		"echomsg",	ex_execute,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_echon,		"echon",	ex_echo,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_else,		"else",		ex_else,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_elseif,		"elseif",	ex_else,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_emenu,		"emenu",	ex_emenu,
+! 			NEEDARG|EXTRA|TRLBAR|NOTRLCOM|RANGE|NOTADR|CMDWIN),
+  EX(CMD_endif,		"endif",	ex_endif,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_endfunction,	"endfunction",	ex_endfunction,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_endfor,		"endfor",	ex_endwhile,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_endtry,		"endtry",	ex_endtry,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_endwhile,	"endwhile",	ex_endwhile,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_enew,		"enew",		ex_edit,
+! 			BANG|TRLBAR),
+  EX(CMD_ex,		"ex",		ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_execute,		"execute",	ex_execute,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_exit,		"exit",		ex_exit,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR|CMDWIN),
+  EX(CMD_exusage,		"exusage",	ex_exusage,
+! 			TRLBAR),
+  EX(CMD_file,		"file",		ex_file,
+! 			RANGE|NOTADR|ZEROR|BANG|FILE1|TRLBAR),
+  EX(CMD_files,		"files",	buflist_list,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_filetype,	"filetype",	ex_filetype,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_find,		"find",		ex_find,
+! 			RANGE|NOTADR|BANG|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_finally,		"finally",	ex_finally,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_finish,		"finish",	ex_finish,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_first,		"first",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_fixdel,		"fixdel",	do_fixdel,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_fold,		"fold",		ex_fold,
+! 			RANGE|WHOLEFOLD|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_foldclose,	"foldclose",	ex_foldopen,
+! 			RANGE|BANG|WHOLEFOLD|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_folddoopen,	"folddoopen",	ex_folddo,
+! 			RANGE|DFLALL|NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_folddoclosed,	"folddoclosed",	ex_folddo,
+! 			RANGE|DFLALL|NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_foldopen,	"foldopen",	ex_foldopen,
+! 			RANGE|BANG|WHOLEFOLD|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_for,		"for",		ex_while,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_function,	"function",	ex_function,
+! 			EXTRA|BANG|CMDWIN),
+  EX(CMD_global,		"global",	ex_global,
+! 			RANGE|WHOLEFOLD|BANG|EXTRA|DFLALL|SBOXOK|CMDWIN),
+  EX(CMD_goto,		"goto",		ex_goto,
+! 			RANGE|NOTADR|COUNT|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_grep,		"grep",		ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_grepadd,		"grepadd",	ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_gui,		"gui",		ex_gui,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR|CMDWIN),
+  EX(CMD_gvim,		"gvim",		ex_gui,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR|CMDWIN),
+  EX(CMD_help,		"help",		ex_help,
+! 			BANG|EXTRA|NOTRLCOM),
+  EX(CMD_helpclose,	"helpclose",	ex_helpclose,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_helpfind,	"helpfind",	ex_helpfind,
+! 			EXTRA|NOTRLCOM),
+  EX(CMD_helpgrep,	"helpgrep",	ex_helpgrep,
+! 			EXTRA|NOTRLCOM|NEEDARG),
+  EX(CMD_helptags,	"helptags",	ex_helptags,
+! 			NEEDARG|FILES|TRLBAR|CMDWIN),
+  EX(CMD_hardcopy,	"hardcopy",	ex_hardcopy,
+! 			RANGE|COUNT|EXTRA|TRLBAR|DFLALL|BANG),
+  EX(CMD_highlight,	"highlight",	ex_highlight,
+! 			BANG|EXTRA|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_hide,		"hide",		ex_hide,
+! 			BANG|EXTRA|NOTRLCOM),
+  EX(CMD_history,		"history",	ex_history,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_insert,		"insert",	ex_append,
+! 			BANG|RANGE|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_iabbrev,		"iabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_iabclear,	"iabclear",	ex_abclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_if,		"if",		ex_if,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_ijump,		"ijump",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA),
+  EX(CMD_ilist,		"ilist",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_imap,		"imap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_imapclear,	"imapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_imenu,		"imenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_inoremap,	"inoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_inoreabbrev,	"inoreabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_inoremenu,	"inoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_intro,		"intro",	ex_intro,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_isearch,		"isearch",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_isplit,		"isplit",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA),
+  EX(CMD_iunmap,		"iunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_iunabbrev,	"iunabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_iunmenu,		"iunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_join,		"join",		ex_join,
+! 			BANG|RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_jumps,		"jumps",	ex_jumps,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_k,		"k",		ex_mark,
+! 			RANGE|WORD1|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_keepmarks,	"keepmarks",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_keepjumps,	"keepjumps",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_keeppatterns,	"keeppatterns",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_keepalt,		"keepalt",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_list,		"list",		ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN),
+  EX(CMD_lNext,		"lNext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_lNfile,		"lNfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_last,		"last",		ex_last,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_language,	"language",	ex_language,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_laddexpr,	"laddexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR),
+  EX(CMD_laddbuffer,	"laddbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR),
+  EX(CMD_laddfile,	"laddfile",	ex_cfile,
+! 			TRLBAR|FILE1),
+  EX(CMD_later,		"later",	ex_later,
+! 			TRLBAR|EXTRA|NOSPC|CMDWIN),
+  EX(CMD_lbuffer,		"lbuffer",	ex_cbuffer,
+! 			BANG|RANGE|NOTADR|WORD1|TRLBAR),
+  EX(CMD_lcd,		"lcd",		ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_lchdir,		"lchdir",	ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_lclose,		"lclose",	ex_cclose,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_lcscope,		"lcscope",	do_cscope,
+! 			EXTRA|NOTRLCOM|XFILE),
+  EX(CMD_left,		"left",		ex_align,
+! 			TRLBAR|RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY),
+  EX(CMD_leftabove,	"leftabove",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_let,		"let",		ex_let,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_lexpr,		"lexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR|BANG),
+  EX(CMD_lfile,		"lfile",	ex_cfile,
+! 			TRLBAR|FILE1|BANG),
+  EX(CMD_lfirst,		"lfirst",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_lgetfile,	"lgetfile",	ex_cfile,
+! 			TRLBAR|FILE1),
+  EX(CMD_lgetbuffer,	"lgetbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR),
+  EX(CMD_lgetexpr,	"lgetexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR),
+  EX(CMD_lgrep,		"lgrep",	ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_lgrepadd,	"lgrepadd",	ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_lhelpgrep,	"lhelpgrep",	ex_helpgrep,
+! 			EXTRA|NOTRLCOM|NEEDARG),
+  EX(CMD_ll,		"ll",		ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_llast,		"llast",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_llist,		"llist",	qf_list,
+! 			BANG|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_lmap,		"lmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_lmapclear,	"lmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_lmake,		"lmake",	ex_make,
+! 			BANG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_lnoremap,	"lnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_lnext,		"lnext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_lnewer,		"lnewer",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_lnfile,		"lnfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_loadview,	"loadview",	ex_loadview,
+! 			FILE1|TRLBAR),
+  EX(CMD_loadkeymap,	"loadkeymap",	ex_loadkeymap,
+! 			CMDWIN),
+  EX(CMD_lockmarks,	"lockmarks",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_lockvar,		"lockvar",	ex_lockvar,
+! 			BANG|EXTRA|NEEDARG|SBOXOK|CMDWIN),
+  EX(CMD_lolder,		"lolder",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_lopen,		"lopen",	ex_copen,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_lprevious,	"lprevious",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_lpfile,		"lpfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_lrewind,		"lrewind",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG),
+  EX(CMD_ltag,		"ltag",	ex_tag,
+! 			NOTADR|TRLBAR|BANG|WORD1),
+  EX(CMD_lunmap,		"lunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_lua,		"lua",		ex_lua,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_luado,		"luado",	ex_luado,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_luafile,		"luafile",	ex_luafile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN),
+  EX(CMD_lvimgrep,	"lvimgrep",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_lvimgrepadd,	"lvimgrepadd",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_lwindow,		"lwindow",	ex_cwindow,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_ls,		"ls",		buflist_list,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_move,		"move",		ex_copymove,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_mark,		"mark",		ex_mark,
+! 			RANGE|WORD1|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_make,		"make",		ex_make,
+! 			BANG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_map,		"map",		ex_map,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_mapclear,	"mapclear",	ex_mapclear,
+! 			EXTRA|BANG|TRLBAR|CMDWIN),
+  EX(CMD_marks,		"marks",	do_marks,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_match,		"match",	ex_match,
+! 			RANGE|NOTADR|EXTRA|CMDWIN),
+  EX(CMD_menu,		"menu",		ex_menu,
+! 			RANGE|NOTADR|ZEROR|BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_menutranslate,	"menutranslate", ex_menutranslate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_messages,	"messages",	ex_messages,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_mkexrc,		"mkexrc",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_mksession,	"mksession",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR),
+  EX(CMD_mkspell,		"mkspell",	ex_mkspell,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_mkvimrc,		"mkvimrc",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_mkview,		"mkview",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR),
+  EX(CMD_mode,		"mode",		ex_mode,
+! 			WORD1|TRLBAR|CMDWIN),
+  EX(CMD_mzscheme,	"mzscheme",	ex_mzscheme,
+! 			RANGE|EXTRA|DFLALL|NEEDARG|CMDWIN|SBOXOK),
+  EX(CMD_mzfile,		"mzfile",	ex_mzfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN),
+  EX(CMD_next,		"next",		ex_next,
+! 			RANGE|NOTADR|BANG|FILES|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_nbkey,		"nbkey",	ex_nbkey,
+! 			EXTRA|NOTADR|NEEDARG),
+  EX(CMD_nbclose,		"nbclose",	ex_nbclose,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_nbstart,		"nbstart",	ex_nbstart,
+! 			WORD1|TRLBAR|CMDWIN),
+  EX(CMD_new,		"new",		ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_nmap,		"nmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_nmapclear,	"nmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_nmenu,		"nmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_nnoremap,	"nnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_nnoremenu,	"nnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_noremap,		"noremap",	ex_map,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_noautocmd,	"noautocmd",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_nohlsearch,	"nohlsearch",	ex_nohlsearch,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_noreabbrev,	"noreabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_noremenu,	"noremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_noswapfile,	"noswapfile",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_normal,		"normal",	ex_normal,
+! 			RANGE|BANG|EXTRA|NEEDARG|NOTRLCOM|USECTRLV|SBOXOK|CMDWIN),
+  EX(CMD_number,		"number",	ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN),
+  EX(CMD_nunmap,		"nunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_nunmenu,		"nunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_open,		"open",		ex_open,
+! 			RANGE|BANG|EXTRA),
+  EX(CMD_oldfiles,	"oldfiles",	ex_oldfiles,
+! 			BANG|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_omap,		"omap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_omapclear,	"omapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_omenu,		"omenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_only,		"only",		ex_only,
+! 			BANG|TRLBAR),
+  EX(CMD_onoremap,	"onoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_onoremenu,	"onoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_options,		"options",	ex_options,
+! 			TRLBAR),
+  EX(CMD_ounmap,		"ounmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_ounmenu,		"ounmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_ownsyntax,	"ownsyntax",	ex_ownsyntax,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_print,		"print",	ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|SBOXOK),
+  EX(CMD_pclose,		"pclose",	ex_pclose,
+! 			BANG|TRLBAR),
+  EX(CMD_perl,		"perl",		ex_perl,
+! 			RANGE|EXTRA|DFLALL|NEEDARG|SBOXOK|CMDWIN),
+  EX(CMD_perldo,		"perldo",	ex_perldo,
+! 			RANGE|EXTRA|DFLALL|NEEDARG|CMDWIN),
+  EX(CMD_pedit,		"pedit",	ex_pedit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_pop,		"pop",		ex_tag,
+! 			RANGE|NOTADR|BANG|COUNT|TRLBAR|ZEROR),
+  EX(CMD_popup,		"popup",	ex_popup,
+! 			NEEDARG|EXTRA|BANG|TRLBAR|NOTRLCOM|CMDWIN),
+  EX(CMD_ppop,		"ppop",		ex_ptag,
+! 			RANGE|NOTADR|BANG|COUNT|TRLBAR|ZEROR),
+  EX(CMD_preserve,	"preserve",	ex_preserve,
+! 			TRLBAR),
+  EX(CMD_previous,	"previous",	ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_promptfind,	"promptfind",	gui_mch_find_dialog,
+! 			EXTRA|NOTRLCOM|CMDWIN),
+  EX(CMD_promptrepl,	"promptrepl",	gui_mch_replace_dialog,
+! 			EXTRA|NOTRLCOM|CMDWIN),
+  EX(CMD_profile,		"profile",	ex_profile,
+! 			BANG|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_profdel,		"profdel",	ex_breakdel,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_psearch,		"psearch",	ex_psearch,
+! 			BANG|RANGE|WHOLEFOLD|DFLALL|EXTRA),
+  EX(CMD_ptag,		"ptag",		ex_ptag,
+! 			RANGE|NOTADR|BANG|WORD1|TRLBAR|ZEROR),
+  EX(CMD_ptNext,		"ptNext",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_ptfirst,		"ptfirst",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_ptjump,		"ptjump",	ex_ptag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_ptlast,		"ptlast",	ex_ptag,
+! 			BANG|TRLBAR),
+  EX(CMD_ptnext,		"ptnext",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_ptprevious,	"ptprevious",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_ptrewind,	"ptrewind",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_ptselect,	"ptselect",	ex_ptag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_put,		"put",		ex_put,
+! 			RANGE|WHOLEFOLD|BANG|REGSTR|TRLBAR|ZEROR|CMDWIN|MODIFY),
+  EX(CMD_pwd,		"pwd",		ex_pwd,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_python,		"python",	ex_python,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_pydo,		"pydo",		ex_pydo,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_pyfile,		"pyfile",	ex_pyfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN),
+  EX(CMD_py3,		"py3",		ex_py3,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_py3do,		"py3do",	ex_py3do,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_python3,		"python3",	ex_py3,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_py3file,		"py3file",	ex_py3file,
+! 			RANGE|FILE1|NEEDARG|CMDWIN),
+  EX(CMD_quit,		"quit",		ex_quit,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_quitall,		"quitall",	ex_quit_all,
+! 			BANG|TRLBAR),
+  EX(CMD_qall,		"qall",		ex_quit_all,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_read,		"read",		ex_read,
+! 			BANG|RANGE|WHOLEFOLD|FILE1|ARGOPT|TRLBAR|ZEROR|CMDWIN|MODIFY),
+  EX(CMD_recover,		"recover",	ex_recover,
+! 			BANG|FILE1|TRLBAR),
+  EX(CMD_redo,		"redo",		ex_redo,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_redir,		"redir",	ex_redir,
+! 			BANG|FILES|TRLBAR|CMDWIN),
+  EX(CMD_redraw,		"redraw",	ex_redraw,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_redrawstatus,	"redrawstatus",	ex_redrawstatus,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_registers,	"registers",	ex_display,
+! 			EXTRA|NOTRLCOM|TRLBAR|CMDWIN),
+  EX(CMD_resize,		"resize",	ex_resize,
+! 			RANGE|NOTADR|TRLBAR|WORD1),
+  EX(CMD_retab,		"retab",	ex_retab,
+! 			TRLBAR|RANGE|WHOLEFOLD|DFLALL|BANG|WORD1|CMDWIN|MODIFY),
+  EX(CMD_return,		"return",	ex_return,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_rewind,		"rewind",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_right,		"right",	ex_align,
+! 			TRLBAR|RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY),
+  EX(CMD_rightbelow,	"rightbelow",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_runtime,		"runtime",	ex_runtime,
+! 			BANG|NEEDARG|FILES|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_ruby,		"ruby",		ex_ruby,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_rubydo,		"rubydo",	ex_rubydo,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_rubyfile,	"rubyfile",	ex_rubyfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN),
+  EX(CMD_rundo,		"rundo",	ex_rundo,
+! 			NEEDARG|FILE1),
+  EX(CMD_rviminfo,	"rviminfo",	ex_viminfo,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_substitute,	"substitute",	do_sub,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_sNext,		"sNext",	ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_sargument,	"sargument",	ex_argument,
+! 			BANG|RANGE|NOTADR|COUNT|EXTRA|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_sall,		"sall",		ex_all,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sandbox,		"sandbox",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_saveas,		"saveas",	ex_write,
+! 			BANG|DFLALL|FILE1|ARGOPT|CMDWIN|TRLBAR),
+  EX(CMD_sbuffer,		"sbuffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|EDITCMD|TRLBAR),
+  EX(CMD_sbNext,		"sbNext",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sball,		"sball",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbfirst,		"sbfirst",	ex_brewind,
+! 			EDITCMD|TRLBAR),
+  EX(CMD_sblast,		"sblast",	ex_blast,
+! 			EDITCMD|TRLBAR),
+  EX(CMD_sbmodified,	"sbmodified",	ex_bmodified,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbnext,		"sbnext",	ex_bnext,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbprevious,	"sbprevious",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbrewind,	"sbrewind",	ex_brewind,
+! 			EDITCMD|TRLBAR),
+  EX(CMD_scriptnames,	"scriptnames",	ex_scriptnames,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_scriptencoding,	"scriptencoding", ex_scriptencoding,
+! 			WORD1|TRLBAR|CMDWIN),
+  EX(CMD_scscope,		"scscope",	do_scscope,
+! 			EXTRA|NOTRLCOM),
+  EX(CMD_set,		"set",		ex_set,
+! 			TRLBAR|EXTRA|CMDWIN|SBOXOK),
+  EX(CMD_setfiletype,	"setfiletype",	ex_setfiletype,
+! 			TRLBAR|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_setglobal,	"setglobal",	ex_set,
+! 			TRLBAR|EXTRA|CMDWIN|SBOXOK),
+  EX(CMD_setlocal,	"setlocal",	ex_set,
+! 			TRLBAR|EXTRA|CMDWIN|SBOXOK),
+  EX(CMD_sfind,		"sfind",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_sfirst,		"sfirst",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_shell,		"shell",	ex_shell,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_simalt,		"simalt",	ex_simalt,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN),
+  EX(CMD_sign,		"sign",		ex_sign,
+! 			NEEDARG|RANGE|NOTADR|EXTRA|CMDWIN),
+  EX(CMD_silent,		"silent",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|BANG|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_sleep,		"sleep",	ex_sleep,
+! 			RANGE|NOTADR|COUNT|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_slast,		"slast",	ex_last,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_smagic,		"smagic",	ex_submagic,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_smap,		"smap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_smapclear,	"smapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_smenu,		"smenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_snext,		"snext",	ex_next,
+! 			RANGE|NOTADR|BANG|FILES|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_sniff,		"sniff",	ex_sniff,
+! 			EXTRA|TRLBAR),
+  EX(CMD_snomagic,	"snomagic",	ex_submagic,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN),
+  EX(CMD_snoremap,	"snoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_snoremenu,	"snoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_source,		"source",	ex_source,
+! 			BANG|FILE1|TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_sort,		"sort",		ex_sort,
+! 			RANGE|DFLALL|WHOLEFOLD|BANG|EXTRA|NOTRLCOM|MODIFY),
+  EX(CMD_split,		"split",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_spellgood,	"spellgood",	ex_spell,
+! 			BANG|RANGE|NOTADR|NEEDARG|EXTRA|TRLBAR),
+  EX(CMD_spelldump,	"spelldump",	ex_spelldump,
+! 			BANG|TRLBAR),
+  EX(CMD_spellinfo,	"spellinfo",	ex_spellinfo,
+! 			TRLBAR),
+  EX(CMD_spellrepall,	"spellrepall",	ex_spellrepall,
+! 			TRLBAR),
+  EX(CMD_spellundo,	"spellundo",	ex_spell,
+! 			BANG|RANGE|NOTADR|NEEDARG|EXTRA|TRLBAR),
+  EX(CMD_spellwrong,	"spellwrong",	ex_spell,
+! 			BANG|RANGE|NOTADR|NEEDARG|EXTRA|TRLBAR),
+  EX(CMD_sprevious,	"sprevious",	ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_srewind,		"srewind",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_stop,		"stop",		ex_stop,
+! 			TRLBAR|BANG|CMDWIN),
+  EX(CMD_stag,		"stag",		ex_stag,
+! 			RANGE|NOTADR|BANG|WORD1|TRLBAR|ZEROR),
+  EX(CMD_startinsert,	"startinsert",	ex_startinsert,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_startgreplace,	"startgreplace", ex_startinsert,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_startreplace,	"startreplace",	ex_startinsert,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_stopinsert,	"stopinsert",	ex_stopinsert,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_stjump,		"stjump",	ex_stag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_stselect,	"stselect",	ex_stag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_sunhide,		"sunhide",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sunmap,		"sunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_sunmenu,		"sunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_suspend,		"suspend",	ex_stop,
+! 			TRLBAR|BANG|CMDWIN),
+  EX(CMD_sview,		"sview",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_swapname,	"swapname",	ex_swapname,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_syntax,		"syntax",	ex_syntax,
+! 			EXTRA|NOTRLCOM|CMDWIN),
+  EX(CMD_syntime,		"syntime",	ex_syntime,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN),
+  EX(CMD_syncbind,	"syncbind",	ex_syncbind,
+! 			TRLBAR),
+  EX(CMD_t,		"t",		ex_copymove,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_tNext,		"tNext",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_tag,		"tag",		ex_tag,
+! 			RANGE|NOTADR|BANG|WORD1|TRLBAR|ZEROR),
+  EX(CMD_tags,		"tags",		do_tags,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_tab,		"tab",		ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_tabclose,	"tabclose",	ex_tabclose,
+! 			RANGE|NOTADR|COUNT|BANG|TRLBAR|CMDWIN),
+  EX(CMD_tabdo,		"tabdo",	ex_listdo,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_tabedit,		"tabedit",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_tabfind,		"tabfind",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|NEEDARG|TRLBAR),
+  EX(CMD_tabfirst,	"tabfirst",	ex_tabnext,
+! 			TRLBAR),
+  EX(CMD_tabmove,		"tabmove",	ex_tabmove,
+! 			RANGE|NOTADR|ZEROR|EXTRA|NOSPC|TRLBAR),
+  EX(CMD_tablast,		"tablast",	ex_tabnext,
+! 			TRLBAR),
+  EX(CMD_tabnext,		"tabnext",	ex_tabnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_tabnew,		"tabnew",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_tabonly,		"tabonly",	ex_tabonly,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_tabprevious,	"tabprevious",	ex_tabnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_tabNext,		"tabNext",	ex_tabnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_tabrewind,	"tabrewind",	ex_tabnext,
+! 			TRLBAR),
+  EX(CMD_tabs,		"tabs",		ex_tabs,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_tcl,		"tcl",		ex_tcl,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_tcldo,		"tcldo",	ex_tcldo,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN),
+  EX(CMD_tclfile,		"tclfile",	ex_tclfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN),
+  EX(CMD_tearoff,		"tearoff",	ex_tearoff,
+! 			NEEDARG|EXTRA|TRLBAR|NOTRLCOM|CMDWIN),
+  EX(CMD_tfirst,		"tfirst",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_throw,		"throw",	ex_throw,
+! 			EXTRA|NEEDARG|SBOXOK|CMDWIN),
+  EX(CMD_tjump,		"tjump",	ex_tag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_tlast,		"tlast",	ex_tag,
+! 			BANG|TRLBAR),
+  EX(CMD_tmenu,		"tmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_tnext,		"tnext",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_topleft,		"topleft",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_tprevious,	"tprevious",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_trewind,		"trewind",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR),
+  EX(CMD_try,		"try",		ex_try,
+! 			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_tselect,		"tselect",	ex_tag,
+! 			BANG|TRLBAR|WORD1),
+  EX(CMD_tunmenu,		"tunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_undo,		"undo",		ex_undo,
+! 			RANGE|NOTADR|COUNT|ZEROR|TRLBAR|CMDWIN),
+  EX(CMD_undojoin,	"undojoin",	ex_undojoin,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_undolist,	"undolist",	ex_undolist,
+! 			TRLBAR|CMDWIN),
+  EX(CMD_unabbreviate,	"unabbreviate",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_unhide,		"unhide",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_unlet,		"unlet",	ex_unlet,
+! 			BANG|EXTRA|NEEDARG|SBOXOK|CMDWIN),
+  EX(CMD_unlockvar,	"unlockvar",	ex_lockvar,
+! 			BANG|EXTRA|NEEDARG|SBOXOK|CMDWIN),
+  EX(CMD_unmap,		"unmap",	ex_unmap,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_unmenu,		"unmenu",	ex_menu,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_unsilent,	"unsilent",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_update,		"update",	ex_update,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR),
+  EX(CMD_vglobal,		"vglobal",	ex_global,
+! 			RANGE|WHOLEFOLD|EXTRA|DFLALL|CMDWIN),
+  EX(CMD_version,		"version",	ex_version,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_verbose,		"verbose",	ex_wrongmodifier,
+! 			NEEDARG|RANGE|NOTADR|EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_vertical,	"vertical",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_visual,		"visual",	ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_view,		"view",		ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_vimgrep,		"vimgrep",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_vimgrepadd,	"vimgrepadd",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE),
+  EX(CMD_viusage,		"viusage",	ex_viusage,
+! 			TRLBAR),
+  EX(CMD_vmap,		"vmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_vmapclear,	"vmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_vmenu,		"vmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_vnoremap,	"vnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_vnew,		"vnew",		ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_vnoremenu,	"vnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_vsplit,		"vsplit",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_vunmap,		"vunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_vunmenu,		"vunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_write,		"write",	ex_write,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR|CMDWIN),
+  EX(CMD_wNext,		"wNext",	ex_wnext,
+! 			RANGE|WHOLEFOLD|NOTADR|BANG|FILE1|ARGOPT|TRLBAR),
+  EX(CMD_wall,		"wall",		do_wqall,
+! 			BANG|TRLBAR|CMDWIN),
+  EX(CMD_while,		"while",	ex_while,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN),
+  EX(CMD_winsize,		"winsize",	ex_winsize,
+! 			EXTRA|NEEDARG|TRLBAR),
+  EX(CMD_wincmd,		"wincmd",	ex_wincmd,
+! 			NEEDARG|WORD1|RANGE|NOTADR),
+  EX(CMD_windo,		"windo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_winpos,		"winpos",	ex_winpos,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_wnext,		"wnext",	ex_wnext,
+! 			RANGE|NOTADR|BANG|FILE1|ARGOPT|TRLBAR),
+  EX(CMD_wprevious,	"wprevious",	ex_wnext,
+! 			RANGE|NOTADR|BANG|FILE1|ARGOPT|TRLBAR),
+  EX(CMD_wq,		"wq",		ex_exit,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR),
+  EX(CMD_wqall,		"wqall",	do_wqall,
+! 			BANG|FILE1|ARGOPT|DFLALL|TRLBAR),
+  EX(CMD_wsverb,		"wsverb",	ex_wsverb,
+! 			EXTRA|NOTADR|NEEDARG),
+  EX(CMD_wundo,		"wundo",	ex_wundo,
+! 			BANG|NEEDARG|FILE1),
+  EX(CMD_wviminfo,	"wviminfo",	ex_viminfo,
+! 			BANG|FILE1|TRLBAR|CMDWIN),
+  EX(CMD_xit,		"xit",		ex_exit,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR|CMDWIN),
+  EX(CMD_xall,		"xall",		do_wqall,
+! 			BANG|TRLBAR),
+  EX(CMD_xmap,		"xmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_xmapclear,	"xmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_xmenu,		"xmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_xnoremap,	"xnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_xnoremenu,	"xnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_xunmap,		"xunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_xunmenu,		"xunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_yank,		"yank",		ex_operators,
+! 			RANGE|WHOLEFOLD|REGSTR|COUNT|TRLBAR|CMDWIN),
+  EX(CMD_z,		"z",		ex_z,
+! 			RANGE|WHOLEFOLD|EXTRA|EXFLAGS|TRLBAR|CMDWIN),
+  
+  /* commands that don't start with a lowercase letter */
+  EX(CMD_bang,		"!",		ex_bang,
+! 			RANGE|WHOLEFOLD|BANG|FILES|CMDWIN),
+  EX(CMD_pound,		"#",		ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN),
+  EX(CMD_and,		"&",		do_sub,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY),
+  EX(CMD_star,		"*",		ex_at,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_lshift,		"<",		ex_operators,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_equal,		"=",		ex_equal,
+! 			RANGE|TRLBAR|DFLALL|EXFLAGS|CMDWIN),
+  EX(CMD_rshift,		">",		ex_operators,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|MODIFY),
+  EX(CMD_at,		"@",		ex_at,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN),
+  EX(CMD_Next,		"Next",		ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR),
+  EX(CMD_Print,		"Print",	ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN),
+  EX(CMD_X,		"X",		ex_X,
+! 			TRLBAR),
+  EX(CMD_tilde,		"~",		do_sub,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY),
+  
+  #ifndef DO_DECLARE_EXCMD
+  #ifdef FEAT_USR_CMDS
+--- 91,1678 ----
+      char_u	*cmd_name;	/* name of the command */
+      ex_func_T   cmd_func;	/* function for this command */
+      long_u	cmd_argt;	/* flags declared above */
++     int		cmd_addr_type;	/* flag for address type */
+  }
+  # if defined(FEAT_GUI_W16)
+  _far
+  # endif
+  cmdnames[] =
+  #else
+! # define EX(a, b, c, d, e)  a
+  enum CMD_index
+  #endif
+  {
+  EX(CMD_append,		"append",	ex_append,
+! 			BANG|RANGE|ZEROR|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_abbreviate,	"abbreviate",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_abclear,		"abclear",	ex_abclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_aboveleft,	"aboveleft",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_all,		"all",		ex_all,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_amenu,		"amenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_anoremenu,	"anoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_args,		"args",		ex_args,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_argadd,		"argadd",	ex_argadd,
+! 			BANG|NEEDARG|RANGE|NOTADR|ZEROR|FILES|TRLBAR,
+! 			ADDR_ARGUMENTS),
+  EX(CMD_argdelete,	"argdelete",	ex_argdelete,
+! 			BANG|RANGE|NOTADR|FILES|TRLBAR,
+! 			ADDR_ARGUMENTS),
+  EX(CMD_argdo,		"argdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_argedit,		"argedit",	ex_argedit,
+! 			BANG|NEEDARG|RANGE|NOTADR|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_ARGUMENTS),
+  EX(CMD_argglobal,	"argglobal",	ex_args,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_arglocal,	"arglocal",	ex_args,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_argument,	"argument",	ex_argument,
+! 			BANG|RANGE|NOTADR|COUNT|EXTRA|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_ARGUMENTS),
+  EX(CMD_ascii,		"ascii",	do_ascii,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_autocmd,		"autocmd",	ex_autocmd,
+! 			BANG|EXTRA|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_augroup,		"augroup",	ex_autocmd,
+! 			BANG|WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_aunmenu,		"aunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_buffer,		"buffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|EDITCMD|TRLBAR,
+! 			ADDR_UNLOADED_BUFFERS),
+  EX(CMD_bNext,		"bNext",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_ball,		"ball",		ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_badd,		"badd",		ex_edit,
+! 			NEEDARG|FILE1|EDITCMD|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_bdelete,		"bdelete",	ex_bunload,
+! 			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+! 			ADDR_LOADED_BUFFERS),
+  EX(CMD_behave,		"behave",	ex_behave,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_belowright,	"belowright",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_bfirst,		"bfirst",	ex_brewind,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_blast,		"blast",	ex_blast,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_bmodified,	"bmodified",	ex_bmodified,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_bnext,		"bnext",	ex_bnext,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_botright,	"botright",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_bprevious,	"bprevious",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_brewind,		"brewind",	ex_brewind,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_break,		"break",	ex_break,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_breakadd,	"breakadd",	ex_breakadd,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_breakdel,	"breakdel",	ex_breakdel,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_breaklist,	"breaklist",	ex_breaklist,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_browse,		"browse",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_buffers,		"buffers",	buflist_list,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_bufdo,		"bufdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_bunload,		"bunload",	ex_bunload,
+! 			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+! 			ADDR_LOADED_BUFFERS),
+  EX(CMD_bwipeout,	"bwipeout",	ex_bunload,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|TRLBAR,
+! 			ADDR_UNLOADED_BUFFERS),
+  EX(CMD_change,		"change",	ex_change,
+! 			BANG|WHOLEFOLD|RANGE|COUNT|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_cNext,		"cNext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cNfile,		"cNfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cabbrev,		"cabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cabclear,	"cabclear",	ex_abclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_caddbuffer,	"caddbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_caddexpr,	"caddexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_caddfile,	"caddfile",	ex_cfile,
+! 			TRLBAR|FILE1,
+! 			ADDR_LINES),
+  EX(CMD_call,		"call",		ex_call,
+! 			RANGE|NEEDARG|EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_catch,		"catch",	ex_catch,
+! 			EXTRA|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cbuffer,		"cbuffer",	ex_cbuffer,
+! 			BANG|RANGE|NOTADR|WORD1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_cc,		"cc",		ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cclose,		"cclose",	ex_cclose,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_cd,		"cd",		ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_center,		"center",	ex_align,
+! 			TRLBAR|RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_cexpr,		"cexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cfile,		"cfile",	ex_cfile,
+! 			TRLBAR|FILE1|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cfirst,		"cfirst",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cgetfile,	"cgetfile",	ex_cfile,
+! 			TRLBAR|FILE1,
+! 			ADDR_LINES),
+  EX(CMD_cgetbuffer,	"cgetbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_cgetexpr,	"cgetexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_chdir,		"chdir",	ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_changes,		"changes",	ex_changes,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_checkpath,	"checkpath",	ex_checkpath,
+! 			TRLBAR|BANG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_checktime,	"checktime",	ex_checktime,
+! 			RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_clist,		"clist",	qf_list,
+! 			BANG|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_clast,		"clast",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_close,		"close",	ex_close,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR|CMDWIN,
+! 			ADDR_WINDOWS),
+  EX(CMD_cmap,		"cmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cmapclear,	"cmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cmenu,		"cmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cnext,		"cnext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cnewer,		"cnewer",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_cnfile,		"cnfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cnoremap,	"cnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cnoreabbrev,	"cnoreabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cnoremenu,	"cnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_copy,		"copy",		ex_copymove,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_colder,		"colder",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_colorscheme,	"colorscheme",	ex_colorscheme,
+! 			WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_command,		"command",	ex_command,
+! 			EXTRA|BANG|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_comclear,	"comclear",	ex_comclear,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_compiler,	"compiler",	ex_compiler,
+! 			BANG|TRLBAR|WORD1|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_continue,	"continue",	ex_continue,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_confirm,		"confirm",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_copen,		"copen",	ex_copen,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_cprevious,	"cprevious",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cpfile,		"cpfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cquit,		"cquit",	ex_cquit,
+! 			TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_crewind,		"crewind",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_cscope,		"cscope",	do_cscope,
+! 			EXTRA|NOTRLCOM|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_cstag,		"cstag",	do_cstag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_cunmap,		"cunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cunabbrev,	"cunabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cunmenu,		"cunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_cwindow,		"cwindow",	ex_cwindow,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_delete,		"delete",	ex_operators,
+! 			RANGE|WHOLEFOLD|REGSTR|COUNT|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_delmarks,	"delmarks",	ex_delmarks,
+! 			BANG|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_debug,		"debug",	ex_debug,
+! 			NEEDARG|EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_debuggreedy,	"debuggreedy",	ex_debuggreedy,
+! 			RANGE|NOTADR|ZEROR|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_delcommand,	"delcommand",	ex_delcommand,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_delfunction,	"delfunction",	ex_delfunction,
+! 			NEEDARG|WORD1|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_display,		"display",	ex_display,
+! 			EXTRA|NOTRLCOM|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_diffupdate,	"diffupdate",	ex_diffupdate,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_diffget,		"diffget",	ex_diffgetput,
+! 			RANGE|EXTRA|TRLBAR|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_diffoff,		"diffoff",	ex_diffoff,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_diffpatch,	"diffpatch",	ex_diffpatch,
+! 			EXTRA|FILE1|TRLBAR|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_diffput,		"diffput",	ex_diffgetput,
+! 			RANGE|EXTRA|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_diffsplit,	"diffsplit",	ex_diffsplit,
+! 			EXTRA|FILE1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_diffthis,	"diffthis",	ex_diffthis,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_digraphs,	"digraphs",	ex_digraphs,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_djump,		"djump",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA,
+! 			ADDR_LINES),
+  EX(CMD_dlist,		"dlist",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_doautocmd,	"doautocmd",	ex_doautocmd,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_doautoall,	"doautoall",	ex_doautoall,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_drop,		"drop",		ex_drop,
+! 			FILES|EDITCMD|NEEDARG|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_dsearch,		"dsearch",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_dsplit,		"dsplit",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA,
+! 			ADDR_LINES),
+  EX(CMD_edit,		"edit",		ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_earlier,		"earlier",	ex_later,
+! 			TRLBAR|EXTRA|NOSPC|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_echo,		"echo",		ex_echo,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_echoerr,		"echoerr",	ex_execute,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_echohl,		"echohl",	ex_echohl,
+! 			EXTRA|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_echomsg,		"echomsg",	ex_execute,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_echon,		"echon",	ex_echo,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_else,		"else",		ex_else,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_elseif,		"elseif",	ex_else,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_emenu,		"emenu",	ex_emenu,
+! 			NEEDARG|EXTRA|TRLBAR|NOTRLCOM|RANGE|NOTADR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_endif,		"endif",	ex_endif,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_endfunction,	"endfunction",	ex_endfunction,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_endfor,		"endfor",	ex_endwhile,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_endtry,		"endtry",	ex_endtry,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_endwhile,	"endwhile",	ex_endwhile,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_enew,		"enew",		ex_edit,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_ex,		"ex",		ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_execute,		"execute",	ex_execute,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_exit,		"exit",		ex_exit,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_exusage,		"exusage",	ex_exusage,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_file,		"file",		ex_file,
+! 			RANGE|NOTADR|ZEROR|BANG|FILE1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_files,		"files",	buflist_list,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_filetype,	"filetype",	ex_filetype,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_find,		"find",		ex_find,
+! 			RANGE|NOTADR|BANG|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_finally,		"finally",	ex_finally,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_finish,		"finish",	ex_finish,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_first,		"first",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_fixdel,		"fixdel",	do_fixdel,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_fold,		"fold",		ex_fold,
+! 			RANGE|WHOLEFOLD|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_foldclose,	"foldclose",	ex_foldopen,
+! 			RANGE|BANG|WHOLEFOLD|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_folddoopen,	"folddoopen",	ex_folddo,
+! 			RANGE|DFLALL|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_folddoclosed,	"folddoclosed",	ex_folddo,
+! 			RANGE|DFLALL|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_foldopen,	"foldopen",	ex_foldopen,
+! 			RANGE|BANG|WHOLEFOLD|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_for,		"for",		ex_while,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_function,	"function",	ex_function,
+! 			EXTRA|BANG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_global,		"global",	ex_global,
+! 			RANGE|WHOLEFOLD|BANG|EXTRA|DFLALL|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_goto,		"goto",		ex_goto,
+! 			RANGE|NOTADR|COUNT|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_grep,		"grep",		ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_grepadd,		"grepadd",	ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_gui,		"gui",		ex_gui,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_gvim,		"gvim",		ex_gui,
+! 			BANG|FILES|EDITCMD|ARGOPT|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_help,		"help",		ex_help,
+! 			BANG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_helpclose,	"helpclose",	ex_helpclose,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_helpfind,	"helpfind",	ex_helpfind,
+! 			EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_helpgrep,	"helpgrep",	ex_helpgrep,
+! 			EXTRA|NOTRLCOM|NEEDARG,
+! 			ADDR_LINES),
+  EX(CMD_helptags,	"helptags",	ex_helptags,
+! 			NEEDARG|FILES|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_hardcopy,	"hardcopy",	ex_hardcopy,
+! 			RANGE|COUNT|EXTRA|TRLBAR|DFLALL|BANG,
+! 			ADDR_LINES),
+  EX(CMD_highlight,	"highlight",	ex_highlight,
+! 			BANG|EXTRA|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_hide,		"hide",		ex_hide,
+! 			BANG|RANGE|NOTADR|COUNT|EXTRA|NOTRLCOM,
+! 			ADDR_WINDOWS),
+  EX(CMD_history,		"history",	ex_history,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_insert,		"insert",	ex_append,
+! 			BANG|RANGE|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_iabbrev,		"iabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_iabclear,	"iabclear",	ex_abclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_if,		"if",		ex_if,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_ijump,		"ijump",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA,
+! 			ADDR_LINES),
+  EX(CMD_ilist,		"ilist",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_imap,		"imap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_imapclear,	"imapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_imenu,		"imenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_inoremap,	"inoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_inoreabbrev,	"inoreabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_inoremenu,	"inoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_intro,		"intro",	ex_intro,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_isearch,		"isearch",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_isplit,		"isplit",	ex_findpat,
+! 			BANG|RANGE|DFLALL|WHOLEFOLD|EXTRA,
+! 			ADDR_LINES),
+  EX(CMD_iunmap,		"iunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_iunabbrev,	"iunabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_iunmenu,		"iunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_join,		"join",		ex_join,
+! 			BANG|RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_jumps,		"jumps",	ex_jumps,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_k,		"k",		ex_mark,
+! 			RANGE|WORD1|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_keepmarks,	"keepmarks",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_keepjumps,	"keepjumps",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_keeppatterns,	"keeppatterns",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_keepalt,		"keepalt",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_list,		"list",		ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lNext,		"lNext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lNfile,		"lNfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_last,		"last",		ex_last,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_language,	"language",	ex_language,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_laddexpr,	"laddexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_laddbuffer,	"laddbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_laddfile,	"laddfile",	ex_cfile,
+! 			TRLBAR|FILE1,
+! 			ADDR_LINES),
+  EX(CMD_later,		"later",	ex_later,
+! 			TRLBAR|EXTRA|NOSPC|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lbuffer,		"lbuffer",	ex_cbuffer,
+! 			BANG|RANGE|NOTADR|WORD1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lcd,		"lcd",		ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lchdir,		"lchdir",	ex_cd,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lclose,		"lclose",	ex_cclose,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lcscope,		"lcscope",	do_cscope,
+! 			EXTRA|NOTRLCOM|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_left,		"left",		ex_align,
+! 			TRLBAR|RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_leftabove,	"leftabove",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_let,		"let",		ex_let,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lexpr,		"lexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lfile,		"lfile",	ex_cfile,
+! 			TRLBAR|FILE1|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lfirst,		"lfirst",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lgetfile,	"lgetfile",	ex_cfile,
+! 			TRLBAR|FILE1,
+! 			ADDR_LINES),
+  EX(CMD_lgetbuffer,	"lgetbuffer",	ex_cbuffer,
+! 			RANGE|NOTADR|WORD1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lgetexpr,	"lgetexpr",	ex_cexpr,
+! 			NEEDARG|WORD1|NOTRLCOM|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lgrep,		"lgrep",	ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_lgrepadd,	"lgrepadd",	ex_make,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_lhelpgrep,	"lhelpgrep",	ex_helpgrep,
+! 			EXTRA|NOTRLCOM|NEEDARG,
+! 			ADDR_LINES),
+  EX(CMD_ll,		"ll",		ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_llast,		"llast",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_llist,		"llist",	qf_list,
+! 			BANG|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lmap,		"lmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lmapclear,	"lmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lmake,		"lmake",	ex_make,
+! 			BANG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_lnoremap,	"lnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lnext,		"lnext",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lnewer,		"lnewer",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lnfile,		"lnfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_loadview,	"loadview",	ex_loadview,
+! 			FILE1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_loadkeymap,	"loadkeymap",	ex_loadkeymap,
+! 			CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lockmarks,	"lockmarks",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_lockvar,		"lockvar",	ex_lockvar,
+! 			BANG|EXTRA|NEEDARG|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lolder,		"lolder",	qf_age,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lopen,		"lopen",	ex_copen,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_lprevious,	"lprevious",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lpfile,		"lpfile",	ex_cnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_lrewind,		"lrewind",	ex_cc,
+! 			RANGE|NOTADR|COUNT|TRLBAR|BANG,
+! 			ADDR_LINES),
+  EX(CMD_ltag,		"ltag",	ex_tag,
+! 			NOTADR|TRLBAR|BANG|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_lunmap,		"lunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lua,		"lua",		ex_lua,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_luado,		"luado",	ex_luado,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_luafile,		"luafile",	ex_luafile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lvimgrep,	"lvimgrep",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_lvimgrepadd,	"lvimgrepadd",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_lwindow,		"lwindow",	ex_cwindow,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_ls,		"ls",		buflist_list,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_move,		"move",		ex_copymove,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_mark,		"mark",		ex_mark,
+! 			RANGE|WORD1|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_make,		"make",		ex_make,
+! 			BANG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_map,		"map",		ex_map,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_mapclear,	"mapclear",	ex_mapclear,
+! 			EXTRA|BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_marks,		"marks",	do_marks,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_match,		"match",	ex_match,
+! 			RANGE|NOTADR|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_menu,		"menu",		ex_menu,
+! 			RANGE|NOTADR|ZEROR|BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_menutranslate,	"menutranslate", ex_menutranslate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_messages,	"messages",	ex_messages,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_mkexrc,		"mkexrc",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_mksession,	"mksession",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_mkspell,		"mkspell",	ex_mkspell,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_mkvimrc,		"mkvimrc",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_mkview,		"mkview",	ex_mkrc,
+! 			BANG|FILE1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_mode,		"mode",		ex_mode,
+! 			WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_mzscheme,	"mzscheme",	ex_mzscheme,
+! 			RANGE|EXTRA|DFLALL|NEEDARG|CMDWIN|SBOXOK,
+! 			ADDR_LINES),
+  EX(CMD_mzfile,		"mzfile",	ex_mzfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_next,		"next",		ex_next,
+! 			RANGE|NOTADR|BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_nbkey,		"nbkey",	ex_nbkey,
+! 			EXTRA|NOTADR|NEEDARG,
+! 			ADDR_LINES),
+  EX(CMD_nbclose,		"nbclose",	ex_nbclose,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nbstart,		"nbstart",	ex_nbstart,
+! 			WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_new,		"new",		ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_nmap,		"nmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nmapclear,	"nmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nmenu,		"nmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nnoremap,	"nnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nnoremenu,	"nnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_noremap,		"noremap",	ex_map,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_noautocmd,	"noautocmd",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_nohlsearch,	"nohlsearch",	ex_nohlsearch,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_noreabbrev,	"noreabbrev",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_noremenu,	"noremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_noswapfile,	"noswapfile",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_normal,		"normal",	ex_normal,
+! 			RANGE|BANG|EXTRA|NEEDARG|NOTRLCOM|USECTRLV|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_number,		"number",	ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nunmap,		"nunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_nunmenu,		"nunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_open,		"open",		ex_open,
+! 			RANGE|BANG|EXTRA,
+! 			ADDR_LINES),
+  EX(CMD_oldfiles,	"oldfiles",	ex_oldfiles,
+! 			BANG|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_omap,		"omap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_omapclear,	"omapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_omenu,		"omenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_only,		"only",		ex_only,
+! 			BANG|NOTADR|RANGE|COUNT|TRLBAR,
+! 			ADDR_WINDOWS),
+  EX(CMD_onoremap,	"onoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_onoremenu,	"onoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_options,		"options",	ex_options,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_ounmap,		"ounmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_ounmenu,		"ounmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_ownsyntax,	"ownsyntax",	ex_ownsyntax,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_print,		"print",	ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|SBOXOK,
+! 			ADDR_LINES),
+  EX(CMD_pclose,		"pclose",	ex_pclose,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_perl,		"perl",		ex_perl,
+! 			RANGE|EXTRA|DFLALL|NEEDARG|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_perldo,		"perldo",	ex_perldo,
+! 			RANGE|EXTRA|DFLALL|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_pedit,		"pedit",	ex_pedit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_pop,		"pop",		ex_tag,
+! 			RANGE|NOTADR|BANG|COUNT|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_popup,		"popup",	ex_popup,
+! 			NEEDARG|EXTRA|BANG|TRLBAR|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_ppop,		"ppop",		ex_ptag,
+! 			RANGE|NOTADR|BANG|COUNT|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_preserve,	"preserve",	ex_preserve,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_previous,	"previous",	ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_promptfind,	"promptfind",	gui_mch_find_dialog,
+! 			EXTRA|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_promptrepl,	"promptrepl",	gui_mch_replace_dialog,
+! 			EXTRA|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_profile,		"profile",	ex_profile,
+! 			BANG|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_profdel,		"profdel",	ex_breakdel,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_psearch,		"psearch",	ex_psearch,
+! 			BANG|RANGE|WHOLEFOLD|DFLALL|EXTRA,
+! 			ADDR_LINES),
+  EX(CMD_ptag,		"ptag",		ex_ptag,
+! 			RANGE|NOTADR|BANG|WORD1|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_ptNext,		"ptNext",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_ptfirst,		"ptfirst",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_ptjump,		"ptjump",	ex_ptag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_ptlast,		"ptlast",	ex_ptag,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_ptnext,		"ptnext",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_ptprevious,	"ptprevious",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_ptrewind,	"ptrewind",	ex_ptag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_ptselect,	"ptselect",	ex_ptag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_put,		"put",		ex_put,
+! 			RANGE|WHOLEFOLD|BANG|REGSTR|TRLBAR|ZEROR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_pwd,		"pwd",		ex_pwd,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_python,		"python",	ex_python,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_pydo,		"pydo",		ex_pydo,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_pyfile,		"pyfile",	ex_pyfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_py3,		"py3",		ex_py3,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_py3do,		"py3do",	ex_py3do,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_python3,		"python3",	ex_py3,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_py3file,		"py3file",	ex_py3file,
+! 			RANGE|FILE1|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_quit,		"quit",		ex_quit,
+! 			BANG|RANGE|COUNT|NOTADR|TRLBAR|CMDWIN,
+! 			ADDR_WINDOWS),
+  EX(CMD_quitall,		"quitall",	ex_quit_all,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_qall,		"qall",		ex_quit_all,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_read,		"read",		ex_read,
+! 			BANG|RANGE|WHOLEFOLD|FILE1|ARGOPT|TRLBAR|ZEROR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_recover,		"recover",	ex_recover,
+! 			BANG|FILE1|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_redo,		"redo",		ex_redo,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_redir,		"redir",	ex_redir,
+! 			BANG|FILES|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_redraw,		"redraw",	ex_redraw,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_redrawstatus,	"redrawstatus",	ex_redrawstatus,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_registers,	"registers",	ex_display,
+! 			EXTRA|NOTRLCOM|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_resize,		"resize",	ex_resize,
+! 			RANGE|NOTADR|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_retab,		"retab",	ex_retab,
+! 			TRLBAR|RANGE|WHOLEFOLD|DFLALL|BANG|WORD1|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_return,		"return",	ex_return,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_rewind,		"rewind",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_right,		"right",	ex_align,
+! 			TRLBAR|RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_rightbelow,	"rightbelow",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_runtime,		"runtime",	ex_runtime,
+! 			BANG|NEEDARG|FILES|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_ruby,		"ruby",		ex_ruby,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_rubydo,		"rubydo",	ex_rubydo,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_rubyfile,	"rubyfile",	ex_rubyfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_rundo,		"rundo",	ex_rundo,
+! 			NEEDARG|FILE1,
+! 			ADDR_LINES),
+  EX(CMD_rviminfo,	"rviminfo",	ex_viminfo,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_substitute,	"substitute",	do_sub,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_sNext,		"sNext",	ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sargument,	"sargument",	ex_argument,
+! 			BANG|RANGE|NOTADR|COUNT|EXTRA|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_ARGUMENTS),
+  EX(CMD_sall,		"sall",		ex_all,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sandbox,		"sandbox",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_saveas,		"saveas",	ex_write,
+! 			BANG|DFLALL|FILE1|ARGOPT|CMDWIN|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sbuffer,		"sbuffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|EDITCMD|TRLBAR,
+! 			ADDR_UNLOADED_BUFFERS),
+  EX(CMD_sbNext,		"sbNext",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sball,		"sball",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sbfirst,		"sbfirst",	ex_brewind,
+! 			EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sblast,		"sblast",	ex_blast,
+! 			EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sbmodified,	"sbmodified",	ex_bmodified,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sbnext,		"sbnext",	ex_bnext,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sbprevious,	"sbprevious",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sbrewind,	"sbrewind",	ex_brewind,
+! 			EDITCMD|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_scriptnames,	"scriptnames",	ex_scriptnames,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_scriptencoding,	"scriptencoding", ex_scriptencoding,
+! 			WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_scscope,		"scscope",	do_scscope,
+! 			EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_set,		"set",		ex_set,
+! 			TRLBAR|EXTRA|CMDWIN|SBOXOK,
+! 			ADDR_LINES),
+  EX(CMD_setfiletype,	"setfiletype",	ex_setfiletype,
+! 			TRLBAR|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_setglobal,	"setglobal",	ex_set,
+! 			TRLBAR|EXTRA|CMDWIN|SBOXOK,
+! 			ADDR_LINES),
+  EX(CMD_setlocal,	"setlocal",	ex_set,
+! 			TRLBAR|EXTRA|CMDWIN|SBOXOK,
+! 			ADDR_LINES),
+  EX(CMD_sfind,		"sfind",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sfirst,		"sfirst",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_shell,		"shell",	ex_shell,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_simalt,		"simalt",	ex_simalt,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_sign,		"sign",		ex_sign,
+! 			NEEDARG|RANGE|NOTADR|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_silent,		"silent",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|BANG|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_sleep,		"sleep",	ex_sleep,
+! 			RANGE|NOTADR|COUNT|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_slast,		"slast",	ex_last,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_smagic,		"smagic",	ex_submagic,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_smap,		"smap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_smapclear,	"smapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_smenu,		"smenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_snext,		"snext",	ex_next,
+! 			RANGE|NOTADR|BANG|FILES|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sniff,		"sniff",	ex_sniff,
+! 			EXTRA|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_snomagic,	"snomagic",	ex_submagic,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_snoremap,	"snoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_snoremenu,	"snoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_source,		"source",	ex_source,
+! 			BANG|FILE1|TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_sort,		"sort",		ex_sort,
+! 			RANGE|DFLALL|WHOLEFOLD|BANG|EXTRA|NOTRLCOM|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_split,		"split",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_spellgood,	"spellgood",	ex_spell,
+! 			BANG|RANGE|NOTADR|NEEDARG|EXTRA|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_spelldump,	"spelldump",	ex_spelldump,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_spellinfo,	"spellinfo",	ex_spellinfo,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_spellrepall,	"spellrepall",	ex_spellrepall,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_spellundo,	"spellundo",	ex_spell,
+! 			BANG|RANGE|NOTADR|NEEDARG|EXTRA|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_spellwrong,	"spellwrong",	ex_spell,
+! 			BANG|RANGE|NOTADR|NEEDARG|EXTRA|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sprevious,	"sprevious",	ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_srewind,		"srewind",	ex_rewind,
+! 			EXTRA|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_stop,		"stop",		ex_stop,
+! 			TRLBAR|BANG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_stag,		"stag",		ex_stag,
+! 			RANGE|NOTADR|BANG|WORD1|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_startinsert,	"startinsert",	ex_startinsert,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_startgreplace,	"startgreplace", ex_startinsert,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_startreplace,	"startreplace",	ex_startinsert,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_stopinsert,	"stopinsert",	ex_stopinsert,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_stjump,		"stjump",	ex_stag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_stselect,	"stselect",	ex_stag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_sunhide,		"sunhide",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_sunmap,		"sunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_sunmenu,		"sunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_suspend,		"suspend",	ex_stop,
+! 			TRLBAR|BANG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_sview,		"sview",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_swapname,	"swapname",	ex_swapname,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_syntax,		"syntax",	ex_syntax,
+! 			EXTRA|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_syntime,		"syntime",	ex_syntime,
+! 			NEEDARG|WORD1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_syncbind,	"syncbind",	ex_syncbind,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_t,		"t",		ex_copymove,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_tNext,		"tNext",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_tag,		"tag",		ex_tag,
+! 			RANGE|NOTADR|BANG|WORD1|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_tags,		"tags",		do_tags,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tab,		"tab",		ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_tabclose,	"tabclose",	ex_tabclose,
+! 			RANGE|NOTADR|COUNT|BANG|TRLBAR|CMDWIN,
+! 			ADDR_TABS),
+  EX(CMD_tabdo,		"tabdo",	ex_listdo,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_tabedit,		"tabedit",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_TABS),
+  EX(CMD_tabfind,		"tabfind",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|NEEDARG|TRLBAR,
+! 			ADDR_TABS),
+  EX(CMD_tabfirst,	"tabfirst",	ex_tabnext,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tabmove,		"tabmove",	ex_tabmove,
+! 			RANGE|NOTADR|ZEROR|EXTRA|NOSPC|TRLBAR,
+! 			ADDR_TABS),
+  EX(CMD_tablast,		"tablast",	ex_tabnext,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tabnext,		"tabnext",	ex_tabnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tabnew,		"tabnew",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_TABS),
+  EX(CMD_tabonly,		"tabonly",	ex_tabonly,
+! 			BANG|RANGE|NOTADR|TRLBAR|CMDWIN,
+! 			ADDR_TABS),
+  EX(CMD_tabprevious,	"tabprevious",	ex_tabnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tabNext,		"tabNext",	ex_tabnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tabrewind,	"tabrewind",	ex_tabnext,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tabs,		"tabs",		ex_tabs,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tcl,		"tcl",		ex_tcl,
+! 			RANGE|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tcldo,		"tcldo",	ex_tcldo,
+! 			RANGE|DFLALL|EXTRA|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tclfile,		"tclfile",	ex_tclfile,
+! 			RANGE|FILE1|NEEDARG|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tearoff,		"tearoff",	ex_tearoff,
+! 			NEEDARG|EXTRA|TRLBAR|NOTRLCOM|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tfirst,		"tfirst",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_throw,		"throw",	ex_throw,
+! 			EXTRA|NEEDARG|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tjump,		"tjump",	ex_tag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_tlast,		"tlast",	ex_tag,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tmenu,		"tmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tnext,		"tnext",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_topleft,		"topleft",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_tprevious,	"tprevious",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_trewind,		"trewind",	ex_tag,
+! 			RANGE|NOTADR|BANG|TRLBAR|ZEROR,
+! 			ADDR_LINES),
+  EX(CMD_try,		"try",		ex_try,
+! 			TRLBAR|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_tselect,		"tselect",	ex_tag,
+! 			BANG|TRLBAR|WORD1,
+! 			ADDR_LINES),
+  EX(CMD_tunmenu,		"tunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_undo,		"undo",		ex_undo,
+! 			RANGE|NOTADR|COUNT|ZEROR|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_undojoin,	"undojoin",	ex_undojoin,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_undolist,	"undolist",	ex_undolist,
+! 			TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_unabbreviate,	"unabbreviate",	ex_abbreviate,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_unhide,		"unhide",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_unlet,		"unlet",	ex_unlet,
+! 			BANG|EXTRA|NEEDARG|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_unlockvar,	"unlockvar",	ex_lockvar,
+! 			BANG|EXTRA|NEEDARG|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_unmap,		"unmap",	ex_unmap,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_unmenu,		"unmenu",	ex_menu,
+! 			BANG|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_unsilent,	"unsilent",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_update,		"update",	ex_update,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_vglobal,		"vglobal",	ex_global,
+! 			RANGE|WHOLEFOLD|EXTRA|DFLALL|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_version,		"version",	ex_version,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_verbose,		"verbose",	ex_wrongmodifier,
+! 			NEEDARG|RANGE|NOTADR|EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vertical,	"vertical",	ex_wrongmodifier,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_visual,		"visual",	ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_view,		"view",		ex_edit,
+! 			BANG|FILE1|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_vimgrep,		"vimgrep",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_vimgrepadd,	"vimgrepadd",	ex_vimgrep,
+! 			RANGE|NOTADR|BANG|NEEDARG|EXTRA|NOTRLCOM|TRLBAR|XFILE,
+! 			ADDR_LINES),
+  EX(CMD_viusage,		"viusage",	ex_viusage,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_vmap,		"vmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vmapclear,	"vmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vmenu,		"vmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vnoremap,	"vnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vnew,		"vnew",		ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_vnoremenu,	"vnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vsplit,		"vsplit",	ex_splitview,
+! 			BANG|FILE1|RANGE|NOTADR|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_vunmap,		"vunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_vunmenu,		"vunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_write,		"write",	ex_write,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_wNext,		"wNext",	ex_wnext,
+! 			RANGE|WHOLEFOLD|NOTADR|BANG|FILE1|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_wall,		"wall",		do_wqall,
+! 			BANG|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_while,		"while",	ex_while,
+! 			EXTRA|NOTRLCOM|SBOXOK|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_winsize,		"winsize",	ex_winsize,
+! 			EXTRA|NEEDARG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_wincmd,		"wincmd",	ex_wincmd,
+! 			NEEDARG|WORD1|RANGE|NOTADR,
+! 			ADDR_LINES),
+  EX(CMD_windo,		"windo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_winpos,		"winpos",	ex_winpos,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_wnext,		"wnext",	ex_wnext,
+! 			RANGE|NOTADR|BANG|FILE1|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_wprevious,	"wprevious",	ex_wnext,
+! 			RANGE|NOTADR|BANG|FILE1|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_wq,		"wq",		ex_exit,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_wqall,		"wqall",	do_wqall,
+! 			BANG|FILE1|ARGOPT|DFLALL|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_wsverb,		"wsverb",	ex_wsverb,
+! 			EXTRA|NOTADR|NEEDARG,
+! 			ADDR_LINES),
+  EX(CMD_wundo,		"wundo",	ex_wundo,
+! 			BANG|NEEDARG|FILE1,
+! 			ADDR_LINES),
+  EX(CMD_wviminfo,	"wviminfo",	ex_viminfo,
+! 			BANG|FILE1|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xit,		"xit",		ex_exit,
+! 			RANGE|WHOLEFOLD|BANG|FILE1|ARGOPT|DFLALL|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xall,		"xall",		do_wqall,
+! 			BANG|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_xmap,		"xmap",		ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xmapclear,	"xmapclear",	ex_mapclear,
+! 			EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xmenu,		"xmenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xnoremap,	"xnoremap",	ex_map,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xnoremenu,	"xnoremenu",	ex_menu,
+! 			RANGE|NOTADR|ZEROR|EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xunmap,		"xunmap",	ex_unmap,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_xunmenu,		"xunmenu",	ex_menu,
+! 			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_yank,		"yank",		ex_operators,
+! 			RANGE|WHOLEFOLD|REGSTR|COUNT|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_z,		"z",		ex_z,
+! 			RANGE|WHOLEFOLD|EXTRA|EXFLAGS|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  
+  /* commands that don't start with a lowercase letter */
+  EX(CMD_bang,		"!",		ex_bang,
+! 			RANGE|WHOLEFOLD|BANG|FILES|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_pound,		"#",		ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_and,		"&",		do_sub,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_star,		"*",		ex_at,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_lshift,		"<",		ex_operators,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_equal,		"=",		ex_equal,
+! 			RANGE|TRLBAR|DFLALL|EXFLAGS|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_rshift,		">",		ex_operators,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  EX(CMD_at,		"@",		ex_at,
+! 			RANGE|WHOLEFOLD|EXTRA|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_Next,		"Next",		ex_previous,
+! 			EXTRA|RANGE|NOTADR|COUNT|BANG|EDITCMD|ARGOPT|TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_Print,		"Print",	ex_print,
+! 			RANGE|WHOLEFOLD|COUNT|EXFLAGS|TRLBAR|CMDWIN,
+! 			ADDR_LINES),
+  EX(CMD_X,		"X",		ex_X,
+! 			TRLBAR,
+! 			ADDR_LINES),
+  EX(CMD_tilde,		"~",		do_sub,
+! 			RANGE|WHOLEFOLD|EXTRA|CMDWIN|MODIFY,
+! 			ADDR_LINES),
+  
+  #ifndef DO_DECLARE_EXCMD
+  #ifdef FEAT_USR_CMDS
+***************
+*** 1172,1177 ****
+--- 1704,1710 ----
+      int		addr_count;	/* the number of addresses given */
+      linenr_T	line1;		/* the first line number */
+      linenr_T	line2;		/* the second line number or count */
++     int		addr_type;	/* type of the count/range */
+      int		flags;		/* extra flags after count: EXFLAG_ */
+      char_u	*do_ecmd_cmd;	/* +command arg to be used in edited file */
+      linenr_T	do_ecmd_lnum;	/* the line number in an edited file */
+*** ../vim-7.4.529/src/ex_docmd.c	2014-11-12 15:15:34.975882161 +0100
+--- src/ex_docmd.c	2014-11-27 15:26:52.667097859 +0100
+***************
+*** 60,65 ****
+--- 60,66 ----
+  # define IS_USER_CMDIDX(idx) (FALSE)
+  #endif
+  
++ static int compute_buffer_local_count __ARGS((int addr_type, int lnum, int local));
+  #ifdef FEAT_EVAL
+  static char_u	*do_one_cmd __ARGS((char_u **, int, struct condstack *, char_u *(*fgetline)(int, void *, int), void *cookie));
+  #else
+***************
+*** 133,139 ****
+  #endif
+  
+  static int	check_more __ARGS((int, int));
+! static linenr_T get_address __ARGS((char_u **, int skip, int to_other_file));
+  static void	get_flags __ARGS((exarg_T *eap));
+  #if !defined(FEAT_PERL) \
+  	|| !defined(FEAT_PYTHON) || !defined(FEAT_PYTHON3) \
+--- 134,140 ----
+  #endif
+  
+  static int	check_more __ARGS((int, int));
+! static linenr_T get_address __ARGS((char_u **, int addr_type, int skip, int to_other_file));
+  static void	get_flags __ARGS((exarg_T *eap));
+  #if !defined(FEAT_PERL) \
+  	|| !defined(FEAT_PYTHON) || !defined(FEAT_PYTHON3) \
+***************
+*** 1680,1685 ****
+--- 1681,1719 ----
+  }
+  #endif
+  
++ 
++ /*
++  * Helper function to apply an offset for buffer commands, i.e. ":bdelete",
++  * ":bwipeout", etc.
++  * Returns the buffer number.
++  */
++     static int
++ compute_buffer_local_count(addr_type, lnum, offset)
++     int	    addr_type;
++     int	    lnum;
++     int	    offset;
++ {
++     buf_T   *buf;
++     int     count = offset;
++ 
++     buf = firstbuf;
++     while (buf->b_next != NULL && buf->b_fnum < lnum)
++ 	buf = buf->b_next;
++     while (count != 0)
++     {
++ 	count += (count < 0) ? 1 : -1;
++ 	if (buf->b_prev == NULL)
++ 	    break;
++ 	buf = (count < 0) ? buf->b_prev : buf->b_next;
++ 	if (addr_type == ADDR_LOADED_BUFFERS)
++ 	    /* skip over unloaded buffers */
++ 	    while (buf->b_prev != NULL && buf->b_ml.ml_mfp == NULL)
++ 		buf = (count < 0) ? buf->b_prev : buf->b_next;
++     }
++     return buf->b_fnum;
++ }
++ 
++ 
+  /*
+   * Execute one Ex command.
+   *
+***************
+*** 1687,1696 ****
+   *
+   * 1. skip comment lines and leading space
+   * 2. handle command modifiers
+!  * 3. parse range
+!  * 4. parse command
+!  * 5. parse arguments
+!  * 6. switch on command name
+   *
+   * Note: "fgetline" can be NULL.
+   *
+--- 1721,1730 ----
+   *
+   * 1. skip comment lines and leading space
+   * 2. handle command modifiers
+!  * 3. parse command
+!  * 4. parse range
+!  * 6. parse arguments
+!  * 7. switch on command name
+   *
+   * Note: "fgetline" can be NULL.
+   *
+***************
+*** 1730,1735 ****
+--- 1764,1772 ----
+  #endif
+      cmdmod_T		save_cmdmod;
+      int			ni;			/* set when Not Implemented */
++     win_T		*wp;
++     tabpage_T		*tp;
++     char_u		*cmd;
+  
+      vim_memset(&ea, 0, sizeof(ea));
+      ea.line1 = 1;
+***************
+*** 1769,1775 ****
+      for (;;)
+      {
+  /*
+!  * 1. skip comment lines and leading white space and colons
+   */
+  	while (*ea.cmd == ' ' || *ea.cmd == '\t' || *ea.cmd == ':')
+  	    ++ea.cmd;
+--- 1806,1812 ----
+      for (;;)
+      {
+  /*
+!  * 1. Skip comment lines and leading white space and colons.
+   */
+  	while (*ea.cmd == ' ' || *ea.cmd == '\t' || *ea.cmd == ':')
+  	    ++ea.cmd;
+***************
+*** 1794,1800 ****
+  	}
+  
+  /*
+!  * 2. handle command modifiers.
+   */
+  	p = ea.cmd;
+  	if (VIM_ISDIGIT(*ea.cmd))
+--- 1831,1837 ----
+  	}
+  
+  /*
+!  * 2. Handle command modifiers.
+   */
+  	p = ea.cmd;
+  	if (VIM_ISDIGIT(*ea.cmd))
+***************
+*** 2003,2009 ****
+  #endif
+  
+  /*
+!  * 3. parse a range specifier of the form: addr [,addr] [;addr] ..
+   *
+   * where 'addr' is:
+   *
+--- 2040,2057 ----
+  #endif
+  
+  /*
+!  * 3. Skip over the range to find the command.  Let "p" point to after it.
+!  *
+!  * We need the command to know what kind of range it uses.
+!  */
+!     cmd = ea.cmd;
+!     ea.cmd = skip_range(ea.cmd, NULL);
+!     if (*ea.cmd == '*' && vim_strchr(p_cpo, CPO_STAR) == NULL)
+! 	ea.cmd = skipwhite(ea.cmd + 1);
+!     p = find_command(&ea, NULL);
+! 
+! /*
+!  * 4. parse a range specifier of the form: addr [,addr] [;addr] ..
+   *
+   * where 'addr' is:
+   *
+***************
+*** 2019,2031 ****
+   * is equal to the lower.
+   */
+  
+      /* repeat for all ',' or ';' separated addresses */
+      for (;;)
+      {
+  	ea.line1 = ea.line2;
+! 	ea.line2 = curwin->w_cursor.lnum;   /* default is current line number */
+  	ea.cmd = skipwhite(ea.cmd);
+! 	lnum = get_address(&ea.cmd, ea.skip, ea.addr_count == 0);
+  	if (ea.cmd == NULL)		    /* error detected */
+  	    goto doend;
+  	if (lnum == MAXLNUM)
+--- 2067,2118 ----
+   * is equal to the lower.
+   */
+  
++     if (ea.cmdidx != CMD_SIZE)
++ 	ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
++     else
++ 	ea.addr_type = ADDR_LINES;
++     ea.cmd = cmd;
++ 
+      /* repeat for all ',' or ';' separated addresses */
+      for (;;)
+      {
+  	ea.line1 = ea.line2;
+! 	switch (ea.addr_type)
+! 	{
+! 	    case ADDR_LINES:
+! 		/* default is current line number */
+! 		ea.line2 = curwin->w_cursor.lnum;
+! 		break;
+! 	    case ADDR_WINDOWS:
+! 		lnum = 0;
+! 		for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 		{
+! 		    lnum++;
+! 		    if (wp == curwin)
+! 			break;
+! 		}
+! 		ea.line2 = lnum;
+! 		break;
+! 	    case ADDR_ARGUMENTS:
+! 		ea.line2 = curwin->w_arg_idx + 1;
+! 		break;
+! 	    case ADDR_LOADED_BUFFERS:
+! 	    case ADDR_UNLOADED_BUFFERS:
+! 		ea.line2 = curbuf->b_fnum;
+! 		break;
+! 	    case ADDR_TABS:
+! 		lnum = 0;
+! 		for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 		{
+! 		    lnum++;
+! 		    if (tp == curtab)
+! 			break;
+! 		}
+! 		ea.line2 = lnum;
+! 		break;
+! 	}
+  	ea.cmd = skipwhite(ea.cmd);
+! 	lnum = get_address(&ea.cmd, ea.addr_type, ea.skip, ea.addr_count == 0);
+  	if (ea.cmd == NULL)		    /* error detected */
+  	    goto doend;
+  	if (lnum == MAXLNUM)
+***************
+*** 2033,2040 ****
+  	    if (*ea.cmd == '%')		    /* '%' - all lines */
+  	    {
+  		++ea.cmd;
+! 		ea.line1 = 1;
+! 		ea.line2 = curbuf->b_ml.ml_line_count;
+  		++ea.addr_count;
+  	    }
+  					    /* '*' - visual area */
+--- 2120,2143 ----
+  	    if (*ea.cmd == '%')		    /* '%' - all lines */
+  	    {
+  		++ea.cmd;
+! 		switch (ea.addr_type)
+! 		{
+! 		    case ADDR_LINES:
+! 			ea.line1 = 1;
+! 			ea.line2 = curbuf->b_ml.ml_line_count;
+! 			break;
+! 		    case ADDR_WINDOWS:
+! 		    case ADDR_LOADED_BUFFERS:
+! 		    case ADDR_UNLOADED_BUFFERS:
+! 		    case ADDR_TABS:
+! 			errormsg = (char_u *)_(e_invrange);
+! 			goto doend;
+! 			break;
+! 		    case ADDR_ARGUMENTS:
+! 			ea.line1 = 1;
+! 			ea.line2 = ARGCOUNT;
+! 			break;
+! 		}
+  		++ea.addr_count;
+  	    }
+  					    /* '*' - visual area */
+***************
+*** 2042,2047 ****
+--- 2145,2156 ----
+  	    {
+  		pos_T	    *fp;
+  
++ 		if (ea.addr_type != ADDR_LINES)
++ 		{
++ 		    errormsg = (char_u *)_(e_invrange);
++ 		    goto doend;
++ 		}
++ 
+  		++ea.cmd;
+  		if (!ea.skip)
+  		{
+***************
+*** 2084,2090 ****
+      check_cursor_lnum();
+  
+  /*
+!  * 4. parse command
+   */
+  
+      /*
+--- 2193,2199 ----
+      check_cursor_lnum();
+  
+  /*
+!  * 5. Parse the command.
+   */
+  
+      /*
+***************
+*** 2098,2105 ****
+       * If we got a line, but no command, then go to the line.
+       * If we find a '|' or '\n' we set ea.nextcmd.
+       */
+!     if (*ea.cmd == NUL || *ea.cmd == '"' ||
+! 			       (ea.nextcmd = check_nextcmd(ea.cmd)) != NULL)
+      {
+  	/*
+  	 * strange vi behaviour:
+--- 2207,2214 ----
+       * If we got a line, but no command, then go to the line.
+       * If we find a '|' or '\n' we set ea.nextcmd.
+       */
+!     if (*ea.cmd == NUL || *ea.cmd == '"'
+! 			      || (ea.nextcmd = check_nextcmd(ea.cmd)) != NULL)
+      {
+  	/*
+  	 * strange vi behaviour:
+***************
+*** 2145,2153 ****
+  	goto doend;
+      }
+  
+-     /* Find the command and let "p" point to after it. */
+-     p = find_command(&ea, NULL);
+- 
+  #ifdef FEAT_AUTOCMD
+      /* If this looks like an undefined user command and there are CmdUndefined
+       * autocommands defined, trigger the matching autocommands. */
+--- 2254,2259 ----
+***************
+*** 2229,2235 ****
+  	ea.forceit = FALSE;
+  
+  /*
+!  * 5. parse arguments
+   */
+      if (!IS_USER_CMDIDX(ea.cmdidx))
+  	ea.argt = (long)cmdnames[(int)ea.cmdidx].cmd_argt;
+--- 2335,2341 ----
+  	ea.forceit = FALSE;
+  
+  /*
+!  * 5. Parse arguments.
+   */
+      if (!IS_USER_CMDIDX(ea.cmdidx))
+  	ea.argt = (long)cmdnames[(int)ea.cmdidx].cmd_argt;
+***************
+*** 2676,2682 ****
+  #endif
+  
+  /*
+!  * 6. switch on command name
+   *
+   * The "ea" structure holds the arguments that can be used.
+   */
+--- 2782,2788 ----
+  #endif
+  
+  /*
+!  * 6. Switch on command name.
+   *
+   * The "ea" structure holds the arguments that can be used.
+   */
+***************
+*** 4082,4089 ****
+   * Return MAXLNUM when no Ex address was found.
+   */
+      static linenr_T
+! get_address(ptr, skip, to_other_file)
+      char_u	**ptr;
+      int		skip;	    /* only skip the address, don't use it */
+      int		to_other_file;  /* flag: may jump to other file */
+  {
+--- 4188,4196 ----
+   * Return MAXLNUM when no Ex address was found.
+   */
+      static linenr_T
+! get_address(ptr, addr_type, skip, to_other_file)
+      char_u	**ptr;
++     int		addr_type;  /* flag: one of ADDR_LINES, ... */
+      int		skip;	    /* only skip the address, don't use it */
+      int		to_other_file;  /* flag: may jump to other file */
+  {
+***************
+*** 4094,4099 ****
+--- 4201,4208 ----
+      pos_T	pos;
+      pos_T	*fp;
+      linenr_T	lnum;
++     win_T	*wp;
++     tabpage_T	*tp;
+  
+      cmd = skipwhite(*ptr);
+      lnum = MAXLNUM;
+***************
+*** 4102,4238 ****
+  	switch (*cmd)
+  	{
+  	    case '.':			    /* '.' - Cursor position */
+! 			++cmd;
+  			lnum = curwin->w_cursor.lnum;
+  			break;
+  
+  	    case '$':			    /* '$' - last line */
+! 			++cmd;
+  			lnum = curbuf->b_ml.ml_line_count;
+  			break;
+  
+  	    case '\'':			    /* ''' - mark */
+! 			if (*++cmd == NUL)
+  			{
+  			    cmd = NULL;
+  			    goto error;
+  			}
+! 			if (skip)
+! 			    ++cmd;
+! 			else
+! 			{
+! 			    /* Only accept a mark in another file when it is
+! 			     * used by itself: ":'M". */
+! 			    fp = getmark(*cmd, to_other_file && cmd[1] == NUL);
+! 			    ++cmd;
+! 			    if (fp == (pos_T *)-1)
+! 				/* Jumped to another file. */
+! 				lnum = curwin->w_cursor.lnum;
+! 			    else
+! 			    {
+! 				if (check_mark(fp) == FAIL)
+! 				{
+! 				    cmd = NULL;
+! 				    goto error;
+! 				}
+! 				lnum = fp->lnum;
+! 			    }
+! 			}
+! 			break;
+  
+  	    case '/':
+  	    case '?':			/* '/' or '?' - search */
+! 			c = *cmd++;
+! 			if (skip)	/* skip "/pat/" */
+! 			{
+! 			    cmd = skip_regexp(cmd, c, (int)p_magic, NULL);
+! 			    if (*cmd == c)
+! 				++cmd;
+! 			}
+! 			else
+! 			{
+! 			    pos = curwin->w_cursor; /* save curwin->w_cursor */
+! 			    /*
+! 			     * When '/' or '?' follows another address, start
+! 			     * from there.
+! 			     */
+! 			    if (lnum != MAXLNUM)
+! 				curwin->w_cursor.lnum = lnum;
+! 			    /*
+! 			     * Start a forward search at the end of the line.
+! 			     * Start a backward search at the start of the line.
+! 			     * This makes sure we never match in the current
+! 			     * line, and can match anywhere in the
+! 			     * next/previous line.
+! 			     */
+! 			    if (c == '/')
+! 				curwin->w_cursor.col = MAXCOL;
+! 			    else
+! 				curwin->w_cursor.col = 0;
+! 			    searchcmdlen = 0;
+! 			    if (!do_search(NULL, c, cmd, 1L,
+! 					       SEARCH_HIS | SEARCH_MSG, NULL))
+! 			    {
+! 				curwin->w_cursor = pos;
+! 				cmd = NULL;
+! 				goto error;
+! 			    }
+! 			    lnum = curwin->w_cursor.lnum;
+! 			    curwin->w_cursor = pos;
+! 			    /* adjust command string pointer */
+! 			    cmd += searchcmdlen;
+! 			}
+! 			break;
+  
+  	    case '\\':		    /* "\?", "\/" or "\&", repeat search */
+! 			++cmd;
+! 			if (*cmd == '&')
+! 			    i = RE_SUBST;
+! 			else if (*cmd == '?' || *cmd == '/')
+! 			    i = RE_SEARCH;
+! 			else
+! 			{
+! 			    EMSG(_(e_backslash));
+! 			    cmd = NULL;
+! 			    goto error;
+! 			}
+  
+! 			if (!skip)
+! 			{
+! 			    /*
+! 			     * When search follows another address, start from
+! 			     * there.
+! 			     */
+! 			    if (lnum != MAXLNUM)
+! 				pos.lnum = lnum;
+! 			    else
+! 				pos.lnum = curwin->w_cursor.lnum;
+  
+! 			    /*
+! 			     * Start the search just like for the above
+! 			     * do_search().
+! 			     */
+! 			    if (*cmd != '?')
+! 				pos.col = MAXCOL;
+! 			    else
+! 				pos.col = 0;
+! 			    if (searchit(curwin, curbuf, &pos,
+! 					*cmd == '?' ? BACKWARD : FORWARD,
+! 					(char_u *)"", 1L, SEARCH_MSG,
+! 						i, (linenr_T)0, NULL) != FAIL)
+! 				lnum = pos.lnum;
+! 			    else
+! 			    {
+! 				cmd = NULL;
+! 				goto error;
+! 			    }
+! 			}
+! 			++cmd;
+! 			break;
+  
+  	    default:
+! 			if (VIM_ISDIGIT(*cmd))	/* absolute line number */
+! 			    lnum = getdigits(&cmd);
+  	}
+  
+  	for (;;)
+--- 4211,4414 ----
+  	switch (*cmd)
+  	{
+  	    case '.':			    /* '.' - Cursor position */
+! 		++cmd;
+! 		switch (addr_type)
+! 		{
+! 		    case ADDR_LINES:
+  			lnum = curwin->w_cursor.lnum;
+  			break;
++ 		    case ADDR_WINDOWS:
++ 			lnum = 0;
++ 			for (wp = firstwin; wp != NULL; wp = wp->w_next)
++ 			{
++ 			    lnum++;
++ 			    if (wp == curwin)
++ 				break;
++ 			}
++ 			break;
++ 		    case ADDR_ARGUMENTS:
++ 			lnum = curwin->w_arg_idx + 1;
++ 			break;
++ 		    case ADDR_LOADED_BUFFERS:
++ 		    case ADDR_UNLOADED_BUFFERS:
++ 			lnum = curbuf->b_fnum;
++ 			break;
++ 		    case ADDR_TABS:
++ 			lnum = 0;
++ 			for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
++ 			{
++ 			    lnum++;
++ 			    if (tp == curtab)
++ 				break;
++ 			}
++ 			break;
++ 		}
++ 		break;
+  
+  	    case '$':			    /* '$' - last line */
+! 		++cmd;
+! 		switch (addr_type)
+! 		{
+! 		    case ADDR_LINES:
+  			lnum = curbuf->b_ml.ml_line_count;
+  			break;
++ 		    case ADDR_WINDOWS:
++ 			lnum = 0;
++ 			for (wp = firstwin; wp != NULL; wp = wp->w_next)
++ 			    lnum++;
++ 			break;
++ 		    case ADDR_ARGUMENTS:
++ 			lnum = ARGCOUNT;
++ 			break;
++ 		    case ADDR_LOADED_BUFFERS:
++ 		    case ADDR_UNLOADED_BUFFERS:
++ 			lnum = lastbuf->b_fnum;
++ 			break;
++ 		    case ADDR_TABS:
++ 			lnum = 0;
++ 			for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
++ 			    lnum++;
++ 			break;
++ 		}
++ 		break;
+  
+  	    case '\'':			    /* ''' - mark */
+! 		if (*++cmd == NUL)
+! 		{
+! 		    cmd = NULL;
+! 		    goto error;
+! 		}
+! 		if (addr_type != ADDR_LINES)
+! 		{
+! 		    EMSG(_(e_invaddr));
+! 		    goto error;
+! 		}
+! 		if (skip)
+! 		    ++cmd;
+! 		else
+! 		{
+! 		    /* Only accept a mark in another file when it is
+! 		     * used by itself: ":'M". */
+! 		    fp = getmark(*cmd, to_other_file && cmd[1] == NUL);
+! 		    ++cmd;
+! 		    if (fp == (pos_T *)-1)
+! 			/* Jumped to another file. */
+! 			lnum = curwin->w_cursor.lnum;
+! 		    else
+! 		    {
+! 			if (check_mark(fp) == FAIL)
+  			{
+  			    cmd = NULL;
+  			    goto error;
+  			}
+! 			lnum = fp->lnum;
+! 		    }
+! 		}
+! 		break;
+  
+  	    case '/':
+  	    case '?':			/* '/' or '?' - search */
+! 		c = *cmd++;
+! 		if (addr_type != ADDR_LINES)
+! 		{
+! 		    EMSG(_(e_invaddr));
+! 		    goto error;
+! 		}
+! 		if (skip)	/* skip "/pat/" */
+! 		{
+! 		    cmd = skip_regexp(cmd, c, (int)p_magic, NULL);
+! 		    if (*cmd == c)
+! 			++cmd;
+! 		}
+! 		else
+! 		{
+! 		    pos = curwin->w_cursor; /* save curwin->w_cursor */
+! 		    /*
+! 		     * When '/' or '?' follows another address, start
+! 		     * from there.
+! 		     */
+! 		    if (lnum != MAXLNUM)
+! 			curwin->w_cursor.lnum = lnum;
+! 		    /*
+! 		     * Start a forward search at the end of the line.
+! 		     * Start a backward search at the start of the line.
+! 		     * This makes sure we never match in the current
+! 		     * line, and can match anywhere in the
+! 		     * next/previous line.
+! 		     */
+! 		    if (c == '/')
+! 			curwin->w_cursor.col = MAXCOL;
+! 		    else
+! 			curwin->w_cursor.col = 0;
+! 		    searchcmdlen = 0;
+! 		    if (!do_search(NULL, c, cmd, 1L,
+! 				       SEARCH_HIS | SEARCH_MSG, NULL))
+! 		    {
+! 			curwin->w_cursor = pos;
+! 			cmd = NULL;
+! 			goto error;
+! 		    }
+! 		    lnum = curwin->w_cursor.lnum;
+! 		    curwin->w_cursor = pos;
+! 		    /* adjust command string pointer */
+! 		    cmd += searchcmdlen;
+! 		}
+! 		break;
+  
+  	    case '\\':		    /* "\?", "\/" or "\&", repeat search */
+! 		++cmd;
+! 		if (addr_type != ADDR_LINES)
+! 		{
+! 		    EMSG(_(e_invaddr));
+! 		    goto error;
+! 		}
+! 		if (*cmd == '&')
+! 		    i = RE_SUBST;
+! 		else if (*cmd == '?' || *cmd == '/')
+! 		    i = RE_SEARCH;
+! 		else
+! 		{
+! 		    EMSG(_(e_backslash));
+! 		    cmd = NULL;
+! 		    goto error;
+! 		}
+  
+! 		if (!skip)
+! 		{
+! 		    /*
+! 		     * When search follows another address, start from
+! 		     * there.
+! 		     */
+! 		    if (lnum != MAXLNUM)
+! 			pos.lnum = lnum;
+! 		    else
+! 			pos.lnum = curwin->w_cursor.lnum;
+  
+! 		    /*
+! 		     * Start the search just like for the above
+! 		     * do_search().
+! 		     */
+! 		    if (*cmd != '?')
+! 			pos.col = MAXCOL;
+! 		    else
+! 			pos.col = 0;
+! 		    if (searchit(curwin, curbuf, &pos,
+! 				*cmd == '?' ? BACKWARD : FORWARD,
+! 				(char_u *)"", 1L, SEARCH_MSG,
+! 					i, (linenr_T)0, NULL) != FAIL)
+! 			lnum = pos.lnum;
+! 		    else
+! 		    {
+! 			cmd = NULL;
+! 			goto error;
+! 		    }
+! 		}
+! 		++cmd;
+! 		break;
+  
+  	    default:
+! 		if (VIM_ISDIGIT(*cmd))	/* absolute line number */
+! 		    lnum = getdigits(&cmd);
+  	}
+  
+  	for (;;)
+***************
+*** 4242,4248 ****
+  		break;
+  
+  	    if (lnum == MAXLNUM)
+! 		lnum = curwin->w_cursor.lnum;	/* "+1" is same as ".+1" */
+  	    if (VIM_ISDIGIT(*cmd))
+  		i = '+';		/* "number" is same as "+number" */
+  	    else
+--- 4418,4457 ----
+  		break;
+  
+  	    if (lnum == MAXLNUM)
+! 	    {
+! 		switch (addr_type)
+! 		{
+! 		    case ADDR_LINES:
+! 			lnum = curwin->w_cursor.lnum;	/* "+1" is same as ".+1" */
+! 			break;
+! 		    case ADDR_WINDOWS:
+! 			lnum = 0;
+! 			for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 			{
+! 			    lnum++;
+! 			    if (wp == curwin)
+! 				break;
+! 			}
+! 			break;
+! 		    case ADDR_ARGUMENTS:
+! 			lnum = curwin->w_arg_idx + 1;
+! 			break;
+! 		    case ADDR_LOADED_BUFFERS:
+! 		    case ADDR_UNLOADED_BUFFERS:
+! 			lnum = curbuf->b_fnum;
+! 			break;
+! 		    case ADDR_TABS:
+! 			lnum = 0;
+! 			for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 			{
+! 			    lnum++;
+! 			    if (tp == curtab)
+! 				break;
+! 			}
+! 			break;
+! 		}
+! 	    }
+! 
+  	    if (VIM_ISDIGIT(*cmd))
+  		i = '+';		/* "number" is same as "+number" */
+  	    else
+***************
+*** 4251,4260 ****
+  		n = 1;
+  	    else
+  		n = getdigits(&cmd);
+! 	    if (i == '-')
+  		lnum -= n;
+  	    else
+  		lnum += n;
+  	}
+      } while (*cmd == '/' || *cmd == '?');
+  
+--- 4460,4518 ----
+  		n = 1;
+  	    else
+  		n = getdigits(&cmd);
+! 	    if (addr_type == ADDR_LOADED_BUFFERS
+! 		    || addr_type == ADDR_UNLOADED_BUFFERS)
+! 		lnum = compute_buffer_local_count(addr_type, lnum, n);
+! 	    else if (i == '-')
+  		lnum -= n;
+  	    else
+  		lnum += n;
++ 
++ 	    switch (addr_type)
++ 	    {
++ 		case ADDR_LINES:
++ 		    break;
++ 		case ADDR_ARGUMENTS:
++ 		    if (lnum < 0)
++ 			lnum = 0;
++ 		    else if (lnum >= ARGCOUNT)
++ 			lnum = ARGCOUNT;
++ 		    break;
++ 		case ADDR_TABS:
++ 		    if (lnum < 0)
++ 		    {
++ 			lnum = 0;
++ 			break;
++ 		    }
++ 		    c = 0;
++ 		    for (tp = first_tabpage; tp != NULL; tp = tp->tp_next)
++ 			c++;
++ 		    if (lnum >= c)
++ 			lnum = c;
++ 		    break;
++ 		case ADDR_WINDOWS:
++ 		    if (lnum < 0)
++ 		    {
++ 			lnum = 0;
++ 			break;
++ 		    }
++ 		    c = 0;
++ 		    for (wp = firstwin; wp != NULL; wp = wp->w_next)
++ 			c++;
++ 		    if (lnum > c)
++ 			lnum = c;
++ 		    break;
++ 		case ADDR_LOADED_BUFFERS:
++ 		case ADDR_UNLOADED_BUFFERS:
++ 		    if (lnum < firstbuf->b_fnum)
++ 		    {
++ 			lnum = firstbuf->b_fnum;
++ 			break;
++ 		    }
++ 		    if (lnum > lastbuf->b_fnum)
++ 			lnum = lastbuf->b_fnum;
++ 		    break;
++ 	    }
+  	}
+      } while (*cmd == '/' || *cmd == '?');
+  
+***************
+*** 6556,6561 ****
+--- 6814,6823 ----
+  ex_quit(eap)
+      exarg_T	*eap;
+  {
++     win_T	*wp;
++     buf_T	*buf;
++     int		wnr;
++ 
+  #ifdef FEAT_CMDWIN
+      if (cmdwin_type != 0)
+      {
+***************
+*** 6569,6579 ****
+  	text_locked_msg();
+  	return;
+      }
+  #ifdef FEAT_AUTOCMD
+      apply_autocmds(EVENT_QUITPRE, NULL, NULL, FALSE, curbuf);
+      /* Refuse to quit when locked or when the buffer in the last window is
+       * being closed (can only happen in autocommands). */
+!     if (curbuf_locked() || (curbuf->b_nwindows == 1 && curbuf->b_closing))
+  	return;
+  #endif
+  
+--- 6831,6858 ----
+  	text_locked_msg();
+  	return;
+      }
++     if (eap->addr_count > 0)
++     {
++ 	wnr = eap->line2;
++ 	for (wp = firstwin; --wnr > 0; )
++ 	{
++ 	    if (wp->w_next == NULL)
++ 		break;
++ 	    else
++ 		wp = wp->w_next;
++ 	}
++ 	buf = wp->w_buffer;
++     }
++     else
++     {
++ 	wp = curwin;
++ 	buf = curbuf;
++     }
+  #ifdef FEAT_AUTOCMD
+      apply_autocmds(EVENT_QUITPRE, NULL, NULL, FALSE, curbuf);
+      /* Refuse to quit when locked or when the buffer in the last window is
+       * being closed (can only happen in autocommands). */
+!     if (curbuf_locked() || (buf->b_nwindows == 1 && buf->b_closing))
+  	return;
+  #endif
+  
+***************
+*** 6606,6612 ****
+  	need_mouse_correct = TRUE;
+  # endif
+  	/* close window; may free buffer */
+! 	win_close(curwin, !P_HID(curwin->w_buffer) || eap->forceit);
+  #endif
+      }
+  }
+--- 6885,6891 ----
+  	need_mouse_correct = TRUE;
+  # endif
+  	/* close window; may free buffer */
+! 	win_close(wp, !P_HID(wp->w_buffer) || eap->forceit);
+  #endif
+      }
+  }
+***************
+*** 6668,6673 ****
+--- 6947,6954 ----
+  ex_close(eap)
+      exarg_T	*eap;
+  {
++     win_T	*win;
++     int		winnr = 0;
+  # ifdef FEAT_CMDWIN
+      if (cmdwin_type != 0)
+  	cmdwin_result = Ctrl_C;
+***************
+*** 6678,6684 ****
+  		&& !curbuf_locked()
+  #endif
+  		)
+! 	    ex_win_close(eap->forceit, curwin, NULL);
+  }
+  
+  # ifdef FEAT_QUICKFIX
+--- 6959,6979 ----
+  		&& !curbuf_locked()
+  #endif
+  		)
+! 	{
+! 	    if (eap->addr_count == 0)
+! 		ex_win_close(eap->forceit, curwin, NULL);
+! 	    else {
+! 		for (win = firstwin; win != NULL; win = win->w_next)
+! 		{
+! 		    winnr++;
+! 		    if (winnr == eap->line2)
+! 			break;
+! 		}
+! 		if (win == NULL)
+! 		    win = lastwin;
+! 		ex_win_close(eap->forceit, win, NULL);
+! 	    }
+! 	}
+  }
+  
+  # ifdef FEAT_QUICKFIX
+***************
+*** 6804,6809 ****
+--- 7099,7106 ----
+  	    MSG(_("Already only one tab page"));
+  	else
+  	{
++ 	    if (eap->addr_count > 0)
++ 		goto_tabpage(eap->line2);
+  	    /* Repeat this up to a 1000 times, because autocommands may mess
+  	     * up the lists. */
+  	    for (done = 0; done < 1000; ++done)
+***************
+*** 6882,6890 ****
+--- 7179,7201 ----
+  ex_only(eap)
+      exarg_T	*eap;
+  {
++     win_T   *wp;
++     int	    wnr;
+  # ifdef FEAT_GUI
+      need_mouse_correct = TRUE;
+  # endif
++     if (eap->addr_count > 0)
++     {
++ 	wnr = eap->line2;
++ 	for (wp = firstwin; --wnr > 0; )
++ 	{
++ 	    if (wp->w_next == NULL)
++ 		break;
++ 	    else
++ 		wp = wp->w_next;
++ 	}
++ 	win_goto(wp);
++     }
+      close_others(TRUE, eap->forceit);
+  }
+  
+***************
+*** 6906,6911 ****
+--- 7217,7225 ----
+  ex_hide(eap)
+      exarg_T	*eap;
+  {
++     win_T	*win;
++     int		winnr = 0;
++ 
+      if (*eap->arg != NUL && check_nextcmd(eap->arg) == NULL)
+  	eap->errmsg = e_invarg;
+      else
+***************
+*** 6918,6924 ****
+  # ifdef FEAT_GUI
+  	    need_mouse_correct = TRUE;
+  # endif
+! 	    win_close(curwin, FALSE);	/* don't free buffer */
+  	}
+  #endif
+      }
+--- 7232,7250 ----
+  # ifdef FEAT_GUI
+  	    need_mouse_correct = TRUE;
+  # endif
+! 	    if (eap->addr_count == 0)
+! 		win_close(curwin, FALSE);	/* don't free buffer */
+! 	    else {
+! 		for (win = firstwin; win != NULL; win = win->w_next)
+! 		{
+! 		    winnr++;
+! 		    if (winnr == eap->line2)
+! 			break;
+! 		}
+! 		if (win == NULL)
+! 		    win = lastwin;
+! 		win_close(win, FALSE);
+! 	    }
+  	}
+  #endif
+      }
+***************
+*** 8652,8658 ****
+  {
+      long	n;
+  
+!     n = get_address(&eap->arg, FALSE, FALSE);
+      if (eap->arg == NULL)	    /* error detected */
+      {
+  	eap->nextcmd = NULL;
+--- 8978,8984 ----
+  {
+      long	n;
+  
+!     n = get_address(&eap->arg, eap->addr_type, FALSE, FALSE);
+      if (eap->arg == NULL)	    /* error detected */
+      {
+  	eap->nextcmd = NULL;
+*** ../vim-7.4.529/src/testdir/Make_amiga.mak	2014-10-21 20:57:11.534295006 +0200
+--- src/testdir/Make_amiga.mak	2014-11-27 14:26:52.158639284 +0100
+***************
+*** 36,44 ****
+--- 36,46 ----
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out test107.out \
++ 		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
++ 		test_close_count.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+***************
+*** 171,179 ****
+--- 173,183 ----
+  test105.out: test105.in
+  test106.out: test106.in
+  test107.out: test107.in
++ test_argument_count.out: test_argument_count.in
+  test_autoformat_join.out: test_autoformat_join.in
+  test_breakindent.out: test_breakindent.in
+  test_changelist.out: test_changelist.in
++ test_close_count.out: test_close_count.in
+  test_eval.out: test_eval.in
+  test_insertcount.out: test_insertcount.in
+  test_listlbr.out: test_listlbr.in
+*** ../vim-7.4.529/src/testdir/Make_dos.mak	2014-11-05 15:46:06.212643292 +0100
+--- src/testdir/Make_dos.mak	2014-11-27 14:26:56.750588700 +0100
+***************
+*** 35,43 ****
+--- 35,45 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out  test107.out\
++ 		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
++ 		test_close_count.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.529/src/testdir/Make_ming.mak	2014-11-05 14:26:30.764758363 +0100
+--- src/testdir/Make_ming.mak	2014-11-27 14:26:59.638556887 +0100
+***************
+*** 57,65 ****
+--- 57,67 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
++ 		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
++ 		test_close_count.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.529/src/testdir/Make_os2.mak	2014-11-05 14:26:30.764758363 +0100
+--- src/testdir/Make_os2.mak	2014-11-27 14:27:02.438526044 +0100
+***************
+*** 37,45 ****
+--- 37,47 ----
+  		test94.out test95.out test96.out test98.out test99.out \
+  		test100.out test101.out test102.out test103.out test104.out \
+  		test105.out test106.out test107.out \
++ 		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
++ 		test_close_count.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.529/src/testdir/Make_vms.mms	2014-10-21 20:57:11.538295006 +0200
+--- src/testdir/Make_vms.mms	2014-11-27 14:27:08.046464270 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Aug 16
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Nov 27
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 45,51 ****
+  # It fails because VMS does not support this feature yet.
+  # WANT_MZSCH = YES
+  
+! # Comment out if you have ODS-5 file system                                                                                                                 
+  # HAVE_ODS5 = YES
+  
+  # Comment out if you have gzip on your system
+--- 45,51 ----
+  # It fails because VMS does not support this feature yet.
+  # WANT_MZSCH = YES
+  
+! # Comment out if you have ODS-5 file system
+  # HAVE_ODS5 = YES
+  
+  # Comment out if you have gzip on your system
+***************
+*** 54,63 ****
+  # Comment out if you have GNU compatible diff on your system
+  # HAVE_GDIFF = YES
+  
+! # Comment out if you have GNU compatible cksum on your system                                                                                                  
+  # HAVE_CKSUM = YES
+  
+! # Comment out if you have ICONV support                                                                                                  
+  # HAVE_ICONV = YES
+  
+  # Comment out if you have LUA support
+--- 54,63 ----
+  # Comment out if you have GNU compatible diff on your system
+  # HAVE_GDIFF = YES
+  
+! # Comment out if you have GNU compatible cksum on your system
+  # HAVE_CKSUM = YES
+  
+! # Comment out if you have ICONV support
+  # HAVE_ICONV = YES
+  
+  # Comment out if you have LUA support
+***************
+*** 96,104 ****
+--- 96,106 ----
+  	 test95.out test96.out test98.out test99.out \
+  	 test100.out test101.out test103.out test104.out \
+  	 test105.out test106.out test107.out \
++ 	 test_argument_count.out \
+  	 test_autoformat_join.out \
+  	 test_breakindent.out \
+  	 test_changelist.out \
++ 	 test_close_count.out \
+  	 test_eval.out \
+  	 test_insertcount.out \
+  	 test_listlbr.out \
+*** ../vim-7.4.529/src/testdir/Makefile	2014-11-05 14:26:30.764758363 +0100
+--- src/testdir/Makefile	2014-11-27 14:27:27.670248103 +0100
+***************
+*** 33,41 ****
+--- 33,43 ----
+  		test94.out test95.out test96.out test97.out test98.out \
+  		test99.out test100.out test101.out test102.out test103.out \
+  		test104.out test105.out test106.out test107.out \
++ 		test_argument_count.out \
+  		test_autoformat_join.out \
+  		test_breakindent.out \
+  		test_changelist.out \
++ 		test_close_count.out \
+  		test_eval.out \
+  		test_insertcount.out \
+  		test_listlbr.out \
+*** ../vim-7.4.529/src/testdir/test_argument_count.in	2014-11-27 16:17:51.473604272 +0100
+--- src/testdir/test_argument_count.in	2014-11-27 14:21:34.394139791 +0100
+***************
+*** 0 ****
+--- 1,47 ----
++ Tests for :[count]argument! and :[count]argdelete     vim: set ft=vim :
++ 
++ STARTTEST
++ :%argd
++ :argadd a b c d
++ :set hidden
++ :let buffers = []
++ :augroup TEST
++ :au BufEnter * call add(buffers, expand('%:t'))
++ :augroup END
++ :$argu
++ :$-argu
++ :-argu
++ :1argu
++ :+2argu
++ :augroup TEST
++ :au!
++ :augroup END
++ :let arglists = []
++ :.argd
++ :call add(arglists, argv())
++ :-argd
++ :call add(arglists, argv())
++ :$argd
++ :call add(arglists, argv())
++ :1arga c
++ :1arga b
++ :$argu
++ :+arga d
++ :$arga x
++ :call add(arglists, argv())
++ :$-10arga Y
++ :call add(arglists, argv())
++ :%argd
++ :call add(arglists, argv())
++ :arga a b c d e f
++ :2,$-argd
++ :call add(arglists, argv())
++ :e! test.out
++ :call append(0, buffers)
++ :let lnr = line('$')
++ :call append(lnr, map(copy(arglists), 'join(v:val, " ")'))
++ :w
++ :qa!
++ ENDTEST
++ 
++ 
+*** ../vim-7.4.529/src/testdir/test_argument_count.ok	2014-11-27 16:17:51.477604229 +0100
+--- src/testdir/test_argument_count.ok	2014-11-27 14:21:34.394139791 +0100
+***************
+*** 0 ****
+--- 1,13 ----
++ d
++ c
++ b
++ a
++ c
++ 
++ a b d
++ a d
++ a
++ a b c d x
++ Y a b c d x
++ 
++ a f
+*** ../vim-7.4.529/src/testdir/test_close_count.in	2014-11-27 16:17:51.485604140 +0100
+--- src/testdir/test_close_count.in	2014-11-27 14:21:34.394139791 +0100
+***************
+*** 0 ****
+--- 1,156 ----
++ Tests for :[count]close! and :[count]hide     vim: set ft=vim :
++ 
++ STARTTEST
++ :let tests = []
++ :so tiny.vim
++ :for i in range(5)
++ :new
++ :endfor
++ :4wincmd w
++ :close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :$close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1wincmd w
++ :2close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1wincmd w
++ :new
++ :new
++ :2wincmd w
++ :-2close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :2wincmd w
++ :+1close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :e! test.out
++ :call append(0, map(copy(tests), 'join(v:val, " ")'))
++ :w
++ :only!
++ :b1
++ ENDTEST
++ 
++ STARTTEST
++ :let tests = []
++ :so tiny.vim
++ :for i in range(5)
++ :new
++ :endfor
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :4wincmd w
++ :.hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :9hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1wincmd w
++ :2hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1wincmd w
++ :new
++ :new
++ :3wincmd w
++ :-hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :2wincmd w
++ :+hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :e! test.out
++ :call append(line('$'), map(copy(tests), 'join(v:val, " ")'))
++ Go
++ :w
++ :only!
++ :b1
++ ENDTEST
++ 
++ STARTTEST
++ :let tests = []
++ :so tiny.vim
++ :set hidden
++ :for i in range(5)
++ :new
++ :endfor
++ :1wincmd w
++ :$ hide
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :$-1 close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1wincmd w
++ :.+close!
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :e! test.out
++ :call append(line('$'), map(copy(tests), 'join(v:val, " ")'))
++ Go
++ :w
++ :only!
++ :b1
++ ENDTEST
++ 
++ STARTTEST
++ :let tests = []
++ :so tiny.vim
++ :set hidden
++ :for i in range(5)
++ :new
++ :endfor
++ :4wincmd w
++ c
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ 1c
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ 9c
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :1wincmd w
++ 2c
++ :let buffers = []
++ :windo call add(buffers, bufnr('%'))
++ :call add(tests, buffers)
++ :only!
++ :e! test.out
++ :call append(line('$'), map(copy(tests), 'join(v:val, " ")'))
++ :w
++ :qa!
++ ENDTEST
++ 
++ 
+*** ../vim-7.4.529/src/testdir/test_close_count.ok	2014-11-27 16:17:51.489604097 +0100
+--- src/testdir/test_close_count.ok	2014-11-27 14:21:34.394139791 +0100
+***************
+*** 0 ****
+--- 1,23 ----
++ 6 5 4 2 1
++ 5 4 2 1
++ 5 4 2
++ 5 2
++ 7 5 2
++ 7 5
++ 
++ 13 12 11 10 9 1
++ 13 12 11 9 1
++ 12 11 9 1
++ 12 11 9
++ 12 9
++ 15 12 9
++ 15 12
++ 
++ 20 19 18 17 16
++ 20 19 18 16
++ 20 18 16
++ 
++ 25 24 23 21 1
++ 24 23 21 1
++ 24 23 21
++ 24 21
+*** ../vim-7.4.529/src/window.c	2014-11-19 13:40:04.903715962 +0100
+--- src/window.c	2014-11-27 14:21:34.394139791 +0100
+***************
+*** 199,212 ****
+      case Ctrl_Q:
+      case 'q':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		do_cmdline_cmd((char_u *)"quit");
+  		break;
+  
+  /* close current window */
+      case Ctrl_C:
+      case 'c':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		do_cmdline_cmd((char_u *)"close");
+  		break;
+  
+  #if defined(FEAT_WINDOWS) && defined(FEAT_QUICKFIX)
+--- 199,220 ----
+      case Ctrl_Q:
+      case 'q':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "quit");
+! 		if (Prenum)
+! 		    vim_snprintf((char *)cbuf + 4, sizeof(cbuf) - 5,
+! 							    "%ld", Prenum);
+! 		do_cmdline_cmd(cbuf);
+  		break;
+  
+  /* close current window */
+      case Ctrl_C:
+      case 'c':
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "close");
+! 		if (Prenum)
+! 		    vim_snprintf((char *)cbuf + 5, sizeof(cbuf) - 5,
+! 							       "%ld", Prenum);
+! 		do_cmdline_cmd(cbuf);
+  		break;
+  
+  #if defined(FEAT_WINDOWS) && defined(FEAT_QUICKFIX)
+***************
+*** 235,241 ****
+      case 'o':
+  		CHECK_CMDWIN
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		do_cmdline_cmd((char_u *)"only");
+  		break;
+  
+  /* cursor to next window with wrap around */
+--- 243,253 ----
+      case 'o':
+  		CHECK_CMDWIN
+  		reset_VIsual_and_resel();	/* stop Visual mode */
+! 		STRCPY(cbuf, "only");
+! 		if (Prenum > 0)
+! 		    vim_snprintf((char *)cbuf + 4, sizeof(cbuf) - 4,
+! 								"%ld", Prenum);
+! 		do_cmdline_cmd(cbuf);
+  		break;
+  
+  /* cursor to next window with wrap around */
+*** ../vim-7.4.529/src/version.c	2014-11-27 14:09:09.490354943 +0100
+--- src/version.c	2014-11-27 14:21:15.250350688 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     530,
+  /**/
+
+-- 
+A fool must search for a greater fool to find admiration.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

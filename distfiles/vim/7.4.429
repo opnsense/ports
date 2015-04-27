@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.429
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.429
+Problem:    Build fails with fewer features. (Elimar Riesebieter)
+Solution:   Add #ifdef.
+Files:	    src/normal.c
+
+
+*** ../vim-7.4.428/src/normal.c	2014-08-29 14:20:47.418440975 +0200
+--- src/normal.c	2014-08-30 13:29:17.342622953 +0200
+***************
+*** 4518,4525 ****
+--- 4518,4527 ----
+  	 */
+  	validate_virtcol();
+  	virtcol = curwin->w_virtcol;
++ # if defined(FEAT_LINEBREAK)
+  	if (virtcol > (colnr_T)width1 && *p_sbr != NUL)
+  	    virtcol -= vim_strsize(p_sbr);
++ # endif
+  
+  	if (virtcol > curwin->w_curswant
+  		&& (curwin->w_curswant < (colnr_T)width1
+*** ../vim-7.4.428/src/version.c	2014-08-29 17:45:28.066467800 +0200
+--- src/version.c	2014-08-30 13:29:57.646623041 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     429,
+  /**/
+
+-- 
+Where do you want to crash today?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

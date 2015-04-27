@@ -1,0 +1,80 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.462
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.462
+Problem:    Setting the local value of 'backupcopy' empty gives an error.
+	    (Peter Mattern)
+Solution:   When using an empty value set the flags to zero. (Hirohito
+	    Higashi)
+Files:	    src/option.c
+
+
+*** ../vim-7.4.461/src/option.c	2014-09-23 15:45:04.870801055 +0200
+--- src/option.c	2014-09-29 17:03:06.963943648 +0200
+***************
+*** 5742,5756 ****
+  	    flags = &curbuf->b_bkc_flags;
+  	}
+  
+! 	if (opt_strings_flags(bkc, p_bkc_values, flags, TRUE) != OK)
+! 	    errmsg = e_invarg;
+! 	if ((((int)*flags & BKC_AUTO) != 0)
+! 		+ (((int)*flags & BKC_YES) != 0)
+! 		+ (((int)*flags & BKC_NO) != 0) != 1)
+  	{
+! 	    /* Must have exactly one of "auto", "yes"  and "no". */
+! 	    (void)opt_strings_flags(oldval, p_bkc_values, flags, TRUE);
+! 	    errmsg = e_invarg;
+  	}
+      }
+  
+--- 5742,5762 ----
+  	    flags = &curbuf->b_bkc_flags;
+  	}
+  
+! 	if ((opt_flags & OPT_LOCAL) && *bkc == NUL)
+! 	    /* make the local value empty: use the global value */
+! 	    *flags = 0;
+! 	else
+  	{
+! 	    if (opt_strings_flags(bkc, p_bkc_values, flags, TRUE) != OK)
+! 		errmsg = e_invarg;
+! 	    if ((((int)*flags & BKC_AUTO) != 0)
+! 		    + (((int)*flags & BKC_YES) != 0)
+! 		    + (((int)*flags & BKC_NO) != 0) != 1)
+! 	    {
+! 		/* Must have exactly one of "auto", "yes"  and "no". */
+! 		(void)opt_strings_flags(oldval, p_bkc_values, flags, TRUE);
+! 		errmsg = e_invarg;
+! 	    }
+  	}
+      }
+  
+*** ../vim-7.4.461/src/version.c	2014-09-27 11:18:08.179520979 +0200
+--- src/version.c	2014-09-29 17:13:50.235945053 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     462,
+  /**/
+
+-- 
+Some of the well known MS-Windows errors:
+	EMEMORY		Memory error caused by..., eh...
+	ELICENSE	Your license has expired, give us more money!
+	EMOUSE		Mouse moved, reinstall Windows
+	EILLEGAL	Illegal error, you are not allowed to see this
+	EVIRUS		Undetectable virus found
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

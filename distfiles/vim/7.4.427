@@ -1,0 +1,112 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.427
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.427
+Problem:    When an InsertCharPre autocommand executes system() typeahead may
+	    be echoed and messes up the display. (Jacob Niehus)
+Solution:   Do not set cooked mode when invoked from ":silent".
+Files:	    src/eval.c, runtime/doc/eval.txt
+
+
+*** ../vim-7.4.426/src/eval.c	2014-08-29 09:46:04.262404970 +0200
+--- src/eval.c	2014-08-29 15:37:57.034451088 +0200
+***************
+*** 18594,18599 ****
+--- 18594,18600 ----
+      int		err = FALSE;
+      FILE	*fd;
+      list_T	*list = NULL;
++     int		flags = SHELL_SILENT;
+  
+      rettv->v_type = VAR_STRING;
+      rettv->vval.v_string = NULL;
+***************
+*** 18643,18648 ****
+--- 18644,18654 ----
+  	}
+      }
+  
++     /* Omit SHELL_COOKED when invoked with ":silent".  Avoids that the shell
++      * echoes typeahead, that messes up the display. */
++     if (!msg_silent)
++ 	flags += SHELL_COOKED;
++ 
+      if (retlist)
+      {
+  	int		len;
+***************
+*** 18652,18659 ****
+  	char_u		*end;
+  	int		i;
+  
+! 	res = get_cmd_output(get_tv_string(&argvars[0]), infile,
+! 					   SHELL_SILENT | SHELL_COOKED, &len);
+  	if (res == NULL)
+  	    goto errret;
+  
+--- 18658,18664 ----
+  	char_u		*end;
+  	int		i;
+  
+! 	res = get_cmd_output(get_tv_string(&argvars[0]), infile, flags, &len);
+  	if (res == NULL)
+  	    goto errret;
+  
+***************
+*** 18694,18701 ****
+      }
+      else
+      {
+! 	res = get_cmd_output(get_tv_string(&argvars[0]), infile,
+! 					   SHELL_SILENT | SHELL_COOKED, NULL);
+  #ifdef USE_CR
+  	/* translate <CR> into <NL> */
+  	if (res != NULL)
+--- 18699,18705 ----
+      }
+      else
+      {
+! 	res = get_cmd_output(get_tv_string(&argvars[0]), infile, flags, NULL);
+  #ifdef USE_CR
+  	/* translate <CR> into <NL> */
+  	if (res != NULL)
+*** ../vim-7.4.426/runtime/doc/eval.txt	2014-08-06 14:52:05.035236174 +0200
+--- runtime/doc/eval.txt	2014-08-29 15:49:48.918452643 +0200
+***************
+*** 6071,6076 ****
+--- 6093,6104 ----
+  		list items converted to NULs).  
+  		Pipes are not used.
+  
++ 		When prepended by |:silent| the shell will not be set to
++ 		cooked mode.  This is meant to be used for commands that do
++ 		not need the user to type.  It avoids stray characters showing
++ 		up on the screen which require |CTRL-L| to remove. >
++ 			:silent let f = system('ls *.vim')
++ <
+  		Note: Use |shellescape()| or |::S| with |expand()| or 
+  		|fnamemodify()| to escape special characters in a command 
+  		argument.  Newlines in {expr} may cause the command to fail.  
+*** ../vim-7.4.426/src/version.c	2014-08-29 15:12:50.950447798 +0200
+--- src/version.c	2014-08-29 15:39:07.862451242 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     427,
+  /**/
+
+-- 
+How many light bulbs does it take to change a person?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

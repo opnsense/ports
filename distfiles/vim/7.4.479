@@ -1,0 +1,112 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.479
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.479
+Problem:    MS-Windows: The console title can be wrong.
+Solution:   Take the encoding into account. When restoring the title use the
+	    right function. (Yasuhiro Matsumoto)
+Files:	    src/os_mswin.c, src/os_win32.c
+
+
+*** ../vim-7.4.478/src/os_mswin.c	2014-10-09 17:05:51.944916242 +0200
+--- src/os_mswin.c	2014-10-15 22:46:06.922093200 +0200
+***************
+*** 344,350 ****
+      int which)
+  {
+  #ifndef FEAT_GUI_MSWIN
+!     mch_settitle((which & 1) ? g_szOrigTitle : NULL, NULL);
+  #endif
+  }
+  
+--- 344,350 ----
+      int which)
+  {
+  #ifndef FEAT_GUI_MSWIN
+!     SetConsoleTitle(g_szOrigTitle);
+  #endif
+  }
+  
+*** ../vim-7.4.478/src/os_win32.c	2014-10-07 10:38:34.737403070 +0200
+--- src/os_win32.c	2014-10-15 22:49:22.358093627 +0200
+***************
+*** 4648,4653 ****
+--- 4648,4682 ----
+  #ifdef FEAT_TITLE
+      char szShellTitle[512];
+  
++ # ifdef FEAT_MBYTE
++     /* Change the title to reflect that we are in a subshell. */
++     if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
++     {
++ 	WCHAR szShellTitle[512];
++ 
++ 	if (GetConsoleTitleW(szShellTitle,
++ 				  sizeof(szShellTitle)/sizeof(WCHAR) - 4) > 0)
++ 	{
++ 	    if (cmd == NULL)
++ 		wcscat(szShellTitle, L" :sh");
++ 	    else
++ 	    {
++ 		WCHAR *wn = enc_to_utf16(cmd, NULL);
++ 
++ 		if (wn != NULL)
++ 		{
++ 		    wcscat(szShellTitle, L" - !");
++ 		    if ((wcslen(szShellTitle) + wcslen(wn) <
++ 					  sizeof(szShellTitle)/sizeof(WCHAR)))
++ 			wcscat(szShellTitle, wn);
++ 		    SetConsoleTitleW(szShellTitle);
++ 		    vim_free(wn);
++ 		    goto didset;
++ 		}
++ 	    }
++ 	}
++     }
++ #endif
+      /* Change the title to reflect that we are in a subshell. */
+      if (GetConsoleTitle(szShellTitle, sizeof(szShellTitle) - 4) > 0)
+      {
+***************
+*** 4659,4665 ****
+  	    if ((strlen(szShellTitle) + strlen(cmd) < sizeof(szShellTitle)))
+  		strcat(szShellTitle, cmd);
+  	}
+! 	mch_settitle(szShellTitle, NULL);
+      }
+  #endif
+  
+--- 4688,4694 ----
+  	    if ((strlen(szShellTitle) + strlen(cmd) < sizeof(szShellTitle)))
+  		strcat(szShellTitle, cmd);
+  	}
+! 	SetConsoleTitle(szShellTitle);
+      }
+  #endif
+  
+*** ../vim-7.4.478/src/version.c	2014-10-15 21:26:35.566082778 +0200
+--- src/version.c	2014-10-15 22:45:44.810093152 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     479,
+  /**/
+
+-- 
+MAN:    Fetchez la vache!
+GUARD:  Quoi?
+MAN:    Fetchez la vache!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,139 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.094
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.094
+Problem:    Configure may not find that -lint is needed for gettext().
+Solution:   Check for gettext() with empty $LIBS.  (Thomas De Schampheleire)
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.093/src/configure.in	2013-11-17 20:17:05.000000000 +0100
+--- src/configure.in	2013-11-17 20:23:49.000000000 +0100
+***************
+*** 3725,3730 ****
+--- 3725,3733 ----
+  fi
+  
+  dnl Check if gettext() is working and if it needs -lintl
++ dnl We take care to base this on an empty LIBS: on some systems libelf would be
++ dnl in LIBS and implicitly take along libintl. The final LIBS would then not
++ dnl contain libintl, and the link step would fail due to -Wl,--as-needed.
+  AC_MSG_CHECKING(--disable-nls argument)
+  AC_ARG_ENABLE(nls,
+  	[  --disable-nls           Don't support NLS (gettext()).], ,
+***************
+*** 3743,3758 ****
+    if test -f po/Makefile; then
+      have_gettext="no"
+      if test -n "$MSGFMT"; then
+        AC_TRY_LINK(
+  	[#include <libintl.h>],
+  	[gettext("Test");],
+! 	AC_MSG_RESULT([gettext() works]); have_gettext="yes",
+! 	  olibs=$LIBS
+! 	  LIBS="$LIBS -lintl"
+  	  AC_TRY_LINK(
+  	      [#include <libintl.h>],
+  	      [gettext("Test");],
+! 	      AC_MSG_RESULT([gettext() works with -lintl]); have_gettext="yes",
+  	      AC_MSG_RESULT([gettext() doesn't work]);
+  	      LIBS=$olibs))
+      else
+--- 3746,3763 ----
+    if test -f po/Makefile; then
+      have_gettext="no"
+      if test -n "$MSGFMT"; then
++       olibs=$LIBS
++       LIBS=""
+        AC_TRY_LINK(
+  	[#include <libintl.h>],
+  	[gettext("Test");],
+! 	AC_MSG_RESULT([gettext() works]); have_gettext="yes"; LIBS=$olibs,
+! 	  LIBS="-lintl"
+  	  AC_TRY_LINK(
+  	      [#include <libintl.h>],
+  	      [gettext("Test");],
+! 	      AC_MSG_RESULT([gettext() works with -lintl]); have_gettext="yes";
+! 	      LIBS="$olibs -lintl",
+  	      AC_MSG_RESULT([gettext() doesn't work]);
+  	      LIBS=$olibs))
+      else
+*** ../vim-7.4.093/src/auto/configure	2013-11-17 20:17:05.000000000 +0100
+--- src/auto/configure	2013-11-17 20:25:13.000000000 +0100
+***************
+*** 12690,12695 ****
+--- 12690,12697 ----
+    if test -f po/Makefile; then
+      have_gettext="no"
+      if test -n "$MSGFMT"; then
++       olibs=$LIBS
++       LIBS=""
+        cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+  /* end confdefs.h.  */
+  #include <libintl.h>
+***************
+*** 12703,12712 ****
+  _ACEOF
+  if ac_fn_c_try_link "$LINENO"; then :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: gettext() works" >&5
+! $as_echo "gettext() works" >&6; }; have_gettext="yes"
+  else
+!   olibs=$LIBS
+! 	  LIBS="$LIBS -lintl"
+  	  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+  /* end confdefs.h.  */
+  #include <libintl.h>
+--- 12705,12713 ----
+  _ACEOF
+  if ac_fn_c_try_link "$LINENO"; then :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: gettext() works" >&5
+! $as_echo "gettext() works" >&6; }; have_gettext="yes"; LIBS=$olibs
+  else
+!   LIBS="-lintl"
+  	  cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+  /* end confdefs.h.  */
+  #include <libintl.h>
+***************
+*** 12720,12726 ****
+  _ACEOF
+  if ac_fn_c_try_link "$LINENO"; then :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: gettext() works with -lintl" >&5
+! $as_echo "gettext() works with -lintl" >&6; }; have_gettext="yes"
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: gettext() doesn't work" >&5
+  $as_echo "gettext() doesn't work" >&6; };
+--- 12721,12728 ----
+  _ACEOF
+  if ac_fn_c_try_link "$LINENO"; then :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: gettext() works with -lintl" >&5
+! $as_echo "gettext() works with -lintl" >&6; }; have_gettext="yes";
+! 	      LIBS="$olibs -lintl"
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: gettext() doesn't work" >&5
+  $as_echo "gettext() doesn't work" >&6; };
+*** ../vim-7.4.093/src/version.c	2013-11-17 20:17:05.000000000 +0100
+--- src/version.c	2013-11-17 20:27:43.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     94,
+  /**/
+
+-- 
+BLACK KNIGHT: The Black Knight always triumphs. Have at you!
+   ARTHUR takes his last leg off.  The BLACK KNIGHT's body lands upright.
+BLACK KNIGHT: All right, we'll call it a draw.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

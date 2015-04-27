@@ -1,0 +1,101 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.113
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.113
+Problem:    MSVC static analysis gives warnings.
+Solution:   Avoid the warnings and avoid possible bugs. (Ken Takata)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.112/src/os_win32.c	2013-11-21 12:34:07.000000000 +0100
+--- src/os_win32.c	2013-12-07 14:41:35.000000000 +0100
+***************
+*** 2509,2515 ****
+      WCHAR		*porig, *porigPrev;
+      int			flen;
+      WIN32_FIND_DATAW	fb;
+!     HANDLE		hFind;
+      int			c;
+      int			slen;
+  
+--- 2509,2515 ----
+      WCHAR		*porig, *porigPrev;
+      int			flen;
+      WIN32_FIND_DATAW	fb;
+!     HANDLE		hFind = INVALID_HANDLE_VALUE;
+      int			c;
+      int			slen;
+  
+***************
+*** 2528,2535 ****
+  	/* copy leading drive letter */
+  	*ptrue++ = *porig++;
+  	*ptrue++ = *porig++;
+- 	*ptrue = NUL;	    /* in case nothing follows */
+      }
+  
+      while (*porig != NUL)
+      {
+--- 2528,2535 ----
+  	/* copy leading drive letter */
+  	*ptrue++ = *porig++;
+  	*ptrue++ = *porig++;
+      }
++     *ptrue = NUL;	    /* in case nothing follows */
+  
+      while (*porig != NUL)
+      {
+***************
+*** 2673,2680 ****
+  	/* copy leading drive letter */
+  	*ptrue++ = *porig++;
+  	*ptrue++ = *porig++;
+- 	*ptrue = NUL;	    /* in case nothing follows */
+      }
+  
+      while (*porig != NUL)
+      {
+--- 2673,2680 ----
+  	/* copy leading drive letter */
+  	*ptrue++ = *porig++;
+  	*ptrue++ = *porig++;
+      }
++     *ptrue = NUL;	    /* in case nothing follows */
+  
+      while (*porig != NUL)
+      {
+***************
+*** 6272,6277 ****
+--- 6272,6278 ----
+  		    while (i > 0)
+  			free(argv[--i]);
+  		    free(argv);
++ 		    argv = NULL;
+  		    argc = 0;
+  		}
+  	    }
+*** ../vim-7.4.112/src/version.c	2013-12-07 14:32:04.000000000 +0100
+--- src/version.c	2013-12-07 14:37:48.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     113,
+  /**/
+
+-- 
+How To Keep A Healthy Level Of Insanity:
+15. Five days in advance, tell your friends you can't attend their
+    party because you're not in the mood.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,639 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.107
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.107
+Problem:    Python: When vim.eval() encounters a Vim error, a try/catch in the
+	    Python code doesn't catch it. (Yggdroot Chen)
+Solution:   Throw exceptions on errors in vim.eval(). (ZyX)
+Files:	    src/ex_eval.c, src/if_py_both.h, src/proto/ex_eval.pro,
+	    src/testdir/test86.in, src/testdir/test86.ok,
+	    src/testdir/test87.in, src/testdir/test87.ok
+
+
+*** ../vim-7.4.106/src/ex_eval.c	2013-06-08 15:50:28.000000000 +0200
+--- src/ex_eval.c	2013-11-28 16:59:09.000000000 +0100
+***************
+*** 321,326 ****
+--- 321,337 ----
+  }
+  
+  /*
++  * Free global "*msg_list" and the messages it contains, then set "*msg_list"
++  * to NULL.
++  */
++     void
++ free_global_msglist()
++ {
++     free_msglist(*msg_list);
++     *msg_list = NULL;
++ }
++ 
++ /*
+   * Throw the message specified in the call to cause_errthrow() above as an
+   * error exception.  If cstack is NULL, postpone the throw until do_cmdline()
+   * has returned (see do_one_cmd()).
+***************
+*** 410,475 ****
+      return TRUE;
+  }
+  
+- 
+  /*
+!  * Throw a new exception.  Return FAIL when out of memory or it was tried to
+!  * throw an illegal user exception.  "value" is the exception string for a user
+!  * or interrupt exception, or points to a message list in case of an error
+!  * exception.
+   */
+!     static int
+! throw_exception(value, type, cmdname)
+      void	*value;
+      int		type;
+      char_u	*cmdname;
+  {
+!     except_T	*excp;
+!     char_u	*p, *mesg, *val;
+      int		cmdlen;
+! 
+!     /*
+!      * Disallow faking Interrupt or error exceptions as user exceptions.  They
+!      * would be treated differently from real interrupt or error exceptions when
+!      * no active try block is found, see do_cmdline().
+!      */
+!     if (type == ET_USER)
+!     {
+! 	if (STRNCMP((char_u *)value, "Vim", 3) == 0 &&
+! 		(((char_u *)value)[3] == NUL || ((char_u *)value)[3] == ':' ||
+! 		 ((char_u *)value)[3] == '('))
+! 	{
+! 	    EMSG(_("E608: Cannot :throw exceptions with 'Vim' prefix"));
+! 	    goto fail;
+! 	}
+!     }
+! 
+!     excp = (except_T *)alloc((unsigned)sizeof(except_T));
+!     if (excp == NULL)
+! 	goto nomem;
+  
+      if (type == ET_ERROR)
+      {
+! 	/* Store the original message and prefix the exception value with
+! 	 * "Vim:" or, if a command name is given, "Vim(cmdname):". */
+! 	excp->messages = (struct msglist *)value;
+! 	mesg = excp->messages->throw_msg;
+  	if (cmdname != NULL && *cmdname != NUL)
+  	{
+  	    cmdlen = (int)STRLEN(cmdname);
+! 	    excp->value = vim_strnsave((char_u *)"Vim(",
+  					   4 + cmdlen + 2 + (int)STRLEN(mesg));
+! 	    if (excp->value == NULL)
+! 		goto nomem;
+! 	    STRCPY(&excp->value[4], cmdname);
+! 	    STRCPY(&excp->value[4 + cmdlen], "):");
+! 	    val = excp->value + 4 + cmdlen + 2;
+  	}
+  	else
+  	{
+! 	    excp->value = vim_strnsave((char_u *)"Vim:", 4 + (int)STRLEN(mesg));
+! 	    if (excp->value == NULL)
+! 		goto nomem;
+! 	    val = excp->value + 4;
+  	}
+  
+  	/* msg_add_fname may have been used to prefix the message with a file
+--- 421,461 ----
+      return TRUE;
+  }
+  
+  /*
+!  * Get an exception message that is to be stored in current_exception->value.
+   */
+!     char_u *
+! get_exception_string(value, type, cmdname, should_free)
+      void	*value;
+      int		type;
+      char_u	*cmdname;
++     int		*should_free;
+  {
+!     char_u	*ret, *mesg;
+      int		cmdlen;
+!     char_u	*p, *val;
+  
+      if (type == ET_ERROR)
+      {
+! 	*should_free = FALSE;
+! 	mesg = ((struct msglist *)value)->throw_msg;
+  	if (cmdname != NULL && *cmdname != NUL)
+  	{
+  	    cmdlen = (int)STRLEN(cmdname);
+! 	    ret = vim_strnsave((char_u *)"Vim(",
+  					   4 + cmdlen + 2 + (int)STRLEN(mesg));
+! 	    if (ret == NULL)
+! 		return ret;
+! 	    STRCPY(&ret[4], cmdname);
+! 	    STRCPY(&ret[4 + cmdlen], "):");
+! 	    val = ret + 4 + cmdlen + 2;
+  	}
+  	else
+  	{
+! 	    ret = vim_strnsave((char_u *)"Vim:", 4 + (int)STRLEN(mesg));
+! 	    if (ret == NULL)
+! 		return ret;
+! 	    val = ret + 4;
+  	}
+  
+  	/* msg_add_fname may have been used to prefix the message with a file
+***************
+*** 506,519 ****
+  	}
+      }
+      else
+! 	excp->value = value;
+  
+      excp->type = type;
+      excp->throw_name = vim_strsave(sourcing_name == NULL
+  					      ? (char_u *)"" : sourcing_name);
+      if (excp->throw_name == NULL)
+      {
+! 	if (type == ET_ERROR)
+  	    vim_free(excp->value);
+  	goto nomem;
+      }
+--- 492,556 ----
+  	}
+      }
+      else
+!     {
+! 	*should_free = FALSE;
+! 	ret = (char_u *) value;
+!     }
+! 
+!     return ret;
+! }
+! 
+! 
+! /*
+!  * Throw a new exception.  Return FAIL when out of memory or it was tried to
+!  * throw an illegal user exception.  "value" is the exception string for a
+!  * user or interrupt exception, or points to a message list in case of an
+!  * error exception.
+!  */
+!     static int
+! throw_exception(value, type, cmdname)
+!     void	*value;
+!     int		type;
+!     char_u	*cmdname;
+! {
+!     except_T	*excp;
+!     int		should_free;
+! 
+!     /*
+!      * Disallow faking Interrupt or error exceptions as user exceptions.  They
+!      * would be treated differently from real interrupt or error exceptions
+!      * when no active try block is found, see do_cmdline().
+!      */
+!     if (type == ET_USER)
+!     {
+! 	if (STRNCMP((char_u *)value, "Vim", 3) == 0
+! 		&& (((char_u *)value)[3] == NUL || ((char_u *)value)[3] == ':'
+! 		    || ((char_u *)value)[3] == '('))
+! 	{
+! 	    EMSG(_("E608: Cannot :throw exceptions with 'Vim' prefix"));
+! 	    goto fail;
+! 	}
+!     }
+! 
+!     excp = (except_T *)alloc((unsigned)sizeof(except_T));
+!     if (excp == NULL)
+! 	goto nomem;
+! 
+!     if (type == ET_ERROR)
+! 	/* Store the original message and prefix the exception value with
+! 	 * "Vim:" or, if a command name is given, "Vim(cmdname):". */
+! 	excp->messages = (struct msglist *)value;
+! 
+!     excp->value = get_exception_string(value, type, cmdname, &should_free);
+!     if (excp->value == NULL && should_free)
+! 	goto nomem;
+  
+      excp->type = type;
+      excp->throw_name = vim_strsave(sourcing_name == NULL
+  					      ? (char_u *)"" : sourcing_name);
+      if (excp->throw_name == NULL)
+      {
+! 	if (should_free)
+  	    vim_free(excp->value);
+  	goto nomem;
+      }
+***************
+*** 2033,2042 ****
+  	/* If an error was about to be converted to an exception when
+  	 * enter_cleanup() was called, free the message list. */
+  	if (msg_list != NULL)
+! 	{
+! 	    free_msglist(*msg_list);
+! 	    *msg_list = NULL;
+! 	}
+      }
+  
+      /*
+--- 2070,2076 ----
+  	/* If an error was about to be converted to an exception when
+  	 * enter_cleanup() was called, free the message list. */
+  	if (msg_list != NULL)
+! 	    free_global_msglist();
+      }
+  
+      /*
+*** ../vim-7.4.106/src/if_py_both.h	2013-11-11 01:05:43.000000000 +0100
+--- src/if_py_both.h	2013-11-28 17:00:22.000000000 +0100
+***************
+*** 566,571 ****
+--- 566,593 ----
+  	PyErr_SetNone(PyExc_KeyboardInterrupt);
+  	return -1;
+      }
++     else if (msg_list != NULL && *msg_list != NULL)
++     {
++ 	int	should_free;
++ 	char_u	*msg;
++ 
++ 	msg = get_exception_string(*msg_list, ET_ERROR, NULL, &should_free);
++ 
++ 	if (msg == NULL)
++ 	{
++ 	    PyErr_NoMemory();
++ 	    return -1;
++ 	}
++ 
++ 	PyErr_SetVim((char *) msg);
++ 
++ 	free_global_msglist();
++ 
++ 	if (should_free)
++ 	    vim_free(msg);
++ 
++ 	return -1;
++     }
+      else if (!did_throw)
+  	return (PyErr_Occurred() ? -1 : 0);
+      /* Python exception is preferred over vim one; unlikely to occur though */
+*** ../vim-7.4.106/src/proto/ex_eval.pro	2013-08-10 13:37:10.000000000 +0200
+--- src/proto/ex_eval.pro	2013-11-28 16:56:33.000000000 +0100
+***************
+*** 4,11 ****
+--- 4,13 ----
+  int should_abort __ARGS((int retcode));
+  int aborted_in_try __ARGS((void));
+  int cause_errthrow __ARGS((char_u *mesg, int severe, int *ignore));
++ void free_global_msglist __ARGS((void));
+  void do_errthrow __ARGS((struct condstack *cstack, char_u *cmdname));
+  int do_intthrow __ARGS((struct condstack *cstack));
++ char_u *get_exception_string __ARGS((void *value, int type, char_u *cmdname, int *should_free));
+  void discard_current_exception __ARGS((void));
+  void report_make_pending __ARGS((int pending, void *value));
+  void report_resume_pending __ARGS((int pending, void *value));
+*** ../vim-7.4.106/src/testdir/test86.in	2013-11-11 01:05:43.000000000 +0100
+--- src/testdir/test86.in	2013-11-28 16:41:01.000000000 +0100
+***************
+*** 179,184 ****
+--- 179,210 ----
+  :unlockvar! l
+  :"
+  :" Function calls
++ py << EOF
++ import sys
++ def ee(expr, g=globals(), l=locals()):
++     try:
++         exec(expr, g, l)
++     except:
++         ei = sys.exc_info()
++         msg = sys.exc_info()[0].__name__ + ':' + repr(sys.exc_info()[1].args)
++         msg = msg.replace('TypeError:(\'argument 1 ', 'TypeError:(\'')
++         if expr.find('None') > -1:
++             msg = msg.replace('TypeError:(\'iteration over non-sequence\',)',
++                               'TypeError:("\'NoneType\' object is not iterable",)')
++         if expr.find('FailingNumber') > -1:
++             msg = msg.replace(', not \'FailingNumber\'', '').replace('"', '\'')
++             msg = msg.replace('TypeError:(\'iteration over non-sequence\',)',
++                               'TypeError:("\'FailingNumber\' object is not iterable",)')
++         if msg.find('(\'\'') > -1 or msg.find('(\'can\'t') > -1:
++             msg = msg.replace('(\'', '("').replace('\',)', '",)')
++         if expr == 'fd(self=[])':
++             # HACK: PyMapping_Check changed meaning
++             msg = msg.replace('AttributeError:(\'keys\',)',
++                               'TypeError:(\'unable to convert list to vim dictionary\',)')
++         vim.current.buffer.append(expr + ':' + msg)
++     else:
++         vim.current.buffer.append(expr + ':NOT FAILED')
++ EOF
+  :fun New(...)
+  :   return ['NewStart']+a:000+['NewEnd']
+  :endfun
+***************
+*** 193,210 ****
+  :$put =string(l)
+  :py l.extend([l[0].name])
+  :$put =string(l)
+! :try
+! :   py l[1](1, 2, 3)
+! :catch
+! :   $put =v:exception[:16]
+! :endtry
+  :py f=l[0]
+  :delfunction New
+! :try
+! :   py f(1, 2, 3)
+! :catch
+! :   $put =v:exception[:16]
+! :endtry
+  :if has('float')
+  :   let l=[0.0]
+  :   py l=vim.bindeval('l')
+--- 219,228 ----
+  :$put =string(l)
+  :py l.extend([l[0].name])
+  :$put =string(l)
+! :py ee('l[1](1, 2, 3)')
+  :py f=l[0]
+  :delfunction New
+! :py ee('f(1, 2, 3)')
+  :if has('float')
+  :   let l=[0.0]
+  :   py l=vim.bindeval('l')
+***************
+*** 216,222 ****
+  :let messages=[]
+  :delfunction DictNew
+  py <<EOF
+- import sys
+  d=vim.bindeval('{}')
+  m=vim.bindeval('messages')
+  def em(expr, g=globals(), l=locals()):
+--- 234,239 ----
+***************
+*** 323,328 ****
+--- 340,346 ----
+  :py l[0] = t.t > 8  # check if the background thread is working
+  :py del time
+  :py del threading
++ :py del t
+  :$put =string(l)
+  :"
+  :" settrace
+***************
+*** 882,910 ****
+  :fun D()
+  :endfun
+  py << EOF
+- def ee(expr, g=globals(), l=locals()):
+-     try:
+-         exec(expr, g, l)
+-     except:
+-         ei = sys.exc_info()
+-         msg = sys.exc_info()[0].__name__ + ':' + repr(sys.exc_info()[1].args)
+-         msg = msg.replace('TypeError:(\'argument 1 ', 'TypeError:(\'')
+-         if expr.find('None') > -1:
+-             msg = msg.replace('TypeError:(\'iteration over non-sequence\',)',
+-                               'TypeError:("\'NoneType\' object is not iterable",)')
+-         if expr.find('FailingNumber') > -1:
+-             msg = msg.replace(', not \'FailingNumber\'', '').replace('"', '\'')
+-             msg = msg.replace('TypeError:(\'iteration over non-sequence\',)',
+-                               'TypeError:("\'FailingNumber\' object is not iterable",)')
+-         if msg.find('(\'\'') > -1 or msg.find('(\'can\'t') > -1:
+-             msg = msg.replace('(\'', '("').replace('\',)', '",)')
+-         if expr == 'fd(self=[])':
+-             # HACK: PyMapping_Check changed meaning
+-             msg = msg.replace('AttributeError:(\'keys\',)',
+-                               'TypeError:(\'unable to convert list to vim dictionary\',)')
+-         cb.append(expr + ':' + msg)
+-     else:
+-         cb.append(expr + ':NOT FAILED')
+  d = vim.Dictionary()
+  ned = vim.Dictionary(foo='bar', baz='abcD')
+  dl = vim.Dictionary(a=1)
+--- 900,905 ----
+***************
+*** 1276,1281 ****
+--- 1271,1277 ----
+  ee('vim.eval("Exe(\'throw \'\'ghi\'\'\')")')
+  ee('vim.eval("Exe(\'echoerr \'\'jkl\'\'\')")')
+  ee('vim.eval("Exe(\'xxx_non_existent_command_xxx\')")')
++ ee('vim.eval("xxx_unknown_function_xxx()")')
+  ee('vim.bindeval("Exe(\'xxx_non_existent_command_xxx\')")')
+  del Exe
+  EOF
+*** ../vim-7.4.106/src/testdir/test86.ok	2013-11-11 01:05:43.000000000 +0100
+--- src/testdir/test86.ok	2013-11-28 16:41:01.000000000 +0100
+***************
+*** 53,60 ****
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd']
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}]
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}, 'New']
+! Vim(python):E725:
+! Vim(python):E117:
+  [0.0, 0.0]
+  KeyError
+  TypeError
+--- 53,60 ----
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd']
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}]
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}, 'New']
+! l[1](1, 2, 3):error:('Vim:E725: Calling dict function without Dictionary: DictNew',)
+! f(1, 2, 3):error:('Vim:E117: Unknown function: New',)
+  [0.0, 0.0]
+  KeyError
+  TypeError
+***************
+*** 1197,1202 ****
+--- 1197,1203 ----
+  vim.eval("Exe('throw ''ghi''')"):error:('ghi',)
+  vim.eval("Exe('echoerr ''jkl''')"):error:('Vim(echoerr):jkl',)
+  vim.eval("Exe('xxx_non_existent_command_xxx')"):error:('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',)
++ vim.eval("xxx_unknown_function_xxx()"):error:('Vim:E117: Unknown function: xxx_unknown_function_xxx',)
+  vim.bindeval("Exe('xxx_non_existent_command_xxx')"):error:('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',)
+  Caught KeyboardInterrupt
+  Running :put
+*** ../vim-7.4.106/src/testdir/test87.in	2013-11-11 01:05:43.000000000 +0100
+--- src/testdir/test87.in	2013-11-28 16:41:01.000000000 +0100
+***************
+*** 172,177 ****
+--- 172,207 ----
+  :unlockvar! l
+  :"
+  :" Function calls
++ py3 << EOF
++ import sys
++ import re
++ 
++ py33_type_error_pattern = re.compile('^__call__\(\) takes (\d+) positional argument but (\d+) were given$')
++ 
++ def ee(expr, g=globals(), l=locals()):
++     cb = vim.current.buffer
++     try:
++         try:
++             exec(expr, g, l)
++         except Exception as e:
++             if sys.version_info >= (3, 3) and e.__class__ is AttributeError and str(e).find('has no attribute')>=0 and not str(e).startswith("'vim."):
++                 cb.append(expr + ':' + repr((e.__class__, AttributeError(str(e)[str(e).rfind(" '") + 2:-1]))))
++             elif sys.version_info >= (3, 3) and e.__class__ is ImportError and str(e).find('No module named \'') >= 0:
++                 cb.append(expr + ':' + repr((e.__class__, ImportError(str(e).replace("'", '')))))
++             elif sys.version_info >= (3, 3) and e.__class__ is TypeError:
++                 m = py33_type_error_pattern.search(str(e))
++                 if m:
++                     msg = '__call__() takes exactly {0} positional argument ({1} given)'.format(m.group(1), m.group(2))
++                     cb.append(expr + ':' + repr((e.__class__, TypeError(msg))))
++                 else:
++                     cb.append(expr + ':' + repr((e.__class__, e)))
++             else:
++                 cb.append(expr + ':' + repr((e.__class__, e)))
++         else:
++             cb.append(expr + ':NOT FAILED')
++     except Exception as e:
++         cb.append(expr + '::' + repr((e.__class__, e)))
++ EOF
+  :fun New(...)
+  :   return ['NewStart']+a:000+['NewEnd']
+  :endfun
+***************
+*** 186,203 ****
+  :$put =string(l)
+  :py3 l+=[l[0].name]
+  :$put =string(l)
+! :try
+! :   py3 l[1](1, 2, 3)
+! :catch
+! :   $put =v:exception[:13]
+! :endtry
+  :py3 f=l[0]
+  :delfunction New
+! :try
+! :   py3 f(1, 2, 3)
+! :catch
+! :   $put =v:exception[:13]
+! :endtry
+  :if has('float')
+  :   let l=[0.0]
+  :   py3 l=vim.bindeval('l')
+--- 216,225 ----
+  :$put =string(l)
+  :py3 l+=[l[0].name]
+  :$put =string(l)
+! :py3 ee('l[1](1, 2, 3)')
+  :py3 f=l[0]
+  :delfunction New
+! :py3 ee('f(1, 2, 3)')
+  :if has('float')
+  :   let l=[0.0]
+  :   py3 l=vim.bindeval('l')
+***************
+*** 315,320 ****
+--- 337,343 ----
+  :py3 l[0] = t.t > 8  # check if the background thread is working
+  :py3 del time
+  :py3 del threading
++ :py3 del t
+  :$put =string(l)
+  :"
+  :" settrace
+***************
+*** 829,861 ****
+  :fun D()
+  :endfun
+  py3 << EOF
+- import re
+- 
+- py33_type_error_pattern = re.compile('^__call__\(\) takes (\d+) positional argument but (\d+) were given$')
+- 
+- def ee(expr, g=globals(), l=locals()):
+-     try:
+-         try:
+-             exec(expr, g, l)
+-         except Exception as e:
+-             if sys.version_info >= (3, 3) and e.__class__ is AttributeError and str(e).find('has no attribute')>=0 and not str(e).startswith("'vim."):
+-                 cb.append(expr + ':' + repr((e.__class__, AttributeError(str(e)[str(e).rfind(" '") + 2:-1]))))
+-             elif sys.version_info >= (3, 3) and e.__class__ is ImportError and str(e).find('No module named \'') >= 0:
+-                 cb.append(expr + ':' + repr((e.__class__, ImportError(str(e).replace("'", '')))))
+-             elif sys.version_info >= (3, 3) and e.__class__ is TypeError:
+-                 m = py33_type_error_pattern.search(str(e))
+-                 if m:
+-                     msg = '__call__() takes exactly {0} positional argument ({1} given)'.format(m.group(1), m.group(2))
+-                     cb.append(expr + ':' + repr((e.__class__, TypeError(msg))))
+-                 else:
+-                     cb.append(expr + ':' + repr((e.__class__, e)))
+-             else:
+-                 cb.append(expr + ':' + repr((e.__class__, e)))
+-         else:
+-             cb.append(expr + ':NOT FAILED')
+-     except Exception as e:
+-         cb.append(expr + '::' + repr((e.__class__, e)))
+- 
+  d = vim.Dictionary()
+  ned = vim.Dictionary(foo='bar', baz='abcD')
+  dl = vim.Dictionary(a=1)
+--- 852,857 ----
+***************
+*** 1227,1232 ****
+--- 1223,1229 ----
+  ee('vim.eval("Exe(\'throw \'\'ghi\'\'\')")')
+  ee('vim.eval("Exe(\'echoerr \'\'jkl\'\'\')")')
+  ee('vim.eval("Exe(\'xxx_non_existent_command_xxx\')")')
++ ee('vim.eval("xxx_unknown_function_xxx()")')
+  ee('vim.bindeval("Exe(\'xxx_non_existent_command_xxx\')")')
+  del Exe
+  EOF
+*** ../vim-7.4.106/src/testdir/test87.ok	2013-11-11 01:05:43.000000000 +0100
+--- src/testdir/test87.ok	2013-11-28 16:41:01.000000000 +0100
+***************
+*** 53,60 ****
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd']
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}]
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}, 'New']
+! Vim(py3):E725:
+! Vim(py3):E117:
+  [0.0, 0.0]
+  KeyError
+  TypeError
+--- 53,60 ----
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd']
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}]
+  [function('New'), function('DictNew'), 'NewStart', 1, 2, 3, 'NewEnd', 'DictNewStart', 1, 2, 3, 'DictNewEnd', {'a': 'b'}, 'New']
+! l[1](1, 2, 3):(<class 'vim.error'>, error('Vim:E725: Calling dict function without Dictionary: DictNew',))
+! f(1, 2, 3):(<class 'vim.error'>, error('Vim:E117: Unknown function: New',))
+  [0.0, 0.0]
+  KeyError
+  TypeError
+***************
+*** 1186,1191 ****
+--- 1186,1192 ----
+  vim.eval("Exe('throw ''ghi''')"):(<class 'vim.error'>, error('ghi',))
+  vim.eval("Exe('echoerr ''jkl''')"):(<class 'vim.error'>, error('Vim(echoerr):jkl',))
+  vim.eval("Exe('xxx_non_existent_command_xxx')"):(<class 'vim.error'>, error('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',))
++ vim.eval("xxx_unknown_function_xxx()"):(<class 'vim.error'>, error('Vim:E117: Unknown function: xxx_unknown_function_xxx',))
+  vim.bindeval("Exe('xxx_non_existent_command_xxx')"):(<class 'vim.error'>, error('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',))
+  Caught KeyboardInterrupt
+  Running :put
+*** ../vim-7.4.106/src/version.c	2013-11-28 16:32:34.000000000 +0100
+--- src/version.c	2013-11-28 16:41:43.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     107,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+8. You spend half of the plane trip with your laptop on your lap...and your
+   child in the overhead compartment.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

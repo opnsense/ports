@@ -1,0 +1,45 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.586
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.586
+Problem:    Parallel building of the documentation html files is not reliable. 
+Solution:   Remove a cyclic dependency. (Reiner Herrmann)
+Files:	    runtime/doc/Makefile
+
+
+*** ../vim-7.4.585/runtime/doc/Makefile	2010-07-21 20:38:06.000000000 +0200
+--- runtime/doc/Makefile	2015-01-20 17:24:26.743888063 +0100
+***************
+*** 229,235 ****
+  	starting.html \
+  	syntax.html \
+  	tabpage.html \
+- 	tags.html \
+  	tagsrch.html \
+  	term.html \
+  	tips.html \
+--- 229,234 ----
+*** ../vim-7.4.585/src/version.c	2015-01-20 13:29:46.397315064 +0100
+--- src/version.c	2015-01-20 17:25:55.974918912 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     586,
+  /**/
+
+-- 
+From "know your smileys":
+ |-(	Contact lenses, but has lost them
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

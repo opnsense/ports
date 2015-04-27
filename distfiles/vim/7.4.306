@@ -1,0 +1,84 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.306
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.306
+Problem:    getchar(0) does not return Esc.
+Solution:   Do not wait for an Esc sequence to be complete.  (Yasuhiro
+	    Matsumoto)
+Files:	    src/eval.c, src/getchar.c
+
+
+*** ../vim-7.4.305/src/eval.c	2014-05-22 14:19:51.674510749 +0200
+--- src/eval.c	2014-05-22 18:59:34.038169656 +0200
+***************
+*** 11313,11325 ****
+  	    n = safe_vgetc();
+  	else if (get_tv_number_chk(&argvars[0], &error) == 1)
+  	    /* getchar(1): only check if char avail */
+! 	    n = vpeekc();
+! 	else if (error || vpeekc() == NUL)
+  	    /* illegal argument or getchar(0) and no char avail: return zero */
+  	    n = 0;
+  	else
+  	    /* getchar(0) and char avail: return char */
+  	    n = safe_vgetc();
+  	if (n == K_IGNORE)
+  	    continue;
+  	break;
+--- 11313,11326 ----
+  	    n = safe_vgetc();
+  	else if (get_tv_number_chk(&argvars[0], &error) == 1)
+  	    /* getchar(1): only check if char avail */
+! 	    n = vpeekc_any();
+! 	else if (error || vpeekc_any() == NUL)
+  	    /* illegal argument or getchar(0) and no char avail: return zero */
+  	    n = 0;
+  	else
+  	    /* getchar(0) and char avail: return char */
+  	    n = safe_vgetc();
++ 
+  	if (n == K_IGNORE)
+  	    continue;
+  	break;
+*** ../vim-7.4.305/src/getchar.c	2014-03-23 15:12:29.919264336 +0100
+--- src/getchar.c	2014-05-22 18:34:13.450200562 +0200
+***************
+*** 1883,1889 ****
+  }
+  #endif
+  
+! #if defined(FEAT_INS_EXPAND) || defined(PROTO)
+  /*
+   * Check if any character is available, also half an escape sequence.
+   * Trick: when no typeahead found, but there is something in the typeahead
+--- 1883,1889 ----
+  }
+  #endif
+  
+! #if defined(FEAT_INS_EXPAND) || defined(FEAT_EVAL) || defined(PROTO)
+  /*
+   * Check if any character is available, also half an escape sequence.
+   * Trick: when no typeahead found, but there is something in the typeahead
+*** ../vim-7.4.305/src/version.c	2014-05-22 18:14:27.570224664 +0200
+--- src/version.c	2014-05-22 18:37:10.734196958 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     306,
+  /**/
+
+-- 
+Press any key to continue, press any other key to quit.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

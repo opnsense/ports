@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.473
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.473
+Problem:    Cursor movement is incorrect when there is a number
+	    column/sign/fold column and 'sbr' is displayed.
+Solution:   Adjust the column for 'sbr'. (Christian Brabandt)
+Files:	    src/charset.c
+
+
+*** ../vim-7.4.472/src/charset.c	2014-08-24 21:19:22.224571318 +0200
+--- src/charset.c	2014-10-10 15:24:26.257091676 +0200
+***************
+*** 1184,1189 ****
+--- 1184,1191 ----
+  	{
+  	    col -= W_WIDTH(wp);
+  	    numberextra = W_WIDTH(wp) - (numberextra - win_col_off2(wp));
++ 	    if (*p_sbr != NUL && col >= (colnr_T)STRLEN(p_sbr))
++ 		col -= (colnr_T)STRLEN(p_sbr);
+  	    if (numberextra > 0)
+  		col = col % numberextra;
+  	}
+*** ../vim-7.4.472/src/version.c	2014-10-10 15:28:41.985092234 +0200
+--- src/version.c	2014-10-10 15:32:19.029092709 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     473,
+  /**/
+
+-- 
+Vi is clearly superior to emacs, since "vi" has only two characters
+(and two keystrokes), while "emacs" has five.  (Randy C. Ford)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

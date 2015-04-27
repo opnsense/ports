@@ -1,0 +1,189 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.228
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.228
+Problem:    Compiler warnings when building with Python 3.2.
+Solution:   Make type cast depend on Python version. (Ken Takata)
+Files:	    src/if_py_both.h, src/if_python.c, src/if_python3.c
+
+
+*** ../vim-7.4.227/src/if_py_both.h	2014-03-08 16:13:39.115462069 +0100
+--- src/if_py_both.h	2014-03-30 15:58:40.948518929 +0200
+***************
+*** 2328,2334 ****
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject *)idx, ListLength(self),
+  				 &start, &stop, &step, &slicelen) < 0)
+  	    return NULL;
+  	return ListSlice(self, start, step, slicelen);
+--- 2328,2334 ----
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject_T *)idx, ListLength(self),
+  				 &start, &stop, &step, &slicelen) < 0)
+  	    return NULL;
+  	return ListSlice(self, start, step, slicelen);
+***************
+*** 2618,2624 ****
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject *)idx, ListLength(self),
+  				 &start, &stop, &step, &slicelen) < 0)
+  	    return -1;
+  	return ListAssSlice(self, start, step, slicelen,
+--- 2618,2624 ----
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject_T *)idx, ListLength(self),
+  				 &start, &stop, &step, &slicelen) < 0)
+  	    return -1;
+  	return ListAssSlice(self, start, step, slicelen,
+*** ../vim-7.4.227/src/if_python.c	2014-02-23 22:52:33.368764715 +0100
+--- src/if_python.c	2014-03-30 15:58:35.768518850 +0200
+***************
+*** 803,808 ****
+--- 803,810 ----
+  # define PY_STRSAVE(s) ((char_u *) py_memsave(s, STRLEN(s) + 1))
+  #endif
+  
++ typedef PySliceObject PySliceObject_T;
++ 
+  /*
+   * Include the code shared with if_python3.c
+   */
+*** ../vim-7.4.227/src/if_python3.c	2014-01-14 19:35:49.000000000 +0100
+--- src/if_python3.c	2014-03-30 15:59:24.752519600 +0200
+***************
+*** 100,105 ****
+--- 100,115 ----
+  #define PyIntArgFunc	ssizeargfunc
+  #define PyIntObjArgProc	ssizeobjargproc
+  
++ /*
++  * PySlice_GetIndicesEx(): first argument type changed from PySliceObject
++  * to PyObject in Python 3.2 or later.
++  */
++ #if PY_VERSION_HEX >= 0x030200f0
++ typedef PyObject PySliceObject_T;
++ #else
++ typedef PySliceObject PySliceObject_T;
++ #endif
++ 
+  #if defined(DYNAMIC_PYTHON3) || defined(PROTO)
+  
+  # ifndef WIN3264
+***************
+*** 294,300 ****
+  static PyObject* (*py3_PyTuple_GetItem)(PyObject *, Py_ssize_t);
+  static int (*py3_PyMapping_Check)(PyObject *);
+  static PyObject* (*py3_PyMapping_Keys)(PyObject *);
+! static int (*py3_PySlice_GetIndicesEx)(PySliceObject *r, Py_ssize_t length,
+  		     Py_ssize_t *start, Py_ssize_t *stop, Py_ssize_t *step,
+  		     Py_ssize_t *slicelen);
+  static PyObject* (*py3_PyErr_NoMemory)(void);
+--- 304,310 ----
+  static PyObject* (*py3_PyTuple_GetItem)(PyObject *, Py_ssize_t);
+  static int (*py3_PyMapping_Check)(PyObject *);
+  static PyObject* (*py3_PyMapping_Keys)(PyObject *);
+! static int (*py3_PySlice_GetIndicesEx)(PySliceObject_T *r, Py_ssize_t length,
+  		     Py_ssize_t *start, Py_ssize_t *stop, Py_ssize_t *step,
+  		     Py_ssize_t *slicelen);
+  static PyObject* (*py3_PyErr_NoMemory)(void);
+***************
+*** 1190,1196 ****
+  	if (CheckBuffer((BufferObject *) self))
+  	    return NULL;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject *)idx,
+  	      (Py_ssize_t)((BufferObject *)(self))->buf->b_ml.ml_line_count,
+  	      &start, &stop,
+  	      &step, &slicelen) < 0)
+--- 1200,1206 ----
+  	if (CheckBuffer((BufferObject *) self))
+  	    return NULL;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject_T *)idx,
+  	      (Py_ssize_t)((BufferObject *)(self))->buf->b_ml.ml_line_count,
+  	      &start, &stop,
+  	      &step, &slicelen) < 0)
+***************
+*** 1222,1228 ****
+  	if (CheckBuffer((BufferObject *) self))
+  	    return -1;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject *)idx,
+  	      (Py_ssize_t)((BufferObject *)(self))->buf->b_ml.ml_line_count,
+  	      &start, &stop,
+  	      &step, &slicelen) < 0)
+--- 1232,1238 ----
+  	if (CheckBuffer((BufferObject *) self))
+  	    return -1;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject_T *)idx,
+  	      (Py_ssize_t)((BufferObject *)(self))->buf->b_ml.ml_line_count,
+  	      &start, &stop,
+  	      &step, &slicelen) < 0)
+***************
+*** 1306,1312 ****
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject *)idx,
+  		((RangeObject *)(self))->end-((RangeObject *)(self))->start+1,
+  		&start, &stop,
+  		&step, &slicelen) < 0)
+--- 1316,1322 ----
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject_T *)idx,
+  		((RangeObject *)(self))->end-((RangeObject *)(self))->start+1,
+  		&start, &stop,
+  		&step, &slicelen) < 0)
+***************
+*** 1333,1339 ****
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject *)idx,
+  		((RangeObject *)(self))->end-((RangeObject *)(self))->start+1,
+  		&start, &stop,
+  		&step, &slicelen) < 0)
+--- 1343,1349 ----
+      {
+  	Py_ssize_t start, stop, step, slicelen;
+  
+! 	if (PySlice_GetIndicesEx((PySliceObject_T *)idx,
+  		((RangeObject *)(self))->end-((RangeObject *)(self))->start+1,
+  		&start, &stop,
+  		&step, &slicelen) < 0)
+*** ../vim-7.4.227/src/version.c	2014-03-28 21:58:17.878256914 +0100
+--- src/version.c	2014-03-30 15:52:27.784513211 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     228,
+  /**/
+
+-- 
+The average life of an organization chart is six months.  You can safely
+ignore any order from your boss that would take six months to complete.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

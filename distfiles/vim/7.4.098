@@ -1,0 +1,243 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.098
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.098
+Problem:    When using ":'<,'>del" errors may be given for the visual line
+            numbers being out of range.
+Solution:   Reset Visual mode in ":del". (Lech Lorens)
+Files:      src/ex_docmd.c, src/testdir/test103.in, src/testdir/test103.ok,
+            src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+            src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+            src/testdir/Make_vms.mms, src/testdir/Makefile
+
+
+*** ../vim-7.4.097/src/ex_docmd.c	2013-11-09 05:30:18.000000000 +0100
+--- src/ex_docmd.c	2013-11-21 14:04:55.000000000 +0100
+***************
+*** 8570,8575 ****
+--- 8570,8580 ----
+  	beginline(BL_SOL | BL_FIX);
+      }
+  
++ #if defined(FEAT_VISUAL)
++     if (VIsual_active)
++ 	end_visual_mode();
++ #endif
++ 
+      switch (eap->cmdidx)
+      {
+  	case CMD_delete:
+*** ../vim-7.4.097/src/testdir/test103.in	2013-11-21 14:21:12.000000000 +0100
+--- src/testdir/test103.in	2013-11-21 14:02:09.000000000 +0100
+***************
+*** 0 ****
+--- 1,37 ----
++ Test for visual mode not being reset causing E315 error.
++ STARTTEST
++ :so small.vim
++ :enew
++ :let g:msg="Everything's fine."
++ :function! TriggerTheProblem()
++ :	" At this point there is no visual selection because :call reset it.
++ :	" Let's restore the selection:
++ :	normal gv
++ :	'<,'>del _
++ :	try
++ :		exe "normal \<Esc>"
++ :	catch /^Vim\%((\a\+)\)\=:E315/
++ :		echom 'Snap! E315 error!'
++ :		let g:msg='Snap! E315 error!'
++ :	endtry
++ :endfunction
++ :enew
++ :setl buftype=nofile
++ :call append(line('$'), 'Delete this line.')
++ :"
++ :"
++ :" NOTE: this has to be done by a call to a function because executing :del the
++ :"       ex-way will require the colon operator which resets the visual mode thus
++ :"       preventing the problem:
++ :"
++ GV:call TriggerTheProblem()
++ :%del _
++ :call append(line('$'), g:msg)
++ :w! test.out
++ :brewind
++ ENDTEST
++ 
++ STARTTEST
++ :qa!
++ ENDTEST
++ 
+*** ../vim-7.4.097/src/testdir/test103.ok	2013-11-21 14:21:12.000000000 +0100
+--- src/testdir/test103.ok	2013-11-21 14:02:28.000000000 +0100
+***************
+*** 0 ****
+--- 1,2 ----
++ 
++ Everything's fine.
+*** ../vim-7.4.097/src/testdir/Make_amiga.mak	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/Make_amiga.mak	2013-11-21 14:02:51.000000000 +0100
+***************
+*** 34,40 ****
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out test101.out test102.out
+  
+  .SUFFIXES: .in .out
+  
+--- 34,40 ----
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out test101.out test102.out test103.out
+  
+  .SUFFIXES: .in .out
+  
+***************
+*** 153,155 ****
+--- 153,156 ----
+  test100.out: test100.in
+  test101.out: test101.in
+  test102.out: test102.in
++ test103.out: test103.in
+*** ../vim-7.4.097/src/testdir/Make_dos.mak	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/Make_dos.mak	2013-11-21 14:02:58.000000000 +0100
+***************
+*** 33,39 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out test101.out test102.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 33,39 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out test101.out test102.out test103.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.097/src/testdir/Make_ming.mak	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/Make_ming.mak	2013-11-21 14:03:01.000000000 +0100
+***************
+*** 53,59 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100out test101.out test102.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 53,59 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100out test101.out test102.out test103.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.097/src/testdir/Make_os2.mak	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/Make_os2.mak	2013-11-21 14:03:03.000000000 +0100
+***************
+*** 35,41 ****
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out test101.out test102.out
+  
+  .SUFFIXES: .in .out
+  
+--- 35,41 ----
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out test101.out test102.out test103.out
+  
+  .SUFFIXES: .in .out
+  
+*** ../vim-7.4.097/src/testdir/Make_vms.mms	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/Make_vms.mms	2013-11-21 14:03:13.000000000 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2013 Nov 12
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2013 Nov 21
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 79,85 ****
+  	 test82.out test83.out test84.out test88.out test89.out \
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test97.out test98.out test99.out \
+! 	 test100.out test101.out test102.out
+  
+  # Known problems:
+  # Test 30: a problem around mac format - unknown reason
+--- 79,85 ----
+  	 test82.out test83.out test84.out test88.out test89.out \
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test97.out test98.out test99.out \
+! 	 test100.out test101.out test102.out test103.out
+  
+  # Known problems:
+  # Test 30: a problem around mac format - unknown reason
+*** ../vim-7.4.097/src/testdir/Makefile	2013-11-12 05:28:08.000000000 +0100
+--- src/testdir/Makefile	2013-11-21 14:03:23.000000000 +0100
+***************
+*** 30,36 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out test101.out test102.out
+  
+  SCRIPTS_GUI = test16.out
+  
+--- 30,36 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out test101.out test102.out test103.out
+  
+  SCRIPTS_GUI = test16.out
+  
+*** ../vim-7.4.097/src/version.c	2013-11-21 13:24:36.000000000 +0100
+--- src/version.c	2013-11-21 14:20:34.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     98,
+  /**/
+
+-- 
+I recommend ordering large cargo containers of paper towels to make up
+whatever budget underruns you have.  Paper products are always useful and they
+have the advantage of being completely flushable if you need to make room in
+the storage area later.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

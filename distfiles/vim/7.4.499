@@ -1,0 +1,76 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.499
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.499
+Problem:    substitute() can be slow with long strings.
+Solution:   Store a pointer to the end, instead of calling strlen() every
+	    time. (Ozaki Kiichi)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.498/src/eval.c	2014-10-31 15:45:49.171053328 +0100
+--- src/eval.c	2014-11-05 15:49:49.040637923 +0100
+***************
+*** 25076,25081 ****
+--- 25076,25082 ----
+      int		i;
+      int		do_all;
+      char_u	*tail;
++     char_u	*end;
+      garray_T	ga;
+      char_u	*ret;
+      char_u	*save_cpo;
+***************
+*** 25094,25099 ****
+--- 25095,25101 ----
+      if (regmatch.regprog != NULL)
+      {
+  	tail = str;
++ 	end = str + STRLEN(str);
+  	while (vim_regexec_nl(&regmatch, str, (colnr_T)(tail - str)))
+  	{
+  	    /* Skip empty match except for first match. */
+***************
+*** 25120,25126 ****
+  	     * - The text after the match.
+  	     */
+  	    sublen = vim_regsub(&regmatch, sub, tail, FALSE, TRUE, FALSE);
+! 	    if (ga_grow(&ga, (int)(STRLEN(tail) + sublen -
+  			    (regmatch.endp[0] - regmatch.startp[0]))) == FAIL)
+  	    {
+  		ga_clear(&ga);
+--- 25122,25128 ----
+  	     * - The text after the match.
+  	     */
+  	    sublen = vim_regsub(&regmatch, sub, tail, FALSE, TRUE, FALSE);
+! 	    if (ga_grow(&ga, (int)((end - tail) + sublen -
+  			    (regmatch.endp[0] - regmatch.startp[0]))) == FAIL)
+  	    {
+  		ga_clear(&ga);
+*** ../vim-7.4.498/src/version.c	2014-11-05 15:46:06.212643292 +0100
+--- src/version.c	2014-11-05 15:50:52.880636385 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     499,
+  /**/
+
+-- 
+ARTHUR:        A scratch?  Your arm's off!
+BLACK KNIGHT:  No, it isn't.
+ARTHUR:        Well, what's that then?
+BLACK KNIGHT:  I've had worse.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

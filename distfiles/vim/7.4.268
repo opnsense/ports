@@ -1,0 +1,108 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.268
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.268
+Problem:    Using exists() on a funcref for a script-local function does not
+	    work.
+Solution:   Translate <SNR> to the special byte sequence.  Add a test.
+Files:	    src/eval.c, src/testdir/test_eval.in, src/testdir/test_eval.ok,
+	    src/testdir/test_eval_func.vim, Filelist
+
+
+*** ../vim-7.4.267/src/eval.c	2014-04-24 17:12:29.580911764 +0200
+--- src/eval.c	2014-04-29 13:49:26.759933737 +0200
+***************
+*** 22275,22280 ****
+--- 22275,22288 ----
+      {
+  	name = vim_strsave(name);
+  	*pp = end;
++ 	if (STRNCMP(name, "<SNR>", 5) == 0)
++ 	{
++ 	    /* Change "<SNR>" to the byte sequence. */
++ 	    name[0] = K_SPECIAL;
++ 	    name[1] = KS_EXTRA;
++ 	    name[2] = (int)KE_SNR;
++ 	    mch_memmove(name + 3, name + 5, STRLEN(name + 5) + 1);
++ 	}
+  	goto theend;
+      }
+  
+*** ../vim-7.4.267/src/testdir/test_eval.in	2014-04-24 17:12:29.584911764 +0200
+--- src/testdir/test_eval.in	2014-04-29 13:59:09.495923525 +0200
+***************
+*** 180,185 ****
+--- 180,188 ----
+  :echo g:Foo(2)
+  :echo Foo(3)
+  :"
++ :" script-local function used in Funcref must exist.
++ :so test_eval_func.vim
++ :"
+  :/^start:/+1,$wq! test.out
+  :" vim: et ts=4 isk-=\: fmr=???,???
+  :call getchar()
+*** ../vim-7.4.267/src/testdir/test_eval.ok	2014-04-24 17:12:29.584911764 +0200
+--- src/testdir/test_eval.ok	2014-04-29 13:59:39.551922998 +0200
+***************
+*** 341,343 ****
+--- 341,347 ----
+  called Foo(1)
+  called Foo(2)
+  called Foo(3)
++ s:Testje exists: 0
++ func s:Testje exists: 1
++ Bar exists: 1
++ func Bar exists: 1
+*** ../vim-7.4.267/src/testdir/test_eval_func.vim	2014-04-29 14:02:08.415920389 +0200
+--- src/testdir/test_eval_func.vim	2014-04-29 13:57:34.503925189 +0200
+***************
+*** 0 ****
+--- 1,10 ----
++ " Vim script used in test_eval.in.  Needed for script-local function.
++ 
++ func! s:Testje()
++   return "foo"
++ endfunc
++ let Bar = function('s:Testje')
++ $put ='s:Testje exists: ' . exists('s:Testje')
++ $put ='func s:Testje exists: ' . exists('*s:Testje')
++ $put ='Bar exists: ' . exists('Bar')
++ $put ='func Bar exists: ' . exists('*Bar')
+*** ../vim-7.4.267/Filelist	2014-04-05 21:59:35.939178415 +0200
+--- Filelist	2014-04-29 13:58:40.207924038 +0200
+***************
+*** 88,93 ****
+--- 88,94 ----
+  		src/testdir/test60.vim \
+  		src/testdir/test83-tags? \
+  		src/testdir/test77a.com \
++ 		src/testdir/test_*.vim \
+  		src/testdir/python2/*.py \
+  		src/testdir/python3/*.py \
+  		src/testdir/pythonx/*.py \
+*** ../vim-7.4.267/src/version.c	2014-04-29 12:15:22.860032651 +0200
+--- src/version.c	2014-04-29 13:47:32.935935732 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     268,
+  /**/
+
+-- 
+I AM THANKFUL...
+...for the piles of laundry and ironing because it means I
+have plenty of clothes to wear.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

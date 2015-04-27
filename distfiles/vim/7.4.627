@@ -1,0 +1,186 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.627
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.627
+Problem:    The last screen cell is not updated.
+Solution:   Respect the "tn" termcap feature. (Hayaki Saito)
+Files:	    runtime/doc/term.txt, src/option.c, src/screen.c, src/term.c,
+	    src/term.h
+
+
+*** ../vim-7.4.626/runtime/doc/term.txt	2013-08-10 13:25:02.000000000 +0200
+--- runtime/doc/term.txt	2015-02-10 19:11:54.110597132 +0100
+***************
+*** 224,233 ****
+  the last two characters of the option name.  Only one termcap code is
+  required: Cursor motion, 't_cm'.
+  
+! The options 't_da', 't_db', 't_ms', 't_xs' represent flags in the termcap.
+! When the termcap flag is present, the option will be set to "y".  But any
+! non-empty string means that the flag is set.  An empty string means that the
+! flag is not set.  't_CS' works like this too, but it isn't a termcap flag.
+  
+  OUTPUT CODES
+  	option	meaning	~
+--- 224,234 ----
+  the last two characters of the option name.  Only one termcap code is
+  required: Cursor motion, 't_cm'.
+  
+! The options 't_da', 't_db', 't_ms', 't_xs', 't_xn' represent flags in the
+! termcap.  When the termcap flag is present, the option will be set to "y".
+! But any non-empty string means that the flag is set.  An empty string means
+! that the flag is not set.  't_CS' works like this too, but it isn't a termcap
+! flag.
+  
+  OUTPUT CODES
+  	option	meaning	~
+***************
+*** 281,286 ****
+--- 282,290 ----
+  	t_vs	cursor very visible				*t_vs* *'t_vs'*
+  								*t_xs* *'t_xs'*
+  	t_xs	if non-empty, standout not erased by overwriting (hpterm)
++ 								*t_xn* *'t_xn'*
++ 	t_xn	if non-empty, character writing at the last cell of screen
++ 		didn't causes scrolling
+  	t_ZH	italics mode					*t_ZH* *'t_ZH'*
+  	t_ZR	italics end					*t_ZR* *'t_ZR'*
+  
+*** ../vim-7.4.626/src/option.c	2015-02-03 13:00:34.400529686 +0100
+--- src/option.c	2015-02-10 19:13:36.997250501 +0100
+***************
+*** 2978,2983 ****
+--- 2978,2984 ----
+      p_term("t_WS", T_CWS)
+      p_term("t_SI", T_CSI)
+      p_term("t_EI", T_CEI)
++     p_term("t_xn", T_XN)
+      p_term("t_xs", T_XS)
+      p_term("t_ZH", T_CZH)
+      p_term("t_ZR", T_CZR)
+*** ../vim-7.4.626/src/screen.c	2015-01-27 16:39:24.691804113 +0100
+--- src/screen.c	2015-02-10 19:18:43.913231114 +0100
+***************
+*** 7968,7976 ****
+      if (row >= screen_Rows || col >= screen_Columns)
+  	return;
+  
+!     /* Outputting the last character on the screen may scrollup the screen.
+!      * Don't to it!  Mark the character invalid (update it when scrolled up) */
+!     if (row == screen_Rows - 1 && col == screen_Columns - 1
+  #ifdef FEAT_RIGHTLEFT
+  	    /* account for first command-line character in rightleft mode */
+  	    && !cmdmsg_rl
+--- 7968,7978 ----
+      if (row >= screen_Rows || col >= screen_Columns)
+  	return;
+  
+!     /* Outputting a character in the last cell on the screen may scroll the
+!      * screen up.  Only do it when the "xn" termcap property is set, otherwise
+!      * mark the character invalid (update it when scrolled up). */
+!     if (*T_XN == NUL
+! 	    && row == screen_Rows - 1 && col == screen_Columns - 1
+  #ifdef FEAT_RIGHTLEFT
+  	    /* account for first command-line character in rightleft mode */
+  	    && !cmdmsg_rl
+*** ../vim-7.4.626/src/term.c	2014-07-30 17:21:53.819518506 +0200
+--- src/term.c	2015-02-10 19:11:54.118597027 +0100
+***************
+*** 200,205 ****
+--- 200,206 ----
+      {(int)KS_VB,	IF_EB("\033|f", ESC_STR "|f")},
+      {(int)KS_MS,	"y"},
+      {(int)KS_UT,	"y"},
++     {(int)KS_XN,	"y"},
+      {(int)KS_LE,	"\b"},		/* cursor-left = BS */
+      {(int)KS_ND,	"\014"},	/* cursor-right = CTRL-L */
+  # ifdef TERMINFO
+***************
+*** 658,663 ****
+--- 659,665 ----
+  
+      {(int)KS_MS,	"y"},		/* save to move cur in reverse mode */
+      {(int)KS_UT,	"y"},
++     {(int)KS_XN,	"y"},
+      {(int)KS_LE,	"\b"},
+  #  ifdef TERMINFO
+      {(int)KS_CM,	"\033|%i%p1%d;%p2%dH"},/* cursor motion */
+***************
+*** 772,777 ****
+--- 774,780 ----
+      {(int)KS_CSF,	IF_EB("\033[101;%dm", ESC_STR "[101;%dm")},	/* set screen foreground color */
+      {(int)KS_MS,	"y"},
+      {(int)KS_UT,	"y"},
++     {(int)KS_XN,	"y"},
+      {(int)KS_LE,	"\b"},
+  #  ifdef TERMINFO
+      {(int)KS_CM,	IF_EB("\033[%i%p1%d;%p2%dH",
+***************
+*** 1207,1212 ****
+--- 1210,1216 ----
+      {(int)KS_UCS,	"[UCS]"},
+      {(int)KS_MS,	"[MS]"},
+      {(int)KS_UT,	"[UT]"},
++     {(int)KS_XN,	"[XN]"},
+  #  ifdef TERMINFO
+      {(int)KS_CM,	"[%p1%dCM%p2%d]"},
+  #  else
+***************
+*** 1645,1650 ****
+--- 1649,1657 ----
+  		if ((T_XS == NULL || T_XS == empty_option)
+  							&& tgetflag("xs") > 0)
+  		    T_XS = (char_u *)"y";
++ 		if ((T_XN == NULL || T_XN == empty_option)
++ 							&& tgetflag("xn") > 0)
++ 		    T_XN = (char_u *)"y";
+  		if ((T_DB == NULL || T_DB == empty_option)
+  							&& tgetflag("db") > 0)
+  		    T_DB = (char_u *)"y";
+*** ../vim-7.4.626/src/term.h	2013-03-13 19:09:03.000000000 +0100
+--- src/term.h	2015-02-10 19:11:54.118597027 +0100
+***************
+*** 66,71 ****
+--- 66,72 ----
+      KS_CSF,	/* set foreground color */
+      KS_CSB,	/* set background color */
+      KS_XS,	/* standout not erased by overwriting (hpterm) */
++     KS_XN,	/* newline glitch */
+      KS_MB,	/* blink mode */
+      KS_CAF,	/* set foreground color (ANSI) */
+      KS_CAB,	/* set background color (ANSI) */
+***************
+*** 144,149 ****
+--- 145,151 ----
+  #define T_CSF	(term_str(KS_CSF))	/* set foreground color */
+  #define T_CSB	(term_str(KS_CSB))	/* set background color */
+  #define T_XS	(term_str(KS_XS))	/* standout not erased by overwriting */
++ #define T_XN	(term_str(KS_XN))	/* newline glitch */
+  #define T_MB	(term_str(KS_MB))	/* blink mode */
+  #define T_CAF	(term_str(KS_CAF))	/* set foreground color (ANSI) */
+  #define T_CAB	(term_str(KS_CAB))	/* set background color (ANSI) */
+*** ../vim-7.4.626/src/version.c	2015-02-10 18:47:55.225390610 +0100
+--- src/version.c	2015-02-10 19:12:50.525858691 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     627,
+  /**/
+
+-- 
+msdn.microsoft.com:
+ERROR_SUCCESS 0 (0x0) The operation completed successfully.
+I have always suspected that for Microsoft success is an error.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,208 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.515
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.515
+Problem:    In a help buffer the global 'foldmethod' is used.  (Paul Marshall)
+Solution:   Reset 'foldmethod' when starting to edit a help file.  Move the
+	    code to a separate function.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.514/src/ex_cmds.c	2014-09-19 22:23:22.398467500 +0200
+--- src/ex_cmds.c	2014-11-12 19:23:48.357576278 +0100
+***************
+*** 34,39 ****
+--- 34,40 ----
+      _RTLENTRYF
+  #endif
+  	help_compare __ARGS((const void *s1, const void *s2));
++ static void prepare_help_buffer __ARGS((void));
+  
+  /*
+   * ":ascii" and "ga".
+***************
+*** 3531,3601 ****
+  	oldbuf = (flags & ECMD_OLDBUF);
+      }
+  
+-     if ((flags & ECMD_SET_HELP) || keep_help_flag)
+-     {
+- 	char_u	*p;
+- 
+- 	curbuf->b_help = TRUE;
+- #ifdef FEAT_QUICKFIX
+- 	set_string_option_direct((char_u *)"buftype", -1,
+- 				     (char_u *)"help", OPT_FREE|OPT_LOCAL, 0);
+- #endif
+- 
+- 	/*
+- 	 * Always set these options after jumping to a help tag, because the
+- 	 * user may have an autocommand that gets in the way.
+- 	 * Accept all ASCII chars for keywords, except ' ', '*', '"', '|', and
+- 	 * latin1 word characters (for translated help files).
+- 	 * Only set it when needed, buf_init_chartab() is some work.
+- 	 */
+- 	p =
+- #ifdef EBCDIC
+- 		(char_u *)"65-255,^*,^|,^\"";
+- #else
+- 		(char_u *)"!-~,^*,^|,^\",192-255";
+- #endif
+- 	if (STRCMP(curbuf->b_p_isk, p) != 0)
+- 	{
+- 	    set_string_option_direct((char_u *)"isk", -1, p,
+- 						       OPT_FREE|OPT_LOCAL, 0);
+- 	    check_buf_options(curbuf);
+- 	    (void)buf_init_chartab(curbuf, FALSE);
+- 	}
+- 
+- 	curbuf->b_p_ts = 8;		/* 'tabstop' is 8 */
+- 	curwin->w_p_list = FALSE;	/* no list mode */
+- 
+- 	curbuf->b_p_ma = FALSE;		/* not modifiable */
+- 	curbuf->b_p_bin = FALSE;	/* reset 'bin' before reading file */
+- 	curwin->w_p_nu = 0;		/* no line numbers */
+- 	curwin->w_p_rnu = 0;		/* no relative line numbers */
+- 	RESET_BINDING(curwin);		/* no scroll or cursor binding */
+- #ifdef FEAT_ARABIC
+- 	curwin->w_p_arab = FALSE;	/* no arabic mode */
+- #endif
+- #ifdef FEAT_RIGHTLEFT
+- 	curwin->w_p_rl  = FALSE;	/* help window is left-to-right */
+- #endif
+- #ifdef FEAT_FOLDING
+- 	curwin->w_p_fen = FALSE;	/* No folding in the help window */
+- #endif
+- #ifdef FEAT_DIFF
+- 	curwin->w_p_diff = FALSE;	/* No 'diff' */
+- #endif
+- #ifdef FEAT_SPELL
+- 	curwin->w_p_spell = FALSE;	/* No spell checking */
+- #endif
+- 
+  #ifdef FEAT_AUTOCMD
+! 	buf = curbuf;
+  #endif
+! 	set_buflisted(FALSE);
+      }
+      else
+      {
+- #ifdef FEAT_AUTOCMD
+- 	buf = curbuf;
+- #endif
+  	/* Don't make a buffer listed if it's a help buffer.  Useful when
+  	 * using CTRL-O to go back to a help file. */
+  	if (!curbuf->b_help)
+--- 3532,3546 ----
+  	oldbuf = (flags & ECMD_OLDBUF);
+      }
+  
+  #ifdef FEAT_AUTOCMD
+!     buf = curbuf;
+  #endif
+!     if ((flags & ECMD_SET_HELP) || keep_help_flag)
+!     {
+! 	prepare_help_buffer();
+      }
+      else
+      {
+  	/* Don't make a buffer listed if it's a help buffer.  Useful when
+  	 * using CTRL-O to go back to a help file. */
+  	if (!curbuf->b_help)
+***************
+*** 6222,6227 ****
+--- 6167,6237 ----
+  }
+  
+  /*
++  * Called when starting to edit a buffer for a help file.
++  */
++     static void
++ prepare_help_buffer()
++ {
++     char_u	*p;
++ 
++     curbuf->b_help = TRUE;
++ #ifdef FEAT_QUICKFIX
++     set_string_option_direct((char_u *)"buftype", -1,
++ 				     (char_u *)"help", OPT_FREE|OPT_LOCAL, 0);
++ #endif
++ 
++     /*
++      * Always set these options after jumping to a help tag, because the
++      * user may have an autocommand that gets in the way.
++      * Accept all ASCII chars for keywords, except ' ', '*', '"', '|', and
++      * latin1 word characters (for translated help files).
++      * Only set it when needed, buf_init_chartab() is some work.
++      */
++     p =
++ #ifdef EBCDIC
++ 	    (char_u *)"65-255,^*,^|,^\"";
++ #else
++ 	    (char_u *)"!-~,^*,^|,^\",192-255";
++ #endif
++     if (STRCMP(curbuf->b_p_isk, p) != 0)
++     {
++ 	set_string_option_direct((char_u *)"isk", -1, p, OPT_FREE|OPT_LOCAL, 0);
++ 	check_buf_options(curbuf);
++ 	(void)buf_init_chartab(curbuf, FALSE);
++     }
++ 
++     /* Don't use the global foldmethod.*/
++     set_string_option_direct((char_u *)"fdm", -1, (char_u *)"manual",
++ 						       OPT_FREE|OPT_LOCAL, 0);
++ 
++     curbuf->b_p_ts = 8;		/* 'tabstop' is 8 */
++     curwin->w_p_list = FALSE;	/* no list mode */
++ 
++     curbuf->b_p_ma = FALSE;		/* not modifiable */
++     curbuf->b_p_bin = FALSE;	/* reset 'bin' before reading file */
++     curwin->w_p_nu = 0;		/* no line numbers */
++     curwin->w_p_rnu = 0;		/* no relative line numbers */
++     RESET_BINDING(curwin);		/* no scroll or cursor binding */
++ #ifdef FEAT_ARABIC
++     curwin->w_p_arab = FALSE;	/* no arabic mode */
++ #endif
++ #ifdef FEAT_RIGHTLEFT
++     curwin->w_p_rl  = FALSE;	/* help window is left-to-right */
++ #endif
++ #ifdef FEAT_FOLDING
++     curwin->w_p_fen = FALSE;	/* No folding in the help window */
++ #endif
++ #ifdef FEAT_DIFF
++     curwin->w_p_diff = FALSE;	/* No 'diff' */
++ #endif
++ #ifdef FEAT_SPELL
++     curwin->w_p_spell = FALSE;	/* No spell checking */
++ #endif
++ 
++     set_buflisted(FALSE);
++ }
++ 
++ /*
+   * After reading a help file: May cleanup a help buffer when syntax
+   * highlighting is not used.
+   */
+*** ../vim-7.4.514/src/version.c	2014-11-12 18:59:17.602000656 +0100
+--- src/version.c	2014-11-12 19:27:25.471182666 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     515,
+  /**/
+
+-- 
+If "R" is Reverse, how come "D" is FORWARD?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

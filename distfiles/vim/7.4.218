@@ -1,0 +1,578 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.218
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.218
+Problem:    It's not easy to remove duplicates from a list.
+Solution:   Add the uniq() function. (LCD)
+Files:	    runtime/doc/change.txt, runtime/doc/eval.txt,
+	    runtime/doc/usr_41.txt, runtime/doc/version7.txt, src/eval.c,
+	    src/testdir/test55.in, src/testdir/test55.ok
+
+
+*** ../vim-7.4.217/runtime/doc/change.txt	2013-09-22 15:23:38.000000000 +0200
+--- runtime/doc/change.txt	2014-03-25 17:32:29.510040841 +0100
+***************
+*** 1645,1651 ****
+  7. Sorting text						*sorting*
+  
+  Vim has a sorting function and a sorting command.  The sorting function can be
+! found here: |sort()|.
+  
+  							*:sor* *:sort*
+  :[range]sor[t][!] [i][u][r][n][x][o] [/{pattern}/]
+--- 1650,1656 ----
+  7. Sorting text						*sorting*
+  
+  Vim has a sorting function and a sorting command.  The sorting function can be
+! found here: |sort()|, |uniq()|.
+  
+  							*:sor* *:sort*
+  :[range]sor[t][!] [i][u][r][n][x][o] [/{pattern}/]
+*** ../vim-7.4.217/runtime/doc/eval.txt	2014-02-23 23:38:58.820760280 +0100
+--- runtime/doc/eval.txt	2014-03-25 17:47:18.750054467 +0100
+***************
+*** 326,331 ****
+--- 327,333 ----
+  Changing the order of items in a list: >
+  	:call sort(list)		" sort a list alphabetically
+  	:call reverse(list)		" reverse the order of items
++ 	:call uniq(sort(list))		" sort and remove duplicates
+  
+  
+  For loop ~
+***************
+*** 1518,1523 ****
+--- 1520,1526 ----
+  		startup.  These are the files that Vim remembers marks for.
+  		The length of the List is limited by the ' argument of the
+  		'viminfo' option (default is 100).
++ 		When the |viminfo| file is not used the List is empty.
+  		Also see |:oldfiles| and |c_#<|.
+  		The List can be modified, but this has no effect on what is
+  		stored in the |viminfo| file later.  If you use values other
+***************
+*** 2003,2008 ****
+--- 2006,2013 ----
+  type( {name})			Number	type of variable {name}
+  undofile( {name})		String	undo file name for {name}
+  undotree()			List	undo file tree
++ uniq( {list} [, {func} [, {dict}]])
++ 				List	remove adjacent duplicates from a list
+  values( {dict})			List	values in {dict}
+  virtcol( {expr})		Number	screen column of cursor or mark
+  visualmode( [expr])		String	last visual mode used
+***************
+*** 5474,5493 ****
+  
+  
+  sort({list} [, {func} [, {dict}]])			*sort()* *E702*
+! 		Sort the items in {list} in-place.  Returns {list}.  If you
+! 		want a list to remain unmodified make a copy first: >
+  			:let sortedlist = sort(copy(mylist))
+  <		Uses the string representation of each item to sort on.
+  		Numbers sort after Strings, |Lists| after Numbers.
+  		For sorting text in the current buffer use |:sort|.
+  		When {func} is given and it is one then case is ignored.
+- 		{dict} is for functions with the "dict" attribute.  It will be
+- 		used to set the local variable "self". |Dictionary-function|
+  		When {func} is a |Funcref| or a function name, this function
+  		is called to compare items.  The function is invoked with two
+  		items as argument and must return zero if they are equal, 1 or
+  		bigger if the first one sorts after the second one, -1 or
+  		smaller if the first one sorts before the second one.
+  		Example: >
+  			func MyCompare(i1, i2)
+  			   return a:i1 == a:i2 ? 0 : a:i1 > a:i2 ? 1 : -1
+--- 5491,5516 ----
+  
+  
+  sort({list} [, {func} [, {dict}]])			*sort()* *E702*
+! 		Sort the items in {list} in-place.  Returns {list}.
+! 		
+! 		If you want a list to remain unmodified make a copy first: >
+  			:let sortedlist = sort(copy(mylist))
+  <		Uses the string representation of each item to sort on.
+  		Numbers sort after Strings, |Lists| after Numbers.
+  		For sorting text in the current buffer use |:sort|.
++ 
+  		When {func} is given and it is one then case is ignored.
+  		When {func} is a |Funcref| or a function name, this function
+  		is called to compare items.  The function is invoked with two
+  		items as argument and must return zero if they are equal, 1 or
+  		bigger if the first one sorts after the second one, -1 or
+  		smaller if the first one sorts before the second one.
++ 
++ 		{dict} is for functions with the "dict" attribute.  It will be
++ 		used to set the local variable "self". |Dictionary-function|
++ 
++ 		Also see |uniq()|.
++ 
+  		Example: >
+  			func MyCompare(i1, i2)
+  			   return a:i1 == a:i2 ? 0 : a:i1 > a:i2 ? 1 : -1
+***************
+*** 6155,6160 ****
+--- 6178,6191 ----
+  				blocks.  Each item may again have an "alt"
+  				item.
+  
++ uniq({list} [, {func} [, {dict}]])			*uniq()* *E882*
++ 		Remove second and succeeding copies of repeated adjacent
++ 		{list} items in-place.  Returns {list}.  If you want a list
++ 		to remain unmodified make a copy first: >
++ 			:let newlist = uniq(copy(mylist))
++ <		The default compare function uses the string representation of
++ 		each item.  For the use of {func} and {dict} see |sort()|.
++ 
+  values({dict})						*values()*
+  		Return a |List| with all the values of {dict}.	The |List| is
+  		in arbitrary order.
+*** ../vim-7.4.217/runtime/doc/usr_41.txt	2013-08-10 13:25:05.000000000 +0200
+--- runtime/doc/usr_41.txt	2014-03-25 17:32:29.518040841 +0100
+***************
+*** 1,4 ****
+! *usr_41.txt*	For Vim version 7.4.  Last change: 2013 Feb 20
+  
+  		     VIM USER MANUAL - by Bram Moolenaar
+  
+--- 1,4 ----
+! *usr_41.txt*	For Vim version 7.4.  Last change: 2014 Jan 10
+  
+  		     VIM USER MANUAL - by Bram Moolenaar
+  
+***************
+*** 595,607 ****
+  	matchlist()		like matchstr() and also return submatches
+  	stridx()		first index of a short string in a long string
+  	strridx()		last index of a short string in a long string
+! 	strlen()		length of a string
+  	substitute()		substitute a pattern match with a string
+  	submatch()		get a specific match in ":s" and substitute()
+  	strpart()		get part of a string
+  	expand()		expand special keywords
+  	iconv()			convert text from one encoding to another
+  	byteidx()		byte index of a character in a string
+  	repeat()		repeat a string multiple times
+  	eval()			evaluate a string expression
+  
+--- 595,611 ----
+  	matchlist()		like matchstr() and also return submatches
+  	stridx()		first index of a short string in a long string
+  	strridx()		last index of a short string in a long string
+! 	strlen()		length of a string in bytes
+! 	strchars()		length of a string in characters
+! 	strwidth()		size of string when displayed
+! 	strdisplaywidth()	size of string when displayed, deals with tabs
+  	substitute()		substitute a pattern match with a string
+  	submatch()		get a specific match in ":s" and substitute()
+  	strpart()		get part of a string
+  	expand()		expand special keywords
+  	iconv()			convert text from one encoding to another
+  	byteidx()		byte index of a character in a string
++ 	byteidxcomp()		like byteidx() but count composing characters
+  	repeat()		repeat a string multiple times
+  	eval()			evaluate a string expression
+  
+***************
+*** 619,624 ****
+--- 623,629 ----
+  	map()			change each List item
+  	sort()			sort a List
+  	reverse()		reverse the order of a List
++ 	uniq()			remove copies of repeated adjacent items
+  	split()			split a String into a List
+  	join()			join List items into a String
+  	range()			return a List with a sequence of numbers
+***************
+*** 656,661 ****
+--- 661,669 ----
+  	ceil()			round up
+  	floor()			round down
+  	trunc()			remove value after decimal point
++ 	fmod()			remainder of division
++ 	exp()			exponential
++ 	log()			natural logarithm (logarithm to base e)
+  	log10()			logarithm to base 10
+  	pow()			value of x to the exponent y
+  	sqrt()			square root
+***************
+*** 675,680 ****
+--- 683,689 ----
+  	invert()		bitwise invert
+  	or()			bitwise OR
+  	xor()			bitwise XOR
++ 	sha256()		SHA-256 hash
+  
+  Variables:						*var-functions*
+  	type()			type of a variable
+***************
+*** 697,707 ****
+--- 706,720 ----
+  	wincol()		window column number of the cursor
+  	winline()		window line number of the cursor
+  	cursor()		position the cursor at a line/column
++ 	screencol()		get screen column of the cursor
++ 	screenrow()		get screen row of the cursor
+  	getpos()		get position of cursor, mark, etc.
+  	setpos()		set position of cursor, mark, etc.
+  	byte2line()		get line number at a specific byte count
+  	line2byte()		byte count at a specific line
+  	diff_filler()		get the number of filler lines above a line
++ 	screenattr()		get attribute at a screen line/row
++ 	screenchar()		get character code at a screen line/row
+  
+  Working with text in the current buffer:		*text-functions*
+  	getline()		get a line or list of lines from the buffer
+***************
+*** 883,896 ****
+--- 896,917 ----
+  	libcall()		call a function in an external library
+  	libcallnr()		idem, returning a number
+  
++ 	undofile()		get the name of the undo file
++ 	undotree()		return the state of the undo tree
++ 
+  	getreg()		get contents of a register
+  	getregtype()		get type of a register
+  	setreg()		set contents and type of a register
+  
++ 	shiftwidth()		effective value of 'shiftwidth'
++ 
+  	taglist()		get list of matching tags
+  	tagfiles()		get a list of tags files
+  
++ 	luaeval()		evaluate Lua expression
+  	mzeval()		evaluate |MzScheme| expression
++ 	py3eval()		evaluate Python expression (|+python3|)
++ 	pyeval()		evaluate Python expression (|+python|)
+  
+  ==============================================================================
+  *41.7*	Defining a function
+*** ../vim-7.4.217/runtime/doc/version7.txt	2013-08-10 14:23:06.000000000 +0200
+--- runtime/doc/version7.txt	2014-03-25 17:32:29.518040841 +0100
+***************
+*** 942,947 ****
+--- 942,948 ----
+  |tagfiles()|		List with tags file names
+  |taglist()|		get list of matching tags (Yegappan Lakshmanan)
+  |tr()|			translate characters (Ron Aaron)
++ |uniq()|		remove copies of repeated adjacent list items
+  |values()|		get List of Dictionary values
+  |winnr()|		takes an argument: what window to use
+  |winrestview()|		restore the view of the current window
+*** ../vim-7.4.217/src/eval.c	2014-03-23 15:12:29.915264336 +0100
+--- src/eval.c	2014-03-25 17:52:09.554058923 +0100
+***************
+*** 744,749 ****
+--- 744,750 ----
+  static void f_type __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_undofile __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_undotree __ARGS((typval_T *argvars, typval_T *rettv));
++ static void f_uniq __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_values __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_virtcol __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_visualmode __ARGS((typval_T *argvars, typval_T *rettv));
+***************
+*** 8150,8155 ****
+--- 8151,8157 ----
+      {"type",		1, 1, f_type},
+      {"undofile",	1, 1, f_undofile},
+      {"undotree",	0, 0, f_undotree},
++     {"uniq",		1, 3, f_uniq},
+      {"values",		1, 1, f_values},
+      {"virtcol",		1, 1, f_virtcol},
+      {"visualmode",	0, 1, f_visualmode},
+***************
+*** 17023,17032 ****
+  static char_u	*item_compare_func;
+  static dict_T	*item_compare_selfdict;
+  static int	item_compare_func_err;
+  #define ITEM_COMPARE_FAIL 999
+  
+  /*
+!  * Compare functions for f_sort() below.
+   */
+      static int
+  #ifdef __BORLANDC__
+--- 17025,17035 ----
+  static char_u	*item_compare_func;
+  static dict_T	*item_compare_selfdict;
+  static int	item_compare_func_err;
++ static void	do_sort_uniq __ARGS((typval_T *argvars, typval_T *rettv, int sort));
+  #define ITEM_COMPARE_FAIL 999
+  
+  /*
+!  * Compare functions for f_sort() and f_uniq() below.
+   */
+      static int
+  #ifdef __BORLANDC__
+***************
+*** 17100,17108 ****
+   * "sort({list})" function
+   */
+      static void
+! f_sort(argvars, rettv)
+      typval_T	*argvars;
+      typval_T	*rettv;
+  {
+      list_T	*l;
+      listitem_T	*li;
+--- 17103,17112 ----
+   * "sort({list})" function
+   */
+      static void
+! do_sort_uniq(argvars, rettv, sort)
+      typval_T	*argvars;
+      typval_T	*rettv;
++     int		sort;
+  {
+      list_T	*l;
+      listitem_T	*li;
+***************
+*** 17111,17122 ****
+      long	i;
+  
+      if (argvars[0].v_type != VAR_LIST)
+! 	EMSG2(_(e_listarg), "sort()");
+      else
+      {
+  	l = argvars[0].vval.v_list;
+  	if (l == NULL || tv_check_lock(l->lv_lock,
+! 					     (char_u *)_("sort() argument")))
+  	    return;
+  	rettv->vval.v_list = l;
+  	rettv->v_type = VAR_LIST;
+--- 17115,17126 ----
+      long	i;
+  
+      if (argvars[0].v_type != VAR_LIST)
+! 	EMSG2(_(e_listarg), sort ? "sort()" : "uniq()");
+      else
+      {
+  	l = argvars[0].vval.v_list;
+  	if (l == NULL || tv_check_lock(l->lv_lock,
+! 	       (char_u *)(sort ? _("sort() argument") : _("uniq() argument"))))
+  	    return;
+  	rettv->vval.v_list = l;
+  	rettv->v_type = VAR_LIST;
+***************
+*** 17163,17191 ****
+  	ptrs = (listitem_T **)alloc((int)(len * sizeof(listitem_T *)));
+  	if (ptrs == NULL)
+  	    return;
+- 	i = 0;
+- 	for (li = l->lv_first; li != NULL; li = li->li_next)
+- 	    ptrs[i++] = li;
+  
+! 	item_compare_func_err = FALSE;
+! 	/* test the compare function */
+! 	if (item_compare_func != NULL
+! 		&& item_compare2((void *)&ptrs[0], (void *)&ptrs[1])
+  							 == ITEM_COMPARE_FAIL)
+! 	    EMSG(_("E702: Sort compare function failed"));
+  	else
+  	{
+! 	    /* Sort the array with item pointers. */
+! 	    qsort((void *)ptrs, (size_t)len, sizeof(listitem_T *),
+! 		    item_compare_func == NULL ? item_compare : item_compare2);
+  
+  	    if (!item_compare_func_err)
+  	    {
+! 		/* Clear the List and append the items in the sorted order. */
+! 		l->lv_first = l->lv_last = l->lv_idx_item = NULL;
+! 		l->lv_len = 0;
+! 		for (i = 0; i < len; ++i)
+! 		    list_append(l, ptrs[i]);
+  	    }
+  	}
+  
+--- 17167,17238 ----
+  	ptrs = (listitem_T **)alloc((int)(len * sizeof(listitem_T *)));
+  	if (ptrs == NULL)
+  	    return;
+  
+! 	i = 0;
+! 	if (sort)
+! 	{
+! 	    /* sort(): ptrs will be the list to sort */
+! 	    for (li = l->lv_first; li != NULL; li = li->li_next)
+! 		ptrs[i++] = li;
+! 
+! 	    item_compare_func_err = FALSE;
+! 	    /* test the compare function */
+! 	    if (item_compare_func != NULL
+! 		    && item_compare2((void *)&ptrs[0], (void *)&ptrs[1])
+  							 == ITEM_COMPARE_FAIL)
+! 		EMSG(_("E702: Sort compare function failed"));
+! 	    else
+! 	    {
+! 		/* Sort the array with item pointers. */
+! 		qsort((void *)ptrs, (size_t)len, sizeof(listitem_T *),
+! 		    item_compare_func == NULL ? item_compare : item_compare2);
+! 
+! 		if (!item_compare_func_err)
+! 		{
+! 		    /* Clear the List and append the items in sorted order. */
+! 		    l->lv_first = l->lv_last = l->lv_idx_item = NULL;
+! 		    l->lv_len = 0;
+! 		    for (i = 0; i < len; ++i)
+! 			list_append(l, ptrs[i]);
+! 		}
+! 	    }
+! 	}
+  	else
+  	{
+! 	    int	(*item_compare_func_ptr)__ARGS((const void *, const void *));
+! 
+! 	    /* f_uniq(): ptrs will be a stack of items to remove */
+! 	    item_compare_func_err = FALSE;
+! 	    item_compare_func_ptr = item_compare_func
+! 					       ? item_compare2 : item_compare;
+! 
+! 	    for (li = l->lv_first; li != NULL && li->li_next != NULL;
+! 							     li = li->li_next)
+! 	    {
+! 		if (item_compare_func_ptr((void *)&li, (void *)&li->li_next)
+! 									 == 0)
+! 		    ptrs[i++] = li;
+! 		if (item_compare_func_err)
+! 		{
+! 		    EMSG(_("E882: Uniq compare function failed"));
+! 		    break;
+! 		}
+! 	    }
+  
+  	    if (!item_compare_func_err)
+  	    {
+! 		while (--i >= 0)
+! 		{
+! 		    li = ptrs[i]->li_next;
+! 		    ptrs[i]->li_next = li->li_next;
+! 		    if (li->li_next != NULL)
+! 			li->li_next->li_prev = ptrs[i];
+! 		    else
+! 			l->lv_last = ptrs[i];
+! 		    list_fix_watch(l, li);
+! 		    listitem_free(li);
+! 		    l->lv_len--;
+! 		}
+  	    }
+  	}
+  
+***************
+*** 17194,17199 ****
+--- 17241,17268 ----
+  }
+  
+  /*
++  * "sort({list})" function
++  */
++     static void
++ f_sort(argvars, rettv)
++     typval_T	*argvars;
++     typval_T	*rettv;
++ {
++     do_sort_uniq(argvars, rettv, TRUE);
++ }
++ 
++ /*
++  * "uniq({list})" function
++  */
++     static void
++ f_uniq(argvars, rettv)
++     typval_T	*argvars;
++     typval_T	*rettv;
++ {
++     do_sort_uniq(argvars, rettv, FALSE);
++ }
++ 
++ /*
+   * "soundfold({word})" function
+   */
+      static void
+*** ../vim-7.4.217/src/testdir/test55.in	2014-01-14 15:24:24.000000000 +0100
+--- src/testdir/test55.in	2014-03-25 17:32:29.522040841 +0100
+***************
+*** 323,335 ****
+  :  $put ='caught ' . v:exception
+  :endtry
+  :"
+! :" reverse() and sort()
+! :let l = ['-0', 'A11', 2, 'xaaa', 4, 'foo', 'foo6', [0, 1, 2], 'x8']
+  :$put =string(reverse(l))
+  :$put =string(reverse(reverse(l)))
+  :$put =string(sort(l))
+  :$put =string(reverse(sort(l)))
+  :$put =string(sort(reverse(sort(l))))
+  :"
+  :" splitting a string to a List
+  :$put =string(split('  aa  bb '))
+--- 323,337 ----
+  :  $put ='caught ' . v:exception
+  :endtry
+  :"
+! :" reverse(), sort(), uniq()
+! :let l = ['-0', 'A11', 2, 2, 'xaaa', 4, 'foo', 'foo6', 'foo', [0, 1, 2], 'x8', [0, 1, 2], 1.5]
+! :$put =string(uniq(copy(l)))
+  :$put =string(reverse(l))
+  :$put =string(reverse(reverse(l)))
+  :$put =string(sort(l))
+  :$put =string(reverse(sort(l)))
+  :$put =string(sort(reverse(sort(l))))
++ :$put =string(uniq(sort(l)))
+  :"
+  :" splitting a string to a List
+  :$put =string(split('  aa  bb '))
+*** ../vim-7.4.217/src/testdir/test55.ok	2014-01-14 15:24:24.000000000 +0100
+--- src/testdir/test55.ok	2014-03-25 17:32:29.522040841 +0100
+***************
+*** 94,104 ****
+  caught a:000[2]
+  caught a:000[3]
+  [1, 2, [3, 9, 5, 6], {'a': 12, '5': 8}]
+! ['x8', [0, 1, 2], 'foo6', 'foo', 4, 'xaaa', 2, 'A11', '-0']
+! ['x8', [0, 1, 2], 'foo6', 'foo', 4, 'xaaa', 2, 'A11', '-0']
+! ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 2, 4, [0, 1, 2]]
+! [[0, 1, 2], 4, 2, 'xaaa', 'x8', 'foo6', 'foo', 'A11', '-0']
+! ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 2, 4, [0, 1, 2]]
+  ['aa', 'bb']
+  ['aa', 'bb']
+  ['', 'aa', 'bb', '']
+--- 94,106 ----
+  caught a:000[2]
+  caught a:000[3]
+  [1, 2, [3, 9, 5, 6], {'a': 12, '5': 8}]
+! ['-0', 'A11', 2, 'xaaa', 4, 'foo', 'foo6', 'foo', [0, 1, 2], 'x8', [0, 1, 2], 1.5]
+! [1.5, [0, 1, 2], 'x8', [0, 1, 2], 'foo', 'foo6', 'foo', 4, 'xaaa', 2, 2, 'A11', '-0']
+! [1.5, [0, 1, 2], 'x8', [0, 1, 2], 'foo', 'foo6', 'foo', 4, 'xaaa', 2, 2, 'A11', '-0']
+! ['-0', 'A11', 'foo', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 2, 4, [0, 1, 2], [0, 1, 2]]
+! [[0, 1, 2], [0, 1, 2], 4, 2, 2, 1.5, 'xaaa', 'x8', 'foo6', 'foo', 'foo', 'A11', '-0']
+! ['-0', 'A11', 'foo', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 2, 4, [0, 1, 2], [0, 1, 2]]
+! ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 4, [0, 1, 2]]
+  ['aa', 'bb']
+  ['aa', 'bb']
+  ['', 'aa', 'bb', '']
+*** ../vim-7.4.217/src/version.c	2014-03-25 18:05:45.242071421 +0100
+--- src/version.c	2014-03-25 17:34:51.918043023 +0100
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     218,
+  /**/
+
+-- 
+Never under any circumstances take a sleeping pill
+and a laxative on the same night.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

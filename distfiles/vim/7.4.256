@@ -1,0 +1,83 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.2
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.256 (after 7.4.248)
+Problem:    Using systemlist() may cause a crash and does not handle NUL
+	    characters properly.
+Solution:   Increase the reference count, allocate memory by length. (Yasuhiro
+	    Matsumoto)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.255/src/eval.c	2014-04-05 21:28:50.667174384 +0200
+--- src/eval.c	2014-04-11 10:10:22.112217827 +0200
+***************
+*** 18334,18349 ****
+  	for (i = 0; i < len; ++i)
+  	{
+  	    start = res + i;
+! 	    for (end = start; i < len && *end != NL; ++end)
+  		++i;
+  
+! 	    s = vim_strnsave(start, (int)(end - start));
+  	    if (s == NULL)
+  		goto errret;
+  
+! 	    for (p = s, end = s + (end - start); p < end; ++p)
+! 		if (*p == NUL)
+! 		    *p = NL;
+  
+  	    li = listitem_alloc();
+  	    if (li == NULL)
+--- 18334,18350 ----
+  	for (i = 0; i < len; ++i)
+  	{
+  	    start = res + i;
+! 	    while (i < len && res[i] != NL)
+  		++i;
++ 	    end = res + i;
+  
+! 	    s = alloc((unsigned)(end - start + 1));
+  	    if (s == NULL)
+  		goto errret;
+  
+! 	    for (p = s; start < end; ++p, ++start)
+! 		*p = *start == NUL ? NL : *start;
+! 	    *p = NUL;
+  
+  	    li = listitem_alloc();
+  	    if (li == NULL)
+***************
+*** 18356,18361 ****
+--- 18357,18363 ----
+  	    list_append(list, li);
+  	}
+  
++ 	++list->lv_refcount;
+  	rettv->v_type = VAR_LIST;
+  	rettv->vval.v_list = list;
+  	list = NULL;
+*** ../vim-7.4.255/src/version.c	2014-04-10 20:00:03.720106386 +0200
+--- src/version.c	2014-04-11 09:44:05.208214383 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     256,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+46. Your wife makes a new rule: "The computer cannot come to bed."
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

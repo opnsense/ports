@@ -1,0 +1,109 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.561
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.561
+Problem:    Ex range handling is wrong for buffer-local user commands.
+Solution:   Check for CMD_USER_BUF. (Marcin Szamotulski)
+Files:	    src/ex_docmd.c, src/testdir/test_command_count.in,
+	    src/testdir/test_command_count.ok
+
+
+*** ../vim-7.4.560/src/ex_docmd.c	2014-12-08 04:16:26.265702875 +0100
+--- src/ex_docmd.c	2015-01-07 13:11:45.740538584 +0100
+***************
+*** 2133,2144 ****
+      if (ea.cmdidx != CMD_SIZE
+  #ifdef FEAT_USR_CMDS
+  	&& ea.cmdidx != CMD_USER
+  #endif
+         )
+  	ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
+      else
+  #ifdef FEAT_USR_CMDS
+! 	if (ea.cmdidx != CMD_USER)
+  #endif
+  	ea.addr_type = ADDR_LINES;
+      /* ea.addr_type for user commands is set by find_ucmd */
+--- 2133,2145 ----
+      if (ea.cmdidx != CMD_SIZE
+  #ifdef FEAT_USR_CMDS
+  	&& ea.cmdidx != CMD_USER
++ 	&& ea.cmdidx != CMD_USER_BUF
+  #endif
+         )
+  	ea.addr_type = cmdnames[(int)ea.cmdidx].cmd_addr_type;
+      else
+  #ifdef FEAT_USR_CMDS
+! 	if (ea.cmdidx != CMD_USER && ea.cmdidx != CMD_USER_BUF)
+  #endif
+  	ea.addr_type = ADDR_LINES;
+      /* ea.addr_type for user commands is set by find_ucmd */
+*** ../vim-7.4.560/src/testdir/test_command_count.in	2014-12-08 04:16:26.249703054 +0100
+--- src/testdir/test_command_count.in	2015-01-07 13:12:34.099980778 +0100
+***************
+*** 3,9 ****
+  STARTTEST
+  :let g:lines = []
+  :so tiny.vim
+! :com -range RangeLines :call add(g:lines, 'Rangeg:Lines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+  :com -range=% -addr=arguments RangeArgumentsAll :call add(g:lines, 'RangeArgumentsAll '.<line1>.' '.<line2>)
+  :com -range -addr=loaded_buffers RangeLoadedBuffers :call add(g:lines, 'RangeLoadedBuffers '.<line1>.' '.<line2>)
+--- 3,9 ----
+  STARTTEST
+  :let g:lines = []
+  :so tiny.vim
+! :com -range=% RangeLines :call add(g:lines, 'RangeLines '.<line1>.' '.<line2>)
+  :com -range -addr=arguments RangeArguments :call add(g:lines, 'RangeArguments '.<line1>.' '.<line2>)
+  :com -range=% -addr=arguments RangeArgumentsAll :call add(g:lines, 'RangeArgumentsAll '.<line1>.' '.<line2>)
+  :com -range -addr=loaded_buffers RangeLoadedBuffers :call add(g:lines, 'RangeLoadedBuffers '.<line1>.' '.<line2>)
+***************
+*** 42,47 ****
+--- 42,53 ----
+  :%RangeTabs
+  :RangeTabsAll
+  :1tabonly
++ :s/\n/\r\r\r\r\r/
++ :2ma<
++ :$-ma>
++ :'<,'>RangeLines
++ :com -range=% -buffer LocalRangeLines :call add(g:lines, 'LocalRangeLines '.<line1>.' '.<line2>)
++ :'<,'>LocalRangeLines
+  :e! test.out
+  :call append(0, g:lines)
+  :w|qa!
+*** ../vim-7.4.560/src/testdir/test_command_count.ok	2014-12-08 04:16:26.249703054 +0100
+--- src/testdir/test_command_count.ok	2015-01-07 12:59:08.657271709 +0100
+***************
+*** 14,17 ****
+--- 14,19 ----
+  RangeTabs 2 5
+  RangeTabs 1 5
+  RangeTabsAll 1 5
++ RangeLines 2 5
++ LocalRangeLines 2 5
+  
+*** ../vim-7.4.560/src/version.c	2014-12-17 21:00:44.989871256 +0100
+--- src/version.c	2015-01-07 12:58:04.754008894 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     561,
+  /**/
+
+-- 
+Q: What is a patch 22?
+A: A patch you need to include to make it possible to include patches.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

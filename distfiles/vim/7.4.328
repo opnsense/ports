@@ -1,0 +1,82 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.328
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.328
+Problem:    Selection of inner block is inconsistent.
+Solution:   Skip indent not only for '}' but all parens. (Tom McDonald)
+Files:	    src/search.c
+
+
+*** ../vim-7.4.327/src/search.c	2014-03-23 15:12:29.935264336 +0100
+--- src/search.c	2014-06-17 12:37:49.075923106 +0200
+***************
+*** 3608,3628 ****
+  
+      /*
+       * Try to exclude the '(', '{', ')', '}', etc. when "include" is FALSE.
+!      * If the ending '}' is only preceded by indent, skip that indent.
+!      * But only if the resulting area is not smaller than what we started with.
+       */
+      while (!include)
+      {
+  	incl(&start_pos);
+  	sol = (curwin->w_cursor.col == 0);
+  	decl(&curwin->w_cursor);
+! 	if (what == '{')
+! 	    while (inindent(1))
+! 	    {
+! 		sol = TRUE;
+! 		if (decl(&curwin->w_cursor) != 0)
+! 		    break;
+! 	    }
+  	/*
+  	 * In Visual mode, when the resulting area is not bigger than what we
+  	 * started with, extend it to the next block, and then exclude again.
+--- 3608,3629 ----
+  
+      /*
+       * Try to exclude the '(', '{', ')', '}', etc. when "include" is FALSE.
+!      * If the ending '}', ')' or ']' is only preceded by indent, skip that
+!      * indent.  But only if the resulting area is not smaller than what we
+!      * started with.
+       */
+      while (!include)
+      {
+  	incl(&start_pos);
+  	sol = (curwin->w_cursor.col == 0);
+  	decl(&curwin->w_cursor);
+! 	while (inindent(1))
+! 	{
+! 	    sol = TRUE;
+! 	    if (decl(&curwin->w_cursor) != 0)
+! 		break;
+! 	}
+! 
+  	/*
+  	 * In Visual mode, when the resulting area is not bigger than what we
+  	 * started with, extend it to the next block, and then exclude again.
+*** ../vim-7.4.327/src/version.c	2014-06-17 12:51:13.207953527 +0200
+--- src/version.c	2014-06-17 12:52:35.279956632 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     328,
+  /**/
+
+-- 
+FATHER: One day, lad, all this will be yours ...
+PRINCE: What - the curtains?
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

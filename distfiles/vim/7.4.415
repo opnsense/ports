@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.415
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.415 (after 7.4.414)
+Problem:    Cannot build.  Warning for shadowed variable. (John Little)
+Solution:   Add missing change.  Remove declaration.
+Files:	    src/vim.h, src/ex_docmd.c
+
+
+*** ../vim-7.4.414/src/vim.h	2014-08-06 14:52:05.047236174 +0200
+--- src/vim.h	2014-08-22 20:26:19.522953712 +0200
+***************
+*** 1326,1331 ****
+--- 1326,1332 ----
+      EVENT_SHELLFILTERPOST,	/* after ":1,2!cmd", ":w !cmd", ":r !cmd". */
+      EVENT_TEXTCHANGED,		/* text was modified */
+      EVENT_TEXTCHANGEDI,		/* text was modified in Insert mode*/
++     EVENT_CMDUNDEFINED,		/* command undefined */
+      NUM_EVENTS			/* MUST be the last one */
+  };
+  
+*** ../vim-7.4.414/src/ex_docmd.c	2014-08-22 23:05:50.102606614 +0200
+--- src/ex_docmd.c	2014-08-23 14:11:52.640635039 +0200
+***************
+*** 2150,2158 ****
+  	    && ASCII_ISUPPER(*ea.cmd)
+  	    && has_cmdundefined())
+      {
+- 	char_u *p = ea.cmd;
+  	int ret;
+  
+  	while (ASCII_ISALNUM(*p))
+  	    ++p;
+  	p = vim_strnsave(ea.cmd, p - ea.cmd);
+--- 2150,2158 ----
+  	    && ASCII_ISUPPER(*ea.cmd)
+  	    && has_cmdundefined())
+      {
+  	int ret;
+  
++ 	p = ea.cmd;
+  	while (ASCII_ISALNUM(*p))
+  	    ++p;
+  	p = vim_strnsave(ea.cmd, p - ea.cmd);
+*** ../vim-7.4.415/src/version.c	2014-08-22 23:05:50.106606614 +0200
+--- src/version.c	2014-08-23 14:15:50.620626408 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     415,
+  /**/
+
+-- 
+CVS sux, men don't like commitment
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

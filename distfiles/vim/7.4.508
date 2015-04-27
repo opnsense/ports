@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.508
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.508
+Problem:    When generating ja.sjis.po the header is not correctly adjusted.
+Solution:   Check for the right header string. (Ken Takata)
+Files:	    src/po/sjiscorr.c
+
+
+*** ../vim-7.4.507/src/po/sjiscorr.c	2013-05-19 05:15:15.000000000 +0200
+--- src/po/sjiscorr.c	2014-11-12 13:01:37.574369693 +0100
+***************
+*** 23,31 ****
+  				fputs("charset=cp932", stdout);
+  				p += 12;
+  			}
+! 			else if (strncmp(p, "ja.po - Japanese message file", 29) == 0)
+  			{
+- 				fputs("ja.sjis.po - Japanese message file for Vim (version 6.x)\n", stdout);
+  				fputs("# generated from ja.po, DO NOT EDIT", stdout);
+  				while (p[1] != '\n')
+  					++p;
+--- 23,30 ----
+  				fputs("charset=cp932", stdout);
+  				p += 12;
+  			}
+! 			else if (strncmp(p, "# Original translations", 23) == 0)
+  			{
+  				fputs("# generated from ja.po, DO NOT EDIT", stdout);
+  				while (p[1] != '\n')
+  					++p;
+*** ../vim-7.4.507/src/version.c	2014-11-06 10:02:57.023057491 +0100
+--- src/version.c	2014-11-12 13:04:27.308402708 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     508,
+  /**/
+
+-- 
+TALL KNIGHT:   Firstly.  You must get us another shrubbery!
+OTHER KNIGHTS: More shrubberies!  More shrubberies for the ex-Knights of Ni!
+ARTHUR:        Not another shrubbery -
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

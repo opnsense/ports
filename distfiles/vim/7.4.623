@@ -1,0 +1,78 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.623
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.623
+Problem:    Crash with pattern: \(\)\{80000}  (Dominique Pelle)
+Solution:   When the max limit is large fall back to the old engine.
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.622/src/regexp_nfa.c	2015-02-05 20:29:55.071222529 +0100
+--- src/regexp_nfa.c	2015-02-10 18:09:53.878896813 +0100
+***************
+*** 2034,2042 ****
+  	    }
+  
+  	    /* The engine is very inefficient (uses too many states) when the
+! 	     * maximum is much larger than the minimum.  Bail out if we can
+! 	     * use the other engine. */
+! 	    if ((nfa_re_flags & RE_AUTO) && maxval > minval + 200)
+  		return FAIL;
+  
+  	    /* Ignore previous call to nfa_regatom() */
+--- 2034,2043 ----
+  	    }
+  
+  	    /* The engine is very inefficient (uses too many states) when the
+! 	     * maximum is much larger than the minimum and when the maximum is
+! 	     * large.  Bail out if we can use the other engine. */
+! 	    if ((nfa_re_flags & RE_AUTO)
+! 				   && (maxval > minval + 200 || maxval > 500))
+  		return FAIL;
+  
+  	    /* Ignore previous call to nfa_regatom() */
+***************
+*** 4254,4260 ****
+   * Add "state" and possibly what follows to state list ".".
+   * Returns "subs_arg", possibly copied into temp_subs.
+   */
+- 
+      static regsubs_T *
+  addstate(l, state, subs_arg, pim, off)
+      nfa_list_T		*l;	    /* runtime state list */
+--- 4255,4260 ----
+***************
+*** 4392,4397 ****
+--- 4392,4398 ----
+  		    subs = &temp_subs;
+  		}
+  
++ 		/* TODO: check for vim_realloc() returning NULL. */
+  		l->t = vim_realloc(l->t, newlen * sizeof(nfa_thread_T));
+  		l->len = newlen;
+  	    }
+*** ../vim-7.4.622/src/version.c	2015-02-05 20:29:55.071222529 +0100
+--- src/version.c	2015-02-10 18:14:05.287650419 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     623,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+210. When you get a divorce, you don't care about who gets the children,
+     but discuss endlessly who can use the email address.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

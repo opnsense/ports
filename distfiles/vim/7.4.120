@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.120
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.120 (after 7.4.117)
+Problem:    Can't build with Perl 5.18 on Linux. (Lcd 47)
+Solution:   Add #ifdef. (Ken Takata)
+Files:	    src/if_perl.xs
+
+
+*** ../vim-7.4.119/src/if_perl.xs	2013-12-11 15:06:36.000000000 +0100
+--- src/if_perl.xs	2013-12-11 17:17:43.000000000 +0100
+***************
+*** 27,33 ****
+  /* Work around for perl-5.18.
+   * Don't include "perl\lib\CORE\inline.h" for now,
+   * include it after Perl_sv_free2 is defined. */
+! #define PERL_NO_INLINE_FUNCTIONS
+  
+  /*
+   * Prevent including winsock.h.  perl.h tries to detect whether winsock.h is
+--- 27,35 ----
+  /* Work around for perl-5.18.
+   * Don't include "perl\lib\CORE\inline.h" for now,
+   * include it after Perl_sv_free2 is defined. */
+! #ifdef DYNAMIC_PERL
+! # define PERL_NO_INLINE_FUNCTIONS
+! #endif
+  
+  /*
+   * Prevent including winsock.h.  perl.h tries to detect whether winsock.h is
+*** ../vim-7.4.119/src/version.c	2013-12-11 17:12:32.000000000 +0100
+--- src/version.c	2013-12-11 17:19:34.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     120,
+  /**/
+
+-- 
+Just remember...if the world didn't suck, we'd all fall off.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,90 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.050
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.050
+Problem:    "gn" selects too much for the pattern "\d" when there are two
+	    lines with a single digit. (Ryan Carney)
+Solution:   Adjust the logic of is_one_char(). (Christian Brabandt)
+Files:	    src/search.c, src/testdir/test53.in, src/testdir/test53.ok
+
+
+*** ../vim-7.4.049/src/search.c	2013-08-14 17:45:25.000000000 +0200
+--- src/search.c	2013-10-02 21:49:40.000000000 +0200
+***************
+*** 4680,4687 ****
+  		&& regmatch.startpos[0].lnum == regmatch.endpos[0].lnum
+  		&& regmatch.startpos[0].col == regmatch.endpos[0].col);
+  
+! 	if (!result && incl(&pos) == 0 && pos.col == regmatch.endpos[0].col)
+! 	    result  = TRUE;
+      }
+  
+      called_emsg |= save_called_emsg;
+--- 4680,4687 ----
+  		&& regmatch.startpos[0].lnum == regmatch.endpos[0].lnum
+  		&& regmatch.startpos[0].col == regmatch.endpos[0].col);
+  
+! 	if (!result && inc(&pos) >= 0 && pos.col == regmatch.endpos[0].col)
+! 	    result = TRUE;
+      }
+  
+      called_emsg |= save_called_emsg;
+*** ../vim-7.4.049/src/testdir/test53.in	2013-06-30 14:31:56.000000000 +0200
+--- src/testdir/test53.in	2013-10-02 21:47:10.000000000 +0200
+***************
+*** 46,51 ****
+--- 46,54 ----
+  :set selection=exclusive
+  $cgNmongoose/i
+  cgnj
++ :" Make sure there is no other match y uppercase.
++ /x59
++ gggnd
+  :/^start:/,/^end:/wq! test.out
+  ENDTEST
+  
+***************
+*** 75,78 ****
+--- 78,84 ----
+  uniquepattern uniquepattern
+  my very excellent mother just served us nachos
+  for (i=0; i<=10; i++)
++ Y
++ text
++ Y
+  end:
+*** ../vim-7.4.049/src/testdir/test53.ok	2013-06-30 14:31:56.000000000 +0200
+--- src/testdir/test53.ok	2013-10-02 21:47:34.000000000 +0200
+***************
+*** 27,30 ****
+--- 27,33 ----
+   uniquepattern
+  my very excellent mongoose just served us nachos
+  for (j=0; i<=10; i++)
++ 
++ text
++ Y
+  end:
+*** ../vim-7.4.049/src/version.c	2013-10-02 18:43:00.000000000 +0200
+--- src/version.c	2013-10-02 21:51:34.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     50,
+  /**/
+
+-- 
+Why doesn't Tarzan have a beard?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

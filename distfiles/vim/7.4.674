@@ -1,0 +1,72 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.674
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.674 (after 7.4.672)
+Problem:    Missing changes in one file.
+Solution:   Also change the win32 file.
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.673/src/os_win32.c	2015-01-20 19:39:31.651524062 +0100
+--- src/os_win32.c	2015-03-21 16:56:22.139160233 +0100
+***************
+*** 3378,3387 ****
+  
+  /*
+   * Return 1 if "name" can be executed, 0 if not.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(char_u *name, char_u **path)
+  {
+      char_u	buf[_MAX_PATH];
+      int		len = (int)STRLEN(name);
+--- 3378,3388 ----
+  
+  /*
+   * Return 1 if "name" can be executed, 0 if not.
++  * If "use_path" is FALSE only check if "name" is executable.
+   * Return -1 if unknown.
+   */
+      int
+! mch_can_exe(char_u *name, char_u **path, int use_path)
+  {
+      char_u	buf[_MAX_PATH];
+      int		len = (int)STRLEN(name);
+***************
+*** 3389,3394 ****
+--- 3390,3400 ----
+  
+      if (len >= _MAX_PATH)	/* safety check */
+  	return FALSE;
++     if (!use_path)
++     {
++ 	/* TODO: check if file is really executable. */
++ 	return mch_getperm(name) != -1 && !mch_isdir(name);
++     }
+  
+      /* If there already is an extension try using the name directly.  Also do
+       * this with a Unix-shell like 'shell'. */
+*** ../vim-7.4.673/src/version.c	2015-03-21 21:46:07.566423633 +0100
+--- src/version.c	2015-03-21 22:16:29.749822253 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     674,
+  /**/
+
+-- 
+Advice to worms:  Sleep late.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

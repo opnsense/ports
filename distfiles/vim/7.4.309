@@ -1,0 +1,88 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.309
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.309
+Problem:    When increasing the size of the lower window, the upper window
+	    jumps back to the top. (Ron Aaron)
+Solution:   Change setting the topline. (Nobuhiro Takasaki)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.308/src/window.c	2014-05-22 15:17:24.706440568 +0200
+--- src/window.c	2014-05-28 13:24:40.308068558 +0200
+***************
+*** 5710,5717 ****
+  		    --wp->w_wrow;
+  		}
+  	    }
+  	}
+! 	else
+  	{
+  	    while (sline > 0 && lnum > 1)
+  	    {
+--- 5710,5718 ----
+  		    --wp->w_wrow;
+  		}
+  	    }
++             set_topline(wp, lnum);
+  	}
+! 	else if (sline > 0)
+  	{
+  	    while (sline > 0 && lnum > 1)
+  	    {
+***************
+*** 5748,5761 ****
+  		lnum++;
+  		wp->w_wrow -= line_size + sline;
+  	    }
+! 	    else if (sline >= 0)
+  	    {
+  		/* First line of file reached, use that as topline. */
+  		lnum = 1;
+  		wp->w_wrow -= sline;
+  	    }
+  	}
+- 	set_topline(wp, lnum);
+      }
+  
+      if (wp == curwin)
+--- 5749,5763 ----
+  		lnum++;
+  		wp->w_wrow -= line_size + sline;
+  	    }
+! 	    else if (sline > 0)
+  	    {
+  		/* First line of file reached, use that as topline. */
+  		lnum = 1;
+  		wp->w_wrow -= sline;
+  	    }
++ 
++             set_topline(wp, lnum);
+  	}
+      }
+  
+      if (wp == curwin)
+*** ../vim-7.4.308/src/version.c	2014-05-28 11:35:33.428011248 +0200
+--- src/version.c	2014-05-28 13:33:54.244073407 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     309,
+  /**/
+
+-- 
+Don't be humble ... you're not that great.
+                      -- Golda Meir
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

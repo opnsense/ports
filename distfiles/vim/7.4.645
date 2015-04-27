@@ -1,0 +1,101 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.645
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.645
+Problem:    When splitting the window in a BufAdd autocommand while still in
+	    the first, empty buffer the window count is wrong.
+Solution:   Do not reset b_nwindows to zero and don't increment it.
+Files:	    src/buffer.c, src/ex_cmds.c
+
+
+*** ../vim-7.4.644/src/buffer.c	2015-01-27 18:43:42.134535513 +0100
+--- src/buffer.c	2015-02-27 19:33:51.325459521 +0100
+***************
+*** 1794,1800 ****
+  	if (aborting())		/* autocmds may abort script processing */
+  	    return NULL;
+  #endif
+- 	/* buf->b_nwindows = 0; why was this here? */
+  	free_buffer_stuff(buf, FALSE);	/* delete local variables et al. */
+  
+  	/* Init the options. */
+--- 1794,1799 ----
+***************
+*** 1872,1877 ****
+--- 1871,1879 ----
+  #ifdef FEAT_AUTOCMD
+      if (!(flags & BLN_DUMMY))
+      {
++ 	/* Tricky: these autocommands may change the buffer list.  They could
++ 	 * also split the window with re-using the one empty buffer. This may
++ 	 * result in unexpectedly losing the empty buffer. */
+  	apply_autocmds(EVENT_BUFNEW, NULL, NULL, FALSE, buf);
+  	if (!buf_valid(buf))
+  	    return NULL;
+*** ../vim-7.4.644/src/ex_cmds.c	2015-02-17 12:17:10.837775002 +0100
+--- src/ex_cmds.c	2015-02-27 19:28:47.232909242 +0100
+***************
+*** 3375,3381 ****
+  	if (buf->b_ml.ml_mfp == NULL)		/* no memfile yet */
+  	{
+  	    oldbuf = FALSE;
+- 	    buf->b_nwindows = 0;
+  	}
+  	else					/* existing memfile */
+  	{
+--- 3375,3380 ----
+***************
+*** 3408,3414 ****
+  	 * Make the (new) buffer the one used by the current window.
+  	 * If the old buffer becomes unused, free it if ECMD_HIDE is FALSE.
+  	 * If the current buffer was empty and has no file name, curbuf
+! 	 * is returned by buflist_new().
+  	 */
+  	if (buf != curbuf)
+  	{
+--- 3407,3413 ----
+  	 * Make the (new) buffer the one used by the current window.
+  	 * If the old buffer becomes unused, free it if ECMD_HIDE is FALSE.
+  	 * If the current buffer was empty and has no file name, curbuf
+! 	 * is returned by buflist_new(), nothing to do here.
+  	 */
+  	if (buf != curbuf)
+  	{
+***************
+*** 3515,3522 ****
+  	    au_new_curbuf = NULL;
+  #endif
+  	}
+- 	else
+- 	    ++curbuf->b_nwindows;
+  
+  	curwin->w_pcmark.lnum = 1;
+  	curwin->w_pcmark.col = 0;
+--- 3514,3519 ----
+*** ../vim-7.4.644/src/version.c	2015-02-27 18:25:10.820179062 +0100
+--- src/version.c	2015-02-27 19:33:06.153971911 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     645,
+  /**/
+
+-- 
+       He was not in the least bit scared to be mashed into a pulp
+       Or to have his eyes gouged out and his elbows broken;
+       To have his kneecaps split and his body burned away
+       And his limbs all hacked and mangled, brave Sir Robin.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

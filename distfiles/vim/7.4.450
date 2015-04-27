@@ -1,0 +1,417 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.450
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.450
+Problem:    Not all commands that edit another buffer support the +cmd
+	    argument.
+Solution:   Add the +cmd argument to relevant commands. (Marcin Szamotulski)
+Files:	    runtime/doc/windows.txt, src/ex_cmds.h, src/ex_docmd.c
+
+
+*** ../vim-7.4.449/runtime/doc/windows.txt	2014-03-25 13:03:44.929793765 +0100
+--- runtime/doc/windows.txt	2014-09-19 19:53:55.618447914 +0200
+***************
+*** 1042,1077 ****
+  		a number).  Insert a backslash before a space in a buffer
+  		name.
+  
+! :[N]b[uffer][!] [N]			*:b* *:bu* *:buf* *:buffer* *E86*
+  		Edit buffer [N] from the buffer list.  If [N] is not given,
+  		the current buffer remains being edited.  See |:buffer-!| for
+  		[!].  This will also edit a buffer that is not in the buffer
+  		list, without setting the 'buflisted' flag.
+  
+! :[N]b[uffer][!] {bufname}
+  		Edit buffer for {bufname} from the buffer list.  See
+  		|:buffer-!| for [!].  This will also edit a buffer that is not
+  		in the buffer list, without setting the 'buflisted' flag.
+  
+! :[N]sb[uffer] [N]					*:sb* *:sbuffer*
+  		Split window and edit buffer [N] from the buffer list.  If [N]
+  		is not given, the current buffer is edited.  Respects the
+  		"useopen" setting of 'switchbuf' when splitting.  This will
+  		also edit a buffer that is not in the buffer list, without
+  		setting the 'buflisted' flag.
+  
+! :[N]sb[uffer] {bufname}
+  		Split window and edit buffer for {bufname} from the buffer
+  		list.  This will also edit a buffer that is not in the buffer
+  		list, without setting the 'buflisted' flag.
+  		Note: If what you want to do is split the buffer, make a copy
+  		under another name, you can do it this way: >
+  			:w foobar | sp #
+  
+! :[N]bn[ext][!] [N]					*:bn* *:bnext* *E87*
+  		Go to [N]th next buffer in buffer list.  [N] defaults to one.
+  		Wraps around the end of the buffer list.
+  		See |:buffer-!| for [!].
+  		If you are in a help buffer, this takes you to the next help
+  		buffer (if there is one).  Similarly, if you are in a normal
+  		(non-help) buffer, this takes you to the next normal buffer.
+--- 1042,1082 ----
+  		a number).  Insert a backslash before a space in a buffer
+  		name.
+  
+! :[N]b[uffer][!] [+cmd] [N]		*:b* *:bu* *:buf* *:buffer* *E86*
+  		Edit buffer [N] from the buffer list.  If [N] is not given,
+  		the current buffer remains being edited.  See |:buffer-!| for
+  		[!].  This will also edit a buffer that is not in the buffer
+  		list, without setting the 'buflisted' flag.
++ 		Also see ||+cmd|.
+  
+! :[N]b[uffer][!] [+cmd] {bufname}
+  		Edit buffer for {bufname} from the buffer list.  See
+  		|:buffer-!| for [!].  This will also edit a buffer that is not
+  		in the buffer list, without setting the 'buflisted' flag.
++ 		Also see ||+cmd|.
+  
+! :[N]sb[uffer] [+cmd] [N]				*:sb* *:sbuffer*
+  		Split window and edit buffer [N] from the buffer list.  If [N]
+  		is not given, the current buffer is edited.  Respects the
+  		"useopen" setting of 'switchbuf' when splitting.  This will
+  		also edit a buffer that is not in the buffer list, without
+  		setting the 'buflisted' flag.
++ 		Also see ||+cmd|.
+  
+! :[N]sb[uffer] [+cmd] {bufname}
+  		Split window and edit buffer for {bufname} from the buffer
+  		list.  This will also edit a buffer that is not in the buffer
+  		list, without setting the 'buflisted' flag.
+  		Note: If what you want to do is split the buffer, make a copy
+  		under another name, you can do it this way: >
+  			:w foobar | sp #
++ <		Also see ||+cmd|.
+  
+! :[N]bn[ext][!] [+cmd] [N]				*:bn* *:bnext* *E87*
+  		Go to [N]th next buffer in buffer list.  [N] defaults to one.
+  		Wraps around the end of the buffer list.
+  		See |:buffer-!| for [!].
++ 		Also see ||+cmd|.
+  		If you are in a help buffer, this takes you to the next help
+  		buffer (if there is one).  Similarly, if you are in a normal
+  		(non-help) buffer, this takes you to the next normal buffer.
+***************
+*** 1079,1133 ****
+  		the way when you're browsing code/text buffers.  The next three
+  		commands also work like this.
+  
+  							*:sbn* *:sbnext*
+! :[N]sbn[ext] [N]
+  		Split window and go to [N]th next buffer in buffer list.
+  		Wraps around the end of the buffer list.  Uses 'switchbuf'
+  
+! :[N]bN[ext][!] [N]			*:bN* *:bNext* *:bp* *:bprevious* *E88*
+! :[N]bp[revious][!] [N]
+  		Go to [N]th previous buffer in buffer list.  [N] defaults to
+  		one.  Wraps around the start of the buffer list.
+  		See |:buffer-!| for [!] and 'switchbuf'.
+  
+! :[N]sbN[ext] [N]			*:sbN* *:sbNext* *:sbp* *:sbprevious*
+! :[N]sbp[revious] [N]
+  		Split window and go to [N]th previous buffer in buffer list.
+  		Wraps around the start of the buffer list.
+  		Uses 'switchbuf'.
+  
+! 							*:br* *:brewind*
+! :br[ewind][!]	Go to first buffer in buffer list.  If the buffer list is
+  		empty, go to the first unlisted buffer.
+  		See |:buffer-!| for [!].
+  
+! 							*:bf* *:bfirst*
+! :bf[irst]	Same as ":brewind".
+  
+! 							*:sbr* *:sbrewind*
+! :sbr[ewind]	Split window and go to first buffer in buffer list.  If the
+  		buffer list is empty, go to the first unlisted buffer.
+  		Respects the 'switchbuf' option.
+  
+! 							*:sbf* *:sbfirst*
+! :sbf[irst]	Same as ":sbrewind".
+  
+! 							*:bl* *:blast*
+! :bl[ast][!]	Go to last buffer in buffer list.  If the buffer list is
+  		empty, go to the last unlisted buffer.
+  		See |:buffer-!| for [!].
+  
+! 							*:sbl* *:sblast*
+! :sbl[ast]	Split window and go to last buffer in buffer list.  If the
+  		buffer list is empty, go to the last unlisted buffer.
+  		Respects 'switchbuf' option.
+  
+! :[N]bm[odified][!] [N]				*:bm* *:bmodified* *E84*
+  		Go to [N]th next modified buffer.  Note: this command also
+  		finds unlisted buffers.  If there is no modified buffer the
+  		command fails.
+  
+! :[N]sbm[odified] [N]					*:sbm* *:sbmodified*
+  		Split window and go to [N]th next modified buffer.
+  		Respects 'switchbuf' option.
+  		Note: this command also finds buffers not in the buffer list.
+--- 1084,1144 ----
+  		the way when you're browsing code/text buffers.  The next three
+  		commands also work like this.
+  
++ 
+  							*:sbn* *:sbnext*
+! :[N]sbn[ext] [+cmd] [N]
+  		Split window and go to [N]th next buffer in buffer list.
+  		Wraps around the end of the buffer list.  Uses 'switchbuf'
++ 		Also see ||+cmd|.
+  
+! :[N]bN[ext][!] [+cmd] [N]		*:bN* *:bNext* *:bp* *:bprevious* *E88*
+! :[N]bp[revious][!] [+cmd] [N]
+  		Go to [N]th previous buffer in buffer list.  [N] defaults to
+  		one.  Wraps around the start of the buffer list.
+  		See |:buffer-!| for [!] and 'switchbuf'.
++ 		Also see ||+cmd|.
+  
+! :[N]sbN[ext] [+cmd] [N]			*:sbN* *:sbNext* *:sbp* *:sbprevious*
+! :[N]sbp[revious] [+cmd] [N]
+  		Split window and go to [N]th previous buffer in buffer list.
+  		Wraps around the start of the buffer list.
+  		Uses 'switchbuf'.
++ 		Also see ||+cmd|.
+  
+! :br[ewind][!] [+cmd]					*:br* *:brewind*
+! 		Go to first buffer in buffer list.  If the buffer list is
+  		empty, go to the first unlisted buffer.
+  		See |:buffer-!| for [!].
+  
+! :bf[irst] [+cmd]					*:bf* *:bfirst*
+! 		Same as |:brewind|.
+! 		Also see |+cmd|.
+  
+! :sbr[ewind] [+cmd]					*:sbr* *:sbrewind*
+! 		Split window and go to first buffer in buffer list.  If the
+  		buffer list is empty, go to the first unlisted buffer.
+  		Respects the 'switchbuf' option.
++ 		Also see |+cmd|.
+  
+! :sbf[irst] [+cmd]					*:sbf* *:sbfirst*
+! 		Same as ":sbrewind".
+  
+! :bl[ast][!] [+cmd]					*:bl* *:blast*
+! 		Go to last buffer in buffer list.  If the buffer list is
+  		empty, go to the last unlisted buffer.
+  		See |:buffer-!| for [!].
+  
+! :sbl[ast] [+cmd]					*:sbl* *:sblast*
+! 		Split window and go to last buffer in buffer list.  If the
+  		buffer list is empty, go to the last unlisted buffer.
+  		Respects 'switchbuf' option.
+  
+! :[N]bm[odified][!] [+cmd] [N]			*:bm* *:bmodified* *E84*
+  		Go to [N]th next modified buffer.  Note: this command also
+  		finds unlisted buffers.  If there is no modified buffer the
+  		command fails.
+  
+! :[N]sbm[odified] [+cmd] [N]				*:sbm* *:sbmodified*
+  		Split window and go to [N]th next modified buffer.
+  		Respects 'switchbuf' option.
+  		Note: this command also finds buffers not in the buffer list.
+*** ../vim-7.4.449/src/ex_cmds.h	2014-09-19 19:39:30.766446025 +0200
+--- src/ex_cmds.h	2014-09-19 19:53:55.618447914 +0200
+***************
+*** 132,140 ****
+  EX(CMD_aunmenu,		"aunmenu",	ex_menu,
+  			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_buffer,		"buffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|TRLBAR),
+  EX(CMD_bNext,		"bNext",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_ball,		"ball",		ex_buffer_all,
+  			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_badd,		"badd",		ex_edit,
+--- 132,140 ----
+  EX(CMD_aunmenu,		"aunmenu",	ex_menu,
+  			EXTRA|TRLBAR|NOTRLCOM|USECTRLV|CMDWIN),
+  EX(CMD_buffer,		"buffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|EDITCMD|TRLBAR),
+  EX(CMD_bNext,		"bNext",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_ball,		"ball",		ex_buffer_all,
+  			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_badd,		"badd",		ex_edit,
+***************
+*** 146,164 ****
+  EX(CMD_belowright,	"belowright",	ex_wrongmodifier,
+  			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bfirst,		"bfirst",	ex_brewind,
+! 			BANG|RANGE|NOTADR|TRLBAR),
+  EX(CMD_blast,		"blast",	ex_blast,
+! 			BANG|RANGE|NOTADR|TRLBAR),
+  EX(CMD_bmodified,	"bmodified",	ex_bmodified,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_bnext,		"bnext",	ex_bnext,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_botright,	"botright",	ex_wrongmodifier,
+  			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bprevious,	"bprevious",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_brewind,		"brewind",	ex_brewind,
+! 			BANG|RANGE|NOTADR|TRLBAR),
+  EX(CMD_break,		"break",	ex_break,
+  			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_breakadd,	"breakadd",	ex_breakadd,
+--- 146,164 ----
+  EX(CMD_belowright,	"belowright",	ex_wrongmodifier,
+  			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bfirst,		"bfirst",	ex_brewind,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR),
+  EX(CMD_blast,		"blast",	ex_blast,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR),
+  EX(CMD_bmodified,	"bmodified",	ex_bmodified,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_bnext,		"bnext",	ex_bnext,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_botright,	"botright",	ex_wrongmodifier,
+  			NEEDARG|EXTRA|NOTRLCOM),
+  EX(CMD_bprevious,	"bprevious",	ex_bprevious,
+! 			BANG|RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_brewind,		"brewind",	ex_brewind,
+! 			BANG|RANGE|NOTADR|EDITCMD|TRLBAR),
+  EX(CMD_break,		"break",	ex_break,
+  			TRLBAR|SBOXOK|CMDWIN),
+  EX(CMD_breakadd,	"breakadd",	ex_breakadd,
+***************
+*** 814,836 ****
+  EX(CMD_saveas,		"saveas",	ex_write,
+  			BANG|DFLALL|FILE1|ARGOPT|CMDWIN|TRLBAR),
+  EX(CMD_sbuffer,		"sbuffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|TRLBAR),
+  EX(CMD_sbNext,		"sbNext",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sball,		"sball",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sbfirst,		"sbfirst",	ex_brewind,
+! 			TRLBAR),
+  EX(CMD_sblast,		"sblast",	ex_blast,
+! 			TRLBAR),
+  EX(CMD_sbmodified,	"sbmodified",	ex_bmodified,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sbnext,		"sbnext",	ex_bnext,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sbprevious,	"sbprevious",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|TRLBAR),
+  EX(CMD_sbrewind,	"sbrewind",	ex_brewind,
+! 			TRLBAR),
+  EX(CMD_scriptnames,	"scriptnames",	ex_scriptnames,
+  			TRLBAR|CMDWIN),
+  EX(CMD_scriptencoding,	"scriptencoding", ex_scriptencoding,
+--- 814,836 ----
+  EX(CMD_saveas,		"saveas",	ex_write,
+  			BANG|DFLALL|FILE1|ARGOPT|CMDWIN|TRLBAR),
+  EX(CMD_sbuffer,		"sbuffer",	ex_buffer,
+! 			BANG|RANGE|NOTADR|BUFNAME|BUFUNL|COUNT|EXTRA|EDITCMD|TRLBAR),
+  EX(CMD_sbNext,		"sbNext",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sball,		"sball",	ex_buffer_all,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbfirst,		"sbfirst",	ex_brewind,
+! 			EDITCMD|TRLBAR),
+  EX(CMD_sblast,		"sblast",	ex_blast,
+! 			EDITCMD|TRLBAR),
+  EX(CMD_sbmodified,	"sbmodified",	ex_bmodified,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbnext,		"sbnext",	ex_bnext,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbprevious,	"sbprevious",	ex_bprevious,
+! 			RANGE|NOTADR|COUNT|EDITCMD|TRLBAR),
+  EX(CMD_sbrewind,	"sbrewind",	ex_brewind,
+! 			EDITCMD|TRLBAR),
+  EX(CMD_scriptnames,	"scriptnames",	ex_scriptnames,
+  			TRLBAR|CMDWIN),
+  EX(CMD_scriptencoding,	"scriptencoding", ex_scriptencoding,
+*** ../vim-7.4.449/src/ex_docmd.c	2014-09-09 12:21:57.716501404 +0200
+--- src/ex_docmd.c	2014-09-19 19:53:55.622447914 +0200
+***************
+*** 5135,5140 ****
+--- 5135,5142 ----
+  	    goto_buffer(eap, DOBUF_CURRENT, FORWARD, 0);
+  	else
+  	    goto_buffer(eap, DOBUF_FIRST, FORWARD, (int)eap->line2);
++ 	if (eap->do_ecmd_cmd != NULL)
++ 	    do_cmdline_cmd(eap->do_ecmd_cmd);
+      }
+  }
+  
+***************
+*** 5147,5152 ****
+--- 5149,5156 ----
+      exarg_T	*eap;
+  {
+      goto_buffer(eap, DOBUF_MOD, FORWARD, (int)eap->line2);
++     if (eap->do_ecmd_cmd != NULL)
++ 	do_cmdline_cmd(eap->do_ecmd_cmd);
+  }
+  
+  /*
+***************
+*** 5158,5163 ****
+--- 5162,5169 ----
+      exarg_T	*eap;
+  {
+      goto_buffer(eap, DOBUF_CURRENT, FORWARD, (int)eap->line2);
++     if (eap->do_ecmd_cmd != NULL)
++ 	do_cmdline_cmd(eap->do_ecmd_cmd);
+  }
+  
+  /*
+***************
+*** 5171,5176 ****
+--- 5177,5184 ----
+      exarg_T	*eap;
+  {
+      goto_buffer(eap, DOBUF_CURRENT, BACKWARD, (int)eap->line2);
++     if (eap->do_ecmd_cmd != NULL)
++ 	do_cmdline_cmd(eap->do_ecmd_cmd);
+  }
+  
+  /*
+***************
+*** 5184,5189 ****
+--- 5192,5199 ----
+      exarg_T	*eap;
+  {
+      goto_buffer(eap, DOBUF_FIRST, FORWARD, 0);
++     if (eap->do_ecmd_cmd != NULL)
++ 	do_cmdline_cmd(eap->do_ecmd_cmd);
+  }
+  
+  /*
+***************
+*** 5195,5200 ****
+--- 5205,5212 ----
+      exarg_T	*eap;
+  {
+      goto_buffer(eap, DOBUF_LAST, BACKWARD, 0);
++     if (eap->do_ecmd_cmd != NULL)
++ 	do_cmdline_cmd(eap->do_ecmd_cmd);
+  }
+  #endif
+  
+*** ../vim-7.4.449/src/version.c	2014-09-19 19:39:30.766446025 +0200
+--- src/version.c	2014-09-19 19:54:39.442448010 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     450,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+166. You have been on your computer soo long that you didn't realize
+     you had grandchildren.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

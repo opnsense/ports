@@ -1,0 +1,414 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.456
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.456
+Problem:    'backupcopy' is global, cannot write only some files in a
+	    different way.
+Solution:   Make 'backupcopy' global-local. (Christian Brabandt)
+Files:	    runtime/doc/options.txt, src/buffer.c, src/fileio.c, src/option.c,
+	    src/option.h, src/proto/option.pro, src/structs.h
+
+
+*** ../vim-7.4.455/runtime/doc/options.txt	2014-08-10 13:34:59.052785459 +0200
+--- runtime/doc/options.txt	2014-09-23 14:28:40.530791041 +0200
+***************
+*** 921,927 ****
+  
+  						*'backupcopy'* *'bkc'*
+  'backupcopy' 'bkc'	string	(Vi default for Unix: "yes", otherwise: "auto")
+! 			global
+  			{not in Vi}
+  	When writing a file and a backup is made, this option tells how it's
+  	done.  This is a comma separated list of words.
+--- 921,927 ----
+  
+  						*'backupcopy'* *'bkc'*
+  'backupcopy' 'bkc'	string	(Vi default for Unix: "yes", otherwise: "auto")
+! 			global or local to buffer |global-local|
+  			{not in Vi}
+  	When writing a file and a backup is made, this option tells how it's
+  	done.  This is a comma separated list of words.
+*** ../vim-7.4.455/src/buffer.c	2014-09-23 14:24:36.406790508 +0200
+--- src/buffer.c	2014-09-23 14:28:40.530791041 +0200
+***************
+*** 2001,2006 ****
+--- 2001,2007 ----
+  #ifdef FEAT_LISP
+      clear_string_option(&buf->b_p_lw);
+  #endif
++     clear_string_option(&buf->b_p_bkc);
+  }
+  
+  /*
+*** ../vim-7.4.455/src/fileio.c	2014-09-09 16:59:34.792537789 +0200
+--- src/fileio.c	2014-09-23 14:28:40.530791041 +0200
+***************
+*** 3149,3154 ****
+--- 3149,3155 ----
+      int		    write_undo_file = FALSE;
+      context_sha256_T sha_ctx;
+  #endif
++     unsigned int    bkc = get_bkc_value(buf);
+  
+      if (fname == NULL || *fname == NUL)	/* safety check */
+  	return FAIL;
+***************
+*** 3647,3656 ****
+  	struct stat st;
+  #endif
+  
+! 	if ((bkc_flags & BKC_YES) || append)	/* "yes" */
+  	    backup_copy = TRUE;
+  #if defined(UNIX) || defined(WIN32)
+! 	else if ((bkc_flags & BKC_AUTO))	/* "auto" */
+  	{
+  	    int		i;
+  
+--- 3648,3657 ----
+  	struct stat st;
+  #endif
+  
+! 	if ((bkc & BKC_YES) || append)	/* "yes" */
+  	    backup_copy = TRUE;
+  #if defined(UNIX) || defined(WIN32)
+! 	else if ((bkc & BKC_AUTO))	/* "auto" */
+  	{
+  	    int		i;
+  
+***************
+*** 3738,3744 ****
+  	/*
+  	 * Break symlinks and/or hardlinks if we've been asked to.
+  	 */
+! 	if ((bkc_flags & BKC_BREAKSYMLINK) || (bkc_flags & BKC_BREAKHARDLINK))
+  	{
+  # ifdef UNIX
+  	    int	lstat_res;
+--- 3739,3745 ----
+  	/*
+  	 * Break symlinks and/or hardlinks if we've been asked to.
+  	 */
+! 	if ((bkc & BKC_BREAKSYMLINK) || (bkc & BKC_BREAKHARDLINK))
+  	{
+  # ifdef UNIX
+  	    int	lstat_res;
+***************
+*** 3746,3769 ****
+  	    lstat_res = mch_lstat((char *)fname, &st);
+  
+  	    /* Symlinks. */
+! 	    if ((bkc_flags & BKC_BREAKSYMLINK)
+  		    && lstat_res == 0
+  		    && st.st_ino != st_old.st_ino)
+  		backup_copy = FALSE;
+  
+  	    /* Hardlinks. */
+! 	    if ((bkc_flags & BKC_BREAKHARDLINK)
+  		    && st_old.st_nlink > 1
+  		    && (lstat_res != 0 || st.st_ino == st_old.st_ino))
+  		backup_copy = FALSE;
+  # else
+  #  if defined(WIN32)
+  	    /* Symlinks. */
+! 	    if ((bkc_flags & BKC_BREAKSYMLINK) && mch_is_symbolic_link(fname))
+  		backup_copy = FALSE;
+  
+  	    /* Hardlinks. */
+! 	    if ((bkc_flags & BKC_BREAKHARDLINK) && mch_is_hard_link(fname))
+  		backup_copy = FALSE;
+  #  endif
+  # endif
+--- 3747,3770 ----
+  	    lstat_res = mch_lstat((char *)fname, &st);
+  
+  	    /* Symlinks. */
+! 	    if ((bkc & BKC_BREAKSYMLINK)
+  		    && lstat_res == 0
+  		    && st.st_ino != st_old.st_ino)
+  		backup_copy = FALSE;
+  
+  	    /* Hardlinks. */
+! 	    if ((bkc & BKC_BREAKHARDLINK)
+  		    && st_old.st_nlink > 1
+  		    && (lstat_res != 0 || st.st_ino == st_old.st_ino))
+  		backup_copy = FALSE;
+  # else
+  #  if defined(WIN32)
+  	    /* Symlinks. */
+! 	    if ((bkc & BKC_BREAKSYMLINK) && mch_is_symbolic_link(fname))
+  		backup_copy = FALSE;
+  
+  	    /* Hardlinks. */
+! 	    if ((bkc & BKC_BREAKHARDLINK) && mch_is_hard_link(fname))
+  		backup_copy = FALSE;
+  #  endif
+  # endif
+*** ../vim-7.4.455/src/option.c	2014-09-09 17:33:02.700542175 +0200
+--- src/option.c	2014-09-23 14:41:25.890792713 +0200
+***************
+*** 56,61 ****
+--- 56,62 ----
+   */
+  #define PV_AI		OPT_BUF(BV_AI)
+  #define PV_AR		OPT_BOTH(OPT_BUF(BV_AR))
++ #define PV_BKC		OPT_BOTH(OPT_BUF(BV_BKC))
+  #ifdef FEAT_QUICKFIX
+  # define PV_BH		OPT_BUF(BV_BH)
+  # define PV_BT		OPT_BUF(BV_BT)
+***************
+*** 582,588 ****
+  			    (char_u *)&p_bk, PV_NONE,
+  			    {(char_u *)FALSE, (char_u *)0L} SCRIPTID_INIT},
+      {"backupcopy",  "bkc",  P_STRING|P_VIM|P_COMMA|P_NODUP,
+! 			    (char_u *)&p_bkc, PV_NONE,
+  #ifdef UNIX
+  			    {(char_u *)"yes", (char_u *)"auto"}
+  #else
+--- 583,589 ----
+  			    (char_u *)&p_bk, PV_NONE,
+  			    {(char_u *)FALSE, (char_u *)0L} SCRIPTID_INIT},
+      {"backupcopy",  "bkc",  P_STRING|P_VIM|P_COMMA|P_NODUP,
+! 			    (char_u *)&p_bkc, PV_BKC,
+  #ifdef UNIX
+  			    {(char_u *)"yes", (char_u *)"auto"}
+  #else
+***************
+*** 5412,5417 ****
+--- 5413,5419 ----
+  #ifdef FEAT_LISP
+      check_string_option(&buf->b_p_lw);
+  #endif
++     check_string_option(&buf->b_p_bkc);
+  }
+  
+  /*
+***************
+*** 5729,5744 ****
+      }
+  
+      /* 'backupcopy' */
+!     else if (varp == &p_bkc)
+      {
+! 	if (opt_strings_flags(p_bkc, p_bkc_values, &bkc_flags, TRUE) != OK)
+  	    errmsg = e_invarg;
+! 	if (((bkc_flags & BKC_AUTO) != 0)
+! 		+ ((bkc_flags & BKC_YES) != 0)
+! 		+ ((bkc_flags & BKC_NO) != 0) != 1)
+  	{
+  	    /* Must have exactly one of "auto", "yes"  and "no". */
+! 	    (void)opt_strings_flags(oldval, p_bkc_values, &bkc_flags, TRUE);
+  	    errmsg = e_invarg;
+  	}
+      }
+--- 5731,5755 ----
+      }
+  
+      /* 'backupcopy' */
+!     else if (gvarp == &p_bkc)
+      {
+! 	char_u		*bkc = p_bkc;
+! 	unsigned int	*flags = &bkc_flags;
+! 
+! 	if (opt_flags & OPT_LOCAL)
+! 	{
+! 	    bkc = curbuf->b_p_bkc;
+! 	    flags = &curbuf->b_bkc_flags;
+! 	}
+! 
+! 	if (opt_strings_flags(bkc, p_bkc_values, flags, TRUE) != OK)
+  	    errmsg = e_invarg;
+! 	if ((((int)*flags & BKC_AUTO) != 0)
+! 		+ (((int)*flags & BKC_YES) != 0)
+! 		+ (((int)*flags & BKC_NO) != 0) != 1)
+  	{
+  	    /* Must have exactly one of "auto", "yes"  and "no". */
+! 	    (void)opt_strings_flags(oldval, p_bkc_values, flags, TRUE);
+  	    errmsg = e_invarg;
+  	}
+      }
+***************
+*** 9025,9036 ****
+  }
+  
+  /*
+!  * Iterate over options. First argument is a pointer to a pointer to a structure 
+!  * inside options[] array, second is option type like in the above function.
+   *
+!  * If first argument points to NULL it is assumed that iteration just started 
+   * and caller needs the very first value.
+!  * If first argument points to the end marker function returns NULL and sets 
+   * first argument to NULL.
+   *
+   * Returns full option name for current option on each call.
+--- 9036,9048 ----
+  }
+  
+  /*
+!  * Iterate over options. First argument is a pointer to a pointer to a
+!  * structure inside options[] array, second is option type like in the above
+!  * function.
+   *
+!  * If first argument points to NULL it is assumed that iteration just started
+   * and caller needs the very first value.
+!  * If first argument points to the end marker function returns NULL and sets
+   * first argument to NULL.
+   *
+   * Returns full option name for current option on each call.
+***************
+*** 9856,9861 ****
+--- 9868,9877 ----
+  	case PV_AR:
+  	    buf->b_p_ar = -1;
+  	    break;
++ 	case PV_BKC:
++ 	    clear_string_option(&buf->b_p_bkc);
++ 	    buf->b_bkc_flags = 0;
++ 	    break;
+  	case PV_TAGS:
+  	    clear_string_option(&buf->b_p_tags);
+  	    break;
+***************
+*** 9961,9966 ****
+--- 9977,9983 ----
+  #ifdef FEAT_LISP
+  	    case PV_LW:   return (char_u *)&(curbuf->b_p_lw);
+  #endif
++ 	    case PV_BKC:  return (char_u *)&(curbuf->b_p_bkc);
+  	}
+  	return NULL; /* "cannot happen" */
+      }
+***************
+*** 9993,9998 ****
+--- 10010,10017 ----
+  				    ? (char_u *)&(curbuf->b_p_ar) : p->var;
+  	case PV_TAGS:	return *curbuf->b_p_tags != NUL
+  				    ? (char_u *)&(curbuf->b_p_tags) : p->var;
++ 	case PV_BKC:	return *curbuf->b_p_bkc != NUL
++ 				    ? (char_u *)&(curbuf->b_p_bkc) : p->var;
+  #ifdef FEAT_FIND_ID
+  	case PV_DEF:	return *curbuf->b_p_def != NUL
+  				    ? (char_u *)&(curbuf->b_p_def) : p->var;
+***************
+*** 10585,10590 ****
+--- 10604,10611 ----
+  	     * are not copied, start using the global value */
+  	    buf->b_p_ar = -1;
+  	    buf->b_p_ul = NO_LOCAL_UNDOLEVEL;
++ 	    buf->b_p_bkc = empty_option;
++ 	    buf->b_bkc_flags = 0;
+  #ifdef FEAT_QUICKFIX
+  	    buf->b_p_gp = empty_option;
+  	    buf->b_p_mp = empty_option;
+***************
+*** 12052,12054 ****
+--- 12073,12085 ----
+      return OK;
+  }
+  #endif
++ 
++ /*
++  * Get the local or global value of 'backupcopy'.
++  */
++     unsigned int
++ get_bkc_value(buf)
++     buf_T *buf;
++ {
++     return buf->b_bkc_flags ? buf->b_bkc_flags : bkc_flags;
++ }
+*** ../vim-7.4.455/src/option.h	2014-08-06 14:52:05.047236174 +0200
+--- src/option.h	2014-09-23 14:41:45.614792756 +0200
+***************
+*** 327,333 ****
+  EXTERN char_u	*p_bg;		/* 'background' */
+  EXTERN int	p_bk;		/* 'backup' */
+  EXTERN char_u	*p_bkc;		/* 'backupcopy' */
+! EXTERN unsigned	bkc_flags;
+  #ifdef IN_OPTION_C
+  static char *(p_bkc_values[]) = {"yes", "auto", "no", "breaksymlink", "breakhardlink", NULL};
+  #endif
+--- 327,333 ----
+  EXTERN char_u	*p_bg;		/* 'background' */
+  EXTERN int	p_bk;		/* 'backup' */
+  EXTERN char_u	*p_bkc;		/* 'backupcopy' */
+! EXTERN unsigned	bkc_flags;	/* flags from 'backupcopy' */
+  #ifdef IN_OPTION_C
+  static char *(p_bkc_values[]) = {"yes", "auto", "no", "breaksymlink", "breakhardlink", NULL};
+  #endif
+***************
+*** 918,923 ****
+--- 918,926 ----
+      , BV_AR
+  #ifdef FEAT_QUICKFIX
+      , BV_BH
++ #endif
++     , BV_BKC
++ #ifdef FEAT_QUICKFIX
+      , BV_BT
+      , BV_EFM
+      , BV_GP
+*** ../vim-7.4.455/src/proto/option.pro	2014-08-24 21:39:45.488526954 +0200
+--- src/proto/option.pro	2014-09-23 14:28:40.534791041 +0200
+***************
+*** 62,65 ****
+--- 62,66 ----
+  long get_sw_value __ARGS((buf_T *buf));
+  long get_sts_value __ARGS((void));
+  void find_mps_values __ARGS((int *initc, int *findc, int *backwards, int switchit));
++ unsigned int get_bkc_value __ARGS((buf_T *buf));
+  /* vim: set ft=c : */
+*** ../vim-7.4.455/src/structs.h	2014-08-10 13:34:59.064785459 +0200
+--- src/structs.h	2014-09-23 14:41:56.218792779 +0200
+***************
+*** 137,143 ****
+  #ifdef FEAT_LINEBREAK
+      int		wo_bri;
+  # define w_p_bri w_onebuf_opt.wo_bri	/* 'breakindent' */
+!     char_u		*wo_briopt;
+  # define w_p_briopt w_onebuf_opt.wo_briopt /* 'breakindentopt' */
+  #endif
+  #ifdef FEAT_DIFF
+--- 137,143 ----
+  #ifdef FEAT_LINEBREAK
+      int		wo_bri;
+  # define w_p_bri w_onebuf_opt.wo_bri	/* 'breakindent' */
+!     char_u	*wo_briopt;
+  # define w_p_briopt w_onebuf_opt.wo_briopt /* 'breakindentopt' */
+  #endif
+  #ifdef FEAT_DIFF
+***************
+*** 1537,1542 ****
+--- 1537,1544 ----
+  
+      int		b_p_ai;		/* 'autoindent' */
+      int		b_p_ai_nopaste;	/* b_p_ai saved for paste mode */
++     char_u	*b_p_bkc;	/* 'backupcopy' */
++     unsigned	b_bkc_flags;    /* flags for 'backupcopy' */
+      int		b_p_ci;		/* 'copyindent' */
+      int		b_p_bin;	/* 'binary' */
+  #ifdef FEAT_MBYTE
+*** ../vim-7.4.455/src/version.c	2014-09-23 14:24:36.410790508 +0200
+--- src/version.c	2014-09-23 14:29:15.706791118 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     456,
+  /**/
+
+-- 
+If Apple would build a car...
+... it would be powered by the sun, be reliable, five times
+as fast and twice as easy to drive; but would only run on
+five percent of the roads.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

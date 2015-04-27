@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.506
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.506
+Problem:    MS-Windows: Cannot open a file with 259 characters.
+Solution:   Fix off-by-one error. (Ken Takata)
+Files:	    src/os_mswin.c
+
+
+*** ../vim-7.4.505/src/os_mswin.c	2014-10-16 20:35:32.146264814 +0200
+--- src/os_mswin.c	2014-11-05 19:32:59.748315256 +0100
+***************
+*** 411,417 ****
+  	     * - convert the result from UCS2 to 'encoding'.
+  	     */
+  	    wname = enc_to_utf16(fname, NULL);
+! 	    if (wname != NULL && _wfullpath(wbuf, wname, MAX_PATH - 1) != NULL)
+  	    {
+  		cname = utf16_to_enc((short_u *)wbuf, NULL);
+  		if (cname != NULL)
+--- 411,417 ----
+  	     * - convert the result from UCS2 to 'encoding'.
+  	     */
+  	    wname = enc_to_utf16(fname, NULL);
+! 	    if (wname != NULL && _wfullpath(wbuf, wname, MAX_PATH) != NULL)
+  	    {
+  		cname = utf16_to_enc((short_u *)wbuf, NULL);
+  		if (cname != NULL)
+*** ../vim-7.4.505/src/version.c	2014-11-05 18:35:59.104397681 +0100
+--- src/version.c	2014-11-05 19:27:04.520323815 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     506,
+  /**/
+
+-- 
+Trees moving back and forth is what makes the wind blow.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,153 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.691
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.691 (after 7.4.689)
+Problem:    Can't build with MzScheme.
+Solution:   Change "cwd" into the global variable "start_dir".
+Files:	    src/main.c
+
+
+*** ../vim-7.4.690/src/main.c	2015-04-03 14:56:43.936840362 +0200
+--- src/main.c	2015-04-03 17:58:55.374023988 +0200
+***************
+*** 147,152 ****
+--- 147,154 ----
+  #define ME_INVALID_ARG		5
+  };
+  
++ static char_u *start_dir = NULL;	/* current working dir on startup */
++ 
+  #ifndef PROTO		/* don't want a prototype for main() */
+  #ifndef NO_VIM_MAIN	/* skip this for unittests */
+      int
+***************
+*** 168,174 ****
+      char_u	*fname = NULL;		/* file name from command line */
+      mparm_T	params;			/* various parameters passed between
+  					 * main() and other functions. */
+-     char_u	*cwd = NULL;		/* current workding dir on startup */
+  #ifdef STARTUPTIME
+      int		i;
+  #endif
+--- 170,175 ----
+***************
+*** 405,421 ****
+  	 */
+  	if (!params.literal)
+  	{
+! 	    cwd = alloc(MAXPATHL);
+! 	    if (cwd != NULL)
+! 		mch_dirname(cwd, MAXPATHL);
+  	    /* Temporarily add '(' and ')' to 'isfname'.  These are valid
+  	     * filename characters but are excluded from 'isfname' to make
+  	     * "gf" work on a file name in parenthesis (e.g.: see vim.h). */
+  	    do_cmdline_cmd((char_u *)":set isf+=(,)");
+  	    alist_expand(NULL, 0);
+  	    do_cmdline_cmd((char_u *)":set isf&");
+! 	    if (cwd != NULL)
+! 		mch_chdir((char *)cwd);
+  	}
+  #endif
+  	fname = alist_name(&GARGLIST[0]);
+--- 406,422 ----
+  	 */
+  	if (!params.literal)
+  	{
+! 	    start_dir = alloc(MAXPATHL);
+! 	    if (start_dir != NULL)
+! 		mch_dirname(start_dir, MAXPATHL);
+  	    /* Temporarily add '(' and ')' to 'isfname'.  These are valid
+  	     * filename characters but are excluded from 'isfname' to make
+  	     * "gf" work on a file name in parenthesis (e.g.: see vim.h). */
+  	    do_cmdline_cmd((char_u *)":set isf+=(,)");
+  	    alist_expand(NULL, 0);
+  	    do_cmdline_cmd((char_u *)":set isf&");
+! 	    if (start_dir != NULL)
+! 		mch_chdir((char *)start_dir);
+  	}
+  #endif
+  	fname = alist_name(&GARGLIST[0]);
+***************
+*** 441,448 ****
+  	 * If the cd fails, it doesn't matter.
+  	 */
+  	(void)vim_chdirfile(fname);
+! 	if (cwd != NULL)
+! 	    mch_dirnamem(cwd, MAXPATHL);
+      }
+  #endif
+      TIME_MSG("expanding arguments");
+--- 442,449 ----
+  	 * If the cd fails, it doesn't matter.
+  	 */
+  	(void)vim_chdirfile(fname);
+! 	if (start_dir != NULL)
+! 	    mch_dirname(start_dir, MAXPATHL);
+      }
+  #endif
+      TIME_MSG("expanding arguments");
+***************
+*** 496,503 ****
+  		expand_env((char_u *)"$HOME", NameBuff, MAXPATHL);
+  		vim_chdir(NameBuff);
+  	    }
+! 	    if (cwd != NULL)
+! 		mch_dirname(cwd, MAXPATHL);
+  	}
+      }
+  #endif
+--- 497,504 ----
+  		expand_env((char_u *)"$HOME", NameBuff, MAXPATHL);
+  		vim_chdir(NameBuff);
+  	    }
+! 	    if (start_dir != NULL)
+! 		mch_dirname(start_dir, MAXPATHL);
+  	}
+      }
+  #endif
+***************
+*** 910,918 ****
+       * If opened more than one window, start editing files in the other
+       * windows.
+       */
+!     edit_buffers(&params, cwd);
+  #endif
+!     vim_free(cwd);
+  
+  #ifdef FEAT_DIFF
+      if (params.diff_mode)
+--- 911,919 ----
+       * If opened more than one window, start editing files in the other
+       * windows.
+       */
+!     edit_buffers(&params, start_dir);
+  #endif
+!     vim_free(start_dir);
+  
+  #ifdef FEAT_DIFF
+      if (params.diff_mode)
+*** ../vim-7.4.690/src/version.c	2015-04-03 17:06:21.748398327 +0200
+--- src/version.c	2015-04-03 17:35:20.865357402 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     691,
+  /**/
+
+-- 
+"Software is like sex... it's better when it's free."
+		-- Linus Torvalds, initiator of the free Linux OS
+Makes me wonder what FSF stands for...?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

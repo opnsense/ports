@@ -1,0 +1,205 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.560
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.560
+Problem:    Memory leak using :wviminfo. Issue 296.
+Solution:   Free memory when needed. (idea by Christian Brabandt)
+Files:	    src/ops.c
+
+
+*** ../vim-7.4.559/src/ops.c	2014-12-17 18:35:37.553795955 +0100
+--- src/ops.c	2014-12-17 20:59:49.722557613 +0100
+***************
+*** 5663,5668 ****
+--- 5663,5670 ----
+      int		set_prev = FALSE;
+      char_u	*str;
+      char_u	**array = NULL;
++     int		new_type;
++     colnr_T	new_width;
+  
+      /* We only get here (hopefully) if line[0] == '"' */
+      str = virp->vir_line + 1;
+***************
+*** 5695,5715 ****
+      limit = 100;	/* Optimized for registers containing <= 100 lines */
+      if (do_it)
+      {
+  	if (set_prev)
+  	    y_previous = y_current;
+! 	vim_free(y_current->y_array);
+! 	array = y_current->y_array =
+! 		       (char_u **)alloc((unsigned)(limit * sizeof(char_u *)));
+  	str = skipwhite(skiptowhite(str));
+  	if (STRNCMP(str, "CHAR", 4) == 0)
+! 	    y_current->y_type = MCHAR;
+  	else if (STRNCMP(str, "BLOCK", 5) == 0)
+! 	    y_current->y_type = MBLOCK;
+  	else
+! 	    y_current->y_type = MLINE;
+  	/* get the block width; if it's missing we get a zero, which is OK */
+  	str = skipwhite(skiptowhite(str));
+! 	y_current->y_width = getdigits(&str);
+      }
+  
+      while (!(eof = viminfo_readline(virp))
+--- 5697,5721 ----
+      limit = 100;	/* Optimized for registers containing <= 100 lines */
+      if (do_it)
+      {
++ 	/*
++ 	 * Build the new register in array[].
++ 	 * y_array is kept as-is until done.
++ 	 * The "do_it" flag is reset when something is wrong, in which case
++ 	 * array[] needs to be freed.
++ 	 */
+  	if (set_prev)
+  	    y_previous = y_current;
+! 	array = (char_u **)alloc((unsigned)(limit * sizeof(char_u *)));
+  	str = skipwhite(skiptowhite(str));
+  	if (STRNCMP(str, "CHAR", 4) == 0)
+! 	    new_type = MCHAR;
+  	else if (STRNCMP(str, "BLOCK", 5) == 0)
+! 	    new_type = MBLOCK;
+  	else
+! 	    new_type = MLINE;
+  	/* get the block width; if it's missing we get a zero, which is OK */
+  	str = skipwhite(skiptowhite(str));
+! 	new_width = getdigits(&str);
+      }
+  
+      while (!(eof = viminfo_readline(virp))
+***************
+*** 5717,5756 ****
+      {
+  	if (do_it)
+  	{
+! 	    if (size >= limit)
+  	    {
+! 		y_current->y_array = (char_u **)
+  			      alloc((unsigned)(limit * 2 * sizeof(char_u *)));
+  		for (i = 0; i < limit; i++)
+! 		    y_current->y_array[i] = array[i];
+  		vim_free(array);
+  		limit *= 2;
+- 		array = y_current->y_array;
+  	    }
+  	    str = viminfo_readstring(virp, 1, TRUE);
+  	    if (str != NULL)
+  		array[size++] = str;
+  	    else
+  		do_it = FALSE;
+  	}
+      }
+      if (do_it)
+      {
+  	if (size == 0)
+  	{
+- 	    vim_free(array);
+  	    y_current->y_array = NULL;
+  	}
+! 	else if (size < limit)
+  	{
+  	    y_current->y_array =
+  			(char_u **)alloc((unsigned)(size * sizeof(char_u *)));
+  	    for (i = 0; i < size; i++)
+! 		y_current->y_array[i] = array[i];
+! 	    vim_free(array);
+  	}
+- 	y_current->y_size = size;
+      }
+      return eof;
+  }
+  
+--- 5723,5788 ----
+      {
+  	if (do_it)
+  	{
+! 	    if (size == limit)
+  	    {
+! 		char_u **new_array = (char_u **)
+  			      alloc((unsigned)(limit * 2 * sizeof(char_u *)));
++ 
++ 		if (new_array == NULL)
++ 		{
++ 		    do_it = FALSE;
++ 		    break;
++ 		}
+  		for (i = 0; i < limit; i++)
+! 		    new_array[i] = array[i];
+  		vim_free(array);
++ 		array = new_array;
+  		limit *= 2;
+  	    }
+  	    str = viminfo_readstring(virp, 1, TRUE);
+  	    if (str != NULL)
+  		array[size++] = str;
+  	    else
++ 		/* error, don't store the result */
+  		do_it = FALSE;
+  	}
+      }
+      if (do_it)
+      {
++ 	/* free y_array[] */
++ 	for (i = 0; i < y_current->y_size; i++)
++ 	    vim_free(y_current->y_array[i]);
++ 	vim_free(y_current->y_array);
++ 
++ 	y_current->y_type = new_type;
++ 	y_current->y_width = new_width;
++ 	y_current->y_size = size;
+  	if (size == 0)
+  	{
+  	    y_current->y_array = NULL;
+  	}
+! 	else
+  	{
++ 	    /* Move the lines from array[] to y_array[]. */
+  	    y_current->y_array =
+  			(char_u **)alloc((unsigned)(size * sizeof(char_u *)));
+  	    for (i = 0; i < size; i++)
+! 	    {
+! 		if (y_current->y_array == NULL)
+! 		    vim_free(array[i]);
+! 		else
+! 		    y_current->y_array[i] = array[i];
+! 	    }
+  	}
+      }
++     else
++     {
++ 	/* Free array[] if it was filled. */
++ 	for (i = 0; i < size; i++)
++ 	    vim_free(array[i]);
++     }
++     vim_free(array);
++ 
+      return eof;
+  }
+  
+*** ../vim-7.4.559/src/version.c	2014-12-17 18:35:37.553795955 +0100
+--- src/version.c	2014-12-17 18:56:33.810259558 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     560,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+17. You turn on your intercom when leaving the room so you can hear if new
+    e-mail arrives.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

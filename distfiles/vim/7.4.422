@@ -1,0 +1,103 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.422
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.422
+Problem:    When using conceal with linebreak some text is not displayed
+	    correctly. (Grüner Gimpel)
+Solution:   Check for conceal mode when using linebreak. (Christian Brabandt)
+Files:	    src/screen.c, src/testdir/test_listlbr.in,
+	    src/testdir/test_listlbr.ok
+
+
+*** ../vim-7.4.421/src/screen.c	2014-08-16 16:28:31.882272056 +0200
+--- src/screen.c	2014-08-29 12:08:11.478423596 +0200
+***************
+*** 4514,4519 ****
+--- 4514,4524 ----
+  			int	i;
+  			int	saved_nextra = n_extra;
+  
++ #ifdef FEAT_CONCEAL
++ 			if (is_concealing && vcol_off > 0)
++ 			    /* there are characters to conceal */
++ 			    tab_len += vcol_off;
++ #endif
+  			/* if n_extra > 0, it gives the number of chars, to
+  			 * use for a tab, else we need to calculate the width
+  			 * for a tab */
+***************
+*** 4539,4544 ****
+--- 4544,4555 ----
+  #endif
+  			}
+  			p_extra = p_extra_free;
++ #ifdef FEAT_CONCEAL
++ 			/* n_extra will be increased by FIX_FOX_BOGUSCOLS
++ 			 * macro below, so need to adjust for that here */
++ 			if (is_concealing && vcol_off > 0)
++ 			    n_extra -= vcol_off;
++ #endif
+  		    }
+  #endif
+  #ifdef FEAT_CONCEAL
+*** ../vim-7.4.421/src/testdir/test_listlbr.in	2014-07-16 17:01:38.279570568 +0200
+--- src/testdir/test_listlbr.in	2014-08-29 12:03:48.126423021 +0200
+***************
+*** 46,51 ****
+--- 46,61 ----
+  :redraw!
+  :let line=ScreenChar(winwidth(0))
+  :call DoRecordScreen()
++ :let line="_S_\t bla"
++ :$put =line
++ :$
++ :norm! zt
++ :let g:test ="Test 5: set linebreak with conceal and set list and tab displayed by different char (line may not be truncated)"
++ :set cpo&vim list linebreak conceallevel=2 concealcursor=nv listchars=tab:ab
++ :syn match ConcealVar contained /_/ conceal
++ :syn match All /.*/ contains=ConcealVar
++ :let line=ScreenChar(winwidth(0))
++ :call DoRecordScreen()
+  :%w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.421/src/testdir/test_listlbr.ok	2014-07-16 17:01:38.279570568 +0200
+--- src/testdir/test_listlbr.ok	2014-08-29 12:03:48.126423021 +0200
+***************
+*** 25,27 ****
+--- 25,34 ----
+  +aaaaaaaaaaaaaaaaaa 
+  ~                   
+  ~                   
++ _S_	 bla
++ 
++ Test 5: set linebreak with conceal and set list and tab displayed by different char (line may not be truncated)
++ Sabbbbbb bla        
++ ~                   
++ ~                   
++ ~                   
+*** ../vim-7.4.421/src/version.c	2014-08-29 11:56:21.350422045 +0200
+--- src/version.c	2014-08-29 12:04:26.658423105 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     422,
+  /**/
+
+-- 
+From "know your smileys":
+ ;-0	Can't find shift key
+ ,-9	Kann Umschalttaste nicht finden
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

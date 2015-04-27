@@ -1,0 +1,276 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.305
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.305
+Problem:    Making 'ttymouse' empty after the xterm version was requested
+	    causes problems. (Elijah Griffin)
+Solution:   Do not check for DEC mouse sequences when the xterm version was
+	    requested.  Also don't request the xterm version when DEC mouse
+	    was enabled.
+Files:	    src/term.c, src/os_unix.c, src/proto/term.pro, src/globals.h
+
+
+*** ../vim-7.4.304/src/term.c	2014-03-25 13:46:22.841832960 +0100
+--- src/term.c	2014-05-22 17:12:59.198299628 +0200
+***************
+*** 153,158 ****
+--- 153,163 ----
+  static char_u *vim_tgetstr __ARGS((char *s, char_u **pp));
+  #endif /* HAVE_TGETENT */
+  
++ #if defined(FEAT_TERMRESPONSE)
++ static int xt_index_in = 0;
++ static int xt_index_out = 0;
++ #endif
++ 
+  static int  detected_8bit = FALSE;	/* detected 8-bit terminal */
+  
+  static struct builtin_term builtin_termcaps[] =
+***************
+*** 3259,3265 ****
+  	    may_req_termresponse();
+  	    /* Immediately check for a response.  If t_Co changes, we don't
+  	     * want to redraw with wrong colors first. */
+! 	    if (crv_status != CRV_GET)
+  		check_for_codes_from_term();
+  	}
+  #endif
+--- 3264,3270 ----
+  	    may_req_termresponse();
+  	    /* Immediately check for a response.  If t_Co changes, we don't
+  	     * want to redraw with wrong colors first. */
+! 	    if (crv_status == CRV_SENT)
+  		check_for_codes_from_term();
+  	}
+  #endif
+***************
+*** 3306,3311 ****
+--- 3311,3340 ----
+      }
+  }
+  
++ #if defined(UNIX) || defined(PROTO)
++ /*
++  * Return TRUE when the xterm version was requested or anything else that
++  * would send an ESC sequence back to Vim.
++  * If not sent yet, prevent it from being sent soon.
++  * Used to check whether it is OK to enable checking for DEC mouse codes,
++  * which conflict with may xterm ESC sequences.
++  */
++     int
++ did_request_esc_sequence()
++ {
++     if (crv_status == CRV_GET)
++ 	crv_status = 0;
++     if (u7_status == U7_GET)
++ 	u7_status = 0;
++     return crv_status == CRV_SENT || u7_status == U7_SENT
++ # if defined(FEAT_TERMRESPONSE)
++ 	|| xt_index_out > xt_index_in
++ # endif
++ 	;
++ }
++ #endif
++ 
++ 
+  #if defined(FEAT_TERMRESPONSE) || defined(PROTO)
+  /*
+   * Request version string (for xterm) when needed.
+***************
+*** 3319,3324 ****
+--- 3348,3355 ----
+   * Insert mode.
+   * On Unix only do it when both output and input are a tty (avoid writing
+   * request to terminal while reading from a file).
++  * Do not do this when a mouse is being detected that starts with the same ESC
++  * sequence as the termresponse.
+   * The result is caught in check_termcode().
+   */
+      void
+***************
+*** 3332,3337 ****
+--- 3363,3369 ----
+  # ifdef UNIX
+  	    && isatty(1)
+  	    && isatty(read_cmd_fd)
++ 	    && !xterm_conflict_mouse
+  # endif
+  	    && *T_CRV != NUL)
+      {
+***************
+*** 5714,5722 ****
+   * termcap codes from the terminal itself.
+   * We get them one by one to avoid a very long response string.
+   */
+- static int xt_index_in = 0;
+- static int xt_index_out = 0;
+- 
+      static void
+  req_codes_from_term()
+  {
+--- 5746,5751 ----
+*** ../vim-7.4.304/src/os_unix.c	2014-05-13 20:19:53.573808877 +0200
+--- src/os_unix.c	2014-05-22 17:11:10.274301842 +0200
+***************
+*** 3667,3672 ****
+--- 3667,3674 ----
+      void
+  check_mouse_termcode()
+  {
++     xterm_conflict_mouse = FALSE;
++ 
+  # ifdef FEAT_MOUSE_XTERM
+      if (use_xterm_mouse()
+  # ifdef FEAT_MOUSE_URXVT
+***************
+*** 3711,3717 ****
+  # endif
+  
+  # ifdef FEAT_MOUSE_JSB
+!     /* conflicts with xterm mouse: "\033[" and "\033[M" ??? */
+      if (!use_xterm_mouse()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+--- 3713,3719 ----
+  # endif
+  
+  # ifdef FEAT_MOUSE_JSB
+!     /* There is no conflict, but it was disabled for xterm before. */
+      if (!use_xterm_mouse()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+***************
+*** 3738,3769 ****
+  # endif
+  
+  # ifdef FEAT_MOUSE_DEC
+!     /* conflicts with xterm mouse: "\033[" and "\033[M" */
+!     if (!use_xterm_mouse()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+  	    )
+  	set_mouse_termcode(KS_DEC_MOUSE, (char_u *)(term_is_8bit(T_NAME)
+  		     ? IF_EB("\233", CSI_STR) : IF_EB("\033[", ESC_STR "[")));
+      else
+  	del_mouse_termcode(KS_DEC_MOUSE);
+  # endif
+  # ifdef FEAT_MOUSE_PTERM
+      /* same as the dec mouse */
+!     if (!use_xterm_mouse()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+  	    )
+  	set_mouse_termcode(KS_PTERM_MOUSE,
+  				      (char_u *) IF_EB("\033[", ESC_STR "["));
+      else
+  	del_mouse_termcode(KS_PTERM_MOUSE);
+  # endif
+  # ifdef FEAT_MOUSE_URXVT
+      /* same as the dec mouse */
+!     if (use_xterm_mouse() == 3
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+--- 3740,3779 ----
+  # endif
+  
+  # ifdef FEAT_MOUSE_DEC
+!     /* Conflicts with xterm mouse: "\033[" and "\033[M".
+!      * Also conflicts with the xterm termresponse, skip this if it was
+!      * requested already. */
+!     if (!use_xterm_mouse() && !did_request_esc_sequence()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+  	    )
++     {
+  	set_mouse_termcode(KS_DEC_MOUSE, (char_u *)(term_is_8bit(T_NAME)
+  		     ? IF_EB("\233", CSI_STR) : IF_EB("\033[", ESC_STR "[")));
++ 	xterm_conflict_mouse = TRUE;
++     }
+      else
+  	del_mouse_termcode(KS_DEC_MOUSE);
+  # endif
+  # ifdef FEAT_MOUSE_PTERM
+      /* same as the dec mouse */
+!     if (!use_xterm_mouse() && !did_request_esc_sequence()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+  	    )
++     {
+  	set_mouse_termcode(KS_PTERM_MOUSE,
+  				      (char_u *) IF_EB("\033[", ESC_STR "["));
++ 	xterm_conflict_mouse = TRUE;
++     }
+      else
+  	del_mouse_termcode(KS_PTERM_MOUSE);
+  # endif
+  # ifdef FEAT_MOUSE_URXVT
+      /* same as the dec mouse */
+!     if (use_xterm_mouse() == 3 && !did_request_esc_sequence()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+***************
+*** 3778,3783 ****
+--- 3788,3794 ----
+  	    mch_setmouse(FALSE);
+  	    setmouse();
+  	}
++ 	xterm_conflict_mouse = TRUE;
+      }
+      else
+  	del_mouse_termcode(KS_URXVT_MOUSE);
+*** ../vim-7.4.304/src/proto/term.pro	2013-09-29 16:27:42.000000000 +0200
+--- src/proto/term.pro	2014-05-22 16:58:25.806317380 +0200
+***************
+*** 34,39 ****
+--- 34,40 ----
+  void settmode __ARGS((int tmode));
+  void starttermcap __ARGS((void));
+  void stoptermcap __ARGS((void));
++ int did_request_esc_sequence __ARGS((void));
+  void may_req_termresponse __ARGS((void));
+  void may_req_ambiguous_char_width __ARGS((void));
+  int swapping_screen __ARGS((void));
+*** ../vim-7.4.304/src/globals.h	2014-04-06 20:45:40.123357453 +0200
+--- src/globals.h	2014-05-22 17:07:39.130306133 +0200
+***************
+*** 1333,1338 ****
+--- 1333,1341 ----
+  #if defined(UNIX) || defined(VMS)
+  EXTERN int	term_is_xterm INIT(= FALSE);	/* xterm-like 'term' */
+  #endif
++ #if defined(UNIX)
++ EXTERN int	xterm_conflict_mouse INIT(= FALSE);
++ #endif
+  
+  #ifdef BACKSLASH_IN_FILENAME
+  EXTERN char	psepc INIT(= '\\');	/* normal path separator character */
+*** ../vim-7.4.304/src/version.c	2014-05-22 16:29:03.378353200 +0200
+--- src/version.c	2014-05-22 16:58:16.150317576 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     305,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+195. Your cat has its own home page.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,86 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.541
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.541
+Problem:    Crash when doing a range assign.
+Solution:   Check for NULL poiter. (Yukihiro Nakadaira)
+Files:	    src/eval.c, src/testdir/test55.in, src/testdir/test55.ok
+
+
+*** ../vim-7.4.540/src/eval.c	2014-11-19 20:04:43.656099839 +0100
+--- src/eval.c	2014-12-07 00:05:47.404278920 +0100
+***************
+*** 2951,2957 ****
+  	/*
+  	 * Check whether any of the list items is locked
+  	 */
+! 	for (ri = rettv->vval.v_list->lv_first; ri != NULL; )
+  	{
+  	    if (tv_check_lock(ll_li->li_tv.v_lock, lp->ll_name))
+  		return;
+--- 2951,2957 ----
+  	/*
+  	 * Check whether any of the list items is locked
+  	 */
+! 	for (ri = rettv->vval.v_list->lv_first; ri != NULL && ll_li != NULL; )
+  	{
+  	    if (tv_check_lock(ll_li->li_tv.v_lock, lp->ll_name))
+  		return;
+*** ../vim-7.4.540/src/testdir/test55.in	2014-08-29 09:46:04.262404970 +0200
+--- src/testdir/test55.in	2014-12-07 00:04:41.892976604 +0100
+***************
+*** 401,406 ****
+--- 401,411 ----
+  :  $put =v:exception[:15] . v:exception[-1:-1]
+  :endtry
+  :$put =string(d)
++ :"
++ :" test for range assign
++ :let l = [0]
++ :let l[:] = [1, 2]
++ :$put =string(l)
+  :endfun
+  :"
+  :call Test(1, 2, [3, 4], {5: 6})  " This may take a while
+*** ../vim-7.4.540/src/testdir/test55.ok	2014-08-29 09:46:04.266404970 +0200
+--- src/testdir/test55.ok	2014-12-07 00:05:08.208695651 +0100
+***************
+*** 129,134 ****
+--- 129,135 ----
+  {'a': {'b': 'B'}}
+  Vim(call):E737: a
+  {'a': {'b': 'B'}}
++ [1, 2]
+  Vim(foldopen):E490:
+  
+  
+*** ../vim-7.4.540/src/version.c	2014-11-30 22:51:00.629191482 +0100
+--- src/version.c	2014-12-07 00:04:11.237300854 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     541,
+  /**/
+
+-- 
+Any resemblance between the above views and those of my employer, my terminal,
+or the view out my window are purely coincidental.  Any resemblance between
+the above and my own views is non-deterministic.  The question of the
+existence of views in the absence of anyone to hold them is left as an
+exercise for the reader.  The question of the existence of the reader is left
+as an exercise for the second god coefficient.  (A discussion of
+non-orthogonal, non-integral polytheism is beyond the scope of this article.)
+						(Ralph Jennings)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

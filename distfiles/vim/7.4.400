@@ -1,0 +1,69 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.400
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.400
+Problem:    List of distributed files is incomplete.
+Solution:   Add recently added files.
+Files:	    Filelist
+
+
+*** ../vim-7.4.399/Filelist	2014-05-13 13:52:34.817605451 +0200
+--- Filelist	2014-08-10 13:43:31.612781775 +0200
+***************
+*** 11,16 ****
+--- 11,18 ----
+  		src/blowfish.c \
+  		src/buffer.c \
+  		src/charset.c \
++ 		src/crypt.c \
++ 		src/crypt_zip.c \
+  		src/diff.c \
+  		src/digraph.c \
+  		src/edit.c \
+***************
+*** 103,108 ****
+--- 105,112 ----
+  		src/proto/blowfish.pro \
+  		src/proto/buffer.pro \
+  		src/proto/charset.pro \
++ 		src/proto/crypt.pro \
++ 		src/proto/crypt_zip.pro \
+  		src/proto/diff.pro \
+  		src/proto/digraph.pro \
+  		src/proto/edit.pro \
+***************
+*** 289,294 ****
+--- 293,300 ----
+  		src/dosinst.h \
+  		src/glbl_ime.cpp \
+  		src/glbl_ime.h \
++ 		src/gui_dwrite.cpp \
++ 		src/gui_dwrite.h \
+  		src/gui_w16.c \
+  		src/gui_w32.c \
+  		src/gui_w48.c \
+*** ../vim-7.4.399/src/version.c	2014-08-10 13:34:59.064785459 +0200
+--- src/version.c	2014-08-10 13:45:45.800780810 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     400,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+17. You turn on your intercom when leaving the room so you can hear if new
+    e-mail arrives.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

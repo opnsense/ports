@@ -1,0 +1,1109 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.243
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.243
+Problem:    Cannot use setreg() to add text that includes a NUL.
+Solution:   Make setreg() accept a list.
+Files:	    runtime/doc/eval.txt, src/eval.c, src/ops.c, src/proto/ops.pro,
+	    src/testdir/test_eval.in, src/testdir/test_eval.ok
+
+
+*** ../vim-7.4.242/runtime/doc/eval.txt	2014-04-02 19:54:58.263599459 +0200
+--- runtime/doc/eval.txt	2014-04-02 22:06:58.855490505 +0200
+***************
+*** 5355,5360 ****
+--- 5368,5375 ----
+  							*setreg()*
+  setreg({regname}, {value} [,{options}])
+  		Set the register {regname} to {value}.
++ 		{value} may be any value returned by |getreg()|, including 
++ 		a |List|.
+  		If {options} contains "a" or {regname} is upper case,
+  		then the value is appended.
+  		{options} can also contain a register type specification:
+***************
+*** 5367,5376 ****
+  		in the longest line (counting a <Tab> as 1 character).
+  
+  		If {options} contains no register settings, then the default
+! 		is to use character mode unless {value} ends in a <NL>.
+! 		Setting the '=' register is not possible, but you can use >
+! 			:let @= = var_expr
+! <		Returns zero for success, non-zero for failure.
+  
+  		Examples: >
+  			:call setreg(v:register, @*)
+--- 5382,5396 ----
+  		in the longest line (counting a <Tab> as 1 character).
+  
+  		If {options} contains no register settings, then the default
+! 		is to use character mode unless {value} ends in a <NL> for 
+! 		string {value} and linewise mode for list {value}. Blockwise 
+! 		mode is never selected automatically.
+! 		Returns zero for success, non-zero for failure.
+! 
+! 							*E883*
+! 		Note: you may not use |List| containing more then one item to 
+! 		      set search and expression registers. Lists containing no 
+! 		      items act like empty strings.
+  
+  		Examples: >
+  			:call setreg(v:register, @*)
+***************
+*** 5378,5385 ****
+  			:call setreg('a', "1\n2\n3", 'b5')
+  
+  <		This example shows using the functions to save and restore a
+! 		register. >
+! 			:let var_a = getreg('a', 1)
+  			:let var_amode = getregtype('a')
+  			    ....
+  			:call setreg('a', var_a, var_amode)
+--- 5398,5408 ----
+  			:call setreg('a', "1\n2\n3", 'b5')
+  
+  <		This example shows using the functions to save and restore a
+! 		register (note: you may not reliably restore register value 
+! 		without using the third argument to |getreg()| as without it 
+! 		newlines are represented as newlines AND Nul bytes are 
+! 		represented as newlines as well, see |NL-used-for-Nul|). >
+! 			:let var_a = getreg('a', 1, 1)
+  			:let var_amode = getregtype('a')
+  			    ....
+  			:call setreg('a', var_a, var_amode)
+*** ../vim-7.4.242/src/eval.c	2014-04-02 19:54:58.275599459 +0200
+--- src/eval.c	2014-04-02 22:09:25.279488491 +0200
+***************
+*** 16790,16797 ****
+      regname = *strregname;
+      if (regname == 0 || regname == '@')
+  	regname = '"';
+-     else if (regname == '=')
+- 	return;
+  
+      if (argvars[2].v_type != VAR_UNKNOWN)
+      {
+--- 16790,16795 ----
+***************
+*** 16822,16831 ****
+  	    }
+      }
+  
+!     strval = get_tv_string_chk(&argvars[1]);
+!     if (strval != NULL)
+  	write_reg_contents_ex(regname, strval, -1,
+  						append, yank_type, block_len);
+      rettv->vval.v_number = 0;
+  }
+  
+--- 16820,16863 ----
+  	    }
+      }
+  
+!     if (argvars[1].v_type == VAR_LIST)
+!     {
+! 	char_u		**lstval;
+! 	char_u		**curval;
+! 	int		len = argvars[1].vval.v_list->lv_len;
+! 	listitem_T	*li;
+! 
+! 	lstval = (char_u **)alloc(sizeof(char_u *) * (len + 1));
+! 	if (lstval == NULL)
+! 	    return;
+! 	curval = lstval;
+! 
+! 	for (li = argvars[1].vval.v_list->lv_first; li != NULL;
+! 							     li = li->li_next)
+! 	{
+! 	    /* TODO: this may use a static buffer several times. */
+! 	    strval = get_tv_string_chk(&li->li_tv);
+! 	    if (strval == NULL)
+! 	    {
+! 		vim_free(lstval);
+! 		return;
+! 	    }
+! 	    *curval++ = strval;
+! 	}
+! 	*curval++ = NULL;
+! 
+! 	write_reg_contents_lst(regname, lstval, -1,
+! 						append, yank_type, block_len);
+! 	vim_free(lstval);
+!     }
+!     else
+!     {
+! 	strval = get_tv_string_chk(&argvars[1]);
+! 	if (strval == NULL)
+! 	    return;
+  	write_reg_contents_ex(regname, strval, -1,
+  						append, yank_type, block_len);
++     }
+      rettv->vval.v_number = 0;
+  }
+  
+*** ../vim-7.4.242/src/ops.c	2014-04-02 19:54:58.275599459 +0200
+--- src/ops.c	2014-04-02 22:06:46.499490675 +0200
+***************
+*** 113,119 ****
+  #endif
+  static void	block_prep __ARGS((oparg_T *oap, struct block_def *, linenr_T, int));
+  #if defined(FEAT_CLIPBOARD) || defined(FEAT_EVAL)
+! static void	str_to_reg __ARGS((struct yankreg *y_ptr, int type, char_u *str, long len, long blocklen));
+  #endif
+  static int	ends_in_white __ARGS((linenr_T lnum));
+  #ifdef FEAT_COMMENTS
+--- 113,119 ----
+  #endif
+  static void	block_prep __ARGS((oparg_T *oap, struct block_def *, linenr_T, int));
+  #if defined(FEAT_CLIPBOARD) || defined(FEAT_EVAL)
+! static void	str_to_reg __ARGS((struct yankreg *y_ptr, int type, char_u *str, long len, long blocklen, int str_list));
+  #endif
+  static int	ends_in_white __ARGS((linenr_T lnum));
+  #ifdef FEAT_COMMENTS
+***************
+*** 6005,6011 ****
+  
+      clip_free_selection(cbd);
+  
+!     str_to_reg(y_ptr, type, str, len, 0L);
+  }
+  
+  /*
+--- 6005,6011 ----
+  
+      clip_free_selection(cbd);
+  
+!     str_to_reg(y_ptr, type, str, len, 0L, FALSE);
+  }
+  
+  /*
+***************
+*** 6113,6119 ****
+      curr = y_current;
+      y_current = &y_regs[TILDE_REGISTER];
+      free_yank_all();
+!     str_to_reg(y_current, MCHAR, str, len, 0L);
+      y_current = curr;
+  }
+  #endif
+--- 6113,6119 ----
+      curr = y_current;
+      y_current = &y_regs[TILDE_REGISTER];
+      free_yank_all();
+!     str_to_reg(y_current, MCHAR, str, len, 0L, FALSE);
+      y_current = curr;
+  }
+  #endif
+***************
+*** 6308,6313 ****
+--- 6308,6354 ----
+      return retval;
+  }
+  
++     static int
++ init_write_reg(name, old_y_previous, old_y_current, must_append, yank_type)
++     int		    name;
++     struct yankreg  **old_y_previous;
++     struct yankreg  **old_y_current;
++     int		    must_append;
++     int		    *yank_type UNUSED;
++ {
++     if (!valid_yank_reg(name, TRUE))	    /* check for valid reg name */
++     {
++ 	emsg_invreg(name);
++ 	return FAIL;
++     }
++ 
++     /* Don't want to change the current (unnamed) register */
++     *old_y_previous = y_previous;
++     *old_y_current = y_current;
++ 
++     get_yank_register(name, TRUE);
++     if (!y_append && !must_append)
++ 	free_yank_all();
++     return OK;
++ }
++ 
++     static void
++ finish_write_reg(name, old_y_previous, old_y_current)
++     int		    name;
++     struct yankreg  *old_y_previous;
++     struct yankreg  *old_y_current;
++ {
++ # ifdef FEAT_CLIPBOARD
++     /* Send text of clipboard register to the clipboard. */
++     may_set_selection();
++ # endif
++ 
++     /* ':let @" = "val"' should change the meaning of the "" register */
++     if (name != '"')
++ 	y_previous = old_y_previous;
++     y_current = old_y_current;
++ }
++ 
+  /*
+   * Store string "str" in register "name".
+   * "maxlen" is the maximum number of bytes to use, -1 for all bytes.
+***************
+*** 6328,6333 ****
+--- 6369,6419 ----
+  }
+  
+      void
++ write_reg_contents_lst(name, strings, maxlen, must_append, yank_type, block_len)
++     int		name;
++     char_u	**strings;
++     int		maxlen UNUSED;
++     int		must_append;
++     int		yank_type;
++     long	block_len;
++ {
++     struct yankreg  *old_y_previous, *old_y_current;
++ 
++     if (name == '/'
++ #ifdef FEAT_EVAL
++ 	    || name == '='
++ #endif
++ 	    )
++     {
++ 	char_u	*s;
++ 
++ 	if (strings[0] == NULL)
++ 	    s = (char_u *)"";
++ 	else if (strings[1] != NULL)
++ 	{
++ 	    EMSG(_("E883: search pattern and expression register may not "
++ 			"contain two or more lines"));
++ 	    return;
++ 	}
++ 	else
++ 	    s = strings[0];
++ 	write_reg_contents_ex(name, s, -1, must_append, yank_type, block_len);
++ 	return;
++     }
++ 
++     if (name == '_')	    /* black hole: nothing to do */
++ 	return;
++ 
++     if (init_write_reg(name, &old_y_previous, &old_y_current, must_append,
++ 		&yank_type) == FAIL)
++ 	return;
++ 
++     str_to_reg(y_current, yank_type, (char_u *) strings, -1, block_len, TRUE);
++ 
++     finish_write_reg(name, old_y_previous, old_y_current);
++ }
++ 
++     void
+  write_reg_contents_ex(name, str, maxlen, must_append, yank_type, block_len)
+      int		name;
+      char_u	*str;
+***************
+*** 6364,6403 ****
+  	    s = concat_str(get_expr_line_src(), p);
+  	    vim_free(p);
+  	    p = s;
+- 
+  	}
+  	set_expr_line(p);
+  	return;
+      }
+  #endif
+  
+-     if (!valid_yank_reg(name, TRUE))	    /* check for valid reg name */
+-     {
+- 	emsg_invreg(name);
+- 	return;
+-     }
+- 
+      if (name == '_')	    /* black hole: nothing to do */
+  	return;
+  
+!     /* Don't want to change the current (unnamed) register */
+!     old_y_previous = y_previous;
+!     old_y_current = y_current;
+! 
+!     get_yank_register(name, TRUE);
+!     if (!y_append && !must_append)
+! 	free_yank_all();
+!     str_to_reg(y_current, yank_type, str, len, block_len);
+  
+! # ifdef FEAT_CLIPBOARD
+!     /* Send text of clipboard register to the clipboard. */
+!     may_set_selection();
+! # endif
+  
+!     /* ':let @" = "val"' should change the meaning of the "" register */
+!     if (name != '"')
+! 	y_previous = old_y_previous;
+!     y_current = old_y_current;
+  }
+  #endif	/* FEAT_EVAL */
+  
+--- 6450,6471 ----
+  	    s = concat_str(get_expr_line_src(), p);
+  	    vim_free(p);
+  	    p = s;
+  	}
+  	set_expr_line(p);
+  	return;
+      }
+  #endif
+  
+      if (name == '_')	    /* black hole: nothing to do */
+  	return;
+  
+!     if (init_write_reg(name, &old_y_previous, &old_y_current, must_append,
+! 		&yank_type) == FAIL)
+! 	return;
+  
+!     str_to_reg(y_current, yank_type, str, len, block_len, FALSE);
+  
+!     finish_write_reg(name, old_y_previous, old_y_current);
+  }
+  #endif	/* FEAT_EVAL */
+  
+***************
+*** 6407,6418 ****
+   * is appended.
+   */
+      static void
+! str_to_reg(y_ptr, yank_type, str, len, blocklen)
+      struct yankreg	*y_ptr;		/* pointer to yank register */
+      int			yank_type;	/* MCHAR, MLINE, MBLOCK, MAUTO */
+      char_u		*str;		/* string to put in register */
+      long		len;		/* length of string */
+      long		blocklen;	/* width of Visual block */
+  {
+      int		type;			/* MCHAR, MLINE or MBLOCK */
+      int		lnum;
+--- 6475,6487 ----
+   * is appended.
+   */
+      static void
+! str_to_reg(y_ptr, yank_type, str, len, blocklen, str_list)
+      struct yankreg	*y_ptr;		/* pointer to yank register */
+      int			yank_type;	/* MCHAR, MLINE, MBLOCK, MAUTO */
+      char_u		*str;		/* string to put in register */
+      long		len;		/* length of string */
+      long		blocklen;	/* width of Visual block */
++     int			str_list;	/* TRUE if str is char_u ** */
+  {
+      int		type;			/* MCHAR, MLINE or MBLOCK */
+      int		lnum;
+***************
+*** 6423,6428 ****
+--- 6492,6498 ----
+      int		extraline = 0;		/* extra line at the end */
+      int		append = FALSE;		/* append to last line in register */
+      char_u	*s;
++     char_u	**ss;
+      char_u	**pp;
+      long	maxlen;
+  
+***************
+*** 6430,6436 ****
+  	y_ptr->y_size = 0;
+  
+      if (yank_type == MAUTO)
+! 	type = ((len > 0 && (str[len - 1] == NL || str[len - 1] == CAR))
+  							     ? MLINE : MCHAR);
+      else
+  	type = yank_type;
+--- 6500,6507 ----
+  	y_ptr->y_size = 0;
+  
+      if (yank_type == MAUTO)
+! 	type = ((str_list || (len > 0 && (str[len - 1] == NL
+! 					    || str[len - 1] == CAR)))
+  							     ? MLINE : MCHAR);
+      else
+  	type = yank_type;
+***************
+*** 6439,6456 ****
+       * Count the number of lines within the string
+       */
+      newlines = 0;
+!     for (i = 0; i < len; i++)
+! 	if (str[i] == '\n')
+! 	    ++newlines;
+!     if (type == MCHAR || len == 0 || str[len - 1] != '\n')
+      {
+! 	extraline = 1;
+! 	++newlines;	/* count extra newline at the end */
+      }
+!     if (y_ptr->y_size > 0 && y_ptr->y_type == MCHAR)
+      {
+! 	append = TRUE;
+! 	--newlines;	/* uncount newline when appending first line */
+      }
+  
+      /*
+--- 6510,6535 ----
+       * Count the number of lines within the string
+       */
+      newlines = 0;
+!     if (str_list)
+      {
+! 	for (ss = (char_u **) str; *ss != NULL; ++ss)
+! 	    ++newlines;
+      }
+!     else
+      {
+! 	for (i = 0; i < len; i++)
+! 	    if (str[i] == '\n')
+! 		++newlines;
+! 	if (type == MCHAR || len == 0 || str[len - 1] != '\n')
+! 	{
+! 	    extraline = 1;
+! 	    ++newlines;	/* count extra newline at the end */
+! 	}
+! 	if (y_ptr->y_size > 0 && y_ptr->y_type == MCHAR)
+! 	{
+! 	    append = TRUE;
+! 	    --newlines;	/* uncount newline when appending first line */
+! 	}
+      }
+  
+      /*
+***************
+*** 6470,6509 ****
+      /*
+       * Find the end of each line and save it into the array.
+       */
+!     for (start = 0; start < len + extraline; start += i + 1)
+      {
+! 	for (i = start; i < len; ++i)	/* find the end of the line */
+! 	    if (str[i] == '\n')
+! 		break;
+! 	i -= start;			/* i is now length of line */
+! 	if (i > maxlen)
+! 	    maxlen = i;
+! 	if (append)
+  	{
+! 	    --lnum;
+! 	    extra = (int)STRLEN(y_ptr->y_array[lnum]);
+  	}
+! 	else
+! 	    extra = 0;
+! 	s = alloc((unsigned)(i + extra + 1));
+! 	if (s == NULL)
+! 	    break;
+! 	if (extra)
+! 	    mch_memmove(s, y_ptr->y_array[lnum], (size_t)extra);
+! 	if (append)
+! 	    vim_free(y_ptr->y_array[lnum]);
+! 	if (i)
+! 	    mch_memmove(s + extra, str + start, (size_t)i);
+! 	extra += i;
+! 	s[extra] = NUL;
+! 	y_ptr->y_array[lnum++] = s;
+! 	while (--extra >= 0)
+! 	{
+! 	    if (*s == NUL)
+! 		*s = '\n';	    /* replace NUL with newline */
+! 	    ++s;
+  	}
+- 	append = FALSE;		    /* only first line is appended */
+      }
+      y_ptr->y_type = type;
+      y_ptr->y_size = lnum;
+--- 6549,6601 ----
+      /*
+       * Find the end of each line and save it into the array.
+       */
+!     if (str_list)
+      {
+! 	for (ss = (char_u **) str; *ss != NULL; ++ss, ++lnum)
+  	{
+! 	    i = STRLEN(*ss);
+! 	    pp[lnum] = vim_strnsave(*ss, i);
+! 	    if (i > maxlen)
+! 		maxlen = i;
+  	}
+!     }
+!     else
+!     {
+! 	for (start = 0; start < len + extraline; start += i + 1)
+! 	{
+! 	    for (i = start; i < len; ++i)	/* find the end of the line */
+! 		if (str[i] == '\n')
+! 		    break;
+! 	    i -= start;			/* i is now length of line */
+! 	    if (i > maxlen)
+! 		maxlen = i;
+! 	    if (append)
+! 	    {
+! 		--lnum;
+! 		extra = (int)STRLEN(y_ptr->y_array[lnum]);
+! 	    }
+! 	    else
+! 		extra = 0;
+! 	    s = alloc((unsigned)(i + extra + 1));
+! 	    if (s == NULL)
+! 		break;
+! 	    if (extra)
+! 		mch_memmove(s, y_ptr->y_array[lnum], (size_t)extra);
+! 	    if (append)
+! 		vim_free(y_ptr->y_array[lnum]);
+! 	    if (i)
+! 		mch_memmove(s + extra, str + start, (size_t)i);
+! 	    extra += i;
+! 	    s[extra] = NUL;
+! 	    y_ptr->y_array[lnum++] = s;
+! 	    while (--extra >= 0)
+! 	    {
+! 		if (*s == NUL)
+! 		    *s = '\n';	    /* replace NUL with newline */
+! 		++s;
+! 	    }
+! 	    append = FALSE;		    /* only first line is appended */
+  	}
+      }
+      y_ptr->y_type = type;
+      y_ptr->y_size = lnum;
+*** ../vim-7.4.242/src/proto/ops.pro	2014-04-02 19:54:58.275599459 +0200
+--- src/proto/ops.pro	2014-04-02 21:33:48.679517881 +0200
+***************
+*** 56,61 ****
+--- 56,62 ----
+  char_u *get_reg_contents __ARGS((int regname, int flags));
+  void write_reg_contents __ARGS((int name, char_u *str, int maxlen, int must_append));
+  void write_reg_contents_ex __ARGS((int name, char_u *str, int maxlen, int must_append, int yank_type, long block_len));
++ void write_reg_contents_lst __ARGS((int name, char_u **strings, int maxlen, int must_append, int yank_type, long block_len));
+  void clear_oparg __ARGS((oparg_T *oap));
+  void cursor_pos_info __ARGS((void));
+  /* vim: set ft=c : */
+*** ../vim-7.4.242/src/testdir/test_eval.in	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/test_eval.in	2014-04-02 21:35:26.683516533 +0200
+***************
+*** 1,21 ****
+! Test for various eval features.
+  
+  STARTTEST
+  :so small.vim
+  :"
+! :" test getreg()
+! /^one
+! "ay3j:$put =string(getreg('a'))
+! :$put =string(getreg('a', 1, 1))
+  :"
+! :/^result/,$w! test.out
+! :qa!
+  ENDTEST
+  
+! one
+! two
+! three
+! four
+! five
+! 
+! result
+--- 1,150 ----
+! Test for various eval features.   vim: set ft=vim :
+! 
+! Note: system clipboard support is not tested. I do not think anybody will thank 
+! me for messing with clipboard.
+  
+  STARTTEST
+  :so small.vim
++ :set encoding=latin1
++ :set noswapfile
++ :lang C
++ :fun AppendRegContents(reg)
++     call append('$', printf('%s: type %s; value: %s (%s), expr: %s (%s)', a:reg, getregtype(a:reg), getreg(a:reg), string(getreg(a:reg, 0, 1)), getreg(a:reg, 1), string(getreg(a:reg, 1, 1))))
++ endfun
++ :command -nargs=? AR :call AppendRegContents(<q-args>)
++ :fun SetReg(...)
++     call call('setreg', a:000)
++     call append('$', printf('{{{2 setreg(%s)', string(a:000)[1:-2]))
++     call AppendRegContents(a:1)
++     if a:1 isnot# '='
++         execute "silent normal! Go==\n==\e\"".a:1."P"
++     endif
++ endfun
++ :fun ErrExe(str)
++     call append('$', 'Executing '.a:str)
++     try
++         execute a:str
++     catch
++         $put =v:exception
++     endtry
++ endfun
++ :fun Test()
++ $put ='{{{1 let tests'
++ let @" = 'abc'
++ AR "
++ let @" = "abc\n"
++ AR "
++ let @" = "abc\<C-m>"
++ AR "
++ let @= = '"abc"'
++ AR =
++ 
++ $put ='{{{1 Basic setreg tests'
++ call SetReg('a', 'abcA', 'c')
++ call SetReg('b', 'abcB', 'v')
++ call SetReg('c', 'abcC', 'l')
++ call SetReg('d', 'abcD', 'V')
++ call SetReg('e', 'abcE', 'b')
++ call SetReg('f', 'abcF', "\<C-v>")
++ call SetReg('g', 'abcG', 'b10')
++ call SetReg('h', 'abcH', "\<C-v>10")
++ call SetReg('I', 'abcI')
++ 
++ $put ='{{{1 Appending single lines with setreg()'
++ call SetReg('A', 'abcAc', 'c')
++ call SetReg('A', 'abcAl', 'l')
++ call SetReg('A', 'abcAc2','c')
++ call SetReg('b', 'abcBc', 'ca')
++ call SetReg('b', 'abcBb', 'ba')
++ call SetReg('b', 'abcBc2','ca')
++ call SetReg('b', 'abcBb2','b50a')
++ 
++ call SetReg('C', 'abcCl', 'l')
++ call SetReg('C', 'abcCc', 'c')
++ call SetReg('D', 'abcDb', 'b')
++ 
++ call SetReg('E', 'abcEb', 'b')
++ call SetReg('E', 'abcEl', 'l')
++ call SetReg('F', 'abcFc', 'c')
++ 
++ $put ='{{{1 Appending NL with setreg()'
++ call setreg('a', 'abcA2', 'c')
++ call setreg('b', 'abcB2', 'v')
++ call setreg('c', 'abcC2', 'l')
++ call setreg('d', 'abcD2', 'V')
++ call setreg('e', 'abcE2', 'b')
++ call setreg('f', 'abcF2', "\<C-v>")
++ call setreg('g', 'abcG2', 'b10')
++ call setreg('h', 'abcH2', "\<C-v>10")
++ call setreg('I', 'abcI2')
++ 
++ call SetReg('A', "\n")
++ call SetReg('B', "\n", 'c')
++ call SetReg('C', "\n")
++ call SetReg('D', "\n", 'l')
++ call SetReg('E', "\n")
++ call SetReg('F', "\n", 'b')
++ 
++ $put ='{{{1 Setting lists with setreg()'
++ call SetReg('a', ['abcA3'], 'c')
++ call SetReg('b', ['abcB3'], 'l')
++ call SetReg('c', ['abcC3'], 'b')
++ call SetReg('d', ['abcD3'])
++ 
++ $put ='{{{1 Appending lists with setreg()'
++ call SetReg('A', ['abcA3c'], 'c')
++ call SetReg('b', ['abcB3l'], 'la')
++ call SetReg('C', ['abcC3b'], 'lb')
++ call SetReg('D', ['abcD32'])
++ 
++ call SetReg('A', ['abcA32'])
++ call SetReg('B', ['abcB3c'], 'c')
++ call SetReg('C', ['abcC3l'], 'l')
++ call SetReg('D', ['abcD3b'], 'b')
++ 
++ $put ='{{{1 Appending lists with NL with setreg()'
++ call SetReg('A', ["\n", 'abcA3l2'], 'l')
++ call SetReg('B', ["\n", 'abcB3c2'], 'c')
++ call SetReg('C', ["\n", 'abcC3b2'], 'b')
++ call SetReg('D', ["\n", 'abcD3b50'],'b50')
++ 
++ $put ='{{{1 Setting lists with NLs with setreg()'
++ call SetReg('a', ['abcA4-0', "\n", "abcA4-2\n", "\nabcA4-3", "abcA4-4\nabcA4-4-2"])
++ call SetReg('b', ['abcB4c-0', "\n", "abcB4c-2\n", "\nabcB4c-3", "abcB4c-4\nabcB4c-4-2"], 'c')
++ call SetReg('c', ['abcC4l-0', "\n", "abcC4l-2\n", "\nabcC4l-3", "abcC4l-4\nabcC4l-4-2"], 'l')
++ call SetReg('d', ['abcD4b-0', "\n", "abcD4b-2\n", "\nabcD4b-3", "abcD4b-4\nabcD4b-4-2"], 'b')
++ call SetReg('e', ['abcE4b10-0', "\n", "abcE4b10-2\n", "\nabcE4b10-3", "abcE4b10-4\nabcE4b10-4-2"], 'b10')
++ 
++ $put ='{{{1 Search and expressions'
++ call SetReg('/', ['abc/'])
++ call SetReg('/', ["abc/\n"])
++ call SetReg('=', ['"abc/"'])
++ call SetReg('=', ["\"abc/\n\""])
++ 
++ $put ='{{{1 Errors'
++ call ErrExe('call setreg()')
++ call ErrExe('call setreg(1)')
++ call ErrExe('call setreg(1, 2, 3, 4)')
++ call ErrExe('call setreg([], 2)')
++ call ErrExe('call setreg(1, {})')
++ call ErrExe('call setreg(1, 2, [])')
++ call ErrExe('call setreg("/", [1, 2])')
++ call ErrExe('call setreg("=", [1, 2])')
++ call ErrExe('call setreg(1, ["", "", [], ""])')
++ endfun
+  :"
+! :call Test()
+  :"
+! :delfunction SetReg
+! :delfunction AppendRegContents
+! :delfunction ErrExe
+! :delfunction Test
+! :delcommand AR
+! :call garbagecollect(1)
+! :"
+! :/^start:/+1,$wq! test.out
+! :" vim: et ts=4 isk-=\: fmr=???,???
+! :call getchar()
+  ENDTEST
+  
+! start:
+*** ../vim-7.4.242/src/testdir/test_eval.ok	2014-04-02 19:54:58.275599459 +0200
+--- src/testdir/test_eval.ok	2014-04-02 22:15:12.547483714 +0200
+***************
+*** 1,7 ****
+! result
+! 'one
+! two
+! three
+! four
+! '
+! ['one', 'two', 'three', 'four']
+--- 1,322 ----
+! {{{1 let tests
+! ": type v; value: abc (['abc']), expr: abc (['abc'])
+! ": type V; value: abc  (['abc']), expr: abc  (['abc'])
+! ": type V; value: abc  (['abc']), expr: abc  (['abc'])
+! =: type v; value: abc (['abc']), expr: "abc" (['"abc"'])
+! {{{1 Basic setreg tests
+! {{{2 setreg('a', 'abcA', 'c')
+! a: type v; value: abcA (['abcA']), expr: abcA (['abcA'])
+! ==
+! =abcA=
+! {{{2 setreg('b', 'abcB', 'v')
+! b: type v; value: abcB (['abcB']), expr: abcB (['abcB'])
+! ==
+! =abcB=
+! {{{2 setreg('c', 'abcC', 'l')
+! c: type V; value: abcC  (['abcC']), expr: abcC  (['abcC'])
+! ==
+! abcC
+! ==
+! {{{2 setreg('d', 'abcD', 'V')
+! d: type V; value: abcD  (['abcD']), expr: abcD  (['abcD'])
+! ==
+! abcD
+! ==
+! {{{2 setreg('e', 'abcE', 'b')
+! e: type 4; value: abcE (['abcE']), expr: abcE (['abcE'])
+! ==
+! =abcE=
+! {{{2 setreg('f', 'abcF', '')
+! f: type 4; value: abcF (['abcF']), expr: abcF (['abcF'])
+! ==
+! =abcF=
+! {{{2 setreg('g', 'abcG', 'b10')
+! g: type 10; value: abcG (['abcG']), expr: abcG (['abcG'])
+! ==
+! =abcG      =
+! {{{2 setreg('h', 'abcH', '10')
+! h: type 10; value: abcH (['abcH']), expr: abcH (['abcH'])
+! ==
+! =abcH      =
+! {{{2 setreg('I', 'abcI')
+! I: type v; value: abcI (['abcI']), expr: abcI (['abcI'])
+! ==
+! =abcI=
+! {{{1 Appending single lines with setreg()
+! {{{2 setreg('A', 'abcAc', 'c')
+! A: type v; value: abcAabcAc (['abcAabcAc']), expr: abcAabcAc (['abcAabcAc'])
+! ==
+! =abcAabcAc=
+! {{{2 setreg('A', 'abcAl', 'l')
+! A: type V; value: abcAabcAcabcAl  (['abcAabcAcabcAl']), expr: abcAabcAcabcAl  (['abcAabcAcabcAl'])
+! ==
+! abcAabcAcabcAl
+! ==
+! {{{2 setreg('A', 'abcAc2', 'c')
+! A: type v; value: abcAabcAcabcAl abcAc2 (['abcAabcAcabcAl', 'abcAc2']), expr: abcAabcAcabcAl abcAc2 (['abcAabcAcabcAl', 'abcAc2'])
+! ==
+! =abcAabcAcabcAl
+! abcAc2=
+! {{{2 setreg('b', 'abcBc', 'ca')
+! b: type v; value: abcBabcBc (['abcBabcBc']), expr: abcBabcBc (['abcBabcBc'])
+! ==
+! =abcBabcBc=
+! {{{2 setreg('b', 'abcBb', 'ba')
+! b: type 5; value: abcBabcBcabcBb (['abcBabcBcabcBb']), expr: abcBabcBcabcBb (['abcBabcBcabcBb'])
+! ==
+! =abcBabcBcabcBb=
+! {{{2 setreg('b', 'abcBc2', 'ca')
+! b: type v; value: abcBabcBcabcBb abcBc2 (['abcBabcBcabcBb', 'abcBc2']), expr: abcBabcBcabcBb abcBc2 (['abcBabcBcabcBb', 'abcBc2'])
+! ==
+! =abcBabcBcabcBb
+! abcBc2=
+! {{{2 setreg('b', 'abcBb2', 'b50a')
+! b: type 50; value: abcBabcBcabcBb abcBc2abcBb2 (['abcBabcBcabcBb', 'abcBc2abcBb2']), expr: abcBabcBcabcBb abcBc2abcBb2 (['abcBabcBcabcBb', 'abcBc2abcBb2'])
+! ==
+! =abcBabcBcabcBb                                    =
+!  abcBc2abcBb2
+! {{{2 setreg('C', 'abcCl', 'l')
+! C: type V; value: abcC abcCl  (['abcC', 'abcCl']), expr: abcC abcCl  (['abcC', 'abcCl'])
+! ==
+! abcC
+! abcCl
+! ==
+! {{{2 setreg('C', 'abcCc', 'c')
+! C: type v; value: abcC abcCl abcCc (['abcC', 'abcCl', 'abcCc']), expr: abcC abcCl abcCc (['abcC', 'abcCl', 'abcCc'])
+! ==
+! =abcC
+! abcCl
+! abcCc=
+! {{{2 setreg('D', 'abcDb', 'b')
+! D: type 5; value: abcD abcDb (['abcD', 'abcDb']), expr: abcD abcDb (['abcD', 'abcDb'])
+! ==
+! =abcD =
+!  abcDb
+! {{{2 setreg('E', 'abcEb', 'b')
+! E: type 5; value: abcE abcEb (['abcE', 'abcEb']), expr: abcE abcEb (['abcE', 'abcEb'])
+! ==
+! =abcE =
+!  abcEb
+! {{{2 setreg('E', 'abcEl', 'l')
+! E: type V; value: abcE abcEb abcEl  (['abcE', 'abcEb', 'abcEl']), expr: abcE abcEb abcEl  (['abcE', 'abcEb', 'abcEl'])
+! ==
+! abcE
+! abcEb
+! abcEl
+! ==
+! {{{2 setreg('F', 'abcFc', 'c')
+! F: type v; value: abcF abcFc (['abcF', 'abcFc']), expr: abcF abcFc (['abcF', 'abcFc'])
+! ==
+! =abcF
+! abcFc=
+! {{{1 Appending NL with setreg()
+! {{{2 setreg('A', ' ')
+! A: type V; value: abcA2  (['abcA2']), expr: abcA2  (['abcA2'])
+! ==
+! abcA2
+! ==
+! {{{2 setreg('B', ' ', 'c')
+! B: type v; value: abcB2  (['abcB2', '']), expr: abcB2  (['abcB2', ''])
+! ==
+! =abcB2
+! =
+! {{{2 setreg('C', ' ')
+! C: type V; value: abcC2   (['abcC2', '']), expr: abcC2   (['abcC2', ''])
+! ==
+! abcC2
+! 
+! ==
+! {{{2 setreg('D', ' ', 'l')
+! D: type V; value: abcD2   (['abcD2', '']), expr: abcD2   (['abcD2', ''])
+! ==
+! abcD2
+! 
+! ==
+! {{{2 setreg('E', ' ')
+! E: type V; value: abcE2   (['abcE2', '']), expr: abcE2   (['abcE2', ''])
+! ==
+! abcE2
+! 
+! ==
+! {{{2 setreg('F', ' ', 'b')
+! F: type 0; value: abcF2  (['abcF2', '']), expr: abcF2  (['abcF2', ''])
+! ==
+! =abcF2=
+!  
+! {{{1 Setting lists with setreg()
+! {{{2 setreg('a', ['abcA3'], 'c')
+! a: type v; value: abcA3 (['abcA3']), expr: abcA3 (['abcA3'])
+! ==
+! =abcA3=
+! {{{2 setreg('b', ['abcB3'], 'l')
+! b: type V; value: abcB3  (['abcB3']), expr: abcB3  (['abcB3'])
+! ==
+! abcB3
+! ==
+! {{{2 setreg('c', ['abcC3'], 'b')
+! c: type 5; value: abcC3 (['abcC3']), expr: abcC3 (['abcC3'])
+! ==
+! =abcC3=
+! {{{2 setreg('d', ['abcD3'])
+! d: type V; value: abcD3  (['abcD3']), expr: abcD3  (['abcD3'])
+! ==
+! abcD3
+! ==
+! {{{1 Appending lists with setreg()
+! {{{2 setreg('A', ['abcA3c'], 'c')
+! A: type v; value: abcA3 abcA3c (['abcA3', 'abcA3c']), expr: abcA3 abcA3c (['abcA3', 'abcA3c'])
+! ==
+! =abcA3
+! abcA3c=
+! {{{2 setreg('b', ['abcB3l'], 'la')
+! b: type V; value: abcB3 abcB3l  (['abcB3', 'abcB3l']), expr: abcB3 abcB3l  (['abcB3', 'abcB3l'])
+! ==
+! abcB3
+! abcB3l
+! ==
+! {{{2 setreg('C', ['abcC3b'], 'lb')
+! C: type 6; value: abcC3 abcC3b (['abcC3', 'abcC3b']), expr: abcC3 abcC3b (['abcC3', 'abcC3b'])
+! ==
+! =abcC3 =
+!  abcC3b
+! {{{2 setreg('D', ['abcD32'])
+! D: type V; value: abcD3 abcD32  (['abcD3', 'abcD32']), expr: abcD3 abcD32  (['abcD3', 'abcD32'])
+! ==
+! abcD3
+! abcD32
+! ==
+! {{{2 setreg('A', ['abcA32'])
+! A: type V; value: abcA3 abcA3c abcA32  (['abcA3', 'abcA3c', 'abcA32']), expr: abcA3 abcA3c abcA32  (['abcA3', 'abcA3c', 'abcA32'])
+! ==
+! abcA3
+! abcA3c
+! abcA32
+! ==
+! {{{2 setreg('B', ['abcB3c'], 'c')
+! B: type v; value: abcB3 abcB3l abcB3c (['abcB3', 'abcB3l', 'abcB3c']), expr: abcB3 abcB3l abcB3c (['abcB3', 'abcB3l', 'abcB3c'])
+! ==
+! =abcB3
+! abcB3l
+! abcB3c=
+! {{{2 setreg('C', ['abcC3l'], 'l')
+! C: type V; value: abcC3 abcC3b abcC3l  (['abcC3', 'abcC3b', 'abcC3l']), expr: abcC3 abcC3b abcC3l  (['abcC3', 'abcC3b', 'abcC3l'])
+! ==
+! abcC3
+! abcC3b
+! abcC3l
+! ==
+! {{{2 setreg('D', ['abcD3b'], 'b')
+! D: type 6; value: abcD3 abcD32 abcD3b (['abcD3', 'abcD32', 'abcD3b']), expr: abcD3 abcD32 abcD3b (['abcD3', 'abcD32', 'abcD3b'])
+! ==
+! =abcD3 =
+!  abcD32
+!  abcD3b
+! {{{1 Appending lists with NL with setreg()
+! {{{2 setreg('A', [' ', 'abcA3l2'], 'l')
+! A: type V; value: abcA3 abcA3c abcA32   abcA3l2  (['abcA3', 'abcA3c', 'abcA32', ' ', 'abcA3l2']), expr: abcA3 abcA3c abcA32   abcA3l2  (['abcA3', 'abcA3c', 'abcA32', ' ', 'abcA3l2'])
+! ==
+! abcA3
+! abcA3c
+! abcA32
+!  
+! abcA3l2
+! ==
+! {{{2 setreg('B', [' ', 'abcB3c2'], 'c')
+! B: type v; value: abcB3 abcB3l abcB3c   abcB3c2 (['abcB3', 'abcB3l', 'abcB3c', ' ', 'abcB3c2']), expr: abcB3 abcB3l abcB3c   abcB3c2 (['abcB3', 'abcB3l', 'abcB3c', ' ', 'abcB3c2'])
+! ==
+! =abcB3
+! abcB3l
+! abcB3c
+!  
+! abcB3c2=
+! {{{2 setreg('C', [' ', 'abcC3b2'], 'b')
+! C: type 7; value: abcC3 abcC3b abcC3l   abcC3b2 (['abcC3', 'abcC3b', 'abcC3l', ' ', 'abcC3b2']), expr: abcC3 abcC3b abcC3l   abcC3b2 (['abcC3', 'abcC3b', 'abcC3l', ' ', 'abcC3b2'])
+! ==
+! =abcC3  =
+!  abcC3b
+!  abcC3l
+!   
+!  abcC3b2
+! {{{2 setreg('D', [' ', 'abcD3b50'], 'b50')
+! D: type 50; value: abcD3 abcD32 abcD3b   abcD3b50 (['abcD3', 'abcD32', 'abcD3b', ' ', 'abcD3b50']), expr: abcD3 abcD32 abcD3b   abcD3b50 (['abcD3', 'abcD32', 'abcD3b', ' ', 'abcD3b50'])
+! ==
+! =abcD3                                             =
+!  abcD32
+!  abcD3b
+!   
+!  abcD3b50
+! {{{1 Setting lists with NLs with setreg()
+! {{{2 setreg('a', ['abcA4-0', ' ', 'abcA4-2 ', ' abcA4-3', 'abcA4-4 abcA4-4-2'])
+! a: type V; value: abcA4-0   abcA4-2   abcA4-3 abcA4-4 abcA4-4-2  (['abcA4-0', ' ', 'abcA4-2 ', ' abcA4-3', 'abcA4-4 abcA4-4-2']), expr: abcA4-0   abcA4-2   abcA4-3 abcA4-4 abcA4-4-2  (['abcA4-0', ' ', 'abcA4-2 ', ' abcA4-3', 'abcA4-4 abcA4-4-2'])
+! ==
+! abcA4-0
+!  
+! abcA4-2 
+!  abcA4-3
+! abcA4-4 abcA4-4-2
+! ==
+! {{{2 setreg('b', ['abcB4c-0', ' ', 'abcB4c-2 ', ' abcB4c-3', 'abcB4c-4 abcB4c-4-2'], 'c')
+! b: type v; value: abcB4c-0   abcB4c-2   abcB4c-3 abcB4c-4 abcB4c-4-2 (['abcB4c-0', ' ', 'abcB4c-2 ', ' abcB4c-3', 'abcB4c-4 abcB4c-4-2']), expr: abcB4c-0   abcB4c-2   abcB4c-3 abcB4c-4 abcB4c-4-2 (['abcB4c-0', ' ', 'abcB4c-2 ', ' abcB4c-3', 'abcB4c-4 abcB4c-4-2'])
+! ==
+! =abcB4c-0
+!  
+! abcB4c-2 
+!  abcB4c-3
+! abcB4c-4 abcB4c-4-2=
+! {{{2 setreg('c', ['abcC4l-0', ' ', 'abcC4l-2 ', ' abcC4l-3', 'abcC4l-4 abcC4l-4-2'], 'l')
+! c: type V; value: abcC4l-0   abcC4l-2   abcC4l-3 abcC4l-4 abcC4l-4-2  (['abcC4l-0', ' ', 'abcC4l-2 ', ' abcC4l-3', 'abcC4l-4 abcC4l-4-2']), expr: abcC4l-0   abcC4l-2   abcC4l-3 abcC4l-4 abcC4l-4-2  (['abcC4l-0', ' ', 'abcC4l-2 ', ' abcC4l-3', 'abcC4l-4 abcC4l-4-2'])
+! ==
+! abcC4l-0
+!  
+! abcC4l-2 
+!  abcC4l-3
+! abcC4l-4 abcC4l-4-2
+! ==
+! {{{2 setreg('d', ['abcD4b-0', ' ', 'abcD4b-2 ', ' abcD4b-3', 'abcD4b-4 abcD4b-4-2'], 'b')
+! d: type 19; value: abcD4b-0   abcD4b-2   abcD4b-3 abcD4b-4 abcD4b-4-2 (['abcD4b-0', ' ', 'abcD4b-2 ', ' abcD4b-3', 'abcD4b-4 abcD4b-4-2']), expr: abcD4b-0   abcD4b-2   abcD4b-3 abcD4b-4 abcD4b-4-2 (['abcD4b-0', ' ', 'abcD4b-2 ', ' abcD4b-3', 'abcD4b-4 abcD4b-4-2'])
+! ==
+! =abcD4b-0           =
+!   
+!  abcD4b-2 
+!   abcD4b-3
+!  abcD4b-4 abcD4b-4-2
+! {{{2 setreg('e', ['abcE4b10-0', ' ', 'abcE4b10-2 ', ' abcE4b10-3', 'abcE4b10-4 abcE4b10-4-2'], 'b10')
+! e: type 10; value: abcE4b10-0   abcE4b10-2   abcE4b10-3 abcE4b10-4 abcE4b10-4-2 (['abcE4b10-0', ' ', 'abcE4b10-2 ', ' abcE4b10-3', 'abcE4b10-4 abcE4b10-4-2']), expr: abcE4b10-0   abcE4b10-2   abcE4b10-3 abcE4b10-4 abcE4b10-4-2 (['abcE4b10-0', ' ', 'abcE4b10-2 ', ' abcE4b10-3', 'abcE4b10-4 abcE4b10-4-2'])
+! ==
+! =abcE4b10-0=
+!   
+!  abcE4b10-2 
+!   abcE4b10-3
+!  abcE4b10-4 abcE4b10-4-2
+! {{{1 Search and expressions
+! {{{2 setreg('/', ['abc/'])
+! /: type v; value: abc/ (['abc/']), expr: abc/ (['abc/'])
+! ==
+! =abc/=
+! {{{2 setreg('/', ['abc/ '])
+! /: type v; value: abc/  (['abc/ ']), expr: abc/  (['abc/ '])
+! ==
+! =abc/ =
+! {{{2 setreg('=', ['"abc/"'])
+! =: type v; value: abc/ (['abc/']), expr: "abc/" (['"abc/"'])
+! {{{2 setreg('=', ['"abc/ "'])
+! =: type v; value: abc/  (['abc/ ']), expr: "abc/ " (['"abc/ "'])
+! {{{1 Errors
+! Executing call setreg()
+! Vim(call):E119: Not enough arguments for function: setreg
+! Executing call setreg(1)
+! Vim(call):E119: Not enough arguments for function: setreg
+! Executing call setreg(1, 2, 3, 4)
+! Vim(call):E118: Too many arguments for function: setreg
+! Executing call setreg([], 2)
+! Vim(call):E730: using List as a String
+! Executing call setreg(1, {})
+! Vim(call):E731: using Dictionary as a String
+! Executing call setreg(1, 2, [])
+! Vim(call):E730: using List as a String
+! Executing call setreg("/", [1, 2])
+! Vim(call):E883: search pattern and expression register may not contain two or more lines
+! Executing call setreg("=", [1, 2])
+! Vim(call):E883: search pattern and expression register may not contain two or more lines
+! Executing call setreg(1, ["", "", [], ""])
+! Vim(call):E730: using List as a String
+*** ../vim-7.4.242/src/version.c	2014-04-02 19:54:58.279599459 +0200
+--- src/version.c	2014-04-02 22:15:32.767483436 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     243,
+  /**/
+
+-- 
+I have a drinking problem -- I don't have a drink!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

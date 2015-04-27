@@ -1,0 +1,120 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.470
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.470
+Problem:    Test 11 and 100 do not work properly on Windows.
+Solution:   Avoid using feedkeys(). (Ken Takata)
+Files:	    src/testdir/Make_dos.mak, src/testdir/test11.in,
+	    src/testdir/test100.in
+
+
+*** ../vim-7.4.469/src/testdir/Make_dos.mak	2014-08-16 18:36:38.593993280 +0200
+--- src/testdir/Make_dos.mak	2014-10-09 15:26:56.720903277 +0200
+***************
+*** 63,69 ****
+  fixff:
+  	-$(VIMPROG) -u dos.vim --noplugin "+argdo set ff=dos|upd" +q *.in *.ok
+  	-$(VIMPROG) -u dos.vim --noplugin "+argdo set ff=unix|upd" +q \
+! 		dotest.in test60.ok test71.ok test74.ok
+  
+  report:
+  	@echo ""
+--- 63,69 ----
+  fixff:
+  	-$(VIMPROG) -u dos.vim --noplugin "+argdo set ff=dos|upd" +q *.in *.ok
+  	-$(VIMPROG) -u dos.vim --noplugin "+argdo set ff=unix|upd" +q \
+! 		dotest.in test60.ok test71.ok test74.ok test100.ok
+  
+  report:
+  	@echo ""
+*** ../vim-7.4.469/src/testdir/test11.in	2010-08-08 13:16:36.000000000 +0200
+--- src/testdir/test11.in	2014-10-09 15:34:19.588904244 +0200
+***************
+*** 46,58 ****
+  :w>>test.out                    " Append it to the output file
+  :set shelltemp                  " need temp files here
+  :au FilterReadPre   *.out  call rename(expand("<afile>"), expand("<afile>") . ".t")
+! :au FilterReadPre   *.out  exe '!sed s/e/E/ ' . shellescape(expand("<afile>")) . ".t >" . shellescape(expand("<afile>"))
+! :au FilterReadPre   *.out  exe '!rm ' . shellescape(expand("<afile>")) . '.t'
+  :au FilterReadPost  *.out  '[,']s/x/X/g
+  :e! test.out                    " Edit the output file
+  :23,$!cat
+  :23,$s/\r$//                 " remove CR for when sed adds them
+! :au! FileReadPre    *.gz   exe '!gzip -d ' . shellescape(expand("<afile>"))
+  :au  FileReadPre    *.gz   call rename(expand("<afile>:r"), expand("<afile>"))
+  :au! FileReadPost   *.gz   '[,']s/l/L/
+  :$r Xtestfile.gz             " Read compressed file
+--- 46,58 ----
+  :w>>test.out                    " Append it to the output file
+  :set shelltemp                  " need temp files here
+  :au FilterReadPre   *.out  call rename(expand("<afile>"), expand("<afile>") . ".t")
+! :au FilterReadPre   *.out  exe 'silent !sed s/e/E/ ' . shellescape(expand("<afile>")) . ".t >" . shellescape(expand("<afile>"))
+! :au FilterReadPre   *.out  exe 'silent !rm ' . shellescape(expand("<afile>")) . '.t'
+  :au FilterReadPost  *.out  '[,']s/x/X/g
+  :e! test.out                    " Edit the output file
+  :23,$!cat
+  :23,$s/\r$//                 " remove CR for when sed adds them
+! :au! FileReadPre    *.gz   exe 'silent !gzip -d ' . shellescape(expand("<afile>"))
+  :au  FileReadPre    *.gz   call rename(expand("<afile>:r"), expand("<afile>"))
+  :au! FileReadPost   *.gz   '[,']s/l/L/
+  :$r Xtestfile.gz             " Read compressed file
+*** ../vim-7.4.469/src/testdir/test100.in	2014-08-16 17:34:31.186128463 +0200
+--- src/testdir/test100.in	2014-10-09 15:27:44.404903381 +0200
+***************
+*** 16,22 ****
+  :new one
+  :0put ='ONE: expecting global undolevels: 5, local undolevels: -123456 (default)'
+  :call FillBuffer()
+! :call feedkeys(":earlier 10\n", 't')
+  :call UndoLevel()
+  :set ff=unix
+  :%w! test.out
+--- 16,22 ----
+  :new one
+  :0put ='ONE: expecting global undolevels: 5, local undolevels: -123456 (default)'
+  :call FillBuffer()
+! :earlier 10
+  :call UndoLevel()
+  :set ff=unix
+  :%w! test.out
+***************
+*** 24,30 ****
+  :0put ='TWO: expecting global undolevels: 5, local undolevels: 2 (first) then 10 (afterwards)'
+  :setlocal ul=2
+  :call FillBuffer()
+! :call feedkeys(":earlier 10\n", 't')
+  :call UndoLevel()
+  :setlocal ul=10
+  :call UndoLevel()
+--- 24,30 ----
+  :0put ='TWO: expecting global undolevels: 5, local undolevels: 2 (first) then 10 (afterwards)'
+  :setlocal ul=2
+  :call FillBuffer()
+! :earlier 10
+  :call UndoLevel()
+  :setlocal ul=10
+  :call UndoLevel()
+*** ../vim-7.4.469/src/version.c	2014-10-09 14:48:26.284898230 +0200
+--- src/version.c	2014-10-09 15:34:43.088904296 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     470,
+  /**/
+
+-- 
+"Marriage is when a man and woman become as one; the trouble starts
+when they try to decide which one"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

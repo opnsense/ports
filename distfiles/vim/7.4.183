@@ -1,0 +1,49 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.183
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.183
+Problem:    MSVC Visual Studio update not supported.
+Solution:   Add version number. (Mike William)
+Files:	    src/Make_mvc.mak
+
+
+*** ../vim-7.4.182/src/Make_mvc.mak	2013-12-14 11:50:28.000000000 +0100
+--- src/Make_mvc.mak	2014-02-15 19:25:27.333885042 +0100
+***************
+*** 424,429 ****
+--- 424,432 ----
+  !if "$(_NMAKE_VER)" == "11.00.60610.1"
+  MSVCVER = 11.0
+  !endif
++ !if "$(_NMAKE_VER)" == "11.00.61030.0"
++ MSVCVER = 11.0
++ !endif
+  !if "$(_NMAKE_VER)" == "12.00.21005.1"
+  MSVCVER = 12.0
+  !endif
+*** ../vim-7.4.182/src/version.c	2014-02-15 17:18:56.953897128 +0100
+--- src/version.c	2014-02-15 19:31:11.337884494 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     183,
+  /**/
+
+-- 
+FATHER:    Did you kill all those guards?
+LAUNCELOT: Yes ...  I'm very sorry ...
+FATHER:    They cost fifty pounds each!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

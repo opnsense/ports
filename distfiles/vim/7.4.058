@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.058
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.058
+Problem:    Warnings on 64 bit Windows.
+Solution:   Add type casts. (Mike Williams)
+Files:      src/ops.c
+
+
+*** ../vim-7.4.057/src/ops.c	2013-10-06 17:46:48.000000000 +0200
+--- src/ops.c	2013-11-02 23:56:15.000000000 +0100
+***************
+*** 5009,5022 ****
+  		    if (second_indent > 0)  /* the "leader" for FO_Q_SECOND */
+  		{
+  		    char_u *p = ml_get_curline();
+! 		    int indent = skipwhite(p) - p;
+  
+  		    if (indent > 0)
+  		    {
+  			(void)del_bytes(indent, FALSE, FALSE);
+  			mark_col_adjust(curwin->w_cursor.lnum,
+  					       (colnr_T)0, 0L, (long)-indent);
+! 		      }
+  		}
+  		curwin->w_cursor.lnum--;
+  		if (do_join(2, TRUE, FALSE, FALSE) == FAIL)
+--- 5009,5022 ----
+  		    if (second_indent > 0)  /* the "leader" for FO_Q_SECOND */
+  		{
+  		    char_u *p = ml_get_curline();
+! 		    int indent = (int)(skipwhite(p) - p);
+  
+  		    if (indent > 0)
+  		    {
+  			(void)del_bytes(indent, FALSE, FALSE);
+  			mark_col_adjust(curwin->w_cursor.lnum,
+  					       (colnr_T)0, 0L, (long)-indent);
+! 		    }
+  		}
+  		curwin->w_cursor.lnum--;
+  		if (do_join(2, TRUE, FALSE, FALSE) == FAIL)
+*** ../vim-7.4.057/src/version.c	2013-11-02 23:29:17.000000000 +0100
+--- src/version.c	2013-11-02 23:55:01.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     58,
+  /**/
+
+-- 
+Citizens are not allowed to attend a movie house or theater nor ride in a
+public streetcar within at least four hours after eating garlic.
+		[real standing law in Indiana, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

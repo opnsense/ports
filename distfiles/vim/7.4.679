@@ -1,0 +1,88 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.679
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.679
+Problem:    Color values greater than 255 cause problems on MS-Windows.
+Solution:   Truncate to 255 colors. (Yasuhiro Matsumoto)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.678/src/os_win32.c	2015-03-21 22:18:37.808371766 +0100
+--- src/os_win32.c	2015-03-24 17:10:04.870555251 +0100
+***************
+*** 5262,5268 ****
+      static void
+  textattr(WORD wAttr)
+  {
+!     g_attrCurrent = wAttr;
+  
+      SetConsoleTextAttribute(g_hConOut, wAttr);
+  }
+--- 5262,5268 ----
+      static void
+  textattr(WORD wAttr)
+  {
+!     g_attrCurrent = wAttr & 0xff;
+  
+      SetConsoleTextAttribute(g_hConOut, wAttr);
+  }
+***************
+*** 5271,5277 ****
+      static void
+  textcolor(WORD wAttr)
+  {
+!     g_attrCurrent = (g_attrCurrent & 0xf0) + wAttr;
+  
+      SetConsoleTextAttribute(g_hConOut, g_attrCurrent);
+  }
+--- 5271,5277 ----
+      static void
+  textcolor(WORD wAttr)
+  {
+!     g_attrCurrent = (g_attrCurrent & 0xf0) + (wAttr & 0x0f);
+  
+      SetConsoleTextAttribute(g_hConOut, g_attrCurrent);
+  }
+***************
+*** 5280,5286 ****
+      static void
+  textbackground(WORD wAttr)
+  {
+!     g_attrCurrent = (g_attrCurrent & 0x0f) + (wAttr << 4);
+  
+      SetConsoleTextAttribute(g_hConOut, g_attrCurrent);
+  }
+--- 5280,5286 ----
+      static void
+  textbackground(WORD wAttr)
+  {
+!     g_attrCurrent = (g_attrCurrent & 0x0f) + ((wAttr & 0x0f) << 4);
+  
+      SetConsoleTextAttribute(g_hConOut, g_attrCurrent);
+  }
+*** ../vim-7.4.678/src/version.c	2015-03-24 16:48:16.973934896 +0100
+--- src/version.c	2015-03-24 17:09:45.470788914 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     679,
+  /**/
+
+-- 
+ARTHUR: Did you say shrubberies?
+ROGER:  Yes.  Shrubberies are my trade.  I am a shrubber.  My name is Roger
+        the Shrubber.  I arrange, design, and sell shrubberies.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

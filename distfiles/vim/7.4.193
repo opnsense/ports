@@ -1,0 +1,106 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.193
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.193
+Problem:    Typos in messages.
+Solution:   "then" -> "than". (Dominique Pelle)
+Files:	    src/if_py_both.h, src/spell.c
+
+
+*** ../vim-7.4.192/src/if_py_both.h	2014-02-15 15:58:55.081904773 +0100
+--- src/if_py_both.h	2014-03-08 16:10:46.015459417 +0100
+***************
+*** 236,242 ****
+  	if (*result <= 0)
+  	{
+  	    PyErr_SET_STRING(PyExc_ValueError,
+! 		    N_("number must be greater then zero"));
+  	    return -1;
+  	}
+      }
+--- 236,242 ----
+  	if (*result <= 0)
+  	{
+  	    PyErr_SET_STRING(PyExc_ValueError,
+! 		    N_("number must be greater than zero"));
+  	    return -1;
+  	}
+      }
+***************
+*** 2405,2411 ****
+  	if ((item = PyIter_Next(iterator)))
+  	{
+  	    PyErr_FORMAT(PyExc_ValueError,
+! 		    N_("attempt to assign sequence of size greater then %d "
+  			"to extended slice"), 0);
+  	    Py_DECREF(item);
+  	    ret = -1;
+--- 2405,2411 ----
+  	if ((item = PyIter_Next(iterator)))
+  	{
+  	    PyErr_FORMAT(PyExc_ValueError,
+! 		    N_("attempt to assign sequence of size greater than %d "
+  			"to extended slice"), 0);
+  	    Py_DECREF(item);
+  	    ret = -1;
+***************
+*** 2510,2516 ****
+  	{
+  	    Py_DECREF(iterator);
+  	    PyErr_FORMAT(PyExc_ValueError,
+! 		    N_("attempt to assign sequence of size greater then %d "
+  			"to extended slice"), (int) slicelen);
+  	    list_restore(numadded, numreplaced, slicelen, l, lis, lastaddedli);
+  	    PyMem_Free(lis);
+--- 2510,2516 ----
+  	{
+  	    Py_DECREF(iterator);
+  	    PyErr_FORMAT(PyExc_ValueError,
+! 		    N_("attempt to assign sequence of size greater than %d "
+  			"to extended slice"), (int) slicelen);
+  	    list_restore(numadded, numreplaced, slicelen, l, lis, lastaddedli);
+  	    PyMem_Free(lis);
+*** ../vim-7.4.192/src/spell.c	2014-02-23 22:52:33.372764715 +0100
+--- src/spell.c	2014-03-08 16:10:46.019459417 +0100
+***************
+*** 12037,12043 ****
+  		/* Normal byte, go one level deeper.  If it's not equal to the
+  		 * byte in the bad word adjust the score.  But don't even try
+  		 * when the byte was already changed.  And don't try when we
+! 		 * just deleted this byte, accepting it is always cheaper then
+  		 * delete + substitute. */
+  		if (c == fword[sp->ts_fidx]
+  #ifdef FEAT_MBYTE
+--- 12037,12043 ----
+  		/* Normal byte, go one level deeper.  If it's not equal to the
+  		 * byte in the bad word adjust the score.  But don't even try
+  		 * when the byte was already changed.  And don't try when we
+! 		 * just deleted this byte, accepting it is always cheaper than
+  		 * delete + substitute. */
+  		if (c == fword[sp->ts_fidx]
+  #ifdef FEAT_MBYTE
+*** ../vim-7.4.192/src/version.c	2014-02-24 03:31:55.816738026 +0100
+--- src/version.c	2014-03-08 16:11:51.591460422 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     193,
+  /**/
+
+-- 
+BEDEVERE: How do you know so much about swallows?
+ARTHUR:   Well you have to know these things when you're a king, you know.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

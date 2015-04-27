@@ -1,0 +1,228 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.475
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.475
+Problem:    Can't compile on a system where Xutf8SetWMProperties() is not in
+	    the X11 library.  Issue 265.
+Solution:   Add a configure check.
+Files:	    src/configure.in, src/auto/configure, src/config.h.in,
+	    src/os_unix.c
+
+
+*** ../vim-7.4.474/src/configure.in	2014-08-17 17:05:39.159057796 +0200
+--- src/configure.in	2014-10-11 14:40:18.557274620 +0200
+***************
+*** 3730,3750 ****
+  dnl Check for multibyte locale functions
+  dnl Find out if _Xsetlocale() is supported by libX11.
+  dnl Check if X_LOCALE should be defined.
+! 
+! if test "$enable_multibyte" = "yes"; then
+    cflags_save=$CFLAGS
+!   ldflags_save=$LDFLAGS
+!   if test "x$x_includes" != "xNONE" ; then
+!     CFLAGS="$CFLAGS -I$x_includes"
+!     LDFLAGS="$X_LIBS $LDFLAGS -lX11"
+!     AC_MSG_CHECKING(whether X_LOCALE needed)
+!     AC_TRY_COMPILE([#include <X11/Xlocale.h>],,
+! 	AC_TRY_LINK_FUNC([_Xsetlocale], [AC_MSG_RESULT(yes)
+! 		AC_DEFINE(X_LOCALE)], AC_MSG_RESULT(no)),
+! 	AC_MSG_RESULT(no))
+!   fi
+    CFLAGS=$cflags_save
+!   LDFLAGS=$ldflags_save
+  fi
+  
+  dnl Link with xpg4, it is said to make Korean locale working
+--- 3730,3753 ----
+  dnl Check for multibyte locale functions
+  dnl Find out if _Xsetlocale() is supported by libX11.
+  dnl Check if X_LOCALE should be defined.
+! if test "x$with_x" = "xyes"; then
+    cflags_save=$CFLAGS
+!   libs_save=$LIBS
+!   LIBS="$LIBS $X_LIBS $GUI_LIB_LOC $GUI_X_LIBS $X_PRE_LIBS $X_LIB $X_EXTRA_LIBS"
+!   CFLAGS="$CFLAGS $X_CFLAGS"
+! 
+!   AC_MSG_CHECKING(whether X_LOCALE needed)
+!   AC_TRY_COMPILE([#include <X11/Xlocale.h>],,
+!       AC_TRY_LINK_FUNC([_Xsetlocale], [AC_MSG_RESULT(yes)
+! 	      AC_DEFINE(X_LOCALE)], AC_MSG_RESULT(no)),
+!       AC_MSG_RESULT(no))
+! 
+!   AC_MSG_CHECKING(whether Xutf8SetWMProperties() can be used)
+!   AC_TRY_LINK_FUNC([Xutf8SetWMProperties], [AC_MSG_RESULT(yes)
+! 	      AC_DEFINE(HAVE_XUTF8SETWMPROPERTIES)], AC_MSG_RESULT(no))
+! 
+    CFLAGS=$cflags_save
+!   LIBS=$libs_save
+  fi
+  
+  dnl Link with xpg4, it is said to make Korean locale working
+*** ../vim-7.4.474/src/auto/configure	2014-08-17 17:05:39.163057796 +0200
+--- src/auto/configure	2014-10-11 14:40:51.421274692 +0200
+***************
+*** 12732,12747 ****
+  fi
+  
+  
+! 
+! if test "$enable_multibyte" = "yes"; then
+    cflags_save=$CFLAGS
+!   ldflags_save=$LDFLAGS
+!   if test "x$x_includes" != "xNONE" ; then
+!     CFLAGS="$CFLAGS -I$x_includes"
+!     LDFLAGS="$X_LIBS $LDFLAGS -lX11"
+!     { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether X_LOCALE needed" >&5
+  $as_echo_n "checking whether X_LOCALE needed... " >&6; }
+!     cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+  /* end confdefs.h.  */
+  #include <X11/Xlocale.h>
+  int
+--- 12732,12746 ----
+  fi
+  
+  
+! if test "x$with_x" = "xyes"; then
+    cflags_save=$CFLAGS
+!   libs_save=$LIBS
+!   LIBS="$LIBS $X_LIBS $GUI_LIB_LOC $GUI_X_LIBS $X_PRE_LIBS $X_LIB $X_EXTRA_LIBS"
+!   CFLAGS="$CFLAGS $X_CFLAGS"
+! 
+!   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether X_LOCALE needed" >&5
+  $as_echo_n "checking whether X_LOCALE needed... " >&6; }
+!   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+  /* end confdefs.h.  */
+  #include <X11/Xlocale.h>
+  int
+***************
+*** 12774,12780 ****
+  if ac_fn_c_try_link "$LINENO"; then :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+  $as_echo "yes" >&6; }
+! 		$as_echo "#define X_LOCALE 1" >>confdefs.h
+  
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+--- 12773,12779 ----
+  if ac_fn_c_try_link "$LINENO"; then :
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+  $as_echo "yes" >&6; }
+! 	      $as_echo "#define X_LOCALE 1" >>confdefs.h
+  
+  else
+    { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+***************
+*** 12787,12795 ****
+  $as_echo "no" >&6; }
+  fi
+  rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+!   fi
+    CFLAGS=$cflags_save
+!   LDFLAGS=$ldflags_save
+  fi
+  
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for _xpg4_setrunelocale in -lxpg4" >&5
+--- 12786,12826 ----
+  $as_echo "no" >&6; }
+  fi
+  rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+! 
+!   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether Xutf8SetWMProperties() can be used" >&5
+! $as_echo_n "checking whether Xutf8SetWMProperties() can be used... " >&6; }
+!   cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+! /* end confdefs.h.  */
+! 
+! /* Override any GCC internal prototype to avoid an error.
+!    Use char because int might match the return type of a GCC
+!    builtin and then its argument prototype would still apply.  */
+! #ifdef __cplusplus
+! extern "C"
+! #endif
+! char Xutf8SetWMProperties ();
+! int
+! main ()
+! {
+! return Xutf8SetWMProperties ();
+!   ;
+!   return 0;
+! }
+! _ACEOF
+! if ac_fn_c_try_link "$LINENO"; then :
+!   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+! $as_echo "yes" >&6; }
+! 	      $as_echo "#define HAVE_XUTF8SETWMPROPERTIES 1" >>confdefs.h
+! 
+! else
+!   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+! $as_echo "no" >&6; }
+! fi
+! rm -f core conftest.err conftest.$ac_objext \
+!     conftest$ac_exeext conftest.$ac_ext
+! 
+    CFLAGS=$cflags_save
+!   LIBS=$libs_save
+  fi
+  
+  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for _xpg4_setrunelocale in -lxpg4" >&5
+*** ../vim-7.4.474/src/config.h.in	2014-04-02 14:05:33.995887839 +0200
+--- src/config.h.in	2014-10-11 14:40:03.841274588 +0200
+***************
+*** 446,448 ****
+--- 446,451 ----
+  
+  /* Define if we have AvailabilityMacros.h on Mac OS X */
+  #undef HAVE_AVAILABILITYMACROS_H
++ 
++ /* Define if Xutf8SetWMProperties() is in an X library. */
++ #undef HAVE_XUTF8SETWMPROPERTIES
+*** ../vim-7.4.474/src/os_unix.c	2014-08-29 12:58:38.242430208 +0200
+--- src/os_unix.c	2014-10-11 14:47:04.601275507 +0200
+***************
+*** 1960,1968 ****
+      return retval;
+  }
+  
+! /* Are Xutf8 functions available?  Avoid error from old compilers. */
+  #if defined(X_HAVE_UTF8_STRING) && defined(FEAT_MBYTE)
+! # if X_HAVE_UTF8_STRING
+  #  define USE_UTF8_STRING
+  # endif
+  #endif
+--- 1960,1971 ----
+      return retval;
+  }
+  
+! /* Xutf8 functions are not avaialble on older systems. Note that on some
+!  * systems X_HAVE_UTF8_STRING may be defined in a header file but
+!  * Xutf8SetWMProperties() is not in the X11 library.  Configure checks for
+!  * that and defines HAVE_XUTF8SETWMPROPERTIES. */
+  #if defined(X_HAVE_UTF8_STRING) && defined(FEAT_MBYTE)
+! # if X_HAVE_UTF8_STRING && HAVE_XUTF8SETWMPROPERTIES
+  #  define USE_UTF8_STRING
+  # endif
+  #endif
+*** ../vim-7.4.474/src/version.c	2014-10-11 12:48:22.541259950 +0200
+--- src/version.c	2014-10-11 14:42:47.821274946 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     475,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+253. You wait for a slow loading web page before going to the toilet.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

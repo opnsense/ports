@@ -1,0 +1,144 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.467
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.467
+Problem:    'linebreak' does not work well together with Visual mode.
+Solution:   Disable 'linebreak' while applying an operator.  Fix the test.
+	    (Christian Brabandt)
+Files:	    src/normal.c, src/screen.c, src/testdir/test_listlbr.in,
+	    src/testdir/test_listlbr.ok
+
+
+*** ../vim-7.4.466/src/normal.c	2014-08-30 13:32:03.406623315 +0200
+--- src/normal.c	2014-10-09 13:17:59.264886376 +0200
+***************
+*** 1380,1385 ****
+--- 1380,1391 ----
+      pos_T	old_cursor;
+      int		empty_region_error;
+      int		restart_edit_save;
++ #ifdef FEAT_LINEBREAK
++     int		lbr_saved = curwin->w_p_lbr;
++ 
++     curwin->w_p_lbr = FALSE;	/* avoid a problem with unwanted linebreaks in
++ 				 * block mode */
++ #endif
+  
+      /* The visual area is remembered for redo */
+      static int	    redo_VIsual_mode = NUL; /* 'v', 'V', or Ctrl-V */
+***************
+*** 2136,2141 ****
+--- 2142,2150 ----
+  	oap->block_mode = FALSE;
+  	clearop(oap);
+      }
++ #ifdef FEAT_LINEBREAK
++     curwin->w_p_lbr = lbr_saved;
++ #endif
+  }
+  
+  /*
+*** ../vim-7.4.466/src/screen.c	2014-08-29 12:08:39.686423658 +0200
+--- src/screen.c	2014-10-09 13:18:52.868886493 +0200
+***************
+*** 1584,1592 ****
+  	     */
+  	    if (VIsual_mode == Ctrl_V)
+  	    {
+! 		colnr_T	fromc, toc;
+  
+  		getvcols(wp, &VIsual, &curwin->w_cursor, &fromc, &toc);
+  		++toc;
+  		if (curwin->w_curswant == MAXCOL)
+  		    toc = MAXCOL;
+--- 1584,1600 ----
+  	     */
+  	    if (VIsual_mode == Ctrl_V)
+  	    {
+! 		colnr_T	    fromc, toc;
+! #if defined(FEAT_VIRTUALEDIT) && defined(FEAT_LINEBREAK)
+! 		int	    save_ve_flags = ve_flags;
+  
++ 		if (curwin->w_p_lbr)
++ 		    ve_flags = VE_ALL;
++ #endif
+  		getvcols(wp, &VIsual, &curwin->w_cursor, &fromc, &toc);
++ #if defined(FEAT_VIRTUALEDIT) && defined(FEAT_LINEBREAK)
++ 		ve_flags = save_ve_flags;
++ #endif
+  		++toc;
+  		if (curwin->w_curswant == MAXCOL)
+  		    toc = MAXCOL;
+*** ../vim-7.4.466/src/testdir/test_listlbr.in	2014-08-30 18:10:15.106659776 +0200
+--- src/testdir/test_listlbr.in	2014-10-09 13:16:33.072886187 +0200
+***************
+*** 2,8 ****
+  
+  STARTTEST
+  :so small.vim
+! :if !exists("+linebreak") || !exists("+conceal") | e! test.ok | w! test.out | qa! | endif
+  :10new|:vsp|:vert resize 20
+  :put =\"\tabcdef hijklmn\tpqrstuvwxyz_1060ABCDEFGHIJKLMNOP \"
+  :norm! zt
+--- 2,8 ----
+  
+  STARTTEST
+  :so small.vim
+! :if !exists("+linebreak") || !has("conceal") | e! test.ok | w! test.out | qa! | endif
+  :10new|:vsp|:vert resize 20
+  :put =\"\tabcdef hijklmn\tpqrstuvwxyz_1060ABCDEFGHIJKLMNOP \"
+  :norm! zt
+***************
+*** 56,61 ****
+--- 56,69 ----
+  :syn match All /.*/ contains=ConcealVar
+  :let line=ScreenChar(winwidth(0))
+  :call DoRecordScreen()
++ :set cpo&vim linebreak
++ :let g:test ="Test 6: set linebreak with visual block mode"
++ :let line="REMOVE: this not"
++ :$put =line
++ :let line="REMOVE: aaaaaaaaaaaaa"
++ :$put =line
++ :1/^REMOVE:
++ 0jf x:$put
+  :%w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.466/src/testdir/test_listlbr.ok	2014-08-29 12:08:39.686423658 +0200
+--- src/testdir/test_listlbr.ok	2014-10-09 13:16:33.072886187 +0200
+***************
+*** 32,34 ****
+--- 32,38 ----
+  ~                   
+  ~                   
+  ~                   
++ this not
++ aaaaaaaaaaaaa
++ REMOVE: 
++ REMOVE: 
+*** ../vim-7.4.466/src/version.c	2014-10-09 10:44:33.196866267 +0200
+--- src/version.c	2014-10-09 13:16:44.976886213 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     467,
+  /**/
+
+-- 
+"Marriage is a wonderful institution...
+but who wants to live in an institution?"
+ - Groucho Marx
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.498
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.498 (after 7.4.497)
+Problem:    Typo in DOS makefile.
+Solution:   Change exists to exist. (Ken Takata)
+Files:	    src/testdir/Make_dos.mak
+
+
+*** ../vim-7.4.497/src/testdir/Make_dos.mak	2014-11-05 14:26:30.764758363 +0100
+--- src/testdir/Make_dos.mak	2014-11-05 15:44:09.476646105 +0100
+***************
+*** 87,93 ****
+  	-if exist Xfind rd /s /q Xfind
+  	-if exist viminfo del viminfo
+  	-del test.log
+! 	-if exists benchmark.out del benchmark.out
+  
+  .in.out:
+  	-if exist $*.failed del $*.failed
+--- 87,93 ----
+  	-if exist Xfind rd /s /q Xfind
+  	-if exist viminfo del viminfo
+  	-del test.log
+! 	-if exist benchmark.out del benchmark.out
+  
+  .in.out:
+  	-if exist $*.failed del $*.failed
+*** ../vim-7.4.497/src/version.c	2014-11-05 14:26:30.768758363 +0100
+--- src/version.c	2014-11-05 15:44:54.832645012 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     498,
+  /**/
+
+-- 
+BLACK KNIGHT:  I move for no man.
+ARTHUR:        So be it!
+    [hah] [parry thrust]
+    [ARTHUR chops the BLACK KNIGHT's left arm off]
+ARTHUR:        Now stand aside, worthy adversary.
+BLACK KNIGHT:  'Tis but a scratch.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

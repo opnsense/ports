@@ -1,0 +1,291 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.396
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.396
+Problem:    When 'clipboard' is "unnamed", :g/pat/d is very slow. (Praful)
+Solution:   Only set the clipboard after the last delete. (Christian Brabandt)
+Files:	    src/ex_cmds.c, src/ex_cmds2.c, src/ex_docmd.c, src/globals.h,
+	    src/ops.c, src/proto/ui.pro, src/ui.c
+
+
+*** ../vim-7.4.395/src/ex_cmds.c	2014-07-09 21:17:59.755550204 +0200
+--- src/ex_cmds.c	2014-08-06 18:06:37.931152276 +0200
+***************
+*** 5514,5520 ****
+--- 5514,5528 ----
+  	    smsg((char_u *)_("Pattern not found: %s"), pat);
+      }
+      else
++     {
++ #ifdef FEAT_CLIPBOARD
++ 	start_global_changes();
++ #endif
+  	global_exe(cmd);
++ #ifdef FEAT_CLIPBOARD
++ 	end_global_changes();
++ #endif
++     }
+  
+      ml_clearmarked();	   /* clear rest of the marks */
+      vim_regfree(regmatch.regprog);
+*** ../vim-7.4.395/src/ex_cmds2.c	2014-04-05 19:44:36.903160723 +0200
+--- src/ex_cmds2.c	2014-08-06 18:05:07.563152926 +0200
+***************
+*** 2464,2469 ****
+--- 2464,2472 ----
+  	 * great speed improvement. */
+  	save_ei = au_event_disable(",Syntax");
+  #endif
++ #ifdef FEAT_CLIPBOARD
++     start_global_changes();
++ #endif
+  
+      if (eap->cmdidx == CMD_windo
+  	    || eap->cmdidx == CMD_tabdo
+***************
+*** 2591,2596 ****
+--- 2594,2602 ----
+  					       curbuf->b_fname, TRUE, curbuf);
+      }
+  #endif
++ #ifdef FEAT_CLIPBOARD
++     end_global_changes();
++ #endif
+  }
+  
+  /*
+***************
+*** 2750,2757 ****
+   * used.
+   * Returns OK when at least one match found, FAIL otherwise.
+   *
+!  * If "name" is NULL calls callback for each entry in runtimepath. Cookie is 
+!  * passed by reference in this case, setting it to NULL indicates that callback 
+   * has done its job.
+   */
+      int
+--- 2756,2763 ----
+   * used.
+   * Returns OK when at least one match found, FAIL otherwise.
+   *
+!  * If "name" is NULL calls callback for each entry in runtimepath. Cookie is
+!  * passed by reference in this case, setting it to NULL indicates that callback
+   * has done its job.
+   */
+      int
+*** ../vim-7.4.395/src/ex_docmd.c	2014-06-17 17:48:21.780628008 +0200
+--- src/ex_docmd.c	2014-08-06 18:05:07.563152926 +0200
+***************
+*** 11534,11539 ****
+--- 11534,11543 ----
+  {
+      linenr_T	lnum;
+  
++ #ifdef FEAT_CLIPBOARD
++     start_global_changes();
++ #endif
++ 
+      /* First set the marks for all lines closed/open. */
+      for (lnum = eap->line1; lnum <= eap->line2; ++lnum)
+  	if (hasFolding(lnum, NULL, NULL) == (eap->cmdidx == CMD_folddoclosed))
+***************
+*** 11542,11546 ****
+--- 11546,11553 ----
+      /* Execute the command on the marked lines. */
+      global_exe(eap->arg);
+      ml_clearmarked();	   /* clear rest of the marks */
++ #ifdef FEAT_CLIPBOARD
++     end_global_changes();
++ #endif
+  }
+  #endif
+*** ../vim-7.4.395/src/globals.h	2014-07-30 17:21:53.815518506 +0200
+--- src/globals.h	2014-08-06 18:05:07.563152926 +0200
+***************
+*** 533,538 ****
+--- 533,540 ----
+  EXTERN int	clip_autoselectml INIT(= FALSE);
+  EXTERN int	clip_html INIT(= FALSE);
+  EXTERN regprog_T *clip_exclude_prog INIT(= NULL);
++ EXTERN int	clip_did_set_selection INIT(= TRUE);
++ EXTERN int	clip_unnamed_saved INIT(= 0);
+  #endif
+  
+  /*
+*** ../vim-7.4.395/src/ops.c	2014-06-25 14:39:35.106348584 +0200
+--- src/ops.c	2014-08-06 18:05:07.563152926 +0200
+***************
+*** 1597,1605 ****
+  {
+      /* If no reg. specified, and "unnamed" or "unnamedplus" is in 'clipboard',
+       * use '*' or '+' reg, respectively. "unnamedplus" prevails. */
+!     if (*rp == 0 && clip_unnamed != 0)
+! 	*rp = ((clip_unnamed & CLIP_UNNAMED_PLUS) && clip_plus.available)
+  								  ? '+' : '*';
+      if (!clip_star.available && *rp == '*')
+  	*rp = 0;
+      if (!clip_plus.available && *rp == '+')
+--- 1597,1611 ----
+  {
+      /* If no reg. specified, and "unnamed" or "unnamedplus" is in 'clipboard',
+       * use '*' or '+' reg, respectively. "unnamedplus" prevails. */
+!     if (*rp == 0 && (clip_unnamed != 0 || clip_unnamed_saved != 0))
+!     {
+! 	if (clip_unnamed != 0)
+! 	    *rp = ((clip_unnamed & CLIP_UNNAMED_PLUS) && clip_plus.available)
+! 								  ? '+' : '*';
+! 	else
+! 	    *rp = ((clip_unnamed_saved & CLIP_UNNAMED_PLUS) && clip_plus.available)
+  								  ? '+' : '*';
++     }
+      if (!clip_star.available && *rp == '*')
+  	*rp = 0;
+      if (!clip_plus.available && *rp == '+')
+***************
+*** 3203,3209 ****
+      if (clip_star.available
+  	    && (curr == &(y_regs[STAR_REGISTER])
+  		|| (!deleting && oap->regname == 0
+! 					   && (clip_unnamed & CLIP_UNNAMED))))
+      {
+  	if (curr != &(y_regs[STAR_REGISTER]))
+  	    /* Copy the text from register 0 to the clipboard register. */
+--- 3209,3215 ----
+      if (clip_star.available
+  	    && (curr == &(y_regs[STAR_REGISTER])
+  		|| (!deleting && oap->regname == 0
+! 		   && ((clip_unnamed | clip_unnamed_saved) & CLIP_UNNAMED))))
+      {
+  	if (curr != &(y_regs[STAR_REGISTER]))
+  	    /* Copy the text from register 0 to the clipboard register. */
+***************
+*** 3224,3230 ****
+      if (clip_plus.available
+  	    && (curr == &(y_regs[PLUS_REGISTER])
+  		|| (!deleting && oap->regname == 0
+! 				      && (clip_unnamed & CLIP_UNNAMED_PLUS))))
+      {
+  	if (curr != &(y_regs[PLUS_REGISTER]))
+  	    /* Copy the text from register 0 to the clipboard register. */
+--- 3230,3237 ----
+      if (clip_plus.available
+  	    && (curr == &(y_regs[PLUS_REGISTER])
+  		|| (!deleting && oap->regname == 0
+! 		  && ((clip_unnamed | clip_unnamed_saved) &
+! 		      CLIP_UNNAMED_PLUS))))
+      {
+  	if (curr != &(y_regs[PLUS_REGISTER]))
+  	    /* Copy the text from register 0 to the clipboard register. */
+*** ../vim-7.4.395/src/proto/ui.pro	2013-08-10 13:37:29.000000000 +0200
+--- src/proto/ui.pro	2014-08-06 18:05:07.563152926 +0200
+***************
+*** 14,19 ****
+--- 14,21 ----
+  void clip_update_selection __ARGS((VimClipboard *clip));
+  void clip_own_selection __ARGS((VimClipboard *cbd));
+  void clip_lose_selection __ARGS((VimClipboard *cbd));
++ void start_global_changes __ARGS((void));
++ void end_global_changes __ARGS((void));
+  void clip_auto_select __ARGS((void));
+  int clip_isautosel_star __ARGS((void));
+  int clip_isautosel_plus __ARGS((void));
+*** ../vim-7.4.395/src/ui.c	2014-06-25 14:39:35.114348584 +0200
+--- src/ui.c	2014-08-06 18:13:13.475149434 +0200
+***************
+*** 558,563 ****
+--- 558,608 ----
+  }
+  
+  /*
++  * Save and restore clip_unnamed before doing possibly many changes. This
++  * prevents accessing the clipboard very often which might slow down Vim
++  * considerably.
++  */
++ 
++ /*
++  * Save clip_unnamed and reset it.
++  */
++     void
++ start_global_changes()
++ {
++     clip_unnamed_saved = clip_unnamed;
++ 
++     if (clip_did_set_selection)
++     {
++ 	clip_unnamed = FALSE;
++ 	clip_did_set_selection = FALSE;
++     }
++ }
++ 
++ /*
++  * Restore clip_unnamed and set the selection when needed.
++  */
++     void
++ end_global_changes()
++ {
++     if (!clip_did_set_selection)
++     {
++ 	clip_did_set_selection = TRUE;
++ 	clip_unnamed = clip_unnamed_saved;
++ 	if (clip_unnamed & CLIP_UNNAMED)
++ 	{
++ 	    clip_own_selection(&clip_star);
++ 	    clip_gen_set_selection(&clip_star);
++ 	}
++ 	if (clip_unnamed & CLIP_UNNAMED_PLUS)
++ 	{
++ 	    clip_own_selection(&clip_plus);
++ 	    clip_gen_set_selection(&clip_plus);
++ 	}
++     }
++     clip_unnamed_saved = FALSE;
++ }
++ 
++ /*
+   * Called when Visual mode is ended: update the selection.
+   */
+      void
+***************
+*** 1428,1433 ****
+--- 1473,1487 ----
+  clip_gen_set_selection(cbd)
+      VimClipboard	*cbd;
+  {
++     if (!clip_did_set_selection)
++     {
++ 	/* Updating postponed, so that accessing the system clipboard won't
++ 	 * hang Vim when accessing it many times (e.g. on a :g comand). */
++ 	if (cbd == &clip_plus && (clip_unnamed_saved & CLIP_UNNAMED_PLUS))
++ 	    return;
++ 	else if (cbd == &clip_star && (clip_unnamed_saved & CLIP_UNNAMED))
++ 	    return;
++     }
+  #ifdef FEAT_XCLIPBOARD
+  # ifdef FEAT_GUI
+      if (gui.in_use)
+*** ../vim-7.4.395/src/version.c	2014-08-06 17:44:09.867161966 +0200
+--- src/version.c	2014-08-06 18:04:47.359153071 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     396,
+  /**/
+
+-- 
+You have heard the saying that if you put a thousand monkeys in a room with a
+thousand typewriters and waited long enough, eventually you would have a room
+full of dead monkeys.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

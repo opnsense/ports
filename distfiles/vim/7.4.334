@@ -1,0 +1,112 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.334
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.334 (after 7.4.330)
+Problem:    Unitialized variables, causing some problems.
+Solution:   Initialize the variables. (Dominique Pelle)
+Files:	    src/screen.c, src/window.c
+
+
+*** ../vim-7.4.333/src/screen.c	2014-06-17 23:17:56.489376113 +0200
+--- src/screen.c	2014-06-18 21:16:23.560368846 +0200
+***************
+*** 7363,7369 ****
+      match_T	    *shl;	/* points to search_hl or a match */
+      linenr_T	    lnum;
+      colnr_T	    mincol;	/* minimal column for a match */
+!     matchitem_T	    *cur;	/* to retrieve match postions if any */
+  {
+      linenr_T	l;
+      colnr_T	matchcol;
+--- 7363,7369 ----
+      match_T	    *shl;	/* points to search_hl or a match */
+      linenr_T	    lnum;
+      colnr_T	    mincol;	/* minimal column for a match */
+!     matchitem_T	    *cur;	/* to retrieve match positions if any */
+  {
+      linenr_T	l;
+      colnr_T	matchcol;
+***************
+*** 7458,7466 ****
+  	    }
+  	}
+  	else if (cur != NULL)
+- 	{
+  	    nmatched = next_search_hl_pos(shl, lnum, &(cur->pos), matchcol);
+! 	}
+  	if (nmatched == 0)
+  	{
+  	    shl->lnum = 0;		/* no match found */
+--- 7458,7466 ----
+  	    }
+  	}
+  	else if (cur != NULL)
+  	    nmatched = next_search_hl_pos(shl, lnum, &(cur->pos), matchcol);
+! 	else
+! 	    nmatched = 0;
+  	if (nmatched == 0)
+  	{
+  	    shl->lnum = 0;		/* no match found */
+*** ../vim-7.4.333/src/window.c	2014-06-17 17:48:21.784628008 +0200
+--- src/window.c	2014-06-18 21:12:15.232359452 +0200
+***************
+*** 6809,6815 ****
+      }
+  
+      /* Build new match. */
+!     m = (matchitem_T *)alloc(sizeof(matchitem_T));
+      m->id = id;
+      m->priority = prio;
+      m->pattern = pat == NULL ? NULL : vim_strsave(pat);
+--- 6809,6815 ----
+      }
+  
+      /* Build new match. */
+!     m = (matchitem_T *)alloc_clear(sizeof(matchitem_T));
+      m->id = id;
+      m->priority = prio;
+      m->pattern = pat == NULL ? NULL : vim_strsave(pat);
+***************
+*** 6835,6841 ****
+  	    int		len = 1;
+  	    list_T	*subl;
+  	    listitem_T	*subli;
+! 	    int		error;
+  
+  	    if (li == NULL)
+  	    {
+--- 6835,6841 ----
+  	    int		len = 1;
+  	    list_T	*subl;
+  	    listitem_T	*subli;
+! 	    int		error = FALSE;
+  
+  	    if (li == NULL)
+  	    {
+*** ../vim-7.4.333/src/version.c	2014-06-17 23:17:56.493376113 +0200
+--- src/version.c	2014-06-18 21:14:16.516364040 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     334,
+  /**/
+
+-- 
+You were lucky. We lived for three months in a brown paper bag in a 
+septic tank. We used to have to get up at six o'clock in the morning, 
+clean the bag, eat a crust of stale bread, go to work down mill for 
+fourteen hours a day week in-week out. When we got home, our Dad
+would thrash us to sleep with his belt!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.578
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.578
+Problem:    Using getcurpos() after "$" in an empty line returns a negative
+	    number.
+Solution:   Don't add one when this would overflow. (Hirohito Higashi)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.577/src/eval.c	2015-01-14 17:14:57.351424263 +0100
+--- src/eval.c	2015-01-14 18:55:46.945664363 +0100
+***************
+*** 11941,11947 ****
+  #endif
+  							      (varnumber_T)0);
+  	if (getcurpos)
+! 	    list_append_number(l, (varnumber_T)curwin->w_curswant + 1);
+      }
+      else
+  	rettv->vval.v_number = FALSE;
+--- 11941,11948 ----
+  #endif
+  							      (varnumber_T)0);
+  	if (getcurpos)
+! 	    list_append_number(l, curwin->w_curswant == MAXCOL ?
+! 		    (varnumber_T)MAXCOL : (varnumber_T)curwin->w_curswant + 1);
+      }
+      else
+  	rettv->vval.v_number = FALSE;
+*** ../vim-7.4.577/src/version.c	2015-01-14 18:40:23.087769463 +0100
+--- src/version.c	2015-01-14 18:54:47.734312885 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     578,
+  /**/
+
+-- 
+From "know your smileys":
+ ~#:-(	I just washed my hair, and I can't do nuthin' with it.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

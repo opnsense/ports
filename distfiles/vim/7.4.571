@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.571
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.571 (after 7.4.569)
+Problem:    Can't build with tiny features. (Ike Devolder)
+Solution:   Add #ifdef.
+Files:	    src/getchar.c
+
+
+*** ../vim-7.4.570/src/getchar.c	2015-01-14 12:44:38.403422124 +0100
+--- src/getchar.c	2015-01-14 14:06:14.457992406 +0100
+***************
+*** 3710,3718 ****
+--- 3710,3720 ----
+  	else if (*keys == Ctrl_C)
+  	{
+  	    /* If CTRL-C has been unmapped, reuse it for Interrupting. */
++ #ifdef FEAT_LOCALMAP
+  	    if (map_table == curbuf->b_maphash)
+  		curbuf->b_mapped_ctrl_c &= ~mode;
+  	    else
++ #endif
+  		mapped_ctrl_c &= ~mode;
+  	}
+  	goto theend;
+***************
+*** 3750,3758 ****
+--- 3752,3762 ----
+      /* If CTRL-C has been mapped, don't always use it for Interrupting. */
+      if (*keys == Ctrl_C)
+      {
++ #ifdef FEAT_LOCALMAP
+  	if (map_table == curbuf->b_maphash)
+  	    curbuf->b_mapped_ctrl_c |= mode;
+  	else
++ #endif
+  	    mapped_ctrl_c |= mode;
+      }
+  
+*** ../vim-7.4.570/src/version.c	2015-01-14 14:04:05.511397639 +0100
+--- src/version.c	2015-01-14 14:07:02.889464623 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     571,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+91. It's Saturday afternoon in the middle of May and you
+    are on computer.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

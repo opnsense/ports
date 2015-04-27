@@ -1,0 +1,87 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.492
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.492
+Problem:    In Insert mode, after inserting a newline that inserts a comment
+	    leader, CTRL-O moves to the right. (ZyX) Issue 57.
+Solution:   Correct the condition for moving the cursor back to the NUL.
+	    (Christian Brabandt)
+Files:	    src/edit.c, src/testdir/test4.in, src/testdir/test4.ok
+
+
+*** ../vim-7.4.491/src/edit.c	2014-09-09 18:29:24.328549561 +0200
+--- src/edit.c	2014-10-31 19:10:47.474756984 +0100
+***************
+*** 6916,6923 ****
+  	    }
+  	    if (curwin->w_cursor.lnum != tpos.lnum)
+  		curwin->w_cursor = tpos;
+! 	    else if (cc != NUL)
+! 		++curwin->w_cursor.col;	/* put cursor back on the NUL */
+  
+  	    /* <C-S-Right> may have started Visual mode, adjust the position for
+  	     * deleted characters. */
+--- 6916,6927 ----
+  	    }
+  	    if (curwin->w_cursor.lnum != tpos.lnum)
+  		curwin->w_cursor = tpos;
+! 	    else
+! 	    {
+! 		tpos.col++;
+! 		if (cc != NUL && gchar_pos(&tpos) == NUL)
+! 		    ++curwin->w_cursor.col;	/* put cursor back on the NUL */
+! 	    }
+  
+  	    /* <C-S-Right> may have started Visual mode, adjust the position for
+  	     * deleted characters. */
+*** ../vim-7.4.491/src/testdir/test4.in	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test4.in	2014-10-31 19:10:21.846757602 +0100
+***************
+*** 17,22 ****
+--- 17,25 ----
+  G?this is a
+  othis should be in column 1:wq " append text without autoindent to Xxx
+  G:r Xxx             " include Xxx in the current file
++ :set fo+=r          " issue #57 do not move cursor on <c-o> when autoindent is set
++ Go# abcdef2hi
++ d0o# abcdef2hid0
+  :?startstart?,$w! test.out
+  :qa!
+  ENDTEST
+*** ../vim-7.4.491/src/testdir/test4.ok	2010-05-15 13:04:10.000000000 +0200
+--- src/testdir/test4.ok	2014-10-31 19:10:21.846757602 +0100
+***************
+*** 15,17 ****
+--- 15,20 ----
+  	this is a test
+  this should be in column 1
+  end of test file Xxx
++ # abc
++ def
++ def
+*** ../vim-7.4.491/src/version.c	2014-10-31 15:45:49.175053328 +0100
+--- src/version.c	2014-10-31 19:13:31.230753038 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     492,
+  /**/
+
+-- 
+DEAD PERSON:  I'm getting better!
+CUSTOMER:     No, you're not -- you'll be stone dead in a moment.
+MORTICIAN:    Oh, I can't take him like that -- it's against regulations.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,63 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.435
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.435
+Problem:    Line formatting behaves differently when 'linebreak' is set.
+	    (mvxxc)
+Solution:   Disable 'linebreak' temporarily. (Christian Brabandt)
+Files:	    src/edit.c
+
+
+*** ../vim-7.4.434/src/edit.c	2014-08-16 18:13:00.082044726 +0200
+--- src/edit.c	2014-09-09 16:21:08.556532751 +0200
+***************
+*** 6131,6136 ****
+--- 6131,6142 ----
+      int		no_leader = FALSE;
+      int		do_comments = (flags & INSCHAR_DO_COM);
+  #endif
++ #ifdef FEAT_LINEBREAK
++     int		has_lbr = curwin->w_p_lbr;
++ 
++     /* make sure win_lbr_chartabsize() counts correctly */
++     curwin->w_p_lbr = FALSE;
++ #endif
+  
+      /*
+       * When 'ai' is off we don't want a space under the cursor to be
+***************
+*** 6483,6488 ****
+--- 6489,6497 ----
+      if (save_char != NUL)		/* put back space after cursor */
+  	pchar_cursor(save_char);
+  
++ #ifdef FEAT_LINEBREAK
++     curwin->w_p_lbr = has_lbr;
++ #endif
+      if (!format_only && haveto_redraw)
+      {
+  	update_topline();
+*** ../vim-7.4.434/src/version.c	2014-09-09 16:13:05.040531695 +0200
+--- src/version.c	2014-09-09 16:19:57.272532595 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     435,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+109. You actually read -- and enjoy -- lists like this.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

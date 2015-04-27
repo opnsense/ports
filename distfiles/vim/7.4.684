@@ -1,0 +1,395 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.684
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.684
+Problem:    When starting several Vim instances in diff mode, the temp files
+	    used may not be unique. (Issue 353)
+Solution:   Add an argument to vim_tempname() to keep the file.
+Files:	    src/diff.c, src/eval.c, src/ex_cmds.c, src/fileio.c,
+	    src/hardcopy.c, src/proto/fileio.pro, src/if_cscope.c,
+	    src/memline.c, src/misc1.c, src/os_unix.c, src/quickfix.c,
+	    src/spell.c
+
+
+*** ../vim-7.4.683/src/diff.c	2014-10-31 13:54:21.843214469 +0100
+--- src/diff.c	2015-03-31 12:55:35.813986431 +0200
+***************
+*** 688,696 ****
+  	return;
+  
+      /* We need three temp file names. */
+!     tmp_orig = vim_tempname('o');
+!     tmp_new = vim_tempname('n');
+!     tmp_diff = vim_tempname('d');
+      if (tmp_orig == NULL || tmp_new == NULL || tmp_diff == NULL)
+  	goto theend;
+  
+--- 688,696 ----
+  	return;
+  
+      /* We need three temp file names. */
+!     tmp_orig = vim_tempname('o', TRUE);
+!     tmp_new = vim_tempname('n', TRUE);
+!     tmp_diff = vim_tempname('d', TRUE);
+      if (tmp_orig == NULL || tmp_new == NULL || tmp_diff == NULL)
+  	goto theend;
+  
+***************
+*** 920,927 ****
+  #endif
+  
+      /* We need two temp file names. */
+!     tmp_orig = vim_tempname('o');
+!     tmp_new = vim_tempname('n');
+      if (tmp_orig == NULL || tmp_new == NULL)
+  	goto theend;
+  
+--- 920,927 ----
+  #endif
+  
+      /* We need two temp file names. */
+!     tmp_orig = vim_tempname('o', FALSE);
+!     tmp_new = vim_tempname('n', FALSE);
+      if (tmp_orig == NULL || tmp_new == NULL)
+  	goto theend;
+  
+*** ../vim-7.4.683/src/eval.c	2015-03-21 17:32:14.062779961 +0100
+--- src/eval.c	2015-03-31 12:56:35.321337734 +0200
+***************
+*** 18775,18781 ****
+  	 * Write the string to a temp file, to be used for input of the shell
+  	 * command.
+  	 */
+! 	if ((infile = vim_tempname('i')) == NULL)
+  	{
+  	    EMSG(_(e_notmp));
+  	    goto errret;
+--- 18775,18781 ----
+  	 * Write the string to a temp file, to be used for input of the shell
+  	 * command.
+  	 */
+! 	if ((infile = vim_tempname('i', TRUE)) == NULL)
+  	{
+  	    EMSG(_(e_notmp));
+  	    goto errret;
+***************
+*** 19134,19140 ****
+      static int	x = 'A';
+  
+      rettv->v_type = VAR_STRING;
+!     rettv->vval.v_string = vim_tempname(x);
+  
+      /* Advance 'x' to use A-Z and 0-9, so that there are at least 34 different
+       * names.  Skip 'I' and 'O', they are used for shell redirection. */
+--- 19134,19140 ----
+      static int	x = 'A';
+  
+      rettv->v_type = VAR_STRING;
+!     rettv->vval.v_string = vim_tempname(x, FALSE);
+  
+      /* Advance 'x' to use A-Z and 0-9, so that there are at least 34 different
+       * names.  Skip 'I' and 'O', they are used for shell redirection. */
+*** ../vim-7.4.683/src/ex_cmds.c	2015-03-24 11:46:21.712636141 +0100
+--- src/ex_cmds.c	2015-03-31 12:58:51.563852429 +0200
+***************
+*** 1158,1165 ****
+      }
+      else
+  #endif
+! 	if ((do_in && (itmp = vim_tempname('i')) == NULL)
+! 		|| (do_out && (otmp = vim_tempname('o')) == NULL))
+  	{
+  	    EMSG(_(e_notmp));
+  	    goto filterend;
+--- 1158,1165 ----
+      }
+      else
+  #endif
+! 	if ((do_in && (itmp = vim_tempname('i', FALSE)) == NULL)
+! 		|| (do_out && (otmp = vim_tempname('o', FALSE)) == NULL))
+  	{
+  	    EMSG(_(e_notmp));
+  	    goto filterend;
+***************
+*** 1963,1969 ****
+  	    if (fp_out == NULL)
+  	    {
+  		vim_free(tempname);
+! 		if ((tempname = vim_tempname('o')) != NULL)
+  		    fp_out = mch_fopen((char *)tempname, WRITEBIN);
+  	    }
+  
+--- 1963,1969 ----
+  	    if (fp_out == NULL)
+  	    {
+  		vim_free(tempname);
+! 		if ((tempname = vim_tempname('o', TRUE)) != NULL)
+  		    fp_out = mch_fopen((char *)tempname, WRITEBIN);
+  	    }
+  
+*** ../vim-7.4.683/src/fileio.c	2015-02-27 17:48:05.549308509 +0100
+--- src/fileio.c	2015-03-31 13:08:46.549366825 +0200
+***************
+*** 2872,2878 ****
+      char_u	*tmpname;
+      char_u	*errmsg = NULL;
+  
+!     tmpname = vim_tempname('r');
+      if (tmpname == NULL)
+  	errmsg = (char_u *)_("Can't find temp file for conversion");
+      else
+--- 2872,2878 ----
+      char_u	*tmpname;
+      char_u	*errmsg = NULL;
+  
+!     tmpname = vim_tempname('r', FALSE);
+      if (tmpname == NULL)
+  	errmsg = (char_u *)_("Can't find temp file for conversion");
+      else
+***************
+*** 4288,4294 ****
+  	     */
+  	    if (*p_ccv != NUL)
+  	    {
+! 		wfname = vim_tempname('w');
+  		if (wfname == NULL)	/* Can't write without a tempfile! */
+  		{
+  		    errmsg = (char_u *)_("E214: Can't find temp file for writing");
+--- 4288,4294 ----
+  	     */
+  	    if (*p_ccv != NUL)
+  	    {
+! 		wfname = vim_tempname('w', FALSE);
+  		if (wfname == NULL)	/* Can't write without a tempfile! */
+  		{
+  		    errmsg = (char_u *)_("E214: Can't find temp file for writing");
+***************
+*** 7344,7357 ****
+  /*
+   * vim_tempname(): Return a unique name that can be used for a temp file.
+   *
+!  * The temp file is NOT created.
+   *
+   * The returned pointer is to allocated memory.
+   * The returned pointer is NULL if no valid name was found.
+   */
+      char_u  *
+! vim_tempname(extra_char)
+      int	    extra_char UNUSED;  /* char to use in the name instead of '?' */
+  {
+  #ifdef USE_TMPNAM
+      char_u	itmp[L_tmpnam];	/* use tmpnam() */
+--- 7344,7359 ----
+  /*
+   * vim_tempname(): Return a unique name that can be used for a temp file.
+   *
+!  * The temp file is NOT garanteed to be created.  If "keep" is FALSE it is
+!  * garanteed to NOT be created.
+   *
+   * The returned pointer is to allocated memory.
+   * The returned pointer is NULL if no valid name was found.
+   */
+      char_u  *
+! vim_tempname(extra_char, keep)
+      int	    extra_char UNUSED;  /* char to use in the name instead of '?' */
++     int	    keep UNUSED;
+  {
+  #ifdef USE_TMPNAM
+      char_u	itmp[L_tmpnam];	/* use tmpnam() */
+***************
+*** 7487,7494 ****
+      buf4[2] = extra_char;   /* make it "VIa", "VIb", etc. */
+      if (GetTempFileName(szTempFile, buf4, 0, itmp) == 0)
+  	return NULL;
+!     /* GetTempFileName() will create the file, we don't want that */
+!     (void)DeleteFile(itmp);
+  
+      /* Backslashes in a temp file name cause problems when filtering with
+       * "sh".  NOTE: This also checks 'shellcmdflag' to help those people who
+--- 7489,7497 ----
+      buf4[2] = extra_char;   /* make it "VIa", "VIb", etc. */
+      if (GetTempFileName(szTempFile, buf4, 0, itmp) == 0)
+  	return NULL;
+!     if (!keep)
+! 	/* GetTempFileName() will create the file, we don't want that */
+! 	(void)DeleteFile(itmp);
+  
+      /* Backslashes in a temp file name cause problems when filtering with
+       * "sh".  NOTE: This also checks 'shellcmdflag' to help those people who
+*** ../vim-7.4.683/src/hardcopy.c	2014-11-27 17:37:53.524909964 +0100
+--- src/hardcopy.c	2015-03-31 13:09:06.897145085 +0200
+***************
+*** 2751,2757 ****
+      /* If the user didn't specify a file name, use a temp file. */
+      if (psettings->outfile == NULL)
+      {
+! 	prt_ps_file_name = vim_tempname('p');
+  	if (prt_ps_file_name == NULL)
+  	{
+  	    EMSG(_(e_notmp));
+--- 2751,2757 ----
+      /* If the user didn't specify a file name, use a temp file. */
+      if (psettings->outfile == NULL)
+      {
+! 	prt_ps_file_name = vim_tempname('p', TRUE);
+  	if (prt_ps_file_name == NULL)
+  	{
+  	    EMSG(_(e_notmp));
+*** ../vim-7.4.683/src/proto/fileio.pro	2014-11-19 16:38:01.516679915 +0100
+--- src/proto/fileio.pro	2015-03-31 13:13:42.378143437 +0200
+***************
+*** 23,29 ****
+  void buf_store_time __ARGS((buf_T *buf, struct stat *st, char_u *fname));
+  void write_lnum_adjust __ARGS((linenr_T offset));
+  void vim_deltempdir __ARGS((void));
+! char_u *vim_tempname __ARGS((int extra_char));
+  void forward_slash __ARGS((char_u *fname));
+  void aubuflocal_remove __ARGS((buf_T *buf));
+  int au_has_group __ARGS((char_u *name));
+--- 23,29 ----
+  void buf_store_time __ARGS((buf_T *buf, struct stat *st, char_u *fname));
+  void write_lnum_adjust __ARGS((linenr_T offset));
+  void vim_deltempdir __ARGS((void));
+! char_u *vim_tempname __ARGS((int extra_char, int keep));
+  void forward_slash __ARGS((char_u *fname));
+  void aubuflocal_remove __ARGS((buf_T *buf));
+  int au_has_group __ARGS((char_u *name));
+*** ../vim-7.4.683/src/if_cscope.c	2015-02-10 18:33:53.232320026 +0100
+--- src/if_cscope.c	2015-03-31 13:09:44.576734484 +0200
+***************
+*** 1269,1275 ****
+      {
+  	/* fill error list */
+  	FILE	    *f;
+! 	char_u	    *tmp = vim_tempname('c');
+  	qf_info_T   *qi = NULL;
+  	win_T	    *wp = NULL;
+  
+--- 1269,1275 ----
+      {
+  	/* fill error list */
+  	FILE	    *f;
+! 	char_u	    *tmp = vim_tempname('c', TRUE);
+  	qf_info_T   *qi = NULL;
+  	win_T	    *wp = NULL;
+  
+*** ../vim-7.4.683/src/memline.c	2015-02-10 18:33:53.236319979 +0100
+--- src/memline.c	2015-03-31 13:10:20.340344766 +0200
+***************
+*** 757,763 ****
+      /* For a spell buffer use a temp file name. */
+      if (buf->b_spell)
+      {
+! 	fname = vim_tempname('s');
+  	if (fname != NULL)
+  	    (void)mf_open_file(mfp, fname);	/* consumes fname! */
+  	buf->b_may_swap = FALSE;
+--- 757,763 ----
+      /* For a spell buffer use a temp file name. */
+      if (buf->b_spell)
+      {
+! 	fname = vim_tempname('s', FALSE);
+  	if (fname != NULL)
+  	    (void)mf_open_file(mfp, fname);	/* consumes fname! */
+  	buf->b_may_swap = FALSE;
+*** ../vim-7.4.683/src/misc1.c	2015-03-21 17:32:14.058780006 +0100
+--- src/misc1.c	2015-03-31 13:10:34.772187548 +0200
+***************
+*** 11049,11055 ****
+  	return NULL;
+  
+      /* get a name for the temp file */
+!     if ((tempname = vim_tempname('o')) == NULL)
+      {
+  	EMSG(_(e_notmp));
+  	return NULL;
+--- 11049,11055 ----
+  	return NULL;
+  
+      /* get a name for the temp file */
+!     if ((tempname = vim_tempname('o', FALSE)) == NULL)
+      {
+  	EMSG(_(e_notmp));
+  	return NULL;
+*** ../vim-7.4.683/src/os_unix.c	2015-03-21 17:32:14.066779916 +0100
+--- src/os_unix.c	2015-03-31 13:10:46.744057076 +0200
+***************
+*** 5838,5844 ****
+      /*
+       * get a name for the temp file
+       */
+!     if ((tempname = vim_tempname('o')) == NULL)
+      {
+  	EMSG(_(e_notmp));
+  	return FAIL;
+--- 5838,5844 ----
+      /*
+       * get a name for the temp file
+       */
+!     if ((tempname = vim_tempname('o', FALSE)) == NULL)
+      {
+  	EMSG(_(e_notmp));
+  	return FAIL;
+*** ../vim-7.4.683/src/quickfix.c	2014-12-17 14:41:06.079437482 +0100
+--- src/quickfix.c	2015-03-31 13:11:03.095879127 +0200
+***************
+*** 2945,2951 ****
+  
+      if (*p_mef == NUL)
+      {
+! 	name = vim_tempname('e');
+  	if (name == NULL)
+  	    EMSG(_(e_notmp));
+  	return name;
+--- 2945,2951 ----
+  
+      if (*p_mef == NUL)
+      {
+! 	name = vim_tempname('e', FALSE);
+  	if (name == NULL)
+  	    EMSG(_(e_notmp));
+  	return name;
+*** ../vim-7.4.683/src/spell.c	2015-02-10 20:03:39.389939274 +0100
+--- src/spell.c	2015-03-31 13:12:12.895118372 +0200
+***************
+*** 9426,9432 ****
+      {
+  	if (int_wordlist == NULL)
+  	{
+! 	    int_wordlist = vim_tempname('s');
+  	    if (int_wordlist == NULL)
+  		return;
+  	}
+--- 9426,9432 ----
+      {
+  	if (int_wordlist == NULL)
+  	{
+! 	    int_wordlist = vim_tempname('s', FALSE);
+  	    if (int_wordlist == NULL)
+  		return;
+  	}
+*** ../vim-7.4.683/src/version.c	2015-03-25 20:23:54.335389699 +0100
+--- src/version.c	2015-03-31 13:27:54.776857644 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     684,
+  /**/
+
+-- 
+If an elephant is left tied to a parking meter, the parking fee has to be paid
+just as it would for a vehicle.
+		[real standing law in Florida, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

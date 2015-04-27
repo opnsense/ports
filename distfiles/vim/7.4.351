@@ -1,0 +1,160 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.351
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.351
+Problem:    sort() is not stable.
+Solution:   When the items are identical, compare the pointers.
+Files:	    src/eval.c, src/testdir/test55.in, src/testdir/test55.ok
+
+
+*** ../vim-7.4.350/src/eval.c	2014-06-25 17:31:04.942737863 +0200
+--- src/eval.c	2014-07-02 18:52:19.102313288 +0200
+***************
+*** 17334,17339 ****
+--- 17334,17340 ----
+  static char_u	*item_compare_func;
+  static dict_T	*item_compare_selfdict;
+  static int	item_compare_func_err;
++ static int	item_compare_keep_zero;
+  static void	do_sort_uniq __ARGS((typval_T *argvars, typval_T *rettv, int sort));
+  #define ITEM_COMPARE_FAIL 999
+  
+***************
+*** 17374,17379 ****
+--- 17375,17386 ----
+  	n2 = strtod((char *)p2, (char **)&p2);
+  	res = n1 == n2 ? 0 : n1 > n2 ? 1 : -1;
+      }
++ 
++     /* When the result would be zero, compare the pointers themselves.  Makes
++      * the sort stable. */
++     if (res == 0 && !item_compare_keep_zero)
++ 	res = s1 > s2 ? 1 : -1;
++ 
+      vim_free(tofree1);
+      vim_free(tofree2);
+      return res;
+***************
+*** 17396,17402 ****
+      if (item_compare_func_err)
+  	return 0;
+  
+!     /* copy the values.  This is needed to be able to set v_lock to VAR_FIXED
+       * in the copy without changing the original list items. */
+      copy_tv(&(*(listitem_T **)s1)->li_tv, &argv[0]);
+      copy_tv(&(*(listitem_T **)s2)->li_tv, &argv[1]);
+--- 17403,17409 ----
+      if (item_compare_func_err)
+  	return 0;
+  
+!     /* Copy the values.  This is needed to be able to set v_lock to VAR_FIXED
+       * in the copy without changing the original list items. */
+      copy_tv(&(*(listitem_T **)s1)->li_tv, &argv[0]);
+      copy_tv(&(*(listitem_T **)s2)->li_tv, &argv[1]);
+***************
+*** 17415,17420 ****
+--- 17422,17433 ----
+      if (item_compare_func_err)
+  	res = ITEM_COMPARE_FAIL;  /* return value has wrong type */
+      clear_tv(&rettv);
++ 
++     /* When the result would be zero, compare the pointers themselves.  Makes
++      * the sort stable. */
++     if (res == 0 && !item_compare_keep_zero)
++ 	res = s1 > s2 ? 1 : -1;
++ 
+      return res;
+  }
+  
+***************
+*** 17509,17514 ****
+--- 17522,17528 ----
+  		ptrs[i++] = li;
+  
+  	    item_compare_func_err = FALSE;
++ 	    item_compare_keep_zero = FALSE;
+  	    /* test the compare function */
+  	    if (item_compare_func != NULL
+  		    && item_compare2((void *)&ptrs[0], (void *)&ptrs[1])
+***************
+*** 17536,17541 ****
+--- 17550,17556 ----
+  
+  	    /* f_uniq(): ptrs will be a stack of items to remove */
+  	    item_compare_func_err = FALSE;
++ 	    item_compare_keep_zero = TRUE;
+  	    item_compare_func_ptr = item_compare_func
+  					       ? item_compare2 : item_compare;
+  
+*** ../vim-7.4.350/src/testdir/test55.in	2014-06-26 22:33:47.850693627 +0200
+--- src/testdir/test55.in	2014-07-02 19:00:09.238320492 +0200
+***************
+*** 332,340 ****
+  :$put =string(reverse(sort(l)))
+  :$put =string(sort(reverse(sort(l))))
+  :$put =string(uniq(sort(l)))
+! :let l=[7, 9, 18, 12, 22, 10.0e-16, -1, 0xff, 0.22, 'foo']
+  :$put =string(sort(copy(l), 'n'))
+! :let l=[7, 9, 18, 12, 22, 10.0e-16, -1, 0xff, 0, -0, 0.22, 'foo', 'FOOBAR',{}, []]
+  :$put =string(sort(copy(l), 1))
+  :$put =string(sort(copy(l), 'i'))
+  :$put =string(sort(copy(l)))
+--- 332,340 ----
+  :$put =string(reverse(sort(l)))
+  :$put =string(sort(reverse(sort(l))))
+  :$put =string(uniq(sort(l)))
+! :let l=[7, 9, 'one', 18, 12, 22, 'two', 10.0e-16, -1, 'three', 0xff, 0.22, 'four']
+  :$put =string(sort(copy(l), 'n'))
+! :let l=[7, 9, 18, 12, 22, 10.0e-16, -1, 0xff, 0, -0, 0.22, 'bar', 'BAR', 'Bar', 'Foo', 'FOO', 'foo', 'FOOBAR', {}, []]
+  :$put =string(sort(copy(l), 1))
+  :$put =string(sort(copy(l), 'i'))
+  :$put =string(sort(copy(l)))
+*** ../vim-7.4.350/src/testdir/test55.ok	2014-06-26 22:33:47.850693627 +0200
+--- src/testdir/test55.ok	2014-07-02 19:00:57.078321225 +0200
+***************
+*** 101,110 ****
+  [[0, 1, 2], [0, 1, 2], 4, 2, 2, 1.5, 'xaaa', 'x8', 'foo6', 'foo', 'foo', 'A11', '-0']
+  ['-0', 'A11', 'foo', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 2, 4, [0, 1, 2], [0, 1, 2]]
+  ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 4, [0, 1, 2]]
+! [-1, 'foo', 1.0e-15, 0.22, 7, 9, 12, 18, 22, 255]
+! ['foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+! ['foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+! ['FOOBAR', 'foo', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+  ['aa', 'bb']
+  ['aa', 'bb']
+  ['', 'aa', 'bb', '']
+--- 101,110 ----
+  [[0, 1, 2], [0, 1, 2], 4, 2, 2, 1.5, 'xaaa', 'x8', 'foo6', 'foo', 'foo', 'A11', '-0']
+  ['-0', 'A11', 'foo', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 2, 4, [0, 1, 2], [0, 1, 2]]
+  ['-0', 'A11', 'foo', 'foo6', 'x8', 'xaaa', 1.5, 2, 4, [0, 1, 2]]
+! [-1, 'one', 'two', 'three', 'four', 1.0e-15, 0.22, 7, 9, 12, 18, 22, 255]
+! ['bar', 'BAR', 'Bar', 'Foo', 'FOO', 'foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+! ['bar', 'BAR', 'Bar', 'Foo', 'FOO', 'foo', 'FOOBAR', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+! ['BAR', 'Bar', 'FOO', 'FOOBAR', 'Foo', 'bar', 'foo', -1, 0, 0, 0.22, 1.0e-15, 12, 18, 22, 255, 7, 9, [], {}]
+  ['aa', 'bb']
+  ['aa', 'bb']
+  ['', 'aa', 'bb', '']
+*** ../vim-7.4.350/src/version.c	2014-07-02 18:27:44.662290695 +0200
+--- src/version.c	2014-07-02 18:46:38.230308065 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     351,
+  /**/
+
+-- 
+The early bird gets the worm. If you want something else for
+breakfast, get up later.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

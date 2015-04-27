@@ -1,0 +1,217 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.039
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.039
+Problem:    MS-Windows: MSCV10 and earlier can't handle symlinks to a
+	    directory properly.
+Solution:   Add stat_symlink_aware() and wstat_symlink_aware(). (Ken Takata)
+Files:	    src/os_mswin.c, src/os_win32.c, src/os_win32.h
+
+
+*** ../vim-7.4.038/src/os_mswin.c	2013-08-30 16:51:15.000000000 +0200
+--- src/os_mswin.c	2013-09-25 19:09:53.000000000 +0200
+***************
+*** 498,503 ****
+--- 498,595 ----
+      }
+  }
+  
++     static int
++ stat_symlink_aware(const char *name, struct stat *stp)
++ {
++ #if defined(_MSC_VER) && _MSC_VER < 1700
++     /* Work around for VC10 or earlier. stat() can't handle symlinks properly.
++      * VC9 or earlier: stat() doesn't support a symlink at all. It retrieves
++      * status of a symlink itself.
++      * VC10: stat() supports a symlink to a normal file, but it doesn't support
++      * a symlink to a directory (always returns an error). */
++     WIN32_FIND_DATA	findData;
++     HANDLE		hFind, h;
++     DWORD		attr = 0;
++     BOOL		is_symlink = FALSE;
++ 
++     hFind = FindFirstFile(name, &findData);
++     if (hFind != INVALID_HANDLE_VALUE)
++     {
++ 	attr = findData.dwFileAttributes;
++ 	if ((attr & FILE_ATTRIBUTE_REPARSE_POINT)
++ 		&& (findData.dwReserved0 == IO_REPARSE_TAG_SYMLINK))
++ 	    is_symlink = TRUE;
++ 	FindClose(hFind);
++     }
++     if (is_symlink)
++     {
++ 	h = CreateFile(name, FILE_READ_ATTRIBUTES,
++ 		FILE_SHARE_READ | FILE_SHARE_WRITE, NULL,
++ 		OPEN_EXISTING,
++ 		(attr & FILE_ATTRIBUTE_DIRECTORY)
++ 					    ? FILE_FLAG_BACKUP_SEMANTICS : 0,
++ 		NULL);
++ 	if (h != INVALID_HANDLE_VALUE)
++ 	{
++ 	    int	    fd, n;
++ 
++ 	    fd = _open_osfhandle((intptr_t)h, _O_RDONLY);
++ 	    n = _fstat(fd, (struct _stat*)stp);
++ 	    _close(fd);
++ 	    return n;
++ 	}
++     }
++ #endif
++     return stat(name, stp);
++ }
++ 
++ #ifdef FEAT_MBYTE
++     static int
++ wstat_symlink_aware(const WCHAR *name, struct _stat *stp)
++ {
++ # if defined(_MSC_VER) && _MSC_VER < 1700
++     /* Work around for VC10 or earlier. _wstat() can't handle symlinks properly.
++      * VC9 or earlier: _wstat() doesn't support a symlink at all. It retrieves
++      * status of a symlink itself.
++      * VC10: _wstat() supports a symlink to a normal file, but it doesn't
++      * support a symlink to a directory (always returns an error). */
++     int			n;
++     BOOL		is_symlink = FALSE;
++     HANDLE		hFind, h;
++     DWORD		attr = 0;
++     WIN32_FIND_DATAW	findDataW;
++ 
++     hFind = FindFirstFileW(name, &findDataW);
++     if (hFind != INVALID_HANDLE_VALUE)
++     {
++ 	attr = findDataW.dwFileAttributes;
++ 	if ((attr & FILE_ATTRIBUTE_REPARSE_POINT)
++ 		&& (findDataW.dwReserved0 == IO_REPARSE_TAG_SYMLINK))
++ 	    is_symlink = TRUE;
++ 	FindClose(hFind);
++     }
++     if (is_symlink)
++     {
++ 	h = CreateFileW(name, FILE_READ_ATTRIBUTES,
++ 		FILE_SHARE_READ | FILE_SHARE_WRITE, NULL,
++ 		OPEN_EXISTING,
++ 		(attr & FILE_ATTRIBUTE_DIRECTORY)
++ 					    ? FILE_FLAG_BACKUP_SEMANTICS : 0,
++ 		NULL);
++ 	if (h != INVALID_HANDLE_VALUE)
++ 	{
++ 	    int	    fd;
++ 
++ 	    fd = _open_osfhandle((intptr_t)h, _O_RDONLY);
++ 	    n = _fstat(fd, stp);
++ 	    _close(fd);
++ 	    return n;
++ 	}
++     }
++ # endif
++     return _wstat(name, stp);
++ }
++ #endif
+  
+  /*
+   * stat() can't handle a trailing '/' or '\', remove it first.
+***************
+*** 534,540 ****
+  
+  	if (wp != NULL)
+  	{
+! 	    n = _wstat(wp, (struct _stat *)stp);
+  	    vim_free(wp);
+  	    if (n >= 0)
+  		return n;
+--- 626,632 ----
+  
+  	if (wp != NULL)
+  	{
+! 	    n = wstat_symlink_aware(wp, (struct _stat *)stp);
+  	    vim_free(wp);
+  	    if (n >= 0)
+  		return n;
+***************
+*** 544,550 ****
+  	}
+      }
+  #endif
+!     return stat(buf, stp);
+  }
+  
+  #if defined(FEAT_GUI_MSWIN) || defined(PROTO)
+--- 636,642 ----
+  	}
+      }
+  #endif
+!     return stat_symlink_aware(buf, stp);
+  }
+  
+  #if defined(FEAT_GUI_MSWIN) || defined(PROTO)
+*** ../vim-7.4.038/src/os_win32.c	2013-08-30 17:29:10.000000000 +0200
+--- src/os_win32.c	2013-09-25 19:09:53.000000000 +0200
+***************
+*** 78,93 ****
+  # endif
+  #endif
+  
+- /*
+-  * Reparse Point
+-  */
+- #ifndef FILE_ATTRIBUTE_REPARSE_POINT
+- # define FILE_ATTRIBUTE_REPARSE_POINT	0x00000400
+- #endif
+- #ifndef IO_REPARSE_TAG_SYMLINK
+- # define IO_REPARSE_TAG_SYMLINK		0xA000000C
+- #endif
+- 
+  /* Record all output and all keyboard & mouse input */
+  /* #define MCH_WRITE_DUMP */
+  
+--- 78,83 ----
+*** ../vim-7.4.038/src/os_win32.h	2013-07-21 17:53:13.000000000 +0200
+--- src/os_win32.h	2013-09-25 19:09:53.000000000 +0200
+***************
+*** 130,135 ****
+--- 130,148 ----
+  # define DFLT_MAXMEMTOT	(5*1024)    /* use up to 5 Mbyte for Vim */
+  #endif
+  
++ /*
++  * Reparse Point
++  */
++ #ifndef FILE_ATTRIBUTE_REPARSE_POINT
++ # define FILE_ATTRIBUTE_REPARSE_POINT	0x00000400
++ #endif
++ #ifndef IO_REPARSE_TAG_MOUNT_POINT
++ # define IO_REPARSE_TAG_MOUNT_POINT	0xA0000003
++ #endif
++ #ifndef IO_REPARSE_TAG_SYMLINK
++ # define IO_REPARSE_TAG_SYMLINK		0xA000000C
++ #endif
++ 
+  #if defined(_MSC_VER) || defined(__BORLANDC__)
+      /* Support for __try / __except.  All versions of MSVC and Borland C are
+       * expected to have this.  Any other compilers that support it? */
+*** ../vim-7.4.038/src/version.c	2013-09-25 18:54:20.000000000 +0200
+--- src/version.c	2013-09-25 19:08:55.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     39,
+  /**/
+
+-- 
+   A cow comes flying over the battlements,  lowing aggressively.  The cow
+   lands on GALAHAD'S PAGE, squashing him completely.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

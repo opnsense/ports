@@ -1,0 +1,93 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.103
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.103
+Problem:    Dos installer uses an old way to escape spaces in the diff
+	    command.
+Solution:   Adjust the quoting to the new default shellxquote. (Ben Fritz)
+Files:	    src/dosinst.c
+
+
+*** ../vim-7.4.102/src/dosinst.c	2013-11-07 04:49:23.000000000 +0100
+--- src/dosinst.c	2013-11-21 18:12:13.000000000 +0100
+***************
+*** 1192,1214 ****
+  	fprintf(fd, "  if arg3 =~ ' ' | let arg3 = '\"' . arg3 . '\"' | endif\n");
+  
+  	/* If the path has a space:  When using cmd.exe (Win NT/2000/XP) put
+! 	 * quotes around the whole command and around the diff command.
+  	 * Otherwise put a double quote just before the space and at the
+  	 * end of the command.  Putting quotes around the whole thing
+  	 * doesn't work on Win 95/98/ME.  This is mostly guessed! */
+- 	fprintf(fd, "  let eq = ''\n");
+  	fprintf(fd, "  if $VIMRUNTIME =~ ' '\n");
+  	fprintf(fd, "    if &sh =~ '\\<cmd'\n");
+! 	fprintf(fd, "      let cmd = '\"\"' . $VIMRUNTIME . '\\diff\"'\n");
+! 	fprintf(fd, "      let eq = '\"'\n");
+  	fprintf(fd, "    else\n");
+  	fprintf(fd, "      let cmd = substitute($VIMRUNTIME, ' ', '\" ', '') . '\\diff\"'\n");
+  	fprintf(fd, "    endif\n");
+  	fprintf(fd, "  else\n");
+  	fprintf(fd, "    let cmd = $VIMRUNTIME . '\\diff'\n");
+  	fprintf(fd, "  endif\n");
+! 	fprintf(fd, "  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq\n");
+! 
+  	fprintf(fd, "endfunction\n");
+  	fprintf(fd, "\n");
+      }
+--- 1192,1220 ----
+  	fprintf(fd, "  if arg3 =~ ' ' | let arg3 = '\"' . arg3 . '\"' | endif\n");
+  
+  	/* If the path has a space:  When using cmd.exe (Win NT/2000/XP) put
+! 	 * quotes around the diff command and rely on the default value of
+!          * shellxquote to solve the quoting problem for the whole command.
+!          *
+  	 * Otherwise put a double quote just before the space and at the
+  	 * end of the command.  Putting quotes around the whole thing
+  	 * doesn't work on Win 95/98/ME.  This is mostly guessed! */
+  	fprintf(fd, "  if $VIMRUNTIME =~ ' '\n");
+  	fprintf(fd, "    if &sh =~ '\\<cmd'\n");
+! 	fprintf(fd, "      if empty(&shellxquote)\n");
+! 	fprintf(fd, "        let l:shxq_sav = ''\n");
+! 	fprintf(fd, "        set shellxquote&\n");
+! 	fprintf(fd, "      endif\n");
+! 	fprintf(fd, "      let cmd = '\"' . $VIMRUNTIME . '\\diff\"'\n");
+  	fprintf(fd, "    else\n");
+  	fprintf(fd, "      let cmd = substitute($VIMRUNTIME, ' ', '\" ', '') . '\\diff\"'\n");
+  	fprintf(fd, "    endif\n");
+  	fprintf(fd, "  else\n");
+  	fprintf(fd, "    let cmd = $VIMRUNTIME . '\\diff'\n");
+  	fprintf(fd, "  endif\n");
+! 	fprintf(fd, "  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3\n");
+! 	fprintf(fd, "  if exists('l:shxq_sav')\n");
+! 	fprintf(fd, "    let &shellxquote=l:shxq_sav\n");
+! 	fprintf(fd, "  endif\n");
+  	fprintf(fd, "endfunction\n");
+  	fprintf(fd, "\n");
+      }
+*** ../vim-7.4.102/src/version.c	2013-11-21 17:42:26.000000000 +0100
+--- src/version.c	2013-11-21 18:11:08.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     103,
+  /**/
+
+-- 
+The fastest way to get an engineer to solve a problem is to declare that the
+problem is unsolvable.  No engineer can walk away from an unsolvable problem
+until it's solved.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.317
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.317
+Problem:    Crash when starting gvim.  Issue 230.
+Solution:   Check for a pointer to be NULL. (Christian Brabandt)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.316/src/window.c	2014-05-28 13:42:59.884078184 +0200
+--- src/window.c	2014-06-12 11:36:53.619441640 +0200
+***************
+*** 4721,4728 ****
+  win_free_lsize(wp)
+      win_T	*wp;
+  {
+!     vim_free(wp->w_lines);
+!     wp->w_lines = NULL;
+  }
+  
+  /*
+--- 4721,4732 ----
+  win_free_lsize(wp)
+      win_T	*wp;
+  {
+!     /* TODO: why would wp be NULL here? */
+!     if (wp != NULL)
+!     {
+! 	vim_free(wp->w_lines);
+! 	wp->w_lines = NULL;
+!     }
+  }
+  
+  /*
+*** ../vim-7.4.316/src/version.c	2014-05-29 14:36:26.156862577 +0200
+--- src/version.c	2014-06-12 11:37:37.907443315 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     317,
+  /**/
+
+-- 
+press CTRL-ALT-DEL for more information
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,136 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.226
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.226 (after 7.4.219)
+Problem:    Cursurline highlighting not redrawn when scrolling. (John
+	    Marriott)
+Solution:   Check for required redraw in two places.
+Files:	    src/move.c
+
+
+*** ../vim-7.4.225/src/move.c	2014-03-27 12:11:43.888393741 +0100
+--- src/move.c	2014-03-28 21:45:56.958245561 +0100
+***************
+*** 20,25 ****
+--- 20,26 ----
+  #include "vim.h"
+  
+  static void comp_botline __ARGS((win_T *wp));
++ static void redraw_for_cursorline __ARGS((win_T *wp));
+  static int scrolljump_value __ARGS((void));
+  static int check_top_offset __ARGS((void));
+  static void curs_rows __ARGS((win_T *wp, int do_botline));
+***************
+*** 106,111 ****
+--- 107,113 ----
+  #ifdef FEAT_FOLDING
+  	    wp->w_cline_folded = folded;
+  #endif
++ 	    redraw_for_cursorline(wp);
+  	    wp->w_valid |= (VALID_CROW|VALID_CHEIGHT);
+  	}
+  	if (done + n > wp->w_height)
+***************
+*** 124,129 ****
+--- 126,152 ----
+  }
+  
+  /*
++  * Redraw when w_cline_row changes and 'relativenumber' or 'cursorline' is
++  * set.
++  */
++     static void
++ redraw_for_cursorline(wp)
++     win_T *wp;
++ {
++     if ((wp->w_p_rnu
++ #ifdef FEAT_SYN_HL
++ 		|| wp->w_p_cul
++ #endif
++ 		)
++ 	    && (wp->w_valid & VALID_CROW) == 0
++ # ifdef FEAT_INS_EXPAND
++ 	    && !pum_visible()
++ # endif
++ 	    )
++ 	redraw_win_later(wp, SOME_VALID);
++ }
++ 
++ /*
+   * Update curwin->w_topline and redraw if necessary.
+   * Used to update the screen before printing a message.
+   */
+***************
+*** 772,791 ****
+  	}
+      }
+  
+!     /* Redraw when w_cline_row changes and 'relativenumber' or 'cursorline' is
+!      * set. */
+!     if ((curwin->w_p_rnu
+! #ifdef FEAT_SYN_HL
+! 		|| curwin->w_p_cul
+! #endif
+! 		)
+! 	    && (curwin->w_valid & VALID_CROW) == 0
+! # ifdef FEAT_INS_EXPAND
+! 	    && !pum_visible()
+! # endif
+! 	    )
+! 	redraw_later(SOME_VALID);
+! 
+      wp->w_valid |= VALID_CROW|VALID_CHEIGHT;
+  
+      /* validate botline too, if update_screen doesn't do it */
+--- 795,801 ----
+  	}
+      }
+  
+!     redraw_for_cursorline(curwin);
+      wp->w_valid |= VALID_CROW|VALID_CHEIGHT;
+  
+      /* validate botline too, if update_screen doesn't do it */
+***************
+*** 2504,2511 ****
+  		    }
+  		    comp_botline(curwin);
+  		    curwin->w_cursor.lnum = curwin->w_botline - 1;
+! 		    curwin->w_valid &= ~(VALID_WCOL|VALID_CHEIGHT|
+! 			    VALID_WROW|VALID_CROW);
+  		}
+  		else
+  		{
+--- 2514,2521 ----
+  		    }
+  		    comp_botline(curwin);
+  		    curwin->w_cursor.lnum = curwin->w_botline - 1;
+! 		    curwin->w_valid &=
+! 			    ~(VALID_WCOL|VALID_CHEIGHT|VALID_WROW|VALID_CROW);
+  		}
+  		else
+  		{
+*** ../vim-7.4.225/src/version.c	2014-03-27 19:08:52.008777244 +0100
+--- src/version.c	2014-03-28 21:48:45.330248141 +0100
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     226,
+  /**/
+
+-- 
+Bad fashion can discourage normal people from interacting with the engineer
+and talking about the cute things their children do.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

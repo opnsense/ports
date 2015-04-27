@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.056
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.056
+Problem:    Mac: Compilation problem with OS X 10.9 Mavericks.
+Solution:   Include AvailabilityMacros.h when available. (Kazunobu Kuriyama)
+Files:      src/os_unix.c
+
+
+*** ../vim-7.4.055/src/os_unix.c	2013-09-05 21:41:35.000000000 +0200
+--- src/os_unix.c	2013-11-02 21:46:05.000000000 +0100
+***************
+*** 804,809 ****
+--- 804,815 ----
+   * completely full.
+   */
+  
++ #if defined(HAVE_AVAILABILITYMACROS_H) \
++     && defined(__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__) \
++     && (__ENVIRONMENT_MAC_OS_X_VERSION_MIN_REQUIRED__ >= 1090)
++ # include <AvailabilityMacros.h>
++ #endif
++ 
+  #ifndef SIGSTKSZ
+  # define SIGSTKSZ 8000    /* just a guess of how much stack is needed... */
+  #endif
+*** ../vim-7.4.055/src/version.c	2013-11-02 21:04:32.000000000 +0100
+--- src/version.c	2013-11-02 21:44:10.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     56,
+  /**/
+
+-- 
+If an elephant is left tied to a parking meter, the parking fee has to be paid
+just as it would for a vehicle.
+		[real standing law in Florida, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

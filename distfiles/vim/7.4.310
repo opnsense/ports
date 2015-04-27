@@ -1,0 +1,373 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.310
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.310
+Problem:    getpos()/setpos() don't include curswant.
+Solution:   Add a fifth number when getting/setting the cursor.
+Files:	    src/eval.c, src/testdir/test_eval.in, src/testdir/test_eval.ok,
+	    runtime/doc/eval.txt
+
+
+*** ../vim-7.4.309/src/eval.c	2014-05-22 18:59:54.506169240 +0200
+--- src/eval.c	2014-05-28 14:23:37.608099523 +0200
+***************
+*** 764,770 ****
+  static void f_writefile __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_xor __ARGS((typval_T *argvars, typval_T *rettv));
+  
+! static int list2fpos __ARGS((typval_T *arg, pos_T *posp, int *fnump));
+  static pos_T *var2fpos __ARGS((typval_T *varp, int dollar_lnum, int *fnum));
+  static int get_env_len __ARGS((char_u **arg));
+  static int get_id_len __ARGS((char_u **arg));
+--- 764,770 ----
+  static void f_writefile __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_xor __ARGS((typval_T *argvars, typval_T *rettv));
+  
+! static int list2fpos __ARGS((typval_T *arg, pos_T *posp, int *fnump, colnr_T *curswantp));
+  static pos_T *var2fpos __ARGS((typval_T *varp, int dollar_lnum, int *fnum));
+  static int get_env_len __ARGS((char_u **arg));
+  static int get_id_len __ARGS((char_u **arg));
+***************
+*** 9799,9812 ****
+      if (argvars[1].v_type == VAR_UNKNOWN)
+      {
+  	pos_T	    pos;
+  
+! 	if (list2fpos(argvars, &pos, NULL) == FAIL)
+  	    return;
+  	line = pos.lnum;
+  	col = pos.col;
+  #ifdef FEAT_VIRTUALEDIT
+  	coladd = pos.coladd;
+  #endif
+      }
+      else
+      {
+--- 9799,9815 ----
+      if (argvars[1].v_type == VAR_UNKNOWN)
+      {
+  	pos_T	    pos;
++ 	colnr_T	    curswant = -1;
+  
+! 	if (list2fpos(argvars, &pos, NULL, &curswant) == FAIL)
+  	    return;
+  	line = pos.lnum;
+  	col = pos.col;
+  #ifdef FEAT_VIRTUALEDIT
+  	coladd = pos.coladd;
+  #endif
++ 	if (curswant >= 0)
++ 	    curwin->w_curswant = curswant - 1;
+      }
+      else
+      {
+***************
+*** 11770,11775 ****
+--- 11773,11780 ----
+  				(fp != NULL) ? (varnumber_T)fp->coladd :
+  #endif
+  							      (varnumber_T)0);
++ 	if (fp == &curwin->w_cursor)
++ 	    list_append_number(l, (varnumber_T)curwin->w_curswant + 1);
+      }
+      else
+  	rettv->vval.v_number = FALSE;
+***************
+*** 16751,16762 ****
+      pos_T	pos;
+      int		fnum;
+      char_u	*name;
+  
+      rettv->vval.v_number = -1;
+      name = get_tv_string_chk(argvars);
+      if (name != NULL)
+      {
+! 	if (list2fpos(&argvars[1], &pos, &fnum) == OK)
+  	{
+  	    if (--pos.col < 0)
+  		pos.col = 0;
+--- 16756,16768 ----
+      pos_T	pos;
+      int		fnum;
+      char_u	*name;
++     colnr_T	curswant = -1;
+  
+      rettv->vval.v_number = -1;
+      name = get_tv_string_chk(argvars);
+      if (name != NULL)
+      {
+! 	if (list2fpos(&argvars[1], &pos, &fnum, &curswant) == OK)
+  	{
+  	    if (--pos.col < 0)
+  		pos.col = 0;
+***************
+*** 16766,16771 ****
+--- 16772,16779 ----
+  		if (fnum == curbuf->b_fnum)
+  		{
+  		    curwin->w_cursor = pos;
++ 		    if (curswant >= 0)
++ 			curwin->w_curswant = curswant - 1;
+  		    check_cursor();
+  		    rettv->vval.v_number = 0;
+  		}
+***************
+*** 19532,19552 ****
+   * validity.
+   */
+      static int
+! list2fpos(arg, posp, fnump)
+      typval_T	*arg;
+      pos_T	*posp;
+      int		*fnump;
+  {
+      list_T	*l = arg->vval.v_list;
+      long	i = 0;
+      long	n;
+  
+!     /* List must be: [fnum, lnum, col, coladd], where "fnum" is only there
+!      * when "fnump" isn't NULL and "coladd" is optional. */
+      if (arg->v_type != VAR_LIST
+  	    || l == NULL
+  	    || l->lv_len < (fnump == NULL ? 2 : 3)
+! 	    || l->lv_len > (fnump == NULL ? 3 : 4))
+  	return FAIL;
+  
+      if (fnump != NULL)
+--- 19540,19561 ----
+   * validity.
+   */
+      static int
+! list2fpos(arg, posp, fnump, curswantp)
+      typval_T	*arg;
+      pos_T	*posp;
+      int		*fnump;
++     colnr_T	*curswantp;
+  {
+      list_T	*l = arg->vval.v_list;
+      long	i = 0;
+      long	n;
+  
+!     /* List must be: [fnum, lnum, col, coladd, curswant], where "fnum" is only
+!      * there when "fnump" isn't NULL; "coladd" and "curswant" are optional. */
+      if (arg->v_type != VAR_LIST
+  	    || l == NULL
+  	    || l->lv_len < (fnump == NULL ? 2 : 3)
+! 	    || l->lv_len > (fnump == NULL ? 4 : 5))
+  	return FAIL;
+  
+      if (fnump != NULL)
+***************
+*** 19570,19582 ****
+      posp->col = n;
+  
+  #ifdef FEAT_VIRTUALEDIT
+!     n = list_find_nr(l, i, NULL);
+      if (n < 0)
+  	posp->coladd = 0;
+      else
+  	posp->coladd = n;
+  #endif
+  
+      return OK;
+  }
+  
+--- 19579,19594 ----
+      posp->col = n;
+  
+  #ifdef FEAT_VIRTUALEDIT
+!     n = list_find_nr(l, i, NULL);	/* off */
+      if (n < 0)
+  	posp->coladd = 0;
+      else
+  	posp->coladd = n;
+  #endif
+  
++     if (curswantp != NULL)
++ 	*curswantp = list_find_nr(l, i + 1, NULL);  /* curswant */
++ 
+      return OK;
+  }
+  
+*** ../vim-7.4.309/src/testdir/test_eval.in	2014-04-29 17:41:18.351689927 +0200
+--- src/testdir/test_eval.in	2014-05-28 14:22:31.780098947 +0200
+***************
+*** 190,198 ****
+--- 190,207 ----
+  :$put =v:exception
+  :endtry
+  :"
++ :$put ='{{{1 setpos/getpos'
++ /^012345678
++ 6l:let sp = getpos('.')
++ 0:call setpos('.', sp)
++ jyl:$put
++ :"
+  :/^start:/+1,$wq! test.out
+  :" vim: et ts=4 isk-=\: fmr=???,???
+  :call getchar()
+  ENDTEST
+  
++ 012345678
++ 012345678
++ 
+  start:
+*** ../vim-7.4.309/src/testdir/test_eval.ok	2014-04-29 17:41:18.351689927 +0200
+--- src/testdir/test_eval.ok	2014-05-28 14:19:31.836097372 +0200
+***************
+*** 346,348 ****
+--- 346,350 ----
+  Bar exists: 1
+  func Bar exists: 1
+  Vim(call):E116: Invalid arguments for function append
++ {{{1 setpos/getpos
++ 6
+*** ../vim-7.4.309/runtime/doc/eval.txt	2014-05-07 18:35:25.661216052 +0200
+--- runtime/doc/eval.txt	2014-05-28 14:04:40.928089573 +0200
+***************
+*** 2587,2595 ****
+  cursor({list})
+  		Positions the cursor at the column (byte count) {col} in the
+  		line {lnum}.  The first column is one.
+  		When there is one argument {list} this is used as a |List|
+! 		with two or three items {lnum}, {col} and {off}.  This is like
+! 		the return value of |getpos()|, but without the first item.
+  		Does not change the jumplist.
+  		If {lnum} is greater than the number of lines in the buffer,
+  		the cursor will be positioned at the last line in the buffer.
+--- 2587,2600 ----
+  cursor({list})
+  		Positions the cursor at the column (byte count) {col} in the
+  		line {lnum}.  The first column is one.
++ 
+  		When there is one argument {list} this is used as a |List|
+! 		with two, three or four item:
+! 			[{lnum}, {col}, {off}]
+! 			[{lnum}, {col}, {off}, {curswant}]
+! 		This is like the return value of |getpos()|, but without the
+! 		first item.
+! 
+  		Does not change the jumplist.
+  		If {lnum} is greater than the number of lines in the buffer,
+  		the cursor will be positioned at the last line in the buffer.
+***************
+*** 4475,4482 ****
+  							*getpos()*
+  getpos({expr})	Get the position for {expr}.  For possible values of {expr}
+  		see |line()|.
+! 		The result is a |List| with four numbers:
+  		    [bufnum, lnum, col, off]
+  		"bufnum" is zero, unless a mark like '0 or 'A is used, then it
+  		is the buffer number of the mark.
+  		"lnum" and "col" are the position in the buffer.  The first
+--- 4490,4498 ----
+  							*getpos()*
+  getpos({expr})	Get the position for {expr}.  For possible values of {expr}
+  		see |line()|.
+! 		The result is a |List| with four or five numbers:
+  		    [bufnum, lnum, col, off]
++ 		    [bufnum, lnum, col, off, curswant]
+  		"bufnum" is zero, unless a mark like '0 or 'A is used, then it
+  		is the buffer number of the mark.
+  		"lnum" and "col" are the position in the buffer.  The first
+***************
+*** 4485,4490 ****
+--- 4501,4511 ----
+  		it is the offset in screen columns from the start of the
+  		character.  E.g., a position within a <Tab> or after the last
+  		character.
++ 		The "curswant" number is only added for getpos('.'), it is the
++ 		preferred column when moving the cursor vertically.
++ 		Note that for '< and '> Visual mode matters: when it is "V"
++ 		(visual line mode) the column of '< is zero and the column of
++ 		'> is a large number.
+  		This can be used to save and restore the cursor position: >
+  			let save_cursor = getpos(".")
+  			MoveTheCursorAround
+***************
+*** 5289,5296 ****
+  			.	the cursor
+  			'x	mark x
+  
+! 		{list} must be a |List| with four numbers:
+  		    [bufnum, lnum, col, off]
+  
+  		"bufnum" is the buffer number.	Zero can be used for the
+  		current buffer.  Setting the cursor is only possible for
+--- 5310,5318 ----
+  			.	the cursor
+  			'x	mark x
+  
+! 		{list} must be a |List| with four or five numbers:
+  		    [bufnum, lnum, col, off]
++ 		    [bufnum, lnum, col, off, curswant]
+  
+  		"bufnum" is the buffer number.	Zero can be used for the
+  		current buffer.  Setting the cursor is only possible for
+***************
+*** 5308,5320 ****
+  		character.  E.g., a position within a <Tab> or after the last
+  		character.
+  
+  		Returns 0 when the position could be set, -1 otherwise.
+  		An error message is given if {expr} is invalid.
+  
+  		Also see |getpos()|
+  
+  		This does not restore the preferred column for moving
+! 		vertically.  See |winrestview()| for that.
+  
+  
+  setqflist({list} [, {action}])				*setqflist()*
+--- 5330,5355 ----
+  		character.  E.g., a position within a <Tab> or after the last
+  		character.
+  
++ 		The "curswant" number is only used when setting the cursor
++ 		position.  It sets the preferred column for when moving the
++ 		cursor vertically.  When the "curswant" number is missing the
++ 		preferred column is not set.  When it is present and setting a
++ 		mark position it is not used.
++ 
++ 		Note that for '< and '> changing the line number may result in
++ 		the marks to be effectively be swapped, so that '< is always
++ 		before '>.
++ 
+  		Returns 0 when the position could be set, -1 otherwise.
+  		An error message is given if {expr} is invalid.
+  
+  		Also see |getpos()|
+  
+  		This does not restore the preferred column for moving
+! 		vertically; if you set the cursor position with this, |j| and
+! 		|k| motions will jump to previous columns!  Use |cursor()| to
+! 		also set the preferred column.  Also see the "curswant" key in
+! 		|winrestview()|.
+  
+  
+  setqflist({list} [, {action}])				*setqflist()*
+*** ../vim-7.4.309/src/version.c	2014-05-28 13:42:59.884078184 +0200
+--- src/version.c	2014-05-28 14:27:20.132101471 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     310,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+218. Your spouse hands you a gift wrapped magnet with your PC's name
+     on it and you accuse him or her of genocide.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

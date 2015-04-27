@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.342
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.342
+Problem:    Clang gives warnings.
+Solution:   Add an else block. (Dominique Pelle)
+Files:	    src/gui_beval.c
+
+
+*** ../vim-7.4.341/src/gui_beval.c	2013-05-06 04:06:04.000000000 +0200
+--- src/gui_beval.c	2014-06-25 17:40:40.818759649 +0200
+***************
+*** 1193,1203 ****
+  	    XmFontList fl;
+  
+  	    fl = gui_motif_fontset2fontlist(&gui.tooltip_fontset);
+! 	    if (fl != NULL)
+  	    {
+! 		XmStringExtent(fl, s, &w, &h);
+! 		XmFontListFree(fl);
+  	    }
+  	}
+  	w += gui.border_offset << 1;
+  	h += gui.border_offset << 1;
+--- 1193,1205 ----
+  	    XmFontList fl;
+  
+  	    fl = gui_motif_fontset2fontlist(&gui.tooltip_fontset);
+! 	    if (fl == NULL)
+  	    {
+! 		XmStringFree(s);
+! 		return;
+  	    }
++ 	    XmStringExtent(fl, s, &w, &h);
++ 	    XmFontListFree(fl);
+  	}
+  	w += gui.border_offset << 1;
+  	h += gui.border_offset << 1;
+*** ../vim-7.4.341/src/version.c	2014-06-25 17:31:04.942737863 +0200
+--- src/version.c	2014-06-25 17:40:56.902760258 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     342,
+  /**/
+
+-- 
+CUSTOMER:     Well, can you hang around a couple of minutes?  He won't be
+              long.
+MORTICIAN:    Naaah, I got to go on to Robinson's -- they've lost nine today.
+CUSTOMER:     Well, when is your next round?
+MORTICIAN:    Thursday.
+DEAD PERSON:  I think I'll go for a walk.
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

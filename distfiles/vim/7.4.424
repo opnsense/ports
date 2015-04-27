@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.424
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.424
+Problem:    Get ml_get error when using Python to delete lines in a buffer
+	    that is not in a window.  issue 248.
+Solution:   Do not try adjusting the cursor for a different buffer.
+Files:	    src/if_py_both.h
+
+
+*** ../vim-7.4.423/src/if_py_both.h	2014-05-07 17:31:32.473182497 +0200
+--- src/if_py_both.h	2014-08-29 13:32:18.554434621 +0200
+***************
+*** 4196,4202 ****
+  		    break;
+  		}
+  	    }
+! 	    if (buf == curbuf)
+  		py_fix_cursor((linenr_T)lo, (linenr_T)hi, (linenr_T)-n);
+  	    if (save_curbuf == NULL)
+  		/* Only adjust marks if we managed to switch to a window that
+--- 4196,4204 ----
+  		    break;
+  		}
+  	    }
+! 	    if (buf == curbuf && (save_curwin != NULL || save_curbuf == NULL))
+! 		/* Using an existing window for the buffer, adjust the cursor
+! 		 * position. */
+  		py_fix_cursor((linenr_T)lo, (linenr_T)hi, (linenr_T)-n);
+  	    if (save_curbuf == NULL)
+  		/* Only adjust marks if we managed to switch to a window that
+*** ../vim-7.4.423/src/version.c	2014-08-29 12:58:38.246430208 +0200
+--- src/version.c	2014-08-29 13:36:13.642435134 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     424,
+  /**/
+
+-- 
+From "know your smileys":
+ :-H	Is missing teeth
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

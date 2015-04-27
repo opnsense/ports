@@ -1,0 +1,470 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.079
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.079
+Problem:    A script cannot detect whether 'hlsearch' highlighting is actually
+            displayed.
+Solution:   Add the "v:hlsearch" variable. (ZyX)
+Files:      src/runtime/doc/eval.txt, src/eval.c, src/ex_docmd.c,
+            src/option.c, src/screen.c, src/search.c, src/tag.c, src/vim.h,
+            src/testdir/test101.in, src/testdir/test101.ok,
+            src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+            src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+            src/testdir/Make_vms.mms, src/testdir/Makefile
+
+
+diff: ../vim-7.4.078/src/runtime/doc/eval.txt: No such file or directory
+diff: src/runtime/doc/eval.txt: No such file or directory
+*** ../vim-7.4.078/src/eval.c	2013-11-05 07:12:59.000000000 +0100
+--- src/eval.c	2013-11-08 04:11:46.000000000 +0100
+***************
+*** 356,361 ****
+--- 356,362 ----
+      {VV_NAME("mouse_col",	 VAR_NUMBER), 0},
+      {VV_NAME("operator",	 VAR_STRING), VV_RO},
+      {VV_NAME("searchforward",	 VAR_NUMBER), 0},
++     {VV_NAME("hlsearch",	 VAR_NUMBER), 0},
+      {VV_NAME("oldfiles",	 VAR_LIST), 0},
+      {VV_NAME("windowid",	 VAR_NUMBER), VV_RO},
+  };
+***************
+*** 871,876 ****
+--- 872,878 ----
+  	    hash_add(&compat_hashtab, p->vv_di.di_key);
+      }
+      set_vim_var_nr(VV_SEARCHFORWARD, 1L);
++     set_vim_var_nr(VV_HLSEARCH, 1L);
+      set_reg_var(0);  /* default for v:register is not 0 but '"' */
+  
+  #ifdef EBCDIC
+***************
+*** 20613,20618 ****
+--- 20615,20627 ----
+  		v->di_tv.vval.v_number = get_tv_number(tv);
+  		if (STRCMP(varname, "searchforward") == 0)
+  		    set_search_direction(v->di_tv.vval.v_number ? '/' : '?');
++ #ifdef FEAT_SEARCH_EXTRA
++ 		else if (STRCMP(varname, "hlsearch") == 0)
++ 		{
++ 		    no_hlsearch = !v->di_tv.vval.v_number;
++ 		    redraw_all_later(SOME_VALID);
++ 		}
++ #endif
+  	    }
+  	    return;
+  	}
+*** ../vim-7.4.078/src/ex_docmd.c	2013-07-24 15:09:37.000000000 +0200
+--- src/ex_docmd.c	2013-11-08 04:17:01.000000000 +0100
+***************
+*** 11389,11395 ****
+  ex_nohlsearch(eap)
+      exarg_T	*eap UNUSED;
+  {
+!     no_hlsearch = TRUE;
+      redraw_all_later(SOME_VALID);
+  }
+  
+--- 11389,11395 ----
+  ex_nohlsearch(eap)
+      exarg_T	*eap UNUSED;
+  {
+!     SET_NO_HLSEARCH(TRUE);
+      redraw_all_later(SOME_VALID);
+  }
+  
+*** ../vim-7.4.078/src/option.c	2013-11-06 05:26:08.000000000 +0100
+--- src/option.c	2013-11-08 04:17:32.000000000 +0100
+***************
+*** 7811,7817 ****
+      /* when 'hlsearch' is set or reset: reset no_hlsearch */
+      else if ((int *)varp == &p_hls)
+      {
+! 	no_hlsearch = FALSE;
+      }
+  #endif
+  
+--- 7811,7817 ----
+      /* when 'hlsearch' is set or reset: reset no_hlsearch */
+      else if ((int *)varp == &p_hls)
+      {
+! 	SET_NO_HLSEARCH(FALSE);
+      }
+  #endif
+  
+*** ../vim-7.4.078/src/screen.c	2013-07-13 12:23:00.000000000 +0200
+--- src/screen.c	2013-11-08 04:17:48.000000000 +0100
+***************
+*** 7447,7453 ****
+  	    {
+  		/* don't free regprog in the match list, it's a copy */
+  		vim_regfree(shl->rm.regprog);
+! 		no_hlsearch = TRUE;
+  	    }
+  	    shl->rm.regprog = NULL;
+  	    shl->lnum = 0;
+--- 7447,7453 ----
+  	    {
+  		/* don't free regprog in the match list, it's a copy */
+  		vim_regfree(shl->rm.regprog);
+! 		SET_NO_HLSEARCH(TRUE);
+  	    }
+  	    shl->rm.regprog = NULL;
+  	    shl->lnum = 0;
+*** ../vim-7.4.078/src/search.c	2013-11-07 04:46:43.000000000 +0100
+--- src/search.c	2013-11-08 04:18:57.000000000 +0100
+***************
+*** 289,295 ****
+  	/* If 'hlsearch' set and search pat changed: need redraw. */
+  	if (p_hls)
+  	    redraw_all_later(SOME_VALID);
+! 	no_hlsearch = FALSE;
+  #endif
+      }
+  }
+--- 289,295 ----
+  	/* If 'hlsearch' set and search pat changed: need redraw. */
+  	if (p_hls)
+  	    redraw_all_later(SOME_VALID);
+! 	SET_NO_HLSEARCH(FALSE);
+  #endif
+      }
+  }
+***************
+*** 333,339 ****
+  	spats[1] = saved_spats[1];
+  	last_idx = saved_last_idx;
+  # ifdef FEAT_SEARCH_EXTRA
+! 	no_hlsearch = saved_no_hlsearch;
+  # endif
+      }
+  }
+--- 333,339 ----
+  	spats[1] = saved_spats[1];
+  	last_idx = saved_last_idx;
+  # ifdef FEAT_SEARCH_EXTRA
+! 	SET_NO_HLSEARCH(saved_no_hlsearch);
+  # endif
+      }
+  }
+***************
+*** 1148,1154 ****
+      if (no_hlsearch && !(options & SEARCH_KEEP))
+      {
+  	redraw_all_later(SOME_VALID);
+! 	no_hlsearch = FALSE;
+      }
+  #endif
+  
+--- 1148,1154 ----
+      if (no_hlsearch && !(options & SEARCH_KEEP))
+      {
+  	redraw_all_later(SOME_VALID);
+! 	SET_NO_HLSEARCH(FALSE);
+      }
+  #endif
+  
+***************
+*** 5561,5567 ****
+  		spats[idx].off.off = off;
+  #ifdef FEAT_SEARCH_EXTRA
+  		if (setlast)
+! 		    no_hlsearch = !hlsearch_on;
+  #endif
+  	    }
+  	}
+--- 5561,5569 ----
+  		spats[idx].off.off = off;
+  #ifdef FEAT_SEARCH_EXTRA
+  		if (setlast)
+! 		{
+! 		    SET_NO_HLSEARCH(!hlsearch_on);
+! 		}
+  #endif
+  	    }
+  	}
+*** ../vim-7.4.078/src/tag.c	2013-09-05 12:06:26.000000000 +0200
+--- src/tag.c	2013-11-08 04:19:14.000000000 +0100
+***************
+*** 3330,3336 ****
+  #ifdef FEAT_SEARCH_EXTRA
+  	/* restore no_hlsearch when keeping the old search pattern */
+  	if (search_options)
+! 	    no_hlsearch = save_no_hlsearch;
+  #endif
+  
+  	/* Return OK if jumped to another file (at least we found the file!). */
+--- 3330,3338 ----
+  #ifdef FEAT_SEARCH_EXTRA
+  	/* restore no_hlsearch when keeping the old search pattern */
+  	if (search_options)
+! 	{
+! 	    SET_NO_HLSEARCH(save_no_hlsearch);
+! 	}
+  #endif
+  
+  	/* Return OK if jumped to another file (at least we found the file!). */
+*** ../vim-7.4.078/src/vim.h	2013-08-02 16:02:27.000000000 +0200
+--- src/vim.h	2013-11-08 04:16:57.000000000 +0100
+***************
+*** 1864,1872 ****
+  #define VV_MOUSE_COL	51
+  #define VV_OP		52
+  #define VV_SEARCHFORWARD 53
+! #define VV_OLDFILES	54
+! #define VV_WINDOWID	55
+! #define VV_LEN		56	/* number of v: vars */
+  
+  #ifdef FEAT_CLIPBOARD
+  
+--- 1864,1873 ----
+  #define VV_MOUSE_COL	51
+  #define VV_OP		52
+  #define VV_SEARCHFORWARD 53
+! #define VV_HLSEARCH	54
+! #define VV_OLDFILES	55
+! #define VV_WINDOWID	56
+! #define VV_LEN		57	/* number of v: vars */
+  
+  #ifdef FEAT_CLIPBOARD
+  
+***************
+*** 2246,2249 ****
+--- 2247,2256 ----
+  /* Character used as separated in autoload function/variable names. */
+  #define AUTOLOAD_CHAR '#'
+  
++ #ifdef FEAT_EVAL
++ # define SET_NO_HLSEARCH(flag) no_hlsearch = (flag); set_vim_var_nr(VV_HLSEARCH, !no_hlsearch)
++ #else
++ # define SET_NO_HLSEARCH(flag) no_hlsearch = (flag)
++ #endif
++ 
+  #endif /* VIM__H */
+*** ../vim-7.4.078/src/testdir/test101.in	2013-11-08 04:28:49.000000000 +0100
+--- src/testdir/test101.in	2013-11-08 04:11:46.000000000 +0100
+***************
+*** 0 ****
+--- 1,45 ----
++ Test for v:hlsearch     vim: set ft=vim :
++ 
++ STARTTEST
++ :" Last abc: Q
++ :so small.vim
++ :new
++ :call setline(1, repeat(['aaa'], 10))
++ :set hlsearch nolazyredraw
++ :let r=[]
++ :command -nargs=0 -bar AddR :call add(r, [screenattr(1, 1), v:hlsearch])
++ /aaa
++ :AddR
++ :nohlsearch
++ :AddR
++ :let v:hlsearch=1
++ :AddR
++ :let v:hlsearch=0
++ :AddR
++ :set hlsearch
++ :AddR
++ :let v:hlsearch=0
++ :AddR
++ n:AddR
++ :let v:hlsearch=0
++ :AddR
++ /
++ :AddR
++ :let r1=r[0][0]
++ :" I guess it is not guaranteed that screenattr outputs always the same character
++ :call map(r, 'v:val[1].":".(v:val[0]==r1?"highlighted":"not highlighted")')
++ :try
++ :   let v:hlsearch=[]
++ :catch
++ :   call add(r, matchstr(v:exception,'^Vim(let):E\d\+:'))
++ :endtry
++ :bwipeout!
++ :$put=r
++ :call garbagecollect(1)
++ :"
++ :/^start:/,$wq! test.out
++ :" vim: et ts=4 isk-=\:
++ :call getchar()
++ ENDTEST
++ 
++ start:
+*** ../vim-7.4.078/src/testdir/test101.ok	2013-11-08 04:28:49.000000000 +0100
+--- src/testdir/test101.ok	2013-11-08 04:11:46.000000000 +0100
+***************
+*** 0 ****
+--- 1,11 ----
++ start:
++ 1:highlighted
++ 0:not highlighted
++ 1:highlighted
++ 0:not highlighted
++ 1:highlighted
++ 0:not highlighted
++ 1:highlighted
++ 0:not highlighted
++ 1:highlighted
++ Vim(let):E706:
+*** ../vim-7.4.078/src/testdir/Make_amiga.mak	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/Make_amiga.mak	2013-11-08 04:22:13.000000000 +0100
+***************
+*** 34,40 ****
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out
+  
+  .SUFFIXES: .in .out
+  
+--- 34,40 ----
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out test101.out
+  
+  .SUFFIXES: .in .out
+  
+***************
+*** 151,153 ****
+--- 151,154 ----
+  test98.out: test98.in
+  test99.out: test99.in
+  test100.out: test100.in
++ test101.out: test101.in
+*** ../vim-7.4.078/src/testdir/Make_dos.mak	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/Make_dos.mak	2013-11-08 04:22:17.000000000 +0100
+***************
+*** 33,39 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 33,39 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out test101.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.078/src/testdir/Make_ming.mak	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/Make_ming.mak	2013-11-08 04:22:19.000000000 +0100
+***************
+*** 53,59 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+--- 53,59 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100out test101.out
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+*** ../vim-7.4.078/src/testdir/Make_os2.mak	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/Make_os2.mak	2013-11-08 04:22:21.000000000 +0100
+***************
+*** 35,41 ****
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out
+  
+  .SUFFIXES: .in .out
+  
+--- 35,41 ----
+  		test81.out test82.out test83.out test84.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test98.out test99.out \
+! 		test100.out test101.out
+  
+  .SUFFIXES: .in .out
+  
+*** ../vim-7.4.078/src/testdir/Make_vms.mms	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/Make_vms.mms	2013-11-08 04:22:23.000000000 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2013 Nov 07
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2013 Nov 08
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 79,85 ****
+  	 test82.out test83.out test84.out test88.out test89.out \
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test97.out test98.out test99.out \
+! 	 test100.out
+  
+  # Known problems:
+  # Test 30: a problem around mac format - unknown reason
+--- 79,85 ----
+  	 test82.out test83.out test84.out test88.out test89.out \
+  	 test90.out test91.out test92.out test93.out test94.out \
+  	 test95.out test96.out test97.out test98.out test99.out \
+! 	 test100.out test101.out
+  
+  # Known problems:
+  # Test 30: a problem around mac format - unknown reason
+*** ../vim-7.4.078/src/testdir/Makefile	2013-11-07 03:25:51.000000000 +0100
+--- src/testdir/Makefile	2013-11-08 04:22:26.000000000 +0100
+***************
+*** 30,36 ****
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out
+  
+  SCRIPTS_GUI = test16.out
+  
+--- 30,36 ----
+  		test84.out test85.out test86.out test87.out test88.out \
+  		test89.out test90.out test91.out test92.out test93.out \
+  		test94.out test95.out test96.out test97.out test98.out \
+! 		test99.out test100.out test101.out
+  
+  SCRIPTS_GUI = test16.out
+  
+*** ../vim-7.4.078/src/version.c	2013-11-08 03:15:39.000000000 +0100
+--- src/version.c	2013-11-08 04:11:08.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     79,
+  /**/
+
+-- 
+Corn oil comes from corn and olive oil comes from olives, so where
+does baby oil come from?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

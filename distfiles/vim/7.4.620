@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.620
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.620
+Problem:    Compiler warning for unitinialized variable. (Tony Mechelynck)
+Solution:   Initialize "did_free". (Ben Fritz)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.619/src/eval.c	2015-02-03 17:10:02.149172883 +0100
+--- src/eval.c	2015-02-04 22:28:33.244066584 +0100
+***************
+*** 6815,6821 ****
+      win_T	*wp;
+      int		i;
+      funccall_T	*fc, **pfc;
+!     int		did_free;
+      int		did_free_funccal = FALSE;
+  #ifdef FEAT_WINDOWS
+      tabpage_T	*tp;
+--- 6815,6821 ----
+      win_T	*wp;
+      int		i;
+      funccall_T	*fc, **pfc;
+!     int		did_free = FALSE;
+      int		did_free_funccal = FALSE;
+  #ifdef FEAT_WINDOWS
+      tabpage_T	*tp;
+*** ../vim-7.4.619/src/version.c	2015-02-04 22:02:33.184877183 +0100
+--- src/version.c	2015-02-04 23:06:08.637946730 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     620,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+177. You log off of your system because it's time to go to work.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

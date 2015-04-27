@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.374
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.374
+Problem:    Character after "fb" command not mapped if it might be a composing
+	    character.
+Solution:   Don't disable mapping when looking for a composing character.
+	    (Jacob Niehus)
+Files:	    src/normal.c
+
+
+*** ../vim-7.4.373/src/normal.c	2014-04-29 12:15:22.856032651 +0200
+--- src/normal.c	2014-07-23 12:26:26.811992854 +0200
+***************
+*** 1076,1082 ****
+  #ifdef FEAT_MBYTE
+  	    /* When getting a text character and the next character is a
+  	     * multi-byte character, it could be a composing character.
+! 	     * However, don't wait for it to arrive. */
+  	    while (enc_utf8 && lang && (c = vpeekc()) > 0
+  				 && (c >= 0x100 || MB_BYTE2LEN(vpeekc()) > 1))
+  	    {
+--- 1076,1085 ----
+  #ifdef FEAT_MBYTE
+  	    /* When getting a text character and the next character is a
+  	     * multi-byte character, it could be a composing character.
+! 	     * However, don't wait for it to arrive. Also, do enable mapping,
+! 	     * because if it's put back with vungetc() it's too late to apply
+! 	     * mapping. */
+! 	    --no_mapping;
+  	    while (enc_utf8 && lang && (c = vpeekc()) > 0
+  				 && (c >= 0x100 || MB_BYTE2LEN(vpeekc()) > 1))
+  	    {
+***************
+*** 1091,1096 ****
+--- 1094,1100 ----
+  		else
+  		    ca.ncharC2 = c;
+  	    }
++ 	    ++no_mapping;
+  #endif
+  	}
+  	--no_mapping;
+*** ../vim-7.4.373/src/version.c	2014-07-16 23:39:50.251084976 +0200
+--- src/version.c	2014-07-23 12:27:50.483992253 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     374,
+  /**/
+
+-- 
+CART DRIVER: Bring out your dead!
+   There are legs stick out of windows and doors.  Two MEN are fighting in the
+   mud - covered from head to foot in it.  Another MAN is on his hands in
+   knees shovelling mud into his mouth.  We just catch sight of a MAN falling
+   into a well.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

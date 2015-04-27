@@ -1,0 +1,69 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.619
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.619 (after 7.4.618)
+Problem:    luaV_setref() not returning the correct value.
+Solution:   Return one.
+Files:	    src/if_lua.c
+
+
+*** ../vim-7.4.618/src/if_lua.c	2015-02-03 23:10:41.574348921 +0100
+--- src/if_lua.c	2015-02-04 22:01:19.649852981 +0100
+***************
+*** 1517,1523 ****
+  	return 0;
+      }
+      luaV_totypval(L, -1, rettv);
+!     return 0;
+  }
+  
+      static int
+--- 1517,1523 ----
+  	return 0;
+      }
+      luaV_totypval(L, -1, rettv);
+!     return 1;
+  }
+  
+      static int
+***************
+*** 1530,1536 ****
+      luaV_getfield(L, LUAVIM_LIST);
+      luaV_getfield(L, LUAVIM_DICT);
+      lua_pushnil(L);
+!     while (!abort && lua_next(L, lua_upvalueindex(1)) != 0) /* traverse cache table */
+      {
+  	lua_getmetatable(L, -1);
+  	if (lua_rawequal(L, -1, 2)) /* list? */
+--- 1530,1537 ----
+      luaV_getfield(L, LUAVIM_LIST);
+      luaV_getfield(L, LUAVIM_DICT);
+      lua_pushnil(L);
+!     /* traverse cache table */
+!     while (!abort && lua_next(L, lua_upvalueindex(1)) != 0)
+      {
+  	lua_getmetatable(L, -1);
+  	if (lua_rawequal(L, -1, 2)) /* list? */
+*** ../vim-7.4.618/src/version.c	2015-02-03 23:10:41.574348921 +0100
+--- src/version.c	2015-02-04 22:02:02.317286761 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     619,
+  /**/
+
+-- 
+I'm so disorganized my keyboard isn't even in alphabetical order!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

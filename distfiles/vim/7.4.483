@@ -1,0 +1,192 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.483
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.483
+Problem:    A 0x80 byte is not handled correctly in abbreviations.
+Solution:   Unescape special characters. Add a test. (Christian Brabandt)
+Files:	    src/getchar.c, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test_mapping.in,
+	    src/testdir/test_mapping.ok
+
+
+*** ../vim-7.4.482/src/getchar.c	2014-10-09 13:36:12.736888764 +0200
+--- src/getchar.c	2014-10-21 16:19:23.907174882 +0200
+***************
+*** 4443,4448 ****
+--- 4443,4449 ----
+  #endif
+      int		is_id = TRUE;
+      int		vim_abbr;
++     int		qlen;		/* length of q, CSI/K_SPECIAL unescaped */
+  
+      if (typebuf.tb_no_abbr_cnt)	/* abbrev. are not recursive */
+  	return FALSE;
+***************
+*** 4520,4525 ****
+--- 4521,4539 ----
+  #else
+  	mp = first_abbr;
+  #endif
++ 	qlen = mp->m_keylen;
++ 	if (vim_strbyte(mp->m_keys, K_SPECIAL) != NULL)
++ 	{
++ 	    char_u	*q = vim_strsave(mp->m_keys);
++ 
++ 	    /* might have CSI escaped mp->m_keys */
++ 	    if (q != NULL)
++ 	    {
++ 		vim_unescape_csi(q);
++ 		qlen = STRLEN(q);
++ 		vim_free(q);
++ 	    }
++ 	}
+  	for ( ; mp;
+  #ifdef FEAT_LOCALMAP
+  		mp->m_next == NULL ? (mp = mp2, mp2 = NULL) :
+***************
+*** 4528,4534 ****
+  	{
+  	    /* find entries with right mode and keys */
+  	    if (       (mp->m_mode & State)
+! 		    && mp->m_keylen == len
+  		    && !STRNCMP(mp->m_keys, ptr, (size_t)len))
+  		break;
+  	}
+--- 4542,4548 ----
+  	{
+  	    /* find entries with right mode and keys */
+  	    if (       (mp->m_mode & State)
+! 		    && qlen == len
+  		    && !STRNCMP(mp->m_keys, ptr, (size_t)len))
+  		break;
+  	}
+*** ../vim-7.4.482/src/testdir/Make_amiga.mak	2014-08-16 18:36:38.593993280 +0200
+--- src/testdir/Make_amiga.mak	2014-10-21 16:12:45.523174012 +0200
+***************
+*** 43,48 ****
+--- 43,49 ----
+  		test_insertcount.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
++ 		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_utf8.out
+*** ../vim-7.4.482/src/testdir/Make_dos.mak	2014-10-09 15:37:02.492904600 +0200
+--- src/testdir/Make_dos.mak	2014-10-21 16:12:45.523174012 +0200
+***************
+*** 42,47 ****
+--- 42,48 ----
+  		test_insertcount.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
++ 		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_utf8.out
+*** ../vim-7.4.482/src/testdir/Make_ming.mak	2014-08-16 18:36:38.593993280 +0200
+--- src/testdir/Make_ming.mak	2014-10-21 16:12:45.527174012 +0200
+***************
+*** 62,67 ****
+--- 62,68 ----
+  		test_insertcount.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
++ 		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_utf8.out
+*** ../vim-7.4.482/src/testdir/Make_os2.mak	2014-08-16 18:36:38.593993280 +0200
+--- src/testdir/Make_os2.mak	2014-10-21 16:15:40.139174393 +0200
+***************
+*** 44,49 ****
+--- 44,50 ----
+  		test_insertcount.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
++ 		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_utf8.out
+*** ../vim-7.4.482/src/testdir/Make_vms.mms	2014-08-16 18:36:38.597993280 +0200
+--- src/testdir/Make_vms.mms	2014-10-21 16:12:45.527174012 +0200
+***************
+*** 103,108 ****
+--- 103,109 ----
+  	 test_insertcount.out \
+  	 test_listlbr.out \
+  	 test_listlbr_utf8.out \
++ 	 test_mapping.out \
+  	 test_options.out \
+  	 test_qf_title.out \
+  	 test_utf8.out
+*** ../vim-7.4.482/src/testdir/Makefile	2014-08-16 18:36:38.597993280 +0200
+--- src/testdir/Makefile	2014-10-21 16:16:05.771174449 +0200
+***************
+*** 40,45 ****
+--- 40,46 ----
+  		test_insertcount.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
++ 		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_utf8.out
+*** ../vim-7.4.482/src/testdir/test_mapping.in	2014-10-21 16:21:48.163175197 +0200
+--- src/testdir/test_mapping.in	2014-10-21 16:12:45.527174012 +0200
+***************
+*** 0 ****
+--- 1,15 ----
++ Test for mappings and abbreviations
++ 
++ STARTTEST
++ :so small.vim
++ :so mbyte.vim
++ : " abbreviations with р (0x80) should work
++ :inoreab чкпр   vim
++ GAчкпр 
++ 
++ :/^test/,$w! test.out
++ :qa!
++ ENDTEST
++ 
++ test starts here:
++ 
+*** ../vim-7.4.482/src/testdir/test_mapping.ok	2014-10-21 16:21:48.167175197 +0200
+--- src/testdir/test_mapping.ok	2014-10-21 16:12:45.527174012 +0200
+***************
+*** 0 ****
+--- 1,2 ----
++ test starts here:
++ vim
+*** ../vim-7.4.482/src/version.c	2014-10-21 14:15:13.419158607 +0200
+--- src/version.c	2014-10-21 16:17:25.139174622 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     483,
+  /**/
+
+-- 
+E  M  A  C  S
+s  e  l  o  h
+c  t  t  n  i
+a  a     t  f
+p        r  t
+e        o
+         l
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

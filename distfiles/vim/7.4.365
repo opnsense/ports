@@ -1,0 +1,159 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.365
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.365
+Problem:    Crash when using ":botright split" when there isn't much space.
+Solution:   Add a check for the minimum width/height. (Yukihiro Nakadaira)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.364/src/window.c	2014-07-02 17:16:51.334225522 +0200
+--- src/window.c	2014-07-16 14:14:37.751774230 +0200
+***************
+*** 686,691 ****
+--- 686,693 ----
+      int		layout;
+      frame_T	*frp, *curfrp;
+      int		before;
++     int		minwidth;
++     int		minheight;
+  
+      if (flags & WSP_TOP)
+  	oldwin = firstwin;
+***************
+*** 725,735 ****
+  	    needed += p_wiw - p_wmw;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
+  	    available = topframe->fr_width;
+! 	    needed += frame_minwidth(topframe, NULL);
+  	}
+  	else
+  	    available = oldwin->w_width;
+  	if (available < needed && new_wp == NULL)
+  	{
+  	    EMSG(_(e_noroom));
+--- 727,741 ----
+  	    needed += p_wiw - p_wmw;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
++ 	    minwidth = frame_minwidth(topframe, NULL);
+  	    available = topframe->fr_width;
+! 	    needed += minwidth;
+  	}
+  	else
++ 	{
++ 	    minwidth = frame_minwidth(oldwin->w_frame, NULL);
+  	    available = oldwin->w_width;
++ 	}
+  	if (available < needed && new_wp == NULL)
+  	{
+  	    EMSG(_(e_noroom));
+***************
+*** 739,744 ****
+--- 745,752 ----
+  	    new_size = oldwin->w_width / 2;
+  	if (new_size > oldwin->w_width - p_wmw - 1)
+  	    new_size = oldwin->w_width - p_wmw - 1;
++ 	if (new_size > available - minwidth - 1)
++ 	    new_size = available - minwidth - 1;
+  	if (new_size < p_wmw)
+  	    new_size = p_wmw;
+  
+***************
+*** 786,796 ****
+  	    needed += p_wh - p_wmh;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
+  	    available = topframe->fr_height;
+! 	    needed += frame_minheight(topframe, NULL);
+  	}
+  	else
+  	{
+  	    available = oldwin->w_height;
+  	    needed += p_wmh;
+  	}
+--- 794,806 ----
+  	    needed += p_wh - p_wmh;
+  	if (p_ea || (flags & (WSP_BOT | WSP_TOP)))
+  	{
++ 	    minheight = frame_minheight(topframe, NULL);
+  	    available = topframe->fr_height;
+! 	    needed += minheight;
+  	}
+  	else
+  	{
++ 	    minheight = frame_minheight(oldwin->w_frame, NULL);
+  	    available = oldwin->w_height;
+  	    needed += p_wmh;
+  	}
+***************
+*** 810,815 ****
+--- 820,827 ----
+  
+  	if (new_size > oldwin_height - p_wmh - STATUS_HEIGHT)
+  	    new_size = oldwin_height - p_wmh - STATUS_HEIGHT;
++ 	if (new_size > available - minheight - STATUS_HEIGHT)
++ 	    new_size = available - minheight - STATUS_HEIGHT;
+  	if (new_size < p_wmh)
+  	    new_size = p_wmh;
+  
+***************
+*** 5732,5738 ****
+  		    --wp->w_wrow;
+  		}
+  	    }
+!             set_topline(wp, lnum);
+  	}
+  	else if (sline > 0)
+  	{
+--- 5744,5750 ----
+  		    --wp->w_wrow;
+  		}
+  	    }
+! 	    set_topline(wp, lnum);
+  	}
+  	else if (sline > 0)
+  	{
+***************
+*** 5778,5784 ****
+  		wp->w_wrow -= sline;
+  	    }
+  
+!             set_topline(wp, lnum);
+  	}
+      }
+  
+--- 5790,5796 ----
+  		wp->w_wrow -= sline;
+  	    }
+  
+! 	    set_topline(wp, lnum);
+  	}
+      }
+  
+*** ../vim-7.4.364/src/version.c	2014-07-09 21:17:59.755550204 +0200
+--- src/version.c	2014-07-16 14:10:41.191779038 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     365,
+  /**/
+
+-- 
+"Software is like sex... it's better when it's free."
+		-- Linus Torvalds, initiator of the free Linux OS
+Makes me wonder what FSF stands for...?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

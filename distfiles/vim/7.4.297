@@ -1,0 +1,76 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.297
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.297
+Problem:    Memory leak from result of get_isolated_shell_name().
+Solution:   Free the memory. (Dominique Pelle)
+Files:	    src/ex_cmds.c, src/misc1.c
+
+
+*** ../vim-7.4.296/src/ex_cmds.c	2014-05-09 20:33:01.098790466 +0200
+--- src/ex_cmds.c	2014-05-22 13:59:20.962535763 +0200
+***************
+*** 1554,1562 ****
+  
+  #if (defined(UNIX) && !defined(ARCHIE)) || defined(OS2)
+      int		is_fish_shell;
+  
+      /* Account for fish's different syntax for subshells */
+!     is_fish_shell = (fnamecmp(get_isolated_shell_name(), "fish") == 0);
+      if (is_fish_shell)
+  	len = (long_u)STRLEN(cmd) + 13;		/* "begin; " + "; end" + NUL */
+      else
+--- 1554,1564 ----
+  
+  #if (defined(UNIX) && !defined(ARCHIE)) || defined(OS2)
+      int		is_fish_shell;
++     char_u	*shell_name = get_isolated_shell_name();
+  
+      /* Account for fish's different syntax for subshells */
+!     is_fish_shell = (fnamecmp(shell_name, "fish") == 0);
+!     vim_free(shell_name);
+      if (is_fish_shell)
+  	len = (long_u)STRLEN(cmd) + 13;		/* "begin; " + "; end" + NUL */
+      else
+*** ../vim-7.4.296/src/misc1.c	2014-05-13 12:44:19.897569605 +0200
+--- src/misc1.c	2014-05-22 13:58:52.254536347 +0200
+***************
+*** 10874,10880 ****
+  }
+  
+  /*
+!  * Returns the isolated name of the shell:
+   * - Skip beyond any path.  E.g., "/usr/bin/csh -f" -> "csh -f".
+   * - Remove any argument.  E.g., "csh -f" -> "csh".
+   * But don't allow a space in the path, so that this works:
+--- 10874,10880 ----
+  }
+  
+  /*
+!  * Returns the isolated name of the shell in allocated memory:
+   * - Skip beyond any path.  E.g., "/usr/bin/csh -f" -> "csh -f".
+   * - Remove any argument.  E.g., "csh -f" -> "csh".
+   * But don't allow a space in the path, so that this works:
+*** ../vim-7.4.296/src/version.c	2014-05-22 13:12:25.650592983 +0200
+--- src/version.c	2014-05-22 13:57:37.346537869 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     297,
+  /**/
+
+-- 
+A computer program does what you tell it to do, not what you want it to do.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

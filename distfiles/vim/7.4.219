@@ -1,0 +1,100 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.219
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.219
+Problem:    When 'relativenumber' or 'cursorline' are set the window is
+	    redrawn much to often. (Patrick Hemmer, Dominique Pelle)
+Solution:   Check the VALID_CROW flag instead of VALID_WROW.
+Files:	    src/move.c
+
+
+*** ../vim-7.4.218/src/move.c	2014-03-23 15:12:29.927264336 +0100
+--- src/move.c	2014-03-27 11:59:28.524382473 +0100
+***************
+*** 772,777 ****
+--- 772,791 ----
+  	}
+      }
+  
++     /* Redraw when w_cline_row changes and 'relativenumber' or 'cursorline' is
++      * set. */
++     if ((curwin->w_p_rnu
++ #ifdef FEAT_SYN_HL
++ 		|| curwin->w_p_cul
++ #endif
++ 		)
++ 	    && (curwin->w_valid & VALID_CROW) == 0
++ # ifdef FEAT_INS_EXPAND
++ 	    && !pum_visible()
++ # endif
++ 	    )
++ 	redraw_later(SOME_VALID);
++ 
+      wp->w_valid |= VALID_CROW|VALID_CHEIGHT;
+  
+      /* validate botline too, if update_screen doesn't do it */
+***************
+*** 1172,1193 ****
+      if (prev_skipcol != curwin->w_skipcol)
+  	redraw_later(NOT_VALID);
+  
+-     /* Redraw when w_row changes and 'relativenumber' is set */
+-     if (((curwin->w_valid & VALID_WROW) == 0 && (curwin->w_p_rnu
+  #ifdef FEAT_SYN_HL
+! 	/* or when w_row changes and 'cursorline' is set. */
+! 						|| curwin->w_p_cul
+! #endif
+! 	))
+! #ifdef FEAT_SYN_HL
+! 	/* or when w_virtcol changes and 'cursorcolumn' is set */
+! 	|| (curwin->w_p_cuc && (curwin->w_valid & VALID_VIRTCOL) == 0)
+! #endif
+! 	)
+  # ifdef FEAT_INS_EXPAND
+! 	    if (!pum_visible())
+  # endif
+! 		redraw_later(SOME_VALID);
+  
+      curwin->w_valid |= VALID_WCOL|VALID_WROW|VALID_VIRTCOL;
+  }
+--- 1186,1200 ----
+      if (prev_skipcol != curwin->w_skipcol)
+  	redraw_later(NOT_VALID);
+  
+  #ifdef FEAT_SYN_HL
+!     /* Redraw when w_virtcol changes and 'cursorcolumn' is set */
+!     if (curwin->w_p_cuc && (curwin->w_valid & VALID_VIRTCOL) == 0
+  # ifdef FEAT_INS_EXPAND
+! 	    && !pum_visible()
+  # endif
+! 	)
+! 	redraw_later(SOME_VALID);
+! #endif
+  
+      curwin->w_valid |= VALID_WCOL|VALID_WROW|VALID_VIRTCOL;
+  }
+*** ../vim-7.4.218/src/version.c	2014-03-25 18:23:27.062087691 +0100
+--- src/version.c	2014-03-27 12:11:15.276393302 +0100
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     219,
+  /**/
+
+-- 
+The only way the average employee can speak to an executive is by taking a
+second job as a golf caddie.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

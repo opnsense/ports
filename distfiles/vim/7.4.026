@@ -1,0 +1,65 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.026
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.026
+Problem:    Clang warning for int shift overflow.
+Solution:   Use unsigned and cast back to int. (Dominique Pelle)
+Files:	    src/misc2.c
+
+
+*** ../vim-7.4.025/src/misc2.c	2013-07-07 16:03:35.000000000 +0200
+--- src/misc2.c	2013-09-08 16:04:54.000000000 +0200
+***************
+*** 6496,6508 ****
+  get4c(fd)
+      FILE	*fd;
+  {
+!     int		n;
+  
+!     n = getc(fd);
+!     n = (n << 8) + getc(fd);
+!     n = (n << 8) + getc(fd);
+!     n = (n << 8) + getc(fd);
+!     return n;
+  }
+  
+  /*
+--- 6496,6510 ----
+  get4c(fd)
+      FILE	*fd;
+  {
+!     /* Use unsigned rather than int otherwise result is undefined
+!      * when left-shift sets the MSB. */
+!     unsigned	n;
+  
+!     n = (unsigned)getc(fd);
+!     n = (n << 8) + (unsigned)getc(fd);
+!     n = (n << 8) + (unsigned)getc(fd);
+!     n = (n << 8) + (unsigned)getc(fd);
+!     return (int)n;
+  }
+  
+  /*
+*** ../vim-7.4.025/src/version.c	2013-09-08 16:03:40.000000000 +0200
+--- src/version.c	2013-09-08 16:05:40.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     26,
+  /**/
+
+-- 
+A computer program does what you tell it to do, not what you want it to do.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

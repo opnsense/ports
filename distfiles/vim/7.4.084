@@ -1,0 +1,184 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.084
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.084
+Problem:    Python: interrupt not being properly discarded. (Yggdroot Chen)
+Solution:   Discard interrupt in VimTryEnd. (ZyX)
+Files:      src/if_py_both.h, src/testdir/test86.in, src/testdir/test86.ok,
+            src/testdir/test87.in, src/testdir/test87.ok
+
+
+*** ../vim-7.4.083/src/if_py_both.h	2013-11-04 00:34:47.000000000 +0100
+--- src/if_py_both.h	2013-11-11 00:56:41.000000000 +0100
+***************
+*** 558,564 ****
+      /* Keyboard interrupt should be preferred over anything else */
+      if (got_int)
+      {
+! 	did_throw = got_int = FALSE;
+  	PyErr_SetNone(PyExc_KeyboardInterrupt);
+  	return -1;
+      }
+--- 558,568 ----
+      /* Keyboard interrupt should be preferred over anything else */
+      if (got_int)
+      {
+! 	if (current_exception != NULL)
+! 	    discard_current_exception();
+! 	else
+! 	    need_rethrow = did_throw = FALSE;
+! 	got_int = FALSE;
+  	PyErr_SetNone(PyExc_KeyboardInterrupt);
+  	return -1;
+      }
+***************
+*** 567,573 ****
+      /* Python exception is preferred over vim one; unlikely to occur though */
+      else if (PyErr_Occurred())
+      {
+! 	did_throw = FALSE;
+  	return -1;
+      }
+      /* Finally transform VimL exception to python one */
+--- 571,580 ----
+      /* Python exception is preferred over vim one; unlikely to occur though */
+      else if (PyErr_Occurred())
+      {
+! 	if (current_exception != NULL)
+! 	    discard_current_exception();
+! 	else
+! 	    need_rethrow = did_throw = FALSE;
+  	return -1;
+      }
+      /* Finally transform VimL exception to python one */
+*** ../vim-7.4.083/src/testdir/test86.in	2013-11-04 00:34:47.000000000 +0100
+--- src/testdir/test86.in	2013-11-11 00:56:11.000000000 +0100
+***************
+*** 1281,1286 ****
+--- 1281,1317 ----
+  EOF
+  :delfunction Exe
+  :"
++ :" Regression: interrupting vim.command propagates to next vim.command
++ py << EOF
++ def test_keyboard_interrupt():
++     try:
++         vim.command('while 1 | endwhile')
++     except KeyboardInterrupt:
++         cb.append('Caught KeyboardInterrupt')
++     except Exception:
++         cb.append('!!!!!!!! Caught exception: ' + repr(sys.exc_info))
++     else:
++         cb.append('!!!!!!!! No exception')
++     try:
++         vim.command('$ put =\'Running :put\'')
++     except KeyboardInterrupt:
++         cb.append('!!!!!!!! Caught KeyboardInterrupt')
++     except Exception:
++         cb.append('!!!!!!!! Caught exception: ' + repr(sys.exc_info))
++     else:
++         cb.append('No exception')
++ EOF
++ :debuggreedy
++ :call inputsave()
++ :call feedkeys("s\ns\ns\ns\nq\n")
++ :redir => output
++ :debug silent! py test_keyboard_interrupt()
++ :redir END
++ :0 debuggreedy
++ :silent $put =output
++ :unlet output
++ :py del test_keyboard_interrupt
++ :"
+  :" Cleanup
+  py << EOF
+  del cb
+*** ../vim-7.4.083/src/testdir/test86.ok	2013-11-04 00:34:47.000000000 +0100
+--- src/testdir/test86.ok	2013-11-11 00:56:11.000000000 +0100
+***************
+*** 1198,1200 ****
+--- 1198,1204 ----
+  vim.eval("Exe('echoerr ''jkl''')"):error:('Vim(echoerr):jkl',)
+  vim.eval("Exe('xxx_non_existent_command_xxx')"):error:('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',)
+  vim.bindeval("Exe('xxx_non_existent_command_xxx')"):error:('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',)
++ Caught KeyboardInterrupt
++ Running :put
++ No exception
++ 
+*** ../vim-7.4.083/src/testdir/test87.in	2013-11-04 00:34:47.000000000 +0100
+--- src/testdir/test87.in	2013-11-11 00:56:11.000000000 +0100
+***************
+*** 1232,1237 ****
+--- 1232,1268 ----
+  EOF
+  :delfunction Exe
+  :"
++ :" Regression: interrupting vim.command propagates to next vim.command
++ py3 << EOF
++ def test_keyboard_interrupt():
++     try:
++         vim.command('while 1 | endwhile')
++     except KeyboardInterrupt:
++         cb.append('Caught KeyboardInterrupt')
++     except Exception as e:
++         cb.append('!!!!!!!! Caught exception: ' + repr(e))
++     else:
++         cb.append('!!!!!!!! No exception')
++     try:
++         vim.command('$ put =\'Running :put\'')
++     except KeyboardInterrupt:
++         cb.append('!!!!!!!! Caught KeyboardInterrupt')
++     except Exception as e:
++         cb.append('!!!!!!!! Caught exception: ' + repr(e))
++     else:
++         cb.append('No exception')
++ EOF
++ :debuggreedy
++ :call inputsave()
++ :call feedkeys("s\ns\ns\ns\nq\n")
++ :redir => output
++ :debug silent! py3 test_keyboard_interrupt()
++ :redir END
++ :0 debuggreedy
++ :silent $put =output
++ :unlet output
++ :py3 del test_keyboard_interrupt
++ :"
+  :" Cleanup
+  py3 << EOF
+  del cb
+*** ../vim-7.4.083/src/testdir/test87.ok	2013-11-04 00:34:47.000000000 +0100
+--- src/testdir/test87.ok	2013-11-11 00:56:11.000000000 +0100
+***************
+*** 1187,1189 ****
+--- 1187,1193 ----
+  vim.eval("Exe('echoerr ''jkl''')"):(<class 'vim.error'>, error('Vim(echoerr):jkl',))
+  vim.eval("Exe('xxx_non_existent_command_xxx')"):(<class 'vim.error'>, error('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',))
+  vim.bindeval("Exe('xxx_non_existent_command_xxx')"):(<class 'vim.error'>, error('Vim:E492: Not an editor command: xxx_non_existent_command_xxx',))
++ Caught KeyboardInterrupt
++ Running :put
++ No exception
++ 
+*** ../vim-7.4.083/src/version.c	2013-11-09 05:30:18.000000000 +0100
+--- src/version.c	2013-11-11 00:55:23.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     84,
+  /**/
+
+-- 
+Computers make very fast, very accurate, mistakes.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

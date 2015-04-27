@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.144
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.144
+Problem:    MingW also supports intptr_t for OPEN_OH_ARGTYPE.
+Solution:   Adjust #ifdef. (Ken Takata)
+Files:	    src/os_mswin.c
+
+
+*** ../vim-7.4.143/src/os_mswin.c	2014-01-10 13:05:12.000000000 +0100
+--- src/os_mswin.c	2014-01-14 12:15:30.000000000 +0100
+***************
+*** 498,504 ****
+      }
+  }
+  
+! #if (_MSC_VER >= 1300)
+  # define OPEN_OH_ARGTYPE intptr_t
+  #else
+  # define OPEN_OH_ARGTYPE long
+--- 498,504 ----
+      }
+  }
+  
+! #if (defined(_MSC_VER) && (_MSC_VER >= 1300)) || defined(__MINGW32__)
+  # define OPEN_OH_ARGTYPE intptr_t
+  #else
+  # define OPEN_OH_ARGTYPE long
+*** ../vim-7.4.143/src/version.c	2014-01-14 12:16:57.000000000 +0100
+--- src/version.c	2014-01-14 12:18:10.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     144,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+150. You find yourself counting emoticons to get to sleep.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

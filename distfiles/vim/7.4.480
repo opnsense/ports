@@ -1,0 +1,110 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.480
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.480 (after 7.4.479)
+Problem:    MS-Windows: Can't build.
+Solution:   Remove goto, use a flag instead.
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.479/src/os_win32.c	2014-10-15 22:50:06.946093724 +0200
+--- src/os_win32.c	2014-10-16 16:09:57.182230006 +0200
+***************
+*** 4646,4654 ****
+      int		x = 0;
+      int		tmode = cur_tmode;
+  #ifdef FEAT_TITLE
+!     char szShellTitle[512];
+! 
+  # ifdef FEAT_MBYTE
+      /* Change the title to reflect that we are in a subshell. */
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+      {
+--- 4646,4655 ----
+      int		x = 0;
+      int		tmode = cur_tmode;
+  #ifdef FEAT_TITLE
+!     char	szShellTitle[512];
+  # ifdef FEAT_MBYTE
++     int		did_set_title = FALSE;
++ 
+      /* Change the title to reflect that we are in a subshell. */
+      if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
+      {
+***************
+*** 4671,4695 ****
+  			wcscat(szShellTitle, wn);
+  		    SetConsoleTitleW(szShellTitle);
+  		    vim_free(wn);
+! 		    goto didset;
+  		}
+  	    }
+  	}
+      }
+! #endif
+!     /* Change the title to reflect that we are in a subshell. */
+!     if (GetConsoleTitle(szShellTitle, sizeof(szShellTitle) - 4) > 0)
+!     {
+! 	if (cmd == NULL)
+! 	    strcat(szShellTitle, " :sh");
+! 	else
+  	{
+! 	    strcat(szShellTitle, " - !");
+! 	    if ((strlen(szShellTitle) + strlen(cmd) < sizeof(szShellTitle)))
+! 		strcat(szShellTitle, cmd);
+  	}
+- 	SetConsoleTitle(szShellTitle);
+-     }
+  #endif
+  
+      out_flush();
+--- 4672,4697 ----
+  			wcscat(szShellTitle, wn);
+  		    SetConsoleTitleW(szShellTitle);
+  		    vim_free(wn);
+! 		    did_set_title = TRUE;
+  		}
+  	    }
+  	}
+      }
+!     if (!did_set_title)
+! # endif
+! 	/* Change the title to reflect that we are in a subshell. */
+! 	if (GetConsoleTitle(szShellTitle, sizeof(szShellTitle) - 4) > 0)
+  	{
+! 	    if (cmd == NULL)
+! 		strcat(szShellTitle, " :sh");
+! 	    else
+! 	    {
+! 		strcat(szShellTitle, " - !");
+! 		if ((strlen(szShellTitle) + strlen(cmd) < sizeof(szShellTitle)))
+! 		    strcat(szShellTitle, cmd);
+! 	    }
+! 	    SetConsoleTitle(szShellTitle);
+  	}
+  #endif
+  
+      out_flush();
+*** ../vim-7.4.479/src/version.c	2014-10-15 22:50:06.950093724 +0200
+--- src/version.c	2014-10-16 16:11:34.278230218 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     480,
+  /**/
+
+-- 
+Ten bugs in the hand is better than one as yet undetected.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,68 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.505
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.505
+Problem:    On MS-Windows when 'encoding' is a double-byte encoding a file
+	    name longer than MAX_PATH bytes but shorter than that in
+	    characters causes problems.
+Solution:   Fail on file names longer than MAX_PATH bytes. (Ken Takata)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.504/src/os_win32.c	2014-10-16 16:16:33.970230873 +0200
+--- src/os_win32.c	2014-11-05 18:32:54.624402126 +0100
+***************
+*** 6139,6144 ****
+--- 6139,6151 ----
+      }
+  # endif
+  
++     /* open() can open a file which name is longer than _MAX_PATH bytes
++      * and shorter than _MAX_PATH characters successfully, but sometimes it
++      * causes unexpected error in another part. We make it an error explicitly
++      * here. */
++     if (strlen(name) >= _MAX_PATH)
++ 	return -1;
++ 
+      return open(name, flags, mode);
+  }
+  
+***************
+*** 6188,6193 ****
+--- 6195,6207 ----
+  	 * the _wfopen() fails for missing wide functions. */
+      }
+  
++     /* fopen() can open a file which name is longer than _MAX_PATH bytes
++      * and shorter than _MAX_PATH characters successfully, but sometimes it
++      * causes unexpected error in another part. We make it an error explicitly
++      * here. */
++     if (strlen(name) >= _MAX_PATH)
++ 	return NULL;
++ 
+      return fopen(name, mode);
+  }
+  #endif
+*** ../vim-7.4.504/src/version.c	2014-11-05 18:18:13.156423366 +0100
+--- src/version.c	2014-11-05 18:33:06.684401835 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     505,
+  /**/
+
+-- 
+5 out of 4 people have trouble with fractions.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

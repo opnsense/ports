@@ -1,0 +1,57 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.240
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.240
+Problem:    ":tjump" shows "\n" as "\\n".
+Solution:   Skip over "\" that escapes a backslash. (Gary Johnson)
+Files:	    src/tag.c
+
+
+*** ../vim-7.4.239/src/tag.c	2013-11-28 14:36:24.000000000 +0100
+--- src/tag.c	2014-04-02 17:14:27.087731943 +0200
+***************
+*** 741,748 ****
+  			    break;
+  			msg_advance(15);
+  
+! 			/* skip backslash used for escaping command char */
+! 			if (*p == '\\' && *(p + 1) == *tagp.command)
+  			    ++p;
+  
+  			if (*p == TAB)
+--- 741,750 ----
+  			    break;
+  			msg_advance(15);
+  
+! 			/* skip backslash used for escaping a command char or
+! 			 * a backslash */
+! 			if (*p == '\\' && (*(p + 1) == *tagp.command
+! 				        || *(p + 1) == '\\'))
+  			    ++p;
+  
+  			if (*p == TAB)
+*** ../vim-7.4.239/src/version.c	2014-04-02 14:22:00.123874274 +0200
+--- src/version.c	2014-04-02 17:15:26.395731128 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     240,
+  /**/
+
+-- 
+Anyone who is capable of getting themselves made President should on no
+account be allowed to do the job.
+		-- Douglas Adams, "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

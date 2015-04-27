@@ -1,0 +1,180 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.175
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.175
+Problem:    When a wide library function fails, falling back to the non-wide
+	    function may do the wrong thing.
+Solution:   Check the platform, when the wide function is supported don't fall
+	    back to the non-wide function. (Ken Takata)
+Files:	    src/os_mswin.c, src/os_win32.c
+
+
+*** ../vim-7.4.174/src/os_mswin.c	2014-01-14 12:18:41.000000000 +0100
+--- src/os_mswin.c	2014-02-11 17:02:03.002214267 +0100
+***************
+*** 648,654 ****
+  	{
+  	    n = wstat_symlink_aware(wp, (struct _stat *)stp);
+  	    vim_free(wp);
+! 	    if (n >= 0)
+  		return n;
+  	    /* Retry with non-wide function (for Windows 98). Can't use
+  	     * GetLastError() here and it's unclear what errno gets set to if
+--- 648,654 ----
+  	{
+  	    n = wstat_symlink_aware(wp, (struct _stat *)stp);
+  	    vim_free(wp);
+! 	    if (n >= 0 || g_PlatformId == VER_PLATFORM_WIN32_NT)
+  		return n;
+  	    /* Retry with non-wide function (for Windows 98). Can't use
+  	     * GetLastError() here and it's unclear what errno gets set to if
+***************
+*** 815,822 ****
+  	{
+  	    n = _wchdir(p);
+  	    vim_free(p);
+! 	    if (n == 0)
+! 		return 0;
+  	    /* Retry with non-wide function (for Windows 98). */
+  	}
+      }
+--- 815,822 ----
+  	{
+  	    n = _wchdir(p);
+  	    vim_free(p);
+! 	    if (n == 0 || g_PlatformId == VER_PLATFORM_WIN32_NT)
+! 		return n;
+  	    /* Retry with non-wide function (for Windows 98). */
+  	}
+      }
+***************
+*** 1942,1949 ****
+  
+  shortcut_errorw:
+  		vim_free(p);
+! 		if (hr == S_OK)
+! 		    goto shortcut_end;
+  	    }
+  	}
+  	/* Retry with non-wide function (for Windows 98). */
+--- 1942,1948 ----
+  
+  shortcut_errorw:
+  		vim_free(p);
+! 		goto shortcut_end;
+  	    }
+  	}
+  	/* Retry with non-wide function (for Windows 98). */
+*** ../vim-7.4.174/src/os_win32.c	2014-02-05 14:02:23.590105699 +0100
+--- src/os_win32.c	2014-02-11 16:59:26.810211874 +0100
+***************
+*** 2877,2882 ****
+--- 2877,2884 ----
+  		return OK;
+  	    }
+  	}
++ 	else if (GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
++ 	    return FAIL;
+  	/* Retry with non-wide function (for Windows 98). */
+      }
+  #endif
+***************
+*** 2917,2922 ****
+--- 2919,2926 ----
+  		return;
+  	    }
+  	}
++ 	else if (GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
++ 	    return;
+  	/* Retry with non-wide function (for Windows 98). */
+      }
+  #endif
+***************
+*** 2966,2971 ****
+--- 2970,2977 ----
+  		return OK;
+  	    }
+  	}
++ 	else if (GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
++ 	    return FAIL;
+  	/* Retry with non-wide function (for Windows 98). */
+      }
+  #endif
+***************
+*** 3006,3012 ****
+  	{
+  	    n = _wchmod(p, perm);
+  	    vim_free(p);
+! 	    if (n == -1 && GetLastError() != ERROR_CALL_NOT_IMPLEMENTED)
+  		return FAIL;
+  	    /* Retry with non-wide function (for Windows 98). */
+  	}
+--- 3012,3018 ----
+  	{
+  	    n = _wchmod(p, perm);
+  	    vim_free(p);
+! 	    if (n == -1 && g_PlatformId == VER_PLATFORM_WIN32_NT)
+  		return FAIL;
+  	    /* Retry with non-wide function (for Windows 98). */
+  	}
+***************
+*** 6048,6054 ****
+  	{
+  	    f = _wopen(wn, flags, mode);
+  	    vim_free(wn);
+! 	    if (f >= 0)
+  		return f;
+  	    /* Retry with non-wide function (for Windows 98). Can't use
+  	     * GetLastError() here and it's unclear what errno gets set to if
+--- 6054,6060 ----
+  	{
+  	    f = _wopen(wn, flags, mode);
+  	    vim_free(wn);
+! 	    if (f >= 0 || g_PlatformId == VER_PLATFORM_WIN32_NT)
+  		return f;
+  	    /* Retry with non-wide function (for Windows 98). Can't use
+  	     * GetLastError() here and it's unclear what errno gets set to if
+***************
+*** 6099,6105 ****
+  	_set_fmode(oldMode);
+  # endif
+  
+! 	if (f != NULL)
+  	    return f;
+  	/* Retry with non-wide function (for Windows 98). Can't use
+  	 * GetLastError() here and it's unclear what errno gets set to if
+--- 6105,6111 ----
+  	_set_fmode(oldMode);
+  # endif
+  
+! 	if (f != NULL || g_PlatformId == VER_PLATFORM_WIN32_NT)
+  	    return f;
+  	/* Retry with non-wide function (for Windows 98). Can't use
+  	 * GetLastError() here and it's unclear what errno gets set to if
+*** ../vim-7.4.174/src/version.c	2014-02-11 16:00:31.198157698 +0100
+--- src/version.c	2014-02-11 16:33:10.002187713 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     175,
+  /**/
+
+-- 
+DINGO:   And after the spanking ... the oral sex.
+GALAHAD: Oh, dear! Well, I...
+GIRLS:   The oral sex ...  The oral sex.
+GALAHAD: Well, I suppose I could stay a BIT longer.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,179 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.647
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+[Note: this may break the tests on MS-Windows, please send me a fix if
+you can]
+
+Patch 7.4.647
+Problem:    After running the tests on MS-Windows many files differ from their
+	    originals as they were checked out.
+Solution:   Use a temp directory for executing the tests. (Ken Takata, Taro
+	    Muraoka)
+Files:	    src/testdir/Make_dos.mak
+
+
+*** ../vim-7.4.646/src/testdir/Make_dos.mak	2015-02-17 13:43:35.562216149 +0100
+--- src/testdir/Make_dos.mak	2015-02-27 21:09:13.380329915 +0100
+***************
+*** 56,87 ****
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+! SCRIPTS_GUI = test16.out
+  
+  .SUFFIXES: .in .out
+  
+! nongui:	fixff $(SCRIPTS16) $(SCRIPTS) report
+  
+! small:	report
+  
+! gui:	fixff $(SCRIPTS16) $(SCRIPTS) $(SCRIPTS_GUI) report
+  
+! win32:	fixff $(SCRIPTS16) $(SCRIPTS) $(SCRIPTS32) report
+  
+! fixff:
+! 	-$(VIMPROG) -u dos.vim --noplugin "+argdo set ff=dos|upd" +q *.in *.ok
+! 	-$(VIMPROG) -u dos.vim --noplugin "+argdo set ff=unix|upd" +q \
+! 		dotest.in test60.ok test71.ok test74.ok test100.ok
+  
+  report:
+  	@echo ""
+  	@echo Test results:
+! 	@IF EXIST test.log ( type test.log & echo TEST FAILURE & exit /b 1 ) \
+! 		ELSE ( ECHO ALL DONE )
+  
+  clean:
+  	-del *.out
+  	-del *.failed
+  	-if exist test.ok del test.ok
+  	-if exist small.vim del small.vim
+  	-if exist tiny.vim del tiny.vim
+--- 56,119 ----
+  
+  SCRIPTS32 =	test50.out test70.out
+  
+! SCRIPTS_GUI =	test16.out
+! 
+! TEST_OUTFILES = $(SCRIPTS16) $(SCRIPTS) $(SCRIPTS32) $(SCRIPTS_GUI)
+! DOSTMP = dostmp
+! DOSTMP_OUTFILES = $(TEST_OUTFILES:test=dostmp\test)
+! DOSTMP_INFILES = $(DOSTMP_OUTFILES:.out=.in)
+  
+  .SUFFIXES: .in .out
+  
+! nongui:	nolog $(SCRIPTS16) $(SCRIPTS) report
+  
+! small:	nolog report
+  
+! gui:	nolog $(SCRIPTS16) $(SCRIPTS) $(SCRIPTS_GUI) report
+  
+! win32:	nolog $(SCRIPTS16) $(SCRIPTS) $(SCRIPTS32) report
+  
+! # Copy the input files to dostmp, changing the fileformat to dos.
+! $(DOSTMP_INFILES): $(*B).in
+! 	if not exist $(DOSTMP)\NUL md $(DOSTMP)
+! 	if exist $@ del $@
+! 	$(VIMPROG) -u dos.vim --noplugin "+set ff=dos|f $@|wq" $(*B).in
+! 
+! # For each input file dostmp/test99.in run the tests.
+! # This moves test99.in to test99.in.bak temporarily.
+! $(TEST_OUTFILES): $(DOSTMP)\$(*B).in
+! 	-@if exist test.out DEL test.out
+! 	move $(*B).in $(*B).in.bak
+! 	copy $*.in $(*B).in
+! 	copy $(DOSTMP)\$(*B).in $(*B).in
+! 	copy $(*B).ok test.ok
+! 	$(VIMPROG) -u dos.vim -U NONE --noplugin -s dotest.in $(*B).in
+! 	-@if exist test.out MOVE /y test.out $(DOSTMP)\$(*B).out
+! 	-@if exist $(*B).in.bak move /y $(*B).in.bak $(*B).in
+! 	-@del X*
+! 	-@if exist test.ok del test.ok
+! 	-@if exist Xdir1 rd /s /q Xdir1
+! 	-@if exist Xfind rd /s /q Xfind
+! 	-@if exist viminfo del viminfo
+! 	$(VIMPROG) -u dos.vim --noplugin "+set ff=unix|f test.out|wq" \
+! 		$(DOSTMP)\$(*B).out
+! 	@diff test.out $*.ok & if errorlevel 1 \
+! 		( move /y test.out $*.failed \
+! 		 & del $(DOSTMP)\$(*B).out \
+! 		 & echo $* FAILED >> test.log ) \
+! 		else ( move /y test.out $*.out )
+  
+  report:
+  	@echo ""
+  	@echo Test results:
+! 	@if exist test.log ( type test.log & echo TEST FAILURE & exit /b 1 ) \
+! 		else ( echo ALL DONE )
+  
+  clean:
+  	-del *.out
+  	-del *.failed
++ 	-if exist $(DOSTMP) rd /s /q $(DOSTMP)
++ 	-if exist test.in del test.in
+  	-if exist test.ok del test.ok
+  	-if exist small.vim del small.vim
+  	-if exist tiny.vim del tiny.vim
+***************
+*** 92,115 ****
+  	-if exist Xdir1 rd /s /q Xdir1
+  	-if exist Xfind rd /s /q Xfind
+  	-if exist viminfo del viminfo
+! 	-del test.log
+  	-if exist benchmark.out del benchmark.out
+  
+- .in.out:
+- 	-if exist $*.failed del $*.failed
+- 	copy $*.ok test.ok
+- 	$(VIMPROG) -u dos.vim -U NONE --noplugin -s dotest.in $*.in
+- 	@diff test.out $*.ok & if errorlevel 1 \
+- 		( move /y test.out $*.failed & echo $* FAILED >> test.log ) \
+- 		else ( move /y test.out $*.out )
+- 	-del X*
+- 	-del test.ok
+- 	-if exist Xdir1 rd /s /q Xdir1
+- 	-if exist Xfind rd /s /q Xfind
+- 	-if exist viminfo del viminfo
+- 
+  nolog:
+! 	-del test.log
+  
+  benchmark:
+  	bench_re_freeze.out
+--- 124,134 ----
+  	-if exist Xdir1 rd /s /q Xdir1
+  	-if exist Xfind rd /s /q Xfind
+  	-if exist viminfo del viminfo
+! 	-if exist test.log del test.log
+  	-if exist benchmark.out del benchmark.out
+  
+  nolog:
+! 	-if exist test.log del test.log
+  
+  benchmark:
+  	bench_re_freeze.out
+*** ../vim-7.4.646/src/version.c	2015-02-27 20:33:27.452780646 +0100
+--- src/version.c	2015-02-27 21:09:26.648178876 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     647,
+  /**/
+
+-- 
+   They now pass three KNIGHTS impaled to a tree.  With their feet off the
+   ground,  with one lance through the lot of them, they are skewered up
+   like a barbecue.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

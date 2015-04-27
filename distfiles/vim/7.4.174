@@ -1,0 +1,94 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.174
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.174
+Problem:    Compiler warnings for Python interface. (Tony Mechelynck)
+Solution:   Add type casts, initialize variable.
+Files:	    src/if_py_both.h
+
+
+*** ../vim-7.4.173/src/if_py_both.h	2014-01-31 14:53:59.715533645 +0100
+--- src/if_py_both.h	2014-02-11 15:57:30.678154932 +0100
+***************
+*** 2368,2374 ****
+      PyInt	numreplaced = 0;
+      PyInt	numadded = 0;
+      PyInt	size;
+!     listitem_T	**lis;
+  
+      size = ListLength(self);
+  
+--- 2368,2374 ----
+      PyInt	numreplaced = 0;
+      PyInt	numadded = 0;
+      PyInt	size;
+!     listitem_T	**lis = NULL;
+  
+      size = ListLength(self);
+  
+***************
+*** 2503,2510 ****
+  	{
+  	    Py_DECREF(iterator);
+  	    PyErr_FORMAT(PyExc_ValueError,
+! 		    N_("attempt to assign sequence of size greater then %d "
+! 			"to extended slice"), slicelen);
+  	    list_restore(numadded, numreplaced, slicelen, l, lis, lastaddedli);
+  	    PyMem_Free(lis);
+  	    return -1;
+--- 2503,2510 ----
+  	{
+  	    Py_DECREF(iterator);
+  	    PyErr_FORMAT(PyExc_ValueError,
+! 		    N_("attempt to assign sequence of size greater then %ld "
+! 			"to extended slice"), (long)slicelen);
+  	    list_restore(numadded, numreplaced, slicelen, l, lis, lastaddedli);
+  	    PyMem_Free(lis);
+  	    return -1;
+***************
+*** 2516,2523 ****
+      if (step != 1 && i != slicelen)
+      {
+  	PyErr_FORMAT2(PyExc_ValueError,
+! 		N_("attempt to assign sequence of size %d to extended slice "
+! 		    "of size %d"), i, slicelen);
+  	list_restore(numadded, numreplaced, slicelen, l, lis, lastaddedli);
+  	PyMem_Free(lis);
+  	return -1;
+--- 2516,2523 ----
+      if (step != 1 && i != slicelen)
+      {
+  	PyErr_FORMAT2(PyExc_ValueError,
+! 		N_("attempt to assign sequence of size %ld to extended slice "
+! 		    "of size %ld"), (long)i, (long)slicelen);
+  	list_restore(numadded, numreplaced, slicelen, l, lis, lastaddedli);
+  	PyMem_Free(lis);
+  	return -1;
+*** ../vim-7.4.173/src/version.c	2014-02-11 15:47:41.382145902 +0100
+--- src/version.c	2014-02-11 15:59:04.646156372 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     174,
+  /**/
+
+-- 
+DINGO:   You must spank her well and after you have spanked her you
+         may deal with her as you like and then ... spank me.
+AMAZING: And spank me!
+STUNNER: And me.
+LOVELY:  And me.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

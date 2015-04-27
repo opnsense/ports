@@ -1,0 +1,85 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.217
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.217
+Problem:    When src/auto/configure was updated, "make clean" would run
+	    configure pointlessly.
+Solution:   Do not run configure for "make clean" and "make distclean" when
+	    the make program supports $MAKECMDGOALS. (Ken Takata)
+Files:	    src/Makefile
+
+
+*** ../vim-7.4.216/src/Makefile	2014-02-05 12:36:36.622026833 +0100
+--- src/Makefile	2014-03-25 15:31:10.629929307 +0100
+***************
+*** 546,551 ****
+--- 546,552 ----
+  # again.
+  #CC = cc
+  #CC = gcc
++ #CC = clang
+  
+  # COMPILER FLAGS - change as you please. Either before running {{{1
+  # configure or afterwards. For examples see below.
+***************
+*** 1666,1672 ****
+  	    ! grep -x -F 'ac_cv_env_CFLAGS_value=$(CFLAGS)' auto/config.cache > /dev/null; then \
+  		rm auto/config.cache; \
+  	fi
+! 	GUI_INC_LOC="$(GUI_INC_LOC)" GUI_LIB_LOC="$(GUI_LIB_LOC)" \
+  		CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" \
+  		LDFLAGS="$(LDFLAGS)" $(CONF_SHELL) srcdir="$(srcdir)" \
+  		./configure $(CONF_OPT_GUI) $(CONF_OPT_X) $(CONF_OPT_XSMP) \
+--- 1667,1674 ----
+  	    ! grep -x -F 'ac_cv_env_CFLAGS_value=$(CFLAGS)' auto/config.cache > /dev/null; then \
+  		rm auto/config.cache; \
+  	fi
+! 	if test "X$(MAKECMDGOALS)" != "Xclean" -a "X$(MAKECMDGOALS)" != "Xdistclean"; then \
+! 	    GUI_INC_LOC="$(GUI_INC_LOC)" GUI_LIB_LOC="$(GUI_LIB_LOC)" \
+  		CC="$(CC)" CPPFLAGS="$(CPPFLAGS)" CFLAGS="$(CFLAGS)" \
+  		LDFLAGS="$(LDFLAGS)" $(CONF_SHELL) srcdir="$(srcdir)" \
+  		./configure $(CONF_OPT_GUI) $(CONF_OPT_X) $(CONF_OPT_XSMP) \
+***************
+*** 1679,1685 ****
+  		$(CONF_OPT_COMPBY) $(CONF_OPT_ACL)  $(CONF_OPT_NETBEANS) \
+  		$(CONF_ARGS) $(CONF_OPT_MZSCHEME) $(CONF_OPT_PLTHOME) \
+  		$(CONF_OPT_LUA) $(CONF_OPT_LUA_PREFIX) \
+! 		$(CONF_OPT_SYSMOUSE)
+  
+  # Use "make reconfig" to rerun configure without cached values.
+  # When config.h changes, most things will be recompiled automatically.
+--- 1681,1688 ----
+  		$(CONF_OPT_COMPBY) $(CONF_OPT_ACL)  $(CONF_OPT_NETBEANS) \
+  		$(CONF_ARGS) $(CONF_OPT_MZSCHEME) $(CONF_OPT_PLTHOME) \
+  		$(CONF_OPT_LUA) $(CONF_OPT_LUA_PREFIX) \
+! 		$(CONF_OPT_SYSMOUSE); \
+! 	fi
+  
+  # Use "make reconfig" to rerun configure without cached values.
+  # When config.h changes, most things will be recompiled automatically.
+*** ../vim-7.4.216/src/version.c	2014-03-25 13:46:22.841832960 +0100
+--- src/version.c	2014-03-25 15:32:30.813930536 +0100
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     217,
+  /**/
+
+-- 
+CRONE:  Who sent you?
+ARTHUR: The Knights Who Say GNU!
+CRONE:  Aaaagh!  (she looks around in rear) No!  We have no licenses here.
+           "Monty Python and the Holy editor wars" PYTHON (MONTY) SOFTWARE LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

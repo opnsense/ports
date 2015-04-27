@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.169
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.169
+Problem:    ":sleep" puts cursor in the wrong column. (Liang Li)
+Solution:   Add the window offset. (Christian Brabandt)
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.168/src/ex_docmd.c	2014-01-10 15:53:09.000000000 +0100
+--- src/ex_docmd.c	2014-02-05 22:45:39.318586773 +0100
+***************
+*** 8371,8377 ****
+      {
+  	n = W_WINROW(curwin) + curwin->w_wrow - msg_scrolled;
+  	if (n >= 0)
+! 	    windgoto((int)n, curwin->w_wcol);
+      }
+  
+      len = eap->line2;
+--- 8371,8377 ----
+      {
+  	n = W_WINROW(curwin) + curwin->w_wrow - msg_scrolled;
+  	if (n >= 0)
+! 	    windgoto((int)n, W_WINCOL(curwin) + curwin->w_wcol);
+      }
+  
+      len = eap->line2;
+*** ../vim-7.4.168/src/version.c	2014-02-05 22:41:11.430582669 +0100
+--- src/version.c	2014-02-05 22:44:51.458586040 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     169,
+  /**/
+
+-- 
+ARTHUR: This new learning amazes me, Sir Bedevere.  Explain again how sheep's
+        bladders may be employed to prevent earthquakes.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,113 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.447
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.447
+Problem:    Spell files from Hunspell may generate a lot of errors.
+Solution:   Add the IGNOREEXTRA flag.
+Files:	    src/spell.c, runtime/doc/spell.txt
+
+
+*** ../vim-7.4.446/src/spell.c	2014-05-13 14:03:36.425611242 +0200
+--- src/spell.c	2014-09-19 15:24:19.582412580 +0200
+***************
+*** 4841,4846 ****
+--- 4841,4847 ----
+      unsigned	af_nosuggest;	/* NOSUGGEST ID */
+      int		af_pfxpostpone;	/* postpone prefixes without chop string and
+  				   without flags */
++     int		af_ignoreextra;	/* IGNOREEXTRA present */
+      hashtab_T	af_pref;	/* hashtable for prefixes, affheader_T */
+      hashtab_T	af_suff;	/* hashtable for suffixes, affheader_T */
+      hashtab_T	af_comp;	/* hashtable for compound flags, compitem_T */
+***************
+*** 5605,5610 ****
+--- 5606,5615 ----
+  	    {
+  		aff->af_pfxpostpone = TRUE;
+  	    }
++ 	    else if (is_aff_rule(items, itemcnt, "IGNOREEXTRA", 1))
++ 	    {
++ 		aff->af_ignoreextra = TRUE;
++ 	    }
+  	    else if ((STRCMP(items[0], "PFX") == 0
+  					      || STRCMP(items[0], "SFX") == 0)
+  		    && aff_todo == 0
+***************
+*** 5712,5720 ****
+  		int		lasti = 5;
+  
+  		/* Myspell allows extra text after the item, but that might
+! 		 * mean mistakes go unnoticed.  Require a comment-starter.
+! 		 * Hunspell uses a "-" item. */
+! 		if (itemcnt > lasti && *items[lasti] != '#'
+  			&& (STRCMP(items[lasti], "-") != 0
+  						     || itemcnt != lasti + 1))
+  		    smsg((char_u *)_(e_afftrailing), fname, lnum, items[lasti]);
+--- 5717,5727 ----
+  		int		lasti = 5;
+  
+  		/* Myspell allows extra text after the item, but that might
+! 		 * mean mistakes go unnoticed.  Require a comment-starter,
+! 		 * unless IGNOREEXTRA is used.  Hunspell uses a "-" item. */
+! 		if (itemcnt > lasti
+! 			&& !aff->af_ignoreextra
+! 			&& *items[lasti] != '#'
+  			&& (STRCMP(items[lasti], "-") != 0
+  						     || itemcnt != lasti + 1))
+  		    smsg((char_u *)_(e_afftrailing), fname, lnum, items[lasti]);
+*** ../vim-7.4.446/runtime/doc/spell.txt	2013-11-12 04:43:57.000000000 +0100
+--- runtime/doc/spell.txt	2014-09-19 15:18:00.318411751 +0200
+***************
+*** 1057,1062 ****
+--- 1058,1066 ----
+  	SFX F 0 in   [^i]n      # Spion > Spionin  ~
+  	SFX F 0 nen  in		# Bauerin > Bauerinnen ~
+  
++ However, to avoid lots of errors in affix files written for Myspell, you can
++ add the IGNOREEXTRA flag.
++ 
+  Apparently Myspell allows an affix name to appear more than once.  Since this
+  might also be a mistake, Vim checks for an extra "S".  The affix files for
+  Myspell that use this feature apparently have this flag.  Example:
+***************
+*** 1110,1115 ****
+--- 1114,1127 ----
+  - CIRCUMFIX, as explained just below.
+  
+  
++ IGNOREEXTRA						*spell-IGNOREEXTRA*
++ 
++ Normally Vim gives an error for an extra field that does not start with '#'.
++ This avoids errors going unnoticed.  However, some files created for Myspell
++ or Hunspell may contain many entries with an extra field.  Use the IGNOREEXTRA
++ flag to avoid lots of errors.
++ 
++ 
+  CIRCUMFIX						*spell-CIRCUMFIX*
+  
+  The CIRCUMFIX flag means a prefix and suffix must be added at the same time.
+*** ../vim-7.4.446/src/version.c	2014-09-19 14:26:29.658405000 +0200
+--- src/version.c	2014-09-19 15:18:41.774411842 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     447,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+161. You get up before the sun rises to check your e-mail, and you
+     find yourself in the very same chair long after the sun has set.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

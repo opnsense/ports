@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.606
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.606
+Problem:    May crash when using a small window.
+Solution:   Avoid dividing by zero. (Christian Brabandt)
+Files:	    src/normal.c
+
+
+*** ../vim-7.4.605/src/normal.c	2015-01-14 17:52:26.603094340 +0100
+--- src/normal.c	2015-01-27 20:59:18.721057793 +0100
+***************
+*** 4457,4462 ****
+--- 4457,4464 ----
+      col_off2 = col_off1 - curwin_col_off2();
+      width1 = W_WIDTH(curwin) - col_off1;
+      width2 = W_WIDTH(curwin) - col_off2;
++     if (width2 == 0)
++ 	width2 = 1; /* avoid divide by zero */
+  
+  #ifdef FEAT_VERTSPLIT
+      if (curwin->w_width != 0)
+*** ../vim-7.4.605/src/version.c	2015-01-27 18:43:42.138535469 +0100
+--- src/version.c	2015-01-27 20:41:07.697066323 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     606,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+132. You come back and check this list every half-hour.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

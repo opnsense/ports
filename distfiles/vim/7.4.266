@@ -1,0 +1,46 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.266
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.266
+Problem:    Test 62 fails.
+Solution:   Set the language to C. (Christian Brabandt)
+Files:	    src/testdir/test62.in
+
+
+*** ../vim-7.4.265/src/testdir/test62.in	2013-07-14 13:37:12.000000000 +0200
+--- src/testdir/test62.in	2014-04-29 11:50:50.676058452 +0200
+***************
+*** 2,7 ****
+--- 2,8 ----
+  
+  STARTTEST
+  :so small.vim
++ :lang C
+  :" Simple test for opening and closing a tab page
+  :tabnew
+  :let nr = tabpagenr()
+*** ../vim-7.4.265/src/version.c	2014-04-24 17:12:29.584911764 +0200
+--- src/version.c	2014-04-29 11:51:32.356057722 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     266,
+  /**/
+
+-- 
+I AM THANKFUL...
+...for a lawn that needs mowing, windows that need cleaning
+and gutters that need fixing because it means I have a home.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

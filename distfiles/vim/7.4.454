@@ -1,0 +1,87 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.454
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.454
+Problem:    When using a Visual selection of multiple words and doing CTRL-W_]
+	    it jumps to the tag matching the word under the cursor, not the
+	    selected text.  (Patrick hemmer)
+Solution:   Do not reset Visual mode. (idea by Christian Brabandt)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.453/src/window.c	2014-09-19 14:26:29.658405000 +0200
+--- src/window.c	2014-09-23 13:34:12.722783903 +0200
+***************
+*** 479,492 ****
+      case ']':
+      case Ctrl_RSB:
+  		CHECK_CMDWIN
+! 		reset_VIsual_and_resel();	/* stop Visual mode */
+  		if (Prenum)
+  		    postponed_split = Prenum;
+  		else
+  		    postponed_split = -1;
+  
+! 		/* Execute the command right here, required when
+! 		 * "wincmd ]" was used in a function. */
+  		do_nv_ident(Ctrl_RSB, NUL);
+  		break;
+  
+--- 479,493 ----
+      case ']':
+      case Ctrl_RSB:
+  		CHECK_CMDWIN
+! 		/* keep Visual mode, can select words to use as a tag */
+  		if (Prenum)
+  		    postponed_split = Prenum;
+  		else
+  		    postponed_split = -1;
++ 		g_do_tagpreview = 0;
+  
+! 		/* Execute the command right here, required when "wincmd ]"
+! 		 * was used in a function. */
+  		do_nv_ident(Ctrl_RSB, NUL);
+  		break;
+  
+***************
+*** 590,596 ****
+  #endif
+  		    case ']':
+  		    case Ctrl_RSB:
+! 			reset_VIsual_and_resel();	/* stop Visual mode */
+  			if (Prenum)
+  			    postponed_split = Prenum;
+  			else
+--- 591,597 ----
+  #endif
+  		    case ']':
+  		    case Ctrl_RSB:
+! 			/* keep Visual mode, can select words to use as a tag */
+  			if (Prenum)
+  			    postponed_split = Prenum;
+  			else
+*** ../vim-7.4.453/src/version.c	2014-09-19 22:23:22.398467500 +0200
+--- src/version.c	2014-09-23 13:36:18.550784178 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     454,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+175. You send yourself e-mail before you go to bed to remind you
+     what to do when you wake up.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

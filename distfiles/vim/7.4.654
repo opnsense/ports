@@ -1,0 +1,174 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.654
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.654
+Problem:    glob() and globpath() cannot include links to non-existing files.
+	    (Charles Campbell)
+Solution:   Add an argument to include all links with glob(). (James McCoy)
+	    Also for globpath().
+Files:	    src/vim.h, src/eval.c, src/ex_getln.c
+
+
+*** ../vim-7.4.653/src/vim.h	2015-02-27 17:19:07.100942390 +0100
+--- src/vim.h	2015-03-05 19:13:05.637355404 +0100
+***************
+*** 814,828 ****
+  #define WILD_LONGEST		7
+  #define WILD_ALL_KEEP		8
+  
+! #define WILD_LIST_NOTFOUND	1
+! #define WILD_HOME_REPLACE	2
+! #define WILD_USE_NL		4
+! #define WILD_NO_BEEP		8
+! #define WILD_ADD_SLASH		16
+! #define WILD_KEEP_ALL		32
+! #define WILD_SILENT		64
+! #define WILD_ESCAPE		128
+! #define WILD_ICASE		256
+  
+  /* Flags for expand_wildcards() */
+  #define EW_DIR		0x01	/* include directory names */
+--- 814,829 ----
+  #define WILD_LONGEST		7
+  #define WILD_ALL_KEEP		8
+  
+! #define WILD_LIST_NOTFOUND	0x01
+! #define WILD_HOME_REPLACE	0x02
+! #define WILD_USE_NL		0x04
+! #define WILD_NO_BEEP		0x08
+! #define WILD_ADD_SLASH		0x10
+! #define WILD_KEEP_ALL		0x20
+! #define WILD_SILENT		0x40
+! #define WILD_ESCAPE		0x80
+! #define WILD_ICASE		0x100
+! #define WILD_ALLLINKS		0x200
+  
+  /* Flags for expand_wildcards() */
+  #define EW_DIR		0x01	/* include directory names */
+***************
+*** 839,844 ****
+--- 840,846 ----
+  #define EW_KEEPDOLLAR	0x800	/* do not escape $, $var is expanded */
+  /* Note: mostly EW_NOTFOUND and EW_SILENT are mutually exclusive: EW_NOTFOUND
+   * is used when executing commands and EW_SILENT for interactive expanding. */
++ #define EW_ALLLINKS	0x1000	/* also links not pointing to existing file */
+  
+  /* Flags for find_file_*() functions. */
+  #define FINDFILE_FILE	0	/* only files */
+*** ../vim-7.4.653/src/eval.c	2015-02-17 12:44:04.376749160 +0100
+--- src/eval.c	2015-03-05 19:23:23.238330783 +0100
+***************
+*** 8141,8148 ****
+      {"getwinposx",	0, 0, f_getwinposx},
+      {"getwinposy",	0, 0, f_getwinposy},
+      {"getwinvar",	2, 3, f_getwinvar},
+!     {"glob",		1, 3, f_glob},
+!     {"globpath",	2, 4, f_globpath},
+      {"has",		1, 1, f_has},
+      {"has_key",		2, 2, f_has_key},
+      {"haslocaldir",	0, 0, f_haslocaldir},
+--- 8141,8148 ----
+      {"getwinposx",	0, 0, f_getwinposx},
+      {"getwinposy",	0, 0, f_getwinposy},
+      {"getwinvar",	2, 3, f_getwinvar},
+!     {"glob",		1, 4, f_glob},
+!     {"globpath",	2, 5, f_globpath},
+      {"has",		1, 1, f_has},
+      {"has_key",		2, 2, f_has_key},
+      {"haslocaldir",	0, 0, f_haslocaldir},
+***************
+*** 12412,12422 ****
+      {
+  	if (get_tv_number_chk(&argvars[1], &error))
+  	    options |= WILD_KEEP_ALL;
+! 	if (argvars[2].v_type != VAR_UNKNOWN
+! 				    && get_tv_number_chk(&argvars[2], &error))
+  	{
+! 	    rettv->v_type = VAR_LIST;
+! 	    rettv->vval.v_list = NULL;
+  	}
+      }
+      if (!error)
+--- 12412,12427 ----
+      {
+  	if (get_tv_number_chk(&argvars[1], &error))
+  	    options |= WILD_KEEP_ALL;
+! 	if (argvars[2].v_type != VAR_UNKNOWN)
+  	{
+! 	    if (get_tv_number_chk(&argvars[2], &error))
+! 	    {
+! 		rettv->v_type = VAR_LIST;
+! 		rettv->vval.v_list = NULL;
+! 	    }
+! 	    if (argvars[3].v_type != VAR_UNKNOWN
+! 				    && get_tv_number_chk(&argvars[3], &error))
+! 		options |= WILD_ALLLINKS;
+  	}
+      }
+      if (!error)
+***************
+*** 12466,12476 ****
+      {
+  	if (get_tv_number_chk(&argvars[2], &error))
+  	    flags |= WILD_KEEP_ALL;
+! 	if (argvars[3].v_type != VAR_UNKNOWN
+! 				    && get_tv_number_chk(&argvars[3], &error))
+  	{
+! 	    rettv->v_type = VAR_LIST;
+! 	    rettv->vval.v_list = NULL;
+  	}
+      }
+      if (file != NULL && !error)
+--- 12471,12486 ----
+      {
+  	if (get_tv_number_chk(&argvars[2], &error))
+  	    flags |= WILD_KEEP_ALL;
+! 	if (argvars[3].v_type != VAR_UNKNOWN)
+  	{
+! 	    if (get_tv_number_chk(&argvars[3], &error))
+! 	    {
+! 		rettv->v_type = VAR_LIST;
+! 		rettv->vval.v_list = NULL;
+! 	    }
+! 	    if (argvars[4].v_type != VAR_UNKNOWN
+! 				    && get_tv_number_chk(&argvars[4], &error))
+! 		flags |= WILD_ALLLINKS;
+  	}
+      }
+      if (file != NULL && !error)
+*** ../vim-7.4.653/src/ex_getln.c	2014-12-08 04:16:26.269702835 +0100
+--- src/ex_getln.c	2015-03-05 19:13:28.221098296 +0100
+***************
+*** 4563,4568 ****
+--- 4563,4570 ----
+  	flags |= EW_KEEPALL;
+      if (options & WILD_SILENT)
+  	flags |= EW_SILENT;
++     if (options & WILD_ALLLINKS)
++ 	flags |= EW_ALLLINKS;
+  
+      if (xp->xp_context == EXPAND_FILES
+  	    || xp->xp_context == EXPAND_DIRECTORIES
+*** ../vim-7.4.653/src/version.c	2015-03-05 18:08:38.893104412 +0100
+--- src/version.c	2015-03-05 19:33:05.491664753 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     654,
+  /**/
+
+-- 
+Just think of all the things we haven't thought of yet.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

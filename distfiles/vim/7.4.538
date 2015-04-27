@@ -1,0 +1,162 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.538
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.538
+Problem:    Tests fail with small features plus Python.
+Solution:   Disallow weird combination of options.  Do not set "fdm" when
+	    folding is disabled.
+Files:	    src/option.c, src/ex_cmds.c, src/configure.in, src/auto/configure,
+	    src/feature.h
+
+
+*** ../vim-7.4.537/src/option.c	2014-11-19 19:33:13.369532180 +0100
+--- src/option.c	2014-11-30 12:56:25.150896626 +0100
+***************
+*** 5575,5580 ****
+--- 5575,5581 ----
+  	if (idx < 0)	/* not found (should not happen) */
+  	{
+  	    EMSG2(_(e_intern2), "set_string_option_direct()");
++ 	    EMSG2(_("For option %s"), name);
+  	    return;
+  	}
+      }
+*** ../vim-7.4.537/src/ex_cmds.c	2014-11-12 19:28:12.682661756 +0100
+--- src/ex_cmds.c	2014-11-30 12:58:01.761820052 +0100
+***************
+*** 6200,6208 ****
+--- 6200,6210 ----
+  	(void)buf_init_chartab(curbuf, FALSE);
+      }
+  
++ #ifdef FEAT_FOLDING
+      /* Don't use the global foldmethod.*/
+      set_string_option_direct((char_u *)"fdm", -1, (char_u *)"manual",
+  						       OPT_FREE|OPT_LOCAL, 0);
++ #endif
+  
+      curbuf->b_p_ts = 8;		/* 'tabstop' is 8 */
+      curwin->w_p_list = FALSE;	/* no list mode */
+*** ../vim-7.4.537/src/configure.in	2014-10-11 14:47:22.817275547 +0200
+--- src/configure.in	2014-11-30 13:16:17.549623303 +0100
+***************
+*** 1041,1046 ****
+--- 1041,1050 ----
+  	[enable_pythoninterp="no"])
+  AC_MSG_RESULT($enable_pythoninterp)
+  if test "$enable_pythoninterp" = "yes" -o "$enable_pythoninterp" = "dynamic"; then
++   if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++     AC_MSG_ERROR([cannot use Python with tiny or small features])
++   fi
++ 
+    dnl -- find the python executable
+    AC_PATH_PROGS(vi_cv_path_python, python2 python)
+    if test "X$vi_cv_path_python" != "X"; then
+***************
+*** 1243,1248 ****
+--- 1247,1256 ----
+  	[enable_python3interp="no"])
+  AC_MSG_RESULT($enable_python3interp)
+  if test "$enable_python3interp" = "yes" -o "$enable_python3interp" = "dynamic"; then
++   if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++     AC_MSG_ERROR([cannot use Python with tiny or small features])
++   fi
++ 
+    dnl -- find the python3 executable
+    AC_PATH_PROGS(vi_cv_path_python3, python3 python)
+    if test "X$vi_cv_path_python3" != "X"; then
+***************
+*** 1720,1725 ****
+--- 1728,1737 ----
+  	[enable_rubyinterp="no"])
+  AC_MSG_RESULT($enable_rubyinterp)
+  if test "$enable_rubyinterp" = "yes" -o "$enable_rubyinterp" = "dynamic"; then
++   if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++     AC_MSG_ERROR([cannot use Ruby with tiny or small features])
++   fi
++ 
+    AC_MSG_CHECKING(--with-ruby-command argument)
+    AC_SUBST(vi_cv_path_ruby)
+    AC_ARG_WITH(ruby-command, [  --with-ruby-command=RUBY  name of the Ruby command (default: ruby)],
+*** ../vim-7.4.537/src/auto/configure	2014-10-11 14:47:22.825275547 +0200
+--- src/auto/configure	2014-11-30 13:16:24.781542840 +0100
+***************
+*** 5728,5733 ****
+--- 5728,5737 ----
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_pythoninterp" >&5
+  $as_echo "$enable_pythoninterp" >&6; }
+  if test "$enable_pythoninterp" = "yes" -o "$enable_pythoninterp" = "dynamic"; then
++   if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++     as_fn_error $? "cannot use Python with tiny or small features" "$LINENO" 5
++   fi
++ 
+      for ac_prog in python2 python
+  do
+    # Extract the first word of "$ac_prog", so it can be a program name with args.
+***************
+*** 6044,6049 ****
+--- 6048,6057 ----
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_python3interp" >&5
+  $as_echo "$enable_python3interp" >&6; }
+  if test "$enable_python3interp" = "yes" -o "$enable_python3interp" = "dynamic"; then
++   if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++     as_fn_error $? "cannot use Python with tiny or small features" "$LINENO" 5
++   fi
++ 
+      for ac_prog in python3 python
+  do
+    # Extract the first word of "$ac_prog", so it can be a program name with args.
+***************
+*** 6929,6934 ****
+--- 6937,6946 ----
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $enable_rubyinterp" >&5
+  $as_echo "$enable_rubyinterp" >&6; }
+  if test "$enable_rubyinterp" = "yes" -o "$enable_rubyinterp" = "dynamic"; then
++   if test "x$features" = "xtiny" -o "x$features" = "xsmall"; then
++     as_fn_error $? "cannot use Ruby with tiny or small features" "$LINENO" 5
++   fi
++ 
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking --with-ruby-command argument" >&5
+  $as_echo_n "checking --with-ruby-command argument... " >&6; }
+  
+*** ../vim-7.4.537/src/feature.h	2014-03-23 15:12:29.943264337 +0100
+--- src/feature.h	2014-11-30 13:22:11.997681089 +0100
+***************
+*** 385,397 ****
+  #endif
+  
+  /*
+-  * +python and +python3 require FEAT_EVAL.
+-  */
+- #if !defined(FEAT_EVAL) && (defined(FEAT_PYTHON3) || defined(FEAT_PYTHON))
+- # define FEAT_EVAL
+- #endif
+- 
+- /*
+   * +profile		Profiling for functions and scripts.
+   */
+  #if defined(FEAT_HUGE) \
+--- 385,390 ----
+*** ../vim-7.4.537/src/version.c	2014-11-27 19:14:45.080940970 +0100
+--- src/version.c	2014-11-30 13:22:33.565441297 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     538,
+  /**/
+
+-- 
+Computers make very fast, very accurate, mistakes.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

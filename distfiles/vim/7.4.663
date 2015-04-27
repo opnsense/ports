@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.663
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.663
+Problem:    When using netbeans a buffer is not found in another tab.
+Solution:   When 'switchbuf' is set to "usetab" then switch to another tab
+	    when possible. (Xavier de Gaye)
+Files:	    src/netbeans.c
+
+
+*** ../vim-7.4.662/src/netbeans.c	2015-02-10 18:33:53.240319951 +0100
+--- src/netbeans.c	2015-03-14 15:33:06.806660549 +0100
+***************
+*** 2691,2698 ****
+      static void
+  nb_set_curbuf(buf_T *buf)
+  {
+!     if (curbuf != buf && buf_jump_open_win(buf) == NULL)
+  	set_curbuf(buf, DOBUF_GOTO);
+  }
+  
+  /*
+--- 2691,2705 ----
+      static void
+  nb_set_curbuf(buf_T *buf)
+  {
+!     if (curbuf != buf) {
+! 	if (buf_jump_open_win(buf) != NULL)
+! 	    return;
+! # ifdef FEAT_WINDOWS
+! 	if ((swb_flags & SWB_USETAB) && buf_jump_open_tab(buf) != NULL)
+! 	    return;
+! # endif
+  	set_curbuf(buf, DOBUF_GOTO);
++     }
+  }
+  
+  /*
+*** ../vim-7.4.662/src/version.c	2015-03-13 15:02:46.258059206 +0100
+--- src/version.c	2015-03-14 15:29:00.889427900 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     663,
+  /**/
+
+-- 
+Have you heard about the new Barbie doll?  It's called Divorce
+Barbie.  It comes with all of Ken's stuff.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

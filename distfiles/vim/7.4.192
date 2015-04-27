@@ -1,0 +1,44 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.192
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.192
+Problem:    Memory leak when giving E853.
+Solution:   Free the argument. (Dominique Pelle)
+Files:      src/eval.c
+
+
+*** ../vim-7.4.191/src/eval.c	2014-02-23 23:38:58.824760280 +0100
+--- src/eval.c	2014-02-24 03:27:39.244738435 +0100
+***************
+*** 21457,21462 ****
+--- 21457,21463 ----
+  		if (STRCMP(((char_u **)(newargs.ga_data))[i], arg) == 0)
+  		{
+  		    EMSG2(_("E853: Duplicate argument name: %s"), arg);
++ 		    vim_free(arg);
+  		    goto erret;
+  		}
+  
+*** ../vim-7.4.191/src/version.c	2014-02-23 23:38:58.828760280 +0100
+--- src/version.c	2014-02-24 03:28:23.068738365 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     192,
+  /**/
+
+-- 
+Seen on the back of a biker's vest: If you can read this, my wife fell off.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

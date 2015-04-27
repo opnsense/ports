@@ -1,0 +1,564 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.088
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.088
+Problem:    When spell checking is enabled Asian characters are always marked
+            as error.
+Solution:   When 'spelllang' contains "cjk" do not mark Asian characters as
+            error. (Ken Takata)
+Files:      runtime/doc/options.txt, runtime/doc/spell.txt, src/mbyte.c,
+            src/option.c, src/spell.c, src/structs.h
+
+
+*** ../vim-7.4.087/runtime/doc/options.txt	2013-11-06 05:26:08.000000000 +0100
+--- runtime/doc/options.txt	2013-11-12 04:00:51.000000000 +0100
+***************
+*** 6555,6560 ****
+--- 6555,6563 ----
+  	region by listing them: "en_us,en_ca" supports both US and Canadian
+  	English, but not words specific for Australia, New Zealand or Great
+  	Britain.
++ 	If the name "cjk" is included East Asian characters are excluded from
++ 	spell checking.  This is useful when editing text that also has Asian
++ 	words.
+  							*E757*
+  	As a special case the name of a .spl file can be given as-is.  The
+  	first "_xx" in the name is removed and used as the region name
+*** ../vim-7.4.087/runtime/doc/spell.txt	2013-08-10 13:25:01.000000000 +0200
+--- runtime/doc/spell.txt	2013-11-12 04:02:27.000000000 +0100
+***************
+*** 269,274 ****
+--- 269,281 ----
+  	latin1		yi		transliterated Yiddish
+  	utf-8		yi-tr		transliterated Yiddish
+  
++ 							*spell-cjk*
++ Chinese, Japanese and other East Asian characters are normally marked as
++ errors, because spell checking of these characters is not supported. If
++ 'spelllang' includes "cjk", these characters are not marked as errors.  This
++ is useful when editing text with spell checking while some Asian words are
++ present.
++ 
+  
+  SPELL FILES						*spell-load*
+  
+*** ../vim-7.4.087/src/mbyte.c	2013-07-05 20:07:21.000000000 +0200
+--- src/mbyte.c	2013-11-12 03:55:50.000000000 +0100
+***************
+*** 947,954 ****
+  		{
+  		    case 0x2121: /* ZENKAKU space */
+  			return 0;
+! 		    case 0x2122: /* KU-TEN (Japanese comma) */
+! 		    case 0x2123: /* TOU-TEN (Japanese period) */
+  		    case 0x2124: /* ZENKAKU comma */
+  		    case 0x2125: /* ZENKAKU period */
+  			return 1;
+--- 947,954 ----
+  		{
+  		    case 0x2121: /* ZENKAKU space */
+  			return 0;
+! 		    case 0x2122: /* TOU-TEN (Japanese comma) */
+! 		    case 0x2123: /* KU-TEN (Japanese period) */
+  		    case 0x2124: /* ZENKAKU comma */
+  		    case 0x2125: /* ZENKAKU period */
+  			return 1;
+***************
+*** 2477,2485 ****
+      /* sorted list of non-overlapping intervals */
+      static struct clinterval
+      {
+! 	unsigned short first;
+! 	unsigned short last;
+! 	unsigned short class;
+      } classes[] =
+      {
+  	{0x037e, 0x037e, 1},		/* Greek question mark */
+--- 2477,2485 ----
+      /* sorted list of non-overlapping intervals */
+      static struct clinterval
+      {
+! 	unsigned int first;
+! 	unsigned int last;
+! 	unsigned int class;
+      } classes[] =
+      {
+  	{0x037e, 0x037e, 1},		/* Greek question mark */
+***************
+*** 2544,2549 ****
+--- 2544,2553 ----
+  	{0xff1a, 0xff20, 1},		/* half/fullwidth ASCII */
+  	{0xff3b, 0xff40, 1},		/* half/fullwidth ASCII */
+  	{0xff5b, 0xff65, 1},		/* half/fullwidth ASCII */
++ 	{0x20000, 0x2a6df, 0x4e00},	/* CJK Ideographs */
++ 	{0x2a700, 0x2b73f, 0x4e00},	/* CJK Ideographs */
++ 	{0x2b740, 0x2b81f, 0x4e00},	/* CJK Ideographs */
++ 	{0x2f800, 0x2fa1f, 0x4e00},	/* CJK Ideographs */
+      };
+      int bot = 0;
+      int top = sizeof(classes) / sizeof(struct clinterval) - 1;
+***************
+*** 2563,2571 ****
+      while (top >= bot)
+      {
+  	mid = (bot + top) / 2;
+! 	if (classes[mid].last < c)
+  	    bot = mid + 1;
+! 	else if (classes[mid].first > c)
+  	    top = mid - 1;
+  	else
+  	    return (int)classes[mid].class;
+--- 2567,2575 ----
+      while (top >= bot)
+      {
+  	mid = (bot + top) / 2;
+! 	if (classes[mid].last < (unsigned int)c)
+  	    bot = mid + 1;
+! 	else if (classes[mid].first > (unsigned int)c)
+  	    top = mid - 1;
+  	else
+  	    return (int)classes[mid].class;
+*** ../vim-7.4.087/src/option.c	2013-11-08 04:30:06.000000000 +0100
+--- src/option.c	2013-11-12 04:34:46.000000000 +0100
+***************
+*** 7122,7127 ****
+--- 7122,7132 ----
+  	if (varp == &(curwin->w_s->b_p_spl))
+  	{
+  	    char_u	fname[200];
++ 	    char_u	*q = curwin->w_s->b_p_spl;
++ 
++ 	    /* Skip the first name if it is "cjk". */
++ 	    if (STRNCMP(q, "cjk,", 4) == 0)
++ 		q += 4;
+  
+  	    /*
+  	     * Source the spell/LANG.vim in 'runtimepath'.
+***************
+*** 7129,7139 ****
+  	     * Use the first name in 'spelllang' up to '_region' or
+  	     * '.encoding'.
+  	     */
+! 	    for (p = curwin->w_s->b_p_spl; *p != NUL; ++p)
+  		if (vim_strchr((char_u *)"_.,", *p) != NULL)
+  		    break;
+! 	    vim_snprintf((char *)fname, 200, "spell/%.*s.vim",
+! 				 (int)(p - curwin->w_s->b_p_spl), curwin->w_s->b_p_spl);
+  	    source_runtime(fname, TRUE);
+  	}
+  #endif
+--- 7134,7143 ----
+  	     * Use the first name in 'spelllang' up to '_region' or
+  	     * '.encoding'.
+  	     */
+! 	    for (p = q; *p != NUL; ++p)
+  		if (vim_strchr((char_u *)"_.,", *p) != NULL)
+  		    break;
+! 	    vim_snprintf((char *)fname, 200, "spell/%.*s.vim", (int)(p - q), q);
+  	    source_runtime(fname, TRUE);
+  	}
+  #endif
+*** ../vim-7.4.087/src/spell.c	2013-09-29 13:38:25.000000000 +0200
+--- src/spell.c	2013-11-12 04:37:33.000000000 +0100
+***************
+*** 754,762 ****
+  static void clear_spell_chartab __ARGS((spelltab_T *sp));
+  static int set_spell_finish __ARGS((spelltab_T	*new_st));
+  static int spell_iswordp __ARGS((char_u *p, win_T *wp));
+! static int spell_iswordp_nmw __ARGS((char_u *p));
+  #ifdef FEAT_MBYTE
+! static int spell_mb_isword_class __ARGS((int cl));
+  static int spell_iswordp_w __ARGS((int *p, win_T *wp));
+  #endif
+  static int write_spell_prefcond __ARGS((FILE *fd, garray_T *gap));
+--- 754,762 ----
+  static void clear_spell_chartab __ARGS((spelltab_T *sp));
+  static int set_spell_finish __ARGS((spelltab_T	*new_st));
+  static int spell_iswordp __ARGS((char_u *p, win_T *wp));
+! static int spell_iswordp_nmw __ARGS((char_u *p, win_T *wp));
+  #ifdef FEAT_MBYTE
+! static int spell_mb_isword_class __ARGS((int cl, win_T *wp));
+  static int spell_iswordp_w __ARGS((int *p, win_T *wp));
+  #endif
+  static int write_spell_prefcond __ARGS((FILE *fd, garray_T *gap));
+***************
+*** 1149,1155 ****
+  
+  	/* When we are at a non-word character there is no error, just
+  	 * skip over the character (try looking for a word after it). */
+! 	else if (!spell_iswordp_nmw(ptr))
+  	{
+  	    if (capcol != NULL && wp->w_s->b_cap_prog != NULL)
+  	    {
+--- 1149,1155 ----
+  
+  	/* When we are at a non-word character there is no error, just
+  	 * skip over the character (try looking for a word after it). */
+! 	else if (!spell_iswordp_nmw(ptr, wp))
+  	{
+  	    if (capcol != NULL && wp->w_s->b_cap_prog != NULL)
+  	    {
+***************
+*** 1561,1567 ****
+  			 * accept a no-caps word, even when the dictionary
+  			 * word specifies ONECAP. */
+  			mb_ptr_back(mip->mi_word, p);
+! 			if (spell_iswordp_nmw(p)
+  				? capflags == WF_ONECAP
+  				: (flags & WF_ONECAP) != 0
+  						     && capflags != WF_ONECAP)
+--- 1561,1567 ----
+  			 * accept a no-caps word, even when the dictionary
+  			 * word specifies ONECAP. */
+  			mb_ptr_back(mip->mi_word, p);
+! 			if (spell_iswordp_nmw(p, mip->mi_win)
+  				? capflags == WF_ONECAP
+  				: (flags & WF_ONECAP) != 0
+  						     && capflags != WF_ONECAP)
+***************
+*** 4234,4240 ****
+      if (spl_copy == NULL)
+  	goto theend;
+  
+!     /* loop over comma separated language names. */
+      for (splp = spl_copy; *splp != NUL; )
+      {
+  	/* Get one language name. */
+--- 4234,4242 ----
+      if (spl_copy == NULL)
+  	goto theend;
+  
+!     wp->w_s->b_cjk = 0;
+! 
+!     /* Loop over comma separated language names. */
+      for (splp = spl_copy; *splp != NUL; )
+      {
+  	/* Get one language name. */
+***************
+*** 4242,4247 ****
+--- 4244,4255 ----
+  	region = NULL;
+  	len = (int)STRLEN(lang);
+  
++ 	if (STRCMP(lang, "cjk") == 0)
++ 	{
++ 	    wp->w_s->b_cjk = 1;
++ 	    continue;
++ 	}
++ 
+  	/* If the name ends in ".spl" use it as the name of the spell file.
+  	 * If there is a region name let "region" point to it and remove it
+  	 * from the name. */
+***************
+*** 4601,4607 ****
+      int		past_second = FALSE;	/* past second word char */
+  
+      /* find first letter */
+!     for (p = word; !spell_iswordp_nmw(p); mb_ptr_adv(p))
+  	if (end == NULL ? *p == NUL : p >= end)
+  	    return 0;	    /* only non-word characters, illegal word */
+  #ifdef FEAT_MBYTE
+--- 4609,4615 ----
+      int		past_second = FALSE;	/* past second word char */
+  
+      /* find first letter */
+!     for (p = word; !spell_iswordp_nmw(p, curwin); mb_ptr_adv(p))
+  	if (end == NULL ? *p == NUL : p >= end)
+  	    return 0;	    /* only non-word characters, illegal word */
+  #ifdef FEAT_MBYTE
+***************
+*** 4617,4623 ****
+       * But a word with an upper char only at start is a ONECAP.
+       */
+      for ( ; end == NULL ? *p != NUL : p < end; mb_ptr_adv(p))
+! 	if (spell_iswordp_nmw(p))
+  	{
+  	    c = PTR2CHAR(p);
+  	    if (!SPELL_ISUPPER(c))
+--- 4625,4631 ----
+       * But a word with an upper char only at start is a ONECAP.
+       */
+      for ( ; end == NULL ? *p != NUL : p < end; mb_ptr_adv(p))
+! 	if (spell_iswordp_nmw(p, curwin))
+  	{
+  	    c = PTR2CHAR(p);
+  	    if (!SPELL_ISUPPER(c))
+***************
+*** 9907,9913 ****
+  
+  	c = mb_ptr2char(s);
+  	if (c > 255)
+! 	    return spell_mb_isword_class(mb_get_class(s));
+  	return spelltab.st_isw[c];
+      }
+  #endif
+--- 9915,9921 ----
+  
+  	c = mb_ptr2char(s);
+  	if (c > 255)
+! 	    return spell_mb_isword_class(mb_get_class(s), wp);
+  	return spelltab.st_isw[c];
+      }
+  #endif
+***************
+*** 9920,9927 ****
+   * Unlike spell_iswordp() this doesn't check for "midword" characters.
+   */
+      static int
+! spell_iswordp_nmw(p)
+      char_u	*p;
+  {
+  #ifdef FEAT_MBYTE
+      int		c;
+--- 9928,9936 ----
+   * Unlike spell_iswordp() this doesn't check for "midword" characters.
+   */
+      static int
+! spell_iswordp_nmw(p, wp)
+      char_u	*p;
++     win_T	*wp;
+  {
+  #ifdef FEAT_MBYTE
+      int		c;
+***************
+*** 9930,9936 ****
+      {
+  	c = mb_ptr2char(p);
+  	if (c > 255)
+! 	    return spell_mb_isword_class(mb_get_class(p));
+  	return spelltab.st_isw[c];
+      }
+  #endif
+--- 9939,9945 ----
+      {
+  	c = mb_ptr2char(p);
+  	if (c > 255)
+! 	    return spell_mb_isword_class(mb_get_class(p), wp);
+  	return spelltab.st_isw[c];
+      }
+  #endif
+***************
+*** 9942,9952 ****
+   * Return TRUE if word class indicates a word character.
+   * Only for characters above 255.
+   * Unicode subscript and superscript are not considered word characters.
+   */
+      static int
+! spell_mb_isword_class(cl)
+!     int cl;
+  {
+      return cl >= 2 && cl != 0x2070 && cl != 0x2080;
+  }
+  
+--- 9951,9966 ----
+   * Return TRUE if word class indicates a word character.
+   * Only for characters above 255.
+   * Unicode subscript and superscript are not considered word characters.
++  * See also dbcs_class() and utf_class() in mbyte.c.
+   */
+      static int
+! spell_mb_isword_class(cl, wp)
+!     int		cl;
+!     win_T	*wp;
+  {
++     if (wp->w_s->b_cjk)
++ 	/* East Asian characters are not considered word characters. */
++ 	return cl == 2 || cl == 0x2800;
+      return cl >= 2 && cl != 0x2070 && cl != 0x2080;
+  }
+  
+***************
+*** 9971,9979 ****
+      if (*s > 255)
+      {
+  	if (enc_utf8)
+! 	    return spell_mb_isword_class(utf_class(*s));
+  	if (enc_dbcs)
+! 	    return dbcs_class((unsigned)*s >> 8, *s & 0xff) >= 2;
+  	return 0;
+      }
+      return spelltab.st_isw[*s];
+--- 9985,9994 ----
+      if (*s > 255)
+      {
+  	if (enc_utf8)
+! 	    return spell_mb_isword_class(utf_class(*s), wp);
+  	if (enc_dbcs)
+! 	    return spell_mb_isword_class(
+! 				dbcs_class((unsigned)*s >> 8, *s & 0xff), wp);
+  	return 0;
+      }
+      return spelltab.st_isw[*s];
+***************
+*** 10193,10205 ****
+  	line = ml_get_curline();
+  	p = line + curwin->w_cursor.col;
+  	/* Backup to before start of word. */
+! 	while (p > line && spell_iswordp_nmw(p))
+  	    mb_ptr_back(line, p);
+  	/* Forward to start of word. */
+! 	while (*p != NUL && !spell_iswordp_nmw(p))
+  	    mb_ptr_adv(p);
+  
+! 	if (!spell_iswordp_nmw(p))		/* No word found. */
+  	{
+  	    beep_flush();
+  	    return;
+--- 10208,10220 ----
+  	line = ml_get_curline();
+  	p = line + curwin->w_cursor.col;
+  	/* Backup to before start of word. */
+! 	while (p > line && spell_iswordp_nmw(p, curwin))
+  	    mb_ptr_back(line, p);
+  	/* Forward to start of word. */
+! 	while (*p != NUL && !spell_iswordp_nmw(p, curwin))
+  	    mb_ptr_adv(p);
+  
+! 	if (!spell_iswordp_nmw(p, curwin))		/* No word found. */
+  	{
+  	    beep_flush();
+  	    return;
+***************
+*** 10436,10442 ****
+  	for (;;)
+  	{
+  	    mb_ptr_back(line, p);
+! 	    if (p == line || spell_iswordp_nmw(p))
+  		break;
+  	    if (vim_regexec(&regmatch, p, 0)
+  					 && regmatch.endp[0] == line + endcol)
+--- 10451,10457 ----
+  	for (;;)
+  	{
+  	    mb_ptr_back(line, p);
+! 	    if (p == line || spell_iswordp_nmw(p, curwin))
+  		break;
+  	    if (vim_regexec(&regmatch, p, 0)
+  					 && regmatch.endp[0] == line + endcol)
+***************
+*** 11645,11651 ****
+  
+  		/* When appending a compound word after a word character don't
+  		 * use Onecap. */
+! 		if (p != NULL && spell_iswordp_nmw(p))
+  		    c &= ~WF_ONECAP;
+  		make_case_word(tword + sp->ts_splitoff,
+  					      preword + sp->ts_prewordlen, c);
+--- 11660,11666 ----
+  
+  		/* When appending a compound word after a word character don't
+  		 * use Onecap. */
+! 		if (p != NULL && spell_iswordp_nmw(p, curwin))
+  		    c &= ~WF_ONECAP;
+  		make_case_word(tword + sp->ts_splitoff,
+  					      preword + sp->ts_prewordlen, c);
+***************
+*** 11895,11901 ****
+  			 * character when the word ends.  But only when the
+  			 * good word can end. */
+  			if (((!try_compound && !spell_iswordp_nmw(fword
+! 							       + sp->ts_fidx))
+  				    || fword_ends)
+  				&& fword[sp->ts_fidx] != NUL
+  				&& goodword_ends)
+--- 11910,11917 ----
+  			 * character when the word ends.  But only when the
+  			 * good word can end. */
+  			if (((!try_compound && !spell_iswordp_nmw(fword
+! 							       + sp->ts_fidx,
+! 							       curwin))
+  				    || fword_ends)
+  				&& fword[sp->ts_fidx] != NUL
+  				&& goodword_ends)
+***************
+*** 14226,14232 ****
+  	    }
+  	    else
+  	    {
+! 		if (spell_iswordp_nmw(s))
+  		    *t++ = *s;
+  		++s;
+  	    }
+--- 14242,14248 ----
+  	    }
+  	    else
+  	    {
+! 		if (spell_iswordp_nmw(s, curwin))
+  		    *t++ = *s;
+  		++s;
+  	    }
+***************
+*** 14521,14527 ****
+  	    else
+  	    {
+  		did_white = FALSE;
+! 		if (!spell_iswordp_nmw(t))
+  		    continue;
+  	    }
+  	}
+--- 14537,14543 ----
+  	    else
+  	    {
+  		did_white = FALSE;
+! 		if (!spell_iswordp_nmw(t, curwin))
+  		    continue;
+  	    }
+  	}
+***************
+*** 16045,16051 ****
+      for (p = line + startcol; p > line; )
+      {
+  	mb_ptr_back(line, p);
+! 	if (spell_iswordp_nmw(p))
+  	    break;
+      }
+  
+--- 16061,16067 ----
+      for (p = line + startcol; p > line; )
+      {
+  	mb_ptr_back(line, p);
+! 	if (spell_iswordp_nmw(p, curwin))
+  	    break;
+      }
+  
+*** ../vim-7.4.087/src/structs.h	2013-11-09 05:30:18.000000000 +0100
+--- src/structs.h	2013-11-12 03:55:50.000000000 +0100
+***************
+*** 1310,1315 ****
+--- 1310,1318 ----
+      regprog_T	*b_cap_prog;	/* program for 'spellcapcheck' */
+      char_u	*b_p_spf;	/* 'spellfile' */
+      char_u	*b_p_spl;	/* 'spelllang' */
++ # ifdef FEAT_MBYTE
++     int		b_cjk;		/* all CJK letters as OK */
++ # endif
+  #endif
+  #if !defined(FEAT_SYN_HL) && !defined(FEAT_SPELL)
+      int		dummy;
+*** ../vim-7.4.087/src/version.c	2013-11-11 23:17:31.000000000 +0100
+--- src/version.c	2013-11-12 03:59:03.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     88,
+  /**/
+
+-- 
+THEOREM: VI is perfect.
+PROOF: VI in roman numerals is 6.  The natural numbers < 6 which divide 6 are
+1, 2, and 3. 1+2+3 = 6.  So 6 is a perfect number.  Therefore, VI is perfect.
+QED
+						    -- Arthur Tateishi
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,76 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.681
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.681
+Problem:    MS-Windows: When Vim is minimized the window height is computed
+	    incorrectly.
+Solution:   When minimized use the previously computed size. (Ingo Karkat)
+Files:	    src/gui_w32.c
+
+
+*** ../vim-7.4.680/src/gui_w32.c	2014-11-12 16:10:44.258085148 +0100
+--- src/gui_w32.c	2015-03-24 17:56:24.915296832 +0100
+***************
+*** 598,603 ****
+--- 598,611 ----
+  
+      if (num == 0)
+  	menu_height = 0;
++     else if (IsMinimized(s_hwnd))
++     {
++ 	/* The height of the menu cannot be determined while the window is
++ 	 * minimized.  Take the previous height if the menu is changed in that
++ 	 * state, to avoid that Vim's vertical window size accidentally
++ 	 * increases due to the unaccounted-for menu height. */
++ 	menu_height = old_menu_height == -1 ? 0 : old_menu_height;
++     }
+      else
+      {
+  	if (is_winnt_3())	/* for NT 3.xx */
+***************
+*** 644,652 ****
+  
+      if (fix_window && menu_height != old_menu_height)
+      {
+- 	old_menu_height = menu_height;
+  	gui_set_shellsize(FALSE, FALSE, RESIZE_VERT);
+      }
+  
+      return menu_height;
+  }
+--- 652,660 ----
+  
+      if (fix_window && menu_height != old_menu_height)
+      {
+  	gui_set_shellsize(FALSE, FALSE, RESIZE_VERT);
+      }
++     old_menu_height = menu_height;
+  
+      return menu_height;
+  }
+*** ../vim-7.4.680/src/version.c	2015-03-24 17:49:39.611748618 +0100
+--- src/version.c	2015-03-24 17:54:39.584448182 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     681,
+  /**/
+
+-- 
+TALL KNIGHT:   Firstly.  You must get us another shrubbery!
+OTHER KNIGHTS: More shrubberies!  More shrubberies for the ex-Knights of Ni!
+ARTHUR:        Not another shrubbery -
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.611
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.611 (after 7.4.609)
+Problem:    Syntax error.
+Solution:   Change statement to return.
+Files:	    src/if_python3.c
+
+
+*** ../vim-7.4.610/src/if_python3.c	2015-02-03 12:55:11.140179551 +0100
+--- src/if_python3.c	2015-02-03 13:13:34.407743645 +0100
+***************
+*** 1652,1656 ****
+      int
+  set_ref_in_python3 (int copyID)
+  {
+!     int set_ref_in_py(copyID);
+  }
+--- 1652,1656 ----
+      int
+  set_ref_in_python3 (int copyID)
+  {
+!     return set_ref_in_py(copyID);
+  }
+*** ../vim-7.4.610/src/version.c	2015-02-03 13:00:34.404529640 +0100
+--- src/version.c	2015-02-03 13:14:20.463222408 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     611,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+168. You have your own domain name.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.127
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.127
+Problem:    Perl 5.18 on Unix doesn't work.
+Solution:   Move workaround to after including vim.h. (Ken Takata)
+Files:      src/if_perl.xs
+
+
+*** ../vim-7.4.126/src/if_perl.xs	2013-12-11 17:20:14.000000000 +0100
+--- src/if_perl.xs	2013-12-14 11:41:56.000000000 +0100
+***************
+*** 24,36 ****
+  # define _USE_32BIT_TIME_T
+  #endif
+  
+- /* Work around for perl-5.18.
+-  * Don't include "perl\lib\CORE\inline.h" for now,
+-  * include it after Perl_sv_free2 is defined. */
+- #ifdef DYNAMIC_PERL
+- # define PERL_NO_INLINE_FUNCTIONS
+- #endif
+- 
+  /*
+   * Prevent including winsock.h.  perl.h tries to detect whether winsock.h is
+   * already included before including winsock2.h, because winsock2.h isn't
+--- 24,29 ----
+***************
+*** 44,49 ****
+--- 37,49 ----
+  
+  #include "vim.h"
+  
++ /* Work around for perl-5.18.
++  * Don't include "perl\lib\CORE\inline.h" for now,
++  * include it after Perl_sv_free2 is defined. */
++ #ifdef DYNAMIC_PERL
++ # define PERL_NO_INLINE_FUNCTIONS
++ #endif
++ 
+  #include <EXTERN.h>
+  #include <perl.h>
+  #include <XSUB.h>
+*** ../vim-7.4.126/src/version.c	2013-12-12 20:25:39.000000000 +0100
+--- src/version.c	2013-12-14 11:43:54.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     127,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+54. You start tilting your head sideways to smile. :-)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

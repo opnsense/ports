@@ -1,0 +1,109 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.030
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.030
+Problem:    The -mno-cygwin argument is no longer supported by Cygwin.
+Solution:   Remove the arguments. (Steve Hall)
+Files:	    src/GvimExt/Make_cyg.mak, src/Make_cyg.mak, src/xxd/Make_cyg.mak
+
+
+*** ../vim-7.4.029/src/GvimExt/Make_cyg.mak	2011-09-30 16:45:49.000000000 +0200
+--- src/GvimExt/Make_cyg.mak	2013-09-19 20:46:46.000000000 +0200
+***************
+*** 31,42 ****
+  ifeq ($(CROSS),yes)
+  DEL = rm
+  ifeq ($(MINGWOLD),yes)
+! CXXFLAGS := -O2 -mno-cygwin -fvtable-thunks
+  else
+! CXXFLAGS := -O2 -mno-cygwin
+  endif
+  else
+! CXXFLAGS := -O2 -mno-cygwin
+  ifneq (sh.exe, $(SHELL))
+  DEL = rm
+  else
+--- 31,42 ----
+  ifeq ($(CROSS),yes)
+  DEL = rm
+  ifeq ($(MINGWOLD),yes)
+! CXXFLAGS := -O2 -fvtable-thunks
+  else
+! CXXFLAGS := -O2
+  endif
+  else
+! CXXFLAGS := -O2
+  ifneq (sh.exe, $(SHELL))
+  DEL = rm
+  else
+*** ../vim-7.4.029/src/Make_cyg.mak	2013-07-06 13:32:11.000000000 +0200
+--- src/Make_cyg.mak	2013-09-19 20:46:55.000000000 +0200
+***************
+*** 1,6 ****
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Apr 22
+  #
+  # Also read INSTALLpc.txt!
+  #
+--- 1,6 ----
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Sep 19
+  #
+  # Also read INSTALLpc.txt!
+  #
+***************
+*** 439,446 ****
+  ##############################
+  ifeq (yes, $(USEDLL))
+  DEFINES += -D_MAX_PATH=256 -D__CYGWIN__
+- else
+- INCLUDES += -mno-cygwin
+  endif
+  
+  ##############################
+--- 439,444 ----
+*** ../vim-7.4.029/src/xxd/Make_cyg.mak	2010-05-15 13:04:06.000000000 +0200
+--- src/xxd/Make_cyg.mak	2013-09-19 20:47:05.000000000 +0200
+***************
+*** 8,14 ****
+  DEFINES =
+  LIBS    = -lc
+  else
+! DEFINES = -mno-cygwin
+  LIBS    =
+  endif
+  
+--- 8,14 ----
+  DEFINES =
+  LIBS    = -lc
+  else
+! DEFINES =
+  LIBS    =
+  endif
+  
+*** ../vim-7.4.029/src/version.c	2013-09-19 17:03:57.000000000 +0200
+--- src/version.c	2013-09-19 20:46:32.000000000 +0200
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     30,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+237. You tattoo your email address on your forehead.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

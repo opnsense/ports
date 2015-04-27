@@ -1,0 +1,79 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.368
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.368
+Problem:    Restoring the window sizes after closing the command line window
+	    doesn't work properly if there are nested splits.
+Solution:   Restore the sizes twice. (Hirohito Higashi)
+Files:	    src/window.c
+
+
+*** ../vim-7.4.367/src/window.c	2014-07-16 14:16:41.519771715 +0200
+--- src/window.c	2014-07-16 15:13:52.895701974 +0200
+***************
+*** 4848,4862 ****
+      garray_T	*gap;
+  {
+      win_T	*wp;
+!     int		i;
+  
+      if (win_count() * 2 == gap->ga_len)
+      {
+! 	i = 0;
+! 	for (wp = firstwin; wp != NULL; wp = wp->w_next)
+  	{
+! 	    frame_setwidth(wp->w_frame, ((int *)gap->ga_data)[i++]);
+! 	    win_setheight_win(((int *)gap->ga_data)[i++], wp);
+  	}
+  	/* recompute the window positions */
+  	(void)win_comp_pos();
+--- 4848,4867 ----
+      garray_T	*gap;
+  {
+      win_T	*wp;
+!     int		i, j;
+  
+      if (win_count() * 2 == gap->ga_len)
+      {
+! 	/* The order matters, because frames contain other frames, but it's
+! 	 * difficult to get right. The easy way out is to do it twice. */
+! 	for (j = 0; j < 2; ++j)
+  	{
+! 	    i = 0;
+! 	    for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 	    {
+! 		frame_setwidth(wp->w_frame, ((int *)gap->ga_data)[i++]);
+! 		win_setheight_win(((int *)gap->ga_data)[i++], wp);
+! 	    }
+  	}
+  	/* recompute the window positions */
+  	(void)win_comp_pos();
+*** ../vim-7.4.367/src/version.c	2014-07-16 14:42:37.923740082 +0200
+--- src/version.c	2014-07-16 15:14:46.035700894 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     368,
+  /**/
+
+-- 
+FROG: How you English say:  I one more time, mac, I unclog my nose towards
+      you, sons of a window-dresser,  so, you think you could out-clever us
+      French fellows with your silly knees-bent creeping about advancing
+      behaviour.  (blows a raspberry) I wave my private parts at your aunties,
+      you brightly-coloured, mealy-templed, cranberry-smelling, electric
+      donkey-bottom biters.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.177
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.177
+Problem:    Compiler warning for unused variable. (Tony Mechelynck)
+Solution:   Add #ifdef.
+Files:	    src/move.c
+
+
+*** ../vim-7.4.176/src/move.c	2014-02-11 15:47:41.382145902 +0100
+--- src/move.c	2014-02-11 18:13:57.378280376 +0100
+***************
+*** 2101,2107 ****
+--- 2101,2109 ----
+      int		used;
+      lineoff_T	loff;
+      lineoff_T	boff;
++ #ifdef FEAT_DIFF
+      linenr_T	old_topline = curwin->w_topline;
++ #endif
+  
+      loff.lnum = boff.lnum = curwin->w_cursor.lnum;
+  #ifdef FEAT_FOLDING
+*** ../vim-7.4.176/src/version.c	2014-02-11 18:47:18.682311042 +0100
+--- src/version.c	2014-02-11 18:57:55.110320794 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     177,
+  /**/
+
+-- 
+The psychic said, "God bless you."  I said, "I didn't sneeze."  She
+looked deep into my eyes and said, "You will, eventually."  And, damn
+if she wasn't right.  Two days later, I sneezed.  --Ellen Degeneres
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

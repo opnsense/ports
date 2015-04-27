@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.318
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.318
+Problem:    Check for whether a highlight group has settings ignores fg and bg
+	    color settings.
+Solution:   Also check cterm and GUI color settings. (Christian Brabandt)
+Files:	    src/syntax.c
+
+
+*** ../vim-7.4.317/src/syntax.c	2014-03-23 15:12:29.939264336 +0100
+--- src/syntax.c	2014-06-12 12:16:13.851530931 +0200
+***************
+*** 8043,8050 ****
+--- 8043,8056 ----
+  {
+      return (   HL_TABLE()[idx].sg_term_attr != 0
+  	    || HL_TABLE()[idx].sg_cterm_attr != 0
++ 	    || HL_TABLE()[idx].sg_cterm_fg != 0
++ 	    || HL_TABLE()[idx].sg_cterm_bg != 0
+  #ifdef FEAT_GUI
+  	    || HL_TABLE()[idx].sg_gui_attr != 0
++ 	    || HL_TABLE()[idx].sg_gui_fg_name != NULL
++ 	    || HL_TABLE()[idx].sg_gui_bg_name != NULL
++ 	    || HL_TABLE()[idx].sg_gui_sp_name != NULL
++ 	    || HL_TABLE()[idx].sg_font_name != NUL
+  #endif
+  	    || (check_link && (HL_TABLE()[idx].sg_set & SG_LINK)));
+  }
+*** ../vim-7.4.317/src/version.c	2014-06-12 11:49:42.219470717 +0200
+--- src/version.c	2014-06-12 12:17:25.607533645 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     318,
+  /**/
+
+-- 
+The software said it requires Windows 95 or better, so I installed Linux.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

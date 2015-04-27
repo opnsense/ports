@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.520
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.520
+Problem:    Sun PCK locale is not recognzed.
+Solution:   Add PCK in the table. (Keiichi Oono)
+Files:	    src/mbyte.c
+
+
+*** ../vim-7.4.519/src/mbyte.c	2014-09-15 14:25:51.305650006 +0200
+--- src/mbyte.c	2014-11-19 16:48:14.205705174 +0100
+***************
+*** 405,410 ****
+--- 405,411 ----
+      {"unix-jis",	IDX_EUC_JP},
+      {"ujis",		IDX_EUC_JP},
+      {"shift-jis",	IDX_SJIS},
++     {"pck",		IDX_SJIS},	/* Sun: PCK */
+      {"euckr",		IDX_EUC_KR},
+      {"5601",		IDX_EUC_KR},	/* Sun: KS C 5601 */
+      {"euccn",		IDX_EUC_CN},
+*** ../vim-7.4.519/src/version.c	2014-11-19 16:38:01.520679869 +0100
+--- src/version.c	2014-11-19 16:49:28.404860112 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     520,
+  /**/
+
+-- 
+BRIDGEKEEPER: What is the air-speed velocity of an unladen swallow?
+ARTHUR:       What do you mean?  An African or European swallow?
+BRIDGEKEEPER: Er ...  I don't know that ... Aaaaarrrrrrggghhh!
+   BRIDGEKEEPER is cast into the gorge.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

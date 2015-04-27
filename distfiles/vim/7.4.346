@@ -1,0 +1,61 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.346
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.346 (after 7.4.338)
+Problem:    Indent is not updated when changing 'breakindentopt'. (itchyny)
+Solution:   Do not cache "brishift". (Christian Brabandt)
+Files:	    src/misc1.c
+
+
+*** ../vim-7.4.345/src/misc1.c	2014-06-25 22:55:34.783474435 +0200
+--- src/misc1.c	2014-06-26 21:15:46.970516542 +0200
+***************
+*** 513,523 ****
+  	prev_ts = wp->w_buffer->b_p_ts;
+  	prev_tick = wp->w_buffer->b_changedtick;
+  	prev_indent = get_indent_str(line,
+! 		  (int)wp->w_buffer->b_p_ts, wp->w_p_list) + wp->w_p_brishift;
+      }
+  
+      /* indent minus the length of the showbreak string */
+-     bri = prev_indent;
+      if (wp->w_p_brisbr)
+  	bri -= vim_strsize(p_sbr);
+  
+--- 513,523 ----
+  	prev_ts = wp->w_buffer->b_p_ts;
+  	prev_tick = wp->w_buffer->b_changedtick;
+  	prev_indent = get_indent_str(line,
+! 				     (int)wp->w_buffer->b_p_ts, wp->w_p_list);
+      }
++     bri = prev_indent + wp->w_p_brishift;
+  
+      /* indent minus the length of the showbreak string */
+      if (wp->w_p_brisbr)
+  	bri -= vim_strsize(p_sbr);
+  
+*** ../vim-7.4.345/src/version.c	2014-06-25 22:55:34.783474435 +0200
+--- src/version.c	2014-06-26 21:17:10.342519697 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     346,
+  /**/
+
+-- 
+A computer programmer is a device for turning requirements into
+undocumented features.  It runs on cola, pizza and Dilbert cartoons.
+					Bram Moolenaar
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

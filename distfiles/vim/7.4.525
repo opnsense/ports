@@ -1,0 +1,87 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.525
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.525
+Problem:    map() leaks memory when there is an error in the expression.
+Solution:   Call clear_tv(). (Christian Brabandt)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.524/src/eval.c	2014-11-19 18:03:24.198559765 +0100
+--- src/eval.c	2014-11-19 20:01:36.426226654 +0100
+***************
+*** 10720,10737 ****
+  	    {
+  		if (!HASHITEM_EMPTY(hi))
+  		{
+  		    --todo;
+  		    di = HI2DI(hi);
+  		    if (tv_check_lock(di->di_tv.v_lock,
+  						     (char_u *)_(arg_errmsg)))
+  			break;
+  		    vimvars[VV_KEY].vv_str = vim_strsave(di->di_key);
+! 		    if (filter_map_one(&di->di_tv, expr, map, &rem) == FAIL
+! 								  || did_emsg)
+  			break;
+  		    if (!map && rem)
+  			dictitem_remove(d, di);
+- 		    clear_tv(&vimvars[VV_KEY].vv_tv);
+  		}
+  	    }
+  	    hash_unlock(ht);
+--- 10720,10739 ----
+  	    {
+  		if (!HASHITEM_EMPTY(hi))
+  		{
++ 		    int r;
++ 
+  		    --todo;
+  		    di = HI2DI(hi);
+  		    if (tv_check_lock(di->di_tv.v_lock,
+  						     (char_u *)_(arg_errmsg)))
+  			break;
+  		    vimvars[VV_KEY].vv_str = vim_strsave(di->di_key);
+! 		    r = filter_map_one(&di->di_tv, expr, map, &rem);
+! 		    clear_tv(&vimvars[VV_KEY].vv_tv);
+! 		    if (r == FAIL || did_emsg)
+  			break;
+  		    if (!map && rem)
+  			dictitem_remove(d, di);
+  		}
+  	    }
+  	    hash_unlock(ht);
+***************
+*** 10782,10787 ****
+--- 10784,10790 ----
+      if (*s != NUL)  /* check for trailing chars after expr */
+      {
+  	EMSG2(_(e_invexpr2), s);
++ 	clear_tv(&rettv);
+  	goto theend;
+      }
+      if (map)
+*** ../vim-7.4.524/src/version.c	2014-11-19 19:33:13.373532135 +0100
+--- src/version.c	2014-11-19 19:58:41.356215390 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     525,
+  /**/
+
+-- 
+If an elephant is left tied to a parking meter, the parking fee has to be paid
+just as it would for a vehicle.
+		[real standing law in Florida, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.592
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.592
+Problem:    When doing ":e foobar" when already editing "foobar" and 'buftype'
+	    is "nofile" the buffer is cleared. (Xavier de Gaye)
+Solution:   Do no clear the buffer.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.591/src/ex_cmds.c	2014-12-13 03:17:07.461046575 +0100
+--- src/ex_cmds.c	2015-01-27 11:21:14.752434647 +0100
+***************
+*** 3529,3534 ****
+--- 3529,3541 ----
+  #endif
+  		check_fname() == FAIL)
+  	    goto theend;
++ 
++ 	/* ":e foobar" when already editing "foobar" will reload the file.
++ 	 * But when 'buftype' is "nofile" there is no file to load, so don't
++ 	 * do anything. */
++ 	if (curbuf->b_p_bt[0] == 'n' && curbuf->b_p_bt[2] == 'f')
++ 	    goto theend;
++ 
+  	oldbuf = (flags & ECMD_OLDBUF);
+      }
+  
+*** ../vim-7.4.591/src/version.c	2015-01-22 22:41:51.864583029 +0100
+--- src/version.c	2015-01-27 11:24:32.466265106 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     592,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+120. You ask a friend, "What's that big shiny thing?" He says, "It's the sun."
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

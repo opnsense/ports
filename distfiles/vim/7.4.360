@@ -1,0 +1,80 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.360
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.360
+Problem:    In a regexp pattern a "$" followed by \v or \V is not seen as the
+	    end-of-line.
+Solution:   Handle the situation. (Ozaki Kiichi)
+Files:	    src/regexp.c
+
+
+*** ../vim-7.4.359/src/regexp.c	2014-05-13 19:37:19.489786520 +0200
+--- src/regexp.c	2014-07-09 19:28:51.871683287 +0200
+***************
+*** 3109,3123 ****
+  	    if (reg_magic >= MAGIC_OFF)
+  	    {
+  		char_u *p = regparse + 1;
+  
+! 		/* ignore \c \C \m and \M after '$' */
+  		while (p[0] == '\\' && (p[1] == 'c' || p[1] == 'C'
+! 				|| p[1] == 'm' || p[1] == 'M' || p[1] == 'Z'))
+  		    p += 2;
+  		if (p[0] == NUL
+  			|| (p[0] == '\\'
+  			    && (p[1] == '|' || p[1] == '&' || p[1] == ')'
+  				|| p[1] == 'n'))
+  			|| reg_magic == MAGIC_ALL)
+  		    curchr = Magic('$');
+  	    }
+--- 3109,3133 ----
+  	    if (reg_magic >= MAGIC_OFF)
+  	    {
+  		char_u *p = regparse + 1;
++ 		int is_magic_all = (reg_magic == MAGIC_ALL);
+  
+! 		/* ignore \c \C \m \M \v \V and \Z after '$' */
+  		while (p[0] == '\\' && (p[1] == 'c' || p[1] == 'C'
+! 				|| p[1] == 'm' || p[1] == 'M'
+! 				|| p[1] == 'v' || p[1] == 'V' || p[1] == 'Z'))
+! 		{
+! 		    if (p[1] == 'v')
+! 			is_magic_all = TRUE;
+! 		    else if (p[1] == 'm' || p[1] == 'M' || p[1] == 'V')
+! 			is_magic_all = FALSE;
+  		    p += 2;
++ 		}
+  		if (p[0] == NUL
+  			|| (p[0] == '\\'
+  			    && (p[1] == '|' || p[1] == '&' || p[1] == ')'
+  				|| p[1] == 'n'))
++ 			|| (is_magic_all
++ 			       && (p[0] == '|' || p[0] == '&' || p[0] == ')'))
+  			|| reg_magic == MAGIC_ALL)
+  		    curchr = Magic('$');
+  	    }
+*** ../vim-7.4.359/src/version.c	2014-07-09 19:13:45.007701718 +0200
+--- src/version.c	2014-07-09 19:18:36.599695792 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     360,
+  /**/
+
+-- 
+An indication you must be a manager:
+You believe you never have any problems in your life, just
+"issues" and "improvement opportunities".
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

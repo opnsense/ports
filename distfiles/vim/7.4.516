@@ -1,0 +1,66 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.516
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.516
+Problem:    Completing a function name containing a # does not work.  Issue
+	    253.
+Solution:   Recognize the # character. (Christian Brabandt)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.515/src/eval.c	2014-11-12 18:49:12.992752234 +0100
+--- src/eval.c	2014-11-12 20:05:35.609826215 +0100
+***************
+*** 3368,3378 ****
+  	    got_eq = TRUE;
+  	    xp->xp_context = EXPAND_EXPRESSION;
+  	}
+! 	else if (c == '<'
+  		&& xp->xp_context == EXPAND_FUNCTIONS
+  		&& vim_strchr(xp->xp_pattern, '(') == NULL)
+  	{
+! 	    /* Function name can start with "<SNR>" */
+  	    break;
+  	}
+  	else if (cmdidx != CMD_let || got_eq)
+--- 3368,3378 ----
+  	    got_eq = TRUE;
+  	    xp->xp_context = EXPAND_EXPRESSION;
+  	}
+! 	else if ((c == '<' || c == '#')
+  		&& xp->xp_context == EXPAND_FUNCTIONS
+  		&& vim_strchr(xp->xp_pattern, '(') == NULL)
+  	{
+! 	    /* Function name can start with "<SNR>" and contain '#'. */
+  	    break;
+  	}
+  	else if (cmdidx != CMD_let || got_eq)
+*** ../vim-7.4.515/src/version.c	2014-11-12 19:28:12.682661756 +0100
+--- src/version.c	2014-11-12 20:05:00.730212577 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     516,
+  /**/
+
+-- 
+The Law of VIM:
+For each member b of the possible behaviour space B of program P, there exists
+a finite time t before which at least one user u in the total user space U of
+program P will request b becomes a member of the allowed behaviour space B'
+(B' <= B).
+In other words: Sooner or later everyone wants everything as an option.
+                                        -- Vince Negri
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

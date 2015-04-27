@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.657
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.657 (after 7.4.656)
+Problem:    Compiler warnings for pointer mismatch.
+Solution:   Add a typecast. (John Marriott)
+Files:	    src/misc1.c
+
+
+*** ../vim-7.4.656/src/misc1.c	2015-03-05 21:21:14.497360702 +0100
+--- src/misc1.c	2015-03-06 21:34:00.343452890 +0100
+***************
+*** 10175,10181 ****
+  		    if (*path_end != NUL)
+  			backslash_halve(buf + len + 1);
+  		    /* add existing file or symbolic link */
+! 		    if ((flags & EW_ALLLINKS) ? mch_lstat(buf, &sb) >= 0
+  						      : mch_getperm(buf) >= 0)
+  		    {
+  #ifdef MACOS_CONVERT
+--- 10175,10181 ----
+  		    if (*path_end != NUL)
+  			backslash_halve(buf + len + 1);
+  		    /* add existing file or symbolic link */
+! 		    if ((flags & EW_ALLLINKS) ? mch_lstat((char *)buf, &sb) >= 0
+  						      : mch_getperm(buf) >= 0)
+  		    {
+  #ifdef MACOS_CONVERT
+***************
+*** 10937,10943 ****
+  
+      /* if the file/dir/link doesn't exist, may not add it */
+      if (!(flags & EW_NOTFOUND) && ((flags & EW_ALLLINKS)
+! 				? mch_lstat(f, &sb) < 0 : mch_getperm(f) < 0))
+  	return;
+  
+  #ifdef FNAME_ILLEGAL
+--- 10937,10943 ----
+  
+      /* if the file/dir/link doesn't exist, may not add it */
+      if (!(flags & EW_NOTFOUND) && ((flags & EW_ALLLINKS)
+! 			? mch_lstat((char *)f, &sb) < 0 : mch_getperm(f) < 0))
+  	return;
+  
+  #ifdef FNAME_ILLEGAL
+*** ../vim-7.4.656/src/version.c	2015-03-05 21:21:14.497360702 +0100
+--- src/version.c	2015-03-06 21:35:14.050606301 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     657,
+  /**/
+
+-- 
+You got to work at a mill?  Lucky!  I got sent back to work in the
+acid-mines for my daily crust of stale bread... which not even the
+birds would eat.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

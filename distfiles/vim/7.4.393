@@ -1,0 +1,1946 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.393
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.393
+Problem:    Text drawing on newer MS-Windows systems is suboptimal.  Some
+	    multi-byte characters are not displayed, even though the same font
+	    in Notepad can display them. (Srinath Avadhanula)
+Solution:   Add the 'renderoptions' option to enable Direct-X drawing. (Taro
+	    Muraoka)
+Files:	    runtime/doc/eval.txt, runtime/doc/options.txt,
+	    runtime/doc/various.txt, src/Make_cyg.mak, src/Make_ming.mak,
+	    src/Make_mvc.mak, src/eval.c, src/gui_dwrite.cpp,
+	    src/gui_dwrite.h, src/gui_w32.c, src/gui_w48.c, src/option.c,
+	    src/option.h, src/version.c, src/vim.h, src/proto/gui_w32.pro
+
+
+*** ../vim-7.4.392/runtime/doc/eval.txt	2014-06-25 18:15:18.442838249 +0200
+--- runtime/doc/eval.txt	2014-08-06 14:35:24.871243363 +0200
+***************
+*** 6606,6611 ****
+--- 6622,6628 ----
+  dialog_gui		Compiled with GUI dialog support.
+  diff			Compiled with |vimdiff| and 'diff' support.
+  digraphs		Compiled with support for digraphs.
++ directx			Compiled with support for Direct-X and 'renderoptions'.
+  dnd			Compiled with support for the "~ register |quote_~|.
+  dos16			16 bits DOS version of Vim.
+  dos32			32 bits DOS (DJGPP) version of Vim.
+***************
+*** 6744,6750 ****
+  writebackup		Compiled with 'writebackup' default on.
+  xfontset		Compiled with X fontset support |xfontset|.
+  xim			Compiled with X input method support |xim|.
+! xpm_w32			Compiled with pixmap support for Win32.
+  xsmp			Compiled with X session management support.
+  xsmp_interact		Compiled with interactive X session management support.
+  xterm_clipboard		Compiled with support for xterm clipboard.
+--- 6761,6769 ----
+  writebackup		Compiled with 'writebackup' default on.
+  xfontset		Compiled with X fontset support |xfontset|.
+  xim			Compiled with X input method support |xim|.
+! xpm			Compiled with pixmap support.
+! xpm_w32			Compiled with pixmap support for Win32. (Only for
+! 			backward compatibility. Use "xpm" instead.)
+  xsmp			Compiled with X session management support.
+  xsmp_interact		Compiled with interactive X session management support.
+  xterm_clipboard		Compiled with support for xterm clipboard.
+*** ../vim-7.4.392/runtime/doc/options.txt	2014-07-02 19:59:35.446375136 +0200
+--- runtime/doc/options.txt	2014-08-06 14:36:59.591242682 +0200
+***************
+*** 5647,5652 ****
+--- 5650,5726 ----
+  	this option at the default "on".  Only switch it off when working with
+  	old Vi scripts.
+  
++                                                *'renderoptions'* *'rop'*
++ 'renderoptions' 'rop'	string  (default: empty)
++ 			global
++ 			{not in Vi}
++ 			{only available when compiled with GUI and DIRECTX on
++ 			MS-Windows}
++ 	Select a text renderer and set its options.  The options depend on the
++ 	renderer.
++ 
++ 	Syntax: >
++ 		set rop=type:{renderer}(,{name}:{value})*
++ <
++ 	Currently, only one optional renderer is available.
++ 
++ 	render	behavior    ~
++ 	directx	Vim will draw text using DirectX (DirectWrite).  It makes
++ 		drawn glyphs more beautiful than default GDI.
++ 		It requires 'encoding' is "utf-8", and only works on
++ 		MS-Windows Vista or newer version.
++ 
++ 		Options:
++ 		  name	    meaning		type	value       ~
++ 		  gamma	    gamma		float	1.0 - 2.2 (maybe)
++ 		  contrast  enhancedContrast	float	(unknown)
++ 		  level	    clearTypeLevel	float	(unknown)
++ 		  geom	    pixelGeometry	int	0 - 2 (see below)
++ 		  renmode   renderingMode	int	0 - 6 (see below)
++ 		  taamode   textAntialiasMode	int	0 - 3 (see below)
++ 
++ 		See this URL for detail:
++ 		  http://msdn.microsoft.com/en-us/library/dd368190.aspx
++ 
++ 		For geom: structure of a device pixel.
++ 		  0 - DWRITE_PIXEL_GEOMETRY_FLAT
++ 		  1 - DWRITE_PIXEL_GEOMETRY_RGB
++ 		  2 - DWRITE_PIXEL_GEOMETRY_BGR
++ 
++ 		See this URL for detail:
++ 		  http://msdn.microsoft.com/en-us/library/dd368114.aspx
++ 
++ 		For renmode: method of rendering glyphs.
++ 		  0 - DWRITE_RENDERING_MODE_DEFAULT
++ 		  1 - DWRITE_RENDERING_MODE_ALIASED
++ 		  2 - DWRITE_RENDERING_MODE_GDI_CLASSIC
++ 		  3 - DWRITE_RENDERING_MODE_GDI_NATURAL
++ 		  4 - DWRITE_RENDERING_MODE_NATURAL
++ 		  5 - DWRITE_RENDERING_MODE_NATURAL_SYMMETRIC
++ 		  6 - DWRITE_RENDERING_MODE_OUTLINE
++ 
++ 		See this URL for detail:
++ 		  http://msdn.microsoft.com/en-us/library/dd368118.aspx
++ 
++ 		For taamode: antialiasing mode used for drawing text.
++ 		  0 - D2D1_TEXT_ANTIALIAS_MODE_DEFAULT
++ 		  1 - D2D1_TEXT_ANTIALIAS_MODE_CLEARTYPE
++ 		  2 - D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE
++ 		  3 - D2D1_TEXT_ANTIALIAS_MODE_ALIASED
++ 
++ 		See this URL for detail:
++ 		  http://msdn.microsoft.com/en-us/library/dd368170.aspx
++ 
++ 		Example: >
++ 		  set encoding=utf-8
++ 		  set gfn=Ricty_Diminished:h12:cSHIFTJIS
++ 		  set rop=type:directx
++ <
++ 		If select a raster font (Courier, Terminal or FixedSys) to
++ 		'guifont', it fallbacks to be drawn by GDI automatically.
++ 
++ 	Other render types are currently not supported.
++ 
+  						*'report'*
+  'report'		number	(default 2)
+  			global
+*** ../vim-7.4.392/runtime/doc/various.txt	2013-08-10 13:25:06.000000000 +0200
+--- runtime/doc/various.txt	2014-08-06 14:37:28.843242472 +0200
+***************
+*** 320,325 ****
+--- 337,343 ----
+  N  *+dialog_con_gui*	Support for |:confirm| with GUI and console dialog.
+  N  *+diff*		|vimdiff| and 'diff'
+  N  *+digraphs*		|digraphs| *E196*
++ m  *+directx*		Win32 GUI only: DirectX and |'renderoptions'|
+     *+dnd*		Support for DnD into the "~ register |quote_~|.
+  B  *+emacs_tags*	|emacs-tags| files
+  N  *+eval*		expression evaluation |eval.txt|
+***************
+*** 426,431 ****
+--- 445,451 ----
+  m  *+writebackup*	|'writebackup'| is default on
+  m  *+xim*		X input method |xim|
+     *+xfontset*		X fontset support |xfontset|
++    *+xpm*		pixmap support
+  m  *+xpm_w32*		Win32 GUI only: pixmap support |w32-xpm-support|
+     *+xsmp*		XSMP (X session management) support
+     *+xsmp_interact*	interactive XSMP (X session management) support
+*** ../vim-7.4.392/src/Make_cyg.mak	2013-12-11 15:06:36.000000000 +0100
+--- src/Make_cyg.mak	2014-08-06 14:21:57.455249166 +0200
+***************
+*** 8,13 ****
+--- 8,14 ----
+  # Cygwin application use the Makefile (just like on Unix).
+  #
+  # GUI		no or yes: set to yes if you want the GUI version (yes)
++ # DIRECTX	no or yes: set to yes if you want use DirectWrite (no)
+  # PERL		define to path to Perl dir to get Perl support (not defined)
+  #   PERL_VER	  define to version of Perl being used (56)
+  #   DYNAMIC_PERL  no or yes: set to yes to load the Perl DLL dynamically (yes)
+***************
+*** 88,93 ****
+--- 89,98 ----
+  ARCH = i386
+  endif
+  
++ ifndef DIRECTX
++ DIRECTX = no
++ endif
++ 
+  ifndef WINVER
+  WINVER = 0x0500
+  endif
+***************
+*** 470,475 ****
+--- 475,489 ----
+  endif
+  
+  ##############################
++ ifeq (yes, $(DIRECTX))
++ # Only allow DIRECTX for a GUI build.
++ DEFINES += -DFEAT_DIRECTX -DDYNAMIC_DIRECTX
++ EXTRA_OBJS += $(OUTDIR)/gui_dwrite.o
++ EXTRA_LIBS += -ld2d1 -ldwrite
++ USE_STDCPLUS = yes
++ endif
++ 
++ ##############################
+  ifdef XPM
+  # Only allow XPM for a GUI build.
+  DEFINES += -DFEAT_XPM_W32
+***************
+*** 495,505 ****
+  DEFINES += -DFEAT_OLE
+  EXTRA_OBJS += $(OUTDIR)/if_ole.o
+  EXTRA_LIBS += -loleaut32
+! ifeq (yes, $(STATIC_STDCPLUS))
+! EXTRA_LIBS += -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic
+! else
+! EXTRA_LIBS += -lstdc++
+! endif
+  endif
+  
+  ##############################
+--- 509,515 ----
+  DEFINES += -DFEAT_OLE
+  EXTRA_OBJS += $(OUTDIR)/if_ole.o
+  EXTRA_LIBS += -loleaut32
+! USE_STDCPLUS = yes
+  endif
+  
+  ##############################
+***************
+*** 513,518 ****
+--- 523,537 ----
+  DIRSLASH = \\
+  endif
+  
++ ##############################
++ ifeq (yes, $(USE_STDCPLUS))
++ ifeq (yes, $(STATIC_STDCPLUS))
++ EXTRA_LIBS += -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic
++ else
++ EXTRA_LIBS += -lstdc++
++ endif
++ endif
++ 
+  #>>>>> end of choices
+  ###########################################################################
+  
+***************
+*** 643,648 ****
+--- 662,670 ----
+  $(OUTDIR)/gui_w32.o:	gui_w32.c gui_w48.c $(INCL)
+  	$(CC) -c $(CFLAGS) gui_w32.c -o $(OUTDIR)/gui_w32.o
+  
++ $(OUTDIR)/gui_dwrite.o:	gui_dwrite.cpp $(INCL) gui_dwrite.h
++ 	$(CC) -c $(CFLAGS) gui_dwrite.cpp -o $(OUTDIR)/gui_dwrite.o
++ 
+  $(OUTDIR)/if_cscope.o:	if_cscope.c $(INCL) if_cscope.h
+  	$(CC) -c $(CFLAGS) if_cscope.c -o $(OUTDIR)/if_cscope.o
+  
+*** ../vim-7.4.392/src/Make_ming.mak	2014-01-06 15:44:59.000000000 +0100
+--- src/Make_ming.mak	2014-08-06 14:21:57.455249166 +0200
+***************
+*** 31,36 ****
+--- 31,38 ----
+  OPTIMIZE=MAXSPEED
+  # set to yes to make gvim, no for vim
+  GUI=yes
++ # set to yes if you want to use DirectWrite (DirectX)
++ DIRECTX=no
+  # FEATURES=[TINY | SMALL  | NORMAL | BIG | HUGE]
+  # Set to TINY to make minimal version (few features).
+  FEATURES=BIG
+***************
+*** 456,461 ****
+--- 458,471 ----
+  endif
+  endif
+  
++ # DirectWrite (DirectX)
++ ifeq ($(DIRECTX),yes)
++ # Only allow DirectWrite for a GUI build.
++ ifeq (yes, $(GUI))
++ DEFINES += -DFEAT_DIRECTX -DDYNAMIC_DIRECTX
++ endif
++ endif
++ 
+  # Only allow XPM for a GUI build.
+  ifeq (yes, $(GUI))
+  
+***************
+*** 593,598 ****
+--- 603,616 ----
+  LIB += -lwsock32
+  endif
+  endif
++ ifeq ($(DIRECTX),yes)
++ # Only allow DIRECTX for a GUI build.
++ ifeq (yes, $(GUI))
++ OBJ += $(OUTDIR)/gui_dwrite.o
++ LIB += -ld2d1 -ldwrite
++ USE_STDCPLUS = yes
++ endif
++ endif
+  ifdef XPM
+  # Only allow XPM for a GUI build.
+  ifeq (yes, $(GUI))
+***************
+*** 650,660 ****
+  ifeq (yes, $(OLE))
+  LIB += -loleaut32
+  OBJ += $(OUTDIR)/if_ole.o
+! ifeq (yes, $(STATIC_STDCPLUS))
+! LIB += -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic
+! else
+! LIB += -lstdc++
+! endif
+  endif
+  
+  ifeq (yes, $(MBYTE))
+--- 668,674 ----
+  ifeq (yes, $(OLE))
+  LIB += -loleaut32
+  OBJ += $(OUTDIR)/if_ole.o
+! USE_STDCPLUS = yes
+  endif
+  
+  ifeq (yes, $(MBYTE))
+***************
+*** 678,683 ****
+--- 692,705 ----
+  DEFINES+=-DDYNAMIC_ICONV
+  endif
+  
++ ifeq (yes, $(USE_STDCPLUS))
++ ifeq (yes, $(STATIC_STDCPLUS))
++ LIB += -Wl,-Bstatic -lstdc++ -Wl,-Bdynamic
++ else
++ LIB += -lstdc++
++ endif
++ endif
++ 
+  all: $(TARGET) vimrun.exe xxd/xxd.exe install.exe uninstal.exe GvimExt/gvimext.dll
+  
+  vimrun.exe: vimrun.c
+***************
+*** 751,756 ****
+--- 773,781 ----
+  $(OUTDIR)/gui_w32.o:	gui_w32.c gui_w48.c $(INCL)
+  	$(CC) -c $(CFLAGS) gui_w32.c -o $(OUTDIR)/gui_w32.o
+  
++ $(OUTDIR)/gui_dwrite.o:	gui_dwrite.cpp $(INCL) gui_dwrite.h
++ 	$(CC) -c $(CFLAGS) gui_dwrite.cpp -o $(OUTDIR)/gui_dwrite.o
++ 
+  $(OUTDIR)/if_cscope.o:	if_cscope.c $(INCL) if_cscope.h
+  	$(CC) -c $(CFLAGS) if_cscope.c -o $(OUTDIR)/if_cscope.o
+  
+*** ../vim-7.4.392/src/Make_mvc.mak	2014-05-22 16:29:03.374353200 +0200
+--- src/Make_mvc.mak	2014-08-06 14:21:57.455249166 +0200
+***************
+*** 24,29 ****
+--- 24,32 ----
+  #
+  #	GUI interface: GUI=yes (default is no)
+  #
++ #	GUI with DirectWrite(DirectX): DIRECTX=yes
++ #	  (default is no, requires GUI=yes)
++ #
+  #	OLE interface: OLE=yes (usually with GUI=yes)
+  #
+  #	Multibyte support: MBYTE=yes (default is no)
+***************
+*** 168,173 ****
+--- 171,179 ----
+  !else
+  OBJDIR = .\ObjC
+  !endif
++ !if "$(DIRECTX)" == "yes"
++ OBJDIR = $(OBJDIR)X
++ !endif
+  !if "$(OLE)" == "yes"
+  OBJDIR = $(OBJDIR)O
+  !endif
+***************
+*** 292,297 ****
+--- 298,310 ----
+  NETBEANS_LIB	= WSock32.lib
+  !endif
+  
++ # DirectWrite(DirectX)
++ !if "$(DIRECTX)" == "yes"
++ DIRECTX_DEFS	= -DFEAT_DIRECTX -DDYNAMIC_DIRECTX
++ DIRECTX_INCL	= gui_dwrite.h
++ DIRECTX_OBJ	= $(OUTDIR)\gui_dwrite.obj
++ !endif
++ 
+  !ifndef XPM
+  # XPM is not set, use the included xpm files, depending on the architecture.
+  !if "$(CPU)" == "AMD64"
+***************
+*** 642,647 ****
+--- 655,666 ----
+  SUBSYSTEM = console
+  !endif
+  
++ !if "$(GUI)" == "yes" && "$(DIRECTX)" == "yes"
++ CFLAGS = $(CFLAGS) $(DIRECTX_DEFS)
++ GUI_INCL = $(GUI_INCL) $(DIRECTX_INCL)
++ GUI_OBJ = $(GUI_OBJ) $(DIRECTX_OBJ)
++ !endif
++ 
+  # iconv.dll library (dynamically loaded)
+  !ifndef ICONV
+  ICONV = yes
+***************
+*** 1107,1112 ****
+--- 1126,1133 ----
+  
+  $(OUTDIR)/gui_w32.obj:	$(OUTDIR) gui_w32.c gui_w48.c $(INCL) $(GUI_INCL)
+  
++ $(OUTDIR)/gui_dwrite.obj:	$(OUTDIR) gui_dwrite.cpp $(INCL) $(GUI_INCL)
++ 
+  $(OUTDIR)/if_cscope.obj: $(OUTDIR) if_cscope.c  $(INCL)
+  
+  $(OUTDIR)/if_lua.obj: $(OUTDIR) if_lua.c  $(INCL)
+*** ../vim-7.4.392/src/eval.c	2014-08-06 13:36:56.091268582 +0200
+--- src/eval.c	2014-08-06 14:21:57.459249166 +0200
+***************
+*** 12464,12469 ****
+--- 12464,12472 ----
+  #ifdef FEAT_DIGRAPHS
+  	"digraphs",
+  #endif
++ #ifdef FEAT_DIRECTX
++ 	"directx",
++ #endif
+  #ifdef FEAT_DND
+  	"dnd",
+  #endif
+*** ../vim-7.4.392/src/gui_dwrite.cpp	2014-08-06 14:49:19.663237363 +0200
+--- src/gui_dwrite.cpp	2014-08-06 14:39:48.775241466 +0200
+***************
+*** 0 ****
+--- 1,901 ----
++ /* vi:set ts=8 sts=4 sw=4 noet: */
++ /*
++  * Author: MURAOKA Taro <koron.kaoriya@gmail.com>
++  *
++  * Contributors:
++  *  - Ken Takata
++  *
++  * Copyright (C) 2013 MURAOKA Taro <koron.kaoriya@gmail.com>
++  * THIS FILE IS DISTRIBUTED UNDER THE VIM LICENSE.
++  */
++ 
++ #define WIN32_LEAN_AND_MEAN
++ 
++ #ifndef DYNAMIC_DIRECTX
++ # if WINVER < 0x0600
++ #  error WINVER must be 0x0600 or above to use DirectWrite(DirectX)
++ # endif
++ #endif
++ 
++ #include <windows.h>
++ #include <crtdbg.h>
++ #include <assert.h>
++ #include <math.h>
++ #include <d2d1.h>
++ #include <d2d1helper.h>
++ #include <dwrite.h>
++ 
++ #include "gui_dwrite.h"
++ 
++ #ifdef __MINGW32__
++ # define __maybenull	SAL__maybenull
++ # define __in		SAL__in
++ # define __out		SAL__out
++ #endif
++ 
++ #ifdef DYNAMIC_DIRECTX
++ extern "C" HINSTANCE vimLoadLib(char *name);
++ 
++ typedef int (WINAPI *PGETUSERDEFAULTLOCALENAME)(LPWSTR, int);
++ typedef HRESULT (WINAPI *PD2D1CREATEFACTORY)(D2D1_FACTORY_TYPE,
++ 	REFIID, const D2D1_FACTORY_OPTIONS *, void **);
++ typedef HRESULT (WINAPI *PDWRITECREATEFACTORY)(DWRITE_FACTORY_TYPE,
++ 	REFIID, IUnknown **);
++ 
++ static HINSTANCE hD2D1DLL = NULL;
++ static HINSTANCE hDWriteDLL = NULL;
++ 
++ static PGETUSERDEFAULTLOCALENAME pGetUserDefaultLocaleName = NULL;
++ static PD2D1CREATEFACTORY pD2D1CreateFactory = NULL;
++ static PDWRITECREATEFACTORY pDWriteCreateFactory = NULL;
++ 
++ #define GetUserDefaultLocaleName	(*pGetUserDefaultLocaleName)
++ #define D2D1CreateFactory		(*pD2D1CreateFactory)
++ #define DWriteCreateFactory		(*pDWriteCreateFactory)
++ 
++     static void
++ unload(HINSTANCE &hinst)
++ {
++     if (hinst != NULL)
++     {
++ 	FreeLibrary(hinst);
++ 	hinst = NULL;
++     }
++ }
++ #endif // DYNAMIC_DIRECTX
++ 
++ template <class T> inline void SafeRelease(T **ppT)
++ {
++     if (*ppT)
++     {
++ 	(*ppT)->Release();
++ 	*ppT = NULL;
++     }
++ }
++ 
++ struct GdiTextRendererContext
++ {
++     // const fields.
++     COLORREF color;
++     FLOAT cellWidth;
++ 
++     // working fields.
++     FLOAT offsetX;
++ };
++ 
++     static DWRITE_PIXEL_GEOMETRY
++ ToPixelGeometry(int value)
++ {
++     switch (value)
++     {
++ 	default:
++ 	case 0:
++ 	    return DWRITE_PIXEL_GEOMETRY_FLAT;
++ 	case 1:
++ 	    return DWRITE_PIXEL_GEOMETRY_RGB;
++ 	case 2:
++ 	    return DWRITE_PIXEL_GEOMETRY_BGR;
++     }
++ }
++ 
++     static int
++ ToInt(DWRITE_PIXEL_GEOMETRY value)
++ {
++     switch (value)
++     {
++ 	case DWRITE_PIXEL_GEOMETRY_FLAT:
++ 	    return 0;
++ 	case DWRITE_PIXEL_GEOMETRY_RGB:
++ 	    return 1;
++ 	case DWRITE_PIXEL_GEOMETRY_BGR:
++ 	    return 2;
++ 	default:
++ 	    return -1;
++     }
++ }
++ 
++     static DWRITE_RENDERING_MODE
++ ToRenderingMode(int value)
++ {
++     switch (value)
++     {
++ 	default:
++ 	case 0:
++ 	    return DWRITE_RENDERING_MODE_DEFAULT;
++ 	case 1:
++ 	    return DWRITE_RENDERING_MODE_ALIASED;
++ 	case 2:
++ 	    return DWRITE_RENDERING_MODE_CLEARTYPE_GDI_CLASSIC;
++ 	case 3:
++ 	    return DWRITE_RENDERING_MODE_CLEARTYPE_GDI_NATURAL;
++ 	case 4:
++ 	    return DWRITE_RENDERING_MODE_CLEARTYPE_NATURAL;
++ 	case 5:
++ 	    return DWRITE_RENDERING_MODE_CLEARTYPE_NATURAL_SYMMETRIC;
++ 	case 6:
++ 	    return DWRITE_RENDERING_MODE_OUTLINE;
++     }
++ }
++ 
++     static D2D1_TEXT_ANTIALIAS_MODE
++ ToTextAntialiasMode(int value)
++ {
++     switch (value)
++     {
++ 	default:
++ 	case 0:
++ 	    return D2D1_TEXT_ANTIALIAS_MODE_DEFAULT;
++ 	case 1:
++ 	    return D2D1_TEXT_ANTIALIAS_MODE_CLEARTYPE;
++ 	case 2:
++ 	    return D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE;
++ 	case 3:
++ 	    return D2D1_TEXT_ANTIALIAS_MODE_ALIASED;
++     }
++ }
++ 
++     static int
++ ToInt(DWRITE_RENDERING_MODE value)
++ {
++     switch (value)
++     {
++ 	case DWRITE_RENDERING_MODE_DEFAULT:
++ 	    return 0;
++ 	case DWRITE_RENDERING_MODE_ALIASED:
++ 	    return 1;
++ 	case DWRITE_RENDERING_MODE_CLEARTYPE_GDI_CLASSIC:
++ 	    return 2;
++ 	case DWRITE_RENDERING_MODE_CLEARTYPE_GDI_NATURAL:
++ 	    return 3;
++ 	case DWRITE_RENDERING_MODE_CLEARTYPE_NATURAL:
++ 	    return 4;
++ 	case DWRITE_RENDERING_MODE_CLEARTYPE_NATURAL_SYMMETRIC:
++ 	    return 5;
++ 	case DWRITE_RENDERING_MODE_OUTLINE:
++ 	    return 6;
++ 	default:
++ 	    return -1;
++     }
++ }
++ 
++ class AdjustedGlyphRun : public DWRITE_GLYPH_RUN
++ {
++ private:
++     FLOAT mDelta;
++     FLOAT *mAdjustedAdvances;
++ 
++ public:
++     AdjustedGlyphRun(
++ 	    const DWRITE_GLYPH_RUN *glyphRun,
++ 	    FLOAT cellWidth) :
++ 	DWRITE_GLYPH_RUN(*glyphRun),
++ 	mDelta(0.0f),
++ 	mAdjustedAdvances(new FLOAT[glyphRun->glyphCount])
++     {
++ 	assert(cellWidth != 0.0f);
++ 	for (UINT32 i = 0; i < glyphRun->glyphCount; ++i)
++ 	{
++ 	    FLOAT orig = glyphRun->glyphAdvances[i];
++ 	    FLOAT adjusted = adjustToCell(orig, cellWidth);
++ 	    mAdjustedAdvances[i] = adjusted;
++ 	    mDelta += adjusted - orig;
++ 	}
++ 	glyphAdvances = mAdjustedAdvances;
++     }
++ 
++     ~AdjustedGlyphRun(void)
++     {
++ 	delete[] mAdjustedAdvances;
++     }
++ 
++     FLOAT getDelta(void) const
++     {
++ 	return mDelta;
++     }
++ 
++     static FLOAT adjustToCell(FLOAT value, FLOAT cellWidth)
++     {
++ 	int cellCount = (int)floor(value / cellWidth + 0.5f);
++ 	if (cellCount < 1)
++ 	    cellCount = 1;
++ 	return cellCount * cellWidth;
++     }
++ };
++ 
++ class GdiTextRenderer : public IDWriteTextRenderer
++ {
++ public:
++     GdiTextRenderer(
++ 	    IDWriteBitmapRenderTarget* bitmapRenderTarget,
++ 	    IDWriteRenderingParams* renderingParams) :
++ 	cRefCount_(0),
++ 	pRenderTarget_(bitmapRenderTarget),
++ 	pRenderingParams_(renderingParams)
++     {
++ 	pRenderTarget_->AddRef();
++ 	pRenderingParams_->AddRef();
++ 	AddRef();
++     }
++ 
++     ~GdiTextRenderer()
++     {
++ 	SafeRelease(&pRenderTarget_);
++ 	SafeRelease(&pRenderingParams_);
++     }
++ 
++     IFACEMETHOD(IsPixelSnappingDisabled)(
++ 	__maybenull void* clientDrawingContext,
++ 	__out BOOL* isDisabled)
++     {
++ 	*isDisabled = FALSE;
++ 	return S_OK;
++     }
++ 
++     IFACEMETHOD(GetCurrentTransform)(
++ 	__maybenull void* clientDrawingContext,
++ 	__out DWRITE_MATRIX* transform)
++     {
++ 	//forward the render target's transform
++ 	pRenderTarget_->GetCurrentTransform(transform);
++ 	return S_OK;
++     }
++ 
++     IFACEMETHOD(GetPixelsPerDip)(
++ 	__maybenull void* clientDrawingContext,
++ 	__out FLOAT* pixelsPerDip)
++     {
++ 	*pixelsPerDip = pRenderTarget_->GetPixelsPerDip();
++ 	return S_OK;
++     }
++ 
++     IFACEMETHOD(DrawGlyphRun)(
++ 	__maybenull void* clientDrawingContext,
++ 	FLOAT baselineOriginX,
++ 	FLOAT baselineOriginY,
++ 	DWRITE_MEASURING_MODE measuringMode,
++ 	__in DWRITE_GLYPH_RUN const* glyphRun,
++ 	__in DWRITE_GLYPH_RUN_DESCRIPTION const* glyphRunDescription,
++ 	IUnknown* clientDrawingEffect)
++     {
++ 	HRESULT hr = S_OK;
++ 
++ 	GdiTextRendererContext *context =
++ 	    reinterpret_cast<GdiTextRendererContext*>(clientDrawingContext);
++ 
++ 	AdjustedGlyphRun adjustedGlyphRun(glyphRun, context->cellWidth);
++ 
++ 	// Pass on the drawing call to the render target to do the real work.
++ 	RECT dirtyRect = {0};
++ 
++ 	hr = pRenderTarget_->DrawGlyphRun(
++ 		baselineOriginX + context->offsetX,
++ 		baselineOriginY,
++ 		measuringMode,
++ 		&adjustedGlyphRun,
++ 		pRenderingParams_,
++ 		context->color,
++ 		&dirtyRect);
++ 
++ 	context->offsetX += adjustedGlyphRun.getDelta();
++ 
++ 	return hr;
++     }
++ 
++     IFACEMETHOD(DrawUnderline)(
++ 	__maybenull void* clientDrawingContext,
++ 	FLOAT baselineOriginX,
++ 	FLOAT baselineOriginY,
++ 	__in DWRITE_UNDERLINE const* underline,
++ 	IUnknown* clientDrawingEffect)
++     {
++ 	return E_NOTIMPL;
++     }
++ 
++     IFACEMETHOD(DrawStrikethrough)(
++ 	__maybenull void* clientDrawingContext,
++ 	FLOAT baselineOriginX,
++ 	FLOAT baselineOriginY,
++ 	__in DWRITE_STRIKETHROUGH const* strikethrough,
++ 	IUnknown* clientDrawingEffect)
++     {
++ 	return E_NOTIMPL;
++     }
++ 
++     IFACEMETHOD(DrawInlineObject)(
++ 	__maybenull void* clientDrawingContext,
++ 	FLOAT originX,
++ 	FLOAT originY,
++ 	IDWriteInlineObject* inlineObject,
++ 	BOOL isSideways,
++ 	BOOL isRightToLeft,
++ 	IUnknown* clientDrawingEffect)
++     {
++ 	return E_NOTIMPL;
++     }
++ 
++ public:
++     IFACEMETHOD_(unsigned long, AddRef) ()
++     {
++ 	return InterlockedIncrement(&cRefCount_);
++     }
++ 
++     IFACEMETHOD_(unsigned long, Release) ()
++     {
++ 	long newCount = InterlockedDecrement(&cRefCount_);
++ 
++ 	if (newCount == 0)
++ 	{
++ 	    delete this;
++ 	    return 0;
++ 	}
++ 	return newCount;
++     }
++ 
++     IFACEMETHOD(QueryInterface)(
++ 	IID const& riid,
++ 	void** ppvObject)
++     {
++ 	if (__uuidof(IDWriteTextRenderer) == riid)
++ 	{
++ 	    *ppvObject = this;
++ 	}
++ 	else if (__uuidof(IDWritePixelSnapping) == riid)
++ 	{
++ 	    *ppvObject = this;
++ 	}
++ 	else if (__uuidof(IUnknown) == riid)
++ 	{
++ 	    *ppvObject = this;
++ 	}
++ 	else
++ 	{
++ 	    *ppvObject = NULL;
++ 	    return E_FAIL;
++ 	}
++ 
++ 	return S_OK;
++     }
++ 
++ private:
++     unsigned long cRefCount_;
++     IDWriteBitmapRenderTarget* pRenderTarget_;
++     IDWriteRenderingParams* pRenderingParams_;
++ };
++ 
++ struct DWriteContext {
++     FLOAT mDpiScaleX;
++     FLOAT mDpiScaleY;
++     bool mDrawing;
++ 
++     ID2D1Factory *mD2D1Factory;
++ 
++     ID2D1DCRenderTarget *mRT;
++     ID2D1SolidColorBrush *mBrush;
++ 
++     IDWriteFactory *mDWriteFactory;
++     IDWriteGdiInterop *mGdiInterop;
++     IDWriteRenderingParams *mRenderingParams;
++     IDWriteTextFormat *mTextFormat;
++ 
++     HFONT mLastHFont;
++     DWRITE_FONT_WEIGHT mFontWeight;
++     DWRITE_FONT_STYLE mFontStyle;
++ 
++     D2D1_TEXT_ANTIALIAS_MODE mTextAntialiasMode;
++ 
++     // METHODS
++ 
++     DWriteContext();
++ 
++     virtual ~DWriteContext();
++ 
++     HRESULT SetLOGFONT(const LOGFONTW &logFont, float fontSize);
++ 
++     void SetFont(HFONT hFont);
++ 
++     void SetFont(const LOGFONTW &logFont);
++ 
++     void DrawText(HDC hdc, const WCHAR* text, int len,
++ 	int x, int y, int w, int h, int cellWidth, COLORREF color);
++ 
++     float PixelsToDipsX(int x);
++ 
++     float PixelsToDipsY(int y);
++ 
++     void SetRenderingParams(
++ 	    const DWriteRenderingParams *params);
++ 
++     DWriteRenderingParams *GetRenderingParams(
++ 	    DWriteRenderingParams *params);
++ };
++ 
++ DWriteContext::DWriteContext() :
++     mDpiScaleX(1.f),
++     mDpiScaleY(1.f),
++     mDrawing(false),
++     mD2D1Factory(NULL),
++     mRT(NULL),
++     mBrush(NULL),
++     mDWriteFactory(NULL),
++     mGdiInterop(NULL),
++     mRenderingParams(NULL),
++     mTextFormat(NULL),
++     mLastHFont(NULL),
++     mFontWeight(DWRITE_FONT_WEIGHT_NORMAL),
++     mFontStyle(DWRITE_FONT_STYLE_NORMAL),
++     mTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_DEFAULT)
++ {
++     HRESULT hr;
++ 
++     HDC screen = ::GetDC(0);
++     mDpiScaleX = ::GetDeviceCaps(screen, LOGPIXELSX) / 96.0f;
++     mDpiScaleY = ::GetDeviceCaps(screen, LOGPIXELSY) / 96.0f;
++     ::ReleaseDC(0, screen);
++ 
++     hr = D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED,
++ 	    __uuidof(ID2D1Factory), NULL,
++ 	    reinterpret_cast<void**>(&mD2D1Factory));
++     _RPT2(_CRT_WARN, "D2D1CreateFactory: hr=%p p=%p\n", hr, mD2D1Factory);
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	D2D1_RENDER_TARGET_PROPERTIES props = {
++ 	    D2D1_RENDER_TARGET_TYPE_DEFAULT,
++ 	    { DXGI_FORMAT_B8G8R8A8_UNORM, D2D1_ALPHA_MODE_IGNORE },
++ 	    0, 0,
++ 	    D2D1_RENDER_TARGET_USAGE_NONE,
++ 	    D2D1_FEATURE_LEVEL_DEFAULT
++ 	};
++ 	hr = mD2D1Factory->CreateDCRenderTarget(&props, &mRT);
++ 	_RPT2(_CRT_WARN, "CreateDCRenderTarget: hr=%p p=%p\n", hr, mRT);
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	hr = mRT->CreateSolidColorBrush(
++ 		D2D1::ColorF(D2D1::ColorF::Black),
++ 		&mBrush);
++ 	_RPT2(_CRT_WARN, "CreateSolidColorBrush: hr=%p p=%p\n", hr, mBrush);
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	hr = DWriteCreateFactory(
++ 		DWRITE_FACTORY_TYPE_SHARED,
++ 		__uuidof(IDWriteFactory),
++ 		reinterpret_cast<IUnknown**>(&mDWriteFactory));
++ 	_RPT2(_CRT_WARN, "DWriteCreateFactory: hr=%p p=%p\n", hr,
++ 		mDWriteFactory);
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	hr = mDWriteFactory->GetGdiInterop(&mGdiInterop);
++ 	_RPT2(_CRT_WARN, "GetGdiInterop: hr=%p p=%p\n", hr, mGdiInterop);
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	hr = mDWriteFactory->CreateRenderingParams(&mRenderingParams);
++ 	_RPT2(_CRT_WARN, "CreateRenderingParams: hr=%p p=%p\n", hr,
++ 		mRenderingParams);
++     }
++ }
++ 
++ DWriteContext::~DWriteContext()
++ {
++     SafeRelease(&mTextFormat);
++     SafeRelease(&mRenderingParams);
++     SafeRelease(&mGdiInterop);
++     SafeRelease(&mDWriteFactory);
++     SafeRelease(&mBrush);
++     SafeRelease(&mRT);
++     SafeRelease(&mD2D1Factory);
++ }
++ 
++     HRESULT
++ DWriteContext::SetLOGFONT(const LOGFONTW &logFont, float fontSize)
++ {
++     // Most of this function is copy from: http://msdn.microsoft.com/en-us/library/windows/desktop/dd941783(v=vs.85).aspx
++     HRESULT hr = S_OK;
++ 
++     IDWriteFont *font = NULL;
++     IDWriteFontFamily *fontFamily = NULL;
++     IDWriteLocalizedStrings *localizedFamilyNames = NULL;
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	hr = mGdiInterop->CreateFontFromLOGFONT(&logFont, &font);
++     }
++ 
++     // Get the font family to which this font belongs.
++     if (SUCCEEDED(hr))
++     {
++ 	hr = font->GetFontFamily(&fontFamily);
++     }
++ 
++     // Get the family names. This returns an object that encapsulates one or
++     // more names with the same meaning but in different languages.
++     if (SUCCEEDED(hr))
++     {
++ 	hr = fontFamily->GetFamilyNames(&localizedFamilyNames);
++     }
++ 
++     // Get the family name at index zero. If we were going to display the name
++     // we'd want to try to find one that matched the use locale, but for
++     // purposes of creating a text format object any language will do.
++ 
++     wchar_t familyName[100];
++     if (SUCCEEDED(hr))
++     {
++ 	hr = localizedFamilyNames->GetString(0, familyName,
++ 		ARRAYSIZE(familyName));
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	// If no font size was passed in use the lfHeight of the LOGFONT.
++ 	if (fontSize == 0)
++ 	{
++ 	    // Convert from pixels to DIPs.
++ 	    fontSize = PixelsToDipsY(logFont.lfHeight);
++ 	    if (fontSize < 0)
++ 	    {
++ 		// Negative lfHeight represents the size of the em unit.
++ 		fontSize = -fontSize;
++ 	    }
++ 	    else
++ 	    {
++ 		// Positive lfHeight represents the cell height (ascent +
++ 		// descent).
++ 		DWRITE_FONT_METRICS fontMetrics;
++ 		font->GetMetrics(&fontMetrics);
++ 
++ 		// Convert the cell height (ascent + descent) from design units
++ 		// to ems.
++ 		float cellHeight = static_cast<float>(
++ 			fontMetrics.ascent + fontMetrics.descent)
++ 					       / fontMetrics.designUnitsPerEm;
++ 
++ 		// Divide the font size by the cell height to get the font em
++ 		// size.
++ 		fontSize /= cellHeight;
++ 	    }
++ 	}
++     }
++ 
++     // The text format includes a locale name. Ideally, this would be the
++     // language of the text, which may or may not be the same as the primary
++     // language of the user. However, for our purposes the user locale will do.
++     wchar_t localeName[LOCALE_NAME_MAX_LENGTH];
++     if (SUCCEEDED(hr))
++     {
++ 	if (GetUserDefaultLocaleName(localeName, LOCALE_NAME_MAX_LENGTH) == 0)
++ 	    hr = HRESULT_FROM_WIN32(GetLastError());
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	// Create the text format object.
++ 	hr = mDWriteFactory->CreateTextFormat(
++ 		familyName,
++ 		NULL, // no custom font collection
++ 		font->GetWeight(),
++ 		font->GetStyle(),
++ 		font->GetStretch(),
++ 		fontSize,
++ 		localeName,
++ 		&mTextFormat);
++     }
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	mFontWeight = static_cast<DWRITE_FONT_WEIGHT>(logFont.lfWeight);
++ 	mFontStyle = logFont.lfItalic ? DWRITE_FONT_STYLE_ITALIC
++ 	    : DWRITE_FONT_STYLE_NORMAL;
++     }
++ 
++     SafeRelease(&localizedFamilyNames);
++     SafeRelease(&fontFamily);
++     SafeRelease(&font);
++ 
++     return hr;
++ }
++ 
++     void
++ DWriteContext::SetFont(HFONT hFont)
++ {
++     if (mLastHFont != hFont)
++     {
++ 	LOGFONTW lf;
++ 	if (GetObjectW(hFont, sizeof(lf), &lf))
++ 	{
++ 	    SetFont(lf);
++ 	    mLastHFont = hFont;
++ 	}
++     }
++ }
++ 
++     void
++ DWriteContext::SetFont(const LOGFONTW &logFont)
++ {
++     SafeRelease(&mTextFormat);
++     mLastHFont = NULL;
++ 
++     HRESULT hr = SetLOGFONT(logFont, 0.f);
++ 
++     if (SUCCEEDED(hr))
++ 	hr = mTextFormat->SetTextAlignment(DWRITE_TEXT_ALIGNMENT_LEADING);
++ 
++     if (SUCCEEDED(hr))
++ 	hr = mTextFormat->SetParagraphAlignment(
++ 		DWRITE_PARAGRAPH_ALIGNMENT_CENTER);
++ 
++     if (SUCCEEDED(hr))
++ 	hr = mTextFormat->SetWordWrapping(DWRITE_WORD_WRAPPING_NO_WRAP);
++ }
++ 
++     void
++ DWriteContext::DrawText(HDC hdc, const WCHAR* text, int len,
++ 	int x, int y, int w, int h, int cellWidth, COLORREF color)
++ {
++     HRESULT hr = S_OK;
++     IDWriteBitmapRenderTarget *bmpRT = NULL;
++ 
++     // Skip when any fonts are not set.
++     if (mTextFormat == NULL)
++ 	return;
++ 
++     // Check possibility of zero divided error.
++     if (cellWidth == 0 || mDpiScaleX == 0.0f || mDpiScaleY == 0.0f)
++ 	return;
++ 
++     if (SUCCEEDED(hr))
++ 	hr = mGdiInterop->CreateBitmapRenderTarget(hdc, w, h, &bmpRT);
++ 
++     if (SUCCEEDED(hr))
++     {
++ 	IDWriteTextLayout *textLayout = NULL;
++ 
++ 	HDC memdc = bmpRT->GetMemoryDC();
++ 	BitBlt(memdc, 0, 0, w, h, hdc, x, y, SRCCOPY);
++ 
++ 	hr = mDWriteFactory->CreateGdiCompatibleTextLayout(
++ 		text, len, mTextFormat, PixelsToDipsX(w),
++ 		PixelsToDipsY(h), mDpiScaleX, NULL, TRUE, &textLayout);
++ 
++ 	if (SUCCEEDED(hr))
++ 	{
++ 	    DWRITE_TEXT_RANGE textRange = { 0, len };
++ 	    textLayout->SetFontWeight(mFontWeight, textRange);
++ 	    textLayout->SetFontStyle(mFontStyle, textRange);
++ 	}
++ 
++ 	if (SUCCEEDED(hr))
++ 	{
++ 	    GdiTextRenderer *renderer = new GdiTextRenderer(bmpRT,
++ 		    mRenderingParams);
++ 	    GdiTextRendererContext data = {
++ 		color,
++ 		PixelsToDipsX(cellWidth),
++ 		0.0f
++ 	    };
++ 	    textLayout->Draw(&data, renderer, 0, 0);
++ 	    SafeRelease(&renderer);
++ 	}
++ 
++ 	BitBlt(hdc, x, y, w, h, memdc, 0, 0, SRCCOPY);
++ 
++ 	SafeRelease(&textLayout);
++     }
++ 
++     SafeRelease(&bmpRT);
++ }
++ 
++     float
++ DWriteContext::PixelsToDipsX(int x)
++ {
++     return x / mDpiScaleX;
++ }
++ 
++     float
++ DWriteContext::PixelsToDipsY(int y)
++ {
++     return y / mDpiScaleY;
++ }
++ 
++     void
++ DWriteContext::SetRenderingParams(
++ 	const DWriteRenderingParams *params)
++ {
++     if (mDWriteFactory == NULL)
++ 	return;
++ 
++     IDWriteRenderingParams *renderingParams = NULL;
++     D2D1_TEXT_ANTIALIAS_MODE textAntialiasMode =
++ 	D2D1_TEXT_ANTIALIAS_MODE_DEFAULT;
++     HRESULT hr;
++     if (params != NULL)
++     {
++ 	hr = mDWriteFactory->CreateCustomRenderingParams(params->gamma,
++ 		params->enhancedContrast, params->clearTypeLevel,
++ 		ToPixelGeometry(params->pixelGeometry),
++ 		ToRenderingMode(params->renderingMode), &renderingParams);
++ 	textAntialiasMode = ToTextAntialiasMode(params->textAntialiasMode);
++     }
++     else
++ 	hr = mDWriteFactory->CreateRenderingParams(&renderingParams);
++     if (SUCCEEDED(hr) && renderingParams != NULL)
++     {
++ 	SafeRelease(&mRenderingParams);
++ 	mRenderingParams = renderingParams;
++ 	mTextAntialiasMode = textAntialiasMode;
++     }
++ }
++ 
++     DWriteRenderingParams *
++ DWriteContext::GetRenderingParams(
++ 	DWriteRenderingParams *params)
++ {
++     if (params != NULL && mRenderingParams != NULL)
++     {
++ 	params->gamma = mRenderingParams->GetGamma();
++ 	params->enhancedContrast = mRenderingParams->GetEnhancedContrast();
++ 	params->clearTypeLevel = mRenderingParams->GetClearTypeLevel();
++ 	params->pixelGeometry = ToInt(mRenderingParams->GetPixelGeometry());
++ 	params->renderingMode = ToInt(mRenderingParams->GetRenderingMode());
++ 	params->textAntialiasMode = mTextAntialiasMode;
++     }
++     return params;
++ }
++ 
++ ////////////////////////////////////////////////////////////////////////////
++ // PUBLIC C INTERFACES
++ 
++     void
++ DWrite_Init(void)
++ {
++ #ifdef DYNAMIC_DIRECTX
++     // Load libraries.
++     hD2D1DLL = vimLoadLib(const_cast<char*>("d2d1.dll"));
++     hDWriteDLL = vimLoadLib(const_cast<char*>("dwrite.dll"));
++     if (hD2D1DLL == NULL || hDWriteDLL == NULL)
++     {
++ 	DWrite_Final();
++ 	return;
++     }
++     // Get address of procedures.
++     pGetUserDefaultLocaleName = (PGETUSERDEFAULTLOCALENAME)GetProcAddress(
++ 	    GetModuleHandle("kernel32.dll"), "GetUserDefaultLocaleName");
++     pD2D1CreateFactory = (PD2D1CREATEFACTORY)GetProcAddress(hD2D1DLL,
++ 	    "D2D1CreateFactory");
++     pDWriteCreateFactory = (PDWRITECREATEFACTORY)GetProcAddress(hDWriteDLL,
++ 	    "DWriteCreateFactory");
++ #endif
++ }
++ 
++     void
++ DWrite_Final(void)
++ {
++ #ifdef DYNAMIC_DIRECTX
++     pGetUserDefaultLocaleName = NULL;
++     pD2D1CreateFactory = NULL;
++     pDWriteCreateFactory = NULL;
++     unload(hDWriteDLL);
++     unload(hD2D1DLL);
++ #endif
++ }
++ 
++     DWriteContext *
++ DWriteContext_Open(void)
++ {
++ #ifdef DYNAMIC_DIRECTX
++     if (pGetUserDefaultLocaleName == NULL || pD2D1CreateFactory == NULL
++ 	    || pDWriteCreateFactory == NULL)
++ 	return NULL;
++ #endif
++     return new DWriteContext();
++ }
++ 
++     void
++ DWriteContext_BeginDraw(DWriteContext *ctx)
++ {
++     if (ctx != NULL && ctx->mRT != NULL)
++     {
++ 	ctx->mRT->BeginDraw();
++ 	ctx->mRT->SetTransform(D2D1::IdentityMatrix());
++ 	ctx->mDrawing = true;
++     }
++ }
++ 
++     void
++ DWriteContext_BindDC(DWriteContext *ctx, HDC hdc, RECT *rect)
++ {
++     if (ctx != NULL && ctx->mRT != NULL)
++     {
++ 	ctx->mRT->BindDC(hdc, rect);
++ 	ctx->mRT->SetTextAntialiasMode(ctx->mTextAntialiasMode);
++     }
++ }
++ 
++     void
++ DWriteContext_SetFont(DWriteContext *ctx, HFONT hFont)
++ {
++     if (ctx != NULL)
++     {
++ 	ctx->SetFont(hFont);
++     }
++ }
++ 
++     void
++ DWriteContext_DrawText(
++ 	DWriteContext *ctx,
++ 	HDC hdc,
++ 	const WCHAR* text,
++ 	int len,
++ 	int x,
++ 	int y,
++ 	int w,
++ 	int h,
++ 	int cellWidth,
++ 	COLORREF color)
++ {
++     if (ctx != NULL)
++ 	ctx->DrawText(hdc, text, len, x, y, w, h, cellWidth, color);
++ }
++ 
++     void
++ DWriteContext_EndDraw(DWriteContext *ctx)
++ {
++     if (ctx != NULL && ctx->mRT != NULL)
++     {
++ 	ctx->mRT->EndDraw();
++ 	ctx->mDrawing = false;
++     }
++ }
++ 
++     void
++ DWriteContext_Close(DWriteContext *ctx)
++ {
++     delete ctx;
++ }
++ 
++     void
++ DWriteContext_SetRenderingParams(
++ 	DWriteContext *ctx,
++ 	const DWriteRenderingParams *params)
++ {
++     if (ctx != NULL)
++ 	ctx->SetRenderingParams(params);
++ }
++ 
++     DWriteRenderingParams *
++ DWriteContext_GetRenderingParams(
++ 	DWriteContext *ctx,
++ 	DWriteRenderingParams *params)
++ {
++     if (ctx != NULL)
++ 	return ctx->GetRenderingParams(params);
++     else
++ 	return NULL;
++ }
+*** ../vim-7.4.392/src/gui_dwrite.h	2014-08-06 14:49:19.667237363 +0200
+--- src/gui_dwrite.h	2014-08-06 14:21:57.459249166 +0200
+***************
+*** 0 ****
+--- 1,85 ----
++ /* vi:set ts=8 sts=4 sw=4 noet: */
++ /*
++  * Author: MURAOKA Taro <koron.kaoriya@gmail.com>
++  *
++  * Contributors:
++  *  - Ken Takata
++  *
++  * Copyright (C) 2013 MURAOKA Taro <koron.kaoriya@gmail.com>
++  * THIS FILE IS DISTRIBUTED UNDER THE VIM LICENSE.
++  */
++ 
++ #ifndef GUI_DWRITE_H
++ #define GUI_DWRITE_H
++ 
++ #ifdef __cplusplus
++ extern "C" {
++ #endif
++ 
++ typedef struct DWriteContext DWriteContext;
++ 
++ typedef struct DWriteRenderingParams {
++     float gamma;
++     float enhancedContrast;
++     float clearTypeLevel;
++     /*
++      * pixelGeometry:
++      *	0 - DWRITE_PIXEL_GEOMETRY_FLAT
++      *	1 - DWRITE_PIXEL_GEOMETRY_RGB
++      *	2 - DWRITE_PIXEL_GEOMETRY_BGR
++      */
++     int pixelGeometry;
++     /*
++      * renderingMode:
++      *	0 - DWRITE_RENDERING_MODE_DEFAULT
++      *	1 - DWRITE_RENDERING_MODE_ALIASED
++      *	2 - DWRITE_RENDERING_MODE_CLEARTYPE_GDI_CLASSIC
++      *	3 - DWRITE_RENDERING_MODE_CLEARTYPE_GDI_NATURAL
++      *	4 - DWRITE_RENDERING_MODE_CLEARTYPE_NATURAL
++      *	5 - DWRITE_RENDERING_MODE_CLEARTYPE_NATURAL_SYMMETRIC
++      *	6 - DWRITE_RENDERING_MODE_OUTLINE
++      */
++     int renderingMode;
++     /*
++      * antialiasMode:
++      *	0 - D2D1_TEXT_ANTIALIAS_MODE_DEFAULT
++      *	1 - D2D1_TEXT_ANTIALIAS_MODE_CLEARTYPE
++      *	2 - D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE
++      *	3 - D2D1_TEXT_ANTIALIAS_MODE_ALIASED
++      */
++     int textAntialiasMode;
++ } DWriteRenderingParams;
++ 
++ void DWrite_Init(void);
++ void DWrite_Final(void);
++ 
++ DWriteContext *DWriteContext_Open(void);
++ void DWriteContext_BeginDraw(DWriteContext *ctx);
++ void DWriteContext_BindDC(DWriteContext *ctx, HDC hdc, RECT *rect);
++ void DWriteContext_SetFont(DWriteContext *ctx, HFONT hFont);
++ void DWriteContext_DrawText(
++ 	DWriteContext *ctx,
++ 	HDC hdc,
++ 	const WCHAR* text,
++ 	int len,
++ 	int x,
++ 	int y,
++ 	int w,
++ 	int h,
++ 	int cellWidth,
++ 	COLORREF color);
++ void DWriteContext_EndDraw(DWriteContext *ctx);
++ void DWriteContext_Close(DWriteContext *ctx);
++ 
++ void DWriteContext_SetRenderingParams(
++ 	DWriteContext *ctx,
++ 	const DWriteRenderingParams *params);
++ 
++ DWriteRenderingParams *DWriteContext_GetRenderingParams(
++ 	DWriteContext *ctx,
++ 	DWriteRenderingParams *params);
++ 
++ #ifdef __cplusplus
++ }
++ #endif
++ #endif/*GUI_DWRITE_H*/
+*** ../vim-7.4.392/src/gui_w32.c	2013-08-04 16:15:37.000000000 +0200
+--- src/gui_w32.c	2014-08-06 14:45:43.495238916 +0200
+***************
+*** 25,30 ****
+--- 25,169 ----
+  
+  #include "vim.h"
+  
++ #if defined(FEAT_DIRECTX)
++ # include "gui_dwrite.h"
++ #endif
++ 
++ #if defined(FEAT_DIRECTX) || defined(PROTO)
++ static DWriteContext *s_dwc = NULL;
++ static int s_directx_enabled = 0;
++ static int s_directx_load_attempted = 0;
++ # define IS_ENABLE_DIRECTX() (s_directx_enabled && s_dwc != NULL)
++ 
++     int
++ directx_enabled(void)
++ {
++     if (s_dwc != NULL)
++ 	return 1;
++     else if (s_directx_load_attempted)
++ 	return 0;
++     /* load DirectX */
++     DWrite_Init();
++     s_directx_load_attempted = 1;
++     s_dwc = DWriteContext_Open();
++     return s_dwc != NULL ? 1 : 0;
++ }
++ #endif
++ 
++ #if defined(FEAT_RENDER_OPTIONS) || defined(PROTO)
++     int
++ gui_mch_set_rendering_options(char_u *s)
++ {
++ #ifdef FEAT_DIRECTX
++     int	    retval = FAIL;
++     char_u  *p, *q;
++ 
++     int	    dx_enable = 0;
++     int	    dx_flags = 0;
++     float   dx_gamma = 0.0f;
++     float   dx_contrast = 0.0f;
++     float   dx_level = 0.0f;
++     int	    dx_geom = 0;
++     int	    dx_renmode = 0;
++     int	    dx_taamode = 0;
++ 
++     /* parse string as rendering options. */
++     for (p = s; p != NULL && *p != NUL; )
++     {
++ 	char_u  item[256];
++ 	char_u  name[128];
++ 	char_u  value[128];
++ 
++ 	copy_option_part(&p, item, sizeof(item), ","); 
++ 	if (p == NULL)
++ 	    break;
++ 	q = &item[0];
++ 	copy_option_part(&q, name, sizeof(name), ":");
++ 	if (q == NULL)
++ 	    return FAIL;
++ 	copy_option_part(&q, value, sizeof(value), ":");
++ 
++ 	if (STRCMP(name, "type") == 0)
++ 	{
++ 	    if (STRCMP(value, "directx") == 0)
++ 		dx_enable = 1;
++ 	    else
++ 		return FAIL;
++ 	}
++ 	else if (STRCMP(name, "gamma") == 0)
++ 	{
++ 	    dx_flags |= 1 << 0;
++ 	    dx_gamma = (float)atof(value);
++ 	}
++ 	else if (STRCMP(name, "contrast") == 0)
++ 	{
++ 	    dx_flags |= 1 << 1;
++ 	    dx_contrast = (float)atof(value);
++ 	}
++ 	else if (STRCMP(name, "level") == 0)
++ 	{
++ 	    dx_flags |= 1 << 2;
++ 	    dx_level = (float)atof(value);
++ 	}
++ 	else if (STRCMP(name, "geom") == 0)
++ 	{
++ 	    dx_flags |= 1 << 3;
++ 	    dx_geom = atoi(value);
++ 	    if (dx_geom < 0 || dx_geom > 2)
++ 		return FAIL;
++ 	}
++ 	else if (STRCMP(name, "renmode") == 0)
++ 	{
++ 	    dx_flags |= 1 << 4;
++ 	    dx_renmode = atoi(value);
++ 	    if (dx_renmode < 0 || dx_renmode > 6)
++ 		return FAIL;
++ 	}
++ 	else if (STRCMP(name, "taamode") == 0)
++ 	{
++ 	    dx_flags |= 1 << 5;
++ 	    dx_taamode = atoi(value);
++ 	    if (dx_taamode < 0 || dx_taamode > 3)
++ 		return FAIL;
++ 	}
++ 	else
++ 	    return FAIL;
++     }
++ 
++     /* Enable DirectX/DirectWrite */
++     if (dx_enable)
++     {
++ 	if (!directx_enabled())
++ 	    return FAIL;
++ 	DWriteContext_SetRenderingParams(s_dwc, NULL);
++ 	if (dx_flags)
++ 	{
++ 	    DWriteRenderingParams param;
++ 	    DWriteContext_GetRenderingParams(s_dwc, &param);
++ 	    if (dx_flags & (1 << 0))
++ 		param.gamma = dx_gamma;
++ 	    if (dx_flags & (1 << 1))
++ 		param.enhancedContrast = dx_contrast;
++ 	    if (dx_flags & (1 << 2))
++ 		param.clearTypeLevel = dx_level;
++ 	    if (dx_flags & (1 << 3))
++ 		param.pixelGeometry = dx_geom;
++ 	    if (dx_flags & (1 << 4))
++ 		param.renderingMode = dx_renmode;
++ 	    if (dx_flags & (1 << 5))
++ 		param.textAntialiasMode = dx_taamode;
++ 	    DWriteContext_SetRenderingParams(s_dwc, &param);
++ 	}
++     }
++     s_directx_enabled = dx_enable;
++ 
++     return OK;
++ #else
++     return FAIL;
++ #endif
++ }
++ #endif
++ 
+  /*
+   * These are new in Windows ME/XP, only defined in recent compilers.
+   */
+***************
+*** 1624,1629 ****
+--- 1763,1773 ----
+      set_vim_var_nr(VV_WINDOWID, HandleToLong(s_hwnd));
+  #endif
+  
++ #ifdef FEAT_RENDER_OPTIONS
++     if (p_rop)
++ 	(void)gui_mch_set_rendering_options(p_rop);
++ #endif
++ 
+  theend:
+      /* Display any pending error messages */
+      display_errors();
+***************
+*** 1695,1703 ****
+  
+      /* compute the size of the outside of the window */
+      win_width = width + (GetSystemMetrics(SM_CXFRAME) +
+!                          GetSystemMetrics(SM_CXPADDEDBORDER)) * 2;
+      win_height = height + (GetSystemMetrics(SM_CYFRAME) +
+!                            GetSystemMetrics(SM_CXPADDEDBORDER)) * 2
+  			+ GetSystemMetrics(SM_CYCAPTION)
+  #ifdef FEAT_MENU
+  			+ gui_mswin_get_menu_height(FALSE)
+--- 1839,1847 ----
+  
+      /* compute the size of the outside of the window */
+      win_width = width + (GetSystemMetrics(SM_CXFRAME) +
+! 			 GetSystemMetrics(SM_CXPADDEDBORDER)) * 2;
+      win_height = height + (GetSystemMetrics(SM_CYFRAME) +
+! 			   GetSystemMetrics(SM_CXPADDEDBORDER)) * 2
+  			+ GetSystemMetrics(SM_CYCAPTION)
+  #ifdef FEAT_MENU
+  			+ gui_mswin_get_menu_height(FALSE)
+***************
+*** 2239,2244 ****
+--- 2383,2391 ----
+  #endif
+      HPEN	hpen, old_pen;
+      int		y;
++ #ifdef FEAT_DIRECTX
++     int		font_is_ttf_or_vector = 0;
++ #endif
+  
+  #ifndef MSWIN16_FASTTEXT
+      /*
+***************
+*** 2326,2331 ****
+--- 2473,2492 ----
+      SetTextColor(s_hdc, gui.currFgColor);
+      SelectFont(s_hdc, gui.currFont);
+  
++ #ifdef FEAT_DIRECTX
++     if (IS_ENABLE_DIRECTX())
++     {
++ 	TEXTMETRIC tm;
++ 
++ 	GetTextMetrics(s_hdc, &tm);
++ 	if (tm.tmPitchAndFamily & (TMPF_TRUETYPE | TMPF_VECTOR))
++ 	{
++ 	    font_is_ttf_or_vector = 1;
++ 	    DWriteContext_SetFont(s_dwc, (HFONT)gui.currFont);
++ 	}
++     }
++ #endif
++ 
+      if (pad_size != Columns || padding == NULL || padding[0] != gui.char_width)
+      {
+  	vim_free(padding);
+***************
+*** 2360,2365 ****
+--- 2521,2534 ----
+  	    if (text[n] >= 0x80)
+  		break;
+  
++ #if defined(FEAT_DIRECTX)
++     /* Quick hack to enable DirectWrite.  To use DirectWrite (antialias), it is
++      * required that unicode drawing routine, currently.  So this forces it
++      * enabled. */
++     if (enc_utf8 && IS_ENABLE_DIRECTX())
++ 	n = 0; /* Keep n < len, to enter block for unicode. */
++ #endif
++ 
+      /* Check if the Unicode buffer exists and is big enough.  Create it
+       * with the same length as the multi-byte string, the number of wide
+       * characters is always equal or smaller. */
+***************
+*** 2418,2425 ****
+  	    i += utfc_ptr2len_len(text + i, len - i);
+  	    ++clen;
+  	}
+! 	ExtTextOutW(s_hdc, TEXT_X(col), TEXT_Y(row),
+! 			   foptions, pcliprect, unicodebuf, wlen, unicodepdy);
+  	len = cells;	/* used for underlining */
+      }
+      else if ((enc_codepage > 0 && (int)GetACP() != enc_codepage) || enc_latin9)
+--- 2587,2603 ----
+  	    i += utfc_ptr2len_len(text + i, len - i);
+  	    ++clen;
+  	}
+! #if defined(FEAT_DIRECTX)
+! 	if (IS_ENABLE_DIRECTX() && font_is_ttf_or_vector)
+! 	{
+! 	    DWriteContext_DrawText(s_dwc, s_hdc, unicodebuf, wlen,
+! 		    TEXT_X(col), TEXT_Y(row), FILL_X(cells), FILL_Y(1),
+! 		    gui.char_width, gui.currFgColor);
+! 	}
+! 	else
+! #endif
+! 	    ExtTextOutW(s_hdc, TEXT_X(col), TEXT_Y(row),
+! 		    foptions, pcliprect, unicodebuf, wlen, unicodepdy);
+  	len = cells;	/* used for underlining */
+      }
+      else if ((enc_codepage > 0 && (int)GetACP() != enc_codepage) || enc_latin9)
+***************
+*** 2549,2562 ****
+  
+      *screen_w = workarea_rect.right - workarea_rect.left
+  		- (GetSystemMetrics(SM_CXFRAME) +
+!                    GetSystemMetrics(SM_CXPADDEDBORDER)) * 2;
+  
+      /* FIXME: dirty trick: Because the gui_get_base_height() doesn't include
+       * the menubar for MSwin, we subtract it from the screen height, so that
+       * the window size can be made to fit on the screen. */
+      *screen_h = workarea_rect.bottom - workarea_rect.top
+  		- (GetSystemMetrics(SM_CYFRAME) +
+!                    GetSystemMetrics(SM_CXPADDEDBORDER)) * 2
+  		- GetSystemMetrics(SM_CYCAPTION)
+  #ifdef FEAT_MENU
+  		- gui_mswin_get_menu_height(FALSE)
+--- 2727,2740 ----
+  
+      *screen_w = workarea_rect.right - workarea_rect.left
+  		- (GetSystemMetrics(SM_CXFRAME) +
+! 		   GetSystemMetrics(SM_CXPADDEDBORDER)) * 2;
+  
+      /* FIXME: dirty trick: Because the gui_get_base_height() doesn't include
+       * the menubar for MSwin, we subtract it from the screen height, so that
+       * the window size can be made to fit on the screen. */
+      *screen_h = workarea_rect.bottom - workarea_rect.top
+  		- (GetSystemMetrics(SM_CYFRAME) +
+! 		   GetSystemMetrics(SM_CXPADDEDBORDER)) * 2
+  		- GetSystemMetrics(SM_CYCAPTION)
+  #ifdef FEAT_MENU
+  		- gui_mswin_get_menu_height(FALSE)
+***************
+*** 3188,3200 ****
+  	GetWindowRect(s_hwnd, &rect);
+  	maxDialogWidth = rect.right - rect.left
+  				   - (GetSystemMetrics(SM_CXFRAME) +
+!                                       GetSystemMetrics(SM_CXPADDEDBORDER)) * 2;
+  	if (maxDialogWidth < DLG_MIN_MAX_WIDTH)
+  	    maxDialogWidth = DLG_MIN_MAX_WIDTH;
+  
+  	maxDialogHeight = rect.bottom - rect.top
+  				   - (GetSystemMetrics(SM_CYFRAME) +
+!                                       GetSystemMetrics(SM_CXPADDEDBORDER)) * 4
+  				   - GetSystemMetrics(SM_CYCAPTION);
+  	if (maxDialogHeight < DLG_MIN_MAX_HEIGHT)
+  	    maxDialogHeight = DLG_MIN_MAX_HEIGHT;
+--- 3366,3378 ----
+  	GetWindowRect(s_hwnd, &rect);
+  	maxDialogWidth = rect.right - rect.left
+  				   - (GetSystemMetrics(SM_CXFRAME) +
+! 				      GetSystemMetrics(SM_CXPADDEDBORDER)) * 2;
+  	if (maxDialogWidth < DLG_MIN_MAX_WIDTH)
+  	    maxDialogWidth = DLG_MIN_MAX_WIDTH;
+  
+  	maxDialogHeight = rect.bottom - rect.top
+  				   - (GetSystemMetrics(SM_CYFRAME) +
+! 				      GetSystemMetrics(SM_CXPADDEDBORDER)) * 4
+  				   - GetSystemMetrics(SM_CYCAPTION);
+  	if (maxDialogHeight < DLG_MIN_MAX_HEIGHT)
+  	    maxDialogHeight = DLG_MIN_MAX_HEIGHT;
+***************
+*** 3351,3361 ****
+      /* Restrict the size to a maximum.  Causes a scrollbar to show up. */
+      if (dlgheight > maxDialogHeight)
+      {
+!         msgheight = msgheight - (dlgheight - maxDialogHeight);
+!         dlgheight = maxDialogHeight;
+!         scroll_flag = WS_VSCROLL;
+!         /* Make sure scrollbar doesn't appear in the middle of the dialog */
+!         messageWidth = dlgwidth - DLG_ICON_WIDTH - 3 * dlgPaddingX;
+      }
+  
+      add_word(PixelToDialogY(dlgheight));
+--- 3529,3539 ----
+      /* Restrict the size to a maximum.  Causes a scrollbar to show up. */
+      if (dlgheight > maxDialogHeight)
+      {
+! 	msgheight = msgheight - (dlgheight - maxDialogHeight);
+! 	dlgheight = maxDialogHeight;
+! 	scroll_flag = WS_VSCROLL;
+! 	/* Make sure scrollbar doesn't appear in the middle of the dialog */
+! 	messageWidth = dlgwidth - DLG_ICON_WIDTH - 3 * dlgPaddingX;
+      }
+  
+      add_word(PixelToDialogY(dlgheight));
+*** ../vim-7.4.392/src/gui_w48.c	2014-03-23 15:12:29.923264336 +0100
+--- src/gui_w48.c	2014-08-06 14:21:57.463249166 +0200
+***************
+*** 2785,2790 ****
+--- 2785,2794 ----
+  
+  	out_flush();	    /* make sure all output has been processed */
+  	(void)BeginPaint(hwnd, &ps);
++ #if defined(FEAT_DIRECTX)
++ 	if (IS_ENABLE_DIRECTX())
++ 	    DWriteContext_BeginDraw(s_dwc);
++ #endif
+  
+  #ifdef FEAT_MBYTE
+  	/* prevent multi-byte characters from misprinting on an invalid
+***************
+*** 2800,2808 ****
+--- 2804,2823 ----
+  #endif
+  
+  	if (!IsRectEmpty(&ps.rcPaint))
++ 	{
++ #if defined(FEAT_DIRECTX)
++ 	    if (IS_ENABLE_DIRECTX())
++ 		DWriteContext_BindDC(s_dwc, s_hdc, &ps.rcPaint);
++ #endif
+  	    gui_redraw(ps.rcPaint.left, ps.rcPaint.top,
+  		    ps.rcPaint.right - ps.rcPaint.left + 1,
+  		    ps.rcPaint.bottom - ps.rcPaint.top + 1);
++ 	}
++ 
++ #if defined(FEAT_DIRECTX)
++ 	if (IS_ENABLE_DIRECTX())
++ 	    DWriteContext_EndDraw(s_dwc);
++ #endif
+  	EndPaint(hwnd, &ps);
+      }
+  }
+***************
+*** 3043,3048 ****
+--- 3058,3069 ----
+      void
+  gui_mch_exit(int rc)
+  {
++ #if defined(FEAT_DIRECTX)
++     DWriteContext_Close(s_dwc);
++     DWrite_Final();
++     s_dwc = NULL;
++ #endif
++ 
+      ReleaseDC(s_textArea, s_hdc);
+      DeleteObject(s_brush);
+  
+*** ../vim-7.4.392/src/option.c	2014-06-25 14:44:04.458358774 +0200
+--- src/option.c	2014-08-06 14:33:24.503244228 +0200
+***************
+*** 2124,2129 ****
+--- 2124,2138 ----
+      {"remap",	    NULL,   P_BOOL|P_VI_DEF,
+  			    (char_u *)&p_remap, PV_NONE,
+  			    {(char_u *)TRUE, (char_u *)0L} SCRIPTID_INIT},
++     {"renderoptions", "rop", P_STRING|P_COMMA|P_RCLR|P_VI_DEF,
++ #ifdef FEAT_RENDER_OPTIONS
++ 			    (char_u *)&p_rop, PV_NONE,
++ 			    {(char_u *)"", (char_u *)0L}
++ #else
++ 			    (char_u *)NULL, PV_NONE,
++ 			    {(char_u *)NULL, (char_u *)0L}
++ #endif
++ 			    SCRIPTID_INIT},
+      {"report",	    NULL,   P_NUM|P_VI_DEF,
+  			    (char_u *)&p_report, PV_NONE,
+  			    {(char_u *)2L, (char_u *)0L} SCRIPTID_INIT},
+***************
+*** 6999,7004 ****
+--- 7008,7021 ----
+      }
+  #endif
+  
++ #if defined(FEAT_RENDER_OPTIONS)
++     else if (varp == &p_rop && gui.in_use)
++     {
++ 	if (!gui_mch_set_rendering_options(p_rop))
++ 	    errmsg = e_invarg;
++     }
++ #endif
++ 
+      /* Options that are a list of flags. */
+      else
+      {
+*** ../vim-7.4.392/src/option.h	2014-06-25 14:39:35.110348584 +0200
+--- src/option.h	2014-08-06 14:23:25.419248534 +0200
+***************
+*** 655,660 ****
+--- 655,663 ----
+  #endif
+  EXTERN int	p_remap;	/* 'remap' */
+  EXTERN long	p_re;		/* 'regexpengine' */
++ #ifdef FEAT_RENDER_OPTIONS
++ EXTERN char_u	*p_rop;		/* 'renderoptions' */
++ #endif
+  EXTERN long	p_report;	/* 'report' */
+  #if defined(FEAT_WINDOWS) && defined(FEAT_QUICKFIX)
+  EXTERN long	p_pvh;		/* 'previewheight' */
+*** ../vim-7.4.392/src/version.c	2014-08-06 13:36:56.091268582 +0200
+--- src/version.c	2014-08-06 14:29:39.183245847 +0200
+***************
+*** 189,194 ****
+--- 189,201 ----
+  #else
+  	"-digraphs",
+  #endif
++ #ifdef FEAT_GUI_W32
++ # ifdef FEAT_DIRECTX
++ 	"+directx",
++ # else
++ 	"-directx",
++ # endif
++ #endif
+  #ifdef FEAT_DND
+  	"+dnd",
+  #else
+*** ../vim-7.4.392/src/vim.h	2014-04-02 19:54:58.275599459 +0200
+--- src/vim.h	2014-08-06 14:21:57.467249166 +0200
+***************
+*** 134,139 ****
+--- 134,146 ----
+  # endif
+  #endif
+  
++ /* Check support for rendering options */
++ #ifdef FEAT_GUI
++ # if defined(FEAT_DIRECTX)
++ #  define FEAT_RENDER_OPTIONS
++ # endif
++ #endif
++ 
+  /* Visual Studio 2005 has 'deprecated' many of the standard CRT functions */
+  #if _MSC_VER >= 1400
+  # define _CRT_SECURE_NO_DEPRECATE
+*** ../vim-7.4.392/src/proto/gui_w32.pro	2013-08-10 13:37:36.000000000 +0200
+--- src/proto/gui_w32.pro	2014-08-06 14:33:04.155244374 +0200
+***************
+*** 1,4 ****
+--- 1,6 ----
+  /* gui_w32.c */
++ int directx_enabled __ARGS((void));
++ int gui_mch_set_rendering_options __ARGS((char_u *s));
+  void gui_mch_set_blinking __ARGS((long wait, long on, long off));
+  void gui_mch_stop_blink __ARGS((void));
+  void gui_mch_start_blink __ARGS((void));
+*** ../vim-7.4.392/src/version.c	2014-08-06 13:36:56.091268582 +0200
+--- src/version.c	2014-08-06 14:29:39.183245847 +0200
+***************
+*** 736,737 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     393,
+  /**/
+
+-- 
+A consultant is a person who takes your money and annoys your employees while
+tirelessly searching for the best way to extend the consulting contract.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

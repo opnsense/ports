@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.660
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.660
+Problem:    Using freed memory when g:colors_name is changed in the colors
+	    script. (oni-link)
+Solution:   Make a copy of the variable value.
+Files:	    src/syntax.c
+
+
+*** ../vim-7.4.659/src/syntax.c	2015-02-03 13:00:34.404529640 +0100
+--- src/syntax.c	2015-03-13 12:48:03.203291145 +0100
+***************
+*** 6988,6995 ****
+       * and 'background' or 't_Co' is changed.
+       */
+      p = get_var_value((char_u *)"g:colors_name");
+!     if (p != NULL && load_colors(p) == OK)
+! 	return;
+  #endif
+  
+      /*
+--- 6988,7009 ----
+       * and 'background' or 't_Co' is changed.
+       */
+      p = get_var_value((char_u *)"g:colors_name");
+!     if (p != NULL)
+!     {
+!        /* The value of g:colors_name could be freed when sourcing the script,
+! 	* making "p" invalid, so copy it. */
+!        char_u *copy_p = vim_strsave(p);
+!        int    r;
+! 
+!        if (copy_p != NULL)
+!        {
+! 	   r = load_colors(copy_p);
+! 	   vim_free(copy_p);
+! 	   if (r == OK)
+! 	       return;
+!        }
+!     }
+! 
+  #endif
+  
+      /*
+*** ../vim-7.4.659/src/version.c	2015-03-13 11:23:46.446245826 +0100
+--- src/version.c	2015-03-13 12:50:42.297597991 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     660,
+  /**/
+
+-- 
+This is the polymorph virus!  Follow these instructions carefully:
+1. Send this message to everybody you know.
+2. Format your harddisk.
+Thank you for your cooperation in spreading the most powerful virus ever!
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

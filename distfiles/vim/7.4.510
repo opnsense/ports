@@ -1,0 +1,65 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.510
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.510
+Problem:    "-fwrapv" argument breaks use of cproto.
+Solution:   Remove the alphabetic arguments in a drastic way.
+Files:	    src/Makefile
+
+
+*** ../vim-7.4.509/src/Makefile	2014-11-05 18:05:48.652441306 +0100
+--- src/Makefile	2014-11-12 15:24:56.357941730 +0100
+***************
+*** 1779,1791 ****
+  proto: $(PRO_AUTO) $(PRO_MANUAL)
+  
+  # Filter out arguments that cproto doesn't support.
+! # Don't pass "-pthread" to cproto, it sees it as a list of individual flags.
+! # Don't pass "-fstack-protector" to cproto, for the same reason.
+! # Don't pass "-g" to cproto.
+  # The -E"gcc -E" argument must be separate to avoid problems with shell
+  # quoting.
+  CPROTO = cproto $(PROTO_FLAGS) -DPROTO \
+! 	 `echo '$(LINT_CFLAGS)' | sed -e 's/-pthread//g' -e 's/-fstack-protector//g' -e 's/\ -g\ / /g'`
+  
+  ### Would be nice if this would work for "normal" make.
+  ### Currently it only works for (Free)BSD make.
+--- 1779,1790 ----
+  proto: $(PRO_AUTO) $(PRO_MANUAL)
+  
+  # Filter out arguments that cproto doesn't support.
+! # Don't pass "-pthread", "-fwrapv" and similar arguments to cproto, it sees
+! # them as a list of individual flags.
+  # The -E"gcc -E" argument must be separate to avoid problems with shell
+  # quoting.
+  CPROTO = cproto $(PROTO_FLAGS) -DPROTO \
+! 	 `echo '$(LINT_CFLAGS)' | sed -e 's/ -[a-z-]\+//g'`
+  
+  ### Would be nice if this would work for "normal" make.
+  ### Currently it only works for (Free)BSD make.
+*** ../vim-7.4.509/src/version.c	2014-11-12 15:15:34.983882077 +0100
+--- src/version.c	2014-11-12 15:37:34.401182559 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     510,
+  /**/
+
+-- 
+       [Autumn changed into Winter ... Winter changed into Spring ...  Spring
+       changed back into Autumn and Autumn gave Winter and Spring a miss and
+       went straight on into Summer ...  Until one day ...]
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

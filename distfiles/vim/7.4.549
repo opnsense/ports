@@ -1,0 +1,221 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.549
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.549
+Problem:    Function name not recognized correctly when inside a function.
+Solution:   Don't check for an alpha character.
+Files:      src/eval.c, src/testdir/test_nested_function.in,
+            src/testdir/test_nested_function.ok, src/testdir/Make_amiga.mak,
+            src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+            src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+            src/testdir/Makefile
+
+
+*** ../vim-7.4.548/src/eval.c	2014-12-07 00:18:27.524203161 +0100
+--- src/eval.c	2014-12-13 20:27:16.728347709 +0100
+***************
+*** 22283,22296 ****
+  		if (*p == '!')
+  		    p = skipwhite(p + 1);
+  		p += eval_fname_script(p);
+! 		if (ASCII_ISALPHA(*p))
+  		{
+! 		    vim_free(trans_function_name(&p, TRUE, 0, NULL));
+! 		    if (*skipwhite(p) == '(')
+! 		    {
+! 			++nesting;
+! 			indent += 2;
+! 		    }
+  		}
+  	    }
+  
+--- 22283,22293 ----
+  		if (*p == '!')
+  		    p = skipwhite(p + 1);
+  		p += eval_fname_script(p);
+! 		vim_free(trans_function_name(&p, TRUE, 0, NULL));
+! 		if (*skipwhite(p) == '(')
+  		{
+! 		    ++nesting;
+! 		    indent += 2;
+  		}
+  	    }
+  
+*** ../vim-7.4.548/src/testdir/test_nested_function.in	2014-12-13 21:00:22.243356614 +0100
+--- src/testdir/test_nested_function.in	2014-12-13 20:21:18.080145982 +0100
+***************
+*** 0 ****
+--- 1,34 ----
++ Tests for Nested function                vim: set ft=vim :
++ 
++ STARTTEST
++ :so small.vim
++ :fu! NestedFunc()
++ :  fu! Func1()
++ :    $put ='Func1'
++ :  endfunction
++ :  call Func1()
++ :  fu! s:func2()
++ :    $put ='s:func2'
++ :  endfunction
++ :  call s:func2()
++ :  fu! s:_func3()
++ :    $put ='s:_func3'
++ :  endfunction
++ :  call s:_func3()
++ :  let fn = 'Func4'
++ :  fu! {fn}()
++ :    $put ='Func4'
++ :  endfunction
++ :  call {fn}()
++ :  let fn = 'func5'
++ :  fu! s:{fn}()
++ :    $put ='s:func5'
++ :  endfunction
++ :  call s:{fn}()
++ :endfunction
++ :call NestedFunc()
++ :/^result:/,$w! test.out
++ :qa!
++ ENDTEST
++ 
++ result:
+*** ../vim-7.4.548/src/testdir/test_nested_function.ok	2014-12-13 21:00:22.251356529 +0100
+--- src/testdir/test_nested_function.ok	2014-12-13 20:21:44.215867748 +0100
+***************
+*** 0 ****
+--- 1,6 ----
++ result:
++ Func1
++ s:func2
++ s:_func3
++ Func4
++ s:func5
+*** ../vim-7.4.548/src/testdir/Make_amiga.mak	2014-12-08 04:16:26.253702999 +0100
+--- src/testdir/Make_amiga.mak	2014-12-13 20:23:59.554425738 +0100
+***************
+*** 47,52 ****
+--- 47,53 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
+***************
+*** 184,189 ****
+--- 185,192 ----
+  test_insertcount.out: test_insertcount.in
+  test_listlbr.out: test_listlbr.in
+  test_listlbr_utf8.out: test_listlbr_utf8.in
++ test_mapping.out: test_mapping.in
++ test_nested_function.out: test_nested_function.in
+  test_options.out: test_options.in
+  test_qf_title.out: test_qf_title.in
+  test_signs.out: test_signs.in
+*** ../vim-7.4.548/src/testdir/Make_dos.mak	2014-12-08 04:16:26.253702999 +0100
+--- src/testdir/Make_dos.mak	2014-12-13 20:24:11.946293504 +0100
+***************
+*** 46,51 ****
+--- 46,52 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
+*** ../vim-7.4.548/src/testdir/Make_ming.mak	2014-12-08 04:16:26.253702999 +0100
+--- src/testdir/Make_ming.mak	2014-12-13 20:24:17.058237473 +0100
+***************
+*** 68,73 ****
+--- 68,74 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
+*** ../vim-7.4.548/src/testdir/Make_os2.mak	2014-12-08 04:16:26.253702999 +0100
+--- src/testdir/Make_os2.mak	2014-12-13 20:24:21.598190646 +0100
+***************
+*** 48,53 ****
+--- 48,54 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
+*** ../vim-7.4.548/src/testdir/Make_vms.mms	2014-12-08 04:16:26.253702999 +0100
+--- src/testdir/Make_vms.mms	2014-12-13 20:24:29.302110051 +0100
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Dec 08
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2014 Dec 13
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 107,112 ****
+--- 107,113 ----
+  	 test_listlbr.out \
+  	 test_listlbr_utf8.out \
+  	 test_mapping.out \
++ 	 test_nested_function.out \
+  	 test_options.out \
+  	 test_qf_title.out \
+  	 test_signs.out \
+*** ../vim-7.4.548/src/testdir/Makefile	2014-12-08 04:16:26.253702999 +0100
+--- src/testdir/Makefile	2014-12-13 20:24:42.609966838 +0100
+***************
+*** 44,49 ****
+--- 44,50 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+  		test_signs.out \
+*** ../vim-7.4.548/src/version.c	2014-12-13 20:50:01.793994592 +0100
+--- src/version.c	2014-12-13 20:56:11.850046569 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     549,
+  /**/
+
+-- 
+Engineers are always delighted to share wisdom, even in areas in which they
+have no experience whatsoever.  Their logic provides them with inherent
+insight into any field of expertise.  This can be a problem when dealing with
+the illogical people who believe that knowledge can only be derived through
+experience.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

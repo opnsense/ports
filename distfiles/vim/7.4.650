@@ -1,0 +1,175 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.650
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.650
+Problem:    Configure check may fail because the dl library is not used.
+Solution:   Put "-ldl" in LIBS rather than LDFLAGS. (Oazki Kiichi)
+Files:      src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.649/src/configure.in	2014-11-30 13:34:16.889626728 +0100
+--- src/configure.in	2015-03-05 16:17:09.240514899 +0100
+***************
+*** 1451,1459 ****
+    AC_MSG_CHECKING(whether we can do without RTLD_GLOBAL for Python)
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON_CFLAGS"
+!   ldflags_save=$LDFLAGS
+    dnl -ldl must go first to make this work on Archlinux (Roland Puntaier)
+!   LDFLAGS="-ldl $LDFLAGS"
+    AC_RUN_IFELSE([AC_LANG_SOURCE([
+      #include <dlfcn.h>
+      /* If this program fails, then RTLD_GLOBAL is needed.
+--- 1451,1459 ----
+    AC_MSG_CHECKING(whether we can do without RTLD_GLOBAL for Python)
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON_CFLAGS"
+!   libs_save=$LIBS
+    dnl -ldl must go first to make this work on Archlinux (Roland Puntaier)
+!   LIBS="-ldl $LIBS"
+    AC_RUN_IFELSE([AC_LANG_SOURCE([
+      #include <dlfcn.h>
+      /* If this program fails, then RTLD_GLOBAL is needed.
+***************
+*** 1491,1504 ****
+      [AC_MSG_RESULT(yes);AC_DEFINE(PY_NO_RTLD_GLOBAL)], [AC_MSG_RESULT(no)])
+  
+    CFLAGS=$cflags_save
+!   LDFLAGS=$ldflags_save
+  
+    AC_MSG_CHECKING(whether we can do without RTLD_GLOBAL for Python3)
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON3_CFLAGS"
+!   ldflags_save=$LDFLAGS
+    dnl -ldl must go first to make this work on Archlinux (Roland Puntaier)
+!   LDFLAGS="-ldl $LDFLAGS"
+    AC_RUN_IFELSE([AC_LANG_SOURCE([
+      #include <dlfcn.h>
+      #include <wchar.h>
+--- 1491,1504 ----
+      [AC_MSG_RESULT(yes);AC_DEFINE(PY_NO_RTLD_GLOBAL)], [AC_MSG_RESULT(no)])
+  
+    CFLAGS=$cflags_save
+!   LIBS=$libs_save
+  
+    AC_MSG_CHECKING(whether we can do without RTLD_GLOBAL for Python3)
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON3_CFLAGS"
+!   libs_save=$LIBS
+    dnl -ldl must go first to make this work on Archlinux (Roland Puntaier)
+!   LIBS="-ldl $LIBS"
+    AC_RUN_IFELSE([AC_LANG_SOURCE([
+      #include <dlfcn.h>
+      #include <wchar.h>
+***************
+*** 1537,1543 ****
+      [AC_MSG_RESULT(yes);AC_DEFINE(PY3_NO_RTLD_GLOBAL)], [AC_MSG_RESULT(no)])
+  
+    CFLAGS=$cflags_save
+!   LDFLAGS=$ldflags_save
+  
+    PYTHON_SRC="if_python.c"
+    PYTHON_OBJ="objects/if_python.o"
+--- 1537,1543 ----
+      [AC_MSG_RESULT(yes);AC_DEFINE(PY3_NO_RTLD_GLOBAL)], [AC_MSG_RESULT(no)])
+  
+    CFLAGS=$cflags_save
+!   LIBS=$libs_save
+  
+    PYTHON_SRC="if_python.c"
+    PYTHON_OBJ="objects/if_python.o"
+*** ../vim-7.4.649/src/auto/configure	2014-11-30 13:34:16.893626683 +0100
+--- src/auto/configure	2015-03-05 16:17:12.664476274 +0100
+***************
+*** 6367,6374 ****
+  $as_echo_n "checking whether we can do without RTLD_GLOBAL for Python... " >&6; }
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON_CFLAGS"
+!   ldflags_save=$LDFLAGS
+!     LDFLAGS="-ldl $LDFLAGS"
+    if test "$cross_compiling" = yes; then :
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+--- 6367,6374 ----
+  $as_echo_n "checking whether we can do without RTLD_GLOBAL for Python... " >&6; }
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON_CFLAGS"
+!   libs_save=$LIBS
+!     LIBS="-ldl $LIBS"
+    if test "$cross_compiling" = yes; then :
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+***************
+*** 6426,6439 ****
+  
+  
+    CFLAGS=$cflags_save
+!   LDFLAGS=$ldflags_save
+  
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether we can do without RTLD_GLOBAL for Python3" >&5
+  $as_echo_n "checking whether we can do without RTLD_GLOBAL for Python3... " >&6; }
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON3_CFLAGS"
+!   ldflags_save=$LDFLAGS
+!     LDFLAGS="-ldl $LDFLAGS"
+    if test "$cross_compiling" = yes; then :
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+--- 6426,6439 ----
+  
+  
+    CFLAGS=$cflags_save
+!   LIBS=$libs_save
+  
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether we can do without RTLD_GLOBAL for Python3" >&5
+  $as_echo_n "checking whether we can do without RTLD_GLOBAL for Python3... " >&6; }
+    cflags_save=$CFLAGS
+    CFLAGS="$CFLAGS $PYTHON3_CFLAGS"
+!   libs_save=$LIBS
+!     LIBS="-ldl $LIBS"
+    if test "$cross_compiling" = yes; then :
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+  $as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+***************
+*** 6492,6498 ****
+  
+  
+    CFLAGS=$cflags_save
+!   LDFLAGS=$ldflags_save
+  
+    PYTHON_SRC="if_python.c"
+    PYTHON_OBJ="objects/if_python.o"
+--- 6492,6498 ----
+  
+  
+    CFLAGS=$cflags_save
+!   LIBS=$libs_save
+  
+    PYTHON_SRC="if_python.c"
+    PYTHON_OBJ="objects/if_python.o"
+*** ../vim-7.4.649/src/version.c	2015-03-05 13:35:52.421943998 +0100
+--- src/version.c	2015-03-05 16:14:30.798302587 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     650,
+  /**/
+
+-- 
+TALL KNIGHT: We shall say Ni! again to you if you do not appease us.
+ARTHUR:      All right!  What do you want?
+TALL KNIGHT: We want ... a shrubbery!
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

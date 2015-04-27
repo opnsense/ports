@@ -1,0 +1,250 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.184
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.184
+Problem:    match() does not work properly with a {count} argument.
+Solution:   Compute the length once and update it.  Quit the loop when at the
+            end. (Hirohito Higashi)
+Files:      src/eval.c, src/testdir/test53.in, src/testdir/test53.ok
+
+
+*** ../vim-7.4.183/src/eval.c	2014-02-05 22:13:02.366556787 +0100
+--- src/eval.c	2014-02-22 22:13:26.644906020 +0100
+***************
+*** 8014,8020 ****
+      {"log10",		1, 1, f_log10},
+  #endif
+  #ifdef FEAT_LUA
+!     {"luaeval",         1, 2, f_luaeval},
+  #endif
+      {"map",		2, 2, f_map},
+      {"maparg",		1, 4, f_maparg},
+--- 8014,8020 ----
+      {"log10",		1, 1, f_log10},
+  #endif
+  #ifdef FEAT_LUA
+!     {"luaeval",		1, 2, f_luaeval},
+  #endif
+      {"map",		2, 2, f_map},
+      {"maparg",		1, 4, f_maparg},
+***************
+*** 13905,13910 ****
+--- 13905,13911 ----
+      int		type;
+  {
+      char_u	*str = NULL;
++     long	len = 0;
+      char_u	*expr = NULL;
+      char_u	*pat;
+      regmatch_T	regmatch;
+***************
+*** 13944,13950 ****
+--- 13945,13954 ----
+  	li = l->lv_first;
+      }
+      else
++     {
+  	expr = str = get_tv_string(&argvars[0]);
++ 	len = (long)STRLEN(str);
++     }
+  
+      pat = get_tv_string_buf_chk(&argvars[1], patbuf);
+      if (pat == NULL)
+***************
+*** 13968,13974 ****
+  	{
+  	    if (start < 0)
+  		start = 0;
+! 	    if (start > (long)STRLEN(str))
+  		goto theend;
+  	    /* When "count" argument is there ignore matches before "start",
+  	     * otherwise skip part of the string.  Differs when pattern is "^"
+--- 13972,13978 ----
+  	{
+  	    if (start < 0)
+  		start = 0;
+! 	    if (start > len)
+  		goto theend;
+  	    /* When "count" argument is there ignore matches before "start",
+  	     * otherwise skip part of the string.  Differs when pattern is "^"
+***************
+*** 13976,13982 ****
+--- 13980,13989 ----
+  	    if (argvars[3].v_type != VAR_UNKNOWN)
+  		startcol = start;
+  	    else
++ 	    {
+  		str += start;
++ 		len -= start;
++ 	    }
+  	}
+  
+  	if (argvars[3].v_type != VAR_UNKNOWN)
+***************
+*** 14026,14031 ****
+--- 14033,14044 ----
+  #else
+  		startcol = (colnr_T)(regmatch.startp[0] + 1 - str);
+  #endif
++ 		if (startcol > (colnr_T)len
++ 				      || str + startcol <= regmatch.startp[0])
++ 		{
++ 		    match = FALSE;
++ 		    break;
++ 		}
+  	    }
+  	}
+  
+*** ../vim-7.4.183/src/testdir/test53.in	2013-10-02 21:54:57.000000000 +0200
+--- src/testdir/test53.in	2014-02-22 22:08:24.260906501 +0100
+***************
+*** 4,9 ****
+--- 4,11 ----
+  
+  Also test match() and matchstr()
+  
++ Also test the gn command and repeating it.
++ 
+  STARTTEST
+  :so small.vim
+  /^start:/
+***************
+*** 28,33 ****
+--- 30,57 ----
+  :put =matchstr(\"abcd\", \".\", 0, -1) " a
+  :put =match(\"abcd\", \".\", 0, 5) " -1
+  :put =match(\"abcd\", \".\", 0, -1) " 0
++ :put =match('abc', '.', 0, 1) " 0
++ :put =match('abc', '.', 0, 2) " 1
++ :put =match('abc', '.', 0, 3) " 2
++ :put =match('abc', '.', 0, 4) " -1
++ :put =match('abc', '.', 1, 1) " 1
++ :put =match('abc', '.', 2, 1) " 2
++ :put =match('abc', '.', 3, 1) " -1
++ :put =match('abc', '$', 0, 1) " 3
++ :put =match('abc', '$', 0, 2) " -1
++ :put =match('abc', '$', 1, 1) " 3
++ :put =match('abc', '$', 2, 1) " 3
++ :put =match('abc', '$', 3, 1) " 3
++ :put =match('abc', '$', 4, 1) " -1
++ :put =match('abc', '\zs', 0, 1) " 0
++ :put =match('abc', '\zs', 0, 2) " 1
++ :put =match('abc', '\zs', 0, 3) " 2
++ :put =match('abc', '\zs', 0, 4) " 3
++ :put =match('abc', '\zs', 0, 5) " -1
++ :put =match('abc', '\zs', 1, 1) " 1
++ :put =match('abc', '\zs', 2, 1) " 2
++ :put =match('abc', '\zs', 3, 1) " 3
++ :put =match('abc', '\zs', 4, 1) " -1
+  /^foobar
+  gncsearchmatch/one\_s*two\_s
+  :1
+***************
+*** 49,54 ****
+--- 73,84 ----
+  :" Make sure there is no other match y uppercase.
+  /x59
+  gggnd
++ :" test repeating dgn
++ /^Johnny
++ ggdgn.
++ :" test repeating gUgn
++ /^Depp
++ gggUgn.
+  :/^start:/,/^end:/wq! test.out
+  ENDTEST
+  
+***************
+*** 81,84 ****
+--- 111,123 ----
+  Y
+  text
+  Y
++ --1
++ Johnny
++ --2
++ Johnny
++ --3
++ Depp
++ --4
++ Depp
++ --5
+  end:
+*** ../vim-7.4.183/src/testdir/test53.ok	2013-10-02 21:54:57.000000000 +0200
+--- src/testdir/test53.ok	2014-02-22 22:08:24.264906501 +0100
+***************
+*** 18,23 ****
+--- 18,45 ----
+  a
+  -1
+  0
++ 0
++ 1
++ 2
++ -1
++ 1
++ 2
++ -1
++ 3
++ -1
++ 3
++ 3
++ 3
++ -1
++ 0
++ 1
++ 2
++ 3
++ -1
++ 1
++ 2
++ 3
++ -1
+  SEARCH:
+  searchmatch
+  abcdx |  | abcdx
+***************
+*** 30,33 ****
+--- 52,64 ----
+  
+  text
+  Y
++ --1
++ 
++ --2
++ 
++ --3
++ DEPP
++ --4
++ DEPP
++ --5
+  end:
+*** ../vim-7.4.183/src/version.c	2014-02-15 19:47:46.685882910 +0100
+--- src/version.c	2014-02-22 22:10:49.604906270 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     184,
+  /**/
+
+-- 
+WOMAN:   I didn't know we had a king. I thought we were an autonomous
+         collective.
+DENNIS:  You're fooling yourself.  We're living in a dictatorship.  A
+         self-perpetuating autocracy in which the working classes--
+WOMAN:   Oh there you go, bringing class into it again.
+DENNIS:  That's what it's all about if only people would--
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.597
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.597
+Problem:    Cannot change the result of systemlist().
+Solution:   Initialize v_lock. (Yukihiro Nakadaira)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.596/src/eval.c	2015-01-14 19:00:33.842522901 +0100
+--- src/eval.c	2015-01-27 13:49:22.123112397 +0100
+***************
+*** 6007,6012 ****
+--- 6007,6013 ----
+  
+  /*
+   * Allocate a list item.
++  * It is not initialized, don't forget to set v_lock.
+   */
+      listitem_T *
+  listitem_alloc()
+***************
+*** 18713,18718 ****
+--- 18714,18720 ----
+  		goto errret;
+  	    }
+  	    li->li_tv.v_type = VAR_STRING;
++ 	    li->li_tv.v_lock = 0;
+  	    li->li_tv.vval.v_string = s;
+  	    list_append(list, li);
+  	}
+*** ../vim-7.4.596/src/version.c	2015-01-27 13:33:18.737649629 +0100
+--- src/version.c	2015-01-27 13:48:25.883727538 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     597,
+  /**/
+
+-- 
+"Microsoft is like Coke.  It's a secret formula, all the money is from
+distribution, and their goal is to get Coke everywhere.  Open source is like
+selling water.  There are water companies like Perrier and Poland Spring, but
+you're competing with something that's free."   -- Carl Howe
+
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

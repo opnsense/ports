@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.591
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.591 (after 7.4.587)
+Problem:    test_listlbr_utf8 fails when the conceal feature is not available.
+Solution:   Check for the conceal feature. (Kazunobu Kuriyama)
+Files:	    src/testdir/test_listlbr_utf8.in
+
+
+*** ../vim-7.4.590/src/testdir/test_listlbr_utf8.in	2015-01-20 19:01:32.380444290 +0100
+--- src/testdir/test_listlbr_utf8.in	2015-01-22 22:37:43.523361845 +0100
+***************
+*** 2,8 ****
+  
+  STARTTEST
+  :so small.vim
+! :if !exists("+linebreak") | e! test.ok | w! test.out | qa! | endif
+  :so mbyte.vim
+  :if &enc !=? 'utf-8'|:e! test.ok|:w! test.out|qa!|endif
+  :10new|:vsp|:vert resize 20
+--- 2,8 ----
+  
+  STARTTEST
+  :so small.vim
+! :if !exists("+linebreak") || !has("conceal") | e! test.ok | w! test.out | qa! | endif
+  :so mbyte.vim
+  :if &enc !=? 'utf-8'|:e! test.ok|:w! test.out|qa!|endif
+  :10new|:vsp|:vert resize 20
+*** ../vim-7.4.590/src/version.c	2015-01-22 22:40:16.345651420 +0100
+--- src/version.c	2015-01-22 22:41:26.464867079 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     591,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+107. When using your phone you forget that you don't have to use your
+     keyboard.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.443
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.443
+Problem:    Error reported by ubsan when running test 72.
+Solution:   Add type cast to unsigned. (Dominique Pelle)
+Files:	    src/undo.c
+
+
+
+*** ../vim-7.4.442/src/undo.c	2014-08-13 22:05:49.032892299 +0200
+--- src/undo.c	2014-09-11 22:19:35.936957186 +0200
+***************
+*** 1019,1025 ****
+  	int	n;
+  
+  	undo_read(bi, buf, (size_t)4);
+! 	n = (buf[0] << 24) + (buf[1] << 16) + (buf[2] << 8) + buf[3];
+  	return n;
+      }
+  #endif
+--- 1019,1025 ----
+  	int	n;
+  
+  	undo_read(bi, buf, (size_t)4);
+! 	n = ((unsigned)buf[0] << 24) + (buf[1] << 16) + (buf[2] << 8) + buf[3];
+  	return n;
+      }
+  #endif
+*** ../vim-7.4.442/src/version.c	2014-09-09 23:11:46.368586569 +0200
+--- src/version.c	2014-09-11 22:20:31.740957308 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     443,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+122. You ask if the Netaholics Anonymous t-shirt you ordered can be
+     sent to you via e-mail.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

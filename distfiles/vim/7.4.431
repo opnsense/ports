@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.431
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.431
+Problem:    Compiler warning.
+Solution:   Add type cast. (Mike Williams)
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.430/src/ex_docmd.c	2014-08-23 14:16:11.884625637 +0200
+--- src/ex_docmd.c	2014-09-02 23:30:26.567267923 +0200
+***************
+*** 2155,2161 ****
+  	p = ea.cmd;
+  	while (ASCII_ISALNUM(*p))
+  	    ++p;
+! 	p = vim_strnsave(ea.cmd, p - ea.cmd);
+  	ret = apply_autocmds(EVENT_CMDUNDEFINED, p, p, TRUE, NULL);
+  	vim_free(p);
+  	if (ret && !aborting())
+--- 2155,2161 ----
+  	p = ea.cmd;
+  	while (ASCII_ISALNUM(*p))
+  	    ++p;
+! 	p = vim_strnsave(ea.cmd, (int)(p - ea.cmd));
+  	ret = apply_autocmds(EVENT_CMDUNDEFINED, p, p, TRUE, NULL);
+  	vim_free(p);
+  	if (ret && !aborting())
+*** ../vim-7.4.430/src/version.c	2014-08-30 18:10:15.106659776 +0200
+--- src/version.c	2014-09-09 12:21:42.312501370 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     431,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+105. When someone asks you for your address, you tell them your URL.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

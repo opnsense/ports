@@ -1,0 +1,92 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.577
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.577
+Problem:    Matching with a virtual column has a lot of overhead on very long
+	    lines. (Issue 310)
+Solution:   Bail out early if there can't be a match. (Christian Brabandt)
+	    Also check for CTRL-C at every position.
+Files:	    src/regexp_nfa.c
+
+
+*** ../vim-7.4.576/src/regexp_nfa.c	2014-11-23 15:57:45.568009419 +0100
+--- src/regexp_nfa.c	2015-01-14 18:40:12.263887756 +0100
+***************
+*** 6438,6451 ****
+  	    case NFA_VCOL:
+  	    case NFA_VCOL_GT:
+  	    case NFA_VCOL_LT:
+- 		result = nfa_re_num_cmp(t->state->val, t->state->c - NFA_VCOL,
+- 		    (long_u)win_linetabsize(
+- 			    reg_win == NULL ? curwin : reg_win,
+- 			    regline, (colnr_T)(reginput - regline)) + 1);
+- 		if (result)
+  		{
+! 		    add_here = TRUE;
+! 		    add_state = t->state->out;
+  		}
+  		break;
+  
+--- 6438,6461 ----
+  	    case NFA_VCOL:
+  	    case NFA_VCOL_GT:
+  	    case NFA_VCOL_LT:
+  		{
+! 		    int     op = t->state->c - NFA_VCOL;
+! 		    colnr_T col = (colnr_T)(reginput - regline);
+! 
+! 		    /* Bail out quickly when there can't be a match, avoid the
+! 		     * overhead of win_linetabsize() on long lines. */
+! 		    if ((col > t->state->val && op != 1)
+! 			    || (col - 1 > t->state->val && op == 1))
+! 			break;
+! 		    result = nfa_re_num_cmp(t->state->val, op,
+! 			(long_u)win_linetabsize(
+! 				reg_win == NULL ? curwin : reg_win,
+! 							   regline, col) + 1);
+! 		    if (result)
+! 		    {
+! 			add_here = TRUE;
+! 			add_state = t->state->out;
+! 		    }
+  		}
+  		break;
+  
+***************
+*** 6744,6749 ****
+--- 6754,6764 ----
+  	    reg_nextline();
+  	else
+  	    break;
++ 
++ 	/* Allow interrupting with CTRL-C. */
++ 	fast_breakcheck();
++ 	if (got_int)
++ 	    break;
+      }
+  
+  #ifdef ENABLE_LOG
+*** ../vim-7.4.576/src/version.c	2015-01-14 17:52:26.603094340 +0100
+--- src/version.c	2015-01-14 18:34:10.375843602 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     577,
+  /**/
+
+-- 
+From "know your smileys":
+ !-|	I-am-a-Cylon-Centurian-with-one-red-eye-bouncing-back-and-forth
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

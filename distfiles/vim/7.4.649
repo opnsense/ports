@@ -1,0 +1,59 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.649
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.649
+Problem:    Compiler complains about ignoring return value of fwrite().
+	    (Michael Jarvis)
+Solution:   Add (void).
+Files:	    src/misc2.c
+
+
+*** ../vim-7.4.648/src/misc2.c	2015-02-27 17:19:07.104942344 +0100
+--- src/misc2.c	2015-03-05 13:32:42.624093536 +0100
+***************
+*** 6286,6292 ****
+      char_u	buf[8];
+  
+      time_to_bytes(the_time, buf);
+!     fwrite(buf, (size_t)8, (size_t)1, fd);
+  }
+  
+  /*
+--- 6286,6292 ----
+      char_u	buf[8];
+  
+      time_to_bytes(the_time, buf);
+!     (void)fwrite(buf, (size_t)8, (size_t)1, fd);
+  }
+  
+  /*
+*** ../vim-7.4.648/src/version.c	2015-02-27 22:12:29.748834504 +0100
+--- src/version.c	2015-03-05 13:35:27.262228967 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     649,
+  /**/
+
+-- 
+   An extraordinary TALL KNIGHT in all black (possibly John with Mike on his
+   shoulders) walks out from the dark trees.  He is extremely fierce and
+   gruesome countenance.  He walks towards KING ARTHUR and PATSY, who are
+   wazzing like mad.  (Salopian slang, meaning very scared.  almost to the
+   point of wetting oneself, e.g. before an important football match or
+   prior to a postering.  Salopian slang meaning a beating by the school
+   praeposters.  Sorry about the Salopian slant to this stage direction - Ed.)
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

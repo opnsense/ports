@@ -1,0 +1,86 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.392
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.392
+Problem:    Not easy to detect type of command line window.
+Solution:   Add the getcmdwintype() function. (Jacob Niehus)
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.391/src/eval.c	2014-07-09 17:51:46.075801693 +0200
+--- src/eval.c	2014-08-06 13:35:59.303268990 +0200
+***************
+*** 554,559 ****
+--- 554,560 ----
+  static void f_getcmdline __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getcmdpos __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getcmdtype __ARGS((typval_T *argvars, typval_T *rettv));
++ static void f_getcmdwintype __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getcwd __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getfontname __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_getfperm __ARGS((typval_T *argvars, typval_T *rettv));
+***************
+*** 7984,7989 ****
+--- 7985,7991 ----
+      {"getcmdline",	0, 0, f_getcmdline},
+      {"getcmdpos",	0, 0, f_getcmdpos},
+      {"getcmdtype",	0, 0, f_getcmdtype},
++     {"getcmdwintype",	0, 0, f_getcmdwintype},
+      {"getcurpos",	0, 0, f_getcurpos},
+      {"getcwd",		0, 0, f_getcwd},
+      {"getfontname",	0, 1, f_getfontname},
+***************
+*** 11503,11508 ****
+--- 11505,11530 ----
+  }
+  
+  /*
++  * "getcmdwintype()" function
++  */
++     static void
++ f_getcmdwintype(argvars, rettv)
++     typval_T	*argvars UNUSED;
++     typval_T	*rettv;
++ {
++     rettv->v_type = VAR_STRING;
++     rettv->vval.v_string = NULL;
++ #ifdef FEAT_CMDWIN
++     rettv->vval.v_string = alloc(2);
++     if (rettv->vval.v_string != NULL)
++     {
++ 	rettv->vval.v_string[0] = cmdwin_type;
++ 	rettv->vval.v_string[1] = NUL;
++     }
++ #endif
++ }
++ 
++ /*
+   * "getcwd()" function
+   */
+      static void
+*** ../vim-7.4.391/src/version.c	2014-08-06 13:20:51.799275513 +0200
+--- src/version.c	2014-08-06 13:34:42.903269539 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     392,
+  /**/
+
+-- 
+I learned the customs and mannerisms of engineers by observing them, much the
+way Jane Goodall learned about the great apes, but without the hassle of
+grooming.
+				(Scott Adams - The Dilbert principle)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

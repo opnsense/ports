@@ -1,0 +1,612 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.566
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.566
+Problem:    :argdo, :bufdo, :windo and :tabdo don't take a range.
+Solution:   Support the range. (Marcin Szamotulski)
+Files:	    runtime/doc/editing.txt, runtime/doc/tabpage.txt,
+	    runtime/doc/windows.txt, src/ex_cmds.h, src/ex_cmds2.c,
+	    src/testdir/test_command_count.in,
+	    src/testdir/test_command_count.ok
+
+
+*** ../vim-7.4.565/runtime/doc/editing.txt	2014-11-27 16:22:42.734413130 +0100
+--- runtime/doc/editing.txt	2015-01-07 16:09:20.501100753 +0100
+***************
+*** 38,43 ****
+--- 38,44 ----
+  file name.  It can be used with "#" on the command line |:_#| and you can use
+  the |CTRL-^| command to toggle between the current and the alternate file.
+  However, the alternate file name is not changed when |:keepalt| is used.
++ An alternate file name is remembered for each window.
+  
+  							*:keepalt* *:keepa*
+  :keepalt {cmd}		Execute {cmd} while keeping the current alternate file
+***************
+*** 610,616 ****
+  :[count]arga[dd] {name} ..			*:arga* *:argadd* *E479*
+  :[count]arga[dd]
+  			Add the {name}s to the argument list.  When {name} is
+! 			omitted at the current buffer name to the argument
+  			list.
+  			If [count] is omitted, the {name}s are added just
+  			after the current entry in the argument list.
+--- 611,617 ----
+  :[count]arga[dd] {name} ..			*:arga* *:argadd* *E479*
+  :[count]arga[dd]
+  			Add the {name}s to the argument list.  When {name} is
+! 			omitted add the current buffer name to the argument
+  			list.
+  			If [count] is omitted, the {name}s are added just
+  			after the current entry in the argument list.
+***************
+*** 831,838 ****
+  USING THE ARGUMENT LIST
+  
+  						*:argdo*
+! :argdo[!] {cmd}		Execute {cmd} for each file in the argument list.
+! 			It works like doing this: >
+  				:rewind
+  				:{cmd}
+  				:next
+--- 832,840 ----
+  USING THE ARGUMENT LIST
+  
+  						*:argdo*
+! :[range]argdo[!] {cmd}	Execute {cmd} for each file in the argument list or
+! 			if [range] is specified only for arguments in that
+! 			range.  It works like doing this: >
+  				:rewind
+  				:{cmd}
+  				:next
+***************
+*** 1090,1096 ****
+  
+  :q[uit]!		Quit without writing, also when currently visible
+  			buffers have changes.  Does not exit when this is the
+! 			last window and there are is a changed hidden buffer.
+  			In this case, the first changed hidden buffer becomes
+  			the current buffer.
+  			Use ":qall!" to exit always.
+--- 1092,1098 ----
+  
+  :q[uit]!		Quit without writing, also when currently visible
+  			buffers have changes.  Does not exit when this is the
+! 			last window and there is a changed hidden buffer.
+  			In this case, the first changed hidden buffer becomes
+  			the current buffer.
+  			Use ":qall!" to exit always.
+***************
+*** 1390,1396 ****
+  You could do this to edit very secret text: >
+  	:set noundofile viminfo=
+  	:noswapfile edit secrets.txt
+! Keep in mind that without a swap file you risk loosing your work in a crash.
+  
+  WARNING: If you make a typo when entering the key and then write the file and
+  exit, the text will be lost!
+--- 1392,1398 ----
+  You could do this to edit very secret text: >
+  	:set noundofile viminfo=
+  	:noswapfile edit secrets.txt
+! Keep in mind that without a swap file you risk losing your work in a crash.
+  
+  WARNING: If you make a typo when entering the key and then write the file and
+  exit, the text will be lost!
+***************
+*** 1426,1438 ****
+  set automatically to the method used when that file was written.  You can
+  change 'cryptmethod' before writing that file to change the method.
+  
+! To set the default method, used for new files, use one of these in your
+! |vimrc| file: >
+! 	set cm=zip
+  	set cm=blowfish2
+! Use the first one if you need to be compatible with Vim 7.2 and older.  Using
+! "blowfish2" is highly recommended if you can use a Vim version that supports
+! it.
+  
+  The message given for reading and writing a file will show "[crypted]" when
+  using zip, "[blowfish]" when using blowfish, etc.
+--- 1428,1438 ----
+  set automatically to the method used when that file was written.  You can
+  change 'cryptmethod' before writing that file to change the method.
+  
+! To set the default method, used for new files, use this in your |vimrc| 
+! file: >
+  	set cm=blowfish2
+! Using "blowfish2" is highly recommended.  Only use another method if you
+! must use an older Vim version that does not support it.
+  
+  The message given for reading and writing a file will show "[crypted]" when
+  using zip, "[blowfish]" when using blowfish, etc.
+***************
+*** 1494,1501 ****
+  - Pkzip uses the same encryption as 'cryptmethod' "zip", and US Govt has no
+    objection to its export.  Pkzip's public file APPNOTE.TXT describes this
+    algorithm in detail.
+! - The implmentation of 'cryptmethod' "blowfish" has a flaw.  It is possible to
+!   crack the first 64 bytes of a file and in some circumstances more of the
+    file. Use of it is not recommended, but it's still the strongest method
+    supported by Vim 7.3 and 7.4.  The "zip" method is even weaker.
+  - Vim originates from the Netherlands.  That is where the sources come from.
+--- 1494,1501 ----
+  - Pkzip uses the same encryption as 'cryptmethod' "zip", and US Govt has no
+    objection to its export.  Pkzip's public file APPNOTE.TXT describes this
+    algorithm in detail.
+! - The implementation of 'cryptmethod' "blowfish" has a flaw.  It is possible
+!   to crack the first 64 bytes of a file and in some circumstances more of the
+    file. Use of it is not recommended, but it's still the strongest method
+    supported by Vim 7.3 and 7.4.  The "zip" method is even weaker.
+  - Vim originates from the Netherlands.  That is where the sources come from.
+*** ../vim-7.4.565/runtime/doc/tabpage.txt	2014-11-27 16:22:42.738413084 +0100
+--- runtime/doc/tabpage.txt	2015-01-07 16:09:20.501100753 +0100
+***************
+*** 206,212 ****
+  		    :tabmove	" move the tab page to the right
+  		    :.tabmove	" as above
+  		    :+tabmove	" as above
+! 		    :0tabmove	" move the tab page to the begining of the tab
+  				" list
+  		    :$tabmove	" move the tab page to the end of the tab list
+  <
+--- 206,212 ----
+  		    :tabmove	" move the tab page to the right
+  		    :.tabmove	" as above
+  		    :+tabmove	" as above
+! 		    :0tabmove	" move the tab page to the beginning of the tab
+  				" list
+  		    :$tabmove	" move the tab page to the end of the tab list
+  <
+***************
+*** 224,231 ****
+  LOOPING OVER TAB PAGES:
+  
+  							*:tabd* *:tabdo*
+! :tabd[o] {cmd}	Execute {cmd} in each tab page.
+! 		It works like doing this: >
+  			:tabfirst
+  			:{cmd}
+  			:tabnext
+--- 224,233 ----
+  LOOPING OVER TAB PAGES:
+  
+  							*:tabd* *:tabdo*
+! :[range]tabd[o] {cmd}
+! 		Execute {cmd} in each tab page or if [range] is given only in
+! 		tab pages which tab page number is in the [range].  It works
+! 		like doing this: >
+  			:tabfirst
+  			:{cmd}
+  			:tabnext
+***************
+*** 271,278 ****
+  triggers:
+  	WinLeave		leave current window
+  	TabLeave		leave current tab page
+- 	TabEnter		enter new tab page
+  	WinEnter		enter window in new tab page
+  	BufLeave		leave current buffer
+  	BufEnter		enter new empty buffer
+  
+--- 273,280 ----
+  triggers:
+  	WinLeave		leave current window
+  	TabLeave		leave current tab page
+  	WinEnter		enter window in new tab page
++ 	TabEnter		enter new tab page
+  	BufLeave		leave current buffer
+  	BufEnter		enter new empty buffer
+  
+*** ../vim-7.4.565/runtime/doc/windows.txt	2014-11-30 14:50:12.255356230 +0100
+--- runtime/doc/windows.txt	2015-01-07 16:09:20.501100753 +0100
+***************
+*** 278,293 ****
+  		and there is only one window for the current buffer, and the
+  		buffer was changed, the command fails.
+  		
+! 		(Note: CTRL-Q does not
+! 		work on all terminals).  If [count] is greater than
+! 		the last window number the last window will be closed: >
+  		    :1quit  " quit the first window
+  		    :$quit  " quit the last window
+  		    :9quit  " quit the last window
+  			     " if there are less than 9 windows opened
+  		    :-quit  " quit the previews window
+  		    :+quit  " quit the next window
+! 		    :+2quit " will also work as expected
+  <
+  :q[uit]!
+  :{count}q[uit]!
+--- 278,294 ----
+  		and there is only one window for the current buffer, and the
+  		buffer was changed, the command fails.
+  		
+! 		(Note: CTRL-Q does not work on all terminals).
+! 		
+! 		If [count] is greater than the last window number the last
+! 		window will be closed: >
+  		    :1quit  " quit the first window
+  		    :$quit  " quit the last window
+  		    :9quit  " quit the last window
+  			     " if there are less than 9 windows opened
+  		    :-quit  " quit the previews window
+  		    :+quit  " quit the next window
+! 		    :+2quit " quit the second next window
+  <
+  :q[uit]!
+  :{count}q[uit]!
+***************
+*** 332,340 ****
+  		screen.  For {count} see |:quit| command.
+  		
+  		The buffer becomes hidden (unless there is another window
+! 		editing it or 'bufhidden' is "unload" or "delete").  If the
+! 		window is the last one in the current tab page the tab page is
+! 		closed.  |tab-page| 
+  		
+  		The value of 'hidden' is irrelevant for this command.  Changes
+  		to the buffer are not written and won't get lost, so this is a
+--- 333,341 ----
+  		screen.  For {count} see |:quit| command.
+  		
+  		The buffer becomes hidden (unless there is another window
+! 		editing it or 'bufhidden' is "unload", "delete" or "wipe").
+! 		If the window is the last one in the current tab page the tab
+! 		page is closed.  |tab-page| 
+  		
+  		The value of 'hidden' is irrelevant for this command.  Changes
+  		to the buffer are not written and won't get lost, so this is a
+***************
+*** 697,704 ****
+  8. Do a command in all buffers or windows			*list-repeat*
+  
+  							*:windo*
+! :windo {cmd}		Execute {cmd} in each window.
+! 			It works like doing this: >
+  				CTRL-W t
+  				:{cmd}
+  				CTRL-W w
+--- 698,706 ----
+  8. Do a command in all buffers or windows			*list-repeat*
+  
+  							*:windo*
+! :[range]windo {cmd}	Execute {cmd} in each window or if [range] is given
+! 			only in windows for which the window number lies in
+! 			the [range].  It works like doing this: >
+  				CTRL-W t
+  				:{cmd}
+  				CTRL-W w
+***************
+*** 716,723 ****
+  			Also see |:tabdo|, |:argdo| and |:bufdo|.
+  
+  							*:bufdo*
+! :bufdo[!] {cmd}		Execute {cmd} in each buffer in the buffer list.
+! 			It works like doing this: >
+  				:bfirst
+  				:{cmd}
+  				:bnext
+--- 718,727 ----
+  			Also see |:tabdo|, |:argdo| and |:bufdo|.
+  
+  							*:bufdo*
+! :[range]bufdo[!] {cmd}	Execute {cmd} in each buffer in the buffer list or if
+! 			[range] is given only for buffers for which their
+! 			buffer numer is in the [range].  It works like doing
+! 			this: >
+  				:bfirst
+  				:{cmd}
+  				:bnext
+***************
+*** 763,780 ****
+  
+  CTRL-W ]					*CTRL-W_]* *CTRL-W_CTRL-]*
+  CTRL-W CTRL-]	Split current window in two.  Use identifier under cursor as a
+! 		tag and jump to it in the new upper window.  Make new window N
+! 		high.
+  
+  							*CTRL-W_g]*
+  CTRL-W g ]	Split current window in two.  Use identifier under cursor as a
+  		tag and perform ":tselect" on it in the new upper window.
+  		Make new window N high.
+  
+  							*CTRL-W_g_CTRL-]*
+  CTRL-W g CTRL-]	Split current window in two.  Use identifier under cursor as a
+! 		tag and perform ":tjump" on it in the new upper window.  Make
+! 		new window N high.
+  
+  CTRL-W f					*CTRL-W_f* *CTRL-W_CTRL-F*
+  CTRL-W CTRL-F	Split current window in two.  Edit file name under cursor.
+--- 767,787 ----
+  
+  CTRL-W ]					*CTRL-W_]* *CTRL-W_CTRL-]*
+  CTRL-W CTRL-]	Split current window in two.  Use identifier under cursor as a
+! 		tag and jump to it in the new upper window.
+! 		In Visual mode uses the Visually selected text as a tag.
+! 		Make new window N high.
+  
+  							*CTRL-W_g]*
+  CTRL-W g ]	Split current window in two.  Use identifier under cursor as a
+  		tag and perform ":tselect" on it in the new upper window.
++ 		In Visual mode uses the Visually selected text as a tag.
+  		Make new window N high.
+  
+  							*CTRL-W_g_CTRL-]*
+  CTRL-W g CTRL-]	Split current window in two.  Use identifier under cursor as a
+! 		tag and perform ":tjump" on it in the new upper window.
+! 		In Visual mode uses the Visually selected text as a tag.
+! 		Make new window N high.
+  
+  CTRL-W f					*CTRL-W_f* *CTRL-W_CTRL-F*
+  CTRL-W CTRL-F	Split current window in two.  Edit file name under cursor.
+*** ../vim-7.4.565/src/ex_cmds.h	2015-01-07 15:57:13.145559792 +0100
+--- src/ex_cmds.h	2015-01-07 16:13:24.406265045 +0100
+***************
+*** 133,140 ****
+  			BANG|RANGE|NOTADR|FILES|TRLBAR,
+  			ADDR_ARGUMENTS),
+  EX(CMD_argdo,		"argdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_argedit,		"argedit",	ex_argedit,
+  			BANG|NEEDARG|RANGE|NOTADR|FILE1|EDITCMD|ARGOPT|TRLBAR,
+  			ADDR_ARGUMENTS),
+--- 133,140 ----
+  			BANG|RANGE|NOTADR|FILES|TRLBAR,
+  			ADDR_ARGUMENTS),
+  EX(CMD_argdo,		"argdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM|RANGE|NOTADR|DFLALL,
+! 			ADDR_ARGUMENTS),
+  EX(CMD_argedit,		"argedit",	ex_argedit,
+  			BANG|NEEDARG|RANGE|NOTADR|FILE1|EDITCMD|ARGOPT|TRLBAR,
+  			ADDR_ARGUMENTS),
+***************
+*** 220,227 ****
+  			BANG|TRLBAR|CMDWIN,
+  			ADDR_LINES),
+  EX(CMD_bufdo,		"bufdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_bunload,		"bunload",	ex_bunload,
+  			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+  			ADDR_LOADED_BUFFERS),
+--- 220,227 ----
+  			BANG|TRLBAR|CMDWIN,
+  			ADDR_LINES),
+  EX(CMD_bufdo,		"bufdo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM|RANGE|NOTADR|DFLALL,
+! 			ADDR_BUFFERS),
+  EX(CMD_bunload,		"bunload",	ex_bunload,
+  			BANG|RANGE|NOTADR|BUFNAME|COUNT|EXTRA|TRLBAR,
+  			ADDR_LOADED_BUFFERS),
+***************
+*** 1384,1391 ****
+  			RANGE|NOTADR|COUNT|BANG|TRLBAR|CMDWIN,
+  			ADDR_TABS),
+  EX(CMD_tabdo,		"tabdo",	ex_listdo,
+! 			NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_tabedit,		"tabedit",	ex_splitview,
+  			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|TRLBAR,
+  			ADDR_TABS),
+--- 1384,1391 ----
+  			RANGE|NOTADR|COUNT|BANG|TRLBAR|CMDWIN,
+  			ADDR_TABS),
+  EX(CMD_tabdo,		"tabdo",	ex_listdo,
+! 			NEEDARG|EXTRA|NOTRLCOM|RANGE|NOTADR|DFLALL,
+! 			ADDR_TABS),
+  EX(CMD_tabedit,		"tabedit",	ex_splitview,
+  			BANG|FILE1|RANGE|NOTADR|ZEROR|EDITCMD|ARGOPT|TRLBAR,
+  			ADDR_TABS),
+***************
+*** 1576,1583 ****
+  			NEEDARG|WORD1|RANGE|NOTADR,
+  			ADDR_WINDOWS),
+  EX(CMD_windo,		"windo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM,
+! 			ADDR_LINES),
+  EX(CMD_winpos,		"winpos",	ex_winpos,
+  			EXTRA|TRLBAR|CMDWIN,
+  			ADDR_LINES),
+--- 1576,1583 ----
+  			NEEDARG|WORD1|RANGE|NOTADR,
+  			ADDR_WINDOWS),
+  EX(CMD_windo,		"windo",	ex_listdo,
+! 			BANG|NEEDARG|EXTRA|NOTRLCOM|RANGE|NOTADR|DFLALL,
+! 			ADDR_WINDOWS),
+  EX(CMD_winpos,		"winpos",	ex_winpos,
+  			EXTRA|TRLBAR|CMDWIN,
+  			ADDR_LINES),
+*** ../vim-7.4.565/src/ex_cmds2.c	2014-11-19 16:38:01.512679964 +0100
+--- src/ex_cmds2.c	2015-01-07 16:12:42.526751920 +0100
+***************
+*** 2472,2486 ****
+  				    | (eap->forceit ? CCGD_FORCEIT : 0)
+  				    | CCGD_EXCMD))
+      {
+- 	/* start at the first argument/window/buffer */
+  	i = 0;
+  #ifdef FEAT_WINDOWS
+  	wp = firstwin;
+  	tp = first_tabpage;
+  #endif
+  	/* set pcmark now */
+  	if (eap->cmdidx == CMD_bufdo)
+! 	    goto_buffer(eap, DOBUF_FIRST, FORWARD, 0);
+  	else
+  	    setpcmark();
+  	listcmd_busy = TRUE;	    /* avoids setting pcmark below */
+--- 2472,2507 ----
+  				    | (eap->forceit ? CCGD_FORCEIT : 0)
+  				    | CCGD_EXCMD))
+      {
+  	i = 0;
++ 	/* start at the eap->line1 argument/window/buffer */
+  #ifdef FEAT_WINDOWS
+  	wp = firstwin;
+  	tp = first_tabpage;
+  #endif
++ 	switch (eap->cmdidx)
++ 	{
++ #ifdef FEAT_WINDOWS
++ 	    case CMD_windo:
++ 		for ( ; wp != NULL && i + 1 < eap->line1; wp = wp->w_next)
++ 		    i++;
++ 		break;
++ 	    case CMD_tabdo:
++ 		for( ; tp != NULL && i + 1 < eap->line1; tp = tp->tp_next)
++ 		    i++;
++ 		break;
++ #endif
++ 	    case CMD_argdo:
++ 		i = eap->line1 - 1;
++ 		break;
++ 	    case CMD_bufdo:
++ 		i = eap->line1;
++ 		break;
++ 	    default:
++ 		break;
++ 	}
+  	/* set pcmark now */
+  	if (eap->cmdidx == CMD_bufdo)
+! 	    goto_buffer(eap, DOBUF_FIRST, FORWARD, i);
+  	else
+  	    setpcmark();
+  	listcmd_busy = TRUE;	    /* avoids setting pcmark below */
+***************
+*** 2506,2512 ****
+  		}
+  		if (curwin->w_arg_idx != i)
+  		    break;
+- 		++i;
+  	    }
+  #ifdef FEAT_WINDOWS
+  	    else if (eap->cmdidx == CMD_windo)
+--- 2527,2532 ----
+***************
+*** 2541,2546 ****
+--- 2561,2568 ----
+  		    }
+  	    }
+  
++ 	    ++i;
++ 
+  	    /* execute the command */
+  	    do_cmdline(eap->arg, eap->getline, eap->cookie,
+  						DOCMD_VERBOSE + DOCMD_NOWAIT);
+***************
+*** 2548,2554 ****
+  	    if (eap->cmdidx == CMD_bufdo)
+  	    {
+  		/* Done? */
+! 		if (next_fnum < 0)
+  		    break;
+  		/* Check if the buffer still exists. */
+  		for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+--- 2570,2576 ----
+  	    if (eap->cmdidx == CMD_bufdo)
+  	    {
+  		/* Done? */
+! 		if (next_fnum < 0 || next_fnum > eap->line2)
+  		    break;
+  		/* Check if the buffer still exists. */
+  		for (buf = firstbuf; buf != NULL; buf = buf->b_next)
+***************
+*** 2579,2584 ****
+--- 2601,2614 ----
+  		    do_check_scrollbind(TRUE);
+  #endif
+  	    }
++ 
++ #ifdef FEAT_WINDOWS
++ 	    if (eap->cmdidx == CMD_windo || eap->cmdidx == CMD_tabdo)
++ 		if (i+1 > eap->line2)
++ 		    break;
++ #endif
++ 	    if (eap->cmdidx == CMD_argdo && i >= eap->line2)
++ 		break;
+  	}
+  	listcmd_busy = FALSE;
+      }
+*** ../vim-7.4.565/src/testdir/test_command_count.in	2015-01-07 15:57:13.145559792 +0100
+--- src/testdir/test_command_count.in	2015-01-07 16:19:57.217698877 +0100
+***************
+*** 90,95 ****
+--- 90,129 ----
+  :only!
+  :e! test.out
+  :call append(0, g:lines)
++ :unlet g:lines
++ :w|bd
++ :se hidden
++ :b1
++ ENDTEST
++ 
++ STARTTEST
++ :only!
++ :let g:lines = []
++ :%argd
++ :arga a b c d e f
++ :3argu
++ :let args = ''
++ :.,$-argdo let args .= ' '.expand('%')
++ :call add(g:lines, 'argdo:' . args)
++ :split|split|split|split
++ :2wincmd w
++ :let windows = ''
++ :.,$-windo let windows .= ' '.winnr()
++ :call add(g:lines, 'windo:'. windows)
++ :b2
++ :let buffers = ''
++ :.,$-bufdo let buffers .= ' '.bufnr('%')
++ :call add(g:lines, 'bufdo:' . buffers)
++ :let buffers = ''
++ :3,7bufdo let buffers .= ' '.bufnr('%')
++ :call add(g:lines, 'bufdo:' . buffers)
++ :tabe|tabe|tabe|tabe
++ :normal! 2gt
++ :let tabpages = ''
++ :.,$-tabdo let tabpages .= ' '.tabpagenr()
++ :call add(g:lines, 'tabdo:' . tabpages)
++ :e! test.out
++ :call append('$', g:lines)
+  :w|qa!
+  ENDTEST
+  
+*** ../vim-7.4.565/src/testdir/test_command_count.ok	2015-01-07 15:57:13.145559792 +0100
+--- src/testdir/test_command_count.ok	2015-01-07 16:19:51.805761782 +0100
+***************
+*** 28,30 ****
+--- 28,35 ----
+  $+tabe E16: Invalid range
+  0tabm x
+  
++ argdo: c d e
++ windo: 2 3 4
++ bufdo: 2 3 4 5 6 7 8 9 10 12
++ bufdo: 3 4 5 6 7
++ tabdo: 2 3 4
+*** ../vim-7.4.565/src/version.c	2015-01-07 15:57:13.149559746 +0100
+--- src/version.c	2015-01-07 16:50:24.620511525 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     566,
+  /**/
+
+-- 
+ERROR 047: Keyboard not found.  Press RETURN to continue.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

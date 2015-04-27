@@ -1,0 +1,183 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.634
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.634
+Problem:    Marks are not restored after redo + undo.
+Solution:   Fix the way marks are restored. (Olaf Dabrunz)
+Files:	    src/undo.c, src/testdir/Make_amiga.mak, src/testdir/Make_dos.mak,
+	    src/testdir/Make_ming.mak, src/testdir/Make_os2.mak,
+	    src/testdir/Make_vms.mms, src/testdir/Makefile,
+	    src/testdir/test_marks.in, src/testdir/test_marks.ok
+
+
+*** ../vim-7.4.633/src/undo.c	2014-09-11 22:49:42.208961131 +0200
+--- src/undo.c	2015-02-17 13:35:48.520297460 +0100
+***************
+*** 2847,2857 ****
+       * restore marks from before undo/redo
+       */
+      for (i = 0; i < NMARKS; ++i)
+  	if (curhead->uh_namedm[i].lnum != 0)
+- 	{
+  	    curbuf->b_namedm[i] = curhead->uh_namedm[i];
+  	    curhead->uh_namedm[i] = namedm[i];
+! 	}
+      if (curhead->uh_visual.vi_start.lnum != 0)
+      {
+  	curbuf->b_visual = curhead->uh_visual;
+--- 2847,2860 ----
+       * restore marks from before undo/redo
+       */
+      for (i = 0; i < NMARKS; ++i)
++     {
+  	if (curhead->uh_namedm[i].lnum != 0)
+  	    curbuf->b_namedm[i] = curhead->uh_namedm[i];
++ 	if (namedm[i].lnum != 0)
+  	    curhead->uh_namedm[i] = namedm[i];
+! 	else
+! 	    curhead->uh_namedm[i].lnum = 0;
+!     }
+      if (curhead->uh_visual.vi_start.lnum != 0)
+      {
+  	curbuf->b_visual = curhead->uh_visual;
+*** ../vim-7.4.633/src/testdir/Make_amiga.mak	2015-01-20 19:30:46.665275623 +0100
+--- src/testdir/Make_amiga.mak	2015-02-17 13:31:58.339295211 +0100
+***************
+*** 48,53 ****
+--- 48,54 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_marks.out \
+  		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+***************
+*** 188,193 ****
+--- 189,195 ----
+  test_listlbr.out: test_listlbr.in
+  test_listlbr_utf8.out: test_listlbr_utf8.in
+  test_mapping.out: test_mapping.in
++ test_marks.out: test_marks.in
+  test_nested_function.out: test_nested_function.in
+  test_options.out: test_options.in
+  test_qf_title.out: test_qf_title.in
+*** ../vim-7.4.633/src/testdir/Make_dos.mak	2015-01-20 19:30:46.665275623 +0100
+--- src/testdir/Make_dos.mak	2015-02-17 13:31:58.339295211 +0100
+***************
+*** 47,52 ****
+--- 47,53 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_marks.out \
+  		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+*** ../vim-7.4.633/src/testdir/Make_ming.mak	2015-01-20 19:30:46.665275623 +0100
+--- src/testdir/Make_ming.mak	2015-02-17 13:31:58.343295152 +0100
+***************
+*** 69,74 ****
+--- 69,75 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_marks.out \
+  		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+*** ../vim-7.4.633/src/testdir/Make_os2.mak	2015-01-20 19:30:46.665275623 +0100
+--- src/testdir/Make_os2.mak	2015-02-17 13:31:58.343295152 +0100
+***************
+*** 49,54 ****
+--- 49,55 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_marks.out \
+  		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+*** ../vim-7.4.633/src/testdir/Make_vms.mms	2015-01-20 19:30:46.669275579 +0100
+--- src/testdir/Make_vms.mms	2015-02-17 13:31:58.343295152 +0100
+***************
+*** 108,113 ****
+--- 108,114 ----
+  	 test_listlbr.out \
+  	 test_listlbr_utf8.out \
+  	 test_mapping.out \
++ 	 test_marks.out \
+  	 test_nested_function.out \
+  	 test_options.out \
+  	 test_qf_title.out \
+*** ../vim-7.4.633/src/testdir/Makefile	2015-01-20 19:30:46.669275579 +0100
+--- src/testdir/Makefile	2015-02-17 13:31:58.343295152 +0100
+***************
+*** 45,50 ****
+--- 45,51 ----
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
++ 		test_marks.out \
+  		test_nested_function.out \
+  		test_options.out \
+  		test_qf_title.out \
+*** ../vim-7.4.633/src/testdir/test_marks.in	2015-02-17 13:42:37.010978266 +0100
+--- src/testdir/test_marks.in	2015-02-17 13:31:58.343295152 +0100
+***************
+*** 0 ****
+--- 1,18 ----
++ Tests for marks.
++ 
++ STARTTEST
++ :so small.vim
++ :" test that a deleted mark is restored after delete-undo-redo-undo
++ :/^\t/+1
++ :set nocp viminfo+=nviminfo
++ madduu
++ :let a = string(getpos("'a"))
++ :$put ='Mark after delete-undo-redo-undo: '.a
++ :/^\t/,$wq! test.out
++ ENDTEST
++ 
++ 	textline A
++ 	textline B
++ 	textline C
++ 
++ Results:
+*** ../vim-7.4.633/src/testdir/test_marks.ok	2015-02-17 13:42:37.014978213 +0100
+--- src/testdir/test_marks.ok	2015-02-17 13:31:58.343295152 +0100
+***************
+*** 0 ****
+--- 1,6 ----
++ 	textline A
++ 	textline B
++ 	textline C
++ 
++ Results:
++ Mark after delete-undo-redo-undo: [0, 15, 2, 0]
+*** ../vim-7.4.633/src/version.c	2015-02-17 12:44:04.376749160 +0100
+--- src/version.c	2015-02-17 13:33:46.137891541 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     634,
+  /**/
+
+-- 
+"Women marry men hoping they will change. Men marry women hoping
+they will not. So each is inevitably disappointed."
+ - Einstein
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.596
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.596 (after 7.4.592)
+Problem:    Tiny build doesn't compile.  (Ike Devolder)
+Solution:   Add #ifdef.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.595/src/ex_cmds.c	2015-01-27 11:26:11.041183653 +0100
+--- src/ex_cmds.c	2015-01-27 13:31:22.542920506 +0100
+***************
+*** 3530,3540 ****
+--- 3530,3542 ----
+  		check_fname() == FAIL)
+  	    goto theend;
+  
++ #ifdef FEAT_QUICKFIX
+  	/* ":e foobar" when already editing "foobar" will reload the file.
+  	 * But when 'buftype' is "nofile" there is no file to load, so don't
+  	 * do anything. */
+  	if (curbuf->b_p_bt[0] == 'n' && curbuf->b_p_bt[2] == 'f')
+  	    goto theend;
++ #endif
+  
+  	oldbuf = (flags & ECMD_OLDBUF);
+      }
+*** ../vim-7.4.595/src/version.c	2015-01-27 13:28:42.472671261 +0100
+--- src/version.c	2015-01-27 13:32:15.966336190 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     596,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+125. You begin to wonder how often it REALLY is necessary to get up
+     and shower or bathe.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

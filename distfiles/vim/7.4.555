@@ -1,0 +1,84 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.555
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.555
+Problem:    test_close_count may fail for some combination of features.
+Solution:   Require normal features.
+Files:	    src/testdir/test_close_count.in
+
+
+*** ../vim-7.4.554/src/testdir/test_close_count.in	2014-11-27 16:22:42.746412995 +0100
+--- src/testdir/test_close_count.in	2014-11-30 13:07:39.347388895 +0100
+***************
+*** 1,8 ****
+  Tests for :[count]close! and :[count]hide     vim: set ft=vim :
+  
+  STARTTEST
+  :let tests = []
+- :so tiny.vim
+  :for i in range(5)
+  :new
+  :endfor
+--- 1,8 ----
+  Tests for :[count]close! and :[count]hide     vim: set ft=vim :
+  
+  STARTTEST
++ :so small.vim
+  :let tests = []
+  :for i in range(5)
+  :new
+  :endfor
+***************
+*** 46,52 ****
+  
+  STARTTEST
+  :let tests = []
+- :so tiny.vim
+  :for i in range(5)
+  :new
+  :endfor
+--- 46,51 ----
+***************
+*** 94,100 ****
+  
+  STARTTEST
+  :let tests = []
+- :so tiny.vim
+  :set hidden
+  :for i in range(5)
+  :new
+--- 93,98 ----
+***************
+*** 123,129 ****
+  
+  STARTTEST
+  :let tests = []
+- :so tiny.vim
+  :set hidden
+  :for i in range(5)
+  :new
+--- 121,126 ----
+*** ../vim-7.4.554/src/version.c	2014-12-17 14:41:06.083437433 +0100
+--- src/version.c	2014-12-17 14:42:07.426679571 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     555,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+3. Your bookmark takes 15 minutes to scroll from top to bottom.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

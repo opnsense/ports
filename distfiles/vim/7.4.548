@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.548
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.548
+Problem:    Compilation fails with native version of MinGW-w64, because the
+            it doesn't have x86_64-w64-mingw32-windres.exe.
+Solution:   Use windres instead. (Ken Takata)
+Files:      src/Make_cyg_ming.mak
+
+
+*** ../vim-7.4.547/src/Make_cyg_ming.mak	2014-11-06 10:02:57.019057492 +0100
+--- src/Make_cyg_ming.mak	2014-12-13 20:47:00.291904877 +0100
+***************
+*** 366,372 ****
+--- 366,376 ----
+  endif
+  CC := $(CROSS_COMPILE)gcc
+  CXX := $(CROSS_COMPILE)g++
++ ifeq ($(UNDER_CYGWIN),yes)
+  WINDRES := $(CROSS_COMPILE)windres
++ else
++ WINDRES := windres
++ endif
+  WINDRES_CC = $(CC)
+  
+  #>>>>> end of choices
+*** ../vim-7.4.547/src/version.c	2014-12-13 20:11:29.582422289 +0100
+--- src/version.c	2014-12-13 20:49:27.018361058 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     548,
+  /**/
+
+-- 
+Article in the first Free Software Magazine: "Bram Moolenaar studied electrical
+engineering at the Technical University of Delft and graduated in 1985 on a
+multi-processor Unix architecture."
+Response by "dimator": Could the school not afford a proper stage for the
+ceremony?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,70 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.112
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.112
+Problem:    The defaults for 'directory' and 'backupdir' on MS-Windows do not
+	    include a directory that exists.
+Solution:   Use $TEMP.
+Files:	    src/os_dos.h
+
+
+*** ../vim-7.4.111/src/os_dos.h	2013-06-12 20:09:44.000000000 +0200
+--- src/os_dos.h	2013-12-04 15:23:22.000000000 +0100
+***************
+*** 109,115 ****
+  #endif
+  
+  #ifndef DFLT_BDIR
+! # define DFLT_BDIR	".,c:\\tmp,c:\\temp"	/* default for 'backupdir' */
+  #endif
+  
+  #ifndef DFLT_VDIR
+--- 109,115 ----
+  #endif
+  
+  #ifndef DFLT_BDIR
+! # define DFLT_BDIR	".,$TEMP,c:\\tmp,c:\\temp" /* default for 'backupdir' */
+  #endif
+  
+  #ifndef DFLT_VDIR
+***************
+*** 117,123 ****
+  #endif
+  
+  #ifndef DFLT_DIR
+! # define DFLT_DIR	".,c:\\tmp,c:\\temp"	/* default for 'directory' */
+  #endif
+  
+  #define DFLT_ERRORFILE		"errors.err"
+--- 117,123 ----
+  #endif
+  
+  #ifndef DFLT_DIR
+! # define DFLT_DIR	".,$TEMP,c:\\tmp,c:\\temp" /* default for 'directory' */
+  #endif
+  
+  #define DFLT_ERRORFILE		"errors.err"
+*** ../vim-7.4.111/src/version.c	2013-12-07 14:28:37.000000000 +0100
+--- src/version.c	2013-12-07 14:31:03.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     112,
+  /**/
+
+-- 
+How To Keep A Healthy Level Of Insanity:
+13. Go to a poetry recital and ask why the poems don't rhyme.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

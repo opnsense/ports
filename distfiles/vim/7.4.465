@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.465
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.465 (after 7.4.016)
+Problem:    Crash when expanding a very long string.
+Solution:   Use wsncpy() instead of wcscpy(). (Ken Takata)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.464/src/os_win32.c	2014-09-23 21:53:35.310849352 +0200
+--- src/os_win32.c	2014-10-06 18:37:27.437277105 +0200
+***************
+*** 2775,2783 ****
+  	if (p != NULL)
+  	{
+  	    char_u	*q;
+! 	    WCHAR	buf[_MAX_PATH + 2];
+  
+! 	    wcscpy(buf, p);
+  	    vim_free(p);
+  
+  	    if (fname_casew(buf, (len > 0) ? _MAX_PATH : 0) == OK)
+--- 2775,2784 ----
+  	if (p != NULL)
+  	{
+  	    char_u	*q;
+! 	    WCHAR	buf[_MAX_PATH + 1];
+  
+! 	    wcsncpy(buf, p, _MAX_PATH);
+! 	    buf[_MAX_PATH] = L'\0';
+  	    vim_free(p);
+  
+  	    if (fname_casew(buf, (len > 0) ? _MAX_PATH : 0) == OK)
+*** ../vim-7.4.464/src/version.c	2014-10-06 18:10:04.521273516 +0200
+--- src/version.c	2014-10-06 18:40:47.361277541 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     465,
+  /**/
+
+-- 
+Get a life?  What is the URL where it can be downloaded?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

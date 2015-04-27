@@ -1,0 +1,87 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.215
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.215
+Problem:    Inconsistency: ":sp foo" does not reload "foo", unless "foo" is
+	    the current buffer. (Liang Li)
+Solution:   Do not reload the current buffer on a split command.
+Files:	    runtime/doc/windows.txt, src/ex_docmd.c
+
+
+*** ../vim-7.4.214/runtime/doc/windows.txt	2013-08-10 13:25:08.000000000 +0200
+--- runtime/doc/windows.txt	2014-03-25 12:34:51.989767212 +0100
+***************
+*** 132,144 ****
+  CTRL-W s						*CTRL-W_s*
+  CTRL-W S						*CTRL-W_S*
+  CTRL-W CTRL-S						*CTRL-W_CTRL-S*
+! :[N]sp[lit] [++opt] [+cmd]				*:sp* *:split*
+  		Split current window in two.  The result is two viewports on
+! 		the same file.  Make new window N high (default is to use half
+! 		the height of the current window).  Reduces the current window
+! 		height to create room (and others, if the 'equalalways' option
+! 		is set, 'eadirection' isn't "hor", and one of them is higher
+! 		than the current or the new window).
+  		Note: CTRL-S does not work on all terminals and might block
+  		further input, use CTRL-Q to get going again.
+  		Also see |++opt| and |+cmd|.
+--- 132,151 ----
+  CTRL-W s						*CTRL-W_s*
+  CTRL-W S						*CTRL-W_S*
+  CTRL-W CTRL-S						*CTRL-W_CTRL-S*
+! :[N]sp[lit] [++opt] [+cmd] [file]			*:sp* *:split*
+  		Split current window in two.  The result is two viewports on
+! 		the same file.
+! 		
+! 		Make the new window N high (default is to use half the height
+! 		of the current window).  Reduces the current window height to
+! 		create room (and others, if the 'equalalways' option is set,
+! 		'eadirection' isn't "hor", and one of them is higher than the
+! 		current or the new window).
+! 
+! 		If [file] is given it will be edited in the new window.  If it
+! 		is not loaded in any buffer, it will be read.  Else the new
+! 		window will use the already loaded buffer.
+! 
+  		Note: CTRL-S does not work on all terminals and might block
+  		further input, use CTRL-Q to get going again.
+  		Also see |++opt| and |+cmd|.
+*** ../vim-7.4.214/src/ex_docmd.c	2014-03-23 16:03:56.167311626 +0100
+--- src/ex_docmd.c	2014-03-25 12:57:13.737787771 +0100
+***************
+*** 7938,7943 ****
+--- 7938,7945 ----
+  					       ? ECMD_ONE : eap->do_ecmd_lnum,
+  		    (P_HID(curbuf) ? ECMD_HIDE : 0)
+  		    + (eap->forceit ? ECMD_FORCEIT : 0)
++ 		      /* after a split we can use an existing buffer */
++ 		    + (old_curwin != NULL ? ECMD_OLDBUF : 0)
+  #ifdef FEAT_LISTCMDS
+  		    + (eap->cmdidx == CMD_badd ? ECMD_ADDBUF : 0 )
+  #endif
+*** ../vim-7.4.214/src/version.c	2014-03-24 19:43:56.604837795 +0100
+--- src/version.c	2014-03-25 12:30:13.137762939 +0100
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     215,
+  /**/
+
+-- 
+BLACK KNIGHT: The Black Knight always triumphs. Have at you!
+   ARTHUR takes his last leg off.  The BLACK KNIGHT's body lands upright.
+BLACK KNIGHT: All right, we'll call it a draw.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

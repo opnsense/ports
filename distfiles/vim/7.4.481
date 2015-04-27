@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.481
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.481 (after 7.4.471)
+Problem:    Compiler warning on MS-Windows.
+Solution:   Add type casts. (Ken Takata)
+Files:	    src/os_mswin.c
+
+
+*** ../vim-7.4.480/src/os_mswin.c	2014-10-15 22:50:06.946093724 +0200
+--- src/os_mswin.c	2014-10-16 20:33:05.874264494 +0200
+***************
+*** 1644,1653 ****
+  	    char_u  *to_free = NULL;
+  	    int     maxlen;
+  
+! 	    acp_to_enc(printer_name, STRLEN(printer_name), &to_free, &maxlen);
+  	    if (to_free != NULL)
+  		printer_name = to_free;
+! 	    acp_to_enc(port_name, STRLEN(port_name), &to_free, &maxlen);
+  	    if (to_free != NULL)
+  		port_name = to_free;
+  	}
+--- 1644,1654 ----
+  	    char_u  *to_free = NULL;
+  	    int     maxlen;
+  
+! 	    acp_to_enc(printer_name, (int)STRLEN(printer_name), &to_free,
+! 								    &maxlen);
+  	    if (to_free != NULL)
+  		printer_name = to_free;
+! 	    acp_to_enc(port_name, (int)STRLEN(port_name), &to_free, &maxlen);
+  	    if (to_free != NULL)
+  		port_name = to_free;
+  	}
+*** ../vim-7.4.480/src/version.c	2014-10-16 16:16:33.970230873 +0200
+--- src/version.c	2014-10-16 20:34:30.882264680 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     481,
+  /**/
+
+-- 
+       Bravely bold Sir Robin, rode forth from Camelot,
+       He was not afraid to die, Oh Brave Sir Robin,
+       He was not at all afraid to be killed in nasty ways
+       Brave, brave, brave, brave Sir Robin.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.398
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.398 (after 7.4.393)
+Problem:    Gcc error for the argument of InterlockedIncrement() and
+	    InterlockedDecrement(). (Axel Bender)
+Solution:   Remove "unsigned" from the cRefCount_ declaration.
+Files:	    src/gui_dwrite.cpp
+
+
+*** ../vim-7.4.397/src/gui_dwrite.cpp	2014-08-06 14:52:05.043236174 +0200
+--- src/gui_dwrite.cpp	2014-08-06 18:39:01.611138306 +0200
+***************
+*** 377,383 ****
+      }
+  
+  private:
+!     unsigned long cRefCount_;
+      IDWriteBitmapRenderTarget* pRenderTarget_;
+      IDWriteRenderingParams* pRenderingParams_;
+  };
+--- 377,383 ----
+      }
+  
+  private:
+!     long cRefCount_;
+      IDWriteBitmapRenderTarget* pRenderTarget_;
+      IDWriteRenderingParams* pRenderingParams_;
+  };
+*** ../vim-7.4.397/src/version.c	2014-08-06 19:08:33.563125571 +0200
+--- src/version.c	2014-08-07 13:54:40.162639943 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     398,
+  /**/
+
+-- 
+A)bort, R)etry, D)o it right this time
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

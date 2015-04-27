@@ -1,0 +1,193 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.503
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.503
+Problem:    Cannot append a list of lines to a file.
+Solution:   Add the append option to writefile(). (Yasuhiro Matsumoto)
+Files:	    runtime/doc/eval.txt, src/Makefile, src/eval.c,
+	    src/testdir/test_writefile.in, src/testdir/test_writefile.ok
+
+
+*** ../vim-7.4.502/runtime/doc/eval.txt	2014-09-09 16:13:05.040531695 +0200
+--- runtime/doc/eval.txt	2014-11-05 17:57:01.592454006 +0100
+***************
+*** 2040,2046 ****
+  winrestview( {dict})		none	restore view of current window
+  winsaveview()			Dict	save view of current window
+  winwidth( {nr})			Number	width of window {nr}
+! writefile( {list}, {fname} [, {binary}])
+  				Number	write list of lines to file {fname}
+  xor( {expr}, {expr})		Number  bitwise XOR
+  
+--- 2041,2047 ----
+  winrestview( {dict})		none	restore view of current window
+  winsaveview()			Dict	save view of current window
+  winwidth( {nr})			Number	width of window {nr}
+! writefile( {list}, {fname} [, {flags}])
+  				Number	write list of lines to file {fname}
+  xor( {expr}, {expr})		Number  bitwise XOR
+  
+***************
+*** 6532,6545 ****
+    :endif
+  <
+  							*writefile()*
+! writefile({list}, {fname} [, {binary}])
+  		Write |List| {list} to file {fname}.  Each list item is
+  		separated with a NL.  Each list item must be a String or
+  		Number.
+! 		When {binary} is equal to "b" binary mode is used: There will
+  		not be a NL after the last list item.  An empty item at the
+  		end does cause the last line in the file to end in a NL.
+! 		All NL characters are replaced with a NUL character.
+  		Inserting CR characters needs to be done before passing {list}
+  		to writefile().
+  		An existing file is overwritten, if possible.
+--- 6555,6574 ----
+    :endif
+  <
+  							*writefile()*
+! writefile({list}, {fname} [, {flags}])
+  		Write |List| {list} to file {fname}.  Each list item is
+  		separated with a NL.  Each list item must be a String or
+  		Number.
+! 		When {flags} contains "b" then binary mode is used: There will
+  		not be a NL after the last list item.  An empty item at the
+  		end does cause the last line in the file to end in a NL.
+! 
+! 		When {flags} contains "a" then append mode is used, lines are
+! 		append to the file: >
+! 			:call writefile(["foo"], "event.log", "a")
+! 			:call writefile(["bar"], "event.log", "a")
+! >
+! <		All NL characters are replaced with a NUL character.
+  		Inserting CR characters needs to be done before passing {list}
+  		to writefile().
+  		An existing file is overwritten, if possible.
+*** ../vim-7.4.502/src/Makefile	2014-11-05 14:26:30.760758363 +0100
+--- src/Makefile	2014-11-05 17:54:36.864457494 +0100
+***************
+*** 1899,1906 ****
+--- 1899,1910 ----
+  	test_insertcount \
+  	test_listlbr \
+  	test_listlbr_utf8 \
++ 	test_mapping \
+  	test_options \
+  	test_qf_title \
++ 	test_signs \
++ 	test_utf8 \
++ 	test_writefile \
+  	test10 test11 test12 test13 test14 test15 test16 test17 test18 test19 \
+  	test20 test21 test22 test23 test24 test25 test26 test27 test28 test29 \
+  	test30 test31 test32 test33 test34 test35 test36 test37 test38 test39 \
+*** ../vim-7.4.502/src/eval.c	2014-11-05 16:03:40.588617886 +0100
+--- src/eval.c	2014-11-05 17:59:15.388450782 +0100
+***************
+*** 19689,19694 ****
+--- 19689,19695 ----
+      typval_T	*rettv;
+  {
+      int		binary = FALSE;
++     int		append = FALSE;
+      char_u	*fname;
+      FILE	*fd;
+      int		ret = 0;
+***************
+*** 19704,19717 ****
+      if (argvars[0].vval.v_list == NULL)
+  	return;
+  
+!     if (argvars[2].v_type != VAR_UNKNOWN
+! 			      && STRCMP(get_tv_string(&argvars[2]), "b") == 0)
+! 	binary = TRUE;
+  
+      /* Always open the file in binary mode, library functions have a mind of
+       * their own about CR-LF conversion. */
+      fname = get_tv_string(&argvars[1]);
+!     if (*fname == NUL || (fd = mch_fopen((char *)fname, WRITEBIN)) == NULL)
+      {
+  	EMSG2(_(e_notcreate), *fname == NUL ? (char_u *)_("<empty>") : fname);
+  	ret = -1;
+--- 19705,19723 ----
+      if (argvars[0].vval.v_list == NULL)
+  	return;
+  
+!     if (argvars[2].v_type != VAR_UNKNOWN)
+!     {
+! 	if (vim_strchr(get_tv_string(&argvars[2]), 'b') != NULL)
+! 	    binary = TRUE;
+! 	if (vim_strchr(get_tv_string(&argvars[2]), 'a') != NULL)
+! 	    append = TRUE;
+!     }
+  
+      /* Always open the file in binary mode, library functions have a mind of
+       * their own about CR-LF conversion. */
+      fname = get_tv_string(&argvars[1]);
+!     if (*fname == NUL || (fd = mch_fopen((char *)fname,
+! 				      append ? APPENDBIN : WRITEBIN)) == NULL)
+      {
+  	EMSG2(_(e_notcreate), *fname == NUL ? (char_u *)_("<empty>") : fname);
+  	ret = -1;
+*** ../vim-7.4.502/src/testdir/test_writefile.in	2014-11-05 18:04:54.912442601 +0100
+--- src/testdir/test_writefile.in	2014-11-05 18:01:07.408448083 +0100
+***************
+*** 0 ****
+--- 1,18 ----
++ Tests for writefile()
++ 
++ STARTTEST
++ :source small.vim
++ :%delete _
++ :let f = tempname()
++ :call writefile(["over","written"], f, "b")
++ :call writefile(["hello","world"], f, "b")
++ :call writefile(["!", "good"], f, "a")
++ :call writefile(["morning"], f, "ab")
++ :call writefile(["", "vimmers"], f, "ab")
++ :bwipeout!
++ :$put =readfile(f)
++ :1 delete _
++ :w! test.out
++ :qa!
++ ENDTEST
++ 
+*** ../vim-7.4.502/src/testdir/test_writefile.ok	2014-11-05 18:04:54.916442601 +0100
+--- src/testdir/test_writefile.ok	2014-11-05 17:53:19.776459351 +0100
+***************
+*** 0 ****
+--- 1,5 ----
++ hello
++ world!
++ good
++ morning
++ vimmers
+*** ../vim-7.4.502/src/version.c	2014-11-05 17:44:47.676471691 +0100
+--- src/version.c	2014-11-05 17:55:08.508456731 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     503,
+  /**/
+
+-- 
+BLACK KNIGHT:  Come on you pansy!
+    [hah] [parry thrust]
+    [ARTHUR chops the BLACK KNIGHT's right arm off]
+ARTHUR:        Victory is mine!  [kneeling]
+               We thank thee Lord, that in thy merc-
+    [Black Knight kicks Arthur in the head while he is praying]
+                                  The Quest for the Holy Grail (Monty Python)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,147 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.307
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.307 (after 7.4.305)
+Problem:    Can't build without the +termresponse feature.
+Solution:   Add proper #ifdefs.
+Files:	    src/os_unix.c, src/term.c
+
+
+*** ../vim-7.4.306/src/os_unix.c	2014-05-22 18:14:27.570224664 +0200
+--- src/os_unix.c	2014-05-22 20:29:36.930059845 +0200
+***************
+*** 3743,3749 ****
+      /* Conflicts with xterm mouse: "\033[" and "\033[M".
+       * Also conflicts with the xterm termresponse, skip this if it was
+       * requested already. */
+!     if (!use_xterm_mouse() && !did_request_esc_sequence()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+--- 3743,3752 ----
+      /* Conflicts with xterm mouse: "\033[" and "\033[M".
+       * Also conflicts with the xterm termresponse, skip this if it was
+       * requested already. */
+!     if (!use_xterm_mouse()
+! #  ifdef FEAT_TERMRESPONSE
+! 	    && !did_request_esc_sequence()
+! #  endif
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+***************
+*** 3758,3764 ****
+  # endif
+  # ifdef FEAT_MOUSE_PTERM
+      /* same as the dec mouse */
+!     if (!use_xterm_mouse() && !did_request_esc_sequence()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+--- 3761,3770 ----
+  # endif
+  # ifdef FEAT_MOUSE_PTERM
+      /* same as the dec mouse */
+!     if (!use_xterm_mouse()
+! #  ifdef FEAT_TERMRESPONSE
+! 	    && !did_request_esc_sequence()
+! #  endif
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+***************
+*** 3773,3779 ****
+  # endif
+  # ifdef FEAT_MOUSE_URXVT
+      /* same as the dec mouse */
+!     if (use_xterm_mouse() == 3 && !did_request_esc_sequence()
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+--- 3779,3788 ----
+  # endif
+  # ifdef FEAT_MOUSE_URXVT
+      /* same as the dec mouse */
+!     if (use_xterm_mouse() == 3
+! #  ifdef FEAT_TERMRESPONSE
+! 	    && !did_request_esc_sequence()
+! #  endif
+  #  ifdef FEAT_GUI
+  	    && !gui.in_use
+  #  endif
+*** ../vim-7.4.306/src/term.c	2014-05-22 18:14:27.570224664 +0200
+--- src/term.c	2014-05-22 20:28:34.922061106 +0200
+***************
+*** 3311,3317 ****
+      }
+  }
+  
+! #if defined(UNIX) || defined(PROTO)
+  /*
+   * Return TRUE when the xterm version was requested or anything else that
+   * would send an ESC sequence back to Vim.
+--- 3311,3318 ----
+      }
+  }
+  
+! #if defined(FEAT_TERMRESPONSE) || defined(PROTO)
+! # if defined(UNIX) || defined(PROTO)
+  /*
+   * Return TRUE when the xterm version was requested or anything else that
+   * would send an ESC sequence back to Vim.
+***************
+*** 3327,3341 ****
+      if (u7_status == U7_GET)
+  	u7_status = 0;
+      return crv_status == CRV_SENT || u7_status == U7_SENT
+! # if defined(FEAT_TERMRESPONSE)
+! 	|| xt_index_out > xt_index_in
+! # endif
+! 	;
+  }
+! #endif
+  
+  
+- #if defined(FEAT_TERMRESPONSE) || defined(PROTO)
+  /*
+   * Request version string (for xterm) when needed.
+   * Only do this after switching to raw mode, otherwise the result will be
+--- 3328,3338 ----
+      if (u7_status == U7_GET)
+  	u7_status = 0;
+      return crv_status == CRV_SENT || u7_status == U7_SENT
+! 						|| xt_index_out > xt_index_in;
+  }
+! # endif
+  
+  
+  /*
+   * Request version string (for xterm) when needed.
+   * Only do this after switching to raw mode, otherwise the result will be
+*** ../vim-7.4.306/src/version.c	2014-05-22 18:59:54.510169240 +0200
+--- src/version.c	2014-05-22 21:20:36.665997658 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     307,
+  /**/
+
+-- 
+Some of the well known MS-Windows errors:
+	ESLEEP		Operator fell asleep
+	ENOERR		No error yet
+	EDOLLAR		OS too expensive
+	EWINDOWS	MS-Windows loaded, system in danger
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

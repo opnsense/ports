@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.685
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.685
+Problem:    When there are illegal utf-8 characters the old regexp engine may
+	    go past the end of a string.
+Solution:   Only advance to the end of the string. (Dominique Pelle)
+Files:	    src/regexp.c
+
+
+*** ../vim-7.4.684/src/regexp.c	2015-01-27 12:59:51.859602392 +0100
+--- src/regexp.c	2015-03-31 14:12:00.708075265 +0200
+***************
+*** 4782,4788 ****
+  		    /* When only a composing char is given match at any
+  		     * position where that composing char appears. */
+  		    status = RA_NOMATCH;
+! 		    for (i = 0; reginput[i] != NUL; i += utf_char2len(inpc))
+  		    {
+  			inpc = mb_ptr2char(reginput + i);
+  			if (!utf_iscomposing(inpc))
+--- 4782,4789 ----
+  		    /* When only a composing char is given match at any
+  		     * position where that composing char appears. */
+  		    status = RA_NOMATCH;
+! 		    for (i = 0; reginput[i] != NUL;
+! 						i += utf_ptr2len(reginput + i))
+  		    {
+  			inpc = mb_ptr2char(reginput + i);
+  			if (!utf_iscomposing(inpc))
+*** ../vim-7.4.684/src/version.c	2015-03-31 13:33:00.801524871 +0200
+--- src/version.c	2015-03-31 13:58:19.868991369 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     685,
+  /**/
+
+-- 
+The Law, in its majestic equality, forbids the rich, as well as the
+poor, to sleep under the bridges, to beg in the streets, and to steal
+bread.                       -- Anatole France
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.123
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.123
+Problem:    Win32: Getting user name does not use wide function.
+Solution:   Use GetUserNameW() if possible. (Ken Takata)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.122/src/os_win32.c	2013-12-11 17:58:29.000000000 +0100
+--- src/os_win32.c	2013-12-11 18:14:29.000000000 +0100
+***************
+*** 2768,2773 ****
+--- 2768,2793 ----
+      char szUserName[256 + 1];	/* UNLEN is 256 */
+      DWORD cch = sizeof szUserName;
+  
++ #ifdef FEAT_MBYTE
++     if (enc_codepage >= 0 && (int)GetACP() != enc_codepage)
++     {
++ 	WCHAR wszUserName[256 + 1];	/* UNLEN is 256 */
++ 	DWORD wcch = sizeof(wszUserName) / sizeof(WCHAR);
++ 
++ 	if (GetUserNameW(wszUserName, &wcch))
++ 	{
++ 	    char_u  *p = utf16_to_enc(wszUserName, NULL);
++ 
++ 	    if (p != NULL)
++ 	    {
++ 		vim_strncpy(s, p, len - 1);
++ 		vim_free(p);
++ 		return OK;
++ 	    }
++ 	}
++ 	/* Retry with non-wide function (for Windows 98). */
++     }
++ #endif
+      if (GetUserName(szUserName, &cch))
+      {
+  	vim_strncpy(s, szUserName, len - 1);
+*** ../vim-7.4.122/src/version.c	2013-12-11 17:58:29.000000000 +0100
+--- src/version.c	2013-12-11 18:15:48.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     123,
+  /**/
+
+-- 
+Everybody lies, but it doesn't matter since nobody listens.
+                                -- Lieberman's Law
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

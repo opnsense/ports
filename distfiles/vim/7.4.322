@@ -1,0 +1,92 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.322
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.322
+Problem:    Using "msgfmt" is hard coded, cannot use "gmsgfmt".
+Solution:   Use the msgfmt command found by configure. (Danek Duvall)
+Files:	    src/config.mk.in, src/po/Makefile
+
+
+*** ../vim-7.4.321/src/config.mk.in	2010-11-03 22:26:24.000000000 +0100
+--- src/config.mk.in	2014-06-12 17:41:12.892268607 +0200
+***************
+*** 164,169 ****
+--- 164,171 ----
+  ### If the *.po files are to be translated to *.mo files.
+  MAKEMO		= @MAKEMO@
+  
++ MSGFMT		= @MSGFMT@
++ 
+  # Make sure that "make first" will run "make all" once configure has done its
+  # work.  This is needed when using the Makefile in the top directory.
+  first: all
+*** ../vim-7.4.321/src/po/Makefile	2013-06-23 13:26:12.000000000 +0200
+--- src/po/Makefile	2014-06-12 17:45:19.116277922 +0200
+***************
+*** 1,5 ****
+--- 1,8 ----
+  # Makefile for the Vim message translations.
+  
++ # Include stuff found by configure.
++ include ../auto/config.mk
++ 
+  # TODO make this configurable
+  # Note: ja.sjis, *.cp1250 and zh_CN.cp936 are only for MS-Windows, they are
+  # not installed on Unix
+***************
+*** 133,139 ****
+  # tools 0.10.37, which use a slightly different .po file format that is not
+  # compatible with Solaris (and old gettext implementations) unless these are
+  # set.  gettext 0.10.36 will not work!
+! MSGFMT = OLD_PO_FILE_INPUT=yes msgfmt -v
+  XGETTEXT = OLD_PO_FILE_INPUT=yes OLD_PO_FILE_OUTPUT=yes xgettext
+  MSGMERGE = OLD_PO_FILE_INPUT=yes OLD_PO_FILE_OUTPUT=yes msgmerge
+  
+--- 136,142 ----
+  # tools 0.10.37, which use a slightly different .po file format that is not
+  # compatible with Solaris (and old gettext implementations) unless these are
+  # set.  gettext 0.10.36 will not work!
+! MSGFMTCMD = OLD_PO_FILE_INPUT=yes $(MSGFMT) -v
+  XGETTEXT = OLD_PO_FILE_INPUT=yes OLD_PO_FILE_OUTPUT=yes xgettext
+  MSGMERGE = OLD_PO_FILE_INPUT=yes OLD_PO_FILE_OUTPUT=yes msgmerge
+  
+***************
+*** 142,148 ****
+  .PHONY: all install uninstall prefixcheck converted check clean checkclean distclean update-po $(LANGUAGES) $(CONVERTED)
+  
+  .po.mo:
+! 	$(MSGFMT) -o $@ $<
+  
+  .po.ck:
+  	$(VIM) -u NONE -e -X -S check.vim -c "if error == 0 | q | endif" -c cq $<
+--- 145,151 ----
+  .PHONY: all install uninstall prefixcheck converted check clean checkclean distclean update-po $(LANGUAGES) $(CONVERTED)
+  
+  .po.mo:
+! 	$(MSGFMTCMD) -o $@ $<
+  
+  .po.ck:
+  	$(VIM) -u NONE -e -X -S check.vim -c "if error == 0 | q | endif" -c cq $<
+*** ../vim-7.4.321/src/version.c	2014-06-12 16:03:24.268046589 +0200
+--- src/version.c	2014-06-12 17:42:27.584271433 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     322,
+  /**/
+
+-- 
+If I tell you "you have a beautiful body", would you hold it against me?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

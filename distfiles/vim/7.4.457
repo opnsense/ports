@@ -1,0 +1,48 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.457
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.457
+Problem:    Using getchar() in an expression mapping may result in
+            K_CURSORHOLD, which can't be recognized.
+Solution:   Add the <CursorHold> key.  (Hirohito Higashi)
+Files:      src/misc2.c
+
+
+*** ../vim-7.4.456/src/misc2.c	2014-09-19 14:26:29.654405000 +0200
+--- src/misc2.c	2014-09-23 16:25:18.726806328 +0200
+***************
+*** 2471,2476 ****
+--- 2471,2477 ----
+      {K_SNR,		(char_u *)"SNR"},
+  #endif
+      {K_PLUG,		(char_u *)"Plug"},
++     {K_CURSORHOLD,	(char_u *)"CursorHold"},
+      {0,			NULL}
+  };
+  
+*** ../vim-7.4.456/src/version.c	2014-09-23 15:45:04.874801055 +0200
+--- src/version.c	2014-09-23 16:47:43.738809266 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     457,
+  /**/
+
+-- 
+If Microsoft would build a car...
+... Occasionally, executing a maneuver such as a left turn
+would cause your car to shut down and refuse to restart, in
+which case you would have to reinstall the engine.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

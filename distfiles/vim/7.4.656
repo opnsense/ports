@@ -1,0 +1,97 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.656
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.656 (after 7.4.654)
+Problem:    Missing changes for glob() in one file.
+Solution:   Add the missing changes.
+Files:	    src/misc1.c
+
+
+*** ../vim-7.4.655/src/misc1.c	2015-02-10 18:33:53.240319951 +0100
+--- src/misc1.c	2015-03-05 18:27:16.608501389 +0100
+***************
+*** 10168,10178 ****
+  		}
+  		else
+  		{
+  		    /* no more wildcards, check if there is a match */
+  		    /* remove backslashes for the remaining components only */
+  		    if (*path_end != NUL)
+  			backslash_halve(buf + len + 1);
+! 		    if (mch_getperm(buf) >= 0)	/* add existing file */
+  		    {
+  #ifdef MACOS_CONVERT
+  			size_t precomp_len = STRLEN(buf)+1;
+--- 10168,10182 ----
+  		}
+  		else
+  		{
++ 		    struct stat sb;
++ 
+  		    /* no more wildcards, check if there is a match */
+  		    /* remove backslashes for the remaining components only */
+  		    if (*path_end != NUL)
+  			backslash_halve(buf + len + 1);
+! 		    /* add existing file or symbolic link */
+! 		    if ((flags & EW_ALLLINKS) ? mch_lstat(buf, &sb) >= 0
+! 						      : mch_getperm(buf) >= 0)
+  		    {
+  #ifdef MACOS_CONVERT
+  			size_t precomp_len = STRLEN(buf)+1;
+***************
+*** 10919,10924 ****
+--- 10923,10929 ----
+   * EW_EXEC	add executable files
+   * EW_NOTFOUND	add even when it doesn't exist
+   * EW_ADDSLASH	add slash after directory name
++  * EW_ALLLINKS	add symlink also when the referred file does not exist
+   */
+      void
+  addfile(gap, f, flags)
+***************
+*** 10928,10936 ****
+  {
+      char_u	*p;
+      int		isdir;
+  
+!     /* if the file/dir doesn't exist, may not add it */
+!     if (!(flags & EW_NOTFOUND) && mch_getperm(f) < 0)
+  	return;
+  
+  #ifdef FNAME_ILLEGAL
+--- 10933,10943 ----
+  {
+      char_u	*p;
+      int		isdir;
++     struct stat sb;
+  
+!     /* if the file/dir/link doesn't exist, may not add it */
+!     if (!(flags & EW_NOTFOUND) && ((flags & EW_ALLLINKS)
+! 				? mch_lstat(f, &sb) < 0 : mch_getperm(f) < 0))
+  	return;
+  
+  #ifdef FNAME_ILLEGAL
+*** ../vim-7.4.655/src/version.c	2015-03-05 19:57:45.322721298 +0100
+--- src/version.c	2015-03-05 21:20:17.482011863 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     656,
+  /**/
+
+-- 
+You had connectors?  Eeee, when I were a lad we 'ad to carry the
+bits between the computer and the terminal with a spoon...
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

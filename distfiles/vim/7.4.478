@@ -1,0 +1,58 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.478
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.478
+Problem:    Using byte length instead of character length for 'showbreak'.
+Solution:   Compute the character length. (Marco Hinz)
+Files:	    src/charset.c
+
+
+*** ../vim-7.4.477/src/charset.c	2014-10-10 15:34:29.657092994 +0200
+--- src/charset.c	2014-10-15 21:24:05.578082450 +0200
+***************
+*** 1184,1191 ****
+  	{
+  	    col -= W_WIDTH(wp);
+  	    numberextra = W_WIDTH(wp) - (numberextra - win_col_off2(wp));
+! 	    if (*p_sbr != NUL && col >= (colnr_T)STRLEN(p_sbr))
+! 		col -= (colnr_T)STRLEN(p_sbr);
+  	    if (numberextra > 0)
+  		col = col % numberextra;
+  	}
+--- 1184,1195 ----
+  	{
+  	    col -= W_WIDTH(wp);
+  	    numberextra = W_WIDTH(wp) - (numberextra - win_col_off2(wp));
+! 	    if (*p_sbr != NUL)
+! 	    {
+! 		colnr_T sbrlen = (colnr_T)MB_CHARLEN(p_sbr);
+! 		if (col >= sbrlen)
+! 		    col -= sbrlen;
+! 	    }
+  	    if (numberextra > 0)
+  		col = col % numberextra;
+  	}
+*** ../vim-7.4.477/src/version.c	2014-10-15 12:56:44.006015955 +0200
+--- src/version.c	2014-10-15 21:19:10.414081805 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     478,
+  /**/
+
+-- 
+There is a fine line between courage and foolishness.
+Unfortunately, it's not a fence.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

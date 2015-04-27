@@ -1,0 +1,59 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.371
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.371
+Problem:    When 'linebreak' is set control characters are not correctly
+	    displayed. (Kimmy Lindvall)
+Solution:   Set n_extra. (Christian Brabandt)
+Files:	    src/screen.c
+
+
+*** ../vim-7.4.370/src/screen.c	2014-07-09 20:20:40.359620108 +0200
+--- src/screen.c	2014-07-16 17:12:38.599557147 +0200
+***************
+*** 4646,4651 ****
+--- 4646,4653 ----
+  		else if (c != NUL)
+  		{
+  		    p_extra = transchar(c);
++ 		    if (n_extra == 0)
++ 			n_extra = byte2cells(c) - 1;
+  #ifdef FEAT_RIGHTLEFT
+  		    if ((dy_flags & DY_UHEX) && wp->w_p_rl)
+  			rl_mirror(p_extra);	/* reverse "<12>" */
+*** ../vim-7.4.370/src/version.c	2014-07-16 17:01:38.279570568 +0200
+--- src/version.c	2014-07-16 17:13:21.815556269 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     371,
+  /**/
+
+-- 
+LETTERS TO THE EDITOR (The Times of London)
+
+Dear Sir,
+
+I am firmly opposed to the spread of microchips either to the home or
+to the office.  We have more than enough of them foisted upon us in
+public places.  They are a disgusting Americanism, and can only result
+in the farmers being forced to grow smaller potatoes, which in turn
+will cause massive unemployment in the already severely depressed
+agricultural industry.
+
+Yours faithfully,
+        Capt. Quinton D'Arcy, J. P.
+        Sevenoaks
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

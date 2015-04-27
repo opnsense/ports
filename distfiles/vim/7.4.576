@@ -1,0 +1,181 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.576
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.576
+Problem:    Redrawing problem with 'relativenumber' and 'linebreak'.
+Solution:   Temporarily reset 'linebreak' and restore it in more places.
+	    (Christian Brabandt)
+Files:	    src/normal.c
+
+
+*** ../vim-7.4.575/src/normal.c	2014-10-31 13:54:21.843214469 +0100
+--- src/normal.c	2015-01-14 17:49:38.320915425 +0100
+***************
+*** 1393,1402 ****
+      int		    include_line_break = FALSE;
+  #endif
+  
+- #ifdef FEAT_LINEBREAK
+-     curwin->w_p_lbr = FALSE;	/* Avoid a problem with unwanted linebreaks in
+- 				 * block mode. */
+- #endif
+  #if defined(FEAT_CLIPBOARD)
+      /*
+       * Yank the visual area into the GUI selection register before we operate
+--- 1393,1398 ----
+***************
+*** 1420,1425 ****
+--- 1416,1425 ----
+       */
+      if ((finish_op || VIsual_active) && oap->op_type != OP_NOP)
+      {
++ #ifdef FEAT_LINEBREAK
++ 	/* Avoid a problem with unwanted linebreaks in block mode. */
++ 	curwin->w_p_lbr = FALSE;
++ #endif
+  	oap->is_VIsual = VIsual_active;
+  	if (oap->motion_force == 'V')
+  	    oap->motion_type = MLINE;
+***************
+*** 1819,1825 ****
+--- 1819,1831 ----
+  			    || oap->op_type == OP_FUNCTION
+  			    || oap->op_type == OP_FILTER)
+  			&& oap->motion_force == NUL)
++ 		{
++ #ifdef FEAT_LINEBREAK
++ 		    /* make sure redrawing is correct */
++ 		    curwin->w_p_lbr = lbr_saved;
++ #endif
+  		    redraw_curbuf_later(INVERTED);
++ 		}
+  	    }
+  	}
+  
+***************
+*** 1863,1869 ****
+--- 1869,1880 ----
+  		    || oap->op_type == OP_FOLD
+  #endif
+  		    ))
++ 	{
++ #ifdef FEAT_LINEBREAK
++ 	    curwin->w_p_lbr = lbr_saved;
++ #endif
+  	    redraw_curbuf_later(INVERTED);
++ 	}
+  
+  	/*
+  	 * If the end of an operator is in column one while oap->motion_type
+***************
+*** 1947,1953 ****
+--- 1958,1969 ----
+  		}
+  	    }
+  	    else
++ 	    {
++ #ifdef FEAT_LINEBREAK
++ 		curwin->w_p_lbr = lbr_saved;
++ #endif
+  		(void)op_yank(oap, FALSE, !gui_yank);
++ 	    }
+  	    check_cursor_col();
+  	    break;
+  
+***************
+*** 1969,1974 ****
+--- 1985,1995 ----
+  		else
+  		    restart_edit_save = 0;
+  		restart_edit = 0;
++ #ifdef FEAT_LINEBREAK
++ 		/* Restore linebreak, so that when the user edits it looks as
++ 		 * before. */
++ 		curwin->w_p_lbr = lbr_saved;
++ #endif
+  		/* Reset finish_op now, don't want it set inside edit(). */
+  		finish_op = FALSE;
+  		if (op_change(oap))	/* will call edit() */
+***************
+*** 2064,2071 ****
+  		 * Visual mode.  But do this only once. */
+  		restart_edit_save = restart_edit;
+  		restart_edit = 0;
+! 
+  		op_insert(oap, cap->count1);
+  
+  		/* TODO: when inserting in several lines, should format all
+  		 * the lines. */
+--- 2085,2100 ----
+  		 * Visual mode.  But do this only once. */
+  		restart_edit_save = restart_edit;
+  		restart_edit = 0;
+! #ifdef FEAT_LINEBREAK
+! 		/* Restore linebreak, so that when the user edits it looks as
+! 		 * before. */
+! 		curwin->w_p_lbr = lbr_saved;
+! #endif
+  		op_insert(oap, cap->count1);
++ #ifdef FEAT_LINEBREAK
++ 		/* Reset linebreak, so that formatting works correctly. */
++ 		curwin->w_p_lbr = FALSE;
++ #endif
+  
+  		/* TODO: when inserting in several lines, should format all
+  		 * the lines. */
+***************
+*** 2090,2096 ****
+--- 2119,2132 ----
+  	    }
+  #ifdef FEAT_VISUALEXTRA
+  	    else
++ 	    {
++ #ifdef FEAT_LINEBREAK
++ 		/* Restore linebreak, so that when the user edits it looks as
++ 		 * before. */
++ 		curwin->w_p_lbr = lbr_saved;
++ #endif
+  		op_replace(oap, cap->nchar);
++ 	    }
+  #endif
+  	    break;
+  
+***************
+*** 2134,2140 ****
+--- 2170,2181 ----
+  	    if (!p_sol && oap->motion_type == MLINE && !oap->end_adjusted
+  		    && (oap->op_type == OP_LSHIFT || oap->op_type == OP_RSHIFT
+  						|| oap->op_type == OP_DELETE))
++ 	    {
++ #ifdef FEAT_LINEBREAK
++ 		curwin->w_p_lbr = FALSE;
++ #endif
+  		coladvance(curwin->w_curswant = old_col);
++ 	    }
+  	}
+  	else
+  	{
+*** ../vim-7.4.575/src/version.c	2015-01-14 17:40:04.407125696 +0100
+--- src/version.c	2015-01-14 17:47:45.898132017 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     576,
+  /**/
+
+-- 
+From "know your smileys":
+ :-H	Is missing teeth
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

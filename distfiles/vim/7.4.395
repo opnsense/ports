@@ -1,0 +1,99 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.395
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.395 (after 7.4.355)
+Problem:    C indent is wrong below an if with wrapped condition followed by
+	    curly braces. (Trevor Powell)
+Solution:   Make a copy of tryposBrace.
+Files:	    src/misc1.c, src/testdir/test3.in, src/testdir/test3.ok
+
+
+*** ../vim-7.4.394/src/misc1.c	2014-08-06 12:49:06.711289205 +0200
+--- src/misc1.c	2014-08-06 17:35:45.003165594 +0200
+***************
+*** 6995,7000 ****
+--- 6995,7001 ----
+      char_u	*linecopy;
+      pos_T	*trypos;
+      pos_T	*tryposBrace = NULL;
++     pos_T	tryposBraceCopy;
+      pos_T	our_paren_pos;
+      char_u	*start;
+      int		start_brace;
+***************
+*** 7532,7538 ****
+--- 7533,7543 ----
+  	/*
+  	 * We are inside braces, there is a { before this line at the position
+  	 * stored in tryposBrace.
++ 	 * Make a copy of tryposBrace, it may point to pos_copy inside
++ 	 * find_start_brace(), which may be changed somewhere.
+  	 */
++ 	tryposBraceCopy = *tryposBrace;
++ 	tryposBrace = &tryposBraceCopy;
+  	trypos = tryposBrace;
+  	ourscope = trypos->lnum;
+  	start = ml_get(ourscope);
+*** ../vim-7.4.394/src/testdir/test3.in	2014-07-03 22:57:51.299862927 +0200
+--- src/testdir/test3.in	2014-08-06 17:19:41.099172522 +0200
+***************
+*** 464,469 ****
+--- 464,477 ----
+  	asdfasdf
+  }
+  
++ {
++ for ( int i = 0;
++ 	i < 10; i++ )
++ {
++ }
++ 	i = 0;
++ }
++ 
+  class bob
+  {
+  	int foo() {return 1;}
+*** ../vim-7.4.394/src/testdir/test3.ok	2014-07-03 22:57:51.299862927 +0200
+--- src/testdir/test3.ok	2014-08-06 17:20:11.867172301 +0200
+***************
+*** 452,457 ****
+--- 452,465 ----
+  	asdfasdf
+  }
+  
++ {
++ 	for ( int i = 0;
++ 			i < 10; i++ )
++ 	{
++ 	}
++ 	i = 0;
++ }
++ 
+  class bob
+  {
+  	int foo() {return 1;}
+*** ../vim-7.4.394/src/version.c	2014-08-06 16:49:51.203185387 +0200
+--- src/version.c	2014-08-06 17:43:44.243162150 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     395,
+  /**/
+
+-- 
+An operatingsystem is just a name you give to the rest of bloating
+idiosyncratic machine-based-features you left out of your editor.
+			(author unknown)
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

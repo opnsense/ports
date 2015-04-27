@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.132
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.132 (after 7.4.122)
+Problem:    Win32: flags and inherit_handles arguments mixed up.
+Solution:   Swap the argument. (cs86661)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.131/src/os_win32.c	2013-12-12 20:25:39.000000000 +0100
+--- src/os_win32.c	2014-01-05 13:24:15.000000000 +0100
+***************
+*** 3831,3838 ****
+      static BOOL
+  vim_create_process(
+      char		*cmd,
+-     DWORD		flags,
+      BOOL		inherit_handles,
+      STARTUPINFO		*si,
+      PROCESS_INFORMATION *pi)
+  {
+--- 3831,3838 ----
+      static BOOL
+  vim_create_process(
+      char		*cmd,
+      BOOL		inherit_handles,
++     DWORD		flags,
+      STARTUPINFO		*si,
+      PROCESS_INFORMATION *pi)
+  {
+*** ../vim-7.4.131/src/version.c	2013-12-14 13:06:13.000000000 +0100
+--- src/version.c	2014-01-05 13:27:25.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     132,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+93. New mail alarm on your palmtop annoys other churchgoers.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

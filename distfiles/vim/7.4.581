@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.581
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.581
+Problem:    Compiler warnings for unitinialized variables. (John Little)
+Solution:   Initialize the variables.
+Files:	    src/ops.c
+
+
+*** ../vim-7.4.580/src/ops.c	2014-12-17 21:00:44.989871256 +0100
+--- src/ops.c	2015-01-18 14:06:49.480786101 +0100
+***************
+*** 5663,5670 ****
+      int		set_prev = FALSE;
+      char_u	*str;
+      char_u	**array = NULL;
+!     int		new_type;
+!     colnr_T	new_width;
+  
+      /* We only get here (hopefully) if line[0] == '"' */
+      str = virp->vir_line + 1;
+--- 5663,5670 ----
+      int		set_prev = FALSE;
+      char_u	*str;
+      char_u	**array = NULL;
+!     int		new_type = MCHAR; /* init to shut up compiler */
+!     colnr_T	new_width = 0; /* init to shut up compiler */
+  
+      /* We only get here (hopefully) if line[0] == '"' */
+      str = virp->vir_line + 1;
+***************
+*** 5747,5752 ****
+--- 5747,5753 ----
+  		do_it = FALSE;
+  	}
+      }
++ 
+      if (do_it)
+      {
+  	/* free y_array[] */
+*** ../vim-7.4.580/src/version.c	2015-01-14 21:21:56.924743601 +0100
+--- src/version.c	2015-01-18 14:07:36.712268926 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     581,
+  /**/
+
+-- 
+From "know your smileys":
+ :-D	Big smile
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

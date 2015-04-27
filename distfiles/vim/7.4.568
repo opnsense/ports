@@ -1,0 +1,73 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.568
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.568
+Problem:    Giving an error for ":0wincmd w" is a problem for some plugins.
+Solution:   Allow the zero in the range. (Marcin Szamotulski)
+Files:	    src/ex_docmd.c, src/testdir/test_command_count.ok
+
+
+*** ../vim-7.4.567/src/ex_docmd.c	2015-01-07 15:57:13.145559792 +0100
+--- src/ex_docmd.c	2015-01-14 11:14:26.690308629 +0100
+***************
+*** 4686,4693 ****
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_WINDOWS:
+! 		if (eap->line1 < 1
+! 			|| eap->line2 > LAST_WIN_NR)
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_TABS:
+--- 4686,4692 ----
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_WINDOWS:
+! 		if (eap->line2 > LAST_WIN_NR)
+  		    return (char_u *)_(e_invrange);
+  		break;
+  	    case ADDR_TABS:
+*** ../vim-7.4.567/src/testdir/test_command_count.ok	2015-01-07 16:52:53.506792420 +0100
+--- src/testdir/test_command_count.ok	2015-01-14 11:22:19.405222287 +0100
+***************
+*** 21,28 ****
+  4argu d
+  1argu a
+  100b E16: Invalid range
+! 0close E16: Invalid range
+! $close 4
+  $+close E16: Invalid range
+  $tabe 2
+  $+tabe E16: Invalid range
+--- 21,28 ----
+  4argu d
+  1argu a
+  100b E16: Invalid range
+! 0close 
+! $close 3
+  $+close E16: Invalid range
+  $tabe 2
+  $+tabe E16: Invalid range
+*** ../vim-7.4.567/src/version.c	2015-01-07 19:04:25.299934570 +0100
+--- src/version.c	2015-01-14 11:15:38.117540026 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     568,
+  /**/
+
+-- 
+ASCII stupid question, get a stupid ANSI.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

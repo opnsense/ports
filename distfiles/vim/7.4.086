@@ -1,0 +1,145 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.086
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.086
+Problem:    Skipping over an expression when not evaluating it does not work
+            properly for dict members.
+Solution:   Skip over unrecognized expression. (ZyX)
+Files:      src/eval.c, src/testdir/test34.in, src/testdir/test34.ok
+
+
+*** ../vim-7.4.085/src/eval.c	2013-11-08 04:30:06.000000000 +0100
+--- src/eval.c	2013-11-11 04:11:38.000000000 +0100
+***************
+*** 19845,19868 ****
+      while (ret == OK
+  	    && (**arg == '['
+  		|| (**arg == '.' && rettv->v_type == VAR_DICT)
+! 		|| (**arg == '(' && rettv->v_type == VAR_FUNC))
+  	    && !vim_iswhite(*(*arg - 1)))
+      {
+  	if (**arg == '(')
+  	{
+  	    /* need to copy the funcref so that we can clear rettv */
+! 	    functv = *rettv;
+! 	    rettv->v_type = VAR_UNKNOWN;
+  
+! 	    /* Invoke the function.  Recursive! */
+! 	    s = functv.vval.v_string;
+  	    ret = get_func_tv(s, (int)STRLEN(s), rettv, arg,
+  			curwin->w_cursor.lnum, curwin->w_cursor.lnum,
+  			&len, evaluate, selfdict);
+  
+  	    /* Clear the funcref afterwards, so that deleting it while
+  	     * evaluating the arguments is possible (see test55). */
+! 	    clear_tv(&functv);
+  
+  	    /* Stop the expression evaluation when immediately aborting on
+  	     * error, or when an interrupt occurred or an exception was thrown
+--- 19845,19874 ----
+      while (ret == OK
+  	    && (**arg == '['
+  		|| (**arg == '.' && rettv->v_type == VAR_DICT)
+! 		|| (**arg == '(' && (!evaluate || rettv->v_type == VAR_FUNC)))
+  	    && !vim_iswhite(*(*arg - 1)))
+      {
+  	if (**arg == '(')
+  	{
+  	    /* need to copy the funcref so that we can clear rettv */
+! 	    if (evaluate)
+! 	    {
+! 		functv = *rettv;
+! 		rettv->v_type = VAR_UNKNOWN;
+  
+! 		/* Invoke the function.  Recursive! */
+! 		s = functv.vval.v_string;
+! 	    }
+! 	    else
+! 		s = (char_u *)"";
+  	    ret = get_func_tv(s, (int)STRLEN(s), rettv, arg,
+  			curwin->w_cursor.lnum, curwin->w_cursor.lnum,
+  			&len, evaluate, selfdict);
+  
+  	    /* Clear the funcref afterwards, so that deleting it while
+  	     * evaluating the arguments is possible (see test55). */
+! 	    if (evaluate)
+! 		clear_tv(&functv);
+  
+  	    /* Stop the expression evaluation when immediately aborting on
+  	     * error, or when an interrupt occurred or an exception was thrown
+*** ../vim-7.4.085/src/testdir/test34.in	2012-07-16 16:51:29.000000000 +0200
+--- src/testdir/test34.in	2013-11-11 04:10:13.000000000 +0100
+***************
+*** 1,6 ****
+--- 1,7 ----
+  Test for user functions.
+  Also test an <expr> mapping calling a function.
+  Also test that a builtin function cannot be replaced.
++ Also test for regression when calling arbitrary expression.
+  
+  STARTTEST
+  :so small.vim
+***************
+*** 62,68 ****
+  [(one again:call append(line('$'), max([1, 2, 3]))
+  :call extend(g:, {'max': function('min')})
+  :call append(line('$'), max([1, 2, 3]))
+! :$-7,$w! test.out
+  :delfunc Table
+  :delfunc Compute
+  :delfunc Expr1
+--- 63,79 ----
+  [(one again:call append(line('$'), max([1, 2, 3]))
+  :call extend(g:, {'max': function('min')})
+  :call append(line('$'), max([1, 2, 3]))
+! :try
+! :    " Regression: the first line below used to throw ?E110: Missing ')'?
+! :    " Second is here just to prove that this line is correct when not skipping
+! :    " rhs of &&.
+! :    $put =(0&&(function('tr'))(1, 2, 3))
+! :    $put =(1&&(function('tr'))(1, 2, 3))
+! :catch
+! :    $put ='!!! Unexpected exception:'
+! :    $put =v:exception
+! :endtry
+! :$-9,$w! test.out
+  :delfunc Table
+  :delfunc Compute
+  :delfunc Expr1
+*** ../vim-7.4.085/src/testdir/test34.ok	2012-07-16 16:43:15.000000000 +0200
+--- src/testdir/test34.ok	2013-11-11 04:10:13.000000000 +0100
+***************
+*** 6,8 ****
+--- 6,10 ----
+  1. one again
+  3
+  3
++ 0
++ 1
+*** ../vim-7.4.085/src/version.c	2013-11-11 01:29:16.000000000 +0100
+--- src/version.c	2013-11-11 04:15:59.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     86,
+  /**/
+
+-- 
+ARTHUR: The swallow may fly south with the sun, or the house martin or the
+        plover seek warmer hot lands in winter, yet these are not strangers to
+        our land.
+SOLDIER: Are you suggesting coconuts migrate?
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

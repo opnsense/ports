@@ -1,0 +1,64 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.441
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.441
+Problem:    Endless loop and other problems when 'cedit' is set to CTRL-C.
+Solution:   Do not call ex_window() when ex_normal_busy or got_int was set.
+	    (Yasuhiro Matsumoto)
+Files:	    src/ex_getln.c
+
+
+*** ../vim-7.4.440/src/ex_getln.c	2014-08-17 17:24:03.967017727 +0200
+--- src/ex_getln.c	2014-09-09 18:41:19.304551123 +0200
+***************
+*** 759,769 ****
+  #ifdef FEAT_CMDWIN
+  	if (c == cedit_key || c == K_CMDWIN)
+  	{
+! 	    /*
+! 	     * Open a window to edit the command line (and history).
+! 	     */
+! 	    c = ex_window();
+! 	    some_key_typed = TRUE;
+  	}
+  # ifdef FEAT_DIGRAPHS
+  	else
+--- 759,772 ----
+  #ifdef FEAT_CMDWIN
+  	if (c == cedit_key || c == K_CMDWIN)
+  	{
+! 	    if (ex_normal_busy == 0 && got_int == FALSE)
+! 	    {
+! 		/*
+! 		 * Open a window to edit the command line (and history).
+! 		 */
+! 		c = ex_window();
+! 		some_key_typed = TRUE;
+! 	    }
+  	}
+  # ifdef FEAT_DIGRAPHS
+  	else
+*** ../vim-7.4.440/src/version.c	2014-09-09 18:29:24.328549561 +0200
+--- src/version.c	2014-09-09 18:40:16.680550986 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     441,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+114. You are counting items, you go "0,1,2,3,4,5,6,7,8,9,A,B,C,D...".
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

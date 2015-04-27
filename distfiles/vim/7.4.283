@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.283
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.283 (after 7.4.276)
+Problem:    Compiler warning about unused variable. (Charles Cooper)
+Solution:   Move the variable inside the #if block.
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.282/src/ex_cmds.c	2014-05-07 15:10:17.657108310 +0200
+--- src/ex_cmds.c	2014-05-09 20:31:16.414789550 +0200
+***************
+*** 1551,1559 ****
+  {
+      char_u	*buf;
+      long_u	len;
+-     int		is_fish_shell;
+  
+  #if (defined(UNIX) && !defined(ARCHIE)) || defined(OS2)
+      /* Account for fish's different syntax for subshells */
+      is_fish_shell = (fnamecmp(get_isolated_shell_name(), "fish") == 0);
+      if (is_fish_shell)
+--- 1551,1560 ----
+  {
+      char_u	*buf;
+      long_u	len;
+  
+  #if (defined(UNIX) && !defined(ARCHIE)) || defined(OS2)
++     int		is_fish_shell;
++ 
+      /* Account for fish's different syntax for subshells */
+      is_fish_shell = (fnamecmp(get_isolated_shell_name(), "fish") == 0);
+      if (is_fish_shell)
+*** ../vim-7.4.282/src/version.c	2014-05-08 11:46:23.621757543 +0200
+--- src/version.c	2014-05-09 20:32:06.538789989 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     283,
+  /**/
+
+-- 
+Don't drink and drive.  You might hit a bump and spill your beer.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

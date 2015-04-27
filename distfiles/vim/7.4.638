@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.638
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.638
+Problem:    Can't build with Lua 5.3 on Windows.
+Solution:   use luaL_optinteger() instead of LuaL_optlong(). (Ken Takata)
+Files:	    src/if_lua.c
+
+
+*** ../vim-7.4.637/src/if_lua.c	2015-02-04 23:07:55.928517161 +0100
+--- src/if_lua.c	2015-02-17 16:26:47.003111497 +0100
+***************
+*** 774,780 ****
+  {
+      luaV_List *lis = luaV_checkudata(L, 1, LUAVIM_LIST);
+      list_T *l = (list_T *) luaV_checkcache(L, (void *) *lis);
+!     long pos = luaL_optlong(L, 3, 0);
+      listitem_T *li = NULL;
+      typval_T v;
+      if (l->lv_lock)
+--- 774,780 ----
+  {
+      luaV_List *lis = luaV_checkudata(L, 1, LUAVIM_LIST);
+      list_T *l = (list_T *) luaV_checkcache(L, (void *) *lis);
+!     long pos = (long) luaL_optinteger(L, 3, 0);
+      listitem_T *li = NULL;
+      typval_T v;
+      if (l->lv_lock)
+*** ../vim-7.4.637/src/version.c	2015-02-17 16:04:50.816104407 +0100
+--- src/version.c	2015-02-17 16:24:51.048605970 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     638,
+  /**/
+
+-- 
+"Marriage is the process of finding out what kind of man your wife
+would have preferred"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

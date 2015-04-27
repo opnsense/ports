@@ -1,0 +1,52 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.286
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.286
+Problem:    Error messages are inconsistant. (ZyX)
+Solution:   Change "Lists" to "list".
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.285/src/eval.c	2014-05-07 18:35:25.665216052 +0200
+--- src/eval.c	2014-05-13 13:37:47.349597682 +0200
+***************
+*** 4431,4437 ****
+  		    if (rettv->v_type != var2.v_type)
+  			EMSG(_("E691: Can only compare List with List"));
+  		    else
+! 			EMSG(_("E692: Invalid operation for Lists"));
+  		    clear_tv(rettv);
+  		    clear_tv(&var2);
+  		    return FAIL;
+--- 4431,4437 ----
+  		    if (rettv->v_type != var2.v_type)
+  			EMSG(_("E691: Can only compare List with List"));
+  		    else
+! 			EMSG(_("E692: Invalid operation for List"));
+  		    clear_tv(rettv);
+  		    clear_tv(&var2);
+  		    return FAIL;
+*** ../vim-7.4.285/src/version.c	2014-05-13 12:44:19.897569605 +0200
+--- src/version.c	2014-05-13 13:31:23.393594321 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     286,
+  /**/
+
+-- 
+You are not really successful until someone claims he sat
+beside you in school.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

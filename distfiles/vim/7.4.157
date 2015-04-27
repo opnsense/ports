@@ -1,0 +1,53 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.157
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.157
+Problem:    Error number used twice. (Yukihiro Nakadaira)
+Solution:   Change the one not referred in the docs.
+Files:	    src/undo.c
+
+
+*** ../vim-7.4.156/src/undo.c	2013-11-07 03:04:06.000000000 +0100
+--- src/undo.c	2014-01-23 18:07:33.395668196 +0100
+***************
+*** 409,415 ****
+  	{
+  	    /* This happens when the FileChangedRO autocommand changes the
+  	     * file in a way it becomes shorter. */
+! 	    EMSG(_("E834: Line count changed unexpectedly"));
+  	    return FAIL;
+  	}
+  #endif
+--- 409,415 ----
+  	{
+  	    /* This happens when the FileChangedRO autocommand changes the
+  	     * file in a way it becomes shorter. */
+! 	    EMSG(_("E881: Line count changed unexpectedly"));
+  	    return FAIL;
+  	}
+  #endif
+*** ../vim-7.4.156/src/version.c	2014-01-23 14:26:18.815303381 +0100
+--- src/version.c	2014-01-23 18:10:47.551673532 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     157,
+  /**/
+
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+201. When somebody asks you where you are, you tell them in which chat room.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

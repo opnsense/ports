@@ -1,0 +1,138 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.055
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.055
+Problem:    Mac: Where availability macros are defined depends on the system.
+Solution:   Add a configure check. (Felix Bünemann) 
+Files:      src/config.h.in, src/configure.in, src/auto/configure,
+            src/os_mac.h
+
+*** ../vim-7.4.054/src/config.h.in	2013-02-26 14:18:19.000000000 +0100
+--- src/config.h.in	2013-11-02 20:52:08.000000000 +0100
+***************
+*** 442,444 ****
+--- 442,447 ----
+  
+  /* Define if you want Cygwin to use the WIN32 clipboard, not compatible with X11*/
+  #undef FEAT_CYGWIN_WIN32_CLIPBOARD
++ 
++ /* Define if we have AvailabilityMacros.h on Mac OS X */
++ #undef HAVE_AVAILABILITYMACROS_H
+*** ../vim-7.4.054/src/configure.in	2013-10-02 18:22:58.000000000 +0200
+--- src/configure.in	2013-11-02 20:58:58.000000000 +0100
+***************
+*** 206,211 ****
+--- 206,215 ----
+      dnl TODO: use -arch i386 on Intel machines
+      CPPFLAGS="$CPPFLAGS -DMACOS_X_UNIX -no-cpp-precomp"
+  
++     dnl Mac OS X 10.9+ no longer include AvailabilityMacros.h in Carbon
++     dnl so we need to include it to have access to version macros.
++     AC_CHECK_HEADER(AvailabilityMacros.h, [AC_DEFINE(HAVE_AVAILABILITYMACROS_H, 1, [ Define if we have AvailabilityMacros.h on Mac OS X ])])
++ 
+      dnl If Carbon is found, assume we don't want X11
+      dnl unless it was specifically asked for (--with-x)
+      dnl or Motif, Athena or GTK GUI is used.
+*** ../vim-7.4.054/src/auto/configure	2013-10-02 18:22:58.000000000 +0200
+--- src/auto/configure	2013-11-02 21:00:40.000000000 +0100
+***************
+*** 4223,4229 ****
+      OS_EXTRA_OBJ="objects/os_macosx.o objects/os_mac_conv.o"
+          CPPFLAGS="$CPPFLAGS -DMACOS_X_UNIX -no-cpp-precomp"
+  
+!                 # On IRIX 5.3, sys/types and inttypes.h are conflicting.
+  for ac_header in sys/types.h sys/stat.h stdlib.h string.h memory.h strings.h \
+  		  inttypes.h stdint.h unistd.h
+  do :
+--- 4223,4229 ----
+      OS_EXTRA_OBJ="objects/os_macosx.o objects/os_mac_conv.o"
+          CPPFLAGS="$CPPFLAGS -DMACOS_X_UNIX -no-cpp-precomp"
+  
+!             # On IRIX 5.3, sys/types and inttypes.h are conflicting.
+  for ac_header in sys/types.h sys/stat.h stdlib.h string.h memory.h strings.h \
+  		  inttypes.h stdint.h unistd.h
+  do :
+***************
+*** 4241,4247 ****
+  done
+  
+  
+! ac_fn_c_check_header_mongrel "$LINENO" "Carbon/Carbon.h" "ac_cv_header_Carbon_Carbon_h" "$ac_includes_default"
+  if test "x$ac_cv_header_Carbon_Carbon_h" = x""yes; then :
+    CARBON=yes
+  fi
+--- 4241,4256 ----
+  done
+  
+  
+! ac_fn_c_check_header_mongrel "$LINENO" "AvailabilityMacros.h" "ac_cv_header_AvailabilityMacros_h" "$ac_includes_default"
+! if test "x$ac_cv_header_AvailabilityMacros_h" = x""yes; then :
+! 
+! $as_echo "#define HAVE_AVAILABILITYMACROS_H 1" >>confdefs.h
+! 
+! fi
+! 
+! 
+! 
+!                 ac_fn_c_check_header_mongrel "$LINENO" "Carbon/Carbon.h" "ac_cv_header_Carbon_Carbon_h" "$ac_includes_default"
+  if test "x$ac_cv_header_Carbon_Carbon_h" = x""yes; then :
+    CARBON=yes
+  fi
+*** ../vim-7.4.054/src/os_mac.h	2013-05-06 04:06:04.000000000 +0200
+--- src/os_mac.h	2013-11-02 20:59:46.000000000 +0100
+***************
+*** 16,21 ****
+--- 16,26 ----
+  # define OPAQUE_TOOLBOX_STRUCTS 0
+  #endif
+  
++ /* Include MAC_OS_X_VERSION_* macros */
++ #ifdef HAVE_AVAILABILITYMACROS_H
++ # include <AvailabilityMacros.h>
++ #endif
++ 
+  /*
+   * Macintosh machine-dependent things.
+   *
+***************
+*** 263,269 ****
+  #endif
+  
+  /* Some "prep work" definition to be able to compile the MacOS X
+!  * version with os_unix.x instead of os_mac.c. Based on the result
+   * of ./configure for console MacOS X.
+   */
+  
+--- 268,274 ----
+  #endif
+  
+  /* Some "prep work" definition to be able to compile the MacOS X
+!  * version with os_unix.c instead of os_mac.c. Based on the result
+   * of ./configure for console MacOS X.
+   */
+  
+*** ../vim-7.4.054/src/version.c	2013-11-02 04:39:34.000000000 +0100
+--- src/version.c	2013-11-02 21:01:10.000000000 +0100
+***************
+*** 740,741 ****
+--- 740,743 ----
+  {   /* Add new patch number below this line */
++ /**/
++     55,
+  /**/
+
+-- 
+You can be stopped by the police for biking over 65 miles per hour.
+You are not allowed to walk across a street on your hands.
+		[real standing laws in Connecticut, United States of America]
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,121 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.246
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.246
+Problem:    Configure message for detecting smack are out of sequence.
+Solution:   Put the messages in the right place. (Kazunobu Kuriyama)
+Files:	    src/configure.in, src/auto/configure
+
+
+*** ../vim-7.4.245/src/configure.in	2014-04-02 14:05:33.999887839 +0200
+--- src/configure.in	2014-04-05 11:56:33.807099380 +0200
+***************
+*** 393,408 ****
+  	[  --disable-smack	  Do not check for Smack support.],
+  	, enable_smack="yes")
+  if test "$enable_smack" = "yes"; then
+    AC_CHECK_HEADER([linux/xattr.h], true, enable_smack="no")
+  fi
+  if test "$enable_smack" = "yes"; then
+-   AC_MSG_RESULT(no)
+    AC_CHECK_LIB(attr, llistxattr,
+  	  [LIBS="$LIBS -lattr"
+  	   found_smack="yes"
+  	   AC_DEFINE(HAVE_SMACK)])
+- else
+-    AC_MSG_RESULT(yes)
+  fi
+  
+  dnl When smack was found don't search for SELinux
+--- 393,408 ----
+  	[  --disable-smack	  Do not check for Smack support.],
+  	, enable_smack="yes")
+  if test "$enable_smack" = "yes"; then
++   AC_MSG_RESULT(no)
+    AC_CHECK_HEADER([linux/xattr.h], true, enable_smack="no")
++ else
++    AC_MSG_RESULT(yes)
+  fi
+  if test "$enable_smack" = "yes"; then
+    AC_CHECK_LIB(attr, llistxattr,
+  	  [LIBS="$LIBS -lattr"
+  	   found_smack="yes"
+  	   AC_DEFINE(HAVE_SMACK)])
+  fi
+  
+  dnl When smack was found don't search for SELinux
+*** ../vim-7.4.245/src/auto/configure	2014-04-02 14:05:34.003887839 +0200
+--- src/auto/configure	2014-04-05 11:56:37.123099387 +0200
+***************
+*** 4600,4605 ****
+--- 4600,4607 ----
+  fi
+  
+  if test "$enable_smack" = "yes"; then
++   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
++ $as_echo "no" >&6; }
+    ac_fn_c_check_header_mongrel "$LINENO" "linux/xattr.h" "ac_cv_header_linux_xattr_h" "$ac_includes_default"
+  if test "x$ac_cv_header_linux_xattr_h" = xyes; then :
+    true
+***************
+*** 4608,4617 ****
+  fi
+  
+  
+  fi
+  if test "$enable_smack" = "yes"; then
+-   { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+- $as_echo "no" >&6; }
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for llistxattr in -lattr" >&5
+  $as_echo_n "checking for llistxattr in -lattr... " >&6; }
+  if ${ac_cv_lib_attr_llistxattr+:} false; then :
+--- 4610,4620 ----
+  fi
+  
+  
++ else
++    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
++ $as_echo "yes" >&6; }
+  fi
+  if test "$enable_smack" = "yes"; then
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for llistxattr in -lattr" >&5
+  $as_echo_n "checking for llistxattr in -lattr... " >&6; }
+  if ${ac_cv_lib_attr_llistxattr+:} false; then :
+***************
+*** 4655,4663 ****
+  
+  fi
+  
+- else
+-    { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+- $as_echo "yes" >&6; }
+  fi
+  
+  if test "x$found_smack" = "x"; then
+--- 4658,4663 ----
+*** ../vim-7.4.245/src/version.c	2014-04-04 19:00:46.351940169 +0200
+--- src/version.c	2014-04-05 11:57:29.503099502 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     246,
+  /**/
+
+-- 
+Apparently, 1 in 5 people in the world are Chinese.  And there are 5
+people in my family, so it must be one of them.  It's either my mum
+or my dad.  Or my older brother Colin.  Or my younger brother
+Ho-Cha-Chu.  But I think it's Colin.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

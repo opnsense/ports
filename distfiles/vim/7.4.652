@@ -1,0 +1,381 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.652
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.652
+Problem:    Xxd lacks a few features.
+Solution:   Use 8 characters for the file position.  Add the -e and -o
+	    arguments. (Vadim Vygonets)
+Files:	    src/xxd/xxd.c, runtime/doc/xxd.1
+
+
+*** ../vim-7.4.651/src/xxd/xxd.c	2013-06-21 18:23:53.000000000 +0200
+--- src/xxd/xxd.c	2015-03-05 17:45:36.140691416 +0100
+***************
+*** 51,56 ****
+--- 51,57 ----
+   * 16.05.00 Improved MMS file and merge for VMS by Zoltan Arpadffy
+   * 2011 March  Better error handling by Florian Zumbiehl.
+   * 2011 April  Formatting by Bram Moolenaar
++  * 08.06.2013  Little-endian hexdump (-e) and offset (-o) by Vadim Vygonets.
+   *
+   * (c) 1990-1998 by Juergen Weigert (jnweiger@informatik.uni-erlangen.de)
+   *
+***************
+*** 216,222 ****
+  
+  #define TRY_SEEK	/* attempt to use lseek, or skip forward by reading */
+  #define COLS 256	/* change here, if you ever need more columns */
+! #define LLEN (11 + (9*COLS-1)/1 + COLS + 2)
+  
+  char hexxa[] = "0123456789abcdef0123456789ABCDEF", *hexx = hexxa;
+  
+--- 217,223 ----
+  
+  #define TRY_SEEK	/* attempt to use lseek, or skip forward by reading */
+  #define COLS 256	/* change here, if you ever need more columns */
+! #define LLEN (12 + (9*COLS-1) + COLS + 2)
+  
+  char hexxa[] = "0123456789abcdef0123456789ABCDEF", *hexx = hexxa;
+  
+***************
+*** 225,230 ****
+--- 226,232 ----
+  #define HEX_POSTSCRIPT 1
+  #define HEX_CINCLUDE 2
+  #define HEX_BITS 3		/* not hex a dump, but bits: 01111001 */
++ #define HEX_LITTLEENDIAN 4
+  
+  static char *pname;
+  
+***************
+*** 238,247 ****
+    fprintf(stderr, "    -b          binary digit dump (incompatible with -ps,-i,-r). Default hex.\n");
+    fprintf(stderr, "    -c cols     format <cols> octets per line. Default 16 (-i: 12, -ps: 30).\n");
+    fprintf(stderr, "    -E          show characters in EBCDIC. Default ASCII.\n");
+!   fprintf(stderr, "    -g          number of octets per group in normal output. Default 2.\n");
+    fprintf(stderr, "    -h          print this summary.\n");
+    fprintf(stderr, "    -i          output in C include file style.\n");
+    fprintf(stderr, "    -l len      stop after <len> octets.\n");
+    fprintf(stderr, "    -ps         output in postscript plain hexdump style.\n");
+    fprintf(stderr, "    -r          reverse operation: convert (or patch) hexdump into binary.\n");
+    fprintf(stderr, "    -r -s off   revert with <off> added to file positions found in hexdump.\n");
+--- 240,251 ----
+    fprintf(stderr, "    -b          binary digit dump (incompatible with -ps,-i,-r). Default hex.\n");
+    fprintf(stderr, "    -c cols     format <cols> octets per line. Default 16 (-i: 12, -ps: 30).\n");
+    fprintf(stderr, "    -E          show characters in EBCDIC. Default ASCII.\n");
+!   fprintf(stderr, "    -e          little-endian dump (incompatible with -ps,-i,-r).\n");
+!   fprintf(stderr, "    -g          number of octets per group in normal output. Default 2 (-e: 4).\n");
+    fprintf(stderr, "    -h          print this summary.\n");
+    fprintf(stderr, "    -i          output in C include file style.\n");
+    fprintf(stderr, "    -l len      stop after <len> octets.\n");
++   fprintf(stderr, "    -o off      add <off> to the displayed file position.\n");
+    fprintf(stderr, "    -ps         output in postscript plain hexdump style.\n");
+    fprintf(stderr, "    -r          reverse operation: convert (or patch) hexdump into binary.\n");
+    fprintf(stderr, "    -r -s off   revert with <off> added to file positions found in hexdump.\n");
+***************
+*** 475,481 ****
+    int ebcdic = 0;
+    int octspergrp = -1;	/* number of octets grouped in output */
+    int grplen;		/* total chars per octet group */
+!   long length = -1, n = 0, seekoff = 0;
+    static char l[LLEN+1];  /* static because it may be too big for stack */
+    char *pp;
+  
+--- 479,485 ----
+    int ebcdic = 0;
+    int octspergrp = -1;	/* number of octets grouped in output */
+    int grplen;		/* total chars per octet group */
+!   long length = -1, n = 0, seekoff = 0, displayoff = 0;
+    static char l[LLEN+1];  /* static because it may be too big for stack */
+    char *pp;
+  
+***************
+*** 503,508 ****
+--- 507,513 ----
+        pp = argv[1] + (!STRNCMP(argv[1], "--", 2) && argv[1][2]);
+  	   if (!STRNCMP(pp, "-a", 2)) autoskip = 1 - autoskip;
+        else if (!STRNCMP(pp, "-b", 2)) hextype = HEX_BITS;
++       else if (!STRNCMP(pp, "-e", 2)) hextype = HEX_LITTLEENDIAN;
+        else if (!STRNCMP(pp, "-u", 2)) hexx = hexxa + 16;
+        else if (!STRNCMP(pp, "-p", 2)) hextype = HEX_POSTSCRIPT;
+        else if (!STRNCMP(pp, "-i", 2)) hextype = HEX_CINCLUDE;
+***************
+*** 539,544 ****
+--- 544,562 ----
+  	      argc--;
+  	    }
+  	}
++       else if (!STRNCMP(pp, "-o", 2))
++ 	{
++ 	  if (pp[2] && STRNCMP("ffset", pp + 2, 5))
++ 	    displayoff = (int)strtol(pp + 2, NULL, 0);
++ 	  else
++ 	    {
++ 	      if (!argv[2])
++ 		exit_with_usage();
++ 	      displayoff = (int)strtol(argv[2], NULL, 0);
++ 	      argv++;
++ 	      argc--;
++ 	    }
++ 	}
+        else if (!STRNCMP(pp, "-s", 2))
+  	{
+  	  relseek = 0;
+***************
+*** 603,608 ****
+--- 621,627 ----
+        case HEX_CINCLUDE:	cols = 12; break;
+        case HEX_BITS:		cols = 6; break;
+        case HEX_NORMAL:
++       case HEX_LITTLEENDIAN:
+        default:			cols = 16; break;
+        }
+  
+***************
+*** 611,630 ****
+        {
+        case HEX_BITS:		octspergrp = 1; break;
+        case HEX_NORMAL:		octspergrp = 2; break;
+        case HEX_POSTSCRIPT:
+        case HEX_CINCLUDE:
+        default:			octspergrp = 0; break;
+        }
+  
+!   if (cols < 1 || ((hextype == HEX_NORMAL || hextype == HEX_BITS)
+  							    && (cols > COLS)))
+      {
+        fprintf(stderr, "%s: invalid number of columns (max. %d).\n", pname, COLS);
+        exit(1);
+      }
+  
+!   if (octspergrp < 1)
+      octspergrp = cols;
+  
+    if (argc > 3)
+      exit_with_usage();
+--- 630,657 ----
+        {
+        case HEX_BITS:		octspergrp = 1; break;
+        case HEX_NORMAL:		octspergrp = 2; break;
++       case HEX_LITTLEENDIAN:	octspergrp = 4; break;
+        case HEX_POSTSCRIPT:
+        case HEX_CINCLUDE:
+        default:			octspergrp = 0; break;
+        }
+  
+!   if (cols < 1 || ((hextype == HEX_NORMAL || hextype == HEX_BITS || hextype == HEX_LITTLEENDIAN)
+  							    && (cols > COLS)))
+      {
+        fprintf(stderr, "%s: invalid number of columns (max. %d).\n", pname, COLS);
+        exit(1);
+      }
+  
+!   if (octspergrp < 1 || octspergrp > cols)
+      octspergrp = cols;
++   else if (hextype == HEX_LITTLEENDIAN && (octspergrp & (octspergrp-1)))
++     {
++       fprintf(stderr,
++ 	      "%s: number of octets per group must be a power of 2 with -e.\n",
++ 	      pname);
++       exit(1);
++     }
+  
+    if (argc > 3)
+      exit_with_usage();
+***************
+*** 781,789 ****
+        return 0;
+      }
+  
+!   /* hextype: HEX_NORMAL or HEX_BITS */
+  
+!   if (hextype == HEX_NORMAL)
+      grplen = octspergrp + octspergrp + 1;	/* chars per octet group */
+    else	/* hextype == HEX_BITS */
+      grplen = 8 * octspergrp + 1;
+--- 808,816 ----
+        return 0;
+      }
+  
+!   /* hextype: HEX_NORMAL or HEX_BITS or HEX_LITTLEENDIAN */
+  
+!   if (hextype != HEX_BITS)
+      grplen = octspergrp + octspergrp + 1;	/* chars per octet group */
+    else	/* hextype == HEX_BITS */
+      grplen = 8 * octspergrp + 1;
+***************
+*** 793,818 ****
+      {
+        if (p == 0)
+  	{
+! 	  sprintf(l, "%07lx: ", n + seekoff);
+  	  for (c = 9; c < LLEN; l[c++] = ' ');
+  	}
+        if (hextype == HEX_NORMAL)
+  	{
+! 	  l[c = (9 + (grplen * p) / octspergrp)] = hexx[(e >> 4) & 0xf];
+! 	  l[++c]			       = hexx[ e       & 0xf];
+  	}
+        else /* hextype == HEX_BITS */
+  	{
+  	  int i;
+  
+! 	  c = (9 + (grplen * p) / octspergrp) - 1;
+  	  for (i = 7; i >= 0; i--)
+  	    l[++c] = (e & (1 << i)) ? '1' : '0';
+  	}
+        if (ebcdic)
+  	e = (e < 64) ? '.' : etoa64[e-64];
+        /* When changing this update definition of LLEN above. */
+!       l[11 + (grplen * cols - 1)/octspergrp + p] =
+  #ifdef __MVS__
+  	  (e >= 64)
+  #else
+--- 820,852 ----
+      {
+        if (p == 0)
+  	{
+! 	  sprintf(l, "%08lx:",
+! 	    ((unsigned long)(n + seekoff + displayoff)) & 0xffffffff);
+  	  for (c = 9; c < LLEN; l[c++] = ' ');
+  	}
+        if (hextype == HEX_NORMAL)
+  	{
+! 	  l[c = (10 + (grplen * p) / octspergrp)] = hexx[(e >> 4) & 0xf];
+! 	  l[++c]				  = hexx[ e       & 0xf];
+! 	}
+!       else if (hextype == HEX_LITTLEENDIAN)
+! 	{
+! 	  int x = p ^ (octspergrp-1);
+! 	  l[c = (10 + (grplen * x) / octspergrp)] = hexx[(e >> 4) & 0xf];
+! 	  l[++c]				  = hexx[ e       & 0xf];
+  	}
+        else /* hextype == HEX_BITS */
+  	{
+  	  int i;
+  
+! 	  c = (10 + (grplen * p) / octspergrp) - 1;
+  	  for (i = 7; i >= 0; i--)
+  	    l[++c] = (e & (1 << i)) ? '1' : '0';
+  	}
+        if (ebcdic)
+  	e = (e < 64) ? '.' : etoa64[e-64];
+        /* When changing this update definition of LLEN above. */
+!       l[12 + (grplen * cols - 1)/octspergrp + p] =
+  #ifdef __MVS__
+  	  (e >= 64)
+  #else
+***************
+*** 824,830 ****
+        n++;
+        if (++p == cols)
+  	{
+! 	  l[c = (11 + (grplen * cols - 1)/octspergrp + p)] = '\n'; l[++c] = '\0';
+  	  xxdline(fpo, l, autoskip ? nonzero : 1);
+  	  nonzero = 0;
+  	  p = 0;
+--- 858,864 ----
+        n++;
+        if (++p == cols)
+  	{
+! 	  l[c = (12 + (grplen * cols - 1)/octspergrp + p)] = '\n'; l[++c] = '\0';
+  	  xxdline(fpo, l, autoskip ? nonzero : 1);
+  	  nonzero = 0;
+  	  p = 0;
+***************
+*** 834,840 ****
+      die(2);
+    if (p)
+      {
+!       l[c = (11 + (grplen * cols - 1)/octspergrp + p)] = '\n'; l[++c] = '\0';
+        xxdline(fpo, l, 1);
+      }
+    else if (autoskip)
+--- 868,874 ----
+      die(2);
+    if (p)
+      {
+!       l[c = (12 + (grplen * cols - 1)/octspergrp + p)] = '\n'; l[++c] = '\0';
+        xxdline(fpo, l, 1);
+      }
+    else if (autoskip)
+*** ../vim-7.4.651/runtime/doc/xxd.1	2010-05-15 13:04:00.000000000 +0200
+--- runtime/doc/xxd.1	2015-03-05 17:45:27.064793726 +0100
+***************
+*** 76,81 ****
+--- 76,91 ----
+  This does not change the hexadecimal representation. The option is
+  meaningless in combinations with \-r, \-p or \-i.
+  .TP
++ .IR \-e
++ Switch to little-endian hexdump.
++ This option treats byte groups as words in little-endian byte order.
++ The default grouping of 4 bytes may be changed using
++ .RI "" \-g .
++ This option only applies to hexdump, leaving the ASCII (or EBCDIC)
++ representation unchanged.
++ The command line switches
++ \-r, \-p, \-i do not work with this mode.
++ .TP
+  .IR "\-g bytes " | " \-groupsize bytes"
+  separate the output of every
+  .RI < bytes >
+***************
+*** 84,90 ****
+  .I \-g 0
+  to suppress grouping.
+  .RI < Bytes "> defaults to " 2
+! in normal mode and \fI1\fP in bits mode.
+  Grouping does not apply to postscript or include style.
+  .TP
+  .IR \-h " | " \-help
+--- 94,100 ----
+  .I \-g 0
+  to suppress grouping.
+  .RI < Bytes "> defaults to " 2
+! in normal mode, \fI4\fP in little-endian mode and \fI1\fP in bits mode.
+  Grouping does not apply to postscript or include style.
+  .TP
+  .IR \-h " | " \-help
+***************
+*** 99,104 ****
+--- 109,119 ----
+  .RI  < len >
+  octets.
+  .TP
++ .I \-o offset
++ add
++ .RI < offset >
++ to the displayed file position.
++ .TP
+  .IR \-p " | " \-ps " | " \-postscript " | " \-plain
+  output in postscript continuous hexdump style. Also known as plain hexdump
+  style.
+*** ../vim-7.4.651/src/version.c	2015-03-05 17:16:02.620687666 +0100
+--- src/version.c	2015-03-05 17:41:25.523515077 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     652,
+  /**/
+
+-- 
+FATHER:       Make sure the Prince doesn't leave this room until I come and
+              get him.
+FIRST GUARD:  Not ... to leave the room ... even if you come and get him.
+FATHER:       No.  Until I come and get him.
+SECOND GUARD: Hic.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

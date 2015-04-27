@@ -1,0 +1,116 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.405
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.405
+Problem:    Screen updating is slow when using matches.
+Solution:   Do not use the ">=" as in patch 7.4.362, check the lnum.
+Files:	    src/screen.c, src/testdir/test63.in, src/testdir/test63.ok
+
+
+*** ../vim-7.4.404/src/screen.c	2014-08-06 13:20:51.799275513 +0200
+--- src/screen.c	2014-08-16 16:23:31.486282950 +0200
+***************
+*** 3858,3864 ****
+  			{
+  			    shl->attr_cur = shl->attr;
+  			}
+! 			else if (v >= (long)shl->endcol)
+  			{
+  			    shl->attr_cur = 0;
+  			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+--- 3858,3864 ----
+  			{
+  			    shl->attr_cur = shl->attr;
+  			}
+! 			else if (v >= (long)shl->endcol && shl->lnum == lnum)
+  			{
+  			    shl->attr_cur = 0;
+  			    next_search_hl(wp, shl, lnum, (colnr_T)v, cur);
+*** ../vim-7.4.404/src/testdir/test63.in	2014-07-23 13:16:26.727971292 +0200
+--- src/testdir/test63.in	2014-08-16 16:00:58.618332015 +0200
+***************
+*** 3,8 ****
+--- 3,9 ----
+  
+  STARTTEST
+  :so small.vim
++ :set encoding=utf8
+  :" --- Check that "matcharg()" returns the correct group and pattern if a match
+  :" --- is defined.
+  :let @r = "*** Test 1: "
+***************
+*** 164,170 ****
+  :if v1 != v5 && v6 == v1 && v8 == v5 && v10 == v5 && v11 == v1
+  :  let @r .= "OK\n"
+  :else
+! :  let @r .= "FAILED\n"
+  :endif
+  :call clearmatches()
+  G"rp
+--- 165,191 ----
+  :if v1 != v5 && v6 == v1 && v8 == v5 && v10 == v5 && v11 == v1
+  :  let @r .= "OK\n"
+  :else
+! :  let @r .= "FAILED: " . v5 . "/" . v6 . "/" . v8 . "/" . v10 . "/" . v11 . "\n"
+! :endif
+! :call clearmatches()
+! :"
+! :call setline(1, 'abcdΣabcdef')
+! :call matchaddpos("MyGroup1", [[1, 4, 2], [1, 9, 2]])
+! :1
+! :redraw!
+! :let v1 = screenattr(1, 1)
+! :let v4 = screenattr(1, 4)
+! :let v5 = screenattr(1, 5)
+! :let v6 = screenattr(1, 6)
+! :let v7 = screenattr(1, 7)
+! :let v8 = screenattr(1, 8)
+! :let v9 = screenattr(1, 9)
+! :let v10 = screenattr(1, 10)
+! :let @r .= string(getmatches())."\n"
+! :if v1 != v4 && v5 == v4 && v6 == v1 && v7 == v1 && v8 == v4 && v9 == v4 && v10 == v1
+! :  let @r .= "OK\n"
+! :else
+! :  let @r .= "FAILED: " . v4 . "/" . v5 . "/" . v6 . "/" . v7 . "/" . v8 . "/" . v9 . "/" . v10 . "\n"
+  :endif
+  :call clearmatches()
+  G"rp
+*** ../vim-7.4.404/src/testdir/test63.ok	2014-06-17 17:48:21.784628008 +0200
+--- src/testdir/test63.ok	2014-08-16 16:00:19.602333430 +0200
+***************
+*** 12,14 ****
+--- 12,16 ----
+  *** Test 11:
+  [{'group': 'MyGroup1', 'id': 3, 'priority': 10, 'pos1': [1, 5, 1], 'pos2': [1, 8, 3]}]
+  OK
++ [{'group': 'MyGroup1', 'id': 11, 'priority': 10, 'pos1': [1, 4, 2], 'pos2': [1, 9, 2]}]
++ OK
+*** ../vim-7.4.404/src/version.c	2014-08-13 22:05:49.032892299 +0200
+--- src/version.c	2014-08-16 16:28:18.442272543 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     405,
+  /**/
+
+-- 
+This planet has -- or rather had -- a problem, which was this: most
+of the people living on it were unhappy for pretty much of the time.
+Many solutions were suggested for this problem, but most of these
+were largely concerned with the movements of small green pieces of
+paper, which is odd because on the whole it wasn't the small green
+pieces of paper that were unhappy.
+		-- Douglas Adams, "The Hitchhiker's Guide to the Galaxy"
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,65 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.554
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.554
+Problem:    Missing part of patch 7.4.519.
+Solution:   Copy back regprog after calling vim_regexec.
+Files:	    src/quickfix.c
+
+
+*** ../vim-7.4.553/src/quickfix.c	2014-07-23 16:33:04.075886500 +0200
+--- src/quickfix.c	2014-11-19 16:21:16.404128731 +0100
+***************
+*** 592,597 ****
+--- 592,599 ----
+  restofline:
+  	for ( ; fmt_ptr != NULL; fmt_ptr = fmt_ptr->next)
+  	{
++ 	    int r;
++ 
+  	    idx = fmt_ptr->prefix;
+  	    if (multiscan && vim_strchr((char_u *)"OPQ", idx) == NULL)
+  		continue;
+***************
+*** 607,613 ****
+  	    tail = NULL;
+  
+  	    regmatch.regprog = fmt_ptr->prog;
+! 	    if (vim_regexec(&regmatch, IObuff, (colnr_T)0))
+  	    {
+  		if ((idx == 'C' || idx == 'Z') && !multiline)
+  		    continue;
+--- 609,617 ----
+  	    tail = NULL;
+  
+  	    regmatch.regprog = fmt_ptr->prog;
+! 	    r = vim_regexec(&regmatch, IObuff, (colnr_T)0);
+! 	    fmt_ptr->prog = regmatch.regprog;
+! 	    if (r)
+  	    {
+  		if ((idx == 'C' || idx == 'Z') && !multiline)
+  		    continue;
+*** ../vim-7.4.553/src/version.c	2014-12-17 14:36:10.367090935 +0100
+--- src/version.c	2014-12-17 14:40:51.463618087 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     554,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+2. You kiss your girlfriend's home page.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

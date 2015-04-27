@@ -1,0 +1,55 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.239
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.239
+Problem:    ":e +" does not position cursor at end of the file.
+Solution:   Check for "+" being the last character (ZyX)
+Files:	    src/ex_docmd.c
+
+
+*** ../vim-7.4.238/src/ex_docmd.c	2014-04-01 18:54:44.312837673 +0200
+--- src/ex_docmd.c	2014-04-02 14:18:02.247877546 +0200
+***************
+*** 4841,4847 ****
+      if (*arg == '+')	    /* +[command] */
+      {
+  	++arg;
+! 	if (vim_isspace(*arg))
+  	    command = dollar_command;
+  	else
+  	{
+--- 4841,4847 ----
+      if (*arg == '+')	    /* +[command] */
+      {
+  	++arg;
+! 	if (vim_isspace(*arg) || *arg == NUL)
+  	    command = dollar_command;
+  	else
+  	{
+*** ../vim-7.4.238/src/version.c	2014-04-02 14:05:34.003887839 +0200
+--- src/version.c	2014-04-02 14:17:40.923877840 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     239,
+  /**/
+
+-- 
+Q: What is the difference betwee open-source and commercial software?
+A: If you have a problem with commercial software you can call a phone
+   number and they will tell you it might be solved in a future version.
+   For open-source software there isn't a phone number to call, but you
+   get the solution within a day.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

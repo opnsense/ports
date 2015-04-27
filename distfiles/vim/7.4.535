@@ -1,0 +1,469 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.535
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.535 (after 7.4.530)
+Problem:    Can't build with tiny features.
+Solution:   Add #ifdefs and skip a test.
+Files:	    src/ex_docmd.c, src/testdir/test_argument_count.in
+
+
+*** ../vim-7.4.534/src/ex_docmd.c	2014-11-27 16:38:07.648261279 +0100
+--- src/ex_docmd.c	2014-11-27 18:12:30.874072643 +0100
+***************
+*** 1713,1718 ****
+--- 1713,1765 ----
+      return buf->b_fnum;
+  }
+  
++ #ifdef FEAT_WINDOWS
++ static int current_win_nr __ARGS((win_T *win));
++ static int current_tab_nr __ARGS((tabpage_T *tab));
++ 
++     static int
++ current_win_nr(win)
++     win_T	*win;
++ {
++     win_T	*wp;
++     int		nr = 0;
++ 
++     for (wp = firstwin; wp != NULL; wp = wp->w_next)
++     {
++ 	++nr;
++ 	if (wp == win)
++ 	    break;
++     }
++     return nr;
++ }
++ 
++     static int
++ current_tab_nr(tab)
++     tabpage_T   *tab;
++ {
++     tabpage_T	*tp;
++     int		nr = 0;
++ 
++     for (tp = first_tabpage; tp != NULL; tp = tp->tp_next)
++     {
++ 	++nr;
++ 	if (tp == tab)
++ 	    break;
++     }
++     return nr;
++ }
++ 
++ # define CURRENT_WIN_NR current_win_nr(curwin)
++ # define LAST_WIN_NR current_win_nr(NULL)
++ # define CURRENT_TAB_NR current_tab_nr(curtab)
++ # define LAST_TAB_NR current_tab_nr(NULL)
++ #else
++ # define CURRENT_WIN_NR 1
++ # define LAST_WIN_NR 1
++ # define CURRENT_TAB_NR 1
++ # define LAST_TAB_NR 1
++ #endif
++ 
+  
+  /*
+   * Execute one Ex command.
+***************
+*** 1765,1772 ****
+  #endif
+      cmdmod_T		save_cmdmod;
+      int			ni;			/* set when Not Implemented */
+-     win_T		*wp;
+-     tabpage_T		*tp;
+      char_u		*cmd;
+  
+      vim_memset(&ea, 0, sizeof(ea));
+--- 1812,1817 ----
+***************
+*** 2085,2097 ****
+  		ea.line2 = curwin->w_cursor.lnum;
+  		break;
+  	    case ADDR_WINDOWS:
+! 		lnum = 0;
+! 		for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 		{
+! 		    lnum++;
+! 		    if (wp == curwin)
+! 			break;
+! 		}
+  		ea.line2 = lnum;
+  		break;
+  	    case ADDR_ARGUMENTS:
+--- 2130,2136 ----
+  		ea.line2 = curwin->w_cursor.lnum;
+  		break;
+  	    case ADDR_WINDOWS:
+! 		lnum = CURRENT_WIN_NR;
+  		ea.line2 = lnum;
+  		break;
+  	    case ADDR_ARGUMENTS:
+***************
+*** 2102,2114 ****
+  		ea.line2 = curbuf->b_fnum;
+  		break;
+  	    case ADDR_TABS:
+! 		lnum = 0;
+! 		for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 		{
+! 		    lnum++;
+! 		    if (tp == curtab)
+! 			break;
+! 		}
+  		ea.line2 = lnum;
+  		break;
+  	}
+--- 2141,2147 ----
+  		ea.line2 = curbuf->b_fnum;
+  		break;
+  	    case ADDR_TABS:
+! 		lnum = CURRENT_TAB_NR;
+  		ea.line2 = lnum;
+  		break;
+  	}
+***************
+*** 4198,4205 ****
+      pos_T	pos;
+      pos_T	*fp;
+      linenr_T	lnum;
+-     win_T	*wp;
+-     tabpage_T	*tp;
+  
+      cmd = skipwhite(*ptr);
+      lnum = MAXLNUM;
+--- 4231,4236 ----
+***************
+*** 4215,4227 ****
+  			lnum = curwin->w_cursor.lnum;
+  			break;
+  		    case ADDR_WINDOWS:
+! 			lnum = 0;
+! 			for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 			{
+! 			    lnum++;
+! 			    if (wp == curwin)
+! 				break;
+! 			}
+  			break;
+  		    case ADDR_ARGUMENTS:
+  			lnum = curwin->w_arg_idx + 1;
+--- 4246,4252 ----
+  			lnum = curwin->w_cursor.lnum;
+  			break;
+  		    case ADDR_WINDOWS:
+! 			lnum = CURRENT_WIN_NR;
+  			break;
+  		    case ADDR_ARGUMENTS:
+  			lnum = curwin->w_arg_idx + 1;
+***************
+*** 4231,4243 ****
+  			lnum = curbuf->b_fnum;
+  			break;
+  		    case ADDR_TABS:
+! 			lnum = 0;
+! 			for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 			{
+! 			    lnum++;
+! 			    if (tp == curtab)
+! 				break;
+! 			}
+  			break;
+  		}
+  		break;
+--- 4256,4262 ----
+  			lnum = curbuf->b_fnum;
+  			break;
+  		    case ADDR_TABS:
+! 			lnum = CURRENT_TAB_NR;
+  			break;
+  		}
+  		break;
+***************
+*** 4250,4258 ****
+  			lnum = curbuf->b_ml.ml_line_count;
+  			break;
+  		    case ADDR_WINDOWS:
+! 			lnum = 0;
+! 			for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 			    lnum++;
+  			break;
+  		    case ADDR_ARGUMENTS:
+  			lnum = ARGCOUNT;
+--- 4269,4275 ----
+  			lnum = curbuf->b_ml.ml_line_count;
+  			break;
+  		    case ADDR_WINDOWS:
+! 			lnum = LAST_WIN_NR;
+  			break;
+  		    case ADDR_ARGUMENTS:
+  			lnum = ARGCOUNT;
+***************
+*** 4262,4270 ****
+  			lnum = lastbuf->b_fnum;
+  			break;
+  		    case ADDR_TABS:
+! 			lnum = 0;
+! 			for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 			    lnum++;
+  			break;
+  		}
+  		break;
+--- 4279,4285 ----
+  			lnum = lastbuf->b_fnum;
+  			break;
+  		    case ADDR_TABS:
+! 			lnum = LAST_TAB_NR;
+  			break;
+  		}
+  		break;
+***************
+*** 4419,4434 ****
+  		switch (addr_type)
+  		{
+  		    case ADDR_LINES:
+! 			lnum = curwin->w_cursor.lnum;	/* "+1" is same as ".+1" */
+  			break;
+  		    case ADDR_WINDOWS:
+! 			lnum = 0;
+! 			for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 			{
+! 			    lnum++;
+! 			    if (wp == curwin)
+! 				break;
+! 			}
+  			break;
+  		    case ADDR_ARGUMENTS:
+  			lnum = curwin->w_arg_idx + 1;
+--- 4434,4444 ----
+  		switch (addr_type)
+  		{
+  		    case ADDR_LINES:
+! 			/* "+1" is same as ".+1" */
+! 			lnum = curwin->w_cursor.lnum;
+  			break;
+  		    case ADDR_WINDOWS:
+! 			lnum = CURRENT_WIN_NR;
+  			break;
+  		    case ADDR_ARGUMENTS:
+  			lnum = curwin->w_arg_idx + 1;
+***************
+*** 4438,4450 ****
+  			lnum = curbuf->b_fnum;
+  			break;
+  		    case ADDR_TABS:
+! 			lnum = 0;
+! 			for(tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 			{
+! 			    lnum++;
+! 			    if (tp == curtab)
+! 				break;
+! 			}
+  			break;
+  		}
+  	    }
+--- 4448,4454 ----
+  			lnum = curbuf->b_fnum;
+  			break;
+  		    case ADDR_TABS:
+! 			lnum = CURRENT_TAB_NR;
+  			break;
+  		}
+  	    }
+***************
+*** 4481,4489 ****
+  			lnum = 0;
+  			break;
+  		    }
+! 		    c = 0;
+! 		    for (tp = first_tabpage; tp != NULL; tp = tp->tp_next)
+! 			c++;
+  		    if (lnum >= c)
+  			lnum = c;
+  		    break;
+--- 4485,4491 ----
+  			lnum = 0;
+  			break;
+  		    }
+! 		    c = LAST_TAB_NR;
+  		    if (lnum >= c)
+  			lnum = c;
+  		    break;
+***************
+*** 4493,4501 ****
+  			lnum = 0;
+  			break;
+  		    }
+! 		    c = 0;
+! 		    for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 			c++;
+  		    if (lnum > c)
+  			lnum = c;
+  		    break;
+--- 4495,4501 ----
+  			lnum = 0;
+  			break;
+  		    }
+! 		    c = LAST_WIN_NR;
+  		    if (lnum > c)
+  			lnum = c;
+  		    break;
+***************
+*** 6805,6819 ****
+  }
+  
+  /*
+!  * ":quit": quit current window, quit Vim if closed the last window.
+   */
+      static void
+  ex_quit(eap)
+      exarg_T	*eap;
+  {
+      win_T	*wp;
+!     buf_T	*buf;
+!     int		wnr;
+  
+  #ifdef FEAT_CMDWIN
+      if (cmdwin_type != 0)
+--- 6805,6819 ----
+  }
+  
+  /*
+!  * ":quit": quit current window, quit Vim if the last window is closed.
+   */
+      static void
+  ex_quit(eap)
+      exarg_T	*eap;
+  {
++ #if defined(FEAT_WINDOWS) || defined(FEAT_AUTOCMD)
+      win_T	*wp;
+! #endif
+  
+  #ifdef FEAT_CMDWIN
+      if (cmdwin_type != 0)
+***************
+*** 6828,6855 ****
+  	text_locked_msg();
+  	return;
+      }
+      if (eap->addr_count > 0)
+      {
+! 	wnr = eap->line2;
+! 	for (wp = firstwin; --wnr > 0; )
+! 	{
+! 	    if (wp->w_next == NULL)
+  		break;
+- 	    else
+- 		wp = wp->w_next;
+- 	}
+- 	buf = wp->w_buffer;
+      }
+      else
+!     {
+  	wp = curwin;
+! 	buf = curbuf;
+!     }
+  #ifdef FEAT_AUTOCMD
+      apply_autocmds(EVENT_QUITPRE, NULL, NULL, FALSE, curbuf);
+      /* Refuse to quit when locked or when the buffer in the last window is
+       * being closed (can only happen in autocommands). */
+!     if (curbuf_locked() || (buf->b_nwindows == 1 && buf->b_closing))
+  	return;
+  #endif
+  
+--- 6828,6854 ----
+  	text_locked_msg();
+  	return;
+      }
++ #ifdef FEAT_WINDOWS
+      if (eap->addr_count > 0)
+      {
+! 	int	wnr = eap->line2;
+! 
+! 	for (wp = firstwin; wp->w_next != NULL; wp = wp->w_next)
+! 	    if (--wnr <= 0)
+  		break;
+      }
+      else
+! #endif
+! #if defined(FEAT_WINDOWS) || defined(FEAT_AUTOCMD)
+  	wp = curwin;
+! #endif
+! 
+  #ifdef FEAT_AUTOCMD
+      apply_autocmds(EVENT_QUITPRE, NULL, NULL, FALSE, curbuf);
+      /* Refuse to quit when locked or when the buffer in the last window is
+       * being closed (can only happen in autocommands). */
+!     if (curbuf_locked() || (wp->w_buffer->b_nwindows == 1
+! 						  && wp->w_buffer->b_closing))
+  	return;
+  #endif
+  
+***************
+*** 7214,7222 ****
+  ex_hide(eap)
+      exarg_T	*eap;
+  {
+-     win_T	*win;
+-     int		winnr = 0;
+- 
+      if (*eap->arg != NUL && check_nextcmd(eap->arg) == NULL)
+  	eap->errmsg = e_invarg;
+      else
+--- 7213,7218 ----
+***************
+*** 7231,7237 ****
+  # endif
+  	    if (eap->addr_count == 0)
+  		win_close(curwin, FALSE);	/* don't free buffer */
+! 	    else {
+  		for (win = firstwin; win != NULL; win = win->w_next)
+  		{
+  		    winnr++;
+--- 7227,7237 ----
+  # endif
+  	    if (eap->addr_count == 0)
+  		win_close(curwin, FALSE);	/* don't free buffer */
+! 	    else
+! 	    {
+! 		int	winnr = 0;
+! 		win_T	*win;
+! 
+  		for (win = firstwin; win != NULL; win = win->w_next)
+  		{
+  		    winnr++;
+*** ../vim-7.4.534/src/testdir/test_argument_count.in	2014-11-27 16:22:42.746412995 +0100
+--- src/testdir/test_argument_count.in	2014-11-27 18:21:05.568408375 +0100
+***************
+*** 1,6 ****
+--- 1,7 ----
+  Tests for :[count]argument! and :[count]argdelete     vim: set ft=vim :
+  
+  STARTTEST
++ :so small.vim
+  :%argd
+  :argadd a b c d
+  :set hidden
+*** ../vim-7.4.534/src/version.c	2014-11-27 17:44:05.380820867 +0100
+--- src/version.c	2014-11-27 18:30:32.826167330 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     535,
+  /**/
+
+-- 
+Mushrooms always grow in damp places and so they look like umbrellas.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

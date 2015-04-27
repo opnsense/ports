@@ -1,0 +1,79 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.589
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.589
+Problem:    In the MS-Windows console Vim can't handle greek characters when
+	    encoding is utf-8.
+Solution:   Escape K_NUL. (Yasuhiro Matsumoto)
+Files:	    src/os_win32.c
+
+
+*** ../vim-7.4.588/src/os_win32.c	2014-11-12 16:10:44.254085193 +0100
+--- src/os_win32.c	2015-01-20 19:36:59.725188180 +0100
+***************
+*** 1814,1831 ****
+  		if (conv)
+  		{
+  		    char_u *p = typeahead + typeaheadlen;
+- 		    char_u *e = typeahead + TYPEAHEADLEN;
+  
+! 		    while (*p && p < e)
+  		    {
+! 			if (*p == K_NUL)
+  			{
+  			    ++p;
+- 			    mch_memmove(p + 1, p, ((size_t)(e - p)) - 1);
+- 			    *p = 3;
+- 			    ++n;
+  			}
+- 			++p;
+  		    }
+  		}
+  
+--- 1814,1835 ----
+  		if (conv)
+  		{
+  		    char_u *p = typeahead + typeaheadlen;
+  
+! 		    if (*p != K_NUL)
+  		    {
+! 			char_u *e = typeahead + TYPEAHEADLEN;
+! 
+! 			while (*p && p < e)
+  			{
++ 			    if (*p == K_NUL)
++ 			    {
++ 				++p;
++ 				mch_memmove(p + 1, p, ((size_t)(e - p)) - 1);
++ 				*p = 3;
++ 				++n;
++ 			    }
+  			    ++p;
+  			}
+  		    }
+  		}
+  
+*** ../vim-7.4.588/src/version.c	2015-01-20 19:30:46.669275579 +0100
+--- src/version.c	2015-01-20 19:35:35.774107846 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     589,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+95. Only communication in your household is through email.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,56 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.275
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.275
+Problem:    When changing the type of a sign that hasn't been placed ther is
+	    no error message.
+Solution:   Add an error message. (Christian Brabandt)
+Files:	    src/ex_cmds.c
+
+
+*** ../vim-7.4.274/src/ex_cmds.c	2014-04-29 12:15:22.856032651 +0200
+--- src/ex_cmds.c	2014-05-07 14:38:31.293091622 +0200
+***************
+*** 7275,7281 ****
+  	    else
+  		/* ":sign place {id} file={fname}": change sign type */
+  		lnum = buf_change_sign_type(buf, id, sp->sn_typenr);
+! 	    update_debug_sign(buf, lnum);
+  	}
+  	else
+  	    EMSG(_(e_invarg));
+--- 7275,7284 ----
+  	    else
+  		/* ":sign place {id} file={fname}": change sign type */
+  		lnum = buf_change_sign_type(buf, id, sp->sn_typenr);
+! 	    if (lnum > 0)
+! 		update_debug_sign(buf, lnum);
+! 	    else
+! 		EMSG2(_("E885: Not possible to change sign %s"), sign_name);
+  	}
+  	else
+  	    EMSG(_(e_invarg));
+*** ../vim-7.4.274/src/version.c	2014-05-02 15:46:10.731268318 +0200
+--- src/version.c	2014-05-07 14:18:32.581081129 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     275,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+117. You are more comfortable typing in html.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

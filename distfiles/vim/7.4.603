@@ -1,0 +1,262 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.603
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.603
+Problem:    'foldcolumn' may be set such that it fills the whole window, not
+	    leaving space for text.
+Solution:   Reduce the foldcolumn width when there is not sufficient room.
+	    (idea by Christian Brabandt)
+Files:	    src/srcreen.c
+
+
+*** ../vim-7.4.602/src/screen.c	2015-01-20 19:01:32.380444290 +0100
+--- src/screen.c	2015-01-27 16:25:47.264690419 +0100
+***************
+*** 109,114 ****
+--- 109,115 ----
+  
+  #ifdef FEAT_FOLDING
+  static foldinfo_T win_foldinfo;	/* info for 'foldcolumn' */
++ static int compute_foldcolumn __ARGS((win_T *wp, int col));
+  #endif
+  
+  /*
+***************
+*** 1202,1208 ****
+  			lnumb = wp->w_lines[i].wl_lnum;
+  			/* When there is a fold column it might need updating
+  			 * in the next line ("J" just above an open fold). */
+! 			if (wp->w_p_fdc > 0)
+  			    ++lnumb;
+  		    }
+  		}
+--- 1203,1209 ----
+  			lnumb = wp->w_lines[i].wl_lnum;
+  			/* When there is a fold column it might need updating
+  			 * in the next line ("J" just above an open fold). */
+! 			if (compute_foldcolumn(wp, 0) > 0)
+  			    ++lnumb;
+  		    }
+  		}
+***************
+*** 2238,2250 ****
+  #else
+  # define FDC_OFF 0
+  #endif
+  
+  #ifdef FEAT_RIGHTLEFT
+      if (wp->w_p_rl)
+      {
+  	/* No check for cmdline window: should never be right-left. */
+  # ifdef FEAT_FOLDING
+! 	n = wp->w_p_fdc;
+  
+  	if (n > 0)
+  	{
+--- 2239,2254 ----
+  #else
+  # define FDC_OFF 0
+  #endif
++ #ifdef FEAT_FOLDING
++     int		fdc = compute_foldcolumn(wp, 0);
++ #endif
+  
+  #ifdef FEAT_RIGHTLEFT
+      if (wp->w_p_rl)
+      {
+  	/* No check for cmdline window: should never be right-left. */
+  # ifdef FEAT_FOLDING
+! 	n = fdc;
+  
+  	if (n > 0)
+  	{
+***************
+*** 2293,2301 ****
+  	}
+  #endif
+  #ifdef FEAT_FOLDING
+! 	if (wp->w_p_fdc > 0)
+  	{
+! 	    int	    nn = n + wp->w_p_fdc;
+  
+  	    /* draw the fold column at the left */
+  	    if (nn > W_WIDTH(wp))
+--- 2297,2305 ----
+  	}
+  #endif
+  #ifdef FEAT_FOLDING
+! 	if (fdc > 0)
+  	{
+! 	    int	    nn = n + fdc;
+  
+  	    /* draw the fold column at the left */
+  	    if (nn > W_WIDTH(wp))
+***************
+*** 2346,2351 ****
+--- 2350,2373 ----
+  
+  #ifdef FEAT_FOLDING
+  /*
++  * Compute the width of the foldcolumn.  Based on 'foldcolumn' and how much
++  * space is available for window "wp", minus "col".
++  */
++     static int
++ compute_foldcolumn(wp, col)
++     win_T *wp;
++     int   col;
++ {
++     int fdc = wp->w_p_fdc;
++     int wmw = wp == curwin && p_wmw == 0 ? 1 : p_wmw;
++     int wwidth = W_WIDTH(wp);
++ 
++     if (fdc > wwidth - (col + wmw))
++ 	fdc = wwidth - (col + wmw);
++     return fdc;
++ }
++ 
++ /*
+   * Display one folded line.
+   */
+      static void
+***************
+*** 2396,2405 ****
+  
+      /*
+       * 2. Add the 'foldcolumn'
+       */
+!     fdc = wp->w_p_fdc;
+!     if (fdc > W_WIDTH(wp) - col)
+! 	fdc = W_WIDTH(wp) - col;
+      if (fdc > 0)
+      {
+  	fill_foldcolumn(buf, wp, TRUE, lnum);
+--- 2418,2426 ----
+  
+      /*
+       * 2. Add the 'foldcolumn'
++      *    Reduce the width when there is not enough space.
+       */
+!     fdc = compute_foldcolumn(wp, col);
+      if (fdc > 0)
+      {
+  	fill_foldcolumn(buf, wp, TRUE, lnum);
+***************
+*** 2787,2809 ****
+      int		level;
+      int		first_level;
+      int		empty;
+  
+      /* Init to all spaces. */
+!     copy_spaces(p, (size_t)wp->w_p_fdc);
+  
+      level = win_foldinfo.fi_level;
+      if (level > 0)
+      {
+  	/* If there is only one column put more info in it. */
+! 	empty = (wp->w_p_fdc == 1) ? 0 : 1;
+  
+  	/* If the column is too narrow, we start at the lowest level that
+  	 * fits and use numbers to indicated the depth. */
+! 	first_level = level - wp->w_p_fdc - closed + 1 + empty;
+  	if (first_level < 1)
+  	    first_level = 1;
+  
+! 	for (i = 0; i + empty < wp->w_p_fdc; ++i)
+  	{
+  	    if (win_foldinfo.fi_lnum == lnum
+  			      && first_level + i >= win_foldinfo.fi_low_level)
+--- 2808,2831 ----
+      int		level;
+      int		first_level;
+      int		empty;
++     int		fdc = compute_foldcolumn(wp, 0);
+  
+      /* Init to all spaces. */
+!     copy_spaces(p, (size_t)fdc);
+  
+      level = win_foldinfo.fi_level;
+      if (level > 0)
+      {
+  	/* If there is only one column put more info in it. */
+! 	empty = (fdc == 1) ? 0 : 1;
+  
+  	/* If the column is too narrow, we start at the lowest level that
+  	 * fits and use numbers to indicated the depth. */
+! 	first_level = level - fdc - closed + 1 + empty;
+  	if (first_level < 1)
+  	    first_level = 1;
+  
+! 	for (i = 0; i + empty < fdc; ++i)
+  	{
+  	    if (win_foldinfo.fi_lnum == lnum
+  			      && first_level + i >= win_foldinfo.fi_low_level)
+***************
+*** 2819,2825 ****
+  	}
+      }
+      if (closed)
+! 	p[i >= wp->w_p_fdc ? i - 1 : i] = '+';
+  }
+  #endif /* FEAT_FOLDING */
+  
+--- 2841,2847 ----
+  	}
+      }
+      if (closed)
+! 	p[i >= fdc ? i - 1 : i] = '+';
+  }
+  #endif /* FEAT_FOLDING */
+  
+***************
+*** 3556,3567 ****
+  #ifdef FEAT_FOLDING
+  	    if (draw_state == WL_FOLD - 1 && n_extra == 0)
+  	    {
+  		draw_state = WL_FOLD;
+! 		if (wp->w_p_fdc > 0)
+  		{
+  		    /* Draw the 'foldcolumn'. */
+  		    fill_foldcolumn(extra, wp, FALSE, lnum);
+! 		    n_extra = wp->w_p_fdc;
+  		    p_extra = extra;
+  		    p_extra[n_extra] = NUL;
+  		    c_extra = NUL;
+--- 3578,3591 ----
+  #ifdef FEAT_FOLDING
+  	    if (draw_state == WL_FOLD - 1 && n_extra == 0)
+  	    {
++ 		int fdc = compute_foldcolumn(wp, 0);
++ 
+  		draw_state = WL_FOLD;
+! 		if (fdc > 0)
+  		{
+  		    /* Draw the 'foldcolumn'. */
+  		    fill_foldcolumn(extra, wp, FALSE, lnum);
+! 		    n_extra = fdc;
+  		    p_extra = extra;
+  		    p_extra[n_extra] = NUL;
+  		    c_extra = NUL;
+*** ../vim-7.4.602/src/version.c	2015-01-27 15:58:37.202395482 +0100
+--- src/version.c	2015-01-27 16:14:45.703878550 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     603,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+129. You cancel your newspaper subscription.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

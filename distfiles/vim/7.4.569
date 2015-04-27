@@ -1,0 +1,165 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.569
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.569 (after 7.4.468)
+Problem:    Having CTRL-C interrupt or not does not check the mode of the
+	    mapping. (Ingo Karkat)
+Solution:   Use a bitmask with the map mode. (Christian Brabandt)
+Files:	    src/getchar.c, src/structs.h, src/testdir/test_mapping.in,
+	    src/testdir/test_mapping.ok, src/ui.c, src/globals.h
+
+
+*** ../vim-7.4.568/src/getchar.c	2014-12-14 00:43:50.335749455 +0100
+--- src/getchar.c	2015-01-14 12:13:13.136016098 +0100
+***************
+*** 3708,3715 ****
+  	if (!did_it)
+  	    retval = 2;			    /* no match */
+  	else if (*keys == Ctrl_C)
+  	    /* If CTRL-C has been unmapped, reuse it for Interrupting. */
+! 	    mapped_ctrl_c = FALSE;
+  	goto theend;
+      }
+  
+--- 3708,3720 ----
+  	if (!did_it)
+  	    retval = 2;			    /* no match */
+  	else if (*keys == Ctrl_C)
++ 	{
+  	    /* If CTRL-C has been unmapped, reuse it for Interrupting. */
+! 	    if (map_table == curbuf->b_maphash)
+! 		curbuf->b_mapped_ctrl_c &= ~mode;
+! 	    else
+! 		mapped_ctrl_c &= ~mode;
+! 	}
+  	goto theend;
+      }
+  
+***************
+*** 3744,3750 ****
+  
+      /* If CTRL-C has been mapped, don't always use it for Interrupting. */
+      if (*keys == Ctrl_C)
+! 	mapped_ctrl_c = TRUE;
+  
+      mp->m_keys = vim_strsave(keys);
+      mp->m_str = vim_strsave(rhs);
+--- 3749,3760 ----
+  
+      /* If CTRL-C has been mapped, don't always use it for Interrupting. */
+      if (*keys == Ctrl_C)
+!     {
+! 	if (map_table == curbuf->b_maphash)
+! 	    curbuf->b_mapped_ctrl_c |= mode;
+! 	else
+! 	    mapped_ctrl_c |= mode;
+!     }
+  
+      mp->m_keys = vim_strsave(keys);
+      mp->m_str = vim_strsave(rhs);
+*** ../vim-7.4.568/src/structs.h	2014-09-23 15:45:04.874801055 +0200
+--- src/structs.h	2015-01-14 12:15:33.582480344 +0100
+***************
+*** 1802,1807 ****
+--- 1802,1808 ----
+      cryptstate_T *b_cryptstate;	/* Encryption state while reading or writing
+  				 * the file. NULL when not using encryption. */
+  #endif
++     int		b_mapped_ctrl_c; /* modes where CTRL-C is mapped */
+  
+  }; /* file_buffer */
+  
+*** ../vim-7.4.568/src/testdir/test_mapping.in	2014-12-14 00:43:50.335749455 +0100
+--- src/testdir/test_mapping.in	2015-01-14 12:11:14.197316987 +0100
+***************
+*** 8,13 ****
+--- 8,22 ----
+  :inoreab чкпр   vim
+  GAчкпр 
+  
++ :" mapping of ctrl-c in insert mode
++ :set cpo-=< cpo-=k
++ :inoremap <c-c> <ctrl-c>
++ :cnoremap <c-c> dummy
++ :cunmap <c-c>
++ GA
++ TEST2: CTRL-C |A|
++ 
++ :nunmap <c-c>
+  
+  : " langmap should not get remapped in insert mode
+  :inoremap { FAIL_ilangmap
+*** ../vim-7.4.568/src/testdir/test_mapping.ok	2014-12-14 00:43:50.335749455 +0100
+--- src/testdir/test_mapping.ok	2015-01-14 12:11:14.197316987 +0100
+***************
+*** 1,4 ****
+--- 1,6 ----
+  test starts here:
+  vim
++ TEST2: CTRL-C |<ctrl-c>A|
++ 
+  +
+  +
+*** ../vim-7.4.568/src/ui.c	2014-09-19 13:46:49.550399801 +0200
+--- src/ui.c	2015-01-14 12:18:23.888618642 +0100
+***************
+*** 180,186 ****
+  
+  	/* ... there is no need for CTRL-C to interrupt something, don't let
+  	 * it set got_int when it was mapped. */
+! 	if (mapped_ctrl_c)
+  	    ctrl_c_interrupts = FALSE;
+      }
+  
+--- 180,186 ----
+  
+  	/* ... there is no need for CTRL-C to interrupt something, don't let
+  	 * it set got_int when it was mapped. */
+! 	if ((mapped_ctrl_c | curbuf->b_mapped_ctrl_c) & State)
+  	    ctrl_c_interrupts = FALSE;
+      }
+  
+*** ../vim-7.4.568/src/globals.h	2014-08-10 13:34:59.056785459 +0200
+--- src/globals.h	2015-01-14 12:13:58.959514980 +0100
+***************
+*** 958,964 ****
+  #ifdef USE_ON_FLY_SCROLL
+  EXTERN int	dont_scroll INIT(= FALSE);/* don't use scrollbars when TRUE */
+  #endif
+! EXTERN int	mapped_ctrl_c INIT(= FALSE); /* CTRL-C is mapped */
+  EXTERN int	ctrl_c_interrupts INIT(= TRUE);	/* CTRL-C sets got_int */
+  
+  EXTERN cmdmod_T	cmdmod;			/* Ex command modifiers */
+--- 958,964 ----
+  #ifdef USE_ON_FLY_SCROLL
+  EXTERN int	dont_scroll INIT(= FALSE);/* don't use scrollbars when TRUE */
+  #endif
+! EXTERN int	mapped_ctrl_c INIT(= FALSE); /* modes where CTRL-C is mapped */
+  EXTERN int	ctrl_c_interrupts INIT(= TRUE);	/* CTRL-C sets got_int */
+  
+  EXTERN cmdmod_T	cmdmod;			/* Ex command modifiers */
+*** ../vim-7.4.568/src/version.c	2015-01-14 11:24:51.851582151 +0100
+--- src/version.c	2015-01-14 12:12:04.728764264 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     569,
+  /**/
+
+-- 
+hundred-and-one symptoms of being an internet addict:
+85. Choice between paying Compuserve bill and paying for kids education
+    is a no brainer -- although a bit painful for your kids.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

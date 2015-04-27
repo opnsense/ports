@@ -1,0 +1,127 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.668
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.668
+Problem:    Can't use a glob pattern as a regexp pattern.
+Solution:   Add glob2regpat(). (Christian Brabandt)
+Files:      src/eval.c, runtime/doc/eval.txt
+
+
+*** ../vim-7.4.667/src/eval.c	2015-03-05 19:35:20.690114997 +0100
+--- src/eval.c	2015-03-20 17:28:18.912588318 +0100
+***************
+*** 575,580 ****
+--- 575,581 ----
+  static void f_getwinvar __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_glob __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_globpath __ARGS((typval_T *argvars, typval_T *rettv));
++ static void f_glob2regpat  __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_has __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_has_key __ARGS((typval_T *argvars, typval_T *rettv));
+  static void f_haslocaldir __ARGS((typval_T *argvars, typval_T *rettv));
+***************
+*** 8142,8147 ****
+--- 8143,8149 ----
+      {"getwinposy",	0, 0, f_getwinposy},
+      {"getwinvar",	2, 3, f_getwinvar},
+      {"glob",		1, 4, f_glob},
++     {"glob2regpat",	1, 1, f_glob2regpat},
+      {"globpath",	2, 5, f_globpath},
+      {"has",		1, 1, f_has},
+      {"has_key",		2, 2, f_has_key},
+***************
+*** 12500,12505 ****
+--- 12502,12521 ----
+  }
+  
+  /*
++  * "glob2regpat()" function
++  */
++     static void
++ f_glob2regpat(argvars, rettv)
++     typval_T	*argvars;
++     typval_T	*rettv;
++ {
++     char_u	*pat = get_tv_string_chk(&argvars[0]);
++ 
++     rettv->v_type = VAR_STRING;
++     rettv->vval.v_string = file_pat_to_reg_pat(pat, NULL, NULL, FALSE);
++ }
++ 
++ /*
+   * "has()" function
+   */
+      static void
+*** ../vim-7.4.667/runtime/doc/eval.txt	2015-01-27 15:18:55.152333309 +0100
+--- runtime/doc/eval.txt	2015-03-20 17:32:43.597601391 +0100
+***************
+*** 1833,1841 ****
+  getwinposy()			Number	Y coord in pixels of GUI Vim window
+  getwinvar( {nr}, {varname} [, {def}])
+  				any	variable {varname} in window {nr}
+! glob( {expr} [, {nosuf} [, {list}]])
+  				any	expand file wildcards in {expr}
+! globpath( {path}, {expr} [, {nosuf} [, {list}]])
+  				String	do glob({expr}) for all dirs in {path}
+  has( {feature})			Number	TRUE if feature {feature} supported
+  has_key( {dict}, {key})		Number	TRUE if {dict} has entry {key}
+--- 1834,1843 ----
+  getwinposy()			Number	Y coord in pixels of GUI Vim window
+  getwinvar( {nr}, {varname} [, {def}])
+  				any	variable {varname} in window {nr}
+! glob( {expr} [, {nosuf} [, {list} [, {alllinks}]]])
+  				any	expand file wildcards in {expr}
+! glob2regpat( {expr})		String  convert a glob pat into a search pat
+! globpath( {path}, {expr} [, {nosuf} [, {list} [, {alllinks}]]])
+  				String	do glob({expr}) for all dirs in {path}
+  has( {feature})			Number	TRUE if feature {feature} supported
+  has_key( {dict}, {key})		Number	TRUE if {dict} has entry {key}
+***************
+*** 3611,3617 ****
+  		See |expand()| for expanding special Vim variables.  See
+  		|system()| for getting the raw output of an external command.
+  
+! globpath({path}, {expr} [, {nosuf} [, {list}]])			*globpath()*
+  		Perform glob() on all directories in {path} and concatenate
+  		the results.  Example: >
+  			:echo globpath(&rtp, "syntax/c.vim")
+--- 3672,3687 ----
+  		See |expand()| for expanding special Vim variables.  See
+  		|system()| for getting the raw output of an external command.
+  
+! glob2regpat({expr})					 *glob2regpat()*
+! 		Convert a file patter, as used by glob(), into a search
+! 		pattern.  The result can be used to match with a string that
+! 		is a file name.  E.g. >
+! 			if filename =~ glob2regpat('Make*.mak')
+! <		This is equivalent to: >
+! 			if filename =~ '^Make.*\.mak$'
+! <
+! 								*globpath()*
+! globpath({path}, {expr} [, {nosuf} [, {list} [, {allinks}]]])
+  		Perform glob() on all directories in {path} and concatenate
+  		the results.  Example: >
+  			:echo globpath(&rtp, "syntax/c.vim")
+*** ../vim-7.4.667/src/version.c	2015-03-20 17:16:23.656659419 +0100
+--- src/version.c	2015-03-20 17:19:45.610380844 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     668,
+  /**/
+
+-- 
+Seen on the back of a biker's vest: If you can read this, my wife fell off.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

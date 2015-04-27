@@ -1,0 +1,357 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.401
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.401 (after 7.4.399)
+Problem:    Can't build on MS-Windows.
+Solution:   Include the new files in all the Makefiles.
+Files:	    src/Make_bc3.mak, src/Make_bc5.mak, src/Make_cyg.mak,
+	    src/Make_dice.mak, src/Make_djg.mak, src/Make_ivc.mak,
+	    src/Make_manx.mak, src/Make_ming.mak, src/Make_morph.mak,
+	    src/Make_mvc.mak, src/Make_os2.mak, src/Make_sas.mak,
+	    Make_vms.mms
+
+
+*** ../vim-7.4.400/src/Make_bc3.mak	2010-05-18 20:27:58.000000000 +0200
+--- src/Make_bc3.mak	2014-08-10 16:20:20.068714153 +0200
+***************
+*** 54,59 ****
+--- 54,61 ----
+  	blowfish.obj \
+  	buffer.obj \
+  	charset.obj \
++ 	crypt.obj \
++ 	crypt_zip.obj \
+  	diff.obj \
+  	digraph.obj \
+  	edit.obj \
+*** ../vim-7.4.400/src/Make_bc5.mak	2014-01-10 18:16:00.000000000 +0100
+--- src/Make_bc5.mak	2014-08-10 16:20:39.684714012 +0200
+***************
+*** 580,585 ****
+--- 580,587 ----
+  	$(OBJDIR)\blowfish.obj \
+  	$(OBJDIR)\buffer.obj \
+  	$(OBJDIR)\charset.obj \
++ 	$(OBJDIR)\crypt.obj \
++ 	$(OBJDIR)\crypt_zip.obj \
+  	$(OBJDIR)\diff.obj \
+  	$(OBJDIR)\digraph.obj \
+  	$(OBJDIR)\edit.obj \
+*** ../vim-7.4.400/src/Make_cyg.mak	2014-08-06 14:52:05.039236174 +0200
+--- src/Make_cyg.mak	2014-08-10 16:30:48.656709635 +0200
+***************
+*** 1,6 ****
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Last updated by Dan Sharp.  Last Change: 2013 Dec 11
+  #
+  # Also read INSTALLpc.txt!
+  #
+--- 1,7 ----
+  #
+  # Makefile for VIM on Win32, using Cygnus gcc
+! # Updated by Dan Sharp.
+! # Last Change: 2014 Aug 10
+  #
+  # Also read INSTALLpc.txt!
+  #
+***************
+*** 546,551 ****
+--- 547,554 ----
+  	$(OUTDIR)/blowfish.o \
+  	$(OUTDIR)/buffer.o \
+  	$(OUTDIR)/charset.o \
++ 	$(OUTDIR)/crypt.o \
++ 	$(OUTDIR)/crypt_zip.o \
+  	$(OUTDIR)/diff.o \
+  	$(OUTDIR)/digraph.o \
+  	$(OUTDIR)/edit.o \
+*** ../vim-7.4.400/src/Make_dice.mak	2010-05-18 20:29:00.000000000 +0200
+--- src/Make_dice.mak	2014-08-10 16:21:53.740713479 +0200
+***************
+*** 29,34 ****
+--- 29,36 ----
+  	blowfish.c \
+  	buffer.c \
+  	charset.c \
++ 	crypt.c \
++ 	crypt_zip.c \
+  	diff.c \
+  	digraph.c \
+  	edit.c \
+***************
+*** 75,80 ****
+--- 77,84 ----
+  OBJ =	o/blowfish.o \
+  	o/buffer.o \
+  	o/charset.o \
++ 	o/crypt.o \
++ 	o/crypt_zip.o \
+  	o/diff.o \
+  	o/digraph.o \
+  	o/edit.o \
+***************
+*** 143,148 ****
+--- 147,156 ----
+  
+  o/charset.o:	charset.c  $(SYMS)
+  
++ o/crypt.o:	crypt.c  $(SYMS)
++ 
++ o/crypt_zip.o:	crypt_zip.c  $(SYMS)
++ 
+  o/diff.o:	diff.c	$(SYMS)
+  
+  o/digraph.o:	digraph.c  $(SYMS)
+*** ../vim-7.4.400/src/Make_djg.mak	2010-05-18 20:29:18.000000000 +0200
+--- src/Make_djg.mak	2014-08-10 16:22:13.084713340 +0200
+***************
+*** 22,27 ****
+--- 22,29 ----
+  	obj/blowfish.o \
+  	obj/buffer.o \
+  	obj/charset.o \
++ 	obj/crypt.o \
++ 	obj/crypt_zip.o \
+  	obj/diff.o \
+  	obj/digraph.o \
+  	obj/edit.o \
+*** ../vim-7.4.400/src/Make_ivc.mak	2013-02-26 14:18:19.000000000 +0100
+--- src/Make_ivc.mak	2014-08-10 16:22:46.268713102 +0200
+***************
+*** 213,218 ****
+--- 213,220 ----
+  	"$(INTDIR)/blowfish.obj" \
+  	"$(INTDIR)/buffer.obj" \
+  	"$(INTDIR)/charset.obj" \
++ 	"$(INTDIR)/crypt.obj" \
++ 	"$(INTDIR)/crypt_zip.obj" \
+  	"$(INTDIR)/diff.obj" \
+  	"$(INTDIR)/digraph.obj" \
+  	"$(INTDIR)/edit.obj" \
+***************
+*** 339,344 ****
+--- 341,354 ----
+  # End Source File
+  # Begin Source File
+  
++ SOURCE=.\crypt.c
++ # End Source File
++ # Begin Source File
++ 
++ SOURCE=.\crypt_zip.c
++ # End Source File
++ # Begin Source File
++ 
+  SOURCE=.\diff.c
+  # End Source File
+  # Begin Source File
+*** ../vim-7.4.400/src/Make_manx.mak	2010-05-18 20:30:54.000000000 +0200
+--- src/Make_manx.mak	2014-08-10 16:23:43.648712689 +0200
+***************
+*** 37,42 ****
+--- 37,44 ----
+  SRC =	blowfish.c \
+  	buffer.c \
+  	charset.c \
++ 	crypt.c \
++ 	crypt_zip.c \
+  	diff.c \
+  	digraph.c \
+  	edit.c \
+***************
+*** 85,90 ****
+--- 87,94 ----
+  OBJ =	obj/blowfish.o \
+  	obj/buffer.o \
+  	obj/charset.o \
++ 	obj/crypt.o \
++ 	obj/crypt_zip.o \
+  	obj/diff.o \
+  	obj/digraph.o \
+  	obj/edit.o \
+***************
+*** 131,136 ****
+--- 135,142 ----
+  PRO =	proto/blowfish.pro \
+  	proto/buffer.pro \
+  	proto/charset.pro \
++ 	proto/crypt.pro \
++ 	proto/crypt_zip.pro \
+  	proto/diff.pro \
+  	proto/digraph.pro \
+  	proto/edit.pro \
+***************
+*** 227,232 ****
+--- 233,244 ----
+  obj/charset.o:	charset.c
+  	$(CCSYM) $@ charset.c
+  
++ obj/crypt.o:	crypt.c
++ 	$(CCSYM) $@ crypt.c
++ 
++ obj/crypt_zip.o: crypt_zip.c
++ 	$(CCSYM) $@ crypt_zip.c
++ 
+  obj/diff.o:	diff.c
+  	$(CCSYM) $@ diff.c
+  
+*** ../vim-7.4.400/src/Make_ming.mak	2014-08-06 14:52:05.039236174 +0200
+--- src/Make_ming.mak	2014-08-10 16:24:07.064712521 +0200
+***************
+*** 517,522 ****
+--- 517,524 ----
+  	$(OUTDIR)/blowfish.o \
+  	$(OUTDIR)/buffer.o \
+  	$(OUTDIR)/charset.o \
++ 	$(OUTDIR)/crypt.o \
++ 	$(OUTDIR)/crypt_zip.o \
+  	$(OUTDIR)/diff.o \
+  	$(OUTDIR)/digraph.o \
+  	$(OUTDIR)/edit.o \
+*** ../vim-7.4.400/src/Make_morph.mak	2010-05-18 20:31:26.000000000 +0200
+--- src/Make_morph.mak	2014-08-10 16:24:39.900712285 +0200
+***************
+*** 27,32 ****
+--- 27,34 ----
+  SRC =	blowfish.c						\
+  	buffer.c						\
+  	charset.c						\
++ 	crypt.c							\
++ 	crypt_zip.c						\
+  	diff.c							\
+  	digraph.c						\
+  	edit.c							\
+*** ../vim-7.4.400/src/Make_mvc.mak	2014-08-06 14:52:05.039236174 +0200
+--- src/Make_mvc.mak	2014-08-10 16:25:19.752711999 +0200
+***************
+*** 547,552 ****
+--- 547,554 ----
+  	$(OUTDIR)\blowfish.obj \
+  	$(OUTDIR)\buffer.obj \
+  	$(OUTDIR)\charset.obj \
++ 	$(OUTDIR)\crypt.obj \
++ 	$(OUTDIR)\crypt_zip.obj \
+  	$(OUTDIR)\diff.obj \
+  	$(OUTDIR)\digraph.obj \
+  	$(OUTDIR)\edit.obj \
+***************
+*** 1092,1097 ****
+--- 1094,1103 ----
+  
+  $(OUTDIR)/charset.obj:	$(OUTDIR) charset.c  $(INCL)
+  
++ $(OUTDIR)/crypt.obj:	$(OUTDIR) crypt.c  $(INCL)
++ 
++ $(OUTDIR)/crypt_zip.obj: $(OUTDIR) crypt_zip.c  $(INCL)
++ 
+  $(OUTDIR)/diff.obj:	$(OUTDIR) diff.c  $(INCL)
+  
+  $(OUTDIR)/digraph.obj:	$(OUTDIR) digraph.c  $(INCL)
+***************
+*** 1278,1283 ****
+--- 1284,1291 ----
+  	proto/blowfish.pro \
+  	proto/buffer.pro \
+  	proto/charset.pro \
++ 	proto/crypt.pro \
++ 	proto/crypt_zip.pro \
+  	proto/diff.pro \
+  	proto/digraph.pro \
+  	proto/edit.pro \
+*** ../vim-7.4.400/src/Make_os2.mak	2010-05-18 20:32:32.000000000 +0200
+--- src/Make_os2.mak	2014-08-10 16:25:47.928711796 +0200
+***************
+*** 42,47 ****
+--- 42,49 ----
+  	blowfish.o \
+  	buffer.o \
+  	charset.o \
++ 	crypt.o \
++ 	crypt_zip.o \
+  	diff.o \
+  	digraph.o \
+  	edit.o \
+***************
+*** 117,122 ****
+--- 119,126 ----
+  blowfish.o:	blowfish.c  $(INCL)
+  buffer.o:	buffer.c  $(INCL)
+  charset.o:	charset.c  $(INCL)
++ crypt.o:	crypt.c  $(INCL)
++ crypt_zip.o:	crypt_zip.c  $(INCL)
+  diff.o:		diff.c  $(INCL)
+  digraph.o:	digraph.c  $(INCL)
+  edit.o:		edit.c  $(INCL)
+*** ../vim-7.4.400/src/Make_sas.mak	2013-05-06 04:06:04.000000000 +0200
+--- src/Make_sas.mak	2014-08-10 16:26:41.536711411 +0200
+***************
+*** 92,97 ****
+--- 92,99 ----
+  	blowfish.c \
+  	buffer.c \
+  	charset.c \
++ 	crypt.c \
++ 	crypt_zip.c \
+  	diff.c \
+  	digraph.c \
+  	edit.c \
+***************
+*** 139,144 ****
+--- 141,148 ----
+  	blowfish.o \
+  	buffer.o \
+  	charset.o \
++ 	crypt.o \
++ 	crypt_zip.o \
+  	diff.o \
+  	digraph.o \
+  	edit.o \
+***************
+*** 186,191 ****
+--- 190,197 ----
+  	proto/blowfish.pro \
+  	proto/buffer.pro \
+  	proto/charset.pro \
++ 	proto/crypt.pro \
++ 	proto/crypt_zip.pro \
+  	proto/diff.pro \
+  	proto/digraph.pro \
+  	proto/edit.pro \
+***************
+*** 290,295 ****
+--- 296,305 ----
+  proto/buffer.pro:	buffer.c
+  charset.o:		charset.c
+  proto/charset.pro:	charset.c
++ crypt.o:		crypt.c
++ proto/crypt.pro:	crypt.c
++ crypt_zip.o:		crypt_zip.c
++ proto/crypt_zip.pro:	crypt_zip.c
+  diff.o:			diff.c
+  proto/diff.pro:		diff.c
+  digraph.o:		digraph.c
+*** ../vim-7.4.400/src/version.c	2014-08-10 13:46:30.424780490 +0200
+--- src/version.c	2014-08-10 16:27:26.380711088 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     401,
+  /**/
+
+-- 
+When a fly lands on the ceiling, does it do a half roll or
+a half loop?
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

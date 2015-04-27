@@ -1,0 +1,244 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.487
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.487
+Problem:    ":sign jump" may use another window even though the file is
+	    already edited in the current window.
+Solution:   First check if the file is in the current window. (James McCoy)
+Files:	    src/window.c, src/testdir/Make_amiga.mak,
+	    src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+	    src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+	    src/testdir/Makefile, src/testdir/test_signs.in,
+	    src/testdir/test_signs.ok
+
+
+*** ../vim-7.4.486/src/window.c	2014-10-09 10:44:33.196866267 +0200
+--- src/window.c	2014-10-21 20:50:13.018294092 +0200
+***************
+*** 4407,4426 ****
+  buf_jump_open_win(buf)
+      buf_T	*buf;
+  {
+! # ifdef FEAT_WINDOWS
+!     win_T	*wp;
+  
+!     for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 	if (wp->w_buffer == buf)
+! 	    break;
+      if (wp != NULL)
+  	win_enter(wp, FALSE);
+-     return wp;
+- # else
+-     if (curwin->w_buffer == buf)
+- 	return curwin;
+-     return NULL;
+  # endif
+  }
+  
+  /*
+--- 4407,4425 ----
+  buf_jump_open_win(buf)
+      buf_T	*buf;
+  {
+!     win_T	*wp = NULL;
+  
+!     if (curwin->w_buffer == buf)
+! 	wp = curwin;
+! # ifdef FEAT_WINDOWS
+!     else
+! 	for (wp = firstwin; wp != NULL; wp = wp->w_next)
+! 	    if (wp->w_buffer == buf)
+! 		break;
+      if (wp != NULL)
+  	win_enter(wp, FALSE);
+  # endif
++     return wp;
+  }
+  
+  /*
+***************
+*** 4432,4443 ****
+  buf_jump_open_tab(buf)
+      buf_T	*buf;
+  {
+  # ifdef FEAT_WINDOWS
+-     win_T	*wp;
+      tabpage_T	*tp;
+  
+-     /* First try the current tab page. */
+-     wp = buf_jump_open_win(buf);
+      if (wp != NULL)
+  	return wp;
+  
+--- 4431,4440 ----
+  buf_jump_open_tab(buf)
+      buf_T	*buf;
+  {
++     win_T	*wp = buf_jump_open_win(buf);
+  # ifdef FEAT_WINDOWS
+      tabpage_T	*tp;
+  
+      if (wp != NULL)
+  	return wp;
+  
+***************
+*** 4455,4467 ****
+  		break;
+  	    }
+  	}
+- 
+-     return wp;
+- # else
+-     if (curwin->w_buffer == buf)
+- 	return curwin;
+-     return NULL;
+  # endif
+  }
+  #endif
+  
+--- 4452,4459 ----
+  		break;
+  	    }
+  	}
+  # endif
++     return wp;
+  }
+  #endif
+  
+*** ../vim-7.4.486/src/testdir/Make_amiga.mak	2014-10-21 16:22:01.403175226 +0200
+--- src/testdir/Make_amiga.mak	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 46,51 ****
+--- 46,52 ----
+  		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
++ 		test_signs.out \
+  		test_utf8.out
+  
+  .SUFFIXES: .in .out
+***************
+*** 179,182 ****
+--- 180,184 ----
+  test_listlbr_utf8.out: test_listlbr_utf8.in
+  test_options.out: test_options.in
+  test_qf_title.out: test_qf_title.in
++ test_signs.out: test_signs.in
+  test_utf8.out: test_utf8.in
+*** ../vim-7.4.486/src/testdir/Make_dos.mak	2014-10-21 16:22:01.407175226 +0200
+--- src/testdir/Make_dos.mak	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 45,50 ****
+--- 45,51 ----
+  		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
++ 		test_signs.out \
+  		test_utf8.out
+  
+  SCRIPTS32 =	test50.out test70.out
+*** ../vim-7.4.486/src/testdir/Make_ming.mak	2014-10-21 16:22:01.407175226 +0200
+--- src/testdir/Make_ming.mak	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 65,70 ****
+--- 65,71 ----
+  		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
++ 		test_signs.out \
+  		test_utf8.out
+  
+  SCRIPTS32 =	test50.out test70.out
+*** ../vim-7.4.486/src/testdir/Make_os2.mak	2014-10-21 16:22:01.407175226 +0200
+--- src/testdir/Make_os2.mak	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 47,52 ****
+--- 47,53 ----
+  		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
++ 		test_signs.out \
+  		test_utf8.out
+  
+  .SUFFIXES: .in .out
+*** ../vim-7.4.486/src/testdir/Make_vms.mms	2014-10-21 16:22:01.407175226 +0200
+--- src/testdir/Make_vms.mms	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 106,111 ****
+--- 106,112 ----
+  	 test_mapping.out \
+  	 test_options.out \
+  	 test_qf_title.out \
++ 	 test_signs.out \
+  	 test_utf8.out
+  
+  # Known problems:
+*** ../vim-7.4.486/src/testdir/Makefile	2014-10-21 16:22:01.407175226 +0200
+--- src/testdir/Makefile	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 43,48 ****
+--- 43,49 ----
+  		test_mapping.out \
+  		test_options.out \
+  		test_qf_title.out \
++ 		test_signs.out \
+  		test_utf8.out
+  
+  SCRIPTS_GUI = test16.out
+*** ../vim-7.4.486/src/testdir/test_signs.in	2014-10-21 20:56:35.838294928 +0200
+--- src/testdir/test_signs.in	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 0 ****
+--- 1,22 ----
++ Tests for signs
++ STARTTEST
++ :so small.vim
++ :if !has("signs")
++ :  e! test.ok
++ :  wq! test.out
++ :endif
++ :"
++ :sign define JumpSign text=x
++ :exe 'sign place 42 line=2 name=JumpSign buffer=' . bufnr('')
++ :" Split the window to the bottom to verify :sign-jump will stay in the current
++ :" window if the buffer is displayed there
++ :bot split
++ :exe 'sign jump 42 buffer=' . bufnr('')
++ :call append(line('$'), winnr())
++ :$-1,$w! test.out
++ ENDTEST
++ 
++ STARTTEST
++ :qa!
++ ENDTEST
++ 
+*** ../vim-7.4.486/src/testdir/test_signs.ok	2014-10-21 20:56:35.842294928 +0200
+--- src/testdir/test_signs.ok	2014-10-21 20:46:30.866293607 +0200
+***************
+*** 0 ****
+--- 1,2 ----
++ 
++ 2
+*** ../vim-7.4.486/src/version.c	2014-10-21 20:01:54.986287762 +0200
+--- src/version.c	2014-10-21 20:50:02.642294069 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     487,
+  /**/
+
+-- 
+I'd like to meet the man who invented sex and see what he's working on now.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,139 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.646
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.646
+Problem:    ":bufdo" may start at a deleted buffer.
+Solution:   Find the first not deleted buffer. (Shane Harper)
+Files:	    src/ex_cmds2.c, src/testdir/test_command_count.in,
+	    src/testdir/test_command_count.ok
+
+
+*** ../vim-7.4.645/src/ex_cmds2.c	2015-01-07 16:52:53.506792420 +0100
+--- src/ex_cmds2.c	2015-02-27 20:30:04.087096679 +0100
+***************
+*** 2440,2446 ****
+      win_T	*wp;
+      tabpage_T	*tp;
+  #endif
+!     buf_T	*buf;
+      int		next_fnum = 0;
+  #if defined(FEAT_AUTOCMD) && defined(FEAT_SYN_HL)
+      char_u	*save_ei = NULL;
+--- 2440,2446 ----
+      win_T	*wp;
+      tabpage_T	*tp;
+  #endif
+!     buf_T	*buf = curbuf;
+      int		next_fnum = 0;
+  #if defined(FEAT_AUTOCMD) && defined(FEAT_SYN_HL)
+      char_u	*save_ei = NULL;
+***************
+*** 2493,2512 ****
+  	    case CMD_argdo:
+  		i = eap->line1 - 1;
+  		break;
+- 	    case CMD_bufdo:
+- 		i = eap->line1;
+- 		break;
+  	    default:
+  		break;
+  	}
+  	/* set pcmark now */
+  	if (eap->cmdidx == CMD_bufdo)
+! 	    goto_buffer(eap, DOBUF_FIRST, FORWARD, i);
+  	else
+  	    setpcmark();
+  	listcmd_busy = TRUE;	    /* avoids setting pcmark below */
+  
+! 	while (!got_int)
+  	{
+  	    if (eap->cmdidx == CMD_argdo)
+  	    {
+--- 2493,2520 ----
+  	    case CMD_argdo:
+  		i = eap->line1 - 1;
+  		break;
+  	    default:
+  		break;
+  	}
+  	/* set pcmark now */
+  	if (eap->cmdidx == CMD_bufdo)
+!         {
+! 	    /* Advance to the first listed buffer after "eap->line1". */
+!             for (buf = firstbuf; buf != NULL && (buf->b_fnum < eap->line1
+! 					  || !buf->b_p_bl); buf = buf->b_next)
+! 		if (buf->b_fnum > eap->line2)
+! 		{
+! 		    buf = NULL;
+! 		    break;
+! 		}
+!             if (buf != NULL)
+! 		goto_buffer(eap, DOBUF_FIRST, FORWARD, buf->b_fnum);
+!         }
+  	else
+  	    setpcmark();
+  	listcmd_busy = TRUE;	    /* avoids setting pcmark below */
+  
+! 	while (!got_int && buf != NULL)
+  	{
+  	    if (eap->cmdidx == CMD_argdo)
+  	    {
+*** ../vim-7.4.645/src/testdir/test_command_count.in	2015-01-27 13:28:42.472671261 +0100
+--- src/testdir/test_command_count.in	2015-02-27 20:03:15.981409267 +0100
+***************
+*** 141,146 ****
+--- 141,147 ----
+  :let buffers = ''
+  :.,$-bufdo let buffers .= ' '.bufnr('%')
+  :call add(g:lines, 'bufdo:' . buffers)
++ :3bd
+  :let buffers = ''
+  :3,7bufdo let buffers .= ' '.bufnr('%')
+  :call add(g:lines, 'bufdo:' . buffers)
+*** ../vim-7.4.645/src/testdir/test_command_count.ok	2015-01-20 13:29:46.397315064 +0100
+--- src/testdir/test_command_count.ok	2015-02-27 20:03:15.981409267 +0100
+***************
+*** 34,38 ****
+  argdo: c d e
+  windo: 2 3 4
+  bufdo: 2 3 4 5 6 7 8 9 10 15
+! bufdo: 3 4 5 6 7
+  tabdo: 2 3 4
+--- 34,38 ----
+  argdo: c d e
+  windo: 2 3 4
+  bufdo: 2 3 4 5 6 7 8 9 10 15
+! bufdo: 4 5 6 7
+  tabdo: 2 3 4
+*** ../vim-7.4.645/src/version.c	2015-02-27 19:34:51.464777369 +0100
+--- src/version.c	2015-02-27 20:04:24.336631611 +0100
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     646,
+  /**/
+
+-- 
+The greatest lies of all time:
+  (1) The check is in the mail.
+  (2) We have a really challenging assignment for you.
+  (3) I love you.
+  (4) All bugs have been fixed.
+  (5) This won't hurt a bit.
+  (6) Honey, I just need to debug this program and be home in 5 minutes.
+  (7) I have just sent you an e-mail about that.
+  (8) Of course I'll respect you in the morning.
+  (9) I'm from the government, and I'm here to help you.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

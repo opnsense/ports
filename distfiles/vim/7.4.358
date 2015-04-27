@@ -1,0 +1,290 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.358
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.358 (after 7.4.351)
+Problem:    Sort is not always stable.
+Solution:   Add an index instead of relying on the pointer to remain the same.
+	    Idea by Jun Takimoto.
+Files:	    src/eval.c
+
+
+*** ../vim-7.4.357/src/eval.c	2014-07-02 19:06:14.686326091 +0200
+--- src/eval.c	2014-07-09 17:42:05.699813489 +0200
+***************
+*** 17329,17334 ****
+--- 17329,17341 ----
+  #endif
+  	item_compare2 __ARGS((const void *s1, const void *s2));
+  
++ /* struct used in the array that's given to qsort() */
++ typedef struct
++ {
++     listitem_T	*item;
++     int		idx;
++ } sortItem_T;
++ 
+  static int	item_compare_ic;
+  static int	item_compare_numeric;
+  static char_u	*item_compare_func;
+***************
+*** 17349,17362 ****
+      const void	*s1;
+      const void	*s2;
+  {
+      char_u	*p1, *p2;
+      char_u	*tofree1, *tofree2;
+      int		res;
+      char_u	numbuf1[NUMBUFLEN];
+      char_u	numbuf2[NUMBUFLEN];
+  
+!     p1 = tv2string(&(*(listitem_T **)s1)->li_tv, &tofree1, numbuf1, 0);
+!     p2 = tv2string(&(*(listitem_T **)s2)->li_tv, &tofree2, numbuf2, 0);
+      if (p1 == NULL)
+  	p1 = (char_u *)"";
+      if (p2 == NULL)
+--- 17356,17372 ----
+      const void	*s1;
+      const void	*s2;
+  {
++     sortItem_T  *si1, *si2;
+      char_u	*p1, *p2;
+      char_u	*tofree1, *tofree2;
+      int		res;
+      char_u	numbuf1[NUMBUFLEN];
+      char_u	numbuf2[NUMBUFLEN];
+  
+!     si1 = (sortItem_T *)s1;
+!     si2 = (sortItem_T *)s2;
+!     p1 = tv2string(&si1->item->li_tv, &tofree1, numbuf1, 0);
+!     p2 = tv2string(&si2->item->li_tv, &tofree2, numbuf2, 0);
+      if (p1 == NULL)
+  	p1 = (char_u *)"";
+      if (p2 == NULL)
+***************
+*** 17379,17385 ****
+      /* When the result would be zero, compare the pointers themselves.  Makes
+       * the sort stable. */
+      if (res == 0 && !item_compare_keep_zero)
+! 	res = s1 > s2 ? 1 : -1;
+  
+      vim_free(tofree1);
+      vim_free(tofree2);
+--- 17389,17395 ----
+      /* When the result would be zero, compare the pointers themselves.  Makes
+       * the sort stable. */
+      if (res == 0 && !item_compare_keep_zero)
+! 	res = si1->idx > si2->idx ? 1 : -1;
+  
+      vim_free(tofree1);
+      vim_free(tofree2);
+***************
+*** 17394,17399 ****
+--- 17404,17410 ----
+      const void	*s1;
+      const void	*s2;
+  {
++     sortItem_T  *si1, *si2;
+      int		res;
+      typval_T	rettv;
+      typval_T	argv[3];
+***************
+*** 17403,17412 ****
+      if (item_compare_func_err)
+  	return 0;
+  
+      /* Copy the values.  This is needed to be able to set v_lock to VAR_FIXED
+       * in the copy without changing the original list items. */
+!     copy_tv(&(*(listitem_T **)s1)->li_tv, &argv[0]);
+!     copy_tv(&(*(listitem_T **)s2)->li_tv, &argv[1]);
+  
+      rettv.v_type = VAR_UNKNOWN;		/* clear_tv() uses this */
+      res = call_func(item_compare_func, (int)STRLEN(item_compare_func),
+--- 17414,17426 ----
+      if (item_compare_func_err)
+  	return 0;
+  
++     si1 = (sortItem_T *)s1;
++     si2 = (sortItem_T *)s2;
++ 
+      /* Copy the values.  This is needed to be able to set v_lock to VAR_FIXED
+       * in the copy without changing the original list items. */
+!     copy_tv(&si1->item->li_tv, &argv[0]);
+!     copy_tv(&si2->item->li_tv, &argv[1]);
+  
+      rettv.v_type = VAR_UNKNOWN;		/* clear_tv() uses this */
+      res = call_func(item_compare_func, (int)STRLEN(item_compare_func),
+***************
+*** 17426,17432 ****
+      /* When the result would be zero, compare the pointers themselves.  Makes
+       * the sort stable. */
+      if (res == 0 && !item_compare_keep_zero)
+! 	res = s1 > s2 ? 1 : -1;
+  
+      return res;
+  }
+--- 17440,17446 ----
+      /* When the result would be zero, compare the pointers themselves.  Makes
+       * the sort stable. */
+      if (res == 0 && !item_compare_keep_zero)
+! 	res = si1->idx > si2->idx ? 1 : -1;
+  
+      return res;
+  }
+***************
+*** 17442,17448 ****
+  {
+      list_T	*l;
+      listitem_T	*li;
+!     listitem_T	**ptrs;
+      long	len;
+      long	i;
+  
+--- 17456,17462 ----
+  {
+      list_T	*l;
+      listitem_T	*li;
+!     sortItem_T	*ptrs;
+      long	len;
+      long	i;
+  
+***************
+*** 17510,17516 ****
+  	}
+  
+  	/* Make an array with each entry pointing to an item in the List. */
+! 	ptrs = (listitem_T **)alloc((int)(len * sizeof(listitem_T *)));
+  	if (ptrs == NULL)
+  	    return;
+  
+--- 17524,17530 ----
+  	}
+  
+  	/* Make an array with each entry pointing to an item in the List. */
+! 	ptrs = (sortItem_T *)alloc((int)(len * sizeof(sortItem_T)));
+  	if (ptrs == NULL)
+  	    return;
+  
+***************
+*** 17519,17525 ****
+  	{
+  	    /* sort(): ptrs will be the list to sort */
+  	    for (li = l->lv_first; li != NULL; li = li->li_next)
+! 		ptrs[i++] = li;
+  
+  	    item_compare_func_err = FALSE;
+  	    item_compare_keep_zero = FALSE;
+--- 17533,17543 ----
+  	{
+  	    /* sort(): ptrs will be the list to sort */
+  	    for (li = l->lv_first; li != NULL; li = li->li_next)
+! 	    {
+! 		ptrs[i].item = li;
+! 		ptrs[i].idx = i;
+! 		++i;
+! 	    }
+  
+  	    item_compare_func_err = FALSE;
+  	    item_compare_keep_zero = FALSE;
+***************
+*** 17531,17537 ****
+  	    else
+  	    {
+  		/* Sort the array with item pointers. */
+! 		qsort((void *)ptrs, (size_t)len, sizeof(listitem_T *),
+  		    item_compare_func == NULL ? item_compare : item_compare2);
+  
+  		if (!item_compare_func_err)
+--- 17549,17555 ----
+  	    else
+  	    {
+  		/* Sort the array with item pointers. */
+! 		qsort((void *)ptrs, (size_t)len, sizeof(sortItem_T),
+  		    item_compare_func == NULL ? item_compare : item_compare2);
+  
+  		if (!item_compare_func_err)
+***************
+*** 17540,17546 ****
+  		    l->lv_first = l->lv_last = l->lv_idx_item = NULL;
+  		    l->lv_len = 0;
+  		    for (i = 0; i < len; ++i)
+! 			list_append(l, ptrs[i]);
+  		}
+  	    }
+  	}
+--- 17558,17564 ----
+  		    l->lv_first = l->lv_last = l->lv_idx_item = NULL;
+  		    l->lv_len = 0;
+  		    for (i = 0; i < len; ++i)
+! 			list_append(l, ptrs[i].item);
+  		}
+  	    }
+  	}
+***************
+*** 17559,17565 ****
+  	    {
+  		if (item_compare_func_ptr((void *)&li, (void *)&li->li_next)
+  									 == 0)
+! 		    ptrs[i++] = li;
+  		if (item_compare_func_err)
+  		{
+  		    EMSG(_("E882: Uniq compare function failed"));
+--- 17577,17583 ----
+  	    {
+  		if (item_compare_func_ptr((void *)&li, (void *)&li->li_next)
+  									 == 0)
+! 		    ptrs[i++].item = li;
+  		if (item_compare_func_err)
+  		{
+  		    EMSG(_("E882: Uniq compare function failed"));
+***************
+*** 17571,17582 ****
+  	    {
+  		while (--i >= 0)
+  		{
+! 		    li = ptrs[i]->li_next;
+! 		    ptrs[i]->li_next = li->li_next;
+  		    if (li->li_next != NULL)
+! 			li->li_next->li_prev = ptrs[i];
+  		    else
+! 			l->lv_last = ptrs[i];
+  		    list_fix_watch(l, li);
+  		    listitem_free(li);
+  		    l->lv_len--;
+--- 17589,17600 ----
+  	    {
+  		while (--i >= 0)
+  		{
+! 		    li = ptrs[i].item->li_next;
+! 		    ptrs[i].item->li_next = li->li_next;
+  		    if (li->li_next != NULL)
+! 			li->li_next->li_prev = ptrs[i].item;
+  		    else
+! 			l->lv_last = ptrs[i].item;
+  		    list_fix_watch(l, li);
+  		    listitem_free(li);
+  		    l->lv_len--;
+*** ../vim-7.4.357/src/version.c	2014-07-09 14:00:45.175044250 +0200
+--- src/version.c	2014-07-09 17:23:12.791836515 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     358,
+  /**/
+
+-- 
+An indication you must be a manager:
+You can explain to somebody the difference between "re-engineering",
+"down-sizing", "right-sizing", and "firing people's asses".
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

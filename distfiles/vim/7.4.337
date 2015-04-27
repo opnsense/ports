@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.337
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.337
+Problem:    When there is an error preparing to edit the command line, the
+	    command won't be executed. (Hirohito Higashi)
+Solution:   Reset did_emsg before editing.
+Files:	    src/ex_getln.c
+
+
+*** ../vim-7.4.336/src/ex_getln.c	2014-06-12 19:44:45.324549030 +0200
+--- src/ex_getln.c	2014-06-25 12:06:38.018001402 +0200
+***************
+*** 342,347 ****
+--- 342,354 ----
+      do_digraph(-1);		/* init digraph typeahead */
+  #endif
+  
++     /* If something above caused an error, reset the flags, we do want to type
++      * and execute commands. Display may be messed up a bit. */
++     if (did_emsg)
++ 	redrawcmd();
++     did_emsg = FALSE;
++     got_int = FALSE;
++ 
+      /*
+       * Collect the command string, handling editing keys.
+       */
+*** ../vim-7.4.336/src/version.c	2014-06-25 11:48:40.733960646 +0200
+--- src/version.c	2014-06-25 12:24:39.442042313 +0200
+***************
+*** 736,737 ****
+--- 736,739 ----
+  {   /* Add new patch number below this line */
++ /**/
++     337,
+  /**/
+
+-- 
+Computers are not intelligent.  They only think they are.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///
