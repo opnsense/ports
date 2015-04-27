@@ -89,6 +89,7 @@ USE_GNOME+=	gtk20
 PLIST_SUB+=	X11=''
 .else
 CONFIGURE_ARGS+=	--without-x
+USE_GNOME+=	glib20
 PLIST_SUB+=	X11='@comment '
 .endif
 
