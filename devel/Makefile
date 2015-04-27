@@ -3198,6 +3198,7 @@
     SUBDIR += p5-UUID-Random-Patch-UseMRS
     SUBDIR += p5-UUID-Tiny
     SUBDIR += p5-Uniq
+    SUBDIR += p5-Unix-Groups
     SUBDIR += p5-Unix-Statgrab
     SUBDIR += p5-Unix-Uptime
     SUBDIR += p5-User-Identity
@@ -3239,6 +3240,7 @@
     SUBDIR += p5-constant
     SUBDIR += p5-constant-boolean
     SUBDIR += p5-constant-def
+    SUBDIR += p5-constant-defer
     SUBDIR += p5-constant-lexical
     SUBDIR += p5-cpan-listchanges
     SUBDIR += p5-enum
