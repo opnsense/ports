@@ -150,19 +150,15 @@ static zend_function_entry pfSense_functions[] = {
 };
 
 zend_module_entry pfSense_module_entry = {
-#if ZEND_MODULE_API_NO >= 20010901
     STANDARD_MODULE_HEADER,
-#endif
-    PHP_PFSENSE_WORLD_EXTNAME,
+    "pfSense",
     pfSense_functions,
-    PHP_MINIT(pfSense_socket),
-    PHP_MSHUTDOWN(pfSense_socket_close),
+    PHP_MINIT(pfSense_module_init),
+    PHP_MSHUTDOWN(pfSense_module_exit),
     NULL,
     NULL,
     NULL,
-#if ZEND_MODULE_API_NO >= 20010901
-    PHP_PFSENSE_WORLD_VERSION,
-#endif
+    "1.0",
     STANDARD_MODULE_PROPERTIES
 };
 
@@ -218,41 +214,34 @@ prefix(void *val, int size)
 	return (plen);
 }
 
-PHP_MINIT_FUNCTION(pfSense_socket)
+PHP_MINIT_FUNCTION(pfSense_module_init)
 {
-	int csock;
+	int csock = -1;
 
-	PFSENSE_G(s) = socket(AF_LOCAL, SOCK_DGRAM, 0);
-	if (PFSENSE_G(s) < 0)
+	PFSENSE_G(locals) = socket(AF_LOCAL, SOCK_DGRAM, 0);
+	if (PFSENSE_G(locals) < 0) {
 		return FAILURE;
+	}
 
 	PFSENSE_G(inets) = socket(AF_INET, SOCK_DGRAM, 0);
 	if (PFSENSE_G(inets) < 0) {
-		close(PFSENSE_G(s));
+		close(PFSENSE_G(locals));
 		return FAILURE;
 	}
 
 	if (geteuid() == 0 || getuid() == 0) {
-		PFSENSE_G(ipfw) = socket(AF_INET, SOCK_RAW, IPPROTO_RAW);
-		if (PFSENSE_G(ipfw) < 0) {
-			close(PFSENSE_G(s));
-			close(PFSENSE_G(inets));
-			return FAILURE;
-		} else
-			fcntl(PFSENSE_G(ipfw), F_SETFD, fcntl(PFSENSE_G(ipfw), F_GETFD, 0) | FD_CLOEXEC);
-	
 		/* Create a new socket node */
-		if (NgMkSockNode(NULL, &csock, NULL) < 0)
+		if (NgMkSockNode(NULL, &csock, NULL) < 0) {
 			csock = -1;
-		else
+		} else {
 			fcntl(csock, F_SETFD, fcntl(csock, F_GETFD, 0) | FD_CLOEXEC);
+		}
+	}
 
-		PFSENSE_G(csock) = csock;
-	} else
-		PFSENSE_G(csock) = -1;
+	PFSENSE_G(ngsock) = csock;
 
 	/* Don't leak these sockets to child processes */
-	fcntl(PFSENSE_G(s), F_SETFD, fcntl(PFSENSE_G(s), F_GETFD, 0) | FD_CLOEXEC);
+	fcntl(PFSENSE_G(locals), F_SETFD, fcntl(PFSENSE_G(locals), F_GETFD, 0) | FD_CLOEXEC);
 	fcntl(PFSENSE_G(inets), F_SETFD, fcntl(PFSENSE_G(inets), F_GETFD, 0) | FD_CLOEXEC);
 
 	REGISTER_LONG_CONSTANT("IFF_UP", IFF_UP, CONST_PERSISTENT | CONST_CS);
@@ -297,14 +286,19 @@ PHP_MINIT_FUNCTION(pfSense_socket)
 	return SUCCESS;
 }
 
-PHP_MSHUTDOWN_FUNCTION(pfSense_socket_close)
+PHP_MSHUTDOWN_FUNCTION(pfSense_module_exit)
 {
-	if (PFSENSE_G(csock) != -1)
-		close(PFSENSE_G(csock));
-	if (PFSENSE_G(inets) != -1)
+	if (PFSENSE_G(ngsock) != -1) {
+		close(PFSENSE_G(ngsock));
+	}
+
+	if (PFSENSE_G(inets) != -1) {
 		close(PFSENSE_G(inets));
-	if (PFSENSE_G(s) != -1)
-		close(PFSENSE_G(s));
+	}
+
+	if (PFSENSE_G(locals) != -1) {
+		close(PFSENSE_G(locals));
+	}
 
 	return SUCCESS;
 }
@@ -529,7 +523,7 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 		array_init(caps);
 		array_init(encaps);
 		strncpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-		if (ioctl(PFSENSE_G(s), SIOCGIFCAP, (caddr_t)&ifr) == 0) {
+		if (ioctl(PFSENSE_G(locals), SIOCGIFCAP, (caddr_t)&ifr) == 0) {
 			add_assoc_long(caps, "flags", ifr.ifr_reqcap);
 			if (ifr.ifr_reqcap & IFCAP_POLLING)
 				add_assoc_long(caps, "polling", 1);
@@ -693,7 +687,7 @@ PHP_FUNCTION(pfSense_bridge_add_member) {
 	drv.ifd_cmd = BRDGADD;
 	drv.ifd_data = &req;
 	drv.ifd_len = sizeof(req);
-	if (ioctl(PFSENSE_G(s), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
 		RETURN_FALSE;
 
 	RETURN_TRUE;
@@ -716,7 +710,7 @@ PHP_FUNCTION(pfSense_bridge_del_member) {
 	drv.ifd_cmd = BRDGDEL;
 	drv.ifd_data = &req;
 	drv.ifd_len = sizeof(req);
-	if (ioctl(PFSENSE_G(s), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
 		RETURN_FALSE;
 
 	RETURN_TRUE;
@@ -740,7 +734,7 @@ PHP_FUNCTION(pfSense_bridge_member_flags) {
 	drv.ifd_cmd = BRDGGIFFLGS;
 	drv.ifd_data = &req;
 	drv.ifd_len = sizeof(req);
-	if (ioctl(PFSENSE_G(s), SIOCGDRVSPEC, (caddr_t)&drv) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCGDRVSPEC, (caddr_t)&drv) < 0)
 		RETURN_FALSE;
 
 	if (flags < 0) {
@@ -752,7 +746,7 @@ PHP_FUNCTION(pfSense_bridge_member_flags) {
 	drv.ifd_cmd = BRDGSIFFLGS;
 	drv.ifd_data = &req;
 	drv.ifd_len = sizeof(req);
-	if (ioctl(PFSENSE_G(s), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
 		RETURN_FALSE;
 
 	RETURN_TRUE;
@@ -808,7 +802,7 @@ PHP_FUNCTION(pfSense_interface_create) {
 
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(s), SIOCIFCREATE2, &ifr) < 0) {
+	if (ioctl(PFSENSE_G(locals), SIOCIFCREATE2, &ifr) < 0) {
 		array_init(return_value);
 		add_assoc_string(return_value, "error", "Could not create interface", 1);
 	} else
@@ -826,7 +820,7 @@ PHP_FUNCTION(pfSense_interface_destroy) {
 
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(s), SIOCIFDESTROY, &ifr) < 0) {
+	if (ioctl(PFSENSE_G(locals), SIOCIFDESTROY, &ifr) < 0) {
 		array_init(return_value);
 		add_assoc_string(return_value, "error", "Could not create interface", 1);
 	} else
@@ -912,38 +906,43 @@ PHP_FUNCTION(pfSense_interface_rename) {
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
 	ifr.ifr_data = (caddr_t) newifname;
-	if (ioctl(PFSENSE_G(s), SIOCSIFNAME, (caddr_t) &ifr) < 0) {
+	if (ioctl(PFSENSE_G(locals), SIOCSIFNAME, (caddr_t) &ifr) < 0) {
 		array_init(return_value);
 		add_assoc_string(return_value, "error", "Could not rename interface", 1);
 	} else
 		RETURN_TRUE;
 }
 
-PHP_FUNCTION(pfSense_ngctl_name) {
+PHP_FUNCTION(pfSense_ngctl_name)
+{
 	char *ifname, *newifname;
 	int ifname_len, newifname_len;
 
-	if (PFSENSE_G(csock) == -1)
+	if (PFSENSE_G(ngsock) == -1) {
 		RETURN_NULL();
+	}
 
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
 		RETURN_NULL();
 	}
 
 	/* Send message */
-	if (NgNameNode(PFSENSE_G(csock), ifname, "%s", newifname) < 0)
+	if (NgNameNode(PFSENSE_G(ngsock), ifname, "%s", newifname) < 0) {
 		RETURN_NULL();
+	}
 
 	RETURN_TRUE;
 }
 
-PHP_FUNCTION(pfSense_ngctl_attach) {
+PHP_FUNCTION(pfSense_ngctl_attach)
+{
 	char *ifname, *newifname;
 	int ifname_len, newifname_len;
 	struct ngm_name name;
 
-	if (PFSENSE_G(csock) == -1)
+	if (PFSENSE_G(ngsock) == -1) {
 		RETURN_NULL();
+	}
 
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
 		RETURN_NULL();
@@ -951,20 +950,23 @@ PHP_FUNCTION(pfSense_ngctl_attach) {
 
 	snprintf(name.name, sizeof(name.name), "%s", newifname);
 	/* Send message */
-	if (NgSendMsg(PFSENSE_G(csock), ifname, NGM_GENERIC_COOKIE,
-		NGM_ETHER_ATTACH, &name, sizeof(name)) < 0)
+	if (NgSendMsg(PFSENSE_G(ngsock), ifname, NGM_GENERIC_COOKIE,
+		NGM_ETHER_ATTACH, &name, sizeof(name)) < 0) {
 			RETURN_NULL();
+	}
 
 	RETURN_TRUE;
 }
 
-PHP_FUNCTION(pfSense_ngctl_detach) {
+PHP_FUNCTION(pfSense_ngctl_detach)
+{
 	char *ifname, *newifname;
 	int ifname_len, newifname_len;
 	struct ngm_name name;
 
-	if (PFSENSE_G(csock) == -1)
+	if (PFSENSE_G(ngsock) == -1) {
 		RETURN_NULL();
+	}
 
 	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
 		RETURN_NULL();
@@ -972,9 +974,10 @@ PHP_FUNCTION(pfSense_ngctl_detach) {
 
 	snprintf(name.name, sizeof(name.name), "%s", newifname);
 	/* Send message */
-	if (NgSendMsg(PFSENSE_G(csock), ifname, NGM_ETHER_COOKIE,
-		NGM_ETHER_DETACH, &name, sizeof(name)) < 0)
+	if (NgSendMsg(PFSENSE_G(ngsock), ifname, NGM_ETHER_COOKIE,
+		NGM_ETHER_DETACH, &name, sizeof(name)) < 0) {
 			RETURN_NULL();
+	}
 
 	RETURN_TRUE;
 }
@@ -997,7 +1000,7 @@ PHP_FUNCTION(pfSense_vlan_create) {
 	strlcpy(params.vlr_parent, parentifname, sizeof(params.vlr_parent));
 	params.vlr_tag = (u_short) tag;
 	ifr.ifr_data = (caddr_t) &params;
-	if (ioctl(PFSENSE_G(s), SIOCSETVLAN, (caddr_t) &ifr) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSETVLAN, (caddr_t) &ifr) < 0)
 		RETURN_NULL();
 
 	RETURN_TRUE;
@@ -1015,7 +1018,7 @@ PHP_FUNCTION(pfSense_interface_mtu) {
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
 	ifr.ifr_mtu = (int) mtu;
-	if (ioctl(PFSENSE_G(s), SIOCSIFMTU, (caddr_t)&ifr) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSIFMTU, (caddr_t)&ifr) < 0)
 		RETURN_NULL();
 	RETURN_TRUE;
 }
@@ -1032,7 +1035,7 @@ PHP_FUNCTION(pfSense_interface_flags) {
 
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(s), SIOCGIFFLAGS, (caddr_t)&ifr) < 0) {
+	if (ioctl(PFSENSE_G(locals), SIOCGIFFLAGS, (caddr_t)&ifr) < 0) {
 		RETURN_NULL();
 	}
 	flags = (ifr.ifr_flags & 0xffff) | (ifr.ifr_flagshigh << 16);
@@ -1043,7 +1046,7 @@ PHP_FUNCTION(pfSense_interface_flags) {
 		flags |= (int)value; 
 	ifr.ifr_flags = flags & 0xffff;
 	ifr.ifr_flagshigh = flags >> 16;
-	if (ioctl(PFSENSE_G(s), SIOCSIFFLAGS, (caddr_t)&ifr) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSIFFLAGS, (caddr_t)&ifr) < 0)
 		RETURN_NULL();
 	RETURN_TRUE;
 }
@@ -1060,7 +1063,7 @@ PHP_FUNCTION(pfSense_interface_capabilities) {
 
 	memset(&ifr, 0, sizeof(ifr));
 	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(s), SIOCGIFCAP, (caddr_t)&ifr) < 0) {
+	if (ioctl(PFSENSE_G(locals), SIOCGIFCAP, (caddr_t)&ifr) < 0) {
 		RETURN_NULL();
 	}
 	flags = ifr.ifr_curcap;
@@ -1071,7 +1074,7 @@ PHP_FUNCTION(pfSense_interface_capabilities) {
 		flags |= (int)value; 
 	flags &= ifr.ifr_reqcap;
 	ifr.ifr_reqcap = flags;
-	if (ioctl(PFSENSE_G(s), SIOCSIFCAP, (caddr_t)&ifr) < 0)
+	if (ioctl(PFSENSE_G(locals), SIOCSIFCAP, (caddr_t)&ifr) < 0)
 		RETURN_NULL();
 	RETURN_TRUE;
 
