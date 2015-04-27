@@ -146,7 +146,6 @@ static zend_function_entry pfSense_functions[] = {
     PHP_FE(pfSense_ngctl_name, NULL)
     PHP_FE(pfSense_ngctl_attach, NULL)
     PHP_FE(pfSense_ngctl_detach, NULL)
-    PHP_FE(pfSense_pipe_action, NULL)
     {NULL, NULL, NULL}
 };
 
@@ -366,67 +365,6 @@ pfctl_addrprefix(char *addr, struct pf_addr *mask)
 	freeaddrinfo(res);
 
 	return (0);
-}
-
-PHP_FUNCTION(pfSense_pipe_action)
-{
-	int ac, do_pipe = 1, param_len = 0;
-	enum { bufsize = 2048 };
-	char **ap, *av[bufsize], *param = NULL;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &param, &param_len) == FAILURE) {
-		RETURN_FALSE;
-	}
-
-	memset(av, 0, sizeof(av));
-	ac = 0;
-	for (ap = av; (*ap = strsep(&param, " \t")) != NULL;) {
-		if (**ap != '\0') {
-			if (++ap >= &av[bufsize])
-				break;
-		}
-		ac++;
-	}
-	if (ac > 0)
-		ac = ac - 1;
-
-	if (!strncmp(*av, "pipe", strlen(*av)))
-		do_pipe = 1;
-	else if (!strncmp(*av, "queue", strlen(*av)))
-		do_pipe = 2;
-	else if (!strncmp(*av, "flowset", strlen(*av)))
-		do_pipe = 2;
-	else if (!strncmp(*av, "sched", strlen(*av)))
-		do_pipe = 3;
-	else
-		RETURN_FALSE;
-
-	ap = av;
-	ac--;
-	ap++;
-
-	if (!strncmp(*ap, "delete", strlen(*ap))) {
-		ipfw_delete_pipe(do_pipe, strtol(ap[1], NULL, 10));
-	} else if (!strncmp(ap[1], "config", strlen(ap[1]))) {
-		/*
-		 * For pipes, queues and nats we normally say 'nat|pipe NN config'
-		 * but the code is easier to parse as 'nat|pipe config NN'
-		 * so we swap the two arguments.
-		 */
-		if (ac > 1 && isdigit(*ap[0])) {
-			char *p = ap[0];
-
-			ap[0] = ap[1];
-			ap[1] = p;
-		}
-
-		if (ipfw_config_pipe(ac, ap, do_pipe) < 0) {
-			RETURN_FALSE;
-		}
-	} else
-		RETURN_FALSE;
-
-	RETURN_TRUE;
 }
 
 PHP_FUNCTION(pfSense_getall_interface_addresses)
