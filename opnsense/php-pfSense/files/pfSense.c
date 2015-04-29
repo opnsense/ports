@@ -160,29 +160,6 @@ zend_module_entry pfSense_module_entry = {
 ZEND_GET_MODULE(pfSense)
 #endif
 
-/* interface management code */
-static int
-pfi_get_ifaces(int dev, const char *filter, struct pfi_kif *buf, int *size)
-{
-	struct pfioc_iface io;
-	caddr_t buff[sizeof(struct pfi_kif) + 1] = { 0 };
-
-	bzero(&io, sizeof io);
-	if (filter != NULL)
-		if (strlcpy(io.pfiio_name, filter, sizeof(io.pfiio_name)) >=
-		    sizeof(io.pfiio_name)) {
-			errno = EINVAL;
-			return (-1);
-		}
-	io.pfiio_buffer = buf;
-	io.pfiio_esize = sizeof(struct pfi_kif);
-	io.pfiio_size = *size;
-	if (ioctl(dev, DIOCIGETIFACES, &io))
-		return (-1);
-	*size = io.pfiio_size;
-	return (0);
-}
-
 /* returns prefixlen, obtained from sbin/ifconfig/af_inet6.c */
 static int
 prefix(void *val, int size)
@@ -295,64 +272,6 @@ PHP_MSHUTDOWN_FUNCTION(pfSense_module_exit)
 	}
 
 	return SUCCESS;
-}
-
-static int
-pfctl_addrprefix(char *addr, struct pf_addr *mask)
-{
-	char *p;
-	const char *errstr;
-	int prefix, ret_ga, q, r;
-	struct addrinfo hints, *res;
-
-	if ((p = strchr(addr, '/')) == NULL)
-		return 0;
-
-	*p++ = '\0';
-	prefix = strtonum(p, 0, 128, &errstr);
-	if (errstr) {
-		php_printf("prefix is %s: %s", errstr, p);
-		return (-1);
-	}
-
-	bzero(&hints, sizeof(hints));
-	/* prefix only with numeric addresses */
-	hints.ai_flags |= AI_NUMERICHOST;
-
-	if ((ret_ga = getaddrinfo(addr, NULL, &hints, &res))) {
-		php_printf("getaddrinfo: %s", gai_strerror(ret_ga));
-		return (-1);
-		/* NOTREACHED */
-	}
-
-	if (res->ai_family == AF_INET && prefix > 32) {
-		php_printf("prefix too long for AF_INET");
-		return (-1);
-	} else if (res->ai_family == AF_INET6 && prefix > 128) {
-		php_printf("prefix too long for AF_INET6");
-		return (-1);
-	}
-
-	q = prefix >> 3;
-	r = prefix & 7;
-	switch (res->ai_family) {
-	case AF_INET:
-		bzero(&mask->v4, sizeof(mask->v4));
-		mask->v4.s_addr = htonl((u_int32_t)
-		    (0xffffffffffULL << (32 - prefix)));
-		break;
-	case AF_INET6:
-		bzero(&mask->v6, sizeof(mask->v6));
-		if (q > 0)
-			memset((void *)&mask->v6, 0xff, q);
-		if (r > 0)
-			*((u_char *)&mask->v6 + q) =
-			    (0xff00 >> r) & 0xff;
-		break;
-	}
-	freeaddrinfo(res);
-
-	return (0);
 }
 
 PHP_FUNCTION(pfSense_getall_interface_addresses)
@@ -827,6 +746,27 @@ PHP_FUNCTION(pfSense_interface_deladdress) {
 		add_assoc_string(return_value, "error", "Could not delete interface address", 1);
 	} else
 		RETURN_TRUE;
+}
+
+PHP_FUNCTION(pfSense_interface_rename)
+{
+	char *ifname, *newifname;
+	int ifname_len, newifname_len;
+	struct ifreq ifr;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
+		RETURN_NULL();
+	}
+
+	memset(&ifr, 0, sizeof(ifr));
+	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
+	ifr.ifr_data = (caddr_t) newifname;
+	if (ioctl(PFSENSE_G(locals), SIOCSIFNAME, (caddr_t) &ifr) < 0) {
+		array_init(return_value);
+		add_assoc_string(return_value, "error", "Could not rename interface", 1);
+	} else {
+		RETURN_TRUE;
+	}
 }
 
 PHP_FUNCTION(pfSense_ngctl_name)
