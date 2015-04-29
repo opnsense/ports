@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nginx
-PORTVERSION=	1.8.0
+PORTVERSION=	1.9.0
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
 MASTER_SITES+=	${MASTER_SITE_LOCAL}
@@ -52,6 +52,8 @@ OPTIONS_DEFINE=	\
 	MAIL_SMTP \
 	MAIL_SSL \
 	SPDY \
+	STREAM \
+	STREAM_SSL \
 	THREADS \
 	WWW \
 	CACHE_PURGE \
@@ -136,6 +138,8 @@ MAIL_POP3_DESC=			Enable POP3 proxy module
 MAIL_SMTP_DESC=			Enable SMTP proxy module
 MAIL_SSL_DESC=			Enable mail_ssl module
 SPDY_DESC=			Enable SPDY protocol support (SSL req.)
+STREAM_DESC=			Enable stream module
+STREAM_SSL_DESC=		Enable stream_ssl module (SSL req.)
 THREADS_DESC=			Enable threads support
 WWW_DESC=			Enable html sample files
 CACHE_PURGE_DESC=		3rd party cache_purge module
@@ -618,7 +622,7 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.6
+PASSENGER_VERSION=	5.0.7
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/ext/nginx
@@ -721,6 +725,15 @@ CONFIGURE_ARGS+=--add-module=${WRKDIR}/openresty-xss-nginx-module-${GIT_XSS_VERS
 NGINX_OPENSSL=	yes
 USE_HTTP_SSL=	yes
 CONFIGURE_ARGS+=--with-http_spdy_module
+.endif
+
+.if ${PORT_OPTIONS:MSTREAM}
+CONFIGURE_ARGS+=--with-stream
+.if ${PORT_OPTIONS:MSTREAM}
+NGINX_OPENSSL=	yes
+USE_HTTP_SSL=	yes
+CONFIGURE_ARGS+=--with-stream_ssl_module
+.endif
 .endif
 
 .if ${PORT_OPTIONS:MTHREADS}
@@ -862,11 +875,10 @@ post-patch:
 		's!%%PREFIX%%!${LOCALBASE}!g' \
 		${WRKDIR}/nginx-sflow-module-${NGINX_SFLOW_VERSION}/ngx_http_sflow_config.h
 .endif
-.if ${PORT_OPTIONS:MSPDY}
 .if ${PORT_OPTIONS:MLUA}
-	@${REINPLACE_CMD} '464d' \
-		${WRKDIR}/openresty-lua-nginx-module-${GIT_LUA_VERSION:S/^0-g//}/src/ngx_http_lua_socket_tcp.c
-.endif
+	@${REINPLACE_CMD} 's!ngx_http_set_connection_log!ngx_set_connection_log!g' \
+		${WRKDIR}/openresty-lua-nginx-module-${GIT_LUA_VERSION:S/^0-g//}/src/ngx_http_lua_initworkerby.c \
+		${WRKDIR}/openresty-lua-nginx-module-${GIT_LUA_VERSION:S/^0-g//}/src/ngx_http_lua_timer.c
 .endif
 .if ${PORT_OPTIONS:MICONV}
 	@${REINPLACE_CMD} \

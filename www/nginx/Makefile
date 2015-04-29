@@ -618,7 +618,7 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.6
+PASSENGER_VERSION=	5.0.7
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/ext/nginx
@@ -861,12 +861,6 @@ post-patch:
 	@${REINPLACE_CMD} \
 		's!%%PREFIX%%!${LOCALBASE}!g' \
 		${WRKDIR}/nginx-sflow-module-${NGINX_SFLOW_VERSION}/ngx_http_sflow_config.h
-.endif
-.if ${PORT_OPTIONS:MSPDY}
-.if ${PORT_OPTIONS:MLUA}
-	@${REINPLACE_CMD} '464d' \
-		${WRKDIR}/openresty-lua-nginx-module-${GIT_LUA_VERSION:S/^0-g//}/src/ngx_http_lua_socket_tcp.c
-.endif
 .endif
 .if ${PORT_OPTIONS:MICONV}
 	@${REINPLACE_CMD} \
