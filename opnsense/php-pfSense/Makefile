@@ -1,6 +1,9 @@
+# Created by: Franco Fichtner <franco@opnsense.org>
+# $FreeBSD$
+
 PORTNAME=	pfSense
 PORTVERSION=	0.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=
 DISTFILES=
@@ -14,8 +17,8 @@ USE_PHPEXT=	yes
 
 CONFIGURE_ARGS=	--enable-pfSense
 
-extract:
-	mkdir -p ${WRKSRC}
-	cp ${FILESDIR}/* ${WRKSRC}
+do-extract:
+	${MKDIR} ${WRKSRC}
+	${CP} ${FILESDIR}/* ${WRKSRC}
 
 .include <bsd.port.mk>
