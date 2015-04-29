@@ -56,7 +56,7 @@ sysids = {
 }
 
 default_sysid = 165
-package_suffix = "tbz"
+package_suffix = "txz"
 num_subpartitions = 8
 has_raw_devices = false
 disklabel_on_disk = false

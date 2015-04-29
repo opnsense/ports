@@ -9,23 +9,19 @@ product = {
 
 mountpoints = function(part_cap, ram_cap)
 
-	--
-	-- First, calculate suggested swap size:
-	--
+	-- smaller than 30GB disables swap
+	if part_cap < 30720 then
+		return {
+			{ mountpoint = "/",     capstring = "*" },
+		}
+	end
+
+	-- calculate the suggested swap size
 	local swap = 2 * ram_cap
 	if ram_cap > (part_cap / 2) or part_cap < 4096 then
 		swap = ram_cap
 	end
 	swap = tostring(swap) .. "M"
-
-	--
-	-- Now, based on the capacity of the partition,
-	-- return an appropriate list of suggested mountpoints.
-	--
-
-	--
-	-- We want to only setup / and swap.
-	--
 
 	return {
 		{ mountpoint = "/",     capstring = "*" },
@@ -33,10 +29,6 @@ mountpoints = function(part_cap, ram_cap)
 	}
 
 end
-
-cmd_names = cmd_names + {
-	DMESG_BOOT = "var/log/dmesg.boot"
-}
 
 mtrees_post_copy = {} -- none
 
@@ -97,9 +89,5 @@ ui_nav_control = {
 dir = { root = "/", tmp = "/tmp/" }
 
 limits.part_min = "100M"
-
-offlimits_devices = { "fd%d+", "md%d+", "cd%d+" }
-
-offlimits_mounts  = { "union" }
 
 use_cpdup = true

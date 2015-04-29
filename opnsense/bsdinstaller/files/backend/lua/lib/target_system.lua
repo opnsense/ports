@@ -491,6 +491,7 @@ TargetSystem.new = function(tab)
 		tab = tab or {}
 		local filename = tab.filename or "/etc/fstab"
 		local extra_fs = tab.extra_fs or {}
+		local hay_swap = false
 
 		cmds:set_replacements{
 		    header = "# Device\t\tMountpoint\tFStype\tOptions\t\tDump\tPass#",
@@ -501,6 +502,13 @@ TargetSystem.new = function(tab)
 		}
 
 		cmds:add("${root}${ECHO} '${header}' >${root}${base}${filename}")
+
+		-- find out whether we have a swap partition
+		for spd in pd:get_subparts() do
+			if spd:is_swap() then
+				hay_swap = true
+			end
+		end
 
 		--
 		-- Add the mountpoints for the selected subpartitions
@@ -513,7 +521,12 @@ TargetSystem.new = function(tab)
 			}
 
 			if spd:get_mountpoint() == "/" then
-				cmds:add("${root}${ECHO} '/dev/${device}\t\t${mountpoint}\t\tufs\trw\t\t1\t1' >>${root}${base}/${filename}")
+				if hay_swap then
+					cmds:add("${root}${ECHO} '/dev/${device}\t\t${mountpoint}\t\tufs\trw\t\t1\t1' >>${root}${base}/${filename}")
+				else
+					-- no swap, no atime
+					cmds:add("${root}${ECHO} '/dev/${device}\t\t${mountpoint}\t\tufs\trw,noatime\t1\t1' >>${root}${base}/${filename}")
+				end
 			elseif spd:is_swap() then
 				cmds:add("${root}${ECHO} '/dev/${device}\t\tnone\t\tswap\tsw\t\t0\t0' >>${root}${base}/${filename}")
 			else

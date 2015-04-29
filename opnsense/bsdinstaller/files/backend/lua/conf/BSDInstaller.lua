@@ -472,17 +472,8 @@ cmd_names = {
 
 	DMESG_BOOT	= "var/run/dmesg.boot",
 	MODULES_DIR	= "modules",
-	SYSCTL_DISKS	= "kern.disks"
+	SYSCTL_DISKS	= "kern.disks",
 }
-
---
--- package_suffix: The filename suffix for package files,
--- apropos to the current operating system and/or package
--- system in use.
--- XXX This should be organized better in the future.
---
-
-package_suffix = "tgz"
 
 --
 -- mount_info_regexp: A Lua regular expression which describes
