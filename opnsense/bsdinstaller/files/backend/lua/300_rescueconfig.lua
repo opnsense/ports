@@ -48,6 +48,11 @@ return {
 		cancel_desc = _("Cancel")
 	})
 
+	-- Maybe abort was selected
+	if not dd then
+		return Menu.CONTINUE
+	end
+
 	local disk1 = dd:get_name()
 
 	-- Make sure source disk containing config.xml is selected
