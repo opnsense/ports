@@ -118,16 +118,14 @@ again:
 		tcp_print(sbuf, ipds->cp, ipds->len, (const u_char *)ipds->ip);
 		break;
 
-	case IPPROTO_UDP:
-	{
-		const struct udphdr *up;
-
-		up = (struct udphdr *)ipds->cp;
-		sbuf_printf(sbuf, "%d,%d,%d", EXTRACT_16BITS(&up->uh_sport), EXTRACT_16BITS(&up->uh_dport),
-			EXTRACT_16BITS(&up->uh_ulen));
-
-	}
+	case IPPROTO_UDP: {
+		const struct udphdr *up = (const struct udphdr *)ipds->cp;
+		sbuf_printf(sbuf, "%d,%d,%d",
+		    EXTRACT_16BITS(&up->uh_sport),
+		    EXTRACT_16BITS(&up->uh_dport),
+		    EXTRACT_16BITS(&up->uh_ulen));
 		break;
+	}
 
 #if 0
 	case IPPROTO_ICMP:

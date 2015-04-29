@@ -25,7 +25,7 @@ static pcap_t *tap = NULL;
 static char *filterlog_pcap_file = NULL;
 static char errbuf[PCAP_ERRBUF_SIZE];
 static struct sbuf sbuf;
-static u_char *sbuf_buf;
+static char *sbuf_buf;
 static char *pidfile;
 
 static const struct tok pf_reasons[] = {

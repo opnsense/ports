@@ -1,26 +1,18 @@
+# Created by: Franco Fichtner <franco@opnsense.org>
+# $FreeBSD$
+
 PORTNAME=	filterlog
-PORTVERSION=	0.1
+PORTVERSION=	0.2
 CATEGORIES?=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER?=	eri@pfsense.org
-COMMENT?=	filterlog
-
-WHERE=		sbin
-PLIST_FILES=    ${WHERE}/${PORTNAME}
-
-pre-clean:
-	cd files && make clean
+MAINTAINER=	franco@opnsense.org
+COMMENT=	Parse pflog(4) output
 
 do-extract:
-	mkdir -p ${WRKSRC}
-
-do-build:
-	cd files && make
-
-do-install:
-	${INSTALL_PROGRAM} files/${PORTNAME} ${STAGEDIR}${PREFIX}/${WHERE}/
+	${MKDIR} ${WRKSRC}
+	${CP} ${FILESDIR}/* ${WRKSRC}
 
 .include <bsd.port.mk>
