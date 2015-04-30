@@ -45,11 +45,11 @@ share/dfuibe_lua/configure/menu/main.lua
 share/dfuibe_lua/easy_install/200_select_disk.lua
 share/dfuibe_lua/easy_install/220_format_disk.lua
 share/dfuibe_lua/easy_install/250_partition_disk.lua
+share/dfuibe_lua/easy_install/270_install_bootblocks.lua
 share/dfuibe_lua/easy_install/300_select_part.lua
 share/dfuibe_lua/easy_install/400_select_subparts.lua
 share/dfuibe_lua/easy_install/407_create_subparts.lua
 share/dfuibe_lua/easy_install/500_install_os.lua
-share/dfuibe_lua/easy_install/598_install_bootblocks.lua
 share/dfuibe_lua/easy_install/599_after_installation_tasks.lua
 share/dfuibe_lua/easy_install/900_reboot.lua
 share/dfuibe_lua/easy_install/main.lua
