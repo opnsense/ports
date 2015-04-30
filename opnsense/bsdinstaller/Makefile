@@ -3,7 +3,7 @@
 
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.2
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -26,12 +26,15 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/frontends/ncurses/dfuife_curses ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_LIB} ${WRKSRC}/platform/lua/lib/liblua50.so ${STAGEDIR}${PREFIX}/lib
 	${INSTALL_LIB} ${WRKSRC}/platform/lua/lib/liblualib50.so ${STAGEDIR}${PREFIX}/lib
-	${INSTALL_PROGRAM} ${WRKSRC}/platform/lua/bin/lua ${STAGEDIR}${PREFIX}/bin/lua50
-	${INSTALL_PROGRAM} ${WRKSRC}/platform/lua/bin/luac ${STAGEDIR}${PREFIX}/bin/lua50c
+	${CP} ${WRKSRC}/platform/lua/bin/lua ${WRKSRC}/platform/lua/bin/lua50
+	${INSTALL_PROGRAM} ${WRKSRC}/platform/lua/bin/lua50 ${STAGEDIR}${PREFIX}/bin
+	${CP} ${WRKSRC}/platform/lua/bin/luac ${WRKSRC}/platform/lua/bin/lua50c
+	${INSTALL_PROGRAM} ${WRKSRC}/platform/lua/bin/lua50c ${STAGEDIR}${PREFIX}/bin
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/lua/5.0
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/lua/5.0
 	${INSTALL_DATA} ${WRKSRC}/lib/lua/compat-5.1/compat-5.1.lua ${STAGEDIR}${PREFIX}/share/lua/5.0
-	${INSTALL_SCRIPT} ${WRKSRC}/lib/lua/compat-5.1/lua50c51.sh ${STAGEDIR}${PREFIX}/bin/lua50c51
+	${CP} ${WRKSRC}/lib/lua/compat-5.1/lua50c51.sh ${WRKSRC}/lib/lua/compat-5.1/lua50c51
+	${INSTALL_SCRIPT} ${WRKSRC}/lib/lua/compat-5.1/lua50c51 ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_LIB} ${WRKSRC}/lib/lua/posix/lposix.so ${STAGEDIR}${PREFIX}/lib/lua/5.0
 	${INSTALL_DATA} ${WRKSRC}/lib/lua/posix/posix.lua ${STAGEDIR}${PREFIX}/share/lua/5.0
 	${INSTALL_LIB} ${WRKSRC}/lib/lua/pty/lpty.so ${STAGEDIR}${PREFIX}/lib/lua/5.0
