@@ -9,7 +9,8 @@ MASTER_SITES=	GNU
 MAINTAINER=	johans@FreeBSD.org
 COMMENT=	GNU version of Awk
 
-LIB_DEPENDS=	libsigsegv.so:${PORTSDIR}/devel/libsigsegv
+LIB_DEPENDS=	libsigsegv.so:${PORTSDIR}/devel/libsigsegv \
+		libreadline.so:${PORTSDIR}/devel/readline
 
 OPTIONS_DEFINE=		NLS MPFR
 OPTIONS_SUB=		yes
@@ -25,7 +26,7 @@ GNU_CONFIGURE=	yes
 USES=		iconv libtool makeinfo tar:xz
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG} \
 		--with-libintl-prefix=${LOCALBASE} \
-		--with-readline=/usr \
+		--with-readline=${LOCALBASE} \
 		AWK=${AWK}
 
 PLIST_SUB+=	VERSION=${PORTVERSION}
