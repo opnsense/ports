@@ -1,0 +1,601 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.698
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.698
+Problem:    Various problems with locked and fixed lists and dictionaries.
+Solution:   Disallow changing locked items, fix a crash, add tests. (Olaf
+            Dabrunz)
+Files:      src/structs.h, src/eval.c, src/testdir/test55.in,
+            src/testdir/test55.ok
+
+
+*** ../vim-7.4.697/src/structs.h	2015-03-20 18:11:44.971196311 +0100
+--- src/structs.h	2015-04-13 16:06:51.999274650 +0200
+***************
+*** 1203,1212 ****
+  
+  typedef struct dictitem_S dictitem_T;
+  
+! #define DI_FLAGS_RO	1 /* "di_flags" value: read-only variable */
+! #define DI_FLAGS_RO_SBX 2 /* "di_flags" value: read-only in the sandbox */
+! #define DI_FLAGS_FIX	4 /* "di_flags" value: fixed variable, not allocated */
+! #define DI_FLAGS_LOCK	8 /* "di_flags" value: locked variable */
+  
+  /*
+   * Structure to hold info about a Dictionary.
+--- 1203,1213 ----
+  
+  typedef struct dictitem_S dictitem_T;
+  
+! #define DI_FLAGS_RO	1  /* "di_flags" value: read-only variable */
+! #define DI_FLAGS_RO_SBX 2  /* "di_flags" value: read-only in the sandbox */
+! #define DI_FLAGS_FIX	4  /* "di_flags" value: fixed: no :unlet or remove() */
+! #define DI_FLAGS_LOCK	8  /* "di_flags" value: locked variable */
+! #define DI_FLAGS_ALLOC	16 /* "di_flags" value: separately allocated */
+  
+  /*
+   * Structure to hold info about a Dictionary.
+*** ../vim-7.4.697/src/eval.c	2015-03-31 13:33:00.793524956 +0200
+--- src/eval.c	2015-04-13 16:16:12.045295929 +0200
+***************
+*** 3658,3664 ****
+  	    ret = FAIL;
+  	*name_end = cc;
+      }
+!     else if (tv_check_lock(lp->ll_tv->v_lock, lp->ll_name))
+  	return FAIL;
+      else if (lp->ll_range)
+      {
+--- 3658,3667 ----
+  	    ret = FAIL;
+  	*name_end = cc;
+      }
+!     else if ((lp->ll_list != NULL
+! 			  && tv_check_lock(lp->ll_list->lv_lock, lp->ll_name))
+! 	    || (lp->ll_dict != NULL
+! 			 && tv_check_lock(lp->ll_dict->dv_lock, lp->ll_name)))
+  	return FAIL;
+      else if (lp->ll_range)
+      {
+***************
+*** 3709,3725 ****
+      hashtab_T	*ht;
+      hashitem_T	*hi;
+      char_u	*varname;
+      dictitem_T	*di;
+  
+      ht = find_var_ht(name, &varname);
+      if (ht != NULL && *varname != NUL)
+      {
+  	hi = hash_find(ht, varname);
+  	if (!HASHITEM_EMPTY(hi))
+  	{
+  	    di = HI2DI(hi);
+  	    if (var_check_fixed(di->di_flags, name)
+! 		    || var_check_ro(di->di_flags, name))
+  		return FAIL;
+  	    delete_var(ht, hi);
+  	    return OK;
+--- 3712,3740 ----
+      hashtab_T	*ht;
+      hashitem_T	*hi;
+      char_u	*varname;
++     dict_T	*d;
+      dictitem_T	*di;
+  
+      ht = find_var_ht(name, &varname);
+      if (ht != NULL && *varname != NUL)
+      {
++ 	if (ht == &globvarht)
++ 	    d = &globvardict;
++ 	else if (current_funccal != NULL
++ 				 && ht == &current_funccal->l_vars.dv_hashtab)
++ 	    d = &current_funccal->l_vars;
++ 	else
++ 	{
++ 	    di = find_var_in_ht(ht, *name, (char_u *)"", FALSE);
++ 	    d = di->di_tv.vval.v_dict;
++ 	}
+  	hi = hash_find(ht, varname);
+  	if (!HASHITEM_EMPTY(hi))
+  	{
+  	    di = HI2DI(hi);
+  	    if (var_check_fixed(di->di_flags, name)
+! 		    || var_check_ro(di->di_flags, name)
+! 		    || tv_check_lock(d->dv_lock, name))
+  		return FAIL;
+  	    delete_var(ht, hi);
+  	    return OK;
+***************
+*** 7269,7275 ****
+      if (di != NULL)
+      {
+  	STRCPY(di->di_key, key);
+! 	di->di_flags = 0;
+      }
+      return di;
+  }
+--- 7284,7290 ----
+      if (di != NULL)
+      {
+  	STRCPY(di->di_key, key);
+! 	di->di_flags = DI_FLAGS_ALLOC;
+      }
+      return di;
+  }
+***************
+*** 7288,7294 ****
+      if (di != NULL)
+      {
+  	STRCPY(di->di_key, org->di_key);
+! 	di->di_flags = 0;
+  	copy_tv(&org->di_tv, &di->di_tv);
+      }
+      return di;
+--- 7303,7309 ----
+      if (di != NULL)
+      {
+  	STRCPY(di->di_key, org->di_key);
+! 	di->di_flags = DI_FLAGS_ALLOC;
+  	copy_tv(&org->di_tv, &di->di_tv);
+      }
+      return di;
+***************
+*** 7320,7326 ****
+      dictitem_T *item;
+  {
+      clear_tv(&item->di_tv);
+!     vim_free(item);
+  }
+  
+  /*
+--- 7335,7342 ----
+      dictitem_T *item;
+  {
+      clear_tv(&item->di_tv);
+!     if (item->di_flags & DI_FLAGS_ALLOC)
+! 	vim_free(item);
+  }
+  
+  /*
+***************
+*** 10481,10486 ****
+--- 10497,10503 ----
+      dictitem_T	*di1;
+      hashitem_T	*hi2;
+      int		todo;
++     char	*arg_errmsg = N_("extend() argument");
+  
+      todo = (int)d2->dv_hashtab.ht_used;
+      for (hi2 = d2->dv_hashtab.ht_array; todo > 0; ++hi2)
+***************
+*** 10515,10520 ****
+--- 10532,10540 ----
+  	    }
+  	    else if (*action == 'f' && HI2DI(hi2) != di1)
+  	    {
++ 		if (tv_check_lock(di1->di_tv.v_lock, (char_u *)_(arg_errmsg))
++ 		      || var_check_ro(di1->di_flags, (char_u *)_(arg_errmsg)))
++ 		    break;
+  		clear_tv(&di1->di_tv);
+  		copy_tv(&HI2DI(hi2)->di_tv, &di1->di_tv);
+  	    }
+***************
+*** 10805,10817 ****
+      if (argvars[0].v_type == VAR_LIST)
+      {
+  	if ((l = argvars[0].vval.v_list) == NULL
+! 		|| tv_check_lock(l->lv_lock, (char_u *)_(arg_errmsg)))
+  	    return;
+      }
+      else if (argvars[0].v_type == VAR_DICT)
+      {
+  	if ((d = argvars[0].vval.v_dict) == NULL
+! 		|| tv_check_lock(d->dv_lock, (char_u *)_(arg_errmsg)))
+  	    return;
+      }
+      else
+--- 10825,10837 ----
+      if (argvars[0].v_type == VAR_LIST)
+      {
+  	if ((l = argvars[0].vval.v_list) == NULL
+! 	      || (!map && tv_check_lock(l->lv_lock, (char_u *)_(arg_errmsg))))
+  	    return;
+      }
+      else if (argvars[0].v_type == VAR_DICT)
+      {
+  	if ((d = argvars[0].vval.v_dict) == NULL
+! 	      || (!map && tv_check_lock(d->dv_lock, (char_u *)_(arg_errmsg))))
+  	    return;
+      }
+      else
+***************
+*** 10850,10857 ****
+  
+  		    --todo;
+  		    di = HI2DI(hi);
+! 		    if (tv_check_lock(di->di_tv.v_lock,
+! 						     (char_u *)_(arg_errmsg)))
+  			break;
+  		    vimvars[VV_KEY].vv_str = vim_strsave(di->di_key);
+  		    r = filter_map_one(&di->di_tv, expr, map, &rem);
+--- 10870,10880 ----
+  
+  		    --todo;
+  		    di = HI2DI(hi);
+! 		    if (map &&
+! 			    (tv_check_lock(di->di_tv.v_lock,
+! 						     (char_u *)_(arg_errmsg))
+! 			    || var_check_ro(di->di_flags,
+! 						     (char_u *)_(arg_errmsg))))
+  			break;
+  		    vimvars[VV_KEY].vv_str = vim_strsave(di->di_key);
+  		    r = filter_map_one(&di->di_tv, expr, map, &rem);
+***************
+*** 10859,10865 ****
+--- 10882,10895 ----
+  		    if (r == FAIL || did_emsg)
+  			break;
+  		    if (!map && rem)
++ 		    {
++ 			if (var_check_fixed(di->di_flags,
++ 						     (char_u *)_(arg_errmsg))
++ 			    || var_check_ro(di->di_flags,
++ 						     (char_u *)_(arg_errmsg)))
++ 			    break;
+  			dictitem_remove(d, di);
++ 		    }
+  		}
+  	    }
+  	    hash_unlock(ht);
+***************
+*** 10870,10876 ****
+  
+  	    for (li = l->lv_first; li != NULL; li = nli)
+  	    {
+! 		if (tv_check_lock(li->li_tv.v_lock, (char_u *)_(arg_errmsg)))
+  		    break;
+  		nli = li->li_next;
+  		vimvars[VV_KEY].vv_nr = idx;
+--- 10900,10907 ----
+  
+  	    for (li = l->lv_first; li != NULL; li = nli)
+  	    {
+! 		if (map && tv_check_lock(li->li_tv.v_lock,
+! 						     (char_u *)_(arg_errmsg)))
+  		    break;
+  		nli = li->li_next;
+  		vimvars[VV_KEY].vv_nr = idx;
+***************
+*** 15819,15825 ****
+  		di = dict_find(d, key, -1);
+  		if (di == NULL)
+  		    EMSG2(_(e_dictkey), key);
+! 		else
+  		{
+  		    *rettv = di->di_tv;
+  		    init_tv(&di->di_tv);
+--- 15850,15858 ----
+  		di = dict_find(d, key, -1);
+  		if (di == NULL)
+  		    EMSG2(_(e_dictkey), key);
+! 		else if (!var_check_fixed(di->di_flags, (char_u *)_(arg_errmsg))
+! 			    && !var_check_ro(di->di_flags,
+! 						     (char_u *)_(arg_errmsg)))
+  		{
+  		    *rettv = di->di_tv;
+  		    init_tv(&di->di_tv);
+***************
+*** 21303,21309 ****
+  	    v = HI2DI(hi);
+  	    if (free_val)
+  		clear_tv(&v->di_tv);
+! 	    if ((v->di_flags & DI_FLAGS_FIX) == 0)
+  		vim_free(v);
+  	}
+      }
+--- 21336,21342 ----
+  	    v = HI2DI(hi);
+  	    if (free_val)
+  		clear_tv(&v->di_tv);
+! 	    if (v->di_flags & DI_FLAGS_ALLOC)
+  		vim_free(v);
+  	}
+      }
+***************
+*** 21502,21508 ****
+  	    vim_free(v);
+  	    return;
+  	}
+! 	v->di_flags = 0;
+      }
+  
+      if (copy || tv->v_type == VAR_NUMBER || tv->v_type == VAR_FLOAT)
+--- 21535,21541 ----
+  	    vim_free(v);
+  	    return;
+  	}
+! 	v->di_flags = DI_FLAGS_ALLOC;
+      }
+  
+      if (copy || tv->v_type == VAR_NUMBER || tv->v_type == VAR_FLOAT)
+***************
+*** 23656,23662 ****
+  							     + STRLEN(name)));
+  	    if (v == NULL)
+  		break;
+! 	    v->di_flags = DI_FLAGS_RO;
+  	}
+  	STRCPY(v->di_key, name);
+  	hash_add(&fc->l_avars.dv_hashtab, DI2HIKEY(v));
+--- 23689,23695 ----
+  							     + STRLEN(name)));
+  	    if (v == NULL)
+  		break;
+! 	    v->di_flags = DI_FLAGS_RO | DI_FLAGS_FIX | DI_FLAGS_ALLOC;
+  	}
+  	STRCPY(v->di_key, name);
+  	hash_add(&fc->l_avars.dv_hashtab, DI2HIKEY(v));
+*** ../vim-7.4.697/src/testdir/test55.in	2014-12-07 00:18:27.528202992 +0100
+--- src/testdir/test55.in	2015-04-13 16:03:46.981252486 +0200
+***************
+*** 282,287 ****
+--- 282,447 ----
+  :    $put =ps
+  :  endfor
+  :endfor
++ :"
++ :" Unletting locked variables
++ :$put ='Unletting:'
++ :for depth in range(5)
++ :  $put ='depth is ' . depth
++ :  for u in range(3)
++ :    unlet l
++ :    let l = [0, [1, [2, 3]], {4: 5, 6: {7: 8}}]
++ :    exe "lockvar " . depth . " l"
++ :    if u == 1
++ :      exe "unlockvar l"
++ :    elseif u == 2
++ :      exe "unlockvar " . depth . " l"
++ :    endif
++ :    let ps = islocked("l").islocked("l[1]").islocked("l[1][1]").islocked("l[1][1][0]").'-'.islocked("l[2]").islocked("l[2]['6']").islocked("l[2]['6'][7]")
++ :    $put =ps
++ :    let ps = ''
++ :    try
++ :      unlet l[2]['6'][7]
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    try
++ :      unlet l[2][6]
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    try
++ :      unlet l[2]
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    try
++ :      unlet l[1][1][0]
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    try
++ :      unlet l[1][1]
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    try
++ :      unlet l[1]
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    try
++ :      unlet l
++ :      let ps .= 'p'
++ :    catch
++ :      let ps .= 'F'
++ :    endtry
++ :    $put =ps
++ :  endfor
++ :endfor
++ :"
++ :" Locked variables and :unlet or list / dict functions
++ :$put ='Locks and commands or functions:'
++ :"
++ :$put ='No :unlet after lock on dict:'
++ :unlet! d
++ :let d = {'a': 99, 'b': 100}
++ :lockvar 1 d
++ :try
++ :  unlet d.a
++ :  $put ='did :unlet'
++ :catch
++ :  $put =v:exception[:16]
++ :endtry
++ :$put =string(d)
++ :"
++ :$put =':unlet after lock on dict item:'
++ :unlet! d
++ :let d = {'a': 99, 'b': 100}
++ :lockvar d.a
++ :try
++ :  unlet d.a
++ :  $put ='did :unlet'
++ :catch
++ :  $put =v:exception[:16]
++ :endtry
++ :$put =string(d)
++ :"
++ :$put ='filter() after lock on dict item:'
++ :unlet! d
++ :let d = {'a': 99, 'b': 100}
++ :lockvar d.a
++ :try
++ :  call filter(d, 'v:key != "a"')
++ :  $put ='did filter()'
++ :catch
++ :  $put =v:exception[:16]
++ :endtry
++ :$put =string(d)
++ :"
++ :$put ='map() after lock on dict:'
++ :unlet! d
++ :let d = {'a': 99, 'b': 100}
++ :lockvar 1 d
++ :try
++ :  call map(d, 'v:val + 200')
++ :  $put ='did map()'
++ :catch
++ :  $put =v:exception[:16]
++ :endtry
++ :$put =string(d)
++ :"
++ :$put ='No extend() after lock on dict item:'
++ :unlet! d
++ :let d = {'a': 99, 'b': 100}
++ :lockvar d.a
++ :try
++ :  $put =string(extend(d, {'a': 123}))
++ :  $put ='did extend()'
++ :catch
++ :  $put =v:exception[:14]
++ :endtry
++ :$put =string(d)
++ :"
++ :$put ='No remove() of write-protected scope-level variable:'
++ :fun! Tfunc(this_is_a_loooooooooong_parameter_name)
++ :  try
++ :    $put =string(remove(a:, 'this_is_a_loooooooooong_parameter_name'))
++ :    $put ='did remove()'
++ :  catch
++ :    $put =v:exception[:14]
++ :  endtry
++ :endfun
++ :call Tfunc('testval')
++ :"
++ :$put ='No extend() of write-protected scope-level variable:'
++ :fun! Tfunc(this_is_a_loooooooooong_parameter_name)
++ :  try
++ :    $put =string(extend(a:, {'this_is_a_loooooooooong_parameter_name': 1234}))
++ :    $put ='did extend()'
++ :  catch
++ :    $put =v:exception[:14]
++ :  endtry
++ :endfun
++ :call Tfunc('testval')
++ :"
++ :$put ='No :unlet of variable in locked scope:'
++ :let b:testvar = 123
++ :lockvar 1 b:
++ :try
++ :  unlet b:testvar
++ :  $put ='b:testvar was :unlet: '. (!exists('b:testvar'))
++ :catch
++ :  $put =v:exception[:16]
++ :endtry
++ :unlockvar 1 b:
++ :unlet! b:testvar
++ :"
+  :unlet l
+  :let l = [1, 2, 3, 4]
+  :lockvar! l
+*** ../vim-7.4.697/src/testdir/test55.ok	2014-12-07 00:18:27.528202992 +0100
+--- src/testdir/test55.ok	2015-04-13 16:03:46.981252486 +0200
+***************
+*** 86,91 ****
+--- 86,149 ----
+  FFpFFpp
+  0000-000
+  ppppppp
++ Unletting:
++ depth is 0
++ 0000-000
++ ppppppp
++ 0000-000
++ ppppppp
++ 0000-000
++ ppppppp
++ depth is 1
++ 1000-000
++ ppFppFp
++ 0000-000
++ ppppppp
++ 0000-000
++ ppppppp
++ depth is 2
++ 1100-100
++ pFFpFFp
++ 0000-000
++ ppppppp
++ 0000-000
++ ppppppp
++ depth is 3
++ 1110-110
++ FFFFFFp
++ 0010-010
++ FppFppp
++ 0000-000
++ ppppppp
++ depth is 4
++ 1111-111
++ FFFFFFp
++ 0011-011
++ FppFppp
++ 0000-000
++ ppppppp
++ Locks and commands or functions:
++ No :unlet after lock on dict:
++ Vim(unlet):E741: 
++ {'a': 99, 'b': 100}
++ :unlet after lock on dict item:
++ did :unlet
++ {'b': 100}
++ filter() after lock on dict item:
++ did filter()
++ {'b': 100}
++ map() after lock on dict:
++ did map()
++ {'a': 299, 'b': 300}
++ No extend() after lock on dict item:
++ Vim(put):E741: 
++ {'a': 99, 'b': 100}
++ No remove() of write-protected scope-level variable:
++ Vim(put):E795: 
++ No extend() of write-protected scope-level variable:
++ Vim(put):E742: 
++ No :unlet of variable in locked scope:
++ Vim(unlet):E741: 
+  [1, 2, 3, 4]
+  [1, 2, 3, 4]
+  [1, 2, 3, 4]
+*** ../vim-7.4.697/src/version.c	2015-04-13 15:37:48.342074267 +0200
+--- src/version.c	2015-04-13 16:06:31.439494486 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     698,
+  /**/
+
+-- 
+To keep milk from turning sour: Keep it in the cow.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

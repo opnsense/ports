@@ -1,0 +1,67 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.693
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.693
+Problem:    Session file is not correct when there are multiple tab pages.
+Solution:   Reset the current window number for each tab page. (Jacob Niehus)
+Files:      src/ex_docmd.c
+
+
+*** ../vim-7.4.692/src/ex_docmd.c	2015-02-03 19:10:45.978888772 +0100
+--- src/ex_docmd.c	2015-04-13 12:27:14.670015452 +0200
+***************
+*** 10845,10851 ****
+      buf_T	*buf;
+      int		only_save_windows = TRUE;
+      int		nr;
+-     int		cnr = 1;
+      int		restore_size = TRUE;
+      win_T	*wp;
+      char_u	*sname;
+--- 10845,10850 ----
+***************
+*** 10983,10989 ****
+      tab_topframe = topframe;
+      for (tabnr = 1; ; ++tabnr)
+      {
+! 	int  need_tabnew = FALSE;
+  
+  	if ((ssop_flags & SSOP_TABPAGES))
+  	{
+--- 10982,10989 ----
+      tab_topframe = topframe;
+      for (tabnr = 1; ; ++tabnr)
+      {
+! 	int	need_tabnew = FALSE;
+! 	int	cnr = 1;
+  
+  	if ((ssop_flags & SSOP_TABPAGES))
+  	{
+*** ../vim-7.4.692/src/version.c	2015-04-09 22:08:09.191074464 +0200
+--- src/version.c	2015-04-13 12:33:11.030267070 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     693,
+  /**/
+
+-- 
+(letter from Mark to Mike, about the film's probable certificate)
+      I would like to get back to the Censor and agree to lose the shits, take
+      the odd Jesus Christ out and lose Oh fuck off, but to retain 'fart in
+      your general direction', 'castanets of your testicles' and 'oral sex'
+      and ask him for an 'A' rating on that basis.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

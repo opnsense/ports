@@ -1,0 +1,63 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.696
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.696
+Problem:    Not freeing memory when encountering an error.
+Solution:   Free the stack before returning. (Eliseo Martínez)
+Files:      src/regexp_nfa.c
+
+
+*** ../vim-7.4.695/src/regexp_nfa.c	2015-03-05 17:16:02.620687666 +0100
+--- src/regexp_nfa.c	2015-04-13 15:18:36.078662211 +0200
+***************
+*** 3156,3161 ****
+--- 3156,3162 ----
+  		    if (stackp < stack)			\
+  		    {					\
+  			st_error(postfix, end, p);	\
++ 			vim_free(stack);		\
+  			return NULL;			\
+  		    }
+  
+***************
+*** 3632,3641 ****
+--- 3633,3648 ----
+  
+      e = POP();
+      if (stackp != stack)
++     {
++ 	vim_free(stack);
+  	EMSG_RET_NULL(_("E875: (NFA regexp) (While converting from postfix to NFA), too many states left on stack"));
++     }
+  
+      if (istate >= nstate)
++     {
++ 	vim_free(stack);
+  	EMSG_RET_NULL(_("E876: (NFA regexp) Not enough space to store the whole NFA "));
++     }
+  
+      matchstate = &state_ptr[istate++]; /* the match state */
+      matchstate->c = NFA_MATCH;
+*** ../vim-7.4.695/src/version.c	2015-04-13 14:45:10.696707013 +0200
+--- src/version.c	2015-04-13 15:26:18.109607819 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     696,
+  /**/
+
+-- 
+This message contains 78% recycled characters.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

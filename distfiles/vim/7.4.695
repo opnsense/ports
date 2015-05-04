@@ -1,0 +1,71 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.695
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.695
+Problem:    Out-of-bounds read, dectected by Coverity.
+Solution:   Remember the value of cmap for the first matching encoding.  Reset
+            cmap to that value if first matching encoding is going to be used.
+            (Eliseo Martínez)
+Files:      src/hardcopy.c
+
+
+*** ../vim-7.4.694/src/hardcopy.c	2015-03-31 13:33:00.797524914 +0200
+--- src/hardcopy.c	2015-04-13 14:38:35.893079993 +0200
+***************
+*** 2513,2525 ****
+--- 2513,2530 ----
+      props = enc_canon_props(p_encoding);
+      if (!(props & ENC_8BIT) && ((*p_pmcs != NUL) || !(props & ENC_UNICODE)))
+      {
++ 	int cmap_first;
++ 
+  	p_mbenc_first = NULL;
+  	for (cmap = 0; cmap < (int)NUM_ELEMENTS(prt_ps_mbfonts); cmap++)
+  	    if (prt_match_encoding((char *)p_encoding, &prt_ps_mbfonts[cmap],
+  								    &p_mbenc))
+  	    {
+  		if (p_mbenc_first == NULL)
++ 		{
+  		    p_mbenc_first = p_mbenc;
++ 		    cmap_first = cmap;
++ 		}
+  		if (prt_match_charset((char *)p_pmcs, &prt_ps_mbfonts[cmap],
+  								   &p_mbchar))
+  		    break;
+***************
+*** 2527,2533 ****
+--- 2532,2541 ----
+  
+  	/* Use first encoding matched if no charset matched */
+  	if (p_mbchar == NULL && p_mbenc_first != NULL)
++ 	{
+  	    p_mbenc = p_mbenc_first;
++ 	    cmap = cmap_first;
++ 	}
+      }
+  
+      prt_out_mbyte = (p_mbenc != NULL);
+*** ../vim-7.4.694/src/version.c	2015-04-13 12:57:49.638724360 +0200
+--- src/version.c	2015-04-13 14:40:35.539753218 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     695,
+  /**/
+
+-- 
+People who want to share their religious views with you
+almost never want you to share yours with them.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

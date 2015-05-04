@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.701
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.701
+Problem:    Compiler warning for using uninitialized variable. (Yasuhiro
+            Matsumoto)
+Solution:   Initialize it.
+Files:      src/hardcopy.c
+
+
+*** ../vim-7.4.700/src/hardcopy.c	2015-04-13 14:45:10.696707013 +0200
+--- src/hardcopy.c	2015-04-15 14:24:23.382239763 +0200
+***************
+*** 2513,2519 ****
+      props = enc_canon_props(p_encoding);
+      if (!(props & ENC_8BIT) && ((*p_pmcs != NUL) || !(props & ENC_UNICODE)))
+      {
+! 	int cmap_first;
+  
+  	p_mbenc_first = NULL;
+  	for (cmap = 0; cmap < (int)NUM_ELEMENTS(prt_ps_mbfonts); cmap++)
+--- 2513,2519 ----
+      props = enc_canon_props(p_encoding);
+      if (!(props & ENC_8BIT) && ((*p_pmcs != NUL) || !(props & ENC_UNICODE)))
+      {
+! 	int cmap_first = 0;
+  
+  	p_mbenc_first = NULL;
+  	for (cmap = 0; cmap < (int)NUM_ELEMENTS(prt_ps_mbfonts); cmap++)
+*** ../vim-7.4.700/src/version.c	2015-04-15 12:43:37.997444487 +0200
+--- src/version.c	2015-04-15 14:25:49.025337117 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     701,
+  /**/
+
+-- 
+SOLDIER: What? A swallow carrying a coconut?
+ARTHUR:  It could grip it by the husk ...
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

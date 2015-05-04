@@ -1,0 +1,49 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.712
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.712 (after 7.4.710)
+Problem:    Missing change in another file.
+Solution:   Also change message.c
+Files:      src/message.c
+
+
+*** ../vim-7.4.711/src/message.c	2014-12-17 14:36:10.363090985 +0100
+--- src/message.c	2015-04-21 18:21:13.146538823 +0200
+***************
+*** 1761,1766 ****
+--- 1761,1771 ----
+  		c = lcs_trail;
+  		attr = hl_attr(HLF_8);
+  	    }
++ 	    else if (c == ' ' && list && lcs_space != NUL)
++ 	    {
++ 		c = lcs_space;
++ 		attr = hl_attr(HLF_8);
++ 	    }
+  	}
+  
+  	if (c == NUL)
+*** ../vim-7.4.711/src/version.c	2015-04-21 19:10:41.315067887 +0200
+--- src/version.c	2015-04-22 22:15:55.173135367 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     712,
+  /**/
+
+-- 
+BEDEVERE: And that, my lord, is how we know the Earth to be banana-shaped.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

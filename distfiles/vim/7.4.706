@@ -1,0 +1,68 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.706
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.706
+Problem:    Window drawn wrong when 'laststatus' is zero and there is a
+            command-line window. (Yclept Nemo)
+Solution:   Set the status height a bit later. (Christian Brabandt)
+Files:      src/window.c
+
+
+*** ../vim-7.4.705/src/window.c	2015-02-27 17:19:07.104942344 +0100
+--- src/window.c	2015-04-21 15:42:55.362449950 +0200
+***************
+*** 1236,1242 ****
+  	{
+  	    wp->w_winrow = oldwin->w_winrow + oldwin->w_height + STATUS_HEIGHT;
+  	    wp->w_status_height = oldwin->w_status_height;
+! 	    oldwin->w_status_height = STATUS_HEIGHT;
+  	}
+  #ifdef FEAT_VERTSPLIT
+  	if (flags & WSP_BOT)
+--- 1236,1243 ----
+  	{
+  	    wp->w_winrow = oldwin->w_winrow + oldwin->w_height + STATUS_HEIGHT;
+  	    wp->w_status_height = oldwin->w_status_height;
+! 	    /* Don't set the status_height for oldwin yet, this might break
+! 	     * frame_fix_height(oldwin), therefore will be set below. */
+  	}
+  #ifdef FEAT_VERTSPLIT
+  	if (flags & WSP_BOT)
+***************
+*** 1244,1249 ****
+--- 1245,1255 ----
+  #endif
+  	frame_fix_height(wp);
+  	frame_fix_height(oldwin);
++ 
++ 	if (!before)
++ 	    /* new window above current one, set the status_height after
++ 	     * frame_fix_height(oldwin) */
++ 	    oldwin->w_status_height = STATUS_HEIGHT;
+      }
+  
+      if (flags & (WSP_TOP | WSP_BOT))
+*** ../vim-7.4.705/src/version.c	2015-04-21 15:25:26.425488328 +0200
+--- src/version.c	2015-04-21 15:29:15.675076417 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     706,
+  /**/
+
+-- 
+It is too bad that the speed of light hasn't kept pace with the
+changes in CPU speed and network bandwidth. -- <wietse@porcupine.org>
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

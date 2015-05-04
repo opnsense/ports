@@ -1,0 +1,51 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.694
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.694
+Problem:    Running tests changes the .viminfo file.
+Solution:   Disable viminfo in the text objects test.
+Files:      src/testdir/test_textobjects.in
+
+
+*** ../vim-7.4.693/src/testdir/test_textobjects.in	2015-03-13 15:02:46.258059206 +0100
+--- src/testdir/test_textobjects.in	2015-04-13 12:34:08.969657730 +0200
+***************
+*** 3,9 ****
+  STARTTEST
+  :so small.vim
+  :if !has('textobjects') | e! test.ok | wq! test.out | endif
+! :set nocompatible
+  :"
+  :function SelectionOut(data)
+  :  new
+--- 3,9 ----
+  STARTTEST
+  :so small.vim
+  :if !has('textobjects') | e! test.ok | wq! test.out | endif
+! :set nocp viminfo+=nviminfo
+  :"
+  :function SelectionOut(data)
+  :  new
+*** ../vim-7.4.693/src/version.c	2015-04-13 12:35:50.184593339 +0200
+--- src/version.c	2015-04-13 12:56:52.467325069 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     694,
+  /**/
+
+-- 
+A fool must search for a greater fool to find admiration.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

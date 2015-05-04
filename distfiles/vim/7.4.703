@@ -1,0 +1,62 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.703
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.703
+Problem:    Compiler warning for start_dir unused when building unittests.
+Solution:   Move start_dir inside the #ifdef.
+Files:      src/main.c
+
+
+*** ../vim-7.4.702/src/main.c	2015-04-03 17:59:19.833761335 +0200
+--- src/main.c	2015-04-17 20:56:33.219872867 +0200
+***************
+*** 147,156 ****
+  #define ME_INVALID_ARG		5
+  };
+  
+- static char_u *start_dir = NULL;	/* current working dir on startup */
+- 
+  #ifndef PROTO		/* don't want a prototype for main() */
+  #ifndef NO_VIM_MAIN	/* skip this for unittests */
+      int
+  # ifdef VIMDLL
+  _export
+--- 147,157 ----
+  #define ME_INVALID_ARG		5
+  };
+  
+  #ifndef PROTO		/* don't want a prototype for main() */
+  #ifndef NO_VIM_MAIN	/* skip this for unittests */
++ 
++ static char_u *start_dir = NULL;	/* current working dir on startup */
++ 
+      int
+  # ifdef VIMDLL
+  _export
+*** ../vim-7.4.702/src/version.c	2015-04-16 22:51:16.685210855 +0200
+--- src/version.c	2015-04-17 20:57:15.343434053 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     703,
+  /**/
+
+-- 
+LARGE MAN:   Who's that then?
+CART DRIVER: (Grudgingly) I dunno, Must be a king.
+LARGE MAN:   Why?
+CART DRIVER: He hasn't got shit all over him.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

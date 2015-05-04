@@ -1,0 +1,50 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.702
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.702
+Problem:    Joining an empty list does uneccessary work.
+Solution:   Let join() return early. (Marco Hinz)
+Files:      src/eval.c
+
+
+*** ../vim-7.4.701/src/eval.c	2015-04-13 16:16:31.225091428 +0200
+--- src/eval.c	2015-04-16 22:47:20.871690015 +0200
+***************
+*** 6780,6785 ****
+--- 6780,6787 ----
+      join_T	*p;
+      int		i;
+  
++     if (l->lv_len < 1)
++ 	return OK; /* nothing to do */
+      ga_init2(&join_ga, (int)sizeof(join_T), l->lv_len);
+      retval = list_join_inner(gap, l, sep, echo_style, copyID, &join_ga);
+  
+*** ../vim-7.4.701/src/version.c	2015-04-15 14:27:43.020135640 +0200
+--- src/version.c	2015-04-16 22:50:07.169941629 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     702,
+  /**/
+
+-- 
+CART DRIVER: Bring out your dead!
+   There are legs stick out of windows and doors.  Two MEN are fighting in the
+   mud - covered from head to foot in it.  Another MAN is on his hands in
+   knees shovelling mud into his mouth.  We just catch sight of a MAN falling
+   into a well.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

@@ -1,0 +1,378 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.709
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.709
+Problem:    ":tabmove" does not work as documented.
+Solution:   Make it work consistently.  Update documentation and add tests.
+            (Hirohito Higashi)
+Files:      src/window.c, runtime/doc/tabpage.txt, src/ex_docmd.c,
+            src/testdir/test62.in, src/testdir/test62.ok
+
+
+*** ../vim-7.4.708/src/window.c	2015-04-21 15:43:00.338397578 +0200
+--- src/window.c	2015-04-21 18:05:36.180477302 +0200
+***************
+*** 4120,4137 ****
+  }
+  
+  /*
+!  * Move the current tab page to before tab page "nr".
+   */
+      void
+  tabpage_move(nr)
+      int		nr;
+  {
+!     int		n = nr;
+!     tabpage_T	*tp;
+  
+      if (first_tabpage->tp_next == NULL)
+  	return;
+  
+      /* Remove the current tab page from the list of tab pages. */
+      if (curtab == first_tabpage)
+  	first_tabpage = curtab->tp_next;
+--- 4120,4146 ----
+  }
+  
+  /*
+!  * Move the current tab page to after tab page "nr".
+   */
+      void
+  tabpage_move(nr)
+      int		nr;
+  {
+!     int		n = 1;
+!     tabpage_T	*tp, *tp_dst;
+  
+      if (first_tabpage->tp_next == NULL)
+  	return;
+  
++     for (tp = first_tabpage; tp->tp_next != NULL && n < nr; tp = tp->tp_next)
++ 	++n;
++ 
++     if (tp == curtab || (nr > 0 && tp->tp_next != NULL
++ 						    && tp->tp_next == curtab))
++ 	return;
++ 
++     tp_dst = tp;
++ 
+      /* Remove the current tab page from the list of tab pages. */
+      if (curtab == first_tabpage)
+  	first_tabpage = curtab->tp_next;
+***************
+*** 4146,4162 ****
+      }
+  
+      /* Re-insert it at the specified position. */
+!     if (n <= 0)
+      {
+  	curtab->tp_next = first_tabpage;
+  	first_tabpage = curtab;
+      }
+      else
+      {
+! 	for (tp = first_tabpage; tp->tp_next != NULL && n > 1; tp = tp->tp_next)
+! 	    --n;
+! 	curtab->tp_next = tp->tp_next;
+! 	tp->tp_next = curtab;
+      }
+  
+      /* Need to redraw the tabline.  Tab page contents doesn't change. */
+--- 4155,4169 ----
+      }
+  
+      /* Re-insert it at the specified position. */
+!     if (nr <= 0)
+      {
+  	curtab->tp_next = first_tabpage;
+  	first_tabpage = curtab;
+      }
+      else
+      {
+! 	curtab->tp_next = tp_dst->tp_next;
+! 	tp_dst->tp_next = curtab;
+      }
+  
+      /* Need to redraw the tabline.  Tab page contents doesn't change. */
+*** ../vim-7.4.708/runtime/doc/tabpage.txt	2015-01-07 16:52:53.506792420 +0100
+--- runtime/doc/tabpage.txt	2015-04-21 18:01:53.042846350 +0200
+***************
+*** 202,224 ****
+  		Move the current tab page to after tab page N.  Use zero to
+  		make the current tab page the first one.  Without N the tab
+  		page is made the last one. >
+  		    :-tabmove	" move the tab page to the left
+! 		    :tabmove	" move the tab page to the right
+! 		    :.tabmove	" as above
+! 		    :+tabmove	" as above
+  		    :0tabmove	" move the tab page to the beginning of the tab
+  				" list
+! 		    :$tabmove	" move the tab page to the end of the tab list
+! <
+  
+  :tabm[ove] +[N]
+  :tabm[ove] -[N]
+  		Move the current tab page N places to the right (with +) or to
+! 		the left (with -).
+  
+  Note that although it is possible to move a tab behind the N-th one by using
+! :Ntabmove, it is impossible to move it by N places by using :+Ntabmove. For
+! clarification what +N means in this context see |[range]|.
+  
+  
+  LOOPING OVER TAB PAGES:
+--- 202,230 ----
+  		Move the current tab page to after tab page N.  Use zero to
+  		make the current tab page the first one.  Without N the tab
+  		page is made the last one. >
++ 		    :.tabmove	" do nothing
+  		    :-tabmove	" move the tab page to the left
+! 		    :+tabmove	" move the tab page to the right
+  		    :0tabmove	" move the tab page to the beginning of the tab
+  				" list
+! 		    :tabmove 0	" as above
+! 		    :tabmove	" move the tab page to the last
+! 		    :$tabmove	" as above
+! 		    :tabmove $	" as above
+  
+  :tabm[ove] +[N]
+  :tabm[ove] -[N]
+  		Move the current tab page N places to the right (with +) or to
+! 		the left (with -). >
+! 		    :tabmove -	" move the tab page to the left
+! 		    :tabmove -1	" as above
+! 		    :tabmove +	" move the tab page to the right
+! 		    :tabmove +1	" as above
+! 
+  
+  Note that although it is possible to move a tab behind the N-th one by using
+! :Ntabmove. And move it by N places by using :+Ntabmove. For clarification what
+! +N means in this context see |[range]|.
+  
+  
+  LOOPING OVER TAB PAGES:
+*** ../vim-7.4.708/src/ex_docmd.c	2015-04-13 12:35:50.180593380 +0200
+--- src/ex_docmd.c	2015-04-21 18:01:53.042846350 +0200
+***************
+*** 8145,8151 ****
+  ex_tabmove(eap)
+      exarg_T	*eap;
+  {
+!     int tab_number = 9999;
+  
+      if (eap->arg && *eap->arg != NUL)
+      {
+--- 8145,8151 ----
+  ex_tabmove(eap)
+      exarg_T	*eap;
+  {
+!     int tab_number;
+  
+      if (eap->arg && *eap->arg != NUL)
+      {
+***************
+*** 8166,8184 ****
+  	else
+  	    p = eap->arg;
+  
+! 	if (p == skipdigits(p))
+  	{
+! 	    /* No numbers as argument. */
+! 	    eap->errmsg = e_invarg;
+! 	    return;
+  	}
+- 
+- 	tab_number = getdigits(&p);
+- 	if (relative != 0)
+- 	    tab_number = tab_number * relative + tabpage_index(curtab) - 1;;
+      }
+      else if (eap->addr_count != 0)
+  	tab_number = eap->line2;
+  
+      tabpage_move(tab_number);
+  }
+--- 8166,8203 ----
+  	else
+  	    p = eap->arg;
+  
+! 	if (relative == 0)
+  	{
+! 	    if (STRCMP(p, "$") == 0)
+! 		tab_number = LAST_TAB_NR;
+! 	    else if (p == skipdigits(p))
+! 	    {
+! 		/* No numbers as argument. */
+! 		eap->errmsg = e_invarg;
+! 		return;
+! 	    }
+! 	    else
+! 		tab_number = getdigits(&p);
+! 	}
+! 	else
+! 	{
+! 	    if (*p != NUL)
+! 		tab_number = getdigits(&p);
+! 	    else
+! 		tab_number = 1;
+! 	    tab_number = tab_number * relative + tabpage_index(curtab);
+! 	    if (relative == -1)
+! 		--tab_number;
+  	}
+      }
+      else if (eap->addr_count != 0)
++     {
+  	tab_number = eap->line2;
++ 	if (**eap->cmdlinep == '-')
++ 	    --tab_number;
++     }
++     else
++ 	tab_number = LAST_TAB_NR;
+  
+      tabpage_move(tab_number);
+  }
+*** ../vim-7.4.708/src/testdir/test62.in	2015-01-07 15:57:13.145559792 +0100
+--- src/testdir/test62.in	2015-04-21 18:01:15.231247887 +0200
+***************
+*** 96,125 ****
+  :"
+  :for i in range(9) | tabnew | endfor
+  1gt
+! Go=tabpagenr()
+  :tabmove 5
+! i=tabpagenr()
+  :tabmove -2
+! i=tabpagenr()
+  :tabmove +4
+! i=tabpagenr()
+  :tabmove
+! i=tabpagenr()
+  :tabmove -20
+! i=tabpagenr()
+  :tabmove +20
+! i=tabpagenr()
+  :3tabmove
+! i=tabpagenr()
+  :7tabmove 5
+! i=tabpagenr()
+  :let a='No error caught.'
+  :try
+  :tabmove foo
+  :catch E474
+  :let a='E474 caught.'
+  :endtry
+! i=a
+  :"
+  :" Test autocommands
+  :tabonly!
+--- 96,139 ----
+  :"
+  :for i in range(9) | tabnew | endfor
+  1gt
+! :$put =tabpagenr()
+  :tabmove 5
+! :$put =tabpagenr()
+! :.tabmove
+! :$put =tabpagenr()
+! :tabmove -
+! :$put =tabpagenr()
+! :tabmove +
+! :$put =tabpagenr()
+  :tabmove -2
+! :$put =tabpagenr()
+  :tabmove +4
+! :$put =tabpagenr()
+  :tabmove
+! :$put =tabpagenr()
+  :tabmove -20
+! :$put =tabpagenr()
+  :tabmove +20
+! :$put =tabpagenr()
+! :0tabmove
+! :$put =tabpagenr()
+! :$tabmove
+! :$put =tabpagenr()
+! :tabmove 0
+! :$put =tabpagenr()
+! :tabmove $
+! :$put =tabpagenr()
+  :3tabmove
+! :$put =tabpagenr()
+  :7tabmove 5
+! :$put =tabpagenr()
+  :let a='No error caught.'
+  :try
+  :tabmove foo
+  :catch E474
+  :let a='E474 caught.'
+  :endtry
+! :$put =a
+  :"
+  :" Test autocommands
+  :tabonly!
+*** ../vim-7.4.708/src/testdir/test62.ok	2013-07-14 12:16:20.000000000 +0200
+--- src/testdir/test62.ok	2015-04-21 18:01:15.231247887 +0200
+***************
+*** 9,22 ****
+  tab drop 2: pass
+  tab drop 3: pass
+  1
+! 6
+  4
+! 8
+  10
+  1
+  10
+  4
+! 6
+  E474 caught.
+  === tab split ===
+  WinLeave
+--- 9,29 ----
+  tab drop 2: pass
+  tab drop 3: pass
+  1
+! 5
+! 5
+  4
+! 5
+! 3
+! 7
+! 10
+! 1
+! 10
+! 1
+  10
+  1
+  10
+  4
+! 5
+  E474 caught.
+  === tab split ===
+  WinLeave
+*** ../vim-7.4.708/src/version.c	2015-04-21 16:48:55.028917216 +0200
+--- src/version.c	2015-04-21 18:00:49.083525577 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     709,
+  /**/
+
+-- 
+BEDEVERE:        Why do you think she is a witch?
+SECOND VILLAGER: She turned me into a newt.
+BEDEVERE:        A newt?
+SECOND VILLAGER: (After looking at himself for some time) I got better.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

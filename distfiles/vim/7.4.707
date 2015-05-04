@@ -1,0 +1,54 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.707
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.707
+Problem:    Undo files can have their executable bit set.
+Solution:   Strip of the executable bit. (Mikael Berthe)
+Files:      src/undo.c
+
+
+*** ../vim-7.4.706/src/undo.c	2015-02-17 13:43:35.562216149 +0100
+--- src/undo.c	2015-04-21 16:01:51.702508121 +0200
+***************
+*** 1614,1621 ****
+  #endif
+      }
+  
+!     /* strip any s-bit */
+!     perm = perm & 0777;
+  
+      /* If the undo file already exists, verify that it actually is an undo
+       * file, and delete it. */
+--- 1614,1621 ----
+  #endif
+      }
+  
+!     /* strip any s-bit and executable bit */
+!     perm = perm & 0666;
+  
+      /* If the undo file already exists, verify that it actually is an undo
+       * file, and delete it. */
+*** ../vim-7.4.706/src/version.c	2015-04-21 15:43:00.342397536 +0200
+--- src/version.c	2015-04-21 16:00:54.979103468 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     707,
+  /**/
+
+-- 
+FIRST VILLAGER: We have found a witch.  May we burn her?
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

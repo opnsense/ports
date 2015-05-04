@@ -1,0 +1,350 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.710
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.710
+Problem:    It is not possible to make spaces visibible in list mode.
+Solution:   Add the "space" item to 'listchars'. (David Bürgin, issue 350)
+Files:      runtime/doc/options.txt, src/globals.h, src/message.h,
+            src/screen.c, src/testdir/test_listchars.in,
+            src/testdir/test_listchars.ok, src/testdir/Make_amiga.mak,
+            src/testdir/Make_dos.mak, src/testdir/Make_ming.mak,
+            src/testdir/Make_os2.mak, src/testdir/Make_vms.mms,
+            src/testdir/Makefile
+
+
+*** ../vim-7.4.709/runtime/doc/options.txt	2015-03-31 18:27:30.317104255 +0200
+--- runtime/doc/options.txt	2015-04-21 18:21:13.142538865 +0200
+***************
+*** 4714,4744 ****
+  			{not in Vi}
+  	Strings to use in 'list' mode and for the |:list| command.  It is a
+  	comma separated list of string settings.
+! 	  						*lcs-eol*
+  	  eol:c		Character to show at the end of each line.  When
+  			omitted, there is no extra character at the end of the
+  			line.
+! 	  						*lcs-tab*
+  	  tab:xy	Two characters to be used to show a tab.  The first
+  			char is used once.  The second char is repeated to
+  			fill the space that the tab normally occupies.
+  			"tab:>-" will show a tab that takes four spaces as
+  			">---".  When omitted, a tab is show as ^I.
+! 	  						*lcs-trail*
+  	  trail:c	Character to show for trailing spaces.  When omitted,
+! 			trailing spaces are blank.
+! 	  						*lcs-extends*
+  	  extends:c	Character to show in the last column, when 'wrap' is
+  			off and the line continues beyond the right of the
+  			screen.
+! 	  						*lcs-precedes*
+  	  precedes:c	Character to show in the first column, when 'wrap'
+  			is off and there is text preceding the character
+  			visible in the first column.
+! 	  						*lcs-conceal*
+  	  conceal:c	Character to show in place of concealed text, when
+  			'conceallevel' is set to 1.
+! 	  						*lcs-nbsp*
+  	  nbsp:c	Character to show for a non-breakable space (character
+  			0xA0, 160).  Left blank when omitted.
+  
+--- 4717,4751 ----
+  			{not in Vi}
+  	Strings to use in 'list' mode and for the |:list| command.  It is a
+  	comma separated list of string settings.
+! 							*lcs-eol*
+  	  eol:c		Character to show at the end of each line.  When
+  			omitted, there is no extra character at the end of the
+  			line.
+! 							*lcs-tab*
+  	  tab:xy	Two characters to be used to show a tab.  The first
+  			char is used once.  The second char is repeated to
+  			fill the space that the tab normally occupies.
+  			"tab:>-" will show a tab that takes four spaces as
+  			">---".  When omitted, a tab is show as ^I.
+! 							*lcs-space*
+! 	  space:c	Character to show for a space.  When omitted, spaces
+! 			are left blank.
+! 							*lcs-trail*
+  	  trail:c	Character to show for trailing spaces.  When omitted,
+! 			trailing spaces are blank.  Overrides the "space"
+! 			setting for trailing spaces.
+! 							*lcs-extends*
+  	  extends:c	Character to show in the last column, when 'wrap' is
+  			off and the line continues beyond the right of the
+  			screen.
+! 							*lcs-precedes*
+  	  precedes:c	Character to show in the first column, when 'wrap'
+  			is off and there is text preceding the character
+  			visible in the first column.
+! 							*lcs-conceal*
+  	  conceal:c	Character to show in place of concealed text, when
+  			'conceallevel' is set to 1.
+! 							*lcs-nbsp*
+  	  nbsp:c	Character to show for a non-breakable space (character
+  			0xA0, 160).  Left blank when omitted.
+  
+***************
+*** 4751,4757 ****
+  	    :set lcs=tab:>-,eol:<,nbsp:%
+  	    :set lcs=extends:>,precedes:<
+  <	The "NonText" highlighting will be used for "eol", "extends" and
+! 	"precedes".  "SpecialKey" for "nbsp", "tab" and "trail".
+  	|hl-NonText| |hl-SpecialKey|
+  
+  			*'lpl'* *'nolpl'* *'loadplugins'* *'noloadplugins'*
+--- 4758,4764 ----
+  	    :set lcs=tab:>-,eol:<,nbsp:%
+  	    :set lcs=extends:>,precedes:<
+  <	The "NonText" highlighting will be used for "eol", "extends" and
+! 	"precedes".  "SpecialKey" for "nbsp", "space", "tab" and "trail".
+  	|hl-NonText| |hl-SpecialKey|
+  
+  			*'lpl'* *'nolpl'* *'loadplugins'* *'noloadplugins'*
+*** ../vim-7.4.709/src/globals.h	2015-02-17 11:11:42.244891247 +0100
+--- src/globals.h	2015-04-21 18:21:13.146538823 +0200
+***************
+*** 1163,1168 ****
+--- 1163,1169 ----
+  EXTERN int	lcs_ext INIT(= NUL);
+  EXTERN int	lcs_prec INIT(= NUL);
+  EXTERN int	lcs_nbsp INIT(= NUL);
++ EXTERN int	lcs_space INIT(= NUL);
+  EXTERN int	lcs_tab1 INIT(= NUL);
+  EXTERN int	lcs_tab2 INIT(= NUL);
+  EXTERN int	lcs_trail INIT(= NUL);
+*** ../vim-7.4.709/src/screen.c	2015-03-24 18:22:36.078072565 +0100
+--- src/screen.c	2015-04-21 18:21:13.150538781 +0200
+***************
+*** 4334,4347 ****
+  #endif
+  	    ++ptr;
+  
+! 	    /* 'list' : change char 160 to lcs_nbsp. */
+! 	    if (wp->w_p_list && (c == 160
+  #ifdef FEAT_MBYTE
+! 			|| (mb_utf8 && mb_c == 160)
+  #endif
+! 			) && lcs_nbsp)
+  	    {
+! 		c = lcs_nbsp;
+  		if (area_attr == 0 && search_attr == 0)
+  		{
+  		    n_attr = 1;
+--- 4334,4349 ----
+  #endif
+  	    ++ptr;
+  
+! 	    /* 'list': change char 160 to lcs_nbsp and space to lcs_space. */
+! 	    if (wp->w_p_list
+! 		    && (((c == 160
+  #ifdef FEAT_MBYTE
+! 			  || (mb_utf8 && mb_c == 160)
+  #endif
+! 			 ) && lcs_nbsp)
+! 			|| (c == ' ' && lcs_space && ptr <= line + trailcol)))
+  	    {
+! 		c = (c == ' ') ? lcs_space : lcs_nbsp;
+  		if (area_attr == 0 && search_attr == 0)
+  		{
+  		    n_attr = 1;
+*** ../vim-7.4.709/src/testdir/test_listchars.in	2015-04-21 18:32:19.951463048 +0200
+--- src/testdir/test_listchars.in	2015-04-21 18:21:13.150538781 +0200
+***************
+*** 0 ****
+--- 1,53 ----
++ Tests for 'listchars' display with 'list' and :list
++ 
++ STARTTEST
++ :so small.vim
++ :let g:lines = []
++ :function GetScreenCharsForLine(lnum)
++ :  return join(map(range(1, virtcol('$')), 'nr2char(screenchar(a:lnum, v:val))'), '')
++ :endfunction
++ :nnoremap <expr> GG ":call add(g:lines, GetScreenCharsForLine(".screenrow()."))\<CR>"
++ :set listchars+=tab:>-,space:.,trail:<
++ :set list
++ :
++ /^start:/
++ :normal! jzt
++ GG
++ GG
++ GG
++ GG
++ GGH:
++ :set listchars-=trail:<
++ GG
++ GG
++ GG
++ GG
++ GG:
++ :put =g:lines
++ :'[,']w! test.out
++ ENDTEST
++ 
++ start:
++ 	aa	
++   bb	  
++    cccc	 
++ dd        ee  	
++  
++ 
++ 
++ STARTTEST
++ :set listchars+=trail:<
++ :set nolist
++ :
++ /^start:/
++ :redir! >> test.out
++ :+1,$list
++ :redir END
++ :q!
++ ENDTEST
++ 
++ start:
++   fff	  
++ 	gg	
++      h	
++ iii    	  
+*** ../vim-7.4.709/src/testdir/test_listchars.ok	2015-04-21 18:32:19.955463005 +0200
+--- src/testdir/test_listchars.ok	2015-04-21 18:21:13.150538781 +0200
+***************
+*** 0 ****
+--- 1,16 ----
++ >-------aa>-----$
++ ..bb>---<<$
++ ...cccc><$
++ dd........ee<<>-$
++ <$
++ >-------aa>-----$
++ ..bb>---..$
++ ...cccc>.$
++ dd........ee..>-$
++ .$
++ 
++ 
++ ..fff>--<<$
++ >-------gg>-----$
++ .....h>-$
++ iii<<<<><<$
+*** ../vim-7.4.709/src/testdir/Make_amiga.mak	2015-03-24 17:49:39.607748647 +0100
+--- src/testdir/Make_amiga.mak	2015-04-21 18:22:06.541972861 +0200
+***************
+*** 46,51 ****
+--- 46,52 ----
+  		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
++ 		test_listchars.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
+***************
+*** 189,194 ****
+--- 190,196 ----
+  test_erasebackword.out: test_erasebackword.in
+  test_eval.out: test_eval.in
+  test_insertcount.out: test_insertcount.in
++ test_listchars.out: test_listchars.in
+  test_listlbr.out: test_listlbr.in
+  test_listlbr_utf8.out: test_listlbr_utf8.in
+  test_mapping.out: test_mapping.in
+*** ../vim-7.4.709/src/testdir/Make_dos.mak	2015-03-24 17:49:39.607748647 +0100
+--- src/testdir/Make_dos.mak	2015-04-21 18:22:15.457878362 +0200
+***************
+*** 45,50 ****
+--- 45,51 ----
+  		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
++ 		test_listchars.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
+*** ../vim-7.4.709/src/testdir/Make_ming.mak	2015-03-24 17:49:39.607748647 +0100
+--- src/testdir/Make_ming.mak	2015-04-21 18:22:22.197806926 +0200
+***************
+*** 67,72 ****
+--- 67,73 ----
+  		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
++ 		test_listchars.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
+*** ../vim-7.4.709/src/testdir/Make_os2.mak	2015-03-24 17:49:39.607748647 +0100
+--- src/testdir/Make_os2.mak	2015-04-21 18:22:28.777737187 +0200
+***************
+*** 47,52 ****
+--- 47,53 ----
+  		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
++ 		test_listchars.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
+*** ../vim-7.4.709/src/testdir/Make_vms.mms	2015-03-24 17:49:39.607748647 +0100
+--- src/testdir/Make_vms.mms	2015-04-21 18:22:34.801673339 +0200
+***************
+*** 4,10 ****
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2015 Mar 24
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+--- 4,10 ----
+  # Authors:	Zoltan Arpadffy, <arpadffy@polarhome.com>
+  #		Sandor Kopanyi,  <sandor.kopanyi@mailbox.hu>
+  #
+! # Last change:  2015 Apr 21
+  #
+  # This has been tested on VMS 6.2 to 8.3 on DEC Alpha, VAX and IA64.
+  # Edit the lines in the Configuration section below to select.
+***************
+*** 106,111 ****
+--- 106,112 ----
+  	 test_erasebackword.out \
+  	 test_eval.out \
+  	 test_insertcount.out \
++ 	 test_listchars.out \
+  	 test_listlbr.out \
+  	 test_listlbr_utf8.out \
+  	 test_mapping.out \
+*** ../vim-7.4.709/src/testdir/Makefile	2015-03-24 17:49:39.611748618 +0100
+--- src/testdir/Makefile	2015-04-21 18:21:13.150538781 +0200
+***************
+*** 43,48 ****
+--- 43,49 ----
+  		test_erasebackword.out \
+  		test_eval.out \
+  		test_insertcount.out \
++ 		test_listchars.out \
+  		test_listlbr.out \
+  		test_listlbr_utf8.out \
+  		test_mapping.out \
+*** ../vim-7.4.709/src/version.c	2015-04-21 18:08:21.842719055 +0200
+--- src/version.c	2015-04-21 18:20:13.067175680 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     710,
+  /**/
+
+-- 
+I have read and understood the above. X________________
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

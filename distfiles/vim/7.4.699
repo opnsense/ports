@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.699
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.699
+Problem:    E315 when trying to delete a fold. (Yutao Yuan)
+Solution:   Make sure the fold doesn't go beyond the last buffer line.
+            (Christian Brabandt)
+Files:      src/fold.c
+
+
+*** ../vim-7.4.698/src/fold.c	2014-03-23 15:12:29.919264336 +0100
+--- src/fold.c	2015-04-13 20:45:56.777041310 +0200
+***************
+*** 234,239 ****
+--- 234,241 ----
+  	return FALSE;
+      }
+  
++     if (last > win->w_buffer->b_ml.ml_line_count)
++ 	last = win->w_buffer->b_ml.ml_line_count;
+      if (lastp != NULL)
+  	*lastp = last;
+      if (firstp != NULL)
+*** ../vim-7.4.698/src/version.c	2015-04-13 16:16:31.225091428 +0200
+--- src/version.c	2015-04-13 20:47:35.267993635 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     699,
+  /**/
+
+-- 
+It might look like I'm doing nothing, but at the cellular level
+I'm really quite busy.
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

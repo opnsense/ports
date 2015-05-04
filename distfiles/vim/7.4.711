@@ -1,0 +1,47 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.711
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.711 (after 7.4.710)
+Problem:    Missing change in one file.
+Solution:   Also change option.c
+Files:      src/option.c
+
+
+*** ../vim-7.4.710/src/option.c	2015-03-31 18:30:09.139370916 +0200
+--- src/option.c	2015-04-21 18:21:13.146538823 +0200
+***************
+*** 7322,7327 ****
+--- 7322,7328 ----
+  	{&lcs_ext,	"extends"},
+  	{&lcs_nbsp,	"nbsp"},
+  	{&lcs_prec,	"precedes"},
++ 	{&lcs_space,	"space"},
+  	{&lcs_tab2,	"tab"},
+  	{&lcs_trail,	"trail"},
+  #ifdef FEAT_CONCEAL
+*** ../vim-7.4.710/src/version.c	2015-04-21 18:33:33.906675754 +0200
+--- src/version.c	2015-04-21 19:10:23.143260095 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     711,
+  /**/
+
+-- 
+ALL:   A witch!  A witch!
+WITCH: It's a fair cop.
+ALL:   Burn her!  Burn her!  Let's make her into a ladder.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///

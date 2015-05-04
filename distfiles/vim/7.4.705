@@ -1,0 +1,66 @@
+To: vim_dev@googlegroups.com
+Subject: Patch 7.4.705
+Fcc: outbox
+From: Bram Moolenaar <Bram@moolenaar.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+------------
+
+Patch 7.4.705
+Problem:    Can't build with Ruby 2.2.
+Solution:   Add #ifdefs to handle the incompatible change. (Andrei Olsen)
+Files:      src/if_ruby.c
+
+
+*** ../vim-7.4.704/src/if_ruby.c	2015-01-14 14:04:05.511397639 +0100
+--- src/if_ruby.c	2015-04-21 15:24:30.294078994 +0200
+***************
+*** 396,402 ****
+--- 396,406 ----
+  # endif
+  
+  # if defined(RUBY19_OR_LATER) && !defined(PROTO)
++ #  if defined(DYNAMIC_RUBY_VER) && DYNAMIC_RUBY_VER >= 22
++ long rb_num2long_stub(VALUE x)
++ #  else
+  SIGNED_VALUE rb_num2long_stub(VALUE x)
++ #  endif
+  {
+      return dll_rb_num2long(x);
+  }
+***************
+*** 421,427 ****
+--- 425,435 ----
+  {
+      return dll_rb_float_new(d);
+  }
++ #   if defined(DYNAMIC_RUBY_VER) && DYNAMIC_RUBY_VER >= 22
++ unsigned long rb_num2ulong(VALUE x)
++ #   else
+  VALUE rb_num2ulong(VALUE x)
++ #   endif
+  {
+      return (long)RSHIFT((SIGNED_VALUE)(x),1);
+  }
+*** ../vim-7.4.704/src/version.c	2015-04-21 14:02:28.493694351 +0200
+--- src/version.c	2015-04-21 15:25:12.633633454 +0200
+***************
+*** 743,744 ****
+--- 743,746 ----
+  {   /* Add new patch number below this line */
++ /**/
++     705,
+  /**/
+
+-- 
+   A village.  Sound of chanting of Latin canon, punctuated by short, sharp
+   cracks.  It comes nearer.  We see it is a line of MONKS ala SEVENTH SEAL
+   flagellation scene, chanting and banging themselves on the foreheads with
+   wooden boards.
+                 "Monty Python and the Holy Grail" PYTHON (MONTY) PICTURES LTD
+
+ /// Bram Moolenaar -- Bram@Moolenaar.net -- http://www.Moolenaar.net   \\\
+///        sponsor Vim, vote for features -- http://www.Vim.org/sponsor/ \\\
+\\\  an exciting new programming language -- http://www.Zimbu.org        ///
+ \\\            help me help AIDS victims -- http://ICCF-Holland.org    ///
