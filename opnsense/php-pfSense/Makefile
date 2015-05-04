@@ -3,7 +3,7 @@
 
 PORTNAME=	pfSense
 PORTVERSION=	0.2
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=
 DISTFILES=
@@ -18,7 +18,6 @@ USE_PHPEXT=	yes
 CONFIGURE_ARGS=	--enable-pfSense
 
 do-extract:
-	${MKDIR} ${WRKSRC}
-	${CP} ${FILESDIR}/* ${WRKSRC}
+	${CP} -r ${FILESDIR} ${WRKSRC}
 
 .include <bsd.port.mk>

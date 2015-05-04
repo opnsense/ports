@@ -126,17 +126,6 @@ static zend_function_entry pfSense_functions[] = {
     PHP_FE(pfSense_get_interface_addresses, NULL)
     PHP_FE(pfSense_getall_interface_addresses, NULL)
     PHP_FE(pfSense_get_interface_stats, NULL)
-    PHP_FE(pfSense_vlan_create, NULL)
-    PHP_FE(pfSense_interface_rename, NULL)
-    PHP_FE(pfSense_interface_mtu, NULL)
-    PHP_FE(pfSense_bridge_add_member, NULL)
-    PHP_FE(pfSense_interface_listget, NULL)
-    PHP_FE(pfSense_interface_create, NULL)
-    PHP_FE(pfSense_interface_destroy, NULL)
-    PHP_FE(pfSense_interface_flags, NULL)
-    PHP_FE(pfSense_interface_capabilities, NULL)
-    PHP_FE(pfSense_interface_setaddress, NULL)
-    PHP_FE(pfSense_interface_deladdress, NULL)
     PHP_FE(pfSense_ngctl_name, NULL)
     PHP_FE(pfSense_ngctl_attach, NULL)
     PHP_FE(pfSense_ngctl_detach, NULL)
@@ -194,12 +183,6 @@ PHP_MINIT_FUNCTION(pfSense_module_init)
 		return FAILURE;
 	}
 
-	PFSENSE_G(inets) = socket(AF_INET, SOCK_DGRAM, 0);
-	if (PFSENSE_G(inets) < 0) {
-		close(PFSENSE_G(locals));
-		return FAILURE;
-	}
-
 	if (geteuid() == 0 || getuid() == 0) {
 		/* Create a new socket node */
 		if (NgMkSockNode(NULL, &csock, NULL) < 0) {
@@ -213,46 +196,6 @@ PHP_MINIT_FUNCTION(pfSense_module_init)
 
 	/* Don't leak these sockets to child processes */
 	fcntl(PFSENSE_G(locals), F_SETFD, fcntl(PFSENSE_G(locals), F_GETFD, 0) | FD_CLOEXEC);
-	fcntl(PFSENSE_G(inets), F_SETFD, fcntl(PFSENSE_G(inets), F_GETFD, 0) | FD_CLOEXEC);
-
-	REGISTER_LONG_CONSTANT("IFF_UP", IFF_UP, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFF_LINK0", IFF_LINK0, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFF_LINK1", IFF_LINK1, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFF_LINK2", IFF_LINK2, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFF_NOARP", IFF_NOARP, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFF_STATICARP", IFF_STATICARP, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_RXCSUM", IFCAP_RXCSUM, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_TXCSUM", IFCAP_TXCSUM, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_POLLING", IFCAP_POLLING, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_TSO", IFCAP_TSO, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_LRO", IFCAP_LRO, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_WOL", IFCAP_WOL, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_WOL_UCAST", IFCAP_WOL_UCAST, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_WOL_MCAST", IFCAP_WOL_MCAST, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_WOL_MAGIC", IFCAP_WOL_MAGIC, CONST_PERSISTENT | CONST_CS);
-
-	REGISTER_LONG_CONSTANT("IFCAP_VLAN_HWTAGGING", IFCAP_VLAN_HWTAGGING, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_VLAN_MTU", IFCAP_VLAN_MTU, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFCAP_VLAN_HWFILTER", IFCAP_VLAN_HWFILTER, CONST_PERSISTENT | CONST_CS);
-#ifdef IFCAP_VLAN_HWCSUM
-	REGISTER_LONG_CONSTANT("IFCAP_VLAN_HWCSUM", IFCAP_VLAN_HWCSUM, CONST_PERSISTENT | CONST_CS);
-#endif
-#ifdef IFCAP_VLAN_HWTSO
-	REGISTER_LONG_CONSTANT("IFCAP_VLAN_HWTSO", IFCAP_VLAN_HWTSO, CONST_PERSISTENT | CONST_CS);
-#endif
-
-	REGISTER_LONG_CONSTANT("IFBIF_LEARNING", IFBIF_LEARNING, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_DISCOVER", IFBIF_DISCOVER, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_STP", IFBIF_STP, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_SPAN", IFBIF_SPAN, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_STICKY", IFBIF_STICKY, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_BSTP_EDGE", IFBIF_BSTP_EDGE, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_BSTP_AUTOEDGE", IFBIF_BSTP_AUTOEDGE, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_BSTP_PTP", IFBIF_BSTP_PTP, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_BSTP_AUTOPTP", IFBIF_BSTP_AUTOPTP, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_BSTP_ADMEDGE", IFBIF_BSTP_ADMEDGE, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_BSTP_ADMCOST", IFBIF_BSTP_ADMCOST, CONST_PERSISTENT | CONST_CS);
-	REGISTER_LONG_CONSTANT("IFBIF_PRIVATE", IFBIF_PRIVATE, CONST_PERSISTENT | CONST_CS);
 
 	return SUCCESS;
 }
@@ -261,10 +204,6 @@ PHP_MSHUTDOWN_FUNCTION(pfSense_module_exit)
 {
 	if (PFSENSE_G(ngsock) != -1) {
 		close(PFSENSE_G(ngsock));
-	}
-
-	if (PFSENSE_G(inets) != -1) {
-		close(PFSENSE_G(inets));
 	}
 
 	if (PFSENSE_G(locals) != -1) {
@@ -583,192 +522,6 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 	freeifaddrs(ifdata);
 }
 
-PHP_FUNCTION(pfSense_bridge_add_member) {
-	char *ifname, *ifchld;
-	int ifname_len, ifchld_len;
-	struct ifdrv drv;
-	struct ifbreq req;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &ifchld, &ifchld_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&drv, 0, sizeof(drv));
-	memset(&req, 0, sizeof(req));
-	strlcpy(drv.ifd_name, ifname, sizeof(drv.ifd_name));
-	strlcpy(req.ifbr_ifsname, ifchld, sizeof(req.ifbr_ifsname));
-	drv.ifd_cmd = BRDGADD;
-	drv.ifd_data = &req;
-	drv.ifd_len = sizeof(req);
-	if (ioctl(PFSENSE_G(locals), SIOCSDRVSPEC, (caddr_t)&drv) < 0)
-		RETURN_FALSE;
-
-	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_listget) {
-	struct ifaddrs *ifdata, *mb;
-	char *ifname;
-	int ifname_len;
-	long flags = 0;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|l", &flags) == FAILURE)
-		RETURN_NULL();
-
-	getifaddrs(&ifdata);
-	if (ifdata == NULL)
-		RETURN_NULL();
-
-	array_init(return_value);
-	ifname = NULL;
-	ifname_len = 0;
-	for(mb = ifdata; mb != NULL; mb = mb->ifa_next) {
-		if (mb == NULL)
-			continue;
-
-		if (flags != 0) {
-			if (mb->ifa_flags & IFF_UP && flags < 0)
-				continue;
-			if (!(mb->ifa_flags & IFF_UP) && flags > 0)
-				continue;
-		}
-
-		if (ifname != NULL && ifname_len == strlen(mb->ifa_name) && strcmp(ifname, mb->ifa_name) == 0)
-			continue;
-		ifname = mb->ifa_name;
-		ifname_len = strlen(mb->ifa_name);
-
-		add_next_index_string(return_value, mb->ifa_name, 1);
-	}
-
-	freeifaddrs(ifdata);
-}
-
-PHP_FUNCTION(pfSense_interface_create) {
-	char *ifname;
-	int ifname_len, len;
-	struct ifreq ifr;
-	struct vlanreq params;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &ifname, &ifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(locals), SIOCIFCREATE2, &ifr) < 0) {
-		array_init(return_value);
-		add_assoc_string(return_value, "error", "Could not create interface", 1);
-	} else
-		RETURN_STRING(ifr.ifr_name, 1)
-}
-
-PHP_FUNCTION(pfSense_interface_destroy) {
-	char *ifname;
-	int ifname_len;
-	struct ifreq ifr;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &ifname, &ifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(locals), SIOCIFDESTROY, &ifr) < 0) {
-		array_init(return_value);
-		add_assoc_string(return_value, "error", "Could not create interface", 1);
-	} else
-		RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_setaddress) {
-	char *ifname, *ip, *p = NULL;
-	int ifname_len, ip_len;
-	struct sockaddr_in *sin;
-	struct in_aliasreq ifra;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &ip, &ip_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifra, 0, sizeof(ifra));
-	strlcpy(ifra.ifra_name, ifname, sizeof(ifra.ifra_name));
-	sin =  &ifra.ifra_mask;
-	sin->sin_family = AF_INET;
-	sin->sin_len = sizeof(*sin);
-	sin->sin_addr.s_addr = 0;
-	if ((p = strrchr(ip, '/')) != NULL) {
-		/* address is `name/masklen' */
-		int masklen;
-		int ret;
-		*p = '\0';
-		ret = sscanf(p+1, "%u", &masklen);
-		if(ret != 1 || (masklen < 0 || masklen > 32)) {
-			*p = '/';
-			RETURN_FALSE;
-		}
-		sin->sin_addr.s_addr = htonl(~((1LL << (32 - masklen)) - 1) &
-			0xffffffff);
-	}
-	sin =  &ifra.ifra_addr;
-	sin->sin_family = AF_INET;
-	sin->sin_len = sizeof(*sin);
-	if (inet_pton(AF_INET, ip, &sin->sin_addr) <= 0)
-		RETURN_FALSE;
-
-	if (ioctl(PFSENSE_G(inets), SIOCAIFADDR, &ifra) < 0) {
-		array_init(return_value);
-		add_assoc_string(return_value, "error", "Could not set interface address", 1);
-	} else
-		RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_deladdress) {
-	char *ifname, *ip = NULL;
-	int ifname_len, ip_len;
-	struct sockaddr_in *sin;
-	struct in_aliasreq ifra;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &ip, &ip_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifra, 0, sizeof(ifra));
-	strlcpy(ifra.ifra_name, ifname, sizeof(ifra.ifra_name));
-	sin =  &ifra.ifra_addr;
-	sin->sin_family = AF_INET;
-	sin->sin_len = sizeof(*sin);
-	if (inet_pton(AF_INET, ip, &sin->sin_addr) <= 0)
-		RETURN_FALSE;
-
-	if (ioctl(PFSENSE_G(inets), SIOCDIFADDR, &ifra) < 0) {
-		array_init(return_value);
-		add_assoc_string(return_value, "error", "Could not delete interface address", 1);
-	} else
-		RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_rename)
-{
-	char *ifname, *newifname;
-	int ifname_len, newifname_len;
-	struct ifreq ifr;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	ifr.ifr_data = (caddr_t) newifname;
-	if (ioctl(PFSENSE_G(locals), SIOCSIFNAME, (caddr_t) &ifr) < 0) {
-		array_init(return_value);
-		add_assoc_string(return_value, "error", "Could not rename interface", 1);
-	} else {
-		RETURN_TRUE;
-	}
-}
-
 PHP_FUNCTION(pfSense_ngctl_name)
 {
 	char *ifname, *newifname;
@@ -836,104 +589,6 @@ PHP_FUNCTION(pfSense_ngctl_detach)
 	}
 
 	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_vlan_create) {
-	char *ifname = NULL;
-	char *parentifname = NULL;
-	int ifname_len, parent_len;
-	long tag; 
-	struct ifreq ifr;
-	struct vlanreq params;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ssl", &ifname, &ifname_len, &parentifname, &parent_len, &tag) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	memset(&params, 0, sizeof(params));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	strlcpy(params.vlr_parent, parentifname, sizeof(params.vlr_parent));
-	params.vlr_tag = (u_short) tag;
-	ifr.ifr_data = (caddr_t) &params;
-	if (ioctl(PFSENSE_G(locals), SIOCSETVLAN, (caddr_t) &ifr) < 0)
-		RETURN_NULL();
-
-	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_mtu) {
-	char *ifname;
-	int ifname_len;
-	long mtu;
-	struct ifreq ifr;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sl", &ifname, &ifname_len, &mtu) == FAILURE) {
-		RETURN_NULL();
-	}
-	memset(&ifr, 0, sizeof(ifr));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	ifr.ifr_mtu = (int) mtu;
-	if (ioctl(PFSENSE_G(locals), SIOCSIFMTU, (caddr_t)&ifr) < 0)
-		RETURN_NULL();
-	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_flags) {
-	struct ifreq ifr;
-	char *ifname;
-	int flags, ifname_len;
-	long value;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sl", &ifname, &ifname_len, &value) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(locals), SIOCGIFFLAGS, (caddr_t)&ifr) < 0) {
-		RETURN_NULL();
-	}
-	flags = (ifr.ifr_flags & 0xffff) | (ifr.ifr_flagshigh << 16);
-	if (value < 0) {
-		value = -value;
-		flags &= ~(int)value;
-	} else
-		flags |= (int)value; 
-	ifr.ifr_flags = flags & 0xffff;
-	ifr.ifr_flagshigh = flags >> 16;
-	if (ioctl(PFSENSE_G(locals), SIOCSIFFLAGS, (caddr_t)&ifr) < 0)
-		RETURN_NULL();
-	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_interface_capabilities) {
-	struct ifreq ifr;
-	char *ifname;
-	int flags, ifname_len;
-	long value;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "sl", &ifname, &ifname_len, &value) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	memset(&ifr, 0, sizeof(ifr));
-	strlcpy(ifr.ifr_name, ifname, sizeof(ifr.ifr_name));
-	if (ioctl(PFSENSE_G(locals), SIOCGIFCAP, (caddr_t)&ifr) < 0) {
-		RETURN_NULL();
-	}
-	flags = ifr.ifr_curcap;
-	if (value < 0) {
-		value = -value;
-		flags &= ~(int)value;
-	} else
-		flags |= (int)value; 
-	flags &= ifr.ifr_reqcap;
-	ifr.ifr_reqcap = flags;
-	if (ioctl(PFSENSE_G(locals), SIOCSIFCAP, (caddr_t)&ifr) < 0)
-		RETURN_NULL();
-	RETURN_TRUE;
-
 }
 
 PHP_FUNCTION(pfSense_get_interface_stats)
