@@ -3498,6 +3498,7 @@
     SUBDIR += pecl-intl
     SUBDIR += pecl-jsmin
     SUBDIR += pecl-jsonc
+    SUBDIR += pecl-jsond
     SUBDIR += pecl-judy
     SUBDIR += pecl-libevent
     SUBDIR += pecl-mcve
@@ -4439,6 +4440,7 @@
     SUBDIR += rubygem-crack
     SUBDIR += rubygem-cri
     SUBDIR += rubygem-cucumber
+    SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-daemon_controller
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-debugger
@@ -4567,10 +4569,8 @@
     SUBDIR += rubygem-metaclass
     SUBDIR += rubygem-metaid
     SUBDIR += rubygem-method_source
-    SUBDIR += rubygem-mini_portile
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-minitest4
-    SUBDIR += rubygem-mirror
     SUBDIR += rubygem-mixlib-authentication
     SUBDIR += rubygem-mixlib-cli
     SUBDIR += rubygem-mixlib-config
@@ -4662,6 +4662,7 @@
     SUBDIR += rubygem-ruby2ruby
     SUBDIR += rubygem-ruby_parser
     SUBDIR += rubygem-rubygame
+    SUBDIR += rubygem-rubygems-mirror
     SUBDIR += rubygem-rubygems-tasks
     SUBDIR += rubygem-rubyinline
     SUBDIR += rubygem-rubyinlineaccel
