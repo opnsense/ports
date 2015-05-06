@@ -15,7 +15,6 @@ COMMENT=	Utility for real-time display of statistics for pf
 .if ${OSVERSION} >= 1100000
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-bpf_dump.c \
 		${FILESDIR}/extra-patch-sf-gencode.h
-CFLAGS+=	-I/usr/include/net
 .endif
 
 .if ${OSVERSION} < 900039
@@ -48,6 +47,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|__dead|__dead2|g' ${WRKSRC}/sf-gencode.c
 	@${REINPLACE_CMD} -e 's|#include <net/if_pflog.h>||g' \
 	    ${WRKSRC}/sf-gencode.c
+.if ${OPSYS} == DragonFly || ${OSVERSION} >= 1100070
+	@${REINPLACE_CMD} -e 's|altq/|net/&|' ${WRKSRC}/pftop.c
+.endif
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/pftop ${STAGEDIR}${PREFIX}/sbin
