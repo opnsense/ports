@@ -90,4 +90,4 @@ dir = { root = "/", tmp = "/tmp/" }
 
 limits.part_min = "100M"
 
-use_cpdup = true
+use_cpdup = false
