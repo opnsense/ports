@@ -189,6 +189,7 @@
     SUBDIR += di
     SUBDIR += dim
     SUBDIR += dirdiff
+    SUBDIR += direnv
     SUBDIR += dirvish
     SUBDIR += diskcheckd
     SUBDIR += diskimage-tools
@@ -885,6 +886,7 @@
     SUBDIR += searchmonkey
     SUBDIR += seatools
     SUBDIR += sec
+    SUBDIR += serf
     SUBDIR += setcdboot
     SUBDIR += setquota
     SUBDIR += sformat
