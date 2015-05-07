@@ -20,7 +20,6 @@ extern int pfSense_globals_id;
 PHP_MINIT_FUNCTION(pfSense_module_init);
 PHP_MSHUTDOWN_FUNCTION(pfSense_module_exit);
 
-PHP_FUNCTION(pfSense_get_interface_stats);
 PHP_FUNCTION(pfSense_get_interface_addresses);
 PHP_FUNCTION(pfSense_getall_interface_addresses);
 PHP_FUNCTION(pfSense_ngctl_name);

@@ -125,7 +125,6 @@ ZEND_DECLARE_MODULE_GLOBALS(pfSense)
 static zend_function_entry pfSense_functions[] = {
     PHP_FE(pfSense_get_interface_addresses, NULL)
     PHP_FE(pfSense_getall_interface_addresses, NULL)
-    PHP_FE(pfSense_get_interface_stats, NULL)
     PHP_FE(pfSense_ngctl_name, NULL)
     PHP_FE(pfSense_ngctl_attach, NULL)
     PHP_FE(pfSense_ngctl_detach, NULL)
@@ -589,51 +588,4 @@ PHP_FUNCTION(pfSense_ngctl_detach)
 	}
 
 	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_get_interface_stats)
-{
-	struct ifmibdata ifmd;
-	struct if_data *tmpd;
-	char outputbuf[128];
-	char *ifname;
-	int ifname_len, error;
-	int name[6];
-	size_t len;
-	unsigned int ifidx;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &ifname, &ifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	ifidx = if_nametoindex(ifname);
-	if (ifidx == 0)
-		RETURN_NULL();
-
-	name[0] = CTL_NET;
-	name[1] = PF_LINK;
-	name[2] = NETLINK_GENERIC;
-	name[3] = IFMIB_IFDATA;
-	name[4] = ifidx;
-	name[5] = IFDATA_GENERAL;
-
-	len = sizeof(ifmd);
-
-	if (sysctl(name, 6, &ifmd, &len, (void *)0, 0) < 0)
-		RETURN_NULL();
-	
-	tmpd = &ifmd.ifmd_data;
-
-	array_init(return_value);
-	add_assoc_long(return_value, "inpkts", (long)tmpd->ifi_ipackets);
-	add_assoc_long(return_value, "inbytes", (long)tmpd->ifi_ibytes);
-	add_assoc_long(return_value, "outpkts", (long)tmpd->ifi_opackets);
-	add_assoc_long(return_value, "outbytes", (long)tmpd->ifi_obytes);
-	add_assoc_long(return_value, "inerrs", (long)tmpd->ifi_ierrors);
-	add_assoc_long(return_value, "outerrs", (long)tmpd->ifi_oerrors);
-	add_assoc_long(return_value, "collisions", (long)tmpd->ifi_collisions);
-	add_assoc_long(return_value, "inmcasts", (long)tmpd->ifi_imcasts);
-	add_assoc_long(return_value, "outmcasts", (long)tmpd->ifi_omcasts);
-	add_assoc_long(return_value, "unsuppproto", (long)tmpd->ifi_noproto);
-	add_assoc_long(return_value, "mtu", (long)tmpd->ifi_mtu);
 }
