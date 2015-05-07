@@ -1,14 +1,15 @@
 # $FreeBSD$
 
-PORTNAME=	squidGuard
+PORTNAME=	squidguard
 PORTVERSION=	1.4
 PORTREVISION=	15
 CATEGORIES=	www
 MASTER_SITES=	http://www.squidguard.org/Downloads/:a \
 		http://www.squidguard.org/Downloads/Contrib/:b
+DISTNAME=	squidGuard-${DISTVERSIONFULL}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:a \
-		squidGuard-1.4-quoted_string_support.diff:b \
-		squidGuard-1.4-dnsbl.patch:b
+		${DISTNAME}-quoted_string_support.diff:b \
+		${DISTNAME}-dnsbl.patch:b
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	garga@FreeBSD.org
@@ -41,7 +42,6 @@ LOGDIR?=	/var/log/${PORTNAME}
 PLIST_SUB+=	LOGDIR="${LOGDIR}"
 
 SUB_FILES=	pkg-deinstall pkg-message
-SUB_LIST=	PORTNAME=${PORTNAME}
 
 OPTIONS_DEFINE=		DNS_BL DOCS EXAMPLES LDAP QUOTE_STRING STRIP_NTDOMAIN
 
@@ -51,8 +51,8 @@ QUOTE_STRING_DESC=	Add quoted string patch
 STRIP_NTDOMAIN_DESC=	Add options to strip NT domain and krb realm
 
 OPTIONS_SUB=		yes
-QUOTE_STRING_EXTRA_PATCHES=	${DISTDIR}/squidGuard-1.4-quoted_string_support.diff:-p2
-DNS_BL_EXTRA_PATCHES=	${DISTDIR}/squidGuard-1.4-dnsbl.patch:-p1
+QUOTE_STRING_EXTRA_PATCHES=	${DISTDIR}/${DISTNAME}-quoted_string_support.diff:-p2
+DNS_BL_EXTRA_PATCHES=	${DISTDIR}/${DISTNAME}-dnsbl.patch:-p1
 STRIP_NTDOMAIN_EXTRA_PATCHES=	${FILESDIR}/extra-patch-strip.diff:-p0
 LDAP_CONFIGURE_ON=	--with-ldap
 LDAP_CONFIGURE_OFF=	--without-ldap
