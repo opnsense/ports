@@ -1,8 +1,9 @@
 # Created by: Dmitry Marakasov <amdmi3@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=	walcommander
-PORTVERSION=	0.19.0.1
+PORTNAME=	wcmcommander
+PORTVERSION=	0.20.0
+DISTVERSIONPREFIX=	release-
 CATEGORIES=	x11-fm
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -13,15 +14,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	corporateshark
-GH_PROJECT=	WalCommander
-GH_TAGNAME=	release-${PORTVERSION}
-GH_COMMIT=	d5f3264
+GH_PROJECT=	WCMCommander
 
 USES=		compiler:c++11-lib cmake:outsource
 CMAKE_ARGS=	-DDATADIR="${DATADIR_REL}"
 USE_XORG=	x11
 
-PORTDOCS=	CHANGELOG.GitHub README.md readme_eng.txt
+PORTDOCS=	CHANGELOG.txt README.md readme_eng.txt
 
 OPTIONS_DEFINE=	FREETYPE SMB SSH DOCS
 OPTIONS_DEFAULT=FREETYPE SMB SSH
