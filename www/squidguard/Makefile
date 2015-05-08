@@ -1,12 +1,13 @@
 # $FreeBSD$
 
-PORTNAME=	squidguard
+REALNAME=	squidGuard
+PORTNAME=	${REALNAME:tl}
 PORTVERSION=	1.4
 PORTREVISION=	15
 CATEGORIES=	www
 MASTER_SITES=	http://www.squidguard.org/Downloads/:a \
 		http://www.squidguard.org/Downloads/Contrib/:b
-DISTNAME=	squidGuard-${DISTVERSIONFULL}
+DISTNAME=	${REALNAME}-${DISTVERSIONFULL}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:a \
 		${DISTNAME}-quoted_string_support.diff:b \
 		${DISTNAME}-dnsbl.patch:b
@@ -24,7 +25,7 @@ USE_BDB=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-db-inc=${BDB_INCLUDE_DIR} \
 		--with-db-lib=${BDB_LIB_DIR} \
-		--with-sg-config=${ETCDIR}/${PORTNAME}.conf \
+		--with-sg-config=${ETCDIR}/${REALNAME}.conf \
 		--with-sg-dbhome=${DATADIR} \
 		--with-sg-logdir=${LOGDIR} \
 		--with-squiduser=${SQUID_UID} \
@@ -35,10 +36,10 @@ SQUID_UID?=	squid
 SQUID_GID?=	squid
 PLIST_SUB+=	SQUID_UID='${SQUID_UID}' SQUID_GID='${SQUID_GID}'
 
-DATADIR?=	/var/db/${PORTNAME}
+DATADIR?=	/var/db/${REALNAME}
 ETCDIR=		${PREFIX}/etc/squid
 _DATADIR=	${WRKDIR}/data
-LOGDIR?=	/var/log/${PORTNAME}
+LOGDIR?=	/var/log/${REALNAME}
 PLIST_SUB+=	LOGDIR="${LOGDIR}"
 
 SUB_FILES=	pkg-deinstall pkg-message
@@ -107,12 +108,12 @@ pre-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	@${SED} -e "s|@sg_dbhome@|${EXAMPLESDIR}/blacklists|" -e "s|@sg_logdir@|${LOGDIR}|" \
 		${WRKSRC}/samples/sample.conf.in \
-		>${STAGEDIR}${ETCDIR}/${PORTNAME}.conf.sample ; \
+		>${STAGEDIR}${ETCDIR}/${REALNAME}.conf.sample ; \
 	${ECHO_MSG} "       -> Sample configuration file installed in: ${ETCDIR}" ; \
 
 post-install:
 .if ${PORT_OPTIONS:MDOCS}
-	@${ECHO_MSG} "===>   Installing ${PORTNAME} documentation"
+	@${ECHO_MSG} "===>   Installing ${REALNAME} documentation"
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 . for i in ${WRKSRC}/doc/*.txt ${WRKSRC}/doc/*.html ${WRKSRC}/doc/*.gif ${WRKSRC}/doc/README
 	${INSTALL_DATA} ${WRKSRC}$i ${STAGEDIR}${DOCSDIR}
