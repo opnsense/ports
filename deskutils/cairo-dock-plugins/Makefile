@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	cairo-dock-plugins
-PORTVERSION=	3.4.0
+PORTVERSION=	3.4.1
+PORTREVISION=	1
 CATEGORIES=	deskutils
-DISTFILES=	${DISTNAME}.git20141115${EXTRACT_SUFX} ${ICONS_PACKAGE}${EXTRACT_SUFX}
 
 MAINTAINER=	fidaj@ukr.net
 COMMENT=	Cairo-Dock-Plugins for Cairo-Dock
@@ -19,7 +19,6 @@ DATADIR=	${PREFIX}/share/cairo-dock
 USE_GITHUB=	yes
 GH_ACCOUNT=	Cairo-Dock
 GH_PROJECT=	cairo-dock-plug-ins
-GH_TAGNAME=	0ade052
 
 ICONS_PACKAGE=	cairo-dock-plugins-png-icons
 GNU_CONFIGURE=	yes
@@ -161,7 +160,6 @@ ZEITGEIST_CMAKE_ON=	-Denable-recent-events:BOOL=TRUE
 ZEITGEIST_CMAKE_OFF=	-Denable-recent-events:BOOL=FALSE
 
 post-patch:
-	@${CP} -R ${WRKDIR}/${ICONS_PACKAGE}/* ${WRKSRC}
 	@${FIND} ${WRKSRC} -type f \( -name "*.c" -o -name "*.conf" \
 		-o -name netspeed -o -name nvidia-config -o -name "*.sh" \
 		-o -name "*.rb" \) | ${XARGS} ${REINPLACE_CMD} -i.orig -e \
