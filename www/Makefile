@@ -1877,6 +1877,7 @@
     SUBDIR += rubygem-merb-helpers
     SUBDIR += rubygem-merb-param-protection
     SUBDIR += rubygem-modernizr
+    SUBDIR += rubygem-mousetrap-rails
     SUBDIR += rubygem-multipart-post
     SUBDIR += rubygem-nanoc
     SUBDIR += rubygem-net-http-digest_auth
@@ -1915,6 +1916,7 @@
     SUBDIR += rubygem-redis-rack
     SUBDIR += rubygem-redis-rails
     SUBDIR += rubygem-redmine_acts_as_taggable_on
+    SUBDIR += rubygem-responders
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rfacebook
     SUBDIR += rubygem-rfeedfinder
