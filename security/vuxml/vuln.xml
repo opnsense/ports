@@ -57,6 +57,38 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="0b040e24-f751-11e4-b24d-5453ed2e2b49">
+    <topic>libssh -- null pointer dereference</topic>
+    <affects>
+      <package>
+	<name>libssh</name>
+	<range><lt>0.6.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Andreas Schneider reports:</p>
+	<blockquote cite="https://www.libssh.org/2015/04/30/libssh-0-6-5-security-and-bugfix-release/">
+	  <p>libssh versions 0.5.1 and above have a logical error in the
+	    handling of a SSH_MSG_NEWKEYS and SSH_MSG_KEXDH_REPLY package. A
+	    detected error did not set the session into the error state
+	    correctly and further processed the packet which leads to a null
+	    pointer dereference. This is the packet after the initial key
+	    exchange and doesn’t require authentication.</p>
+	  <p>This could be used for a Denial of Service (DoS) attack.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-3146</cvename>
+      <url>https://www.libssh.org/2015/04/30/libssh-0-6-5-security-and-bugfix-release</url>
+    </references>
+    <dates>
+      <discovery>2015-04-30</discovery>
+      <entry>2015-05-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="b13af778-f4fc-11e4-a95d-ac9e174be3af">
     <topic>Vulnerablitiy in HWP document filter</topic>
     <affects>
@@ -610,15 +642,40 @@ Notes:
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>Full Disclosure reports:</p>
-	<blockquote cite="http://seclists.org/fulldisclosure/2015/Apr/31">
-	  <p>use of uninitialized memory when parsing collation sequences</p>
-	  <p>bad free()</p>
-	  <p>stack buffer overflow</p>
+	<p>NVD reports:</p>
+	<blockquote cite="https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-3414">
+	  <p>SQLite before 3.8.9 does not properly implement the
+	    dequoting of collation-sequence names, which allows
+	    context-dependent attackers to cause a denial of service
+	    (uninitialized memory access and application crash) or
+	    possibly have unspecified other impact via a crafted
+	    COLLATE clause, as demonstrated by COLLATE"""""""" at the
+	    end of a SELECT statement.</p>
+	</blockquote>
+	<blockquote cite="https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-3415">
+	  <p>The sqlite3VdbeExec function in vdbe.c in SQLite before
+	    3.8.9 does not properly implement comparison operators,
+	    which allows context-dependent attackers to cause a denial
+	    of service (invalid free operation) or possibly have
+	    unspecified other impact via a crafted CHECK clause, as
+	    demonstrated by CHECK(0&amp;O&gt;O) in a CREATE TABLE statement.
+	  </p>
+	</blockquote>
+	<blockquote cite="https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-3416">
+	  <p>The sqlite3VXPrintf function in printf.c in SQLite before
+	    3.8.9 does not properly handle precision and width values
+	    during floating-point conversions, which allows
+	    context-dependent attackers to cause a denial of service
+	    (integer overflow and stack-based buffer overflow) or
+	    possibly have unspecified other impact via large integers
+	    in a crafted printf function call in a SELECT statement.</p>
 	</blockquote>
       </body>
     </description>
     <references>
+      <cvename>CVE-2015-3414</cvename>
+      <cvename>CVE-2015-3415</cvename>
+      <cvename>CVE-2015-3416</cvename>
       <url>https://www.sqlite.org/src/info/eddc05e7bb31fae7</url>
       <url>https://www.sqlite.org/src/info/02e3c88fbf6abdcf</url>
       <url>https://www.sqlite.org/src/info/c494171f77dc2e5e</url>
@@ -627,6 +684,7 @@ Notes:
     <dates>
       <discovery>2015-04-14</discovery>
       <entry>2015-04-18</entry>
+      <modified>2015-05-08</modified>
     </dates>
   </vuln>
 
@@ -4147,9 +4205,9 @@ Notes:
     <affects>
       <package>
 	<name>otrs</name>
-	<range><gt>3.2.*</gt><lt>3.2.17</lt></range>
-	<range><gt>3.3.*</gt><lt>3.3.11</lt></range>
-	<range><gt>4.0.*</gt><lt>4.0.3</lt></range>
+	<range><gt>3.2.0</gt><lt>3.2.17</lt></range>
+	<range><gt>3.3.0</gt><lt>3.3.11</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.3</lt></range>
       </package>
     </affects>
     <description>
@@ -4169,6 +4227,7 @@ Notes:
     <dates>
       <discovery>2014-12-16</discovery>
       <entry>2014-12-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -9501,8 +9560,8 @@ Notes:
       <package>
 	<name>otrs</name>
 	<range><lt>3.1.21</lt></range>
-	<range><gt>3.2.*</gt><lt>3.2.16</lt></range>
-	<range><gt>3.3.*</gt><lt>3.3.6</lt></range>
+	<range><gt>3.2.0</gt><lt>3.2.16</lt></range>
+	<range><gt>3.3.0</gt><lt>3.3.6</lt></range>
       </package>
     </affects>
     <description>
@@ -9521,6 +9580,7 @@ Notes:
     <dates>
       <discovery>2014-04-01</discovery>
       <entry>2014-04-03</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -9622,11 +9682,11 @@ Notes:
     <affects>
       <package>
 	<name>joomla2</name>
-	<range><ge>2.5.*</ge><le>2.5.18</le></range>
+	<range><ge>2.5.0</ge><le>2.5.18</le></range>
       </package>
       <package>
 	<name>joomla3</name>
-	<range><ge>3.0.*</ge><le>3.2.2</le></range>
+	<range><ge>3.0.0</ge><le>3.2.2</le></range>
       </package>
     </affects>
     <description>
@@ -9659,7 +9719,7 @@ Notes:
     <dates>
       <discovery>2014-03-01</discovery>
       <entry>2014-03-23</entry>
-      <modified>2014-04-30</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -10046,15 +10106,15 @@ Notes:
       </package>
       <package>
 	<name>samba36</name>
-	<range><gt>3.6.*</gt><lt>3.6.23</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.23</lt></range>
       </package>
       <package>
 	<name>samba4</name>
-	<range><gt>4.0.*</gt><lt>4.0.16</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.16</lt></range>
       </package>
       <package>
 	<name>samba41</name>
-	<range><gt>4.1.*</gt><lt>4.1.6</lt></range>
+	<range><gt>4.1.0</gt><lt>4.1.6</lt></range>
       </package>
     </affects>
     <description>
@@ -10082,6 +10142,7 @@ Notes:
     <dates>
       <discovery>2014-03-11</discovery>
       <entry>2014-03-11</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -10509,8 +10570,8 @@ Notes:
       <package>
 	<name>otrs</name>
 	<range><lt>3.1.20</lt></range>
-	<range><gt>3.2.*</gt><lt>3.2.15</lt></range>
-	<range><gt>3.3.*</gt><lt>3.3.5</lt></range>
+	<range><gt>3.2.0</gt><lt>3.2.15</lt></range>
+	<range><gt>3.3.0</gt><lt>3.3.5</lt></range>
       </package>
     </affects>
     <description>
@@ -10530,6 +10591,7 @@ JavaScript code would be executed.</p>
     <dates>
       <discovery>2014-02-25</discovery>
       <entry>2014-02-25</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -11082,8 +11144,8 @@ JavaScript code would be executed.</p>
       <package>
 	<name>otrs</name>
 	<range><lt>3.1.19</lt></range>
-	<range><gt>3.2.*</gt><lt>3.2.14</lt></range>
-	<range><gt>3.3.*</gt><lt>3.3.4</lt></range>
+	<range><gt>3.2.0</gt><lt>3.2.14</lt></range>
+	<range><gt>3.3.0</gt><lt>3.3.4</lt></range>
       </package>
     </affects>
     <description>
@@ -11107,7 +11169,7 @@ JavaScript code would be executed.</p>
     <dates>
       <discovery>2014-01-28</discovery>
       <entry>2014-01-28</entry>
-      <modified>2014-02-06</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -12000,15 +12062,15 @@ JavaScript code would be executed.</p>
       </package>
       <package>
 	<name>samba36</name>
-	<range><gt>3.6.*</gt><lt>3.6.22</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.22</lt></range>
       </package>
       <package>
 	<name>samba4</name>
-	<range><gt>4.0.*</gt><lt>4.0.13</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.13</lt></range>
       </package>
       <package>
 	<name>samba41</name>
-	<range><gt>4.1.*</gt><lt>4.1.3</lt></range>
+	<range><gt>4.1.0</gt><lt>4.1.3</lt></range>
       </package>
     </affects>
     <description>
@@ -12030,6 +12092,7 @@ JavaScript code would be executed.</p>
     <dates>
       <discovery>2012-06-12</discovery>
       <entry>2013-12-11</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -12219,11 +12282,11 @@ JavaScript code would be executed.</p>
     <affects>
       <package>
 	<name>joomla2</name>
-	<range><ge>2.5.*</ge><le>2.5.14</le></range>
+	<range><ge>2.5.0</ge><le>2.5.14</le></range>
       </package>
       <package>
 	<name>joomla3</name>
-	<range><ge>3.0.*</ge><le>3.1.5</le></range>
+	<range><ge>3.0.0</ge><le>3.1.5</le></range>
       </package>
     </affects>
     <description>
@@ -12251,7 +12314,7 @@ JavaScript code would be executed.</p>
     <dates>
       <discovery>2013-11-01</discovery>
       <entry>2013-12-04</entry>
-      <modified>2014-04-23</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -12469,11 +12532,11 @@ JavaScript code would be executed.</p>
     <affects>
       <package>
 	<name>samba4</name>
-	<range><gt>4.0.*</gt><lt>4.0.11</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.11</lt></range>
       </package>
       <package>
 	<name>samba41</name>
-	<range><gt>4.1.*</gt><lt>4.1.1</lt></range>
+	<range><gt>4.1.0</gt><lt>4.1.1</lt></range>
       </package>
     </affects>
     <description>
@@ -12495,6 +12558,7 @@ JavaScript code would be executed.</p>
     <dates>
       <discovery>2013-06-12</discovery>
       <entry>2013-11-19</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -12511,15 +12575,15 @@ JavaScript code would be executed.</p>
       </package>
       <package>
 	<name>samba36</name>
-	<range><gt>3.6.*</gt><lt>3.6.20</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.20</lt></range>
       </package>
       <package>
 	<name>samba4</name>
-	<range><gt>4.0.*</gt><lt>4.0.11</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.11</lt></range>
       </package>
       <package>
 	<name>samba41</name>
-	<range><gt>4.1.*</gt><lt>4.1.1</lt></range>
+	<range><gt>4.1.0</gt><lt>4.1.1</lt></range>
       </package>
     </affects>
     <description>
@@ -12542,6 +12606,7 @@ JavaScript code would be executed.</p>
     <dates>
       <discovery>2013-06-12</discovery>
       <entry>2013-11-19</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -13858,15 +13923,15 @@ affected..</p>
     <affects>
       <package>
 	<name>asterisk11</name>
-	<range><gt>11.*</gt><lt>11.5.1</lt></range>
+	<range><gt>11.0</gt><lt>11.5.1</lt></range>
       </package>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.12.3</lt></range>
+	<range><gt>10.0</gt><lt>10.12.3</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.21.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.21.1</lt></range>
       </package>
     </affects>
     <description>
@@ -13888,7 +13953,7 @@ affected..</p>
     <dates>
       <discovery>2013-08-27</discovery>
       <entry>2013-08-28</entry>
-      <modified>2013-08-29</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -14168,11 +14233,11 @@ affected..</p>
       </package>
       <package>
 	<name>samba36</name>
-	<range><gt>3.6.*</gt><lt>3.6.17</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.17</lt></range>
       </package>
       <package>
 	<name>samba4</name>
-	<range><gt>4.0.*</gt><lt>4.0.8</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.8</lt></range>
       </package>
     </affects>
     <description>
@@ -14196,7 +14261,7 @@ affected..</p>
     <dates>
       <discovery>2013-08-05</discovery>
       <entry>2013-08-09</entry>
-      <modified>2013-08-09</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -16113,7 +16178,7 @@ affected..</p>
     <affects>
       <package>
 	<name>openafs</name>
-	<range><lt>1.6.2.*</lt></range>
+	<range><lt>1.6.2.0</lt></range>
       </package>
     </affects>
     <description>
@@ -16135,6 +16200,7 @@ affected..</p>
     <dates>
       <discovery>2013-02-27</discovery>
       <entry>2013-06-03</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -16287,7 +16353,7 @@ affected..</p>
     <affects>
       <package>
 	<name>BitchX</name>
-	<range><lt>1.2.*,1</lt></range>
+	<range><lt>1.2.0</lt></range>
       </package>
     </affects>
     <description>
@@ -16329,6 +16395,7 @@ affected..</p>
     <dates>
       <discovery>2007-08-28</discovery>
       <entry>2013-05-31</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -17021,7 +17088,7 @@ affected..</p>
     <affects>
       <package>
 	<name>joomla</name>
-	<range><ge>2.0.*</ge><lt>2.5.10</lt></range>
+	<range><ge>2.0.0</ge><lt>2.5.10</lt></range>
       </package>
     </affects>
     <description>
@@ -17075,6 +17142,7 @@ affected..</p>
     <dates>
       <discovery>2013-04-24</discovery>
       <entry>2013-04-27</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -17252,7 +17320,7 @@ affected..</p>
     <affects>
       <package>
 	<name>mod_security</name>
-	<range><gt>2.*</gt><lt>2.7.3</lt></range>
+	<range><gt>2.0</gt><lt>2.7.3</lt></range>
       </package>
     </affects>
     <description>
@@ -17277,6 +17345,7 @@ affected..</p>
     <dates>
       <discovery>2013-04-02</discovery>
       <entry>2013-04-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -17819,15 +17888,15 @@ affected..</p>
     <affects>
       <package>
 	<name>asterisk11</name>
-	<range><gt>11.*</gt><lt>11.2.2</lt></range>
+	<range><gt>11.0</gt><lt>11.2.2</lt></range>
       </package>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.12.2</lt></range>
+	<range><gt>10.0</gt><lt>10.12.2</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.20.2</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.20.2</lt></range>
       </package>
     </affects>
     <description>
@@ -17852,6 +17921,7 @@ affected..</p>
     <dates>
       <discovery>2013-03-27</discovery>
       <entry>2013-03-29</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -18785,7 +18855,7 @@ affected..</p>
     <affects>
       <package>
 	<name>otrs</name>
-	<range><ge>3.1.*</ge><lt>3.1.11</lt></range>
+	<range><ge>3.1.0</ge><lt>3.1.11</lt></range>
       </package>
     </affects>
     <description>
@@ -18811,6 +18881,7 @@ affected..</p>
     <dates>
       <discovery>2012-10-16</discovery>
       <entry>2013-02-25</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -18819,7 +18890,7 @@ affected..</p>
     <affects>
       <package>
 	<name>otrs</name>
-	<range><ge>3.1.*</ge><lt>3.1.10</lt></range>
+	<range><ge>3.1.0</ge><lt>3.1.10</lt></range>
       </package>
     </affects>
     <description>
@@ -18846,6 +18917,7 @@ affected..</p>
     <dates>
       <discovery>2012-08-30</discovery>
       <entry>2013-02-25</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -18854,7 +18926,7 @@ affected..</p>
     <affects>
       <package>
 	<name>otrs</name>
-	<range><ge>3.1.*</ge><lt>3.1.9</lt></range>
+	<range><ge>3.1.0</ge><lt>3.1.9</lt></range>
       </package>
     </affects>
     <description>
@@ -18879,6 +18951,7 @@ affected..</p>
     <dates>
       <discovery>2012-08-22</discovery>
       <entry>2013-02-25</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -19329,7 +19402,7 @@ affected..</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.12</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.12</lt></range>
       </package>
     </affects>
     <description>
@@ -19350,28 +19423,28 @@ affected..</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2013-0765</cvename>
-	<cvename>CVE-2013-0772</cvename>
-	<cvename>CVE-2013-0773</cvename>
-	<cvename>CVE-2013-0774</cvename>
-	<cvename>CVE-2013-0775</cvename>
-	<cvename>CVE-2013-0776</cvename>
-	<cvename>CVE-2013-0783</cvename>
-	<cvename>CVE-2013-0784</cvename>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-20.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-21.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-22.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-23.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-24.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-25.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-26.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-27.html</url>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <cvename>CVE-2013-0765</cvename>
+      <cvename>CVE-2013-0772</cvename>
+      <cvename>CVE-2013-0773</cvename>
+      <cvename>CVE-2013-0774</cvename>
+      <cvename>CVE-2013-0775</cvename>
+      <cvename>CVE-2013-0776</cvename>
+      <cvename>CVE-2013-0783</cvename>
+      <cvename>CVE-2013-0784</cvename>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-20.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-21.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-22.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-23.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-24.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-25.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-26.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-27.html</url>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
     </references>
     <dates>
       <discovery>2013-02-19</discovery>
       <entry>2013-02-19</entry>
-      <modified>2013-02-20</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -20226,7 +20299,7 @@ affected..</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.12</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.12</lt></range>
       </package>
       <package>
 	<name>ca_root_nss</name>
@@ -20268,60 +20341,61 @@ affected..</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2012-5829</cvename>
-	<cvename>CVE-2013-0743</cvename>
-	<cvename>CVE-2013-0744</cvename>
-	<cvename>CVE-2013-0745</cvename>
-	<cvename>CVE-2013-0746</cvename>
-	<cvename>CVE-2013-0747</cvename>
-	<cvename>CVE-2013-0748</cvename>
-	<cvename>CVE-2013-0749</cvename>
-	<cvename>CVE-2013-0750</cvename>
-	<cvename>CVE-2013-0751</cvename>
-	<cvename>CVE-2013-0752</cvename>
-	<cvename>CVE-2013-0753</cvename>
-	<cvename>CVE-2013-0754</cvename>
-	<cvename>CVE-2013-0755</cvename>
-	<cvename>CVE-2013-0756</cvename>
-	<cvename>CVE-2013-0757</cvename>
-	<cvename>CVE-2013-0758</cvename>
-	<cvename>CVE-2013-0759</cvename>
-	<cvename>CVE-2013-0760</cvename>
-	<cvename>CVE-2013-0761</cvename>
-	<cvename>CVE-2013-0762</cvename>
-	<cvename>CVE-2013-0763</cvename>
-	<cvename>CVE-2013-0764</cvename>
-	<cvename>CVE-2013-0766</cvename>
-	<cvename>CVE-2013-0767</cvename>
-	<cvename>CVE-2013-0768</cvename>
-	<cvename>CVE-2013-0769</cvename>
-	<cvename>CVE-2013-0770</cvename>
-	<cvename>CVE-2013-0771</cvename>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-01.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-02.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-03.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-04.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-05.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-06.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-07.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-08.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-09.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-10.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-11.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-12.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-13.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-14.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-15.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-16.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-17.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-18.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-19.html</url>
-	<url>http://www.mozilla.org/security/announce/2013/mfsa2013-20.html</url>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <cvename>CVE-2012-5829</cvename>
+      <cvename>CVE-2013-0743</cvename>
+      <cvename>CVE-2013-0744</cvename>
+      <cvename>CVE-2013-0745</cvename>
+      <cvename>CVE-2013-0746</cvename>
+      <cvename>CVE-2013-0747</cvename>
+      <cvename>CVE-2013-0748</cvename>
+      <cvename>CVE-2013-0749</cvename>
+      <cvename>CVE-2013-0750</cvename>
+      <cvename>CVE-2013-0751</cvename>
+      <cvename>CVE-2013-0752</cvename>
+      <cvename>CVE-2013-0753</cvename>
+      <cvename>CVE-2013-0754</cvename>
+      <cvename>CVE-2013-0755</cvename>
+      <cvename>CVE-2013-0756</cvename>
+      <cvename>CVE-2013-0757</cvename>
+      <cvename>CVE-2013-0758</cvename>
+      <cvename>CVE-2013-0759</cvename>
+      <cvename>CVE-2013-0760</cvename>
+      <cvename>CVE-2013-0761</cvename>
+      <cvename>CVE-2013-0762</cvename>
+      <cvename>CVE-2013-0763</cvename>
+      <cvename>CVE-2013-0764</cvename>
+      <cvename>CVE-2013-0766</cvename>
+      <cvename>CVE-2013-0767</cvename>
+      <cvename>CVE-2013-0768</cvename>
+      <cvename>CVE-2013-0769</cvename>
+      <cvename>CVE-2013-0770</cvename>
+      <cvename>CVE-2013-0771</cvename>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-01.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-02.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-03.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-04.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-05.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-06.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-07.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-08.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-09.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-10.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-11.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-12.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-13.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-14.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-15.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-16.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-17.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-18.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-19.html</url>
+      <url>http://www.mozilla.org/security/announce/2013/mfsa2013-20.html</url>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
     </references>
     <dates>
       <discovery>2013-01-08</discovery>
       <entry>2013-01-09</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -20620,15 +20694,15 @@ affected..</p>
     <affects>
       <package>
 	<name>asterisk11</name>
-	<range><gt>11.*</gt><lt>11.1.2</lt></range>
+	<range><gt>11.0</gt><lt>11.1.2</lt></range>
       </package>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.11.1</lt></range>
+	<range><gt>10.0</gt><lt>10.11.1</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.19.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.19.1</lt></range>
       </package>
     </affects>
     <description>
@@ -20650,6 +20724,7 @@ affected..</p>
     <dates>
       <discovery>2013-01-02</discovery>
       <entry>2013-01-03</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -20658,7 +20733,7 @@ affected..</p>
     <affects>
       <package>
 	<name>ircd-ratbox</name>
-	<range><gt>2.*</gt><lt>3.0.8</lt></range>
+	<range><gt>2.0</gt><lt>3.0.8</lt></range>
       </package>
       <package>
 	<name>charybdis</name>
@@ -20682,6 +20757,7 @@ affected..</p>
     <dates>
       <discovery>2012-12-31</discovery>
       <entry>2013-01-02</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -20690,7 +20766,7 @@ affected..</p>
     <affects>
       <package>
 	<name>puppet</name>
-	<range><gt>2.6.*</gt><lt>2.6.17</lt></range>
+	<range><gt>2.6.0</gt><lt>2.6.17</lt></range>
       </package>
     </affects>
     <description>
@@ -20704,17 +20780,18 @@ affected..</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2012-3864</cvename>
-	<cvename>CVE-2012-3865</cvename>
-	<cvename>CVE-2012-3867</cvename>
-	<url>http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.6.17</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3864/</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3865/</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3867/</url>
+      <cvename>CVE-2012-3864</cvename>
+      <cvename>CVE-2012-3865</cvename>
+      <cvename>CVE-2012-3867</cvename>
+      <url>http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.6.17</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3864/</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3865/</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3867/</url>
     </references>
     <dates>
       <discovery>2012-07-10</discovery>
       <entry>2012-12-30</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -21437,7 +21514,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.11</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.11</lt></range>
       </package>
     </affects>
     <description>
@@ -21471,57 +21548,58 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2012-4201</cvename>
-	<cvename>CVE-2012-4202</cvename>
-	<cvename>CVE-2012-4203</cvename>
-	<cvename>CVE-2012-4204</cvename>
-	<cvename>CVE-2012-4205</cvename>
-	<cvename>CVE-2012-4206</cvename>
-	<cvename>CVE-2012-4207</cvename>
-	<cvename>CVE-2012-4208</cvename>
-	<cvename>CVE-2012-4209</cvename>
-	<cvename>CVE-2012-4210</cvename>
-	<cvename>CVE-2012-4212</cvename>
-	<cvename>CVE-2012-4213</cvename>
-	<cvename>CVE-2012-4214</cvename>
-	<cvename>CVE-2012-4215</cvename>
-	<cvename>CVE-2012-4216</cvename>
-	<cvename>CVE-2012-4217</cvename>
-	<cvename>CVE-2012-4218</cvename>
-	<cvename>CVE-2012-5829</cvename>
-	<cvename>CVE-2012-5830</cvename>
-	<cvename>CVE-2012-5833</cvename>
-	<cvename>CVE-2012-5835</cvename>
-	<cvename>CVE-2012-5836</cvename>
-	<cvename>CVE-2012-5837</cvename>
-	<cvename>CVE-2012-5838</cvename>
-	<cvename>CVE-2012-5839</cvename>
-	<cvename>CVE-2012-5840</cvename>
-	<cvename>CVE-2012-5841</cvename>
-	<cvename>CVE-2012-5842</cvename>
-	<cvename>CVE-2012-5843</cvename>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-90.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-91.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-92.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-93.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-94.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-95.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-96.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-97.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-98.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-99.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-100.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-101.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-102.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-103.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-104.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-105.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-106.html</url>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <cvename>CVE-2012-4201</cvename>
+      <cvename>CVE-2012-4202</cvename>
+      <cvename>CVE-2012-4203</cvename>
+      <cvename>CVE-2012-4204</cvename>
+      <cvename>CVE-2012-4205</cvename>
+      <cvename>CVE-2012-4206</cvename>
+      <cvename>CVE-2012-4207</cvename>
+      <cvename>CVE-2012-4208</cvename>
+      <cvename>CVE-2012-4209</cvename>
+      <cvename>CVE-2012-4210</cvename>
+      <cvename>CVE-2012-4212</cvename>
+      <cvename>CVE-2012-4213</cvename>
+      <cvename>CVE-2012-4214</cvename>
+      <cvename>CVE-2012-4215</cvename>
+      <cvename>CVE-2012-4216</cvename>
+      <cvename>CVE-2012-4217</cvename>
+      <cvename>CVE-2012-4218</cvename>
+      <cvename>CVE-2012-5829</cvename>
+      <cvename>CVE-2012-5830</cvename>
+      <cvename>CVE-2012-5833</cvename>
+      <cvename>CVE-2012-5835</cvename>
+      <cvename>CVE-2012-5836</cvename>
+      <cvename>CVE-2012-5837</cvename>
+      <cvename>CVE-2012-5838</cvename>
+      <cvename>CVE-2012-5839</cvename>
+      <cvename>CVE-2012-5840</cvename>
+      <cvename>CVE-2012-5841</cvename>
+      <cvename>CVE-2012-5842</cvename>
+      <cvename>CVE-2012-5843</cvename>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-90.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-91.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-92.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-93.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-94.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-95.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-96.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-97.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-98.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-99.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-100.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-101.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-102.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-103.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-104.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-105.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-106.html</url>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
     </references>
     <dates>
       <discovery>2012-11-20</discovery>
       <entry>2012-11-20</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -22326,7 +22404,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.10</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.10</lt></range>
       </package>
     </affects>
     <description>
@@ -22347,6 +22425,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-10-26</discovery>
       <entry>2012-10-27</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -22742,7 +22821,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.9</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.9</lt></range>
       </package>
     </affects>
     <description>
@@ -22776,55 +22855,55 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2012-3982</cvename>
-	<cvename>CVE-2012-3983</cvename>
-	<cvename>CVE-2012-3984</cvename>
-	<cvename>CVE-2012-3985</cvename>
-	<cvename>CVE-2012-3986</cvename>
-	<cvename>CVE-2012-3987</cvename>
-	<cvename>CVE-2012-3988</cvename>
-	<cvename>CVE-2012-3989</cvename>
-	<cvename>CVE-2012-3990</cvename>
-	<cvename>CVE-2012-3991</cvename>
-	<cvename>CVE-2012-3992</cvename>
-	<cvename>CVE-2012-3993</cvename>
-	<cvename>CVE-2012-3994</cvename>
-	<cvename>CVE-2012-3995</cvename>
-	<cvename>CVE-2012-4179</cvename>
-	<cvename>CVE-2012-4180</cvename>
-	<cvename>CVE-2012-4181</cvename>
-	<cvename>CVE-2012-4182</cvename>
-	<cvename>CVE-2012-4183</cvename>
-	<cvename>CVE-2012-4184</cvename>
-	<cvename>CVE-2012-4186</cvename>
-	<cvename>CVE-2012-4187</cvename>
-	<cvename>CVE-2012-4188</cvename>
-	<cvename>CVE-2012-4190</cvename>
-	<cvename>CVE-2012-4191</cvename>
-	<cvename>CVE-2012-4192</cvename>
-	<cvename>CVE-2012-4193</cvename>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-74.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-75.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-76.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-77.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-78.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-79.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-80.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-81.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-82.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-83.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-84.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-85.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-86.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-87.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-88.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-89.html</url>
+      <cvename>CVE-2012-3982</cvename>
+      <cvename>CVE-2012-3983</cvename>
+      <cvename>CVE-2012-3984</cvename>
+      <cvename>CVE-2012-3985</cvename>
+      <cvename>CVE-2012-3986</cvename>
+      <cvename>CVE-2012-3987</cvename>
+      <cvename>CVE-2012-3988</cvename>
+      <cvename>CVE-2012-3989</cvename>
+      <cvename>CVE-2012-3990</cvename>
+      <cvename>CVE-2012-3991</cvename>
+      <cvename>CVE-2012-3992</cvename>
+      <cvename>CVE-2012-3993</cvename>
+      <cvename>CVE-2012-3994</cvename>
+      <cvename>CVE-2012-3995</cvename>
+      <cvename>CVE-2012-4179</cvename>
+      <cvename>CVE-2012-4180</cvename>
+      <cvename>CVE-2012-4181</cvename>
+      <cvename>CVE-2012-4182</cvename>
+      <cvename>CVE-2012-4183</cvename>
+      <cvename>CVE-2012-4184</cvename>
+      <cvename>CVE-2012-4186</cvename>
+      <cvename>CVE-2012-4187</cvename>
+      <cvename>CVE-2012-4188</cvename>
+      <cvename>CVE-2012-4190</cvename>
+      <cvename>CVE-2012-4191</cvename>
+      <cvename>CVE-2012-4192</cvename>
+      <cvename>CVE-2012-4193</cvename>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-74.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-75.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-76.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-77.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-78.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-79.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-80.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-81.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-82.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-83.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-84.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-85.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-86.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-87.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-88.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-89.html</url>
     </references>
     <dates>
       <discovery>2012-10-09</discovery>
       <entry>2012-10-10</entry>
-      <modified>2012-10-11</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -23469,8 +23548,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>emacs</name>
-	<range><gt>24.*</gt><lt>24.2</lt></range>
-	<range><gt>23.*</gt><le>23.4_2</le></range>
+	<range><gt>24.0</gt><lt>24.2</lt></range>
+	<range><gt>23.0</gt><le>23.4_2</le></range>
       </package>
     </affects>
     <description>
@@ -23502,7 +23581,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-08-13</discovery>
       <entry>2012-09-08</entry>
-      <modified>2013-05-13</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -23926,11 +24005,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk</name>
-	<range><gt>10.*</gt><lt>10.7.1</lt></range>
+	<range><gt>10.0</gt><lt>10.7.1</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.15.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.15.1</lt></range>
       </package>
     </affects>
     <description>
@@ -23953,6 +24032,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-08-30</discovery>
       <entry>2012-08-30</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -23987,7 +24067,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.7</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.7</lt></range>
       </package>
     </affects>
     <description>
@@ -24023,59 +24103,60 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2012-1956</cvename>
-	<cvename>CVE-2012-1970</cvename>
-	<cvename>CVE-2012-1971</cvename>
-	<cvename>CVE-2012-1972</cvename>
-	<cvename>CVE-2012-1973</cvename>
-	<cvename>CVE-2012-1974</cvename>
-	<cvename>CVE-2012-1975</cvename>
-	<cvename>CVE-2012-1976</cvename>
-	<cvename>CVE-2012-3956</cvename>
-	<cvename>CVE-2012-3957</cvename>
-	<cvename>CVE-2012-3958</cvename>
-	<cvename>CVE-2012-3959</cvename>
-	<cvename>CVE-2012-3960</cvename>
-	<cvename>CVE-2012-3961</cvename>
-	<cvename>CVE-2012-3962</cvename>
-	<cvename>CVE-2012-3963</cvename>
-	<cvename>CVE-2012-3964</cvename>
-	<cvename>CVE-2012-3965</cvename>
-	<cvename>CVE-2012-3966</cvename>
-	<cvename>CVE-2012-3967</cvename>
-	<cvename>CVE-2012-3968</cvename>
-	<cvename>CVE-2012-3969</cvename>
-	<cvename>CVE-2012-3970</cvename>
-	<cvename>CVE-2012-3971</cvename>
-	<cvename>CVE-2012-3972</cvename>
-	<cvename>CVE-2012-3973</cvename>
-	<cvename>CVE-2012-3974</cvename>
-	<cvename>CVE-2012-3975</cvename>
-	<cvename>CVE-2012-3976</cvename>
-	<cvename>CVE-2012-3978</cvename>
-	<cvename>CVE-2012-3979</cvename>
-	<cvename>CVE-2012-3980</cvename>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-57.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-58.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-59.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-60.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-61.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-62.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-63.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-64.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-65.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-66.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-67.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-68.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-69.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-70.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-71.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-72.html</url>
+      <cvename>CVE-2012-1956</cvename>
+      <cvename>CVE-2012-1970</cvename>
+      <cvename>CVE-2012-1971</cvename>
+      <cvename>CVE-2012-1972</cvename>
+      <cvename>CVE-2012-1973</cvename>
+      <cvename>CVE-2012-1974</cvename>
+      <cvename>CVE-2012-1975</cvename>
+      <cvename>CVE-2012-1976</cvename>
+      <cvename>CVE-2012-3956</cvename>
+      <cvename>CVE-2012-3957</cvename>
+      <cvename>CVE-2012-3958</cvename>
+      <cvename>CVE-2012-3959</cvename>
+      <cvename>CVE-2012-3960</cvename>
+      <cvename>CVE-2012-3961</cvename>
+      <cvename>CVE-2012-3962</cvename>
+      <cvename>CVE-2012-3963</cvename>
+      <cvename>CVE-2012-3964</cvename>
+      <cvename>CVE-2012-3965</cvename>
+      <cvename>CVE-2012-3966</cvename>
+      <cvename>CVE-2012-3967</cvename>
+      <cvename>CVE-2012-3968</cvename>
+      <cvename>CVE-2012-3969</cvename>
+      <cvename>CVE-2012-3970</cvename>
+      <cvename>CVE-2012-3971</cvename>
+      <cvename>CVE-2012-3972</cvename>
+      <cvename>CVE-2012-3973</cvename>
+      <cvename>CVE-2012-3974</cvename>
+      <cvename>CVE-2012-3975</cvename>
+      <cvename>CVE-2012-3976</cvename>
+      <cvename>CVE-2012-3978</cvename>
+      <cvename>CVE-2012-3979</cvename>
+      <cvename>CVE-2012-3980</cvename>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-57.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-58.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-59.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-60.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-61.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-62.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-63.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-64.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-65.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-66.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-67.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-68.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-69.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-70.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-71.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-72.html</url>
     </references>
     <dates>
       <discovery>2012-08-28</discovery>
       <entry>2012-08-30</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -24624,10 +24705,10 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>postgresql-server</name>
-	<range><gt>8.3.*</gt><lt>8.3.20</lt></range>
-	<range><gt>8.4.*</gt><lt>8.4.13</lt></range>
-	<range><gt>9.0.*</gt><lt>9.0.9</lt></range>
-	<range><gt>9.1.*</gt><lt>9.1.5</lt></range>
+	<range><gt>8.3.0</gt><lt>8.3.20</lt></range>
+	<range><gt>8.4.0</gt><lt>8.4.13</lt></range>
+	<range><gt>9.0.0</gt><lt>9.0.9</lt></range>
+	<range><gt>9.1.0</gt><lt>9.1.5</lt></range>
       </package>
     </affects>
     <description>
@@ -24662,6 +24743,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-08-17</discovery>
       <entry>2012-08-17</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -25218,7 +25300,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.6</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.6</lt></range>
       </package>
     </affects>
     <description>
@@ -25249,44 +25331,45 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2012-1949</cvename>
-	<cvename>CVE-2012-1950</cvename>
-	<cvename>CVE-2012-1951</cvename>
-	<cvename>CVE-2012-1952</cvename>
-	<cvename>CVE-2012-1953</cvename>
-	<cvename>CVE-2012-1954</cvename>
-	<cvename>CVE-2012-1955</cvename>
-	<cvename>CVE-2012-1957</cvename>
-	<cvename>CVE-2012-1958</cvename>
-	<cvename>CVE-2012-1959</cvename>
-	<cvename>CVE-2012-1960</cvename>
-	<cvename>CVE-2012-1961</cvename>
-	<cvename>CVE-2012-1962</cvename>
-	<cvename>CVE-2012-1963</cvename>
-	<cvename>CVE-2012-1964</cvename>
-	<cvename>CVE-2012-1965</cvename>
-	<cvename>CVE-2012-1966</cvename>
-	<cvename>CVE-2012-1967</cvename>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-42.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-43.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-44.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-45.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-46.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-47.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-48.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-49.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-50.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-51.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-52.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-53.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-54.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-55.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-56.html</url>
+      <cvename>CVE-2012-1949</cvename>
+      <cvename>CVE-2012-1950</cvename>
+      <cvename>CVE-2012-1951</cvename>
+      <cvename>CVE-2012-1952</cvename>
+      <cvename>CVE-2012-1953</cvename>
+      <cvename>CVE-2012-1954</cvename>
+      <cvename>CVE-2012-1955</cvename>
+      <cvename>CVE-2012-1957</cvename>
+      <cvename>CVE-2012-1958</cvename>
+      <cvename>CVE-2012-1959</cvename>
+      <cvename>CVE-2012-1960</cvename>
+      <cvename>CVE-2012-1961</cvename>
+      <cvename>CVE-2012-1962</cvename>
+      <cvename>CVE-2012-1963</cvename>
+      <cvename>CVE-2012-1964</cvename>
+      <cvename>CVE-2012-1965</cvename>
+      <cvename>CVE-2012-1966</cvename>
+      <cvename>CVE-2012-1967</cvename>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-42.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-43.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-44.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-45.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-46.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-47.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-48.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-49.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-50.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-51.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-52.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-53.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-54.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-55.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-56.html</url>
     </references>
     <dates>
       <discovery>2012-07-17</discovery>
       <entry>2012-08-02</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -25813,82 +25896,83 @@ executed in your Internet Explorer while displaying the email.</p>
   </vuln>
 
   <vuln vid="3a6960ef-c8a8-11e1-9924-001fd0af1a4c">
-     <topic>puppet -- multiple vulnerabilities</topic>
-     <affects>
-	<package>
-	   <name>puppet</name>
-	   <range><gt>2.7.*</gt><lt>2.7.18</lt></range>
-	</package>
-     </affects>
-     <description>
-	<body xmlns="http://www.w3.org/1999/xhtml">
-	   <p>puppet -- multiple vulnerabilities</p>
-	   <blockquote cite="http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.18">
-	      <p>Arbitrary file read on the puppet master from authenticated
-		 clients (high). It is possible to construct an HTTP get request
-		 from an authenticated client with a valid certificate that will
-		 return the contents of an arbitrary file on the Puppet master
-		 that the master has read-access to.</p>
-	      <p>Arbitrary file delete/D.O.S on Puppet Master from authenticated
-		 clients (high). Given a Puppet master with the "Delete"
-		 directive allowed in auth.conf for an authenticated host, an
-		 attacker on that host can send a specially crafted Delete
-		 request that can cause an arbitrary file deletion on the Puppet
-		 master, potentially causing a denial of service attack. Note
-		 that this vulnerability does *not* exist in Puppet as
-		 configured by default.</p>
-	      <p>The last_run_report.yaml is world readable (medium). The most
-		 recent Puppet run report is stored on the Puppet master with
-		 world-readable permissions. The report file contains the
-		 context diffs of any changes to configuration on an agent,
-		 which may contain sensitive information that an attacker can
-		 then access. The last run report is overwritten with every
-		 Puppet run.</p>
-	      <p>Arbitrary file read on the Puppet master by an agent (medium).
-		 This vulnerability is dependent upon vulnerability
-		 "last_run_report.yml is world readable" above. By creating a
-		 hard link of a Puppet-managed file to an arbitrary file that
-		 the Puppet master can read, an attacker forces the contents to
-		 be written to the puppet run summary. The context diff is
-		 stored in last_run_report.yaml, which can then be accessed by
-		 the attacker.</p>
-	      <p>Insufficient input validation for agent hostnames (low). An
-		 attacker could trick the administrator into signing an
-		 attacker's certificate rather than the intended one by
-		 constructing specially crafted certificate requests containing
-		 specific ANSI control sequences. It is possible to use the
-		 sequences to rewrite the order of text displayed to an
-		 administrator such that display of an invalid certificate and
-		 valid certificate are transposed. If the administrator signs
-		 the attacker's certificate, the attacker can then
-		 man-in-the-middle the agent.</p>
-	      <p>Agents with certnames of IP addresses can be impersonated
-		 (low). If an authenticated host with a certname of an IP
-		 address changes IP addresses, and a second host assumes the
-		 first host's former IP address, the second host will be treated
-		 by the puppet master as the first one, giving the second host
-		 access to the first host's catalog. Note: This will not be
-		 fixed in Puppet versions prior to the forthcoming 3.x. Instead,
-		 with this announcement IP-based authentication in Puppet &lt; 3.x
-		 is deprecated.</p>
-	   </blockquote>
-	</body>
+    <topic>puppet -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>puppet</name>
+	<range><gt>2.7.0</gt><lt>2.7.18</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>puppet -- multiple vulnerabilities</p>
+	<blockquote cite="http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.18">
+	  <p>Arbitrary file read on the puppet master from authenticated
+	    clients (high). It is possible to construct an HTTP get request
+	    from an authenticated client with a valid certificate that will
+	    return the contents of an arbitrary file on the Puppet master
+	    that the master has read-access to.</p>
+	  <p>Arbitrary file delete/D.O.S on Puppet Master from authenticated
+	    clients (high). Given a Puppet master with the "Delete"
+	    directive allowed in auth.conf for an authenticated host, an
+	    attacker on that host can send a specially crafted Delete
+	    request that can cause an arbitrary file deletion on the Puppet
+	    master, potentially causing a denial of service attack. Note
+	    that this vulnerability does *not* exist in Puppet as
+	    configured by default.</p>
+	  <p>The last_run_report.yaml is world readable (medium). The most
+	    recent Puppet run report is stored on the Puppet master with
+	    world-readable permissions. The report file contains the
+	    context diffs of any changes to configuration on an agent,
+	    which may contain sensitive information that an attacker can
+	    then access. The last run report is overwritten with every
+	    Puppet run.</p>
+	  <p>Arbitrary file read on the Puppet master by an agent (medium).
+	    This vulnerability is dependent upon vulnerability
+	    "last_run_report.yml is world readable" above. By creating a
+	    hard link of a Puppet-managed file to an arbitrary file that
+	    the Puppet master can read, an attacker forces the contents to
+	    be written to the puppet run summary. The context diff is
+	    stored in last_run_report.yaml, which can then be accessed by
+	    the attacker.</p>
+	  <p>Insufficient input validation for agent hostnames (low). An
+	    attacker could trick the administrator into signing an
+	    attacker's certificate rather than the intended one by
+	    constructing specially crafted certificate requests containing
+	    specific ANSI control sequences. It is possible to use the
+	    sequences to rewrite the order of text displayed to an
+	    administrator such that display of an invalid certificate and
+	    valid certificate are transposed. If the administrator signs
+	    the attacker's certificate, the attacker can then
+	    man-in-the-middle the agent.</p>
+	  <p>Agents with certnames of IP addresses can be impersonated
+	    (low). If an authenticated host with a certname of an IP
+	    address changes IP addresses, and a second host assumes the
+	    first host's former IP address, the second host will be treated
+	    by the puppet master as the first one, giving the second host
+	    access to the first host's catalog. Note: This will not be
+	    fixed in Puppet versions prior to the forthcoming 3.x. Instead,
+	    with this announcement IP-based authentication in Puppet &lt; 3.x
+	    is deprecated.</p>
+	 </blockquote>
+       </body>
      </description>
      <references>
-	<cvename>CVE-2012-3864</cvename>
-	<cvename>CVE-2012-3865</cvename>
-	<cvename>CVE-2012-3866</cvename>
-	<cvename>CVE-2012-3867</cvename>
-	<url>http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.18</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3864/</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3865/</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3866/</url>
-	<url>http://puppetlabs.com/security/cve/cve-2012-3867/</url>
+      <cvename>CVE-2012-3864</cvename>
+      <cvename>CVE-2012-3865</cvename>
+      <cvename>CVE-2012-3866</cvename>
+      <cvename>CVE-2012-3867</cvename>
+      <url>http://projects.puppetlabs.com/projects/puppet/wiki/Release_Notes#2.7.18</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3864/</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3865/</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3866/</url>
+      <url>http://puppetlabs.com/security/cve/cve-2012-3867/</url>
      </references>
      <dates>
-	<discovery>2012-07-05</discovery>
-	<entry>2012-07-10</entry>
-     </dates>
+      <discovery>2012-07-05</discovery>
+      <entry>2012-07-10</entry>
+      <modified>2015-05-09</modified>
+    </dates>
   </vuln>
 
   <vuln vid="4c1ac2dd-c788-11e1-be25-14dae9ebcf89">
@@ -25896,11 +25980,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk</name>
-	<range><gt>10.*</gt><lt>10.5.2</lt></range>
+	<range><gt>10.0</gt><lt>10.5.2</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.13.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.13.1</lt></range>
       </package>
     </affects>
     <description>
@@ -25921,7 +26005,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-07-05</discovery>
       <entry>2012-07-06</entry>
-      <modified>2012-08-30</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -26350,7 +26434,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.5.1</lt></range>
+	<range><gt>10.0</gt><lt>10.5.1</lt></range>
       </package>
     </affects>
     <description>
@@ -26369,6 +26453,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-06-14</discovery>
       <entry>2012-06-14</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -26514,7 +26599,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.5</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.5</lt></range>
       </package>
     </affects>
     <description>
@@ -26531,28 +26616,29 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	<cvename>CVE-2011-3101</cvename>
-	<cvename>CVE-2012-0441</cvename>
-	<cvename>CVE-2012-1938</cvename>
-	<cvename>CVE-2012-1939</cvename>
-	<cvename>CVE-2012-1937</cvename>
-	<cvename>CVE-2012-1940</cvename>
-	<cvename>CVE-2012-1941</cvename>
-	<cvename>CVE-2012-1944</cvename>
-	<cvename>CVE-2012-1945</cvename>
-	<cvename>CVE-2012-1946</cvename>
-	<cvename>CVE-2012-1947</cvename>
-	<url>http://www.mozilla.org/security/known-vulnerabilities/</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-34.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-36.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-37.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-38.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-39.html</url>
-	<url>http://www.mozilla.org/security/announce/2012/mfsa2012-40.html</url>
+      <cvename>CVE-2011-3101</cvename>
+      <cvename>CVE-2012-0441</cvename>
+      <cvename>CVE-2012-1938</cvename>
+      <cvename>CVE-2012-1939</cvename>
+      <cvename>CVE-2012-1937</cvename>
+      <cvename>CVE-2012-1940</cvename>
+      <cvename>CVE-2012-1941</cvename>
+      <cvename>CVE-2012-1944</cvename>
+      <cvename>CVE-2012-1945</cvename>
+      <cvename>CVE-2012-1946</cvename>
+      <cvename>CVE-2012-1947</cvename>
+      <url>http://www.mozilla.org/security/known-vulnerabilities/</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-34.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-36.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-37.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-38.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-39.html</url>
+      <url>http://www.mozilla.org/security/announce/2012/mfsa2012-40.html</url>
     </references>
     <dates>
       <discovery>2012-06-05</discovery>
       <entry>2012-06-05</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -26598,7 +26684,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>sympa</name>
 	<range><lt>6.0.7</lt></range>
-	<range><gt>6.1.*</gt><lt>6.1.11</lt></range>
+	<range><gt>6.1.0</gt><lt>6.1.11</lt></range>
       </package>
     </affects>
     <description>
@@ -26623,6 +26709,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-05-15</discovery>
       <entry>2012-06-05</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -26669,13 +26756,13 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	 <cvename>CVE-2012-1667</cvename>
-	 <url>http://www.isc.org/software/bind/advisories/cve-2012-1667</url>
+      <cvename>CVE-2012-1667</cvename>
+      <url>http://www.isc.org/software/bind/advisories/cve-2012-1667</url>
     </references>
     <dates>
       <discovery>2012-06-04</discovery>
       <entry>2012-06-04</entry>
-      <modified>2012-06-06</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -26684,11 +26771,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>postgresql-server</name>
-	<range><gt>8.3.*</gt><lt>8.3.18_1</lt></range>
-	<range><gt>8.4.*</gt><lt>8.4.11_1</lt></range>
-	<range><gt>9.0.*</gt><lt>9.0.7_2</lt></range>
-	<range><gt>9.1.*</gt><lt>9.1.3_1</lt></range>
-	<range><gt>9.2.*</gt><lt>9.2.b1_1</lt></range>
+	<range><gt>8.3.0</gt><lt>8.3.18_1</lt></range>
+	<range><gt>8.4.0</gt><lt>8.4.11_1</lt></range>
+	<range><gt>9.0.0</gt><lt>9.0.7_2</lt></range>
+	<range><gt>9.1.0</gt><lt>9.1.3_1</lt></range>
+	<range><gt>9.2.0</gt><lt>9.2.b1_1</lt></range>
       </package>
     </affects>
     <description>
@@ -26717,7 +26804,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-05-30</discovery>
       <entry>2012-05-30</entry>
-      <modified>2012-05-31</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -26758,15 +26845,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk16</name>
-	<range><gt>1.6.*</gt><le>1.6.2.24</le></range>
+	<range><gt>1.6.0</gt><le>1.6.2.24</le></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.12.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.12.1</lt></range>
       </package>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.4.1</lt></range>
+	<range><gt>10.0</gt><lt>10.4.1</lt></range>
       </package>
     </affects>
     <description>
@@ -26788,7 +26875,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-05-29</discovery>
       <entry>2012-05-29</entry>
-      <modified>2012-05-29</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -27719,15 +27806,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>samba34</name>
-	<range><gt>3.4.*</gt><lt>3.4.17</lt></range>
+	<range><gt>3.4.0</gt><lt>3.4.17</lt></range>
       </package>
       <package>
 	<name>samba35</name>
-	<range><gt>3.5.*</gt><lt>3.5.15</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.15</lt></range>
       </package>
       <package>
 	<name>samba36</name>
-	<range><gt>3.6.*</gt><lt>3.6.5</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.5</lt></range>
       </package>
     </affects>
     <description>
@@ -27757,6 +27844,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-04-30</discovery>
       <entry>2012-04-30</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -27854,7 +27942,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>10.0.4</lt></range>
+	<range><gt>1.9.2.0</gt><lt>10.0.4</lt></range>
       </package>
     </affects>
     <description>
@@ -27930,6 +28018,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-04-24</discovery>
       <entry>2012-04-24</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -27964,15 +28053,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk16</name>
-	<range><gt>1.6.*</gt><lt>1.6.2.24</lt></range>
+	<range><gt>1.6.0</gt><lt>1.6.2.24</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.11.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.11.1</lt></range>
       </package>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.3.1</lt></range>
+	<range><gt>10.0</gt><lt>10.3.1</lt></range>
       </package>
     </affects>
     <description>
@@ -27996,6 +28085,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-04-23</discovery>
       <entry>2012-04-23</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -28214,7 +28304,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>puppet</name>
-	<range><gt>2.7.*</gt><lt>2.7.12_1</lt></range>
+	<range><gt>2.7.0</gt><lt>2.7.12_1</lt></range>
       </package>
     </affects>
     <description>
@@ -28242,6 +28332,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-03-26</discovery>
       <entry>2012-04-10</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -28250,15 +28341,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>samba34</name>
-	<range><gt>3.4.*</gt><lt>3.4.16</lt></range>
+	<range><gt>3.4.0</gt><lt>3.4.16</lt></range>
       </package>
       <package>
 	<name>samba35</name>
-	<range><gt>3.5.*</gt><lt>3.5.14</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.14</lt></range>
       </package>
       <package>
 	<name>samba36</name>
-	<range><gt>3.6.*</gt><lt>3.6.4</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.4</lt></range>
       </package>
     </affects>
     <description>
@@ -28281,6 +28372,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-04-10</discovery>
       <entry>2012-04-10</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -28880,19 +28972,19 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk14</name>
-	<range><gt>1.4.*</gt><lt>1.4.44</lt></range>
+	<range><gt>1.4.0</gt><lt>1.4.44</lt></range>
       </package>
       <package>
 	<name>asterisk16</name>
-	<range><gt>1.6.*</gt><lt>1.6.2.23</lt></range>
+	<range><gt>1.6.0</gt><lt>1.6.2.23</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.10.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.10.1</lt></range>
       </package>
       <package>
 	<name>asterisk10</name>
-	<range><gt>10.*</gt><lt>10.2.1</lt></range>
+	<range><gt>10.0</gt><lt>10.2.1</lt></range>
       </package>
     </affects>
     <description>
@@ -28911,6 +29003,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-03-15</discovery>
       <entry>2012-03-15</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -28987,7 +29080,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><gt>4.0,1</gt><lt>10.0.3,1</lt></range>
-	<range><ge>3.6.*,1</ge><lt>3.6.28</lt></range>
+	<range><ge>3.6.0</ge><lt>3.6.28</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -29008,11 +29101,11 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>thunderbird</name>
 	<range><gt>4.0</gt><lt>10.0.3</lt></range>
-	<range><gt>3.1.*</gt><lt>3.1.20</lt></range>
+	<range><gt>3.1.0</gt><lt>3.1.20</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.28</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.28</lt></range>
       </package>
     </affects>
     <description>
@@ -29052,7 +29145,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-03-13</discovery>
       <entry>2012-03-14</entry>
-      <modified>2012-03-18</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -29528,7 +29621,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><ge>10.0,1</ge><lt>10.0.2,1</lt></range>
-	<range><ge>3.6.*,1</ge><lt>3.6.27</lt></range>
+	<range><ge>3.6.0</ge><lt>3.6.27</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -29549,7 +29642,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>thunderbird</name>
 	<range><ge>10.0</ge><lt>10.0.2</lt></range>
-	<range><gt>3.1.*</gt><lt>3.1.19</lt></range>
+	<range><gt>3.1.0</gt><lt>3.1.19</lt></range>
       </package>
     </affects>
     <description>
@@ -29567,7 +29660,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-02-16</discovery>
       <entry>2012-02-17</entry>
-      <modified>2012-03-18</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -29998,8 +30091,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>bugzilla</name>
-	<range><ge>2.4.*</ge><lt>3.6.8</lt></range>
-	<range><ge>4.0.*</ge><lt>4.0.4</lt></range>
+	<range><ge>2.4.0</ge><lt>3.6.8</lt></range>
+	<range><ge>4.0.0</ge><lt>4.0.4</lt></range>
       </package>
     </affects>
     <description>
@@ -30040,6 +30133,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-01-31</discovery>
       <entry>2012-02-06</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -30109,7 +30203,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>apache</name>
-	<range><gt>2.*</gt><lt>2.2.22</lt></range>
+	<range><gt>2.0</gt><lt>2.2.22</lt></range>
       </package>
     </affects>
     <description>
@@ -30158,6 +30252,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-10-05</discovery>
       <entry>2012-01-31</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -30167,7 +30262,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><gt>4.0,1</gt><lt>10.0,1</lt></range>
-	<range><ge>3.6.*,1</ge><lt>3.6.26</lt></range>
+	<range><ge>3.6.0</ge><lt>3.6.26</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -30188,7 +30283,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>thunderbird</name>
 	<range><gt>4.0</gt><lt>10.0</lt></range>
-	<range><gt>3.1.*</gt><lt>3.1.18</lt></range>
+	<range><gt>3.1.0</gt><lt>3.1.18</lt></range>
       </package>
     </affects>
     <description>
@@ -30237,7 +30332,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2012-01-31</discovery>
       <entry>2012-02-01</entry>
-      <modified>2012-03-18</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -31222,8 +31317,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>bugzilla</name>
-	<range><ge>2.4.*</ge><lt>3.6.7</lt></range>
-	<range><ge>4.0.*</ge><lt>4.0.3</lt></range>
+	<range><ge>2.4.0</ge><lt>3.6.7</lt></range>
+	<range><ge>4.0.0</ge><lt>4.0.3</lt></range>
       </package>
     </affects>
     <description>
@@ -31273,6 +31368,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-11-28</discovery>
       <entry>2012-01-05</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -32044,7 +32140,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>kdeutils</name>
-	<range><ge>4.0.*</ge><lt>4.7.3</lt></range>
+	<range><ge>4.0.0</ge><lt>4.7.3</lt></range>
       </package>
     </affects>
     <description>
@@ -32069,6 +32165,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-10-19</discovery>
       <entry>2011-11-14</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -32286,11 +32383,11 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><gt>4.0,1</gt><lt>8.0,1</lt></range>
-	<range><gt>3.6.*,1</gt><lt>3.6.24,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.24,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.24</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.24</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -32344,6 +32441,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-11-08</discovery>
       <entry>2011-11-08</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -32490,7 +32588,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>kdelibs</name>
-	<range><ge>4.0.*</ge><lt>4.7.2</lt></range>
+	<range><ge>4.0.0</ge><lt>4.7.2</lt></range>
       </package>
       <package>
 	<name>rekonq</name>
@@ -32522,6 +32620,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-10-03</discovery>
       <entry>2011-10-23</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -32594,11 +32693,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.7.1</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.7.1</lt></range>
       </package>
       <package>
 	<name>asterisk</name>
-	<range><gt>10.0.0.*</gt><lt>10.0.0.r1</lt></range>
+	<range><gt>10.0.0.0</gt><lt>10.0.0.r1</lt></range>
       </package>
     </affects>
     <description>
@@ -32616,6 +32715,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-10-17</discovery>
       <entry>2011-10-17</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -32805,11 +32905,11 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><gt>4.0,1</gt><lt>7.0,1</lt></range>
-	<range><gt>3.6.*,1</gt><lt>3.6.23,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.23,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.23</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.23</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -32882,6 +32982,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-09-27</discovery>
       <entry>2011-09-28</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -33295,8 +33396,8 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.22,1</lt></range>
-	<range><gt>4.0.*,1</gt><lt>6.0.2,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.22,1</lt></range>
+	<range><gt>4.0.0</gt><lt>6.0.2,1</lt></range>
       </package>
       <package>
 	<name>seamonkey</name>
@@ -33308,8 +33409,8 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>thunderbird</name>
-	<range><gt>3.1.*</gt><lt>3.1.14</lt></range>
-	<range><gt>5.0.*</gt><lt>6.0.2</lt></range>
+	<range><gt>3.1.0</gt><lt>3.1.14</lt></range>
+	<range><gt>5.0.0</gt><lt>6.0.2</lt></range>
       </package>
       <package>
 	<name>linux-thunderbird</name>
@@ -33368,7 +33469,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-07-19</discovery>
       <entry>2011-09-03</entry>
-      <modified>2011-09-06</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -33381,7 +33482,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>apache-itk</name>
 	<name>apache-peruser</name>
 	<name>apache-worker</name>
-	<range><gt>2.*</gt><lt>2.2.20</lt></range>
+	<range><gt>2.0</gt><lt>2.2.20</lt></range>
       </package>
     </affects>
     <description>
@@ -33403,7 +33504,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-08-24</discovery>
       <entry>2011-08-30</entry>
-      <modified>2011-09-01</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -33598,7 +33699,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>otrs</name>
-	<range><gt>2.1.*</gt><lt>3.0.10</lt></range>
+	<range><gt>2.1.0</gt><lt>3.0.10</lt></range>
       </package>
     </affects>
     <description>
@@ -33621,6 +33722,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-08-16</discovery>
       <entry>2011-08-18</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -33629,8 +33731,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.20,1</lt></range>
-	<range><gt>5.0.*,1</gt><lt>6.0,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.20,1</lt></range>
+	<range><gt>5.0.0</gt><lt>6.0,1</lt></range>
       </package>
       <package>
 	<name>seamonkey</name>
@@ -33682,6 +33784,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-08-16</discovery>
       <entry>2011-08-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -33690,11 +33793,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>samba34</name>
-	<range><gt>3.4.*</gt><lt>3.4.14</lt></range>
+	<range><gt>3.4.0</gt><lt>3.4.14</lt></range>
       </package>
       <package>
 	<name>samba35</name>
-	<range><gt>3.5.*</gt><lt>3.5.10</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.10</lt></range>
       </package>
     </affects>
     <description>
@@ -33724,6 +33827,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-07-27</discovery>
       <entry>2011-08-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -33769,8 +33873,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>bugzilla</name>
-	<range><ge>2.4.*</ge><lt>3.6.6</lt></range>
-	<range><ge>4.0.*</ge><lt>4.0.2</lt></range>
+	<range><ge>2.4.0</ge><lt>3.6.6</lt></range>
+	<range><ge>4.0.0</ge><lt>4.0.2</lt></range>
       </package>
     </affects>
     <description>
@@ -33823,6 +33927,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-08-04</discovery>
       <entry>2011-08-13</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -34232,15 +34337,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk14</name>
-	<range><gt>1.4.*</gt><lt>1.4.41.2</lt></range>
+	<range><gt>1.4.0</gt><lt>1.4.41.2</lt></range>
       </package>
       <package>
 	<name>asterisk16</name>
-	<range><gt>1.6.*</gt><lt>1.6.2.18.2</lt></range>
+	<range><gt>1.6.0</gt><lt>1.6.2.18.2</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.4.4</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.4.4</lt></range>
       </package>
     </affects>
     <description>
@@ -34276,7 +34381,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-06-24</discovery>
       <entry>2011-06-25</entry>
-      <modified>2011-06-29</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -34316,9 +34421,9 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.5.*,1</gt><lt>3.5.20,1</lt></range>
-	<range><gt>3.6.*,1</gt><lt>3.6.18,1</lt></range>
-	<range><gt>4.0.*,1</gt><lt>5.0,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.20,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.18,1</lt></range>
+	<range><gt>4.0.0</gt><lt>5.0,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -34370,7 +34475,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-06-21</discovery>
       <entry>2011-06-21</entry>
-      <modified>2011-06-23</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -34379,11 +34484,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>samba34</name>
-	<range><gt>3.4.*</gt><lt>3.4.12</lt></range>
+	<range><gt>3.4.0</gt><lt>3.4.12</lt></range>
       </package>
       <package>
 	<name>samba35</name>
-	<range><gt>3.5.*</gt><lt>3.5.7</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.7</lt></range>
       </package>
     </affects>
     <description>
@@ -34407,6 +34512,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-02-28</discovery>
       <entry>2011-06-21</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -34677,7 +34783,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.4.2</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.4.2</lt></range>
       </package>
     </affects>
     <description>
@@ -34698,6 +34804,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-06-02</discovery>
       <entry>2011-06-02</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -35223,10 +35330,10 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>postfix</name>
 	<name>postfix-base</name>
-	<range><ge>2.8.*,1</ge><lt>2.8.3,1</lt></range>
-	<range><ge>2.7.*,1</ge><lt>2.7.4,1</lt></range>
-	<range><ge>2.6.*,1</ge><lt>2.6.10,1</lt></range>
-	<range><ge>2.5.*,2</ge><lt>2.5.13,2</lt></range>
+	<range><ge>2.8.0,1</ge><lt>2.8.3,1</lt></range>
+	<range><ge>2.7.0,1</ge><lt>2.7.4,1</lt></range>
+	<range><ge>2.6.0,1</ge><lt>2.6.10,1</lt></range>
+	<range><ge>2.5.0,2</ge><lt>2.5.13,2</lt></range>
 	<range><le>2.4.16,1</le></range>
       </package>
       <package>
@@ -35251,6 +35358,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-05-09</discovery>
       <entry>2011-05-09</entry>
+      <modified>2015-05-10</modified>
     </dates>
   </vuln>
 
@@ -35259,13 +35367,13 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.17,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.19,1</lt></range>
-	<range><gt>4.0.*,1</gt><lt>4.0.1,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.17,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.19,1</lt></range>
+	<range><gt>4.0.0</gt><lt>4.0.1,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.17</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.17</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -35277,11 +35385,11 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>linux-seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.14</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.14</lt></range>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.14</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.14</lt></range>
       </package>
     </affects>
     <description>
@@ -35310,6 +35418,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-04-28</discovery>
       <entry>2011-04-29</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -35318,15 +35427,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk14</name>
-	<range><gt>1.4.*</gt><lt>1.4.40.1</lt></range>
+	<range><gt>1.4.0</gt><lt>1.4.40.1</lt></range>
       </package>
       <package>
 	<name>asterisk16</name>
-	<range><gt>1.6.*</gt><lt>1.6.2.17.3</lt></range>
+	<range><gt>1.6.0</gt><lt>1.6.2.17.3</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.3.3</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.3.3</lt></range>
       </package>
     </affects>
     <description>
@@ -35357,6 +35466,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-04-21</discovery>
       <entry>2011-04-21</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -35674,7 +35784,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>otrs</name>
-	<range><gt>2.3.*</gt><lt>3.0.7</lt></range>
+	<range><gt>2.3.0</gt><lt>3.0.7</lt></range>
       </package>
     </affects>
     <description>
@@ -35698,6 +35808,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-03-12</discovery>
       <entry>2011-04-12</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -35930,12 +36041,12 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.16,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.18,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.16,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.18,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.16</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.16</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -35947,11 +36058,11 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>linux-seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.13</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.13</lt></range>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.13</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.13</lt></range>
       </package>
     </affects>
     <description>
@@ -35968,6 +36079,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-03-22</discovery>
       <entry>2011-03-24</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -35977,10 +36089,10 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>postfix</name>
 	<name>postfix-base</name>
-	<range><ge>2.7.*,1</ge><lt>2.7.3,1</lt></range>
-	<range><ge>2.6.*,1</ge><lt>2.6.9,1</lt></range>
-	<range><ge>2.5.*,2</ge><lt>2.5.12,2</lt></range>
-	<range><ge>2.4.*,1</ge><lt>2.4.16,1</lt></range>
+	<range><ge>2.7.0,1</ge><lt>2.7.3,1</lt></range>
+	<range><ge>2.6.0,1</ge><lt>2.6.9,1</lt></range>
+	<range><ge>2.5.0,2</ge><lt>2.5.12,2</lt></range>
+	<range><ge>2.4.0,1</ge><lt>2.4.16,1</lt></range>
       </package>
       <package>
 	<name>postfix-current</name>
@@ -36006,6 +36118,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-03-07</discovery>
       <entry>2011-03-19</entry>
+      <modified>2015-05-10</modified>
     </dates>
   </vuln>
 
@@ -36046,11 +36159,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
      <package>
        <name>asterisk16</name>
-       <range><gt>1.6.*</gt><lt>1.6.2.17.1</lt></range>
+       <range><gt>1.6.0</gt><lt>1.6.2.17.1</lt></range>
      </package>
      <package>
        <name>asterisk18</name>
-       <range><gt>1.8.*</gt><lt>1.8.3.1</lt></range>
+       <range><gt>1.8.0</gt><lt>1.8.3.1</lt></range>
      </package>
     </affects>
     <description>
@@ -36077,6 +36190,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-03-01</discovery>
       <entry>2011-03-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -36214,12 +36328,12 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.14,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.17,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.14,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.17,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.14</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.14</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -36231,7 +36345,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>linux-seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.12</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.12</lt></range>
       </package>
       <package>
 	<name>linux-thunderbird</name>
@@ -36239,7 +36353,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.12</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.12</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -36289,6 +36403,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-03-01</discovery>
       <entry>2011-03-01</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -36326,15 +36441,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
      <package>
        <name>asterisk14</name>
-       <range><gt>1.4.*</gt><lt>1.4.39.2</lt></range>
+       <range><gt>1.4.0</gt><lt>1.4.39.2</lt></range>
      </package>
      <package>
        <name>asterisk16</name>
-       <range><gt>1.6.*</gt><lt>1.6.2.16.2</lt></range>
+       <range><gt>1.6.0</gt><lt>1.6.2.16.2</lt></range>
      </package>
      <package>
        <name>asterisk18</name>
-       <range><gt>1.8.*</gt><lt>1.8.2.4</lt></range>
+       <range><gt>1.8.0</gt><lt>1.8.2.4</lt></range>
      </package>
     </affects>
     <description>
@@ -36351,12 +36466,13 @@ executed in your Internet Explorer while displaying the email.</p>
       </body>
     </description>
     <references>
-	<url>http://downloads.asterisk.org/pub/security/AST-2011-002.html</url>
-	<url>http://secunia.com/advisories/43429/</url>
+      <url>http://downloads.asterisk.org/pub/security/AST-2011-002.html</url>
+      <url>http://secunia.com/advisories/43429/</url>
     </references>
     <dates>
       <discovery>2011-02-21</discovery>
       <entry>2011-02-22</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -37053,7 +37169,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>bugzilla</name>
-	<range><ge>2.14.*</ge><lt>3.6.4</lt></range>
+	<range><ge>2.14.0</ge><lt>3.6.4</lt></range>
       </package>
     </affects>
     <description>
@@ -37103,6 +37219,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-01-24</discovery>
       <entry>2011-01-25</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -37150,15 +37267,15 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>asterisk14</name>
-	<range><gt>1.4.*</gt><lt>1.4.39.1</lt></range>
+	<range><gt>1.4.0</gt><lt>1.4.39.1</lt></range>
       </package>
       <package>
 	<name>asterisk16</name>
-	<range><gt>1.6.*</gt><lt>1.6.2.16.1</lt></range>
+	<range><gt>1.6.0</gt><lt>1.6.2.16.1</lt></range>
       </package>
       <package>
 	<name>asterisk18</name>
-	<range><gt>1.8.*</gt><lt>1.8.2.2</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.2.2</lt></range>
       </package>
     </affects>
     <description>
@@ -37180,6 +37297,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2011-01-18</discovery>
       <entry>2011-01-19</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -37982,12 +38100,12 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.13,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.16,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.13,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.16,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.13</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.13</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -37999,7 +38117,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>linux-seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.11</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.11</lt></range>
       </package>
       <package>
 	<name>linux-thunderbird</name>
@@ -38007,7 +38125,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.11</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.11</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -38062,6 +38180,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-12-09</discovery>
       <entry>2010-12-10</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -39449,7 +39568,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>otrs</name>
-	<range><gt>2.3.*</gt><lt>2.4.9</lt></range>
+	<range><gt>2.3.0</gt><lt>2.4.9</lt></range>
       </package>
     </affects>
     <description>
@@ -39490,6 +39609,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-09-15</discovery>
       <entry>2010-11-03</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -39498,12 +39618,12 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.12,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.15,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.12,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.15,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.12</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.12</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -39523,7 +39643,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.10</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.10</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -39546,6 +39666,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-10-27</discovery>
       <entry>2010-10-28</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -39980,12 +40101,12 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.11,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.14,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.11,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.14,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.11</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.11</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -39997,7 +40118,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.9</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.9</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -40047,6 +40168,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-10-19</discovery>
       <entry>2010-10-20</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -40482,12 +40604,12 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.9,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.12,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.9,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.12,1</lt></range>
       </package>
       <package>
 	<name>libxul</name>
-	<range><gt>1.9.2.*</gt><lt>1.9.2.9</lt></range>
+	<range><gt>1.9.2.0</gt><lt>1.9.2.9</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -40499,7 +40621,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.7</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.7</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -40564,7 +40686,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-09-07</discovery>
       <entry>2010-09-08</entry>
-      <modified>2010-09-15</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -40913,8 +41035,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.7.248_3,1</lt></range>
-	<range><ge>1.9.*,1</ge><lt>1.9.1.430,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.7.248_3,1</lt></range>
+	<range><ge>1.9.0</ge><lt>1.9.1.430,1</lt></range>
       </package>
     </affects>
     <description>
@@ -40936,7 +41058,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-08-16</discovery>
       <entry>2010-08-17</entry>
-      <modified>2010-08-20</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -41078,7 +41200,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.8,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.8,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -41100,6 +41222,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-07-20</discovery>
       <entry>2010-08-09</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -41263,8 +41386,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.7,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.11,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.7,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.11,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -41276,7 +41399,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.6</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.6</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -41339,6 +41462,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-07-20</discovery>
       <entry>2010-07-21</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -41732,8 +41856,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.6.*,1</gt><lt>3.6.4,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.10,1</lt></range>
+	<range><gt>3.6.0</gt><lt>3.6.4,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.10,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox-devel</name>
@@ -41741,7 +41865,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.5</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.5</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -41790,6 +41914,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-06-22</discovery>
       <entry>2010-06-23</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -43005,8 +43130,8 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>firefox</name>
-	<range><gt>3.5.*,1</gt><lt>3.5.9,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.19,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.9,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.19,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -43381,8 +43506,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.5.*,1</gt><lt>3.5.8,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.18,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.8,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.18,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -43394,7 +43519,7 @@ executed in your Internet Explorer while displaying the email.</p>
       </package>
       <package>
 	<name>seamonkey</name>
-	<range><gt>2.0.*</gt><lt>2.0.3</lt></range>
+	<range><gt>2.0.0</gt><lt>2.0.3</lt></range>
       </package>
       <package>
 	<name>thunderbird</name>
@@ -43428,7 +43553,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2010-02-17</discovery>
       <entry>2010-02-18</entry>
-      <modified>2010-02-28</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -44239,8 +44364,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.5.*,1</gt><lt>3.5.6,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.16,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.6,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.16,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -44296,7 +44421,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-12-16</discovery>
       <entry>2009-12-16</entry>
-      <modified>2010-01-21</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -44418,7 +44543,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>dovecot</name>
-	<range><ge>1.2.*</ge><lt>1.2.8</lt></range>
+	<range><ge>1.2.0</ge><lt>1.2.8</lt></range>
       </package>
     </affects>
     <description>
@@ -44440,6 +44565,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-11-20</discovery>
       <entry>2009-12-10</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -44959,11 +45085,11 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>kdebase-runtime</name>
-	<range><ge>4.0.*</ge><lt>4.3.1_2</lt></range>
+	<range><ge>4.0.0</ge><lt>4.3.1_2</lt></range>
       </package>
       <package>
 	<name>kdelibs</name>
-	<range><ge>4.0.*</ge><lt>4.3.1_5</lt></range>
+	<range><ge>4.0.0</ge><lt>4.3.1_5</lt></range>
       </package>
     </affects>
     <description>
@@ -44998,6 +45124,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-10-30</discovery>
       <entry>2009-11-02</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -45077,8 +45204,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.5.*,1</gt><lt>3.5.4,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.15,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.4,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.15,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -45148,7 +45275,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-10-27</discovery>
       <entry>2009-10-28</entry>
-      <modified>2009-12-14</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -45777,8 +45904,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>3.5.*,1</gt><lt>3.5.3,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.13,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.3,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.13,1</lt></range>
       </package>
     </affects>
     <description>
@@ -45818,6 +45945,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-09-10</discovery>
       <entry>2009-09-10</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -46322,9 +46450,9 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<name>linux-firefox</name>
-	<range><lt>3.*,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.13,1</lt></range>
-	<range><gt>3.5.*,1</gt><lt>3.5.2,1</lt></range>
+	<range><lt>3.0</lt></range>
+	<range><gt>3.0</gt><lt>3.0.13,1</lt></range>
+	<range><gt>3.5.0</gt><lt>3.5.2,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox-devel</name>
@@ -46564,7 +46692,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><ge>3.5.*,1</ge><lt>3.5.1,1</lt></range>
+	<range><ge>3.5.0</ge><lt>3.5.1,1</lt></range>
       </package>
     </affects>
     <description>
@@ -46589,7 +46717,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-07-16</discovery>
       <entry>2009-07-17</entry>
-      <modified>2010-05-02</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -47011,7 +47139,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.7.160_1,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.7.160_1,1</lt></range>
       </package>
     </affects>
     <description>
@@ -47036,7 +47164,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-06-09</discovery>
       <entry>2009-06-13</entry>
-      <modified>2010-05-02</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -47046,7 +47174,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.20_8,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.11,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.11,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -47111,7 +47239,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-06-11</discovery>
       <entry>2009-06-12</entry>
-      <modified>2009-12-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -48169,7 +48297,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.20_7,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.9,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.9,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -48241,7 +48369,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-04-21</discovery>
       <entry>2009-04-22</entry>
-      <modified>2009-12-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -49314,7 +49442,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.20_3,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.6,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.6,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -49369,7 +49497,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2009-02-04</discovery>
       <entry>2009-02-11</entry>
-      <modified>2009-12-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -51267,7 +51395,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.20,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.5,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.5,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -51331,6 +51459,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-12-17</discovery>
       <entry>2008-12-19</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -52294,7 +52423,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.18,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.4,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.4,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -52380,7 +52509,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-11-13</discovery>
       <entry>2008-11-13</entry>
-      <modified>2008-11-23</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -52616,7 +52745,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>qemu</name>
 	<name>qemu-devel</name>
 	<range><lt>0.9.1_10</lt></range>
-	<range><ge>0.9.1s.20080101*</ge><lt>0.9.1s.20080620_2</lt></range>
+	<range><ge>0.9.1s.200801010</ge><lt>0.9.1s.20080620_2</lt></range>
       </package>
     </affects>
     <description>
@@ -52638,6 +52767,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-11-01</discovery>
       <entry>2008-11-02</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -53315,7 +53445,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.17,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.2,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.2,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -53392,7 +53522,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-09-24</discovery>
       <entry>2008-09-24</entry>
-      <modified>2009-12-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -54248,8 +54378,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.6.287,1</lt></range>
-	<range><ge>1.9.*,1</ge><lt>1.9.1.0,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.6.287,1</lt></range>
+	<range><ge>1.9.0</ge><lt>1.9.1.0,1</lt></range>
       </package>
     </affects>
     <description>
@@ -54277,7 +54407,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-08-08</discovery>
       <entry>2008-08-16</entry>
-      <modified>2010-05-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -54289,8 +54419,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.6.111_5,1</lt></range>
-	<range><ge>1.9.*,1</ge><lt>1.9.1.0,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.6.111_5,1</lt></range>
+	<range><ge>1.9.0</ge><lt>1.9.1.0,1</lt></range>
       </package>
     </affects>
     <description>
@@ -54312,7 +54442,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-08-08</discovery>
       <entry>2008-08-16</entry>
-      <modified>2010-05-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -54324,8 +54454,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.6.111_5,1</lt></range>
-	<range><ge>1.9.*,1</ge><lt>1.9.1.0,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.6.111_5,1</lt></range>
+	<range><ge>1.9.0</ge><lt>1.9.1.0,1</lt></range>
       </package>
     </affects>
     <description>
@@ -54345,7 +54475,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-08-08</discovery>
       <entry>2008-08-16</entry>
-      <modified>2009-02-09</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -54356,7 +54486,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>bugzilla</name>
 	<name>ja-bugzilla</name>
 	<range><ge>2.22.1</ge><lt>2.22.4</lt></range>
-	<range><ge>3.*</ge><lt>3.0.4</lt></range>
+	<range><ge>3.0</ge><lt>3.0.4</lt></range>
       </package>
     </affects>
     <description>
@@ -54382,7 +54512,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-06-03</discovery>
       <entry>2008-08-15</entry>
-      <modified>2010-05-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -54845,11 +54975,11 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.6.111_3,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.6.111_3,1</lt></range>
       </package>
       <package>
 	<name>ruby_static</name>
-	<range><ge>1.8.*,1</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
     </affects>
     <description>
@@ -54868,6 +54998,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-06-19</discovery>
       <entry>2008-06-21</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -55108,7 +55239,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>nagios</name>
 	<range><lt>2.12</lt></range>
-	<range><gt>3.*</gt><lt>3.0.2</lt></range>
+	<range><gt>3.0</gt><lt>3.0.2</lt></range>
       </package>
       <package>
 	<name>nagios-devel</name>
@@ -55133,7 +55264,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-05-20</discovery>
       <entry>2008-05-28</entry>
-      <modified>2008-09-08</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -55323,7 +55454,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>qemu</name>
 	<name>qemu-devel</name>
 	<range><lt>0.9.1_6</lt></range>
-	<range><ge>0.9.1s.20070101*</ge><lt>0.9.1s.20080302_6</lt></range>
+	<range><ge>0.9.1s.200701010</ge><lt>0.9.1s.20080302_6</lt></range>
       </package>
     </affects>
     <description>
@@ -55349,6 +55480,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2008-04-28</discovery>
       <entry>2008-05-08</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -57826,7 +57958,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>qemu</name>
 	<name>qemu-devel</name>
 	<range><lt>0.9.0_4</lt></range>
-	<range><ge>0.9.0s.20070101*</ge><lt>0.9.0s.20070802_1</lt></range>
+	<range><ge>0.9.0s.200701010</ge><lt>0.9.0s.20070802_1</lt></range>
       </package>
     </affects>
     <description>
@@ -57850,7 +57982,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-11-30</discovery>
       <entry>2007-12-12</entry>
-      <modified>2007-12-14</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -57899,7 +58031,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>samba3</name>
 	<name>ja-samba</name>
 	<range><lt>3.0.28</lt></range>
-	<range><gt>*,1</gt><lt>3.0.28,1</lt></range>
+	<range><gt>0</gt><lt>3.0.28,1</lt></range>
       </package>
     </affects>
     <description>
@@ -57925,7 +58057,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-12-10</discovery>
       <entry>2007-12-12</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -58071,7 +58203,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>squid</name>
 	<range><ge>2.0</ge><lt>2.6.16_1</lt></range>
-	<range><ge>3.*</ge><lt>3.0.r1.20071001_1</lt></range>
+	<range><ge>3.0</ge><lt>3.0.r1.20071001_1</lt></range>
       </package>
     </affects>
     <description>
@@ -58094,7 +58226,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-11-28</discovery>
       <entry>2007-12-04</entry>
-      <modified>2007-12-07</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -58279,7 +58411,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>samba3</name>
 	<name>ja-samba</name>
 	<range><lt>3.0.26a</lt></range>
-	<range><gt>*,1</gt><lt>3.0.26a_2,1</lt></range>
+	<range><gt>0</gt><lt>3.0.26a_2,1</lt></range>
       </package>
     </affects>
     <description>
@@ -58311,7 +58443,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-11-15</discovery>
       <entry>2007-11-21</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -58710,7 +58842,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>perl</name>
 	<name>perl-threaded</name>
-	<range><gt>5.8.*</gt><lt>5.8.8_1</lt></range>
+	<range><gt>5.8.0</gt><lt>5.8.8_1</lt></range>
       </package>
     </affects>
     <description>
@@ -58731,7 +58863,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-11-05</discovery>
       <entry>2007-11-06</entry>
-      <modified>2007-11-07</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -59468,9 +59600,9 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>tk</name>
 	<name>tk-threads</name>
-	<range><gt>8.2.*</gt><lt>8.2.3_11</lt></range>
-	<range><gt>8.3.*</gt><lt>8.3.5_10</lt></range>
-	<range><gt>8.4.*,2</gt><lt>8.4.16,2</lt></range>
+	<range><gt>8.2.0</gt><lt>8.2.3_11</lt></range>
+	<range><gt>8.3.0</gt><lt>8.3.5_10</lt></range>
+	<range><gt>8.4.0</gt><lt>8.4.16,2</lt></range>
       </package>
     </affects>
     <description>
@@ -59489,7 +59621,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-09-27</discovery>
       <entry>2007-10-05</entry>
-      <modified>2011-09-04</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -59498,8 +59630,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firebird-server</name>
-	<range><ge>1.*</ge><lt>1.5.5</lt></range>
-	<range><ge>2.0.*</ge><lt>2.0.3</lt></range>
+	<range><ge>1.0</ge><lt>1.5.5</lt></range>
+	<range><ge>2.0.0</ge><lt>2.0.3</lt></range>
       </package>
     </affects>
     <description>
@@ -59519,6 +59651,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-10-03</discovery>
       <entry>2007-10-04</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -59633,7 +59766,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>samba</name>
 	<range><lt>3.0.26a</lt></range>
-	<range><gt>*,1</gt><lt>3.0.26a,1</lt></range>
+	<range><gt>0</gt><lt>3.0.26a,1</lt></range>
       </package>
     </affects>
     <description>
@@ -59664,7 +59797,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-09-11</discovery>
       <entry>2007-09-21</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -59674,8 +59807,8 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>bugzilla</name>
 	<name>ja-bugzilla</name>
-	<range><ge>2.20.*</ge><lt>2.22.3</lt></range>
-	<range><ge>3.*</ge><lt>3.0.1</lt></range>
+	<range><ge>2.20.0</ge><lt>2.22.3</lt></range>
+	<range><ge>3.0</ge><lt>3.0.1</lt></range>
       </package>
     </affects>
     <description>
@@ -59708,6 +59841,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-08-23</discovery>
       <entry>2007-09-21</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -59812,7 +59946,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>bugzilla</name>
-	<range><ge>3.*</ge><lt>3.0.2</lt></range>
+	<range><ge>3.0</ge><lt>3.0.2</lt></range>
       </package>
     </affects>
     <description>
@@ -59837,7 +59971,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-09-18</discovery>
       <entry>2007-09-20</entry>
-      <modified>2010-05-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -61059,7 +61193,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>2.0.0.5,1</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.a2_3,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.a2_3,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -61128,7 +61262,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-07-17</discovery>
       <entry>2007-07-19</entry>
-      <modified>2008-06-21</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -61376,7 +61510,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>evolution-data-server</name>
 	<range><lt>1.10.2_1</lt></range>
-	<range><gt>1.11.*</gt><lt>1.11.4</lt></range>
+	<range><gt>1.11.0</gt><lt>1.11.4</lt></range>
       </package>
     </affects>
     <description>
@@ -61398,7 +61532,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-06-23</discovery>
       <entry>2007-06-25</entry>
-      <modified>2007-06-28</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -61980,8 +62114,8 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>samba</name>
 	<name>ja-samba</name>
-	<range><gt>3.*</gt><lt>3.0.25</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.25,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.25</lt></range>
+	<range><gt>3.0</gt><lt>3.0.25,1</lt></range>
       </package>
     </affects>
     <description>
@@ -62035,7 +62169,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-05-14</discovery>
       <entry>2007-05-16</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -62143,7 +62277,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>qemu</name>
 	<name>qemu-devel</name>
 	<range><lt>0.9.0_1</lt></range>
-	<range><ge>0.9.0s.20070101*</ge><lt>0.9.0s.20070405_3</lt></range>
+	<range><ge>0.9.0s.200701010</ge><lt>0.9.0s.20070405_3</lt></range>
       </package>
     </affects>
     <description>
@@ -62186,7 +62320,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-05-01</discovery>
       <entry>2007-05-01</entry>
-      <modified>2007-05-02</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -62581,7 +62715,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>squid</name>
-	<range><ge>2.6.*</ge><lt>2.6.12</lt></range>
+	<range><ge>2.6.0</ge><lt>2.6.12</lt></range>
       </package>
     </affects>
     <description>
@@ -62606,7 +62740,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-03-20</discovery>
       <entry>2007-03-21</entry>
-      <modified>2010-05-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -63168,7 +63302,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>1.5.0.10,1</lt></range>
-	<range><gt>2.*,1</gt><lt>2.0.0.2,1</lt></range>
+	<range><gt>2.0</gt><lt>2.0.0.2,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -63254,7 +63388,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2007-02-23</discovery>
       <entry>2007-02-24</entry>
-      <modified>2007-04-19</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -64374,11 +64508,11 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.5_5,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.5_5,1</lt></range>
       </package>
       <package>
 	<name>ruby_static</name>
-	<range><ge>1.8.*,1</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
     </affects>
     <description>
@@ -64401,7 +64535,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-12-04</discovery>
       <entry>2006-12-04</entry>
-      <modified>2010-05-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -64673,7 +64807,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>bugzilla</name>
 	<name>ja-bugzilla</name>
-	<range><gt>2.*</gt><lt>2.22.1</lt></range>
+	<range><gt>2.0</gt><lt>2.22.1</lt></range>
       </package>
     </affects>
     <description>
@@ -64712,6 +64846,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-10-15</discovery>
       <entry>2006-11-11</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -64759,11 +64894,11 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>ruby+pthreads</name>
 	<name>ruby+pthreads+oniguruma</name>
 	<name>ruby+oniguruma</name>
-	<range><ge>1.8.*,1</ge><lt>1.8.5_4,1</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.5_4,1</lt></range>
       </package>
       <package>
 	<name>ruby_static</name>
-	<range><ge>1.8.*,1</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
     </affects>
     <description>
@@ -64789,7 +64924,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-10-25</discovery>
       <entry>2006-11-04</entry>
-      <modified>2006-12-15</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -64964,7 +65099,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>opera</name>
 	<name>opera-devel</name>
 	<name>linux-opera</name>
-	<range><gt>9.*</gt><lt>9.02</lt></range>
+	<range><gt>9.0</gt><lt>9.02</lt></range>
       </package>
     </affects>
     <description>
@@ -64992,6 +65127,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-10-17</discovery>
       <entry>2006-10-20</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -65403,7 +65539,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>python</name>
 	<range><lt>2.4.3_1</lt></range>
-	<range><gt>2.5.*</gt><lt>2.5.c2</lt></range>
+	<range><gt>2.5.0</gt><lt>2.5.c2</lt></range>
       </package>
     </affects>
     <description>
@@ -65431,7 +65567,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-08-15</discovery>
       <entry>2006-10-07</entry>
-      <modified>2006-10-08</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -66501,7 +66637,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>1.5.0.7,1</lt></range>
-	<range><gt>2.*,1</gt><lt>2.0_1,1</lt></range>
+	<range><gt>2.0</gt><lt>2.0_1,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -66579,7 +66715,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-09-14</discovery>
       <entry>2006-09-15</entry>
-      <modified>2006-11-02</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -67406,8 +67542,8 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>ruby</name>
 	<name>ruby_static</name>
-	<range><gt>1.6.*</gt><lt>1.8.*</lt></range>
-	<range><gt>1.8.*</gt><lt>1.8.4_9,1</lt></range>
+	<range><gt>1.6.0</gt><lt>1.8.0</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.4_9,1</lt></range>
       </package>
     </affects>
     <description>
@@ -67438,7 +67574,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-07-12</discovery>
       <entry>2006-07-29</entry>
-      <modified>2006-07-30</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -67554,7 +67690,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>1.5.0.5,1</lt></range>
-	<range><gt>2.*,1</gt><lt>2.0_1,1</lt></range>
+	<range><gt>2.0</gt><lt>2.0_1,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -67645,7 +67781,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-07-25</discovery>
       <entry>2006-07-27</entry>
-      <modified>2006-11-02</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -69114,7 +69250,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>firefox</name>
-	<range><gt>1.5.*,1</gt><lt>1.5.0.3,1</lt></range>
+	<range><gt>1.5.0</gt><lt>1.5.0.3,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -69144,7 +69280,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-05-02</discovery>
       <entry>2006-05-03</entry>
-      <modified>2006-05-05</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -69606,7 +69742,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>cyrus-sasl</name>
-	<range><ge>2.*</ge><lt>2.1.21</lt></range>
+	<range><ge>2.0</ge><lt>2.1.21</lt></range>
       </package>
     </affects>
     <description>
@@ -69623,6 +69759,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-04-11</discovery>
       <entry>2006-04-22</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -69716,7 +69853,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>firefox</name>
 	<range><lt>1.0.8,1</lt></range>
-	<range><gt>1.5.*,1</gt><lt>1.5.0.2,1</lt></range>
+	<range><gt>1.5.0</gt><lt>1.5.0.2,1</lt></range>
       </package>
       <package>
 	<name>linux-firefox</name>
@@ -69725,7 +69862,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.13,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
@@ -69838,7 +69975,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2006-04-13</discovery>
       <entry>2006-04-16</entry>
-      <modified>2006-04-27</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -72251,7 +72388,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>sge</name>
 	<name>sgeee</name>
 	<range><lt>5.3.6.20040330_1</lt></range>
-	<range><gt>6.*</gt><lt>6.0.7.1</lt></range>
+	<range><gt>6.0</gt><lt>6.0.7.1</lt></range>
       </package>
     </affects>
     <description>
@@ -72269,6 +72406,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-12-23</discovery>
       <entry>2006-01-23</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -73802,7 +73940,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>lynx</name>
 	<name>ja-lynx</name>
 	<range><lt>2.8.5_1</lt></range>
-	<range><gt>2.8.6*</gt><lt>2.8.6d14</lt></range>
+	<range><gt>2.8.60</gt><lt>2.8.6d14</lt></range>
       </package>
       <package>
 	<name>lynx-ssl</name>
@@ -73829,7 +73967,7 @@ executed in your Internet Explorer while displaying the email.</p>
     </references> <dates>
       <discovery>2005-10-17</discovery>
       <entry>2005-10-30</entry>
-      <modified>2006-10-05</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -73839,8 +73977,8 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>ruby</name>
 	<name>ruby_static</name>
-	<range><gt>1.6.*</gt><lt>1.6.8.2004.07.28_2</lt></range>
-	<range><gt>1.8.*</gt><lt>1.8.2_5</lt></range>
+	<range><gt>1.6.0</gt><lt>1.6.8.2004.07.28_2</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.2_5</lt></range>
       </package>
     </affects>
     <description>
@@ -73866,6 +74004,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-10-02</discovery>
       <entry>2005-10-27</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -74036,13 +74175,13 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>openssl-overwrite-base</name>
 	<range><le>0.9.7g</le></range>
 	<range><ge>0.9.8</ge><le>0.9.8_1</le></range>
-	<range><ge>0.9.*_20050325</ge><le>0.9.*_20051011</le></range>
+	<range><ge>0.9.0_20050325</ge><le>0.9.0_20051011</le></range>
       </package>
       <package>
 	<name>openssl-beta</name>
 	<name>openssl-beta-overwrite-base</name>
 	<range><le>0.9.8_1</le></range>
-	<range><ge>0.9.*_20050325</ge><le>0.9.*_20051011</le></range>
+	<range><ge>0.9.0_20050325</ge><le>0.9.0_20051011</le></range>
       </package>
       <package>
 	<name>compat5x-alpha</name>
@@ -74088,7 +74227,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-10-11</discovery>
       <entry>2005-10-12</entry>
-      <modified>2005-10-25</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -74408,7 +74547,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.12,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
@@ -74536,7 +74675,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-09-22</discovery>
       <entry>2005-09-23</entry>
-      <modified>2005-10-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -74554,7 +74693,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.12,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
@@ -74628,7 +74767,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-09-06</discovery>
       <entry>2005-09-22</entry>
-      <modified>2005-10-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -74637,7 +74776,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>apache</name>
-	<range><gt>2.*</gt><lt>2.0.54_1</lt></range>
+	<range><gt>2.0</gt><lt>2.0.54_1</lt></range>
       </package>
     </affects>
     <description>
@@ -74656,6 +74795,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-07-12</discovery>
       <entry>2005-09-17</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -74772,7 +74912,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.11_1,2</lt></range>
-	<range><ge>1.8.*,2</ge><lt>1.8.b1_5,2</lt></range>
+	<range><ge>1.8.0</ge><lt>1.8.b1_5,2</lt></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
@@ -74854,7 +74994,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-09-08</discovery>
       <entry>2005-09-10</entry>
-      <modified>2005-10-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -75376,7 +75516,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>acroread</name>
 	<range><lt>7.0.1</lt></range>
-	<range><gt>5.*,1</gt><lt>7.0.1,1</lt></range>
+	<range><gt>5.0</gt><lt>7.0.1,1</lt></range>
       </package>
       <package>
 	<name>acroread4</name>
@@ -75409,6 +75549,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-08-16</discovery>
       <entry>2005-08-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -75852,7 +75993,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <system>
 	<name>FreeBSD</name>
 	<range><ge>5.4</ge><lt>5.4_6</lt></range>
-	<range><ge>5.*</ge><lt>5.3_20</lt></range>
+	<range><ge>5.0</ge><lt>5.3_20</lt></range>
       </system>
     </affects>
     <description>
@@ -75879,6 +76020,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-07-27</discovery>
       <entry>2005-08-05</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -75927,7 +76069,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <system>
 	<name>FreeBSD</name>
 	<range><ge>5.4</ge><lt>5.4_5</lt></range>
-	<range><ge>5.*</ge><lt>5.3_19</lt></range>
+	<range><ge>5.0</ge><lt>5.3_19</lt></range>
       </system>
     </affects>
     <description>
@@ -76396,7 +76538,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>apache</name>
 	<range><lt>1.3.33_2</lt></range>
-	<range><gt>2.*</gt><lt>2.0.54_1</lt></range>
+	<range><gt>2.0</gt><lt>2.0.54_1</lt></range>
 	<range><gt>2.1.0</gt><lt>2.1.6_1</lt></range>
       </package>
       <package>
@@ -76472,7 +76614,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-07-25</discovery>
       <entry>2005-07-26</entry>
-      <modified>2009-01-23</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -76764,13 +76906,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.9,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.9</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -76872,6 +77014,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-07-12</discovery>
       <entry>2005-07-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -77255,7 +77398,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>acroread</name>
 	<range><lt>7.0.0</lt></range>
-	<range><gt>5.*,1</gt><lt>7.0.0,1</lt></range>
+	<range><gt>5.0</gt><lt>7.0.0,1</lt></range>
       </package>
     </affects>
     <description>
@@ -77281,6 +77424,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-06-29</discovery>
       <entry>2005-07-06</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -77419,7 +77563,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>acroread</name>
 	<range><lt>7.0.0</lt></range>
-	<range><gt>5.*,1</gt><lt>7.0.0,1</lt></range>
+	<range><gt>5.0</gt><lt>7.0.0,1</lt></range>
       </package>
     </affects>
     <description>
@@ -77446,6 +77590,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-07-05</discovery>
       <entry>2005-07-06</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -77725,7 +77870,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <system>
 	<name>FreeBSD</name>
 	<range><ge>5.4</ge><lt>5.4_3</lt></range>
-	<range><ge>5.*</ge><lt>5.3_17</lt></range>
+	<range><ge>5.0</ge><lt>5.3_17</lt></range>
 	<range><ge>4.11</ge><lt>4.11_11</lt></range>
 	<range><lt>4.10_16</lt></range>
       </system>
@@ -77768,7 +77913,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-03-30</discovery>
       <entry>2005-06-29</entry>
-      <modified>2005-07-06</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -77778,7 +77923,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <system>
 	<name>FreeBSD</name>
 	<range><ge>5.4</ge><lt>5.4_3</lt></range>
-	<range><ge>5.*</ge><lt>5.3_17</lt></range>
+	<range><ge>5.0</ge><lt>5.3_17</lt></range>
 	<range><ge>4.11</ge><lt>4.11_11</lt></range>
 	<range><lt>4.10_16</lt></range>
       </system>
@@ -77816,7 +77961,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-06-29</discovery>
       <entry>2005-06-29</entry>
-      <modified>2005-07-06</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -78015,7 +78160,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>ruby</name>
 	<name>ruby_static</name>
-	<range><gt>1.8.*</gt><lt>1.8.2_3</lt></range>
+	<range><gt>1.8.0</gt><lt>1.8.2_3</lt></range>
       </package>
     </affects>
     <description>
@@ -78039,7 +78184,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-06-22</discovery>
       <entry>2005-06-23</entry>
-      <modified>2005-11-06</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -78074,7 +78219,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>linux-opera</name>
 	<name>opera-devel</name>
 	<name>opera</name>
-	<range><gt>8.*</gt><lt>8.01</lt></range>
+	<range><gt>8.0</gt><lt>8.01</lt></range>
       </package>
     </affects>
     <description>
@@ -78147,7 +78292,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>linux-opera</name>
 	<name>opera-devel</name>
 	<name>opera</name>
-	<range><gt>8.*</gt><lt>8.01</lt></range>
+	<range><gt>8.0</gt><lt>8.01</lt></range>
       </package>
     </affects>
     <description>
@@ -78172,6 +78317,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-06-16</discovery>
       <entry>2005-06-20</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -79244,8 +79390,8 @@ executed in your Internet Explorer while displaying the email.</p>
     <affects>
       <package>
 	<name>jakarta-tomcat</name>
-	<range><ge>5.0.*</ge><lt>5.0.30_5</lt></range>
-	<range><ge>5.5.*</ge><lt>5.5.7</lt></range>
+	<range><ge>5.0.0</ge><lt>5.0.30_5</lt></range>
+	<range><ge>5.5.0</ge><lt>5.5.7</lt></range>
       </package>
     </affects>
     <description>
@@ -79262,7 +79408,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-01-03</discovery>
       <entry>2005-06-01</entry>
-      <modified>2006-09-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -79596,13 +79742,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.8,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.8</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -79669,6 +79815,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-05-11</discovery>
       <entry>2005-05-12</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -79686,13 +79833,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.8,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.8</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -79758,6 +79905,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-05-11</discovery>
       <entry>2005-05-12</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -79775,13 +79923,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.8,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.8</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -79857,6 +80005,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-05-08</discovery>
       <entry>2005-05-11</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -80394,9 +80543,9 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>jdk</name>
 	<range><le>1.2.2p11_3</le></range>
-	<range><ge>1.3.*</ge><le>1.3.1p9_4</le></range>
-	<range><ge>1.4.*</ge><le>1.4.2p7</le></range>
-	<range><ge>1.5.*</ge><le>1.5.0p1_1</le></range>
+	<range><ge>1.3.0</ge><le>1.3.1p9_4</le></range>
+	<range><ge>1.4.0</ge><le>1.4.2p7</le></range>
+	<range><ge>1.5.0</ge><le>1.5.0p1_1</le></range>
       </package>
       <package>
 	<name>linux-ibm-jdk</name>
@@ -80448,7 +80597,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-04-11</discovery>
       <entry>2005-04-16</entry>
-      <modified>2006-09-12</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -80466,13 +80615,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.7,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.7</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -80566,13 +80715,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.7,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.7</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -80631,6 +80780,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-04-12</discovery>
       <entry>2005-04-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -80648,13 +80798,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.7,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.7</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -80716,6 +80866,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-04-01</discovery>
       <entry>2005-04-16</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -80792,7 +80943,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>zh-openoffice</name>
 	<name>zh_TW-openoffice</name>
 	<range><lt>1.1.4_2</lt></range>
-	<range><gt>2.*</gt><le>2.0.20050406</le></range>
+	<range><gt>2.0</gt><le>2.0.20050406</le></range>
       </package>
       <package>
 	<name>openoffice</name>
@@ -80825,7 +80976,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-04-11</discovery>
       <entry>2005-04-13</entry>
-      <modified>2005-04-20</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -81059,7 +81210,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>horde</name>
 	<name>horde-php5</name>
-	<range><gt>3.*</gt><lt>3.0.4</lt></range>
+	<range><gt>3.0</gt><lt>3.0.4</lt></range>
       </package>
     </affects>
     <description>
@@ -81087,6 +81238,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-03-29</discovery>
       <entry>2005-04-05</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -81282,13 +81434,13 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mozilla</name>
 	<range><lt>1.7.6,2</lt></range>
-	<range><ge>1.8.*,2</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>linux-mozilla</name>
 	<name>linux-mozilla-devel</name>
 	<range><lt>1.7.6</lt></range>
-	<range><ge>1.8.*</ge></range>
+	<range><ge>1.8.0</ge></range>
       </package>
       <package>
 	<name>netscape7</name>
@@ -81348,6 +81500,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-03-10</discovery>
       <entry>2005-03-24</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -81358,8 +81511,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>sylpheed</name>
 	<name>sylpheed-claws</name>
 	<name>sylpheed-gtk2</name>
-	<range><ge>0.8.*</ge><lt>1.0.3</lt></range>
-	<range><ge>1.9.*</ge><lt>1.9.5</lt></range>
+	<range><ge>0.8.0</ge><lt>1.0.3</lt></range>
+	<range><ge>1.9.0</ge><lt>1.9.5</lt></range>
       </package>
     </affects>
     <description>
@@ -81379,6 +81532,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-03-07</discovery>
       <entry>2005-03-23</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -82068,7 +82222,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>cyrus-imapd</name>
 	<range><lt>2.1.18</lt></range>
-	<range><gt>2.2.*</gt><lt>2.2.11</lt></range>
+	<range><gt>2.2.0</gt><lt>2.2.11</lt></range>
       </package>
     </affects>
     <description>
@@ -82102,7 +82256,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-02-14</discovery>
       <entry>2005-02-27</entry>
-      <modified>2005-04-05</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -82648,8 +82802,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>postgresql-server</name>
 	<name>ja-postgresql</name>
 	<range><lt>7.3.9_1</lt></range>
-	<range><gt>7.4.*</gt><lt>7.4.7_1</lt></range>
-	<range><gt>8.*</gt><lt>8.0.1_1</lt></range>
+	<range><gt>7.4.0</gt><lt>7.4.7_1</lt></range>
+	<range><gt>8.0</gt><lt>8.0.1_1</lt></range>
       </package>
     </affects>
     <description>
@@ -82668,7 +82822,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-02-07</discovery>
       <entry>2005-02-17</entry>
-      <modified>2005-02-19</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -82752,7 +82906,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>zh-emacs</name>
 	<name>emacs</name>
 	<range><lt>20.7_4</lt></range>
-	<range><gt>21.*</gt><lt>21.3_4</lt></range>
+	<range><gt>21.0</gt><lt>21.3_4</lt></range>
       </package>
       <package>
 	<name>xemacs</name>
@@ -82795,6 +82949,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-01-31</discovery>
       <entry>2005-02-14</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -82861,7 +83016,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mod_python</name>
 	<range><lt>2.7.11</lt></range>
-	<range><gt>3.*</gt><lt>3.1.4</lt></range>
+	<range><gt>3.0</gt><lt>3.1.4</lt></range>
       </package>
     </affects>
     <description>
@@ -82884,6 +83039,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-01-30</discovery>
       <entry>2005-02-13</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -82955,8 +83111,8 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>postgresql-server</name>
 	<name>ja-postgresql</name>
 	<range><lt>7.3.9</lt></range>
-	<range><gt>7.4.*</gt><lt>7.4.7</lt></range>
-	<range><gt>8.*</gt><lt>8.0.1</lt></range>
+	<range><gt>7.4.0</gt><lt>7.4.7</lt></range>
+	<range><gt>8.0</gt><lt>8.0.1</lt></range>
       </package>
       <package>
 	<name>postgresql-devel</name>
@@ -82982,6 +83138,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-01-21</discovery>
       <entry>2005-02-08</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -83537,7 +83694,7 @@ executed in your Internet Explorer while displaying the email.</p>
 	<name>bugzilla</name>
 	<name>ja-bugzilla</name>
 	<range><lt>2.16.8</lt></range>
-	<range><ge>2.17.*</ge><lt>2.18</lt></range>
+	<range><ge>2.17.0</ge><lt>2.18</lt></range>
       </package>
     </affects>
     <description>
@@ -83744,7 +83901,7 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>horde</name>
 	<name>horde-php5</name>
-	<range><gt>3.*</gt><lt>3.0.1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.1</lt></range>
       </package>
     </affects>
     <description>
@@ -83768,6 +83925,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-01-04</discovery>
       <entry>2005-01-22</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -84538,9 +84696,9 @@ executed in your Internet Explorer while displaying the email.</p>
       <package>
 	<name>mysql-scripts</name>
 	<range><lt>3.23.58_2</lt></range>
-	<range><gt>4.*</gt><lt>4.0.23a_1</lt></range>
-	<range><gt>4.1.*</gt><lt>4.1.9_1</lt></range>
-	<range><gt>5.*</gt><lt>5.0.2_1</lt></range>
+	<range><gt>4.0</gt><lt>4.0.23a_1</lt></range>
+	<range><gt>4.1.0</gt><lt>4.1.9_1</lt></range>
+	<range><gt>5.0</gt><lt>5.0.2_1</lt></range>
       </package>
     </affects>
     <description>
@@ -84564,7 +84722,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <dates>
       <discovery>2005-01-12</discovery>
       <entry>2005-01-16</entry>
-      <modified>2005-01-17</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -85843,13 +86001,13 @@ http_access deny Gopher</pre>
       <package>
 	<name>samba</name>
 	<range><lt>3.0.10</lt></range>
-	<range><gt>*,1</gt><lt>3.0.10,1</lt></range>
+	<range><gt>0</gt><lt>3.0.10,1</lt></range>
       </package>
       <package>
 	<name>ja-samba</name>
 	<range><lt>2.2.12.j1.0beta1_2</lt></range>
-	<range><gt>3.*</gt><lt>3.0.10</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.10,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.10</lt></range>
+	<range><gt>3.0</gt><lt>3.0.10,1</lt></range>
       </package>
     </affects>
     <description>
@@ -85880,7 +86038,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-12-02</discovery>
       <entry>2004-12-21</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -85940,82 +86098,82 @@ http_access deny Gopher</pre>
   </vuln>
 
   <vuln vid="01c231cd-4393-11d9-8bb9-00065be4b5b6">
-     <topic>mysql -- GRANT access restriction problem</topic>
-     <affects>
-       <package>
-	 <name>mysql-server</name>
-	 <range><le>3.23.58_3</le></range>
-	 <range><ge>4.*</ge><lt>4.0.21</lt></range>
-       </package>
-     </affects>
-     <description>
-       <body xmlns="http://www.w3.org/1999/xhtml">
-	 <p>When a user is granted access to a database with a name containing
-	   an underscore and the underscore is not escaped then that user might
-	   also be able to access other, similarly named, databases on the
-	   affected system.</p>
-	 <p>The problem is that the underscore is seen as a wildcard by MySQL
-	   and therefore it is possible that an admin might accidently GRANT a
-	   user access to multiple databases.</p>
-       </body>
-     </description>
-     <references>
-	<cvename>CVE-2004-0957</cvename>
-	<bid>11435</bid>
-	<url>http://bugs.mysql.com/bug.php?id=3933</url>
-	<url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
-	<url>http://www.openpkg.org/security/OpenPKG-SA-2004.045-mysql.html</url>
-     </references>
-     <dates>
-       <discovery>2004-03-29</discovery>
-       <entry>2004-12-16</entry>
-       <modified>2005-03-15</modified>
-     </dates>
-   </vuln>
+    <topic>mysql -- GRANT access restriction problem</topic>
+    <affects>
+      <package>
+	<name>mysql-server</name>
+	<range><le>3.23.58_3</le></range>
+	<range><ge>4.0</ge><lt>4.0.21</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>When a user is granted access to a database with a name containing
+	  an underscore and the underscore is not escaped then that user might
+	  also be able to access other, similarly named, databases on the
+	  affected system.</p>
+	<p>The problem is that the underscore is seen as a wildcard by MySQL
+	  and therefore it is possible that an admin might accidently GRANT a
+	  user access to multiple databases.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2004-0957</cvename>
+      <bid>11435</bid>
+      <url>http://bugs.mysql.com/bug.php?id=3933</url>
+      <url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
+      <url>http://www.openpkg.org/security/OpenPKG-SA-2004.045-mysql.html</url>
+    </references>
+    <dates>
+      <discovery>2004-03-29</discovery>
+      <entry>2004-12-16</entry>
+      <modified>2015-05-09</modified>
+    </dates>
+  </vuln>
 
   <vuln vid="06a6b2cf-484b-11d9-813c-00065be4b5b6">
-     <topic>mysql -- ALTER MERGE denial of service vulnerability</topic>
-     <affects>
-       <package>
-	 <name>mysql-server</name>
-	 <range><le>3.23.58_3</le></range>
-	 <range><ge>4.*</ge><lt>4.0.21</lt></range>
-	 <range><ge>4.1.*</ge><lt>4.1.1</lt></range>
-       </package>
-     </affects>
-     <description>
-       <body xmlns="http://www.w3.org/1999/xhtml">
-	 <p>Dean Ellis reported a denial of service vulnerability in the MySQL
-	   server:</p>
-	 <blockquote cite="http://bugs.mysql.com/bug.php?id=4017">
-	   <p> Multiple threads ALTERing the same (or different) MERGE tables to
-	     change the UNION eventually crash the server or hang the individual
-	     threads.</p>
-	 </blockquote>
-	 <p>Note that a script demonstrating the problem is included in the
-	   MySQL bug report. Attackers that have control of a MySQL account can
-	   easily use a modified version of that script during an attack.</p>
-       </body>
-     </description>
-     <references>
-	<cvename>CVE-2004-0837</cvename>
-	<bid>11357</bid>
-	<url>http://bugs.mysql.com/bug.php?id=2408</url>
-	<url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
-     </references>
-     <dates>
-       <discovery>2004-01-15</discovery>
-       <entry>2004-12-16</entry>
-       <modified>2005-03-15</modified>
-     </dates>
-   </vuln>
+    <topic>mysql -- ALTER MERGE denial of service vulnerability</topic>
+    <affects>
+      <package>
+	<name>mysql-server</name>
+	<range><le>3.23.58_3</le></range>
+	<range><ge>4.0</ge><lt>4.0.21</lt></range>
+	<range><ge>4.1.0</ge><lt>4.1.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Dean Ellis reported a denial of service vulnerability in the MySQL
+	  server:</p>
+	<blockquote cite="http://bugs.mysql.com/bug.php?id=4017">
+	  <p>Multiple threads ALTERing the same (or different) MERGE tables to
+	    change the UNION eventually crash the server or hang the individual
+	    threads.</p>
+	</blockquote>
+	<p>Note that a script demonstrating the problem is included in the
+	  MySQL bug report. Attackers that have control of a MySQL account can
+	  easily use a modified version of that script during an attack.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2004-0837</cvename>
+      <bid>11357</bid>
+      <url>http://bugs.mysql.com/bug.php?id=2408</url>
+      <url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
+    </references>
+    <dates>
+      <discovery>2004-01-15</discovery>
+      <entry>2004-12-16</entry>
+      <modified>2015-05-09</modified>
+    </dates>
+  </vuln>
 
   <vuln vid="29edd807-438d-11d9-8bb9-00065be4b5b6">
      <topic>mysql -- FTS request denial of service vulnerability</topic>
      <affects>
        <package>
 	 <name>mysql-server</name>
-	 <range><ge>4.*</ge><lt>4.0.21</lt></range>
+	 <range><ge>4.0</ge><lt>4.0.21</lt></range>
        </package>
      </affects>
      <description>
@@ -86040,63 +86198,63 @@ http_access deny Gopher</pre>
    </vuln>
 
   <vuln vid="835256b8-46ed-11d9-8ce0-00065be4b5b6">
-     <topic>mysql -- mysql_real_connect buffer overflow vulnerability</topic>
-     <affects>
-       <package>
-	 <name>mysql-server</name>
-	 <range><le>3.23.58_3</le></range>
-	 <range><ge>4.*</ge><lt>4.0.21</lt></range>
-       </package>
-       <package>
-	 <name>mysql-client</name>
-	 <range><le>3.23.58_3</le></range>
-	 <range><ge>4.*</ge><lt>4.0.21</lt></range>
-       </package>
-     </affects>
-     <description>
-       <body xmlns="http://www.w3.org/1999/xhtml">
-	 <p>The mysql_real_connect function doesn't properly handle DNS replies
-	   by copying the IP address into a buffer without any length checking.
-	   A specially crafted DNS reply may therefore be used to cause a buffer
-	   overflow on affected systems.</p>
-	 <p>Note that whether this issue can be exploitable depends on the
-	   system library responsible for the gethostbyname function. The bug
-	   finder, Lukasz Wojtow, explaines this with the following words:</p>
-	 <blockquote cite="http://bugs.mysql.com/bug.php?id=4017">
-	   <p>In glibc there is a limitation for an IP address to have only 4
-	     bytes (obviously), but generally speaking the length of the address
-	     comes with a response for dns query (i know it sounds funny but
-	     read rfc1035 if you don't believe). This bug can occur on libraries
-	     where gethostbyname function takes length from dns's response</p>
-	 </blockquote>
-       </body>
-     </description>
-     <references>
-	<cvename>CVE-2004-0836</cvename>
-	<bid>10981</bid>
-	<url>http://bugs.mysql.com/bug.php?id=4017</url>
-	<url>http://lists.mysql.com/internals/14726</url>
-	<url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
-	<url>http://www.osvdb.org/displayvuln.php?osvdb_id=10658</url>
-     </references>
-     <dates>
-       <discovery>2004-06-04</discovery>
-       <entry>2004-12-16</entry>
-       <modified>2005-03-15</modified>
-     </dates>
-   </vuln>
+    <topic>mysql -- mysql_real_connect buffer overflow vulnerability</topic>
+    <affects>
+      <package>
+	<name>mysql-server</name>
+	<range><le>3.23.58_3</le></range>
+	<range><ge>4.0</ge><lt>4.0.21</lt></range>
+      </package>
+      <package>
+	<name>mysql-client</name>
+	<range><le>3.23.58_3</le></range>
+	<range><ge>4.0</ge><lt>4.0.21</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The mysql_real_connect function doesn't properly handle DNS replies
+	  by copying the IP address into a buffer without any length checking.
+	  A specially crafted DNS reply may therefore be used to cause a buffer
+	  overflow on affected systems.</p>
+	<p>Note that whether this issue can be exploitable depends on the
+	  system library responsible for the gethostbyname function. The bug
+	  finder, Lukasz Wojtow, explaines this with the following words:</p>
+	<blockquote cite="http://bugs.mysql.com/bug.php?id=4017">
+	  <p>In glibc there is a limitation for an IP address to have only 4
+	    bytes (obviously), but generally speaking the length of the address
+	    comes with a response for dns query (i know it sounds funny but
+	    read rfc1035 if you don't believe). This bug can occur on libraries
+	    where gethostbyname function takes length from dns's response</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2004-0836</cvename>
+      <bid>10981</bid>
+      <url>http://bugs.mysql.com/bug.php?id=4017</url>
+      <url>http://lists.mysql.com/internals/14726</url>
+      <url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
+      <url>http://www.osvdb.org/displayvuln.php?osvdb_id=10658</url>
+    </references>
+    <dates>
+      <discovery>2004-06-04</discovery>
+      <entry>2004-12-16</entry>
+      <modified>2015-05-09</modified>
+    </dates>
+  </vuln>
 
   <vuln vid="035d17b2-484a-11d9-813c-00065be4b5b6">
-     <topic>mysql -- erroneous access restrictions applied to table renames</topic>
-     <affects>
-       <package>
+    <topic>mysql -- erroneous access restrictions applied to table renames</topic>
+    <affects>
+      <package>
 	 <name>mysql-server</name>
 	 <range><le>3.23.58_3</le></range>
-	 <range><ge>4.*</ge><lt>4.0.21</lt></range>
-       </package>
-     </affects>
-     <description>
-       <body xmlns="http://www.w3.org/1999/xhtml">
+	 <range><ge>4.0</ge><lt>4.0.21</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>A Red Hat advisory reports:</p>
 	<blockquote cite="http://rhn.redhat.com/errata/RHSA-2004-611.html">
 	  <p>Oleksandr Byelkin discovered that "ALTER TABLE ... RENAME" checked
@@ -86105,21 +86263,21 @@ http_access deny Gopher</pre>
 	</blockquote>
 	<p>Table access restrictions, on the affected MySQL servers, may
 	  accidently or intentially be bypassed due to this bug.</p>
-       </body>
-     </description>
-     <references>
+      </body>
+    </description>
+    <references>
 	<cvename>CVE-2004-0835</cvename>
 	<bid>11357</bid>
 	<url>http://bugs.mysql.com/bug.php?id=3270</url>
 	<url>http://rhn.redhat.com/errata/RHSA-2004-611.html</url>
 	<url>http://xforce.iss.net/xforce/xfdb/17666</url>
-     </references>
-     <dates>
-       <discovery>2004-03-23</discovery>
-       <entry>2004-12-16</entry>
-       <modified>2005-03-15</modified>
-     </dates>
-   </vuln>
+    </references>
+    <dates>
+      <discovery>2004-03-23</discovery>
+      <entry>2004-12-16</entry>
+      <modified>2015-05-09</modified>
+    </dates>
+  </vuln>
 
   <vuln vid="0ff0e9a6-4ee0-11d9-a9e7-0001020eed82">
     <topic>phpmyadmin -- command execution vulnerability</topic>
@@ -86547,7 +86705,7 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>jabberd</name>
-	<range><ge>2.*</ge><le>2.0.4</le></range>
+	<range><ge>2.0</ge><le>2.0.4</le></range>
       </package>
     </affects>
     <description>
@@ -86566,6 +86724,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-11-24</discovery>
       <entry>2004-11-30</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -86775,7 +86934,7 @@ http_access deny Gopher</pre>
       <package>
 	<name>cyrus-imapd</name>
 	<range><lt>2.1.17</lt></range>
-	<range><ge>2.2.*</ge><le>2.2.8</le></range>
+	<range><ge>2.2.0</ge><le>2.2.8</le></range>
       </package>
     </affects>
     <description>
@@ -86808,7 +86967,7 @@ http_access deny Gopher</pre>
       <package>
 	<name>cyrus-imapd</name>
 	<range><lt>2.1.17</lt></range>
-	<range><ge>2.2.*</ge><le>2.2.6</le></range>
+	<range><ge>2.2.0</ge><le>2.2.6</le></range>
       </package>
     </affects>
     <description>
@@ -86834,7 +86993,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-11-06</discovery>
       <entry>2004-11-22</entry>
-      <modified>2004-11-24</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -86933,8 +87092,8 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>samba</name>
-	<range><ge>3.*</ge><lt>3.0.8</lt></range>
-	<range><ge>3.*,1</ge><lt>3.0.8,1</lt></range>
+	<range><ge>3.0</ge><lt>3.0.8</lt></range>
+	<range><ge>3.0</ge><lt>3.0.8,1</lt></range>
       </package>
     </affects>
     <description>
@@ -86954,7 +87113,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-11-15</discovery>
       <entry>2004-11-17</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -87063,7 +87222,7 @@ http_access deny Gopher</pre>
       <package>
 	<name>ruby</name>
 	<name>ruby_r</name>
-	<range><gt>1.7.*</gt><lt>1.8.2.p2_2</lt></range>
+	<range><gt>1.7.0</gt><lt>1.8.2.p2_2</lt></range>
 	<range><lt>1.6.8.2004.07.28_1</lt></range>
       </package>
       <package>
@@ -87086,7 +87245,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-11-06</discovery>
       <entry>2004-11-13</entry>
-      <modified>2004-11-25</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -87095,8 +87254,8 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>samba</name>
-	<range><gt>3.*</gt><lt>3.0.8</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.8,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.8</lt></range>
+	<range><gt>3.0</gt><lt>3.0.8,1</lt></range>
       </package>
     </affects>
     <description>
@@ -87121,7 +87280,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-09-30</discovery>
       <entry>2004-11-12</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -87130,7 +87289,7 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>gnats</name>
-	<range><ge>4.*</ge><le>4.0_2</le></range>
+	<range><ge>4.0</ge><le>4.0_2</le></range>
 	<range><le>3.113.1_9</le></range>
       </package>
     </affects>
@@ -87147,6 +87306,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-06-21</discovery>
       <entry>2004-11-12</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -87283,7 +87443,7 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>apache</name>
-	<range><gt>2.*</gt><le>2.0.52_2</le></range>
+	<range><gt>2.0</gt><le>2.0.52_2</le></range>
       </package>
     </affects>
     <description>
@@ -87301,7 +87461,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-11-01</discovery>
       <entry>2004-11-10</entry>
-      <modified>2004-11-11</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -87457,8 +87617,8 @@ http_access deny Gopher</pre>
       <package>
 	<name>postgresql-contrib</name>
 	<range><lt>7.2.6</lt></range>
-	<range><gt>7.3.*</gt><lt>7.3.8</lt></range>
-	<range><gt>7.4.*</gt><lt>7.4.6</lt></range>
+	<range><gt>7.3.0</gt><lt>7.3.8</lt></range>
+	<range><gt>7.4.0</gt><lt>7.4.6</lt></range>
       </package>
     </affects>
     <description>
@@ -87478,6 +87638,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-09-10</discovery>
       <entry>2004-11-06</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -87489,7 +87650,7 @@ http_access deny Gopher</pre>
 	<name>uk-gd</name>
 	<name>ja-gd</name>
 	<range><lt>2.0.29,1</lt></range>
-	<range><gt>1.*,2</gt><lt>2.*,2</lt></range>
+	<range><gt>1.0</gt><lt>2.0</lt></range>
       </package>
     </affects>
     <description>
@@ -88730,7 +88891,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-09-29</discovery>
       <entry>2004-10-12</entry>
-      <modified>2008-06-28</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -88739,7 +88900,7 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>cyrus-sasl</name>
-	<range><ge>2.*</ge><lt>2.1.19</lt></range>
+	<range><ge>2.0</ge><lt>2.1.19</lt></range>
       </package>
     </affects>
     <description>
@@ -88754,6 +88915,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-07-06</discovery>
       <entry>2004-10-12</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -88763,7 +88925,7 @@ http_access deny Gopher</pre>
       <package>
 	<name>cyrus-sasl</name>
 	<range><le>1.5.28_3</le></range>
-	<range><ge>2.*</ge><le>2.1.19</le></range>
+	<range><ge>2.0</ge><le>2.1.19</le></range>
       </package>
     </affects>
     <description>
@@ -88846,7 +89008,7 @@ http_access deny Gopher</pre>
       </package>
       <package>
 	<name>gnutls-devel</name>
-	<range><ge>1.1.*</ge><lt>1.1.12</lt></range>
+	<range><ge>1.1.0</ge><lt>1.1.12</lt></range>
       </package>
     </affects>
     <description>
@@ -88873,6 +89035,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-08-02</discovery>
       <entry>2004-10-05</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -89392,8 +89555,8 @@ http_access deny Gopher</pre>
       <package>
 	<name>samba</name>
 	<range><lt>2.2.12</lt></range>
-	<range><gt>3.*</gt><le>3.0.2a</le></range>
-	<range><gt>3.*,1</gt><le>3.0.2a_1,1</le></range>
+	<range><gt>3.0</gt><le>3.0.2a</le></range>
+	<range><gt>3.0</gt><le>3.0.2a_1,1</le></range>
       </package>
       <package>
 	<name>ja-samba</name>
@@ -89426,7 +89589,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-09-30</discovery>
       <entry>2004-09-30</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -90466,7 +90629,7 @@ http_access deny Gopher</pre>
       <package>
 	<name>samba3</name>
 	<range><lt>3.0.7</lt></range>
-	<range><gt>*,1</gt><lt>3.0.7,1</lt></range>
+	<range><gt>0</gt><lt>3.0.7,1</lt></range>
       </package>
     </affects>
     <description>
@@ -90484,7 +90647,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-09-02</discovery>
       <entry>2004-09-14</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -91502,8 +91665,8 @@ http_access deny Gopher</pre>
     <affects>
       <package>
 	<name>samba</name>
-	<range><gt>3.*</gt><lt>3.0.5</lt></range>
-	<range><gt>3.*,1</gt><lt>3.0.5,1</lt></range>
+	<range><gt>3.0</gt><lt>3.0.5</lt></range>
+	<range><gt>3.0</gt><lt>3.0.5,1</lt></range>
 	<range><lt>2.2.10</lt></range>
       </package>
       <package>
@@ -91538,7 +91701,7 @@ http_access deny Gopher</pre>
     <dates>
       <discovery>2004-07-14</discovery>
       <entry>2004-07-21</entry>
-      <modified>2008-09-26</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -95053,7 +95216,7 @@ misc.c:
     <affects>
       <package>
 	<name>mnogosearch</name>
-	<range><ge>3.2.*</ge><lt>3.2.15</lt></range>
+	<range><ge>3.2.0</ge><lt>3.2.15</lt></range>
       </package>
     </affects>
     <description>
@@ -95085,6 +95248,7 @@ misc.c:
     <dates>
       <discovery>2004-02-15</discovery>
       <entry>2004-02-15</entry>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
@@ -95515,7 +95679,7 @@ misc.c:
     <affects>
       <package>
 	<name>inn</name>
-	<range><ge>2.4.*</ge><lt>2.4.1</lt></range>
+	<range><ge>2.4.0</ge><lt>2.4.1</lt></range>
       </package>
       <package>
 	<name>inn-stable</name>
@@ -95535,7 +95699,7 @@ misc.c:
     <dates>
       <discovery>2004-01-07</discovery>
       <entry>2004-01-08</entry>
-      <modified>2004-10-21</modified>
+      <modified>2015-05-09</modified>
     </dates>
   </vuln>
 
