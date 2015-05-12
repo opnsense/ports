@@ -315,6 +315,7 @@
     SUBDIR += libnfs
     SUBDIR += libnids
     SUBDIR += libnids-libnet11
+    SUBDIR += libnss-cache
     SUBDIR += libnss-mysql
     SUBDIR += liboauth
     SUBDIR += libopennet
@@ -430,6 +431,7 @@
     SUBDIR += nss-pam-ldapd
     SUBDIR += nss-pam-ldapd-sasl
     SUBDIR += nss_ldap
+    SUBDIR += nsscache
     SUBDIR += nstxd
     SUBDIR += ntimed
     SUBDIR += ntlmaps
@@ -942,6 +944,7 @@
     SUBDIR += py-pyzmq
     SUBDIR += py-qt4-network
     SUBDIR += py-radix
+    SUBDIR += py-raet
     SUBDIR += py-s3cmd
     SUBDIR += py-simplesoap
     SUBDIR += py-smb
