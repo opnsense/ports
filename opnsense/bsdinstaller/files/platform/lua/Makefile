@@ -48,8 +48,8 @@ install: all strip
 
 # shared libraries (for BSD Installer)
 so:
-	ld -o lib/liblua50.so -shared src/*.o
-	ld -o lib/liblualib50.so -shared src/lib/*.o
+	ld -o lib/liblua50.so -shared -soname liblua50.so src/*.o
+	ld -o lib/liblualib50.so -shared -soname liblualib50.so src/lib/*.o
 
 # binaries using shared libraries
 sobin:

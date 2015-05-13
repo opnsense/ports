@@ -12,7 +12,7 @@ OBJS=	encode.o decode.o conn_tcp.o \
 	form.o dump.o system.o lang.o
 
 CFLAGS+=	${EXTRA_CFLAGS} ${WARNS} -fPIC -I../libaura
-LDFLAGS+=	../libaura/libaura.a
+LDFLAGS+=	../libaura/libaura.a -Wl,-soname,${SONAME}
 
 # Default target:
 
