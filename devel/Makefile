@@ -410,6 +410,7 @@
     SUBDIR += eric6
     SUBDIR += eris
     SUBDIR += erlang-msgpack
+    SUBDIR += erlang-mustache
     SUBDIR += erlang-protobuffs
     SUBDIR += esdl
     SUBDIR += etcd
@@ -3535,6 +3536,7 @@
     SUBDIR += pecl-uopz
     SUBDIR += pecl-uploadprogress
     SUBDIR += pecl-uri_template
+    SUBDIR += pecl-uuid
     SUBDIR += pecl-vld
     SUBDIR += pecl-xhprof
     SUBDIR += pecl-yac
