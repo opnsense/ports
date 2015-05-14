@@ -159,6 +159,7 @@ apply_base()
 	    --exclude="./etc/master.passwd" \
 	    --exclude="./etc/passwd" \
 	    --exclude="./etc/shells" \
+	    --exclude="./etc/ttys" \
 	    --exclude="./etc/rc" && \
 	    kldxref ${KERNELDIR} && \
 	    echo "ok" && return
