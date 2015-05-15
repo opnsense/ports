@@ -10,31 +10,14 @@ MV=1.0
 LUA?=../../../lua
 
 COMPAT?=../compat-5.1
-COMPATOBJ=$(COMPAT)/compat-5.1.o
 
-LUAC?=luac
-BIN2C?=bin2c
-DEF = -DLUASOCKET_DEBUG #-Dsocklen_t=int
+LOBJS=	luasocket.o timeout.o buffer.o io.o auxiliar.o except.o \
+	select.o options.o inet.o tcp.o udp.o usocket.o
 
-LOBJS= \
-	luasocket.o \
-	timeout.o \
-	buffer.o \
-	io.o \
-	auxiliar.o \
-	except.o \
-	select.o \
-	options.o \
-	inet.o \
-	tcp.o \
-	udp.o \
-	usocket.o
-
-MOBJS= \
-	mime.o
+MOBJS=	mime.o
 
 CFLAGS+=$(EXTRA_CFLAGS) -I$(LUA)/include -I$(COMPAT) \
-	 $(PROF) $(DBG) $(DEF) -pedantic -W -Wall -fPIC
+	 $(PROF) $(DBG) -pedantic -W -Wall -fPIC
 LDFLAGS+=-L$(LUA)/lib -llua -llualib
 
 LDYN=lsocket.so
@@ -43,11 +26,11 @@ MDYN=lmime.so
 
 all: $(LDYN) $(MDYN)
 
-$(LDYN): $(LOBJS) $(COMPATOBJ)
-	$(CC) $(LOBJS) $(COMPATOBJ) -shared $(LDFLAGS) -o $(LDYN)
+$(LDYN): $(LOBJS)
+	$(CC) $(LOBJS) $(COMPAT)/compat-5.1.o -shared $(LDFLAGS) -o $(LDYN)
 
-$(MDYN): $(MOBJS) $(COMPATOBJ)
-	$(CC) -shared -o $(MDYN) $(MOBJS) $(COMPATOBJ) $(LDFLAGS)
+$(MDYN): $(MOBJS)
+	$(CC) ${MOBJS} $(COMPAT)/compat-5.1.o -shared ${LDFLAGS} -o $(MDYN)
 
 auxiliar.o: auxiliar.c auxiliar.h
 buffer.o: buffer.c buffer.h io.h timeout.h
@@ -70,9 +53,6 @@ unix.o: unix.c auxiliar.h socket.h io.h timeout.h usocket.h options.h \
   unix.h buffer.h
 usocket.o: usocket.c socket.h io.h  timeout.h usocket.h
 
-$(COMPATOBJ):
-	$(CC) $(CFLAGS) -I$(COMPAT) -c $(COMPAT)/compat-5.1.c -o $(COMPATOBJ)
-
 strip: $(LDYN) $(MDYN)
 	strip $(LDYN) $(MDYN)
 
@@ -80,7 +60,7 @@ clean:
 	rm -f $(LOBJS) $(MOBJS) $(SOBJS)
 	rm -f $(MDYN) $(LDYN) $(SDYN)
 
-install: all strip
+install: strip
 	mkdir -p $(DESTDIR)${PREFIX}/lib/lua/5.0
 	cp $(LDYN) $(MDYN) $(DESTDIR)${PREFIX}/lib/lua/5.0
 	mkdir -p $(DESTDIR)${PREFIX}/share/lua/5.0

@@ -15,8 +15,7 @@ CFLAGS+=	${WARNS}
 CFLAGS+=	-I${BASE}/lib/libaura -I${BASE}/lib/libdfui
 CFLAGS+=	-I/usr/local/include
 
-LDFLAGS+=	-L${BASE}/lib/libdfui -ldfui
-LDFLAGS+=	-lpanel -lncurses
+LDFLAGS+=	-L${BASE}/lib/libdfui -ldfui -lpanel -lncurses
 
 # Default target.
 
@@ -35,19 +34,6 @@ strip: ${PROG}
 clean:
 	rm -f aura dfui
 	rm -rf ${PROG} *.o *.core
-
-# In-CVS-tree testing.
-
-LIBPATH?=../../lib/libaura:../../lib/libdfui:/usr/pkg/lib
-DEBUGGER?=gdb
-
-test:
-	env LD_LIBRARY_PATH="${LIBPATH}" ./${PROG}
-
-debug:
-	env LD_LIBRARY_PATH="${LIBPATH}" ${DEBUGGER} ./${PROG}
-
-# Create directory layout for binary distribution.
 
 install: all
 	mkdir -p ${DESTDIR}${PREFIX}/sbin

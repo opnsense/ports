@@ -10,16 +10,13 @@ LUALIB= $(LUA)/lib
 LUABIN= $(LUA)/bin
 
 COMPAT=../compat-5.1
-COMPATOBJ=$(COMPAT)/compat-5.1.o
 
 MYNAME= posix
 MYLIB= l$(MYNAME)
 
 # no need to change anything below here
-INCS= -I$(LUAINC)
-WARN= -pedantic -Wall
-CFLAGS+= $(EXTRA_CFLAGS) -fPIC $(INCS) $(WARN) -O2
-LDFLAGS+=-L$(LUALIB) -L/usr/local/lib -L/usr/pkg/lib -llua50 -llualib50
+CFLAGS+= -fPIC -O2 -pedantic -Wall -I$(LUAINC)
+LDFLAGS+=-L$(LUALIB) -L/usr/local/lib -llua50 -llualib50
 
 OBJS= $(MYLIB).o
 
@@ -33,8 +30,8 @@ strip:	$T
 test:	$T
 	$(LUABIN)/lua -l$(MYNAME) test.lua
 
-$T:	$(OBJS) $(COMPATOBJ)
-	$(CC) -fPIC $(OBJS) $(COMPATOBJ) -shared $(LDFLAGS) -o $@
+$T:	$(OBJS)
+	$(CC) -fPIC $(OBJS) $(COMPAT)/compat-5.1.o -shared $(LDFLAGS) -o $@
 
 $(OBJS): modemuncher.c
 
