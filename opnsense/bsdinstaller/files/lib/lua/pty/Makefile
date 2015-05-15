@@ -33,6 +33,6 @@ pty.o: pty.c
 clean:
 	rm -rf *.so *.o
 
-distribution: ${LIB}
+install: ${LIB}
 	mkdir -p ${DESTDIR}/lib/lua/5.0/
 	cp ${LIB} ${DESTDIR}/lib/lua/5.0/

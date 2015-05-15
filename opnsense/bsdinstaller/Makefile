@@ -3,7 +3,7 @@
 
 PORTNAME=	bsdinstaller
 PORTVERSION=	2.3
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -11,8 +11,6 @@ EXTRACT_ONLY=	# empty
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	BSD Installer mega-package
-
-MAKE_JOBS_UNSAFE=yes
 
 DFUIBE_LUA_DIR=	${PREFIX}/share/dfuibe_lua
 CFLAGS+=        -fPIC

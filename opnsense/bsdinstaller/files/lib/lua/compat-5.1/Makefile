@@ -20,6 +20,6 @@ strip: compat-5.1.o
 clean:
 	rm -f *.o
 
-distribution: strip
+install: strip
 	mkdir -p $(DESTDIR)/bin
 	cp lua50c51.sh $(DESTDIR)/bin/lua50c51

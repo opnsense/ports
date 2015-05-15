@@ -81,5 +81,5 @@ dist:
 strip: all
 	${STRIP} $T
 
-distribution: strip
+install: strip
 	@echo "XXX Not yet implemented."

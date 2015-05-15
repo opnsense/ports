@@ -12,28 +12,14 @@ COMPAT?=	../../lib/lua/compat-5.1
 MEDIAROOT?=	/usr/release/root
 OSNAME?=        DragonFly
 
-LANGUAGES=	ru
-
 all:
 	@echo "Nothing to build."
 
 clean:
-	rm -rf po/*.mo *.core
+	rm -rf *.core
 
 strip: all
 	@echo "Nothing to strip."
-
-nls: all mo
-
-pot:
-	cat `find . -name '*.lua' ! -regex '\./scripts/test/main.lua'` | \
-	    sed 's|\-\-|//|' | sed 's/\.\.//' | \
-	    xgettext -s -C --no-location --keyword=_ -o po/${PACKAGE}.pot -
-
-mo:
-	for _language in ${LANGUAGES}; do \
-		msgfmt -o po/$${_language}.mo po/$${_language}; \
-	done
 
 test:
 	su root -c "env LD_LIBRARY_PATH='../../lib/libaura:../../lib/libdfui:$(LUA)/lib' \
@@ -45,17 +31,10 @@ test:
 
 # Create directory layout for binary distribution.
 
-distribution: strip
+install: strip
 	mkdir -p ${DESTDIR}/share/dfuibe_lua
 	cp *.lua ${DESTDIR}/share/dfuibe_lua/
 	for _subdir in lib conf easy_install pit install configure upgrade netboot; do \
 		mkdir -p ${DESTDIR}/share/dfuibe_lua/$${_subdir}; \
 		cp $${_subdir}/*.lua ${DESTDIR}/share/dfuibe_lua/$${_subdir}; \
-	done
-
-distribution_nls: nls
-	for _language in ${LANGUAGES}; do \
-		mkdir -p ${DESTDIR}/share/locale/$${_language}/LC_MESSAGES; \
-		cp po/$${_language}.mo \
-		    ${LOCALEDIR}/$${_language}/LC_MESSAGES/${PROG}.mo; \
 	done

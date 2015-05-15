@@ -14,14 +14,10 @@ OBJS=	curses_util.o \
 CFLAGS+=	${WARNS}
 CFLAGS+=	-I../../lib/libaura -I../../lib/libdfui
 CFLAGS+=	-I/usr/local/include -I/usr/pkg/include
-CFLAGS+=	${NLS_CFLAGS}
 CFLAGS+=	${EXTRA_CFLAGS}
 
 LDFLAGS+=	-L../../lib/libdfui -ldfui
 LDFLAGS+=	-lpanel -lncurses
-LDFLAGS+=	${NLS_LDFLAGS}
-
-LANGUAGES=	ru
 
 # Default target.
 
@@ -34,22 +30,12 @@ all: ${PROG}
 ${PROG}: ${OBJS}
 	${CC} ${OBJS} ${LDFLAGS} -o ${PROG}
 
-nls: all mo
-
-mo:
-	for _language in ${LANGUAGES}; do \
-		msgfmt -o po/$${_language}.mo po/$${_language}; \
-	done
-
-pot:
-	xgettext -s --no-location --keyword=_ -o po/${PROG}.pot *.c
-
 strip: ${PROG}
 	strip ${PROG}
 
 clean:
 	rm -f aura dfui
-	rm -rf ${PROG} *.o po/*.mo *.core
+	rm -rf ${PROG} *.o *.core
 
 # In-CVS-tree testing.
 
@@ -64,15 +50,8 @@ debug:
 
 # Create directory layout for binary distribution.
 
-distribution: all
+install: all
 	mkdir -p ${DESTDIR}/sbin
 	cp dfuife_curses ${DESTDIR}/sbin/
 	mkdir -p ${DESTDIR}/share/dfuife_curses
 	cp fred.txt ${DESTDIR}/share/dfuife_curses/
-
-distribution_nls: nls
-	for _language in ${LANGUAGES}; do \
-		mkdir -p ${DESTDIR}/share/locale/$${_language}/LC_MESSAGES; \
-		cp po/$${_language}.mo \
-		    ${LOCALEDIR}/$${_language}/LC_MESSAGES/${PROG}.mo; \
-	done

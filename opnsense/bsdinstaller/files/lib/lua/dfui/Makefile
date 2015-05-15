@@ -33,6 +33,6 @@ strip: ${LIB}
 clean:
 	rm -f *.o *.so
 
-distribution: strip
+install: strip
 	mkdir -p ${DESTDIR}/lib/lua/5.0
 	cp ${LIB} ${DESTDIR}/lib/lua/5.0

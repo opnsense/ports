@@ -8,13 +8,14 @@ include $(BASE)/Config
 LUA= .
 
 all: dirs
-	cd include; $(MAKE) all
-	cd src; $(MAKE) all
-	cd src/lib; $(MAKE) all
-	cd src/luac; $(MAKE) all
-	cd src/lua; $(MAKE) all
-	$(MAKE) so
-	$(MAKE) sobin
+	rm -f bin/*
+	$(MAKE) -C include all
+	$(MAKE) -C src all
+	$(MAKE) -C src/lib all
+	ld -o lib/liblua50.so -shared -soname liblua50.so src/*.o
+	ld -o lib/liblualib50.so -shared -soname liblualib50.so src/lib/*.o
+	$(MAKE) -C src/luac all
+	$(MAKE) -C src/lua all
 
 clean:
 	cd include; $(MAKE) clean
@@ -22,7 +23,7 @@ clean:
 	cd src/lib; $(MAKE) clean
 	cd src/luac; $(MAKE) clean
 	cd src/lua; $(MAKE) clean
-	$(MAKE) soclean
+	rm -f lib/*.so* bin/*
 
 # in case they were not created during unpacking
 dirs:	bin lib
@@ -44,27 +45,7 @@ install: all strip
 	$(INSTALL_EXEC) bin/* $(INSTALL_BIN)
 	$(INSTALL_DATA) include/*.h $(INSTALL_INC)
 	$(INSTALL_DATA) lib/*.a $(INSTALL_LIB)
-	$(INSTALL_DATA) doc/*.1 $(INSTALL_MAN)
-
-# shared libraries (for BSD Installer)
-so:
-	ld -o lib/liblua50.so -shared -soname liblua50.so src/*.o
-	ld -o lib/liblualib50.so -shared -soname liblualib50.so src/lib/*.o
-
-# binaries using shared libraries
-sobin:
-	rm -f bin/*
-	cd src/lua; $(MAKE)
-	cd src/luac; $(MAKE)
-
-# install shared libraries
-soinstall:
-	$(INSTALL_EXEC) lib/*.so.* $(INSTALL_LIB)
-	cd $(INSTALL_LIB); ln -fs liblua.so.$V liblua.so; ln -fs liblualib.so.$V liblualib.so
-
-# clean shared libraries
-soclean:
-	rm -f lib/*.so* bin/*
+	$(INSTALL_EXEC) lib/*.so* $(INSTALL_LIB)
 
 # echo config parameters
 echo:
@@ -107,9 +88,3 @@ lecho:
 
 newer:
 	@find . -newer MANIFEST -type f
-
-distribution: all
-	mkdir -p $(DESTDIR)/bin
-	cp bin/lua $(DESTDIR)/bin
-
-# (end of Makefile)

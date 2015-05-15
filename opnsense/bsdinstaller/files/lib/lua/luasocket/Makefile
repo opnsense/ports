@@ -80,7 +80,7 @@ clean:
 	rm -f $(LOBJS) $(MOBJS) $(SOBJS)
 	rm -f $(MDYN) $(LDYN) $(SDYN)
 
-distribution: strip
+install: strip
 	mkdir -p $(DESTDIR)/lib/lua/5.0
 	cp $(LDYN) $(MDYN) $(DESTDIR)/lib/lua/5.0
 	mkdir -p $(DESTDIR)/share/lua/5.0
