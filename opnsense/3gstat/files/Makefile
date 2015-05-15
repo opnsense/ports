@@ -1,6 +1,7 @@
 PROG=	3gstat
-NO_MAN=
+MAN=
 
-WARNS?= 6
+BINDIR=	${PREFIX}/bin
+WARNS=	6
 
 .include <bsd.prog.mk>
