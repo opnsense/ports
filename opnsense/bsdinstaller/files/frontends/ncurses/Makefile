@@ -51,7 +51,7 @@ debug:
 # Create directory layout for binary distribution.
 
 install: all
-	mkdir -p ${DESTDIR}/sbin
-	cp dfuife_curses ${DESTDIR}/sbin/
-	mkdir -p ${DESTDIR}/share/dfuife_curses
-	cp fred.txt ${DESTDIR}/share/dfuife_curses/
+	mkdir -p ${DESTDIR}${PREFIX}/sbin
+	cp dfuife_curses ${DESTDIR}${PREFIX}/sbin
+	mkdir -p ${DESTDIR}${PREFIX}/share/dfuife_curses
+	cp *.txt ${DESTDIR}${PREFIX}/share/dfuife_curses

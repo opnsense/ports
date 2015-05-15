@@ -82,4 +82,7 @@ strip: all
 	${STRIP} $T
 
 install: strip
-	@echo "XXX Not yet implemented."
+	mkdir -p $(DESTDIR)${PREFIX}/lib/lua/5.0
+	cp $T $(DESTDIR)${PREFIX}/lib/lua/5.0
+	mkdir -p ${DESTDIR}${PREFIX}/share/lua/5.0
+	cp curses.lua ${DESTDIR}${PREFIX}/share/lua/5.0

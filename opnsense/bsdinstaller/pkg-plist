@@ -100,6 +100,8 @@ share/dfuibe_lua/upgrade/500_perform_upgrade.lua
 share/dfuibe_lua/upgrade/550_upgrade_configuration.lua
 share/dfuibe_lua/upgrade/600_unmount_target_system.lua
 share/dfuibe_lua/upgrade/main.lua
+share/dfuife_curses/fred.txt
+share/dfuife_curses/puffy.txt
 share/lua/5.0/app.lua
 share/lua/5.0/compat-5.1.lua
 share/lua/5.0/curses.lua

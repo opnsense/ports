@@ -10,5 +10,5 @@ clean:
 	@echo "No cleaning required."
 
 install:
-	mkdir -p ${DESTDIR}/share/lua/5.0/
-	cp app.lua ${DESTDIR}/share/lua/5.0/
+	mkdir -p ${DESTDIR}${PREFIX}/share/lua/5.0
+	cp app.lua ${DESTDIR}${PREFIX}/share/lua/5.0

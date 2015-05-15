@@ -80,8 +80,8 @@ clean:
 	rm -f $(LOBJS) $(MOBJS) $(SOBJS)
 	rm -f $(MDYN) $(LDYN) $(SDYN)
 
-install: strip
-	mkdir -p $(DESTDIR)/lib/lua/5.0
-	cp $(LDYN) $(MDYN) $(DESTDIR)/lib/lua/5.0
-	mkdir -p $(DESTDIR)/share/lua/5.0
-	cp lua/*.lua $(DESTDIR)/share/lua/5.0
+install: all strip
+	mkdir -p $(DESTDIR)${PREFIX}/lib/lua/5.0
+	cp $(LDYN) $(MDYN) $(DESTDIR)${PREFIX}/lib/lua/5.0
+	mkdir -p $(DESTDIR)${PREFIX}/share/lua/5.0
+	cp lua/*.lua $(DESTDIR)${PREFIX}/share/lua/5.0

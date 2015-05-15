@@ -34,5 +34,7 @@ clean:
 	rm -rf *.so *.o
 
 install: ${LIB}
-	mkdir -p ${DESTDIR}/lib/lua/5.0/
-	cp ${LIB} ${DESTDIR}/lib/lua/5.0/
+	mkdir -p ${DESTDIR}${PREFIX}/lib/lua/5.0
+	cp ${LIB} ${DESTDIR}${PREFIX}/lib/lua/5.0
+	mkdir -p ${DESTDIR}${PREFIX}/share/lua/5.0
+	cp pty.lua ${DESTDIR}${PREFIX}/share/lua/5.0

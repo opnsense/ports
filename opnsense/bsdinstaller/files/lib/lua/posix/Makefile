@@ -55,7 +55,9 @@ xx:
 # distribution
 
 install: strip
-	mkdir -p $(DESTDIR)/lib/lua/5.0
-	cp $T $(DESTDIR)/lib/lua/5.0
+	mkdir -p $(DESTDIR)${PREFIX}/lib/lua/5.0
+	cp $T $(DESTDIR)${PREFIX}/lib/lua/5.0
+	mkdir -p ${DESTDIR}${PREFIX}/share/lua/5.0
+	cp posix.lua ${DESTDIR}${PREFIX}/share/lua/5.0
 
 # eof
