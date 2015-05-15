@@ -3,10 +3,10 @@
 
 PORTNAME=	keychain
 PORTVERSION=	2.8.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	http://www.funtoo.org/archive/keychain/ \
-		GENTOO/distfiles
+		GENTOO
 
 MAINTAINER=	garga@FreeBSD.org
 COMMENT=	User-friendly front-end to ssh-agent(1)
@@ -28,7 +28,9 @@ PLIST_FILES=	bin/${PORTNAME} \
 
 PORTDOCS=	ChangeLog README.md
 
+.if !exists(${LOCALBASE}/bin/ssh-agent) && !exists(/usr/bin/ssh-agent)
 RUN_DEPENDS+=	ssh-agent:${PORTSDIR}/security/openssh-portable
+.endif
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin
