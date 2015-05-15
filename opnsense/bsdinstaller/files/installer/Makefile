@@ -1,14 +1,11 @@
 # Makefile for dfuibe_lua.
 # $Id: Makefile,v 1.55 2005/08/27 08:04:49 cpressey Exp $
 
-BASE?=../..
+BASE?=..
 .include "${BASE}/Config"
 
 all:
-	@echo "Nothing to build."
-
 clean:
-	rm -rf *.core
 
 install:
 	mkdir -p ${DESTDIR}${PREFIX}/share/dfuibe_lua
@@ -18,5 +15,7 @@ install:
 		mkdir -p ${DESTDIR}${PREFIX}/share/dfuibe_lua/$${_subdir}; \
 		cp $${_subdir}/*.lua ${DESTDIR}${PREFIX}/share/dfuibe_lua/$${_subdir}; \
 	done
+	mkdir -p ${DESTDIR}${PREFIX}/installer
+	cp *.sh ${DESTDIR}${PREFIX}/installer
 
-.PHONY: all clean install
+.PHONY: install

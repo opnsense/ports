@@ -1,22 +1,24 @@
-# makefile for Lua interpreter
+# makefile for Lua compiler
 
-CFLAGS += -fPIC
-
-BASE=../../../..
+BASE=../../..
 include $(BASE)/Config
 
 LUA= ../..
 
-EXTRA_DEFS= $(USERCONF)
-OBJS= lua.o
-SRCS= lua.c
+INCS= -I$(INC) -I.. $(EXTRA_INCS)
+OBJS= luac.o print.o lopcodes.o
+SRCS= luac.c print.c
 
-T= $(BIN)/lua
+T= $(BIN)/luac
 
 all:	$T
 
 $T:	$(OBJS) $(LIB)/liblua.a $(LIB)/liblualib.a
 	$(CC) -o $@ $(MYLDFLAGS) $(OBJS) -L$(LIB) -llua -llualib $(EXTRA_LIBS) $(DLLIB)
+
+# print.c needs opcode names from lopcodes.c
+lopcodes.o:	../lopcodes.c ../lopcodes.h
+	$(CC) -o $@ -c $(CFLAGS) -DLUA_OPNAMES ../lopcodes.c
 
 $(LIB)/liblua.a:
 	cd ..; $(MAKE)

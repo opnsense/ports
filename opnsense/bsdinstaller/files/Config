@@ -12,7 +12,7 @@
 # in that file; see the comments in that file for settings that you might
 # want to tweak in here.
 #
-include ${BASE}/platform/lua/config
+include ${BASE}/lua/config
 
 #
 # Locations/names of build tools.

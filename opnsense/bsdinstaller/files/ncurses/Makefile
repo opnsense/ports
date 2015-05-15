@@ -1,8 +1,8 @@
 # Makefile for dfuife_curses.
 # $Id: Makefile,v 1.28 2005/08/29 19:19:13 cpressey Exp $
 
-BASE?=../..
-include ${BASE}/Config
+BASE?=..
+.include "${BASE}/Config"
 
 PACKAGE=dfuife_curses
 
@@ -12,11 +12,10 @@ OBJS=	curses_util.o \
 	main.o
 
 CFLAGS+=	${WARNS}
-CFLAGS+=	-I../../lib/libaura -I../../lib/libdfui
-CFLAGS+=	-I/usr/local/include -I/usr/pkg/include
-CFLAGS+=	${EXTRA_CFLAGS}
+CFLAGS+=	-I${BASE}/lib/libaura -I${BASE}/lib/libdfui
+CFLAGS+=	-I/usr/local/include
 
-LDFLAGS+=	-L../../lib/libdfui -ldfui
+LDFLAGS+=	-L${BASE}/lib/libdfui -ldfui
 LDFLAGS+=	-lpanel -lncurses
 
 # Default target.

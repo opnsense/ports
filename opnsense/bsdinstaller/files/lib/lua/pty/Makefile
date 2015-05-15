@@ -3,7 +3,7 @@
 BASE?=../../..
 include ${BASE}/Config
 
-LUA?=../../../platform/lua
+LUA?=../../../lua
 
 COMPAT?=../compat-5.1
 COMPATOBJ=${COMPAT}/compat-5.1.o

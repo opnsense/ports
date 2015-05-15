@@ -7,7 +7,7 @@ include ${BASE}/Config
 LV=2.0
 MV=1.0
 
-LUA?=../../../platform/lua
+LUA?=../../../lua
 
 COMPAT?=../compat-5.1
 COMPATOBJ=$(COMPAT)/compat-5.1.o

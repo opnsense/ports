@@ -5,7 +5,7 @@ CFLAGS += -fPIC
 BASE?=../../..
 include ${BASE}/Config
 
-LUA=../../../platform/lua
+LUA=../../../lua
 
 CFLAGS+=-Wall $(EXTRA_CFLAGS)
 

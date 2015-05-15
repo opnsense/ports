@@ -4,7 +4,7 @@ BASE?=../../..
 include ${BASE}/Config
 
 # change these to reflect your Lua installation
-LUA= ../../../platform/lua
+LUA= ../../../lua
 LUAINC= $(LUA)/include
 LUALIB= $(LUA)/lib
 LUABIN= $(LUA)/bin

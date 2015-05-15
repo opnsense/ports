@@ -2,14 +2,12 @@
 # see INSTALL for installation instructions
 # see config for customization instructions
 
-BASE=../..
+BASE=..
 include $(BASE)/Config
 
 LUA= .
 
 all: dirs
-	rm -f bin/*
-	$(MAKE) -C include all
 	$(MAKE) -C src all
 	$(MAKE) -C src/lib all
 	ld -o lib/liblua50.so -shared -soname liblua50.so src/*.o

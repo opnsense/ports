@@ -2,7 +2,7 @@
 
 CFLAGS += -fPIC
 
-BASE=../../..
+BASE=../..
 include $(BASE)/Config
 
 LUA= ..
