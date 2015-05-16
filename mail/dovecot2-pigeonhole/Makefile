@@ -3,6 +3,7 @@
 
 PORTNAME=	dovecot-pigeonhole
 PORTVERSION=	0.4.7
+PORTREVISION=	2
 CATEGORIES=	mail
 MASTER_SITES=	http://pigeonhole.dovecot.org/releases/${DOVECOTVERSION}/
 DISTNAME=	${PORTNAME:C/-/-${DOVECOTVERSION}-/}-${PORTVERSION}

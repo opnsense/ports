@@ -897,6 +897,7 @@
     SUBDIR += pxe
     SUBDIR += pxe-pdhcp
     SUBDIR += py-GeoIP
+    SUBDIR += py-GeoIP2
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
     SUBDIR += py-avahi
@@ -918,6 +919,7 @@
     SUBDIR += py-libcloud
     SUBDIR += py-libdnet
     SUBDIR += py-libnet
+    SUBDIR += py-maxminddb
     SUBDIR += py-medusa
     SUBDIR += py-miniupnpc
     SUBDIR += py-msrplib
