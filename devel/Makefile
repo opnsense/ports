@@ -2249,6 +2249,7 @@
     SUBDIR += p5-IO-Digest
     SUBDIR += p5-IO-Event
     SUBDIR += p5-IO-FDPass
+    SUBDIR += p5-IO-File-AtomicChange
     SUBDIR += p5-IO-HTML
     SUBDIR += p5-IO-Handle-Util
     SUBDIR += p5-IO-Interactive
@@ -2616,6 +2617,7 @@
     SUBDIR += p5-Object-Tiny-Lvalue
     SUBDIR += p5-Olson-Abbreviations
     SUBDIR += p5-Opcodes
+    SUBDIR += p5-OrePAN2
     SUBDIR += p5-Ouch
     SUBDIR += p5-PAR
     SUBDIR += p5-PAR-Dist
@@ -2684,7 +2686,9 @@
     SUBDIR += p5-Parse-CPAN-Packages-Fast
     SUBDIR += p5-Parse-ErrorString-Perl
     SUBDIR += p5-Parse-ExuberantCTags
+    SUBDIR += p5-Parse-LocalDistribution
     SUBDIR += p5-Parse-Method-Signatures
+    SUBDIR += p5-Parse-PMFile
     SUBDIR += p5-Parse-PerlConfig
     SUBDIR += p5-Parse-Pidl
     SUBDIR += p5-Parse-PlainConfig
@@ -3198,6 +3202,8 @@
     SUBDIR += p5-Types-Core
     SUBDIR += p5-Types-Path-Tiny
     SUBDIR += p5-Types-Serialiser
+    SUBDIR += p5-Types-URI
+    SUBDIR += p5-Types-UUID
     SUBDIR += p5-UDCode
     SUBDIR += p5-UI-Dialog
     SUBDIR += p5-UNIVERSAL-can
@@ -4403,6 +4409,7 @@
     SUBDIR += rubygem-atomic
     SUBDIR += rubygem-atoulme-antwrap
     SUBDIR += rubygem-attic
+    SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-authlogic
     SUBDIR += rubygem-awesome_print
     SUBDIR += rubygem-axiom-types
@@ -4725,6 +4732,7 @@
     SUBDIR += rubygem-sysinfo
     SUBDIR += rubygem-systemu
     SUBDIR += rubygem-table_print
+    SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-templater
     SUBDIR += rubygem-temple
     SUBDIR += rubygem-term-ansicolor
