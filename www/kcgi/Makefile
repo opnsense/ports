@@ -2,6 +2,7 @@
 
 PORTNAME=	kcgi
 PORTVERSION=	0.5.8
+PORTREVISION=	2
 CATEGORIES=	www devel
 MASTER_SITES=	http://kristaps.bsd.lv/kcgi/snapshots/
 

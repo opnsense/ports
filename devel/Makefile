@@ -564,6 +564,7 @@
     SUBDIR += git-modes
     SUBDIR += git-review
     SUBDIR += git-subversion
+    SUBDIR += gitflow
     SUBDIR += gitg
     SUBDIR += gitg0
     SUBDIR += gitinspector
@@ -1374,6 +1375,7 @@
     SUBDIR += ndesk-dbus
     SUBDIR += ndesk-dbus-glib
     SUBDIR += ndesk-options
+    SUBDIR += neotoma
     SUBDIR += netscape-java40
     SUBDIR += newfile
     SUBDIR += newt
@@ -1399,11 +1401,13 @@
     SUBDIR += ocaml-camomile-examples
     SUBDIR += ocaml-cfg
     SUBDIR += ocaml-classes
+    SUBDIR += ocaml-cmdliner
     SUBDIR += ocaml-cppo
     SUBDIR += ocaml-deriving-ocsigen
     SUBDIR += ocaml-equeue
     SUBDIR += ocaml-extlib
     SUBDIR += ocaml-findlib
+    SUBDIR += ocaml-ipaddr
     SUBDIR += ocaml-lacaml
     SUBDIR += ocaml-lwt
     SUBDIR += ocaml-magic
@@ -4344,8 +4348,10 @@
     SUBDIR += re2c
     SUBDIR += readline
     SUBDIR += rebar
+    SUBDIR += rebar3
     SUBDIR += regexx
     SUBDIR += regexxer
+    SUBDIR += relx
     SUBDIR += remake
     SUBDIR += renpy
     SUBDIR += replay
