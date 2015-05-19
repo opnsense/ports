@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	phalcon
-PORTVERSION=	2.0.1
+PORTVERSION=	2.0.0
 CATEGORIES=	www
 
 MAINTAINER=	linpct@gmail.com
