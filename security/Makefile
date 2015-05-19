@@ -173,6 +173,7 @@
     SUBDIR += hackbot
     SUBDIR += hamachi
     SUBDIR += heimdal
+    SUBDIR += hitch
     SUBDIR += hlfl
     SUBDIR += hmap
     SUBDIR += honggfuzz
@@ -1023,6 +1024,7 @@
     SUBDIR += tinc
     SUBDIR += tinyca
     SUBDIR += tlswrap
+    SUBDIR += tmux-cssh
     SUBDIR += tor
     SUBDIR += tor-devel
     SUBDIR += tpm-tools
