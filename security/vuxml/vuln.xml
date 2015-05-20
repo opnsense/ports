@@ -57,6 +57,163 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="35431f79-fe3e-11e4-ba63-000c292ee6b8">
+    <topic>ipsec-tools -- Memory leak leading to denial of service</topic>
+    <affects>
+      <package>
+	<name>ipsec-tools</name>
+	<range><lt>0.8.2_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Javantea reports:</p>
+	<blockquote cite="https://www.altsci.com/ipsec/">
+	  <p>It is a null dereference crash, leading to denial of
+	    service against the IKE daemon.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.altsci.com/ipsec/</url>
+    </references>
+    <dates>
+      <discovery>2015-05-18</discovery>
+      <entry>2015-05-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a9d456b4-fe4c-11e4-ad15-00262d5ed8ee">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>43.0.2357.65</lt></range>
+      </package>
+      <package>
+	<!-- pcbsd -->
+	<name>chromium-npapi</name>
+	<range><lt>43.0.2357.65</lt></range>
+      </package>
+      <package>
+	<!-- pcbsd -->
+	<name>chromium-pulse</name>
+	<range><lt>43.0.2357.65</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Google Chrome Releases reports:</p>
+	<blockquote cite="http://googlechromereleases.blogspot.nl/2015/05/stable-channel-update_19.html">
+	  <p>37 security fixes in this release, including:</p>
+	  <ul>
+	    <li>[474029] High CVE-2015-1252: Sandbox escape in Chrome. Credit
+	      to anonymous.</li>
+	    <li>[464552] High CVE-2015-1253: Cross-origin bypass in DOM. Credit
+	      to anonymous.</li>
+	    <li>[444927] High CVE-2015-1254: Cross-origin bypass in Editing.
+	      Credit to armin@rawsec.net.</li>
+	    <li>[473253] High CVE-2015-1255: Use-after-free in WebAudio. Credit
+	      to Khalil Zhani.</li>
+	    <li>[478549] High CVE-2015-1256: Use-after-free in SVG. Credit to
+	      Atte Kettunen of OUSPG.</li>
+	    <li>[481015] High CVE-2015-1251: Use-after-free in Speech. Credit
+	      to SkyLined working with HP's Zero Day Initiative.</li>
+	    <li>[468519] Medium CVE-2015-1257: Container-overflow in SVG.
+	      Credit to miaubiz.</li>
+	    <li>[450939] Medium CVE-2015-1258: Negative-size parameter in
+	      libvpx. Credit to cloudfuzzer</li>
+	    <li>[468167] Medium CVE-2015-1259: Uninitialized value in PDFium.
+	      Credit to Atte Kettunen of OUSPG</li>
+	    <li>[474370] Medium CVE-2015-1260: Use-after-free in WebRTC. Credit
+	      to Khalil Zhani.</li>
+	    <li>[466351] Medium CVE-2015-1261: URL bar spoofing. Credit to Juho
+	      Nurminen.</li>
+	    <li>[476647] Medium CVE-2015-1262: Uninitialized value in Blink.
+	      Credit to miaubiz.</li>
+	    <li>[479162] Low CVE-2015-1263: Insecure download of spellcheck
+	      dictionary. Credit to Mike Ruddy.</li>
+	    <li>[481015] Low CVE-2015-1264: Cross-site scripting in bookmarks.
+	      Credit to K0r3Ph1L.</li>
+	    <li>[489518] CVE-2015-1265: Various fixes from internal audits,
+	      fuzzing and other initiatives.</li>
+	    <li>Multiple vulnerabilities in V8 fixed at the tip of the 4.3
+	      branch (currently 4.3.61.21).</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://googlechromereleases.blogspot.nl/2015/05/stable-channel-update_19.html</url>
+      <cvename>CVE-2015-1251</cvename>
+      <cvename>CVE-2015-1252</cvename>
+      <cvename>CVE-2015-1253</cvename>
+      <cvename>CVE-2015-1254</cvename>
+      <cvename>CVE-2015-1255</cvename>
+      <cvename>CVE-2015-1256</cvename>
+      <cvename>CVE-2015-1257</cvename>
+      <cvename>CVE-2015-1258</cvename>
+      <cvename>CVE-2015-1259</cvename>
+      <cvename>CVE-2015-1260</cvename>
+      <cvename>CVE-2015-1261</cvename>
+      <cvename>CVE-2015-1262</cvename>
+      <cvename>CVE-2015-1263</cvename>
+      <cvename>CVE-2015-1264</cvename>
+      <cvename>CVE-2015-1265</cvename>
+    </references>
+    <dates>
+      <discovery>2015-05-19</discovery>
+      <entry>2015-05-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3d0428b2-fdfb-11e4-894f-d050996490d0">
+    <topic>clamav -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>clamav</name>
+	<range><lt>0.98.7</lt></range>
+      </package>
+      <package>
+	<name>clamav-devel</name>
+	<range><gt>0</gt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ClamAV project reports:</p>
+	<blockquote cite="http://blog.clamav.net/2015/04/clamav-0987-has-been-released.html">
+	  <p>ClamAV 0.98.7 is here! This release contains new
+	    scanning features and bug fixes.</p>
+	  <p>Fix infinite loop condition on crafted y0da cryptor file.
+	    Identified and patch suggested by Sebastian Andrzej Siewior.
+	    CVE-2015-2221.</p>
+	  <p>Fix crash on crafted petite packed file. Reported and patch
+	    supplied by Sebastian Andrzej Siewior. CVE-2015-2222.</p>
+	  <p>Fix an infinite loop condition on a crafted "xz" archive
+	    file.  This was reported by Dimitri Kirchner and Goulven
+	    Guiheux.  CVE-2015-2668.</p>
+	  <p>Apply upstream patch for possible heap overflow in Henry
+	    Spencer's regex library. CVE-2015-2305.</p>
+	  <p>Fix crash in upx decoder with crafted file. Discovered and
+	    patch supplied by Sebastian Andrzej Siewior. CVE-2015-2170.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-2170</cvename>
+      <cvename>CVE-2015-2221</cvename>
+      <cvename>CVE-2015-2222</cvename>
+      <cvename>CVE-2015-2305</cvename>
+      <cvename>CVE-2015-2668</cvename>
+      <url>http://blog.clamav.net/2015/04/clamav-0987-has-been-released.html</url>
+    </references>
+    <dates>
+      <discovery>2015-04-29</discovery>
+      <entry>2015-05-19</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="a0089e18-fc9e-11e4-bc58-001e67150279">
     <topic>rubygems -- request hijacking vulnerability</topic>
     <affects>
