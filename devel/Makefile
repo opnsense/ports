@@ -126,6 +126,7 @@
     SUBDIR += bbfreeze-loader
     SUBDIR += bcc
     SUBDIR += bcpp
+    SUBDIR += bear
     SUBDIR += beautifyphp
     SUBDIR += bennugd-core
     SUBDIR += bennugd-modules
@@ -292,6 +293,7 @@
     SUBDIR += cut
     SUBDIR += cutils
     SUBDIR += cutter
+    SUBDIR += cuttlefish
     SUBDIR += cvs
     SUBDIR += cvs+ipv6
     SUBDIR += cvs-devel
@@ -443,6 +445,7 @@
     SUBDIR += fmake
     SUBDIR += fnccheck
     SUBDIR += fnorb
+    SUBDIR += folsom
     SUBDIR += fortran-utils
     SUBDIR += fortytwo-encore
     SUBDIR += fossil
@@ -617,6 +620,7 @@
     SUBDIR += godot
     SUBDIR += goffice
     SUBDIR += goffice010
+    SUBDIR += goldrush
     SUBDIR += google-gdata
     SUBDIR += google-perftools
     SUBDIR += google-sparsehash
@@ -969,6 +973,7 @@
     SUBDIR += kimwitu
     SUBDIR += kyra
     SUBDIR += kyua
+    SUBDIR += lager
     SUBDIR += lasi
     SUBDIR += lcov
     SUBDIR += leaktracer
