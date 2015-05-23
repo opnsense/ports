@@ -3823,6 +3823,7 @@
     SUBDIR += py-dirspec
     SUBDIR += py-distorm
     SUBDIR += py-distutils-extra
+    SUBDIR += py-django-tastypie-mongoengine
     SUBDIR += py-docopt
     SUBDIR += py-dogpile.cache
     SUBDIR += py-dogpile.core
@@ -4029,6 +4030,7 @@
     SUBDIR += py-pytemplate
     SUBDIR += py-pytest
     SUBDIR += py-pytest-runner
+    SUBDIR += py-pytest-timeout
     SUBDIR += py-python-statsd
     SUBDIR += py-pythonbrew
     SUBDIR += py-pytrie
