@@ -3,6 +3,7 @@
 
 PORTNAME=	mediawiki
 PORTVERSION=	1.24.2
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://releases.wikimedia.org/mediawiki/${PORTVERSION:R}/
 PKGNAMESUFFIX=	124
@@ -12,8 +13,14 @@ COMMENT=	Wiki engine used by Wikipedia
 
 LICENSE=	GPLv2
 
-CONFLICTS=	mediawiki119-[0-9]* mediawiki12[23]-[0-9]*
+CONFLICTS=	mediawiki119-[0-9]* mediawiki12[35]-[0-9]*
 
+USES=		shebangfix
+SHEBANG_FILES=	maintenance/dev/*.sh \
+		maintenance/hiphop/run-server
+SHEBANG_LANG=	hhvm
+hhvm_OLD_CMD=	/usr/bin/hhvm
+hhvm_CMD=	${LOCALBASE}/bin/hhvm # not installed by anything yet
 USE_PHP=	ctype hash iconv mbstring pcre session xml zlib readline dom json
 WANT_PHP_WEB=	yes
 MEDIAWIKIDIR?=	www/mediawiki

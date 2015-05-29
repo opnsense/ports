@@ -633,6 +633,7 @@
     SUBDIR += p5-SAVI-Perl
     SUBDIR += p5-SHA
     SUBDIR += p5-Safe-Hole
+    SUBDIR += p5-Session-Token
     SUBDIR += p5-Snort-Rule
     SUBDIR += p5-String-MkPasswd
     SUBDIR += p5-Sudo
@@ -858,7 +859,8 @@
     SUBDIR += py-zope.security
     SUBDIR += py-zope.securitypolicy
     SUBDIR += py-zope.session
-    SUBDIR += qtkeychain
+    SUBDIR += qtkeychain-qt4
+    SUBDIR += qtkeychain-qt5
     SUBDIR += quantis
     SUBDIR += quantis-kmod
     SUBDIR += racoon2
@@ -927,11 +929,12 @@
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-origami
     SUBDIR += rubygem-pyu-ruby-sasl
+    SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-razorback-scriptNugget
-    SUBDIR += rubygem-rc4
     SUBDIR += rubygem-recog
     SUBDIR += rubygem-roauth
     SUBDIR += rubygem-ruby-hmac
+    SUBDIR += rubygem-ruby-rc4
     SUBDIR += rubygem-scrypt
     SUBDIR += rubygem-six
     SUBDIR += rubygem-sshkit

@@ -1327,6 +1327,7 @@
     SUBDIR += rubygem-compass
     SUBDIR += rubygem-compass-rails
     SUBDIR += rubygem-creole
+    SUBDIR += rubygem-css_parser
     SUBDIR += rubygem-cssmin
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-diffy
@@ -1354,6 +1355,7 @@
     SUBDIR += rubygem-htmlentities
     SUBDIR += rubygem-ini
     SUBDIR += rubygem-itextomml
+    SUBDIR += rubygem-jekyll-assets
     SUBDIR += rubygem-jekyll-gist
     SUBDIR += rubygem-jekyll-paginate
     SUBDIR += rubygem-jekyll-sass-converter

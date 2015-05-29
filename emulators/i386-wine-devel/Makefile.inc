@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-PORTVERSION=	1.7.42
+PORTVERSION=	1.7.43
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	LOCAL/dbn/repos/wine/${DIST_SUBDIR}/${PORTVERSION}
@@ -29,7 +29,8 @@ CONFLICTS_INSTALL?=     wine-[0-9]* wine-staging-[0-9]* wine-devel-[0-9]* \
 EXTRACT_AFTER_ARGS=	-C / --exclude +COMPACT_MANIFEST --exclude +MANIFEST \
 				--exclude +MTREE_DIRS --exclude share/licenses/'*' \
 				--exclude libdata/ldconfig32/${UNIQUENAME} \
-				-s '|/usr/local|${STAGEDIR}${PREFIX}|gs'
+				-s '|/usr/local|${STAGEDIR}${PREFIX}|gs' \
+				-s '|compholio|staging|gs'
 NO_BUILD=	yes
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	wine only runs on x86 architecture
@@ -45,6 +46,13 @@ BUNDLE_LIBS=	yes
 GECKO_RUN_DEPENDS=	${DATADIR}/gecko/wine_gecko-2.36-x86.msi:${PORTSDIR}/emulators/wine-gecko-devel
 MONO_RUN_DEPENDS=	${DATADIR}/mono/wine-mono-4.5.6.msi:${PORTSDIR}/emulators/wine-mono-devel
 
+.if ${PKGNAMESUFFIX} == -staging
+DISTNAME=	i386-wine-compholio-1.7.43,1
+.if ${PORTVERSION} != 1.7.43
+BROKEN=		Temporary fix for compholio->staging rename.  Needs to be undone for 1.7.44 update cycle
+.endif
+.endif
+
 # Included for OPSYS and OSVERSION
 .include <bsd.port.pre.mk>
 
@@ -53,15 +61,15 @@ MONO_RUN_DEPENDS=	${DATADIR}/mono/wine-mono-4.5.6.msi:${PORTSDIR}/emulators/wine
 PLIST_SUB+=	OSREL${osrel}=""
 .if ${PKGNAMESUFFIX} == -devel
 PLIST_SUB+=	OSREL${osrel}-DEVEL=""
-PLIST_SUB+=	OSREL${osrel}-COMPHOLIO="@comment "
+PLIST_SUB+=	OSREL${osrel}-STAGING="@comment "
 .else
 PLIST_SUB+=	OSREL${osrel}-DEVEL="@comment "
-PLIST_SUB+=	OSREL${osrel}-COMPHOLIO=""
+PLIST_SUB+=	OSREL${osrel}-STAGING=""
 .endif
 .else
 PLIST_SUB+=	OSREL${osrel}="@comment "
 PLIST_SUB+=	OSREL${osrel}-DEVEL="@comment "
-PLIST_SUB+=	OSREL${osrel}-COMPHOLIO="@comment "
+PLIST_SUB+=	OSREL${osrel}-STAGING="@comment "
 .endif
 .endfor
 
@@ -73,7 +81,7 @@ DISTFILES=
 do-extract:
 	@${RM} -rf ${WRKDIR}
 	@${MKDIR} ${WRKDIR}
-	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${EXTRACT_ONLY} -C ${WRKDIR} --include '/usr/local/share/licenses/${PKGNAME}/LICENSE' -s '|/usr/local/share/licenses/${PKGNAME}/||g'
+	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${EXTRACT_ONLY} -C ${WRKDIR} --include '/usr/local/share/licenses/${DISTNAME}/LICENSE' -s '|/usr/local/share/licenses/${DISTNAME}/||g' -s '|compholio|staging|gs'
 
 do-install:
 	${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/${EXTRACT_ONLY} ${EXTRACT_AFTER_ARGS}

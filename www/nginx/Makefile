@@ -89,6 +89,7 @@ OPTIONS_DEFINE=	\
 	MODSECURITY \
 	NAXSI \
 	PASSENGER \
+	POSTGRES \
 	RDS_CSV \
 	RDS_JSON \
 	REDIS2 \
@@ -173,6 +174,7 @@ MEMC_DESC=			3rd party memc (memcached) module
 MODSECURITY_DESC=		3rd party mod_security module
 NAXSI_DESC=			3rd party naxsi module
 PASSENGER_DESC=			3rd party passenger module
+POSTGRES_DESC=			3rd party postgres module
 RDS_CSV_DESC=			3rd party rds_csv module
 RDS_JSON_DESC=			3rd party rds_json module
 REDIS2_DESC=			3rd party redis2 module
@@ -613,7 +615,7 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.7
+PASSENGER_VERSION=	5.0.8
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/ext/nginx
@@ -622,6 +624,16 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-passenger-build-nginx.rb
 CONFIGURE_ENV+=	OPTIMIZE="yes"
 CFLAGS+=	-DNDEBUG
 .endif
+.endif
+
+.if ${PORT_OPTIONS:MPOSTGRES}
+USES+=	pgsql
+NGINX_POSTGRES_VERSION=		1.0rc5
+GIT_NGINX_POSTGRES_VERSION=	1-g49855a0
+MASTER_SITES+=	https://github.com/FRiCKLE/ngx_postgres/tarball/${GIT_NGINX_POSTGRES_VERSION:S/^1-g//}/:postgres
+DISTFILES+=	FRiCKLE-ngx_postgres-${NGINX_POSTGRES_VERSION}-${GIT_NGINX_POSTGRES_VERSION}.tar.gz:postgres
+CONFIGURE_ARGS+=--add-module=${WRKDIR}/FRiCKLE-ngx_postgres-${GIT_NGINX_POSTGRES_VERSION:S/^1-g//}
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_postgres-config
 .endif
 
 .if ${PORT_OPTIONS:MRDS_CSV}
@@ -851,6 +863,11 @@ post-patch:
 		s!-leio!!; \
 		s!-Iext/libeio!!' \
 		${WRKDIR}/passenger-${PASSENGER_VERSION}/build/common_library.rb
+.endif
+.if ${PORT_OPTIONS:MPOSTGRES}
+	@${REINPLACE_CMD} \
+		's!%%PREFIX%%!${LOCALBASE}!g' \
+		${WRKDIR}/FRiCKLE-ngx_postgres-${GIT_NGINX_POSTGRES_VERSION:S/^1-g//}/config
 .endif
 .if ${PORT_OPTIONS:MSFLOW}
 	@${REINPLACE_CMD} \
