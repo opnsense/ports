@@ -4305,6 +4305,7 @@ x11-toolkits/linux-openmotif||2013-05-30|Has expired: Only used on FreeBSD 7, wh
 x11-toolkits/linux-pango||2013-05-30|Has expired: Only used on FreeBSD 7, which is end-of-life
 x11-toolkits/linux-qt33||2013-05-30|Has expired: Only used on FreeBSD 7, which is end-of-life
 irc/bitchx-devel|irc/bitchx|2013-05-31|Release finally cut
+www/rubygem-selnium-webdriver|www/rubygem-selenium-webdriver|2013-06-01|Fix typo in port name
 mail/p5-vpopmail||2013-06-03|Has expired: Broken for more than 6 month
 mail/vodmr||2013-06-03|Has expired: depends on expired mail/p5-vpopmail
 devel/libzrtp||2013-06-03|Has expired: No more public distfiles
@@ -7570,7 +7571,6 @@ devel/p5-Devel-Profiler|devel/p5-Devel-NYTProf|2015-04-24|Devel::DProf was remov
 audio/filter_audio|audio/libfilteraudio|2015-04-27|audio/filter-audio is renamed into audio/libfilteraudio
 www/p5-Google-Code-Upload||2015-04-30|Has expired: Google Code will be shutting down (http://google-opensource.blogspot.tw/2015/03/farewell-to-google-code.html)
 games/wmfortune||2015-04-30|Has expired: Broken for more than 6 months
-games/springlobby||2015-04-30|Has expired: Depends on expiring games/spring
 devel/p5-base||2015-04-30|Has expired: this port is outdated and base 2.18+ is already in all supported Perl releases
 security/py-certify|security/py-certifi|2015-05-01|security/py-certify is renamed into security/py-certifi
 devel/rubygem-mini_portile||2015-05-03|Has expired: Unneeded port
@@ -7588,3 +7588,18 @@ www/rubygem-taggable|www/rubygem-acts_as_taggable|2015-05-23|Rename to match our
 security/rubygem-meterpreter_bins|security/rubygem-metasploit-payloads|2015-05-23|Renamed upstream
 textproc/rubygem-augeas|textproc/rubygem-ruby-augeas|2015-05-23|Rename to match our rubygems naming
 textproc/rubygem-xslt|textproc/rubygem-ruby-xslt|2015-05-24|Rename to match our rubygems naming
+net-mgmt/glpi-plugins-tracker-agent|net-mgmt/glpi-plugins-fusioninventory-server|2015-05-24|Has expired: superceded by net-mgmt/glpi-plugins-fusioninventory-server
+net-mgmt/glpi-plugins-tracker-server|net-mgmt/glpi-plugins-fusioninventory-server|2015-05-24|Has expired: superceded by net-mgmt/glpi-plugins-fusioninventory-server
+science/rubygem-netcdf|science/rubygem-ruby-netcdf|2015-05-24|Rename to match our rubygems naming
+security/rubygem-rc4|security/rubygem-ruby-rc4|2015-05-24|Rename to match our rubygems naming
+print/rubygem-colortools|print/rubygem-color-tools|2015-05-24|Rename to match our rubygems naming
+security/qtkeychain|security/qtkeychain-qt5|2015-05-24|Renamed to indicate supported QT version
+emulators/wine-compholio|emulators/wine-staging|2015-05-23|Renamed
+emulators/i386-wine-compholio|emulators/i386-wine-staging|2015-05-23|Renamed
+www/rubygem-layout-yullio|www/rubygem-layout_yullio_generator|2015-05-27|Rename to match our rubygems naming
+net/rubygem-rightaws|net/rubygem-right_aws|2015-05-27|Rename to match our rubygems naming
+net/rubygem-rightflexiscale|net/rubygem-right_flexiscale|2015-05-27|Rename to match our rubygems naming
+net/rubygem-rightgogrid|net/rubygem-right_gogrid|2015-05-27|Rename to match our rubygems naming
+net/rubygem-righthttpconnection|net/rubygem-right_http_connection|2015-05-27|Rename to match our rubygems naming
+net/rubygem-rightslicehost|net/rubygem-right_slicehost|2015-05-27|Rename to match our rubygems naming
+audio/rubygem-shout|audio/rubygem-ruby-shout|2015-05-27|Rename to match our rubygems naming
