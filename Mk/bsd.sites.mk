@@ -520,7 +520,7 @@ IGNORE?=	Using master as GH_TAGNAME is invalid. \
 MASTER_SITE_GITHUB+=		https://codeload.github.com/%SUBDIR%
 MASTER_SITE_GITHUB_CLOUD+=	http://cloud.github.com/downloads/%SUBDIR%
 
-.  if !defined(MASTER_SITES) || !${MASTER_SITES:MGH} && !${MASTER_SITES:MGHC}
+.  if !defined(MASTER_SITES) || !${MASTER_SITES:MGH} && !${MASTER_SITES:MGHC} && !${USE_GITHUB:Mnodefault}
 MASTER_SITES+=	GH
 .  endif
 _GH_ACCOUNT_DEFAULT=	${PORTNAME}
@@ -623,7 +623,9 @@ _GITHUB_EXTRACT_SUFX=	.tar.gz
 # If there are non default groups
 .if !empty(_GITHUB_GROUPS:NDEFAULT)
 # Put the DEFAULT distfile first
+.if !${USE_GITHUB:Mnodefault}
 DISTFILES+=	${DISTNAME}${_GITHUB_EXTRACT_SUFX}
+.endif
 # Then for each of the remaining groups, add DISTFILES and MASTER_SITES
 # entries with the correct group and create {WRKSRC,DISTNAME,DISTFILES}_group
 # helper variables.
