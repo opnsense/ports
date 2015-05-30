@@ -1,6 +1,6 @@
---- lib/Makefile.in.orig	2014-04-10 13:56:38 UTC
-+++ lib/Makefile.in
-@@ -678,14 +678,14 @@ uninstall-am: uninstall-includeHEADERS u
+--- lib/Makefile.in.orig	2014-04-10 22:56:38.000000000 +0900
++++ lib/Makefile.in	2014-08-30 23:40:33.000000000 +0900
+@@ -678,14 +678,14 @@
  
  
  paperspecs.h: paperspecs Makefile
