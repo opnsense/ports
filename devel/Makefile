@@ -4421,6 +4421,7 @@
     SUBDIR += rubygem-activemessaging
     SUBDIR += rubygem-activesupport
     SUBDIR += rubygem-activesupport4
+    SUBDIR += rubygem-algorithms
     SUBDIR += rubygem-allison
     SUBDIR += rubygem-analogger
     SUBDIR += rubygem-annoy
@@ -4489,7 +4490,7 @@
     SUBDIR += rubygem-debugger-linecache
     SUBDIR += rubygem-debugger-xml
     SUBDIR += rubygem-deep_merge
-    SUBDIR += rubygem-deeptest
+    SUBDIR += rubygem-deep_test
     SUBDIR += rubygem-default_value_for
     SUBDIR += rubygem-delayed_job
     SUBDIR += rubygem-delayer
