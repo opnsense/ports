@@ -74,7 +74,9 @@ BROKEN=	OpenVPN ${DISTVERSION} cannot use --x509-username-field with PolarSSL. D
 LIB_DEPENDS+=		libpolarssl.so:${PORTSDIR}/security/polarssl
 CONFIGURE_ARGS+=	--with-crypto-library=polarssl
 . endif
-.else
+.endif
+
+.if ${PORT_OPTIONS:MOPENSSL}
 USE_OPENSSL=		yes
 CONFIGURE_ARGS+=	--with-crypto-library=openssl
 .endif
