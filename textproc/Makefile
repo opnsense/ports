@@ -1325,6 +1325,8 @@
     SUBDIR += rubygem-colorator
     SUBDIR += rubygem-colored
     SUBDIR += rubygem-compass
+    SUBDIR += rubygem-compass-core
+    SUBDIR += rubygem-compass-import-once
     SUBDIR += rubygem-compass-rails
     SUBDIR += rubygem-creole
     SUBDIR += rubygem-css_parser
