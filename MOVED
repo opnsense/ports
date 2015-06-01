@@ -1891,7 +1891,6 @@ net-mgmt/asused||2011-05-02|Has expired: Upstream disappeared and distfile is no
 net-mgmt/ipsectrace||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 net-mgmt/knowlan||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 net-mgmt/p5-Altoids||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
-net-mgmt/pktstat||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 net-mgmt/scotty3||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 net-im/aim||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
 net-im/jit||2011-05-02|Has expired: Upstream disappeared and distfile is no longer available
@@ -6676,7 +6675,6 @@ mail/rabl_server||2014-09-01|Not staged
 mail/relay-ctrl||2014-09-01|Not staged
 mail/reply-o-matic||2014-09-01|Not staged
 mail/sccmilter||2014-09-01|Not staged
-mail/smfsav||2014-09-01|Not staged
 mail/softfail||2014-09-01|Not staged
 mail/spmfilter-spamassassin||2014-09-01|Not staged
 mail/synonym||2014-09-01|Not staged
@@ -7604,3 +7602,6 @@ net/rubygem-righthttpconnection|net/rubygem-right_http_connection|2015-05-27|Ren
 net/rubygem-rightslicehost|net/rubygem-right_slicehost|2015-05-27|Rename to match our rubygems naming
 audio/rubygem-shout|audio/rubygem-ruby-shout|2015-05-27|Rename to match our rubygems naming
 devel/rubygem-test|devel/rubygem-rubygems-test|2015-05-29|Rename to match our rubygems naming
+devel/rubygem-deeptest|devel/rubygem-deep_test|2015-05-30|Rename to match our rubygems naming
+audio/portaudio2|audio/portaudio|2015-05-30|Merged into the main port
+net/rubygem-yadis|net/rubygem-ruby-yadis|2015-05-30|Rename to match our rubygems naming
