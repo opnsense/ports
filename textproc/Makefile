@@ -145,6 +145,7 @@
     SUBDIR += elasticsearch-plugin-head
     SUBDIR += elasticsearch-plugin-hq
     SUBDIR += elasticsearch-plugin-marvel
+    SUBDIR += elasticsearch-plugin-sql
     SUBDIR += elasticsearch-river-rabbitmq
     SUBDIR += emacs-wiki
     SUBDIR += en-aspell
@@ -217,7 +218,6 @@
     SUBDIR += gv-aspell
     SUBDIR += heirloom-doctools
     SUBDIR += hevea
-    SUBDIR += hgrep
     SUBDIR += hhm
     SUBDIR += hi-aspell
     SUBDIR += highlight

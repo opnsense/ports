@@ -113,7 +113,6 @@
     SUBDIR += demoroniser
     SUBDIR += dfileserver
     SUBDIR += dhttpd
-    SUBDIR += diamanda
     SUBDIR += dillo2
     SUBDIR += dojo
     SUBDIR += dojo-shrinksafe
@@ -1482,6 +1481,8 @@
     SUBDIR += py-cherrypy
     SUBDIR += py-cherrypy-old
     SUBDIR += py-clientform
+    SUBDIR += py-collective.easytemplate
+    SUBDIR += py-collective.templateengines
     SUBDIR += py-cssmin
     SUBDIR += py-cssselect
     SUBDIR += py-cssutils
@@ -1671,6 +1672,7 @@
     SUBDIR += py-postmarkup
     SUBDIR += py-praw
     SUBDIR += py-prewikka
+    SUBDIR += py-puppetboard
     SUBDIR += py-py-restclient
     SUBDIR += py-pyjwt
     SUBDIR += py-pylons
@@ -1748,6 +1750,7 @@
     SUBDIR += pyweblib
     SUBDIR += qdecoder
     SUBDIR += qooxdoo
+    SUBDIR += qt5-webchannel
     SUBDIR += quickie
     SUBDIR += qupzilla-qt4
     SUBDIR += qupzilla-qt5
