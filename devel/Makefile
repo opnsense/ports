@@ -1517,6 +1517,7 @@
     SUBDIR += p5-Alias
     SUBDIR += p5-Alien-SDL
     SUBDIR += p5-Alzabo
+    SUBDIR += p5-Any-Daemon
     SUBDIR += p5-Any-Moose
     SUBDIR += p5-Any-Moose-Convert
     SUBDIR += p5-AnyData
@@ -4918,6 +4919,7 @@
     SUBDIR += tclgetopts
     SUBDIR += tcllauncher
     SUBDIR += tcllib
+    SUBDIR += tcllibc
     SUBDIR += tclmore
     SUBDIR += tcloo
     SUBDIR += tclreadline
