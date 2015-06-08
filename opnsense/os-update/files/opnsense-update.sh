@@ -44,6 +44,8 @@ if [ -f ${MARKER} ]; then
 	INSTALLED=$(cat ${MARKER})
 fi
 
+DO_RELEASE=
+DO_MIRROR=
 DO_KERNEL=
 DO_FORCE=
 DO_BASE=
@@ -68,12 +70,14 @@ while getopts bcfkm:pr:v OPT; do
 		DO_KERNEL="-k"
 		;;
 	m)
+		DO_MIRROR="-m \"${OPTARG}\""
 		MIRROR=${OPTARG}
 		;;
 	p)
 		DO_PKGS="-p"
 		;;
 	r)
+		DO_RELEASE="-r \"${OPTARG}\""
 		RELEASE=${OPTARG}
 		DIRTY="dirty"
 		;;
@@ -102,7 +106,8 @@ if [ -n "${DO_PKGS}" ]; then
 	pkg clean -y
 	if [ -n "${DO_BASE}${DO_KERNEL}" ]; then
 		# script may have changed, relaunch...
-		opnsense-update ${DO_FORCE} ${DO_BASE} ${DO_KERNEL}
+		opnsense-update ${DO_BASE} ${DO_KERNEL} \
+		    ${DO_FORCE} ${DO_RELEASE} ${DO_MIRROR}
 	fi
 	# stop here to prevent the second pass
 	exit 0
