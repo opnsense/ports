@@ -107,7 +107,7 @@ if [ -n "${DO_PKGS}" ]; then
 	if [ -n "${DO_BASE}${DO_KERNEL}" ]; then
 		# script may have changed, relaunch...
 		opnsense-update ${DO_BASE} ${DO_KERNEL} \
-		    ${DO_FORCE} ${DO_RELEASE} ${DO_MIRROR}
+		    ${DO_FORCE} ${DO_RELEASE} ${DO_MIRROR}
 	fi
 	# stop here to prevent the second pass
 	exit 0
