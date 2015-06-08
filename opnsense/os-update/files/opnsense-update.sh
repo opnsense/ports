@@ -136,6 +136,13 @@ if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${DO_FORCE}" ]; then
 	exit 0
 fi
 
+echo
+echo "!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!!"
+echo "A kernel/base upgrade is in progress."
+echo "Please do not turn off the system."
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo
+
 OBSOLETESET=base-${RELEASE}-${ARCH}.obsolete
 KERNELSET=kernel-${RELEASE}-${ARCH}.txz
 BASESET=base-${RELEASE}-${ARCH}.txz
