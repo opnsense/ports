@@ -88,10 +88,11 @@ while getopts bcfkm:pr:v OPT; do
 	esac
 done
 
-if [ -z "${DO_KERNEL}${DO_BASE}" ]; then
-	# default is enable both
+if [ -z "${DO_KERNEL}${DO_BASE}${DO_PKGS}" ]; then
+	# default is enable all
 	DO_KERNEL="-k"
 	DO_BASE="-b"
+	DO_PKGS="-p"
 fi
 
 if [ -n "${DO_PKGS}" ]; then
@@ -103,6 +104,7 @@ if [ -n "${DO_PKGS}" ]; then
 		# script may have changed, relaunch...
 		opnsense-update ${DO_FORCE} ${DO_BASE} ${DO_KERNEL}
 	fi
+	# stop here to prevent the second pass
 	exit 0
 fi
 
