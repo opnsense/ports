@@ -44,17 +44,16 @@ if [ -f ${MARKER} ]; then
 	INSTALLED=$(cat ${MARKER})
 fi
 
-NOKERNEL=
-NOBASE=
+DO_KERNEL=
+DO_BASE=
+DO_PKGS=
 FORCE=
 DIRTY=
 
 while getopts bcfkm:r:v OPT; do
 	case ${OPT} in
 	b)
-		DIRTY="-base"
-		NOKERNEL=1
-		NOBASE=
+		DO_BASE="-b"
 		;;
 	c)
 		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED}" ]; then
@@ -63,29 +62,49 @@ while getopts bcfkm:r:v OPT; do
 		exit 0
 		;;
 	f)
-		FORCE=1
+		FORCE="-f"
 		;;
 	k)
-		DIRTY="-kernel"
-		NOKERNEL=
-		NOBASE=1
+		DO_KERNEL="-k"
 		;;
 	m)
 		MIRROR=${OPTARG}
 		;;
+	p)
+		DO_PKGS="-p"
+		;;
 	r)
 		RELEASE=${OPTARG}
+		DIRTY="dirty"
 		;;
 	v)
 		echo ${MY_RELEASE}-${ARCH}
 		exit 0
 		;;
 	*)
-		echo "Usage: opnsense-update [-bcfkv] [-m mirror] [-r release]" >&2
+		echo "Usage: opnsense-update [-bcfkpv] [-m mirror] [-r release]" >&2
 		exit 1
 		;;
 	esac
 done
+
+if [ -z "${DO_KERNEL}${DO_BASE}" ]; then
+	# default is enable both
+	DO_KERNEL="-k"
+	DO_BASE="-b"
+fi
+
+if [ -n "${DO_PKGS}" ]; then
+	pkg update -y ${FORCE}
+	pkg upgrade -y ${FORCE}
+	pkg autoremove -y
+	pkg clean -y
+	if [ -n "${DO_BASE}${DO_KERNEL}" ]; then
+		# script may have changed, relaunch...
+		opnsense-update ${DO_BASE} ${DO_KERNEL}
+	fi
+	exit 0
+fi
 
 # if no release was selected we use the embedded defaults
 if [ -z "${RELEASE}" ]; then
@@ -179,20 +198,20 @@ apply_obsolete()
 	echo "ok"
 }
 
-if [ -z "${NOKERNEL}" ]; then
+if [ -n "${DO_KERNEL}" ]; then
 	fetch_set ${KERNELSET} ${KERNELSHA}
 fi
 
-if [ -z "${NOBASE}" ]; then
+if [ -n "${DO_BASE}" ]; then
 	fetch_set ${BASESET} ${BASESHA}
 	fetch_set ${OBSOLETESET} ${OBSOLETESHA}
 fi
 
-if [ -z "${NOKERNEL}" ]; then
+if [ -n "${DO_KERNEL}" ]; then
 	apply_kernel
 fi
 
-if [ -z "${NOBASE}" ]; then
+if [ -n "${DO_BASE}" ]; then
 	apply_base
 	apply_obsolete
 fi
