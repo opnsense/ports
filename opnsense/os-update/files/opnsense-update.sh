@@ -70,14 +70,14 @@ while getopts bcfkm:pr:v OPT; do
 		DO_KERNEL="-k"
 		;;
 	m)
-		DO_MIRROR="-m \"${OPTARG}\""
+		DO_MIRROR="-m ${OPTARG}"
 		MIRROR=${OPTARG}
 		;;
 	p)
 		DO_PKGS="-p"
 		;;
 	r)
-		DO_RELEASE="-r \"${OPTARG}\""
+		DO_RELEASE="-r ${OPTARG}"
 		RELEASE=${OPTARG}
 		DIRTY="dirty"
 		;;
