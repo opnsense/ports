@@ -45,12 +45,12 @@ if [ -f ${MARKER} ]; then
 fi
 
 DO_KERNEL=
+DO_FORCE=
 DO_BASE=
 DO_PKGS=
-FORCE=
 DIRTY=
 
-while getopts bcfkm:r:v OPT; do
+while getopts bcfkm:pr:v OPT; do
 	case ${OPT} in
 	b)
 		DO_BASE="-b"
@@ -62,7 +62,7 @@ while getopts bcfkm:r:v OPT; do
 		exit 0
 		;;
 	f)
-		FORCE="-f"
+		DO_FORCE="-f"
 		;;
 	k)
 		DO_KERNEL="-k"
@@ -95,13 +95,13 @@ if [ -z "${DO_KERNEL}${DO_BASE}" ]; then
 fi
 
 if [ -n "${DO_PKGS}" ]; then
-	pkg update -y ${FORCE}
-	pkg upgrade -y ${FORCE}
+	pkg update ${DO_FORCE}
+	pkg upgrade -y ${DO_FORCE}
 	pkg autoremove -y
 	pkg clean -y
 	if [ -n "${DO_BASE}${DO_KERNEL}" ]; then
 		# script may have changed, relaunch...
-		opnsense-update ${DO_BASE} ${DO_KERNEL}
+		opnsense-update ${DO_FORCE} ${DO_BASE} ${DO_KERNEL}
 	fi
 	exit 0
 fi
@@ -124,7 +124,7 @@ if [ -z "${RELEASE}" ]; then
 	fi
 fi
 
-if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${FORCE}" ]; then
+if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${DO_FORCE}" ]; then
 	echo "Your system is up to date."
 	exit 0
 fi
