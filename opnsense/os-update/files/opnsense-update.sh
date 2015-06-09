@@ -186,8 +186,7 @@ apply_base()
 
 	chflags -R noschg /bin /sbin /lib /libexec \
 	    /usr/bin /usr/sbin /usr/lib && \
-	    tar -C/ -xjpf ${WORKDIR}/${BASESET} \
-	    --exclude="./etc/pkg/FreeBSD.conf" \
+	    tar -C/ -xpf ${WORKDIR}/${BASESET} \
 	    --exclude="./etc/group" \
 	    --exclude="./etc/master.passwd" \
 	    --exclude="./etc/passwd" \
