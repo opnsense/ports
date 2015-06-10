@@ -1,4 +1,4 @@
---- src/libcharon/plugins/xauth_generic/xauth_generic.c.orig	2014-06-05 07:50:30 UTC
+--- src/libcharon/plugins/xauth_generic/xauth_generic.c.orig	2015-04-24 19:32:06 UTC
 +++ src/libcharon/plugins/xauth_generic/xauth_generic.c
 @@ -13,10 +13,15 @@
   * for more details.
@@ -136,7 +136,7 @@
 -										SHARED_EAP, this->server, this->peer);
 -	while (enumerator->enumerate(enumerator, &shared, NULL, NULL))
 -	{
--		if (chunk_equals(shared->get_key(shared), pass))
+-		if (chunk_equals_const(shared->get_key(shared), pass))
 -		{
 +	/* XXX: Maybe support even FCGI calling here? */
 +	service = lib->settings->get_str(lib->settings,
@@ -166,7 +166,7 @@
  		{
 -			DBG1(DBG_IKE, "no XAuth secret found for '%Y' - '%Y'",
 -				 this->server, this->peer);
-+			if (chunk_equals(shared->get_key(shared), pass))
++			if (chunk_equals_const(shared->get_key(shared), pass))
 +			{
 +				status = SUCCESS;
 +				break;
