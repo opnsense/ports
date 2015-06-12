@@ -1538,6 +1538,7 @@
     SUBDIR += py-django-tastypie
     SUBDIR += py-django-threaded-multihost
     SUBDIR += py-django-tinymce
+    SUBDIR += py-django-voting
     SUBDIR += py-django14
     SUBDIR += py-django16
     SUBDIR += py-django17
@@ -1752,6 +1753,7 @@
     SUBDIR += qdecoder
     SUBDIR += qooxdoo
     SUBDIR += qt5-webchannel
+    SUBDIR += qt5-websockets
     SUBDIR += quickie
     SUBDIR += qupzilla-qt4
     SUBDIR += qupzilla-qt5
