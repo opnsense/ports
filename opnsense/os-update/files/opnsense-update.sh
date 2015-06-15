@@ -66,8 +66,10 @@ while getopts bcfkm:pr:v OPT; do
 		# -c only ever checks the embedded version string
 		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
 		    "${MY_RELEASE}-${ARCH}" = "${INSTALLED_BASE}" ]; then
+			echo "Your system is up to date."
 			exit 1
 		fi
+		echo "There are updates available."
 		exit 0
 		;;
 	f)
@@ -157,12 +159,10 @@ if [ -z "${DO_FORCE}" ]; then
 	fi
 fi
 
-echo
 echo "!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!!"
 echo "A kernel/base upgrade is in progress."
 echo "Please do not turn off the system."
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-echo
 
 OBSOLETESET=base-${RELEASE}-${ARCH}.obsolete
 KERNELSET=kernel-${RELEASE}-${ARCH}.txz

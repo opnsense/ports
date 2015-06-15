@@ -32,9 +32,11 @@
 .Nd OPNsense system update utility
 .Sh SYNOPSIS
 .Nm
-.Op Fl bcfkpv
+.Op Fl bfkp
 .Op Fl m Ar mirror
 .Op Fl r Ar release
+.Nm
+.Op Fl cv
 .Sh DESCRIPTION
 The
 .Nm
@@ -51,6 +53,7 @@ The options are as follows:
 Update the base system only.
 .It Fl c
 Check wether an update can be performed, but don't install it.
+This option does not apply to packages.
 .It Fl f
 Force an update even when the latest release is already installed.
 .It Fl k
@@ -68,6 +71,7 @@ Package upgrades are unaffected by this option.
 This is intended for development or custom builds only.
 .It Fl v
 Print the latest version string.
+This option does not apply to packages.
 .El
 .Pp
 Options
@@ -85,7 +89,7 @@ attempting to update all components at once.
 The
 .Xr pkg.conf 5
 file used to configure the packages mirror.
-This file is never written.
+The file is never written.
 .It Pa /usr/local/opnsense/version/os-update.base
 The file is used to check if a base system upgrade is necessary.
 After a successful update, the file is rewritten.
