@@ -65,7 +65,7 @@ while getopts bcfkm:pr:v OPT; do
 	c)
 		# -c only ever checks the embedded version string
 		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
-		    "${MY_RELEASE}-${ARCH}" = "${INSTALLED_BASE}"]; then
+		    "${MY_RELEASE}-${ARCH}" = "${INSTALLED_BASE}" ]; then
 			exit 1
 		fi
 		exit 0
@@ -138,13 +138,6 @@ if [ -z "${RELEASE}" ]; then
 fi
 
 if [ -z "${DO_FORCE}" ]; then
-	# nothing to do
-	if [ "${RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
-	    "${RELEASE}-${ARCH}" = "${INSTALLED_BASE}" ]; then
-		echo "Your system is up to date."
-		exit 0
-	fi
-
 	# disable kernel update if up-to-date
 	if [ "${RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
 	    -n "${DO_KERNEL}" ]; then
@@ -155,6 +148,12 @@ if [ -z "${DO_FORCE}" ]; then
 	if [ "${RELEASE}-${ARCH}" = "${INSTALLED_BASE}" -a \
 	    -n "${DO_BASE}" ]; then
 		DO_BASE=
+	fi
+
+	# nothing to do
+	if [ -z "${DO_KERNEL}${DO_BASE}" ]; then
+		echo "Your system is up to date."
+		exit 0
 	fi
 fi
 
@@ -190,7 +189,7 @@ apply_kernel()
 
 	rm -rf ${KERNELDIR}.old && \
 	    mv ${KERNELDIR} ${KERNELDIR}.old && \
-	    tar -C/ -xjpf ${WORKDIR}/${KERNELSET} && \
+	    tar -C/ -xpf ${WORKDIR}/${KERNELSET} && \
 	    kldxref ${KERNELDIR} && \
 	    echo "ok" && return
 
@@ -264,6 +263,6 @@ if [ -n "${DO_BASE}" ]; then
 	echo ${RELEASE}-${ARCH} > ${MARKER}.base
 fi
 
-rm -r ${WORKDIR}
+rm -rf ${WORKDIR}
 
 echo "Please reboot."
