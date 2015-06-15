@@ -40,8 +40,14 @@ MIRROR="http://pkg.opnsense.org/sets"
 MY_RELEASE="15.1.11"
 ARCH=$(uname -m)
 
-if [ -f ${MARKER} ]; then
-	INSTALLED=$(cat ${MARKER})
+INSTALLED_BASE=
+if [ -f ${MARKER}.base ]; then
+	INSTALLED_BASE=$(cat ${MARKER}.base)
+fi
+
+INSTALLED_KERNEL=
+if [ -f ${MARKER}.kernel ]; then
+	INSTALLED_KERNEL=$(cat ${MARKER}.kernel)
 fi
 
 DO_RELEASE=
@@ -50,7 +56,6 @@ DO_KERNEL=
 DO_FORCE=
 DO_BASE=
 DO_PKGS=
-DIRTY=
 
 while getopts bcfkm:pr:v OPT; do
 	case ${OPT} in
@@ -58,7 +63,9 @@ while getopts bcfkm:pr:v OPT; do
 		DO_BASE="-b"
 		;;
 	c)
-		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED}" ]; then
+		# -c only ever checks the embedded version string
+		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
+		    "${MY_RELEASE}-${ARCH}" = "${INSTALLED_BASE}"]; then
 			exit 1
 		fi
 		exit 0
@@ -79,7 +86,6 @@ while getopts bcfkm:pr:v OPT; do
 	r)
 		DO_RELEASE="-r ${OPTARG}"
 		RELEASE=${OPTARG}
-		DIRTY="dirty"
 		;;
 	v)
 		echo ${MY_RELEASE}-${ARCH}
@@ -131,9 +137,25 @@ if [ -z "${RELEASE}" ]; then
 	fi
 fi
 
-if [ "${RELEASE}-${ARCH}" = "${INSTALLED}" -a -z "${DO_FORCE}" ]; then
-	echo "Your system is up to date."
-	exit 0
+if [ -z "${DO_FORCE}" ]; then
+	# nothing to do
+	if [ "${RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
+	    "${RELEASE}-${ARCH}" = "${INSTALLED_BASE}" ]; then
+		echo "Your system is up to date."
+		exit 0
+	fi
+
+	# disable kernel update if up-to-date
+	if [ "${RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
+	    -n "${DO_KERNEL}" ]; then
+		DO_KERNEL=
+	fi
+
+	# disable base update if up-to-date
+	if [ "${RELEASE}-${ARCH}" = "${INSTALLED_BASE}" -a \
+	    -n "${DO_BASE}" ]; then
+		DO_BASE=
+	fi
 fi
 
 echo
@@ -229,8 +251,18 @@ if [ -n "${DO_BASE}" ]; then
 	apply_obsolete
 fi
 
+# bootstrap the directory  if needed
 mkdir -p $(dirname ${MARKER})
-echo ${RELEASE}-${ARCH}${DIRTY} > ${MARKER}
+# remove the file previously used
+rm -f ${MARKER}
+
+if [ -n "${DO_KERNEL}" ]; then
+	echo ${RELEASE}-${ARCH} > ${MARKER}.kernel
+fi
+
+if [ -n "${DO_BASE}" ]; then
+	echo ${RELEASE}-${ARCH} > ${MARKER}.base
+fi
 
 rm -r ${WORKDIR}
 
