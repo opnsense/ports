@@ -15,12 +15,10 @@
     SUBDIR += audacious-plugins
     SUBDIR += audiopreview
     SUBDIR += avbin
-    SUBDIR += avidemux2
-    SUBDIR += avidemux2-plugins
-    SUBDIR += avidemux26
-    SUBDIR += avidemux26-cli
-    SUBDIR += avidemux26-plugins
-    SUBDIR += avidemux26-qt4
+    SUBDIR += avidemux
+    SUBDIR += avidemux-cli
+    SUBDIR += avidemux-plugins
+    SUBDIR += avidemux-qt4
     SUBDIR += avinfo
     SUBDIR += baka-mplayer
     SUBDIR += bangarang
@@ -413,6 +411,7 @@
     SUBDIR += w_scan
     SUBDIR += webcamd
     SUBDIR += win32-codecs
+    SUBDIR += winff
     SUBDIR += x264
     SUBDIR += x265
     SUBDIR += xanim

@@ -795,6 +795,7 @@
     SUBDIR += py-flask-httpauth
     SUBDIR += py-gnupg
     SUBDIR += py-gnutls
+    SUBDIR += py-gpsoauth
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
     SUBDIR += py-kerberos
@@ -1061,8 +1062,8 @@
     SUBDIR += webshag
     SUBDIR += whatweb
     SUBDIR += wipe
-    SUBDIR += wpa_supplicant
     SUBDIR += wolfssl
+    SUBDIR += wpa_supplicant
     SUBDIR += xca
     SUBDIR += xinetd
     SUBDIR += xml-security
