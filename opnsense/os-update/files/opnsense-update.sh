@@ -37,7 +37,7 @@ rm -rf /tmp/opnsense-update.*
 
 MARKER="/usr/local/opnsense/version/os-update"
 MIRROR="http://pkg.opnsense.org/sets"
-MY_RELEASE="15.1.11"
+MY_RELEASE="15.1.12"
 ARCH=$(uname -m)
 
 INSTALLED_BASE=
@@ -127,12 +127,12 @@ if [ -z "${RELEASE}" ]; then
 
 	if [ ${ARCH} = "amd64" ]; then
 		OBSOLETESHA="34f7479276c3b43c73468686dcf6f402c5be4f1d7c1d5761e22d6b52a3d4c174"
-		KERNELSHA="eab75491a4857d6a7ea8e4dbd406a1c5da4765184d8709fb1113faa63e8fb5da"
-		BASESHA="4d6182b090ca269f472e0aedc3bc3ae903b11eadbe15aa80f9d2370a934402b7"
+		KERNELSHA="c2b18f4e1c4038c8e7e2ce8a39de304dc082da0a813343e27034eb6812aa417a"
+		BASESHA="860ede5979a5dc9263c053d6d5d7969c9fc47eb36205ea1002a112bef1db2e37"
 	elif [ ${ARCH} = "i386" ]; then
 		OBSOLETESHA="aefeb0f249ac98948dbaed1d8d4907987b9201f9268fb0498138e3bfe1142b65"
-		KERNELSHA="b10e6ac3309446518ae9e413489fbe82c2e966b51cc8c47f6d19816e62e38607"
-		BASESHA="83e2a5a1fff18e0f8e77ce7f4213569eaab149859b478cf7d5f95165c7a522e1"
+		KERNELSHA="489dcc937d8966726ea8e614fcf07ab6158295214d1f0f41946af3b5a581bccd"
+		BASESHA="0f09a3059e4206caabc0e9ed1dc37889dbbcd56beb48095f53dc24e9c2d55dac"
 	else
 		echo "Unknown architecture ${ARCH}" >&2
 		exit 1
@@ -159,10 +159,10 @@ if [ -z "${DO_FORCE}" ]; then
 	fi
 fi
 
-echo "!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!!"
-echo "A kernel/base upgrade is in progress."
-echo "Please do not turn off the system."
-echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+echo "!!!!!!!!!!!!! ATTENTION !!!!!!!!!!!!!!!!!"
+echo "! A kernel/base upgrade is in progress. !"
+echo "!  Please do not turn off the system.   !"
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 OBSOLETESET=base-${RELEASE}-${ARCH}.obsolete
 KERNELSET=kernel-${RELEASE}-${ARCH}.txz
