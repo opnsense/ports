@@ -22,7 +22,7 @@ GROUPS=		${PORTNAME}
 USES=		gettext gmake libtool pathfix pkgconfig tar:bzip2
 USE_LDCONFIG=	yes
 USE_CSTD=	gnu89
-USE_GNOME=	intltool
+USE_GNOME=	glib20 intltool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-security
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -58,7 +58,6 @@ PLIST_SUB+=	SMSD='@comment ' MSM='@comment ' PGM='@comment ' SQLT='@comment '
 CONFIGURE_ARGS+=	--disable-smsd
 .else
 PLIST_SUB+=	SMSD=''
-USE_GNOME+=	glib20
 . if ${PORT_OPTIONS:MMYSQL}
 USE_MYSQL=	yes
 PLIST_SUB+=	MSM=''
@@ -89,7 +88,6 @@ USE_GNOME+=	gtk20
 PLIST_SUB+=	X11=''
 .else
 CONFIGURE_ARGS+=	--without-x
-USE_GNOME+=	glib20
 PLIST_SUB+=	X11='@comment '
 .endif
 
