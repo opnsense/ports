@@ -5593,7 +5593,6 @@ graphics/enfle||2014-03-08|Has expired: No more public distfiles
 audio/oggsplit||2014-03-08|Has expired: No more public distfiles
 devel/picasm||2014-03-08|Has expired: No more public distfiles
 databases/mysql-udf-preg||2014-03-08|Has expired: No more public distfiles
-devel/py-gitpython||2014-03-08|Has expired: No more public distfiles
 net/mars_nwe||2014-03-08|Has expired: No more public distfiles
 audio/fmio||2014-03-08|Has expired: No more public distfiles
 audio/libmtp|multimedia/libmtp|2014-03-09|Moved from audio to multimedia
@@ -7640,4 +7639,4 @@ multimedia/avidemux2||2015-06-13|Branch no longer maintained upstream, use multi
 multimedia/avidemux26|multimedia/avidemux|2015-06-13|Renamed
 editors/zim|deskutils/zim|2015-06-18|Move to more appropriate category
 net/py-ldap2|net/py-ldap|2015-06-18|Rename to better match upstream name
-erlang-mustache|erlang-bbmustache|2015-06-21|Renamed upstream
+devel/erlang-mustache|devel/erlang-bbmustache|2015-06-21|Renamed upstream

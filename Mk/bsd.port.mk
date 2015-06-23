@@ -448,9 +448,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  Will be used to distinguish which linux
 #				  infrastructure ports should be used.
 #				  Valid values: 2.6.16.
-# AUTOMATIC_PLIST
-#				- Set to yes to enable automatic packing list generation.
-#				  Currently has no effect unless USE_LINUX_RPM is set.
 #
 # OVERRIDE_LINUX_BASE_PORT
 #				- This specifies the default linux base to use, for valid
@@ -474,12 +471,8 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  If this is set to a list of files, these files will be
 #				  automatically added to ${SUB_FILES}, some %%VAR%%'s will
 #				  automatically be expanded, they will be installed in
-#				  ${PREFIX}/etc/rc.d and added to the packing list.
-# USE_RCORDER	- List of rc.d startup scripts to be called early in the boot
-#				  process. This acts exactly like USE_RC_SUBR except that
-#				  scripts are installed in /etc/rc.d.
-#				  Because local rc.d scripts are included in the base rcorder
-#				  this option is not needed unless the port installs in the base.
+#				  ${PREFIX}/etc/rc.d if ${PREFIX} is not /usr, otherwise they
+#				  will be installed in /etc/rc.d/ and added to the packing list.
 ##
 # USE_APACHE	- If set, this port relies on an apache webserver.
 #
@@ -500,7 +493,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # Various directory definitions and variables to control them.
 # You rarely need to redefine any of these except WRKSRC and NO_WRKSUBDIR.
 #
-# LOCALBASE		- Where non-X11 ports install things.
+# LOCALBASE		- Where ports install things.
 #				  Default: /usr/local
 # LINUXBASE		- Where Linux ports install things.
 #				  Default: /compat/linux
@@ -1641,10 +1634,8 @@ MAKE_SHELL?=	${SH}
 CONFIGURE_ENV+=	SHELL=${CONFIGURE_SHELL} CONFIG_SHELL=${CONFIGURE_SHELL}
 MAKE_ENV+=		SHELL=${MAKE_SHELL} NO_LINT=YES
 
-.if defined(PATCHFILES)
-.if ${PATCHFILES:M*.zip}x != x
+.if defined(PATCHFILES) && ${PATCHFILES:M*.zip}
 PATCH_DEPENDS+=		${LOCALBASE}/bin/unzip:${PORTSDIR}/archivers/unzip
-.endif
 .endif
 
 # Check the compatibility layer for amd64/ia64
@@ -2139,8 +2130,6 @@ MTREE_FILE_DEFAULT=yes
 .endif
 MTREE_CMD?=	/usr/sbin/mtree
 MTREE_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
-
-READLINK_CMD?=	/usr/bin/readlink
 
 _SHAREMODE?=	0644
 
@@ -4159,8 +4148,7 @@ fetch-urlall-list:
 .endif
 
 .if !target(fetch-url-list)
-fetch-url-list:
-	@cd ${.CURDIR} && ${MAKE} fetch-url-list-int
+fetch-url-list: fetch-url-list-int
 .endif
 
 # Generates patches.
@@ -4322,8 +4310,7 @@ pre-repackage:
 # install package cookie
 
 .if !target(package-noinstall)
-package-noinstall:
-	@cd ${.CURDIR} && ${MAKE} package
+package-noinstall: package
 .endif
 
 ################################################################
@@ -5097,33 +5084,21 @@ ${TMPPLIST}:
 ${TMPPLIST_SORT}: ${TMPPLIST}
 	@${SORT} -u ${TMPPLIST} >${TMPPLIST_SORT}
 
-.if !target(add-plist-docs)
-.if defined(PORTDOCS) && !defined(NOPORTDOCS)
-add-plist-docs:
-.for x in ${PORTDOCS}
+.for _type in EXAMPLES DOCS
+.if !target(add-plist-${_type:tl})
+.if defined(PORT${_type}) && !defined(NOPORT${_type})
+add-plist-${_type:tl}:
+.for x in ${PORT${_type}}
 	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
-		if [ ! -e ${STAGEDIR}${DOCSDIR}/${x} ]; then \
-		${ECHO_CMD} ${DOCSDIR}/${x} >> ${TMPPLIST}; \
+		if [ ! -e ${STAGEDIR}${${_type}DIR}/${x} ]; then \
+		${ECHO_CMD} ${${_type}DIR}/${x} >> ${TMPPLIST}; \
 	fi;fi
 .endfor
-	@${FIND} -P ${PORTDOCS:S/^/${STAGEDIR}${DOCSDIR}\//} ! -type d 2>/dev/null | \
+	@${FIND} -P ${PORT${_type}:S/^/${STAGEDIR}${${_type}DIR}\//} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${STAGEDIR},,p' >> ${TMPPLIST}
 .endif
 .endif
-
-.if !target(add-plist-examples)
-.if defined(PORTEXAMPLES) && !defined(NOPORTEXAMPLES)
-add-plist-examples:
-.for x in ${PORTEXAMPLES}
-	@if ${ECHO_CMD} "${x}"| ${AWK} '$$1 ~ /(\*|\||\[|\]|\?|\{|\}|\$$)/ { exit 1};'; then \
-		if [ ! -e ${STAGEDIR}${EXAMPLESDIR}/${x} ]; then \
-		${ECHO_CMD} ${EXAMPLESDIR}/${x} >> ${TMPPLIST}; \
-	fi;fi
 .endfor
-	@${FIND} -P ${PORTEXAMPLES:S/^/${STAGEDIR}${EXAMPLESDIR}\//} ! -type d 2>/dev/null | \
-		${SED} -ne 's,^${STAGEDIR},,p' >> ${TMPPLIST}
-.endif
-.endif
 
 .if !target(add-plist-data)
 .if defined(PORTDATA)
@@ -5136,13 +5111,6 @@ add-plist-data:
 .endfor
 	@${FIND} -P ${PORTDATA:S/^/${STAGEDIR}${DATADIR}\//} ! -type d 2>/dev/null | \
 		${SED} -ne 's,^${STAGEDIR},,p' >> ${TMPPLIST}
-.endif
-.endif
-
-.if !target(add-plist-buildinfo)
-add-plist-buildinfo:
-.if defined(PACKAGE_BUILDING)
-	@${ECHO_CMD} "@comment Build details:  ${BUILDHOST}|${JAIL}|${BUILD}|${PORTSTREE}|${BUILDDATE}" >> ${TMPPLIST}
 .endif
 .endif
 
@@ -5166,22 +5134,15 @@ add-plist-post:
 .endif
 
 .if !target(install-rc-script)
-.if defined(USE_RCORDER) || defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
-install-rc-script:
-.if defined(USE_RCORDER)
-	@${ECHO_MSG} "===> Staging early rc.d startup script(s)"
-	@for i in ${USE_RCORDER}; do \
-		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${STAGEDIR}/etc/rc.d/$${i%.sh}; \
-		${ECHO_CMD} "/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
-	done
-.endif
 .if defined(USE_RC_SUBR) && ${USE_RC_SUBR:tu} != "YES"
+install-rc-script:
 	@${ECHO_MSG} "===> Staging rc.d startup script(s)"
 	@for i in ${USE_RC_SUBR}; do \
-		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${STAGEDIR}${PREFIX}/etc/rc.d/$${i%.sh}; \
-		${ECHO_CMD} "${PREFIX}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+		_prefix=${PREFIX}; \
+		[ "${PREFIX}" = "/usr" ] && _prefix="" ; \
+		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${STAGEDIR}$${_prefix}/etc/rc.d/$${i%.sh}; \
+		${ECHO_CMD} "$${_prefix}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 	done
-.endif
 .endif
 .endif
 
@@ -5288,15 +5249,12 @@ fake-pkg: create-manifest
 # Depend is generally meaningless for arbitrary ports, but if someone wants
 # one they can override this.  This is just to catch people who've gotten into
 # the habit of typing `make depend all install' as a matter of course.
-#
-.if !target(depend)
-depend:
-.endif
-
 # Same goes for tags
-.if !target(tags)
-tags:
+.for _t in depend tags
+.if !target(${_t})
+${_t}:
 .endif
+.endfor
 
 .if !defined(NOPRECIOUSMAKEVARS)
 # These won't change, so we can pass them through the environment
