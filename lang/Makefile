@@ -62,6 +62,7 @@
     SUBDIR += erlang-runtime15
     SUBDIR += erlang-runtime16
     SUBDIR += erlang-runtime17
+    SUBDIR += erlang-runtime18
     SUBDIR += erlang-wx
     SUBDIR += execline
     SUBDIR += expect
@@ -300,6 +301,7 @@
     SUBDIR += smalltalk
     SUBDIR += smlnj
     SUBDIR += snobol4
+    SUBDIR += spark
     SUBDIR += spidermonkey17
     SUBDIR += spidermonkey170
     SUBDIR += spidermonkey185
