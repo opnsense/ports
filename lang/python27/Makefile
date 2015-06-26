@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	python27
-PORTVERSION=	2.7.9
-PORTREVISION=	1
+PORTVERSION=	2.7.10
 CATEGORIES=	lang python ipv6
 MASTER_SITES=	PYTHON/ftp/python/${PORTVERSION}
 DISTNAME=	Python-${PORTVERSION}
@@ -105,7 +104,8 @@ PLIST_SUB+=	NO_NIS=""
 .endif
 
 .if defined(WITH_OPENSSL_PORT)
-CONFIGURE_ARGS+=	CPPFLAGS=-I/usr/local/include LDFLAGS=-L/usr/local/lib
+CPPFLAGS+=	-I${LOCALBASE}/include
+LIBS+=		-L${LOCALBASE}/lib
 .endif
 
 post-patch:
