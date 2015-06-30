@@ -409,6 +409,7 @@
     SUBDIR += elfrc
     SUBDIR += elfsh
     SUBDIR += elftoaout
+    SUBDIR += elixir-conform
     SUBDIR += embb
     SUBDIR += epl.el
     SUBDIR += epm
@@ -421,6 +422,7 @@
     SUBDIR += erlang-common_lib
     SUBDIR += erlang-cowlib
     SUBDIR += erlang-cuttlefish
+    SUBDIR += erlang-erlware_commons
     SUBDIR += erlang-esdl
     SUBDIR += erlang-exmpp
     SUBDIR += erlang-folsom
@@ -430,6 +432,7 @@
     SUBDIR += erlang-goldrush
     SUBDIR += erlang-gproc
     SUBDIR += erlang-ibrowse
+    SUBDIR += erlang-jsx
     SUBDIR += erlang-lager
     SUBDIR += erlang-lager_syslog
     SUBDIR += erlang-meck
@@ -438,7 +441,10 @@
     SUBDIR += erlang-oserl
     SUBDIR += erlang-poolboy
     SUBDIR += erlang-protobuffs
+    SUBDIR += erlang-providers
+    SUBDIR += erlang-rebar3_hex
     SUBDIR += erlang-recon
+    SUBDIR += erlang-ssl_verify_hostname
     SUBDIR += erlang-syslog
     SUBDIR += etcd
     SUBDIR += etcdctl
@@ -1577,6 +1583,7 @@
     SUBDIR += p5-AppConfig
     SUBDIR += p5-AppConfig-Std
     SUBDIR += p5-Array-Group
+    SUBDIR += p5-Array-Heap
     SUBDIR += p5-Array-Iterator
     SUBDIR += p5-Array-Unique
     SUBDIR += p5-Array-Window
@@ -1862,6 +1869,7 @@
     SUBDIR += p5-Data-Miscellany
     SUBDIR += p5-Data-Model
     SUBDIR += p5-Data-Munge
+    SUBDIR += p5-Data-Object
     SUBDIR += p5-Data-ObjectDriver
     SUBDIR += p5-Data-OptList
     SUBDIR += p5-Data-Page-NoTotalEntries
@@ -4545,7 +4553,9 @@
     SUBDIR += rubygem-deprecated2
     SUBDIR += rubygem-descendants_tracker
     SUBDIR += rubygem-devise
+    SUBDIR += rubygem-devise-rails4
     SUBDIR += rubygem-devise-async
+    SUBDIR += rubygem-devise-async-rails4
     SUBDIR += rubygem-directory_watcher
     SUBDIR += rubygem-ditz
     SUBDIR += rubygem-docile
@@ -5059,7 +5069,6 @@
     SUBDIR += xparam
     SUBDIR += xsd
     SUBDIR += xtl
-    SUBDIR += xtla
     SUBDIR += xwpe
     SUBDIR += xxgdb
     SUBDIR += xxl
