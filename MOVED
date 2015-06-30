@@ -4927,7 +4927,6 @@ www/py-Products.kupu||2013-09-23|This port is not required since Plone 4.3
 www/py-plone.app.kss||2013-09-23|This port is not required since Plone 4.3
 devel/py-archetypes.kss||2013-09-23|This port is not required since Plone 4.3
 devel/py-kss-core||2013-09-23|This port is not required since Plone 4.3
-cad/tkgate||2013-09-24|Removed
 x11/libXtrans||2013-09-26|Has expired: Project is obsoleted, use x11/xtrans instead
 sysutils/libpcbsd||2013-09-26|Obsolete: Use sysutils/pcbsd-utils-qt4 instead
 sysutils/pbreg||2013-09-26|Obsolete: Use sysutils/pcbsd-utils instead
@@ -7666,3 +7665,8 @@ textproc/exmpp|devel/erlang-exmpp|2015-06-27|Moved to devel category, with erlan
 databases/eredis|databases/erlang-eredis|2015-06-27|Renamed with erlang- prefix
 databases/epgsql|databases/erlang-epgsql|2015-06-27|Renamed with erlang- prefix
 www/varnish|www/varnish4|2015-06-28|Has expired: EOL was reached in April 2015, use www/varnish4
+audio/padevchooser||2015-06-29|Has expired: Broken for more than 6 months
+devel/xtla||2015-06-29|Has expired: Broken for more than 6 months
+mail/mail-notification||2015-06-29|Has expired: Broken for more than 6 months
+ports-mgmt/gnome-packagekit||2015-06-29|Has expired: Broken for more than 6 months
+sysutils/py-salt-api||2015-06-29|Has expired: Broken for more than 6 months
