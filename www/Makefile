@@ -1537,6 +1537,7 @@
     SUBDIR += py-django-tagging
     SUBDIR += py-django-taggit
     SUBDIR += py-django-tastypie
+    SUBDIR += py-django16-tastypie
     SUBDIR += py-django-threaded-multihost
     SUBDIR += py-django-tinymce
     SUBDIR += py-django-voting
@@ -1784,7 +1785,6 @@
     SUBDIR += rsstool
     SUBDIR += rt40
     SUBDIR += rt42
-    SUBDIR += ruby-amazon
     SUBDIR += ruby-aws
     SUBDIR += ruby-google
     SUBDIR += ruby-wgettsv
