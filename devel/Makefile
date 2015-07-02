@@ -410,7 +410,9 @@
     SUBDIR += elfsh
     SUBDIR += elftoaout
     SUBDIR += elixir-conform
+    SUBDIR += elixir-decimal
     SUBDIR += elixir-exrm
+    SUBDIR += elixir-plug
     SUBDIR += elixir-poison
     SUBDIR += embb
     SUBDIR += epl.el
@@ -4085,6 +4087,7 @@
     SUBDIR += py-pytest-xdist
     SUBDIR += py-python-bugzilla
     SUBDIR += py-python-jenkins
+    SUBDIR += py-python-pcre
     SUBDIR += py-python-statsd
     SUBDIR += py-python2-pythondialog
     SUBDIR += py-pythonbrew
@@ -4614,6 +4617,7 @@
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-git
+    SUBDIR += rubygem-git-version-bump
     SUBDIR += rubygem-github_api
     SUBDIR += rubygem-gitlab-pygments.rb
     SUBDIR += rubygem-gitlab_git

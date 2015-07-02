@@ -161,12 +161,14 @@
     SUBDIR += elgg
     SUBDIR += elinks
     SUBDIR += eliom
+    SUBDIR += elixir-phoenix
     SUBDIR += emacs-w3m
     SUBDIR += encode-explorer
     SUBDIR += entrans
     SUBDIR += ephemera
     SUBDIR += epiphany
     SUBDIR += erlang-cowboy
+    SUBDIR += erlang-hackney
     SUBDIR += erlang-mochiweb
     SUBDIR += erlang-mochiweb-basho
     SUBDIR += erlang-webmachine
