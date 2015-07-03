@@ -148,6 +148,8 @@
     SUBDIR += elasticsearch-plugin-marvel
     SUBDIR += elasticsearch-plugin-sql
     SUBDIR += elasticsearch-river-rabbitmq
+    SUBDIR += elixir-earmark
+    SUBDIR += elixir-ex_doc
     SUBDIR += emacs-wiki
     SUBDIR += en-aspell
     SUBDIR += en-hunspell

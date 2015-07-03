@@ -412,8 +412,12 @@
     SUBDIR += elixir-conform
     SUBDIR += elixir-decimal
     SUBDIR += elixir-exrm
+    SUBDIR += elixir-lager_logger
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
+    SUBDIR += elixir-timex
+    SUBDIR += elixir-timex-interval
+    SUBDIR += elixir-tzdata
     SUBDIR += embb
     SUBDIR += epl.el
     SUBDIR += epm
@@ -1038,6 +1042,7 @@
     SUBDIR += libbobcat
     SUBDIR += libbonobo
     SUBDIR += libbonobo-reference
+    SUBDIR += libbson
     SUBDIR += libburn
     SUBDIR += libc++
     SUBDIR += libccid
