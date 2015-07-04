@@ -82,7 +82,7 @@ PLIST_SUB+=	X86_ONLY=""
 PLIST_SUB+=	X86_ONLY="@comment "
 .endif
 
-.if ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64 || ${ARCH} == powerpc64 || ${ARCH} == mips64
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64 || ${ARCH} == powerpc64 || ${ARCH} == mips64
 PLIST_SUB+=	32BIT_ONLY="@comment "
 .else
 PLIST_SUB+=	32BIT_ONLY=""
@@ -101,11 +101,6 @@ CFLAGS+=	-DPYTHON_DEFAULT_RECURSION_LIMIT=900
 PLIST_SUB+=	NO_NIS="@comment "
 .else
 PLIST_SUB+=	NO_NIS=""
-.endif
-
-.if defined(WITH_OPENSSL_PORT)
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib
 .endif
 
 post-patch:
