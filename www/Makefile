@@ -165,12 +165,14 @@
     SUBDIR += elixir-phoenix
     SUBDIR += elixir-phoenix_ecto
     SUBDIR += elixir-phoenix_html
+    SUBDIR += elixir-webassembly
     SUBDIR += emacs-w3m
     SUBDIR += encode-explorer
     SUBDIR += entrans
     SUBDIR += ephemera
     SUBDIR += epiphany
     SUBDIR += erlang-cowboy
+    SUBDIR += erlang-cowlib
     SUBDIR += erlang-hackney
     SUBDIR += erlang-mochiweb
     SUBDIR += erlang-mochiweb-basho
