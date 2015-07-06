@@ -161,6 +161,8 @@
     SUBDIR += elgg
     SUBDIR += elinks
     SUBDIR += eliom
+    SUBDIR += elixir-httpoison
+    SUBDIR += elixir-httpotion
     SUBDIR += elixir-maru
     SUBDIR += elixir-phoenix
     SUBDIR += elixir-phoenix_ecto
@@ -174,6 +176,7 @@
     SUBDIR += erlang-cowboy
     SUBDIR += erlang-cowlib
     SUBDIR += erlang-hackney
+    SUBDIR += erlang-ibrowse
     SUBDIR += erlang-mochiweb
     SUBDIR += erlang-mochiweb-basho
     SUBDIR += erlang-webmachine

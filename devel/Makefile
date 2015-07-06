@@ -409,6 +409,7 @@
     SUBDIR += elfrc
     SUBDIR += elfsh
     SUBDIR += elftoaout
+    SUBDIR += elixir-calendar
     SUBDIR += elixir-conform
     SUBDIR += elixir-decimal
     SUBDIR += elixir-dialyze
@@ -416,6 +417,7 @@
     SUBDIR += elixir-exjsx
     SUBDIR += elixir-exrm
     SUBDIR += elixir-lager_logger
+    SUBDIR += elixir-msgpax
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
     SUBDIR += elixir-timex
@@ -441,7 +443,6 @@
     SUBDIR += erlang-getopt
     SUBDIR += erlang-goldrush
     SUBDIR += erlang-gproc
-    SUBDIR += erlang-ibrowse
     SUBDIR += erlang-jobs
     SUBDIR += erlang-jsx
     SUBDIR += erlang-lager
@@ -2287,6 +2288,7 @@
     SUBDIR += p5-Hash-MultiKey
     SUBDIR += p5-Hash-MultiValue
     SUBDIR += p5-Hash-NoRef
+    SUBDIR += p5-Hash-Slice
     SUBDIR += p5-Hash-Union
     SUBDIR += p5-Hash-Util-FieldHash-Compat
     SUBDIR += p5-Hash-WithDefaults
@@ -4088,6 +4090,7 @@
     SUBDIR += py-pyshapelib
     SUBDIR += py-pytemplate
     SUBDIR += py-pytest
+    SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-timeout
@@ -4672,6 +4675,7 @@
     SUBDIR += rubygem-librarianp
     SUBDIR += rubygem-libyajl2
     SUBDIR += rubygem-listen
+    SUBDIR += rubygem-listen2
     SUBDIR += rubygem-little-plugger
     SUBDIR += rubygem-locale
     SUBDIR += rubygem-lockfile
@@ -4863,6 +4867,7 @@
     SUBDIR += rubygem-travis
     SUBDIR += rubygem-treetop
     SUBDIR += rubygem-trollop
+    SUBDIR += rubygem-trollop1
     SUBDIR += rubygem-turn
     SUBDIR += rubygem-typed-array
     SUBDIR += rubygem-tzinfo
