@@ -4529,7 +4529,12 @@
     SUBDIR += rubygem-cairo-gobject
     SUBDIR += rubygem-capybara
     SUBDIR += rubygem-celluloid
+    SUBDIR += rubygem-celluloid-essentials
+    SUBDIR += rubygem-celluloid-extras
+    SUBDIR += rubygem-celluloid-fsm
     SUBDIR += rubygem-celluloid-io
+    SUBDIR += rubygem-celluloid-pool
+    SUBDIR += rubygem-celluloid-supervision
     SUBDIR += rubygem-cf-uaa-lib
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-chronic
@@ -4780,6 +4785,7 @@
     SUBDIR += rubygem-rspec
     SUBDIR += rubygem-rspec-core
     SUBDIR += rubygem-rspec-expectations
+    SUBDIR += rubygem-rspec-logsplit
     SUBDIR += rubygem-rspec-mocks
     SUBDIR += rubygem-rspec-support
     SUBDIR += rubygem-rubigen
