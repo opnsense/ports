@@ -57,6 +57,130 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="c93533a3-24f1-11e5-8b74-3c970e169bc2">
+    <topic>bind -- denial of service vulnerability</topic>
+    <affects>
+      <package>
+	<name>bind910</name>
+	<range><lt>9.10.2P2</lt></range>
+      </package>
+      <package>
+	<name>bind99</name>
+	<range><lt>9.9.7P1</lt></range>
+      </package>
+      <package>
+	<name>bind910-base</name>
+	<name>bind99-base</name>
+	<range><gt>0</gt></range>
+      </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><gt>9.3</gt><lt>9.3_19</lt></range>
+	<range><gt>8.4</gt><lt>8.4_33</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ISC reports:</p>
+	<blockquote cite="https://kb.isc.org/article/AA-01267/">
+	  <p>A very uncommon combination of zone data has been found
+	    that triggers a bug in BIND, with the result that named
+	    will exit with a "REQUIRE" failure in name.c when validating
+	    the data returned in answer to a recursive query.</p>
+	  <p>A recursive resolver that is performing DNSSEC validation
+	    can be deliberately terminated by any attacker who can
+	    cause a query to be performed against a maliciously
+	    constructed zone.  This will result in a denial of
+	    service to clients who rely on that resolver.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-4620</cvename>
+      <url>https://kb.isc.org/article/AA-01267/</url>
+    </references>
+    <dates>
+      <discovery>2015-07-07</discovery>
+      <entry>2015-07-07</entry>
+      <modified>2015-07-07</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="cbfa8bd7-24b6-11e5-86ff-14dae9d210b8">
+    <topic>haproxy -- information leak vulnerability</topic>
+    <affects>
+      <package>
+       <name>haproxy</name>
+       <range><ge>1.5.0</ge><lt>1.5.14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>HAProxy reports:</p>
+       <blockquote cite="http://www.haproxy.org/news.html">
+	    <p>A vulnerability was found when HTTP pipelining is used. In
+	    some cases, a client might be able to cause a buffer alignment issue and
+	    retrieve uninitialized memory contents that exhibit data from a past
+	    request or session. I want to address sincere congratulations to Charlie
+	    Smurthwaite of aTech Media for the really detailed traces he provided
+	    which made it possible to find the cause of this bug. Every user of
+	    1.5-dev, 1.5.x or 1.6-dev must upgrade to 1.5.14 or latest 1.6-dev
+	    snapshot to fix this issue, or use the backport of the fix provided by
+	    their operating system vendors. CVE-2015-3281 was assigned to this bug.</p>
+      </blockquote>
+     </body>
+    </description>
+    <references>
+      <url>http://www.haproxy.org/news.html</url>
+      <url>http://git.haproxy.org/?p=haproxy-1.5.git;a=commit;h=7ec765568883b2d4e5a2796adbeb492a22ec9bd4</url>
+      <mlist>http://seclists.org/oss-sec/2015/q3/61</mlist>
+      <cvename>CVE-2015-3281</cvename>
+    </references>
+    <dates>
+      <discovery>2015-07-02</discovery>
+      <entry>2015-07-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="038a5808-24b3-11e5-b0c8-bf4d8935d4fa">
+    <topic>roundcube - multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>roundcube</name>
+       <range><ge>1.1.0,1</ge><lt>1.1.2,1</lt></range>
+       <range><lt>1.0.6,1</lt></range>
+      </package>
+    </affects>
+    <description>
+     <body xmlns="http://www.w3.org/1999/xhtml">
+      <p>Roundcube reports:</p>
+      <blockquote cite="https://roundcube.net/news/2015/06/05/updates-1.1.2-and-1.0.6-released/">
+	    <p>We just published updates to both stable versions 1.0 and
+	    1.1 after fixing many minor bugs and adding some security improvements
+	    to the 1.1 release branch. Version 1.0.6 comes with cherry-picked fixes
+	    from the more recent version to ensure proper long term support
+	    especially in regards of security and compatibility.
+
+	    The security-related fixes in particular are:
+
+	    * XSS vulnerability in _mbox argument
+	    * security improvement in contact photo handling
+	    * potential info disclosure from temp directory</p>
+      </blockquote>
+     </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5381</cvename>
+      <cvename>CVE-2015-5383</cvename>
+      <mlist>http://openwall.com/lists/oss-security/2015/07/06/10</mlist>
+      <url>https://roundcube.net/news/2015/06/05/updates-1.1.2-and-1.0.6-released/</url>
+    </references>
+    <dates>
+      <discovery>2015-05-30</discovery>
+      <entry>2015-07-7</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="543b5939-2067-11e5-a4a5-002590263bf5">
     <topic>turnserver -- SQL injection vulnerability</topic>
     <affects>
@@ -457,10 +581,12 @@ Notes:
       <cvename>CVE-2015-3279</cvename>
       <url>https://access.redhat.com/security/cve/CVE-2015-3279</url>
       <url>http://bzr.linuxfoundation.org/loggerhead/openprinting/cups-filters/revision/7365</url>
+      <mlist>http://osdir.com/ml/opensource-software-security/2015-07/msg00021.html</mlist>
     </references>
     <dates>
       <discovery>2015-07-03</discovery>
       <entry>2015-07-03</entry>
+      <modified>2015-07-07</modified>
     </dates>
   </vuln>
 
