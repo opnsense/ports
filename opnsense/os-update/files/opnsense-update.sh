@@ -36,6 +36,7 @@ fi
 rm -rf /tmp/opnsense-update.*
 
 MARKER="/usr/local/opnsense/version/os-update"
+ORIGIN="/usr/local/etc/pkg/repos/origin.conf"
 MIRROR="http://pkg.opnsense.org/sets"
 MY_RELEASE="15.7"
 ARCH=$(uname -m)
@@ -51,13 +52,14 @@ if [ -f ${MARKER}.kernel ]; then
 fi
 
 DO_RELEASE=
+DO_FLAVOUR=
 DO_MIRROR=
 DO_KERNEL=
 DO_FORCE=
 DO_BASE=
 DO_PKGS=
 
-while getopts bcfkm:pr:v OPT; do
+while getopts bcfkm:n:pr:v OPT; do
 	case ${OPT} in
 	b)
 		DO_BASE="-b"
@@ -82,6 +84,10 @@ while getopts bcfkm:pr:v OPT; do
 		DO_MIRROR="-m ${OPTARG}"
 		MIRROR=${OPTARG}
 		;;
+	n)
+		DO_FLAVOUR="-n ${OPTARG}"
+		FLAVOUR=${OPTARG}
+		;;
 	p)
 		DO_PKGS="-p"
 		;;
@@ -105,6 +111,11 @@ if [ -z "${DO_KERNEL}${DO_BASE}${DO_PKGS}" ]; then
 	DO_KERNEL="-k"
 	DO_BASE="-b"
 	DO_PKGS="-p"
+fi
+
+if [ -n "${DO_FLAVOUR}" ]; then
+	# replace the package repo name
+	sed -i '' "/url:/s/\${ABI}.*/\${ABI}\/${FLAVOUR}\",/" ${ORIGIN}
 fi
 
 if [ -n "${DO_PKGS}" ]; then
