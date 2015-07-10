@@ -57,6 +57,164 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="c93c9395-25e1-11e5-a4a5-002590263bf5">
+    <topic>wpa_supplicant -- WPS_NFC option payload length validation vulnerability</topic>
+    <affects>
+      <package>
+	<name>wpa_supplicant</name>
+	<range><lt>2.4_4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jouni Malinen reports:</p>
+	<blockquote cite="http://w1.fi/security/2015-5/incomplete-wps-and-p2p-nfc-ndef-record-payload-length-validation.txt">
+	  <p>Incomplete WPS and P2P NFC NDEF record payload length
+	    validation. (2015-5)</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://w1.fi/security/2015-5/incomplete-wps-and-p2p-nfc-ndef-record-payload-length-validation.txt</url>
+    </references>
+    <dates>
+      <discovery>2015-07-08</discovery>
+      <entry>2015-07-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="075952fe-267e-11e5-9d03-3c970e169bc2">
+    <topic>openssl -- alternate chains certificate forgery vulnerability</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><ge>1.0.2_2</ge><lt>1.0.2_4</lt></range>
+      </package>
+      <package>
+	<name>mingw32-openssl</name>
+	<range><ge>1.0.2b</ge><lt>1.0.2d</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenSSL reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv_20150709.txt">
+	  <p>During certificate verification, OpenSSL (starting from version
+	    1.0.1n and 1.0.2b) will attempt to find an alternative certificate
+	    chain if the first attempt to build such a chain fails. An error
+	    in the implementation of this logic can mean that an attacker could
+	    cause certain checks on untrusted certificates to be bypassed,
+	    such as the CA flag, enabling them to use a valid leaf certificate
+	    to act as a CA and "issue" an invalid certificate.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-1793</cvename>
+      <url>https://www.openssl.org/news/secadv_20150709.txt</url>
+    </references>
+    <dates>
+      <discovery>2015-07-09</discovery>
+      <entry>2015-07-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="37ed8e9c-2651-11e5-86ff-14dae9d210b8">
+    <topic>django -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py27-django</name>
+	<range><ge>1.4.0</ge><lt>1.4.21</lt></range>
+      </package>
+      <package>
+	<name>py32-django</name>
+	<range><ge>1.4.0</ge><lt>1.4.21</lt></range>
+      </package>
+      <package>
+	<name>py33-django</name>
+	<range><ge>1.4.0</ge><lt>1.4.21</lt></range>
+      </package>
+      <package>
+	<name>py34-django</name>
+	<range><ge>1.4.0</ge><lt>1.4.21</lt></range>
+      </package>
+      <package>
+	<name>py27-django</name>
+	<range><ge>1.7.0</ge><lt>1.7.9</lt></range>
+      </package>
+      <package>
+	<name>py32-django</name>
+	<range><ge>1.7.0</ge><lt>1.7.9</lt></range>
+      </package>
+      <package>
+	<name>py33-django</name>
+	<range><ge>1.7.0</ge><lt>1.7.9</lt></range>
+      </package>
+      <package>
+	<name>py34-django</name>
+	<range><ge>1.7.0</ge><lt>1.7.9</lt></range>
+      </package>
+      <package>
+	<name>py27-django</name>
+	<range><ge>1.8.0</ge><lt>1.8.3</lt></range>
+      </package>
+      <package>
+	<name>py32-django</name>
+	<range><ge>1.8.0</ge><lt>1.8.3</lt></range>
+      </package>
+      <package>
+	<name>py33-django</name>
+	<range><ge>1.8.0</ge><lt>1.8.3</lt></range>
+      </package>
+      <package>
+	<name>py34-django</name>
+	<range><ge>1.8.0</ge><lt>1.8.3</lt></range>
+      </package>
+      <package>
+	<name>py27-django-devel</name>
+	<range><le>20150531,1</le></range>
+      </package>
+      <package>
+	<name>py32-django-devel</name>
+	<range><le>20150531,1</le></range>
+      </package>
+      <package>
+	<name>py33-django-devel</name>
+	<range><le>20150531,1</le></range>
+      </package>
+      <package>
+	<name>py34-django-devel</name>
+	<range><le>20150531,1</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tim Graham reports:</p>
+	<blockquote cite="https://www.djangoproject.com/weblog/2015/jul/08/security-releases/">
+	  <p>In accordance with our security release policy, the Django
+	    team is issuing multiple releases -- Django 1.4.21, 1.7.9, and 1.8.3.
+	    These releases are now available on PyPI and our download page. These
+	    releases address several security issues detailed below. We encourage
+	    all users of Django to upgrade as soon as possible. The Django master
+	    branch has also been updated.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.djangoproject.com/weblog/2015/jul/08/security-releases/</url>
+      <url>https://github.com/django/django/commit/df049ed77a4db67e45db5679bfc76a85d2a26680</url>
+      <url>https://github.com/django/django/commit/014247ad1922931a2f17beaf6249247298e9dc44</url>
+      <url>https://github.com/django/django/commit/17d3a6d8044752f482453f5906026eaf12c39e8e</url>
+      <cvename>CVE-2015-5143</cvename>
+      <cvename>CVE-2015-5144</cvename>
+      <cvename>CVE-2015-5145</cvename>
+    </references>
+    <dates>
+      <discovery>2015-06-10</discovery>
+      <entry>2015-07-09</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="348bfa69-25a2-11e5-ade1-0011d823eebd">
     <topic>Adobe Flash Player -- critical vulnerabilities</topic>
     <affects>
@@ -577,11 +735,12 @@ Notes:
       <url>http://blog.nodejs.org/2015/07/03/node-v0-12-6-stable/</url>
       <url>https://github.com/joyent/node/commit/78b0e30954111cfaba0edbeee85450d8cbc6fdf6</url>
       <url>https://github.com/nodejs/io.js/commit/030f8045c706a8c3925ec7cb3184fdfae4ba8676</url>
+      <cvename>CVE-2015-5380</cvename>
     </references>
     <dates>
       <discovery>2015-07-03</discovery>
       <entry>2015-07-06</entry>
-      <modified>2015-07-06</modified>
+      <modified>2015-07-09</modified>
     </dates>
   </vuln>
 
