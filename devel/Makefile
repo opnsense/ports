@@ -159,6 +159,7 @@
     SUBDIR += bsdowl
     SUBDIR += bufferpool
     SUBDIR += bugzilla44
+    SUBDIR += bugzilla50
     SUBDIR += build
     SUBDIR += buildbot
     SUBDIR += buildbot-slave
@@ -412,11 +413,13 @@
     SUBDIR += elixir-bson
     SUBDIR += elixir-calendar
     SUBDIR += elixir-conform
+    SUBDIR += elixir-csv
     SUBDIR += elixir-decimal
     SUBDIR += elixir-dialyze
     SUBDIR += elixir-exactor
     SUBDIR += elixir-exjsx
     SUBDIR += elixir-exrm
+    SUBDIR += elixir-hex
     SUBDIR += elixir-lager_logger
     SUBDIR += elixir-msgpax
     SUBDIR += elixir-plug
@@ -433,6 +436,7 @@
     SUBDIR += eris
     SUBDIR += erlang-bbmustache
     SUBDIR += erlang-bear
+    SUBDIR += erlang-clique
     SUBDIR += erlang-common_lib
     SUBDIR += erlang-cuttlefish
     SUBDIR += erlang-erlware_commons
