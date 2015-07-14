@@ -416,10 +416,12 @@
     SUBDIR += elixir-csv
     SUBDIR += elixir-decimal
     SUBDIR += elixir-dialyze
+    SUBDIR += elixir-estree
     SUBDIR += elixir-exactor
     SUBDIR += elixir-exjsx
     SUBDIR += elixir-exrm
     SUBDIR += elixir-hex
+    SUBDIR += elixir-inflex
     SUBDIR += elixir-lager_logger
     SUBDIR += elixir-msgpax
     SUBDIR += elixir-plug
@@ -3609,6 +3611,7 @@
     SUBDIR += pecl-swoole
     SUBDIR += pecl-sync
     SUBDIR += pecl-test_helpers
+    SUBDIR += pecl-trace
     SUBDIR += pecl-uopz
     SUBDIR += pecl-uploadprogress
     SUBDIR += pecl-uri_template
