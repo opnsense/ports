@@ -58,6 +58,254 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="3d39e927-29a2-11e5-86ff-14dae9d210b8">
+    <topic>php -- use-after-free vulnerability</topic>
+    <affects>
+      <package>
+	<name>php56-sqlite3</name>
+	<range><lt>5.6.11</lt></range>
+      </package>
+      <package>
+	<name>php55-sqlite3</name>
+	<range><lt>5.5.27</lt></range>
+      </package>
+      <package>
+	<name>php5-sqlite3</name>
+	<range><lt>5.4.43</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Symeon Paraschoudis reports:</p>
+	<blockquote cite="https://bugs.php.net/bug.php?id=69972">
+	  <p>Use-after-free vulnerability in sqlite3SafetyCheckSickOrOk()</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://bugs.php.net/bug.php?id=69972</url>
+    </references>
+    <dates>
+      <discovery>2015-06-30</discovery>
+      <entry>2015-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="af7fbd91-29a1-11e5-86ff-14dae9d210b8">
+    <topic>php -- use-after-free vulnerability</topic>
+    <affects>
+      <package>
+	<name>php56</name>
+	<range><lt>5.6.11</lt></range>
+      </package>
+      <package>
+	<name>php55</name>
+	<range><lt>5.5.27</lt></range>
+      </package>
+      <package>
+	<name>php5</name>
+	<range><lt>5.4.43</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Symeon Paraschoudis reports:</p>
+	<blockquote cite="https://bugs.php.net/bug.php?id=69970">
+	  <p>Use-after-free vulnerability in spl_recursive_it_move_forward_ex()</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://bugs.php.net/bug.php?id=69970</url>
+    </references>
+    <dates>
+      <discovery>2015-06-30</discovery>
+      <entry>2015-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5a1d5d74-29a0-11e5-86ff-14dae9d210b8">
+    <topic>php -- arbitrary code execution</topic>
+    <affects>
+      <package>
+	<name>php56</name>
+	<range><lt>5.6.11</lt></range>
+      </package>
+      <package>
+	<name>php55</name>
+	<range><lt>5.5.27</lt></range>
+      </package>
+      <package>
+	<name>php5</name>
+	<range><lt>5.4.43</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cmb reports:</p>
+	<blockquote cite="https://bugs.php.net/bug.php?id=69768">
+	  <p>When delayed variable substitution is enabled (can be set in the
+	    Registry, for instance), !ENV! works similar to %ENV%, and the
+	    value of the environment variable ENV will be subsituted.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://bugs.php.net/bug.php?id=69768</url>
+    </references>
+    <dates>
+      <discovery>2015-06-07</discovery>
+      <entry>2015-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="36bd352d-299b-11e5-86ff-14dae9d210b8">
+    <topic>mysql -- SSL Downgrade</topic>
+    <affects>
+      <package>
+	<name>php56-mysql</name>
+	<name>php56-mysqli</name>
+	<range><lt>5.6.11</lt></range>
+      </package>
+      <package>
+	<name>php55-mysql</name>
+	<name>php55-mysqli</name>
+	<range><lt>5.5.27</lt></range>
+      </package>
+      <package>
+	<name>php5-mysql</name>
+	<name>php5-mysqli</name>
+	<range><lt>5.4.43</lt></range>
+      </package>
+      <package>
+	<name>mariadb-server</name>
+	<name>mysql51-server</name>
+	<name>mysql55-server</name>
+	<name>mysql56-server</name>
+	<name>percona55-server</name>
+	<name>percona56-server</name>
+	<range><ge>0</ge></range>
+      </package>
+      <package>
+	<name>mariadb55</name>
+	<range><lt>5.5.44</lt></range>
+      </package>
+      <package>
+	<name>mariadb10</name>
+	<range><lt>10.0.20</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Duo Security reports:</p>
+	<blockquote cite="https://www.duosecurity.com/blog/backronym-mysql-vulnerability">
+	  <p>Researchers have identified a serious vulnerability in some
+	    versions of Oracle’s MySQL database product that allows an attacker to
+	    strip SSL/TLS connections of their security wrapping transparently.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://bugs.php.net/bug.php?id=69669</url>
+      <url>https://www.duosecurity.com/blog/backronym-mysql-vulnerability</url>
+      <url>http://www.ocert.org/advisories/ocert-2015-003.html</url>
+      <url>https://mariadb.atlassian.net/browse/MDEV-7937</url>
+      <url>https://mariadb.com/kb/en/mariadb/mariadb-10020-changelog/</url>
+      <url>https://mariadb.com/kb/en/mariadb/mariadb-5544-changelog/</url>
+      <cvename>CVE-2015-3152</cvename>
+    </references>
+    <dates>
+      <discovery>2015-03-20</discovery>
+      <entry>2015-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="81326883-2905-11e5-a4a5-002590263bf5">
+    <topic>devel/ipython -- CSRF possible remote execution vulnerability</topic>
+    <affects>
+      <package>
+	<name>ipython</name>
+	<range><ge>0.12</ge><lt>3.2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Kyle Kelley reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/92">
+	  <p>Summary: POST requests exposed via the IPython REST API are
+	    vulnerable to cross-site request forgery (CSRF). Web pages on
+	    different domains can make non-AJAX POST requests to known IPython
+	    URLs, and IPython will honor them. The user's browser will
+	    automatically send IPython cookies along with the requests. The
+	    response is blocked by the Same-Origin Policy, but the request
+	    isn't.</p>
+	  <p>API paths with issues:</p>
+	  <ul>
+	    <li>POST /api/contents/&lt;path&gt;/&lt;file&gt;</li>
+	    <li>POST /api/contents/&lt;path&gt;/&lt;file&gt;/checkpoints</li>
+	    <li>POST /api/contents/&lt;path&gt;/&lt;file&gt;/checkpoints/&lt;checkpoint_id&gt;</li>
+	    <li>POST /api/kernels</li>
+	    <li>POST /api/kernels/&lt;kernel_id&gt;/&lt;action&gt;</li>
+	    <li>POST /api/sessions</li>
+	    <li>POST /api/clusters/&lt;cluster_id&gt;/&lt;action&gt;</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/92</url>
+      <url>http://ipython.org/ipython-doc/3/whatsnew/version3.html#ipython-3-2-1</url>
+    </references>
+    <dates>
+      <discovery>2015-07-12</discovery>
+      <entry>2015-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="379788f3-2900-11e5-a4a5-002590263bf5">
+    <topic>freeradius -- insufficent CRL application vulnerability</topic>
+    <affects>
+      <package>
+	<name>freeradius2</name>
+	<range><lt>2.2.8</lt></range>
+      </package>
+      <package>
+	<name>freeradius3</name>
+	<range><lt>3.0.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>oCERT reports:</p>
+	<blockquote cite="http://www.ocert.org/advisories/ocert-2015-008.html">
+	  <p>The FreeRADIUS server relies on OpenSSL to perform certificate
+	    validation, including Certificate Revocation List (CRL) checks. The
+	    FreeRADIUS usage of OpenSSL, in CRL application, limits the checks
+	    to leaf certificates, therefore not detecting revocation of
+	    intermediate CA certificates.</p>
+	  <p>An unexpired client certificate, issued by an intermediate CA with
+	    a revoked certificate, is therefore accepted by FreeRADIUS.</p>
+	  <p>Specifically sets the X509_V_FLAG_CRL_CHECK flag for leaf
+	    certificate CRL checks, but does not use X509_V_FLAG_CRL_CHECK_ALL
+	    for CRL checks on the complete trust chain.</p>
+	  <p>The FreeRADIUS project advises that the recommended configuration
+	    is to use self-signed CAs for all EAP-TLS methods.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-4680</cvename>
+      <freebsdpr>ports/201058</freebsdpr>
+      <freebsdpr>ports/201059</freebsdpr>
+      <url>http://www.ocert.org/advisories/ocert-2015-008.html</url>
+      <url>http://freeradius.org/security.html</url>
+    </references>
+    <dates>
+      <discovery>2015-06-22</discovery>
+      <entry>2015-07-13</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="f1deed23-27ec-11e5-a4a5-002590263bf5">
     <topic>xen-tools -- xl command line config handling stack overflow</topic>
     <affects>
@@ -1377,6 +1625,9 @@ Notes:
       </package>
       <package>
 	<name>v8</name>
+	<range><le>3.18.5</le></range>
+      </package>
+      <package>
 	<name>v8-devel</name>
 	<range><le>3.27.7_2</le></range>
       </package>
@@ -2667,6 +2918,14 @@ Notes:
 	<name>tomcat8</name>
 	<range><lt>8.0.9</lt></range>
       </package>
+      <package>
+	<name>hadoop2</name>
+	<range><le>2.6.0</le></range>
+      </package>
+      <package>
+	<name>oozie</name>
+	<range><le>4.1.0</le></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -2698,6 +2957,7 @@ Notes:
     <dates>
       <discovery>2015-05-12</discovery>
       <entry>2015-06-16</entry>
+      <modified>2015-07-13</modified>
     </dates>
   </vuln>
 
