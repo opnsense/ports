@@ -104,7 +104,6 @@
     SUBDIR += kde_poster
     SUBDIR += kover
     SUBDIR += kpdftool
-    SUBDIR += latex-beamer
     SUBDIR += latex-ltablex
     SUBDIR += latex-resume
     SUBDIR += latex2rtf
@@ -187,7 +186,6 @@
     SUBDIR += pslib
     SUBDIR += pstotext
     SUBDIR += psutils
-    SUBDIR += pup
     SUBDIR += py-cups
     SUBDIR += py-fonttools
     SUBDIR += py-pdf

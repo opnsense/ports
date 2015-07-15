@@ -154,6 +154,7 @@
     SUBDIR += evas_generic_loaders-svg
     SUBDIR += evas_generic_loaders-xcf
     SUBDIR += evince
+    SUBDIR += evince-lite
     SUBDIR += evolvotron
     SUBDIR += exact-image
     SUBDIR += exif
@@ -175,7 +176,6 @@
     SUBDIR += fotoxx
     SUBDIR += founts
     SUBDIR += fpc-cairo
-    SUBDIR += fpc-fpgtk
     SUBDIR += fpc-graph
     SUBDIR += fpc-hermes
     SUBDIR += fpc-imagemagick

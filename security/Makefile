@@ -111,6 +111,7 @@
     SUBDIR += duo
     SUBDIR += easy-rsa
     SUBDIR += easypg
+    SUBDIR += elixir-comeonin
     SUBDIR += engine_pkcs11
     SUBDIR += expiretable
     SUBDIR += f-prot
@@ -397,6 +398,7 @@
     SUBDIR += openvpn-auth-ldap
     SUBDIR += openvpn-auth-radius
     SUBDIR += openvpn-devel
+    SUBDIR += openvpn-polarssl
     SUBDIR += ophcrack
     SUBDIR += orthrus
     SUBDIR += osiris
@@ -991,7 +993,6 @@
     SUBDIR += srm
     SUBDIR += ssdeep
     SUBDIR += ssh-copy-id
-    SUBDIR += ssh-gui
     SUBDIR += ssh-multiadd
     SUBDIR += ssh_askpass_gtk2
     SUBDIR += sshblock
