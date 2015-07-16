@@ -47,6 +47,7 @@
     SUBDIR += argyllcms
     SUBDIR += asciio
     SUBDIR += atril
+    SUBDIR += atril-lite
     SUBDIR += autopano-sift-c
     SUBDIR += autoq3d
     SUBDIR += autotrace
@@ -859,6 +860,7 @@
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-soya3d
     SUBDIR += py-stltools
+    SUBDIR += py-toyplot
     SUBDIR += py-wand
     SUBDIR += py-webcolors
     SUBDIR += py3-cairo

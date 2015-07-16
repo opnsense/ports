@@ -71,7 +71,6 @@
     SUBDIR += gdkxft
     SUBDIR += gdm
     SUBDIR += glproto
-    SUBDIR += gmessage
     SUBDIR += gmrun
     SUBDIR += gnome-clipboard-daemon
     SUBDIR += gnome-desktop
@@ -186,6 +185,7 @@
     SUBDIR += lsw
     SUBDIR += luit
     SUBDIR += lumina
+    SUBDIR += lumina-i18n
     SUBDIR += lupe
     SUBDIR += lxde-meta
     SUBDIR += lxmenu-data
