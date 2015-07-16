@@ -58,6 +58,296 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="44d9daee-940c-4179-86bb-6e3ffd617869">
+    <topic>mozilla -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>39.0,1</lt></range>
+      </package>
+      <package>
+	<name>linux-firefox</name>
+	<range><lt>39.0,1</lt></range>
+      </package>
+      <package>
+	<name>seamonkey</name>
+	<range><lt>2.36</lt></range>
+      </package>
+      <package>
+	<name>linux-seamonkey</name>
+	<range><lt>2.36</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>31.8.0,1</lt></range>
+	<range><ge>38.0,1</ge><lt>38.1.0,1</lt></range>
+      </package>
+      <package>
+	<name>libxul</name>
+	<range><lt>31.8.0</lt></range>
+	<range><ge>38.0</ge><lt>38.1.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>31.8.0</lt></range>
+	<range><ge>38.0</ge><lt>38.1.0</lt></range>
+      </package>
+      <package>
+	<name>linux-thunderbird</name>
+	<range><lt>31.8.0</lt></range>
+	<range><ge>38.0</ge><lt>38.1.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Mozilla Project reports:</p>
+	<blockquote cite="https://www.mozilla.org/en-US/security/advisories/">
+	  <p>MFSA 2015-59 Miscellaneous memory safety hazards (rv:39.0
+	    / rv:31.8 / rv:38.1)</p>
+	  <p>MFSA 2015-60 Local files or privileged URLs in pages can
+	    be opened into new tabs</p>
+	  <p>MFSA 2015-61 Type confusion in Indexed Database
+	    Manager</p>
+	  <p>MFSA 2015-62 Out-of-bound read while computing an
+	    oscillator rendering range in Web Audio</p>
+	  <p>MFSA 2015-63 Use-after-free in Content Policy due to
+	    microtask execution error</p>
+	  <p>MFSA 2015-64 ECDSA signature validation fails to handle
+	    some signatures correctly</p>
+	  <p>MFSA 2015-65 Use-after-free in workers while using
+	    XMLHttpRequest</p>
+	  <p>MFSA 2015-66 Vulnerabilities found through code
+	    inspection</p>
+	  <p>MFSA 2015-67 Key pinning is ignored when overridable
+	    errors are encountered</p>
+	  <p>MFSA 2015-68 OS X crash reports may contain entered key
+	    press information</p>
+	  <p>MFSA 2015-69 Privilege escalation through internal
+	    workers</p>
+	  <p>MFSA 2015-70 NSS accepts export-length DHE keys with
+	    regular DHE cipher suites</p>
+	  <p>MFSA 2015-71 NSS incorrectly permits skipping of
+	    ServerKeyExchange</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-2721</cvename>
+      <cvename>CVE-2015-2722</cvename>
+      <cvename>CVE-2015-2724</cvename>
+      <cvename>CVE-2015-2725</cvename>
+      <cvename>CVE-2015-2726</cvename>
+      <cvename>CVE-2015-2727</cvename>
+      <cvename>CVE-2015-2728</cvename>
+      <cvename>CVE-2015-2729</cvename>
+      <cvename>CVE-2015-2730</cvename>
+      <cvename>CVE-2015-2731</cvename>
+      <cvename>CVE-2015-2733</cvename>
+      <cvename>CVE-2015-2734</cvename>
+      <cvename>CVE-2015-2735</cvename>
+      <cvename>CVE-2015-2736</cvename>
+      <cvename>CVE-2015-2737</cvename>
+      <cvename>CVE-2015-2738</cvename>
+      <cvename>CVE-2015-2739</cvename>
+      <cvename>CVE-2015-2740</cvename>
+      <cvename>CVE-2015-2741</cvename>
+      <cvename>CVE-2015-2742</cvename>
+      <cvename>CVE-2015-2743</cvename>
+      <cvename>CVE-2015-4000</cvename>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-59/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-60/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-61/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-62/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-63/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-64/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-65/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-66/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-67/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-68/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-69/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-70/</url>
+      <url>https://www.mozilla.org/security/advisories/mfsa2015-71/</url>
+    </references>
+    <dates>
+      <discovery>2015-07-02</discovery>
+      <entry>2015-07-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d3216606-2b47-11e5-a668-080027ef73ec">
+    <topic>PolarSSL -- Security Fix Backports</topic>
+    <affects>
+      <package>
+	<name>polarssl</name>
+	<range><lt>1.2.14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Paul Bakker reports:</p>
+	<blockquote cite="https://tls.mbed.org/tech-updates/releases/polarssl-1.2.14-released">
+	  <p>PolarSSL 1.2.14 fixes one remotely-triggerable issues that was
+	    found by the Codenomicon Defensics tool, one potential remote crash
+	    and countermeasures against the "Lucky 13 strikes back" cache-based
+	    attack.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://tls.mbed.org/tech-updates/releases/polarssl-1.2.14-released</url>
+    </references>
+    <dates>
+      <discovery>2015-06-26</discovery>
+      <entry>2015-07-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ca139c7f-2a8c-11e5-a4a5-002590263bf5">
+    <topic>libwmf -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>libwmf</name>
+	<range><lt>0.2.8.4_14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mitre reports:</p>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2004-0941">
+	  <p>Multiple buffer overflows in the gd graphics library (libgd) 2.0.21
+	    and earlier may allow remote attackers to execute arbitrary code via
+	    malformed image files that trigger the overflows due to improper
+	    calls to the gdMalloc function, a different set of vulnerabilities
+	    than CVE-2004-0990.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0455">
+	  <p>Buffer overflow in the gdImageStringFTEx function in gdft.c in GD
+	    Graphics Library 2.0.33 and earlier allows remote attackers to cause
+	    a denial of service (application crash) and possibly execute
+	    arbitrary code via a crafted string with a JIS encoded font.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-2756">
+	  <p>The gdPngReadData function in libgd 2.0.34 allows user-assisted
+	    attackers to cause a denial of service (CPU consumption) via a
+	    crafted PNG image with truncated data, which causes an infinite loop
+	    in the png_read_info function in libpng.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-3472">
+	  <p>Integer overflow in gdImageCreateTrueColor function in the GD
+	    Graphics Library (libgd) before 2.0.35 allows user-assisted remote
+	    attackers to have unspecified attack vectors and impact.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-3473">
+	  <p>The gdImageCreateXbm function in the GD Graphics Library (libgd)
+	    before 2.0.35 allows user-assisted remote attackers to cause a
+	    denial of service (crash) via unspecified vectors involving a
+	    gdImageCreate failure.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-3477">
+	  <p>The (a) imagearc and (b) imagefilledarc functions in GD Graphics
+	    Library (libgd) before 2.0.35 allow attackers to cause a denial of
+	    service (CPU consumption) via a large (1) start or (2) end angle
+	    degree value.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2009-3546">
+	  <p>The _gdGetColors function in gd_gd.c in PHP 5.2.11 and 5.3.x before
+	    5.3.1, and the GD Graphics Library 2.x, does not properly verify a
+	    certain colorsTotal structure member, which might allow remote
+	    attackers to conduct buffer overflow or buffer over-read attacks via
+	    a crafted GD file, a different vulnerability than CVE-2009-3293.
+	    NOTE: some of these details are obtained from third party
+	    information.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0848">
+	  <p>Heap-based buffer overflow in libwmf 0.2.8.4 allows remote
+	    attackers to cause a denial of service (crash) or possibly execute
+	    arbitrary code via a crafted BMP image.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4695">
+	  <p>meta.h in libwmf 0.2.8.4 allows remote attackers to cause a denial
+	    of service (out-of-bounds read) via a crafted WMF file.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4696">
+	  <p>Use-after-free vulnerability in libwmf 0.2.8.4 allows remote
+	    attackers to cause a denial of service (crash) via a crafted WMF
+	    file to the (1) wmf2gd or (2) wmf2eps command.</p>
+	</blockquote>
+	<blockquote cite="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-4588">
+	  <p>Heap-based buffer overflow in the DecodeImage function in libwmf
+	    0.2.8.4 allows remote attackers to cause a denial of service (crash)
+	    or possibly execute arbitrary code via a crafted "run-length count"
+	    in an image in a WMF file.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <bid>11663</bid>
+      <bid>22289</bid>
+      <bid>24089</bid>
+      <bid>24651</bid>
+      <bid>36712</bid>
+      <freebsdpr>ports/201513</freebsdpr>
+      <cvename>CVE-2004-0941</cvename>
+      <cvename>CVE-2007-0455</cvename>
+      <cvename>CVE-2007-2756</cvename>
+      <cvename>CVE-2007-3472</cvename>
+      <cvename>CVE-2007-3473</cvename>
+      <cvename>CVE-2007-3477</cvename>
+      <cvename>CVE-2009-3546</cvename>
+      <cvename>CVE-2015-0848</cvename>
+      <cvename>CVE-2015-4695</cvename>
+      <cvename>CVE-2015-4696</cvename>
+      <cvename>CVE-2015-4588</cvename>
+    </references>
+    <dates>
+      <discovery>2004-10-12</discovery>
+      <entry>2015-07-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a12494c1-2af4-11e5-86ff-14dae9d210b8">
+    <topic>apache24 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.16</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jim Jagielski reports:</p>
+	<blockquote cite="https://mail-archives.apache.org/mod_mbox/www-announce/201507.mbox/%3CAA5C882C-A9C3-46B9-9320-5040A2152E83@apache.org%3E">
+	  <p>CVE-2015-3183 (cve.mitre.org)
+	    core: Fix chunk header parsing defect.
+	    Remove apr_brigade_flatten(), buffering and duplicated code from
+	    the HTTP_IN filter, parse chunks in a single pass with zero copy.
+	    Limit accepted chunk-size to 2^63-1 and be strict about chunk-ext
+	    authorized characters.</p>
+	  <p>CVE-2015-3185 (cve.mitre.org)
+	    Replacement of ap_some_auth_required (unusable in Apache httpd 2.4)
+	    with new ap_some_authn_required and ap_force_authn hook.</p>
+	  <p>CVE-2015-0253 (cve.mitre.org)
+	    core: Fix a crash with ErrorDocument 400 pointing to a local URL-path
+	    with the INCLUDES filter active, introduced in 2.4.11. PR 57531.</p>
+	  <p>CVE-2015-0228 (cve.mitre.org)
+	    mod_lua: A maliciously crafted websockets PING after a script
+	    calls r:wsupgrade() can cause a child process crash.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <mlist>https://mail-archives.apache.org/mod_mbox/www-announce/201507.mbox/%3CAA5C882C-A9C3-46B9-9320-5040A2152E83@apache.org%3E</mlist>
+      <cvename>CVE-2015-3183</cvename>
+      <cvename>CVE-2015-3185</cvename>
+      <cvename>CVE-2015-0253</cvename>
+      <cvename>CVE-2015-0228</cvename>
+    </references>
+    <dates>
+      <discovery>2015-02-04</discovery>
+      <entry>2015-07-15</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8d2d6bbd-2a02-11e5-a0af-bcaec565249c">
     <topic>Adobe Flash Player -- critical vulnerabilities</topic>
     <affects>
@@ -73,7 +363,7 @@ Notes:
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Adobe reports:</p>
-	<blockquote cite="https://helpx.adobe.com/security/products/flash-player/apsa15-04.html">
+	<blockquote cite="https://helpx.adobe.com/security/products/flash-player/apsb15-18.html">
 	  <p>Critical vulnerabilities (CVE-2015-5122, CVE-2015-5123) have
 	    been identified. Successful exploitation could cause a crash
 	    and potentially allow an attacker to take control of the
@@ -85,11 +375,12 @@ Notes:
     <references>
       <cvename>CVE-2015-5122</cvename>
       <cvename>CVE-2015-5123</cvename>
-      <url>https://helpx.adobe.com/security/products/flash-player/apsa15-04.html</url>
+      <url>https://helpx.adobe.com/security/products/flash-player/apsb15-18.html</url>
     </references>
     <dates>
       <discovery>2015-07-10</discovery>
       <entry>2015-07-14</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -1740,6 +2031,14 @@ Notes:
 	<name>libxml2</name>
 	<range><lt>2.9.2_3</lt></range>
       </package>
+      <package>
+	<name>linux-c6-libxml2</name>
+	<range><ge>*</ge></range>
+      </package>
+      <package>
+	<name>linux-f10-libxml2</name>
+	<range><ge>*</ge></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -1760,6 +2059,7 @@ Notes:
     <dates>
       <discovery>2015-04-14</discovery>
       <entry>2015-07-01</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -3391,10 +3691,14 @@ Notes:
     <references>
       <url>https://github.com/htacg/tidy-html5/issues/217</url>
       <url>http://seclists.org/oss-sec/2015/q2/633</url>
+      <url>http://seclists.org/oss-sec/2015/q3/116</url>
+      <cvename>CVE-2015-5522</cvename>
+      <cvename>CVE-2015-5523</cvename>
     </references>
     <dates>
       <discovery>2015-06-03</discovery>
       <entry>2015-06-08</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -6805,8 +7109,12 @@ Notes:
 	<range><lt>1.5.1</lt></range>
       </package>
       <package>
-	<name>libXfont</name>
-	<range><ge>1.4.99</ge><lt>1.5.1</lt></range>
+	<name>linux-c6-xorg-libs</name>
+	<range><ge>*</ge></range>
+      </package>
+      <package>
+	<name>linux-f10-xorg-libs</name>
+	<range><ge>*</ge></range>
       </package>
     </affects>
     <description>
@@ -6837,6 +7145,7 @@ Notes:
     <dates>
       <discovery>2015-03-17</discovery>
       <entry>2015-03-18</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -9788,6 +10097,10 @@ Notes:
 	<name>flac</name>
 	<range><lt>1.3.0_3</lt></range>
       </package>
+      <package>
+	<name>linux-c6-flac</name>
+	<range><lt>1.2.1_3</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -9811,6 +10124,7 @@ Notes:
     <dates>
       <discovery>2014-11-25</discovery>
       <entry>2014-11-25</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -10459,6 +10773,14 @@ Notes:
 	<name>libxml2</name>
 	<range><lt>2.9.2</lt></range>
       </package>
+      <package>
+	<name>linux-c6-libxml2</name>
+	<range><lt>2.7.6_2</lt></range>
+      </package>
+      <package>
+	<name>linux-f10-libxml2</name>
+	<range><ge>*</ge></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -10482,6 +10804,7 @@ Notes:
     <dates>
       <discovery>2014-10-16</discovery>
       <entry>2014-10-18</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -13624,6 +13947,14 @@ Notes:
 	<name>libXfont</name>
 	<range><lt>1.4.7_3</lt></range>
       </package>
+      <package>
+	<name>linux-c6-xorg-libs</name>
+	<range><lt>7.4_2</lt></range>
+      </package>
+      <package>
+	<name>linux-f10-xorg-libs</name>
+	<range><ge>*</ge></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -13655,6 +13986,7 @@ Notes:
     <dates>
       <discovery>2014-05-13</discovery>
       <entry>2014-05-13</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -13663,7 +13995,15 @@ Notes:
     <affects>
       <package>
 	<name>libxml2</name>
-	<range><le>2.8.0_5</le></range>
+	<range><lt>2.9.1</lt></range>
+      </package>
+      <package>
+	<name>linux-c6-libxml2</name>
+	<range><lt>2.7.6_2</lt></range>
+      </package>
+      <package>
+	<name>linux-f10-libxml2</name>
+	<range><ge>*</ge></range>
       </package>
     </affects>
     <description>
@@ -13687,6 +14027,7 @@ Notes:
     <dates>
       <discovery>2013-04-11</discovery>
       <entry>2013-07-10</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
@@ -13695,7 +14036,15 @@ Notes:
     <affects>
       <package>
 	<name>libxml2</name>
-	<range><le>2.8.0_5</le></range>
+	<range><lt>2.9.1</lt></range>
+      </package>
+      <package>
+	<name>linux-c6-libxml2</name>
+	<range><lt>2.7.6_2</lt></range>
+      </package>
+      <package>
+	<name>linux-f10-libxml2</name>
+	<range><ge>*</ge></range>
       </package>
     </affects>
     <description>
@@ -13723,6 +14072,7 @@ Notes:
     <dates>
       <discovery>2013-12-03</discovery>
       <entry>2014-05-06</entry>
+      <modified>2015-07-15</modified>
     </dates>
   </vuln>
 
