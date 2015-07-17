@@ -1,6 +1,3 @@
-MAINTAINER?=	eri@pfsense.org
-COMMENT?=	filterdns
-
 PROG=           filterdns
 PREFIX?=        /usr/local
 BINDIR?=        ${PREFIX}/sbin

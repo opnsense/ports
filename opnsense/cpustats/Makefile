@@ -1,12 +1,12 @@
 PORTNAME=	cpustats
 PORTVERSION=	0.1
-CATEGORIES?=	sysutils
+CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER?=	eri@pfsense.org
-COMMENT?=	cpustats
+MAINTAINER=	franco@opnsense.org
+COMMENT=	Gather system statistics
 
 WHERE=		sbin
 PLIST_FILES=    ${WHERE}/${PORTNAME}

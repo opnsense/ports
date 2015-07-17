@@ -6,7 +6,7 @@ PORTVERSION=	0.9
 CATEGORIES=	net-mgmt
 MASTER_SITES=	http://s-tech.elsat.net.pl/bmtools/
 
-MAINTAINER=	mich@FreeBSD.org
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Traffic analysis command-line utility
 
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"

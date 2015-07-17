@@ -4,10 +4,10 @@
 PORTNAME=	pfSense
 PORTVERSION=	0.2
 PORTREVISION=	4
+PKGNAMEPREFIX=	php-
 CATEGORIES=	devel
 MASTER_SITES=
 DISTFILES=
-PKGNAMEPREFIX=	php-
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Library for getting useful info

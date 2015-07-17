@@ -7,13 +7,13 @@
 
 PORTNAME=	minicron
 PORTVERSION=	0.0.2
-CATEGORIES?=	sysutils
+CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER?=	jebc@c4solutions.net
-COMMENT?=	very small cron
+MAINTAINER=	franco@opnsense.org
+COMMENT=	A very small cron
 
 WHERE=		bin
 PLIST_FILES=    ${WHERE}/${PORTNAME}

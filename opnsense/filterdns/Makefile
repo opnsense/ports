@@ -1,12 +1,12 @@
 PORTNAME=	filterdns
 PORTVERSION=	0.1
-CATEGORIES?=	sysutils
+CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
 EXTRACT_ONLY=	# empty
 
-MAINTAINER?=	eri@pfsense.org
-COMMENT?=	filterdns
+MAINTAINER=	franco@opnsense.org
+COMMENT=	filterdns
 
 WHERE=		sbin
 PLIST_FILES=    ${WHERE}/${PORTNAME}

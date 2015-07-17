@@ -1,0 +1,1 @@
+PKGORIGIN=	${.CURDIR:S/${PORTSDIR}\///1}
