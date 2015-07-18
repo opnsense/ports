@@ -23,11 +23,6 @@ USE_OPENSSL=	yes
 
 CONFIGURE_ARGS+= --enable-ipv6
 
-.if ${OSVERSION} >= 900007
-EXTRA_PATCHES=files/patch9-auth.h.diff
-EXTRA_PATCHES+=files/patch9-auth.c.diff
-.endif
-
 .if ${PORT_OPTIONS:MNG_IPACCT}
 BUILD_DEPENDS+=	${LOCALBASE}/include/netgraph/ng_ipacct.h:${PORTSDIR}/net-mgmt/ng_ipacct
 .if exists(${KMODDIR}/ng_ipacct.ko)
