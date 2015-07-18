@@ -1,5 +1,5 @@
 PORTNAME=	filterdns
-PORTVERSION=	0.1
+PORTVERSION=	0.2
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -8,20 +8,9 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	filterdns
 
-WHERE=		sbin
-PLIST_FILES=    ${WHERE}/${PORTNAME}
-
-do-clean:
-	make -C ${FILESDIR} clean
-	rm -rf ${WRKDIR}
+PLIST_FILES=    sbin/filterdns
 
 do-extract:
-	mkdir -p ${WRKSRC}
-
-do-build:
-	make -C ${FILESDIR}
-
-do-install:
-	${INSTALL_PROGRAM} files/${PORTNAME} ${STAGEDIR}${PREFIX}/${WHERE}/
+	${CP} -r ${FILESDIR} ${WRKSRC}
 
 .include <bsd.port.mk>
