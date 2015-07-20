@@ -192,6 +192,7 @@
     SUBDIR += caf
     SUBDIR += calibrator
     SUBDIR += capstone
+    SUBDIR += cargo
     SUBDIR += cask
     SUBDIR += catch
     SUBDIR += cbind
@@ -413,6 +414,7 @@
     SUBDIR += elixir-bson
     SUBDIR += elixir-calendar
     SUBDIR += elixir-conform
+    SUBDIR += elixir-coverex
     SUBDIR += elixir-csv
     SUBDIR += elixir-decimal
     SUBDIR += elixir-dialyze
@@ -1535,6 +1537,7 @@
     SUBDIR += p4web
     SUBDIR += p5-AI-Pathfinding-AStar
     SUBDIR += p5-AI-Prolog
+    SUBDIR += p5-ARGV-Struct
     SUBDIR += p5-Acme-Comment
     SUBDIR += p5-Acme-Damn
     SUBDIR += p5-Acme-MetaSyntactic
@@ -3199,6 +3202,7 @@
     SUBDIR += p5-Test-use-ok
     SUBDIR += p5-Test-utf8
     SUBDIR += p5-Text-Levenshtein
+    SUBDIR += p5-Text-Levenshtein-Damerau
     SUBDIR += p5-Text-LevenshteinXS
     SUBDIR += p5-Text-Outdent
     SUBDIR += p5-Text-vFile-asData
@@ -4540,7 +4544,6 @@
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-bugspots
     SUBDIR += rubygem-builder
-    SUBDIR += rubygem-builder31
     SUBDIR += rubygem-builder32
     SUBDIR += rubygem-byebug
     SUBDIR += rubygem-caesars
@@ -4883,7 +4886,6 @@
     SUBDIR += rubygem-tilt
     SUBDIR += rubygem-tilt1
     SUBDIR += rubygem-timers
-    SUBDIR += rubygem-timers1
     SUBDIR += rubygem-tins
     SUBDIR += rubygem-tins0
     SUBDIR += rubygem-toml

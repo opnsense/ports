@@ -115,6 +115,8 @@
     SUBDIR += e169-stats
     SUBDIR += easysoap
     SUBDIR += echoping
+    SUBDIR += elixir-kafka_ex
+    SUBDIR += elixir-oauth2
     SUBDIR += empty
     SUBDIR += enet
     SUBDIR += erlang-ranch
@@ -1103,7 +1105,6 @@
     SUBDIR += rubygem-ruby-openid
     SUBDIR += rubygem-ruby-yadis
     SUBDIR += rubygem-rubyntlm
-    SUBDIR += rubygem-rubyntlm01
     SUBDIR += rubygem-rubytter
     SUBDIR += rubygem-rudy
     SUBDIR += rubygem-rye
