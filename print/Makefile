@@ -105,6 +105,7 @@
     SUBDIR += kover
     SUBDIR += kpdftool
     SUBDIR += latex-beamer
+    SUBDIR += latex-biber
     SUBDIR += latex-ltablex
     SUBDIR += latex-resume
     SUBDIR += latex2rtf
@@ -242,9 +243,9 @@
     SUBDIR += texlive-base
     SUBDIR += texlive-docs
     SUBDIR += texlive-full
-    SUBDIR += texlive-infra
     SUBDIR += texlive-texmf
     SUBDIR += texlive-texmf-source
+    SUBDIR += texlive-tlmgr
     SUBDIR += texvc
     SUBDIR += tgif2tex
     SUBDIR += transfig

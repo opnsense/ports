@@ -428,6 +428,8 @@
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
     SUBDIR += elixir-quantum
+    SUBDIR += elixir-red_black_tree
+    SUBDIR += elixir-sorted_set
     SUBDIR += elixir-timex
     SUBDIR += elixir-timex-interval
     SUBDIR += elixir-tzdata
@@ -5035,6 +5037,8 @@
     SUBDIR += tesla
     SUBDIR += tevent
     SUBDIR += tex-kpathsea
+    SUBDIR += tex-libtexlua
+    SUBDIR += tex-libtexluajit
     SUBDIR += tex-web2c
     SUBDIR += thrift
     SUBDIR += thrift-c_glib
