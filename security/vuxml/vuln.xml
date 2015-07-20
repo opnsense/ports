@@ -58,6 +58,86 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="8a1d0e63-1e07-11e5-b43d-002590263bf5">
+    <topic>pcre -- Heap Overflow Vulnerability in find_fixedlength()</topic>
+    <affects>
+      <package>
+	<name>pcre</name>
+	<range><le>8.37_1</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Venustech ADLAB reports:</p>
+	<blockquote cite="https://bugs.exim.org/show_bug.cgi?id=1651">
+	  <p>PCRE library is prone to a vulnerability which leads to Heap
+	    Overflow. During subpattern calculation of a malformed regular
+	    expression, an offset that is used as an array index is fully
+	    controlled and can be large enough so that unexpected heap
+	    memory regions are accessed.</p>
+	  <p>One could at least exploit this issue to read objects nearby of
+	    the affected application's memory.</p>
+	  <p>Such information disclosure may also be used to bypass memory
+	    protection method such as ASLR.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5073</cvename>
+      <url>https://bugs.exim.org/show_bug.cgi?id=1651</url>
+      <url>http://vcs.pcre.org/pcre?view=revision&amp;revision=1571</url>
+      <mlist>http://www.openwall.com/lists/oss-security/2015/06/26/1</mlist>
+    </references>
+    <dates>
+      <discovery>2015-06-23</discovery>
+      <entry>2015-06-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0bfda05f-2e6f-11e5-a4a5-002590263bf5">
+    <topic>cacti -- Multiple XSS and SQL injection vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cacti</name>
+	<range><lt>0.8.8e</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Cacti Group, Inc. reports:</p>
+	<blockquote cite="http://www.cacti.net/release_notes_0_8_8e.php">
+	  <p>Important Security Fixes</p>
+	  <ul>
+	    <li>Multiple XSS and SQL injection vulnerabilities</li>
+	    <li>CVE-2015-4634 - SQL injection in graphs.php</li>
+	  </ul>
+	  <p>Changelog</p>
+	  <ul>
+	    <li>bug: Fixed various SQL Injection vectors</li>
+	    <li>bug#0002574: SQL Injection Vulnerabilities in graph items and
+	       graph template items</li>
+	    <li>bug#0002577: CVE-2015-4634 - SQL injection in graphs.php</li>
+	    <li>bug#0002579: SQL Injection Vulnerabilities in data sources</li>
+	    <li>bug#0002580: SQL Injection in cdef.php</li>
+	    <li>bug#0002582: SQL Injection in data_templates.php</li>
+	    <li>bug#0002583: SQL Injection in graph_templates.php</li>
+	    <li>bug#0002584: SQL Injection in host_templates.php</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-4634</cvename>
+      <freebsdpr>ports/201702</freebsdpr>
+      <url>http://www.cacti.net/release_notes_0_8_8e.php</url>
+      <mlist>http://seclists.org/oss-sec/2015/q3/150</mlist>
+    </references>
+    <dates>
+      <discovery>2015-07-12</discovery>
+      <entry>2015-07-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8b1f53f3-2da5-11e5-86ff-14dae9d210b8">
     <topic>php-phar -- multiple vulnerabilities</topic>
     <affects>
@@ -134,11 +214,12 @@ Notes:
       <mlist>http://seclists.org/oss-sec/2015/q3/94</mlist>
       <url>https://docs.moodle.org/dev/Moodle_2.7.9_release_notes</url>
       <url>https://docs.moodle.org/dev/Moodle_2.8.7_release_notes</url>
-      <url>https://docs.moodle.org/dev/Moodle_2.7.9_release_notes</url>
+      <url>https://docs.moodle.org/dev/Moodle_2.9.1_release_notes</url>
     </references>
     <dates>
       <discovery>2015-07-06</discovery>
       <entry>2015-07-18</entry>
+      <modified>2015-07-19</modified>
     </dates>
   </vuln>
 
@@ -151,7 +232,7 @@ Notes:
 	<name>apache22-itk-mpm</name>
 	<name>apache22-peruser-mpm</name>
 	<name>apache22-worker-mpm</name>
-	<range><lt>2.2.31</lt></range>
+	<range><le>2.2.29_5</le></range>
       </package>
     </affects>
     <description>
