@@ -58,6 +58,127 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="c80b27a2-3165-11e5-8a1d-14dae9d210b8">
+    <topic>wordpress -- XSS vulnerability</topic>
+    <affects>
+      <package>
+	<name>wordpress</name>
+	<name>de-wordpress</name>
+	<name>ja-wordpress</name>
+	<name>ru-wordpress</name>
+	<name>zh-wordpress-zh_CH</name>
+	<name>zh-wordpress-zh_TW</name>
+	<range><lt>4.2.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gary Pendergast reports:</p>
+	<blockquote cite="https://wordpress.org/news/2015/07/wordpress-4-2-3/">
+	  <p>WordPress versions 4.2.2 and earlier are affected by a
+	    cross-site scripting vulnerability, which could allow users with the
+	    Contributor or Author role to compromise a site. This was reported by
+	    Jon Cave and fixed by Robert Chapin, both of the WordPress security
+	    team.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://wordpress.org/news/2015/07/wordpress-4-2-3/</url>
+    </references>
+    <dates>
+      <discovery>2015-07-23</discovery>
+      <entry>2015-07-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4caf01e2-30e6-11e5-a4a5-002590263bf5">
+    <topic>libidn -- out-of-bounds read issue with invalid UTF-8 input</topic>
+    <affects>
+      <package>
+	<name>libidn</name>
+	<range><lt>1.3.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Simon Josefsson reports:</p>
+	<blockquote cite="http://git.savannah.gnu.org/cgit/libidn.git/plain/NEWS?id=libidn-1-31">
+	  <p>stringprep_utf8_to_ucs4 now rejects invalid UTF-8. This function
+	    has always been documented to not validate that the input UTF-8
+	    string is actually valid UTF-8...
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-2059</cvename>
+      <url>http://git.savannah.gnu.org/cgit/libidn.git/plain/NEWS?id=libidn-1-31</url>
+    </references>
+    <dates>
+      <discovery>2015-02-09</discovery>
+      <entry>2015-07-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9dd761ff-30cb-11e5-a4a5-002590263bf5">
+    <topic>sox -- memory corruption vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>sox</name>
+	<range><le>14.4.2</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Michele Spagnuolo, Google Security Team, reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/167">
+	  <p>The write heap buffer overflows are related to ADPCM handling in
+	    WAV files, while the read heap buffer overflow is while opening a
+	    .VOC.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/167</url>
+    </references>
+    <dates>
+      <discovery>2015-07-22</discovery>
+      <entry>2015-07-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="92cda470-30cb-11e5-a4a5-002590263bf5">
+    <topic>sox -- input sanitization errors</topic>
+    <affects>
+      <package>
+	<name>sox</name>
+	<range><lt>14.4.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>oCERT reports:</p>
+	<blockquote cite="http://www.ocert.org/advisories/ocert-2014-010.html">
+	  <p>The sox command line tool is affected by two heap-based buffer
+	    overflows, respectively located in functions start_read() and
+	    AdpcmReadBlock().</p>
+	  <p>A specially crafted wav file can be used to trigger the
+	    vulnerabilities.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <bid>71774</bid>
+      <cvename>CVE-2014-8145</cvename>
+      <url>http://www.ocert.org/advisories/ocert-2014-010.html</url>
+    </references>
+    <dates>
+      <discovery>2014-11-20</discovery>
+      <entry>2015-07-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="95eee71d-3068-11e5-a9b5-bcaec565249c">
     <topic>gdk-pixbuf2 -- heap overflow and DoS affecting Firefox and other programs</topic>
     <affects>
