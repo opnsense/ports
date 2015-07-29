@@ -43,14 +43,19 @@ rm -rf /tmp/opnsense-update.*
 
 # migrate old marker files
 for SUB in kernel base; do
-	PREV=/usr/local/opnsense/version/os-update
-	if [ -f ${PREV}.${SUB} ]; then
-		mv ${PREV}.${SUB} ${MARKER}.${SUB}
-		({
-			cd $(dirname ${MARKER})
-			ln -s ${MARKER}.${SUB} ${PREV}.${SUB}
-		})
-	fi
+	({
+		CURR=opnsense-update.${SUB}
+		PREV=os-update.${SUB}
+
+		cd $(dirname ${MARKER})
+
+		if [ -e ${PREV} ]; then
+			if [ ! -e ${CURR} ]; then
+				mv ${PREV} ${CURR}
+				ln -s ${CURR} ${PREV}
+			fi
+		fi
+	})
 done
 
 INSTALLED_BASE=
