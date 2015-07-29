@@ -24,7 +24,7 @@
 .\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
 .\" SUCH DAMAGE.
 .\"
-.Dd July 8, 2015
+.Dd July 29, 2015
 .Dt OPNSENSE-UPDATE 8
 .Os
 .Sh NAME
@@ -32,7 +32,7 @@
 .Nd OPNsense system update utility
 .Sh SYNOPSIS
 .Nm
-.Op Fl bfkp
+.Op Fl bfkps
 .Op Fl m Ar mirror
 .Op Fl n Ar flavour
 .Op Fl r Ar release
@@ -53,14 +53,13 @@ The options are as follows:
 .It Fl b
 Update the base system only.
 .It Fl c
-Check wether an update can be performed, but don't install it.
-This option does not apply to packages.
+Check wether a base/kernel update can be performed, but don't install it.
 .It Fl f
 Force an update even when the latest release is already installed.
 .It Fl k
 Update the kernel only.
 .It Fl m Ar mirror
-Change the set fetch location to
+Change the set fetch and package location to
 .Ar mirror .
 .It Fl n Ar flavour
 Change the package repository to
@@ -74,9 +73,13 @@ Select the
 to be installed and switch of checksumming.
 Package upgrades are unaffected by this option.
 This is intended for development or custom builds only.
+.It Fl s
+Skip update phase; useful in conjunction with
+.Sq Fl m
+and
+.Sq Fl n .
 .It Fl v
-Print the latest version string.
-This option does not apply to packages.
+Print the latest base/kernel version string.
 .El
 .Pp
 Options
@@ -95,6 +98,8 @@ The
 .Xr pkg.conf 5
 file used to configure the packages mirror.
 The file is rewritten in case of
+.Sq Fl m
+or
 .Sq Fl n .
 .It Pa /usr/local/opnsense/version/os-update.base
 The file is used to check if a base system upgrade is necessary.

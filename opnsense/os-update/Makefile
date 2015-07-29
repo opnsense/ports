@@ -3,7 +3,7 @@
 
 PORTNAME=	os-update
 PORTVERSION=	15.7.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 DISTFILES=	# none
 
@@ -13,7 +13,8 @@ COMMENT=	OPNsense system update utility
 LICENSE=	BSD2CLAUSE
 
 SUB_FILES=	opnsense-update.sh
-SUB_LIST+=	MYRELEASE=${PORTVERSION}
+SUB_LIST+=	MYRELEASE="${PORTVERSION}" \
+		MYMIRROR="http://pkg.opnsense.org"
 
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}

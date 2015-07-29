@@ -37,8 +37,8 @@ rm -rf /tmp/opnsense-update.*
 
 MARKER="/usr/local/opnsense/version/os-update"
 ORIGIN="/usr/local/etc/pkg/repos/origin.conf"
-MIRROR="http://pkg.opnsense.org/sets"
 MY_RELEASE="%%MYRELEASE%%"
+MIRROR="%%MYMIRROR%%"
 ARCH=$(uname -m)
 
 INSTALLED_BASE=
@@ -58,8 +58,9 @@ DO_KERNEL=
 DO_FORCE=
 DO_BASE=
 DO_PKGS=
+DO_SKIP=
 
-while getopts bcfkm:n:pr:v OPT; do
+while getopts bcfkm:n:pr:sv OPT; do
 	case ${OPT} in
 	b)
 		DO_BASE="-b"
@@ -95,12 +96,15 @@ while getopts bcfkm:n:pr:v OPT; do
 		DO_RELEASE="-r ${OPTARG}"
 		RELEASE=${OPTARG}
 		;;
+	s)
+		DO_SKIP="-s"
+		;;
 	v)
 		echo ${MY_RELEASE}-${ARCH}
 		exit 0
 		;;
 	*)
-		echo "Usage: opnsense-update [-bcfkpv] [-m mirror] [-r release]" >&2
+		echo "Usage: opnsense-update [-bcfkpsv] [-m mirror] [-r release]" >&2
 		exit 1
 		;;
 	esac
@@ -116,6 +120,16 @@ fi
 if [ -n "${DO_FLAVOUR}" ]; then
 	# replace the package repo name
 	sed -i '' "/url:/s/\${ABI}.*/\${ABI}\/${FLAVOUR}\",/" ${ORIGIN}
+fi
+
+if [ -n "${DO_MIRROR}" ]; then
+	# replace the package repo location
+	sed -i '' "/url: /s/http.*\${ABI}/${MIRROR}\/\${ABI}" ${ORIGIN}
+fi
+
+if [ -n "${DO_SKIP}" ]; then
+	# only invoke flavour and mirror replacement
+	exit 0
 fi
 
 if [ -n "${DO_PKGS}" ]; then
@@ -186,7 +200,7 @@ fetch_set()
 	echo -n "Fetching ${1}... "
 
 	mkdir -p ${WORKDIR} && \
-	    fetch -q ${MIRROR}/${1} -o ${WORKDIR}/${1} && \
+	    fetch -q ${MIRROR}/sets/${1} -o ${WORKDIR}/${1} && \
 	    [ -z "${2}" -o "`sha256 -q ${WORKDIR}/${1}`" = "${2}" ] && \
 	    echo "ok" && return
 
