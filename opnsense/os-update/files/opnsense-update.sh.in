@@ -32,10 +32,10 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-MARKER="/usr/local/opnsense/version/opnsense-update"
-ORIGIN="/usr/local/etc/pkg/repos/origin.conf"
-MY_RELEASE="%%MYRELEASE%%"
-MIRROR="%%MYMIRROR%%"
+MARKER="%%MARKER%%"
+ORIGIN="%%ORIGIN%%"
+MIRROR="%%MIRROR%%"
+VERSION="%%VERSION%%"
 ARCH=$(uname -m)
 
 # clean up old stale working directories
@@ -84,8 +84,8 @@ while getopts bcfkm:n:pr:sv OPT; do
 		;;
 	c)
 		# -c only ever checks the embedded version string
-		if [ "${MY_RELEASE}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
-		    "${MY_RELEASE}-${ARCH}" = "${INSTALLED_BASE}" ]; then
+		if [ "${VERSION}-${ARCH}" = "${INSTALLED_KERNEL}" -a \
+		    "${VERSION}-${ARCH}" = "${INSTALLED_BASE}" ]; then
 			echo "Your system is up to date."
 			exit 1
 		fi
@@ -117,7 +117,7 @@ while getopts bcfkm:n:pr:sv OPT; do
 		DO_SKIP="-s"
 		;;
 	v)
-		echo ${MY_RELEASE}-${ARCH}
+		echo ${VERSION}-${ARCH}
 		exit 0
 		;;
 	*)
@@ -165,7 +165,7 @@ fi
 
 # if no release was selected we use the embedded defaults
 if [ -z "${RELEASE}" ]; then
-	RELEASE=${MY_RELEASE}
+	RELEASE=${VERSION}
 
 	if [ ${ARCH} = "amd64" ]; then
 		OBSOLETESHA="34f7479276c3b43c73468686dcf6f402c5be4f1d7c1d5761e22d6b52a3d4c174"
