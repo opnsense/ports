@@ -3,12 +3,12 @@
 
 PORTNAME=	os-update
 PORTVERSION=	15.7.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 DISTFILES=	# none
 
 MAINTAINER=	franco@opnsense.org
-COMMENT=	OPNsense system update utility
+COMMENT=	OPNsense update utility
 
 LICENSE=	BSD2CLAUSE
 

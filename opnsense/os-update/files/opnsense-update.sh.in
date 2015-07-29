@@ -32,14 +32,26 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-# clean up old stale working directories
-rm -rf /tmp/opnsense-update.*
-
-MARKER="/usr/local/opnsense/version/os-update"
+MARKER="/usr/local/opnsense/version/opnsense-update"
 ORIGIN="/usr/local/etc/pkg/repos/origin.conf"
 MY_RELEASE="%%MYRELEASE%%"
 MIRROR="%%MYMIRROR%%"
 ARCH=$(uname -m)
+
+# clean up old stale working directories
+rm -rf /tmp/opnsense-update.*
+
+# migrate old marker files
+for SUB in kernel base; do
+	PREV=/usr/local/opnsense/version/os-update
+	if [ -f ${PREV}.${SUB} ]; then
+		mv ${PREV}.${SUB} ${MARKER}.${SUB}
+		({
+			cd $(dirname ${MARKER})
+			ln -s ${MARKER}.${SUB} ${PREV}.${SUB}
+		})
+	fi
+done
 
 INSTALLED_BASE=
 if [ -f ${MARKER}.base ]; then
