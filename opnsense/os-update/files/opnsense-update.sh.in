@@ -136,7 +136,7 @@ fi
 
 if [ -n "${DO_MIRROR}" ]; then
 	# replace the package repo location
-	sed -i '' "/url: /s/http.*\${ABI}/${MIRROR}\/\${ABI}" ${ORIGIN}
+	sed -i '' "/url:/s/http.*\${ABI}/${MIRROR}\/\${ABI}/" ${ORIGIN}
 fi
 
 if [ -n "${DO_SKIP}" ]; then

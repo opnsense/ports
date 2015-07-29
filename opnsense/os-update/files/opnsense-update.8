@@ -29,7 +29,7 @@
 .Os
 .Sh NAME
 .Nm opnsense-update
-.Nd OPNsense system update utility
+.Nd OPNsense update utility
 .Sh SYNOPSIS
 .Nm
 .Op Fl bfkps
@@ -42,11 +42,18 @@
 The
 .Nm
 utility offers combined kernel and base system upgrades using
-remotely-fetched binary sets, as well as package upgrades via
+remotely fetched binary sets, as well as package upgrades via
 .Xr pkg 8 .
-If no options are given, it updates to the latest version using
-checksum verification fetched from the standard mirror, or skips
-the installation if the system is up to date.
+.Pp
+Options
+.Sq Fl b ,
+.Sq Fl p ,
+and
+.Sq Fl k
+may be stacked to create selective updates.
+The default is
+.Sq Fl bkp ,
+attempting to update all components at once.
 .Pp
 The options are as follows:
 .Bl -tag -width ".Fl r Ar release" -offset indent
@@ -81,16 +88,6 @@ and
 .It Fl v
 Print the latest base/kernel version string.
 .El
-.Pp
-Options
-.Sq Fl b ,
-.Sq Fl p ,
-and
-.Sq Fl k
-may be stacked to create selective updates.
-The default is
-.Sq Fl bkp ,
-attempting to update all components at once.
 .Sh FILES
 .Bl -tag -width Ds
 .It Pa /usr/local/etc/pkg/repos/origin.conf
