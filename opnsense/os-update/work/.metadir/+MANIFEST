@@ -1,0 +1,14 @@
+name: "os-update"
+version: "15.7.6"
+origin: opnsense/os-update
+comment: <<EOD
+OPNsense update utility
+EOD
+maintainer: franco@opnsense.org
+prefix: /usr/local
+deps: { 
+}
+categories: [ sysutils, ]
+licenselogic: single
+licenses: [ BSD2CLAUSE, ]
+options: {}

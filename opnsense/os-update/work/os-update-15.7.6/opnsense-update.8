@@ -1,0 +1,114 @@
+.\"
+.\" Copyright (c) 2015 Franco Fichtner <franco@opnsense.org>
+.\"
+.\" Redistribution and use in source and binary forms, with or without
+.\" modification, are permitted provided that the following conditions
+.\" are met:
+.\"
+.\" 1. Redistributions of source code must retain the above copyright
+.\"    notice, this list of conditions and the following disclaimer.
+.\"
+.\" 2. Redistributions in binary form must reproduce the above copyright
+.\"    notice, this list of conditions and the following disclaimer in the
+.\"    documentation and/or other materials provided with the distribution.
+.\"
+.\" THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+.\" ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+.\" IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+.\" ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+.\" FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+.\" DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+.\" OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+.\" HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+.\" LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+.\" OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+.\" SUCH DAMAGE.
+.\"
+.Dd July 29, 2015
+.Dt OPNSENSE-UPDATE 8
+.Os
+.Sh NAME
+.Nm opnsense-update
+.Nd OPNsense update utility
+.Sh SYNOPSIS
+.Nm
+.Op Fl bfkps
+.Op Fl m Ar mirror
+.Op Fl n Ar flavour
+.Op Fl r Ar release
+.Nm
+.Op Fl cv
+.Sh DESCRIPTION
+The
+.Nm
+utility offers combined kernel and base system upgrades using
+remotely fetched binary sets, as well as package upgrades via
+.Xr pkg 8 .
+.Pp
+Options
+.Sq Fl b ,
+.Sq Fl p ,
+and
+.Sq Fl k
+may be stacked to create selective updates.
+The default is
+.Sq Fl bkp ,
+attempting to update all components at once.
+.Pp
+The options are as follows:
+.Bl -tag -width ".Fl r Ar release" -offset indent
+.It Fl b
+Update the base system only.
+.It Fl c
+Check wether a base/kernel update can be performed, but don't install it.
+.It Fl f
+Force an update even when the latest release is already installed.
+.It Fl k
+Update the kernel only.
+.It Fl m Ar mirror
+Change the set fetch and package location to
+.Ar mirror .
+.It Fl n Ar flavour
+Change the package repository to
+.Ar flavour .
+Use at your own risk.
+.It Fl p
+Update the packages only.
+.It Fl r Ar release
+Select the
+.Ar release
+to be installed and switch of checksumming.
+Package upgrades are unaffected by this option.
+This is intended for development or custom builds only.
+.It Fl s
+Skip update phase; useful in conjunction with
+.Sq Fl m
+and
+.Sq Fl n .
+.It Fl v
+Print the latest base/kernel version string.
+.El
+.Sh FILES
+.Bl -tag -width Ds
+.It Pa /usr/local/etc/pkg/repos/origin.conf
+The
+.Xr pkg.conf 5
+file used to configure the packages mirror.
+The file is rewritten in case of
+.Sq Fl m
+or
+.Sq Fl n .
+.It Pa /usr/local/opnsense/version/opnsense-update.base
+The file is used to check if a base system upgrade is necessary.
+After a successful update, the file is rewritten.
+.It Pa /usr/local/opnsense/version/opnsense-update.kernel
+The file is used to check if a kernel upgrade is necessary.
+After a successful update, the file is rewritten.
+.El
+.Sh EXIT STATUS
+.Ex -std
+.Sh SEE ALSO
+.Xr pkg.conf 5 ,
+.Xr pkg 8
+.Sh AUTHORS
+.An Franco Fichtner Aq Mt franco@opnsense.org
