@@ -58,6 +58,71 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="4622635f-37a1-11e5-9970-14dae9d210b8">
+    <topic>net-snmp -- snmptrapd crash</topic>
+    <affects>
+      <package>
+	<name>net-snmp</name>
+	<range><ge>5.7.0</ge><le>5.7.2.1</le></range>
+	<range><ge>5.6.0</ge><le>5.6.2.1</le></range>
+	<range><ge>5.5.0</ge><le>5.5.2.1</le></range>
+	<range><ge>5.4.0</ge><le>5.4.4</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Murray McAllister reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2014/q3/473">
+	  <p>A remote denial-of-service flaw was found in the way
+	    snmptrapd handled certain SNMP traps when started with the
+	    "-OQ" option. If an attacker sent an SNMP trap containing a
+	    variable with a NULL type where an integer variable type was
+	    expected, it would cause snmptrapd to crash.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2014/q3/473</url>
+      <url>http://sourceforge.net/p/net-snmp/code/ci/7f4a7b891332899cea26e95be0337aae01648742/</url>
+      <url>https://sourceforge.net/p/net-snmp/official-patches/48/</url>
+      <cvename>CVE-2014-3565</cvename>
+    </references>
+    <dates>
+      <discovery>2014-07-31</discovery>
+      <entry>2015-07-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="381183e8-3798-11e5-9970-14dae9d210b8">
+    <topic>net-snmp -- snmp_pdu_parse() function incomplete initialization</topic>
+    <affects>
+      <package>
+	<name>net-snmp</name>
+	<range><le>5.7.3_7</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Qinghao Tang reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q2/116">
+	  <p>Incompletely initialized vulnerability exists in the function
+	    ‘snmp_pdu_parse()’ of ‘snmp_api.c', and remote attackers can cause memory
+	    leak, DOS and possible command executions by sending malicious packets.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q2/116</url>
+      <url>http://sourceforge.net/p/net-snmp/code/ci/f23bcd3ac6ddee5d0a48f9703007ccc738914791/</url>
+      <url>https://bugzilla.redhat.com/show_bug.cgi?id=1212408</url>
+      <cvename>CVE-2015-5621</cvename>
+    </references>
+    <dates>
+      <discovery>2015-04-11</discovery>
+      <entry>2015-07-31</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="731cdeaa-3564-11e5-9970-14dae9d210b8">
     <topic>bind -- denial of service vulnerability</topic>
     <affects>
@@ -3503,7 +3568,7 @@ Notes:
     <affects>
       <package>
 	<name>chicken</name>
-	<range><lt>4.10.0,1</lt></range>
+	<range><lt>4.10.0.r2,1</lt></range>
       </package>
     </affects>
     <description>
@@ -3524,11 +3589,12 @@ Notes:
       <freebsdpr>ports/200980</freebsdpr>
       <mlist>http://lists.nongnu.org/archive/html/chicken-announce/2015-06/msg00010.html</mlist>
       <mlist>http://lists.nongnu.org/archive/html/chicken-hackers/2015-06/msg00037.html</mlist>
+      <mlist>http://lists.nongnu.org/archive/html/chicken-announce/2015-07/msg00001.html</mlist>
     </references>
     <dates>
       <discovery>2015-06-15</discovery>
       <entry>2015-06-22</entry>
-      <modified>2015-06-23</modified>
+      <modified>2015-07-31</modified>
     </dates>
   </vuln>
 
