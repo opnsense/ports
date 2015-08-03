@@ -472,7 +472,6 @@
     SUBDIR += libsunacl
     SUBDIR += liburcu
     SUBDIR += libutempter
-    SUBDIR += libzeitgeist
     SUBDIR += life-preserver
     SUBDIR += lineak-defaultplugin
     SUBDIR += lineak-xosdplugin
@@ -1044,7 +1043,6 @@
     SUBDIR += vagrant
     SUBDIR += vbetool
     SUBDIR += vcp
-    SUBDIR += vhdtool
     SUBDIR += videogen
     SUBDIR += vii
     SUBDIR += vils

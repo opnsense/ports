@@ -2,9 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	freebsd-bugzilla-cli
-PORTVERSION=	0.4.0
+PORTVERSION=	0.7.2
 CATEGORIES=	ports-mgmt
-MASTER_SITES=	GH
 
 MAINTAINER=	pgollucci@FreeBSD.org
 COMMENT=	Interact with the FreeBSD bugzilla instance
@@ -13,7 +12,7 @@ LICENSE=	APACHE20
 
 OPTIONS_GROUP=	BACKEND
 OPTIONS_GROUP_BACKEND=	PYBUGZ
-OPTIONS_SET=	PYBUGZ
+OPTIONS_DEFAULT=	PYBUGZ
 OPTIONS_SUB=	yes
 
 PYBUGZ_DESC=	use devel/pybugz for bugzilla interface
