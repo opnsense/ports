@@ -7405,7 +7405,7 @@ games/vdrift-data||2015-01-16|vdrift engine was removed from ports four months e
 x11/rxvt-devel||2015-01-17|Has expired: No longer developed nor maintained and deprecated by x11/xvt and x11/rxvt-unicode
 comms/spandsp-devel|comms/spandsp|2015-01-17|Has expired: Use newer comms/spandsp
 multimedia/universal-media-server||2015-01-17|Has expired: RC script broken, especially prestart target
-www/qupzilla|www/qupzilla-qt4|2015-01-18|Renamed to differentiate from www/qupzilla-qt5 
+www/qupzilla|www/qupzilla-qt4|2015-01-18|Renamed to differentiate from www/qupzilla-qt5
 devel/p5-perlbrew|devel/p5-App-perlbrew|2015-01-19|Rename to match upstream naming
 devel/actor-framework|devel/caf|2015-01-19|Rename to match upstream naming
 textproc/py-charade||2015-01-28|Charade was merged back to textproc/py-chardet
@@ -7447,7 +7447,7 @@ www/mod_cplusplus||2015-03-01|Has expired: written for apache 2.0, no longer mai
 www/py-django15||2015-03-01|Has expired: not supported by upstream
 math/isabelle||2015-03-01|Has expired: Broken for more than 6 months
 net/rubygem-openid|net/rubygem-ruby-openid|2015-03-07|Rename to match our rubygems naming
-devel/p5-Errno||2015-03-09|Errno is part of Perl 
+devel/p5-Errno||2015-03-09|Errno is part of Perl
 devel/p5-Class-XSAccessor-Array||2015-03-09|Has been a part of devel/p5-Class-XSAccessor for >5 years. Use that port instead
 multimedia/ffmpeg25|multimedia/ffmpeg26|2015-03-14|ffmpeg upstream now points to 2.6.x series
 www/squid33|www/squid|2015-03-15|Has expired: Reached EOL on 28 August 2014, use www/squid (v3.4) instead
@@ -7735,6 +7735,7 @@ devel/amd64-gcc||2015-07-25|No real use
 devel/amd64-xtoolchain-gcc||2015-07-25|No real use
 devel/p5-Test-Tester|devel/p5-Test-Simple|2015-07-25|Has expired: Part of p5-Test-Simple (use that instead), and included in perl 5.22
 devel/p5-Test-use-ok|devel/p5-Test-Simple|2015-07-25|Has expired: Part of devel/p5-Test-Simple (use that instead), and included in perl 5.22
+sysutils/libzeitgeist|sysutils/zeitgeist|2015-07-26|Merged into zeitgeist
 math/mate-calc||2015-07-27|Not part of MATE 1.10. Instead galculator is used
 x11/mate-dialogs||2015-07-27|Not part of MATE 1.10
 devel/automake14||2015-07-27|Has expired: Not used in the ports tree anymore
@@ -7748,7 +7749,6 @@ net/py-soapy|net/py-soappy|2015-08-01|Has expired: Abandonware depending on anci
 net-p2p/btqueue||2015-08-01|Has expired: Runtime broken (does not download anything)
 sysutils/vhdtool||2015-08-01|Has expired: Use mkimg(1) instead
 www/rubygem-modernizr||2015-08-01|Has expired: This gem has been removed from rubygems.org by upstream
-sysutils/libzeitgeist|sysutils/zeitgeist|2015-07-26|Merged into zeitgeist
 devel/java-util-concurrent||2015-08-03|Has expired: Included in all current JDKs by default
 devel/py-pyparsing15||2015-08-03|Has expired: Not used in the ports tree anymore
 finance/tryton||2015-08-05|No more supported upstream, use tryton 2.8 instead
@@ -7816,3 +7816,4 @@ french/trytond_account_fr||2015-08-05|No more supported upstream, use tryton 2.8
 german/trytond_account_de_skr03||2015-08-05|No more supported upstream, use tryton 2.8 instead
 www/trytond_google_maps||2015-08-05|No more supported upstream, use tryton 2.8 instead
 devel/appdata-tools|devel/appstream-glib|2015-08-05|Replaced by appstream-glib
+textproc/pystemmer|textproc/py-pystemmer|2015-08-06|Rename to match upstream (PyPi) name
