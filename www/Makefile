@@ -44,6 +44,7 @@
     SUBDIR += b2evolution
     SUBDIR += bacula-web
     SUBDIR += baikal
+    SUBDIR += bareos-webui
     SUBDIR += bblog
     SUBDIR += bigbluebutton
     SUBDIR += bins
@@ -344,7 +345,6 @@
     SUBDIR += impresscms
     SUBDIR += interchange
     SUBDIR += iojs
-    SUBDIR += ismail
     SUBDIR += itop
     SUBDIR += iwebcal
     SUBDIR += jawstats
