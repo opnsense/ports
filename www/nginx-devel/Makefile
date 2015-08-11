@@ -52,6 +52,7 @@ OPTIONS_DEFINE=	\
 	MAIL_SMTP \
 	MAIL_SSL \
 	SPDY \
+	HTTPV2 \
 	STREAM \
 	STREAM_SSL \
 	THREADS \
@@ -145,6 +146,7 @@ MAIL_POP3_DESC=			Enable POP3 proxy module
 MAIL_SMTP_DESC=			Enable SMTP proxy module
 MAIL_SSL_DESC=			Enable mail_ssl module
 SPDY_DESC=			Enable SPDY protocol support (SSL req.)
+HTTPV2_DESC=			Enable HTTP/2 protocol support (SSL req.)
 STREAM_DESC=			Enable stream module
 STREAM_SSL_DESC=		Enable stream_ssl module (SSL req.)
 THREADS_DESC=			Enable threads support
@@ -657,9 +659,10 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_memc}
 
 .if ${PORT_OPTIONS:MMODSECURITY}
 NGINX_MODSECURITY_VERSION=	2.9.0
-LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
-		libapr-1.so:${PORTSDIR}/devel/apr1 \
+LIB_DEPENDS+=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libcurl.so:${PORTSDIR}/ftp/curl \
+		libluajit-5.1.so:${PORTSDIR}/lang/luajit \
+		libpcre.so:${PORTSDIR}/devel/pcre \
 		libyajl.so:${PORTSDIR}/devel/yajl
 USE_APACHE=	22+
 USE_GNOME+=	libxml2
@@ -686,7 +689,7 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.14
+PASSENGER_VERSION=	5.0.15
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/ext/nginx
@@ -817,10 +820,25 @@ GH_TAGNAME+=	v${NGINX_XSS_VERSION}:xss
 CONFIGURE_ARGS+=--add-module=${WRKSRC_xss}
 .endif
 
+.if ${PORT_OPTIONS:MSPDY} && ${PORT_OPTIONS:MHTTPV2}
+IGNORE=		current HTTP/2 implementation replaces SPDY module support, please disable SPDY
+.endif
+
 .if ${PORT_OPTIONS:MSPDY}
 NGINX_OPENSSL=	yes
 USE_HTTP_SSL=	yes
 CONFIGURE_ARGS+=--with-http_spdy_module
+.endif
+
+.if ${PORT_OPTIONS:MHTTPV2}
+NGINX_OPENSSL=	yes
+USE_HTTP_SSL=	yes
+CONFIGURE_ARGS+=--with-http_v2_module
+USE_OPENSSL_PORT=	yes
+NGINX_HTTPV2_VERSION=	1
+PATCH_SITES+=	http://nginx.org/patches/http2/:httpv2
+PATCHFILES+=	patch.http2-v${NGINX_HTTPV2_VERSION}_${PORTVERSION}.txt:httpv2
+PATCH_DIST_STRIP=	-p1
 .endif
 
 .if ${PORT_OPTIONS:MSTREAM}

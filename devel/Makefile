@@ -31,11 +31,14 @@
     SUBDIR += R-cran-magrittr
     SUBDIR += R-cran-memoise
     SUBDIR += R-cran-microbenchmark
+    SUBDIR += R-cran-pkgmaker
     SUBDIR += R-cran-plyr
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-randomForest
+    SUBDIR += R-cran-registry
     SUBDIR += R-cran-reshape
     SUBDIR += R-cran-reshape2
+    SUBDIR += R-cran-rngtools
     SUBDIR += SpecTcl
     SUBDIR += aap
     SUBDIR += aarch64-binutils
@@ -1460,6 +1463,7 @@
     SUBDIR += noweb
     SUBDIR += npth
     SUBDIR += nspr
+    SUBDIR += nuitka
     SUBDIR += nxt-python
     SUBDIR += obby
     SUBDIR += obfuscatejs

@@ -643,9 +643,10 @@ CONFIGURE_ARGS+=--add-module=${WRKSRC_memc}
 
 .if ${PORT_OPTIONS:MMODSECURITY}
 NGINX_MODSECURITY_VERSION=	2.9.0
-LIB_DEPENDS+=	libpcre.so:${PORTSDIR}/devel/pcre \
-		libapr-1.so:${PORTSDIR}/devel/apr1 \
+LIB_DEPENDS+=	libapr-1.so:${PORTSDIR}/devel/apr1 \
 		libcurl.so:${PORTSDIR}/ftp/curl \
+		libluajit-5.1.so:${PORTSDIR}/lang/luajit \
+		libpcre.so:${PORTSDIR}/devel/pcre \
 		libyajl.so:${PORTSDIR}/devel/yajl
 USE_APACHE=	22+
 USE_GNOME+=	libxml2
@@ -672,7 +673,7 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.14
+PASSENGER_VERSION=	5.0.15
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/ext/nginx
