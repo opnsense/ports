@@ -58,6 +58,274 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="9ee72858-4159-11e5-93ad-002590263bf5">
+    <topic>froxlor -- database password information leak</topic>
+    <affects>
+      <package>
+	<name>froxlor</name>
+	<range><lt>0.9.33.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>oss-security-list@demlak.de reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/238">
+	  <p>An unauthenticated remote attacker is able to get the database
+	    password via webaccess due to wrong file permissions of the /logs/
+	    folder in froxlor version 0.9.33.1 and earlier. The plain SQL
+	    password and username may be stored in the /logs/sql-error.log file.
+	    This directory is publicly reachable under the default
+	    configuration/setup.</p>
+	</blockquote>
+	<p>Note that froxlor 0.9.33.2 prevents future logging of passwords but
+	  does not retroactively remove passwords already logged.  Michael
+	  Kaufmann, the Froxlor lead developer reports:</p>
+	<blockquote cite="http://forum.froxlor.org/index.php/topic/13054-important-bugfix-release-09332/#entry30025">
+	  <p>Removing all .log files from the directory should do the job,
+	    alternatively just use the class.ConfigIO.php from Github</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5959</cvename>
+      <freebsdpr>ports/202262</freebsdpr>
+      <url>http://seclists.org/oss-sec/2015/q3/238</url>
+      <url>https://forum.froxlor.org/index.php/topic/13054-important-bugfix-release-09332/</url>
+    </references>
+    <dates>
+      <discovery>2015-07-29</discovery>
+      <entry>2015-08-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="83b38a2c-413e-11e5-bfcf-6805ca0b3d42">
+    <topic>RT -- two XSS vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>rt42</name>
+	<range><ge>4.2.0</ge><lt>4.2.12</lt></range>
+      </package>
+      <package>
+	<name>rt40</name>
+	<range><ge>4.0.0</ge><lt>4.0.24</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Best Practical reports:</p>
+	<blockquote cite="http://blog.bestpractical.com/2015/08/security-vulnerabilities-in-rt.html">
+	  <p>RT 4.0.0 and above are vulnerable to a cross-site
+	    scripting (XSS) attack via the user and group rights
+	    management pages.  This vulnerability is assigned
+	    CVE-2015-5475.  It was discovered and reported by Marcin
+	    Kopec at Data Reliance Shared Service Center.</p>
+	  <p>RT 4.2.0 and above are vulnerable to a cross-site
+	    scripting (XSS) attack via the cryptography interface.
+	    This vulnerability could allow an attacker with a
+	    carefully-crafted key to inject JavaScript into RT's user
+	    interface.  Installations which use neither GnuPG nor
+	    S/MIME are unaffected.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5475</cvename>
+      <url>http://blog.bestpractical.com/2015/08/security-vulnerabilities-in-rt.html</url>
+    </references>
+    <dates>
+      <discovery>2015-08-12</discovery>
+      <entry>2015-08-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="09fff0d9-4126-11e5-9f01-14dae9d210b8">
+    <topic>py-foolscap -- local file inclusion</topic>
+    <affects>
+      <package>
+	<name>py27-foolscap</name>
+	<name>py32-foolscap</name>
+	<name>py33-foolscap</name>
+	<name>py34-foolscap</name>
+	<range><lt>0.7.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Brian Warner reports:</p>
+	<blockquote cite="https://github.com/warner/foolscap/blob/a17218e18e01c05a9655863cd507b80561692c14/NEWS">
+	  <p>The "flappserver" feature was found to have a vulnerability in the
+	    service-lookup code which, when combined with an attacker who has the ability
+	    to write files to a location where the flappserver process could read them,
+	    would allow that attacker to obtain control of the flappserver process.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/warner/foolscap/blob/a17218e18e01c05a9655863cd507b80561692c14/NEWS</url>
+      <url>http://foolscap.lothar.com/trac/ticket/226</url>
+    </references>
+    <dates>
+      <discovery>2014-09-23</discovery>
+      <entry>2015-08-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="42c98cef-62b1-4b8b-9065-f4621e08d526">
+    <topic>libvpx -- out-of-bounds write</topic>
+    <affects>
+      <package>
+	<name>libvpx</name>
+	<range><lt>1.4.0</lt></range>
+      </package>
+      <package>
+	<name>firefox</name>
+	<range><lt>33.0,1</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>31.1.2,1</lt></range>
+      </package>
+      <package>
+	<name>linux-firefox</name>
+	<range><lt>33.0,1</lt></range>
+      </package>
+      <package>
+	<name>linux-seamonkey</name>
+	<range><lt>2.30</lt></range>
+      </package>
+      <package>
+	<name>linux-thunderbird</name>
+	<range><lt>31.1.2</lt></range>
+      </package>
+      <package>
+	<name>seamonkey</name>
+	<range><lt>2.30</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>31.1.2</lt></range>
+      </package>
+      <package>
+	<name>libxul</name>
+	<range><lt>31.1.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Mozilla Project reports:</p>
+	<blockquote cite="https://www.mozilla.org/en-US/security/advisories/mfsa2014-77/">
+	  <p>Using the Address Sanitizer tool, security researcher
+	    Abhishek Arya (Inferno) of the Google Chrome Security Team
+	    found an out-of-bounds write when buffering WebM format
+	    video containing frames with invalid tile sizes. This can
+	    lead to a potentially exploitable crash during WebM video
+	    playback.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-1578</cvename>
+      <url>https://www.mozilla.org/security/advisories/mfsa2014-77/</url>
+      <url>https://hg.mozilla.org/releases/mozilla-esr31/rev/6023f0b4f8ba</url>
+    </references>
+    <dates>
+      <discovery>2014-10-14</discovery>
+      <entry>2015-08-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f3778328-d288-4b39-86a4-65877331eaf7">
+    <topic>Adobe Flash Player -- critical vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>linux-c6-flashplugin</name>
+	<name>linux-c6_64-flashplugin</name>
+	<range><lt>11.2r202.508</lt></range>
+      </package>
+      <package>
+	<name>linux-f10-flashplugin</name>
+	<range><lt>11.2r202.508</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Adobe reports:</p>
+	<blockquote cite="https://helpx.adobe.com/security/products/flash-player/apsb15-19.html">
+	  <p>Adobe has released security updates for Adobe Flash Player.
+	    These updates address critical vulnerabilities that could
+	    potentially allow an attacker to take control of the affected
+	    system.</p>
+	  <p>These updates resolve type confusion vulnerabilities that could
+	    lead to code execution (CVE-2015-5128, CVE-2015-5554,
+	    CVE-2015-5555, CVE-2015-5558, CVE-2015-5562).</p>
+	  <p>These updates include further hardening to a mitigation
+	    introduced in version 18.0.0.209 to defend against vector
+	    length corruptions (CVE-2015-5125).</p>
+	  <p>These updates resolve use-after-free vulnerabilities that could
+	    lead to code execution (CVE-2015-5550, CVE-2015-5551,
+	    CVE-2015-3107, CVE-2015-5556, CVE-2015-5130, CVE-2015-5134,
+	    CVE-2015-5539, CVE-2015-5540, CVE-2015-5557, CVE-2015-5559,
+	    CVE-2015-5127, CVE-2015-5563, CVE-2015-5561, CVE-2015-5124,
+	    CVE-2015-5564).</p>
+	  <p>These updates resolve heap buffer overflow vulnerabilities
+	    that could lead to code execution (CVE-2015-5129,
+	    CVE-2015-5541).</p>
+	  <p>These updates resolve buffer overflow vulnerabilities that
+	    could lead to code execution (CVE-2015-5131, CVE-2015-5132,
+	    CVE-2015-5133).</p>
+	  <p>These updates resolve memory corruption vulnerabilities that
+	    could lead to code execution (CVE-2015-5544, CVE-2015-5545,
+	    CVE-2015-5546, CVE-2015-5547, CVE-2015-5548, CVE-2015-5549,
+	    CVE-2015-5552, CVE-2015-5553).</p>
+	  <p>These updates resolve an integer overflow vulnerability that
+	    could lead to code execution (CVE-2015-5560).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-3107</cvename>
+      <cvename>CVE-2015-5124</cvename>
+      <cvename>CVE-2015-5125</cvename>
+      <cvename>CVE-2015-5127</cvename>
+      <cvename>CVE-2015-5128</cvename>
+      <cvename>CVE-2015-5129</cvename>
+      <cvename>CVE-2015-5130</cvename>
+      <cvename>CVE-2015-5131</cvename>
+      <cvename>CVE-2015-5132</cvename>
+      <cvename>CVE-2015-5133</cvename>
+      <cvename>CVE-2015-5134</cvename>
+      <cvename>CVE-2015-5539</cvename>
+      <cvename>CVE-2015-5540</cvename>
+      <cvename>CVE-2015-5541</cvename>
+      <cvename>CVE-2015-5544</cvename>
+      <cvename>CVE-2015-5545</cvename>
+      <cvename>CVE-2015-5546</cvename>
+      <cvename>CVE-2015-5547</cvename>
+      <cvename>CVE-2015-5548</cvename>
+      <cvename>CVE-2015-5549</cvename>
+      <cvename>CVE-2015-5550</cvename>
+      <cvename>CVE-2015-5551</cvename>
+      <cvename>CVE-2015-5552</cvename>
+      <cvename>CVE-2015-5553</cvename>
+      <cvename>CVE-2015-5554</cvename>
+      <cvename>CVE-2015-5555</cvename>
+      <cvename>CVE-2015-5556</cvename>
+      <cvename>CVE-2015-5557</cvename>
+      <cvename>CVE-2015-5558</cvename>
+      <cvename>CVE-2015-5559</cvename>
+      <cvename>CVE-2015-5560</cvename>
+      <cvename>CVE-2015-5561</cvename>
+      <cvename>CVE-2015-5562</cvename>
+      <cvename>CVE-2015-5563</cvename>
+      <cvename>CVE-2015-5564</cvename>
+      <url>https://helpx.adobe.com/security/products/flash-player/apsb15-19.html</url>
+    </references>
+    <dates>
+      <discovery>2015-08-11</discovery>
+      <entry>2015-08-12</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="34e60332-2448-4ed6-93f0-12713749f250">
     <topic>libvpx -- multiple buffer overflows</topic>
     <affects>
@@ -12131,7 +12399,6 @@ Notes:
 	  <p>MFSA 2014-75 Buffer overflow during CSS manipulation</p>
 	  <p>MFSA 2014-76 Web Audio memory corruption issues with
 	    custom waveforms</p>
-	  <p>MFSA 2014-77 Out-of-bounds write with WebM video</p>
 	  <p>MFSA 2014-78 Further uninitialized memory use during GIF</p>
 	  <p>MFSA 2014-79 Use-after-free interacting with text
 	    directionality</p>
@@ -12147,7 +12414,6 @@ Notes:
       <cvename>CVE-2014-1575</cvename>
       <cvename>CVE-2014-1576</cvename>
       <cvename>CVE-2014-1577</cvename>
-      <cvename>CVE-2014-1578</cvename>
       <cvename>CVE-2014-1580</cvename>
       <cvename>CVE-2014-1581</cvename>
       <cvename>CVE-2014-1582</cvename>
@@ -12158,7 +12424,6 @@ Notes:
       <url>https://www.mozilla.org/security/announce/2014/mfsa2014-74.html</url>
       <url>https://www.mozilla.org/security/announce/2014/mfsa2014-75.html</url>
       <url>https://www.mozilla.org/security/announce/2014/mfsa2014-76.html</url>
-      <url>https://www.mozilla.org/security/announce/2014/mfsa2014-77.html</url>
       <url>https://www.mozilla.org/security/announce/2014/mfsa2014-78.html</url>
       <url>https://www.mozilla.org/security/announce/2014/mfsa2014-79.html</url>
       <url>https://www.mozilla.org/security/announce/2014/mfsa2014-80.html</url>
@@ -12169,7 +12434,7 @@ Notes:
     <dates>
       <discovery>2014-10-14</discovery>
       <entry>2014-10-14</entry>
-      <modified>2014-10-16</modified>
+      <modified>2015-08-12</modified>
     </dates>
   </vuln>
 
