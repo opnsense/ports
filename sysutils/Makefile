@@ -838,7 +838,6 @@
     SUBDIR += rubygem-bosh-gen
     SUBDIR += rubygem-bosh_cli
     SUBDIR += rubygem-bundler
-    SUBDIR += rubygem-bundler17
     SUBDIR += rubygem-bundler_ext
     SUBDIR += rubygem-capistrano
     SUBDIR += rubygem-capistrano-ext
@@ -864,6 +863,7 @@
     SUBDIR += rubygem-hammer_cli_foreman_salt
     SUBDIR += rubygem-hammer_cli_foreman_ssh
     SUBDIR += rubygem-hiera
+    SUBDIR += rubygem-hiera1
     SUBDIR += rubygem-hiera-file
     SUBDIR += rubygem-librarian-puppet
     SUBDIR += rubygem-log4r
