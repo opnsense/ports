@@ -58,6 +58,144 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="6241b5df-42a1-11e5-93ad-002590263bf5">
+    <topic>mediawiki -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mediawiki123</name>
+	<range><lt>1.23.10</lt></range>
+      </package>
+      <package>
+	<name>mediawiki124</name>
+	<range><lt>1.24.3</lt></range>
+      </package>
+      <package>
+	<name>mediawiki125</name>
+	<range><lt>1.25.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>MediaWiki reports:</p>
+	<blockquote cite="https://lists.wikimedia.org/pipermail/mediawiki-announce/2015-August/000179.html">
+	  <p>Internal review discovered that Special:DeletedContributions did
+	    not properly protect the IP of autoblocked users. This fix makes
+	    the functionality of Special:DeletedContributions consistent with
+	    Special:Contributions and Special:BlockList.</p>
+	  <p>Internal review discovered that watchlist anti-csrf tokens were not
+	    being compared in constant time, which could allow various timing
+	    attacks. This could allow an attacker to modify a user's watchlist
+	    via csrf</p>
+	  <p>John Menerick reported that MediaWiki's thumb.php failed to sanitize
+	    various error messages, resulting in xss.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://lists.wikimedia.org/pipermail/mediawiki-announce/2015-August/000179.html</url>
+      <url>https://phabricator.wikimedia.org/T106893</url>
+      <url>https://phabricator.wikimedia.org/T94116</url>
+      <url>https://phabricator.wikimedia.org/T97391</url>
+    </references>
+    <dates>
+      <discovery>2015-08-10</discovery>
+      <entry>2015-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0c2c4d84-42a2-11e5-9daa-14dae9d210b8">
+    <topic>freeradius3 -- insufficient validation on packets</topic>
+    <affects>
+      <package>
+	<name>freeradius3</name>
+	<range><lt>3.0.8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jouni Malinen reports:</p>
+	<blockquote cite="http://freeradius.org/security.html#eap-pwd-2015">
+	  <p>The EAP-PWD module performed insufficient validation on
+	    packets received from an EAP peer. This module is not enabled in the
+	    default configuration. Administrators must manually enable it for their
+	    server to be vulnerable. Only versions 3.0 up to 3.0.8 are affected.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://freeradius.org/security.html#eap-pwd-2015</url>
+    </references>
+    <dates>
+      <discovery>2015-04-04</discovery>
+      <entry>2015-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ec6a2a1e-429d-11e5-9daa-14dae9d210b8">
+    <topic>gnutls -- double free in certificate DN decoding</topic>
+    <affects>
+      <package>
+	<name>gnutls</name>
+	<range><lt>3.3.17</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>gnutls.org reports:</p>
+	<blockquote cite="http://www.gnutls.org/security.html#GNUTLS-SA-2015-3">
+	    <p>Kurt Roeckx reported that decoding a specific certificate with very
+	    long DistinguishedName (DN) entries leads to double free, which may
+	    result to a denial of service. Since the DN decoding occurs in almost
+	    all applications using certificates it is recommended to upgrade the
+	    latest GnuTLS version fixing the issue. Recommendation: Upgrade to
+	    GnuTLS 3.4.4, or 3.3.17.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.gnutls.org/security.html#GNUTLS-SA-2015-3</url>
+      <mlist>http://seclists.org/oss-sec/2015/q3/308</mlist>
+      <url>https://gitlab.com/gnutls/gnutls/commit/272854367efc130fbd4f1a51840d80c630214e12</url>
+    </references>
+    <dates>
+      <discovery>2015-07-20</discovery>
+      <entry>2015-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3de36a19-429d-11e5-9daa-14dae9d210b8">
+    <topic>gnutls -- MD5 downgrade in TLS signatures</topic>
+    <affects>
+      <package>
+	<name>gnutls</name>
+	<range><lt>3.3.15</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Karthikeyan Bhargavan reports:</p>
+	<blockquote cite="http://permalink.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/8132">
+	  <p>GnuTLS does not by default support MD5 signatures. Indeed the RSA-MD5
+	    signature-hash algorithm needs to be explicitly enabled using the
+	    priority option VERIFY_ALLOW_SIGN_RSA_MD5. In the NORMAL and SECURE
+	    profiles, GnuTLS clients do not offer RSA-MD5 in the signature
+	    algorithms extension. However, we find that all GnuTLS clients still
+	    accept RSA-MD5 in the ServerKeyExchange and GnuTLS servers still
+	    accept RSA-MD5 in the ClientCertificateVerify.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <mlist>http://permalink.gmane.org/gmane.comp.encryption.gpg.gnutls.devel/8132</mlist>
+      <url>http://www.gnutls.org/security.html#GNUTLS-SA-2015-2</url>
+      <mlist>http://seclists.org/oss-sec/2015/q2/367</mlist>
+    </references>
+    <dates>
+      <discovery>2015-04-25</discovery>
+      <entry>2015-08-14</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="9ee72858-4159-11e5-93ad-002590263bf5">
     <topic>froxlor -- database password information leak</topic>
     <affects>
@@ -331,7 +469,7 @@ Notes:
     <affects>
       <package>
 	<name>libvpx</name>
-	<range><lt>1.5.0</lt></range>
+	<range><lt>1.4.0.488</lt></range>
       </package>
       <package>
 	<name>firefox</name>
@@ -363,7 +501,7 @@ Notes:
     <dates>
       <discovery>2015-08-11</discovery>
       <entry>2015-08-11</entry>
-      <modified>2015-08-11</modified>
+      <modified>2015-08-14</modified>
     </dates>
   </vuln>
 
