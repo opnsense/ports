@@ -296,6 +296,7 @@
     SUBDIR += cproto
     SUBDIR += cpuflags
     SUBDIR += critcl
+    SUBDIR += cs-eric6
     SUBDIR += cscope
     SUBDIR += cscout
     SUBDIR += csmith
@@ -435,6 +436,7 @@
     SUBDIR += elixir-inflex
     SUBDIR += elixir-lager_logger
     SUBDIR += elixir-msgpax
+    SUBDIR += elixir-paratize
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
     SUBDIR += elixir-quantum
@@ -483,6 +485,7 @@
     SUBDIR += erlang-sbroker
     SUBDIR += erlang-ssl_verify_hostname
     SUBDIR += erlang-syslog
+    SUBDIR += es-eric6
     SUBDIR += etcd
     SUBDIR += etcdctl
     SUBDIR += etl
@@ -987,6 +990,7 @@
     SUBDIR += ipython
     SUBDIR += ireport
     SUBDIR += isl
+    SUBDIR += it-eric6
     SUBDIR += itext
     SUBDIR += jakarta-commons-configuration
     SUBDIR += jakarta-commons-daemon
@@ -5099,6 +5103,7 @@
     SUBDIR += tokamak
     SUBDIR += tortoisehg
     SUBDIR += tpasm
+    SUBDIR += tr-eric6
     SUBDIR += trac-bitten
     SUBDIR += tradcpp
     SUBDIR += trio
