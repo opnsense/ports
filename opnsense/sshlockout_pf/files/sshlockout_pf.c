@@ -223,23 +223,23 @@ main(int argc, char *argv[])
 		if (strstr(buf, "sshd") == NULL && strstr(buf, "webConfigurator") == NULL)
 			continue;
 		// Check for various bad (or good!) strings in stream
-		if (check_for_string("Failed password for root from", "sshlockout", buf, BLOCK))
+		if (check_for_string("Accepted keyboard-interactive/pam for", "sshlockout", buf, RELEASE))
 			continue;
-		else if (check_for_string("Failed password for admin from", "sshlockout",  buf, BLOCK))
+		else if (check_for_string("authentication error for", "sshlockout",  buf, BLOCK))
 			continue;
-		else if (check_for_string("Failed password for invalid user", "sshlockout", buf, BLOCK))
+		else if (check_for_string("Did not receive identification string", "sshlockout", buf, BLOCK))
+			continue;
+		else if (check_for_string("Failed password for", "sshlockout", buf, BLOCK))
 			continue;
 		else if (check_for_string("Illegal user", "sshlockout", buf, BLOCK))
 			continue;
 		else if (check_for_string("Invalid user", "sshlockout", buf, BLOCK))
 			continue;
+		else if (check_for_string("Postponed keyboard-interactive for invalid user", "sshlockout", buf, BLOCK))
+			continue;
 		else if (check_for_string("webConfigurator authentication error for", "webConfiguratorlockout", buf, BLOCK))
 			continue;
-		else if (check_for_string("authentication error for", "sshlockout", buf, BLOCK))
-			continue;
 		else if (check_for_string("Successful webConfigurator login for user", "webConfiguratorlockout", buf, RELEASE))
-			continue;
-		else if (check_for_string("Accepted keyboard-interactive/pam for", "sshlockout", buf, RELEASE))
 			continue;
 	}
 
