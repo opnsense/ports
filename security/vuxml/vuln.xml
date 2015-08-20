@@ -58,6 +58,33 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="f5b8b670-465c-11e5-a49d-bcaec565249c">
+    <topic>gdk-pixbuf2 -- heap overflow and DoS</topic>
+    <affects>
+      <package>
+	<name>gdk-pixbuf2</name>
+	<range><lt>2.31.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gustavo Grieco reports:</p>
+	<blockquote cite="https://bugzilla.gnome.org/show_bug.cgi?id=752297">
+	  <p>We found a heap overflow and a DoS in the gdk-pixbuf
+	    implementation triggered by the scaling of a malformed bmp.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-4491</cvename>
+      <url>https://bugzilla.gnome.org/show_bug.cgi?id=752297</url>
+    </references>
+    <dates>
+      <discovery>2015-07-12</discovery>
+      <entry>2015-08-19</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="b0e54dc1-45d2-11e5-adde-14dae9d210b8">
     <topic>django -- multiple vulnerabilities</topic>
     <affects>
@@ -289,8 +316,19 @@ Notes:
   </vuln>
 
   <vuln vid="f06f20dc-4347-11e5-93ad-002590263bf5">
-    <topic>xen-tools -- QEMU leak of uninitialized heap memory in rtl8139 device model</topic>
+    <topic>qemu, xen-tools -- QEMU leak of uninitialized heap memory in rtl8139 device model</topic>
     <affects>
+      <package>
+	<name>qemu</name>
+	<name>qemu-devel</name>
+	<range><le>0.11.1_20</le></range>
+	<range><ge>0.12</ge><le>2.3.0_2</le></range>
+      </package>
+      <package>
+	<name>qemu-sbruno</name>
+	<name>qemu-user-static</name>
+	<range><lt>2.4.50.g20150814</lt></range>
+      </package>
       <package>
 	<name>xen-tools</name>
 	<range><lt>4.5.1</lt></range>
@@ -315,16 +353,29 @@ Notes:
     <references>
       <cvename>CVE-2015-5165</cvename>
       <url>http://xenbits.xen.org/xsa/advisory-140.html</url>
+      <url>http://git.qemu.org/?p=qemu.git;a=commit;h=2a3612ccc1fa9cea77bd193afbfe21c77e7e91ef</url>
     </references>
     <dates>
       <discovery>2015-08-03</discovery>
       <entry>2015-08-17</entry>
+      <modified>2015-08-19</modified>
     </dates>
   </vuln>
 
   <vuln vid="ee99899d-4347-11e5-93ad-002590263bf5">
-    <topic>xen-tools -- use after free in QEMU/Xen block unplug protocol</topic>
+    <topic>qemu, xen-tools -- use after free in QEMU/Xen block unplug protocol</topic>
     <affects>
+      <package>
+	<name>qemu</name>
+	<name>qemu-devel</name>
+	<range><le>0.11.1_20</le></range>
+	<range><ge>0.12</ge><le>2.3.0_2</le></range>
+      </package>
+      <package>
+	<name>qemu-sbruno</name>
+	<name>qemu-user-static</name>
+	<range><lt>2.4.50.g20150814</lt></range>
+      </package>
       <package>
 	<name>xen-tools</name>
 	<range><lt>4.5.1</lt></range>
@@ -346,10 +397,12 @@ Notes:
     <references>
       <cvename>CVE-2015-5166</cvename>
       <url>http://xenbits.xen.org/xsa/advisory-139.html</url>
+      <url>http://git.qemu.org/?p=qemu.git;a=commit;h=260425ab405ea76c44dd59744d05176d4f579a52</url>
     </references>
     <dates>
       <discovery>2015-08-03</discovery>
       <entry>2015-08-17</entry>
+      <modified>2015-08-19</modified>
     </dates>
   </vuln>
 
@@ -1224,8 +1277,19 @@ Notes:
   </vuln>
 
   <vuln vid="da451130-365d-11e5-a4a5-002590263bf5">
-    <topic>xen-tools -- QEMU heap overflow flaw with certain ATAPI commands</topic>
+    <topic>qemu, xen-tools -- QEMU heap overflow flaw with certain ATAPI commands</topic>
     <affects>
+      <package>
+	<name>qemu</name>
+	<name>qemu-devel</name>
+	<range><le>0.11.1_20</le></range>
+	<range><ge>0.12</ge><le>2.3.0_2</le></range>
+      </package>
+      <package>
+	<name>qemu-sbruno</name>
+	<name>qemu-user-static</name>
+	<range><lt>2.4.50.g20150814</lt></range>
+      </package>
       <package>
 	<name>xen-tools</name>
 	<range><lt>4.5.0_9</lt></range>
@@ -1248,10 +1312,12 @@ Notes:
     <references>
       <cvename>CVE-2015-5154</cvename>
       <url>http://xenbits.xen.org/xsa/advisory-138.html</url>
+      <url>http://git.qemu.org/?p=qemu.git;a=commit;h=e40db4c6d391419c0039fe274c74df32a6ca1a28</url>
     </references>
     <dates>
       <discovery>2015-07-27</discovery>
       <entry>2015-08-04</entry>
+      <modified>2015-08-19</modified>
     </dates>
   </vuln>
 
@@ -49076,7 +49142,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Juli Mallett reports:</p>
-	<blockquote cite="http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/147007">
+	<blockquote>
 	  <p>mdnsd will crash on some systems with a corrupt stack and once
 	    that's fixed it will still leak a file descriptor when parsing
 	    resolv.conf. The crash is because scanf is used with %10s for a
@@ -51492,14 +51558,14 @@ executed in your Internet Explorer while displaying the email.</p>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Denis Barov reports:</p>
-	<blockquote cite="http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/141852">
+	<blockquote>
 	  <p>sysutils/fuser allows user to send any signal to any process when
 	    installed with suid bit.</p>
 	</blockquote>
       </body>
     </description>
     <references>
-      <url>http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/141852</url>
+      <freebsdpr>ports/141852</freebsdpr>
     </references>
     <dates>
       <discovery>2009-09-15</discovery>
@@ -81668,7 +81734,7 @@ executed in your Internet Explorer while displaying the email.</p>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Emanuel Haupt reports:</p>
-	<blockquote cite="http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/86833">
+	<blockquote>
 	  <p>Someone who controls an FTP server that weex will log in to
 	    can set up malicious data in the account that weex will use,
 	    and that will cause a format string bug that will allow remote
@@ -95552,7 +95618,7 @@ http_access deny Gopher</pre>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Rudolf Polzer reports:</p>
-	<blockquote cite="http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/70618">
+	<blockquote>
 	  <p>a2ps builds a command line for file() containing an
 	    unescaped version of the file name, thus might call
 	    external programs described by the file name.  Running a
@@ -95593,7 +95659,7 @@ http_access deny Gopher</pre>
       </body>
     </description>
     <references>
-      <url>http://cvsweb.freebsd.org/ports/news/ifmail</url>
+      <url>https://svnweb.freebsd.org/changeset/ports/120295</url>
     </references>
     <dates>
       <discovery>2004-08-23</discovery>
@@ -96501,7 +96567,7 @@ http_access deny Gopher</pre>
     <references>
       <cvename>CVE-2004-0919</cvename>
       <freebsdsa>SA-04:15.syscons</freebsdsa>
-      <url>http://www.freebsd.org/cgi/cvsweb.cgi/src/sys/dev/syscons/syscons.c#rev1.429</url>
+      <url>https://svnweb.freebsd.org/changeset/base/135942</url>
     </references>
     <dates>
       <discovery>2004-09-30</discovery>
@@ -101390,7 +101456,6 @@ http_access deny Gopher</pre>
     </description>
     <references>
       <cvename>CVE-2004-0408</cvename>
-      <url>http://cvsweb.freebsd.org/ports/security/ident2/files/patch-common.c</url>
     </references>
     <dates>
       <discovery>2004-04-15</discovery>
@@ -102680,7 +102745,7 @@ misc.c:
       </body>
     </description>
     <references>
-      <url>http://cvsweb.freebsd.org/ports/chinese/chitex/Attic/Makefile?rev=1.5&amp;content-type=text/x-cvsweb-markup</url>
+      <url>https://docs.freebsd.org/cgi/mid.cgi?200303251301.h2PD1m9Y053389</url>
     </references>
     <dates>
       <discovery>2003-04-25</discovery>
@@ -102706,7 +102771,7 @@ misc.c:
       </body>
     </description>
     <references>
-      <url>http://www.freebsd.org/cgi/cvsweb.cgi/ports/mail/pine4/Makefile?rev=1.43&amp;content-type=text/x-cvsweb-markup</url>
+      <url>https://docs.freebsd.org/cgi/mid.cgi?200009290728.AAA69097</url>
     </references>
     <dates>
       <discovery>2000-09-29</discovery>
