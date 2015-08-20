@@ -9,6 +9,13 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Automatically block IPs with failed SSH logins using pf(4)
 
+OPTIONS_DEFINE= WEBCF
+OPTIONS_DEFAULT= WEBCF
+
+WEBCF_DESC=     Enable webConfigurator support
+
+WEBCF_CFLAGS=           -DWEBCF
+
 PLIST_FILES=    sbin/sshlockout_pf
 
 do-extract:

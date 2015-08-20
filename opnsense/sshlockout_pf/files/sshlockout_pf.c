@@ -200,7 +200,11 @@ main(int argc, char *argv[])
 	openlog("sshlockout", LOG_PID|LOG_CONS, LOG_AUTH|LOG_AUTHPRIV);
 
 	// We are starting up
+#if defined(WEBCF)
 	syslog(LOG_NOTICE, "sshlockout/webConfigurator v%s starting up", VERSION);
+#else
+	syslog(LOG_NOTICE, "sshlockout v%s starting up", VERSION);
+#endif
 
 	// Init DB
 	TAILQ_INIT(&lockouts);
@@ -219,28 +223,36 @@ main(int argc, char *argv[])
 	while (fgets(buf, (int)sizeof(buf), stdin) != NULL) 
 	{
 		printf("%s", buf);
+#if defined(WEBCF)
 		/* if this is not sshd or webConfigurator related, continue on without processing */
 		if (strstr(buf, "sshd") == NULL && strstr(buf, "webConfigurator") == NULL)
 			continue;
+#else
+		/* if this is not sshd related, continue on without processing */
+		if (strstr(buf, "sshd") == NULL)
+			continue;
+#endif
 		// Check for various bad (or good!) strings in stream
-		if (check_for_string("Failed password for root from", "sshlockout", buf, BLOCK))
+		if (check_for_string("Accepted keyboard-interactive/pam for", "sshlockout", buf, RELEASE))
 			continue;
-		else if (check_for_string("Failed password for admin from", "sshlockout",  buf, BLOCK))
+		else if (check_for_string("authentication error for", "sshlockout",  buf, BLOCK))
 			continue;
-		else if (check_for_string("Failed password for invalid user", "sshlockout", buf, BLOCK))
+		else if (check_for_string("Did not receive identification string", "sshlockout", buf, BLOCK))
+			continue;
+		else if (check_for_string("Failed password for", "sshlockout", buf, BLOCK))
 			continue;
 		else if (check_for_string("Illegal user", "sshlockout", buf, BLOCK))
 			continue;
 		else if (check_for_string("Invalid user", "sshlockout", buf, BLOCK))
 			continue;
-		else if (check_for_string("webConfigurator authentication error for", "webConfiguratorlockout", buf, BLOCK))
+		else if (check_for_string("Postponed keyboard-interactive for invalid user", "sshlockout", buf, BLOCK))
 			continue;
-		else if (check_for_string("authentication error for", "sshlockout", buf, BLOCK))
+#if defined(WEBCF)
+		else if (check_for_string("webConfigurator authentication error for", "webConfiguratorlockout", buf, BLOCK))
 			continue;
 		else if (check_for_string("Successful webConfigurator login for user", "webConfiguratorlockout", buf, RELEASE))
 			continue;
-		else if (check_for_string("Accepted keyboard-interactive/pam for", "sshlockout", buf, RELEASE))
-			continue;
+#endif
 	}
 
 	pthread_join(GC, NULL);
@@ -249,7 +261,11 @@ main(int argc, char *argv[])
 	pthread_cancel(GC);
 
 	// We are exiting
+#if defined(WEBCF)
 	syslog(LOG_NOTICE, "sshlockout/webConfigurator v%s exiting", VERSION);
+#else
+	syslog(LOG_NOTICE, "sshlockout v%s exiting", VERSION);
+#endif
 
 	// That's all folks.
 	return(0);
