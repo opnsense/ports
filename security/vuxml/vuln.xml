@@ -58,6 +58,69 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="a0a4e24c-4760-11e5-9391-3c970e169bc2">
+    <topic>vlc -- arbitrary pointer dereference vulnerability</topic>
+    <affects>
+      <package>
+	<name>vlc</name>
+	<range><lt>2.2.1_5,4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>oCERT reports:</p>
+	<blockquote cite="https://www.ocert.org/advisories/ocert-2015-009.html">
+	  <p>The stable VLC version suffers from an arbitrary pointer
+	    dereference vulnerability.</p>
+	  <p>The vulnerability affects the 3GP file format parser,
+	    insufficient restrictions on a writable buffer can be
+	    exploited to execute arbitrary code via the heap memory.
+	    A specific 3GP file can be crafted to trigger the
+	    vulnerability.</p>
+	  <p>Credit: vulnerability reported by Loren Maggiore of
+	    Trail of Bits.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5949</cvename>
+      <url>https://git.videolan.org/?p=vlc/vlc-2.2.git;a=commitdiff;h=ce91452460a75d7424b165c4dc8db98114c3cbd9;hp=9e12195d3e4316278af1fa4bcb6a705ff27456fd</url>
+      <url>https://www.ocert.org/advisories/ocert-2015-009.html</url>
+    </references>
+    <dates>
+      <discovery>2015-08-20</discovery>
+      <entry>2015-08-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9a71953a-474a-11e5-adde-14dae9d210b8">
+    <topic>libpgf -- use after free</topic>
+    <affects>
+      <package>
+	<name>libpgf</name>
+	<range><le>6.14.12</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Pengsu Cheng reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/404">
+	  <p>An use-after-free issue in Decoder.cpp was reported to
+	    upstream. The problem is due to lack of validation of ColorTableSize.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/404</url>
+      <url>https://sourceforge.net/p/libpgf/code/147/</url>
+      <url>https://sourceforge.net/p/libpgf/code/148/</url>
+    </references>
+    <dates>
+      <discovery>2015-08-08</discovery>
+      <entry>2015-08-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="f5b8b670-465c-11e5-a49d-bcaec565249c">
     <topic>gdk-pixbuf2 -- heap overflow and DoS</topic>
     <affects>
@@ -188,7 +251,7 @@ Notes:
   </vuln>
 
   <vuln vid="f1692469-45ce-11e5-adde-14dae9d210b8">
-    <topic>jasper -- double free in jasper_image_stop_load()</topic>
+    <topic>jasper -- multiple vulnerabilities</topic>
     <affects>
       <package>
 	<name>jasper</name>
@@ -204,16 +267,25 @@ Notes:
 	    A specially crafted file could cause an application using JasPer to
 	    crash.</p>
 	</blockquote>
+	<p>Feist Josselin reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/408">
+	  <p>A new use-after-free was found in Jasper JPEG-200. The
+	    use-after-free appears in the function mif_process_cmpt of the
+	    src/libjasper/mif/mif_cod.c file.</p>
+	</blockquote>
       </body>
     </description>
     <references>
       <url>https://bugzilla.redhat.com/show_bug.cgi?id=1254242#c0</url>
       <url>http://seclists.org/oss-sec/2015/q3/366</url>
+      <url>http://seclists.org/oss-sec/2015/q3/408</url>
       <cvename>CVE-2015-5203</cvename>
+      <cvename>CVE-2015-5221</cvename>
     </references>
     <dates>
       <discovery>2015-08-17</discovery>
       <entry>2015-08-18</entry>
+      <modified>2015-08-20</modified>
     </dates>
   </vuln>
 
