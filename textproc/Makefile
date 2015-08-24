@@ -772,6 +772,7 @@
     SUBDIR += p5-String-Strip
     SUBDIR += p5-String-ToIdentifier-EN
     SUBDIR += p5-String-Tokenizer
+    SUBDIR += p5-String-Trim
     SUBDIR += p5-String-Truncate
     SUBDIR += p5-String-Urandom
     SUBDIR += p5-String-Util
@@ -892,6 +893,7 @@
     SUBDIR += p5-Text-Shellwords
     SUBDIR += p5-Text-Similarity
     SUBDIR += p5-Text-SimpleTable
+    SUBDIR += p5-Text-SimpleTable-AutoWidth
     SUBDIR += p5-Text-SimpleTemplate
     SUBDIR += p5-Text-Soundex
     SUBDIR += p5-Text-SpellChecker
@@ -1182,7 +1184,6 @@
     SUBDIR += popup-stacks
     SUBDIR += ppower4
     SUBDIR += print-n-times
-    SUBDIR += prosper
     SUBDIR += pugixml
     SUBDIR += pure-csv
     SUBDIR += pure-xml

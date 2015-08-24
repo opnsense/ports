@@ -926,6 +926,7 @@
     SUBDIR += p5-HTML-QuickCheck
     SUBDIR += p5-HTML-RSSAutodiscovery
     SUBDIR += p5-HTML-ResolveLink
+    SUBDIR += p5-HTML-Restrict
     SUBDIR += p5-HTML-RobotsMETA
     SUBDIR += p5-HTML-Scrubber
     SUBDIR += p5-HTML-Seamstress
@@ -986,6 +987,7 @@
     SUBDIR += p5-HTTP-BrowserDetect
     SUBDIR += p5-HTTP-Cache-Transparent
     SUBDIR += p5-HTTP-CookieJar
+    SUBDIR += p5-HTTP-CookieMonster
     SUBDIR += p5-HTTP-Cookies
     SUBDIR += p5-HTTP-Cookies-Mozilla
     SUBDIR += p5-HTTP-Cookies-iCab
@@ -1044,6 +1046,7 @@
     SUBDIR += p5-LWP-Authen-OAuth
     SUBDIR += p5-LWP-Authen-Wsse
     SUBDIR += p5-LWP-ConnCache-MaxKeepAliveRequests
+    SUBDIR += p5-LWP-ConsoleLogger
     SUBDIR += p5-LWP-MediaTypes
     SUBDIR += p5-LWP-Online
     SUBDIR += p5-LWP-Protocol-PSGI
