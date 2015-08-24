@@ -1,4 +1,0 @@
-The OPNsense system update utility provides kernel and base
-upgrades based on binary sets as well as packages via pkg(8).
-
-WWW: https://opnsense.org/
