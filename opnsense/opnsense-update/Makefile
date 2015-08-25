@@ -1,7 +1,7 @@
 # Created by: Franco Fichtner <franco@opnsense.org>
 # $FreeBSD$
 
-PORTNAME=	os-update
+PORTNAME=	opnsense-update
 PORTVERSION=	15.7.10
 PORTREVISION=	0
 CATEGORIES=	sysutils
