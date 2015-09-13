@@ -1260,6 +1260,8 @@
     SUBDIR += py-sphinx
     SUBDIR += py-sphinx-intl
     SUBDIR += py-sphinx_rtd_theme
+    SUBDIR += py-sphinx_numfig
+    SUBDIR += py-sphinx_wikipedia
     SUBDIR += py-sphinxcontrib-adadomain
     SUBDIR += py-sphinxcontrib-bitbucket
     SUBDIR += py-sphinxcontrib-httpdomain
@@ -1376,6 +1378,7 @@
     SUBDIR += rubygem-fog-xml
     SUBDIR += rubygem-gemoji
     SUBDIR += rubygem-gherkin
+    SUBDIR += rubygem-gherkin3
     SUBDIR += rubygem-github-linguist
     SUBDIR += rubygem-github-markdown
     SUBDIR += rubygem-github-markup
