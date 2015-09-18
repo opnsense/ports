@@ -58,6 +58,228 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="c2fcbec2-5daa-11e5-9909-002590263bf5">
+    <topic>moodle -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>moodle27</name>
+	<range><lt>2.7.10</lt></range>
+      </package>
+      <package>
+	<name>moodle28</name>
+	<range><lt>2.8.8</lt></range>
+      </package>
+      <package>
+	<name>moodle29</name>
+	<range><lt>2.9.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Moodle Release Notes report:</p>
+	<blockquote cite="https://docs.moodle.org/dev/Moodle_2.9.2_release_notes">
+	  <p>A number of security related issues were resolved. Details of
+	    these issues will be released after a period of approximately one
+	    week to allow system administrators to safely update to the latest
+	    version.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://docs.moodle.org/dev/Moodle_2.7.10_release_notes</url>
+      <url>https://docs.moodle.org/dev/Moodle_2.8.8_release_notes</url>
+      <url>https://docs.moodle.org/dev/Moodle_2.9.2_release_notes</url>
+    </references>
+    <dates>
+      <discovery>2015-09-14</discovery>
+      <entry>2015-09-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d3a98c2d-5da1-11e5-9909-002590263bf5">
+    <topic>squid -- TLS/SSL parser denial of service vulnerability</topic>
+    <affects>
+      <package>
+	<name>squid</name>
+	<range><ge>3.5.0.1</ge><lt>3.5.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Amos Jeffries, release manager of the Squid-3 series, reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2015/09/18/1">
+	  <p>Vulnerable versions are 3.5.0.1 to 3.5.8 (inclusive), which are
+	    built with OpenSSL and configured for "SSL-Bump" decryption.</p>
+	  <p>Integer overflows can lead to invalid pointer math reading from
+	    random memory on some CPU architectures. In the best case this leads
+	    to wrong TLS extensiosn being used for the client, worst-case a
+	    crash of the proxy terminating all active transactions.</p>
+	  <p>Incorrect message size checks and assumptions about the existence
+	    of TLS extensions in the SSL/TLS handshake message can lead to very
+	    high CPU consumption (up to and including 'infinite loop'
+	    behaviour).</p>
+	  <p>The above can be triggered remotely. Though there is one layer of
+	    authorization applied before this processing to check that the
+	    client is allowed to use the proxy, that check is generally weak. MS
+	    Skype on Windows XP is known to trigger some of these.</p>
+	</blockquote>
+	<p>The FreeBSD port does not use SSL by default and is not vulnerable
+	  in the default configuration.</p>
+      </body>
+    </description>
+    <references>
+      <freebsdpr>ports/203186</freebsdpr>
+      <url>http://www.openwall.com/lists/oss-security/2015/09/18/1</url>
+    </references>
+    <dates>
+      <discovery>2015-09-18</discovery>
+      <entry>2015-09-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b55ecf12-5d98-11e5-9909-002590263bf5">
+    <topic>remind -- buffer overflow with malicious reminder file input</topic>
+    <affects>
+      <package>
+	<name>remind</name>
+	<range><lt>3.1.15</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Dianne Skoll reports:</p>
+	<blockquote cite="http://lists.roaringpenguin.com/pipermail/remind-fans/2015/003172.html">
+	  <p>BUG FIX: Fix a buffer overflow found by Alexander Keller.</p>
+	</blockquote>
+	<p>The bug can be manifested by an extended DUMP command using a system
+	  variable (that is a special variable whose name begins with '$')</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5957</cvename>
+      <freebsdpr>ports/202942</freebsdpr>
+      <url>http://lists.roaringpenguin.com/pipermail/remind-fans/2015/003172.html</url>
+      <url>http://www.openwall.com/lists/oss-security/2015/08/07/1</url>
+    </references>
+    <dates>
+      <discovery>2015-07-27</discovery>
+      <entry>2015-09-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d45ad7ae-5d56-11e5-9ad8-14dae9d210b8">
+    <topic>shutter -- arbitrary code execution</topic>
+    <affects>
+      <package>
+	<name>shutter</name>
+	<range><ge>0.80</ge><lt>0.93.1_2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Luke Farone reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/541">
+	  <p>In the "Shutter" screenshot application, I discovered that using the
+	    "Show in folder" menu option while viewing a file with a
+	    specially-crafted path allows for arbitrary code execution with the
+	    permissions of the user running Shutter.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/541</url>
+      <url>https://bugs.launchpad.net/shutter/+bug/1495163</url>
+      <url>http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=798862</url>
+      <cvename>CVE-2015-0854</cvename>
+    </references>
+    <dates>
+      <discovery>2015-09-13</discovery>
+      <entry>2015-09-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a233d51f-5d4c-11e5-9ad8-14dae9d210b8">
+    <topic>openjpeg -- use-after-free vulnerability</topic>
+    <affects>
+      <package>
+	<name>openjpeg</name>
+	<range><lt>2.1.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Feist Josselin reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/550">
+	  <p>Use-after-free was found in openjpeg. The vuln is fixed in
+	    version 2.1.1 and was located in opj_j2k_write_mco function.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/550</url>
+      <url>https://github.com/uclouvain/openjpeg/issues/563</url>
+    </references>
+    <dates>
+      <discovery>2015-08-14</discovery>
+      <entry>2015-09-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bab05188-5d4b-11e5-9ad8-14dae9d210b8">
+    <topic>optipng -- use-after-free vulnerability</topic>
+    <affects>
+      <package>
+	<name>optipng</name>
+	<range><le>0.6.5</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gustavo Grieco reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/556">
+	  <p>We found a use-after-free causing an invalid/double free in
+	    optipng 0.6.4.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/556</url>
+    </references>
+    <dates>
+      <discovery>2015-09-16</discovery>
+      <entry>2015-09-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3c259621-5d4a-11e5-9ad8-14dae9d210b8">
+    <topic>openslp -- denial of service vulnerability</topic>
+    <affects>
+      <package>
+	<name>openslp</name>
+	<range><lt>2.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Qinghao Tang reports:</p>
+	<blockquote cite="http://seclists.org/oss-sec/2015/q3/559">
+	  <p>The function ParseExtension() in openslp 1.2.1 exists a
+	    vulnerability , an attacher can cause a denial of service
+	    (infinite loop) via a  packet with crafted "nextoffset"
+	    value and "extid" value.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://seclists.org/oss-sec/2015/q3/559</url>
+      <cvename>CVE-2015-5155</cvename>
+    </references>
+    <dates>
+      <discovery>2015-09-16</discovery>
+      <entry>2015-09-17</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8f5c9dd6-5cac-11e5-9ad8-14dae9d210b8">
     <topic>p7zip -- directory traversal vulnerability</topic>
     <affects>
@@ -212,7 +434,7 @@ Notes:
   </vuln>
 
   <vuln vid="4910d161-58a4-11e5-9ad8-14dae9d210b8">
-    <topic>openldap -- denial of service</topic>
+    <topic>openldap -- denial of service vulnerability</topic>
     <affects>
       <package>
 	<name>openldap-server</name>
@@ -939,7 +1161,7 @@ Notes:
   </vuln>
 
   <vuln vid="da434a78-e342-4d9a-87e2-7497e5f117ba">
-    <topic>ffmpeg -- use after free</topic>
+    <topic>ffmpeg -- use-after-free</topic>
     <affects>
       <package>
 	<name>libav</name>
@@ -1426,7 +1648,7 @@ Notes:
   </vuln>
 
   <vuln vid="9a71953a-474a-11e5-adde-14dae9d210b8">
-    <topic>libpgf -- use after free</topic>
+    <topic>libpgf -- use-after-free</topic>
     <affects>
       <package>
 	<name>libpgf</name>
@@ -1769,7 +1991,7 @@ Notes:
   </vuln>
 
   <vuln vid="ee99899d-4347-11e5-93ad-002590263bf5">
-    <topic>qemu, xen-tools -- use after free in QEMU/Xen block unplug protocol</topic>
+    <topic>qemu, xen-tools -- use-after-free in QEMU/Xen block unplug protocol</topic>
     <affects>
       <package>
 	<name>qemu</name>
@@ -9414,7 +9636,7 @@ Notes:
   </vuln>
 
   <vuln vid="738fc80d-5f13-4ccb-aa9a-7965699e5a10">
-    <topic>mozilla -- use after free</topic>
+    <topic>mozilla -- use-after-free</topic>
     <affects>
       <package>
 	<name>firefox</name>
@@ -21830,7 +22052,7 @@ JavaScript code would be executed.</p>
   </vuln>
 
   <vuln vid="9a57c607-3cab-11e3-b4d9-bcaec565249c">
-    <topic>xorg-server -- use after free</topic>
+    <topic>xorg-server -- use-after-free</topic>
     <affects>
       <package>
 	<name>xorg-server</name>
@@ -27324,7 +27546,7 @@ affected..</p>
   </vuln>
 
   <vuln vid="630c8c08-880f-11e2-807f-d43d7e0c7c02">
-    <topic>mozilla -- Use-after-free in HTML Editor</topic>
+    <topic>mozilla -- use-after-free in HTML Editor</topic>
     <affects>
       <package>
 	<name>firefox</name>
@@ -38647,7 +38869,7 @@ executed in your Internet Explorer while displaying the email.</p>
   </vuln>
 
   <vuln vid="eba9aa94-549c-11e1-b6b7-0011856a6e37">
-    <topic>mozilla -- use after free in nsXBLDocumentInfo::ReadPrototypeBindings</topic>
+    <topic>mozilla -- use-after-free in nsXBLDocumentInfo::ReadPrototypeBindings</topic>
     <affects>
       <package>
 	<name>firefox</name>
