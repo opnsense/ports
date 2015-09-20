@@ -21,11 +21,7 @@ OPTIONS_DEFINE=	IPV6
 
 USES=		bison
 
-.include <bsd.port.options.mk>
-
-.if !${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
+IPV6_CONFIGURE_OFF=	--disable-ipv6
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/apinger.conf ${STAGEDIR}${PREFIX}/etc/apinger.conf.sample
