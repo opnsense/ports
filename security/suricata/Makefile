@@ -3,7 +3,7 @@
 
 PORTNAME=	suricata
 PORTVERSION=	2.0.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/ \
 		http://mirrors.rit.edu/zi/
@@ -97,7 +97,6 @@ TESTS_CONFIGURE_ENABLE=		unittests
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=--enable-gccprotect \
-		--disable-gccmarch-native \
 		--with-libpcre-includes=${LOCALBASE}/include \
 		--with-libpcre-libraries=${LOCALBASE}/lib \
 		--with-libyaml-includes=${LOCALBASE}/include \
@@ -106,6 +105,7 @@ CONFIGURE_ARGS+=--enable-gccprotect \
 		--with-libnet-libraries=${LOCALBASE}/lib/libnet11 \
 		--with-libhtp-includes=${LOCALBASE}/include/ \
 		--with-libhtp-libraries=${LOCALBASE}/lib \
+	        --disable-gccmarch-native \
 		--localstatedir=/var/
 
 LIBNET_CONFIG?=	${LOCALBASE}/bin/libnet11-config
