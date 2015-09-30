@@ -96,6 +96,7 @@
     SUBDIR += csb-aspell
     SUBDIR += csv2latex
     SUBDIR += csvdiff
+    SUBDIR += ctemplate
     SUBDIR += ctpl
     SUBDIR += ctpp2
     SUBDIR += cwtext
@@ -215,7 +216,6 @@
     SUBDIR += go-text
     SUBDIR += go.text
     SUBDIR += goldendict
-    SUBDIR += google-ctemplate
     SUBDIR += google-translate-cli
     SUBDIR += gpp
     SUBDIR += grap
@@ -1259,8 +1259,8 @@
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
     SUBDIR += py-sphinx-intl
-    SUBDIR += py-sphinx_rtd_theme
     SUBDIR += py-sphinx_numfig
+    SUBDIR += py-sphinx_rtd_theme
     SUBDIR += py-sphinx_wikipedia
     SUBDIR += py-sphinxcontrib-adadomain
     SUBDIR += py-sphinxcontrib-bitbucket
