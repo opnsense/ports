@@ -58,6 +58,116 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="6b3374d4-6b0b-11e5-9909-002590263bf5">
+    <topic>plone -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>plone</name>
+	<range><lt>4.3.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Plone.org reports:</p>
+	<blockquote cite="https://plone.org/products/plone/security/advisories/20150910-announcement">
+	  <p>Versions Affected: All current Plone versions.</p>
+	  <p>Versions Not Affected: None.</p>
+	  <p>Nature of vulnerability: Allows creation of members by anonymous
+	    users on sites that have self-registration enabled, allowing bypass
+	    of CAPTCHA and similar protections against scripted attacks.</p>
+	  <p>The patch can be added to buildouts as Products.PloneHotfix20150910
+	    (available from PyPI) or downloaded from Plone.org.</p>
+	  <p>Immediate Measures You Should Take: Disable self-registration until
+	    you have applied the patch.</p>
+	</blockquote>
+	<blockquote cite="https://plone.org/security/20150910/non-persistent-xss-in-plone">
+	  <p>Plone's URL checking infrastructure includes a method for checking
+	    if URLs valid and located in the Plone site. By passing HTML into
+	    this specially crafted url, XSS can be achieved.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <freebsdpr>ports/203255</freebsdpr>
+      <url>https://plone.org/products/plone-hotfix/releases/20150910</url>
+      <url>https://plone.org/products/plone/security/advisories/20150910-announcement</url>
+      <url>https://plone.org/security/20150910/non-persistent-xss-in-plone</url>
+      <url>https://github.com/plone/Products.CMFPlone/commit/3da710a2cd68587f0bf34f2e7ea1167d6eeee087</url>
+    </references>
+    <dates>
+      <discovery>2015-09-10</discovery>
+      <entry>2015-10-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c1da8b75-6aef-11e5-9909-002590263bf5">
+    <topic>php -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>php5-phar</name>
+	<range><le>5.4.45</le></range>
+      </package>
+      <package>
+	<name>php55-phar</name>
+	<range><lt>5.5.30</lt></range>
+      </package>
+      <package>
+	<name>php56-phar</name>
+	<range><lt>5.6.14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PHP reports:</p>
+	<blockquote cite="http://php.net/ChangeLog-5.php#5.5.30">
+	  <p>Phar:</p>
+	  <ul>
+	    <li>Fixed bug #69720 (Null pointer dereference in
+	      phar_get_fp_offset()).</li>
+	    <li>Fixed bug #70433 (Uninitialized pointer in phar_make_dirstream
+	      when zip entry filename is "/").</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <freebsdpr>ports/203541</freebsdpr>
+      <url>http://php.net/ChangeLog-5.php#5.5.30</url>
+      <url>http://php.net/ChangeLog-5.php#5.6.14</url>
+    </references>
+    <dates>
+      <discovery>2015-10-01</discovery>
+      <entry>2015-10-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ee7bdf7f-11bb-4eea-b054-c692ab848c20">
+    <topic>OpenSMTPD -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>smtpd</name>
+	<range><lt>5.7.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenSMTPD developers report:</p>
+	<blockquote cite="https://www.opensmtpd.org/announces/release-5.7.2.txt">
+	  <p>This is a minor release with security and reliability fixes only.
+	    You are encouraged to update as soon as possible.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.opensmtpd.org/announces/release-5.7.2.txt</url>
+      <cvename>CVE-2015-7687</cvename>
+    </references>
+    <dates>
+      <discovery>2015-10-02</discovery>
+      <entry>2015-10-04</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="be3069c9-67e7-11e5-9909-002590263bf5">
     <topic>james -- multiple vulnerabilities</topic>
     <affects>
@@ -82,12 +192,14 @@ Notes:
     <references>
       <freebsdpr>ports/203461</freebsdpr>
       <certvu>988628</certvu>
+      <cvename>CVE-2015-7611</cvename>
       <url>http://james.apache.org/download.cgi#Apache_James_Server</url>
       <url>https://blogs.apache.org/james/entry/apache_james_server_2_3</url>
     </references>
     <dates>
       <discovery>2015-09-30</discovery>
       <entry>2015-10-01</entry>
+      <modified>2015-10-04</modified>
     </dates>
   </vuln>
 
