@@ -4369,7 +4369,7 @@ ALL-DEPENDS-LIST= \
 			dp_MAKE="${MAKE}" \
 			dp_PKGNAME="${PKGNAME}" \
 			dp_SCRIPTSDIR="${SCRIPTSDIR}" \
-			${SH} ${SCRIPTSDIR}/all-depends-list.sh
+			${SH} ${SCRIPTSDIR}/depends-list.sh -r
 
 CLEAN-DEPENDS-LIST= \
 	${SETENV} dp_ALLDEPENDS="${_UNIFIED_DEPENDS}" \
@@ -5293,7 +5293,7 @@ config-conditional:
 .endif
 .endif # config-conditional
 
-.if !target(showconfig)
+.if !target(showconfig) && (make(showconfig) || (!empty(.MAKEFLAGS:M-V) && !empty(.MAKEFLAGS:M*_DESC)))
 .include "${PORTSDIR}/Mk/bsd.options.desc.mk"
 MULTI_EOL=	: you have to choose at least one of them
 SINGLE_EOL=	: you have to select exactly one of them
