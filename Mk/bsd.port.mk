@@ -2107,7 +2107,6 @@ MTREE_FILE=	/etc/mtree/BSD.usr.dist
 .else
 MTREE_FILE=	${PORTSDIR}/Templates/BSD.local.dist
 .endif
-MTREE_FILE_DEFAULT=yes
 .endif
 MTREE_CMD?=	/usr/sbin/mtree
 MTREE_ARGS?=	-U ${MTREE_FOLLOWS_SYMLINKS} -f ${MTREE_FILE} -d -e -p
@@ -3031,7 +3030,6 @@ check-deprecated:
 # Check if the port is listed in the vulnerability database
 
 AUDITFILE?=		${PKG_DBDIR}/vuln.xml
-_EXTRACT_AUDITFILE=	${CAT} "${AUDITFILE}"
 
 check-vulnerable:
 .if !defined(DISABLE_VULNERABILITIES) && !defined(PACKAGE_BUILDING)
@@ -4439,6 +4437,10 @@ fetch-recursive-list:
 #	-mi
 FETCH_LIST?=	for i in $$deps; do \
 		prog=$${i%%:*}; dir=$${i\#*:}; \
+		case $$dir in \
+		/*) ;; \
+		*) dir=${PORTSDIR}/$$dir ;; \
+		esac; \
 		case $$dir in	\
 		*:*) if [ $$prog != $${prog\#/} -o ! -e $$prog ]; then	\
 				dir=$${dir%%:*};	\
@@ -4827,7 +4829,7 @@ ${i:S/-//:tu}=	${WRKDIR}/${SUB_FILES:M${i}*}
 .if !target(generate-plist)
 generate-plist: ${WRKDIR}
 	@${ECHO_MSG} "===>   Generating temporary packing list"
-	@${MKDIR} `${DIRNAME} ${TMPPLIST}`
+	@${MKDIR} ${TMPPLIST:H}
 	@if [ ! -f ${DESCR} ]; then ${ECHO_MSG} "** Missing pkg-descr for ${PKGNAME}."; exit 1; fi
 	@>${TMPPLIST}
 	@for file in ${PLIST_FILES}; do \
@@ -5293,7 +5295,7 @@ config-conditional:
 .endif
 .endif # config-conditional
 
-.if !target(showconfig) && (make(showconfig) || (!empty(.MAKEFLAGS:M-V) && !empty(.MAKEFLAGS:M*_DESC)))
+.if !target(showconfig)
 .include "${PORTSDIR}/Mk/bsd.options.desc.mk"
 MULTI_EOL=	: you have to choose at least one of them
 SINGLE_EOL=	: you have to select exactly one of them
