@@ -1,3 +1,16 @@
+This work allows obfuscation of the OpenVPN header to make it harder for
+layer 7 inspection to identify such traffic, which may come with blocking
+or recording actions in certain territories of the world.  This patch, in
+a nutshell, can increase privacy and range of communication for its users.
+
+The `scramble' option introduced hereby is off by default.
+
+The option's usage, history and controversy of the patch is explained in
+detail on the following wiki page:
+
+https://tunnelblick.net/cOpenvpn_xorpatch.html
+
+
 diff -u -r src/openvpn/forward.c src/openvpn/forward.c
 --- src/openvpn/forward.c	2014-11-29 10:00:35.000000000 -0500
 +++ src/openvpn/forward.c	2015-04-07 22:38:20.000000000 -0400
