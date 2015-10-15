@@ -3,7 +3,7 @@
 
 PORTNAME=	dolphin-emu
 PORTVERSION=	4.0.2
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	emulators
 
 MAINTAINER=	martymac@FreeBSD.org
@@ -68,10 +68,6 @@ NLS_CMAKE_ON=	-DDISABLE_NLS:BOOL=OFF
 NLS_CMAKE_OFF=	-DDISABLE_NLS:BOOL=ON
 
 .include <bsd.port.pre.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 900000
-BROKEN=		does not build: absence of xlocale.h
-.endif
 
 # XXX Temporary workaround for ports/184540
 .if ${PORT_OPTIONS:MDEBUG}
