@@ -58,6 +58,104 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="79c68ef7-c8ae-4ade-91b4-4b8221b7c72a">
+    <topic>firefox -- Cross-origin restriction bypass using Fetch</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>41.0.2,1</lt></range>
+      </package>
+      <package>
+	<name>linux-firefox</name>
+	<range><lt>41.0.2,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Firefox Developers report:</p>
+	<blockquote cite="https://www.mozilla.org/en-US/security/advisories/mfsa2015-115/">
+	  <p>Security researcher Abdulrahman Alqabandi reported that the fetch()
+	    API did not correctly implement the Cross-Origin Resource Sharing
+	    (CORS) specification, allowing a malicious page to access private
+	    data from other origins. Mozilla developer Ben Kelly independently reported the
+	    same issue.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.mozilla.org/en-US/security/advisories/mfsa2015-115/</url>
+      <cvename>CVE-2015-7184</cvename>
+    </references>
+    <dates>
+      <discovery>2015-10-15</discovery>
+      <entry>2015-10-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="84147b46-e876-486d-b746-339ee45a8bb9">
+    <topic>flash -- remote code execution</topic>
+    <affects>
+      <package>
+	<name>linux-c6-flashplugin</name>
+	<name>linux-f10-flashplugin</name>
+	<name>linux-c6_64-flashplugin</name>
+	<range><lt>11.2r202.540</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Adobe reports:</p>
+	<blockquote cite="https://helpx.adobe.com/security/products/flash-player/apsb15-27.html">
+	  <p>These updates resolve type confusion vulnerabilities that
+	    could lead to code execution (CVE-2015-7645, CVE-2015-7647,
+	    CVE-2015-7648).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-7645</cvename>
+      <cvename>CVE-2015-7647</cvename>
+      <cvename>CVE-2015-7648</cvename>
+      <url>https://helpx.adobe.com/security/products/flash-player/apsb15-27.html</url>
+    </references>
+    <dates>
+      <discovery>2015-10-16</discovery>
+      <entry>2015-10-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e75a96df-73ca-11e5-9b45-b499baebfeaf">
+    <topic>LibreSSL -- Memory leak and buffer overflow</topic>
+    <affects>
+      <package>
+	<name>libressl</name>
+	<range><lt>2.2.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Qualys reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2015/10/16/1">
+	  <p>During the code review of OpenSMTPD a memory leak and buffer overflow
+	    (an off-by-one, usually stack-based) were discovered in LibreSSL's
+	    OBJ_obj2txt() function. This function is called automatically during
+	    a TLS handshake (both client-side, unless an anonymous mode is used,
+	    and server-side, if client authentication is requested).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://marc.info/?l=openbsd-announce&amp;m=144495690528446</url>
+      <cvename>CVE-2015-5333</cvename>
+      <cvename>CVE-2015-5334</cvename>
+    </references>
+    <dates>
+      <discovery>2015-10-15</discovery>
+      <entry>2015-10-16</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="07a1a76c-734b-11e5-ae81-14dae9d210b8">
     <topic>mbedTLS/PolarSSL -- DoS and possible remote code execution</topic>
     <affects>
