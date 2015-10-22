@@ -5423,7 +5423,6 @@ multimedia/openmovieeditor||2014-02-03|Has expired: segfaults, upstream developm
 french/gfaim||2014-02-04|Abandonware
 math/matlab-R2012a-installer|math/matlab-installer|2014-02-04|Now it can handle any Matlab version
 games/deal||2014-02-05|Abandonware
-graphics/nurbs++||2014-02-05|Broken on all supported versions
 japanese/grep|textproc/gnugrep|2014-02-06|Official version properly support multi-byte, consider using textproc/gnugrep
 www/comclear||2014-02-06|Netscape doesn't exist anymore
 editors/openoffice-3|editors/openoffice-4|2014-02-07|OpenOffice 3 is not supported anymore
@@ -7895,3 +7894,5 @@ x11/nvidia-driver-173||2015-10-13|Does not support xorg-server 1.15 and higher
 net-mgmt/bsnmptools||2015-10-16|Has expired: client tools (including SNMPv3 support) are part of the base system
 security/yubikey-personalization|security/ykpers|2015-10-18|Port duplicate with security/ykpers
 devel/rubygem-listen2||2015-10-20|Has expired: not used by other ports anymore
+devel/cloudabi-binutils|devel/cloudabi-binutils-x86_64|2015-10-21|CloudABI now supports aarch64 as well
+net/ntp-rc|net/ntp|2015-10-21|ntp-4.2.8p4 has gone GA
