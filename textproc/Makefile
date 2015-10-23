@@ -1205,6 +1205,7 @@
     SUBDIR += py-diff-match-patch
     SUBDIR += py-docutils
     SUBDIR += py-dsv
+    SUBDIR += py-elasticsearch-dsl-py
     SUBDIR += py-elasticsearch-py
     SUBDIR += py-elib.intl
     SUBDIR += py-empy
