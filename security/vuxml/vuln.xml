@@ -58,6 +58,75 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="75f39413-7a00-11e5-a2a1-002590263bf5">
+    <topic>drupal -- open redirect vulnerability</topic>
+    <affects>
+      <package>
+	<name>drupal7</name>
+	<range><lt>7.41</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Drupal development team reports:</p>
+	<blockquote cite="https://www.drupal.org/SA-CORE-2015-004">
+	  <p>The Overlay module in Drupal core displays administrative pages
+	    as a layer over the current page (using JavaScript), rather than
+	    replacing the page in the browser window. The Overlay module does
+	    not sufficiently validate URLs prior to displaying their contents,
+	    leading to an open redirect vulnerability.</p>
+	  <p>This vulnerability is mitigated by the fact that it can only be
+	    used against site users who have the "Access the administrative
+	    overlay" permission, and that the Overlay module must be enabled.
+	    </p>
+	  <p>An incomplete fix for this issue was released as part of
+	    SA-CORE-2015-002.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-7943</cvename>
+      <url>https://www.drupal.org/SA-CORE-2015-004</url>
+      <url>http://www.openwall.com/lists/oss-security/2015/10/23/6</url>
+    </references>
+    <dates>
+      <discovery>2015-10-21</discovery>
+      <entry>2015-10-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="08d11134-79c5-11e5-8987-6805ca0b3d42">
+    <topic>phpMyAdmin -- Content spoofing vulnerability</topic>
+    <affects>
+      <package>
+	<name>phpMyAdmin</name>
+	<range><ge>4.4.0</ge><lt>4.4.15.1</lt></range>
+	<range><ge>4.5.0</ge><lt>4.5.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The phpMyAdmin development team reports:</p>
+	<blockquote cite="https://www.phpmyadmin.net/security/PMASA-2015-5/">
+	  <p>This vulnerability allows an attacker to perform a
+	    content spoofing attack using the phpMyAdmin's redirection
+	    mechanism to external sites.</p>
+	  <p>We consider this vulnerability to be non critical since
+	    the spoofed content is escaped and no HTML injection is
+	    possible.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.phpmyadmin.net/security/PMASA-2015-5/</url>
+      <cvename>CVE-2015-7873</cvename>
+    </references>
+    <dates>
+      <discovery>2015-10-23</discovery>
+      <entry>2015-10-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="b973a763-7936-11e5-a2a1-002590263bf5">
     <topic>mediawiki -- multiple vulnerabilities</topic>
     <affects>
@@ -177,11 +246,28 @@ Notes:
       </body>
     </description>
     <references>
+      <cvename>CVE-2015-7691</cvename>
+      <cvename>CVE-2015-7692</cvename>
+      <cvename>CVE-2015-7701</cvename>
+      <cvename>CVE-2015-7702</cvename>
+      <cvename>CVE-2015-7703</cvename>
+      <cvename>CVE-2015-7704</cvename>
+      <cvename>CVE-2015-7705</cvename>
+      <cvename>CVE-2015-7848</cvename>
+      <cvename>CVE-2015-7849</cvename>
+      <cvename>CVE-2015-7850</cvename>
+      <cvename>CVE-2015-7851</cvename>
+      <cvename>CVE-2015-7852</cvename>
+      <cvename>CVE-2015-7853</cvename>
+      <cvename>CVE-2015-7854</cvename>
+      <cvename>CVE-2015-7855</cvename>
+      <cvename>CVE-2015-7871</cvename>
       <url>http://support.ntp.org/bin/view/Main/SecurityNotice#Recent_Vulnerabilities</url>
     </references>
     <dates>
       <discovery>2015-10-21</discovery>
       <entry>2015-10-21</entry>
+      <modified>2015-10-23</modified>
     </dates>
   </vuln>
 
