@@ -5089,6 +5089,7 @@
     SUBDIR += spice-protocol
     SUBDIR += spin
     SUBDIR += splint
+    SUBDIR += spyder
     SUBDIR += srecord
     SUBDIR += st
     SUBDIR += statcvs
@@ -5215,6 +5216,7 @@
     SUBDIR += vtcl
     SUBDIR += vxlog
     SUBDIR += wand-libconfig
+    SUBDIR += wandio
     SUBDIR += websocketpp
     SUBDIR += websvn
     SUBDIR += wininfo
