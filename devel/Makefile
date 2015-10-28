@@ -455,6 +455,7 @@
     SUBDIR += eris
     SUBDIR += erlang-bbmustache
     SUBDIR += erlang-bear
+    SUBDIR += erlang-certifi
     SUBDIR += erlang-clique
     SUBDIR += erlang-common_lib
     SUBDIR += erlang-cuttlefish
@@ -1488,6 +1489,7 @@
     SUBDIR += mspdebug
     SUBDIR += msrc0
     SUBDIR += mtbl
+    SUBDIR += myrepos
     SUBDIR += nana
     SUBDIR += nant
     SUBDIR += nasm
@@ -1715,6 +1717,7 @@
     SUBDIR += p5-C-Scan
     SUBDIR += p5-CBOR-XS
     SUBDIR += p5-CHI
+    SUBDIR += p5-CHI-Driver-DBI
     SUBDIR += p5-CLASS
     SUBDIR += p5-CPAN-Changes
     SUBDIR += p5-CPAN-Checksums
@@ -4282,6 +4285,7 @@
     SUBDIR += py-sortedcontainers
     SUBDIR += py-spark
     SUBDIR += py-speaklater
+    SUBDIR += py-spyder
     SUBDIR += py-sqlcc
     SUBDIR += py-statgrab
     SUBDIR += py-stdnum
@@ -5089,7 +5093,6 @@
     SUBDIR += spice-protocol
     SUBDIR += spin
     SUBDIR += splint
-    SUBDIR += spyder
     SUBDIR += srecord
     SUBDIR += st
     SUBDIR += statcvs
