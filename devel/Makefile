@@ -499,6 +499,7 @@
     SUBDIR += f77flow
     SUBDIR += fam
     SUBDIR += fastcrc
+    SUBDIR += fb-adb
     SUBDIR += fb303
     SUBDIR += fc++
     SUBDIR += ffcall
@@ -1052,6 +1053,7 @@
     SUBDIR += json-c
     SUBDIR += json-glib
     SUBDIR += jsoncpp
+    SUBDIR += jsonnet
     SUBDIR += jtag
     SUBDIR += judy
     SUBDIR += jwasm
@@ -3666,6 +3668,7 @@
     SUBDIR += pecl-jsmin
     SUBDIR += pecl-jsonc
     SUBDIR += pecl-jsond
+    SUBDIR += pecl-jsonnet
     SUBDIR += pecl-judy
     SUBDIR += pecl-libevent
     SUBDIR += pecl-mcve

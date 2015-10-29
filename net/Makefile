@@ -936,7 +936,6 @@
     SUBDIR += py-libdnet
     SUBDIR += py-libnet
     SUBDIR += py-maxminddb
-    SUBDIR += py-medusa
     SUBDIR += py-miniupnpc
     SUBDIR += py-msrplib
     SUBDIR += py-ndg_httpsclient
@@ -1250,6 +1249,7 @@
     SUBDIR += tigervnc
     SUBDIR += tightvnc
     SUBDIR += tintin++
+    SUBDIR += tiny-network-utilities
     SUBDIR += tinyfugue
     SUBDIR += tinyldap
     SUBDIR += tn5250
