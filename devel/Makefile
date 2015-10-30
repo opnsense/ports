@@ -4154,6 +4154,7 @@
     SUBDIR += py-pip
     SUBDIR += py-plan
     SUBDIR += py-plex
+    SUBDIR += py-pluggy
     SUBDIR += py-ply
     SUBDIR += py-polib
     SUBDIR += py-posix_ipc
@@ -5098,6 +5099,7 @@
     SUBDIR += splint
     SUBDIR += srecord
     SUBDIR += st
+    SUBDIR += staf
     SUBDIR += statcvs
     SUBDIR += statik
     SUBDIR += statsvn
