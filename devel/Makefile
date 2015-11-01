@@ -1442,6 +1442,7 @@
     SUBDIR += maven-wrapper
     SUBDIR += maven3
     SUBDIR += maven31
+    SUBDIR += maven33
     SUBDIR += mcpp
     SUBDIR += mdds
     SUBDIR += memcheck
@@ -3713,6 +3714,7 @@
     SUBDIR += phabricator
     SUBDIR += php-Psr_Log
     SUBDIR += php-composer
+    SUBDIR += php-jq
     SUBDIR += php-libawl
     SUBDIR += php-memoize
     SUBDIR += php-scalar_objects
