@@ -13,6 +13,11 @@ COMMENT=	Workbook-style, web-based interface to R
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		fails to stage
+
+DEPRECATED=	Unmaintained upstream
+EXPIRATION_DATE=	2015-11-28
+
 USES=		cran:auto-plist shebangfix
 perl_OLD_CMD=	c:/apps/perl/bin/perl.exe
 SHEBANG_FILES=	inst/basehtml/editor/htmlarea/examples/*.cgi \

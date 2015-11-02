@@ -1265,7 +1265,6 @@
     SUBDIR += libpeak
     SUBDIR += libpeas
     SUBDIR += libpff
-    SUBDIR += libphish
     SUBDIR += libphk
     SUBDIR += libphutil
     SUBDIR += libplist
@@ -1488,6 +1487,7 @@
     SUBDIR += msgpack
     SUBDIR += msgpuck
     SUBDIR += msp430-binutils
+    SUBDIR += msp430-debug-stack
     SUBDIR += msp430-gcc
     SUBDIR += msp430-gdb
     SUBDIR += msp430-libc
@@ -4569,7 +4569,6 @@
     SUBDIR += roboctl
     SUBDIR += robodoc
     SUBDIR += root-doc
-    SUBDIR += ros
     SUBDIR += rote
     SUBDIR += rpc2
     SUBDIR += rpm-spec-mode.el
@@ -4701,7 +4700,6 @@
     SUBDIR += rubygem-daemon_controller
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-debug_inspector
-    SUBDIR += rubygem-debugger
     SUBDIR += rubygem-debugger-linecache
     SUBDIR += rubygem-debugger-xml
     SUBDIR += rubygem-deep_merge
