@@ -396,6 +396,7 @@
     SUBDIR += dragon
     SUBDIR += dreampie
     SUBDIR += drpython
+    SUBDIR += ds2
     SUBDIR += dulwich
     SUBDIR += duplo
     SUBDIR += dwarfdump
@@ -4144,7 +4145,6 @@
     SUBDIR += py-ordereddict
     SUBDIR += py-palm
     SUBDIR += py-parsedatetime
-    SUBDIR += py-parsing
     SUBDIR += py-path.py
     SUBDIR += py-pathlib
     SUBDIR += py-pathtools
@@ -4199,6 +4199,7 @@
     SUBDIR += py-pympler
     SUBDIR += py-pymtbl
     SUBDIR += py-pyopencl
+    SUBDIR += py-pyparsing
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
     SUBDIR += py-pyshapelib

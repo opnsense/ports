@@ -438,6 +438,7 @@
     SUBDIR += linux-f10-scim-gtk
     SUBDIR += linux-f10-scim-libs
     SUBDIR += linuxdoc
+    SUBDIR += linuxdoc-tools
     SUBDIR += localize
     SUBDIR += loook
     SUBDIR += lt-aspell
@@ -1230,6 +1231,7 @@
     SUBDIR += py-markdown
     SUBDIR += py-markdown2
     SUBDIR += py-mistune
+    SUBDIR += py-mwparserfromhell
     SUBDIR += py-nltk
     SUBDIR += py-openpyxl
     SUBDIR += py-openpyxl1
