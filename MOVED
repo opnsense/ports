@@ -7900,7 +7900,7 @@ net/py-medusa||2015-10-28|Abandoned upstream, last release was in 2005
 audio/py-audiotools|audio/py-fmoo-audiotools|2015-10-29|Rename to match PyPI nomenclature
 audio/cmus-post.fm||2015-10-31|Has expired: Broken for more than 6 months
 devel/libphish||2015-10-31|Has expired: Broken for more than 6 months
-devel/rubygem-debugger||2015-10-31|Has expired: This port is for Ruby 1.9 only. Upstream stopped maintenance.
+devel/rubygem-debugger||2015-10-31|Has expired: This port is for Ruby 1.9 only, upstream stopped maintenance
 games/linux-ningpo-demo||2015-10-31|Has expired: Broken for more than 6 months
 graphics/gdal-grass||2015-10-31|Has expired: Superseded by gdal-2.0.0
 graphics/picviz||2015-10-31|Has expired: Broken for more than 6 months
@@ -7920,3 +7920,10 @@ x11-fonts/code2001||2015-10-31|Has expired: Broken for more than 6 months
 x11-wm/e-module-diskio||2015-10-31|Has expired: Broken for more than 7 months
 devel/ros||2015-11-01|Has expired: Unsupported upstream, see http://wiki.ros.org/Distributions
 ports-mgmt/portsopt||2015-11-01|Has expired: Deprecated by optionsng
+devel/pyvisa|devel/py-pyvisa|2015-11-02|Renamed to comply with Python ports policy
+devel/pyvisa-py|devel/py-pyvisa-py|2015-11-02|Renamed to comply with Python ports policy
+science/pyteomics.biolccc|science/py-pyteomics.biolccc|2015-11-02|Renamed to comply with Python ports policy
+science/pyteomics|science/py-pyteomics|2015-11-02|Renamed to comply with Python ports policy
+graphics/cal3d-devel|graphics/cal3d|2015-11-02|Development ceased in 2006 so set last devel version as stable
+www/joomla31|www/joomla3|2015-11-03|Renamed to match upstream only supporting the latest 3.x release at a time
+devel/py-parsing|devel/py-pyparsing|2015-11-04|Renamed to match upstream naming
