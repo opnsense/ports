@@ -74,6 +74,7 @@
     SUBDIR += anjuta-extras
     SUBDIR += antlr
     SUBDIR += antlr3
+    SUBDIR += antlr4
     SUBDIR += antlrworks
     SUBDIR += apache-ant
     SUBDIR += api-sanity-autotest
@@ -3914,6 +3915,7 @@
     SUBDIR += py-babel
     SUBDIR += py-babelfish
     SUBDIR += py-backports.shutil_get_terminal_size
+    SUBDIR += py-backports_abc
     SUBDIR += py-bcdoc
     SUBDIR += py-billiard
     SUBDIR += py-binplist
@@ -4034,6 +4036,7 @@
     SUBDIR += py-geotypes
     SUBDIR += py-gevent
     SUBDIR += py-gflags
+    SUBDIR += py-git-up
     SUBDIR += py-gitdb
     SUBDIR += py-gitosis
     SUBDIR += py-gitpython
@@ -4190,7 +4193,6 @@
     SUBDIR += py-pyflakes
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub
-    SUBDIR += py-pygitup
     SUBDIR += py-pygpx
     SUBDIR += py-pykde4
     SUBDIR += py-pykdeuic4
@@ -4971,6 +4973,7 @@
     SUBDIR += rubygem-slack-notifier
     SUBDIR += rubygem-slim
     SUBDIR += rubygem-slop
+    SUBDIR += rubygem-slop3
     SUBDIR += rubygem-soap4r
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-sprockets
