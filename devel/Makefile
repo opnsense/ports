@@ -8,6 +8,7 @@
     SUBDIR += ElectricFence
     SUBDIR += ORBit2
     SUBDIR += ORBit2-reference
+    SUBDIR += R-cran-BH
     SUBDIR += R-cran-Defaults
     SUBDIR += R-cran-Hmisc
     SUBDIR += R-cran-R6
@@ -3760,7 +3761,6 @@
     SUBDIR += php56-tokenizer
     SUBDIR += phpbt
     SUBDIR += phpsh
-    SUBDIR += phptags
     SUBDIR += phpunit
     SUBDIR += physfs
     SUBDIR += physfs-devel

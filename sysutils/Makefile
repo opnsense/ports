@@ -321,6 +321,7 @@
     SUBDIR += fusefs-sqlfs
     SUBDIR += fusefs-sshfs
     SUBDIR += fusefs-unionfs
+    SUBDIR += fusefs-wdfs
     SUBDIR += fusefs-wikipediafs
     SUBDIR += fusefs-zip
     SUBDIR += fvcool
@@ -1019,7 +1020,6 @@
     SUBDIR += tmux
     SUBDIR += topless
     SUBDIR += torque
-    SUBDIR += torsmo
     SUBDIR += toshctl
     SUBDIR += tracker
     SUBDIR += tree
