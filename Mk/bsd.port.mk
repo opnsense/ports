@@ -1445,7 +1445,7 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.gstreamer.mk"
 .endif
 
-.if defined(USE_SDL) || defined(WANT_SDL)
+.if defined(USE_SDL)
 .include "${PORTSDIR}/Mk/bsd.sdl.mk"
 .endif
 
@@ -1916,7 +1916,7 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 .include "${PORTSDIR}/Mk/bsd.qt.mk"
 .endif
 
-.if defined(USE_SDL) || defined(WANT_SDL)
+.if defined(USE_SDL)
 .include "${PORTSDIR}/Mk/bsd.sdl.mk"
 .endif
 
@@ -1987,7 +1987,6 @@ REINPLACE_CMD?=	${SED} ${REINPLACE_ARGS}
 EXTRACT_COOKIE?=	${WRKDIR}/.extract_done.${PORTNAME}.${PREFIX:S/\//_/g}
 CONFIGURE_COOKIE?=	${WRKDIR}/.configure_done.${PORTNAME}.${PREFIX:S/\//_/g}
 INSTALL_COOKIE?=	${WRKDIR}/.install_done.${PORTNAME}.${PREFIX:S/\//_/g}
-TEST_COOKIE?=		${WRKDIR}/.test_done.${PORTNAME}.${PREFIX:S/\//_/g}
 BUILD_COOKIE?=		${WRKDIR}/.build_done.${PORTNAME}.${PREFIX:S/\//_/g}
 PATCH_COOKIE?=		${WRKDIR}/.patch_done.${PORTNAME}.${PREFIX:S/\//_/g}
 PACKAGE_COOKIE?=	${WRKDIR}/.package_done.${PORTNAME}.${PREFIX:S/\//_/g}
@@ -2981,7 +2980,7 @@ build: configure
 # Disable test
 .if defined(NO_TEST) && !target(test)
 test: stage
-	@${TOUCH} ${TOUCH_FLAGS} ${TEST_COOKIE}
+	@${DO_NADA}
 .endif
 
 # Disable package
@@ -5047,6 +5046,9 @@ check-orphans: check-plist
 stage-qa:
 	@${ECHO_MSG} "====> Running Q/A tests (stage-qa)"
 	@${SETENV} ${QA_ENV} ${SH} ${SCRIPTSDIR}/qa.sh
+.if !defined(DEVELOPER)
+	@${ECHO_MSG} "/!\\ To run stage-qa automatically add DEVELOPER=yes to your environment /!\\"
+.endif
 .endif
 
 # Fake installation of package so that user can pkg delete it later.
@@ -5728,6 +5730,8 @@ _STAGE_SEQ=		050:stage-message 100:stage-dir 150:run-depends \
 				${_OPTIONS_stage} ${_USES_stage}
 .if defined(DEVELOPER)
 _STAGE_SEQ+=	995:stage-qa
+.else
+stage-qa: stage
 .endif
 _TEST_DEP=		stage
 _TEST_SEQ=		100:test-message 150:test-depends 300:pre-test 500:do-test \
@@ -5783,7 +5787,7 @@ _${_t}_REAL_SUSEQ+=	${s}
 # See above *_SEQ and *_DEP. The _DEP will run before this defined target is
 # ran. The _SEQ will run as this target once _DEP is satisfied.
 
-.for target in extract patch configure build stage install test package
+.for target in extract patch configure build stage install package
 
 # Check if config dialog needs to show and execute it if needed. If is it not
 # needed (_OPTIONS_OK), then just depend on the cookie which is defined later
@@ -5850,6 +5854,10 @@ fetch: ${_FETCH_DEP} ${_FETCH_REAL_SEQ}
 
 .if !target(pkg)
 pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
+.endif
+
+.if !target(test)
+test: ${_TEST_DEP} ${_TEST_REAL_SEQ}
 .endif
 
 .endif
