@@ -52,6 +52,7 @@ OPTIONS_DEFINE=	\
 	MAIL_SMTP \
 	MAIL_SSL \
 	HTTPV2 \
+	NJS \
 	STREAM \
 	STREAM_SSL \
 	THREADS \
@@ -147,6 +148,7 @@ MAIL_POP3_DESC=			Enable POP3 proxy module
 MAIL_SMTP_DESC=			Enable SMTP proxy module
 MAIL_SSL_DESC=			Enable mail_ssl module
 HTTPV2_DESC=			Enable HTTP/2 protocol support (SSL req.)
+NJS_DESC=			Enable http_javascript module 
 STREAM_DESC=			Enable stream module
 STREAM_SSL_DESC=		Enable stream_ssl module (SSL req.)
 THREADS_DESC=			Enable threads support
@@ -488,10 +490,11 @@ USES+=		perl5
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_PUSH}
-NGINX_PUSH_VERSION=	0.692
-MASTER_SITES+=	http://pushmodule.slact.net/downloads/:push
-DISTFILES+=	nginx_http_push_module-${NGINX_PUSH_VERSION}.tar.gz:push
-CONFIGURE_ARGS+=--add-module=${WRKDIR}/nginx_http_push_module-${NGINX_PUSH_VERSION}
+GIT_PUSH_VERSION=	0.731
+GH_ACCOUNT+=	slact:push
+GH_PROJECT+=	nchan:push
+GH_TAGNAME+=	v${GIT_PUSH_VERSION}:push
+CONFIGURE_ARGS+=--add-module=${WRKSRC_push}
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_PUSH_STREAM}
@@ -846,6 +849,13 @@ NGINX_OPENSSL=	yes
 USE_HTTP_SSL=	yes
 CONFIGURE_ARGS+=--with-http_v2_module
 USE_OPENSSL_PORT=	yes
+.endif
+
+.if ${PORT_OPTIONS:MNJS}
+GH_ACCOUNT+=	nginx:njs
+GH_PROJECT+=	njs:njs
+GH_TAGNAME+=	8e72a0b:njs
+CONFIGURE_ARGS+=--add-module=${WRKSRC_njs}/nginx
 .endif
 
 .if ${PORT_OPTIONS:MSTREAM}

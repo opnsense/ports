@@ -98,6 +98,7 @@
     SUBDIR += arm-none-eabi-gcc492
     SUBDIR += aros-sdk
     SUBDIR += art
+    SUBDIR += artifactory
     SUBDIR += as31
     SUBDIR += asl
     SUBDIR += asmutils
@@ -4627,6 +4628,7 @@
     SUBDIR += rubygem-app_config
     SUBDIR += rubygem-arrayfields
     SUBDIR += rubygem-ascii85
+    SUBDIR += rubygem-asetus
     SUBDIR += rubygem-aspectr
     SUBDIR += rubygem-ast
     SUBDIR += rubygem-astrolabe
