@@ -3,7 +3,7 @@
 
 PORTNAME=	firebird
 PORTVERSION=	2.5.4
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES?=	databases
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION:S/.0//}-Release/
 PKGNAMESUFFIX?=	${PORTVERSION:R:S/.//}-server
@@ -22,19 +22,13 @@ LICENSE_FILE_IPL=	${WRKSRC}/builds/install/misc/IPLicense.txt
 LICENSE_PERMS_IDPL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_IPL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-CONFLICTS?=	${PORTNAME}20-client-* \
-		${PORTNAME}21-client-* \
-		${PORTNAME}20-server-* \
-		${PORTNAME}21-server-*
-
 LIB_DEPENDS=	libicuuc.so:${PORTSDIR}/devel/icu
 
 USES=		gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
-CONFIGURE_ARGS=	--with-system-editline \
-		--with-system-icu \
+CONFIGURE_ARGS=	--with-system-icu \
 		--prefix=${LOCALSTATEDIR} \
 		--exec-prefix=${PREFIX} \
 		--with-fbconf=${PREFIX}/${CONFDIR} \
@@ -49,8 +43,7 @@ CONFIGURE_ARGS=	--with-system-editline \
 		--with-fbudf=${LIBEXECDIR}/UDF
 CONFIGURE_ENV+=	PTHREAD_LIBS="-lpthread" \
 		ac_cv_header_atomic_ops_h="no" \
-		ac_cv_lib_atomic_ops_main="no" \
-		ac_cv_lib_edit_readline="yes"
+		ac_cv_lib_atomic_ops_main="no"
 
 LOCALSTATEDIR=	/var/db/firebird
 CONFDIR=	etc/firebird
@@ -79,10 +72,9 @@ IGNORE=		your system does not support sysvipc
 
 .if !defined(CLIENT_ONLY)
 # Server part stuff
-BUILD_DEPENDS=	${LOCALBASE}/lib/libedit.so:${PORTSDIR}/devel/libedit
 LIB_DEPENDS+=	libfbembed.so:${PORTSDIR}/databases/firebird25-client
 
-CONFIGURE_ARGS+=--enable-superserver
+CONFIGURE_ARGS+=--enable-superserver --without-editline
 
 ALL_TARGET=	firebird_embedded firebird_server
 
@@ -99,6 +91,9 @@ PKGINSTALL?=	${PKGDIR}/pkg-install-server
 .else
 # Client part stuff
 LIB_DEPENDS+=	libedit.so.0:${PORTSDIR}/devel/libedit
+
+CONFIGURE_ARGS+=	--with-system-editline
+CONFIGURE_ENV+=	ac_cv_lib_edit_readline="yes"
 
 ALL_TARGET=	firebird_basic libfbembed libfbclient embed_isql embed_gpre \
 		embed_gdef embed_qli extlib
@@ -211,11 +206,11 @@ do-install:
 post-install-DOCS-on:
 	@${ECHO_MSG} "===>   Installing documentation for ${PKGNAME}"
 	@${MKDIR} ${FB_DOCS_DIRS:S!^!${STAGEDIR}${DOCSDIR}/!}
-	@${INSTALL_DATA} ${FB_DOCS_FILES:S!^!${WRKSRC}/doc/!} ${STAGEDIR}${DOCSDIR}
-	@${LN} -sf ${DOCSDIR}/README.user ${STAGEDIR}${DOCSDIR}/README
-	@${INSTALL_DATA} ${WRKSRC}/doc/sql.extensions/* ${STAGEDIR}${DOCSDIR}/sql.extensions
-	@${INSTALL_DATA} ${WRKSRC}/doc/license/* ${STAGEDIR}${DOCSDIR}/license
-	@${INSTALL_DATA} ${WRKSRC}/src/misc/upgrade/v2/* ${STAGEDIR}${DOCSDIR}/upgrade
+	${INSTALL_DATA} ${FB_DOCS_FILES:S!^!${WRKSRC}/doc/!} ${STAGEDIR}${DOCSDIR}
+	${LN} -sf ${DOCSDIR}/README.user ${STAGEDIR}${DOCSDIR}/README
+	${INSTALL_DATA} ${WRKSRC}/doc/sql.extensions/* ${STAGEDIR}${DOCSDIR}/sql.extensions
+	${INSTALL_DATA} ${WRKSRC}/doc/license/* ${STAGEDIR}${DOCSDIR}/license
+	${INSTALL_DATA} ${WRKSRC}/src/misc/upgrade/v2/* ${STAGEDIR}${DOCSDIR}/upgrade
 .endif
 
 .include <bsd.port.post.mk>
