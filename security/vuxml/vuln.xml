@@ -58,6 +58,186 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="f0b9049f-88c4-11e5-aed7-00262d5ed8ee">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<!--pcbsd-->
+	<name>chromium-npapi</name>
+	<name>chromium-pulse</name>
+	<range><lt>46.0.2490.86</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Google Chrome Releases reports:</p>
+	<blockquote cite="http://googlechromereleases.blogspot.nl/2015/11/stable-channel-update.html">
+	  <p>[520422] High CVE-2015-1302: Information leak in PDF viewer.
+	    Credit to Rob Wu.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-1302</cvename>
+      <url>http://googlechromereleases.blogspot.nl/2015/11/stable-channel-update.html</url>
+    </references>
+    <dates>
+      <discovery>2015-11-10</discovery>
+      <entry>2015-11-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="851a0eea-88aa-11e5-90e7-b499baebfeaf">
+    <topic>MySQL - Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>mariadb-client</name>
+       <range><lt>5.3.13</lt></range>
+      </package>
+      <package>
+       <name>mariadb-server</name>
+       <range><lt>5.3.13</lt></range>
+      </package>
+      <package>
+       <name>mariadb55-client</name>
+       <range><lt>5.5.46</lt></range>
+      </package>
+      <package>
+       <name>mariadb55-server</name>
+       <range><lt>5.5.46</lt></range>
+      </package>
+      <package>
+       <name>mariadb100-client</name>
+       <range><lt>10.0.22</lt></range>
+      </package>
+      <package>
+       <name>mariadb100-server</name>
+       <range><lt>10.0.22</lt></range>
+      </package>
+      <package>
+       <name>mysql55-client</name>
+       <range><lt>5.5.46</lt></range>
+      </package>
+      <package>
+       <name>mysql55-server</name>
+       <range><lt>5.5.46</lt></range>
+      </package>
+      <package>
+       <name>mysql56-client</name>
+       <range><lt>5.6.27</lt></range>
+      </package>
+      <package>
+       <name>mysql56-server</name>
+       <range><lt>5.6.27</lt></range>
+      </package>
+      <package>
+       <name>percona55-client</name>
+       <range><lt>5.5.46</lt></range>
+      </package>
+      <package>
+       <name>percona55-server</name>
+       <range><lt>5.5.46</lt></range>
+      </package>
+      <package>
+       <name>percona56-client</name>
+       <range><lt>5.6.27</lt></range>
+      </package>
+      <package>
+       <name>percona56-server</name>
+       <range><lt>5.6.27</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Oracle reports:</p>
+       <blockquote cite="http://www.oracle.com/technetwork/topics/security/cpuoct2015-2367953.html">
+       <p>Critical Patch Update: MySQL Server, version(s) 5.5.45 and prior, 5.6.26 and prior</p>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.oracle.com/technetwork/topics/security/cpuoct2015-2367953.html</url>
+      <cvename>CVE-2015-4802</cvename>
+      <cvename>CVE-2015-4807</cvename>
+      <cvename>CVE-2015-4815</cvename>
+      <cvename>CVE-2015-4826</cvename>
+      <cvename>CVE-2015-4830</cvename>
+      <cvename>CVE-2015-4836</cvename>
+      <cvename>CVE-2015-4858</cvename>
+      <cvename>CVE-2015-4861</cvename>
+      <cvename>CVE-2015-4870</cvename>
+      <cvename>CVE-2015-4913</cvename>
+      <cvename>CVE-2015-4792</cvename>
+      <url>https://mariadb.com/kb/en/mariadb/mariadb-5546-release-notes/</url>
+      <url>https://mariadb.com/kb/en/mariadb/mariadb-10022-release-notes/</url>
+      <url>https://www.percona.com/doc/percona-server/5.5/release-notes/Percona-Server-5.5.46-37.5.html</url>
+      <url>https://www.percona.com/doc/percona-server/5.6/release-notes/Percona-Server-5.6.27-75.0.html</url>
+    </references>
+    <dates>
+      <discovery>2015-11-10</discovery>
+      <entry>2015-11-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b665668a-91db-4f13-8113-9e4b5b0e47f7">
+    <topic>jenkins -- remote code execution via unsafe deserialization</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>1.638</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>1.625.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Developers report:</p>
+	<blockquote cite="https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2015-11-11">
+	  <p>Unsafe deserialization allows unauthenticated remote attackers to
+	    run arbitrary code on the Jenkins master.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://wiki.jenkins-ci.org/display/SECURITY/Jenkins+Security+Advisory+2015-11-11</url>
+      <url>https://jenkins-ci.org/content/mitigating-unauthenticated-remote-code-execution-0-day-jenkins-cli</url>
+      <url>http://foxglovesecurity.com/2015/11/06/what-do-weblogic-websphere-jboss-jenkins-opennms-and-your-application-have-in-common-this-vulnerability/#thefix</url>
+    </references>
+    <dates>
+      <discovery>2015-11-06</discovery>
+      <entry>2015-11-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="71af4ded-8864-11e5-af1b-001999f8d30b">
+    <topic>owncloudclient -- Improper validation of certificates when using self-signed certificates</topic>
+    <affects>
+      <package>
+	<name>owncloudclient</name>
+	<range><lt>2.0.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>owncloud.org reports:</p>
+	<blockquote cite="https://owncloud.org/security/advisory/?id=oc-sa-2015-016">
+	  <p>The ownCloud Desktop Client was vulnerable against MITM attacks until version 2.0.0 in combination with self-signed certificates.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://owncloud.org/security/advisory/?id=oc-sa-2015-016</url>
+      <cvename>CVE-2015-7298</cvename>
+    </references>
+    <dates>
+      <discovery>2015-09-21</discovery>
+      <entry>2015-11-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="c0e76d33-8821-11e5-ab94-002590263bf5">
     <topic>xen-tools -- populate-on-demand balloon size inaccuracy can crash guests</topic>
     <affects>
