@@ -16,12 +16,13 @@ LICENSE=	GPLv2
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	apinger
 SUB_FILES=	pkg-message
+PORTDOCS=	AUTHORS NEWS README
 
-OPTIONS_DEFINE=	IPV6
+OPTIONS_DEFINE=	IPV6 DOCS
 
 USES=		bison
 
-IPV6_CONFIGURE_OFF=	--disable-ipv6
+IPV6_CONFIGURE_ENABLE=	ipv6
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/src/apinger.conf ${STAGEDIR}${PREFIX}/etc/apinger.conf.sample
