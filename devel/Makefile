@@ -4025,6 +4025,7 @@
     SUBDIR += py-fsm
     SUBDIR += py-fudge
     SUBDIR += py-funcparserlib
+    SUBDIR += py-functools32
     SUBDIR += py-fusefs
     SUBDIR += py-future
     SUBDIR += py-futures
@@ -4286,6 +4287,7 @@
     SUBDIR += py-setuptools35
     SUBDIR += py-setuptools_darcs
     SUBDIR += py-setuptools_hg
+    SUBDIR += py-setuptools_scm
     SUBDIR += py-sh
     SUBDIR += py-shapely
     SUBDIR += py-simplegeneric
@@ -4355,6 +4357,7 @@
     SUBDIR += py-user_agents
     SUBDIR += py-utils
     SUBDIR += py-validictory
+    SUBDIR += py-vcversioner
     SUBDIR += py-venusian
     SUBDIR += py-versiontools
     SUBDIR += py-virtualenv
