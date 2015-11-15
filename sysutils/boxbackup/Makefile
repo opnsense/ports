@@ -8,7 +8,7 @@ CATEGORIES=	sysutils
 MASTER_SITES=	SF
 PKGNAMESUFFIX=	${CLIENT_OR_SERVER}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Open source, completely automatic on-line backup system for Unix
 
 LICENSE=	BSD3CLAUSE GPLv2
@@ -20,6 +20,10 @@ USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
 USE_AUTOTOOLS=	autoconf aclocal autoheader
 ACLOCAL_ARGS+=	-I ${WRKSRC}/infrastructure/m4
+
+.if exists(/usr/lib/libexecinfo.so)
+LDFLAGS+=	-lexecinfo
+.endif
 
 MAKE_JOBS_UNSAFE=yes
 

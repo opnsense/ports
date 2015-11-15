@@ -3906,7 +3906,6 @@
     SUBDIR += py-argparse
     SUBDIR += py-args
     SUBDIR += py-asn1
-    SUBDIR += py-asn1-modules
     SUBDIR += py-aspects
     SUBDIR += py-aspyct
     SUBDIR += py-astroid
@@ -4000,7 +3999,6 @@
     SUBDIR += py-epsilon
     SUBDIR += py-evdev
     SUBDIR += py-event
-    SUBDIR += py-experimental.cssselect
     SUBDIR += py-extras
     SUBDIR += py-extremes
     SUBDIR += py-ezpyinline
@@ -4183,6 +4181,7 @@
     SUBDIR += py-pudb
     SUBDIR += py-px
     SUBDIR += py-py
+    SUBDIR += py-pyasn1-modules
     SUBDIR += py-pycalendar
     SUBDIR += py-pycallgraph
     SUBDIR += py-pycerberus
@@ -4246,6 +4245,7 @@
     SUBDIR += py-qt4-test
     SUBDIR += py-rauth
     SUBDIR += py-raven
+    SUBDIR += py-rednose
     SUBDIR += py-repl
     SUBDIR += py-repoze.lru
     SUBDIR += py-repoze.sphinx.autointerface
@@ -4321,6 +4321,7 @@
     SUBDIR += py-tconfpy
     SUBDIR += py-tempstorage
     SUBDIR += py-termcolor
+    SUBDIR += py-termstyle
     SUBDIR += py-testgears
     SUBDIR += py-testoob
     SUBDIR += py-testtools
