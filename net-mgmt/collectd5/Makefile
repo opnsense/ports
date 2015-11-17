@@ -3,7 +3,7 @@
 
 PORTNAME=	collectd
 PORTVERSION=	5.5.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://collectd.org/files/ \
 		http://collectd.org/files/
@@ -156,7 +156,7 @@ MODBUS_LIB_DEPENDS=		libmodbus.so:${PORTSDIR}/comms/libmodbus
 MODBUS_CONFIGURE_ENABLE=	modbus
 MODBUS_CONFIGURE_WITH=		libmodbus=${LOCALBASE}
 
-MONGODB_LIB_DEPENDS=		libmongoc.so:${PORTSDIR}/devel/mongo-c-driver
+MONGODB_LIB_DEPENDS=		libmongoc-1.0.so:${PORTSDIR}/devel/mongo-c-driver
 MONGODB_CONFIGURE_ENABLE=	write_mongodb
 MONGODB_CONFIGURE_WITH=		libmongoc=${LOCALBASE}
 
@@ -240,14 +240,13 @@ TOKYOTYRANT_CONFIGURE_WITH=	libtokyotyrant=${LOCALBASE}
 VARNISH_LIB_DEPENDS=		libvarnishapi.so:${PORTSDIR}/www/varnish4
 VARNISH_CONFIGURE_ENABLE=	varnish
 VARNISH_CONFIGURE_WITH=		libvarnish=${LOCALBASE}
-VARNISH_BROKEN=			fails to compile with varnish4-4.1
 
 VIRT_IMPLIES=			XML
 VIRT_LIB_DEPENDS=		libvirt.so:${PORTSDIR}/devel/libvirt
 VIRT_CONFIGURE_ENABLE=		virt
 VIRT_CONFIGURE_WITH=		virt=${LOCALBASE}
 
-XML_LIB_DEPENDS=		libxmms.so:${PORTSDIR}/multimedia/xmms
+XML_LIB_DEPENDS=		libxml2.so:${PORTSDIR}/textproc/libxml2
 XML_CONFIGURE_WITH=		libxml2=${LOCALBASE}
 
 XMMS_CFLAGS=			`xmms-config --cflags`
