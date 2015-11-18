@@ -33,10 +33,14 @@ load_rc_config $name
 [ -z "$suricata_flags" ]	&& suricata_flags="-D"
 [ -z "$suricata_divertport" ]	&& suricata_divertport="8000"
 
+if [ -z "$suricata_startup_flags" ]; then
 [ -n "$suricata_interface" ]	&& suricata_flags="$suricata_flags -i $suricata_interface --pidfile /var/run/suricata_${suricata_interface}.pid" \
 				&& pidfile="/var/run/suricata_${suricata_interface}.pid"
 [ -z "$suricata_interface" ]	&& suricata_flags="$suricata_flags -d $suricata_divertport --pidfile /var/run/suricata_inline.pid" \
 				&& pidfile="/var/run/suricata_inline.pid" && info "Inline Mode on divert port $suricata_divertport (suricata_interface not defined)"
 [ -n "$suricata_conf" ]		&& suricata_flags="$suricata_flags -c $suricata_conf"
+else
+suricata_flags="$suricata_flags $suricata_startup_flags -c $suricata_conf"
+fi
 
 run_rc_command "$1"
