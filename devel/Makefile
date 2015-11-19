@@ -3906,7 +3906,6 @@
     SUBDIR += py-argh
     SUBDIR += py-argparse
     SUBDIR += py-args
-    SUBDIR += py-asn1
     SUBDIR += py-aspects
     SUBDIR += py-aspyct
     SUBDIR += py-astroid
@@ -4020,6 +4019,8 @@
     SUBDIR += py-foolscap
     SUBDIR += py-fortran
     SUBDIR += py-freebsd
+    SUBDIR += py-freenas.dispatcher
+    SUBDIR += py-freenas.utils
     SUBDIR += py-freezegun
     SUBDIR += py-fs
     SUBDIR += py-fsm
@@ -4183,6 +4184,7 @@
     SUBDIR += py-pudb
     SUBDIR += py-px
     SUBDIR += py-py
+    SUBDIR += py-pyasn1
     SUBDIR += py-pyasn1-modules
     SUBDIR += py-pycalendar
     SUBDIR += py-pycallgraph
