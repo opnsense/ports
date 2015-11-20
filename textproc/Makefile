@@ -158,6 +158,7 @@
     SUBDIR += elasticsearch-plugin-marvel
     SUBDIR += elasticsearch-plugin-sql
     SUBDIR += elasticsearch-river-rabbitmq
+    SUBDIR += elasticsearch2
     SUBDIR += elixir-earmark
     SUBDIR += elixir-ex_doc
     SUBDIR += elixir-funnel
@@ -1300,6 +1301,7 @@
     SUBDIR += py-zpt
     SUBDIR += py2html
     SUBDIR += py3-libxml2
+    SUBDIR += py3-MarkupSafe
     SUBDIR += pychm
     SUBDIR += qprint
     SUBDIR += qstardict
@@ -1400,6 +1402,7 @@
     SUBDIR += rubygem-ini
     SUBDIR += rubygem-itextomml
     SUBDIR += rubygem-jekyll-assets
+    SUBDIR += rubygem-jekyll-assets1
     SUBDIR += rubygem-jekyll-feed
     SUBDIR += rubygem-jekyll-gist
     SUBDIR += rubygem-jekyll-mentions
