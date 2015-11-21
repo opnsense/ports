@@ -1561,7 +1561,7 @@
     SUBDIR += ocaml-sdl
     SUBDIR += ocaml-sem
     SUBDIR += ocaml-sexplib
-    SUBDIR += ocaml-typeconv
+    SUBDIR += ocaml-type_conv
     SUBDIR += ocaml-ulex
     SUBDIR += ocaml-uutf
     SUBDIR += ocaml-xstr
@@ -2598,6 +2598,7 @@
     SUBDIR += p5-Module-CPANTS-Analyse
     SUBDIR += p5-Module-CPANfile
     SUBDIR += p5-Module-CheckDeps
+    SUBDIR += p5-Module-CheckVersion
     SUBDIR += p5-Module-Collect
     SUBDIR += p5-Module-Compile
     SUBDIR += p5-Module-CoreList
@@ -4477,6 +4478,7 @@
     SUBDIR += py3-babel
     SUBDIR += py3-dbus
     SUBDIR += py3-gobject3
+    SUBDIR += py3-jsonschema
     SUBDIR += py3-libpeas
     SUBDIR += py3-pytz
     SUBDIR += py3-vcversioner
