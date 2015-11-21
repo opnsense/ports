@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nmap
-DISTVERSION=	6.47
+DISTVERSION=	7.00
 CATEGORIES=	security ipv6
 MASTER_SITES=	http://nmap.org/dist/ \
 		LOCAL/ohauer
@@ -19,7 +19,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpcre.so:${PORTSDIR}/devel/pcre
 
-USES=		tar:bzip2 gmake cpe compiler
+USES=		tar:bzip2 gmake cpe
 GNU_CONFIGURE=	yes
 
 OPTIONS_SUB=	yes
@@ -30,22 +30,16 @@ SSL_USE=		OPENSSL=yes
 SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
 SSL_CONFIGURE_OFF=	--without-openssl
 SSL_CFLAGS=		-I${OPENSSLINC}
+SSL_VARS=		STRIP_FILES=ncat
 
+# PR: ports/159376  Workaround if OS is build with WITHOUT_INET6
+IPV6_LIB_DEPENDS_OFF=	libpcap.so:${PORTSDIR}/net/libpcap
 IPV6_CONFIGURE_OFF=	--with-libpcap=${LOCALBASE}/IPv6
 
 .include <bsd.port.options.mk>
 
-# PR: ports/159376  Workaround if OS is build with WITHOUT_INET6
-.if ! ${PORT_OPTIONS:MIPV6}
-LIB_DEPENDS+=		libpcap.so:${PORTSDIR}/net/libpcap
-.endif
-
-PORTDOCS=	CHANGELOG HACKING
-STRIP_FILES=	nmap nping
-
-.if ${PORT_OPTIONS:MSSL}
-STRIP_FILES+=	ncat
-.endif
+DOCS=	CHANGELOG HACKING
+STRIP_FILES+=	nmap nping
 
 CONFIGURE_ARGS+=--without-localdirs \
 		--without-zenmap \
@@ -53,15 +47,6 @@ CONFIGURE_ARGS+=--without-localdirs \
 		--with-libpcre=${LOCALBASE} \
 		--with-liblua=included \
 		--without-nmap-update
-
-.include <bsd.port.pre.mk>
-
-# fix for gcc from ports
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-GCCLIBDIR_CMDS=	${CC} -print-file-name=libstdc++.so | ${SED} -e 's/libstdc++.so//'
-CONFIGURE_ARGS+=LDFLAGS="-L$$(${GCCLIBDIR_CMDS})"
-NOT_BASE_CC=	true
-.endif
 
 # XXX limit results if we do a grep in the sources!
 post-extract:
@@ -75,12 +60,9 @@ pre-install:
 
 post-install:
 	${STRIP_CMD} ${STRIP_FILES:S|^|${STAGEDIR}${PREFIX}/bin/|}
+
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${DOCS:S|^|${WRKSRC}/|} ${STAGEDIR}${DOCSDIR}
 
-# gcc from ports is in use
-.if defined(NOT_BASE_CC)
-	@${ECHO_MSG} do not forget to adjust libnmap.conf
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
