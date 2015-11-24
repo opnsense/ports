@@ -1525,6 +1525,7 @@
     SUBDIR += py-django-caching-app-plugins
     SUBDIR += py-django-classy-tags
     SUBDIR += py-django-cms
+    SUBDIR += py-django-contact-form
     SUBDIR += py-django-contrib-comments
     SUBDIR += py-django-crispy-forms
     SUBDIR += py-django-datetime-widget
@@ -1545,6 +1546,7 @@
     SUBDIR += py-django-mezzanine-grappelli
     SUBDIR += py-django-mptt
     SUBDIR += py-django-openid-auth
+    SUBDIR += py-django-overextends
     SUBDIR += py-django-photologue
     SUBDIR += py-django-picklefield
     SUBDIR += py-django-pipeline
@@ -1924,6 +1926,7 @@
     SUBDIR += rubygem-mousetrap-rails
     SUBDIR += rubygem-multipart-post
     SUBDIR += rubygem-nanoc
+    SUBDIR += rubygem-nested_form
     SUBDIR += rubygem-net-http-digest_auth
     SUBDIR += rubygem-net-http-digest_auth11
     SUBDIR += rubygem-net-http-persistent

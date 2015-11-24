@@ -840,6 +840,8 @@
     SUBDIR += rubygem-activerecord-mysql-adapter
     SUBDIR += rubygem-activerecord4
     SUBDIR += rubygem-activerecord41
+    SUBDIR += rubygem-after_commit_queue
+    SUBDIR += rubygem-after_commit_queue-rails41
     SUBDIR += rubygem-amalgalite
     SUBDIR += rubygem-arel
     SUBDIR += rubygem-arel-helpers
@@ -889,6 +891,8 @@
     SUBDIR += rubygem-mysql
     SUBDIR += rubygem-mysql2
     SUBDIR += rubygem-openid-redis-store
+    SUBDIR += rubygem-paranoia
+    SUBDIR += rubygem-paranoia-rails41
     SUBDIR += rubygem-pg
     SUBDIR += rubygem-rbase
     SUBDIR += rubygem-redis
@@ -922,6 +926,7 @@
     SUBDIR += sqliteman
     SUBDIR += sqlitemanager
     SUBDIR += sqliteodbc
+    SUBDIR += sqlitestudio
     SUBDIR += sqlrelay
     SUBDIR += sqsh
     SUBDIR += squirrel-sql

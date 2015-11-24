@@ -50,6 +50,7 @@
     SUBDIR += ace+tao-doc
     SUBDIR += acme
     SUBDIR += activitymail
+    SUBDIR += ada-util
     SUBDIR += adabooch
     SUBDIR += adacurses
     SUBDIR += adime
@@ -3986,6 +3987,7 @@
     SUBDIR += py-dirspec
     SUBDIR += py-distorm
     SUBDIR += py-distutils-extra
+    SUBDIR += py-django-rq
     SUBDIR += py-django-tastypie-mongoengine
     SUBDIR += py-django16-tastypie-mongoengine
     SUBDIR += py-docopt
@@ -4516,7 +4518,6 @@
     SUBDIR += qross
     SUBDIR += qscintilla2
     SUBDIR += qscintilla2-designerplugin
-    SUBDIR += qsvn
     SUBDIR += qt4
     SUBDIR += qt4-assistant
     SUBDIR += qt4-assistant-adp
@@ -4631,6 +4632,7 @@
     SUBDIR += rubygem-active_scaffold
     SUBDIR += rubygem-activejob
     SUBDIR += rubygem-activemessaging
+    SUBDIR += rubygem-activerecord-deprecated_finders
     SUBDIR += rubygem-activesupport
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport41
@@ -4882,6 +4884,7 @@
     SUBDIR += rubygem-nenv
     SUBDIR += rubygem-nesty
     SUBDIR += rubygem-netaddr
+    SUBDIR += rubygem-newrelic-grape
     SUBDIR += rubygem-newrelic_rpm
     SUBDIR += rubygem-nice-ffi
     SUBDIR += rubygem-nio4r
@@ -4890,6 +4893,8 @@
     SUBDIR += rubygem-notify
     SUBDIR += rubygem-nprogress-rails
     SUBDIR += rubygem-oj
+    SUBDIR += rubygem-omniauth_crowd
+    SUBDIR += rubygem-omniauth_crowd-rails41
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
     SUBDIR += rubygem-orm_adapter
@@ -4957,6 +4962,7 @@
     SUBDIR += rubygem-ruby-atmos-pure
     SUBDIR += rubygem-ruby-bugzilla
     SUBDIR += rubygem-ruby-filemagic
+    SUBDIR += rubygem-ruby-fogbugz
     SUBDIR += rubygem-ruby-libvirt
     SUBDIR += rubygem-ruby-ole
     SUBDIR += rubygem-ruby-prof
