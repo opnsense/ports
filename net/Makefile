@@ -1103,6 +1103,7 @@
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth2
     SUBDIR += rubygem-octokit
+    SUBDIR += rubygem-octopress-deploy
     SUBDIR += rubygem-omniauth-facebook
     SUBDIR += rubygem-omniauth-github
     SUBDIR += rubygem-omniauth-github-discourse
@@ -1148,6 +1149,7 @@
     SUBDIR += samba4
     SUBDIR += samba41
     SUBDIR += samba42
+    SUBDIR += samba43
     SUBDIR += samplicator
     SUBDIR += sbd
     SUBDIR += scamper
