@@ -972,10 +972,12 @@
     SUBDIR += py-qt4-network
     SUBDIR += py-radix
     SUBDIR += py-raet
+    SUBDIR += py-ripe.atlas.cousteau
     SUBDIR += py-s3cmd
     SUBDIR += py-simplesoap
     SUBDIR += py-smbpasswd
     SUBDIR += py-soappy
+    SUBDIR += py-socketio-client
     SUBDIR += py-speedtest-cli
     SUBDIR += py-suds
     SUBDIR += py-terminado
