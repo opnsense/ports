@@ -3,6 +3,7 @@
 
 PORTNAME=	suricata
 PORTVERSION=	2.0.10
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
