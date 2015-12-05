@@ -732,6 +732,7 @@
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
     SUBDIR += py-memcached
+    SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
     SUBDIR += py-mysql-connector-python2
     SUBDIR += py-mysql2pgsql
@@ -741,6 +742,7 @@
     SUBDIR += py-peewee
     SUBDIR += py-pg8000
     SUBDIR += py-pg_pqueue
+    SUBDIR += py-pgcli
     SUBDIR += py-pgspecial
     SUBDIR += py-pgxnclient
     SUBDIR += py-pickledb
