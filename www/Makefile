@@ -353,7 +353,8 @@
     SUBDIR += jdresolve
     SUBDIR += jericho-html
     SUBDIR += jesred
-    SUBDIR += jetty
+    SUBDIR += jetty8
+    SUBDIR += jetty9
     SUBDIR += jinzora
     SUBDIR += jmeter
     SUBDIR += joomla15
@@ -569,6 +570,7 @@
     SUBDIR += npm
     SUBDIR += npm012
     SUBDIR += nspluginwrapper
+    SUBDIR += obhttpd
     SUBDIR += ocaml-net
     SUBDIR += ocsigen
     SUBDIR += offline-npm
