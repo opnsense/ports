@@ -246,6 +246,7 @@
     SUBDIR += goose
     SUBDIR += gpx2map
     SUBDIR += grafana
+    SUBDIR += grafana2
     SUBDIR += grails
     SUBDIR += gregarius
     SUBDIR += groupoffice
@@ -1086,6 +1087,7 @@
     SUBDIR += p5-Mojolicious-Plugin-SetUserGroup
     SUBDIR += p5-Mojolicious-Plugin-TtRenderer
     SUBDIR += p5-Mojolicious-Plugin-YamlConfig
+    SUBDIR += p5-MojoX-Log-Dispatch-Simple
     SUBDIR += p5-Monoceros
     SUBDIR += p5-Mozilla-CA
     SUBDIR += p5-Net-Akismet
@@ -1136,6 +1138,7 @@
     SUBDIR += p5-Plack-Middleware-Auth-Digest
     SUBDIR += p5-Plack-Middleware-AutoRefresh
     SUBDIR += p5-Plack-Middleware-ConsoleLogger
+    SUBDIR += p5-Plack-Middleware-CrossOrigin
     SUBDIR += p5-Plack-Middleware-Debug
     SUBDIR += p5-Plack-Middleware-Deflater
     SUBDIR += p5-Plack-Middleware-Expires
@@ -1149,6 +1152,7 @@
     SUBDIR += p5-Plack-Middleware-JSConcat
     SUBDIR += p5-Plack-Middleware-MemoryUsage
     SUBDIR += p5-Plack-Middleware-MethodOverride
+    SUBDIR += p5-Plack-Middleware-NoMultipleSlashes
     SUBDIR += p5-Plack-Middleware-Precompressed
     SUBDIR += p5-Plack-Middleware-RemoveRedundantBody
     SUBDIR += p5-Plack-Middleware-Reproxy

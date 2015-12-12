@@ -509,6 +509,7 @@
     SUBDIR += py-dkimpy
     SUBDIR += py-libgmail
     SUBDIR += py-milter
+    SUBDIR += py-notmuch
     SUBDIR += py-ppolicy
     SUBDIR += py-spambayes
     SUBDIR += py-spf
@@ -590,6 +591,8 @@
     SUBDIR += rubygem-mailfactory
     SUBDIR += rubygem-pony
     SUBDIR += rubygem-rmail
+    SUBDIR += rubygem-roadie
+    SUBDIR += rubygem-roadie-rails
     SUBDIR += rubygem-ruby-qmail
     SUBDIR += rubygem-tmail
     SUBDIR += rubygem-vmail
