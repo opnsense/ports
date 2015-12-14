@@ -27,6 +27,7 @@
     SUBDIR += asio
     SUBDIR += aslookup
     SUBDIR += asterisk
+    SUBDIR += asterisk-chan_sccp
     SUBDIR += asterisk-g72x
     SUBDIR += asterisk11
     SUBDIR += asterisk13
@@ -973,6 +974,7 @@
     SUBDIR += py-pyvmomi
     SUBDIR += py-pyzmq
     SUBDIR += py-qt4-network
+    SUBDIR += py-qt5-network
     SUBDIR += py-radix
     SUBDIR += py-raet
     SUBDIR += py-ripe.atlas.cousteau
