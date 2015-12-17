@@ -466,10 +466,6 @@ MOZCONFIG_SED?= ${SED} ${MOZ_SED_ARGS}
 USE_BINUTILS=	# intel-gcm.s
 CFLAGS+=	-B${LOCALBASE}/bin
 LDFLAGS+=	-B${LOCALBASE}/bin
-.  if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000041 && \
-	exists(/usr/lib/libcxxrt.so) && ${CXXFLAGS:M-stdlib=libc++}
-LIBS+=		-lcxxrt
-.  endif
 . endif
 .elif ${ARCH:Mpowerpc*}
 USES:=		compiler:gcc-c++11-lib ${USES:Ncompiler*c++11*}
