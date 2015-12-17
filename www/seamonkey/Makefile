@@ -4,6 +4,7 @@
 PORTNAME=	seamonkey
 DISTVERSION=	2.39
 MOZILLA_VER=	42 # above + 3
+PORTREVISION=	1
 CATEGORIES?=	www mail news editors irc ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
@@ -40,8 +41,7 @@ USE_GECKO=	gecko
 USE_QT5=	# empty
 QT_NONSTANDARD=	yes
 USE_GL=		gl
-USES=		dos2unix tar:xz
-DOS2UNIX_FILES=	mozilla/media/webrtc/trunk/webrtc/system_wrappers/source/spreadsortlib/spreadsort.hpp
+USES=		tar:xz
 MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 
 MOZ_EXTENSIONS=	default

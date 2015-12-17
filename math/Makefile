@@ -6,6 +6,7 @@
     SUBDIR += GiNaC
     SUBDIR += PDL
     SUBDIR += R
+    SUBDIR += R-cran-Amelia
     SUBDIR += R-cran-ChangeAnomalyDetection
     SUBDIR += R-cran-Formula
     SUBDIR += R-cran-KFAS
@@ -22,6 +23,7 @@
     SUBDIR += R-cran-SuppDists
     SUBDIR += R-cran-VGAM
     SUBDIR += R-cran-Zelig
+    SUBDIR += R-cran-assertthat
     SUBDIR += R-cran-bdsmatrix
     SUBDIR += R-cran-car
     SUBDIR += R-cran-coda
@@ -36,6 +38,7 @@
     SUBDIR += R-cran-inline
     SUBDIR += R-cran-irlba
     SUBDIR += R-cran-labeling
+    SUBDIR += R-cran-lazyeval
     SUBDIR += R-cran-lme4
     SUBDIR += R-cran-maxLik
     SUBDIR += R-cran-memisc
