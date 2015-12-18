@@ -13,6 +13,7 @@
     SUBDIR += R-cran-LearnBayes
     SUBDIR += R-cran-MCMCpack
     SUBDIR += R-cran-MSwM
+    SUBDIR += R-cran-MatchIt
     SUBDIR += R-cran-MatrixModels
     SUBDIR += R-cran-NMF
     SUBDIR += R-cran-RHmm
@@ -29,8 +30,10 @@
     SUBDIR += R-cran-coda
     SUBDIR += R-cran-deldir
     SUBDIR += R-cran-dlmodeler
+    SUBDIR += R-cran-dplyr
     SUBDIR += R-cran-forecast
     SUBDIR += R-cran-fracdiff
+    SUBDIR += R-cran-geepack
     SUBDIR += R-cran-gpclib
     SUBDIR += R-cran-gss
     SUBDIR += R-cran-gtable
