@@ -58,6 +58,132 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="7329938b-a4e6-11e5-b864-14dae9d210b8">
+    <topic>cups-filters -- code execution</topic>
+    <affects>
+      <package>
+	<name>cups-filters</name>
+	<range><lt>1.4.0</lt></range>
+      </package>
+      <package>
+	<name>foomatic-filters</name>
+	<range><lt>4.0.17_4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Till Kamppeter reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2015/12/14/13">
+	  <p>Cups Filters/Foomatic Filters does not consider semicolon
+	    as an illegal escape character.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.openwall.com/lists/oss-security/2015/12/14/13</url>
+      <cvename>CVE-2015-8560</cvename>
+    </references>
+    <dates>
+      <discovery>2015-12-12</discovery>
+      <entry>2015-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6dbae1a8-a4e6-11e5-b864-14dae9d210b8">
+    <topic>cups-filters -- code execution</topic>
+    <affects>
+      <package>
+	<name>cups-filters</name>
+	<range><lt>1.2.0</lt></range>
+      </package>
+      <package>
+	<name>foomatic-filters</name>
+	<range><lt>4.0.17_4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Salvatore Bonaccorso reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2015/12/13/2">
+	  <p>Cups Filters/Foomatic Filters does not consider backtick
+	    as an illegal escape character.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.openwall.com/lists/oss-security/2015/12/13/2</url>
+      <cvename>CVE-2015-8327</cvename>
+    </references>
+    <dates>
+      <discovery>2015-10-30</discovery>
+      <entry>2015-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1fbd6db1-a4e4-11e5-b864-14dae9d210b8">
+    <topic>py-amf -- input sanitization errors</topic>
+    <affects>
+      <package>
+	<name>py27-amf</name>
+	<name>py32-amf</name>
+	<name>py33-amf</name>
+	<name>py34-amf</name>
+	<range><lt>0.8.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>oCERT reports:</p>
+	<blockquote cite="http://www.ocert.org/advisories/ocert-2015-011.html">
+	  <p>A specially crafted AMF payload, containing malicious
+	    references to XML external entities, can be used to trigger Denial of
+	    Service (DoS) conditions or arbitrarily return the contents of files
+	    that are accessible with the running application privileges.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.ocert.org/advisories/ocert-2015-011.html</url>
+      <cvename>CVE-2015-8549</cvename>
+    </references>
+    <dates>
+     <discovery>2015-12-01</discovery>
+     <entry>2015-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a9f60ce8-a4e0-11e5-b864-14dae9d210b8">
+    <topic>joomla -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>joomla3</name>
+	<range><lt>3.4.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Joomla! reports:</p>
+	<blockquote cite="https://www.joomla.org/announcements/release-news/5641-joomla-3-4-6-released.html">
+	  <p>Joomla! 3.4.6 is now available. This is a security release
+	    for the 3.x series of Joomla which addresses a critical security
+	    vulnerability and 4 low level security vulnerabilities. We strongly
+	    recommend that you update your sites immediately.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.joomla.org/announcements/release-news/5641-joomla-3-4-6-released.html</url>
+      <cvename>CVE-2015-8562</cvename>
+      <cvename>CVE-2015-8563</cvename>
+      <cvename>CVE-2015-8564</cvename>
+      <cvename>CVE-2015-8565</cvename>
+    </references>
+    <dates>
+      <discovery>2015-12-14</discovery>
+      <entry>2015-12-17</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="a8ec4db7-a398-11e5-85e9-14dae9d210b8">
     <topic>bind -- multiple vulnerabilities</topic>
     <affects>
@@ -8339,6 +8465,10 @@ Notes:
     <topic>php-phar -- multiple vulnerabilities</topic>
     <affects>
       <package>
+	<name>php56-phar</name>
+	<range><lt>5.6.11</lt></range>
+      </package>
+      <package>
 	<name>php55-phar</name>
 	<range><lt>5.5.27</lt></range>
       </package>
@@ -8368,6 +8498,7 @@ Notes:
     <dates>
       <discovery>2015-06-24</discovery>
       <entry>2015-07-18</entry>
+      <modified>2015-12-18</modified>
     </dates>
   </vuln>
 
