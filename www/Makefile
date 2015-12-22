@@ -1033,6 +1033,7 @@
     SUBDIR += p5-HTTP-Session2
     SUBDIR += p5-HTTP-SimpleLinkChecker
     SUBDIR += p5-HTTP-Size
+    SUBDIR += p5-HTTP-Thin
     SUBDIR += p5-HTTP-Tiny
     SUBDIR += p5-HTTP-Tiny-SPDY
     SUBDIR += p5-HTTP-WebTest
@@ -1079,6 +1080,8 @@
     SUBDIR += p5-ModPerl-VersionUtil
     SUBDIR += p5-Mojo-Server-FastCGI
     SUBDIR += p5-MojoMojo
+    SUBDIR += p5-MojoX-Log-Dispatch-Simple
+    SUBDIR += p5-MojoX-Renderer-Xslate
     SUBDIR += p5-Mojolicious
     SUBDIR += p5-Mojolicious-Plugin-Authentication
     SUBDIR += p5-Mojolicious-Plugin-Database
@@ -1086,8 +1089,6 @@
     SUBDIR += p5-Mojolicious-Plugin-SetUserGroup
     SUBDIR += p5-Mojolicious-Plugin-TtRenderer
     SUBDIR += p5-Mojolicious-Plugin-YamlConfig
-    SUBDIR += p5-MojoX-Log-Dispatch-Simple
-    SUBDIR += p5-MojoX-Renderer-Xslate
     SUBDIR += p5-Monoceros
     SUBDIR += p5-Mozilla-CA
     SUBDIR += p5-Net-Akismet
@@ -1188,6 +1189,7 @@
     SUBDIR += p5-Reaction
     SUBDIR += p5-Reddit
     SUBDIR += p5-Reddit-Client
+    SUBDIR += p5-Role-REST-Client
     SUBDIR += p5-Rose-HTML-Objects
     SUBDIR += p5-Router-Boom
     SUBDIR += p5-Router-Simple
@@ -1569,6 +1571,8 @@
     SUBDIR += py-django-sekizai
     SUBDIR += py-django-signals-ahoy
     SUBDIR += py-django-simple-captcha
+    SUBDIR += py-django-sortedm2m
+    SUBDIR += py-django-statici18n
     SUBDIR += py-django-storages
     SUBDIR += py-django-subdomains
     SUBDIR += py-django-tables2
@@ -1613,6 +1617,7 @@
     SUBDIR += py-funkload
     SUBDIR += py-gandi.cli
     SUBDIR += py-gevent-websocket
+    SUBDIR += py-goobook
     SUBDIR += py-google
     SUBDIR += py-google-api-python-client
     SUBDIR += py-graphite-web
