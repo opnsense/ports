@@ -1,4 +1,6 @@
 man/man8/opnsense-bootstrap.8.gz
 man/man8/opnsense-update.8.gz
+man/man8/opnsense-verify.8.gz
 sbin/opnsense-bootstrap
 sbin/opnsense-update
+sbin/opnsense-verify

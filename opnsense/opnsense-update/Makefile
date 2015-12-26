@@ -3,6 +3,7 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	15.7.20
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -10,7 +11,14 @@ COMMENT=	OPNsense update utility
 
 LICENSE=	BSD2CLAUSE
 
+LIB_DEPENDS+=	libucl.so:${PORTSDIR}/textproc/libucl
+
+USE_OPENSSL=	yes
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
+
 USE_GITHUB=	yes
+GH_TAGNAME=	63558df7
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
 
