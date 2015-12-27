@@ -3,11 +3,11 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	15.7.20
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
-COMMENT=	OPNsense update utility
+COMMENT=	OPNsense update utilities
 
 LICENSE=	BSD2CLAUSE
 
@@ -18,7 +18,7 @@ CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
 USE_GITHUB=	yes
-GH_TAGNAME=	63558df7
+GH_TAGNAME=	12649522
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
 
