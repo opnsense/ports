@@ -3970,6 +3970,7 @@
     SUBDIR += py-configobj
     SUBDIR += py-configparser
     SUBDIR += py-construct
+    SUBDIR += py-contextlib2
     SUBDIR += py-country
     SUBDIR += py-cov-core
     SUBDIR += py-coverage
@@ -4040,6 +4041,7 @@
     SUBDIR += py-fsm
     SUBDIR += py-fudge
     SUBDIR += py-funcparserlib
+    SUBDIR += py-funcsigs
     SUBDIR += py-functools32
     SUBDIR += py-fusefs
     SUBDIR += py-future
@@ -4207,6 +4209,7 @@
     SUBDIR += py-pycalendar
     SUBDIR += py-pycallgraph
     SUBDIR += py-pycerberus
+    SUBDIR += py-pycmd
     SUBDIR += py-pycparser
     SUBDIR += py-pydasm
     SUBDIR += py-pydoop
