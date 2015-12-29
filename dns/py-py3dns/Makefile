@@ -1,15 +1,11 @@
 # Created by: Mark Linimon <linimon@lonesome.com>
 # $FreeBSD$
 
-PORTNAME=	dns
-PORTVERSION=	3.0.4
-PORTREVISION=	1
+PORTNAME=	py3dns
+PORTVERSION=	3.1.0
 CATEGORIES=	dns python
-MASTER_SITES=	https://launchpad.net/${DISTNAME}/trunk/${PORTVERSION}/+download/ \
-		LOCAL/sunpoet
+MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-PKGNAMESUFFIX=	3
-DISTNAME=	py3dns-${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	DNS (Domain Name Service) library for Python 3
@@ -19,7 +15,15 @@ LICENSE_NAME=	CNRI LICENSE AGREEMENT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+NO_ARCH=	yes
 USE_PYTHON=	autoplist distutils
-USES=		python:3
+USES=		python
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 3300
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}ipaddress>=0:${PORTSDIR}/net/py-ipaddress
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}ipaddress>=0:${PORTSDIR}/net/py-ipaddress
+.endif
+
+.include <bsd.port.post.mk>
