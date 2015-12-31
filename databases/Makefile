@@ -730,7 +730,6 @@
     SUBDIR += py-htsql-pgsql
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
-    SUBDIR += py-memcached
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
     SUBDIR += py-mysql-connector-python2
@@ -756,6 +755,7 @@
     SUBDIR += py-pymysql
     SUBDIR += py-pypuppetdb
     SUBDIR += py-pytc
+    SUBDIR += py-python-memcached
     SUBDIR += py-python-rrdtool
     SUBDIR += py-python-sql
     SUBDIR += py-qt4-sql
@@ -841,6 +841,7 @@
     SUBDIR += rubygem-activerecord-jdbc-adapter
     SUBDIR += rubygem-activerecord-jdbcmysql-adapter
     SUBDIR += rubygem-activerecord-mysql-adapter
+    SUBDIR += rubygem-activerecord-session_store
     SUBDIR += rubygem-activerecord4
     SUBDIR += rubygem-activerecord41
     SUBDIR += rubygem-after_commit_queue
@@ -906,6 +907,8 @@
     SUBDIR += rubygem-seed-fu
     SUBDIR += rubygem-sqlite3
     SUBDIR += rubygem-sqlite3-ruby
+    SUBDIR += rubygem-state_machines-activemodel
+    SUBDIR += rubygem-state_machines-activerecord
     SUBDIR += rubygem-tarantool
     SUBDIR += sfcgal
     SUBDIR += sharedance
