@@ -3927,6 +3927,7 @@
     SUBDIR += py-babelfish
     SUBDIR += py-backports.shutil_get_terminal_size
     SUBDIR += py-backports_abc
+    SUBDIR += py-bandit
     SUBDIR += py-bcdoc
     SUBDIR += py-billiard
     SUBDIR += py-binplist
@@ -4364,6 +4365,7 @@
     SUBDIR += py-tipper
     SUBDIR += py-tox
     SUBDIR += py-trace2html
+    SUBDIR += py-traitlets
     SUBDIR += py-traits
     SUBDIR += py-transaction
     SUBDIR += py-trollius
