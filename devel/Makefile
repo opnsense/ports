@@ -45,6 +45,8 @@
     SUBDIR += SpecTcl
     SUBDIR += aap
     SUBDIR += aarch64-binutils
+    SUBDIR += aarch64-none-elf-binutils
+    SUBDIR += aarch64-none-elf-gcc
     SUBDIR += abi-compliance-checker
     SUBDIR += ace
     SUBDIR += ace+tao-doc
@@ -303,6 +305,7 @@
     SUBDIR += cppunit
     SUBDIR += cproto
     SUBDIR += cpuflags
+    SUBDIR += creduce
     SUBDIR += critcl
     SUBDIR += cs-eric6
     SUBDIR += cscope
@@ -3893,6 +3896,7 @@
     SUBDIR += py-Products.contentmigration
     SUBDIR += py-Products.statusmessages
     SUBDIR += py-Products.validation
+    SUBDIR += py-PyLD
     SUBDIR += py-RPyC
     SUBDIR += py-Record
     SUBDIR += py-SymbolType
@@ -4353,6 +4357,7 @@
     SUBDIR += py-tapi
     SUBDIR += py-tarantool-queue
     SUBDIR += py-tconfpy
+    SUBDIR += py-tempora
     SUBDIR += py-tempstorage
     SUBDIR += py-termcolor
     SUBDIR += py-termstyle
