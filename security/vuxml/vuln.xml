@@ -58,6 +58,107 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="4eae4f46-b5ce-11e5-8a2b-d050996490d0">
+    <topic>ntp -- denial of service vulnerability</topic>
+    <affects>
+      <package>
+	<name>ntp</name>
+	<range><lt>4.2.8p5</lt></range>
+      </package>
+      <package>
+	<name>ntp-devel</name>
+	<range><lt>4.3.78</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Network Time Foundation reports:</p>
+	<blockquote cite="http://support.ntp.org/bin/view/Main/SecurityNotice#January_2016_NTP_4_2_8p5_Securit">
+	  <p>NTF's NTP Project has been notified of the following
+	    1 medium-severity vulnerability that is fixed in
+	    ntp-4.2.8p5, released on Thursday, 7 January 2016:</p>
+	  <p>NtpBug2956: Small-step/Big-step CVE-2015-5300</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-5300</cvename>
+      <url>https://www.cs.bu.edu/~goldbe/NTPattack.html</url>
+      <url>http://support.ntp.org/bin/view/Main/NtpBug2956</url>
+      <url>http://support.ntp.org/bin/view/Main/SecurityNotice#January_2016_NTP_4_2_8p5_Securit</url>
+    </references>
+    <dates>
+      <discovery>2015-10-21</discovery>
+      <entry>2016-01-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="df587aa2-b5a5-11e5-9728-002590263bf5">
+    <topic>dhcpcd -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>dhcpcd</name>
+	<range><lt>6.10.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Nico Golde reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2016/01/07/3">
+	  <p>heap overflow via malformed dhcp responses later in print_option
+	    (via dhcp_envoption1) due to incorrect option length values.
+	    Exploitation is non-trivial, but I'd love to be proven wrong.</p>
+	  <p>invalid read/crash via malformed dhcp responses. not exploitable
+	    beyond DoS as far as I can judge.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2016-1503</cvename>
+      <cvename>CVE-2016-1504</cvename>
+      <freebsdpr>ports/206015</freebsdpr>
+      <url>http://roy.marples.name/projects/dhcpcd/info/76a1609352263bd9def1300d7ba990679571fa30</url>
+      <url>http://roy.marples.name/projects/dhcpcd/info/595883e2a431f65d8fabf33059aa4689cca17403</url>
+      <url>http://www.openwall.com/lists/oss-security/2016/01/07/3</url>
+    </references>
+    <dates>
+      <discovery>2016-01-04</discovery>
+      <entry>2016-01-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4084168e-b531-11e5-a98c-0011d823eebd">
+    <topic>mbedTLS/PolarSSL -- SLOTH attack on TLS 1.2 server authentication</topic>
+    <affects>
+      <package>
+	<name>polarssl13</name>
+	<range><lt>1.3.16</lt></range>
+      </package>
+      <package>
+	<name>mbedtls</name>
+	<range><lt>2.2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ARM Limited reports:</p>
+	<blockquote cite="https://tls.mbed.org/tech-updates/releases/mbedtls-2.2.1-2.1.4-1.3.16-and-polarssl.1.2.19-released">
+	  <p>MD5 handshake signatures in TLS 1.2 are vulnerable to the SLOTH attack
+	    on TLS 1.2 server authentication.  They have been disabled by default.
+	    Other attacks from the SLOTH paper do not apply to any version of mbed
+	    TLS or PolarSSL.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://tls.mbed.org/tech-updates/releases/mbedtls-2.2.1-2.1.4-1.3.16-and-polarssl.1.2.19-released</url>
+    </references>
+    <dates>
+      <discovery>2016-01-04</discovery>
+      <entry>2016-01-07</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="6aa2d135-b40e-11e5-9728-002590263bf5">
     <topic>xen-kernel -- ioreq handling possibly susceptible to multiple read issue</topic>
     <affects>
