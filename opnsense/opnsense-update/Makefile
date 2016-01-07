@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	opnsense-update
-PORTVERSION=	15.7.20
-PORTREVISION=	3
+PORTVERSION=	15.7.24
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -18,7 +17,6 @@ CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
 USE_GITHUB=	yes
-GH_TAGNAME=	04c5a46d
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
 
