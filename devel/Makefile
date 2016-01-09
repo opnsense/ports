@@ -430,6 +430,7 @@
     SUBDIR += elfrc
     SUBDIR += elfsh
     SUBDIR += elftoaout
+    SUBDIR += elixir-apex
     SUBDIR += elixir-bson
     SUBDIR += elixir-calendar
     SUBDIR += elixir-combine
@@ -1499,12 +1500,7 @@
     SUBDIR += mq4cpp
     SUBDIR += msgpack
     SUBDIR += msgpuck
-    SUBDIR += msp430-binutils
     SUBDIR += msp430-debug-stack
-    SUBDIR += msp430-gcc
-    SUBDIR += msp430-gdb
-    SUBDIR += msp430-libc
-    SUBDIR += msp430mcu
     SUBDIR += mspdebug
     SUBDIR += msrc0
     SUBDIR += mtbl
@@ -4080,7 +4076,7 @@
     SUBDIR += py-hgsubversion
     SUBDIR += py-hgtools
     SUBDIR += py-humanize
-    SUBIDR += py-hypothesis
+    SUBDIR += py-hypothesis
     SUBDIR += py-icalendar
     SUBDIR += py-ice
     SUBDIR += py-icu

@@ -1490,6 +1490,7 @@
     SUBDIR += py-GinGin
     SUBDIR += py-HTMLgen
     SUBDIR += py-Lightbox
+    SUBDIR += py-MechanicalSoup
     SUBDIR += py-Products.CMFPlone
     SUBDIR += py-Products.PloneLDAP
     SUBDIR += py-Products.TinyMCE
@@ -2143,6 +2144,8 @@
     SUBDIR += trac-iniadmin
     SUBDIR += trac-keywords
     SUBDIR += trac-keywordsecretticket
+    SUBDIR += trac-ldap
+    SUBDIR += trac-ldapauthstore
     SUBDIR += trac-mastertickets
     SUBDIR += trac-math
     SUBDIR += trac-mercurial
