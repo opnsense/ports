@@ -58,6 +58,115 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="5f276780-b6ce-11e5-9731-5453ed2e2b49">
+    <topic>pygments -- shell injection vulnerability</topic>
+    <affects>
+      <package>
+	<name>py27-pygments</name>
+	<name>py32-pygments</name>
+	<name>py33-pygments</name>
+	<name>py34-pygments</name>
+	<name>py35-pygments</name>
+	<range><lt>2.0.2_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NVD reports:</p>
+	<blockquote cite="https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-8557">
+	  <p>The FontManager._get_nix_font_path function in formatters/img.py
+	    in Pygments 1.2.2 through 2.0.2 allows remote attackers to execute
+	    arbitrary commands via shell metacharacters in a font name.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-8557</cvename>
+      <mlist>http://seclists.org/fulldisclosure/2015/Oct/4</mlist>
+      <url>https://bitbucket.org/birkenfeld/pygments-main/commits/0036ab1c99e256298094505e5e92fdacdfc5b0a8</url>
+    </references>
+    <dates>
+      <discovery>2015-09-28</discovery>
+      <entry>2016-01-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="631fc042-b636-11e5-83ef-14dae9d210b8">
+    <topic>polkit -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>polkit</name>
+	<range><lt>0.113</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Colin Walters reports:</p>
+	<blockquote cite="http://lists.freedesktop.org/archives/polkit-devel/2015-June/000425.html">
+	  <ul>
+	    <li><p>Integer overflow in the
+	    authentication_agent_new_cookie function in PolicyKit (aka polkit)
+	    before 0.113 allows local users to gain privileges by creating a large
+	    number of connections, which triggers the issuance of a duplicate cookie
+	    value.</p></li>
+	    <li><p>The authentication_agent_new function in
+	    polkitbackend/polkitbackendinteractiveauthority.c in PolicyKit (aka
+	    polkit) before 0.113 allows local users to cause a denial of service
+	    (NULL pointer dereference and polkitd daemon crash) by calling
+	    RegisterAuthenticationAgent with an invalid object path.</p></li>
+	    <li><p>The polkit_backend_action_pool_init function in
+	    polkitbackend/polkitbackendactionpool.c in PolicyKit (aka polkit) before
+	    0.113 might allow local users to gain privileges via duplicate action
+	    IDs in action descriptions.</p></li>
+	    <li><p>PolicyKit (aka polkit) before 0.113 allows local
+	    users to cause a denial of service (memory corruption and polkitd daemon
+	    crash) and possibly gain privileges via unspecified vectors, related to
+	    "javascript rule evaluation."</p></li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://lists.freedesktop.org/archives/polkit-devel/2015-June/000425.html</url>
+      <cvename>CVE-2015-4625</cvename>
+      <cvename>CVE-2015-3218</cvename>
+      <cvename>CVE-2015-3255</cvename>
+      <cvename>CVE-2015-3256</cvename>
+    </references>
+    <dates>
+      <discovery>2015-06-03</discovery>
+      <entry>2016-01-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b22b016b-b633-11e5-83ef-14dae9d210b8">
+    <topic>librsync -- collision vulnerability</topic>
+    <affects>
+      <package>
+	<name>librsync</name>
+	<range><lt>1.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Michael Samuel reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2014/07/28/1">
+	  <p>librsync before 1.0.0 uses a truncated MD4 checksum to
+	    match blocks, which makes it easier for remote attackers to modify
+	    transmitted data via a birthday attack.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.openwall.com/lists/oss-security/2014/07/28/1</url>
+      <cvename>CVE-2014-8242</cvename>
+    </references>
+    <dates>
+      <discovery>2014-07-28</discovery>
+      <entry>2016-01-08</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="4eae4f46-b5ce-11e5-8a2b-d050996490d0">
     <topic>ntp -- denial of service vulnerability</topic>
     <affects>
@@ -2353,6 +2462,11 @@ Notes:
 	<name>openjdk8-jre</name>
 	<range><lt>8.66.17</lt></range>
       </package>
+      <package>
+	<name>openjdk7</name>
+	<name>openjdk7-jre</name>
+	<range><lt>7.91.02,1</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -2396,6 +2510,7 @@ Notes:
     <dates>
       <discovery>2015-10-20</discovery>
       <entry>2015-12-15</entry>
+      <modified>2016-01-08</modified>
     </dates>
   </vuln>
 
@@ -15750,8 +15865,7 @@ Notes:
       </package>
       <package>
 	<name>exact-image</name>
-	<!-- no known fixed version -->
-	<range><ge>0</ge></range>
+	<range><lt>0.9.1</lt></range>
       </package>
       <package>
 	<name>flphoto</name>
@@ -15817,7 +15931,7 @@ Notes:
     <dates>
       <discovery>2015-04-24</discovery>
       <entry>2015-05-15</entry>
-      <modified>2015-12-13</modified>
+      <modified>2016-01-08</modified>
     </dates>
   </vuln>
 
@@ -17591,6 +17705,10 @@ Notes:
 	<name>x86_64-pc-mingw32-binutils</name>
 	<range><lt>2.25</lt></range>
       </package>
+      <package>
+	<name>m6811-binutils</name>
+	<range><lt>2.25</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -17630,6 +17748,7 @@ Notes:
     <dates>
       <discovery>2014-12-09</discovery>
       <entry>2015-03-24</entry>
+      <modified>2016-01-08</modified>
     </dates>
   </vuln>
 
