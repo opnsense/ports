@@ -159,6 +159,8 @@
     SUBDIR += elasticsearch-plugin-sql
     SUBDIR += elasticsearch-river-rabbitmq
     SUBDIR += elasticsearch2
+    SUBDIR += elasticsearch2-plugin-hq
+    SUBDIR += elasticsearch2-plugin-sql
     SUBDIR += elixir-earmark
     SUBDIR += elixir-ex_doc
     SUBDIR += elixir-funnel
