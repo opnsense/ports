@@ -110,6 +110,7 @@
     SUBDIR += dsniff
     SUBDIR += duo
     SUBDIR += easy-rsa
+    SUBDIR += easy-rsa2
     SUBDIR += easypg
     SUBDIR += elixir-comeonin
     SUBDIR += elixir-comeonin_i18n
@@ -798,6 +799,7 @@
     SUBDIR += py-Products.PlonePAS
     SUBDIR += py-Products.PluggableAuthService
     SUBDIR += py-RestrictedPython
+    SUBDIR += py-scrypt
     SUBDIR += py-SecretStorage
     SUBDIR += py-acme
     SUBDIR += py-artifacts
