@@ -17,7 +17,13 @@ USE_PHPEXT=	yes
 
 CONFIGURE_ARGS=	--enable-pfSense
 
+.include <bsd.port.pre.mk>
+
+.if ${PHP_VER} == 7
+EXTRA_PATCHES=	${FILESDIR}/extra-php7
+.endif
+
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
