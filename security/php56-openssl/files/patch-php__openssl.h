@@ -1,6 +1,6 @@
---- php_openssl.h.orig	2014-08-27 15:31:35.000000000 +0200
-+++ php_openssl.h	2014-09-07 10:59:48.000000000 +0200
-@@ -81,6 +81,7 @@
+--- php_openssl.h.orig	2016-01-06 15:14:47 UTC
++++ php_openssl.h
+@@ -83,6 +83,7 @@ PHP_FUNCTION(openssl_x509_export);
  PHP_FUNCTION(openssl_x509_fingerprint);
  PHP_FUNCTION(openssl_x509_export_to_file);
  PHP_FUNCTION(openssl_x509_check_private_key);
@@ -8,7 +8,7 @@
  
  PHP_FUNCTION(openssl_pkcs12_export);
  PHP_FUNCTION(openssl_pkcs12_export_to_file);
-@@ -93,6 +94,12 @@
+@@ -95,6 +96,12 @@ PHP_FUNCTION(openssl_csr_sign);
  PHP_FUNCTION(openssl_csr_get_subject);
  PHP_FUNCTION(openssl_csr_get_public_key);
  
