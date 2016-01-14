@@ -120,6 +120,13 @@ URLVIEW_RUN_DEPENDS=	urlview:${PORTSDIR}/textproc/urlview
 .if defined (LITE)
 PKGNAMESUFFIX=	-lite
 PLIST_SUB+=	MAILBOX_MANPAGES=""
+PLIST_SUB+=	COMPRESSED_FOLDERS="@comment "
+PLIST_SUB+=	HTML="@comment "
+PLIST_SUB+=	XML="@comment "
+PLIST_SUB+=	NNTP="@comment "
+# XXX bug in bpm ?
+PLIST_SUB+=	NLS="@comment "
+CONFIGURE_ARGS+=	--disable-nls
 .endif
 
 DEBUG_CONFIGURE_ON=	--enable-debug
