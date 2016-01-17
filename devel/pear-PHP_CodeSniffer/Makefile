@@ -12,6 +12,6 @@ LICENSE=	BSD3CLAUSE
 
 NO_ARCH=	yes
 USES=		pear
-USE_PHP=	simplexml tokenizer
+USE_PHP=	ctype simplexml tokenizer
 
 .include <bsd.port.mk>
