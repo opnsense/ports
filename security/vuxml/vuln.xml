@@ -58,6 +58,155 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="05eeb7e9-b987-11e5-83ef-14dae9d210b8">
+    <topic>isc-dhcpd -- Denial of Service</topic>
+    <affects>
+      <package>
+	<name>isc-dhcp41-server</name>
+	<range><lt>4.1.e_10,2</lt></range>
+      </package>
+      <package>
+	<name>isc-dhcp41-client</name>
+	<range><lt>4.1.e_3,2</lt></range>
+      </package>
+      <package>
+	<name>isc-dhcp41-relay</name>
+	<range><lt>4.1.e_6,2</lt></range>
+      </package>
+      <package>
+	<name>isc-dhcp42-client</name>
+	<name>isc-dhcp42-server</name>
+	<name>isc-dhcp42-relay</name>
+	<range><ge>0</ge></range>
+      </package>
+      <package>
+	<name>isc-dhcp43-client</name>
+	<name>isc-dhcp43-server</name>
+	<name>isc-dhcp43-relay</name>
+	<range><lt>4.3.3.p1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ISC reports:</p>
+	<blockquote cite="https://kb.isc.org/article/AA-01334">
+	  <p>A badly formed packet with an invalid IPv4 UDP length field
+	    can cause a DHCP server, client, or relay program to terminate
+	    abnormally.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://kb.isc.org/article/AA-01334</url>
+      <cvename>CVE-2015-8605</cvename>
+    </references>
+    <dates>
+      <discovery>2016-01-05</discovery>
+      <entry>2016-01-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3b5c2362-bd07-11e5-b7ef-5453ed2e2b49">
+    <topic>libproxy -- stack-based buffer overflow</topic>
+    <affects>
+      <!-- libproxy-python is not affected. It only installs a .py file that
+	   dlopen()s libproxy.so. -->
+      <package>
+	<name>libproxy</name>
+	<range><ge>0.4.0</ge></range>
+	<range><lt>0.4.6_1</lt></range>
+      </package>
+      <package>
+	<name>libproxy-gnome</name>
+	<range><ge>0.4.0</ge></range>
+	<range><lt>0.4.6_2</lt></range>
+      </package>
+      <package>
+	<name>libproxy-kde</name>
+	<range><ge>0.4.0</ge></range>
+	<range><lt>0.4.6_6</lt></range>
+      </package>
+      <package>
+	<name>libproxy-perl</name>
+	<range><ge>0.4.0</ge></range>
+	<range><lt>0.4.6_3</lt></range>
+      </package>
+      <package>
+	<name>libproxy-webkit</name>
+	<range><ge>0.4.0</ge></range>
+	<range><lt>0.4.6_4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tomas Hoger reports:</p>
+	<blockquote cite="https://bugzilla.redhat.com/show_bug.cgi?id=864417#c0">
+	  <p>A buffer overflow flaw was discovered in the libproxy's
+	    url::get_pac() used to download proxy.pac proxy auto-configuration
+	    file. A malicious host hosting proxy.pac, or a man in the middle
+	    attacker, could use this flaw to trigger a stack-based buffer
+	    overflow in an application using libproxy, if proxy configuration
+	    instructed it to download proxy.pac file from a remote HTTP
+	    server.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2012-4504</cvename>
+      <url>https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2012-4504</url>
+      <mlist>http://www.openwall.com/lists/oss-security/2012/10/12/1</mlist>
+      <url>https://github.com/libproxy/libproxy/commit/c440553c12836664afd24a24fb3a4d10a2facd2c</url>
+      <url>https://bugzilla.redhat.com/show_bug.cgi?id=864417</url>
+      <mlist>https://groups.google.com/forum/?fromgroups=#!topic/libproxy/VxZ8No7mT0E</mlist>
+    </references>
+    <dates>
+      <discovery>2012-10-10</discovery>
+      <entry>2016-01-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="046fedd1-bd01-11e5-bbf4-5404a68ad561">
+    <topic>ffmpeg -- remote attacker can access local files</topic>
+    <affects>
+      <package>
+	<name>ffmpeg</name>
+	<range>
+	  <gt>2.0.0</gt>
+	  <lt>2.8.5</lt>
+	</range>
+      </package>
+      <package>
+	<name>mplayer</name>
+	<name>mencoder</name>
+	<range>
+	  <lt>1.2.r20151219_2</lt>
+	</range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Arch Linux reports:</p>
+	<blockquote cite="https://bugs.archlinux.org/task/47738">
+	  <p>ffmpeg has a vulnerability in the current version that allows the
+	    attacker to create a specially crafted video file, downloading which
+	    will send files from a user PC to a remote attacker server. The
+	    attack does not even require the user to open that file — for
+	    example, KDE Dolphin thumbnail generation is enough.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2016-1897</cvename>
+      <cvename>CVE-2016-1898</cvename>
+      <freebsdpr>ports/206282</freebsdpr>
+      <url>https://www.ffmpeg.org/security.html</url>
+    </references>
+    <dates>
+      <discovery>2016-01-13</discovery>
+      <entry>2016-01-17</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="6c808811-bb9a-11e5-a65c-485d605f4717">
     <topic>h2o -- directory traversal vulnerability</topic>
     <affects>
