@@ -3,6 +3,7 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	15.7.25
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -17,6 +18,7 @@ CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
 USE_GITHUB=	yes
+GH_TAGNAME=	4f30525c
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
 
