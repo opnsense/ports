@@ -58,6 +58,107 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="7c63775e-be31-11e5-b5fe-002590263bf5">
+    <topic>libarchive -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>libarchive</name>
+	<range><lt>3.1.2_5,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>MITRE reports:</p>
+	<blockquote cite="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2013-0211">
+	  <p>Integer signedness error in the archive_write_zip_data function in
+	    archive_write_set_format_zip.c in libarchive 3.1.2 and earlier, when
+	    running on 64-bit machines, allows context-dependent attackers to
+	    cause a denial of service (crash) via unspecified vectors, which
+	    triggers an improper conversion between unsigned and signed types,
+	    leading to a buffer overflow.</p>
+	</blockquote>
+	<blockquote cite="http://www.cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-2304">
+	  <p>Absolute path traversal vulnerability in bsdcpio in libarchive
+	    3.1.2 and earlier allows remote attackers to write to arbitrary
+	    files via a full pathname in an archive.</p>
+	</blockquote>
+	<p>Libarchive issue tracker reports:</p>
+	<blockquote cite="https://github.com/libarchive/libarchive/issues/502">
+	  <p>Using a crafted tar file bsdtar can perform an out-of-bounds memory
+	    read which will lead to a SEGFAULT. The issue exists when the
+	    executable skips data in the archive. The amount of data to skip is
+	    defined in byte offset [16-19] If ASLR is disabled, the issue can
+	    lead to an infinite loop.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2013-0211</cvename>
+      <cvename>CVE-2015-2304</cvename>
+      <freebsdpr>ports/200176</freebsdpr>
+      <url>https://github.com/libarchive/libarchive/pull/110</url>
+      <url>https://github.com/libarchive/libarchive/commit/5935715</url>
+      <url>https://github.com/libarchive/libarchive/commit/2253154</url>
+      <url>https://github.com/libarchive/libarchive/issues/502</url>
+      <url>https://github.com/libarchive/libarchive/commit/3865cf2</url>
+      <url>https://github.com/libarchive/libarchive/commit/e6c9668</url>
+      <url>https://github.com/libarchive/libarchive/commit/24f5de6</url>
+    </references>
+    <dates>
+      <discovery>2012-12-06</discovery>
+      <entry>2016-01-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6809c6db-bdeb-11e5-b5fe-002590263bf5">
+    <topic>go -- information disclosure vulnerability</topic>
+    <affects>
+      <package>
+	<name>go</name>
+	<range><ge>1.5,1</ge><lt>1.5.3,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jason Buberel reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2016/01/13/7">
+	  <p>A security-related issue has been reported in Go's math/big
+	    package. The issue was introduced in Go 1.5. We recommend that all
+	    users upgrade to Go 1.5.3, which fixes the issue. Go programs must
+	    be recompiled with Go 1.5.3 in order to receive the fix.</p>
+	  <p>The Go team would like to thank Nick Craig-Wood for identifying the
+	    issue.</p>
+	  <p>This issue can affect RSA computations in crypto/rsa, which is used
+	    by crypto/tls. TLS servers on 32-bit systems could plausibly leak
+	    their RSA private key due to this issue. Other protocol
+	    implementations that create many RSA signatures could also be
+	    impacted in the same way.</p>
+	  <p>Specifically, incorrect results in one part of the RSA Chinese
+	    Remainder computation can cause the result to be incorrect in such a
+	    way that it leaks one of the primes. While RSA blinding should
+	    prevent an attacker from crafting specific inputs that trigger the
+	    bug, on 32-bit systems the bug can be expected to occur at random
+	    around one in 2^26 times. Thus collecting around 64 million
+	    signatures (of known data) from an affected server should be enough
+	    to extract the private key used.</p>
+	  <p>On 64-bit systems, the frequency of the bug is so low (less than
+	    one in 2^50) that it would be very difficult to exploit.
+	    Nonetheless, everyone is strongly encouraged to upgrade.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-8618</cvename>
+      <url>http://www.openwall.com/lists/oss-security/2016/01/13/7</url>
+      <url>https://go-review.googlesource.com/#/c/17672/</url>
+      <url>https://go-review.googlesource.com/#/c/18491/</url>
+    </references>
+    <dates>
+      <discovery>2016-01-13</discovery>
+      <entry>2016-01-18</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="05eeb7e9-b987-11e5-83ef-14dae9d210b8">
     <topic>isc-dhcpd -- Denial of Service</topic>
     <affects>
@@ -171,8 +272,8 @@ Notes:
       <package>
 	<name>ffmpeg</name>
 	<range>
-	  <gt>2.0.0</gt>
-	  <lt>2.8.5</lt>
+	  <gt>2.0,1</gt>
+	  <lt>2.8.5,1</lt>
 	</range>
       </package>
       <package>
