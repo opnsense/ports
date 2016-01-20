@@ -58,6 +58,39 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="51358314-bec8-11e5-82cd-bcaec524bf84">
+    <topic>claws-mail -- no bounds checking on the output buffer in conv_jistoeuc, conv_euctojis, conv_sjistoeuc</topic>
+    <affects>
+      <package>
+	<name>claws-mail</name>
+	<range><lt>3.13.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>DrWhax reports:</p>
+	<blockquote cite="http://www.thewildbeast.co.uk/claws-mail/bugzilla/show_bug.cgi?id=3557">
+	  <p>So in codeconv.c there is a function for japanese character set
+	    conversion called conv_jistoeuc().  There is no bounds checking on
+	    the output buffer, which is created on the stack with alloca()
+	    Bug can be triggered by sending an email to TAILS_luser@riseup.net
+	    or whatever.
+
+	    Since my C is completely rusty, you might be able to make a better
+	    judgement on the severity of this issue. Marking critical for now.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-8614</cvename>
+      <url>https://security-tracker.debian.org/tracker/CVE-2015-8614</url>
+    </references>
+    <dates>
+      <discovery>2015-11-04</discovery>
+      <entry>2016-01-19</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7c63775e-be31-11e5-b5fe-002590263bf5">
     <topic>libarchive -- multiple vulnerabilities</topic>
     <affects>
@@ -214,28 +247,23 @@ Notes:
 	   dlopen()s libproxy.so. -->
       <package>
 	<name>libproxy</name>
-	<range><ge>0.4.0</ge></range>
-	<range><lt>0.4.6_1</lt></range>
+	<range><ge>0.4.0</ge><lt>0.4.6_1</lt></range>
       </package>
       <package>
 	<name>libproxy-gnome</name>
-	<range><ge>0.4.0</ge></range>
-	<range><lt>0.4.6_2</lt></range>
+	<range><ge>0.4.0</ge><lt>0.4.6_2</lt></range>
       </package>
       <package>
 	<name>libproxy-kde</name>
-	<range><ge>0.4.0</ge></range>
-	<range><lt>0.4.6_6</lt></range>
+	<range><ge>0.4.0</ge><lt>0.4.6_6</lt></range>
       </package>
       <package>
 	<name>libproxy-perl</name>
-	<range><ge>0.4.0</ge></range>
-	<range><lt>0.4.6_3</lt></range>
+	<range><ge>0.4.0</ge><lt>0.4.6_3</lt></range>
       </package>
       <package>
 	<name>libproxy-webkit</name>
-	<range><ge>0.4.0</ge></range>
-	<range><lt>0.4.6_4</lt></range>
+	<range><ge>0.4.0</ge><lt>0.4.6_4</lt></range>
       </package>
     </affects>
     <description>
@@ -263,6 +291,7 @@ Notes:
     <dates>
       <discovery>2012-10-10</discovery>
       <entry>2016-01-17</entry>
+      <modified>2016-01-18</modified>
     </dates>
   </vuln>
 
