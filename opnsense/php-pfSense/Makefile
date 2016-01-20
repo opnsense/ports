@@ -19,7 +19,7 @@ CONFIGURE_ARGS=	--enable-pfSense
 
 .include <bsd.port.pre.mk>
 
-.if ${PHP_VER} == 7
+.if ${PHP_VER} == 70
 EXTRA_PATCHES=	${FILESDIR}/extra-php7
 .endif
 
