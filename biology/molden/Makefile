@@ -3,12 +3,13 @@
 
 PORTNAME=	molden
 PORTVERSION=	5.4
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	biology
 MASTER_SITES=	ftp://ftp.cmbi.ru.nl/pub/molgraph/molden/
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	pi@FreeBSD.org
 COMMENT=	Display molecular orbitals and electron densities in 2D and 3D
 
 RESTRICTED=	free for academic, non profit usage; do not re-distribute source and executable.
