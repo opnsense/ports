@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	netaddr
-PORTVERSION=	0.7.14
+PORTVERSION=	0.7.18
 CATEGORIES=	net python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,13 +18,13 @@ NO_ARCH=	yes
 USES=		python
 USE_PYTHON=	autoplist distutils uniquefiles:dirs
 
-PORTDOCS=	AUTHORS CHANGELOG README
+PORTDOCS=	AUTHORS CHANGELOG README.md
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 
-regression-test: build
+do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test
 
 .include <bsd.port.mk>
