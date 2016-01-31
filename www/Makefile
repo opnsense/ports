@@ -2005,6 +2005,7 @@
     SUBDIR += rubygem-thin
     SUBDIR += rubygem-tinyatom
     SUBDIR += rubygem-tinymce-rails
+    SUBDIR += rubygem-totoridipjp
     SUBDIR += rubygem-tumblr_client
     SUBDIR += rubygem-turbolinks
     SUBDIR += rubygem-turbolinks-rails41
@@ -2281,7 +2282,6 @@
     SUBDIR += xoops
     SUBDIR += xpi-adblock
     SUBDIR += xpi-adblock_plus
-    SUBDIR += xpi-bookmarkdd
     SUBDIR += xpi-clear_cache_button
     SUBDIR += xpi-clearfields
     SUBDIR += xpi-close-all-tabs
