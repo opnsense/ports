@@ -13,10 +13,10 @@ COMMENT=	Manipulation of IPv4, IPv6, CIDR, EUI and MAC network addresses
 LICENSE=	BSD3CLAUSE MIT
 LICENSE_COMB=	multi
 
-NO_ARCH=	yes
-
 USES=		python
-USE_PYTHON=	autoplist distutils uniquefiles:dirs
+USE_PYTHON=	autoplist concurrent distutils
+
+NO_ARCH=        yes
 
 PORTDOCS=	AUTHORS CHANGELOG README.md
 
