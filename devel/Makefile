@@ -3732,6 +3732,7 @@
     SUBDIR += php-composer
     SUBDIR += php-jq
     SUBDIR += php-libawl
+    SUBDIR += php-maxminddb
     SUBDIR += php-memoize
     SUBDIR += php-scalar_objects
     SUBDIR += php-uprofiler
@@ -4105,6 +4106,7 @@
     SUBDIR += py-joblib
     SUBDIR += py-jsmin
     SUBDIR += py-json-py
+    SUBDIR += py-json-sempai
     SUBDIR += py-jsonlib
     SUBDIR += py-jsonlib2
     SUBDIR += py-jsonpatch
@@ -4330,7 +4332,6 @@
     SUBDIR += py-setuptools
     SUBDIR += py-setuptools-git
     SUBDIR += py-setuptools27
-    SUBDIR += py-setuptools32
     SUBDIR += py-setuptools33
     SUBDIR += py-setuptools34
     SUBDIR += py-setuptools35
@@ -4408,7 +4409,6 @@
     SUBDIR += py-unpaddedbase64
     SUBDIR += py-urlimport
     SUBDIR += py-urwid
-    SUBDIR += py-json-sempai
     SUBDIR += py-urwidtrees
     SUBDIR += py-usb
     SUBDIR += py-user_agents
