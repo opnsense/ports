@@ -58,6 +58,110 @@ Notes:
 
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="1091d2d1-cb2e-11e5-b14b-bcaec565249c">
+    <topic>webkit -- UI spoof</topic>
+    <affects>
+      <package>
+	<name>webkit-gtk2</name>
+	<name>webkit-gtk3</name>
+	<range><lt>2.4.9_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>webkit reports:</p>
+	<blockquote cite="http://webkitgtk.org/security/WSA-2015-0002.html">
+	  <p>The ScrollView::paint function in platform/scroll/ScrollView.cpp
+	    in Blink, as used in Google Chrome before 35.0.1916.114, allows
+	    remote attackers to spoof the UI by extending scrollbar painting
+	    into the parent frame.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-1748</cvename>
+      <url>http://webkitgtk.org/security/WSA-2015-0002.html</url>
+    </references>
+    <dates>
+      <discovery>2015-12-28</discovery>
+      <entry>2016-02-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e78bfc9d-cb1e-11e5-b251-0050562a4d7b">
+    <topic>py-rsa -- Bleichenbacher'06 signature forgery vulnerability</topic>
+    <affects>
+      <package>
+	<name>py27-rsa</name>
+	<name>py32-rsa</name>
+	<name>py33-rsa</name>
+	<name>py34-rsa</name>
+	<name>py35-rsa</name>
+	<range><lt>3.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Filippo Valsorda reports:</p>
+	<blockquote cite="https://blog.filippo.io/bleichenbacher-06-signature-forgery-in-python-rsa/">
+	  <p>
+	   python-rsa is vulnerable to a straightforward variant of the
+	   Bleichenbacher'06 attack against RSA signature verification
+	   with low public exponent.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2016-1494</cvename>
+      <url>https://blog.filippo.io/bleichenbacher-06-signature-forgery-in-python-rsa/</url>
+      <url>https://bitbucket.org/sybren/python-rsa/pull-requests/14/security-fix-bb06-attack-in-verify-by</url>
+      <url>https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2016-1494</url>
+      <url>http://www.openwall.com/lists/oss-security/2016/01/05/3</url>
+      <url>http://www.openwall.com/lists/oss-security/2016/01/05/1</url>
+    </references>
+    <dates>
+      <discovery>2016-01-05</discovery>
+      <entry>2016-02-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="559f3d1b-cb1d-11e5-80a4-001999f8d30b">
+    <topic>asterisk -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>asterisk</name>
+	<range><lt>1.8.32.3_5</lt></range>
+      </package>
+      <package>
+	<name>asterisk11</name>
+	<range><lt>11.21.1</lt></range>
+      </package>
+      <package>
+	<name>asterisk13</name>
+	<range><lt>13.7.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Asterisk project reports:</p>
+	<blockquote cite="http://www.asterisk.org/downloads/security-advisories">
+	  <p>AST-2016-001 - BEAST vulnerability in HTTP server</p>
+	  <p>AST-2016-002 - File descriptor exhaustion in chan_sip</p>
+	  <p>AST-2016-003 - Remote crash vulnerability when receiving UDPTL FAX data</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://downloads.asterisk.org/pub/security/AST-2016-001.html</url>
+      <url>http://downloads.asterisk.org/pub/security/AST-2016-002.html</url>
+      <url>http://downloads.asterisk.org/pub/security/AST-2016-003.html</url>
+    </references>
+    <dates>
+      <discovery>2016-02-03</discovery>
+      <entry>2016-02-04</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="0652005e-ca96-11e5-96d6-14dae9d210b8">
     <topic>salt -- code execution</topic>
     <affects>
