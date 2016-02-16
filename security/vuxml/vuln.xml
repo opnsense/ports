@@ -57,6 +57,96 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="95b92e3b-d451-11e5-9794-e8e0b747a45a">
+    <topic>libgcrypt -- side-channel attack on ECDH</topic>
+    <affects>
+      <package>
+	<name>libgcrypt</name>
+	<range><lt>1.6.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>GnuPG reports:</p>
+	<blockquote cite="https://lists.gnupg.org/pipermail/gnupg-announce/2016q1/000384.html">
+	  <p>Mitigate side-channel attack on ECDH with Weierstrass curves.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-7511</cvename>
+      <url>https://lists.gnupg.org/pipermail/gnupg-announce/2016q1/000384.html</url>
+    </references>
+    <dates>
+      <discovery>2016-02-09</discovery>
+      <entry>2016-02-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f1bf28c5-d447-11e5-b2bd-002590263bf5">
+    <topic>xdelta3 -- buffer overflow vulnerability</topic>
+    <affects>
+      <package>
+	<name>xdelta3</name>
+	<range><lt>3.0.9,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Stepan Golosunov reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2016/02/08/1">
+	  <p>Buffer overflow was found and fixed in xdelta3 binary diff tool
+	    that allows arbitrary code execution from input files at least on
+	    some systems.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2014-9765</cvename>
+      <url>http://www.openwall.com/lists/oss-security/2016/02/08/1</url>
+      <url>https://github.com/jmacd/xdelta-devel/commit/ef93ff74203e030073b898c05e8b4860b5d09ef2</url>
+    </references>
+    <dates>
+      <discovery>2014-10-08</discovery>
+      <entry>2016-02-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="172b22cb-d3f6-11e5-ac9e-485d605f4717">
+    <topic>firefox -- Same-origin-policy violation using Service Workers with plugins</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>44.0.2,1</lt></range>
+      </package>
+      <package>
+	<name>linux-firefox</name>
+	<range><lt>44.0.2,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Mozilla Foundation reports:</p>
+	<blockquote cite="https://www.mozilla.org/en-US/security/known-vulnerabilities/firefox/#firefox44.0.2">
+	  <p>MFSA 2016-13 Jason Pang of OneSignal reported that service workers intercept
+	    responses to plugin network requests made through the browser. Plugins which
+	    make security decisions based on the content of network requests can have these
+	    decisions subverted if a service worker forges responses to those requests. For
+	    example, a forged crossdomain.xml could allow a malicious site to violate the
+	    same-origin policy using the Flash plugin.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2016-1949</cvename>
+      <url>https://www.mozilla.org/en-US/security/advisories/mfsa2016-13/</url>
+    </references>
+    <dates>
+      <discovery>2016-02-11</discovery>
+      <entry>2016-02-15</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="07718e2b-d29d-11e5-a95f-b499baebfeaf">
     <topic>nghttp2 -- Out of memory in nghttpd, nghttp, and libnghttp2_asio</topic>
     <affects>
