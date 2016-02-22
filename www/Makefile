@@ -1543,6 +1543,7 @@
     SUBDIR += py-django-keyedcache
     SUBDIR += py-django-ldapdb
     SUBDIR += py-django-livesettings
+    SUBDIR += py-django-markdownx
     SUBDIR += py-django-markwhat
     SUBDIR += py-django-mezzanine
     SUBDIR += py-django-mezzanine-filebrowser
@@ -2067,6 +2068,7 @@
     SUBDIR += sqstat
     SUBDIR += squid
     SUBDIR += squid_radius_auth
+    SUBDIR += squidanalyzer
     SUBDIR += squidclamav
     SUBDIR += squidguard
     SUBDIR += squidpurge
