@@ -1,35 +1,18 @@
---- srcold/ngfunc.c	2008-06-22 02:04:00.000000000 +0200
-+++ src/ngfunc.c	2008-06-22 02:14:35.000000000 +0200
-@@ -30,14 +30,14 @@
- #ifdef __DragonFly__
- #include <netgraph/socket/ng_socket.h>
- #include <netgraph/ksocket/ng_ksocket.h>
--#include <netgraph/iface/ng_iface.h>
-+#include "ng_iface.h"
- #include <netgraph/vjc/ng_vjc.h>
- #include <netgraph/bpf/ng_bpf.h>
- #include <netgraph/tee/ng_tee.h>
- #else
- #include <netgraph/ng_socket.h>
- #include <netgraph/ng_ksocket.h>
--#include <netgraph/ng_iface.h>
-+#include "ng_iface.h"
- #include <netgraph/ng_vjc.h>
- #include <netgraph/ng_bpf.h>
- #include <netgraph/ng_tee.h>
-@@ -252,6 +252,7 @@
+--- src/ngfunc.c.orig	2016-02-23 07:59:28 UTC
++++ src/ngfunc.c
+@@ -252,18 +252,9 @@ NgFuncIfaceExists(Bund b, const char *if
        struct ng_mesg	reply;
    }			u;
-   char		path[NG_PATHLEN + 1];
-+#if 0
-   char		*eptr;
-   int		ifnum;
- 
-@@ -261,9 +262,10 @@
-   ifnum = (int)strtoul(ifname + strlen(NG_IFACE_IFACE_NAME), &eptr, 10);
-   if (ifnum < 0 || *eptr != '\0')
-     return(-1);
-+#endif
+   char		path[NG_PATHSIZ];
+-  char		*eptr;
+-  int		ifnum;
+-
+-  /* Check interface name */
+-  if (strncmp(ifname, NG_IFACE_IFACE_NAME, strlen(NG_IFACE_IFACE_NAME)) != 0)
+-    return(-1);
+-  ifnum = (int)strtoul(ifname + strlen(NG_IFACE_IFACE_NAME), &eptr, 10);
+-  if (ifnum < 0 || *eptr != '\0')
+-    return(-1);
  
    /* See if interface exists */
 -  snprintf(path, sizeof(path), "%s%d:", NG_IFACE_IFACE_NAME, ifnum);
@@ -37,7 +20,7 @@
    if (NgSendMsg(b->csock, path, NGM_GENERIC_COOKIE, NGM_NODEINFO, NULL, 0) < 0)
      return(0);
    if (NgRecvMsg(b->csock, &u.reply, sizeof(u), NULL) < 0) {
-@@ -273,7 +275,7 @@
+@@ -273,7 +264,7 @@ NgFuncIfaceExists(Bund b, const char *if
  
    /* It exists */
    if (buf != NULL)
@@ -46,12 +29,12 @@
    return(1);
  }
  
-@@ -297,30 +299,10 @@
+@@ -297,30 +288,10 @@ NgFuncCreateIface(Bund b, const char *if
    struct nodeinfo	*const ni = (struct nodeinfo *)(void *)u.reply.data;
    struct ngm_rmhook	rm;
    struct ngm_mkpeer	mp;
 +  struct ngm_name	nm;
-+  char path[NG_PATHLEN + 1];
++  char path[NG_PATHSIZ];
    int			rtn = 0;
  
 -  /* If ifname is not null, create interfaces until it gets created */
@@ -79,7 +62,7 @@
    /* Create iface node (as a temporary peer of the socket node) */
    snprintf(mp.type, sizeof(mp.type), "%s", NG_IFACE_NODE_TYPE);
    snprintf(mp.ourhook, sizeof(mp.ourhook), "%s", TEMPHOOK);
-@@ -331,7 +313,6 @@
+@@ -331,7 +302,6 @@ NgFuncCreateIface(Bund b, const char *if
        b->name, NG_IFACE_NODE_TYPE, ".", mp.ourhook, strerror(errno)));
      return(-1);
    }
@@ -87,7 +70,7 @@
    /* Get the new node's name */
    if (NgSendMsg(b->csock, TEMPHOOK,
        NGM_GENERIC_COOKIE, NGM_NODEINFO, NULL, 0) < 0) {
-@@ -345,6 +326,28 @@
+@@ -345,6 +315,28 @@ NgFuncCreateIface(Bund b, const char *if
      rtn = -1;
      goto done;
    }
@@ -116,7 +99,7 @@
    snprintf(buf, max, "%s", ni->name);
  
  done:
-@@ -358,7 +361,7 @@
+@@ -358,7 +350,7 @@ done:
    }
  
    /* Done */

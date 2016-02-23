@@ -1,13 +1,11 @@
 #!/bin/sh
-#
-# $FreeBSD: ports/net/mpd4/files/mpd4.sh.in,v 1.3 2007/07/06 07:35:54 sem Exp $
-#
 
-# PROVIDE: mpd
+# $FreeBSD$
+#
+# PROVIDE: mpd4
 # REQUIRE: SERVERS
 # BEFORE: DAEMON
 # KEYWORD: shutdown
-
 #
 # Add the following lines to /etc/rc.conf to enable mpd4:
 # mpd_enable (bool):	Set to "NO" by default.
@@ -16,7 +14,6 @@
 #			Extra flags passed to start command.
 #
 # See mpd(8) for flags.
-#
 
 . /etc/rc.subr
 

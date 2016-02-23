@@ -1,6 +1,6 @@
---- work/mpd-4.4.1/src/auth.c	2008-04-07 15:22:24.000000000 +0200
-+++ src/auth.c	2012-01-18 18:12:45.000000000 +0100
-@@ -848,27 +848,24 @@
+--- src/auth.c.orig	2016-02-23 07:59:28 UTC
++++ src/auth.c
+@@ -848,27 +848,24 @@ AuthAccount(void *arg)
      RadiusAccount(auth);
  
    if (Enabled(&auth->conf.options, AUTH_CONF_UTMP_WTMP)) {

@@ -1,4 +1,4 @@
---- src/ecp_dese.c.orig	2013-06-11 09:00:00 UTC
+--- src/ecp_dese.c.orig	2016-02-23 07:59:28 UTC
 +++ src/ecp_dese.c
 @@ -89,11 +89,10 @@ DesConfigure(Bund b)
  {
@@ -24,7 +24,7 @@
      memcpy(des->xmit_ivec, block, 8);
    }
  
-@@ -258,10 +257,10 @@ DesDecrypt(Bund b, Mbuf cypher)
+@@ -259,10 +258,10 @@ DesDecrypt(Bund b, Mbuf cypher)
    for (k = 0; k < clen; k += 8)
    {
      u_char	*const block = MBDATA(plain) + k;

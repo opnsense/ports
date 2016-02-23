@@ -1,38 +1,26 @@
-PORTNAME=	mpd
+PORTNAME=	mpd4
 DISTVERSION=	4.4.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net
-MASTER_SITES=	SF/${PORTNAME}/Mpd4/Mpd-${PORTVERSION}
-DIST_SUBDIR=	mpd4
-PKGNAMESUFFIX=	4
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Multi-link PPP daemon based on netgraph(4)
 
-LIB_DEPENDS=	libpdel.so.0:${PORTSDIR}/devel/libpdel
+USE_GITHUB=	yes
+GH_ACCOUNT=	fichtner
+GH_TAGNAME=	cf7a9277
 
-OPTIONS_DEFINE=	NG_IPACCT
-NG_IPACCT_DESC=	Use ng_ipacct kernel module from port
+LIB_DEPENDS=	libpdel.so.0:${PORTSDIR}/devel/libpdel
 
 HAS_CONFIGURE=	YES
 CONFIGURE_WRKSRC=	"${WRKSRC}/src"
 
 USE_OPENSSL=	yes
 
-.include <bsd.port.options.mk>
-
 CONFIGURE_ARGS+= --enable-ipv6
 
-.if ${PORT_OPTIONS:MNG_IPACCT}
-BUILD_DEPENDS+=	${LOCALBASE}/include/netgraph/ng_ipacct.h:${PORTSDIR}/net-mgmt/ng_ipacct
-.if exists(${KMODDIR}/ng_ipacct.ko)
-RUN_DEPENDS+=	${KMODDIR}/ng_ipacct.ko:${PORTSDIR}/net-mgmt/ng_ipacct
-.else
-RUN_DEPENDS+=	/boot/modules/ng_ipacct.ko:${PORTSDIR}/net-mgmt/ng_ipacct
-.endif
-.endif
+USE_RC_SUBR=	mpd4
 
-USE_RC_SUBR=	mpd4.sh
 HTMLNUM!=	jot 67 1
 CONFSUF=	conf links secret script
 DOCSDIR=	${PREFIX}/share/doc/mpd4

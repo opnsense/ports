@@ -1,4 +1,4 @@
---- src/msoft.c.orig	2013-06-11 09:00:00 UTC
+--- src/msoft.c.orig	2016-02-23 07:59:28 UTC
 +++ src/msoft.c
 @@ -164,7 +164,7 @@ ChallengeResponse(const u_char *chal, co
  static void
