@@ -7,6 +7,7 @@
 
 ZEND_BEGIN_MODULE_GLOBALS(pfSense)
 	int locals;
+	int ngsock;
 ZEND_END_MODULE_GLOBALS(pfSense)
 
 #ifdef ZTS
@@ -21,6 +22,9 @@ PHP_MSHUTDOWN_FUNCTION(pfSense_module_exit);
 
 PHP_FUNCTION(pfSense_get_interface_addresses);
 PHP_FUNCTION(pfSense_getall_interface_addresses);
+PHP_FUNCTION(pfSense_ngctl_name);
+PHP_FUNCTION(pfSense_ngctl_attach);
+PHP_FUNCTION(pfSense_ngctl_detach);
 
 extern zend_module_entry pfSense_module_entry;
 #define phpext_pfSense_ptr &pfSense_module_entry
