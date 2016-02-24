@@ -25,47 +25,6 @@
 
 */
 
-/*
-
-Functions copied from util.c and modem.c of mpd5 source are protected by
-this copyright.
-They are ExclusiveOpenDevice/ExclusiveCloseDevice and
-OpenSerialDevice.
-
-Copyright (c) 1995-1999 Whistle Communications, Inc. All rights reserved.
-
-Subject to the following obligations and disclaimer of warranty,
-use and redistribution of this software, in source or object code
-forms, with or without modifications are expressly permitted by
-Whistle Communications; provided, however, that:   (i) any and
-all reproductions of the source or object code must include the
-copyright notice above and the following disclaimer of warranties;
-and (ii) no rights are granted, in any manner or form, to use
-Whistle Communications, Inc. trademarks, including the mark "WHISTLE
-COMMUNICATIONS" on advertising, endorsements, or otherwise except
-as such appears in the above copyright notice or in the software.
-
-THIS SOFTWARE IS BEING PROVIDED BY WHISTLE COMMUNICATIONS "AS IS",
-AND TO THE MAXIMUM EXTENT PERMITTED BY LAW, WHISTLE COMMUNICATIONS
-MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED,
-REGARDING THIS SOFTWARE, INCLUDING WITHOUT LIMITATION, ANY AND
-ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE, OR NON-INFRINGEMENT.  WHISTLE COMMUNICATIONS DOES NOT
-WARRANT, GUARANTEE, OR MAKE ANY REPRESENTATIONS REGARDING THE USE
-OF, OR THE RESULTS OF THE USE OF THIS SOFTWARE IN TERMS OF ITS
-CORRECTNESS, ACCURACY, RELIABILITY OR OTHERWISE.  IN NO EVENT
-SHALL WHISTLE COMMUNICATIONS BE LIABLE FOR ANY DAMAGES RESULTING
-FROM OR ARISING OUT OF ANY USE OF THIS SOFTWARE, INCLUDING WITHOUT
-LIMITATION, ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
-PUNITIVE, OR CONSEQUENTIAL DAMAGES, PROCUREMENT OF SUBSTITUTE
-GOODS OR SERVICES, LOSS OF USE, DATA OR PROFITS, HOWEVER CAUSED
-AND UNDER ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
-ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF WHISTLE COMMUNICATIONS
-IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-*/
-
 #define IS_EXT_MODULE
 
 #ifdef HAVE_CONFIG_H
@@ -76,58 +35,41 @@ IS ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "php_ini.h"
 #include "php_pfSense.h"
 
-#include <sys/types.h>
+#include <sys/ioctl.h>
 #include <sys/socket.h>
-#include <ifaddrs.h>
+#include <sys/sysctl.h>
+#include <sys/types.h>
 #include <net/ethernet.h>
-#include <net/if_types.h>
 #include <net/if.h>
-#include <net/if_var.h>
-#include <net/if_vlan_var.h>
+#include <net/if_bridgevar.h>
 #include <net/if_dl.h>
 #include <net/if_mib.h>
-#include <net/if_bridgevar.h>
-#include <netinet/in.h>
-#include <netinet/in_var.h>
+#include <net/if_types.h>
+#include <net/if_var.h>
+#include <net/if_vlan_var.h>
 #include <net/pfvar.h>
 #include <net/route.h>
-
-#include <netinet/ip_fw.h>
-#include <sys/ioctl.h>
-#include <sys/sysctl.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <net/ethernet.h>
 #include <netinet/if_ether.h>
-
-#include <netgraph/ng_message.h>
-#include <netgraph/ng_ether.h>
-
-#include <netinet/ip_fw.h>
-
-#include <vm/vm_param.h>
-
+#include <netinet/in.h>
+#include <netinet/in.h>
+#include <netinet/in_var.h>
+#include <arpa/inet.h>
 #include <fcntl.h>
+#include <glob.h>
+#include <ifaddrs.h>
+#include <netdb.h>
+#include <poll.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <strings.h>
-
-#include <glob.h>
 #include <termios.h>
-#include <poll.h>
-
-#include <netgraph.h>
-#include <netdb.h>
+#include <unistd.h>
 
 ZEND_DECLARE_MODULE_GLOBALS(pfSense)
 
 static zend_function_entry pfSense_functions[] = {
     PHP_FE(pfSense_get_interface_addresses, NULL)
     PHP_FE(pfSense_getall_interface_addresses, NULL)
-    PHP_FE(pfSense_ngctl_name, NULL)
-    PHP_FE(pfSense_ngctl_attach, NULL)
-    PHP_FE(pfSense_ngctl_detach, NULL)
     {NULL, NULL, NULL}
 };
 
@@ -175,23 +117,10 @@ prefix(void *val, int size)
 
 PHP_MINIT_FUNCTION(pfSense_module_init)
 {
-	int csock = -1;
-
 	PFSENSE_G(locals) = socket(AF_LOCAL, SOCK_DGRAM, 0);
 	if (PFSENSE_G(locals) < 0) {
 		return FAILURE;
 	}
-
-	if (geteuid() == 0 || getuid() == 0) {
-		/* Create a new socket node */
-		if (NgMkSockNode(NULL, &csock, NULL) < 0) {
-			csock = -1;
-		} else {
-			fcntl(csock, F_SETFD, fcntl(csock, F_GETFD, 0) | FD_CLOEXEC);
-		}
-	}
-
-	PFSENSE_G(ngsock) = csock;
 
 	/* Don't leak these sockets to child processes */
 	fcntl(PFSENSE_G(locals), F_SETFD, fcntl(PFSENSE_G(locals), F_GETFD, 0) | FD_CLOEXEC);
@@ -201,10 +130,6 @@ PHP_MINIT_FUNCTION(pfSense_module_init)
 
 PHP_MSHUTDOWN_FUNCTION(pfSense_module_exit)
 {
-	if (PFSENSE_G(ngsock) != -1) {
-		close(PFSENSE_G(ngsock));
-	}
-
 	if (PFSENSE_G(locals) != -1) {
 		close(PFSENSE_G(locals));
 	}
@@ -519,73 +444,4 @@ PHP_FUNCTION(pfSense_get_interface_addresses)
 		}
 	}
 	freeifaddrs(ifdata);
-}
-
-PHP_FUNCTION(pfSense_ngctl_name)
-{
-	char *ifname, *newifname;
-	int ifname_len, newifname_len;
-
-	if (PFSENSE_G(ngsock) == -1) {
-		RETURN_NULL();
-	}
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	/* Send message */
-	if (NgNameNode(PFSENSE_G(ngsock), ifname, "%s", newifname) < 0) {
-		RETURN_NULL();
-	}
-
-	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_ngctl_attach)
-{
-	char *ifname, *newifname;
-	int ifname_len, newifname_len;
-	struct ngm_name name;
-
-	if (PFSENSE_G(ngsock) == -1) {
-		RETURN_NULL();
-	}
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	snprintf(name.name, sizeof(name.name), "%s", newifname);
-	/* Send message */
-	if (NgSendMsg(PFSENSE_G(ngsock), ifname, NGM_GENERIC_COOKIE,
-		NGM_ETHER_ATTACH, &name, sizeof(name)) < 0) {
-			RETURN_NULL();
-	}
-
-	RETURN_TRUE;
-}
-
-PHP_FUNCTION(pfSense_ngctl_detach)
-{
-	char *ifname, *newifname;
-	int ifname_len, newifname_len;
-	struct ngm_name name;
-
-	if (PFSENSE_G(ngsock) == -1) {
-		RETURN_NULL();
-	}
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "ss", &ifname, &ifname_len, &newifname, &newifname_len) == FAILURE) {
-		RETURN_NULL();
-	}
-
-	snprintf(name.name, sizeof(name.name), "%s", newifname);
-	/* Send message */
-	if (NgSendMsg(PFSENSE_G(ngsock), ifname, NGM_ETHER_COOKIE,
-		NGM_ETHER_DETACH, &name, sizeof(name)) < 0) {
-			RETURN_NULL();
-	}
-
-	RETURN_TRUE;
 }
