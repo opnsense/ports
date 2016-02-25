@@ -1,0 +1,60 @@
+From 6ae738d0d86f6d7cccce19f315105ab7e0e33c13 Mon Sep 17 00:00:00 2001
+From: ralph <ralph@be551aaa-1e26-0410-a405-d3ace91eadb9>
+Date: Tue, 15 Dec 2015 11:00:59 +0000
+Subject: [PATCH] Fix #729: omit use of escape sequences in echo since they are
+ not portable (unbound-control-setup)
+
+git-svn-id: http://unbound.nlnetlabs.nl/svn/trunk@3587 be551aaa-1e26-0410-a405-d3ace91eadb9
+---
+ doc/Changelog                        |  4 ++++
+ smallapp/unbound-control-setup.sh.in | 30 +++++++++++++++---------------
+ 2 files changed, 19 insertions(+), 15 deletions(-)
+
+diff --git a/smallapp/unbound-control-setup.sh.in b/smallapp/unbound-control-setup.sh.in
+index f99d7bc..0d759f4 100644
+--- smallapp/unbound-control-setup.sh.in
++++ smallapp/unbound-control-setup.sh.in
+@@ -107,14 +107,14 @@ else
+ fi
+ 
+ # create self-signed cert for server
+-echo "[req]\n" > request.cfg
+-echo "default_bits=$BITS\n" >> request.cfg
+-echo "default_md=$HASH\n" >> request.cfg
+-echo "prompt=no\n" >> request.cfg
+-echo "distinguished_name=req_distinguished_name\n" >> request.cfg
+-echo "\n" >> request.cfg
+-echo "[req_distinguished_name]\n" >> request.cfg
+-echo "commonName=$SERVERNAME\n" >> request.cfg
++echo "[req]" > request.cfg
++echo "default_bits=$BITS" >> request.cfg
++echo "default_md=$HASH" >> request.cfg
++echo "prompt=no" >> request.cfg
++echo "distinguished_name=req_distinguished_name" >> request.cfg
++echo "" >> request.cfg
++echo "[req_distinguished_name]" >> request.cfg
++echo "commonName=$SERVERNAME" >> request.cfg
+ 
+ test -f request.cfg || error "could not create request.cfg"
+ 
+@@ -124,13 +124,13 @@ openssl req -key $SVR_BASE.key -config request.cfg  -new -x509 -days $DAYS -out
+ openssl x509 -in $SVR_BASE.pem -addtrust serverAuth -out $SVR_BASE"_trust.pem"
+ 
+ # create client request and sign it, piped
+-echo "[req]\n" > request.cfg
+-echo "default_bits=$BITS\n" >> request.cfg
+-echo "default_md=$HASH\n" >> request.cfg
+-echo "prompt=no\n" >> request.cfg
+-echo "distinguished_name=req_distinguished_name\n" >> request.cfg
+-echo "\n" >> request.cfg
+-echo "[req_distinguished_name]\n" >> request.cfg
++echo "[req]" > request.cfg
++echo "default_bits=$BITS" >> request.cfg
++echo "default_md=$HASH" >> request.cfg
++echo "prompt=no" >> request.cfg
++echo "distinguished_name=req_distinguished_name" >> request.cfg
++echo "" >> request.cfg
++echo "[req_distinguished_name]" >> request.cfg
+ echo "commonName=$CLIENTNAME" >> request.cfg
+ 
+ test -f request.cfg || error "could not create request.cfg"
