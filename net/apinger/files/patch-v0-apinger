@@ -1,0 +1,524 @@
+diff -ur src_old/apinger.c src/apinger.c
+--- src_old/apinger.c	2010-08-10 20:41:31.000000000 +0000
++++ src/apinger.c	2010-08-10 20:42:25.000000000 +0000
+@@ -271,23 +271,15 @@
+ time_t tm;
+ 	
+ 	tm=time(NULL);
+-	fprintf(f,"%s",ctime(&tm));
+-	if (on)
+-		fprintf(f,"ALARM went off: %s\n",a->name);
+-	else
+-		fprintf(f,"alarm canceled: %s\n",a->name);
+-	fprintf(f,"Target: %s\n",t->name);
+-	fprintf(f,"Description: %s\n",t->description);
+-	fprintf(f,"Probes sent: %i\n",t->last_sent+1);
+-	fprintf(f,"Replies received: %i\n",t->received);
+-	fprintf(f,"Last reply received: #%i %s",t->last_received,
+-			ctime(&t->last_received_tv.tv_sec));
++	fprintf(f,"%s|%s|%i|%i|%u|",t->name, t->description, t->last_sent+1,
++		t->received, t->last_received_tv.tv_sec);
+ 	if (AVG_DELAY_KNOWN(t)){
+-		fprintf(f,"Recent avg. delay: %4.3fms\n",AVG_DELAY(t));
++		fprintf(f,"%4.3fms|",AVG_DELAY(t));
+ 	}
+ 	if (AVG_LOSS_KNOWN(t)){
+-		fprintf(f,"Recent avg. packet loss: %5.1f%%\n",AVG_LOSS(t));
++		fprintf(f,"%5.1f%%",AVG_LOSS(t));
+ 	}
++	fprintf(f, "\n");
+ }
+ 
+ void make_reports(struct target *t,struct alarm_cfg *a,int on,char* thisid,char* lastid){
+@@ -646,7 +638,7 @@
+ struct target *t,*pt,*nt;
+ struct target_cfg *tc;
+ struct active_alarm_list *al,*nal;
+-union addr addr;
++union addr addr, srcaddr;
+ int r;
+ int l;
+ 
+@@ -666,6 +658,8 @@
+ 				nal=al->next;
+ 				free(al);
+ 			}
++			if (t->socket)
++				close(t->socket);
+ 			free(t->queue);
+ 			free(t->rbuf);
+ 			free(t->name);
+@@ -684,11 +678,6 @@
+ 			memset(&addr,0,sizeof(addr));
+ 			r=inet_pton(AF_INET,tc->name,&addr.addr4.sin_addr);
+ 			if (r){
+-				if (icmp_sock<0){
+-					logit("Sorry, IPv4 is not available\n");
+-					logit("Ignoring target %s\n",tc->name);
+-					continue;
+-				}
+ 				addr.addr.sa_family=AF_INET;
+ 			}else{
+ #ifdef HAVE_IPV6
+@@ -708,12 +697,23 @@
+ 				addr.addr.sa_family=AF_INET6;
+ #endif
+ 			}
++			memset(&srcaddr,0,sizeof(srcaddr));
++			debug("Converting srcip %s", tc->srcip);
++			r=inet_pton(AF_INET,tc->srcip,&srcaddr.addr4.sin_addr);
++			if (r){
++				srcaddr.addr.sa_family=AF_INET;
++			} else {
++				logit("Bad srcip address %s for target %s\n", tc->srcip, tc->name);
++				continue; 
++			}
+ 			t=NEW(struct target,1);
+ 			memset(t,0,sizeof(struct target));
+ 			t->name=strdup(tc->name);
+ 			t->description=strdup(tc->description);
+ 			t->addr=addr;
++			t->ifaddr=srcaddr;
+ 			t->next=targets;
++			make_icmp_socket(t);
+ 			targets=t;
+ 		}
+ 		t->config=tc;
+@@ -733,6 +733,7 @@
+ 		assert(t->rbuf!=NULL);
+ 		memset(t->rbuf,0,l);
+ 	}
++
+ 	if (targets==NULL){
+ 		logit("No usable targets found, exiting");
+ 		exit(1);
+@@ -753,6 +754,8 @@
+ 			nal=al->next;
+ 			free(al);
+ 		}
++		if (t->socket)
++			close(t->socket);
+ 		free(t->queue);
+ 		free(t->rbuf);
+ 		free(t->name);
+@@ -798,25 +801,21 @@
+ 		return;
+ 	}
+ 	tm=time(NULL);
+-	fprintf(f,"%s\n",ctime(&tm));
+ 	for(t=targets;t;t=t->next){
+-		fprintf(f,"Target: %s\n",t->name);
+-		fprintf(f,"Description: %s\n",t->description);
+-		fprintf(f,"Last reply received: #%i %s",t->last_received,
+-			ctime(&t->last_received_tv.tv_sec));
+-		fprintf(f,"Average delay: %0.3fms\n",AVG_DELAY(t));
++		fprintf(f,"%s|%s|%s|%i|%i|%u|",t->name, t->config->srcip, t->description, t->last_sent+1,
++                	t->received, t->last_received_tv.tv_sec);
++		fprintf(f,"%0.3fms|", AVG_DELAY(t));
+ 		if (AVG_LOSS_KNOWN(t)){
+-			fprintf(f,"Average packet loss: %0.1f%%\n",AVG_LOSS(t));
++			fprintf(f,"%0.1f%%",AVG_LOSS(t));
+ 		}
+-		fprintf(f,"Active alarms:");
++		fprintf(f, "|");
+ 		if (t->active_alarms){
+ 			for(al=t->active_alarms;al;al=al->next){
+ 				a=al->alarm;
+-				fprintf(f," \"%s\"",a->name);
++				fprintf(f,"%s",a->name);
+ 			}
+-			fprintf(f,"\n");
+ 		}
+-		else fprintf(f," None\n");
++		else fprintf(f,"none");
+ 
+ 		buf1=NEW(char,t->config->avg_loss_delay_samples+1);
+ 		buf2=NEW(char,t->config->avg_loss_samples+1);
+@@ -850,11 +849,9 @@
+ 			}
+ 		}
+ 		buf2[i]=0;
+-		fprintf(f,"Received packets buffer: %s %s\n",buf2,buf1);
+ 		if (t->recently_lost!=really_lost){
+-			fprintf(f,"   lost packet count mismatch (%i!=%i)!\n",t->recently_lost,really_lost);
+-			logit("%s: Lost packet count mismatch (%i!=%i)!",t->name,t->recently_lost,really_lost);
+-			logit("%s: Received packets buffer: %s %s\n",t->name,buf2,buf1);
++			logit("Target \"%s\": Lost packet count mismatch (%i(recently_lost) != %i(really_lost))!",t->name,t->recently_lost,really_lost);
++			logit("Target \"%s\": Received packets buffer: %s %s\n",t->name,buf2,buf1);
+ 			err=1;
+ 		}
+ 		free(buf1);
+@@ -866,55 +863,10 @@
+ 	if (err) abort();
+ }
+ 
+-#ifdef FORKED_RECEIVER
+-int receiver_pipe=0;
+-
+-void pipe_reply(struct timeval time_recv,int icmp_seq,struct trace_info *ti){
+-struct piped_info pi;
+-
+-	pi.recv_timestamp=time_recv;
+-	pi.icmp_seq=icmp_seq;
+-	pi.ti=*ti;
+-	write(receiver_pipe,&pi,sizeof(pi));
+-}
+-
+-void receiver_loop(void){
+-struct pollfd pfd[2];
+-int npfd=0;
+-int i;
+-
+-	signal(SIGTERM,SIG_DFL);
+-	signal(SIGINT,SIG_DFL);
+-	signal(SIGHUP,SIG_DFL);
+-	signal(SIGUSR1,SIG_DFL);
+-	signal(SIGPIPE,SIG_DFL);
+-	
+-	if (icmp_sock){
+-		pfd[npfd].events=POLLIN|POLLERR|POLLHUP|POLLNVAL;
+-		pfd[npfd].revents=0;
+-		pfd[npfd++].fd=icmp_sock;
+-	}
+-	if (icmp6_sock){
+-		pfd[npfd].events=POLLIN|POLLERR|POLLHUP|POLLNVAL;
+-		pfd[npfd++].fd=icmp6_sock;
+-		pfd[npfd].revents=0;
+-	}
+-	while(1){
+-		poll(pfd,npfd,-1);
+-		for(i=0;i<npfd;i++){
+-			if (!pfd[i].revents&POLLIN) continue;
+-			if (pfd[i].fd==icmp_sock) recv_icmp();
+-			else if (pfd[i].fd==icmp6_sock) recv_icmp6();
+-			pfd[i].revents=0;
+-		}
+-	};
+-}
+-#endif
+-
+ void main_loop(void){
+ struct target *t;
+ struct timeval cur_time,next_status={0,0},tv,next_report={0,0},next_rrd_update={0,0};
+-struct pollfd pfd[2];
++struct pollfd pfd[1024];
+ int timeout;
+ int npfd=0;
+ int i;
+@@ -923,46 +875,10 @@
+ struct alarm_list *al,*nal;
+ struct active_alarm_list *aal;
+ struct alarm_cfg *a;
+-#ifdef FORKED_RECEIVER
+-int recv_pipe[2];
+-int pid,r;
+-struct piped_info pi;
+-#endif
+ 
+ 	configure_targets();
+-#ifdef FORKED_RECEIVER
+-	r=pipe(recv_pipe);
+-	if (r){
+-		myperror("pipe");
+-		exit(1);
+-	}
+-	pid=fork();
+-	if (pid==-1){
+-		myperror("pipe");
+-		exit(1);
+-	}
+-	else if (pid==0){
+-		close(recv_pipe[0]);
+-		receiver_pipe=recv_pipe[1];
+-		receiver_loop();
+-		exit(0);
+-	}
+-	close(recv_pipe[1]);
+-	pfd[npfd].events=POLLIN|POLLERR|POLLHUP|POLLNVAL;
+-	pfd[npfd].revents=0;
+-	pfd[npfd++].fd=recv_pipe[0];
+-#else
+-	if (icmp_sock){
+-		pfd[npfd].events=POLLIN|POLLERR|POLLHUP|POLLNVAL;
+-		pfd[npfd].revents=0;
+-		pfd[npfd++].fd=icmp_sock;
+-	}
+-	if (icmp6_sock){
+-		pfd[npfd].events=POLLIN|POLLERR|POLLHUP|POLLNVAL;
+-		pfd[npfd++].fd=icmp6_sock;
+-		pfd[npfd].revents=0;
+-	}
+-#endif
++	memset(&pfd, '\0', sizeof pfd);
++
+ 	if (config->status_interval){
+ 		gettimeofday(&cur_time,NULL);
+ 		tv.tv_sec=config->status_interval/1000;
+@@ -970,10 +886,16 @@
+ 		timeradd(&cur_time,&tv,&next_status);
+ 	}
+ 	while(!interrupted_by){
++		npfd = 0;
+ 		gettimeofday(&cur_time,NULL);
+ 		if ( !timercmp(&next_probe,&cur_time,>) )
+ 			timerclear(&next_probe);
+ 		for(t=targets;t;t=t->next){
++			if (t->socket){
++				pfd[npfd].events=POLLIN|POLLERR|POLLHUP|POLLNVAL;
++				pfd[npfd].revents=0;
++				pfd[npfd++].fd=t->socket;
++			}
+ 			for(al=t->config->alarms;al;al=nal){
+ 				a=al->alarm;
+ 				nal=al->next;
+@@ -1049,16 +971,12 @@
+ 		poll(pfd,npfd,timeout);
+ 		for(i=0;i<npfd;i++){
+ 			if (!pfd[i].revents&POLLIN) continue;
+-#ifdef FORKED_RECEIVER
+-			if (pfd[i].fd==recv_pipe[0]){
+-				r=read(recv_pipe[0],&pi,sizeof(pi));
+-				if (r==sizeof(pi))
+-					analyze_reply(pi.recv_timestamp,pi.icmp_seq,&pi.ti);
+-			}
+-#else
+-			if (pfd[i].fd==icmp_sock) recv_icmp();
+-			else if (pfd[i].fd==icmp6_sock) recv_icmp6();
+-#endif
++			for(t=targets;t;t=t->next){
++				if (t->socket == pfd[i].fd) {
++					recv_icmp(t);
++					break;
++				}
++			}
+ 			pfd[i].revents=0;
+ 		}
+ 		if (status_request){
+@@ -1074,9 +992,6 @@
+ 			reload_config();
+ 		}
+ 	}
+-#ifdef FORKED_RECEIVER
+-	kill(pid,SIGTERM);
+-#endif
+ 	while(delayed_reports!=NULL) make_delayed_reports();
+ 	free_targets();
+ 	if (macros_buf!=NULL) free(macros_buf);
+diff -ur src_old/apinger.h src/apinger.h
+--- src_old/apinger.h	2010-08-10 20:41:31.000000000 +0000
++++ src/apinger.h	2010-08-10 20:41:37.000000000 +0000
+@@ -47,6 +47,8 @@
+ #endif
+ #include "conf.h"
+ 
++#include <ifaddrs.h>
++
+ union addr {
+ 	struct sockaddr addr;
+ 	struct sockaddr_in addr4;
+@@ -67,10 +69,11 @@
+ 	char *description;	/* description */
+ 	
+ 	union addr addr;	/* target address */
+-	
++
+ 	char *queue;		/*
+ 				contains info about recently sent packets
+ 				"1" means it was received */
++	int socket;
+ 	int last_sent;		/* sequence number of the last ping sent */
+ 	int last_received;	/* sequence number of the last ping received */
+ 	struct timeval last_received_tv; /* timestamp of the last ping received */
+@@ -90,6 +93,7 @@
+ 	struct target_cfg *config;
+ 	
+ 	struct target *next;
++	union addr ifaddr;	/* iface address */
+ };
+ 
+ #define AVG_DELAY_KNOWN(t) (t->upsent >= t->config->avg_delay_samples)
+@@ -123,8 +127,8 @@
+ 
+ extern struct timeval next_probe;
+ 
+-int make_icmp_socket(void);
+-void recv_icmp(void);
++int make_icmp_socket(struct target *t);
++void recv_icmp(struct target *t);
+ void send_icmp_probe(struct target *t,int seq);
+ 
+ int make_icmp6_socket(void);
+diff -ur src_old/cfgparser1.y src/cfgparser1.y
+--- src_old/cfgparser1.y	2010-08-10 20:41:31.000000000 +0000
++++ src/cfgparser1.y	2010-08-10 20:41:37.000000000 +0000
+@@ -97,6 +97,7 @@
+ %token DELAY_HIGH
+ 
+ %token DESCRIPTION
++%token SRCIP
+ %token ALARMS
+ %token INTERVAL
+ %token AVG_DELAY_SAMPLES
+@@ -248,6 +249,8 @@
+ targetcfg: /* */ 
+ 	| DESCRIPTION string 
+ 		{ cur_target->description=$2; }
++	| SRCIP string 
++		{ cur_target->srcip = $2; }
+ 	| ALARMS alarmlist
+ 		{ cur_target->alarms=$2; }
+ 	| ALARMS OVERRIDE alarmlist
+diff -ur src_old/cfgparser2.l src/cfgparser2.l
+--- src_old/cfgparser2.l	2010-08-10 20:41:31.000000000 +0000
++++ src/cfgparser2.l	2010-08-10 20:41:37.000000000 +0000
+@@ -82,6 +82,7 @@
+ delay_high	{ LOC; LOCINC; return DELAY_HIGH; }
+ delay_low	{ LOC; LOCINC; return DELAY_LOW; }
+ description	{ LOC; LOCINC; return DESCRIPTION; }
++srcip		{ LOC; LOCINC; return SRCIP; }
+ down		{ LOC; LOCINC; return DOWN; }
+ false		{ LOC; LOCINC; return FALSE; }
+ file		{ LOC; LOCINC; return FILE_; }
+diff -ur src_old/conf.h src/conf.h
+--- src_old/conf.h	2010-08-10 20:41:31.000000000 +0000
++++ src/conf.h	2010-08-10 20:41:37.000000000 +0000
+@@ -72,6 +72,7 @@
+ struct target_cfg {
+ 	char *name;
+ 	char *description;
++	char *srcip;
+ 	int interval;
+ 	int avg_delay_samples;
+ 	int avg_loss_delay_samples;
+diff -ur src_old/icmp.c src/icmp.c
+--- src_old/icmp.c	2010-08-10 20:41:31.000000000 +0000
++++ src/icmp.c	2010-08-10 20:41:37.000000000 +0000
+@@ -151,14 +151,14 @@
+ 	size=sizeof(*p)+sizeof(ti);
+ 
+ 	p->icmp_cksum = in_cksum((u_short *)p,size,0);
+-	ret=sendto(icmp_sock,p,size,MSG_DONTWAIT,
++	ret=sendto(t->socket,p,size,MSG_DONTWAIT,
+ 			(struct sockaddr *)&t->addr.addr4,sizeof(t->addr.addr4));
+ 	if (ret<0){
+ 		if (config->debug) myperror("sendto");
+ 	}
+ }
+ 
+-void recv_icmp(void){
++void recv_icmp(struct target *t){
+ int len,hlen,icmplen,datalen;
+ char buf[1024];
+ struct sockaddr_in from;
+@@ -171,6 +171,7 @@
+ struct iovec iov;
+ struct msghdr msg;
+ struct cmsghdr *c;
++reloophack:
+ 
+ 	iov.iov_base=buf;
+ 	iov.iov_len=1000;
+@@ -180,12 +181,13 @@
+ 	msg.msg_iovlen=1;
+ 	msg.msg_control=ans_data;
+ 	msg.msg_controllen=sizeof(ans_data);
+-	len=recvmsg(icmp_sock, &msg, MSG_DONTWAIT);
++	len=recvmsg(t->socket, &msg, MSG_DONTWAIT);
+ #else
+ socklen_t sl;
++reloophack:
+ 
+ 	sl=sizeof(from);
+-	len=recvfrom(icmp_sock,buf,1024,MSG_DONTWAIT,(struct sockaddr *)&from,&sl);
++	len=recvfrom(t->socket,buf,1024,MSG_DONTWAIT,(struct sockaddr *)&from,&sl);
+ #endif
+ 	if (len<0){
+ 		if (errno==EAGAIN) return;
+@@ -207,7 +209,7 @@
+ #endif
+ 	if (time_recvp==NULL){
+ #ifdef SIOCGSTAMP
+-		if (!ioctl(icmp_sock, SIOCGSTAMP, &time_recv)){
++		if (!ioctl(t->socket, SIOCGSTAMP, &time_recv)){
+ 			debug("Got timestampt from ioctl()");
+ 		}else
+ #endif
+@@ -227,7 +229,8 @@
+ 		return;
+ 	}
+ 	if (icmp->icmp_id != ident){
+-		debug("Alien echo-reply received");
++		debug("Alien echo-reply received from %s. Expected %i, received %i",inet_ntoa(from.sin_addr), ident, icmp->icmp_id);
++		goto reloophack;	
+ 		return;
+ 	}
+ 	debug("Ping reply from %s",inet_ntoa(from.sin_addr));
+@@ -243,19 +246,23 @@
+ #endif
+ }
+ 
+-int make_icmp_socket(void){
++int make_icmp_socket(struct target *t){
+ int on;
+ 
+-	icmp_sock = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
+-	if (icmp_sock<0)
++	t->socket = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
++	if (t->socket < 0)
+ 		myperror("socket");
+ #ifdef SO_TIMESTAMP
+-	else{
++	else {
+ 		on=1;
+-		if (setsockopt(icmp_sock, SOL_SOCKET, SO_TIMESTAMP, &on, sizeof(on)))
++		if (setsockopt(t->socket, SOL_SOCKET, SO_TIMESTAMP, &on, sizeof(on)))
+ 			myperror("setsockopt(SO_TIMESTAMP)");
+ 	}
+ #endif
+-	return icmp_sock;
++
++	if (bind(t->socket, (struct sockaddr *)&t->ifaddr.addr4, sizeof(t->ifaddr.addr4)) < 0)
++			myperror("bind socket");
++
++	return t->socket;
+ }
+ 
+diff -ur src_old/main.c src/main.c
+--- src_old/main.c	2010-08-10 20:41:31.000000000 +0000
++++ src/main.c	2010-08-10 20:41:37.000000000 +0000
+@@ -72,6 +72,7 @@
+ 		{		/* target defaults */
+ 				"default",	/* name */
+ 				"",		/* description */
++				"",		/* interface */
+ 				1000,		/* interval */
+ 				20,		/* avg_delay_samples */
+ 				5,		/* avg_loss_delay_samples */
+@@ -217,11 +218,13 @@
+ 		}
+ 	}
+ 
++#if 0
+ 	make_icmp_socket();
+ 	make_icmp6_socket();
+ 	if (icmp6_sock<0 && icmp_sock<0){
+ 		return 1;
+ 	}
++#endif
+ 
+ 	pw=getpwnam(config->user);
+ 	if (!pw) {
+@@ -286,9 +289,13 @@
+ #ifdef FORKED_RECEIVER
+ 	signal(SIGCHLD,sigchld_handler);
+ #endif
++	logit("Starting Alarm Pinger, apinger(%i)", ident);
++
+ 	main_loop();
++#if 0
+ 	if (icmp_sock>=0) close(icmp_sock);
+ 	if (icmp6_sock>=0) close(icmp6_sock);
++#endif
+ 
+ 	logit("Exiting on signal %i.",interrupted_by);
+ 

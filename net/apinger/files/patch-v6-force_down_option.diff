@@ -1,0 +1,77 @@
+diff -ruN ../apinger-0.6.1-patched/src/apinger.c ./src/apinger.c
+--- ../apinger-0.6.1-patched/src/apinger.c	2014-01-06 10:07:04.809469506 -0200
++++ ./src/apinger.c	2014-01-06 16:50:04.070479934 -0200
+@@ -340,7 +340,7 @@
+ 			logit("alarm canceled (config reload): %s(%s)  *** %s ***",t->description,t->name,a->name);
+ 	}
+ 
+-	if (on < 0) {
++	if ((on < 0) || (t->config->force_down == 1)) {
+ 		return;
+ 	}
+ 
+@@ -784,7 +784,9 @@
+ 			fprintf(f,"%0.1f%%",AVG_LOSS(t));
+ 		}
+ 		fprintf(f, "|");
+-		if (t->active_alarms){
++		if (t->config->force_down == 1)
++			fprintf(f,"force_down");
++		else if (t->active_alarms){
+ 			for(al=t->active_alarms;al;al=al->next){
+ 				a=al->alarm;
+ 				fprintf(f,"%s",a->name);
+diff -ruN ../apinger-0.6.1-patched/src/cfgparser1.y ./src/cfgparser1.y
+--- ../apinger-0.6.1-patched/src/cfgparser1.y	2014-01-06 10:06:42.671168484 -0200
++++ ./src/cfgparser1.y	2014-01-06 11:15:02.510642209 -0200
+@@ -99,6 +99,7 @@
+ %token DESCRIPTION
+ %token SRCIP
+ %token ALARMS
++%token FORCE_DOWN
+ %token INTERVAL
+ %token AVG_DELAY_SAMPLES
+ %token AVG_LOSS_SAMPLES
+@@ -255,6 +256,8 @@
+ 		{ cur_target->alarms=$2; }
+ 	| ALARMS OVERRIDE alarmlist
+ 		{ cur_target->alarms_override=1; cur_target->alarms=$3; }
++	| FORCE_DOWN boolean
++		{ cur_target->force_down=$2; }
+ 	| INTERVAL INTEGER
+ 		{ cur_target->interval=$2; }
+ 	| INTERVAL TIME
+diff -ruN ../apinger-0.6.1-patched/src/cfgparser2.l ./src/cfgparser2.l
+--- ../apinger-0.6.1-patched/src/cfgparser2.l	2014-01-06 10:06:42.671168484 -0200
++++ ./src/cfgparser2.l	2014-01-06 12:12:44.542000299 -0200
+@@ -86,6 +86,7 @@
+ down		{ LOC; LOCINC; return DOWN; }
+ false		{ LOC; LOCINC; return FALSE; }
+ file		{ LOC; LOCINC; return FILE_; }
++force_down	{ LOC; LOCINC; return FORCE_DOWN; }
+ group		{ LOC; LOCINC; return GROUP; }
+ interval	{ LOC; LOCINC; return INTERVAL; }
+ loss		{ LOC; LOCINC; return LOSS; }
+diff -ruN ../apinger-0.6.1-patched/src/conf.c ./src/conf.c
+--- ../apinger-0.6.1-patched/src/conf.c	2014-01-06 10:07:04.810469520 -0200
++++ ./src/conf.c	2014-01-06 16:51:01.097200873 -0200
+@@ -187,6 +187,8 @@
+ 				t->avg_loss_delay_samples=cur_config.target_defaults.avg_loss_delay_samples;
+ 			if (t->rrd_filename==NULL)
+ 				t->rrd_filename=cur_config.target_defaults.rrd_filename;
++			if (t->force_down==NULL)
++				t->force_down=0;
+ 			for(al=t->alarms;al && al->next;al=al->next);
+ 			if (t->alarms_override==0){
+ 				if (al)
+diff -ruN ../apinger-0.6.1-patched/src/conf.h ./src/conf.h
+--- ../apinger-0.6.1-patched/src/conf.h	2014-01-06 10:07:04.810469520 -0200
++++ ./src/conf.h	2014-01-06 12:03:47.904292594 -0200
+@@ -73,6 +73,7 @@
+ 	char *name;
+ 	char *description;
+ 	char *srcip;
++	int force_down;
+ 	int interval;
+ 	int avg_delay_samples;
+ 	int avg_loss_delay_samples;
