@@ -4264,6 +4264,7 @@
     SUBDIR += py-pytest
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
+    SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-timeout
     SUBDIR += py-pytest-xdist
@@ -4395,6 +4396,7 @@
     SUBDIR += py-tgMochiKit
     SUBDIR += py-thrift
     SUBDIR += py-timelib
+    SUBDIR += py-tinyarray
     SUBDIR += py-tipper
     SUBDIR += py-total-ordering
     SUBDIR += py-tox
@@ -4431,6 +4433,7 @@
     SUBDIR += py-user_agents
     SUBDIR += py-utils
     SUBDIR += py-validictory
+    SUBDIR += py-vcrpy
     SUBDIR += py-vcversioner
     SUBDIR += py-venusian
     SUBDIR += py-versiontools
