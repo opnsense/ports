@@ -3,6 +3,7 @@
 
 PORTNAME=	skem
 PORTVERSION=	1.0.2
+PORTREVISION=	1
 CATEGORIES=	mail
 MASTER_SITES=	http://virtual-estates.net/skem/
 
@@ -10,7 +11,7 @@ MAINTAINER=	mi@aldan.algebra.com
 COMMENT=	Cache earlier sendmail's verdicts for the relays
 
 .if !exists( /usr/include/libmilter/mfapi.h )
-BUILD_DEPENDS+=	${LOCALBASE}/include/libmilter/mfapi.h:${PORTSDIR}/mail/sendmail
+BUILD_DEPENDS+=	${LOCALBASE}/include/libmilter/mfapi.h:${PORTSDIR}/mail/libmilter
 CFLAGS+=	-I${LOCALBASE}/include
 .endif
 
