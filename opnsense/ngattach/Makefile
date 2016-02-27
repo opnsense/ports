@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ngattach
-PORTVERSION=	1.1
+PORTVERSION=	1.2
 CATEGORIES=	net
 
 MAINTAINER=	franco@opnsense.org
