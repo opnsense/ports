@@ -2669,6 +2669,7 @@
     SUBDIR += p5-MooX-StrictConstructor
     SUBDIR += p5-MooX-Types-MooseLike
     SUBDIR += p5-MooX-Types-MooseLike-Numeric
+    SUBDIR += p5-MooX-TypeTiny
     SUBDIR += p5-MooX-late
     SUBDIR += p5-Moos
     SUBDIR += p5-Moose
@@ -4310,6 +4311,7 @@
     SUBDIR += py-qt5-test
     SUBDIR += py-rauth
     SUBDIR += py-raven
+    SUBDIR += py-rcsparse
     SUBDIR += py-rednose
     SUBDIR += py-repl
     SUBDIR += py-repoze.lru
@@ -4425,7 +4427,6 @@
     SUBDIR += py-uncompyle2
     SUBDIR += py-unipath
     SUBDIR += py-unittest2
-    SUBDIR += py-unittestplus
     SUBDIR += py-unpaddedbase64
     SUBDIR += py-urlimport
     SUBDIR += py-urwid

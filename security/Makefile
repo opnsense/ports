@@ -407,7 +407,6 @@
     SUBDIR += openscep
     SUBDIR += openssh-askpass
     SUBDIR += openssh-portable
-    SUBDIR += openssh-portable-devel
     SUBDIR += openssl
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas-client
@@ -709,6 +708,7 @@
     SUBDIR += pbc
     SUBDIR += pbnj
     SUBDIR += pcsc-tools
+    SUBDIR += pdfcrack
     SUBDIR += pear-Auth
     SUBDIR += pear-Auth_HTTP
     SUBDIR += pear-Auth_OpenID
@@ -813,6 +813,7 @@
     SUBDIR += py-scrypt
     SUBDIR += py-SecretStorage
     SUBDIR += py-acme
+    SUBDIR += py-acme-tiny
     SUBDIR += py-artifacts
     SUBDIR += py-bcrypt
     SUBDIR += py-borg.localrole
