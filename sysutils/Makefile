@@ -108,6 +108,7 @@
     SUBDIR += burp
     SUBDIR += busybox
     SUBDIR += byobu
+    SUBDIR += catfish
     SUBDIR += cbsd
     SUBDIR += ccd2iso
     SUBDIR += cciss_vol_status
@@ -1018,6 +1019,7 @@
     SUBDIR += tai64nfrac
     SUBDIR += tarsnap
     SUBDIR += tarsnap-gui
+    SUBDIR += tarsnap-periodic
     SUBDIR += tartarus
     SUBDIR += tbku
     SUBDIR += tclsyslog

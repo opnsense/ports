@@ -369,7 +369,7 @@ JAVA_VERSION=	1.8
 JAVA_VENDOR=	openjdk
 JAVA_BUILD=	yes
 JAVA_RUN=	yes
-NGINX_CLOJURE_VERSION=	0.4.3
+NGINX_CLOJURE_VERSION=	0.4.4
 GH_ACCOUNT+=	nginx-clojure:clojure
 GH_PROJECT+=	nginx-clojure:clojure
 GH_TAGNAME+=	v${NGINX_CLOJURE_VERSION}:clojure
@@ -508,7 +508,7 @@ USES+=		perl5
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_PUSH}
-GIT_PUSH_VERSION=	0.99.5
+GIT_PUSH_VERSION=	0.99.6
 GH_ACCOUNT+=	slact:push
 GH_PROJECT+=	nchan:push
 GH_TAGNAME+=	v${GIT_PUSH_VERSION}:push
@@ -546,10 +546,10 @@ CONFIGURE_ARGS+=--add-module=${WRKDIR}/ngx_http_response-${NGINX_RESPONSE_VERSIO
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_SUBS_FILTER}
-NGINX_HTTP_SUBS_FILTER_VERSION=	0.6.2
+NGINX_HTTP_SUBS_FILTER_VERSION=	0.6.4
 GH_ACCOUNT+=	yaoweibin:subs_filter
 GH_PROJECT+=	ngx_http_substitutions_filter_module:subs_filter
-GH_TAGNAME+=	${NGINX_HTTP_SUBS_FILTER_VERSION}:subs_filter
+GH_TAGNAME+=	v${NGINX_HTTP_SUBS_FILTER_VERSION}:subs_filter
 CONFIGURE_ARGS+=--add-module=${WRKSRC_subs_filter}
 .endif
 
@@ -964,6 +964,11 @@ post-patch:
 	@${REINPLACE_CMD} 's!%%HTTP_PORT%%!${HTTP_PORT}!; \
 		s!%%PREFIX%%!${PREFIX}!' \
 		${WRKSRC}/conf/nginx.conf
+.if ${PORT_OPTIONS:MHTTP_ACCESSKEY}
+	@${REINPLACE_CMD} \
+		'128s!NGX_OK!NGX_DECLINED!' \
+		${WRKDIR}/nginx-accesskey-${NGINX_ACCESSKEY_VERSION}/ngx_http_accesskey_module.c
+.endif
 .if ${PORT_OPTIONS:MHTTP_AUTH_KRB5}
 	@${REINPLACE_CMD} \
 		's!%%GSSAPILIBS%%!${GSSAPILIBS}!' \
@@ -979,11 +984,6 @@ post-patch:
 	@${REINPLACE_CMD} \
 		's!^inline!static inline!' \
 		${WRKDIR}/mod_zip-${NGINX_ZIP_VERSION}/ngx_http_zip_parsers.*
-.endif
-.if ${PORT_OPTIONS:MCLOJURE}
-	@${REINPLACE_CMD} \
-		'54,57d' \
-		${WRKSRC_clojure}/src/c/config
 .endif
 .if ${PORT_OPTIONS:MDRIZZLE}
 	@${REINPLACE_CMD} \

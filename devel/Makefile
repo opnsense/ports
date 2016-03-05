@@ -3301,6 +3301,8 @@
     SUBDIR += p5-Test-YAML-Meta
     SUBDIR += p5-Test-YAML-Valid
     SUBDIR += p5-Test-utf8
+    SUBDIR += p5-Test2
+    SUBDIR += p5-Test2-Suite
     SUBDIR += p5-Text-Levenshtein
     SUBDIR += p5-Text-Levenshtein-Damerau
     SUBDIR += p5-Text-LevenshteinXS
@@ -3813,6 +3815,7 @@
     SUBDIR += powerpc64-xtoolchain-gcc
     SUBDIR += poxml
     SUBDIR += ppl
+    SUBDIR += pragmarcs
     SUBDIR += premake
     SUBDIR += premake4
     SUBDIR += privman
@@ -4221,6 +4224,7 @@
     SUBDIR += py-pluggy
     SUBDIR += py-ply
     SUBDIR += py-polib
+    SUBDIR += py-positional
     SUBDIR += py-posix_ipc
     SUBDIR += py-pp
     SUBDIR += py-pqueue
@@ -4253,6 +4257,7 @@
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub
     SUBDIR += py-pygpx
+    SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
     SUBDIR += py-pykde4
     SUBDIR += py-pykdeuic4
@@ -4919,6 +4924,7 @@
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
+    SUBDIR += rubygem-kafo_wizards
     SUBDIR += rubygem-kgio
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy22
@@ -5147,6 +5153,7 @@
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo03
     SUBDIR += rubygem-unicode
+    SUBDIR += rubygem-unicode-display_width
     SUBDIR += rubygem-uuid
     SUBDIR += rubygem-uuidtools
     SUBDIR += rubygem-validatable
