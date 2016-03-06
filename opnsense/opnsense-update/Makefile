@@ -3,6 +3,7 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	16.1.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -19,5 +20,6 @@ LDFLAGS+=	-L${OPENSSLLIB}
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
+GH_TAGNAME=	b5cfb09
 
 .include <bsd.port.mk>
