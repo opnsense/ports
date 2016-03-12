@@ -21,6 +21,13 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-maintainer-mode
 INSTALL_TARGET=	install-strip
 
+OPTIONS_DEFINE=	FBSD101
+OPTIONS_DEFAULT=
+
+FBSD101_DESC=	FreeBSD 10.1 ABI and behaviour for backwards-compatibility
+
+FBSD101_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-fbsd101.patch
+
 # Use a submake as 'deinstall install' needs to reevaluate PKG_CMD
 # so that pkg-static is used from the wrkdir
 USE_SUBMAKE=	yes
