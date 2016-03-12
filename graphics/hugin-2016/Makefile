@@ -2,11 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	hugin
-DISTVERSION=	2016.0.0.r1
+DISTVERSION=	2016.0.0.r2
 PORTREVISION=	0
 CATEGORIES=	graphics
-MASTER_SITES=	https://launchpad.net/hugin/2016.0/2016.0rc1/+download/
-DISTFILES=	hugin-2016.0.0_rc1.tar.bz2
+MASTER_SITES=	https://launchpad.net/hugin/2016.0/2016.0rc2/+download/
+DISTFILES=	hugin-2016.0.0_rc2.tar.bz2
 WRKSRC=		${WRKDIR}/hugin-2016.0.0
 PKGNAMESUFFIX=	-2016
 
