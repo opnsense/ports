@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xdebug
-PORTVERSION=	2.2.5
+PORTVERSION=	2.4.0
 CATEGORIES=	devel
 MASTER_SITES=	http://www.xdebug.org/files/
 PKGNAMEPREFIX=	php-
@@ -19,7 +19,5 @@ USE_ZENDEXT=	yes
 USES=		tar:tgz
 
 SUB_FILES=	pkg-message
-
-IGNORE_WITH_PHP=	70
 
 .include <bsd.port.mk>
