@@ -3,7 +3,6 @@
 
     COMMENT = Ports related to the World Wide Web
 
-    SUBDIR += MT
     SUBDIR += R-cran-RgoogleMaps
     SUBDIR += R-cran-htmlwidgets
     SUBDIR += R-cran-httpuv
@@ -227,6 +226,7 @@
     SUBDIR += get_flash_videos
     SUBDIR += getleft
     SUBDIR += gist
+    SUBDIR += gitlab-workhorse
     SUBDIR += glassfish
     SUBDIR += glpi
     SUBDIR += gnome-user-share
