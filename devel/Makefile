@@ -1116,6 +1116,7 @@
     SUBDIR += libafterbase
     SUBDIR += liballium
     SUBDIR += libantlr3c
+    SUBDIR += libarea
     SUBDIR += libarena
     SUBDIR += libassa
     SUBDIR += libassetml
@@ -2520,6 +2521,8 @@
     SUBDIR += p5-List-Permutor
     SUBDIR += p5-List-PowerSet
     SUBDIR += p5-List-Rotation-Cycle
+    SUBDIR += p5-List-SomeUtils
+    SUBDIR += p5-List-SomeUtils-XS
     SUBDIR += p5-List-Uniq
     SUBDIR += p5-List-UtilsBy
     SUBDIR += p5-Locale-Maketext
@@ -4274,6 +4277,7 @@
     SUBDIR += py-pyro
     SUBDIR += py-pyshapelib
     SUBDIR += py-pytemplate
+    SUBDIR += py-pyte
     SUBDIR += py-pytest
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
