@@ -3,7 +3,7 @@
 
 PORTNAME=	bandwidthd
 PORTVERSION=	2.0.1
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}%20${PORTVERSION}
 
@@ -12,8 +12,8 @@ COMMENT=	Tracks bandwidth usage by IP address
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS+=	libpng16.so:${PORTSDIR}/graphics/png
-LIB_DEPENDS+=	libgd.so:${PORTSDIR}/graphics/gd
+LIB_DEPENDS+=	libgd.so:${PORTSDIR}/graphics/gd \
+		libpng16.so:${PORTSDIR}/graphics/png
 
 SUB_FILES=	bandwidthd
 
