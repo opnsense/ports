@@ -317,6 +317,7 @@
     SUBDIR += cssc
     SUBDIR += cstringbuffer
     SUBDIR += ctags
+    SUBDIR += ctypes.sh
     SUBDIR += cunit
     SUBDIR += cut
     SUBDIR += cutils
@@ -4027,6 +4028,7 @@
     SUBDIR += py-django-rq
     SUBDIR += py-django-tastypie-mongoengine
     SUBDIR += py-django16-tastypie-mongoengine
+    SUBDIR += py-docker-py
     SUBDIR += py-docopt
     SUBDIR += py-dogpile.cache
     SUBDIR += py-dogpile.core
@@ -4142,6 +4144,7 @@
     SUBDIR += py-kazoo
     SUBDIR += py-keystoneauth1
     SUBDIR += py-kid
+    SUBDIR += py-kitchen
     SUBDIR += py-kjbuckets
     SUBDIR += py-kqueue
     SUBDIR += py-krosspython

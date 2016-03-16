@@ -273,6 +273,7 @@
     SUBDIR += jsch
     SUBDIR += jumpgate
     SUBDIR += jwhois
+    SUBDIR += kafkacat
     SUBDIR += kamailio
     SUBDIR += kdenetwork4
     SUBDIR += kdenetwork4-filesharing
@@ -942,6 +943,7 @@
     SUBDIR += py-impacket
     SUBDIR += py-ipaddress
     SUBDIR += py-iplib
+    SUBDIR += py-kafka-python
     SUBDIR += py-kombu
     SUBDIR += py-ldap
     SUBDIR += py-ldap3
@@ -1209,6 +1211,7 @@
     SUBDIR += socat
     SUBDIR += socketbind
     SUBDIR += socketpipe
+    SUBDIR += socketw
     SUBDIR += sofia-sip
     SUBDIR += spideroak
     SUBDIR += splatd
