@@ -3488,6 +3488,7 @@
     SUBDIR += p5-strictures
     SUBDIR += p5-subatom
     SUBDIR += p5-subversion
+    SUBDIR += p5-superclass
     SUBDIR += p5-syntax
     SUBDIR += p5-threads
     SUBDIR += p5-threads-shared
@@ -4108,7 +4109,6 @@
     SUBDIR += py-hypothesis
     SUBDIR += py-icalendar
     SUBDIR += py-ice
-    SUBDIR += py-icu
     SUBDIR += py-iniparse
     SUBDIR += py-initgroups
     SUBDIR += py-instant
@@ -4267,6 +4267,7 @@
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub
     SUBDIR += py-pygpx
+    SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
     SUBDIR += py-pykde4
