@@ -153,7 +153,6 @@
     SUBDIR += dummyflash
     SUBDIR += e107
     SUBDIR += e2guardian
-    SUBDIR += eaccelerator
     SUBDIR += edbrowse
     SUBDIR += efront
     SUBDIR += elgg
@@ -366,12 +365,14 @@
     SUBDIR += larbin
     SUBDIR += lessc
     SUBDIR += libapreq2
+    SUBDIR += libdom
     SUBDIR += libecap
     SUBDIR += libepc
     SUBDIR += libevhtp
     SUBDIR += libgtkhtml
     SUBDIR += libhpack
     SUBDIR += libhtp-suricata
+    SUBDIR += libhubbub
     SUBDIR += libmicrohttpd
     SUBDIR += libsocialweb
     SUBDIR += libwww

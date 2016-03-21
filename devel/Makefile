@@ -1264,6 +1264,7 @@
     SUBDIR += libnaji
     SUBDIR += libnfc
     SUBDIR += libnotify
+    SUBDIR += libnsutils
     SUBDIR += libnxt
     SUBDIR += liboil
     SUBDIR += libol
@@ -1285,6 +1286,7 @@
     SUBDIR += libowfat
     SUBDIR += libpafe
     SUBDIR += libpafe-ruby
+    SUBDIR += libparserutils
     SUBDIR += libpasori
     SUBDIR += libpci
     SUBDIR += libpciaccess
@@ -1530,6 +1532,7 @@
     SUBDIR += ndesk-dbus-glib
     SUBDIR += ndesk-options
     SUBDIR += netscape-java40
+    SUBDIR += netsurf-buildsystem
     SUBDIR += newfile
     SUBDIR += newt
     SUBDIR += newtonsoft-json
@@ -1541,6 +1544,7 @@
     SUBDIR += notify-sharp
     SUBDIR += noweb
     SUBDIR += npth
+    SUBDIR += nsgenbind
     SUBDIR += nspr
     SUBDIR += nuitka
     SUBDIR += nxt-python
@@ -3702,7 +3706,6 @@
     SUBDIR += pecl-hidef
     SUBDIR += pecl-hrtime
     SUBDIR += pecl-htscanner
-    SUBDIR += pecl-inclued
     SUBDIR += pecl-inotify
     SUBDIR += pecl-intl
     SUBDIR += pecl-jsmin
@@ -4332,6 +4335,7 @@
     SUBDIR += py-rauth
     SUBDIR += py-raven
     SUBDIR += py-rcsparse
+    SUBDIR += py-re2
     SUBDIR += py-rednose
     SUBDIR += py-repl
     SUBDIR += py-repoze.lru
