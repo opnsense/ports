@@ -19,6 +19,5 @@ LDFLAGS+=	-L${OPENSSLLIB}
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
-GH_TAGNAME=	8e2a56b
 
 .include <bsd.port.mk>
