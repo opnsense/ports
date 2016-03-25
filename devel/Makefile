@@ -1150,6 +1150,7 @@
     SUBDIR += libconcurrent
     SUBDIR += libconfig
     SUBDIR += libconfuse
+    SUBDIR += libcrossguid
     SUBDIR += libcutl
     SUBDIR += libcwd
     SUBDIR += libcxxrt
@@ -1301,6 +1302,7 @@
     SUBDIR += libpololu-avr
     SUBDIR += libpru
     SUBDIR += libpthread-stubs
+    SUBDIR += libqb
     SUBDIR += libqcow
     SUBDIR += libqxt
     SUBDIR += libr3
@@ -4832,6 +4834,7 @@
     SUBDIR += rubygem-debugger-xml
     SUBDIR += rubygem-deep_merge
     SUBDIR += rubygem-deep_test
+    SUBDIR += rubygem-deface
     SUBDIR += rubygem-default_value_for
     SUBDIR += rubygem-delayed_job
     SUBDIR += rubygem-delayer
