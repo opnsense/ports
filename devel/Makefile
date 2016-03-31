@@ -2724,6 +2724,7 @@
     SUBDIR += p5-MooseX-Log-Log4perl
     SUBDIR += p5-MooseX-MarkAsMethods
     SUBDIR += p5-MooseX-Meta-TypeConstraint-ForceCoercion
+    SUBDIR += p5-MooseX-Meta-TypeConstraint-Mooish
     SUBDIR += p5-MooseX-MetaDescription
     SUBDIR += p5-MooseX-Method-Signatures
     SUBDIR += p5-MooseX-MethodAttributes
@@ -5248,6 +5249,7 @@
     SUBDIR += smv
     SUBDIR += soapui
     SUBDIR += sope
+    SUBDIR += sope3
     SUBDIR += sourcenav
     SUBDIR += sparc64-binutils
     SUBDIR += sparc64-gcc
