@@ -17,11 +17,13 @@ COMMENT=	Language with a focus on memory safety and concurrency
 LICENSE=	APACHE20 \
 		MIT
 LICENSE_COMB=	dual
-LICENSE_FILE=	${WRKSRC}/LICENSE-APACHE \
-		${WRKSRC}/LICENSE-MIT
+# APACHE20 license is standard, see Templates/Licenses/APACHE20
+LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
 
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	requires prebuilt bootstrap compiler
+
+BROKEN_FreeBSD_9=	Only compiles on FreeBSD 10 and 11
 
 DISTINFO_FILE=	${MASTERDIR}/distinfo.${ARCH}
 
@@ -35,6 +37,7 @@ CONFLICTS_INSTALL=	rust-nightly
 RUST_SOURCE=	${DISTNAME}-src${EXTRACT_SUFX}
 RUST_BOOT=	rust-stage0-${RUST_BOOT_SIG_${ARCH}}.tar.bz2
 
+RUST_BOOT_SIG_x86_64=	2015-12-18-3391630-dragonfly-x86_64-e74d79488e88ac2de3bd03afd5959d2ae6e2b628
 RUST_BOOT_SIG_amd64=	2015-12-18-3391630-freebsd-x86_64-91724d4e655807a2a2e940ac50992ebeaac16ea9
 RUST_BOOT_SIG_i386=	2015-12-18-3391630-freebsd-i386-7e624c50494402e1feb14c743d659fbd71b448f5
 
@@ -47,6 +50,7 @@ RUST_VSN_HASH!=	/usr/bin/printf '%s' ${RUST_VSN} | /sbin/md5 -q | cut -c 1-8
 PLIST_SUB+=	RUST_VSN_HASH=${RUST_VSN_HASH}
 
 # Rust's target arch string is different from *BSD arch strings
+RUST_ARCH_x86_64=	x86_64 # dragonfly
 RUST_ARCH_amd64=	x86_64
 RUST_ARCH_i386=		i686
 RUST_TARGET=		${RUST_ARCH_${ARCH}}-unknown-${OPSYS:tl}
@@ -80,12 +84,6 @@ LLVM_PREFIX=			${LOCALBASE}/llvm${LLVM_VER}
 TEST_TARGET=	check
 TEST_ENV+=	ALLOW_NONZERO_RLIMIT_CORE=1
 
-.include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000000
-BROKEN=		Only compiles on FreeBSD 10 and 11
-.endif
-
 pre-fetch:
 	# FIXME: This is the same check for CONFLICTS as the standard
 	# one, except port origins are not compared. This allows
@@ -113,7 +111,7 @@ pre-fetch:
 post-extract:
 	@${MKDIR} ${WRKSRC}/dl
 	${LN} -sf ${DISTDIR}/${RUST_BOOT} ${WRKSRC}/dl
-	(cd ${WRKSRC} && ${FIND} . -type d -exec ${CHMOD} 0755 {} \;)
+	${FIND} ${WRKSRC} -type d -exec ${CHMOD} 0755 {} +
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \

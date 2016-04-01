@@ -1094,12 +1094,15 @@
     SUBDIR += rubygem-fog-atmos
     SUBDIR += rubygem-fog-aws
     SUBDIR += rubygem-fog-brightbox
+    SUBDIR += rubygem-fog-cloudatcost
     SUBDIR += rubygem-fog-dynect
     SUBDIR += rubygem-fog-ecloud
     SUBDIR += rubygem-fog-google
     SUBDIR += rubygem-fog-local
+    SUBDIR += rubygem-fog-openstack
     SUBDIR += rubygem-fog-powerdns
     SUBDIR += rubygem-fog-profitbricks
+    SUBDIR += rubygem-fog-rackspace
     SUBDIR += rubygem-fog-radosgw
     SUBDIR += rubygem-fog-riakcs
     SUBDIR += rubygem-fog-sakuracloud
