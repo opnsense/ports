@@ -3219,6 +3219,7 @@
     SUBDIR += p5-Test-Harness
     SUBDIR += p5-Test-Harness-Straps
     SUBDIR += p5-Test-HasVersion
+    SUBDIR += p5-Test-HexDifferences
     SUBDIR += p5-Test-HexString
     SUBDIR += p5-Test-Identity
     SUBDIR += p5-Test-If
@@ -4300,6 +4301,7 @@
     SUBDIR += py-pytest
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
+    SUBDIR += py-pytest-django
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-timeout

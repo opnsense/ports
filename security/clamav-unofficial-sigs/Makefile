@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	clamav-unofficial-sigs
-PORTVERSION=	5.0.4
-PORTREVISION=	1
+PORTVERSION=	5.0.5
 CATEGORIES=	security
 
 MAINTAINER=	sf@maxempire.com
@@ -12,11 +11,11 @@ COMMENT=	Update script for third-party ClamAV databases
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	clamscan:${PORTSDIR}/security/clamav \
-		rsync:${PORTSDIR}/net/rsync \
-		curl:${PORTSDIR}/ftp/curl \
-		gpg:${PORTSDIR}/security/gnupg \
-		bash:${PORTSDIR}/shells/bash
+RUN_DEPENDS=	clamscan:security/clamav \
+		rsync:net/rsync \
+		curl:ftp/curl \
+		gpg:security/gnupg \
+		bash:shells/bash
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	extremeshok
