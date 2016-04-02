@@ -16,8 +16,8 @@ CLOG_DESC=	Enable clog(1) support
 INET6_DESC=	Enable IPv6 support
 
 CLOG_EXTRA_PATCHES=	${PATCHDIR}/extra-clog-support.diff
-CLOG_BUILD_DEPENDS=	${LOCALBASE}/include/clog.h:${PORTSDIR}/opnsense/clog
-CLOG_RUN_DEPENDS=	clog:${PORTSDIR}/opnsense/clog
+CLOG_BUILD_DEPENDS=	${LOCALBASE}/include/clog.h:opnsense/clog
+CLOG_RUN_DEPENDS=	clog:opnsense/clog
 CLOG_CFLAGS=		-I${LOCALBASE}/include
 
 INET6_CFLAGS=		-DINET6

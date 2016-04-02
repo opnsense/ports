@@ -10,7 +10,7 @@ COMMENT=	OPNsense update utilities
 
 LICENSE=	BSD2CLAUSE
 
-LIB_DEPENDS+=	libucl.so:${PORTSDIR}/textproc/libucl
+LIB_DEPENDS+=	libucl.so:textproc/libucl
 
 USE_OPENSSL=	yes
 CFLAGS+=	-I${OPENSSLINC}

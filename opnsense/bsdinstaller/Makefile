@@ -10,7 +10,7 @@ DISTFILES=
 MAINTAINER=	franco@opnsense.org
 COMMENT=	BSD Installer mega-package
 
-RUN_DEPENDS=	${LOCALBASE}/bin/cpdup:${PORTSDIR}/sysutils/cpdup
+RUN_DEPENDS=	cpdup:sysutils/cpdup
 
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}

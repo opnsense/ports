@@ -10,7 +10,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	fichtner
 GH_TAGNAME=	cf7a9277
 
-LIB_DEPENDS=	libpdel.so.0:${PORTSDIR}/devel/libpdel
+LIB_DEPENDS=	libpdel.so:devel/libpdel
 
 HAS_CONFIGURE=	YES
 CONFIGURE_WRKSRC=	"${WRKSRC}/src"
