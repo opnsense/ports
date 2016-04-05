@@ -3993,6 +3993,8 @@
     SUBDIR += py-cjson
     SUBDIR += py-cld
     SUBDIR += py-click
+    SUBDIR += py-click-log
+    SUBDIR += py-click-threading
     SUBDIR += py-clint
     SUBDIR += py-clonedigger
     SUBDIR += py-cloudpickle
