@@ -5390,6 +5390,7 @@
     SUBDIR += violet
     SUBDIR += visualparadigm
     SUBDIR += vstr
+    SUBDIR += vtable-dumper
     SUBDIR += vtcl
     SUBDIR += vxlog
     SUBDIR += wand-libconfig
@@ -5427,6 +5428,7 @@
     SUBDIR += z80-asm
     SUBDIR += z80asm
     SUBDIR += z80ex
+    SUBDIR += zeal
     SUBDIR += zookeeper
     SUBDIR += zpu-binutils
     SUBDIR += zpu-gcc
