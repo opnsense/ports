@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	perl
-PORTREVISION=	0
+PORTREVISION=	2
 # XXX Remove second line, uncomment first
 #DISTVERSION=	${PERL_VERSION}
 DISTVERSION=	${GH_TAGNAME:C/^v//:C/-g[0-9a-f]*$//}
@@ -29,7 +29,7 @@ TEST_ENV=	${MAKE_ENV} TEST_JOBS=${MAKE_JOBS_NUMBER}
 USE_GITHUB=	yes
 GH_ACCOUNT=	Perl
 GH_PROJECT=	perl5
-GH_TAGNAME=	v5.23.9-43-gef66793
+GH_TAGNAME=	v5.23.9-85-g9b1bcf2
 
 OPTIONS_DEFINE=	DEBUG GDBM PERL_64BITINT PTHREAD \
 		MULTIPLICITY SITECUSTOMIZE
@@ -161,6 +161,7 @@ PLIST_SUB+=	PERL_VERSION=${PERL_VERSION} \
 		SITE_PERL=${SITE_PERL_REL} \
 		SITE_ARCH=${SITE_ARCH_REL} \
 		PRIV_LIB=${_PRIV_LIB} \
+		PKGNAMESUFFIX=${PKGNAMESUFFIX} \
 		ARCH_LIB=${_ARCH_LIB}
 PLIST_SUB+=	PORTVERSION=${PORTVERSION} # XXX Remove
 
@@ -271,10 +272,15 @@ post-patch-PTHREAD-off:
 	${REINPLACE_CMD} -e 's|%%PTHREAD_LIBS%%||g;' \
 		${WRKSRC}/hints/freebsd.sh
 
-.if ${CC} == /nxb-bin/usr/bin/cc
 post-build:
+	@${REINPLACE_CMD} -e '/^lddlflags/s|-L${WRKSRC} ||' \
+		${WRKSRC}/lib/Config_heavy.pl
+.if ${CC} == /nxb-bin/usr/bin/cc
 	@${REINPLACE_CMD} -e 's=/nxb-bin==' \
 		${WRKSRC}/lib/Config.pm ${WRKSRC}/lib/Config_heavy.pl
+# Restore Config.pm's timestamp so that Perl's build system does not think it
+# needs to rebuild everything.
+	@${TOUCH} -r ${WRKSRC}/lib/Config.pm.bak ${WRKSRC}/lib/Config.pm
 .endif
 
 post-install:
@@ -301,6 +307,6 @@ post-install:
 			${STRIP_CMD} $$f; \
 			${CHMOD} 444 $$f; \
 		done
-	${INSTALL_DATA} ${WRKDIR}/perl-man.conf ${STAGEDIR}${PREFIX}/etc/man.d/perl${PERL_VER}.conf
+	${INSTALL_DATA} ${WRKDIR}/perl-man.conf ${STAGEDIR}${PREFIX}/etc/man.d/perl${PKGNAMESUFFIX}.conf
 
 .include <bsd.port.mk>

@@ -740,6 +740,7 @@
     SUBDIR += goprotobuf
     SUBDIR += gorm
     SUBDIR += gperf
+    SUBDIR += gpm
     SUBDIR += gprbuild
     SUBDIR += gps
     SUBDIR += gpsim
@@ -764,6 +765,7 @@
     SUBDIR += guiloader-c++
     SUBDIR += gumbo
     SUBDIR += gvfs
+    SUBDIR += gvp
     SUBDIR += gwenhywfar
     SUBDIR += gwenhywfar-fox16
     SUBDIR += gwenhywfar-gtk2
@@ -2003,6 +2005,7 @@
     SUBDIR += p5-Data-ObjectDriver
     SUBDIR += p5-Data-OptList
     SUBDIR += p5-Data-Page-NoTotalEntries
+    SUBDIR += p5-Data-Page-Pageset
     SUBDIR += p5-Data-ParseBinary
     SUBDIR += p5-Data-Path
     SUBDIR += p5-Data-Peek
@@ -3274,6 +3277,7 @@
     SUBDIR += p5-Test-Reporter
     SUBDIR += p5-Test-Reporter-Transport-Metabase
     SUBDIR += p5-Test-Requires
+    SUBDIR += p5-Test-Requires-Git
     SUBDIR += p5-Test-RequiresInternet
     SUBDIR += p5-Test-Script
     SUBDIR += p5-Test-Script-Run
