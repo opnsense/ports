@@ -740,6 +740,7 @@
     SUBDIR += py-htsql-pgsql
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
+    SUBDIR += py-motor
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python
     SUBDIR += py-mysql-connector-python2
@@ -801,6 +802,7 @@
     SUBDIR += py35-sqlite3
     SUBDIR += pydbx
     SUBDIR += pymongo
+    SUBDIR += pymongo28
     SUBDIR += pypy-gdbm
     SUBDIR += pypy-sqlite3
     SUBDIR += pyspatialite
