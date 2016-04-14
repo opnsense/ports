@@ -554,7 +554,6 @@
     SUBDIR += nginx-devel
     SUBDIR += nibbleblog
     SUBDIR += node
-    SUBDIR += node-devel
     SUBDIR += node010
     SUBDIR += node012
     SUBDIR += node4
@@ -1536,6 +1535,7 @@
     SUBDIR += py-django-configurations
     SUBDIR += py-django-contact-form
     SUBDIR += py-django-contrib-comments
+    SUBDIR += py-django-cors-headers
     SUBDIR += py-django-countries
     SUBDIR += py-django-crispy-forms
     SUBDIR += py-django-datetime-widget
@@ -1848,6 +1848,7 @@
     SUBDIR += rsstool
     SUBDIR += rt40
     SUBDIR += rt42
+    SUBDIR += rt44
     SUBDIR += rtv
     SUBDIR += ruby-aws
     SUBDIR += ruby-google

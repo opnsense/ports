@@ -26,6 +26,7 @@
     SUBDIR += R-cran-gbm
     SUBDIR += R-cran-gdata
     SUBDIR += R-cran-glmnet
+    SUBDIR += R-cran-gmodels
     SUBDIR += R-cran-gsubfn
     SUBDIR += R-cran-gtools
     SUBDIR += R-cran-iterators
@@ -1255,7 +1256,6 @@
     SUBDIR += libmaa
     SUBDIR += libmatheval
     SUBDIR += libmba
-    SUBDIR += libmcs
     SUBDIR += libmill
     SUBDIR += libmimedir
     SUBDIR += libmonetra
@@ -1482,6 +1482,7 @@
     SUBDIR += maven33
     SUBDIR += mcpp
     SUBDIR += mdds
+    SUBDIR += mdds0
     SUBDIR += memcheck
     SUBDIR += menhir
     SUBDIR += mercator
@@ -4306,8 +4307,8 @@
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
     SUBDIR += py-pyshapelib
-    SUBDIR += py-pytemplate
     SUBDIR += py-pyte
+    SUBDIR += py-pytemplate
     SUBDIR += py-pytest
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
@@ -5369,6 +5370,7 @@
     SUBDIR += ua_parser-core
     SUBDIR += uatraits
     SUBDIR += uboot-mkimage
+    SUBDIR += uclcmd
     SUBDIR += uclmmbase
     SUBDIR += ucommon
     SUBDIR += ucpp
