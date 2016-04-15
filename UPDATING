@@ -5,6 +5,71 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20160414:
+  AFFECTS: Users of www/tt-rss
+  AUTHOR: thierry@FreeBSD.org
+
+  Tiny Tiny RSS can use a database running on a separate server.
+  Previously, in this case, you had to set the option DBLOCAL; this option
+  has been removed and replaced by a settable run-time flag: now you
+  should set
+  ttrssd_local_db="NO"
+  in your /etc/rc.conf .
+
+
+20160414:
+  AFFECTS: Users of graphics/kipi-plugin-googledrive and graphics/kipi-plugin-picasaweb
+  AUTHOR: kde@FreeBSD.org
+
+  DigiKam and its related ports have been updated to 4.14.0, the latest
+  stable upstream release.
+
+  The graphics/kipi-plugin-googledrive and graphics/kipi-plugin-picasaweb
+  have both been merged into the new graphics/kipi-plugin-googleservices
+  following a move done upstream.
+
+  Those two ports must be removed, and graphics/kipi-plugin-googleservices
+  should be used instead.
+
+20160413:
+  AFFECTS: All users of www/node-devel
+  AUTHOR: bradleythughes@fastmail.fm
+
+  www/node-devel was outdated and has been removed. Upstream no longer
+  releases a development version. You can use the www/node port to get
+  node.js 5.x by running one of the following commands:
+
+  # pkg install node
+    or
+  # portmaster -o www/node www/node-devel
+    or
+  # portupgrade -o www/node www/node-devel
+
+20160412:
+  AFFECTS: Users of net/samba42 and net/samba/43
+  AUTHOR: timur@FreeBSD.org
+
+  Samba 4.2.x and 4.3.x ports have been updated to address
+  BadLock(http://badlock.org) vulnerability, as well as few other
+  discovered.
+
+  Please note that Samba 4.1.x and older versions are also affected by 
+  the issues fixed with this release but are not supported anymore. It is
+  strongly recommend to upgrade to a recent version at your earliest 
+  convenience.
+
+  The security updates include new smb.conf options and a number of
+  stricter behaviours to prevent Man in the Middle attacks. Between these
+  changes, compatibility with a large number of older software versions
+  has been lost in the default configuration.
+
+  For more information about the related behaviour changes and the
+  security issues please visit:
+
+     https://www.samba.org/samba/latest_news.html#4.4.2
+     https://www.samba.org/samba/history/samba-4.3.8.html
+     https://www.samba.org/samba/history/samba-4.2.11.html
+
 20160411:
   AFFECTS: Users if databases/influxdb
   AUTHOR: cheffo@freebsd-bg.org
