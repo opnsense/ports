@@ -7,11 +7,11 @@ MASTER_SITES=	http://download.bestpractical.com/pub/rt/release/
 PKGNAMESUFFIX=	44
 
 MAINTAINER=	mikael.urankar@gmail.com
-COMMENT=	RT is an industrial-grade ticketing system written in Perl
+COMMENT=	Industrial-grade ticketing system written in Perl
 
 LICENSE=	GPLv2
 
-CONFLICTS_INSTALL=	rt-3.8* rt40-4.0* rt42-4.2* brlcad-[0-9]*
+CONFLICTS_INSTALL=	rt40-4.0* rt42-4.2* brlcad-[0-9]*
 
 NO_ARCH=	yes
 
@@ -89,11 +89,11 @@ ORACLE_RUN_DEPENDS=		${ORACLE_DEPS}
 
 SQLITE_RUN_DEPENDS=		${SQLITE_DEPS}
 
-DEVELOPER_DESC=			Configure for Developers
+DEVELOPER_DESC=			Configure for developers
 DEVELOPER_RUN_DEPENDS=		${DEVELOPER_DEPS}
 DEVELOPER_CONFIGURE_ENABLE=	developer
 
-SMIME_DESC=			Enable Secure MIME support
+SMIME_DESC=			Secure MIME support
 SMIME_RUN_DEPENDS=		${SMIME_DEPS}
 SMIME_CONFIGURE_ENABLE=		smime
 
