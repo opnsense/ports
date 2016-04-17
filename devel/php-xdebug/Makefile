@@ -4,7 +4,7 @@
 PORTNAME=	xdebug
 PORTVERSION=	2.4.0
 CATEGORIES=	devel
-MASTER_SITES=	http://www.xdebug.org/files/
+MASTER_SITES=	https://xdebug.org/files/
 PKGNAMEPREFIX=	php-
 
 MAINTAINER=	freebsd-ports-maintainers@intermedix.com
