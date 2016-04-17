@@ -1534,6 +1534,7 @@
     SUBDIR += py-django-classy-tags
     SUBDIR += py-django-cms
     SUBDIR += py-django-configurations
+    SUBDIR += py-django-constance
     SUBDIR += py-django-contact-form
     SUBDIR += py-django-contrib-comments
     SUBDIR += py-django-cors-headers
@@ -1569,6 +1570,7 @@
     SUBDIR += py-django-pipeline
     SUBDIR += py-django-pipeline13
     SUBDIR += py-django-piston
+    SUBDIR += py-django-post_office
     SUBDIR += py-django-profiles
     SUBDIR += py-django-recaptcha
     SUBDIR += py-django-redis
