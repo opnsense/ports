@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ImageMagick
-DISTVERSION=	6.9.3-7
-PORTREVISION=	2
+DISTVERSION=	6.9.3-8
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics perl5
 MASTER_SITES=	http://www.imagemagick.org/download/ \
@@ -56,8 +56,8 @@ CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-Wl,-Y${LOCALBASE}/lib
 
 SAMPLE_FILES=	coder.xml colors.xml delegates.xml log.xml magic.xml mime.xml \
-		policy.xml quantization-table.xml thresholds.xml type-dejavu.xml \
-		type-ghostscript.xml type-windows.xml type.xml
+		policy.xml quantization-table.xml thresholds.xml type-apple.xml \
+		type-dejavu.xml type-ghostscript.xml type-windows.xml type.xml
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION:R}
 
