@@ -1,0 +1,11 @@
+--- Makefile.am.orig	2016-04-21 19:01:42 UTC
++++ Makefile.am
+@@ -1,7 +1,7 @@
+ 
+ EXTRA_DIST = autogen.sh TODO BUGS
+ 
+-SUBDIRS = src doc
++SUBDIRS = src
+ 
+ .PHONY: ChangeLog
+ 
