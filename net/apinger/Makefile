@@ -3,7 +3,7 @@
 
 PORTNAME=	apinger
 PORTVERSION=	0.6.1
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	net ipv6
 
 MAINTAINER=	franco@opnsense.org
@@ -12,13 +12,12 @@ COMMENT=	IP device monitoring tool
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	apinger
-GH_TAGNAME=	604f7dc
+GH_TAGNAME=	5bd970b
 
 LICENSE=	GPLv2
 
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	apinger
-SUB_FILES=	pkg-message
 PORTDOCS=	AUTHORS NEWS README
 
 MAKE_JOBS_UNSAFE=yes
