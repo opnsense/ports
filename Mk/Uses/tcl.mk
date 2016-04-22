@@ -210,9 +210,9 @@ TCL_PKG?=	${PORTNAME:C/^tcl(-?)//:C/(-?)tcl\$//}${PORTVERSION}
 PLIST_SUB+=	TCL_PKG=${TCL_PKG}
 CONFIGURE_ARGS+=--exec-prefix=${PREFIX} \
 		--with-tcl=${TCL_LIBDIR} \
-		--with-tcl-includes=${TCL_INCLUDEDIR}
+		--with-tclinclude=${TCL_INCLUDEDIR}
 .  if ${_TCLTK_PORT} == "tk"
-CONFIGURE_ARGS+=--with-tk=${TK_LIBDIR}
+CONFIGURE_ARGS+=--with-tk=${TK_LIBDIR} --with-tkinclude=${TK_INCLUDEDIR}
 .  endif
 .endif
 
