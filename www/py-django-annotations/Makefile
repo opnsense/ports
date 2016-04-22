@@ -2,6 +2,7 @@
 
 PORTNAME=	django-annotations
 PORTVERSION=	0.0.0.2016041401
+PORTREVISION=	1
 CATEGORIES=	www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -22,9 +23,7 @@ GH_ACCOUNT=	TheDataShed
 GH_TAGNAME=	cdb04b4
 
 NO_ARCH=	yes
-PLIST_FILES=	"@sample etc/annotations/default/__init__.py.example" \
-		"@dir etc/annotations" \
-		"@dir etc/annotations/default"
+PLIST_FILES=	"@sample etc/annotations/default/__init__.py.sample"
 
 .include <bsd.port.pre.mk>
 
@@ -38,6 +37,6 @@ post-patch:
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/annotations/default
-	${INSTALL_DATA} ${WRKSRC}/annotator/settings/base.py ${STAGEDIR}${PREFIX}/etc/annotations/default/__init__.py.example
+	${INSTALL_DATA} ${WRKSRC}/annotator/settings/base.py ${STAGEDIR}${PREFIX}/etc/annotations/default/__init__.py.sample
 
 .include <bsd.port.post.mk>
