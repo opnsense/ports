@@ -270,6 +270,7 @@
     SUBDIR += clinfo
     SUBDIR += clisp-hyperspec
     SUBDIR += clojure-cider
+    SUBDIR += cloudabi
     SUBDIR += cloudabi-binutils-aarch64
     SUBDIR += cloudabi-binutils-x86_64
     SUBDIR += cloudabi-toolchain
@@ -456,6 +457,7 @@
     SUBDIR += elixir-inflex
     SUBDIR += elixir-lager_logger
     SUBDIR += elixir-msgpax
+    SUBDIR += elixir-nadia
     SUBDIR += elixir-paratize
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
@@ -463,7 +465,6 @@
     SUBDIR += elixir-red_black_tree
     SUBDIR += elixir-sorted_set
     SUBDIR += elixir-timex
-    SUBDIR += elixir-timex-interval
     SUBDIR += elixir-tzdata
     SUBDIR += embb
     SUBDIR += epl.el
@@ -3288,7 +3289,6 @@
     SUBDIR += p5-Test-Singleton
     SUBDIR += p5-Test-Spec
     SUBDIR += p5-Test-Spelling
-    SUBDIR += p5-Test-Stream
     SUBDIR += p5-Test-Strict
     SUBDIR += p5-Test-SubCalls
     SUBDIR += p5-Test-Synopsis
@@ -4843,6 +4843,7 @@
     SUBDIR += rubygem-configstruct
     SUBDIR += rubygem-configuration
     SUBDIR += rubygem-cool.io
+    SUBDIR += rubygem-corefines
     SUBDIR += rubygem-crack
     SUBDIR += rubygem-cri
     SUBDIR += rubygem-cucumber
@@ -4872,7 +4873,6 @@
     SUBDIR += rubygem-directory_watcher
     SUBDIR += rubygem-ditz
     SUBDIR += rubygem-docile
-    SUBDIR += rubygem-dotenv-deployment
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-dynflow
     SUBDIR += rubygem-edavis10-object_daddy
