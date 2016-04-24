@@ -4407,6 +4407,7 @@
     SUBDIR += py-sh
     SUBDIR += py-shapely
     SUBDIR += py-should_dsl
+    SUBDIR += py-simpleeval
     SUBDIR += py-simplegeneric
     SUBDIR += py-simplejson
     SUBDIR += py-simpleparse
@@ -4771,6 +4772,7 @@
     SUBDIR += rubygem-apipie-bindings
     SUBDIR += rubygem-apipie-params
     SUBDIR += rubygem-app_config
+    SUBDIR += rubygem-arr-pm
     SUBDIR += rubygem-arrayfields
     SUBDIR += rubygem-ascii85
     SUBDIR += rubygem-asetus
@@ -4808,6 +4810,7 @@
     SUBDIR += rubygem-builder
     SUBDIR += rubygem-builder32
     SUBDIR += rubygem-byebug
+    SUBDIR += rubygem-cabin
     SUBDIR += rubygem-caesars
     SUBDIR += rubygem-cairo-gobject
     SUBDIR += rubygem-capybara
