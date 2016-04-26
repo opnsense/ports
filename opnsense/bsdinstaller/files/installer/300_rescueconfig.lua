@@ -95,22 +95,8 @@ return {
 		if POSIX.stat("/tmp/hdrescue/conf/dhcpleases.tgz", "type") == "regular" then
 			cmds:add("${root}bin/cp /tmp/hdrescue/conf/dhcpleases.tgz /conf");
 		end
-	elseif POSIX.stat("/tmp/hdrescue/cf/conf", "type") == "directory" then
-		-- <= 15.1.7 /cf/conf layout backwards compatibility
-		-- (breaks above because /conf is an absolute link
-		-- escaping /tmp/hdrescue in the process...)
-		cmds:add("${root}bin/cp /tmp/hdrescue/cf/conf/config.xml /conf/config.xml");
-		if POSIX.stat("/tmp/hdrescue/cf/conf/backup", "type") == "directory" then
-			cmds:add("${root}bin/cp -r /tmp/hdrescue/cf/conf/backup /conf");
-		end
-		if POSIX.stat("/tmp/hdrescue/cf/conf/sshd", "type") == "directory" then
-			cmds:add("${root}bin/cp -r /tmp/hdrescue/cf/conf/sshd /conf");
-		end
-		if POSIX.stat("/tmp/hdrescue/cf/conf/rrd.tgz", "type") == "regular" then
-			cmds:add("${root}bin/cp /tmp/hdrescue/cf/conf/rrd.tgz /conf");
-		end
-		if POSIX.stat("/tmp/hdrescue/cf/conf/dhcpleases.tgz", "type") == "regular" then
-			cmds:add("${root}bin/cp /tmp/hdrescue/cf/conf/dhcpleases.tgz /conf");
+		if POSIX.stat("/tmp/hdrescue/conf/netflow.tgz", "type") == "regular" then
+			cmds:add("${root}bin/cp /tmp/hdrescue/conf/netflow.tgz /conf");
 		end
 	else
 		-- XXX should warn that no config could be imported
