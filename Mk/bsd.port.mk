@@ -4328,6 +4328,17 @@ ${deptype:tl}-depends:
 _UNIFIED_DEPENDS=${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS} ${RUN_DEPENDS} ${TEST_DEPENDS}
 _DEPEND_SPECIALS=	${_UNIFIED_DEPENDS:M*\:*\:*:C,^[^:]*:([^:]*):.*$,\1,}
 
+.for d in ${_UNIFIED_DEPENDS:M*\:/*}
+# Fight .for variable interpolation differently for each version of make...
+.if defined(.PARSEDIR)
+_PORTSDIR_STR=	$${PORTSDIR}/
+DEV_WARNING+=	"It looks like the ${d} depends line has an absolute port origin, make sure to remove \$${_PORTSDIR_STR} from it."
+.else
+_PORTSDIR_STR=	$$$${PORTSDIR}/
+DEV_WARNING+=	"It looks like the ${d} depends line has an absolute port origin, make sure to remove \$${_PORTSDIR_STR} from it."
+.endif
+.endfor
+
 all-depends-list:
 	@${ALL-DEPENDS-LIST}
 
@@ -5613,7 +5624,7 @@ show-dev-warnings:
 	@${ECHO_MSG} "/!\\ ${PKGNAME}: Makefile warnings, please consider fixing /!\\"
 	@${ECHO_MSG}
 .for m in ${DEV_WARNING}
-	@${ECHO_MSG} "${m}"
+	@${ECHO_MSG} ${m}
 .endfor
 	@${ECHO_MSG}
 .if defined(DEV_WARNING_FATAL)
