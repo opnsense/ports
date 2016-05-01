@@ -1206,6 +1206,7 @@
     SUBDIR += libfsntfs
     SUBDIR += libftdi
     SUBDIR += libftdi1
+    SUBDIR += libfwnt
     SUBDIR += libfwsi
     SUBDIR += libg19
     SUBDIR += libg19draw
@@ -1416,6 +1417,7 @@
     SUBDIR += lldb38
     SUBDIR += llnextgen
     SUBDIR += llvm-cheri
+    SUBDIR += llvm-cheri128
     SUBDIR += llvm-devel
     SUBDIR += llvm33
     SUBDIR += llvm34
