@@ -1,8 +1,8 @@
 # Created by: Euan Thoms <euan@potensol.com>
 # $FreeBSD$
 
-PORTNAME=		sope
-PORTVERSION=		2.3.8
+PORTNAME=		sope2
+PORTVERSION=		2.3.10
 CATEGORIES=		devel gnustep
 MASTER_SITES=		http://www.sogo.nu/files/downloads/SOGo/Sources/
 DISTNAME=		SOPE-${PORTVERSION}

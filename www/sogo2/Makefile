@@ -1,9 +1,8 @@
 # Created by: Euan Thoms <euan@potensol.com>
 # $FreeBSD$
 
-PORTNAME=		sogo
-PORTVERSION=		2.3.8
-PORTREVISION=		1
+PORTNAME=		sogo2
+PORTVERSION=		2.3.10
 CATEGORIES=		www gnustep
 MASTER_SITES=		http://www.sogo.nu/files/downloads/SOGo/Sources/
 DISTNAME=		SOGo-${PORTVERSION}
@@ -15,7 +14,7 @@ LICENSE=		GPLv2
 
 LIB_DEPENDS=		libmemcached.so:databases/libmemcached \
 			libcurl.so:ftp/curl \
-			libDOM.so:devel/sope
+			libDOM.so:devel/sope2
 
 OPTIONS_DEFINE=		ACTIVESYNC
 OPTIONS_SUB=		yes
@@ -31,13 +30,13 @@ USES=			gnustep objc
 USE_GNUSTEP=		base build
 USE_LDCONFIG=		${GNUSTEP_LOCAL_LIBRARIES}/sogo
 
-CONFLICTS?=		sogo-activesync-[0-9]*
+CONFLICTS?=		sogo2-activesync-[0-9]* sogo3-activesync-[0-9]*
 
 USE_RC_SUBR=		sogod
 
 SUB_LIST+=		GNUSTEP_LOCAL_TOOLS=${GNUSTEP_LOCAL_TOOLS} \
 			GNUSTEP_MAKEFILES=${GNUSTEP_MAKEFILES}
-
+ETCDIR=			${PREFIX}/etc/${PORTNAME:S/2//}
 CONFIGURE_ARGS=		--disable-debug --enable-strip
 
 post-patch:

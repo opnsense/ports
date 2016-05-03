@@ -5269,7 +5269,7 @@
     SUBDIR += smokeqt
     SUBDIR += smv
     SUBDIR += soapui
-    SUBDIR += sope
+    SUBDIR += sope2
     SUBDIR += sope3
     SUBDIR += sourcenav
     SUBDIR += sparc64-binutils
