@@ -1,8 +1,8 @@
 # Created by: Franco Fichtner <franco@opnsense.org>
 # $FreeBSD$
 
-CATEGORIES=	net
+CATEGORIES=	security
 
-MASTERDIR=	${.CURDIR}/../../net/py-netaddr
+MASTERDIR=	${.CURDIR}/../../security/py-acme-tiny
 
 .include "${MASTERDIR}/Makefile"
