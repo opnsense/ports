@@ -309,6 +309,7 @@
     SUBDIR += cppunit
     SUBDIR += cproto
     SUBDIR += cpuflags
+    SUBDIR += cram
     SUBDIR += creduce
     SUBDIR += critcl
     SUBDIR += cs-eric6
@@ -516,6 +517,7 @@
     SUBDIR += eventxx
     SUBDIR += evolution-gconf-tools
     SUBDIR += exercisix
+    SUBDIR += extra-cmake-modules
     SUBDIR += f77flow
     SUBDIR += fam
     SUBDIR += fastcrc
@@ -1617,6 +1619,7 @@
     SUBDIR += opencl
     SUBDIR += opencvs
     SUBDIR += opengrok
+    SUBDIR += openmp
     SUBDIR += openocd
     SUBDIR += openvex
     SUBDIR += openwince-include
@@ -2027,6 +2030,7 @@
     SUBDIR += p5-Data-RoundRobin
     SUBDIR += p5-Data-Rx
     SUBDIR += p5-Data-SExpression
+    SUBDIR += p5-Data-Sah-Normalize
     SUBDIR += p5-Data-Section
     SUBDIR += p5-Data-Section-Simple
     SUBDIR += p5-Data-Serializable
@@ -4296,6 +4300,7 @@
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub
     SUBDIR += py-pygpx
+    SUBDIR += py-pyhashxx
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
@@ -4331,6 +4336,7 @@
     SUBDIR += py-pytimeparse
     SUBDIR += py-pytools
     SUBDIR += py-pytrie
+    SUBDIR += py-pytvmaze
     SUBDIR += py-pytz
     SUBDIR += py-pyutil
     SUBDIR += py-pyvisa
@@ -4430,6 +4436,7 @@
     SUBDIR += py-statsd
     SUBDIR += py-stdnum
     SUBDIR += py-stevedore
+    SUBDIR += py-structlog
     SUBDIR += py-stsci.distutils
     SUBDIR += py-subversion
     SUBDIR += py-subvertpy
@@ -4906,6 +4913,7 @@
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-ffi-yajl
     SUBDIR += rubygem-file-tail
+    SUBDIR += rubygem-filesize
     SUBDIR += rubygem-flexmock
     SUBDIR += rubygem-fluent-logger
     SUBDIR += rubygem-fog
@@ -5001,6 +5009,7 @@
     SUBDIR += rubygem-message_bus
     SUBDIR += rubygem-metaclass
     SUBDIR += rubygem-metaid
+    SUBDIR += rubygem-metasm
     SUBDIR += rubygem-method_source
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-minitest4
@@ -5044,6 +5053,7 @@
     SUBDIR += rubygem-paint
     SUBDIR += rubygem-paperclip
     SUBDIR += rubygem-parser
+    SUBDIR += rubygem-patch_finder
     SUBDIR += rubygem-pathutil
     SUBDIR += rubygem-piston
     SUBDIR += rubygem-pkg-config
@@ -5093,6 +5103,7 @@
     SUBDIR += rubygem-require_all
     SUBDIR += rubygem-retryable
     SUBDIR += rubygem-rgl
+    SUBDIR += rubygem-rice
     SUBDIR += rubygem-rodzilla
     SUBDIR += rubygem-rotp
     SUBDIR += rubygem-rr

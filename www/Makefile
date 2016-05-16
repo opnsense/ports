@@ -1636,6 +1636,7 @@
     SUBDIR += py-goobook
     SUBDIR += py-google
     SUBDIR += py-google-api-python-client
+    SUBDIR += py-graphite-api
     SUBDIR += py-graphite-web
     SUBDIR += py-grequests
     SUBDIR += py-gunicorn
@@ -1745,6 +1746,7 @@
     SUBDIR += py-pyramid
     SUBDIR += py-pyramid_rpc
     SUBDIR += py-pysearch
+    SUBDIR += py-pySmartDL
     SUBDIR += py-python-digitalocean
     SUBDIR += py-pywebdav
     SUBDIR += py-pywikibot
@@ -1757,6 +1759,7 @@
     SUBDIR += py-recaptcha
     SUBDIR += py-requestbuilder
     SUBDIR += py-requests
+    SUBDIR += py-requests-futures
     SUBDIR += py-requests-oauth-hook
     SUBDIR += py-requests-oauthlib
     SUBDIR += py-requests-toolbelt
@@ -1831,8 +1834,16 @@
     SUBDIR += redmine
     SUBDIR += redmine-backlogs
     SUBDIR += redmine-basecamp
+    SUBDIR += redmine-default_assign
+    SUBDIR += redmine-graphs
     SUBDIR += redmine-http-auth
+    SUBDIR += redmine-issue_templates
+    SUBDIR += redmine-knowledgebase
+    SUBDIR += redmine-qa_contact
+    SUBDIR += redmine-redcarpet_formatter
     SUBDIR += redmine-sidebar_hide
+    SUBDIR += redmine-stuff_to_do
+    SUBDIR += redmine-wiki_notes
     SUBDIR += rejik
     SUBDIR += rekonq
     SUBDIR += reportmagic
@@ -2245,6 +2256,7 @@
     SUBDIR += uzbl
     SUBDIR += validator
     SUBDIR += varnish-libvmod-header
+    SUBDIR += varnish-libvmod-maxminddb
     SUBDIR += varnish-libvmod-saintmode
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
