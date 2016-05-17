@@ -1,3 +1,4 @@
+# Created by: Chuck Robey <chuckr@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	mosml
@@ -35,6 +36,7 @@ OPTIONS_DEFINE=	DOCS EXAMPLES
 .include <bsd.port.pre.mk>
 
 post-patch:
+	${REINPLACE_CMD} -e '/^CC=/s/^/#/' ${WRKSRC}/Makefile.inc
 	${REINPLACE_CMD} 's/make /$$(MAKE) /' ${WRKSRC}/doc/Makefile \
 		${WRKSRC}/doc/helpsigs/Makefile
 

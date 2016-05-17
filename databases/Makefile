@@ -648,12 +648,9 @@
     SUBDIR += postgresql-relay
     SUBDIR += postgresql-repmgr
     SUBDIR += postgresql90-client
-    SUBDIR += postgresql90-contrib
-    SUBDIR += postgresql90-docs
     SUBDIR += postgresql90-pgtcl
     SUBDIR += postgresql90-plperl
     SUBDIR += postgresql90-plpython
-    SUBDIR += postgresql90-pltcl
     SUBDIR += postgresql90-server
     SUBDIR += postgresql91-client
     SUBDIR += postgresql91-contrib
