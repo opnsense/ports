@@ -881,6 +881,8 @@
     SUBDIR += py-wand
     SUBDIR += py-webcolors
     SUBDIR += py3-cairo
+    SUBDIR += py3-pillow
+    SUBDIR += py3-pygraphviz
     SUBDIR += pygts
     SUBDIR += pymorph
     SUBDIR += pysvg
