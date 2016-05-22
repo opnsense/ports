@@ -2050,6 +2050,7 @@
     SUBDIR += p5-Data-TreeDumper
     SUBDIR += p5-Data-TreeDumper-Renderer-GTK
     SUBDIR += p5-Data-Types
+    SUBDIR += p5-Data-URIEncode
     SUBDIR += p5-Data-UUID
     SUBDIR += p5-Data-Uniqid
     SUBDIR += p5-Data-Util
@@ -4014,6 +4015,7 @@
     SUBDIR += py-clonedigger
     SUBDIR += py-cloudpickle
     SUBDIR += py-cmdln
+    SUBDIR += py-codecov
     SUBDIR += py-codegen
     SUBDIR += py-cog
     SUBDIR += py-coil
