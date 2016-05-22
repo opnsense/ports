@@ -3,28 +3,24 @@
 
 PORTNAME=	apinger
 PORTVERSION=	0.6.1
-PORTREVISION=	9
+PORTREVISION=	3
 CATEGORIES=	net ipv6
+MASTER_SITES=	http://freebsdcluster.org/~mich/software/ \
+		http://www.bnet.pl/~jajcus/apinger/
 
-MAINTAINER=	franco@opnsense.org
+MAINTAINER=	mich@FreeBSD.org
 COMMENT=	IP device monitoring tool
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
-GH_PROJECT=	apinger
-GH_TAGNAME=	29464ce
 
 LICENSE=	GPLv2
 
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	apinger
+SUB_FILES=	pkg-message
 PORTDOCS=	AUTHORS NEWS README
-
-MAKE_JOBS_UNSAFE=yes
 
 OPTIONS_DEFINE=	IPV6 DOCS
 
-USES=		autoreconf bison
+USES=		bison
 
 IPV6_CONFIGURE_ENABLE=	ipv6
 
