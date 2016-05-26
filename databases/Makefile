@@ -21,6 +21,7 @@
     SUBDIR += apq-mysql
     SUBDIR += apq-odbc
     SUBDIR += apq-pgsql
+    SUBDIR += ateam_mysql_ldap_auth
     SUBDIR += autobackupmysql
     SUBDIR += bbdb
     SUBDIR += beansdb
@@ -572,6 +573,7 @@
     SUBDIR += pgpool-II-30
     SUBDIR += pgpool-II-33
     SUBDIR += pgpoolAdmin
+    SUBDIR += pgreplay
     SUBDIR += pgrouting
     SUBDIR += pgsphere
     SUBDIR += pgtcl
