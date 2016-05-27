@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	apinger
-PORTVERSION=	0.6.1
-PORTREVISION=	12
+PORTVERSION=	0.7
 CATEGORIES=	net ipv6
 
 MAINTAINER=	franco@opnsense.org
@@ -12,7 +11,6 @@ COMMENT=	IP device monitoring tool
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	apinger
-GH_TAGNAME=	8adb979
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
