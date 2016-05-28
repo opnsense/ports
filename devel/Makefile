@@ -308,6 +308,7 @@
     SUBDIR += cppi
     SUBDIR += cpptest
     SUBDIR += cppunit
+    SUBDIR += cpputest
     SUBDIR += cproto
     SUBDIR += cpuflags
     SUBDIR += cram
@@ -1481,7 +1482,6 @@
     SUBDIR += makedepend
     SUBDIR += mate-common
     SUBDIR += matreshka
-    SUBDIR += maven-ant-tasks
     SUBDIR += maven-wrapper
     SUBDIR += maven3
     SUBDIR += maven31
@@ -1619,6 +1619,7 @@
     SUBDIR += open-usp-tukubai
     SUBDIR += opencl
     SUBDIR += opencvs
+    SUBDIR += opendht
     SUBDIR += opengrok
     SUBDIR += openmp
     SUBDIR += openocd
