@@ -37,6 +37,7 @@
     SUBDIR += dnscrypt-wrapper
     SUBDIR += dnsdbck
     SUBDIR += dnsdist
+    SUBDIR += dnsenum
     SUBDIR += dnsflood
     SUBDIR += dnshistory
     SUBDIR += dnsjava
@@ -45,6 +46,7 @@
     SUBDIR += dnsmax-perl
     SUBDIR += dnsperf
     SUBDIR += dnsproxy
+    SUBDIR += dnsrecon
     SUBDIR += dnsreflector
     SUBDIR += dnstable
     SUBDIR += dnstop
