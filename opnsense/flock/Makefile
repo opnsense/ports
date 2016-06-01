@@ -14,7 +14,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf:autopoint libtool pkgconfig
+USES=		autoreconf:autopoint gettext libtool pkgconfig
 
 PLIST_FILES=	bin/flock man/man1/flock.1.gz
 
