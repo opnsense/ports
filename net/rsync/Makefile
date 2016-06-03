@@ -4,7 +4,7 @@
 PORTNAME=	rsync
 PORTVERSION=	3.1.2
 CATEGORIES=	net ipv6
-PORTREVISION=	3
+PORTREVISION=	5
 MASTER_SITES=	http://rsync.samba.org/ftp/rsync/ \
 		ftp://ftp.samba.org/pub/rsync/ \
 		ftp://ftp.sunet.se/pub/unix/admin/rsync/  \
@@ -73,7 +73,8 @@ ICONV_CONFIGURE_ENABLE=	iconv iconv-open
 POPT_PORT_LIB_DEPENDS=	libpopt.so:devel/popt
 POPT_PORT_CPPFLAGS=	-I${LOCALBASE}/include
 POPT_PORT_LDFLAGS=	-L${LOCALBASE}/lib
-POPT_CONFIGURE_WITH=	included-popt
+
+POPT_PORT_CONFIGURE_WITH_OFF=	included-popt
 
 SSH_CONFIGURE_ON=	--with-rsh=ssh
 SSH_CONFIGURE_OFF=	--with-rsh=rsh
