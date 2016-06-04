@@ -1,4 +1,4 @@
-# Created by: Mark Felder <feld@FreeBSD.org>
+# Created by: Alban MAIRE <a.maire@s2mi.fr>
 # $FreeBSD$
 
 PORTNAME=	unifi5
@@ -19,7 +19,7 @@ RUN_DEPENDS=	mongodb>0:databases/mongodb \
 BUILD=		3060
 
 SUB_LIST+=	USERS=${USERS} GROUPS=${GROUPS} JAVASHAREDIR=${JAVASHAREDIR}
-PLIST_SUB+=	BUILDVERSION="${PORTVERSION:S/./_/g}_${BUILD}"
+PLIST_SUB+=	BUILDVERSION="${PORTVERSION}.${BUILD}"
 
 USES=		cpe zip
 CPE_VENDOR=	ubnt
