@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake tar:bzip2
 
+RUN_DEPENDS=	usb_modeswitch-data>=0:opnsense/usb_modeswitch-data
+
 pre-patch:
 		${REINPLACE_CMD} 's|gcc|${CC}|' ${WRKSRC}/Makefile
 		${REINPLACE_CMD} 's|`pkg-config --libs --cflags libusb-1.0`|-lusb|' ${WRKSRC}/Makefile
