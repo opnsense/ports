@@ -1,4 +1,4 @@
-# Created by: netch@netch.kiev.ua
+# Created by: Andrey Zonov <andrey@zonov.org>
 # $FreeBSD$
 
 PORTNAME=	flock
@@ -14,7 +14,12 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf:autopoint gettext libtool pkgconfig
+USES=		autoreconf:autopoint libtool pkgconfig
+
+OPTIONS_DEFINE=	NLS
+
+NLS_CONFIGURE_OFF=--disable-nls
+NLS_USES=	gettext
 
 PLIST_FILES=	bin/flock man/man1/flock.1.gz
 
@@ -23,7 +28,7 @@ do-build:
 	${MAKE} -C ${WRKSRC} flock
 
 do-install:
-	${INSTALL} ${WRKSRC}/flock ${STAGEDIR}${PREFIX}/bin
+	${INSTALL_PROGRAM} ${WRKSRC}/flock ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_MAN} ${WRKSRC}/sys-utils/flock.1 \
 	    ${STAGEDIR}${MANPREFIX}/man/man1
 
