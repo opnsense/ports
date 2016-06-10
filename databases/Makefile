@@ -653,6 +653,7 @@
     SUBDIR += postgresql-plv8js
     SUBDIR += postgresql-relay
     SUBDIR += postgresql-repmgr
+    SUBDIR += postgresql-repmgr2
     SUBDIR += postgresql90-client
     SUBDIR += postgresql90-pgtcl
     SUBDIR += postgresql90-plperl
@@ -707,7 +708,9 @@
     SUBDIR += proftpd-mod_sql_tds
     SUBDIR += puppetdb
     SUBDIR += puppetdb-terminus
+    SUBDIR += puppetdb-terminus3
     SUBDIR += puppetdb-terminus4
+    SUBDIR += puppetdb3
     SUBDIR += puppetdb4
     SUBDIR += pure-sql3
     SUBDIR += puredb
