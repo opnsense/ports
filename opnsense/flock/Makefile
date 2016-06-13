@@ -14,12 +14,12 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf:autopoint libtool pkgconfig
+USES=		libtool pkgconfig
 
 OPTIONS_DEFINE=	NLS
 
 NLS_CONFIGURE_OFF=--disable-nls
-NLS_USES=	gettext
+NLS_USES=	autoreconf:autopoint gettext
 
 PLIST_FILES=	bin/flock man/man1/flock.1.gz
 
