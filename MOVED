@@ -4507,7 +4507,6 @@ editors/kate-plugins||2013-07-26|Has expired: Depends on Qt 3.x
 editors/kile||2013-07-26|Has expired: Depends on Qt 3.x
 editors/klat||2013-07-26|Has expired: Depends on Qt 3.x
 editors/kxmleditor||2013-07-26|Has expired: Depends on Qt 3.x
-editors/pdfedit||2013-07-26|Has expired: Depends on Qt 3.x
 editors/rospell||2013-07-26|Has expired: Depends on Qt 3.x
 finance/eqonomize-kde3||2013-07-26|Has expired: Depends on Qt 3.x
 finance/kexchange||2013-07-26|Has expired: Depends on Qt 3.x
@@ -8339,3 +8338,4 @@ net/isc-dhcp41-server|net/isc-dhcp43-server|2016-06-01|Has expired: isc-dhcp 4.1
 lang/ruby20||2016-06-01|Has expired: Upstream support ended
 java/rubygem-rjb||2016-06-02|Has expired: fails to create JVM
 devel/rubygem-atoulme-antwrap||2016-06-02|Removed, depends on java/rubygem-rjb
+net/xmlrpc-c-devel||2016-06-11|Retired, older than net/xmlrpc-c
