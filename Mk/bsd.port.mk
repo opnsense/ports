@@ -3573,7 +3573,7 @@ check-umask:
 
 .if !target(install-mtree)
 install-mtree:
-	@${DO_NADA}
+		@${DO_NADA}
 .endif
 
 .if !target(install-ldconfig-file)
@@ -5392,7 +5392,7 @@ _PATCH_SEQ=		050:ask-license 100:patch-message 150:patch-depends \
 				${_OPTIONS_patch} ${_USES_patch}
 _CONFIGURE_DEP=	patch
 _CONFIGURE_SEQ=	150:build-depends 151:lib-depends 200:configure-message \
-				300:pre-configure 450:pre-configure-script 460:run-autotools \
+				300:pre-configure 450:pre-configure-script \
 				490:run-autotools-fixup 500:do-configure 700:post-configure \
 				850:post-configure-script \
 				${_OPTIONS_configure} ${_USES_configure}
