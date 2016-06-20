@@ -1862,7 +1862,6 @@ CO_ENV+=	NO_PREFIX_RMDIR=0
 
 
 METADIR=		${WRKDIR}/.metadir
-MANIFESTF=		${METADIR}/+MANIFEST
 
 PKGPREINSTALL?=		${PKGDIR}/pkg-pre-install
 PKGPOSTINSTALL?=	${PKGDIR}/pkg-post-install
@@ -2057,9 +2056,6 @@ FETCH_ENV?=		SSL_NO_VERIFY_PEER=1 SSL_NO_VERIFY_HOSTNAME=1
 FETCH_BINARY?=	/usr/bin/fetch
 FETCH_ARGS?=	-Fpr
 FETCH_REGET?=	1
-.if !defined(DISABLE_SIZE)
-FETCH_BEFORE_ARGS+=	$${CKSIZE:+-S $$CKSIZE}
-.endif
 FETCH_CMD?=		${FETCH_BINARY} ${FETCH_ARGS}
 
 .if defined(RANDOMIZE_MASTER_SITES)
@@ -2206,6 +2202,12 @@ _S_TEMP=	${_S:S/^${_S:C@/?:[^/:]+$@/@}//:S/^://}
 .	if !empty(_S_TEMP)
 .		for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
+.			if ${_G_TEMP:C/[a-zA-Z0-9_]//g}
+check-makevars::
+				@${ECHO_MSG} "The ${_S} MASTER_SITES line has"
+				@${ECHO_MSG} "a group with invalid characters, only use [a-zA-Z0-9_]"
+				@${FALSE}
+.			endif
 .			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "Makefile error: the words all, ALL and default are reserved and cannot be"
@@ -2223,6 +2225,12 @@ _S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//:S/^://}
 .	if !empty(_S_TEMP)
 .		for _group in ${_S_TEMP:S/,/ /g}
 _G_TEMP=	${_group}
+.			if ${_G_TEMP:C/[a-zA-Z0-9_]//g}
+check-makevars::
+				@${ECHO_MSG} "The ${_S} PATCH_SITES line has"
+				@${ECHO_MSG} "a group with invalid characters, only use [a-zA-Z0-9_]"
+				@${FALSE}
+.			endif
 .			if ${_G_TEMP} == all || ${_G_TEMP} == ALL || ${_G_TEMP} == default
 check-makevars::
 				@${ECHO_MSG} "The words all, ALL and default are reserved and cannot be"
@@ -2468,87 +2476,31 @@ MASTER_SORT_AWK+=	/${srt:S|/|\\/|g}/ { good["${srt:S|\\|\\\\|g}"] = good["${srt:
 .endfor
 MASTER_SORT_AWK+=	{ rest = rest " " $$0; } END { n=split(gl, gla); for(i=1;i<=n;i++) { print good[gla[i]]; } print rest; }
 
-SORTED_MASTER_SITES_DEFAULT_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-DEFAULT
-SORTED_PATCH_SITES_DEFAULT_CMD=		cd ${.CURDIR} && ${MAKE} patch-sites-DEFAULT
-SORTED_MASTER_SITES_ALL_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-ALL
-SORTED_PATCH_SITES_ALL_CMD=	cd ${.CURDIR} && ${MAKE} patch-sites-ALL
-
-# has similar effect to old targets, i.e., access only {MASTER,PATCH}_SITES, not working with the new _n variables
-master-sites-DEFAULT:
-	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_MASTER_SITES_DEFAULT}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
-patch-sites-DEFAULT:
-	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_PATCH_SITES_DEFAULT}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
-
-#
-# Sort the master site list according to the patterns in MASTER_SORT
-# according to grouping rules (:something)
-#
-# for use in the fetch targets
-.for _S in ${MASTER_SITES}
-_S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/^://:S/,/ /g}
-.			if !target(master-sites-${_group})
-SORTED_MASTER_SITES_${_group}_CMD=	cd ${.CURDIR} && ${MAKE} master-sites-${_group}
-master-sites-${_group}:
-	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_MASTER_SITES_${_group}}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
-.			endif
-.		endfor
-.	endif
-.endfor
-.for _S in ${PATCH_SITES}
-_S_TEMP=	${_S:S/^${_S:C@/:[^/:]+$@/@}//}
-.	if !empty(_S_TEMP)
-.		for _group in ${_S_TEMP:S/^://:S/,/ /g}
-.			if !target(patch-sites-${_group})
-SORTED_PATCH_SITES_${_group}_CMD=	cd ${.CURDIR} && ${MAKE} patch-sites-${_group}
-patch-sites-${_group}:
-	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_PATCH_SITES_${_group}}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
-.			endif
-.		endfor
-.	endif
-.endfor
-
 #
 # Hackery to enable simple fetch targets with several dynamic MASTER_SITES
 #
-_MASTER_SITES_ENV=	_MASTER_SITES_DEFAULT="${_MASTER_SITES_DEFAULT}"
+_MASTER_SITES_ENV=	_MASTER_SITES_DEFAULT=${_MASTER_SITES_DEFAULT:Q}
 .for _F in ${DISTFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^:]+$//}//:S/^://}
 .	if !empty(_F_TEMP)
 .		for _group in ${_F_TEMP:S/,/ /g}
 .			if defined(_MASTER_SITES_${_group})
-_MASTER_SITES_ENV+=	_MASTER_SITES_${_group}="${_MASTER_SITES_${_group}}"
+_MASTER_SITES_ENV+=	_MASTER_SITES_${_group}=${_MASTER_SITES_${_group}:Q}
 .			endif
 .		endfor
 .	endif
 .endfor
-_PATCH_SITES_ENV=	_PATCH_SITES_DEFAULT="${_PATCH_SITES_DEFAULT}"
+_PATCH_SITES_ENV=	_PATCH_SITES_DEFAULT=${_PATCH_SITES_DEFAULT:Q}
 .for _F in ${PATCHFILES}
 _F_TEMP=	${_F:S/^${_F:C/:[^-:][^:]*$//}//:S/^://}
 .	if !empty(_F_TEMP)
 .		for _group in ${_F_TEMP:S/,/ /g}
 .			if defined(_PATCH_SITES_${_group})
-_PATCH_SITES_ENV+=	_PATCH_SITES_${_group}="${_PATCH_SITES_${_group}}"
+_PATCH_SITES_ENV+=	_PATCH_SITES_${_group}=${_PATCH_SITES_${_group}:Q}
 .			endif
 .		endfor
 .	endif
 .endfor
-
-master-sites-ALL:
-	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_MASTER_SITES_ALL}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
-patch-sites-ALL:
-	@${ECHO_CMD} ${_MASTER_SITE_OVERRIDE} `${ECHO_CMD} '${_PATCH_SITES_ALL}' | ${AWK} '${MASTER_SORT_AWK:S|\\|\\\\|g}'` ${_MASTER_SITE_BACKUP}
-
-# synonyms, mnemonics
-master-sites-all: master-sites-ALL
-patch-sites-all: patch-sites-ALL
-master-sites-default: master-sites-DEFAULT
-patch-sites-default: patch-sites-DEFAULT
-
-# compatibility with old behavior
-master-sites: master-sites-DEFAULT
-patch-sites: patch-sites-DEFAULT
 
 CKSUMFILES=		${ALLFILES}
 
@@ -3021,13 +2973,13 @@ options-message:
 	@${ECHO_MSG} "===>  Found saved configuration for ${_OPTIONS_READ}"
 .endif
 
-${PKG_DBDIR} ${PREFIX} ${WRKDIR} ${EXTRACT_WRKDIR} ${WRKSRC}:
+${PKG_DBDIR} ${PREFIX} ${WRKDIR} ${EXTRACT_WRKDIR}:
 	@${MKDIR} ${.TARGET}
 
 # Warn user about deprecated packages.  Advisory only.
 
 .if !target(check-deprecated)
-# Try and keep these messages in sync with the ones in create-manifest
+# Try and keep these messages in sync with the ones in Mk/Scripts/create-manifest.sh
 check-deprecated:
 .if ${MAINTAINER} == "ports@FreeBSD.org"
 	@${ECHO_MSG} "===>   NOTICE:"
@@ -3085,7 +3037,7 @@ _DO_FETCH_ENV= \
 			dp_FETCH_AFTER_ARGS='${FETCH_AFTER_ARGS}' \
 			dp_FETCH_BEFORE_ARGS='${FETCH_BEFORE_ARGS}' \
 			dp_FETCH_CMD='${FETCH_CMD}' \
-			dp_FETCH_ENV=${FETCH_ENV:Q:Q} \
+			dp_FETCH_ENV=${FETCH_ENV:Q} \
 			dp_FORCE_FETCH_ALL='${FORCE_FETCH_ALL}' \
 			dp_FORCE_FETCH_LIST='${FORCE_FETCH_LIST}' \
 			dp_MASTER_SITE_BACKUP='${_MASTER_SITE_BACKUP}' \
@@ -3094,8 +3046,6 @@ _DO_FETCH_ENV= \
 			dp_NO_CHECKSUM='${NO_CHECKSUM}' \
 			dp_RANDOMIZE_SITES='${_RANDOMIZE_SITES}' \
 			dp_SCRIPTSDIR='${SCRIPTSDIR}' \
-			dp_SORTED_MASTER_SITES_DEFAULT_CMD='${SORTED_MASTER_SITES_DEFAULT_CMD}' \
-			dp_SORTED_PATCH_SITES_DEFAULT_CMD='${SORTED_PATCH_SITES_DEFAULT_CMD}' \
 			dp_TARGET='${.TARGET}'
 .if defined(DEVELOPER)
 _DO_FETCH_ENV+= dp_DEVELOPER=yes
@@ -3850,7 +3800,7 @@ pre-distclean:
 
 .if !target(distclean)
 distclean: pre-distclean clean
-	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES} ${_PATCHFILES}"
+	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES:Q} ${_PATCHFILES:Q}"
 .endif
 
 .if !target(delete-distfiles)
@@ -4272,99 +4222,49 @@ ACTUAL-PACKAGE-DEPENDS?= \
 	done ; \
 	${SETENV} PKG_BIN="${PKG_BIN}" ${SH} ${SCRIPTSDIR}/actual-package-depends.sh $${depfiles} ${RUN_DEPENDS:C/(.*)\:.*/"\1"/}
 
-create-manifest:
-	@${MKDIR} ${METADIR}; \
-	(\
-		echo "name: \"${PKGBASE}\"" ; \
-		echo "version: \"${PKGVERSION}\"" ; \
-		echo "origin: ${PKGORIGIN}" ; \
-		echo "comment: <<EOD" ; \
-		echo ${COMMENT:Q} ; \
-		echo "EOD" ; \
-		echo "maintainer: ${MAINTAINER}" ; \
-		echo "prefix: ${PREFIX}" ; \
-		[ -z "${WWW}" ] || echo "www: ${WWW}" ; \
-		echo "deps: { "; \
-		${ACTUAL-PACKAGE-DEPENDS} | ${GREP} -v -E ${PKG_IGNORE_DEPENDS} | ${SORT} -u ; \
-		echo "}" ; \
-		echo "categories: [ ${CATEGORIES:u:S/$/,/} ]" ; \
-		l=${LICENSE_COMB} ; \
-		[ -n "${NO_ARCH}" ] && echo "arch : `${PKG_BIN} config abi | tr '[:upper:]' '[:lower:]' | ${CUT} -d: -f1,2`:*" ; \
-		[ -n "${NO_ARCH}" ] && echo "abi : `${PKG_BIN} config abi | ${CUT} -d: -f1,2`:*" ; \
-		echo "licenselogic: $${l:-single}" ; \
-		[ -z "${LICENSE}" ] || echo "licenses: [ ${LICENSE:u:S/$/,/} ]" ; \
-		[ -z "${USERS}" ] || echo "users: [ ${USERS:u:S/$/,/} ]" ; \
-		[ -z "${GROUPS}" ] || echo "groups: [ ${GROUPS:u:S/$/,/} ]" ; \
-	) > ${MANIFESTF}
-	@${ECHO_CMD} -n "options: {" >> ${MANIFESTF}
-.for opt in ${COMPLETE_OPTIONS_LIST}
-	@[ -z "${PORT_OPTIONS:M${opt}}" ] || match="on" ; ${ECHO_MSG} -n " ${opt}: $${match:-off}," >> ${MANIFESTF}
-.endfor
-	@${ECHO_CMD} "}" >> ${MANIFESTF}
-.if defined(PKG_NOTES)
-	@${ECHO_CMD} -n "annotations: {" >> ${MANIFESTF}
+PKG_NOTES_ENV?=
 .for note in ${PKG_NOTES}
-	@${ECHO_CMD} -n ' ${note}: "${PKG_NOTE_${note}:S/"/\"/g}",' >> ${MANIFESTF}
+PKG_NOTES_ENV+=	dp_PKG_NOTE_${note}=${PKG_NOTE_${note}:Q}
 .endfor
-	@${ECHO_CMD} " }" >> ${MANIFESTF}
-.endif
-	@[ -f ${PKGINSTALL} ] && ${CP} ${PKGINSTALL} ${METADIR}/+INSTALL; \
-	${RM} -f ${METADIR}/+PRE_INSTALL ; \
-	for a in ${PKGPREINSTALL}; do \
-		[ -f $$a ] && ${CAT} $$a >> ${METADIR}/+PRE_INSTALL ; \
-	done ; \
-	${RM} -f ${METADIR}/+POST_INSTALL ; \
-	for a in ${PKGPOSTINSTALL}; do \
-		[ -f $$a ] && ${CAT} $$a >> ${METADIR}/+POST_INSTALL ; \
-	done ; \
-	[ -f ${PKGDEINSTALL} ] && ${CP} ${PKGDEINSTALL} ${METADIR}/+DEINSTALL; \
-	${RM} -f ${METADIR}/+PRE_DEINSTALL ; \
-	for a in ${PKGPREDEINSTALL}; do \
-		[ -f $$a ] && ${CAT} $$a >> ${METADIR}/+PRE_DEINSTALL ; \
-	done ; \
-	${RM} -f ${METADIR}/+POST_DEINSTALL ; \
-	for a in ${PKGPOSTDEINSTALL}; do \
-		[ -f $$a ] && ${CAT} $$a >> ${METADIR}/+POST_DEINSTALL ; \
-	done ; \
-	[ -f ${PKGUPGRADE} ] && ${CP} ${PKGUPGRADE} ${METADIR}/+UPGRADE; \
-	[ -f ${PKGPREUPGRADE} ] && ${CP} ${PKGPREUPGRADE} ${METADIR}/+PRE_UPGRADE; \
-	[ -f ${PKGPOSTUPGRADE} ] && ${CP} ${PKGPOSTUPGRADE} ${METADIR}/+POST_UPGRADE; \
-	${CP} ${DESCR} ${METADIR}/+DESC; \
-	[ -f ${PKGMESSAGE} ] && ${CP} ${PKGMESSAGE} ${METADIR}/+DISPLAY || return 0
-# Try and keep these messages in sync with check-deprecated
-.if ${MAINTAINER} == "ports@FreeBSD.org"
-	@( \
-		if [ -f "${METADIR}/+DISPLAY" ]; then ${ECHO_CMD}; fi; \
-		${ECHO_CMD} "===>   NOTICE:"; \
-		${ECHO_CMD}; \
-		${ECHO_CMD} "The ${PORTNAME} port currently does not have a maintainer. As a result, it is"; \
-		${ECHO_CMD} "more likely to have unresolved issues, not be up-to-date, or even be removed in"; \
-		${ECHO_CMD} "the future. To volunteer to maintain this port, please create an issue at:"; \
-		${ECHO_CMD}; \
-		${ECHO_CMD} "https://bugs.freebsd.org/bugzilla"; \
-		${ECHO_CMD}; \
-		${ECHO_CMD} "More information about port maintainership is available at:"; \
-		${ECHO_CMD}; \
-		${ECHO_CMD} "https://www.freebsd.org/doc/en/articles/contributing/ports-contributing.html#maintain-port"; \
-	) >> ${METADIR}/+DISPLAY
-.endif
-.if defined(DEPRECATED)
-	@( \
-		if [ -f "${METADIR}/+DISPLAY" ]; then ${ECHO_CMD}; fi; \
-		${ECHO_CMD} "===>   NOTICE:"; \
-		${ECHO_CMD}; \
-		${ECHO_CMD} "This port is deprecated; you may wish to reconsider installing it:"; \
-		${ECHO_CMD}; \
-		${ECHO_CMD} ${DEPRECATED:Q}.; \
-		${ECHO_CMD}; \
-	) >> ${METADIR}/+DISPLAY
-.if defined(EXPIRATION_DATE)
-	@( \
-		${ECHO_CMD} "It is scheduled to be removed on or after ${EXPIRATION_DATE}."; \
-		${ECHO_CMD}; \
-	) >> ${METADIR}/+DISPLAY
-.endif
-.endif
+
+create-manifest:
+	@${SETENV} \
+			dp_SCRIPTSDIR='${SCRIPTSDIR}'                         \
+			dp_ACTUAL_PACKAGE_DEPENDS='${ACTUAL-PACKAGE-DEPENDS}' \
+			dp_CATEGORIES='${CATEGORIES:u:S/$/,/}'                \
+			dp_COMMENT=${COMMENT:Q}                               \
+			dp_COMPLETE_OPTIONS_LIST='${COMPLETE_OPTIONS_LIST}'   \
+			dp_DEPRECATED='${DEPRECATED:Q}'                       \
+			dp_DESCR='${DESCR}'                                   \
+			dp_EXPIRATION_DATE='${EXPIRATION_DATE}'               \
+			dp_GROUPS='${GROUPS:u:S/$/,/}'                        \
+			dp_LICENSE='${LICENSE:u:S/$/,/}'                      \
+			dp_LICENSE_COMB='${LICENSE_COMB}'                     \
+			dp_MAINTAINER='${MAINTAINER}'                         \
+			dp_METADIR='${METADIR}'                               \
+			dp_NO_ARCH='${NO_ARCH}'                               \
+			dp_PKGBASE='${PKGBASE}'                               \
+			dp_PKGDEINSTALL='${PKGDEINSTALL}'                     \
+			dp_PKGINSTALL='${PKGINSTALL}'                         \
+			dp_PKGMESSAGE='${PKGMESSAGE}'                         \
+			dp_PKGORIGIN='${PKGORIGIN}'                           \
+			dp_PKGPOSTDEINSTALL='${PKGPOSTDEINSTALL}'             \
+			dp_PKGPOSTINSTALL='${PKGPOSTINSTALL}'                 \
+			dp_PKGPOSTUPGRADE='${PKGPOSTUPGRADE}'                 \
+			dp_PKGPREDEINSTALL='${PKGPREDEINSTALL}'               \
+			dp_PKGPREINSTALL='${PKGPREINSTALL}'                   \
+			dp_PKGPREUPGRADE='${PKGPREUPGRADE}'                   \
+			dp_PKGUPGRADE='${PKGUPGRADE}'                         \
+			dp_PKGVERSION='${PKGVERSION}'                         \
+			dp_PKG_BIN='${PKG_BIN}'                               \
+			dp_PKG_IGNORE_DEPENDS='${PKG_IGNORE_DEPENDS}'         \
+			dp_PKG_NOTES='${PKG_NOTES}'                           \
+			dp_PORT_OPTIONS='${PORT_OPTIONS}'                     \
+			dp_PREFIX='${PREFIX}'                                 \
+			dp_USERS='${USERS:u:S/$/,/}'                          \
+			dp_WWW='${WWW}'                                       \
+			${PKG_NOTES_ENV}                                      \
+			${SH} ${SCRIPTSDIR}/create-manifest.sh
 
 
 # Print out package names.
