@@ -1,4 +1,4 @@
---- src/include/trousers_types.h.orig	2014-04-24 18:05:44 UTC
+--- src/include/trousers_types.h.orig	2016-06-20 15:21:26 UTC
 +++ src/include/trousers_types.h
 @@ -11,6 +11,14 @@
  #ifndef _TROUSERS_TYPES_H_

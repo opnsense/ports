@@ -1,5 +1,5 @@
---- src/tcs/Makefile.am.orig	2014-04-25 03:05:44.000000000 +0900
-+++ src/tcs/Makefile.am	2016-05-19 15:26:50.732611000 +0900
+--- src/tcs/Makefile.am.orig	2014-04-24 18:05:44 UTC
++++ src/tcs/Makefile.am
 @@ -1,8 +1,7 @@
 -noinst_LIBRARIES=libtcs.a
 +noinst_LIBRARIES=libtcs.a libtcs_emu.a
@@ -11,7 +11,7 @@
  
  libtcs_a_SOURCES=log.c \
  		 tcs_caps.c \
-@@ -91,7 +90,7 @@
+@@ -91,7 +90,7 @@ endif
  if TSS_BUILD_KEY
  libtcs_a_SOURCES+=tcsi_key.c tcs_key.c tcs_key_mem_cache.c tcs_context_key.c rpc/@RPC@/rpc_key.c \
  		  crypto/@CRYPTO_PACKAGE@/crypto.c
@@ -20,7 +20,7 @@
  endif
  if TSS_BUILD_MAINT
  libtcs_a_SOURCES+=tcsi_maint.c rpc/@RPC@/rpc_maint.c
-@@ -140,3 +139,143 @@
+@@ -140,3 +139,143 @@ if TSS_BUILD_CMK
  libtcs_a_SOURCES+=tcsi_cmk.c rpc/@RPC@/rpc_cmk.c
  libtcs_a_CFLAGS+=-DTSS_BUILD_CMK
  endif

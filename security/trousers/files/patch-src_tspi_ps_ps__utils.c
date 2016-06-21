@@ -1,4 +1,4 @@
---- src/tspi/ps/ps_utils.c.orig	2014-04-24 18:05:44 UTC
+--- src/tspi/ps/ps_utils.c.orig	2016-06-20 15:21:26 UTC
 +++ src/tspi/ps/ps_utils.c
 @@ -22,7 +22,7 @@
  #include "tspps.h"

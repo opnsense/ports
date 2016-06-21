@@ -1,6 +1,6 @@
---- src/tspi/Makefile.am.orig	2014-04-25 03:05:44.000000000 +0900
-+++ src/tspi/Makefile.am	2016-05-19 03:04:18.883005000 +0900
-@@ -17,9 +17,9 @@
+--- src/tspi/Makefile.am.orig	2014-04-24 18:05:44 UTC
++++ src/tspi/Makefile.am
+@@ -17,9 +17,9 @@ libtspi_la_LIBADD=${top_builddir}/src/tr
  # 5. If any interfaces have been added since the last public release, then increment age.
  # 6. If any interfaces have been removed since the last public release, then set age to 0.
  

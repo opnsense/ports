@@ -1,4 +1,4 @@
---- src/include/tcsd.h.orig	2014-04-24 18:05:44 UTC
+--- src/include/tcsd.h.orig	2016-06-20 15:21:26 UTC
 +++ src/include/tcsd.h
 @@ -53,14 +53,22 @@ struct tcsd_config
  #define TCSD_DEFAULT_CONFIG_FILE	ETC_PREFIX "/tcsd.conf"

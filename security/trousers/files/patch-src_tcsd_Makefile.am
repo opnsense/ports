@@ -1,5 +1,5 @@
---- src/tcsd/Makefile.am.orig	2014-04-25 03:05:44.000000000 +0900
-+++ src/tcsd/Makefile.am	2016-05-19 03:00:08.951991000 +0900
+--- src/tcsd/Makefile.am.orig	2014-04-24 18:05:44 UTC
++++ src/tcsd/Makefile.am
 @@ -1,11 +1,17 @@
 -sbin_PROGRAMS=tcsd
 +sbin_PROGRAMS=tcsd tcsd_emu

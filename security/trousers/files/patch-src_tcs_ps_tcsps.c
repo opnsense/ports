@@ -1,4 +1,4 @@
---- src/tcs/ps/tcsps.c.orig	2014-04-24 18:05:44 UTC
+--- src/tcs/ps/tcsps.c.orig	2016-06-20 15:21:26 UTC
 +++ src/tcs/ps/tcsps.c
 @@ -24,6 +24,11 @@
  #define LE_16 htole16

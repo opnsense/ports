@@ -1,4 +1,4 @@
---- src/tcs/ps/ps_utils.c.orig	2014-04-24 18:05:44 UTC
+--- src/tcs/ps/ps_utils.c.orig	2016-06-20 15:21:26 UTC
 +++ src/tcs/ps/ps_utils.c
 @@ -16,10 +16,18 @@
  #if defined(HAVE_BYTEORDER_H)

@@ -1,4 +1,4 @@
---- src/tspi/rpc/tcstp/rpc.c.orig	2014-04-24 18:05:44 UTC
+--- src/tspi/rpc/tcstp/rpc.c.orig	2016-06-20 15:21:26 UTC
 +++ src/tspi/rpc/tcstp/rpc.c
 @@ -304,7 +304,7 @@ recv_from_socket(int sock, void *buffer,
  		errno = 0;

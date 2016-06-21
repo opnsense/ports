@@ -1,4 +1,4 @@
---- src/tspi/rpc/hosttable.c.orig	2014-04-24 18:05:44 UTC
+--- src/tspi/rpc/hosttable.c.orig	2016-06-20 15:21:26 UTC
 +++ src/tspi/rpc/hosttable.c
 @@ -51,6 +51,8 @@ host_table_final()
  {

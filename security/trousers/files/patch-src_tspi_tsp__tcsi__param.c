@@ -1,4 +1,4 @@
---- src/tspi/tsp_tcsi_param.c.orig	2014-04-24 18:05:44 UTC
+--- src/tspi/tsp_tcsi_param.c.orig	2016-06-20 15:21:26 UTC
 +++ src/tspi/tsp_tcsi_param.c
 @@ -11,7 +11,12 @@
  #include <stdlib.h>
