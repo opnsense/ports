@@ -8,6 +8,7 @@ return {
 	effect = function(step)
 		local cmdsAIR = CmdChain.new()
 
+		cmdsAIR:add(":");
 		cmdsAIR:add("/usr/local/installer/after_installation_routines.sh");
 		cmdsAIR:execute()
 	
