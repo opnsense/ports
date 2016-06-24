@@ -3,9 +3,10 @@
 --
 -- Actually install the OS.
 --
--- 1) create and mount the target system
--- 2) copy the files
--- 3) clean up
+-- 2) activate swap
+-- 3) create and mount the target system
+-- 4) copy the files
+-- 5) clean up
 --
 
 return {
@@ -31,6 +32,22 @@ return {
 	-- Create a command chain.
 	--
 	cmds = CmdChain.new()
+
+	--
+	-- Activate swap, if there is none activated so far.
+	--
+	if App.state.storage:get_activated_swap():in_units("K") == 0 then
+		for spd in App.state.sel_part:get_subparts() do
+			if spd:get_fstype() == "swap" then
+				cmds:add{
+				    cmdline = "${root}${SWAPON} ${root}dev/${dev}",
+				    replacements = {
+					dev = spd:get_device_name()
+				    }
+				}
+			end
+		end
+	end
 
 	--
 	-- Initialize the target system, create the mountpoint directories

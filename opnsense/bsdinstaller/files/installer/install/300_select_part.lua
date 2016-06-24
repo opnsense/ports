@@ -36,6 +36,35 @@ return {
 			return step
 		end
 
+		if pd:get_activated_swap():in_units("K") > 0 then
+			local response = App.ui:present{
+			    name = _("Cannot swapoff; reboot?"),
+			    short_desc = _(
+				"Some subpartitions on the selected primary "	..
+				"partition are already activated as swap. "	..
+				"Since there is no way to deactivate swap in "	..
+				"%s once it is activated, in order "		..
+				"to edit the subpartition layout of this "	..
+				"primary partition, you must first reboot.",
+				App.conf.product.name
+			    ),
+			    actions = {
+			        {
+				    id = "reboot",
+				    name = _("Reboot"),
+				    effect = function() return "reboot" end
+				},
+				{
+				    id = "cancel",
+				    name = _("Return to %s", step:get_prev_name()),
+				    accelerator = "ESC",
+				    effect = function() return step:prev() end
+				}
+			    }
+			}
+			return response.result
+		end
+
 		App.state.sel_part = pd
 
 		local part_min_capacity = Storage.Capacity.new(
