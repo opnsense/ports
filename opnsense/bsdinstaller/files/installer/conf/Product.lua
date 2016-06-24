@@ -3,8 +3,9 @@
 --
 
 product = {
+	-- XXX no spaces here, used for disk label
 	name = "OPNsense",
-	version = "16.1"
+	version = "16.7"
 }
 
 mountpoints = function(part_cap, ram_cap)

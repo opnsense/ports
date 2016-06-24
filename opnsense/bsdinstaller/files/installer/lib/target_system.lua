@@ -520,12 +520,16 @@ TargetSystem.new = function(tab)
 			    mountpoint = spd:get_mountpoint()
 			}
 
-			if spd:get_mountpoint() == "/" then
+			if spd:is_root()then
 				if hay_swap then
-					cmds:add("${root}${ECHO} '/dev/${device}\t\t${mountpoint}\t\tufs\trw\t\t1\t1' >>${root}${base}/${filename}")
+					cmds:add("${root}${ECHO} '/dev/ufs/" ..
+					    App.conf.product.name ..
+					    "\t${mountpoint}\t\tufs\trw\t\t1\t1' >>${root}${base}/${filename}")
 				else
 					-- no swap, no atime
-					cmds:add("${root}${ECHO} '/dev/${device}\t\t${mountpoint}\t\tufs\trw,noatime\t1\t1' >>${root}${base}/${filename}")
+					cmds:add("${root}${ECHO} '/dev/ufs/" ..
+					    App.conf.product.name ..
+					    "\t${mountpoint}\t\tufs\trw,noatime\t1\t1' >>${root}${base}/${filename}")
 				end
 			elseif spd:is_swap() then
 				cmds:add("${root}${ECHO} '/dev/${device}\t\tnone\t\tswap\tsw\t\t0\t0' >>${root}${base}/${filename}")

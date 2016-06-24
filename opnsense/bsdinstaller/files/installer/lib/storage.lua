@@ -2119,11 +2119,14 @@ Storage.Partition.new = function(params)
 		for spd in self:get_subparts() do
 			if not spd:is_swap() then
 				spd:cmds_ensure_dev(cmds)
-				if spd:is_softupdated() and App.conf.has_softupdates then
-					cmds:add("${root}${NEWFS} -U ${root}dev/" ..
-					    spd:get_device_name())
-				else
-					cmds:add("${root}${NEWFS} ${root}dev/" ..
+
+				cmds:add("${root}${NEWFS} ${root}dev/" ..
+				    spd:get_device_name())
+
+				if spd:is_root() then
+					cmds:add("${root}${TUNEFS} -L " ..
+					    App.conf.product.name ..
+					    " ${root}dev/" ..
 					    spd:get_device_name())
 				end
 			end
@@ -2381,11 +2384,10 @@ Storage.Subpartition.new = function(params)
 	end
 
 	--
-	-- Return whether this subpartition has softupdates enabled or not.
+	-- Return whether this subpartition is the root partition
 	--
-	method.is_softupdated = function(self)
-		-- XXX this should be a property
-		return mountpoint ~= "/"
+	method.is_root = function(self)
+		return mountpoint == "/"
 	end
 
 	--

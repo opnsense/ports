@@ -60,7 +60,6 @@ package_suffix = "txz"
 num_subpartitions = 8
 has_raw_devices = false
 disklabel_on_disk = false
-has_softupdates = true
 window_subpartitions = { "c" }
 use_cpdup = false
 

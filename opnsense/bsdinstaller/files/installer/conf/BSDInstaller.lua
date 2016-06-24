@@ -417,6 +417,7 @@ cmd_names = {
 	MBRLABEL	= "sbin/mbrlabel",
 	NEWFS		= "sbin/newfs",
 	NEWFS_MSDOS	= "sbin/newfs_msdos",
+	TUNEFS		= "sbin/tunefs",
 	FDISK		= "sbin/fdisk",
 	DUMPON		= "sbin/dumpon",
 	IFCONFIG	= "sbin/ifconfig",
@@ -540,13 +541,6 @@ num_subpartitions = 16
 --
 
 offlimits_devices = { "fd%d+", "md%d+", "cd%d+" }
-
---
--- has_softupdates: whether the operating system supports creating
--- a filesystem with softupdates, i.e. the -U flag to newfs.
---
-
-has_softupdates = true
 
 --
 -- window_subpartitions: a list of which subpartitions (BSD partitions)

@@ -89,12 +89,6 @@ return {
 		App.state.sel_part =
 		    App.state.sel_disk:get_part_by_number(1)
 		return step:next()
-	else
-	--[[
-		-- weird hack.
-		os.execute("/usr/bin/touch /tmp/install_runagain")
-		os.exit()
-	--]]
 	end
     end
 }

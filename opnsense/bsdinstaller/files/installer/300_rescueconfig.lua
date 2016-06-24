@@ -98,19 +98,25 @@ return {
 		if POSIX.stat("/tmp/hdrescue/conf/netflow.tgz", "type") == "regular" then
 			cmds:add("${root}bin/cp /tmp/hdrescue/conf/netflow.tgz /conf");
 		end
-	else
-		-- XXX should warn that no config could be imported
-	end
-	cmds:add("${root}sbin/umount /tmp/hdrescue");
-	if not cmds:execute() then
-		return Menu.CONTINUE
-	end
 
-	App.ui:inform(_(
-		"The configuration has been sucessfully restored. You " ..
-		"may now choose to continue the installation or bring " ..
-		"up a live system by exiting this installer."
-	))
+		cmds:add("${root}sbin/umount /tmp/hdrescue");
+		if not cmds:execute() then
+			return Menu.CONTINUE
+		end
+
+		App.ui:inform(_(
+			"The configuration has been sucessfully restored. You " ..
+			"may now choose to continue the installation or bring " ..
+			"up a live system by exiting this installer."
+		))
+	else
+		cmds:add("${root}sbin/umount /tmp/hdrescue");
+		if not cmds:execute() then
+			return Menu.CONTINUE
+		end
+
+		App.ui:inform(_("No previous configuration was found on this disk."))
+	end
 
 	return Menu.CONTINUE
 
