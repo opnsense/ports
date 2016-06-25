@@ -108,6 +108,7 @@
     SUBDIR += dirmngr
     SUBDIR += distcache
     SUBDIR += dmitry
+    SUBDIR += doas
     SUBDIR += doorman
     SUBDIR += doscan
     SUBDIR += dradis
@@ -1153,6 +1154,7 @@
     SUBDIR += yersinia
     SUBDIR += ykclient
     SUBDIR += ykpers
+    SUBDIR += yubico-piv-tool
     SUBDIR += yubikey-personalization-gui
     SUBDIR += zebedee
     SUBDIR += zenmap
