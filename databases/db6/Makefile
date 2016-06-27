@@ -15,6 +15,7 @@ MAINTAINER=	mandree@FreeBSD.org
 COMMENT=	Oracle Berkeley DB, revision ${BDBVER}
 
 LICENSE=	AGPLv3
+LICENSE_FILE=	${WRKSRC}/../LICENSE
 
 BDBVER=		${PORTVERSION:R}
 BDBMAJ=		${BDBVER:R}
@@ -83,27 +84,28 @@ post-install:
 .endfor
 	cd ${STAGEDIR}${PREFIX}/bin/${PORTNAME}; \
 	for i in *; do ${LN} -s -f ${PORTNAME}/$$i ../$$i-${BDBVER} ; done
-.if empty(PORT_OPTIONS:MJAVA)
+
+post-install-JAVA-off:
 	${RM} -r -f ${STAGEDIR}${DOCSDIR}/java
 .for i in gsg gsg_db_rep gsg_txn
 	${RM} -r -f ${STAGEDIR}${DOCSDIR}/${i}/JAVA
 .endfor
-.endif
-.if empty(PORT_OPTIONS:MSQL)
+
+post-install-SQL-off:
 	${RM} -r -f ${STAGEDIR}${DOCSDIR}/bdb-sql
-.endif
-.if !empty(PORT_OPTIONS:MTCL)
-	echo "package ifneeded Db_tcl ${BDBVER} \
-	      [list load [file join $$dir libdb_tcl-${BDBVER}.so]] \
-	     " > ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/pkgIndex.tcl
-.else
-.for i in api_reference/TCL
-	${RM} -r -f ${STAGEDIR}${DOCSDIR}/${i}
-.endfor
-.endif
 
 post-install-SQL-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/../lang/sql/upgrade61.sh \
 	    ${STAGEDIR}${PREFIX}/bin/${PORTNAME}-upgrade61.sh
+
+post-install-TCL-off:
+	echo "package ifneeded Db_tcl ${BDBVER} \
+	      [list load [file join $$dir libdb_tcl-${BDBVER}.so]] \
+	     " > ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/pkgIndex.tcl
+
+post-install-TCL-on:
+.for i in api_reference/TCL
+	${RM} -r -f ${STAGEDIR}${DOCSDIR}/${i}
+.endfor
 
 .include <bsd.port.mk>
