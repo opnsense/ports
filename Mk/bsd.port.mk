@@ -357,8 +357,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # USE_SDL		- If set, this port uses the sdl libraries.
 #				  See bsd.sdl.mk for more information.
 ##
-# USE_OPENSSL	- If set, this port relies on the OpenSSL package.
-##
 # USE_OPENLDAP	- If set, this port uses the OpenLDAP libraries.
 #				  Implies: WANT_OPENLDAP_VER?=24
 # WANT_OPENLDAP_VER
@@ -1352,7 +1350,7 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .endif
 
 .if defined(USE_OPENSSL)
-.include "${PORTSDIR}/Mk/bsd.openssl.mk"
+USES+=	ssl
 .endif
 
 .if defined(USE_EMACS)
@@ -1525,6 +1523,9 @@ QA_ENV+=		STAGEDIR=${STAGEDIR} \
 				PKGORIGIN=${PKGORIGIN} \
 				LIB_RUN_DEPENDS='${_LIB_RUN_DEPENDS:C,[^:]*:([^:]*):?.*,\1,}' \
 				PKGBASE=${PKGBASE}
+.if !empty(USES:Mssl)
+QA_ENV+=		USESSSL=yes
+.endif
 .if !empty(USES:Mdesktop-file-utils)
 QA_ENV+=		USESDESKTOPFILEUTILS=yes
 .endif
