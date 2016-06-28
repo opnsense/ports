@@ -8,17 +8,15 @@ CATEGORIES=	security pear
 MASTER_SITES=	http://pecl.php.net/get/
 PKGNAMEPREFIX=	pecl-
 
-MAINTAINER=	horia@racoviceanu.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	PHP wrapper to Colin Percival's scrypt implementation
 
 LICENSE=	BSD2CLAUSE
 
 BROKEN_powerpc64=	Does not build
 
-USES=		compiler tar:tgz
-USE_PHP=	hash
-USE_PHPEXT=	yes
-USE_PHP_BUILD=	yes
+USES=		compiler php:ext tar:tgz
+USE_PHP=	hash:build
 INSTALL_TARGET=	install-strip
 IGNORE_WITH_PHP=	70
 
