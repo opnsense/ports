@@ -18,8 +18,6 @@ LICENSE_COMB=	dual
 LICENSE_FILE_BSD2CLAUSE=${WRKSRC}/BSDL
 LICENSE_FILE_RUBY=	${WRKSRC}/COPYING
 
-BROKEN_powerpc64=	Does not build
-
 # Using LIB_DEPENDS finds the libffi from gcc which causes problems
 BUILD_DEPENDS=	libffi>=0:devel/libffi
 LIB_DEPENDS=	libyaml.so:textproc/libyaml
@@ -96,6 +94,10 @@ CONFIGURE_ARGS+=--enable-dtrace
 .else
 CONFIGURE_ARGS+=--disable-dtrace
 .endif
+.endif
+
+.if (${ARCH} == "powerpc64" || ${ARCH} == "powerpc")
+USE_GCC=	4.9+
 .endif
 
 .if ${ARCH} == "armv6" || ${ARCH} == "armv6hf"
