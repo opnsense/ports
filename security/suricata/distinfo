@@ -1,2 +1,3 @@
-SHA256 (suricata-3.0.1.tar.gz) = 74c685f8da51b3f038a7b8185bdbed274aca25daf64ac7ea01eea60636727f26
-SIZE (suricata-3.0.1.tar.gz) = 3315637
+TIMESTAMP = 1467264277
+SHA256 (suricata-3.0.2.tar.gz) = 264cbdc380717590a9c33d3b3dc92fc488f376873e869bf71601b1d4a9a8e601
+SIZE (suricata-3.0.2.tar.gz) = 3365173
