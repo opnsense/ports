@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	letskencrypt
-PORTVERSION=	0.1.6
+PORTVERSION=	0.1.7
 DISTVERSIONPREFIX=	portable-
 CATEGORIES=	security
 MASTER_SITES=	https://kristaps.bsd.lv/letskencrypt/snapshots/ \
@@ -13,14 +13,10 @@ COMMENT=	Native C client for Let's Encrypt, designed for security
 
 LICENSE=	ISCL
 
-USES=		gmake tar:tgz
-USE_OPENSSL=	yes
+USES=		gmake ssl:libressl tar:tgz
 
 MAKEFILE=	GNUmakefile
 MAKE_ARGS=	PREFIX=${STAGEDIR}/${PREFIX}
-
-WITH_OPENSSL_PORT=	yes
-OPENSSL_PORT=	security/libressl
 
 WWWDIR=		${PREFIX}/www/letsencrypt
 
@@ -50,4 +46,10 @@ post-stage:
 		${INSTALL_SCRIPT} ${WRKDIR}/${d} ${STAGEDIR}${PREFIX}/etc/letsencrypt/${d}
 .	endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if empty(SSL_DEFAULT:Mlibressl*)
+IGNORE=		Need LibreSSL to build. set DEFAULT_VERSIONS+=ssl=libressl and rebuild everything.
+.endif
+
+.include <bsd.port.post.mk>
