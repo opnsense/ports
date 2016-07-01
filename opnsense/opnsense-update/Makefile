@@ -12,9 +12,7 @@ LICENSE=	BSD2CLAUSE
 
 LIB_DEPENDS+=	libucl.so:textproc/libucl
 
-USE_OPENSSL=	yes
-CFLAGS+=	-I${OPENSSLINC}
-LDFLAGS+=	-L${OPENSSLLIB}
+USES=		ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
