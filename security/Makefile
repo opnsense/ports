@@ -847,6 +847,7 @@
     SUBDIR += py-gnupg
     SUBDIR += py-gnutls
     SUBDIR += py-gpsoauth
+    SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
     SUBDIR += py-kerberos
@@ -901,6 +902,7 @@
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
     SUBDIR += py-slowaes
+    SUBDIR += py-spake2
     SUBDIR += py-ssh
     SUBDIR += py-sslstrip
     SUBDIR += py-stem
