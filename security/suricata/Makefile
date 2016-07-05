@@ -26,7 +26,8 @@ CPE_VENDOR=	openinfosecfoundation
 INSTALL_TARGET=		install-strip
 PATHFIX_MAKEFILEIN=	Makefile.am
 
-OPTIONS_DEFINE=		GEOIP HTP_PORT IPFW JSON NETMAP NSS PORTS_PCAP PRELUDE SC TESTS
+OPTIONS_DEFINE=		GEOIP HTP_PORT HYPERSCAN IPFW JSON NETMAP NSS \
+			PORTS_PCAP PRELUDE SC TESTS
 OPTIONS_DEFAULT=	HTP_PORT IPFW JSON NETMAP PRELUDE
 
 OPTIONS_RADIO=		SCRIPTS
@@ -37,6 +38,7 @@ OPTIONS_SUB=		yes
 SCRIPTS_DESC=		Scripting
 
 GEOIP_DESC=		GeoIP support
+HYPERSCAN_DESC=		Hyperscan support
 HTP_PORT_DESC=		Use libhtp from ports
 IPFW_DESC=		IPFW and IP Divert support for inline IDP
 JSON_DESC=		JSON output support
@@ -57,6 +59,10 @@ HTP_PORT_CONFIGURE_ON=		--enable-non-bundled-htp
 HTP_PORT_CONFIGURE_OFF=		--enable-bundled-htp
 HTP_PORT_CONFLICTS_INSTALL_OFF=	libhtp-[0-9]* libhtp-suricata
 HTP_PORT_USES_OFF=		iconv:translit
+
+HYPERSCAN_LIB_DEPENDS=		libhs.so:devel/hyperscan
+HYPERSCAN_CONFIGURE_ON=		--with-libhs-includes=${LOCALBASE}/include \
+				--with-libhs-libraries=${LOCALBASE}/lib
 
 IPFW_CONFIGURE_ON=		--enable-ipfw
 
