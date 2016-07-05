@@ -70,7 +70,6 @@
     SUBDIR += c2html
     SUBDIR += ca-aspell
     SUBDIR += catdoc
-    SUBDIR += cbedic
     SUBDIR += cdif
     SUBDIR += cdiff
     SUBDIR += cgrep
@@ -133,7 +132,6 @@
     SUBDIR += docbook2X
     SUBDIR += docbook2mdoc
     SUBDIR += docbook2odf
-    SUBDIR += docbookide.el
     SUBDIR += docdiff
     SUBDIR += doclifter
     SUBDIR += docproj
@@ -185,7 +183,6 @@
     SUBDIR += et-aspell
     SUBDIR += exempi
     SUBDIR += expat2
-    SUBDIR += exslt
     SUBDIR += extract_url
     SUBDIR += ezxml
     SUBDIR += fa-aspell
@@ -213,8 +210,6 @@
     SUBDIR += gl-aspell
     SUBDIR += gladtex
     SUBDIR += glark
-    SUBDIR += glpi-plugins-AdditionalReports
-    SUBDIR += glpi-plugins-DataInjection
     SUBDIR += gmetadom
     SUBDIR += gnome-doc-utils
     SUBDIR += gnome-spell
@@ -557,7 +552,6 @@
     SUBDIR += p5-Geo-Parse-OSM
     SUBDIR += p5-Getopt-Lucid
     SUBDIR += p5-Google-Data-JSON
-    SUBDIR += p5-Groonga-API
     SUBDIR += p5-HTML-CTPP2
     SUBDIR += p5-HTML-Copy
     SUBDIR += p5-HTML-Entities-ImodePictogram
@@ -1216,12 +1210,18 @@
     SUBDIR += py-MarkupSafe
     SUBDIR += py-Tempita
     SUBDIR += py-acora
+    SUBDIR += py-agate
+    SUBDIR += py-agate-dbf
+    SUBDIR += py-agate-excel
     SUBDIR += py-alabaster
     SUBDIR += py-asv
+    SUBDIR += py-awesome-slugify
     SUBDIR += py-bugzillatools
     SUBDIR += py-chardet
     SUBDIR += py-cloud_sptheme
     SUBDIR += py-creole
+    SUBDIR += py-csvkit
+    SUBDIR += py-dbf
     SUBDIR += py-dbfread
     SUBDIR += py-diff-match-patch
     SUBDIR += py-docutils
@@ -1569,7 +1569,6 @@
     SUBDIR += sr-hunspell
     SUBDIR += srilm
     SUBDIR += ss-hunspell
-    SUBDIR += ssddiff
     SUBDIR += stardict-dict-fa_IR
     SUBDIR += stardict-dictd_mova
     SUBDIR += stardict-quick
@@ -1587,7 +1586,6 @@
     SUBDIR += ta-aspell
     SUBDIR += tagsoup
     SUBDIR += tclExpat
-    SUBDIR += tdhkit
     SUBDIR += te-aspell
     SUBDIR += te-hunspell
     SUBDIR += teckit
@@ -1614,7 +1612,6 @@
     SUBDIR += tokyodystopia
     SUBDIR += topic
     SUBDIR += tr-aspell
-    SUBDIR += tralics
     SUBDIR += trang
     SUBDIR += translate-toolkit
     SUBDIR += ts-hunspell
@@ -1697,10 +1694,8 @@
     SUBDIR += xp
     SUBDIR += xqilla
     SUBDIR += xslide.el
-    SUBDIR += xslint
     SUBDIR += xstream
     SUBDIR += xsv
-    SUBDIR += xt
     SUBDIR += xwindiff
     SUBDIR += xxdiff
     SUBDIR += xxdiff-scripts

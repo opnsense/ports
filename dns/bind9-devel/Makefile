@@ -2,7 +2,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/}
+PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/}
 PORTREVISION=	0
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	LOCAL/mat/bind
@@ -13,11 +13,11 @@ DISTNAME=	${PORTNAME}9-${HASH}
 MAINTAINER=	mat@FreeBSD.org
 COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 
-LICENSE=	ISCL
+LICENSE=	MPL
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.11.0.a20160627
-HASH=		33d0a77
+ISCVERSION=	9.12.0a.2016.07.04
+HASH=		c8fb7e4
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -41,7 +41,7 @@ CONFIGURE_ARGS+=	--localstatedir=/var --disable-linux-caps \
 		--sysconfdir=${ETCDIR}
 ETCDIR=		${PREFIX}/etc/namedb
 
-CONFLICTS+=	bind9*-9.[456789].* bind9*-sdb-9.[456789].*
+CONFLICTS+=	bind9*-9.[456789].* bind910-* bind911-*  bind9*-sdb-9.[456789].*
 
 SUB_FILES=	pkg-message
 
