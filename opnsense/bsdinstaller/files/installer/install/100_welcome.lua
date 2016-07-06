@@ -19,8 +19,6 @@ return {
 		"If you have special requirements that are not addressed "	..
 		"by this installer, or if you have problems using it, you "	..
 		"are welcome to install %s manually. "				..
-		"To do so select Exit to Live CD, login as root, and follow "	..
-		"the instructions given in the file /README ."			..
 		"\n\n"								..
 		"NOTE! As with any installation process, YOU ARE "		..
 		"STRONGLY ENCOURAGED TO BACK UP ANY IMPORTANT DATA ON THIS "	..

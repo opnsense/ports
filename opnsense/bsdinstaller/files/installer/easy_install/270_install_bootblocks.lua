@@ -36,25 +36,28 @@ return {
 				table.insert(datasets_list, dataset)		
 			end
 		end
-
 	end
-		local cmds = CmdChain.new()
-		local i, dataset
 
-		for i, dataset in ipairs(datasets_list) do
-			if dataset.boot0cfg == "Y" then
-				dd = disk_ref[dataset.disk]
-				dd:cmds_install_bootblock(cmds,
-				    (dataset.packet == "Y"))
-				disk = dd:get_name()
-				cmds:set_replacements{
-				    disk = disk
-				}
+	local cmds = CmdChain.new()
+	local i, dataset
+
+	for i, dataset in ipairs(datasets_list) do
+		if dataset.boot0cfg == "Y" then
+			dd = disk_ref[dataset.disk]
+			dd:cmds_install_bootblock(cmds,
+			    (dataset.packet == "Y"))
+			disk = dd:get_name()
+			cmds:set_replacements{
+			    disk = disk
+			}
+			-- XXX this doesn't belong here...
+			if dd:set_uefi() == 0 then
 				cmds:add("${root}${BOOT0CFG} -B -b /boot/boot0 /dev/${disk}")
 			end
 		end
+	end
 
-		cmds:execute()
-		return step:next()
+	cmds:execute()
+	return step:next()
     end
 }

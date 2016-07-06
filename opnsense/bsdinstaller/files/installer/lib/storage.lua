@@ -252,33 +252,32 @@ Storage.System.new = function()
 		-- /dev/raid/ exists, then get a list of the volumes
 		-- and add them to the selection list.
 		--
-		if App.conf.os.name == "FreeBSD" then
-			if FileName.is_dir(App.expand("${root}dev/mirror")) then
-				App.log("/dev/mirror exists.  Surveying.");
-				cmd = App.expand('${root}${FIND} /dev/mirror/* | ${root}${SED} "s/\\/dev\\/mirror/mirror/"')
-				local pty = Pty.Logged.open(cmd, App.log_string)
-				if not pty then
-					App.log_warn("Couldn't open pty to '%s'", cmd)
-					return tab
-				end
-				local probed_gmirror_devices = pty:readline()
-				pty:close()
-				App.log("`" .. cmd .. "` returned: " .. probed_gmirror_devices)
-				probed_devices = probed_gmirror_devices .. " " .. probed_devices
+		if FileName.is_dir(App.expand("${root}dev/mirror")) then
+			App.log("/dev/mirror exists.  Surveying.");
+			cmd = App.expand('${root}${FIND} /dev/mirror/* | ${root}${SED} "s/\\/dev\\/mirror/mirror/"')
+			local pty = Pty.Logged.open(cmd, App.log_string)
+			if not pty then
+				App.log_warn("Couldn't open pty to '%s'", cmd)
+				return tab
 			end
-			if FileName.is_dir(App.expand("${root}dev/raid")) then
-				App.log("/dev/raid exists.  Surveying.");
-				cmd = App.expand('${root}${FIND} /dev/raid/* | ${root}${SED} "s/\\/dev\\/raid/raid/"')
-				local pty = Pty.Logged.open(cmd, App.log_string)
-				if not pty then
-					App.log_warn("Couldn't open pty to '%s'", cmd)
-					return tab
-				end
-				local probed_raid_devices = pty:readline()
-				pty:close()
-				App.log("`" .. cmd .. "` returned: " .. probed_raid_devices)
-				probed_devices = probed_raid_devices .. " " .. probed_devices
+			local probed_gmirror_devices = pty:readline()
+			pty:close()
+			App.log("`" .. cmd .. "` returned: " .. probed_gmirror_devices)
+			probed_devices = probed_gmirror_devices .. " " .. probed_devices
+		end
+
+		if FileName.is_dir(App.expand("${root}dev/raid")) then
+			App.log("/dev/raid exists.  Surveying.");
+			cmd = App.expand('${root}${FIND} /dev/raid/* | ${root}${SED} "s/\\/dev\\/raid/raid/"')
+			local pty = Pty.Logged.open(cmd, App.log_string)
+			if not pty then
+				App.log_warn("Couldn't open pty to '%s'", cmd)
+				return tab
 			end
+			local probed_raid_devices = pty:readline()
+			pty:close()
+			App.log("`" .. cmd .. "` returned: " .. probed_raid_devices)
+			probed_devices = probed_raid_devices .. " " .. probed_devices
 		end
 
 		local disk_name
@@ -335,6 +334,7 @@ Storage.System.new = function()
 		local save = {}
 		local i, obj, disk, part
 		local ret = {}
+		local uefi = 0
 
 		--
 		-- Store identifiers for everything passed to use.
@@ -347,6 +347,7 @@ Storage.System.new = function()
 				table.insert(save, nil)
 			elseif obj:is_a(Storage.Disk) then
 				disk = obj
+				uefi = disk:set_uefi()
 				table.insert(save, {
 				    "disk",
 				    disk:get_name()
@@ -378,12 +379,14 @@ Storage.System.new = function()
 				table.insert(ret, nil)
 			elseif obj[1] == "disk" then
 				disk = self:get_disk_by_name(obj[2])
+				disk:set_uefi(uefi)
 				table.insert(ret, disk or false)
 			elseif obj[1] == "part" then
 				if not disk then
 					table.insert(ret, false)
 				else
 					part = disk:get_part_by_number(obj[2])
+					part:set_uefi(uefi)
 					table.insert(ret, part or false)
 				end
 			end
@@ -634,10 +637,21 @@ Storage.Disk.new = function(parent, name)
 	local desc = name	-- private: description of disk
 	local cyl, head, sec	-- private: geometry of disk
 	local touched = false	-- private: whether we formatted it
+	local uefi = 0		-- private: whether we want UEFI/GPT
 
 	--
 	-- Public methods: accessor methods.
 	--
+
+	--
+	-- Enable / disable UEFI installation
+	--
+	method.set_uefi = function(self, value)
+		if value then
+			uefi = value
+		end
+		return uefi
+	end
 
 	--
 	-- Determine the identity of this object.
@@ -917,7 +931,7 @@ Storage.Disk.new = function(parent, name)
 	--
 	method.add_part = function(self, pd)
 		part[pd:get_number()] = pd
-		-- pd:set_parent(self)
+		pd:set_uefi(uefi)
 	end
 
 	--
@@ -938,38 +952,6 @@ Storage.Disk.new = function(parent, name)
 			end
 		else
 			App.log_warn("couldn't open '%s'", bootmsgs_filename)
-		end
-	end
-
-	--
-	-- Get (possibly better) descriptions of disks from the output
-	-- command(s) which probe the appropriate buses (ATA / SCSI).
-	-- (Currently only ATA is supported.)
-	--
-	method.describe_from_hardware_probe = function(self)
-		local cmd = App.expand("${root}${ATACONTROL} list")
-		local pty = Pty.Logged.open(cmd, App.log_string)
-		local disk_name = self:get_name()
-		if pty then
-			local line = pty:readline()
-			while line do
-				local found, len, cap =
-				    string.find(line, "^%s*Master:%s*" ..
-				      disk_name .. "%s*(%<.*%>)$")
-				if not found then
-					found, len, cap =
-					    string.find(line, "^%s*Slave:%s*" ..
-					      disk_name .. "%s*(%<.*%>)$")
-				end
-				if found then
-					self:set_desc(disk_name .. ": " .. cap)
-					break
-				end
-				line = pty:readline()
-			end
-			pty:close()
-		else
-			App.log_warn("couldn't open pty to '%s'", cmd)
 		end
 	end
 
@@ -1001,6 +983,12 @@ Storage.Disk.new = function(parent, name)
 	method.cmds_format = function(self, cmds)
 
 		self:cmds_ensure_dev(cmds)
+
+		if uefi == 1 then
+			cmds:add("${root}${GPART} create -s gpt " ..
+			    self:get_raw_device_name())
+			return
+		end
 
 		--
 		-- Initialize the disk.
@@ -1060,12 +1048,8 @@ Storage.Disk.new = function(parent, name)
 		--
 		-- Execute the fdisk script.
 		--
-		if App.conf.os.name == "NetBSD" then -- XXXXXX
-			-- XXX Going to need to do this differently
-		else
-			cmds:add("${root}${FDISK} -v -f ${tmp}format.fdisk " ..
-			    self:get_device_name())
-		end
+		cmds:add("${root}${FDISK} -v -f ${tmp}format.fdisk " ..
+		    self:get_device_name())
 
 		--
 		-- Show the new state of the disk in the log.
@@ -1089,6 +1073,10 @@ Storage.Disk.new = function(parent, name)
 		local cyl, head, sec = self:get_geometry()
 
 		self:cmds_ensure_dev(cmds)
+
+		if uefi == 1 then
+			return
+		end
 
 		cmds:add({
 		    cmdline = "${root}${ECHO} 'g c${cyl} h${head} s${sec}' >${tmp}new.fdisk",
@@ -1142,12 +1130,8 @@ Storage.Disk.new = function(parent, name)
 		--
 		-- Execute the fdisk script.
 		--
-		if App.conf.os.name == "NetBSD" then -- XXXXXX
-			-- XXX Going to need to do this differently
-		else
-			cmds:add("${root}${FDISK} -v -f ${tmp}new.fdisk " ..
-			    self:get_device_name())
-		end
+		cmds:add("${root}${FDISK} -v -f ${tmp}new.fdisk " ..
+		    self:get_device_name())
 
 		--
 		-- Show the new state of the disk in the log.
@@ -1160,6 +1144,20 @@ Storage.Disk.new = function(parent, name)
 	-- Create commands to install a bootblock on this disk.
 	--
 	method.cmds_install_bootblock = function(self, cmds, packet_mode)
+
+		if uefi == 1 then
+			cmds:add("${root}${GPART} add -t efi -s 800K " ..
+			    self:get_device_name())
+			cmds:add("${root}${DD} if=${root}boot/boot1.efifat of=/dev/" ..
+			    self:get_device_name() .. "p1")
+			cmds:add("${root}${GPART} add -t freebsd-boot -a 4k -s 512K " ..
+			    self:get_device_name())
+			cmds:add("${root}${GPART} bootcode " ..
+			    "-b ${root}boot/pmbr -p ${root}boot/gptboot -i 2 " ..
+			    self:get_device_name())
+			return
+		end
+
 		local o = " "
 		local s = " "
 
@@ -1190,15 +1188,6 @@ Storage.Disk.new = function(parent, name)
 	end
 
 	--
-	-- Create commands to wipe the start of this disk.
-	--
-	method.cmds_wipe_start = function(self, cmds)
-		self:cmds_ensure_dev(cmds)
-		cmds:add("${root}${DD} if=${root}dev/zero of=${root}dev/" ..
-		    self:get_raw_device_name() .. " bs=32k count=16")
-	end
-
-	--
 	-- Create commands to initialize the disklabel for this disk
 	-- and to write out this initial disklabel to a temp file.
 	-- This only applies to operating systems which have only one
@@ -1208,6 +1197,10 @@ Storage.Disk.new = function(parent, name)
 		assert(App.conf.disklabel_on_disk)
 
 		self:cmds_ensure_dev(cmds)
+
+		if uefi == 1 then
+			return
+		end
 
 		cmds:set_replacements{
 		    dev = self:get_device_name()
@@ -1268,7 +1261,7 @@ Storage.Disk.new = function(parent, name)
 	--
 	-- This is the FreeBSD/DragonFly version of this function.
 	--
-	local probe_geometry_freebsd = function(self)
+	local probe_geometry = function(self)
 		local cyl, head, sec
 
 		--
@@ -1315,53 +1308,7 @@ Storage.Disk.new = function(parent, name)
 		return cyl, head, sec
 	end
 
-	--
-	-- Probe the (BIOS) geometry of the disk.
-	-- Returns three values: cylinder, head, and sec/trk, if all went well.
-	-- Returns nil values if all did not go well.
-	-- Capacity in sectors can then be calculated by C * H * S, or an error
-	-- can be flagged, by the caller of this function.
-	--
-	-- This is the NetBSD version of this function.
-	--
-	local probe_geometry_netbsd = function(self)
-		local cyl, head, sec
-
-		--
-		-- Call 'fdisk' and parse its output.
-		--
-		local cmd = App.expand(
-		    "${root}${FDISK} " .. self:get_device_name()
-		)
-		local pty = Pty.Logged.open(cmd, App.log_string)
-		if not pty then
-			return nil, string.format("could not open pty to '%s'", cmd)
-		end
-		local line = pty:readline()
-		while line do
-			local found_bios_geom =
-			    string.find(line, "^%s*NetBSD%s*disklabel%s*disk%s*geometry")
-			line = pty:readline()
-			if found_bios_geom then
-				--
-				-- Parse the line following.
-				--
-				found, len, cyl, head, sec =
-				    string.find(line, "^%s*cylinders:%s*(%d+),%s*heads:%s*(%d+),%s*" ..
-						      "sectors/track:%s*(%d+)")
-				cyl = tonumber(cyl)
-				head = tonumber(head)
-				sec = tonumber(sec)
-				found_bios_geom = false
-				line = pty:readline()
-			end
-		end
-		pty:close()
-
-		return cyl, head, sec
-	end
-
-	local probe_partitions_freebsd = function(self)
+	local probe_partitions = function(self)
 		--
 		-- Get the partitions from 'fdisk -s'.
 		--
@@ -1400,108 +1347,6 @@ Storage.Disk.new = function(parent, name)
 		return tab
 	end
 
-	local probe_partitions_netbsd = function(self)
-		--
-		-- Get the partitions from 'fdisk'.
-		--
-		local tab = {}
-		local cmd = App.expand(
-		    "${root}${FDISK} " .. self:get_device_name()
-		)
-		local pty = Pty.Logged.open(cmd, App.log_string)
-		if not pty then
-			return nil, string.format("could not open pty to '%s'", cmd)
-		end
-
-		--
-		-- Read lines from fdisk's output until we find
-		-- the 'Partition table:' line.
-		--
-		local line = pty:readline()
-		local found_part_table = false
-		while line and not found_part_table do
-			found_part_table = string.find(line, "^Partition table:")
-			line = pty:readline()
-		end
-		if not found_part_table then
-			return nil, string.format("couldn't find partition table in fdisk output")
-		end
-
-		local part_no, start, size, sysid, active
-		local flush_part = function()
-			--
-			-- If we have accumulated information about a partition,
-			-- write it to our table of partitions before continuing
-			-- to the next partition and/or before leaving function.
-			--
-			if part_no then
-				if start and size and sysid and type(active) == "boolean" then
-					tab[part_no] = Storage.Partition.new{
-					    parent = self,
-					    number = part_no,
-					    start  = tonumber(start),
-					    size   = tonumber(size),
-					    sysid  = tonumber(sysid),
-					    active = active
-					}
-					start = nil
-					size = nil
-					sysid = nil
-					active = nil
-				else
-					App.log_warn("Couldn't find all information for " ..
-						"partition #%d", part_no)
-				end
-			end
-		end
-
-		--
-		-- Read through the rest of the lines, accumulating information
-		-- about each partition.
-		--
-		while line do
-			--
-			-- Check to see if this line is a partition line.
-			-- If so, flush any previous partition information
-			-- to the table, and start on this partition by
-			-- extracting the partition # and sysid.
-			--
-			local found, len, num, new_sysid =
-			    string.find(line, "^(%d+):.*%(sysid%s*(%d+)%)")
-			if found then
-				flush_part()
-				part_no = num + 1
-				sysid = new_sysid
-			end
-
-			--
-			-- Check to see if this line is a start/size desc.
-			--
-			local found, len, new_start, new_size =
-			    string.find(line, "^%s*start%s*(%d+),%s*size%s*(%d+)")
-			if found then
-				start = new_start
-				size = new_size
-				active = (string.find(line, "Active") and true) or false
-			end
-
-			--
-			-- Otherwise, line could be a bootmenu line, or
-			-- whatever.  Ignore it, keep going.
-			--
-			line = pty:readline()
-		end
-		pty:close()
-
-		--
-		-- Add any last partition we might have seen to our
-		-- partition table.
-		--
-		flush_part()
-
-		return tab
-	end
-
 	--
 	-- Try to find out what we can about ourselves from the system
 	-- utilities (such as fdisk.)
@@ -1511,16 +1356,10 @@ Storage.Disk.new = function(parent, name)
 		App.log("Surveying Disk: " .. name .. " ...")
 
 		self:describe_from_boot_messages()
-		self:describe_from_hardware_probe()
 
 		local success
-		if App.conf.os.name == "NetBSD" then -- XXXXXX netbsd needs its own subclass here
-			cyl, head, sec =
-			    probe_geometry_netbsd(self)
-		else
-			cyl, head, sec =
-			    probe_geometry_freebsd(self)
-		end
+
+		cyl, head, sec = probe_geometry(self)
 
 		if not cyl or not head or not sec then
 			App.log_warn(
@@ -1538,11 +1377,7 @@ Storage.Disk.new = function(parent, name)
 			capacity:format() .. ": " ..
 			cyl .. "/" .. head .. "/" .. sec)
 
-		if App.conf.os.name == "NetBSD" then -- XXX netbsd needs its own subclass here
-			part = probe_partitions_netbsd(self)
-		else
-			part = probe_partitions_freebsd(self)
-		end
+		part = probe_partitions(self)
 
 		local i, p
 		for i, p in ipairs(part) do
@@ -1572,6 +1407,7 @@ Storage.Partition = {}
 Storage.Partition.new = function(params)
 	local method = {}	-- instance variable
 	local subpart = {}	-- subpartitions on this partition
+	local uefi = 0		-- private: whether we want UEFI/GPT
 
 	local parent = assert(params.parent)
 	local number = assert(params.number)
@@ -1584,6 +1420,16 @@ Storage.Partition.new = function(params)
 	--
 	-- Public methods: accessor methods.
 	--
+
+	--
+	-- Enable / disable UEFI installation
+	--
+	method.set_uefi = function(self, value)
+		if value then
+			uefi = value
+		end
+		return uefi
+	end
 
 	--
 	-- Determine the identity of this object.
@@ -1849,13 +1695,11 @@ Storage.Partition.new = function(params)
 	-- Create commands to set the sysid (type) of this partition.
 	--
 	method.cmds_set_sysid = function(self, cmds, sysid)
-		if App.conf.os.name == "NetBSD" or App.conf.os.name == "OpenBSD" then -- XXXXXX
-			-- XXX we shouldn't really here, but for now we do
-			-- XXX going to need to subclass this I suspect
+		self:cmds_ensure_dev(cmds)
+
+		if uefi == 1 then
 			return
 		end
-
-		self:cmds_ensure_dev(cmds)
 
 		--
 		-- The information in parent NEEDS to be accurate here!
@@ -1928,6 +1772,10 @@ Storage.Partition.new = function(params)
 
 		self:cmds_ensure_dev(cmds)
 
+		if uefi == 1 then
+			return
+		end
+
 		--
 		-- Auto-disklabel the slice and make a record of the
 		-- fresh new disklabel we just applied.
@@ -1949,6 +1797,25 @@ Storage.Partition.new = function(params)
 	-- the disklabel to the overlying disk.
 	--
 	method.cmds_disklabel = function(self, cmds)
+
+		if uefi == 1 then
+			local spd
+			for spd in self:get_subparts() do
+				if spd:is_swap() then
+					cmds:add("${root}${GPART} add -t freebsd-swap " ..
+					    "-a 4K -s " .. spd:get_capacity():in_units("S") ..
+					    " " .. self:get_parent():get_device_name())
+				else
+					local spd_size = spd:get_capacity():in_units("S");
+					-- adjust for boot partition space
+					spd_size = spd_size - (2 * 1024 * 1024)
+					cmds:add("${root}${GPART} add -t freebsd-ufs " ..
+					    "-a 4K -s " .. spd_size ..
+					    " " .. self:get_parent():get_device_name())
+				end
+			end
+			return
+		end
 
 		if App.conf.disklabel_on_disk then
 			-- ${dev} refers to disk
@@ -2036,20 +1903,9 @@ Storage.Partition.new = function(params)
 		-- FreeBSD suggests a starting point of 16.   Net/Open starts
 		-- at an offset of 32.
 		--
-		local offset = 0
-		local starting_offset = 0
-		if App.conf.os.name == "FreeBSD" then
-			starting_offset = 16
-			offset = 16
-		end
-		if App.conf.os.name == "OpenBSD" then
-                        starting_offset = 32
-                        offset = 32
-		end
-		if App.conf.os.name == "NetBSD" then
-                        starting_offset = 32
-                        offset = 32
-		end
+		local offset = 16
+		local starting_offset = 16
+
 		if App.conf.disklabel_on_disk then
 			offset = self:get_start()
 		end
@@ -2133,49 +1989,38 @@ Storage.Partition.new = function(params)
 			if not spd:is_swap() then
 				spd:cmds_ensure_dev(cmds)
 
-				cmds:add("${root}${NEWFS} ${root}dev/" ..
-				    spd:get_device_name())
+				local dev = spd:get_device_name()
+				if uefi == 1 then
+					-- only one partition matches
+					dev = self:get_parent():get_device_name() .. "p3"
+				end
+
+				cmds:add("${root}${NEWFS} ${root}dev/" .. dev)
 
 				if spd:is_root() then
 					cmds:add("${root}${TUNEFS} -L " ..
 					    App.conf.product.name ..
-					    " ${root}dev/" ..
-					    spd:get_device_name())
+					    " ${root}dev/" ..  dev)
 				end
 			end
 		end
 	end
 
 	--
-	-- Create commands to wipe the start of this partition.
-	--
-	method.cmds_wipe_start = function(self, cmds)
-		self:cmds_ensure_dev(cmds)
-		cmds:add(
-		    "${root}${DD} if=${root}dev/zero of=${root}dev/" ..
-		    self:get_raw_device_name() .. " bs=32k count=16"
-		)
-	end
-
-	--
 	-- Create commands to make this partition bootable.
 	--
 	method.cmds_install_bootstrap = function(self, cmds)
-		if App.conf.os.name == "NetBSD" then -- XXXXXX
+		self:cmds_ensure_dev(cmds)
+
+		if uefi == 1 then
 			return
 		end
-
-		self:cmds_ensure_dev(cmds)
 
 		--
 		-- NB: one cannot use "/dev/adXsY" here -
 		-- it must be in the form "adXsY".
 		--
-		cmds:add(
-		    "${root}${DISKLABEL} -B " ..
-		    self:get_device_name()
-		)
-		return cmds
+		cmds:add("${root}${DISKLABEL} -B " .. self:get_device_name())
 	end
 
 	method.cmds_unmount_all_under = function(self, cmds)

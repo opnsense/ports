@@ -4,7 +4,7 @@
 
 os = {
 	name = "FreeBSD",
-	version = "10.0"
+	version = "10.3"
 }
 
 install_items = {
@@ -26,8 +26,6 @@ install_items = {
 	"usr/games",
 	"usr/include",
 	"usr/lib",
---	"usr/local",	-- No need to copy these two, since we use mtree to
---	"usr/X11R6",	-- make them and pkg_add to populate them with files.
 	"usr/libdata",
 	"usr/libexec",
 	"usr/sbin",

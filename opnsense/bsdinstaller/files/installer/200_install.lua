@@ -6,7 +6,7 @@
 
 return {
     id = "install_os",
-    name = _("Custom Install"),
+    name = _("Manual installation"),
     short_desc = _("Perform a custom installation of %s on this computer system",
 		   App.conf.product.name),
     effect = function()

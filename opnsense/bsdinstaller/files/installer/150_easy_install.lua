@@ -2,7 +2,7 @@
 
 return {
     id = "set_up_easy_install",
-    name = _("Quick/Easy Install"),
+    name = _("Guided installation"),
     short_desc = _("Invoke Installer with minimal questions"),
     effect = function()
 	App.descend("easy_install")

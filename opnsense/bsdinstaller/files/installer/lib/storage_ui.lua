@@ -90,6 +90,60 @@ StorageUI.select_disk = function(tab)
 end
 
 --
+-- Present a form to the user from which they can select
+-- whether traditional install or UEFI/GPT installation
+-- should take place on the given Storage.Disk.
+--
+StorageUI.select_mode = function(tab)
+	local mode_actions = {}
+
+	local dd = tab.dd or error("Need a disk descriptor")
+	local filter = tab.filter or function() return true end
+
+	table.insert(mode_actions,
+	    {
+		id = "compat",
+		name = _("Compatibility mode"),
+		effect = function()
+			dd:set_uefi(0)
+			return 1
+		end
+	    }
+	)
+
+	table.insert(mode_actions,
+	    {
+		id = "gpt/uefi",
+		name = _("GPT/UEFI mode (experimental)"),
+		effect = function()
+			dd:set_uefi(1)
+			return 1
+		end
+	    }
+	)
+
+	table.insert(mode_actions,
+	    {
+		id = "cancel",
+		name = tab.cancel_desc or _("Cancel"),
+		accelerator = "ESC",
+		effect = function()
+		    return nil
+		end
+	    }
+	)
+
+	return App.ui:present({
+	    id = tab.id or "select_mode",
+	    name = tab.name or _("Select install mode"),
+	    short_desc = tab.short_desc or _("Select the installation mode."),
+	    long_desc = tab.long_desc,
+	    actions = mode_actions,
+	    role = "menu"
+	}).result
+end
+
+--
 -- Present a form to the user from which they can select any
 -- partition present on the given Storage.Disk.
 --

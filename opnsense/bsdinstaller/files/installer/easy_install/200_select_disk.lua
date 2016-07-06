@@ -12,7 +12,6 @@ return {
 	App.state.sel_disk = nil
 	App.state.sel_part = nil
 
-	-- XXX there might be a better place to handle this.
 	if App.state.storage:get_disk_count() == 0 then
 		App.ui:inform(_(
 		    "The installer could not find any disks suitable "	..
@@ -39,7 +38,6 @@ return {
 
 	if dd then
 		App.state.sel_disk = dd
-		-- App.state.sel_part = App.state.sel_disk:get_part_by_number(1)
 
 		local disk_min_capacity = Storage.Capacity.new(
 		    App.conf.limits.part_min

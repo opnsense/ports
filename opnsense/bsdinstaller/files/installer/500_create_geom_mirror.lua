@@ -1,5 +1,3 @@
--- $Id$
-
 --
 -- Copyright (c)2005 Scott Ullrich.  All rights reserved.
 --
@@ -33,11 +31,6 @@
 
 -- BEGIN 500_create_geom_mirror.lua --
 
--- This module requires FreeBSD
-if App.conf.os.name ~= "FreeBSD" then
-       return nil, "module requires FreeBSD"
-end
-
 -- This module requires more than one disk
 if App.state.storage:get_disk_count() < 2 then
 	return nil, "could not probe more than 1 hard disk"
@@ -56,7 +49,7 @@ end
 --
 return {
 	id = "setup_gmirror",
-	name = _("Setup GEOM Mirror"),
+	name = _("Setup GEOM mirror"),
 	req_state = { "configure" },
 	effect = function(step)
 

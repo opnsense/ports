@@ -39,12 +39,12 @@ return {
 	if App.state.storage:get_activated_swap():in_units("K") == 0 then
 		for spd in App.state.sel_part:get_subparts() do
 			if spd:get_fstype() == "swap" then
-				cmds:add{
-				    cmdline = "${root}${SWAPON} ${root}dev/${dev}",
-				    replacements = {
-					dev = spd:get_device_name()
-				    }
-				}
+				local dev = spd:get_device_name()
+				if App.state.sel_part:set_uefi() == 1 then
+					-- only one partition matches
+					dev = App.state.sel_part:get_parent():get_device_name() .. "p4"
+				end
+				cmds:add("${root}${SWAPON} ${root}dev/" .. dev);
 			end
 		end
 	end

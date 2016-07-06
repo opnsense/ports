@@ -115,8 +115,6 @@ install_items = {
 	"usr/games",
 	"usr/include",
 	"usr/lib",
---	"usr/local",	-- No need to copy these two, since we use mtree to
---	"usr/X11R6",	-- make them and pkg_add to populate them with files.
 	"usr/libdata",
 	"usr/libexec",
 	"usr/sbin",
@@ -149,49 +147,6 @@ mtrees_post_copy = {
     ["usr/local"] = "etc/mtree/BSD.local.dist",
     ["usr/X11R6"] = "etc/mtree/BSD.x11-4.dist"
 }
-
---
--- upgrade_items: similar to "install_items", except for upgrading purposes
--- instead of initial installation.
---
-
-upgrade_items = {
-	"COPYRIGHT",
-	"bin",
-	"boot/beastie.4th",		-- unfortunately, we need to list
-	"boot/boot",			-- everything in boot except for
-	"boot/boot0",			-- the .conf files, so that we
-	"boot/boot1",			-- don't end up overwriting them
-	"boot/boot2",
-	"boot/cdboot",
-	"boot/defaults",
-	"boot/frames.4th",
-	"boot/loader",
-	"boot/loader.4th",
-	"boot/loader.help",
-	"boot/loader.old",
-	"boot/loader.rc",
-	"boot/mbr",
-	"boot/pxeboot",
-	"boot/screen.4th",
-	"boot/support.4th",
-	"dev",
-	"libexec",
-	"lib",
-	"kernel",
-	"modules",
-	"sbin",
-	"sys",
-	"usr/bin",
-	"usr/games",
-	"usr/include",
-	"usr/lib",
-	"usr/libdata",
-	"usr/libexec",
-	"usr/sbin",
-	"usr/share"
-}
-
 
 --
 -- mountpoints: a function which takes two numbers (the capacity
@@ -408,10 +363,10 @@ cmd_names = {
 	TEST_DEV	= "bin/test -c",
 	CPDUP		= "bin/cpdup -vvv -I",
 
-	ATACONTROL	= "sbin/atacontrol",
 	MOUNT		= "sbin/mount -o async",
 	MOUNT_MFS	= "sbin/mount_mfs",
 	UMOUNT		= "sbin/umount",
+	SWAPOFF		= "sbin/swapoff",
 	SWAPON		= "sbin/swapon",
 	DISKLABEL	= "sbin/disklabel",
 	MBRLABEL	= "sbin/mbrlabel",
@@ -419,6 +374,7 @@ cmd_names = {
 	NEWFS_MSDOS	= "sbin/newfs_msdos",
 	TUNEFS		= "sbin/tunefs",
 	FDISK		= "sbin/fdisk",
+	GPART		= "sbin/gpart",
 	DUMPON		= "sbin/dumpon",
 	IFCONFIG	= "sbin/ifconfig",
 	ROUTE		= "sbin/route",

@@ -179,13 +179,19 @@ TargetSystem.new = function(tab)
 		--
 		cmds_unmount_all_under(cmds)
 
+		local device_name = spd:get_device_name()
+		if pd:set_uefi() == 1 then
+			-- only one possible partition
+			device_name = pd:get_parent():get_device_name() .. "p3"
+		end
+
 		--
 		-- Mount the target's root filesystem
 		--
 		cmds:add({
 		    cmdline = "${root}${MOUNT} ${root}dev/${dev} ${root}${base}",
 		    replacements = {
-			dev = spd:get_device_name(),
+			dev = device_name,
 			base = base
 		    }
 		})

@@ -35,47 +35,47 @@ local format_disk = function(step, dd)
 	cmdsGPT:set_replacements{
 	    disk = disk
 	}
-	cmdsGPT:add("/usr/local/installer/cleargpt.sh ${disk}");
+	cmdsGPT:add("${root}${GPART} destroy -F ${disk} || true");
 	cmdsGPT:execute()
 
 	dd:cmds_format(cmds)
 
-		if not cmds:execute() then
-			App.ui:inform(_(
-			    "The disk\n\n%s\n\nwas "		..
-			    "not correctly formatted, and may "	..
-			    "now be in an inconsistent state. "	..
-			    "We recommend trying to format it again " ..
-			    "before attempting to install "	..
-			    "%s on it.",
-			    dd:get_desc(), App.conf.product.name
-			))
-			return false
-		end
+	if not cmds:execute() then
+		App.ui:inform(_(
+		    "The disk\n\n%s\n\nwas "		..
+		    "not correctly formatted, and may "	..
+		    "now be in an inconsistent state. "	..
+		    "We recommend trying to format it again " ..
+		    "before attempting to install "	..
+		    "%s on it.",
+		    dd:get_desc(), App.conf.product.name
+		))
+		return false
+	end
 
-		--
-		-- The extents of the Storage.System have probably
-		-- changed, so refresh our knowledge of it.
-		--
-		local result
-		result, App.state.sel_disk, App.state.sel_part, dd =
-		    StorageUI.refresh_storage(
-			App.state.sel_disk, App.state.sel_part, dd
-		    )
-		if not result then
-			return false
-		end
+	--
+	-- The extents of the Storage.System have probably
+	-- changed, so refresh our knowledge of it.
+	--
+	local result
+	result, App.state.sel_disk, App.state.sel_part, dd =
+	    StorageUI.refresh_storage(
+		App.state.sel_disk, App.state.sel_part, dd
+	    )
+	if not result then
+		return false
+	end
 
-		--
-		-- Mark the disk as having been 'touched'
-		-- (modified destructively, i.e. partitioned) by us.
-		-- This should prevent us from asking for further
-		-- confirmation for changes we might do to it in
-		-- the future.
-		--
-		dd:touch()
+	--
+	-- Mark the disk as having been 'touched'
+	-- (modified destructively, i.e. partitioned) by us.
+	-- This should prevent us from asking for further
+	-- confirmation for changes we might do to it in
+	-- the future.
+	--
+	dd:touch()
 
-		return true
+	return true
 end
 
 return {

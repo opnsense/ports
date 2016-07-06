@@ -113,7 +113,7 @@ local format_disk = function(step, dd)
 	cmdsGPT:set_replacements{
 	    disk = disk
 	}
-	cmdsGPT:add("/usr/local/installer/cleargpt.sh ${disk}");
+	cmdsGPT:add("${root}${GPART} destroy -F ${disk} || true");
 	cmdsGPT:execute()
 	dd:cmds_format(cmds)
 

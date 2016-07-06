@@ -78,25 +78,9 @@ local populate_from_disk = function(dd)
 				tostring(pd:get_sysid())
 
 		if start ~= offset then
-			App.ui:inform(_(
-			    "WARNING: The partition layout currently "	..
-			    "on this disk is non-standard.  It may "	..
-			    "have gaps in between partitions, or the "	..
-			    "partitions may be listed in something "	..
-			    "other than strictly increading order. "	..
-			    "\n\nWhile %s can handle this situation, "	..
-			    "this installer's partition editor cannot "	..
-			    "at present. You will be given the option "	..
-			    "to completely repartition this disk, but "	..
-			    "if you wish to retain any existing "	..
-			    "information on the disk, you should exit "	..
-			    "the installer and use a tool such as "	..
-			    "`fdisk' to manually create a %s partition " ..
-			    "on it before continuing.",
-			    App.conf.product.name, App.conf.product.name
-			))
 			return populate_one_big_partition(dd)
 		end
+
 		offset = offset + sectors
 
 		--
@@ -595,16 +579,6 @@ local alter_disk = function(dd, datasets_list, changed)
 		-- Create partition descriptors under the disk,
 		-- then create the commands to partition based on
 		-- them, then execute those commands.
-		-- XXX might be better to:
-		-- - create the partition descriptors under a
-		--   temporary disk descriptor, or
-		-- - refresh the partition descriptors if the
-		--   partitioning fails, or
-		-- - create the commands directly from the
-		--   datasets
-		-- ... so that it is possible/easy to restore the
-		-- list of partition descriptors back to what is
-		-- really on the disk.
 		--
 		create_partitions_from_datasets(dd, datasets_list)
 		dd:cmds_partition(cmds)
@@ -635,18 +609,6 @@ local alter_disk = function(dd, datasets_list, changed)
 		if not result then
 			return false
 		end
-
-		--
-		-- XXX mark all changed partitions as having been
-		-- changed, here.
-		--
-
-		--[[
-		App.ui:inform(_(
-		    "The disk\n\n%s\n\nwas successfully partitioned.",
-		    dd:get_desc()
-		))
-		--]]
 
 		print("\nThe disk was successfully partitioned...\n")
 
@@ -684,43 +646,6 @@ local let_user_edit_partitions = function(step, population_function)
 	local changed, added =
 	    find_changed_and_added_partitions(App.state.sel_disk, datasets_list)
 
-	--[[
-	if table.getn(changed) == 0 and table.getn(added) == 0 then
-		response = App.ui:present{
-		    id = "partition_anyway",
-		    name = _("Partition Anyway?"),
-		    short_desc = _(
-			"No changes appear to have been made to the "	..
-			"partition table layout.\n\n"			..
-			"Do you want to execute the commands to "	..
-			"partition the disk anyway?"
-		    ),
-
-		    actions = {
-			{
-			    id = "ok",
-			    name = _("Yes, partition %s",
-			        App.state.sel_disk:get_name())
-			},
-			{
-			    id = "skip",
-			    name = _("No, Skip to Next Step")
-			},
-			{
-			    id = "cancel",
-			    accelerator = "ESC",
-			    name = _("No, Return to Edit Partitions")
-			}
-		    }
-		}
-		if response.action_id == "cancel" then
-			return step
-		elseif response.action_id == "skip" then
-			return step:next()
-		end
-	end
-	--]]
-
 	--
 	-- Actually write the partitions to the disk, with accompanying warnings
 	-- and such in the user interface.
@@ -740,57 +665,6 @@ return {
     name = _("Partition Disk"),
     req_state = { "storage", "sel_disk" },
     effect = function(step)
-	--[[--
-	if App.state.sel_disk:has_been_touched() then
-		return let_user_edit_partitions(step, populate_from_disk)
-	end
-	--]]--
-
-	if App.state.sel_disk:is_mounted() then
-		local response = App.ui:present{
-		    id = "partition_disk",
-		    name = _("Partition Disk?"),
-		    short_desc = _(
-			"One or more subpartitions of one or more "	..
-			"primary partitions of the selected disk "	..
-			"are already in use (they are currently "	..
-			"mounted on mountpoints in the filesystem.) "	..
-			"You cannot repartition the disk under "	..
-			"these circumstances. If you wish to do so, "	..
-			"you must unmount the subpartitions before "	..
-			"proceeding."
-		    ),
-		    actions = {
-			{
-			    id = "unmount",
-			    name = _("Unmount Subpartitions"),
-			    effect = function()
-				local cmds = CmdChain.new()
-				App.state.sel_disk:cmds_unmount_all_under(cmds)
-				cmds:execute()
-				return step
-			    end
-			},
-			{
-			    id = "skip",
-			    name = _("Skip this Step"),
-			    effect = function()
-				return step:next()
-			    end
-			},
-			{
-			    id = "cancel",
-			    name = _("Return to %s", step:get_prev_name()),
-			    accelerator = "ESC",
-			    effect = function()
-				return step:prev()
-			    end
-			}
-		    }
-		}
-		return response.result
-	end
-
 	if App.state.sel_disk:get_part_count() == 0 then
 		App.ui:inform(_(
 		    "No valid partitions were found on this disk. "	..
