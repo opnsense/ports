@@ -1814,6 +1814,7 @@
     SUBDIR += redmine-http-auth
     SUBDIR += redmine-issue_templates
     SUBDIR += redmine-knowledgebase
+    SUBDIR += redmine-ldap_sync
     SUBDIR += redmine-qa_contact
     SUBDIR += redmine-redcarpet_formatter
     SUBDIR += redmine-sidebar_hide
@@ -2378,7 +2379,6 @@
     SUBDIR += xshttpd-devel
     SUBDIR += xsp
     SUBDIR += yabb
-    SUBDIR += yahoo-ui
     SUBDIR += yanopaste
     SUBDIR += yaws
     SUBDIR += yii
