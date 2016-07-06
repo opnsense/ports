@@ -248,9 +248,9 @@ Storage.System.new = function()
 		App.log("`" .. cmd .. "` returned: " .. probed_devices)
 
 		--
-		-- If the platform is FreeBSD and /dev/mirror/ exists
-		-- then get a list of the GEOM Mirror volumes and add
-		-- to the selection list.
+		-- If the platform is FreeBSD and /dev/mirror/ or
+		-- /dev/raid/ exists, then get a list of the volumes
+		-- and add them to the selection list.
 		--
 		if App.conf.os.name == "FreeBSD" then
 			if FileName.is_dir(App.expand("${root}dev/mirror")) then
@@ -265,6 +265,19 @@ Storage.System.new = function()
 				pty:close()
 				App.log("`" .. cmd .. "` returned: " .. probed_gmirror_devices)
 				probed_devices = probed_gmirror_devices .. " " .. probed_devices
+			end
+			if FileName.is_dir(App.expand("${root}dev/raid")) then
+				App.log("/dev/raid exists.  Surveying.");
+				cmd = App.expand('${root}${FIND} /dev/raid/* | ${root}${SED} "s/\\/dev\\/raid/raid/"')
+				local pty = Pty.Logged.open(cmd, App.log_string)
+				if not pty then
+					App.log_warn("Couldn't open pty to '%s'", cmd)
+					return tab
+				end
+				local probed_raid_devices = pty:readline()
+				pty:close()
+				App.log("`" .. cmd .. "` returned: " .. probed_raid_devices)
+				probed_devices = probed_raid_devices .. " " .. probed_devices
 			end
 		end
 
