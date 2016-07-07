@@ -3,6 +3,7 @@
 
 PORTNAME=	harfbuzz
 PORTVERSION=	1.2.3
+PORTREVISION=	2
 CATEGORIES=	print
 MASTER_SITES=	http://www.freedesktop.org/software/harfbuzz/release/
 

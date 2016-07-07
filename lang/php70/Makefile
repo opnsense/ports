@@ -3,7 +3,7 @@
 
 PORTNAME=	php70
 PORTVERSION=	7.0.8
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${PORTVERSION}
@@ -15,7 +15,7 @@ LICENSE=	PHP301
 
 BROKEN_powerpc64=	Does not build
 
-USES=		tar:bzip2 cpe
+USES+=		tar:bzip2 cpe
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 .if !defined(PKGNAMESUFFIX)
