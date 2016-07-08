@@ -516,6 +516,9 @@ TargetSystem.new = function(tab)
 			end
 		end
 
+		local root_dev = "/dev/gpt/rootfs"
+		local swap_dev = "/dev/gpt/swapfs"
+
 		--
 		-- Add the mountpoints for the selected subpartitions
 		-- (/, /usr, /var, and so on) to the fstab file.
@@ -526,19 +529,23 @@ TargetSystem.new = function(tab)
 			    mountpoint = spd:get_mountpoint()
 			}
 
-			if spd:is_root()then
+			if pd:set_uefi() == 0 then
+				root_dev = "/dev/ufs/" .. App.conf.product.name
+				swap_dev = "/dev/" .. spd:get_device_name()
+			end
+
+			if spd:is_root() then
 				if hay_swap then
-					cmds:add("${root}${ECHO} '/dev/ufs/" ..
-					    App.conf.product.name ..
+					cmds:add("${root}${ECHO} '" .. root_dev ..
 					    "\t${mountpoint}\t\tufs\trw\t\t1\t1' >>${root}${base}/${filename}")
 				else
 					-- no swap, no atime
-					cmds:add("${root}${ECHO} '/dev/ufs/" ..
-					    App.conf.product.name ..
+					cmds:add("${root}${ECHO} '" .. root_dev ..
 					    "\t${mountpoint}\t\tufs\trw,noatime\t1\t1' >>${root}${base}/${filename}")
 				end
 			elseif spd:is_swap() then
-				cmds:add("${root}${ECHO} '/dev/${device}\t\tnone\t\tswap\tsw\t\t0\t0' >>${root}${base}/${filename}")
+				cmds:add("${root}${ECHO} '" .. swap_dev ..
+				    "\t\tnone\t\tswap\tsw\t\t0\t0' >>${root}${base}/${filename}")
 			else
 				cmds:add("${root}${ECHO} '/dev/${device}\t\t${mountpoint}\t\tufs\trw\t\t2\t2' >>${root}${base}/${filename}")
 			end

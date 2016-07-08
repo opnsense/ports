@@ -22,7 +22,8 @@ return {
 						-- only one partition matches
 						dev = App.state.sel_part:get_parent():get_device_name() .. "p4"
 					end
-					cmds:add("${root}${SWAPOFF} ${root}dev/" .. dev);
+					-- swap may or may not be mounted
+					cmds:add("${root}${SWAPOFF} ${root}dev/" .. dev .. " || true");
 				end
 			end
 		end

@@ -1151,7 +1151,7 @@ Storage.Disk.new = function(parent, name)
 			cmds:add("${root}${DD} if=${root}boot/boot1.efifat of=/dev/" ..
 			    self:get_device_name() .. "p1")
 			cmds:add("${root}${GPART} add -t freebsd-boot -a 4k -s 512K " ..
-			    self:get_device_name())
+			    " -l bootfs " .. self:get_device_name())
 			cmds:add("${root}${GPART} bootcode " ..
 			    "-b ${root}boot/pmbr -p ${root}boot/gptboot -i 2 " ..
 			    self:get_device_name())
@@ -1804,14 +1804,14 @@ Storage.Partition.new = function(params)
 				if spd:is_swap() then
 					cmds:add("${root}${GPART} add -t freebsd-swap " ..
 					    "-a 4K -s " .. spd:get_capacity():in_units("S") ..
-					    " " .. self:get_parent():get_device_name())
+					    " -l swapfs " .. self:get_parent():get_device_name())
 				else
 					local spd_size = spd:get_capacity():in_units("S");
 					-- adjust for boot partition space
 					spd_size = spd_size - (2 * 1024 * 1024)
 					cmds:add("${root}${GPART} add -t freebsd-ufs " ..
-					    "-a 4K -s " .. spd_size ..
-					    " " .. self:get_parent():get_device_name())
+					    "-a 4K -s " .. spd_size .. " -l rootfs "
+					    .. self:get_parent():get_device_name())
 				end
 			end
 			return
