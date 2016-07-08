@@ -1,6 +1,6 @@
 --
 -- Copyright (c) 2009 Scott Ullrich <sullrich@gmail.com>
--- Copyright (c) 2014-2015 Franco Fichtner <franco@opnsense.org>
+-- Copyright (c) 2014-2016 Franco Fichtner <franco@opnsense.org>
 -- All rights reserved.
 --
 -- Redistribution and use in source and binary forms, with or without
@@ -61,26 +61,30 @@ return {
 	end
 
 	-- make sure that we have partition we reference after
-	if POSIX.stat("/dev/" .. disk1 .."s1a", "type") == nil then
+	local part1
+	if POSIX.stat("/dev/" .. disk1 .."s1a", "type") ~= nil then
+		-- MBR layout found
+		part1 = "/dev/" .. disk1 .."s1a"
+	elseif POSIX.stat("/dev/" .. disk1 .."p3", "type") ~= nil then
+		-- GPT layout found
+		part1 = "/dev/" .. disk1 .."p3"
+	else
 		App.ui:inform(_("Disk is not partitioned."))
 		return Menu.CONTINUE
 	end
 
 	local cmds = CmdChain.new()
-	cmds:add{
-		cmdline = "${root}sbin/fsck -t ufs -y /dev/${disk1}s1a > /dev/null",
-		replacements = { disk1 = disk1, }
-	}
+
 	cmds:add("${root}bin/mkdir -p /tmp/hdrescue");
-	cmds:add{
-		cmdline = "${root}sbin/mount /dev/${disk1}s1a /tmp/hdrescue",
-		replacements = { disk1 = disk1, }
-	}
+	cmds:add("${root}sbin/fsck -t ufs -y " .. part1 .. " > /dev/null");
+	cmds:add("${root}sbin/mount " .. part1 .. " /tmp/hdrescue");
+
 	if not cmds:execute() then
 		return Menu.CONTINUE
 	end 
 
 	cmds = CmdChain.new()
+
 	if POSIX.stat("/tmp/hdrescue/conf", "type") == "directory" then
 		cmds:add("${root}bin/cp /tmp/hdrescue/conf/config.xml /conf/config.xml");
 		if POSIX.stat("/tmp/hdrescue/conf/backup", "type") == "directory" then

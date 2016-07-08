@@ -103,7 +103,7 @@ StorageUI.select_mode = function(tab)
 	table.insert(mode_actions,
 	    {
 		id = "compat",
-		name = _("Compatibility mode"),
+		name = _("MBR mode"),
 		effect = function()
 			dd:set_uefi(0)
 			return 1
