@@ -13,6 +13,8 @@ DIST_SUBDIR=	xc
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Display X and Win32 desktops on remote X/Win32/Java displays
+DEPRECATED=	Distfiles no longer available.
+EXPIRATION_DATE=	2016-09-01
 
 RUN_DEPENDS=	xorg-fonts>=7.2:x11-fonts/xorg-fonts \
 		showrgb:x11/rgb \
@@ -26,7 +28,7 @@ USE_XORG=	x11 xext xpm xext xtst sm ice inputproto
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/unix
 PLIST=		${WRKDIR}/pkg-plist
-CONFLICTS=	tightvnc-[0-9]* tridiavnc-[0-9]*
+CONFLICTS=	tightvnc-[0-9]* tridiavnc-[0-9]* tigervnc-*
 
 OPTIONS_DEFINE=	SERVER
 OPTIONS_DEFAULT=	SERVER

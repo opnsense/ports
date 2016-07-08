@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dovecot-pigeonhole
-PORTVERSION=	0.4.14
-PORTREVISION=	2
+PORTVERSION=	0.4.15
 CATEGORIES=	mail
 MASTER_SITES=	http://pigeonhole.dovecot.org/releases/${DOVECOTVERSION}/
 DISTNAME=	${PORTNAME:C/-/-${DOVECOTVERSION}-/}-${PORTVERSION}
@@ -25,9 +24,8 @@ CONFIGURE_ARGS=	--exec-prefix=${PREFIX} \
 		--with-dovecot="${LOCALBASE}/lib/dovecot"
 LDFLAGS+=	-L${LOCALBASE}/lib
 INSTALL_TARGET=	install-strip
-USES=		libtool
+USES=		compiler:c11 libtool ssl
 USE_LDCONFIG=	${PREFIX}/lib/dovecot
-USE_OPENSSL=	yes
 
 OPTIONS_DEFINE=	DOCS LDAP MANAGESIEVE
 OPTIONS_DEFAULT=MANAGESIEVE
