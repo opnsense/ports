@@ -388,6 +388,7 @@
     SUBDIR += mediawiki124
     SUBDIR += mediawiki125
     SUBDIR += mediawiki126
+    SUBDIR += mediawiki127
     SUBDIR += mergelog
     SUBDIR += mgstat
     SUBDIR += mhonarc
@@ -1937,6 +1938,7 @@
     SUBDIR += rubygem-layout_yullio_generator
     SUBDIR += rubygem-less
     SUBDIR += rubygem-lighthouse-api
+    SUBDIR += rubygem-link_header
     SUBDIR += rubygem-maruku
     SUBDIR += rubygem-mechanize
     SUBDIR += rubygem-mechanize26

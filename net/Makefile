@@ -169,6 +169,8 @@
     SUBDIR += go-amqp
     SUBDIR += go-cs
     SUBDIR += go-geoip
+    SUBDIR += go-httppath
+    SUBDIR += go-httptreemux
     SUBDIR += go.net
     SUBDIR += gofish
     SUBDIR += gogoc

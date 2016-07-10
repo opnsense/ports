@@ -695,7 +695,6 @@
     SUBDIR += glrparser
     SUBDIR += glui
     SUBDIR += gmake
-    SUBDIR += gmake-lite
     SUBDIR += gnatcoll
     SUBDIR += gnatpython
     SUBDIR += gnome-builder
@@ -714,8 +713,10 @@
     SUBDIR += go-bindata
     SUBDIR += go-btree
     SUBDIR += go-flags
+    SUBDIR += go-go.uuid
     SUBDIR += go-hashicorp-logutils
     SUBDIR += go-json-rest
+    SUBDIR += go-metrics
     SUBDIR += go-pretty
     SUBDIR += go-raw
     SUBDIR += go-runewidth
@@ -1466,6 +1467,7 @@
     SUBDIR += magit
     SUBDIR += make++
     SUBDIR += makedepend
+    SUBDIR += marisa-trie
     SUBDIR += mate-common
     SUBDIR += matreshka
     SUBDIR += maven-wrapper
@@ -4362,6 +4364,7 @@
     SUBDIR += py-raven
     SUBDIR += py-rcsparse
     SUBDIR += py-re2
+    SUBDIR += py-rebulk
     SUBDIR += py-rednose
     SUBDIR += py-repl
     SUBDIR += py-repoze.lru
@@ -4946,6 +4949,7 @@
     SUBDIR += rubygem-grit
     SUBDIR += rubygem-guess_html_encoding
     SUBDIR += rubygem-gyoku
+    SUBDIR += rubygem-hamster
     SUBDIR += rubygem-hashdiff
     SUBDIR += rubygem-hashery
     SUBDIR += rubygem-hashie

@@ -96,6 +96,7 @@
     SUBDIR += blitz++
     SUBDIR += blocksolve95
     SUBDIR += bsdnt
+    SUBDIR += cadabra2
     SUBDIR += calc
     SUBDIR += calcoo
     SUBDIR += calctool
@@ -620,6 +621,7 @@
     SUBDIR += py-pyfst
     SUBDIR += py-pyhull
     SUBDIR += py-pymc
+    SUBDIR += py-pysparse
     SUBDIR += py-pyvtk
     SUBDIR += py-roman
     SUBDIR += py-scientific
