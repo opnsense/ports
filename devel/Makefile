@@ -208,7 +208,8 @@
     SUBDIR += c2mdoc
     SUBDIR += caf
     SUBDIR += calibrator
-    SUBDIR += capstone
+    SUBDIR += capstone3
+    SUBDIR += capstone4
     SUBDIR += cargo
     SUBDIR += cask
     SUBDIR += catch
@@ -1405,6 +1406,7 @@
     SUBDIR += linux_kdump
     SUBDIR += linux_libusb
     SUBDIR += lion
+    SUBDIR += liteide
     SUBDIR += lldb37
     SUBDIR += lldb38
     SUBDIR += llnextgen
