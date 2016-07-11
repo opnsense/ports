@@ -56,7 +56,6 @@ return {
 	if string.find(line, "^amd64") then
 		mode = StorageUI.select_mode({
 			dd = App.state.sel_disk,
-			short_desc = _("Select the installation mode."),
 			cancel_desc = _("Return to %s", step:get_prev_name())
 		})
 	end

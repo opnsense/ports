@@ -102,10 +102,10 @@ StorageUI.select_mode = function(tab)
 
 	table.insert(mode_actions,
 	    {
-		id = "compat",
-		name = _("MBR mode"),
+		id = "gpt/uefi",
+		name = _("GPT/UEFI mode"),
 		effect = function()
-			dd:set_uefi(0)
+			dd:set_uefi(1)
 			return 1
 		end
 	    }
@@ -113,10 +113,10 @@ StorageUI.select_mode = function(tab)
 
 	table.insert(mode_actions,
 	    {
-		id = "gpt/uefi",
-		name = _("GPT/UEFI mode (experimental)"),
+		id = "compat",
+		name = _("MBR mode"),
 		effect = function()
-			dd:set_uefi(1)
+			dd:set_uefi(0)
 			return 1
 		end
 	    }
@@ -136,7 +136,9 @@ StorageUI.select_mode = function(tab)
 	return App.ui:present({
 	    id = tab.id or "select_mode",
 	    name = tab.name or _("Select install mode"),
-	    short_desc = tab.short_desc or _("Select the installation mode."),
+	    short_desc = tab.short_desc or _("Select the installation mode: " ..
+	        "GPT/UEFI is the recommended option. MBR is provided " ..
+	        "for compatibilty with older hardware."),
 	    long_desc = tab.long_desc,
 	    actions = mode_actions,
 	    role = "menu"
