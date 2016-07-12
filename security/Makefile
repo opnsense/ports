@@ -189,6 +189,7 @@
     SUBDIR += hackbot
     SUBDIR += hamachi
     SUBDIR += hashcat
+    SUBDIR += hashcat-legacy
     SUBDIR += heimdal
     SUBDIR += hitch
     SUBDIR += hlfl
@@ -895,6 +896,7 @@
     SUBDIR += py-rekall_gui
     SUBDIR += py-requests-kerberos
     SUBDIR += py-rsa
+    SUBDIR += py-safe
     SUBDIR += py-scrypt
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
