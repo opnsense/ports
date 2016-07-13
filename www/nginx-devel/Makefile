@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nginx
-PORTVERSION=	1.11.1
+PORTVERSION=	1.11.2
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
 MASTER_SITES+=	LOCAL/osa
@@ -325,6 +325,7 @@ NGINX_ACCESSKEY_VERSION=	2.0.3
 MASTER_SITES+=	LOCAL/osa:accesskey
 DISTFILES+=	nginx-accesskey-${NGINX_ACCESSKEY_VERSION}.tar.gz:accesskey
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/nginx-accesskey-${NGINX_ACCESSKEY_VERSION}
+IGNORE=	ACCESSKEY: a patch requires
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_ADDITION}
@@ -659,6 +660,7 @@ GH_ACCOUNT+=	vkholodkov:upload
 GH_PROJECT+=	nginx-upload-module:upload
 GH_TAGNAME+=	${GIT_UPLOAD_VERSION}:upload
 CONFIGURE_ARGS+=--add-module=${WRKSRC_upload}
+IGNORE=	HTTP_UPLOAD: a patch requires
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_UPLOAD_PROGRESS}
@@ -699,6 +701,7 @@ NGINX_UPSTREAM_STICKY_VERSION=	1.2.4
 MASTER_SITES+=	https://bitbucket.org/nginx-goodies/nginx-sticky-module-ng/get/:upstreamsticky
 DISTFILES+=	${NGINX_UPSTREAM_STICKY_VERSION}.tar.gz:upstreamsticky
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/nginx-goodies-nginx-sticky-module-ng-c825ea7c5c91/
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_http_sticky_misc.c
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_VIDEO_THUMBEXTRACTOR}
@@ -844,7 +847,7 @@ CONFIGURE_ARGS+=--without-http_rewrite_module \
 .endif
 
 .if ${PORT_OPTIONS:MPASSENGER}
-PASSENGER_VERSION=	5.0.28
+PASSENGER_VERSION=	5.0.29
 MASTER_SITES+=	http://s3.amazonaws.com/phusion-passenger/releases/:passenger
 DISTFILES+=	passenger-${PASSENGER_VERSION}.tar.gz:passenger
 .if !empty(PORT_OPTIONS:MDSO)
@@ -852,8 +855,7 @@ CONFIGURE_ARGS+=--add-dynamic-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/sr
 .else
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/passenger-${PASSENGER_VERSION}/src/nginx_module
 .endif
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-passenger-build-nginx.rb \
-		${PATCHDIR}/extra-patch-passenger-cxx_portality.rb
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-passenger-build-nginx.rb
 .if empty(PORT_OPTIONS:MDEBUG)
 CONFIGURE_ENV+=	OPTIMIZE="yes"
 CFLAGS+=	-DNDEBUG
@@ -1004,7 +1006,7 @@ CONFIGURE_ARGS+=--with-http_v2_module
 .if ${PORT_OPTIONS:MNJS}
 GH_ACCOUNT+=	nginx:njs
 GH_PROJECT+=	njs:njs
-GH_TAGNAME+=	44fe9c1:njs
+GH_TAGNAME+=	f71f005:njs
 .if !empty(PORT_OPTIONS:MDSO)
 CONFIGURE_ARGS+=--add-dynamic-module=${WRKSRC_njs}/nginx
 .else
