@@ -408,6 +408,7 @@
     SUBDIR += dulwich
     SUBDIR += duplo
     SUBDIR += dwarfdump
+    SUBDIR += dwarves
     SUBDIR += dxa65
     SUBDIR += dyncall
     SUBDIR += e00compr
@@ -429,6 +430,7 @@
     SUBDIR += elfrc
     SUBDIR += elfsh
     SUBDIR += elftoaout
+    SUBDIR += elfutils
     SUBDIR += elixir-apex
     SUBDIR += elixir-bson
     SUBDIR += elixir-calendar
@@ -713,6 +715,7 @@
     SUBDIR += gnustep-make
     SUBDIR += go-bindata
     SUBDIR += go-btree
+    SUBDIR += go-cobra
     SUBDIR += go-codec
     SUBDIR += go-faker
     SUBDIR += go-flags
@@ -721,9 +724,11 @@
     SUBDIR += go-goregen
     SUBDIR += go-hashicorp-logutils
     SUBDIR += go-json-rest
+    SUBDIR += go-logrus
     SUBDIR += go-metrics
     SUBDIR += go-pflag
     SUBDIR += go-pretty
+    SUBDIR += go-protobuf
     SUBDIR += go-raw
     SUBDIR += go-runewidth
     SUBDIR += go-slices
@@ -4006,6 +4011,7 @@
     SUBDIR += py-clint
     SUBDIR += py-clonedigger
     SUBDIR += py-cloudpickle
+    SUBDIR += py-cluster
     SUBDIR += py-cmdln
     SUBDIR += py-codecov
     SUBDIR += py-codegen
@@ -4037,6 +4043,7 @@
     SUBDIR += py-daemons
     SUBDIR += py-dal
     SUBDIR += py-darcsver
+    SUBDIR += py-darts.util.lru
     SUBDIR += py-dateutil
     SUBDIR += py-dbus
     SUBDIR += py-debtcollector
@@ -4159,6 +4166,7 @@
     SUBDIR += py-jdcal
     SUBDIR += py-jedi
     SUBDIR += py-jellyfish
+    SUBDIR += py-jenkins-job-builder
     SUBDIR += py-jep
     SUBDIR += py-jira
     SUBDIR += py-jmespath
@@ -4216,6 +4224,7 @@
     SUBDIR += py-more-itertools
     SUBDIR += py-mox
     SUBDIR += py-msgpack-python
+    SUBDIR += py-multi_key_dict
     SUBDIR += py-multipledispatch
     SUBDIR += py-mwlib
     SUBDIR += py-mwlib.ext
@@ -4260,6 +4269,7 @@
     SUBDIR += py-pex
     SUBDIR += py-phabricator
     SUBDIR += py-phonenumbers
+    SUBDIR += py-phply
     SUBDIR += py-phpserialize
     SUBDIR += py-pika
     SUBDIR += py-pinocchio
@@ -4441,6 +4451,7 @@
     SUBDIR += py-statsd
     SUBDIR += py-stdnum
     SUBDIR += py-stevedore
+    SUBDIR += py-stopit
     SUBDIR += py-structlog
     SUBDIR += py-stsci.distutils
     SUBDIR += py-subversion
@@ -4452,6 +4463,7 @@
     SUBDIR += py-tabulate
     SUBDIR += py-tapi
     SUBDIR += py-tarantool-queue
+    SUBDIR += py-tblib
     SUBDIR += py-tconfpy
     SUBDIR += py-tempora
     SUBDIR += py-tempstorage
