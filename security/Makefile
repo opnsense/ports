@@ -846,6 +846,7 @@
     SUBDIR += py-gnupg
     SUBDIR += py-gnutls
     SUBDIR += py-gpsoauth
+    SUBDIR += py-halberd
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
@@ -912,6 +913,7 @@
     SUBDIR += py-twistedConch
     SUBDIR += py-twofish
     SUBDIR += py-volatility
+    SUBDIR += py-vulndb
     SUBDIR += py-xmlsec
     SUBDIR += py-yara
     SUBDIR += py-yara-editor
@@ -1004,6 +1006,12 @@
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-razorback-scriptNugget
     SUBDIR += rubygem-recog
+    SUBDIR += rubygem-rex-java
+    SUBDIR += rubygem-rex-powershell
+    SUBDIR += rubygem-rex-random_identifier
+    SUBDIR += rubygem-rex-registry
+    SUBDIR += rubygem-rex-text
+    SUBDIR += rubygem-rex-zip
     SUBDIR += rubygem-roauth
     SUBDIR += rubygem-ruby-hmac
     SUBDIR += rubygem-ruby-rc4

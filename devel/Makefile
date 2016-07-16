@@ -1210,6 +1210,7 @@
     SUBDIR += libfastjson
     SUBDIR += libffi
     SUBDIR += libfirm
+    SUBDIR += libflatarray
     SUBDIR += libfortuna
     SUBDIR += libfreefare
     SUBDIR += libfsntfs
@@ -4341,6 +4342,7 @@
     SUBDIR += py-pytest-xdist
     SUBDIR += py-python-bugzilla
     SUBDIR += py-python-distutils-extra
+    SUBDIR += py-python-gist
     SUBDIR += py-python-jenkins
     SUBDIR += py-python-magic
     SUBDIR += py-python-pcre
@@ -4823,6 +4825,7 @@
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-binding_of_caller
     SUBDIR += rubygem-bio
+    SUBDIR += rubygem-bit-struct
     SUBDIR += rubygem-blankslate
     SUBDIR += rubygem-blobstore_client
     SUBDIR += rubygem-blockenspiel

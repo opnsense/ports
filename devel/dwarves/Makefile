@@ -2,10 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	dwarves
-PORTVERSION=	1.10
+PORTVERSION=	1.10.20160713
 CATEGORIES=	devel
-MASTER_SITES=	https://fedorapeople.org/~acme/dwarves/
-# http://fedorapeople.org/~acme/dwarves/%{name}-%{version}.tar.bz2
+#MASTER_SITES=	https://fedorapeople.org/~acme/dwarves/
+MASTER_SITES=	http://repo.or.cz/dwarves.git/snapshot/
+DISTFILES=	b52386d041fac2dc6decf3a9e8e85385784a2de9.tar.gz
 # git: http://repo.or.cz/dwarves.git
 # ML: http://news.gmane.org/gmane.comp.debugging.dwarves
 
@@ -17,16 +18,14 @@ LICENSE_FILE_GPLv2=	$(WRKSRC)/COPYING
 
 LIB_DEPENDS=	libargp.so:devel/argp-standalone \
 		libdw.so:devel/elfutils
-BUILD_DEPENDS=	cmake>=0:devel/cmake \
-		gnulib>=0:devel/gnulib
+PATCH_DEPENDS=	gnulib>=0:devel/gnulib
 
-# Source is a tarbomb:
-WRKSRC=		$(WRKDIR)
+WRKSRC=		$(WRKDIR)/dwarves-b52386d
 
 USES=		cmake:outsource localbase tar:bzip2
 USE_LDCONFIG=	yes
 
-#CMAKE_VERBOSE=	1
+CMAKE_VERBOSE=	1
 
 post-patch:
 	@${CP} -a \

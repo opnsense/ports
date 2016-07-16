@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	offline-npm
-PORTVERSION=	0.2.0
-PORTREVISION=	1
+PORTVERSION=	0.2.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	www
 
-MAINTAINER=	cpm@fbsd.es
+MAINTAINER=	cpm@FreeBSD.org
 COMMENT=	Offline installation with npm install
 
 LICENSE=	MIT
@@ -22,8 +22,6 @@ GH_PROJECT=	offline-npm
 
 NO_BUILD=	yes
 NO_ARCH=	yes
-USES=		shebangfix
-SHEBANG_FILES=	test/test.sh
 
 do-install:
 	(cd ${STAGEDIR}${PREFIX}/lib && ${SETENV} \
