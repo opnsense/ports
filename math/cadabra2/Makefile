@@ -3,6 +3,7 @@
 
 PORTNAME=	cadabra2
 PORTVERSION=	2.0.816
+PORTREVISION=	2
 CATEGORIES=	math
 
 MAINTAINER=	yuri@rawbw.com
@@ -30,17 +31,12 @@ GUI_CONFLICTS_BUILD=	websocketpp-*
 
 OPTIONS_DEFINE=	GUI
 
-USES=		compiler:c++11-lang cmake gettext gmake pkgconfig python:2 sqlite
+USES=		compiler:c++14-lang cmake gettext gmake pkgconfig python:2 sqlite
 GUI_USE=	GNOME=gtkmm30,gdkpixbuf2
 USE_TEX=	base
 USE_LDCONFIG=	yes
 OPTIONS_SUB=	yes
 GUI_INSTALLS_ICONS=	yes
-
-BUILD_DEPENDS+=	clang36:lang/clang36
-RUN_DEPENDS+=	clang36:lang/clang36
-CC=		clang36
-CXX=		clang++36
 
 CMAKE_ARGS+=	-DBOOST_ROOT=${LOCALBASE}
 CMAKE_ARGS+=	-DUSE_PYTHON_3:BOOL=OFF
