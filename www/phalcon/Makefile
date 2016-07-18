@@ -15,13 +15,13 @@ USES=		php:ext
 USE_PHP=	hash:build pdo:build
 IGNORE_WITH_PHP=	70
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	amd64 armv6 i386
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	phalcon
 GH_PROJECT=	c${PORTNAME}
 
-PBITS=		${ARCH:S/amd64/64/:S/i386/32/:S/x86_64/64/}
+PBITS=		${ARCH:S/amd64/64/:S/armv6/32/:S/i386/32/:S/x86_64/64/}
 WRKSRC_SUBDIR=		build/${PBITS}bits
 
 CFLAGS+=	-I${LOCALBASE}/include
