@@ -24,6 +24,8 @@ TEST_DEPENDS:=	${RUN_DEPENDS} \
 		${PYTHON_PKGNAMEPREFIX}blinker>0:devel/py-blinker \
 		${PYTHON_PKGNAMEPREFIX}tzlocal>0:devel/py-tzlocal
 
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}flask-restplus08
+
 USES=		python
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
