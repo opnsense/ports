@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	owncloud
-PORTVERSION=	9.0.3
+PORTVERSION=	9.0.4
 CATEGORIES=	www
 MASTER_SITES=	http://download.owncloud.org/community/
 
@@ -56,8 +56,6 @@ WITH_OPENSSL_PORT=	yes
 do-install:
 	@${MKDIR} -m 0755 ${STAGEDIR}${WWWDIR}
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${WWWDIR}
-
-post-install:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/data
 
 .include <bsd.port.mk>
