@@ -226,7 +226,7 @@ Storage.System.new = function()
 		local line = pty:readline()
 		pty:close()
 		App.log("`%s` returned: %s", cmd, line)
-		return next_power_of_two((tonumber(line) or 0) / (1024 * 1024))
+		return math.floor((tonumber(line) or 0) / (1024 * 1024))
 	end
 
 	--
@@ -312,7 +312,12 @@ Storage.System.new = function()
 	-- and what storage devices are attached to the system.
 	--
 	method.survey = function(self)
-		ram = self:measure_memory()
+		-- Oh God, this rounds up to the next power,
+		-- that's hardly "measuring" and gives wrong
+		-- results!  But we keep this to not introduce
+		-- any regressions...  measure_memory() is not
+		-- called from anywhere else, lucky.  :)
+		ram = next_power_of_two(self:measure_memory())
 		disk = self:probe_for_disks()
 	end
 

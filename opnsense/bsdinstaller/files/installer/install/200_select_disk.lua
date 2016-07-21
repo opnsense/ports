@@ -12,7 +12,24 @@ return {
 	App.state.sel_disk = nil
 	App.state.sel_part = nil
 
-	-- XXX there might be a better place to handle this.
+	local memory_cur = App.state.storage:measure_memory()
+
+	-- hard cap is a little bit lower than printed minimum
+	if memory_cur < 1000 then
+		App.ui:warn(_(
+		    "The installer detected only %s MB of RAM.  Since " ..
+		    "this is a LiveCD-like image, copying the full " ..
+		    "file system to another disk requires at least " ..
+		    "1024 MB of RAM and is generally advised for " ..
+		    "proper operation of %s afterwards, too.\n\nIf your " ..
+		    "target disk is greater than 30 GB feel free to " ..
+		    "ignore this, otherwise adjust your RAM " ..
+		    "accordingly to prevent the installation from " ..
+		    "failing.",
+		    memory_cur, App.conf.product.name)
+		)
+	end
+
 	if App.state.storage:get_disk_count() == 0 then
 		App.ui:inform(_(
 		    "The installer could not find any disks suitable "	..

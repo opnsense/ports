@@ -784,6 +784,22 @@ App.UIBridge.new = function(class, ...)
 		    }
 		}
 	end
+
+	method.warn = function(ui, msg)
+		return ui:present{
+		    id = "warn",
+		    name = "Warning",
+		    short_desc = msg,
+		    role = "alert",
+		    actions = {
+			{
+			    id = "ok",
+			    name = "OK",
+			    accelerator = "ESC"
+			}
+		    }
+		}
+	end
 	
 	method.confirm = function(ui, msg)
 		local response = ui:present{
