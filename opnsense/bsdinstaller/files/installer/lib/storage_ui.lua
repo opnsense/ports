@@ -51,10 +51,17 @@ StorageUI.select_disk = function(tab)
 	local filter = tab.filter or function() return true end
 
 	local add_disk_action = function(tdd)
+		local desc = tdd:get_desc()
+		local max = 60
+
+		if string.len(desc) > max then
+			desc = string.sub(desc, 1, max - 3) .. "..."
+		end
+
 		table.insert(disk_actions,
 		    {
 			id = tdd:get_name(),
-			name = tdd:get_desc(),
+			name = desc,
 			effect = function()
 				return tdd
 			end
