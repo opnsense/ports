@@ -15,7 +15,7 @@ return {
 	local memory_cur = App.state.storage:measure_memory()
 
 	-- hard cap is a little bit lower than printed minimum
-	if memory_cur < 1000 then
+	if memory_cur < 975 then
 		App.ui:warn(_(
 		    "The installer detected only %s MB of RAM.  Since " ..
 		    "this is a LiveCD-like image, copying the full " ..
