@@ -454,6 +454,7 @@
     SUBDIR += elixir-lager_logger
     SUBDIR += elixir-msgpax
     SUBDIR += elixir-nadia
+    SUBDIR += elixir-nimble_csv
     SUBDIR += elixir-paratize
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
@@ -461,6 +462,7 @@
     SUBDIR += elixir-red_black_tree
     SUBDIR += elixir-sorted_set
     SUBDIR += elixir-timex
+    SUBDIR += elixir-tirexs
     SUBDIR += elixir-tzdata
     SUBDIR += embb
     SUBDIR += epl.el
