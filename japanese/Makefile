@@ -65,6 +65,7 @@
     SUBDIR += font-ayu20
     SUBDIR += font-elisa10
     SUBDIR += font-elisa8
+    SUBDIR += font-genjyuugothic
     SUBDIR += font-genshingothic
     SUBDIR += font-ipa
     SUBDIR += font-ipa-uigothic
@@ -78,6 +79,7 @@
     SUBDIR += font-kochi
     SUBDIR += font-koruri
     SUBDIR += font-marumoji
+    SUBDIR += font-mgenplus
     SUBDIR += font-migmix
     SUBDIR += font-migu
     SUBDIR += font-mikachan

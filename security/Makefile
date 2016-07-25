@@ -987,6 +987,7 @@
     SUBDIR += rubygem-metasploit-model
     SUBDIR += rubygem-metasploit-payloads
     SUBDIR += rubygem-metasploit_data_models
+    SUBDIR += rubygem-metasploit_payloads-mettle
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-sftp
     SUBDIR += rubygem-net-ssh
@@ -1010,6 +1011,7 @@
     SUBDIR += rubygem-rex-powershell
     SUBDIR += rubygem-rex-random_identifier
     SUBDIR += rubygem-rex-registry
+    SUBDIR += rubygem-rex-struct2
     SUBDIR += rubygem-rex-text
     SUBDIR += rubygem-rex-zip
     SUBDIR += rubygem-roauth
