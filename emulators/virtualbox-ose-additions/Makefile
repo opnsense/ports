@@ -78,7 +78,8 @@ MAKE_ARGS+=	DEBUG_FLAGS="-O1 -g"
 .if ${PORT_OPTIONS:MOPENGL}
 USE_XORG=	xcomposite xdamage xfixes
 USE_GL=		gl
-VBOX_LIBS=	VBoxOGL.so \
+VBOX_LIBS=	VBoxEGL.so \
+		VBoxOGL.so \
 		VBoxOGLarrayspu.so \
 		VBoxOGLcrutil.so \
 		VBoxOGLerrorspu.so \
@@ -125,9 +126,11 @@ EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-src-VBox-Additions-freebsd-drm-Makefile.k
 .endif
 
 VBOX_KMODS=	vboxguest:pci/vboxguest
-.if ${PORT_OPTIONS:MOPENGL}
-VBOX_KMODS+=	vboxvideo:vgapci/vboxvideo
-.endif
+# DRI support was removed from the X.Org vboxvideo driver:
+# https://www.virtualbox.org/changeset/59194
+#.if ${PORT_OPTIONS:MOPENGL}
+#VBOX_KMODS+=	vboxvideo:vgapci/vboxvideo
+#.endif
 
 pre-everything::
 .if ${ARCH} == "amd64"
