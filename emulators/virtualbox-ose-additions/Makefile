@@ -76,6 +76,9 @@ MAKE_ARGS+=	DEBUG_FLAGS="-O1 -g"
 .endif
 
 .if ${PORT_OPTIONS:MOPENGL}
+PKGPOSTINSTALL=		${WRKDIR}/pkg-post-install
+PKGPREDEINSTALL=	${WRKDIR}/pkg-pre-deinstall
+SUB_FILES=	pkg-post-install pkg-pre-deinstall
 USE_XORG=	xcomposite xdamage xfixes
 USE_GL=		gl
 VBOX_LIBS=	VBoxEGL.so \
@@ -86,8 +89,6 @@ VBOX_LIBS=	VBoxEGL.so \
 		VBoxOGLfeedbackspu.so \
 		VBoxOGLpackspu.so \
 		VBoxOGLpassthroughspu.so
-.else
-EXTRA_PATCHES=	${PATCHDIR}/extrapatch-src_VBox_Additions_freebsd_Makefile.kmk
 .endif
 
 .if ${PORT_OPTIONS:MX11}
@@ -107,8 +108,6 @@ KMK_ARCH=	freebsd.x86
 KMK_ARCH=	freebsd.${ARCH}
 .endif
 
-SUB_LIST+=	VBOX_KMODS="${VBOX_KMODS}"
-
 .include <bsd.port.pre.mk>
 
 .if ${COMPILER_TYPE} == clang
@@ -119,18 +118,6 @@ EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-Config.kmk \
 EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-src-VBox-Additions-x11-VBoxClient-Makefile.kmk
 .endif
 .endif
-
-.if ${OSVERSION} >= 1001514
-EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-src-VBox-Additions-freebsd-drm-Makefile
-EXTRA_PATCHES+=	${PATCHDIR}/extrapatch-src-VBox-Additions-freebsd-drm-Makefile.kmk
-.endif
-
-VBOX_KMODS=	vboxguest:pci/vboxguest
-# DRI support was removed from the X.Org vboxvideo driver:
-# https://www.virtualbox.org/changeset/59194
-#.if ${PORT_OPTIONS:MOPENGL}
-#VBOX_KMODS+=	vboxvideo:vgapci/vboxvideo
-#.endif
 
 pre-everything::
 .if ${ARCH} == "amd64"
@@ -160,7 +147,7 @@ post-patch:
 		${WRKSRC}/configure \
 		${WRKSRC}/kBuild/units/qt4.kmk \
 		${WRKSRC}/kBuild/sdks/LIBSDL.kmk \
-		${WRKSRC}/src/VBox/Additions/common/crOpenGL/fakedri_drv.c \
+		${WRKSRC}/src/VBox/Additions/common/crOpenGL/load.c \
 		${WRKSRC}/src/VBox/Additions/x11/Installer/98vboxadd-xclient \
 		${WRKSRC}/src/VBox/Additions/x11/Installer/vboxclient.desktop
 	@${REINPLACE_CMD} -e 's|\$$KBUILDDIR_BIN/kmk_sed|${LOCALBASE}/bin/kmk_sed|g' ${WRKSRC}/configure
@@ -179,12 +166,6 @@ do-install:
 	${INSTALL_KLD} ${VBOX_BIN}/src/vboxguest/vboxguest.ko ${STAGEDIR}${KMODDIR}
 .if ${PORT_OPTIONS:MDEBUG}
 	${INSTALL_KLD} ${VBOX_BIN}/src/vboxguest/vboxguest.ko.symbols ${STAGEDIR}${KMODDIR}
-.endif
-.if ${PORT_OPTIONS:MOPENGL}
-	${INSTALL_KLD} ${VBOX_BIN}/vboxvideo.ko ${STAGEDIR}${KMODDIR}
-.if ${PORT_OPTIONS:MDEBUG}
-	${INSTALL_KLD} ${VBOX_BIN}/vboxvideo.ko.symbols ${STAGEDIR}${KMODDIR}
-.endif
 .endif
 
 	${INSTALL_LIB} ${VBOX_BIN}/pam_vbox.so ${STAGEDIR}${PREFIX}/lib
@@ -218,10 +199,6 @@ do-install:
 .if ${PORT_OPTIONS:MOPENGL}
 	${INSTALL_DATA} ${VBOX_LIBS:S|^|${VBOX_BIN}/|} \
 	    ${STAGEDIR}${PREFIX}/lib/
-
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/dri
-	${LN} -sf ${PREFIX}/lib/VBoxOGL.so \
-	    ${STAGEDIR}${PREFIX}/lib/dri/vboxvideo_dri.so
 .endif
 
 .include <bsd.port.post.mk>

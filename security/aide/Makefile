@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	aide
-PORTVERSION=	0.15.1
-PORTREVISION=	1
+PORTVERSION=	0.16
 CATEGORIES=	security
 MASTER_SITES=	SF \
 		http://www.cs.tut.fi/~rammer/
@@ -13,9 +12,8 @@ COMMENT=	Replacement and extension for Tripwire
 
 LIB_DEPENDS=	libmhash.so:security/mhash
 
-USES=		bison gmake
+USES=		autoreconf bison gmake
 
-USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--with-mhash \
 		--with-zlib \
