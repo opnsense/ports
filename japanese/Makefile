@@ -61,6 +61,7 @@
     SUBDIR += fcitx-skk
     SUBDIR += flower-fpw
     SUBDIR += foldoc-fpw
+    SUBDIR += font-aozoramincho
     SUBDIR += font-ayu18
     SUBDIR += font-ayu20
     SUBDIR += font-elisa10
@@ -94,6 +95,7 @@
     SUBDIR += font-nasu
     SUBDIR += font-ricty
     SUBDIR += font-ricty-discord
+    SUBDIR += font-rounded-mgenplus
     SUBDIR += font-sazanami
     SUBDIR += font-shinonome
     SUBDIR += font-std

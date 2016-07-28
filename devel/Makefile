@@ -4861,6 +4861,7 @@
     SUBDIR += rubygem-cf-uaa-lib
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-chronic
+    SUBDIR += rubygem-chronic_duration
     SUBDIR += rubygem-clamp
     SUBDIR += rubygem-classifier
     SUBDIR += rubygem-classifier-reborn
@@ -5074,6 +5075,7 @@
     SUBDIR += rubygem-notiffany
     SUBDIR += rubygem-notify
     SUBDIR += rubygem-nprogress-rails
+    SUBDIR += rubygem-numerizer
     SUBDIR += rubygem-octopress-hooks
     SUBDIR += rubygem-oj
     SUBDIR += rubygem-omniauth_crowd

@@ -1099,6 +1099,8 @@
     SUBDIR += rubygem-amqp-utils
     SUBDIR += rubygem-aws-s3
     SUBDIR += rubygem-aws-ses
+    SUBDIR += rubygem-azure
+    SUBDIR += rubygem-azure-core
     SUBDIR += rubygem-bunny
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-dogapi
@@ -1112,6 +1114,7 @@
     SUBDIR += rubygem-fog-aliyun
     SUBDIR += rubygem-fog-atmos
     SUBDIR += rubygem-fog-aws
+    SUBDIR += rubygem-fog-azure
     SUBDIR += rubygem-fog-brightbox
     SUBDIR += rubygem-fog-cloudatcost
     SUBDIR += rubygem-fog-dynect
