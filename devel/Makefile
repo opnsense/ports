@@ -4453,6 +4453,7 @@
     SUBDIR += py-snack
     SUBDIR += py-snackwich
     SUBDIR += py-sortedcontainers
+    SUBDIR += py-sourcemap
     SUBDIR += py-spark
     SUBDIR += py-speaklater
     SUBDIR += py-spyder
@@ -4510,6 +4511,7 @@
     SUBDIR += py-twistedFlow
     SUBDIR += py-twistedRunner
     SUBDIR += py-txaio
+    SUBDIR += py-typing
     SUBDIR += py-tzlocal
     SUBDIR += py-ua_parser
     SUBDIR += py-ujson
