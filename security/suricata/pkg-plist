@@ -72,5 +72,5 @@ bin/suricata
 @dir etc/suricata/rules
 @dir etc/suricata
 @dir(root,wheel,0700) /var/log/suricata
-@unexec if [ -d %D/%%ETCDIR%% ]; then echo "==> If you are permanently removing this port, run ``rm -rf ${PKG_PREFIX}/etc/suricata`` to remove configuration files."; fi
+@postunexec if [ -d %D/%%ETCDIR%% ]; then echo "==> If you are permanently removing this port, run ``rm -rf ${PKG_PREFIX}/etc/suricata`` to remove configuration files."; fi
 @dir %%DOCSDIR%%
