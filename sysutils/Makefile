@@ -536,6 +536,7 @@
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += lookat
+    SUBDIR += lr
     SUBDIR += lsof
     SUBDIR += ltrace
     SUBDIR += luckybackup
@@ -1200,6 +1201,7 @@
     SUBDIR += xcdroast
     SUBDIR += xcpustate
     SUBDIR += xdu
+    SUBDIR += xe
     SUBDIR += xe-guest-utilities
     SUBDIR += xen-guest-tools
     SUBDIR += xen-tools
