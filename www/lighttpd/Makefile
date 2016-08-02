@@ -2,11 +2,12 @@
 # $FreeBSD$
 
 PORTNAME?=	lighttpd
-PORTVERSION=	1.4.40
+PORTVERSION=	1.4.39
+PORTREVISION=	1
 CATEGORIES?=	www
 MASTER_SITES?=	http://download.lighttpd.net/lighttpd/releases-1.4.x/
 
-MAINTAINER=	pkubaj@anongoth.pl
+MAINTAINER=	pkubaj@riseup.net
 COMMENT?=	Secure, fast, compliant, and flexible Web Server
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
@@ -17,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS+=	libpcre.so:devel/pcre
 
 GNU_CONFIGURE=	yes
-USES=		autoreconf gmake libtool localbase pkgconfig tar:xz
+USES=		autoreconf gmake libtool pkgconfig tar:xz
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
 USES+=	cpe
@@ -26,11 +27,14 @@ USES+=	cpe
 CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd
 INSTALL_TARGET=	install-strip
 
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
+
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
 USE_RC_SUBR=	lighttpd
 
-OPTIONS_DEFINE=	ATTR BZIP2 DOCS FAM GDBM IPV6 LIBEV LUA MEMCACHED MYSQL MYSQLAUTH \
-		LDAP OPENSSL SPAWNFCGI VALGRIND WEBDAV
+OPTIONS_DEFINE=	ATTR BZIP2 DOCS FAM GDBM IPV6 LIBEV LUA MEMCACHE MYSQL MYSQLAUTH \
+		NODELAY LDAP OPENSSL SPAWNFCGI VALGRIND WEBDAV
 
 OPTIONS_DEFAULT=	OPENSSL
 
@@ -40,9 +44,10 @@ GDBM_DESC=	gdbm storage (mod_trigger_b4_dl)
 LDAP_DESC=	LDAP authentication
 LIBEV_DESC=	Fast events support via libev (disables kqueue)
 LUA_DESC=	lua support (mod_cml, mod_magnet)
-MEMCACHED_DESC=	memcached storage (mod_trigger_b4_dl)
+MEMCACHE_DESC=	memcached storage (mod_trigger_b4_dl)
 MYSQL_DESC=	MySQL support (mod_mysql_vhost)
-MYSQLAUTH_DESC=	MySQL authentication
+MYSQLAUTH_DESC=	MySQL authentication (requires WITH_MYSQL)
+NODELAY_DESC=	Set TCP_NODELAY on listening sockets
 SPAWNFCGI_DESC=	Depend on spawn-fcgi utility
 VALGRIND_DESC=	valgrind support
 WEBDAV_DESC=	WebDAV support
@@ -57,15 +62,12 @@ GDBM_CONFIGURE_WITH=	gdbm
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LIBEV_CONFIGURE_WITH=	libev=${LOCALBASE}
 LIBEV_LIB_DEPENDS=	libev.so:devel/libev
-LUA_USES=		lua
+LUA_USES=		lua:51+
 LUA_CONFIGURE_WITH=	lua
 LUA_CONFIGURE_ENV=	LUA_CFLAGS="-I${LUA_INCDIR}" LUA_LIBS="-L${LUA_LIBDIR} -llua-${LUA_VER}"
-MEMCACHED_LIB_DEPENDS=	libmemcached.so:databases/libmemcached
-MEMCACHED_CONFIGURE_WITH=memcached
+MEMCACHE_LIB_DEPENDS=	libmemcache.so:databases/libmemcache
+MEMCACHE_CONFIGURE_WITH=memcache
 MYSQLAUTH_IMPLIES=	MYSQL
-OPENSSL_USES=		ssl
-OPENSSL_CONFIGURE_WITH=	openssl
-OPENSSL_CONFIGURE_ON=	--with-openssl-includes=${OPENSSLINC} --with-openssl-libs=${OPENSSLLIB}
 SPAWNFCGI_RUN_DEPENDS=	spawn-fcgi:www/spawn-fcgi
 VALGRIND_BUILD_DEPENDS=	valgrind:devel/valgrind
 VALGRIND_RUN_DEPENDS=	valgrind:devel/valgrind
@@ -106,19 +108,30 @@ DOCS=		AUTHORS COPYING INSTALL NEWS README
 PORTDOCS=	${DOCS}
 .endif
 
+.if ${PORT_OPTIONS:MOPENSSL}
+USE_OPENSSL=		yes
+CONFIGURE_ARGS+=	--with-openssl \
+			--with-openssl-includes=${OPENSSLINC} \
+			--with-openssl-libs=${OPENSSLLIB}
+.endif
+
 .if ${PORT_OPTIONS:MMYSQL}
-USES+=			mysql
+USE_MYSQL=		yes
 CONFIGURE_ARGS+=	--with-mysql
 _REQUIRE+=		mysql
 .endif
 
+.if ${PORT_OPTIONS:MMYSQLAUTH} && empty(PORT_OPTIONS:MMYSQL)
+IGNORE=		option WITH_MYSQLAUTH requires WITH_MYSQL
+.endif
+
 .if ${PORT_OPTIONS:MMYSQLAUTH}
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-src_Makefile.am \
-			${FILESDIR}/extra-patch-src_Makefile.in \
-			${FILESDIR}/extra-patch-src_http__auth.c \
-			${FILESDIR}/extra-patch-src_http__auth.h \
-			${FILESDIR}/extra-patch-src_mod__auth.c
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-mysqlauth
 PORTDOCS+=		README.mysqlauth mysql_auth.sql
+.endif
+
+.if ${PORT_OPTIONS:MNODELAY}
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-nodelay
 .endif
 
 .if ${PORT_OPTIONS:MLDAP}
@@ -173,19 +186,19 @@ post-install:
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/doc/config/vhosts.d/vhosts.template \
 		${STAGEDIR}${PREFIX}/etc/lighttpd/vhosts.d/vhosts.template
-	@${MKDIR} -m 0700 ${STAGEDIR}${LIGHTTPD_LOGROOT}
 
-post-install-DOCS-on:
+.if ${PORT_OPTIONS:MDOCS}
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 . for FILE in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${FILE} ${STAGEDIR}${DOCSDIR}/${FILE}
 . endfor
-
-post-install-MYSQLAUTH-on:
-	@${MKDIR} ${STAGEDIR}${DOCSDIR}
+.endif
+.if ${PORT_OPTIONS:MMYSQLAUTH}
 . for FILE in README.mysqlauth mysql_auth.sql
 	${INSTALL_DATA} ${FILESDIR}/${FILE} ${STAGEDIR}${DOCSDIR}/${FILE}
 . endfor
+.endif
+	@${MKDIR} -m 0700 ${STAGEDIR}${LIGHTTPD_LOGROOT}
 
 test: build
 	@cd ${WRKSRC}/tests && ${SETENV} ${MAKE_ENV} ${MAKE} \
