@@ -3,7 +3,7 @@
 
 PORTNAME=	kBuild
 DISTVERSION=	${KBUILD_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	ftp://ftp.netlabs.org/pub/kbuild/ \
 		http://tmp.chruetertee.ch/ \
@@ -17,8 +17,8 @@ BROKEN_powerpc64=	Does not build
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
 
+USE_GCC=	any
 USES=		autoreconf:build gmake makeinfo
-CFLAGS+=	-D_WITH_GETLINE=1 -D_WITH_DPRINTF=1
 
 CONFLICTS_INSTALL=	kBuild-devel-[0-9]*
 
@@ -26,11 +26,11 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 KBUILD_VERSION=	0.1.9998
 KBUILD_ARCH=	${MACHINE_ARCH:S/i386/x86/:S/x86_64/amd64/:S/powerpc/ppc32/}
-KBUILD_ENV=	${MAKE_ENV}
-KBUILD_ENV+=	ACLOCAL=${ACLOCAL} \
+KBUILD_ENV=	ACLOCAL=${ACLOCAL} \
 		AUTOMAKE=${AUTOMAKE} \
 		AUTORECONF=${AUTORECONF} \
-		AUTOPOINT=true
+		AUTOPOINT=true \
+		CFLAGS="-D_WITH_GETLINE -D_WITH_DPRINTF"
 KBUILD_TARGET=	${OPSYS:tl}
 
 KBUILD_BINS=	kDepIDB kDepPre kObjCache kmk kmk_append kmk_ash kmk_cat \
