@@ -3970,6 +3970,7 @@
     SUBDIR += py-apipkg
     SUBDIR += py-appdirs
     SUBDIR += py-application
+    SUBDIR += py-apptools
     SUBDIR += py-apscheduler
     SUBDIR += py-archetypes.querywidget
     SUBDIR += py-archetypes.referencebrowserwidget
@@ -4323,6 +4324,7 @@
     SUBDIR += py-pyee
     SUBDIR += py-pyelftools
     SUBDIR += py-pyev
+    SUBDIR += py-pyface
     SUBDIR += py-pyflakes
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub

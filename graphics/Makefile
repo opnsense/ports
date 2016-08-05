@@ -545,6 +545,7 @@
     SUBDIR += linux-c6-dri
     SUBDIR += linux-c6-gdk-pixbuf2
     SUBDIR += linux-c6-glx-utils
+    SUBDIR += linux-c6-jasper
     SUBDIR += linux-c6-jpeg
     SUBDIR += linux-c6-libGLU
     SUBDIR += linux-c6-png
@@ -878,6 +879,7 @@
     SUBDIR += py-soya3d
     SUBDIR += py-stltools
     SUBDIR += py-toyplot
+    SUBDIR += py-traitsui
     SUBDIR += py-wand
     SUBDIR += py-webcolors
     SUBDIR += py3-cairo
