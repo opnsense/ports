@@ -56,9 +56,9 @@
     SUBDIR += acsccid
     SUBDIR += activitymail
     SUBDIR += ada-util
-    SUBDIR += adaid
     SUBDIR += adabooch
     SUBDIR += adacurses
+    SUBDIR += adaid
     SUBDIR += adime
     SUBDIR += aegis
     SUBDIR += afay
@@ -1439,6 +1439,7 @@
     SUBDIR += llvm36
     SUBDIR += llvm37
     SUBDIR += llvm38
+    SUBDIR += llvm39
     SUBDIR += lm4tools
     SUBDIR += lmdbg
     SUBDIR += lndir
@@ -4217,8 +4218,8 @@
     SUBDIR += py-lock_file
     SUBDIR += py-lockfile
     SUBDIR += py-log4py
-    SUBDIR += py-logbook
     SUBDIR += py-logan
+    SUBDIR += py-logbook
     SUBDIR += py-logilab-common
     SUBDIR += py-louie
     SUBDIR += py-lxml
@@ -5303,6 +5304,7 @@
     SUBDIR += sfml1
     SUBDIR += sgb
     SUBDIR += shapelib
+    SUBDIR += shedskin
     SUBDIR += shflags
     SUBDIR += shiboken
     SUBDIR += shmap
@@ -5317,8 +5319,8 @@
     SUBDIR += simian
     SUBDIR += simple_components
     SUBDIR += skalibs
-    SUBDIR += slibtool
     SUBDIR += slf4j
+    SUBDIR += slibtool
     SUBDIR += smack
     SUBDIR += smake
     SUBDIR += smc

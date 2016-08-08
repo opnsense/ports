@@ -1,10 +1,9 @@
 # $FreeBSD$
 
-PORTNAME=	speechrecognition
+PORTNAME=	SpeechRecognition
 PORTVERSION=	3.4.6
 CATEGORIES=	audio python
 MASTER_SITES=	CHEESESHOP
-DISTNAME=	${PORTNAME:S/s/S/:S/r/R/}-${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	kevlo@FreeBSD.org
@@ -16,9 +15,14 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 RUN_DEPENDS=	flac:audio/flac \
 		${PYTHON_PKGNAMEPREFIX}pyaudio>0:audio/py-pyaudio
 
+NO_ARCH=	yes
 USES=		python
 USE_PYTHON=	distutils autoplist
 
-NO_ARCH=	yes
+.include <bsd.port.pre.mk>
 
-.include <bsd.port.mk>
+.if ${PYTHON_REL} < 3000
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}monotonic>=0.3:devel/py-monotonic
+.endif
+
+.include <bsd.port.post.mk>
