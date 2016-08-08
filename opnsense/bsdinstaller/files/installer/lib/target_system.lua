@@ -490,6 +490,37 @@ TargetSystem.new = function(tab)
 	end
 
 	--
+	-- Run custom shared common tasks for post-install
+        --
+	ts.cmds_post_install = function(ts, cmds)
+		cmds:set_replacements{
+		    mtree_file = "etc/installed_filesystem.mtree",
+		    logdir = "var/log/bsdinstaller",
+		    base = base,
+		}
+
+		-- Let parent script know that the install really happened
+		cmds:add("${root}${TOUCH} ${root}tmp/install_complete")
+
+		-- Copy the installer log to the new installation
+		cmds:add("${root}${MKDIR} -p ${root}${base}${logdir}/")
+		cmds:add("${root}${CP} ${root}tmp/installer.log ${root}${base}${logdir}/")
+
+		-- Incomplete installer log in target partition?
+		cmds:add("${root}${RM} ${root}${base}var/log/installer.log")
+
+		-- Fixup permissions on installed files
+		if POSIX.stat("/etc/installed_filesystem.mtree", "type") == "regular" then
+			cmds:add("${root}${MTREE} -U -e -q -f ${root}${mtree_file} " ..
+			    "-p ${root}${base} > ${root}${base}${logdir}/mtree.log")
+			cmds:add("${root}${RM} ${root}${base}${mtree_file}")
+		end
+
+		-- FWIW, sync all the things
+		cmds:add("${root}${SYNC}")
+	end
+
+	--
 	-- Generate commands that write a new fstab for this TargetSystem.
 	-- The fstab is written to /etc/fstab on the TargetSystem.
 	--

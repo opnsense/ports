@@ -8,8 +8,8 @@ return {
 	effect = function(step)
 		local cmds = CmdChain.new()
 
-		cmds:add(":");
-		cmds:add("/usr/local/installer/after_installation_routines.sh");
+		-- Execute post-install scripts
+		App.state.target:cmds_post_install(cmds)
 
 		-- Remove currently active swap used for installation
 		if App.state.storage:get_activated_swap():in_units("K") > 0 then

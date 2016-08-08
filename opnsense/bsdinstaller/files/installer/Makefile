@@ -15,7 +15,5 @@ install:
 		mkdir -p ${DESTDIR}${PREFIX}/share/dfuibe_lua/$${_subdir}; \
 		cp $${_subdir}/*.lua ${DESTDIR}${PREFIX}/share/dfuibe_lua/$${_subdir}; \
 	done
-	mkdir -p ${DESTDIR}${PREFIX}/installer
-	cp *.sh ${DESTDIR}${PREFIX}/installer
 
 .PHONY: install

@@ -356,6 +356,7 @@ cmd_names = {
 	CP		= "bin/cp",
 	DATE		= "bin/date",
 	ECHO		= "bin/echo",
+	SYNC		= "bin/sync",
 	DD		= "bin/dd",
 	MV		= "bin/mv",
 	CAT		= "bin/cat",

@@ -1,7 +1,6 @@
 bin/lua50
 bin/lua50c
 bin/lua50c51
-installer/after_installation_routines.sh
 lib/libdfui.so
 lib/libdfui.so.4
 lib/liblua50.so
@@ -92,6 +91,7 @@ share/dfuibe_lua/pit/400_load_kernel_modules.lua
 share/dfuibe_lua/pit/800_configure_network.lua
 share/dfuibe_lua/pit/main.lua
 share/dfuife_curses/fred.txt
+share/dfuife_curses/hourglass.txt
 share/dfuife_curses/puffy.txt
 share/lua/5.0/app.lua
 share/lua/5.0/compat-5.1.lua
