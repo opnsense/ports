@@ -16,8 +16,8 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	MPL
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.12.0a.2016.07.30
-HASH=		32b4a9a
+ISCVERSION=	9.12.0a.2016.08.08
+HASH=		3146be6
 
 MAKE_JOBS_UNSAFE=	yes
 
@@ -103,7 +103,7 @@ FETCHLIMIT_CONFIGURE_ENABLE=	fetchlimit
 QUERYTRACE_CONFIGURE_ENABLE=	querytrace
 
 SSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
-SSL_USE=		openssl=yes
+SSL_USES=		ssl
 SSL_CONFIGURE_OFF=	--disable-openssl-version-check --without-openssl
 
 LMDB_CONFIGURE_WITH=	lmdb
