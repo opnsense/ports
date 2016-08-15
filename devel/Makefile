@@ -738,6 +738,7 @@
     SUBDIR += go-protobuf
     SUBDIR += go-raw
     SUBDIR += go-runewidth
+    SUBDIR += go-shellwords
     SUBDIR += go-slices
     SUBDIR += go-sql-driver
     SUBDIR += go-termbox
@@ -1424,6 +1425,7 @@
     SUBDIR += linux-f10-ncurses-base
     SUBDIR += linux-f10-nspr
     SUBDIR += linux-f10-sdl12
+    SUBDIR += linux-kernel
     SUBDIR += linux_kdump
     SUBDIR += linux_libusb
     SUBDIR += lion
@@ -5174,6 +5176,7 @@
     SUBDIR += rubygem-ruby-progressbar
     SUBDIR += rubygem-ruby-sdl-ffi
     SUBDIR += rubygem-ruby2ruby
+    SUBDIR += rubygem-ruby_dep
     SUBDIR += rubygem-ruby_parser
     SUBDIR += rubygem-rubygame
     SUBDIR += rubygem-rubygems-mirror
