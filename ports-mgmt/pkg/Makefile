@@ -3,6 +3,7 @@
 PORTNAME=	pkg
 DISTVERSION=	1.8.7
 _PKG_VERSION=	${DISTVERSION}
+PORTREVISION=	1
 CATEGORIES=	ports-mgmt
 MASTER_SITES=	\
 		http://files.etoilebsd.net/${PORTNAME}/ \
@@ -29,6 +30,7 @@ CFLAGS+=	-Wno-error
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-docs_pkg.8
 .endif
 
+NOPIE_PORTS=	yes
 .include <bsd.port.pre.mk>
 
 .if defined(WITH_DEBUG) && !defined(WITHOUT_DEBUG)

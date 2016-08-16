@@ -15,6 +15,8 @@ GNU_CONFIGURE=	yes
 USES=		shebangfix readline
 SHEBANG_FILES=	contrib/*.pl
 
+NOPIE_PORTS=	yes
+
 .include <bsd.port.pre.mk>
 
 post-patch:

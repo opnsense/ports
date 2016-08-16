@@ -24,6 +24,8 @@ CCFLAGS+=	-Wall -O2 -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV+=	CCFLAGS="${CCFLAGS}"
 
+NOPIE_PORTS=	yes
+
 PLIST_FILES=	lib/xchat/plugins/xfish.so
 PORTDOCS=	FiSH-xchat.txt \
 		FiSH-xchat_History.txt
@@ -32,7 +34,7 @@ OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	${RM} -f ${WRKSRC}/mir*
-	${CP} -pf ${FILESDIR}/Makefile ${WRKSRC}/
+	${CP} -f ${FILESDIR}/Makefile ${WRKSRC}/
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/xchat/plugins

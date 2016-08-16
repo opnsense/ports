@@ -24,6 +24,8 @@ CONFIGURE_ARGS=	--localstatedir=${PREFIX}/var/${PORTNAME}/ \
 		--bindir=${PREFIX}/libexec/${PORTNAME}/ \
 		--sysconfdir=${PREFIX}/etc/${PORTNAME}/
 
+NOPIE_PORTS=	yes
+
 OLDCONFIG_FILE1=	bin/env
 OLDCONFIG_FILE2=	util/lg/lg.conf
 NEWERCONFIG_FILES1=	etc/rancid.conf

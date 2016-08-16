@@ -18,6 +18,9 @@ ALL_TARGET=	libs
 INSTALL_TARGET=	install install-shlibs
 INSTALL_WRKSRC=	${WRKSRC}/lib/blkid
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 PKGDIR=		${.CURDIR}
 
 pre-build:

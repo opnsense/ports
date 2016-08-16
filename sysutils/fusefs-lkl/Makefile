@@ -22,6 +22,8 @@ USE_GITHUB=	yes
 GH_PROJECT=	linux
 GH_TAGNAME=	64a367f522c6ec4fbed0193589d7733b06ab7968
 
+NOPIE_PORTS=	yes
+
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=No one has added other architecture ld formats yet
 

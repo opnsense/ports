@@ -31,6 +31,9 @@ USE_AUTOTOOLS=	autoconf
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 BROKEN_sparc64=	Does not compile on sparc64
 
 DEBUG_CONFIGURE_ENABLE=		debug

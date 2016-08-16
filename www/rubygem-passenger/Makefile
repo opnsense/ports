@@ -28,6 +28,9 @@ RAKE_BIN=	${LOCALBASE}/bin/rake
 USES=		cpe gem
 NOPORTDOCS=	yes
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MAPACHE22}

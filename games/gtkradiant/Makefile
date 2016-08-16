@@ -28,6 +28,8 @@ SSP_UNSAFE=	yes
 DATADIR=	${PREFIX}/lib/${PORTNAME}
 WRKSRC=		${WRKDIR}/GPL/GtkRadiant
 
+NOPIE_PORTS=	yes
+
 SUB_FILES=	${PORTNAME}
 
 post-patch:

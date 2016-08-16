@@ -24,6 +24,8 @@ GNU_CONFIGURE=	yes
 USES=		gmake
 CONFIGURE_ARGS+=--program-prefix=''
 
+NOPIE_PORTS=	yes
+
 post-patch:
 	@${REINPLACE_CMD} 's;/usr/include/event;${LOCALBASE}/include;g' \
 		${WRKSRC}/configure

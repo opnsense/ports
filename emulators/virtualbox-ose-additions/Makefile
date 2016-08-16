@@ -37,6 +37,9 @@ CONFIGURE_ARGS+=	--disable-alsa \
 			--disable-xpcom
 CONFIGURE_ARGS+=	--nofatal --with-gcc="${CC}" --with-g++="${CXX}"
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 CONFLICTS_INSTALL=	virtualbox-ose-[3-5]* \
 			virtualbox-ose-additions-devel-[3,4]* \
 			virtualbox-ose-devel-[3,4]* \

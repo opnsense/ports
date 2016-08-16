@@ -18,6 +18,9 @@ BROKEN_powerpc64=	Does not build
 USES=		cpe shebangfix tar:xz
 CPE_PRODUCT=	${PORTNAME:tl}
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 NO_BUILD=	yes
 .if !defined(WITHOUT_PHP_DEPENDS)
 IGNORE_WITH_PHP=5 54

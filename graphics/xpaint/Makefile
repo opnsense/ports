@@ -31,6 +31,9 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 MAKE_ENV+=	RM="${RM} -f"
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 post-patch:
 	@${RM} -f ${WRKSRC}/XPaint.ad
 	@${REINPLACE_CMD} -e 's/-ldl //' \

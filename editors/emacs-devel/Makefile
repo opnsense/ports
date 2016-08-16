@@ -33,6 +33,9 @@ SUB_LIST+=	ARCHLIBDIR=${PREFIX}/libexec/emacs/${EMACS_VER}/\
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-gameuser=games:games
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 PLIST_SUB=	EMACS_VER=${EMACS_VER} GNU_HOST=${CONFIGURE_TARGET}
 
 MAKE_ENV=	LC_ALL=C

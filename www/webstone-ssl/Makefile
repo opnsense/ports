@@ -30,6 +30,8 @@ MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
+NOPIE_PORTS=	yes
+
 pre-configure:
 	@${RM} -f ${WRKSRC}/src/config.cache
 

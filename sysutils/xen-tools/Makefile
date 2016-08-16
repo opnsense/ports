@@ -56,6 +56,9 @@ SHEBANG_FILES=	tools/misc/xencov_split \
 ALL_TARGET=	tools docs
 INSTALL_TARGET=	install-tools install-docs
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} != FreeBSD

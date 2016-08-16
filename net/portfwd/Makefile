@@ -20,6 +20,9 @@ GNU_CONFIGURE=	yes
 USES=		gmake
 USE_RC_SUBR=	${PORTNAME}
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 post-patch:
 	@${REINPLACE_CMD} -e "s|-Wall -ggdb -O3|${CFLAGS}|g" \
 		${WRKSRC}/src/Makefile.in

@@ -21,6 +21,9 @@ INSTALL_TARGET=	install-strip
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 INFO=		libmatheval
 
 post-patch:
