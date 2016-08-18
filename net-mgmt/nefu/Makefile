@@ -24,8 +24,6 @@ CONFIGURE_ARGS=	--with-ssl=${OPENSSLBASE} \
 		--without-zlib \
 		--without-shelltests
 
-NOPIE_PORTS=	yes
-
 USERS=		nefu
 GROUPS=		nefu
 

@@ -23,9 +23,6 @@ KMODDIR?=	/boot/modules
 PLIST_SUB+=	KMODDIR=${KMODDIR} \
 		PORTNAME=${PORTNAME}
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .include <bsd.port.options.mk>
 
 .if !exists(${SRC_BASE}/sys/sys/module.h)

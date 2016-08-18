@@ -19,6 +19,4 @@ USE_GNOME=	gnomeprefix gnomevfs2 libgnomeui
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lm
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.mk>

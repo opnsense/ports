@@ -26,9 +26,6 @@ INSTALLS_ICONS=	yes
 USE_GNOME=	gtkhtml4 intlhack gtk30 gconf2 libgsf \
 		gtk-update-icon-cache
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 OPTIONS_DEFINE=	DOCS
 
 post-install:

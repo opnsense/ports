@@ -18,8 +18,6 @@ USES=		tar:bzip2 pkgconfig python
 GNU_CONFIGURE=	yes
 USE_GL=		gl
 
-NOPIE_PORTS=	yes
-
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lcompat -lm
 

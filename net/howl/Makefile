@@ -18,8 +18,6 @@ USES=		gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	mdnsresponder
 
-NOPIE_PORTS=	yes
-
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
 .include <bsd.port.mk>

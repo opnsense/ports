@@ -19,8 +19,6 @@ USE_SDL=	sdl
 USE_XORG=	x11 xau xdmcp
 GNU_CONFIGURE=	yes
 
-NOPIE_PORTS=	yes
-
 PLIST_FILES=	bin/${PORTNAME} \
 		share/games/${PORTNAME}.res \
 		share/pixmaps/${PORTNAME}.xpm

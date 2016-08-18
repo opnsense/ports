@@ -15,8 +15,6 @@ USES=		dos2unix uidfix zip
 USE_GCC=	yes
 USE_LDCONFIG=	yes
 
-NOPIE_PORTS=	yes
-
 HEADERS=	blas_enum.h blas_sparse.h blas_sparse_proto.h
 HDIR=		include/spblas
 MAKE_ENV=	LIB=spblas SHLIB_MAJOR="${SHLIB_MAJOR}" \

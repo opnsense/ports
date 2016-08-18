@@ -21,8 +21,6 @@ PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-NOPIE_PORTS=	yes
-
 post-patch:
 	@${REINPLACE_CMD} -e 's/f77/$${FC}/' -e 's/LFLAGS/LDFLAGS/' \
 		${WRKSRC}/src/makefile

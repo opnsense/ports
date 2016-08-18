@@ -12,8 +12,6 @@ COMMENT=	Execute a command with safely quoted arguments
 
 USES=		uidfix
 
-NOPIE_PORTS=	yes
-
 PLIST_FILES=	bin/unquote man/man1/unquote.1.gz
 
 .if		!defined(NO_RELEASE)

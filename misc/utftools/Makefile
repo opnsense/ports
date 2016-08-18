@@ -20,8 +20,6 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libutf.a:misc/libutf
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir=${LOCALBASE}/lib --includedir=${LOCALBASE}/include
 
-NOPIE_PORTS=	yes
-
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
 

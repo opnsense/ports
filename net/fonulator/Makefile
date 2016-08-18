@@ -19,8 +19,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-shared
 
-NOPIE_PORTS=	yes
-
 PLIST_FILES=	bin/fonulator \
 		man/man1/fonulator.1.gz
 

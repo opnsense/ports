@@ -17,8 +17,6 @@ USES=		cmake:outsource compiler:c++11-lang
 
 CFLAGS+=	-DNDEBUG
 
-NOPIE_PORTS=	yes
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	bbuchfink
 

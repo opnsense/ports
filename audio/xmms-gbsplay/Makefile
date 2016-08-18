@@ -16,9 +16,6 @@ USE_GCC=	any
 
 CONFIGURE_ARGS=	--disable-nas
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
 

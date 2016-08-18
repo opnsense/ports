@@ -14,9 +14,6 @@ USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-history
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 OPTIONS_DEFINE=	READLINE
 
 READLINE_USES=		readline

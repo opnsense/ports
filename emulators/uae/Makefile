@@ -19,9 +19,6 @@ USES=		gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 OPTIONS_DEFINE=	DOCS
 
 post-patch:

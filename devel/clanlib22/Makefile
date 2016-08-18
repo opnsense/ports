@@ -44,9 +44,6 @@ CONFIGURE_ARGS=	--disable-docs \
 		--enable-clanVorbis \
 		--enable-getaddr
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 INSTALL_TARGET=	install-strip
 PLIST_SUB+=	VER=${PORTVERSION:R} \
 		SHORT_VER=${PORTVERSION:R:R}${PORTVERSION:R:E}

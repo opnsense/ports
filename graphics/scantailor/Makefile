@@ -22,8 +22,6 @@ USE_GCC=	yes
 USE_QT4=	gui xml qmake_build uic_build moc_build rcc_build \
 		linguist_build
 
-NOPIE_PORTS=	yes
-
 DESKTOP_ENTRIES="Scan Tailor" "${COMMENT}" "${PORTNAME}" \
 		"${PORTNAME}" "Graphics;Scanning;" false
 

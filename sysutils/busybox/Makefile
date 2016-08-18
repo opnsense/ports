@@ -17,9 +17,6 @@ COMMENT=	Set of common utilities built as single binary
 
 LICENSE=	GPLv2
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 BUILD_DEPENDS=	gsed:textproc/gsed
 
 CONFLICTS_INSTALL=	busybox-unstable-*

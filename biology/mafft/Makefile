@@ -21,9 +21,6 @@ INSTALL_WRKSRC=	${WRKSRC}/core
 
 USES=		gmake shebangfix tar:tgz
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 SHEBANG_FILES=	core/*.tmpl
 
 MAKE_ENV=	INSTALL_LIB="${INSTALL_LIB}" \

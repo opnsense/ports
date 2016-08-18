@@ -18,8 +18,6 @@ RUN_DEPENDS=	lsof:sysutils/lsof
 
 USES=		gmake tar:bzip2
 
-NORELRO_PORTS=	yes
-
 # Pike version included from lang/pike78
 SUB_LIST+=	PIKEVERSION=${PIKEVERSION}
 PLIST_SUB+=	PIKEVERSION=${PIKEVERSION}

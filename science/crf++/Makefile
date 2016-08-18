@@ -16,6 +16,4 @@ INSTALL_TARGET=	install-strip
 USES=		libtool
 USE_LDCONFIG=	yes
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.mk>

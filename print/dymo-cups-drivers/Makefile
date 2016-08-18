@@ -21,6 +21,4 @@ GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.mk>

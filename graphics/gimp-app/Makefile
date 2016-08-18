@@ -127,5 +127,4 @@ post-patch:
 		-e 's|x86_64|amd64|g' \
 		${WRKSRC}/configure
 
-NORELRO_PORTS=	yes
 .include <bsd.port.mk>

@@ -25,9 +25,6 @@ USE_LDCONFIG=	yes
 CFLAGS+=	-I${LOCALBASE}/include -I${WRKSRC}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 MAKE_JOBS_UNSAFE=yes
 
 post-stage:

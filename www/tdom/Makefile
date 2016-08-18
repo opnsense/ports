@@ -13,8 +13,6 @@ TDOMBASE=	${PREFIX}/lib/tdom${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS
 
-NORELRO_PORTS=	yes
-
 USES=		gmake tar:tgz tcl:tea
 USE_GITHUB=	yes
 

@@ -32,8 +32,6 @@ INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	${LOCALBASE}/lib/forked-daapd
 CONFIGURE_ARGS+=--localstatedir=/var
 
-NOPIE_PORTS=	yes
-
 USE_RC_SUBR=	${PORTNAME}
 SUB_FILES=	pkg-message
 

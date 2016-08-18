@@ -44,8 +44,7 @@ FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png
 MOZ_OPTIONS=	--program-transform-name='s/firefox/${MOZILLA}/' \
 		--enable-application=browser \
-		--enable-official-branding \
-		--enable-pie
+		--enable-official-branding
 
 OPTIONS_EXCLUDE=	GSTREAMER LOGGING
 OPTIONS_DEFINE=		RUST
@@ -62,11 +61,6 @@ OPTIONS_DEFAULT_FreeBSD_12_i386=	RUST
 
 OPTIONS_SINGLE+=	TOOLKIT
 OPTIONS_SINGLE_TOOLKIT=	GTK2 GTK3
-
-# HardenedBSD note:
-# Firefox picks up PIE from the --enable-pie configure option.
-# As such, disable setting custom CFLAGS for PIE.
-NOPIE_PORTS=	yes
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 

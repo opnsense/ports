@@ -20,8 +20,6 @@ CFLAGS+=	-ferror-limit=0
 USES=		readline
 USE_OPENSSL=	yes
 
-NOPIE_PORTS=	yes
-
 .if defined(MAINTAINER_MODE)
 UID_FILES+=	../../UIDs
 GID_FILES+=	../../GIDs

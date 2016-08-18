@@ -8,8 +8,6 @@ COMMENT=	UI for Mupen64plus
 
 MASTERDIR=	${.CURDIR}/../mupen64plus-core
 
-NOPIE_PORTS=	yes
-
 OPTIONS_DEFINE=	#
 
 .include "${MASTERDIR}/Makefile"

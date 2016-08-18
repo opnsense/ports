@@ -30,8 +30,6 @@ SHEBANG_FILES=	deps/eper/priv/bin/* \
 USE_RC_SUBR=	riak
 USE_GCC=	yes
 
-NOPIE_PORTS=	yes
-
 BROKEN_i386=	does not build
 
 USERS=		riak

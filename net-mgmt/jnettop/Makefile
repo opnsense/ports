@@ -19,8 +19,6 @@ LICENSE=	GPLv2
 
 CONFIGURE_ARGS=	--prefix=${PREFIX}
 
-NOPIE_PORTS=	yes
-
 .if defined(WITH_DAG)
 post-configure:
 	${ECHO_CMD} "#define BSD 1" >> ${WRKSRC}/config.h

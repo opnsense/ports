@@ -18,9 +18,6 @@ USES=		gmake pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 CXXFLAGS+=	-I${LOCALBASE}/include
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

@@ -21,7 +21,4 @@ ALL_TARGET=	canna
 INSTALL_TARGET=	instsgs
 MAKE_JOBS_UNSAFE=	yes
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .include <bsd.port.mk>

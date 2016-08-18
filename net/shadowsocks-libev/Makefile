@@ -20,8 +20,6 @@ USES=		gmake libtool:keepla
 # Help solve building error since the integrated libsodium enables this option.
 CFLAGS+=	-fstack-protector
 
-NOPIE_PORTS=	yes
-
 USE_RC_SUBR=	shadowsocks_libev
 
 post-patch:

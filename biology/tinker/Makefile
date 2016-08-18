@@ -32,9 +32,6 @@ EXTRACT_AFTER_ARGS=--exclude fftw --exclude windows --exclude macosx
 
 SUB_FILES=	pkg-message
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MOPTIMIZED_FFLAGS}

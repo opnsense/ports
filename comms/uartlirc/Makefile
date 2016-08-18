@@ -26,9 +26,6 @@ PLIST_FILES+=	${KMODDIR}/${PORTNAME}.ko
 
 CFLAGS+=	${DEBUG_FLAGS}
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == "powerpc" || ${ARCH} == "sparc64"

@@ -18,8 +18,6 @@ GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS+=	-I${LOCALBASE}/include
 
-NOPIE_PORTS=	yes
-
 PLIST_FILES=	bin/dwarfdump man/man1/dwarfdump.1.gz
 
 .include <bsd.port.pre.mk>

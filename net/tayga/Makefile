@@ -13,6 +13,4 @@ LICENSE=	GPLv2
 USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.mk>

@@ -30,8 +30,6 @@ NLS_CONFIGURE_ENABLE=	nls
 ESOUND_USE=		GNOME=esound
 ESOUND_CONFIGURE_WITH=	esd
 
-NOPIE_PORTS=	yes
-
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/madtime ${STAGEDIR}${PREFIX}/bin
 

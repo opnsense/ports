@@ -14,6 +14,4 @@ GNU_CONFIGURE=	yes
 USES=		libtool pathfix
 USE_LDCONFIG=	yes
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.mk>

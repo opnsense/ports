@@ -42,8 +42,6 @@ LANG_GTKSOURCEVIEW_DIR=	${PREFIX}/share/gtksourceview-2.0/language-specs
 USE_TEX=	latex texhash
 USES+=		gettext gmake iconv:build perl5 pkgconfig shared-mime-info
 
-NOPIE_PORTS=	yes
-
 OPTIONS_DEFINE=	DOCS
 
 post-patch:

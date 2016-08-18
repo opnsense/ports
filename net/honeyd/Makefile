@@ -25,9 +25,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libdnet=${LOCALBASE} \
 		--with-libevent=${LOCALBASE}
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 EXTRA_PATCHES=	${FILESDIR}/honeyd-1.5c-libevent2.patch:-p1
 
 .if defined(WITH_PYTHON)

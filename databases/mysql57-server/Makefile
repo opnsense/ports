@@ -19,9 +19,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 SLAVEDIRS=	databases/mysql57-client
 USES=		bison:build cmake:outsource compiler:c11 compiler:c++11-lib cpe libedit localbase perl5 shebangfix
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 USE_OPENSSL=	yes
 USE_PERL5=	run
 

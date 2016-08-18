@@ -19,8 +19,6 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
 
-NOPIE_PORTS=	yes
-
 CPPFLAGS+=	-I${LOCALBASE}/include/libelf -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

@@ -52,8 +52,6 @@ PLIST_SUB+=	MUMPSVERSION=${PORTVERSION}
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.pre.mk>
 
 .if exists(${LOCALBASE}/lib/libatlas.so) && !defined(WITH_BLAS)

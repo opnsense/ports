@@ -21,8 +21,6 @@ BROKEN_FreeBSD_9=	linker error
 USES=		compiler:c++11-lib cpe gmake pkgconfig ssl tar:bzip2
 GNU_CONFIGURE=	YES
 
-NOPIE_PORTS=	yes
-
 CPE_VENDOR=	powerdns
 
 OPTIONS_DEFINE=	SETUID

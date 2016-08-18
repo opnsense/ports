@@ -20,8 +20,6 @@ USES=		uidfix
 USE_XORG=	xau x11 xext xxf86dga
 NOT_FOR_ARCHS=	sparc64
 
-NOPIE_PORTS=	yes
-
 PLIST_FILES=	bin/dtv \
 		etc/dtv-xevent.tk
 

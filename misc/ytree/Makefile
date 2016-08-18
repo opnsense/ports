@@ -16,8 +16,6 @@ USES=		ncurses
 ALL_TARGET=	ytree
 MAKE_ARGS=	LDFLAGS="${LDFLAGS} -lncurses -lcompat"
 
-NOPIE_PORTS=	yes
-
 OPTIONS_DEFINE=	DOCS
 
 do-install:

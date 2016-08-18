@@ -16,8 +16,6 @@ USES=		gmake pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20 gnomeprefix
 
-NOPIE_PORTS=	yes
-
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 

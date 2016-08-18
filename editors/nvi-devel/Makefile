@@ -29,8 +29,6 @@ WIDECHAR_CONFIGURE_ON=	--enable-widechar
 CPPFLAGS+=		-I${BDB_INCLUDE_DIR} -I${LOCALBASE}/include
 LDFLAGS+=		-L${BDB_LIB_DIR} -L${LOCALBASE}/lib
 
-NOPIE_PORTS=	yes
-
 # configure is 555, so you can't do a "make configure" as non-root.
 post-patch:
 	@${REINPLACE_CMD} -e '/libvi_la_LIBADD =/s,$$, ${ICONV_LIB},' \

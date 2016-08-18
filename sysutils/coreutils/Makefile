@@ -38,9 +38,6 @@ NLS_CONFIGURE_ENABLE=	nls
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 GMP_CONFIGURE_WITH=	gmp
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 post-build:
 	@${REINPLACE_CMD} -e "s/ lib / /g" ${WRKSRC}/Makefile
 	@${TOUCH} ${WRKSRC}/doc/coreutils.info

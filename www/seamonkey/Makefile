@@ -45,9 +45,6 @@ MOZ_EXTENSIONS=	default
 MOZ_OPTIONS+=	--program-transform-name='s/seamonkey/${MOZILLA}/' \
 		--enable-application=suite
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 USE_MOZILLA=	-opus
 MOZ_PKGCONFIG_FILES=
 

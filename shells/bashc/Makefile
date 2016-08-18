@@ -15,8 +15,6 @@ MAKE_JOBS_UNSAFE=	yes
 USES=		tar:tgz
 GNU_CONFIGURE=	yes
 
-NOPIE_PORTS=	yes
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|autoconf|${TRUE}|' ${WRKSRC}/Makefile.in
 

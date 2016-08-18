@@ -16,8 +16,6 @@ WRKSRC=		${WRKDIR}
 NO_PACKAGE=	Installs software in /usr/libexec and /usr/bin
 PREFIX=		/usr
 
-NOPIE_PORTS=	yes
-
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/usr.bin/tftp/tftp ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_PROGRAM} ${WRKSRC}/libexec/tftpd/tftpd ${STAGEDIR}${PREFIX}/libexec

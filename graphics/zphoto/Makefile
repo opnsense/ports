@@ -28,8 +28,6 @@ LIBS+=		-L${LOCALBASE}/lib
 USES=		alias gmake perl5
 USE_PERL5=	build
 
-NOPIE_PORTS=	yes
-
 post-patch:
 	@${REINPLACE_CMD} -e 's|<ming.h>|<ming/ming.h>|g' ${WRKSRC}/*.c ${WRKSRC}/configure
 

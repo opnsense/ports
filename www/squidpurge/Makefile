@@ -20,8 +20,6 @@ WRKSRC=		${WRKDIR}/purge
 
 PLIST_FILES=	sbin/purge
 
-NOPIE_PORTS=	yes
-
 post-patch:
 	${REINPLACE_CMD} -e 's|= g++|= ${CXX}|g' ${WRKSRC}/Makefile
 

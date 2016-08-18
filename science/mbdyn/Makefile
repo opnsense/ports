@@ -23,8 +23,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS+=	--program-prefix=''
 INSTALL_TARGET=	install-strip
 
-NOPIE_PORTS=	yes
-
 OPTIONS_DEFINE=	MPI METIS CHACO GINAC TCL
 MPI_DESC=	Enable mpich-support
 METIS_DESC=	Enable metis-support

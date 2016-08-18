@@ -11,8 +11,6 @@ COMMENT=	PostScript calendar program
 
 USES=		shebangfix gmake tar:tgz
 
-NOPIE_PORTS=	yes
-
 MAKE_ENV=	HOST_CC="${CC}"
 ALL_TARGET=
 

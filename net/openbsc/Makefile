@@ -18,9 +18,6 @@ LIB_DEPENDS=	libdbi.so:databases/libdbi \
 		libosmonetif.so:devel/libosmo-netif \
 		libdbi.so:databases/libdbi
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/${PORTNAME}
 
 USES=		autoreconf compiler:c11 gmake pkgconfig

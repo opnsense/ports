@@ -16,8 +16,6 @@ GNU_CONFIGURE=	yes
 USE_XORG=	x11 xpm
 USES=		gmake
 
-NOPIE_PORTS=	yes
-
 CPPFLAGS+=	-I${LOCALBASE}/include
 
 PLIST_FILES=	bin/wmwifi

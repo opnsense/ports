@@ -29,8 +29,6 @@ USES=		perl5 python gmake shebangfix
 SHEBANG_FILES=	${SCRIPTS}
 NO_WRKSUBDIR=	yes
 
-NOPIE_PORTS=	yes
-
 BINS=		keyanalyze/keyanalyze keyanalyze/process_keys \
 		gpgwrap/bin/gpgwrap
 SCRIPTS=	caff/caff caff/pgp-clean caff/pgp-fixkey \

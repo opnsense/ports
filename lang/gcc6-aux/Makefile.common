@@ -13,5 +13,3 @@ USES=			gmake libtool perl5 tar:bzip2
 USE_PERL5=		build
 ALL_TARGET=		default
 CFLAGS:=		${CFLAGS:N-march=*}
-
-NOPIE_PORTS=	yes

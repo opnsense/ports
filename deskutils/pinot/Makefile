@@ -52,9 +52,6 @@ USE_XORG=	pixman
 USE_LDCONFIG=	${PREFIX}/lib/pinot/backends ${PREFIX}/lib/pinot/filters
 SHEBANG_FILES=	scripts/bash/*.sh
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 OPTIONS_DEFINE=	DEBUG CHMLIB DOCS
 OPTIONS_SUB=	yes
 

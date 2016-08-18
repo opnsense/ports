@@ -22,6 +22,4 @@ CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
 CPPFLAGS+=	-I${LOCALBASE}/include/GL -I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lm -lcompat
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.mk>

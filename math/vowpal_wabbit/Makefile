@@ -19,9 +19,6 @@ USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	JohnLangford
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 CONFIGURE_ARGS=	--enable-shared=no --with-boost=${LOCALBASE}
 
 .include <bsd.port.mk>

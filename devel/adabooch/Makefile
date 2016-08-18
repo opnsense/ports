@@ -20,9 +20,6 @@ USES=		ada gmake tar:bzip2
 HAS_CONFIGURE=	yes
 ALL_TARGET=	libs
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 # Demos are available but require that the libraries are already installed
 # In other words, adabooch demos requires a separate port to do correctly
 OPTIONS_DEFINE=	DOCS

@@ -15,8 +15,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libgflags.so:devel/gflags \
 		libsnappy.so:archivers/snappy
 
-NOPIE_PORTS=	yes
-
 BROKEN_powerpc64=	does not build
 
 OPTIONS_DEFINE=	DEBUG

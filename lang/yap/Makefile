@@ -26,9 +26,6 @@ CONFIGURE_ARGS=	--enable-max-performance
 USES=		gmake readline
 USE_GCC=	any
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 DOCSDIR=	${PREFIX}/share/doc/Yap
 DATADIR=	${PREFIX}/share/Yap
 

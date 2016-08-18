@@ -21,8 +21,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 WRKSRC=		${WRKDIR}/TleenX2-${PORTVERSION}
 
-NOPIE_PORTS=	yes
-
 PORTDOCS=	README gg.txt sms.txt
 
 post-patch:

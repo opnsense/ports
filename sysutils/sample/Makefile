@@ -24,9 +24,6 @@ GH_TAGNAME=	45e2b86
 
 USES=		python:build kmod
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 MAKE_ENV=	SYSDIR=${SRC_BASE}/sys
 
 SSP_UNSAFE=	YES
