@@ -1,6 +1,6 @@
-.if ${PORTNAME:Msuricata}
+.if ${PORTNAME} == suricata
 CONFIGURE_ARGS+=	--enable-pie
 NOPIE_PORTS=		yes
-.elif ${PORTNAME:Mpkg}
+.elif ${PORTNAME} == pkg
 NOPIE_PORTS=		yes
 .endif
