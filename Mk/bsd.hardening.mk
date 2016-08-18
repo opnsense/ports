@@ -5,6 +5,8 @@
 .if !defined(__BSD_PORT_HARDENING_MK)
 __BSD_PORT_HARDENING_MK=1
 
+.include "bsd.hardening.exceptions.mk"
+
 ####################################################
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
