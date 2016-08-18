@@ -5,7 +5,18 @@
 .if !defined(__BSD_PORT_HARDENING_MK)
 __BSD_PORT_HARDENING_MK=1
 
+HARDENING_NOPIE_PORTS?=		# can pass exceptions from make.conf
+HARDENING_NORELRO_PORTS?=	# can pass exceptions from make.conf
+
 .include "bsd.hardening.exceptions.mk"
+
+.if "${HARDENING_NOPIE_PORTS:M${PORTNAME}}" != ""
+NOPIE_PORTS=	yes
+.endif
+
+.if "${HARDENING_NORELRO_PORTS:M${PORTNAME}}" != ""
+NORELRO_PORTS=	yes
+.endif
 
 ####################################################
 ### Position-Idependent Executable (PIE) support ###
