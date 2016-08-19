@@ -34,6 +34,7 @@
     SUBDIR += asunder
     SUBDIR += atunes
     SUBDIR += aubio
+    SUBDIR += aucatctl
     SUBDIR += audacity
     SUBDIR += audex
     SUBDIR += audiere
@@ -609,6 +610,7 @@
     SUBDIR += pragha
     SUBDIR += puddletag
     SUBDIR += pulseaudio
+    SUBDIR += pulseaudio-module-sndio
     SUBDIR += py-al
     SUBDIR += py-ao
     SUBDIR += py-apetag
