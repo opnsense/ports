@@ -22,7 +22,6 @@ NORELRO_PORTS=	yes
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-OPTIONS_DEFINE+=	PIE
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 
@@ -51,6 +50,7 @@ NOPIE_PORTS=	yes
 .endif
 
 .if !defined(NOPIE_PORTS)
+OPTIONS_DEFINE+=	PIE
 OPTIONS_DEFAULT+=	PIE
 .endif
 
@@ -58,7 +58,6 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-OPTIONS_DEFINE+=	RELRO
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
@@ -89,6 +88,7 @@ NORELRO_PORTS=	yes
 .endif
 
 .if !defined(NORELRO_PORTS)
+OPTIONS_DEFINE+=	RELRO
 OPTIONS_DEFAULT+=	RELRO
 .endif
 .endif # !__BSD_PORT_HARDENING_MK
