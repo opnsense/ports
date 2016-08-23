@@ -1,4 +1,4 @@
-.if ${PORTNAME} = suricata
+.if "${PORTNAME}" == suricata
 CONFIGURE_ARGS+=       --enable-pie
 .endif
 
