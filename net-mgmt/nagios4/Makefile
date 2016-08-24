@@ -2,8 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	nagios
-PORTVERSION=	4.2.0
-PORTREVISION=	0
+PORTVERSION=	4.1.1
+PORTREVISION=	5
+PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-4.x/${PORTNAME}-${PORTVERSION}
 PKGNAMESUFFIX=	4
@@ -16,9 +17,10 @@ LICENSE=	GPLv2
 BROKEN_powerpc64=	Does not build
 
 LIB_DEPENDS=	libltdl.so:devel/libltdl \
+		libpng16.so:graphics/png \
 		libgd.so:graphics/gd
 
-USES=		cpe gmake perl5
+USES=		cpe gmake jpeg perl5
 USE_PERL5=	build
 USE_PHP=	xml
 USE_RC_SUBR=	nagios
