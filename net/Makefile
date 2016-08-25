@@ -422,6 +422,7 @@
     SUBDIR += nanomsg
     SUBDIR += nast
     SUBDIR += nats
+    SUBDIR += nats-top
     SUBDIR += nbd-server
     SUBDIR += nc
     SUBDIR += ncp
@@ -981,6 +982,7 @@
     SUBDIR += py-netifaces
     SUBDIR += py-netlib
     SUBDIR += py-netstring
+    SUBDIR += py-nnpy
     SUBDIR += py-novaclient
     SUBDIR += py-ntplib
     SUBDIR += py-oauth
