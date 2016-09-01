@@ -84,6 +84,7 @@
     SUBDIR += antlr3
     SUBDIR += antlr4
     SUBDIR += apache-ant
+    SUBDIR += apache-rat
     SUBDIR += api-sanity-autotest
     SUBDIR += apiextractor
     SUBDIR += appstream-glib
@@ -5287,6 +5288,7 @@
     SUBDIR += rubygem-wdm
     SUBDIR += rubygem-web-console
     SUBDIR += rubygem-webby
+    SUBDIR += rubygem-windows_error
     SUBDIR += rubygem-wmi-lite
     SUBDIR += rubygem-xpath
     SUBDIR += rubygem-yajl-ruby

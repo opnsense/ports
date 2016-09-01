@@ -2,6 +2,7 @@
 
 PORTNAME=	nextcloud
 PORTVERSION=	10.0.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://download.nextcloud.com/server/releases/
 
@@ -44,7 +45,7 @@ PGSQL_USES=	pgsql
 PGSQL_USE=	PHP=pdo_pgsql,pgsql
 SQLITE_USE=	PHP=pdo_sqlite,sqlite3
 SMB_RUN_DEPENDS=	pecl-smbclient>=0.8.0:net/pecl-smbclient
-SSL_USES=	ssl
+SSL_USE=	PHP=openssl
 
 .include <bsd.port.options.mk>
 
