@@ -68,12 +68,12 @@ if (!empty($auth_data['user']) && !empty($auth_data['password'])) {
 
     if (authenticate_user($auth_data['user'], $auth_data['password'], $authcfg)) {
         // auth OK
-        syslog(LOG_NOTICE, "user '".$auth_data['user']."' authenticated\n");
+        syslog(LOG_NOTICE, "user '".$auth_data['user']."' authenticated successfully\n");
         $exit_status = 0;
     } elseif ($authcfg != $authcfg_fallback && $authcfg_fallback !== false &&
       authenticate_user($auth_data['user'], $auth_data['password'], $authcfg_fallback)) {
         // auth OK, using fallback
-        syslog(LOG_NOTICE, "user '".$auth_data['user']."' authenticated (using fallback)\n");
+        syslog(LOG_NOTICE, "user '".$auth_data['user']."' authenticated successfully (using fallback)\n");
         $exit_status = 0;
     } else {
         syslog(LOG_WARNING, "user '".$auth_data['user']."' could not authenticate.\n");
