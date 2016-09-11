@@ -1,0 +1,2 @@
+auth sufficient opnsense-pam-auth.so
+account sufficient opnsense-pam-auth.so
