@@ -43,6 +43,7 @@
     SUBDIR += R-cran-reshape2
     SUBDIR += R-cran-rngtools
     SUBDIR += R-cran-rstudioapi
+    SUBDIR += R-cran-sourcetools
     SUBDIR += R-cran-tibble
     SUBDIR += R-cran-tidyr
     SUBDIR += SpecTcl
@@ -244,6 +245,7 @@
     SUBDIR += chruby
     SUBDIR += cil
     SUBDIR += cityhash
+    SUBDIR += cjose
     SUBDIR += cl-alexandria
     SUBDIR += cl-alexandria-sbcl
     SUBDIR += cl-asdf
@@ -491,6 +493,7 @@
     SUBDIR += erlang-exmpp
     SUBDIR += erlang-folsom
     SUBDIR += erlang-gen_leader
+    SUBDIR += erlang-gen_rpc
     SUBDIR += erlang-gen_smtp
     SUBDIR += erlang-getopt
     SUBDIR += erlang-goldrush
@@ -518,6 +521,7 @@
     SUBDIR += erlang-syslog
     SUBDIR += es-eric6
     SUBDIR += etcd
+    SUBDIR += etcd3
     SUBDIR += etl
     SUBDIR += euca2ools
     SUBDIR += eventxx
@@ -765,6 +769,7 @@
     SUBDIR += googletest
     SUBDIR += goprotobuf
     SUBDIR += gorm
+    SUBDIR += govendor
     SUBDIR += gperf
     SUBDIR += gpm
     SUBDIR += gprbuild
@@ -1131,6 +1136,7 @@
     SUBDIR += kdevplatform
     SUBDIR += kickassembler
     SUBDIR += kimwitu
+    SUBDIR += kore
     SUBDIR += kyra
     SUBDIR += kyua
     SUBDIR += lasi
@@ -1346,6 +1352,7 @@
     SUBDIR += librolegen
     SUBDIR += libruin
     SUBDIR += libs11n
+    SUBDIR += libscca
     SUBDIR += libsearpc
     SUBDIR += libserialport
     SUBDIR += libserver
@@ -3811,7 +3818,6 @@
     SUBDIR += php5-dav
     SUBDIR += php5-geshi
     SUBDIR += php5-ice
-    SUBDIR += php5-msgpack
     SUBDIR += php5-pinba
     SUBDIR += php5-thrift
     SUBDIR += php55-gettext
@@ -4091,7 +4097,6 @@
     SUBDIR += py-docker-py
     SUBDIR += py-docopt
     SUBDIR += py-dogpile.cache
-    SUBDIR += py-dogpile.core
     SUBDIR += py-doit
     SUBDIR += py-durus
     SUBDIR += py-dynrules
@@ -4226,6 +4231,7 @@
     SUBDIR += py-libzfs
     SUBDIR += py-ll-core
     SUBDIR += py-llfuse
+    SUBDIR += py-llvmlite
     SUBDIR += py-lock_file
     SUBDIR += py-lockfile
     SUBDIR += py-log4py
@@ -4268,6 +4274,7 @@
     SUBDIR += py-noseofyeti
     SUBDIR += py-notifier
     SUBDIR += py-notify
+    SUBDIR += py-numba
     SUBDIR += py-ocempgui
     SUBDIR += py-ode
     SUBDIR += py-odfpy
@@ -4776,6 +4783,7 @@
     SUBDIR += relx
     SUBDIR += remake
     SUBDIR += renpy
+    SUBDIR += renpy6
     SUBDIR += replay
     SUBDIR += rhtvision
     SUBDIR += rlog

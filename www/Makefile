@@ -154,6 +154,7 @@
     SUBDIR += erwn
     SUBDIR += eventum
     SUBDIR += extjs
+    SUBDIR += fabio
     SUBDIR += fancybox
     SUBDIR += faup
     SUBDIR += fcgi
@@ -389,7 +390,6 @@
     SUBDIR += mathjax
     SUBDIR += mathopd
     SUBDIR += mediawiki123
-    SUBDIR += mediawiki124
     SUBDIR += mediawiki125
     SUBDIR += mediawiki126
     SUBDIR += mediawiki127
@@ -411,6 +411,7 @@
     SUBDIR += mod_auth_cas
     SUBDIR += mod_auth_cookie_mysql2
     SUBDIR += mod_auth_external2
+    SUBDIR += mod_auth_gssapi
     SUBDIR += mod_auth_imap2
     SUBDIR += mod_auth_kerb2
     SUBDIR += mod_auth_mysql2
@@ -507,7 +508,6 @@
     SUBDIR += monast
     SUBDIR += mongoose
     SUBDIR += mongrel2
-    SUBDIR += moodle28
     SUBDIR += moodle29
     SUBDIR += moodle30
     SUBDIR += moodle31
@@ -1160,8 +1160,11 @@
     SUBDIR += p5-RPC-ExtDirect
     SUBDIR += p5-RT-Authen-ExternalAuth
     SUBDIR += p5-RT-Client-REST
+    SUBDIR += p5-RT-Extension-CommandByMail
+    SUBDIR += p5-RT-Extension-Gravatar
     SUBDIR += p5-RT-Extension-LDAPImport
     SUBDIR += p5-RT-Extension-MandatoryOnTransition
+    SUBDIR += p5-RT-Extension-QuickAssign
     SUBDIR += p5-RT-Extension-SLA
     SUBDIR += p5-RTx-Calendar
     SUBDIR += p5-Reaction
@@ -1582,6 +1585,7 @@
     SUBDIR += py-django-threaded-multihost
     SUBDIR += py-django-tinymce
     SUBDIR += py-django-voting
+    SUBDIR += py-django110
     SUBDIR += py-django16
     SUBDIR += py-django16-tastypie
     SUBDIR += py-django18
@@ -2260,7 +2264,7 @@
     SUBDIR += uzbl
     SUBDIR += validator
     SUBDIR += varnish-libvmod-maxminddb
-    SUBDIR += varnish-libvmod-saintmode
+    SUBDIR += varnish-modules
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
     SUBDIR += vdr-plugin-live

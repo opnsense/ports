@@ -8,6 +8,7 @@
     SUBDIR += R-cran-ROAuth
     SUBDIR += R-cran-digest
     SUBDIR += R-cran-openssl
+    SUBDIR += acme-client
     SUBDIR += aescrypt
     SUBDIR += aespipe
     SUBDIR += afl
@@ -50,6 +51,7 @@
     SUBDIR += bugs
     SUBDIR += ca_root_nss
     SUBDIR += calife
+    SUBDIR += cardpeek
     SUBDIR += ccrypt
     SUBDIR += ccsrch
     SUBDIR += certificate-transparency
@@ -100,6 +102,7 @@
     SUBDIR += d0_blind_id
     SUBDIR += dcetest
     SUBDIR += ddos_scan
+    SUBDIR += dehydrated
     SUBDIR += denyhosts
     SUBDIR += destroy
     SUBDIR += digest
@@ -288,8 +291,6 @@
     SUBDIR += l5
     SUBDIR += lasso
     SUBDIR += lastpass-cli
-    SUBDIR += letsencrypt.sh
-    SUBDIR += letskencrypt
     SUBDIR += libadacrypt
     SUBDIR += libargon2
     SUBDIR += libassuan
@@ -991,6 +992,7 @@
     SUBDIR += rubygem-metasploit-payloads
     SUBDIR += rubygem-metasploit_data_models
     SUBDIR += rubygem-metasploit_payloads-mettle
+    SUBDIR += rubygem-nessus_rest
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-sftp
     SUBDIR += rubygem-net-ssh
@@ -1013,6 +1015,7 @@
     SUBDIR += rubygem-recog
     SUBDIR += rubygem-rex-arch
     SUBDIR += rubygem-rex-java
+    SUBDIR += rubygem-rex-mime
     SUBDIR += rubygem-rex-ole
     SUBDIR += rubygem-rex-powershell
     SUBDIR += rubygem-rex-random_identifier

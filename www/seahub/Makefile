@@ -1,10 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	seahub
-PORTVERSION=	5.1.10
+PORTVERSION=	6.0.0
 DISTVERSIONPREFIX=	v
 DISTVERSIONSUFFIX=	-pro
-PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	ultima1252@gmail.com
@@ -104,7 +103,8 @@ do-patch:
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/${SEAFILE_SERVER}/runtime/ \
-		${STAGEDIR}${PREFIX}/${SEAHUBDIR} ${STAGEDIR}${PREFIX}/${SEAHUB_DATA_DIR}
+		${STAGEDIR}${PREFIX}/${SEAHUBDIR} ${STAGEDIR}${PREFIX}/${SEAHUB_DATA_DIR} \
+		${STAGEDIR}${PREFIX}/${SEAHUB_DATA_DIR}/custom
 	${INSTALL} ${WRKSRC}/runtime/seahub.conf \
 		${STAGEDIR}${PREFIX}/${SEAFILE_SERVER}/runtime/
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${SEAHUBDIR} \
@@ -112,7 +112,7 @@ do-install:
 	! -name default-non-register.jpg ! -name default.png ! -name groups")
 	(cd ${WRKSRC}/media && ${COPYTREE_SHARE} ./avatars \
 		 ${STAGEDIR}${PREFIX}/${SEAHUB_DATA_DIR})
-	${LN} -fs ${PREFIX}/${SEAHUB_DATA_DIR}/avatars \
+	${LN} -fs ../../../seahub-data/avatars \
 		${STAGEDIR}${PREFIX}/${SEAHUBDIR}/media/avatars
 
 .include <bsd.port.mk>

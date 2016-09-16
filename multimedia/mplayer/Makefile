@@ -78,7 +78,7 @@ PLIST_SUB+=	GMPLAYER="@comment "
 .endif #GUI && X11
 
 .if ${PORT_OPTIONS:MX11}
-USE_XORG=	x11 xproto xscrnsaver
+USE_XORG=	x11 xext xproto xscrnsaver
 .if ${PORT_OPTIONS:MXVIDEO}
 USE_XORG+=	xv
 .else
@@ -167,7 +167,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/etc/${conf} ${STAGEDIR}${DATADIR}/examples/etc
 .endfor
 .if ${PORT_OPTIONS:MGUI} && ${PORT_OPTIONS:MX11}
-	@${LN} -sf ${PREFIX}/bin/mplayer ${STAGEDIR}${PREFIX}/bin/gmplayer
+	@${LN} -sf mplayer ${STAGEDIR}${PREFIX}/bin/gmplayer
 	@(cd ${STAGEDIR}${MAN1PREFIX}/man/man1 && ${LN} -sf mplayer.1.gz gmplayer.1.gz)
 	${CP} -f ${WRKSRC}/etc/mplayer256x256.png ${STAGEDIR}${PREFIX}/share/pixmaps/mplayer.png
 .endif

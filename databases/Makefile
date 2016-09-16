@@ -136,6 +136,7 @@
     SUBDIR += leofs
     SUBDIR += leveldb
     SUBDIR += levigo
+    SUBDIR += libcouchbase
     SUBDIR += libdbi
     SUBDIR += libdbi-drivers
     SUBDIR += libdrizzle
@@ -699,6 +700,14 @@
     SUBDIR += postgresql95-plpython
     SUBDIR += postgresql95-pltcl
     SUBDIR += postgresql95-server
+    SUBDIR += postgresql96-client
+    SUBDIR += postgresql96-contrib
+    SUBDIR += postgresql96-docs
+    SUBDIR += postgresql96-pgtcl
+    SUBDIR += postgresql96-plperl
+    SUBDIR += postgresql96-plpython
+    SUBDIR += postgresql96-pltcl
+    SUBDIR += postgresql96-server
     SUBDIR += powerarchitect
     SUBDIR += proftpd-mod_sql_mysql
     SUBDIR += proftpd-mod_sql_odbc
@@ -955,6 +964,7 @@
     SUBDIR += sqlite2
     SUBDIR += sqlite3
     SUBDIR += sqlitebrowser
+    SUBDIR += sqlitebrowser-qt5
     SUBDIR += sqliteman
     SUBDIR += sqlitemanager
     SUBDIR += sqliteodbc

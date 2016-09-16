@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	erlang
-PORTVERSION=	18.3.4.4
+PORTVERSION=	19.0.7
 PORTEPOCH=	3
 CATEGORIES=	lang parallel java
 MASTER_SITES=	http://www.erlang.org/download/:erlangorg		\
@@ -20,9 +20,9 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 PATCH_SITES=	http://olgeni.olgeni.com/~olgeni/distfiles/ \
 		LOCAL/olgeni
-PATCHFILES=	patch-otp-18.3.1 patch-otp-18.3.2 patch-otp-18.3.3 \
-		patch-otp-18.3.4 patch-otp-18.3.4.1 patch-otp-18.3.4.2 \
-		patch-otp-18.3.4.3 patch-otp-18.3.4.4
+PATCHFILES=	patch-otp-19.0.1 patch-otp-19.0.2 patch-otp-19.0.3 \
+		patch-otp-19.0.4 patch-otp-19.0.5 patch-otp-19.0.6 \
+		patch-otp-19.0.7
 
 MAINTAINER=	olgeni@FreeBSD.org
 COMMENT=	Functional programming language from Ericsson
@@ -39,21 +39,24 @@ PLIST_SUB=	ERLANG_LIB=${ERLANG_LIB}
 
 MAKE_JOBS_UNSAFE=yes
 
-OPTIONS_DEFINE=	DOCS DTRACE GCC GS HIPE JAVA KQUEUE ODBC OPENSSL SCTP SMP THREADS WX DIRTY
+OPTIONS_DEFINE=	DIRTY DOCS DTRACE GS HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP SMP THREADS WX
 
 DIRTY_DESC=	Enable Dirty schedulers (experimental)
 DTRACE_DESC=	Enable DTrace support
 GS_DESC=	Enable GS application (deprecated)
 HIPE_DESC=	Build native HiPE compiler
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
+NATIVE_DESC=	Enable native libraries
 SCTP_DESC=	Enable SCTP support
 SMP_DESC=	Enable SMP support
 WX_DESC=	Enable WX application
 
-OPTIONS_DEFAULT=HIPE KQUEUE OPENSSL SCTP SMP THREADS
-OPTIONS_EXCLUDE_DragonFly=	HIPE SCTP
+NATIVE_IMPLIES=	HIPE
 
-ERL_RELEASE=	18.3
+OPTIONS_DEFAULT=HIPE KQUEUE OPENSSL SCTP SMP THREADS
+OPTIONS_EXCLUDE_DragonFly=	HIPE NATIVE SCTP
+
+ERL_RELEASE=	19.0
 
 USES=		gmake ncurses perl5
 USE_PERL5=	build
@@ -61,9 +64,9 @@ USE_RC_SUBR=	epmd
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-EI_VSN=		3.8.2
-SNMP_VSN=	5.2.2
-TOOLS_VSN=	2.8.3
+EI_VSN=		3.9
+SNMP_VSN=	5.2.3
+TOOLS_VSN=	2.8.5
 
 .include <bsd.port.options.mk>
 
@@ -83,13 +86,13 @@ DOC_DISTFILES=	armstrong_thesis_2003.pdf:joe		\
 # respectively)" you probably misconfigured DTrace in some way.
 
 .if ${OSVERSION} < 1000000
-.if ${ARCH} == "amd64" && ${PORT_OPTIONS:MDTRACE} && ! ${PORT_OPTIONS:MGCC}
-IGNORE=		support for DTrace on amd64 requires GCC option
+.if ${ARCH} == "amd64" && ${PORT_OPTIONS:MDTRACE}
+IGNORE=		support for DTrace on amd64 requires at least FreeBSD 10
 .endif
 .endif
 
-.if ${PORT_OPTIONS:MGCC}
-USE_GCC?=	yes
+.if ${OPSYS} == FreeBSD && ${OSVERSION} > 1100000
+CFLAGS+=	-DMAP_NORESERVE=0
 .endif
 
 .if ${PORT_OPTIONS:MDTRACE}
@@ -101,7 +104,7 @@ CONFIGURE_ARGS+=--without-dynamic-trace
 .endif
 
 .if ${PORT_OPTIONS:MOPENSSL}
-USE_OPENSSL=	yes
+USES+=		ssl
 CONFIGURE_ARGS+=--with-ssl=${OPENSSLBASE}
 .else
 CONFIGURE_ARGS+=--without-ssl
@@ -119,6 +122,12 @@ CONFIGURE_ARGS+=--without-javac
 CONFIGURE_ARGS+=--enable-hipe
 .else
 CONFIGURE_ARGS+=--disable-hipe
+.endif
+
+.if ${PORT_OPTIONS:MNATIVE}
+CONFIGURE_ARGS+=--enable-native-libs
+.else
+CONFIGURE_ARGS+=--disable-native-libs
 .endif
 
 .if ${PORT_OPTIONS:MKQUEUE}
@@ -212,6 +221,11 @@ post-configure:
 	${RM} ${WRKSRC}/lib/odbc/SKIP
 .endif
 
+.if ${PORT_OPTIONS:MNATIVE}
+pre-build:
+	@cd ${WRKSRC} && ${MAKE_CMD} clean
+.endif
+
 post-install:
 	${INSTALL_DATA} ${WRKDIR}/erlang.conf ${STAGEDIR}${PREFIX}/etc/man.d/erlang.conf
 	${LN} -sf ../lib/${ERLANG_LIB}/lib/erl_interface-${EI_VSN}/bin/erl_call ${STAGEDIR}${PREFIX}/bin/erl_call
@@ -225,29 +239,45 @@ post-install:
 	${TAR} --unlink -xzpf ${DISTDIR}/${DIST_SUBDIR}/${ERLANG_DOCS} \
 		-C ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-7.3/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-7.3.1.2
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-7.3
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.0/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.0.5
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/erts-8.0
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.2.4
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.2
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/compiler-7.0/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/compiler-7.0.1
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/compiler-7.0
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.13.3/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.13.4
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/mnesia-4.13.3
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-3.0/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-3.0.1
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-3.0
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-7.3/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-7.3.3.1
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-7.3
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3.2
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/inets-6.3
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/common_test-1.12/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/common_test-1.12.1.1
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/common_test-1.12
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/observer-2.2/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/observer-2.2.1
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/observer-2.2
 
-	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.2.2/* \
-		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.2.2.2
-	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.2.2
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0.1
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssl-8.0
+
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/stdlib-3.0/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/stdlib-3.0.1
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/stdlib-3.0
+
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/tools-2.8.4/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/tools-2.8.5
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/tools-2.8.4
+
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/kernel-5.0/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/kernel-5.0.2
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/kernel-5.0
+
+	${MV} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3/* \
+		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3.1
+	${RMDIR} ${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/ssh-4.3
 
 	${INSTALL_DATA} ${WRKSRC}/lib/dialyzer/doc/*.txt \
 		${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib/dialyzer-*/doc/

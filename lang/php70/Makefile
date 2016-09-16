@@ -3,7 +3,7 @@
 
 PORTNAME=	php70
 PORTVERSION=	7.0.10
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${PORTVERSION}
@@ -12,8 +12,6 @@ MAINTAINER=	tz@FreeBSD.org
 COMMENT=	PHP Scripting Language
 
 LICENSE=	PHP301
-
-BROKEN_powerpc64=	Does not build
 
 USES+=		tar:xz cpe
 CPE_PRODUCT=	php

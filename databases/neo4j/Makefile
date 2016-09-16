@@ -2,6 +2,7 @@
 
 PORTNAME=	neo4j
 DISTVERSION=	3.0.4
+PORTREVISION=	1
 CATEGORIES=	databases java
 MASTER_SITES=	http://dist.neo4j.org/
 DISTNAME=	${PORTNAME}-community-${DISTVERSION}-unix
@@ -13,12 +14,15 @@ RUN_DEPENDS=	bash:shells/bash
 
 WRKSRC=		${WRKDIR}/${DISTNAME:S,-unix,,}
 NO_BUILD=	yes
+USES=		shebangfix
+SHEBANG_FILES=	bin/neo4j-shell bin/neo4j-import
 USE_JAVA=	yes
 USE_RC_SUBR=	${PORTNAME}
 SUB_FILES=	${PORTNAME}.sh
 
 post-patch:
-	${REINPLACE_CMD} 's,%%DATADIR%%,${DATADIR},g;s,%%PREFIX%%,${PREFIX},g' \		${WRKSRC}/bin/neo4j-shared.sh ${WRKSRC}/conf/neo4j.conf
+	${REINPLACE_CMD} 's,%%DATADIR%%,${DATADIR},g;s,%%PREFIX%%,${PREFIX},g' \
+		${WRKSRC}/bin/neo4j-shared.sh ${WRKSRC}/conf/neo4j.conf
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKDIR}/${PORTNAME}.sh ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
