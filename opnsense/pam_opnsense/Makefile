@@ -1,5 +1,6 @@
 PORTNAME=	pam_opnsense
 PORTVERSION=	16.7.b
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -9,21 +10,16 @@ MAINTAINER=	ad@opnsense.org
 COMMENT=	OPNsense shared authentication system using PAM
 
 do-extract:
-	mkdir -p ${WRKSRC}
+	${CP} -r ${FILESDIR} ${WRKSRC}
 
 do-build:
-	mkdir -p ${WRKSRC}/sbin
-	mkdir -p ${WRKSRC}/lib
-	${CC} ${CFLAGS} -Wall -lpam -o ${WRKSRC}/opnsense-pam-auth-test \
-	    ${MASTERDIR}/opnsense-pam-auth-test.c
-	
-	${CC} ${CFLAGS} -Wall -fPIC -o ${WRKSRC}/opnsense-pam-auth.o -c ${MASTERDIR}/opnsense-pam-auth.c
-	${LD} -x --shared -o ${WRKSRC}/opnsense-pam-auth.so ${WRKSRC}/opnsense-pam-auth.o
-	cp ${MASTERDIR}/opnsense-pam-service-test  ${WRKSRC}/opnsense-pam-service-test
+	${CC} ${CFLAGS} -Wall -lpam -o opnsense-auth-test opnsense-auth-test.c
+	${CC} ${CFLAGS} -Wall -fPIC -o pam_opnsense.o -c pam_opnsense.c
+	${LD} -x --shared -o pam_opnsense.so pam_opnsense.o
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/opnsense-pam-auth-test ${STAGEDIR}${PREFIX}/sbin/
-	${INSTALL_PROGRAM} ${WRKSRC}/opnsense-pam-auth.so ${STAGEDIR}${PREFIX}/lib/
-	${INSTALL_DATA} ${WRKSRC}/opnsense-pam-service-test ${STAGEDIR}${PREFIX}/etc/pam.d/
+	${INSTALL_DATA} opnsense-auth-test ${STAGEDIR}${PREFIX}/etc/pam.d
+	${INSTALL_PROGRAM} opnsense-auth-test ${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_LIB} pam_opnsense.so ${STAGEDIR}${PREFIX}/lib
 
 .include <bsd.port.mk>
