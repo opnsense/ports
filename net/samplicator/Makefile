@@ -1,19 +1,20 @@
 # $FreeBSD$
 
 PORTNAME=	samplicator
-PORTVERSION=	1.3.7.b6
-PORTREVISION=	2
+DISTVERSION=	1.3.8rc1
 CATEGORIES=	net
-MASTER_SITES=	GOOGLE_CODE
-DISTNAME=	samplicator-1.3.7-beta6
 
 MAINTAINER=	me@falz.net
 COMMENT=	Receives UDP datagrams and redistributes them to a set of receivers
 
+USES=		autoreconf
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	sleinen
+GH_PROJECT=	samplicator
+
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN=		Unfetchable (google code has gone away)
 
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	${PORTNAME}
