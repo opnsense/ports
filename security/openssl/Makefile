@@ -4,10 +4,10 @@
 PORTNAME=	openssl
 PORTVERSION=	1.0.2
 DISTVERSIONSUFFIX=	h
-PORTREVISION=	15
-PORTEPOCH=	1
+PORTREVISION=	14
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
+		ftp://ftp.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
 DIST_SUBDIR=	${DISTNAME}
 
@@ -23,13 +23,13 @@ CONFLICTS=	libressl-[0-9]* \
 		libressl-devel-[0-9]* \
 		openssl-devel-[0-9]*
 
-OPTIONS_DEFINE=	SHARED THREADS SSE2 PADLOCK ZLIB SCTP SSL2 SSL3 RFC3779 MD2 RC5 EXPCIPHERS DOCS MAN3
+OPTIONS_DEFINE=	SHARED THREADS SSE2 ASM PADLOCK ZLIB GMP SCTP SSL2 SSL3 RFC3779 MD2 RC5 EXPCIPHERS DOCS MAN3
 OPTIONS_DEFAULT=SHARED THREADS SSE2 SCTP SSL2 SSL3 MD2 MAN3
 OPTIONS_DEFINE_i386=	I386
-OPTIONS_DEFINE_amd64=	EC
-OPTIONS_DEFAULT_amd64=	EC
-OPTIONS_DEFINE_ia64=	EC
-OPTIONS_DEFAULT_ia64=	EC
+.for a in amd64 ia64
+OPTIONS_DEFINE_${a}=	EC
+OPTIONS_DEFAULT_${a}=	EC
+.endfor
 TARGET_ARCH?=	${MACHINE_ARCH}
 .if ${TARGET_ARCH} == "mips64el"
 OPTIONS_DEFINE_mips=	EC
@@ -39,9 +39,11 @@ NO_OPTIONS_SORT=yes
 OPTIONS_SUB=	yes
 I386_DESC?=	Optimize for i386 (instead of i486+)
 SSE2_DESC?=	runtime SSE2 detection
+ASM_DESC?=	optimized Assembler code
 PADLOCK_DESC?=	VIA Padlock support
 SHARED_DESC?=	build of shared libs
 ZLIB_DESC?=	zlib compression support
+GMP_DESC?=	gmp support (LGPLv3)
 SCTP_DESC?=	SCTP protocol support
 SSL2_DESC?=	SSLv2 protocol support
 SSL3_DESC?=	SSLv3 protocol support
@@ -52,7 +54,9 @@ EXPCIPHERS_DESC?=	Include experimental ciphers
 EC_DESC?=	Optimize NIST elliptic curves
 MAN3_DESC?=	Install API manpages (section 3)
 
-USES=		cpe perl5
+GMP_LIB_DEPENDS=	libgmp.so:math/gmp
+
+USES=		perl5 cpe
 USE_PERL5=	build
 MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive
 MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
@@ -70,8 +74,7 @@ PLIST_SUB+=	OPENSSLDIR=${OPENSSLDIR:S=^${PREFIX}/==}
 OPENSSL_BASE_SONAME!=	readlink ${DESTDIR}/usr/lib/libcrypto.so || true
 OPENSSL_SHLIBVER_BASE=	${OPENSSL_BASE_SONAME:E}
 OPENSSL_BASE_SOPATH=	${OPENSSL_BASE_SONAME:H}
-
-.include "version.mk"
+OPENSSL_SHLIBVER?=	8
 
 .if ${PORT_OPTIONS:MI386}
 .if ${ARCH} == "i386"
@@ -84,7 +87,12 @@ EXTRACONFIGURE+=	386
 EXTRACONFIGURE+=	no-sse2
 .endif
 
+.if ${PORT_OPTIONS:MASM}
+BROKEN_sparc64=	option ASM generates illegal instructions
+EXTRACONFIGURE+=	enable-asm
+.else
 EXTRACONFIGURE+=	no-asm
+.endif
 
 .if ${PORT_OPTIONS:MTHREADS}
 EXTRACONFIGURE+=	threads
@@ -144,7 +152,12 @@ PATCHFILES+=	1001-crypto-hmac-support-EVP_MD_CTX_FLAG_ONESHOT-and-set-.patch:pad
 		1004-crypto-engine-autoload-padlock-dynamic-engine.patch:padlock
 .endif
 
+.if ${PORT_OPTIONS:MGMP}
+EXTRACONFIGURE+=	enable-gmp -I${LOCALBASE}/include
+IGNORE=	can not be linked because GMP is LGPLv3
+.else
 EXTRACONFIGURE+=	no-gmp
+.endif
 
 .if ${PORT_OPTIONS:MRFC3779}
 EXTRACONFIGURE+=	enable-rfc3779
@@ -189,23 +202,23 @@ do-configure:
 	./config --prefix=${PREFIX} --openssldir=${OPENSSLDIR} \
 		--install_prefix=${STAGEDIR} \
 		-L${PREFIX}/lib ${EXTRACONFIGURE}
-
-post-configure:
 	${REINPLACE_CMD} \
 		-e 's|^MANDIR=.*$$|MANDIR=$$(PREFIX)/man|' \
 		-e 's|$$(LIBDIR)/pkgconfig|libdata/pkgconfig|g' \
 		-e 's|LIBVERSION=[^ ]* |LIBVERSION=${OPENSSL_SHLIBVER} |' \
 		${WRKSRC}/Makefile
 
-post-install-SHARED-on:
+post-install:
+.if ${PORT_OPTIONS:MSHARED}
 .for i in libcrypto libssl
 	${INSTALL_DATA} ${WRKSRC}/$i.so.${OPENSSL_SHLIBVER} ${STAGEDIR}${PREFIX}/lib
 	${LN} -sf $i.so.${OPENSSL_SHLIBVER} ${STAGEDIR}${PREFIX}/lib/$i.so
 .endfor
-
-post-install-MAN3-off:
+.endif
+.if empty(PORT_OPTIONS:MMAN3)
 	${RM} -rf ${STAGEDIR}/${PREFIX}/man/man3
 	${REINPLACE_CMD} -e 's|^man/man3/.*||' ${TMPPLIST}
+.endif
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
