@@ -3,6 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	2.8.8
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -63,7 +64,6 @@ ILBC_DESC=	Internet Low Bit Rate codec
 LICENSE_DESC=	Licensing options
 NEON_DESC=	Enable Media Processing Engine instructions
 NONFREE_DESC=	Allow use of nonfree code
-OPENCL_DESC=	Heterogeneous computing via OpenCL
 OPENH264_DESC=	H.264 video codec support via OpenH264
 QUVI_DESC=	Flash media stream URLs
 RTCPU_DESC=	Detect CPU capabilities at runtime

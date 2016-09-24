@@ -176,6 +176,7 @@
     SUBDIR += boost-libs
     SUBDIR += boost-python-libs
     SUBDIR += boost_build
+    SUBDIR += bossa
     SUBDIR += bouml-doc
     SUBDIR += bpython
     SUBDIR += bsdbuild
@@ -461,6 +462,7 @@
     SUBDIR += elixir-math
     SUBDIR += elixir-msgpax
     SUBDIR += elixir-nadia
+    SUBDIR += elixir-nats
     SUBDIR += elixir-nimble_csv
     SUBDIR += elixir-paratize
     SUBDIR += elixir-plug
@@ -4536,6 +4538,7 @@
     SUBDIR += py-tw.forms
     SUBDIR += py-twext
     SUBDIR += py-twiggy
+    SUBDIR += py-twilio
     SUBDIR += py-twine
     SUBDIR += py-twisted
     SUBDIR += py-twisted152
