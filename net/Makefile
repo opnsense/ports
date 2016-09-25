@@ -159,6 +159,7 @@
     SUBDIR += glflow
     SUBDIR += glib-networking
     SUBDIR += glusterfs
+    SUBDIR += gnatsd
     SUBDIR += gnet2
     SUBDIR += gnetcat
     SUBDIR += gnome-nettool
@@ -421,7 +422,6 @@
     SUBDIR += nakenchat
     SUBDIR += nanomsg
     SUBDIR += nast
-    SUBDIR += nats
     SUBDIR += nats-streaming-server
     SUBDIR += nats-top
     SUBDIR += nbd-server
@@ -855,10 +855,10 @@
     SUBDIR += pear-Net_Finger
     SUBDIR += pear-Net_Geo
     SUBDIR += pear-Net_GeoIP
+    SUBDIR += pear-Net_Growl
     SUBDIR += pear-Net_IDNA
     SUBDIR += pear-Net_IPv4
     SUBDIR += pear-Net_IPv6
-    SUBDIR += pear-Net_Growl
     SUBDIR += pear-Net_Ident
     SUBDIR += pear-Net_LDAP
     SUBDIR += pear-Net_LDAP2
