@@ -4552,7 +4552,6 @@
     SUBDIR += py-ujson
     SUBDIR += py-uncompyle2
     SUBDIR += py-unipath
-    SUBDIR += py-unittest2
     SUBDIR += py-unpaddedbase64
     SUBDIR += py-update_checker
     SUBDIR += py-urlimport
@@ -4676,6 +4675,7 @@
     SUBDIR += py-zope.viewlet
     SUBDIR += py3-Jinja2
     SUBDIR += py3-babel
+    SUBDIR += py3-click
     SUBDIR += py3-dbus
     SUBDIR += py3-gobject3
     SUBDIR += py3-jsonschema
@@ -4685,6 +4685,7 @@
     SUBDIR += py3-pylru-cache
     SUBDIR += py3-python-magic
     SUBDIR += py3-pytz
+    SUBDIR += py3-threema-msgapi
     SUBDIR += py3-vcversioner
     SUBDIR += py3-xdg
     SUBDIR += py_static_check
