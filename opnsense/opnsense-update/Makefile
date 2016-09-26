@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	opnsense-update
-PORTVERSION=	16.7.2
-PORTREVISION=	2 # GH_TAGNAME
+PORTVERSION=	16.7.5
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -18,6 +17,5 @@ USES=		ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
-GH_TAGNAME=	275cc8
 
 .include <bsd.port.mk>
