@@ -55,7 +55,6 @@
     SUBDIR += dvdstyler
     SUBDIR += dvts
     SUBDIR += emby-server
-    SUBDIR += emotion_generic_players-vlc
     SUBDIR += emovix
     SUBDIR += ffdec
     SUBDIR += ffmpeg
@@ -169,6 +168,8 @@
     SUBDIR += kmplayer-kde4
     SUBDIR += kodi
     SUBDIR += kplayer-kde4
+    SUBDIR += kvazaar
+    SUBDIR += kvazaar-devel
     SUBDIR += l-smash
     SUBDIR += libaacs
     SUBDIR += libass

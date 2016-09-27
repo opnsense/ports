@@ -744,6 +744,7 @@
     SUBDIR += go-json-rest
     SUBDIR += go-logrus
     SUBDIR += go-metrics
+    SUBDIR += go-nuid
     SUBDIR += go-pflag
     SUBDIR += go-pretty
     SUBDIR += go-protobuf
@@ -2918,6 +2919,7 @@
     SUBDIR += p5-Params-Util
     SUBDIR += p5-Params-Validate
     SUBDIR += p5-Params-Validate-Dependencies
+    SUBDIR += p5-Params-ValidationCompiler
     SUBDIR += p5-Paranoid
     SUBDIR += p5-Parse-CPAN-Meta
     SUBDIR += p5-Parse-CPAN-Packages
@@ -3364,6 +3366,7 @@
     SUBDIR += p5-Test-YAML-Meta
     SUBDIR += p5-Test-YAML-Valid
     SUBDIR += p5-Test-utf8
+    SUBDIR += p5-Test2-Plugin-NoWarnings
     SUBDIR += p5-Test2-Suite
     SUBDIR += p5-Text-Levenshtein
     SUBDIR += p5-Text-Levenshtein-Damerau
@@ -4688,6 +4691,7 @@
     SUBDIR += py3-threema-msgapi
     SUBDIR += py3-vcversioner
     SUBDIR += py3-xdg
+    SUBDIR += py3-yaml
     SUBDIR += py_static_check
     SUBDIR += pybugz
     SUBDIR += pychecker
