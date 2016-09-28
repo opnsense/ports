@@ -1,9 +1,7 @@
-This release includes two gigabit FreeBSD base Drivers for Intel(R)
-Ethernet. These drivers are em and igb.
-
-- The igb driver supports all 82575 and 82576-based gigabit network
-  connections.
-- The em driver supports all other gigabit network connections.
+This release includes the gigabit FreeBSD base Drivers for Intel(R)
+Ethernet.
 
 NOTE: The Intel(R) 82562v 10/100 Network Connection only provides 10/100
 support.
+
+WWW: https://downloadcenter.intel.com

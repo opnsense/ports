@@ -13,7 +13,7 @@ PKGNAMESUFFIX=	-kmod
 MAINTAINER=	franco@opnsense.org
 COMMENT?=	Gigabit FreeBSD Base Drivers for Intel(R) Ethernet
 
-LICENSE=	BSD2CLAUSE
+LICENSE=	BSD3CLAUSE
 
 USES=		kmod
 WRKSRC_SUBDIR=	src
