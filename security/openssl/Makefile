@@ -2,9 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openssl
-PORTVERSION=	1.0.2
-DISTVERSIONSUFFIX=	j
-PORTREVISION=	17
+PORTVERSION=	1.0.2j
 PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
