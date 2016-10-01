@@ -20,6 +20,7 @@
     SUBDIR += R-cran-caTools
     SUBDIR += R-cran-caret
     SUBDIR += R-cran-chron
+    SUBDIR += R-cran-crayon
     SUBDIR += R-cran-doParallel
     SUBDIR += R-cran-evaluate
     SUBDIR += R-cran-foreach
@@ -766,7 +767,6 @@
     SUBDIR += goffice010
     SUBDIR += google-gdata
     SUBDIR += google-perftools
-    SUBDIR += google-sparsehash
     SUBDIR += google-styleguide
     SUBDIR += googlemock
     SUBDIR += googletest
@@ -5375,6 +5375,7 @@
     SUBDIR += sparc64-gcc
     SUBDIR += sparc64-xtoolchain-gcc
     SUBDIR += spark
+    SUBDIR += sparsehash
     SUBDIR += spatialindex
     SUBDIR += spdict
     SUBDIR += spice-protocol
