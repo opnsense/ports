@@ -1,7 +1,7 @@
 # OPNsense pam test service.
 # Example service to demonstrate the OPNsense pam connector using the supplied test utility.
 #
-# To use this service please move this file to /usr/local/etc/pam.d/ then test using:
+# To test this service use the following command:
 #
 # opnsense-auth-test -s opnsense-auth-test -u root
 
