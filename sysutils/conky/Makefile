@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	conky
-PORTVERSION=	1.10.4
+PORTVERSION=	1.10.5
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	madpilot@FreeBSD.org
@@ -116,7 +116,7 @@ XMMS2_LIB_DEPENDS=	libxmmsclient.so:audio/xmms2
 
 XOAP_DESC=		Display XOAP weather reports
 XOAP_CMAKE_BOOL=	BUILD_WEATHER_XOAP
-XOAP_IMPLIES=		CURL
+XOAP_IMPLIES=		CURL METAR
 XOAP_USE=		gnome=libxml2
 
 .include <bsd.port.options.mk>
