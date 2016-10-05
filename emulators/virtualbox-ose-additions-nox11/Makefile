@@ -1,7 +1,9 @@
 # $FreeBSD$
 
-MASTERDIR=	${.CURDIR}/../virtualbox-ose-additions
 PKGNAMESUFFIX=	-additions-nox11
-OPTIONS_UNSET=	X11
+
+OPTIONS_EXCLUDE=	DEBUG OPENGL X11
+
+MASTERDIR=	${.CURDIR}/../virtualbox-ose-additions
 
 .include "${MASTERDIR}/Makefile"

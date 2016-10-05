@@ -503,6 +503,7 @@
     SUBDIR += erlang-goldrush
     SUBDIR += erlang-gpb
     SUBDIR += erlang-gproc
+    SUBDIR += erlang-hut
     SUBDIR += erlang-jobs
     SUBDIR += erlang-jsx
     SUBDIR += erlang-jsxd
@@ -1161,6 +1162,7 @@
     SUBDIR += libassa
     SUBDIR += libassetml
     SUBDIR += libast
+    SUBDIR += libastylej
     SUBDIR += libatomic_ops
     SUBDIR += libaura
     SUBDIR += libavl
