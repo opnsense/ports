@@ -1,17 +1,17 @@
+# Created by: Ad Schellevis <ad@opnsense.org>
+# $FreeBSD$
 PORTNAME=	pam_opnsense
 PORTVERSION=	16.7.b
-PORTREVISION=	4
+PORTREVISION=	4 # GH_TAGNAME
 CATEGORIES=	sysutils
-MASTER_SITES=	# empty
-DISTFILES=	# none
-EXTRACT_ONLY=	# empty
 
 MAINTAINER=	ad@opnsense.org
 COMMENT=	OPNsense shared authentication system using PAM
 
 LICENSE=	BSD2CLAUSE
 
-do-extract:
-	${CP} -r ${FILESDIR} ${WRKSRC}
+USE_GITHUB=	yes
+GH_ACCOUNT=	opnsense
+GH_TAGNAME=	9679091
 
 .include <bsd.port.mk>
