@@ -55,6 +55,7 @@
     SUBDIR += R-cran-nloptr
     SUBDIR += R-cran-nnls
     SUBDIR += R-cran-nortest
+    SUBDIR += R-cran-numDeriv
     SUBDIR += R-cran-outliers
     SUBDIR += R-cran-pbkrtest
     SUBDIR += R-cran-psych
@@ -560,6 +561,7 @@
     SUBDIR += pecl-bitset
     SUBDIR += pecl-bitset2
     SUBDIR += pecl-stats
+    SUBDIR += pecl-stats2
     SUBDIR += pecl-trader
     SUBDIR += php55-bcmath
     SUBDIR += php55-gmp

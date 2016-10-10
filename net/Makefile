@@ -896,6 +896,7 @@
     SUBDIR += pecl-ip2location
     SUBDIR += pecl-mosquitto
     SUBDIR += pecl-oauth
+    SUBDIR += pecl-oauth2
     SUBDIR += pecl-radius
     SUBDIR += pecl-smbclient
     SUBDIR += pecl-yaz
@@ -1026,6 +1027,7 @@
     SUBDIR += py-soappy
     SUBDIR += py-socketio-client
     SUBDIR += py-speedtest-cli
+    SUBDIR += py-sshuttle
     SUBDIR += py-suds
     SUBDIR += py-terminado
     SUBDIR += py-tofu

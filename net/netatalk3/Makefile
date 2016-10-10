@@ -34,12 +34,10 @@ CONFIGURE_ARGS+=	--with-pkgconfdir=${PREFIX}/etc \
 			--with-ssl-dir=${OPENSSLBASE} \
 			--without-dtrace
 
-OPTIONS_DEFINE=PAM KERBEROS5 LDAP SENDFILE KERBEROS DBUS MYSQL ACL LIBWRAP \
-	       ZEROCONF
-OPTIONS_DEFAULT=KERBEROS DBUS LIBWRAP ZEROCONF
+OPTIONS_DEFINE=PAM KERBEROS5 LDAP SENDFILE KERBEROS DBUS MYSQL ACL LIBWRAP
+OPTIONS_DEFAULT=AVAHI DBUS KERBEROS LIBWRAP
 OPTIONS_RADIO=ZEROCONF
 OPTIONS_RADIO_ZEROCONF=AVAHI MDNSRESPONDER
-ZEROCONF_IMPLIES=AVAHI
 ZEROCONF_DESC=	Zeroconf(Bonjour) support
 MYSQL_DESC=	Enable MySQL CNID backend support
 SENDFILE_DESC=	Enable Sendfile support
@@ -54,6 +52,7 @@ AVAHI_CONFIGURE_ON=	--enable-zeroconf=${LOCALBASE}
 AVAHI_CFLAGS=		-I${LOCALBASE}/include -L${LOCALBASE}/lib
 AVAHI_LIB_DEPENDS=		libavahi-client.so:net/avahi-app
 MDNSRESPONDER_CONFIGURE_ON=	--enable-zeroconf=${LOCALBASE}
+MDNSRESPONDER_CONFIGURE_ENV=	ac_cv_lib_avahi_client_avahi_client_new=no
 MDNSRESPONDER_CFLAGS=		-I${LOCALBASE}/include -L${LOCALBASE}/lib
 MDNSRESPONDER_LIB_DEPENDS=		libdns_sd.so:net/mDNSResponder
 LDAP_CONFIGURE_ON=	--with-ldap=${LOCALBASE}
@@ -87,9 +86,5 @@ post-patch:
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/contrib/macusers/macusers \
 		${STAGEDIR}${PREFIX}/bin/macusers
-
-post-install-PAM-on:
-	${INSTALL_DATA} ${PATCHDIR}/netatalk \
-	    	${STAGEDIR}${PREFIX}/etc/pam.d/netatalk
 
 .include <bsd.port.mk>
