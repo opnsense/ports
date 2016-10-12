@@ -954,6 +954,7 @@
     SUBDIR += py-amqplib
     SUBDIR += py-avahi
     SUBDIR += py-beanstalkc
+    SUBDIR += py-cinderclient
     SUBDIR += py-cjdns
     SUBDIR += py-cloudfiles
     SUBDIR += py-coherence
@@ -961,6 +962,7 @@
     SUBDIR += py-dugong
     SUBDIR += py-ec2-cli-tools
     SUBDIR += py-eventlet
+    SUBDIR += py-glanceclient
     SUBDIR += py-gntp
     SUBDIR += py-gspread
     SUBDIR += py-gspreadsheet
@@ -969,6 +971,7 @@
     SUBDIR += py-ipaddress
     SUBDIR += py-iplib
     SUBDIR += py-kafka-python
+    SUBDIR += py-keystoneclient
     SUBDIR += py-kombu
     SUBDIR += py-ldap
     SUBDIR += py-ldap3
@@ -987,11 +990,13 @@
     SUBDIR += py-netifaces
     SUBDIR += py-netlib
     SUBDIR += py-netstring
+    SUBDIR += py-neutronclient
     SUBDIR += py-nnpy
     SUBDIR += py-novaclient
     SUBDIR += py-ntplib
     SUBDIR += py-oauth
     SUBDIR += py-oauth2
+    SUBDIR += py-openstackclient
     SUBDIR += py-paho-mqtt
     SUBDIR += py-pcap
     SUBDIR += py-pcapy
@@ -1039,7 +1044,6 @@
     SUBDIR += py-txrestapi
     SUBDIR += py-upnp-inspector
     SUBDIR += py-uritemplate
-    SUBDIR += py-uritemplate.py
     SUBDIR += py-urllib3
     SUBDIR += py-wolframalpha
     SUBDIR += py-xmlrpc

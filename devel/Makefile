@@ -95,9 +95,12 @@
     SUBDIR += apr2
     SUBDIR += arcanist
     SUBDIR += arduino
+    SUBDIR += arduino-builder
+    SUBDIR += arduino-ctags
     SUBDIR += arduino-glcd
     SUBDIR += arduino-irremote
     SUBDIR += arduino-mk
+    SUBDIR += arduino-sevseg
     SUBDIR += argouml
     SUBDIR += argp-standalone
     SUBDIR += argtable
@@ -1452,6 +1455,7 @@
     SUBDIR += linux_kdump
     SUBDIR += linux_libusb
     SUBDIR += lion
+    SUBDIR += listserialc
     SUBDIR += liteide
     SUBDIR += lldb37
     SUBDIR += lldb38
@@ -4050,10 +4054,12 @@
     SUBDIR += py-click
     SUBDIR += py-click-log
     SUBDIR += py-click-threading
+    SUBDIR += py-cliff
     SUBDIR += py-clint
     SUBDIR += py-clonedigger
     SUBDIR += py-cloudpickle
     SUBDIR += py-cluster
+    SUBDIR += py-cmd2
     SUBDIR += py-cmdln
     SUBDIR += py-codecov
     SUBDIR += py-codegen
@@ -4296,11 +4302,15 @@
     SUBDIR += py-omnijson
     SUBDIR += py-omniorb
     SUBDIR += py-omniorb-3
+    SUBDIR += py-openstacksdk
     SUBDIR += py-opster
     SUBDIR += py-optik
     SUBDIR += py-option_merge
     SUBDIR += py-orbit
     SUBDIR += py-ordereddict
+    SUBDIR += py-os-client-config
+    SUBDIR += py-osc-lib
+    SUBDIR += py-oslo.config
     SUBDIR += py-oslo.i18n
     SUBDIR += py-oslo.serialization
     SUBDIR += py-oslo.utils
@@ -4448,6 +4458,7 @@
     SUBDIR += py-repoze.who-friendlyform
     SUBDIR += py-repoze.who-testutil
     SUBDIR += py-repoze.xmliter
+    SUBDIR += py-requestsexceptions
     SUBDIR += py-resolver
     SUBDIR += py-resourcepackage
     SUBDIR += py-responses
@@ -4561,6 +4572,7 @@
     SUBDIR += py-ua_parser
     SUBDIR += py-ujson
     SUBDIR += py-uncompyle2
+    SUBDIR += py-unicodecsv
     SUBDIR += py-unipath
     SUBDIR += py-unpaddedbase64
     SUBDIR += py-update_checker
@@ -4578,6 +4590,7 @@
     SUBDIR += py-virtualenv
     SUBDIR += py-virtualenv-clone
     SUBDIR += py-virtualenvwrapper
+    SUBDIR += py-warlock
     SUBDIR += py-watchdog
     SUBDIR += py-wcwidth
     SUBDIR += py-weblib
