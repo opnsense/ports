@@ -12,16 +12,16 @@ COMMENT=	Tellstick Telldus daemon + library
 
 LICENSE=	LGPL21
 
-BROKEN_powerpc64=	Does not build
-
 BUILD_DEPENDS=	help2man:misc/help2man
 LIB_DEPENDS=	libftdi.so:devel/libftdi \
 		libconfuse.so:devel/libconfuse \
 		libargp.so:devel/argp-standalone
 
+BROKEN_powerpc64=	Does not build
+BROKEN_sparc64=		Does not build
+
 USES= 		cmake compiler:c++11-lang iconv:wchar_t
 
-#CMAKE_VERBOSE=yes
 CMAKE_ARGS+=-DGENERATE_MAN=TRUE
 # Note: these are internal defines and shall NOT contain ${STAGEDIR}
 CMAKE_ARGS+=-DSYSCONF_INSTALL_DIR="${PREFIX}/etc"

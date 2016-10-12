@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	suricata
-PORTVERSION=	3.1.1
-PORTREVISION=	1
+PORTVERSION=	3.1.2
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
@@ -110,7 +109,6 @@ TESTS_CONFIGURE_ENABLE=		unittests
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=--enable-gccprotect \
-		--disable-silent-rules \
 		--with-libpcre-includes=${LOCALBASE}/include \
 		--with-libpcre-libraries=${LOCALBASE}/lib \
 		--with-libyaml-includes=${LOCALBASE}/include \

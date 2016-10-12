@@ -2,13 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	lilypond
-PORTVERSION=	2.19.11
-PORTREVISION=	5
+PORTVERSION=	2.19.48
 CATEGORIES=	print audio
 MASTER_SITES=	http://download.linuxaudio.org/lilypond/sources/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	m.ne@gmx.net
 COMMENT=	GNU music typesetter
 
 LICENSE=	GPLv3
@@ -23,18 +22,16 @@ BUILD_DEPENDS=	pdftexi2dvi:print/texinfo \
 		pngtopnm:graphics/netpbm \
 		rsync:net/rsync \
 		texi2html:textproc/texi2html \
-		zip:archivers/zip \
-		${LOCALBASE}/share/ghostscript/fonts/c059033l.pfb:print/gsfonts
+		zip:archivers/zip
 RUN_DEPENDS=	mftrace:print/mftrace \
 		${LOCALBASE}/share/fonts/dejavu/DejaVuSans-Bold.ttf:x11-fonts/dejavu
-LIB_DEPENDS=	libguile.so:lang/guile \
+LIB_DEPENDS=	libltdl.so:devel/libltdl \
+		libguile.so:lang/guile \
 		libgmp.so:math/gmp \
-		libfreetype.so:print/freetype2
+		libfreetype.so:print/freetype2 \
+		libfontconfig.so:x11-fonts/fontconfig
 
 BROKEN_FreeBSD_9=	does not build on FreeBSD < 10.x
-BROKEN=		pkgconf detection is broken
-DEPRECATED=	unstable branch requires maintainer, many releases behind already (stick with stable)
-EXPIRATION_DATE=	2016-08-31
 
 INFO=		internals \
 		lilypond-changes \
@@ -50,9 +47,9 @@ INFO=		internals \
 		music-glossary
 
 USES=		bison:build gettext ghostscript gmake pkgconfig perl5 \
-		compiler:c++11-lib python:-3
+		compiler:gcc-c++11-lib python:-3
 USE_CXXSTD=	c++11
-USE_TEX=	latex
+USE_TEX=	latex texmf
 USE_PERL5=	build
 USE_GNOME=	pango
 
@@ -61,7 +58,7 @@ GNU_MAKEFILE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS+=--with-ncsb-dir=${LOCALBASE}/share/ghostscript/fonts \
+CONFIGURE_ARGS+=--with-texgyre-dir=${LOCALBASE}/${TEXMFDISTDIR}/fonts/opentype/public/tex-gyre \
 		--with-python-include=${PYTHON_INCLUDEDIR}
 CONFIGURE_ENV+=	ac_cv_prog_MAKEINFO="${LOCALBASE}/bin/makeinfo" \
 		FLEX=${FLEX} YACC=${YACC} HOME=${WRKDIR}
@@ -73,27 +70,20 @@ NO_CCACHE=	yes
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 OPTIONS_DEFINE=	NLS
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MNLS}
-PLIST_SUB+=	NLS=""
-.else
-PLIST_SUB+=	NLS="@comment "
-.endif
+OPTIONS_SUB=	yes
 
 post-patch:
 	${FIND} ${WRKSRC} -name "*.cc" | ${XARGS} \
 	    ${REINPLACE_CMD} -e 's|isinf[ ]*(|::isinf(|g' -e 's|isnan|::isnan|g'
 	${REINPLACE_CMD} -e 's|<FlexLexer.h>|"/usr/include/FlexLexer.h"|' \
 	    ${WRKSRC}/lily/include/includable-lexer.hh
-.if !${PORT_OPTIONS:MNLS}
+
+post-patch-NLS-off:
 	${REINPLACE_CMD} -e '/po \\$$/d' ${WRKSRC}/${MAKEFILE}.in
-.endif
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/lilypond
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/lilypond/${PORTVERSION}/python/midi.so
-	@${LN} -fs ${DATADIR}/${PORTVERSION} ${STAGEDIR}${DATADIR}/current
+	(cd ${STAGEDIR}/${DATADIR} && ${LN} -fs ${PORTVERSION} current)
 
 .include <bsd.port.mk>

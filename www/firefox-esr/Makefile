@@ -2,8 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	45.3.0
+DISTVERSION=	45.4.0
 DISTVERSIONSUFFIX=esr.source
+PORTREVISION=	6
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -47,7 +48,6 @@ MOZ_OPTIONS=	--program-transform-name='s/firefox/${MOZILLA}/' \
 		--enable-application=browser \
 		--enable-official-branding
 
-OPTIONS_EXCLUDE=	GSTREAMER LOGGING
 OPTIONS_DEFINE=		RUST
 OPTIONS_DEFAULT=	BUNDLED_CAIRO GTK2
 

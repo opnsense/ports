@@ -2,15 +2,13 @@
 # $FreeBSD$
 
 PORTNAME?=	pypy
-DISTVERSION?=	5.3.1	# Also update bsd.pypy.cffi.mk
+DISTVERSION?=	5.4.1	# Also update bsd.pypy.cffi.mk
 CATEGORIES=	lang python
-MASTER_SITES=	https://bitbucket.org/pypy/pypy/downloads/
+MASTER_SITES=	https://bitbucket.org/pypy/pypy/downloads/ http://buildbot.pypy.org/mirror/
 DISTNAME?=	${PORTNAME}2-v${PORTVERSION}-src
 
 MAINTAINER=	python@FreeBSD.org
 COMMENT=	Fast, compliant implementation of the Python language
-
-BROKEN_powerpc64=	Does not build
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libffi.so:devel/libffi
@@ -60,7 +58,11 @@ PATCHDIR=	${.CURDIR}/files
 PLIST=		${.CURDIR}/pkg-plist
 
 .include "${MASTERDIR}/bsd.pypy.mk"
-.include <bsd.port.options.mk>
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT:Mlibressl*}
+IGNORE=	Detected LibreSSL which is interpreted as unsupported OpenSSL > v1.1
+.endif
 
 .if ${ARCH} == "i386" || ${ARCH} == "armv6"
 PYPY_BITS=	32
@@ -118,4 +120,4 @@ pkg-plist: build
 	${SORT} ${WRKDIR}/.plist-files-gen >> ${WRKDIR}/pkg-plist
 	${CP} ${WRKDIR}/pkg-plist ${.CURDIR}/pkg-plist
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

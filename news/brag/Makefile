@@ -2,16 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	brag
-PORTVERSION=	1.4.1
+PORTVERSION=	1.4.3
 CATEGORIES=	news tcl
-MASTER_SITES=	http://brag.sourceforge.net/ \
-		LOCAL/ehaupt
+MASTER_SITES=	SF
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Download and assemble multipart binaries from newsgroups
 
+LICENSE=	GPLv2
+
 RUN_DEPENDS=	uudeview:converters/uudeview \
 		${TCLSH}:lang/tcl84
+
+NO_ARCH=	yes
 
 PLIST_FILES=	bin/brag man/man1/brag.1.gz
 PORTDOCS=	CHANGES README

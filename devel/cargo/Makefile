@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cargo
-PORTVERSION=	0.11.0
+PORTVERSION=	0.13.0
 CATEGORIES=	devel
 
 MAINTAINER=	dumbbell@FreeBSD.org
@@ -33,7 +33,7 @@ LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
 #   This is a collection of mainly shell scripts which are used to
 #   install Cargo.
 
-MASTER_SITES=	https://static.rust-lang.org/cargo-dist/2016-05-22/:bootstrap \
+MASTER_SITES=	https://static.rust-lang.org/cargo-dist/2016-08-21/:bootstrap \
 		LOCAL/jbeich:registry
 .if !defined(SKIP_CARGO_REGISTRY)
 DISTFILES+=	${CARGO_REGISTRY}:registry
@@ -42,7 +42,8 @@ DISTFILES+=	${CARGO_REGISTRY}:registry
 USE_GITHUB=	yes
 GH_ACCOUNT=	rust-lang
 GH_PROJECT=	rust-installer:rust_installer
-GH_TAGNAME=	4915c75:rust_installer
+GH_TAGNAME=	755bc3d:rust_installer
+GH_SUBDIR=	src/rust-installer:rust_installer
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	requires prebuilt bootstrap cargo
@@ -82,10 +83,6 @@ BOOTSTRAP_MAKE_ENV=	LD_LIBRARY_PATH="${WRKSRC}/target/snapshot/cargo/lib"
 .if !exists(/usr/lib/libssl.so.8) # OPENSSL_SHLIBVER
 BOOTSTRAP_VARS+=	WITH_OPENSSL_PORT=yes
 .endif
-
-post-extract:
-	@${RMDIR} ${WRKSRC}/src/rust-installer
-	@${MV} ${WRKSRC_rust_installer} ${WRKSRC}/src/rust-installer
 
 post-extract-BOOTSTRAP-on:
 	@${MKDIR} ${WRKSRC}/target/dl

@@ -8,6 +8,7 @@
     SUBDIR += R-cran-ROAuth
     SUBDIR += R-cran-digest
     SUBDIR += R-cran-openssl
+    SUBDIR += acme-client
     SUBDIR += aescrypt
     SUBDIR += aespipe
     SUBDIR += afl
@@ -50,6 +51,7 @@
     SUBDIR += bugs
     SUBDIR += ca_root_nss
     SUBDIR += calife
+    SUBDIR += cardpeek
     SUBDIR += ccrypt
     SUBDIR += ccsrch
     SUBDIR += certificate-transparency
@@ -100,6 +102,7 @@
     SUBDIR += d0_blind_id
     SUBDIR += dcetest
     SUBDIR += ddos_scan
+    SUBDIR += dehydrated
     SUBDIR += denyhosts
     SUBDIR += destroy
     SUBDIR += digest
@@ -270,6 +273,7 @@
     SUBDIR += keychain
     SUBDIR += keynote
     SUBDIR += keyprint
+    SUBDIR += kdbx-viewer
     SUBDIR += kgpg-kde4
     SUBDIR += knock
     SUBDIR += knocker
@@ -288,8 +292,6 @@
     SUBDIR += l5
     SUBDIR += lasso
     SUBDIR += lastpass-cli
-    SUBDIR += letsencrypt.sh
-    SUBDIR += letskencrypt
     SUBDIR += libadacrypt
     SUBDIR += libargon2
     SUBDIR += libassuan
@@ -379,10 +381,6 @@
     SUBDIR += nacl
     SUBDIR += ncrack
     SUBDIR += ncrypt
-    SUBDIR += nessus
-    SUBDIR += nessus-libnasl
-    SUBDIR += nessus-libraries
-    SUBDIR += nessus-plugins
     SUBDIR += netpgp
     SUBDIR += nettle
     SUBDIR += nikto
@@ -839,7 +837,9 @@
     SUBDIR += py-cryptkit
     SUBDIR += py-cryptography
     SUBDIR += py-cybox
+    SUBDIR += py-dfdatetime
     SUBDIR += py-dfvfs
+    SUBDIR += py-dfwinreg
     SUBDIR += py-ecdsa
     SUBDIR += py-ed25519ll
     SUBDIR += py-fail2ban
@@ -934,6 +934,7 @@
     SUBDIR += py-zope.security
     SUBDIR += py-zope.securitypolicy
     SUBDIR += py-zope.session
+    SUBDIR += py3-libnacl
     SUBDIR += qtkeychain-qt4
     SUBDIR += qtkeychain-qt5
     SUBDIR += quantis
@@ -991,6 +992,7 @@
     SUBDIR += rubygem-metasploit-payloads
     SUBDIR += rubygem-metasploit_data_models
     SUBDIR += rubygem-metasploit_payloads-mettle
+    SUBDIR += rubygem-nessus_rest
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-sftp
     SUBDIR += rubygem-net-ssh
@@ -1005,17 +1007,27 @@
     SUBDIR += rubygem-omniauth-saml
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-openssl-ccm
+    SUBDIR += rubygem-openvas-omp
     SUBDIR += rubygem-origami
     SUBDIR += rubygem-pyu-ruby-sasl
     SUBDIR += rubygem-rack-oauth2
     SUBDIR += rubygem-razorback-scriptNugget
     SUBDIR += rubygem-recog
     SUBDIR += rubygem-rex-arch
+    SUBDIR += rubygem-rex-bin_tools
+    SUBDIR += rubygem-rex-core
+    SUBDIR += rubygem-rex-encoder
+    SUBDIR += rubygem-rex-exploitation
     SUBDIR += rubygem-rex-java
+    SUBDIR += rubygem-rex-mime
+    SUBDIR += rubygem-rex-nop
     SUBDIR += rubygem-rex-ole
     SUBDIR += rubygem-rex-powershell
     SUBDIR += rubygem-rex-random_identifier
     SUBDIR += rubygem-rex-registry
+    SUBDIR += rubygem-rex-rop_builder
+    SUBDIR += rubygem-rex-socket
+    SUBDIR += rubygem-rex-sslscan
     SUBDIR += rubygem-rex-struct2
     SUBDIR += rubygem-rex-text
     SUBDIR += rubygem-rex-zip
@@ -1065,6 +1077,7 @@
     SUBDIR += snoopy
     SUBDIR += snort
     SUBDIR += snort-rep
+    SUBDIR += snort2pfcd
     SUBDIR += snortreport
     SUBDIR += snortsam
     SUBDIR += snortsnarf
@@ -1083,7 +1096,6 @@
     SUBDIR += ssh_askpass_gtk2
     SUBDIR += sshblock
     SUBDIR += sshguard
-    SUBDIR += sshguard-ipfilter
     SUBDIR += sshguard-ipfw
     SUBDIR += sshguard-null
     SUBDIR += sshguard-pf

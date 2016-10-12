@@ -27,13 +27,11 @@ STATUS=		debug
 STATUS=		release
 .endif
 
-USES=		compiler gmake iconv pkgconfig sqlite tar:tgz
+USES=		compiler gmake iconv localbase pkgconfig sqlite tar:tgz
 USE_LDCONFIG=	yes
 
 INSTALL_TARGET=	do_install
 
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV+=	TARGET_ARCH=desktop TARGET_STATUS=${STATUS} \
 		ROOTDIR=${WRKSRC} INSTALLDIR=${PREFIX} LIBDIR=${PREFIX}/lib \
 		LD="${CXX}"
@@ -48,7 +46,7 @@ GTK2_USE=	gnome=gtk20
 GTK2_MAKE_ENV=	UI_TYPE=gtk
 
 QT4_USE=	qt4=gui,corelib,imageformats,network,moc_build
-QT4_LDFLAGS=	-L${QT_LIBDIR}
+QT4_LIBS=	-L${QT_LIBDIR}
 QT4_MAKE_ENV=	UI_TYPE=qt4
 
 post-patch:
@@ -60,7 +58,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/-llinebreak/-lunibreak/g' ${WRKSRC}/makefiles/*.mk
 	@${REINPLACE_CMD} -e 's,/usr,${PREFIX},' ${WRKSRC}/fbreader/desktop/Makefile
 	@${FIND} ${WRKSRC} -name Makefile | ${XARGS} ${REINPLACE_CMD} \
-		-e 's,make ,gmake ,'
+		-e 's,make ,$$(MAKE) ,' -e '/$$(LDFLAGS)/s/$$/ $$(LIBS)/'
 
 pre-configure:
 # This cannot be done in post-patch because build dependencies are installed

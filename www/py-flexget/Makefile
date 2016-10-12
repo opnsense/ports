@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	flexget
-PORTVERSION=	2.1.15
+PORTVERSION=	2.2.22
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
@@ -17,7 +18,7 @@ LICENSE=	MIT
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}feedparser>=5.2.1:textproc/py-feedparser \
 		${PYTHON_PKGNAMEPREFIX}sqlalchemy10>=1.0.13:databases/py-sqlalchemy10 \
 		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml \
-		${PYTHON_PKGNAMEPREFIX}beautifulsoup>4.2.0:www/py-beautifulsoup \
+		${PYTHON_PKGNAMEPREFIX}beautifulsoup>=4.5:www/py-beautifulsoup \
 		${PYTHON_PKGNAMEPREFIX}html5lib>=0.11:www/py-html5lib \
 		${PYTHON_PKGNAMEPREFIX}rss2gen>0:textproc/py-rss2gen \
 		${PYTHON_PKGNAMEPREFIX}pynzb>0:news/py-pynzb \
@@ -32,7 +33,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}feedparser>=5.2.1:textproc/py-feedparser \
 		${PYTHON_PKGNAMEPREFIX}Flask-Login>=0.3.2:www/py-flask-login \
 		${PYTHON_PKGNAMEPREFIX}cherrypy>=3.7.0:www/py-cherrypy \
 		${PYTHON_PKGNAMEPREFIX}requests>=2.8.0:www/py-requests \
-		${PYTHON_PKGNAMEPREFIX}dateutil<=2.5.2:devel/py-dateutil \
+		${PYTHON_PKGNAMEPREFIX}dateutil>=2.5.2:devel/py-dateutil \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>=2.0:devel/py-jsonschema \
 		${PYTHON_PKGNAMEPREFIX}pyparsing>=2.0.3:devel/py-pyparsing \
 		${PYTHON_PKGNAMEPREFIX}safe>=0.4:security/py-safe \
@@ -43,6 +44,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}feedparser>=5.2.1:textproc/py-feedparser \
 		${PYTHON_PKGNAMEPREFIX}pathlib>=1.0:devel/py-pathlib \
 		${PYTHON_PKGNAMEPREFIX}plumbum>=1.2:sysutils/py-plumbum
 
+NO_ARCH=	yes
 USES=		python:2.7+
 USE_PYTHON=	autoplist distutils
 

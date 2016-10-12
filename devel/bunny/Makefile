@@ -8,13 +8,19 @@ CATEGORIES=	devel
 MASTER_SITES=	GOOGLE_CODE LOCAL/ehaupt
 PROJECTHOST=	bunny-the-fuzzer
 
-MAINTAINER=	ehaupt@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Closed loop, high-performance, general purpose protocol-blind fuzzer
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN=		Unfetchable (google code has gone away)
+DEPRECATED=	Superseded by a different project
+EXPIRATION_DATE=2017-01-22
+
 USES=		ssl tar:tgz
+LDFLAGS+=	-L${OPENSSLLIB}
+CFLAGS+=	-I${OPENSSLINC}
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
@@ -26,9 +32,6 @@ ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	Fails to compile: invokes i386 asm
 
 OPTIONS_DEFINE=DOCS
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^CFLAGS/d' ${WRKSRC}/${MAKEFILE}
 
 do-install:
 .for f in ${PLIST_FILES}

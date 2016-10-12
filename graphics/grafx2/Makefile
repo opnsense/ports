@@ -5,8 +5,12 @@ PORTNAME=	grafx2
 PORTVERSION=	2.4.2035
 PORTREVISION=	4
 CATEGORIES=	graphics
-MASTER_SITES=	GOOGLE_CODE
+MASTER_SITES=	LOCAL/ehaupt
 DISTNAME=	${PORTNAME}-${PORTVERSION}-src
+
+# Project site uses 'Content-Disposition: attachment; filename=' to provide the
+# filename. Unfortunately this is not supported by fetch. Therefore self host
+# distfile.
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Pixelart-oriented bitmap painting program

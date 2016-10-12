@@ -23,6 +23,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir=${PREFIX}/libexec
 CONFLICTS=	dillo-i18n-[0-9]* \
 		dillo-0*
+PORTDOCS=	*
 
 OPTIONS_DEFINE=		COOKIES HYPHENATION IPV6 SSL THREADS DOCS
 OPTIONS_DEFAULT=	COOKIES HYPHENATION SSL THREADS
@@ -31,22 +32,22 @@ COOKIES_DESC=		Cookie support
 HYPHENATION_DESC=	Hyphenation file(s) for HYPHENATION_LANGS
 SSL_DESC=		Experimental HTTPS support
 
-.include <bsd.port.options.mk>
+SSL_USES=			ssl
+COOKIES_CONFIGURE_ENABLE=	cookies
+IPV6_CONFIGURE_ENABLE=		ipv6
+SSL_CONFIGURE_ENABLE=		ssl
+THREADS_CONFIGURE_ENABLE=	threaded-dns
 
-.if ${PORT_OPTIONS:MCOOKIES}
-CONFIGURE_ARGS+=	--enable-cookies
-.else
-CONFIGURE_ARGS+=	--disable-cookies
+.include <bsd.port.pre.mk>
+
+.if ${SSL_DEFAULT} == base
+IGNORE_FreeBSD_9=	Requires newer OpenSSL (set DEFAULT_VERSIONS+=ssl=openssl)
 .endif
 
 .ifdef(WITH_DEBUG)
 CONFIGURE_ARGS+=	--enable-gprof --enable-rtfl
 .else
 CONFIGURE_ARGS+=	--disable-gprof --disable-rtfl
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
-PORTDOCS=	*
 .endif
 
 .if ${PORT_OPTIONS:MHYPHENATION}
@@ -69,25 +70,6 @@ DISTFILES+=	hyph-${_l}.pat.txt:hyphen
 PLIST_FILES+=	libexec/dillo/hyphenation/${_l:C/-.*\$//}.pat
 .endif
 .endfor
-.endif
-
-.if ${PORT_OPTIONS:MIPV6}
-CONFIGURE_ARGS+=	--enable-ipv6
-.else
-CONFIGURE_ARGS+=	--disable-ipv6
-.endif
-
-.if ${PORT_OPTIONS:MSSL}
-CONFIGURE_ARGS+=	--enable-ssl
-USE_OPENSSL=	yes
-.else
-CONFIGURE_ARGS+=	--disable-ssl
-.endif
-
-.if ${PORT_OPTIONS:MTHREADS}
-CONFIGURE_ARGS+=	--enable-threaded-dns
-.else
-CONFIGURE_ARGS+=	--disable-threaded-dns
 .endif
 
 post-patch:
@@ -121,4 +103,4 @@ post-install:
 .endfor
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

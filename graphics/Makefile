@@ -46,6 +46,7 @@
     SUBDIR += ampasACES-container
     SUBDIR += ampasCTL
     SUBDIR += animorph
+    SUBDIR += ansilove
     SUBDIR += aoi
     SUBDIR += apngasm
     SUBDIR += apngdis
@@ -157,13 +158,6 @@
     SUBDIR += eps2png
     SUBDIR += epstool
     SUBDIR += eterm-bg
-    SUBDIR += evas_generic_loaders
-    SUBDIR += evas_generic_loaders-gst
-    SUBDIR += evas_generic_loaders-pdf
-    SUBDIR += evas_generic_loaders-ps
-    SUBDIR += evas_generic_loaders-raw
-    SUBDIR += evas_generic_loaders-svg
-    SUBDIR += evas_generic_loaders-xcf
     SUBDIR += evince
     SUBDIR += evince-lite
     SUBDIR += evolvotron
@@ -601,6 +595,7 @@
     SUBDIR += netpbm
     SUBDIR += nip2
     SUBDIR += nomacs
+    SUBDIR += nplot
     SUBDIR += npretty
     SUBDIR += nurbs++
     SUBDIR += nvidia-texture-tools
@@ -616,9 +611,9 @@
     SUBDIR += opencolorio
     SUBDIR += opencolorio-tools
     SUBDIR += opencsg
-    SUBDIR += opencv
-    SUBDIR += opencv-core
-    SUBDIR += opencv-java
+    SUBDIR += opencv2
+    SUBDIR += opencv2-core
+    SUBDIR += opencv2-java
     SUBDIR += opendx
     SUBDIR += opengl-man
     SUBDIR += opengtl
@@ -776,6 +771,7 @@
     SUBDIR += phplot
     SUBDIR += picpuz
     SUBDIR += piddle
+    SUBDIR += piglit
     SUBDIR += pikopixel
     SUBDIR += pinpoint
     SUBDIR += pixelize
@@ -853,7 +849,7 @@
     SUBDIR += py-ming
     SUBDIR += py-nwdiag
     SUBDIR += py-opencolorio
-    SUBDIR += py-opencv
+    SUBDIR += py-opencv2
     SUBDIR += py-openexr
     SUBDIR += py-openimageio
     SUBDIR += py-paint

@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.50.1
+PORTVERSION=	7.50.3
+PORTREVISION=	1
 CATEGORIES=	ftp www
 MASTER_SITES=	http://curl.haxx.se/download/ \
 		LOCAL/sunpoet
@@ -61,11 +62,11 @@ PORTEXAMPLES=	*
 
 CPE_VENDOR=	haxx
 
-DOCS=		BINDINGS BUGS CODE_OF_CONDUCT.md CODE_STYLE.md CONTRIBUTE FAQ \
-		FEATURES HISTORY HTTP-COOKIES.md HTTP2.md INSTALL \
-		INSTALL.devcpp INTERNALS KNOWN_BUGS LICENSE-MIXING \
+DOCS=		BINDINGS BUGS CODE_OF_CONDUCT.md CODE_STYLE.md CONTRIBUTE.md FAQ \
+		FEATURES HISTORY.md HTTP-COOKIES.md HTTP2.md INSTALL \
+		INSTALL.devcpp INTERNALS.md KNOWN_BUGS LICENSE-MIXING.md \
 		MAIL-ETIQUETTE MANUAL RELEASE-PROCEDURE RESOURCES ROADMAP.md \
-		SECURITY SSL-PROBLEMS SSLCERTS THANKS TODO \
+		SECURITY.md SSL-PROBLEMS.md SSLCERTS.md THANKS TODO \
 		TheArtOfHttpScripting VERSIONS curl-config.html \
 		curl-config.pdf curl.html curl.pdf index.html \
 		mk-ca-bundle.html mk-ca-bundle.pdf
@@ -149,14 +150,7 @@ IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
 IGNORE=		only supports LDAPS with SSL
 .endif
 
-.if ${PORT_OPTIONS:MGSSAPI_BASE} && ${PORT_OPTIONS:MOPENSSL} && ${SSL_DEFAULT} != base
-IGNORE=		GSSAPI_BASE is not compatible with OpenSSL from ports. Use other GSSAPI options or OpenSSL from base system
-.endif
-
-.if ${SSL_DEFAULT} == libressl
-.if ${PORT_OPTIONS:MGSSAPI_BASE} && ${PORT_OPTIONS:MOPENSSL}
-IGNORE=		GSSAPI_BASE is not compatible with LibreSSL. Use other GSSAPI options
-.endif
+.if ${SSL_DEFAULT:Mlibressl*}
 .if ${PORT_OPTIONS:MTLS_SRP}
 IGNORE=		unsupported TLS-SRP in LibreSSL
 .endif

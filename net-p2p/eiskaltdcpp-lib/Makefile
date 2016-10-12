@@ -2,17 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	eiskaltdcpp
-PORTVERSION=	2.2.9
-PORTREVISION=	3
+PORTVERSION=	2.2.10
+DISTVERSIONPREFIX=	v
+PORTREVISION=	0
 CATEGORIES=	net-p2p
-MASTER_SITES=	GOOGLE_CODE
-PROJECTHOST=	eiskaltdc
 PKGNAMESUFFIX?=	-lib
 
 MAINTAINER=	fjoe@FreeBSD.org
 COMMENT=	Direct Connect client shared library
 
 LICENSE=	GPLv3
+
+USE_GITHUB=	yes
 
 .if !defined (MASTERDIR)
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs

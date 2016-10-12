@@ -4,7 +4,7 @@
 PORTNAME=	mod_authnz_external
 PORTVERSION=	3.3.2
 CATEGORIES=	www
-MASTER_SITES=	GOOGLE_CODE
+MASTER_SITES=	http://zhegan.in/files/
 PKGNAMESUFFIX=	24
 DIST_SUBDIR=	apache24
 

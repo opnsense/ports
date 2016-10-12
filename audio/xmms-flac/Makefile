@@ -6,8 +6,11 @@ CATEGORIES=	audio
 MASTER_SITES=	http://downloads.xiph.org/releases/flac/
 DISTNAME=	flac-${PORTVERSION}
 
-MAINTAINER=	naddy@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	XMMS input plugin for playing FLAC files
+
+LICENSE=	GPLv2+
+LICENSE_FILE=	${WRKSRC}/COPYING.GPL
 
 LIB_DEPENDS=	libxmms.so:multimedia/xmms \
 		libFLAC.so:audio/flac \
@@ -15,9 +18,6 @@ LIB_DEPENDS=	libxmms.so:multimedia/xmms \
 
 USES=		iconv libtool tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-silent-rules
-CPPFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib
 
 MAKEFILE=	${FILESDIR}/Makefile
 

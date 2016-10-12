@@ -78,6 +78,7 @@
     SUBDIR += inadyn-mt
     SUBDIR += ipcheck
     SUBDIR += ironsides
+    SUBDIR += knot-resolver
     SUBDIR += knot1
     SUBDIR += knot2
     SUBDIR += ldapdns
@@ -178,6 +179,7 @@
     SUBDIR += py-pywdns
     SUBDIR += py-tldextract
     SUBDIR += py-twistedNames
+    SUBDIR += py3-dnspython
     SUBDIR += radns
     SUBDIR += rbldnsd
     SUBDIR += rbllookup

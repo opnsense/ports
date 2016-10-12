@@ -107,7 +107,7 @@ barman:*:157:157::0:0:Barman user:/var/barman:/bin/sh
 pootle:*:158:158::0:0:Pootle User:/var/db/pootle:/usr/sbin/nologin
 nocat:*:159:159::0:0:NoCat Daemon:/libexec/nocat:/sbin/nologin
 _ypldap:*:160:160::0:0:YP Ldap unprivileged user:/var/empty:/usr/sbin/nologin
-# free: 161
+solr:*:161:161::0:0:Apache Solr System:/var/db/solr:/usr/sbin/nologin
 # free: 162
 # free: 163
 # free: 164
@@ -498,7 +498,7 @@ ejabberd:*:543:543::0:0:ejabberd pseudo user:/var/spool/ejabberd:/bin/sh
 # free: 549
 # free: 550
 # free: 551
-# free: 552
+kresd:*:552:552::0:0:Knot DNS Resolver:/nonexistent:/usr/sbin/nologin
 knot:*:553:553::0:0:Knot DNS Server:/nonexistent:/usr/sbin/nologin
 qtss:*:554:554::0:0:Darwin Streaming Server:/nonexistent:/usr/sbin/nologin
 ircdru:*:555:555::0:0:Russian hybrid IRC server:/nonexistent:/bin/sh
@@ -716,7 +716,7 @@ _dnscrypt-wrapper:*:718:65534::0:0:dnscrypt-wrapper user:/var/empty:/usr/sbin/no
 # free: 767
 # free: 768
 # free: 769
-# free: 770
+postgres:*:770:770::0:0:PostgreSQL Daemon:/var/db/postgres:/bin/sh
 # free: 771
 # free: 772
 # free: 773
@@ -844,7 +844,7 @@ graylog:*:848:848::0:0:Graylog user:/nonexistent:/usr/sbin/nologin
 # free: 895
 # free: 896
 # free: 897
-# free: 898
+ufdb:*:898:898::0:0:ufdb user:/nonexistent:/usr/sbin/nologin
 guacamole:*:899:899::0:0:Guacamole user:/nonexistent:/usr/sbin/nologin
 seafile:*:900:900::0:0:Seafile user:/nonexistent:/usr/bin/nologin
 fossy:*:901:901::0:0:FOSSology user:/usr/local/share/fossology:/usr/local/bin/bash

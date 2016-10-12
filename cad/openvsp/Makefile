@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	openvsp
-PORTVERSION=	3.8.1
+PORTVERSION=	3.9.1
 DISTVERSIONPREFIX=	${GH_PROJECT}_
 CATEGORIES=	cad
-MASTER_SITES=	GH
 
 MAINTAINER=	fernando.apesteguia@gmail.com
 COMMENT=	Create a 3D model of an aircraft defined by engineering parameters
@@ -16,9 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LIB_DEPENDS=	libpthread-stubs.so:devel/libpthread-stubs \
-		libjpeg.so:graphics/jpeg-turbo \
 		libdrm.so:graphics/libdrm \
-		libpng16.so:graphics/png \
+		libpng.so:graphics/png \
 		libfreetype.so:print/freetype2 \
 		libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig \
@@ -40,7 +38,7 @@ WRKSRC=		${WRKDIR}/${GH_PROJECT}-${GH_PROJECT}_${PORTVERSION}
 
 CMAKE_SOURCE_PATH=	${WRKSRC}/SuperProject
 CMAKE_INSTALL_PREFIX=	${STAGEDIR}${PREFIX}
-USES=		cmake:outsource compiler:gcc-c++11-lib
+USES=		cmake:outsource compiler:gcc-c++11-lib jpeg
 CMAKE_ARGS=	-DVSP_USE_SYSTEM_CMINPACK:BOOLEAN=yes \
 		-DVSP_USE_SYSTEM_CPPTEST:BOOLEAN=yes \
 		-DVSP_USE_SYSTEM_LIBXML2:BOOLEAN=yes \
@@ -60,8 +58,8 @@ BUILD_PREFIX=	OpenVSP-prefix/src/OpenVSP-build/_CPack_Packages/FreeBSD/ZIP/OpenV
 
 do-install:
 	${INSTALL_PROGRAM} ${BUILD_WRKSRC}/${BUILD_PREFIX}/vsp* ${STAGEDIR}${PREFIX}/bin
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/vsp*
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	@${STRIP_CMD} ${STAGEDIR}/${PREFIX}/vsp*
+	@${MKDIR} ${STAGEDIR}${DATADIR}
 .for d in CustomScripts airfoil matlab scripts textures
 	(cd ${BUILD_WRKSRC}/${BUILD_PREFIX}/${d} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR})
 .endfor

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	kamailio
-PORTVERSION=	4.4.1
+PORTVERSION=	4.4.3
 CATEGORIES=	net
 MASTER_SITES=	http://www.kamailio.org/pub/kamailio/${PORTVERSION}/src/
 DISTNAME=	${PORTNAME}-${PORTVERSION}_src
@@ -13,14 +13,14 @@ COMMENT=	Very fast and configurable open source SIP proxy
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_powerpc64=	Does not build
-
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libxml2.so:textproc/libxml2 \
 		libcurl.so:ftp/curl
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
-USES=		gmake readline shebangfix
+BROKEN_powerpc64=	Does not build
+
+USES=		gmake ncurses readline shebangfix
 USE_LDCONFIG=	yes
 SHEBANG_FILES=	utils/kamctl/dbtextdb/dbtextdb.py \
 		utils/kamctl/kamctl utils/kamctl/kamdbctl
@@ -34,10 +34,11 @@ USERS=		kamailio
 GROUPS=		kamailio
 
 OPTIONS_DEFINE=	DOCS MYSQL PGSQL PERL RADIUS JITSI JABBER SCTP TLS \
-		UNIXODBC PRESENCE WEBSOCKET
+		UNIXODBC PRESENCE WEBSOCKET DIALPLAN
 OPTIONS_DEFAULT=MYSQL RADIUS JABBER TLS PRESENCE
 OPTIONS_SUB=	YES
 
+DIALPLAN_DESC=	Dialplan support
 JITSI_DESC=	VoIP Frontend GUI via Jitsi
 SCTP_DESC=	SCTP support
 PRESENCE_DESC=	Presence support
@@ -48,18 +49,18 @@ PGSQL_USES=	pgsql
 JITSI_RUN_DEPENDS=	jitsi:net-im/jitsi
 UNIXODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
 RADIUS_LIB_DEPENDS=	libradiusclient-ng.so:net/radiusclient
-TLS_USE=		OPENSSL=yes
+TLS_USES=	ssl
 
 .include <bsd.port.options.mk>
 
 # avoid slow locks, use fast atomic ops
-.if ${ARCH} == "amd64"
-EXTRA_PATCHES+=	${.CURDIR}/files/extra-patch-atomic-amd64
-.endif
-
-.if ${ARCH} == "i386"
-EXTRA_PATCHES+=	${.CURDIR}/files/extra-patch-atomic-i386
-.endif
+#.if ${ARCH} == "amd64"
+#EXTRA_PATCHES+=	${.CURDIR}/files/extra-patch-atomic-amd64
+#.endif
+#
+#.if ${ARCH} == "i386"
+#EXTRA_PATCHES+=	${.CURDIR}/files/extra-patch-atomic-i386
+#.endif
 
 DEFAULT_GROUP_INCLUDE=	standard standard-dep
 
@@ -81,6 +82,11 @@ MAKE_ENV+=	PERLLDOPTS=`perl -MExtUtils::Embed -e ldopts` \
 
 .if ${PORT_OPTIONS:MUNIXODBC}
 EXTRA_MODULES+=	db_unixodbc
+.endif
+
+.if ${PORT_OPTIONS:MDIALPLAN}
+LIB_DEPENDS+=	libpcre.so:devel/pcre
+EXTRA_MODULES+=	dialplan
 .endif
 
 .if ${PORT_OPTIONS:MRADIUS}
@@ -162,7 +168,7 @@ post-stage:
 	pua_dialoginfo pua_mi pua_reginfo pua_usrloc rls \
 	acc_radius misc_radius peering pua pua_xmpp xcap_client xcap_server \
 	tcpops auth_xkeys statsd dmq_usrloc rtjson websocket sctp \
-	app_perl cfgt smsops log_custom topos statsc
+	app_perl cfgt smsops log_custom topos statsc dialplan
 	@if [ -e ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/modules/${i}.so ]; then \
 		${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}/modules/${i}.so; \
 	fi

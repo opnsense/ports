@@ -1,0 +1,3 @@
+etc/pam.d/opnsense-auth-test
+lib/pam_opnsense.so
+sbin/opnsense-auth-test

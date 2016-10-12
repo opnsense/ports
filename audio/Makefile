@@ -31,9 +31,12 @@
     SUBDIR += ascd
     SUBDIR += asmix
     SUBDIR += asmixer
+    SUBDIR += asterisk-espeak
+    SUBDIR += asterisk-flite
     SUBDIR += asunder
     SUBDIR += atunes
     SUBDIR += aubio
+    SUBDIR += aucatctl
     SUBDIR += audacity
     SUBDIR += audex
     SUBDIR += audiere
@@ -122,6 +125,7 @@
     SUBDIR += etcd
     SUBDIR += etktab
     SUBDIR += exaile
+    SUBDIR += exaile-devel
     SUBDIR += extace
     SUBDIR += ezstream
     SUBDIR += faac
@@ -451,6 +455,12 @@
     SUBDIR += linuxsampler
     SUBDIR += listener
     SUBDIR += lmms
+    SUBDIR += logitechmediaserver
+    SUBDIR += logitechmediaserver-dynamicplaylist
+    SUBDIR += logitechmediaserver-lazysearch
+    SUBDIR += logitechmediaserver-sqlplaylist
+    SUBDIR += logitechmediaserver-superdatetime
+    SUBDIR += logitechmediaserver-trackstat
     SUBDIR += lollypop
     SUBDIR += lpac
     SUBDIR += lua51-mpd
@@ -609,6 +619,7 @@
     SUBDIR += pragha
     SUBDIR += puddletag
     SUBDIR += pulseaudio
+    SUBDIR += pulseaudio-module-sndio
     SUBDIR += py-al
     SUBDIR += py-ao
     SUBDIR += py-apetag
@@ -723,12 +734,6 @@
     SUBDIR += splay
     SUBDIR += splaytk
     SUBDIR += squash
-    SUBDIR += squeezeboxserver
-    SUBDIR += squeezeboxserver-dynamicplaylist
-    SUBDIR += squeezeboxserver-lazysearch
-    SUBDIR += squeezeboxserver-sqlplaylist
-    SUBDIR += squeezeboxserver-superdatetime
-    SUBDIR += squeezeboxserver-trackstat
     SUBDIR += streamripper
     SUBDIR += streamtranscoder
     SUBDIR += stymulator

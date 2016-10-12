@@ -3,9 +3,9 @@
 
 PORTNAME=	pidgin-privacy-please
 PORTVERSION=	0.7.1
+DISTVERSIONPREFIX=	v
 PORTREVISION=	4
 CATEGORIES=	net-im
-MASTER_SITES=	GOOGLE_CODE
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Privacy plugin for the pidgin instant messenger
@@ -19,8 +19,13 @@ BUILD_DEPENDS=	pidgin:net-im/pidgin
 RUN_DEPENDS=	pidgin:net-im/pidgin
 
 GNU_CONFIGURE=	yes
-USES=		gettext gmake libtool pkgconfig
+USES=		gmake gettext libtool pkgconfig autoreconf
 USE_GNOME=	cairo gdkpixbuf2 gtk20 intltool
+USE_LDCONFIG=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	cockroach
+GH_TAGNAME=	21e7046
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

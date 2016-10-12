@@ -39,7 +39,6 @@
     SUBDIR += archmage
     SUBDIR += artha
     SUBDIR += asciidoc
-    SUBDIR += asciinema
     SUBDIR += asm-xml
     SUBDIR += asm2html
     SUBDIR += aspell
@@ -173,6 +172,8 @@
     SUBDIR += eo-aspell
     SUBDIR += eqe
     SUBDIR += erlang-edown
+    SUBDIR += erlang-fast_xml
+    SUBDIR += erlang-p1_utils
     SUBDIR += erlang-p1xml
     SUBDIR += erlang-yamerl
     SUBDIR += es-aspell
@@ -1146,6 +1147,7 @@
     SUBDIR += pear-Symfony_Component_Yaml
     SUBDIR += pear-Text_Highlighter
     SUBDIR += pear-Text_Template
+    SUBDIR += pear-Validate_ISPN
     SUBDIR += pear-XML_Beautifier
     SUBDIR += pear-XML_DTD
     SUBDIR += pear-XML_Feed_Parser
@@ -1161,6 +1163,7 @@
     SUBDIR += pecl-syck
     SUBDIR += pecl-wbxml
     SUBDIR += pecl-xdiff
+    SUBDIR += pecl-xdiff2
     SUBDIR += pecl-xslcache
     SUBDIR += pecl-yaml
     SUBDIR += peco
@@ -1169,6 +1172,7 @@
     SUBDIR += php-mecab
     SUBDIR += php55-ctype
     SUBDIR += php55-dom
+    SUBDIR += php55-enchant
     SUBDIR += php55-pspell
     SUBDIR += php55-simplexml
     SUBDIR += php55-wddx
@@ -1178,6 +1182,7 @@
     SUBDIR += php55-xsl
     SUBDIR += php56-ctype
     SUBDIR += php56-dom
+    SUBDIR += php56-enchant
     SUBDIR += php56-pspell
     SUBDIR += php56-simplexml
     SUBDIR += php56-wddx
@@ -1187,6 +1192,7 @@
     SUBDIR += php56-xsl
     SUBDIR += php70-ctype
     SUBDIR += php70-dom
+    SUBDIR += php70-enchant
     SUBDIR += php70-pspell
     SUBDIR += php70-simplexml
     SUBDIR += php70-wddx
@@ -1310,6 +1316,7 @@
     SUBDIR += py-translationstring
     SUBDIR += py-tvgrab
     SUBDIR += py-twistedLore
+    SUBDIR += py-ucl
     SUBDIR += py-whoosh
     SUBDIR += py-wicked
     SUBDIR += py-wordnet

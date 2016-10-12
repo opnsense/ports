@@ -6,10 +6,12 @@ PORTVERSION=	1.0
 CATEGORIES=	x11-wm python
 MASTER_SITES=	GOOGLE_CODE
 
-MAINTAINER=	uffe@uffe.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Openbox hotkey editor, written in Python and PyGTK
 
 LICENSE=	MIT
+
+BROKEN=		Unfetchable (google code has gone away)
 
 RUN_DEPENDS=	py27-gtk2>=2.14:x11-toolkits/py-gtk2
 

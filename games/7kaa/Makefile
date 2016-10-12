@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	7kaa
-PORTVERSION=	2.14.5
+PORTVERSION=	2.14.6
 CATEGORIES=	games
 MASTER_SITES=	SF/skfans/7KAA%20${PORTVERSION}
 
@@ -14,14 +14,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libenet.so:net/enet
 
+USES=		gmake localbase openal:al tar:xz
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-silent-rules \
-		--disable-nls # no translations ATM
-USES=		gmake openal:al tar:xz
+CONFIGURE_ARGS=	--disable-nls # no translations ATM
 USE_SDL=	sdl2
-
-LDFLAGS+=	-L${LOCALBASE}/lib
-CPPFLAGS+=	-I${LOCALBASE}/include
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	*
@@ -30,6 +26,6 @@ PORTDATA=	*
 OPTIONS_DEFINE=	DOCS
 
 post-install:
-	${RM} -f ${STAGEDIR}${DOCSDIR}/COPYING
+	@${RM} -f ${STAGEDIR}${DOCSDIR}/COPYING
 
 .include <bsd.port.mk>

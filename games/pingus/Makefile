@@ -5,8 +5,7 @@ PORTNAME=	pingus
 PORTVERSION=	0.7.6
 PORTREVISION=	2
 CATEGORIES=	games
-MASTER_SITES=	GOOGLE_CODE \
-		http://mirror.amdmi3.ru/distfiles/
+MASTER_SITES=	http://mirror.amdmi3.ru/distfiles/
 
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Free Lemmings-like game

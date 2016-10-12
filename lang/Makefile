@@ -30,6 +30,7 @@
     SUBDIR += cfortran
     SUBDIR += chibi-scheme
     SUBDIR += chicken
+    SUBDIR += cilkplus
     SUBDIR += cint
     SUBDIR += cjs
     SUBDIR += clang-devel
@@ -317,7 +318,6 @@
     SUBDIR += smalltalk
     SUBDIR += smlnj
     SUBDIR += snobol4
-    SUBDIR += spark
     SUBDIR += spidermonkey17
     SUBDIR += spidermonkey170
     SUBDIR += spidermonkey185

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME?=	mysql
-PORTVERSION=	5.7.13
-PORTREVISION?=	1
+PORTVERSION=	5.7.15
+PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	MYSQL/MySQL-5.7
 PKGNAMESUFFIX?=	57-server
@@ -17,9 +17,9 @@ LICENSE=	GPLv2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 SLAVEDIRS=	databases/mysql57-client
-USES=		bison:build cmake:outsource compiler:c11 compiler:c++11-lib cpe libedit localbase perl5 shebangfix
+USES=		bison:build cmake:outsource compiler:c11 compiler:c++11-lib \
+		cpe libedit localbase perl5 shebangfix ssl
 
-USE_OPENSSL=	yes
 USE_PERL5=	run
 
 MY_DBDIR=	/var/db/mysql
@@ -55,7 +55,8 @@ CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DWITH_EDITLINE=system \
 		-DWITH_LIBEVENT=system \
 		-DWITH_LZ4=system \
-		-DWITH_ZLIB=system
+		-DWITH_ZLIB=system \
+		-DINSTALL_MYSQLTESTDIR=0
 
 SHEBANG_FILES=	scripts/*.pl* scripts/*.sh
 
@@ -132,22 +133,18 @@ PERFSCHM_SUB_LIST_OFF+=	PERFSCHEMRC="--skip-performance-schema"
 
 ### Just for the sake of FreeBSD 9.X ###
 .if ${OPSYS} == FreeBSD && ${OSVERSION} < 1000000
-.if !defined(CLIENT_ONLY)
+.  if !defined(CLIENT_ONLY)
 EXTRA_PATCHES+=		${PATCHDIR}/rapid_plugin-patch-_x_mysqlxtest__src_mysqlxtest.cc
-.endif
-WITH_OPENSSL_PORT=	yes
-CMAKE_ARGS+=		-DWITH_SSL=${OPENSSLBASE}
+.  endif
 .endif
 
 .include <bsd.port.pre.mk>
 
-### FreeBSD Version > 9.X ###
-.if ${OPSYS} == FreeBSD && ${OSVERSION} > 1000000
 .if ${SSL_DEFAULT} == base
+BROKEN_FreeBSD_9=	FreeBSD 9.x requires SSL from ports
 CMAKE_ARGS+=		-DWITH_SSL=system
 .else
 CMAKE_ARGS+=		-DWITH_SSL=${OPENSSLBASE}
-.endif
 .endif
 
 post-extract:

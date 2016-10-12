@@ -85,7 +85,7 @@ MOZILLA_VER?=	${PORTVERSION}
 MOZILLA_BIN?=	${PORTNAME}-bin
 MOZILLA_EXEC_NAME?=${MOZILLA}
 MOZ_RPATH?=	${MOZILLA}
-USES+=		cpe compiler:c++11-lang gmake iconv perl5 pkgconfig \
+USES+=		cpe gmake iconv perl5 pkgconfig \
 			python:2.7,build desktop-file-utils
 CPE_VENDOR?=mozilla
 USE_PERL5=	build
@@ -95,12 +95,20 @@ USE_XORG=	x11 xcomposite xdamage xext xfixes xrender xt
 BUNDLE_LIBS=	yes
 .endif
 
+# call to implicitly-deleted copy constructor of 'mozilla::WidevineVideoFrame'
+.if ${MOZILLA_VER:R:R} >= 49
+USES+=		compiler:c++14-lang
+FAVORITE_COMPILER=	gcc # c++14-lib
+.else
+USES+=		compiler:c++11-lang
+.endif
+
 MOZILLA_SUFX?=	none
 MOZSRC?=	${WRKSRC}
 WRKSRC?=	${WRKDIR}/mozilla
 PLISTF?=	${WRKDIR}/plist_files
 
-MOZ_OBJDIR?=	${WRKSRC}/obj-${CONFIGURE_TARGET}
+MOZ_OBJDIR?=	${WRKSRC}/obj-${ARCH:C/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 
 MOZ_PIS_DIR?=		lib/${MOZILLA}/init.d
 
@@ -119,10 +127,9 @@ MOZ_PKGCONFIG_FILES?=	${MOZILLA}-gtkmozembed ${MOZILLA}-js \
 
 ALL_TARGET?=	build
 
-CONFIGURE_TARGET:=${ARCH:C/amd64/x86_64/}-portbld-${OPSYS:tl}${OSREL}
 MOZ_EXPORT+=	${CONFIGURE_ENV} \
 				PERL="${PERL}"
-MOZ_OPTIONS+=	${CONFIGURE_TARGET} --prefix="${PREFIX}"
+MOZ_OPTIONS+=	--prefix="${PREFIX}"
 MOZ_MK_OPTIONS+=MOZ_OBJDIR="${MOZ_OBJDIR}"
 
 CPPFLAGS+=		-isystem${LOCALBASE}/include
@@ -132,18 +139,17 @@ LDFLAGS+=		-L${LOCALBASE}/lib \
 .if ${OPSYS} != DragonFly # XXX xpcshell crash during install
 # use jemalloc 3.0.0 (4.0 for firefox 43+) API for stats/tuning
 MOZ_EXPORT+=	MOZ_JEMALLOC3=1 MOZ_JEMALLOC4=1
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1100079
-. if ${MOZILLA_VER:R:R} < 43
-# system jemalloc 4.0.0 vs. bundled jemalloc 3.6.0-204-gb4acf73
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-bug1125514
-. endif
-.elif ${OPSYS} != FreeBSD || ${OSVERSION} < 1000012 || ${MOZILLA_VER:R:R} >= 37
+.if ${OPSYS} != FreeBSD || ${OSVERSION} < 1000012 || ${MOZILLA_VER:R:R} >= 37
+. if ${MOZILLA_VER:R:R} >= 48
+MOZ_OPTIONS+=	--enable-jemalloc=4
+.else
 MOZ_OPTIONS+=	--enable-jemalloc
+. endif
 .endif
 .endif # !DragonFly
 
 # Standard depends
-_ALL_DEPENDS=	cairo event ffi graphite harfbuzz hunspell icu jpeg nspr nss opus png pixman soundtouch sqlite vpx
+_ALL_DEPENDS=	cairo event ffi graphite harfbuzz hunspell icu jpeg nspr nss png pixman soundtouch sqlite vpx
 
 .if ${PORT_OPTIONS:MINTEGER_SAMPLES}
 MOZ_EXPORT+=	MOZ_INTEGER_SAMPLES=1
@@ -188,11 +194,6 @@ nspr_MOZ_OPTIONS=	--with-system-nspr
 
 nss_LIB_DEPENDS=	libnss3.so:security/nss
 nss_MOZ_OPTIONS=	--with-system-nss
-
-.if exists(${FILESDIR}/patch-z-bug517422) && ${MOZILLA_VER:R:R} < 45
-opus_LIB_DEPENDS=	libopus.so:audio/opus
-opus_MOZ_OPTIONS=	--with-system-opus
-.endif
 
 pixman_LIB_DEPENDS=	libpixman-1.so:x11/pixman
 pixman_MOZ_OPTIONS=	--enable-system-pixman
@@ -265,14 +266,7 @@ MOZ_OPTIONS+=	--enable-necko-protocols=${MOZ_PROTOCOLS}
 # others
 MOZ_OPTIONS+=	--with-system-zlib		\
 		--with-system-bz2		\
-		--enable-unified-compilation	\
-		--disable-debug-symbols		\
-		--disable-glibtest		\
-		--disable-gtktest		\
-		--disable-freetypetest		\
-		--disable-installer		\
-		--disable-updater		\
-		--disable-pedantic
+		--disable-debug-symbols
 
 # API keys from www/chromium 
 # http://www.chromium.org/developers/how-tos/api-keys
@@ -288,10 +282,7 @@ MOZ_TOOLKIT=	cairo-gtk3
 
 .if ${MOZ_TOOLKIT:Mcairo-gtk3}
 BUILD_DEPENDS+=	gtk3>=3.14.6:x11-toolkits/gtk30
-USE_GNOME+=	gdkpixbuf2 gtk30
-. if ${MOZILLA_VER:R:R} >= 32
-USE_GNOME+= gtk20 # bug 624422
-. endif
+USE_GNOME+=	gdkpixbuf2 gtk20 gtk30
 .else # gtk2, cairo-gtk2
 USE_GNOME+=	gdkpixbuf2 gtk20
 .endif
@@ -301,10 +292,6 @@ CFLAGS+=		-O3
 MOZ_EXPORT+=	MOZ_OPTIMIZE_FLAGS="${CFLAGS:M-O*}"
 MOZ_OPTIONS+=	--enable-optimize
 .else
-. if ${MOZILLA_VER:R:R} >= 45 && ${ARCH} == i386 && \
-  (${OSVERSION} >= 1000000 && ${OSVERSION} < 1003501)
-USES:=			compiler:c++14-lang ${USES:Ncompiler*c++11*} # XXX ports/207837
-. endif
 MOZ_OPTIONS+=	--disable-optimize
 .endif
 
@@ -319,7 +306,7 @@ LIB_DEPENDS+=	libdbus-1.so:devel/dbus \
 				libstartup-notification-1.so:x11/startup-notification
 MOZ_OPTIONS+=	--enable-startup-notification
 .else
-MOZ_OPTIONS+=	--disable-dbus --disable-libnotify
+MOZ_OPTIONS+=	--disable-dbus
 .endif
 
 .if ${PORT_OPTIONS:MFFMPEG}
@@ -327,11 +314,7 @@ MOZ_OPTIONS+=	--disable-dbus --disable-libnotify
 RUN_DEPENDS+=	ffmpeg>=0.8,1:multimedia/ffmpeg
 .endif
 
-.if ${PORT_OPTIONS:MGSTREAMER}
-RUN_DEPENDS+=	gstreamer1-libav>=1.2.4_1:multimedia/gstreamer1-libav
-USE_GSTREAMER1?=good libav
-MOZ_OPTIONS+=	--enable-gstreamer=1.0
-.else
+.if ${MOZILLA_VER:R:R} < 46
 MOZ_OPTIONS+=	--disable-gstreamer
 .endif
 
@@ -341,12 +324,6 @@ USE_GNOME+=		gconf2:build
 MOZ_OPTIONS+=	--enable-gconf
 .else
 MOZ_OPTIONS+=	--disable-gconf
-.endif
-
-.if ${PORT_OPTIONS:MGIO}
-MOZ_OPTIONS+=	--enable-gio
-.else
-MOZ_OPTIONS+=	--disable-gio
 .endif
 
 .if ${PORT_OPTIONS:MGNOMEUI}
@@ -391,14 +368,12 @@ MOZ_OPTIONS+=	--enable-pulseaudio
 MOZ_OPTIONS+=	--disable-pulseaudio
 .endif
 
-.if ${MOZILLA_VER:R:R} >= 40
 .if ${PORT_OPTIONS:MRUST}
 BUILD_DEPENDS+=	rustc:${RUST_PORT}
 RUST_PORT?=		lang/rust
 MOZ_OPTIONS+=	--enable-rust
 .else
 MOZ_OPTIONS+=	--disable-rust
-.endif
 .endif
 
 .if ${PORT_OPTIONS:MDEBUG}
@@ -417,14 +392,6 @@ LIBS+=			-lelf
 STRIP=
 .else
 MOZ_OPTIONS+=	--disable-dtrace
-.endif
-
-.if ${MOZILLA_VER:R:R} < 40
-. if ${PORT_OPTIONS:MLOGGING} || ${PORT_OPTIONS:MDEBUG}
-MOZ_OPTIONS+=	--enable-logging
-. else
-MOZ_OPTIONS+=	--disable-logging
-. endif
 .endif
 
 .if ${PORT_OPTIONS:MPROFILE}

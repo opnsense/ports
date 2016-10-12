@@ -38,6 +38,7 @@
     SUBDIR += droid-fonts-ttf
     SUBDIR += ecofont
     SUBDIR += encodings
+    SUBDIR += exo
     SUBDIR += fantasque-sans-mono
     SUBDIR += farsifonts
     SUBDIR += fifteen
@@ -143,6 +144,7 @@
     SUBDIR += noto
     SUBDIR += noto-lite
     SUBDIR += nucleus
+    SUBDIR += oldschool-pc-fonts
     SUBDIR += p5-Font-AFM
     SUBDIR += p5-Font-TTF
     SUBDIR += p5-Font-TTFMetrics

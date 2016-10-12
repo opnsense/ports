@@ -3,7 +3,7 @@
 
 PORTNAME=	cfengine
 PORTVERSION=	3.4.5
-PORTREVISION=	6
+PORTREVISION=	10
 CATEGORIES=	sysutils
 MASTER_SITES=	https://s3.amazonaws.com/cfengine.package-repos/tarballs/
 
@@ -23,10 +23,11 @@ CONFLICTS=	cfengine-2* cfengine-3.[235-9]* cfengine-devel-*
 
 USE_RC_SUBR=	cf-execd cf-serverd
 
-USES=		cpe libtool gmake
+USES=		cpe gmake libtool ssl
 USE_LDCONFIG=	yes
-USE_OPENSSL=	yes
 GNU_CONFIGURE=	yes
+CFLAGS+=	-I${OPENSSLINC}
+LDFLAGS+=	-L${OPENSSLLIB}
 # EXAMPLESDIR=	${PREFIX}/share/examples/cfengine3
 DOCSDIR=	${PREFIX}/share/doc/cfengine
 CONFIGURE_ARGS=	--docdir=${DOCSDIR} \

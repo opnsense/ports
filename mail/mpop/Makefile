@@ -14,7 +14,7 @@ LICENSE=	GPLv3+
 USES=		cpe gmake makeinfo pkgconfig tar:xz
 CPE_VENDOR=	martin_lambers
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-silent-rules --with-tls=no
+CONFIGURE_ARGS=	--with-tls=no
 
 INFO=		mpop
 
@@ -36,7 +36,7 @@ LIBSECRET_LIB_DEPENDS=	libsecret-1.so:security/libsecret
 LIBSECRET_CONFIGURE_WITH=	libsecret
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
-OPENSSL_USE=		openssl=yes
+OPENSSL_USES=		ssl
 OPENSSL_CONFIGURE_ENV=	${OPENSSLINC:M/usr/include:C,.+,libssl_CFLAGS=" ",} \
 			${OPENSSLLIB:M/usr/lib:C,.+,libssl_LIBS="-lssl -lcrypto",}
 OPENSSL_CONFIGURE_ON=	--with-tls=openssl
