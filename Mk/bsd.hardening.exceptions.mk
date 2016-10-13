@@ -1,6 +1,20 @@
-.if "${PORTNAME}" == suricata
-CONFIGURE_ARGS+=       --enable-pie
+.if defined(PORTNAME)
+.if ${PORTNAME} == "suricata"
+# Note: Suricata on HardenedBSD supports using thread-local
+# storage. But for some reason, the linker on OPNsense doesn't like
+# it. Disable thread-local storage on OPNsense. Thread-local storage
+# is used for speed. Suricata's Victor Julien does not know
+# performance of thread-local storage versus posix thread storage.
+# OpenBSD doesn't support the __thread gnu-ism, so they use posix
+# thread storage.
+#
+# Discussed with: Victor Julien
+CONFIGURE_ARGS+=       --enable-pie \
+		       --disable-threading-tls
 .endif
+.endif
+
+HARDENING_NORELRO_PORTS+= suricata
 
 HARDENING_NOPIE_PORTS+=	0ad
 HARDENING_NOPIE_PORTS+=	R
