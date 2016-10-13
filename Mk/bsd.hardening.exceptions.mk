@@ -14,8 +14,6 @@ CONFIGURE_ARGS+=       --enable-pie \
 .endif
 .endif
 
-HARDENING_NORELRO_PORTS+= suricata
-
 HARDENING_NOPIE_PORTS+=	0ad
 HARDENING_NOPIE_PORTS+=	R
 HARDENING_NOPIE_PORTS+=	acpi_call
