@@ -26,6 +26,7 @@ PLIST_FILES=	${KMODDIR}/if_${PORTNAME}_updated.ko \
 
 .include <bsd.port.pre.mk>
 
+# Fixup for slave ports that use this as a master port. sbruno
 .if ${PORTNAME} == ixl
 ONLY_FOR_ARCHS=		amd64
 ONLY_FOR_ARCHS_REASON=	Not supported on other architectures, amd64 only.
