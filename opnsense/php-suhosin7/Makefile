@@ -10,6 +10,7 @@ MAINTAINER=	franco@opnsense.org
 COMMENT=	PHP extension that implements high-level protections
 
 LICENSE=	PHP301
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sektioneins
