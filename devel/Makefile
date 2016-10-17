@@ -96,6 +96,7 @@
     SUBDIR += arcanist
     SUBDIR += arduino
     SUBDIR += arduino-builder
+    SUBDIR += arduino-core
     SUBDIR += arduino-ctags
     SUBDIR += arduino-glcd
     SUBDIR += arduino-irremote
@@ -110,6 +111,7 @@
     SUBDIR += arm-none-eabi-gcc
     SUBDIR += arm-none-eabi-gcc492
     SUBDIR += arm-none-eabi-gdb
+    SUBDIR += arm-none-eabi-newlib
     SUBDIR += aros-sdk
     SUBDIR += art
     SUBDIR += artifactory

@@ -607,9 +607,11 @@
     SUBDIR += p5-Net-Finger
     SUBDIR += p5-Net-Flow
     SUBDIR += p5-Net-Frame
+    SUBDIR += p5-Net-Frame-Device
     SUBDIR += p5-Net-Frame-Dump
     SUBDIR += p5-Net-Frame-Layer-ICMPv6
     SUBDIR += p5-Net-Frame-Layer-IPv6
+    SUBDIR += p5-Net-Frame-Simple
     SUBDIR += p5-Net-GitHub
     SUBDIR += p5-Net-Gnats
     SUBDIR += p5-Net-Google
@@ -651,6 +653,7 @@
     SUBDIR += p5-Net-LDAP-posixAccount
     SUBDIR += p5-Net-LDAP-posixGroup
     SUBDIR += p5-Net-Libdnet
+    SUBDIR += p5-Net-Libdnet6
     SUBDIR += p5-Net-LimeLight-Purge
     SUBDIR += p5-Net-MAC
     SUBDIR += p5-Net-MAC-Vendor
