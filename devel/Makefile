@@ -606,7 +606,6 @@
     SUBDIR += funnelweb
     SUBDIR += gaa
     SUBDIR += gamin
-    SUBDIR += gaphor
     SUBDIR += gauche-readline
     SUBDIR += gaul
     SUBDIR += gazpacho
@@ -4039,6 +4038,7 @@
     SUBDIR += py-bluelet
     SUBDIR += py-boto
     SUBDIR += py-botocore
+    SUBDIR += py-cachetools
     SUBDIR += py-calendar
     SUBDIR += py-canonicaljson
     SUBDIR += py-capstone
@@ -4134,6 +4134,7 @@
     SUBDIR += py-fabric
     SUBDIR += py-fake-factory
     SUBDIR += py-fam
+    SUBDIR += py-fasteners
     SUBDIR += py-fastimport
     SUBDIR += py-filemagic
     SUBDIR += py-fileutils
@@ -4160,6 +4161,7 @@
     SUBDIR += py-fusefs
     SUBDIR += py-future
     SUBDIR += py-futures
+    SUBDIR += py-futurist
     SUBDIR += py-game
     SUBDIR += py-game_sdl2
     SUBDIR += py-gamin
@@ -4313,6 +4315,7 @@
     SUBDIR += py-os-client-config
     SUBDIR += py-osc-lib
     SUBDIR += py-oslo.config
+    SUBDIR += py-oslo.context
     SUBDIR += py-oslo.i18n
     SUBDIR += py-oslo.serialization
     SUBDIR += py-oslo.utils
@@ -4333,6 +4336,7 @@
     SUBDIR += py-phply
     SUBDIR += py-phpserialize
     SUBDIR += py-pika
+    SUBDIR += py-pika-pool
     SUBDIR += py-pinocchio
     SUBDIR += py-pip
     SUBDIR += py-pkgconfig
@@ -4404,6 +4408,7 @@
     SUBDIR += py-pytest-xdist
     SUBDIR += py-python-bugzilla
     SUBDIR += py-python-distutils-extra
+    SUBDIR += py-python-editor
     SUBDIR += py-python-gist
     SUBDIR += py-python-jenkins
     SUBDIR += py-python-magic
@@ -4464,6 +4469,7 @@
     SUBDIR += py-resolver
     SUBDIR += py-resourcepackage
     SUBDIR += py-responses
+    SUBDIR += py-retrying
     SUBDIR += py-riak_pb
     SUBDIR += py-rlcompleter2
     SUBDIR += py-robotframework
