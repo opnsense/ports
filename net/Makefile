@@ -378,6 +378,9 @@
     SUBDIR += linux-c6-avahi-libs
     SUBDIR += linux-c6-openldap
     SUBDIR += linux-c6-tcp_wrappers-libs
+    SUBDIR += linux-c7-avahi-libs
+    SUBDIR += linux-c7-openldap
+    SUBDIR += linux-c7-tcp_wrappers-libs
     SUBDIR += linux-f10-nss_ldap
     SUBDIR += linux-f10-openldap
     SUBDIR += linuxigd
@@ -894,7 +897,6 @@
     SUBDIR += pear-XML_RPC2
     SUBDIR += pecl-amqp
     SUBDIR += pecl-apn
-    SUBDIR += pecl-cvsclient
     SUBDIR += pecl-geoip
     SUBDIR += pecl-gupnp
     SUBDIR += pecl-ip2location

@@ -438,6 +438,9 @@
     SUBDIR += linux-c6-aspell
     SUBDIR += linux-c6-expat
     SUBDIR += linux-c6-libxml2
+    SUBDIR += linux-c7-aspell
+    SUBDIR += linux-c7-expat
+    SUBDIR += linux-c7-libxml2
     SUBDIR += linux-f10-aspell
     SUBDIR += linux-f10-expat
     SUBDIR += linux-f10-libxml2
@@ -1158,8 +1161,6 @@
     SUBDIR += pecl-cld
     SUBDIR += pecl-ctemplate
     SUBDIR += pecl-doublemetaphone
-    SUBDIR += pecl-enchant
-    SUBDIR += pecl-html_parse
     SUBDIR += pecl-stem
     SUBDIR += pecl-syck
     SUBDIR += pecl-wbxml

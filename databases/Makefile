@@ -172,6 +172,7 @@
     SUBDIR += libzbxpgsql
     SUBDIR += libzdb
     SUBDIR += linux-c6-sqlite3
+    SUBDIR += linux-c7-sqlite3
     SUBDIR += linux-f10-sqlite3
     SUBDIR += linux-oracle-instantclient-basic
     SUBDIR += linux-oracle-instantclient-sdk
@@ -540,16 +541,14 @@
     SUBDIR += pecl-dbase
     SUBDIR += pecl-drizzle
     SUBDIR += pecl-leveldb
-    SUBDIR += pecl-mdbtools
     SUBDIR += pecl-memcache
     SUBDIR += pecl-memcached
     SUBDIR += pecl-mongo
     SUBDIR += pecl-mongodb
-    SUBDIR += pecl-mysqlnd_ms
-    SUBDIR += pecl-mysqlnd_qc
     SUBDIR += pecl-pdo_user
     SUBDIR += pecl-rrd
     SUBDIR += pecl-tokyo_tyrant
+    SUBDIR += percona-pam-for-mysql
     SUBDIR += percona-toolkit
     SUBDIR += percona55-client
     SUBDIR += percona55-server
