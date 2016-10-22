@@ -359,7 +359,6 @@
     SUBDIR += libxul
     SUBDIR += lightsquid
     SUBDIR += lighttpd
-    SUBDIR += lighttpd-mod_geoip
     SUBDIR += lighttpd-mod_h264_streaming
     SUBDIR += lilurl
     SUBDIR += limesurvey
@@ -474,7 +473,6 @@
     SUBDIR += mod_myvhost
     SUBDIR += mod_ntlm2
     SUBDIR += mod_perl2
-    SUBDIR += mod_php55
     SUBDIR += mod_php56
     SUBDIR += mod_php70
     SUBDIR += mod_proctitle
@@ -1432,9 +1430,6 @@
     SUBDIR += php-plurk-api
     SUBDIR += php-screw
     SUBDIR += php-templates
-    SUBDIR += php55-opcache
-    SUBDIR += php55-session
-    SUBDIR += php55-tidy
     SUBDIR += php56-opcache
     SUBDIR += php56-session
     SUBDIR += php56-tidy

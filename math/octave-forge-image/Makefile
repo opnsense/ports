@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	octave-forge-image
-PORTVERSION=	2.4.1
+PORTVERSION=	2.6.1
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org
@@ -25,7 +25,7 @@ GNU_CONFIGURE=	yes
 .include "${.CURDIR}/../../Mk/bsd.octave.mk"
 
 post-build:
-	${RM} -f ${WRKSRC}/Makefile ${WRKSRC}/configure
+	${RM} ${WRKSRC}/Makefile ${WRKSRC}/configure
 	cd ${WRKDIR} && ${TAR} cfz ${DISTNAME}.tar.gz ${OCTSRC}
 
 .include <bsd.port.pre.mk>

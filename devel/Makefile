@@ -103,6 +103,7 @@
     SUBDIR += arduino-mk
     SUBDIR += arduino-sevseg
     SUBDIR += arduino-tools
+    SUBDIR += arduino16
     SUBDIR += argouml
     SUBDIR += argp-standalone
     SUBDIR += argtable
@@ -1169,6 +1170,7 @@
     SUBDIR += libassetml
     SUBDIR += libast
     SUBDIR += libastylej
+    SUBDIR += libastylej-arduino
     SUBDIR += libatomic_ops
     SUBDIR += libaura
     SUBDIR += libavl
@@ -3841,15 +3843,6 @@
     SUBDIR += php5-ice
     SUBDIR += php5-pinba
     SUBDIR += php5-thrift
-    SUBDIR += php55-gettext
-    SUBDIR += php55-json
-    SUBDIR += php55-pcntl
-    SUBDIR += php55-readline
-    SUBDIR += php55-shmop
-    SUBDIR += php55-sysvmsg
-    SUBDIR += php55-sysvsem
-    SUBDIR += php55-sysvshm
-    SUBDIR += php55-tokenizer
     SUBDIR += php56-gettext
     SUBDIR += php56-json
     SUBDIR += php56-pcntl
