@@ -1323,6 +1323,7 @@
     SUBDIR += libolecf
     SUBDIR += liboobs
     SUBDIR += liboop
+    SUBDIR += libopenbsd
     SUBDIR += libopencm3
     SUBDIR += libopensync
     SUBDIR += libopkele
@@ -4312,6 +4313,7 @@
     SUBDIR += py-optik
     SUBDIR += py-option_merge
     SUBDIR += py-orbit
+    SUBDIR += py-ordered-set
     SUBDIR += py-ordereddict
     SUBDIR += py-os-client-config
     SUBDIR += py-osc-lib
@@ -4615,6 +4617,7 @@
     SUBDIR += py-warlock
     SUBDIR += py-watchdog
     SUBDIR += py-wcwidth
+    SUBDIR += py-weakrefmethod
     SUBDIR += py-weblib
     SUBDIR += py-wheel
     SUBDIR += py-wrapt
