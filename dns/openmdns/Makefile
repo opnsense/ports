@@ -3,6 +3,7 @@
 PORTNAME=	openmdns
 DISTVERSION=	0.6-8
 DISTVERSIONSUFFIX=	-g07cf5c1
+PORTREVISION=	2
 CATEGORIES=	dns
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -13,6 +14,8 @@ LICENSE=	ISCL
 USE_GITHUB=	yes
 GH_ACCOUNT=	haesbaert
 GH_PROJECT=	mdnsd
+
+CONFLICTS_INSTALL=	mDNSResponder # sbin/mdnsd
 
 USES=		localbase uidfix
 USE_RC_SUBR=	mdnsd
