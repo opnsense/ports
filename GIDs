@@ -219,7 +219,7 @@ meta1:*:264:
 haclient:*:275:
 frontbase:*:276:
 # free: 277
-# free: 278
+rtg:*:278:
 mrtg:*:279:
 xymon:*:280:
 prelude:*:281:
@@ -254,7 +254,7 @@ backuppc:*:300:
 # free: 310
 # free: 311
 _sphinx:*:312:
-# free: 313
+_fastdfs:*:313:
 # free: 314
 # free: 315
 # free: 316
