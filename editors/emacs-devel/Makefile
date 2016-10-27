@@ -27,7 +27,6 @@ EMACS_REV=	20161001
 GNU_CONFIGURE=	yes
 USES=		autoreconf cpe gmake makeinfo ncurses pkgconfig
 INFO_PATH=	${DATADIR_REL}/info
-WRKSRC=		${WRKDIR}/${PORTNAME}-${GH_TAGNAME}
 CPE_VENDOR=	gnu
 
 SUB_FILES+=	sources.el
@@ -241,7 +240,7 @@ LDFLAGS+=-ltinfo
 .endif
 
 post-patch:
-	@${RM} -f ${WRKSRC}/info/*
+	@${RM} ${WRKSRC}/info/*
 
 ## stage-qa will give a warning, but don't pull in desktop-file-utils
 ## portlint -AC will give a warning about INSTALL_ICONS, but don't pull in those

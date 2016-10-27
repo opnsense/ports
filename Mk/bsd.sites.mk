@@ -117,6 +117,25 @@ MASTER_SITE_COMP_SOURCES+= \
 	http://ftp.fi.netbsd.org/pub/misc/archive/comp.sources.%SUBDIR%/
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_CRAN)
+MASTER_SITE_CRAN+= \
+	https://cloud.r-project.org/%SUBDIR%/ \
+	https://stat.ethz.ch/CRAN/%SUBDIR%/ \
+	http://cran.utstat.utoronto.ca/%SUBDIR%/ \
+	https://cran.cnr.berkeley.edu/%SUBDIR%/ \
+	http://cran.csiro.au/%SUBDIR%/ \
+	https://mirrors.tuna.tsinghua.edu.cn/CRAN/%SUBDIR%/ \
+	http://camoruco.ing.uc.edu.ve/cran/%SUBDIR%/ \
+	https://mirror.las.iastate.edu/CRAN/%SUBDIR%/ \
+	https://cran.ma.imperial.ac.uk/%SUBDIR%/ \
+	https://cran.gis-lab.info/%SUBDIR%/ \
+	https://cran.ism.ac.jp/%SUBDIR%/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_CRAN_ARCHIVE)
+MASTER_SITE_CRAN_ARCHIVE+= ${MASTER_SITE_CRAN:S,$,Archive/${PORTNAME}/,}
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_DEBIAN)
 MASTER_SITE_DEBIAN+= \
 	http://cdn.debian.net/debian/%SUBDIR%/ \
@@ -237,6 +256,12 @@ MASTER_SITE_CENTOS_LINUX+= \
 MASTER_SITE_EPEL+= \
 	http://dl.fedoraproject.org/pub/epel/6/${LINUX_ARCH}/ \
 	http://dl.fedoraproject.org/pub/epel/6/SRPMS/:SOURCE
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_EPEL7)
+MASTER_SITE_EPEL7+= \
+	http://dl.fedoraproject.org/pub/epel/7/${LINUX_ARCH}/%SUBDIR%/ \
+	http://dl.fedoraproject.org/pub/epel/7/SRPMS/%SUBDIR%/:SOURCE
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_FEDORA_LINUX)

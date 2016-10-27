@@ -3,7 +3,7 @@
 
 PORTNAME=	freeswitch
 PORTVERSION=	1.6.8
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	http://files.freeswitch.org/releases/freeswitch/ \
 		http://files.freeswitch.org/releases/sounds/:sounds
@@ -24,6 +24,8 @@ LIB_DEPENDS=	libsqlite3.so:databases/sqlite3 \
 
 CONFLICTS_BUILD=	xmlrpc-c-*
 
+BROKEN=			unfetchable (checksum mismatch) and attempts to strip libfreeswitch.a\
+			(returns file format not recognized)
 BROKEN_FreeBSD_9=	Fails in configure due to compiler issues
 ONLY_FOR_ARCHS=	amd64
 
@@ -31,6 +33,7 @@ USES=		gmake jpeg pkgconfig lua perl5 libtool shebangfix tar:xz
 USE_LDCONFIG=	yes
 
 ALL_MODULES_DESC=	Build all modules
+X11_DESC=		graphics/ImageMagick[-nox11] dependency
 8K_DESC=	8kHz Audio Files
 16K_DESC=	16kHz Audio Files
 32K_DESC=	32kHz Audio Files
@@ -39,7 +42,7 @@ ENGLISH_DESC=	US English Language Sounds
 FRENCH_DESC=	French Canadian Language Sounds
 RUSSIAN_DESC=	Russian Language Sounds
 
-OPTIONS_DEFINE=		ALL_MODULES
+OPTIONS_DEFINE=		ALL_MODULES X11
 OPTIONS_MULTI=		BITRATE LANGUAGE
 OPTIONS_MULTI_BITRATE=	8K 16K 32K 48K
 OPTIONS_MULTI_LANGUAGE=	ENGLISH FRENCH RUSSIAN
@@ -83,10 +86,14 @@ LIB_DEPENDS+=	libavformat.so:multimedia/ffmpeg \
 		libmp3lame.so:audio/lame \
 		libnetsnmp.so:net-mgmt/net-snmp \
 		libvlc.so:multimedia/vlc \
-		libyaml.so:textproc/libyaml \
-		libMagickWand-6.so:graphics/ImageMagick-nox11
+		libyaml.so:textproc/libyaml
 USE_OPENLDAP=	yes
 USE_OPENSSL=	yes
+.if ${PORT_OPTIONS:MX11}
+LIB_DEPENDS+=	libMagickWand-6.so:graphics/ImageMagick
+.else
+LIB_DEPENDS+=	libMagickWand-6.so:graphics/ImageMagick-nox11
+.endif
 .endif
 
 EDPRE=	freeswitch-sounds

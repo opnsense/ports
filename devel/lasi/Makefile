@@ -16,7 +16,8 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-USES=		cmake pkgconfig
+USES=		cmake pathfix pkgconfig
+PATHFIX_CMAKELISTSTXT=	pkg-config.cmake
 USE_GNOME=	pango
 PKG_CONFIG_PATH=	${PREFIX}/libdata/pkgconfig
 CONFIGURE_ENV+=	PKG_CONFIG_PATH=${PKG_CONFIG_PATH}
@@ -53,7 +54,7 @@ post-install:
 	@${RMDIR} ${STAGEDIR}${DATADIR}/examples
 .endif
 .if ! ${PORT_OPTIONS:MDOCS} && ! ${PORT_OPTIONS:MEXAMPLES}
-	@${RM} -rf ${STAGEDIR}${DATADIR}/*
+	@${RM} -r ${STAGEDIR}${DATADIR}/*
 .endif
 	@${TEST} -d ${STAGEDIR}${DATADIR} && \
 		${RMDIR} ${STAGEDIR}${DATADIR} || ${TRUE}

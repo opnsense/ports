@@ -5,6 +5,66 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20161026:
+  AFFECTS: users of net-p2p/deluge
+  AUTHOR: rm@FreeBSD.org
+
+  Deluge port has been split out onto CLI part and GUI part. So if user
+  only needs deluged, net-p2p/deluge-cli should be installed. For full
+  deluge installation, including GTK+ GUI client, net-p2p/deluge should
+  be installed as a usual.
+
+  Old deluge package should be removed manually first:
+
+  # pkg delete deluge
+
+  After that install preferred deluge package as usual.
+
+20161018:
+  AFFECTS: users of x11/xfce4-terminal
+  AUTHOR: olivierd@FreeBSD.org
+
+  The port has been updated to the latest stable version 0.8.0.
+  A warning appears each time we open new tab:
+
+  Gtk-WARNING **: gtk_widget_size_allocate(): attempt to allocate
+  widget with...
+
+  This issue will disappear with Gtk > 3.21.
+
+20161014:
+  AFFECTS: users of lang/python3
+  AUTHOR: antoine@FreeBSD.org
+
+  The default version of python3 has changed from 3.4 to 3.5.
+  If you wish to stick with older version, add "python3=3.4" to your
+  DEFAULT_VERSIONS variable in /etc/make.conf.  To upgrade:
+
+  If using portupgrade:
+  # portupgrade -o lang/python35 lang/python34
+
+  If using portmaster:
+  # portmaster -o lang/python35 lang/python34
+
+20161011:
+  AFFECTS: Users of net-im/ejabberd
+  AUTHOR: ashish@FreeBSD.org
+
+  Before upgrading ejabberd to 16.09, please make sure to backup your 
+  ejabberd data using:
+ 
+     % sudo -u ejabberd -H ejabberdctl backup /path/to/backup/file
+
+  In some cases, ejabberd may fail to start, for which a workaround is to 
+  remove the schema.DAT file from /var/spool/ejabberd before starting, and
+  then restoring everything from the backup using:
+     
+     % sudo -u ejabberd -H ejabberdctl restore /path/to/backup/file
+
+  For more details:
+
+  https://github.com/processone/ejabberd/issues/1305
+
 20161005:
   AFFECTS: Users of audio/squeezeboxserver (now audio/logitechmediaserver)
   AUTHOR: woodsb02@FreeBSD.org

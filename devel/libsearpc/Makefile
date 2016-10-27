@@ -20,7 +20,6 @@ GH_TAGNAME=	v3.0-latest
 
 USES=		autoreconf gettext libtool pathfix pkgconfig python:2
 USE_LDCONFIG=	yes
-PATHFIX_MAKEFILEIN=	Makefile.am
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
@@ -41,6 +40,6 @@ post-install:
 	@${MKDIR} ${STAGEDIR}${SEALIB}
 	(cd ${STAGEDIR}${PREFIX}/lib && \
 		${COPYTREE_SHARE} ${PYTHON_VERSION} ${STAGEDIR}${PREFIX}/${SEALIB})
-	${RM} -rf ${STAGEDIR}${PREFIX}/lib/${PYTHON_VERSION}
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/${PYTHON_VERSION}
 
 .include <bsd.port.mk>

@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	git
-DISTVERSION=	2.9.2
-PORTREVISION=	2
+DISTVERSION=	2.10.1
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -37,6 +37,7 @@ SHEBANG_FILES=	*.perl */*.perl */*/*.perl */*.pl */*/*.pl */*/*/*.pl \
 		contrib/diff-highlight/diff-highlight \
 		contrib/buildsystems/generate contrib/contacts/git-contacts \
 		contrib/svn-fe/svnrdump_sim.py
+TEST_TARGET=	test
 
 CONFIGURE_ARGS=	--enable-pthreads=-pthread ac_cv_header_libcharset_h=no
 
@@ -183,21 +184,16 @@ post-install:
 	# recreate it after. This is necessary because the distfile is
 	# extracted with --no-same-owner. If the distfile is extracted as a
 	# non-root user then the symlink will have the incorrect owner.
-	${RM} -f ${WRKDIR}/htmldocs/index.html
+	${RM} ${WRKDIR}/htmldocs/index.html
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	(cd ${WRKDIR}/htmldocs/ && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR})
 	${LN} -s git.html ${STAGEDIR}${DOCSDIR}/index.html
 .endif
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/emacs/site-lisp/git
-	${MKDIR} ${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git
 	${INSTALL_DATA} ${WRKSRC}/contrib/emacs/git.el \
 		${STAGEDIR}${PREFIX}/share/emacs/site-lisp/git/
 	${INSTALL_DATA} ${WRKSRC}/contrib/emacs/git-blame.el \
 		${STAGEDIR}${PREFIX}/share/emacs/site-lisp/git/
-	${LN} -sf ${PREFIX}/share/emacs/site-lisp/git/git.el    \
-		${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git/git.el
-	${LN} -sf ${PREFIX}/share/emacs/site-lisp/git/git-blame.el \
-		${STAGEDIR}${PREFIX}/lib/xemacs/site-lisp/git/git-blame.el
 .if ${PORT_OPTIONS:MCONTRIB}
 	@${ECHO_MSG} "===> Installing contributed scripts"
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/git-core/contrib
@@ -208,7 +204,5 @@ post-install:
 .if ${PORT_OPTIONS:MP4}
 	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${STAGEDIR}${PREFIX}/bin/
 .endif
-
-post-stage:
 
 .include <bsd.port.mk>

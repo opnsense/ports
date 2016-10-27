@@ -642,7 +642,7 @@ proxydeps() {
 				# Check that the .so we need has a SONAME
 				if [ "${dep_file_pkg}" != "${PKGORIGIN}" ]; then
 					if ! readelf -d "${dep_file}" | grep -q SONAME; then
-						err "${file} is linked to ${dep_file} which does not have a SONAME.  ${dep_file_pkg} needs to be fixed."
+						err "${file} is linked to ${dep_file} which does not have a SONAME.  ${dep_file_pkg} needs to be fixed."
 					fi
 				fi
 
@@ -658,7 +658,7 @@ proxydeps() {
 			fi
 			already="${already} ${dep_file}"
 		done <<-EOT
-		$(LD_LIBRARY_PATH=${LOCALBASE}/lib ldd -a "${STAGEDIR}${file}" | \
+		$(ldd -a "${STAGEDIR}${file}" | \
 			awk '\
 			BEGIN {section=0}\
 			/^\// {section++}\

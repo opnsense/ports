@@ -1,8 +1,8 @@
 # Created by: Ad Schellevis <ad@opnsense.org>
 # $FreeBSD$
+
 PORTNAME=	pam_opnsense
-PORTVERSION=	16.7.b
-PORTREVISION=	4 # GH_TAGNAME
+PORTVERSION=	16.7
 CATEGORIES=	sysutils
 
 MAINTAINER=	ad@opnsense.org
@@ -12,6 +12,5 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	9679091
 
 .include <bsd.port.mk>
