@@ -10,6 +10,11 @@ HARDENING_NORELRO_PORTS?=	# can pass exceptions from make.conf
 
 .include "bsd.hardening.exceptions.mk"
 
+.if defined(NO_PORTS_HARDENING)
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+.endif
+
 .if "${HARDENING_NOPIE_PORTS:M${PORTNAME}}" != ""
 NOPIE_PORTS=	yes
 .endif
