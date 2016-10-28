@@ -1000,6 +1000,7 @@
     SUBDIR += py-oauth2
     SUBDIR += py-openstackclient
     SUBDIR += py-paho-mqtt
+    SUBDIR += py-pamqp
     SUBDIR += py-pcap
     SUBDIR += py-pcapy
     SUBDIR += py-pcs
@@ -1021,6 +1022,7 @@
     SUBDIR += py-pyzmq
     SUBDIR += py-qt4-network
     SUBDIR += py-qt5-network
+    SUBDIR += py-rabbitpy
     SUBDIR += py-radix
     SUBDIR += py-raet
     SUBDIR += py-rainbowstream
