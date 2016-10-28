@@ -4014,6 +4014,7 @@
     SUBDIR += py-aspyct
     SUBDIR += py-astroid
     SUBDIR += py-asyncio
+    SUBDIR += py-atomiclong
     SUBDIR += py-atomicwrites
     SUBDIR += py-attrs
     SUBDIR += py-avro
@@ -4157,6 +4158,7 @@
     SUBDIR += py-funcsigs
     SUBDIR += py-functools32
     SUBDIR += py-fusefs
+    SUBDIR += py-fusepy
     SUBDIR += py-future
     SUBDIR += py-futures
     SUBDIR += py-futurist
