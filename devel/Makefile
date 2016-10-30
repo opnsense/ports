@@ -811,6 +811,7 @@
     SUBDIR += gwenhywfar-fox16
     SUBDIR += gwenhywfar-gtk2
     SUBDIR += gwenhywfar-qt4
+    SUBDIR += gwenhywfar-qt5
     SUBDIR += gzstream
     SUBDIR += hachoir-core
     SUBDIR += hachoir-parser
@@ -2549,6 +2550,7 @@
     SUBDIR += p5-IPC-System-Simple
     SUBDIR += p5-Import-Base
     SUBDIR += p5-Import-Into
+    SUBDIR += p5-Importer
     SUBDIR += p5-Inline
     SUBDIR += p5-Inline-ASM
     SUBDIR += p5-Inline-C
@@ -4018,6 +4020,7 @@
     SUBDIR += py-atomiclong
     SUBDIR += py-atomicwrites
     SUBDIR += py-attrs
+    SUBDIR += py-automaton
     SUBDIR += py-avro
     SUBDIR += py-babel
     SUBDIR += py-babelfish
@@ -4041,6 +4044,7 @@
     SUBDIR += py-calendar
     SUBDIR += py-canonicaljson
     SUBDIR += py-capstone
+    SUBDIR += py-castellan
     SUBDIR += py-cclib
     SUBDIR += py-celery
     SUBDIR += py-cffi
@@ -4084,6 +4088,7 @@
     SUBDIR += py-crcmod
     SUBDIR += py-ctags
     SUBDIR += py-cuisine
+    SUBDIR += py-cursive
     SUBDIR += py-curtsies
     SUBDIR += py-cxx
     SUBDIR += py-cycler
@@ -4178,6 +4183,7 @@
     SUBDIR += py-gitless
     SUBDIR += py-gitosis
     SUBDIR += py-gitpython
+    SUBDIR += py-glance-store
     SUBDIR += py-glob2
     SUBDIR += py-gobject
     SUBDIR += py-gobject3
@@ -4553,6 +4559,7 @@
     SUBDIR += py-tabulate
     SUBDIR += py-tapi
     SUBDIR += py-tarantool-queue
+    SUBDIR += py-taskflow
     SUBDIR += py-tblib
     SUBDIR += py-tconfpy
     SUBDIR += py-tempora
@@ -4625,6 +4632,7 @@
     SUBDIR += py-wsgi_xmlrpc
     SUBDIR += py-wsgitools
     SUBDIR += py-wsgiutils
+    SUBDIR += py-wsme
     SUBDIR += py-xattr
     SUBDIR += py-xcaplib
     SUBDIR += py-xdg
