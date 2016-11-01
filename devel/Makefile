@@ -1404,6 +1404,7 @@
     SUBDIR += libtifiles2
     SUBDIR += libtool
     SUBDIR += libtpl
+    SUBDIR += libtuntap
     SUBDIR += libublio
     SUBDIR += libukcprog
     SUBDIR += libunicode
@@ -5142,6 +5143,7 @@
     SUBDIR += rubygem-metaid
     SUBDIR += rubygem-metasm
     SUBDIR += rubygem-method_source
+    SUBDIR += rubygem-micromachine
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-minitest4
     SUBDIR += rubygem-mixlib-authentication
