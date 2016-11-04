@@ -161,6 +161,8 @@
     SUBDIR += elasticsearch2-plugin-marvel
     SUBDIR += elasticsearch2-plugin-migration
     SUBDIR += elasticsearch2-plugin-sql
+    SUBDIR += elasticsearch5
+    SUBDIR += elasticsearch5-x-pack
     SUBDIR += elixir-earmark
     SUBDIR += elixir-ex_doc
     SUBDIR += elixir-funnel
@@ -365,6 +367,8 @@
     SUBDIR += kibana43
     SUBDIR += kibana44
     SUBDIR += kibana45
+    SUBDIR += kibana50
+    SUBDIR += kibana50-x-pack
     SUBDIR += kmfl-european-latin
     SUBDIR += kmfl-khmer
     SUBDIR += kmfl-sil-ezra

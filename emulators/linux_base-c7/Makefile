@@ -2,7 +2,7 @@
 
 PORTNAME=	c7
 PORTVERSION=	${LINUX_DIST_VER}
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	emulators linux
 PKGNAMEPREFIX=	linux_base-
 EXTRACT_ONLY=	${DISTFILES:N*.src.rpm*:Nfilesystem-*}
@@ -149,12 +149,6 @@ post-extract:
 	@(cd ${WRKSRC} && ${EXTRACT_CMD} ${EXTRACT_BEFORE_ARGS} \
 		${DISTDIR}/${DIST_SUBDIR}/filesystem-3.2-20.el7${EXTRACT_SUFX} \
 		${EXTRACT_AFTER_ARGS})
-# Fix permissions so a regular user can run make clean.
-.if ${LINUX_ARCH} == x86_64
-	@${CHMOD} 755 ${WRKSRC}/usr/lib64/pm-utils
-.else
-	@${CHMOD} 755 ${WRKSRC}/usr/lib/pm-utils
-.endif
 
 post-patch:
 	@${RM} -r ${REMOVE_DIRS:S|^|${WRKSRC}/|}

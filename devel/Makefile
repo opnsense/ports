@@ -1439,6 +1439,7 @@
     SUBDIR += linux-c6-dbus-glib
     SUBDIR += linux-c6-dbus-libs
     SUBDIR += linux-c6-devtools
+    SUBDIR += linux-c6-libelf
     SUBDIR += linux-c6-libgfortran
     SUBDIR += linux-c6-libglade2
     SUBDIR += linux-c6-libpciaccess
@@ -1451,6 +1452,7 @@
     SUBDIR += linux-c7-dbus-glib
     SUBDIR += linux-c7-dbus-libs
     SUBDIR += linux-c7-devtools
+    SUBDIR += linux-c7-libelf
     SUBDIR += linux-c7-libgfortran
     SUBDIR += linux-c7-libglade2
     SUBDIR += linux-c7-libpciaccess
@@ -4138,6 +4140,7 @@
     SUBDIR += py-extremes
     SUBDIR += py-ezpyinline
     SUBDIR += py-fabric
+    SUBDIR += py-fabric3
     SUBDIR += py-fake-factory
     SUBDIR += py-fam
     SUBDIR += py-fasteners
@@ -4209,6 +4212,7 @@
     SUBDIR += py-instant
     SUBDIR += py-interface
     SUBDIR += py-intervaltree
+    SUBDIR += py-invoke
     SUBDIR += py-ioflo
     SUBDIR += py-ipaddr
     SUBDIR += py-ipdb
@@ -4418,6 +4422,7 @@
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
     SUBDIR += py-pyshapelib
+    SUBDIR += py-pystorm
     SUBDIR += py-pyte
     SUBDIR += py-pytemplate
     SUBDIR += py-pytest
@@ -4504,6 +4509,8 @@
     SUBDIR += py-roxlib
     SUBDIR += py-rq
     SUBDIR += py-rtree
+    SUBDIR += py-ruamel.ordereddict
+    SUBDIR += py-ruamel.yaml
     SUBDIR += py-ruledispatch
     SUBDIR += py-sanetime
     SUBDIR += py-sarge
@@ -4547,6 +4554,7 @@
     SUBDIR += py-stdnum
     SUBDIR += py-stevedore
     SUBDIR += py-stopit
+    SUBDIR += py-streamparse
     SUBDIR += py-structlog
     SUBDIR += py-stsci.distutils
     SUBDIR += py-subversion
@@ -4571,6 +4579,7 @@
     SUBDIR += py-testtools
     SUBDIR += py-tgMochiKit
     SUBDIR += py-thrift
+    SUBDIR += py-thriftpy
     SUBDIR += py-timelib
     SUBDIR += py-tinyarray
     SUBDIR += py-tipper

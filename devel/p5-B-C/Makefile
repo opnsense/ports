@@ -9,7 +9,7 @@ MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:RURBAN
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	svysh.fbsd@gmail.com
+MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Perl compiler's C backend
 
 LICENSE=	ART10 GPLv1
@@ -30,6 +30,10 @@ PLIST_SUB+=	PERL_ARCH=${PERL_ARCH}
 
 .if ${PERL_LEVEL} >= 502106
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-ByteLoader_bytecode.h
+.endif
+
+.if ${PERL_LEVEL} >= 502400 && ${OSVERSION} < 1000054
+BROKEN=		Does not build
 .endif
 
 post-patch:

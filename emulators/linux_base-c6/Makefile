@@ -3,7 +3,7 @@
 
 PORTNAME=	c6
 PORTVERSION=	${LINUX_DIST_VER}
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	emulators linux
 PKGNAMEPREFIX=	linux_base-
 
@@ -124,14 +124,6 @@ REMOVE_FILES=	bin/df bin/su etc/exports etc/group etc/gshadow etc/motd \
 SYSCTLMIB=	kern.features.linux64
 .else
 SYSCTLMIB=	compat.linux.osrelease
-.endif
-
-post-extract:
-# Fix permissions so a regular user can run make clean.
-.if ${LINUX_ARCH} == x86_64
-	@${CHMOD} 755 ${WRKSRC}/usr/lib64/pm-utils
-.else
-	@${CHMOD} 755 ${WRKSRC}/usr/lib/pm-utils
 .endif
 
 post-patch:

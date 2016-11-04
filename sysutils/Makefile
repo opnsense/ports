@@ -541,6 +541,7 @@
     SUBDIR += logstalgia
     SUBDIR += logstash
     SUBDIR += logstash-forwarder
+    SUBDIR += logstash5
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += lookat
@@ -1124,6 +1125,7 @@
     SUBDIR += u-boot-cubieboard2
     SUBDIR += u-boot-cubox-hummingboard
     SUBDIR += u-boot-duovero
+    SUBDIR += u-boot-master
     SUBDIR += u-boot-olimex-a20-som-evb
     SUBDIR += u-boot-olinuxino-lime
     SUBDIR += u-boot-orangepi-one

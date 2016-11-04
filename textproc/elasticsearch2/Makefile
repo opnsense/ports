@@ -14,7 +14,7 @@ COMMENT=	Full-text search engine for Java
 
 LICENSE=	APACHE20
 
-CONFLICTS=	elasticsearch-[0-9]*
+CONFLICTS=	elasticsearch-[0-9]* elasticsearch5-[0-9]*
 
 USES=		cpe
 NO_ARCH=	yes
@@ -84,6 +84,5 @@ do-install-DOCS-on:
 .for f in ${DOCS}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${DOCSDIR}
 .endfor
-
 
 .include <bsd.port.mk>
