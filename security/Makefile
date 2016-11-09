@@ -870,10 +870,12 @@
     SUBDIR += py-maec
     SUBDIR += py-mcrypt
     SUBDIR += py-mhash
+    SUBDIR += py-mixbox
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
     SUBDIR += py-openssl
     SUBDIR += py-paramiko
+    SUBDIR += py-paramiko1
     SUBDIR += py-passlib
     SUBDIR += py-pbkdf2
     SUBDIR += py-pgpdump

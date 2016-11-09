@@ -684,7 +684,6 @@
     SUBDIR += p5-Net-Patricia
     SUBDIR += p5-Net-Pcap
     SUBDIR += p5-Net-PcapUtils
-    SUBDIR += p5-Net-Ping
     SUBDIR += p5-Net-Ping-External
     SUBDIR += p5-Net-Proxy
     SUBDIR += p5-Net-PubSubHubbub-Publisher
@@ -1089,7 +1088,6 @@
     SUBDIR += relayd
     SUBDIR += remmina
     SUBDIR += remmina-plugin-gnome
-    SUBDIR += remmina-plugin-i18n
     SUBDIR += remmina-plugin-nx
     SUBDIR += remmina-plugin-telepathy
     SUBDIR += remmina-plugin-vnc

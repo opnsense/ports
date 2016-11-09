@@ -1341,6 +1341,7 @@
     SUBDIR += py3-asciinema
     SUBDIR += py3-chardet
     SUBDIR += py3-libxml2
+    SUBDIR += py3-pager
     SUBDIR += pychm
     SUBDIR += qprint
     SUBDIR += qstardict
@@ -1504,7 +1505,6 @@
     SUBDIR += rubygem-simplecov-html
     SUBDIR += rubygem-spreadsheet
     SUBDIR += rubygem-stamp
-    SUBDIR += rubygem-string-scrub
     SUBDIR += rubygem-syntax
     SUBDIR += rubygem-termcolor
     SUBDIR += rubygem-terminal-table
