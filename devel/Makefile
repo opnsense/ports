@@ -1610,6 +1610,7 @@
     SUBDIR += newfile
     SUBDIR += newt
     SUBDIR += newtonsoft-json
+    SUBDIR += nexus2-oss
     SUBDIR += nglogc
     SUBDIR += nini
     SUBDIR += ninja
@@ -4027,6 +4028,7 @@
     SUBDIR += py-avro
     SUBDIR += py-babel
     SUBDIR += py-babelfish
+    SUBDIR += py-backports.functools_lru_cache
     SUBDIR += py-backports.shutil_get_terminal_size
     SUBDIR += py-backports_abc
     SUBDIR += py-bandit
@@ -4083,6 +4085,7 @@
     SUBDIR += py-configargparse
     SUBDIR += py-configobj
     SUBDIR += py-configparser
+    SUBDIR += py-constantly
     SUBDIR += py-construct
     SUBDIR += py-contextlib2
     SUBDIR += py-country
@@ -4206,6 +4209,7 @@
     SUBDIR += py-hypothesis
     SUBDIR += py-icalendar
     SUBDIR += py-ice
+    SUBDIR += py-incremental
     SUBDIR += py-inflect
     SUBDIR += py-iniparse
     SUBDIR += py-initgroups
@@ -4389,6 +4393,7 @@
     SUBDIR += py-pycadf
     SUBDIR += py-pycalendar
     SUBDIR += py-pycallgraph
+    SUBDIR += py-pycapsicum
     SUBDIR += py-pycerberus
     SUBDIR += py-pycmd
     SUBDIR += py-pycparser
