@@ -7,14 +7,14 @@ CATEGORIES=	net
 MAINTAINER=	me@falz.net
 COMMENT=	Receives UDP datagrams and redistributes them to a set of receivers
 
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 USES=		autoreconf
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sleinen
 GH_PROJECT=	samplicator
-
-LICENSE=	GPLv2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	${PORTNAME}
