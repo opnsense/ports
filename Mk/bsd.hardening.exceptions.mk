@@ -11,6 +11,8 @@
 # Discussed with: Victor Julien
 CONFIGURE_ARGS+=       --enable-pie \
 		       --disable-threading-tls
+.elif ${PORTNAME} == "pkg"
+CONFIGURE_ARGS+=	--enable-pie
 .endif
 .endif
 
