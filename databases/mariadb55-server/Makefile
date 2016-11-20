@@ -2,6 +2,7 @@
 
 PORTNAME?=	mariadb
 PORTVERSION=	5.5.53
+PORTREVISION=	1
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
 		http://mirrors.supportex.net/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
@@ -78,7 +79,7 @@ CMAKE_ARGS+=	-DREADLINE_INCLUDE_DIR=/usr/include \
 
 .else
 # MySQL-Client part
-USES+=		readline
+USES+=		ncurses readline
 .endif
 
 OPTIONS_DEFINE+=	FASTMTX

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	libmediainfo
-PORTVERSION=	0.7.85
+PORTVERSION=	0.7.90
 CATEGORIES=	multimedia
 MASTER_SITES=	http://mediaarea.net/download/binary/mediainfo/${PORTVERSION}/ \
 		LOCAL/sunpoet
@@ -22,7 +22,7 @@ OPTIONS_DEFINE=	CURL MMS TINYXML2
 OPTIONS_DEFAULT=TINYXML2
 TINYXML2_DESC=	Use textproc/tinyxml2 instead of bundled one
 
-CONFIGURE_ARGS=	--enable-shared
+CONFIGURE_ARGS=	--enable-shared --enable-static
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes

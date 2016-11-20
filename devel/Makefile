@@ -1082,6 +1082,8 @@
     SUBDIR += ice
     SUBDIR += icmake
     SUBDIR += icu
+    SUBDIR += icu-le-hb
+    SUBDIR += icu-lx
     SUBDIR += idutils
     SUBDIR += imake
     SUBDIR += include-what-you-use
@@ -1326,6 +1328,8 @@
     SUBDIR += liblouis
     SUBDIR += liblouisxml
     SUBDIR += libltdl
+    SUBDIR += liblxqt
+    SUBDIR += liblxqt-l10n
     SUBDIR += libmaa
     SUBDIR += libmatheval
     SUBDIR += libmba
@@ -1381,6 +1385,7 @@
     SUBDIR += libpthread-stubs
     SUBDIR += libqb
     SUBDIR += libqcow
+    SUBDIR += libqtxdg
     SUBDIR += libr3
     SUBDIR += librcc
     SUBDIR += librcd
@@ -3078,6 +3083,7 @@
     SUBDIR += p5-Readonly
     SUBDIR += p5-Readonly-XS
     SUBDIR += p5-ReadonlyX
+    SUBDIR += p5-Ref-Util
     SUBDIR += p5-Reflex
     SUBDIR += p5-Regexp-Assemble
     SUBDIR += p5-Regexp-Assemble-Compressed

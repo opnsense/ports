@@ -66,7 +66,7 @@ LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libgcrypt.so:security/libgcrypt \
 		libksba.so:security/libksba
 
-USES+=		iconv gmake pkgconfig
+USES+=		iconv gmake ncurses pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-pinentry-emacs
 
@@ -112,7 +112,6 @@ CONFIGURE_ARGS+=--disable-pinentry-gtk2
 .endif
 
 .if ${PINENTRY_GUI} == "curses"
-USES+=		ncurses
 PLIST_FILES=	bin/pinentry-curses
 .else
 CONFIGURE_ARGS+=--disable-pinentry-curses

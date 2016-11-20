@@ -2,6 +2,7 @@
 
 PORTNAME?=	mariadb
 PORTVERSION=	10.0.27
+PORTREVISION=	1
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/${SITESDIR}/ \
 		http://mirrors.supportex.net/${SITESDIR}/ \
@@ -98,7 +99,7 @@ WITH_OPENSSL_PORT=	yes
 
 .if defined(CLIENT_ONLY)
 # MySQL-Client part
-USES+=		readline
+USES+=		ncurses readline
 .else
 # MySQL-Server part
 USES+=		mysql:100m

@@ -498,6 +498,7 @@
     SUBDIR += openldap24-sasl-client
     SUBDIR += openldap24-server
     SUBDIR += openmpi
+    SUBDIR += openmpi2
     SUBDIR += openmq
     SUBDIR += openmq-client
     SUBDIR += openntpd
@@ -1266,6 +1267,7 @@
     SUBDIR += socketpipe
     SUBDIR += socketw
     SUBDIR += sofia-sip
+    SUBDIR += softethervpn
     SUBDIR += spideroak
     SUBDIR += splatd
     SUBDIR += spoofer
