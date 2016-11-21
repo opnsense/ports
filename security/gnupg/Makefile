@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	2.1.15
+PORTVERSION=	2.1.16
 #PORTREVISION=	0
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
@@ -26,13 +26,14 @@ BUILD_DEPENDS=	libassuan>=2.4.3:security/libassuan \
 RUN_DEPENDS=	pinentry>0:security/pinentry
 
 GNU_CONFIGURE=	YES
-USES=		cpe gmake iconv pkgconfig sqlite tar:bzip2
+USES=		compiler:c11 cpe gmake iconv pkgconfig sqlite tar:bzip2
 USE_LDCONFIG=	YES
 # libreadline.so.8 is placed in /lib, but --with-readline argument
 # will be treated as $value/lib, so try using /usr instead.
 # Otherwise, $PREFIX/lib/libreadline.so.6 will be linked when
 # devel/readline is installed.
-CONFIGURE_ARGS+=	--disable-ntbtls --enable-symcryptrun --with-readline=/usr
+CONFIGURE_ARGS+=	--disable-ntbtls --enable-symcryptrun --with-readline=/usr \
+			--disable-wks-tools
 CONFLICTS=	gnupg-2.0.* dirmngr-*
 CPE_VENDOR=	gnupg
 

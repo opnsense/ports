@@ -788,8 +788,8 @@ GH_ACCOUNT+=	openresty:drizzle
 GH_PROJECT+=	drizzle-nginx-module:drizzle
 GH_TAGNAME+=	v${NGINX_DRIZZLE_VERSION}:drizzle
 CONFIGURE_ARGS+=--add-module=${WRKSRC_drizzle}
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-openresty-drizzle-nginx-module-config
-IGNORE=	DRIZZLE: a patch requires
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-openresty-drizzle-nginx-module-config \
+		${PATCHDIR}/extra-patch-ngx_http_drizzle_upstream.c
 .endif
 
 .if ${PORT_OPTIONS:MDYNAMIC_UPSTREAM}
@@ -859,7 +859,7 @@ GH_ACCOUNT+=	openresty:memc
 GH_PROJECT+=	memc-nginx-module:memc
 GH_TAGNAME+=	v${NGINX_MEMC_VERSION}:memc
 CONFIGURE_ARGS+=--add-module=${WRKSRC_memc}
-IGNORE=	MEMC: a patch requires
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_http_memc_util.c
 .endif
 
 .if ${PORT_OPTIONS:MMODSECURITY}
@@ -917,8 +917,8 @@ GH_ACCOUNT+=	FRiCKLE:postgres
 GH_PROJECT+=	ngx_postgres:postgres
 GH_TAGNAME+=	${NGINX_POSTGRES_VERSION}:postgres
 CONFIGURE_ARGS+=--add-module=${WRKSRC_postgres}
-EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_postgres-config
-IGNORE=	POSTGRES: a patch requires
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_postgres-config \
+		${PATCHDIR}/extra-patch-ngx_postgres_module.c
 .endif
 
 .if ${PORT_OPTIONS:MRDS_CSV}
@@ -943,7 +943,7 @@ GH_ACCOUNT+=	openresty:redis2
 GH_PROJECT+=	redis2-nginx-module:redis2
 GH_TAGNAME+=	v${NGINX_REDIS2_VERSION}:redis2
 CONFIGURE_ARGS+=--add-module=${WRKSRC_redis2}
-IGNORE=	REDIS2: a patch requires
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-ngx_http_redis2_util.c
 .endif
 
 .if ${PORT_OPTIONS:MRTMP}
