@@ -1,4 +1,4 @@
---- src/libcharon/plugins/xauth_generic/xauth_generic.c.orig	2015-04-24 19:32:06 UTC
+--- src/libcharon/plugins/xauth_generic/xauth_generic.c.orig	2016-04-22 20:01:35 UTC
 +++ src/libcharon/plugins/xauth_generic/xauth_generic.c
 @@ -13,10 +13,15 @@
   * for more details.
