@@ -120,6 +120,7 @@
     SUBDIR += drraw
     SUBDIR += drupal7
     SUBDIR += drupal7-wysiwyg
+    SUBDIR += drupal8
     SUBDIR += drush
     SUBDIR += dtse
     SUBDIR += dummyflash
@@ -552,6 +553,7 @@
     SUBDIR += npm
     SUBDIR += npm012
     SUBDIR += npm2
+    SUBDIR += npm3
     SUBDIR += nspluginwrapper
     SUBDIR += obhttpd
     SUBDIR += ocaml-net
