@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 CATEGORIES=	net
-USES=		python:2.7
+USES=		python:3.5
 
 MASTERDIR=	${.CURDIR}/../../net/py-netaddr
 
