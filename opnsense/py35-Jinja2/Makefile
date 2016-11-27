@@ -1,8 +1,9 @@
 # Created by: Franco Fichtner <franco@opnsense.org>
 # $FreeBSD$
 
-CATEGORIES=	net
+CATEGORIES=	devel
+USES=		python:3.5
 
-MASTERDIR=	${.CURDIR}/../../net/py-netaddr
+MASTERDIR=	${.CURDIR}/../../devel/py-Jinja2
 
 .include "${MASTERDIR}/Makefile"

@@ -18,7 +18,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}MarkupSafe>=0.18:textproc/py-MarkupSafe
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}MarkupSafe>=0.18:textproc/py-MarkupSafe
 
 NO_ARCH=	yes
-USES=		python
+USES?=		python
 .if empty(PKGNAMESUFFIX)
 USE_PYTHON=	autoplist distutils
 .endif
