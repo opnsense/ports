@@ -4,6 +4,7 @@
 PORTNAME=	bitcoin
 PORTVERSION=	0.12.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	2
 CATEGORIES=	net-p2p finance
 
 MAINTAINER=	robbak@robbak.com

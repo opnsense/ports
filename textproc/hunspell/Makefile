@@ -12,6 +12,8 @@ COMMENT=	Improved spell-checker for Hungarian and other languages
 
 LICENSE=	GPLv2 LGPL21 MPL
 LICENSE_COMB=	dual
+LICENSE_FILE_LGPL21=	${WRKSRC}/COPYING.LGPL
+LICENSE_FILE_MPL=	${WRKSRC}/COPYING.MPL
 
 CONFLICTS_INSTALL=	tinker-[0-9]*
 CONFIGURE_ARGS=	--disable-nls ${ICONV_CONFIGURE_ARG} --with-readline --with-ui
@@ -22,10 +24,9 @@ USE_LDCONFIG=	yes
 USE_PERL5=	run
 INSTALL_TARGET=	install-strip
 
+PLIST_SUB=	SHLIB_VER=${PORTVERSION:R}
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g' ${WRKSRC}/src/tools/hunspell.cxx
-
-post-configure:
-	@${REINPLACE_CMD} -e 's|444|644|g' ${WRKSRC}/src/parsers/Makefile
 
 .include <bsd.port.mk>

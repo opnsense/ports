@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gpgme
-PORTVERSION=	1.7.1
+PORTVERSION=	1.8.0
 PORTREVISION?=	0
 CATEGORIES?=	security
 MASTER_SITES=	GNUPG/gpgme
@@ -70,7 +70,6 @@ LIB_DEPENDS+=	libgpgmepp.so:security/gpgme-cpp
 CONFIGURE_ARGS+=--enable-languages="cpp qt"
 USES+=		compiler:c++11-lib pkgconfig
 USE_QT5=	buildtools_build core testlib
-CONFLICTS_INSTALL=	kdepimlibs-4.*
 .  endif
 
 .  if ${SLAVEPORT} == "python"
@@ -81,7 +80,6 @@ USES+=		python
 USE_PYTHON=	py3kplist
 CONFIGURE_ENV+=	SWIG=${LOCALBASE}/bin/swig3.0
 PLIST_SUB+=	VERSION=${PORTVERSION}
-CONFLICTS_INSTALL=	py*-pyme-[0-9]*
 .  endif
 .endif
 

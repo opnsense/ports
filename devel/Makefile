@@ -758,7 +758,6 @@
     SUBDIR += go-protobuf
     SUBDIR += go-raw
     SUBDIR += go-runewidth
-    SUBDIR += go-shellwords
     SUBDIR += go-slices
     SUBDIR += go-sql-driver
     SUBDIR += go-tools
@@ -4324,6 +4323,7 @@
     SUBDIR += py-memory_profiler
     SUBDIR += py-mercurialserver
     SUBDIR += py-mez_xml
+    SUBDIR += py-microversion-parse
     SUBDIR += py-mimeparse
     SUBDIR += py-minimongo
     SUBDIR += py-mock
@@ -4366,7 +4366,10 @@
     SUBDIR += py-orbit
     SUBDIR += py-ordered-set
     SUBDIR += py-ordereddict
+    SUBDIR += py-os-brick
     SUBDIR += py-os-client-config
+    SUBDIR += py-os-vif
+    SUBDIR += py-os-win
     SUBDIR += py-osc-lib
     SUBDIR += py-oslo.cache
     SUBDIR += py-oslo.concurrency
@@ -4378,9 +4381,13 @@
     SUBDIR += py-oslo.messaging
     SUBDIR += py-oslo.middleware
     SUBDIR += py-oslo.policy
+    SUBDIR += py-oslo.privsep
+    SUBDIR += py-oslo.reports
+    SUBDIR += py-oslo.rootwrap
     SUBDIR += py-oslo.serialization
     SUBDIR += py-oslo.service
     SUBDIR += py-oslo.utils
+    SUBDIR += py-oslo.versionedobjects
     SUBDIR += py-osprofiler
     SUBDIR += py-palm
     SUBDIR += py-parsedatetime
@@ -4621,6 +4628,7 @@
     SUBDIR += py-thriftpy
     SUBDIR += py-timelib
     SUBDIR += py-tinyarray
+    SUBDIR += py-tinyrpc
     SUBDIR += py-tipper
     SUBDIR += py-total-ordering
     SUBDIR += py-tox
@@ -4674,8 +4682,10 @@
     SUBDIR += py-wcwidth
     SUBDIR += py-weakrefmethod
     SUBDIR += py-weblib
+    SUBDIR += py-websockify
     SUBDIR += py-wheel
     SUBDIR += py-wrapt
+    SUBDIR += py-wsgi_intercept
     SUBDIR += py-wsgi_xmlrpc
     SUBDIR += py-wsgitools
     SUBDIR += py-wsgiutils
@@ -4785,6 +4795,7 @@
     SUBDIR += py3-gobject3
     SUBDIR += py3-jsonschema
     SUBDIR += py3-libpeas
+    SUBDIR += py3-lxml
     SUBDIR += py3-nose
     SUBDIR += py3-pyicu
     SUBDIR += py3-pylru-cache

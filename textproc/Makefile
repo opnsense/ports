@@ -81,7 +81,6 @@
     SUBDIR += clit
     SUBDIR += clucene
     SUBDIR += clucene-qt4
-    SUBDIR += clucene-qt5
     SUBDIR += cmark
     SUBDIR += coccigrep
     SUBDIR += code2html
@@ -721,6 +720,7 @@
     SUBDIR += p5-Pod-Eventual
     SUBDIR += p5-Pod-HtmlEasy
     SUBDIR += p5-Pod-Markdown
+    SUBDIR += p5-Pod-MinimumVersion
     SUBDIR += p5-Pod-POM
     SUBDIR += p5-Pod-POM-View-HTML-Filter
     SUBDIR += p5-Pod-Parser
@@ -1440,6 +1440,7 @@
     SUBDIR += rubygem-github-markup
     SUBDIR += rubygem-gitlab-grit
     SUBDIR += rubygem-gitlab-linguist
+    SUBDIR += rubygem-gitlab-markup
     SUBDIR += rubygem-heredoc_unindent
     SUBDIR += rubygem-hikidoc
     SUBDIR += rubygem-html-pipeline
@@ -1637,6 +1638,7 @@
     SUBDIR += txt2html
     SUBDIR += txt2man
     SUBDIR += txt2tags
+    SUBDIR += UCD
     SUBDIR += uchardet
     SUBDIR += uim
     SUBDIR += uim-el
