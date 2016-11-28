@@ -3,7 +3,7 @@
 
 PORTNAME=	nginx
 PORTVERSION=	1.10.2
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/
@@ -747,17 +747,15 @@ CONFIGURE_ARGS+=--add-module=${WRKDIR}/nginx-goodies-nginx-sticky-module-ng-${NG
 
 .if ${PORT_OPTIONS:MHTTP_VIDEO_THUMBEXTRACTOR}
 NGINX_VIDEO_THUMBEXTRACTOR_VERSION=	0.7.0
-LIB_DEPENDS+= 	libjpeg.so:graphics/jpeg \
-		libavformat.so:multimedia/ffmpeg \
+LIB_DEPENDS+= 	libavformat.so:multimedia/ffmpeg \
 		libavcodec.so:multimedia/ffmpeg \
 		libavutil.so:multimedia/ffmpeg \
-		libswscale.so:multimedia/ffmpeg \
-		${IMAGEMAGICK_LIB_DEPENDS}
+		libswscale.so:multimedia/ffmpeg
+USES+=		jpeg
 GH_ACCOUNT+=	wandenberg:vte
 GH_PROJECT+=	nginx-video-thumbextractor-module:vte
 GH_TAGNAME+=	${NGINX_VIDEO_THUMBEXTRACTOR_VERSION}:vte
-CONFIGURE_ARGS+=--add-module=${WRKSRC_vte} --with-cc-opt="-I ${LOCALBASE}/include \
-		-I ${LOCALBASE}/include/ImageMagick"
+CONFIGURE_ARGS+=--add-module=${WRKSRC_vte}
 .endif
 
 .if ${PORT_OPTIONS:MHTTP_XSLT}
@@ -864,6 +862,7 @@ LIB_DEPENDS+=	libapr-1.so:devel/apr1 \
 		libyajl.so:devel/yajl
 USE_APACHE=	22+
 USE_GNOME+=	libxml2
+USES+=		pkgconfig shebangfix
 MASTER_SITES+=	http://www.modsecurity.org/tarball/${NGINX_MODSECURITY_VERSION:S/RC/rc/}/:modsecurity
 DISTFILES+=	modsecurity-${NGINX_MODSECURITY_VERSION}.tar.gz:modsecurity
 CONFIGURE_ARGS+=--add-module=${WRKDIR}/modsecurity-${NGINX_MODSECURITY_VERSION}/nginx/modsecurity
@@ -1274,7 +1273,9 @@ post-patch:
 pre-configure:
 .if ${PORT_OPTIONS:MMODSECURITY}
 	( cd ${WRKDIR}/modsecurity-${NGINX_MODSECURITY_VERSION} && \
-		CC="${CC}" ${CONFIGURE_CMD} --enable-standalone-module && \
+		CC="${CC}" ${CONFIGURE_CMD} --enable-standalone-module \
+		--with-pcre=${LOCALBASE} --with-yajl=${LOCALBASE} \
+		--with-curl=${LOCALBASE} && \
 		${SETENV} ${MAKE_ENV} ${MAKE_CMD} )
 .endif
 .if ${PORT_OPTIONS:MSMALL_LIGHT}
