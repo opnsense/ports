@@ -480,7 +480,6 @@
     SUBDIR += lpac
     SUBDIR += lua51-mpd
     SUBDIR += lv2
-    SUBDIR += lv2core
     SUBDIR += lxmusic
     SUBDIR += mac
     SUBDIR += madfufw
@@ -701,6 +700,7 @@
     SUBDIR += rubygem-ruby-ogginfo
     SUBDIR += rubygem-ruby-shout
     SUBDIR += s3mod
+    SUBDIR += sayonara
     SUBDIR += sbagen
     SUBDIR += schism
     SUBDIR += scrobbler
