@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	webgrind
-DISTVERSION=	1.0.s${SNAPSHOT}
+DISTVERSION=	1.4.s${SNAPSHOT}
 CATEGORIES=	www
 
 MAINTAINER=	lwhsu@FreeBSD.org
@@ -14,9 +14,9 @@ OPTIONS_DEFINE=	CALLGRAPH
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	jokkedk
-GH_TAGNAME=	dc35393
+GH_TAGNAME=	9052998
 
-SNAPSHOT=	20140207
+SNAPSHOT=	20160723
 
 USES=		php
 
@@ -30,6 +30,7 @@ CALLGRAPH_RUN_DEPENDS=	dot:graphics/graphviz
 
 post-patch-CALLGRAPH-on:
 	@${REINPLACE_CMD} -e 's,/usr/bin/python,${PYTHON_CMD},' ${WRKSRC}/config.php
+	@${REINPLACE_CMD} -e 's,/usr/bin/dot,/usr/local/bin/dot,' ${WRKSRC}/config.php
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}
