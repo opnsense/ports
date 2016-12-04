@@ -5221,6 +5221,8 @@
     SUBDIR += rubygem-multi_test
     SUBDIR += rubygem-murmurhash3
     SUBDIR += rubygem-mustache
+    SUBDIR += rubygem-mustermann
+    SUBDIR += rubygem-mustermann-grape
     SUBDIR += rubygem-mutter
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-needle
@@ -5403,6 +5405,7 @@
     SUBDIR += rubygem-tins
     SUBDIR += rubygem-titlecase
     SUBDIR += rubygem-toml
+    SUBDIR += rubygem-tool
     SUBDIR += rubygem-transaction-simple
     SUBDIR += rubygem-travis
     SUBDIR += rubygem-treetop

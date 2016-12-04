@@ -401,6 +401,7 @@
     SUBDIR += mediawiki123
     SUBDIR += mediawiki126
     SUBDIR += mediawiki127
+    SUBDIR += mediawiki128
     SUBDIR += mergelog
     SUBDIR += mgstat
     SUBDIR += mhonarc
@@ -2073,8 +2074,8 @@
     SUBDIR += rubygem-underscore-rails
     SUBDIR += rubygem-unicorn
     SUBDIR += rubygem-unicorn-worker-killer
-    SUBDIR += rubygem-url-mount
     SUBDIR += rubygem-url_escape
+    SUBDIR += rubygem-url_mount
     SUBDIR += rubygem-wasabi
     SUBDIR += rubygem-webkit-gtk
     SUBDIR += rubygem-webkit-gtk2
