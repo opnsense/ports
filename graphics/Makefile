@@ -98,6 +98,7 @@
     SUBDIR += cluttermm
     SUBDIR += code-eli
     SUBDIR += cogl
+    SUBDIR += colmap
     SUBDIR += colord
     SUBDIR += colord-gtk
     SUBDIR += comical
@@ -617,7 +618,6 @@
     SUBDIR += ocaml-lablgl
     SUBDIR += ocrad
     SUBDIR += ocre
-    SUBDIR += ocrfeeder
     SUBDIR += ocropus
     SUBDIR += ogre3d
     SUBDIR += okular
@@ -830,7 +830,6 @@
     SUBDIR += py-PyOpenGL-accelerate
     SUBDIR += py-PyX
     SUBDIR += py-PyX12
-    SUBDIR += py-aafigure
     SUBDIR += py-actdiag
     SUBDIR += py-blockdiag
     SUBDIR += py-blockdiagcontrib-cisco
