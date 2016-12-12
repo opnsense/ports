@@ -14,7 +14,6 @@ USES=		autoreconf
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	sleinen
-GH_PROJECT=	samplicator
 
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	${PORTNAME}
