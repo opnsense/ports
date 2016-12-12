@@ -3,12 +3,13 @@ PORTVERSION=	0.0.2
 PORTREVISION=	2
 CATEGORIES=	sysutils
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
-GH_PROJECT=	sshlockout_pf
-
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Automatically block IPs with failed SSH logins using pf(4)
+
+LICENSE=	BSD2CLAUSE
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	opnsense
 
 PLIST_FILES=    sbin/sshlockout_pf
 

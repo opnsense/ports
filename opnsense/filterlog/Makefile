@@ -11,6 +11,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Parse pflog(4) output
 
+LICENSE=	BSD3CLAUSE
+
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
 

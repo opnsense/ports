@@ -8,9 +8,10 @@ CATEGORIES=	net
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Netgraph(4) tool for per-device attach
 
+LICENSE=	BSD2CLAUSE
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	fichtner
-GH_PROJECT=	ngattach
 
 PLIST_FILES=    sbin/ngattach
 

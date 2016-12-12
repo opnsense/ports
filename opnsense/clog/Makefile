@@ -9,6 +9,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Circular log support for FreeBSD syslogd
 
+LICENSE=	BSD2CLAUSE
+
 # -O2 is dangerous for clog! It breaks on i386 -O works.
 CFLAGS+=	-O
 

@@ -11,6 +11,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Interface statistics reader
 
+LICENSE=	MIT
+
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
 

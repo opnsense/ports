@@ -9,9 +9,10 @@ CATEGORIES=	sysutils
 MAINTAINER=	franco@opnsense.org
 COMMENT=	BSD Installer mega-package
 
+LICENSE=	BSD3CLAUSE
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_PROJECT=	bsdinstaller
 GH_TAGNAME=	7cd41b1
 
 RUN_DEPENDS=	cpdup:sysutils/cpdup

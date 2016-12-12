@@ -7,6 +7,8 @@ DISTFILES=
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Beeps a certain duration and pitch out of the PC Speaker
 
+LICENSE=	BSD4CLAUSE
+
 ONLY_FOR_ARCHS=	i386 amd64 pc98
 
 PLIST_FILES=	bin/beep man/man1/beep.1.gz

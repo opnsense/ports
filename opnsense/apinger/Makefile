@@ -10,7 +10,6 @@ COMMENT=	IP device monitoring tool
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_PROJECT=	apinger
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING

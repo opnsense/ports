@@ -8,6 +8,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Read dhpcd.lease file and add it to hosts file
 
+LICENSE=	BSD2CLAUSE
+
 do-extract:
 	mkdir -p ${WRKSRC}
 

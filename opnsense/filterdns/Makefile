@@ -8,6 +8,8 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	filterdns
 
+LICENSE=	BSD2CLAUSE
+
 PLIST_FILES=    sbin/filterdns
 
 do-extract:
