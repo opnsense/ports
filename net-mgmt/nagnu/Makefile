@@ -2,6 +2,7 @@
 
 PORTNAME=	nagnu
 PORTVERSION=	1.1.2
+PORTREVISION=	1
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	fredrik@min-hemsida.net
@@ -9,9 +10,9 @@ COMMENT=	Nagios dashboard
 
 LICENSE=	BSD2CLAUSE
 
-LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libncurses.so:devel/ncurses
+LIB_DEPENDS=	libcurl.so:ftp/curl
 
+USES=		ncurses
 USE_GITHUB=	yes
 GH_ACCOUNT=	frlen
 PLIST_FILES=	bin/nagnu \
