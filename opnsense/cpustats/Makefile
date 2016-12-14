@@ -11,11 +11,13 @@ COMMENT=	Gather system statistics
 WHERE=		sbin
 PLIST_FILES=    ${WHERE}/${PORTNAME}
 
+.include <bsd.port.pre.mk>
+
 do-extract:
 	mkdir -p ${WRKSRC}
 
 do-build:
-	${CC} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} ${FILESDIR}/${PORTNAME}.c
+	${CC} ${LDFLAGS} ${CFLAGS} -o ${WRKSRC}/${PORTNAME} ${FILESDIR}/${PORTNAME}.c
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/${WHERE}/
