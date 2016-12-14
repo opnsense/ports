@@ -14,11 +14,13 @@ LICENSE=	BSD2CLAUSE
 # -O2 is dangerous for clog! It breaks on i386 -O works.
 CFLAGS+=	-O
 
+.include <bsd.port.pre.mk>
+
 do-extract:
 	mkdir -p ${WRKSRC}
 
 do-build:
-	${CC} ${CFLAGS} -o ${WRKSRC}/clog ${FILESDIR}/clog.c
+	${CC} ${LDFLAGS} ${CFLAGS} -o ${WRKSRC}/clog ${FILESDIR}/clog.c
 	cp ${FILESDIR}/clog.8 ${WRKSRC}/clog.8
 	gzip ${WRKSRC}/clog.8
 
