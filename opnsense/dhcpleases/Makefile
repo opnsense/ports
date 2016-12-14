@@ -10,12 +10,14 @@ COMMENT=	Read dhpcd.lease file and add it to hosts file
 
 LICENSE=	BSD2CLAUSE
 
+.include <bsd.port.pre.mk>
+
 do-extract:
 	mkdir -p ${WRKSRC}
 
 do-build:
-	${CC} ${CFLAGS} -o ${WRKSRC}/dhcpleases ${FILESDIR}/dhcpleases.c
-	${CC} ${CFLAGS} -o ${WRKSRC}/dhcpleases6 ${FILESDIR}/dhcpleases6.c
+	${CC} ${LDFLAGS} ${CFLAGS} -o ${WRKSRC}/dhcpleases ${FILESDIR}/dhcpleases.c
+	${CC} ${LDFLAGS} ${CFLAGS} -o ${WRKSRC}/dhcpleases6 ${FILESDIR}/dhcpleases6.c
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/dhcpleases ${STAGEDIR}${PREFIX}/sbin
