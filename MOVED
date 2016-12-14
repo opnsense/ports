@@ -6953,8 +6953,6 @@ databases/msql||2014-09-07|Has expired: Not staged and BROKEN
 multimedia/pvr250||2014-09-07|Has expired: Not staged and BROKEN
 multimedia/pvrxxx||2014-09-07|Has expired: Not staged and BROKEN
 textproc/py-4suite-xml||2014-09-07|Has expired: Not staged
-games/alienarena||2014-09-07|Has expired: Not staged
-games/alienarena-data||2014-09-07|Useless with alienarena removed
 net/libexosip2-legacy|net/libexosip2|2014-09-07|Has expired: Superseded by net/libexosip2
 net/libosip|net/libosip2|2014-09-07|Has expired: Superseded by net/libosip2
 lang/caml-light||2014-09-07|Not staged
@@ -8831,3 +8829,6 @@ graphics/ocrfeeder||2016-12-08|Has expired: Depends on broken and expired py-rep
 devel/libcppformat|devel/libfmt|2016-12-08|Project was renamed
 databases/py35-mysqlclient|databases/py3-mysqlclient|2016-12-10|Moved to match existing naming convention
 databases/py35-psycopg2|databases/py3-psycopg2|2016-12-10|Moved to match existing naming convention
+www/linux-f10-flashplugin11||2016-12-13|Deprecated
+www/linux-c6-flashplugin11|www/linux-c6-flashplugin24|2016-12-13|Deprecated
+www/linux-c7-flashplugin11|www/linux-c7-flashplugin24|2016-12-13|Deprecated
