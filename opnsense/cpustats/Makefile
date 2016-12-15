@@ -22,4 +22,4 @@ do-build:
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/${WHERE}/
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

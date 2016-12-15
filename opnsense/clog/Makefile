@@ -29,4 +29,4 @@ do-install:
 	${INSTALL_DATA} ${FILESDIR}/clog.h ${STAGEDIR}${PREFIX}/include
 	${INSTALL_PROGRAM} ${WRKSRC}/clog ${STAGEDIR}${PREFIX}/sbin
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

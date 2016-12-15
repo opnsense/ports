@@ -23,4 +23,4 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/dhcpleases ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_PROGRAM} ${WRKSRC}/dhcpleases6 ${STAGEDIR}${PREFIX}/sbin
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
