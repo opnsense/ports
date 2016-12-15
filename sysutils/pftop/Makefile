@@ -10,6 +10,10 @@ MASTER_SITES=	http://www.eee.metu.edu.tr/~canacar/
 MAINTAINER=	araujo@FreeBSD.org
 COMMENT=	Utility for real-time display of statistics for pf
 
+OPTIONS_DEFINE=	ALTQ
+
+ALTQ_DESC=	ALTQ support for queue statistics
+
 BROKEN_FreeBSD_9=	does not build
 
 .include <bsd.port.pre.mk>
@@ -21,6 +25,9 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-bpf_dump.c \
 
 MAKE_ARGS=	LOCALBASE="${PREFIX}" OSLEVEL=45
 CFLAGS+=	-DHAVE_SNPRINTF=1 -DHAVE_VSNPRINTF=1
+.if ${PORT_OPTIONS:MALTQ}
+CFLAGS+=	-DHAVE_ALTQ=1
+.endif
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-cache.c \
 		${FILESDIR}/extra-patch-cache.h \
 		${FILESDIR}/extra-patch-config.h \
