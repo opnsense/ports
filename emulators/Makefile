@@ -115,6 +115,7 @@
     SUBDIR += ppsspp-qt4
     SUBDIR += ppsspp-qt5
     SUBDIR += py-gns3-converter
+    SUBDIR += py-nova
     SUBDIR += q4wine
     SUBDIR += qemu
     SUBDIR += qemu-cheri
@@ -147,6 +148,7 @@
     SUBDIR += tuxnes
     SUBDIR += uae
     SUBDIR += ucon64
+    SUBDIR += unicorn
     SUBDIR += vba
     SUBDIR += vboxtool
     SUBDIR += vgb-bin
