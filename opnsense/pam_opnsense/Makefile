@@ -3,6 +3,7 @@
 
 PORTNAME=	pam_opnsense
 PORTVERSION=	16.7
+PORTREVISION=	1 # GH_TAGNAME set
 CATEGORIES=	sysutils
 
 MAINTAINER=	ad@opnsense.org
@@ -12,5 +13,6 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
+GH_TAGNAME=	2959740
 
 .include <bsd.port.mk>
