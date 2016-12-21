@@ -3,6 +3,7 @@
 
 PORTNAME=		openvpn
 DISTVERSION=		2.3.14
+PORTREVISION=		1
 CATEGORIES=		security net
 MASTER_SITES=		http://swupdate.openvpn.net/community/releases/ \
 			http://build.openvpn.net/downloads/releases/
@@ -31,8 +32,9 @@ LDFLAGS+=		-L${LOCALBASE}/lib
 CPPFLAGS+=		-DPLUGIN_LIBDIR=\\\"${PREFIX}/lib/openvpn/plugins\\\"
 
 OPTIONS_DEFINE=		PKCS11 EASYRSA DOCS EXAMPLES X509ALTUSERNAME \
-			TUNNELBLICK TEST
-OPTIONS_DEFAULT=	EASYRSA OPENSSL TEST
+			TUNNELBLICK TEST FIXSUBNET2
+OPTIONS_DEFAULT=	EASYRSA OPENSSL TEST FIXSUBNET2
+OPTIONS_EXCLUDE_FreeBSD_11=FIXSUBNET2
 OPTIONS_SINGLE=		SSL
 OPTIONS_SINGLE_SSL=	OPENSSL POLARSSL
 # The following feature is always enabled since 2.3.9 and no longer optional.
@@ -44,6 +46,9 @@ TUNNELBLICK_DESC=	Tunnelblick XOR scramble patch (READ HELP!)
 X509ALTUSERNAME_DESC=	Enable --x509-username-field (OpenSSL only)
 
 EASYRSA_RUN_DEPENDS=	easy-rsa>=0:security/easy-rsa
+
+FIXSUBNET2_EXTRA_PATCHES=	${FILESDIR}/extra-revert-topology-subnet
+FIXSUBNET2_DESC=	Revert 2.3.14 topology subnet fixes for FreeBSD 10
 
 PKCS11_LIB_DEPENDS=	libpkcs11-helper.so:security/pkcs11-helper
 PKCS11_CONFIGURE_ENABLE=	pkcs11
