@@ -1,0 +1,127 @@
+Revert upstream topology subnet fixes:
+
+Revert "Repair topology subnet on OpenBSD"
+
+This reverts commit ceac73b04fe9b70ed798afc07ddb9737c97b7a5d.
+
+Revert "Repair topology subnet on FreeBSD 11"
+
+This reverts commit 446ef5bda4cdc75d4cb955e274846faff0181fd3.
+---
+ src/openvpn/tun.c | 34 +++++++---------------------------
+ 1 file changed, 7 insertions(+), 27 deletions(-)
+
+diff --git a/src/openvpn/tun.c b/src/openvpn/tun.c
+index ca12180..11027dd 100644
+--- src/openvpn/tun.c
++++ src/openvpn/tun.c
+@@ -625,8 +625,7 @@ void delete_route_connected_v6_net(struct tuntap * tt,
+ }
+ #endif
+ 
+-#if defined(TARGET_FREEBSD)||defined(TARGET_DRAGONFLY)||\
+-    defined(TARGET_OPENBSD)
++#if defined(TARGET_FREEBSD)||defined(TARGET_DRAGONFLY)
+ /* we can't use true subnet mode on tun on all platforms, as that
+  * conflicts with IPv6 (wants to use ND then, which we don't do),
+  * but the OSes want "a remote address that is different from ours"
+@@ -636,8 +635,8 @@ void delete_route_connected_v6_net(struct tuntap * tt,
+  * is still point to point and no layer 2 resolution is done...
+  */
+ 
+-in_addr_t
+-create_arbitrary_remote( struct tuntap *tt )
++const char *
++create_arbitrary_remote( struct tuntap *tt, struct gc_arena * gc )
+ {
+   in_addr_t remote;
+ 
+@@ -645,7 +644,7 @@ create_arbitrary_remote( struct tuntap *tt )
+ 
+   if ( remote == tt->local ) remote ++;
+ 
+-  return remote;
++  return print_in_addr_t (remote, 0, gc);
+ }
+ #endif
+ 
+@@ -917,8 +916,6 @@ do_ifconfig (struct tuntap *tt,
+ 
+ #elif defined(TARGET_OPENBSD)
+ 
+-      in_addr_t remote_end;		/* for "virtual" subnet topology */
+-
+       /*
+        * On OpenBSD, tun interfaces are persistent if created with
+        * "ifconfig tunX create", and auto-destroyed if created by
+@@ -938,13 +935,12 @@ do_ifconfig (struct tuntap *tt,
+       else
+ 	if ( tt->topology == TOP_SUBNET )
+ 	{
+-	    remote_end = create_arbitrary_remote( tt );
+ 	    argv_printf (&argv,
+ 			  "%s %s %s %s mtu %d netmask %s up -link0",
+ 			  IFCONFIG_PATH,
+ 			  actual,
+ 			  ifconfig_local,
+-			  print_in_addr_t (remote_end, 0, &gc),
++			  ifconfig_local,
+ 			  tun_mtu,
+ 			  ifconfig_remote_netmask
+ 			  );
+@@ -961,19 +957,6 @@ do_ifconfig (struct tuntap *tt,
+ 			  );
+       argv_msg (M_INFO, &argv);
+       openvpn_execve_check (&argv, es, S_FATAL, "OpenBSD ifconfig failed");
+-
+-      /* Add a network route for the local tun interface */
+-      if (!tun && tt->topology == TOP_SUBNET)
+-        {
+-          struct route_ipv4 r;
+-          CLEAR (r);
+-          r.flags = RT_DEFINED;
+-          r.network = tt->local & tt->remote_netmask;
+-          r.netmask = tt->remote_netmask;
+-          r.gateway = remote_end;
+-          add_route (&r, tt, 0, NULL, es);
+-        }
+-
+       if ( do_ipv6 )
+ 	{
+ 	  argv_printf (&argv,
+@@ -1143,8 +1126,6 @@ do_ifconfig (struct tuntap *tt,
+ 
+ #elif defined(TARGET_FREEBSD)||defined(TARGET_DRAGONFLY)
+ 
+-      in_addr_t remote_end;		/* for "virtual" subnet topology */
+-
+       /* example: ifconfig tun2 10.2.0.2 10.2.0.1 mtu 1450 netmask 255.255.255.255 up */
+       if (tun)
+ 	argv_printf (&argv,
+@@ -1157,13 +1138,12 @@ do_ifconfig (struct tuntap *tt,
+ 			  );
+       else if ( tt->topology == TOP_SUBNET )
+ 	{
+-	    remote_end = create_arbitrary_remote( tt );
+ 	    argv_printf (&argv,
+ 			  "%s %s %s %s mtu %d netmask %s up",
+ 			  IFCONFIG_PATH,
+ 			  actual,
+ 			  ifconfig_local,
+-			  print_in_addr_t (remote_end, 0, &gc),
++			  create_arbitrary_remote( tt, &gc ),
+ 			  tun_mtu,
+ 			  ifconfig_remote_netmask
+ 			  );
+@@ -1190,7 +1170,7 @@ do_ifconfig (struct tuntap *tt,
+           r.flags = RT_DEFINED;
+           r.network = tt->local & tt->remote_netmask;
+           r.netmask = tt->remote_netmask;
+-          r.gateway = remote_end;
++          r.gateway = tt->local;
+           add_route (&r, tt, 0, NULL, es);
+         }
+ 
+-- 
+2.10.1 (Apple Git-78)
+
