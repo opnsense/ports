@@ -631,6 +631,7 @@
     SUBDIR += py-theano
     SUBDIR += py-ufl
     SUBDIR += py-viper
+    SUBDIR += py-yt
     SUBDIR += qalculate
     SUBDIR += qd
     SUBDIR += qhull
@@ -651,6 +652,7 @@
     SUBDIR += rpy
     SUBDIR += rpy2
     SUBDIR += ruby-algebra
+    SUBDIR += rubygem-algebra
     SUBDIR += rubygem-expression_parser
     SUBDIR += rubygem-fftw3
     SUBDIR += rubygem-narray

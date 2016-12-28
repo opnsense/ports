@@ -27,7 +27,8 @@
     SUBDIR += bwm-ng
     SUBDIR += cacti
     SUBDIR += cacti-spine
-    SUBDIR += ccnet
+    SUBDIR += ccnet-client
+    SUBDIR += ccnet-server
     SUBDIR += cdpd
     SUBDIR += cdpr
     SUBDIR += cdpsnarf
@@ -303,8 +304,9 @@
     SUBDIR += sblim-wbemcli
     SUBDIR += scli
     SUBDIR += sdig
-    SUBDIR += seafile
+    SUBDIR += seafile-client
     SUBDIR += seafile-gui
+    SUBDIR += seafile-server
     SUBDIR += send
     SUBDIR += sendip
     SUBDIR += sipcalc

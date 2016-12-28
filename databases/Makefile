@@ -708,6 +708,7 @@
     SUBDIR += py-MySQLdb56
     SUBDIR += py-PyGreSQL
     SUBDIR += py-Pyrseas
+    SUBDIR += py-agate-sql
     SUBDIR += py-alembic
     SUBDIR += py-apsw
     SUBDIR += py-bsddb
@@ -774,7 +775,6 @@
     SUBDIR += py-rrdtool_lgpl
     SUBDIR += py-south
     SUBDIR += py-sqlalchemy-migrate
-    SUBDIR += py-sqlalchemy07
     SUBDIR += py-sqlalchemy08
     SUBDIR += py-sqlalchemy09
     SUBDIR += py-sqlalchemy10
@@ -800,6 +800,8 @@
     SUBDIR += py34-sqlite3
     SUBDIR += py35-gdbm
     SUBDIR += py35-sqlite3
+    SUBDIR += py36-gdbm
+    SUBDIR += py36-sqlite3
     SUBDIR += pydbx
     SUBDIR += pymongo
     SUBDIR += pypy-gdbm
