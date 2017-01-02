@@ -1,0 +1,247 @@
+--- if_em.c.orig	2016-02-12 19:04:00 UTC
++++ if_em.c
+@@ -271,7 +271,9 @@ static bool	em_rxeof(struct rx_ring *, i
+ #ifndef __NO_STRICT_ALIGNMENT
+ static int	em_fixup_rx(struct rx_ring *);
+ #endif
+-static void	em_receive_checksum(struct e1000_rx_desc *, struct mbuf *);
++static void	em_setup_rxdesc(union e1000_rx_desc_extended *,
++		    const struct em_buffer *rxbuf);
++static void	em_receive_checksum(uint32_t status, struct mbuf *);
+ static void	em_transmit_checksum_setup(struct tx_ring *, struct mbuf *, int,
+ 		    struct ip *, u32 *, u32 *);
+ static void	em_tso_setup(struct tx_ring *, struct mbuf *, int, struct ip *,
+@@ -355,6 +357,9 @@ devclass_t em_devclass;
+ DRIVER_MODULE(em, pci, em_driver, em_devclass, 0, 0);
+ MODULE_DEPEND(em, pci, 1, 1, 1);
+ MODULE_DEPEND(em, ether, 1, 1, 1);
++#ifdef DEV_NETMAP
++MODULE_DEPEND(em, netmap, 1, 1, 1);
++#endif /* DEV_NETMAP */
+ 
+ /*********************************************************************
+  *  Tunable default values.
+@@ -652,7 +657,7 @@ em_attach(device_t dev)
+ 	} else
+ 		adapter->num_tx_desc = em_txd;
+ 
+-	if (((em_rxd * sizeof(struct e1000_rx_desc)) % EM_DBA_ALIGN) != 0 ||
++	if (((em_rxd * sizeof(union e1000_rx_desc_extended)) % EM_DBA_ALIGN) != 0 ||
+ 	    (em_rxd > EM_MAX_RXD) || (em_rxd < EM_MIN_RXD)) {
+ 		device_printf(dev, "Using %d RX descriptors instead of %d!\n",
+ 		    EM_DEFAULT_RXD, em_rxd);
+@@ -3433,7 +3438,7 @@ em_allocate_queues(struct adapter *adapt
+ 	 * Next the RX queues...
+ 	 */ 
+ 	rsize = roundup2(adapter->num_rx_desc *
+-	    sizeof(struct e1000_rx_desc), EM_DBA_ALIGN);
++	    sizeof(union e1000_rx_desc_extended), EM_DBA_ALIGN);
+ 	for (int i = 0; i < adapter->num_queues; i++, rxconf++) {
+ 		rxr = &adapter->rx_rings[i];
+ 		rxr->adapter = adapter;
+@@ -3451,7 +3456,7 @@ em_allocate_queues(struct adapter *adapt
+ 			error = ENOMEM;
+ 			goto err_rx_desc;
+ 		}
+-		rxr->rx_base = (struct e1000_rx_desc *)rxr->rxdma.dma_vaddr;
++		rxr->rx_base = (union e1000_rx_desc_extended *)rxr->rxdma.dma_vaddr;
+ 		bzero((void *)rxr->rx_base, rsize);
+ 
+         	/* Allocate receive buffers for the ring*/
+@@ -4218,9 +4223,10 @@ em_refresh_mbufs(struct rx_ring *rxr, in
+ 			goto update;
+ 		}
+ 		rxbuf->m_head = m;
++		rxbuf->paddr = segs[0].ds_addr;
+ 		bus_dmamap_sync(rxr->rxtag,
+ 		    rxbuf->map, BUS_DMASYNC_PREREAD);
+-		rxr->rx_base[i].buffer_addr = htole64(segs[0].ds_addr);
++		em_setup_rxdesc(&rxr->rx_base[i], rxbuf);
+ 		cleaned = TRUE;
+ 
+ 		i = j; /* Next is precalulated for us */
+@@ -4323,7 +4329,7 @@ em_setup_receive_ring(struct rx_ring *rx
+ 	/* Clear the ring contents */
+ 	EM_RX_LOCK(rxr);
+ 	rsize = roundup2(adapter->num_rx_desc *
+-	    sizeof(struct e1000_rx_desc), EM_DBA_ALIGN);
++	    sizeof(union e1000_rx_desc_extended), EM_DBA_ALIGN);
+ 	bzero((void *)rxr->rx_base, rsize);
+ #ifdef DEV_NETMAP
+ 	slot = netmap_reset(na, NR_RX, rxr->me, 0);
+@@ -4354,8 +4360,8 @@ em_setup_receive_ring(struct rx_ring *rx
+ 
+ 			addr = PNMB(na, slot + si, &paddr);
+ 			netmap_load_map(na, rxr->rxtag, rxbuf->map, addr);
+-			/* Update descriptor */
+-			rxr->rx_base[j].buffer_addr = htole64(paddr);
++			rxbuf->paddr = paddr;
++			em_setup_rxdesc(&rxr->rx_base[j], rxbuf);
+ 			continue;
+ 		}
+ #endif /* DEV_NETMAP */
+@@ -4382,7 +4388,8 @@ em_setup_receive_ring(struct rx_ring *rx
+ 		    rxbuf->map, BUS_DMASYNC_PREREAD);
+ 
+ 		/* Update descriptor */
+-		rxr->rx_base[j].buffer_addr = htole64(seg[0].ds_addr);
++ 		rxbuf->paddr = seg[0].ds_addr;
++ 		em_setup_rxdesc(&rxr->rx_base[j], rxbuf);
+ 	}
+ 	rxr->next_to_check = 0;
+ 	rxr->next_to_refresh = 0;
+@@ -4521,6 +4528,7 @@ em_initialize_receive_unit(struct adapte
+ 	 * up the descriptor ring
+ 	 */
+ 	rctl = E1000_READ_REG(hw, E1000_RCTL);
++	rctl |= E1000_RFCTL_EXTEN;
+ 	/* Do not disable if ever enabled on this hardware */
+ 	if ((hw->mac.type != e1000_82574) && (hw->mac.type != e1000_82583))
+ 		E1000_WRITE_REG(hw, E1000_RCTL, rctl & ~E1000_RCTL_EN);
+@@ -4616,7 +4624,7 @@ em_initialize_receive_unit(struct adapte
+ 
+ 		bus_addr = rxr->rxdma.dma_paddr;
+ 		E1000_WRITE_REG(hw, E1000_RDLEN(i),
+-		    adapter->num_rx_desc * sizeof(struct e1000_rx_desc));
++		    adapter->num_rx_desc * sizeof(union e1000_rx_desc_extended));
+ 		E1000_WRITE_REG(hw, E1000_RDBAH(i), (u32)(bus_addr >> 32));
+ 		E1000_WRITE_REG(hw, E1000_RDBAL(i), (u32)bus_addr);
+ 		/* Setup the Head and Tail Descriptor Pointers */
+@@ -4720,7 +4728,7 @@ em_rxeof(struct rx_ring *rxr, int count,
+ 	u16 			len;
+ 	int			i, processed, rxdone = 0;
+ 	bool			eop;
+-	struct e1000_rx_desc	*cur;
++	union e1000_rx_desc_extended	*cur;
+ 
+ 	EM_RX_LOCK(rxr);
+ 
+@@ -4742,16 +4750,16 @@ em_rxeof(struct rx_ring *rxr, int count,
+ 			break;
+ 
+ 		cur = &rxr->rx_base[i];
+-		status = cur->status;
++		status = le32toh(cur->wb.upper.status_error);
+ 		mp = sendmp = NULL;
+ 
+ 		if ((status & E1000_RXD_STAT_DD) == 0)
+ 			break;
+ 
+-		len = le16toh(cur->length);
++		len = le16toh(cur->wb.upper.length);
+ 		eop = (status & E1000_RXD_STAT_EOP) != 0;
+ 
+-		if ((cur->errors & E1000_RXD_ERR_FRAME_ERR_MASK) ||
++		if ((status & E1000_RXD_ERR_FRAME_ERR_MASK) ||
+ 		    (rxr->discard == TRUE)) {
+ 			adapter->dropped_pkts++;
+ 			++rxr->rx_discarded;
+@@ -4788,7 +4796,7 @@ em_rxeof(struct rx_ring *rxr, int count,
+ 			sendmp = rxr->fmp;
+ 			if_setrcvif(sendmp, ifp);
+ 			if_inc_counter(ifp, IFCOUNTER_IPACKETS, 1);
+-			em_receive_checksum(cur, sendmp);
++			em_receive_checksum(status, sendmp);
+ #ifndef __NO_STRICT_ALIGNMENT
+ 			if (adapter->hw.mac.max_frame_size >
+ 			    (MCLBYTES - ETHER_ALIGN) &&
+@@ -4797,7 +4805,7 @@ em_rxeof(struct rx_ring *rxr, int count,
+ #endif
+ 			if (status & E1000_RXD_STAT_VP) {
+ 				if_setvtag(sendmp, 
+-				    le16toh(cur->special));
++				    le16toh(cur->wb.upper.vlan));
+ 				sendmp->m_flags |= M_VLANTAG;
+ 			}
+ #ifndef __NO_STRICT_ALIGNMENT
+@@ -4811,7 +4819,7 @@ next_desc:
+ 	    		BUS_DMASYNC_POSTREAD | BUS_DMASYNC_POSTWRITE);
+ 
+ 		/* Zero out the receive descriptors status. */
+-		cur->status = 0;
++		cur->wb.upper.status_error &= htole32(~0xFF);
+ 		++rxdone;	/* cumulative for POLL */
+ 		++processed;
+ 
+@@ -4922,6 +4930,14 @@ em_fixup_rx(struct rx_ring *rxr)
+ }
+ #endif
+ 
++static void
++em_setup_rxdesc(union e1000_rx_desc_extended *rxd, const struct em_buffer *rxbuf)
++{
++	rxd->read.buffer_addr = htole64(rxbuf->paddr);
++	/* DD bits must be cleared */
++	rxd->wb.upper.status_error= 0;
++}
++
+ /*********************************************************************
+  *
+  *  Verify that the hardware indicated that the checksum is valid.
+@@ -4930,23 +4946,27 @@ em_fixup_rx(struct rx_ring *rxr)
+  *
+  *********************************************************************/
+ static void
+-em_receive_checksum(struct e1000_rx_desc *rx_desc, struct mbuf *mp)
++em_receive_checksum(uint32_t status, struct mbuf *mp)
+ {
+ 	mp->m_pkthdr.csum_flags = 0;
+ 
+ 	/* Ignore Checksum bit is set */
+-	if (rx_desc->status & E1000_RXD_STAT_IXSM)
+-		return;
+-
+-	if (rx_desc->errors & (E1000_RXD_ERR_TCPE | E1000_RXD_ERR_IPE))
++	if (status & E1000_RXD_STAT_IXSM)
+ 		return;
+ 
+-	/* IP Checksum Good? */
+-	if (rx_desc->status & E1000_RXD_STAT_IPCS)
++	/* If the IP checksum exists and there is no IP Checksum error */
++	if ((status & (E1000_RXD_STAT_IPCS | E1000_RXDEXT_STATERR_IPE)) ==
++		E1000_RXD_STAT_IPCS) {
+ 		mp->m_pkthdr.csum_flags = (CSUM_IP_CHECKED | CSUM_IP_VALID);
++	}
+ 
+ 	/* TCP or UDP checksum */
+-	if (rx_desc->status & (E1000_RXD_STAT_TCPCS | E1000_RXD_STAT_UDPCS)) {
++	if ((status & (E1000_RXD_STAT_TCPCS | E1000_RXDEXT_STATERR_TCPE)) ==
++	    E1000_RXD_STAT_TCPCS) {
++		mp->m_pkthdr.csum_flags |= (CSUM_DATA_VALID | CSUM_PSEUDO_HDR);
++		mp->m_pkthdr.csum_data = htons(0xffff);
++	}
++	if (status & E1000_RXD_STAT_UDPCS) {
+ 		mp->m_pkthdr.csum_flags |= (CSUM_DATA_VALID | CSUM_PSEUDO_HDR);
+ 		mp->m_pkthdr.csum_data = htons(0xffff);
+ 	}
+--- if_em.h.orig	2016-02-12 19:04:00 UTC
++++ if_em.h
+@@ -366,7 +366,7 @@ struct rx_ring {
+         u32                     payload;
+         struct task             rx_task;
+         struct taskqueue        *tq;
+-        struct e1000_rx_desc	*rx_base;
++        union e1000_rx_desc_extended	*rx_base;
+         struct em_dma_alloc	rxdma;
+         u32			next_to_refresh;
+         u32			next_to_check;
+@@ -507,6 +507,7 @@ struct em_buffer {
+ 	int		next_eop;  /* Index of the desc to watch */
+         struct mbuf    *m_head;
+         bus_dmamap_t    map;         /* bus_dma map for packet */
++	bus_addr_t	paddr;
+ };
+ 
+ 
+--- if_lem.c.orig	2017-01-03 09:52:47 UTC
++++ if_lem.c
+@@ -291,6 +291,9 @@ extern devclass_t em_devclass;
+ DRIVER_MODULE(lem, pci, lem_driver, em_devclass, 0, 0);
+ MODULE_DEPEND(lem, pci, 1, 1, 1);
+ MODULE_DEPEND(lem, ether, 1, 1, 1);
++#ifdef DEV_NETMAP
++MODULE_DEPEND(lem, netmap, 1, 1, 1);
++#endif /* DEV_NETMAP */
+ 
+ /*********************************************************************
+  *  Tunable default values.
