@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mozc
-PORTVERSION=	2.20.2677.102.01
+PORTVERSION=	2.20.2677.102.02
 DISTVERSIONPREFIX=	v
 CATEGORIES=	japanese
 
@@ -74,12 +74,12 @@ BROKEN=		Does not compile: segfault
 GYP_DEFINES=	use_libprotobuf=1 \
 		channel_dev=0 \
 		enable_unittest=0 \
-		compiler_host="${_CCTYPE}" \
-		compiler_target="${_CCTYPE}" \
+		compiler_host='${_CCTYPE}' \
+		compiler_target='${_CCTYPE}' \
 		use_libzinnia=1 \
-		zinnia_model_file="${LOCALBASE}/share/tegaki/models/zinnia/handwriting-ja.model" \
-		ibus_mozc_icon_path="${LOCALBASE}/share/ibus-mozc/icons/product_icon.png" \
-		ibus_mozc_path="${PREFIX}/libexec/ibus-engine-mozc"
+		zinnia_model_file='${LOCALBASE}/share/tegaki/models/zinnia/handwriting-ja.model' \
+		ibus_mozc_icon_path='${LOCALBASE}/share/ibus-mozc/icons/product_icon.png' \
+		ibus_mozc_path='${PREFIX}/libexec/ibus-engine-mozc'
 BUILD_MODE=	Release
 BUILD_CMD=	${SETENV} ${MAKE_ENV} PATH=/bin:/usr/bin:${PATH} ${MAKE_CMD}
 BUILD_MOZC_CMD=	cd ${BUILD_WRKSRC} && \
@@ -306,7 +306,7 @@ do-install-uim_mozc:
 
 # fcitx_mozc
 .if ${BUILD_MOZC_LIST:Mfcitx_mozc} == "fcitx_mozc"
-GYP_OPTIONS+=	--noqt
+GYP_OPTIONS+=	--noqt --use_fcitx
 GYP_DEFINES+=	use_libibus=0 \
 		enable_gtk_renderer=0
 
