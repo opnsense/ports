@@ -5164,6 +5164,7 @@
     SUBDIR += rubygem-get_process_mem
     SUBDIR += rubygem-getopt
     SUBDIR += rubygem-gettext
+    SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gh
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
@@ -5211,6 +5212,7 @@
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
     SUBDIR += rubygem-json
+    SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
@@ -5645,6 +5647,7 @@
     SUBDIR += umem
     SUBDIR += umlgraph
     SUBDIR += unibilium
+    SUBDIR += unittest-cpp
     SUBDIR += universalindentgui
     SUBDIR += upnp
     SUBDIR += upp
