@@ -1009,6 +1009,7 @@
     SUBDIR += rubygem-net-ssh
     SUBDIR += rubygem-net-ssh-gateway
     SUBDIR += rubygem-net-ssh-multi
+    SUBDIR += rubygem-net-telnet
     SUBDIR += rubygem-nmap-parser
     SUBDIR += rubygem-omniauth
     SUBDIR += rubygem-omniauth-bitbucket
@@ -1050,6 +1051,7 @@
     SUBDIR += rubygem-six
     SUBDIR += rubygem-sshkey
     SUBDIR += rubygem-sshkit
+    SUBDIR += rubygem-timfel-krb5
     SUBDIR += rubygem-twitter_oauth
     SUBDIR += s2n
     SUBDIR += safesh
