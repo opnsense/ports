@@ -1,3 +1,3 @@
-TIMESTAMP = 1481445880
-SHA256 (opnsense-update-16.7.11_GH0.tar.gz) = 3dee9f2cef908ae6114a1d18b42e175d0e6562944fd36f29ec5a723f1e71682e
-SIZE (opnsense-update-16.7.11_GH0.tar.gz) = 18870
+TIMESTAMP = 1483517986
+SHA256 (opnsense-update-16.7.11-9630443_GH0.tar.gz) = 8bac9d98d236ed626a2597575e3ad8aa691d1d431c67c43a2a6b44012f35daad
+SIZE (opnsense-update-16.7.11-9630443_GH0.tar.gz) = 19539
