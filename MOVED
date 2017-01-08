@@ -8250,7 +8250,6 @@ databases/rubygem-activerecord41|databases/rubygem-activerecord4|2016-03-31|Has 
 textproc/rubygem-sass-rails4-rails41|textproc/rubygem-sass-rails4|2016-03-31|Has expired: Rails 4.1 is no longer supported - please switch to Rails 4.2
 www/rubygem-turbolinks-rails41|www/rubygem-turbolinks|2016-03-31|Has expired: Rails 4.1 is no longer supported - please switch to Rails 4.2
 devel/rubygem-omniauth_crowd-rails41|devel/rubygem-omniauth_crowd|2016-03-31|Has expired: Rails 4.1 is no longer supported - please switch to Rails 4.2
-devel/rubygem-coffee-rails41|devel/rubygem-coffee-rails4|2016-03-31|Has expired: Rails 4.1 is no longer supported - please switch to Rails 4.2
 www/rubygem-railties41|www/rubygem-railties4|2016-03-31|Has expired: Rails 4.1 is no longer supported - please switch to Rails 4.2
 devel/rubygem-jbuilder-rails41|devel/rubygem-jbuilder|2016-03-31|Has expired: Rails 4.1 is no longer supported - please switch to Rails 4.2
 textproc/py-genshi-devel|textproc/py-genshi|2016-03-31|Has expired: The port is no longer updated and behind the main genshi port
@@ -8945,3 +8944,30 @@ x11-toolkits/linux-f10-blt||2016-12-31|Removed
 net-mgmt/unifi4|net-mgmt/unifi5|2017-01-01|Has expired: EoL as of 2017-01-01
 net/py-simplesoap|net/py-pysimplesoap|2017-01-01|Rename to match upstream naming
 textproc/docdiff|textproc/rubygem-docdiff|2017-01-02|Rename to match our rubygems naming
+databases/rubygem-dm-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-actionpack
+databases/rubygem-activerecord||2017-01-07|Has expired: Upstream support ended
+devel/rubygem-activesupport||2017-01-07|Has expired: Upstream support ended
+devel/rubygem-tzinfo03|devel/rubygem-tzinfo|2017-01-07|Has expired: Use devel/rubygem-tzinfo instead
+devel/rubygem-sprockets22|devel/rubygem-sprockets3|2017-01-07|Has expired: Use devel/rubygem-sprockets or devel/rubygem-sprockets3 instead
+devel/rubygem-prototype-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-rails
+devel/rubygem-rubigen||2017-01-07|Has expired: Depends on deprecated devel/rubygem-activesupport
+devel/rubygem-coffee-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-railties
+japanese/rubygem-jpmobile||2017-01-07|Has expired: Depends on deprecated rubygem-rails
+mail/rubygem-actionmailer||2017-01-07|Has expired: Upstream support ended
+mail/rubygem-mail25|mail/rubygem-mail|2017-01-07|Has expired: Use mail/rubygem-mail instead
+security/dradis||2017-01-07|Has expired: Depends on deprecated www/rubygem-rails
+textproc/rubygem-sass-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-railties
+www/rubygem-rails||2017-01-07|Has expired: Upstream support ended
+www/rubygem-activeresource||2017-01-07|Has expired: Upstream support ended
+www/rubygem-responders-rails3||2017-01-07|Has expired: Depends on deprecated www/rubygem-railties
+www/rubygem-jquery-ui-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-railties
+www/rubygem-haml-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-actionpack
+www/rubygem-jquery-rails||2017-01-07|Has expired: Depends on deprecated www/rubygem-railties
+www/rubygem-railties||2017-01-07|Has expired: Upstream support ended
+www/rubygem-actionpack||2017-01-07|Has expired: Upstream support ended
+databases/rubygem-rubyrep||2017-01-07|Has expired: Depends on deprecated databases/rubygem-activerecord
+databases/rubygem-activerecord-mysql-adapter||2017-01-07|Has expired: Depends on deprecated databases/rubygem-activerecord
+databases/rubygem-dm-active_model||2017-01-07|Has expired: Depends on deprecated databases/rubygem-activemodel
+databases/rubygem-activemodel||2017-01-07|Has expired: Upstream support ended
+math/libproj4|math/proj.4|2017-01-07|Project was renamed
+math/proj.4||2017-01-07|math/libproj4 was already duplicated as graphics/proj
