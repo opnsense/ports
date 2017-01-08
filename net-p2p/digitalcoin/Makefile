@@ -3,13 +3,15 @@
 
 PORTNAME=	digitalcoin
 PORTVERSION=	1.0.0.0b
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	net-p2p
 
 MAINTAINER=	myst3r10n@rocketmail.com
 COMMENT=	Alternative Bitcoin peer-to-peer currency client
 
 BROKEN=		Unfetchable
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2017-02-08
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING

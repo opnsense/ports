@@ -254,7 +254,6 @@
     SUBDIR += libmissing
     SUBDIR += libocas
     SUBDIR += liborigin
-    SUBDIR += libproj4
     SUBDIR += libqalculate
     SUBDIR += libranlip
     SUBDIR += librsb
