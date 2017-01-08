@@ -14,8 +14,6 @@ OPTIONS_DEFINE=	ALTQ
 
 ALTQ_DESC=	ALTQ support for queue statistics
 
-BROKEN_FreeBSD_9=	does not build
-
 .include <bsd.port.pre.mk>
 
 .if ${OSVERSION} >= 1100080
