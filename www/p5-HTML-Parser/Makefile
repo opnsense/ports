@@ -16,4 +16,7 @@ BUILD_DEPENDS:=	${RUN_DEPENDS}
 USES=		perl5
 USE_PERL5=	configure
 
+post-install:
+	${RM} -r ${STAGEDIR}${PACKLIST_DIR}/HTML/Tagset
+
 .include <bsd.port.mk>
