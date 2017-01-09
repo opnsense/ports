@@ -284,7 +284,7 @@ PACKLIST_DIR?=	${PREFIX}/${SITE_ARCH_REL}/auto
 
 # In all those, don't use - before the command so that the user does
 # not wonder what has been ignored by this message "*** Error code 1 (ignored)"
-_USES_stage+=	700:fix-perl-things
+_USES_install+=	560:fix-perl-things
 fix-perl-things:
 # Remove STAGEDIR from .packlist and add the file to the plist.
 	@(if [ -d ${STAGEDIR}${PACKLIST_DIR} ] ; then \

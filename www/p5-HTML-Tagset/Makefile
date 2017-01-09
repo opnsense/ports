@@ -14,7 +14,4 @@ COMMENT=	Some useful data table in parsing HTML
 USES=		perl5
 USE_PERL5=	configure
 
-post-install:
-	${RM} -r ${STAGEDIR}${PACKLIST_DIR}/HTML/Parser
-
 .include <bsd.port.mk>
