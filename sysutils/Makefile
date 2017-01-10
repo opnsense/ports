@@ -324,6 +324,7 @@
     SUBDIR += fsbackup
     SUBDIR += fsc
     SUBDIR += fstyp
+    SUBDIR += fswatch-mon
     SUBDIR += ftwin
     SUBDIR += fusefs-afuse
     SUBDIR += fusefs-chironfs
@@ -470,7 +471,7 @@
     SUBDIR += isc-cron
     SUBDIR += isomaster
     SUBDIR += isomd5sum
-    SUBDIR += istatd
+    SUBDIR += istatserver
     SUBDIR += jadm
     SUBDIR += jail-primer
     SUBDIR += jail2
