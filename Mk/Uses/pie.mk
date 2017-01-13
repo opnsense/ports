@@ -10,8 +10,8 @@
 .if !defined(_INCLUDE_USES_PIE_MK)
 _INCLUDE_USES_PIE_MK=    yes
 
-CFLAGS+=	-fPIE
-CXXFLAGS+=	-fPIE
+CFLAGS+=	-fPIC -fPIE
+CXXFLAGS+=	-fPIC -fPIE
 LDFLAGS+=	-pie
 
 .endif
