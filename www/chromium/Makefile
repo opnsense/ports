@@ -187,7 +187,8 @@ GN_ARGS+=	is_clang=true
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-clang
 .endif
 
-.if ${OSVERSION} < 1200017
+.if ${OPSYS} == FreeBSD
+.if ${OSVERSION} < 1100508
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libc++-old
 .else
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libc++-new
@@ -195,6 +196,7 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libc++-new
 
 .if ${OSVERSION} < 1100000
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-10
+.endif
 .endif
 
 .if ! ${PORT_OPTIONS:MKERBEROS}

@@ -245,6 +245,7 @@
     SUBDIR += dsbmd
     SUBDIR += dsbwrtsysctl
     SUBDIR += dt
+    SUBDIR += dtc
     SUBDIR += dtpstree
     SUBDIR += du2ps
     SUBDIR += duff
@@ -407,8 +408,8 @@
     SUBDIR += grub2-bhyve
     SUBDIR += grub2-efi
     SUBDIR += grub2-pcbsd
-    SUBDIR += gsmartcontrol
     SUBDIR += gsh
+    SUBDIR += gsmartcontrol
     SUBDIR += gstopd
     SUBDIR += gstreamer-plugins-cdio
     SUBDIR += gstreamer-plugins-hal
@@ -1039,7 +1040,7 @@
     SUBDIR += shlock
     SUBDIR += shmcat
     SUBDIR += showbeastie
-    SUBIDR += siegfried
+    SUBDIR += siegfried
     SUBDIR += sievelog
     SUBDIR += skill
     SUBDIR += slack
