@@ -17,15 +17,15 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	arm-none-eabi-gcc:devel/arm-none-eabi-gcc \
 		gsed:textproc/gsed \
 		swig3.0:devel/swig30 \
-		python:lang/python2 \
-		${PREFIX}/bin/dtc:sysutils/dtc
+		${LOCALBASE}/bin/dtc:sysutils/dtc
 
-USES=		gmake
+USES=		gmake python:build shebangfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	bsdimp
 GH_PROJECT=	u-boot
 
+SHEBANG_FILES=	tools/binman/binman.py
 SSP_UNSAFE=	yes
 UBOOT_DIR=	share/u-boot/${PORTNAME}${PKGNAMESUFFIX}
 INST=		${PREFIX}/${UBOOT_DIR}
@@ -37,28 +37,26 @@ NO_ARCH=	yes
 
 # Sanity checks
 .if !defined(MODEL)
-IGNORE+=	"MODEL is not defined"
+IGNORE+=	MODEL is not defined
 .endif
 .if !defined(BOARD_CONFIG)
-IGNORE+=	"BOARD_CONFIG is not defined"
+IGNORE+=	BOARD_CONFIG is not defined
 .endif
 .if !defined(FAMILY)
-IGNORE+=	"FAMILY is not defined"
+IGNORE+=	FAMILY is not defined
 .endif
 
-# Defines for OMAP family
+# Overrides for OMAP family
 UBOOT_PLIST_OMAP=u-boot.img MLO
-UBOOT_VERSION_OMAP=2017.01
 
-# Defines for ALLWINNER family
+# Overrides for ALLWINNER family
 UBOOT_PLIST_ALLWINNER=u-boot.img u-boot-sunxi-with-spl.bin
-UBOOT_VERSION_ALLWINNER=2017.01
 
 # Uboot variables
 .if !defined(UBOOT_VERSION) && defined(UBOOT_VERSION_${FAMILY:tu})
 UBOOT_VERSION=${UBOOT_VERSION_${FAMILY:tu}}
 .endif
-UBOOT_VERSION?=	2017.01
+UBOOT_VERSION?=	2017.01.00.1
 
 .if !defined(UBOOT_PLIST) && defined(UBOOT_PLIST_${FAMILY:tu})
 UBOOT_PLIST=${UBOOT_PLIST_${FAMILY:tu}}

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	xorg-vfbserver
-PORTVERSION=	1.19.0
+PORTVERSION=	1.19.1
 PORTEPOCH=	1
 CATEGORIES=	x11-servers
 MASTER_SITES=	XORG/individual/xserver
@@ -13,6 +13,8 @@ MAINTAINER=	x11@FreeBSD.org
 COMMENT=	X virtual framebuffer server from X.Org
 
 LICENSE=	MIT
+
+RUN_DEPENDS=	xkeyboard-config>=2.5:x11/xkeyboard-config
 
 USES=		tar:bzip2 pkgconfig ssl
 INSTALL_WRKSRC=	${WRKSRC}/hw/vfb
