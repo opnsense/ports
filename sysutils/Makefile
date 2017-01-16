@@ -40,7 +40,6 @@
     SUBDIR += apachetop
     SUBDIR += apcpwr
     SUBDIR += apcupsd
-    SUBDIR += apt
     SUBDIR += arcconf
     SUBDIR += archivemount
     SUBDIR += areca-cli
@@ -343,7 +342,6 @@
     SUBDIR += fusefs-gunzip
     SUBDIR += fusefs-httpfs
     SUBDIR += fusefs-ifuse
-    SUBDIR += fusefs-kmod
     SUBDIR += fusefs-libs
     SUBDIR += fusefs-lkl
     SUBDIR += fusefs-mhddfs
@@ -995,6 +993,7 @@
     SUBDIR += rubygem-sys-uname
     SUBDIR += rubygem-sys-uptime
     SUBDIR += rubygem-teamocil
+    SUBDIR += rubygem-tmuxinator
     SUBDIR += rubygem-vagrant-bhyve
     SUBDIR += rubygem-vagrant-mutate
     SUBDIR += rubygem-vagrant-vbguest
@@ -1117,6 +1116,7 @@
     SUBDIR += tmpreaper
     SUBDIR += tmpwatch
     SUBDIR += tmux
+    SUBDIR += tmux-mem-cpu-load
     SUBDIR += topless
     SUBDIR += torque
     SUBDIR += toshctl
