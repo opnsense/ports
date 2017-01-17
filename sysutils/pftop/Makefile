@@ -10,6 +10,8 @@ MASTER_SITES=	http://www.eee.metu.edu.tr/~canacar/
 MAINTAINER=	araujo@FreeBSD.org
 COMMENT=	Utility for real-time display of statistics for pf
 
+LICENSE=	BSD2CLAUSE
+
 OPTIONS_DEFINE=	ALTQ
 
 ALTQ_DESC=	ALTQ support for queue statistics
@@ -46,7 +48,7 @@ post-patch:
 .if ${OSVERSION} >= 1100000
 	@${ECHO_MSG} "===> Applying FairQ/Codel patches to ${PORTNAME}."
 	@${CAT} ${FILESDIR}/extra-patch-fairq_codel.diff | \
-		${PATCH} ${PATCH_ARGS}
+		${PATCH} -d ${PATCH_WRKSRC} ${PATCH_ARGS}
 .endif
 	@${REINPLACE_CMD} -e 's|<sys/queue.h>|"${FILESDIR}/queue.h"|g' \
 	    ${WRKSRC}/engine.c
