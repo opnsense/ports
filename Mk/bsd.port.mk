@@ -348,7 +348,10 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  can be used in Makefiles by port maintainers
 #				  if a port breaks with it (it should be
 #				  extremely rare).
-#
+##
+# USE_LOCALE	- LANG and LC_ALL are set to the value of this variable in
+#				  CONFIGURE_ENV and MAKE_ENV.  Example: USE_LOCALE=en_US.UTF-8
+##
 # USE_GCC		- If set, this port requires this version of gcc, either in
 #				  the system or installed from a port.
 # USE_CSTD		- Override the default C language standard (gnu89, gnu99)
@@ -1035,6 +1038,10 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # Most port authors should not need to understand anything after this point.
 #
 
+LANG=		C
+LC_ALL=		C
+.export		LANG LC_ALL
+
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
@@ -1143,6 +1150,24 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .endif
 .endif
 _EXPORTED_VARS+=	OSVERSION
+
+.if (${OPSYS} == FreeBSD && (${OSVERSION} < 1003000 || (${OSVERSION} >= 1100000 && ${OSVERSION} < 1100122))) || \
+    (${OPSYS} == DragonFly && ${DFLYVERSION} < 400400)
+_UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
+								are guaranteed to build on this system. Please upgrade to a supported release.
+. if defined(ALLOW_UNSUPPORTED_SYSTEM)
+WARNING+=			"${_UNSUPPORTED_SYSTEM_MESSAGE}"
+. else
+show-unsupported-system-error:
+	@${ECHO_MSG} "/!\\ ERROR: /!\\"
+	@${ECHO_MSG}
+	@${ECHO_MSG} "${_UNSUPPORTED_SYSTEM_MESSAGE}" | ${FMT} 75 79
+	@${ECHO_MSG}
+	@${ECHO_MSG} "No support will be provided if you silence this message by defining ALLOW_UNSUPPORTED_SYSTEM." | ${FMT} 75 79
+	@${ECHO_MSG}
+	@${FALSE}
+. endif
+.endif
 
 # Convert OSVERSION to major release number
 _OSVERSION_MAJOR=	${OSVERSION:C/([0-9]?[0-9])([0-9][0-9])[0-9]{3}/\1/}
@@ -1885,6 +1910,11 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .for f in ${_USES_POST}
 .include "${USESDIR}/${f:C/\:.*//}.mk"
 .endfor
+
+.if defined(USE_LOCALE)
+CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+.endif
 
 .if defined(USE_XORG)
 # Add explicit X options to avoid problems with false positives in configure
@@ -5168,7 +5198,8 @@ _TARGETS_STAGES=	SANITY PKG FETCH EXTRACT PATCH CONFIGURE BUILD INSTALL TEST PAC
 # If you change the pre-foo and post-foo values here, go and keep them in sync
 # in _OPTIONS_TARGETS in bsd.options.mk
 
-_SANITY_SEQ=	050:post-chroot 100:pre-everything 150:check-makefile \
+_SANITY_SEQ=	050:post-chroot 100:pre-everything \
+				125:show-unsupported-system-error 150:check-makefile \
 				200:show-warnings 210:show-dev-warnings 220:show-dev-errors \
 				250:check-categories 300:check-makevars \
 				350:check-desktop-entries 400:check-depends \
