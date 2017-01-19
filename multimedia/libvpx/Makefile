@@ -3,8 +3,7 @@
 
 PORTNAME=	libvpx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.6.0
-PORTREVISION=	1
+DISTVERSION=	1.6.1
 CATEGORIES=	multimedia
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -42,7 +41,6 @@ CONFIGURE_ARGS+=--prefix=${PREFIX} \
 		--enable-vp8 \
 		--enable-vp9
 MAKE_ARGS+=	verbose=yes
-MAKE_ENV=	LC_ALL=C
 
 OPTIONS_SUB=		SHARED
 
@@ -88,6 +86,8 @@ post-patch:
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/vpx*
+
+post-install-SHARED-on:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libvpx.so.*.*.*
 
 .include <bsd.port.mk>

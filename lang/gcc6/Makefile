@@ -13,8 +13,6 @@ COMMENT=	GNU Compiler Collection 6
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
-BROKEN_powerpc64=	Does not build
-
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libmpc.so:math/mpc
@@ -101,10 +99,7 @@ CONFIGURE_ARGS+=--disable-nls \
 		${ICONV_CONFIGURE_ARG} \
 		--with-pkgversion="FreeBSD Ports Collection" \
 		--with-system-zlib
-# On FreeBSD 11 and above AWK uses the locale's collating order which
-# runs into a bug in GCC (PR 211742).
-MAKE_ARGS+=	MAKEINFOFLAGS="--no-split" \
-		AWK="${SETENV} LC_ALL=C ${AWK:Q}"
+MAKE_ARGS+=	MAKEINFOFLAGS="--no-split"
 USE_LDCONFIG=	${TARGLIB}
 PLIST_SUB=	GCC_VERSION=${GCC_VERSION} \
 		GNU_HOST=${CONFIGURE_TARGET} \
