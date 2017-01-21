@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	php70
-PORTVERSION=	7.0.14
+PORTVERSION=	7.0.15
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -44,6 +44,8 @@ OPTIONS_EXCLUDE_mips64=FPM
 OPTIONS_SUB=	yes
 
 OPTIONS_EXCLUDE_DragonFly=	DTRACE
+# ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
+OPTIONS_EXCLUDE_aarch64=	DTRACE
 
 CLI_DESC=	Build CLI version
 CGI_DESC=	Build CGI version
