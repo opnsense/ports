@@ -1,4 +1,4 @@
-@sample etc/radvd.conf.sample
+etc/radvd.conf.example
 sbin/radvd
 sbin/radvdump
 man/man5/radvd.conf.5.gz
