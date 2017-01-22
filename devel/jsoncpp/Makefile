@@ -19,6 +19,7 @@ USES=		compiler:features dos2unix scons
 USE_LDCONFIG=	yes
 
 MAKE_ARGS=	platform=linux-gcc
+MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
 
