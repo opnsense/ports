@@ -131,6 +131,7 @@
     SUBDIR += etrace
     SUBDIR += exabgp
     SUBDIR += exaddos
+    SUBDIR += fb
     SUBDIR += findmtu
     SUBDIR += flowgrep
     SUBDIR += fonulator
@@ -1223,7 +1224,6 @@
     SUBDIR += rubygem-uri-redis
     SUBDIR += rubygem-whois
     SUBDIR += rude
-    SUBDIR += rwhoisd
     SUBDIR += samba-libsmbclient
     SUBDIR += samba-nmblookup
     SUBDIR += samba-smbclient
