@@ -363,7 +363,7 @@
     SUBDIR += librdkafka
     SUBDIR += librouteros
     SUBDIR += librsync
-    SUBDIR += librsync1
+    SUBDIR += librsync2
     SUBDIR += libsocket++
     SUBDIR += libsocketcpp
     SUBDIR += libsrtp
@@ -974,6 +974,7 @@
     SUBDIR += py-gspread
     SUBDIR += py-gspreadsheet
     SUBDIR += py-haproxy-log-analysis
+    SUBDIR += py-httpstat
     SUBDIR += py-impacket
     SUBDIR += py-ipaddress
     SUBDIR += py-iplib
