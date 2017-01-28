@@ -1,20 +1,22 @@
---- libpkg/pkg_add.c.orig	2016-10-30 01:50:01 UTC
+--- libpkg/pkg_add.c.orig	2016-12-25 15:12:01 UTC
 +++ libpkg/pkg_add.c
-@@ -208,7 +208,7 @@ set_attrs(int fd, char *path, mode_t per
- 
- 	struct timeval tv[2];
- 	int fdcwd;
--#ifdef HAVE_UTIMENSAT
-+#ifdef HAVE_UTIMENSAT_XXX
- 	struct timespec times[2];
- 
- 	times[0] = *ats;
-@@ -248,7 +248,7 @@ set_attrs(int fd, char *path, mode_t per
- 	}
- 	fchdir(fdcwd);
- 	close(fdcwd);
--#ifdef HAVE_UTIMENSAT
-+#ifdef HAVE_UTIMENSAT_XXX
- 	}
- #endif
- 
+@@ -1344,8 +1344,10 @@ pkg_add_fromdir(struct pkg *pkg, const c
+ 			}
+ 			kh_find(hls, hardlinks, st.st_ino, path);
+ 			if (path != NULL) {
+-				if (create_hardlink(pkg, f, path) == EPKG_FATAL)
++				if (create_hardlink(pkg, f, path) == EPKG_FATAL) {
++					close(fd);
+ 					return (EPKG_FATAL);
++				}
+ 			} else {
+ 				if (create_regfile(pkg, f, NULL, NULL, fd, NULL) == EPKG_FATAL) {
+ 					close(fd);
+@@ -1353,6 +1355,7 @@ pkg_add_fromdir(struct pkg *pkg, const c
+ 				}
+ 				kh_safe_add(hls, hardlinks, f->path, st.st_ino);
+ 			}
++			close(fd);
+ 		} else {
+ 			pkg_emit_error("Invalid file type");
+ 			return (EPKG_FATAL);
