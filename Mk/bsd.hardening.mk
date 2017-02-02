@@ -7,20 +7,53 @@ __BSD_PORT_HARDENING_MK=1
 
 HARDENING_NOPIE_PORTS?=		# can pass exceptions from make.conf
 HARDENING_NORELRO_PORTS?=	# can pass exceptions from make.conf
+HARDENING_QUIRKS?=		# can pass exceptions from make.conf
 
 .include "bsd.hardening.exceptions.mk"
 
 .if defined(NO_PORTS_HARDENING)
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+HARDENING_QUIRKS+=	nopie norelro
 .endif
 
-.if "${HARDENING_NOPIE_PORTS:M${PORTNAME}}" != ""
-NOPIE_PORTS=	yes
+.if defined(PORTNAME)
+.if ${HARDENING_NOPIE_PORTS:M${PORTNAME}}
+HARDENING_QUIRKS+=	nopie
+.endif
+.if ${HARDENING_NORELRO_PORTS:M${PORTNAME}}
+HARDENING_QUIRKS+=	norelro
+.endif
+.if ${PORTNAME:Mlib*} || (defined(PKGNAMESUFFIX) && ${PKGNAMESUFFIX:Mlib*})
+.if ${PORTNAME} != libressl && ${PORTNAME} != libressl-devel
+HARDENING_QUIRKS+=	lib
+.endif
+.endif
+.if ${PORTNAME:M*kmod*}
+HARDENING_QUIRKS+=	kmod
+.endif
+.endif
 .endif
 
-.if "${HARDENING_NORELRO_PORTS:M${PORTNAME}}" != ""
-NORELRO_PORTS=	yes
+.if defined(USES)
+.if ${USES:Mkmod}
+HARDENING_QUIRKS+=	kmod
+.endif
+.if ${USES:Mfortran}
+HARDENING_QUIRKS+=	fortran
+.endif
+
+.if defined(CATEGORIES)
+.if ${CATEGORIES:Mx11-drivers}
+HARDENING_QUIRKS+=	x11
+.endif
+.endif
+
+#################################################
+### Option-less PIC enforcement for libraries ###
+#################################################
+
+.if ${HARDENING_QUIRKS:Mlib}
+CFLAGS+=	-fPIC
+CXXFLAGS+=	-fPIC
 .endif
 
 ####################################################
@@ -37,30 +70,14 @@ PIE_USES=		pie
 # It's possible that keying off lib* as the port's name could
 # introduce false positives. Hence even more reason to have
 # EXPLICIT_PIE.
-.if defined(PORTNAME)
+
+.if ${HARDENING_QUIRKS:Mlib} || ${HARDENING_QUIRKS:Mkmod} || ${HARDENING_QUIRKS:Mfortran}
 .if !defined(EXPLICIT_PIE)
-.if ${PORTNAME:Mlib*} || ${PORTNAME:M*kmod*} || \
-	(defined(PKGNAMESUFFIX) && (${PKGNAMESUFFIX:Mlib*}))
-NOPIE_PORTS=	yes
+HARDENING_QUIRKS+=	nopie
 .endif
 .endif
 
-.if ${PORTNAME:Mlib*} || (defined(PKGNAMESUFFIX) && (${PKGNAMESUFFIX:Mlib*}))
-CFLAGS+=	-fPIC
-CXXFLAGS+=	-fPIC
-.endif
-
-.endif
-
-.if defined(USES)
-.for _USES in ${USES}
-.if ${_USES} == kmod || ${_USES} == fortran
-NOPIE_PORTS=	yes
-.endif
-.endfor
-.endif
-
-.if !defined(NOPIE_PORTS)
+.if ${HARDENING_QUIRKS:Mnopie} == ""
 OPTIONS_DEFINE+=	PIE
 OPTIONS_DEFAULT+=	PIE
 .endif
@@ -73,33 +90,15 @@ RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
 # Same reasoning here with RELRO as with PIE.
-.if defined(PORTNAME)
+.if ${HARDENING_QUIRKS:Mlib} || ${HARDENING_QUIRKS:Mkmod} || ${HARDENING_QUIRKS:Mfortran} || ${HARDENING_QUIRKS:Mx11}
 .if !defined(EXPLICIT_RELRO)
-.if ${PORTNAME:Mlib*} || ${PORTNAME:M*kmod*} || \
-	(defined(PKGNAMESUFFIX) && (${PKGNAMESUFFIX:Mlib*}))
-NORELRO_PORTS=	yes
-.endif
+HARDENING_QUIRKS+=	norelro
 .endif
 .endif
 
-.if defined(USES)
-.for _USES in ${USES}
-.if ${_USES} == kmod || ${_USES} == fortran
-NORELRO_PORTS=	yes
-.endif
-.endfor
-.endif
-
-.if defined(CATEGORIES)
-.for _CATEGORY in ${CATEGORIES}
-.if ${_CATEGORY} == x11-drivers
-NORELRO_PORTS=	yes
-.endif
-.endfor
-.endif
-
-.if !defined(NORELRO_PORTS)
+.if ${HARDENING_QUIRKS:Mnorelro} == ""
 OPTIONS_DEFINE+=	RELRO
 OPTIONS_DEFAULT+=	RELRO
 .endif
+
 .endif # !__BSD_PORT_HARDENING_MK
