@@ -73,21 +73,17 @@ CXXFLAGS+=	-fPIC
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 
-# Do not enable PIE for libraries or kernel module ports. However,
-# provide a way for still enabling PIE if desired by the port's
-# maintainer by allowing them to define EXPLICIT_PIE.
+# Do not enable PIE for several groups of ports.
+# However, provide a way for still enabling PIE
+# if desired by allowing them to define:
 #
-# It's possible that keying off lib* as the port's name could
-# introduce false positives. Hence even more reason to have
-# EXPLICIT_PIE.
+# HARDENING_QURIKS=pie
 
 .if ${HARDENING_QUIRKS:Mlib} || ${HARDENING_QUIRKS:Mkmod} || ${HARDENING_QUIRKS:Mfortran}
-.if !defined(EXPLICIT_PIE)
 HARDENING_QUIRKS+=	nopie
 .endif
-.endif
 
-.if ${HARDENING_QUIRKS:Mnopie} == ""
+.if ${HARDENING_QUIRKS:Mpie} || ${HARDENING_QUIRKS:Mnopie} == ""
 OPTIONS_DEFINE+=	PIE
 OPTIONS_DEFAULT+=	PIE
 .endif
@@ -100,13 +96,14 @@ RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
 # Same reasoning here with RELRO as with PIE.
+#
+# HARDENING_QURIKS=relro
+
 .if ${HARDENING_QUIRKS:Mlib} || ${HARDENING_QUIRKS:Mkmod} || ${HARDENING_QUIRKS:Mfortran} || ${HARDENING_QUIRKS:Mx11}
-.if !defined(EXPLICIT_RELRO)
 HARDENING_QUIRKS+=	norelro
 .endif
-.endif
 
-.if ${HARDENING_QUIRKS:Mnorelro} == ""
+.if ${HARDENING_QUIRKS:Mrelro} || ${HARDENING_QUIRKS:Mnorelro} == ""
 OPTIONS_DEFINE+=	RELRO
 OPTIONS_DEFAULT+=	RELRO
 .endif
