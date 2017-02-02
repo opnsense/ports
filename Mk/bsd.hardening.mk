@@ -22,14 +22,24 @@ HARDENING_QUIRKS+=	nopie
 .if ${HARDENING_NORELRO_PORTS:M${PORTNAME}}
 HARDENING_QUIRKS+=	norelro
 .endif
-.if ${PORTNAME:Mlib*} || (defined(PKGNAMESUFFIX) && ${PKGNAMESUFFIX:Mlib*})
-.if ${PORTNAME} != libressl && ${PORTNAME} != libressl-devel
+.if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
 HARDENING_QUIRKS+=	lib
-.endif
 .endif
 .if ${PORTNAME:M*kmod*}
 HARDENING_QUIRKS+=	kmod
 .endif
+.endif
+.endif
+
+.if defined(PKGNAMEPREFIX)
+.if ${PKGNAMEPREFIX:M*lib*} && ${PKGNAMEPREFIX:M*libre*} == ""
+HARDENING_QUIRKS+=	lib
+.endif
+.endif
+
+.if defined(PKGNAMESUFFIX)
+.if ${PKGNAMESUFFIX:M*lib*} && ${PKGNAMESUFFIX:M*libre*} == ""
+HARDENING_QUIRKS+=	lib
 .endif
 .endif
 
