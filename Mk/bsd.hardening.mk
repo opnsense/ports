@@ -5,23 +5,14 @@
 .if !defined(HARDENINGMKINCLUDED)
 HARDENINGMKINCLUDED=	bsd.hardening.mk
 
-HARDENING_NOPIE_PORTS?=		# can pass exceptions from make.conf
-HARDENING_NORELRO_PORTS?=	# can pass exceptions from make.conf
-HARDENING_QUIRKS?=		# can pass exceptions from make.conf
+${PORTNAME}_HARDENING_QURIKS?=	# can pass exceptions from global make.conf
+HARDENING_QUIRKS?=		# can pass exceptions from port Makefile
 
 .include "bsd.hardening.exceptions.mk"
 
-.if defined(NO_PORTS_HARDENING)
-HARDENING_QUIRKS+=	nopie norelro
-.endif
+HARDENING_QUIRKS+=	${${PORTNAME}_HARDENING_QURIKS}
 
 .if defined(PORTNAME)
-.if ${HARDENING_NOPIE_PORTS:M${PORTNAME}}
-HARDENING_QUIRKS+=	nopie
-.endif
-.if ${HARDENING_NORELRO_PORTS:M${PORTNAME}}
-HARDENING_QUIRKS+=	norelro
-.endif
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
 HARDENING_QUIRKS+=	lib
 .endif
@@ -83,9 +74,11 @@ PIE_USES=		pie
 HARDENING_QUIRKS+=	nopie
 .endif
 
+.if !defined(HARDENING_OFF)
 .if ${HARDENING_QUIRKS:Mpie} || ${HARDENING_QUIRKS:Mnopie} == ""
 OPTIONS_DEFINE+=	PIE
 OPTIONS_DEFAULT+=	PIE
+.endif
 .endif
 
 ################################
@@ -103,9 +96,11 @@ RELRO_USES=		relro
 HARDENING_QUIRKS+=	norelro
 .endif
 
+.if !defined(HARDENING_OFF)
 .if ${HARDENING_QUIRKS:Mrelro} || ${HARDENING_QUIRKS:Mnorelro} == ""
 OPTIONS_DEFINE+=	RELRO
 OPTIONS_DEFAULT+=	RELRO
 .endif
+.endif
 
-.endif # !__BSD_PORT_HARDENING_MK
+.endif # !HARDENINGMKINCLUDED
