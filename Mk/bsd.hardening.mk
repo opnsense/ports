@@ -2,8 +2,8 @@
 #
 # HardenedBSD-related ports options
 
-.if !defined(__BSD_PORT_HARDENING_MK)
-__BSD_PORT_HARDENING_MK=1
+.if !defined(HARDENINGMKINCLUDED)
+HARDENINGMKINCLUDED=	bsd.hardening.mk
 
 HARDENING_NOPIE_PORTS?=		# can pass exceptions from make.conf
 HARDENING_NORELRO_PORTS?=	# can pass exceptions from make.conf

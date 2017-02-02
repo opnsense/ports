@@ -1280,6 +1280,7 @@ WITH_DEBUG=	yes
 .endif
 .endif
 
+.include "${PORTSDIR}/Mk/bsd.hardening.mk"
 .include "${PORTSDIR}/Mk/bsd.options.mk"
 
 # Start of pre-makefile section.

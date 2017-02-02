@@ -10,6 +10,10 @@
 .if !defined(_INCLUDE_USES_PIE_MK)
 _INCLUDE_USES_PIE_MK=    yes
 
+.if !empty(pie_ARGS)
+IGNORE=	USES=pie does not require args
+.endif
+
 CFLAGS+=	-fPIC -fPIE
 CXXFLAGS+=	-fPIC -fPIE
 LDFLAGS+=	-pie
