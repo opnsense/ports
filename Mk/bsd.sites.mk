@@ -227,19 +227,20 @@ MASTER_SITE_EXIM+= \
 
 .if !defined(IGNORE_MASTER_SITE_CENTOS_LINUX)
 MASTER_SITE_CENTOS_LINUX+= \
-	http://mirror.centos.org/%SUBDIR%/:DEFAULT,SOURCE \
-	http://vault.centos.org/%SUBDIR%/:DEFAULT,SOURCE
+	http://mirror.centos.org/%SUBDIR%/:DEFAULT,amd64,i386 \
+	http://vault.centos.org/%SUBDIR%/:DEFAULT,amd64,i386,SOURCE
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_EPEL)
 MASTER_SITE_EPEL+= \
-	http://dl.fedoraproject.org/pub/epel/6/${LINUX_ARCH}/ \
+	http://dl.fedoraproject.org/pub/epel/6/x86_64/:DEFAULT,amd64 \
+	http://dl.fedoraproject.org/pub/epel/6/i386/:DEFAULT,i386 \
 	http://dl.fedoraproject.org/pub/epel/6/SRPMS/:SOURCE
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_EPEL7)
 MASTER_SITE_EPEL7+= \
-	http://dl.fedoraproject.org/pub/epel/7/${LINUX_ARCH}/%SUBDIR%/ \
+	http://dl.fedoraproject.org/pub/epel/7/x86_64/%SUBDIR%/:DEFAULT,amd64 \
 	http://dl.fedoraproject.org/pub/epel/7/SRPMS/%SUBDIR%/:SOURCE
 .endif
 
@@ -869,43 +870,12 @@ MASTER_SITE_NVIDIA+= \
 
 .if !defined(IGNORE_MASTER_SITE_OPENBSD)
 MASTER_SITE_OPENBSD+= \
-	http://anga.funkfeuer.at/ftp/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.eu.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
-	ftp://openbsd.informatik.uni-erlangen.de/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp5.usa.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp3.usa.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
-	ftp://rt.fm/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.heanet.ie/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.belnet.be/packages/openbsd/%SUBDIR%/ \
-	http://mirror.pacific.net.au/OpenBSD/%SUBDIR%/ \
-	http://ftp.openbsd.dk/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.estpak.ee/pub/OpenBSD/%SUBDIR%/ \
-	http://mirror.internode.on.net/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.chg.ru/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.arcane-networks.fr/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.netbsd.se/OpenBSD/%SUBDIR%/ \
-	http://www.mirrorservice.org/pub/OpenBSD/%SUBDIR%/ \
-	http://mirror.switch.ch/ftp/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.jaist.ac.jp/pub/OpenBSD/%SUBDIR%/ \
-	http://ftp.cc.uoc.gr/mirrors/OpenBSD/%SUBDIR%/ \
-	http://mirror.hostfuss.com/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.stacken.kth.se/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.ca.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.freebsdchina.org/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.dkuug.dk/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.jyu.fi/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.irisa.fr/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.nara.wide.ad.jp/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.inet.no/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.nluug.nl/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.gamma.ru/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.rediris.es/pub/OpenBSD/%SUBDIR%/ \
-	ftp://ftp.su.se/pub/OpenBSD/%SUBDIR%/ \
-	ftp://osmirrors.cerias.purdue.edu/pub/OpenBSD/%SUBDIR%/ \
-	ftp://carroll.cac.psu.edu/pub/OpenBSD/%SUBDIR%/ \
-	ftp://openbsd.mirrors.tds.net/pub/OpenBSD/%SUBDIR%/ \
-	http://mirrors.nic.funet.fi/pub/OpenBSD/%SUBDIR%/
+	https://ftp.OpenBSD.org/pub/OpenBSD/%SUBDIR%/ \
+	https://ftp.eu.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
+	https://ftp3.usa.openbsd.org/pub/OpenBSD/%SUBDIR%/ \
+	https://openbsd.hk/pub/OpenBSD/%SUBDIR%/ \
+	https://mirror.aarnet.edu.au/pub/OpenBSD/%SUBDIR%/ \
+	https://mirrors.evowise.com/pub/OpenBSD/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_OSSP)
