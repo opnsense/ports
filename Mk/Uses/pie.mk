@@ -14,10 +14,6 @@ _INCLUDE_USES_PIE_MK=    yes
 IGNORE=	USES=pie does not require args
 .endif
 
-CFLAGS+=	-fPIC -fPIE
-CXXFLAGS+=	-fPIC -fPIE
-LDFLAGS+=	-pie
-
 .if "${PORTNAME}" == "suricata"
 # Note: Suricata on HardenedBSD supports using thread-local
 # storage. But for some reason, the linker on OPNsense doesn't like
@@ -31,6 +27,10 @@ LDFLAGS+=	-pie
 CONFIGURE_ARGS+=	--enable-pie --disable-threading-tls
 .elif "${PORTNAME}" == "pkg"
 CONFIGURE_ARGS+=	--enable-pie
+.else
+CFLAGS+=	-fPIC -fPIE
+CXXFLAGS+=	-fPIC -fPIE
+LDFLAGS+=	-pie
 .endif
 
 .endif
