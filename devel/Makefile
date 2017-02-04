@@ -250,6 +250,7 @@
     SUBDIR += cgit
     SUBDIR += cgprof
     SUBDIR += charva
+    SUBDIR += check
     SUBDIR += checkbashisms
     SUBDIR += checkheaders
     SUBDIR += cheritrace-devel
@@ -795,6 +796,7 @@
     SUBDIR += gradle
     SUBDIR += grantlee
     SUBDIR += grantlee5
+    SUBDIR += grumpy
     SUBDIR += gsettings-desktop-schemas
     SUBDIR += gsoap
     SUBDIR += gstreamer-plugins-gconf
@@ -1226,7 +1228,6 @@
     SUBDIR += libccid
     SUBDIR += libcfg
     SUBDIR += libcfu
-    SUBDIR += libcheck
     SUBDIR += libchipcard
     SUBDIR += libcidr
     SUBDIR += libcii
@@ -4354,6 +4355,7 @@
     SUBDIR += py-libpeas
     SUBDIR += py-libplist
     SUBDIR += py-libusb1
+    SUBDIR += py-libusb115
     SUBDIR += py-libvirt
     SUBDIR += py-libzfs
     SUBDIR += py-linecache2
@@ -5068,7 +5070,6 @@
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-binding_of_caller
-    SUBDIR += rubygem-bio
     SUBDIR += rubygem-bit-struct
     SUBDIR += rubygem-blankslate
     SUBDIR += rubygem-blobstore_client
@@ -5235,6 +5236,7 @@
     SUBDIR += rubygem-ice_cube
     SUBDIR += rubygem-ice_nine
     SUBDIR += rubygem-inflecto
+    SUBDIR += rubygem-insist
     SUBDIR += rubygem-instance_storage
     SUBDIR += rubygem-interact
     SUBDIR += rubygem-io-like
@@ -5334,6 +5336,7 @@
     SUBDIR += rubygem-piston
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-platform
+    SUBDIR += rubygem-pleaserun
     SUBDIR += rubygem-plist
     SUBDIR += rubygem-pluggaloid
     SUBDIR += rubygem-polyamorous
@@ -5459,6 +5462,7 @@
     SUBDIR += rubygem-streetaddress
     SUBDIR += rubygem-stringex
     SUBDIR += rubygem-structured_warnings
+    SUBDIR += rubygem-stud
     SUBDIR += rubygem-subexec
     SUBDIR += rubygem-sugar-high
     SUBDIR += rubygem-sumbur
