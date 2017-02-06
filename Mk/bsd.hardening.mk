@@ -23,13 +23,13 @@ HARDENING_QUIRKS+=	kmod
 .endif
 
 .if defined(PKGNAMEPREFIX)
-.if ${PKGNAMEPREFIX:M*lib*} && ${PKGNAMEPREFIX:M*libre*} == ""
+.if ${PKGNAMEPREFIX:Mlib}
 HARDENING_QUIRKS+=	lib
 .endif
 .endif
 
 .if defined(PKGNAMESUFFIX)
-.if ${PKGNAMESUFFIX:M*lib*} && ${PKGNAMESUFFIX:M*libre*} == ""
+.if ${PKGNAMESUFFIX:M-lib*}
 HARDENING_QUIRKS+=	lib
 .endif
 .endif
