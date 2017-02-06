@@ -74,8 +74,6 @@ diff -ur ../pkg-1.9.4.orig/configure.ac ./configure.ac
  if test "$ac_cv_func_mmap_fixed_mapped" = "yes"; then
      FILEMAP=unixfilemap
  else
-Only in .: configure.ac.orig
-Only in .: configure.orig
 diff -ur ../pkg-1.9.4.orig/src/Makefile.am ./src/Makefile.am
 --- ../pkg-1.9.4.orig/src/Makefile.am	2017-02-06 02:55:35.103748000 -0500
 +++ ./src/Makefile.am	2017-02-06 02:56:54.018552000 -0500
@@ -91,7 +89,6 @@ diff -ur ../pkg-1.9.4.orig/src/Makefile.am ./src/Makefile.am
  if HAVE_ELF_ABI
  if LIBELF_BUNDLED
  pkg_static_LDADD+=	$(top_builddir)/external/libelf_static.la
-Only in ./src: Makefile.am.orig
 diff -ur ../pkg-1.9.4.orig/src/Makefile.in ./src/Makefile.in
 --- ../pkg-1.9.4.orig/src/Makefile.in	2017-02-06 02:55:35.103304000 -0500
 +++ ./src/Makefile.in	2017-02-06 02:57:10.321346000 -0500
@@ -169,4 +166,3 @@ diff -ur ../pkg-1.9.4.orig/src/Makefile.in ./src/Makefile.in
  DYNPROG = pkg
  @BUILD_STATIC_TRUE@pkg_static_LDFLAGS = -all-static
  dist_sysconf_DATA = pkg.conf.sample
-Only in ./src: Makefile.in.orig
