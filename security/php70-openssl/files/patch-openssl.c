@@ -612,7 +612,7 @@
 +	
 +	zval *output;
 +	
-+	if(zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rzz|bbsl",
++	if(zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "rz/z|bbsl",
 +							&crl_res, &output,		
 +							&zcapkey,
 +							&crlv2, &notext,
