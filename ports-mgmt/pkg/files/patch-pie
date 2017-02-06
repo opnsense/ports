@@ -1,7 +1,6 @@
-Only in .: autom4te.cache
-diff -ru ../pkg-1.9.3.orig/configure ./configure
---- ../pkg-1.9.3.orig/configure	2016-11-14 08:54:55.749615000 -0500
-+++ ./configure	2016-11-14 08:56:03.677395000 -0500
+diff -ur ../pkg-1.9.4.orig/configure ./configure
+--- ../pkg-1.9.4.orig/configure	2017-02-06 02:55:35.110323000 -0500
++++ ./configure	2017-02-06 02:55:46.729495000 -0500
 @@ -670,6 +670,8 @@
  HAVE_LD_VERSION_SCRIPT_FALSE
  HAVE_LD_VERSION_SCRIPT_TRUE
@@ -60,9 +59,9 @@ diff -ru ../pkg-1.9.3.orig/configure ./configure
  if test -z "${HAVE_LD_VERSION_SCRIPT_TRUE}" && test -z "${HAVE_LD_VERSION_SCRIPT_FALSE}"; then
    as_fn_error $? "conditional \"HAVE_LD_VERSION_SCRIPT\" was never defined.
  Usually this means the macro was only invoked conditionally." "$LINENO" 5
-diff -ru ../pkg-1.9.3.orig/configure.ac ./configure.ac
---- ../pkg-1.9.3.orig/configure.ac	2016-11-14 08:54:55.682171000 -0500
-+++ ./configure.ac	2016-11-14 08:55:09.844851000 -0500
+diff -ur ../pkg-1.9.4.orig/configure.ac ./configure.ac
+--- ../pkg-1.9.4.orig/configure.ac	2017-02-06 02:55:35.061870000 -0500
++++ ./configure.ac	2017-02-06 02:55:46.729929000 -0500
 @@ -40,6 +40,11 @@
  AC_TYPE_OFF_T
  AC_FUNC_MMAP
@@ -75,24 +74,27 @@ diff -ru ../pkg-1.9.3.orig/configure.ac ./configure.ac
  if test "$ac_cv_func_mmap_fixed_mapped" = "yes"; then
      FILEMAP=unixfilemap
  else
-diff -ru ../pkg-1.9.3.orig/src/Makefile.am ./src/Makefile.am
---- ../pkg-1.9.3.orig/src/Makefile.am	2016-11-14 08:54:55.744671000 -0500
-+++ ./src/Makefile.am	2016-11-14 08:55:14.883191000 -0500
-@@ -75,6 +75,11 @@
+Only in .: configure.ac.orig
+Only in .: configure.orig
+diff -ur ../pkg-1.9.4.orig/src/Makefile.am ./src/Makefile.am
+--- ../pkg-1.9.4.orig/src/Makefile.am	2017-02-06 02:55:35.103748000 -0500
++++ ./src/Makefile.am	2017-02-06 02:56:54.018552000 -0500
+@@ -76,6 +76,11 @@
  			-lcrypto \
  			-lm
  
 +if ENABLE_PIE
-+pkg_CFLAGS+=	-fPIE -pie
++pkg_CFLAGS+=	-fPIC -fPIE -pie
 +pkg_LDFLAGS=	-pie
 +endif
 +
  if HAVE_ELF_ABI
  if LIBELF_BUNDLED
  pkg_static_LDADD+=	$(top_builddir)/external/libelf_static.la
-diff -ru ../pkg-1.9.3.orig/src/Makefile.in ./src/Makefile.in
---- ../pkg-1.9.3.orig/src/Makefile.in	2016-11-14 08:54:55.746315000 -0500
-+++ ./src/Makefile.in	2016-11-14 08:56:12.056003000 -0500
+Only in ./src: Makefile.am.orig
+diff -ur ../pkg-1.9.4.orig/src/Makefile.in ./src/Makefile.in
+--- ../pkg-1.9.4.orig/src/Makefile.in	2017-02-06 02:55:35.103304000 -0500
++++ ./src/Makefile.in	2017-02-06 02:57:10.321346000 -0500
 @@ -91,15 +91,16 @@
  build_triplet = @build@
  host_triplet = @host@
@@ -100,7 +102,7 @@ diff -ru ../pkg-1.9.3.orig/src/Makefile.in ./src/Makefile.in
 -@HAVE_ELF_ABI_TRUE@@LIBELF_BUNDLED_TRUE@am__append_2 = $(top_builddir)/external/libelf_static.la
 -@HAVE_ELF_ABI_TRUE@@LIBELF_BUNDLED_FALSE@am__append_3 = -lelf
 -@HAVE_MACHO_ABI_TRUE@am__append_4 = $(top_builddir)/external/libmachista_static.la \
-+@ENABLE_PIE_TRUE@am__append_2 = -fPIE -pie
++@ENABLE_PIE_TRUE@am__append_2 = -fPIC -fPIE -pie
 +@HAVE_ELF_ABI_TRUE@@LIBELF_BUNDLED_TRUE@am__append_3 = $(top_builddir)/external/libelf_static.la
 +@HAVE_ELF_ABI_TRUE@@LIBELF_BUNDLED_FALSE@am__append_4 = -lelf
 +@HAVE_MACHO_ABI_TRUE@am__append_5 = $(top_builddir)/external/libmachista_static.la \
@@ -132,7 +134,7 @@ diff -ru ../pkg-1.9.3.orig/src/Makefile.in ./src/Makefile.in
  	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2)
  pkg_static_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
  	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-@@ -604,24 +605,22 @@
+@@ -606,24 +607,22 @@
  pkg_LDADD = @OS_LDFLAGS@ $(top_builddir)/libpkg/libpkg.la \
  	$(top_builddir)/external/libsbuf.la \
  	$(top_builddir)/compat/libbsd_compat.la @LIBJAIL_LIB@ -lutil \
@@ -167,3 +169,4 @@ diff -ru ../pkg-1.9.3.orig/src/Makefile.in ./src/Makefile.in
  DYNPROG = pkg
  @BUILD_STATIC_TRUE@pkg_static_LDFLAGS = -all-static
  dist_sysconf_DATA = pkg.conf.sample
+Only in ./src: Makefile.in.orig
