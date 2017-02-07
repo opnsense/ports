@@ -174,6 +174,7 @@
     SUBDIR += netspoc
     SUBDIR += netustad
     SUBDIR += netwag
+    SUBDIR += networkmgr
     SUBDIR += netwox
     SUBDIR += netxms
     SUBDIR += nfdump
@@ -319,6 +320,7 @@
     SUBDIR += sjitter
     SUBDIR += slate
     SUBDIR += smokeping
+    SUBDIR += snap
     SUBDIR += snmp++
     SUBDIR += snmp4nagios
     SUBDIR += snmptt
