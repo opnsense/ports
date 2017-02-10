@@ -1702,6 +1702,7 @@
     SUBDIR += ocaml-xstr
     SUBDIR += ocaml-xstrp4
     SUBDIR += ocl-icd
+    SUBDIR += oclgrind
     SUBDIR += ode
     SUBDIR += ois
     SUBDIR += okteta
@@ -4102,6 +4103,7 @@
     SUBDIR += py-arrow
     SUBDIR += py-aspects
     SUBDIR += py-aspyct
+    SUBDIR += py-astor
     SUBDIR += py-astroid
     SUBDIR += py-asyncio
     SUBDIR += py-atomiclong
@@ -4624,6 +4626,7 @@
     SUBDIR += py-rope
     SUBDIR += py-rose
     SUBDIR += py-roxlib
+    SUBDIR += py-rply
     SUBDIR += py-rq
     SUBDIR += py-rtree
     SUBDIR += py-rtslib-fb
