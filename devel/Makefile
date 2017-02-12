@@ -3827,6 +3827,7 @@
     SUBDIR += pear-pdepend-staticReflection
     SUBDIR += pear-phing
     SUBDIR += pecl-APCu
+    SUBDIR += pecl-APCu4
     SUBDIR += pecl-dio
     SUBDIR += pecl-eio
     SUBDIR += pecl-ev
@@ -3846,6 +3847,7 @@
     SUBDIR += pecl-libevent
     SUBDIR += pecl-memoize
     SUBDIR += pecl-msgpack
+    SUBDIR += pecl-msgpack0
     SUBDIR += pecl-ncurses
     SUBDIR += pecl-newt
     SUBDIR += pecl-params
@@ -3904,7 +3906,6 @@
     SUBDIR += php56-sysvsem
     SUBDIR += php56-sysvshm
     SUBDIR += php56-tokenizer
-    SUBDIR += php70-APCu
     SUBDIR += php70-gettext
     SUBDIR += php70-intl
     SUBDIR += php70-json
