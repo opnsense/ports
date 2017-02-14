@@ -56,6 +56,7 @@
     SUBDIR += bolt
     SUBDIR += bookmarkbridge
     SUBDIR += bozohttpd
+    SUBDIR += butterfly
     SUBDIR += c-icap
     SUBDIR += c-icap-modules
     SUBDIR += cadaver
@@ -1454,6 +1455,7 @@
     SUBDIR += pecl-swish
     SUBDIR += pecl-twig
     SUBDIR += pecl-yaf
+    SUBDIR += pecl-yaf2
     SUBDIR += pecl-yar
     SUBDIR += perlbal
     SUBDIR += pglogd
@@ -2000,6 +2002,9 @@
     SUBDIR += rubygem-jsobfu
     SUBDIR += rubygem-jwt
     SUBDIR += rubygem-kaminari
+    SUBDIR += rubygem-kaminari-actionview
+    SUBDIR += rubygem-kaminari-activerecord
+    SUBDIR += rubygem-kaminari-core
     SUBDIR += rubygem-kaminari-rails4
     SUBDIR += rubygem-kensa
     SUBDIR += rubygem-layout_yullio_generator
