@@ -1,4 +1,5 @@
 bin/suricata
+man/man1/suricata.1.gz
 %%SC%%bin/suricatasc
 %%DOCSDIR%%/AUTHORS
 %%DOCSDIR%%/Basic_Setup.txt
