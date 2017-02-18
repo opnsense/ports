@@ -234,6 +234,7 @@
     SUBDIR += cbrowser
     SUBDIR += cc65
     SUBDIR += ccache
+    SUBDIR += ccache-memcached
     SUBDIR += cccc
     SUBDIR += ccdoc
     SUBDIR += ccons
@@ -1482,6 +1483,7 @@
     SUBDIR += libzrtpcpp
     SUBDIR += libzvbi
     SUBDIR += lightning
+    SUBDIR += linenoise-ng
     SUBDIR += linux-c6-dbus-glib
     SUBDIR += linux-c6-dbus-libs
     SUBDIR += linux-c6-devtools
@@ -2438,6 +2440,7 @@
     SUBDIR += p5-File-Remove
     SUBDIR += p5-File-SafeDO
     SUBDIR += p5-File-SearchPath
+    SUBDIR += p5-File-Share
     SUBDIR += p5-File-ShareDir
     SUBDIR += p5-File-ShareDir-Install
     SUBDIR += p5-File-ShareDir-PAR
