@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	opnsense-lang
-PORTVERSION=	17.1
+PORTVERSION=	17.1.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
