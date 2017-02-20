@@ -1273,7 +1273,7 @@
     SUBDIR += libev
     SUBDIR += libevdev
     SUBDIR += libevent-hiphop
-    SUBDIR += libevent2
+    SUBDIR += libevent
     SUBDIR += libevt
     SUBDIR += libevtx
     SUBDIR += libewf
@@ -5372,6 +5372,7 @@
     SUBDIR += rubygem-powerpack
     SUBDIR += rubygem-pqueue
     SUBDIR += rubygem-progressbar
+    SUBDIR += rubygem-progressbar09
     SUBDIR += rubygem-protected_attributes
     SUBDIR += rubygem-pry
     SUBDIR += rubygem-pry-rails

@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	ccnet-server
-PORTVERSION=	6.0.7
+PORTVERSION=	6.0.8
 DISTVERSIONPREFIX=	v
 DISTVERSIONSUFFIX=	-server
 PORTREVISION=	1
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libsearpc.so:devel/libsearpc \
 		libsqlite3.so:databases/sqlite3 \
 		libzdb.so:databases/libzdb \
 		libuuid.so:misc/e2fsprogs-libuuid \
-		libevent.so:devel/libevent2 \
+		libevent.so:devel/libevent \
 		libjansson.so:devel/jansson
 
 CONFLICT=	ccnet-[0-9]*
@@ -59,6 +59,6 @@ post-install:
 	(cd ${STAGEDIR}${PREFIX}/lib && \
 		${COPYTREE_SHARE} ${PYTHON_VERSION} ${STAGEDIR}${PREFIX}/${SEALIB})
 	@${RM} -rf ${STAGEDIR}${PREFIX}/lib/${PYTHON_VERSION}
-	${LN} -s ${PREFIX}/${SEABIN}/ccnet-server ${STAGEDIR}${PREFIX}/bin/
+	${LN} -s '../${SEABIN}/ccnet-server' ${STAGEDIR}/${PREFIX}/bin/ccnet-server
 
 .include <bsd.port.mk>
