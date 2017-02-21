@@ -6,6 +6,5 @@ CATEGORIES=	security
 MASTERDIR=	${.CURDIR}/../../lang/php70
 
 PKGNAMESUFFIX=	-openssl
-PORTREVISION=	1
 
 .include "${MASTERDIR}/Makefile"
