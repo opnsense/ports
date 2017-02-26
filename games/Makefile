@@ -27,6 +27,7 @@
     SUBDIR += affenspiel
     SUBDIR += afternoonstalker
     SUBDIR += agame
+    SUBDIR += ags
     SUBDIR += aisleriot
     SUBDIR += alephone
     SUBDIR += alephone-data
@@ -201,6 +202,7 @@
     SUBDIR += diameter
     SUBDIR += diaspora
     SUBDIR += digger-vgl
+    SUBDIR += divide-and-succeed
     SUBDIR += dmjava
     SUBDIR += dodgindiamond2
     SUBDIR += domination
