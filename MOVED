@@ -8562,7 +8562,6 @@ games/hlstatsx||2016-07-04|Has expired: Broken for more than 6 months
 audio/streamtuner||2016-07-04|Has expired: Broken for more than 6 months
 audio/mangler||2016-07-04|Has expired: Broken for more than 6 months
 audio/hawkvoice||2016-07-04|Has expired: Broken for more than 6 months
-audio/alac||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-mpdule||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-tclock||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/musca||2016-07-04|Has expired: Broken for more than 6 months
@@ -9088,3 +9087,4 @@ sysutils/metricbeat|sysutils/beats|2017-02-21|merged beats to one port
 sysutils/packetbeat|sysutils/beats|2017-02-21|merged beats to one port
 devel/libc++||2017-02-24|Obsolete, all supported FreeBSD versions have libc++ in the base system
 devel/libcxxrt||2017-02-24|Obsolete, all supported FreeBSD versions have libcxxrt in the base system
+devel/linux_kdump||2017-02-26|Broken and obsolete
