@@ -1,3 +1,3 @@
-TIMESTAMP = 1484299393
-SHA256 (opnsense-bsdinstaller-17.1_GH0.tar.gz) = c7135f964b90a1ac62129283de8da16dbab9b0cb575b51270ee8cf162b6f9ccd
-SIZE (opnsense-bsdinstaller-17.1_GH0.tar.gz) = 351671
+TIMESTAMP = 1488276937
+SHA256 (opnsense-bsdinstaller-17.1-7bbfe1a_GH0.tar.gz) = 70ce3628aac2bab9a6d42844d4dcd2e475eab14e54a8c5cf5368101e68da9e91
+SIZE (opnsense-bsdinstaller-17.1-7bbfe1a_GH0.tar.gz) = 351526
