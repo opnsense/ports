@@ -426,6 +426,7 @@
     SUBDIR += dreampie
     SUBDIR += drpython
     SUBDIR += ds2
+    SUBDIR += dub
     SUBDIR += dulwich
     SUBDIR += duplo
     SUBDIR += dwarfdump
@@ -559,6 +560,7 @@
     SUBDIR += fga
     SUBDIR += fhist
     SUBDIR += fib
+    SUBDIR += fifechan
     SUBDIR += firmware-utils
     SUBDIR += fistgen
     SUBDIR += flatbuffers
@@ -576,6 +578,7 @@
     SUBDIR += fortran-utils
     SUBDIR += fortytwo-encore
     SUBDIR += fossil
+    SUBDIR += fossology-nomos-standalone
     SUBDIR += fpc-bfd
     SUBDIR += fpc-dbus
     SUBDIR += fpc-fcl-async
@@ -1274,8 +1277,8 @@
     SUBDIR += libestr
     SUBDIR += libev
     SUBDIR += libevdev
-    SUBDIR += libevent-hiphop
     SUBDIR += libevent
+    SUBDIR += libevent-hiphop
     SUBDIR += libevt
     SUBDIR += libevtx
     SUBDIR += libewf
@@ -4563,6 +4566,7 @@
     SUBDIR += py-pytest-xdist
     SUBDIR += py-python-bugzilla
     SUBDIR += py-python-distutils-extra
+    SUBDIR += py-python-dtrace
     SUBDIR += py-python-editor
     SUBDIR += py-python-gflags
     SUBDIR += py-python-gist
@@ -4778,6 +4782,7 @@
     SUBDIR += py-weblib
     SUBDIR += py-websockify
     SUBDIR += py-wheel
+    SUBDIR += py-widgetsnbextension
     SUBDIR += py-wrapt
     SUBDIR += py-wsgi_intercept
     SUBDIR += py-wsgi_xmlrpc
@@ -5109,11 +5114,9 @@
     SUBDIR += rubygem-bosh-template
     SUBDIR += rubygem-bosh_common
     SUBDIR += rubygem-bson
-    SUBDIR += rubygem-bson1
     SUBDIR += rubygem-buftok
     SUBDIR += rubygem-bugspots
     SUBDIR += rubygem-builder
-    SUBDIR += rubygem-builder32
     SUBDIR += rubygem-byebug
     SUBDIR += rubygem-cabin
     SUBDIR += rubygem-caesars
@@ -5317,7 +5320,6 @@
     SUBDIR += rubygem-method_source
     SUBDIR += rubygem-micromachine
     SUBDIR += rubygem-minitest
-    SUBDIR += rubygem-minitest4
     SUBDIR += rubygem-mixlib-authentication
     SUBDIR += rubygem-mixlib-cli
     SUBDIR += rubygem-mixlib-config
