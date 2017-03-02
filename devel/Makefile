@@ -477,6 +477,7 @@
     SUBDIR += elixir-inflex
     SUBDIR += elixir-lager_logger
     SUBDIR += elixir-libring
+    SUBDIR += elixir-make
     SUBDIR += elixir-math
     SUBDIR += elixir-msgpax
     SUBDIR += elixir-nadia
@@ -4327,7 +4328,9 @@
     SUBDIR += py-ipaddr
     SUBDIR += py-ipdb
     SUBDIR += py-ipykernel
+    SUBDIR += py-ipyparallel
     SUBDIR += py-ipython_genutils
+    SUBDIR += py-ipywidgets
     SUBDIR += py-iso8601
     SUBDIR += py-isodate
     SUBDIR += py-isort
@@ -4357,6 +4360,7 @@
     SUBDIR += py-jsonrpclib
     SUBDIR += py-jsonschema
     SUBDIR += py-jupyter_client
+    SUBDIR += py-jupyter_console
     SUBDIR += py-jupyter_core
     SUBDIR += py-kaptan
     SUBDIR += py-kayako
@@ -4395,6 +4399,7 @@
     SUBDIR += py-manuel
     SUBDIR += py-matrix-angular-sdk
     SUBDIR += py-mccabe
+    SUBDIR += py-mdv
     SUBDIR += py-meliae
     SUBDIR += py-memory_profiler
     SUBDIR += py-mercurialserver
@@ -4610,6 +4615,7 @@
     SUBDIR += py-qt5-help
     SUBDIR += py-qt5-qscintilla2
     SUBDIR += py-qt5-test
+    SUBDIR += py-qtconsole
     SUBDIR += py-rauth
     SUBDIR += py-raven
     SUBDIR += py-rcsparse
