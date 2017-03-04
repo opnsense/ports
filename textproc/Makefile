@@ -329,6 +329,7 @@
     SUBDIR += id-aspell
     SUBDIR += id-hyphen
     SUBDIR += idnits
+    SUBDIR += ie-hunspell
     SUBDIR += igor
     SUBDIR += iksemel
     SUBDIR += info2html
@@ -672,6 +673,7 @@
     SUBDIR += p5-PDF-Create
     SUBDIR += p5-PDF-FromHTML
     SUBDIR += p5-PDF-Table
+    SUBDIR += p5-PDF-Tiny
     SUBDIR += p5-PDF-WebKit
     SUBDIR += p5-PDF-Writer
     SUBDIR += p5-POD2-Base
@@ -1367,6 +1369,7 @@
     SUBDIR += py3-hunspell
     SUBDIR += py3-libxml2
     SUBDIR += py3-pager
+    SUBDIR += py3-sphinx_rtd_theme
     SUBDIR += pychm
     SUBDIR += qprint
     SUBDIR += qrcodegen

@@ -98,6 +98,7 @@
     SUBDIR += deadbeef-musical-spectrum-plugin
     SUBDIR += deadbeef-playback-status-plugin
     SUBDIR += deadbeef-quick-search-plugin
+    SUBDIR += deadbeef-spectrogram-plugin
     SUBDIR += deadbeef-vu-meter-plugin
     SUBDIR += deadbeef-waveform-seekbar-plugin
     SUBDIR += decibel-audio-player
@@ -667,6 +668,7 @@
     SUBDIR += rem
     SUBDIR += resid
     SUBDIR += rexima
+    SUBDIR += rezound
     SUBDIR += rhythmbox
     SUBDIR += rio500
     SUBDIR += rioutil
@@ -714,6 +716,7 @@
     SUBDIR += sndio
     SUBDIR += solfege
     SUBDIR += sonata
+    SUBDIR += sonic-visualiser
     SUBDIR += sooperlooper
     SUBDIR += sound-juicer
     SUBDIR += soundconverter

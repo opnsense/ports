@@ -156,6 +156,7 @@
     SUBDIR += avro
     SUBDIR += avro-c
     SUBDIR += avro-cpp
+    SUBDIR += awless
     SUBDIR += aws-sdk-cpp
     SUBDIR += awscli
     SUBDIR += b2
@@ -934,6 +935,7 @@
     SUBDIR += hs-date-cache
     SUBDIR += hs-datetime
     SUBDIR += hs-deepseq-generics
+    SUBDIR += hs-directory
     SUBDIR += hs-directory-tree
     SUBDIR += hs-dlist
     SUBDIR += hs-dlist-instances
@@ -1202,6 +1204,7 @@
     SUBDIR += lasi
     SUBDIR += lcov
     SUBDIR += leaktracer
+    SUBDIR += leatherman
     SUBDIR += leiningen
     SUBDIR += lemon
     SUBDIR += lfcbase
@@ -1571,6 +1574,7 @@
     SUBDIR += lua-posix
     SUBDIR += lua-pty
     SUBDIR += lua-sysctl
+    SUBDIR += lua51-cjson
     SUBDIR += lua51-libevent
     SUBDIR += luabind
     SUBDIR += luafilesystem
@@ -4008,7 +4012,6 @@
     SUBDIR += py-DocumentTemplate
     SUBDIR += py-ExtensionClass
     SUBDIR += py-InlineEgg
-    SUBDIR += py-Jinja
     SUBDIR += py-Jinja2
     SUBDIR += py-Jinja2-doc
     SUBDIR += py-Missing
@@ -4063,9 +4066,7 @@
     SUBDIR += py-RPyC
     SUBDIR += py-Record
     SUBDIR += py-SymbolType
-    SUBDIR += py-TGScheduler
     SUBDIR += py-ToscaWidgets
-    SUBDIR += py-TurboJinja
     SUBDIR += py-XStatic
     SUBDIR += py-XStatic-Angular
     SUBDIR += py-XStatic-Angular-Bootstrap
@@ -4403,7 +4404,6 @@
     SUBDIR += py-meliae
     SUBDIR += py-memory_profiler
     SUBDIR += py-mercurialserver
-    SUBDIR += py-mez_xml
     SUBDIR += py-microversion-parse
     SUBDIR += py-mimeparse
     SUBDIR += py-minimongo
@@ -4722,7 +4722,6 @@
     SUBDIR += py-testoob
     SUBDIR += py-testpath
     SUBDIR += py-testtools
-    SUBDIR += py-tgMochiKit
     SUBDIR += py-thrift
     SUBDIR += py-thriftpy
     SUBDIR += py-timelib
@@ -4739,10 +4738,6 @@
     SUBDIR += py-transaction
     SUBDIR += py-trollius
     SUBDIR += py-ttystatus
-    SUBDIR += py-turbocheetah
-    SUBDIR += py-turbojson
-    SUBDIR += py-turbojson11
-    SUBDIR += py-turbokid
     SUBDIR += py-tvrage
     SUBDIR += py-tw.forms
     SUBDIR += py-twext
@@ -4898,6 +4893,7 @@
     SUBDIR += py3-babel
     SUBDIR += py3-click
     SUBDIR += py3-dbus
+    SUBDIR += py3-docopt
     SUBDIR += py3-flake8
     SUBDIR += py3-flake8-builtins
     SUBDIR += py3-flake8-docstrings
@@ -4911,6 +4907,7 @@
     SUBDIR += py3-lxml
     SUBDIR += py3-mccabe
     SUBDIR += py3-nose
+    SUBDIR += py3-prompt_toolkit
     SUBDIR += py3-py
     SUBDIR += py3-pycodestyle
     SUBDIR += py3-pydocstyle
@@ -4924,8 +4921,10 @@
     SUBDIR += py3-rubymarshal
     SUBDIR += py3-setproctitle
     SUBDIR += py3-simplejson
+    SUBDIR += py3-six
     SUBDIR += py3-threema-msgapi
     SUBDIR += py3-vcversioner
+    SUBDIR += py3-wcwidth
     SUBDIR += py3-xdg
     SUBDIR += py3-yaml
     SUBDIR += py_static_check
@@ -5608,6 +5607,7 @@
     SUBDIR += smv
     SUBDIR += soapui
     SUBDIR += sonar-ant-task
+    SUBDIR += sonar-scanner-cli
     SUBDIR += sonarqube
     SUBDIR += sope2
     SUBDIR += sope3
