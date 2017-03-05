@@ -16,7 +16,7 @@ BUILD_DEPENDS=	ragel:devel/ragel
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	01org
-USES=	compiler:c++11-lib cmake:outsource pathfix python:build pkgconfig
+USES=	compiler:c++11-lib cmake:outsource pathfix python:build pkgconfig sqlite:3
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	SSSE3 is required for work
 
