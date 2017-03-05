@@ -6,7 +6,7 @@ PORTVERSION=	3.2.1
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
-MAINTAINER=	koobs@FreeBSD.org
+MAINTAINER=	franco@opnsense.org
 COMMENT=	High Performance Network IDS, IPS and Security Monitoring engine
 
 LICENSE=	GPLv2
@@ -14,6 +14,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libnet.so:net/libnet \
+		libgnutls.so:security/gnutls \
+		libgcrypt.so:security/libgcrypt \
+		libgpg-error.so:security/libgpg-error \
+		libltdl.so:devel/libltdl \
 		libyaml.so:textproc/libyaml
 
 USES=		autoreconf cpe gmake libtool pathfix pkgconfig
