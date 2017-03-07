@@ -325,6 +325,7 @@
     SUBDIR += ibus-m17n
     SUBDIR += ibus-qt
     SUBDIR += ibus-table
+    SUBDIR += ibus-typing-booster
     SUBDIR += icdiff
     SUBDIR += id-aspell
     SUBDIR += id-hyphen
@@ -1323,6 +1324,7 @@
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinx-hieroglyph
     SUBDIR += py-sphinx-intl
     SUBDIR += py-sphinx-me
     SUBDIR += py-sphinx_numfig
@@ -1370,6 +1372,7 @@
     SUBDIR += py3-hunspell
     SUBDIR += py3-libxml2
     SUBDIR += py3-pager
+    SUBDIR += py3-pystemmer
     SUBDIR += py3-sphinx_rtd_theme
     SUBDIR += pychm
     SUBDIR += qprint
@@ -1541,6 +1544,7 @@
     SUBDIR += rubygem-terminal-table
     SUBDIR += rubygem-text
     SUBDIR += rubygem-tidy
+    SUBDIR += rubygem-truncato
     SUBDIR += rubygem-twitter-text
     SUBDIR += rubygem-unf
     SUBDIR += rubygem-unf_ext
