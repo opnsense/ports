@@ -241,6 +241,7 @@
     SUBDIR += ccdoc
     SUBDIR += ccons
     SUBDIR += ccrtp
+    SUBDIR += cctz
     SUBDIR += cdash
     SUBDIR += cdecl
     SUBDIR += cdialog
@@ -4239,6 +4240,7 @@
     SUBDIR += py-efl
     SUBDIR += py-eggtestinfo
     SUBDIR += py-entrypoints
+    SUBDIR += py-enum-compat
     SUBDIR += py-enum34
     SUBDIR += py-envisage
     SUBDIR += py-epdb
@@ -4291,6 +4293,7 @@
     SUBDIR += py-game_sdl2
     SUBDIR += py-gamin
     SUBDIR += py-gdata
+    SUBDIR += py-gdbgui
     SUBDIR += py-gearman
     SUBDIR += py-generate
     SUBDIR += py-geojson
@@ -4537,6 +4540,7 @@
     SUBDIR += py-pyev
     SUBDIR += py-pyface
     SUBDIR += py-pyflakes
+    SUBDIR += py-pygdbmi
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub
     SUBDIR += py-pygpx
@@ -4554,6 +4558,7 @@
     SUBDIR += py-pymtbl
     SUBDIR += py-pyopencl
     SUBDIR += py-pyparsing
+    SUBDIR += py-pypugjs
     SUBDIR += py-pyqi
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
@@ -4575,11 +4580,13 @@
     SUBDIR += py-python-distutils-extra
     SUBDIR += py-python-dtrace
     SUBDIR += py-python-editor
+    SUBDIR += py-python-engineio
     SUBDIR += py-python-gflags
     SUBDIR += py-python-gist
     SUBDIR += py-python-jenkins
     SUBDIR += py-python-magic
     SUBDIR += py-python-pcre
+    SUBDIR += py-python-socketio
     SUBDIR += py-python-statsd
     SUBDIR += py-python2-pythondialog
     SUBDIR += py-pythonbrew

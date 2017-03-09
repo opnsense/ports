@@ -1,19 +1,19 @@
 # $FreeBSD$
 
 PORTNAME=	fossil
-PORTVERSION=	1.37
+PORTVERSION=	2.0
 DISTVERSIONPREFIX=	src-
 PORTEPOCH=	2
 CATEGORIES=	devel www
 MASTER_SITES=	http://fossil-scm.org/index.html/uv/download/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	gahr@FreeBSD.org
 COMMENT=	DSCM with built-in wiki, http interface and server, tickets database
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT-BSD2.txt
 
-WRKSRC=		${WRKDIR}/Fossil_2017-01-16_205854_1669115ab9
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 USES=		ssl
 HAS_CONFIGURE=	yes

@@ -512,6 +512,7 @@
     SUBDIR += ksysguardd
     SUBDIR += ksystemlog
     SUBDIR += kuser
+    SUBDIR += lava
     SUBDIR += lbl-cf
     SUBDIR += lbl-hf
     SUBDIR += lcdproc
@@ -1087,6 +1088,8 @@
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
+    SUBDIR += sysadm
+    SUBDIR += sysadm-client
     SUBDIR += sysgather
     SUBDIR += sysinfo
     SUBDIR += syslinux
