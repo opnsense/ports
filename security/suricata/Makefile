@@ -14,10 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libnet.so:net/libnet \
-		libgnutls.so:security/gnutls \
-		libgcrypt.so:security/libgcrypt \
-		libgpg-error.so:security/libgpg-error \
-		libltdl.so:devel/libltdl \
 		libyaml.so:textproc/libyaml
 
 USES=		autoreconf cpe gmake libtool pathfix pkgconfig
