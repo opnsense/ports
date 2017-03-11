@@ -236,7 +236,9 @@
     SUBDIR += cbrowser
     SUBDIR += cc65
     SUBDIR += ccache
+    SUBDIR += ccache-static
     SUBDIR += ccache-memcached
+    SUBDIR += ccache-memcached-static
     SUBDIR += cccc
     SUBDIR += ccdoc
     SUBDIR += ccons
@@ -4701,6 +4703,7 @@
     SUBDIR += py-speaklater
     SUBDIR += py-spyder
     SUBDIR += py-sqlcc
+    SUBDIR += py-stackexchange
     SUBDIR += py-statgrab
     SUBDIR += py-statsd
     SUBDIR += py-stdnum
@@ -5294,6 +5297,7 @@
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-jekyll-coffeescript
     SUBDIR += rubygem-jeweler
+    SUBDIR += rubygem-jira-ruby
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -5350,6 +5354,7 @@
     SUBDIR += rubygem-multi_test
     SUBDIR += rubygem-murmurhash3
     SUBDIR += rubygem-mustache
+    SUBDIR += rubygem-mustache0
     SUBDIR += rubygem-mustermann
     SUBDIR += rubygem-mustermann-grape
     SUBDIR += rubygem-mutter
@@ -5482,6 +5487,7 @@
     SUBDIR += rubygem-shoulda-matchers
     SUBDIR += rubygem-sidekiq
     SUBDIR += rubygem-sidekiq-cron
+    SUBDIR += rubygem-sidekiq-limit_fetch
     SUBDIR += rubygem-sidetiq
     SUBDIR += rubygem-sigdump
     SUBDIR += rubygem-simple_form
@@ -5545,6 +5551,7 @@
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-unicode
     SUBDIR += rubygem-unicode-display_width
+    SUBDIR += rubygem-useragent
     SUBDIR += rubygem-uuid
     SUBDIR += rubygem-uuidtools
     SUBDIR += rubygem-validatable
