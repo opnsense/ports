@@ -880,6 +880,7 @@
     SUBDIR += py-mixbox
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
+    SUBDIR += py-onetime
     SUBDIR += py-openssl
     SUBDIR += py-paramiko
     SUBDIR += py-paramiko1
@@ -1064,6 +1065,9 @@
     SUBDIR += s2n
     SUBDIR += safesh
     SUBDIR += samba-virusfilter
+    SUBDIR += samhain
+    SUBDIR += samhain-client
+    SUBDIR += samhain-server
     SUBDIR += sancp
     SUBDIR += sasp
     SUBDIR += scamp

@@ -4366,6 +4366,7 @@
     SUBDIR += py-jsonlib2
     SUBDIR += py-jsonpatch
     SUBDIR += py-jsonpointer
+    SUBDIR += py-jsonref
     SUBDIR += py-jsonrpclib
     SUBDIR += py-jsonschema
     SUBDIR += py-jupyter_client
@@ -4627,6 +4628,7 @@
     SUBDIR += py-qt5-qscintilla2
     SUBDIR += py-qt5-test
     SUBDIR += py-qtconsole
+    SUBDIR += py-ramlfications
     SUBDIR += py-rauth
     SUBDIR += py-raven
     SUBDIR += py-rcsparse
@@ -4919,6 +4921,7 @@
     SUBDIR += py3-lxml
     SUBDIR += py3-mccabe
     SUBDIR += py3-nose
+    SUBDIR += py3-ply
     SUBDIR += py3-prompt_toolkit
     SUBDIR += py3-py
     SUBDIR += py3-pycodestyle
