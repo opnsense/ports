@@ -1377,6 +1377,7 @@
     SUBDIR += py3-pystemmer
     SUBDIR += py3-snowballstemmer
     SUBDIR += py3-sphinx_rtd_theme
+    SUBDIR += py3-texttable
     SUBDIR += pychm
     SUBDIR += qprint
     SUBDIR += qrcodegen
@@ -1466,7 +1467,6 @@
     SUBDIR += rubygem-gemoji
     SUBDIR += rubygem-gherkin
     SUBDIR += rubygem-github-linguist
-    SUBDIR += rubygem-github-markdown
     SUBDIR += rubygem-github-markup
     SUBDIR += rubygem-gitlab-grit
     SUBDIR += rubygem-gitlab-linguist
