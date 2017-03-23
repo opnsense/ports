@@ -1219,7 +1219,6 @@
     SUBDIR += rubygem-rubytter
     SUBDIR += rubygem-rudy
     SUBDIR += rubygem-rye
-    SUBDIR += rubygem-signet
     SUBDIR += rubygem-simple_oauth
     SUBDIR += rubygem-stompserver
     SUBDIR += rubygem-t
@@ -1232,10 +1231,6 @@
     SUBDIR += rubygem-uri-redis
     SUBDIR += rubygem-whois
     SUBDIR += rude
-    SUBDIR += samba-libsmbclient
-    SUBDIR += samba-nmblookup
-    SUBDIR += samba-smbclient
-    SUBDIR += samba36
     SUBDIR += samba42
     SUBDIR += samba43
     SUBDIR += samba44
