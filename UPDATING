@@ -5,6 +5,61 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20170326:
+  AFFECTS: users of samba43
+  AUTHOR: antoine@FreeBSD.org
+
+  The default version of samba has been switched from 4.3 to 4.4.
+  Upgrade instructions:
+
+  For package users having samba43 installed indirectly (as a dependency):
+    # pkg upgrade
+
+  For package users having samba43 installed directly (leaf port):
+    # pkg upgrade
+    # pkg install samba44
+
+  For ports users:
+    If you want to keep samba43, add DEFAULT_VERSIONS+= samba=4.3 to make.conf
+
+    If you want to upgrade to samba44, remove samba43 and obsolete packages:
+    # pkg delete -f samba36-libsmbclient samba36-nmblookup samba36-smbclient samba36 samba43 p5-Parse-Pidl
+
+    Portmaster users:
+    # portmaster net/samba44
+    # portmaster -a
+
+    Portupgrade users:
+    # portinstall net/samba44
+    # portupgrade -a
+
+20170325:
+  AFFECTS: net/samba46 and devel/p5-Parse-Pidl
+  AUTHOR: timur@FreeBSD.org
+
+  New version of Samba port from 4.6 branch is added. Before upgrading please read upgrade notes:
+
+  https://www.samba.org/samba/history/samba-4.6.0.html
+
+  For the vfs_fruit users:
+
+  Users on *BSD must rename the metadata xattr used by vfs_fruit when
+  using the default setting "fruit:metadata = netatalk".
+
+  Due to a glitch in the Samba xattr API compatibility layer for FreeBSD and a
+  mistake in vfs_fruit, vfs_fruit ended up using the wrong xattr name when
+  configured with "fruit:metadata = netatalk" (default). Instead of the correct
+
+  org.netatalk.Metadata
+
+  it used
+
+  netatalk.Metadata
+
+  Starting with Samba 4.6 vfs_fruit will use the correct "org.netatalk.Metadata"
+  which means existing installations must rename this xattrs. For this purpose
+  Samba now includes a new tool `mvxattr`.
+
 20170325:
   AFFECTS: net/samba45, net/samba46 and devel/p5-Parse-Pidl
   AUTHOR: timur@FreeBSD.org
@@ -42,7 +97,7 @@ you update your ports collection, before attempting any port upgrades.
     # portmaster -a
 
     Portupgrade users:
-    # portupgrade net/samba43
+    # portinstall net/samba43
     # portupgrade -a
 
 20170319:
