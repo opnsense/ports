@@ -201,7 +201,11 @@
     SUBDIR += bugzilla50
     SUBDIR += build
     SUBDIR += buildbot
-    SUBDIR += buildbot-slave
+    SUBDIR += buildbot-console-view
+    SUBDIR += buildbot-pkg
+    SUBDIR += buildbot-waterfall-view
+    SUBDIR += buildbot-worker
+    SUBDIR += buildbot-www
     SUBDIR += buildtool
     SUBDIR += buildtool-doc
     SUBDIR += bullet
@@ -1741,7 +1745,6 @@
     SUBDIR += opengrok
     SUBDIR += openmp
     SUBDIR += openocd
-    SUBDIR += openvex
     SUBDIR += openwince-include
     SUBDIR += openzz
     SUBDIR += orc
