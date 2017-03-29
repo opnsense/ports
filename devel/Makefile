@@ -1678,6 +1678,7 @@
     SUBDIR += nini
     SUBDIR += ninja
     SUBDIR += ninja-ide
+    SUBDIR += nlohmann-json
     SUBDIR += node-thrift
     SUBDIR += notify-sharp
     SUBDIR += noweb
@@ -4918,6 +4919,7 @@
     SUBDIR += py3-flake8-quotes
     SUBDIR += py3-gobject3
     SUBDIR += py3-hgtools
+    SUBDIR += py3-jedi
     SUBDIR += py3-jsonschema
     SUBDIR += py3-libpeas
     SUBDIR += py3-libzfs

@@ -944,6 +944,7 @@
     SUBDIR += rinse
     SUBDIR += rmonitor
     SUBDIR += roottail
+    SUBDIR += rovclock
     SUBDIR += rsnapshot
     SUBDIR += rsyncbackup
     SUBDIR += rsyncrypto
@@ -1076,6 +1077,7 @@
     SUBDIR += snowlog
     SUBDIR += socket
     SUBDIR += socklog
+    SUBDIR += solaar
     SUBDIR += sortu
     SUBDIR += spindown
     SUBDIR += spinner
