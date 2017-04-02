@@ -146,10 +146,8 @@ POLARSSL_LIB_DEPENDS=	libmbedtls.so:security/polarssl13
 
 .include <bsd.port.pre.mk>
 
-.if ${PORT_OPTIONS:MOPENSSL}
-. if ${SSL_DEFAULT:Mlibressl*}
+.if ${SSL_DEFAULT:Mlibressl*}
 IGNORE=	requires PSK which is unsupported by the selected LibreSSL
-. endif
 .endif
 
 post-patch:

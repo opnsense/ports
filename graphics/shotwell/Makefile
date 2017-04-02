@@ -3,6 +3,7 @@
 
 PORTNAME=	shotwell
 PORTVERSION=	0.26.0
+PORTREVISION=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME/sources/shotwell/${PORTVERSION:R}
 
@@ -15,7 +16,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	vala>=0.20.1:lang/vala \
 		bash:shells/bash \
 		itstool:textproc/itstool
-LIB_DEPENDS=	libdbus-glib-1.so:devel/dbus-glib \
+LIB_DEPENDS=	libappstream-glib.so:devel/appstream-glib \
+		libdbus-glib-1.so:devel/dbus-glib \
 		libexiv2.so:graphics/exiv2 \
 		libgcr-ui-3.so:security/gcr \
 		libgdata.so:devel/libgdata \
