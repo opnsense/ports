@@ -4469,7 +4469,6 @@ deskutils/katapult||2013-07-26|Has expired: Depends on Qt 3.x
 deskutils/kbirthday||2013-07-26|Has expired: Depends on Qt 3.x
 deskutils/kblticker||2013-07-26|Has expired: Depends on Qt 3.x
 deskutils/kchm||2013-07-26|Has expired: Depends on Qt 3.x
-deskutils/kchmviewer||2013-07-26|Has expired: Depends on Qt 3.x
 deskutils/kdepim3||2013-07-26|Has expired: Depends on Qt 3.x
 deskutils/kdissert||2013-07-26|Has expired: Depends on Qt 3.x
 deskutils/kickpim||2013-07-26|Has expired: Depends on Qt 3.x
@@ -9169,3 +9168,34 @@ www/rubygem-jquery-rails4|www/rubygem-jquery-rails|2017-03-27|Remove PKGNAMESUFF
 devel/libytnef|converters/ytnef|2017-03-29|Merged into converters/ytnef
 databases/py-sqlalchemy08|databases/py-sqlalchemy10|2017-03-29|Has expired: Upstream has declared this version EoL: please migrate to databases/py-sqlalchemy10
 devel/py3-meson||2017-03-30|Removed
+deskutils/kchmviewer-kde4|deskutils/kchmviewer|2017-03-31|Renamed to drop the -kde4 suffix
+emulators/ppsspp-qt4|emulators/ppsspp-qt5|2017-03-31|Qt4 support was removed upstream
+devel/llvm37||2017-04-01|Obsolete and unmaintained upstream
+lang/clang37||2017-04-01|Obsolete and unmaintained upstream
+devel/lldb37||2017-04-01|Obsolete and unmaintained upstream
+audio/gnome-media||2017-04-01|Obsolete and not depend on anymore
+audio/gnome-audio||2017-04-01|Obsolete and not depend on anymore
+accessibility/gnome-mag||2017-04-01|Obsolete and not depend on anymore
+accessibility/gnome-speech||2017-04-01|Obsolete and not depend on anymore
+accessibility/gok||2017-04-01|Obsolete and not depend on anymore
+accessibility/dasher||2017-04-01|Obsolete and not depend on anymore
+accessibility/java-access-bridge||2017-04-01|Obsolete and not depend on anymore
+accessibility/dasher||2017-04-01|Obsolete and not depend on anymore
+accessibility/at-spi||2017-04-01|Obsolete and not depend on anymore
+accessibility/at-spi-reference||2017-04-01|Obsolete and not depend on anymore
+archivers/gnome-autoar||2017-04-01|Obsolete and not depend on anymore
+deskutils/gnome-blog||2017-04-01|Obsolete and not depend on anymore
+deskutils/gnome-epub-thumbnailer||2017-04-01|Obsolete and not depend on anymore
+databases/libgdamm||2017-04-01|Obsolete and not depend on anymore
+databases/libgda4-bdb||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4-reference||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4-postgresql||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4-jdbc||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4-mysql||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4-mdb||2017-04-02|Obsolete and not depend on anymore
+databases/libgda4-ldap||2017-04-02|Obsolete and not depend on anymore
+devel/libsigcx||2017-04-02|Obsolete and not depend on anymore
+x11-toolkits/gal2||2017-04-02|Obsolete and not depend on anymore
+x11-toolkits/gal2-reference||2017-04-02|Obsolete and not depend on anymore
+x11-toolkits/vte290|x11-toolkits/vte3|2017-04-02|Obsolete and not depend on anymore
