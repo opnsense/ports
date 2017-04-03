@@ -12,7 +12,7 @@ PKGNAMESUFFIX?=		23
 MAINTAINER=		mandree@FreeBSD.org
 COMMENT?=		Secure IP/Ethernet tunnel daemon
 
-DEPRECATED=		Replaced by new upstream relesae 2.4.x
+DEPRECATED=		Replaced by new upstream release 2.4.x
 EXPIRATION_DATE=	2017-03-31
 
 LICENSE=		GPLv2
