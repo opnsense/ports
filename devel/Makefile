@@ -728,6 +728,7 @@
     SUBDIR += gitg0
     SUBDIR += github-backup-utils
     SUBDIR += gitinspector
+    SUBDIR += gitlab-runner
     SUBDIR += gitlab-shell
     SUBDIR += gitlist
     SUBDIR += gitolite
@@ -3857,6 +3858,7 @@
     SUBDIR += pecl-event
     SUBDIR += pecl-expect
     SUBDIR += pecl-gearman
+    SUBDIR += pecl-grpc
     SUBDIR += pecl-hrtime
     SUBDIR += pecl-htscanner
     SUBDIR += pecl-inotify
