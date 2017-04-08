@@ -26,9 +26,9 @@ IGNORE=	USES=pie does not require args
 # Discussed with: Victor Julien
 CONFIGURE_ARGS+=	--enable-pie --disable-threading-tls
 .elif "${PORTNAME}" == "pkg"
-CONFIGURE_ARGS+=	--enable-pie
+CONFIGURE_ARGS+=	--enable-pie --enable-safestack
 .else
-CFLAGS+=	-fPIC -fPIE
+cflAGS+=	-fPIC -fPIE
 CXXFLAGS+=	-fPIC -fPIE
 LDFLAGS+=	-pie
 .endif
