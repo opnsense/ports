@@ -28,7 +28,7 @@ CONFIGURE_ARGS+=	--enable-pie --disable-threading-tls
 .elif "${PORTNAME}" == "pkg"
 CONFIGURE_ARGS+=	--enable-pie --enable-safestack
 .else
-cflAGS+=	-fPIC -fPIE
+CFLAGS+=	-fPIC -fPIE
 CXXFLAGS+=	-fPIC -fPIE
 LDFLAGS+=	-pie
 .endif
