@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	nghttp2
-PORTVERSION=	1.21.0
-PORTREVISION=	1
+PORTVERSION=	1.21.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www net
 
@@ -78,7 +77,7 @@ post-configure:
 	@cd ${WRKSRC}/lib/.libs/ && ${AR} x ${LOCALBASE}/lib/libnghttp2.a
 # Disable thread_local support for hosts without __cxa_thread_atexit()
 # See PR/192320 for details
-.if (${OSVERSION} < 1003506) || ((${OSVERSION} >= 1100000) && (${OSVERSION} < 1100122)) || (${OSVERSION} == 1100500)
+.if ${OPSYS} == FreeBSD && ((${OSVERSION} < 1003506) || (${OSVERSION} == 1100500))
 	@${REINPLACE_CMD} -e '/HAVE_THREAD_LOCAL/d' ${WRKSRC}/config.h
 .endif
 
