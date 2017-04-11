@@ -2777,23 +2777,16 @@ ${target}:
 
 .endif # !defined(NO_IGNORE)
 
+ignorelist:
 .if defined(IGNORE) || defined(NO_PACKAGE)
 ignorelist: package-name
-.else
-ignorelist:
-	@${DO_NADA}
 .endif
 
-.if defined(IGNORE) || defined(NO_PACKAGE)
 ignorelist-verbose:
 .if defined(IGNORE)
 	@${ECHO_CMD} "${PKGNAME}|IGNORE: "${IGNORE:Q}
-.else
+.elif defined(NO_PACKAGE)
 	@${ECHO_CMD} "${PKGNAME}|NO_PACKAGE: "${NO_PACKAGE:Q}
-.endif
-.else
-ignorelist-verbose:
-	@${DO_NADA}
 .endif
 
 ################################################################
@@ -2875,38 +2868,18 @@ _OPTIONS_OK=yes
 # override from an individual Makefile.
 ################################################################
 
-# Disable checksum
-.if defined(NO_CHECKSUM) && !target(checksum)
-checksum: fetch
-	@${DO_NADA}
-.endif
-
 # Disable build
 .if defined(NO_BUILD) && !target(build)
 build: configure
 	@${TOUCH} ${TOUCH_FLAGS} ${BUILD_COOKIE}
 .endif
 
-# Disable test
-.if defined(NO_TEST) && !target(test)
-test: stage
-	@${DO_NADA}
-.endif
-
 # Disable package
 .if defined(NO_PACKAGE) && !target(package)
 package:
-.if defined(IGNORE_SILENT)
-	@${DO_NADA}
-.else
+.if !defined(IGNORE_SILENT)
 	@${ECHO_MSG} "===>  ${PKGNAME} may not be packaged: "${NO_PACKAGE:Q}.
 .endif
-.endif
-
-# Disable describe
-.if defined(NO_DESCRIBE) && !target(describe)
-describe:
-	@${DO_NADA}
 .endif
 
 ################################################################
@@ -2917,26 +2890,9 @@ describe:
 # adding pre-* or post-* targets/scripts, override these.
 ################################################################
 
-# Pre-everything
-
-pre-everything::
-	@${DO_NADA}
-
 .if defined(TRYBROKEN) && defined(BROKEN)
 buildanyway-message:
 	@${ECHO_MSG} "Trying build of ${PKGNAME} even though it is marked BROKEN."
-.endif
-
-options-message:
-.if defined(GNOME_OPTION_MSG) && (!defined(PACKAGE_BUILDING) || !defined(BATCH))
-	@for m in ${GNOME_OPTION_MSG}; do \
-		${ECHO_MSG} $$m; \
-	done
-.else
-	@${DO_NADA}
-.endif
-.if defined(_OPTIONS_READ)
-	@${ECHO_MSG} "===>  Found saved configuration for ${_OPTIONS_READ}"
 .endif
 
 # Warn user about deprecated packages.  Advisory only.
@@ -3326,9 +3282,6 @@ do-test:
 			fi; \
 		${FALSE}; \
 		fi)
-.elif !target(do-test)
-do-test:
-	@${DO_NADA}
 .endif
 
 # Package
@@ -3709,13 +3662,8 @@ clean:
 .endif
 .endif
 
-.if !target(pre-distclean)
-pre-distclean:
-	@${DO_NADA}
-.endif
-
 .if !target(distclean)
-distclean: pre-distclean clean
+distclean: clean
 	@cd ${.CURDIR} && ${MAKE} delete-distfiles RESTRICTED_FILES="${_DISTFILES:Q} ${_PATCHFILES:Q}"
 .endif
 
@@ -3808,7 +3756,7 @@ makesum:
 
 .if !target(checksum)
 checksum: fetch
-.if !empty(_CKSUMFILES)
+.if !empty(_CKSUMFILES) && !defined(NO_CHECKSUM)
 	@${SETENV} \
 			${_CHECKSUM_INIT_ENV} \
 			dp_CHECKSUM_ALGORITHMS='${CHECKSUM_ALGORITHMS:tu}' \
@@ -5143,10 +5091,11 @@ install-desktop-entries:
 WARNING_WAIT?=	10
 show-warnings:
 	@${ECHO_MSG} "/!\\ WARNING /!\\"
-.for m in ${WARNING}
-	@${ECHO_MSG} "${m}"
-.endfor
 	@${ECHO_MSG}
+.for m in ${WARNING}
+	@${ECHO_MSG} "${m}" | ${FMT} 75 79
+	@${ECHO_MSG}
+.endfor
 	@sleep ${WARNING_WAIT}
 .endif
 
@@ -5157,9 +5106,9 @@ show-dev-warnings:
 	@${ECHO_MSG} "/!\\ ${PKGNAME}: Makefile warnings, please consider fixing /!\\"
 	@${ECHO_MSG}
 .for m in ${DEV_WARNING}
-	@${ECHO_MSG} ${m}
-.endfor
+	@${ECHO_MSG} ${m} | ${FMT} 75 79
 	@${ECHO_MSG}
+.endfor
 .if defined(DEV_WARNING_FATAL)
 	@${FALSE}
 .else
@@ -5172,9 +5121,9 @@ show-dev-errors:
 	@${ECHO_MSG} "/!\\ ${PKGNAME}: Makefile errors /!\\"
 	@${ECHO_MSG}
 .for m in ${DEV_ERROR}
-	@${ECHO_MSG} "${m}"
-.endfor
+	@${ECHO_MSG} "${m}" | ${FMT} 75 79
 	@${ECHO_MSG}
+.endfor
 	@${FALSE}
 .endif
 .endif #DEVELOPER
@@ -5353,9 +5302,7 @@ ${${target:tu}_COOKIE}: ${_${target:tu}_DEP} ${_${target:tu}_REAL_SEQ} ${_${targ
 
 .else # exists(cookie)
 ${${target:tu}_COOKIE}::
-	@if [ -e ${.TARGET} ]; then \
-		${DO_NADA}; \
-	else \
+	@if [ ! -e ${.TARGET} ]; then \
 		cd ${.CURDIR} && ${MAKE} ${.TARGET}; \
 	fi
 .endif # !exists(cookie)
@@ -5377,7 +5324,10 @@ pkg: ${_PKG_DEP} ${_PKG_REAL_SEQ}
 .endif
 
 .if !target(test)
-test: ${_TEST_DEP} ${_TEST_REAL_SEQ}
+test: ${_TEST_DEP}
+.if !defined(NO_TEST)
+test: ${_TEST_REAL_SEQ}
+.endif
 .endif
 
 .endif
