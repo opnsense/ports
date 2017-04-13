@@ -572,6 +572,7 @@
     SUBDIR += p5-MaxMind-DB-Writer
     SUBDIR += p5-Net
     SUBDIR += p5-Net-AMQP
+    SUBDIR += p5-Net-AMQP-RabbitMQ
     SUBDIR += p5-Net-APNS
     SUBDIR += p5-Net-APNs-Extended
     SUBDIR += p5-Net-ARP
@@ -1053,6 +1054,7 @@
     SUBDIR += py-socketio-client
     SUBDIR += py-speedtest-cli
     SUBDIR += py-sshuttle
+    SUBDIR += py-stomp.py
     SUBDIR += py-suds
     SUBDIR += py-suds-jurko
     SUBDIR += py-terminado
