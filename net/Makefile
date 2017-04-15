@@ -993,6 +993,7 @@
     SUBDIR += py-libnet
     SUBDIR += py-magic-wormhole
     SUBDIR += py-matrix-synapse
+    SUBDIR += py-matrix-synapse-ldap3
     SUBDIR += py-maxminddb
     SUBDIR += py-miniupnpc
     SUBDIR += py-msrplib
@@ -1237,6 +1238,7 @@
     SUBDIR += rubygem-uri-redis
     SUBDIR += rubygem-whois
     SUBDIR += rude
+    SUBDIR += s3ql
     SUBDIR += samba42
     SUBDIR += samba43
     SUBDIR += samba44

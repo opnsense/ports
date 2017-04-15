@@ -576,8 +576,6 @@
     SUBDIR += pgmodeler
     SUBDIR += pgpool
     SUBDIR += pgpool-II
-    SUBDIR += pgpool-II-22
-    SUBDIR += pgpool-II-23
     SUBDIR += pgpool-II-30
     SUBDIR += pgpool-II-33
     SUBDIR += pgpoolAdmin
@@ -803,6 +801,7 @@
     SUBDIR += py-unqlite
     SUBDIR += py-whisper
     SUBDIR += py-xapian
+    SUBDIR += py3-apsw
     SUBDIR += py3-bsddb3
     SUBDIR += py3-mysqlclient
     SUBDIR += py3-psycopg2
