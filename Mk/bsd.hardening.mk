@@ -7,10 +7,10 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 
 ${PORTNAME}_HARDENING_QURIKS?=	# can pass exceptions from global make.conf
 HARDENING_QUIRKS?=		# can pass exceptions from port Makefile
+HARDENING_OFF?=			# can pass exceptions from global make.conf
 
 .include "${PORTSDIR}/Mk/bsd.hardening.exceptions.mk"
 
-# XXX fix expansion
 HARDENING_QUIRKS+=	${${PORTNAME}_HARDENING_QUIRKS}
 
 .if defined(PORTNAME)
@@ -72,7 +72,7 @@ HARDENING_QUIRKS+=	nopie
 #
 # HARDENING_QURIKS=pie
 
-.if !defined(HARDENING_OFF)
+.if ${HARDENING_OFF:Mpie} == ""
 .if ${HARDENING_QUIRKS:Mpie} || ${HARDENING_QUIRKS:Mnopie} == ""
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
@@ -93,7 +93,7 @@ HARDENING_QUIRKS+=	norelro
 #
 # HARDENING_QURIKS=relro
 
-.if !defined(HARDENING_OFF)
+.if ${HARDENING_OFF:Mrelro} == ""
 .if ${HARDENING_QUIRKS:Mrelro} || ${HARDENING_QUIRKS:Mnorelro} == ""
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
@@ -106,12 +106,11 @@ OPTIONS_DEFAULT+=	RELRO
 ### SafeStack support ###
 #########################
 
-OPTIONS_DEFINE+=	SAFESTACK
+.if ${HARDENING_OFF:Msafestack} == ""
+.if ${HARDENING_QUIRKS:Msafestack} || ${HARDENING_QUIRKS:Mnosafestack} == ""
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
-
-.if !defined(HARDENING_OFF)
-.if ${HARDENING_QUIRKS:Msafestack}
+OPTIONS_DEFINE+=	SAFESTACK
 OPTIONS_DEFAULT+=	SAFESTACK
 .endif
 .endif

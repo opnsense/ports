@@ -9,11 +9,20 @@
 
 .if !defined(_INCLUDE_USES_SAFESTACK_MK)
 _INCLUDE_USES_SAFESTACK_MK=    yes
+
+.if !empty(safestack_ARGS)
+IGNORE=	USES=safestack does not require args
+.endif
+
 .if ${ARCH} == "amd64"
 
-CFLAGS+=	-fsanitize=safe-stack
-CXXFLAGS+=	-fsanitize=safe-stack
-LDFLAGS+=	-fsanitize=safe-stack
+.if "${PORTNAME}" == "pkg"
+CONFIGURE_ARGS+=	--enable-safestack
+.else
+CFLAGS+=		-fsanitize=safe-stack
+CXXFLAGS+=		-fsanitize=safe-stack
+LDFLAGS+=		-fsanitize=safe-stack
+.endif
 
 .endif
 .endif
