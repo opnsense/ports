@@ -11,7 +11,7 @@ HARDENING_QUIRKS?=		# can pass exceptions from port Makefile
 .include "${PORTSDIR}/Mk/bsd.hardening.exceptions.mk"
 
 # XXX fix expansion
-HARDENING_QUIRKS+=	${${PORTNAME}_HARDENING_QURIKS}
+HARDENING_QUIRKS+=	${${PORTNAME}_HARDENING_QUIRKS}
 
 .if defined(PORTNAME)
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
@@ -99,6 +99,20 @@ RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 OPTIONS_DEFINE+=	RELRO
 OPTIONS_DEFAULT+=	RELRO
+.endif
+.endif
+
+#########################
+### SafeStack support ###
+#########################
+
+OPTIONS_DEFINE+=	SAFESTACK
+SAFESTACK_DESC=		Build with SafeStack
+SAFESTACK_USES=		safestack
+
+.if !defined(HARDENING_OFF)
+.if ${HARDENING_QUIRKS:Msafestack}
+OPTIONS_DEFAULT+=	SAFESTACK
 .endif
 .endif
 
