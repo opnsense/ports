@@ -296,6 +296,7 @@
     SUBDIR += gracula
     SUBDIR += grads
     SUBDIR += grafx2
+    SUBDIR += graphene
     SUBDIR += graphite2
     SUBDIR += graphopt
     SUBDIR += graphos
@@ -627,7 +628,6 @@
     SUBDIR += opencv-java
     SUBDIR += opendx
     SUBDIR += opengl-man
-    SUBDIR += opengtl
     SUBDIR += openimageio
     SUBDIR += openjpeg
     SUBDIR += openjpeg15
@@ -921,7 +921,6 @@
     SUBDIR += qt5-pixeltool
     SUBDIR += qt5-svg
     SUBDIR += qtawesome
-    SUBDIR += qtgtl
     SUBDIR += quat
     SUBDIR += quat-gui
     SUBDIR += quesa
@@ -1002,7 +1001,6 @@
     SUBDIR += seq2gif
     SUBDIR += shared-color-profiles
     SUBDIR += sharpconstruct
-    SUBDIR += shiva-collections
     SUBDIR += shotwell
     SUBDIR += showimage
     SUBDIR += silgraphite
