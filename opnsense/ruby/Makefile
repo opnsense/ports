@@ -3,6 +3,6 @@
 
 CATEGORIES=	lang
 
-MASTERDIR=	${.CURDIR}/../../lang/ruby23
+MASTERDIR=	${.CURDIR}/../../lang/ruby24
 
 .include "${MASTERDIR}/Makefile"
