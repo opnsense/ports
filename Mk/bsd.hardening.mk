@@ -112,7 +112,7 @@ OPTIONS_DEFAULT+=	RELRO
 #########################
 
 .if ${HARDENING_OFF:Msafestack} == ""
-.if ${HARDENING_QUIRKS:Msafestack} || ${HARDENING_QUIRKS:Mnosafestack} == ""
+.if ${HARDENING_QUIRKS:Msafestack}
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
 OPTIONS_DEFINE+=	SAFESTACK
