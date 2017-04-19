@@ -5,13 +5,18 @@
 .if !defined(HARDENINGMKINCLUDED)
 HARDENINGMKINCLUDED=	bsd.hardening.mk
 
-${PORTNAME}_HARDENING_QURIKS?=	# can pass exceptions from global make.conf
-HARDENING_QUIRKS?=		# can pass exceptions from port Makefile
-HARDENING_OFF?=			# can pass exceptions from global make.conf
+# Can pass exceptions from global make.conf,
+# either as individual portname_HARDENING_QUIRKS
+# or the global HARDENING_OFF flag per feature.
+
+${PORTNAME}_HARDENING_QURIKS?=
+HARDENING_OFF?=
 
 .include "${PORTSDIR}/Mk/bsd.hardening.exceptions.mk"
 
-HARDENING_QUIRKS+=	${${PORTNAME}_HARDENING_QUIRKS}
+# Can pass exceptions from port Makefile, too.
+
+HARDENING_QUIRKS?=	${${PORTNAME}_HARDENING_QUIRKS}
 
 .if defined(PORTNAME)
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
