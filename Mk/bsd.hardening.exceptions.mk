@@ -503,7 +503,6 @@ openvpn23_HARDENING_QUIRKS+=		safestack
 openvpn_HARDENING_QUIRKS+=		safestack
 opnsense-update_HARDENING_QUIRKS+=	safestack
 otr_HARDENING_QUIRKS+=			safestack
-pam_opnsense_HARDENING_QUIRKS+=		safestack
 patchage_HARDENING_QUIRKS+=		safestack
 pciids_HARDENING_QUIRKS+=		safestack
 pcmanfm_HARDENING_QUIRKS+=		safestack
