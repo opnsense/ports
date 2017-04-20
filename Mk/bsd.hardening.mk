@@ -6,7 +6,7 @@
 HARDENINGMKINCLUDED=	bsd.hardening.mk
 
 # Can pass exceptions from global make.conf,
-# either as individual portname_HARDENING_QUIRKS
+# either as individual portname_HARDENING
 # or the global HARDENING_OFF flag per feature.
 
 ${PORTNAME}_HARDENING_QURIKS?=
@@ -16,41 +16,41 @@ HARDENING_OFF?=
 
 # Can pass exceptions from port Makefile, too.
 
-HARDENING_QUIRKS?=	${${PORTNAME}_HARDENING_QUIRKS}
+USE_HARDENING?=		${${PORTNAME}_HARDENING}
 
 .if defined(PORTNAME)
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
-HARDENING_QUIRKS+=	lib
+USE_HARDENING+=	lib
 .endif
 .if ${PORTNAME:M*kmod*}
-HARDENING_QUIRKS+=	kmod
+USE_HARDENING+=	kmod
 .endif
 .endif
 
 .if defined(PKGNAMEPREFIX)
 .if ${PKGNAMEPREFIX:Mlib}
-HARDENING_QUIRKS+=	lib
+USE_HARDENING+=	lib
 .endif
 .endif
 
 .if defined(PKGNAMESUFFIX)
 .if ${PKGNAMESUFFIX:M-lib*}
-HARDENING_QUIRKS+=	lib
+USE_HARDENING+=	lib
 .endif
 .endif
 
 .if defined(USES)
 .if ${USES:Mkmod}
-HARDENING_QUIRKS+=	kmod
+USE_HARDENING+=	kmod
 .endif
 .if ${USES:Mfortran}
-HARDENING_QUIRKS+=	fortran
+USE_HARDENING+=	fortran
 .endif
 .endif
 
 .if defined(CATEGORIES)
 .if ${CATEGORIES:Mx11-drivers}
-HARDENING_QUIRKS+=	x11
+USE_HARDENING+=	x11
 .endif
 .endif
 
@@ -58,7 +58,7 @@ HARDENING_QUIRKS+=	x11
 ### Option-less PIC enforcement for libraries ###
 #################################################
 
-.if ${HARDENING_QUIRKS:Mlib}
+.if ${USE_HARDENING:Mlib}
 CFLAGS+=	-fPIC
 CXXFLAGS+=	-fPIC
 .endif
@@ -67,8 +67,8 @@ CXXFLAGS+=	-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-.if ${HARDENING_QUIRKS:Mlib} || ${HARDENING_QUIRKS:Mkmod} || ${HARDENING_QUIRKS:Mfortran}
-HARDENING_QUIRKS+=	nopie
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran}
+USE_HARDENING+=	nopie
 .endif
 
 # Do not enable PIE for several groups of ports.
@@ -78,7 +78,7 @@ HARDENING_QUIRKS+=	nopie
 # HARDENING_QURIKS=pie
 
 .if ${HARDENING_OFF:Mpie} == ""
-.if ${HARDENING_QUIRKS:Mpie} || ${HARDENING_QUIRKS:Mnopie} == ""
+.if ${USE_HARDENING:Mpie} || ${USE_HARDENING:Mnopie} == ""
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 OPTIONS_DEFINE+=	PIE
@@ -90,8 +90,8 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-.if ${HARDENING_QUIRKS:Mlib} || ${HARDENING_QUIRKS:Mkmod} || ${HARDENING_QUIRKS:Mfortran} || ${HARDENING_QUIRKS:Mx11}
-HARDENING_QUIRKS+=	norelro
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11}
+USE_HARDENING+=	norelro
 .endif
 
 # Same reasoning here with RELRO as with PIE.
@@ -99,7 +99,7 @@ HARDENING_QUIRKS+=	norelro
 # HARDENING_QURIKS=relro
 
 .if ${HARDENING_OFF:Mrelro} == ""
-.if ${HARDENING_QUIRKS:Mrelro} || ${HARDENING_QUIRKS:Mnorelro} == ""
+.if ${USE_HARDENING:Mrelro} || ${USE_HARDENING:Mnorelro} == ""
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 OPTIONS_DEFINE+=	RELRO
@@ -112,7 +112,7 @@ OPTIONS_DEFAULT+=	RELRO
 #########################
 
 .if ${HARDENING_OFF:Msafestack} == ""
-.if ${HARDENING_QUIRKS:Msafestack}
+.if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
 OPTIONS_DEFINE+=	SAFESTACK

@@ -11,6 +11,7 @@ COMMENT=	OPNsense translations
 LICENSE=	BSD2CLAUSE
 
 USES=		gettext-tools
+USE_HARDENING=	nopie norelro
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
