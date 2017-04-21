@@ -3,7 +3,7 @@
 
 PORTNAME=	projectlibre
 PORTVERSION=	1.7.0
-CATEGORIES=	deskutils java
+CATEGORIES=	deskutils editors java
 MASTER_SITES=	SF/${PORTNAME}/ProjectLibre/${PORTVERSION:S/.0$//} \
 		LOCAL/cpm/projectlibre/:icons
 DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
