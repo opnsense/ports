@@ -17,7 +17,7 @@ EXPIRATION_DATE=	2017-03-31
 
 LICENSE=		GPLv2
 
-CONFLICTS_INSTALL=	openvpn-2.[!3].* openvpn-[!2].* openvpn-beta-[0-9]* openvpn-devel-[0-9]*
+CONFLICTS_INSTALL=	openvpn-[0-9]* openvpn-beta-[0-9]* openvpn-devel-[0-9]*
 
 GNU_CONFIGURE=		yes
 USES=			cpe libtool pkgconfig shebangfix tar:xz
