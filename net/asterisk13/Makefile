@@ -18,8 +18,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid \
-		libjansson.so:devel/jansson \
-		libxslt.so:textproc/libxslt
+		libjansson.so:devel/jansson
 
 EXTRACT_ONLY:=	${DISTNAME}${EXTRACT_SUFX}
 
