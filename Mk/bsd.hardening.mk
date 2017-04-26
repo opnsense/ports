@@ -9,7 +9,7 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 # either as individual portname_HARDENING
 # or the global HARDENING_OFF flag per feature.
 
-${PORTNAME}_HARDENING_QURIKS?=
+${PORTNAME}_HARDENING_QUIRKS?=
 HARDENING_OFF?=
 
 .include "${PORTSDIR}/Mk/bsd.hardening.exceptions.mk"
@@ -75,7 +75,7 @@ USE_HARDENING+=	nopie
 # However, provide a way for still enabling PIE
 # if desired by allowing them to define:
 #
-# HARDENING_QURIKS=pie
+# HARDENING_QUIRKS=pie
 
 .if ${HARDENING_OFF:Mpie} == ""
 .if ${USE_HARDENING:Mpie} || ${USE_HARDENING:Mnopie} == ""
@@ -96,7 +96,7 @@ USE_HARDENING+=	norelro
 
 # Same reasoning here with RELRO as with PIE.
 #
-# HARDENING_QURIKS=relro
+# HARDENING_QUIRKS=relro
 
 .if ${HARDENING_OFF:Mrelro} == ""
 .if ${USE_HARDENING:Mrelro} || ${USE_HARDENING:Mnorelro} == ""
