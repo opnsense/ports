@@ -817,6 +817,7 @@
     SUBDIR += gradle
     SUBDIR += grantlee
     SUBDIR += grantlee5
+    SUBDIR += grpc
     SUBDIR += grumpy
     SUBDIR += gsettings-desktop-schemas
     SUBDIR += gsoap
@@ -4196,6 +4197,7 @@
     SUBDIR += py-collective.monkeypatcher
     SUBDIR += py-collective.z3cform.datetimewidget
     SUBDIR += py-colorama
+    SUBDIR += py-coloredlogs
     SUBDIR += py-colorlog
     SUBDIR += py-columnize
     SUBDIR += py-conditional
@@ -4327,6 +4329,7 @@
     SUBDIR += py-greenlet
     SUBDIR += py-grizzled
     SUBDIR += py-grouch
+    SUBDIR += py-grpcio
     SUBDIR += py-gyp
     SUBDIR += py-hash_ring
     SUBDIR += py-hghooks
