@@ -560,6 +560,7 @@ pdfcrack_HARDENING+=			safestack
 pftop_HARDENING+=			safestack
 pidgin_HARDENING+=			safestack
 pidof_HARDENING+=			safestack
+pkg_HARDENING+=				safestack
 polipo_HARDENING+=			safestack
 portupgrade_HARDENING+=			safestack
 privoxy_HARDENING+=			safestack
