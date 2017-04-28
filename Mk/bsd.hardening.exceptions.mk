@@ -547,7 +547,6 @@ openldap_HARDENING+=			safestack
 openntpd_HARDENING+=			safestack
 opensmtpd_HARDENING+=			safestack
 openssh_HARDENING+=			safestack
-openvpn23_HARDENING+=			safestack
 openvpn_HARDENING+=			safestack
 opnsense-lang_HARDENING+=		safestack
 opnsense-update_HARDENING+=		safestack
