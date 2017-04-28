@@ -543,7 +543,6 @@ nrpe_HARDENING+=			safestack
 ntfs_HARDENING+=			safestack
 ntp_HARDENING+=				safestack
 openconnect_HARDENING+=			safestack
-openldap_HARDENING+=			safestack
 openntpd_HARDENING+=			safestack
 opensmtpd_HARDENING+=			safestack
 openssh_HARDENING+=			safestack
