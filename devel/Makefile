@@ -4208,6 +4208,7 @@
     SUBDIR += py-configparser
     SUBDIR += py-constantly
     SUBDIR += py-construct
+    SUBDIR += py-construct28
     SUBDIR += py-contextlib2
     SUBDIR += py-country
     SUBDIR += py-cov-core
@@ -4959,6 +4960,7 @@
     SUBDIR += py3-pytz
     SUBDIR += py3-rubymarshal
     SUBDIR += py3-setproctitle
+    SUBDIR += py3-setuptools_scm
     SUBDIR += py3-simplejson
     SUBDIR += py3-six
     SUBDIR += py3-tabulate
@@ -5361,6 +5363,7 @@
     SUBDIR += rubygem-licensee
     SUBDIR += rubygem-listen
     SUBDIR += rubygem-little-plugger
+    SUBDIR += rubygem-local_time
     SUBDIR += rubygem-locale
     SUBDIR += rubygem-lockfile
     SUBDIR += rubygem-logging
@@ -5402,6 +5405,7 @@
     SUBDIR += rubygem-mustermann
     SUBDIR += rubygem-mustermann-grape
     SUBDIR += rubygem-mutter
+    SUBDIR += rubygem-native-package-installer
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-needle
     SUBDIR += rubygem-nenv
