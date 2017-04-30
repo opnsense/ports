@@ -11,6 +11,8 @@ COMMENT=	Softether VPN solution
 
 LICENSE=	GPLv2
 
+CONFLICTS_INSTALL=	softether-devel
+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
