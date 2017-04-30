@@ -1004,8 +1004,10 @@
     SUBDIR += rubygem-bcrypt
     SUBDIR += rubygem-bcrypt-ruby
     SUBDIR += rubygem-devise-two-factor
+    SUBDIR += rubygem-devise-two-factor-rails5
     SUBDIR += rubygem-digest-crc
     SUBDIR += rubygem-doorkeeper
+    SUBDIR += rubygem-doorkeeper-rails5
     SUBDIR += rubygem-encryptor
     SUBDIR += rubygem-ezcrypto
     SUBDIR += rubygem-googleauth
@@ -1120,6 +1122,7 @@
     SUBDIR += snortsam
     SUBDIR += snortsnarf
     SUBDIR += softether
+    SUBDIR += softether-devel
     SUBDIR += softhsm
     SUBDIR += softhsm2
     SUBDIR += spass

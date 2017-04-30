@@ -323,6 +323,7 @@
     SUBDIR += imgsizer
     SUBDIR += impresscms
     SUBDIR += interchange
+    SUBDIR += iridium
     SUBDIR += itop
     SUBDIR += iwebcal
     SUBDIR += jdresolve
@@ -1912,8 +1913,10 @@
     SUBDIR += ruby-aws
     SUBDIR += rubygem-ace-rails-ap
     SUBDIR += rubygem-actioncable5
+    SUBDIR += rubygem-actioncable50
     SUBDIR += rubygem-actionpack4
     SUBDIR += rubygem-actionpack5
+    SUBDIR += rubygem-actionpack50
     SUBDIR += rubygem-activeresource4
     SUBDIR += rubygem-acts-as-taggable-on
     SUBDIR += rubygem-acts-as-taggable-on3
@@ -1926,6 +1929,7 @@
     SUBDIR += rubygem-asana
     SUBDIR += rubygem-async_sinatra
     SUBDIR += rubygem-best_in_place
+    SUBDIR += rubygem-best_in_place-rails5
     SUBDIR += rubygem-bluecloth
     SUBDIR += rubygem-bootstrap-sass
     SUBDIR += rubygem-browser
@@ -1949,6 +1953,7 @@
     SUBDIR += rubygem-em-twitter
     SUBDIR += rubygem-em-websocket
     SUBDIR += rubygem-emk-sinatra-url-for
+    SUBDIR += rubygem-erubi
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-ethon
     SUBDIR += rubygem-eventmachine_httpserver
@@ -2022,6 +2027,7 @@
     SUBDIR += rubygem-lighthouse-api
     SUBDIR += rubygem-link_header
     SUBDIR += rubygem-lograge
+    SUBDIR += rubygem-lograge-rails5
     SUBDIR += rubygem-maruku
     SUBDIR += rubygem-mechanize
     SUBDIR += rubygem-merb-assets
@@ -2069,9 +2075,11 @@
     SUBDIR += rubygem-rails_autolink
     SUBDIR += rubygem-rails_serve_static_assets
     SUBDIR += rubygem-rails-settings-cached
+    SUBDIR += rubygem-rails-settings-cached-rails5
     SUBDIR += rubygem-rails_stdout_logging
     SUBDIR += rubygem-railties4
     SUBDIR += rubygem-railties5
+    SUBDIR += rubygem-railties50
     SUBDIR += rubygem-raindrops
     SUBDIR += rubygem-ramaze
     SUBDIR += rubygem-raphael-rails
@@ -2082,6 +2090,7 @@
     SUBDIR += rubygem-redis-rails
     SUBDIR += rubygem-redmine_acts_as_taggable_on
     SUBDIR += rubygem-responders
+    SUBDIR += rubygem-responders-rails5
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rfacebook
     SUBDIR += rubygem-rfeedfinder

@@ -492,6 +492,7 @@
     SUBDIR += onenetd
     SUBDIR += onioncat
     SUBDIR += opal
+    SUBDIR += open-isns
     SUBDIR += openafs
     SUBDIR += openbgpd
     SUBDIR += openbsc
@@ -1189,6 +1190,7 @@
     SUBDIR += rubygem-network_interface
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth2
+    SUBDIR += rubygem-oauth212
     SUBDIR += rubygem-octokit
     SUBDIR += rubygem-octopress-deploy
     SUBDIR += rubygem-omniauth-auth0
@@ -1236,6 +1238,7 @@
     SUBDIR += rubygem-u2f0
     SUBDIR += rubygem-uri-redis
     SUBDIR += rubygem-whois
+    SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
     SUBDIR += s3ql
     SUBDIR += samba42
@@ -1288,7 +1291,6 @@
     SUBDIR += socketpipe
     SUBDIR += socketw
     SUBDIR += sofia-sip
-    SUBDIR += softethervpn
     SUBDIR += spideroak
     SUBDIR += splatd
     SUBDIR += spoofer
