@@ -25,7 +25,7 @@ LICENSE_FILE_GPLv1=	${WRKSRC}/Copying
 
 # Uncomment when the default Perl is switched to 5.2(X+2)
 #DEPRECATED=	Support end three years after .0 release, please upgrade to a more recent version of Perl
-# Expiration date is <Release date of .0 + 3 years>
+#EXPIRATION_DATE=<Release date of .0 + 3 years>
 
 TEST_TARGET=	test_harness
 TEST_ENV=	${MAKE_ENV} TEST_JOBS=${MAKE_JOBS_NUMBER} \
@@ -35,7 +35,7 @@ TEST_ENV=	${MAKE_ENV} TEST_JOBS=${MAKE_JOBS_NUMBER} \
 USE_GITHUB=	yes
 GH_ACCOUNT=	Perl
 GH_PROJECT=	perl5
-GH_TAGNAME=	v5.25.12-26-g63e6b12
+GH_TAGNAME=	v5.25.12-28-gb497237
 
 OPTIONS_DEFINE=	DEBUG GDBM PERL_64BITINT MULTIPLICITY SITECUSTOMIZE \
 		THREADS PERL_MALLOC DTRACE DOT_INC
