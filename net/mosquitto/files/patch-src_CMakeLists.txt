@@ -9,23 +9,7 @@
  	endif (APPLE)
  endif (UNIX)
  
-@@ -98,15 +98,6 @@ if (${WITH_WEBSOCKETS} STREQUAL ON)
- 	set (MOSQ_LIBS ${MOSQ_LIBS} websockets)
- endif (${WITH_WEBSOCKETS} STREQUAL ON)
- 
--# Simple detect libuuid
--if(NOT APPLE)
--	FIND_PATH(UUID_HEADER uuid/uuid.h)
--	if (UUID_HEADER)
--		add_definitions(-DWITH_UUID)
--		set (MOSQ_LIBS ${MOSQ_LIBS} uuid)
--	endif (UUID_HEADER)
--endif(NOT APPLE)
--
- target_link_libraries(mosquitto ${MOSQ_LIBS})
- 
- if (UNIX)
-@@ -127,6 +118,5 @@ if (${WITH_TLS} STREQUAL ON)
+@@ -127,6 +127,5 @@ if (${WITH_TLS} STREQUAL ON)
  endif (${WITH_TLS} STREQUAL ON)
  
  if (UNIX)
