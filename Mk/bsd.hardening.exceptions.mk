@@ -581,6 +581,7 @@ smtp_HARDENING+=			safestack
 snort_HARDENING+=			safestack
 socat_HARDENING+=			safestack
 softether_HARDENING+=			safestack
+softether-devel_HARDENING+=		safestack
 sqlmap_HARDENING+=			safestack
 squid_HARDENING+=			safestack
 sshlockout_pf_HARDENING+=		safestack
