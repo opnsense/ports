@@ -11,6 +11,8 @@ EXTRACT_SUFX=	.phar
 MAINTAINER=	tz@FreeBSD.org
 COMMENT=	Testing framework for unit tests
 
+CONFLICTS_INSTALL=phpunit6
+
 LICENSE=	BSD3CLAUSE
 
 USES=		cpe php
