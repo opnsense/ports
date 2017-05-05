@@ -585,6 +585,7 @@ softether-devel_HARDENING+=		safestack
 sqlmap_HARDENING+=			safestack
 squid_HARDENING+=			safestack
 sshlockout_pf_HARDENING+=		safestack
+sslh_HARDENING+=			safestack
 sslscan_HARDENING+=			safestack
 sslsniffer_HARDENING+=			safestack
 sslsplit_HARDENING+=			safestack
