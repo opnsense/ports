@@ -6,17 +6,17 @@ PORTVERSION=	2.5.0
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.draisberghof.de/usb_modeswitch/
 DISTNAME=	${PORTNAME:S|_|-|}-${PORTVERSION}
-DISTFILES=	${DISTNAME}.tar.bz2
-
-DATAVERSION=	20170205
-DATANAME=	${PORTNAME:S|_|-|}-data-${DATAVERSION}
-DISTFILES+=	${DATANAME}.tar.bz2
+DISTFILES=	${DISTNAME}.tar.bz2 \
+		${DATANAME}.tar.bz2
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Handling Mode-Switching USB Devices
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DATAVERSION=	20170205
+DATANAME=	${PORTNAME:S|_|-|}-data-${DATAVERSION}
 
 USES=		gmake tar:bzip2
 
@@ -30,6 +30,6 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/usb_modeswitch.1 ${STAGEDIR}${PREFIX}/man/man1
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/usb_modeswitch
 	cd ${WRKSRC}/../${DATANAME}/usb_modeswitch.d && \
-	    ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/usb_modeswitch
+		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/usb_modeswitch
 
 .include <bsd.port.mk>
