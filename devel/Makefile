@@ -39,6 +39,7 @@
     SUBDIR += R-cran-microbenchmark
     SUBDIR += R-cran-pkgmaker
     SUBDIR += R-cran-plyr
+    SUBDIR += R-cran-praise
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-randomForest
     SUBDIR += R-cran-registry
@@ -501,6 +502,7 @@
     SUBDIR += elixir-quantum
     SUBDIR += elixir-red_black_tree
     SUBDIR += elixir-simple_bayes
+    SUBDIR += elixir-smppex
     SUBDIR += elixir-sorted_set
     SUBDIR += elixir-stemmer
     SUBDIR += elixir-swarm
@@ -831,7 +833,6 @@
     SUBDIR += guichan
     SUBDIR += guikachu
     SUBDIR += guile-lib
-    SUBDIR += guiloader
     SUBDIR += gumbo
     SUBDIR += gvfs
     SUBDIR += gvp
@@ -3899,6 +3900,7 @@
     SUBDIR += pecl-uv
     SUBDIR += pecl-vld
     SUBDIR += pecl-weakref
+    SUBDIR += pecl-weakref2
     SUBDIR += pecl-xhprof
     SUBDIR += pecl-yac
     SUBDIR += pecl-yaconf
@@ -4541,6 +4543,7 @@
     SUBDIR += py-py
     SUBDIR += py-pyasn1
     SUBDIR += py-pyasn1-modules
+    SUBDIR += py-pybind11
     SUBDIR += py-pycadf
     SUBDIR += py-pycalendar
     SUBDIR += py-pycallgraph
@@ -4552,6 +4555,7 @@
     SUBDIR += py-pydenticon
     SUBDIR += py-pydocstyle
     SUBDIR += py-pydoop
+    SUBDIR += py-pydrive
     SUBDIR += py-pyechonest
     SUBDIR += py-pyee
     SUBDIR += py-pyelftools

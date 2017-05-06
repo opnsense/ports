@@ -27,6 +27,7 @@
     SUBDIR += R-cran-munsell
     SUBDIR += R-cran-pixmap
     SUBDIR += R-cran-png
+    SUBDIR += R-cran-qcc
     SUBDIR += R-cran-rgdal
     SUBDIR += R-cran-rtiff
     SUBDIR += R-cran-scales
@@ -838,6 +839,7 @@
     SUBDIR += py-cairocffi
     SUBDIR += py-chart
     SUBDIR += py-django-easy-thumbnails
+    SUBDIR += py-djvulibre
     SUBDIR += py-editobj
     SUBDIR += py-exif
     SUBDIR += py-exifread
@@ -876,6 +878,7 @@
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
+    SUBDIR += py-pyembree
     SUBDIR += py-pygal
     SUBDIR += py-pyganim
     SUBDIR += py-pyglet

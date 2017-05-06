@@ -1503,6 +1503,7 @@
     SUBDIR += py-amf
     SUBDIR += py-apachelog
     SUBDIR += py-autobahn
+    SUBDIR += py-aws-requests-auth
     SUBDIR += py-beaker
     SUBDIR += py-beautifulsoup
     SUBDIR += py-beautifulsoup32
@@ -1556,6 +1557,7 @@
     SUBDIR += py-django-guardian
     SUBDIR += py-django-happenings
     SUBDIR += py-django-haystack
+    SUBDIR += py-django-hijack
     SUBDIR += py-django-htmlmin
     SUBDIR += py-django-json-rpc
     SUBDIR += py-django-jsonfield
@@ -1591,6 +1593,7 @@
     SUBDIR += py-django-simple-history
     SUBDIR += py-django-social-auth
     SUBDIR += py-django-sortedm2m
+    SUBDIR += py-django-star-ratings
     SUBDIR += py-django-statici18n
     SUBDIR += py-django-storages
     SUBDIR += py-django-subdomains
