@@ -464,7 +464,6 @@ filterdns_HARDENING+=			safestack
 filterlog_HARDENING+=			safestack
 flashrom_HARDENING+=			safestack
 flock_HARDENING+=			safestack
-flowd_HARDENING+=			safestack
 fluxbox_HARDENING+=			safestack
 focusblur_HARDENING+=			safestack
 foo2zjs_HARDENING+=			safestack
