@@ -2095,9 +2095,7 @@ security/libfwbuilder||2011-05-02|libfwbuilder merged into fwbuilder
 games/monopd||2011-05-03|Removed, depends on an expired library: devel/libcapsinetwork
 devel/libcapsinetwork||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
 audio/albumart||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
-audio/aylet||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
 audio/cantus||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
-audio/xaylet||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
 science/oases||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
 shells/pash||2011-05-03|Has expired: Upstream disappeared and distfile is no longer available
 www/codeigniter-devel||2011-05-03|Removed
@@ -9375,3 +9373,9 @@ devel/llvm36||2017-05-02|Obsolete and unmaintained upstream
 lang/clang36||2017-05-02|Obsolete and unmaintained upstream
 lang/ruby21||2017-05-02|Has expired: Upstream support ended
 devel/guiloader||2017-05-05|Unfetchable for more than six months (google code has gone away)
+audio/ufmcontrol-i18n||2017-05-07|Unfetchable for more than six months (google code has gone away)
+devel/ccons||2017-05-07|Has expired: Unfetchable for more than six months (google code has gone away)
+chinese/fortune||2017-05-07|Has expired: Unfetchable for more than six months (google code has gone away)
+benchmarks/gobench||2017-05-07|Has expired: Builds each time it runs
+sysutils/grok||2017-05-07|Has expired: Unfetchable for more than six months (google code has gone away)
+audio/xaylet|audio/aylet|2017-05-07|Moved to a single port with GUI option
