@@ -3,7 +3,7 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	17.1.7
-#PORTREVISION=	4 # GH_TAGNAME
+PORTREVISION=	1 # GH_TAGNAME
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -19,6 +19,6 @@ USE_HARDENING=	pie relro safestack
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
-#GH_TAGNAME=	bd74076
+GH_TAGNAME=	d330178
 
 .include <bsd.port.mk>
