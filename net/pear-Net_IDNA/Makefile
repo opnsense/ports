@@ -8,6 +8,7 @@ CATEGORIES=	net pear
 MAINTAINER=	joneum@bsdproject.de
 COMMENT=	Pear Punycode encoding and decoding package
 
-USES=	pear
+NO_ARCH=	yes
+USES=		pear
 
 .include <bsd.port.mk>

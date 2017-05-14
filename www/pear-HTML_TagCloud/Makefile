@@ -8,6 +8,7 @@ CATEGORIES=	www devel pear
 MAINTAINER=	joneum@bsdproject.de
 COMMENT=	Generate TagCloud in HTML And Visualize Tags
 
-USES=	pear
+NO_ARCH=	yes
+USES=		pear
 
 .include <bsd.port.mk>

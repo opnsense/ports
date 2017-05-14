@@ -8,6 +8,7 @@ CATEGORIES=	www pear
 MAINTAINER=	joneum@bsdproject.de
 COMMENT=	PHP Interface to TwitPic's API
 
-USES=	pear
+NO_ARCH=	yes
+USES=		pear
 
 .include <bsd.port.mk>
