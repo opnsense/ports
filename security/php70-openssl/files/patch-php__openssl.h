@@ -1,4 +1,4 @@
---- php_openssl.h.orig	2016-01-06 10:05:22 UTC
+--- php_openssl.h.orig	2017-05-09 11:41:04 UTC
 +++ php_openssl.h
 @@ -86,6 +86,7 @@ PHP_FUNCTION(openssl_x509_export);
  PHP_FUNCTION(openssl_x509_fingerprint);

@@ -1,14 +1,14 @@
---- openssl.c.orig	2016-01-06 10:05:22 UTC
+--- openssl.c.orig	2017-05-09 11:41:04 UTC
 +++ openssl.c
-@@ -17,6 +17,7 @@
-    |          Sascha Kettler <kettler@gmx.net>                            |
+@@ -18,6 +18,7 @@
     |          Pierre-Alain Joye <pierre@php.net>                          |
     |          Marc Delling <delling@silpion.de> (PKCS12 functions)        |
+    |          Jakub Zelenka <bukka@php.net>                               |
 +   |          Moritz Bechler <mbechler@eenterphace.org> (CRL support)     |
     +----------------------------------------------------------------------+
   */
  
-@@ -55,6 +56,7 @@
+@@ -56,6 +57,7 @@
  #include <openssl/rand.h>
  #include <openssl/ssl.h>
  #include <openssl/pkcs12.h>
@@ -16,7 +16,7 @@
  
  /* Common */
  #include <time.h>
-@@ -126,6 +128,56 @@ PHP_FUNCTION(openssl_dh_compute_key);
+@@ -129,6 +131,56 @@ PHP_FUNCTION(openssl_dh_compute_key);
  PHP_FUNCTION(openssl_random_pseudo_bytes);
  
  /* {{{ arginfo */
@@ -73,7 +73,7 @@
  ZEND_BEGIN_ARG_INFO_EX(arginfo_openssl_x509_export_to_file, 0, 0, 2)
  	ZEND_ARG_INFO(0, x509)
  	ZEND_ARG_INFO(0, outfilename)
-@@ -468,12 +520,20 @@ const zend_function_entry openssl_functi
+@@ -471,12 +523,20 @@ const zend_function_entry openssl_functi
  	PHP_FE(openssl_x509_export,				arginfo_openssl_x509_export)
  	PHP_FE(openssl_x509_fingerprint,			arginfo_openssl_x509_fingerprint)
  	PHP_FE(openssl_x509_export_to_file,		arginfo_openssl_x509_export_to_file)
@@ -94,7 +94,7 @@
  /* CSR funcs */
  	PHP_FE(openssl_csr_new,				arginfo_openssl_csr_new)
  	PHP_FE(openssl_csr_export,			arginfo_openssl_csr_export)
-@@ -559,6 +619,7 @@ ZEND_GET_MODULE(openssl)
+@@ -701,6 +761,7 @@ int EVP_PKEY_base_id(const EVP_PKEY *pke
  static int le_key;
  static int le_x509;
  static int le_csr;
@@ -102,7 +102,7 @@
  static int ssl_stream_data_index;
  
  int php_openssl_get_x509_list_id(void) /* {{{ */
-@@ -567,6 +628,16 @@ int php_openssl_get_x509_list_id(void) /
+@@ -709,6 +770,16 @@ int php_openssl_get_x509_list_id(void) /
  }
  /* }}} */
  
@@ -119,7 +119,7 @@
  /* {{{ resource destructors */
  static void php_pkey_free(zend_resource *rsrc)
  {
-@@ -588,6 +659,21 @@ static void php_csr_free(zend_resource *
+@@ -730,6 +801,21 @@ static void php_csr_free(zend_resource *
  	X509_REQ * csr = (X509_REQ*)rsrc->ptr;
  	X509_REQ_free(csr);
  }
@@ -141,7 +141,7 @@
  /* }}} */
  
  /* {{{ openssl open_basedir check */
-@@ -1161,6 +1247,7 @@ PHP_MINIT_FUNCTION(openssl)
+@@ -1341,6 +1427,7 @@ PHP_MINIT_FUNCTION(openssl)
  	le_key = zend_register_list_destructors_ex(php_pkey_free, NULL, "OpenSSL key", module_number);
  	le_x509 = zend_register_list_destructors_ex(php_x509_free, NULL, "OpenSSL X.509", module_number);
  	le_csr = zend_register_list_destructors_ex(php_csr_free, NULL, "OpenSSL X.509 CSR", module_number);
@@ -149,7 +149,7 @@
  
  	SSL_library_init();
  	OpenSSL_add_all_ciphers();
-@@ -1251,6 +1338,36 @@ PHP_MINIT_FUNCTION(openssl)
+@@ -1433,6 +1520,36 @@ PHP_MINIT_FUNCTION(openssl)
  	REGISTER_LONG_CONSTANT("OPENSSL_RAW_DATA", OPENSSL_RAW_DATA, CONST_CS|CONST_PERSISTENT);
  	REGISTER_LONG_CONSTANT("OPENSSL_ZERO_PADDING", OPENSSL_ZERO_PADDING, CONST_CS|CONST_PERSISTENT);
  
@@ -186,7 +186,7 @@
  #if OPENSSL_VERSION_NUMBER >= 0x0090806fL && !defined(OPENSSL_NO_TLSEXT)
  	/* SNI support included in OpenSSL >= 0.9.8j */
  	REGISTER_LONG_CONSTANT("OPENSSL_TLSEXT_SERVER_NAME", 1, CONST_CS|CONST_PERSISTENT);
-@@ -2152,7 +2269,7 @@ end:
+@@ -2371,7 +2488,7 @@ end:
  /* }}} */
  
  /* {{{ check_cert */
@@ -195,7 +195,7 @@
  {
  	int ret=0;
  	X509_STORE_CTX *csc;
-@@ -2163,6 +2280,11 @@ static int check_cert(X509_STORE *ctx, X
+@@ -2382,6 +2499,11 @@ static int check_cert(X509_STORE *ctx, X
  		return 0;
  	}
  	X509_STORE_CTX_init(csc, ctx, x, untrustedchain);
@@ -207,7 +207,7 @@
  	if(purpose >= 0) {
  		X509_STORE_CTX_set_purpose(csc, purpose);
  	}
-@@ -2173,6 +2295,59 @@ static int check_cert(X509_STORE *ctx, X
+@@ -2392,6 +2514,59 @@ static int check_cert(X509_STORE *ctx, X
  }
  /* }}} */
  
@@ -267,7 +267,7 @@
  /* {{{ proto int openssl_x509_checkpurpose(mixed x509cert, int purpose, array cainfo [, string untrustedfile])
     Checks the CERT to see if it can be used for the purpose in purpose. cainfo holds information about trusted CAs */
  PHP_FUNCTION(openssl_x509_checkpurpose)
-@@ -2209,7 +2384,7 @@ PHP_FUNCTION(openssl_x509_checkpurpose)
+@@ -2428,7 +2603,7 @@ PHP_FUNCTION(openssl_x509_checkpurpose)
  		goto clean_exit;
  	}
  
@@ -276,7 +276,7 @@
  	if (ret != 0 && ret != 1) {
  		RETVAL_LONG(ret);
  	} else {
-@@ -5517,6 +5692,442 @@ PHP_FUNCTION(openssl_random_pseudo_bytes
+@@ -5992,6 +6167,442 @@ PHP_FUNCTION(openssl_random_pseudo_bytes
  }
  /* }}} */
  
@@ -568,7 +568,7 @@
 +			php_error_docref(NULL TSRMLS_CC, E_NOTICE, "The CRL contains extensions which need a V2 CRL, creating a V2 CRL");
 +	}
 +	
-+	capkey = php_openssl_evp_from_zval(zcapkey, 0, capass, 0, &capkeyres TSRMLS_CC);
++	capkey = php_openssl_evp_from_zval(zcapkey, 0, capass, capass_len, 0, &capkeyres TSRMLS_CC);
 +
 +	if(!capkey) {
 +		php_error_docref(NULL TSRMLS_CC, E_WARNING, "Failed to read CA private key");
