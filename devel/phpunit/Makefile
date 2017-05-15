@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	phpunit
-PORTVERSION=	5.7.14
+PORTVERSION=	5.7.19
 CATEGORIES=	devel www
 MASTER_SITES=	https://phar.phpunit.de/ \
 		http://ports.toco-domains.de/
@@ -11,9 +11,9 @@ EXTRACT_SUFX=	.phar
 MAINTAINER=	tz@FreeBSD.org
 COMMENT=	Testing framework for unit tests
 
-CONFLICTS_INSTALL=phpunit6
-
 LICENSE=	BSD3CLAUSE
+
+CONFLICTS_INSTALL=	phpunit6
 
 USES=		cpe php
 CPE_VENDOR=	phpunit_project
