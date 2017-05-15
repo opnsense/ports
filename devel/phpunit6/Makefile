@@ -11,9 +11,9 @@ EXTRACT_SUFX=	.phar
 MAINTAINER=	joneum@bsdproject.de
 COMMENT=	Testing framework for unit tests
 
-CONFLICTS_INSTALL=phpunit
-
 LICENSE=	BSD3CLAUSE
+
+CONFLICTS_INSTALL=	phpunit
 
 USES=		cpe php
 CPE_VENDOR=	phpunit_project
