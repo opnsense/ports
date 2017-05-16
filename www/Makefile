@@ -513,6 +513,7 @@
     SUBDIR += moodle30
     SUBDIR += moodle31
     SUBDIR += moodle32
+    SUBDIR += moodle33
     SUBDIR += mozplugger
     SUBDIR += multisort
     SUBDIR += multiwatch
@@ -547,6 +548,7 @@
     SUBDIR += npm
     SUBDIR += npm2
     SUBDIR += npm3
+    SUBDIR += npm-less-plugin-clean-css
     SUBDIR += nspluginwrapper
     SUBDIR += nuvolaplayer-8tracks
     SUBDIR += nuvolaplayer-all-services
@@ -2053,6 +2055,7 @@
     SUBDIR += rubygem-rack-mount
     SUBDIR += rubygem-rack-openid
     SUBDIR += rubygem-rack-protection
+    SUBDIR += rubygem-rack-protection1
     SUBDIR += rubygem-rack-proxy
     SUBDIR += rubygem-rack-ssl
     SUBDIR += rubygem-rack-test
@@ -2106,6 +2109,7 @@
     SUBDIR += rubygem-sinatra-contrib
     SUBDIR += rubygem-sinatra-r18n
     SUBDIR += rubygem-sinatra-respond_to
+    SUBDIR += rubygem-sinatra1
     SUBDIR += rubygem-socksify
     SUBDIR += rubygem-task_list
     SUBDIR += rubygem-thin
