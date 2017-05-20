@@ -194,6 +194,8 @@
     SUBDIR += grdesktop
     SUBDIR += grilo
     SUBDIR += grilo-plugins
+    SUBDIR += grilo-plugins2
+    SUBDIR += grilo2
     SUBDIR += grive
     SUBDIR += grive2
     SUBDIR += grsync
@@ -969,6 +971,7 @@
     SUBDIR += py-beanstalkc
     SUBDIR += py-cjdns
     SUBDIR += py-cloudfiles
+    SUBDIR += py-cloudflare-scrape
     SUBDIR += py-coherence
     SUBDIR += py-cymruwhois
     SUBDIR += py-dpkt
@@ -1090,6 +1093,7 @@
     SUBDIR += rabbitmq
     SUBDIR += rabbitmq-c
     SUBDIR += rabbitmq-c-devel
+    SUBDIR += radcli
     SUBDIR += raddump
     SUBDIR += radiator
     SUBDIR += radiusclient
