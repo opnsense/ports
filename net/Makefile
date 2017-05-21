@@ -399,6 +399,7 @@
     SUBDIR += mDNSResponder
     SUBDIR += macchanger
     SUBDIR += mad_fcl
+    SUBDIR += madonctl
     SUBDIR += malo-firmware-kmod
     SUBDIR += mdns-repeater
     SUBDIR += mediastreamer
