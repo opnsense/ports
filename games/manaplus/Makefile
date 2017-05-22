@@ -3,6 +3,7 @@
 
 PORTNAME=	manaplus
 PORTVERSION=	1.7.4.1
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://download.evolonline.org/manaplus/download/${PORTVERSION}/
 
@@ -15,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
 		libpng.so:graphics/png \
 		libcurl.so:ftp/curl
+
+BROKEN_powerpc64=	fails to install: zip.cpp: 'bswap_16' was not declared in this scope
 
 USES=		autoreconf pkgconfig:build tar:xz
 USE_XORG=	x11
