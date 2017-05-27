@@ -67,7 +67,7 @@ CXXFLAGS+=	-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran}
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || defined(NO_BUILD) || defined(NO_ARCH)
 USE_HARDENING+=	nopie
 .endif
 
@@ -78,7 +78,7 @@ USE_HARDENING+=	nopie
 # HARDENING_QUIRKS=pie
 
 .if ${HARDENING_OFF:Mpie} == ""
-.if ${USE_HARDENING:Mpie} || ${USE_HARDENING:Mnopie} == ""
+.if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 OPTIONS_DEFINE+=	PIE
@@ -90,7 +90,7 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11}
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || defined(NO_BUILD) || defined(NO_ARCH)
 USE_HARDENING+=	norelro
 .endif
 
@@ -99,7 +99,7 @@ USE_HARDENING+=	norelro
 # HARDENING_QUIRKS=relro
 
 .if ${HARDENING_OFF:Mrelro} == ""
-.if ${USE_HARDENING:Mrelro} || ${USE_HARDENING:Mnorelro} == ""
+.if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 OPTIONS_DEFINE+=	RELRO
@@ -110,6 +110,10 @@ OPTIONS_DEFAULT+=	RELRO
 #########################
 ### SafeStack support ###
 #########################
+
+.if defined(NO_BUILD) || defined(NO_ARCH)
+USE_HARDENING+=	nosafestack
+.endif
 
 .if ${HARDENING_OFF:Msafestack} == ""
 .if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
