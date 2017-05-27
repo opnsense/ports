@@ -67,15 +67,11 @@ CXXFLAGS+=	-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || defined(NO_BUILD) || defined(NO_ARCH)
-USE_HARDENING+=	nopie
-.endif
+USE_HARDENING+=		pie
 
-# Do not enable PIE for several groups of ports.
-# However, provide a way for still enabling PIE
-# if desired by allowing them to define:
-#
-# HARDENING_QUIRKS=pie
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || defined(NO_BUILD) || defined(NO_ARCH)
+USE_HARDENING+=		nopie
+.endif
 
 .if ${HARDENING_OFF:Mpie} == ""
 .if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
@@ -90,13 +86,11 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || defined(NO_BUILD) || defined(NO_ARCH)
-USE_HARDENING+=	norelro
-.endif
+USE_HARDENING+=		relro
 
-# Same reasoning here with RELRO as with PIE.
-#
-# HARDENING_QUIRKS=relro
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || defined(NO_BUILD) || defined(NO_ARCH)
+USE_HARDENING+=		norelro
+.endif
 
 .if ${HARDENING_OFF:Mrelro} == ""
 .if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
@@ -112,7 +106,7 @@ OPTIONS_DEFAULT+=	RELRO
 #########################
 
 .if defined(NO_BUILD) || defined(NO_ARCH)
-USE_HARDENING+=	nosafestack
+USE_HARDENING+=		nosafestack
 .endif
 
 .if ${HARDENING_OFF:Msafestack} == ""
