@@ -9,14 +9,14 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 # either as individual portname_HARDENING
 # or the global HARDENING_OFF flag per feature.
 
-${PORTNAME}_HARDENING_QUIRKS?=
+${PORTNAME}_HARDENING?=
 HARDENING_OFF?=
 
 .include "${PORTSDIR}/Mk/bsd.hardening.exceptions.mk"
 
 # Can pass exceptions from port Makefile, too.
 
-USE_HARDENING?=		${${PORTNAME}_HARDENING}
+USE_HARDENING?=		pie relro ${${PORTNAME}_HARDENING}
 
 .if defined(PORTNAME)
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
@@ -67,8 +67,6 @@ CXXFLAGS+=	-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-USE_HARDENING+=		pie
-
 .if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || defined(NO_BUILD) || defined(NO_ARCH)
 USE_HARDENING+=		nopie
 .endif
@@ -85,8 +83,6 @@ OPTIONS_DEFAULT+=	PIE
 ################################
 ### RELRO + BIND_NOW support ###
 ################################
-
-USE_HARDENING+=		relro
 
 .if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || defined(NO_BUILD) || defined(NO_ARCH)
 USE_HARDENING+=		norelro
