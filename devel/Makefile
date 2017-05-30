@@ -559,6 +559,7 @@
     SUBDIR += erlang-sbroker
     SUBDIR += erlang-ssl_verify_fun
     SUBDIR += erlang-syslog
+    SUBDIR += erlang-unicode_util_compat
     SUBDIR += es-eric6
     SUBDIR += etcd
     SUBDIR += etcd3
@@ -4980,6 +4981,7 @@
     SUBDIR += py3-six
     SUBDIR += py3-tabulate
     SUBDIR += py3-threema-msgapi
+    SUBDIR += py3-urwid
     SUBDIR += py3-vcversioner
     SUBDIR += py3-wcwidth
     SUBDIR += py3-xdg
@@ -5315,6 +5317,8 @@
     SUBDIR += rubygem-getopt
     SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gettext-setup
+    SUBDIR += rubygem-gettext_i18n_rails
+    SUBDIR += rubygem-gettext_i18n_rails_js
     SUBDIR += rubygem-gh
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
