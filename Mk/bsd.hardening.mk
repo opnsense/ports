@@ -101,7 +101,7 @@ OPTIONS_DEFAULT+=	RELRO
 ### SafeStack support ###
 #########################
 
-.if defined(NO_BUILD) || defined(NO_ARCH)
+.if defined(NO_BUILD) || defined(NO_ARCH) || ${ARCH} != "amd64"
 USE_HARDENING+=		nosafestack
 .endif
 

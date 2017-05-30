@@ -14,8 +14,6 @@ _INCLUDE_USES_SAFESTACK_MK=    yes
 IGNORE=	USES=safestack does not require args
 .endif
 
-.if ${ARCH} == "amd64"
-
 .if "${PORTNAME}" == "pkg"
 CONFIGURE_ARGS+=	--enable-safestack
 .else
@@ -24,5 +22,4 @@ CXXFLAGS+=		-fsanitize=safe-stack
 LDFLAGS+=		-fsanitize=safe-stack
 .endif
 
-.endif
 .endif
