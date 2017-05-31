@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=		openvpn
-DISTVERSION=		2.3.15
+DISTVERSION=		2.3.16
 CATEGORIES=		security net
 MASTER_SITES=		http://swupdate.openvpn.net/community/releases/
 PKGNAMESUFFIX?=		23
