@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gcc
-PORTVERSION=	6.3.1.s20170524
+PORTVERSION=	6.3.1.s20170531
 CATEGORIES=	lang java
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -72,7 +72,7 @@ CONFIGURE_TARGET=	x86_64-portbld-${OPSYS:tl}${OSREL}
 
 .if ${ARCH} == powerpc64
 CONFIGURE_ENV+=	UNAME_m="powerpc64"
-USE_GCC=	yes
+USE_GCC=	5	# Cannot require ourselves, needs to be at least 4.9.
 .endif
 
 .if ${ARCH} == "armv6" || ${ARCH} == "aarch64"

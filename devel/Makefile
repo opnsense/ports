@@ -303,6 +303,7 @@
     SUBDIR += cloudabi-binutils-aarch64
     SUBDIR += cloudabi-binutils-x86_64
     SUBDIR += cloudabi-toolchain
+    SUBDIR += cltune
     SUBDIR += cmake
     SUBDIR += cmake-doc
     SUBDIR += cmake-fedora
@@ -4134,13 +4135,13 @@
     SUBDIR += py-appdirs
     SUBDIR += py-application
     SUBDIR += py-apptools
-    SUBDIR += py-argparse
     SUBDIR += py-apscheduler
     SUBDIR += py-archetypes.querywidget
     SUBDIR += py-archetypes.referencebrowserwidget
     SUBDIR += py-archetypes.schemaextender
     SUBDIR += py-argcomplete
     SUBDIR += py-argh
+    SUBDIR += py-argparse
     SUBDIR += py-args
     SUBDIR += py-arrow
     SUBDIR += py-aspects
@@ -4940,10 +4941,12 @@
     SUBDIR += py27-setuptools
     SUBDIR += py3-Jinja2
     SUBDIR += py3-babel
+    SUBDIR += py3-cffi
     SUBDIR += py3-click
     SUBDIR += py3-click-log
     SUBDIR += py3-click-threading
     SUBDIR += py3-colorama
+    SUBDIR += py3-coloredlogs
     SUBDIR += py3-dbus
     SUBDIR += py3-defusedxml
     SUBDIR += py3-docopt
@@ -4967,8 +4970,10 @@
     SUBDIR += py3-prompt_toolkit
     SUBDIR += py3-py
     SUBDIR += py3-pycodestyle
+    SUBDIR += py3-pycparser
     SUBDIR += py3-pydocstyle
     SUBDIR += py3-pyflakes
+    SUBDIR += py3-pygit2
     SUBDIR += py3-pyicu
     SUBDIR += py3-pylru-cache
     SUBDIR += py3-pytest

@@ -9,9 +9,9 @@
     SUBDIR += R-cran-ROAuth
     SUBDIR += R-cran-digest
     SUBDIR += R-cran-openssl
+    SUBDIR += acme-client
     SUBDIR += acme.sh
     SUBDIR += acmetool
-    SUBDIR += acme-client
     SUBDIR += aescrypt
     SUBDIR += aespipe
     SUBDIR += afl
@@ -772,6 +772,7 @@
     SUBDIR += pecl-pam
     SUBDIR += pecl-scrypt
     SUBDIR += pecl-ssh2
+    SUBDIR += pecl-ssh2-0
     SUBDIR += pev
     SUBDIR += pft
     SUBDIR += pgp

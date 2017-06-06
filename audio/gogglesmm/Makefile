@@ -16,6 +16,8 @@ LIB_DEPENDS=	libtag.so:audio/taglib \
 		libexpat.so:textproc/expat2 \
 		libFOX-1.7.so:x11-toolkits/fox17
 
+BROKEN_powerpc64=	fails to compile: ap_mad.cpp:358:2: \#error fixme
+
 USE_GITHUB=	yes
 
 USES=		cmake compiler:c++11-lib desktop-file-utils \
