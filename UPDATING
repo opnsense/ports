@@ -5,6 +5,36 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20170603:
+  AFFECTS: users of www/kanboard
+  AUTHOR: joneum@FreeBSD.org
+
+  After update to 1.0.44, there are following breaking changes:
+  * Move calendar to external plugin: https://github.com/kanboard/plugin-calendar
+  * Move Gantt charts to external plugin: https://github.com/kanboard/plugin-gantt
+  * Move Gravatar to external plugin: https://github.com/kanboard/plugin-gravatar
+
+20170602:
+  AFFECTS: users of Qt 5 in presence of binutils
+  AUTHOR: amdmi3@FreeBSD.org
+
+  gold linker from binutils 2.28 may produce duplicate library
+  symbols, which makes shared libraries created with it not usable
+  with conventional ld linker.
+
+  This affects Qt, as qt5-qmake will detect gold and use it to build
+  Qt libraries. Broken libQt5Core will be produced and ports which
+  depend on it will then fail to link with the following errors:
+
+    ...lib/libQt5Core.so:(.dynamic+0x27ac8): multiple definition of `__bss_start at Qt_5'
+    ...lib/libQt5Core.so:(.dynamic+0x27ac8): first defined here
+    ...lib/libQt5Core.so:(.dynamic+0x27ac8): multiple definition of `_edata at Qt_5'
+    ...lib/libQt5Core.so:(.dynamic+0x27ac8): first defined here
+    ...lib/libQt5Core.so:(.dynamic+0x2b2d0): multiple definition of `_end at Qt_5'
+
+  Qt5 was fixed to ignore gold. If you see these errors, you
+  need to rebuild qt5-qmake, then all qt5-* ports.
+
 20170529:
   AFFECTS: users of sysutils/dsbmd
   AUTHOR: mk@freeshell.de
@@ -124,7 +154,7 @@ you update your ports collection, before attempting any port upgrades.
 
   Xapian has been updated to 1.4.3. The 1.2.x series has been renamed with
   suffix "12". The Perl binding for Xapian 1.4.x is databases/p5-Xapian.
-  Since www/ikiwiki depends on Search::Xapian, it stays with Xapian 1.2. 
+  Since www/ikiwiki depends on Search::Xapian, it stays with Xapian 1.2.
   If you would like to keep using 1.2, please run the following commands
   to update pkg database:
 
