@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	webgrind
-PORTVERSION=	1.4.0
+PORTVERSION=	1.5.0
 DISTVERSIONPREFIX=v
 CATEGORIES=	www
 
@@ -25,6 +25,8 @@ PLIST_SUB=	WWWOWN="${WWWOWN}" WWWGRP="${WWWGRP}"
 
 CALLGRAPH_USES=		python
 CALLGRAPH_RUN_DEPENDS=	dot:graphics/graphviz
+
+CALLGRAPH_DESC=		Enable call graph
 
 post-patch-CALLGRAPH-on:
 	@${REINPLACE_CMD} -e 's,/usr/bin/python,${PYTHON_CMD},' ${WRKSRC}/config.php
