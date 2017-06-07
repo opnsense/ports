@@ -13,6 +13,6 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/license.txt
 
 USES=		ssl
-USES_HARDENING=	pie relro safestack
+USE_HARDENING=	pie relro safestack
 
 .include <bsd.port.mk>
