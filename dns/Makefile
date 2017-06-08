@@ -164,7 +164,6 @@
     SUBDIR += pdnsd
     SUBDIR += pear-File_DNS
     SUBDIR += pear-Horde_Idna
-    SUBDIR += pear-Net_DNS
     SUBDIR += pear-Net_DNS2
     SUBDIR += powerdns
     SUBDIR += powerdns-recursor
@@ -186,6 +185,7 @@
     SUBDIR += py-tldextract
     SUBDIR += py-twistedNames
     SUBDIR += py3-dnspython
+    SUBDIR += py3-idna
     SUBDIR += radns
     SUBDIR += rbldnsd
     SUBDIR += rbllookup

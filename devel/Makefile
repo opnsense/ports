@@ -196,6 +196,7 @@
     SUBDIR += boost-jam
     SUBDIR += boost-libs
     SUBDIR += boost-python-libs
+    SUBDIR += boost-python3-libs
     SUBDIR += boost_build
     SUBDIR += bossa
     SUBDIR += bouml-doc
@@ -3060,7 +3061,6 @@
     SUBDIR += p5-PathTools
     SUBDIR += p5-Paws
     SUBDIR += p5-Pegex
-    SUBDIR += p5-Penguin
     SUBDIR += p5-Perl-Critic-Deprecated
     SUBDIR += p5-Perl-Metrics-Lite
     SUBDIR += p5-Perl-Metrics-Simple
@@ -4940,6 +4940,7 @@
     SUBDIR += py-zope.viewlet
     SUBDIR += py27-setuptools
     SUBDIR += py3-Jinja2
+    SUBDIR += py3-apipkg
     SUBDIR += py3-babel
     SUBDIR += py3-cffi
     SUBDIR += py3-click
@@ -4969,6 +4970,7 @@
     SUBDIR += py3-ply
     SUBDIR += py3-prompt_toolkit
     SUBDIR += py3-py
+    SUBDIR += py3-pyasn1
     SUBDIR += py3-pycodestyle
     SUBDIR += py3-pycparser
     SUBDIR += py3-pydocstyle
@@ -4978,6 +4980,7 @@
     SUBDIR += py3-pylru-cache
     SUBDIR += py3-pytest
     SUBDIR += py3-pytest-runner
+    SUBDIR += py3-pytest-xdist
     SUBDIR += py3-python-magic
     SUBDIR += py3-pytz
     SUBDIR += py3-rubymarshal

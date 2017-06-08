@@ -1077,6 +1077,8 @@
     SUBDIR += py-zope.proxy
     SUBDIR += py-zsi
     SUBDIR += py3-netifaces
+    SUBDIR += py3-pysocks
+    SUBDIR += py3-urllib3
     SUBDIR += pygopherd
     SUBDIR += pynids
     SUBDIR += pyrad
@@ -1246,8 +1248,6 @@
     SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
     SUBDIR += s3ql
-    SUBDIR += samba42
-    SUBDIR += samba43
     SUBDIR += samba44
     SUBDIR += samba45
     SUBDIR += samba46
