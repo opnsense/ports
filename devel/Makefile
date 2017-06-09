@@ -4948,6 +4948,7 @@
     SUBDIR += py3-click-threading
     SUBDIR += py3-colorama
     SUBDIR += py3-coloredlogs
+    SUBDIR += py3-dateutil
     SUBDIR += py3-dbus
     SUBDIR += py3-defusedxml
     SUBDIR += py3-docopt
@@ -4979,6 +4980,7 @@
     SUBDIR += py3-pyicu
     SUBDIR += py3-pylru-cache
     SUBDIR += py3-pytest
+    SUBDIR += py3-pytest-capturelog
     SUBDIR += py3-pytest-runner
     SUBDIR += py3-pytest-xdist
     SUBDIR += py3-python-magic
