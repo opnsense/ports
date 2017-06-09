@@ -3,6 +3,7 @@
 
 PORTNAME=	suricata
 PORTVERSION=	3.2.1
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
@@ -94,7 +95,11 @@ PORTS_PCAP_CONFIGURE_ON=	--with-libpcap-includes=${LOCALBASE}/include \
 PORTS_PCAP_CONFIGURE_OFF=	--with-libpcap-includes=/usr/include \
 				--with-libpcap-libraries=/usr/lib
 
-PRELUDE_LIB_DEPENDS=		libprelude.so:security/libprelude
+PRELUDE_LIB_DEPENDS=		libprelude.so:security/libprelude \
+				libgnutls.so:security/gnutls \
+				libgcrypt.so:security/libgcrypt \
+				libgpg-error.so:security/libgpg-error \
+				libltdl.so:devel/libltdl
 PRELUDE_CONFIGURE_ENABLE=	prelude
 PRELUDE_CONFIGURE_ON=		--with-libprelude-prefix=${LOCALBASE}
 

@@ -37,7 +37,7 @@ load_rc_config $name
 [ -z "$suricata_netmap" ]	&& suricata_netmap="NO"
 
 if [ -n "$suricata_interface" ]; then
-	suricata_flags="$suricata_flags -i $suricata_interface"
+	suricata_flags="$suricata_flags --pcap=$suricata_interface"
 elif [ "$suricata_netmap" != "NO" ]; then
 	suricata_flags="$suricata_flags --netmap"
 else
