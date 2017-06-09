@@ -35,7 +35,8 @@ post-patch-CALLGRAPH-on:
 do-install:
 	@${RM} ${WRKSRC}/library/preprocessor.cpp ${WRKSRC}/makefile
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/bin
-	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "*" ${STAGEDIR}${WWWDIR})
+	(cd ${WRKSRC}/ && ${COPYTREE_SHARE} "*" ${STAGEDIR}${WWWDIR} \
+		'! -name license.txt ! -name package.sh')
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/preprocessor ${STAGEDIR}${WWWDIR}/bin
 
 .include <bsd.port.mk>
