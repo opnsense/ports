@@ -15,7 +15,7 @@
  	}
  
  	if (lookup == 0) {
--#if OPENSSL_VERSION_NUMBER >= 0x10100000L
+-#if OPENSSL_VERSION_NUMBER >= 0x10100000L && !defined(LIBRESSL_VERSION_NUMBER)
 +#if OPENSSL_VERSION_NUMBER >= 0x10100000L || defined(LIBRESSL_VERSION_NUMBER)
  		ext_list = X509_get0_extensions(client_cert);
  #else
