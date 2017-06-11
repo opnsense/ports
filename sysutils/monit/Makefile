@@ -10,6 +10,7 @@ MAINTAINER=	martinp@tildeslash.com
 COMMENT=	Unix system management and proactive monitoring
 
 LICENSE=	AGPLv3
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 GNU_CONFIGURE=	yes
 USES=		bison gmake
