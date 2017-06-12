@@ -1179,6 +1179,20 @@ _OSVERSION_MAJOR=	${OSVERSION:C/([0-9]?[0-9])([0-9][0-9])[0-9]{3}/\1/}
 # Only define tools here (for transition period with between pkg tools)
 .include "${PORTSDIR}/Mk/bsd.commands.mk"
 
+.if ${OSVERSION} < 1200020
+LLD_IS_LD=	no
+.endif
+
+.if !defined(LLD_IS_LD)
+LINKER!=	${READLINK} /usr/bin/ld
+.if !empty(LINKER) && ${LINKER:M*ld.lld}
+LLD_IS_LD=	yes
+.else
+LLD_IS_LD=	no
+.endif
+.endif
+_EXPORTED_VARS+=	LLD_IS_LD
+
 .if !defined(_PKG_CHECKED) && !defined(PACKAGE_BUILDING) && exists(${PKG_BIN})
 .if !defined(_PKG_VERSION)
 _PKG_VERSION!=	${PKG_BIN} -v
@@ -2475,7 +2489,7 @@ check-categories:
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology cad chinese comms converters databases \
 	deskutils devel docs dns editors elisp emulators enlightenment finance french ftp \
-	games geography german gnome gnustep graphics hamradio haskell hebrew hungarian \
+	games geography german gnome gnustep graphics hamradio hardenedbsd haskell hebrew hungarian \
 	ipv6 irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp \
 	mail mate math mbone misc multimedia net net-im net-mgmt net-p2p news \
 	palm parallel pear perl5 plan9 polish portuguese ports-mgmt \
