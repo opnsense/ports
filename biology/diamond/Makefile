@@ -17,6 +17,8 @@ USES=		cmake:outsource
 
 CFLAGS+=	-DNDEBUG
 
+NOPIE_PORTS=	yes
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	bbuchfink
 

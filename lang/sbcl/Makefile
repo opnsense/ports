@@ -23,6 +23,8 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 
 USES=		gmake makeinfo tar:bzip2
 
+NOPIE_PORTS=	yes
+
 ONLY_FOR_ARCHS=	i386 amd64
 
 SBCL_BOOT_LIST=	1.0.31-amd64-freebsd8 \

@@ -67,6 +67,8 @@ OPTIONS_DEFINE+=	BOOT
 OPTIONS_DEFINE+=	BOOTH
 .endif
 
+NOPIE_PORTS=	yes
+
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MDYNAMIC}

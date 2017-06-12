@@ -22,4 +22,6 @@ USE_SDL=	sdl mixer
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 MAKE_JOBS_UNSAFE=	yes
 
+NOPIE_PORTS=	yes
+
 .include <bsd.port.mk>

@@ -16,6 +16,8 @@ BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libgflags.so:devel/gflags \
 		libsnappy.so:archivers/snappy
 
+NOPIE_PORTS=	yes
+
 BROKEN_DragonFly=	does not build on DragonFly BSD using GCC with -Werror
 BROKEN_aarch64=	does not build: the clang compiler does not support -march=native
 BROKEN_armv6=	does not build: the clang compiler does not support -march=native

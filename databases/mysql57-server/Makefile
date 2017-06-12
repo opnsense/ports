@@ -19,6 +19,9 @@ SLAVEDIRS=	databases/mysql57-client
 USES=		bison:build cmake:outsource compiler:c11 compiler:c++11-lib \
 		cpe libedit localbase perl5 shebangfix ssl
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 USE_PERL5=	run
 
 MY_DBDIR=	/var/db/mysql

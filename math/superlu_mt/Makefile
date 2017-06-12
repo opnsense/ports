@@ -19,6 +19,9 @@ BROKEN_aarch64=		fails to build: undefined reference to sbrk
 
 USES=		fortran gmake
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>

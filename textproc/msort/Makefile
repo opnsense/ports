@@ -25,6 +25,9 @@ CONFIGURE_ENV=	ac_cv_lib_tre_regwcomp=yes
 GNU_CONFIGURE=	yes
 TEST_TARGET=	test
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 PLIST_FILES=	bin/msg bin/msort man/man1/msort.1.gz
 
 post-patch:

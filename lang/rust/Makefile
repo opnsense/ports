@@ -94,6 +94,8 @@ LLVM_PREFIX=			${LOCALBASE}/llvm${LLVM_VER}
 TEST_TARGET=	check
 TEST_ENV+=	ALLOW_NONZERO_RLIMIT_CORE=1
 
+NOPIE_PORTS=	yes
+
 # Rust manifests list all files and directories installed by rust-installer.
 # We use them in:
 #     - pre-install to cleanup the ${STAGEDIR}

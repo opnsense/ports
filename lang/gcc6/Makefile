@@ -20,6 +20,9 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 BROKEN_sparc64=		fails to configure: cannot compute suffix of object files: cannot compile
 
 .if defined(MAINTAINER_MODE)

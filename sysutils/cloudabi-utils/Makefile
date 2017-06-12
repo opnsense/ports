@@ -27,4 +27,7 @@ USE_LDCONFIG=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 .include <bsd.port.mk>

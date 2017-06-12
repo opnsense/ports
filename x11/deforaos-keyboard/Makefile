@@ -24,6 +24,8 @@ USES=		desktop-file-utils pkgconfig
 USE_XORG=	x11 xtst
 MAKE_ARGS+=	PREFIX=${PREFIX}
 
+NOPIE_PORTS=	yes
+
 OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 NLS_USES=	gettext

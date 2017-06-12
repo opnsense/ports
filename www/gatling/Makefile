@@ -21,6 +21,8 @@ USE_RC_SUBR=	gatling
 CFLAGS+=	-I${LOCALBASE}/include/libowfat -I${OPENSSLINC} -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
 
+NOPIE_PORTS=	yes
+
 MAKEFILE=	GNUmakefile
 
 bin=		dl

@@ -51,6 +51,8 @@ OPTIONS_DEFAULT=	BUNDLED_CAIRO
 OPTIONS_DEFAULT_amd64=	RUST
 OPTIONS_DEFAULT_i386=	RUST
 
+PIE_ARGS=		configure
+
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 
 WRKSRC:=	${WRKDIR}/${PORTNAME}-${DISTVERSION}

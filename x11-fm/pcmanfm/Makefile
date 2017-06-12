@@ -11,6 +11,8 @@ COMMENT=	PCMan File Manager
 
 LICENSE=	GPLv2
 
+EXPLICIT_SAFESTACK=	yes
+
 LIB_DEPENDS=	libfm-gtk.so:x11/libfm \
 	libfontconfig.so:x11-fonts/fontconfig \
 	libfreetype.so:print/freetype2

@@ -19,6 +19,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	cmdrkotori
 GH_TAGNAME=	508ddd0
 
+EXPLICIT_SAFESTACK=	yes
+
 USES=		compiler:c++11-lib desktop-file-utils pkgconfig qmake
 USE_QT5=	qmake_build buildtools_build core dbus gui network widgets x11extras
 USE_GL=		gl

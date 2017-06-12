@@ -41,6 +41,9 @@ MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 MOZ_EXTENSIONS=	default
 MOZ_OPTIONS+=	--enable-application=suite
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 USE_MOZILLA=	-soundtouch
 MOZ_PKGCONFIG_FILES=
 
