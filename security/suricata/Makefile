@@ -105,8 +105,8 @@ PRELUDE_CONFIGURE_ENABLE=	prelude
 PRELUDE_CONFIGURE_ON=		--with-libprelude-prefix=${LOCALBASE}
 
 REDIS_LIB_DEPENDS=		libhiredis.so:databases/hiredis
-REDIS_CONFIGURE_ON=		--enable-hiredis \
-				--with-libhiredis-includes=${LOCALBASE}/include \
+REDIS_CONFIGURE_ENABLE=		hiredis
+REDIS_CONFIGURE_ON=		--with-libhiredis-includes=${LOCALBASE}/include \
 				--with-libhiredis-libraries=${LOCALBASE}/lib
 
 SC_USES=			python
