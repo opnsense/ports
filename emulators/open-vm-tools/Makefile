@@ -66,6 +66,9 @@ CONFLICTS+=		vmware-guestd[0-9]* vmware-tools[0-9]*
 
 USE_RC_SUBR=		vmware-guestd vmware-kmod
 
+NOPIE_PORTS=	yes
+NORELRO_PORTS=	yes
+
 .include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MX11}
