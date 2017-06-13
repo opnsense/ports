@@ -11,7 +11,7 @@
 _INCLUDE_USES_PIE_MK=    yes
 
 .if !empty(pie_ARGS)
-IGNORE=	USES=pie does not require args
+IGNORE=			USES=pie does not require args
 .endif
 
 .if "${PORTNAME}" == "suricata"
@@ -28,9 +28,9 @@ CONFIGURE_ARGS+=	--enable-pie --disable-threading-tls
 .elif "${PORTNAME}" == "pkg"
 CONFIGURE_ARGS+=	--enable-pie
 .else
-CFLAGS+=	-fPIC -fPIE
-CXXFLAGS+=	-fPIC -fPIE
-LDFLAGS+=	-pie
+CFLAGS+=		-fPIC -fPIE
+CXXFLAGS+=		-fPIC -fPIE
+LDFLAGS+=		-pie
 .endif
 
 .endif

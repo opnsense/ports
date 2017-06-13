@@ -11,7 +11,7 @@
 _INCLUDE_USES_RELRO_MK=    yes
 
 .if !empty(relro_ARGS)
-IGNORE=	USES=relro does not require args
+IGNORE=		USES=relro does not require args
 .endif
 
 LDFLAGS+=	-Wl,-z,relro -Wl,-z,now

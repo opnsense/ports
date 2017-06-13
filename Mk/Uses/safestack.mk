@@ -11,7 +11,7 @@
 _INCLUDE_USES_SAFESTACK_MK=    yes
 
 .if !empty(safestack_ARGS)
-IGNORE=	USES=safestack does not require args
+IGNORE=			USES=safestack does not require args
 .endif
 
 .if "${PORTNAME}" == "pkg"
