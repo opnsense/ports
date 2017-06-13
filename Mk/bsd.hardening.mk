@@ -74,7 +74,7 @@ CXXFLAGS+=		-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mstatic}
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mlinux} || ${USE_HARDENING:Mstatic}
 USE_HARDENING+=		nopie
 .endif
 
@@ -91,7 +91,7 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || ${USE_HARDENING:Mstatic}
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || ${USE_HARDENING:Mlinux} || ${USE_HARDENING:Mstatic}
 USE_HARDENING+=		norelro
 .endif
 
