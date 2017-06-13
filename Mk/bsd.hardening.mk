@@ -74,7 +74,7 @@ CXXFLAGS+=		-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || defined(NO_BUILD) || defined(NO_ARCH)
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mstatic}
 USE_HARDENING+=		nopie
 .endif
 
@@ -91,7 +91,7 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || defined(NO_BUILD) || defined(NO_ARCH)
+.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || ${USE_HARDENING:Mstatic}
 USE_HARDENING+=		norelro
 .endif
 
@@ -108,7 +108,9 @@ OPTIONS_DEFAULT+=	RELRO
 ### SafeStack support ###
 #########################
 
-.if defined(NO_BUILD) || defined(NO_ARCH) || ${ARCH} != "amd64"
+.if ${OSVERSION} >= 1100122
+
+.if ${USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
 USE_HARDENING+=		nosafestack
 .endif
 
@@ -119,6 +121,8 @@ SAFESTACK_USES=		safestack
 OPTIONS_DEFINE+=	SAFESTACK
 OPTIONS_DEFAULT+=	SAFESTACK
 .endif
+.endif
+
 .endif
 
 .endif # !HARDENINGMKINCLUDED
