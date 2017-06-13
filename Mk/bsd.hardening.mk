@@ -59,8 +59,8 @@ USE_HARDENING+=	x11
 #################################################
 
 .if ${USE_HARDENING:Mlib}
-CFLAGS+=	-fPIC
-CXXFLAGS+=	-fPIC
+CFLAGS+=		-fPIC
+CXXFLAGS+=		-fPIC
 .endif
 
 ####################################################
