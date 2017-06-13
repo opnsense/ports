@@ -52,6 +52,13 @@ USE_HARDENING+=	fortran
 .if ${CATEGORIES:Mx11-drivers}
 USE_HARDENING+=	x11
 .endif
+.if ${CATEGORIES:Mlinux}
+USE_HARDENING+=	linux
+.endif
+.endif
+
+.if defined(NO_BUILD) || defined(NO_ARCH)
+USE_HARDENING+=	static
 .endif
 
 #################################################
