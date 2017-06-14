@@ -16,54 +16,55 @@ HARDENING_OFF?=
 
 # Can pass exceptions from port Makefile, too.
 
-USE_HARDENING?=		pie relro ${${PORTNAME}_HARDENING}
+USE_HARDENING?=		pie:default relro:default ${${PORTNAME}_HARDENING}
+_USE_HARDENING=		# internal flags
 
 .if defined(PORTNAME)
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
-USE_HARDENING+=	lib
+_USE_HARDENING+=	lib
 .endif
 .if ${PORTNAME:M*kmod*}
-USE_HARDENING+=	kmod
+_USE_HARDENING+=	kmod
 .endif
 .endif
 
 .if defined(PKGNAMEPREFIX)
 .if ${PKGNAMEPREFIX:Mlib}
-USE_HARDENING+=	lib
+_USE_HARDENING+=	lib
 .endif
 .endif
 
 .if defined(PKGNAMESUFFIX)
 .if ${PKGNAMESUFFIX:M-lib*}
-USE_HARDENING+=	lib
+_USE_HARDENING+=	lib
 .endif
 .endif
 
 .if defined(USES)
 .if ${USES:Mkmod}
-USE_HARDENING+=	kmod
+_USE_HARDENING+=	kmod
 .endif
 .if ${USES:Mfortran}
-USE_HARDENING+=	fortran
+_USE_HARDENING+=	fortran
 .endif
 .endif
 
 .if defined(CATEGORIES)
 .if ${CATEGORIES:Mx11-drivers}
-USE_HARDENING+=	x11
+_USE_HARDENING+=	x11
 .endif
 .if ${CATEGORIES:Mlinux}
-USE_HARDENING+=	linux
+_USE_HARDENING+=	linux
 .endif
 .endif
 
 .if defined(NO_BUILD) || defined(NO_ARCH)
-USE_HARDENING+=	static
+_USE_HARDENING+=	static
 .endif
 
 .for h in ${USE_HARDENING}
 _h:=		${h:C/\:.*//}
-.if ${_h} == "pie" || ${_h} == "safestack"
+.if ${_h} == "pie" || ${_h} == "relro" || ${_h} == "safestack"
 .if !defined(${_h}_ARGS)
 USE_HARDENING:=	${USE_HARDENING:N${h}} ${_h}
 ${_h}_ARGS:=	${h:C/^[^\:]*(\:|\$)//:S/,/ /g}
@@ -75,7 +76,7 @@ ${_h}_ARGS:=	${h:C/^[^\:]*(\:|\$)//:S/,/ /g}
 ### Option-less PIC enforcement for libraries ###
 #################################################
 
-.if ${USE_HARDENING:Mlib}
+.if ${_USE_HARDENING:Mlib}
 CFLAGS+=		-fPIC
 CXXFLAGS+=		-fPIC
 .endif
@@ -84,8 +85,12 @@ CXXFLAGS+=		-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mlinux} || ${USE_HARDENING:Mstatic}
+pie_ARGS?=
+
+.if ${pie_ARGS:Mdefault}
+.if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 USE_HARDENING+=		nopie
+.endif
 .endif
 
 .if ${HARDENING_OFF:Mpie} == ""
@@ -101,8 +106,12 @@ OPTIONS_DEFAULT+=	PIE
 ### RELRO + BIND_NOW support ###
 ################################
 
-.if ${USE_HARDENING:Mlib} || ${USE_HARDENING:Mkmod} || ${USE_HARDENING:Mfortran} || ${USE_HARDENING:Mx11} || ${USE_HARDENING:Mlinux} || ${USE_HARDENING:Mstatic}
+relro_ARGS?=
+
+.if ${relro_ARGS:Mdefault}
+.if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mx11} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 USE_HARDENING+=		norelro
+.endif
 .endif
 
 .if ${HARDENING_OFF:Mrelro} == ""
@@ -120,7 +129,9 @@ OPTIONS_DEFAULT+=	RELRO
 
 .if ${OSVERSION} >= 1100122
 
-.if ${USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
+safestack_ARGS?=
+
+.if ${_USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
 USE_HARDENING+=		nosafestack
 .endif
 
@@ -141,7 +152,7 @@ OPTIONS_DEFAULT+=	SAFESTACK
 
 .if ${OSVERSION} >= 1200020 && ${LLD_IS_LD} == "yes"
 
-.if ${USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
+.if ${_USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
 USE_HARDENING+=		nocfi
 .endif
 

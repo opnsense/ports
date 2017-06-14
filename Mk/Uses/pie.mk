@@ -4,7 +4,7 @@
 #
 # Feature:	pie
 # Usage:	USES=pie or USES=pie:args
-# Valid ARGS:	configure
+# Valid ARGS:	configure, default
 #
 # MAINTAINER:	shawn.webb@hardenedbsd.org
 
