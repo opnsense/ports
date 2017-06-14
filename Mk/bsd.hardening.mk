@@ -125,4 +125,25 @@ OPTIONS_DEFAULT+=	SAFESTACK
 
 .endif
 
+###################
+### CFI support ###
+###################
+
+.if ${OSVERSION} >= 1200020 && ${LLD_IS_LD} == "yes"
+
+.if ${USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
+USE_HARDENING+=		nocfi
+.endif
+
+.if ${HARDENING_OFF:Mcfi} == ""
+.if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
+CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 in base)
+CFIHARDEN_USES=		cfi
+OPTIONS_DEFINE+=	CFIHARDEN
+OPTIONS_DEFAULT+=	CFIHARDEN
+.endif
+.endif
+
+.endif
+
 .endif # !HARDENINGMKINCLUDED
