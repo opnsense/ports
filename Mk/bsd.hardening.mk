@@ -61,6 +61,16 @@ USE_HARDENING+=	linux
 USE_HARDENING+=	static
 .endif
 
+.for h in ${USE_HARDENING}
+_h:=		${h:C/\:.*//}
+.if ${_h} == "pie" || ${_h} == "safestack"
+.if !defined(${_h}_ARGS)
+USE_HARDENING:=	${USE_HARDENING:N${h}} ${_h}
+${_h}_ARGS:=	${h:C/^[^\:]*(\:|\$)//:S/,/ /g}
+.endif
+.endif
+.endfor
+
 #################################################
 ### Option-less PIC enforcement for libraries ###
 #################################################

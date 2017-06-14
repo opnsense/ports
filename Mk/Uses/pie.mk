@@ -2,17 +2,14 @@
 #
 # Compile a port with PIE flags
 #
-# Feature:      pie
-# Usage:        USES=pie
+# Feature:	pie
+# Usage:	USES=pie or USES=pie:args
+# Valid ARGS:	configure
 #
 # MAINTAINER:	shawn.webb@hardenedbsd.org
 
 .if !defined(_INCLUDE_USES_PIE_MK)
 _INCLUDE_USES_PIE_MK=    yes
-
-.if !empty(pie_ARGS)
-IGNORE=			USES=pie does not require args
-.endif
 
 .if "${PORTNAME}" == "suricata"
 # Note: Suricata on HardenedBSD supports using thread-local
@@ -24,8 +21,10 @@ IGNORE=			USES=pie does not require args
 # thread storage.
 #
 # Discussed with: Victor Julien
-CONFIGURE_ARGS+=	--enable-pie --disable-threading-tls
-.elif "${PORTNAME}" == "pkg"
+CONFIGURE_ARGS+=	--disable-threading-tls
+.endif
+
+.if ${pie_ARGS:Mconfigure}
 CONFIGURE_ARGS+=	--enable-pie
 .else
 CFLAGS+=		-fPIC -fPIE

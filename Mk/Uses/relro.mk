@@ -2,8 +2,8 @@
 #
 # Compile a port with RELRO flags
 #
-# Feature:      relro
-# Usage:        USES=relro
+# Feature:	relro
+# Usage:	USES=relro
 #
 # MAINTAINER:	shawn.webb@hardenedbsd.org
 
