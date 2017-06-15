@@ -85,6 +85,8 @@ CXXFLAGS+=		-fPIC
 ### Position-Idependent Executable (PIE) support ###
 ####################################################
 
+.if ${HARDENING_OFF:Mpie} == ""
+
 pie_ARGS?=
 
 .if ${pie_ARGS:Mdefault}
@@ -93,18 +95,21 @@ USE_HARDENING+=		nopie
 .endif
 .endif
 
-.if ${HARDENING_OFF:Mpie} == ""
-.if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
+OPTIONS_DEFINE+=	PIE
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
-OPTIONS_DEFINE+=	PIE
+
+.if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
 OPTIONS_DEFAULT+=	PIE
 .endif
+
 .endif
 
 ################################
 ### RELRO + BIND_NOW support ###
 ################################
+
+.if ${HARDENING_OFF:Mrelro} == ""
 
 relro_ARGS?=
 
@@ -114,57 +119,60 @@ USE_HARDENING+=		norelro
 .endif
 .endif
 
-.if ${HARDENING_OFF:Mrelro} == ""
-.if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
+OPTIONS_DEFINE+=	RELRO
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
-OPTIONS_DEFINE+=	RELRO
+
+.if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
 OPTIONS_DEFAULT+=	RELRO
 .endif
+
 .endif
 
 #########################
 ### SafeStack support ###
 #########################
 
-.if ${OSVERSION} >= 1100122
+.if ${HARDENING_OFF:Msafestack} == ""
+.if ${OSVERSION} >= 1100122 && ${ARCH} == "amd64"
 
 safestack_ARGS?=
 
-.if ${_USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
+.if ${_USE_HARDENING:Mstatic}
 USE_HARDENING+=		nosafestack
 .endif
 
-.if ${HARDENING_OFF:Msafestack} == ""
-.if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
+OPTIONS_DEFINE+=	SAFESTACK
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
-OPTIONS_DEFINE+=	SAFESTACK
+
+.if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
 .endif
-.endif
 
+.endif
 .endif
 
 ###################
 ### CFI support ###
 ###################
 
-.if ${OSVERSION} >= 1200020 && ${LLD_IS_LD} == "yes"
+.if ${HARDENING_OFF:Mcfi} == ""
+.if ${OSVERSION} >= 1200020 && ${LLD_IS_LD} == "yes" && ${ARCH} == "amd64"
 
-.if ${_USE_HARDENING:Mstatic} || ${ARCH} != "amd64"
+.if ${_USE_HARDENING:Mstatic}
 USE_HARDENING+=		nocfi
 .endif
 
-.if ${HARDENING_OFF:Mcfi} == ""
-.if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
+OPTIONS_DEFINE+=	CFIHARDEN
 CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 in base)
 CFIHARDEN_USES=		cfi
-OPTIONS_DEFINE+=	CFIHARDEN
+
+.if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
 .endif
-.endif
 
+.endif
 .endif
 
 .endif # !HARDENINGMKINCLUDED
