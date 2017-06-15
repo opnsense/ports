@@ -11,6 +11,8 @@ COMMENT=	Circular log support for FreeBSD syslogd
 
 LICENSE=	BSD2CLAUSE
 
+USE_HARDENING=	pie relro safestack
+
 # -O2 is dangerous for clog! It breaks on i386 -O works.
 CFLAGS+=	-O
 

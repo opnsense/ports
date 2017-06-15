@@ -14,6 +14,7 @@ LICENSE=	BSD2CLAUSE
 LIB_DEPENDS+=	libucl.so:textproc/libucl
 
 USES=		ssl
+
 USE_HARDENING=	pie relro safestack
 
 USE_GITHUB=	yes

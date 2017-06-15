@@ -23,6 +23,8 @@ OPTIONS_DEFINE=	IPV6
 
 USES=		autoreconf bison
 
+USE_HARDENING=	pie relro safestack
+
 IPV6_CONFIGURE_ENABLE=	ipv6
 
 post-install:

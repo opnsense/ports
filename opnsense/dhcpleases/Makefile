@@ -10,6 +10,8 @@ COMMENT=	Read dhpcd.lease file and add it to hosts file
 
 LICENSE=	BSD2CLAUSE
 
+USE_HARDENING=	pie relro safestack
+
 .include <bsd.port.pre.mk>
 
 do-extract:

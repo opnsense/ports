@@ -10,6 +10,8 @@ COMMENT=	filterdns
 
 LICENSE=	BSD2CLAUSE
 
+USE_HARDENING=	pie relro safestack
+
 PLIST_FILES=    sbin/filterdns
 
 do-extract:

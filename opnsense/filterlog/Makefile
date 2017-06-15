@@ -13,6 +13,8 @@ COMMENT=	Parse pflog(4) output
 
 LICENSE=	BSD3CLAUSE
 
+USE_HARDENING=	pie relro safestack
+
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
 
