@@ -108,7 +108,9 @@ OPTIONS_DEFINE+=	PIE
 
 .if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
 OPTIONS_DEFAULT+=	PIE
+.if ${_USE_HARDENING:Mbatch} != ""
 OPTIONS_DEFINE+=	PIE
+.endif
 .endif
 
 .endif
@@ -136,7 +138,9 @@ OPTIONS_DEFINE+=	RELRO
 
 .if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
 OPTIONS_DEFAULT+=	RELRO
+.if ${_USE_HARDENING:Mbatch} != ""
 OPTIONS_DEFINE+=	RELRO
+.endif
 .endif
 
 .endif
@@ -163,7 +167,9 @@ OPTIONS_DEFINE+=	SAFESTACK
 
 .if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
+.if ${_USE_HARDENING:Mbatch} != ""
 OPTIONS_DEFINE+=	SAFESTACK
+.endif
 .endif
 
 .endif
@@ -189,7 +195,9 @@ OPTIONS_DEFINE+=	CFIHARDEN
 
 .if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
+.if ${_USE_HARDENING:Mbatch} != ""
 OPTIONS_DEFINE+=	CFIHARDEN
+.endif
 .endif
 
 .endif
