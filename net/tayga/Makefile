@@ -15,4 +15,7 @@ GNU_CONFIGURE=	yes
 
 USE_HARDENING=	pie relro safestack
 
+post-configure:
+	@${REINPLACE_CMD} -e 's|^CFLAGS =|CFLAGS ?=|g' ${WRKSRC}/Makefile
+
 .include <bsd.port.mk>
