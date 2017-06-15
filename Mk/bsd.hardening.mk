@@ -95,12 +95,12 @@ USE_HARDENING+=		nopie
 .endif
 .endif
 
-OPTIONS_DEFINE+=	PIE
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 
 .if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
 OPTIONS_DEFAULT+=	PIE
+OPTIONS_DEFINE+=	PIE
 .endif
 
 .endif
@@ -119,12 +119,12 @@ USE_HARDENING+=		norelro
 .endif
 .endif
 
-OPTIONS_DEFINE+=	RELRO
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
 .if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
 OPTIONS_DEFAULT+=	RELRO
+OPTIONS_DEFINE+=	RELRO
 .endif
 
 .endif
@@ -142,12 +142,12 @@ safestack_ARGS?=
 USE_HARDENING+=		nosafestack
 .endif
 
-OPTIONS_DEFINE+=	SAFESTACK
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
 
 .if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
+OPTIONS_DEFINE+=	SAFESTACK
 .endif
 
 .endif
@@ -164,12 +164,12 @@ OPTIONS_DEFAULT+=	SAFESTACK
 USE_HARDENING+=		nocfi
 .endif
 
-OPTIONS_DEFINE+=	CFIHARDEN
 CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 in base)
 CFIHARDEN_USES=		cfi
 
 .if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
+OPTIONS_DEFINE+=	CFIHARDEN
 .endif
 
 .endif
