@@ -13,4 +13,6 @@ LICENSE=	GPLv2
 USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes
 
+USE_HARDENING=	pie relro safestack
+
 .include <bsd.port.mk>

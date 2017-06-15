@@ -592,7 +592,6 @@ sysinfo_HARDENING+=			safestack
 syslogd_HARDENING+=			safestack
 tar_HARDENING+=				safestack
 tarsnap_HARDENING+=			safestack
-tayga_HARDENING+=			safestack
 tcpdump_HARDENING+=			safestack
 tcptraceroute_HARDENING+=		safestack
 terminology_HARDENING+=			safestack
