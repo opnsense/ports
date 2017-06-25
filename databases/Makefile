@@ -124,6 +124,8 @@
     SUBDIR += jrobin
     SUBDIR += jrrd
     SUBDIR += kbibtex
+    SUBDIR += kdb
+    SUBDIR += kexi
     SUBDIR += kyotocabinet
     SUBDIR += kyototycoon
     SUBDIR += ldb
@@ -538,6 +540,7 @@
     SUBDIR += pear-Structures_DataGrid_DataSource_MDB2
     SUBDIR += pear-Structures_DataGrid_DataSource_PDO
     SUBDIR += pear-XML_Query2XML
+    SUBDIR += pecl-cassandra
     SUBDIR += pecl-chdb
     SUBDIR += pecl-couchbase
     SUBDIR += pecl-dbase
@@ -658,6 +661,7 @@
     SUBDIR += postgresql-libpgeasy
     SUBDIR += postgresql-libpqxx
     SUBDIR += postgresql-libpqxx3
+    SUBDIR += postgresql-mysql_fdw
     SUBDIR += postgresql-odbc
     SUBDIR += postgresql-plproxy
     SUBDIR += postgresql-plruby
@@ -919,6 +923,7 @@
     SUBDIR += rubygem-do_sqlite3
     SUBDIR += rubygem-em-redis-unified
     SUBDIR += rubygem-familia
+    SUBDIR += rubygem-flipper-active_record
     SUBDIR += rubygem-globalid
     SUBDIR += rubygem-globalid-rails5
     SUBDIR += rubygem-globalid-rails50

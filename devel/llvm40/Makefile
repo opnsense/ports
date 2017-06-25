@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	llvm
-DISTVERSION=	4.0.1rc1
-PORTREVISION=	5
+DISTVERSION=	4.0.1
 CATEGORIES=	devel lang
 MASTER_SITES=	http://llvm.org/${PRE_}releases/${LLVM_RELEASE}/${RCDIR}
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
@@ -33,10 +32,7 @@ USES=		cmake:outsource compiler:c++11-lib libedit ninja perl5 tar:xz \
 _USES_PYTHON?=	python:build
 USES+=		${_USES_PYTHON}
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
-SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in \
-		tools/clang/tools/scan-view/bin/scan-view \
-		tools/clang/tools/clang-format/git-clang-format \
-		tools/clang/tools/clang-format/clang-format-diff.py
+SHEBANG_FILES=	utils/lit/lit.py utils/llvm-lit/llvm-lit.in
 
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
@@ -205,6 +201,9 @@ COMMANDS+=	c-index-test \
 MAN1SRCS+=	clang.1 \
 		scan-build.1
 CLANG_PATTERN=	(c-index-test|clang|scan-|Reporter.py|ScanView.py|scanview.css|sorttable.js|startfile.py|-analyzer)
+SHEBANG_FILES+=	tools/clang/tools/scan-view/bin/scan-view \
+		tools/clang/tools/clang-format/git-clang-format \
+		tools/clang/tools/clang-format/clang-format-diff.py
 .endif
 
 .if ${PORT_OPTIONS:MCOMPILER_RT}
