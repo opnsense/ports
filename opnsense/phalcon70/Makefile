@@ -13,13 +13,20 @@ COMMENT=	Phalcon PHP Framework written in C-language
 LICENSE=	BSD3CLAUSE
 
 USES=		php:ext
-USE_PHP=	hash:build json:build pdo:build
 
 ONLY_FOR_ARCHS=	amd64 armv6 i386
 
 CONFLICTS_INSTALL=phalcon phalcon[!7][!0]
 
-BUILD_DEPENDS=	php${PKGNAMESUFFIX}>=0:lang/php${PKGNAMESUFFIX}
+BUILD_DEPENDS=	php${PKGNAMESUFFIX}>=0:lang/php${PKGNAMESUFFIX} \
+		php${PKGNAMESUFFIX}-hash>=0:security/php${PKGNAMESUFFIX}-hash \
+		php${PKGNAMESUFFIX}-json>=0:devel/php${PKGNAMESUFFIX}-json \
+		php${PKGNAMESUFFIX}-pdo>=0:databases/php${PKGNAMESUFFIX}-pdo
+
+RUN_DEPENDS=	php:lang/php${PKGNAMESUFFIX} \
+		${PHPBASE}/lib/php/20151012/hash.so:security/php${PKGNAMESUFFIX}-hash \
+		${PHPBASE}/lib/php/20151012/json.so:devel/php${PKGNAMESUFFIX}-json \
+		${PHPBASE}/lib/php/20151012/pdo.so:databases/php${PKGNAMESUFFIX}-pdo
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	phalcon
