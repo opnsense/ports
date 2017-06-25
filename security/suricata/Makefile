@@ -50,7 +50,6 @@ NETMAP_DESC=		Netmap support for inline IDP
 NSS_DESC=		File checksums and SSL/TLS fingerprinting
 PORTS_PCAP_DESC=	Use libpcap from ports
 PRELUDE_DESC=		Prelude support for NIDS alerts
-REDIS_DESC=		Redis output support
 SC_DESC=		Suricata socket client (suricatasc)
 TESTS_DESC=		Unit tests in suricata binary
 
