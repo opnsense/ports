@@ -5,6 +5,83 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20170624:
+  AFFECTS: users of net/rabbitmq
+  AUTHOR: olgeni@FreeBSD.org
+
+  The rabbitmq-3.6.10_1 port has been changed to use version 19 of
+  the Erlang runtime, because RabbitMQ is not yet compatible with
+  version 20.
+
+  Upgrades to the previous rabbitmq-3.6.10 must be avoided as
+  they can lead to data corruption due to changes in Erlang 20.
+
+20170622:
+  AFFECTS: users of database/postgresql* and other software using PostgreSQL to run
+  AUTHOR: tz@FreeBSD.org
+
+  The default version of PostgreSQL has been switched from 9.3 to 9.5.
+  The upgrade procedure can use up twice the space the databases
+  currently needs. If you have a big amount of stored data take a
+  closer look at the manpage of pg_upgrade for avoidance and/or
+  speedup of the upgrade.
+
+  The upgrade instructions consider a basic usage and do not match
+  complex scenarious like replication, sharding or similar.
+  
+  Upgrade instructions:
+
+  First stop your PostgreSQL, create PostgreSQL-binaries and backup your data.
+  If you have another Version of PostgreSQL installed, for example 9.3.12, your
+  files are named accourding to this.
+  
+  # service postgresql stop
+  # pkg create postgresql93-server postgresql93-contrib
+  # mkdir /tmp/pg-upgrade
+  # tar xf postgresql93-server-9.3.17.txz -C /tmp/pg-upgrade
+  # tar xf postgresql93-contrib-9.3.17.txz -C /tmp/pg-upgrade
+  # mv /usr/local/pgsql/data /usr/local/pgsql/data93
+  # pkg delete -f databases/postgresql93-server databases/postgresql93-contrib databases/postgresql93-client
+
+  Now update PostgreSQL:
+
+    pkg user:
+    # pkg install databases/postgresql95-server databases/postgresql95-contrib
+    # pkg upgrade
+
+    Portmaster users:
+    # portmaster databases/postgresql95-server databases/postgresql95-contrib
+    # portmaster -a
+
+    Portupgrade users:
+    # portinstall databases/postgresql95-server databases/postgresql95-contrib
+    # portupgrade -a
+
+  After installing the new PostgreSQL version you need to convert
+  all your databases to new version:
+  
+  # service postgresql initdb
+  # su -l pgsql -c "pg_upgrade -b /tmp/pg-upgrade/usr/local/bin/ -d /usr/local/pgsql/data93/ -B /usr/local/bin/ -D /usr/local/pgsql/data/"
+
+  Now the migration is finished. You can start PostgreSQL again with:
+
+  # service postgresql start
+
+20170614:
+  AFFECTS: users of editors/calligra
+  AUTHOR: groot@kde.org
+
+  Calligra has been updated to 3.0.1, which is a KDE Frameworks 5 (KF5)
+  based application. Calligra now uses Qt5 and KF5. The translations have
+  been merged (upstream) into the application, so separate language /
+  translation ports are no longer provided. Krita has been split out
+  (upstream) into a separate application, which is packaged as 
+  graphics/krita. Kexi, the visual database applications creator,
+  is packaged separately as databases/kexi.
+
+  Users of Calligra are encouraged to install Krita and Kexi separately,
+  and to report issues with the upgrade to kde@.
+
 20170613:
   AFFECTS: users of net-im/ejabberd
   AUTHOR: ashish@FreeBSD.org
