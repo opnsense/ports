@@ -27,8 +27,8 @@ CONFIGURE_ARGS+=	--disable-threading-tls
 .if ${pie_ARGS:Mconfigure}
 CONFIGURE_ARGS+=	--enable-pie
 .else
-CFLAGS+=		-fPIC -fPIE
-CXXFLAGS+=		-fPIC -fPIE
+CFLAGS+=		-fPIE -fPIC
+CXXFLAGS+=		-fPIE -fPIC
 LDFLAGS+=		-pie
 .endif
 
