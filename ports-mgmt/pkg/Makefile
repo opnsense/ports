@@ -22,12 +22,13 @@ INSTALL_TARGET=	install-strip
 PORTDOCS=	NEWS
 PORTSCOUT=	ignore:1
 
-USE_HARDENING=	pie:configure relro safestack:configure
 
 # Use a submake as 'deinstall install' needs to reevaluate PKG_CMD
 # so that pkg-static is used from the wrkdir
 USE_SUBMAKE=	yes
 CFLAGS+=	-Wno-error
+
+USE_HARDENING=	pie:configure relro safestack:configure
 
 .if !exists(/usr/include/jail.h)
 EXTRA_PATCHES=	${FILESDIR}/extra-patch-docs_pkg.8
