@@ -20,9 +20,9 @@ USES=		autoreconf cpe gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	${PORTNAME}
 
-USE_HARDENING=	pie:configure relro safestack:configure
-
 GNU_CONFIGURE=	yes
+
+USE_HARDENING=	pie:configure relro safestack
 
 CPE_VENDOR=	openinfosecfoundation
 
