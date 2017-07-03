@@ -19,6 +19,8 @@ HARDENING_OFF?=
 USE_HARDENING?=		pie:default relro:default ${${PORTNAME}_HARDENING}
 _USE_HARDENING=		# internal flags
 
+OPTIONS_GROUP+=		HARDENING
+
 .if defined(PORTNAME)
 .if ${PORTNAME:Mlib*} && ${PORTNAME:Mlibre*} == ""
 _USE_HARDENING+=	lib
