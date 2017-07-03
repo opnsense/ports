@@ -90,11 +90,13 @@ CXXFLAGS+=		-fPIC
 ####################################################
 
 .if ${HARDENING_OFF:Mpie} == ""
+.if ${OSVERSION} > 1100000
 
 pie_ARGS?=
 
 .if ${pie_ARGS:Mdefault}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
+# Do not enable PIE for libraries or kernel module ports.
 USE_HARDENING+=		nopie
 .endif
 .endif
@@ -103,16 +105,19 @@ PIE_DESC=		Build as PIE
 PIE_USES=		pie
 
 .if ${_USE_HARDENING:Mbatch} == ""
-OPTIONS_DEFINE+=	PIE
+OPTIONS_GROUP_HARDENING+=PIE
 .endif
 
 .if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
+.if !defined(NOPIE_PORTS) # XXX
 OPTIONS_DEFAULT+=	PIE
+.endif
 .if ${_USE_HARDENING:Mbatch} != ""
-OPTIONS_DEFINE+=	PIE
+OPTIONS_GROUP_HARDENING+=PIE
 .endif
 .endif
 
+.endif
 .endif
 
 ################################
@@ -133,13 +138,15 @@ RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
 .if ${_USE_HARDENING:Mbatch} == ""
-OPTIONS_DEFINE+=	RELRO
+OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 
 .if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
+.if !defined(NORELRO_PORTS) # XXX
 OPTIONS_DEFAULT+=	RELRO
+.endif
 .if ${_USE_HARDENING:Mbatch} != ""
-OPTIONS_DEFINE+=	RELRO
+OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 .endif
 
@@ -154,7 +161,9 @@ OPTIONS_DEFINE+=	RELRO
 
 safestack_ARGS?=
 
-.if ${_USE_HARDENING:Mstatic}
+.if defined(EXPLICIT_SAFESTACK) # XXX
+USE_HARDENING+=		safestack
+.elif ${_USE_HARDENING:Mstatic}
 USE_HARDENING+=		nosafestack
 .endif
 
@@ -162,13 +171,13 @@ SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
 
 .if ${_USE_HARDENING:Mbatch} == ""
-OPTIONS_DEFINE+=	SAFESTACK
+OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 
 .if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
 .if ${_USE_HARDENING:Mbatch} != ""
-OPTIONS_DEFINE+=	SAFESTACK
+OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 .endif
 
@@ -190,13 +199,13 @@ CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 in base)
 CFIHARDEN_USES=		cfi
 
 .if ${_USE_HARDENING:Mbatch} == ""
-OPTIONS_DEFINE+=	CFIHARDEN
+OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 
 .if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
 .if ${_USE_HARDENING:Mbatch} != ""
-OPTIONS_DEFINE+=	CFIHARDEN
+OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 .endif
 
