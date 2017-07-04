@@ -506,7 +506,6 @@ mc-light_HARDENING+=			safestack
 mcabber_HARDENING+=			safestack
 mdns-repeater_HARDENING+=		safestack
 memdump_HARDENING+=			safestack
-miniupnpd_HARDENING+=			safestack
 mk-livestatus_HARDENING+=		safestack
 monit_HARDENING+=			safestack
 mosquitto_HARDENING+=			safestack
