@@ -5114,6 +5114,7 @@
     SUBDIR += qtscriptgenerator
     SUBDIR += quickcheck++
     SUBDIR += quilt
+    SUBDIR += racer
     SUBDIR += radare2
     SUBDIR += ragel
     SUBDIR += raknet
@@ -5457,6 +5458,7 @@
     SUBDIR += rubygem-mixlib-config
     SUBDIR += rubygem-mixlib-log
     SUBDIR += rubygem-mixlib-shellout
+    SUBDIR += rubygem-mize
     SUBDIR += rubygem-mkrf
     SUBDIR += rubygem-mocha
     SUBDIR += rubygem-moneta
@@ -5523,6 +5525,7 @@
     SUBDIR += rubygem-progressbar
     SUBDIR += rubygem-progressbar09
     SUBDIR += rubygem-protected_attributes
+    SUBDIR += rubygem-protocol
     SUBDIR += rubygem-pry
     SUBDIR += rubygem-pry-rails
     SUBDIR += rubygem-pry-remote-em
