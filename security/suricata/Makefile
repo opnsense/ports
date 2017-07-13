@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	suricata
-PORTVERSION=	3.2.2
+PORTVERSION=	3.2.3
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
@@ -58,7 +58,7 @@ TESTS_DESC=		Unit tests in suricata binary
 GEOIP_LIB_DEPENDS=		libGeoIP.so:net/GeoIP
 GEOIP_CONFIGURE_ON=		--enable-geoip
 
-HTP_PORT_BUILD_DEPENDS=		libhtp>=0.5.24:devel/libhtp
+HTP_PORT_BUILD_DEPENDS=		libhtp>=0.5.25:devel/libhtp
 HTP_PORT_LIB_DEPENDS=		libhtp.so:devel/libhtp
 HTP_PORT_CONFIGURE_ON=		--enable-non-bundled-htp
 HTP_PORT_CONFIGURE_OFF=		--enable-bundled-htp
