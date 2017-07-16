@@ -62,7 +62,7 @@ HTP_PORT_BUILD_DEPENDS=		libhtp>=0.5.25:devel/libhtp
 HTP_PORT_LIB_DEPENDS=		libhtp.so:devel/libhtp
 HTP_PORT_CONFIGURE_ON=		--enable-non-bundled-htp
 HTP_PORT_CONFIGURE_OFF=		--enable-bundled-htp
-HTP_PORT_CONFLICTS_INSTALL_OFF=	libhtp-[0-9]* libhtp-suricata
+HTP_PORT_CONFLICTS_INSTALL_OFF=	libhtp
 HTP_PORT_USES_OFF=		iconv:translit
 
 HYPERSCAN_LIB_DEPENDS=		libhs.so:devel/hyperscan

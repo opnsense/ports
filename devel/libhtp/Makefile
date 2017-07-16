@@ -22,11 +22,7 @@ CONFIGURE_ARGS=	${ICONV_CONFIGURE_ARG}
 MAKE_ARGS=	LIBS="-lz ${ICONV_LIB}"
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-INSTALL_TARGET=		install-strip
-TEST_TARGET=		check
-
-CONFLICTS_INSTALL=	libhtp-suricata-*
-
-PLIST_SUB+=	PORTVERSION="${PORTVERSION}"
+INSTALL_TARGET=	install-strip
+TEST_TARGET=	check
 
 .include <bsd.port.mk>
