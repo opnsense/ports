@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	blackbox_exporter
-PORTVERSION=	0.6.0
+PORTVERSION=	0.7.0
 DISTVERSIONPREFIX=v
 CATEGORIES=	net-mgmt
 
@@ -20,8 +20,6 @@ GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
 GO_TARGET=	github.com/${GH_ACCOUNT}/${PORTNAME}
 
 USE_RC_SUBR=	${PORTNAME}
-
-STRIP=		# stripping can break go binaries
 
 PORTEXAMPLES=	${WRKSRC}/*.yml
 
