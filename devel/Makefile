@@ -331,6 +331,7 @@
     SUBDIR += configkit
     SUBDIR += cons
     SUBDIR += cons-test
+    SUBDIR += containers
     SUBDIR += cook
     SUBDIR += courier-unicode
     SUBDIR += covtool
@@ -397,6 +398,7 @@
     SUBDIR += cxref
     SUBDIR += cxxtest
     SUBDIR += cxxtools
+    SUBDIR += d-scanner
     SUBDIR += d-feet
     SUBDIR += darts
     SUBDIR += dash.el
@@ -407,6 +409,8 @@
     SUBDIR += dbus-sharp
     SUBDIR += dbus-sharp-glib
     SUBDIR += dbus-tcl
+    SUBDIR += dcd-client
+    SUBDIR += dcd-server
     SUBDIR += dcmtk
     SUBDIR += dconf
     SUBDIR += dconf-editor
@@ -416,6 +420,8 @@
     SUBDIR += deforaos-libsystem
     SUBDIR += deheader
     SUBDIR += delta
+    SUBDIR += derelict-sdl2
+    SUBDIR += derelict-util
     SUBDIR += desktop-file-utils
     SUBDIR += dev86
     SUBDIR += devhelp
@@ -433,6 +439,8 @@
     SUBDIR += ditrack
     SUBDIR += djgpp-binutils
     SUBDIR += djgpp-crx
+    SUBDIR += dlangui
+    SUBDIR += dlib
     SUBDIR += dmake
     SUBDIR += dmalloc
     SUBDIR += dmucs
@@ -447,6 +455,7 @@
     SUBDIR += dreampie
     SUBDIR += drpython
     SUBDIR += ds2
+    SUBDIR += dsymbol
     SUBDIR += dub
     SUBDIR += dulwich
     SUBDIR += duplo
@@ -1132,6 +1141,7 @@
     SUBDIR += imake
     SUBDIR += include-what-you-use
     SUBDIR += inilib
+    SUBDIR += inifiled
     SUBDIR += iniparser
     SUBDIR += initutil
     SUBDIR += injeqt
@@ -1145,6 +1155,7 @@
     SUBDIR += it-eric6
     SUBDIR += itext
     SUBDIR += ivykis
+    SUBDIR += iz
     SUBDIR += jakarta-commons-configuration
     SUBDIR += jakarta-commons-daemon
     SUBDIR += jakarta-commons-io
@@ -1282,6 +1293,7 @@
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
     SUBDIR += libdbusmenu-qt5
+    SUBDIR += libddoc
     SUBDIR += libdevq
     SUBDIR += libdfui
     SUBDIR += libdisasm
@@ -1293,6 +1305,7 @@
     SUBDIR += libdnsres
     SUBDIR += libdombey
     SUBDIR += libdouble-conversion
+    SUBDIR += libdparse
     SUBDIR += libds
     SUBDIR += libdsp
     SUBDIR += libdwarf
@@ -1660,6 +1673,7 @@
     SUBDIR += mpatrol
     SUBDIR += mph
     SUBDIR += mq4cpp
+    SUBDIR += msgpack-d
     SUBDIR += msgpack
     SUBDIR += msgpuck
     SUBDIR += msp430-debug-stack
@@ -3899,6 +3913,7 @@
     SUBDIR += pecl-propro
     SUBDIR += pecl-propro2
     SUBDIR += pecl-pthreads
+    SUBDIR += pecl-pthreads2
     SUBDIR += pecl-qb
     SUBDIR += pecl-raphf
     SUBDIR += pecl-raphf2
