@@ -1631,6 +1631,7 @@
     SUBDIR += mate-common
     SUBDIR += matreshka
     SUBDIR += maven-wrapper
+    SUBDIR += maven
     SUBDIR += maven3
     SUBDIR += maven31
     SUBDIR += maven33
@@ -4673,6 +4674,7 @@
     SUBDIR += py-pyvalid
     SUBDIR += py-pyvisa
     SUBDIR += py-pyvisa-py
+    SUBDIR += py-pyxb
     SUBDIR += py-pyxml2obj
     SUBDIR += py-qpid
     SUBDIR += py-qserve
@@ -5448,6 +5450,7 @@
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
+    SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
     SUBDIR += rubygem-kafo_wizards
