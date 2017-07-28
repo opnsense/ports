@@ -1370,6 +1370,7 @@
     SUBDIR += libhid
     SUBDIR += libhoard
     SUBDIR += libhtp
+    SUBDIR += libhyve-remote
     SUBDIR += libical
     SUBDIR += libical-glib
     SUBDIR += libinotify
@@ -1636,6 +1637,7 @@
     SUBDIR += maven31
     SUBDIR += maven33
     SUBDIR += mcpp
+    SUBDIR += mdb
     SUBDIR += mdds
     SUBDIR += memleax
     SUBDIR += menhir
@@ -4857,6 +4859,7 @@
     SUBDIR += py-vcversioner
     SUBDIR += py-venusian
     SUBDIR += py-versiontools
+    SUBDIR += py-verboselogs
     SUBDIR += py-virtualenv
     SUBDIR += py-virtualenv-clone
     SUBDIR += py-virtualenvwrapper
