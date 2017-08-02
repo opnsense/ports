@@ -431,7 +431,6 @@ bsnmp-regex_HARDENING+=			safestack
 bsnmp-ucd_HARDENING+=			safestack
 cciss_vol_status_HARDENING+=		safestack
 choparp_HARDENING+=			safestack
-clamav_HARDENING+=			safestack
 collectd_HARDENING+=			safestack
 ctags_HARDENING+=			safestack
 cups-pdf_HARDENING+=			safestack
