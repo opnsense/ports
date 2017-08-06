@@ -13,6 +13,7 @@ LICENSE=	BSD2CLAUSE
 USES=		gettext-tools
 
 NO_ARCH=	yes
+NO_BUILD=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
