@@ -154,6 +154,7 @@
     SUBDIR += cfengine38
     SUBDIR += cfengine39
     SUBDIR += chgrep
+    SUBDIR += chvt
     SUBDIR += chyves
     SUBDIR += cinnamon-control-center
     SUBDIR += cinnamon-settings-daemon
@@ -248,6 +249,7 @@
     SUBDIR += downtimed
     SUBDIR += dsbbatmon
     SUBDIR += dsbdriverd
+    SUBDIR += dsblogoutmgr
     SUBDIR += dsbmc
     SUBDIR += dsbmc-cli
     SUBDIR += dsbmd
