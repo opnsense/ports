@@ -330,6 +330,7 @@
     SUBDIR += libgnomesu
     SUBDIR += libgpg-error
     SUBDIR += libgringotts
+    SUBDIR += libhijack
     SUBDIR += libident
     SUBDIR += libkpass
     SUBDIR += libksba
@@ -986,6 +987,7 @@
     SUBDIR += py-zxcvbn-python
     SUBDIR += py3-certifi
     SUBDIR += py3-cryptography
+    SUBDIR += py3-ecdsa
     SUBDIR += py3-libnacl
     SUBDIR += py3-openssl
     SUBDIR += py3-pycrypto
