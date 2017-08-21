@@ -657,6 +657,7 @@
     SUBDIR += py-mutagen
     SUBDIR += py-ogg
     SUBDIR += py-openal
+    SUBDIR += py-py-jack
     SUBDIR += py-pyacoustid
     SUBDIR += py-pyaudio
     SUBDIR += py-pylast
@@ -695,6 +696,7 @@
     SUBDIR += rosegarden
     SUBDIR += rplay
     SUBDIR += rsynth
+    SUBDIR += rtmidi
     SUBDIR += rubberband
     SUBDIR += ruby-smf
     SUBDIR += ruby-taglib
@@ -715,6 +717,7 @@
     SUBDIR += shairplay
     SUBDIR += shairport
     SUBDIR += shairport-sync
+    SUBDIR += sherlock-lv2
     SUBDIR += shntool
     SUBDIR += shorten
     SUBDIR += shout
@@ -765,6 +768,7 @@
     SUBDIR += suil
     SUBDIR += supercollider
     SUBDIR += sweep
+    SUBDIR += swh-lv2
     SUBDIR += swhplugins
     SUBDIR += taglib
     SUBDIR += taglib-extras
@@ -809,6 +813,7 @@
     SUBDIR += virtual_oss
     SUBDIR += virtual_oss_ctl
     SUBDIR += vitunes
+    SUBDIR += vm-lv2
     SUBDIR += vo-aacenc
     SUBDIR += vo-amrwbenc
     SUBDIR += voipong

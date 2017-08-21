@@ -276,6 +276,7 @@
     SUBDIR += checkheaders
     SUBDIR += cheritrace-devel
     SUBDIR += cherivis-devel
+    SUBDIR += chromium-gn
     SUBDIR += chrpath
     SUBDIR += chruby
     SUBDIR += cil
@@ -4682,6 +4683,7 @@
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
     SUBDIR += py-pyshapelib
+    SUBDIR += py-pysparklines
     SUBDIR += py-pystorm
     SUBDIR += py-pyte
     SUBDIR += py-pytemplate
@@ -5590,6 +5592,8 @@
     SUBDIR += rubygem-patch_finder
     SUBDIR += rubygem-pathutil
     SUBDIR += rubygem-peek
+    SUBDIR += rubygem-peek-gc
+    SUBDIR += rubygem-peek-host
     SUBDIR += rubygem-piston
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-platform
