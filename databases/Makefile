@@ -33,6 +33,7 @@
     SUBDIR += cego
     SUBDIR += cegobridge
     SUBDIR += clickhouse
+    SUBDIR += cockroach
     SUBDIR += couchdb
     SUBDIR += courier-authlib-mysql
     SUBDIR += courier-authlib-pgsql
@@ -1000,7 +1001,6 @@
     SUBDIR += sqlite2
     SUBDIR += sqlite3
     SUBDIR += sqlitebrowser
-    SUBDIR += sqlitebrowser-qt5
     SUBDIR += sqliteconvert
     SUBDIR += sqliteman
     SUBDIR += sqlitemanager
