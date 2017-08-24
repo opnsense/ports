@@ -6872,7 +6872,6 @@ www/lusca-head||2014-09-01|Not staged
 www/mod_auth_form||2014-09-01|Not staged
 www/mod_auth_mellon||2014-09-01|Not staged
 www/mod_ftp||2014-09-01|Not staged
-www/mod_gnutls||2014-09-01|Not staged
 www/mod_log_dbd||2014-09-01|Not staged
 www/mod_pagespeed||2014-09-01|Not staged
 www/moodle24||2014-09-01|Not staged
@@ -9506,3 +9505,20 @@ audio/py-jack|audio/py-py-jack|2017-08-20|Renamed to py-py-jack to match PyPI pa
 lang/whitespace||2017-08-21|Has expired: Mastersite disappeared
 databases/sqlitebrowser-qt5|databases/sqlitebrowser|2017-08-22|sqlitebrowser now uses QT5
 misc/lr|misc/lazyread|2017-08-22|Renamed to reflect upstream name
+mail/roundcube-air||2017-08-23|Removed, does not work with main port
+games/plee-the-bear||2017-08-23|Has expired: Broken for more than 6 months
+x11-themes/kde-icons-umicons||2017-08-23|Has expired: Broken for more than 6 months
+lang/bigloo||2017-08-23|Has expired: Broken for more than 6 months
+audio/linux-neroaaccodec||2017-08-23|Has expired: Broken for more than 6 months
+x11-themes/kde-icons-dark-glass||2017-08-23|Has expired: Broken for more than 6 months
+misc/fortune-mod-ferengi_rules_of_acquisition||2017-08-23|Has expired: Broken for more than 6 months
+misc/fortune-mod-culmea-culmilor||2017-08-23|Has expired: Broken for more than 6 months
+misc/xyzcmd||2017-08-23|Has expired: Broken for more than 6 months
+russian/fortuneru||2017-08-23|Has expired: Broken for more than 6 months
+security/bdc||2017-08-23|Has expired: Broken for more than 6 months
+x11-themes/kde-icons-icosx||2017-08-23|Has expired: Broken for more than 6 months
+devel/insight||2017-08-23|Has expired: Broken for more than 6 months
+devel/gdb66||2017-08-23|Has expired: Broken for more than 6 months
+biology/biojava||2017-08-23|Has expired: Broken for more than 6 months
+games/xroach||2017-08-23|Has expired: Broken for more than 6 months
+java/intellij-pycharm|devel/pycharm-ce|2017-08-23|Renamed to reflect upstream name. Use a more appropriate origin (devel for development tools, IDE)
