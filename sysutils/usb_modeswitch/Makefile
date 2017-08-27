@@ -28,8 +28,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/usb_modeswitch ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_DATA} ${WRKSRC}/usb_modeswitch.conf ${STAGEDIR}${PREFIX}/etc/usb_modeswitch.conf.sample
 	${INSTALL_MAN} ${WRKSRC}/usb_modeswitch.1 ${STAGEDIR}${PREFIX}/man/man1
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/usb_modeswitch
 	cd ${WRKSRC}/../${DATANAME}/usb_modeswitch.d && \
-		${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/usb_modeswitch
+		${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>
