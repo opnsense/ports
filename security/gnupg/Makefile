@@ -25,7 +25,7 @@ RUN_DEPENDS=	pinentry:security/pinentry
 EXPLICIT_SAFESTACK=	yes
 CPPFLAGS+=	-fPIC
 
-CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
+CONFLICTS=	gnupg-2.0.* gnupg-2.2.* dirmngr-[0-9]*
 CPE_VENDOR=	gnupg
 
 USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2
