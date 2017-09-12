@@ -415,7 +415,6 @@ amap_HARDENING+=			safestack
 apache24_HARDENING+=			safestack
 apcupsd_HARDENING+=			safestack
 arandr_HARDENING+=			safestack
-arp-scan_HARDENING+=			safestack
 automake_HARDENING+=			safestack
 baka-mplayer_HARDENING+=		safestack
 bandwidthd_HARDENING+=			safestack
