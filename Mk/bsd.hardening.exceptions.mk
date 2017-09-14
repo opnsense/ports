@@ -42,7 +42,6 @@ cgnslib_HARDENING+=			nopie
 chkrootkit_HARDENING+=			nopie norelro
 chromium_HARDENING+=			norelro
 cimg_HARDENING+=			nopie
-clambc_HARDENING+=			nopie norelro
 clanlib22_HARDENING+=			nopie norelro
 cloudabi-utils_HARDENING+=		nopie norelro
 cmdwatch_HARDENING+=			nopie
