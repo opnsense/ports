@@ -80,11 +80,9 @@ _USE_HARDENING+=	locked
 
 .for h in ${USE_HARDENING}
 _h:=		${h:C/\:.*//}
-.if ${_h} == "pie" || ${_h} == "relro" || ${_h} == "safestack" || ${_h} == "cfi"
-.if !defined(${_h}_ARGS)
-USE_HARDENING:=	${USE_HARDENING:N${h}} ${_h}
-${_h}_ARGS:=	${h:C/^[^\:]*(\:|\$)//:S/,/ /g}
-.endif
+.if ${HARDENING_ALL:M${_h}} != ""
+USE_HARDENING:=	${_h} ${USE_HARDENING:N${h}:N${_h}}
+${_h}_ARGS:=	${h:C/^[^\:]*(\:|\$)//:S/,/ /g} ${${_h}_ARGS}
 .endif
 .endfor
 
@@ -109,7 +107,7 @@ pie_ARGS?=
 .if ${pie_ARGS:Mdefault}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 # Do not enable PIE for libraries or kernel module ports.
-USE_HARDENING+=		nopie
+pie_ARGS+=		off
 .endif
 .endif
 
@@ -120,7 +118,7 @@ PIE_USES=		pie
 OPTIONS_GROUP_HARDENING+=PIE
 .endif
 
-.if ${USE_HARDENING:Mpie} && ${USE_HARDENING:Mnopie} == ""
+.if ${USE_HARDENING:Mpie} && ${pie_ARGS:Moff} == ""
 .if !defined(NOPIE_PORTS) # XXX
 OPTIONS_DEFAULT+=	PIE
 .endif
@@ -142,7 +140,7 @@ relro_ARGS?=
 
 .if ${relro_ARGS:Mdefault}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mx11} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
-USE_HARDENING+=		norelro
+relro_ARGS+=		off
 .endif
 .endif
 
@@ -153,7 +151,7 @@ RELRO_USES=		relro
 OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 
-.if ${USE_HARDENING:Mrelro} && ${USE_HARDENING:Mnorelro} == ""
+.if ${USE_HARDENING:Mrelro} && ${relro_ARGS:Moff} == ""
 .if !defined(NORELRO_PORTS) # XXX
 OPTIONS_DEFAULT+=	RELRO
 .endif
@@ -176,7 +174,7 @@ safestack_ARGS?=
 .if defined(EXPLICIT_SAFESTACK) # XXX
 USE_HARDENING+=		safestack
 .elif ${_USE_HARDENING:Mstatic}
-USE_HARDENING+=		nosafestack
+safestack_ARGS+=	off
 .endif
 
 SAFESTACK_DESC=		Build with SafeStack
@@ -186,7 +184,7 @@ SAFESTACK_USES=		safestack
 OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 
-.if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
+.if ${USE_HARDENING:Msafestack} && ${safestack_ARGS:Moff} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
 .if ${_USE_HARDENING:Mlocked} != ""
 OPTIONS_GROUP_HARDENING+=SAFESTACK
@@ -203,8 +201,10 @@ OPTIONS_GROUP_HARDENING+=SAFESTACK
 .if ${HARDENING_OFF:Mcfi} == ""
 .if ${OSVERSION} >= 1200020 && ${LLD_IS_LD} == "yes" && ${ARCH} == "amd64"
 
+cfi_ARGS?=
+
 .if ${_USE_HARDENING:Mstatic}
-USE_HARDENING+=		nocfi
+cfi_ARGS+=		off
 .endif
 
 CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 or later in base)
@@ -214,7 +214,7 @@ CFIHARDEN_USES=		cfi
 OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 
-.if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
+.if ${USE_HARDENING:Mcfi} && ${cfi_ARGS:Moff} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
 .if ${_USE_HARDENING:Mlocked} != ""
 OPTIONS_GROUP_HARDENING+=CFIHARDEN
