@@ -1,6 +1,7 @@
 # $FreeBSD$
 
-PORTREVISION=	2
+PORTREVISION=	1
+
 PKGNAMESUFFIX=	-kmod
 MASTERDIR=	${.CURDIR}/../secadm
 
@@ -9,7 +10,8 @@ COMMENT=	HardenedBSD Security Administration - Kernel module
 USES=		kmod
 KMOD=		yes
 
-USE_GITHUB=	yes
+HARDENING_OFF= relro pie safestack
+
 pre-build:
 	(cd ${WRKSRC}; make depend)
 
