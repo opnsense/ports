@@ -5,6 +5,13 @@
 .if !defined(HARDENINGMKINCLUDED)
 HARDENINGMKINCLUDED=	bsd.hardening.mk
 
+# All the currenty available hardening options
+# and defaults to be used with USE_HARDENING or
+# HARDENING_OFF.
+
+HARDENING_DEFAULT=	pie:default relro:default
+HARDENING_ALL=		cfi pie relro safestack
+
 # Can pass exceptions from global make.conf,
 # either as individual portname_HARDENING
 # or the global HARDENING_OFF flag per feature.
@@ -16,7 +23,7 @@ HARDENING_OFF?=
 
 # Can pass exceptions from port Makefile, too.
 
-USE_HARDENING?=		pie:default relro:default ${${PORTNAME}_HARDENING}
+USE_HARDENING?=		${HARDENING_DEFAULT} ${${PORTNAME}_HARDENING}
 _USE_HARDENING=		# internal flags
 
 OPTIONS_GROUP+=		HARDENING
@@ -64,8 +71,11 @@ _USE_HARDENING+=	linux
 _USE_HARDENING+=	static
 .endif
 
-.if defined(PACKAGE_BUILDING) || defined(BATCH)
-_USE_HARDENING+=	batch
+.if (defined(PACKAGE_BUILDING) || defined(BATCH)) && defined(HARDENING_LOCK)
+# The lock prevents unused hardening options
+# from being embedded into the package when
+# building in batches and/or package building.
+_USE_HARDENING+=	locked
 .endif
 
 .for h in ${USE_HARDENING}
@@ -106,7 +116,7 @@ USE_HARDENING+=		nopie
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 
-.if ${_USE_HARDENING:Mbatch} == ""
+.if ${_USE_HARDENING:Mlocked} == ""
 OPTIONS_GROUP_HARDENING+=PIE
 .endif
 
@@ -114,7 +124,7 @@ OPTIONS_GROUP_HARDENING+=PIE
 .if !defined(NOPIE_PORTS) # XXX
 OPTIONS_DEFAULT+=	PIE
 .endif
-.if ${_USE_HARDENING:Mbatch} != ""
+.if ${_USE_HARDENING:Mlocked} != ""
 OPTIONS_GROUP_HARDENING+=PIE
 .endif
 .endif
@@ -139,7 +149,7 @@ USE_HARDENING+=		norelro
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
-.if ${_USE_HARDENING:Mbatch} == ""
+.if ${_USE_HARDENING:Mlocked} == ""
 OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 
@@ -147,7 +157,7 @@ OPTIONS_GROUP_HARDENING+=RELRO
 .if !defined(NORELRO_PORTS) # XXX
 OPTIONS_DEFAULT+=	RELRO
 .endif
-.if ${_USE_HARDENING:Mbatch} != ""
+.if ${_USE_HARDENING:Mlocked} != ""
 OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 .endif
@@ -172,13 +182,13 @@ USE_HARDENING+=		nosafestack
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
 
-.if ${_USE_HARDENING:Mbatch} == ""
+.if ${_USE_HARDENING:Mlocked} == ""
 OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 
 .if ${USE_HARDENING:Msafestack} && ${USE_HARDENING:Mnosafestack} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
-.if ${_USE_HARDENING:Mbatch} != ""
+.if ${_USE_HARDENING:Mlocked} != ""
 OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 .endif
@@ -200,13 +210,13 @@ USE_HARDENING+=		nocfi
 CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 or later in base)
 CFIHARDEN_USES=		cfi
 
-.if ${_USE_HARDENING:Mbatch} == ""
+.if ${_USE_HARDENING:Mlocked} == ""
 OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 
 .if ${USE_HARDENING:Mcfi} && ${USE_HARDENING:Mnocfi} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
-.if ${_USE_HARDENING:Mbatch} != ""
+.if ${_USE_HARDENING:Mlocked} != ""
 OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 .endif
