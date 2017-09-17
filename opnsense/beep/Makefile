@@ -11,7 +11,7 @@ LICENSE=	BSD4CLAUSE
 
 ONLY_FOR_ARCHS=	i386 amd64 pc98
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 PLIST_FILES=	bin/beep man/man1/beep.1.gz
 

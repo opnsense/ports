@@ -10,7 +10,7 @@ COMMENT=	filterdns
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 PLIST_FILES=    sbin/filterdns
 

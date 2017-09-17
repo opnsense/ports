@@ -23,7 +23,7 @@ OPTIONS_DEFINE=	IPV6
 
 USES=		autoreconf bison
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 IPV6_CONFIGURE_ENABLE=	ipv6
 

@@ -8,7 +8,7 @@ EXTRACT_ONLY=	# empty
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Gather system statistics
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 WHERE=		sbin
 PLIST_FILES=    ${WHERE}/${PORTNAME}

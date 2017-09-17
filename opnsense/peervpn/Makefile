@@ -14,6 +14,6 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 
 USES=		ssl
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 .include <bsd.port.mk>

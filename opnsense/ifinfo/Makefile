@@ -13,7 +13,7 @@ COMMENT=	Interface statistics reader
 
 LICENSE=	MIT
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}

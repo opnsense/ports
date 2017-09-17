@@ -11,7 +11,7 @@ COMMENT=	FreeBSD syslogd with additions
 
 LICENSE=	BSD3CLAUSE
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	CLOG IPV6
 OPTIONS_DEFAULT=CLOG

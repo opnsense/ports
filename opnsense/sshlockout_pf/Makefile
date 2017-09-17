@@ -8,7 +8,7 @@ COMMENT=	Automatically block IPs with failed SSH logins using pf(4)
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	pie relro safestack
+USE_HARDENING=	safestack
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
