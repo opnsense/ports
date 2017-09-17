@@ -9,7 +9,7 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 # and defaults to be used with USE_HARDENING or
 # HARDENING_OFF.
 
-HARDENING_DEFAULT=	pie:default relro:default
+HARDENING_DEFAULT=	pie:auto relro:auto
 HARDENING_ALL=		cfi pie relro safestack
 
 # Can pass exceptions from global make.conf,
@@ -104,7 +104,7 @@ CXXFLAGS+=		-fPIC
 
 pie_ARGS?=
 
-.if ${pie_ARGS:Mdefault}
+.if ${pie_ARGS:Mauto}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 # Do not enable PIE for libraries or kernel module ports.
 pie_ARGS+=		off
@@ -138,7 +138,7 @@ OPTIONS_GROUP_HARDENING+=PIE
 
 relro_ARGS?=
 
-.if ${relro_ARGS:Mdefault}
+.if ${relro_ARGS:Mauto}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mx11} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 relro_ARGS+=		off
 .endif
