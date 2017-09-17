@@ -75,7 +75,7 @@ _USE_HARDENING+=	static
 # The lock prevents unused hardening options
 # from being embedded into the package when
 # building in batches and/or package building.
-_USE_HARDENING+=	locked
+_USE_HARDENING+=	lock
 .endif
 
 .for h in ${USE_HARDENING}
@@ -114,7 +114,7 @@ pie_ARGS+=		off
 PIE_DESC=		Build as PIE
 PIE_USES=		pie
 
-.if ${_USE_HARDENING:Mlocked} == ""
+.if ${_USE_HARDENING:Mlock} == ""
 OPTIONS_GROUP_HARDENING+=PIE
 .endif
 
@@ -122,7 +122,7 @@ OPTIONS_GROUP_HARDENING+=PIE
 .if !defined(NOPIE_PORTS) # XXX
 OPTIONS_DEFAULT+=	PIE
 .endif
-.if ${_USE_HARDENING:Mlocked} != ""
+.if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=PIE
 .endif
 .endif
@@ -147,7 +147,7 @@ relro_ARGS+=		off
 RELRO_DESC=		Build with RELRO + BIND_NOW
 RELRO_USES=		relro
 
-.if ${_USE_HARDENING:Mlocked} == ""
+.if ${_USE_HARDENING:Mlock} == ""
 OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 
@@ -155,7 +155,7 @@ OPTIONS_GROUP_HARDENING+=RELRO
 .if !defined(NORELRO_PORTS) # XXX
 OPTIONS_DEFAULT+=	RELRO
 .endif
-.if ${_USE_HARDENING:Mlocked} != ""
+.if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=RELRO
 .endif
 .endif
@@ -180,13 +180,13 @@ safestack_ARGS+=	off
 SAFESTACK_DESC=		Build with SafeStack
 SAFESTACK_USES=		safestack
 
-.if ${_USE_HARDENING:Mlocked} == ""
+.if ${_USE_HARDENING:Mlock} == ""
 OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 
 .if ${USE_HARDENING:Msafestack} && ${safestack_ARGS:Moff} == ""
 OPTIONS_DEFAULT+=	SAFESTACK
-.if ${_USE_HARDENING:Mlocked} != ""
+.if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=SAFESTACK
 .endif
 .endif
@@ -210,13 +210,13 @@ cfi_ARGS+=		off
 CFIHARDEN_DESC=		Build with CFI (Requires lld 4.0.0 or later in base)
 CFIHARDEN_USES=		cfi
 
-.if ${_USE_HARDENING:Mlocked} == ""
+.if ${_USE_HARDENING:Mlock} == ""
 OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 
 .if ${USE_HARDENING:Mcfi} && ${cfi_ARGS:Moff} == ""
 OPTIONS_DEFAULT+=	CFIHARDEN
-.if ${_USE_HARDENING:Mlocked} != ""
+.if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=CFIHARDEN
 .endif
 .endif
