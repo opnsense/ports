@@ -9,8 +9,6 @@ MASTER_SITES=	ftp://mama.indstate.edu/linux/tree/
 MAINTAINER=	gb@unistra.fr
 COMMENT=	Display a tree-view of directories with optional color or HTML output
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 
 MAKE_ENV+=	MKDIR="${MKDIR}"
@@ -20,6 +18,8 @@ PLIST_FILES=	bin/tree \
 		man/man1/tree.1.gz
 
 PORTDOCS=	CHANGES README
+
+USE_HARDENING=	safestack
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/tree ${STAGEDIR}${PREFIX}/bin

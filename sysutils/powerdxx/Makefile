@@ -8,11 +8,11 @@ CATEGORIES=	sysutils
 MAINTAINER=	kamikaze@bsdforen.de
 COMMENT=	CPU clock speed/frequency daemon
 
-EXPLICIT_SAFESTACK=	yes
-
 LICENSE=	ISCL
 
 USES=		compiler:c++11-lib
+
+USE_HARDENING=	safestack
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	lonkamikaze

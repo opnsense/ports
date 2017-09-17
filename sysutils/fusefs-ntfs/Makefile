@@ -11,8 +11,6 @@ DISTNAME=	${PORTNAME}-3g_ntfsprogs-${PORTVERSION}
 MAINTAINER=	freebsd@dussan.org
 COMMENT=	Mount NTFS partitions (read/write) and disk images
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -26,6 +24,8 @@ CONFIGURE_ARGS=	--exec-prefix=${PREFIX} --disable-mount-helper \
 		--disable-mtab --with-fuse=external --disable-ldconfig
 CPPFLAGS+=	-I${WRKSRC}/include/ntfs-3g/ -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	LOCK UBLIO DOCS
 OPTIONS_DEFAULT=LOCK UBLIO

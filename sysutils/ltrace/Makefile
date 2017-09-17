@@ -10,9 +10,9 @@ MASTER_SITES=	LOCAL/sbz \
 MAINTAINER=	sbz@FreeBSD.org
 COMMENT=	Track runtime library calls in dynamically linked programs
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
+
+USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-werror

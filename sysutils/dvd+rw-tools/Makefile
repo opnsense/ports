@@ -11,8 +11,6 @@ MASTER_SITES=	http://www.pkix.net/mirror/fy.chalmers.se/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	DVD burning software
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
@@ -27,6 +25,8 @@ RUN_DEPENDS=	cdrecord:sysutils/cdrtools
 # Using gmake bypasses this problem for unknown reasons. Please leave it in,
 # until the problem is analyzed and fixed - and please comment the fix here.
 USES=		gmake
+
+USE_HARDENING=	safestack
 
 BIN_FILES=	dvd+rw-booktype dvd+rw-format dvd+rw-mediainfo \
 		dvd-ram-control growisofs

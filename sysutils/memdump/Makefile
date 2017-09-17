@@ -9,12 +9,12 @@ MASTER_SITES=	http://www.porcupine.org/forensics/
 MAINTAINER=	onatan@gmail.com
 COMMENT=	Forensic utility for memory dumping
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	IBM
 LICENSE_NAME=	IBM Public License 1.0
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
+
+USE_HARDENING=	safestack
 
 ALL_TARGET=	what
 MAKE_ARGS=	OPT="${CFLAGS}" DEBUG=''
