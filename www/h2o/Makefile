@@ -19,8 +19,6 @@ CPE_VENDOR=	h2o_project
 USE_PERL5=	run
 SHEBANG_FILES=	share/h2o/start_server
 
-USE_HARDENING=	pie relro safestack
-
 PORTDOCS=	README.md
 
 SUB_FILES=	${PORTNAME}
