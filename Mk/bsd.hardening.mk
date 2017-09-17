@@ -46,6 +46,9 @@ _USE_HARDENING+=	lib
 .if ${PKGNAMESUFFIX:M-lib*}
 _USE_HARDENING+=	lib
 .endif
+.if ${PKGNAMESUFFIX:M*-static}
+_USE_HARDENING+=	static
+.endif
 .endif
 
 .if defined(USES)
