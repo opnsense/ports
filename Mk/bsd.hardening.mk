@@ -9,7 +9,6 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 # and defaults to be used with USE_HARDENING or
 # HARDENING_OFF.
 
-HARDENING_DEFAULT=	pie:auto relro:auto
 HARDENING_ALL=		cfi pie relro safestack
 
 # Can pass exceptions from global make.conf,
@@ -23,8 +22,8 @@ HARDENING_OFF?=
 
 # Can pass exceptions from port Makefile, too.
 
-USE_HARDENING?=		${HARDENING_DEFAULT} ${${PORTNAME}_HARDENING}
-_USE_HARDENING=		# internal flags
+USE_HARDENING?=		${${PORTNAME}_HARDENING} # implicit auto-defaults apply
+_USE_HARDENING=		# internal flags for auto mode
 
 OPTIONS_GROUP+=		HARDENING
 
@@ -102,12 +101,14 @@ CXXFLAGS+=		-fPIC
 .if ${HARDENING_OFF:Mpie} == ""
 .if ${OSVERSION} > 1100000
 
-pie_ARGS?=
+pie_ARGS?=		auto
 
 .if ${pie_ARGS:Mauto}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 # Do not enable PIE for libraries or kernel module ports.
 pie_ARGS+=		off
+.else
+USE_HARDENING:=		pie ${USE_HARDENING:Npie}
 .endif
 .endif
 
@@ -136,11 +137,13 @@ OPTIONS_GROUP_HARDENING+=PIE
 
 .if ${HARDENING_OFF:Mrelro} == ""
 
-relro_ARGS?=
+relro_ARGS?=		auto
 
 .if ${relro_ARGS:Mauto}
 .if ${_USE_HARDENING:Mlib} || ${_USE_HARDENING:Mkmod} || ${_USE_HARDENING:Mfortran} || ${_USE_HARDENING:Mx11} || ${_USE_HARDENING:Mlinux} || ${_USE_HARDENING:Mstatic}
 relro_ARGS+=		off
+.else
+USE_HARDENING:=		relro ${USE_HARDENING:Nrelro}
 .endif
 .endif
 
