@@ -10,8 +10,6 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 MAINTAINER=	antoine@FreeBSD.org
 COMMENT=	Wapiti is a vulnerability scanner for web applications
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}beautifulsoup32>=0:www/py-beautifulsoup32 \
@@ -19,5 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}beautifulsoup32>=0:www/py-beautifulsoup32 \
 
 USES=		python:2
 USE_PYTHON=	distutils autoplist
+
+USE_HARDENING=	safestack
 
 .include <bsd.port.mk>

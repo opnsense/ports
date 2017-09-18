@@ -11,8 +11,6 @@ MASTER_SITES=	http://www.unix-ag.uni-kl.de/~massar/vpnc/ \
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Client for Cisco 3000 VPN Concentrator
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2 BSD2CLAUSE
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -24,6 +22,8 @@ RUN_DEPENDS=	vpnc-script:sysutils/vpnc-scripts
 USES=		shebangfix gmake perl5
 USE_PERL5=	build
 USE_RC_SUBR=	vpnc
+
+USE_HARDENING=	safestack
 
 LEGAL_TEXT=	Redistribution is not allowed if linked against OpenSSL
 

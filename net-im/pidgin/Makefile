@@ -7,8 +7,6 @@ PORTNAME=	pidgin
 MAINTAINER=	marcus@FreeBSD.org
 COMMENT=	Pidgin multi-protocol messaging client (GTK+ UI)
 
-EXPLICIT_SAFESTACK=	yes
-
 LIB_DEPENDS=	libstartup-notification-1.so:x11/startup-notification \
 		libpurple.so:net-im/libpurple
 
@@ -31,6 +29,8 @@ CONFIGURE_ARGS=	--disable-consoleui \
 		--disable-nm \
 		--enable-screensaver \
 		--with-dynamic_prpls=${PRPL_MODULES:S/,$//}
+
+USE_HARDENING=	safestack
 
 post-install-PERL-on:
 	@${SED} -i '' -e 's|^${STAGEDIR}||g' \

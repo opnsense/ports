@@ -11,6 +11,8 @@ COMMENT=	HardenedBSD Security Administration
 
 LICENSE=	BSD2CLAUSE
 
+USE_HARDENING?=	safestack
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	HardenedBSD
 GH_PROJECT=	secadm
@@ -27,7 +29,6 @@ MAKE_JOBS_UNSAFE=	yes
 MAKE_ENV+=	WITHOUT_CLI=YES
 .else
 MAKE_ENV+=	WITHOUT_KMOD=YES
-EXPLICIT_SAFESTACK=	yes
 
 LIB_DEPENDS=	libucl.so:textproc/libucl
 .if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000

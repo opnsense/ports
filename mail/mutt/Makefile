@@ -27,8 +27,6 @@ COMMENT?=	Small but powerful text based program for read/writing e-mail
 
 LICENSE=	GPLv2+
 
-EXPLICIT_SAFESTACK=	yes
-
 CONFLICTS?=	ja-mutt-[0-9]* ja-mutt-devel-[0-9]* mutt-1.4* mutt-devel-lite-[0-9]* mutt-lite-[0-9]* zh-mutt-devel-[0-9]*
 
 DOCSDIR?=	${PREFIX}/share/doc/mutt
@@ -42,6 +40,8 @@ CONFIGURE_ARGS=	--disable-fcntl --with-ssl=${OPENSSLBASE} \
 
 USES+=		cpe ncurses shebangfix ssl
 SHEBANG_FILES=	doc/gen-map-doc smime_keys.pl contrib/smime_keys_test.pl
+
+USE_HADENING=	safestack
 
 .if defined(MUTT_CONFIGURE_ARGS)
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}

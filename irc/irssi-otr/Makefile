@@ -18,13 +18,13 @@ LIB_DEPENDS=	libotr.so:security/libotr \
 		libgcrypt.so:security/libgcrypt
 RUN_DEPENDS=	irssi:irc/irssi
 
-EXPLICIT_SAFESTACK=	yes
-
 USES=		autoreconf libtool pkgconfig
 USE_LDCONFIG=	yes
 USE_GNOME=	glib20
 USE_GITHUB=	yes
 GH_ACCOUNT=	cryptodotis
+
+USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libotr-inc-prefix=${LOCALBASE}/include --with-irssi-module-dir=${LOCALBASE}/lib/irssi/modules

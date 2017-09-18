@@ -16,10 +16,10 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
 
-EXPLICIT_SAFESTACK=	yes
-
 USES=		cmake:outsource,noninja ncurses tar:xz
 USE_LDCONFIG=	yes
+
+USE_HARDENING=	safestack
 
 CMAKE_ARGS+=	-DENABLE_GUILE=no \
 		-DLIBDATADIR=${LOCALBASE}/libdata

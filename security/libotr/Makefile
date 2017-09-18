@@ -11,8 +11,6 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	cs@FreeBSD.org
 COMMENT=	Portable OTR Messaging Library and toolkit
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	LGPL21
 
 LIB_DEPENDS=	libgpg-error.so:security/libgpg-error \

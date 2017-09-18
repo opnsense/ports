@@ -9,8 +9,6 @@ MASTER_SITES=	http://www.lilotux.net/~mikael/mcabber/files/
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Small Jabber console client
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -24,6 +22,8 @@ USE_GNOME=	glib20
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-hgcset
 INSTALL_TARGET=	install-strip
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=		EXAMPLES GPGME OTR IDN
 OPTIONS_DEFAULT=	IDN

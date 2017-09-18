@@ -57,7 +57,7 @@ EXTRA_CONF_ARGS?=--enable-cli \
 		 --disable-mac \
 		 --disable-nls
 
-EXPLICIT_SAFESTACK=	yes
+USE_HARDENING=	safestack
 
 EXTRA_PATCHES=	${PATCHDIR}/disable-web
 

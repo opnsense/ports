@@ -11,12 +11,12 @@ COMMENT=	Modular IRC client with many features
 
 LICENSE=	GPLv2
 
-EXPLICIT_SAFESTACK=	yes
-
 USES=		cpe gettext-runtime gmake libtool ncurses pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_GNOME=	glib20
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	PERL PROXY SOCKS BOT DOCS TRUECOLOR
 OPTIONS_DEFAULT=	PERL

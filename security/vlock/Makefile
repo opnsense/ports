@@ -10,8 +10,6 @@ MASTER_SITES=	http://cthulhu.c3d2.de/~toidinamai/vlock/archive/
 MAINTAINER=	martymac@FreeBSD.org
 COMMENT=	Locks a terminal
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 
 HAS_CONFIGURE=	yes
@@ -25,6 +23,8 @@ CONFIGURE_ARGS=	--enable-plugins --enable-pam \
 		EXTRA_LDFLAGS="-L${LOCALBASE}/lib"
 USES=	gmake
 USE_CSTD=	gnu99
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	ROOTPWD VLOCKSCRIPTS CACASAVER
 OPTIONS_DEFAULT=	ROOTPWD

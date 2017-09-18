@@ -3,7 +3,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	4.6.4
-PORTREVISION=	8
+PORTREVISION=	9
 PORTEPOCH=	1
 CATEGORIES=	lang
 MASTER_SITES=	GCC/releases/gcc-${PORTVERSION}
@@ -15,8 +15,9 @@ COMMENT=	GNU Compiler Collection 4.6
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+DEPRECATED=	Unsupported by upstream. Use GCC 5 or newer instead.
+EXPIRATION_DATE=2017-11-30
+ONLY_FOR_ARCHS=	amd64 i386 powerpc sparc64
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
@@ -34,11 +35,12 @@ CPE_VENDOR=	gnu
 # once installed.
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
-ONLY_FOR_ARCHS=	amd64 i386 powerpc sparc64
 USES=		cpe gmake iconv libtool makeinfo perl5 tar:bzip2
 USE_BINUTILS=	yes
 USE_PERL5=	build
 SSP_UNSAFE=	yes
+
+USE_HARDENING=	pie:off relro:off
 
 OPTIONS_DEFINE=		BOOTSTRAP
 BOOTSTRAP_DESC=		Build using a full bootstrap

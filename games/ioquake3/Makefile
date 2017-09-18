@@ -17,7 +17,7 @@ LICENSE_FILE?=	${WRKSRC}/COPYING.txt
 
 USES=		pkgconfig gmake
 
-EXPLICIT_SAFESTACK=	yes
+USE_HARDENING=	safestack
 
 # Port configuration flags:
 # 	CLIENT SERVER TOOLS DLRENDERER GAMELIBS OPUS OPENGL2

@@ -10,11 +10,11 @@ CATEGORIES=	irc
 MAINTAINER=	feld@FreeBSD.org
 COMMENT=	Modular C++ IRC daemon
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 
 CONFLICTS=	inspircd-1.*
+
+USE_HARDENING=	safestack
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	inspircd

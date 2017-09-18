@@ -16,11 +16,11 @@ RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:misc/mime-support \
 
 USES=		autoreconf iconv:translit localbase shebangfix ssl
 
+USE_HARDENING=	safestack
+
 USE_GITHUB=	yes
 
 GNU_CONFIGURE=	yes
-
-EXPLICIT_SAFESTACK=	yes
 
 OPTIONS_SUB=	yes
 SHEBANG_FILES=	contrib/smime_keys

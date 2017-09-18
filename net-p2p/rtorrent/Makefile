@@ -21,7 +21,7 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-debug
 LDFLAGS+=	-pthread
 
-EXPLICIT_SAFESTACK=	yes
+USE_HARDENING=	safestack
 
 PLIST_FILES=	bin/rtorrent
 PORTDOCS=	README

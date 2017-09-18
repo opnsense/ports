@@ -23,7 +23,6 @@ BUILD_DEPENDS=	libassuan>=2.4.3:security/libassuan \
 		libgpg-error>=1.16:security/libgpg-error
 RUN_DEPENDS=	pinentry:security/pinentry
 
-EXPLICIT_SAFESTACK=	yes
 CPPFLAGS+=	-fPIC
 
 CONFLICTS=	gnupg-2.0.* gnupg-2.2.* dirmngr-[0-9]*
@@ -36,6 +35,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INFO=		gnupg
 TEST_TARGET=	check
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	GNUTLS LDAP SCDAEMON NLS DOCS SUID_GPG
 OPTIONS_DEFAULT=GNUTLS SCDAEMON

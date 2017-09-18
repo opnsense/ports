@@ -9,14 +9,14 @@ MASTER_SITES=	http://crypto.stanford.edu/~eujin/sslsniffer/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	SSLv3/TLS and SSLv2 sniffer
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2+
 
 USES=		ssl
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 WRKSRC=		${WRKDIR}/${PORTNAME}
+
+USE_HARDENING=	safestack
 
 PORTDOCS=	README
 PLIST_FILES=	bin/sslsniffer

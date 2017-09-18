@@ -24,8 +24,6 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 
 CONFLICTS_INSTALL=	keepassx-0.* keepassx-devel-* keepassxc-*
 
-EXPLICIT_SAFESTACK=	yes
-
 USES=		cmake compiler:features desktop-file-utils shared-mime-info
 USE_LDCONFIG=	yes
 INSTALLS_ICONS=	yes
@@ -33,6 +31,8 @@ USE_QT4=	corelib gui xml qtestlib uic_build moc_build \
 		qmake_build rcc_build linguisttools
 USE_XORG=	ice inputproto sm x11 xcursor xext xfixes xi xrandr xrender \
 		xt xtst
+
+USE_HARDENING=	safestack
 
 .include <bsd.port.pre.mk>
 

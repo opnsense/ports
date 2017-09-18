@@ -23,8 +23,6 @@ LIB_DEPENDS=	libpcre.so:devel/pcre \
 BUILD_DEPENDS=	daq>=2.0.0:net/daq
 RUN_DEPENDS=	daq>=2.0.0:net/daq
 
-EXPLICIT_SAFESTACK=	yes
-
 OPTIONS_DEFINE=		IPV6 GRE HA NORMALIZER DOCS APPID \
 			PERFPROFILE LRGPCAP SOURCEFIRE NONETHER \
 			FILEINSPECT
@@ -70,6 +68,8 @@ PULLEDPORK_RUN_DEPENDS=	pulledpork.pl:security/pulledpork
 APPID_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
 APPID_CONFIGURE_ENV+=	luajit_CFLAGS="-I${LOCALBASE}/include/luajit-2.0" \
 			luajit_LIBS="-L${LOCALBASE}/lib -lluajit-5.1"
+
+USE_HARDENING=	safestack
 
 .include <bsd.port.options.mk>
 

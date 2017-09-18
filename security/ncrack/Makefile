@@ -10,8 +10,6 @@ MASTER_SITES=	http://nmap.org/ncrack/dist/ \
 MAINTAINER=	lx@FreeBSD.org
 COMMENT=	High-speed network authentication cracking tool
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -19,5 +17,7 @@ GNU_CONFIGURE=	yes
 USES=		gmake ssl
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
+
+USE_HARDENING=	safestack
 
 .include <bsd.port.mk>

@@ -24,14 +24,14 @@ GH_PROJECT=	${GH_ACCOUNT}
 
 USES=		bison cmake:outsource compiler:c++11-lang ninja perl5 python shebangfix ssl
 
+USE_HARDENING=	safestack
+
 CMAKE_ARGS+=	-DPYTHON_EXECUTABLE:PATH=${PYTHON_CMD}
 CXXFLAGS+=	-std=c++11 -Wall
 
 PORTVERSION2=	0.14.6
 WRKSRC2=	${WRKDIR}/${GH_PROJECT}-${PORTVERSION2}
 STAGEDIR2=	${STAGEDIR}-caf
-
-EXPLICIT_SAFESTACK=	yes
 
 SHEBANG_FILES=	aux/broctl/aux/trace-summary/trace-summary
 

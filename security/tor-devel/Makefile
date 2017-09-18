@@ -14,8 +14,6 @@ COMMENT=	Anonymizing overlay network for TCP
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-EXPLICIT_SAFESTACK=	yes
-
 BROKEN_mips64=		does not build: error: Need a uint128_t implementation!
 BROKEN_powerpc64=	does not build: error: Need a uint128_t implementation!
 BROKEN_sparc64=		does not build: error: Need a uint128_t implementation!
@@ -27,6 +25,8 @@ CONFIGURE_ARGS=	--with-openssl-dir="${OPENSSLBASE}"
 CONFIGURE_ENV=	TOR_CPPFLAGS_libevent="-I${LOCALBASE}/include" \
 		TOR_LDFLAGS_libevent="-L${LOCALBASE}/lib/" \
 		TOR_LIBEVENT_LIBS="${TOR_LIBEVENT_LIBS}"
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	MANPAGES DOCS STATIC_TOR TCMALLOC TOR2WEB
 OPTIONS_GROUP=	COMPRESSION

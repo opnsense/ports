@@ -15,8 +15,6 @@ PATCHFILES=	hbpl1-20160830.patch.xz:-p1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Driver for printers that use the ZjStream wire protocol
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -30,6 +28,8 @@ SHEBANG_FILES=	msexpand printer-profile.sh
 SUB_FILES=	pkg-message ${DEVDCONF_FILE}
 EXTRAFILES=	msexpand getweb
 DEVDCONF_FILE=	${PORTNAME}.conf
+
+USE_HARDENING=	safestack
 
 MAKE_JOBS_UNSAFE=	yes
 

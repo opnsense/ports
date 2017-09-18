@@ -9,9 +9,9 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 MAINTAINER=	mi@aldan.algebra.com
 COMMENT=	Cracking tool for password-protected PDF-files
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2+
+
+USE_HARDENING=	safestack
 
 PLIST_FILES=	bin/pdfcrack bin/pdfreader
 ALL_TARGET=	pdfcrack pdfreader

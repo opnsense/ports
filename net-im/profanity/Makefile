@@ -26,12 +26,12 @@ CONFIGURE_ARGS=	--enable-otr --enable-python-plugins --enable-c-plugins \
 CONFIGURE_ENV=	LIBS="${CFLAGS} -lcrypto"
 USE_GNOME=	glib20
 
+USE_HARDENING=	safestack
+
 OPTIONS_DEFINE=	NOTIFY
 
 NOTIFY_LIB_DEPENDS=	libnotify.so:devel/libnotify
 NOTIFY_CONFIGURE_ENABLE=notifications
-
-EXPLICIT_SAFESTACK=	yes
 
 .include <bsd.port.pre.mk>
 

@@ -13,8 +13,6 @@ MASTER_SITES=	LOCAL/bdrewery/${PORTNAME}/ \
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	FreeBSD ports/packages administration and management tool suite
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	BSD3CLAUSE
 
 OPTIONS_DEFINE=	DOCS
@@ -27,6 +25,8 @@ GH_ACCOUNT=	freebsd
 DIST_SUBDIR=	${PORTNAME}
 USES=		uidfix
 USE_RUBY=	yes
+
+USE_HARDENING=	safestack
 
 USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
 

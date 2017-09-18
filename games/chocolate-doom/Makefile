@@ -17,12 +17,12 @@ USES=		gmake
 USE_SDL=	mixer net sdl
 GNU_CONFIGURE=	yes
 
+USE_HARDENING=	safestack
+
 PORTDOCS=	CMDLINE.doom ChangeLog INSTALL.doom NEWS.md NOT-BUGS.md PHILOSOPHY.md \
 		README.md README.Music.md
 
 OPTIONS_DEFINE=	DOCS
-
-EXPLICIT_SAFESTACK=	yes
 
 .include "${.CURDIR}/../doom-data/Makefile.include"
 

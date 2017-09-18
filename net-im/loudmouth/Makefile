@@ -11,8 +11,6 @@ MASTER_SITES=	https://mcabber.com/files/loudmouth/ \
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Lightweight Jabber client library
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -25,6 +23,8 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--disable-gtk-doc --disable-rebuilds \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 INSTALL_TARGET=	install-strip
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	DOCS
 OPTIONS_DEFAULT=GNUTLS

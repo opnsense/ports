@@ -9,8 +9,6 @@ MASTER_SITES=	http://download.aircrack-ng.org/
 MAINTAINER=	lme@FreeBSD.org
 COMMENT=	802.11 WEP and WPA-PSK keys cracking program
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2 BSD3CLAUSE APACHE20
 LICENSE_COMB=	dual
 
@@ -25,6 +23,8 @@ CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 # Don't call 'strip' target with WITH_DEBUG set
 INSTALL_TARGET=	${STRIP:S/-s/strip/} install
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	PCRE SQLITE
 OPTIONS_DEFAULT=PCRE SQLITE
