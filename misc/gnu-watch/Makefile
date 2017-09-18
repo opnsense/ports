@@ -19,6 +19,8 @@ USES=		autoreconf gettext gmake libtool localbase:ldflags ncurses \
 		pkgconfig tar:xz
 USE_CSTD=	gnu99
 
+USE_HARDENING=	safestack
+
 OPTIONS_DEFINE=	UNICODE
 OPTIONS_DEFAULT=UNICODE
 

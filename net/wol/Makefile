@@ -17,6 +17,8 @@ USES=		localbase perl5
 GNU_CONFIGURE=	yes
 USE_PERL5=	build
 
+USE_HARDENING=	safestack
+
 INFO=		wol
 DOCS=		AUTHORS NEWS README TODO
 
