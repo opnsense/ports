@@ -10,12 +10,12 @@ MASTER_SITES=	ftp://ftp.bitwizard.nl/mtr/ \
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Traceroute and ping in a single network diagnostic tool
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS_INSTALL?=	mtr-nox11
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	IPV6 X11
 OPTIONS_DEFAULT=X11
