@@ -208,9 +208,7 @@ OPTIONS_GROUP_HARDENING+=RELRO
 
 safestack_ARGS?=
 
-.if defined(EXPLICIT_SAFESTACK) # XXX
-USE_HARDENING+=		safestack
-.elif ${safestack_ARGS:Mauto}
+.if ${safestack_ARGS:Mauto}
 .if ${_USE_HARDENING:Mstatic}
 safestack_ARGS+=	off
 .endif
