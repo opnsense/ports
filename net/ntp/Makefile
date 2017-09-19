@@ -17,10 +17,10 @@ LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	ntp-devel-*
 
+USE_HARDENING=	safestack
+
 USES=		cpe pathfix shebangfix libedit libtool localbase:ldflags \
 		pkgconfig
-
-EXPLICIT_SAFESTACK=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-leap-smear
