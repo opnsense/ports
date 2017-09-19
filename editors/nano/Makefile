@@ -16,7 +16,7 @@ CONFLICTS=	nano-devel-2*
 USES=		charsetfix ncurses
 GNU_CONFIGURE=	yes
 
-EXPLICIT_SAFESTACK=	yes
+USE_HARDENING=	safestack
 
 CONFIGURE_ARGS=	--docdir=${DOCSDIR} --enable-utf8
 MAKE_ARGS+=	install_htmlmanDATA=install-htmlmanDATA
