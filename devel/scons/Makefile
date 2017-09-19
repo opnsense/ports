@@ -10,8 +10,6 @@ MASTER_SITES=	SF
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Build tool alternative to make
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
