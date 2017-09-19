@@ -18,13 +18,13 @@ COMMENT=	Network file distribution/synchronization utility
 
 LICENSE=	GPLv3
 
+USE_HARDENING=	safestack
+
 USES=		cpe shebangfix
 SHEBANG_FILES=	support/rrsync
 
 CPE_VENDOR=	samba
 CPE_PRODUCT=	rsync
-
-EXPLICIT_SAFESTACK=	yes
 
 PATCH_STRIP=	-p1
 GNU_CONFIGURE=	yes
