@@ -18,6 +18,8 @@ LIB_DEPENDS=	libvips.so:graphics/vips \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
+USE_HARDENING=	safestack
+
 USES=		bison desktop-file-utils dos2unix gettext gmake pkgconfig \
 		shared-mime-info
 DOS2UNIX_GLOB=	*.def
@@ -45,8 +47,6 @@ GSF_CONFIGURE_WITH=	libgsf
 GSL_DESC=		Use gsl for numeric functions
 GSL_LIB_DEPENDS=	libgsl.so:math/gsl
 GSL_CONFIGURE_WITH=	gsl
-
-EXPLICIT_SAFESTACK=	yes
 
 post-install:
 	(cd ${WRKDIR} && ${INSTALL_SCRIPT} run-nip2.sh \

@@ -14,6 +14,8 @@ COMMENT=	Modular patch bay for Jack
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	safestack
+
 LIB_DEPENDS=	libjack.so:audio/jack \
 		libraul.so:audio/raul \
 		libboost_date_time.so:devel/boost-libs \
@@ -30,8 +32,6 @@ CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man \
 			--no-lash
 
 CFLAGS+=	-I${LOCALBASE}/include
-
-EXPLICIT_SAFESTACK=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e \

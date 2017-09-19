@@ -13,13 +13,13 @@ DISTNAME=	hping2.0.0-rc3
 MAINTAINER=	ecu@200ok.org
 COMMENT=	Network auditing tool
 
-EXPLICIT_SAFESTACK=		yes
-
 CONFLICTS=	hping-devel-[0-9]*
 
 WRKSRC=		${WRKDIR}/hping2-rc3
 
 BROKEN_aarch64=	fails to build: can not find the byte order for this architecture, fix bytesex.h
+
+USE_HARDENING=	safestack
 
 USES=		gmake
 GNU_CONFIGURE=	yes

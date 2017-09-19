@@ -25,7 +25,7 @@ RUN_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme
 
 PORTSCOUT=	limitw:1,even
 
-EXPLICIT_SAFESTACK=	yes
+USE_HARDENING=	safestack
 
 USES=		autoreconf desktop-file-utils gettext gmake gnome pathfix \
 		pkgconfig shared-mime-info tar:xz

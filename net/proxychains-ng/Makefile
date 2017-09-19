@@ -9,9 +9,9 @@ CATEGORIES=	net security
 MAINTAINER=	nemysis@FreeBSD.org
 COMMENT=	Redirect connection through proxy servers
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
+
+USE_HARDENING=	safestack
 
 USES=		gmake tar:bzip2
 GNU_CONFIGURE=	yes

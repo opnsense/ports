@@ -9,8 +9,6 @@ MASTER_SITES=	SF/${PORTNAME}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Makes a DVD file structure from one or more MPEG2 streams
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
@@ -26,6 +24,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 USES=		gmake iconv localbase pkgconfig
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
+
+USE_HARDENING=	safestack
 
 SUB_FILES=	README.FreeBSD
 

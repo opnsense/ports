@@ -10,14 +10,14 @@ MASTER_SITES=	http://feh.finalrewind.org/ \
 MAINTAINER=	zeising@FreeBSD.org
 COMMENT=	Image viewer that utilizes Imlib2
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libImlib2.so:graphics/imlib2 \
 		libpng16.so:graphics/png
+
+USE_HARDENING=	safestack
 
 USE_XORG=	x11 xt xinerama
 USES=		cpe desktop-file-utils gmake perl5 shebangfix tar:bzip2

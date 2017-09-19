@@ -10,12 +10,12 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/version%20${PORTVERSION}
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Redirect connection through proxy servers
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	${LOCALBASE}/bin/dig:dns/bind-tools
+
+USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 USES=		gmake libtool

@@ -19,6 +19,8 @@ BUILD_DEPENDS=	gccmakedep:devel/gccmakedep
 LIB_DEPENDS=	liblcms.so.1:graphics/lcms \
 		libgimp-2.0.so:graphics/gimp-app
 
+USE_HARDENING=	safestack
+
 USES=		gettext-tools gmake pkgconfig zip
 
 BIN_TARGETS=	separate separate_import icc_colorspace
@@ -38,8 +40,6 @@ MAKE_ENV=	TARGETS="${BIN_TARGETS}" \
 		PREFIX=${STAGEDIR}${PREFIX}
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
-
-EXPLICIT_SAFESTACK=	yes
 
 post-patch:
 	@${REINPLACE_CMD} \

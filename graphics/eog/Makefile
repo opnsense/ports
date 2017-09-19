@@ -21,6 +21,8 @@ RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
 PORTSCOUT=	limitw:1,even
 
+USE_HARDENING=	safestack
+
 USES=		desktop-file-utils gettext gmake gnome jpeg libtool localbase \
 		pathfix pkgconfig tar:xz
 USE_GNOME=	cairo intltool librsvg2 gtk30 gnomedesktop3 introspection
@@ -33,8 +35,6 @@ GLIB_SCHEMAS=	org.gnome.eog.enums.xml \
 		org.gnome.eog.gschema.xml
 
 PLIST_SUB+=	VERSION=3.0
-
-EXPLICIT_SAFESTACK=	yes
 
 OPTIONS_SUB=	yes
 OPTIONS_DEFINE=	EXIF EXEMPI

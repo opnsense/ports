@@ -20,6 +20,8 @@ USES=		compiler:c11 desktop-file-utils iconv jpeg localbase:ldflags \
 		pkgconfig python:build waf
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off safestack
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	mpv-player
 # Keep in sync with bootstrap.py to avoid regressions
@@ -40,9 +42,6 @@ CONFIGURE_ARGS=	--docdir="${EXAMPLESDIR}" \
 		--disable-vapoursynth-lazy \
 		--disable-wayland \
 		--enable-libmpv-shared
-
-NOPIE_PORTS=		yes
-EXPLICIT_SAFESTACK=	yes
 
 OPTIONS_DEFINE=		ARCHIVE ASS DOCS LCMS2 LUAJIT MANPAGES TEST UCHARDET ZSH
 OPTIONS_DEFAULT=	ARCHIVE ASS DVDREAD DVDNAV MANPAGES OPENGL UCHARDET \

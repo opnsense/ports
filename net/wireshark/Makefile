@@ -26,7 +26,7 @@ CONFLICTS?=	wireshark-qt5-[0-9]*
 DATADIR_NAME=	wireshark
 DATADIR=	${PREFIX}/share/${DATADIR_NAME}
 
-EXPLICIT_SAFESTACK=	yes
+USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 USES=		alias cpe gettext-runtime gmake libtool pathfix perl5 \

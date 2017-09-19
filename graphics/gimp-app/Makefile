@@ -26,6 +26,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 
+USE_HARDENING=	relro:off safestack
+
 GNU_CONFIGURE=	yes
 USES+=		cpe execinfo gettext gmake jpeg libtool \
 		localbase pathfix pkgconfig shebangfix tar:bzip2
@@ -53,8 +55,6 @@ CONFIGURE_ENV=	GIMP_THREAD_LIBS=-lpthread
 LIBS+=		-lexecinfo
 CPE_PRODUCT=	gimp
 CPE_VENDOR=	gnu
-
-EXPLICIT_SAFESTACK=	yes
 
 SHEBANG_FILES=	plug-ins/pygimp/plug-ins/*.py
 
@@ -138,5 +138,4 @@ post-patch:
 		-e 's|x86_64|amd64|g' \
 		${WRKSRC}/configure
 
-NORELRO_PORTS=	yes
 .include <bsd.port.mk>

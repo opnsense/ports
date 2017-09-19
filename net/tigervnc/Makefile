@@ -9,8 +9,6 @@ CATEGORIES=	net x11-servers
 MAINTAINER=	meta+ports@vmeta.jp
 COMMENT=	High-performance, platform-neutral implementation of VNC
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENCE.TXT
 
@@ -29,6 +27,8 @@ RUN_DEPENDS=	${LOCALBASE}/share/X11/xkb/rules/base:x11/xkeyboard-config \
 CONFLICTS=	tigervnc-devel-[0-9]* \
 		tightvnc-[0-9]* \
 		tridiavnc-[0-9]*
+
+USE_HARDENING=	safestack
 
 USES=		autoreconf:build cmake:noninja cpe iconv jpeg libtool pkgconfig \
 		python ssl

@@ -11,12 +11,12 @@ MASTER_SITES=	http://linuxbrit.co.uk/downloads/ \
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Utility library that includes a wrapper for imlib2
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libImlib2.so:graphics/imlib2
+
+USE_HARDENING=	safestack
 
 USES=		pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes

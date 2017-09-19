@@ -24,6 +24,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	hejiann
 GH_TAGNAME=	e209c8d
 
+USE_HARDENING=	safestack
+
 USES=		gettext gmake pkgconfig
 USE_GCC=	yes
 USE_GNOME=	atk cairo gdkpixbuf2 gtk20
@@ -35,8 +37,6 @@ PLUGINS=	beautify \
 		border \
 		simple-border \
 		skin-whitening
-
-EXPLICIT_SAFESTACK=	yes
 
 # installed files
 .for plugin in ${PLUGINS}

@@ -9,14 +9,14 @@ CATEGORIES=	net gnome
 MAINTAINER=	woodsb02@FreeBSD.org
 COMMENT=	GTK+ Remote Desktop Client
 
-EXPLICIT_SAFESTACK=	yes
-
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	FreeRDP
 GH_PROJECT=	Remmina
+
+USE_HARDENING=	safestack
 
 USES=		cmake:outsource gettext localbase:ldflags pathfix pkgconfig
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 pango

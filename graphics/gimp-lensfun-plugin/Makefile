@@ -19,6 +19,8 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/exiv2.pc:graphics/exiv2 \
 		${LOCALBASE}/libdata/pkgconfig/lensfun.pc:graphics/lensfun
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+USE_HARDENING=	safestack
+
 USES=		gmake pkgconfig
 
 USE_GITHUB=	yes
@@ -28,8 +30,6 @@ GH_TAGNAME=	d0a0bd2
 
 PLUGIN_DIR?=	libexec/gimp/2.2/plug-ins
 PLUGINS=	gimp-lensfun
-
-EXPLICIT_SAFESTACK=	yes
 
 # installed files
 .for plugin in ${PLUGINS}

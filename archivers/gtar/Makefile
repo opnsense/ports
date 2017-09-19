@@ -10,12 +10,12 @@ PKGNAMEPREFIX=	g
 MAINTAINER=	naddy@FreeBSD.org
 COMMENT=	GNU version of the traditional tape archiver
 
-EXPLICIT_SAFESTACK=	yes
-
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 INFO=		tar
+
+USE_HARDENING=	safestack
 
 USES=		charsetfix cpe iconv:${STATIC_ARGS} localbase makeinfo tar:xz
 CPE_VENDOR=	gnu

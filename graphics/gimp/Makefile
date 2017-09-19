@@ -10,9 +10,9 @@ CATEGORIES=	graphics gnome
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	The "meta-port" for The Gimp
 
-EXPLICIT_SAFESTACK=		yes
-
 RUN_DEPENDS=	gimp-2.8:graphics/gimp-app
+
+USE_HARDENING?=	safestack
 
 USES+=	metaport
 

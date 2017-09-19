@@ -9,13 +9,13 @@ MASTER_SITES=	http://bsd-geek.de/FreeBSD/distfiles/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Bluetooth traffic dumper, similar to tcpdump
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 
 USES=		uidfix
 WRKSRC=		${WRKDIR}/${PORTNAME}
 INSTALL_WRKSRC=	${WRKSRC}/${PORTNAME}
+
+USE_HARDENING=	safestack
 
 CFLAGS+=	-DL2CAP_SOCKET_CHECKED=yes
 

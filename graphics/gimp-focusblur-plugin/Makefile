@@ -18,14 +18,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libgimp-2.0.so:graphics/gimp-app
 
+USE_HARDENING=	safestack
+
 USES=		gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20 intltool
 
 PLUGIN_DIR?=	libexec/gimp/2.2/plug-ins
 PLIST_SUB=	PLUGIN_DIR=${PLUGIN_DIR}
-
-EXPLICIT_SAFESTACK=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-lm -L${LOCALBASE}/lib

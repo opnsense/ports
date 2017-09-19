@@ -10,13 +10,13 @@ MASTER_SITES=	http://www.mavetju.org/download/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Trace a chain of DNS servers to the source
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gmake autoreconf
 GNU_CONFIGURE=	yes
+
+USE_HARDENING=	safestack
 
 PLIST_FILES=	bin/dnstracer \
 		man/man8/dnstracer.8.gz

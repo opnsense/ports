@@ -13,10 +13,10 @@ COMMENT=	Liquid rescale GIMP plug-in
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-EXPLICIT_SAFESTACK=	yes
-
 LIB_DEPENDS=	libgimp-2.0.so:graphics/gimp-app \
 		liblqr-1.so:graphics/liblqr-1
+
+USE_HARDENING=	safestack
 
 USES=		tar:bzip2 gettext gmake localbase pkgconfig
 GNU_CONFIGURE=	yes

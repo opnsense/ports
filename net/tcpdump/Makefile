@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tcpdump
-PORTVERSION=	4.9.1
+PORTVERSION=	4.9.2
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.tcpdump.org/release/
 
@@ -13,10 +13,10 @@ LICENSE=	BSD3CLAUSE
 
 LIB_DEPENDS=	libpcap.so.1:net/libpcap
 
+USE_HARDENING=	safestack
+
 GNU_CONFIGURE=	yes
 USES=		gmake
-
-EXPLICIT_SAFESTACK=	yes
 
 UNPRIV_USER?=	nobody
 CHROOTDIR?=	/var/run/tcpdump

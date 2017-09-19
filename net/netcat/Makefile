@@ -16,6 +16,8 @@ PATCH_DIST_STRIP=	-p1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple utility which reads and writes data across network connections
 
+USE_HARDENING=	safestack
+
 USES=		tar:tgz
 NO_WRKSUBDIR=	yes
 
@@ -32,8 +34,6 @@ GAPING_DESC=	Enable GAPING_SECURITY_HOLE support
 IPV6_CFLAGS=	-DINET6
 TELNET_CFLAGS=	-DTELNET
 GAPING_CFLAGS=	-DGAPING_SECURITY_HOLE
-
-EXPLICIT_SAFESTACK=	yes
 
 post-patch:
 	@${SED} -e 's|%%DOCSDIR%%|${DOCSDIR}|g' ${FILESDIR}/nc.1 \

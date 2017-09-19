@@ -10,10 +10,10 @@ MASTER_SITES=	SF
 MAINTAINER=	logan@elandsys.com
 COMMENT=	Network grep
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	BSD4CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+USE_HARDENING=	safestack
 
 USES=		gmake tar:bzip2
 

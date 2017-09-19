@@ -13,13 +13,13 @@ LICENSE=	ISCL
 
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 
+USE_HARDENING=	safestack
+
 USE_RC_SUBR=	openntpd
 USERS=		_ntp
 GROUPS=		_ntp
 
 USES=		ssl
-
-EXPLICIT_SAFESTACK=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-cacert=${LOCALBASE}/etc/ssl/cert.pem

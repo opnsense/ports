@@ -9,7 +9,7 @@ MASTER_SITES=	SF
 MAINTAINER=	zeising@FreeBSD.org
 COMMENT=	Feature-filled tagfile generator for vi and emacs clones
 
-EXPLICIT_SAFESTACK=		yes
+USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--enable-macro-patterns --with-readlib

@@ -10,10 +10,10 @@ CATEGORIES=	net
 MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	Userland NFS command tool
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+USE_HARDENING=	pie:off safestack
 
 USES=		localbase readline
 USE_GITHUB=	yes
@@ -23,8 +23,6 @@ ALL_TARGET=	nfsshell
 MAKE_ARGS=	CC="${CC}" CFLAGS="${CFLAGS} -DREADLINE" \
 		LIBS="-lreadline ${LDFLAGS}"
 PLIST_FILES=	bin/nfsshell
-
-NOPIE_PORTS=	yes
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/nfsshell ${STAGEDIR}${PREFIX}/bin/nfsshell

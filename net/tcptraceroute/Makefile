@@ -9,12 +9,12 @@ CATEGORIES=	net
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Traceroute implementation using TCP packets
 
-EXPLICIT_SAFESTACK=		yes
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libnet.so:net/libnet
+
+USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	DOCS
 

@@ -10,9 +10,9 @@ DISTNAME=	lzma${PORTVERSION:S/.//g}
 MAINTAINER=	amutu@amutu.com
 COMMENT=	High-ratio LZMA compressor
 
-EXPLICIT_SAFESTACK=		yes
-
 CONFLICTS=	lzmautils-[0-9]* xz-[0-9]*
+
+USE_HARDENING=	safestack
 
 USES=		7z gmake dos2unix
 NO_WRKSUBDIR=	yes

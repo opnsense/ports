@@ -29,8 +29,6 @@ COMMENT=	Wayland composite "server"
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-EXPLICIT_SAFESTACK=	yes
-
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libffi.so:devel/libffi \
 		libepoll-shim.so:devel/libepoll-shim
@@ -38,6 +36,8 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 CFLAGS+=	"-I${LOCALBASE}/include/libepoll-shim"
 
 WITH_DEBUG=	1
+
+USE_HARDENING=	safestack
 
 USES=		autoreconf gmake libtool localbase pathfix pkgconfig tar:xz
 USE_GNOME=	libxslt:build
