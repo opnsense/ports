@@ -9,9 +9,9 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	PostScript calendar program
 
-USES=		shebangfix gmake tar:tgz
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+USES=		shebangfix gmake tar:tgz
 
 MAKE_ENV=	HOST_CC="${CC}"
 ALL_TARGET=

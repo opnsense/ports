@@ -26,12 +26,11 @@ DIST_EXAMPLES=	cgx_${PORTVERSION}.exa${EXTRACT_SUFX}
 WRKSRC=		${WRKDIR}/CalculiX
 CGX_VER=	cgx_${PORTVERSION}
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake tar:bzip2
 USE_XORG=	ice sm x11 xext xi xmu xt
 USE_GL= 	gl glu # uses its own glut
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 BROWSER?=	firefox
 PSVIEWER?=	gv

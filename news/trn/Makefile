@@ -14,6 +14,8 @@ RUN_DEPENDS=	munpack:converters/mpack
 
 CONFLICTS_INSTALL=trn-4.[0-9]*
 
+USE_HARDENING=	pie:off
+
 USES=		ncurses
 WRKSRC=		${WRKDIR}/trn-3.6
 
@@ -23,8 +25,6 @@ CONFIGURE_ENV=	PREFIX="${PREFIX}" LDFLAGS="${LDFLAGS}"
 CONFIGURE_ARGS=	-S
 
 SUB_FILES=	pkg-message
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	${REINPLACE_CMD} 's/$$install/\\$${DESTDIR}&/' ${WRKSRC}/Makefile.SH

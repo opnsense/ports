@@ -16,11 +16,11 @@ LIB_DEPENDS=	libcupsimage.so:print/cups
 
 WRKSRC=		${WRKDIR}/dymo-cups-drivers-1.4.0.5
 
+USE_HARDENING=	pie:off
+
 USES=		gmake
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

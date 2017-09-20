@@ -13,13 +13,13 @@ COMMENT=	Simple tool for doing everyday things with PDF documents
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off
+
 # Get GCC version suffix without the dot in USE_GCC
 CSUFF=		${_USE_GCC:S/.//}
 
 USE_GCC=	yes
 USES=		iconv gmake zip
-
-NOPIE_PORTS=	yes
 
 # gcj/libgcj don't exist on some platforms
 ONLY_FOR_ARCHS=		i386 amd64

@@ -21,12 +21,12 @@ BROKEN_armv6=		fails to compile: use of overloaded operator << is ambiguous
 BROKEN_sparc64=		fails to compile: json11.cpp: undefined reference to std::__throw_out_of_range_fmt
 BROKEN_powerpc64=	fails to compile: dnslabeltext.cc: undefined reference to std::__cxx11::basic_string
 
+USE_HARDENING=	pie:off
+
 USES=		compiler:c++11-lib cpe gmake localbase pkgconfig ssl tar:bzip2
 GNU_CONFIGURE=	YES
 CXXFLAGS+=	-D_GLIBCXX_USE_C99
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pdns
-
-NOPIE_PORTS=	yes
 
 CPE_VENDOR=	powerdns
 

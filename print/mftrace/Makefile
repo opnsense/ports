@@ -22,14 +22,13 @@ BUILD_DEPENDS+=	potrace:graphics/potrace
 RUN_DEPENDS+=	potrace:graphics/potrace
 .endif
 
+USE_HARDENING=	pie:off relro:off
+
 # Python3 ready
 USE_TEX=	base texmf
 GNU_CONFIGURE=	yes
 USES=		gmake python
 MAKEFILE=	GNUmakefile
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_FILES=	\
 		bin/gf2pbm \

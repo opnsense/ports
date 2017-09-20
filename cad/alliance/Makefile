@@ -23,9 +23,9 @@ WRKSRC=		${WRKDIR}/alliance-5.0
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
 
-USES=		bison gmake libtool motif
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+USES=		bison gmake libtool motif
 
 USE_GCC=	any
 HAS_CONFIGURE=	yes

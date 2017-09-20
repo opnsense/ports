@@ -13,6 +13,8 @@ COMMENT=	Restricted Secure SHell only for sftp/scp/rdist/rsync/CVS
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 
 USES=		cpe
@@ -22,8 +24,6 @@ OPTIONS_DEFINE=	RDIST RSYNC3
 RDIST_DESC=	rdist support
 RDIST_RUN_DEPENDS=	rdist6:net/rdist6
 RDIST_CONFIGURE_ON=	--with-rdist=${LOCALBASE}/bin/rdist6
-
-NOPIE_PORTS=	yes
 
 RSYNC3_DESC=		rsync3 support (Debian patch)
 RSYNC3_EXTRA_PATCHES=	${FILESDIR}/optional-patch-util.c

@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	2.1.23
-PORTREVISION=	1
+PORTVERSION=	2.2.1
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -23,10 +22,11 @@ BUILD_DEPENDS=	libassuan>=2.4.3:security/libassuan \
 		libgpg-error>=1.16:security/libgpg-error
 RUN_DEPENDS=	pinentry:security/pinentry
 
-CPPFLAGS+=	-fPIC
-
-CONFLICTS=	gnupg-2.0.* gnupg-2.2.* dirmngr-[0-9]*
+CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
 CPE_VENDOR=	gnupg
+
+USE_HARDENING=	safestack
+CPPFLAGS=	-fPIC
 
 USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2
 CONFIGURE_ARGS=	--disable-ntbtls --disable-wks-tools \
@@ -35,8 +35,6 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INFO=		gnupg
 TEST_TARGET=	check
-
-USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	GNUTLS LDAP SCDAEMON NLS DOCS SUID_GPG
 OPTIONS_DEFAULT=GNUTLS SCDAEMON

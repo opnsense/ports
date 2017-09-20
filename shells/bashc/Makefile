@@ -14,10 +14,10 @@ MAKE_JOBS_UNSAFE=	yes
 
 BROKEN_aarch64=		Fails to link: missing sbrk
 
+USE_HARDENING=	pie:off
+
 USES=		tar:tgz
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|autoconf|${TRUE}|' ${WRKSRC}/Makefile.in

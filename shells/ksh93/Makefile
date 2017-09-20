@@ -24,10 +24,9 @@ COMMENT=	Official AT&T release of KornShell 93
 
 LICENSE=	EPL
 
-OPTIONS_DEFINE=	EXAMPLES STATIC
+USE_HARDENING=	pie:off relro:off
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+OPTIONS_DEFINE=	EXAMPLES STATIC
 
 FETCH_ENV=	HTTP_AUTH=basic:*:I\ accept\ www.opensource.org/licenses/cpl:.
 LDFLAGS+=	-lm
