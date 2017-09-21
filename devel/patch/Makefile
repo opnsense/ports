@@ -11,6 +11,8 @@ COMMENT=	GNU patch utility
 
 LICENSE=	GPLv3
 
+USE_HARDENING=	safestack
+
 USES=		cpe charsetfix gmake tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g

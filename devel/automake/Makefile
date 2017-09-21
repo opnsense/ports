@@ -13,6 +13,8 @@ BUILD_DEPENDS=	autoconf-2.69:devel/autoconf
 RUN_DEPENDS=	autoconf-2.69:devel/autoconf \
 		automake-wrapper:devel/automake-wrapper
 
+USE_HARDENING=	safestack
+
 BUILD_VERSION=	1.15
 PLIST_SUB=	BUILD_VERSION=${BUILD_VERSION}
 USES=		cpe makeinfo perl5 tar:xz
