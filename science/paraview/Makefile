@@ -33,6 +33,8 @@ RUN_DEPENDS=	bash:shells/bash	\
 
 CONFLICTS_BUILD=	protobuf*
 
+USE_HARDENING=	pie:off relro:off
+
 USE_QT4=	qmake_build moc_build rcc_build uic_build \
 		linguisttools_build assistant_run qt3support \
 		corelib dbus designer gui help-tools network script \
@@ -80,9 +82,6 @@ GL2PS_DESC=	Install support conversion OpenGL to PostScript
 #		VTKMPEG2	"Install patented MPEG2 encoder module" Off \
 
 VERMAJORMINOR=	${PORTVERSION:R}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.options.mk>
 

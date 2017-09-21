@@ -1,15 +1,16 @@
 # Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=	google-protobuf
-PORTVERSION=	3.4.1.1
+PORTNAME=	xdg
+PORTVERSION=	2.2.3
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	Ruby extension to Google Protocol Buffers
+COMMENT=	XDG Base Directory Standard Library for Ruby
 
-LICENSE=	BSD3CLAUSE
+LICENSE=	BSD2CLAUSE
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 USE_RUBY=	yes
 USES=		gem

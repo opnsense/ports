@@ -11,11 +11,11 @@ DISTNAME=	CRF++-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Yet Another CRF toolkit
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		libtool
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

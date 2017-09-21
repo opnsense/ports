@@ -27,9 +27,6 @@ CONFIGURE_ARGS=	--enable-shared --with-jpeg=${LOCALBASE} \
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 PORTDATA=	*
 PORTEXAMPLES=	*
 
