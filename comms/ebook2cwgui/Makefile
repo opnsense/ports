@@ -13,9 +13,9 @@ COMMENT=	gui front end for ebooks2cw
 
 RUN_DEPENDS=	ebook2cw:comms/ebook2cw
 
-USE_WX=	2.8
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+USE_WX=	2.8
 
 PORTDOCS=	*
 

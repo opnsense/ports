@@ -15,9 +15,9 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libmp3lame.so:audio/lame \
 		libvorbis.so:audio/libvorbis
 
-OPTIONS_DEFINE=	DOCS EXAMPLES
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|'g \

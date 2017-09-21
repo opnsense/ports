@@ -19,6 +19,8 @@ LIB_DEPENDS=	libproj.so:graphics/proj \
 
 CONFLICTS=	postgis20-2.0.*  postgis-2.1.* postgis-22*
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gettext gmake iconv:wchar_t libtool:keepla perl5 pgsql pkgconfig shebangfix
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_BASE}
@@ -61,9 +63,6 @@ ADDRSTD_VARS=		WANT_PGSQL+=contrib
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.pre.mk>
 

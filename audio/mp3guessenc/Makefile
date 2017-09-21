@@ -15,8 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 PLIST_FILES=	bin/mp3guessenc
 SRC=		decode.c mp3guessenc.c bit_utils.c tags.c
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+USE_HARDENING=	pie:off relro:off
 
 do-build:
 .for f in ${SRC}

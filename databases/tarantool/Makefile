@@ -15,6 +15,8 @@ LICENSE=	BSD2CLAUSE
 NOT_FOR_ARCHS=		armv6 powerpc64 sparc64
 NOT_FOR_ARCHS_REASON=	fails to build: Unsupported architecture
 
+USE_HARDENING=	pie:off
+
 MAKE_JOBS_UNSAFE=yes
 USES=		cmake:noninja compiler:c++11-lang gettext gmake perl5 readline
 USE_LDCONFIG=	yes
@@ -46,8 +48,6 @@ PLIST_SUB+=	TT_USER=${USERS} \
 	TT_RUNDIR=${TT_RUNDIR}
 
 OPTIONS_DEFINE=	DEBUG
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.options.mk>
 

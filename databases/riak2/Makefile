@@ -22,13 +22,13 @@ LICENSE=	APACHE20
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/riak-erlang/bin/erlc:lang/erlang-riak
 
+USE_HARDENING=	pie:off
+
 USES=		gmake readline shebangfix
 SHEBANG_FILES=	deps/eper/priv/bin/* \
 		../solr-4.7.0-yz-1/example/etc/create-solrtest.keystore.sh
 USE_RC_SUBR=	riak
 USE_GCC=	yes
-
-NOPIE_PORTS=	yes
 
 BROKEN_i386=		does not build
 BROKEN_sparc64=		does not build: Please implement AtomicPointer for this platform

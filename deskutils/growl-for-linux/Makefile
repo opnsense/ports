@@ -20,12 +20,12 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 
 BROKEN_powerpc64=	fails to compile: balloon.c:160: error: nested functions are disabled, use -fnested-functions to re-enable
 
+USE_HARDENING=	pie:off
+
 CONFIGURE_ARGS=	OPENSSL_CFLAGS="-I${OPENSSLINC}" OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto"
 
 GH_ACCOUNT=	mattn
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
 
 INSTALL_TARGET=	install-strip
 

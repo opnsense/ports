@@ -21,13 +21,13 @@ RUN_DEPENDS=	mpg321:audio/mpg321 \
 		faad:audio/faad \
 		flac:audio/flac
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CFLAGS+=	-D_WITH_GETLINE
 LDFLAGS+=	`fltk-config --ldflags`
 USES=		gmake
 USE_GNOME=	glib20
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} 's/-lssl/-lcrypto/' \

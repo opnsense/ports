@@ -15,10 +15,10 @@ LICENSE=	GPLv3
 
 LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk
 
-NOPIE_PORTS=	yes
-
 DESKTOP_ENTRIES=	"Fl_MoxGen" "${COMMENT}" "" "${PORTNAME}" \
 			"Network;HamRadio;" false
+
+USE_HARDENING=	pie:off
 
 OPTIONS_DEFINE=	PDF
 OPTIONS_DEFAULT=	PDF

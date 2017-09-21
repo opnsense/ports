@@ -17,10 +17,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	apachler
 GH_TAGNAME= 571db38
 
-USES=		gmake dos2unix
+USE_HARDENING=	pie:off relro:off
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+USES=		gmake dos2unix
 
 PLIST_FILES=	bin/fowsr
 

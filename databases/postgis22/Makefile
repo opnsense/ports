@@ -18,6 +18,8 @@ LIB_DEPENDS=	libproj.so:graphics/proj \
 
 CONFLICTS=	postgis20-2.0.* postgis-2.1.* postgis23-2.3.*
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gettext gmake iconv:wchar_t libtool:keepla perl5 pgsql pkgconfig shebangfix
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_BASE}
@@ -28,9 +30,6 @@ USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_PERL5=	build
 WANT_PGSQL=	lib server
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=		LOADERGUI RASTER TOPOLOGY SFCGAL ADDRSTD
 OPTIONS_DEFAULT=	TOPOLOGY ADDRSTD

@@ -16,12 +16,11 @@ LICENSE=	GPLv2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
+USE_HARDENING=	pie:off relro:off
+
 SLAVEDIRS=	databases/mysql57-client
 USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
 		cpe libedit localbase perl5 shebangfix ssl
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 USE_PERL5=	run
 

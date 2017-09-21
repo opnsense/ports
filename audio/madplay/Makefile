@@ -16,6 +16,8 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libmad.so:audio/libmad \
 		libid3tag.so:audio/libid3tag
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lz
@@ -29,8 +31,6 @@ NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
 ESOUND_USE=		GNOME=esound
 ESOUND_CONFIGURE_WITH=	esd
-
-NOPIE_PORTS=	yes
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/madtime ${STAGEDIR}${PREFIX}/bin

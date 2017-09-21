@@ -15,10 +15,10 @@ LIB_DEPENDS=	libmodplug.so:audio/libmodplug \
 		libao.so:audio/libao
 BUILD_DEPENDS=	${LOCALBASE}/lib/libaiff.a:audio/libaiff
 
+USE_HARDENING=	pie:off
+
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	bin/${PORTNAME} \
 		man/man1/${PORTNAME}.1.gz

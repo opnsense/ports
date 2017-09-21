@@ -16,6 +16,8 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	xmms:multimedia/xmms
 RUN_DEPENDS=	xmms:multimedia/xmms
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GNOME=	glib12
 USE_GCC=	any
 HAS_CONFIGURE=	yes
@@ -23,9 +25,6 @@ USES=		gmake
 USE_CSTD=	gnu89
 
 OPTIONS_DEFINE=	NLS
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 NLS_CONFIGURE_OFF=	--disable-i18n
 NLS_USES=		gettext-runtime

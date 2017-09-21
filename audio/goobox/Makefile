@@ -19,6 +19,8 @@ LIB_DEPENDS=	libdiscid.so:audio/libdiscid \
 		libbrasero-media3.so:sysutils/brasero \
 		libunique-1.0.so:x11-toolkits/unique
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		desktop-file-utils gettext gmake gnome localbase pkgconfig tar:xz
 USE_GNOME=	glib20 gtk30 intlhack
 USE_XORG=	x11
@@ -26,9 +28,6 @@ USE_GSTREAMER1=	yes
 GNU_CONFIGURE=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 GLIB_SCHEMAS=	org.gnome.Goobox.gschema.xml
 

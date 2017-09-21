@@ -14,6 +14,8 @@ LICENSE=	GPLv3
 
 CONFLICTS=	dbh-[0-4]*
 
+USE_HARDENING=	pie:off
+
 USES=		libtool pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-pkglibdata
@@ -23,8 +25,6 @@ INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	GTKDOC
 GTKDOC_DESC=	Enable GTK html documentation
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.options.mk>
 

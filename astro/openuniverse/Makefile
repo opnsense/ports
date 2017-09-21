@@ -10,6 +10,8 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/1.0beta3
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	OpenGL Solar System simulator for X Window System
 
+USE_HARDENING=	pie:off
+
 USE_GL=		glut
 
 USES=		gmake jpeg
@@ -21,7 +23,5 @@ CONFIGURE_ARGS=	--includedir="${LOCALBASE}/include" \
 
 CPPFLAGS+=	-I${LOCALBASE}/include/GL -I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lm -lcompat
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

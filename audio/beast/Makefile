@@ -21,6 +21,8 @@ RUN_DEPENDS=	xdg-open:devel/xdg-utils
 BROKEN_armv6=		fails to package: bseblockutils.SSE.so: No such file or directory
 BROKEN_powerpc64=	fails to package: bseblockutils.SSE.so: No such file or directory
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig \
 		shared-mime-info shebangfix tar:bzip2
 SHEBANG_FILES=	autotools/intltool-merge
@@ -36,9 +38,6 @@ INSTALL_TARGET=	install-strip
 CXXFLAGS+=	-fpermissive
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_SUB=	VERSION="${PORTVERSION}"
 OPTIONS_SUB=	yes

@@ -13,14 +13,13 @@ COMMENT=	Network Audio System (NAS) output plugin for XMMS
 LIB_DEPENDS=	libxmms.so:multimedia/xmms \
 		libaudio.so:audio/nas
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		libtool
 USE_GNOME=	gtk12
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-static
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_FILES=	lib/xmms/Output/libnas.so
 
