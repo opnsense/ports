@@ -13,11 +13,11 @@ COMMENT=	EXT4 implementation for FUSE
 
 LICENSE=	GPLv2
 
-NOPIE_PORTS=	yes
-
-USES=		execinfo fuse pkgconfig gmake
+USES=		fuse pkgconfig gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	gerard
+
+USE_HARDENING=	pie:off
 
 # explicitly empty to fix a cross compiling related issue (PR: 165480)
 MAKE_ENV+=	TARGET_ARCH=

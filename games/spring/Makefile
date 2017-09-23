@@ -32,7 +32,7 @@ USE_XORG=	x11 xcursor
 USE_LDCONFIG=	yes
 DOS2UNIX_GLOB=	*.h *.hpp *.cpp
 
-USES=		execinfo cmake compiler:c++11-lib dos2unix openal:al tar:lzma
+USES=		cmake compiler:c++11-lib dos2unix openal:al tar:lzma
 USES+=		desktop-file-utils shared-mime-info
 CMAKE_ARGS=	-DDATADIR:STRING="share/${PORTNAME}" \
 		-DAI_TYPES:STRING="NATIVE" \
@@ -46,12 +46,6 @@ NOPIE_PORTS=	yes
 NORELRO_PORTS=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}
-
-.if exists(/usr/lib/libexecinfo.so)
-LEI_PREFIX=	/usr
-.else
-LEI_PREFIX=	${LOCALBASE}
-.endif
 
 # Do not exctract bundled copies of header files for 3rd-party packages:
 EXTRACT_AFTER_ARGS=--no-same-owner --no-same-permissions --exclude ${WRKSRC:T}/include
@@ -104,7 +98,7 @@ post-patch:
 		${WRKSRC}/rts/System/Sync/FPUCheck.cpp
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/rts/build/cmake/*.cmake
-	@${REINPLACE_CMD} -e 's|execinfo|${LEI_PREFIX}/lib/libexecinfo.so|' \
+	@${REINPLACE_CMD} -e 's|execinfo|/usr/lib/libexecinfo.so|' \
 		${WRKSRC}/rts/CMakeLists.txt \
 		${WRKSRC}/rts/builds/dedicated/CMakeLists.txt
 	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' \

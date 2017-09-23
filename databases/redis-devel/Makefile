@@ -14,7 +14,8 @@ LICENSE=	BSD3CLAUSE
 
 BROKEN_i386=	undefined reference to __atomic_fetch_add_8
 
-USES=		execinfo
+USE_GITHUB=	yes
+GH_ACCOUNT=	antirez
 
 OPTIONS_DEFINE=	TESTS TRIB
 OPTIONS_RADIO=	EXTLUA
@@ -57,8 +58,7 @@ LDFLAGS+=	-Wl,-E
 USES+=		tcl:build
 .endif
 
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lpthread -lm -lexecinfo
+LDFLAGS+=	-lpthread -lm -lexecinfo
 
 CONFLICTS?=	redis-3.*
 

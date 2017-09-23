@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	61.0.3163.79
+PORTVERSION=	61.0.3163.100
 CATEGORIES?=	www
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -67,7 +67,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64 i386
 .if defined(GN_ONLY)
 USES=		compiler:c++14-lang ninja pkgconfig python:2,build shebangfix tar:xz
 .else
-USES=		bison cpe desktop-file-utils execinfo jpeg ninja perl5 pkgconfig \
+USES=		bison cpe desktop-file-utils jpeg ninja perl5 pkgconfig \
 		python:2,build shebangfix tar:xz
 .endif
 MAKE_ARGS=	-C out/${BUILDTYPE}

@@ -23,7 +23,7 @@ BROKEN_mips=		fails to configure: No C compiler found
 BROKEN_mips64=		fails to configure: No C compiler found
 BROKEN_powerpc64=	fails to configure: No C compiler found
 
-USES=		execinfo gettext gmake pkgconfig python shebangfix ssl
+USES=		gettext gmake pkgconfig python shebangfix ssl
 USE_GITHUB=	yes
 
 GNU_CONFIGURE=	yes
@@ -50,8 +50,8 @@ SUB_LIST+=	TVHUSER="${TVHUSER}" \
 CONFIGURE_ENV+=	PLATFORM=freebsd
 CONFIGURE_ARGS+=--disable-dvbscan --disable-zlib --disable-hdhomerun_static \
 		--disable-bintray_cache --disable-ffmpeg_static --disable-pie
-CFLAGS+=	-I${LOCALBASE}/include -Wno-conversion -Wno-int-to-pointer-cast
-LDFLAGS+=	-L${LOCALBASE}/lib -lexecinfo -lssl -lcrypto -lz
+CFLAGS+=	-Wno-conversion -Wno-int-to-pointer-cast
+LDFLAGS+=	-lexecinfo -lssl -lcrypto -lz
 
 OPTIONS_DEFINE=	AVAHI DVBCSA HDHOMERUN INOTIFY TRANSCODING XMLTV
 OPTIONS_DEFAULT=DVBCSA HDHOMERUN INOTIFY

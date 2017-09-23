@@ -43,17 +43,16 @@ ICONV_USES=	iconv
 NLS_USES=	gettext-runtime
 NLS_CONFIGURE_OFF=	--disable-nls
 NLS_EXTRA_PATCHES_OFF=	${FILESDIR}/extra-patch-Makefile
-EXECINFO_USES=	execinfo
 OPTIONS_SUB=	yes
 EXECINFO_DESC=	Build with libexecinfo support
 
 .include <bsd.port.options.mk>
 
 post-patch:
-.if  ${PORT_OPTIONS:MEXECINFO} || exists(${LOCALBASE}/lib/libexecinfo.so)
-	@${REINPLACE_CMD} 's|-lm |-lm -L${LOCALBASE}/lib -lexecinfo |' \
+.if  ${PORT_OPTIONS:MEXECINFO}
+	@${REINPLACE_CMD} 's|-lm |-lm -lexecinfo |' \
 		${WRKSRC}/src/audacious/Makefile
-	@${REINPLACE_CMD} 's|-laudcore|-laudcore -L${LOCALBASE}/lib -lexecinfo|' \
+	@${REINPLACE_CMD} 's|-laudcore|-laudcore -lexecinfo|' \
 		${WRKSRC}/audacious.pc.in
 .endif
 	${REINPLACE_CMD} -e 's| $${MFLAGS}||g' \

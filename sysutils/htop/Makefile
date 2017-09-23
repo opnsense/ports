@@ -15,11 +15,10 @@ RUN_DEPENDS=	lsof:sysutils/lsof
 USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
-CPPFLAGS+=	-I${LOCALBASE}/include
-LIBS+=		-L${LOCALBASE}/lib -lexecinfo
+LIBS+=		-lexecinfo
 
 CONFIGURE_ARGS=	--enable-unicode
-USES=		autoreconf execinfo libtool ncurses
+USES=		autoreconf libtool ncurses
 USE_GITHUB=	yes
 GH_ACCOUNT=	hishamhm
 PLIST_FILES=	bin/htop \

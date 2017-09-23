@@ -16,11 +16,11 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	FreeRDP
 GH_PROJECT=	${GH_ACCOUNT}
 
-USE_HARDENING=	safestack
-
-USES=		alias cmake:outsource compiler:c++11-lib cpe execinfo gettext localbase pathfix pkgconfig ssl
+USES=		alias cmake:outsource compiler:c++11-lib cpe gettext localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
 CPE_VENDOR=	freerdp_project
+
+USE_HARDENING=	safestack
 
 CMAKE_ARGS+=	-DWITH_LIBSYSTEMD=OFF -DWITH_WAYLAND=OFF -DWITH_GSTREAMER_0_10=OFF ${CMAKE_ARGS_${ARCH}}
 

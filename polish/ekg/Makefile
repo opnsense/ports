@@ -14,15 +14,14 @@ COMMENT=	Text-mode Gadu-Gadu client
 LIB_DEPENDS=	libgadu.so:polish/libgadu
 
 GNU_CONFIGURE=	yes
-USES=		execinfo gmake ncurses pathfix pkgconfig
+USES=		gmake ncurses pathfix pkgconfig
 USE_LDCONFIG=	yes
 
 CONFIGURE_ARGS= --without-libungif \
 		--without-libjpeg \
 		--disable-ui-gtk
 
-CFLAGS+=	-I/usr/include -I${LOCALBASE}/include
-LDFLAGS+=	-lncurses -L${LOCALBASE}/lib -lexecinfo -pthread
+LDFLAGS+=	-lncurses -lexecinfo -pthread
 
 OPTIONS_DEFINE=		ASPELL OPENSSL
 OPTIONS_DEFAULT=	OPENSSL
