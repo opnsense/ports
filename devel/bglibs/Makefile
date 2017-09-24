@@ -15,13 +15,13 @@ COMMENT=	One stop library package by Bruce Guenter
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off
+
 USES=		libtool:build perl5
 USE_PERL5=	run configure
 BGLIBS_INC=	${PREFIX}/include/${PORTNAME}
 BGLIBS_LIB=	${PREFIX}/lib/${PORTNAME}
 USE_LDCONFIG=	${BGLIBS_LIB}
-
-NOPIE_PORTS=	yes
 
 DOCS=		NEWS README TODO doc/html/*
 

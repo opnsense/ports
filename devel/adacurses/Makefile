@@ -13,6 +13,8 @@ COMMENT=	Ada95 bindings for ncurses
 
 LICENSE=	MIT
 
+USE_HARDENING=	pie:off
+
 USES=		ada gmake pkgconfig ncurses:port tar:tgz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ada-include=${PREFIX}/include/adacurses \
@@ -22,8 +24,6 @@ CONFIGURE_ARGS=	--with-ada-include=${PREFIX}/include/adacurses \
 		--enable-widec
 PORTDOCS=	ada Ada95.html
 PLIST_SUB=	atic=adacurses/terminal_interface-curses
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS
 

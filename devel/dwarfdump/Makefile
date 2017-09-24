@@ -16,11 +16,11 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libdwarf.a:devel/libdwarf
 
 WRKSRC=		${WRKDIR}/dwarf-${PORTVERSION}/dwarfdump
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
 CFLAGS+=	-I${LOCALBASE}/include
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	bin/dwarfdump man/man1/dwarfdump.1.gz
 

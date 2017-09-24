@@ -24,10 +24,10 @@ BROKEN_armv6=		fails to build: fails to compile i386_disasm.c
 BROKEN_powerpc64=	fails to build: error: field 'r' has incomplete type
 BROKEN_sparc64=		fails to build: fails to compile dwarf_begin_elf.c
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
-
-NOPIE_PORTS=	yes
 
 NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls

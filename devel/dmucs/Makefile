@@ -13,12 +13,11 @@ COMMENT=	Distributed Multi-User Compilation System (for use with distcc)
 BROKEN_armv6=		fails to compile: passing char * to parameter of incompatible type __builtin_va_list
 BROKEN_aarch64=		fails to compile: passing char * to parameter of incompatible type __builtin_va_list
 
+USE_HARDENING=	pie:off relro:off
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 USES=	tar:bzip2
 GNU_CONFIGURE=	yes
 PLIST_FILES=	bin/dmucs bin/gethost bin/loadavg bin/monitor bin/remhost
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.mk>

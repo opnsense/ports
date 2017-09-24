@@ -17,11 +17,11 @@ LICENSE=	LGPL20
 
 LIB_DEPENDS=	liblwp.so:devel/lwp
 
+USE_HARDENING=	pie:off
+
 USES=		gmake libtool pathfix perl5 pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

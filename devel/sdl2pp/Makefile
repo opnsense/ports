@@ -16,13 +16,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	libSDL2pp
 GH_PROJECT=	libSDL2pp
 
+USE_HARDENING=	pie:off
+
 USES=		compiler:c++11-lib cmake
 CMAKE_ARGS=	-DSDL2PP_ENABLE_LIVE_TESTS=OFF \
 		-DSDL2PP_WITH_WERROR=ON
 USE_SDL=	sdl2 image2 mixer2 ttf2
 TEST_TARGET=	test
-
-NOPIE_PORTS=	yes
 
 PORTDOCS=	*
 

@@ -20,6 +20,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libpcre.so:devel/pcre
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake jpeg libtool localbase:ldflags pathfix pkgconfig \
 		sqlite tar:tgz
 USE_XORG=	x11
@@ -41,9 +43,6 @@ CONFIGURE_ARGS=	--disable-docs \
 		--enable-clanMikMod \
 		--enable-clanVorbis \
 		--enable-getaddr
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 INSTALL_TARGET=	install-strip
 PLIST_SUB+=	VER=${PORTVERSION:R} \

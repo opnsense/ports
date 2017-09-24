@@ -19,14 +19,13 @@ BB_PROJECT=	valgrind-freebsd
 
 LICENSE=	GPLv2
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 CONFLICTS=	valgrind-devel-[0-9]*
 
 ONLY_FOR_ARCHS=	i386 amd64
 
 LIB32_PATH?=	${DESTDIR}/usr/lib32/libc.so
+
+USE_HARDENING=	pie:off relro:off
 
 OPTIONS_DEFINE=		DOCS MANPAGES MPI
 OPTIONS_DEFINE_amd64=	32BIT

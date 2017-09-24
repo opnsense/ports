@@ -13,14 +13,13 @@ COMMENT=	Generic game engine for 2D double-buffering animation
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		pathfix pkgconfig libtool
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl mixer image
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PORTDOCS=	AUTHORS NEWS README
 

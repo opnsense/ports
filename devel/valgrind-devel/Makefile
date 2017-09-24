@@ -14,9 +14,6 @@ PKGNAMESUFFIX=	-devel
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	Memory debugging and profiling tool
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 BB_COMMIT=	ce1acb28953f
 BB_ACCOUNT=	stass
 BB_PROJECT=	valgrind-freebsd
@@ -28,6 +25,8 @@ CONFLICTS=	valgrind-[0-9]*
 ONLY_FOR_ARCHS=	i386 amd64
 
 LIB32_PATH?=	${DESTDIR}/usr/lib32/libc.so
+
+USE_HARDENING=	pie:off relro:off
 
 OPTIONS_DEFINE=		DOCS MANPAGES MPI
 OPTIONS_DEFINE_amd64=	32BIT

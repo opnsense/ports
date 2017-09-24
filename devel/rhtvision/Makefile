@@ -16,6 +16,8 @@ OPTIONS_SUB=	yes
 
 WRKSRC=		${WRKDIR}/tvision
 
+USE_HARDENING=	pie:off
+
 USES=		gmake perl5 shebangfix
 SHEBANG_FILES=	config.pl confignt.pl conflib.pl linux/compress
 USE_GCC=	yes
@@ -24,8 +26,6 @@ CONFIGURE_ARGS=	--prefix=${STAGEDIR}${PREFIX} \
 		--real-prefix=${PREFIX} \
 		--no-libs-here
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

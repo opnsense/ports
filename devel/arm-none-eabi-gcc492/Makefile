@@ -20,6 +20,8 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 BUILD_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
 RUN_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
 
+USE_HARDENING=	pie:off relro:off
+
 USES=	compiler gmake iconv libtool makeinfo tar:bzip2
 PLIST_SUB=	TARGETARCH=${PKGNAMEPREFIX:C/-//g} \
 		OPSYS=${OPSYS:tl} \
@@ -27,9 +29,6 @@ PLIST_SUB=	TARGETARCH=${PKGNAMEPREFIX:C/-//g} \
 
 GCC_TARGET=	arm-none-eabi
 BU_PREFIX?=	${GCC_TARGET}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes

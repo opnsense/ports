@@ -10,14 +10,13 @@ PKGNAMEPREFIX=	arm-elf-
 MAINTAINER=	danilo@FreeBSD.org
 COMMENT=	GNU binutils for vanilla ARM cross-development
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gettext gmake tar:bzip2
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--target=${PKGNAMEPREFIX:S/-$//} --disable-werror \
 		--disable-nls CFLAGS="-I/usr/local/include"
 INFO_PATH=	${PKGNAMEPREFIX:S/-$//}/info
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-install:
 .for F in addr2line c++filt elfedit gprof objcopy objdump readelf size strings

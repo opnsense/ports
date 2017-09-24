@@ -13,9 +13,9 @@ COMMENT=	Collection of programs to manipulate ELF files
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+USES=		gmake
 
 ELFBINS=	ebfc elfls elftoc infect objres rebind sstrip
 PORTDOCS=	COPYING Changelog README
