@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-DISTVERSION=	4.0.1
+DISTVERSION=	4.0.2
 CATEGORIES=	databases
 MASTER_SITES=	http://download.redis.io/releases/
 PKGNAMESUFFIX=	-devel
@@ -13,9 +13,6 @@ COMMENT=	Persistent key-value database with built-in net interface
 LICENSE=	BSD3CLAUSE
 
 BROKEN_i386=	undefined reference to __atomic_fetch_add_8
-
-USE_GITHUB=	yes
-GH_ACCOUNT=	antirez
 
 OPTIONS_DEFINE=	TESTS TRIB
 OPTIONS_RADIO=	EXTLUA
