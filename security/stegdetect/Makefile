@@ -10,6 +10,8 @@ MASTER_SITES=	http://www.sourcefiles.org/Graphics/Tools/Miscellaneous/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Automated tool for detecting steganographic content in JPEGs
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=	X11
 
@@ -25,8 +27,6 @@ USES=		gmake ssl
 CONFIGURE_ARGS+=--program-prefix=''
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} 's;/usr/include/event;${LOCALBASE}/include;g' \

@@ -19,6 +19,8 @@ LIB_DEPENDS=	libconfig.so:devel/libconfig \
 		libcurl.so:ftp/curl \
 		libjson-c.so:devel/json-c
 
+USE_HARDENING=	pie:off relro:off
+
 OPTIONS_DEFINE=	DEBUG ASSERT CNC_DEBUG STOMP_DEBUG
 
 CNC_DEBUG_DESC=		Enable Command and Control Debug
@@ -30,9 +32,6 @@ USE_LDCONFIG=	yes
 USE_AUTOTOOLS=	autoconf
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 DEBUG_CONFIGURE_ENABLE=		debug
 ASSERT_CONFIGURE_ENABLE=	assert

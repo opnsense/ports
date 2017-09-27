@@ -13,11 +13,10 @@ COMMENT=	NVidia graphic card status and overclocking tool
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_FILES=	bin/nvclock bin/smartdimmer man/man1/nvclock.1.gz
 PORTDOCS=	ABOUT AUTHORS ChangeLog FAQ README

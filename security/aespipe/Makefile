@@ -15,11 +15,11 @@ LICENSE=	GPLv2
 
 RUN_DEPENDS=	gpg:security/gnupg
 
+USE_HARDENING=	pie:off
+
 USES=		tar:bzip2
 
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
 
 TEST_TARGET=	tests
 

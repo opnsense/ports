@@ -13,14 +13,14 @@ BUILD_DEPENDS=	xxd:editors/vim-lite
 LIB_DEPENDS+=	libgcrypt.so:security/libgcrypt \
 		libcurl.so:ftp/curl
 
+USE_HARDENING=	pie:off
+
 USES=		perl5 shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	schnoddelbotz
 GH_TAGNAME=	e7822e8
 USE_PERL5=	build
 SHEBANG_FILES=	${WRKSRC}/../amtc-web/cli/amtc-web.phpsh
-
-NOPIE_PORTS=	yes
 
 WRKSRC_SUBDIR=	src
 

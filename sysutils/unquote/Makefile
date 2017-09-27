@@ -10,9 +10,9 @@ DISTNAME=	${PORTNAME}-${PORTVERSION:S/.b/pre/}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Execute a command with safely quoted arguments
 
-USES=		uidfix
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+USES=		uidfix
 
 PLIST_FILES=	bin/unquote man/man1/unquote.1.gz
 

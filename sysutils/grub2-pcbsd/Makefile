@@ -18,8 +18,7 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		${LOCALBASE}/bin/bash:shells/bash \
 		help2man:misc/help2man
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+USE_HARDENING=	pie:off relro:off
 
 WRKSRC=		${WRKDIR}/grub-2.02
 CONFLICTS=	grub-0* grub2-2*

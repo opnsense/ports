@@ -14,13 +14,13 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libevent.so:devel/libevent
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	CLAMAV
 CLAMAV_DESC=	Enable CLAMAV support
 
 USE_RC_SUBR=	spybye
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
 
 CLAMAV_LIB_DEPENDS=	libclamav.so:security/clamav
 CLAMAV_CONFIGURE_ON=	--with-libclamav=${PREFIX}/bin

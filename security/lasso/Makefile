@@ -15,6 +15,8 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	xmlsec1:security/xmlsec1
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		cpe libtool pathfix pkgconfig ssl
 CPE_VENDOR=	entrouvert
 GNU_CONFIGURE=	yes
@@ -22,9 +24,6 @@ CONFIGURE_ARGS=	--disable-java --with-zlib
 USE_GNOME=	glib20 libxml2
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	PERL PHP PYTHON DOCS
 

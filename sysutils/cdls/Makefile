@@ -9,11 +9,11 @@ MASTER_SITES=	ftp://freebsd4ever.xs4all.nl/ ftp://vps337.directvps.nl/
 MAINTAINER=	hansdehartog@xs4all.nl
 COMMENT=	Curses based file manager for system managers
 
+USE_HARDENING=	pie:off
+
 PLIST_FILES=	bin/cdls
 
 USES=		ncurses
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.pre.mk>
 

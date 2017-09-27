@@ -21,6 +21,8 @@ RUN_DEPENDS=	fig2dev:print/transfig
 
 BROKEN_armv6=		fails to compile: call to min is ambiguous
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		cpe desktop-file-utils gmake iconv localbase pkgconfig python \
 		shared-mime-info shebangfix
 USE_TEX=	tex:run dvipsk:run
@@ -28,9 +30,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-optimize="${CXXFLAGS}"
 MAKE_ARGS=	CP="${CP} -R -f"
 ALL_TARGET=	${PORTNAME:tu}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 SHEBANG_FILES=	plugins/asymptote/bin/* plugins/dratex/bin/* \
 		plugins/eukleides/bin/* plugins/feynmf/bin/* \

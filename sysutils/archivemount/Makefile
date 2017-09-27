@@ -10,11 +10,10 @@ MASTER_SITES=	http://www.cybernoia.de/software/archivemount/
 MAINTAINER=	jirnov@gmail.com
 COMMENT=	Mount archives with FUSE
 
+USE_HARDENING=	pie:off relro:off
+
 GNU_CONFIGURE=	yes
 USES=		fuse pkgconfig iconv gmake libarchive
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_FILES=	bin/archivemount \
 		man/man1/archivemount.1.gz

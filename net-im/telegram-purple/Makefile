@@ -21,6 +21,8 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 BROKEN_armv6=		fails to link: undefined reference to 'backtrace'
 BROKEN_sparc64=		fails to compile: assertion fails
 
+USE_HARDENING=	pie:off relro:off
+
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 
@@ -28,9 +30,6 @@ USES=		gettext gmake pkgconfig
 USE_GNOME=	glib20 libxml2
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	majn:DEFAULT,tgl vysheng:tlparser

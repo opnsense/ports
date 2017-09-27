@@ -15,14 +15,13 @@ LICENSE=	GPLv2
 
 CONFLICTS=	iroffer-1* iroffer-lamm-1.*
 
+USE_HARDENING=	pie:off relro:off
+
 HAS_CONFIGURE=	yes
 CONFIGURE_SCRIPT=	Configure
 CONFIGURE_ARGS=	CC="${CC}" LDFLAGS="${LDFLAGS}" LOCALBASE="${LOCALBASE}"
 ALL_TARGET=	all-lang doc
 USE_RC_SUBR=	iroffer-dinoex
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 IROFFER_DOCS=	README README.modDinoex LIESMICH.modDinoex \
 		LICENSE THANKS TODO \

@@ -18,6 +18,8 @@ MASTER_SITE_SUBDIR=	${PORTVERSION}/source
 MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	IRC client for KDE 4
 
+USE_HARDENING=	pie:off
+
 USE_PERL5=	build
 USE_QT4=	moc_build qmake_build rcc_build uic_build \
 		dbus gui network sql xml
@@ -25,8 +27,6 @@ USES=		cmake cpe gettext perl5 ssl tar:bzip2
 CMAKE_ARGS=	-DWANT_ESD=no -DWANT_DOXYGEN=no \
 		-DMANDIR=${MANPREFIX}
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	AUDIOFILE GSM PERL PYTHON DEBUG
 OPTIONS_SUB=	yes

@@ -18,12 +18,12 @@ GH_ACCOUNT=	gamelinux
 
 SUB_FILES=	pkg-message
 
+USE_HARDENING=	pie:off
+
 USES=		autoreconf gmake libtool
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-ldns-includes=${LOCALBASE}/include \
 		--with-ldns-libraries=${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
 
 USE_RC_SUBR=	passivedns
 

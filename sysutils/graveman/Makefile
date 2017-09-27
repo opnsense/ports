@@ -14,13 +14,13 @@ LIB_DEPENDS=	libmng.so:graphics/libmng
 BUILD_DEPENDS=	cdrecord:sysutils/cdrtools
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 USES=		pathfix pkgconfig gettext gmake tar:bzip2
 USE_GNOME=	libglade2 intlhack gnomeprefix
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	MP3 OGG DVD
 DVD_DESC=	DVD+RW support

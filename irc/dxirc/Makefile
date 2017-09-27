@@ -11,6 +11,8 @@ COMMENT=	Simple IRC client
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off
+
 USE_XORG=	ice sm x11 xext
 USES=		cmake pkgconfig
 INSTALLS_ICONS=	yes
@@ -20,8 +22,6 @@ OPTIONS_SINGLE=		GUI
 OPTIONS_SINGLE_GUI=	FOX16 QT4 QT5
 OPTIONS_DEFAULT=	LUA QT5
 OPTIONS_SUB=		yes
-
-NOPIE_PORTS=	yes
 
 ENCHANT_DESC=		Spell checking support via Enchant
 ENCHANT_LIB_DEPENDS=	libenchant.so:textproc/enchant

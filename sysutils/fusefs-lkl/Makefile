@@ -16,14 +16,14 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	gnubc>0:math/gnubc
 
+USE_HARDENING=	pie:off
+
 USES=		fuse gmake python:build shebangfix
 SHEBANG_FILES=	../../arch/lkl/scripts/headers_install.py
 USE_BINUTILS=	yes
 USE_GCC=	yes
 USE_GITHUB=	yes
 GH_PROJECT=	linux
-
-NOPIE_PORTS=	yes
 
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=No one has added other architecture ld formats yet

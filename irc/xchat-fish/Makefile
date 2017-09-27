@@ -17,14 +17,14 @@ COMMENT=	Encryption plugin for XChat
 BUILD_DEPENDS=	${LOCALBASE}/lib/libmiracl.a:math/miracl
 RUN_DEPENDS=	xchat:irc/xchat
 
+USE_HARDENING=	pie:off
+
 USES=		zip dos2unix
 NO_WRKSUBDIR=	yes
 DOCSDIR=	${PREFIX}/share/doc/${PKGNAMEPREFIX}${PORTNAME}
 CCFLAGS+=	-Wall -O2 -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 MAKE_ENV+=	CCFLAGS="${CCFLAGS}"
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	lib/xchat/plugins/xfish.so
 PORTDOCS=	FiSH-xchat.txt \

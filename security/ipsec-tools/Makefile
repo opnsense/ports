@@ -17,6 +17,8 @@ COMMENT=	KAME racoon IKE daemon, ipsec-tools version
 
 CONFLICTS=	racoon-[0-9]*
 
+USE_HARDENING=	pie:off relro:off
+
 USE_RC_SUBR=	racoon
 
 INSTALL_TARGET=	install-strip
@@ -27,9 +29,6 @@ USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --sysconfdir=${PREFIX}/etc/racoon \
 		--localstatedir=${STATEDIR:S/\/racoon//} \
 		--with-pkgversion=freebsd-${PORTVERSION}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 STATEDIR=	/var/db/racoon
 SUB_LIST+=	STATEDIR=${STATEDIR}

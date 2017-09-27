@@ -18,6 +18,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	librazorback_api.so:security/razorback-api \
 		libjson-c.so:devel/json-c
 
+USE_HARDENING=	pie:off relro:off
+
 GNU_CONFIGURE=	yes
 USES=		autoreconf libtool pkgconfig
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -27,8 +29,5 @@ OPTIONS_DEFINE=	DEBUG ASSERT
 
 ASSERT_CONFIGURE_ENABLE=	assert
 DEBUG_CONFIGURE_ENABLE=	debug
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.mk>

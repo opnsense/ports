@@ -17,14 +17,13 @@ COMMENT=	Set of common utilities built as single binary
 
 LICENSE=	GPLv2
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 BUILD_DEPENDS=	gsed:textproc/gsed
 
 CONFLICTS_INSTALL=	busybox-unstable-*
 
 PORTSCOUT=	skipv:1.25.0
+
+USE_HARDENING=	pie:off relro:off
 
 CFLAGS+=	-fno-builtin-mempcpy	# avoid -Wshadow warnings
 MAKE_ARGS=	CC="${CC}" HOSTCC="${CC}" CXX="${CXX}" HOSTCXX="${CXX}" \

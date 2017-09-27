@@ -12,6 +12,8 @@ COMMENT=	Development snapshot of the world-renown nvi editor
 
 CONFLICTS_INSTALL=	nvi-m17n-[0-9]* xnview-[0-9]*
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	WIDECHAR
 OPTIONS_DEFAULT=WIDECHAR
 WIDECHAR_DESC=	Enable wide-character support (UTF-8)
@@ -28,8 +30,6 @@ WIDECHAR_CONFIGURE_ON=	--enable-widechar
 
 CPPFLAGS+=		-I${BDB_INCLUDE_DIR} -I${LOCALBASE}/include -I${NCURSESINC}
 LDFLAGS+=		-L${BDB_LIB_DIR} -L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e '/libvi_la_LIBADD =/s,$$, ${ICONV_LIB},' \

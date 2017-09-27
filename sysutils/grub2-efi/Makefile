@@ -20,6 +20,8 @@ BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		${LOCALBASE}/bin/bash:shells/bash \
 		help2man:misc/help2man
 
+USE_HARDENING=	pie:off relro:off
+
 WRKSRC=		${WRKDIR}/grub-${PORTVERSION}
 SSP_UNSAFE=	yes
 USE_GCC=	yes
@@ -28,9 +30,6 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf bison cpe gettext gmake python tar:xz
 ONLY_FOR_ARCHS=	amd64
 MAKE_JOBS_UNSAFE=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CPE_PRODUCT=	grub
 CPE_VENDOR=	gnu

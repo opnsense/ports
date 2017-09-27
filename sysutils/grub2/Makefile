@@ -16,6 +16,8 @@ LICENSE=	GPLv3
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		help2man:misc/help2man
 
+USE_HARDENING=	pie:off relro:off
+
 CONFLICTS=	grub-0*
 SSP_UNSAFE=	yes
 USE_GCC=	yes
@@ -31,9 +33,6 @@ CPE_VENDOR=	gnu
 CONFIGURE_ARGS=	--disable-werror --localedir=${PREFIX}/share/locale
 CONFIGURE_ENV=	CPP="${CC} -E" \
 		LEX=${LOCALBASE}/bin/flex
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	MKFONT FUSE
 OPTIONS_SUB=	yes

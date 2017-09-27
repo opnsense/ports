@@ -17,9 +17,9 @@ USE_RC_SUBR=	ossec-hids
 
 CFLAGS+=	-ferror-limit=0
 
-USES=		readline ssl
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+USES=		readline ssl
 
 .if defined(MAINTAINER_MODE)
 UID_FILES+=	../../UIDs

@@ -24,11 +24,11 @@ RUN_DEPENDS=	gpg:security/gnupg \
 
 CONFLICTS_INSTALL=sig2dot-[0-9]* springgraph-[0-9]*
 
+USE_HARDENING=	pie:off
+
 USES=		perl5 python gmake shebangfix
 SHEBANG_FILES=	${SCRIPTS}
 NO_WRKSUBDIR=	yes
-
-NOPIE_PORTS=	yes
 
 BINS=		keyanalyze/keyanalyze keyanalyze/process_keys \
 		gpgwrap/bin/gpgwrap

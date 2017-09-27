@@ -25,6 +25,8 @@ RUN_DEPENDS=	xdg-desktop-icon:devel/xdg-utils \
 
 PORTSCOUT=	limitw:1,even
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		desktop-file-utils gettext gmake gnome libarchive libtool \
 		pathfix pkgconfig python:run shebangfix sqlite tar:xz
 USE_GNOME=	gtk30 intltool introspection:build libxslt:build
@@ -58,9 +60,6 @@ GLIB_SCHEMAS=	org.freedesktop.Tracker.DB.gschema.xml \
 		org.freedesktop.Tracker.enums.xml \
 		org.freedesktop.Tracker.gschema.xml
 SHEBANG_FILES=	tests/tracker-writeback/01-writeback.py
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_SUB=	TRACKER_VER="1.0" LIBVER=601
 

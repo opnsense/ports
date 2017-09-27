@@ -17,15 +17,14 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libcanna.so:japanese/canna-lib
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		imake tar:bzip2
 USE_RC_SUBR=	canna
 INSTALL_TARGET=	instserver instclient
 PORTDOCS=	canna.bib canna.sty Imakefile README.jp Makefile \
 		intern lisp man
 MAKE_JOBS_UNSAFE=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-install:
 	@cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE} ${MAKE_FLAGS} \

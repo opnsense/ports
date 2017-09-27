@@ -19,14 +19,14 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libnids.a:net/libnids
 
 BROKEN_FreeBSD_12=	fails to compile: pcaputil.c: '/usr/include/pcap-int.h' file not found
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libnet=${LOCALBASE}
 DESTDIRNAME=	install_prefix
 USES=		gettext pkgconfig ssl
 USE_GNOME=	glib20
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION:C/(.*)..$/\1/}
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=	X11

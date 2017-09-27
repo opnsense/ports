@@ -23,6 +23,8 @@ LIB_DEPENDS+=	libkrb5support.so:security/krb5 \
 		libboost_python.so:devel/boost-python-libs \
 		libexpat.so:textproc/expat2
 
+USE_HARDENING=	pie:off relro:off
+
 WRKSRC=		${WRKDIR}/condor-${PORTVERSION}
 USE_LDCONFIG=	yes
 # Does not build with Python 3
@@ -43,9 +45,6 @@ CMAKE_ARGS+=	-DCMAKE_CXX_FLAGS:STRING=${CXXFLAGS} \
 		-DCMAKE_EXE_LINKER_FLAGS:STRING=${LDFLAGS} \
 		-DPYTHON_INCLUDE_DIR:PATH=${LOCALBASE}/include/${PYTHON_VERSION} \
 		-DPYTHON_LIBRARY:FILEPATH=${LOCALBASE}/lib/lib${PYTHON_VERSION}.so
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 SUB_FILES=	condor-config condor_config.local pkg-message
 PLIST_SUB+=	CONDOR_UVER=${PORTVERSION:S/./_/g}

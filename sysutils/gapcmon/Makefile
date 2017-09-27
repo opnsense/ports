@@ -11,14 +11,14 @@ COMMENT=	Monitor apcupsd with GTK+2 GUI
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off
+
 SUB_FILES=	pkg-message
 USE_GNOME=	gconf2
 USES=		pkgconfig gmake tar:bzip2
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 LIBS+=		-L${LOCALBASE}/lib -lX11
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS
 

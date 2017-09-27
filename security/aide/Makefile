@@ -13,6 +13,8 @@ COMMENT=	Replacement and extension for Tripwire
 LIB_DEPENDS=	libmhash.so:security/mhash \
 		libpcre.so:devel/pcre
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		autoreconf bison gmake localbase
 
 GNU_CONFIGURE=	yes
@@ -22,9 +24,6 @@ CONFIGURE_ARGS+=--with-mhash \
 		--with-config_file=${PREFIX}/etc/aide.conf
 
 LDFLAGS+=	-lpthread
-
-NORELRO_PORTS=	yes
-NOPIE_PORTS=	yes
 
 SUB_FILES=	pkg-message
 

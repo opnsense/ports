@@ -23,8 +23,7 @@ BUILD_DEPENDS=	dev86>0:devel/dev86 \
 		seabios>0:misc/seabios \
 		markdown>0:textproc/markdown
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+USE_HARDENING=	pie:off relro:off
 
 OPTIONS_DEFINE=	DOCS
 

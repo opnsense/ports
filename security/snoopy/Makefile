@@ -11,6 +11,8 @@ COMMENT=	execve() wrapper and logger
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off relro:off
+
 OPTIONS_DEFINE=	DOCS
 
 GNU_CONFIGURE=	yes
@@ -21,9 +23,6 @@ PORTDOCS=	ChangeLog README.md TODO
 
 GH_ACCOUNT=	a2o
 USE_GITHUB=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} '/^LIBS=/d' ${WRKSRC}/Makefile.in

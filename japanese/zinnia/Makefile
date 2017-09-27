@@ -13,6 +13,8 @@ COMMENT=	Simple, customizable, and portable online handwriting recognition syste
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off
+
 USES=		libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
@@ -20,8 +22,6 @@ USE_LDCONFIG=	yes
 PORTDOCS=	index-ja.html index.html
 
 OPTIONS_DEFINE=	DOCS
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e \

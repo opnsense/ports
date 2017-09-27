@@ -17,6 +17,8 @@ CONFLICTS=	emacs25-[0-9]* emacs-nox11-[0-9]*
 
 BROKEN_aarch64=		Segfaults during build
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
 GH_TAGNAME=	49a42fb
@@ -32,9 +34,6 @@ SUB_FILES=	sources.el
 SUB_LIST=	EMACS_VER=${EMACS_VER}
 
 CONFIGURE_ARGS=	--with-gameuser=games:games
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_SUB=	EMACS_VER=${EMACS_VER} GNU_HOST=${CONFIGURE_TARGET}
 

@@ -10,6 +10,8 @@ MASTER_SITES=	GNU
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Quick & easy monitoring of logfiles and devices
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GNOME=	gtk12
 USES=		gmake makeinfo
 GNU_CONFIGURE=	yes
@@ -18,9 +20,6 @@ INFO=		xlogmaster
 
 CPPFLAGS+=	-I${LOCALBASE}/include -DHAVE_DECL_GETOPT
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile.in -exec ${REINPLACE_CMD} -E \
