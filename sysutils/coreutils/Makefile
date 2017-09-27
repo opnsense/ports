@@ -24,6 +24,8 @@ CONFIGURE_ENV=	FORCE_UNSAFE_CONFIGURE=1
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		cpe gmake iconv perl5 charsetfix tar:xz
 USE_PERL5=	build	# build - required for tests and man page generation
 USE_LDCONFIG=	yes
@@ -37,9 +39,6 @@ NLS_USES=	gettext
 NLS_CONFIGURE_ENABLE=	nls
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 GMP_CONFIGURE_WITH=	gmp
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-build:
 	@${REINPLACE_CMD} -e "s/ lib / /g" ${WRKSRC}/Makefile
