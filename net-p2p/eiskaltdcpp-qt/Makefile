@@ -9,6 +9,8 @@ PKGNAMESUFFIX=	-qt
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	EiskaltDC++ Direct Connect client Qt GUI
 
+USE_HARDENING=  safestack
+
 LICENSE=	GPLv3
 
 RUN_DEPENDS=	eiskaltdcpp-data>=0:net-p2p/eiskaltdcpp-data

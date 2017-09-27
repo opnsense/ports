@@ -11,6 +11,8 @@ COMMENT=	EiskaltDC++ Direct Connect client GTK GUI
 
 LICENSE=	GPLv3
 
+USE_HARDENING=  safestack
+
 RUN_DEPENDS=	eiskaltdcpp-data>=0:net-p2p/eiskaltdcpp-data
 LIB_DEPENDS=	libeiskaltdcpp.so:net-p2p/eiskaltdcpp-lib
 
