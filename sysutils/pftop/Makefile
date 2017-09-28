@@ -12,6 +12,8 @@ COMMENT=	Utility for real-time display of statistics for pf
 
 LICENSE=	BSD2CLAUSE
 
+USE_HARDENING=	safestack
+
 OPTIONS_DEFINE=	ALTQ
 
 ALTQ_DESC=	ALTQ support for queue statistics
