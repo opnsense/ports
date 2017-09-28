@@ -16,14 +16,13 @@ RUN_DEPENDS=	${LOCALBASE}/bin/tcprules:sysutils/ucspi-tcp
 
 BROKEN_powerpc64=	Does not build: error: nested functions are disabled, use -fnested-functions to re-enable
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		cpe qmail tar:tgz
 WRKSRC=		${WRKDIR}/${DISTNAME}/spamdyke
 GNU_CONFIGURE=	yes
 ALL_TARGET=	spamdyke
 USE_GCC=	any
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=		TLS DEBUG DEBUG_EXCESSIVE DOCS
 OPTIONS_DEFAULT=	TLS

@@ -13,6 +13,8 @@ LICENSE=	BSD2CLAUSE
 
 BROKEN_powerpc64=	fails to compile: pcpu.h: size of array '__assert_0' is negative
 
+USE_HARDENING=	pie:off relro:off
+
 SSP_UNSAFE=	kernel module does not support ssp
 
 OPTIONS_DEFINE=	PTABLE
@@ -24,9 +26,6 @@ PTABLE_DESC=	Use O(1) lookup for tunnel hooks
 KMODDIR?=	/boot/modules
 PLIST_SUB+=	KMODDIR=${KMODDIR} \
 		PORTNAME=${PORTNAME}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.options.mk>
 

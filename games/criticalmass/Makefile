@@ -18,6 +18,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpng.so:graphics/png
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		dos2unix tar:bzip2
 DOS2UNIX_FILES=	tinyxml/*.cpp tinyxml/*.h
 USE_XORG=	x11
@@ -27,9 +29,6 @@ USE_CXXSTD=	gnu++98
 USE_GCC=	any
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-optimize
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CPPFLAGS+=	$$(libpng-config --I_opts) $$(curl-config --cflags) \
 		-I${LOCALBASE}/include

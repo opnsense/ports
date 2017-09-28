@@ -15,15 +15,14 @@ COMMENT=	Odyssey2 / Videopac console emulator
 
 LIB_DEPENDS=	liballeg.so:devel/allegro
 
+USE_HARDENING=	pie:off relro:off
+
 WRKSRC=		${WRKDIR}/o2em117src
 MAKEFILE=	Makefile.freebsd
 USES=		gmake zip
 LDFLAGS+=	-lpthread
 
 OPTIONS_DEFINE=	DOCS
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-extract:
 	@${FIND} -E ${WRKDIR} -type f -iregex ".*\.(c|h|txt)" -print0 | \

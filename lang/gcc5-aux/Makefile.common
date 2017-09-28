@@ -1,8 +1,5 @@
 # $FreeBSD$
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .include "Makefile.version"
 
 LIB_DEPENDS=		libgmp.so:math/gmp
@@ -10,6 +7,8 @@ LIB_DEPENDS+=		libmpfr.so:math/mpfr
 LIB_DEPENDS+=		libmpc.so:math/mpc
 
 ONLY_FOR_ARCHS= 	amd64 i386
+
+USE_HARDENING=		pie:off relro:off
 
 GNU_CONFIGURE=		yes
 USES=			gmake libtool perl5 tar:bzip2

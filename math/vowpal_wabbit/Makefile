@@ -13,14 +13,13 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
 
 BROKEN_powerpc64=	fails to compile: network.cc: 'atoi' was not declared in this scope
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		compiler:c++11-lang libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	JohnLangford
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CONFIGURE_ARGS=	--enable-shared=no --with-boost=${LOCALBASE}
 

@@ -16,15 +16,14 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libopenal.so:audio/openal-soft
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gettext gmake pkgconfig
 USE_SDL=	sdl
 USE_GL=		gl
 USE_GNOME=	glib20
 INSTALLS_ICONS=	yes
 MAKE_ARGS+=	prefix=${PREFIX}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS
 

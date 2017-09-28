@@ -22,14 +22,13 @@ LIB_DEPENDS=	libwebkitgtk-3.0.so:www/webkit-gtk3 \
 		libdbus-glib-1.so:devel/dbus-glib  \
 		libsword.so:misc/sword
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gettext pkgconfig waf
 INSTALLS_OMF=	yes
 INSTALLS_ICONS=	yes
 USE_GNOME=	gtkhtml4 intlhack gtk30 gconf2 libgsf \
 		gtk-update-icon-cache
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS
 

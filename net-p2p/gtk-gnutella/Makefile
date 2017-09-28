@@ -11,6 +11,8 @@ COMMENT=	GTK based Gnutella client
 
 LICENSE=	GPLv2+
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		iconv localbase:ldflags pkgconfig tar:bzip2
 USE_GNOME=	glib20 libxml2
 HAS_CONFIGURE=	yes
@@ -25,9 +27,6 @@ CONFIGURE_ARGS=	-O -Dyacc='byacc' \
 		-Dusemymalloc='n'
 MAKE_ARGS=	INSTALL_PREFIX="${STAGEDIR}"
 INSTALL_TARGET=	install install.man
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_SUB=	ARCH="${ARCH}" OPSYS="${OPSYS:tl}"
 

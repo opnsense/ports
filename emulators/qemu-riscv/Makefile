@@ -13,6 +13,8 @@ LICENSE=	GPLv2
 
 BROKEN_powerpc64=	fails to compile: async.c: internal compiler error: Segmentation fault
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	riscv
 GH_PROJECT=	riscv-qemu
@@ -23,9 +25,6 @@ USES=	gmake libtool makeinfo pkgconfig python:2,build
 USE_XORG=	pixman
 USE_GNOME+=	glib20
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CONFIGURE_ARGS+=--target-list=riscv64-softmmu,riscv32-softmmu \
 		--cc=${CC} \

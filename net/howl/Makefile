@@ -12,13 +12,13 @@ COMMENT=	Zeroconf/Bonjour(tm) implementation
 
 CONFLICTS=	avahi-[0-9]*
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USES=		gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	mdnsresponder
-
-NOPIE_PORTS=	yes
 
 PLIST_SUB=	VERSION="${PORTVERSION}"
 

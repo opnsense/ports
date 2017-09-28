@@ -20,14 +20,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	TinyCC
 GH_PROJECT=	tinycc
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake makeinfo perl5
 USE_PERL5=	build
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix="${PREFIX}" --cc="${CC}"
 MAKE_ARGS=	CONFIG_NOLDL=1
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

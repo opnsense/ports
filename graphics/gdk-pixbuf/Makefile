@@ -21,6 +21,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 
 PORTSCOUT=	ignore:1
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		cpe gmake jpeg libtool localbase pathfix tar:bzip2
 CPE_VENDOR=	gnome
 USE_XORG=	xt xi x11
@@ -29,9 +31,6 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-html-dir=${PREFIX}/share/doc \
 		--disable-gtk-doc
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} '/confexecdir =/s/=.*/= $$(sysconfdir)/' \

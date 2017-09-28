@@ -65,6 +65,8 @@ RUST_ARCH_x86_64=	x86_64 # dragonfly
 RUST_TARGET=		${RUST_ARCH_${ARCH}}-unknown-${OPSYS:tl}
 PLIST_SUB+=		RUST_TARGET=${RUST_TARGET}
 
+USE_HARDENING=		pie:off relro:off
+
 USES=		compiler gmake libedit pkgconfig python:2.7,build ssl
 
 OPTIONS_DEFINE=		DOCS GDB LLNEXTGEN PORT_LLVM SOURCES
@@ -80,8 +82,6 @@ PORT_LLVM_DESC=	Build against devel/llvm${LLVM_VER} instead of bundled version
 PORT_LLVM_BUILD_DEPENDS=	${LOCALBASE}/bin/FileCheck${LLVM_VER}:devel/llvm${LLVM_VER}
 LLVM_VER?=			40
 LLVM_CONFIG=			${LOCALBASE}/bin/llvm-config${LLVM_VER}
-
-NOPIE_PORTS=	yes
 
 # Rust manifests list all files and directories installed by rust-installer.
 # We use them in:

@@ -13,6 +13,8 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libowfat.a:${LIBOWFAT_PORT}
 
+USE_HARDENING=	pie:off relro:off
+
 SNAPSHOT=	20170319
 USES=		tar:bzip2 gmake ssl
 WRKSRC=		${WRKDIR}/${PORTNAME}
@@ -23,9 +25,6 @@ BINFILES=	ldapclient ldapclient_str md5password mysql2ldif \
 		tinyldapdelete
 DOCFILES=	ACL FORMAT GETTING.STARTED README README.security RFCs \
 		THANKS TODO
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 LIBOWFAT_PORT?=	devel/libowfat
 TINYLDAP_DATA?=	${PREFIX}/tinyldap/data

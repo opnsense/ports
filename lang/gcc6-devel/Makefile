@@ -29,8 +29,7 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+USE_HARDENING=	pie:off relro:off
 
 # DIST_VERSION relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.  A PORTVERSION of

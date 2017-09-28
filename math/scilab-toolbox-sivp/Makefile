@@ -14,6 +14,8 @@ BUILD_DEPENDS=	${SCILAB_CMD}:math/scilab
 LIB_DEPENDS=	libopencv_legacy.so:graphics/opencv
 RUN_DEPENDS=	${SCILAB_CMD}:math/scilab
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		dos2unix pkgconfig tar:xz
 DOS2UNIX_FILES=	etc/SIVP.start \
 		sci_gateway/cpp/builder_gateway_cpp.sce \
@@ -22,9 +24,6 @@ DOS2UNIX_FILES=	etc/SIVP.start \
 SCILAB_CMD=	${LOCALBASE}/bin/scilab-adv-cli
 SCILAB_ARGS=	-noatomsautoload -nb -nouserstartup
 MAKE_ENV=	SCI_JAVA_ENABLE_HEADLESS=1 SCI_DISABLE_TK=1
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CONTRIBDIR?=	share/scilab/contrib
 TOOLBOXDIR_REL?=	${CONTRIBDIR}/${PORTNAME}

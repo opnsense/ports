@@ -26,9 +26,6 @@ MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-DLINUX -DNETWORKBYTEORDER -Dgfortran
 FFLAGS+=	-fno-range-check -ffixed-line-length-132
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 PORTDOCS=	*
 PORTEXAMPLES=	*
 

@@ -11,12 +11,12 @@ COMMENT=	Upcoming replacement for tftp(1) and tftpd(8)
 
 LICENSE=	BSD4CLAUSE
 
+USE_HARDENING=	pie:off
+
 USES=		libedit
 WRKSRC=		${WRKDIR}
 NO_PACKAGE=	Installs software in /usr/libexec and /usr/bin
 PREFIX=		/usr
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	bin/tftp \
 		libexec/tftpd \

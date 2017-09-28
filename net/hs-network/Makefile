@@ -9,7 +9,7 @@ COMMENT=	Low-level networking interface
 
 LICENSE=	BSD3CLAUSE
 
-NOPIE_PORTS=	yes
+USE_HARDENING=	pie:off
 
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
 .include <bsd.port.mk>

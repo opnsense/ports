@@ -28,6 +28,8 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 
 CPE_VENDOR=	gnu
 
+USE_HARDENING=	pie:off relro:off
+
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:bzip2
@@ -47,9 +49,6 @@ MULTILIB_CONFIGURE_ENABLE=	multilib
 .else
 CONFIGURE_ARGS+=	--disable-multilib
 .endif
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.pre.mk>
 

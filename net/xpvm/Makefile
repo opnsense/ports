@@ -17,6 +17,8 @@ EXPIRATION_DATE=	2017-10-15
 
 LIB_DEPENDS=	libpvm3.so:net/pvm
 
+USE_HARDENING=	pie:off
+
 USES=		tk:84 tar:tgz
 USE_GCC=	yes
 MAKE_JOBS_UNSAFE=	yes
@@ -27,8 +29,6 @@ MAKE_ENV+=	PVM_ROOT=${PVM_ROOT} XPVM_ROOT=${WRKSRC}
 SUB_FILES=	pkg-message
 
 ALL_TARGET=	default
-
-NOPIE_PORTS=	yes
 
 pre-everything::
 	@${ECHO_MSG}

@@ -31,6 +31,8 @@ BUILD_DEPENDS=	nspr>=4.13.1:devel/nspr \
 
 LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 
+USE_HARDENING=	pie:off relro:off
+
 SSP_UNSAFE=	yes
 USE_GECKO=	gecko
 USE_MOZILLA=	-soundtouch
@@ -44,8 +46,6 @@ MOZ_EXPORT=		MOZ_THUNDERBIRD=1 MAIL_PKG_SHARED=1
 MOZ_PKGCONFIG_FILES=
 
 MOZ_OPTIONS+=	--enable-pie
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PORTNAME_ICON=	${MOZILLA}.png
 PORTNAME_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/chrome/icons/default/default48.png

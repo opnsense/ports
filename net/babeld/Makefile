@@ -11,9 +11,9 @@ COMMENT=	Distance-vector routing protocol
 
 LICENSE=	MIT
 
-MAKE_ARGS=	CDEBUGFLAGS="-O2 -g -Wall"
+USE_HARDENING=	pie:off
 
-NOPIE_PORTS=	yes
+MAKE_ARGS=	CDEBUGFLAGS="-O2 -g -Wall"
 
 PLIST_FILES=	bin/babeld \
 		man/man8/babeld.8.gz

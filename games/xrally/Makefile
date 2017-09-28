@@ -11,6 +11,8 @@ DISTNAME=	${PORTNAME}-1.1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	XRally is a Linux clone of the classic Rally X arcade game
 
+USE_HARDENING=	pie:off relro:off
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}
@@ -19,8 +21,5 @@ USES=		gmake tar:bzip2
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 MAKE_ENV=	INCLUDES="-I${LOCALBASE}/include"
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.mk>

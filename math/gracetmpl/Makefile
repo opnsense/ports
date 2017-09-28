@@ -16,6 +16,8 @@ RUN_DEPENDS=	${PYTHON_SITELIBDIR}/numarray/__init__.py:math/py-numarray
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake python tar:bzip2
 MAKE_ARGS=	PREFIX="${PREFIX}" \
 		BIN_PREFIX="${PREFIX}/bin" \
@@ -30,9 +32,6 @@ MAKE_ARGS=	PREFIX="${PREFIX}" \
 ALL_TARGET=	all pythonwrap
 INSTALL_TARGET=	install
 USE_GCC=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_SUB+=	PYTHON_VER=${PYTHON_VER}
 

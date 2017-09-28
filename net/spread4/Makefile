@@ -10,13 +10,13 @@ DISTNAME=	spread-src-${PORTVERSION}
 MAINTAINER=	portmaster@bsdforge.com
 COMMENT=	Spread Group Communication System, a network toolkit
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 USES=		gmake
 USE_RC_SUBR=	spread
 USE_LDCONFIG=	yes
 ALL_TARGET=	all
-
-NOPIE_PORTS=	yes
 
 USERS=		spread
 GROUPS=		spread

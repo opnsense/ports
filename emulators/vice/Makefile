@@ -32,6 +32,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 
 RESTRICTED=	ROMs are copyrighted by Commodore Business Machines
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		pkgconfig makeinfo gmake iconv jpeg
 USE_XORG=	xpm ice sm xext xv xt x11 xmu xxf86vm
 USE_XORG+=	xrender xinerama xi xrandr xcursor xcomposite xdamage xfixes
@@ -43,9 +45,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 CONFIGURE_ARGS+=	--enable-fullscreen --enable-ipv6 \
 			--enable-external-ffmpeg \
 			--disable-dependency-tracking
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 LMLINKS=	vice.1 x64.1 \
 		vice.1 x128.1 \

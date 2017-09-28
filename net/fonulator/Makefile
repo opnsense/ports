@@ -14,12 +14,12 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libargtable2.a:devel/argtable\
 		${LOCALBASE}/lib/libfb.a:net/libfb
 LIB_DEPENDS=	libnet.so:net/libnet
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--disable-shared
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	bin/fonulator \
 		man/man1/fonulator.1.gz

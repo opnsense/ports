@@ -13,6 +13,8 @@ COMMENT?=		Advanced fork of nss_ldap
 LICENSE=		LGPL21 LGPL3
 LICENSE_COMB=		dual
 
+USE_HARDENING=		pie:off relro:off
+
 USES=			cpe
 CPE_VENDOR=		arthurdejong
 GNU_CONFIGURE=		yes
@@ -22,9 +24,6 @@ PAM_LDAP_SHMAJOR=	1
 NSS_LDAP_SHMAJOR=	1
 PKGMESSAGE=		${WRKDIR}/pkg-message
 SUB_FILES+=		pkg-message
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 NSLCD_PIDFILE?=		/var/run/nslcd.pid
 NSLCD_SOCKET?=		/var/run/nslcd.ctl

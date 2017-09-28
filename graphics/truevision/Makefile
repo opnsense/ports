@@ -16,6 +16,8 @@ LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:R}
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig \
 		python shared-mime-info tar:bzip2
 USE_GNOME=	gnomeprefix intlhack libgnomeui
@@ -26,9 +28,6 @@ CPPFLAGS+=	$$(pkg-config --cflags gtkglext-1.0) \
 		-I${LOCALBASE}/include
 LIBS+=		$$(pkg-config --libs gtkglext-1.0) \
 		-L${LOCALBASE}/lib -lz
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|CXXFLAGS=""||g ; \

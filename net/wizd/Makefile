@@ -14,13 +14,13 @@ COMMENT=	Open-source media server for Syabas-based media players
 LIB_DEPENDS=	libdvdread.so:multimedia/libdvdread
 RUN_DEPENDS=	nkf:japanese/nkf
 
+USE_HARDENING=	pie:off
+
 DOS2UNIX_FILES=	Makefile nkfwrap/Makefile nkfwrap/nkfwrap_test.c \
 		wizd_http.c wizd_menu.c
 USE_RC_SUBR=	wizd
 USES=		dos2unix jpeg ncurses zip
 EXTRACT_AFTER_ARGS=	-d ${WRKSRC}
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|./skin|${DATADIR}/skins|' ${WRKSRC}/wizd.conf

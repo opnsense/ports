@@ -21,6 +21,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 RUN_DEPENDS=	psselect:print/psutils \
 		bash:shells/bash
 
+USE_HARDENING=	pie:off relro:off
+
 USE_XORG=	xft xmu xpm
 GNU_CONFIGURE=	yes
 USES=		ghostscript:run jpeg libtool:build pkgconfig shebangfix \
@@ -30,9 +32,6 @@ SHEBANG_FILES=	share/bin/imgmerge share/bin/xpaint_ocr
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 MAKE_ENV+=	RM="${RM}"
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${RM} ${WRKSRC}/XPaint.ad

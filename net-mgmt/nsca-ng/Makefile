@@ -14,14 +14,13 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libev.so:devel/libev
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .if !defined(PKGNAMESUFFIX)
 LIB_DEPENDS+=	libconfuse.so:devel/libconfuse
 .endif
 
 CONFLICTS?=	nsca-2.* nsca27-2.*
+
+USE_HARDENING=	pie:off relro:off
 
 USES=		ssl
 GNU_CONFIGURE=	yes

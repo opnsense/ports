@@ -13,14 +13,13 @@ COMMENT=	Environment simulates typical ARM-base embedded computer systems
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off relro:off
+
 USE_CSTD=	gnu89
 USE_BINUTILS=	yes
 USE_GCC=	any
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_func_working_mktime=yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PLIST_FILES=	bin/skyeye
 

@@ -38,13 +38,12 @@ GINSTALL=		ginstall
 WRKSRC=			${WRKDIR}/opensips-${PORTVERSION}
 DOCSDIR=		share/doc/opensips
 
+USE_HARDENING=		pie:off relro:off
+
 USE_RC_SUBR=		opensips
 
 USES=			gmake ncurses perl5 pkgconfig shebangfix ssl
 USE_GCC=		yes
-
-NOPIE_PORTS=		yes
-NORELRO_PORTS=		yes
 
 NOPRECIOUSMAKEVARS=	yes
 

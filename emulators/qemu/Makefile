@@ -16,6 +16,8 @@ LIB_DEPENDS?=	libnettle.so:security/nettle \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
+USE_HARDENING?=	pie:off relro:off
+
 HAS_CONFIGURE=	yes
 USES?=		cpe gmake pkgconfig bison perl5 python:2,build tar:bzip2
 USE_PERL5=	build
@@ -25,9 +27,6 @@ USE_XORG=	pixman
 USE_GNOME+=	cairo glib20
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64 # XXX someone wants to debug sparc64 hosts?
 .endif
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 BROKEN_powerpc64=	fails to compile: In function aio_bh_poll: internal compiler error: Segmentation fault
 

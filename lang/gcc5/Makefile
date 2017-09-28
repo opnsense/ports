@@ -23,15 +23,14 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .if defined(MAINTAINER_MODE)
 BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
 CONFLICTS=	gcc5-devel-5.*
 CPE_VENDOR=	gnu
+
+USE_HARDENING=	pie:off relro:off
 
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).*/\1/}

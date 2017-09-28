@@ -12,6 +12,8 @@ COMMENT=	MFC/R2 call setup library
 
 BUILD_DEPENDS=	${LOCALBASE}/include/dahdi/user.h:misc/dahdi
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	moises-silva
 GH_TAGNAME=	d6a5716
@@ -21,9 +23,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 INSTALL_TARGET=	install-strip
 USES=		libtool
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/r2proto.conf \

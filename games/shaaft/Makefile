@@ -18,6 +18,8 @@ CONFLICTS=	criticalmass-*
 BROKEN_aarch64=		fails to compile: error: conflicting declaration typedef int GLintptrARB
 BROKEN_sparc64=		does not compile
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		tar:bzip2
 USE_SDL=	mixer image sdl
 USE_GL=		yes
@@ -28,9 +30,6 @@ CONFIGURE_ARGS=	--disable-optimize
 
 CPPFLAGS+=	$$(libpng-config --I_opts)
 LDFLAGS+=	$$(libpng-config --L_opts)
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 DATADIR=	${PREFIX}/share/Shaaft
 

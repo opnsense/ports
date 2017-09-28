@@ -8,6 +8,8 @@ PKGNAMESUFFIX=	-extensions
 MAINTAINER=	tz@FreeBSD.org
 COMMENT=	"meta-port" to install PHP extensions
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		metaport php
 PHP_VER=	71
 IGNORE_WITH_PHP=	56 70
@@ -106,9 +108,6 @@ OPTIONS_DEFAULT=	CTYPE \
 			XML \
 			XMLREADER \
 			XMLWRITER
-
-NOPIE_PORTS=		yes
-NORELRO_PORTS=		yes
 
 .include <bsd.port.options.mk>
 

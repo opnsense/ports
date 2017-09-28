@@ -15,12 +15,11 @@ LICENSE=	GPLv2
 CONFLICTS=	e-uae-[0-9]*
 MAKE_JOBS_UNSAFE=yes
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake pkgconfig tar:bzip2
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS
 

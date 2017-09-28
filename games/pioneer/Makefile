@@ -38,6 +38,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpng.so:graphics/png \
 		libassimp.so:multimedia/assimp
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	pioneerspacesim
 GH_TAGNAME=	20170304
@@ -45,9 +47,6 @@ GH_TAGNAME=	20170304
 USES=		autoreconf compiler:c++11-lib gmake pkgconfig
 USE_GL=		gl
 USE_SDL=	image2 sdl2
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	PIONEER_DATA_DIR="${DATADIR}/data"

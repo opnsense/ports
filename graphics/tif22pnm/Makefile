@@ -15,6 +15,8 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		pkgconfig
 
 GNU_CONFIGURE=	yes
@@ -25,9 +27,6 @@ PLIST_FILES=	bin/png22pnm bin/tif22pnm
 
 TIF22PNM_SRCS=	ptspnm.c minigimp.c miniglib.c ptstiff3.c tif22pnm.c
 PNG2PNM_SRCS=	png22pnm.c
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 do-build:
 	cd ${WRKSRC} \

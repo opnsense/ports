@@ -13,7 +13,4 @@ COMMENT=	Double-Double and Quad-Double Arithmetic
 GNU_CONFIGURE=	yes
 USES=		fortran
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 .include <bsd.port.mk>

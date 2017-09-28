@@ -36,6 +36,8 @@ GROUPS=		haclient
 USE_GITHUB=	yes
 GH_ACCOUNT=	ClusterLabs
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		autoreconf gmake libtool pathfix pkgconfig python shebangfix
 USE_GNOME=	glib20
 USE_LDCONFIG=	yes
@@ -46,9 +48,6 @@ CONFIGURE_ARGS=	--disable-fatal-warnings \
 		--with-corosync \
 		--without-heartbeat
 INSTALL_TARGET=	install-strip
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PATHFIX_MAKEFILEIN=	Makefile.am
 

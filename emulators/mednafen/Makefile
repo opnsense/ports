@@ -20,6 +20,8 @@ LIB_DEPENDS=	libcdio.so:sysutils/libcdio \
 BROKEN_powerpc64=	fails to compile: mednafen.cpp: 'to_string' is not a member of 'std'
 BROKEN_sparc64=		fails to compile due to internal compiler error
 
+USE_HARDENING=	pie:off relro:off
+
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl net
 USE_GL=		gl glu
@@ -27,9 +29,6 @@ CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 WRKSRC=	${WRKDIR}/${PORTNAME}
 SUB_FILES=	pkg-message
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CONFIGURE_ARGS+=--disable-alsa --disable-alsatest \
 		--with-sdl-prefix=${LOCALBASE}

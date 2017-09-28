@@ -17,6 +17,8 @@ LIB_DEPENDS=		libnspr4.so:devel/nspr
 
 CONFLICTS=		njs-[0-9]*
 
+USE_HARDENING=		pie:off relro:off
+
 GNU_CONFIGURE=		yes
 USES=			compiler:c++11-lib gmake pathfix perl5 python:2,build \
 			readline tar:bzip2
@@ -53,9 +55,6 @@ TRACEJIT_DESC=		Enable tracing JIT support
 TRACEJIT_CONFIGURE_ENABLE=	tracejit
 UTF8_DESC=		Treat strings as UTF8 instead of ISO-8859-1
 UTF8_CFLAGS=		-DJS_C_STRINGS_ARE_UTF8
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.pre.mk>
 

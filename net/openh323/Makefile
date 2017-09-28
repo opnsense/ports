@@ -21,6 +21,8 @@ CONFLICTS=	h323plus-1.*
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_v${PORTVERSION:S/./_/g}
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		bison gmake
 USE_GCC=	yes
 USE_AUTOTOOLS=	autoconf
@@ -44,9 +46,6 @@ FFMPEG_CONFIGURE_ON=	--enable-rfc2190avcodec=${LOCALBASE}/include/ffmpeg
 SPEEX_LIB_DEPENDS=	libspeex.so:audio/speex
 SPEEX_CONFIGURE_ON=	--enable-localspeex=no
 SPEEX_CONFIGURE_OFF=	--enable-localspeex=yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.pre.mk>
 

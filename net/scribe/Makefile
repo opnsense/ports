@@ -22,6 +22,8 @@ RUN_DEPENDS=	p5-Class-Accessor>0:devel/p5-Class-Accessor \
 
 BROKEN_powerpc64=	Does not build
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	facebookarchive
 GH_TAGNAME=	7359a09
@@ -32,9 +34,6 @@ CONFIGURE_ARGS=	--with-boost-filesystem=boost_filesystem \
 		--with-boost-system=boost_system \
 		PY_PREFIX="${PREFIX}"
 USE_RC_SUBR=	${PORTNAME}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/^AM_INIT_AUTOMAKE/#/' ${WRKSRC}/configure.ac

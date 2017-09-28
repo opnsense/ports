@@ -13,6 +13,8 @@ LIB_DEPENDS=	libgnutls.so:security/gnutls \
 		libnettle.so:security/nettle
 RUN_DEPENDS=	qemu-system-i386:emulators/qemu
 
+USE_HARDENING=	pie:off relro:off
+
 LICENSE=	GPLv2
 
 USE_GITHUB=	yes
@@ -25,9 +27,6 @@ USE_XORG=	pixman
 USE_GNOME+=	glib20
 #MAKE_ENV+=	BSD_MAKE="${MAKE}"
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CONFLICTS_INSTALL=	qemu-[0-9]* qemu-devel-[0-9]* qemu-sbruno-[0-9]*
 

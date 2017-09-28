@@ -16,6 +16,8 @@ LICENSE_COMB=	multi
 BUILD_DEPENDS=	yasm:devel/yasm \
 		${LOCALBASE}/bin/as:devel/binutils
 
+USE_HARDENING=	relro:off
+
 HAS_CONFIGURE=	yes
 USES=		compiler:c11 cpe gmake localbase:ldflags perl5 \
 		pkgconfig shebangfix tar:xz
@@ -23,8 +25,6 @@ USE_LDCONFIG=	yes
 USE_PERL5=	build
 SHEBANG_FILES=	doc/texi2pod.pl
 NOPRECIOUSMAKEVARS=	yes # ARCH
-
-NORELRO_PORTS=	yes
 
 PORTSCOUT=	limit:^3\.
 

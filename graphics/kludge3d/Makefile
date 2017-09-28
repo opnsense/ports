@@ -13,6 +13,8 @@ COMMENT=	Simple 3D editor
 LIB_DEPENDS=	lib3ds.so:graphics/lib3ds \
 		libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake pkgconfig python
 USE_GL=		gl
 USE_GNOME=	gtk20
@@ -23,9 +25,6 @@ PLIST_FILES=	bin/kludge3d
 
 CPPFLAGS+=	-I${LOCALBASE}/include -I${PYTHON_INCLUDEDIR}
 LDFLAGS+=	-L${LOCALBASE}/lib -L${PYTHON_LIBDIR}/config -lpthread -lm
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${FIND} ${WRKSRC} -name "Makefile.in" | ${XARGS} ${REINPLACE_CMD} -e \

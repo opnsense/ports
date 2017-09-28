@@ -18,15 +18,14 @@ LIB_DEPENDS=	libevent.so:devel/libevent \
 		libdnet.so:net/libdnet \
 		libpcre.so:devel/pcre
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		libedit libtool shebangfix
 SHEBANG_FILES=	scripts/*.pl scripts/snmp/*.pl
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libdnet=${LOCALBASE} \
 		--with-libevent=${LOCALBASE}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 EXTRA_PATCHES=	${FILESDIR}/honeyd-1.5c-libevent2.patch:-p1
 

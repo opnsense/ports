@@ -28,15 +28,14 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 
 CPE_VENDOR=	gnu
 
+USE_HARDENING=	pie:off relro:off
+
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:bzip2
 USE_BINUTILS=	yes
 USE_PERL5=	build
 SSP_UNSAFE=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=		BOOTSTRAP
 OPTIONS_DEFAULT=	BOOTSTRAP

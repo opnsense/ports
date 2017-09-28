@@ -28,6 +28,8 @@ BUILD_DEPENDS=	7z:archivers/p7zip
 ONLY_FOR_ARCHS=		amd64
 ONLY_FOR_ARCHS_REASON=	relies on x86 floating-point math and amd64 atomic ops
 
+USE_HARDENING=	pie:off relro:off
+
 USE_SDL=	sdl2
 USE_GL=		gl glu glew
 USE_XORG=	x11 xcursor
@@ -43,9 +45,6 @@ CMAKE_ARGS=	-DDATADIR:STRING="share/${PORTNAME}" \
 		-DUSE_TCMALLOC:BOOL=false \
 		-DUSE_LIBSQUISH:BOOL=false \
 		-DUNITSYNC_PYTHON_WRAPPER:BOOL=false
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}
 

@@ -12,13 +12,12 @@ COMMENT=	Extensible Chinese checkers game using SDL
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		libtool:keepla # ltdl used, .la may be needed to load plugins
 USE_SDL=	image mixer sdl
 GNU_CONFIGURE=	yes
 MAKE_ENV=	INSTALL_STRIP_FLAG=${STRIP}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PORTDOCS=	*
 OPTIONS_DEFINE=	DOCS

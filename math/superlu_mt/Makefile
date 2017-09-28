@@ -23,9 +23,6 @@ BROKEN_sparc64=		Does not link on sparc64
 
 USES=		fortran gmake
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.pre.mk>

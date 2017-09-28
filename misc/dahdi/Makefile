@@ -16,6 +16,8 @@ LIB_DEPENDS=	libnewt.so:devel/newt
 DAHDI_VERSION=		2.4.0-rc5
 DAHDI_TOOLS_VERSION=	2.4.0-rc1
 
+USE_HARDENING=	pie:off relro:off
+
 GNU_CONFIGURE=	yes
 USES=		gmake
 CONFIGURE_ARGS=	--with-dahdi=../freebsd --sysconfdir=${PREFIX}/etc --with-newt=${LOCALBASE}
@@ -24,9 +26,6 @@ WRKSRC=		${WRKDIR}/${DISTNAME}/tools
 PATCH_WRKSRC=	${WRKDIR}/${DISTNAME}
 USE_LDCONFIG=	yes
 MAKE_ENV=	HOST_CC=${CC}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CONFLICTS=	zaptel-[0-9]*
 

@@ -19,15 +19,14 @@ GH_ACCOUNT=	pts
 RUN_DEPENDS=	zip:archivers/zip \
 		tif22pnm:graphics/tif22pnm
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		ghostscript:run gmake jpeg:run perl5
 USE_PERL5=	build
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_pts_bash="${SH}"
 CONFIGURE_ARGS=	--enable-gif
 ALL_TARGET=	${PORTNAME}
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 PORTDOCS=	*
 PORTEXAMPLES=	*

@@ -10,13 +10,12 @@ MASTER_SITES=	http://www.enderunix.org/netustad/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Web based admin tool that manages network services
 
+USE_HARDENING=	pie:off relro:off
+
 USE_RC_SUBR=	${PORTNAME}
 USES=		gettext
 GNU_CONFIGURE=	yes
 SUB_FILES=	pkg-message
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	SSL NLS DOCS
 OPTIONS_DEFAULT=SSL

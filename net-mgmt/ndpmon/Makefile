@@ -13,6 +13,8 @@ COMMENT=	On-link icmpv6 message monitoring and reporting daemon
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		perl5 shebangfix ssl tar:tgz
 SHEBANG_FILES=	demopipeprogram.pl.sample
 USE_PERL5=	run
@@ -27,9 +29,6 @@ CONFIGURE_ARGS=	--with-var-datadir=${PREFIX}/var --with-confdir=${ETCDIR} \
 PORTDOCS=	INSTALL README
 CUSTOMMSG=	${WRKDIR}/custom-message
 PKGMESSAGE=	${CUSTOMMSG}
-
-NOPIE_PORTS=		yes
-NORELRO_PORTS=		yes
 
 OPTIONS_DEFINE=		DOCS MACRESOLV
 OPTIONS_DEFAULT=

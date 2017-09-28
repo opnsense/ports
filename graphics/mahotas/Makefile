@@ -14,11 +14,10 @@ COMMENT=	Computer vision and image processing library for Python
 BUILD_DEPENDS=	${PYNUMPY}
 LIB_DEPENDS=	libfreeimage.so:graphics/freeimage
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GCC=	yes
 USES=		python
 USE_PYTHON=	distutils autoplist
-
-NORELRO_PORTS=	yes
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

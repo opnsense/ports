@@ -18,6 +18,8 @@ BROKEN_powerpc64=	fails to compile: cppinput.c: detected recursion whilst expand
 
 WRKSRC=		${WRKDIR}/${DISTNAME}
 
+USE_HARDENING=	pie:off relro:off
+
 HUGS_DATE=	Sep2006
 USES=		bison gmake openal:al,alut
 USE_CSTD=	gnu89
@@ -25,9 +27,6 @@ USE_GCC=	yes
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS+=	--with-pthreads
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 USE_GL=		glut
 USE_XORG=	sm ice xmu xi x11

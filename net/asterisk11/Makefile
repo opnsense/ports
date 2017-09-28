@@ -24,6 +24,8 @@ EXTRACT_ONLY:=	${DISTNAME}${EXTRACT_SUFX}
 BROKEN_armv6=		fails to configure: the SPANDSP installation appears to be missing or broken
 ONLY_FOR_ARCHS=		amd64 armv6 i386 powerpc sparc64
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		bison cpe gmake iconv localbase ncurses shebangfix \
 		sqlite ssl
 USE_CSTD=	gnu89
@@ -36,9 +38,6 @@ CONFIGURE_ARGS+=	--with-ilbc=internal \
 			--with-crypto=${OPENSSLBASE} \
 			--with-ssl=${OPENSSLBASE} \
 			--with-libedit=internal
-
-NORELRO_PORTS=	yes
-NOPIE_PORTS=	yes
 
 CPE_VENDOR=	digium
 

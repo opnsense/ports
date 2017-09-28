@@ -18,8 +18,7 @@ LIB_DEPENDS=	libdbi.so:databases/libdbi \
 		libosmonetif.so:devel/libosmo-netif \
 		libdbi.so:databases/libdbi
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
+USE_HARDENING=	pie:off relro:off
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/${PORTNAME}
 

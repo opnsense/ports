@@ -23,6 +23,8 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
+USE_HARDENING=	pie:off relro:off
+
 CONFIGURE_ARGS=	--with-board3d --with-sqlite --with-python=${PYTHON_CMD}
 CONFIGURE_ENV=	ac_cv_path_ARTSC_CONFIG=no ac_cv_path_LIBART_CONFIG=no
 CPPFLAGS+=	-I${LOCALBASE}/include
@@ -34,9 +36,6 @@ USES=		gmake libtool pathfix shebangfix python pkgconfig compiler:c++11-lang rea
 USE_GNOME=	glib20 gtk20 cairo pangox-compat
 USE_XORG+=	xmu xt sm ice x11
 USE_GL+=	glu gl
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 OPTIONS_DEFINE=	NLS DOCS
 OPTIONS_SUB=	yes

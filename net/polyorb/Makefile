@@ -15,14 +15,13 @@ LICENSE=	GPLv3
 
 BUILD_DEPENDS=	xmlada>=3.2:textproc/xmlada
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		ada gmake python:build shebangfix
 GNU_CONFIGURE=	yes
 NO_MTREE=	yes
 YEAR=		2014
 WRKSRC=		${WRKDIR}/polyorb-${YEAR}-src
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 ALL_TARGET=	default
 MAKE_ENV=	PROCESSORS=${MAKE_JOBS_NUMBER}

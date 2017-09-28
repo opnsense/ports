@@ -16,6 +16,8 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libpng16.so:graphics/png
 BUILD_DEPENDS=	makedepend:devel/makedepend
 
+USE_HARDENING=	pie:off relro:off
+
 GNU_CONFIGURE=	yes
 USES=		autoreconf gettext-runtime gmake jpeg localbase:ldflags pkgconfig
 USE_GITHUB=	yes
@@ -28,8 +30,5 @@ PLIST_FILES=	bin/driftnet man/man1/driftnet.1.gz
 PORTDOCS=	*
 
 INSTALL_TARGET=	install-strip
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.mk>

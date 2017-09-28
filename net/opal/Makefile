@@ -14,12 +14,11 @@ LICENSE=	MPL
 
 LIB_DEPENDS=	libpt.so:devel/ptlib
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		gmake pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 CXXFLAGS+=	-I${LOCALBASE}/include
 CPPFLAGS+=	-I${LOCALBASE}/include

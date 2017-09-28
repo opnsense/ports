@@ -13,6 +13,8 @@ COMMENT=	FLUTE - File Delivery over Unidirectional Transport implementation
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libcurl.so:ftp/curl
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		dos2unix gmake ssl
 MAKE_ENV=	LFLAGS="${LDFLAGS}"
 MAKE_JOBS_UNSAFE= yes
@@ -26,9 +28,6 @@ PORTEXAMPLES=	fdt-example.xml flute-sdp-example.sdp
 PLIST_FILES=	bin/flute bin/multis_flute
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-patch:
 	@${FIND} ${WRKSRC} -name Makefile | ${XARGS} \

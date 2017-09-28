@@ -13,10 +13,10 @@ COMMENT=	L4 health check daemon for IPFILTER
 
 LICENSE=	NONE
 
+USE_HARDENING=	pie:off
+
 USES=		gmake ssl tar:tgz
 WRKSRC=		${WRKDIR}/${PORTNAME}/src
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	EXAMPLES
 

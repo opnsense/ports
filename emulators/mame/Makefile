@@ -17,6 +17,8 @@ RUN_DEPENDS=	liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
 ONLY_FOR_ARCHS=		i386 amd64
 ONLY_FOR_ARCHS_REASON=	not yet ported to any arch other than x86
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	mamedev
 GH_PROJECT=	mame 				# explicit (master port)
@@ -44,9 +46,6 @@ MAKEFILE=	makefile
 GENIE=		${WRKSRC}/3rdparty/genie
 PORTDOCS=	*
 PORTEXAMPLES=	${MSUBTARGET}.ini
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 SUB_FILES=	pkg-message target.ini
 SUB_LIST=	MTARGET=${MTARGET} MSUBTARGET=${MSUBTARGET}

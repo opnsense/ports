@@ -13,6 +13,8 @@ LICENSE=	APACHE20
 
 BROKEN_powerpc64=	fails to compile: bfd.c: internal compiler error: in extract_insn, at recog.c
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		cpe gmake libtool perl5 pkgconfig python shebangfix ssl
 SHEBANG_FILES=	vtep/ovs-vtep
 USE_LDCONFIG=   yes
@@ -22,9 +24,6 @@ CONFIGURE_ARGS=	--enable-shared --localstatedir=/var \
 		--with-openssl=${OPENSSLBASE}
 USE_RC_SUBR=	ovs-vswitchd ovsdb-server
 LDFLAGS+=	-lpthread
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/vswitchd/vswitch.ovsschema ${STAGEDIR}${PREFIX}/share/openvswitch/

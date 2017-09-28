@@ -9,11 +9,11 @@ MASTER_SITES=	http://www.nerdlabs.org/downloads/${PORTNAME}/
 MAINTAINER=	jadawin@FreeBSD.org
 COMMENT=	UDP-based ping program
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
 
 PORTDOCS=	README
 PLIST_FILES=	bin/uplog

@@ -13,6 +13,8 @@ COMMENT=	Plan9 cpu client
 # Additionally the Lucent Public License
 LICENSE=	MIT
 
+USE_HARDENING=	pie:off
+
 USES=	tar:tgz
 USE_XORG=	x11 xt
 
@@ -23,8 +25,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 MAKE_ARGS=	CONF=pthread
 
 OPTIONS_DEFINE=	DOCS
-
-NOPIE_PORTS=	yes
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/drawterm ${STAGEDIR}${PREFIX}/bin

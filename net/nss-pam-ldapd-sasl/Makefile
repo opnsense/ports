@@ -11,9 +11,6 @@ LICENSE=	# pet portlint
 
 OPTIONS_SLAVE+=	SASL
 
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
-
 SLAVE_PORT=	sasl # In case we come up with more
 MASTERDIR=	${.CURDIR}/../nss-pam-ldapd
 

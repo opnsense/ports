@@ -27,6 +27,8 @@ RUN_DEPENDS=	gm:graphics/GraphicsMagick \
 
 BROKEN=		fails to compile: weakref.h: macro "static_assert" passed 3 arguments, but takes just 2
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		desktop-file-utils gettext pkgconfig scons shared-mime-info \
 		tar:bzip2
 USE_CXXSTD=	gnu++98
@@ -39,9 +41,6 @@ MAKE_ARGS=	DVDREAD_INCLUDE=${LOCALBASE}/include \
 		DVDREAD_LIBPATH=${LOCALBASE}/lib \
 		CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" \
 		CC="${CC}" CXX="${CXX}" USE_EXT_BOOST=true
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 .include <bsd.port.options.mk>
 

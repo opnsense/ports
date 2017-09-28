@@ -19,6 +19,8 @@ LIB_DEPENDS=		libcurl.so:ftp/curl \
 BUILD_DEPENDS=		texi2any:print/texinfo
 RUN_DEPENDS=		gmake:devel/gmake
 
+USE_HARDENING=		pie:off relro:off
+
 CONFIGURE_ARGS=		--disable-java \
 			--with-readline \
 			rdocdir=${DOCSDIR}
@@ -28,9 +30,6 @@ USES=			gmake iconv libtool localbase \
 			pathfix perl5 readline:port
 USE_PERL5=		build
 USE_LDCONFIG=		${PREFIX}/lib/R/lib
-
-NOPIE_PORTS=		yes
-NORELRO_PORTS=		yes
 
 OPTIONS_DEFINE=		ICU INFO LDOUBLE LETTER LIBR MEMPROF NLS RPROF X11
 OPTIONS_GROUP=		NEEDGCC NEEDX11
