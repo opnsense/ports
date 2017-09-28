@@ -24,15 +24,14 @@ ONLY_FOR_ARCHS=		amd64 armv6 i386 powerpc sparc64
 
 EXTRACT_ONLY:=	${DISTNAME}${EXTRACT_SUFX}
 
+USE_HARDENING=	pie:off relro:off
+
 USES=		bison cpe gmake iconv libedit localbase \
 		shebangfix sqlite ssl ncurses
 USE_CSTD=	gnu89
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	asterisk
-
-NOPIE_PORTS=	yes
-NORELRO_PORTS=	yes
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=	--datarootdir=${DATADIR} \
