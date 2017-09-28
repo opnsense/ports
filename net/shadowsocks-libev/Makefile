@@ -11,6 +11,8 @@ COMMENT=	Lightweight tunnel proxy which can help you get through firewalls
 
 LICENSE=	GPLv3
 
+USE_HARDENING=	pie:off
+
 # fetch from github repo
 USE_GITHUB=	yes
 GH_ACCOUNT=	shadowsocks
@@ -22,8 +24,6 @@ CONFIGURE_ARGS+=	--with-openssl=${OPENSSLBASE}
 
 # Help solve building error since the integrated libsodium enables this option.
 CFLAGS+=	-fstack-protector
-
-NOPIE_PORTS=	yes
 
 USE_RC_SUBR=	shadowsocks_libev
 
