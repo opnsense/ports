@@ -575,6 +575,7 @@
     SUBDIR += logwatch
     SUBDIR += lookat
     SUBDIR += lr
+    SUBDIR += lscpu
     SUBDIR += lsof
     SUBDIR += lsop
     SUBDIR += ltrace
@@ -1355,6 +1356,7 @@
     SUBDIR += znapzend
     SUBDIR += zogftw
     SUBDIR += zrep
+    SUBDIR += zrepl
     SUBDIR += zsd
     SUBDIR += zxfer
 

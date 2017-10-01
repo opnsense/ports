@@ -1841,8 +1841,6 @@
     SUBDIR += py-treq
     SUBDIR += py-turbogears2
     SUBDIR += py-tvdb_api
-    SUBDIR += py-twistedWeb
-    SUBDIR += py-twistedWeb2
     SUBDIR += py-txrequests
     SUBDIR += py-uliweb
     SUBDIR += py-urlgrabber
@@ -1956,7 +1954,6 @@
     SUBDIR += rubygem-dashing
     SUBDIR += rubygem-davclient
     SUBDIR += rubygem-deckar01-task_list
-    SUBDIR += rubygem-deckar01-task_list1
     SUBDIR += rubygem-domainatrix
     SUBDIR += rubygem-dropzonejs-rails
     SUBDIR += rubygem-dropzonejs-rails07
@@ -2109,6 +2106,7 @@
     SUBDIR += rubygem-raindrops
     SUBDIR += rubygem-ramaze
     SUBDIR += rubygem-raphael-rails
+    SUBDIR += rubygem-rbovirt
     SUBDIR += rubygem-rdf
     SUBDIR += rubygem-rdf-normalize
     SUBDIR += rubygem-redcloth

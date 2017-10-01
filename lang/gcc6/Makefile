@@ -3,7 +3,7 @@
 
 PORTNAME=	gcc
 PORTVERSION=	6.4.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	lang java
 MASTER_SITES=	GCC/releases/gcc-${DISTVERSION}
 PKGNAMESUFFIX=	${SUFFIX}
@@ -29,6 +29,8 @@ USE_HARDENING=	pie:off relro:off
 BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
+CONFLICTS=	gcc6-devel-6.*
+
 CPE_VENDOR=	gnu
 
 GCC_VERSION=	${PORTVERSION}
@@ -50,7 +52,7 @@ OPTIONS_EXCLUDE_DragonFly=	JAVA
 BOOTSTRAP_DESC=		Build using a full bootstrap
 GRAPHITE_DESC=		Support for Graphite loop optimizations
 
-JAVA_USES=		python shebangfix
+JAVA_USES=	python:build shebangfix
 SHEBANG_FILES=	libjava/contrib/aot-compile.in
 
 .if exists(/usr/lib32/libc.so)

@@ -11,6 +11,8 @@ DISTNAME=	aMule-${PORTVERSION}
 MAINTAINER=	bar@FreeBSD.org
 COMMENT=	All-platform eMule p2p client
 
+USE_HARDENING=	safestack
+
 LICENSE=	GPLv2 GPLv3
 LICENSE_COMB=	dual
 
