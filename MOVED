@@ -7822,7 +7822,6 @@ net/linc||2015-09-27|Has expired: Last release in 2003, not used by anything any
 net/linc-reference||2015-09-27|Has expired: Last release in 2003, not used by anything anymore
 x11/xlogout||2015-09-27|Has expired: Useless cruft from 1989
 net/rubygem-amq-client||2015-10-01|Has expired: Deprecated by Upstream. It is part of net/rubygem-amqp codebase now
-emulators/ppsspp-devel|emulators/ppsspp|2015-10-06|Out of date: use emulators/ppsspp for now
 ports-mgmt/bpm||2015-10-10|No support for pkg
 www/moodle27||2015-10-11|Has expired: Please upgrade to moodle28 or moodle29
 graphics/epeg|devel/efl|2015-10-11|Has expired: Merged into devel/efl
@@ -9526,7 +9525,7 @@ x11-toolkits/kirigami||2017-08-28|Not needed by anything
 x11-toolkits/kirigami2|x11-toolkits/kf5-kirigami2|2017-08-28|Became an official framework
 www/speedtest-mini||2017-09-03|Has expired: Discontinued upstream (on June 30, 2017)
 devel/rubygem-sequel3|devel/rubygem-sequel|2017-09-03|Has expired: Use devel/rubygem-sequel instead
-audio/tomahawk||2017-09-03|Has expired: Project is dead upstream.
+audio/tomahawk||2017-09-03|Has expired: Project is dead upstream
 mail/rubygem-larch||2017-09-03|Has expired: Unmaintained by upstream, no changes since 2013
 devel/rubygem-sidekiq4|devel/rubygem-sidekiq|2017-09-03|Has expired: Use devel/rubygem-sidekiq instead
 devel/rubygem-webpacker1-rails5|devel/rubygem-webpacker-rails5|2017-09-03|Has expired: Use devel/rubygem-webpacker-rails5 instead
@@ -9549,3 +9548,21 @@ security/gnupg22|security/gnupg|2017-09-19|Removed, security/gnupg is now gnupg2
 mail/milter-greylist-devel|mail/milter-greylist|2017-09-22|Has expired: mail/milter-greylist provides same version and options
 devel/libexecinfo||2017-09-22|Is present in the base system of all supported releases
 games/ember||2017-09-23|Removed, it is BROKEN and no longer developed since 2014
+ports-mgmt/packagekit-qt4||2017-09-28|Has expired: Ignored for more than 5 years
+ports-mgmt/kpackagekit||2017-09-28|Has expired: Skipped for more than 5 years
+dns/rubygem-public_suffix2|dns/rubygem-public_suffix|2017-09-30|Has expired: Use dns/rubygem-public_suffix instead
+www/rubygem-deckar01-task_list1|www/rubygem-deckar01-task_list|2017-09-30|Has expired: Use www/rubygem-deckar01-task_list instead
+devel/py-twisted152|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+devel/py-twistedCore|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+devel/py-twistedFlow|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+devel/py-twistedRunner|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+dns/py-twistedNames|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+mail/py-twistedMail|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+net/py-twistedPair|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+net-im/py-twistedWords|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+news/py-twistedNews|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+security/py-twistedConch|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+textproc/py-twistedLore|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+www/py-twistedWeb|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+www/py-twistedWeb2|devel/py-twisted|2017-09-30|Has expired: Use devel/py-twisted instead
+devel/libclaw||2017-09-30|Has expired: useless for anything apart from removed games/plee-the-bear
