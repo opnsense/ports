@@ -11,6 +11,8 @@ PKGNAMEPREFIX=	g
 MAINTAINER=	johans@FreeBSD.org
 COMMENT=	The GNU stream editor
 
+USE_HARDENING=	safestack
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	MAKEINFO="${MAKEINFO} --no-split"
 

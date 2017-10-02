@@ -13,6 +13,8 @@ DISTNAME=	psutils-p17
 MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	Utilities for manipulating PostScript documents
 
+USE_HARDENING=	safestack
+
 LIB_DEPENDS=	libpaper.so:print/libpaper
 
 USES=		perl5

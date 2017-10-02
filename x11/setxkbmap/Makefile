@@ -7,6 +7,8 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Set the keyboard using the X Keyboard Extension
 
+USE_HARDENING=	safestack
+
 XORG_CAT=	app
 USE_XORG=	xkbfile x11
 

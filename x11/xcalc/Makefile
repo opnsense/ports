@@ -1,4 +1,4 @@
-# $FreeBSD$
+k# $FreeBSD2
 
 PORTNAME=	xcalc
 PORTVERSION=	1.0.6
@@ -7,6 +7,8 @@ CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Scientific calculator for X
+
+USE_HARDENING=	safestack
 
 RUN_DEPENDS=	font-misc-misc>=1.1.2:x11-fonts/font-misc-misc \
 		font-adobe-100dpi>=1.0.3:x11-fonts/font-adobe-100dpi \

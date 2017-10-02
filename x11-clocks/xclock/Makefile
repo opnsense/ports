@@ -8,6 +8,8 @@ CATEGORIES=	x11-clocks
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Analog and digital clock for X
 
+USE_HARDENING=	safestack
+
 XORG_CAT=	app
 USE_XORG=	xrender xft xkbfile xt xaw
 USES=		iconv

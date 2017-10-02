@@ -9,6 +9,8 @@ DISTNAME=	${PORTNAME}-2.4.fa8646da
 MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	RTMP streams download utility
 
+USE_HARDENING=	safestack
+
 LICENSE=	GPLv2
 
 LIB_DEPENDS=	librtmp.so:multimedia/librtmp
