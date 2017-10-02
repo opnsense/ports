@@ -1221,6 +1221,38 @@ LLD_IS_LD=	no
 .endif
 _EXPORTED_VARS+=	LLD_IS_LD
 
+_TEST_AR=/usr/bin/ar
+.if ${_TEST_AR:tA} == "/usr/bin/llvm-ar"
+LLVM_AR_IS_AR=	yes
+.else
+LLVM_AR_IS_AR=	no
+.endif
+_EXPORTED_VARS+=	LLVM_AR_IS_AR
+
+_TEST_NM=/usr/bin/nm
+.if ${_TEST_NM:tA} == "/usr/bin/llvm-nm"
+LLVM_NM_IS_NM=	yes
+.else
+LLVM_NM_IS_NM=	no
+.endif
+_EXPORTED_VARS+=	LLVM_NM_IS_NM
+
+_TEST_RANLIB=/usr/bin/ranlib
+.if ${_TEST_RANLIB:tA} == "/usr/bin/llvm-ar"
+LLVM_RANLIB_IS_RANLIB=	yes
+.else
+LLVM_RANLIB_IS_RANLIB=	no
+.endif
+_EXPORTED_VARS+=	LLVM_RANLIB_IS_RANLIB
+
+_TEST_OBJDUMP=/usr/bin/objdump
+.if ${_TEST_OBJDUMP:tA} == "/usr/bin/llvm-objdump"
+LLVM_OBJDUMP_IS_OBJDUMP=	yes
+.else
+LLVM_OBJDUMP_IS_OBJDUMP=	no
+.endif
+_EXPORTED_VARS+=	LLVM_OBJDUMP_IS_OBJDUMP
+
 .if !defined(_PKG_CHECKED) && !defined(PACKAGE_BUILDING) && exists(${PKG_BIN})
 .if !defined(_PKG_VERSION)
 _PKG_VERSION!=	${PKG_BIN} -v
