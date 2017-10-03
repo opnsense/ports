@@ -154,9 +154,7 @@ OPTIONS_GROUP_HARDENING+=PIE
 .endif
 
 .if ${USE_HARDENING:Mpie} && ${pie_ARGS:Moff} == ""
-.if !defined(NOPIE_PORTS) # XXX
 OPTIONS_DEFAULT+=	PIE
-.endif
 .if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=PIE
 .endif
