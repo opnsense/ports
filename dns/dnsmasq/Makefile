@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 
 CONFLICTS_INSTALL=dnsmasq-devel-*
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
 
 PORTDOCS=	CHANGELOG CHANGELOG.archive FAQ doc.html setup.html
 
