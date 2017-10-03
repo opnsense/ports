@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
+USE_HARDENING=	pie:off
+
 USES=		gmake
 USE_GL=		gl
 USE_SDL=	sdl sound
@@ -24,8 +26,6 @@ CONFIGURE_ARGS=	--disable-warn
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	SDL_NET DOCS
 SDL_NET_DESC=	Network Support

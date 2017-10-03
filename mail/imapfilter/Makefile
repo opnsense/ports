@@ -14,11 +14,11 @@ LICENSE=	MIT
 
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
+USE_HARDENING=	pie:off
+
 USES=		lua ssl
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LUA_INCDIR}
 LDFLAGS+=	-L${LOCALBASE}/lib -L${LUA_LIBDIR}
-
-NOPIE_PORTS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	lefcha

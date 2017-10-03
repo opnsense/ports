@@ -7,6 +7,6 @@ MASTERDIR=	${.CURDIR}/../../lang/php70
 
 PKGNAMESUFFIX=	-gd
 
-NOPIE_PORTS=	yes
+USE_HARDENING=	pie:off
 
 .include "${MASTERDIR}/Makefile"

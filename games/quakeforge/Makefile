@@ -18,6 +18,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
+USE_HARDENING=	pie:off
+
 USES=		bison compiler:c11 gmake libtool localbase python:run shebangfix tar:bzip2
 SHEBANG_FILES=	tools/qfcc/source/qfpreqcc
 GNU_CONFIGURE=	yes
@@ -34,8 +36,6 @@ CONFIGURE_ARGS=	--disable-alsa \
 USE_CSTD=	gnu89
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
 
 SUB_FILES=	pkg-message
 

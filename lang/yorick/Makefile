@@ -13,6 +13,8 @@ COMMENT=	Interpreted language for scientific simulations
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+USE_HARDENING=	pie:off
+
 USES=		makeinfo
 USE_XORG=	x11
 MAKE_ARGS=	Y_HOME=relocatable Y_DOCDIR=/dev/null
@@ -24,8 +26,6 @@ INFO=		yorick
 PORTDOCS=	FILE_FORMATS README drat.doc graph.doc hex.doc \
 		library.doc math.doc refs.pdf refs.tex std.doc \
 		yorick.pdf yorick.tex
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	DOCS
 

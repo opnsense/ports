@@ -11,10 +11,10 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Run interactive programs non-interactively
 
+USE_HARDENING=	pie:off
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-9
 USES=		gmake
-
-NOPIE_PORTS=	yes
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/[ad][te]tachtty

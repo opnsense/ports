@@ -11,6 +11,8 @@ MASTER_SITES=	http://www.codenix.com/~tolua/ \
 MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Extended version of tolua, a tool to integrate C/C++ code with Lua
 
+USE_HARDENING=	pie:off
+
 USES=		scons lua:51 tar:bzip2
 MAKE_ARGS=	prefix=${PREFIX} SONAME="libtolua++-${LUA_VER}.so"
 
@@ -20,8 +22,6 @@ LDFLAGS+=	-L${LUA_LIBDIR}
 TGT_BINDIR=	${PREFIX}/bin
 TGT_INCDIR=	${LUA_INCDIR:C/^${LOCALBASE}/${PREFIX}/}
 TGT_LIBDIR=	${LUA_LIBDIR:C/^${LOCALBASE}/${PREFIX}/}
-
-NOPIE_PORTS=	yes
 
 post-patch:
 	@${REINPLACE_CMD} -e "s|'lualib',||; s|lua|lua-${LUA_VER}|g" ${WRKSRC}/config_posix.py

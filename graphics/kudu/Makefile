@@ -14,11 +14,11 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 
+USE_HARDENING=	pie:off
+
 USES=		tar:bzip2 pkgconfig python
 GNU_CONFIGURE=	yes
 USE_GL=		gl
-
-NOPIE_PORTS=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lcompat -lm

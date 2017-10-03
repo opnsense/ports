@@ -16,6 +16,8 @@ ONLY_FOR_ARCHS=	i386 amd64
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}/src
 
+USE_HARDENING=	pie:off
+
 USES=		gmake
 USE_GCC=	any
 USE_AUTOTOOLS=	autoconf
@@ -28,8 +30,6 @@ CONFIGURE_ARGS=	--with-c-flags="${CFLAGS}" \
 		--with-examples-dir="${EXAMPLESDIR}"
 CONFIGURE_TARGET=	${ARCH:S/amd64/x86_64/}-portbld-${OPSYS:tl}${OSREL}
 MAKE_JOBS_UNSAFE=	yes
-
-NOPIE_PORTS=		yes
 
 OPTIONS_DEFINE=		FD DOCS EXAMPLES
 OPTIONS_DEFAULT=	FD

@@ -15,6 +15,8 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
 
 BROKEN_powerpc64=	Does not build: c++: Internal error: Killed (program cc1plus)
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	X11 PNG JPEG TIFF OPENEXR STATIC IO EXAMPLES DOCS
 OPTIONS_DEFAULT=PNG JPEG
 OPTIONS_SUB=	yes
@@ -24,8 +26,6 @@ DOCS_DESC=	Install HTML documentation
 
 USES=		gmake
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
 
 VERSION_BASE=	${PORTVERSION:C/([0-9]+\.[0-9]+).*/\1/}
 

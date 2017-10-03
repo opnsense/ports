@@ -21,6 +21,8 @@ EXTRACT_DEPENDS=	unrar:archivers/unrar
 
 BROKEN_powerpc64=	fails to compile: gcc5: error: unrecognized command line option '-msse'
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	omf2097
 GH_TAGNAME=	c36c421
@@ -29,8 +31,6 @@ GH_TUPLE=	omf2097:libShadowDive:b2c34a6:shadow \
 
 USES=		cmake compiler:c++11-lang gettext openal
 USE_SDL=	sdl2
-
-NOPIE_PORTS=	yes
 
 DESKTOP_ENTRIES="OpenOMF" "" \
 		"${PREFIX}/share/openomf/openomf_icon.png " \

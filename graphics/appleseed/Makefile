@@ -22,6 +22,8 @@ GH_ACCOUNT=	${PORTNAME}hq
 ONLY_FOR_ARCHS=	i386 amd64
 ONLY_FOR_ARCHS_REASON=	not ported to it yet
 
+USE_HARDENING=	pie:off
+
 USES=		cmake:outsource
 USE_QT4=	moc_build qmake_build rcc_build uic_build opengl
 
@@ -34,8 +36,6 @@ CMAKE_ARGS=	-DUSE_STATIC_BOOST:BOOL=OFF -DUSE_STATIC_OIIO:BOOL=OFF \
 .for lib in EXR OIIO OSL PNG SEEXPR XERCES ZLIB
 CMAKE_ARGS+=	-DUSE_EXTERNAL_${lib}:BOOL=ON
 .endfor
-
-NOPIE_PORTS=	yes
 
 # Not ready for hier(7)-conforming installation yet
 CMAKE_INSTALL_PREFIX=	${PREFIX}/${PKGBASE}

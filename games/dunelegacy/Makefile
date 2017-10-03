@@ -16,11 +16,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BROKEN_powerpc64=	fails to compile: functional.h: 'std::bind' has not been declared
 
+USE_HARDENING=	pie:off
+
 USES=		autoreconf compiler:c++11-lib tar:bzip2 pkgconfig
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl2 mixer2
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

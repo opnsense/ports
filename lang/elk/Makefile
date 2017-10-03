@@ -15,13 +15,13 @@ LIB_DEPENDS=	libgdbm.so:databases/gdbm \
 
 BROKEN_aarch64=	Fails to link: missing sbrk
 
+USE_HARDENING=	pie:off
+
 USES=		libtool motif tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 MAKE_JOBS_UNSAFE=	yes
-
-NOPIE_PORTS=	yes
 
 CPPFLAGS+=	-I${LOCALBASE}/include/libelf -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

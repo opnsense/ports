@@ -20,6 +20,8 @@ LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext \
 		libmhash.so:security/mhash \
 		libpng.so:graphics/png
 
+USE_HARDENING=	pie:off
+
 USES=		pkgconfig python:build scons zip
 USE_GNOME=	gtk20 libxml2
 MAKE_ARGS=	${MAKE_ENV} BUILD=release
@@ -27,8 +29,6 @@ SSP_UNSAFE=	yes
 
 DATADIR=	${PREFIX}/lib/${PORTNAME}
 WRKSRC=		${WRKDIR}/GPL/GtkRadiant
-
-NOPIE_PORTS=	yes
 
 SUB_FILES=	${PORTNAME}
 

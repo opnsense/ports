@@ -14,13 +14,13 @@ LICENSE=	GPLv2
 
 RUN_DEPENDS+=	${LOCALBASE}/share/fonts/misc/9x18.pcf.gz:x11-fonts/font-misc-misc
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--enable-doublesize
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 USE_XORG=	x11 xext
 PLIST_FILES=	bin/pacman
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

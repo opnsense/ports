@@ -18,6 +18,8 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libxml2.so:textproc/libxml2 \
 		libphysfs.so:devel/physfs
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	knowknowledge
 GH_PROJECT=	Epiar
@@ -27,8 +29,6 @@ USES=		autoreconf gmake pkgconfig
 USE_SDL=	image mixer sdl
 USE_GL=		glu
 GNU_CONFIGURE=	yes
-
-NOPIE_PORTS=	yes
 
 PORTDOCS=	AUTHORS ChangeLog README
 OPTIONS_DEFINE=	DOCS

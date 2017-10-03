@@ -22,10 +22,10 @@ EXTRACT_ONLY=	dungeon-gdt-glk.tar.gz \
 MAINTAINER=	sailor@63bit.net
 COMMENT=	Text adventure which became Zork I-III
 
+USE_HARDENING=	pie:off
+
 USES=		ncurses
 NO_WRKSUBDIR=	yes
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	bin/dungeon \
 		man/man6/dungeon.6.gz \

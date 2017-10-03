@@ -13,13 +13,13 @@ COMMENT=	Remake of the classic puzzle game Logical
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir="/var/games"
 USES=		autoreconf dos2unix gmake tar:bzip2
 DOS2UNIX_FILES=	*.h *.cpp
 USE_SDL=	sdl image mixer
-
-NOPIE_PORTS=	yes
 
 DESKTOP_ENTRIES="XLogical" \
 		"" \

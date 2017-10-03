@@ -13,12 +13,12 @@ COMMENT=	GNOME 2 game featuring a bizarre flying GNOME logo
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 USES=		pathfix gmake pkgconfig
 USE_GNOME=	gnomeprefix gnomevfs2 libgnomeui
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib -lm
-
-NOPIE_PORTS=	yes
 
 .include <bsd.port.mk>

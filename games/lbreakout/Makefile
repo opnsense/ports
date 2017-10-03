@@ -13,12 +13,12 @@ COMMENT=	Nice clone of classical Breakout game
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off
+
 USE_SDL=	sdl
 USES=		gmake
 GNU_CONFIGURE=	yes
 LIBS+=		-lcompat
-
-NOPIE_PORTS=	yes
 
 pre-install:
 	${MKDIR} ${STAGEDIR}/var/games/${PORTNAME}

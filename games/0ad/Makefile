@@ -27,7 +27,7 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libenet.so:net/enet \
 		libtiff.so:graphics/tiff
 
-NOPIE_PORTS=	yes
+USE_HARDENING=	pie:off
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}-alpha
 BUILD_WRKSRC=	${WRKSRC}/build/workspaces/gcc

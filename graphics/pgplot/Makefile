@@ -26,8 +26,6 @@ WRKSRC=		${WRKDIR}/${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-NOPIE_PORTS=	yes
-
 .include <bsd.port.options.mk>
 
 .if ${ARCH:M*64*}

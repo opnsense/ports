@@ -16,6 +16,8 @@ RUN_DEPENDS=	gnuplot:math/gnuplot
 
 BROKEN_powerpc64=	fails to compile: arith01.cpp: 'statuc' does not name a type
 
+USE_HARDENING=	pie:off
+
 USES=		autoreconf:build gmake libtool ncurses
 TARGET_SDIR=	${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
 CONFIGURE_ARGS=	--build=${TARGET_SDIR}
@@ -29,8 +31,6 @@ HAS_CONFIGURE=	yes
 ALL_TARGET=
 
 MAKE_JOBS_UNSAFE=	yes
-
-NOPIE_PORTS=	yes
 
 OPTIONS_SINGLE=		SGLSP
 OPTIONS_SINGLE_SGLSP=	CSL PSL

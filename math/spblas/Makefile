@@ -11,11 +11,11 @@ DISTFILES=	nist_spblas_${DISTVERSION}.zip:1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	NIST Sparse Basic Linear Algebra Subprograms (BLAS)
 
+USE_HARDENING=	pie:off
+
 USES=		dos2unix uidfix zip
 USE_GCC=	yes
 USE_LDCONFIG=	yes
-
-NOPIE_PORTS=	yes
 
 HEADERS=	blas_enum.h blas_sparse.h blas_sparse_proto.h
 HDIR=		include/spblas

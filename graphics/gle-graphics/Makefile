@@ -14,6 +14,8 @@ COMMENT=	Graphics language that produces images from script files
 LICENSE=	BSD3CLAUSE GPLv2
 LICENSE_COMB=	multi
 
+USE_HARDENING=	pie:off
+
 BITMAP_IMAGES_CONFIGURE_WITH=	jpeg=${LOCALBASE} tiff=${LOCALBASE} png=${LOCALBASE}
 BITMAP_IMAGES_DESC=	Support for including bitmap images
 BITMAP_IMAGES_LIB_DEPENDS=	libpng.so:graphics/png \
@@ -21,8 +23,6 @@ BITMAP_IMAGES_LIB_DEPENDS=	libpng.so:graphics/png \
 BITMAP_IMAGES_USES=	jpeg
 
 CONFIGURE_ARGS=	--with-extrafonts=yes --with-qt=${QT_ARCHDIR}
-
-NOPIE_PORTS=	yes
 
 ALL_TARGET=	all
 

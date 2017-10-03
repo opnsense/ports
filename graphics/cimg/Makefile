@@ -21,12 +21,12 @@ LICENSE_PERMS_CeCILL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	invokes i386 asm
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	dtschump
 GH_PROJECT=	CImg
 GH_TAGNAME=	v.${DISTVERSION:S/.//g}
-
-NOPIE_PORTS=	yes
 
 .if !defined(WITHOUT_LAPACK)
 . if defined(WITH_ATLAS)

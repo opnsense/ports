@@ -29,6 +29,8 @@ GH_PROJECT=	megaglest-source
 
 SUB_FILES=	pkg-message
 
+USE_HARDENING=	pie:off
+
 USES=		cmake compiler:c++11-lib display:build dos2unix jpeg lua \
 		openal:al,alut pkgconfig
 USE_GL=		glew gl glu
@@ -38,8 +40,6 @@ USE_CXXSTD=	c++11
 
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -lssl -lcrypto
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	EDITOR DOCS VIEWER
 OPTIONS_SUB=	yes

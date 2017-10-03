@@ -22,6 +22,8 @@ BROKEN_armv6=		fails to build: ./tools/config2header: Error code 1
 CONFLICTS_INSTALL=	cyrus-imapd-2.[^5].* cyrus-imapd2[^5]-2.[^5].* \
 			cyrus-imapd3*
 
+USE_HARDENING=	pie:off
+
 USE_RC_SUBR=	imapd
 
 USES=		cpe libtool perl5 ssl
@@ -39,8 +41,6 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 CONFIGURE_ENV+=	LIBS="-L${LOCALBASE}/lib"
 CPPFLAGS+=	-I${LOCALBASE}/include
 MAKE_JOBS_UNSAFE=	yes
-
-NOPIE_PORTS=	yes
 
 CPE_VENDOR=	cmu
 CPE_PRODUCT=	cyrus_imap_server
