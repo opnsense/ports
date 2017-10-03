@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/../COPYING
 
 BUILD_DEPENDS=	yasm:devel/yasm
 
+USE_HARDENING=	pie:off
+
 USES=		cmake pathfix tar:bz2
 USE_LDCONFIG=	yes
 CMAKE_ARGS=	-DENABLE_PIC=on -DENABLE_TESTS=on -DPLATFORM_LIBS=md
@@ -24,8 +26,6 @@ CFLAGS_mips64=	-DNO_ATOMICS # cannot use lang/gcc
 EXTRACT_AFTER_ARGS+=	--exclude "md5*"
 
 WRKSRC=		${WRKDIR}/multicoreware-${PORTNAME}-3037c1448549/source
-
-NOPIE_PORTS=	yes
 
 do-test:
 	${WRKSRC}/test/TestBench

@@ -23,14 +23,14 @@ BROKEN_mips=		fails to configure: No C compiler found
 BROKEN_mips64=		fails to configure: No C compiler found
 BROKEN_powerpc64=	fails to configure: No C compiler found
 
+USE_HARDENING=	pie:off
+
 USES=		gettext gmake pkgconfig python shebangfix ssl
 USE_GITHUB=	yes
 
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 USE_RC_SUBR=	${PORTNAME}
-
-NOPIE_PORTS=	yes
 
 SHEBANG_FILES=	${WRKSRC}/Autobuild.sh \
 		${WRKSRC}/configure \

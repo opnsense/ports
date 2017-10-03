@@ -7,6 +7,8 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Utility for modifying keymaps and pointer button mappings in X
 
+USE_HARDENING=	safestack
+
 LICENSE=	MIT
 
 XORG_CAT=	app

@@ -21,14 +21,14 @@ SHEBANG_FILES=	bin/*
 USERS=		rancid
 GROUPS=		rancid
 
+USE_HARDENING=	pie:off
+
 SUB_FILES=	pkg-message 200.rancid
 GNU_CONFIGURE=	yes
 
 CONFIGURE_ARGS=	--localstatedir=${LOCALBASE}/var/${PORTNAME}/ \
 		--bindir=${LOCALBASE}/libexec/${PORTNAME}/ \
 		--sysconfdir=${LOCALBASE}/etc/${PORTNAME}/
-
-NOPIE_PORTS=	yes
 
 OLDCONFIG_FILE1=	bin/env
 OLDCONFIG_FILE2=	util/lg/lg.conf

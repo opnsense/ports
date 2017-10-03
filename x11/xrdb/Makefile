@@ -7,6 +7,8 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	X server resource database utility
 
+USE_HARDENING=	safestack
+
 XORG_CAT=	app
 USE_XORG=	xmuu x11
 

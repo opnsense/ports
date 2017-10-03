@@ -1,4 +1,4 @@
-k# $FreeBSD2
+# $FreeBSD$
 
 PORTNAME=	xconsole
 PORTVERSION=	1.0.7

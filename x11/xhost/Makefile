@@ -7,6 +7,8 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Server access control program for X
 
+USE_HARDENING=	safestack
+
 XORG_CAT=	app
 USE_XORG=	x11 xmuu xau
 

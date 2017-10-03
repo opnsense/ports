@@ -15,12 +15,12 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 RUN_DEPENDS=	wish8.4:x11-toolkits/tk84
 
+USE_HARDENING=	pie:off
+
 MAKE_ENV=	X11BASE=${LOCALBASE}
 USES=		uidfix
 USE_XORG=	xau x11 xext xxf86dga
 NOT_FOR_ARCHS=	sparc64
-
-NOPIE_PORTS=	yes
 
 PLIST_FILES=	bin/dtv \
 		etc/dtv-xevent.tk

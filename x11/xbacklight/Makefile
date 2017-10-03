@@ -8,6 +8,8 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Program to adjust backlight brightness
 
+USE_HARDENING=	safestack
+
 LICENSE=	MIT
 
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util

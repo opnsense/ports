@@ -16,6 +16,8 @@ LIB_DEPENDS=	libticalcs2.so:comms/libticalcs2 \
 		libticables2.so:comms/libticables2 \
 		libtifiles2.so:devel/libtifiles2
 
+USE_HARDENING=	pie:off
+
 USES=		gmake groff libtool pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	gtk20 libglade2
@@ -24,8 +26,6 @@ USE_SDL=	sdl
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -export-dynamic
 CONFIGURE_ARGS=	--disable-gdb --without-kde
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes

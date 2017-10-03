@@ -8,7 +8,7 @@ COMMENT=	UI for Mupen64plus
 
 MASTERDIR=	${.CURDIR}/../mupen64plus-core
 
-NOPIE_PORTS=	yes
+USE_HARDENING=	pie:off
 
 OPTIONS_DEFINE=	#
 

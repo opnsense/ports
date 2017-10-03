@@ -13,6 +13,8 @@ COMMENT=	QEMU CPU Emulator - development version
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off
+
 HAS_CONFIGURE=	yes
 USES=		cpe gmake pkgconfig bison perl5 python:2,build ssl tar:bzip2
 USE_PERL5=	build
@@ -20,8 +22,6 @@ USE_XORG=	pixman
 USE_GNOME+=	cairo glib20
 MAKE_ENV+=	BSD_MAKE="${MAKE}"
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64 # XXX someone wants to debug sparc64 hosts?
-
-NOPIE_PORTS=	yes
 
 OPTIONS_DEFINE=	SAMBA X11 GTK2 OPENGL GNUTLS SASL JPEG PNG CURL \
 		CDROM_DMA PCAP USBREDIR GNS3 X86_TARGETS \

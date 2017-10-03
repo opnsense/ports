@@ -21,8 +21,6 @@ RUN_DEPENDS=	rrdtool:databases/rrdtool \
 		fping:net/fping \
 		mtr:net/mtr-nox11
 
-NOPIE_PORTS=	yes
-
 USERS=		xymon
 GROUPS=		xymon
 
@@ -30,6 +28,8 @@ GROUPS=		xymon
 XYMONUSER?=	xymon
 XYMONHOSTNAME?=	xymon.example.com
 XYMONHOSTIP?=	127.0.0.1
+
+USE_HARDENING=	pie:off
 
 USES=		cpe gmake shebangfix ssl
 SHEBANG_FILES=	${WRKSRC}/xymond/xymonreports.sh.DIST ${WRKSRC}/build/upgrade430.sh

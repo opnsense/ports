@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	secadm
-PORTVERSION=	0.5.0
+PORTVERSION=	0.5.1
 DISTVERSIONPREFIX=	v
-PORTREVISION?=	1
+PORTREVISION?=	0
 CATEGORIES=	hardenedbsd
 
 MAINTAINER=	shawn.webb@hardenedbsd.org

@@ -11,11 +11,11 @@ COMMENT=	Tool for making SNMP queries
 
 LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 
+USE_HARDENING=	pie:off
+
 USES=		gmake
 
 LDFLAGS+=	-lcompat
-
-NOPIE_PORTS=	yes
 
 PORTDOCS=	README
 PLIST_FILES=	bin/braa

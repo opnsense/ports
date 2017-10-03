@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	iocage
-PORTVERSION=	0.9.9.1
-PORTREVISION=   1
+PORTVERSION=	0.9.9.2
 CATEGORIES=	sysutils python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -30,6 +29,6 @@ NO_ARCH=	yes
 USES=		python:3.6
 USE_PYTHON=	autoplist distutils
 
-CONFLICTS=	py-iocage-[0-9]* iocage-[0-9]* iocage-devel-[0-9]*
+CONFLICTS=	py27-iocage-[0-9]*
 
 .include <bsd.port.mk>

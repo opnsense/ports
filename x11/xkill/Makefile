@@ -7,6 +7,8 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Utility for killing a client by its X resource
 
+USE_HARDENING=	safestack
+
 XORG_CAT=	app
 USE_XORG=	x11 xmuu
 
