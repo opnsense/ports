@@ -15,7 +15,7 @@ COMMENT=	The Network Time Protocol Distribution
 
 LIB_DEPENDS=	libevent.so:devel/libevent
 
-CONFLICTS=	ntp-devel-*
+CONFLICTS=	ntp-devel-* openntpd-*
 
 USE_HARDENING=	safestack
 
