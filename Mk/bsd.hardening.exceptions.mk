@@ -32,7 +32,6 @@ nrpe_HARDENING+=			safestack
 openconnect_HARDENING+=			safestack
 opensmtpd_HARDENING+=			safestack
 openssh_HARDENING+=			safestack
-pftop_HARDENING+=			safestack
 polipo_HARDENING+=			safestack
 privoxy_HARDENING+=			safestack
 proxy-suite_HARDENING+=			safestack
