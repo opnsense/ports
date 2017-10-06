@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pjsip
-PORTVERSION=	2.6
-PORTREVISION=	2
+PORTVERSION=	2.7
 CATEGORIES=	net
 MASTER_SITES=	http://www.pjsip.org/release/${PORTVERSION}/
 DISTNAME=	pjproject-${DISTVERSION}
@@ -14,7 +13,8 @@ LICENSE=	GPLv2+
 
 LIB_DEPENDS=	libportaudio.so:audio/portaudio
 
-CONFLICTS=	pjsip-extsrtp-[0-9]*
+CONFLICTS=	pjsip-extsrtp-[0-9]* \
+		libsrtp-[0-9]*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-external-pa \
