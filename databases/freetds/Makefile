@@ -12,6 +12,8 @@ COMMENT=	Sybase/Microsoft TDS protocol library
 
 LICENSE=	GPLv2
 
+CPPFLAGS=	-DOPENSSL_IS_LIBRESSL
+
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 
 TDS_VER?=	7.4
