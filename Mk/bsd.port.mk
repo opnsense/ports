@@ -1833,6 +1833,15 @@ USE_BINUTILS=	yes
 .  endif
 .endif
 
+_TEST_AR=/usr/bin/ar
+.if defined(LLVM_AR_UNSAFE) && ${_TEST_AR:tA} == "/usr/bin/llvm-ar"
+AR=	elftc-ar
+RANLIB=	elftc-ranlib
+CONFIGURE_ENV+=	AR=${AR} RANLIB=${RANLIB}
+MAKE_ENV+=	AR=${AR} RANLIB=${RANLIB}
+CMAKE_ARGS+=	-DCMAKE_AR:STRING=${AR} -DCMAKE_RANLIB:STRING=${RANLIB}
+.endif
+
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
 BUILD_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BINUTILS?=	ADDR2LINE AR AS CPPFILT GPROF LD NM OBJCOPY OBJDUMP RANLIB \
