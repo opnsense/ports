@@ -10,6 +10,8 @@ MASTER_SITE_SUBDIR=	. Attic
 MAINTAINER=	thierry@FreeBSD.org
 COMMENT=	Clone of the terminal emulator rxvt modified to support Unicode
 
+USE_HARDENING=	safestack
+
 LICENSE=	GPLv2
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/fontconfig.pc:x11-fonts/fontconfig
