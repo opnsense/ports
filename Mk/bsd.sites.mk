@@ -258,8 +258,7 @@ MASTER_SITE_FARSIGHT+= \
 .if !defined(IGNORE_MASTER_SITE_FESTIVAL)
 MASTER_SITE_FESTIVAL+= \
 	http://www.festvox.org/packed/festival/%SUBDIR%/ \
-	http://www.cstr.ed.ac.uk/downloads/festival/%SUBDIR%/ \
-	http://stuff.mit.edu/afs/sipb/project/speech-tools/src/festival/festvox.org/packed/festival/%SUBDIR%/
+	http://www.cstr.ed.ac.uk/downloads/festival/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_FESTIVAL_OGI)
@@ -325,7 +324,6 @@ MASTER_SITE_GENTOO+= \
 	http://gentoo.mirrors.pair.com/%SUBDIR%/ \
 	http://mirrors.tds.net/pub/gentoo/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/www.ibiblio.org/gentoo/%SUBDIR%/ \
-	http://ftp.belnet.be/rsync.gentoo.org/gentoo/%SUBDIR%/ \
 	http://ftp.snt.utwente.nl/pub/os/linux/gentoo/%SUBDIR%/ \
 	http://trumpetti.atm.tut.fi/gentoo/%SUBDIR%/ \
 	http://ftp.uni-erlangen.de/pub/mirrors/gentoo/%SUBDIR%/ \
@@ -510,7 +508,7 @@ convert-to-gh-tuple:
 MASTER_SITE_GNOME+= \
 	https://download.gnome.org/%SUBDIR%/ \
 	http://download.gnome.org/%SUBDIR%/ \
-	http://ftp.belnet.be/ftp.gnome.org/%SUBDIR%/ \
+	http://ftp.belnet.be/mirror/ftp.gnome.org/%SUBDIR%/ \
 	ftp://ftp.belnet.be/mirror/ftp.gnome.org/%SUBDIR%/ \
 	http://ftp.acc.umu.se/pub/GNOME/%SUBDIR%/ \
 	ftp://ftp.cse.buffalo.edu/pub/Gnome/%SUBDIR%/ \
@@ -725,22 +723,11 @@ MASTER_SITE_MPLAYERHQ+= \
 .if !defined(IGNORE_MASTER_SITE_MYSQL)
 MASTER_SITE_MYSQL+= \
 	ftp://ftp.fi.muni.cz/pub/mysql/Downloads/%SUBDIR%/ \
-	http://mysql.mirrors.cybercity.dk/Downloads/%SUBDIR%/ \
-	ftp://ftp.fh-wolfenbuettel.de/pub/database/mysql/Downloads/%SUBDIR%/ \
 	ftp://ftp.gwdg.de/pub/misc/mysql/Downloads/%SUBDIR%/ \
-	http://netmirror.org/mirror/mysql.com/Downloads/%SUBDIR%/ \
-	ftp://netmirror.org/mysql.com/Downloads/%SUBDIR%/ \
 	http://mirrors.ntua.gr/MySQL/Downloads/%SUBDIR%/ \
 	ftp://ftp.ntua.gr/pub/databases/mysql/Downloads/%SUBDIR%/ \
-	http://mysql.sote.hu/Downloads/%SUBDIR%/ \
-	ftp://mirror.widexs.nl/pub/mysql/Downloads/%SUBDIR%/ \
 	ftp://mirror.switch.ch/mirror/mysql/Downloads/%SUBDIR%/ \
-	http://mysql.dp.ua/Downloads/%SUBDIR%/ \
-	ftp://mirror.services.wisc.edu/mirrors/mysql/Downloads/%SUBDIR%/ \
 	http://mysql.mirrors.pair.com/Downloads/%SUBDIR%/ \
-	ftp://ftp.linorg.usp.br/mysql/Downloads/%SUBDIR%/ \
-	ftp://ftp.cbn.net.id/mirror/mysql/Downloads/%SUBDIR%/ \
-	ftp://ftp.easynet.be/mysql/Downloads/%SUBDIR%/ \
 	http://download.softagency.net/MySQL/Downloads/%SUBDIR%/
 .endif
 
@@ -762,7 +749,6 @@ MASTER_SITE_NETLIB+= \
 	http://www.netlib.org/%SUBDIR%/ \
 	ftp://ftp.mirrorservice.org/sites/ftp.netlib.org/%SUBDIR%/ \
 	http://www.mirrorservice.org/sites/ftp.netlib.org/%SUBDIR%/ \
-	http://www.netlib.no/netlib/%SUBDIR%/ \
 	ftp://ftp.irisa.fr/pub/netlib/%SUBDIR%/ \
 	http://netlib.sandia.gov/%SUBDIR%/
 .endif
@@ -797,12 +783,7 @@ MASTER_SITE_OSSP+= \
 .if !defined(IGNORE_MASTER_SITE_PACKETSTORM)
 MASTER_SITE_PACKETSTORM+= \
 	http://dl.packetstormsecurity.net/%SUBDIR%/ \
-	http://packetstorm.codar.com.br/%SUBDIR%/ \
-	http://packetstorm.interhost.co.il/%SUBDIR%/ \
-	http://packetstorm.foofus.com/%SUBDIR%/ \
-	http://packetstorm.tacticalflex.com/%SUBDIR%/ \
-	http://packetstorm.unixteacher.org/%SUBDIR%/ \
-	http://packetstorm.wowhacker.com/%SUBDIR%/
+	http://packetstorm.foofus.com/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_PERL_CPAN)
@@ -917,9 +898,7 @@ MASTER_SITE_RUBYGEMS+= \
 
 .if !defined(IGNORE_MASTER_SITE_SAMBA)
 MASTER_SITE_SAMBA+= \
-	http://ftp.samba.org/pub/%SUBDIR%/ \
-	ftp://ca.samba.org/pub/%SUBDIR%/ \
-	ftp://de.samba.org/pub/%SUBDIR%/
+	http://ftp.samba.org/pub/%SUBDIR%/
 .endif
 
 # List:	http://download.savannah.gnu.org/mirmon/
@@ -947,7 +926,7 @@ MASTER_SITE_SOURCEFORGE+= ${p}://${m}.dl.sourceforge.net/project/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_SOURCEFORGE_JP)
-.for mirror in iij jaist keihanna osdn
+.for mirror in iij jaist osdn
 MASTER_SITE_SOURCEFORGE_JP+= \
 	http://${mirror}.dl.sourceforge.jp/%SUBDIR%/
 .endfor
@@ -995,7 +974,6 @@ MASTER_SITE_SUDO+= \
 MASTER_SITE_SUNSITE+= \
 	http://www.ibiblio.org/pub/Linux/%SUBDIR%/ \
 	http://www.gtlib.gatech.edu/pub/Linux/%SUBDIR%/ \
-	ftp://ftp.lip6.fr/pub/linux/sunsite/%SUBDIR%/ \
 	ftp://ftp.icm.edu.pl/pub/Linux/sunsite/%SUBDIR%/ \
 	ftp://ftp.sun.ac.za/pub/mirrors/sunsite.unc.edu/pub/Linux/%SUBDIR%/
 .endif
@@ -1076,10 +1054,7 @@ MASTER_SITE_WINDOWMAKER+= \
 
 .if !defined(IGNORE_MASTER_SITE_XCONTRIB)
 MASTER_SITE_XCONTRIB+= \
-	ftp://ftp.gwdg.de/pub/x11/x.org/contrib/%SUBDIR%/ \
-	ftp://ftp.x.org/contrib/%SUBDIR%/ \
-	ftp://ftp.kddlabs.co.jp/X11/ftp.x.org/contrib/%SUBDIR%/ \
-	ftp://ftp2.x.org/contrib/%SUBDIR%/
+	ftp://ftp.gwdg.de/pub/x11/x.org/contrib/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_XFCE)
