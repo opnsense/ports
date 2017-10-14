@@ -11,8 +11,6 @@ COMMENT=	Multimedia communication library written in C language
 
 LICENSE=	GPLv2+
 
-CFLAGS=		-DOPENSSL_IS_LIBRESSL
-
 LIB_DEPENDS=	libportaudio.so:audio/portaudio
 
 CONFLICTS?=	pjsip-extsrtp-[0-9]*
