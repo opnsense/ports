@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 
 MAKEFILE=	${WRKSRC}/makefile
 
+USE_HARDENING=	safestack
+
 OPTIONS_DEFINE=	CALLGRAPH
 
 USE_GITHUB=	yes

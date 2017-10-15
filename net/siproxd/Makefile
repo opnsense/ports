@@ -13,6 +13,11 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libosip2.so:net/libosip2
 
+# Siproxd uses shared libraries as plugins, but
+# does not fail with safestack as no port depends
+# on these internal library plugins:
+USE_HARDENING=	safestack
+
 # :keepla because port uses lt_dlopen
 USES=		libtool:keepla
 USE_RC_SUBR=	siproxd

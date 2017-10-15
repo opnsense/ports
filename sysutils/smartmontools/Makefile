@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS=	smartmontools-devel-[0-9]*
 
+USE_HARDENING=	safestack
+
 OPTIONS_DEFINE=	DOCS
 
 USES=		alias gmake shebangfix

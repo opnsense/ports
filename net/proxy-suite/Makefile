@@ -11,6 +11,8 @@ MAINTAINER=	thomas@FreeBSD.org
 COMMENT=	The SuSE Proxy-Suite, a set of programs to enhance firewall security
 LICENSE=	GPLv2
 
+USE_HARDENING=	safestack
+
 USE_AUTOTOOLS=	autoconf
 USES=		gmake tar:bzip2
 

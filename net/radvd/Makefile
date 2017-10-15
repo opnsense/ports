@@ -11,6 +11,8 @@ COMMENT=	Linux/BSD IPv6 router advertisement daemon
 
 LIB_DEPENDS=	libdaemon.so:devel/libdaemon
 
+USE_HARDENING=	safestack
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-transform-name=
 USES=		gmake pkgconfig

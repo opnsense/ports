@@ -12,6 +12,8 @@ COMMENT=	Multicast capable FTP client and server
 
 LICENSE=	GPLv3
 
+USE_HARDENING=	safestack
+
 MAKEFILE=	makefile
 USES=		gmake ssl
 MAKE_ARGS=	OPENSSL=${OPENSSLBASE}

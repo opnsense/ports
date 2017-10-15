@@ -12,6 +12,11 @@ COMMENT=	Open Source IKEv2 IPsec-based VPN solution
 
 LICENSE=	GPLv2
 
+# StrongSwan uses shared libraries as plugins, but
+# does not fail with safestack as no port depends
+# on these internal library plugins:
+USE_HARDENING=	safestack
+
 USES=		cpe libtool:keepla pkgconfig tar:bzip2 ssl
 USE_RC_SUBR=	strongswan
 GNU_CONFIGURE=	yes

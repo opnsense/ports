@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	softether
 
+USE_HARDENING=	safestack
+
 USES=		dos2unix gmake iconv localbase readline ssl
 DOS2UNIX_FILES=	src/Mayaqua/Network.c
 USE_GITHUB=	yes

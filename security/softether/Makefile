@@ -14,6 +14,8 @@ LICENSE=	GPLv2
 
 CONFLICTS_INSTALL=	softether-devel
 
+USE_HARDENING=	safestack
+
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

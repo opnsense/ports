@@ -10,6 +10,8 @@ DISTNAME=	${PORTNAME}-autoconf-${PORTVERSION}
 MAINTAINER=	cperciva@tarsnap.com
 COMMENT=	Online encrypted backup service (client)
 
+USE_HARDENING=	safestack
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	CFLAGS="-I${OPENSSLINC} ${CFLAGS}" \
 		LDFLAGS="-L${OPENSSLLIB} ${LDFLAGS}"

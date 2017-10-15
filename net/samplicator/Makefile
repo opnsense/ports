@@ -10,6 +10,8 @@ COMMENT=	Receives UDP datagrams and redistributes them to a set of receivers
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	safestack
+
 USES=		autoreconf
 
 USE_GITHUB=	yes

@@ -15,6 +15,11 @@ BUILD_DEPENDS=	gawk:lang/gawk
 
 CONFLICTS=	openbgpd openospfd zebra quagga-esr frr pimd
 
+# Quagga uses shared libraries as plugins, but
+# does not fail with safestack as no port depends
+# on these internal library plugins:
+USE_HARDENING=	safestack
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-exampledir=${PREFIX}/share/examples/quagga
 INSTALL_TARGET=	install-strip
