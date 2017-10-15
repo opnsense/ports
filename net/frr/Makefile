@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	frr
-PORTVERSION=	2.0
+PORTVERSION=	3.0
 CATEGORIES=	net ipv6
 
 MAINTAINER=	olivier@FreeBSD.org
@@ -15,10 +15,15 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c
 
 CONFLICTS=	openbgpd-[0-9]* openospfd-[0-9]* zebra-0* quagga-re-[0-9]* quagga-[0-9]*
 
+# FRR uses shared libraries as plugins, but
+# does not fail with safestack as no port depends
+# on these internal library plugins:
+USE_HARDENING=	safestack
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	FRRouting
 GH_PROJECT=	frr
-GH_TAGNAME=	frr-2.0
+GH_TAGNAME=	frr-3.0
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
