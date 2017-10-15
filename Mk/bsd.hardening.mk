@@ -51,9 +51,7 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 HARDENING_ALL=		cfi pie relro safestack
 HARDENING_OFF?=		# all features are on by default
 
-.include "${PORTSDIR}/Mk/bsd.hardening.exceptions.mk"
-
-USE_HARDENING?=		${${PORTNAME}_HARDENING} # implicit auto-defaults apply
+USE_HARDENING?=		# implicit auto-defaults may apply
 _USE_HARDENING=		# internal flags for auto mode
 
 OPTIONS_GROUP+=		HARDENING
