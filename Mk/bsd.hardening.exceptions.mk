@@ -38,7 +38,6 @@ proxy-suite_HARDENING+=			safestack
 quagga_HARDENING+=			safestack
 radvd_HARDENING+=			safestack
 relayd_HARDENING+=			safestack
-rrdtool_HARDENING+=			safestack
 samplicator_HARDENING+=			safestack
 sarg_HARDENING+=			safestack
 siproxd_HARDENING+=			safestack
