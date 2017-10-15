@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gcc
-PORTVERSION=	7.2.1.s20171005
+PORTVERSION=	7.2.1.s20171012
 CATEGORIES=	lang
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -14,9 +14,7 @@ COMMENT=	GNU Compiler Collection 7
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
-USE_HARDENING=	pie:off relro:off
-
-ONLY_FOR_ARCHS=	aarch64 amd64 arm armv6 i386 powerpc powerpc64 sparc64
+ONLY_FOR_ARCHS=	aarch64 amd64 arm armv6 armv7 i386 powerpc powerpc64 sparc64
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
@@ -29,6 +27,8 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
 CONFLICTS=	gcc7-7.*
+
+USE_HARDENING=	pie:off relro:off
 
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}

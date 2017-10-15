@@ -20,6 +20,8 @@ COMMENT=	Riak is an open source, distributed, noSQL database
 
 LICENSE=	APACHE20
 
+BROKEN=		No public distfiles
+
 BUILD_DEPENDS=	${LOCALBASE}/lib/riak-erlang/bin/erlc:lang/erlang-riak
 
 USE_HARDENING=	pie:off
