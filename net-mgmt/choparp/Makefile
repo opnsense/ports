@@ -11,6 +11,8 @@ COMMENT=	Simple proxy arp daemon
 
 LICENSE=	BSD3CLAUSE
 
+USE_HARDENING=	safestack
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	quinot
 USE_RC_SUBR=	choparp

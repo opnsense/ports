@@ -16,6 +16,8 @@ COMMENT?=	ISC Dynamic Host Configuration Protocol server
 
 LICENSE=	ISCL
 
+USE_HARDENING=	safestack
+
 USES=		gmake
 
 PORTREVISION_SERVER=	1

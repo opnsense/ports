@@ -21,6 +21,8 @@ BUSPIRATE_DESC=		Enable buspirate support (broken)
 DMIDECODE_DESC=		Use dmidecode to gather DMI information
 FTDI_DESC=		Enable external FT2232SPI flasher support
 
+USE_HARDEING=	safestack
+
 USES=		gmake tar:bzip2
 MAKE_ENV=	CONFIG_BUSPIRATE_SPI=no \
 		WARNERROR=no

@@ -14,6 +14,8 @@ LICENSE=	GPLv3+ # "any version of the GPL that is current as of your download"
 
 LIB_DEPENDS=	libgd.so:graphics/gd
 
+USE_HARDENING=	safestack
+
 USES=		gmake tar:tgz
 GNU_CONFIGURE=	YES
 CONFIGURE_ARGS=	ac_cv_lib_iconv_libiconv_open=no \

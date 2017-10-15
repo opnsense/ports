@@ -9,6 +9,8 @@ MASTER_SITES=	https://unix4lyfe.org/darkstat/
 MAINTAINER=	emikulic@gmail.com
 COMMENT=	Network statistics gatherer and reporter
 
+USE_HARDENING=	safestack
+
 USE_RC_SUBR=	darkstat
 
 USES=		tar:bzip2

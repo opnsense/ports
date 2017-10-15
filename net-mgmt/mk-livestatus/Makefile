@@ -13,6 +13,8 @@ COMMENT=	Nagios event broker module
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	safestack
+
 USES=		compiler:c++11-lib gmake
 GNU_CONFIGURE=	yes
 

@@ -29,6 +29,8 @@ COMMENT=	BIND DNS suite with updated DNSSEC and DNS64
 LICENSE=	MPL
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
+USE_HARDENING=	safestack
+
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
 ISCVERSION=	9.11.2
 
