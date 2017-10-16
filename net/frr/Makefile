@@ -27,7 +27,7 @@ GH_TAGNAME=	frr-3.0
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		autoreconf gmake pkgconfig libtool makeinfo readline
+USES=		autoreconf bison gmake pkgconfig libtool makeinfo readline
 USE_LDCONFIG=	yes
 
 INFO=		frr
