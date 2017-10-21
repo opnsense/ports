@@ -1,6 +1,6 @@
---- Makefile.am.orig	2017-10-13 23:17:26 UTC
+--- Makefile.am.orig	2017-03-08 14:59:07 UTC
 +++ Makefile.am
-@@ -4,7 +4,7 @@ SUBDIRS = lib qpb fpm @ZEBRA@ @LIBRFP@ @
+@@ -4,7 +4,7 @@ SUBDIRS = lib qpb fpm @ZEBRA@ @LIBRFP@ @RFPTEST@ \
  	 @BGPD@ @RIPD@ @RIPNGD@ @OSPFD@ @OSPF6D@ @LDPD@ \
           @ISISD@ @PIMD@ @NHRPD@ \
  	 @WATCHFRR@ @VTYSH@ @OSPFCLIENT@ @DOC@ m4 @pkgsrcdir@ \

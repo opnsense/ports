@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	gawk:lang/gawk
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
-CONFLICTS=	openbgpd-[0-9]* openospfd-[0-9]* zebra-0* quagga-re-[0-9]* quagga-[0-9]*
+CONFLICTS=	openbgpd openospfd zebra quagga-esr quagga
 
 # FRR uses shared libraries as plugins, but
 # does not fail with safestack as no port depends
@@ -41,12 +41,12 @@ OPTIONS_SUB=	yes
 # IRDP option needs something freebsd does not seem to have:
 # configure: error: 'IRDP requires in_pktinfo at the moment!'
 
-FPM_DESC= 		Enable Forwarding Plane Manager support
+FPM_DESC=		Enable Forwarding Plane Manager support
 LDPD_DESC=		Build ldpd
 MULTIPATH_DESC=		Enable multipath function
 PAM_DESC=		Use libpam for PAM support in vtysh
 SHELLACCESS_DESC=	Allow users to access shell/telnet/ssh
-SNMP_DESC= 		SNMP support
+SNMP_DESC=		SNMP support
 TCMALLOC_DESC=		Use tcmalloc
 TCPSOCKETS_DESC=	Use TCP/IP sockets for protocol daemons
 VTYSH_DESC=		Build integrated vty shell
