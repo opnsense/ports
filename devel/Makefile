@@ -498,6 +498,7 @@
     SUBDIR += elfutils
     SUBDIR += elixir-apex
     SUBDIR += elixir-bson
+    SUBDIR += elixir-cachex
     SUBDIR += elixir-calendar
     SUBDIR += elixir-combine
     SUBDIR += elixir-conform
@@ -507,8 +508,10 @@
     SUBDIR += elixir-crontab
     SUBDIR += elixir-csv
     SUBDIR += elixir-decimal
+    SUBDIR += elixir-deppie
     SUBDIR += elixir-dialyze
     SUBDIR += elixir-estree
+    SUBDIR += elixir-eternal
     SUBDIR += elixir-exactor
     SUBDIR += elixir-excoveralls
     SUBDIR += elixir-exjsx
@@ -539,6 +542,7 @@
     SUBDIR += elixir-swarm
     SUBDIR += elixir-timex
     SUBDIR += elixir-tirexs
+    SUBDIR += elixir-trailing_format_plug
     SUBDIR += elixir-tzdata
     SUBDIR += embb
     SUBDIR += epl.el

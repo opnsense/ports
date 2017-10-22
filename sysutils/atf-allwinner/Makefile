@@ -22,6 +22,8 @@ USES=	gmake
 MAKE_ENV+=	CROSS_COMPILE="aarch64-none-elf-"
 ALL_TARGET=	PLAT=sun50iw1p1 bl31
 
+USE_HARDENING=	relro:off
+
 PLIST_FILES=	${PREFIX}/share/${PORTNAME}/bl31.bin
 
 do-install:
