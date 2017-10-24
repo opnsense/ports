@@ -856,6 +856,7 @@
     SUBDIR += pwauth
     SUBDIR += pwman
     SUBDIR += pwman3
+    SUBDIR += pwned-check
     SUBDIR += pxytest
     SUBDIR += py-AccessControl
     SUBDIR += py-PF
