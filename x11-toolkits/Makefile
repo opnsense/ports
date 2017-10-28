@@ -239,6 +239,7 @@
     SUBDIR += qt5-widgets
     SUBDIR += qt5pas
     SUBDIR += qtermwidget
+    SUBDIR += qtermwidget-l10n
     SUBDIR += qwt5
     SUBDIR += qwt5-designerplugin
     SUBDIR += qwt6
