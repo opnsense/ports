@@ -14,6 +14,9 @@ LICENSE=	GPLv2
 
 CONFLICTS?=	nrpe-ssl nrpe3
 
+DEPRECATED=	EoL, please use nrpe3 instead
+EXPIRATION_DATE=	2018-01-01
+
 USE_HARDENING=	safestack
 
 USES=		perl5
