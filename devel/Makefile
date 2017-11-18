@@ -672,6 +672,7 @@
     SUBDIR += fuel
     SUBDIR += fujaba
     SUBDIR += funnelweb
+    SUBDIR += fuzzylite
     SUBDIR += gaa
     SUBDIR += gamin
     SUBDIR += gauche-readline
@@ -4303,6 +4304,7 @@
     SUBDIR += py-cliapp
     SUBDIR += py-click
     SUBDIR += py-click-log
+    SUBDIR += py-click-plugins
     SUBDIR += py-click-threading
     SUBDIR += py-cliff
     SUBDIR += py-clint
