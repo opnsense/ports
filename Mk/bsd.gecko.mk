@@ -105,6 +105,20 @@ USES+=		compiler:c++11-lang
 USE_XORG+=	xcb
 .endif
 
+.if ${MOZILLA_VER:R:R} >= 56
+MESA_LLVM_VER?=	40
+BUILD_DEPENDS+=	llvm${MESA_LLVM_VER}>0:devel/llvm${MESA_LLVM_VER}
+MOZ_EXPORT+=	LLVM_CONFIG=llvm-config${MESA_LLVM_VER}
+MOZ_EXPORT+=	BINDGEN_CFLAGS="${BINDGEN_CFLAGS}"
+# XXX bug 1341234
+. if ! ${USE_MOZILLA:M-nspr}
+BINDGEN_CFLAGS+=-isystem${LOCALBASE}/include/nspr
+. endif
+. if ! ${USE_MOZILLA:M-pixman}
+BINDGEN_CFLAGS+=-isystem${LOCALBASE}/include/pixman-1
+. endif
+.endif
+
 .if ${OPSYS} == FreeBSD && ${OSREL} == 11.1
 LLD_UNSAFE=	yes
 .endif
@@ -412,7 +426,6 @@ MOZ_OPTIONS+=	--enable-dtrace \
 LIBS+=			-lelf
 . endif
 STRIP=
-LLD_UNSAFE=		yes
 .else
 MOZ_OPTIONS+=	--disable-dtrace
 .endif
@@ -588,15 +601,6 @@ gecko-moz-pis-patch:
 .for moz in ${MOZ_PIS_SCRIPTS}
 	@${MOZCONFIG_SED} < ${FILESDIR}/${moz} > ${WRKDIR}/${moz}
 .endfor
-
-do-configure: gecko-do-configure
-
-gecko-do-configure:
-		@(if ! ${CONFIGURE_ENV} ${DO_MAKE_BUILD} configure; then \
-			 ${ECHO_MSG} "===>  Script \"${CONFIGURE_SCRIPT}\" failed unexpectedly."; \
-			 (${ECHO_CMD} ${CONFIGURE_FAIL_MESSAGE}) | ${FMT_80} ; \
-			 ${FALSE}; \
-		fi)
 
 pre-install: gecko-moz-pis-pre-install
 post-install-script: gecko-create-plist
