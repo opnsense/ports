@@ -318,7 +318,7 @@ do-build:
 .endif
 
 do-install:
-	${MKDIR} ${STAGEDIR}${DATADIR}
+	${MKDIR} ${STAGEDIR}${DATADIR}/sdk
 	cd ${KMK_BUILDDIR}/bin/sdk/bindings/xpcom && \
 	    ${COPYTREE_SHARE} "idl samples" ${STAGEDIR}${DATADIR}
 
@@ -329,7 +329,7 @@ do-install:
 	${MKDIR} ${STAGEDIR}${VBOX_DIR}
 	cd ${KMK_BUILDDIR}/bin && ${COPYTREE_SHARE} \
 	    "*.fd *.r0 *.rc *.so components" ${STAGEDIR}${VBOX_DIR}
-	${LN} -fs ${DATADIR}/sdk ${STAGEDIR}${VBOX_DIR}
+	${RLN} ${STAGEDIR}${DATADIR}/sdk ${STAGEDIR}${VBOX_DIR}
 
 	${INSTALL_SCRIPT} ${WRKSRC}/src/VBox/Installer/freebsd/VBox.sh \
 	    ${STAGEDIR}${VBOX_DIR}
@@ -347,7 +347,7 @@ do-install:
 	${MKDIR} ${STAGEDIR}${VBOX_DIR}/additions
 	${INSTALL_DATA} ${DISTDIR}/${GUESTADDITIONS} \
 	    ${STAGEDIR}${VBOX_DIR}/additions/
-	${LN} -fs ${VBOX_DIR}/additions/${GUESTADDITIONS} \
+	${RLN} ${STAGEDIR}${VBOX_DIR}/additions/${GUESTADDITIONS} \
 	    ${STAGEDIR}${VBOX_DIR}/additions/VBoxGuestAdditions.iso
 .endif
 
@@ -371,7 +371,7 @@ do-install:
 	cd ${KMK_BUILDDIR}/bin/sdk/bindings/xpcom/python/xpcom && \
 	    ${COPYTREE_SHARE} "*" ${STAGEDIR}${PYTHON_SITELIBDIR}/xpcom
 	@${MKDIR} ${STAGEDIR}${DATADIR}/sdk/bindings/xpcom/python
-	${LN} -fs ${PYTHON_SITELIBDIR}/xpcom \
+	${RLN} ${STAGEDIR}${PYTHON_SITELIBDIR}/xpcom \
 	    ${STAGEDIR}${DATADIR}/sdk/bindings/xpcom/python
 .endif
 

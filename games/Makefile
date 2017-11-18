@@ -576,7 +576,6 @@
     SUBDIR += lmarbles
     SUBDIR += lmpc
     SUBDIR += lolcat
-    SUBDIR += lordsawar
     SUBDIR += lpairs
     SUBDIR += lskat
     SUBDIR += ltris
@@ -1003,6 +1002,7 @@
     SUBDIR += tt
     SUBDIR += ttraffic
     SUBDIR += ttt
+    SUBDIR += tty-solitaire
     SUBDIR += tux-aqfh
     SUBDIR += tuxfighter
     SUBDIR += tuxkart

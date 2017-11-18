@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	diamond
-DISTVERSIONPREFIX=v
-DISTVERSION=	0.9.10
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.9.13
 CATEGORIES=	biology
 
 MAINTAINER=	jrm@FreeBSD.org
@@ -17,11 +17,10 @@ USES=		cmake:outsource
 
 USE_HARDENING=	pie:off
 
-CFLAGS+=	-DNDEBUG
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	bbuchfink
 
+CFLAGS+=	-DNDEBUG
 PLIST_FILES=	bin/diamond
 
 .if ! defined(PACKAGE_BUILDING)

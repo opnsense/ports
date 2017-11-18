@@ -11,6 +11,7 @@ COMMENT=	HardenedBSD Security Administration
 
 LICENSE=	BSD2CLAUSE
 
+USES+=		uidfix
 USE_HARDENING?=	safestack
 
 USE_GITHUB=	yes

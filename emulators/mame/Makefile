@@ -21,7 +21,7 @@ USE_HARDENING=	pie:off relro:off
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mamedev
-GH_PROJECT=	mame 				# explicit (master port)
+GH_PROJECT=	mame				# explicit (master port)
 GH_TAGNAME=	mame${PORTVERSION:S/.//}
 
 USES=		compiler:c11 gmake jpeg pkgconfig python:2,build shebangfix

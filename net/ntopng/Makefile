@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ntopng
-PORTVERSION=	3.0.2017.10.03
-PORTREVISION=	1
+PORTVERSION=	3.0.2017.11.02
 CATEGORIES=	net
 
 MAINTAINER=	madpilot@FreeBSD.org
@@ -21,7 +20,7 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libsodium.so:security/libsodium
 BUILD_DEPENDS=  bash:shells/bash
 
-USES=	 	autoreconf cpe gmake libtool localbase mysql pathfix pkgconfig \
+USES=		autoreconf cpe gmake libtool localbase mysql pathfix pkgconfig \
 		shebangfix sqlite ssl
 SUB_FILES=	ntopng-geoipupdate.sh pkg-deinstall
 SHEBANG_FILES=	httpdocs/misc/ntopng-add-user.sh
@@ -33,7 +32,7 @@ GROUPS=		ntopng
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ntop
-GH_TAGNAME=	499e0bf
+GH_TAGNAME=	f0c02af
 
 CPE_VENDOR=	ntop
 

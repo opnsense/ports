@@ -11,6 +11,8 @@ MASTER_SITES=	http://www.samba.org/ftp/ccache/ \
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	Tool to minimize the compile time of C/C++ programs
 
+USE_HARDENING=	safestack
+
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/GPL-3.0.txt
 
