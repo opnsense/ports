@@ -337,29 +337,11 @@ MOZ_OPTIONS+=	--enable-gconf
 MOZ_OPTIONS+=	--disable-gconf
 .endif
 
-.if ${MOZILLA_VER:R:R} < 55
-.if ${PORT_OPTIONS:MGNOMEUI}
-BUILD_DEPENDS+=	${libgnomeui_DETECT}:${libgnomeui_LIB_DEPENDS:C/.*://}
-USE_GNOME+=		libgnomeui:build
-MOZ_OPTIONS+=	--enable-gnomeui
-.else
-MOZ_OPTIONS+=	--disable-gnomeui
-.endif
-.endif # Mozilla < 55
-
 .if ${PORT_OPTIONS:MLIBPROXY}
 LIB_DEPENDS+=	libproxy.so:net/libproxy
 MOZ_OPTIONS+=	--enable-libproxy
 .else
 MOZ_OPTIONS+=	--disable-libproxy
-.endif
-
-.if ${PORT_OPTIONS:MPGO}
-USES:=		compiler:gcc-c++11-lib ${USES:Ncompiler*c++11*}
-USE_DISPLAY=yes
-
-ALL_TARGET=	profiledbuild
-MOZ_EXPORT+=MOZ_OPTIMIZE_FLAGS="-Os" MOZ_PGO_OPTIMIZE_FLAGS="${CFLAGS:M-O*}"
 .endif
 
 .if ${PORT_OPTIONS:MALSA}
@@ -499,22 +481,6 @@ MOZ_OPTIONS+=	--disable-v1-string-abi
 .endif
 
 .else # bsd.port.post.mk
-
-pre-extract: gecko-pre-extract
-
-gecko-pre-extract:
-.if ${PORT_OPTIONS:MPGO}
-	@${ECHO} "*****************************************************************"
-	@${ECHO} "**************************** attention **************************"
-	@${ECHO} "*****************************************************************"
-	@${ECHO} "To build ${MOZILLA} with PGO support you need a running X server and"
-	@${ECHO} "   build this port with an user who could access the X server!   "
-	@${ECHO} ""
-	@${ECHO} "During the build a ${MOZILLA} instance will start and run some test."
-	@${ECHO} "      Do not interrupt or close ${MOZILLA} during these tests!       "
-	@${ECHO} "*****************************************************************"
-	@sleep 10
-.endif
 
 post-patch: gecko-post-patch gecko-moz-pis-patch
 
