@@ -377,10 +377,8 @@
     SUBDIR += links1
     SUBDIR += linux-c6-qt47-webkit
     SUBDIR += linux-c7-qtwebkit
-    SUBDIR += linux-firefox
     SUBDIR += linux-flashplayer
     SUBDIR += linux-opera
-    SUBDIR += linux-seamonkey
     SUBDIR += lionwiki
     SUBDIR += litmus
     SUBDIR += ljdeps
@@ -1400,6 +1398,7 @@
     SUBDIR += p5-pQuery
     SUBDIR += p5-webservice-validator-css-w3c
     SUBDIR += p5-webservice-validator-html-w3c
+    SUBDIR += palemoon
     SUBDIR += paros
     SUBDIR += payara
     SUBDIR += pear-HTML_AJAX
@@ -1543,6 +1542,7 @@
     SUBDIR += py-boto3
     SUBDIR += py-bottle
     SUBDIR += py-bottle-cork
+    SUBDIR += py-buku
     SUBDIR += py-cachecontrol
     SUBDIR += py-caldav
     SUBDIR += py-cherrypy

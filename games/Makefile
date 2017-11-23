@@ -691,6 +691,7 @@
     SUBDIR += openbor4432
     SUBDIR += openbubbles
     SUBDIR += opencity
+    SUBDIR += openclaw
     SUBDIR += openclonk
     SUBDIR += opengfx
     SUBDIR += openglad
@@ -1149,6 +1150,7 @@
     SUBDIR += xpilot-ng-server
     SUBDIR += xpipeman
     SUBDIR += xpired
+    SUBDIR += xptools
     SUBDIR += xpuyopuyo
     SUBDIR += xpuzzletama
     SUBDIR += xpyraminx

@@ -4,6 +4,7 @@
 PORTNAME=	firefox
 DISTVERSION=	57.0
 DISTVERSIONSUFFIX=.source
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
@@ -32,7 +33,7 @@ BUILD_DEPENDS=	nspr>=4.17:devel/nspr \
 LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 
 USE_GECKO=	gecko
-CONFLICTS_INSTALL=	firefox-esr-45.* firefox-esr-3[18].* firefox-esr-24.*
+CONFLICTS_INSTALL=	firefox-esr
 MOZ_PKGCONFIG_FILES=	# empty
 USE_MOZILLA=	-soundtouch
 MOZILLA_NAME=	Firefox
@@ -48,7 +49,6 @@ MOZ_OPTIONS=	--enable-application=browser \
 		--enable-official-branding
 
 OPTIONS_DEFAULT=	BUNDLED_CAIRO
-OPTIONS_EXCLUDE=	GNOMEUI
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 
