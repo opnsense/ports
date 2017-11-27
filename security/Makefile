@@ -5,6 +5,7 @@
 
     SUBDIR += 0d1n
     SUBDIR += 1password-client
+    SUBDIR += 2fa
     SUBDIR += ADMsmb
     SUBDIR += ADMsnmp
     SUBDIR += R-cran-ROAuth
@@ -288,6 +289,7 @@
     SUBDIR += isnprober
     SUBDIR += jbrofuzz
     SUBDIR += john
+    SUBDIR += kbfs
     SUBDIR += kc
     SUBDIR += kdbx-viewer
     SUBDIR += kedpm
@@ -415,6 +417,8 @@
     SUBDIR += ncrypt
     SUBDIR += netpgp
     SUBDIR += nettle
+    SUBDIR += nextcloud-twofactor_totp
+    SUBDIR += nextcloud-twofactor_u2f
     SUBDIR += ngrok
     SUBDIR += nikto
     SUBDIR += nist-kat
@@ -969,6 +973,7 @@
     SUBDIR += py-slowaes
     SUBDIR += py-spake2
     SUBDIR += py-ssh
+    SUBDIR += py-ssh-audit
     SUBDIR += py-sslstrip
     SUBDIR += py-stem
     SUBDIR += py-stix
