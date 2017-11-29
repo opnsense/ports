@@ -226,12 +226,6 @@
     SUBDIR += bugzilla44
     SUBDIR += bugzilla50
     SUBDIR += build
-    SUBDIR += buildbot
-    SUBDIR += buildbot-console-view
-    SUBDIR += buildbot-pkg
-    SUBDIR += buildbot-waterfall-view
-    SUBDIR += buildbot-worker
-    SUBDIR += buildbot-www
     SUBDIR += buildtool
     SUBDIR += buildtool-doc
     SUBDIR += bullet
@@ -4286,7 +4280,13 @@
     SUBDIR += py-boto
     SUBDIR += py-botocore
     SUBDIR += py-bsd
+    SUBDIR += py-buildbot
+    SUBDIR += py-buildbot-console-view
     SUBDIR += py-buildbot-grid-view
+    SUBDIR += py-buildbot-pkg
+    SUBDIR += py-buildbot-waterfall-view
+    SUBDIR += py-buildbot-worker
+    SUBDIR += py-buildbot-www
     SUBDIR += py-cached-property
     SUBDIR += py-cachetools
     SUBDIR += py-calendar
@@ -4594,6 +4594,7 @@
     SUBDIR += py-mygpoclient
     SUBDIR += py-mypy
     SUBDIR += py-nagioscheck
+    SUBDIR += py-naiveBayesClassifier
     SUBDIR += py-natsort
     SUBDIR += py-natural
     SUBDIR += py-nbconvert
