@@ -20,9 +20,8 @@ LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 
 PORTSCOUT=	ignore:1
 
-USES?=		python
-USES+=		tar:xz
-USE_PYTHON=	autoplist distutils
+USES=		python tar:xz
+USE_PYTHON=	autoplist distutils allflavors
 
 DISTINFO_FILE=	${PORTSDIR}/lang/python${PYTHON_SUFFIX}/distinfo
 WRKSRC=		${WRKDIR}/Python-${PORTVERSION}/Modules
