@@ -16,7 +16,7 @@ LICENSE_NAME_TclTk=	Tcl/Tk License
 LICENSE_TEXT_TclTk=	http://www.tcl.tk/software/tcltk/license.html
 LICENSE_PERMS_TclTk=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USES?=		python
+USES=		python
 USE_PYTHON=	distutils autoplist
 
 .include <bsd.port.mk>
