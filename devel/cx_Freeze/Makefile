@@ -12,7 +12,7 @@ COMMENT=	The cx_Freeze is a set of utilities for freezing Python scripts
 USE_HARDENING=	pie:off relro:off
 
 USE_GCC=	yes
-USES=		python
+USES=		python:2.7
 USE_PYTHON=	distutils
 
 .include <bsd.port.mk>

@@ -3,7 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	3.4
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	http://ffmpeg.org/releases/
@@ -356,7 +356,7 @@ VAAPI_CONFIGURE_ENABLE=	vaapi
 VDPAU_LIB_DEPENDS=	libvdpau.so:multimedia/libvdpau
 VDPAU_CONFIGURE_ENABLE=	vdpau
 
-# armv6
+# armv6/armv7
 VFP_CONFIGURE_ENABLE=	vfp
 NEON_CONFIGURE_ENABLE=	neon
 .if ! ${CFLAGS:M-march*}
@@ -455,7 +455,8 @@ CONFIGURE_ARGS+=--prefix="${PREFIX}" \
 
 CONFIGURE_ENV_aarch64_clang=	ASFLAGS=-no-integrated-as
 CONFIGURE_ENV_armv6_clang=	ASFLAGS=-no-integrated-as
-CONFIGURE_ARGS_armv6=		--disable-fast-unaligned
+CONFIGURE_ENV_armv7_clang=	ASFLAGS=-no-integrated-as
+CONFIGURE_ARGS_FreeBSD_10_armv6=--disable-fast-unaligned
 
 DOC_FILES=	Changelog CREDITS INSTALL.md LICENSE.md MAINTAINERS \
 		README.md RELEASE_NOTES
@@ -465,8 +466,7 @@ PORTDOCS=	*
 
 # Custom helpers. FOO_${ARCH} style from bsd.port.mk
 CONFIGURE_ENV+=	${CONFIGURE_ENV_${ARCH}_${CHOSEN_COMPILER_TYPE}}
-CONFIGURE_ARGS+=${CONFIGURE_ARGS_${OPSYS}_${OSREL:R}}
-CONFIGURE_ARGS+=${CONFIGURE_ARGS_${ARCH}}
+CONFIGURE_ARGS+=${CONFIGURE_ARGS_${OPSYS}_${OSREL:R}_${ARCH}}
 
 post-patch:
 # {C,LD}FLAGS safeness

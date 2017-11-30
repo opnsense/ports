@@ -10,15 +10,16 @@ MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Provide an easy way to use existing grace-files as a template
 
-BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/numarray/__init__.py:math/py-numarray
-RUN_DEPENDS=	${PYTHON_SITELIBDIR}/numarray/__init__.py:math/py-numarray
+BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/numarray/__init__.py:math/py-numarray@${FLAVOR}
+RUN_DEPENDS=	${PYTHON_SITELIBDIR}/numarray/__init__.py:math/py-numarray@${FLAVOR}
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		gmake python tar:bzip2
+USES=		gmake python:2.7 tar:bzip2
+USE_PYTHON=	flavors
 MAKE_ARGS=	PREFIX="${PREFIX}" \
 		BIN_PREFIX="${PREFIX}/bin" \
 		LIB_PREFIX="${PREFIX}/lib" \

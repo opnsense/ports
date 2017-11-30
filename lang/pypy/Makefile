@@ -21,10 +21,11 @@ TEST_DEPENDS=	${LOCALBASE}/${PYPY_DIR}/lib_pypy/_gdbm_cffi.${PYPY_CFFI_VER}.so:d
 		${LOCALBASE}/${PYPY_DIR}/lib_pypy/_sqlite3_cffi.${PYPY_CFFI_VER}.so:databases/pypy-sqlite3 \
 		${LOCALBASE}/${PYPY_DIR}/lib_pypy/_tkinter/tklib_cffi.${PYPY_CFFI_VER}.so:x11-toolkits/pypy-tkinter
 
-ONLY_FOR_ARCHS?=i386 amd64 armv6 powerpc64
+ONLY_FOR_ARCHS?=	amd64 armv6 armv7 i386 powerpc64
 ONLY_FOR_ARCHS_REASON?=	PyPy JIT only supported on these architectures
 
 BROKEN_armv6=		fails to package: pypy_objspace_std.c: Crash in JIT!
+BROKEN_armv7=		fails to package: pypy_objspace_std.c: Crash in JIT!
 BROKEN_powerpc64=	fails to compile: platcheck_109.c: fatal error: linux/auxvec.h: No such file or directory
 
 OPTIONS_SINGLE=	TRANS
@@ -93,7 +94,7 @@ PYPY_MINMEM_BUILD_DEPENDS=	pypy:lang/pypy
 .endif
 PYPY_VARS=	PYTHON_CMD=${LOCALBASE}/bin/pypy
 PYPY_MINMEM_VARS=	PYTHON_CMD="${SETENV} PYPY_GC_MAX_DELTA=200MB ${LOCALBASE}/bin/pypy --jit loop_longevity=300"
-PYTHON_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycparser>=2.10:devel/py-pycparser
+PYTHON_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pycparser>=2.10:devel/py-pycparser@${PY_FLAVOR}
 PYTHON_USES=	python:2,build
 
 DESCR=		${.CURDIR}/pkg-descr

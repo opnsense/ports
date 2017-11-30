@@ -20,6 +20,7 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 RUN_DEPENDS=	fig2dev:print/transfig
 
 BROKEN_armv6=		fails to compile: call to min is ambiguous
+BROKEN_armv7=		fails to compile: call to min is ambiguous
 
 USE_HARDENING=	pie:off relro:off
 
