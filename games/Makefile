@@ -534,6 +534,7 @@
     SUBDIR += libretro-cores
     SUBDIR += libshhcards
     SUBDIR += lightsoff
+    SUBDIR += lightyears
     SUBDIR += lincity
     SUBDIR += lincity-ng
     SUBDIR += linux-darwinia-demo
@@ -557,7 +558,6 @@
     SUBDIR += linux-quake3-demo
     SUBDIR += linux-quake4
     SUBDIR += linux-quake4-demo
-    SUBDIR += linux-rtcw
     SUBDIR += linux-ssamtfe
     SUBDIR += linux-ssamtse
     SUBDIR += linux-unigine-heaven
@@ -574,6 +574,7 @@
     SUBDIR += lmarbles
     SUBDIR += lmpc
     SUBDIR += lolcat
+    SUBDIR += lordsawar
     SUBDIR += lpairs
     SUBDIR += lskat
     SUBDIR += ltris

@@ -65,6 +65,7 @@
     SUBDIR += R-cran-tidyr
     SUBDIR += R-cran-tidyselect
     SUBDIR += R-cran-withr
+    SUBDIR += RStudio
     SUBDIR += SpecTcl
     SUBDIR += aap
     SUBDIR += aarch64-binutils
@@ -116,6 +117,7 @@
     SUBDIR += arcanist
     SUBDIR += arduino
     SUBDIR += arduino-avrdude
+    SUBDIR += arduino-bsd-mk
     SUBDIR += arduino-builder
     SUBDIR += arduino-core
     SUBDIR += arduino-ctags

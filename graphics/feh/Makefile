@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libImlib2.so:graphics/imlib2 \
-		libpng16.so:graphics/png
+		libpng.so:graphics/png
 
 USE_HARDENING=	safestack
 
