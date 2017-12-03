@@ -41,6 +41,7 @@
     SUBDIR += iqtree
     SUBDIR += jalview
     SUBDIR += jellyfish
+    SUBDIR += kallisto
     SUBDIR += lagan
     SUBDIR += lamarc
     SUBDIR += libgtextutils
@@ -87,6 +88,7 @@
     SUBDIR += py-biopython
     SUBDIR += py-bx-python
     SUBDIR += py-cutadapt
+    SUBDIR += py-macs2
     SUBDIR += py-pysam
     SUBDIR += pycogent
     SUBDIR += pyfasta
