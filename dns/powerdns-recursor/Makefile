@@ -2,20 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	recursor
-PORTVERSION=	4.0.6
-PORTREVISION=	5
+DISTVERSION=	4.0.7
 CATEGORIES=	dns ipv6
 MASTER_SITES=	http://downloads.powerdns.com/releases/
 PKGNAMEPREFIX=	powerdns-
-DISTNAME=	pdns-${PORTNAME}-${PORTVERSION}
+DISTNAME=	pdns-${PORTNAME}-${DISTVERSION}
 
 MAINTAINER=	tremere@cainites.net
 COMMENT=	Advanced DNS recursor
 
 LICENSE=	GPLv2
-
-BUILD_DEPENDS=	${LOCALBASE}/include/boost/shared_ptr.hpp:devel/boost-libs
-LIB_DEPENDS=	libboost_context.so:devel/boost-libs
 
 BROKEN_armv6=		fails to compile: use of overloaded operator << is ambiguous
 BROKEN_armv7=		fails to compile: use of overloaded operator << is ambiguous
@@ -24,10 +20,15 @@ BROKEN_powerpc64=	fails to compile: dnslabeltext.cc: undefined reference to std:
 
 USE_HARDENING=	pie:off
 
-USES=		compiler:c++11-lib cpe gmake localbase pkgconfig ssl tar:bzip2
+BUILD_DEPENDS=	${LOCALBASE}/include/boost/shared_ptr.hpp:devel/boost-libs
+LIB_DEPENDS=	libboost_context.so:devel/boost-libs \
+		libprotobuf.so:devel/protobuf
+
+USES=		compiler:c++11-lib cpe gmake localbase:ldflags pkgconfig ssl tar:bzip2
 GNU_CONFIGURE=	YES
 CXXFLAGS+=	-D_GLIBCXX_USE_C99
-CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pdns
+CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/pdns \
+		--with-protobuf
 
 CPE_VENDOR=	powerdns
 
@@ -48,9 +49,9 @@ LUA_USES=		lua
 LUAJIT_CONFIGURE_WITH=	luajit
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so.2:lang/luajit
 
-OPTALGO_CONFIGURE_ON=	--enable-botan1.10 \
+OPTALGO_CONFIGURE_ON=	--enable-botan \
 			--enable-libsodium
-OPTALGO_LIB_DEPENDS=	libbotan-1.10.so:security/botan110 \
+OPTALGO_LIB_DEPENDS=	libbotan-2.so:security/botan2 \
 			libsodium.so:security/libsodium
 
 SETUID_VARS=	USERS=pdns_recursor GROUPS=pdns
