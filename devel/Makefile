@@ -1554,6 +1554,7 @@
     SUBDIR += libtool
     SUBDIR += libtpl
     SUBDIR += libtrue
+    SUBDIR += libtsm
     SUBDIR += libtuntap
     SUBDIR += libublio
     SUBDIR += libudev-devd
@@ -5277,6 +5278,7 @@
     SUBDIR += rubygem-backports
     SUBDIR += rubygem-bacon
     SUBDIR += rubygem-baf
+    SUBDIR += rubygem-batch-loader
     SUBDIR += rubygem-benelux
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
