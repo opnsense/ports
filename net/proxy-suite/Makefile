@@ -16,6 +16,8 @@ USE_HARDENING=	safestack
 USE_AUTOTOOLS=	autoconf
 USES=		gmake tar:bzip2
 
+MAKE_JOBS_UNSAFE=	yes
+
 #
 # basic configure args
 #
