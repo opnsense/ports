@@ -622,6 +622,7 @@
     SUBDIR += p5-tagged
     SUBDIR += p5-xmms2
     SUBDIR += pacpl
+    SUBDIR += padthv1-lv2
     SUBDIR += paman
     SUBDIR += paprefs
     SUBDIR += patchage
@@ -725,6 +726,7 @@
     SUBDIR += sbagen
     SUBDIR += sc3-plugins
     SUBDIR += schismtracker
+    SUBDIR += screcord-lv2
     SUBDIR += scrobbler
     SUBDIR += sdl2_mixer
     SUBDIR += sdl_mixer
