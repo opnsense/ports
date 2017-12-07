@@ -107,6 +107,7 @@
     SUBDIR += antlr4
     SUBDIR += apache-ant
     SUBDIR += apache-rat
+    SUBDIR += aphpbreakdown
     SUBDIR += aphpunit
     SUBDIR += api-sanity-autotest
     SUBDIR += apiextractor
@@ -1291,7 +1292,6 @@
     SUBDIR += kickassembler
     SUBDIR += kimwitu
     SUBDIR += kore
-    SUBDIR += kore-notls
     SUBDIR += ksql
     SUBDIR += kyra
     SUBDIR += kyua
