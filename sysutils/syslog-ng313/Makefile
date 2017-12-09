@@ -54,7 +54,7 @@ INSTALL_TARGET=	install-strip
 
 CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc --localstatedir=/var/db \
 		--enable-dynamic-linking --enable-manpages \
-		--disable-linux-caps \
+		--disable-linux-caps --disable-amqp \
 		--datadir=${PREFIX}/share/
 
 CONFIGURE_ENV+=		OPENSSL_CFLAGS="-I${OPENSSLINC}" \
