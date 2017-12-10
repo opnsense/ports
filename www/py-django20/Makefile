@@ -1,15 +1,13 @@
 # Created by: Jose Alonso Cardenas Marquez <acardenas@bsd.org.pe>
 # $FreeBSD$
-#
-# Remember to update www/py-django along with this port.
 
 PORTNAME=	django
-PORTVERSION=	1.11.7
+PORTVERSION=	2.0
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP \
 		https://www.djangoproject.com/m/releases/${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-PKGNAMESUFFIX=	111
+PKGNAMESUFFIX=	20
 DISTNAME=	Django-${PORTVERSION}
 DIST_SUBDIR=	python
 
@@ -22,15 +20,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${FLAVOR}
 
 NO_ARCH=	yes
-USES=		cpe python shebangfix
+USES=		cpe python:3.4+ shebangfix
 USE_PYTHON=	autoplist distutils
 SHEBANG_FILES=	django/bin/django-admin.py \
 		django/conf/project_template/manage.py-tpl
 
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django-devel ${PYTHON_PKGNAMEPREFIX}django18 ${PYTHON_PKGNAMEPREFIX}django110 ${PYTHON_PKGNAMEPREFIX}django20
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django-devel ${PYTHON_PKGNAMEPREFIX}django18 \
+			${PYTHON_PKGNAMEPREFIX}django11[01]
 CPE_VENDOR=		djangoproject
 
-DOCSDIR=	${PREFIX}/share/doc/py-django
+DOCSDIR=		${PREFIX}/share/doc/py-django
 
 OPTIONS_DEFINE=		DOCS FASTCGI HTMLDOCS
 OPTIONS_DEFAULT=	SQLITE
@@ -38,9 +37,9 @@ OPTIONS_DEFAULT=	SQLITE
 OPTIONS_GROUP=		DATABASE
 OPTIONS_GROUP_DATABASE=	PGSQL MYSQL SQLITE
 
-HTMLDOCS_DESC=	Install HTML documentation (requires Sphinx)
+HTMLDOCS_DESC=		Install HTML documentation (requires Sphinx)
 
-PLIST_FILES=	man/man1/django-admin.1.gz
+PLIST_FILES=		man/man1/django-admin.1.gz
 
 HTMLDOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${FLAVOR}
 PGSQL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}psycopg2>0:databases/py-psycopg2@${FLAVOR}
@@ -61,7 +60,7 @@ post-build-HTMLDOCS-on:
 post-install:
 	${INSTALL_MAN} ${WRKSRC}/docs/man/* ${STAGEDIR}/${MAN1PREFIX}/man/man1
 	@${ECHO_MSG}	""
-	@${ECHO_MSG}	"			* See http://docs.djangoproject.com/ for complete documentation"
+	@${ECHO_MSG}	"	* See http://docs.djangoproject.com/ for complete documentation"
 	@${ECHO_MSG}	""
 
 post-install-HTMLDOCS-on:

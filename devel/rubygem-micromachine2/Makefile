@@ -1,16 +1,18 @@
-# Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=	iso8601
-PORTVERSION=	0.10.0
+PORTNAME=	micromachine
+PORTVERSION=	2.1.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
+PKGNAMESUFFIX=	2
 
 MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	Simple implementation of the ISO 8601 standard
+COMMENT=	Minimal Finite State Machine
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+PORTSCOUT=	limit:^2\.
 
 NO_ARCH=	yes
 USE_RUBY=	yes
