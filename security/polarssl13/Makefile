@@ -21,7 +21,7 @@ USE_LDCONFIG=	yes
 
 WRKSRC=		${WRKDIR}/mbedtls-${PORTVERSION}
 
-CONFLICTS_INSTALL=	mbedtls
+CONFLICTS=	polarssl-[0-9]*
 
 post-patch:
 	@${REINPLACE_CMD} \
