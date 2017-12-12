@@ -15,7 +15,7 @@ LIB_DEPENDS=	libpopt.so:devel/popt
 
 USE_HARDENING=	pie:off
 
-USES=		gmake python
+USES=		gmake python:2.7
 USE_GITHUB=	yes
 GH_ACCOUNT=	rhinstaller
 

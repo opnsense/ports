@@ -17,7 +17,7 @@ BUILD_DEPENDS=	xmlada>=3.2:textproc/xmlada
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		ada gmake python:build shebangfix
+USES=		ada gmake python:2.7,build shebangfix
 GNU_CONFIGURE=	yes
 NO_MTREE=	yes
 YEAR=		2014
