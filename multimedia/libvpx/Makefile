@@ -21,8 +21,6 @@ BUILD_DEPENDS=	nasm:devel/nasm
 USE_GITHUB=	yes
 GH_ACCOUNT=	webmproject
 
-LLVM_AR_UNSAFE=	yes
-
 USES=		cpe gmake perl5 shebangfix
 CPE_VENDOR=	john_koleszar
 HAS_CONFIGURE=	yes

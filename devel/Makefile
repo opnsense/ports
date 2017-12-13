@@ -820,6 +820,7 @@
     SUBDIR += go-glide
     SUBDIR += go-go.uuid
     SUBDIR += go-gocode
+    SUBDIR += go-godef
     SUBDIR += go-goregen
     SUBDIR += go-hashicorp-logutils
     SUBDIR += go-json-rest
@@ -5183,6 +5184,7 @@
     SUBDIR += quickcheck++
     SUBDIR += quilt
     SUBDIR += racer
+    SUBDIR += racerd
     SUBDIR += radare2
     SUBDIR += ragel
     SUBDIR += raknet

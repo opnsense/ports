@@ -17,7 +17,6 @@ USES=		gmake ncurses tar:tgz
 GNU_CONFIGURE=	yes
 PORTDOCS=	EXPANDING INSTALL NOTES README TODO
 MAKE_JOBS_UNSAFE=	yes
-LLVM_AR_UNSAFE=		yes
 
 CONFIGURE_ARGS+=--with-ncurses
 ALL_TARGET=	default cdkshlib
