@@ -17,8 +17,6 @@ SLAVEDIRS=	databases/mysql56-client
 USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
 		cpe libedit localbase perl5 shebangfix ssl
 
-LLVM_AR_UNSAFE=	yes
-
 USE_PERL5=	run
 
 MY_DBDIR=	/var/db/mysql
