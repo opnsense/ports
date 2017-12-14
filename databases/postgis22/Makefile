@@ -16,7 +16,7 @@ LIB_DEPENDS=	libproj.so:graphics/proj \
 		libgeos.so:graphics/geos \
 		libjson-c.so:devel/json-c
 
-CONFLICTS=	postgis20-2.0.* postgis-2.1.* postgis23-2.3.*
+CONFLICTS_INSTALL=	postgis20 postgis postgis23
 
 USE_HARDENING=	pie:off relro:off
 

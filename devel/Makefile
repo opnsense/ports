@@ -308,7 +308,6 @@
     SUBDIR += clanlib
     SUBDIR += clanlib1
     SUBDIR += clanlib22
-    SUBDIR += cld
     SUBDIR += cld2
     SUBDIR += clewn
     SUBDIR += clig
@@ -5644,6 +5643,7 @@
     SUBDIR += rubygem-rails-i18n-rails50
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rainbow
+    SUBDIR += rubygem-rainbow2
     SUBDIR += rubygem-rake
     SUBDIR += rubygem-rake-compiler
     SUBDIR += rubygem-rake-compiler-dock
