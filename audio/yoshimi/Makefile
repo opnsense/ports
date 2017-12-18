@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	yoshimi
-DISTVERSION=	1.5.5
+DISTVERSION=	1.5.6
 CATEGORIES=	audio
 
 MAINTAINER=	hello@blubee.me
@@ -21,6 +21,10 @@ LIB_DEPENDS=	libargp.so:devel/argp-standalone \
 		libjack.so:audio/jack \
 		libmxml.so:textproc/mxml
 
+BROKEN_aarch64=		fails to compile: c++: warning: argument unused during compilation: '-msse'
+BROKEN_armv6=		fails to compile: c++: warning: argument unused during compilation: '-msse'
+BROKEN_armv7=		fails to compile: c++: warning: argument unused during compilation: '-msse'
+
 USES=		cmake:outsource ncurses pkgconfig readline:port
 USE_GITHUB=	yes
 USE_GNOME=	cairo
@@ -29,9 +33,5 @@ USE_XORG=	x11 ice sm xext
 
 CMAKE_SOURCE_PATH=	${WRKSRC}/src
 INSTALLS_ICONS=	yes
-
-post-install:
-	@${MV} ${STAGEDIR}${PREFIX}/share/yoshimi/yoshimi-user-manual.pdf \
-		${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
