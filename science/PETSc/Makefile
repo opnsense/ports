@@ -1,4 +1,4 @@
-# Created by: Yuri Victorovich <yuri@FreeBSD.org>
+# Created by: Thierry Thomas <thierry@pompo.net>
 # $FreeBSD$
 
 PORTNAME=	PETSc
