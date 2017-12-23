@@ -14,9 +14,11 @@ _INCLUDE_USES_CFI_MK=    yes
 CONFIGURE_ARGS+=	--enable-cfi
 .else
 
-CFLAGS+=	-fsanitize=cfi -fvisibility=hidden -flto
-CXXFLAGS+=	-fsanitize=cfi -fvisibility=hidden -flto
-LDFLAGS+=	-fsanitize=cfi -fvisibility=hidden -flto
+CFI_OVERRIDE?=	# Intentionally blank
+
+CFLAGS+=	-fsanitize=cfi -fvisibility=hidden -flto ${CFI_OVERRIDE}
+CXXFLAGS+=	-fsanitize=cfi -fvisibility=hidden -flto ${CFI_OVERRIDE}
+LDFLAGS+=	-fsanitize=cfi -fvisibility=hidden -flto ${CFI_OVERRIDE}
 .endif
 
 .endif
