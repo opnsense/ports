@@ -24,7 +24,8 @@ GROUPS=		git_daemon
 
 SUB_FILES=	pkg-message
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 GNU_CONFIGURE=	yes
 USES=		autoreconf gmake shebangfix ssl tar:xz
