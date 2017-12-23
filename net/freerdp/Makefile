@@ -20,7 +20,8 @@ USES=		alias cmake:outsource compiler:c++11-lib cpe gettext localbase pathfix pk
 USE_LDCONFIG=	yes
 CPE_VENDOR=	freerdp_project
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 CMAKE_ARGS+=	-DWITH_LIBSYSTEMD=OFF -DWITH_WAYLAND=OFF -DWITH_GSTREAMER_0_10=OFF ${CMAKE_ARGS_${ARCH}}
 

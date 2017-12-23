@@ -16,7 +16,8 @@ RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:misc/mime-support \
 
 USES=		iconv:translit localbase perl5 shebangfix ssl
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 USE_GITHUB=	yes
 USE_PERL5=	build

@@ -25,7 +25,7 @@ RUN_DEPENDS=	pinentry:security/pinentry
 CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
 CPE_VENDOR=	gnupg
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
 CPPFLAGS=	-fPIC
 
 USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2

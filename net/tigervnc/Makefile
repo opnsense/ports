@@ -28,7 +28,8 @@ CONFLICTS=	tigervnc-devel-[0-9]* \
 		tightvnc-[0-9]* \
 		tridiavnc-[0-9]*
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 USES=		autoreconf:build cmake:noninja cpe iconv jpeg libtool pkgconfig \
 		python ssl
