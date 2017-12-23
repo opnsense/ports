@@ -7,7 +7,7 @@ DISTVERSIONPREFIX=v
 CATEGORIES=	security
 
 MAINTAINER=	franco@opnsense.org
-COMMENT=	Security module for PHP 7
+COMMENT=	Security module for PHP 7+
 
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/../LICENSE
