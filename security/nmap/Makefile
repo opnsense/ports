@@ -18,7 +18,7 @@ COMMENT?=	Port scanning utility for large networks
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING?=	safestack
+USE_HARDENING?=	cfi safestack
 
 .if !defined(MASTERDIR)
 
