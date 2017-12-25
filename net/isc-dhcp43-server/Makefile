@@ -16,7 +16,8 @@ COMMENT?=	ISC Dynamic Host Configuration Protocol server
 
 LICENSE=	ISCL
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 USES=		gmake
 
