@@ -25,9 +25,8 @@ USE_HARDENING=	pie:off relro:off
 WRKSRC=		${WRKDIR}/grub-${PORTVERSION}
 SSP_UNSAFE=	yes
 USE_GCC=	yes
-ACLOCAL_ARGS=	-Im4
 GNU_CONFIGURE=	yes
-USES=		autoreconf bison cpe gettext gmake python tar:xz
+USES=		autoreconf:build bison cpe gettext gmake python tar:xz
 ONLY_FOR_ARCHS=	amd64
 MAKE_JOBS_UNSAFE=	yes
 

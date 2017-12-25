@@ -21,7 +21,8 @@ GNU_CONFIGURE=	yes
 USE_GNOME=	glib20 gtk20 cairo pango gdkpixbuf2 intltool intlhack
 USE_XORG=	x11
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 CONFIGURE_ARGS=--with-gtk=2
 

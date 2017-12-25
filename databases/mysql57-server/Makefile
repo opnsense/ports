@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
-USE_HARDENING=	pie:off relro:off
+USE_HARDENING=	relro:off
 
 SLAVEDIRS=	databases/mysql57-client
 USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
