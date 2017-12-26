@@ -41,6 +41,7 @@ LICENSE=	GPLv2
 USE_HARDENING=	pie:java
 
 BUILD_DEPENDS=	zip:archivers/zip \
+		autoconf>0:devel/autoconf \
 		${LOCALBASE}/include/cups/cups.h:print/cups \
 		bash:shells/bash
 LIB_DEPENDS=	libfreetype.so:print/freetype2
@@ -49,7 +50,6 @@ RUN_DEPENDS=	javavm:java/javavmwrapper \
 
 USES=		compiler:features dos2unix gmake iconv pkgconfig \
 		shebangfix
-USE_AUTOTOOLS=	autoconf
 
 .if !exists(/usr/bin/unzip)
 BUILD_DEPENDS+=	${UNZIP_CMD}:archivers/unzip
@@ -213,6 +213,7 @@ JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
 JTREG_JENKINS_BUILD=	77
 
+GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--with-boot-jdk=${BOOTSTRAPJDKDIR}
 CONFIGURE_ARGS+=	--with-build-number="b${JDK_BUILD_NUMBER}"
 .if ${JDK_UPDATE_VERSION} > 0
@@ -294,8 +295,6 @@ CONFIGURE_ARGS+=	--disable-debug-symbols
 JAVAVMS_COMMENT+=	JRE
 JDK_BUILD_TYPE=		release
 .endif
-
-AUTOCONF_ARGS=	-I . -o generated-configure.sh generated-configure.ac
 
 # XXX configure script rejects CC/CPP/CXX with absolute paths.
 .for t in CC CPP CXX
@@ -412,11 +411,6 @@ post-patch:
 post-patch-ALSA-off:
 	@${REINPLACE_CMD} '/EXTRA_SOUND_JNI_LIBS += jsoundalsa/d' \
 		${WRKSRC}/jdk/make/lib/SoundLibraries.gmk
-
-pre-configure:
-	@cd ${CONFIGURE_WRKSRC} && \
-	${SED} -e "s|@DATE_WHEN_GENERATED@|$$(date +%s)|" configure.ac > \
-	    generated-configure.ac
 
 post-build:
 .if !defined(BUILD_JRE)
