@@ -13,7 +13,7 @@ LICENSE=	GPLv2
 
 USE_HARDENING=	safestack
 
-USE_AUTOTOOLS=	autoconf
+GNU_CONFIGURE=	yes
 USES=		gmake tar:bzip2
 
 MAKE_JOBS_UNSAFE=	yes
@@ -22,7 +22,7 @@ MAKE_JOBS_UNSAFE=	yes
 # basic configure args
 #
 CPPFLAGS+=	-I${LOCALBASE}/include
-CONFIGURE_ARGS=	--prefix=${PREFIX} --with-libwrap=/usr/lib --with-regex \
+CONFIGURE_ARGS=	--with-libwrap=/usr/lib --with-regex \
 		--localstatedir=/var/run \
 		--enable-warnings --enable-so-linger \
 		--disable-proc-mods
@@ -57,9 +57,10 @@ MAKE_ARGS=	INST_ROOT=${STAGEDIR} CONF_DST=ftp-proxy.conf.sample
 
 SUB_FILES=	pkg-message
 
-.include <bsd.port.pre.mk>
+post-patch:
+	@${REINPLACE_CMD} 's,net/pfvar.h,,' ${WRKSRC}/configure
 
 pre-install:
-	@${STRIP_CMD} ${WRKSRC}/ftp-proxy/ftp-proxy
+	${STRIP_CMD} ${WRKSRC}/ftp-proxy/ftp-proxy
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
