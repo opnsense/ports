@@ -99,6 +99,7 @@
     SUBDIR += abs
     SUBDIR += acalc
     SUBDIR += add
+    SUBDIR += adept
     SUBDIR += algae
     SUBDIR += alglib
     SUBDIR += algotutor
@@ -727,6 +728,7 @@
     SUBDIR += spooles-mpich
     SUBDIR += stp
     SUBDIR += suitesparse
+    SUBDIR += sundials
     SUBDIR += superlu
     SUBDIR += superlu_mt
     SUBDIR += surf

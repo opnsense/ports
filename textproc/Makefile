@@ -113,6 +113,7 @@
     SUBDIR += dictem
     SUBDIR += dictfmt
     SUBDIR += dictionary
+    SUBDIR += diff-so-fancy
     SUBDIR += diffmark
     SUBDIR += diffsplit
     SUBDIR += diffstat
@@ -752,6 +753,7 @@
     SUBDIR += p5-RADIUS-UserFile
     SUBDIR += p5-RDF-Core
     SUBDIR += p5-RDF-Notation3
+    SUBDIR += p5-RDF-Query
     SUBDIR += p5-RDF-Simple
     SUBDIR += p5-RDF-Trine
     SUBDIR += p5-RDFStore

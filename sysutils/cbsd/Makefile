@@ -19,6 +19,8 @@ LIB_DEPENDS=	libssh2.so:security/libssh2 \
 
 USES=	libedit
 
+USE_HARDENING=	pie:off relro:off
+
 USE_GITHUB=	yes
 USE_RC_SUBR=	cbsdd cbsdrsyncd
 
