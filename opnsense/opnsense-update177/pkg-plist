@@ -1,0 +1,18 @@
+@postunexec mv %%PREFIX%%/sbin/opnsense-bootstrap.bak %%PREFIX%%/sbin/opnsense-bootstrap
+@preunexec cp %%PREFIX%%/sbin/opnsense-bootstrap %%PREFIX%%/sbin/opnsense-bootstrap.bak
+man/man8/opnsense-bootstrap.8.gz
+man/man8/opnsense-code.8.gz
+man/man8/opnsense-fetch.8.gz
+man/man8/opnsense-patch.8.gz
+man/man8/opnsense-revert.8.gz
+man/man8/opnsense-sign.8.gz
+man/man8/opnsense-update.8.gz
+man/man8/opnsense-verify.8.gz
+sbin/opnsense-bootstrap
+sbin/opnsense-code
+sbin/opnsense-fetch
+sbin/opnsense-patch
+sbin/opnsense-revert
+sbin/opnsense-sign
+sbin/opnsense-update
+sbin/opnsense-verify
