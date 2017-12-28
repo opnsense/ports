@@ -18,9 +18,8 @@ WRKSRC=		${WRKDIR}/dwarf-${PORTVERSION}/dwarfdump
 
 USE_HARDENING=	pie:off
 
+USES=		localbase:ldflags
 GNU_CONFIGURE=	yes
-LDFLAGS+=	-L${LOCALBASE}/lib
-CFLAGS+=	-I${LOCALBASE}/include
 
 PLIST_FILES=	bin/dwarfdump man/man1/dwarfdump.1.gz
 
@@ -40,6 +39,6 @@ post-patch:
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/dwarfdump ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_DATA} ${WRKSRC}/dwarfdump.1 ${STAGEDIR}${MANPREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/dwarfdump.1 ${STAGEDIR}${MANPREFIX}/man/man1
 
 .include <bsd.port.post.mk>
