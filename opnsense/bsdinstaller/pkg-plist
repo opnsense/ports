@@ -15,6 +15,7 @@ sbin/dfuife_curses
 share/dfuibe_lua/150_easy_install.lua
 share/dfuibe_lua/200_install.lua
 share/dfuibe_lua/300_rescueconfig.lua
+share/dfuibe_lua/350_resetpassword.lua
 share/dfuibe_lua/400_configure.lua
 share/dfuibe_lua/500_create_geom_mirror.lua
 share/dfuibe_lua/800_netboot.lua
