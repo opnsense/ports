@@ -6,7 +6,6 @@
     SUBDIR += 3dm
     SUBDIR += 44bsd-more
     SUBDIR += 915resolution
-    SUBDIR += DTraceToolkit
     SUBDIR += LPRng
     SUBDIR += LPRngTool
     SUBDIR += UEFITool
@@ -1225,6 +1224,7 @@
     SUBDIR += u-boot-orangepi-one
     SUBDIR += u-boot-orangepi-pc2
     SUBDIR += u-boot-orangepi-plus-2e
+    SUBDIR += u-boot-orangepi-zero
     SUBDIR += u-boot-pandaboard
     SUBDIR += u-boot-pcduino3
     SUBDIR += u-boot-pine64

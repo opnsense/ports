@@ -3126,7 +3126,6 @@
     SUBDIR += p5-Parse-PMFile
     SUBDIR += p5-Parse-PerlConfig
     SUBDIR += p5-Parse-Pidl
-    SUBDIR += p5-Parse-Pidl44
     SUBDIR += p5-Parse-PlainConfig
     SUBDIR += p5-Parse-RecDescent
     SUBDIR += p5-Parse-Win32Registry
@@ -5455,6 +5454,7 @@
     SUBDIR += rubygem-google-api-client
     SUBDIR += rubygem-google-api-client010
     SUBDIR += rubygem-google-protobuf
+    SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
     SUBDIR += rubygem-grape-entity
