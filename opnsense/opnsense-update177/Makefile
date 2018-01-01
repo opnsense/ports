@@ -3,7 +3,7 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	17.7.10
-PORTREVISION=	1 # GH_TAGNAME
+PORTREVISION=	2 # GH_TAGNAME
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
