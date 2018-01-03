@@ -3,7 +3,7 @@
 
 PORTNAME=		opensips
 PORTVERSION=		2.2.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=		net
 MASTER_SITES=		http://opensips.org/pub/opensips/${PORTVERSION}/
 
@@ -146,6 +146,7 @@ SHEBANG_FILES=		ccopts.sh \
 			test/9.sh \
 			utils/fifo_relay/fifo_server.php \
 			utils/profile/launch.sh
+python_CMD=	${LOCALBASE}/bin/python2.7
 
 .include <bsd.port.options.mk>
 
@@ -190,6 +191,9 @@ EXTRA_MODULES+=		db_sqlite
 .endif
 
 OPENSIPS_MAKE_ENV=	CC="${CC}" CXX="${CXX}" CPP="${CPP}" _GCC_RUNTIME="${_GCC_RUNTIME}" CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}"
+
+post-patch:
+	@${RM} ${WRKSRC}/modules/json/array_del.c
 
 do-configure:
 	@(cp files/Makefile.conf ${WRKSRC})
