@@ -188,6 +188,7 @@
     SUBDIR += consul
     SUBDIR += consul_exporter
     SUBDIR += consul-alerts
+    SUBDIR += container-diff
     SUBDIR += contractor
     SUBDIR += copytape
     SUBDIR += coreutils
@@ -1290,6 +1291,7 @@
     SUBDIR += vpnc-scripts
     SUBDIR += vstrip
     SUBDIR += vttest
+    SUBDIR += vzvol
     SUBDIR += wait_on
     SUBDIR += warden
     SUBDIR += watchdog
