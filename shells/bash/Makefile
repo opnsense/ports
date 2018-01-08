@@ -67,6 +67,7 @@ CONFLICTS+=		bash-[0-9]*
 
 .if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:tl} != "no")
 CONFIGURE_ARGS+=	--enable-static-link
+LLD_UNSAFE=		yes
 # For STATIC option undo all hardening.   This is a chicken vs. egg
 # problem in the way the options and their actions are handled, but
 # we end up with the correct port option state for hardening.
