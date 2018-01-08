@@ -46,6 +46,7 @@
     SUBDIR += belier
     SUBDIR += bfbtester
     SUBDIR += binwalk
+    SUBDIR += bitwarden-ruby
     SUBDIR += blindelephant
     SUBDIR += boringssl
     SUBDIR += botan110
@@ -328,6 +329,7 @@
     SUBDIR += libbeid
     SUBDIR += libbf
     SUBDIR += libcryptui
+    SUBDIR += libdecaf
     SUBDIR += libecc
     SUBDIR += libfprint
     SUBDIR += libgcrypt
@@ -1089,6 +1091,7 @@
     SUBDIR += rubygem-openssl20
     SUBDIR += rubygem-openvas-omp
     SUBDIR += rubygem-origami
+    SUBDIR += rubygem-pbkdf2-ruby
     SUBDIR += rubygem-pundit
     SUBDIR += rubygem-pyu-ruby-sasl
     SUBDIR += rubygem-rack-oauth2

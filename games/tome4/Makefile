@@ -33,6 +33,7 @@ USE_SDL=	image2 sdl2 ttf2
 USE_GL=		gl glu
 USE_CSTD=	gnu89
 SUB_FILES=	tome4
+LLD_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
 
