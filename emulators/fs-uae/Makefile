@@ -22,6 +22,7 @@ USES=		gettext gmake pkgconfig
 USE_SDL=	sdl
 USE_GL=		gl
 USE_GNOME=	glib20
+LLD_UNSAFE=	yes
 INSTALLS_ICONS=	yes
 MAKE_ARGS+=	prefix=${PREFIX}
 
