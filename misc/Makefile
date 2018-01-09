@@ -249,8 +249,10 @@
     SUBDIR += libeatmydata
     SUBDIR += libisocodes
     SUBDIR += libkdeedu
+    SUBDIR += liblxi
     SUBDIR += libmetalink
     SUBDIR += libpostal
+    SUBDIR += libpredict
     SUBDIR += libpri
     SUBDIR += libsupertone
     SUBDIR += libutf

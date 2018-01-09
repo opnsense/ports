@@ -15,6 +15,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	rake:devel/rubygem-rake
 
+USE_HARDENING=	pie:off relro:off
+
 CPE_VENDOR=	phusion
 CPE_PRODUCT=	passenger
 
@@ -42,10 +44,6 @@ SHEBANG_FILES=	\
 	dev/ci/scripts/docker-entrypoint.sh \
 	dev/ci/run-tests-natively \
 	dev/ci/setup-host
-
-USE_HARDENING=	pie:off relro:off
-
-NOPORTDOCS=	yes
 
 APACHE22_USE=	APACHE=22+
 

@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	fuse-zip
-PORTVERSION=	0.4.2
-PORTREVISION=	1
+PORTVERSION=	0.4.4
 CATEGORIES=	sysutils
 MASTER_SITES=	https://bitbucket.org/agalanin/fuse-zip/downloads/
 
@@ -19,7 +18,7 @@ USE_HARDENING=	pie:off
 USES=		gmake fuse pkgconfig
 
 PLIST_FILES=	bin/${PORTNAME} man/man1/${PORTNAME}.1.gz
-PORTDOCS=	README changelog
+PORTDOCS=	README.md changelog
 
 OPTIONS_DEFINE=	DOCS
 

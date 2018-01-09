@@ -13,8 +13,6 @@ COMMENT=	Traffic visualizer, similar to nettop
 
 USE_HARDENING=	pie:off
 
-MAN8=		jnettop.8
-
 GNU_CONFIGURE=	yes
 USES=		pkgconfig gmake
 USE_GNOME=	glib20
