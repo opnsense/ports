@@ -14,10 +14,9 @@ COMMENT=	Network UPS Tools
 
 USE_HARDENING=	pie:off relro:off
 
-USE_AUTOTOOLS=	autoconf
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
-USES=		gmake pkgconfig libtool
+USES=		autoreconf gmake pkgconfig libtool
 
 NUT_USER?=	uucp
 NUT_GROUP?=	uucp
