@@ -14,7 +14,7 @@ LICENSE_NAME=	VIM License
 LICENSE_FILE=	${WRKSRC}/runtime/doc/uganda.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-CONFLICTS_INSTALL?=	vim-lite vim-tiny
+CONFLICTS_INSTALL?=	vim-console vim-tiny
 
 USE_HARDENING=	cfi safestack
 
@@ -47,7 +47,7 @@ OPTIONS_GROUP=		LANGBIND
 OPTIONS_GROUP_LANGBIND=	LUA PERL PYTHON2 PYTHON3 RUBY SCHEME TCL
 OPTIONS_SUB=		yes
 
-.if defined(LITE)
+.if defined(CONSOLE)
 OPTIONS_DEFAULT=	DEFAULT_VIMRC
 OPTIONS_SLAVE=		CONSOLE
 # Exclude everything except the two options above
