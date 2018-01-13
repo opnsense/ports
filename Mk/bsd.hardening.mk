@@ -277,4 +277,37 @@ OPTIONS_GROUP_HARDENING+=CFI
 .endif
 .endif
 
+#########################
+### Retpoline support ###
+#########################
+
+.if ${HARDENING_OFF:Mcfi} == ""
+
+.if ${OSVERSION} >= 1200055 && ${ARCH} == "amd64"
+
+retpoline_ARGS?=
+
+.if ${retpoline_ARGS:Mauto}
+.if ${_USE_HARDENING:Mstatic}
+retpoline_ARGS+=		off
+.endif
+.endif
+
+RETPOLINE_DESC=		Build with Retpoline
+RETPOLINE_USES=		retpoline
+
+.if ${_USE_HARDENING:Mlock} == ""
+OPTIONS_GROUP_HARDENING+=RETPOLINE
+.endif
+
+.if ${USE_HARDENING:Mretpoline} && ${retpoline_ARGS:Moff} == ""
+OPTIONS_DEFAULT+=	RETPOLINE
+.if ${_USE_HARDENING:Mlock} != ""
+OPTIONS_GROUP_HARDENING+=RETPOLINE
+.endif
+.endif
+
+.endif
+.endif
+
 .endif # !HARDENINGMKINCLUDED
