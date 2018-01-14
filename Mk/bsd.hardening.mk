@@ -62,7 +62,10 @@
 .if !defined(HARDENINGMKINCLUDED)
 HARDENINGMKINCLUDED=	bsd.hardening.mk
 
-HARDENING_ALL=		cfi pie relro safestack
+HBSDVERSION!=		${AWK} '/^\#define[[:blank:]]__HardenedBSD_version/ {print $$3}' /usr/include/sys/pax.h \
+	| ${SED} -e 's/UL$$//g'
+
+HARDENING_ALL=		cfi pie relro retpoline safestack
 HARDENING_OFF?=		# all features are on by default
 
 USE_HARDENING?=		# implicit auto-defaults may apply
@@ -281,16 +284,15 @@ OPTIONS_GROUP_HARDENING+=CFI
 ### Retpoline support ###
 #########################
 
-.if ${HARDENING_OFF:Mcfi} == ""
+.if ${HARDENING_OFF:Mretpoline} == ""
 
-.if ${OSVERSION} >= 1200055 && ${ARCH} == "amd64"
+.if ${OSVERSION} >= 1200055 && ${HBSDVERSION} >= 1200057 \
+	&& ${ARCH} == "amd64" && ${LLD_IS_LD} == "yes"
 
-retpoline_ARGS?=
+retpoline_ARGS?=	auto
 
 .if ${retpoline_ARGS:Mauto}
-.if ${_USE_HARDENING:Mstatic}
-retpoline_ARGS+=		off
-.endif
+USE_HARDENING:=		retpoline ${USE_HARDENING:Nretpoline}
 .endif
 
 RETPOLINE_DESC=		Build with Retpoline
