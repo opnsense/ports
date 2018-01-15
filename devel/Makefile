@@ -4568,6 +4568,7 @@
     SUBDIR += py-libzfs
     SUBDIR += py-linecache2
     SUBDIR += py-llfuse
+    SUBDIR += py-llvmcpy
     SUBDIR += py-llvmlite
     SUBDIR += py-lock_file
     SUBDIR += py-lockfile
@@ -5228,14 +5229,11 @@
     SUBDIR += rth
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-build
-    SUBDIR += ruby-calendar
-    SUBDIR += ruby-date2
     SUBDIR += ruby-gems
     SUBDIR += ruby-korundum
     SUBDIR += ruby-krossruby
     SUBDIR += ruby-ncurses
     SUBDIR += ruby-qtruby
-    SUBDIR += ruby-rbbr
     SUBDIR += ruby-rbprof
     SUBDIR += ruby-sdl
     SUBDIR += ruby-setup.rb
