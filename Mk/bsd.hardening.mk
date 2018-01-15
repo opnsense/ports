@@ -62,8 +62,13 @@
 .if !defined(HARDENINGMKINCLUDED)
 HARDENINGMKINCLUDED=	bsd.hardening.mk
 
+.if exists(/usr/include/sys/pax.h)
 HBSDVERSION!=		${AWK} '/^\#define[[:blank:]]__HardenedBSD_version/ {print $$3}' /usr/include/sys/pax.h \
 	| ${SED} -e 's/UL$$//g'
+.else
+# impossibly high number, we may build from a non-HardenedBSD
+HBSDVERSION=		9999999
+.endif
 
 HARDENING_ALL=		cfi pie relro retpoline safestack
 HARDENING_OFF?=		# all features are on by default
