@@ -66,8 +66,8 @@ HARDENINGMKINCLUDED=	bsd.hardening.mk
 HBSDVERSION!=		${AWK} '/^\#define[[:blank:]]__HardenedBSD_version/ {print $$3}' /usr/include/sys/pax.h \
 	| ${SED} -e 's/UL$$//g'
 .else
-# impossibly high number, we may build from a non-HardenedBSD
-HBSDVERSION=		9999999
+# if HardenedBSD is not installed disable all features by passing zero
+HBSDVERSION=		0
 .endif
 
 HARDENING_ALL=		cfi pie relro retpoline safestack
