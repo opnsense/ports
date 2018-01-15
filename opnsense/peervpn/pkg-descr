@@ -1,7 +1,0 @@
-PeerVPN is a software that builds virtual ethernet networks between
-multiple computers. Such a virtual network can be useful to facilitate
-direct communication that applications like file sharing or gaming may
-need. Often, such direct communication is made impossible or very
-difficult by firewalls or NAT devices.
-
-WWW: https://peervpn.net/
