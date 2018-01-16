@@ -54,7 +54,7 @@ post-build:
 .endif
 
 .if ${PORT_OPTIONS:MPYTHON}
-	( cd ${WRKSRC} && ${PYTHON_CMD} setup.py build )
+	( cd ${WRKSRC} && CFLAGS="-O2 -pipe" ${PYTHON_CMD} setup.py build )
 .endif
 
 pre-install:
