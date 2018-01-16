@@ -13,6 +13,8 @@ COMMENT=	Joe's Own Editor
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=  safestack
+
 CONFLICTS=	joe-2.*
 
 USES=		gmake iconv localbase ncurses
