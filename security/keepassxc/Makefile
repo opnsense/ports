@@ -16,6 +16,8 @@ LICENSE_FILE_NOKIA-LGPL-EXCEPTION=	${WRKSRC}/LICENSE.NOKIA-LGPL-EXCEPTION
 LICENSE_PERMS_BOOST-1.0=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_NOKIA-LGPL-EXCEPTION=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+USE_HARDENING=	safestack
+
 LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 		libgpg-error.so:security/libgpg-error
 

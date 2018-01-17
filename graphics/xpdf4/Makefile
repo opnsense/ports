@@ -18,6 +18,8 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-4.00
 
 LICENSE=	GPLv2
 
+USE_HARDENING=  safestack
+
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png
 

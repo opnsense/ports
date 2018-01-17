@@ -18,6 +18,8 @@ COMMENT=	Open source clone of Microprose Transport Tycoon Deluxe
 
 LICENSE=	GPLv2
 
+USE_HARDENING=  safestack
+
 LIB_DEPENDS=	libpng.so:graphics/png \
 		liblzo2.so:archivers/lzo2
 

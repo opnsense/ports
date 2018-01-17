@@ -12,6 +12,8 @@ COMMENT=	Ident server that supports user-defined ident strings
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	safestack
+
 USE_RC_SUBR=	oidentd
 GNU_CONFIGURE=	yes
 
