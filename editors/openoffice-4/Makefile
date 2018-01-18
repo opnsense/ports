@@ -3,7 +3,7 @@
 
 PORTNAME=	apache-openoffice
 PORTVERSION=	${AOOVERSION}
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	editors java
 MASTER_SITES=	APACHE/openoffice/${PORTVERSION}/sources \
 		http://tools.openoffice.org/unowinreg_prebuild/680/:unoreg \
@@ -416,6 +416,9 @@ do-build:
 	fi ;								  \
 	cd ${WRKSRC}/instsetoo_native ;					  \
 	. ../${FREEBSD_ENV_SET} ;					  \
+	if [ -n "${HOME}" -a ! -w "${HOME}" ]; then			  \
+		export HOME=/tmp ;					  \
+	fi ;								  \
 	build.pl --all -P$${numproc} -- -P$${dmproc}
 
 do-install:
