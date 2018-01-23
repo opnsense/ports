@@ -294,6 +294,7 @@
     SUBDIR += kdbx-viewer
     SUBDIR += kedpm
     SUBDIR += keepass
+    SUBDIR += keepass-plugin-keepassrpc
     SUBDIR += keepassx
     SUBDIR += keepassx-devel
     SUBDIR += keepassx2
@@ -916,6 +917,7 @@
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
+    SUBDIR += py-josepy
     SUBDIR += py-kerberos
     SUBDIR += py-keyczar
     SUBDIR += py-keyring
@@ -948,6 +950,7 @@
     SUBDIR += py-pyaes
     SUBDIR += py-pyaff4
     SUBDIR += py-pyaxo
+    SUBDIR += py-pyblake2
     SUBDIR += py-pyclamd
     SUBDIR += py-pycrypto
     SUBDIR += py-pycryptodome
