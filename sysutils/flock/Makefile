@@ -22,7 +22,7 @@ USE_HARDENING=	safestack
 OPTIONS_DEFINE=	NLS
 
 NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=	autoreconf:autopoint gettext
+NLS_USES=	autoreconf gettext
 
 PLIST_FILES=	bin/flock man/man1/flock.1.gz \
 		etc/bash_completion.d/flock
