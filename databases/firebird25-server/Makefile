@@ -27,6 +27,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu
 USE_HARDENING=	pie:off
 
 USES=		cpe gmake pkgconfig tar:bzip2
+USE_CXXSTD=	gnu++98
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 

@@ -857,6 +857,7 @@
     SUBDIR += polkit-kde
     SUBDIR += polkit-qt
     SUBDIR += polkit-qt5
+    SUBDIR += pot
     SUBDIR += powerdxx
     SUBDIR += powerman
     SUBDIR += powermon
@@ -1122,6 +1123,7 @@
     SUBDIR += snap
     SUBDIR += snooze
     SUBDIR += snowlog
+    SUBDIR += socket
     SUBDIR += socklog
     SUBDIR += solaar
     SUBDIR += sortu
