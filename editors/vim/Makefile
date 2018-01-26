@@ -16,7 +16,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS_INSTALL?=	vim-console vim-tiny
 
-USE_HARDENING=	cfi safestack
+USE_HARDENING=	safestack
 
 USES=		cpe iconv ncurses pkgconfig shebangfix
 USE_GITHUB=	yes
