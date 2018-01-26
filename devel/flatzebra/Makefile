@@ -16,6 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USE_HARDENING=	pie:off relro:off
 
 USES=		pathfix pkgconfig libtool
+USE_CXXSTD=	gnu++98
 GNU_CONFIGURE=	yes
 USE_SDL=	sdl mixer image
 USE_LDCONFIG=	yes

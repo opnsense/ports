@@ -1824,6 +1824,7 @@
     SUBDIR += py-pyramid_rpc
     SUBDIR += py-pysearch
     SUBDIR += py-python-digitalocean
+    SUBDIR += py-python-dotenv
     SUBDIR += py-pywebdav
     SUBDIR += py-pyweblib
     SUBDIR += py-pywikibot
@@ -2294,12 +2295,12 @@
     SUBDIR += tivoka
     SUBDIR += tntnet
     SUBDIR += tokyopromenade
-    SUBDIR += tomcat-devel
     SUBDIR += tomcat-native
     SUBDIR += tomcat6
     SUBDIR += tomcat7
     SUBDIR += tomcat8
     SUBDIR += tomcat85
+    SUBDIR += tomcat9
     SUBDIR += tomee
     SUBDIR += trac
     SUBDIR += trac-OhlohWidgetsMacro
