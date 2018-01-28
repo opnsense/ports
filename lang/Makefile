@@ -88,6 +88,7 @@
     SUBDIR += fpc-units
     SUBDIR += fpc-utils
     SUBDIR += fsharp
+    SUBDIR += fth
     SUBDIR += gambit-c
     SUBDIR += gauche
     SUBDIR += gawk
@@ -103,7 +104,6 @@
     SUBDIR += gcc7
     SUBDIR += gcc7-devel
     SUBDIR += gcc8-devel
-    SUBDIR += gcl
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += gjs
@@ -261,7 +261,6 @@
     SUBDIR += php72-extensions
     SUBDIR += php_doc
     SUBDIR += picoc
-    SUBDIR += pike78
     SUBDIR += pocl
     SUBDIR += polyml
     SUBDIR += ptoc
