@@ -112,7 +112,6 @@
     SUBDIR += esmtp
     SUBDIR += evolution
     SUBDIR += evolution-ews
-    SUBDIR += evolution-mapi
     SUBDIR += exilog
     SUBDIR += exim
     SUBDIR += exim-doc-html
@@ -644,6 +643,7 @@
     SUBDIR += sieve-connect
     SUBDIR += sigrot
     SUBDIR += simscan
+    SUBDIR += sisyphus
     SUBDIR += slapd-cyrus
     SUBDIR += sma
     SUBDIR += smfsav
