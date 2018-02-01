@@ -18,7 +18,7 @@ LICENSE_COMB=	multi
 DEPRECATED=	Unsupported by upstream. Use GCC 6 or newer instead.
 ONLY_FOR_ARCHS=	amd64 i386 powerpc sparc64
 
-USE_HARDENING=	pie:off relro:off
+USE_HARDENING=	pie:off relro:off retpoline_off
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \

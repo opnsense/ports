@@ -184,6 +184,7 @@
     SUBDIR += b2
     SUBDIR += babeltrace
     SUBDIR += bam
+    SUBDIR += bats
     SUBDIR += bazel
     SUBDIR += bazel-clang38
     SUBDIR += bbfreeze
@@ -1594,6 +1595,7 @@
     SUBDIR += linux-c6-dbus-glib
     SUBDIR += linux-c6-dbus-libs
     SUBDIR += linux-c6-devtools
+    SUBDIR += linux-c6-icu
     SUBDIR += linux-c6-libelf
     SUBDIR += linux-c6-libgfortran
     SUBDIR += linux-c6-libglade2
@@ -1601,18 +1603,21 @@
     SUBDIR += linux-c6-libsigc++20
     SUBDIR += linux-c6-libsoup
     SUBDIR += linux-c6-libthai
+    SUBDIR += linux-c6-libunwind
     SUBDIR += linux-c6-nspr
     SUBDIR += linux-c6-qt47
     SUBDIR += linux-c6-sdl12
     SUBDIR += linux-c7-dbus-glib
     SUBDIR += linux-c7-dbus-libs
     SUBDIR += linux-c7-devtools
+    SUBDIR += linux-c7-icu
     SUBDIR += linux-c7-libelf
     SUBDIR += linux-c7-libgfortran
     SUBDIR += linux-c7-libglade2
     SUBDIR += linux-c7-libpciaccess
     SUBDIR += linux-c7-libsigc++20
     SUBDIR += linux-c7-libthai
+    SUBDIR += linux-c7-libunwind
     SUBDIR += linux-c7-nspr
     SUBDIR += linux-c7-qt
     SUBDIR += linux-c7-sdl12
@@ -4466,7 +4471,6 @@
     SUBDIR += py-geotypes
     SUBDIR += py-gevent
     SUBDIR += py-git-up
-    SUBDIR += py-gitdb
     SUBDIR += py-gitdb2
     SUBDIR += py-gitless
     SUBDIR += py-gitosis
@@ -4890,7 +4894,6 @@
     SUBDIR += py-singledispatch
     SUBDIR += py-sip
     SUBDIR += py-six
-    SUBDIR += py-smmap
     SUBDIR += py-smmap2
     SUBDIR += py-sortedcontainers
     SUBDIR += py-sourcemap
@@ -5565,7 +5568,6 @@
     SUBDIR += rubygem-mmap2
     SUBDIR += rubygem-mocha
     SUBDIR += rubygem-moneta
-    SUBDIR += rubygem-moneta06
     SUBDIR += rubygem-mongo
     SUBDIR += rubygem-mono_logger
     SUBDIR += rubygem-msgpack

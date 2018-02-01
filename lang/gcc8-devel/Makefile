@@ -29,6 +29,8 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}
 
+USE_HARDENING=	retpoline:off
+
 # DIST_VERSION relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.  A PORTVERSION of
 # Y.2.1.s20140817 results in values of Y-20140817, Y.2.1, and Y

@@ -29,7 +29,7 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 
 CPE_VENDOR=	gnu
 
-USE_HARDENING=	pie:off relro:off
+USE_HARDENING=	pie:off relro:off retpoline:off
 
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).*/\1/}

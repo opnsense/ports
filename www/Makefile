@@ -1639,7 +1639,6 @@
     SUBDIR += py-django-threaded-multihost
     SUBDIR += py-django-tinymce
     SUBDIR += py-django-voting
-    SUBDIR += py-django110
     SUBDIR += py-django111
     SUBDIR += py-django18
     SUBDIR += py-django20
@@ -2034,7 +2033,6 @@
     SUBDIR += rubygem-http-cookie
     SUBDIR += rubygem-http-form_data
     SUBDIR += rubygem-http-form_data1
-    SUBDIR += rubygem-http2
     SUBDIR += rubygem-http_router
     SUBDIR += rubygem-httparty
     SUBDIR += rubygem-httpclient
@@ -2044,7 +2042,6 @@
     SUBDIR += rubygem-jekyll
     SUBDIR += rubygem-jekyll-sanity
     SUBDIR += rubygem-jekyll-watch
-    SUBDIR += rubygem-jekyll-watch1
     SUBDIR += rubygem-journey
     SUBDIR += rubygem-jquery-atwho-rails
     SUBDIR += rubygem-jquery-rails
@@ -2101,7 +2098,6 @@
     SUBDIR += rubygem-pagerduty
     SUBDIR += rubygem-passenger
     SUBDIR += rubygem-puma
-    SUBDIR += rubygem-puma2
     SUBDIR += rubygem-pusher-client
     SUBDIR += rubygem-rabbirack
     SUBDIR += rubygem-rack
@@ -2188,7 +2184,6 @@
     SUBDIR += rubygem-totoridipjp
     SUBDIR += rubygem-tumblr_client
     SUBDIR += rubygem-turbolinks
-    SUBDIR += rubygem-turbolinks-classic
     SUBDIR += rubygem-turbolinks-rails5
     SUBDIR += rubygem-turbolinks-rails50
     SUBDIR += rubygem-turbolinks-source

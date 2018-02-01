@@ -28,7 +28,7 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 
 CONFLICTS=	gcc7-7.*
 
-USE_HARDENING=	pie:off relro:off
+USE_HARDENING=	pie:off relro:off retpoline:off
 
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}
