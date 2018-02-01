@@ -3,6 +3,7 @@
 
 PORTNAME=	xdebug
 PORTVERSION=	2.5.5
+PORTREVISION=	1
 CATEGORIES=	devel pear
 
 MAINTAINER=	pizzamig@FreeBSD.org
