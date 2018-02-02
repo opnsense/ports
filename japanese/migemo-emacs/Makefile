@@ -1,16 +1,15 @@
 # Created by: MANTANI Nobutaka <nobutaka@FreeBSD.org>
 # $FreeBSD$
 
-PORTREVISION=	2
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
-COMMENT=	Japanese incremental search tool for emacs
+COMMENT=	Japanese incremental search tool for Emacs
 MASTERDIR=	${.CURDIR}/../../japanese/migemo
 PKGDIR=		${.CURDIR}
 PLIST=		${MASTERDIR}/pkg-plist
 PKGMESSAGE=	${MASTERDIR}/pkg-message
 
-BUILD_DEPENDS=	editors/apel${EMACS_PKGNAMESUFFIX}:editors/apel
-RUN_DEPENDS=	editors/apel${EMACS_PKGNAMESUFFIX}:editors/apel \
+BUILD_DEPENDS=	apel${EMACS_PKGNAMESUFFIX}>=10.8:editors/apel@${EMACS_FLAVOR}
+RUN_DEPENDS=	apel${EMACS_PKGNAMESUFFIX}>=10.8:editors/apel@${EMACS_FLAVOR} \
 		migemo:japanese/migemo
 
 USES=		emacs
