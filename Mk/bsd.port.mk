@@ -1412,10 +1412,6 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
 
-.if defined(USE_EMACS)
-.include "${PORTSDIR}/Mk/bsd.emacs.mk"
-.endif
-
 .if defined(USE_PHP) && (!defined(USES) || ( defined(USES) && !${USES:Mphp*} ))
 DEV_WARNING+=		"Using USE_PHP alone is deprecated, please use USES=php"
 USES+=	php
@@ -4731,7 +4727,7 @@ flavors-package-names: .PHONY
 STAGE_ARGS=		-i ${STAGEDIR}
 
 .if !defined(NO_PKG_REGISTER)
-fake-pkg: create-manifest
+fake-pkg:
 .if defined(INSTALLS_DEPENDS)
 	@${ECHO_MSG} "===>   Registering installation for ${PKGNAME} as automatic"
 .else
@@ -5318,8 +5314,9 @@ _TEST_SEQ=		100:test-message 150:test-depends 300:pre-test 500:do-test \
 				${_OPTIONS_test} ${_USES_test}
 _INSTALL_DEP=	stage
 _INSTALL_SEQ=	100:install-message \
-				200:check-already-installed
-_INSTALL_SUSEQ=	300:fake-pkg 500:security-check
+				200:check-already-installed \
+				300:create-manifest
+_INSTALL_SUSEQ=	400:fake-pkg 500:security-check
 
 _PACKAGE_DEP=	stage
 _PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
