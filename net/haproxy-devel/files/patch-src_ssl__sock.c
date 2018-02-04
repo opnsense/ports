@@ -13,3 +13,18 @@
  #endif
  	SSL_CTX_get_tlsext_status_cb(ctx, &callback);
  
+@@ -1141,11 +1144,10 @@ static int ssl_sock_load_ocsp(SSL_CTX *c
+ 		int key_type;
+ 		EVP_PKEY *pkey;
+ 
+-#ifdef SSL_CTX_get_tlsext_status_arg
+-		SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, &cb_arg);
+-#else
+-		cb_arg = ctx->tlsext_status_arg;
++#ifndef SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG
++#define SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG 129
+ #endif
++		SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, &cb_arg);
+ 
+ 		/*
+ 		 * The following few lines will convert cb_arg from a single ocsp to multi ocsp
