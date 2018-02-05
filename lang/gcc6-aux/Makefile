@@ -29,7 +29,7 @@ NO_MTREE=		yes
 CPPFLAGS+=		-I${LOCALBASE}/include
 LDFLAGS+=		-L${LOCALBASE}/lib
 
-USE_HARDENING=		retpoline:off
+USE_HARDENING=		pie:off relro:off retpoline:off
 
 OPTIONS_GROUP=		Standard Bootstrap
 OPTIONS_GROUP_Standard=	FORTRAN OBJC NLS TESTSUITE ALLSTAGES STATIC
