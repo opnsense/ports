@@ -3,7 +3,7 @@
 PORTNAME=	qemu
 PORTVERSION=	0.d${SNAPDATE}
 CATEGORIES=	emulators devel
-PKGNAMESUFFIX?=	-cheri
+PKGNAMESUFFIX=	-cheri
 
 MAINTAINER=	brooks@FreeBSD.org
 COMMENT?=	QEMU emulator with CHERI CPU support
@@ -22,10 +22,9 @@ GH_ACCOUNT=	CTSRD-CHERI
 GH_TAGNAME=	${QEMU_COMMIT}
 
 HAS_CONFIGURE=	yes
-USES=	gettext-runtime gmake libtool makeinfo pkgconfig python:2,build
+USES=	gettext-runtime gmake libtool makeinfo pkgconfig python:2.7,build
 USE_XORG=	pixman
 USE_GNOME+=	glib20
-#MAKE_ENV+=	BSD_MAKE="${MAKE}"
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64
 
 CONFLICTS_INSTALL=	qemu-[0-9]* qemu-devel-[0-9]* qemu-sbruno-[0-9]*
@@ -33,7 +32,7 @@ CONFLICTS_INSTALL=	qemu-[0-9]* qemu-devel-[0-9]* qemu-sbruno-[0-9]*
 .include "Makefile.snapshot"
 
 CONFIGURE_ARGS+= \
-		--target-list=cheri-softmmu \
+		--target-list=cheri128-softmmu,cheri128magic-softmmu,cheri256-softmmu \
 		--disable-curl \
 		--disable-gtk \
 		--disable-libssh2 \
@@ -42,7 +41,6 @@ CONFIGURE_ARGS+= \
 		--disable-kvm \
 		--disable-vnc-png \
 		--disable-sdl \
-		--disable-smartcard-nss \
 		--disable-vte \
 		--disable-xen \
 		--extra-cflags="-g ${EXTRA_CFLAGS}" \
@@ -50,10 +48,14 @@ CONFIGURE_ARGS+= \
 
 QEMU_SYSTEM_CHERI?=	qemu-system${PKGNAMESUFFIX}
 PLIST=	/dev/null
-PLIST_FILES=	bin/${QEMU_SYSTEM_CHERI}
+PLIST_FILES=	bin/qemu-system-cheri128 \
+		bin/qemu-system-cheri128magic \
+		bin/qemu-system-cheri256
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/cheri-softmmu/qemu-system-cheri \
-	    ${STAGEDIR}${PREFIX}/bin/${QEMU_SYSTEM_CHERI}
+	${INSTALL_PROGRAM} ${WRKSRC}/cheri128-softmmu/qemu-system-cheri128 \
+	    ${WRKSRC}/cheri128magic-softmmu/qemu-system-cheri128magic \
+	    ${WRKSRC}/cheri256-softmmu/qemu-system-cheri256 \
+	    ${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>
