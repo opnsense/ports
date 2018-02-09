@@ -579,7 +579,6 @@
     SUBDIR += pg_repack
     SUBDIR += pg_rman
     SUBDIR += pg_stat_kcache
-    SUBDIR += pg_statsinfo
     SUBDIR += pgaccess
     SUBDIR += pgadmin3
     SUBDIR += pgagent
@@ -697,7 +696,6 @@
     SUBDIR += postgresql-plv8js
     SUBDIR += postgresql-relay
     SUBDIR += postgresql-repmgr
-    SUBDIR += postgresql-repmgr2
     SUBDIR += postgresql-tds_fdw
     SUBDIR += postgresql-zhparser
     SUBDIR += postgresql10-client
@@ -708,14 +706,6 @@
     SUBDIR += postgresql10-plpython
     SUBDIR += postgresql10-pltcl
     SUBDIR += postgresql10-server
-    SUBDIR += postgresql92-client
-    SUBDIR += postgresql92-contrib
-    SUBDIR += postgresql92-docs
-    SUBDIR += postgresql92-pgtcl
-    SUBDIR += postgresql92-plperl
-    SUBDIR += postgresql92-plpython
-    SUBDIR += postgresql92-pltcl
-    SUBDIR += postgresql92-server
     SUBDIR += postgresql93-client
     SUBDIR += postgresql93-contrib
     SUBDIR += postgresql93-docs

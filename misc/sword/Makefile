@@ -3,7 +3,7 @@
 
 PORTNAME=	sword
 PORTVERSION=	1.7.4
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	misc
 MASTER_SITES=	ftp://ftp.crosswire.org/pub/sword/source/v${PORTVERSION:R}/ \
 		http://crosswire.org/ftpmirror/pub/sword/source/v${PORTVERSION:R}/
@@ -19,8 +19,6 @@ BUILD_DEPENDS=	cppunit-config:devel/cppunit
 BUILD_DEPENDS+= clang38:lang/clang38
 CC=		clang38
 CXX=		clang++38
-
-BROKEN_powerpc64=	does not compile: libicui18n.so: undefined reference to __cxa_throw_bad_array_new_length
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-conf --with-zlib
@@ -45,6 +43,8 @@ CONFIGURE_ARGS+=	--without-curl
 .endif
 
 .if ${PORT_OPTIONS:MCLUCENE}
+USES+=		compiler:c++11-lib
+USE_CXXSTD=	gnu++11
 LIB_DEPENDS+=	libclucene-core.so:textproc/clucene \
 		libicudata.so:devel/icu
 CONFIGURE_ARGS+=	--with-clucene=${LOCALBASE} --with-icu
