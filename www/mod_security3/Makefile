@@ -1,9 +1,9 @@
 # $FreeBSD$
 
-PORTNAME=	mod_security-devel
-PORTVERSION=	3.0.0.g2017080200
-PORTREVISION=	1
+PORTNAME=	mod_security
+DISTVERSION=	3.0.0
 CATEGORIES=	www security
+PKGNAMESUFFIX=	3
 
 MAINTAINER=	marius.halden@modirum.com
 COMMENT=	Intrusion detection and prevention engine
@@ -14,10 +14,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpcre.so:devel/pcre \
 		libyajl.so:devel/yajl \
 		libGeoIP.so:net/GeoIP
-
-BROKEN_aarch64=		fails to compile: string.h:55:1: narrowing conversion of '-1' from 'int' to 'char' inside { }
-BROKEN_armv6=		fails to compile: string.h:55:1: narrowing conversion of '-1' from 'int' to 'char' inside { }
-BROKEN_armv7=		fails to compile: string.h:55:1: narrowing conversion of '-1' from 'int' to 'char' inside { }
 
 USES=		gmake autoreconf libtool pkgconfig:build
 USE_GNOME=	libxml2
