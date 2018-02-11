@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	rpc2
-PORTVERSION=	2.10
-PORTREVISION=	2
+DISTVERSION=	2.14
 CATEGORIES=	devel
 MASTER_SITES=	http://ftp.coda.cs.cmu.edu/pub/rpc2/src/ \
 		http://ftp.wu-wien.ac.at/pub/systems/coda/src/ \
@@ -19,7 +18,7 @@ LIB_DEPENDS=	liblwp.so:devel/lwp
 
 USE_HARDENING=	pie:off
 
-USES=		gmake libtool pathfix perl5 pkgconfig
+USES=		gmake libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
