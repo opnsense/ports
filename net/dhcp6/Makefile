@@ -23,9 +23,13 @@ CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc \
 USE_RC_SUBR=	dhcp6c dhcp6relay dhcp6s
 PORTDOCS=	README
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS RAW
 
 MAKE_JOBS_UNSAFE=	yes
+
+RAW_DESC=	Raw option support (experimental)
+
+RAW_EXTRA_PATCHES=${PATCHDIR}/extra-patch-raw
 
 post-install:
 	cd ${WRKSRC} && ${INSTALL_DATA} \
