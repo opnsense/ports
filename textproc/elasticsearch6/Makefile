@@ -8,7 +8,7 @@ MASTER_SITES=	https://artifacts.elastic.co/downloads/${PORTNAME}/ \
 		http://mirrors.rit.edu/zi/
 PKGNAMESUFFIX=	6
 
-MAINTAINER=	tj@FreeBSD.org
+MAINTAINER=	w.schwarzenfeld@utanet.at
 COMMENT=	Full-text search engine for Java
 
 LICENSE=	APACHE20
@@ -23,7 +23,7 @@ USE_JAVA=	yes
 NO_BUILD=	yes
 JAVA_VERSION=	1.8+
 USE_RC_SUBR=	${PORTNAME}
-SHEBANG_FILES=	bin/elasticsearch-plugin  \
+SHEBANG_FILES=	bin/elasticsearch-plugin \
 		bin/elasticsearch
 
 OPTIONS_DEFINE=	DOCS

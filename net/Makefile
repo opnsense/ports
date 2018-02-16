@@ -196,6 +196,7 @@
     SUBDIR += google-startup-scripts
     SUBDIR += googlecl
     SUBDIR += gopher
+    SUBDIR += goreplay
     SUBDIR += gotthard
     SUBDIR += gq
     SUBDIR += grdesktop
@@ -308,6 +309,7 @@
     SUBDIR += kdenetwork-filesharing-kde4
     SUBDIR += kdenetwork-strigi-analyzers-kde4
     SUBDIR += kea
+    SUBDIR += kf5-kholidays
     SUBDIR += kf5-kxmlrpcclient
     SUBDIR += kget
     SUBDIR += kio-upnp-ms
@@ -1108,7 +1110,6 @@
     SUBDIR += qt5-network
     SUBDIR += qtweetlib
     SUBDIR += quagga
-    SUBDIR += quagga-esr
     SUBDIR += queso
     SUBDIR += quiterss
     SUBDIR += quoted
@@ -1160,6 +1161,7 @@
     SUBDIR += rubygem-amqp
     SUBDIR += rubygem-amqp-utils
     SUBDIR += rubygem-asset_sync
+    SUBDIR += rubygem-asset_sync220
     SUBDIR += rubygem-aws-s3
     SUBDIR += rubygem-aws-ses
     SUBDIR += rubygem-azure
@@ -1186,6 +1188,7 @@
     SUBDIR += rubygem-fog-dynect
     SUBDIR += rubygem-fog-ecloud
     SUBDIR += rubygem-fog-google
+    SUBDIR += rubygem-fog-google0
     SUBDIR += rubygem-fog-internet-archive
     SUBDIR += rubygem-fog-joyent
     SUBDIR += rubygem-fog-local
@@ -1226,8 +1229,10 @@
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth2
     SUBDIR += rubygem-octokit
+    SUBDIR += rubygem-octokit46
     SUBDIR += rubygem-octopress-deploy
     SUBDIR += rubygem-omniauth-auth0
+    SUBDIR += rubygem-omniauth-auth014
     SUBDIR += rubygem-omniauth-authentiq
     SUBDIR += rubygem-omniauth-azure-oauth2
     SUBDIR += rubygem-omniauth-facebook
@@ -1240,6 +1245,7 @@
     SUBDIR += rubygem-omniauth-oauth2
     SUBDIR += rubygem-omniauth-openid
     SUBDIR += rubygem-omniauth-twitter
+    SUBDIR += rubygem-omniauth-twitter12
     SUBDIR += rubygem-open-uri-cached
     SUBDIR += rubygem-opennebula
     SUBDIR += rubygem-packetfu

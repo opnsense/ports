@@ -216,7 +216,6 @@
     SUBDIR += boost-jam
     SUBDIR += boost-libs
     SUBDIR += boost-python-libs
-    SUBDIR += boost-python3-libs
     SUBDIR += boost_build
     SUBDIR += bossa
     SUBDIR += bouml-doc
@@ -358,6 +357,7 @@
     SUBDIR += cpputest
     SUBDIR += cproto
     SUBDIR += cpuflags
+    SUBDIR += cquery
     SUBDIR += cram
     SUBDIR += creduce
     SUBDIR += critcl
@@ -1444,6 +1444,7 @@
     SUBDIR += liblas12
     SUBDIR += libleaftag
     SUBDIR += liblnk
+    SUBDIR += liblockfile
     SUBDIR += liblogging
     SUBDIR += liblognorm
     SUBDIR += liblouis
@@ -4631,6 +4632,7 @@
     SUBDIR += py-noseofyeti
     SUBDIR += py-notifier
     SUBDIR += py-notify
+    SUBDIR += py-notify2
     SUBDIR += py-numba
     SUBDIR += py-ocempgui
     SUBDIR += py-odfpy
@@ -5428,7 +5430,9 @@
     SUBDIR += rubygem-flexmock
     SUBDIR += rubygem-flipper
     SUBDIR += rubygem-flipper-active_support_cache_store
+    SUBDIR += rubygem-flipper-active_support_cache_store011
     SUBDIR += rubygem-flipper010
+    SUBDIR += rubygem-flipper011
     SUBDIR += rubygem-fluent-logger
     SUBDIR += rubygem-fog
     SUBDIR += rubygem-fog-core
@@ -5458,6 +5462,7 @@
     SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gettext_i18n_rails_js
+    SUBDIR += rubygem-gettext_i18n_rails_js12
     SUBDIR += rubygem-gh
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
@@ -5476,6 +5481,7 @@
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
     SUBDIR += rubygem-grape-entity
+    SUBDIR += rubygem-grape-entity060
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grape0
@@ -5490,6 +5496,7 @@
     SUBDIR += rubygem-hashie-forbidden_attributes
     SUBDIR += rubygem-hashie2
     SUBDIR += rubygem-health_check
+    SUBDIR += rubygem-health_check26
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-hike
     SUBDIR += rubygem-hike1
@@ -5608,6 +5615,7 @@
     SUBDIR += rubygem-oj
     SUBDIR += rubygem-oj2
     SUBDIR += rubygem-omniauth_crowd
+    SUBDIR += rubygem-omniauth_crowd22
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
     SUBDIR += rubygem-orm_adapter
@@ -5685,7 +5693,9 @@
     SUBDIR += rubygem-react-rails-rails5
     SUBDIR += rubygem-readwritesettings
     SUBDIR += rubygem-recaptcha
+    SUBDIR += rubygem-recaptcha3
     SUBDIR += rubygem-recursive-open-struct
+    SUBDIR += rubygem-recursive-open-struct100
     SUBDIR += rubygem-redis-activesupport
     SUBDIR += rubygem-redis-activesupport-rails5
     SUBDIR += rubygem-redis-activesupport-rails50
@@ -5722,6 +5732,7 @@
     SUBDIR += rubygem-ruby-libvirt
     SUBDIR += rubygem-ruby-ole
     SUBDIR += rubygem-ruby-prof
+    SUBDIR += rubygem-ruby-prof016
     SUBDIR += rubygem-ruby-progressbar
     SUBDIR += rubygem-ruby-sdl-ffi
     SUBDIR += rubygem-ruby2ruby
@@ -5745,6 +5756,7 @@
     SUBDIR += rubygem-semi_semantic
     SUBDIR += rubygem-semver2
     SUBDIR += rubygem-sentry-raven
+    SUBDIR += rubygem-sentry-raven25
     SUBDIR += rubygem-sequel
     SUBDIR += rubygem-settingslogic
     SUBDIR += rubygem-sexp_processor
@@ -5809,6 +5821,7 @@
     SUBDIR += rubygem-tdiff
     SUBDIR += rubygem-templater
     SUBDIR += rubygem-temple
+    SUBDIR += rubygem-temple07
     SUBDIR += rubygem-term-ansicolor
     SUBDIR += rubygem-terrapin
     SUBDIR += rubygem-test-unit

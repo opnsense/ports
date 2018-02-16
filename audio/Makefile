@@ -511,6 +511,7 @@
     SUBDIR += mma
     SUBDIR += moc
     SUBDIR += modplugplay
+    SUBDIR += moodbar
     SUBDIR += moony-lv2
     SUBDIR += mous
     SUBDIR += mp-player
@@ -635,6 +636,7 @@
     SUBDIR += penguinsap
     SUBDIR += pianobar
     SUBDIR += picard
+    SUBDIR += picard-plugins
     SUBDIR += pithos
     SUBDIR += play
     SUBDIR += playgsf
