@@ -19,6 +19,8 @@ CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 GNU_CONFIGURE=	yes
 
+USE_HARDENING=	cfi safestack
+
 USES=	gmake
 USERS=	vnstat
 GROUPS=	vnstat
