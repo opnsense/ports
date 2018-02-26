@@ -270,7 +270,7 @@
     SUBDIR += cdecl
     SUBDIR += cdialog
     SUBDIR += cdk
-    SUBDIR += cervisia
+    SUBDIR += cervisia-kde4
     SUBDIR += cflow
     SUBDIR += cflow2vcg
     SUBDIR += cgdb
@@ -456,7 +456,7 @@
     SUBDIR += dmalloc
     SUBDIR += dmucs
     SUBDIR += doctorj
-    SUBDIR += dolphin-plugins
+    SUBDIR += dolphin-plugins-kde4
     SUBDIR += dotconf
     SUBDIR += dotconf++
     SUBDIR += doxygen
@@ -500,7 +500,6 @@
     SUBDIR += elixir-calendar
     SUBDIR += elixir-combine
     SUBDIR += elixir-conform
-    SUBDIR += elixir-conform_exrm
     SUBDIR += elixir-connection
     SUBDIR += elixir-coverex
     SUBDIR += elixir-crontab
@@ -515,7 +514,6 @@
     SUBDIR += elixir-excoveralls
     SUBDIR += elixir-exjsx
     SUBDIR += elixir-exprotobuf
-    SUBDIR += elixir-exrm
     SUBDIR += elixir-gen_stage
     SUBDIR += elixir-gen_state_machine
     SUBDIR += elixir-gettext
@@ -533,10 +531,8 @@
     SUBDIR += elixir-plug
     SUBDIR += elixir-poison
     SUBDIR += elixir-quantum
-    SUBDIR += elixir-red_black_tree
     SUBDIR += elixir-simple_bayes
     SUBDIR += elixir-smppex
-    SUBDIR += elixir-sorted_set
     SUBDIR += elixir-stemmer
     SUBDIR += elixir-swarm
     SUBDIR += elixir-timex
@@ -885,6 +881,7 @@
     SUBDIR += gwenhywfar
     SUBDIR += gwenhywfar-fox16
     SUBDIR += gwenhywfar-gtk2
+    SUBDIR += gwenhywfar-gtk3
     SUBDIR += gwenhywfar-qt4
     SUBDIR += gwenhywfar-qt5
     SUBDIR += gzstream
@@ -1246,12 +1243,12 @@
     SUBDIR += jwasm
     SUBDIR += k8048
     SUBDIR += kBuild
-    SUBDIR += kapptemplate
+    SUBDIR += kapptemplate-kde4
     SUBDIR += kaptain
-    SUBDIR += kcachegrind
+    SUBDIR += kcachegrind-kde4
     SUBDIR += kdbg
-    SUBDIR += kde-dev-scripts
-    SUBDIR += kde-dev-utils
+    SUBDIR += kde-dev-scripts-kde4
+    SUBDIR += kde-dev-utils-kde4
     SUBDIR += kdebindings-kde4
     SUBDIR += kdesdk-kde4
     SUBDIR += kdesdk-kioslaves-kde4
@@ -1655,7 +1652,7 @@
     SUBDIR += log4net
     SUBDIR += log4sh
     SUBDIR += log4shib
-    SUBDIR += lokalize
+    SUBDIR += lokalize-kde4
     SUBDIR += loki
     SUBDIR += looks
     SUBDIR += love
@@ -1673,6 +1670,7 @@
     SUBDIR += lua-lgi
     SUBDIR += lua-lpeg
     SUBDIR += lua-lpeg51
+    SUBDIR += lua-luacheck
     SUBDIR += lua-luarocks
     SUBDIR += lua-lunit
     SUBDIR += lua-posix
@@ -1822,7 +1820,7 @@
     SUBDIR += oclgrind
     SUBDIR += ode
     SUBDIR += ois
-    SUBDIR += okteta
+    SUBDIR += okteta-kde4
     SUBDIR += omake
     SUBDIR += omniNotify
     SUBDIR += omniORB
@@ -2499,6 +2497,8 @@
     SUBDIR += p5-ExtUtils-PkgConfig
     SUBDIR += p5-ExtUtils-XSBuilder
     SUBDIR += p5-ExtUtils-XSpp
+    SUBDIR += p5-FFI-CheckLib
+    SUBDIR += p5-FFI-Platypus
     SUBDIR += p5-FSA-Rules
     SUBDIR += p5-Fennec-Lite
     SUBDIR += p5-File-Append-TempFile
@@ -3680,6 +3680,7 @@
     SUBDIR += p5-UUID-Tiny
     SUBDIR += p5-Uniq
     SUBDIR += p5-Unix-Groups
+    SUBDIR += p5-Unix-Groups-FFI
     SUBDIR += p5-Unix-Statgrab
     SUBDIR += p5-Unix-Uptime
     SUBDIR += p5-User-Identity
@@ -3751,8 +3752,8 @@
     SUBDIR += p5-namespace-sweep
     SUBDIR += p5-orz
     SUBDIR += p5-parent
-    SUBDIR += p5-perlkde
-    SUBDIR += p5-perlqt
+    SUBDIR += p5-perlkde-kde4
+    SUBDIR += p5-perlqt-kde4
     SUBDIR += p5-pip
     SUBDIR += p5-prefork
     SUBDIR += p5-reaper
@@ -4107,7 +4108,7 @@
     SUBDIR += powerpc64-binutils
     SUBDIR += powerpc64-gcc
     SUBDIR += powerpc64-xtoolchain-gcc
-    SUBDIR += poxml
+    SUBDIR += poxml-kde4
     SUBDIR += ppl
     SUBDIR += pragmarcs
     SUBDIR += premake
@@ -4436,6 +4437,7 @@
     SUBDIR += py-five.formlib
     SUBDIR += py-five.globalrequest
     SUBDIR += py-five.localsitemanager
+    SUBDIR += py-fixtures
     SUBDIR += py-flake8
     SUBDIR += py-flake8-builtins
     SUBDIR += py-flake8-docstrings
@@ -4503,6 +4505,7 @@
     SUBDIR += py-hypothesis
     SUBDIR += py-icalendar
     SUBDIR += py-ice
+    SUBDIR += py-imgkit
     SUBDIR += py-incremental
     SUBDIR += py-inflect
     SUBDIR += py-iniparse
@@ -4562,7 +4565,7 @@
     SUBDIR += py-kitchen
     SUBDIR += py-kjbuckets
     SUBDIR += py-kqueue
-    SUBDIR += py-krosspython
+    SUBDIR += py-krosspython-kde4
     SUBDIR += py-lazr.config
     SUBDIR += py-lazr.delegates
     SUBDIR += py-lazy
@@ -4751,8 +4754,8 @@
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
-    SUBDIR += py-pykde4
-    SUBDIR += py-pykdeuic4
+    SUBDIR += py-pykde4-kde4
+    SUBDIR += py-pykdeuic4-kde4
     SUBDIR += py-pyke
     SUBDIR += py-pylru
     SUBDIR += py-pylru-cache
@@ -5209,6 +5212,7 @@
     SUBDIR += ragel
     SUBDIR += raknet
     SUBDIR += rapidjson
+    SUBDIR += raylib
     SUBDIR += rbenv
     SUBDIR += rbtools
     SUBDIR += rclint
@@ -5244,10 +5248,9 @@
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-build
     SUBDIR += ruby-gems
-    SUBDIR += ruby-korundum
-    SUBDIR += ruby-krossruby
-    SUBDIR += ruby-ncurses
-    SUBDIR += ruby-qtruby
+    SUBDIR += ruby-korundum-kde4
+    SUBDIR += ruby-krossruby-kde4
+    SUBDIR += ruby-qtruby-kde4
     SUBDIR += ruby-rbprof
     SUBDIR += ruby-sdl
     SUBDIR += ruby-setup.rb
@@ -5337,6 +5340,7 @@
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
     SUBDIR += rubygem-clamp
+    SUBDIR += rubygem-clamp11
     SUBDIR += rubygem-classifier
     SUBDIR += rubygem-classifier-reborn
     SUBDIR += rubygem-climate_control
@@ -5898,6 +5902,7 @@
     SUBDIR += sfml1
     SUBDIR += sgb
     SUBDIR += shapelib
+    SUBDIR += shards
     SUBDIR += shedskin
     SUBDIR += shflags
     SUBDIR += shiboken
@@ -5918,9 +5923,9 @@
     SUBDIR += smack
     SUBDIR += smake
     SUBDIR += smc
-    SUBDIR += smokegen
-    SUBDIR += smokekde
-    SUBDIR += smokeqt
+    SUBDIR += smokegen-kde4
+    SUBDIR += smokekde-kde4
+    SUBDIR += smokeqt-kde4
     SUBDIR += smv
     SUBDIR += soapui
     SUBDIR += sonar-ant-task
@@ -6038,7 +6043,7 @@
     SUBDIR += ucpp
     SUBDIR += udis86
     SUBDIR += ultragetopt
-    SUBDIR += umbrello
+    SUBDIR += umbrello-kde4
     SUBDIR += umem
     SUBDIR += umlgraph
     SUBDIR += unibilium

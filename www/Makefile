@@ -209,6 +209,7 @@
     SUBDIR += glpi
     SUBDIR += gnome-user-share
     SUBDIR += gnome-web-photo
+    SUBDIR += go-appengine-sdk
     SUBDIR += go-fasthttp
     SUBDIR += go-www
     SUBDIR += gobuffalo
@@ -1813,6 +1814,7 @@
     SUBDIR += py-prewikka
     SUBDIR += py-puppetboard
     SUBDIR += py-puppetboard02
+    SUBDIR += py-puppetboard03
     SUBDIR += py-py-restclient
     SUBDIR += py-pySmartDL
     SUBDIR += py-pyjwt
@@ -2205,6 +2207,7 @@
     SUBDIR += rubygem-unicorn
     SUBDIR += rubygem-unicorn51
     SUBDIR += rubygem-unicorn-worker-killer
+    SUBDIR += rubygem-unicorn-worker-killer044
     SUBDIR += rubygem-url_escape
     SUBDIR += rubygem-url_mount
     SUBDIR += rubygem-vegas

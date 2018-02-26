@@ -134,6 +134,7 @@
     SUBDIR += enet
     SUBDIR += erlang-ranch
     SUBDIR += erlang-xmlrpc
+    SUBDIR += eternaltcp
     SUBDIR += etrace
     SUBDIR += exabgp
     SUBDIR += exaddos
@@ -204,7 +205,6 @@
     SUBDIR += grilo-plugins
     SUBDIR += grilo-plugins2
     SUBDIR += grilo2
-    SUBDIR += grive
     SUBDIR += grive2
     SUBDIR += grsync
     SUBDIR += gsk
@@ -311,14 +311,14 @@
     SUBDIR += kea
     SUBDIR += kf5-kholidays
     SUBDIR += kf5-kxmlrpcclient
-    SUBDIR += kget
+    SUBDIR += kget-kde4
     SUBDIR += kio-upnp-ms
     SUBDIR += kippo
     SUBDIR += kissd
     SUBDIR += knc
     SUBDIR += knemo-kde4
-    SUBDIR += krdc
-    SUBDIR += krfb
+    SUBDIR += krdc-kde4
+    SUBDIR += krfb-kde4
     SUBDIR += kwooty
     SUBDIR += l2tpd
     SUBDIR += l4ip
@@ -1006,6 +1006,7 @@
     SUBDIR += py-impacket
     SUBDIR += py-ipaddress
     SUBDIR += py-iplib
+    SUBDIR += py-iptools
     SUBDIR += py-kafka-python
     SUBDIR += py-kombu
     SUBDIR += py-ldap
@@ -1124,7 +1125,6 @@
     SUBDIR += radreport
     SUBDIR += radsecproxy
     SUBDIR += radvd
-    SUBDIR += raggle
     SUBDIR += rclone
     SUBDIR += rdapper
     SUBDIR += rdesktop
@@ -1497,7 +1497,7 @@
     SUBDIR += yptransitd
     SUBDIR += zebra
     SUBDIR += zebra-server
-    SUBDIR += zeroconf-ioslave
+    SUBDIR += zeroconf-ioslave-kde4
     SUBDIR += zerotier
     SUBDIR += zillion
     SUBDIR += zmap

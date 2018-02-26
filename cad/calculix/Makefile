@@ -3,6 +3,7 @@
 
 PORTNAME=	calculix
 PORTVERSION=	2.13
+PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	http://www.dhondt.de/
 DISTFILES=	${DIST_SOURCES}
@@ -34,6 +35,8 @@ USE_GL=		gl glu # uses its own glut
 
 BROWSER?=	firefox
 PSVIEWER?=	gv
+
+CXXFLAGS+=	-std=c++98
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 

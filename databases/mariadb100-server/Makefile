@@ -23,6 +23,8 @@ LICENSE_FILE_PerconaFT=	${WRKSRC}/storage/tokudb/PerconaFT/PATENTS
 LICENSE_PERMS_PerconaFT=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BROKEN_aarch64=		Fails to link: missing sbrk
+BROKEN_SSL=		openssl-devel
+BROKEN_SSL_REASON_openssl-devel=	incomplete definition of type 'struct dh_st'
 
 SUB_FILES=	pkg-message
 PKGMESSAGE=	${WRKDIR}/pkg-message
@@ -158,9 +160,6 @@ NOT_FOR_ARCHS_REASON=	TokuDB not supported on 32-bit platforms, see \
 # Server segfaults on i386 when built with clang >= 3.4
 USE_GCC=	yes
 .endif
-
-post-extract-OQGRAPH-off:
-	@${RM} -r ${WRKSRC}/storage/oqgraph
 
 post-patch:
 	@${REINPLACE_CMD} 's/*.1/${MAN1}/' ${WRKSRC}/man/CMakeLists.txt

@@ -7,12 +7,14 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	6
 CATEGORIES=	net-im net-p2p
 
-MAINTAINER=	yuri@rawbw.com
+MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Daemon part of the Ring VoIP SIP phone and IM
 
 LICENSE=	GPLv3
 
 BROKEN=		fails to build
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2018-03-19
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 LIB_DEPENDS=	libyaml-cpp.so:devel/yaml-cpp \

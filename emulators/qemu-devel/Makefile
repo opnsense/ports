@@ -16,7 +16,7 @@ LICENSE=	GPLv2
 USE_HARDENING=	pie:off
 
 HAS_CONFIGURE=	yes
-USES=		cpe gmake pkgconfig bison perl5 python:2,build ssl tar:bzip2
+USES=		cpe gmake pkgconfig bison perl5 python:2.7,build ssl tar:bzip2
 USE_PERL5=	build
 USE_XORG=	pixman
 USE_GNOME+=	cairo glib20

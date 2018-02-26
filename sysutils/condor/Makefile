@@ -6,7 +6,7 @@
 
 PORTNAME=	condor
 PORTVERSION=	8.4.9
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	sysutils net
 MASTER_SITES=	http://www.acadix.biz/Ports/distfiles/
 DISTNAME=	condor_src-${PORTVERSION}-all-all
@@ -28,7 +28,7 @@ USE_HARDENING=	pie:off relro:off
 WRKSRC=		${WRKDIR}/condor-${PORTVERSION}
 USE_LDCONFIG=	yes
 # Does not build with Python 3
-USES=		cmake cpe perl5 pgsql python:2 shebangfix ssl
+USES=		cmake cpe perl5 pgsql python:2.7 shebangfix ssl
 CPE_VENDOR=	condor_project
 SHEBANG_FILES=	src/condor_scripts/condor_qsub \
 		src/condor_gridmanager/remote_gahp \
