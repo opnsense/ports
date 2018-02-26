@@ -17,7 +17,9 @@ LICENSE=	PSFL
 USES=		cpe ncurses pathfix pkgconfig readline:port shebangfix ssl tar:xz
 PATHFIX_MAKEFILEIN=	Makefile.pre.in
 USE_LDCONFIG=	yes
+CFLAGS+=	-I${OPENSSLINC}
 GNU_CONFIGURE=	yes
+LIBS+=		-L${OPENSSLLIB}
 python_CMD=	${PREFIX}/bin/python${PYTHON_PORTVERSION:R}
 SHEBANG_FILES=	Lib/lib2to3/pgen2/*.py Lib/lib2to3/tests/*.py Lib/lib2to3/tests/data/*.py \
 		Lib/idlelib/*.py Lib/encodings/*.py Lib/test/*.py Lib/UserString.py \
@@ -89,7 +91,7 @@ PLIST_SUB+=	X86_ONLY=""
 PLIST_SUB+=	X86_ONLY="@comment "
 .endif
 
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == ia64 || ${ARCH} == sparc64 || ${ARCH} == powerpc64 || ${ARCH} == mips64
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == mips64 || ${ARCH} == powerpc64 || ${ARCH} == sparc64
 PLIST_SUB+=	32BIT_ONLY="@comment "
 .else
 PLIST_SUB+=	32BIT_ONLY=""
