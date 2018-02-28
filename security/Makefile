@@ -1060,6 +1060,7 @@
     SUBDIR += rkhunter
     SUBDIR += rndpassw
     SUBDIR += ruby-camellia
+    SUBDIR += rubygem-aes_key_wrap
     SUBDIR += rubygem-airbrussh
     SUBDIR += rubygem-attr_encrypted
     SUBDIR += rubygem-attr_encrypted30
@@ -1259,6 +1260,7 @@
     SUBDIR += tlswrap
     SUBDIR += tmux-cssh
     SUBDIR += tor
+    SUBDIR += tor-capsicum
     SUBDIR += tor-devel
     SUBDIR += tpm-tools
     SUBDIR += tpmmanager
