@@ -2,14 +2,16 @@
 # $FreeBSD$
 
 PORTNAME=	Sys-CPU
-PORTVERSION=	0.52
-PORTREVISION=	2
+PORTVERSION=	0.61
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	perl@FreeBSD.org
 COMMENT=	Sys::CPU - Perl extension for getting CPU information
+
+LICENSE=	ART10 GPLv1+
+LICENSE_COMB=	dual
 
 USES=		dos2unix perl5
 USE_PERL5=	configure
