@@ -387,6 +387,7 @@
     SUBDIR += kibana5
     SUBDIR += kibana5-search-guard
     SUBDIR += kibana5-x-pack
+    SUBDIR += kibana6
     SUBDIR += kiss-templates
     SUBDIR += kmfl-european-latin
     SUBDIR += kmfl-khmer
@@ -1337,6 +1338,7 @@
     SUBDIR += py-pyes
     SUBDIR += py-pygments
     SUBDIR += py-pygtail
+    SUBDIR += py-pyhamcrest
     SUBDIR += py-pyhwp
     SUBDIR += py-pyphen
     SUBDIR += py-pyscss

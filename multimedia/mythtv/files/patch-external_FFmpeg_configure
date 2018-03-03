@@ -1,0 +1,22 @@
+--- external/FFmpeg/configure.orig	2015-06-16 16:03:30 UTC
++++ external/FFmpeg/configure
+@@ -2167,8 +2167,8 @@ yasmexe_default="yasm"
+ nogas=":"
+ 
+ # machine
+-arch_default=$(uname -m)
+-cpu="generic"
++arch_default=$(uname -p)
++cpu="i686"
+ 
+ # OS
+ target_os_default=$(tolower $(uname -s))
+@@ -3137,7 +3137,7 @@ elif enabled x86; then
+         i686|pentiumpro|pentium[23]|pentium-m|athlon|athlon-tbird|athlon-4|athlon-[mx]p|athlon64*|k8*|opteron*|athlon-fx|core2|corei7*|amdfam10|barcelona|atom|bdver*)
+             cpuflags="-march=$cpu"
+             enable cmov
+-            enable fast_cmov
++            disable fast_cmov
+         ;;
+         # targets that do support conditional mov but on which it's slow
+         pentium4|pentium4m|prescott|nocona)
