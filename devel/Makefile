@@ -4685,6 +4685,7 @@
     SUBDIR += py-pep8-naming
     SUBDIR += py-period
     SUBDIR += py-petname
+    SUBDIR += py-pew
     SUBDIR += py-pex
     SUBDIR += py-phabricator
     SUBDIR += py-phonenumbers
@@ -4695,6 +4696,7 @@
     SUBDIR += py-pika-pool
     SUBDIR += py-pinocchio
     SUBDIR += py-pip
+    SUBDIR += py-pipenv
     SUBDIR += py-pkgconfig
     SUBDIR += py-plan
     SUBDIR += py-plex
