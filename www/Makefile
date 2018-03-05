@@ -1725,6 +1725,7 @@
     SUBDIR += py-meld3
     SUBDIR += py-mt
     SUBDIR += py-multidict
+    SUBDIR += py-mwoauth
     SUBDIR += py-nevow
     SUBDIR += py-notebook
     SUBDIR += py-pafy
@@ -1866,6 +1867,7 @@
     SUBDIR += py-sockjs-tornado
     SUBDIR += py-splinter
     SUBDIR += py-spyne
+    SUBDIR += py-sseclient
     SUBDIR += py-surl
     SUBDIR += py-textile
     SUBDIR += py-tmdb3
