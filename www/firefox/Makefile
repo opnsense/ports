@@ -2,12 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	firefox
-DISTVERSION=	58.0.2
+DISTVERSION=	59.0
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
-MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
-DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
+MASTER_SITES=	https://hg.mozilla.org/releases/mozilla-release/archive/
+DISTNAME=	${MASTER_SITES:M*hg*:S,/archive/,,:T}-2f6a4d2cf42c9d59626061d45c043817cb220814
+DISTFILES=	${DISTNAME:C/.*-//}${EXTRACT_SUFX}
+DIST_SUBDIR=	firefox
 
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
@@ -34,10 +35,10 @@ LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 USE_GECKO=	gecko
 CONFLICTS_INSTALL=	firefox-esr
 MOZ_PKGCONFIG_FILES=	# empty
-USE_MOZILLA=	-soundtouch
+USE_MOZILLA=	-cairo -soundtouch
 
 USE_GL=		gl
-USES=		tar:xz
+USES=		tar:bz2
 
 USE_HARDENING=	pie:configure
 
@@ -47,12 +48,13 @@ FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
 MOZ_OPTIONS=	--enable-application=browser \
 		--enable-official-branding
 
-OPTIONS_DEFAULT=	BUNDLED_CAIRO
+OPTIONS_EXCLUDE=	BUNDLED_CAIRO
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/%u/%U/' -e '/X-MultipleArgs/d' \
+		-e '/^Icon/s/=.*/=${FIREFOX_ICON:R}/' \
 		${FIREFOX_DESKTOP}
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${WRKSRC}/browser/app/nsBrowserApp.cpp
