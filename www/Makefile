@@ -226,6 +226,7 @@
     SUBDIR += grafana2
     SUBDIR += grafana3
     SUBDIR += grafana4
+    SUBDIR += grafana5
     SUBDIR += grails
     SUBDIR += gregarius
     SUBDIR += groupoffice
@@ -1940,6 +1941,7 @@
     SUBDIR += reportmagic
     SUBDIR += repos-style
     SUBDIR += resin3
+    SUBDIR += restbed
     SUBDIR += retawq
     SUBDIR += revive-adserver
     SUBDIR += rnews
