@@ -515,6 +515,8 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "multimedia/gstreamer1" ]; then warn "you need to use USE_GSTREAMER1+=yes"
 	elif [ ${pkg} = "multimedia/gstreamer1-plugins" ]; then warn "you need to use USE_GSTREAMER1+=yes"
 	elif [ ${pkg} = "multimedia/gstreamer1-plugins-bad" ]; then warn "you need to use USE_GSTREAMER1+=bad"
+	# boost related
+	elif [ ${pkg} = "devel/boost-python-libs" ]; then warn "you need to add LIB_DEPENDS+=\${PY_BOOST} and maybe USES+=python"
 	# sdl-related
 	elif [ ${pkg} = 'devel/sdl12' ]; then
 		warn "you need USE_SDL+=sdl"
@@ -667,6 +669,13 @@ proxydeps() {
 
 				# If we don't already depend on it, and we don't provide it
 				if ! listcontains ${dep_file_pkg} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
+					# If the package has a flavor, check that the dependency is not on that particular flavor.
+					flavor=$(pkg annotate -q -S "${dep_file_pkg}" flavor)
+					if [ -n "${flavor}" ]; then
+						if listcontains ${dep_file_pkg}@${flavor} "${LIB_RUN_DEPENDS} ${PKGORIGIN}"; then
+							continue
+						fi
+					fi
 					err "${file} is linked to ${dep_file} from ${dep_file_pkg} but it is not declared as a dependency"
 					proxydeps_suggest_uses ${dep_file_pkg} ${dep_file}
 					rc=1
