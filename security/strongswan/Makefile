@@ -3,6 +3,7 @@
 
 PORTNAME=	strongswan
 PORTVERSION=	5.6.2
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	http://download.strongswan.org/ \
 		http://download2.strongswan.org/
@@ -11,6 +12,7 @@ MAINTAINER=	strongswan@nanoteq.com
 COMMENT=	Open Source IKEv2 IPsec-based VPN solution
 
 LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # StrongSwan uses shared libraries as plugins, but
 # does not fail with safestack as no port depends
