@@ -3,6 +3,7 @@
 
 PORTNAME=	tor
 DISTVERSION=	0.3.4.0
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-alpha-dev
 CATEGORIES=	security net ipv6
 MASTER_SITES=	http://distsets.hardenedbsd.org/
