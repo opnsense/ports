@@ -19,7 +19,7 @@ USES=		gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	rbsec
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
 
 UNSAFESSL_USES_OFF=	ssl
 UNSAFESSL_BUILD_DEPENDS=	${LOCALBASE}/openssl-unsafe/lib/libssl.so:security/openssl-unsafe

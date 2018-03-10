@@ -13,7 +13,7 @@ COMMENT=	Screen capture utility that utilizes Imlib2
 
 LIB_DEPENDS=	libgiblib.so:graphics/giblib
 
-USE_HARDENING=	safestack
+USE_HARDENING=	cfi safestack
 
 GNU_CONFIGURE=	yes
 
