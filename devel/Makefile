@@ -4348,6 +4348,7 @@
     SUBDIR += py-configargparse
     SUBDIR += py-configobj
     SUBDIR += py-configparser
+    SUBDIR += py-confusable_homoglyphs
     SUBDIR += py-constantly
     SUBDIR += py-construct
     SUBDIR += py-construct28
@@ -4881,6 +4882,7 @@
     SUBDIR += py-rwt
     SUBDIR += py-sanetime
     SUBDIR += py-sarge
+    SUBDIR += py-schema
     SUBDIR += py-scripttest
     SUBDIR += py-sdl2
     SUBDIR += py-selection
