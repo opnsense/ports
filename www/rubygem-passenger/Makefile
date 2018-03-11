@@ -32,12 +32,12 @@ OPTIONS_EXCLUDE=DOCS
 SYMLINK_DESC=	Create passenger symlink
 
 .if ${FLAVOR} == apache
-USE_APACHE=	22+
+USES+=		apache:2.2+
 .endif
 
 USE_RUBY=	yes
 RAKE_BIN=	${LOCALBASE}/bin/rake
-USES=		cpe gem libtool python:env shebangfix ssl
+USES+=		cpe gem libtool python:env shebangfix ssl
 SHEBANG_FILES=	\
 	src/cxx_supportlib/vendor-copy/libuv/gyp_uv.py \
 	dev/vagrant/nginx_start \
