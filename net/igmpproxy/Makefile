@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	igmpproxy
-PORTVERSION=	0.2.1
+DISTVERSION=	0.2.1
 PORTEPOCH=	1
 CATEGORIES=	net
 
@@ -12,14 +12,13 @@ COMMENT=	Multicast forwarding IGMP proxy
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	pali
-
 USE_HARDENING=	safestack
 
-USE_RC_SUBR=	igmpproxy
 USES=		autoreconf
+USE_GITHUB=	yes
+GH_ACCOUNT=	pali
 GNU_CONFIGURE=	yes
+USE_RC_SUBR=	igmpproxy
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/igmpproxy.conf \
