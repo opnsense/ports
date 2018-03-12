@@ -1,15 +1,16 @@
 # Created by: TAKATSU Tomonari <tota@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=	glue
-PORTVERSION=	1.2.0
-CATEGORIES=	devel
+PORTNAME=	utf8
+PORTVERSION=	1.1.3
+CATEGORIES=	textproc
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	tota@FreeBSD.org
-COMMENT=	Interpreted String Literals
+COMMENT=	Unicode Text Processing
 
-LICENSE=	MIT
+LICENSE=	APACHE20
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		cran:auto-plist,compiles
 

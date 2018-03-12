@@ -1,21 +1,21 @@
 # Created by: TAKATSU Tomonari <tota@FreeBSD.org>
 # $FreeBSD$
 
-PORTNAME=	lubridate
-PORTVERSION=	1.7.3
+PORTNAME=	cli
+PORTVERSION=	1.0.0
 CATEGORIES=	devel
 DISTNAME=	${PORTNAME}_${PORTVERSION}
 
 MAINTAINER=	tota@FreeBSD.org
-COMMENT=	Make Dealing with Dates a Little Easier
+COMMENT=	Helpers for Developing Command Line Interfaces
 
-LICENSE=	GPLv2
+LICENSE=	MIT
 
-CRAN_DEPENDS=	R-cran-stringr>0:textproc/R-cran-stringr \
-		R-cran-Rcpp>=0.12.13:devel/R-cran-Rcpp
+CRAN_DEPENDS=	R-cran-assertthat>0:math/R-cran-assertthat \
+		R-cran-crayon>0:devel/R-cran-crayon
 BUILD_DEPENDS=	${CRAN_DEPENDS}
 RUN_DEPENDS=	${CRAN_DEPENDS}
 
-USES=		cran:auto-plist,compiles
+USES=		cran:auto-plist
 
 .include <bsd.port.mk>

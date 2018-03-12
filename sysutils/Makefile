@@ -603,6 +603,8 @@
     SUBDIR += lxsplit
     SUBDIR += lxtask
     SUBDIR += lxterminal
+    SUBDIR += mac_nonet
+    SUBDIR += mac_rtprio
     SUBDIR += magicrescue
     SUBDIR += manck
     SUBDIR += mapchan
