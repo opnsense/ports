@@ -1477,11 +1477,13 @@
     SUBDIR += rubygem-babosa
     SUBDIR += rubygem-case_transform
     SUBDIR += rubygem-charlock_holmes
+    SUBDIR += rubygem-chewy
     SUBDIR += rubygem-citrus
     SUBDIR += rubygem-cld3
     SUBDIR += rubygem-coderay
     SUBDIR += rubygem-colorator
     SUBDIR += rubygem-colored
+    SUBDIR += rubygem-commonmarker
     SUBDIR += rubygem-compass
     SUBDIR += rubygem-compass-core
     SUBDIR += rubygem-compass-import-once
@@ -1495,6 +1497,7 @@
     SUBDIR += rubygem-docdiff
     SUBDIR += rubygem-elasticsearch
     SUBDIR += rubygem-elasticsearch-api
+    SUBDIR += rubygem-elasticsearch-dsl
     SUBDIR += rubygem-elasticsearch-transport
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-escape_utils
