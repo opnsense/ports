@@ -29,6 +29,7 @@ USE_HARDENING=	safestack
 
 .if ${ZABBIX_BUILD} != "frontend" # frontend only needs the version/distribution settings
 .if ${ZABBIX_BUILD} != "agent"
+CONFIGURE_ARGS+=	--with-libevent=${LOCALBASE}
 LIB_DEPENDS+=	libevent.so:devel/libevent
 USE_RC_SUBR=	zabbix_${ZABBIX_BUILD}
 .else
