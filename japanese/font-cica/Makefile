@@ -2,7 +2,7 @@
 
 PORTNAME=	cica
 PORTVERSION=	2.1.0
-#PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	japanese x11-fonts
 MASTER_SITES=	https://github.com/miiton/Cica/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	ja-font-
@@ -40,9 +40,6 @@ do-install:
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR} \
-		"! ( -name Cica-Bold.ttf \
-		-o -name Cica-BoldItalic.ttf \
-		-o -name Cica-Regular.ttf \
-		-o -name Cica-RegularItalic.ttf )"
+		"! -name *\.ttf"
 
 .include <bsd.port.mk>
