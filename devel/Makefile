@@ -1672,6 +1672,9 @@
     SUBDIR += lua-lunit
     SUBDIR += lua-posix
     SUBDIR += lua-pty
+    SUBDIR += lua-stdlib
+    SUBDIR += lua-stdlib-debug
+    SUBDIR += lua-stdlib-normalize
     SUBDIR += lua-sysctl
     SUBDIR += lua51-bitop
     SUBDIR += lua51-cjson
@@ -3211,6 +3214,7 @@
     SUBDIR += p5-Proc-Simple
     SUBDIR += p5-Proc-Wait3
     SUBDIR += p5-Proc-WaitStat
+    SUBDIR += p5-Progress-Any
     SUBDIR += p5-Project-Gantt
     SUBDIR += p5-Project-Libs
     SUBDIR += p5-Pthread-GetThreadId
@@ -4293,6 +4297,7 @@
     SUBDIR += py-bison
     SUBDIR += py-bitarray
     SUBDIR += py-bitstring
+    SUBDIR += py-black
     SUBDIR += py-blessings
     SUBDIR += py-blinker
     SUBDIR += py-blist
