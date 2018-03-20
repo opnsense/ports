@@ -3,7 +3,7 @@
 
 PORTNAME=	bind
 PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
-PORTREVISION=	3
+PORTREVISION=	0
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
 PKGNAMESUFFIX=	911
@@ -18,7 +18,7 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 USE_HARDENING=  safestack
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.11.2-P1
+ISCVERSION=	9.11.3
 
 USES=	cpe libedit
 
