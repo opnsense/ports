@@ -34,6 +34,9 @@ STRIP=
 SSP_UNSAFE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
+USE_HARDENING=	pie:off relro:off
+LLVM_AR_UNSAFE=	yes
+
 CONFIGURE_ARGS=	-verbose -prefix "${PREFIX}" \
 		-cc "${CC}" \
 		-aspp "${CC} -c" \

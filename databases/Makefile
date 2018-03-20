@@ -94,6 +94,7 @@
     SUBDIR += gigabase
     SUBDIR += gnats4
     SUBDIR += gnatsweb4
+    SUBDIR += go-carbon
     SUBDIR += gomdb
     SUBDIR += gosqlite3
     SUBDIR += gqlplus
@@ -811,6 +812,7 @@
     SUBDIR += py-psycogreen
     SUBDIR += py-psycopg2
     SUBDIR += py-psycopg2cffi
+    SUBDIR += py-pum
     SUBDIR += py-pyPgSQL
     SUBDIR += py-pyhs
     SUBDIR += py-pylibmc
