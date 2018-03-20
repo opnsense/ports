@@ -14,6 +14,8 @@ COMMENT=	Terminal Multiplexer
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+CONFLICTS_INSTALL=	tmux23
+
 USES=		pkgconfig ncurses
 
 USE_GITHUB=	nodefault
