@@ -63,6 +63,8 @@
     SUBDIR += doc
     SUBDIR += dq
     SUBDIR += drool
+    SUBDIR += dsc
+    SUBDIR += dsp
     SUBDIR += dynip
     SUBDIR += erlang-idna
     SUBDIR += ez-ipupdate
@@ -119,6 +121,7 @@
     SUBDIR += openresolv
     SUBDIR += p5-AnyEvent-CacheDNS
     SUBDIR += p5-AnyEvent-DNS-EtcHosts
+    SUBDIR += p5-App-DSC-DataTool
     SUBDIR += p5-BIND-Conf_Parser
     SUBDIR += p5-BIND-Config-Parser
     SUBDIR += p5-DNS-Config
@@ -126,6 +129,7 @@
     SUBDIR += p5-DNS-Ldns
     SUBDIR += p5-DNS-Zone
     SUBDIR += p5-DNS-ZoneParse
+    SUBDIR += p5-DSC
     SUBDIR += p5-Data-Validate-Domain
     SUBDIR += p5-IO-Async-Resolver-DNS
     SUBDIR += p5-Mozilla-PublicSuffix

@@ -3,6 +3,7 @@
 
 PORTNAME=	mod_dav_svn
 DISTNAME=	subversion-${PORTVERSION}
+PORTREVISION=	2
 
 CATEGORIES=	www
 

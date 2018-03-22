@@ -22,6 +22,8 @@ CFLAGS+=	-fPIC
 LDFLAGS+=	-lpci
 USES=		gmake localbase:ldflags tar:xz
 
+USE_HARDENING=	cfi safestack
+
 PLIST_FILES=	bin/lspci \
 		bin/setpci \
 		man/man8/lspci.8.gz \
