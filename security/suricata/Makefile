@@ -138,12 +138,15 @@ RULES_FILES=	app-layer-events.rules decoder-events.rules dns-events.rules files.
 LOGS_DIR?=	/var/log/${PORTNAME}
 
 pre-patch:
-	${CP} ${FILESDIR}/ax_check_compile_flag.m4 ${WRKSRC}/m4
+	@${CP} ${FILESDIR}/ax_check_compile_flag.m4 ${WRKSRC}/m4
+
+post-patch-NSS-off:
+	@${REINPLACE_CMD} -e 's|PKG_CHECK_MODULES(\[libnspr\]|#&| ; s|AC_CHECK_HEADER(sechash.h,NSS="yes",NSS="no")|#&|' ${WRKSRC}/configure.ac
 
 post-install:
-	${MKDIR} ${STAGEDIR}${CONFIG_DIR}
-	${MKDIR} ${STAGEDIR}${RULES_DIR}
-	${MKDIR} ${STAGEDIR}${LOGS_DIR}
+	@${MKDIR} ${STAGEDIR}${CONFIG_DIR}
+	@${MKDIR} ${STAGEDIR}${RULES_DIR}
+	@${MKDIR} ${STAGEDIR}${LOGS_DIR}
 .for f in ${CONFIG_FILES}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${CONFIG_DIR}/${f}.sample
 .endfor
