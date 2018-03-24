@@ -20,6 +20,8 @@ USES=		gmake autoreconf
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	${PORTNAME}
 
+USE_HARDENING=	cfi safestack
+
 PLIST_FILES=	sbin/softflowd sbin/softflowctl \
 		man/man8/softflowd.8.gz \
 		man/man8/softflowctl.8.gz

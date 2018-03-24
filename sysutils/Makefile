@@ -192,6 +192,7 @@
     SUBDIR += consolekit2
     SUBDIR += consul
     SUBDIR += consul-alerts
+    SUBDIR += consul-replicate
     SUBDIR += consul_exporter
     SUBDIR += container-diff
     SUBDIR += contractor
@@ -316,6 +317,7 @@
     SUBDIR += file
     SUBDIR += filedupe
     SUBDIR += filelight
+    SUBDIR += filelight-kde4
     SUBDIR += fileprune
     SUBDIR += fileschanged
     SUBDIR += filetype
@@ -1126,6 +1128,7 @@
     SUBDIR += shmcat
     SUBDIR += showbeastie
     SUBDIR += siegfried
+    SUBDIR += signon-plugin-oauth2
     SUBDIR += signon-qt5
     SUBDIR += signon-ui
     SUBDIR += skill
