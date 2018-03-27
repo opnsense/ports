@@ -82,6 +82,7 @@
     SUBDIR += kst2
     SUBDIR += lamprop
     SUBDIR += libaec
+    SUBDIR += libcint
     SUBDIR += libctl
     SUBDIR += libefp
     SUBDIR += libgeodecomp
@@ -158,6 +159,7 @@
     SUBDIR += psychopy
     SUBDIR += pulseview
     SUBDIR += py-DendroPy
+    SUBDIR += py-OpenFermion
     SUBDIR += py-cdo
     SUBDIR += py-coards
     SUBDIR += py-h5py
@@ -202,7 +204,6 @@
     SUBDIR += silo
     SUBDIR += simlib
     SUBDIR += simsmith
-    SUBDIR += siril
     SUBDIR += step-kde4
     SUBDIR += svmlight
     SUBDIR += szip
