@@ -4518,6 +4518,7 @@
     SUBDIR += py-imgkit
     SUBDIR += py-incremental
     SUBDIR += py-inflect
+    SUBDIR += py-inflection
     SUBDIR += py-iniparse
     SUBDIR += py-initgroups
     SUBDIR += py-instant
@@ -4662,6 +4663,7 @@
     SUBDIR += py-omnijson
     SUBDIR += py-omniorb
     SUBDIR += py-omniorb-3
+    SUBDIR += py-openapi-codec
     SUBDIR += py-opendht
     SUBDIR += py-openstacksdk
     SUBDIR += py-opster
@@ -6117,6 +6119,7 @@
     SUBDIR += websvn
     SUBDIR += wininfo
     SUBDIR += wizardkit
+    SUBDIR += woff2
     SUBDIR += wxGlade
     SUBDIR += wxformbuilder
     SUBDIR += xa65
