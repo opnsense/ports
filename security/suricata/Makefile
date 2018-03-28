@@ -12,6 +12,8 @@ COMMENT=	High Performance Network IDS, IPS and Security Monitoring engine
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+CONFLICTS_INSTALL=suricata-devel
+
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libnet.so:net/libnet \
 		libyaml.so:textproc/libyaml
