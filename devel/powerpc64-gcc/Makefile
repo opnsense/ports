@@ -19,8 +19,6 @@ LIB_DEPENDS=	libgmp.so:math/gmp \
 BUILD_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
 RUN_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
 
-CONFIGURE_ENV=	gcc_gxx_include_dir="/usr/include/c++/v1"
-
 USE_HARDENING=	pie:off relro:off
 
 USES=	gmake iconv libtool tar:bzip2 makeinfo compiler

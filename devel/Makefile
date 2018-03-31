@@ -1664,7 +1664,6 @@
     SUBDIR += lua-gettext
     SUBDIR += lua-lgi
     SUBDIR += lua-lpeg
-    SUBDIR += lua-lpeg51
     SUBDIR += lua-luacheck
     SUBDIR += lua-luarocks
     SUBDIR += lua-lunit
@@ -4208,6 +4207,7 @@
     SUBDIR += py-PyExecJS
     SUBDIR += py-PyLD
     SUBDIR += py-PyODE
+    SUBDIR += py-PyUtilib
     SUBDIR += py-QtPy
     SUBDIR += py-RPyC
     SUBDIR += py-Record
