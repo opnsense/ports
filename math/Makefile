@@ -637,6 +637,7 @@
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
     SUBDIR += py-cvxopt
+    SUBDIR += py-cyipopt
     SUBDIR += py-fastcluster
     SUBDIR += py-ffc
     SUBDIR += py-fiat
@@ -649,6 +650,7 @@
     SUBDIR += py-igraph
     SUBDIR += py-intspan
     SUBDIR += py-keras
+    SUBDIR += py-levmar
     SUBDIR += py-luminol
     SUBDIR += py-mathdom
     SUBDIR += py-matplotlib
@@ -672,6 +674,8 @@
     SUBDIR += py-pyhull
     SUBDIR += py-pymc
     SUBDIR += py-pymc3
+    SUBDIR += py-pyneqsys
+    SUBDIR += py-pyodesys
     SUBDIR += py-pysparse
     SUBDIR += py-pysym
     SUBDIR += py-pyvtk
@@ -680,6 +684,7 @@
     SUBDIR += py-seaborn
     SUBDIR += py-statsmodels
     SUBDIR += py-svgmath
+    SUBDIR += py-sym
     SUBDIR += py-symcxx
     SUBDIR += py-symeig
     SUBDIR += py-sympy
