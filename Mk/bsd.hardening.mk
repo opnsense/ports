@@ -292,7 +292,8 @@ OPTIONS_GROUP_HARDENING+=CFI
 .if ${HARDENING_OFF:Mretpoline} == ""
 
 .if ${OSVERSION} >= 1200055 && ${HBSDVERSION} >= 1200057 \
-	&& ${ARCH} == "amd64" && ${LLD_IS_LD} == "yes"
+	&& ${ARCH} == "amd64" && ${LLD_IS_LD} == "yes" \
+	&& !defined(LLD_UNSAFE) && !defined(USE_GCC)
 
 retpoline_ARGS?=	auto
 
