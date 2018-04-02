@@ -84,6 +84,7 @@
     SUBDIR += R-cran-sf
     SUBDIR += R-cran-sm
     SUBDIR += R-cran-sp
+    SUBDIR += R-cran-spData
     SUBDIR += R-cran-spdep
     SUBDIR += R-cran-sspir
     SUBDIR += R-cran-stabledist
@@ -323,6 +324,7 @@
     SUBDIR += mpexpr
     SUBDIR += mpfr
     SUBDIR += mpir
+    SUBDIR += mppp
     SUBDIR += mprime
     SUBDIR += msieve
     SUBDIR += mtl
@@ -675,6 +677,7 @@
     SUBDIR += py-pymc
     SUBDIR += py-pymc3
     SUBDIR += py-pyneqsys
+    SUBDIR += py-pynleq2
     SUBDIR += py-pyodesys
     SUBDIR += py-pysparse
     SUBDIR += py-pysym
