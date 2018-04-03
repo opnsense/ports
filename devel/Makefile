@@ -740,6 +740,7 @@
     SUBDIR += gettext-runtime
     SUBDIR += gettext-tools
     SUBDIR += gflags
+    SUBDIR += ghub
     SUBDIR += giggle
     SUBDIR += gindent
     SUBDIR += gio-sharp
@@ -1688,6 +1689,7 @@
     SUBDIR += m17n-lib
     SUBDIR += m4
     SUBDIR += magit
+    SUBDIR += magit-popup
     SUBDIR += make++
     SUBDIR += makedepend
     SUBDIR += marisa-trie
