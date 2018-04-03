@@ -2,6 +2,7 @@
 
 PORTNAME=	dhcp6c
 PORTVERSION=	20180403
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 
 MAINTAINER=	franco@opnsense.org
@@ -16,7 +17,7 @@ USE_HARDENING=	safestack
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	fae5d4c
+GH_TAGNAME=	f9e99c8
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc \
@@ -32,11 +33,6 @@ RAW_EXTRA_PATCHES=${PATCHDIR}/extra-patch-raw
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/dhcp6c.conf.sample ${STAGEDIR}${PREFIX}/etc
-	${RM} ${STAGEDIR}${PREFIX}/man/man5/dhcp6s.conf.5
-	${RM} ${STAGEDIR}${PREFIX}/man/man8/dhcp6relay.8
-	${RM} ${STAGEDIR}${PREFIX}/man/man8/dhcp6s.8
-	${RM} ${STAGEDIR}${PREFIX}/sbin/dhcp6relay
-	${RM} ${STAGEDIR}${PREFIX}/sbin/dhcp6s
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
