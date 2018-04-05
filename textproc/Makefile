@@ -1315,6 +1315,7 @@
     SUBDIR += py-hyperestraier-python
     SUBDIR += py-hypua2jamo
     SUBDIR += py-jaxml
+    SUBDIR += py-jtextfsm
     SUBDIR += py-junit-xml
     SUBDIR += py-libtre
     SUBDIR += py-libxml2
@@ -1392,6 +1393,7 @@
     SUBDIR += py-syck
     SUBDIR += py-tabletext
     SUBDIR += py-terminaltables
+    SUBDIR += py-textfsm
     SUBDIR += py-texttable
     SUBDIR += py-tinycss
     SUBDIR += py-toronado

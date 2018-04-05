@@ -4291,6 +4291,7 @@
     SUBDIR += py-backports_abc
     SUBDIR += py-bandit
     SUBDIR += py-bcdoc
+    SUBDIR += py-bidict
     SUBDIR += py-billiard
     SUBDIR += py-binplist
     SUBDIR += py-biplist
@@ -4978,6 +4979,8 @@
     SUBDIR += py-testinfra
     SUBDIR += py-testoob
     SUBDIR += py-testpath
+    SUBDIR += py-testresources
+    SUBDIR += py-testscenarios
     SUBDIR += py-testtools
     SUBDIR += py-threema-msgapi
     SUBDIR += py-thrift
