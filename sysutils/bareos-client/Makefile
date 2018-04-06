@@ -1,5 +1,5 @@
 # Created by: Alonso Cardenas <acm@FreeBSD.org>
-# $FreeBSD$
+# $FreeBSD: head/sysutils/bareos-client/Makefile 445197 2017-07-07 02:19:21Z acm $
 
 PORTNAME=	bareos
 PORTREVISION=	0
@@ -13,10 +13,9 @@ WITH_CLIENT_ONLY=yes
 USE_RC_SUBR=	bareos-fd
 
 PLIST=		${PKGDIR}/pkg-plist.client
-MASTERDIR=	${.CURDIR}/../../sysutils/bareos-server
+MASTERDIR=	${.CURDIR}/../bareos-server
 
 OPTIONS_DEFINE=	NLS PYTHON LMDB SCSICRYPTO
-OPTIONS_DEFAULT=#
 LMDB_DESC=	Enable build of LMDB support
 
 .include "${MASTERDIR}/Makefile"

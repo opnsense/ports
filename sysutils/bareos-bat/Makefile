@@ -1,5 +1,5 @@
 # Created by: Alonso Cardenas Marquez <acm@FreeBSD.org>
-# $FreeBSD$
+# $FreeBSD: head/sysutils/bareos-bat/Makefile 426215 2016-11-16 07:11:54Z acm $
 
 PORTNAME=	bareos
 PKGNAMESUFFIX=	-bat
@@ -19,15 +19,12 @@ WITH_BAT=	yes
 PLIST=		${.CURDIR}/pkg-plist
 MAKE_ENV+=	MAKEOBJDIRPREFIX=/
 
-MASTERDIR=	${.CURDIR}/../../sysutils/bareos-server
+MASTERDIR=	${.CURDIR}/../bareos-server
 
 CONFIGURE_ARGS+=	--enable-bat \
 			--with-qwt=${LOCALBASE}/lib \
 			--disable-build-dird \
 			--disable-build-stored \
 			--enable-client-only
-
-OPTIONS_DEFINE=	OPENSSL
-OPTIONS_DEFAULT=OPENSSL
 
 .include "${MASTERDIR}/Makefile"

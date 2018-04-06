@@ -1,5 +1,5 @@
 # Created by: Alonso Cardenas Marquez <acm@FreeBSD.org>
-# $FreeBSD$
+# $FreeBSD: head/sysutils/bareos-traymonitor/Makefile 426216 2016-11-16 07:13:27Z acm $
 
 PORTNAME=	bareos
 
@@ -20,7 +20,7 @@ WITH_BAT=	yes
 PLIST=		${.CURDIR}/pkg-plist
 MAKE_ENV+=	MAKEOBJDIRPREFIX=/
 
-MASTERDIR=	${.CURDIR}/../../sysutils/bareos-server
+MASTERDIR=	${.CURDIR}/../bareos-server
 
 CONFIGURE_ARGS+=	--enable-traymonitor=yes \
 			--with-qwt=${LOCALBASE}/lib \
@@ -29,8 +29,5 @@ CONFIGURE_ARGS+=	--enable-traymonitor=yes \
 			--enable-client-only \
 			--with-jansson=${LOCALBASE} \
 			--enable-nls=yes
-
-OPTIONS_DEFINE=	OPENSSL
-OPTIONS_DEFAULT=OPENSSL
 
 .include "${MASTERDIR}/Makefile"

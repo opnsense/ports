@@ -1,5 +1,5 @@
 # Created by: Alonso Cardenas <acm@FreeBSD.org>
-# $FreeBSD$
+# $FreeBSD: head/sysutils/bareos-server/Makefile 456228 2017-12-13 20:06:09Z acm $
 
 PORTNAME=	bareos
 DISTVERSIONPREFIX=	Release/
@@ -37,21 +37,28 @@ SHEBANG_FILES=	${WRKSRC}/src/cats/make_catalog_backup.pl.in
 CPPFLAGS+=	-I${LOCALBASE}/readline -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
-OPTIONS_DEFINE?=	MTX PYTHON NDMP NLS OPENSSL SCSICRYPTO
-OPTIONS_DEFAULT?=	OPENSSL PGSQL SCSICRYPTO
+OPTIONS_DEFAULT=	GNUTLS
+OPTIONS_SINGLE=		CRYPTO
+OPTIONS_SINGLE_CRYPTO=	OPENSSL GNUTLS
 OPTIONS_SUB=		yes
+CRYPTO_DESC=		Cryptographic library
 MTX_DESC=		Install mtx for control of autochanger devices
 NDMP_DESC=		Enable build of NDMP support
 SCSICRYPTO_DESC=	Build LTO AME crypto plugin
 
 .if ${PKGNAMESUFFIX} == "-server"
+OPTIONS_DEFINE=		MTX PYTHON NDMP NLS SCSICRYPTO
+OPTIONS_DEFAULT+=	PGSQL SCSICRYPTO
 OPTIONS_SINGLE_DATABASE=	SQLITE3 MYSQL PGSQL
-OPTIONS_SINGLE=		DATABASE
+OPTIONS_SINGLE+=	DATABASE
 DATABASE_DESC=		Database support
 
 NDMP_CONFIGURE_ON=	--enable-ndmp=yes
 NDMP_CONFIGURE_OFF=	--enable-ndmp=no
 .endif
+
+GNUTLS_CONFIGURE_WITH=	gnutls=${LOCALBASE}
+GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 
 OPENSSL_USES=		ssl
 OPENSSL_CONFIGURE_ON=	--with-openssl=${OPENSSLBASE}
