@@ -1,0 +1,10 @@
+bin/gibson
+@dir %%ETCDIR%%
+@sample %%ETCDIR%%.conf.sample %%ETCDIR%%.conf
+%%DATADIR%%/command.sh
+%%DATADIR%%/common
+%%DATADIR%%/restart.sh
+%%DATADIR%%/start.sh
+%%DATADIR%%/stop.sh
+%%DATADIR%%/update.sh
+%%DATADIR%%/upgrade.sh

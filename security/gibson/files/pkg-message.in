@@ -1,0 +1,14 @@
+===============================================================================
+
+gibson: Tool suite for maintaining Tor services
+
+Be sure to update the (VERY) minimal gibson.conf file in order to realize 
+the fullest enjoyment of our tool suite.  You will find this file here:
+
+%%ETCDIR%%.conf
+
+We expect this file to grow in time, and so should you.  In future releases
+you should be prepared to review gibson.conf.sample and merge in any new
+values that need to be configured.
+
+===============================================================================

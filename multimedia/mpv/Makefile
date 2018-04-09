@@ -21,7 +21,7 @@ USES=		compiler:c11 desktop-file-utils iconv jpeg localbase:ldflags \
 		pkgconfig python:build waf
 USE_LDCONFIG=	yes
 
-USE_HARDENING=	pie:off safestack
+USE_HARDENING=	pie:off
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mpv-player

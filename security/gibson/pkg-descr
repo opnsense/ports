@@ -1,0 +1,13 @@
+gibson is a cross-functional suite of tools used to assist in provisioning and
+maintaining Tor services.  gibson doesn't replace tools such as ezjail, iocell,
+bhyve, nginx, caddy, LUKS and geli, but rather aims to glue them together into
+secure Tor services.
+
+The aim of the project is to provide the tools necessary for a user to quickly
+and easily turn a new BSD installation into a Tor appliance in a safe and
+reproducible fashion.
+
+gibson is a project of Emerald Onion, and is available on our github.
+
+WWW: https://github.com/emeraldonion/gibson
+WWW: https://emeraldonion.org

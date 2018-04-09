@@ -173,6 +173,7 @@
     SUBDIR += gag
     SUBDIR += gcipher
     SUBDIR += gcr
+    SUBDIR += gibson
     SUBDIR += git-crypt
     SUBDIR += git-remote-gcrypt
     SUBDIR += gnome-gpg
