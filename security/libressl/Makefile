@@ -3,7 +3,7 @@
 
 PORTNAME=	libressl
 PORTVERSION=	2.6.4
-#DISTNAME=	libressl-2.6.3
+PORTREVISION=	1
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 
@@ -27,7 +27,7 @@ CONFLICTS_INSTALL=	libressl-devel-[0-9]* \
 NC_CONFIGURE_ENABLE=	nc
 
 GNU_CONFIGURE=	yes
-USES=		cpe libtool pathfix pkgconfig
+USES=		autoreconf cpe libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 OPTIONS_SUB=	yes
 CFLAGS+=	-fpic -DPIC -Wl,-rpath,${PREFIX}/lib -Wl,--as-needed
@@ -39,6 +39,10 @@ post-patch-MAN3-off:
 	${REINPLACE_CMD} -e 's/^install-man: install-man3/install-man:/' \
 		-e '/$$(MAKE) $$(AM_MAKEFLAGS) install-data-hook/d' \
 		${WRKSRC}/man/Makefile.in
+
+pre-configure:
+	# make sure this stale file is not used
+	${RM} ${WRKSRC}/configure
 
 post-install:
 	${RM} -r ${STAGEDIR}/${PREFIX}/etc/ssl/cert.pem
