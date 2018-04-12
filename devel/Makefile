@@ -8,6 +8,7 @@
     SUBDIR += ElectricFence
     SUBDIR += ORBit2
     SUBDIR += ORBit2-reference
+    SUBDIR += R-cran-abind
     SUBDIR += R-cran-BH
     SUBDIR += R-cran-Defaults
     SUBDIR += R-cran-Hmisc
@@ -891,6 +892,7 @@
     SUBDIR += hadoop2
     SUBDIR += hapy
     SUBDIR += hcs12mem
+    SUBDIR += heimdall
     SUBDIR += hexcompare
     SUBDIR += hexd
     SUBDIR += hg-git
@@ -1437,7 +1439,7 @@
     SUBDIR += libixp
     SUBDIR += libjson++
     SUBDIR += libk8055
-    SUBDIR += libkgapi
+    SUBDIR += libkgapi-kde4
     SUBDIR += libklel
     SUBDIR += libkolab
     SUBDIR += liblangtag
@@ -4825,6 +4827,7 @@
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-cov
     SUBDIR += py-pytest-django
+    SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-mock
     SUBDIR += py-pytest-runner
@@ -5614,6 +5617,7 @@
     SUBDIR += rubygem-lumberjack
     SUBDIR += rubygem-main
     SUBDIR += rubygem-map
+    SUBDIR += rubygem-marcel
     SUBDIR += rubygem-memoist
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-memoize

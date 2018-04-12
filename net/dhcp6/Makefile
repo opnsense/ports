@@ -25,8 +25,6 @@ PORTDOCS=	README
 
 OPTIONS_DEFINE=	DOCS
 
-MAKE_JOBS_UNSAFE=	yes
-
 post-install:
 	cd ${WRKSRC} && ${INSTALL_DATA} \
 	    dhcp6c.conf.sample dhcp6s.conf.sample \
