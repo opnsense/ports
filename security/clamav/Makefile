@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	clamav
-PORTVERSION=	0.100.0
-PORTREVISION=	1
+PORTVERSION=	0.99.4
 CATEGORIES=	security
 MASTER_SITES=	http://www.clamav.net/downloads/production/
 
@@ -80,7 +79,8 @@ CONFIGURE_ARGS=	--libdir=${PREFIX}/lib \
 		--enable-gethostbyname_r \
 		--disable-dependency-tracking \
 		--disable-zlib-vcheck \
-		--enable-clamdtop
+		--enable-clamdtop \
+		--disable-llvm
 CPPFLAGS+=	-I${LOCALBASE}/include
 
 # This port has a problem with -pthread,
@@ -202,6 +202,7 @@ post-install:
 		  ${STAGEDIR}${DBDIR} \
 		  ${STAGEDIR}${LOGDIR} \
 		  ${STAGEDIR}${RUNDIR}
+	${INSTALL_DATA} ${WRKSRC}/NEWS ${WRKSRC}/ChangeLog ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/html/* ${STAGEDIR}${DOCSDIR}/html
 
 .include <bsd.port.post.mk>
