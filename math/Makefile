@@ -29,6 +29,7 @@
     SUBDIR += R-cran-Rmpfr
     SUBDIR += R-cran-Rsolnp
     SUBDIR += R-cran-SparseM
+    SUBDIR += R-cran-uroot
     SUBDIR += R-cran-VGAM
     SUBDIR += R-cran-Zelig
     SUBDIR += R-cran-assertthat
@@ -637,6 +638,7 @@
     SUBDIR += pure-mpfr
     SUBDIR += pure-rational
     SUBDIR += py-Diofant
+    SUBDIR += py-PySCIPOpt
     SUBDIR += py-PyWavelets
     SUBDIR += py-Pyomo
     SUBDIR += py-altgraph

@@ -46,6 +46,7 @@
     SUBDIR += cmucl
     SUBDIR += cmucl-extra
     SUBDIR += cocor
+    SUBDIR += coffeescript
     SUBDIR += cparser
     SUBDIR += crystal
     SUBDIR += csharp-mode.el
@@ -56,6 +57,7 @@
     SUBDIR += dmd1
     SUBDIR += dmd2
     SUBDIR += duktape
+    SUBDIR += duktape-lib
     SUBDIR += ecl
     SUBDIR += elan
     SUBDIR += elixir

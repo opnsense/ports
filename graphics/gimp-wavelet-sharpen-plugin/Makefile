@@ -18,8 +18,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gimp-2.0.pc:graphics/gimp-app
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/gimp-2.0.pc:graphics/gimp-app
 
-USE_HARDENING=	safestack
-
 USES=		gettext gmake pkgconfig
 
 PLIST_SUB=	GIMP_PLUGIN_DIR=${GIMP_PLUGIN_DIR}

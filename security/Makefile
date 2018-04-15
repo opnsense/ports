@@ -586,6 +586,7 @@
     SUBDIR += p5-Crypt-OpenSSL-DSA
     SUBDIR += p5-Crypt-OpenSSL-EC
     SUBDIR += p5-Crypt-OpenSSL-ECDSA
+    SUBDIR += p5-Crypt-OpenSSL-Guess
     SUBDIR += p5-Crypt-OpenSSL-PKCS10
     SUBDIR += p5-Crypt-OpenSSL-RSA
     SUBDIR += p5-Crypt-OpenSSL-Random
@@ -1036,7 +1037,7 @@
     SUBDIR += py-zope.security
     SUBDIR += py-zope.securitypolicy
     SUBDIR += py-zope.session
-    SUBDIR += py-zxcvbn-python
+    SUBDIR += py-zxcvbn
     SUBDIR += qtkeychain
     SUBDIR += quantis
     SUBDIR += quantis-kmod

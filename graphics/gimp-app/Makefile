@@ -26,7 +26,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes
 
-USE_HARDENING=	relro:off safestack
+USE_HARDENING=	relro:off
 
 GNU_CONFIGURE=	yes
 USES+=		cpe gettext gmake jpeg libtool \

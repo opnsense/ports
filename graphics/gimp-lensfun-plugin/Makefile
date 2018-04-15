@@ -19,8 +19,6 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/exiv2.pc:graphics/exiv2 \
 		${LOCALBASE}/libdata/pkgconfig/lensfun.pc:graphics/lensfun
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USE_HARDENING=	safestack
-
 USES=		gmake pkgconfig
 
 USE_GITHUB=	yes

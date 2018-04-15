@@ -4612,7 +4612,6 @@
     SUBDIR += py-libtaxii
     SUBDIR += py-libtmux
     SUBDIR += py-libusb1
-    SUBDIR += py-libusb115
     SUBDIR += py-libversion
     SUBDIR += py-libvirt
     SUBDIR += py-libzfs
@@ -5193,13 +5192,11 @@
     SUBDIR += qbs
     SUBDIR += qbzr
     SUBDIR += qca
-    SUBDIR += qca-qt5
     SUBDIR += qconf
     SUBDIR += qct
     SUBDIR += qdevelop
     SUBDIR += qgit
     SUBDIR += qjson
-    SUBDIR += qjson-qt5
     SUBDIR += qmake
     SUBDIR += qprog
     SUBDIR += qross
@@ -5441,6 +5438,7 @@
     SUBDIR += rubygem-deep_test
     SUBDIR += rubygem-deface
     SUBDIR += rubygem-default_value_for
+    SUBDIR += rubygem-default_value_for30
     SUBDIR += rubygem-delayed_job
     SUBDIR += rubygem-delayer
     SUBDIR += rubygem-delayer-deferred
@@ -5536,6 +5534,7 @@
     SUBDIR += rubygem-google-api-client
     SUBDIR += rubygem-google-protobuf
     SUBDIR += rubygem-google-protobuf351
+    SUBDIR += rubygem-googleapis-common-protos
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape

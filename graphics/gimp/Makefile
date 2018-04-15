@@ -12,8 +12,6 @@ COMMENT=	The "meta-port" for The Gimp
 
 RUN_DEPENDS=	gimp-2.8:graphics/gimp-app
 
-USE_HARDENING?=	safestack
-
 USES+=	metaport
 
 OPTIONS_DEFINE=	PYTHON PRINT HELP
