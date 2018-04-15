@@ -139,10 +139,12 @@
     SUBDIR += calctool
     SUBDIR += cantor
     SUBDIR += cantor-kde4
+    SUBDIR += cbc
     SUBDIR += cblas
     SUBDIR += ccmath
     SUBDIR += ceres-solver
     SUBDIR += cgal
+    SUBDIR += cgl
     SUBDIR += chaco
     SUBDIR += chryzodus
     SUBDIR += clasp
