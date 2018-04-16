@@ -263,6 +263,7 @@
     SUBDIR += hs-statistics
     SUBDIR += hs-vector-space
     SUBDIR += igraph
+    SUBDIR += intervaltree
     SUBDIR += ipopt
     SUBDIR += ised
     SUBDIR += jacal
@@ -342,6 +343,7 @@
     SUBDIR += msieve
     SUBDIR += mtl
     SUBDIR += mtrxmath
+    SUBDIR += multichoose
     SUBDIR += mumps
     SUBDIR += mumps-edf
     SUBDIR += mumps-mpich

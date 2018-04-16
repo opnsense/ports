@@ -26,6 +26,7 @@
     SUBDIR += emboss
     SUBDIR += fasta
     SUBDIR += fasta3
+    SUBDIR += fastahack
     SUBDIR += fastdnaml
     SUBDIR += fastool
     SUBDIR += fastqc
@@ -123,6 +124,7 @@
     SUBDIR += trimmomatic
     SUBDIR += ugene
     SUBDIR += vcftools
+    SUBDIR += vcflib
     SUBDIR += velvet
     SUBDIR += wise
     SUBDIR += xmolwt
