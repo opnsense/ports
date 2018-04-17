@@ -645,6 +645,7 @@
     SUBDIR += py-PySCIPOpt
     SUBDIR += py-PyWavelets
     SUBDIR += py-Pyomo
+    SUBDIR += py-algopy
     SUBDIR += py-altgraph
     SUBDIR += py-apgl
     SUBDIR += py-basemap
@@ -691,6 +692,7 @@
     SUBDIR += py-pycosat
     SUBDIR += py-pygsl
     SUBDIR += py-pyhull
+    SUBDIR += py-pyipopt
     SUBDIR += py-pymc
     SUBDIR += py-pymc3
     SUBDIR += py-pyneqsys
