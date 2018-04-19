@@ -24,6 +24,7 @@
     SUBDIR += R-cran-udunits2
     SUBDIR += afni
     SUBDIR += aircraft-datcom
+    SUBDIR += antioch
     SUBDIR += avogadro
     SUBDIR += bddsolve
     SUBDIR += bft
@@ -107,6 +108,7 @@
     SUBDIR += meep
     SUBDIR += mei
     SUBDIR += metaf2xml
+    SUBDIR += metaphysicl
     SUBDIR += minc2
     SUBDIR += mol2ps
     SUBDIR += mpb

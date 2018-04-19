@@ -22,6 +22,7 @@
     SUBDIR += clustalw
     SUBDIR += consed
     SUBDIR += crux
+    SUBDIR += ddocent
     SUBDIR += diamond
     SUBDIR += emboss
     SUBDIR += fasta
@@ -33,6 +34,7 @@
     SUBDIR += fasttree
     SUBDIR += fastx-toolkit
     SUBDIR += fluctuate
+    SUBDIR += freebayes
     SUBDIR += garlic
     SUBDIR += gff2ps
     SUBDIR += gmap

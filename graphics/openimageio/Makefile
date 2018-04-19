@@ -4,7 +4,7 @@
 PORTNAME=	openimageio
 PORTVERSION=	1.7.17
 DISTVERSIONPREFIX=	Release-
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES?=	graphics multimedia
 
 MAINTAINER?=	FreeBSD@Shaneware.biz
@@ -96,8 +96,8 @@ CMAKE_ARGS+=	-DUSE_PYTHON:BOOL=OFF -DUSE_PYTHON3:BOOL=OFF \
 LIB_DEPENDS+=	libOpenImageIO.so:graphics/openimageio \
 		${PY_BOOST}
 PLIST=		${PKGDIR}/pkg-plist-pybind
-#while oiio supports py3, ports doesn't have py3 support for boost-python yet
-USES+=		python:2.7
+USES+=		python
+USE_PYTHON=	flavors
 CMAKE_ARGS+=	-DUSE_PYTHON:BOOL=ON -DUSE_PYTHON3:BOOL=OFF \
 		-DOIIO_BUILD_TOOLS:BOOL=OFF -DUSE_FFMPEG:BOOL=OFF
 .endif
@@ -105,6 +105,8 @@ CMAKE_ARGS+=	-DUSE_PYTHON:BOOL=ON -DUSE_PYTHON3:BOOL=OFF \
 post-patch:
 	@${REINPLACE_CMD} -e 's|share/doc/OpenImageIO|${DOCSDIR}|g' \
 		${WRKSRC}/CMakeLists.txt
+	${REINPLACE_CMD} -e '/find_/s/ boost_python[[:>:]]/ ${PY_BOOST_LIB}/' \
+		${WRKSRC}/src/cmake/externalpackages.cmake
 
 post-install:
 .if ${SLAVE_PORT} == no
