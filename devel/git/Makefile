@@ -3,7 +3,7 @@
 
 PORTNAME=	git
 DISTVERSION=	2.17.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -23,7 +23,7 @@ CONFLICTS_INSTALL?=	git-gui-[0-9]* git-subversion-[0-9]* git-lite-[0-9]*
 USERS=		git_daemon
 GROUPS=		git_daemon
 
-SUB_FILES=	pkg-message
+SUB_FILES=	pkg-message gitweb.conf
 
 USE_HARDENING=	cfi safestack
 CFI_OVERRIDE=	-fno-sanitize=cfi-icall
@@ -236,5 +236,10 @@ post-install-CONTRIB-off:
 
 post-install-P4-on:
 	${INSTALL_SCRIPT} ${WRKSRC}/git-p4.py ${STAGEDIR}${PREFIX}/bin/
+
+post-install-GITWEB-on:
+	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKDIR}/gitweb.conf \
+		${STAGEDIR}${ETCDIR}/gitweb.conf.sample
 
 .include <bsd.port.mk>
