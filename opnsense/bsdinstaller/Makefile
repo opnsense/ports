@@ -16,7 +16,7 @@ RUN_DEPENDS=	cpdup:sysutils/cpdup
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	Kontrol-BR
+GH_ACCOUNT=	kontrol-br
 #GH_TAGNAME=	56e41c1
 
 .include <bsd.port.mk>
