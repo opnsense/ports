@@ -18,7 +18,7 @@ USES=		ssl
 USE_HARDENING=	safestack
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
+GH_ACCOUNT=	kontrol
 GH_PROJECT=	update
 #GH_TAGNAME=	824e182
 
