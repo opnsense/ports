@@ -630,6 +630,7 @@
     SUBDIR += php72-gmp
     SUBDIR += physcalc
     SUBDIR += picosat
+    SUBDIR += piranha
     SUBDIR += plman
     SUBDIR += ploticus
     SUBDIR += ploticus-nox11
@@ -730,7 +731,7 @@
     SUBDIR += reduce-psl
     SUBDIR += reed-solomon
     SUBDIR += rexx-regmath
-    SUBDIR += rkward-kde4
+    SUBDIR += rkward-kde
     SUBDIR += rngstreams
     SUBDIR += rocs
     SUBDIR += rocs-kde4
@@ -740,6 +741,7 @@
     SUBDIR += rubygem-algebra
     SUBDIR += rubygem-expression_parser
     SUBDIR += rubygem-fftw3
+    SUBDIR += rubygem-mathn
     SUBDIR += rubygem-narray
     SUBDIR += rubygem-narray_miss
     SUBDIR += rubygem-numru-misc
@@ -766,6 +768,7 @@
     SUBDIR += sound-of-sorting
     SUBDIR += spar
     SUBDIR += spblas
+    SUBDIR += spectra
     SUBDIR += speedcrunch
     SUBDIR += spooles
     SUBDIR += spooles-mpich

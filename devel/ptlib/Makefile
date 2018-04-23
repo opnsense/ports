@@ -25,6 +25,8 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${OPENSSLINC} -I${LOCALBASE}/include
 LDFLAGS+=	-L${OPENSSLLIB} -L${LOCALBASE}/lib
 
+USE_HARDENING=	pie:off
+
 CONFIGURE_ARGS+=--enable-audio \
 		--enable-ipv6 \
 		--enable-exceptions \

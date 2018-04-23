@@ -214,6 +214,7 @@
     SUBDIR += grilo-plugins2
     SUBDIR += grilo2
     SUBDIR += grive2
+    SUBDIR += grpcurl
     SUBDIR += grsync
     SUBDIR += gsk
     SUBDIR += gspoof
@@ -1373,6 +1374,7 @@
     SUBDIR += smm++
     SUBDIR += sngrep
     SUBDIR += sniffit
+    SUBDIR += sniproxy
     SUBDIR += sntop
     SUBDIR += sobby
     SUBDIR += socat
