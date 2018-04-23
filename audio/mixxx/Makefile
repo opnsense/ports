@@ -14,6 +14,8 @@ COMMENT=	DJ mixing application
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+IGNORE=		it will be updated to mixxx 2.1.0. FLAVOR needs portmgr approval
+
 LIB_DEPENDS=	libchromaprint.so:audio/chromaprint \
 		libFLAC.so:audio/flac \
 		libid3tag.so:audio/libid3tag \
