@@ -4408,9 +4408,7 @@ sysutils/rsyslog6-devel-dbi|sysutils/rsyslog7|2013-07-25|Has expired: Use sysuti
 sysutils/rsyslog6-devel-gssapi|sysutils/rsyslog7|2013-07-25|Has expired: Use sysutils/rsyslog7
 sysutils/rsyslog6-devel|sysutils/rsyslog7|2013-07-25|Has expired: Use sysutils/rsyslog7
 graphics/allegrogl||2013-07-26|Now part of devel/allegro
-accessibility/kdeaccessibility||2013-07-26|Has expired: Depends on Qt 3.x
 arabic/kde3-i18n||2013-07-26|Has expired: Depends on Qt 3.x
-archivers/kbackup||2013-07-26|Has expired: Depends on Qt 3.x
 archivers/kio_p7zip||2013-07-26|Has expired: Depends on Qt 3.x
 astro/celestia-kde||2013-07-26|Has expired: Depends on Qt 3.x
 astro/orsa||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4475,7 +4473,6 @@ devel/crossvc||2013-07-26|Has expired: Depends on Qt 3.x
 devel/dbus-qt3||2013-07-26|Has expired: Depends on Qt 3.x
 devel/esvn||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kdesdk3||2013-07-26|Has expired: Depends on Qt 3.x
-devel/kdevelop||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kodos||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kprof||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kscope||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4525,7 +4522,6 @@ german/kheisereg||2013-07-26|Has expired: Depends on Qt 3.x
 german/ksteak||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/albumshaper||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/amanith||2013-07-26|Has expired: Depends on Qt 3.x
-graphics/digikam||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/digikam-doc||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/divxcalc||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/ecg2png||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4672,7 +4668,6 @@ net-im/eva||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kmerlin||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kmess||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/konverse||2013-07-26|Has expired: Depends on Qt 3.x
-net-im/kopete||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kpopup||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/sim-im||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/sim-im-devel||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4735,7 +4730,6 @@ x11/kdelibs3||2013-07-26|Has expired: Depends on Qt 3.x
 x11/kdelibs3-nocups||2013-07-26|Has expired: Depends on Qt 3.x
 x11/oooqs2||2013-07-26|Has expired: Depends on Qt 3.x
 x11/xscreensaver-kde||2013-07-26|Has expired: Depends on Qt 3.x
-x11/yakuake||2013-07-26|Has expired: Depends on Qt 3.x
 x11-clocks/kdetoys3||2013-07-26|Has expired: Depends on Qt 3.x
 x11-fm/krusader||2013-07-26|Has expired: Depends on Qt 3.x
 x11-themes/baghira||2013-07-26|Has expired: Depends on Qt 3.x
@@ -9964,7 +9958,6 @@ accessibility/kaccessible|accessibility/kaccessible-kde4|2018-02-22|Make room fo
 accessibility/jovie|accessibility/jovie-kde4|2018-02-22|Make room for KDE updates
 misc/libkdeedu|misc/libkdeedu-kde4|2018-02-22|Make room for KDE updates
 sysutils/kuser|sysutils/kuser-kde4|2018-02-22|Make room for KDE updates
-sysutils/sweeper|sysutils/sweeper-kde4|2018-02-22|Make room for KDE updates
 sysutils/nepomuk-widgets|sysutils/nepomuk-widgets-kde4|2018-02-22|Make room for KDE updates
 sysutils/nepomuk-core|sysutils/nepomuk-core-kde4|2018-02-22|Make room for KDE updates
 sysutils/baloo|sysutils/baloo-kde4|2018-02-22|Make room for KDE updates
@@ -9987,11 +9980,9 @@ x11/kgamma|x11/kgamma-kde4|2018-02-22|Make room for KDE updates
 x11/libkonq|x11/libkonq-kde4|2018-02-22|Make room for KDE updates
 deskutils/superkaramba|deskutils/superkaramba-kde4|2018-02-22|Make room for KDE updates
 deskutils/kdeplasma-addons|deskutils/kdeplasma-addons-kde4|2018-02-22|Make room for KDE updates
-multimedia/dragon|multimedia/dragon-kde4|2018-02-22|Make room for KDE updates
 games/pairs|games/pairs-kde4|2018-02-22|Make room for KDE updates
 audio/kio-audiocd|audio/kio-audiocd-kde4|2018-02-22|Make room for KDE updates
 audio/kscd|audio/kscd-kde4|2018-02-22|Make room for KDE updates
-astro/kstars|astro/kstars-kde4|2018-02-22|Make room for KDE updates
 comms/kremotecontrol|comms/kremotecontrol-kde4|2018-02-22|Make room for KDE updates
 graphics/ksnapshot|graphics/ksnapshot-kde4|2018-02-22|Make room for KDE updates
 graphics/ksaneplugin|graphics/ksaneplugin-kde4|2018-02-22|Make room for KDE updates
@@ -10104,7 +10095,6 @@ graphics/pfscalibration||2018-03-20|Deprecated: pfs-calibration is a part of pfs
 graphics/pfstmo||2018-03-20|Deprecated: pfstmo is a part of pfstools
 games/timeseal||2018-03-22|Has expired: Abandoned, outdated, requires COMPAT_43 kernel option which was removed from GENERIC in FreeBSD 7.0
 net-im/ktp-kded-integration-module|net-im/ktp-kded-integration-module-kde4|2018-03-23|Make room for KDE updates
-net-im/kde-telepathy|net-im/telepathy-kde4|2018-03-23|Make room for KDE updates
 net-im/plasma-applet-ktp|net-im/plasma-applet-ktp-kde4|2018-03-23|Make room for KDE updates
 multimedia/gmencoder||2018-03-23|Abandonware, does not support modern codecs
 mail/wanderlust-devel|mail/wanderlust|2018-03-23|Removed, use mail/wanderlust instead
@@ -10185,3 +10175,6 @@ math/octave-forge-ocs||2018-04-25|Removed, depends on expired math/octave-forge-
 net/google-daemon|sysutils/py-google-compute-engine|2018-04-25|Has expired: Please use sysutils/py-google-compute-engine instead
 net/google-startup-scripts|sysutils/py-google-compute-engine|2018-04-25|Has expired: Please use sysutils/py-google-compute-engine instead
 math/octave-forge-odepkg||2018-04-25|Has expired, not a valid package for Octave version >= 4.2.1
+devel/kdevelop-php|devel/kdevelop-php-kde4|2018-04-28|Make room for KDevelop upgrade
+devel/kdevelop-php-docs|devel/kdevelop-php-docs-kde4|2018-04-28|Make room for KDevelop upgrade
+devel/kdevplatform|devel/kdevplatform-kde4|2018-04-28|Make room for KDevelop upgrade

@@ -5,6 +5,47 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20180428:
+  AFFECTS: users of security/libressl
+  AUTHOR: brnrd@FreeBSD.org
+
+  The port has been updated to the latest stable version 2.7 of LibreSSL.
+  The shared library versions of the libraries have been bumped.
+
+  After upgrading, manually update all packages that depend on any of the
+  libraries provided by LibreSSL (libssl, libcrypto and libtls) since the
+  versions of these libraries have changed. Normally, you can obtain the
+  list of dependent software by running the following command:
+
+  # pkg info -r libressl
+
+  Then you should rebuild all ports depending on libressl to avoid dangling
+  shared library dependencies. Poudriere and pkg handle this correctly,
+  portmaster and portupgrade users can use the following to rebuild all
+  dependent ports.
+
+  Portmaster users:
+      portmaster -r libressl
+  Portupgrade users:
+      portupgrade -fr security/libressl
+
+20180427:
+  AFFECTS: users of sysutils/zrepl
+  AUTHOR: woodsb02@FreeBSD.org
+
+  The zrepl update to 0.0.3 includes the following breaking changes:
+  - Snapshots are automatically bookmarked and pruning of bookmarks must
+    be configured by adding the keep_bookmarks parameter to the prune
+    policy section of the zrepl configuration file (source side only).
+    Be sure to understand the meaning bookmarks have for maximum
+    allowable replication downtime.
+  - The ssh+stdinserver transport protocol has changed, requiring zrepl
+    to be updates on both the sending and receiving side, and the daemon
+    restarted on both sides.
+  - The first outlet in the global.logging section of the configuration
+    file is now used for logging meta-errors (e.g. problems encountered
+    when writing to other logging outlets).
+
 20180425:
   AFFECTS: users of databases/pecl-redis
   AUTHOR: daniel@blodan.se
@@ -353,7 +394,7 @@ you update your ports collection, before attempting any port upgrades.
   of the packages. 
   It is recommended to first remove the package kf5-kirigami2.
 
-20180115
+20180115:
   AFFECTS: users of net-p2p/transmission-daemon
   AUTHOR: woodsb02@FreeBSD.org
 
@@ -377,7 +418,7 @@ you update your ports collection, before attempting any port upgrades.
       stopped). Note that this value is NOT a list of allowed CLIENTS,
       but instead a list of allowed SERVER hostnames.
 
-20180111
+20180111:
   AFFECTS: users of editors/vim-lite
   AUTHOR: adamw@FreeBSD.org
 
@@ -391,7 +432,7 @@ you update your ports collection, before attempting any port upgrades.
   If the switch doesn't happen automatically for you, just delete the
   vim-lite package and install vim-console.
 
-20180109
+20180109:
   AFFECTS: users of www/qt5-webengine
   AUTHOR: kde@FreeBSD.org
 
@@ -399,7 +440,7 @@ you update your ports collection, before attempting any port upgrades.
   of it is installed. It is recommended to either build the port in a
   builder like poudriere, or to deinstall and then doing an install.
 
-20180107
+20180107:
   AFFECTS: users of security/gnupg and mail/mutt and mail/neomutt
   AUTHOR: adamw@FreeBSD.org
 
@@ -691,7 +732,7 @@ you update your ports collection, before attempting any port upgrades.
   Portupgrade users:
       portupgrade -fr security/libressl
 
-20171105
+20171105:
   AFFECTS: users of www/mod_auth_cas
   AUTHOR: brnrd@FreeBSD.org
 
@@ -837,7 +878,7 @@ you update your ports collection, before attempting any port upgrades.
  
   All ports have been updated to depend only on CMake.
 
-20170904
+20170904:
   AFFECTS: users of net-mgmt/seafile-server
   AUTHOR: ultima@FreeBSD.org
 
@@ -845,7 +886,7 @@ you update your ports collection, before attempting any port upgrades.
   are utf8_unicode_ci. Upstream has set collation type to be implicit
   and will cause all libraries to disappear if set to incorrect collation.
 
-20170828
+20170828:
   AFFECTS: users of security/gnupg
   AUTHOR: adamw@FreeBSD.org
 
