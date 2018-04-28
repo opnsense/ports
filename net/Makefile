@@ -319,6 +319,7 @@
     SUBDIR += kcalutils
     SUBDIR += kcontacts
     SUBDIR += kdav
+    SUBDIR += kdenetwork
     SUBDIR += kdenetwork-filesharing
     SUBDIR += kdenetwork-kde4
     SUBDIR += kdenetwork-filesharing-kde4
@@ -378,11 +379,13 @@
     SUBDIR += libkgapi
     SUBDIR += libksieve
     SUBDIR += libkvkontakte
+    SUBDIR += libkvkontakte-kde4
     SUBDIR += libmaia
     SUBDIR += libmateweather
     SUBDIR += libmaxminddb
     SUBDIR += libmdf
     SUBDIR += libmediawiki
+    SUBDIR += libmediawiki-kde4
     SUBDIR += libmms
     SUBDIR += libmxp
     SUBDIR += libnatpmp

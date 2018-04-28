@@ -42,6 +42,7 @@
     SUBDIR += deforaos-player
     SUBDIR += devede
     SUBDIR += dirac
+    SUBDIR += dragon
     SUBDIR += dragon-kde4
     SUBDIR += dtv-scan-tables
     SUBDIR += dumpmpeg
@@ -163,11 +164,14 @@
     SUBDIR += jmref
     SUBDIR += k9copy-kde4
     SUBDIR += kaffeine
+    SUBDIR += kamoso
+    SUBDIR += kdemultimedia
     SUBDIR += kdemultimedia-ffmpegthumbs
     SUBDIR += kdemultimedia-kde4
     SUBDIR += kdemultimedia-ffmpegthumbs-kde4
     SUBDIR += kdemultimedia-mplayerthumbs-kde4
     SUBDIR += kdenlive
+    SUBDIR += kdenlive-kde4
     SUBDIR += kf5-kmediaplayer
     SUBDIR += kissdx
     SUBDIR += kmplayer-kde4

@@ -76,6 +76,7 @@
     SUBDIR += chems
     SUBDIR += cherokee
     SUBDIR += choqok
+    SUBDIR += choqok-kde4
     SUBDIR += chpasswd
     SUBDIR += chromium
     SUBDIR += ckeditor
@@ -1470,6 +1471,7 @@
     SUBDIR += pivotx
     SUBDIR += piwigo
     SUBDIR += planet
+    SUBDIR += plasma5-plasma-browser-integration
     SUBDIR += plexwatchweb
     SUBDIR += plone
     SUBDIR += plugger

@@ -139,6 +139,7 @@
     SUBDIR += devil
     SUBDIR += dia
     SUBDIR += diffpdf
+    SUBDIR += digikam
     SUBDIR += digikam-kde4
     SUBDIR += digikam-kde4-doc
     SUBDIR += digikam-kde4-l10n
@@ -412,6 +413,7 @@
     SUBDIR += kcolorchooser
     SUBDIR += kcolorchooser-kde4
     SUBDIR += kcoloredit
+    SUBDIR += kdegraphics
     SUBDIR += kdegraphics-kde4
     SUBDIR += kdegraphics-mobipocket
     SUBDIR += kdegraphics-mobipocket-kde4
@@ -468,6 +470,7 @@
     SUBDIR += kipi-plugin-vkontakte
     SUBDIR += kipi-plugin-yandexfotki
     SUBDIR += kipi-plugins-kde4
+    SUBDIR += kipiplugins
     SUBDIR += kix-kmod
     SUBDIR += klatexformula
     SUBDIR += kludge3d
@@ -1047,7 +1050,6 @@
     SUBDIR += sswf
     SUBDIR += stamp
     SUBDIR += structuresynth
-    SUBDIR += sverchok-blender
     SUBDIR += svg2pdf
     SUBDIR += svg2png
     SUBDIR += svgalib
