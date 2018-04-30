@@ -952,7 +952,6 @@ x11-wm/ion-2||2010-01-18|Has expired: has been broken for 4 months
 databases/pear-Doctrine2||2010-01-20|Removed
 audio/dino||2010-01-20|Has expired: has been broken for 7 months
 devel/asis-gpl||2010-01-20|Has expired: has been broken for 3 months
-devel/kdesvn||2010-01-20|Has expired: has been broken for 4 months
 devel/radrails||2010-01-20|Has expired: has been broken for 3 months
 devel/rubygem-rtags||2010-01-20|Has expired: has been broken for 5 months
 games/hattrickorganizer||2010-01-20|Has expired: Has been broken for a while
@@ -3749,7 +3748,6 @@ japanese/gxditview||2012-10-25|Has expired: No more public distfiles
 graphics/view3ds||2012-10-25|Has expired: No more public distfiles
 graphics/photoclip||2012-10-25|Has expired: No more public distfiles
 graphics/multivideo||2012-10-25|Has expired: Abandonware, no more upstream, depends on the deprecated wxGTK 2.4
-graphics/kphotoalbum||2012-10-25|Has expired: No more public distfiles
 graphics/jpegpixi||2012-10-25|Has expired: No more public distfiles
 graphics/gimp-manual-pdf||2012-10-25|Has expired: No more public distfiles
 games/yace||2012-10-25|Has expired: No more public distfiles
@@ -4482,7 +4480,6 @@ devel/qssl||2013-07-26|Has expired: Depends on Qt 3.x
 devel/subcommander||2013-07-26|Has expired: Depends on Qt 3.x
 editors/f4l||2013-07-26|Has expired: Depends on Qt 3.x
 editors/kate-plugins||2013-07-26|Has expired: Depends on Qt 3.x
-editors/kile||2013-07-26|Has expired: Depends on Qt 3.x
 editors/klat||2013-07-26|Has expired: Depends on Qt 3.x
 editors/kxmleditor||2013-07-26|Has expired: Depends on Qt 3.x
 editors/rospell||2013-07-26|Has expired: Depends on Qt 3.x
@@ -7948,7 +7945,6 @@ devel/pyinstaller|devel/py-pyinstaller|2015-12-09|Add py- prefix to directory na
 math/why3-gpl|math/why3-spark|2015-12-10|Change why3 suffix (upstream request and for consistency)
 devel/py-memoryprofiler|devel/py-memory_profiler|2015-12-11|Rename to consistency with other Python ports
 print/py-cups|print/py-pycups|2015-12-11|Renamed to match upstream naming
-astro/py-metar|astro/py-pymetar|2015-12-11|Renamed to match upstream naming
 devel/jep|devel/py-jep|2015-12-11|Renamed to match upstream naming
 ftp/py-curl|ftp/py-pycurl|2015-12-13|Renamed to match upstream naming
 www/py-django-pipeline12||2015-12-15|Has expired: Django 1.4 extended support ended on 2015-10-01
@@ -10178,3 +10174,5 @@ math/octave-forge-odepkg||2018-04-25|Has expired, not a valid package for Octave
 devel/kdevelop-php|devel/kdevelop-php-kde4|2018-04-28|Make room for KDevelop upgrade
 devel/kdevelop-php-docs|devel/kdevelop-php-docs-kde4|2018-04-28|Make room for KDevelop upgrade
 devel/kdevplatform|devel/kdevplatform-kde4|2018-04-28|Make room for KDevelop upgrade
+lang/py-clojure_py||2018-04-30|Has expired: Upstream disappeared and it does not build with latest setuptools (39.0.1)
+textproc/rubygem-escape_utils-rails4|textproc/rubygem-escape_utils|2018-04-30|Has expired: Use textproc/rubygem-escape_utils instead
