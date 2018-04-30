@@ -206,6 +206,7 @@
     SUBDIR += goreplay
     SUBDIR += gotthard
     SUBDIR += gq
+    SUBDIR += graphpath
     SUBDIR += grdesktop
     SUBDIR += grilo
     SUBDIR += grilo-plugins
@@ -331,6 +332,7 @@
     SUBDIR += kget-kde4
     SUBDIR += kidentitymanagement
     SUBDIR += kimap
+    SUBDIR += kio-gdrive
     SUBDIR += kio-upnp-ms
     SUBDIR += kippo
     SUBDIR += kissd

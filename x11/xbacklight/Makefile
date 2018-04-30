@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xbacklight
-PORTVERSION=	1.2.1
-PORTREVISION=	1
+PORTVERSION=	1.2.2
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
@@ -11,6 +10,7 @@ COMMENT=	Program to adjust backlight brightness
 USE_HARDENING=	safestack
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libxcb-util.so:x11/xcb-util
 
