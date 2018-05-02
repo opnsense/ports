@@ -63,7 +63,7 @@ MAKE_ENV+=	CC.host=${CC} CXX.host=${CXX} LINK.host=${CXX} LINK.target=${CXX}
 LIB_DEPENDS+=	libcares.so:dns/c-ares\
 		libuv.so:devel/libuv
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
 .if empty(PORT_OPTIONS:MBUNDLED_SSL)
 
