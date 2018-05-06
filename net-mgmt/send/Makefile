@@ -21,7 +21,6 @@ USE_HARDENING=	pie:off relro:off
 USES=		gmake readline ssl
 USE_RC_SUBR=	sendd
 SUB_FILES=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
 PORTDOCS=	README UserGuide.pdf
 MAKE_JOBS_UNSAFE=yes
 

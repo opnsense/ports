@@ -4,6 +4,7 @@
 PORTNAME=	libpsl
 PORTVERSION=	0.20.2
 DISTVERSIONPREFIX=	${PORTNAME}-
+PORTREVISION=	1
 CATEGORIES=	dns
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -23,8 +24,7 @@ ICU_DESC=	Use devel/icu (IDNA2008 UTS\#46 library)
 IDN_DESC=	Use dns/libidn (IDNA2003 library)
 IDN2_DESC=	Use dns/libidn2 (IDNA2008 library)
 
-CONFIGURE_ARGS=	--disable-gtk-doc \
-		--enable-man \
+CONFIGURE_ARGS=	--enable-man \
 		--with-psl-file=${LOCALBASE}/share/public_suffix_list/public_suffix_list.dat \
 		--with-psl-testfile=${LOCALBASE}/share/public_suffix_list/test_psl.txt
 GNU_CONFIGURE=	yes
@@ -48,7 +48,7 @@ IDN2_CONFIGURE_ON=	--enable-builtin=libidn2 --enable-runtime=libidn2
 IDN2_LIB_DEPENDS=	libidn2.so:dns/libidn2 \
 			libunistring.so:devel/libunistring
 IDN2_USES=		iconv
-NLS_CPPFLAGS=		-DENABLE_NLS=1
+NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
 NLS_USES_OFF=		gettext-tools
 
