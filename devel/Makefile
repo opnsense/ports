@@ -542,6 +542,7 @@
     SUBDIR += elixir-tirexs
     SUBDIR += elixir-trailing_format_plug
     SUBDIR += elixir-tzdata
+    SUBDIR += elixir-unsafe
     SUBDIR += embb
     SUBDIR += epl.el
     SUBDIR += epm
@@ -1310,6 +1311,7 @@
     SUBDIR += kimwitu
     SUBDIR += kio-extras
     SUBDIR += kore
+    SUBDIR += kronosnet
     SUBDIR += ksql
     SUBDIR += kyra
     SUBDIR += kyua
