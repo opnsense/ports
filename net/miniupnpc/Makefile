@@ -11,8 +11,6 @@ COMMENT?=	UPnP IGD client lightweight library
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	safestack
-
 USES+=		gmake
 HAS_CONFIGURE=	yes
 USE_LDCONFIG=	yes
