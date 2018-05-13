@@ -535,6 +535,7 @@
     SUBDIR += p5-Math-Polygon-Tree
     SUBDIR += p5-Math-Polynomial-Solve
     SUBDIR += p5-Math-Prime-XS
+    SUBDIR += p5-Math-ProvablePrime
     SUBDIR += p5-Math-RPN
     SUBDIR += p5-Math-Random
     SUBDIR += p5-Math-Random-ISAAC
@@ -642,6 +643,7 @@
     SUBDIR += pure-mpfr
     SUBDIR += pure-rational
     SUBDIR += py-Diofant
+    SUBDIR += py-GridDataFormats
     SUBDIR += py-PySCIPOpt
     SUBDIR += py-PyWavelets
     SUBDIR += py-Pyomo
@@ -812,6 +814,7 @@
     SUBDIR += xgraph
     SUBDIR += xlapack
     SUBDIR += xldlas
+    SUBDIR += xlife++
     SUBDIR += xplot
     SUBDIR += xppaut
     SUBDIR += xspread

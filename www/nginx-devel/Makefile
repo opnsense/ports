@@ -3,7 +3,7 @@
 
 PORTNAME=	nginx
 PORTVERSION=	1.14.0
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	www
 MASTER_SITES=	http://nginx.org/download/ \
 		LOCAL/osa
@@ -55,6 +55,7 @@ CONFIGURE_ARGS+=--prefix=${ETCDIR} \
 		--pid-path=${NGINX_RUNDIR}/nginx.pid \
 		--error-log-path=${NGINX_ERRORLOG} \
 		--user=${WWWOWN} --group=${WWWGRP}
+ALL_TARGET=
 
 PLIST_SUB+=	NGINX_TMPDIR=${NGINX_TMPDIR} NGINX_LOGDIR=${NGINX_LOGDIR} WWWOWN=${WWWOWN} WWWGRP=${WWWGRP}
 
@@ -259,7 +260,8 @@ post-patch-GRIDFS-on:
 	@${REINPLACE_CMD} 's!--std=c99!-DMONGO_HAVE_STDINT!' ${WRKSRC_gridfs}/config
 
 post-patch-HTTP_AUTH_KRB5-on:
-	@${REINPLACE_CMD} 's!%%GSSAPILIBS%%!${GSSAPILIBS}!' ${WRKSRC_auth_krb5}/config
+	@${REINPLACE_CMD} 's!%%GSSAPILIBS%%!${GSSAPILIBS}!g; \
+		s!%%GSSAPIINCDIR%%!${GSSAPIINCDIR}!g' ${WRKSRC_auth_krb5}/config
 
 post-patch-HTTP_TARANTOOL-on:
 	@${REINPLACE_CMD} 's!%%PREFIX%%!${LOCALBASE}!g' ${WRKSRC_nginx_tarantool}/config
@@ -313,9 +315,6 @@ pre-configure-MODSECURITY-on:
 
 pre-configure-SMALL_LIGHT-on:
 	( cd ${WRKSRC_small_light} && ./setup )
-
-do-build:
-	@cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD}
 
 do-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}

@@ -161,6 +161,7 @@
     SUBDIR += circuslinux
     SUBDIR += cleanq3
     SUBDIR += cockatrice
+    SUBDIR += coffeebreak
     SUBDIR += colorcode
     SUBDIR += columns
     SUBDIR += concentration
@@ -461,6 +462,7 @@
     SUBDIR += joequake
     SUBDIR += jools
     SUBDIR += jtans
+    SUBDIR += julius
     SUBDIR += jumpnbump
     SUBDIR += jutils
     SUBDIR += jvgs

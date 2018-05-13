@@ -6,7 +6,7 @@ PORTVERSION=	4.7.4
 PORTREVISION=	9
 PORTEPOCH=	1
 CATEGORIES=	lang
-MASTER_SITES=	GCC/releases/gcc-${PORTVERSION}
+MASTER_SITES=	GCC
 PKGNAMESUFFIX=	${SUFFIX}
 
 MAINTAINER=	gerald@FreeBSD.org
@@ -16,6 +16,7 @@ LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
 DEPRECATED=	Unsupported by upstream. Use GCC 6 or newer instead.
+EXPIRATION_DATE=2018-07-13
 ONLY_FOR_ARCHS=	amd64 i386 powerpc sparc64
 
 USE_HARDENING=	pie:off relro:off retpoline_off

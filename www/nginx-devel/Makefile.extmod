@@ -224,7 +224,7 @@ NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 NJS_GH_TUPLE=		nginx:njs:ce54200:njs
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
 
-PASSENGER_NGINX_VER=	5.2.3
+PASSENGER_NGINX_VER=	5.3.0
 PASSENGER_CATEGORIES=	ruby
 PASSENGER_USE=		ruby=yes
 PASSENGER_BUILD_DEPENDS=${LOCALBASE}/bin/rake:devel/rubygem-rake
@@ -277,10 +277,11 @@ SMALL_LIGHT_VARS=		DSO_EXTMODS+=small_light
 SRCACHE_GH_TUPLE=	openresty:srcache-nginx-module:v0.31:srcache
 SRCACHE_VARS=		DSO_EXTMODS+=srcache
 
-VOD_GH_TUPLE=		kaltura:nginx-vod-module:1.22:vod
+VOD_GH_TUPLE=		kaltura:nginx-vod-module:1.23:vod
 VOD_USE=		GNOME=libxml2
 VOD_VARS=		DSO_EXTMODS+=vod
-VOD_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-vod-module-config
+VOD_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-vod-module-config \
+			${PATCHDIR}/extra-patch-vod-filters-audio_encoder.c
 
 VTS_GH_TUPLE=		vozlt:nginx-module-vts:v0.1.15:vts
 VTS_CONFIGURE_ON=	--add-module=${WRKSRC_vts}
