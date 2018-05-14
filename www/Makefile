@@ -340,6 +340,7 @@
     SUBDIR += kohana
     SUBDIR += kpartsplugin
     SUBDIR += kplaylist
+    SUBDIR += kurly
     SUBDIR += kwebkitpart
     SUBDIR += larbin
     SUBDIR += libapreq2
@@ -1654,6 +1655,7 @@
     SUBDIR += py-flask-login
     SUBDIR += py-flask-marshmallow
     SUBDIR += py-flask-migrate
+    SUBDIR += py-flask-moment
     SUBDIR += py-flask-oauthlib
     SUBDIR += py-flask-principal
     SUBDIR += py-flask-restful

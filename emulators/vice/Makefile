@@ -100,6 +100,7 @@ USE_GL+=	glu gl
 
 .if ${PORT_OPTIONS:MXAW}
 USE_XORG+=	xaw
+USES+=		readline
 .endif
 
 .if ${PORT_OPTIONS:MNLS}
