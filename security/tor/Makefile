@@ -25,7 +25,6 @@ CONFIGURE_ENV=	TOR_CPPFLAGS_libevent="-I${LOCALBASE}/include" \
 		TOR_LIBEVENT_LIBS="${TOR_LIBEVENT_LIBS}"
 
 USE_HARDENING=	cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 OPTIONS_DEFINE=	MANPAGES DOCS STATIC_TOR TCMALLOC TOR2WEB
 OPTIONS_GROUP=	COMPRESSION
@@ -36,6 +35,8 @@ STATIC_TOR_DESC=	Build a static tor
 TCMALLOC_DESC=		Use the tcmalloc memory allocation library
 TOR2WEB_DESC=		(EXPERT OPTION) Faster but non-anonymous hidden services
 COMPRESSION_DESC=	Supported compression libraries
+OPTIONS_GROUP_HARDENING+=	CFI_ICALL
+CFI_ICALL_DESC=		Enable cfi-icall scheme. Breaks relay mode. Client only
 
 USE_RC_SUBR=	tor
 SUB_FILES=	pkg-message
@@ -56,6 +57,12 @@ ZSTD_CONFIGURE_ENV=TOR_ZSTD_LIBS="${TOR_ZSTD_LIBS}"
 LZMA_CONFIGURE_ENABLE=		lzma
 
 .include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MCFI_ICALL}
+CFI_OVERRIDE=	-fsanitize-cfi-icall-generalize-pointers
+.else
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
+.endif
 
 .if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MMANPAGES}
 BUILD_DEPENDS+=	asciidoc:textproc/asciidoc
