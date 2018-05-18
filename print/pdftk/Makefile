@@ -13,13 +13,15 @@ COMMENT=	Simple tool for doing everyday things with PDF documents
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off
+BROKEN_FreeBSD_12=	gcj6: internal compiler error: Segmentation fault (program ecj1)
 
 # Get GCC version suffix without the dot in USE_GCC
 CSUFF=		${_USE_GCC:S/.//}
 
 USE_GCC=	6	# Only GCC 6 provides Java (GCJ and libgcj).
 USES=		iconv gmake zip
+
+USE_HARDENING=	pie:off
 
 # gcj/libgcj don't exist on some platforms
 ONLY_FOR_ARCHS=		i386 amd64
