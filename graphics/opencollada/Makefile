@@ -3,7 +3,7 @@
 PORTNAME=	opencollada
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.6.47
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics devel
 
 MAINTAINER=	ports@FreeBSD.org
@@ -29,7 +29,8 @@ CMAKE_ARGS+=	-DUSE_SHARED:BOOL=ON -DUSE_STATIC:BOOL=OFF
 BROKEN_sparc64=	cannot build: runaway process
 
 # for files/patch-2d66943
-DOS2UNIX_FILES=	COLLADABaseUtils/src/COLLADABUURI.cpp
+DOS2UNIX_FILES=	COLLADABaseUtils/include/COLLADABUPcreCompiledPattern.h \
+		COLLADABaseUtils/src/COLLADABUURI.cpp
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|$${OPENCOLLADA_INST_LIBRARY}/cmake|${PREFIX}/share/cmake/Modules|' \
