@@ -664,6 +664,7 @@
     SUBDIR += p5-CGI-FormBuilder
     SUBDIR += p5-CGI-Framework
     SUBDIR += p5-CGI-Kwiki
+    SUBDIR += p5-CGI-Lite
     SUBDIR += p5-CGI-Minimal
     SUBDIR += p5-CGI-PSGI
     SUBDIR += p5-CGI-Pager
@@ -683,7 +684,6 @@
     SUBDIR += p5-CGI-Utils
     SUBDIR += p5-CGI-XMLApplication
     SUBDIR += p5-CGI.pm
-    SUBDIR += p5-CGI_Lite
     SUBDIR += p5-CIF-Client
     SUBDIR += p5-CSS-DOM
     SUBDIR += p5-CSS-Inliner
@@ -1503,6 +1503,7 @@
     SUBDIR += py-albatross
     SUBDIR += py-amf
     SUBDIR += py-apachelog
+    SUBDIR += py-arxiv
     SUBDIR += py-autobahn
     SUBDIR += py-aws-requests-auth
     SUBDIR += py-azure-common

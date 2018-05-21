@@ -32,7 +32,7 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 USE_HARDENING=  safestack
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.12.1
+ISCVERSION=	9.12.1-P2
 
 USES=	cpe libedit
 
