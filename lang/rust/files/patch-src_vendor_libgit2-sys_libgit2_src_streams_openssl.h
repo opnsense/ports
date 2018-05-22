@@ -1,6 +1,6 @@
---- src/vendor/libgit2-sys/libgit2/src/openssl_stream.h.orig	2018-03-25 15:53:19 UTC
-+++ src/vendor/libgit2-sys/libgit2/src/openssl_stream.h
-@@ -27,7 +27,8 @@ extern int git_openssl_stream_new(git_stream **out, co
+--- src/vendor/libgit2-sys/libgit2/src/streams/openssl.h.orig	2018-05-07 18:50:07 UTC
++++ src/vendor/libgit2-sys/libgit2/src/streams/openssl.h
+@@ -31,7 +31,8 @@ extern int git_openssl__set_cert_location(const char *
  
  
  

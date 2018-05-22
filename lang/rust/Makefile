@@ -1,5 +1,5 @@
 # Created by: Jyun-Yan You <jyyou@cs.nctu.edu.tw>
-# $FreeBSD$
+# $FreeBSD: head/lang/rust/Makefile 470016 2018-05-15 13:43:34Z dumbbell $
 
 PORTNAME=	rust
 PORTVERSION?=	1.26.0
@@ -54,8 +54,6 @@ CARGO_BOOTSTRAP_VERSION?=	0.26.0
 CARGO_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/cargo-${CARGO_BOOTSTRAP_VERSION_${ARCH}:U${CARGO_BOOTSTRAP_VERSION}}-${RUST_TARGET}.tar.gz
 
 RUST_CHANNEL=	${PKGNAMESUFFIX:Ustable:S/^-//}
-
-USE_HARDENING=		pie:off relro:off
 
 # Rust's target arch string is different from *BSD arch strings
 RUST_ARCH_aarch64=	aarch64
@@ -156,7 +154,7 @@ post-patch:
 		${WRKSRC}/src/stage0.txt
 # After patching crates, we need to update their corresponding
 # `.cargo-checksum.json` to reflect the new checksums verified by Cargo.
-	@for dir in "${WRKSRC}/src/vendor/openssl-sys" "${WRKSRC}/src/vendor/libgit2-sys"; do \
+	@for dir in "${WRKSRC}/src/vendor/libc" "${WRKSRC}/src/vendor/libgit2-sys" "${WRKSRC}/src/vendor/openssl" "${WRKSRC}/src/vendor/openssl-sys"; do \
 		if ! test -d "$$dir"; then \
 			continue; \
 		fi; \
