@@ -16,7 +16,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
+GH_ACCOUNT=	kontrol-br
 GH_PROJECT=	lang
 
 .include <bsd.port.mk>

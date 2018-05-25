@@ -11,6 +11,6 @@ COMMENT=	OPNsense shared authentication system using PAM
 LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
+GH_ACCOUNT=	kontrol-br
 
 .include <bsd.port.mk>
