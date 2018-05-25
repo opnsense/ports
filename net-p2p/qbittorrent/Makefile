@@ -3,7 +3,7 @@
 
 PORTNAME=	qbittorrent
 DISTVERSION=	3.3.16
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-p2p ipv6
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -48,11 +48,6 @@ CONFIGURE_ARGS+=	--disable-gui
 .endif
 
 CONFIGURE_ARGS+=	CFLAGS="${CFLAGS}" CXXFLAGS="${CXXFLAGS}"
-
-post-patch:
-	@${REINPLACE_CMD} \
-		-e 's/#ifdef Q_OS_MAC/#if defined(Q_OS_MAC) || (defined(__FreeBSD__) \&\& __FreeBSD_version < 1003506)/' \
-		${WRKSRC}/src/base/utils/string.cpp
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/qbittorrent${SUFFIX}

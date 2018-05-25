@@ -1,16 +1,17 @@
 # $FreeBSD$
 
 PORTNAME=	nextcloud
-DISTVERSION=	13.0.1
+DISTVERSION=	13.0.2
 CATEGORIES=	www
-MASTER_SITES=	https://download.nextcloud.com/server/prereleases/
+MASTER_SITES=	https://download.nextcloud.com/server/releases/
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	brnrd@FreeBSD.org
 COMMENT=	Personal cloud which runs on your own server
 
 LICENSE=	AGPLv3
 
-USES=		cpe gettext-runtime php:web tar:bzip2 ssl
+USES=		cpe gettext-runtime php:flavors,web tar:bzip2 ssl
 USE_PHP=	bz2 ctype curl dom fileinfo filter gd hash iconv json \
 		mbstring pdo posix session simplexml xml xmlreader xmlwriter \
 		xsl wddx zip zlib
@@ -28,7 +29,7 @@ PLIST_SUB=	NEXTCLOUD_USERNAME=${NEXTCLOUD_USERNAME} \
 OPTIONS_DEFINE=	EXIF LDAP OPCACHE SMB SSL
 OPTIONS_MULTI=	DB
 OPTIONS_MULTI_DB=	MYSQL PGSQL SQLITE
-OPTIONS_DEFAULT=	EXIF LDAP MYSQL OPCACHE SMB SSL
+OPTIONS_DEFAULT=	EXIF LDAP MYSQL OPCACHE SSL
 
 DB_DESC=	Database backend(s)
 EXIF_DESC=	Image rotation support

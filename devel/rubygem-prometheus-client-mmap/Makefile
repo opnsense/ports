@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	prometheus-client-mmap
-DISTVERSION=	0.9.1
+DISTVERSION=	0.9.2
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
-MAINTAINER=	idefix@fechner.net
+MAINTAINER=	mfechner@FreeBSD.org
 COMMENT=	Suite of instrumentation metric primitives
 
 LICENSE=	RUBY

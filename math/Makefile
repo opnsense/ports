@@ -29,6 +29,7 @@
     SUBDIR += R-cran-Rmpfr
     SUBDIR += R-cran-Rsolnp
     SUBDIR += R-cran-SparseM
+    SUBDIR += R-cran-uroot
     SUBDIR += R-cran-VGAM
     SUBDIR += R-cran-Zelig
     SUBDIR += R-cran-assertthat
@@ -138,10 +139,12 @@
     SUBDIR += calctool
     SUBDIR += cantor
     SUBDIR += cantor-kde4
+    SUBDIR += cbc
     SUBDIR += cblas
     SUBDIR += ccmath
     SUBDIR += ceres-solver
     SUBDIR += cgal
+    SUBDIR += cgl
     SUBDIR += chaco
     SUBDIR += chryzodus
     SUBDIR += clasp
@@ -260,6 +263,7 @@
     SUBDIR += hs-statistics
     SUBDIR += hs-vector-space
     SUBDIR += igraph
+    SUBDIR += intervaltree
     SUBDIR += ipopt
     SUBDIR += ised
     SUBDIR += jacal
@@ -328,6 +332,7 @@
     SUBDIR += mingw32-libgmp
     SUBDIR += minisat
     SUBDIR += miracl
+    SUBDIR += mlpack
     SUBDIR += moo
     SUBDIR += mosesdecoder
     SUBDIR += mpc
@@ -339,6 +344,7 @@
     SUBDIR += msieve
     SUBDIR += mtl
     SUBDIR += mtrxmath
+    SUBDIR += multichoose
     SUBDIR += mumps
     SUBDIR += mumps-edf
     SUBDIR += mumps-mpich
@@ -412,12 +418,10 @@
     SUBDIR += octave-forge-nlwing2
     SUBDIR += octave-forge-nnet
     SUBDIR += octave-forge-nurbs
-    SUBDIR += octave-forge-ocs
     SUBDIR += octave-forge-oct2mat
     SUBDIR += octave-forge-octclip
     SUBDIR += octave-forge-octproj
     SUBDIR += octave-forge-odebvp
-    SUBDIR += octave-forge-odepkg
     SUBDIR += octave-forge-optics
     SUBDIR += octave-forge-optim
     SUBDIR += octave-forge-optiminterp
@@ -531,6 +535,7 @@
     SUBDIR += p5-Math-Polygon-Tree
     SUBDIR += p5-Math-Polynomial-Solve
     SUBDIR += p5-Math-Prime-XS
+    SUBDIR += p5-Math-ProvablePrime
     SUBDIR += p5-Math-RPN
     SUBDIR += p5-Math-Random
     SUBDIR += p5-Math-Random-ISAAC
@@ -615,6 +620,7 @@
     SUBDIR += pecl-stats
     SUBDIR += pecl-stats2
     SUBDIR += pecl-trader
+    SUBDIR += petiga
     SUBDIR += php56-bcmath
     SUBDIR += php56-gmp
     SUBDIR += php70-bcmath
@@ -625,6 +631,7 @@
     SUBDIR += php72-gmp
     SUBDIR += physcalc
     SUBDIR += picosat
+    SUBDIR += piranha
     SUBDIR += plman
     SUBDIR += ploticus
     SUBDIR += ploticus-nox11
@@ -637,8 +644,12 @@
     SUBDIR += pure-mpfr
     SUBDIR += pure-rational
     SUBDIR += py-Diofant
+    SUBDIR += py-GridDataFormats
+    SUBDIR += py-PyMetis
+    SUBDIR += py-PySCIPOpt
     SUBDIR += py-PyWavelets
     SUBDIR += py-Pyomo
+    SUBDIR += py-algopy
     SUBDIR += py-altgraph
     SUBDIR += py-apgl
     SUBDIR += py-basemap
@@ -660,6 +671,7 @@
     SUBDIR += py-gmpy2
     SUBDIR += py-gnuplot
     SUBDIR += py-graphillion
+    SUBDIR += py-igakit
     SUBDIR += py-igraph
     SUBDIR += py-intspan
     SUBDIR += py-keras
@@ -678,6 +690,7 @@
     SUBDIR += py-pandas
     SUBDIR += py-pandas-datareader
     SUBDIR += py-patsy
+    SUBDIR += py-piranha
     SUBDIR += py-plastex
     SUBDIR += py-probstat
     SUBDIR += py-pyasp
@@ -685,6 +698,7 @@
     SUBDIR += py-pycosat
     SUBDIR += py-pygsl
     SUBDIR += py-pyhull
+    SUBDIR += py-pyipopt
     SUBDIR += py-pymc
     SUBDIR += py-pymc3
     SUBDIR += py-pyneqsys
@@ -693,8 +707,10 @@
     SUBDIR += py-pysparse
     SUBDIR += py-pysym
     SUBDIR += py-pyvtk
+    SUBDIR += py-random2
     SUBDIR += py-roman
     SUBDIR += py-scientific
+    SUBDIR += py-scikit-umfpack
     SUBDIR += py-seaborn
     SUBDIR += py-statsmodels
     SUBDIR += py-svgmath
@@ -722,7 +738,7 @@
     SUBDIR += reduce-psl
     SUBDIR += reed-solomon
     SUBDIR += rexx-regmath
-    SUBDIR += rkward-kde4
+    SUBDIR += rkward-kde
     SUBDIR += rngstreams
     SUBDIR += rocs
     SUBDIR += rocs-kde4
@@ -732,6 +748,7 @@
     SUBDIR += rubygem-algebra
     SUBDIR += rubygem-expression_parser
     SUBDIR += rubygem-fftw3
+    SUBDIR += rubygem-mathn
     SUBDIR += rubygem-narray
     SUBDIR += rubygem-narray_miss
     SUBDIR += rubygem-numru-misc
@@ -758,6 +775,7 @@
     SUBDIR += sound-of-sorting
     SUBDIR += spar
     SUBDIR += spblas
+    SUBDIR += spectra
     SUBDIR += speedcrunch
     SUBDIR += spooles
     SUBDIR += spooles-mpich
@@ -800,6 +818,7 @@
     SUBDIR += xgraph
     SUBDIR += xlapack
     SUBDIR += xldlas
+    SUBDIR += xlife++
     SUBDIR += xplot
     SUBDIR += xppaut
     SUBDIR += xspread

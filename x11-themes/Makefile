@@ -124,6 +124,7 @@
     SUBDIR += kf5-kemoticons
     SUBDIR += kf5-kiconthemes
     SUBDIR += kf5-oxygen-icons5
+    SUBDIR += kf5-qqc2-desktop-style
     SUBDIR += lumina-themes
     SUBDIR += lxappearance
     SUBDIR += lxde-icon-theme
@@ -149,6 +150,12 @@
     SUBDIR += openbox-arc-theme
     SUBDIR += openbox-themes
     SUBDIR += plank-theme-moka
+    SUBDIR += plasma5-breeze
+    SUBDIR += plasma5-breeze-gtk
+    SUBDIR += plasma5-breeze-kde4
+    SUBDIR += plasma5-kde-gtk-config
+    SUBDIR += plasma5-oxygen
+    SUBDIR += plasma5-plasma-workspace-wallpapers
     SUBDIR += qt4-style-Kvantum
     SUBDIR += qt4-style-float
     SUBDIR += qt4-style-phase

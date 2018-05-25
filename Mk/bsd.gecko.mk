@@ -106,7 +106,7 @@ USE_XORG+=	xcb
 .endif
 
 .if ${MOZILLA_VER:R:R} >= 56
-MESA_LLVM_VER?=	50
+MESA_LLVM_VER?=	60
 BUILD_DEPENDS+=	llvm${MESA_LLVM_VER}>0:devel/llvm${MESA_LLVM_VER}
 MOZ_EXPORT+=	LLVM_CONFIG=llvm-config${MESA_LLVM_VER}
 .endif
@@ -379,7 +379,7 @@ post-patch-SNDIO-on:
 .endif
 
 .if ${PORT_OPTIONS:MRUST} || ${MOZILLA_VER:R:R} >= 54
-BUILD_DEPENDS+=	${RUST_PORT:T}>=1.22.1:${RUST_PORT}
+BUILD_DEPENDS+=	${RUST_PORT:T}>=1.24:${RUST_PORT}
 RUST_PORT?=		lang/rust
 . if ${MOZILLA_VER:R:R} < 54
 MOZ_OPTIONS+=	--enable-rust

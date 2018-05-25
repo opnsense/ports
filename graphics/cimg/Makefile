@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	cimg
-DISTVERSION=	2.2.2
+DISTVERSION=	2.2.3
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 
@@ -63,7 +63,7 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl			\
 		libIlmImf.so:graphics/OpenEXR		\
 		libgimp-2.0.so:graphics/gimp-app	\
 		libfftw3.so:math/fftw3			\
-		libopencv_legacy.so:graphics/opencv	\
+		libopencv_video.so:graphics/opencv	\
 		libopencv_core.so:graphics/opencv-core	\
 		libGraphicsMagick.so:graphics/GraphicsMagick
 USES+=		jpeg

@@ -3,7 +3,7 @@
 
 PORTNAME=	scribe
 DISTVERSION=	2.2.2013.04.15
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	net
 
 MAINTAINER=	ports@FreeBSD.org
@@ -18,7 +18,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libthrift.so:devel/thrift-cpp
 RUN_DEPENDS=	p5-Class-Accessor>0:devel/p5-Class-Accessor \
 		p5-Thrift>0:devel/p5-Thrift \
-		${PYTHON_PKGNAMEPREFIX}thrift>0:devel/py-thrift
+		${PYTHON_PKGNAMEPREFIX}thrift>0:devel/py-thrift@${PY_FLAVOR}
 
 BROKEN_powerpc64=	Does not build
 

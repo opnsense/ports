@@ -51,6 +51,7 @@
     SUBDIR += augeas
     SUBDIR += az-aspell
     SUBDIR += bar
+    SUBDIR += bat
     SUBDIR += bbe
     SUBDIR += be-aspell
     SUBDIR += bedic-data
@@ -70,6 +71,7 @@
     SUBDIR += bsdsort
     SUBDIR += btparse
     SUBDIR += c2html
+    SUBDIR += c2man
     SUBDIR += ca-aspell
     SUBDIR += catdoc
     SUBDIR += cdif
@@ -189,6 +191,7 @@
     SUBDIR += fa-aspell
     SUBDIR += fcitx-m17n
     SUBDIR += fcitx-qt5
+    SUBDIR += fcitx-table-other
     SUBDIR += fex
     SUBDIR += ffe
     SUBDIR += fi-aspell
@@ -333,6 +336,7 @@
     SUBDIR += ibus-qt
     SUBDIR += ibus-table
     SUBDIR += ibus-typing-booster
+    SUBDIR += ibus-uniemoji
     SUBDIR += icdiff
     SUBDIR += id-aspell
     SUBDIR += id-hyphen
@@ -602,6 +606,7 @@
     SUBDIR += p5-HTML-SuperForm
     SUBDIR += p5-HTML-TagFilter
     SUBDIR += p5-HTML-Tidy
+    SUBDIR += p5-HTML-Tidy5
     SUBDIR += p5-HTML-Tiny
     SUBDIR += p5-HTML-Truncate
     SUBDIR += p5-Hailo
@@ -796,7 +801,6 @@
     SUBDIR += p5-Sphinx-Config
     SUBDIR += p5-Sphinx-Manager
     SUBDIR += p5-Sphinx-Search
-    SUBDIR += p5-Spork
     SUBDIR += p5-Spreadsheet-ParseExcel
     SUBDIR += p5-Spreadsheet-Read
     SUBDIR += p5-Spreadsheet-ReadSXC
@@ -1277,6 +1281,8 @@
     SUBDIR += py-bibtexparser
     SUBDIR += py-bugzillatools
     SUBDIR += py-chardet
+    SUBDIR += py-citeproc-py
+    SUBDIR += py-citeproc-py-styles
     SUBDIR += py-cjkwrap
     SUBDIR += py-cloud_sptheme
     SUBDIR += py-colorclass
@@ -1286,10 +1292,12 @@
     SUBDIR += py-diff-match-patch
     SUBDIR += py-docutils
     SUBDIR += py-dsv
+    SUBDIR += py-duecredit
     SUBDIR += py-elasticsearch
     SUBDIR += py-elasticsearch-async
     SUBDIR += py-elasticsearch5
     SUBDIR += py-elasticsearch-curator
+    SUBDIR += py-elasticsearch-dsl
     SUBDIR += py-elasticsearch-dsl-py
     SUBDIR += py-elasticsearch2-dsl-py
     SUBDIR += py-elib.intl
@@ -1338,7 +1346,6 @@
     SUBDIR += py-pss
     SUBDIR += py-pyPEG2
     SUBDIR += py-pyctpp2
-    SUBDIR += py-pyelasticsearch
     SUBDIR += py-pyes
     SUBDIR += py-pygments
     SUBDIR += py-pygtail
@@ -1366,6 +1373,7 @@
     SUBDIR += py-rdflib
     SUBDIR += py-regex
     SUBDIR += py-reverend
+    SUBDIR += py-rnc2rng
     SUBDIR += py-rss2gen
     SUBDIR += py-rst2html5
     SUBDIR += py-rstyoutube
@@ -1445,6 +1453,7 @@
     SUBDIR += redland-bindings
     SUBDIR += refdb
     SUBDIR += reflex
+    SUBDIR += regex2dfa
     SUBDIR += replaceit
     SUBDIR += resume
     SUBDIR += resume-extensions
@@ -1508,7 +1517,6 @@
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-escape_utils
     SUBDIR += rubygem-escape_utils11
-    SUBDIR += rubygem-escape_utils-rails4
     SUBDIR += rubygem-ezamar
     SUBDIR += rubygem-fast_xs
     SUBDIR += rubygem-ferret
@@ -1525,6 +1533,7 @@
     SUBDIR += rubygem-heredoc_unindent
     SUBDIR += rubygem-hikidoc
     SUBDIR += rubygem-html-pipeline
+    SUBDIR += rubygem-html-pipeline27
     SUBDIR += rubygem-html-pipeline-gitlab
     SUBDIR += rubygem-html-pipeline1
     SUBDIR += rubygem-html2text
@@ -1565,6 +1574,7 @@
     SUBDIR += rubygem-parslet
     SUBDIR += rubygem-phone
     SUBDIR += rubygem-pretty-xml
+    SUBDIR += rubygem-raabro
     SUBDIR += rubygem-rails-dom-testing
     SUBDIR += rubygem-rails-dom-testing-rails5
     SUBDIR += rubygem-rails-dom-testing-rails50
@@ -1579,6 +1589,7 @@
     SUBDIR += rubygem-reverse_markdown
     SUBDIR += rubygem-ri_cal
     SUBDIR += rubygem-rich
+    SUBDIR += rubygem-rly
     SUBDIR += rubygem-rmmseg-cpp
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-rouge

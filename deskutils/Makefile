@@ -221,13 +221,14 @@
     SUBDIR += plasma-applet-simpleweatherforecast
     SUBDIR += plasma-applet-teacooker
     SUBDIR += plasma-applet-yawp
+    SUBDIR += plasma5-milou
+    SUBDIR += plasma5-sddm-kcm
     SUBDIR += plopfolio
     SUBDIR += preferences
     SUBDIR += projectlibre
     SUBDIR += puush
     SUBDIR += py-bugwarrior
     SUBDIR += py-khal
-    SUBDIR += py-pycarddav
     SUBDIR += py-pystash
     SUBDIR += py-send2trash
     SUBDIR += py-taskw

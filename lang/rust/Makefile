@@ -1,8 +1,8 @@
 # Created by: Jyun-Yan You <jyyou@cs.nctu.edu.tw>
-# $FreeBSD$
+# $FreeBSD: head/lang/rust/Makefile 470016 2018-05-15 13:43:34Z dumbbell $
 
 PORTNAME=	rust
-PORTVERSION?=	1.24.1
+PORTVERSION?=	1.26.0
 PORTREVISION?=
 CATEGORIES=	lang
 MASTER_SITES=	http://static.rust-lang.org/dist/:src \
@@ -44,18 +44,16 @@ ONLY_FOR_ARCHS_REASON=	requires prebuilt bootstrap compiler
 CONFLICTS_INSTALL?=	rust-nightly
 
 # See WRKSRC/src/stage0.txt for this date and version values.
-BOOTSTRAPS_DATE?=		2018-01-04
+BOOTSTRAPS_DATE?=		2018-03-29
 
-RUST_BOOTSTRAP_VERSION?=	1.23.0
+RUST_BOOTSTRAP_VERSION?=	1.25.0
 RUSTC_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rustc-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${RUST_TARGET}.tar.gz
 RUST_STD_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rust-std-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${RUST_TARGET}.tar.gz
 
-CARGO_BOOTSTRAP_VERSION?=	0.24.0
+CARGO_BOOTSTRAP_VERSION?=	0.26.0
 CARGO_BOOTSTRAP=		${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/cargo-${CARGO_BOOTSTRAP_VERSION_${ARCH}:U${CARGO_BOOTSTRAP_VERSION}}-${RUST_TARGET}.tar.gz
 
 RUST_CHANNEL=	${PKGNAMESUFFIX:Ustable:S/^-//}
-
-USE_HARDENING=		pie:off relro:off
 
 # Rust's target arch string is different from *BSD arch strings
 RUST_ARCH_aarch64=	aarch64
@@ -94,14 +92,6 @@ PLIST_FILES=		lib/rustlib/components \
 			lib/rustlib/rust-installer-version
 
 .include <bsd.port.pre.mk>
-# ABI patch needed to address ino64 before fixes upstreamed.
-# https://github.com/rust-lang/rust/issues/42681
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200031 && !defined(NIGHTLY_DATE)
-NEED_ABI_PATCH=		1
-EXTRA_PATCHES+=		${PATCHDIR}/extra-patch-abi
-.else
-NEED_ABI_PATCH=		0
-.endif
 
 X_PY_ENV=	HOME="${WRKDIR}" \
 		OPENSSL_DIR="${OPENSSLBASE}"
@@ -142,26 +132,10 @@ post-extract:
 		${WRKSRC}/build/cache/${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}
 	${LN} -sf ${DISTDIR}/${DIST_SUBDIR}/${RUSTC_BOOTSTRAP} \
 		${WRKSRC}/build/cache/${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}
-.if ${NEED_ABI_PATCH} == 0
 	${LN} -sf ${DISTDIR}/${DIST_SUBDIR}/${RUST_STD_BOOTSTRAP} \
 		${WRKSRC}/build/cache/${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}
-.endif
 	${LN} -sf ${DISTDIR}/${DIST_SUBDIR}/${CARGO_BOOTSTRAP} \
 		${WRKSRC}/build/cache/${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}
-.if ${NEED_ABI_PATCH} == 1
-	${TAR} -x -C ${WRKSRC} -f ${DISTDIR}/${DIST_SUBDIR}/${RUST_STD_BOOTSTRAP}
-	${CC} ${CFLAGS} -fPIC -c -o ${WRKSRC}/old_fstat.o ${FILESDIR}/old_fstat.c
-	(set -ex; cd ${WRKSRC}; \
-	 libstd="$$(echo "${RUST_STD_DIR}/rust-std-${RUST_TARGET}/lib/rustlib/${RUST_TARGET}/lib/"libstd-*.rlib)"; \
-	 hash="$$(basename "$$libstd" .rlib | ${SED} 's/^libstd-//')"; \
-	 std_o="$$(${AR} t "$$libstd" | ${GREP} -E "^std-$$hash.*\.o$$" | ${HEAD} -n 1)"; \
-	 ${AR} x "$$libstd" "$$std_o"; \
-	 ${LD} -r -o std.xx.o "$$std_o" old_fstat.o; \
-	 ${MV} std.xx.o "$$std_o"; \
-	 ${AR} r "$$libstd" "$$std_o")
-	${TAR} -c --format=ustar -C ${WRKSRC} -f ${WRKSRC}/rust-std.tar.gz ${RUST_STD_DIR}
-	${MV} ${WRKSRC}/rust-std.tar.gz ${WRKSRC}/build/cache/${RUST_STD_BOOTSTRAP}
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|gdb|${LOCALBASE}/bin/gdb|' \
@@ -180,7 +154,7 @@ post-patch:
 		${WRKSRC}/src/stage0.txt
 # After patching crates, we need to update their corresponding
 # `.cargo-checksum.json` to reflect the new checksums verified by Cargo.
-	@for dir in "${WRKSRC}/src/vendor/libc" "${WRKSRC}/src/vendor/openssl" "${WRKSRC}/src/vendor/openssl-sys"; do \
+	@for dir in "${WRKSRC}/src/vendor/libc" "${WRKSRC}/src/vendor/libgit2-sys" "${WRKSRC}/src/vendor/openssl" "${WRKSRC}/src/vendor/openssl-sys"; do \
 		if ! test -d "$$dir"; then \
 			continue; \
 		fi; \
@@ -332,7 +306,8 @@ post-install:
 		${STAGEDIR}${PREFIX}/bin/rustdoc \
 		${STAGEDIR}${PREFIX}/bin/rustfmt \
 		${STAGEDIR}${PREFIX}/lib/*.so \
-		${STAGEDIR}${PREFIX}/lib/rustlib/*/lib/*.so
+		${STAGEDIR}${PREFIX}/lib/rustlib/*/lib/*.so \
+		${STAGEDIR}${PREFIX}/lib/rustlib/*/codegen-backends/*.so
 
 # We set `extended = true` in config.toml because we want to build
 # Cargo at the same time. However, this installs the rust-src component

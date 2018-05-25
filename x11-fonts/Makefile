@@ -108,6 +108,7 @@
     SUBDIR += gfe
     SUBDIR += gnu-unifont
     SUBDIR += gnu-unifont-ttf
+    SUBDIR += gofont-ttf
     SUBDIR += gohufont
     SUBDIR += google-fonts
     SUBDIR += hack-font
@@ -164,6 +165,7 @@
     SUBDIR += paratype
     SUBDIR += pcf2bdf
     SUBDIR += pingwi
+    SUBDIR += plex-ttf
     SUBDIR += powerline-fonts
     SUBDIR += profont
     SUBDIR += proggy_fonts

@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME?=	mariadb
-PORTVERSION=	5.5.59
-PORTREVISION?=	1
+PORTVERSION=	5.5.60
+PORTREVISION?=	0
 CATEGORIES=	databases ipv6
 MASTER_SITES=	http://ftp.osuosl.org/pub/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
 		http://mirrors.supportex.net/mariadb/${PORTNAME}-${PORTVERSION}/source/ \
@@ -21,7 +21,6 @@ COMMENT?=	Multithreaded SQL database (server)
 LICENSE=	GPLv2
 
 SUB_FILES=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 SLAVEDIRS=	databases/mariadb55-client
 USES+=		cmake:noninja shebangfix ssl
@@ -50,7 +49,6 @@ CMAKE_ARGS+=	-DINSTALL_DOCDIR="share/doc/mysql" \
 
 DATADIR=	${PREFIX}/share/mysql
 
-BROKEN_aarch64=		Fails to link: missing sbrk
 BROKEN_sparc64=		Does not compile: Unsupported platform
 BROKEN_SSL=		openssl-devel
 BROKEN_SSL_REASON_openssl-devel=	incomplete definition of type 'struct dh_st'
@@ -104,11 +102,10 @@ MAXKEY_EXTRA_PATCHES=	${FILESDIR}/extra-patch-include_my__compare.h
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} != FreeBSD || ${OSVERSION} < 1101514 || \
-	${OSVERSION} >= 1200000 && ${OSVERSION} < 1200057
-SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
-.else
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1200057
 SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
+.else
+SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
 .endif
 
 .include <bsd.port.pre.mk>

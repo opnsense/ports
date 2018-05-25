@@ -3,7 +3,6 @@
 
 PORTNAME=	emacs
 DISTVERSION=	${EMACS_VER}.${EMACS_REV}
-PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	editors ipv6
 PKGNAMESUFFIX=	-devel
@@ -26,30 +25,26 @@ nox_PKGNAMESUFFIX=	-devel_nox
 
 USES=		autoreconf:build cpe gmake localbase:ldflags makeinfo ncurses \
 		pkgconfig
+CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	d599dce
+GH_TAGNAME=	bcee160
 
-CPE_VENDOR=	gnu
-EMACS_VER=	27.0.50
-EMACS_REV=	20180220
 GNU_CONFIGURE=	yes
+CONFIGURE_ARGS=	--with-gameuser=games:games
+CONFIGURE_ENV=	ac_cv_header_sys_sysinfo_h=no \
+		ac_cv_prog_liblockfile=no
+INFO=		ada-mode auth autotype bovine calc ccmode cl dbus dired-x \
+		ebrowse ede ediff edt efaq eieio eintr elisp emacs emacs-gnutls \
+		emacs-mime epa erc ert eshell eudc eww flymake forms gnus \
+		htmlfontify idlwave ido info mairix-el message mh-e newsticker \
+		nxml-mode octave-mode org pcl-cvs pgg rcirc reftex remember \
+		sasl sc semantic ses sieve smtpmail speedbar srecode todo-mode \
+		tramp url vhdl-mode vip viper widget wisent woman
 INFO_PATH=	${DATADIR_REL}/info
-
+PLIST_SUB=	EMACS_VER=${EMACS_VER} GNU_HOST=${CONFIGURE_TARGET}
 SUB_FILES=	sources.el
 SUB_LIST=	EMACS_VER=${EMACS_VER}
-
-CONFIGURE_ARGS=	--with-gameuser=games:games
-CONFIGURE_ENV=	ac_cv_prog_liblockfile=no
-
-PLIST_SUB=	EMACS_VER=${EMACS_VER} GNU_HOST=${CONFIGURE_TARGET}
-
-INFO=	ada-mode auth autotype bovine calc ccmode cl dbus dired-x ebrowse ede \
-	ediff edt efaq eieio eintr elisp emacs emacs-gnutls emacs-mime epa erc \
-	ert eshell eudc eww flymake forms gnus htmlfontify idlwave ido info \
-	mairix-el message mh-e newsticker nxml-mode octave-mode org pcl-cvs pgg \
-	rcirc reftex remember sasl sc semantic ses sieve smtpmail speedbar \
-	srecode todo-mode tramp url vhdl-mode vip viper widget wisent woman
 
 OPTIONS_DEFINE=	ACL DBUS GCONF GNUTLS GSETTINGS LCMS2 LLDB M17N MAILUTILS \
 		MODULES OTF SCROLLBARS SOURCES THREADS XFT XIM XML XWIDGETS
@@ -165,7 +160,6 @@ XWIDGETS_CONFIGURE_WITH=	xwidgets
 XWIDGETS_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3
 XWIDGETS_IMPLIES=	GTK3
 
-
 .if ${FLAVOR:U} == nox
 CONFIGURE_ARGS+=	--with-sound=no --without-cairo --without-dbus \
 			--without-gconf --without-gif --without-gsettings \
@@ -184,6 +178,9 @@ INSTALLS_ICONS=		yes
 USE_XORG=		ice sm x11 xcb xext xfixes xinerama xmu xrandr xt
 USES+=			desktop-file-utils
 .endif
+
+EMACS_VER=	27.0.50
+EMACS_REV=	20180428
 
 .include <bsd.port.options.mk>
 

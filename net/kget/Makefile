@@ -14,7 +14,7 @@ LIB_DEPENDS=    libKF5Torrent.so:net-p2p/libktorrent  \
 		libgpg-error.so:security/libgpg-error \
 		libgpgme.so:security/gpgme \
 		libgpgmepp.so:security/gpgme-cpp \
-		libqca-qt5.so:devel/qca-qt5 \
+		libqca-qt5.so:devel/qca@qt5 \
 		libqgpgme.so:security/gpgme-qt5
 
 USES=		cmake:outsource kde:5 shebangfix sqlite tar:xz

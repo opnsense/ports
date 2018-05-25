@@ -40,7 +40,9 @@
     SUBDIR += jitsi
     SUBDIR += kaccounts-integration
     SUBDIR += kaccounts-providers
+    SUBDIR += kde-telepathy
     SUBDIR += kmess-kde4
+    SUBDIR += kopete
     SUBDIR += kopete-kde4
     SUBDIR += ktp-accounts-kcm
     SUBDIR += ktp-accounts-kcm-kde4
@@ -81,7 +83,6 @@
     SUBDIR += licq
     SUBDIR += licq-icq
     SUBDIR += licq-jabber
-    SUBDIR += licq-msn
     SUBDIR += licq-osd
     SUBDIR += licq-qt-gui
     SUBDIR += linux-telegram-desktop
@@ -132,6 +133,7 @@
     SUBDIR += pidgin-skype
     SUBDIR += pidgin-skypeweb
     SUBDIR += pidgin-twitter
+    SUBDIR += pidgin-window_merge
     SUBDIR += plasma-applet-ktp-kde4
     SUBDIR += poezio
     SUBDIR += profanity
@@ -143,6 +145,7 @@
     SUBDIR += purple-discord
     SUBDIR += purple-facebook
     SUBDIR += purple-hangouts
+    SUBDIR += purple-slack
     SUBDIR += py-fbmq
     SUBDIR += py-jabber
     SUBDIR += py-jabberbot
@@ -166,7 +169,6 @@
     SUBDIR += qxmpp-qt5
     SUBDIR += ramblercontacts
     SUBDIR += ricochet
-    SUBDIR += rubygem-earthquake
     SUBDIR += rubygem-hipchat
     SUBDIR += rubygem-hipchat15
     SUBDIR += rubygem-lita
@@ -205,6 +207,7 @@
     SUBDIR += telepathy-sofiasip
     SUBDIR += tkabber
     SUBDIR += tkabber-plugins
+    SUBDIR += toot
     SUBDIR += tox
     SUBDIR += tox12
     SUBDIR += toxbot

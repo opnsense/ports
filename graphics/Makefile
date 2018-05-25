@@ -98,6 +98,7 @@
     SUBDIR += chbg
     SUBDIR += cimg
     SUBDIR += cinepaint
+    SUBDIR += cloudcompare
     SUBDIR += clutter
     SUBDIR += clutter-gtk
     SUBDIR += clutter-gtk3
@@ -138,6 +139,7 @@
     SUBDIR += devil
     SUBDIR += dia
     SUBDIR += diffpdf
+    SUBDIR += digikam
     SUBDIR += digikam-kde4
     SUBDIR += digikam-kde4-doc
     SUBDIR += digikam-kde4-l10n
@@ -300,6 +302,7 @@
     SUBDIR += gpicview
     SUBDIR += gpsmanshp
     SUBDIR += gpu-firmware-kmod
+    SUBDIR += gpxsee
     SUBDIR += gracula
     SUBDIR += grads
     SUBDIR += grafx2
@@ -411,6 +414,7 @@
     SUBDIR += kcolorchooser
     SUBDIR += kcolorchooser-kde4
     SUBDIR += kcoloredit
+    SUBDIR += kdegraphics
     SUBDIR += kdegraphics-kde4
     SUBDIR += kdegraphics-mobipocket
     SUBDIR += kdegraphics-mobipocket-kde4
@@ -467,11 +471,13 @@
     SUBDIR += kipi-plugin-vkontakte
     SUBDIR += kipi-plugin-yandexfotki
     SUBDIR += kipi-plugins-kde4
+    SUBDIR += kipiplugins
     SUBDIR += kix-kmod
     SUBDIR += klatexformula
     SUBDIR += kludge3d
     SUBDIR += kolourpaint
     SUBDIR += kolourpaint-kde4
+    SUBDIR += kphotoalbum
     SUBDIR += kphotoalbum-kde4
     SUBDIR += kpovmodeler
     SUBDIR += kqtquickcharts-kde4
@@ -541,6 +547,7 @@
     SUBDIR += liblug
     SUBDIR += libmng
     SUBDIR += libmorph
+    SUBDIR += libmypaint
     SUBDIR += libnsbmp
     SUBDIR += libnsgif
     SUBDIR += libopenraw
@@ -630,7 +637,9 @@
     SUBDIR += mupdf
     SUBDIR += mxp
     SUBDIR += mypaint
+    SUBDIR += mypaint-brushes
     SUBDIR += nathive
+    SUBDIR += natron
     SUBDIR += netpbm
     SUBDIR += nip2
     SUBDIR += nomacs
@@ -653,6 +662,9 @@
     SUBDIR += opencv-core
     SUBDIR += opencv-java
     SUBDIR += opendx
+    SUBDIR += openfx-arena
+    SUBDIR += openfx-io
+    SUBDIR += openfx-misc
     SUBDIR += opengl-man
     SUBDIR += openicc-config
     SUBDIR += openimageio
@@ -660,6 +672,7 @@
     SUBDIR += openjpeg15
     SUBDIR += openjump
     SUBDIR += opennurbs
+    SUBDIR += openorienteering-mapper
     SUBDIR += openrm
     SUBDIR += openshadinglanguage
     SUBDIR += opensubdiv
@@ -743,6 +756,7 @@
     SUBDIR += p5-Image-MetaData-JPEG
     SUBDIR += p5-Image-ObjectDetect
     SUBDIR += p5-Image-PBMlib
+    SUBDIR += p5-Image-PNG-Libpng
     SUBDIR += p5-Image-Pngslimmer
     SUBDIR += p5-Image-Sane
     SUBDIR += p5-Image-Scale
@@ -798,6 +812,7 @@
     SUBDIR += pho
     SUBDIR += photivo
     SUBDIR += photopc
+    SUBDIR += photoqt
     SUBDIR += phototonic
     SUBDIR += php-facedetect
     SUBDIR += php-gdal
@@ -869,6 +884,7 @@
     SUBDIR += py-blockdiagcontrib-cisco
     SUBDIR += py-cairo
     SUBDIR += py-cairocffi
+    SUBDIR += py-cartopy
     SUBDIR += py-chart
     SUBDIR += py-django-easy-thumbnails
     SUBDIR += py-djvulibre
@@ -1045,7 +1061,6 @@
     SUBDIR += sswf
     SUBDIR += stamp
     SUBDIR += structuresynth
-    SUBDIR += sverchok-blender
     SUBDIR += svg2pdf
     SUBDIR += svg2png
     SUBDIR += svgalib

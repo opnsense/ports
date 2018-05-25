@@ -15,8 +15,8 @@ _INCLUDE_BSD_DEFAULT_VERSIONS_MK=	yes
 
 LOCALBASE?=	/usr/local
 
-.for lang in APACHE BDB EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT LINUX LUA \
-	MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 PYTHON3 RUBY SSL TCLTK
+.for lang in APACHE BDB COROSYNC EMACS FIREBIRD FORTRAN FPC GCC GHOSTSCRIPT \
+	LINUX LUA MYSQL PERL5 PGSQL PHP PYTHON PYTHON2 PYTHON3 RUBY SSL TCLTK
 .if defined(${lang}_DEFAULT)
 ERROR+=	"The variable ${lang}_DEFAULT is set and it should only be defined through DEFAULT_VERSIONS+=${lang:tl}=${${lang}_DEFAULT} in /etc/make.conf"
 .endif
@@ -32,6 +32,8 @@ ${_l:tu}_DEFAULT=	${lang:C/.*=//g}
 APACHE_DEFAULT?=	2.4
 # Possible values: 48, 5, 6
 BDB_DEFAULT?=		5
+# Possible values: 2, 3
+COROSYNC_DEFAULT?=	2
 # Possible_values: full canna nox devel_full devel_nox
 #EMACS_DEFAULT?=	let the flavor be the default if not explicitly set
 # Possible values: 2.5
@@ -57,7 +59,7 @@ LINUX_DEFAULT?=		c6
 LUA_DEFAULT?=		5.2
 # Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 5.5p, 5.6p, 5.7p, 5.6w
 MYSQL_DEFAULT?=		5.6
-# Possible values: 5.22, 5.24, 5.26, devel
+# Possible values: 5.22, 5.24, 5.26, 5.28, devel
 .if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
 PERL5_DEFAULT?=		5.26
@@ -84,7 +86,7 @@ PYTHON2_DEFAULT?=	2.7
 PYTHON3_DEFAULT?=	3.6
 # Possible values: 2.3, 2.4, 2.5
 RUBY_DEFAULT?=		2.4
-# Possible values: 4.4, 4.5, 4.6, 4.7
+# Possible values: 4.5, 4.6, 4.7, 4.8
 SAMBA_DEFAULT?=		4.6
 # Possible values: base, openssl, openssl-devel, libressl, libressl-devel
 .if !defined(SSL_DEFAULT)

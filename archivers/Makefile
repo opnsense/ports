@@ -178,6 +178,7 @@
     SUBDIR += py-backports.lzma
     SUBDIR += py-borgbackup
     SUBDIR += py-brotli
+    SUBDIR += py-bup
     SUBDIR += py-bz2file
     SUBDIR += py-czipfile
     SUBDIR += py-libarchive-c
@@ -245,6 +246,8 @@
     SUBDIR += unzip
     SUBDIR += unzoo
     SUBDIR += upx
+    SUBDIR += urbackup-client
+    SUBDIR += urbackup-server
     SUBDIR += xar
     SUBDIR += xarchive
     SUBDIR += xarchiver

@@ -29,6 +29,7 @@
     SUBDIR += gpxloggerd
     SUBDIR += jday
     SUBDIR += josm
+    SUBDIR += kstars
     SUBDIR += kstars-kde4
     SUBDIR += libgal
     SUBDIR += libkgeomap
@@ -86,6 +87,8 @@
     SUBDIR += py-astLib
     SUBDIR += py-astropy
     SUBDIR += py-horoscopegenerator
+    SUBDIR += py-metar
+    SUBDIR += py-metpy
     SUBDIR += py-pymetar
     SUBDIR += py-pywapi
     SUBDIR += pyephem

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	racer
-DISTVERSION=	2.0.10
+DISTVERSION=	2.0.12
 CATEGORIES=	devel
 
 MAINTAINER=	beyert@cs.ucr.edu
@@ -28,7 +28,7 @@ CARGO_CRATES=	aho-corasick-0.5.3 \
 		env_logger-0.3.5 \
 		kernel32-sys-0.2.2 \
 		lazy_static-0.2.8 \
-		libc-0.2.22 \
+		libc-0.2.40 \
 		log-0.3.7 \
 		matches-0.1.4 \
 		memchr-0.1.11 \
@@ -49,7 +49,6 @@ CARGO_CRATES=	aho-corasick-0.5.3 \
 		thread_local-0.2.7 \
 		toml-0.1.30 \
 		toml-0.2.1 \
-		typed-arena-1.3.0 \
 		unicode-normalization-0.1.4 \
 		unicode-segmentation-1.2.0 \
 		unicode-width-0.1.4 \

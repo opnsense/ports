@@ -3,7 +3,7 @@
 
 PORTNAME=	w3af
 PORTVERSION=	1.6.49
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	security python www
 
 MAINTAINER=	dbaio@FreeBSD.org
@@ -40,7 +40,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}lxml>=2.1:devel/py-lxml@${FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}lxml>=0.3.2:devel/py-lxml@${FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}guess-language>=0.2:textproc/py-guess-language@${FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cluster>=1.1.1b3:devel/py-cluster@${FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}msgpack-python>=0.4.4:devel/py-msgpack-python@${FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}msgpack>=0.4.4:devel/py-msgpack@${FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-ntlm>=1.0.1:net/py-python-ntlm@${FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}halberd>=0.2.4:security/py-halberd@${FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}darts.util.lru>=0.5:devel/py-darts.util.lru@${FLAVOR} \
@@ -66,6 +66,9 @@ GUI_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pygraphviz>0:graphics/py-pygraphviz@${FL
 		${PYTHON_PKGNAMEPREFIX}webkitgtk>=1.1.8:www/py-webkitgtk@${FLAVOR}
 
 GUI_USE=	GNOME=pygtk2
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|msgpack-python|msgpack|' ${WRKSRC}/w3af/core/controllers/dependency_check/requirements.py
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/${PORTNAME}

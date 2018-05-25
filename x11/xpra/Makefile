@@ -3,7 +3,7 @@
 
 PORTNAME=	xpra
 PORTVERSION=	2.0.3
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	x11
 MASTER_SITES=	http://xpra.org/src/
 
@@ -11,6 +11,8 @@ MAINTAINER=	rezny@FreeBSD.org
 COMMENT=	Xpra gives you persistent remote applications for X
 
 LICENSE=	GPLv2
+
+BROKEN=		fails to build with cython 0.28
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gtk2>2:x11-toolkits/py-gtk2@${FLAVOR} \
 		${PYNUMPY}

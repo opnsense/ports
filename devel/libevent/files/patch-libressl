@@ -33,13 +33,6 @@ Closes: #617 (cherry-pick)
 +#endif
  
  #endif /* OPENSSL_COMPAT_H */
- openssl-compat.h                     | 10 ++++++++--
- sample/https-client.c                |  9 ++++++---
- sample/le-proxy.c                    |  3 ++-
- sample/openssl_hostname_validation.c |  3 ++-
- test/regress_ssl.c                   |  3 ++-
- 5 files changed, 20 insertions(+), 8 deletions(-)
-
 --- sample/https-client.c.orig	2017-01-25 23:37:15 UTC
 +++ sample/https-client.c
 @@ -312,7 +312,8 @@ main(int argc, char **argv)
@@ -48,7 +41,7 @@ Closes: #617 (cherry-pick)
  
 -#if OPENSSL_VERSION_NUMBER < 0x10100000L
 +#if (OPENSSL_VERSION_NUMBER < 0x10100000L) || \
-+	(defined(LIBRESSL_VERSION_NUMBER) && LIBRESSL_VERSION_NUMBER < 0x20700000L)
++	(defined(LIBRESSL_VERSION_NUMBER) && LIBRESSL_VERSION_NUMBER < 0x20700000L)	
  	// Initialize OpenSSL
  	SSL_library_init();
  	ERR_load_crypto_strings();
@@ -91,20 +84,11 @@ Closes: #617 (cherry-pick)
  #define HOSTNAME_MAX_SIZE 255
  
 -#if OPENSSL_VERSION_NUMBER < 0x10100000L
-+#if (OPENSSL_VERSION_NUMBER < 0x10100000L) || \
++#if OPENSSL_VERSION_NUMBER < 0x10100000L || \
 +	(defined(LIBRESSL_VERSION_NUMBER) && LIBRESSL_VERSION_NUMBER < 0x20700000L)
  #define ASN1_STRING_get0_data ASN1_STRING_data
  #endif
  
-@@ -104,7 +105,7 @@ static HostnameValidationResult matches_
- * Tries to find a match for hostname in the certificate's Subject Alternative Name extension.
- *
- * Returns MatchFound if a match was found.
--* Returns MatchNotFound if no matches were found.
-+ Returns MatchNotFound if no matches were found.
- * Returns MalformedCertificate if any of the hostnames had a NUL character embedded in it.
- * Returns NoSANPresent if the SAN extension was not present in the certificate.
- */
 --- test/regress_ssl.c.orig	2017-01-25 23:37:15 UTC
 +++ test/regress_ssl.c
 @@ -186,7 +186,8 @@ get_ssl_ctx(void)

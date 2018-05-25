@@ -1,14 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-runner
-PORTVERSION=	10.4.0
+PORTVERSION=	10.7.2
 CATEGORIES=	devel
 MASTER_SITES=	\
-		https://gitlab.com/gitlab-org/gitlab-runner/repository/archive.tar.bz2?ref=v${PORTVERSION}&dummy=/ \
 		https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerx64 \
 		https://gitlab-runner-downloads.s3.amazonaws.com/master/docker/:dockerarm
 DISTFILES=	\
-		${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX} \
 		prebuilt-x86_64.tar.xz:dockerx64 \
 		prebuilt-arm.tar.xz:dockerarm
 DIST_SUBDIR=	gitlab-runner
@@ -26,13 +24,13 @@ RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss \
 		bash:shells/bash \
 		git:devel/git
 
-USES=		tar:bz2
-GITHASH=	857480b64b013d8edffaf70e4b7ea43ee1c66a9e
-GITREV=		857480b6
-GITBRANCH=	10-4-stable
-BUILT=		2018-01-22T09:48:29-00:00
+USE_GITLAB=	yes
+GL_ACCOUNT=	gitlab-org
+GL_COMMIT=	b5e03c940ed96dc12ac9b79477b396678559d7fc
+GITREV=		b5e03c94
+GITBRANCH=	10-7-stable
+BUILT=		2018-05-14T11:52:42+00:00
 
-WRKSRC=		${WRKDIR}/gitlab-runner-v${PORTVERSION}-${GITHASH}
 GO_LDFLAGS=	-X gitlab.com/gitlab-org/gitlab-runner/common.VERSION=${PORTVERSION} \
 		-X gitlab.com/gitlab-org/gitlab-runner/common.REVISION=${GITREV} \
 		-X gitlab.com/gitlab-org/gitlab-runner/common.BUILT=${BUILT} \

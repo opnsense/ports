@@ -1,3 +1,3 @@
-TIMESTAMP = 1521651304
-SHA256 (hashicorp-vault-v0.9.6_GH0.tar.gz) = ad89647e7d87a50a168cfca2bc8639636fe48aa85294abfd47ad288ce4cab968
-SIZE (hashicorp-vault-v0.9.6_GH0.tar.gz) = 10464094
+TIMESTAMP = 1526397654
+SHA256 (hashicorp-vault-v0.10.1_GH0.tar.gz) = 425a5ac7c2958619bdceaa2528d6b84f26661a603eadf5f32b8172db74e6f0c5
+SIZE (hashicorp-vault-v0.10.1_GH0.tar.gz) = 13001413

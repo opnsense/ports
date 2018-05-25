@@ -4,7 +4,7 @@
 PORTNAME=	fritzing
 PORTVERSION=	0.9.2
 DISTVERSIONSUFFIX=	b
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	cad
 
 MAINTAINER=	lenzi.sergio@gmail.com
@@ -26,7 +26,7 @@ MAKE_ENV=	INSTALL_ROOT="${STAGEDIR}"
 
 BUILD_DEPENDS+=	boost-libs>1.52:devel/boost-libs
 
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 post-extract:
 	cd ${WRKSRC_parts};\

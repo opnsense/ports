@@ -63,6 +63,7 @@
     SUBDIR += gtksourceview2-reference
     SUBDIR += gtksourceview3
     SUBDIR += gtksourceview3-reference
+    SUBDIR += gtksourceview4
     SUBDIR += gtksourceviewmm3
     SUBDIR += hippo-canvas
     SUBDIR += hs-GLURaw
@@ -193,6 +194,7 @@
     SUBDIR += pangox-compat
     SUBDIR += pangoxsl
     SUBDIR += phat
+    SUBDIR += plasma5-kdeplasma-addons
     SUBDIR += plib
     SUBDIR += pure-gtk
     SUBDIR += pure-tk
@@ -221,6 +223,7 @@
     SUBDIR += py-wxPython30
     SUBDIR += py-xlib
     SUBDIR += pypy-tkinter
+    SUBDIR += qml-box2d
     SUBDIR += qt4-declarative
     SUBDIR += qt4-gui
     SUBDIR += qt4pas
@@ -242,7 +245,6 @@
     SUBDIR += qwt5
     SUBDIR += qwt5-designerplugin
     SUBDIR += qwt6
-    SUBDIR += qwt6-designerplugin
     SUBDIR += rep-gtk2
     SUBDIR += rubygem-gdk3
     SUBDIR += rubygem-gtk2

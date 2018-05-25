@@ -412,6 +412,7 @@
     SUBDIR += libkcompactdisc
     SUBDIR += libkcompactdisc-kde4
     SUBDIR += liblastfm
+    SUBDIR += liblastfm-qt5
     SUBDIR += liblo
     SUBDIR += liblscp
     SUBDIR += libltc
@@ -515,6 +516,7 @@
     SUBDIR += mixer.app
     SUBDIR += mixmos
     SUBDIR += mixxx
+    SUBDIR += mixxx20
     SUBDIR += mma
     SUBDIR += moc
     SUBDIR += modplugplay
@@ -575,6 +577,7 @@
     SUBDIR += nosefart
     SUBDIR += nspmod
     SUBDIR += nuvolaplayer
+    SUBDIR += oaml
     SUBDIR += ocp
     SUBDIR += ogg2mp3
     SUBDIR += openal
@@ -644,6 +647,7 @@
     SUBDIR += picard
     SUBDIR += picard-plugins
     SUBDIR += pithos
+    SUBDIR += plasma5-plasma-pa
     SUBDIR += play
     SUBDIR += playgsf
     SUBDIR += playmidi

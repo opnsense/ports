@@ -6,11 +6,14 @@ CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 PKGNAMESUFFIX=	12
 
-MAINTAINER=	idefix@fechner.net
+MAINTAINER=	mfechner@FreeBSD.org
 COMMENT=	OpenID Connect extension for Doorkeeper
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+DEPRECATED=	Obsoleted by update of www/gitlab. Please use security/rubygem-doorkeeper-openid_connect instead.
+EXPIRATION_DATE=	2018-06-30
 
 CONFLICTS_INSTALL=	rubygem-doorkeeper-openid_connect
 

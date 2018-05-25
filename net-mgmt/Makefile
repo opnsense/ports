@@ -249,6 +249,7 @@
     SUBDIR += p5-Net-IP-Match-Regexp
     SUBDIR += p5-Net-IP-Match-XS
     SUBDIR += p5-Net-IP-Resolver
+    SUBDIR += p5-Net-IP-XS
     SUBDIR += p5-Net-IPAddress
     SUBDIR += p5-Net-IPv4Addr
     SUBDIR += p5-Net-IPv6Addr
@@ -313,9 +314,11 @@
     SUBDIR += py-msrest
     SUBDIR += py-msrestazure
     SUBDIR += py-napalm
+    SUBDIR += py-napalm-logs
     SUBDIR += py-ncclient
     SUBDIR += py-pdagent
     SUBDIR += py-pyIOSXR
+    SUBDIR += py-prometheus-client
     SUBDIR += py-pyang
     SUBDIR += py-pyeapi
     SUBDIR += py-pynsca

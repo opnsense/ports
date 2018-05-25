@@ -3,6 +3,7 @@
 
 PORTNAME=	dvbcut
 PORTVERSION=	0.7.2
+PORTREVISION=	2
 CATEGORIES=	multimedia
 
 MAINTAINER=	se@FreeBSD.org
@@ -21,7 +22,7 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 USE_GITHUB=	yes
 GH_ACCOUNT=	bernhardu
 GH_PROJECT=	dvbcut-deb
-GH_TAGNAME=	040c1ef
+GH_TAGNAME=	7d0fc2b
 
 USES=		qmake:outsource pkgconfig desktop-file-utils shared-mime-info
 
@@ -36,7 +37,7 @@ QMAKE_ARGS=	LRELEASE="${LRELEASE}"
 
 OPTIONS_RADIO=	QT
 OPTIONS_RADIO_QT=	QT4 QT5
-OPTIONS_DEFAULT=	QT4
+OPTIONS_DEFAULT=	QT5
 
 QT4_USE=	QT4=corelib,gui,xml,qt3support,linguisttools_build,moc_build,rcc_build,uic_build
 QT5_USE=	QT5=core,gui,widgets,xml,buildtools_build,linguisttools_build GL=gl

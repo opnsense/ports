@@ -13,8 +13,6 @@ COMMENT=	GIMP Save For Web plugin
 LIB_DEPENDS=	libgimp-2.0.so:graphics/gimp-app
 BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser
 
-USE_HARDENING=	safestack
-
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib

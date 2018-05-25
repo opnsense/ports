@@ -3,7 +3,7 @@
 
 PORTNAME=	iridium
 PORTVERSION=	58.0
-PORTREVISION=	13
+PORTREVISION=	16
 CATEGORIES=	www
 MASTER_SITES=	https://downloads.iridiumbrowser.de/source/
 PKGNAMESUFFIX=	-browser
@@ -16,7 +16,7 @@ LICENSE=	BSD3CLAUSE LGPL21 MPL11
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	gperf:devel/gperf \
-		clang50:devel/llvm50 \
+		clang60:devel/llvm60 \
 		yasm:devel/yasm \
 		ffmpeg>=3.2.2,1:multimedia/ffmpeg \
 		bash:shells/bash \
@@ -53,7 +53,6 @@ LIB_DEPENDS=	libspeechd.so:accessibility/speech-dispatcher \
 		libgnome-keyring.so:security/libgnome-keyring \
 		libnss3.so:security/nss \
 		libexpat.so:textproc/expat2 \
-		libxml2.so:textproc/libxml2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
@@ -72,8 +71,8 @@ ALL_TARGET=	chrome
 INSTALLS_ICONS=	yes
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-CC=		clang50
-CXX=		clang++50
+CC=		clang60
+CXX=		clang++60
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-clang
 
 # Run "./out/${BUILDTYPE}/gn args out/${BUILDTYPE} --list" for all variables.
@@ -100,7 +99,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_system_libjpeg=true \
 		use_system_sqlite=false   # chrome has additional patches
 # TODO: investigate building with these options:
-# use_system_icu use_system_harfbuzz use_system_minigbm
+# use_system_harfbuzz use_system_minigbm
 GN_BOOTSTRAP_FLAGS=	--no-clean --no-rebuild
 
 SUB_FILES=	iridium-browser.desktop iridium

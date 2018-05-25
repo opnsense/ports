@@ -3,11 +3,12 @@
 
 PORTNAME=	kdesvn
 DISTVERSION=	1.7.0
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	devel kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}/
+PKGNAMESUFFIX=	-kde4
 
-MAINTAINER=	dbn@FreeBSD.org
+MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE frontend for Subversion
 
 LICENSE=	GPLv2+
@@ -18,7 +19,8 @@ LIB_DEPENDS=	libsvn_client-1.so:devel/subversion \
 		libgdbm.so:databases/gdbm \
 		libexpat.so:textproc/expat2
 
-CONFLICTS=	qsvn-[0-9]*
+CONFLICTS=	kdesvn-2.* \
+		qsvn-[0-9]*
 
 CMAKE_ARGS+=	-DSUBVERSION_INCLUDE_DIR=${LOCALBASE}/include/subversion-1 \
 		-DMAN_INSTALL_DIR=${MANPREFIX}/man
@@ -34,6 +36,8 @@ OPTIONS_SUB=	yes
 
 NLS_CMAKE_OFF=	-DBUILD_po=OFF
 NLS_USES=	gettext
+
+PORTSCOUT=	limit:1\.7.*
 
 post-patch:
 	${RM} ${WRKSRC}/src/kiosvn/svn*.protocol

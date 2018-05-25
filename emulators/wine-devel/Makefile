@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	3.5
+DISTVERSION=	3.8
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	http://mirrors.ibiblio.org/wine/source/3.x/ \
@@ -53,7 +53,6 @@ SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
 SUB_FILES=	pkg-message
-PKGMESSAGE=	${WRKDIR}/pkg-message
 
 PORTDATA=	l_intl.nls wine.inf
 
@@ -169,11 +168,11 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/programs/winedbg/README ${STAGEDIR}${DOCSDIR}/README.winedbg
 	${INSTALL_DATA} ${WRKSRC}/tools/winedump/README ${STAGEDIR}${DOCSDIR}/README.winedump
 
-check-wine-devel-vs-wine-staging:
+check-wine-devel-vs-staging:
 	@${GREP} %%STAGING%% pkg-plist | while read f; do \
 	  f=`echo $$f | ${SED} -e 's/%%STAGING%%//'`; \
 	  if [ -f "$$STAGEDIR/$$PREFIX/$$f" ]; then \
-	    ${PRINTF} "%s no longer contigent on %%STAGING%%?\n" "$$f"; \
+	    ${PRINTF} "%s no longer contingent on %%STAGING%%?\n" "$$f"; \
 	  fi \
 	done
 

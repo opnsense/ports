@@ -24,8 +24,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	hejiann
 GH_TAGNAME=	e209c8d
 
-USE_HARDENING=	safestack
-
 USES=		gettext gmake pkgconfig
 USE_GCC=	yes
 USE_GNOME=	atk cairo gdkpixbuf2 gtk20

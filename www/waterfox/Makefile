@@ -1,15 +1,16 @@
 # $FreeBSD$
 
 PORTNAME=	waterfox
-DISTVERSION=	56.1.0
-PORTREVISION=	9
+DISTVERSION=	56.2.0-13
+DISTVERSIONSUFFIX=	-gd2cdd42f4115b
+PORTREVISION=	4
 CATEGORIES=	www ipv6
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Distilled fork of Firefox
 
 DEPRECATED=	Temporary experiment
-EXPIRATION_DATE=2018-05-16
+EXPIRATION_DATE=2018-07-10
 
 BUILD_DEPENDS=	nspr>=4.16:devel/nspr \
 		nss>=3.32.1:security/nss \

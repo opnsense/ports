@@ -3,7 +3,7 @@
 
 PORTNAME=	kivy
 PORTVERSION=	1.10.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11-toolkits python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -12,6 +12,8 @@ COMMENT=	Python NUI library for rapid application development
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN=		fails to build with cython 0.28
 
 BUILD_DEPENDS=	git:devel/git \
 		${PYTHON_PKGNAMEPREFIX}pygments>=0:textproc/py-pygments@${FLAVOR}
@@ -61,7 +63,7 @@ GSTREAMER_LIB_DEPENDS=	libgstreamer-1.0.so:multimedia/gstreamer1
 GSTREAMER_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/pygst.py:multimedia/py-gstreamer@${FLAVOR}
 GSTREAMER_USES=		gettext-runtime pkgconfig
 GSTREAMER_USE=		GNOME=glib20
-OPENCV_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cv.py:graphics/py-opencv@${FLAVOR}
+OPENCV_RUN_DEPENDS=	${PYTHON_SITELIBDIR}/cv2.so:graphics/py-opencv@${FLAVOR}
 PIL_DESC=		Text and window rendering support via Pillow
 PIL_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>0:graphics/py-pillow@${FLAVOR}
 PYGAME_DESC=		Window, text and image rendering support via PyGame

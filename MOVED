@@ -952,7 +952,6 @@ x11-wm/ion-2||2010-01-18|Has expired: has been broken for 4 months
 databases/pear-Doctrine2||2010-01-20|Removed
 audio/dino||2010-01-20|Has expired: has been broken for 7 months
 devel/asis-gpl||2010-01-20|Has expired: has been broken for 3 months
-devel/kdesvn||2010-01-20|Has expired: has been broken for 4 months
 devel/radrails||2010-01-20|Has expired: has been broken for 3 months
 devel/rubygem-rtags||2010-01-20|Has expired: has been broken for 5 months
 games/hattrickorganizer||2010-01-20|Has expired: Has been broken for a while
@@ -3749,7 +3748,6 @@ japanese/gxditview||2012-10-25|Has expired: No more public distfiles
 graphics/view3ds||2012-10-25|Has expired: No more public distfiles
 graphics/photoclip||2012-10-25|Has expired: No more public distfiles
 graphics/multivideo||2012-10-25|Has expired: Abandonware, no more upstream, depends on the deprecated wxGTK 2.4
-graphics/kphotoalbum||2012-10-25|Has expired: No more public distfiles
 graphics/jpegpixi||2012-10-25|Has expired: No more public distfiles
 graphics/gimp-manual-pdf||2012-10-25|Has expired: No more public distfiles
 games/yace||2012-10-25|Has expired: No more public distfiles
@@ -4408,9 +4406,7 @@ sysutils/rsyslog6-devel-dbi|sysutils/rsyslog7|2013-07-25|Has expired: Use sysuti
 sysutils/rsyslog6-devel-gssapi|sysutils/rsyslog7|2013-07-25|Has expired: Use sysutils/rsyslog7
 sysutils/rsyslog6-devel|sysutils/rsyslog7|2013-07-25|Has expired: Use sysutils/rsyslog7
 graphics/allegrogl||2013-07-26|Now part of devel/allegro
-accessibility/kdeaccessibility||2013-07-26|Has expired: Depends on Qt 3.x
 arabic/kde3-i18n||2013-07-26|Has expired: Depends on Qt 3.x
-archivers/kbackup||2013-07-26|Has expired: Depends on Qt 3.x
 archivers/kio_p7zip||2013-07-26|Has expired: Depends on Qt 3.x
 astro/celestia-kde||2013-07-26|Has expired: Depends on Qt 3.x
 astro/orsa||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4475,7 +4471,6 @@ devel/crossvc||2013-07-26|Has expired: Depends on Qt 3.x
 devel/dbus-qt3||2013-07-26|Has expired: Depends on Qt 3.x
 devel/esvn||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kdesdk3||2013-07-26|Has expired: Depends on Qt 3.x
-devel/kdevelop||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kodos||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kprof||2013-07-26|Has expired: Depends on Qt 3.x
 devel/kscope||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4485,7 +4480,6 @@ devel/qssl||2013-07-26|Has expired: Depends on Qt 3.x
 devel/subcommander||2013-07-26|Has expired: Depends on Qt 3.x
 editors/f4l||2013-07-26|Has expired: Depends on Qt 3.x
 editors/kate-plugins||2013-07-26|Has expired: Depends on Qt 3.x
-editors/kile||2013-07-26|Has expired: Depends on Qt 3.x
 editors/klat||2013-07-26|Has expired: Depends on Qt 3.x
 editors/kxmleditor||2013-07-26|Has expired: Depends on Qt 3.x
 editors/rospell||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4525,7 +4519,6 @@ german/kheisereg||2013-07-26|Has expired: Depends on Qt 3.x
 german/ksteak||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/albumshaper||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/amanith||2013-07-26|Has expired: Depends on Qt 3.x
-graphics/digikam||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/digikam-doc||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/divxcalc||2013-07-26|Has expired: Depends on Qt 3.x
 graphics/ecg2png||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4672,7 +4665,6 @@ net-im/eva||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kmerlin||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kmess||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/konverse||2013-07-26|Has expired: Depends on Qt 3.x
-net-im/kopete||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/kpopup||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/sim-im||2013-07-26|Has expired: Depends on Qt 3.x
 net-im/sim-im-devel||2013-07-26|Has expired: Depends on Qt 3.x
@@ -4735,7 +4727,6 @@ x11/kdelibs3||2013-07-26|Has expired: Depends on Qt 3.x
 x11/kdelibs3-nocups||2013-07-26|Has expired: Depends on Qt 3.x
 x11/oooqs2||2013-07-26|Has expired: Depends on Qt 3.x
 x11/xscreensaver-kde||2013-07-26|Has expired: Depends on Qt 3.x
-x11/yakuake||2013-07-26|Has expired: Depends on Qt 3.x
 x11-clocks/kdetoys3||2013-07-26|Has expired: Depends on Qt 3.x
 x11-fm/krusader||2013-07-26|Has expired: Depends on Qt 3.x
 x11-themes/baghira||2013-07-26|Has expired: Depends on Qt 3.x
@@ -5863,7 +5854,6 @@ net/pcnfsd||2014-04-11|Has expired: Unmaintained since 1997
 cad/chipmunk||2014-04-11|Has expired: Unmaintained since 1999
 graphics/comix||2014-04-11|Has expired: Insists on installing in /usr/local, and uses nautilus2 which is deprecated
 www/mambo||2014-04-11|Has expired: Broken for more than 6 months
-devel/lua-rds-parser||2014-04-11|Has expired: Broken for more than 6 months
 japanese/exmh2||2014-04-11|Has expired: Unmaintained since 1999
 net/freewais-sf||2014-04-11|Has expired: Unmaintained since 1999
 editors/elvis||2014-04-11|Has expired: Unmaintained since 1999
@@ -7954,7 +7944,6 @@ devel/pyinstaller|devel/py-pyinstaller|2015-12-09|Add py- prefix to directory na
 math/why3-gpl|math/why3-spark|2015-12-10|Change why3 suffix (upstream request and for consistency)
 devel/py-memoryprofiler|devel/py-memory_profiler|2015-12-11|Rename to consistency with other Python ports
 print/py-cups|print/py-pycups|2015-12-11|Renamed to match upstream naming
-astro/py-metar|astro/py-pymetar|2015-12-11|Renamed to match upstream naming
 devel/jep|devel/py-jep|2015-12-11|Renamed to match upstream naming
 ftp/py-curl|ftp/py-pycurl|2015-12-13|Renamed to match upstream naming
 www/py-django-pipeline12||2015-12-15|Has expired: Django 1.4 extended support ended on 2015-10-01
@@ -8031,7 +8020,6 @@ www/jawstats||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/ojs2||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/webcalendar||2016-01-25|Has expired: PHP 5.4 EOL reached
 devel/i386-linux-binutils||2016-01-26|Not any usage in the ports tree
-devel/py-msgpack|devel/py-msgpack-python|2016-01-28|Renamed to match upstream naming
 www/xpi-bookmarkdd||2016-01-30|Has expired, incompatible with Firefox 34+
 databases/php5-redis||2016-01-30|Has expired: PHP 5.4 EOL reached, use databases/php55-redis or databases/php56-redis instead
 audio/linux-c6-pulseaudio-libs-glib2||2016-01-31|Integrated into audio/linux-c6-pulseaudio-libs
@@ -9965,7 +9953,6 @@ accessibility/kaccessible|accessibility/kaccessible-kde4|2018-02-22|Make room fo
 accessibility/jovie|accessibility/jovie-kde4|2018-02-22|Make room for KDE updates
 misc/libkdeedu|misc/libkdeedu-kde4|2018-02-22|Make room for KDE updates
 sysutils/kuser|sysutils/kuser-kde4|2018-02-22|Make room for KDE updates
-sysutils/sweeper|sysutils/sweeper-kde4|2018-02-22|Make room for KDE updates
 sysutils/nepomuk-widgets|sysutils/nepomuk-widgets-kde4|2018-02-22|Make room for KDE updates
 sysutils/nepomuk-core|sysutils/nepomuk-core-kde4|2018-02-22|Make room for KDE updates
 sysutils/baloo|sysutils/baloo-kde4|2018-02-22|Make room for KDE updates
@@ -9988,11 +9975,9 @@ x11/kgamma|x11/kgamma-kde4|2018-02-22|Make room for KDE updates
 x11/libkonq|x11/libkonq-kde4|2018-02-22|Make room for KDE updates
 deskutils/superkaramba|deskutils/superkaramba-kde4|2018-02-22|Make room for KDE updates
 deskutils/kdeplasma-addons|deskutils/kdeplasma-addons-kde4|2018-02-22|Make room for KDE updates
-multimedia/dragon|multimedia/dragon-kde4|2018-02-22|Make room for KDE updates
 games/pairs|games/pairs-kde4|2018-02-22|Make room for KDE updates
 audio/kio-audiocd|audio/kio-audiocd-kde4|2018-02-22|Make room for KDE updates
 audio/kscd|audio/kscd-kde4|2018-02-22|Make room for KDE updates
-astro/kstars|astro/kstars-kde4|2018-02-22|Make room for KDE updates
 comms/kremotecontrol|comms/kremotecontrol-kde4|2018-02-22|Make room for KDE updates
 graphics/ksnapshot|graphics/ksnapshot-kde4|2018-02-22|Make room for KDE updates
 graphics/ksaneplugin|graphics/ksaneplugin-kde4|2018-02-22|Make room for KDE updates
@@ -10105,7 +10090,6 @@ graphics/pfscalibration||2018-03-20|Deprecated: pfs-calibration is a part of pfs
 graphics/pfstmo||2018-03-20|Deprecated: pfstmo is a part of pfstools
 games/timeseal||2018-03-22|Has expired: Abandoned, outdated, requires COMPAT_43 kernel option which was removed from GENERIC in FreeBSD 7.0
 net-im/ktp-kded-integration-module|net-im/ktp-kded-integration-module-kde4|2018-03-23|Make room for KDE updates
-net-im/kde-telepathy|net-im/telepathy-kde4|2018-03-23|Make room for KDE updates
 net-im/plasma-applet-ktp|net-im/plasma-applet-ktp-kde4|2018-03-23|Make room for KDE updates
 multimedia/gmencoder||2018-03-23|Abandonware, does not support modern codecs
 mail/wanderlust-devel|mail/wanderlust|2018-03-23|Removed, use mail/wanderlust instead
@@ -10142,3 +10126,71 @@ textproc/elasticsearch-plugin-migration||2018-04-09|ElasticSearch 1.x End of Lif
 textproc/elasticsearch-plugin-sql||2018-04-09|ElasticSearch 1.x End of Life
 textproc/elasticsearch-river-rabbitmq||2018-04-09|ElasticSearch 1.x End of Life
 devel/libkgapi|devel/libkgapi-kde4|2018-04-11|Make room for KDE updates
+finance/libalkimia|finance/alkimia-qt4|2018-04-13|Project renamed
+security/py-zxcvbn-python|security/py-zxcvbn|2018-04-13|Renamed upstream
+devel/py-libusb115|devel/py-libusb1|2018-04-14|Unused and unmaintained upstream
+devel/qca-qt5|devel/qca@qt5|2018-04-14|Moved to a flavoured version
+devel/qjson-qt5|devel/qjson@qt5|2018-04-14|Moved to a flavoured version
+sysutils/polkit-qt5|sysutils/polkit-qt@qt5|2018-04-14|Moved to flavoured version
+multimedia/gstreamer1-qt4|multimedia/gstreamer1-qt@qt4|2018-04-14|Moved to a flavoured version
+multimedia/gstreamer1-qt5|multimedia/gstreamer1-qt@qt5|2018-04-14|Moved to a flavoured version
+www/mod_antiloris||2018-04-16|Apache 2.2 End of Life
+www/mod_auth_imap2||2018-04-16|Apache 2.2 End of Life
+www/mod_authn_sasl||2018-04-16|Apache 2.2 End of Life
+www/mod_bw||2018-04-16|Apache 2.2 End of Life
+www/mod_cband||2018-04-16|Apache 2.2 End of Life
+www/mod_clamav||2018-04-16|Apache 2.2 End of Life
+www/mod_extract_forwarded||2018-04-16|Apache 2.2 End of Life
+www/mod_hosts_access||2018-04-16|Apache 2.2 End of Life
+www/mod_log_config-st||2018-04-16|Apache 2.2 End of Life
+www/mod_log_mysql||2018-04-16|Apache 2.2 End of Life
+www/mod_log_sql2-dtc||2018-04-16|Apache 2.2 End of Life
+www/mod_macro22||2018-04-16|Apache 2.2 End of Life
+www/mod_musicindex||2018-04-16|Apache 2.2 End of Life
+www/mod_ntlm2||2018-04-16|Apache 2.2 End of Life
+www/mod_proxy_html||2018-04-16|Apache 2.2 End of Life
+www/mod_remoteip||2018-04-16|Apache 2.2 End of Life
+www/mod_spdy||2018-04-16|Apache 2.2 End of Life
+www/mod_uid||2018-04-16|Apache 2.2 End of Life
+www/mod_vhost_ldap||2018-04-16|Apache 2.2 End of Life
+www/mod_whatkilledus||2018-04-16|Apache 2.2 End of Life
+www/mod_xml2enc||2018-04-16|Apache 2.2 End of Life
+www/apache22||2018-04-16|Apache 2.2 End of Life
+www/mod_python33||2018-04-16|Apache 2.2 End of Life
+irc/xchat|irc/hexchat|2018-04-17|Has expired: Unmaintained upstream, use irc/hexchat instead
+irc/xchat-fish|irc/hexchat-fish|2018-04-17|Removed, master port irc/xchat expired
+irc/xchat-mircryption||2018-04-17|Removed, master port irc/xchat expired
+irc/xchat-ruby||2018-04-17|Removed, master port irc/xchat expired
+devel/subversion18|devel/subversion|2018-04-19|Has expired: EoL, use devel/subversion or devel/subversion19
+math/rkward-kde4|math/rkward-kde|2018-04-21|No more specific to KDE4
+devel/py-msgpack-python|devel/py-msgpack|2018-04-22|Upstream renamed package name on PyPI from msgpack-python to msgpack since 0.5
+deskutils/py-pycarddav|www/pycarddav|2018-04-23|Remove dupplicate port
+x11-toolkits/qwt6-designerplugin||2018-04-25|Merged with x11-toolkits/qwt6
+math/octave-forge-ocs||2018-04-25|Removed, depends on expired math/octave-forge-odepkg
+net/google-daemon|sysutils/py-google-compute-engine|2018-04-25|Has expired: Please use sysutils/py-google-compute-engine instead
+net/google-startup-scripts|sysutils/py-google-compute-engine|2018-04-25|Has expired: Please use sysutils/py-google-compute-engine instead
+math/octave-forge-odepkg||2018-04-25|Has expired, not a valid package for Octave version >= 4.2.1
+devel/kdevelop-php|devel/kdevelop-php-kde4|2018-04-28|Make room for KDevelop upgrade
+devel/kdevelop-php-docs|devel/kdevelop-php-docs-kde4|2018-04-28|Make room for KDevelop upgrade
+devel/kdevplatform|devel/kdevplatform-kde4|2018-04-28|Make room for KDevelop upgrade
+lang/py-clojure_py||2018-04-30|Has expired: Upstream disappeared and it does not build with latest setuptools (39.0.1)
+textproc/rubygem-escape_utils-rails4|textproc/rubygem-escape_utils|2018-04-30|Has expired: Use textproc/rubygem-escape_utils instead
+databases/rubygem-seed-fu236|databases/rubygem-seed-fu|2018-05-01|Has expired: Obsoleted by update of www/gitlab. Please use databases/rubygem-seed-fu
+security/polarssl13||2018-05-01|Has expired: has reached end of life
+devel/tesla||2018-05-06|Outdated and almost certainly unused
+devel/llvm39||2018-05-08|Obsolete, no remaining dependencies
+textproc/p5-Spork||2018-05-09|Removed, depends on expired www/p5-Kwiki
+www/p5-Kwiki||2018-05-09|Has expired: All www files wrongly belongs to www user
+x11-servers/x11rdp|x11-drivers/xorgxrdp|2018-05-13|Obsoleted by update of net/xrdp
+net-p2p/btsync|net-p2p/rslsync|2018-05-13|Renamed by the vendor
+net-im/licq-msn||2018-05-14|MSN Messenger service terminated 2017-05-19
+finance/gnucash@guile1||2018-05-14|Version 3.0 dropped guile1 support. Use unflavored finance/gnucash instead
+net-im/rubygem-earthquake||2018-05-15|Broken and unmaintained upstream
+security/rubygem-jugyo-twitter_oauth||2018-05-15|The only consumer of this port (net-im/rubygem-earthquake) has been removed
+sysutils/bareos-bat||2018-05-18|Removed, use sysutils/bareos-webui or install bareos16 ports
+www/p5-CGI_Lite|www/p5-CGI-Lite|2018-05-20|Rename to match upstream naming
+www/mod_proxy_uwsgi|www/apache24|2018-05-22|Module has been merged into Apache 2.4
+devel/p5-reaper|devel/p5-Reaper|2018-05-22|Rename to match upstream naming
+textproc/py-pyelasticsearch||2018-05-22|Has expired: Not depended upon anymore
+net/corosync|net/corosync2|2018-05-24|There are now multiple versions of corosync
+net/pacemaker|net/pacemaker1|2018-05-24|There are now multiple versions of pacemaker

@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	qemu
-PORTVERSION=	2.11.92
-PORTREVISION=	20180412
+PORTVERSION=	2.12.0
+PORTREVISION=	20180427
 CATEGORIES=	emulators
 PKGNAMESUFFIX=	-riscv
 
@@ -19,7 +19,7 @@ USES=	gmake libtool makeinfo pkgconfig python:2.7,build
 USE_HARDENING=	pie:off relro:off
 
 USE_GITHUB=	yes
-GH_TUPLE=	riscv:riscv-qemu:f733c7b \
+GH_TUPLE=	riscv:riscv-qemu:ad8989a \
 		qemu:dtc:e543880:dtc/dtc \
 		qemu:keycodemapdb:6b3d716:keycodemapdb/ui/keycodemapdb
 

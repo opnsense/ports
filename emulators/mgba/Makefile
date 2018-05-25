@@ -2,8 +2,11 @@
 
 PORTNAME=	mgba
 DISTVERSION=	0.6.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	emulators
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES=	a7a51a11373f.patch:-p1
 
 MAINTAINER=	greg@unrelenting.technology
 COMMENT=	Game Boy Advance (GBA) emulator/debugger

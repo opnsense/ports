@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME?=	wireshark
-PORTVERSION=	2.4.6
+PORTVERSION=	2.6.0
 PORTREVISION?=	0
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.wireshark.org/download/src/ \
@@ -51,7 +51,7 @@ CFLAGS+=	-funit-at-a-time
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 .for x in capinfos editcap mergecap rawshark text2pcap dftest randpkt \
-    reordercap captype randpktdump udpdump sharkd
+    reordercap captype randpktdump udpdump sharkd dumpcap
 .if defined(LITE)
 PKGNAMESUFFIX=		-lite
 PLIST_SUB+=		${x:tu}="@comment $x not installed" \
@@ -105,7 +105,7 @@ DECRYPT_LIB_DEPENDS=	libgnutls.so:security/gnutls \
 			libgcrypt.so:security/libgcrypt
 
 KRB_NONE_CONFIGURE_ON=	--without-krb5
-KRB_NONE_CONFIGURE_OFF=	--with-krb5
+KRB_NONE_CONFIGURE_OFF=	--with-krb5 --with-krb5-crypto-openssl
 KRB_NONE_CONFIGURE_ENV_OFF=	KRB5_CONFIG=${KRB5CONFIG}
 
 GTK2_CONFIGURE_ON=	--with-gtk=2 --with-qt=no

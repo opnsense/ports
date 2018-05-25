@@ -3,7 +3,7 @@
 
 PORTNAME=	lensfun
 DISTVERSION=	0.2.4-dev
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics
 PKGNAMEPREFIX=	gimp-
 PKGNAMESUFFIX=	-plugin
@@ -18,8 +18,6 @@ BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/exiv2.pc:graphics/exiv2 \
 		${LOCALBASE}/libdata/pkgconfig/gimp-2.0.pc:graphics/gimp-app \
 		${LOCALBASE}/libdata/pkgconfig/lensfun.pc:graphics/lensfun
 RUN_DEPENDS:=	${BUILD_DEPENDS}
-
-USE_HARDENING=	safestack
 
 USES=		gmake pkgconfig
 

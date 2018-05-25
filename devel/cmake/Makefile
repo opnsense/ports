@@ -3,7 +3,7 @@
 
 PORTNAME=	cmake
 # Remember to update devel/cmake-doc and devel/cmake-gui as well.
-DISTVERSION=	3.10.2
+DISTVERSION=	3.11.2
 CATEGORIES=	devel
 MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 
@@ -35,7 +35,7 @@ OPTIONS_DEFAULT=MANPAGES
 OPTIONS_SUB=	yes
 
 MANPAGES_USES=		python:env
-MANPAGES_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx@${PY_FLAVOR}
+MANPAGES_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sphinx>0:textproc/py-sphinx@${PY_FLAVOR}
 MANPAGES_CONFIGURE_ON=	--sphinx-man
 
 CONFLICTS_INSTALL=	cmake-modules-*

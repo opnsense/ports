@@ -3,7 +3,7 @@
 
 PORTNAME=	aqsis
 PORTVERSION=	1.8.2
-PORTREVISION=	17
+PORTREVISION=	18
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}-source/${PORTVERSION}
 
@@ -22,6 +22,7 @@ RUN_DEPENDS=	bash:shells/bash
 
 BROKEN_sparc64=	Fails to build: cannot link with boost
 
+LDFLAGS+=	-lpthread # Boost.Thread 1.67+
 LDFLAGS+=	-L${LOCALBASE}/lib
 
 USE_LDCONFIG=	yes

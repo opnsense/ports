@@ -46,6 +46,7 @@
     SUBDIR += cmucl
     SUBDIR += cmucl-extra
     SUBDIR += cocor
+    SUBDIR += coffeescript
     SUBDIR += cparser
     SUBDIR += crystal
     SUBDIR += csharp-mode.el
@@ -56,6 +57,7 @@
     SUBDIR += dmd1
     SUBDIR += dmd2
     SUBDIR += duktape
+    SUBDIR += duktape-lib
     SUBDIR += ecl
     SUBDIR += elan
     SUBDIR += elixir
@@ -107,6 +109,7 @@
     SUBDIR += gcc7
     SUBDIR += gcc7-devel
     SUBDIR += gcc8-devel
+    SUBDIR += gcc9-devel
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += gjs
@@ -251,6 +254,7 @@
     SUBDIR += perl5.22
     SUBDIR += perl5.24
     SUBDIR += perl5.26
+    SUBDIR += perl5.28
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += phantomjs
@@ -272,7 +276,6 @@
     SUBDIR += ponyc
     SUBDIR += ptoc
     SUBDIR += pure
-    SUBDIR += py-clojure_py
     SUBDIR += py-hy
     SUBDIR += py-mx-base
     SUBDIR += py-prolog
@@ -342,6 +345,7 @@
     SUBDIR += spidermonkey185
     SUBDIR += spidermonkey24
     SUBDIR += spidermonkey38
+    SUBDIR += spidermonkey52
     SUBDIR += spl
     SUBDIR += squeak
     SUBDIR += squirrel
