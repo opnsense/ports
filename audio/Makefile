@@ -33,6 +33,7 @@
     SUBDIR += ardour5
     SUBDIR += ario
     SUBDIR += arss
+    SUBDIR += artyfx-lv2
     SUBDIR += ascd
     SUBDIR += asmix
     SUBDIR += asmixer
@@ -143,6 +144,7 @@
     SUBDIR += ezstream
     SUBDIR += faac
     SUBDIR += faad
+    SUBDIR += fabla2-lv2
     SUBDIR += fapg
     SUBDIR += faust
     SUBDIR += fcplay
@@ -913,6 +915,7 @@
     SUBDIR += xwave
     SUBDIR += yell
     SUBDIR += yoshimi
+    SUBDIR += zam-plugins-lv2
     SUBDIR += zinf
     SUBDIR += zita-convolver
     SUBDIR += zita-resampler
