@@ -2,7 +2,7 @@
 
 PORTNAME=	ppsspp
 DISTVERSIONPREFIX=	v
-DISTVERSION?=	1.6
+DISTVERSION?=	1.6.1
 PORTREVISION?=	0
 CATEGORIES=	emulators
 # XXX Get from Debian once #697821 lands
@@ -36,7 +36,6 @@ EXTRACT_AFTER_ARGS=${EXCLUDE:S,^,--exclude ,}
 USE_GL=		gl glew glu
 USE_SDL=	sdl2 # joystick
 CMAKE_ON=	USE_SYSTEM_FFMPEG USE_SYSTEM_LIBZIP
-CMAKE_OFF=	USING_EGL
 SUB_FILES=	pkg-message
 PORTDATA=	assets ${PORTNAME}
 

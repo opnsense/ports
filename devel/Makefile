@@ -1263,6 +1263,7 @@
     SUBDIR += kaptain
     SUBDIR += kcachegrind
     SUBDIR += kcachegrind-kde4
+    SUBDIR += kcov
     SUBDIR += kdbg
     SUBDIR += kde-dev-scripts
     SUBDIR += kde-dev-scripts-kde4
@@ -4824,6 +4825,7 @@
     SUBDIR += py-pyface
     SUBDIR += py-pyfcm
     SUBDIR += py-pyflakes
+    SUBDIR += py-pyformance
     SUBDIR += py-pygdbmi
     SUBDIR += py-pygit2
     SUBDIR += py-pygithub
