@@ -202,7 +202,7 @@ XPM_USE=		XORG=xpm
 XPM_CONFIGURE_WITH=	xpm
 XWIDGETS_USE=		XORG=xcomposite
 XWIDGETS_CONFIGURE_WITH=	xwidgets
-XWIDGETS_LIB_DEPENDS=	libwebkitgtk-3.0.so:www/webkit-gtk3
+XWIDGETS_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3
 XWIDGETS_IMPLIES=	GTK3
 
 EMACS_VER=		26.1
@@ -212,6 +212,11 @@ EMACS_VER=		26.1
 # has graphics/ImageMagick been compiled with OPENMP?
 .if ${PORT_OPTIONS:MMAGICK} && ${:!${GREP} -sc " \-fopenmp " ${LOCALBASE}/libdata/pkgconfig/ImageMagick.pc || true!} == "1"
 USES+=	compiler:openmp
+.endif
+
+.if !${PORT_OPTIONS:MGTK2} && !${PORT_OPTIONS:MGTK3} && !${PORT_OPTIONS:MMOTIF} \
+	&& !${PORT_OPTIONS:MXAW} && !${PORT_OPTIONS:MXAW3D}
+CONFIGURE_ARGS+=	--with-x-toolkit=no
 .endif
 
 .if ${FLAVOR} == nox
