@@ -381,11 +381,6 @@
     SUBDIR += kf5-kcodecs
     SUBDIR += kf5-sonnet
     SUBDIR += kf5-syntax-highlighting
-    SUBDIR += kibana3
-    SUBDIR += kibana41
-    SUBDIR += kibana43
-    SUBDIR += kibana44
-    SUBDIR += kibana45
     SUBDIR += kibana46
     SUBDIR += kibana5
     SUBDIR += kibana5-search-guard
@@ -704,6 +699,7 @@
     SUBDIR += p5-PPI-HTML
     SUBDIR += p5-PPI-XS
     SUBDIR += p5-PPIx-EditorTools
+    SUBDIR += p5-PPIx-QuoteLike
     SUBDIR += p5-PPIx-Regexp
     SUBDIR += p5-PPIx-Utilities
     SUBDIR += p5-Parse-BooleanLogic
@@ -1528,7 +1524,6 @@
     SUBDIR += rubygem-gemoji
     SUBDIR += rubygem-gherkin
     SUBDIR += rubygem-github-linguist
-    SUBDIR += rubygem-github-linguist47
     SUBDIR += rubygem-github-linguist53
     SUBDIR += rubygem-github-markup
     SUBDIR += rubygem-gitlab-grit
@@ -1564,7 +1559,6 @@
     SUBDIR += rubygem-liquid-tag-parser
     SUBDIR += rubygem-loggability
     SUBDIR += rubygem-loofah
-    SUBDIR += rubygem-loofah20
     SUBDIR += rubygem-ltsv
     SUBDIR += rubygem-markaby
     SUBDIR += rubygem-multi_xml

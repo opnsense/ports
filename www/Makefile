@@ -524,7 +524,6 @@
     SUBDIR += nginx-naxsi
     SUBDIR += nibbleblog
     SUBDIR += node
-    SUBDIR += node4
     SUBDIR += node6
     SUBDIR += node8
     SUBDIR += nostromo
@@ -534,7 +533,6 @@
     SUBDIR += npapi-xine
     SUBDIR += npc
     SUBDIR += npm
-    SUBDIR += npm-node4
     SUBDIR += npm-node6
     SUBDIR += npm-node8
     SUBDIR += nspluginwrapper
