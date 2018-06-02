@@ -74,9 +74,9 @@ parse_plist() {
 		@info\ *|@shell\ *|@xmlcatmgr\ *)
 			set -- $line
 			shift
-			case "$@" in
-			/*) echo "${comment}$@" ;;
-			*) echo "${comment}${cwd}/$@" ;;
+			case "$*" in
+			/*) echo "${comment}$*" ;;
+			*) echo "${comment}${cwd}/$*" ;;
 			esac
 		;;
 		@sample\ *)
@@ -103,12 +103,12 @@ parse_plist() {
 		@fc\ *|@fcfontsdir\ *|@fontsdir\ *)
 			set -- $line
 			shift
-			case "$@" in
+			case "$*" in
 			/*)
-			echo >&3 "${comment}$@"
+			echo >&3 "${comment}$*"
 			;;
 			*)
-			echo >&3 "${comment}${cwd}/$@"
+			echo >&3 "${comment}${cwd}/$*"
 			;;
 			esac
 		;;
@@ -160,7 +160,7 @@ validate_env() {
 }
 
 export_ports_env() {
-	local export_vars make_cmd make_env var results value uses
+	local export_vars make_cmd make_env var value uses
 
 	if [ -n "${HAVE_PORTS_ENV:-}" ]; then
 		return 0
@@ -197,6 +197,8 @@ export_ports_env() {
 		value="$(eval echo \$${var})"
 
 		if [ -n "${value}" ]; then
+			# shellcheck disable=SC2163
+			# We want to export the variable which name is in var.
 			export ${var}
 			echo "export ${var}=\"${value}\""
 		fi

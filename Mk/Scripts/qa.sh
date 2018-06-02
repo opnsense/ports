@@ -13,15 +13,15 @@ LF=$(printf '\nX')
 LF=${LF%X}
 
 notice() {
-	echo "Notice: $@" >&2
+	echo "Notice: $*" >&2
 }
 
 warn() {
-	echo "Warning: $@" >&2
+	echo "Warning: $*" >&2
 }
 
 err() {
-	echo "Error: $@" >&2
+	echo "Error: $*" >&2
 }
 
 list_stagedir_elfs() {
@@ -31,7 +31,7 @@ list_stagedir_elfs() {
 shebangonefile() {
 	local f interp interparg badinterp rc
 
-	f="$@"
+	f="$*"
 	rc=0
 
 	# whitelist some files
@@ -248,9 +248,9 @@ sharedmimeinfo() {
 suidfiles() {
 	local filelist
 
-	filelist=`find ${STAGEDIR} -type f \
+	filelist=$(find ${STAGEDIR} -type f \
 		\( -perm -u+x -or -perm -g+x -or -perm -o+x \) \
-		\( -perm -u+s -or -perm -g+s \)`
+		\( -perm -u+s -or -perm -g+s \))
 	if [ -n "${filelist}" ]; then
 		warn "setuid files in the stage directory (are these necessary?):"
 		ls -liTd ${filelist}
@@ -278,12 +278,12 @@ libperl() {
 			# No results presents a blank line from heredoc.
 			[ -z "${f}" ] && continue
 			files=$((files+1))
-			found=`readelf -d ${f} | awk "BEGIN {libperl=1; rpath=10; runpath=100}
+			found=$(readelf -d ${f} | awk "BEGIN {libperl=1; rpath=10; runpath=100}
 				/NEEDED.*${LIBPERL}/  { libperl = 0 }
 				/RPATH.*perl.*CORE/   { rpath   = 0 }
 				/RUNPATH.*perl.*CORE/ { runpath = 0 }
 				END {print libperl+rpath+runpath}
-				"`
+				")
 			case "${found}" in
 				*1)
 					warn "${f} is not linked with ${LIBPERL}, not respecting lddlflags?"
@@ -657,7 +657,7 @@ proxydeps() {
 			if listcontains ${dep_file} "${already}"; then
 				continue
 			fi
-			if $(pkg which -q ${dep_file} > /dev/null 2>&1); then
+			if pkg which -q ${dep_file} > /dev/null 2>&1; then
 				dep_file_pkg=$(pkg which -qo ${dep_file})
 
 				# Check that the .so we need has a SONAME
@@ -818,6 +818,9 @@ gemdeps()
 {
 	rc=0
 	if [ "${PKGBASE%%-*}" = "rubygem" ]; then
+		# shellcheck disable=SC2153
+		# In the heredoc, ${PORTNAME} comes from the environment, not
+		# to be confused with ${portname}
 		while read -r l; do
 			if [ -n "${l}" ]; then
 				name=${l%% *}
@@ -917,7 +920,7 @@ checks="$checks suidfiles libtool libperl prefixvar baselibs terminfo"
 checks="$checks proxydeps sonames perlcore no_arch gemdeps gemfiledeps flavors"
 
 ret=0
-cd ${STAGEDIR}
+cd ${STAGEDIR} || exit 1
 for check in ${checks}; do
 	${check} || ret=1
 done
