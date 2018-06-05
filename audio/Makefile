@@ -57,12 +57,14 @@
     SUBDIR += baresip
     SUBDIR += baudline
     SUBDIR += bcg729
+    SUBDIR += beatslash-lv2
     SUBDIR += beep
     SUBDIR += beets
     SUBDIR += blop
     SUBDIR += blop-lv2
     SUBDIR += boodler
     SUBDIR += bristol
+    SUBDIR += bs2b-lv2
     SUBDIR += calf-lv2
     SUBDIR += cam
     SUBDIR += cantata
@@ -317,6 +319,7 @@
     SUBDIR += gtkpod
     SUBDIR += gtmixer
     SUBDIR += guidolib
+    SUBDIR += guitarix-lv2
     SUBDIR += guspat
     SUBDIR += gvolwheel
     SUBDIR += gxmms2
@@ -726,6 +729,7 @@
     SUBDIR += rioutil
     SUBDIR += ripit
     SUBDIR += ripperx
+    SUBDIR += rkr-lv2
     SUBDIR += rosegarden
     SUBDIR += rplay
     SUBDIR += rsynth

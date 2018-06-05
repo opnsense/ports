@@ -203,6 +203,7 @@
     SUBDIR += container-diff
     SUBDIR += contractor
     SUBDIR += copytape
+    SUBDIR += coreos-ct
     SUBDIR += coreutils
     SUBDIR += cotty
     SUBDIR += cpdup
@@ -1231,6 +1232,7 @@
     SUBDIR += syslog-ng312
     SUBDIR += syslog-ng313
     SUBDIR += syslog-ng314
+    SUBDIR += syslog-ng315
     SUBDIR += syslog-ng36
     SUBDIR += syslog-ng37
     SUBDIR += syslog-ng39

@@ -19,7 +19,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 
 USE_HARDENING=	cfi safestack
 
-USES=		cpe desktop-file-utils gmake localbase:ldflags \
+USES=		compiler:c++11-lang cpe desktop-file-utils gmake localbase:ldflags \
 		perl5 shebangfix tar:bzip2
 SHEBANG_FILES=	cam/feh-cam
 USE_XORG=	x11 xt xinerama

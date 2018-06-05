@@ -916,6 +916,7 @@
     SUBDIR += py-opencv
     SUBDIR += py-openexr
     SUBDIR += py-openimageio
+    SUBDIR += py-OWSLib
     SUBDIR += py-paint
     SUBDIR += py-photocollage
     SUBDIR += py-pillow
@@ -1052,6 +1053,7 @@
     SUBDIR += simage
     SUBDIR += simpleviewer
     SUBDIR += sk1libs
+    SUBDIR += skanlite
     SUBDIR += skanlite-kde4
     SUBDIR += smillaenlarger
     SUBDIR += spectacle
