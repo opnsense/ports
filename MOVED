@@ -10093,7 +10093,6 @@ net-im/ktp-kded-integration-module|net-im/ktp-kded-integration-module-kde4|2018-
 net-im/plasma-applet-ktp|net-im/plasma-applet-ktp-kde4|2018-03-23|Make room for KDE updates
 multimedia/gmencoder||2018-03-23|Abandonware, does not support modern codecs
 mail/wanderlust-devel|mail/wanderlust|2018-03-23|Removed, use mail/wanderlust instead
-graphics/skanlite|graphics/skanlite-kde4|2018-03-25|Make room for KDE updates
 lang/x10||2018-03-25|Has expired: Broken for more than 6 months
 science/siril|astro/siril|2018-03-25|Moved to a more appropriate category
 net/samba44|net/samba45|2018-03-26|Has expired: unsupported upstream
@@ -10199,7 +10198,7 @@ editors/lazarus-lcl-nogui||2018-05-25|Removed, no longer needed
 editors/lazarus-lcl-qt|editors/lazarus-qt4|2018-05-25|Removed, no longer needed
 editors/lazarus-lcl-qt5|editors/lazarus-qt5|2018-05-25|Removed, no longer needed
 editors/lazarus-lcl-units||2018-05-25|Removed, no longer needed
-net/bird-devel|net/bird2|2018-05-25|There are now muliple versions of bird
+net/bird-devel|net/bird2|2018-05-25|There are now multiple versions of bird
 devel/hs-BNFC||2018-05-25|Removed, no longer supported
 graphics/hs-HGL||2018-05-25|Removed, no longer supported
 devel/hs-DrIFT||2018-05-25|Removed, no longer supported
@@ -10222,3 +10221,5 @@ textproc/kibana43||2018-06-01|Has expired: End of Life was 2017-05-24, depends o
 textproc/kibana44||2018-06-01|Has expired: End of Life was 2017-08-02, depends on expired www/node4
 textproc/kibana45||2018-06-01|Has expired: End of Life was 2017-09-30, depends on expired www/node4
 www/node4|www/node|2018-06-01|Has expired: Node.js v4.x reaches end-of-life on 2018-04-30, see https://github.com/nodejs/Release
+net/frr|net/frr4|2018-06-02|Will introduce multiple versions of frr
+lang/perl5.22|lang/perl5.26|2018-06-02|Has expired: Support ends three years after .0 release, please upgrade to a more recent version of Perl

@@ -47,7 +47,7 @@ GCC_DEFAULT?=		6
 # Possible values: 7, 8, 9, agpl
 GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: 1.8.2
-LAZARUS_DEFAULT?=	1.8.2
+LAZARUS_DEFAULT?=	1.8.4
 .if ${ARCH} == amd64
 # Possible values: c6, c6_64, c7
 LINUX_DEFAULT?=		c6_64
@@ -59,7 +59,7 @@ LINUX_DEFAULT?=		c6
 LUA_DEFAULT?=		5.2
 # Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 5.5p, 5.6p, 5.7p, 5.6w
 MYSQL_DEFAULT?=		5.6
-# Possible values: 5.22, 5.24, 5.26, 5.28, devel
+# Possible values: 5.24, 5.26, 5.28, devel
 .if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
 PERL5_DEFAULT?=		5.26
