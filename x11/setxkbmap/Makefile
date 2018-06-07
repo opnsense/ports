@@ -7,6 +7,9 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Set the keyboard using the X Keyboard Extension
 
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
+
 USE_HARDENING=	safestack
 
 XORG_CAT=	app

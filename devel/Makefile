@@ -116,6 +116,7 @@
     SUBDIR += appstream-glib
     SUBDIR += apr1
     SUBDIR += apr2
+    SUBDIR += arachne-pnr
     SUBDIR += arcanist
     SUBDIR += arduino
     SUBDIR += arduino-avrdude
@@ -1207,6 +1208,7 @@
     SUBDIR += hwloc
     SUBDIR += hyperscan
     SUBDIR += ice
+    SUBDIR += icestorm
     SUBDIR += icmake
     SUBDIR += icu
     SUBDIR += icu-le-hb
@@ -1325,6 +1327,9 @@
     SUBDIR += kyra
     SUBDIR += kyua
     SUBDIR += lasi
+    SUBDIR += lattice-ice40-examples-hx1k
+    SUBDIR += lattice-ice40-examples-hx8k
+    SUBDIR += lattice-ice40-tools
     SUBDIR += lcov
     SUBDIR += leaktracer
     SUBDIR += leatherman
@@ -6103,7 +6108,6 @@
     SUBDIR += subcommander2
     SUBDIR += subversion
     SUBDIR += subversion-book
-    SUBDIR += subversion-static
     SUBDIR += subversion19
     SUBDIR += subversive
     SUBDIR += svk
@@ -6244,6 +6248,7 @@
     SUBDIR += yaml2argdata
     SUBDIR += yasm
     SUBDIR += yasm-devel
+    SUBDIR += yosys
     SUBDIR += youcompleteme
     SUBDIR += z80-asm
     SUBDIR += z80asm
