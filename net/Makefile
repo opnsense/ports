@@ -423,6 +423,7 @@
     SUBDIR += libsignal
     SUBDIR += libsocket++
     SUBDIR += libsrtp
+    SUBDIR += libsrtp2
     SUBDIR += libstorj
     SUBDIR += libtnl
     SUBDIR += libtrace
@@ -486,6 +487,7 @@
     SUBDIR += mpich
     SUBDIR += mpich2
     SUBDIR += mping
+    SUBDIR += mptsd
     SUBDIR += mrouted
     SUBDIR += msend
     SUBDIR += mtr

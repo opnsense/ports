@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	node
-PORTVERSION=	10.3.0
+PORTVERSION=	10.4.0
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
@@ -12,6 +12,7 @@ COMMENT=	V8 JavaScript for client and server
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_powerpc64=	fails to build: KeyError: 'action'
 ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
 
 

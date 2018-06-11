@@ -172,6 +172,7 @@
     SUBDIR += drgeo
     SUBDIR += dynare
     SUBDIR += e
+    SUBDIR += ecos
     SUBDIR += edenmath
     SUBDIR += eigen2
     SUBDIR += eigen3
@@ -691,6 +692,7 @@
     SUBDIR += py-pandas
     SUBDIR += py-pandas-datareader
     SUBDIR += py-patsy
+    SUBDIR += py-petsc4py
     SUBDIR += py-piranha
     SUBDIR += py-plastex
     SUBDIR += py-probstat
@@ -762,7 +764,6 @@
     SUBDIR += sc-im
     SUBDIR += scalapack
     SUBDIR += scilab
-    SUBDIR += scilab-toolbox-sivp
     SUBDIR += scilab-toolbox-swt
     SUBDIR += sdpa
     SUBDIR += sdpara

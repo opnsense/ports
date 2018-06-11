@@ -626,6 +626,7 @@
     SUBDIR += lscpu
     SUBDIR += lsof
     SUBDIR += lsop
+    SUBDIR += lsyncd
     SUBDIR += ltrace
     SUBDIR += lttng-tools
     SUBDIR += lttng-ust
@@ -1384,6 +1385,7 @@
     SUBDIR += whatpix
     SUBDIR += whowatch
     SUBDIR += wiimms
+    SUBDIR += wimlib
     SUBDIR += wmapmload
     SUBDIR += wmbluecpu
     SUBDIR += wmbsdbatt

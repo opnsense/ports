@@ -13,8 +13,7 @@ COMMENT=	IP routing protocol suite including BGP, IS-IS, OSPF and RIP
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	gawk:lang/gawk \
-				python:lang/python
+BUILD_DEPENDS=	gawk:lang/gawk
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
 CONFLICTS=	openbgpd openospfd zebra quagga frr3
@@ -26,7 +25,7 @@ USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		autoreconf bison gmake pkgconfig libtool makeinfo readline
+USES=		autoreconf bison gmake pkgconfig libtool makeinfo python:build readline
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
