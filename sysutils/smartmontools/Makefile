@@ -19,7 +19,7 @@ USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	DOCS
 
-USES=		alias gmake shebangfix
+USES=		alias compiler:c++11-lib gmake shebangfix
 SHEBANG_FILES=	examplescripts/Example5
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-dependency-tracking \
