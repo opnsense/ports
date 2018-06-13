@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
+MAKE_JOBS_UNSAFE=yes
+
 USES=		autoreconf compiler:c++11-lang libtool pathfix pkgconfig
 CONFIGURE_ARGS=	--with-pic
 CPPFLAGS+=	-I${LOCALBASE}/include/json-c
