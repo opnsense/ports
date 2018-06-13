@@ -20,6 +20,7 @@ GH_PROJECT=	secadm
 
 .if !defined(KMOD)
 LIBDIR?=	${PREFIX}/lib
+MAKE_ENV+=	LIBDIR=${LIBDIR}
 .endif
 
 MAKE_JOBS_UNSAFE=	yes
