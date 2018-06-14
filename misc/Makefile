@@ -408,6 +408,9 @@
     SUBDIR += py-emoji
     SUBDIR += py-fuzzy
     SUBDIR += py-glance
+    SUBDIR += py-orange3-datafusion
+    SUBDIR += py-orange3-educational
+    SUBDIR += py-orange3-timeseries
     SUBDIR += py-osd
     SUBDIR += py-palettable
     SUBDIR += py-pexpect
@@ -422,6 +425,7 @@
     SUBDIR += py-qt4-demo
     SUBDIR += py-qt4-doc
     SUBDIR += py-qt5-demo
+    SUBDIR += py-scikit-fusion
     SUBDIR += py-serverfiles
     SUBDIR += py-socli
     SUBDIR += py-spdx
