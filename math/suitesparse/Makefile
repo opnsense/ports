@@ -19,6 +19,8 @@ LIB_DEPENDS=	libmetis.so:math/metis \
 USES=		compiler:openmp fortran gmake
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	retpoline:off
+
 WRKSRC=		${WRKDIR}/SuiteSparse
 WRKSRC_SHARED=	${WRKSRC}_shared
 

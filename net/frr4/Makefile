@@ -25,7 +25,7 @@ USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		autoreconf bison gmake pkgconfig libtool makeinfo python:build readline
+USES=		autoreconf bison gmake pkgconfig libtool makeinfo python:2.7,build readline
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes

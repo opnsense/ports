@@ -48,6 +48,7 @@
     SUBDIR += crf++
     SUBDIR += dcl
     SUBDIR += devisor
+    SUBDIR += dft_tools
     SUBDIR += dkh
     SUBDIR += dlib-cpp
     SUBDIR += dlpoly-classic
@@ -227,6 +228,7 @@
     SUBDIR += svmlight
     SUBDIR += szip
     SUBDIR += tfel
+    SUBDIR += triqs
     SUBDIR += udunits
     SUBDIR += v_sim
     SUBDIR += vmd

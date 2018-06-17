@@ -990,6 +990,7 @@
     SUBDIR += py-pyclamd
     SUBDIR += py-pycrypto
     SUBDIR += py-pycryptodome
+    SUBDIR += py-pycryptodomex
     SUBDIR += py-pycryptopp
     SUBDIR += py-pydeep
     SUBDIR += py-pyelliptic
