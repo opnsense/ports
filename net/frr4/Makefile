@@ -23,9 +23,9 @@ CONFLICTS=	openbgpd openospfd zebra quagga frr3
 # on these internal library plugins:
 USE_HARDENING=	safestack
 
+USES=		autoreconf bison compiler:c++11-lang gmake pkgconfig libtool makeinfo readline
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
-USES=		autoreconf bison gmake pkgconfig libtool makeinfo python:2.7,build readline
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
