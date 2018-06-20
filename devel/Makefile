@@ -3338,6 +3338,7 @@
     SUBDIR += p5-Scalar-String
     SUBDIR += p5-Scalar-Util-LooksLikeNumber
     SUBDIR += p5-Scalar-Util-Numeric
+    SUBDIR += p5-Scope-Container
     SUBDIR += p5-Scope-Guard
     SUBDIR += p5-Scope-Upper
     SUBDIR += p5-Script-isAperlScript
@@ -3611,6 +3612,7 @@
     SUBDIR += p5-Test-Timer
     SUBDIR += p5-Test-TinyMocker
     SUBDIR += p5-Test-Trap
+    SUBDIR += p5-Test-UNIXSock
     SUBDIR += p5-Test-Unit
     SUBDIR += p5-Test-UseAllModules
     SUBDIR += p5-Test-Version
@@ -5052,6 +5054,7 @@
     SUBDIR += py-testinfra
     SUBDIR += py-testoob
     SUBDIR += py-testpath
+    SUBDIR += py-testrepository
     SUBDIR += py-testresources
     SUBDIR += py-testscenarios
     SUBDIR += py-testtools

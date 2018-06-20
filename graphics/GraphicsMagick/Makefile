@@ -28,6 +28,8 @@ TEST_TARGET=	check
 USE_LDCONFIG=	yes
 USES=		libtool localbase pathfix tar:bzip2
 
+USE_HARDENING=	retpoline:off
+
 # Use fonts installed by x11-fonts/webfonts by default
 WINDOWS_FONT_DIR?=	${LOCALBASE}/share/fonts/webfonts
 
