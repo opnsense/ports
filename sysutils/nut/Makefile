@@ -107,11 +107,11 @@ PLIST_SUB+=	NUT_SNMP="@comment "
 
 .if ${PORT_OPTIONS:MNEON}
 LIB_DEPENDS+=	libneon.so:www/neon
-CONFIGURE_ARGS+=	--with-neonxml
+CONFIGURE_ARGS+=	--with-neon
 PLIST_SUB+=	NUT_NEON=""
 .else
-CONFIGURE_ARGS+=	--without-neonxml
-CONFIGURE_ARGS+=	--disable-neonxml
+CONFIGURE_ARGS+=	--without-neon
+CONFIGURE_ARGS+=	--disable-neon
 PLIST_SUB+=	NUT_NEON="@comment "
 .endif
 
