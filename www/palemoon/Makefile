@@ -27,6 +27,7 @@ GH_ACCOUNT=	MoonchildProductions
 GH_PROJECT=	Pale-Moon
 
 USE_GECKO=	gecko
+USE_HARDENING=	pie:off
 MOZ_PKGCONFIG_FILES=	# empty
 USE_MOZILLA=	-soundtouch
 

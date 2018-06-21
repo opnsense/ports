@@ -9,7 +9,7 @@
 -CFLAGS=-Wall -Wno-missing-braces -ggdb -I$(ROOT) -I$(ROOT)/include -I$(ROOT)/kern -c -I$(X11)/include -D_THREAD_SAFE $(PTHREAD) -O2
 +X11=$(LOCALBASE)
 +CC?=cc
-+CFLAGS=-Wall -Wno-missing-braces -I$(ROOT) -I$(ROOT)/include -I$(ROOT)/kern -c -I$(X11)/include -D_THREAD_SAFE $(PTHREAD)
++CFLAGS+=-Wall -fPIC -Wno-missing-braces -I$(ROOT) -I$(ROOT)/include -I$(ROOT)/kern -c -I$(X11)/include -D_THREAD_SAFE $(PTHREAD)
  O=o
  OS=posix
  GUI=x11

@@ -10,6 +10,8 @@ COMMENT=	Portable OpenBSD Korn shell
 
 LICENSE=	PD
 
+USE_HARDENING=	cfi safestack
+
 HAS_CONFIGURE=	yes
 
 do-install:

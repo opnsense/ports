@@ -7,8 +7,7 @@ CATEGORIES=	www devel python
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Python bindings for the Qt5 toolkit, QtWebKit module
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sip>=${SIP_VERSION}:devel/py-sip@${FLAVOR}
-RUN_DEPENDS=	${PKGNAMEPREFIX}gui>=${PYQT5_VERSION}:x11-toolkits/py-qt5-gui@${FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sip>=${SIP_VERSION}:devel/py-sip@${PY_FLAVOR}
 
 CONFIGURE_ARGS=	--enable QtWebKit
 PYQT_DIST=	yes
