@@ -1337,6 +1337,7 @@
     SUBDIR += py-parso
     SUBDIR += py-pdfminer
     SUBDIR += py-pdfminer3k
+    SUBDIR += py-pdfrw
     SUBDIR += py-pss
     SUBDIR += py-pyPEG2
     SUBDIR += py-pyctpp2
@@ -1388,6 +1389,7 @@
     SUBDIR += py-sphinxcontrib-bitbucket
     SUBDIR += py-sphinxcontrib-fulltoc
     SUBDIR += py-sphinxcontrib-httpdomain
+    SUBDIR += py-sphinxcontrib-newsfeed
     SUBDIR += py-sphinxcontrib-programoutput
     SUBDIR += py-sphinxcontrib-websupport
     SUBDIR += py-stemming
@@ -1522,6 +1524,7 @@
     SUBDIR += rubygem-github-linguist
     SUBDIR += rubygem-github-linguist53
     SUBDIR += rubygem-github-markup
+    SUBDIR += rubygem-github-markup16
     SUBDIR += rubygem-gitlab-grit
     SUBDIR += rubygem-gitlab-linguist
     SUBDIR += rubygem-gitlab-markup
