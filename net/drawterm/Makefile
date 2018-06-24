@@ -14,6 +14,7 @@ COMMENT=	Plan9 cpu client
 LICENSE=	MIT
 
 USES=	tar:tgz
+USE_HARDENING=	cfi safestack
 USE_XORG=	x11 xt
 
 PLIST_FILES=	bin/drawterm

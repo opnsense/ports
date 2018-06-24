@@ -8,7 +8,7 @@ DISTVERSIONPREFIX=	v
 CATEGORIES=	science python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	amutu@amutu.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Computation using data flow graphs for scalable machine learning
 
 LICENSE=	APACHE20

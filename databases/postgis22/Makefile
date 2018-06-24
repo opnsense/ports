@@ -22,6 +22,7 @@ CONFLICTS_INSTALL=	postgis20 postgis21 postgis23 postgis24 postgis
 USE_HARDENING=	pie:off relro:off
 
 USES=		gettext gmake iconv:wchar_t libtool:keepla perl5 pgsql pkgconfig shebangfix
+LLD_UNSAFE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_BASE}
 SHEBANG_FILES=	extensions/address_standardizer/*.pl raster/test/regress/*.pl \

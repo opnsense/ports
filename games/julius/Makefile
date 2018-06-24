@@ -18,6 +18,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	bvschaik
 GH_TAGNAME=	cb7ecdf
 
+USE_HARDENING=	safestack
+
 USE_SDL=	mixer2 sdl2
 
 SUB_FILES=	pkg-message
