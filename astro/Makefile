@@ -91,6 +91,7 @@
     SUBDIR += py-metpy
     SUBDIR += py-pymetar
     SUBDIR += py-pywapi
+    SUBDIR += py-spacetrack
     SUBDIR += pyephem
     SUBDIR += pyweather
     SUBDIR += qlandkartegt

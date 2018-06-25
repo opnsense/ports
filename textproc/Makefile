@@ -1341,6 +1341,7 @@
     SUBDIR += py-pdfrw
     SUBDIR += py-pss
     SUBDIR += py-pyPEG2
+    SUBDIR += py-pyaml
     SUBDIR += py-pyctpp2
     SUBDIR += py-pyes
     SUBDIR += py-pygments
@@ -1413,6 +1414,7 @@
     SUBDIR += py-wordnet
     SUBDIR += py-wstools
     SUBDIR += py-wtforms
+    SUBDIR += py-xhtml2pdf
     SUBDIR += py-xlrd
     SUBDIR += py-xlsxwriter
     SUBDIR += py-xlutils
