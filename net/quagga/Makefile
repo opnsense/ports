@@ -13,7 +13,7 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	gawk:lang/gawk
 
-CONFLICTS=	openbgpd openospfd zebra quagga-esr frr pimd
+CONFLICTS=	frr3 frr4 openbgpd pimd zebra
 
 # Quagga uses shared libraries as plugins, but
 # does not fail with safestack as no port depends
