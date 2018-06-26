@@ -720,6 +720,7 @@
     SUBDIR += py-seaborn
     SUBDIR += py-secp256k1
     SUBDIR += py-simhash
+    SUBDIR += py-slepc4py
     SUBDIR += py-spectral
     SUBDIR += py-statsmodels
     SUBDIR += py-svgmath
@@ -777,6 +778,7 @@
     SUBDIR += sfst
     SUBDIR += simd-viterbi
     SUBDIR += slatec
+    SUBDIR += slepc
     SUBDIR += slgrace
     SUBDIR += snns
     SUBDIR += solitaire
