@@ -14,6 +14,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	astrand
 
 USES=		autoreconf gmake iconv
+USE_HARDENING=	cfi safestack
 USE_XORG=	x11 xmu
 
 GNU_CONFIGURE=	yes

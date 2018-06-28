@@ -892,9 +892,11 @@
     SUBDIR += py-exif
     SUBDIR += py-exifread
     SUBDIR += py-exiv2
+    SUBDIR += py-fiona
     SUBDIR += py-freeimagepy
     SUBDIR += py-gd
     SUBDIR += py-gdal
+    SUBDIR += py-geopandas
     SUBDIR += py-gimp
     SUBDIR += py-gizeh
     SUBDIR += py-glewpy

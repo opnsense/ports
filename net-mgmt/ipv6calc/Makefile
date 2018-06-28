@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BROKEN_powerpc64=	fails to build: libipv6addr.c: addr_test_method may be used uninitialized in this function
 
 USES=		gmake perl5 shebangfix ssl
+USE_HARDENING=	cfi safestack
 GNU_CONFIGURE=	yes
 
 SHEBANG_FILES=	tools/*.pl tools/*.sh.in

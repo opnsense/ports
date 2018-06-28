@@ -18,6 +18,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
 
+USE_HARDENING=	cfi safestack
 USE_XORG=	x11 xft
 
 MAKE_ARGS=	CC="${CC}" PREFIX="${PREFIX}" MANPREFIX="${MANPREFIX}/man" \
