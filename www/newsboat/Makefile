@@ -20,6 +20,7 @@ LIB_DEPENDS=	libstfl.so:devel/stfl \
 USES=		compiler:c++11-lib gettext gmake iconv:translit ncurses \
 		pkgconfig sqlite shebangfix ssl
 USE_GITHUB=	yes
+USE_HARDENING=	safestack
 USE_CXXSTD=	gnu++11
 USE_GNOME=	libxml2
 

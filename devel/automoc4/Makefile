@@ -13,7 +13,7 @@ COMMENT=	Automatic moc for Qt 4 packages
 
 USE_HARDENING=	relro:off
 
-USE_QT4=	corelib moc qmake_build rcc_build uic_build
-USES=		cmake tar:bzip2
+USE_QT=		corelib moc qmake_build rcc_build uic_build
+USES=		cmake qt:4 tar:bzip2
 
 .include <bsd.port.mk>

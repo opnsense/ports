@@ -12,6 +12,7 @@ COMMENT=	Network interface statistics monitoring tool
 
 GNU_CONFIGURE=	yes
 USES=		ssl
+USE_HARDENING=	cfi safestack
 
 OPTIONS_DEFINE=	SNMP
 SNMP_LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
