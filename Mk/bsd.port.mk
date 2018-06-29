@@ -1455,10 +1455,6 @@ USE_APACHE:=	${USE_APACHE:S/common/server,/}
 USES+=	apache:${USE_APACHE:C/2([0-9])/2.\1/g}
 .endif
 
-.if defined(USE_QT4) || defined(USE_QT5)
-.include "${PORTSDIR}/Mk/bsd.qt.mk"
-.endif
-
 .if defined(USE_TEX)
 .include "${PORTSDIR}/Mk/bsd.tex.mk"
 .endif
@@ -2035,10 +2031,6 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 
 .if defined(USE_OCAML)
 .include "${PORTSDIR}/Mk/bsd.ocaml.mk"
-.endif
-
-.if defined(USE_QT4) || defined(USE_QT5)
-.include "${PORTSDIR}/Mk/bsd.qt.mk"
 .endif
 
 .if defined(USE_SDL)
