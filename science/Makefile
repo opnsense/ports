@@ -168,6 +168,7 @@
     SUBDIR += py-MDAnalysisTests
     SUBDIR += py-OpenFermion
     SUBDIR += py-PyQuante
+    SUBDIR += py-ScientificPython
     SUBDIR += py-SimpleSpectral
     SUBDIR += py-abipy
     SUBDIR += py-cdo
@@ -211,6 +212,7 @@
     SUBDIR += qcl
     SUBDIR += qtresistors
     SUBDIR += rdkit
+    SUBDIR += rmf
     SUBDIR += rubygem-ai4r
     SUBDIR += rubygem-cdo
     SUBDIR += rubygem-rgeo

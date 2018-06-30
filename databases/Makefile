@@ -776,6 +776,7 @@
     SUBDIR += py-agate-sql
     SUBDIR += py-alembic
     SUBDIR += py-apsw
+    SUBDIR += py-asyncpg
     SUBDIR += py-bsddb
     SUBDIR += py-bsddb3
     SUBDIR += py-carbon
