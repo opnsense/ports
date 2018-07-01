@@ -1324,6 +1324,7 @@
     SUBDIR += kickassembler
     SUBDIR += kimwitu
     SUBDIR += kio-extras
+    SUBDIR += kodi-platform
     SUBDIR += kore
     SUBDIR += kronosnet
     SUBDIR += ksql
@@ -1790,6 +1791,7 @@
     SUBDIR += mpatrol
     SUBDIR += mph
     SUBDIR += mq4cpp
+    SUBDIR += msbuild
     SUBDIR += msgpack
     SUBDIR += msgpack-d
     SUBDIR += msgpuck
@@ -5113,6 +5115,7 @@
     SUBDIR += py-usb
     SUBDIR += py-user_agents
     SUBDIR += py-utils
+    SUBDIR += py-uvloop
     SUBDIR += py-validators
     SUBDIR += py-validictory
     SUBDIR += py-vcrpy
