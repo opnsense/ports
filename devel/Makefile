@@ -408,6 +408,7 @@
     SUBDIR += cvsweb3
     SUBDIR += cvswrap
     SUBDIR += cweb
+    SUBDIR += cwrap
     SUBDIR += cx_Freeze
     SUBDIR += cxmon
     SUBDIR += cxref
@@ -1827,6 +1828,7 @@
     SUBDIR += npth
     SUBDIR += nsgenbind
     SUBDIR += nspr
+    SUBDIR += nss_wrapper
     SUBDIR += nuitka
     SUBDIR += obby
     SUBDIR += objecthash
@@ -3742,6 +3744,7 @@
     SUBDIR += p5-UUID-Random
     SUBDIR += p5-UUID-Random-Patch-UseMRS
     SUBDIR += p5-UUID-Tiny
+    SUBDIR += p5-UUID-URandom
     SUBDIR += p5-Uniq
     SUBDIR += p5-Unix-Groups
     SUBDIR += p5-Unix-Groups-FFI
@@ -3838,6 +3841,7 @@
     SUBDIR += p65
     SUBDIR += p8-platform
     SUBDIR += paexec
+    SUBDIR += pam_wrapper
     SUBDIR += papi
     SUBDIR += papilio-loader
     SUBDIR += pas2dox
@@ -4147,7 +4151,6 @@
     SUBDIR += php72-tokenizer
     SUBDIR += phpbt
     SUBDIR += phpsh
-    SUBDIR += phpunit
     SUBDIR += phpunit6
     SUBDIR += phpunit7
     SUBDIR += physfs
@@ -5359,6 +5362,7 @@
     SUBDIR += renpy6
     SUBDIR += replay
     SUBDIR += replxx
+    SUBDIR += resolv_wrapper
     SUBDIR += rhtvision
     SUBDIR += riscv64-binutils
     SUBDIR += riscv64-gcc
@@ -5564,9 +5568,7 @@
     SUBDIR += rubygem-flexmock
     SUBDIR += rubygem-flipper
     SUBDIR += rubygem-flipper-active_support_cache_store
-    SUBDIR += rubygem-flipper-active_support_cache_store011
     SUBDIR += rubygem-flipper-active_support_cache_store013
-    SUBDIR += rubygem-flipper011
     SUBDIR += rubygem-flipper013
     SUBDIR += rubygem-fluent-logger
     SUBDIR += rubygem-fog
@@ -5598,7 +5600,6 @@
     SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gettext_i18n_rails_js
-    SUBDIR += rubygem-gettext_i18n_rails_js12
     SUBDIR += rubygem-gh
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
@@ -5835,8 +5836,6 @@
     SUBDIR += rubygem-recaptcha
     SUBDIR += rubygem-recaptcha3
     SUBDIR += rubygem-recursive-open-struct
-    SUBDIR += rubygem-recursive-open-struct10
-    SUBDIR += rubygem-recursive-open-struct100
     SUBDIR += rubygem-redis-activesupport
     SUBDIR += rubygem-redis-activesupport-rails5
     SUBDIR += rubygem-redis-activesupport-rails50
@@ -5875,7 +5874,6 @@
     SUBDIR += rubygem-ruby-macho
     SUBDIR += rubygem-ruby-ole
     SUBDIR += rubygem-ruby-prof
-    SUBDIR += rubygem-ruby-prof016
     SUBDIR += rubygem-ruby-progressbar
     SUBDIR += rubygem-ruby-sdl-ffi
     SUBDIR += rubygem-ruby2ruby
@@ -6092,6 +6090,7 @@
     SUBDIR += smokeqt-kde4
     SUBDIR += smv
     SUBDIR += soapui
+    SUBDIR += socket_wrapper
     SUBDIR += sonar-ant-task
     SUBDIR += sonar-scanner-cli
     SUBDIR += sonarqube
@@ -6206,6 +6205,7 @@
     SUBDIR += ucommon
     SUBDIR += ucpp
     SUBDIR += udis86
+    SUBDIR += uid_wrapper
     SUBDIR += ultragetopt
     SUBDIR += umbrello
     SUBDIR += umbrello-kde4

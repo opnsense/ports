@@ -1093,7 +1093,6 @@
     SUBDIR += rubygem-aes_key_wrap
     SUBDIR += rubygem-airbrussh
     SUBDIR += rubygem-attr_encrypted
-    SUBDIR += rubygem-attr_encrypted30
     SUBDIR += rubygem-bcrypt
     SUBDIR += rubygem-bcrypt-ruby
     SUBDIR += rubygem-bcrypt_pbkdf
@@ -1103,9 +1102,7 @@
     SUBDIR += rubygem-devise-two-factor-rails50
     SUBDIR += rubygem-digest-crc
     SUBDIR += rubygem-doorkeeper
-    SUBDIR += rubygem-doorkeeper42
     SUBDIR += rubygem-doorkeeper-openid_connect
-    SUBDIR += rubygem-doorkeeper-openid_connect12
     SUBDIR += rubygem-doorkeeper-rails5
     SUBDIR += rubygem-doorkeeper-rails50
     SUBDIR += rubygem-ed25519
@@ -1128,7 +1125,6 @@
     SUBDIR += rubygem-net-sftp
     SUBDIR += rubygem-net-ssh
     SUBDIR += rubygem-net-ssh4
-    SUBDIR += rubygem-net-ssh41
     SUBDIR += rubygem-net-ssh-gateway
     SUBDIR += rubygem-net-ssh-gateway1
     SUBDIR += rubygem-net-ssh-multi
@@ -1136,7 +1132,6 @@
     SUBDIR += rubygem-nexpose
     SUBDIR += rubygem-nmap-parser
     SUBDIR += rubygem-omniauth
-    SUBDIR += rubygem-omniauth14
     SUBDIR += rubygem-omniauth-bitbucket
     SUBDIR += rubygem-omniauth-cas
     SUBDIR += rubygem-omniauth-cas3
@@ -1145,7 +1140,6 @@
     SUBDIR += rubygem-omniauth-multipassword
     SUBDIR += rubygem-omniauth-oauth2-generic
     SUBDIR += rubygem-omniauth-saml
-    SUBDIR += rubygem-omniauth-saml17
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-omniauth-shibboleth12
     SUBDIR += rubygem-openssl
