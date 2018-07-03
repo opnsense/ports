@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	urh
-DISTVERSION=	2.2.0
-CATEGORIES=	misc python
+DISTVERSION=	2.2.1
+CATEGORIES=	misc hamradio python
 MASTER_SITES=	CHEESESHOP
 
 MAINTAINER=	yuri@FreeBSD.org
