@@ -773,6 +773,7 @@ editors/openoffice.org-2-devel||2009-07-21|Removed
 games/amy||2009-07-28|Has expired: mastersite disappeared, does not build on recent version
 security/hashish||2009-07-28|Has expired: does not compile
 security/smtpmap||2009-07-28|Has expired: depends on GCC 2.95 which has not been available for 9+ months
+devel/bats|devel/bats-core|2018-07-01|Bats maintainership changed upstream to bats-core team
 devel/boost|devel/boost-libs|2009-07-28|Boost ports were split and sliced
 devel/boost-python|devel/boost-python-libs|2009-07-28|Boost ports were split and sliced
 www/xpi-firegpg||2009-07-31|Removed
@@ -3678,7 +3679,6 @@ x11-toolkits/gal||2012-10-15|Development ceased, nothing in the ports tree uses 
 math/octave-forge-physicalconstants||2012-10-15|Incorporated upstream into math/octave-forge-miscellaneous
 math/octave-forge-combinatorics||2012-10-15|Incorporated upstream into math/octave-forge-miscellaneous
 games/8kingdoms||2012-10-16|Has expired: Broken for more than 6 months
-games/freeorion||2012-10-16|Has expired: Broken for more than 6 months
 games/rigsofrods||2012-10-16|Has expired: Broken for more than 6 months
 sysutils/bacula2-client||2012-10-20|No longer supported upstream and may contain vulnerabilities. Use sysutils/bacula-client instead
 sysutils/bacula2-server||2012-10-20|No longer supported upstream and may contain vulnerabilities. Use sysutils/bacula-server instead
@@ -10287,7 +10287,7 @@ multimedia/qt5-phonon4|multimedia/phonon@qt5|2018-06-21|Moved to a flavored vers
 multimedia/qt5-phonon4-designerplugin|multimedia/phonon-designerplugin@qt5|2018-06-21|Moved to a flavored version
 multimedia/qt5-phonon4-gstreamer|multimedia/phonon-gstreamer@qt5|2018-06-21|Moved to a flavored version
 multimedia/qt5-phonon4-vlc|multimedia/phonon-vlc@qt5|2018-06-21|Moved to a flavored version
-net/libproxy-gnome|net/libproxy-gnome2|2018-07-22|Renamed to make slave names consistent
+net/libproxy-gnome|net/libproxy-gnome2|2018-06-22|Renamed to make slave names consistent
 www/npapi-vlc||2018-06-22|Removed, depends on expired www/libxul
 www/libxul||2018-06-22|Has expired: NPAPI are no longer supported
 mail/postfix211||2018-06-24|Has expired: Not supported anymore by vendor. Please choose a new one version
