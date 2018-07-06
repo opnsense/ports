@@ -27,8 +27,6 @@ LDFLAGS+=	-L${OPENSSLLIB}
 # Don't call 'strip' target with WITH_DEBUG set
 #INSTALL_TARGET=	${STRIP:S/-s/strip/} install
 
-USE_HARDENING=	safestack
-
 OPTIONS_DEFINE=	PCRE SQLITE
 OPTIONS_DEFAULT=PCRE SQLITE
 OPTIONS_SUB=	yes
