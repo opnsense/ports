@@ -2,6 +2,7 @@
 
 PORTNAME=	GraphQL
 PORTVERSION=	0.31
+PORTREVISION=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:ETJ
@@ -12,6 +13,7 @@ COMMENT=	Perl implementation of GraphQL
 
 LICENSE=	ART20
 
+BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	p5-Moo>=0:devel/p5-Moo \
 		p5-Type-Tiny>=0:devel/p5-Type-Tiny \
 		p5-Module-Runtime>=0:devel/p5-Module-Runtime \
@@ -23,7 +25,6 @@ RUN_DEPENDS=	p5-Moo>=0:devel/p5-Moo \
 		p5-JSON-PP>=2.92:converters/p5-JSON-PP \
 		p5-DateTime>=0:devel/p5-DateTime \
 		p5-DateTime-Format-ISO8601>=0:devel/p5-DateTime-Format-ISO8601
-BUILD_DEPENDS:=	${RUN_DEPENDS}
 TEST_DEPENDS=	p5-Test-Exception>=0.42:devel/p5-Test-Exception \
 		p5-Test-Deep>=1.127:devel/p5-Test-Deep \
 		p5-Import-Into>=0:devel/p5-Import-Into
