@@ -2,7 +2,7 @@
 
 PORTNAME=	openstructure
 DISTVERSION=	1.7.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	science
 MASTER_SITES=	https://git.scicore.unibas.ch/schwede/${PORTNAME}/repository/${DISTVERSION}/archive.tar.gz?dummy=/
 
@@ -33,6 +33,8 @@ CMAKE_ARGS=	-DPYTHON_INCLUDE_PATH=${PYTHON_INCLUDEDIR} \
 		-DPYTHON_LIBRARIES=${PYTHON_LIBDIR} \
 		-DFREEBSD_BOOST_PYTHON_COMPONENT=python${PYTHON_VER:S/.//} \
 		-DFREEBSD_PYTHON_LIBRARY=python${PYTHON_VER}
+
+USE_CXXSTD=c++98 # c++98 is needed until 1.8.0 to prevent C++ code build breakage
 
 post-extract:
 	@${MV} ${WRKSRC}-* ${WRKSRC}

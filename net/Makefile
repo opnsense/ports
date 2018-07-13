@@ -470,6 +470,7 @@
     SUBDIR += micro_inetd
     SUBDIR += micro_proxy
     SUBDIR += minidlna
+    SUBDIR += mininet
     SUBDIR += minisapserver
     SUBDIR += minissdpd
     SUBDIR += miniupnpc
@@ -1345,6 +1346,7 @@
     SUBDIR += rubygem-whois
     SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
+    SUBDIR += ryu
     SUBDIR += s3ql
     SUBDIR += samba46
     SUBDIR += samba47
@@ -1537,7 +1539,7 @@
     SUBDIR += wmwifi
     SUBDIR += wmwlmon
     SUBDIR += wol
-    SUBDIR += wpa_gui
+    SUBDIR += wpa_supplicant_gui
     SUBDIR += wping
     SUBDIR += x11vnc
     SUBDIR += x2goclient
