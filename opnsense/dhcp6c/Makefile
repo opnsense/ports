@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	dhcp6c
-DISTVERSION=	20180412
+DISTVERSION=	20180720
 DISTVERSIONPREFIX=v
 CATEGORIES=	net ipv6
 
@@ -24,11 +24,7 @@ CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc \
 USE_RC_SUBR=	dhcp6c
 PORTDOCS=	README
 
-OPTIONS_DEFINE=	DOCS RAW
-
-RAW_DESC=	Raw option support (experimental)
-
-RAW_EXTRA_PATCHES=${PATCHDIR}/extra-patch-raw
+OPTIONS_DEFINE=	DOCS
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/dhcp6c.conf.sample ${STAGEDIR}${PREFIX}/etc
