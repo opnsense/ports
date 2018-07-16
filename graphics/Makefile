@@ -138,6 +138,7 @@
     SUBDIR += derelict-gl3
     SUBDIR += devil
     SUBDIR += dia
+    SUBDIR += diff-pdf
     SUBDIR += diffpdf
     SUBDIR += digikam
     SUBDIR += digikam-kde4
@@ -762,9 +763,7 @@
     SUBDIR += p5-Image-Sane
     SUBDIR += p5-Image-Scale
     SUBDIR += p5-Image-Size
-    SUBDIR += p5-Image-Size-FillFullSelect
     SUBDIR += p5-Imager
-    SUBDIR += p5-Imager-AverageGray
     SUBDIR += p5-Imager-Graph
     SUBDIR += p5-Imager-Plot
     SUBDIR += p5-Imager-QRCode
@@ -872,7 +871,6 @@
     SUBDIR += prison
     SUBDIR += processing
     SUBDIR += proj
-    SUBDIR += projectm-libvisual
     SUBDIR += pstoedit
     SUBDIR += pstoepsi
     SUBDIR += ptex

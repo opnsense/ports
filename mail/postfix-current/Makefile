@@ -31,6 +31,7 @@ CONFLICTS_INSTALL?=	courier-0.* opensmtpd-[0-9]* \
 		postfix-[2|3].* postfix-base-[2|3].* postfix-sasl-[2|3].*
 
 USERS=		postfix
+USE_HARDENING=	safestack
 GROUPS=		mail maildrop postfix
 USES=		shebangfix cpe
 SHEBANG_FILES=	auxiliary/qshape/qshape.pl
