@@ -6,7 +6,7 @@ PORTVERSION=	5.7
 PORTREVISION=	15
 PORTEPOCH=	1
 CATEGORIES=	biology
-MASTER_SITES=	ftp://ftp.cmbi.umcn.nl/molgraph/molden/
+MASTER_SITES=	ftp://ftp.cmbi.umcn.nl/pub/molgraph/molden/
 DISTNAME=	${PORTNAME}${PORTVERSION}
 
 MAINTAINER=	jmd@FreeBSD.org

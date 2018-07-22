@@ -25,4 +25,7 @@ USE_WX=		2.8+
 
 PLIST_FILES=	bin/${PORTNAME}
 
+post-patch:
+	@${REINPLACE_CMD} '/AM_PATH_WXCONFIG/ s,3.0.0,2.8.0,' ${WRKSRC}/configure.ac
+
 .include <bsd.port.mk>
