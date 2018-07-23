@@ -310,6 +310,7 @@
     SUBDIR += kgpg
     SUBDIR += kgpg-kde4
     SUBDIR += kickpass
+    SUBDIR += klee
     SUBDIR += kleopatra
     SUBDIR += knock
     SUBDIR += knocker
