@@ -38,22 +38,27 @@ man/man1/suricata.1.gz
 %%SC%%%%PYTHON_SITELIBDIR%%/suricatasc/__init__.pyc
 %%SC%%%%PYTHON_SITELIBDIR%%/suricatasc/suricatasc.py
 %%SC%%%%PYTHON_SITELIBDIR%%/suricatasc/suricatasc.pyc
-@sample %%ETCDIR%%/suricata.yaml.sample
 @sample %%ETCDIR%%/classification.config.sample
 @sample %%ETCDIR%%/reference.config.sample
+@sample %%ETCDIR%%/suricata.yaml.sample
 @sample %%ETCDIR%%/threshold.config.sample
-%%ETCDIR%%/rules/app-layer-events.rules
-%%ETCDIR%%/rules/decoder-events.rules
-%%ETCDIR%%/rules/dns-events.rules
-%%ETCDIR%%/rules/files.rules
-%%ETCDIR%%/rules/http-events.rules
-%%ETCDIR%%/rules/modbus-events.rules
-%%ETCDIR%%/rules/smtp-events.rules
-%%ETCDIR%%/rules/stream-events.rules
-%%ETCDIR%%/rules/tls-events.rules
-@dir etc/suricata/rules
-@dir etc/suricata
+%%DATADIR%%/rules/app-layer-events.rules
+%%DATADIR%%/rules/decoder-events.rules
+%%DATADIR%%/rules/dnp3-events.rules
+%%DATADIR%%/rules/dns-events.rules
+%%DATADIR%%/rules/files.rules
+%%DATADIR%%/rules/http-events.rules
+%%DATADIR%%/rules/ipsec-events.rules
+%%DATADIR%%/rules/kerberos-events.rules
+%%DATADIR%%/rules/modbus-events.rules
+%%DATADIR%%/rules/nfs-events.rules
+%%DATADIR%%/rules/ntp-events.rules
+%%DATADIR%%/rules/smtp-events.rules
+%%DATADIR%%/rules/stream-events.rules
+%%DATADIR%%/rules/tls-events.rules
+@dir %%DATADIR%%
+@dir %%ETCDIR%%
 @dir include/htp
 @dir(root,wheel,0700) /var/log/suricata
-@postunexec if [ -d %D/%%ETCDIR%% ]; then echo "==> If you are permanently removing this port, run ``rm -rf ${PKG_PREFIX}/etc/suricata`` to remove configuration files."; fi
+@postunexec if [ -d %D/%%ETCDIR%% ]; then echo "==> If you are permanently removing this port, run ``rm -rf ${PKG_PREFIX}/%%ETCDIR%%`` to remove configuration files."; fi
 @dir %%DOCSDIR%%

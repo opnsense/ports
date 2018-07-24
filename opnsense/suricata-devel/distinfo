@@ -1,3 +1,3 @@
-TIMESTAMP = 1522204137
-SHA256 (suricata-4.1.0-beta1.tar.gz) = 9ce646c98e63f925146176b7dd3a7c8de060ae2784e8336e1f1cfa0a16a2903c
-SIZE (suricata-4.1.0-beta1.tar.gz) = 14922072
+TIMESTAMP = 1532404851
+SHA256 (suricata-4.1.0-rc1.tar.gz) = 8662d10a3bcaea61c4b2b11e06dec33418fb3ec82bfd33b70a86f9d8eadc12de
+SIZE (suricata-4.1.0-rc1.tar.gz) = 15280395

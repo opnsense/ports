@@ -2,7 +2,7 @@
 
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
-DISTVERSION=	4.1.0-beta1
+DISTVERSION=	4.1.0-rc1
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
@@ -126,10 +126,6 @@ CONFIGURE_ARGS+=--enable-gccprotect \
 
 CONFIG_DIR?=	${ETCDIR}
 CONFIG_FILES=	suricata.yaml classification.config reference.config threshold.config
-RULES_DIR=	${CONFIG_DIR}/rules
-RULES_FILES=	app-layer-events.rules decoder-events.rules dns-events.rules files.rules \
-		http-events.rules modbus-events.rules smtp-events.rules stream-events.rules \
-		tls-events.rules
 LOGS_DIR?=	/var/log/${PORTNAME}
 
 pre-patch:
@@ -140,13 +136,9 @@ post-patch-NSS-off:
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${CONFIG_DIR}
-	@${MKDIR} ${STAGEDIR}${RULES_DIR}
 	@${MKDIR} ${STAGEDIR}${LOGS_DIR}
 .for f in ${CONFIG_FILES}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${CONFIG_DIR}/${f}.sample
-.endfor
-.for f in ${RULES_FILES}
-	${INSTALL_DATA} ${WRKSRC}/rules/${f} ${STAGEDIR}${RULES_DIR}/${f}
 .endfor
 
 post-install-SC-on:
