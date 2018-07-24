@@ -2,7 +2,7 @@
 
 PORTNAME=	snuffleupagus
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.2.2
+DISTVERSION=	0.3.0
 CATEGORIES=	security
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
@@ -19,7 +19,7 @@ LIB_DEPENDS=	libpcre.so:devel/pcre
 WRKSRC_SUBDIR=	src
 
 USES=		localbase:ldflags php:ext
-USE_PHP=	hash:build
+USE_PHP=	hash:build session:build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	nbs-system
