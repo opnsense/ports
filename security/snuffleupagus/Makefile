@@ -16,6 +16,8 @@ IGNORE_WITH_PHP=56
 
 LIB_DEPENDS=	libpcre.so:devel/pcre
 
+TEST_TARGET=	test
+
 WRKSRC_SUBDIR=	src
 
 USES=		localbase:ldflags php:ext
