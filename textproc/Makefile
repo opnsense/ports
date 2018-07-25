@@ -1320,7 +1320,9 @@
     SUBDIR += py-m2r
     SUBDIR += py-mako
     SUBDIR += py-markdown
+    SUBDIR += py-markdown-math
     SUBDIR += py-markdown2
+    SUBDIR += py-markups
     SUBDIR += py-mistune
     SUBDIR += py-mkdocs
     SUBDIR += py-mkdocs-nature
@@ -1459,6 +1461,7 @@
     SUBDIR += replaceit
     SUBDIR += resume
     SUBDIR += resume-extensions
+    SUBDIR += retext
     SUBDIR += rfcdiff
     SUBDIR += ripgrep
     SUBDIR += ripole
