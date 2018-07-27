@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	bsdinstaller
-PORTVERSION=	18.7.r
-PORTREVISION=	0 # GH_TAGNAME
+PORTVERSION=	18.7
+#PORTREVISION=	0 # GH_TAGNAME
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -17,6 +17,6 @@ USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	a95d672
+#GH_TAGNAME=	a95d672
 
 .include <bsd.port.mk>
