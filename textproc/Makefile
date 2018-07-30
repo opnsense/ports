@@ -950,7 +950,10 @@
     SUBDIR += p5-Text-SpellChecker
     SUBDIR += p5-Text-Striphigh
     SUBDIR += p5-Text-Table
+    SUBDIR += p5-Text-Table-ASV
+    SUBDIR += p5-Text-Table-Any
     SUBDIR += p5-Text-Table-Manifold
+    SUBDIR += p5-Text-Table-Tiny
     SUBDIR += p5-Text-Tabs+Wrap
     SUBDIR += p5-Text-TabularDisplay
     SUBDIR += p5-Text-Tags
@@ -1298,6 +1301,7 @@
     SUBDIR += py-et_xmlfile
     SUBDIR += py-excelerator
     SUBDIR += py-feedparser
+    SUBDIR += py-fingerprints
     SUBDIR += py-gambit-elasticsearch
     SUBDIR += py-genshi
     SUBDIR += py-gensim
@@ -1316,6 +1320,7 @@
     SUBDIR += py-libtre
     SUBDIR += py-libxml2
     SUBDIR += py-libxslt
+    SUBDIR += py-license-expression
     SUBDIR += py-ltxml
     SUBDIR += py-m2r
     SUBDIR += py-mako
@@ -1328,11 +1333,13 @@
     SUBDIR += py-mkdocs-nature
     SUBDIR += py-mwparserfromhell
     SUBDIR += py-nltk
+    SUBDIR += py-normality
     SUBDIR += py-numpydoc
     SUBDIR += py-openpyxl
     SUBDIR += py-openstackdocstheme
     SUBDIR += py-orange3-text
     SUBDIR += py-os-api-ref
+    SUBDIR += py-packageurl-python
     SUBDIR += py-pager
     SUBDIR += py-pandocfilters
     SUBDIR += py-paragrep
@@ -1340,10 +1347,12 @@
     SUBDIR += py-parsimonious
     SUBDIR += py-parso
     SUBDIR += py-pdfminer
+    SUBDIR += py-pdfminer.six
     SUBDIR += py-pdfminer3k
     SUBDIR += py-pdfrw
     SUBDIR += py-pss
     SUBDIR += py-pyPEG2
+    SUBDIR += py-pyahocorasick
     SUBDIR += py-pyaml
     SUBDIR += py-pyctpp2
     SUBDIR += py-pyes
@@ -1352,6 +1361,7 @@
     SUBDIR += py-pyhamcrest
     SUBDIR += py-pyhwp
     SUBDIR += py-pylons-sphinx-themes
+    SUBDIR += py-pypa-docs-theme
     SUBDIR += py-pypandoc
     SUBDIR += py-pyphen
     SUBDIR += py-pyscss
@@ -1360,6 +1370,7 @@
     SUBDIR += py-pystemmer
     SUBDIR += py-python-augeas
     SUBDIR += py-python-bidi
+    SUBDIR += py-python-docs-theme
     SUBDIR += py-python-docx
     SUBDIR += py-python-gettext
     SUBDIR += py-python-slugify
@@ -1381,6 +1392,7 @@
     SUBDIR += py-rxp
     SUBDIR += py-scour
     SUBDIR += py-sgrep
+    SUBDIR += py-simplebayes
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx

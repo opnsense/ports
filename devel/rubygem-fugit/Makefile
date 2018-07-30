@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fugit
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -18,5 +18,8 @@ RUN_DEPENDS=	rubygem-et-orbi>=1.1.1:devel/rubygem-et-orbi \
 NO_ARCH=	yes
 USE_RUBY=	yes
 USES=		gem
+
+# Disable rdoc
+OPTIONS_EXCLUDE=DOCS
 
 .include <bsd.port.mk>
