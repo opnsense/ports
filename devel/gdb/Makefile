@@ -3,7 +3,7 @@
 
 PORTNAME=	gdb
 PORTVERSION=	8.1
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	devel
 MASTER_SITES=	GNU
 
@@ -24,7 +24,7 @@ TEST_TARGET=	check
 # C++14.  However, clang in 10.3 crashes while building this port.
 # Requiring C++14 forces 10.3 to use an external version of clang while
 # still using the base system clang on 11.0 and later.
-USES=		compiler:c++14-lang cpe iconv gmake libtool tar:xz
+USES=		compiler:c++14-lang cpe gmake libtool tar:xz
 USE_CSTD=	gnu89
 CPE_VENDOR=	gnu
 GNU_CONFIGURE=	yes
@@ -58,15 +58,18 @@ PLIST_SUB=	VER=${VER}
 
 OPTIONS_DEFINE=	DEBUG GDB_LINK GUILE KGDB PYTHON TUI
 
-OPTIONS_DEFAULT=	GDB_LINK KGDB PYTHON TUI PORT_READLINE
+OPTIONS_DEFAULT=	GDB_LINK KGDB PYTHON TUI PORT_READLINE PORT_ICONV
 
-OPTIONS_SINGLE=	READLINE
+OPTIONS_SINGLE=	READLINE ICONV
 OPTIONS_SINGLE_READLINE=	BUNDLED_READLINE PORT_READLINE
+OPTIONS_SINGLE_ICONV=	SYSTEM_ICONV PORT_ICONV
 
 GDB_LINK_DESC=		Create ${PREFIX}/bin/gdb symlink
 KGDB_DESC=		Kernel Debugging Support
 BUNDLED_READLINE_DESC=	from gdb distfile
 PORT_READLINE_DESC=	from devel/readline port
+PORT_ICONV_DESC=	use libiconv, with wider charset support
+SYSTEM_ICONV_DESC=	use libc iconv, with no wchar support
 TUI_DESC=		Text User Interface enabled
 
 OPTIONS_SUB=	yes
@@ -77,9 +80,11 @@ GUILE_CONFIGURE_WITH=	guile
 GUILE_USES=		pkgconfig
 GUILE_LIB_DEPENDS=	libguile-2.0.so:lang/guile2
 PORT_READLINE_USES=	readline:port
+PORT_ICONV_USES=	iconv:wchar_t
 PYTHON_CONFIGURE_ON=	--with-python=${PYTHON_CMD}
 PYTHON_CONFIGURE_OFF=	--without-python
 PYTHON_USES=		python
+SYSTEM_ICONV_USES=	iconv
 TUI_CONFIGURE_ENABLE=	tui
 
 .include <bsd.port.pre.mk>
