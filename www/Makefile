@@ -94,6 +94,7 @@
     SUBDIR += coppermine
     SUBDIR += cplanet
     SUBDIR += cppcms
+    SUBDIR += cpr
     SUBDIR += crawl
     SUBDIR += crp
     SUBDIR += css-mode.el
@@ -239,6 +240,7 @@
     SUBDIR += h2o
     SUBDIR += h2o-devel
     SUBDIR += habari
+    SUBDIR += halberd
     SUBDIR += hastymail2-devel
     SUBDIR += havp
     SUBDIR += helma
@@ -2466,6 +2468,7 @@
     SUBDIR += webreport
     SUBDIR += webresolve
     SUBDIR += websh
+    SUBDIR += websocat
     SUBDIR += websocketd
     SUBDIR += webstats
     SUBDIR += webstone

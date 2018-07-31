@@ -188,6 +188,7 @@
     SUBDIR += b2
     SUBDIR += babeltrace
     SUBDIR += bam
+    SUBDIR += bashdb
     SUBDIR += bats-core
     SUBDIR += bazel
     SUBDIR += bazel-clang38
@@ -4363,6 +4364,7 @@
     SUBDIR += py-avro
     SUBDIR += py-babel
     SUBDIR += py-babelfish
+    SUBDIR += py-backcall
     SUBDIR += py-backports
     SUBDIR += py-backports.csv
     SUBDIR += py-backports.functools_lru_cache
