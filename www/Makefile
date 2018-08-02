@@ -1633,6 +1633,7 @@
     SUBDIR += py-django111
     SUBDIR += py-django18
     SUBDIR += py-django20
+    SUBDIR += py-django21
     SUBDIR += py-django_compressor
     SUBDIR += py-django_openstack_auth
     SUBDIR += py-django_polymorphic
@@ -1694,6 +1695,7 @@
     SUBDIR += py-graphite-api
     SUBDIR += py-graphite-web
     SUBDIR += py-grequests
+    SUBDIR += py-grip
     SUBDIR += py-gunicorn
     SUBDIR += py-h2
     SUBDIR += py-horizon
@@ -1729,6 +1731,7 @@
     SUBDIR += py-paste
     SUBDIR += py-pastedeploy
     SUBDIR += py-pastescript
+    SUBDIR += py-path-and-address
     SUBDIR += py-pelican
     SUBDIR += py-planet
     SUBDIR += py-plone.alterego

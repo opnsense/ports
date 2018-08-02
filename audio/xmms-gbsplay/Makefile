@@ -3,7 +3,7 @@
 
 PORTNAME=	gbsplay
 PORTVERSION=	0.0.8
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	audio
 MASTER_SITES=	LOCAL/ehaupt
 PKGNAMEPREFIX=	xmms-
@@ -16,13 +16,12 @@ LICENSE=	GPLv2
 BUILD_DEPENDS=	xmms:multimedia/xmms
 RUN_DEPENDS=	xmms:multimedia/xmms
 
-USE_HARDENING=	pie:off relro:off
-
-USE_GNOME=	glib12
-USE_GCC=	any
-HAS_CONFIGURE=	yes
 USES=		gmake
+USE_GNOME=	glib12
+HAS_CONFIGURE=	yes
 USE_CSTD=	gnu89
+
+USE_HARDENING=	pie:off relro:off
 
 OPTIONS_DEFINE=	NLS
 
@@ -38,7 +37,8 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} -e \
-		's|`which xmms-config`||; \
+		's|char argc|int argc|; \
+		 s|`which xmms-config`||; \
 		 s|\(xmms-config\)|${LOCALBASE}/bin/\1|g; \
 		 s|`which glib-config`||; \
 		 s|glib-config|${GLIB_CONFIG}|g; \

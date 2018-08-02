@@ -2,6 +2,7 @@
 
 PORTNAME=	xdpyinfo
 PORTVERSION=	1.3.2
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
@@ -12,7 +13,7 @@ USE_HARDENING=	safestack
 LICENSE=	MIT
 
 XORG_CAT=	app
-USE_XORG=	dmx x11 xcb xcomposite xext xinerama xproto xrender \
+USE_XORG=	dmx x11 xcb xcomposite xext xinerama xorgproto xrender \
 		xtst xxf86dga xxf86misc xxf86vm
 
 PLIST_FILES=	bin/xdpyinfo man/man1/xdpyinfo.1.gz

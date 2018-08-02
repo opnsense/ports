@@ -298,9 +298,6 @@
     SUBDIR += ipxe
     SUBDIR += irrd
     SUBDIR += isboot-kmod
-    SUBDIR += isc-dhcp43-client
-    SUBDIR += isc-dhcp43-relay
-    SUBDIR += isc-dhcp43-server
     SUBDIR += isc-dhcp44-client
     SUBDIR += isc-dhcp44-relay
     SUBDIR += isc-dhcp44-server
@@ -1278,6 +1275,7 @@
     SUBDIR += rubygem-gitaly-proto099
     SUBDIR += rubygem-gitlab_omniauth-ldap
     SUBDIR += rubygem-gitlab_omniauth-ldap1
+    SUBDIR += rubygem-gitlab_omniauth-ldap20
     SUBDIR += rubygem-grpc
     SUBDIR += rubygem-http_parser.rb
     SUBDIR += rubygem-httpauth
