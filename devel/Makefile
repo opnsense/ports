@@ -196,6 +196,7 @@
     SUBDIR += bbfreeze-loader
     SUBDIR += bcc
     SUBDIR += bcpp
+    SUBDIR += bcunit
     SUBDIR += bear
     SUBDIR += bennugd-core
     SUBDIR += bennugd-modules
@@ -1609,6 +1610,7 @@
     SUBDIR += libtsm
     SUBDIR += libtuntap
     SUBDIR += libublio
+    SUBDIR += libubox
     SUBDIR += libudev-devd
     SUBDIR += libukcprog
     SUBDIR += libunicode
@@ -4409,6 +4411,7 @@
     SUBDIR += py-capstone
     SUBDIR += py-castellan
     SUBDIR += py-cbor
+    SUBDIR += py-cbor2
     SUBDIR += py-cclib
     SUBDIR += py-cdg
     SUBDIR += py-celery
@@ -5646,7 +5649,6 @@
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
     SUBDIR += rubygem-grape-entity
-    SUBDIR += rubygem-grape-entity060
     SUBDIR += rubygem-grape-path-helpers
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
