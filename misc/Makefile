@@ -291,6 +291,7 @@
     SUBDIR += mime-support
     SUBDIR += mirmon
     SUBDIR += mmv
+    SUBDIR += morse
     SUBDIR += mtail
     SUBDIR += mtx
     SUBDIR += najitool
@@ -300,6 +301,7 @@
     SUBDIR += nsf
     SUBDIR += numchar
     SUBDIR += nut
+    SUBDIR += ompl
     SUBDIR += ondir
     SUBDIR += opencyc
     SUBDIR += openhab2

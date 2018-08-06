@@ -526,6 +526,7 @@
     SUBDIR += ng_mikrotik_eoip
     SUBDIR += ngrep
     SUBDIR += nifmon
+    SUBDIR += nitroshare
     SUBDIR += nload
     SUBDIR += nmsg
     SUBDIR += nncp
@@ -1161,7 +1162,6 @@
     SUBDIR += pythondirector
     SUBDIR += qadsl
     SUBDIR += qjsonrpc
-    SUBDIR += qmdnsengine
     SUBDIR += qoauth
     SUBDIR += qoauth-qt5
     SUBDIR += qt4-network

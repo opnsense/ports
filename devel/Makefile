@@ -1237,6 +1237,7 @@
     SUBDIR += injeqt
     SUBDIR += ioncube
     SUBDIR += ipython
+    SUBDIR += ipython5
     SUBDIR += ireport
     SUBDIR += isa-l
     SUBDIR += isfreedesktop
@@ -4648,6 +4649,7 @@
     SUBDIR += py-jcc
     SUBDIR += py-jdcal
     SUBDIR += py-jedi
+    SUBDIR += py-jeepney
     SUBDIR += py-jellyfish
     SUBDIR += py-jenkins-job-builder
     SUBDIR += py-jep
@@ -4903,6 +4905,7 @@
     SUBDIR += py-pyopencl
     SUBDIR += py-pyparsing
     SUBDIR += py-pyperclip
+    SUBDIR += py-pyplusplus
     SUBDIR += py-pypugjs
     SUBDIR += py-pyqi
     SUBDIR += py-pyqtree
