@@ -3,10 +3,11 @@
 
 PORTNAME=	radvd
 PORTVERSION=	1.15
+PKGNAMESUFFIX=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.litech.org/radvd/dist/
 
-MAINTAINER=	farrokhi@FreeBSD.org
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Linux/BSD IPv6 router advertisement daemon
 
 CONFLICTS_INSTALL=radvd
