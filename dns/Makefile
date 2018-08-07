@@ -32,6 +32,7 @@
     SUBDIR += dns2blackhole
     SUBDIR += dns2tcp
     SUBDIR += dns_balance
+    SUBDIR += dnsblast
     SUBDIR += dnscap
     SUBDIR += dnscheck
     SUBDIR += dnscheckengine
@@ -110,6 +111,7 @@
     SUBDIR += mdnsd
     SUBDIR += mydns
     SUBDIR += mydns-ng
+    SUBDIR += namesilo_ddns
     SUBDIR += noip
     SUBDIR += nsd
     SUBDIR += nslint
