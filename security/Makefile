@@ -457,7 +457,7 @@
     SUBDIR += opencryptoki
     SUBDIR += openct
     SUBDIR += openiked
-    SUBDIR += opensaml2
+    SUBDIR += opensaml
     SUBDIR += opensc
     SUBDIR += openscep
     SUBDIR += openssh-askpass
@@ -1218,7 +1218,7 @@
     SUBDIR += sha
     SUBDIR += sha1collisiondetection
     SUBDIR += sha2wordlist
-    SUBDIR += shibboleth2-sp
+    SUBDIR += shibboleth-sp
     SUBDIR += shimmer
     SUBDIR += shishi
     SUBDIR += shttpscanner
