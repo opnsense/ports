@@ -210,7 +210,6 @@
     SUBDIR += py-scipy
     SUBDIR += py-scoria
     SUBDIR += py-spglib
-    SUBDIR += py-tensorflow
     SUBDIR += py-veusz
     SUBDIR += py-ws2300
     SUBDIR += pybrain
@@ -248,6 +247,7 @@
     SUBDIR += vmd
     SUBDIR += voro++
     SUBDIR += xcrysden
+    SUBDIR += xdrawchem
     SUBDIR += xfce4-equake-plugin
     SUBDIR += xmakemol
 

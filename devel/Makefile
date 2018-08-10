@@ -191,7 +191,6 @@
     SUBDIR += bashdb
     SUBDIR += bats-core
     SUBDIR += bazel
-    SUBDIR += bazel-clang38
     SUBDIR += bbfreeze
     SUBDIR += bbfreeze-loader
     SUBDIR += bcc
@@ -1681,7 +1680,6 @@
     SUBDIR += listserialc
     SUBDIR += liteide
     SUBDIR += llbuild
-    SUBDIR += lldb38
     SUBDIR += llnextgen
     SUBDIR += llvm-cheri
     SUBDIR += llvm-devel
@@ -5500,6 +5498,8 @@
     SUBDIR += rubygem-celluloid-pool
     SUBDIR += rubygem-celluloid-supervision
     SUBDIR += rubygem-cf-uaa-lib
+    SUBDIR += rubygem-chef-provisioning
+    SUBDIR += rubygem-cheffish
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
@@ -5528,6 +5528,7 @@
     SUBDIR += rubygem-configatron
     SUBDIR += rubygem-configstruct
     SUBDIR += rubygem-configuration
+    SUBDIR += rubygem-cookbook-omnifetch
     SUBDIR += rubygem-cool.io
     SUBDIR += rubygem-corefines
     SUBDIR += rubygem-crack
@@ -5752,12 +5753,15 @@
     SUBDIR += rubygem-mixlib-authentication
     SUBDIR += rubygem-mixlib-cli
     SUBDIR += rubygem-mixlib-config
+    SUBDIR += rubygem-mixlib-install
     SUBDIR += rubygem-mixlib-log
     SUBDIR += rubygem-mixlib-shellout
+    SUBDIR += rubygem-mixlib-versioning
     SUBDIR += rubygem-mize
     SUBDIR += rubygem-mkrf
     SUBDIR += rubygem-mmap2
     SUBDIR += rubygem-mocha
+    SUBDIR += rubygem-molinillo
     SUBDIR += rubygem-moneta
     SUBDIR += rubygem-mongo
     SUBDIR += rubygem-mono_logger
@@ -5799,6 +5803,7 @@
     SUBDIR += rubygem-os
     SUBDIR += rubygem-p4ruby
     SUBDIR += rubygem-paint
+    SUBDIR += rubygem-paint1
     SUBDIR += rubygem-paperclip
     SUBDIR += rubygem-paperclip-rails5
     SUBDIR += rubygem-paperclip-rails50
@@ -5934,6 +5939,7 @@
     SUBDIR += rubygem-semantic_puppet
     SUBDIR += rubygem-semi_semantic
     SUBDIR += rubygem-semver2
+    SUBDIR += rubygem-semverse
     SUBDIR += rubygem-sentry-raven
     SUBDIR += rubygem-sentry-raven25
     SUBDIR += rubygem-sequel
@@ -5963,6 +5969,7 @@
     SUBDIR += rubygem-slop
     SUBDIR += rubygem-slop3
     SUBDIR += rubygem-soap4r
+    SUBDIR += rubygem-solve
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-spring-rails5
     SUBDIR += rubygem-spring-rails50
