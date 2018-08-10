@@ -4423,7 +4423,6 @@ audio/mpeglib_artsplug||2013-07-26|Has expired: Depends on Qt 3.x
 audio/prokyon3||2013-07-26|Has expired: Depends on Qt 3.x
 audio/xmms-kde||2013-07-26|Has expired: Depends on Qt 3.x
 audio/yammi||2013-07-26|Has expired: Depends on Qt 3.x
-biology/xdrawchem||2013-07-26|Has expired: Depends on Qt 3.x
 cad/opencascade-tutorial||2013-07-26|Has expired: Depends on Qt 3.x
 cad/vipec||2013-07-26|Has expired: Depends on Qt 3.x
 chinese/kde3-i18n-zh_CN||2013-07-26|Has expired: Depends on Qt 3.x
@@ -10419,3 +10418,7 @@ textproc/rubygem-html-pipeline-gitlab||2018-08-04|Removed
 net/qmdnsengine|dns/qmdnsengine|2018-08-04|Move to a proper category
 security/shibboleth2-sp|security/shibboleth-sp|2018-08-07|Project updated to version 3, so the 2 suffix is not valid anymore
 security/opensaml2|security/opensaml|2018-08-07|Project updated to version 3, so the 2 suffix is not valid anymore
+devel/lldb38|devel/llvm38|2018-08-08|METAPORT removed
+lang/clang38|devel/llvm38|2018-08-08|METAPORT removed
+science/py-tensorflow||2018-08-08|Has expired: build broken
+devel/bazel-clang38|devel/bazel|2018-08-08|Slave port depends on obsolete LLVM version
