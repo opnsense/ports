@@ -6057,6 +6057,7 @@
     SUBDIR += rubygem-uber
     SUBDIR += rubygem-unicode
     SUBDIR += rubygem-unicode-display_width
+    SUBDIR += rubygem-unicode_utils
     SUBDIR += rubygem-useragent
     SUBDIR += rubygem-uuid
     SUBDIR += rubygem-uuidtools
@@ -6303,6 +6304,7 @@
     SUBDIR += xsd
     SUBDIR += xtensa-esp32-elf
     SUBDIR += xtl
+    SUBDIR += xtl-quant-stack
     SUBDIR += xtoolchain-llvm-devel
     SUBDIR += xtoolchain-llvm40
     SUBDIR += xtoolchain-llvm50

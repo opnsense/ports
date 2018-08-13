@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME?=		mysql
-PORTVERSION=		8.0.11
-PORTREVISION?=		2
+PORTVERSION=		8.0.12
+PORTREVISION?=		0
 CATEGORIES=		databases ipv6
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -146,6 +146,11 @@ FEDERATED_SUB_LIST_OFF+=	FEDER=""
 SUB_LIST+=	LEGACY_LIMITS="@comment " MODERN_LIMITS=""
 .else
 SUB_LIST+=	LEGACY_LIMITS="" MODERN_LIMITS="@comment "
+.endif
+
+# required for SSE-4.2 support on the default Clang++ on 10.4
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1100000
+CXXFLAGS+=	-msse4.2
 .endif
 
 .include <bsd.port.pre.mk>

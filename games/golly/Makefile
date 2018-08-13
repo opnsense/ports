@@ -17,7 +17,12 @@ USE_GL=		gl glu
 USE_WX=		3.0+
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--with-wx-config=${WX_CONFIG:T}
+# Pretend objdump is available even if it is not e.g. on aarch64.
+# The Python shared library name is already looked up via
+# distutils.sysconfig.get_config_var("LDLIBRARY") which is unlikely
+# to fail; objdump is never actually used.
+CONFIGURE_ARGS=	ac_cv_prog_OBJDUMP=/usr/bin/false \
+		--with-wx-config=${WX_CONFIG:T}
 CXXFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
