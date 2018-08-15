@@ -301,7 +301,6 @@
     SUBDIR += kedpm
     SUBDIR += keepass
     SUBDIR += keepass-plugin-keepassrpc
-    SUBDIR += keepassx
     SUBDIR += keepassx-devel
     SUBDIR += keepassx2
     SUBDIR += keepassxc
@@ -1291,6 +1290,7 @@
     SUBDIR += tcpcrypt
     SUBDIR += teleport
     SUBDIR += testssl.sh
+    SUBDIR += theonionbox
     SUBDIR += tinc
     SUBDIR += tinc-devel
     SUBDIR += tinyca
