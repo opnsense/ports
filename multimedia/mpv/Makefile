@@ -3,10 +3,12 @@
 
 PORTNAME=	mpv
 PORTVERSION=	0.29.0
-PORTREVISION=	2
 DISTVERSIONPREFIX=	v
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
+MASTER_SITES=	https://waf.io/:waf
+DISTFILES=	${WAF_RELEASE}${EXTRACT_SUFX}:waf
 
 MAINTAINER=	cpm@FreeBSD.org
 COMMENT=	Free and open-source general-purpose video player
@@ -18,17 +20,17 @@ BUILD_DEPENDS=	ffmpeg>=4.0.2,1:multimedia/ffmpeg
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg
 
 USES=		compiler:c11 desktop-file-utils iconv jpeg localbase:ldflags \
-		pkgconfig python:build waf
+		pkgconfig python:build tar:bz2 waf
 USE_LDCONFIG=	yes
 
 USE_HARDENING=	pie:off
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mpv-player
-# Keep in sync with bootstrap.py to avoid regressions
-GH_TUPLE=	waf-project:waf:waf-1.9.8:waf
 
-WAF_CMD=	${WRKSRC_waf}/waf-light
+# Keep in sync with bootstrap.py to avoid regressions
+WAF_CMD=	${WRKDIR}/${WAF_RELEASE}/waf-light
+WAF_RELEASE=	waf-2.0.9
 
 CONFIGURE_ENV=	BIN_PYTHON="${PYTHON_CMD}"
 CONFIGURE_ARGS=	--docdir="${EXAMPLESDIR}" \
@@ -48,7 +50,7 @@ OPTIONS_DEFAULT=	ARCHIVE ASS DVDREAD DVDNAV MANPAGES OPENGL UCHARDET \
 OPTIONS_GROUP=		IN VO AO
 OPTIONS_GROUP_IN=	CDIO DVDREAD DVDNAV LIBBLURAY V4L YTDL SMB
 OPTIONS_GROUP_VO=	CACA OPENGL VAAPI VDPAU WAYLAND X11
-OPTIONS_GROUP_AO=	ALSA JACK PULSEAUDIO SDL SNDIO
+OPTIONS_GROUP_AO=	ALSA JACK OPENAL PULSEAUDIO SDL SNDIO
 OPTIONS_SUB=		yes
 
 ASS_DESC=		ASS/SSA subtitle and OSD rendering
@@ -103,6 +105,10 @@ LUAJIT_CONFIGURE_OFF=		--lua=${LUA_VER_STR}fbsd
 
 MANPAGES_BUILD_DEPENDS=		rst2man:textproc/py-docutils
 MANPAGES_CONFIGURE_OFF=		--disable-manpage
+
+OPENAL_CONFIGURE_ENABLE=	openal
+OPENAL_USES=			openal
+OPENAL_VARS=			LLD_UNSAFE=yes # cf. PR 226980
 
 OPENGL_USE=			GL=egl,gbm,gl
 OPENGL_CONFIGURE_OFF=		--disable-gl
