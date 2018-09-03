@@ -11,6 +11,7 @@
     SUBDIR += R-cran-ChangeAnomalyDetection
     SUBDIR += R-cran-DEoptimR
     SUBDIR += R-cran-DRR
+    SUBDIR += R-cran-DoE.base
     SUBDIR += R-cran-Formula
     SUBDIR += R-cran-KFAS
     SUBDIR += R-cran-LearnBayes
@@ -74,9 +75,12 @@
     SUBDIR += R-cran-nnls
     SUBDIR += R-cran-nortest
     SUBDIR += R-cran-numDeriv
+    SUBDIR += R-cran-numbers
     SUBDIR += R-cran-outliers
+    SUBDIR += R-cran-partitions
     SUBDIR += R-cran-pbkrtest
     SUBDIR += R-cran-pls
+    SUBDIR += R-cran-polynom
     SUBDIR += R-cran-prodlim
     SUBDIR += R-cran-psych
     SUBDIR += R-cran-quadprog
@@ -131,6 +135,8 @@
     SUBDIR += biggles
     SUBDIR += blacs
     SUBDIR += blas
+    SUBDIR += blaze
+    SUBDIR += blazeiterative
     SUBDIR += blis
     SUBDIR += blitz++
     SUBDIR += blocksolve95
@@ -178,6 +184,7 @@
     SUBDIR += eigen2
     SUBDIR += eigen3
     SUBDIR += eispack
+    SUBDIR += elpa
     SUBDIR += emc2
     SUBDIR += ent
     SUBDIR += entropy
@@ -240,7 +247,6 @@
     SUBDIR += grpn
     SUBDIR += gsl
     SUBDIR += hexcalc
-    SUBDIR += hfst
     SUBDIR += hs-Agda
     SUBDIR += hs-Agda-stdlib
     SUBDIR += hs-NumInstances
@@ -271,7 +277,6 @@
     SUBDIR += ised
     SUBDIR += jacal
     SUBDIR += jags
-    SUBDIR += jakarta-commons-math
     SUBDIR += jakarta-commons-math3
     SUBDIR += jama
     SUBDIR += jeuclid
@@ -377,7 +382,6 @@
     SUBDIR += octave-forge-bsltl
     SUBDIR += octave-forge-cgi
     SUBDIR += octave-forge-civil-engineering
-    SUBDIR += octave-forge-communications
     SUBDIR += octave-forge-control
     SUBDIR += octave-forge-data-smoothing
     SUBDIR += octave-forge-database
@@ -718,7 +722,9 @@
     SUBDIR += py-pysym
     SUBDIR += py-pyvtk
     SUBDIR += py-random2
+    SUBDIR += py-rapi
     SUBDIR += py-roman
+    SUBDIR += py-rpy2
     SUBDIR += py-scientific
     SUBDIR += py-scikit-umfpack
     SUBDIR += py-seaborn
@@ -760,7 +766,6 @@
     SUBDIR += rocs-kde4
     SUBDIR += rpcalc
     SUBDIR += rpy
-    SUBDIR += rpy2
     SUBDIR += rubygem-algebra
     SUBDIR += rubygem-expression_parser
     SUBDIR += rubygem-fftw3

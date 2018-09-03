@@ -179,6 +179,7 @@
     SUBDIR += skype-devel
     SUBDIR += skype4
     SUBDIR += slack-term
+    SUBDIR += talkatu
     SUBDIR += teamwords
     SUBDIR += telegram
     SUBDIR += telegram-desktop
@@ -207,7 +208,6 @@
     SUBDIR += tkabber-plugins
     SUBDIR += toot
     SUBDIR += tox
-    SUBDIR += tox12
     SUBDIR += toxbot
     SUBDIR += toxic
     SUBDIR += toxins

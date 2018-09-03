@@ -16,16 +16,17 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off
 
-USES=		tar:bzip2
+USES=		compiler tar:bzip2
 USE_WX=		2.8
+
+BINARY_ALIAS=	wx-config=${WX_CONFIG}
+
+CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
+CXXFLAGS_clang=	-Wno-c++11-narrowing
 
 DESKTOP_ENTRIES="LisaEm" "" "lisaem" "lisaem" "" ""
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|bash|sh|; s|==|=|; \
-		 s|wx-config|${WX_CONFIG:T}|; \
-		 s|/usr/local/|${PREFIX}/|; \
-		 s|^function ||; /[Ss]trip/d' ${WRKSRC}/build.sh
 	@${REINPLACE_CMD} -e \
 		's|^inline |static inline |' ${WRKSRC}/lisa/zilog8530.c
 

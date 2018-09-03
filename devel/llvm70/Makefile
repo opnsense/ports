@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	llvm
-DISTVERSION=	7.0.0rc1
+DISTVERSION=	7.0.0rc2
 PORTREVISION=	0
 CATEGORIES=	devel lang
 MASTER_SITES=	http://${PRE_}releases.llvm.org/${LLVM_RELEASE}/${RCDIR}
@@ -47,6 +47,7 @@ CMAKE_ARGS+=	-DLLVM_HOST_TRIPLE=${CONFIGURE_TARGET}
 # we need to either change the whole man-shuffle below, or simply
 # redefine CMAKE_INSTALL_MANDIR
 CMAKE_ARGS+=	-DCMAKE_INSTALL_MANDIR:PATH="share/man"
+CMAKE_ARGS+=	-DLLVM_PARALLEL_LINK_JOBS=1
 
 OPTIONS_DEFINE=	CLANG DOCS EXTRAS LIT LLD LLDB
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
@@ -526,6 +527,7 @@ build-plist:
 	    if ($$0 ~ /${COMPILER_RT_PATTERN}/) \
 		{printf "%%%%COMPILER_RT%%%%"} \
 	    if ($$0 ~ /(${EXTRAS_PATTERN})/) {printf "%%%%EXTRAS%%%%"} \
+	    if ($$0 ~ /libclangDoc.a/) {printf "%%%%DOCS%%%%"} \
 	    if ($$0 ~ /lld|wasm-ld/ && $$0 !~ /lldb/) {printf "%%%%LLD%%%%"} \
 	    if ($$0 ~ /(argdumper|lldb|six.py)/) {printf "%%%%LLDB%%%%"} \
 	    if ($$0 ~ /lib.*omp|omp.h|ompt.h/) {printf "%%%%OPENMP%%%%"} \

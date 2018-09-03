@@ -18,8 +18,9 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:R}
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		desktop-file-utils gettext gmake libtool pathfix pkgconfig \
+USES=		desktop-file-utils gettext gmake gnome libtool pathfix pkgconfig \
 		python:2.7 shared-mime-info tar:bzip2
+USE_CXXSTD=	gnu++98
 USE_GNOME=	gnomeprefix intlhack libgnomeui
 USE_GL=		gl
 GNU_CONFIGURE=	yes

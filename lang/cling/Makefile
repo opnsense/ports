@@ -3,6 +3,7 @@
 
 PORTNAME=		cling
 DISTVERSION=		0.5-2018-08-13
+PORTREVISION=		1
 CATEGORIES=		lang devel
 MASTER_SITES=		https://root.cern.ch/download/cling/
 DISTNAME=		${PORTNAME}_${DISTVERSION:C/^[0-9]\.[0-9]-//}_sources
@@ -20,6 +21,9 @@ LICENSE_PERMS_LLVM=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 BROKEN_armv6=		fails to compile: AArch64TargetMachine.cpp: relocation truncated to fit: R_ARM_CALL against symbol '__aeabi_uldivmod'
 BROKEN_armv7=		fails to compile: AArch64TargetMachine.cpp: relocation truncated to fit: R_ARM_CALL against symbol '__aeabi_uldivmod'
 
+LIB_DEPENDS=	libgtest.so:devel/googletest \
+		libz3.so:math/z3
+
 WRKSRC=		${WRKDIR}/src
 
 LLVM_RELEASE=	5.0.0
@@ -30,8 +34,6 @@ USES=		cmake:outsource compiler:c11 compiler:c++11-lib cpe \
 		libedit ncurses python:build shebangfix tar:bzip2
 USE_GNOME=	libxml2
 USE_LDCONFIG=	${LLVM_PREFIX}/lib
-LIB_DEPENDS=	libgtest.so:devel/googletest \
-		libz3.so:math/z3
 
 SHEBANG_FILES=	tools/clang/tools/clang-format/clang-format-diff.py \
 		tools/clang/tools/clang-format/git-clang-format \

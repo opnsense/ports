@@ -31,6 +31,7 @@
     SUBDIR += chez-scheme
     SUBDIR += chibi-scheme
     SUBDIR += chicken
+    SUBDIR += chicken5
     SUBDIR += cilkplus
     SUBDIR += cim
     SUBDIR += cint
@@ -374,7 +375,6 @@
     SUBDIR += ucc
     SUBDIR += urweb
     SUBDIR += v8
-    SUBDIR += v8-devel
     SUBDIR += vala
     SUBDIR += visualworks
     SUBDIR += yabasic

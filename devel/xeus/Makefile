@@ -2,6 +2,7 @@
 
 PORTNAME=	xeus
 DISTVERSION=	0.13.0
+PORTREVISION=	3
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,12 +15,10 @@ BUILD_DEPENDS=	cppzmq>0:net/cppzmq \
 		nlohmann-json>0:devel/nlohmann-json \
 		xtl-quant-stack>0:devel/xtl-quant-stack
 LIB_DEPENDS=	libcryptopp.so:security/cryptopp \
-		libuuid.so:misc/e2fsprogs-libuuid
-RUN_DEPENDS=	cppzmq>0:net/cppzmq \
-		nlohmann-json>0:devel/nlohmann-json \
-		xtl-quant-stack>0:devel/xtl-quant-stack
+		libuuid.so:misc/e2fsprogs-libuuid \
+		libzmq.so:net/libzmq4
 
-USES=		cmake:outsource localbase:ldflags pkgconfig
+USES=		cmake:outsource compiler:c++14-lang localbase:ldflags pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	QuantStack
 USE_LDCONFIG=	yes

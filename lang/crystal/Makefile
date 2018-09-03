@@ -2,6 +2,7 @@
 
 PORTNAME=		crystal
 DISTVERSION=		0.25.1
+PORTREVISION=		1
 CATEGORIES=		lang
 MASTER_SITES=		https://unrelentingtech.s3.dualstack.eu-west-1.amazonaws.com/crystal/:bootstrap
 DISTFILES=		${BOOTSTRAP_PATH}:bootstrap
@@ -38,7 +39,7 @@ PORTDOCS=	*
 PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=		DOCS EXAMPLES BASH ZSH
-OPTIONS_DEFAULT=	DOCS EXAMPLES BASH ZSH
+OPTIONS_DEFAULT=	BASH ZSH
 OPTIONS_SUB=		yes
 
 .include <bsd.port.options.mk>

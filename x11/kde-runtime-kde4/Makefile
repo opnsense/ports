@@ -2,12 +2,15 @@
 
 PORTNAME=	kde-runtime
 PORTVERSION=	${KDE_APPLICATIONS_VERSION}
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	x11 kde kde-applications
 PKGNAMESUFFIX=	-kde4
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Runtime components for KDE Plasma Desktop
+
+DEPRECATED=	KDE4 is EOL upstream
+EXPIRATION_DATE=	2018-12-31
 
 CONFLICTS_INSTALL=	plasma5-kde-cli-tools
 

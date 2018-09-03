@@ -3,7 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	4.0.2
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio ipv6 net
 MASTER_SITES=	https://ffmpeg.org/releases/
@@ -42,12 +42,6 @@ OPTIONS_DEFINE=	ALSA AMR_NB AMR_WB AOM ASS BEIGNET BS2B CACA CDIO CELT CHROMAPRI
 OPTIONS_DEFAULT=	FONTCONFIG FREETYPE FREI0R GMP GNUTLS ICONV \
 			OPENCV OPTIMIZED_CFLAGS OPUS RTCPU THEORA V4L VAAPI VDPAU \
 			VORBIS VPX X264 X265 XVID
-
-.if !exists(${.CURDIR:H:H}/multimedia/aom)
-# https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/c438899a7064
-# https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/43778a501f1b
-OPTIONS_EXCLUDE+=	AOM
-.endif
 
 .if !exists(${.CURDIR:H:H}/net/srt)
 # https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/a2fc8dbae853

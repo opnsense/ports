@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	kops
-PORTVERSION=	1.9.2
+PORTVERSION=	1.10.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	danilo@FreeBSD.org
@@ -10,26 +10,27 @@ COMMENT=	Kubernetes Operations
 
 LICENSE=	APACHE20
 
-USES=		gmake go
+BUILD_DEPENDS=	go-bindata:devel/go-bindata
+
+USES=		go
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kubernetes
+GH_SUBDIR=	src/k8s.io/${PORTNAME}
 
 PLIST_FILES=	bin/${PORTNAME}
 
-post-patch:
-	${MKDIR} ${WRKDIR}/src/k8s.io/
-	${LN} -s ${WRKSRC} ${WRKDIR}/src/k8s.io/${PORTNAME}
-	${REINPLACE_CMD} -e 's/^GITSHA/#GITSHA/' -e 's/sha1sum/sha1/' \
-		${WRKSRC}/Makefile
-
 do-build:
 	cd ${WRKSRC} && \
-		GOPATH=${WRKDIR} ${GMAKE}
+		${LOCALBASE}/bin/go-bindata -o upup/models/bindata.go -pkg models \
+		-prefix upup/models/ upup/models/... && \
+		GOPATH=${WRKSRC} go build \
+		-ldflags=all="-X k8s.io/kops.Version=${PORTVERSION}" \
+		k8s.io/kops/cmd/kops
 
 do-install:
 	${INSTALL_PROGRAM} \
-		${WRKDIR}/bin/${PORTNAME} \
+		${WRKSRC}/${PORTNAME} \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

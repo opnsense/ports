@@ -3,8 +3,7 @@
 
 PORTNAME=	freeorion
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4.8-rc2
-PORTREVISION=	1
+DISTVERSION=	0.4.8
 CATEGORIES=	games
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -19,6 +18,7 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 USE_GITHUB=	yes
 
 USES=		cmake compiler:c++14-lang python:2.7
+LLD_UNSAFE=	yes
 
 PORTDOCS=	ChangeLog.md README.md
 PORTDATA=	*

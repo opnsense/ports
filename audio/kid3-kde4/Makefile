@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	kid3
-PORTVERSION=	3.6.1
+PORTVERSION=	3.6.2
 PORTREVISION?=	0
 CATEGORIES=	audio kde
 MASTER_SITES=	SF
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${LOCALBASE}/share/xsl/docbook/html/docbook.xsl:textproc/docbook-xsl
 
-USES=		cmake:outsource pkgconfig
+USES=		cmake:outsource gnome pkgconfig
 USE_GNOME=	libxslt:build
 USE_LDCONFIG=	yes
 
@@ -42,6 +42,9 @@ KID3_APPS+=	KDE
 
 .if ${SLAVE} == kde4 || ${SLAVE} == qt4
 # KDE4 and Qt4
+DEPRECATED=	Qt4 and KDE4 EOL upstream. Use audio/kid3-qt5 or audio/kid3-kf5 instead 
+EXPIRATION_DATE=	2018-12-31
+
 USES+=		qt:4
 USE_QT+=	corelib dbus gui network xml \
 		qmake_build moc_build rcc_build uic_build \
@@ -66,10 +69,8 @@ OPTIONS_SLAVE+=	PHONON
 .elif ${SLAVE} == kf5
 # KF5 only
 USES+=		desktop-file-utils kde:5
-USE_KDE+=	auth bookmarks codecs completion config configwidgets \
-		coreaddons doctools_build ecm_build itemviews jobwidgets \
-		kio service solid widgetsaddons xmlgui
-USE_QT+=	concurrent
+USE_KDE+=	auth codecs config configwidgets coreaddons \
+		widgetsaddons xmlgui doctools_build ecm_build
 PLIST_SUB+=	KDE4="@comment " KF5=""
 .endif
 
@@ -128,9 +129,6 @@ PLIST_SUB+=	OGGFLAC=""
 .else
 PLIST_SUB+=	OGGFLAC="@comment "
 .endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|aiff|aif|g' ${WRKSRC}/src/test/test_cli_functions.py
 
 pre-test:
 	@${CP} ${WRKSRC}/src/test/*.py ${TEST_WRKSRC}

@@ -24,11 +24,14 @@
     SUBDIR += alkimia-qt4
     SUBDIR += aqbanking
     SUBDIR += aqmoney
+    SUBDIR += beancount
     SUBDIR += beanie
     SUBDIR += bitcoin-armory
     SUBDIR += cbb
+    SUBDIR += cointop
     SUBDIR += electrum
     SUBDIR += expense
+    SUBDIR += fava
     SUBDIR += fixc
     SUBDIR += frontaccounting
     SUBDIR += gnucash

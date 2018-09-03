@@ -3,6 +3,7 @@
 
 PORTNAME=	efl
 DISTVERSION=	1.20.7
+PORTREVISION=	1
 CATEGORIES=	devel enlightenment
 MASTER_SITES=	http://download.enlightenment.org/rel/libs/${PORTNAME}/
 DIST_SUBDIR=	enlightenment
@@ -21,6 +22,9 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libdbus-1.so:devel/dbus \
 		libsndfile.so:audio/libsndfile \
 		libunwind.so:devel/libunwind
+
+# lib/libeio.so.1
+CONFLICTS_INSTALL=	libeio
 
 GNU_CONFIGURE=	yes
 USES=		autoreconf compiler:c++14-lang gettext-tools gmake iconv jpeg \

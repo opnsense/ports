@@ -21,7 +21,6 @@
     SUBDIR += dclib
     SUBDIR += deluge
     SUBDIR += deluge-cli
-    SUBDIR += dogecoin
     SUBDIR += ed2k
     SUBDIR += edonkey-tool-hash
     SUBDIR += eiskaltdcpp-cli
@@ -54,7 +53,6 @@
     SUBDIR += litecoin
     SUBDIR += litecoin-daemon
     SUBDIR += litecoin-utils
-    SUBDIR += lopster
     SUBDIR += microdc2
     SUBDIR += minder
     SUBDIR += mktorrent
@@ -96,7 +94,6 @@
     SUBDIR += transmission-qt
     SUBDIR += transmission-remote-gui
     SUBDIR += tribler
-    SUBDIR += twister
     SUBDIR += uhub
     SUBDIR += valknut
     SUBDIR += verlihub
@@ -111,7 +108,6 @@
     SUBDIR += verlihub-plugins-stats
     SUBDIR += vuze
     SUBDIR += xmrig
-    SUBDIR += xnap
     SUBDIR += zetacoin
     SUBDIR += zetacoin-nox11
 
