@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	ntp
-PORTVERSION=	4.2.8p11
-PORTREVISION=	2
+PORTVERSION=	4.2.8p12
+PORTREVISION=	1
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.eecis.udel.edu/~ntp/ntp_spool/ntp4/ntp-4.2/ \
 		http://archive.ntp.org/ntp4/ntp-4.2/ \
@@ -32,6 +32,8 @@ SHEBANG_FILES=	scripts/ntptrace/ntptrace.in \
 		scripts/ntp-wait/ntp-wait.in \
 		scripts/update-leap/update-leap.in
 perl_OLD_CMD=	@PATH_PERL@
+
+SUB_FILES=	pkg-message
 
 .include "Makefile.inc"
 
