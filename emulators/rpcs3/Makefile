@@ -2,8 +2,8 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.5-821
-DISTVERSIONSUFFIX=	-gbf89b709c
+DISTVERSION=	0.0.5-838
+DISTVERSIONSUFFIX=	-gca5158a03
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -47,9 +47,6 @@ LDFLAGS+=	-Wl,--as-needed # GLU
 
 OPTIONS_DEFINE=	ALSA EVDEV GDB LLVM PULSEAUDIO VULKAN
 OPTIONS_DEFAULT=ALSA LLVM VULKAN
-.if !exists(${.CURDIR:H:H}/graphics/vulkan-loader)
-OPTIONS_EXCLUDE=VULKAN # XXX ports/222175
-.endif
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
