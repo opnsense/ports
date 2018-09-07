@@ -312,6 +312,7 @@
     SUBDIR += libmissing
     SUBDIR += libocas
     SUBDIR += liborigin
+    SUBDIR += libpgmath
     SUBDIR += libpoly
     SUBDIR += libqalculate
     SUBDIR += libranlip
@@ -342,6 +343,7 @@
     SUBDIR += mingw32-libgmp
     SUBDIR += minisat
     SUBDIR += miracl
+    SUBDIR += mkl-dnn
     SUBDIR += mlpack
     SUBDIR += moo
     SUBDIR += mosesdecoder
@@ -668,6 +670,7 @@
     SUBDIR += py-bitvector
     SUBDIR += py-bottleneck
     SUBDIR += py-cdecimal
+    SUBDIR += py-chaospy
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
     SUBDIR += py-cvxopt
@@ -790,6 +793,7 @@
     SUBDIR += simd-viterbi
     SUBDIR += singular
     SUBDIR += slatec
+    SUBDIR += sleef
     SUBDIR += slepc
     SUBDIR += slgrace
     SUBDIR += snns
