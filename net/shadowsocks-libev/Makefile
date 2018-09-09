@@ -13,12 +13,15 @@ COMMENT=	Lightweight tunnel proxy which can help you get through firewalls
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	pie:off
+BROKEN_powerpc64=	fails to link: cc: Internal error: Segmentation fault (program ld)
+
 LIB_DEPENDS=	libev.so:devel/libev \
 		libmbedcrypto.so:security/mbedtls \
 		libpcre.so:devel/pcre \
 		libsodium.so:security/libsodium \
 		libcares.so:dns/c-ares
+
+USE_HARDENING=	pie:off
 
 USES=		autoreconf gmake libtool:keepla pathfix
 GNU_CONFIGURE=	yes
