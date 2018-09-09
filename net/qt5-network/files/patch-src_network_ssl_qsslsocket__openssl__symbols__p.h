@@ -1,5 +1,5 @@
 Boilerplate for SSL_CTX_set1_groups() used in qsslcontext_openssl.cpp.
---- src/network/ssl/qsslsocket_openssl_symbols_p.h.orig	2017-11-30 13:49:46 UTC
+--- src/network/ssl/qsslsocket_openssl_symbols_p.h.orig	2018-02-08 18:24:48 UTC
 +++ src/network/ssl/qsslsocket_openssl_symbols_p.h
 @@ -454,6 +454,9 @@ void q_EC_KEY_free(EC_KEY *ecdh);
  size_t q_EC_get_builtin_curves(EC_builtin_curve *r, size_t nitems);
