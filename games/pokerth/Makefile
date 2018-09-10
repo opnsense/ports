@@ -35,6 +35,8 @@ WRKSRC=		${WRKDIR}/${DISTNAME}-rc
 
 PORTDOCS=	server_setup_howto.txt
 
+OPTIONS_DEFINE=	DOCS
+
 post-patch:
 	@${REINPLACE_CMD} -E \
 		-e 's|/usr([a-z|/]*)|${LOCALBASE}/\1|g' \

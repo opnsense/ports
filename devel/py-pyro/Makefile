@@ -23,6 +23,8 @@ USE_PYTHON=	autoplist concurrent distutils
 PORTDOCS=	*
 PORTEXAMPLES=	*
 
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 3400

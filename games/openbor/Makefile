@@ -2,7 +2,7 @@
 
 PORTNAME=	openbor
 # Hint: svn revision is git rev-list --count ${GH_TAGNAME}
-PORTVERSION?=	6477
+PORTVERSION?=	6484
 .ifndef PKGNAMESUFFIX
 PORTREVISION=	0
 .endif
@@ -31,7 +31,7 @@ PORTSCOUT=	ignore:1
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	DCurrent
-GH_TAGNAME?=	44e2998b
+GH_TAGNAME?=	949a4031
 
 USES+=		gmake pkgconfig
 .if ${PORTVERSION} < 4433
@@ -63,7 +63,7 @@ DESKTOP_ENTRIES="OpenBOR v3.0 Build ${PORTVERSION}" \
 		"Game;ArcadeGame;" \
 		""
 
-OPTIONS_DEFINE=		TREMOR
+OPTIONS_DEFINE=		DOCS TREMOR
 OPTIONS_DEFAULT=	${MACHINE_CPU:Msoftfp:C/.+/TREMOR/}
 OPTIONS_DEFINE_i386=	MMX
 OPTIONS_DEFAULT_i386=	MMX # runtime detection
