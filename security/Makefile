@@ -467,6 +467,7 @@
     SUBDIR += openssl
     SUBDIR += openssl-devel
     SUBDIR += openssl-unsafe
+    SUBDIR += openssl111
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas8
     SUBDIR += openvas8-cli
