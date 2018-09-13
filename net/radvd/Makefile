@@ -14,8 +14,6 @@ LICENSE_NAME=	RADVD License
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-CONFLICTS_INSTALL=radvd1
-
 LIB_DEPENDS=	libdaemon.so:devel/libdaemon
 
 USE_HARDENING=	safestack
