@@ -11,7 +11,7 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Small, fast, and secure NetFlow collector
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	PERL PYTHON
+OPTIONS_DEFINE=	PERL PYTHON DOCS EXAMPLES
 OPTIONS_DEFAULT=PERL
 
 PERL_DESC=	Install flowd perl module
