@@ -1,14 +1,5 @@
 --- src/network/ssl/qsslsocket_openssl_symbols_p.h.orig	2018-06-15 07:29:31 UTC
 +++ src/network/ssl/qsslsocket_openssl_symbols_p.h
-@@ -216,7 +216,7 @@ QT_BEGIN_NAMESPACE
- 
- #endif // !defined QT_LINKED_OPENSSL
- 
--#if QT_CONFIG(opensslv11)
-+#if QT_CONFIG(opensslv11) && !defined(LIBRESSL_VERSION_NUMBER)
- #include "qsslsocket_openssl11_symbols_p.h"
- #else
- #include "qsslsocket_opensslpre11_symbols_p.h"
 @@ -356,7 +356,7 @@ int q_SSL_CTX_use_PrivateKey(SSL_CTX *a, EVP_PKEY *b);
  int q_SSL_CTX_use_RSAPrivateKey(SSL_CTX *a, RSA *b);
  int q_SSL_CTX_use_PrivateKey_file(SSL_CTX *a, const char *b, int c);

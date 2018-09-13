@@ -1,14 +1,5 @@
 --- src/network/ssl/qsslsocket_openssl_symbols.cpp.orig	2018-06-15 07:29:31 UTC
 +++ src/network/ssl/qsslsocket_openssl_symbols.cpp
-@@ -137,7 +137,7 @@ void qsslSocketCannotResolveSymbolWarning(const char *
- 
- #endif // QT_LINKED_OPENSSL
- 
--#if QT_CONFIG(opensslv11)
-+#if QT_CONFIG(opensslv11) && !defined(LIBRESSL_VERSION_NUMBER)
- 
- // Below are the functions first introduced in version 1.1:
- 
 @@ -150,6 +150,14 @@ DEFINEFUNC2(int, BN_is_word, BIGNUM *a, a, BN_ULONG w,
  DEFINEFUNC(int, EVP_CIPHER_CTX_reset, EVP_CIPHER_CTX *c, c, return 0, return)
  DEFINEFUNC(int, EVP_PKEY_base_id, EVP_PKEY *a, a, return NID_undef, return)
@@ -67,8 +58,8 @@
      // first attempt: the canonical name is libssl.so.<SHLIB_VERSION_NUMBER>
 -    libssl->setFileNameAndVersion(QLatin1String("ssl"), QLatin1String(SHLIB_VERSION_NUMBER));
 -    libcrypto->setFileNameAndVersion(QLatin1String("crypto"), QLatin1String(SHLIB_VERSION_NUMBER));
-+    libssl->setFileNameAndVersion(QLatin1String("/usr/local/lib/libssl"), QLatin1String(SHLIB_VERSION_NUMBER));
-+    libcrypto->setFileNameAndVersion(QLatin1String("/usr/local/lib/libcrypto"), QLatin1String(SHLIB_VERSION_NUMBER));
++    libssl->setFileNameAndVersion(QLatin1String("%%OPENSSLLIB%%/libssl"), QLatin1String(SHLIB_VERSION_NUMBER));
++    libcrypto->setFileNameAndVersion(QLatin1String("%%OPENSSLLIB%%/libcrypto"), QLatin1String(SHLIB_VERSION_NUMBER));
      if (libcrypto->load() && libssl->load()) {
          // libssl.so.<SHLIB_VERSION_NUMBER> and libcrypto.so.<SHLIB_VERSION_NUMBER> found
          return pair;
@@ -78,8 +69,8 @@
      //  iOS does not ship a system libssl.dylib, libcrypto.dylib in the first place.
 -    libssl->setFileNameAndVersion(QLatin1String("ssl"), -1);
 -    libcrypto->setFileNameAndVersion(QLatin1String("crypto"), -1);
-+    libssl->setFileNameAndVersion(QLatin1String("/usr/local/lib/libssl"), -1);
-+    libcrypto->setFileNameAndVersion(QLatin1String("/usr/local/lib/libcrypto"), -1);
++    libssl->setFileNameAndVersion(QLatin1String("%%OPENSSLLIB%%/libssl"), -1);
++    libcrypto->setFileNameAndVersion(QLatin1String("%%OPENSSLLIB%%/libcrypto"), -1);
      if (libcrypto->load() && libssl->load()) {
          // libssl.so.0 and libcrypto.so.0 found
          return pair;
@@ -179,15 +170,6 @@
  #endif // OPENSSL_VERSION_NUMBER >= 0x10002000L
  #endif // OPENSSL_NO_EC
  
-@@ -1030,7 +1064,7 @@ bool q_resolveOpenSslSymbols()
-     RESOLVEFUNC(EC_GROUP_get_degree)
- #endif
-     RESOLVEFUNC(BN_num_bits)
--#if QT_CONFIG(opensslv11)
-+#if QT_CONFIG(opensslv11) && !defined(LIBRESSL_VERSION_NUMBER)
-     RESOLVEFUNC(BN_is_word)
- #endif
-     RESOLVEFUNC(BN_mod_word)
 @@ -1122,7 +1156,7 @@ bool q_resolveOpenSslSymbols()
      RESOLVEFUNC(SSL_CTX_use_RSAPrivateKey)
      RESOLVEFUNC(SSL_CTX_use_PrivateKey_file)
