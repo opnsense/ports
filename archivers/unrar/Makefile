@@ -17,8 +17,6 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_NAME=	UnRAR license
 LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror
 
-BROKEN_SSL=	openssl-devel
-
 USE_HARDENING=	pie:off safestack
 
 OPTIONS_DEFINE=	OPENSSL_AES
