@@ -33,6 +33,7 @@ ALL_TARGET=	world.opt
 STRIP=
 SSP_UNSAFE=	yes
 MAKE_JOBS_UNSAFE=	yes
+LDFLAGS_i386=	-Wl,-znotext
 
 USE_HARDENING=	pie:off relro:off
 LLVM_AR_UNSAFE=	yes
