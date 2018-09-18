@@ -17,7 +17,7 @@ Signed-off-by: Piotr Kubaj <pkubaj@anongoth.pl>
 Signed-off-by: David Woodhouse <dwmw2@infradead.org>
 --- openssl-dtls.c.orig	2016-12-06 13:03:51 UTC
 +++ openssl-dtls.c
-@@ -100,8 +100,8 @@ static int dtls_get_data_mtu(struct open
+@@ -100,8 +100,8 @@ static int dtls_get_data_mtu(struct openconnect_info *
  	}
  #else
  	/* OpenSSL <= 1.0.2 only supports CBC ciphers with PSK */
