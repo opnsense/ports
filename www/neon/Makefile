@@ -43,8 +43,6 @@ PROXY_LIB_DEPENDS=	libproxy.so:net/libproxy
 
 .include <bsd.port.options.mk>
 
-CFLAGS=		-DOPENSSL_IS_LIBRESSL
-
 CONFIGURE_ARGS+=--enable-shared \
 		--with-libs=${LOCALBASE}:${PREFIX}
 
