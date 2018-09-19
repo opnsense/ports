@@ -24,6 +24,8 @@ GNU_CONFIGURE=	yes
 USE_LDCONFIG=	${PREFIX}/lib/ipsec
 INSTALL_TARGET=	install-strip
 
+CFLAGS=		-DOPENSSL_IS_LIBRESSL
+
 CONFIGURE_ARGS=	--enable-kernel-pfkey \
 		--enable-kernel-pfroute  \
 		--disable-kernel-netlink  \
