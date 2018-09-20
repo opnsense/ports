@@ -129,7 +129,7 @@
  					conn->flags &= ~CO_FL_WAIT_L4_CONN;
  				if (!conn->err_code) {
 -#ifdef OPENSSL_IS_BORINGSSL /* BoringSSL */
-+#if defined(OPENSSL_IS_BORINGSSL) || defined(OPENSSL_NO_HEARTBEATS) /* BoringSSL */
++#if defined(OPENSSL_IS_BORINGSSL) || (defined(LIBRESSL_VERSION_NUMBER) && defined(OPENSSL_NO_HEARTBEATS))
  					conn->err_code = CO_ER_SSL_HANDSHAKE;
  #else
  					int empty_handshake;
@@ -147,7 +147,7 @@
  				conn->flags &= ~CO_FL_WAIT_L4_CONN;
  			if (!conn->err_code) {
 -#ifdef OPENSSL_IS_BORINGSSL  /* BoringSSL */
-+#if defined(OPENSSL_IS_BORINGSSL) || defined(OPENSSL_NO_HEARTBEATS) /* BoringSSL */
++#if defined(OPENSSL_IS_BORINGSSL) || (defined(LIBRESSL_VERSION_NUMBER) && defined(OPENSSL_NO_HEARTBEATS))
  				conn->err_code = CO_ER_SSL_HANDSHAKE;
  #else
  				int empty_handshake;
