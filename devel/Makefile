@@ -4851,6 +4851,7 @@
     SUBDIR += py-pooch
     SUBDIR += py-positional
     SUBDIR += py-posix_ipc
+    SUBDIR += py-poyo
     SUBDIR += py-pp
     SUBDIR += py-pqueue
     SUBDIR += py-pretend
@@ -6332,6 +6333,7 @@
     SUBDIR += xtoolchain-llvm40
     SUBDIR += xtoolchain-llvm50
     SUBDIR += xtoolchain-llvm60
+    SUBDIR += xtoolchain-llvm70
     SUBDIR += xwpe
     SUBDIR += xxgdb
     SUBDIR += xxhash

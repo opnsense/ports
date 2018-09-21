@@ -321,6 +321,7 @@
     SUBDIR += libtsnnls
     SUBDIR += libxls
     SUBDIR += libxlsxwriter
+    SUBDIR += libxsmm
     SUBDIR += linpack
     SUBDIR += lll_spect
     SUBDIR += lp_solve
@@ -683,6 +684,7 @@
     SUBDIR += py-fiat
     SUBDIR += py-fpconst
     SUBDIR += py-gato
+    SUBDIR += py-gimmik
     SUBDIR += py-gmpy
     SUBDIR += py-gmpy2
     SUBDIR += py-gnuplot
