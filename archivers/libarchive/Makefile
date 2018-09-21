@@ -3,7 +3,7 @@
 PORTNAME=	libarchive
 PORTVERSION=	3.3.2
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	archivers
 MASTER_SITES=	https://libarchive.org/downloads/
 
