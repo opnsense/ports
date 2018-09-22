@@ -14,15 +14,16 @@ COMMENT=	Geographic objects support for PostgreSQL databases
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+USE_HARDENING=	pie:off relro:off
+
 LIB_DEPENDS=	libproj.so:graphics/proj \
 		libgeos.so:graphics/geos \
 		libjson-c.so:devel/json-c
 
 CONFLICTS=	postgis20  postgis21 postgis22 postgis24 postgis
 
-USE_HARDENING=	pie:off relro:off
-
-USES=		gettext gmake iconv:wchar_t libtool:keepla perl5 pgsql pkgconfig shebangfix
+USES=		compiler:c++11-lang gettext gmake iconv:wchar_t libtool:keepla \
+		perl5 pgsql pkgconfig shebangfix
 LLD_UNSAFE=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_BASE}
