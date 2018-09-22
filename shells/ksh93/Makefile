@@ -26,6 +26,8 @@ LICENSE=	EPL
 
 USE_HARDENING=	pie:off relro:off
 
+CONFLICTS=	ksh93-devel-*
+
 OPTIONS_DEFINE=	EXAMPLES STATIC
 
 FETCH_ENV=	HTTP_AUTH=basic:*:I\ accept\ www.opensource.org/licenses/cpl:.

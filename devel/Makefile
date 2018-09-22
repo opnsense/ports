@@ -4460,6 +4460,7 @@
     SUBDIR += py-construct
     SUBDIR += py-construct28
     SUBDIR += py-contextlib2
+    SUBDIR += py-cookiecutter
     SUBDIR += py-coreapi
     SUBDIR += py-coreschema
     SUBDIR += py-country
@@ -4589,6 +4590,7 @@
     SUBDIR += py-geotypes
     SUBDIR += py-gevent
     SUBDIR += py-git-up
+    SUBDIR += py-git-url-parse
     SUBDIR += py-git_semver
     SUBDIR += py-gitdb2
     SUBDIR += py-gitless
@@ -4655,6 +4657,7 @@
     SUBDIR += py-jellyfish
     SUBDIR += py-jenkins-job-builder
     SUBDIR += py-jep
+    SUBDIR += py-jinja2-time
     SUBDIR += py-jira
     SUBDIR += py-jmespath
     SUBDIR += py-joblib
@@ -4938,6 +4941,7 @@
     SUBDIR += py-pytest-django
     SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-flakes
+    SUBDIR += py-pytest-helpers-namespace
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-mock
     SUBDIR += py-pytest-pycodestyle
@@ -4953,6 +4957,7 @@
     SUBDIR += py-python-editor
     SUBDIR += py-python-engineio
     SUBDIR += py-python-gflags
+    SUBDIR += py-python-gilt
     SUBDIR += py-python-gist
     SUBDIR += py-python-gitlab
     SUBDIR += py-python-jenkins
@@ -5136,6 +5141,7 @@
     SUBDIR += py-traitlets
     SUBDIR += py-traits
     SUBDIR += py-transaction
+    SUBDIR += py-tree-format
     SUBDIR += py-trollius
     SUBDIR += py-ttystatus
     SUBDIR += py-tvrage
@@ -6293,11 +6299,13 @@
     SUBDIR += valgrind-devel
     SUBDIR += varconf
     SUBDIR += vasm
+    SUBDIR += vcglib
     SUBDIR += vera++
     SUBDIR += vexcl
     SUBDIR += viewvc
     SUBDIR += violet
     SUBDIR += visualparadigm
+    SUBDIR += vitables
     SUBDIR += vstr
     SUBDIR += vulkan-headers
     SUBDIR += vulkan-tools
