@@ -14,8 +14,10 @@
     SUBDIR += R-cran-highr
     SUBDIR += R-cran-htmltools
     SUBDIR += R-cran-markdown
+    SUBDIR += R-cran-openxlsx
     SUBDIR += R-cran-pystr
     SUBDIR += R-cran-readr
+    SUBDIR += R-cran-rematch
     SUBDIR += R-cran-rmarkdown
     SUBDIR += R-cran-stringi
     SUBDIR += R-cran-stringr
@@ -794,6 +796,7 @@
     SUBDIR += p5-Sphinx-Config
     SUBDIR += p5-Sphinx-Manager
     SUBDIR += p5-Sphinx-Search
+    SUBDIR += p5-Spreadsheet-GenerateXLSX
     SUBDIR += p5-Spreadsheet-ParseExcel
     SUBDIR += p5-Spreadsheet-Read
     SUBDIR += p5-Spreadsheet-ReadSXC
@@ -955,6 +958,7 @@
     SUBDIR += p5-Text-Table-Any
     SUBDIR += p5-Text-Table-Manifold
     SUBDIR += p5-Text-Table-Tiny
+    SUBDIR += p5-Text-Table-XLSX
     SUBDIR += p5-Text-Tabs+Wrap
     SUBDIR += p5-Text-TabularDisplay
     SUBDIR += p5-Text-Tags
