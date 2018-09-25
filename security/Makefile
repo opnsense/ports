@@ -450,6 +450,7 @@
     SUBDIR += ocaml-ssl
     SUBDIR += oidentd
     SUBDIR += oinkmaster
+    SUBDIR += onionscan
     SUBDIR += op
     SUBDIR += openbsm
     SUBDIR += openca-tools-forked
