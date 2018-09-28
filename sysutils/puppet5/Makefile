@@ -24,7 +24,7 @@ RUN_DEPENDS=	rubygem-gettext-setup>=0:devel/rubygem-gettext-setup \
 
 USES=		cpe
 CPE_VENDOR=	puppetlabs
-CONFLICTS_INSTALL=	puppet4-*
+CONFLICTS_INSTALL=	puppet4-* puppet6-*
 NO_ARCH=	yes
 NO_BUILD=	yes
 USE_RUBY=	yes

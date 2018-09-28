@@ -23,6 +23,8 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 JAVA_VERSION=	1.7+
 
+CONFLICTS_INSTALL=	puppetserver5-* puppetserver6-*
+
 USERS=		puppet
 GROUPS=		puppet
 
