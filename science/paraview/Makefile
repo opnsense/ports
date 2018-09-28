@@ -19,6 +19,8 @@ LICENSE_NAME=	ParaView_License
 LICENSE_FILE=	${PATCH_WRKSRC}/License_v1.2.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+USE_HARDENING=	pie:off relro:off
+
 BUILD_DEPENDS=	${PYTHON_SITELIBDIR}/matplotlib/pyplot.py:math/py-matplotlib@${PY_FLAVOR}
 LIB_DEPENDS=	libhdf5.so:science/hdf5 \
 		libpng.so:graphics/png \
@@ -42,7 +44,7 @@ USE_XORG=	x11 xt xext ice xdmcp xau xcb xfixes xdamage xxf86vm xrender sm xorgpr
 USE_LDCONFIG=	yes
 USE_GSTREAMER=	yes
 
-USE_HARDENING=	pie:off relro:off
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}pygments
 
 CMAKE_ARGS+=	-DBUILD_SHARED_LIBS="ON" \
 		-DVTK_USE_SYSTEM_PNG="ON" \
