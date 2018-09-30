@@ -17,11 +17,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libbrotlicommon.so:archivers/brotli \
 		libpcre.so:devel/pcre
 
+USES=		cpe libtool localbase
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--sysconfdir="${PREFIX}/etc/c-icap" \
 		--localstatedir=/var
 INSTALL_TARGET=	install-strip
-USES=		cpe libtool localbase
 CPE_VENDOR=	c-icap_project
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	c-icap
