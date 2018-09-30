@@ -210,8 +210,6 @@
     SUBDIR += grdesktop
     SUBDIR += grilo
     SUBDIR += grilo-plugins
-    SUBDIR += grilo-plugins2
-    SUBDIR += grilo2
     SUBDIR += grive2
     SUBDIR += grpcurl
     SUBDIR += grsync
@@ -376,6 +374,7 @@
     SUBDIR += libfixbuf
     SUBDIR += libgnetwork
     SUBDIR += libgravatar
+    SUBDIR += libgrss
     SUBDIR += libgweather
     SUBDIR += libilbc
     SUBDIR += libkfbapi
@@ -547,7 +546,6 @@
     SUBDIR += ntop
     SUBDIR += ntopng
     SUBDIR += ntp
-    SUBDIR += ntp-devel
     SUBDIR += ntpa
     SUBDIR += ntraceroute
     SUBDIR += nusoap
@@ -1459,7 +1457,6 @@
     SUBDIR += thcrut
     SUBDIR += throttled
     SUBDIR += tigervnc
-    SUBDIR += tigervnc-devel
     SUBDIR += tightvnc
     SUBDIR += tintin++
     SUBDIR += tiny-network-utilities
@@ -1493,7 +1490,6 @@
     SUBDIR += ulxmlrpcpp
     SUBDIR += unfs3
     SUBDIR += unison
-    SUBDIR += unison-devel
     SUBDIR += unison232
     SUBDIR += unison240
     SUBDIR += unison248
@@ -1555,7 +1551,6 @@
     SUBDIR += xprobe
     SUBDIR += xrdesktop2
     SUBDIR += xrdp
-    SUBDIR += xrdp-devel
     SUBDIR += yami4
     SUBDIR += yaph
     SUBDIR += yate
