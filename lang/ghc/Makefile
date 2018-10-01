@@ -40,6 +40,8 @@ USE_HARDENING=	pie:off
 # This is better fixed in files/build.mk.in
 GNU_CONFIGURE=	yes
 
+# disable xelatex: PR 231438
+CONFIGURE_ENV+=		ac_cv_path_XELATEX=
 CONFIGURE_ARGS=		--with-gmp-includes=${LOCALBASE}/include \
 			--with-gmp-libraries=${LOCALBASE}/lib \
 			--with-iconv-includes=${LOCALBASE}/include \
