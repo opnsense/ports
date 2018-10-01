@@ -102,18 +102,22 @@ USE_XORG+=	xcb
 .endif
 
 .if ${MOZILLA_VER:R:R} >= 56
-MESA_LLVM_VER?=	60
-BUILD_DEPENDS+=	llvm${MESA_LLVM_VER}>0:devel/llvm${MESA_LLVM_VER}
-MOZ_EXPORT+=	LLVM_CONFIG=llvm-config${MESA_LLVM_VER}
+LLVM_DEFAULT?=	70
+BUILD_DEPENDS+=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
+MOZ_EXPORT+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
+# Require newer Clang than what's in base system unless user opted out
+. if ${CC} == cc && ${CXX} == c++ && exists(/usr/lib/libc++.so)
+BUILD_DEPENDS+=	${LOCALBASE}/bin/clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+CPP=			${LOCALBASE}/bin/clang-cpp${LLVM_DEFAULT}
+CC=				${LOCALBASE}/bin/clang${LLVM_DEFAULT}
+CXX=			${LOCALBASE}/bin/clang++${LLVM_DEFAULT}
+USES:=			${USES:Ncompiler\:*} # XXX avoid warnings
+. endif
 .endif
 
 .if ${MOZILLA_VER:R:R} >= 61
 BUILD_DEPENDS+=	${LOCALBASE}/bin/python${PYTHON3_DEFAULT}:lang/python${PYTHON3_DEFAULT:S/.//g}
 MOZ_EXPORT+=	PYTHON3="${LOCALBASE}/bin/python${PYTHON3_DEFAULT}"
-.endif
-
-.if ${OPSYS} == FreeBSD && ${OSREL} == 11.1 && ${MOZILLA_VER:R:R} < 49
-LLD_UNSAFE=	yes
 .endif
 
 MOZILLA_SUFX?=	none
