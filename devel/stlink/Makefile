@@ -18,6 +18,8 @@ GTK3_USE=		GNOME=gtk30
 USE_GITHUB=	yes
 GH_ACCOUNT=	texane
 
+USE_HARDENING=	pie:off
+
 USES=		cmake pkgconfig
 USE_LDCONFIG=	yes
 

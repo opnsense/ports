@@ -112,6 +112,7 @@
     SUBDIR += acalc
     SUBDIR += add
     SUBDIR += adept
+    SUBDIR += adol-c
     SUBDIR += algae
     SUBDIR += alglib
     SUBDIR += algotutor
@@ -126,10 +127,8 @@
     SUBDIR += arb
     SUBDIR += aribas
     SUBDIR += armadillo
-    SUBDIR += arpack
     SUBDIR += arpack++
     SUBDIR += arpack-ng
-    SUBDIR += arpack-ng-mpich
     SUBDIR += aspcud
     SUBDIR += asymptote
     SUBDIR += atlas
@@ -174,6 +173,7 @@
     SUBDIR += cryptominisat
     SUBDIR += cvc3
     SUBDIR += cvc4
+    SUBDIR += deal.ii
     SUBDIR += diehard
     SUBDIR += dieharder
     SUBDIR += djbfft
@@ -362,6 +362,7 @@
     SUBDIR += mumps-edf
     SUBDIR += mumps-mpich
     SUBDIR += muparser
+    SUBDIR += nanoflann
     SUBDIR += naturalmath
     SUBDIR += nauty
     SUBDIR += ndiff
@@ -686,12 +687,12 @@
     SUBDIR += py-fiat
     SUBDIR += py-fpconst
     SUBDIR += py-gato
+    SUBDIR += py-gau2grid
     SUBDIR += py-gimmik
     SUBDIR += py-gmpy
     SUBDIR += py-gmpy2
     SUBDIR += py-gnuplot
     SUBDIR += py-graphillion
-    SUBDIR += py-pygslodeiv2
     SUBDIR += py-igakit
     SUBDIR += py-igraph
     SUBDIR += py-intspan
@@ -722,6 +723,7 @@
     SUBDIR += py-pybloom
     SUBDIR += py-pycosat
     SUBDIR += py-pygsl
+    SUBDIR += py-pygslodeiv2
     SUBDIR += py-pyhull
     SUBDIR += py-pyipopt
     SUBDIR += py-pymc

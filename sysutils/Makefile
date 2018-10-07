@@ -296,6 +296,7 @@
     SUBDIR += dvtm
     SUBDIR += dwatch
     SUBDIR += dwatch-gource
+    SUBDIR += dwatch-json
     SUBDIR += dwatch-pwsnoop
     SUBDIR += e2fsprogs
     SUBDIR += ec2-scripts
@@ -1236,6 +1237,7 @@
     SUBDIR += ssync
     SUBDIR += stalepid
     SUBDIR += stanchion
+    SUBDIR += stepsync
     SUBDIR += stmpclean
     SUBDIR += storcli
     SUBDIR += stow
@@ -1344,6 +1346,7 @@
     SUBDIR += u-boot-pandaboard
     SUBDIR += u-boot-pcduino3
     SUBDIR += u-boot-pine64
+    SUBDIR += u-boot-pinebook
     SUBDIR += u-boot-riotboard
     SUBDIR += u-boot-rpi
     SUBDIR += u-boot-rpi2
