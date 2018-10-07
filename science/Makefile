@@ -139,6 +139,7 @@
     SUBDIR += minc2
     SUBDIR += mmdb2
     SUBDIR += mol2ps
+    SUBDIR += molgif
     SUBDIR += mpb
     SUBDIR += mpqc
     SUBDIR += msms
@@ -267,6 +268,7 @@
     SUBDIR += sigrok-firmware-fx2lafw
     SUBDIR += sigrok-firmware-utils
     SUBDIR += silo
+    SUBDIR += simint
     SUBDIR += simlib
     SUBDIR += simsmith
     SUBDIR += spglib
