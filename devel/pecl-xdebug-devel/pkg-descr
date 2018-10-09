@@ -15,4 +15,6 @@ Xdebug also provides:
     * script execution analysis
     * capabilities to debug your scripts interactively with a debug client
 
+Beta Version! The only one supporting PHP 7.3
+
 WWW: http://www.xdebug.org/

@@ -4094,7 +4094,8 @@
     SUBDIR += pecl-weakref
     SUBDIR += pecl-weakref2
     SUBDIR += pecl-xdebug
-    SUBDIR += pecl-xdebug26
+    SUBDIR += pecl-xdebug-devel
+    SUBDIR += pecl-xdebug25
     SUBDIR += pecl-xhprof
     SUBDIR += pecl-yac
     SUBDIR += pecl-yaconf
@@ -4334,6 +4335,7 @@
     SUBDIR += py-XStatic-tv4
     SUBDIR += py-ZopeUndo
     SUBDIR += py-adb
+    SUBDIR += py-aioice
     SUBDIR += py-akismet
     SUBDIR += py-amalgamate
     SUBDIR += py-aniso8601
@@ -4924,6 +4926,7 @@
     SUBDIR += py-pykde4-kde4
     SUBDIR += py-pykdeuic4-kde4
     SUBDIR += py-pyke
+    SUBDIR += py-pylibsrtp
     SUBDIR += py-pylru
     SUBDIR += py-pylru-cache
     SUBDIR += py-pymarc

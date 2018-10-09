@@ -656,6 +656,7 @@
     SUBDIR += plplot
     SUBDIR += plplot-ada
     SUBDIR += primegen
+    SUBDIR += primme
     SUBDIR += prng
     SUBDIR += proofgeneral
     SUBDIR += pspp
@@ -689,7 +690,6 @@
     SUBDIR += py-fiat
     SUBDIR += py-fpconst
     SUBDIR += py-gato
-    SUBDIR += py-gau2grid
     SUBDIR += py-gimmik
     SUBDIR += py-gmpy
     SUBDIR += py-gmpy2

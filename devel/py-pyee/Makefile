@@ -2,6 +2,7 @@
 
 PORTNAME=	pyee
 PORTVERSION=	5.0.0
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,4 +18,10 @@ BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}vcversioner>0:devel/py-vcversioner@${PY_FL
 USES=		python
 USE_PYTHON=	autoplist distutils
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_VER} > 3.4
+BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0:devel/py-pytest-asyncio@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>
