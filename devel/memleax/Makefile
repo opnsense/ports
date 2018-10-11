@@ -5,11 +5,15 @@ PORTVERSION=	1.0.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
-MAINTAINER=	guy.tabrar@me.com
+MAINTAINER=	tobik@FreeBSD.org
 COMMENT=	Debug memory leaks of running processes
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	does not actually detect leaks
+EXPIRATION_DATE=	2018-10-31
+BROKEN=		does not actually detect leaks
 
 LIB_DEPENDS=	libunwind.so:devel/libunwind
 BUILD_DEPENDS=	${LOCALBASE}/lib/libdwarf.a:devel/libdwarf
