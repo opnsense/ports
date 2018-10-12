@@ -7,11 +7,15 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	1
 CATEGORIES=	x11-wm
 
-MAINTAINER=	wg@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Small, flexible, scriptable tiling window manager written in Python
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	does not run
+EXPIRATION_DATE=	2018-12-31
+BROKEN=		does not run
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}xpyb>0:x11/xpyb@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cairo>0:graphics/py-cairo@${PY_FLAVOR}
