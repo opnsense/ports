@@ -5,6 +5,20 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20181014:
+  AFFECTS: users of sysutils/ansible
+  AUTHOR: lifanov@FreeBSD.org
+
+  Ansible has been updated to 2.7.0. Please follow the porting guide
+  to update the rulesets:
+
+  https://docs.ansible.com/ansible/devel/porting_guides/porting_guide_2.7.html
+
+  If you wish to stay with 2.6 version, you can switch
+  to new sysutils/ansible2.6 port, which tracks stable 2.6 branch:
+
+  # pkg set -n ansible:ansible26
+
 20181010:
   AFFECTS: users of mail/courier-imap and other courier ports
   AUTHOR: madpilot@FreeBSD.org
@@ -3184,7 +3198,7 @@ you update your ports collection, before attempting any port upgrades.
 
 20160525:
   AFFECTS: users of devel/qtcreator
-  AUTHOR: nolden@kde.org
+  AUTHOR: loise@kde.org
 
   QBS (Qt Build System) was previously shipped as part of qtcreator, now
   it is independently available as devel/qbs. However, on upgrading
