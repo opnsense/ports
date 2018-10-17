@@ -1,0 +1,3 @@
+@sample etc/apuledctld.conf.sample
+sbin/al_chscheme
+sbin/apuledctld
