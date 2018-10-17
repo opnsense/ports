@@ -2,7 +2,7 @@
 
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
-DISTVERSION=	4.1.0-rc1
+DISTVERSION=	4.1.0-rc2
 CATEGORIES=	security
 MASTER_SITES=	http://www.openinfosecfoundation.org/download/
 
@@ -16,6 +16,7 @@ CONFLICTS_INSTALL=libhtp suricata
 
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libnet.so:net/libnet \
+		liblz4.so:archivers/liblz4 \
 		libyaml.so:textproc/libyaml
 
 USES=		autoreconf cpe gmake iconv:translit libtool pathfix pkgconfig
@@ -53,7 +54,7 @@ NSS_DESC=		File checksums and SSL/TLS fingerprinting
 PORTS_PCAP_DESC=	Use libpcap from ports
 PRELUDE_DESC=		Prelude support for NIDS alerts
 REDIS_DESC=		Redis output support
-RUST_DESC=		Rust parser support (experimental)
+RUST_DESC=		Rust parser support
 SC_DESC=		Suricata socket client (suricatasc)
 TESTS_DESC=		Unit tests in suricata binary
 
