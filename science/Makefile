@@ -29,6 +29,8 @@
     SUBDIR += atom
     SUBDIR += atompaw
     SUBDIR += avogadro
+    SUBDIR += avogadro2
+    SUBDIR += avogadrolibs
     SUBDIR += bagel
     SUBDIR += bddsolve
     SUBDIR += bft
@@ -115,6 +117,7 @@
     SUBDIR += libint2
     SUBDIR += libkml
     SUBDIR += liblinear
+    SUBDIR += libmsym
     SUBDIR += liboglappth
     SUBDIR += libquantum
     SUBDIR += libssm

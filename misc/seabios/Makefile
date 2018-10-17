@@ -20,6 +20,8 @@ MAKE_ARGS=	HOSTCC="${CC}" LD="${LD}" PYTHON="${PYTHON_CMD}"
 USE_GCC=	yes
 USE_BINUTILS=	yes
 
+LLVM_OBJDUMP_UNSAFE=	yes
+
 PLIST_FILES=	${DATADIR}/bios.bin
 
 do-install:
