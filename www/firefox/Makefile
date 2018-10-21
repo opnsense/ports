@@ -39,6 +39,7 @@ USE_GL=		gl
 USES=		tar:xz
 
 USE_HARDENING=	pie:configure
+SSP_CFLAGS=	-fstack-protector
 
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png

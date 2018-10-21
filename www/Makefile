@@ -1302,6 +1302,7 @@
     SUBDIR += p5-WWW-Myspace
     SUBDIR += p5-WWW-NicoVideo-Download
     SUBDIR += p5-WWW-NioTV
+    SUBDIR += p5-WWW-OAuth
     SUBDIR += p5-WWW-OpenSVN
     SUBDIR += p5-WWW-OpenSearch
     SUBDIR += p5-WWW-Pastebin-PastebinCom-Create
@@ -1517,6 +1518,7 @@
     SUBDIR += py-beaker
     SUBDIR += py-beautifulsoup
     SUBDIR += py-beautifulsoup32
+    SUBDIR += py-biscuits
     SUBDIR += py-bjoern
     SUBDIR += py-bleach
     SUBDIR += py-blogofile
