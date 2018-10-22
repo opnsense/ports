@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gawk:lang/gawk
 
-CONFLICTS=	frr3 frr4 frr5 openbgpd pimd zebra
+CONFLICTS=	frr3 frr4 frr5 frr6 openbgpd pimd zebra
 
 # Quagga uses shared libraries as plugins, but
 # does not fail with safestack as no port depends
