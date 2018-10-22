@@ -16,6 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 CONFLICTS=	mc-light-4*
 
 USES=		gmake shebangfix perl5 pkgconfig python:2.7,run tar:xz libtool
+USE_HARDENING=	safestack
 SHEBANG_FILES=	${WRKSRC}/src/vfs/extfs/helpers/s3+.in \
 		${WRKSRC}/src/vfs/extfs/helpers/uc1541.in
 python_OLD_CMD=	@PYTHON@

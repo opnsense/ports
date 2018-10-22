@@ -15,6 +15,7 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 USES=		cpe gmake ncurses
+USE_HARDENING=	safestack
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--exec-prefix="${PREFIX}/share" \
 		--bindir="${PREFIX}/bin" \

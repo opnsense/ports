@@ -68,6 +68,7 @@
     SUBDIR += elk
     SUBDIR += epte
     SUBDIR += erd
+    SUBDIR += erkale
     SUBDIR += fastcap
     SUBDIR += fasthenry
     SUBDIR += fisicalab
@@ -208,6 +209,7 @@
     SUBDIR += py-SimpleSpectral
     SUBDIR += py-abipy
     SUBDIR += py-ase
+    SUBDIR += py-avogadrolibs
     SUBDIR += py-cdo
     SUBDIR += py-chempy
     SUBDIR += py-coards
