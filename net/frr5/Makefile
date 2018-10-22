@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	gawk:lang/gawk
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
-CONFLICTS=	openbgpd openospfd zebra quagga frr3 frr4
+CONFLICTS=	openbgpd openospfd zebra quagga frr3 frr4 frr6
 
 # FRR uses shared libraries as plugins, but
 # does not fail with safestack as no port depends
