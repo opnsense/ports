@@ -37,6 +37,7 @@ USE_PERL5=	build
 NO_CCACHE=	ccache: error: Failed to create directory /nonexistent/.ccache/tmp: Permission denied
 
 USE_HARDENING=	pie:off
+LLVM_AR_UNSAFE=	yes
 
 # The configure process accepts,filters and canonicalises
 # the CONFIGURE_TARGET variable. You can read the files
