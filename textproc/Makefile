@@ -10,6 +10,7 @@
     SUBDIR += R-cran-XML
     SUBDIR += R-cran-bibtex
     SUBDIR += R-cran-brew
+    SUBDIR += R-cran-cellranger
     SUBDIR += R-cran-formatR
     SUBDIR += R-cran-highr
     SUBDIR += R-cran-htmltools
@@ -17,7 +18,9 @@
     SUBDIR += R-cran-openxlsx
     SUBDIR += R-cran-pystr
     SUBDIR += R-cran-readr
+    SUBDIR += R-cran-readxl
     SUBDIR += R-cran-rematch
+    SUBDIR += R-cran-rex
     SUBDIR += R-cran-rmarkdown
     SUBDIR += R-cran-stringi
     SUBDIR += R-cran-stringr
