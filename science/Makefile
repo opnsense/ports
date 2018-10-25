@@ -51,6 +51,7 @@
     SUBDIR += clhep
     SUBDIR += clipper
     SUBDIR += colt
+    SUBDIR += coordgenlibs
     SUBDIR += coot
     SUBDIR += cp2k
     SUBDIR += crf++
@@ -129,6 +130,7 @@
     SUBDIR += lm
     SUBDIR += luscus
     SUBDIR += madness
+    SUBDIR += maeparser
     SUBDIR += massxpert
     SUBDIR += mbdyn
     SUBDIR += mcstas
