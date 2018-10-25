@@ -22,7 +22,7 @@ USE_HARDENING=  safestack
 USES=	cpe libedit
 
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.11.4-P2
+ISCVERSION=	9.11.5
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
