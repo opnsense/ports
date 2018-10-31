@@ -12,6 +12,8 @@ COMMENT=	Multiple-choice questionnaire management with automated marking
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	pie:off
+
 LIB_DEPENDS=	libcairo.so:graphics/cairo \
 		libnetpbm.so:graphics/netpbm \
 		libopencv_highgui.so:graphics/opencv \
@@ -39,10 +41,9 @@ MANLANG=	"" fr ja
 SHARED_MIMEINFO_DIR=	${PREFIX}/share/mime/packages
 LANG_GTKSOURCEVIEW_DIR=	${PREFIX}/share/gtksourceview-2.0/language-specs
 
-USE_HARDENING=	pie:off
-
+USES+=		compiler:c++11-lang gettext gmake iconv:build perl5 \
+		pkgconfig shared-mime-info
 USE_TEX=	latex texhash
-USES+=		gettext gmake iconv:build perl5 pkgconfig shared-mime-info
 
 OPTIONS_DEFINE=	DOCS
 
