@@ -56,7 +56,7 @@ MAKE_ARGS+=	NOISY_BUILD=yes \
 
 CONFLICTS=		ossp-uuid-[0-9]*
 CONFLICTS_BUILD=	linuxthreads-*
-CONFLICTS_INSTALL=	asterisk15
+CONFLICTS_INSTALL=	asterisk15 asterisk16
 
 OPTIONS_DEFINE=			ASTVERSION BACKTRACE CURL EXCHANGE FREETDS LDAP LUA \
 				MP3PLAYER OOH323 OPTIMIZED_CFLAGS PJSIP PORTAUDIO RADIUS SNMP \
@@ -94,7 +94,7 @@ NEWT_DESC=			Newt User Interface
 
 OPTIONS_GROUP+=			SOUNDS
 OPTIONS_GROUP_SOUNDS=		G729 JAPANESE
-SOUNDS_DESC=			Core and/or Music-on-Hold (MoH) Sound Files
+SOUNDS_DESC=			Core and Music-on-Hold (MoH) Sound Files
 G729_DESC=			Install G.729 format sounds
 JAPANESE_DESC=			Install Japanese voice prompts
 ASTERISK_CORE_G729_SOUNDS=	asterisk-core-sounds-en-g729-1.5.tar.gz
