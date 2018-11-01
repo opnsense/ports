@@ -1758,7 +1758,6 @@
     SUBDIR += mcpp
     SUBDIR += mdb
     SUBDIR += mdds
-    SUBDIR += memleax
     SUBDIR += menhir
     SUBDIR += mercator
     SUBDIR += mercurial
@@ -4847,6 +4846,7 @@
     SUBDIR += py-paver
     SUBDIR += py-pbr
     SUBDIR += py-pefile
+    SUBDIR += py-pendulum
     SUBDIR += py-pep8-naming
     SUBDIR += py-period
     SUBDIR += py-petname
