@@ -29,7 +29,8 @@ DATADIR=	${PREFIX}/share/${DATADIR_NAME}
 USE_HARDENING=	safestack
 
 GNU_CONFIGURE=	yes
-USES=		alias cpe gettext-runtime gmake libtool localbase pathfix \
+USES=		alias cpe compiler:c++11-lang gettext-runtime gmake \
+		libtool localbase pathfix \
 		perl5 pkgconfig python:build ssl tar:xz
 USE_PERL5=	build
 USE_GNOME=	glib20 libxml2
