@@ -4145,7 +4145,6 @@ devel/goffice04||2013-04-16|Removed: No users, blocking libgsf update
 devel/goffice06||2013-04-16|Removed: No users, blocking libgsf update
 devel/goffice1||2013-04-16|Removed: Only one port user which has no user itself. blocking libgsf update
 devel/present||2013-04-16|Removed: No users, blocking libgsf update
-audio/icecast|audio/icecast2|2013-04-18|Has expired: Unmaintained upstream since 2004. Use audio/icecast2 instead
 net-im/gajim-devel|net-im/gajim|2013-04-18|Has expired: This port is outdated for two years, no distfile available. Please use net-im/gajim instead
 dns/bind97||2013-04-20|Has expired: No longer supported by ISC, use Bind 9.8 or 9.9
 dns/bind97-sdb||2013-04-20|Has expired: No longer supported by ISC, use Bind 9.8 or 9.9
@@ -10614,3 +10613,4 @@ devel/rubygem-peek-sidekiq||2018-11-01|Obsolete by www/gitlab-ce 11.4.x upgrade
 devel/rubygem-sidekiq-limit_fetch||2018-11-01|Obsolete by www/gitlab-ce 11.4.x upgrade
 textproc/rubygem-github-markup16|textproc/rubygem-github-markup|2018-11-01|Obsolete by www/gitlab-ce 11.4.x upgrade, please use textproc/rubygem-github-markup
 www/rubygem-dropzonejs-rails07|www/rubygem-dropzonejs-rails|2018-11-01|Obsolete by www/gitlab-ce 11.4.x upgrade, please use www/rubygem-dropzonejs-rails
+audio/icecast2|audio/icecast|2018-11-03|Use upstream naming
