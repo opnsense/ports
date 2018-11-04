@@ -20,7 +20,7 @@ USE_HARDENING=	pie:off relro:off
 
 CONFLICTS=	grub-0*
 SSP_UNSAFE=	yes
-USE_GCC=	yes
+USE_GCC=	7	# Fails to build with GCC 8, cf. PR 232961, or clang
 GNU_CONFIGURE=	yes
 USES=		autoreconf bison cpe gettext gmake tar:xz
 ONLY_FOR_ARCHS=	i386 amd64

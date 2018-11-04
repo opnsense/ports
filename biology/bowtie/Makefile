@@ -14,15 +14,14 @@ LICENSE=	ART10
 # May also work on other 64-bit platforms, but untested
 ONLY_FOR_ARCHS=	amd64
 
-USES=		gmake perl5 python:run shebangfix
 # FIXME: bowtie-align intermittently dumps core when compiled with clang
 # GCC 4.2 does not provide good performance
+USES=		gmake perl5 python:run shebangfix
 USE_GCC=	yes
 USE_PERL5=	run
+USE_GITHUB=	yes
 
 SHEBANG_FILES=	scripts/*.pl bowtie bowtie-build bowtie-inspect
-
-USE_GITHUB=	yes
 GH_ACCOUNT=	BenLangmead
 
 OPTIONS_DEFINE=	DOCS
