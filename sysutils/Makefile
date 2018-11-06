@@ -972,6 +972,7 @@
     SUBDIR += py-XenAPI
     SUBDIR += py-analyzemft
     SUBDIR += py-ansible-lint
+    SUBDIR += py-ansible-runner
     SUBDIR += py-bcfg2
     SUBDIR += py-cdmi
     SUBDIR += py-consul
@@ -1256,6 +1257,7 @@
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
+    SUBDIR += synergy-1
     SUBDIR += sysadm
     SUBDIR += sysadm-client
     SUBDIR += sysgather
