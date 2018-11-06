@@ -2,9 +2,9 @@
 
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
-DISTVERSION=	4.1.0-rc2
+DISTVERSION=	4.1.0
 CATEGORIES=	security
-MASTER_SITES=	http://www.openinfosecfoundation.org/download/
+MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	High Performance Network IDS, IPS and Security Monitoring engine
