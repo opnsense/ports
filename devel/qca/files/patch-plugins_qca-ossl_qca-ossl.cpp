@@ -22,18 +22,19 @@ This is an extract of upstream commit
  #ifndef OSSL_097
  // comment this out if you'd rather use openssl 0.9.6
  #define OSSL_097
-@@ -52,6 +57,73 @@
+@@ -52,6 +57,75 @@
  	((_STACK*) (1 ? p : (type*)0))
  #endif
  
-+#if OPENSSL_VERSION_NUMBER >= 0x10100000L
++#if OPENSSL_VERSION_NUMBER >= 0x10100000L && !defined(LIBRESSL_VERSION_NUMBER)
 +    #define OSSL_110
 +#endif
 +
 +// OpenSSL 1.1.0 compatibility macros
-+#ifdef OSSL_110
++#if defined(OSSL_110)
 +#define M_ASN1_IA5STRING_new() ASN1_IA5STRING_new()
 +#else
++#ifndef LIBRESSL_VERSION_NUMBER
 +static HMAC_CTX *HMAC_CTX_new() { return new HMAC_CTX(); }
 +static void HMAC_CTX_free(HMAC_CTX *x) { free(x); }
 +static void EVP_PKEY_up_ref(EVP_PKEY *x) { CRYPTO_add(&x->references, 1, CRYPTO_LOCK_EVP_PKEY); }
@@ -41,6 +42,7 @@ This is an extract of upstream commit
 +static void X509_CRL_up_ref(X509_CRL *x) { CRYPTO_add(&x->references, 1, CRYPTO_LOCK_X509_CRL); }
 +static DSA *EVP_PKEY_get0_DSA(EVP_PKEY *x) { return x->pkey.dsa; }
 +static DH *EVP_PKEY_get0_DH(EVP_PKEY *x) { return x->pkey.dh; }
++#endif
 +static int RSA_meth_set_sign(RSA_METHOD *meth,
 +                      int (*sign) (int type, const unsigned char *m,
 +                                   unsigned int m_length,
@@ -96,7 +98,7 @@ This is an extract of upstream commit
  using namespace QCA;
  
  namespace opensslQCAPlugin {
-@@ -93,7 +165,7 @@ static QByteArray bio2ba(BIO *b)
+@@ -93,7 +167,7 @@ static QByteArray bio2ba(BIO *b)
  	return buf;
  }
  
@@ -105,7 +107,7 @@ This is an extract of upstream commit
  {
  	SecureArray buf(BN_num_bytes(n) + 1);
  	buf[0] = 0; // positive
-@@ -109,7 +181,7 @@ static BIGNUM *bi2bn(const BigInteger &n)
+@@ -109,7 +183,7 @@ static BIGNUM *bi2bn(const BigInteger &n)
  
  // take lowest bytes of BIGNUM to fit
  // pad with high byte zeroes to fit
@@ -114,7 +116,7 @@ This is an extract of upstream commit
  {
  	SecureArray buf(BN_num_bytes(n));
  	BN_bn2bin(n, (unsigned char *)buf.data());
-@@ -127,8 +199,16 @@ static SecureArray dsasig_der_to_raw(const SecureArray
+@@ -127,8 +201,16 @@ static SecureArray dsasig_der_to_raw(const SecureArray
  	const unsigned char *inp = (const unsigned char *)in.data();
  	d2i_DSA_SIG(&sig, &inp, in.size());
  
@@ -133,7 +135,7 @@ This is an extract of upstream commit
  	SecureArray result;
  	result.append(part_r);
  	result.append(part_s);
-@@ -143,13 +223,21 @@ static SecureArray dsasig_raw_to_der(const SecureArray
+@@ -143,13 +225,21 @@ static SecureArray dsasig_raw_to_der(const SecureArray
  		return SecureArray();
  
  	DSA_SIG *sig = DSA_SIG_new();
@@ -159,7 +161,7 @@ This is an extract of upstream commit
  	int len = i2d_DSA_SIG(sig, NULL);
  	SecureArray result(len);
  	unsigned char *p = (unsigned char *)result.data();
-@@ -1004,29 +1092,39 @@ class opensslHashContext : public HashContext (public)
+@@ -1004,29 +1094,39 @@ class opensslHashContext : public HashContext (public)
  	opensslHashContext(const EVP_MD *algorithm, Provider *p, const QString &type) : HashContext(p, type)
  	{
  		m_algorithm = algorithm;
@@ -205,7 +207,7 @@ This is an extract of upstream commit
  		return a;
  	}
  
-@@ -1037,7 +1135,7 @@ class opensslHashContext : public HashContext (public)
+@@ -1037,7 +1137,7 @@ class opensslHashContext : public HashContext (public)
  
  protected:
  	const EVP_MD *m_algorithm;
@@ -214,7 +216,7 @@ This is an extract of upstream commit
  };
  
  
-@@ -1047,9 +1145,23 @@ class opensslPbkdf1Context : public KDFContext (public
+@@ -1047,9 +1147,23 @@ class opensslPbkdf1Context : public KDFContext (public
  	opensslPbkdf1Context(const EVP_MD *algorithm, Provider *p, const QString &type) : KDFContext(p, type)
  	{
  		m_algorithm = algorithm;
@@ -239,7 +241,7 @@ This is an extract of upstream commit
  	Provider::Context *clone() const
  	{
  		return new opensslPbkdf1Context( *this );
-@@ -1081,16 +1193,16 @@ class opensslPbkdf1Context : public KDFContext (public
+@@ -1081,16 +1195,16 @@ class opensslPbkdf1Context : public KDFContext (public
  		  DK = Tc<0..dkLen-1>
  		*/
  		// calculate T_1
@@ -262,7 +264,7 @@ This is an extract of upstream commit
  		}
  
  		// shrink a to become DK, of the required length
-@@ -1136,19 +1248,19 @@ class opensslPbkdf1Context : public KDFContext (public
+@@ -1136,19 +1250,19 @@ class opensslPbkdf1Context : public KDFContext (public
  		  DK = Tc<0..dkLen-1>
  		*/
  		// calculate T_1
@@ -288,7 +290,7 @@ This is an extract of upstream commit
  			++(*iterationCount);
  		}
  
-@@ -1163,7 +1275,7 @@ class opensslPbkdf1Context : public KDFContext (public
+@@ -1163,7 +1277,7 @@ class opensslPbkdf1Context : public KDFContext (public
  
  protected:
  	const EVP_MD *m_algorithm;
@@ -297,7 +299,7 @@ This is an extract of upstream commit
  };
  
  class opensslPbkdf2Context : public KDFContext
-@@ -1231,12 +1343,28 @@ class opensslHMACContext : public MACContext (public)
+@@ -1231,12 +1345,28 @@ class opensslHMACContext : public MACContext (public)
  	opensslHMACContext(const EVP_MD *algorithm, Provider *p, const QString &type) : MACContext(p, type)
  	{
  		m_algorithm = algorithm;
@@ -328,7 +330,7 @@ This is an extract of upstream commit
  	}
  
  	KeyLength keyLength() const
-@@ -1246,14 +1374,18 @@ class opensslHMACContext : public MACContext (public)
+@@ -1246,14 +1376,18 @@ class opensslHMACContext : public MACContext (public)
  
  	void update(const MemoryRegion &a)
  	{
@@ -350,7 +352,7 @@ This is an extract of upstream commit
  		*out = sa;
  	}
  
-@@ -1263,7 +1395,7 @@ class opensslHMACContext : public MACContext (public)
+@@ -1263,7 +1397,7 @@ class opensslHMACContext : public MACContext (public)
  	}
  
  protected:
@@ -359,7 +361,7 @@ This is an extract of upstream commit
  	const EVP_MD *m_algorithm;
  };
  
-@@ -1277,7 +1409,7 @@ class EVPKey
+@@ -1277,7 +1411,7 @@ class EVPKey
  public:
  	enum State { Idle, SignActive, SignError, VerifyActive, VerifyError };
  	EVP_PKEY *pkey;
@@ -368,7 +370,7 @@ This is an extract of upstream commit
  	State state;
  	bool raw_type;
  	SecureArray raw;
-@@ -1287,19 +1419,23 @@ class EVPKey
+@@ -1287,19 +1421,23 @@ class EVPKey
  		pkey = 0;
  		raw_type = false;
  		state = Idle;
@@ -393,7 +395,7 @@ This is an extract of upstream commit
  	}
  
  	void reset()
-@@ -1322,8 +1458,8 @@ class EVPKey
+@@ -1322,8 +1460,8 @@ class EVPKey
  		else
  		{
  			raw_type = false;
@@ -404,7 +406,7 @@ This is an extract of upstream commit
  				state = SignError;
  		}
  	}
-@@ -1339,8 +1475,8 @@ class EVPKey
+@@ -1339,8 +1477,8 @@ class EVPKey
  		else
  		{
  			raw_type = false;
@@ -415,7 +417,7 @@ This is an extract of upstream commit
  				state = VerifyError;
  		}
  	}
-@@ -1352,7 +1488,7 @@ class EVPKey
+@@ -1352,7 +1490,7 @@ class EVPKey
  			if (raw_type)
  				raw += in;
  			else
@@ -424,7 +426,7 @@ This is an extract of upstream commit
  					state = SignError;
  		}
  		else if(state == VerifyActive)
-@@ -1360,7 +1496,7 @@ class EVPKey
+@@ -1360,7 +1498,7 @@ class EVPKey
  			if (raw_type)
  				raw += in;
  			else
@@ -433,7 +435,7 @@ This is an extract of upstream commit
  					state = VerifyError;
  		}
  	}
-@@ -1373,17 +1509,24 @@ class EVPKey
+@@ -1373,17 +1511,24 @@ class EVPKey
  			unsigned int len = out.size();
  			if (raw_type)
  			{
@@ -461,7 +463,7 @@ This is an extract of upstream commit
  				{
  					state = SignError;
  					return SecureArray ();
-@@ -1395,7 +1538,7 @@ class EVPKey
+@@ -1395,7 +1540,7 @@ class EVPKey
  				}
  			}
  			else {
@@ -470,7 +472,7 @@ This is an extract of upstream commit
  				{
  					state = SignError;
  					return SecureArray();
-@@ -1418,16 +1561,24 @@ class EVPKey
+@@ -1418,16 +1563,24 @@ class EVPKey
  				SecureArray out(EVP_PKEY_size(pkey));
  				int len = 0;
  
@@ -498,7 +500,7 @@ This is an extract of upstream commit
  				{
  					state = VerifyError;
  					return false;
-@@ -1447,7 +1598,7 @@ class EVPKey
+@@ -1447,7 +1600,7 @@ class EVPKey
  			}
  			else
  			{
@@ -507,7 +509,7 @@ This is an extract of upstream commit
  				{
  					state = VerifyError;
  					return false;
-@@ -1561,9 +1712,11 @@ static bool make_dlgroup(const QByteArray &seed, int b
+@@ -1561,9 +1714,11 @@ static bool make_dlgroup(const QByteArray &seed, int b
  		return false;
  	if(ret_counter != counter)
  		return false;
@@ -522,7 +524,7 @@ This is an extract of upstream commit
  	DSA_free(dsa);
  	return true;
  }
-@@ -1826,10 +1979,11 @@ class RSAKey : public RSAContext (public)
+@@ -1826,10 +1981,11 @@ class RSAKey : public RSAContext (public)
  			return;
  
  		// extract the public key into DER format
@@ -536,7 +538,7 @@ This is an extract of upstream commit
  		p = (unsigned char *)result.data();
  
  		// put the DER public key back into openssl
-@@ -1852,7 +2006,7 @@ class RSAKey : public RSAContext (public)
+@@ -1852,7 +2008,7 @@ class RSAKey : public RSAContext (public)
  
  	virtual int maximumEncryptSize(EncryptionAlgorithm alg) const
  	{
@@ -545,7 +547,7 @@ This is an extract of upstream commit
  		int size = 0;
  		switch(alg)
  		{
-@@ -1867,7 +2021,7 @@ class RSAKey : public RSAContext (public)
+@@ -1867,7 +2023,7 @@ class RSAKey : public RSAContext (public)
  
  	virtual SecureArray encrypt(const SecureArray &in, EncryptionAlgorithm alg)
  	{
@@ -554,7 +556,7 @@ This is an extract of upstream commit
  		SecureArray buf = in;
  		int max = maximumEncryptSize(alg);
  
-@@ -1900,7 +2054,7 @@ class RSAKey : public RSAContext (public)
+@@ -1900,7 +2056,7 @@ class RSAKey : public RSAContext (public)
  
  	virtual bool decrypt(const SecureArray &in, SecureArray *out, EncryptionAlgorithm alg)
  	{
@@ -563,7 +565,7 @@ This is an extract of upstream commit
  		SecureArray result(RSA_size(rsa));
  		int pad;
  
-@@ -2021,14 +2175,10 @@ class RSAKey : public RSAContext (public)
+@@ -2021,14 +2177,10 @@ class RSAKey : public RSAContext (public)
  		evp.reset();
  
  		RSA *rsa = RSA_new();
@@ -581,7 +583,7 @@ This is an extract of upstream commit
  			RSA_free(rsa);
  			return;
  		}
-@@ -2036,7 +2186,7 @@ class RSAKey : public RSAContext (public)
+@@ -2036,7 +2188,7 @@ class RSAKey : public RSAContext (public)
  		// When private key has no Public Exponent (e) or Private Exponent (d)
  		// need to disable blinding. Otherwise decryption will be broken.
  		// http://www.mail-archive.com/openssl-users@openssl.org/msg63530.html
@@ -590,7 +592,7 @@ This is an extract of upstream commit
  			RSA_blinding_off(rsa);
  
  		evp.pkey = EVP_PKEY_new();
-@@ -2049,10 +2199,7 @@ class RSAKey : public RSAContext (public)
+@@ -2049,10 +2201,7 @@ class RSAKey : public RSAContext (public)
  		evp.reset();
  
  		RSA *rsa = RSA_new();
@@ -602,7 +604,7 @@ This is an extract of upstream commit
  		{
  			RSA_free(rsa);
  			return;
-@@ -2065,27 +2212,42 @@ class RSAKey : public RSAContext (public)
+@@ -2065,27 +2214,42 @@ class RSAKey : public RSAContext (public)
  
  	virtual BigInteger n() const
  	{
@@ -650,7 +652,7 @@ This is an extract of upstream commit
  	}
  
  private slots:
-@@ -2134,10 +2296,12 @@ class DSAKeyMaker : public QThread (public)
+@@ -2134,10 +2298,12 @@ class DSAKeyMaker : public QThread (public)
  	virtual void run()
  	{
  		DSA *dsa = DSA_new();
@@ -667,7 +669,7 @@ This is an extract of upstream commit
  		{
  			DSA_free(dsa);
  			return;
-@@ -2212,10 +2376,11 @@ class DSAKey : public DSAContext (public)
+@@ -2212,10 +2378,11 @@ class DSAKey : public DSAContext (public)
  			return;
  
  		// extract the public key into DER format
@@ -681,7 +683,7 @@ This is an extract of upstream commit
  		p = (unsigned char *)result.data();
  
  		// put the DER public key back into openssl
-@@ -2244,7 +2409,7 @@ class DSAKey : public DSAContext (public)
+@@ -2244,7 +2411,7 @@ class DSAKey : public DSAContext (public)
  		else
  			transformsig = false;
  
@@ -690,7 +692,7 @@ This is an extract of upstream commit
  	}
  
  	virtual void startVerify(SignatureAlgorithm, SignatureFormat format)
-@@ -2255,7 +2420,7 @@ class DSAKey : public DSAContext (public)
+@@ -2255,7 +2422,7 @@ class DSAKey : public DSAContext (public)
  		else
  			transformsig = false;
  
@@ -699,7 +701,7 @@ This is an extract of upstream commit
  	}
  
  	virtual void update(const MemoryRegion &in)
-@@ -2305,13 +2470,14 @@ class DSAKey : public DSAContext (public)
+@@ -2305,13 +2472,14 @@ class DSAKey : public DSAContext (public)
  		evp.reset();
  
  		DSA *dsa = DSA_new();
@@ -720,7 +722,7 @@ This is an extract of upstream commit
  		{
  			DSA_free(dsa);
  			return;
-@@ -2327,12 +2493,13 @@ class DSAKey : public DSAContext (public)
+@@ -2327,12 +2495,13 @@ class DSAKey : public DSAContext (public)
  		evp.reset();
  
  		DSA *dsa = DSA_new();
@@ -739,7 +741,7 @@ This is an extract of upstream commit
  		{
  			DSA_free(dsa);
  			return;
-@@ -2345,17 +2512,26 @@ class DSAKey : public DSAContext (public)
+@@ -2345,17 +2514,26 @@ class DSAKey : public DSAContext (public)
  
  	virtual DLGroup domain() const
  	{
@@ -769,7 +771,7 @@ This is an extract of upstream commit
  	}
  
  private slots:
-@@ -2404,9 +2580,10 @@ class DHKeyMaker : public QThread (public)
+@@ -2404,9 +2582,10 @@ class DHKeyMaker : public QThread (public)
  	virtual void run()
  	{
  		DH *dh = DH_new();
@@ -783,7 +785,7 @@ This is an extract of upstream commit
  		{
  			DH_free(dh);
  			return;
-@@ -2478,12 +2655,15 @@ class DHKey : public DHContext (public)
+@@ -2478,12 +2657,15 @@ class DHKey : public DHContext (public)
  		if(!sec)
  			return;
  
@@ -803,7 +805,7 @@ This is an extract of upstream commit
  		evp.reset();
  
  		evp.pkey = EVP_PKEY_new();
-@@ -2498,10 +2678,13 @@ class DHKey : public DHContext (public)
+@@ -2498,10 +2680,13 @@ class DHKey : public DHContext (public)
  
  	virtual SymmetricKey deriveKey(const PKeyBase &theirs)
  	{
@@ -820,7 +822,7 @@ This is an extract of upstream commit
  		if(ret <= 0)
  			return SymmetricKey();
  		result.resize(ret);
-@@ -2531,12 +2714,13 @@ class DHKey : public DHContext (public)
+@@ -2531,12 +2716,13 @@ class DHKey : public DHContext (public)
  		evp.reset();
  
  		DH *dh = DH_new();
@@ -839,7 +841,7 @@ This is an extract of upstream commit
  		{
  			DH_free(dh);
  			return;
-@@ -2552,11 +2736,12 @@ class DHKey : public DHContext (public)
+@@ -2552,11 +2738,12 @@ class DHKey : public DHContext (public)
  		evp.reset();
  
  		DH *dh = DH_new();
@@ -856,7 +858,7 @@ This is an extract of upstream commit
  		{
  			DH_free(dh);
  			return;
-@@ -2569,17 +2754,26 @@ class DHKey : public DHContext (public)
+@@ -2569,17 +2756,26 @@ class DHKey : public DHContext (public)
  
  	virtual DLGroup domain() const
  	{
@@ -886,7 +888,7 @@ This is an extract of upstream commit
  	}
  
  private slots:
-@@ -2618,10 +2812,14 @@ class QCA_RSA_METHOD (public)
+@@ -2618,10 +2814,14 @@ class QCA_RSA_METHOD (public)
  	{
  		key = _key;
  		RSA_set_method(rsa, rsa_method());
@@ -903,7 +905,7 @@ This is an extract of upstream commit
  	}
  
  	RSA_METHOD *rsa_method()
-@@ -2630,12 +2828,16 @@ class QCA_RSA_METHOD (public)
+@@ -2630,12 +2830,16 @@ class QCA_RSA_METHOD (public)
  
  		if(!ops)
  		{
@@ -926,11 +928,11 @@ This is an extract of upstream commit
  		}
  		return ops;
  	}
-@@ -2654,7 +2856,11 @@ class QCA_RSA_METHOD (public)
+@@ -2654,7 +2858,11 @@ class QCA_RSA_METHOD (public)
  		}
  		else
  		{
-+#if OPENSSL_VERSION_NUMBER > 0x10100000L
++#if OPENSSL_VERSION_NUMBER > 0x10100000L && !defined(LIBRESSL_VERSION_NUMBER)
 +			RSAerr(RSA_F_RSA_OSSL_PRIVATE_DECRYPT, RSA_R_UNKNOWN_PADDING_TYPE);
 +#else
  			RSAerr(RSA_F_RSA_EAY_PRIVATE_DECRYPT, RSA_R_UNKNOWN_PADDING_TYPE);
@@ -938,7 +940,7 @@ This is an extract of upstream commit
  			return -1;
  		}
  
-@@ -2675,6 +2881,7 @@ class QCA_RSA_METHOD (public)
+@@ -2675,6 +2883,7 @@ class QCA_RSA_METHOD (public)
  		return -1;
  	}
  
@@ -946,7 +948,7 @@ This is an extract of upstream commit
  	static int rsa_sign(int type, const unsigned char *m, unsigned int m_len, unsigned char *sigret, unsigned int *siglen, const RSA *rsa)
  	{
  		QCA_RSA_METHOD *self = (QCA_RSA_METHOD *)RSA_get_app_data(rsa);
-@@ -2691,7 +2898,6 @@ class QCA_RSA_METHOD (public)
+@@ -2691,7 +2900,6 @@ class QCA_RSA_METHOD (public)
  		}
  		else
  		{
@@ -954,7 +956,7 @@ This is an extract of upstream commit
  			// make X509 packet
  			X509_SIG sig;
  			ASN1_TYPE parameter;
-@@ -2765,6 +2971,7 @@ class QCA_RSA_METHOD (public)
+@@ -2765,6 +2973,7 @@ class QCA_RSA_METHOD (public)
  
  		return 1;
  	}
@@ -962,7 +964,7 @@ This is an extract of upstream commit
  
  	static int rsa_finish(RSA *rsa)
  	{
-@@ -2866,21 +3073,22 @@ class MyPKeyContext : public PKeyContext (public)
+@@ -2866,21 +3075,22 @@ class MyPKeyContext : public PKeyContext (public)
  	PKeyBase *pkeyToBase(EVP_PKEY *pkey, bool sec) const
  	{
  		PKeyBase *nk = 0;
@@ -988,7 +990,7 @@ This is an extract of upstream commit
  		{
  			DHKey *c = new DHKey(provider());
  			c->evp.pkey = pkey;
-@@ -2898,8 +3106,10 @@ class MyPKeyContext : public PKeyContext (public)
+@@ -2898,8 +3108,10 @@ class MyPKeyContext : public PKeyContext (public)
  	{
  		EVP_PKEY *pkey = get_pkey();
  
@@ -1000,7 +1002,7 @@ This is an extract of upstream commit
  			return QByteArray();
  
  		BIO *bo = BIO_new(BIO_s_mem());
-@@ -2912,8 +3122,10 @@ class MyPKeyContext : public PKeyContext (public)
+@@ -2912,8 +3124,10 @@ class MyPKeyContext : public PKeyContext (public)
  	{
  		EVP_PKEY *pkey = get_pkey();
  
@@ -1012,7 +1014,7 @@ This is an extract of upstream commit
  			return QString();
  
  		BIO *bo = BIO_new(BIO_s_mem());
-@@ -2978,9 +3190,10 @@ class MyPKeyContext : public PKeyContext (public)
+@@ -2978,9 +3192,10 @@ class MyPKeyContext : public PKeyContext (public)
  			return SecureArray();
  
  		EVP_PKEY *pkey = get_pkey();
@@ -1024,7 +1026,7 @@ This is an extract of upstream commit
  			return SecureArray();
  
  		BIO *bo = BIO_new(BIO_s_mem());
-@@ -3007,9 +3220,10 @@ class MyPKeyContext : public PKeyContext (public)
+@@ -3007,9 +3222,10 @@ class MyPKeyContext : public PKeyContext (public)
  			return QString();
  
  		EVP_PKEY *pkey = get_pkey();
@@ -1036,7 +1038,7 @@ This is an extract of upstream commit
  			return QString();
  
  		BIO *bo = BIO_new(BIO_s_mem());
-@@ -3110,11 +3324,18 @@ class X509Item (public)
+@@ -3110,11 +3326,18 @@ class X509Item (public)
  			crl = from.crl;
  
  			if(cert)
@@ -1057,7 +1059,7 @@ This is an extract of upstream commit
  		}
  
  		return *this;
-@@ -3220,7 +3441,7 @@ class X509Item (public)
+@@ -3220,7 +3443,7 @@ class X509Item (public)
  //
  // This code is mostly taken from OpenSSL v0.9.5a
  // by Eric Young
@@ -1066,7 +1068,7 @@ This is an extract of upstream commit
  {
  	QDateTime qdt;
  	char *v;
-@@ -3318,7 +3539,7 @@ class MyCertContext : public CertContext (public)
+@@ -3318,7 +3541,7 @@ class MyCertContext : public CertContext (public)
  
  	void fromX509(X509 *x)
  	{
@@ -1075,7 +1077,7 @@ This is an extract of upstream commit
  		item.cert = x;
  		make_props();
  	}
-@@ -3349,7 +3570,7 @@ class MyCertContext : public CertContext (public)
+@@ -3349,7 +3572,7 @@ class MyCertContext : public CertContext (public)
  		if(priv.key()->type() == PKey::RSA)
  			md = EVP_sha1();
  		else if(priv.key()->type() == PKey::DSA)
@@ -1084,7 +1086,7 @@ This is an extract of upstream commit
  		else
  			return false;
  
-@@ -3480,7 +3701,7 @@ class MyCertContext : public CertContext (public)
+@@ -3480,7 +3703,7 @@ class MyCertContext : public CertContext (public)
  
  		const MyCertContext *our_cc = this;
  		X509 *x = our_cc->item.cert;
@@ -1093,12 +1095,12 @@ This is an extract of upstream commit
  		sk_X509_push(untrusted_list, x);
  
  		const MyCertContext *other_cc = static_cast<const MyCertContext *>(other);
-@@ -3595,14 +3816,31 @@ class MyCertContext : public CertContext (public)
+@@ -3595,14 +3818,31 @@ class MyCertContext : public CertContext (public)
  				p.policies = get_cert_policies(ex);
  		}
  
 -		if (x->signature)
-+#if OPENSSL_VERSION_NUMBER >= 0x10002000L
++#if OPENSSL_VERSION_NUMBER >= 0x10002000L && !defined(LIBRESSL_VERSION_NUMBER)
 +#ifdef OSSL_110
 +		const
 +#endif
@@ -1126,7 +1128,7 @@ This is an extract of upstream commit
  		{
  		case NID_sha1WithRSAEncryption:
  			p.sigalgo = QCA::EMSA3_SHA1;
-@@ -3634,7 +3872,11 @@ class MyCertContext : public CertContext (public)
+@@ -3634,7 +3874,11 @@ class MyCertContext : public CertContext (public)
  			p.sigalgo = QCA::EMSA3_SHA512;
  			break;
  		default:
@@ -1138,7 +1140,7 @@ This is an extract of upstream commit
  			p.sigalgo = QCA::SignatureUnknown;
  		}
  
-@@ -3751,7 +3993,7 @@ class MyCAContext : public CAContext (public)
+@@ -3751,7 +3995,7 @@ class MyCAContext : public CAContext (public)
  		if(privateKey -> key()->type() == PKey::RSA)
  			md = EVP_sha1();
  		else if(privateKey -> key()->type() == PKey::DSA)
@@ -1147,7 +1149,7 @@ This is an extract of upstream commit
  		else
  			return 0;
  
-@@ -3934,7 +4176,7 @@ class MyCSRContext : public CSRContext (public)
+@@ -3934,7 +4178,7 @@ class MyCSRContext : public CSRContext (public)
  		if(priv.key()->type() == PKey::RSA)
  			md = EVP_sha1();
  		else if(priv.key()->type() == PKey::DSA)
@@ -1156,7 +1158,7 @@ This is an extract of upstream commit
  		else
  			return false;
  
-@@ -4095,14 +4337,17 @@ class MyCSRContext : public CSRContext (public)
+@@ -4095,14 +4339,17 @@ class MyCSRContext : public CSRContext (public)
  
  		sk_X509_EXTENSION_pop_free(exts, X509_EXTENSION_free);
  
@@ -1179,7 +1181,7 @@ This is an extract of upstream commit
  		{
  		case NID_sha1WithRSAEncryption:
  			p.sigalgo = QCA::EMSA3_SHA1;
-@@ -4122,7 +4367,7 @@ class MyCSRContext : public CSRContext (public)
+@@ -4122,7 +4369,7 @@ class MyCSRContext : public CSRContext (public)
  			p.sigalgo = QCA::EMSA1_SHA1;
  			break;
  		default:
@@ -1188,7 +1190,7 @@ This is an extract of upstream commit
  			p.sigalgo = QCA::SignatureUnknown;
  		}
  
-@@ -4186,7 +4431,7 @@ class MyCRLContext : public CRLContext (public)
+@@ -4186,7 +4433,7 @@ class MyCRLContext : public CRLContext (public)
  
  	void fromX509(X509_CRL *x)
  	{
@@ -1197,7 +1199,7 @@ This is an extract of upstream commit
  		item.crl = x;
  		make_props();
  	}
-@@ -4238,8 +4483,8 @@ class MyCRLContext : public CRLContext (public)
+@@ -4238,8 +4485,8 @@ class MyCRLContext : public CRLContext (public)
  
  		for (int i = 0; i < sk_X509_REVOKED_num(revokeStack); ++i) {
  			X509_REVOKED *rev = sk_X509_REVOKED_value(revokeStack, i);
@@ -1208,7 +1210,7 @@ This is an extract of upstream commit
  			QCA::CRLEntry::Reason reason = QCA::CRLEntry::Unspecified;
  			int pos = X509_REVOKED_get_ext_by_NID(rev, NID_crl_reason, -1);
  			if (pos != -1) {
-@@ -4288,13 +4533,18 @@ class MyCRLContext : public CRLContext (public)
+@@ -4288,13 +4535,18 @@ class MyCRLContext : public CRLContext (public)
  			p.revoked.append(thisEntry);
  		}
  
@@ -1232,7 +1234,7 @@ This is an extract of upstream commit
  		{
  		case NID_sha1WithRSAEncryption:
  			p.sigalgo = QCA::EMSA3_SHA1;
-@@ -4326,7 +4576,7 @@ class MyCRLContext : public CRLContext (public)
+@@ -4326,7 +4578,7 @@ class MyCRLContext : public CRLContext (public)
  			p.sigalgo = QCA::EMSA3_SHA512;
  			break;
  		default:
@@ -1241,7 +1243,7 @@ This is an extract of upstream commit
  			p.sigalgo = QCA::SignatureUnknown;
  		}
  
-@@ -4487,21 +4737,21 @@ Validity MyCertContext::validate(const QList<CertConte
+@@ -4487,21 +4739,21 @@ Validity MyCertContext::validate(const QList<CertConte
  	{
  		const MyCertContext *cc = static_cast<const MyCertContext *>(trusted[n]);
  		X509 *x = cc->item.cert;
@@ -1266,7 +1268,7 @@ This is an extract of upstream commit
  		crl_list.append(x);
  	}
  
-@@ -4526,7 +4776,7 @@ Validity MyCertContext::validate(const QList<CertConte
+@@ -4526,7 +4778,7 @@ Validity MyCertContext::validate(const QList<CertConte
  	int ret = X509_verify_cert(ctx);
  	int err = -1;
  	if(!ret)
@@ -1275,7 +1277,7 @@ This is an extract of upstream commit
  
  	// cleanup
  	X509_STORE_CTX_free(ctx);
-@@ -4560,21 +4810,21 @@ Validity MyCertContext::validate_chain(const QList<Cer
+@@ -4560,21 +4812,21 @@ Validity MyCertContext::validate_chain(const QList<Cer
  	{
  		const MyCertContext *cc = static_cast<const MyCertContext *>(trusted[n]);
  		X509 *x = cc->item.cert;
@@ -1300,7 +1302,7 @@ This is an extract of upstream commit
  		crl_list.append(x);
  	}
  
-@@ -4599,7 +4849,7 @@ Validity MyCertContext::validate_chain(const QList<Cer
+@@ -4599,7 +4851,7 @@ Validity MyCertContext::validate_chain(const QList<Cer
  	int ret = X509_verify_cert(ctx);
  	int err = -1;
  	if(!ret)
@@ -1309,7 +1311,7 @@ This is an extract of upstream commit
  
  	// grab the chain, which may not be fully populated
  	STACK_OF(X509) *xchain = X509_STORE_CTX_get_chain(ctx);
-@@ -4663,7 +4913,7 @@ class MyPKCS12Context : public PKCS12Context (public)
+@@ -4663,7 +4915,7 @@ class MyPKCS12Context : public PKCS12Context (public)
  			for(int n = 1; n < chain.count(); ++n)
  			{
  				X509 *x = static_cast<const MyCertContext *>(chain[n])->item.cert;
@@ -1318,7 +1320,7 @@ This is an extract of upstream commit
  				sk_X509_push(ca, x);
  			}
  		}
-@@ -5398,7 +5648,7 @@ class MyTLSContext : public TLSContext (public)
+@@ -5398,7 +5650,7 @@ class MyTLSContext : public TLSContext (public)
  		OpenSSL_add_ssl_algorithms();
  		SSL_CTX *ctx = 0;
  		switch (version) {
@@ -1327,7 +1329,7 @@ This is an extract of upstream commit
  		case TLS::SSL_v2:
  			ctx = SSL_CTX_new(SSLv2_client_method());
  			break;
-@@ -5429,8 +5679,8 @@ class MyTLSContext : public TLSContext (public)
+@@ -5429,8 +5681,8 @@ class MyTLSContext : public TLSContext (public)
  		STACK_OF(SSL_CIPHER) *sk = SSL_get_ciphers(ssl);
  		QStringList cipherList;
  		for(int i = 0; i < sk_SSL_CIPHER_num(sk); ++i) {
@@ -1338,7 +1340,7 @@ This is an extract of upstream commit
  		}
  
  		SSL_free(ssl);
-@@ -5807,13 +6057,15 @@ class MyTLSContext : public TLSContext (public)
+@@ -5807,13 +6059,15 @@ class MyTLSContext : public TLSContext (public)
  	{
  		SessionInfo sessInfo;
  
@@ -1358,7 +1360,7 @@ This is an extract of upstream commit
  			sessInfo.version = TLS::SSL_v2;
  		else {
  			qDebug("unexpected version response");
-@@ -5821,7 +6073,7 @@ class MyTLSContext : public TLSContext (public)
+@@ -5821,7 +6075,7 @@ class MyTLSContext : public TLSContext (public)
  		}
  
  		sessInfo.cipherSuite = cipherIDtoString( sessInfo.version,
@@ -1367,7 +1369,7 @@ This is an extract of upstream commit
  
  		sessInfo.cipherMaxBits = SSL_get_cipher_bits(ssl, &(sessInfo.cipherBits));
  
-@@ -6393,7 +6645,7 @@ class MyMessageContext : public MessageContext (public
+@@ -6393,7 +6647,7 @@ class MyMessageContext : public MessageContext (public
  			for(int n = 0; n < nonroots.count(); ++n)
  			{
  				X509 *x = static_cast<MyCertContext *>(nonroots[n].context())->item.cert;
@@ -1376,7 +1378,7 @@ This is an extract of upstream commit
  				sk_X509_push(other_certs, x);
  			}
  
-@@ -6435,7 +6687,7 @@ class MyMessageContext : public MessageContext (public
+@@ -6435,7 +6689,7 @@ class MyMessageContext : public MessageContext (public
  
  			other_certs = sk_X509_new_null();
  			X509 *x = static_cast<MyCertContext *>(target.context())->item.cert;
@@ -1385,7 +1387,7 @@ This is an extract of upstream commit
  			sk_X509_push(other_certs, x);
  
  			bi = BIO_new(BIO_s_mem());
-@@ -6498,7 +6750,7 @@ class MyMessageContext : public MessageContext (public
+@@ -6498,7 +6752,7 @@ class MyMessageContext : public MessageContext (public
  			for(int n = 0; n < untrusted_list.count(); ++n)
  			{
  				X509 *x = static_cast<MyCertContext *>(untrusted_list[n].context())->item.cert;
@@ -1394,7 +1396,7 @@ This is an extract of upstream commit
  				sk_X509_push(other_certs, x);
  			}
  
-@@ -6749,14 +7001,27 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6749,14 +7003,27 @@ class opensslCipherContext : public CipherContext (pub
  	opensslCipherContext(const EVP_CIPHER *algorithm, const int pad, Provider *p, const QString &type) : CipherContext(p, type)
  	{
  		m_cryptoAlgorithm = algorithm;
@@ -1424,7 +1426,7 @@ This is an extract of upstream commit
  	}
  
  	void setup(Direction dir,
-@@ -6769,20 +7034,20 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6769,20 +7036,20 @@ class opensslCipherContext : public CipherContext (pub
  			m_cryptoAlgorithm = EVP_des_ede();
  		}
  		if (Encode == m_direction) {
@@ -1452,7 +1454,7 @@ This is an extract of upstream commit
  	}
  
  	Provider::Context *clone() const
-@@ -6792,7 +7057,7 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6792,7 +7059,7 @@ class opensslCipherContext : public CipherContext (pub
  
  	int blockSize() const
  	{
@@ -1461,7 +1463,7 @@ This is an extract of upstream commit
  	}
  
  	bool update(const SecureArray &in, SecureArray *out)
-@@ -6805,7 +7070,7 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6805,7 +7072,7 @@ class opensslCipherContext : public CipherContext (pub
  		out->resize(in.size()+blockSize());
  		int resultLength;
  		if (Encode == m_direction) {
@@ -1470,7 +1472,7 @@ This is an extract of upstream commit
  									   (unsigned char*)out->data(),
  									   &resultLength,
  									   (unsigned char*)in.data(),
-@@ -6813,7 +7078,7 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6813,7 +7080,7 @@ class opensslCipherContext : public CipherContext (pub
  				return false;
  			}
  		} else {
@@ -1479,7 +1481,7 @@ This is an extract of upstream commit
  									   (unsigned char*)out->data(),
  									   &resultLength,
  									   (unsigned char*)in.data(),
-@@ -6830,13 +7095,13 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6830,13 +7097,13 @@ class opensslCipherContext : public CipherContext (pub
  		out->resize(blockSize());
  		int resultLength;
  		if (Encode == m_direction) {
@@ -1495,7 +1497,7 @@ This is an extract of upstream commit
  										 (unsigned char*)out->data(),
  										 &resultLength)) {
  				return false;
-@@ -6871,7 +7136,7 @@ class opensslCipherContext : public CipherContext (pub
+@@ -6871,7 +7138,7 @@ class opensslCipherContext : public CipherContext (pub
  
  
  protected:
