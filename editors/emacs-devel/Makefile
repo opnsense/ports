@@ -3,6 +3,7 @@
 
 PORTNAME=	emacs
 DISTVERSION=	${EMACS_VER}.${EMACS_REV}
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	editors ipv6
 PKGNAMESUFFIX=	-devel
@@ -32,7 +33,7 @@ USE_XORG=	ice sm x11 xcb xext xfixes xinerama xmu xrandr xt
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	8602bd8
+GH_TAGNAME=	663613a
 
 USE_HARDENING=	pie:off relro:off
 
@@ -157,7 +158,7 @@ LCMS2_LIB_DEPENDS=	liblcms2.so:graphics/lcms2
 M17N_LIB_DEPENDS=	libm17n.so:devel/m17n-lib
 M17N_CONFIGURE_WITH=	m17n-flt
 M17N_IMPLIES=		XFT
-MAGICK_LIB_DEPENDS=	libMagickCore-6.so:graphics/ImageMagick
+MAGICK_LIB_DEPENDS=	libMagickCore-6.so:graphics/ImageMagick6
 MAGICK_CONFIGURE_WITH=	imagemagick
 MAILUTILS_CONFIGURE_WITH=	mailutils
 MAILUTILS_CONFIGURE_ENV_OFF=	ac_cv_prog_liblockfile=no ac_cv_lib_lockfile_maillock=no
@@ -199,7 +200,7 @@ XWIDGETS_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 XWIDGETS_IMPLIES=	GTK3
 
 EMACS_VER=	27.0.50
-EMACS_REV=	20181022
+EMACS_REV=	20181110
 
 .include <bsd.port.options.mk>
 
