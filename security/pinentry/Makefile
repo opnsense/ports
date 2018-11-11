@@ -3,7 +3,7 @@
 
 PORTNAME=	pinentry
 PORTVERSION=	1.1.0
-PORTREVISION?=	1
+PORTREVISION?=	2
 CATEGORIES=	security
 MASTER_SITES=	GNUPG/pinentry
 
@@ -139,7 +139,7 @@ CONFIGURE_ARGS+=--disable-pinentry-tty
 
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/bin/pinentry \
-		${STAGEDIR}${PREFIX}/info/pinentry.info
+		${STAGEDIR}${PREFIX}/share/info/pinentry.info
 
 .endif # !defined(PINENTRY_GUI)
 
