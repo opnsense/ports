@@ -3,6 +3,7 @@
 
 PORTNAME=	piglit
 PORTVERSION=	20180910
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	x11@FreeBSD.org
@@ -44,6 +45,14 @@ SUB_FILES=	pkg-message
 DATADIR=	${PREFIX}/lib/piglit
 PORTDATA=	*
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS WAYLAND
+OPTIONS_DEFAULT=WAYLAND
+
+WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \
+			libxkbcommon.so:x11/libxkbcommon
+
+post-patch-WAYLAND-off:
+	@${REINPLACE_CMD} -e '/pkg_check_modules.*wayland/d' \
+		${WRKSRC}/CMakeLists.txt
 
 .include <bsd.port.mk>
