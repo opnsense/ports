@@ -162,7 +162,7 @@ SUB_LIST+=	PG_GROUP=${PG_GROUP} \
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == "i386"
-CFLAGS+=	-msse2
+USES+=		compiler:gcc-c++11-lib
 .endif
 
 .if !defined(SLAVE_ONLY)
