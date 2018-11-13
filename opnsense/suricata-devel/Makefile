@@ -81,6 +81,7 @@ LUAJIT_CONFIGURE_ON=		--enable-luajit
 
 NSS_LIB_DEPENDS=		libnss3.so:security/nss \
 				libnspr4.so:devel/nspr
+NSS_CONFIGURE_OFF=		--disable-nss --disable-nspr
 NSS_CONFIGURE_ON=		--with-libnss-includes=${LOCALBASE}/include/nss/nss \
 				--with-libnss-libraries=${LOCALBASE}/lib \
 				--with-libnspr-libraries=${LOCALBASE}/lib \
@@ -135,9 +136,6 @@ LOGS_DIR?=	/var/log/${PORTNAME}
 
 pre-patch:
 	@${CP} ${FILESDIR}/ax_check_compile_flag.m4 ${WRKSRC}/m4
-
-post-patch-NSS-off:
-	@${REINPLACE_CMD} -e 's|PKG_CHECK_MODULES(\[libnspr\]|#&| ; s|AC_CHECK_HEADER(sechash.h,NSS="yes",NSS="no")|#&|' ${WRKSRC}/configure.ac
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${CONFIG_DIR}
