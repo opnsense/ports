@@ -15,9 +15,8 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png
 
-BROKEN_powerpc64=	fails to build: mListDef.h: redefinition of typedef 'mList'
-
-USES=		desktop-file-utils jpeg localbase shared-mime-info tar:xz
+USES=		compiler:c11 desktop-file-utils jpeg localbase \
+		shared-mime-info tar:xz
 USE_XORG=	x11 xext xi
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-freetype-dir=${LOCALBASE}/include/freetype2
