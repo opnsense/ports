@@ -468,6 +468,7 @@
     SUBDIR += dmake
     SUBDIR += dmalloc
     SUBDIR += dmucs
+    SUBDIR += docopt.cpp
     SUBDIR += doctorj
     SUBDIR += dolphin-plugins
     SUBDIR += dolphin-plugins-kde4
@@ -5034,6 +5035,7 @@
     SUBDIR += py-rauth
     SUBDIR += py-raven
     SUBDIR += py-rcsparse
+    SUBDIR += py-readme_renderer
     SUBDIR += py-rebulk
     SUBDIR += py-rednose
     SUBDIR += py-rekall-efilter
@@ -5209,6 +5211,7 @@
     SUBDIR += py-virtualenv
     SUBDIR += py-virtualenv-clone
     SUBDIR += py-virtualenvwrapper
+    SUBDIR += py-visitor
     SUBDIR += py-voluptuous
     SUBDIR += py-warlock
     SUBDIR += py-watchdog
