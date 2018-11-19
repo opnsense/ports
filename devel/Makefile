@@ -1226,6 +1226,8 @@
     SUBDIR += icu-le-hb
     SUBDIR += icu-lx
     SUBDIR += idutils
+    SUBDIR += ignition-cmake
+    SUBDIR += ignition-tools
     SUBDIR += imake
     SUBDIR += inastemp
     SUBDIR += include-what-you-use
@@ -4074,6 +4076,7 @@
     SUBDIR += pecl-params
     SUBDIR += pecl-propro
     SUBDIR += pecl-propro2
+    SUBDIR += pecl-psr
     SUBDIR += pecl-pthreads
     SUBDIR += pecl-pthreads2
     SUBDIR += pecl-qb
@@ -4770,6 +4773,7 @@
     SUBDIR += py-msgpack
     SUBDIR += py-multi_key_dict
     SUBDIR += py-multipledispatch
+    SUBDIR += py-multiprocess
     SUBDIR += py-munch
     SUBDIR += py-mwlib
     SUBDIR += py-mwlib.ext
