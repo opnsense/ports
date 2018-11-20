@@ -36,6 +36,7 @@
     SUBDIR += R-cran-foreach
     SUBDIR += R-cran-gbm
     SUBDIR += R-cran-gdata
+    SUBDIR += R-cran-generics
     SUBDIR += R-cran-glmnet
     SUBDIR += R-cran-glue
     SUBDIR += R-cran-gmodels
@@ -1227,6 +1228,8 @@
     SUBDIR += icu-lx
     SUBDIR += idutils
     SUBDIR += ignition-cmake
+    SUBDIR += ignition-msgs
+    SUBDIR += ignition-plugin
     SUBDIR += ignition-tools
     SUBDIR += imake
     SUBDIR += inastemp
@@ -1787,6 +1790,7 @@
     SUBDIR += mips64-binutils
     SUBDIR += mips64-gcc
     SUBDIR += mips64-xtoolchain-gcc
+    SUBDIR += mir-core
     SUBDIR += mk-configure
     SUBDIR += mkcmd
     SUBDIR += mm
@@ -6180,6 +6184,7 @@
     SUBDIR += shedskin
     SUBDIR += shell-toolbox
     SUBDIR += shflags
+    SUBDIR += shfmt
     SUBDIR += shiboken
     SUBDIR += shmap
     SUBDIR += shtk
