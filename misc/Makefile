@@ -182,6 +182,7 @@
     SUBDIR += histring
     SUBDIR += hotkeys
     SUBDIR += hulgalugha
+    SUBDIR += ignition-fuel-tools
     SUBDIR += imerge
     SUBDIR += img2xterm
     SUBDIR += ini_file_manager
@@ -493,6 +494,7 @@
     SUBDIR += rubygem-vpim
     SUBDIR += rump
     SUBDIR += saaghar
+    SUBDIR += sdformat
     SUBDIR += seabios
     SUBDIR += sent
     SUBDIR += seq2

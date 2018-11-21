@@ -4,7 +4,7 @@
 PORTNAME=	palemoon
 DISTVERSION=	27.9.4
 DISTVERSIONSUFFIX=_Release
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	www ipv6
 
 MAINTAINER=	lichray@gmail.com
@@ -30,7 +30,7 @@ GH_PROJECT=	Pale-Moon
 USE_GECKO=	gecko
 USE_HARDENING=	pie:off
 MOZ_PKGCONFIG_FILES=	# empty
-USE_MOZILLA=	-soundtouch
+USE_MOZILLA=	# empty
 
 PM_ICON=	${PORTNAME}.png
 PM_ICON_SRC=	${PREFIX}/lib/${PORTNAME}/browser/icons/mozicon128.png
@@ -40,8 +40,8 @@ MOZ_OPTIONS=	--enable-application=browser \
 		--enable-jemalloc \
 		--enable-jemalloc-lib
 
-OPTIONS_DEFAULT=	BUNDLED_CAIRO GTK2
-OPTIONS_EXCLUDE=	DTRACE INTEGER_SAMPLES JACK TEST WAYLAND
+OPTIONS_DEFAULT=	GTK2
+OPTIONS_EXCLUDE=	DTRACE JACK TEST WAYLAND
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 
