@@ -81,29 +81,18 @@ MOZILLA_VER?=	${PORTVERSION}
 MOZILLA_BIN?=	${PORTNAME}-bin
 MOZILLA_EXEC_NAME?=${MOZILLA}
 MOZ_RPATH?=	${MOZILLA}
-USES+=		cpe gl gmake iconv localbase perl5 pkgconfig \
+USES+=		compiler:c++17-lang cpe gl gmake iconv localbase perl5 pkgconfig \
 			python:2.7,build desktop-file-utils
 CPE_VENDOR?=mozilla
 USE_GL=		gl
 USE_PERL5=	build
-USE_XORG=	x11 xcomposite xdamage xext xfixes xrender xt
+USE_XORG=	x11 xcb xcomposite xdamage xext xfixes xrender xt
 HAS_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes
 
 BUNDLE_LIBS=	yes
 
-.if ${MOZILLA_VER:R:R} >= 49
-USES+=		compiler:c++17-lang
-.else
-USES+=		compiler:c++11-lang
-.endif
-
-.if ${MOZILLA_VER:R:R} >= 50
-USE_XORG+=	xcb
-.endif
-
 .if ${MOZILLA_VER:R:R} >= 56
-LLVM_DEFAULT?=	70
 BUILD_DEPENDS+=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 MOZ_EXPORT+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
 # Require newer Clang than what's in base system unless user opted out
@@ -158,29 +147,8 @@ RUSTFLAGS+=	${CFLAGS:M-march=*:S/-march=/-C target-cpu=/}
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
 .endif
 
-.if ${MOZILLA_VER:R:R} < 55 && ${OPSYS} == FreeBSD && ${OSVERSION} < 1200032
-# use jemalloc 3.0.0 (4.0 for firefox 43+) API for stats/tuning
-MOZ_EXPORT+=	MOZ_JEMALLOC4=1
-.if ${MOZILLA_VER:R:R} >= 48
-MOZ_OPTIONS+=	--enable-jemalloc=4
-.endif # Mozilla >= 48
-.endif # Mozilla < 55
-
 # Standard depends
-_ALL_DEPENDS=	cairo event ffi graphite harfbuzz hunspell icu jpeg nspr nss png pixman soundtouch sqlite vpx
-
-.if ${PORT_OPTIONS:MINTEGER_SAMPLES}
-MOZ_EXPORT+=	MOZ_INTEGER_SAMPLES=1
-_ALL_DEPENDS+=	tremor
-.else
-_ALL_DEPENDS+=	vorbis
-.endif
-
-.if ! ${PORT_OPTIONS:MBUNDLED_CAIRO}
-cairo_BUILD_DEPENDS=cairo>=1.12.16_1,2:graphics/cairo
-cairo_LIB_DEPENDS=	libcairo.so:graphics/cairo
-cairo_MOZ_OPTIONS=	--enable-system-cairo
-.endif
+_ALL_DEPENDS=	event ffi graphite harfbuzz hunspell icu jpeg nspr nss png pixman sqlite vpx
 
 event_LIB_DEPENDS=	libevent.so:devel/libevent
 event_MOZ_OPTIONS=	--with-system-libevent
@@ -203,7 +171,6 @@ icu_LIB_DEPENDS=		libicui18n.so:devel/icu
 icu_MOZ_OPTIONS=		--with-system-icu --with-intl-api
 
 -jpeg_BUILD_DEPENDS=yasm:devel/yasm
-# XXX Remove files/patch-ijg-libjpeg once -turbo is default
 jpeg_USES=		jpeg
 jpeg_MOZ_OPTIONS=	--with-system-jpeg=${LOCALBASE}
 
@@ -219,25 +186,8 @@ pixman_MOZ_OPTIONS=	--enable-system-pixman
 png_LIB_DEPENDS=	libpng.so:graphics/png
 png_MOZ_OPTIONS=	--with-system-png=${LOCALBASE}
 
-.if exists(${FILESDIR}/patch-z-bug517422)
-soundtouch_LIB_DEPENDS=	libSoundTouch.so:audio/soundtouch
-soundtouch_MOZ_OPTIONS=	--with-system-soundtouch
-.endif
-
 sqlite_LIB_DEPENDS=	libsqlite3.so:databases/sqlite3
 sqlite_MOZ_OPTIONS=	--enable-system-sqlite
-
-.if exists(${FILESDIR}/patch-z-bug517422)
-# XXX disabled: update to 1.2.x or review backported fixes
-theora_LIB_DEPENDS=	libtheora.so:multimedia/libtheora
-theora_MOZ_OPTIONS=	--with-system-theora
-
-tremor_LIB_DEPENDS=	libogg.so:audio/libogg libvorbisidec.so:audio/libtremor
-tremor_MOZ_OPTIONS=	--with-system-tremor --with-system-ogg
-
-vorbis_LIB_DEPENDS=	libogg.so:audio/libogg libvorbis.so:audio/libvorbis
-vorbis_MOZ_OPTIONS=	--with-system-vorbis --with-system-ogg
-.endif
 
 -vpx_BUILD_DEPENDS=	yasm:devel/yasm
 vpx_LIB_DEPENDS=	libvpx.so:multimedia/libvpx
@@ -328,10 +278,6 @@ MOZ_OPTIONS+=	--disable-dbus
 .if ${PORT_OPTIONS:MFFMPEG}
 # dom/media/platforms/ffmpeg/FFmpegRuntimeLinker.cpp
 RUN_DEPENDS+=	ffmpeg>=0.8,1:multimedia/ffmpeg
-.endif
-
-.if ${MOZILLA_VER:R:R} < 46
-MOZ_OPTIONS+=	--disable-gstreamer
 .endif
 
 .if ${PORT_OPTIONS:MGCONF}
@@ -529,31 +475,12 @@ gecko-post-patch:
 		${PATCH} ${PATCH_ARGS} -d ${MOZSRC}/security/nss < $$i; \
 	done
 .endif
-	@for f in \
-			${WRKSRC}/directory/c-sdk/config/FreeBSD.mk \
-			${WRKSRC}/directory/c-sdk/configure \
-			${MOZSRC}/security/coreconf/FreeBSD.mk \
-			${MOZSRC}/js/src/Makefile.in \
-			${MOZSRC}/js/src/configure \
-			${MOZSRC}/configure \
-			${WRKSRC}/configure; do \
-		if [ -f $$f ] ; then \
-			${REINPLACE_CMD} -Ee 's|-lc_r|-pthread|g ; \
-				s|-l?pthread|-pthread|g ; \
-				s|echo aout|echo elf|g ; \
-				s|/usr/X11R6|${LOCALBASE}|g' \
-				$$f; \
-		fi; \
-	done
 	@if [ -f ${WRKSRC}/config/baseconfig.mk ] ; then \
 		${REINPLACE_CMD} -e 's|%%MOZILLA%%|${MOZILLA}|g' \
 			${WRKSRC}/config/baseconfig.mk; \
 	fi
 	@${REINPLACE_CMD} -e 's|%%MOZILLA%%|${MOZILLA}|g' \
 			${MOZSRC}/config/baseconfig.mk
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|g ; \
-		s|%%LOCALBASE%%|${LOCALBASE}|g' \
-			${MOZSRC}/build/unix/run-mozilla.sh
 	@${REINPLACE_CMD} -e 's|/usr/local/netscape|${LOCALBASE}|g ; \
 		s|/usr/local/lib/netscape|${LOCALBASE}/lib|g' \
 		${MOZSRC}/xpcom/io/SpecialSystemDirectory.cpp
@@ -564,8 +491,10 @@ gecko-post-patch:
 		-e 's|share/mozilla/extensions|lib/xpi|g' \
 		${MOZSRC}/xpcom/io/nsAppFileLocationProvider.cpp \
 		${MOZSRC}/toolkit/xre/nsXREDirProvider.cpp
+.if ${MOZILLA_VER:R:R} < 61
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		${MOZSRC}/extensions/spellcheck/hunspell/*/mozHunspell.cpp
+.endif
 
 # handles mozilla pis scripts.
 gecko-moz-pis-patch:
