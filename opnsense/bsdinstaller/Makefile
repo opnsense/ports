@@ -13,6 +13,7 @@ LICENSE=	BSD3CLAUSE
 
 RUN_DEPENDS=	cpdup:sysutils/cpdup
 
+USE_HARDENING=	pie:off relro:off
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
