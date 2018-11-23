@@ -35,7 +35,7 @@ USE_HARDENING=  safestack
 
 USES=	compiler:c11 cpe libedit ssl
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.13.3
+ISCVERSION=	9.13.4
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
