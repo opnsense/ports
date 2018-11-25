@@ -98,10 +98,9 @@ RUN_DEPENDS=								\
 		${LOCALBASE}/share/fonts/Carlito/Carlito-Bold.ttf:x11-fonts/crosextrafonts-carlito-ttf \
 		${LOCALBASE}/share/fonts/ChromeOS/Arimo-Bold.ttf:x11-fonts/croscorefonts-fonts-ttf
 
-USES=		autoreconf bison compiler:c++11-lib cpe \
-		desktop-file-utils \
-		gettext-runtime gmake iconv jpeg perl5 pkgconfig python:2.7 \
-		shared-mime-info ssl tar:${TARTYPE}
+USES=		autoreconf bison compiler:c++11-lib cpe desktop-file-utils \
+		gettext-runtime gl gmake gnome iconv jpeg perl5 pkgconfig \
+		python:2.7 shared-mime-info ssl tar:${TARTYPE}
 USE_GL=		gl glu
 USE_GNOME=	gtk20 libxslt libidl glib20
 USE_JAVA=	yes
@@ -120,7 +119,7 @@ AOOVERSION2=	2
 AOOVERSION3=	0
 # From solenv/inc/minor.mk SOURCEREVISION LAST_MINOR BUILD
 AOOTAG=		AOO420m1\(Build:9800\)
-SVNREVISION=	1838397
+SVNREVISION=	1847189
 #AOORC=rc3
 EXTSRC=		ApacheOpenOffice.ext_sources.${AOOVERSION1}.x.x.20150707.tar.gz
 
@@ -219,6 +218,12 @@ WIKI_PUBLISHER_RUN_DEPENDS=	${WIKI_PUBLISHER_JAR_DEPENDS}
 
 # Don't run gnome-post-icons until after post-install generates the plist
 TARGET_ORDER_OVERRIDE=	710:gnome-post-icons
+
+# Force the SDK option on for makesum to ensure that unowinreg.dll is
+# included in distinfo
+.if make(makesum) || make(distclean)
+WITH=	SDK
+.endif
 
 .include <bsd.port.pre.mk>
 
