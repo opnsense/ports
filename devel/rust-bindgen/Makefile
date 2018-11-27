@@ -2,7 +2,7 @@
 
 PORTNAME=	rust-bindgen
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.43.1
+DISTVERSION=	0.43.2
 CATEGORIES=	devel
 
 MAINTAINER=	gecko@FreeBSD.org
@@ -15,7 +15,7 @@ RUN_DEPENDS=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT}
 
 USES=		cargo
 USE_GITHUB=	yes
-GH_ACCOUNT=	rust-lang-nursery
+GH_ACCOUNT=	rust-lang
 PLIST_FILES=	bin/bindgen
 
 CARGO_CRATES=	aho-corasick-0.6.8 \
@@ -28,7 +28,7 @@ CARGO_CRATES=	aho-corasick-0.6.8 \
 		clang-sys-0.26.0 \
 		clap-2.32.0 \
 		diff-0.1.11 \
-		env_logger-0.5.13 \
+		env_logger-0.6.0 \
 		glob-0.2.11 \
 		humantime-1.1.1 \
 		lazy_static-1.1.0 \

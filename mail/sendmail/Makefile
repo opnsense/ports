@@ -148,7 +148,7 @@ NO_PACKAGE=	GPLv3 license conflict
 SITE+=	${FILESDIR}/site.config.m4.gdbm
 .endif
 
-SED_SCRIPT=	-e "s|\`-O\'|\`${CFLAGS}\'|" \
+SED_SCRIPT=	-e "s|\`-O'|\`${CFLAGS}'|" \
 		-e 's|%%CC%%|${CC}|' -e 's|%%LD%%|${LD}|'
 
 .if ! ${PORT_OPTIONS:MNIS}

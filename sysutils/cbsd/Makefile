@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cbsd
-DISTVERSION=	12.0.1
+DISTVERSION=	12.0.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	olevole@olevole.ru
@@ -22,7 +22,7 @@ USES=		libedit pkgconfig
 USE_HARDENING=	pie:off relro:off
 
 USE_GITHUB=	yes
-USE_RC_SUBR=	cbsdd cbsdrsyncd
+USE_RC_SUBR=	cbsdd cbsdrsyncd cbsd-statsd-bhyve cbsd-statsd-hoster cbsd-statsd-jail
 
 SUB_FILES=	pkg-message pkg-deinstall
 
