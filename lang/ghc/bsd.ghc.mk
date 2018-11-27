@@ -106,6 +106,9 @@ CONFIGURE_ARGS+=	--enable-dtrace=0
 .if ${OSVERSION} < 1200000
 USE_GCC=	yes
 .else
+.  if !exists(/usr/bin/ld.bfd)
+USE_BINUTILS=	yes
+.  endif
 LD=		ld.bfd
 .endif
 CONFIGURE_ENV+=		CC=${CC} LD=${LD}
