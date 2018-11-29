@@ -19,13 +19,8 @@ LICENSE=	BSD3CLAUSE
 
 CONFLICTS=	racoon-[0-9]*
 
-<<<<<<< HEAD
 USE_HARDENING=	pie:off relro:off
 
-USE_RC_SUBR=	racoon
-
-=======
->>>>>>> upstream/master
 INSTALL_TARGET=	install-strip
 
 USES=		libtool tar:bzip2 ssl
