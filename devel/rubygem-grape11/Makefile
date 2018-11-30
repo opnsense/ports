@@ -1,11 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	grape
-PORTVERSION=	1.2.1
+PORTVERSION=	1.1.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
+PKGNAMESUFFIX=	11
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	mfechner@FreeBSD.org
 COMMENT=	Framework for rapid API development with great conventions
 
 LICENSE=	MIT
@@ -22,5 +23,7 @@ USES=		gem
 USE_RUBY=	yes
 
 NO_ARCH=	yes
+
+PORTSCOUT=	limit: ^1\.1\.
 
 .include <bsd.port.mk>

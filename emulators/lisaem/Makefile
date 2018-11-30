@@ -9,14 +9,14 @@ MASTER_SITES=	http://lisaem.sunder.net/downloads/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Apple Lisa 2 Emulator
 
-BUILD_DEPENDS=	pngtopnm:graphics/netpbm
-
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	pngtopnm:graphics/netpbm
+
 USE_HARDENING=	pie:off
 
-USES=		compiler tar:bzip2
+USES=		compiler:c++11-lang tar:bzip2
 USE_WX=		2.8
 
 BINARY_ALIAS=	wx-config=${WX_CONFIG}
