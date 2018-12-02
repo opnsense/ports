@@ -246,6 +246,7 @@
     SUBDIR += havp
     SUBDIR += helma
     SUBDIR += hiawatha
+    SUBDIR += hiawatha-monitor
     SUBDIR += horde-ansel
     SUBDIR += horde-base
     SUBDIR += horde-passwd
@@ -2052,7 +2053,6 @@
     SUBDIR += rubygem-http
     SUBDIR += rubygem-http-cookie
     SUBDIR += rubygem-http-form_data
-    SUBDIR += rubygem-http-form_data1
     SUBDIR += rubygem-http_router
     SUBDIR += rubygem-httparty
     SUBDIR += rubygem-httpclient
