@@ -32,7 +32,7 @@ WRKSRC_SUBDIR=	build/php${PHP_VER:C/.$//}/${PBITS}bits
 
 post-patch:
 .if ${PHP_VER} >= 70 && ${PBITS} == 32
-	@${REINPLACE_CMD} -e 's| ZEPHIR_FASTCALL | |' ${WRKSRC}/phalcon.zep.c
+	@${REINPLACE_CMD} -e 's|ZEPHIR_FASTCALL| |' ${WRKSRC}/phalcon.zep.c
 .endif
 
 .include <bsd.port.post.mk>
