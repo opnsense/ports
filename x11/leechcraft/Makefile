@@ -13,6 +13,9 @@ COMMENT=	Cross-platform modular live environment
 LICENSE=	BSL
 LICENSE_FILE=	${WRKDIR}/${DISTNAME}/LICENSE
 
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+
 LIB_DEPENDS=	libqwt6.so:x11-toolkits/qwt6@qt4 \
 		libpcre.so:devel/pcre \
 		libboost_program_options.so:devel/boost-libs
@@ -69,7 +72,7 @@ AZOTH_LIB_DEPENDS=	libQtMultimediaKit.so:multimedia/qt4-mobility \
 			libkqoauth.so:security/kqoauth \
 			libotr.so.5:security/libotr \
 			libpurple.so:net-im/libpurple \
-			libqca.so:devel/qca \
+			libqca.so:devel/qca@qt4 \
 			libqxmpp.so:net-im/qxmpp \
 			libspeex.so:audio/speex
 AZOTH_USES=		desktop-file-utils

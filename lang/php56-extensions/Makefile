@@ -9,6 +9,9 @@ PKGNAMESUFFIX=	-extensions
 MAINTAINER=	ale@FreeBSD.org
 COMMENT=	"meta-port" to install PHP extensions
 
+DEPRECATED=	Works only with EOL php 5.6
+EXPIRATION_DATE=	2018-12-30
+
 USE_HARDENING=	pie:off relro:off
 
 USES=		metaport php

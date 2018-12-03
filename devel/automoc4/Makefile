@@ -11,6 +11,9 @@ DIST_SUBDIR=	KDE
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Automatic moc for Qt 4 packages
 
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+
 USE_HARDENING=	relro:off
 
 USE_QT=		corelib moc qmake_build rcc_build uic_build

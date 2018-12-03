@@ -11,6 +11,9 @@ COMMENT=	Lightweight KDE browser based on WebKit
 
 LICENSE=	GPLv3+ GFDL
 LICENSE_COMB=	multi
+
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2018-12-31
 LICENSE_FILE_GPLv3+ =	${WRKSRC}/COPYING
 LICENSE_FILE_GFDL=	${WRKSRC}/COPYING.DOC
 
@@ -23,7 +26,7 @@ OPTIONS_DEFINE=		OPERA NEPOMUK
 OPTIONS_DEFAULT=	NEPOMUK
 
 OPERA_DESC=		Support for Opera Sync service
-OPERA_LIB_DEPENDS=	libqca.so:devel/qca \
+OPERA_LIB_DEPENDS=	libqca.so:devel/qca@qt4 \
 			libqoauth.so:net/qoauth
 OPERA_CMAKE_OFF=	-DWITH_QCA2=off \
 			-DWITH_QtOAuth=off

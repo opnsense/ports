@@ -14,6 +14,9 @@ COMMENT=	Graphics language that produces images from script files
 LICENSE=	BSD3CLAUSE GPLv2
 LICENSE_COMB=	multi
 
+DEPRECATED=		Qt4 has been EOL since december 2015
+EXPIRATION_DATE=	2019-03-15
+
 USE_HARDENING=	pie:off
 
 BITMAP_IMAGES_CONFIGURE_WITH=	jpeg=${LOCALBASE} tiff=${LOCALBASE} png=${LOCALBASE}
