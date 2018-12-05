@@ -10005,15 +10005,12 @@ devel/boaconstructor||2018-03-02|Has expired: Abandonware, does not work with re
 audio/amp||2018-03-02|Has expired: No more upstream
 devel/alf||2018-03-02|Has expired: Abandonware, unused in the ports tree
 net/remmina-plugin-gnome|net/remmina-plugin-secret|2018-03-04|Renamed upstream
-databases/php70-memcache|databases/php-memcache@php70|2018-03-08|Merge into a flavorized version
 databases/php71-memcache|databases/php-memcache@php71|2018-03-08|Merge into a flavorized version
 databases/php72-memcache|databases/php-memcache@php72|2018-03-08|Merge into a flavorized version
 ftp/php56-fastdfs|ftp/php-fastdfs@php56|2018-03-08|Merge into flavorized version
-ftp/php70-fastdfs|ftp/php-fastdfs@php70|2018-03-08|Merge into flavorized version
 ftp/php71-fastdfs|ftp/php-fastdfs@php71|2018-03-08|Merge into flavorized version
 ftp/php72-fastdfs|ftp/php-fastdfs@php72|2018-03-08|Merge into flavorized version
 www/unit-php56|www/unit-php@php56|2018-03-08|Merge into flavorized version
-www/unit-php70|www/unit-php@php70|2018-03-08|Merge into flavorized version
 www/unit-php71|www/unit-php@php71|2018-03-08|Merge into flavorized version
 www/unit-php72|www/unit-php@php72|2018-03-08|Merge into flavorized version
 databases/php70-memcached|databases/php-memcached|2018-03-08|Move to flavorized version
@@ -10637,9 +10634,9 @@ net-mgmt/p5-FusionInventory-Agent-Task-NetDiscovery||2018-11-20|Has expired: No 
 net-mgmt/p5-FusionInventory-Agent-Task-SNMPQuery||2018-11-20|Removed, no longer needed
 textproc/rubygem-github-linguist53|textproc/rubygem-github-linguist|2018-11-23|Obsolete by www/gitlab-ce 11.5.x upgrade, please use textproc/rubygem-github-linguist
 devel/rubygem-google-protobuf351|devel/rubygem-google-protobuf|2018-11-23|Obsolete by www/gitlab-ce 11.5.x upgrade, please use devel/rubygem-google-protobuf
-devel/giggle|devel/gitg|2018-11-23|Has expired: Development stalled. Please switch to devel/gitg.
+devel/giggle|devel/gitg|2018-11-23|Has expired: Development stalled. Please switch to devel/gitg
 net/rubygem-gitaly-proto094|net/rubygem-gitaly-proto|2018-11-24|Use net/rubygem-gitaly-proto instead
-www/rubygem-toml-rb03|www/rubygem-toml-rb|2018-11-25|Has expired: Obsoleted by update of www/gitlab. Please use www/rubygem-tom-rb instead.
+www/rubygem-toml-rb03|www/rubygem-toml-rb|2018-11-25|Has expired: Obsoleted by update of www/gitlab. Please use www/rubygem-tom-rb instead
 dns/dnscheck||2018-11-27|Unmaintained upstream over a decade
 www/mod_security3|security/modsecurity3|2018-11-27|Not an Apache module, use correct upstream name
 emulators/qemu-ppcnv|emulators/qemu-powernv|2018-11-28|Use more accurate naming for qemu PowerNV port
@@ -10650,3 +10647,72 @@ java/classpath||2018-12-03|Has expired: Staled since 2012, OpenJDK is live now
 java/cacao||2018-12-03|Removed, depends on expired java/classpath
 java/jamvm||2018-12-03|Has expired: Abandonware, depends on expired java/classpath
 devel/ztcl||2018-12-04|Has expired: Unfetchable, unmaintained, info page unbuildable with recent makeinfo
+x11-toolkits/vtkfox||2018-12-05|Has expired: Depends on expiring vtk5
+lang/php70-extensions|lang/php72-extensions|2018-12-05|Has expired: Works only with EOL php 7.0
+math/vtk5|math/vtk6|2018-12-05|Has expired: Broken, unmaintained
+archivers/php70-bz2|archivers/php72-bz2|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+archivers/php70-phar|archivers/php72-phar|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+archivers/php70-zip|archivers/php72-zip|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+archivers/php70-zlib|archivers/php72-zlib|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+converters/php70-iconv|converters/php72-iconv|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+converters/php70-mbstring|converters/php72-mbstring|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+converters/php70-recode|converters/php72-recode|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-dba|databases/php72-dba|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-interbase|databases/php72-interbase|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-mysqli|databases/php72-mysqli|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-odbc|databases/php72-odbc|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo|databases/php72-pdo|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo_dblib|databases/php72-pdo_dblib|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo_firebird|databases/php72-pdo_firebird|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo_mysql|databases/php72-pdo_mysql|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo_odbc|databases/php72-pdo_odbc|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo_pgsql|databases/php72-pdo_pgsql|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pdo_sqlite|databases/php72-pdo_sqlite|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-pgsql|databases/php72-pgsql|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+databases/php70-sqlite3|databases/php72-sqlite3|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-gettext|devel/php72-gettext|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-intl|devel/php72-intl|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-json|devel/php72-json|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-pcntl|devel/php72-pcntl|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-readline|devel/php72-readline|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-shmop|devel/php72-shmop|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-sysvmsg|devel/php72-sysvmsg|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-sysvsem|devel/php72-sysvsem|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-sysvshm|devel/php72-sysvshm|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+devel/php70-tokenizer|devel/php72-tokenizer|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+ftp/php70-curl|ftp/php72-curl|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+ftp/php70-ftp|ftp/php72-ftp|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+graphics/php70-exif|graphics/php72-exif|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+graphics/php70-gd|graphics/php72-gd|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+mail/php70-imap|mail/php72-imap|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+misc/php70-calendar|misc/php72-calendar|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+net/php70-ldap|net/php72-ldap|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+net/php70-soap|net/php72-soap|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+net/php70-sockets|net/php72-sockets|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+net/php70-xmlrpc|net/php72-xmlrpc|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+net-mgmt/php70-snmp|net-mgmt/php72-snmp|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+sysutils/php70-fileinfo|sysutils/php72-fileinfo|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+sysutils/php70-posix|sysutils/php72-posix|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+security/php70-filter|security/php72-filter|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+security/php70-hash|security/php72-hash|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+security/php70-mcrypt|security/php72-sodium|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+security/php70-openssl|security/php72-openssl|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-ctype|textproc/php72-ctype|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-dom|textproc/php72-dom|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-enchant|textproc/php72-enchant|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-pspell|textproc/php72-pspell|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-simplexml|textproc/php72-simplexml|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-wddx|textproc/php72-wddx|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-xml|textproc/php72-xml|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-xmlreader|textproc/php72-xmlreader|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-xmlwriter|textproc/php72-xmlwriter|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+textproc/php70-xsl|textproc/php72-xsl|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+www/mod_php70|www/mod_php72|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+www/php70-opcache|www/php72-opcache|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+www/php70-session|www/php72-session|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+www/php70-tidy|www/php72-tidy|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+math/php70-bcmath|math/php72-bcmath|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+math/php70-gmp|math/php72-gmp|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+lang/php70|lang/php72|2018-12-05|Has expired: Security Support ends on 3 Dec 2018
+math/vtk5-data||2018-12-05|Removed
+devel/py-interface|devel/py-py_interface|2018-12-05|Rename to match upstream naming
