@@ -848,10 +848,6 @@
     SUBDIR += php56-hash
     SUBDIR += php56-mcrypt
     SUBDIR += php56-openssl
-    SUBDIR += php70-filter
-    SUBDIR += php70-hash
-    SUBDIR += php70-mcrypt
-    SUBDIR += php70-openssl
     SUBDIR += php71-filter
     SUBDIR += php71-hash
     SUBDIR += php71-mcrypt
@@ -1229,6 +1225,7 @@
     SUBDIR += scanssh
     SUBDIR += scrypt
     SUBDIR += seahorse
+    SUBDIR += seal
     SUBDIR += seccure
     SUBDIR += secpanel
     SUBDIR += sectok

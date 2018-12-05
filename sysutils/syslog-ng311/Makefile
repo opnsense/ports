@@ -20,7 +20,6 @@ EXPIRATION_DATE=	2019-12-31
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libuuid.so:misc/e2fsprogs-libuuid
 
-BROKEN_powerpc64=	fails to link: Internal error: Segmentation fault (program ld)
 BROKEN_sparc64=		fails to link: Internal error: Segmentation fault (program ld)
 
 CONFLICTS?=	syslog-ng-[0-9]* syslog-ng[0-9]-[0-9]* \
@@ -53,7 +52,6 @@ USES=		autoreconf:build gmake libtool pathfix pkgconfig ssl \
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	syslog-ng
 SHEBANG_FILES=	lib/merge-grammar.py
-SHEBANG_LANG=	python
 GNU_CONFIGURE=	yes
 USE_GNOME=	glib20
 SUB_FILES=	pkg-message
