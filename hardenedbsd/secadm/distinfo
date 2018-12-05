@@ -1,3 +1,3 @@
-TIMESTAMP = 1506970924
-SHA256 (HardenedBSD-secadm-v0.5.1_GH0.tar.gz) = e9d03b1215b7cfa86f98fe848c91421b53eaf5f84f0b390af81ec2eb8f64cc88
-SIZE (HardenedBSD-secadm-v0.5.1_GH0.tar.gz) = 28097
+TIMESTAMP = 1543858155
+SHA256 (HardenedBSD-secadm-v0.5.1-d4df708_GH0.tar.gz) = 93e0b4065b0feb8e19b137a3fbc9cff2f760201996b32371035965f87fc0873e
+SIZE (HardenedBSD-secadm-v0.5.1-d4df708_GH0.tar.gz) = 28111

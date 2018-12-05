@@ -2198,6 +2198,7 @@
     SUBDIR += p5-Clone-More
     SUBDIR += p5-Clone-PP
     SUBDIR += p5-Code-Perl
+    SUBDIR += p5-Color-ANSI-Util
     SUBDIR += p5-Commandable
     SUBDIR += p5-Commands-Guarded
     SUBDIR += p5-CommitBit
@@ -2270,6 +2271,7 @@
     SUBDIR += p5-Data-Diver
     SUBDIR += p5-Data-Domain
     SUBDIR += p5-Data-Dump
+    SUBDIR += p5-Data-Dump-Color
     SUBDIR += p5-Data-Dump-Streamer
     SUBDIR += p5-Data-DumpXML
     SUBDIR += p5-Data-Dumper
@@ -6425,7 +6427,6 @@
     SUBDIR += zookeeper
     SUBDIR += zpu-binutils
     SUBDIR += zpu-gcc
-    SUBDIR += ztcl
     SUBDIR += zthread
     SUBDIR += zziplib
 
