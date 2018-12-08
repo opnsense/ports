@@ -16,6 +16,7 @@
     SUBDIR += canu
     SUBDIR += cd-hit
     SUBDIR += cdbfasta
+    SUBDIR += checkm
     SUBDIR += chemeq
     SUBDIR += clustal-omega
     SUBDIR += clustalw
@@ -42,6 +43,7 @@
     SUBDIR += gmap
     SUBDIR += gperiodic
     SUBDIR += grappa
+    SUBDIR += groopm
     SUBDIR += hmmer
     SUBDIR += htslib
     SUBDIR += hyphy
