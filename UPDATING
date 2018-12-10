@@ -5,6 +5,43 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20181209:
+  AFFECTS: users of DRM ports other than graphics/drm-kmod
+  AUTHOR: jmd@FreeBSD.org
+
+  In order to facilitate future porting efforts and help in supporting multiple
+  FreeBSD versions, the DRM ports other than drm-kmod (graphics/drm-stable-kmod,
+  graphics/drm-next-kmod, graphics/drm-devel-kmod) have been renamed to
+  include the FreeBSD version they are designed for.
+
+  drm-stable-kmod is drm-fbsd11.2-kmod
+  drm-next-kmod is drm-fbsd12.0-kmod
+  drm-devel-kmod is drm-current-kmod
+
+20181209
+  AFFECTS: users of devel/geany and devel/geany-plugins
+  AUTHOR: madpilot@FreeBSD.org
+
+  Geany and its plugins port have been moved to gtk3 and a new gtk2
+  flavor has been added. The gtk2 flavor has a -gtk2 suffix added to the
+  package name.
+
+  If you want to stay with the gtk2 version you need to use "pkg install"
+  to install the new gtk2 flavor, pkg will automatically deinstall the
+  gtk3 flavors.
+ 
+  If using port, to maintain the gtk2 version, you will need to deinstall
+  geany and its plugins and reinstall specifying the gtk2 flavor.
+
+  Note that the following plugins are not available if using the new
+  gtk3 flavor:
+
+  * geany-plugin-debugger
+  * geany-plugin-devhelp
+  * geany-plugin-geanypy
+  * geany-plugin-multiterm
+  * geany-plugin-scope
+
 20181208:
   AFFECTS: users of misc/openhab2
   AUTHOR: netchild@FreeBSD.org
