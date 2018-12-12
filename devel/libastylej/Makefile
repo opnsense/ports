@@ -3,6 +3,7 @@
 
 PORTNAME=	libastylej
 PORTVERSION=	3.0.1
+PORTREVISION=	1
 CATEGORIES=	devel java textproc
 MASTER_SITES=	SF/astyle/astyle/astyle%20${PORTVERSION}
 PKGNAMESUFFIX?=	# for slave port
@@ -20,7 +21,7 @@ USE_JAVA=	yes
 USE_LDCONFIG=	yes
 MAKE_ARGS+=	JAVA_HOME=${JAVA_HOME}
 
-WRKSRC=		${WRKDIR}/astyle/build/${COMPILER_TYPE}
+WRKSRC=		${WRKDIR}/astyle/build/${CHOSEN_COMPILER_TYPE}
 
 PLIST_FILES=	lib/jni/libastylej${PKGNAMESUFFIX}.so lib/jni/libastylej${PKGNAMESUFFIX}.so.${PORTVERSION}
 

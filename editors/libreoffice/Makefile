@@ -2,7 +2,7 @@
 
 .include "${.CURDIR}/Makefile.common"
 
-PORTREVISION=	1
+PORTREVISION=	3
 MASTER_SITES=	https://download.documentfoundation.org/libreoffice/src/${PORTVERSION}/ \
 		https://dev-www.libreoffice.org/src/:src \
 		https://dev-www.libreoffice.org/extern/:ext
@@ -286,11 +286,8 @@ EXPIRATION_DATE=	2018-12-31
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} == "clang"
-CXXFLAGS_WARN=	-Woverloaded-virtual -Wno-unused-parameter
-.if ${COMPILER_VERSION} >= 36
-CXXFLAGS_WARN+=	-Wno-unused-local-typedefs
-.endif
+.if ${CHOSEN_COMPILER_TYPE} == clang
+CXXFLAGS_WARN=	-Woverloaded-virtual -Wno-unused-parameter -Wno-unused-local-typedefs
 .else
 CXXFLAGS_WARN=	-Wshadow -Woverloaded-virtual
 .endif

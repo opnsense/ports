@@ -65,6 +65,7 @@
     SUBDIR += bosh-bootloader
     SUBDIR += bosh-cli
     SUBDIR += bounce
+    SUBDIR += bredbandskollen
     SUBDIR += bsdec2-image-upload
     SUBDIR += bsdproxy
     SUBDIR += bsdrcmds
@@ -173,7 +174,6 @@
     SUBDIR += fspclient
     SUBDIR += fspd
     SUBDIR += fsplib
-    SUBDIR += g2ipmsg
     SUBDIR += gdrive
     SUBDIR += geoclue
     SUBDIR += geocode-glib
@@ -211,7 +211,6 @@
     SUBDIR += gotthard
     SUBDIR += gq
     SUBDIR += graphpath
-    SUBDIR += grdesktop
     SUBDIR += grilo
     SUBDIR += grilo-plugins
     SUBDIR += grive2

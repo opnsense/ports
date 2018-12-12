@@ -3,6 +3,7 @@
 
 PORTNAME=	stockfish
 DISTVERSION=	9
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-src
 CATEGORIES=	games
 MASTER_SITES=	http://stockfish.s3.amazonaws.com/
@@ -24,7 +25,7 @@ USES=		compiler:c++11-lang gmake zip
 NO_WRKSUBDIR=	yes
 WRKSRC_SUBDIR=	src
 MYARCH=		${ARCH}
-MYCC=		${COMPILER_TYPE}
+MYCC=		${CHOSEN_COMPILER_TYPE}
 TGTBLD=		build
 
 PLIST_FILES=	bin/stockfish

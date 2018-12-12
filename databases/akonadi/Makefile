@@ -2,6 +2,7 @@
 
 PORTNAME=	akonadi
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	2
 CATEGORIES=	databases kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org

@@ -3,7 +3,7 @@
 
 PORTNAME=	mumble
 PORTVERSION=	1.2.19
-PORTREVISION=	12
+PORTREVISION=	14
 CATEGORIES=	audio
 
 MAINTAINER=	feld@FreeBSD.org
@@ -62,7 +62,7 @@ PORTAUDIO_LIB_DEPENDS=	libportaudio.so:audio/portaudio
 .include <bsd.port.pre.mk>
 
 # PCH is broken on GCC
-.if ${COMPILER_TYPE} == gcc
+.if ${CHOSEN_COMPILER_TYPE} == gcc
 CONFIG+=	no-pch
 .endif
 
