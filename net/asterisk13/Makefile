@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	asterisk
-PORTVERSION=	13.23.1
-PORTREVISION=	1
+PORTVERSION=	13.24.0
 CATEGORIES=	net
 MASTER_SITES=	https://downloads.asterisk.org/pub/telephony/%SUBDIR%/:DEFAULT,g729
 MASTER_SITE_SUBDIR=	asterisk/ \
@@ -26,7 +25,7 @@ EXTRACT_ONLY:=	${DISTNAME}${EXTRACT_SUFX}
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		bison cpe gmake iconv libedit localbase \
+USES=		bison cpe gmake gnome iconv libedit localbase \
 		shebangfix sqlite ssl ncurses
 USE_CSTD=	gnu89
 USE_GNOME=	libxml2
