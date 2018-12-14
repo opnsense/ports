@@ -1915,7 +1915,9 @@ MAKE_ENV+=	AR=${AR} RANLIB=${RANLIB}
 CMAKE_ARGS+=	-DCMAKE_AR:STRING=${AR} -DCMAKE_RANLIB:STRING=${RANLIB}
 .endif
 
-.if defined(LLVM_OBJDUMP_UNSAFE) && ${LLVM_OBJDUMP_IS_OBJDUMP} == "yes"
+_TEST_OBJDUMP=/usr.bin/gnu-objdump
+.if defined(LLVM_OBJDUMP_UNSAFE) && ${LLVM_OBJDUMP_IS_OBJDUMP} == "yes" && \
+		${_TEST_OBJDUMP:tA} == "/usr/bin/gnu-objdump"
 OBJDUMP=	gnu-objdump
 BINARY_ALIAS+=	objdump=gnu-objdump
 CONFIGURE_ENV+=	OBJDUMP=${OBJDUMP}
