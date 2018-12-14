@@ -1,4 +1,4 @@
---- usr.sbin/syslogd/syslogd.c.orig	2018-12-14 05:50:39 UTC
+--- usr.sbin/syslogd/syslogd.c.orig	2018-12-14 06:14:22 UTC
 +++ usr.sbin/syslogd/syslogd.c
 @@ -91,6 +91,7 @@ __FBSDID("$FreeBSD$");
  #include <sys/un.h>
@@ -8,16 +8,15 @@
  
  #include <netinet/in.h>
  #include <netdb.h>
-@@ -113,6 +114,8 @@ __FBSDID("$FreeBSD$");
+@@ -112,6 +113,7 @@ __FBSDID("$FreeBSD$");
+ #include <unistd.h>
  #include <utmpx.h>
  
- #include "pathnames.h"
 +#include "clog.h"
-+
+ #include "pathnames.h"
  #include "ttymsg.h"
  
- #define SYSLOG_NAMES
-@@ -197,6 +200,11 @@ struct filed {
+@@ -197,6 +199,11 @@ struct filed {
  			char	f_pname[MAXPATHLEN];
  			pid_t	f_pid;
  		} f_pipe;
@@ -29,7 +28,7 @@
  	} f_un;
  	char	f_prevline[MAXSVLINE];		/* last message logged */
  	char	f_lasttime[MAXDATELEN];		/* time of last occurrence */
-@@ -275,10 +283,12 @@ int	repeatinterval[] = { 30, 120, 600 };
+@@ -275,10 +282,12 @@ int	repeatinterval[] = { 30, 120, 600 };
  #define F_USERS		5		/* list of users */
  #define F_WALL		6		/* everyone logged on */
  #define F_PIPE		7		/* pipe to program */
@@ -44,7 +43,7 @@
  };
  
  static struct filed *Files;	/* Log files that we write to */
-@@ -344,6 +354,8 @@ static int	skip_message(const char *, co
+@@ -344,6 +353,8 @@ static int	skip_message(const char *, co
  static void	printline(const char *, char *, int);
  static void	printsys(char *);
  static int	p_open(const char *, pid_t *);
@@ -53,7 +52,7 @@
  static void	readklog(void);
  static void	reapchild(int);
  static const char *ttymsg_check(struct iovec *, int, char *, int);
-@@ -378,6 +390,11 @@ close_filed(struct filed *f)
+@@ -378,6 +389,11 @@ close_filed(struct filed *f)
  	case F_PIPE:
  		f->f_un.f_pipe.f_pid = 0;
  		break;
@@ -65,7 +64,7 @@
  	}
  	(void)close(f->f_file);
  	f->f_file = -1;
-@@ -1355,6 +1372,20 @@ fprintlog(struct filed *f, int flags, co
+@@ -1355,6 +1371,20 @@ fprintlog(struct filed *f, int flags, co
  		}
  		break;
  
@@ -86,7 +85,7 @@
  	case F_PIPE:
  		dprintf(" %s\n", f->f_un.f_pipe.f_pname);
  		v->iov_base = lf;
-@@ -1832,6 +1863,7 @@ init(int signo)
+@@ -1832,6 +1862,7 @@ init(int signo)
  		case F_FORW:
  		case F_CONSOLE:
  		case F_TTY:
@@ -94,7 +93,7 @@
  			close_filed(f);
  			break;
  		case F_PIPE:
-@@ -1904,6 +1936,10 @@ init(int signo)
+@@ -1904,6 +1935,10 @@ init(int signo)
  				}
  				break;
  
@@ -105,28 +104,22 @@
  			case F_PIPE:
  				printf("%s", f->f_un.f_pipe.f_pname);
  				break;
-@@ -1954,6 +1990,7 @@ cfline(const char *line, struct filed *f
- 	const char *p, *q;
- 	char *bp;
- 	char buf[MAXLINE], ebuf[100];
-+	struct stat sb;
- 
- 	dprintf("cfline(\"%s\", f, \"%s\", \"%s\")\n", line, prog, host);
- 
-@@ -2174,6 +2211,40 @@ cfline(const char *line, struct filed *f
+@@ -2174,6 +2209,42 @@ cfline(const char *line, struct filed *f
  		}
  		break;
  
-+	case '%':
-+		if ((f->f_file = open(p+1, O_RDWR, 0 )) < 0) {
++	case '%': {
++		struct stat sb;
++
++		if ((f->f_file = open(p + 1, O_RDWR, 0)) < 0) {
 +			f->f_type = F_UNUSED;
-+			logerror(p+1);
++			logerror(p + 1);
 +			break;
 +		}
-+		if (fstat(f->f_file, &sb)<0) {
++		if (fstat(f->f_file, &sb) < 0) {
 +			(void)close(f->f_file);
 +			f->f_type = F_UNUSED;
-+			logerror(p+1);
++			logerror(p + 1);
 +			break;
 +		}
 +		f->f_un.f_ring.f_footer = mmap(NULL,sizeof(struct clog_footer),
@@ -135,7 +128,7 @@
 +		if (f->f_un.f_ring.f_footer == NULL) {
 +			(void)close(f->f_file);
 +			f->f_type = F_UNUSED;
-+			logerror(p+1);
++			logerror(p + 1);
 +			break;
 +		}
 +		if (memcmp(&(f->f_un.f_ring.f_footer->cf_magic), MAGIC_CONST, 4) != 0) {
@@ -143,14 +136,14 @@
 +			(void)close(f->f_file);
 +			f->f_type = F_UNUSED;
 +			errno = ENODEV;
-+			logerror(p+1);
++			logerror(p + 1);
 +			break;
 +		}
 +		f->f_un.f_ring.f_size = sb.st_size;
 +		(void)strcpy(f->f_un.f_ring.f_rname, p + 1);
 +		f->f_type = F_RING;
 +		break;
-+
++	}
  	case '|':
  		f->f_un.f_pipe.f_pid = 0;
  		(void)strlcpy(f->f_un.f_pipe.f_pname, p + 1,

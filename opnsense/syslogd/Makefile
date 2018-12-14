@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	syslogd
-PORTVERSION=	11.2.b
+PORTVERSION=	11.2
 CATEGORIES=	sysutils
 DISTFILES=
 
