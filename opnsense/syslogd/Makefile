@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	syslogd
-PORTVERSION=	11.1
+PORTVERSION=	11.2.b
 CATEGORIES=	sysutils
 DISTFILES=
 
@@ -24,6 +24,9 @@ CLOG_RUN_DEPENDS=	clog:opnsense/clog
 CLOG_USES=		localbase
 
 IPV6_CFLAGS=		-DINET6
+
+MAKE_ENV=		SRCTOP=${.CURDIR}/files/src \
+			MK_INET6_SUPPORT=no
 
 do-extract:
 	${CP} -r ${FILESDIR}/src ${WRKSRC}

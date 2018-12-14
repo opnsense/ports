@@ -1,15 +1,14 @@
-diff -urN syslogd.c syslogd.c
---- usr.sbin/syslogd/syslogd.c	2011-06-01 12:44:59.002094254 +1200
-+++ usr.sbin/syslogd/syslogd.c	2011-06-01 12:45:29.840070134 +1200
-@@ -88,6 +88,7 @@
- #include <sys/resource.h>
- #include <sys/syslimits.h>
+--- usr.sbin/syslogd/syslogd.c.orig	2018-12-14 05:50:39 UTC
++++ usr.sbin/syslogd/syslogd.c
+@@ -91,6 +91,7 @@ __FBSDID("$FreeBSD$");
+ #include <sys/un.h>
+ #include <sys/wait.h>
  #include <sys/types.h>
 +#include <sys/mman.h>
  
  #include <netinet/in.h>
  #include <netdb.h>
-@@ -109,6 +110,8 @@
+@@ -113,6 +114,8 @@ __FBSDID("$FreeBSD$");
  #include <utmpx.h>
  
  #include "pathnames.h"
@@ -18,7 +17,7 @@ diff -urN syslogd.c syslogd.c
  #include "ttymsg.h"
  
  #define SYSLOG_NAMES
-@@ -182,6 +185,11 @@
+@@ -197,6 +200,11 @@ struct filed {
  			char	f_pname[MAXPATHLEN];
  			pid_t	f_pid;
  		} f_pipe;
@@ -29,8 +28,8 @@ diff -urN syslogd.c syslogd.c
 +		} f_ring;
  	} f_un;
  	char	f_prevline[MAXSVLINE];		/* last message logged */
- 	char	f_lasttime[16];			/* time of last occurrence */
-@@ -260,10 +268,12 @@
+ 	char	f_lasttime[MAXDATELEN];		/* time of last occurrence */
+@@ -275,10 +283,12 @@ int	repeatinterval[] = { 30, 120, 600 };
  #define F_USERS		5		/* list of users */
  #define F_WALL		6		/* everyone logged on */
  #define F_PIPE		7		/* pipe to program */
@@ -45,7 +44,7 @@ diff -urN syslogd.c syslogd.c
  };
  
  static struct filed *Files;	/* Log files that we write to */
-@@ -327,6 +337,8 @@
+@@ -344,6 +354,8 @@ static int	skip_message(const char *, co
  static void	printline(const char *, char *, int);
  static void	printsys(char *);
  static int	p_open(const char *, pid_t *);
@@ -53,8 +52,20 @@ diff -urN syslogd.c syslogd.c
 +static ssize_t	rbwritev(struct filed *, struct iovec *, int);
  static void	readklog(void);
  static void	reapchild(int);
- static void	usage(void);
-@@ -1279,6 +1291,20 @@
+ static const char *ttymsg_check(struct iovec *, int, char *, int);
+@@ -378,6 +390,11 @@ close_filed(struct filed *f)
+ 	case F_PIPE:
+ 		f->f_un.f_pipe.f_pid = 0;
+ 		break;
++	case F_RING:
++		(void)munmap(f->f_un.f_ring.f_footer,
++		    sizeof(struct clog_footer));
++		(void)close(f->f_file);
++		break;
+ 	}
+ 	(void)close(f->f_file);
+ 	f->f_file = -1;
+@@ -1355,6 +1372,20 @@ fprintlog(struct filed *f, int flags, co
  		}
  		break;
  
@@ -75,18 +86,15 @@ diff -urN syslogd.c syslogd.c
  	case F_PIPE:
  		dprintf(" %s\n", f->f_un.f_pipe.f_pname);
  		v->iov_base = lf;
-@@ -1581,6 +1607,10 @@
- 			}
- 			f->f_un.f_pipe.f_pid = 0;
- 			break;
+@@ -1832,6 +1863,7 @@ init(int signo)
+ 		case F_FORW:
+ 		case F_CONSOLE:
+ 		case F_TTY:
 +		case F_RING:
-+			(void)munmap(f->f_un.f_ring.f_footer,sizeof(struct clog_footer));
-+			(void)close(f->f_file);
-+			break;
- 		}
- 		next = f->f_next;
- 		if (f->f_program) free(f->f_program);
-@@ -1722,6 +1752,10 @@
+ 			close_filed(f);
+ 			break;
+ 		case F_PIPE:
+@@ -1904,6 +1936,10 @@ init(int signo)
  				}
  				break;
  
@@ -97,7 +105,7 @@ diff -urN syslogd.c syslogd.c
  			case F_PIPE:
  				printf("%s", f->f_un.f_pipe.f_pname);
  				break;
-@@ -1772,6 +1806,7 @@
+@@ -1954,6 +1990,7 @@ cfline(const char *line, struct filed *f
  	const char *p, *q;
  	char *bp;
  	char buf[MAXLINE], ebuf[100];
@@ -105,7 +113,7 @@ diff -urN syslogd.c syslogd.c
  
  	dprintf("cfline(\"%s\", f, \"%s\", \"%s\")\n", line, prog, host);
  
-@@ -1979,6 +2014,40 @@
+@@ -2174,6 +2211,40 @@ cfline(const char *line, struct filed *f
  		}
  		break;
  
@@ -146,8 +154,8 @@ diff -urN syslogd.c syslogd.c
  	case '|':
  		f->f_un.f_pipe.f_pid = 0;
  		(void)strlcpy(f->f_un.f_pipe.f_pname, p + 1,
-@@ -2710,6 +2779,53 @@
- 	return (socks);
+@@ -2779,6 +2850,53 @@ deadq_remove(pid_t pid)
+ 	return (0);
  }
  
 +static ssize_t
@@ -198,5 +206,5 @@ diff -urN syslogd.c syslogd.c
 +}
 +
  static void
- double_rbuf(int fd)
+ log_deadchild(pid_t pid, int status, const char *name)
  {
