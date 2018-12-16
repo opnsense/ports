@@ -284,6 +284,9 @@ post-patch-MODSECURITY-on:
 		's!%%PREFIX%%!${LOCALBASE}!g' \
 		${WRKSRC_MODSECURITY}/configure
 
+post-patch-NJS-on: # OPNsense fixup
+	@${REINPLACE_CMD} 's!-Werror!!g' ${WRKSRC_njs}/nxt/auto/clang
+
 post-patch-PASSENGER-on:
 	@${REINPLACE_CMD} \
 		'177,179s!true!false!' \
