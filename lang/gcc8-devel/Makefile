@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gcc
-PORTVERSION=	8.2.1.s20181207
-PORTREVISION=	1
+PORTVERSION=	8.2.1.s20181214
 CATEGORIES=	lang
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -35,7 +34,7 @@ CONFLICTS=	gcc8-8.*
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}
 
-USE_HARDENING=	retpoline:off
+USE_HARDENING=	pie:off relro:off retpoline:off
 
 # DIST_VERSION relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.  A PORTVERSION of

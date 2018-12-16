@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gscan2pdf
-PORTVERSION=	2.1.7
-PORTREVISION=	1
+PORTVERSION=	2.2.1
 CATEGORIES=	graphics
 MASTER_SITES=	SF
 
@@ -60,11 +59,9 @@ USE_GNOME=	gtk30 librsvg2
 USE_PERL5=	configure
 
 OPTIONS_MULTI=		OCR
-OPTIONS_MULTI_OCR=	CUNEIFORM GOCR TESSERACT
+OPTIONS_MULTI_OCR=	GOCR TESSERACT
 OPTIONS_DEFAULT=	GOCR
 
-CUNEIFORM_DESC=		Multi-language OCR system
-CUNEIFORM_RUN_DEPENDS=	cuneiform:graphics/cuneiform
 GOCR_DESC=		OCR program developed under GPL
 GOCR_RUN_DEPENDS=	gocr:graphics/gocr
 OCR_DESC=		Optical Character Recognition

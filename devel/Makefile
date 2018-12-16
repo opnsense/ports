@@ -185,6 +185,9 @@
     SUBDIR += avro-c
     SUBDIR += avro-cpp
     SUBDIR += awless
+    SUBDIR += aws-c-commons
+    SUBDIR += aws-c-event-stream
+    SUBDIR += aws-checksums
     SUBDIR += aws-sdk-cpp
     SUBDIR += aws-sdk-php
     SUBDIR += awscli
@@ -5784,6 +5787,7 @@
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
+    SUBDIR += rubygem-json-schema
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers

@@ -11,6 +11,7 @@
     SUBDIR += alltray
     SUBDIR += alttab
     SUBDIR += altyo
+    SUBDIR += aminal
     SUBDIR += antimicro
     SUBDIR += appres
     SUBDIR += apwal
@@ -103,6 +104,7 @@
     SUBDIR += hs-X11-xft
     SUBDIR += hs-xmobar
     SUBDIR += hsetroot
+    SUBDIR += i3blocks
     SUBDIR += i3lock
     SUBDIR += i3status
     SUBDIR += iceauth
