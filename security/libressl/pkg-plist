@@ -1333,7 +1333,6 @@ man/man1/openssl.1.gz
 %%MAN3%%man/man3/OCSP_check_nonce.3.gz
 %%MAN3%%man/man3/OCSP_check_validity.3.gz
 %%MAN3%%man/man3/OCSP_copy_nonce.3.gz
-%%MAN3%%man/man3/OCSP_crlID_new.3.gz
 %%MAN3%%man/man3/OCSP_id_cmp.3.gz
 %%MAN3%%man/man3/OCSP_id_get0_info.3.gz
 %%MAN3%%man/man3/OCSP_id_issuer_cmp.3.gz
@@ -2343,7 +2342,6 @@ man/man1/openssl.1.gz
 %%MAN3%%man/man3/bn_mul_part_recursive.3.gz
 %%MAN3%%man/man3/bn_mul_recursive.3.gz
 %%MAN3%%man/man3/bn_mul_words.3.gz
-%%MAN3%%man/man3/bn_print.3.gz
 %%MAN3%%man/man3/bn_set_high.3.gz
 %%MAN3%%man/man3/bn_set_low.3.gz
 %%MAN3%%man/man3/bn_set_max.3.gz
