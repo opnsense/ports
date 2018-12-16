@@ -46,6 +46,26 @@ _SSL_RUN_DEP=	1
 LIBRESSL_IS_OPENSSL=   yes
 .endif
 
+.if defined(BROKEN_SSL) && ${BROKEN_SSL:M${SSL_DEFAULT}}
+.  if defined(BROKEN_SSL_REASON_${SSL_DEFAULT})
+BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${BROKEN_SSL_REASON_${SSL_DEFAULT}}
+.  elif defined(BROKEN_SSL_REASON)
+BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${BROKEN_SSL_REASON}
+.  else
+BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}
+.  endif
+.endif
+
+.if defined(IGNORE_SSL) && ${IGNORE_SSL:M${SSL_DEFAULT}}
+.  if defined(IGNORE_SSL_REASON_${SSL_DEFAULT})
+IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${IGNORE_SSL_REASON_${SSL_DEFAULT}}
+.  elif defined(IGNORE_SSL_REASON)
+IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${IGNORE_SSL_REASON}
+.  else
+IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}
+.  endif
+.endif
+
 .if ${SSL_DEFAULT} == base
 OPENSSLBASE=		/usr
 OPENSSLDIR?=		/etc/ssl
@@ -82,33 +102,13 @@ OPENSSL_PORT=		security/${SSL_DEFAULT}
 .error You are using an unsupported SSL provider ${SSL_DEFAULT}
 .  endif
 
-.  if defined(BROKEN_SSL) && ${BROKEN_SSL:M${SSL_DEFAULT}}
-.    if defined(BROKEN_SSL_REASON_${SSL_DEFAULT})
-BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${BROKEN_SSL_REASON_${SSL_DEFAULT}}
-.    elif defined(BROKEN_SSL_REASON)
-BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${BROKEN_SSL_REASON}
-.    else
-BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}
-.    endif
-.  endif
-
-.  if defined(IGNORE_SSL) && ${IGNORE_SSL:M${SSL_DEFAULT}}
-.    if defined(IGNORE_SSL_REASON_${SSL_DEFAULT})
-IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${IGNORE_SSL_REASON_${SSL_DEFAULT}}
-.    elif defined(IGNORE_SSL_REASON)
-IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${IGNORE_SSL_REASON}
-.    else
-IGNORE=	not compatible DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}
-.    endif
-.  endif
-
 OPENSSLDIR?=		${OPENSSLBASE}/openssl
-.if defined(_SSL_BUILD_DEP)
+.  if defined(_SSL_BUILD_DEP)
 BUILD_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so.${OPENSSL_SHLIBVER}:${OPENSSL_PORT}
-.endif
-.if defined(_SSL_RUN_DEP)
+.  endif
+.  if defined(_SSL_RUN_DEP)
 RUN_DEPENDS+=		${LOCALBASE}/lib/libcrypto.so.${OPENSSL_SHLIBVER}:${OPENSSL_PORT}
-.endif
+.  endif
 OPENSSLRPATH=		${LOCALBASE}/lib
 
 .endif
