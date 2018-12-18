@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	suricata
-DISTVERSION=	4.0.6
+DISTVERSION=	4.1.1
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
@@ -12,13 +12,15 @@ COMMENT=	High Performance Network IDS, IPS and Security Monitoring engine
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-CONFLICTS_INSTALL=suricata-devel
-
 LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libnet.so:net/libnet \
+		liblz4.so:archivers/liblz4 \
 		libyaml.so:textproc/libyaml
 
-USES=		autoreconf cpe gmake libtool pathfix pkgconfig
+USES=		autoreconf cpe gmake iconv:translit libtool pathfix pkgconfig
+
+CONFLICTS_INSTALL=libhtp
+
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	${PORTNAME}
 
@@ -31,10 +33,10 @@ CPE_VENDOR=	openinfosecfoundation
 INSTALL_TARGET=		install-strip
 TEST_TARGET=		check
 
-OPTIONS_DEFINE=		GEOIP HTP_PORT IPFW JSON NETMAP NSS PORTS_PCAP PRELUDE \
-			REDIS SC TESTS
+OPTIONS_DEFINE=		GEOIP IPFW JSON NETMAP NSS PORTS_PCAP PRELUDE \
+			PYTHON REDIS RUST TESTS
 OPTIONS_DEFINE_amd64=	HYPERSCAN
-OPTIONS_DEFAULT=	IPFW JSON NETMAP PRELUDE
+OPTIONS_DEFAULT=	IPFW JSON NETMAP PYTHON RUST
 OPTIONS_SUB=		yes
 
 OPTIONS_RADIO=		SCRIPTS
@@ -44,28 +46,21 @@ SCRIPTS_DESC=		Scripting
 
 GEOIP_DESC=		GeoIP support
 HYPERSCAN_DESC=		Hyperscan support
-HTP_PORT_DESC=		Use libhtp from ports
 IPFW_DESC=		IPFW and IP Divert support for inline IDP
 JSON_DESC=		JSON output support
-LUA_DESC=		LUA scripting support
 LUAJIT_DESC=		LuaJIT scripting support
+LUA_DESC=		LUA scripting support
 NETMAP_DESC=		Netmap support for inline IDP
 NSS_DESC=		File checksums and SSL/TLS fingerprinting
 PORTS_PCAP_DESC=	Use libpcap from ports
 PRELUDE_DESC=		Prelude support for NIDS alerts
+PYTHON_DESC=		Python-based update and control utilities
 REDIS_DESC=		Redis output support
-SC_DESC=		Suricata socket client (suricatasc)
+RUST_DESC=		Rust parser support
 TESTS_DESC=		Unit tests in suricata binary
 
 GEOIP_LIB_DEPENDS=		libGeoIP.so:net/GeoIP
 GEOIP_CONFIGURE_ON=		--enable-geoip
-
-HTP_PORT_BUILD_DEPENDS=		libhtp>=0.5.27:devel/libhtp
-HTP_PORT_LIB_DEPENDS=		libhtp.so:devel/libhtp
-HTP_PORT_CONFIGURE_ON=		--enable-non-bundled-htp
-HTP_PORT_CONFIGURE_OFF=		--enable-bundled-htp
-HTP_PORT_CONFLICTS_INSTALL_OFF=	libhtp
-HTP_PORT_USES_OFF=		iconv:translit
 
 HYPERSCAN_LIB_DEPENDS=		libhs.so:devel/hyperscan
 HYPERSCAN_CONFIGURE_ON=		--with-libhs-includes=${LOCALBASE}/include \
@@ -109,19 +104,24 @@ PRELUDE_LIB_DEPENDS=		libprelude.so:security/libprelude \
 PRELUDE_CONFIGURE_ENABLE=	prelude
 PRELUDE_CONFIGURE_ON=		--with-libprelude-prefix=${LOCALBASE}
 
+PYTHON_USES=			python:2.7
+PYTHON_CONFIGURE_ENABLE=	python
+PYTHON_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
+
 REDIS_LIB_DEPENDS=		libhiredis.so:databases/hiredis
 REDIS_CONFIGURE_ON=		--enable-hiredis \
 				--with-libhiredis-includes=${LOCALBASE}/include \
 				--with-libhiredis-libraries=${LOCALBASE}/lib
 
-SC_USES=			python:2.7
-SC_CONFIGURE_ENABLE=		python
+RUST_BUILD_DEPENDS=		rustc:lang/rust
+RUST_CONFIGURE_ENABLE=		rust
 
 TESTS_CONFIGURE_ENABLE=		unittests
 
 SUB_FILES=	pkg-message
 
 CONFIGURE_ARGS+=--enable-gccprotect \
+		--enable-bundled-htp \
 		--with-libpcre-includes=${LOCALBASE}/include \
 		--with-libpcre-libraries=${LOCALBASE}/lib \
 		--with-libyaml-includes=${LOCALBASE}/include \
@@ -134,10 +134,6 @@ CONFIGURE_ARGS+=--enable-gccprotect \
 
 CONFIG_DIR?=	${ETCDIR}
 CONFIG_FILES=	suricata.yaml classification.config reference.config threshold.config
-RULES_DIR=	${CONFIG_DIR}/rules
-RULES_FILES=	app-layer-events.rules decoder-events.rules dns-events.rules files.rules \
-		http-events.rules modbus-events.rules smtp-events.rules stream-events.rules \
-		tls-events.rules
 LOGS_DIR?=	/var/log/${PORTNAME}
 
 pre-patch:
@@ -145,16 +141,12 @@ pre-patch:
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${CONFIG_DIR}
-	@${MKDIR} ${STAGEDIR}${RULES_DIR}
 	@${MKDIR} ${STAGEDIR}${LOGS_DIR}
 .for f in ${CONFIG_FILES}
 	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${CONFIG_DIR}/${f}.sample
 .endfor
-.for f in ${RULES_FILES}
-	${INSTALL_DATA} ${WRKSRC}/rules/${f} ${STAGEDIR}${RULES_DIR}/${f}
-.endfor
 
-post-install-SC-on:
+post-install-PYTHON-on:
 	(cd ${STAGEDIR}${PREFIX} \
 	&& ${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 	-d ${PYTHONPREFIX_SITELIBDIR} -f ${PYTHONPREFIX_SITELIBDIR:S;${PREFIX}/;;})
