@@ -205,6 +205,8 @@
     SUBDIR += psychopy
     SUBDIR += pulseview
     SUBDIR += py-DendroPy
+    SUBDIR += py-GPy
+    SUBDIR += py-GPyOpt
     SUBDIR += py-PyFR
     SUBDIR += py-lifelines
     SUBDIR += py-MDAnalysis
@@ -233,6 +235,7 @@
     SUBDIR += py-obspy
     SUBDIR += py-openpiv
     SUBDIR += py-paida
+    SUBDIR += py-paramz
     SUBDIR += py-phono3py
     SUBDIR += py-phonopy
     SUBDIR += py-pupynere
