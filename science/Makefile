@@ -24,6 +24,7 @@
     SUBDIR += R-cran-udunits2
     SUBDIR += abinit
     SUBDIR += afni
+    SUBDIR += agrum
     SUBDIR += aircraft-datcom
     SUBDIR += antioch
     SUBDIR += atom
@@ -95,6 +96,7 @@
     SUBDIR += gtamsanalyzer
     SUBDIR += gwyddion
     SUBDIR += h5utils
+    SUBDIR += h5z-zfp
     SUBDIR += harminv
     SUBDIR += hdf
     SUBDIR += hdf5
