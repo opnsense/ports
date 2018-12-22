@@ -76,7 +76,6 @@
     SUBDIR += gl2ps
     SUBDIR += gsfonts
     SUBDIR += gspdf
-    SUBDIR += gsview
     SUBDIR += gtklp
     SUBDIR += gutenprint
     SUBDIR += gv
@@ -111,7 +110,6 @@
     SUBDIR += libotf
     SUBDIR += libpagemaker
     SUBDIR += libpaper
-    SUBDIR += libppd
     SUBDIR += libspectre
     SUBDIR += lilypond
     SUBDIR += lilypond-devel
@@ -119,7 +117,6 @@
     SUBDIR += linux-c7-cups-libs
     SUBDIR += linux-c7-harfbuzz
     SUBDIR += lout
-    SUBDIR += lpr-wrapper
     SUBDIR += lprps
     SUBDIR += lyx
     SUBDIR += magicfilter

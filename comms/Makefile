@@ -57,7 +57,6 @@
     SUBDIR += gqrx
     SUBDIR += gr-osmosdr
     SUBDIR += grig
-    SUBDIR += gscmxx
     SUBDIR += gsmlib
     SUBDIR += gstreamer1-plugins-spandsp
     SUBDIR += gtkmmorse
@@ -65,7 +64,6 @@
     SUBDIR += hamfax
     SUBDIR += hamlib
     SUBDIR += hcidump
-    SUBDIR += hf
     SUBDIR += hidapi
     SUBDIR += hylafax
     SUBDIR += ibp
@@ -142,6 +140,7 @@
     SUBDIR += py-lirc
     SUBDIR += py-qt5-serialport
     SUBDIR += py-serial
+    SUBDIR += py-xmodem
     SUBDIR += pyla
     SUBDIR += qico
     SUBDIR += qpage
