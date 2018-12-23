@@ -10919,3 +10919,15 @@ multimedia/xmms||2018-12-21|Has expired: Uses obsolete glib12
 devel/glib12||2018-12-21|Has expired: Obsolete
 graphics/gdk-pixbuf||2018-12-21|Has expired: Uses obsolete glib12
 x11-toolkits/gtk12||2018-12-21|Has expired: Uses obsolete glib12
+databases/rubygem-peek-mysql2|databases/rubygem-peek-mysql2-rails50|2018-12-23|Dep change for gitlab-ce, please use databases/rubygem-peek-mysql2-rails50 instead
+databases/rubygem-peek-pg|databases/rubygem-peek-pg-rails50|2018-12-23|Dep change for gitlab-ce, please use databases/rubygem-peek-pg-rails50 instead
+devel/rubygem-font-awesome-rails-rails4|devel/rubygem-font-awesome-rails-rails50|2018-12-23|Dep change for gitlab-ce, please use databases/rubygem-peek-pg-rails50 instead
+www/rubygem-webpack-rails|www/rubygem-webpack-rails-rails50|2018-12-23|Dep change for gitlab-ce, please use www/rubygem-webpack-rails-rails50 instead
+www/rubygem-gon|www/rubygem-gon-rails50|2018-12-23|Dep change for gitlab-ce, please use www/rubygem-gon-rails50 instead
+mail/rubygem-premailer-rails19|mail/rubygem-premailer-rails19-rails50|2018-12-23|Dep change for gitlab-ce, please use www/rubygem-premailer-rails19-rails50 instead
+devel/rubygem-peek-redis|devel/rubygem-peek-redis-rails50|2018-12-23|Dep change for gitlab-ce, please use devel/rubygem-peek-redis-rails50 instead
+devel/rubygem-peek-gc|devel/rubygem-peek-gc-rails50|2018-12-23|Dep change for gitlab-ce, please use devel/rubygem-peek-gc-rails50 instead
+devel/rubygem-peek-rblineprof|devel/rubygem-peek-rblineprof-rails50|2018-12-23|Dep change for gitlab-ce, please use devel/rubygem-peek-rblineprof-rails50 instead
+devel/rubygem-health_check26|devel/rubygem-health_check26-rails50|2018-12-23|Dep change for gitlab-ce, please use devel/rubygem-health_check26-rails50 instead
+devel/rubygem-default_value_for30|devel/rubygem-gitlab-default_value_for|2018-12-23|Dep change for gitlab-ce, please use devel/rubygem-gitlab-default_value_for instead
+devel/rubygem-gettext_i18n_rails_js|devel/rubygem-gettext_i18n_rails_js-rails50|2018-12-23|Dep change for gitlab-ce, please use devel/rubygem-gettext_i18n_rails_js-rails50 instead
