@@ -4354,6 +4354,7 @@
     SUBDIR += py-amalgamate
     SUBDIR += py-aniso8601
     SUBDIR += py-anonfunc
+    SUBDIR += py-antlr4-python2-runtime
     SUBDIR += py-antlr4-python3-runtime
     SUBDIR += py-anyconfig
     SUBDIR += py-anyjson
@@ -4890,6 +4891,7 @@
     SUBDIR += py-podcastparser
     SUBDIR += py-polib
     SUBDIR += py-pooch
+    SUBDIR += py-portalocker
     SUBDIR += py-positional
     SUBDIR += py-posix_ipc
     SUBDIR += py-poyo
@@ -5631,7 +5633,6 @@
     SUBDIR += rubygem-deep_test
     SUBDIR += rubygem-deface
     SUBDIR += rubygem-default_value_for
-    SUBDIR += rubygem-default_value_for30
     SUBDIR += rubygem-delayed_job
     SUBDIR += rubygem-delayer
     SUBDIR += rubygem-delayer-deferred
@@ -5691,8 +5692,8 @@
     SUBDIR += rubygem-fog-json
     SUBDIR += rubygem-fog-json102
     SUBDIR += rubygem-font-awesome-rails
-    SUBDIR += rubygem-font-awesome-rails-rails4
     SUBDIR += rubygem-font-awesome-rails-rails5
+    SUBDIR += rubygem-font-awesome-rails-rails50
     SUBDIR += rubygem-foreigner
     SUBDIR += rubygem-foreman
     SUBDIR += rubygem-formatador
@@ -5713,13 +5714,14 @@
     SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gettext_i18n_rails
-    SUBDIR += rubygem-gettext_i18n_rails_js
+    SUBDIR += rubygem-gettext_i18n_rails_js-rails50
     SUBDIR += rubygem-gh
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
     SUBDIR += rubygem-git
     SUBDIR += rubygem-git-version-bump
     SUBDIR += rubygem-github_api
+    SUBDIR += rubygem-gitlab-default_value_for
     SUBDIR += rubygem-gitlab-pygments.rb
     SUBDIR += rubygem-gitlab-sidekiq-fetcher
     SUBDIR += rubygem-gitlab_git
@@ -5751,7 +5753,7 @@
     SUBDIR += rubygem-hashie-forbidden_attributes
     SUBDIR += rubygem-hashie2
     SUBDIR += rubygem-health_check
-    SUBDIR += rubygem-health_check26
+    SUBDIR += rubygem-health_check26-rails50
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-hike
     SUBDIR += rubygem-hike1
@@ -5858,6 +5860,7 @@
     SUBDIR += rubygem-mustermann
     SUBDIR += rubygem-mustermann-grape
     SUBDIR += rubygem-mutter
+    SUBDIR += rubygem-nakayoshi_fork
     SUBDIR += rubygem-native-package-installer
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-necromancer
@@ -5896,12 +5899,13 @@
     SUBDIR += rubygem-patch_finder
     SUBDIR += rubygem-pathutil
     SUBDIR += rubygem-peek
-    SUBDIR += rubygem-peek-gc
+    SUBDIR += rubygem-peek-rails50
+    SUBDIR += rubygem-peek-gc-rails50
     SUBDIR += rubygem-peek-host
     SUBDIR += rubygem-peek-performance_bar
     SUBDIR += rubygem-peek-rails4
-    SUBDIR += rubygem-peek-rblineprof
-    SUBDIR += rubygem-peek-redis
+    SUBDIR += rubygem-peek-rblineprof-rails50
+    SUBDIR += rubygem-peek-redis-rails50
     SUBDIR += rubygem-pkg-config
     SUBDIR += rubygem-platform
     SUBDIR += rubygem-pleaserun

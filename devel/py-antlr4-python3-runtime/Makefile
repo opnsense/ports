@@ -11,8 +11,9 @@ COMMENT=	ANother Tool for Language Recognition (python3 runtime)
 
 LICENSE=	BSD3CLAUSE
 
-NO_ARCH=	yes
 USES=		python:3.4+
 USE_PYTHON=	distutils autoplist
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>
