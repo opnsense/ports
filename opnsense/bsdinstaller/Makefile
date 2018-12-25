@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	bsdinstaller
-PORTVERSION=	18.7
+PORTVERSION=	19.1.d
 #PORTREVISION=	0 # GH_TAGNAME
 CATEGORIES=	sysutils
 
@@ -13,11 +13,10 @@ LICENSE=	BSD3CLAUSE
 
 RUN_DEPENDS=	cpdup:sysutils/cpdup
 
-USE_HARDENING=	pie:off relro:off
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-#GH_TAGNAME=	a95d672
+GH_TAGNAME=	da08b5c
 
 .include <bsd.port.mk>
