@@ -14,7 +14,7 @@ LICENSE=	BSD2CLAUSE
 
 USE_HARDENING=	pie:off
 
-USES=		cmake:outsource compiler:c11 localbase pathfix pkgconfig tar:xz
+USES=		cmake compiler:c11 localbase pathfix pkgconfig tar:xz
 USE_GL=		egl gl
 USE_LDCONFIG=	yes
 USE_XORG=	x11 xcb

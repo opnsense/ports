@@ -28,7 +28,7 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 
 USE_HARDENING=	safestack
 
-USES+=		cmake:outsource cpe iconv libtool localbase pkgconfig
+USES+=		cmake cpe iconv libtool localbase pkgconfig
 
 .  if ${SLAVEPORT:Mcli}
 USES+=		ssl

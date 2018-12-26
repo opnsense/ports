@@ -2,7 +2,7 @@
 
 PORTNAME=	ignition-math
 DISTVERSION=	6.0.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 MASTER_SITES=	https://bitbucket.org/${BB_ACCOUNT}/${BB_PROJECT}/get/${BB_COMMIT}.tar.gz?dummy=/
 
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	ignition-cmake==2:devel/ignition-cmake
 
-USES=		compiler:c++17-lang cmake:outsource eigen:3
+USES=		compiler:c++17-lang cmake eigen:3
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	BUILD_TESTING

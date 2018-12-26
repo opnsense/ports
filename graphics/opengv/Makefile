@@ -2,7 +2,7 @@
 
 PORTNAME=	opengv
 DISTVERSION=	g20181024
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -11,7 +11,7 @@ COMMENT=	Collection of methods for solving geometric vision problems
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/License.txt
 
-USES=		cmake:outsource compiler:c++11-lib eigen:3
+USES=		cmake compiler:c++11-lib eigen:3
 USE_GITHUB=	yes
 GH_ACCOUNT=	laurentkneip
 GH_TAGNAME=	306a54e

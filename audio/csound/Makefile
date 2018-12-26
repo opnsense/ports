@@ -4,6 +4,7 @@
 PORTNAME=	csound
 DISTVERSION=	6.12.2-83
 DISTVERSIONSUFFIX=	-gdf2edd269
+PORTREVISION=	1
 CATEGORIES=	audio lang
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -20,7 +21,7 @@ LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		alias bison cmake:outsource compiler:c++11-lib eigen:3 localbase ncurses python:2.7
+USES=		alias bison cmake compiler:c++11-lib eigen:3 localbase ncurses python:2.7
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 

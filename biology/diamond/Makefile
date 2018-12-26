@@ -14,10 +14,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64
 
-USES=		cmake:outsource
-
 USE_HARDENING=	pie:off
 
+USES=		cmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	bbuchfink
 

@@ -22,7 +22,7 @@ GL_COMMIT=	65d552c9becc957cae124ab5c26562cf22c052b9
 
 USE_HARDENING=	safestack
 
-USES=		cmake:outsource desktop-file-utils gettext localbase:ldflags pathfix \
+USES=		cmake desktop-file-utils gettext localbase:ldflags pathfix \
 		pkgconfig shared-mime-info ssl
 USE_GNOME=	atk cairo gdkpixbuf2 glib20 gtk30 pango
 USE_XORG=	ice sm x11 xext xkbfile

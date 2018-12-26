@@ -3,7 +3,7 @@
 
 PORTNAME?=	mysql
 PORTVERSION=	5.7.24
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	databases ipv6
 MASTER_SITES=	MYSQL/MySQL-5.7
 PKGNAMESUFFIX?=	57-server
@@ -19,7 +19,7 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USE_HARDENING=	relro:off
 
 SLAVEDIRS=	databases/mysql57-client
-USES=		bison:build cmake:outsource,noninja compiler:c11 compiler:c++11-lib \
+USES=		bison:build cmake:noninja compiler:c11 compiler:c++11-lib \
 		cpe libedit localbase perl5 shebangfix ssl
 
 USE_PERL5=	run

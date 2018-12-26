@@ -21,8 +21,9 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libcurl.so:ftp/curl \
 		libfreetype.so:print/freetype2
 
-USES=		compiler:c++14-lang cmake:outsource desktop-file-utils iconv localbase:ldflags pkgconfig shared-mime-info ssl
 USE_HARDENING=	pie:off
+
+USES=		compiler:c++14-lang cmake desktop-file-utils iconv localbase:ldflags pkgconfig shared-mime-info ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	OpenRCT2
 GH_PROJECT=	OpenRCT2
