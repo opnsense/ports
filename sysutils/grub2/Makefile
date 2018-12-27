@@ -3,7 +3,7 @@
 
 PORTNAME=	grub2
 PORTVERSION=	2.00
-PORTREVISION=	13
+PORTREVISION=	14
 CATEGORIES=	sysutils
 MASTER_SITES=	GNU/grub
 DISTNAME=	grub-${PORTVERSION}
@@ -19,7 +19,9 @@ EXPIRATION_DATE=2019-02-04
 ONLY_FOR_ARCHS=	amd64 i386
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
+		gsed:textproc/gsed \
 		help2man:misc/help2man
+RUN_DEPENDS=	gsed:textproc/gsed
 
 USE_HARDENING=	pie:off relro:off
 
@@ -61,6 +63,9 @@ PLIST_SUB+=	EFIEMU=""
 post-patch:
 	@${LN} -s ${LOCALBASE}/share/fonts/dejavu/DejaVuSans.ttf ${WRKSRC}
 	@${TOUCH} -t 200001010000 ${WRKSRC}/Makefile.util.def
+	@${REINPLACE_CMD} -e '/[^auU]sed/ s,sed,gsed,g' ${WRKSRC}/util/grub.d/*.in \
+		${WRKSRC}/util/*.in ${WRKSRC}/util/i386/efi/grub-dumpdevtree \
+		${WRKSRC}/util/bash-completion.d/grub-completion.bash.in
 
 post-configure:
 	@${LN} -sfh /usr/include/machine /usr/include/sys /usr/include/x86 \
