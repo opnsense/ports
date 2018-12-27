@@ -21,7 +21,7 @@ LIB_DEPENDS=	liblcms.so.1:graphics/lcms \
 
 USE_HARDENING=	safestack
 
-USES=		gettext-tools gmake pkgconfig zip
+USES=		compiler:c++11-lang gettext-tools gmake pkgconfig zip
 
 BIN_TARGETS=	separate separate_import icc_colorspace
 L10N_TARGETS=	cs es fr ja ko pl ru
