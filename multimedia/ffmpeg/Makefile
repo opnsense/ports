@@ -20,6 +20,7 @@ BUILD_DEPENDS=	nasm:devel/nasm \
 USE_HARDENING=	relro:off
 
 HAS_CONFIGURE=	yes
+CONFIGURE_LOG=	ffbuild/config.log
 USES=		compiler:c11 cpe gmake localbase:ldflags perl5 \
 		pkgconfig shebangfix tar:xz
 USE_LDCONFIG=	yes

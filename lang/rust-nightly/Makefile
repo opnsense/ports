@@ -14,7 +14,7 @@ CONFLICTS_INSTALL=	rust
 # Which source to pull:
 #   https://static.rust-lang.org/dist/${NIGHTLY_DATE}/rustc-nightly-src.tar.gz
 #   https://static.rust-lang.org/dist/channel-rust-nightly.toml
-NIGHTLY_DATE=			2018-12-27
+NIGHTLY_DATE=			2018-12-29
 NIGHTLY_SUBDIR=			${NIGHTLY_DATE}/
 
 # See WRKSRC/src/stage0.txt for this date
@@ -30,6 +30,7 @@ ONLY_FOR_ARCHS=			amd64 i386
 post-patch:	nightly-post-patch
 nightly-post-patch:
 # Work around unused_unsafe errors in libcore with stage0
+# https://github.com/rust-lang/rust/pull/57184
 	@${REINPLACE_CMD} '/RUSTC_DENY_WARNINGS/d' ${WRKSRC}/src/bootstrap/builder.rs
 
 .include "${MASTERDIR}/Makefile"

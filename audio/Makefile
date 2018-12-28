@@ -23,7 +23,7 @@
     SUBDIR += alsa-sndio
     SUBDIR += alsa-utils
     SUBDIR += alure
-    SUBDIR += amarok-kde4
+    SUBDIR += amarok
     SUBDIR += amb-plugins
     SUBDIR += ample
     SUBDIR += amsynth
@@ -334,6 +334,7 @@
     SUBDIR += hs-OpenAL
     SUBDIR += hs-libmpd
     SUBDIR += hts_engine-API
+    SUBDIR += hvl2wav
     SUBDIR += hydrogen
     SUBDIR += icecast
     SUBDIR += icecast-kh

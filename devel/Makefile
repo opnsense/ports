@@ -1450,6 +1450,7 @@
     SUBDIR += libffcall
     SUBDIR += libffi
     SUBDIR += libfirm
+    SUBDIR += libfixposix
     SUBDIR += libflatarray
     SUBDIR += libfmt
     SUBDIR += libfortuna
@@ -5236,6 +5237,7 @@
     SUBDIR += py-virtualenvwrapper
     SUBDIR += py-visitor
     SUBDIR += py-voluptuous
+    SUBDIR += py-vsts-cd-manager
     SUBDIR += py-vulture
     SUBDIR += py-warlock
     SUBDIR += py-watchdog
