@@ -2,8 +2,7 @@
 
 PORTNAME=		cantata
 DISTVERSIONPREFIX=	v
-DISTVERSION=		2.3.2
-PORTREVISION=		1
+DISTVERSION=		2.3.3
 CATEGORIES=		audio kde
 
 MAINTAINER=		kde@FreeBSD.org
@@ -12,7 +11,7 @@ COMMENT=		Graphical client for MPD using Qt5
 LICENSE=		GPLv3
 LICENSE_FILE=		${WRKSRC}/LICENSE
 
-USES=			cmake cpe pkgconfig qt:5 shebangfix
+USES=			cmake compiler:c++11-lang cpe pkgconfig qt:5 shebangfix
 USE_GITHUB=		yes
 GH_ACCOUNT=		CDrummond
 
