@@ -96,7 +96,7 @@ DIST_SUBDIR=	PECL
 
 PHPBASE?=	${LOCALBASE}
 
-_ALL_PHP_VERSIONS=	56 71 72 73
+_ALL_PHP_VERSIONS=	71 72 73
 
 # Make the already installed PHP the default one.
 .  if exists(${PHPBASE}/etc/php.conf)
@@ -169,9 +169,6 @@ PHP_EXT_INC=    pcre spl
 .    elif ${PHP_VER} == 71
 PHP_EXT_DIR=   20160303
 PHP_EXT_INC=    pcre spl
-.    elif ${PHP_VER} == 56
-PHP_EXT_DIR=	20131226
-PHP_EXT_INC=	pcre spl
 .    else
 # (rene) default to DEFAULT_VERSIONS
 PHP_EXT_DIR=	20170718
@@ -208,7 +205,7 @@ PECL_PKGNAMEPREFIX=	php${PHP_VER}-pecl-
 .      if ${PHP_VER} == "${VER}"
 _IGNORE_PHP_SET=
 IGNORE=		cannot be installed: doesn't work with lang/php${PHP_VER} port\
-		(doesn't support PHP ${IGNORE_WITH_PHP:C/^([57])/\1./})
+		(doesn't support PHP ${IGNORE_WITH_PHP:C/^(7)/\1./})
 .      endif
 .    endfor
 .  endif
@@ -353,17 +350,12 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		sockets spl sqlite3 sysvmsg sysvsem sysvshm \
 		tidy tokenizer wddx xml xmlreader xmlrpc xmlwriter xsl zip zlib
 # version specific components
-_USE_PHP_VER56=	${_USE_PHP_ALL} mssql mysql sybase_ct
 _USE_PHP_VER71=	${_USE_PHP_ALL}
 _USE_PHP_VER72=	${_USE_PHP_ALL} sodium
 _USE_PHP_VER73=	${_USE_PHP_ALL} sodium
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
-.    if ${PHP_VER} >= 71
 bitset_DEPENDS=	math/pecl-bitset@${PHP_FLAVOR}
-.    else
-bitset_DEPENDS=	math/pecl-bitset2@${PHP_FLAVOR}
-.    endif
 bz2_DEPENDS=	archivers/php${PHP_VER}-bz2
 calendar_DEPENDS=	misc/php${PHP_VER}-calendar
 ctype_DEPENDS=	textproc/php${PHP_VER}-ctype
@@ -384,11 +376,7 @@ iconv_DEPENDS=	converters/php${PHP_VER}-iconv
 igbinary_DEPENDS=	converters/pecl-igbinary@${PHP_FLAVOR}
 imap_DEPENDS=	mail/php${PHP_VER}-imap
 interbase_DEPENDS=	databases/php${PHP_VER}-interbase
-.    if ${PHP_VER} >= 71
 intl_DEPENDS=	devel/php${PHP_VER}-intl
-.    else
-intl_DEPENDS=	devel/pecl-intl@${PHP_FLAVOR}
-.    endif
 json_DEPENDS=	devel/php${PHP_VER}-json
 ldap_DEPENDS=	net/php${PHP_VER}-ldap
 mbstring_DEPENDS=	converters/php${PHP_VER}-mbstring
@@ -397,16 +385,8 @@ mcrypt_DEPENDS=	security/pecl-mcrypt@${PHP_FLAVOR}
 .    else
 mcrypt_DEPENDS=	security/php${PHP_VER}-mcrypt
 .    endif
-.    if ${PHP_VER} >= 71
 memcache_DEPENDS=	databases/php-memcache@${PHP_FLAVOR}
-.    else
-memcache_DEPENDS=	databases/pecl-memcache@${PHP_FLAVOR}
-.    endif
-.    if ${PHP_VER} >= 71
 memcached_DEPENDS=	databases/pecl-memcached@${PHP_FLAVOR}
-.    else
-memcached_DEPENDS=	databases/pecl-memcached2@${PHP_FLAVOR}
-.    endif
 mssql_DEPENDS=	databases/php${PHP_VER}-mssql
 mysql_DEPENDS=	databases/php${PHP_VER}-mysql
 mysqli_DEPENDS=	databases/php${PHP_VER}-mysqli

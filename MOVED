@@ -10930,3 +10930,621 @@ security/py-yubioath-desktop|security/yubioath-desktop|2018-12-27|New Yubikey Oa
 audio/amarok-kde4|audio/amarok|2018-12-28|Renamed as no longer kde4 based
 games/knights-kde|games/knights|2018-12-30|Switch to version from KDE Applications
 multimedia/kmplayer-kde4|multimedia/kmplayer|2018-12-30|Moved to KF5 based version
+net/pecl-mosquitto||2018-12-30|Has expired: Works only with EOL php 5.6
+net/pecl-ip2location||2018-12-30|Has expired: Works only with EOL php 5.6
+net/pecl-yp||2018-12-30|Has expired: Works only with EOL php 5.6
+net/pecl-oauth||2018-12-30|Has expired: Works only with EOL php 5.6
+net/pecl-apn||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-doublemetaphone||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-ctemplate||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-xslcache||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/libmrss-php||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-stem||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-wbxml||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-syck||2018-12-30|Has expired: Works only with EOL php 5.6
+textproc/pecl-yaml1|textproc/pecl-yaml|2018-12-30|Has expired: Works only with EOL php 5.6
+deskutils/surrealtodo||2018-12-30|Has expired: Works only with EOL php 5.6
+deskutils/phpcollab||2018-12-30|Has expired: Works only with EOL php 5.6
+deskutils/simplegroupware||2018-12-30|Has expired: Works only with EOL php 5.6
+japanese/php5-mecab||2018-12-30|Has expired: Works only with EOL php 5.6
+graphics/php-gdal||2018-12-30|Has expired: Works only with EOL php 5.6
+graphics/php5-ffmpeg||2018-12-30|Has expired: Works only with EOL php 5.6
+graphics/pecl-gmagick||2018-12-30|Has expired: Works only with EOL php 5.6
+graphics/php-magickwand||2018-12-30|Has expired: Works only with EOL php 5.6
+graphics/pecl-imlib2||2018-12-30|Has expired: Works only with EOL php 5.6
+graphics/php-libpuzzle||2018-12-30|Has expired: Works only with EOL php 5.6
+mail/dracmail||2018-12-30|Has expired: Works only with EOL php 5.6
+mail/pecl-pop3||2018-12-30|Has expired: Works only with EOL php 5.6
+mail/pecl-mailparse2|mail/pecl-mailparse|2018-12-30|Has expired: Works only with EOL php 5.6
+www/usermanager||2018-12-30|Has expired: Works only with EOL php 5.6
+www/sams2||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-yar1|www/pecl-yar|2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-http1|www/pecl-http|2018-12-30|Has expired: Works only with EOL php 5.6
+www/revive-adserver||2018-12-30|Has expired: Works only with EOL php 5.6
+www/netoffice||2018-12-30|Has expired: Works only with EOL php 5.6
+www/xcache||2018-12-30|Has expired: Works only with EOL php 5.6
+www/testlink||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-http2|www/pecl-http|2018-12-30|Has expired: Works only with EOL php 5.6
+www/kplaylist||2018-12-30|Has expired: Works only with EOL php 5.6
+www/gallery3||2018-12-30|Has expired: Works only with EOL php 5.6
+www/claroline||2018-12-30|Has expired: Works only with EOL php 5.6
+www/sit||2018-12-30|Has expired: Works only with EOL php 5.6
+www/magento||2018-12-30|Has expired: Works only with EOL php 5.6
+www/asterisk-stat||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-sphinx||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-twig||2018-12-30|Has expired: Works only with EOL php 5.6
+www/fluxbb||2018-12-30|Has expired: Works only with EOL php 5.6
+www/php-templates||2018-12-30|Has expired: Works only with EOL php 5.6
+www/rnews||2018-12-30|Has expired: Works only with EOL php 5.6
+www/entrans||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-amfext||2018-12-30|Has expired: Works only with EOL php 5.6
+www/atutor||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-yaf2|www/pecl-yaf|2018-12-30|Has expired: Works only with EOL php 5.6
+www/redaxo||2018-12-30|Has expired: Works only with EOL php 5.6
+www/dotproject||2018-12-30|Has expired: Works only with EOL php 5.6
+www/sitebar||2018-12-30|Has expired: Works only with EOL php 5.6
+www/limesurvey||2018-12-30|Has expired: Works only with EOL php 5.6
+www/mahara||2018-12-30|Has expired: Works only with EOL php 5.6
+www/mysar||2018-12-30|Has expired: Works only with EOL php 5.6
+www/oscommerce||2018-12-30|Has expired: Works only with EOL php 5.6
+www/cmsmadesimple||2018-12-30|Has expired: Works only with EOL php 5.6
+www/pecl-swish||2018-12-30|Has expired: Works only with EOL php 5.6
+security/pecl-crack||2018-12-30|Has expired: Works only with EOL php 5.6
+security/php-suhosin||2018-12-30|Has expired: Works only with EOL php 5.6
+security/phpdeadlock||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php5-blitz||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-trace||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-scream||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-judy||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-test_helpers||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-spl_types||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-jsmin2||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-uri_template||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-params||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-expect||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php5-dav||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php5-pinba||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-htscanner||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-newt||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-memoize||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-libevent||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-jsonc||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-weakref||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-pthreads2|devel/pecl-pthreads|2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-gearman||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-inotify||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-raphf||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php5-thrift||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php5-ice||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-runkit||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-uopz||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-strict||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-xhprof||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-propro||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php-scalar_objects||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-msgpack0|devel/pecl-msgpack|2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-svn||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php-uprofiler||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-statgrab||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-uploadprogress||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-qb||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php-memoize||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php5-blitz-devel||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-ncurses||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/php-jq||2018-12-30|Has expired: Works only with EOL php 5.6
+devel/pecl-jsonnet||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-drizzle||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-pdo_user||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/php-mdcached||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/sqlbuddy||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/mysqldumper||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-chdb||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-dbase||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/php5-tarantool||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-rrd1|databases/pecl-rrd|2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-tokyo_tyrant||2018-12-30|Has expired: Works only with EOL php 5.6
+databases/pecl-mongo||2018-12-30|Has expired: Works only with EOL php 5.6
+print/pecl-ps||2018-12-30|Has expired: Works only with EOL php 5.6
+print/pecl-haru||2018-12-30|Has expired: Works only with EOL php 5.6
+games/mkgichessclub||2018-12-30|Has expired: Works only with EOL php 5.6
+net-im/pecl-stomp||2018-12-30|Has expired: Works only with EOL php 5.6
+math/pecl-trader||2018-12-30|Has expired: Works only with EOL php 5.6
+math/pecl-big_int||2018-12-30|Has expired: Works only with EOL php 5.6
+math/pecl-stats||2018-12-30|Has expired: Works only with EOL php 5.6
+archivers/pecl-phk||2018-12-30|Has expired: Works only with EOL php 5.6
+net-mgmt/phpip||2018-12-30|Has expired: Works only with EOL php 5.6
+net-mgmt/nedi||2018-12-30|Has expired: Works only with EOL php 5.6
+net-mgmt/cacti88|net-mgmt/cacti|2018-12-30|Has expired: Works only with EOL php 5.6
+net-mgmt/hawk||2018-12-30|Has expired: Works only with EOL php 5.6
+net-mgmt/ipplan||2018-12-30|Has expired: Works only with EOL php 5.6
+ports-mgmt/tinderbox||2018-12-30|Has expired: Works only with EOL php 5.6
+lang/pecl-perl||2018-12-30|Has expired: Works only with EOL php 5.6
+lang/php56-extensions|lang/php72-extensions|2018-12-30|Has expired: Works only with EOL php 5.6
+finance/php-tclink||2018-12-30|Has expired: Works only with EOL php 5.6
+converters/pecl-fribidi||2018-12-30|Has expired: Works only with EOL php 5.6
+sysutils/pecl-mogilefs||2018-12-30|Has expired: Works only with EOL php 5.6
+deskutils/strigidaemon||2018-12-31|Has expired: KDE4 is end-of-life
+deskutils/strigiutils||2018-12-31|Has expired: KDE4 is end-of-life
+deskutils/strigiclient||2018-12-31|Has expired: KDE4 is end-of-life
+deskutils/libstreams||2018-12-31|Has expired: KDE4 is end-of-life
+deskutils/libstreamanalyzer||2018-12-31|Has expired: KDE4 is end-of-life
+graphics/kipi-plugin-calendar||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugins-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kipi-plugin-acquireimages||2018-12-31|Remove, part of expired KDE4d
+graphics/kipi-plugin-advancedslideshow||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-batchprocess||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-debianscreenshots||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-dngconverter||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-dropbox||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-expoblending||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-facebook||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-flashexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-flickrexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-galleryexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-googleservices||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-gpssync||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-htmlexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-imageshackexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-imageviewer||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-ipodexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-jalbumexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-jpeglossless||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-kioexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-kmlexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-kopete||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-mediawiki||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-metadataedit||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-panorama||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-photolayoutseditor||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-piwigoexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-rajceexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-rawconverter||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-removeredeyes||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-sendimages||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-shwup||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-smug||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-timeadjust||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-videoslideshow||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-vkontakte||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-yandexfotki||2018-12-31|Removed, part of expired KDE4
+graphics/libkipiplugins||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-imgurexport||2018-12-31|Removed, part of expired KDE4
+graphics/kipi-plugin-printimages||2018-12-31|Removed, part of expired KDE4
+graphics/digikam-kde4-doc||2018-12-31|Removed, part of expired KDE4
+graphics/digikam-kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+net/libsrtp|net/libsrtp2|2018-12-31|Has expired: Superseded by libsrtp2
+x11-toolkits/wlc||2018-12-31|Has expired: Deprecated upstream
+japanese/spamassassin|mail/spamassassin|2018-12-31|Has expired: does not build
+www/spdylay||2018-12-31|Has expired: SPDY is deprecated, use HTTP/2 instead
+www/moodle33|www/moodle35|2018-12-31|Has expired: Upstream no longer maintained
+security/krb5-114|security/krb5|2018-12-31|Has expired: EOL twelve months after release of krb5-1.16
+databases/mongodb32|databases/mongodb34|2018-12-31|Has expired: EOL upstream since September 2018
+databases/mongodb32-tools|databases/mongodb34-tools|2018-12-31|Has expired: EOL upstream since September 2018
+audio/creox||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+audio/terminatorx||2018-12-31|Has expired: Unmaintained, broken too often
+audio/shoutcast||2018-12-31|Has expired: Upstream vendor no longer provides releases
+dns/powerdns-recursor40|dns/powerdns-recursor|2018-12-31|Has expired: FreeBSD 10.3 has reached EoL since 2018-04-30; users should upgrade and use dns/powerdns-recursor instead
+sysutils/ataidle||2018-12-31|Has expired: obsoleted by camcontrol(8)
+sysutils/syslog-ng37|sysutils/syslog-ng|2018-12-31|Has expired: No longer officially supported by Balabit, does not support openssl111
+sysutils/cfengine22|sysutils/cfengine|2018-12-31|Has expired: No longeer supported by cfengine.com
+sysutils/syslog-ng36|sysutils/syslog-ng|2018-12-31|Has expired: No longer officially supported by Balabit, does not support openssl111
+sysutils/syslog-ng-incubator||2018-12-31|Removed, depends on expired sysutils/syslog-ng36
+korean/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+net/kget-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/kdenetwork-strigi-analyzers-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/zeroconf-ioslave-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/libkfbapi||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+net/kdenetwork-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/kwooty||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+net/kdenetwork-filesharing-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/libmediawiki-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/kio-upnp-ms||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+net/libkvkontakte-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/krfb-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net/smb4k-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+net/krdc-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+french/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+ukrainian/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+textproc/kompare-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+textproc/libkomparediff2-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/silence||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/kdepim-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/plasma-applet-serverstatuswidget||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/strigi||2018-12-31|Has expired: KDE4 is end-of-life
+deskutils/plasma-applet-qstardict||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/homerun||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/plasma-applet-daisy||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/plasma-applet-teacooker||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/kdepim-runtime-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/plasma-applet-panelspacer||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/plasma-applet-cwp||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/plasma-applet-yawp||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/kruler-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/superkaramba-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/kcharselect-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/kdepimlibs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+deskutils/ksshaskpass||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/plasma-applet-simpleweatherforecast||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/kdeconnect-kde-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/plasma-applet-fancytasks||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+deskutils/kdeplasma-addons-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+japanese/kiten-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+japanese/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/libkdcraw-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/skanlite-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kamera-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kphotoalbum-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kdegraphics-strigi-analyzer-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kiconedit||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+graphics/kdegraphics-thumbnailers-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/libkscreen||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+graphics/kcoloredit||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+graphics/libksane-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/ksnapshot-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/gwenview-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kpovmodeler||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+graphics/ksaneplugin-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/digikam-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kdegraphics-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kdegraphics-svgpart-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kcolorchooser-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/okular-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kqtquickcharts-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/libkipi-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+graphics/libkexiv2-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kolourpaint-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+graphics/kdegraphics-mobipocket-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+russian/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+mail/kshowmail||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+mail/kbiff||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+www/kpartsplugin||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+www/choqok-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+www/kdewebdev-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+www/kwebkitpart||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+www/rekonq||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+security/subversion-kwallet||2018-12-31|Has expired: KDE4 is end-of-life
+security/kwalletmanager-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+security/kgpg-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/libkgapi-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kapptemplate-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/py-krosspython-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kcachegrind-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/smokegen-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/cervisia-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdevelop-php-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/py-pykdeuic4-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/okteta-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdevelop-pg-qt-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/ruby-korundum-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/py-pykde4-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/dolphin-plugins-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kde-dev-utils-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdesvn-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/smokekde-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/p5-perlkde-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdevelop-php-docs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/p5-perlqt-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdevelop-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/poxml-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kde-dev-scripts-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/umbrello-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdebindings-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdesdk-strigi-analyzers-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdesdk-thumbnailers-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdesdk-kioslaves-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdevplatform-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/smokeqt-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/ruby-qtruby-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/kdesdk-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/lokalize-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+devel/libkolab||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+devel/ruby-krossruby-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+arabic/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+databases/akonadi-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+ftp/plasma-applet-ftpmonitor||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+print/print-manager-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+print/kover||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+net-p2p/libktorrent-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-p2p/ktorrent-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+editors/kile-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+editors/klat4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+editors/kate-plugin-pate-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+editors/kate-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kdeedu-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/krecipes-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde-thumbnailer-epub-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+misc/kde-thumbnailer-fb2-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+misc/libkdeedu-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-ia||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-nl||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-cs||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-fa||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kwordquiz-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-km||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-lt||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kdeutils-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-es||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-wa||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-en_GB||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-gl||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde-thumbnailer-chm-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+misc/kde4-l10n-ug||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-ga||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-nb||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-hr||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-bs||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-et||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-pa||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-nds||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-bg||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-tr||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-sk||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kgeography-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-is||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-da||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-ca||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-it||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-ro||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-ca_valencia||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-kk||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/parley-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-sl||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-hi||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-sr||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/klettres-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-sv||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-fi||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-lv||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-eu||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/ktouch-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-id||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-mr||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-nn||2018-12-31|Has expired: KDE4 is EOL upstream
+misc/kde4-l10n-el||2018-12-31|Has expired: KDE4 is EOL upstream
+science/step-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+science/kalzium-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/palapeli-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kiriki-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kanagram-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/khangman-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kdiamond-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kigo-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kshisen-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/klickety-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kdegames-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kmines-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/ksquares-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/konquest-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/killbots-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kblocks-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/knavalbattle-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/blinken-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/picmi-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kjumpingcube-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/ksudoku-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/klines-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/bomber-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kajongg-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kbounce-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kreversi-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kmahjongg-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kfourinline-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kbreakout-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/bovo-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kubrick-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/ksirk-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/granatier-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/libkdegames-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/pairs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kspaceduel-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/libkmahjongg-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/lskat-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/knetwalk-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/katomic-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kollision-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kgoldrunner-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kapman-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kpat-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kolf-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/kblackbox-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/ksnakeduel-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+games/ktuberling-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/kdetoys-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/plasma-applet-adjustableclock||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/amor-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/plasma-applet-geekclock||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/kteatime-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/ktux-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-clocks/ktimer-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+hebrew/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-approver-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-filetransfer-handler-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-send-file-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-contact-list-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-desktop-applets-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-contact-runner-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/kopete-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-accounts-kcm-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/kmess-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+net-im/plasma-applet-ktp-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-kded-integration-module-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-text-ui-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/telepathy-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-auth-handler-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+net-im/ktp-common-internals-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/libkcompactdisc-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/kmix-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/audex||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+audio/kio-audiocd-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/kid3-kde4||2018-12-31|Has expired: Qt4 and KDE4 EOL upstream. Use audio/kid3-qt5 or audio/kid3-kf5 instead
+audio/libkcddb-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/kstreamripper||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+audio/juk-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/kscd-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+audio/simon||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+math/analitza-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/kmplot-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/kcalc-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/kig-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/kbruch-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/cantor-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/abakus||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+math/kalgebra-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+math/rocs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/plasma-scriptengine-python-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kactivitymanagerd||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11/yakuake-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kdelibs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/libkonq-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kde4||2018-12-31|Has expired: KDE4 is end-of-life
+x11/kgamma-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/plasma-scriptengine-ruby-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kde-baseapps-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kactivities||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11/konsole-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kde-workspace-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11/kde-runtime-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+polish/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+chinese/kde4-l10n-zh_CN||2018-12-31|Has expired: KDE4 is EOL upstream
+chinese/kde4-l10n-zh_TW||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-fm/krusader2-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+archivers/ark-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+german/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+portuguese/kde4-l10n-pt_BR||2018-12-31|Has expired: KDE4 is EOL upstream
+portuguese/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/dragon-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/k9copy-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+multimedia/kdemultimedia-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/kdemultimedia-ffmpegthumbs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/kdenlive-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/kdemultimedia-mplayerthumbs-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/subtitlecomposer-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+multimedia/kplayer-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+astro/marble-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+astro/libkgeomap-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+astro/kstars-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-themes/kde4-style-oxygen-transparent||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kde4-windeco-crystal||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/gtk-qt4-engine||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kde-gtk-config||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kde4-style-skulpture||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kde-wallpapers-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-themes/kde4-style-bespin||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kde4-windeco-dekorator||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kde-base-artwork-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-themes/kde4-style-polyester||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/kdeartwork-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-themes/plasma5-breeze-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+x11-themes/kde4-style-nitrogen||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+x11-themes/qtcurve-kde4||2018-12-31|Has expired: KDE4 is EOL
+lang/kturtle-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+accessibility/kaccessible-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+accessibility/kmouth-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+accessibility/kmag-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+accessibility/jovie-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+accessibility/kdeaccessibility-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+accessibility/kmousetool-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+finance/kmymoney-kde4||2018-12-31|Has expired: KDE4 is EOL upstream. Use finance/kmymoney instead
+comms/kremotecontrol-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/kdf-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/kdeadmin-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/sweeper-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/kcron-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/nepomuk-core-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/kfilemetadata-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/ksystemlog-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/knutclient-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/baloo-widgets-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/filelight-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/baloo-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/polkit-kde||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+sysutils/kuser-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/nepomuk-widgets-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/k3b-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/ksysguardd-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/kfloppy-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
+sysutils/kcm-polkit-kde||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+hungarian/kde4-l10n||2018-12-31|Has expired: KDE4 is EOL upstream
+java/netbeans-devel|java/netbeans|2018-12-31|Development port was removed now that this version is stable
+audio/kid3-qt4|audio/kid3-qt5|2018-12-31|Has expired: KDE4 is EOL upstream
+textproc/uim-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
+misc/kde4-xdg-env||2018-12-31|Removed, KDE4-related
+x11-themes/wallpapers-freebsd-kde4|x11-themes/wallpapers-freebsd-kde|2018-12-31|Renamed, the port is not KDE4 specific
+textproc/pecl-xdiff|textproc/pecl-xdiff2|2019-01-01|Has expired: Works only with EOL php 5.6
+www/mod_http2-devel||2019-01-01|Has expired: Use the module that is shipped with Apache 2.4
+www/varnish5|www/varnish6|2019-01-01|Has expired: Varnish 5 is Retired
+security/pecl-ssh2-0|security/pecl-ssh2|2019-01-01|Has expired: Works only with EOL php 5.6
+security/bitwarden-ruby||2019-01-01|Has expired: Expects very specific rubygem versions for new updates. Please follow instructions in git repo
+devel/pecl-intl||2019-01-01|Has expired: Works only with EOL php 5.6
+devel/pecl-APCu4|devel/pecl-APCu|2019-01-01|Has expired: Works only with EOL php 5.6
+databases/pecl-memcache||2019-01-01|Has expired: Works only with EOL php 5.6
+databases/pecl-memcached2|databases/pecl-memcached|2019-01-01|Has expired: Works only with EOL php 5.6
+math/pecl-bitset2|math/pecl-bitset|2019-01-01|Has expired: Works only with EOL php 5.6
+multimedia/zoneminder-h264|multimedia/zoneminder|2019-01-01|Has expired: h264 feature was commited to main branch, please upgrade to www/zoneminder
+lang/php56|lang/php72|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+net/php56-soap|net/php72-soap|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+net/php56-ldap|net/php72-ldap|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+net/php56-xmlrpc|net/php72-xmlrpc|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+net/php56-sockets|net/php72-sockets|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-ctype|textproc/php72-ctype|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-xmlwriter|textproc/php72-xmlwriter|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-xmlreader|textproc/php72-xmlreader|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-pspell|textproc/php72-pspell|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-dom|textproc/php72-dom|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-xsl|textproc/php72-xsl|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-simplexml|textproc/php72-simplexml|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-enchant|textproc/php72-enchant|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-wddx|textproc/php72-wddx|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+textproc/php56-xml|textproc/php72-xml|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+graphics/php56-gd|graphics/php72-gd|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+graphics/php56-exif|graphics/php72-exif|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+mail/php56-imap|mail/php72-imap|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+www/php56-session|www/php72-session|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+www/php56-opcache|www/php72-opcache|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+www/php56-tidy|www/php72-tidy|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+security/php56-openssl|security/php72-openssl|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+security/php56-mcrypt|security/php72-sodium|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+security/php56-filter|security/php72-filter|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+security/php56-hash|security/php72-hash|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-sysvmsg|devel/php72-sysvmsg|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-tokenizer|devel/php72-tokenizer|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-sysvsem|devel/php72-sysvsem|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-shmop|devel/php72-shmop|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-readline|devel/php72-readline|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-json|devel/php72-json|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-pcntl|devel/php72-pcntl|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-sysvshm|devel/php72-sysvshm|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+devel/php56-gettext|devel/php72-gettext|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-mysqli|databases/php72-mysqli|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-mysql||2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo_odbc|databases/php72-pdo_odbc|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo_mysql|databases/php72-pdo_mysql|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-sqlite3|databases/php72-sqlite3|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo_dblib|databases/php72-pdo_dblib|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo_firebird|databases/php72-pdo_firebird|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pgsql|databases/php72-pgsql|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo_sqlite|databases/php72-pdo_sqlite|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-sybase_ct||2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-interbase|databases/php72-interbase|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-dba|databases/php72-dba|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-odbc|databases/php72-odbc|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo_pgsql|databases/php72-pdo_pgsql|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-pdo|databases/php72-pdo|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+databases/php56-mssql||2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+ftp/php56-curl|ftp/php72-curl|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+ftp/php56-ftp|ftp/php72-ftp|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+misc/php56-calendar|misc/php72-calendar|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+math/php56-bcmath|math/php72-bcmath|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+math/php56-gmp|math/php72-gmp|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+archivers/php56-zip|archivers/php72-zip|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+archivers/php56-zlib|archivers/php72-zlib|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+archivers/php56-phar|archivers/php72-phar|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+archivers/php56-bz2|archivers/php72-bz2|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+net-mgmt/php56-snmp|net-mgmt/php72-snmp|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+converters/php56-iconv|converters/php72-iconv|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+converters/php56-mbstring|converters/php72-mbstring|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+converters/php56-recode|converters/php72-recode|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+sysutils/php56-posix|sysutils/php72-posix|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+sysutils/php56-fileinfo|sysutils/php72-fileinfo|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
+www/mod_php56|www/mod_php72|2019-01-01|Has expired: Security Support ends on 31 Dec 2018
