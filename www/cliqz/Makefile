@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cliqz
-DISTVERSION=	1.23.3
-PORTREVISION=	1
+DISTVERSION=	1.24.0
 CATEGORIES=	www
 MASTER_SITES=	https://s3.amazonaws.com/cdn.cliqz.com/browser-f/APT/:amazon \
 		http://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/${CLIQZ_LAST_BUILD_ID}/:cliqz
@@ -44,7 +43,7 @@ BUILD_DEPENDS=	autoconf-2.13:devel/autoconf213 \
 		png>=1.6.34:graphics/png \
 		${LOCALBASE}/include/pulse/pulseaudio.h:audio/pulseaudio \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
-		rust>=1.28:lang/rust \
+		${RUST_DEFAULT}>=1.28:lang/${RUST_DEFAULT} \
 		rust-cbindgen>=0.6.2:devel/rust-cbindgen \
 		sqlite3>=3.24.0:databases/sqlite3 \
 		v4l_compat>0:multimedia/v4l_compat \
@@ -68,7 +67,7 @@ USE_LDCONFIG=	yes
 CLIQZ_CHANNEL=		release
 # If the DISTVERSION is updated, make sure to update the last build id from
 # fetch -qo - https://repository.cliqz.com/dist/${CLIQZ_CHANNEL}/${DISTVERSION}/lastbuildid
-CLIQZ_LAST_BUILD_ID=	20181116003917
+CLIQZ_LAST_BUILD_ID=	20181223141940
 CLIQZ_ICON=		${PORTNAME}.png
 CLIQZ_ICON_SRC=		${WRKSRC}/mozilla-release/browser/branding/${PORTNAME}/default48.png
 MOZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/mozilla.desktop
@@ -77,6 +76,7 @@ CLIQZ_DESKTOP=		${WRKSRC}/mozilla-release/toolkit/mozapps/installer/linux/rpm/cl
 MAKE_ENV+=	LLVM_CONFIG=llvm-config${LLVM_DEFAULT}
 MAKE_ENV+=	CQZ_RELEASE_CHANNEL=${CLIQZ_CHANNEL}
 MAKE_ENV+=	CQZ_BUILD_ID=${CLIQZ_LAST_BUILD_ID}
+MAKE_ENV+=	MOZBUILD_STATE_PATH=${WRKDIR}
 
 post-extract:
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/adult-domains.bin ${WRKSRC}

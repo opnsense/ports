@@ -214,6 +214,7 @@
     SUBDIR += binutils
     SUBDIR += bison
     SUBDIR += blame
+    SUBDIR += bloaty
     SUBDIR += blitz
     SUBDIR += bmake
     SUBDIR += bmkdep
@@ -1269,6 +1270,7 @@
     SUBDIR += jenkins-lts
     SUBDIR += jfrog-cli
     SUBDIR += jiic
+    SUBDIR += jiri
     SUBDIR += jline
     SUBDIR += jna
     SUBDIR += jrtplib
