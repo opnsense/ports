@@ -95,6 +95,7 @@
     SUBDIR += adacurses
     SUBDIR += adaid
     SUBDIR += aegis
+    SUBDIR += agar
     SUBDIR += ahven
     SUBDIR += aifad
     SUBDIR += ald
@@ -3706,6 +3707,7 @@
     SUBDIR += p5-Time-Local
     SUBDIR += p5-Time-Mock
     SUBDIR += p5-Time-Moment
+    SUBDIR += p5-Time-Moment-Role-TimeZone
     SUBDIR += p5-Time-Object
     SUBDIR += p5-Time-Out
     SUBDIR += p5-Time-ParseDate
@@ -4750,6 +4752,7 @@
     SUBDIR += py-orbit
     SUBDIR += py-ordered-set
     SUBDIR += py-ordereddict
+    SUBDIR += py-orderedmultidict
     SUBDIR += py-os-brick
     SUBDIR += py-os-client-config
     SUBDIR += py-os-service-types

@@ -33,7 +33,6 @@
     SUBDIR += chibi-scheme
     SUBDIR += chicken
     SUBDIR += chicken5
-    SUBDIR += cilkplus
     SUBDIR += cim
     SUBDIR += cint
     SUBDIR += cjs
@@ -113,6 +112,7 @@
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += ghc843
+    SUBDIR += ghc844
     SUBDIR += ghc862
     SUBDIR += gjs
     SUBDIR += gnat_util
