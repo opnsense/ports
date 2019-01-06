@@ -974,6 +974,7 @@
     SUBDIR += hs-basement
     SUBDIR += hs-basic-prelude
     SUBDIR += hs-bifunctors
+    SUBDIR += hs-bitarray
     SUBDIR += hs-bits-atomic
     SUBDIR += hs-blaze-builder
     SUBDIR += hs-blaze-textual
@@ -2992,6 +2993,7 @@
     SUBDIR += p5-MooX-ConfigFromFile
     SUBDIR += p5-MooX-File-ConfigDir
     SUBDIR += p5-MooX-HandlesVia
+    SUBDIR += p5-MooX-Locale-Passthrough
     SUBDIR += p5-MooX-Options
     SUBDIR += p5-MooX-StrictConstructor
     SUBDIR += p5-MooX-Thunking
