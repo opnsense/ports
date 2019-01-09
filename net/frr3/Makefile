@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	frr
-PORTVERSION=	3.0.3
-PORTREVISION=	3
+PORTVERSION=	3.0.4
 DISTVERSIONPREFIX=	frr-
 CATEGORIES=	net ipv6
 PKGNAMESUFFIX=	3
@@ -57,7 +56,6 @@ GROUPS=	frr frrvty
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
-INSTALL_TARGET=	install-strip
 
 # PIM compile but didn't work on FreeBSD
 CONFIGURE_ARGS=	--enable-user=frr \
