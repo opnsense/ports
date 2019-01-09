@@ -215,6 +215,7 @@
     SUBDIR += mysql-connector-c
     SUBDIR += mysql-connector-c++
     SUBDIR += mysql-connector-java
+    SUBDIR += mysql-connector-java51
     SUBDIR += mysql-connector-odbc
     SUBDIR += mysql-q4m
     SUBDIR += mysql-udf
@@ -796,6 +797,7 @@
     SUBDIR += py-leveldb
     SUBDIR += py-lmdb
     SUBDIR += py-marshmallow-sqlalchemy
+    SUBDIR += py-mongoengine
     SUBDIR += py-motor
     SUBDIR += py-mycli
     SUBDIR += py-mysql-connector-python

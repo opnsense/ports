@@ -1400,6 +1400,7 @@
     SUBDIR += libddoc
     SUBDIR += libdevq
     SUBDIR += libdfui
+    SUBDIR += libdill
     SUBDIR += libdisasm
     SUBDIR += libdisorder
     SUBDIR += libdispatch
@@ -4702,7 +4703,6 @@
     SUBDIR += py-mock
     SUBDIR += py-molecule
     SUBDIR += py-mondrian
-    SUBDIR += py-mongoengine
     SUBDIR += py-mongokit
     SUBDIR += py-monotonic
     SUBDIR += py-monty
@@ -5518,6 +5518,7 @@
     SUBDIR += rubygem-clio
     SUBDIR += rubygem-cliprompt
     SUBDIR += rubygem-cloudfiles
+    SUBDIR += rubygem-cms_scanner
     SUBDIR += rubygem-cocaine
     SUBDIR += rubygem-coercible
     SUBDIR += rubygem-coffee-rails-rails5
