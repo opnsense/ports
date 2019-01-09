@@ -3,7 +3,7 @@
 
 PORTNAME=	quagga
 PORTVERSION=	1.2.4
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net ipv6
 MASTER_SITES=	SAVANNAH
 
@@ -25,7 +25,6 @@ USE_HARDENING=	safestack
 USES=		compiler:c11 cpe gmake libtool makeinfo \
 		perl5 readline ssl
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-exampledir=${PREFIX}/share/examples/quagga
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 USE_PERL5=	build
@@ -69,6 +68,9 @@ CONFIGURE_ARGS=	--enable-user=${ENABLE_USER} \
 CONFIGURE_ARGS+=--enable-vty-group=${ENABLE_VTY_GROUP}
 .endif
 
+EXAMPLES_CONFIGURE_ON=	--enable-exampledir=${PREFIX}/share/examples/quagga
+EXAMPLES_CONFIGURE_OFF=	--disable-exampledir
+
 ISISD_CONFIGURE_ENABLE=	isisd
 ISIS_TOPOLOGY_CONFIGURE_ENABLE=	isis-topology
 PIMD_CONFIGURE_ENABLE=	pimd
@@ -107,8 +109,6 @@ pre-everything::
 	@${ECHO} "LOCALSTATE_DIR    Specify directory for Quagga runtime files"
 
 post-install:
-	${MKDIR} ${STAGEDIR}${LOCALSTATE_DIR} ${STAGEDIR}${SYSCONF_DIR} \
-		${STAGEDIR}${EXAMPLESDIR}
-	@${MV} ${STAGEDIR}${SYSCONF_DIR}/* ${STAGEDIR}${EXAMPLESDIR}
+	${MKDIR} ${STAGEDIR}${LOCALSTATE_DIR} ${STAGEDIR}${SYSCONF_DIR}
 
 .include <bsd.port.mk>
