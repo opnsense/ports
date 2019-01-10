@@ -3,6 +3,7 @@
 
 PORTNAME=	anjuta
 PORTVERSION=	3.28.0
+PORTREVISION=	1
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome3
@@ -41,7 +42,6 @@ INSTALLS_ICONS=	yes
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo gtksourceview3 intlhack libgda5 libwnck3
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-symbol-db-shm=/tmp \
@@ -93,10 +93,9 @@ TERMINAL_LIB_DEPENDS=	libgnutls.so:security/gnutls \
 			libpcre2-8.so:devel/pcre2
 TERMINAL_VARS=		GLIB_SCHEMAS+=org.gnome.anjuta.terminal.gschema.xml
 
-SVN_BUILD_DEPENDS=	svn:devel/subversion
 SVN_LIB_DEPENDS=	libapr-1.so:devel/apr1 \
-			libserf-1.so:www/serf
-SVN_RUN_DEPENDS=	svn:devel/subversion
+			libserf-1.so:www/serf \
+			libsvn_client-1.so:devel/subversion
 SVN_CONFIGURE_ENABLE=	plugin-subversion
 
 DEVHELP_LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
