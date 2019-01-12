@@ -12,6 +12,6 @@ _INCLUDE_USES_RETPOLINE_MK=    yes
 
 CFLAGS+=	-mretpoline
 CXXFLAGS+=	-mretpoline
-LDFLAGS+=	-Wl,-z,retpolineplt
+#LDFLAGS+=	-Wl,-z,retpolineplt
 
 .endif
