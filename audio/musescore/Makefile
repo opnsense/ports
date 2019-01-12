@@ -2,11 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	musescore
-PORTVERSION=	2.1
-PORTREVISION=	4
+DISTVERSION=	3.0.0
+PORTREVISION=	1
 CATEGORIES=	audio
-MASTER_SITES=	http://ftp.osuosl.org/pub/musescore/releases/MuseScore-${PORTVERSION}/
-DISTNAME=	MuseScore-${PORTVERSION}
+MASTER_SITES=	http://ftp.osuosl.org/pub/musescore/releases/MuseScore-${DISTVERSION}/
+DISTNAME=	MuseScore-${DISTVERSION}
+NO_WRKSUBDIR=	yes
 
 MAINTAINER=	adridg@FreeBSD.org
 COMMENT=	Free music composition & notation software
@@ -14,7 +15,8 @@ COMMENT=	Free music composition & notation software
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE.GPL
 
-BROKEN_aarch64=		Fails to compile: error: constant expression evaluates to -1
+# Because of webengine
+ONLY_FOR_ARCHS=	i386 amd64
 
 LIB_DEPENDS=	libmp3lame.so:audio/lame \
 		libsndfile.so:audio/libsndfile \
@@ -25,18 +27,24 @@ LIB_DEPENDS=	libmp3lame.so:audio/lame \
 USES=		cmake compiler:c++11-lib desktop-file-utils \
 		pkgconfig qt:5 shared-mime-info zip
 USE_QT=		core declarative gui widgets opengl concurrent designer help network \
-		scripttools svg sql printsupport testlib webkit \
+		scripttools svg sql printsupport testlib \
 		xml xmlpatterns \
 		buildtools_build linguisttools_build qmake_build uitools_build
 ALL_TARGET=	lrelease manpages all
 INSTALLS_ICONS=	yes
-CMAKE_ARGS+=	-DUSE_SYSTEM_FREETYPE="ON"
+CMAKE_ARGS+=	-DUSE_SYSTEM_FREETYPE="ON" \
+		-DBUILD_PORTMIDI=OFF \
+		-DBUILD_PCH=OFF
 
-DATADIR=	${PREFIX}/share/mscore-${PORTVERSION}
+DATADIR=	${PREFIX}/share/mscore-${PORTVERSION:R}
 
-OPTIONS_DEFINE=		ALSA JACK PORTAUDIO PULSEAUDIO OCR
+OPTIONS_DEFINE=		ALSA JACK PORTAUDIO PULSEAUDIO OCR WEBENGINE
 OPTIONS_DEFAULT=	PORTAUDIO
+OPTIONS_DEFAULT_amd64=	WEBENGINE
+OPTIONS_DEFAULT_i386=	WEBENGINE
+
 OCR_DESC=		Optical Character Recognition
+WEBENGINE_DESC=		Use WebEngine in the welcome panel
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_CMAKE_BOOL=	BUILD_ALSA
@@ -47,6 +55,8 @@ PORTAUDIO_CMAKE_BOOL=	BUILD_PORTAUDIO
 PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	BUILD_PULSEAUDIO
 OCR_CMAKE_BOOL=		OCR
+WEBENGINE_USE=		qt=webengine
+WEBENGINE_CMAKE_BOOL=	BUILD_WEBENGINE
 
 .include <bsd.port.pre.mk>
 
