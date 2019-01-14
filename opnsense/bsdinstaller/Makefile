@@ -3,7 +3,7 @@
 
 PORTNAME=	bsdinstaller
 PORTVERSION=	19.1.d
-PORTREVISION=	3 # GH_TAGNAME
+PORTREVISION=	4 # GH_TAGNAME
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -17,6 +17,6 @@ USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	abf9b66
+GH_TAGNAME=	6a1709b
 
 .include <bsd.port.mk>
