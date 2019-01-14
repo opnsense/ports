@@ -382,6 +382,7 @@
     SUBDIR += mediawiki127
     SUBDIR += mediawiki130
     SUBDIR += mediawiki131
+    SUBDIR += mediawiki132
     SUBDIR += mergelog
     SUBDIR += mgstat
     SUBDIR += mhonarc
@@ -1894,6 +1895,7 @@
     SUBDIR += qt5-webkit
     SUBDIR += qt5-websockets
     SUBDIR += qt5-websockets-qml
+    SUBDIR += qt5-webview
     SUBDIR += quark
     SUBDIR += qupzilla-qt4
     SUBDIR += qupzilla-qt5
