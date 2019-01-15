@@ -1625,6 +1625,7 @@
     SUBDIR += libversion
     SUBDIR += libvhdi
     SUBDIR += libvirt
+    SUBDIR += libvirt-dbus
     SUBDIR += libvirt-glib
     SUBDIR += libvirt-java
     SUBDIR += libvmdk
@@ -5835,6 +5836,7 @@
     SUBDIR += rubygem-patch_finder
     SUBDIR += rubygem-pathspec
     SUBDIR += rubygem-pathutil
+    SUBDIR += rubygem-pdk
     SUBDIR += rubygem-peek
     SUBDIR += rubygem-peek-rails50
     SUBDIR += rubygem-peek-gc-rails50

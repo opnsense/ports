@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME?=	wireshark
-PORTVERSION=	2.6.5
-PORTREVISION?=	3
+PORTVERSION=	2.6.6
+PORTREVISION?=	0
 CATEGORIES=	net ipv6
 MASTER_SITES=	http://www.wireshark.org/download/src/ \
 		http://ftp.uni-kl.de/pub/wireshark/src/ \
@@ -67,7 +67,7 @@ PLIST_SUB+=		${x:tu}=bin/$x \
 .endif
 .endfor
 
-OPTIONS_DEFINE=		RTP SNMP LUA DECRYPT ANDROIDDUMP CARES SSHDUMP CISCODUMP
+OPTIONS_DEFINE=		RTP SNMP MAXMIND LUA DECRYPT ANDROIDDUMP CARES SSHDUMP CISCODUMP
 
 OPTIONS_RADIO=		GUI
 OPTIONS_SINGLE=		KERBEROS
@@ -75,11 +75,12 @@ OPTIONS_SINGLE=		KERBEROS
 OPTIONS_RADIO_GUI=	GTK2 GTK3 QT5
 OPTIONS_SINGLE_KERBEROS=KRB_BASE KRB_HEIMDAL KRB_MIT KRB_NONE
 
-OPTIONS_DEFAULT?=	SNMP KRB_BASE GTK3 DECRYPT
+OPTIONS_DEFAULT?=	SNMP MAXMIND KRB_BASE GTK3 DECRYPT
 
 RTP_DESC=		Enable support for playing back RTP streams
 DECRYPT_DESC=		Decryption support for SSL and IPSec
 ANDROIDDUMP_DESC=	Build androiddump extcap tool
+MAXMIND_DESC=		Enable MaxMindDB geolocation support
 CARES_DESC=		Enable support for asynchronous DNS via c-ares
 KERBEROS_DESC=		Kerberos dissection support
 KRB_BASE_DESC=		Kerberos support via base system
@@ -102,6 +103,7 @@ KRB_MIT_USES=		gssapi:mit
 RTP_LIB_DEPENDS=	libportaudio.so:audio/portaudio \
     			libspandsp.so:comms/spandsp
 RTP_CPPFLAGS=		-I${LOCALBASE}/include
+MAXMIND_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 SNMP_LIB_DEPENDS=	libsmi.so:net-mgmt/libsmi
 CARES_LIB_DEPENDS=	libcares.so:dns/c-ares
 DECRYPT_LIB_DEPENDS=	libgnutls.so:security/gnutls \
@@ -120,6 +122,7 @@ LUA_CONFIGURE_WITH=	lua
 RTP_CONFIGURE_WITH=	portaudio spandsp
 SNMP_CONFIGURE_WITH=	libsmi
 CARES_CONFIGURE_WITH=	c-ares
+MAXMIND_CONFIGURE_WITH=maxminddb
 DECRYPT_CONFIGURE_WITH=	gnutls
 ANDROIDDUMP_CONFIGURE_ON=--enable-androiddump=yes
 ANDROIDDUMP_CONFIGURE_OFF=--enable-androiddump=no

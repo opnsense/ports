@@ -12,7 +12,7 @@ COMMENT=	Ada95 bindings for ncurses
 
 LICENSE=	MIT
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off retpoline:off
 
 USES=		ada gmake pkgconfig ncurses:port tar:tgz
 GNU_CONFIGURE=	yes
