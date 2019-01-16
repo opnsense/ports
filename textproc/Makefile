@@ -1277,6 +1277,7 @@
     SUBDIR += py-citeproc-py-styles
     SUBDIR += py-cjkwrap
     SUBDIR += py-cloud_sptheme
+    SUBDIR += py-cmarkgfm
     SUBDIR += py-colorclass
     SUBDIR += py-creole
     SUBDIR += py-csvkit
@@ -1523,6 +1524,7 @@
     SUBDIR += rubygem-colored
     SUBDIR += rubygem-commonmarker
     SUBDIR += rubygem-compass
+    SUBDIR += rubygem-compass-blueprint
     SUBDIR += rubygem-compass-core
     SUBDIR += rubygem-compass-import-once
     SUBDIR += rubygem-creole
