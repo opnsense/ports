@@ -1,6 +1,6 @@
---- include/proto/openssl-compat.h.orig	2018-08-16 17:04:13 UTC
+--- include/proto/openssl-compat.h.orig	2019-01-16 17:18:07 UTC
 +++ include/proto/openssl-compat.h
-@@ -89,7 +89,7 @@ static inline int SSL_SESSION_set1_id_co
+@@ -89,7 +89,7 @@ static inline int SSL_SESSION_set1_id_context(SSL_SESS
  }
  #endif
  

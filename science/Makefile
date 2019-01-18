@@ -72,6 +72,7 @@
     SUBDIR += epte
     SUBDIR += erd
     SUBDIR += erkale
+    SUBDIR += erkale-pseudopotentials
     SUBDIR += esys-particle
     SUBDIR += fastcap
     SUBDIR += fasthenry
@@ -217,6 +218,7 @@
     SUBDIR += py-ScientificPython
     SUBDIR += py-SimpleSpectral
     SUBDIR += py-abipy
+    SUBDIR += py-asdf
     SUBDIR += py-ase
     SUBDIR += py-avogadrolibs
     SUBDIR += py-cdo

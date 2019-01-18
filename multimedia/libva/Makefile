@@ -2,7 +2,7 @@
 
 PORTNAME=	libva
 PORTVERSION=	2.3.0
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	multimedia
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -15,44 +15,27 @@ COMMENT=	VAAPI wrapper and dummy driver
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
-RUN_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 LIB_DEPENDS=	libdrm.so:graphics/libdrm
 
-USES=		autoreconf gmake libtool localbase pkgconfig tar:bzip2
-USE_LDCONFIG=	yes
-
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--program-prefix=va
-INSTALL_TARGET=	install-strip
-
+USES=		meson pkgconfig
 USE_GITHUB=	yes
+USE_LDCONFIG=	yes
 GH_ACCOUNT=	intel
+LDFLAGS+=	-lpthread # for pthread_getthreadid_np
 
-LDFLAGS+=	-lpthread
-# prevent types conflict: videodev2.h vs. drm.h
-CFLAGS+=	-DHAVE_LINUX_INTEGER_TYPES
-
-OPTIONS_DEFINE=	DEBUG WAYLAND X11
+OPTIONS_DEFINE=	WAYLAND X11
 OPTIONS_DEFAULT=WAYLAND X11
 OPTIONS_SUB=	yes
 
-DEBUG_CFLAGS=		-D_DEBUG
-DEBUG_CFLAGS_OFF=	-DNDEBUG
-
-WAYLAND_CONFIGURE_ENABLE=	wayland
 WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
+WAYLAND_MESON_YES=	with_wayland
 
-X11_CONFIGURE_ENABLE=	x11 glx
 X11_USES=		gl
 X11_USE=		GL=gl XORG=x11,xorgproto,xext,xfixes
+X11_MESON_YES=		with_x11 with_glx
 
 post-patch:	.SILENT
-	${REINPLACE_CMD} -e 's|$${libdir}/\(pkgconfig\)|${PREFIX}/libdata/\1|' \
-		-e 's/"$$USE_X11:$$enable_glx" != "yes:no"/"$$USE_X11" != "no"/' \
-		${WRKSRC}/configure.ac
-	${REINPLACE_CMD} '/^export VA_HEADER_/d' \
-		${WRKSRC}/doc/Makefile.am
-	${REINPLACE_CMD} 's/-ldl//' ${WRKSRC}/va/Makefile.am
+# V4L2 is unused since http://github.com/intel/libva/commit/70074679333c
+	${REINPLACE_CMD} '/videodev2\.h/d' ${WRKSRC}/va/va_backend.h
 
 .include <bsd.port.mk>
