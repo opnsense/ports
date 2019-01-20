@@ -12,7 +12,9 @@ COMMENT=	Component Library for the McStas neutron ray tracing package
 
 LICENSE=	GPLv2
 
-RUN_DEPENDS=	${LOCALBASE}/mcstas/${PORTVERSION}/bin/mcstas:science/mcstas
+BROKEN=		missing RUN_DEPENDS
+
+RUN_DEPENDS=	mcstas:science/mcstas
 
 USES=		cmake
 # Apparently cmake does not generate an install/strip target if nothing

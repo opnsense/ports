@@ -175,6 +175,7 @@
     SUBDIR += gibson
     SUBDIR += git-crypt
     SUBDIR += git-remote-gcrypt
+    SUBDIR += git-secret
     SUBDIR += gnome-keyring
     SUBDIR += gnome-keyring-sharp
     SUBDIR += gnome-password-generator

@@ -12,6 +12,7 @@ MAINTAINER=	bar@FreeBSD.org
 COMMENT=	All-platform eMule p2p client
 
 LICENSE=	GPLv2+
+LICENSE_FILE_GPLv2=${WRKSRC}/docs/COPYING
 
 LIB_DEPENDS=	libcryptopp.so:security/cryptopp
 
@@ -19,8 +20,8 @@ CONFLICTS=	amule-devel-[0-9]*
 
 USE_HARDENING=	safestack
 
-USES=		bison compiler:c++11-lang desktop-file-utils gmake perl5 \
-		pkgconfig shebangfix tar:xz
+USES=		bison compiler:c++11-lang desktop-file-utils gmake \
+		localbase:ldflags perl5 pkgconfig shebangfix tar:xz
 USE_PERL5=	build
 USE_WX=		2.8
 WX_CONF_ARGS=	absolute
@@ -30,9 +31,10 @@ CONFIGURE_ARGS=	--with-denoise-level=0
 CONFIGURE_ENV=	LEX="${FLEX}" PKG_CONFIG="${PKG_CONFIG}" \
 		docdir='$${prefix}/${DOCSDIR_REL}'
 
-CPPFLAGS+=	-I${LOCALBASE}/include
 CXXFLAGS+=	`pkgconf --cflags-only-other libcryptopp`
-LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
+LDFLAGS+=	-lpthread
+
+SHEBANG_FILES=	src/utils/scripts/*.pl src/utils/xas/*.pl src/libs/ec/*.pl
 
 OPTIONS_DEFINE=	ALC ALCC AMULECMD AMULEDAEMON AMULEGUI CAS DEBUG DOCS ED2K \
 	FILEVIEW MMAP MONOLITHIC NLS UPNP \
@@ -54,10 +56,6 @@ OPTIONS_DEFAULT=ALC ALCC AMULECMD AMULEDAEMON AMULEGUI CAS ED2K \
 
 OPTIONS_SUB=	yes
 
-SHEBANG_FILES=	src/utils/scripts/*.pl src/utils/xas/*.pl src/libs/ec/*.pl
-
-LICENSE_FILE_GPLv2=${WRKSRC}/docs/COPYING
-
 DEBUG_CONFIGURE_ON=	--enable-debug
 
 NLS_USES=	gettext
@@ -68,6 +66,7 @@ ALC_CONFIGURE_ON=	--enable-alc
 ALCC_CONFIGURE_ON=	--enable-alcc
 
 AMULECMD_CONFIGURE_ON=	--enable-amulecmd
+AMULECMD_USES=		readline
 
 AMULEDAEMON_CONFIGURE_ON=	--enable-amule-daemon
 AMULEDAEMON_USE=	RC_SUBR=amuled
@@ -78,6 +77,7 @@ CAS_CONFIGURE_ON=	--enable-cas
 CAS_LIB_DEPENDS=	libgd.so:graphics/gd
 
 ED2K_CONFIGURE_OFF=	--disable-ed2k
+ED2K_CONFLICTS=		ed2k-hash*
 
 FILEVIEW_CONFIGURE_ON=	--enable-fileview
 
@@ -89,6 +89,7 @@ UPNP_LIB_DEPENDS=	libupnp.so:devel/upnp
 UPNP_CONFIGURE_OFF=	--disable-upnp
 
 WEBSERVER_CONFIGURE_ON=	--enable-webserver
+WEBSERVER_USES=		readline
 
 WXCAS_CONFIGURE_ON=	--enable-wxcas
 
@@ -96,10 +97,6 @@ XAS_CONFIGURE_ON=	--enable-xas
 XAS_USE=	PERL5+=run
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MED2K}
-CONFLICTS+=		ed2k-hash*
-.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e 's/test.*-print-file-name.*`/true/' \

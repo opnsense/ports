@@ -4453,6 +4453,7 @@
     SUBDIR += py-datrie
     SUBDIR += py-dbus
     SUBDIR += py-ddt
+    SUBDIR += py-ddtrace
     SUBDIR += py-debtcollector
     SUBDIR += py-decorator
     SUBDIR += py-decoratortools
@@ -4555,6 +4556,7 @@
     SUBDIR += py-gdbgui
     SUBDIR += py-gearman
     SUBDIR += py-generate
+    SUBDIR += py-genty
     SUBDIR += py-geojson
     SUBDIR += py-geotypes
     SUBDIR += py-gevent
@@ -4739,6 +4741,7 @@
     SUBDIR += py-ncurses
     SUBDIR += py-nose
     SUBDIR += py-nose-cov
+    SUBDIR += py-nose-timer
     SUBDIR += py-nose2
     SUBDIR += py-noseofyeti
     SUBDIR += py-notifier
@@ -4757,6 +4760,7 @@
     SUBDIR += py-openapi-codec
     SUBDIR += py-opendht
     SUBDIR += py-openstacksdk
+    SUBDIR += py-opentracing
     SUBDIR += py-opster
     SUBDIR += py-optik
     SUBDIR += py-option_merge
@@ -5566,6 +5570,7 @@
     SUBDIR += rubygem-daemon_controller
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-ddplugin
+    SUBDIR += rubygem-ddtrace
     SUBDIR += rubygem-debug_inspector
     SUBDIR += rubygem-debugger-linecache
     SUBDIR += rubygem-debugger-ruby_core_source
@@ -5827,6 +5832,7 @@
     SUBDIR += rubygem-omniauth_crowd22
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-opentracing
     SUBDIR += rubygem-opt_parse_validator
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-orm_adapter

@@ -19,6 +19,8 @@ PLIST_FILES=	bin/scdoc \
 		man/man1/scdoc.1.gz \
 		man/man5/scdoc.5.gz
 
+USE_HARDENING=	pie:off
+
 post-patch:
 	@${REINPLACE_CMD} -e 's,share/man,man,' \
 		-e '/BIN/s,install -Dm755,${INSTALL_PROGRAM},' \
