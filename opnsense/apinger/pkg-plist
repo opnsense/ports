@@ -1,4 +1,0 @@
-man/man1/apinger.1.gz
-man/man5/apinger.conf.5.gz
-sbin/apinger
-@sample etc/apinger.conf.sample
