@@ -30,7 +30,7 @@ GH_PROJECT=	Pale-Moon
 USE_GECKO=	gecko
 USE_HARDENING=	pie:off
 MOZ_PKGCONFIG_FILES=	# empty
-USE_MOZILLA=	# empty
+USE_MOZILLA=	-webp
 
 PM_ICON=	${PORTNAME}.png
 PM_ICON_SRC=	${PREFIX}/lib/${PORTNAME}/browser/icons/mozicon128.png

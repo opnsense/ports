@@ -32,7 +32,7 @@ USE_HARDENING=	pie:off relro:off
 
 SSP_UNSAFE=	yes
 USE_GECKO=	gecko
-USE_MOZILLA=	# empty
+USE_MOZILLA=	-webp
 
 USES=		tar:xz
 

@@ -37,7 +37,7 @@ MOZ_PIS_SCRIPTS=	moz_pis_S50cleanhome
 
 MOZ_OPTIONS+=	--enable-application=suite
 
-USE_MOZILLA=	# empty
+USE_MOZILLA=	-webp
 MOZ_PKGCONFIG_FILES=
 
 USE_HARDENING=	pie:off relro:off

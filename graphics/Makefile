@@ -155,6 +155,7 @@
     SUBDIR += dynamechs
     SUBDIR += easypaint
     SUBDIR += edje_viewer
+    SUBDIR += electricsheep
     SUBDIR += electrix
     SUBDIR += embree
     SUBDIR += enblend
@@ -266,6 +267,7 @@
     SUBDIR += gkrellkam2
     SUBDIR += gle
     SUBDIR += gle-graphics
+    SUBDIR += glee
     SUBDIR += glew
     SUBDIR += glexcess
     SUBDIR += glfw
@@ -844,6 +846,7 @@
     SUBDIR += py-mayavi
     SUBDIR += py-mcomix
     SUBDIR += py-ming
+    SUBDIR += py-mpl-scatter-density
     SUBDIR += py-nwdiag
     SUBDIR += py-open3d-python
     SUBDIR += py-opencolorio
