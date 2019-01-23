@@ -374,8 +374,8 @@
     SUBDIR += imgtops
     SUBDIR += imgv
     SUBDIR += imlib2
-    SUBDIR += imlib2_loaders
     SUBDIR += imlib2-webp
+    SUBDIR += imlib2_loaders
     SUBDIR += impressive
     SUBDIR += imv
     SUBDIR += inkscape
@@ -442,6 +442,7 @@
     SUBDIR += libGLw
     SUBDIR += libQGLViewer
     SUBDIR += libafterimage
+    SUBDIR += libansilove
     SUBDIR += libart_lgpl
     SUBDIR += libboard
     SUBDIR += libbpg
