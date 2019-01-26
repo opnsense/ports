@@ -1,4 +1,4 @@
---- src/libcrypto-compat.h.orig	2018-10-19 05:11:14 UTC
+--- src/libcrypto-compat.h	2018-10-19 05:11:14 UTC
 +++ src/libcrypto-compat.h
 @@ -2,7 +2,8 @@
  #define LIBCRYPTO_COMPAT_H
