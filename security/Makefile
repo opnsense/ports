@@ -61,6 +61,7 @@
     SUBDIR += bugs
     SUBDIR += bzrtp
     SUBDIR += ca_root_nss
+    SUBDIR += caesarcipher
     SUBDIR += calife
     SUBDIR += cardpeek
     SUBDIR += cargo-audit
@@ -186,6 +187,7 @@
     SUBDIR += gnutls
     SUBDIR += go-cve-dictionary
     SUBDIR += go.crypto
+    SUBDIR += gonepass
     SUBDIR += gopass
     SUBDIR += goptlib
     SUBDIR += gorilla
@@ -1011,6 +1013,8 @@
     SUBDIR += py-pysaml2
     SUBDIR += py-pyscard
     SUBDIR += py-pysha3
+    SUBDIR += py-python-axolotl
+    SUBDIR += py-python-axolotl-curve25519
     SUBDIR += py-python-gnupg
     SUBDIR += py-python-jose
     SUBDIR += py-python-nss

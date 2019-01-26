@@ -456,6 +456,7 @@
     SUBDIR += mgen
     SUBDIR += micro_inetd
     SUBDIR += micro_proxy
+    SUBDIR += microsocks
     SUBDIR += minidlna
     SUBDIR += mininet
     SUBDIR += minisapserver
@@ -904,6 +905,7 @@
     SUBDIR += packetdrill
     SUBDIR += packter-agent
     SUBDIR += panoptis
+    SUBDIR += parpd
     SUBDIR += passlogd
     SUBDIR += pathneck
     SUBDIR += pbnc
