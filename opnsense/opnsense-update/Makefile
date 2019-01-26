@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	opnsense-update
-PORTVERSION=	19.1.r1
+PORTVERSION=	19.1
 #PORTREVISION=	1 # GH_TAGNAME
 CATEGORIES=	sysutils
 
