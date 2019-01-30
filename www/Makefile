@@ -441,6 +441,7 @@
     SUBDIR += mod_limitipconn2
     SUBDIR += mod_line_edit
     SUBDIR += mod_log_sql2
+    SUBDIR += mod_maxminddb
     SUBDIR += mod_md-devel
     SUBDIR += mod_memcache
     SUBDIR += mod_memcache_block
@@ -1869,6 +1870,7 @@
     SUBDIR += py-user_agent
     SUBDIR += py-utidylib
     SUBDIR += py-w3lib
+    SUBDIR += py-wagtail
     SUBDIR += py-waitress
     SUBDIR += py-webassets
     SUBDIR += py-webhelpers
@@ -2403,6 +2405,7 @@
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
     SUBDIR += varnish6
+    SUBDIR += varnish_exporter
     SUBDIR += vdr-plugin-live
     SUBDIR += vdradmin-am
     SUBDIR += vee

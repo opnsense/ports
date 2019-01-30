@@ -211,6 +211,7 @@
     SUBDIR += bicyclerepair
     SUBDIR += bin86
     SUBDIR += binaryen
+    SUBDIR += bingo
     SUBDIR += bingrep
     SUBDIR += binutils
     SUBDIR += bison
@@ -1247,6 +1248,7 @@
     SUBDIR += iniparser
     SUBDIR += initutil
     SUBDIR += injeqt
+    SUBDIR += interactive_rebase_tool
     SUBDIR += ioncube
     SUBDIR += ipython
     SUBDIR += ipython5

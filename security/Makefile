@@ -1019,6 +1019,7 @@
     SUBDIR += py-python-jose
     SUBDIR += py-python-nss
     SUBDIR += py-python-openid
+    SUBDIR += py-python-pam
     SUBDIR += py-python-registry
     SUBDIR += py-python3-openid
     SUBDIR += py-pywinrm
