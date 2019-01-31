@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	scdoc
-DISTVERSION=	1.8.0
+DISTVERSION=	1.8.1
 CATEGORIES=	textproc
 MASTER_SITES=	https://git.sr.ht/~sircmpwn/${PORTNAME}/archive/
 DISTFILES=	${DISTVERSIONFULL}${EXTRACT_SUFX}
