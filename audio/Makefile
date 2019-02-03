@@ -569,6 +569,7 @@
     SUBDIR += ncmpc
     SUBDIR += ncmpcpp
     SUBDIR += nekobee
+    SUBDIR += nekobi-lv2
     SUBDIR += noise-repellent-lv2
     SUBDIR += normalize
     SUBDIR += nosefart
@@ -765,6 +766,7 @@
     SUBDIR += snack
     SUBDIR += snd
     SUBDIR += sndio
+    SUBDIR += so-synth-lv2
     SUBDIR += solfege
     SUBDIR += sonata
     SUBDIR += sonic-visualiser
@@ -793,6 +795,7 @@
     SUBDIR += spotifyd
     SUBDIR += squash
     SUBDIR += sratom
+    SUBDIR += stegosaurus-lv2
     SUBDIR += stk
     SUBDIR += streamripper
     SUBDIR += streamtranscoder
