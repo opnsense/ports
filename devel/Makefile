@@ -1202,8 +1202,6 @@
     SUBDIR += hs-utf8-light
     SUBDIR += hs-utf8-string
     SUBDIR += hs-utility-ht
-    SUBDIR += hs-uuagc
-    SUBDIR += hs-uuagc-bootstrap
     SUBDIR += hs-uuagc-cabal
     SUBDIR += hs-uuid
     SUBDIR += hs-uuid-types
@@ -4337,6 +4335,7 @@
     SUBDIR += py-attrs
     SUBDIR += py-automaton
     SUBDIR += py-avro
+    SUBDIR += py-aws-xray-sdk
     SUBDIR += py-azure-batch
     SUBDIR += py-azure-datalake-store
     SUBDIR += py-azure-graphrbac
@@ -4822,7 +4821,6 @@
     SUBDIR += py-oletools
     SUBDIR += py-omnijson
     SUBDIR += py-omniorb
-    SUBDIR += py-omniorb-3
     SUBDIR += py-openapi-codec
     SUBDIR += py-opendht
     SUBDIR += py-opengrok-tools
