@@ -56,7 +56,9 @@
     SUBDIR += asmem
     SUBDIR += asmon
     SUBDIR += asusoled
-    SUBDIR += atf-allwinner
+    SUBDIR += atf-master
+    SUBDIR += atf-sun50i_a64
+    SUBDIR += atf-rk3399
     SUBDIR += atitvout
     SUBDIR += atop
     SUBDIR += auto-admin
@@ -1371,6 +1373,7 @@
     SUBDIR += u-boot-cubox-hummingboard
     SUBDIR += u-boot-duovero
     SUBDIR += u-boot-imx-serial-loader
+    SUBDIR += u-boot-firefly-rk3399
     SUBDIR += u-boot-master
     SUBDIR += u-boot-nanopi-a64
     SUBDIR += u-boot-nanopi-m1plus

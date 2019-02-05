@@ -3235,6 +3235,7 @@
     SUBDIR += p5-Perl-OSType
     SUBDIR += p5-Perl-PrereqScanner
     SUBDIR += p5-Perl-PrereqScanner-Lite
+    SUBDIR += p5-Perl-PrereqScanner-NotQuiteLite
     SUBDIR += p5-Perl-Tidy
     SUBDIR += p5-Perl-Unsafe-Signals
     SUBDIR += p5-Perl-Version
@@ -3310,6 +3311,7 @@
     SUBDIR += p5-Regexp-RegGrp
     SUBDIR += p5-Regexp-Shellish
     SUBDIR += p5-Regexp-Subst-Parallel
+    SUBDIR += p5-Regexp-Trie
     SUBDIR += p5-Religion
     SUBDIR += p5-Reply
     SUBDIR += p5-ResourcePool
@@ -4512,6 +4514,7 @@
     SUBDIR += py-dal
     SUBDIR += py-darcsver
     SUBDIR += py-darts.util.lru
+    SUBDIR += py-datatest
     SUBDIR += py-dateutil
     SUBDIR += py-dateutils
     SUBDIR += py-datrie
