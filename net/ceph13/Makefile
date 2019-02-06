@@ -4,6 +4,7 @@
 PORTNAME=	ceph
 DISTVERSIONPREFIX=	v
 DISTVERSION=	13.2.1
+PKGNAMESUFFIX=	13
 CATEGORIES=	net
 
 MAINTAINER=	wjw@digiware.nl
@@ -19,7 +20,6 @@ BUILD_DEPENDS=	\
 	bash:shells/bash \
 	git:devel/git \
 	yasm:devel/yasm \
-	pkgconf:devel/pkgconf \
 	sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
 	gperf:devel/gperf \
 	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
@@ -46,7 +46,8 @@ RUN_DEPENDS=	\
 	virtualenv:devel/py-virtualenv@${PY_FLAVOR} \
 	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR}
 
-USES=	gmake cmake:noninja python:2.7 fuse gettext-runtime shebangfix ssl
+USES=		cmake:noninja fuse gettext-runtime gmake pkgconfig python:2.7 \
+		shebangfix ssl
 USE_PYTHON=	cython
 USE_OPENLDAP=	yes
 USE_GITHUB=	yes
