@@ -3,6 +3,7 @@
 
 PORTNAME=	portaudio
 PORTVERSION=	19.6.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	http://www.portaudio.com/archives/
@@ -19,8 +20,12 @@ USES=	autoreconf dos2unix gmake localbase:ldflags libtool pathfix \
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--without-alsa
+CONFIGURE_ARGS=	--disable-dependency-tracking \
+		--enable-cxx \
+		--without-alsa
 WRKSRC=		${WRKDIR}/${PORTNAME}
+
+MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFINE=	DOCS DOXYGEN EXAMPLES JACK PATEST SNDIO
 OPTIONS_SUB=	yes
@@ -49,7 +54,8 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libportaudio.so
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libportaudio.so \
+		${STAGEDIR}${PREFIX}/lib/libportaudiocpp.so
 	${INSTALL_DATA} ${FILESDIR}/pa_unix_oss.h ${STAGEDIR}${PREFIX}/include
 
 post-install-DOCS-on:
