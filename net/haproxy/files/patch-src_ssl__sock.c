@@ -1,4 +1,4 @@
---- src/ssl_sock.c.orig	2018-09-20 12:09:31 UTC
+--- src/ssl_sock.c.orig	2019-02-06 14:31:22 UTC
 +++ src/ssl_sock.c
 @@ -56,7 +56,7 @@
  #include <openssl/engine.h>
@@ -9,7 +9,7 @@
  #include <openssl/async.h>
  #endif
  
-@@ -430,7 +430,7 @@ fail_get:
+@@ -442,7 +442,7 @@ fail_get:
  }
  #endif
  
@@ -18,7 +18,7 @@
  /*
   * openssl async fd handler
   */
-@@ -1127,8 +1127,11 @@ static int ssl_sock_load_ocsp(SSL_CTX *c
+@@ -1139,8 +1139,11 @@ static int ssl_sock_load_ocsp(SSL_CTX *c
  		ocsp = NULL;
  
  #ifndef SSL_CTX_get_tlsext_status_cb
@@ -31,7 +31,7 @@
  #endif
  	SSL_CTX_get_tlsext_status_cb(ctx, &callback);
  
-@@ -1156,7 +1159,10 @@ static int ssl_sock_load_ocsp(SSL_CTX *c
+@@ -1168,7 +1171,10 @@ static int ssl_sock_load_ocsp(SSL_CTX *c
  		int key_type;
  		EVP_PKEY *pkey;
  
@@ -43,7 +43,7 @@
  		SSL_CTX_ctrl(ctx, SSL_CTRL_GET_TLSEXT_STATUS_REQ_CB_ARG, 0, &cb_arg);
  #else
  		cb_arg = ctx->tlsext_status_arg;
-@@ -1960,7 +1966,7 @@ ssl_sock_generate_certificate_from_conn(
+@@ -1986,7 +1992,7 @@ ssl_sock_generate_certificate_from_conn(
  #define SSL_MODE_SMALL_BUFFERS 0
  #endif
  
@@ -52,7 +52,7 @@
  typedef enum { SET_CLIENT, SET_SERVER } set_context_func;
  
  static void ctx_set_SSLv3_func(SSL_CTX *ctx, set_context_func c)
-@@ -2067,7 +2073,7 @@ static void ssl_sock_switchctx_set(SSL *
+@@ -2093,7 +2099,7 @@ static void ssl_sock_switchctx_set(SSL *
  	SSL_set_SSL_CTX(ssl, ctx);
  }
  
@@ -61,7 +61,7 @@
  
  static int ssl_sock_switchctx_err_cbk(SSL *ssl, int *al, void *priv)
  {
-@@ -3762,7 +3768,7 @@ ssl_sock_initial_ctx(struct bind_conf *b
+@@ -3792,7 +3798,7 @@ ssl_sock_initial_ctx(struct bind_conf *b
  	conf_ssl_methods->min = min;
  	conf_ssl_methods->max = max;
  
@@ -70,8 +70,8 @@
  	/* Keep force-xxx implementation as it is in older haproxy. It's a
  	   precautionary measure to avoid any suprise with older openssl version. */
  	if (min == max)
-@@ -3783,7 +3789,7 @@ ssl_sock_initial_ctx(struct bind_conf *b
- 		options &= ~SSL_OP_CIPHER_SERVER_PREFERENCE;
+@@ -3818,7 +3824,7 @@ ssl_sock_initial_ctx(struct bind_conf *b
+ 
  	SSL_CTX_set_options(ctx, options);
  
 -#if (OPENSSL_VERSION_NUMBER >= 0x1010000fL) && !defined(OPENSSL_NO_ASYNC)
@@ -79,16 +79,16 @@
  	if (global_ssl.async)
  		mode |= SSL_MODE_ASYNC;
  #endif
-@@ -3795,7 +3801,7 @@ ssl_sock_initial_ctx(struct bind_conf *b
+@@ -3830,7 +3836,7 @@ ssl_sock_initial_ctx(struct bind_conf *b
  #ifdef OPENSSL_IS_BORINGSSL
  	SSL_CTX_set_select_certificate_cb(ctx, ssl_sock_switchctx_cbk);
  	SSL_CTX_set_tlsext_servername_callback(ctx, ssl_sock_switchctx_err_cbk);
 -#elif (OPENSSL_VERSION_NUMBER >= 0x10101000L)
 +#elif (OPENSSL_VERSION_NUMBER >= 0x10101000L) && !defined(LIBRESSL_VERSION_NUMBER)
- 	SSL_CTX_set_client_hello_cb(ctx, ssl_sock_switchctx_cbk, NULL);
- 	SSL_CTX_set_tlsext_servername_callback(ctx, ssl_sock_switchctx_err_cbk);
- #else
-@@ -4533,7 +4539,7 @@ int ssl_sock_prepare_srv_ctx(struct serv
+ 	if (bind_conf->ssl_conf.early_data) {
+ 		SSL_CTX_set_options(ctx, SSL_OP_NO_ANTI_REPLAY);
+ 		SSL_CTX_set_max_early_data(ctx, global.tune.bufsize - global.tune.maxrewrite);
+@@ -4585,7 +4591,7 @@ int ssl_sock_prepare_srv_ctx(struct serv
  		cfgerr += 1;
  	}
  
@@ -97,7 +97,7 @@
  	/* Keep force-xxx implementation as it is in older haproxy. It's a
  	   precautionary measure to avoid any suprise with older openssl version. */
  	if (min == max)
-@@ -4552,7 +4558,7 @@ int ssl_sock_prepare_srv_ctx(struct serv
+@@ -4604,7 +4610,7 @@ int ssl_sock_prepare_srv_ctx(struct serv
  		options |= SSL_OP_NO_TICKET;
  	SSL_CTX_set_options(ctx, options);
  
@@ -106,7 +106,7 @@
  	if (global_ssl.async)
  		mode |= SSL_MODE_ASYNC;
  #endif
-@@ -5049,7 +5055,7 @@ int ssl_sock_handshake(struct connection
+@@ -5111,7 +5117,7 @@ int ssl_sock_handshake(struct connection
  	if (!conn->xprt_ctx)
  		goto out_error;
  
@@ -115,7 +115,7 @@
  	/*
  	 * Check if we have early data. If we do, we have to read them
  	 * before SSL_do_handshake() is called, And there's no way to
-@@ -5106,7 +5112,7 @@ int ssl_sock_handshake(struct connection
+@@ -5168,7 +5174,7 @@ int ssl_sock_handshake(struct connection
  				fd_cant_recv(conn->handle.fd);
  				return 0;
  			}
@@ -124,7 +124,7 @@
  			else if (ret == SSL_ERROR_WANT_ASYNC) {
  				ssl_async_process_fds(conn, conn->xprt_ctx);
  				return 0;
-@@ -5117,7 +5123,7 @@ int ssl_sock_handshake(struct connection
+@@ -5179,7 +5185,7 @@ int ssl_sock_handshake(struct connection
  				if (!errno && conn->flags & CO_FL_WAIT_L4_CONN)
  					conn->flags &= ~CO_FL_WAIT_L4_CONN;
  				if (!conn->err_code) {
@@ -133,7 +133,7 @@
  					conn->err_code = CO_ER_SSL_HANDSHAKE;
  #else
  					int empty_handshake;
-@@ -5190,7 +5196,7 @@ check_error:
+@@ -5252,7 +5258,7 @@ check_error:
  			fd_cant_recv(conn->handle.fd);
  			return 0;
  		}
@@ -142,7 +142,7 @@
  		else if (ret == SSL_ERROR_WANT_ASYNC) {
  			ssl_async_process_fds(conn, conn->xprt_ctx);
  			return 0;
-@@ -5201,7 +5207,7 @@ check_error:
+@@ -5263,7 +5269,7 @@ check_error:
  			if (!errno && conn->flags & CO_FL_WAIT_L4_CONN)
  				conn->flags &= ~CO_FL_WAIT_L4_CONN;
  			if (!conn->err_code) {
@@ -151,7 +151,7 @@
  				conn->err_code = CO_ER_SSL_HANDSHAKE;
  #else
  				int empty_handshake;
-@@ -5249,7 +5255,7 @@ check_error:
+@@ -5311,7 +5317,7 @@ check_error:
  			goto out_error;
  		}
  	}
@@ -160,7 +160,7 @@
  	else {
  		/*
  		 * If the server refused the early data, we have to send a
-@@ -5268,7 +5274,7 @@ check_error:
+@@ -5330,7 +5336,7 @@ check_error:
  
  reneg_ok:
  
@@ -169,7 +169,7 @@
  	/* ASYNC engine API doesn't support moving read/write
  	 * buffers. So we disable ASYNC mode right after
  	 * the handshake to avoid buffer oveflows.
-@@ -5372,7 +5378,7 @@ static int ssl_sock_to_buf(struct connec
+@@ -5434,7 +5440,7 @@ static int ssl_sock_to_buf(struct connec
  			continue;
  		}
  
@@ -178,7 +178,7 @@
  		if (conn->flags & CO_FL_EARLY_SSL_HS) {
  			size_t read_length;
  
-@@ -5424,7 +5430,7 @@ static int ssl_sock_to_buf(struct connec
+@@ -5486,7 +5492,7 @@ static int ssl_sock_to_buf(struct connec
  				/* handshake is running, and it needs to enable write */
  				conn->flags |= CO_FL_SSL_WAIT_HS;
  				__conn_sock_want_send(conn);
@@ -187,7 +187,7 @@
  				/* Async mode can be re-enabled, because we're leaving data state.*/
  				if (global_ssl.async)
  					SSL_set_mode(conn->xprt_ctx, SSL_MODE_ASYNC);
-@@ -5436,7 +5442,7 @@ static int ssl_sock_to_buf(struct connec
+@@ -5498,7 +5504,7 @@ static int ssl_sock_to_buf(struct connec
  					/* handshake is running, and it may need to re-enable read */
  					conn->flags |= CO_FL_SSL_WAIT_HS;
  					__conn_sock_want_recv(conn);
@@ -196,7 +196,7 @@
  					/* Async mode can be re-enabled, because we're leaving data state.*/
  					if (global_ssl.async)
  						SSL_set_mode(conn->xprt_ctx, SSL_MODE_ASYNC);
-@@ -5528,7 +5534,7 @@ static int ssl_sock_from_buf(struct conn
+@@ -5590,7 +5596,7 @@ static int ssl_sock_from_buf(struct conn
  			conn->xprt_st |= SSL_SOCK_SEND_UNLIMITED;
  		}
  
@@ -205,7 +205,7 @@
  		if (!SSL_is_init_finished(conn->xprt_ctx)) {
  			unsigned int max_early;
  
-@@ -5586,7 +5592,7 @@ static int ssl_sock_from_buf(struct conn
+@@ -5648,7 +5654,7 @@ static int ssl_sock_from_buf(struct conn
  					/* handshake is running, and it may need to re-enable write */
  					conn->flags |= CO_FL_SSL_WAIT_HS;
  					__conn_sock_want_send(conn);
@@ -214,7 +214,7 @@
  					/* Async mode can be re-enabled, because we're leaving data state.*/
  					if (global_ssl.async)
  						SSL_set_mode(conn->xprt_ctx, SSL_MODE_ASYNC);
-@@ -5601,7 +5607,7 @@ static int ssl_sock_from_buf(struct conn
+@@ -5663,7 +5669,7 @@ static int ssl_sock_from_buf(struct conn
  				/* handshake is running, and it needs to enable read */
  				conn->flags |= CO_FL_SSL_WAIT_HS;
  				__conn_sock_want_recv(conn);
@@ -223,7 +223,7 @@
  				/* Async mode can be re-enabled, because we're leaving data state.*/
  				if (global_ssl.async)
  					SSL_set_mode(conn->xprt_ctx, SSL_MODE_ASYNC);
-@@ -5627,7 +5633,7 @@ static int ssl_sock_from_buf(struct conn
+@@ -5689,7 +5695,7 @@ static int ssl_sock_from_buf(struct conn
  static void ssl_sock_close(struct connection *conn) {
  
  	if (conn->xprt_ctx) {
