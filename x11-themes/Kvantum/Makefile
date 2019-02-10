@@ -2,8 +2,7 @@
 
 PORTNAME=	Kvantum
 DISTVERSIONPREFIX=	V
-DISTVERSION=	0.10.8
-PORTREVISION=	1
+DISTVERSION=	0.10.9
 CATEGORIES=	x11-themes
 
 MAINTAINER=	rigoletto@FreeBSD.org
@@ -33,7 +32,8 @@ EXPIRATION_DATE=2019-03-15
 USES+=		qt:4
 USE_QT=		corelib gui svg rcc_build uic_build moc_build
 .elif ${FLAVOR} == qt5
-USES+=		qt:5
+USES+=		kde:5 qt:5
+USE_KDE=	windowsystem
 USE_QT=		core gui svg widgets x11extras buildtools_build \
 		linguisttools_build
 .endif

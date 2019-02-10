@@ -1,27 +1,29 @@
 # $FreeBSD$
 
 PORTNAME=	citra
-PORTVERSION=	s20190203
+PORTVERSION=	s20190208
 PORTREVISION?=	0
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo 3DS emulator/debugger
 
-LICENSE=	BSD2CLAUSE BSD3CLAUSE BSL GPLv2+ LGPL21+ MIT UNLICENSE
+LICENSE=	BSD2CLAUSE BSD3CLAUSE BSL GPLv2+ ISCL LGPL21+ MIT OpenSSL UNLICENSE
 LICENSE_COMB=	multi
 LICENSE_FILE_BSD2CLAUSE=${WRKSRC}/externals/fmt/LICENSE.rst
 LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/externals/inih/inih/LICENSE.txt
 LICENSE_FILE_BSL=	${WRKSRC}/externals/catch/LICENSE.txt
 LICENSE_FILE_GPLv2+ =	${WRKSRC}/license.txt
-LICENSE_FILE_MIT=	${WRKSRC}/externals/enet/LICENSE
+LICENSE_FILE_ISCL=	${WRKSRC}/externals/cubeb/LICENSE
 LICENSE_FILE_LGPL21+ =	${_LICENSE_STORE}/LGPL21 # soundtouch
+LICENSE_FILE_MIT=	${WRKSRC}/externals/enet/LICENSE
+LICENSE_FILE_OpenSSL=	${WRKSRC}/externals/libressl/COPYING
 
 BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	citra-emu
-GH_TAGNAME=	f620c862f
+GH_TAGNAME=	bf1dbb47d
 GH_TUPLE=	citra-emu:ext-libressl-portable:7d01cb0:libressl/externals/libressl \
 		citra-emu:ext-soundtouch:060181e:soundtouch/externals/soundtouch \
 		MerryMage:dynarmic:r1-992-g4e6848d1:dynarmic/externals/dynarmic \
@@ -35,9 +37,7 @@ GH_TUPLE=	citra-emu:ext-libressl-portable:7d01cb0:libressl/externals/libressl \
 		lsalzman:enet:39a72ab:enet/externals/enet \
 		neobrain:nihstro:fd69de1:nihstro/externals/nihstro \
 		weidai11:cryptopp:CRYPTOPP_7_0_0-23-gf320e7d9:cryptopp/externals/cryptopp/cryptopp \
-		wwylele:teakra:e6ea0ea:teakra/externals/teakra \
-		zeromq:cppzmq:v4.2.3:cppzmq/externals/cppzmq \
-		zeromq:libzmq:v4.2.5:libzmq/externals/libzmq
+		wwylele:teakra:e6ea0ea:teakra/externals/teakra
 
 USES=		cmake compiler:c++17-lang iconv localbase:ldflags
 USE_SDL=	sdl2
