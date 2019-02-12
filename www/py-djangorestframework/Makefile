@@ -19,7 +19,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django111>0:www/py-django111@${PY_FLAVOR} \
 USES=		python
 USE_PYTHON=	distutils autoplist
 
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}djangorestframework36
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}djangorestframework?? \
+			${PYTHON_PKGNAMEPREFIX}dj21-djangorestframework
 NO_ARCH=		yes
 
 .include <bsd.port.mk>

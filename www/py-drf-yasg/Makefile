@@ -29,6 +29,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django111>=1.11.7:www/py-django111@${PY_FLAV
 USES=		python
 USE_PYTHON=	distutils autoplist
 
-NO_ARCH=	yes
+NO_ARCH=		yes
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}dj21-drf-yasg
 
 .include <bsd.port.mk>

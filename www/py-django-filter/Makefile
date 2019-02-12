@@ -19,6 +19,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django>0:www/py-django@${PY_FLAVOR} \
 
 USES=		python
 USE_PYTHON=	distutils autoplist
-NO_ARCH=	yes
+
+NO_ARCH=		yes
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}dj21-django-filter
 
 .include <bsd.port.mk>
