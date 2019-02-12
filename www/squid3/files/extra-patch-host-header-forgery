@@ -1,0 +1,12 @@
+--- src/client_side_request.cc.orig	2019-02-12 13:27:33 UTC
++++ src/client_side_request.cc
+@@ -530,6 +530,9 @@ ClientRequestContext::hostHeaderIpVerify
+             }
+             debugs(85, 3, HERE << "validate IP " << clientConn->local << " non-match from Host: IP " << ia->in_addrs[i]);
+         }
++        http->request->flags.hostVerified = true;
++        http->doCallouts();
++        return;
+     }
+     debugs(85, 3, HERE << "FAIL: validate IP " << clientConn->local << " possible from Host:");
+     hostHeaderVerifyFailed("local IP", "any domain IP");
