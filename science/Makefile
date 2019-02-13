@@ -107,6 +107,7 @@
     SUBDIR += iboview
     SUBDIR += isaac-cfd
     SUBDIR += jdftx
+    SUBDIR += jmol
     SUBDIR += jstrack
     SUBDIR += kalzium
     SUBDIR += kst2
@@ -153,6 +154,7 @@
     SUBDIR += mmtf
     SUBDIR += mol2ps
     SUBDIR += molgif
+    SUBDIR += molscript
     SUBDIR += molsketch
     SUBDIR += mpb
     SUBDIR += mpqc
@@ -171,6 +173,7 @@
     SUBDIR += openmx
     SUBDIR += opensim-core
     SUBDIR += openstructure
+    SUBDIR += opsin
     SUBDIR += p5-Algorithm-SVMLight
     SUBDIR += p5-Chemistry-3DBuilder
     SUBDIR += p5-Chemistry-Bond-Find
