@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	timescaledb
-PORTVERSION=	1.2.0
+PORTVERSION=	1.2.1
 CATEGORIES=	databases
 
 MAINTAINER=	kbowling@FreeBSD.org
@@ -20,15 +20,17 @@ USES=		compiler:c11 cmake pgsql:9.6,10,11 ssl
 USE_GITHUB=	YES
 GH_ACCOUNT=	timescale
 
-OPTIONS_DEFINE=		APACHEONLY
-OPTIONS_SUB=		yes
-
-APACHEONLY_CMAKE_BOOL=	APACHE_ONLY
-APACHEONLY_DESC=	Only build Apache licensed code
-
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 SUB_FILES=	pkg-message
+SUB_LIST=	PORTVERSION=${PORTVERSION}
 
 WANT_PGSQL=	server
+
+OPTIONS_DEFINE=		TSL
+OPTIONS_DEFAULT=	TSL
+OPTIONS_SUB=		yes
+
+TSL_DESC=		Enables TSL licensed code in additon to Apache license code
+TSL_CMAKE_BOOL_OFF=	APACHE_ONLY
 
 .include <bsd.port.mk>
