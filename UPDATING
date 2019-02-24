@@ -5,10 +5,37 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20190224:
+  AFFECTS: users of security/gnutls
+  AUTHOR: tijl@FreeBSD.org
+
+  GnuTLS now looks for its configuration files in PREFIX/etc (/usr/local/etc)
+  instead of /etc.  If the following files exist they have to be moved.  On a
+  default installation these files do not exist.
+
+  /etc/gnutls/default-priorities
+  /etc/gnutls/pkcs11.conf
+  /etc/tpasswd
+  /etc/tpasswd.conf
+
+20190215:
+  AFFECTS: users of net-im/ejabberd
+  AUTHOR: ashish@FreeBSD.org
+
+  If you've mod_mam enabled with compress_xml set to true, then you're affected
+  by bug where the XML namespace, and tag elements get interchanged in the MAM cache
+  which results in invalid XML, and causing XMPP clients to disconnect. For more details,
+  please refer to: https://github.com/processone/ejabberd/issues/2744
+
+  This upgrade contains the patch that fixes the problem going forward. For fixing already
+  affected users, you'll need to wipe off the MAM cache for the affected users:
+
+      sudo -u ejabberd -H ejabberdctl remove_mam_for_user <user> <server>
+
 20190202:
   AFFECTS: users of archivers/urbackup-server
   AUTHOR: freebsd@coombscloud.com
-  
+
   Some of the port's sources previously included absolute references to /etc/urbackup.  
   The upgrade now changes these references to ${PREFIX}/etc/urbackup. If you have placed 
   any configuration files within /etc/urbackup, these should be relocated to 
@@ -2996,6 +3023,11 @@ you update your ports collection, before attempting any port upgrades.
 
 	portupgrade -f `pkg shlib -qR libperl.so.5.20`
 
+	  If, for some reason, this command fails at one point, it is safe to
+	  run it again, it will not rebuild what it already rebuilt, as the
+	  ports that have been rebuilt no longer depend on libperl.so.5.20 but
+	  on libperl.so.5.24.
+
   Portmaster users:
 	portmaster -o lang/perl5.24 lang/perl5.20
 
@@ -3006,6 +3038,11 @@ you update your ports collection, before attempting any port upgrades.
 	  can do so with:
 
 	portmaster -f `pkg shlib -qR libperl.so.5.20`
+
+	  If, for some reason, this command fails at one point, it is safe to
+	  run it again, it will not rebuild what it already rebuilt, as the
+	  ports that have been rebuilt no longer depend on libperl.so.5.20 but
+	  on libperl.so.5.24.
 
 20161102:
   AFFECTS: users of security/acme-client
