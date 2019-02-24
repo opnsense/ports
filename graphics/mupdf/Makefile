@@ -4,6 +4,7 @@
 PORTNAME=	mupdf
 DISTVERSION=	1.14.0
 DISTVERSIONSUFFIX=	-source
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	graphics
 MASTER_SITES=	http://www.mupdf.com/downloads/ \
@@ -26,6 +27,9 @@ USE_XORG=	x11 xcursor xext xinerama xrandr
 USE_GL=		gl glut
 CPE_VENDOR=	artifex
 USE_LDCONFIG=	yes
+
+# pkg-config to avoid the conflict with openjpeg15
+CFLAGS+=	`pkg-config --cflags libopenjp2`
 
 MAKE_ARGS=	build=release prefix=${PREFIX} mandir=${PREFIX}/man verbose=yes \
 		XCFLAGS+="-I${WRKSRC}/include/mupdf -fPIC" \
