@@ -20,7 +20,7 @@ BUILD_DEPENDS=	\
 	bash:shells/bash \
 	git:devel/git \
 	yasm:devel/yasm \
-	sphinx-build:textproc/py-sphinx@${PY_FLAVOR} \
+	sphinx-build:textproc/py-sphinx \
 	gperf:devel/gperf \
 	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
 LIB_DEPENDS=	\
@@ -43,7 +43,7 @@ RUN_DEPENDS=	\
 	xml:textproc/xmlstarlet \
 	jq:textproc/jq \
 	flock:sysutils/flock \
-	virtualenv:devel/py-virtualenv@${PY_FLAVOR} \
+	${PYTHON_PKGNAMEPREFIX}virtualenv>=0:devel/py-virtualenv@${PY_FLAVOR} \
 	${PYTHON_PKGNAMEPREFIX}prettytable>=0:devel/py-prettytable@${PY_FLAVOR}
 
 USES=		cmake:noninja fuse gettext-runtime gmake pkgconfig python:2.7 \

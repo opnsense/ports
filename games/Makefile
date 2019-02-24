@@ -745,7 +745,6 @@
     SUBDIR += pipenightdreams
     SUBDIR += pipepanic
     SUBDIR += pipewalker
-    SUBDIR += plutocracy
     SUBDIR += pmars
     SUBDIR += pmars-sdl
     SUBDIR += poker-engine
@@ -1140,6 +1139,7 @@
     SUBDIR += xpyraminx
     SUBDIR += xqf
     SUBDIR += xrally
+    SUBDIR += xray_re-tools
     SUBDIR += xrick
     SUBDIR += xrisk
     SUBDIR += xroach

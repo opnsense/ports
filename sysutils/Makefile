@@ -97,6 +97,7 @@
     SUBDIR += bareos16-client-static
     SUBDIR += bareos16-server
     SUBDIR += bareos16-traymonitor
+    SUBDIR += bastille
     SUBDIR += batmon
     SUBDIR += battmond
     SUBDIR += battray
@@ -1008,10 +1009,12 @@
     SUBDIR += py-azure-cli-servicefabric
     SUBDIR += py-azure-cli-signalr
     SUBDIR += py-azure-cli-sql
+    SUBDIR += py-azure-cli-sqlvm
     SUBDIR += py-azure-cli-storage
     SUBDIR += py-azure-cli-telemetry
     SUBDIR += py-azure-cli-vm
     SUBDIR += py-bcfg2
+    SUBDIR += py-bitrot
     SUBDIR += py-cdmi
     SUBDIR += py-croniter
     SUBDIR += py-crontab
@@ -1370,6 +1373,7 @@
     SUBDIR += u-boot-bananapim2
     SUBDIR += u-boot-beaglebone
     SUBDIR += u-boot-chip
+    SUBDIR += u-boot-clearfog
     SUBDIR += u-boot-cubieboard
     SUBDIR += u-boot-cubieboard2
     SUBDIR += u-boot-cubox-hummingboard
@@ -1507,6 +1511,7 @@
     SUBDIR += xfce4-diskperf-plugin
     SUBDIR += xfce4-fsguard-plugin
     SUBDIR += xfce4-genmon-plugin
+    SUBDIR += xfce4-kbdleds-plugin
     SUBDIR += xfce4-mount-plugin
     SUBDIR += xfce4-netload-plugin
     SUBDIR += xfce4-power-manager

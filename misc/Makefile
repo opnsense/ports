@@ -29,6 +29,7 @@
     SUBDIR += birthday
     SUBDIR += bogosort
     SUBDIR += bottlerocket
+    SUBDIR += box2d
     SUBDIR += boxes
     SUBDIR += brs
     SUBDIR += bsod
@@ -66,6 +67,7 @@
     SUBDIR += dahdi
     SUBDIR += dahdi-kmod
     SUBDIR += dahdi-kmod26
+    SUBDIR += dartsim
     SUBDIR += ddate
     SUBDIR += deco
     SUBDIR += dejagnu
@@ -368,6 +370,7 @@
     SUBDIR += py-YABT
     SUBDIR += py-cinder
     SUBDIR += py-colorbrewer
+    SUBDIR += py-colored
     SUBDIR += py-crudini
     SUBDIR += py-emoji
     SUBDIR += py-fast-histogram

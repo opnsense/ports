@@ -6,7 +6,7 @@ DISTVERSION=	${FULLVERSION}
 PORTREVISION=	1
 CATEGORIES=	multimedia
 
-MAINTAINER=	multimedia@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Free, open source, cross-platform video editor
 
 LICENSE=	GPLv3
