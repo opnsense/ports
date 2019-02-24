@@ -7,7 +7,7 @@ PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
 # dns/bind-tools here
 PORTREVISION=	0
 .else
-PORTREVISION=	3
+PORTREVISION=	0
 .endif
 CATEGORIES=	dns net ipv6
 MASTER_SITES=	ISC/bind9/${ISCVERSION}
@@ -34,7 +34,7 @@ USE_HARDENING=  safestack
 
 USES=	compiler:c11 cpe libedit
 # ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.12.3-P1
+ISCVERSION=	9.12.3-P4
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${ISCVERSION:C/-.*//}
