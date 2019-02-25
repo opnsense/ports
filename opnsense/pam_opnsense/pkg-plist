@@ -1,3 +1,4 @@
 etc/pam.d/opnsense-auth-test
 lib/pam_opnsense.so
+man/man8/opnsense-auth-test.8.gz
 sbin/opnsense-auth-test
