@@ -15,7 +15,6 @@ SRCS=		encode.c segenc.c strenc.c strFwdTransform.c strPredQuantEnc.c	\
 .PATH:	${.CURDIR:H}/image/decode ${.CURDIR:H}/common/include
 
 CFLAGS+=	-I. -I${.CURDIR:H}/common/include -I${.CURDIR:H}/image/sys
-CFLAGS+=	-D__ANSI__ -DDISABLE_PERF_MEASUREMENT
-CFLAGS+=	-Wno-extra-tokens
+CFLAGS+=	-D__ANSI__ -DDISABLE_PERF_MEASUREMENT -fPIC
 
 .include <bsd.lib.mk>
