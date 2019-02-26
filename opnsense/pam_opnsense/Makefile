@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pam_opnsense
-PORTVERSION=	17.1
-PORTREVISION=	1 # GH_TAGNAME
+PORTVERSION=	19.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ad@opnsense.org
