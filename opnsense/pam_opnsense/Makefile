@@ -3,7 +3,7 @@
 
 PORTNAME=	pam_opnsense
 PORTVERSION=	17.1
-PORTREVISION=	1 # GH_TAGNAME
+PORTREVISION=	2 # GH_TAGNAME
 CATEGORIES=	sysutils
 
 MAINTAINER=	ad@opnsense.org
@@ -13,7 +13,7 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	8ca6abd
+GH_TAGNAME=	5e56c60
 
 post-stage:
 	${RM} ${STAGEDIR}${PREFIX}/lib/*.a
