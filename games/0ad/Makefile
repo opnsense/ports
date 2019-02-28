@@ -2,7 +2,7 @@
 
 PORTNAME=	0ad
 PORTVERSION=	0.0.23b
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 MASTER_SITES=	http://releases.wildfiregames.com/ \
 		SF/zero-ad/releases
@@ -31,7 +31,7 @@ USE_HARDENING=	pie:off
 
 USES=		compiler:c++11-lib desktop-file-utils dos2unix gmake iconv jpeg openal:al \
 		pkgconfig python:2.7,build tar:xz
-USE_GNOME=	libxml2 gtk20
+USE_GNOME=	libxml2
 USE_GL=		gl
 USE_SDL=	sdl2
 USE_XORG=	x11 xcursor

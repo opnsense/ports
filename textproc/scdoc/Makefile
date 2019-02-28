@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	scdoc
-DISTVERSION=	1.9.0
+DISTVERSION=	1.9.1
 CATEGORIES=	textproc
 MASTER_SITES=	https://git.sr.ht/~sircmpwn/${PORTNAME}/archive/
 DISTFILES=	${DISTVERSIONFULL}${EXTRACT_SUFX}
@@ -14,7 +14,6 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake
-MAKE_ENV=	PCDIR="${STAGEDIR}${PREFIX}/libdata/pkgconfig"
 TEST_TARGET=	check
 PLIST_FILES=	bin/${PORTNAME} \
 		libdata/pkgconfig/${PORTNAME}.pc \
@@ -25,10 +24,13 @@ USE_HARDENING=	pie:off
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,share/man,man,' \
+		-e '/pkgconfig/s,lib,libdata,' \
 		-e '/BIN/s,install -Dm755,${INSTALL_PROGRAM},' \
 		-e '/MAN/s,install -Dm644,${INSTALL_MAN},' \
 		-e '/PC/s,install -Dm644,${INSTALL_DATA},' \
 		${WRKSRC}/Makefile
+	@${REINPLACE_CMD} -e '/prefix/s,/usr,${PREFIX},' \
+		${WRKSRC}/${PORTNAME}.pc
 	@${REINPLACE_CMD} -i '' 's,--date=,-f "%F %T %z" ,' \
 		${WRKSRC}/test/preamble
 

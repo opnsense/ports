@@ -5085,6 +5085,7 @@
     SUBDIR += py-ratelimiter
     SUBDIR += py-rauth
     SUBDIR += py-raven
+    SUBDIR += py-rchitect
     SUBDIR += py-rcsparse
     SUBDIR += py-readme_renderer
     SUBDIR += py-rebulk
@@ -5488,6 +5489,7 @@
     SUBDIR += racer
     SUBDIR += racerd
     SUBDIR += radare2
+    SUBDIR += radian
     SUBDIR += ragel
     SUBDIR += raknet
     SUBDIR += range-v3
@@ -5527,7 +5529,6 @@
     SUBDIR += rpm-spec-mode.el
     SUBDIR += rsvndump
     SUBDIR += rth
-    SUBDIR += rtichoke
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-build
     SUBDIR += ruby-gems
@@ -5780,7 +5781,6 @@
     SUBDIR += rubygem-grape-path-helpers
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
-    SUBDIR += rubygem-grape0
     SUBDIR += rubygem-grape11
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-graphiql-rails

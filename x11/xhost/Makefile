@@ -1,11 +1,14 @@
 # $FreeBSD$
 
 PORTNAME=	xhost
-PORTVERSION=	1.0.7
+PORTVERSION=	1.0.8
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Server access control program for X
+
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	safestack
 
