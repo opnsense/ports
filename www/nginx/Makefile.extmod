@@ -197,7 +197,7 @@ LUA_IMPLIES=		DEVEL_KIT
 LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
 LUA_CONFIGURE_ENV=	LUAJIT_INC=${LOCALBASE}/include/luajit-2.0 \
 			LUAJIT_LIB=${LOCALBASE}/lib
-LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.14rc6:lua
+LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.14:lua
 LUA_VARS=		DSO_EXTMODS+=lua
 
 MEMC_GH_TUPLE=		openresty:memc-nginx-module:v0.18:memc
@@ -224,10 +224,10 @@ NAXSI_NGINX_VER=	0.56
 NAXSI_GH_TUPLE=		nbs-system:naxsi:${NAXSI_NGINX_VER}:naxsi
 NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 
-NJS_GH_TUPLE=		nginx:njs:113c228:njs
+NJS_GH_TUPLE=		nginx:njs:0.2.8:njs
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
 
-PASSENGER_NGINX_VER=	6.0.1
+PASSENGER_NGINX_VER=	6.0.2
 PASSENGER_CATEGORIES=	ruby
 PASSENGER_USE=		ruby=yes
 PASSENGER_BUILD_DEPENDS=${LOCALBASE}/bin/rake:devel/rubygem-rake
