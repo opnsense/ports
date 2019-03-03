@@ -992,6 +992,7 @@
     SUBDIR += py-azure-cli-iot
     SUBDIR += py-azure-cli-iotcentral
     SUBDIR += py-azure-cli-keyvault
+    SUBDIR += py-azure-cli-kusto
     SUBDIR += py-azure-cli-lab
     SUBDIR += py-azure-cli-maps
     SUBDIR += py-azure-cli-monitor
@@ -1005,6 +1006,7 @@
     SUBDIR += py-azure-cli-resource
     SUBDIR += py-azure-cli-role
     SUBDIR += py-azure-cli-search
+    SUBDIR += py-azure-cli-security
     SUBDIR += py-azure-cli-servicebus
     SUBDIR += py-azure-cli-servicefabric
     SUBDIR += py-azure-cli-signalr
@@ -1317,6 +1319,7 @@
     SUBDIR += syslog-ng317
     SUBDIR += syslog-ng318
     SUBDIR += syslog-ng319
+    SUBDIR += syslog-ng320
     SUBDIR += syslog-ng39
     SUBDIR += syslogger
     SUBDIR += sysrc

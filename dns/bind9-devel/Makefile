@@ -62,7 +62,7 @@ CONFIGURE_ARGS=	--localstatedir=/var --disable-linux-caps \
 ETCDIR=		${PREFIX}/etc/namedb
 
 # XXX: Add -devel
-CONFLICTS=	bind99 bind910 bind911 bind912 bind913
+CONFLICTS=	bind911 bind912 bind913 bind914
 
 .if defined(BIND_TOOLS_SLAVE)
 CONFIGURE_ARGS+=	--disable-shared
