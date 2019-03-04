@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pam_opnsense
-PORTVERSION=	17.1
-PORTREVISION=	2 # GH_TAGNAME
+PORTVERSION=	19.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	ad@opnsense.org
@@ -13,7 +12,6 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	5e56c60
 
 post-stage:
 	${RM} ${STAGEDIR}${PREFIX}/lib/*.a
