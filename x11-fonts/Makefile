@@ -162,7 +162,12 @@
     SUBDIR += nerd-fonts
     SUBDIR += nexfontsel
     SUBDIR += noto
-    SUBDIR += noto-lite
+    SUBDIR += noto-basic
+    SUBDIR += noto-extra
+    SUBDIR += noto-jp
+    SUBDIR += noto-kr
+    SUBDIR += noto-sc
+    SUBDIR += noto-tc
     SUBDIR += nucleus
     SUBDIR += ohsnap
     SUBDIR += oldschool-pc-fonts
