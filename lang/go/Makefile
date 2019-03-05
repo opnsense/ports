@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	go
-PORTVERSION=	1.12
-PORTREVISION=	1
+PORTVERSION=	1.11.5
 PORTEPOCH=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://golang.org/dl/
@@ -18,13 +17,18 @@ BUILD_DEPENDS=	go14>=1.4:lang/go14
 
 USES=		shebangfix
 SHEBANG_LANG=	sh perl
-SHEBANG_FILES=	misc/benchcmp \
+SHEBANG_FILES=	src/*.bash \
+		doc/articles/wiki/*.bash \
+		lib/time/*.bash \
+		misc/benchcmp \
 		misc/nacl/go_nacl_*_exec \
 		misc/wasm/go_js_wasm_exec \
-		src/net/http/cgi/testdata/test.cgi
-SHEBANG_GLOB=	*.bash *.pl *.sh
+		src/cmd/go/*.sh \
+		src/cmd/vendor/github.com/google/pprof/internal/binutils/testdata/build_mac.sh \
+		src/net/http/cgi/testdata/*.cgi \
+		src/regexp/syntax/*.pl
 
-sh_OLD_CMD=	/bin/bash "/usr/bin/env bash"
+sh_OLD_CMD=	"/usr/bin/env bash"
 sh_CMD=		${SH}
 
 WRKSRC=		${WRKDIR}/go
