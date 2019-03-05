@@ -8465,7 +8465,6 @@ audio/mangler||2016-07-04|Has expired: Broken for more than 6 months
 audio/hawkvoice||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-mpdule||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-tclock||2016-07-04|Has expired: Broken for more than 6 months
-x11-wm/musca||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-places||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-forecasts||2016-07-04|Has expired: Broken for more than 6 months
 x11-wm/e-module-net||2016-07-04|Has expired: Broken for more than 6 months
@@ -11659,3 +11658,7 @@ sysutils/bacula-docs|sysutils/bacula9-docs|2019-03-03|Has expired: Unsupported. 
 sysutils/bacula-client-static|sysutils/bacula9-client-static|2019-03-03|Has expired: Unsupported. Please migrate to bacula9-server
 sysutils/bacula-bat|sysutils/bacula9-bat|2019-03-03|Has expired: Unsupported. Please migrate to bacula9-server
 x11-fonts/noto-lite|x11-fonts/noto-basic|2019-03-03|Rename for reorganizing noto* ports
+devel/rubygem-rufus-scheduler342|devel/rubygem-rufus-scheduler|2019-03-04|Has expired: Use devel/rubygem-rufus-scheduler instead
+devel/cpuflags||2019-03-04|Has expired: does not recognize modern CPUs; use -march=native instead
+www/moodle31|www/moodle35|2019-03-04|Has expired: Upstream no longer maintained
+www/moodle34|www/moodle35|2019-03-04|Has expired: Upstream no longer maintained
