@@ -3,9 +3,8 @@
 
 PORTNAME=	monero-cli
 # To build from an arbitrary git commit comment PORTVERSION and PORTREVISION (if present)
-PORTVERSION=	0.14.0.0
+PORTVERSION=	0.14.0.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 # and uncomment the following two lines
 #PORTVERSION=	0
 #PKGNAMESUFFIX=	-git-HEAD
@@ -20,6 +19,11 @@ BROKEN_aarch64=		fails to compile: the clang compiler does not support -march=na
 BROKEN_armv6=		fails to compile: the clang compiler does not support -march=native
 BROKEN_armv7=		fails to compile: the clang compiler does not support -march=native
 BROKEN_powerpc64=	fails to compile: the clang compiler does not support -march=native
+# /usr/bin/ld: error: undefined symbol: CryptonightR_instruction16
+# >>> referenced by CryptonightR_JIT.c
+# >>>               CryptonightR_JIT.c.o:(instructions) in archive src/crypto/libcncrypto.a
+# (and similar errors for CryptonightR_instruction0..19)
+BROKEN_amd64=		fails to compile: undefined symbol: CryptonightR_instruction16
 
 LIB_DEPENDS=	\
 		libboost_chrono.so:devel/boost-libs \

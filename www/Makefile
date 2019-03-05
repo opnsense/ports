@@ -476,8 +476,6 @@
     SUBDIR += monast
     SUBDIR += mongoose
     SUBDIR += mongrel2
-    SUBDIR += moodle31
-    SUBDIR += moodle34
     SUBDIR += moodle35
     SUBDIR += moodle36
     SUBDIR += mozplugger
@@ -1837,6 +1835,7 @@
     SUBDIR += py-recaptcha
     SUBDIR += py-requestbuilder
     SUBDIR += py-requests
+    SUBDIR += py-requests-aws4auth
     SUBDIR += py-requests-cache
     SUBDIR += py-requests-file
     SUBDIR += py-requests-futures
