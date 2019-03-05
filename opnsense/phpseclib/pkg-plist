@@ -1,0 +1,36 @@
+%%DATADIR%%/Crypt/AES.php
+%%DATADIR%%/Crypt/Base.php
+%%DATADIR%%/Crypt/Blowfish.php
+%%DATADIR%%/Crypt/DES.php
+%%DATADIR%%/Crypt/Hash.php
+%%DATADIR%%/Crypt/RC2.php
+%%DATADIR%%/Crypt/RC4.php
+%%DATADIR%%/Crypt/RSA.php
+%%DATADIR%%/Crypt/Random.php
+%%DATADIR%%/Crypt/Rijndael.php
+%%DATADIR%%/Crypt/TripleDES.php
+%%DATADIR%%/Crypt/Twofish.php
+%%DATADIR%%/File/ANSI.php
+%%DATADIR%%/File/ASN1.php
+%%DATADIR%%/File/ASN1/Element.php
+%%DATADIR%%/File/X509.php
+%%DATADIR%%/Math/BigInteger.php
+%%DATADIR%%/Net/SCP.php
+%%DATADIR%%/Net/SFTP.php
+%%DATADIR%%/Net/SFTP/Stream.php
+%%DATADIR%%/Net/SSH1.php
+%%DATADIR%%/Net/SSH2.php
+%%DATADIR%%/System/SSH/Agent.php
+%%DATADIR%%/System/SSH/Agent/Identity.php
+%%DATADIR%%/bootstrap.php
+%%DATADIR%%/openssl.cnf
+@dir %%DATADIR%%
+@dir %%DATADIR%%/Crypt
+@dir %%DATADIR%%/File
+@dir %%DATADIR%%/File/ASN1
+@dir %%DATADIR%%/Math
+@dir %%DATADIR%%/Net
+@dir %%DATADIR%%/Net/SFTP
+@dir %%DATADIR%%/System
+@dir %%DATADIR%%/System/SSH
+@dir %%DATADIR%%/System/SSH/Agent
