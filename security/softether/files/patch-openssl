@@ -1,0 +1,14 @@
+--- src/Mayaqua/Network.c.orig	2019-03-06 02:42:51 UTC
++++ src/Mayaqua/Network.c
+@@ -13016,11 +13016,7 @@ bool StartSSLEx(SOCK *sock, X *x, K *pri
+ 		{
+ 			if (client_tls == false)
+ 			{
+-#if OPENSSL_VERSION_NUMBER < 0x10100000L
+-				SSL_CTX_set_ssl_version(ssl_ctx, SSLv3_method());
+-#else
+ 				SSL_CTX_set_ssl_version(ssl_ctx, SSLv23_method());
+-#endif
+ 			}
+ 			else
+ 			{
