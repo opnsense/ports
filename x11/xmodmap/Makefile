@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	xmodmap
-PORTVERSION=	1.0.9
+PORTVERSION=	1.0.10
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
@@ -10,6 +10,7 @@ COMMENT=	Utility for modifying keymaps and pointer button mappings in X
 USE_HARDENING=	safestack
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/COPYING
 
 XORG_CAT=	app
 USE_XORG=	x11

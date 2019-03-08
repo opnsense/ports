@@ -452,6 +452,7 @@
     SUBDIR += mailimporter
     SUBDIR += malo-firmware-kmod
     SUBDIR += mdns-repeater
+    SUBDIR += measurement-kit
     SUBDIR += mediastreamer
     SUBDIR += mediatomb
     SUBDIR += megatools
@@ -899,6 +900,7 @@
     SUBDIR += p5-XML-RPC-Fast
     SUBDIR += p5-XMLRPC-Lite
     SUBDIR += p5-XPC
+    SUBDIR += p5-ZMQ-FFI
     SUBDIR += p5-ZeroMQ
     SUBDIR += p5-ldap2pf
     SUBDIR += p5-ldap2pw
@@ -1446,7 +1448,6 @@
     SUBDIR += tinyfugue
     SUBDIR += tinyldap
     SUBDIR += tn5250
-    SUBDIR += tn5250j
     SUBDIR += toonel
     SUBDIR += torsocks
     SUBDIR += traefik
