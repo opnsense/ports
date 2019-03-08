@@ -4048,7 +4048,6 @@ sysutils/sarah||2013-03-03|Has expired: No more upstream, no more public distfil
 www/igal||2013-03-03|Has expired: No more upstream, no more public distfiles, consider using www/llgal
 finance/tinyerp-server||2013-03-03|Has expired: No more upstream, no more public distfiles, consider using finance/openerp-server
 ports-mgmt/portcheck||2013-03-03|Has expired: No more upstream, no more public distfiles
-security/sslproxy||2013-03-03|Has expired: Abandoned upstream
 x11-themes/e17-theme-darkness||2013-03-03|Has expired: No more public distfiles
 x11-themes/e17-theme-cthulhain||2013-03-03|Has expired: Dead upstream since 2008
 x11-servers/driglide||2013-03-03|Has expired: 3dfx is dead, fails to compile on recent versions of FreeBSD
@@ -5274,7 +5273,6 @@ devel/qt4-declarative|x11-toolkits/qt4-declarative|2014-01-06|Moved to unify wit
 devel/qt4-qtestlib|devel/qt4-testlib|2014-01-06|Renamed to unify with Qt 5
 x11/qt4-opengl|graphics/qt4-opengl|2014-01-06|Moved to unify with Qt 5
 graphics/wings-devel|graphics/wings|2014-01-07|Obsoleted by the main port
-devel/llvm|devel/llvm32|2014-01-08|Has expired: Migrate to devel/llvm32 or newer
 devel/reflex|textproc/reflex|2014-01-08|Duplicate
 devel/hs-hat||2014-01-09|Upstream has vanished
 devel/hs-hdoc||2014-01-09|Removed
@@ -11663,3 +11661,20 @@ devel/cpuflags||2019-03-04|Has expired: does not recognize modern CPUs; use -mar
 www/moodle31|www/moodle35|2019-03-04|Has expired: Upstream no longer maintained
 www/moodle34|www/moodle35|2019-03-04|Has expired: Upstream no longer maintained
 net/wireshark-qt5|net/wireshark|2019-03-05|Only GUI for wireshark is Qt5
+devel/elixir-lager_logger||2019-03-06|Has expired: Broken for more than 6 months
+devel/gpsim||2019-03-06|Has expired: Broken for more than 6 months
+devel/hgview||2019-03-06|Has expired: Broken for more than 6 months
+games/mudmagic||2019-03-06|Has expired: Broken for more than 6 months
+math/mumps-mpich||2019-03-06|Has expired: Broken for more than 6 months
+math/sdpara||2019-03-06|Has expired: Broken for more than 6 months
+net/tn5250j||2019-03-06|Has expired: Broken for more than 6 months
+net-im/pidgin-skype||2019-03-06|Has expired: Broken for more than 6 months
+net-im/skype||2019-03-06|Has expired: Broken for more than 6 months
+net-im/skype-devel||2019-03-06|Has expired: Broken for more than 6 months
+science/dft_tools||2019-03-06|Has expired: Broken for more than 6 months
+science/triqs||2019-03-06|Has expired: Broken for more than 6 months
+security/hamachi||2019-03-06|Has expired: Broken for more than 6 months
+textproc/elixir-ex_doc||2019-03-06|Has expired: Broken for more than 6 months
+x11/altyo||2019-03-06|Has expired: Broken for more than 6 months
+x11/pantheon-terminal||2019-03-06|Has expired: Broken for more than 6 months
+x11-wm/e-module-everything-websearch||2019-03-06|Has expired: Broken for more than 6 months
