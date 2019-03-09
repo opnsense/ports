@@ -3,7 +3,7 @@
 
 PORTNAME=	strongswan
 PORTVERSION=	5.7.2
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	http://download.strongswan.org/ \
 		http://download2.strongswan.org/
@@ -153,10 +153,6 @@ post-install:
 .if ${PORT_OPTIONS:MVICI}
 	${INSTALL_DATA} ${WRKSRC}/src/libcharon/plugins/vici/libvici.h \
 		${STAGEDIR}${PREFIX}/include
-.endif
-.if ${PORT_OPTIONS:MSWANCTL}
-	${MV} ${STAGEDIR}${PREFIX}/etc/swanctl/swanctl.conf \
-		${STAGEDIR}${PREFIX}/etc/swanctl/swanctl.conf.sample
 .endif
 
 .include <bsd.port.post.mk>
