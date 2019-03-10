@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pglast
-PORTVERSION=	1.1
+PORTVERSION=	1.2
 CATEGORIES=	databases python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,7 +11,9 @@ MAINTAINER=	a.wolk@fudosecurity.com
 COMMENT=	PostgreSQL Languages AST and statements prettifier
 
 LICENSE=	GPLv3+
-#LICENSE_FILE=	${WRKSRC}/
+
+NOT_FOR_ARCHS=		powerpc powerpc64 powerpcspe
+NOT_FOR_ARCHS_REASON=	port/atomics/arch-ppc.h: No such file or directory
 
 USES=		gmake python:3.4+
 USE_PYTHON=	autoplist distutils
