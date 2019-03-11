@@ -2,112 +2,102 @@
 # $FreeBSD$
 
 PORTNAME=	mumps
-PORTVERSION=	4.10.0	# Please do not upgrade to 5+: if needed repocopy to math/mumps5
-PORTREVISION=	12
+DISTVERSION=	5.1.1-aster2
+PORTREVISION=	4
 CATEGORIES=	math
-MASTER_SITES=	http://mumps.enseeiht.fr/		\
-		http://graal.ens-lyon.fr/MUMPS/		\
-		http://www.enseeiht.fr/apo/MUMPS/	\
-		http://www.enseeiht.fr/irit/apo/MUMPS/
-DISTNAME=	MUMPS_${PORTVERSION}
+PKGNAMESUFFIX=	-edf
 
-MAINTAINER=	ports@FreeBSD.org
-COMMENT=	MUltifrontal Massively Parallel sparse direct Solver
+MAINTAINER=	thierry@FreeBSD.org
+COMMENT=	MUltifrontal Massively Parallel sparse direct Solver for Code_Aster
 
-LICENSE=	PD
+LICENSE=	CeCILL_C
+LICENSE_NAME=	CeCILL-C
 LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-#-----------------------------------------------------------------------
-
-# WARNING: Non-serviceable parts inside, can break other ports
-# You may define these options/knobs:
-#
-# FFLAGS: Fortran compiler flags for gfortran
-# WITH_OPTIMIZED_FLAGS:Try to use agressive (non-CPU) FFLAGS
-# BLAS_LIBS: specify other version of BLAS
-# WITH_ATLAS: Use ATLAS instead of the regular BLAS
-# WITH_METIS: Add METIS ordering
-#-----------------------------------------------------------------------
+LIB_DEPENDS=	libblas.so:math/blas		\
+		liblapack.so:math/lapack	\
+		libmetis.so:math/metis
 
 USES=		fortran
 
-MAKE_JOBS_UNSAFE=yes
-
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:R}
+BLAS_LIBS=	-lblas
+LAPACK_LIBS=	-llapack
 FORTRANLIBS=	-lgfortran
 GCCLIBDIR=	${LDFLAGS}
 USE_LDCONFIG=	yes
-VEM=		${PORTVERSION:R:R}
+VEM=		${PORTVERSION:R:R:R}
+MUMPSVERSION=	${PORTVERSION:R}
 LIBS=		cmumps dmumps mumps_common pord smumps zmumps
+PLIST_SUB=	VE=${VEM} MUMPSVERSION=${MUMPSVERSION}
 
-CONFLICTS=	mumps-5*
-
-.if defined(WITH_OPTIMIZED_FLAGS)
-FFLAGS+=	-O3 -ffast-math
-.endif
-
-.ifdef WITH_METIS
-BUILD_DEPENDS+=	${LOCALBASE}/bin/oemetis:math/metis4
-MAKE_ENV+=	ORDERINGSF=-Dmetis
-.endif
-
-PLIST_SUB+=	MUMPSVERSION=${PORTVERSION} MUMPSV=${VEM}
+CONFLICTS=	mumps4-4*
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
+MAKE_JOBS_UNSAFE=yes
+
 .include <bsd.port.pre.mk>
+.include "${.CURDIR}/../../french/aster/bsd.aster.mk"
 
-.if exists(${LOCALBASE}/lib/libatlas.so) && !defined(WITH_BLAS)
-WITH_ATLAS=	yes
-.endif
-.if defined(WITH_ATLAS)
-LIB_DEPENDS+=	libatlas.so:math/atlas
-BLAS_LIBS=	-lf77blas
-LAPACK_LIBS=	-lalapack -lcblas
+.ifdef WITH_MPI
+PKGNAMESUFFIX+=		-mpich
+BUILD_DEPENDS+=	${LOCALBASE}/include/mpif.h:net/mpich2		\
+		${LOCALBASE}/lib/libblacs.a:math/blacs		\
+		${LOCALBASE}/lib/libptscotch.a:cad/scotch	\
+		${LOCALBASE}/lib/libscalapack.a:math/scalapack	\
+		${LOCALBASE}/lib/parmetis/libmetis.a:math/parmetis
+LIB_DEPENDS+=	liblapack.so:math/lapack
+# Note: -l?mumps still requires to be linked with -lblacs + -lscalapack
+RUN_DEPENDS+=	${LOCALBASE}/bin/mpirun:net/mpich2	\
+		${LOCALBASE}/lib/libblacs.a:math/blacs	\
+		${LOCALBASE}/lib/libscalapack.a:math/scalapack
+PLIST_SUB+=	WITH_LIBSEQ="@comment "
+CONFLICTS+=	mumps-5*
 .else
-LIB_DEPENDS+=	libblas.so:math/blas
-BLAS_LIBS=	-lblas
-LAPACK_LIBS=	-llapack
-.endif
-
-CONFLICTS+=	mumps-mpich-4*
-
+BUILD_DEPENDS+=	${LOCALBASE}/lib/libscotch.a:cad/scotch
+PLIST_SUB+=	WITH_LIBSEQ=""
 LIBS+=		mpiseq
+CONFLICTS+=	mumps-mpich-5*
+.endif
 
 pre-configure:
-	${INSTALL_DATA} ${WRKSRC}/Make.inc/Makefile.inc.generic.SEQ \
+.ifdef WITH_MPI
+	${INSTALL_DATA} ${WRKSRC}/Make.inc/Makefile.FREEBSD10.PAR \
 		${WRKSRC}/Makefile.inc
-	${REINPLACE_CMD} -e 's+LIBPAR+LIBSEQ+' ${WRKSRC}/src/Makefile
-
-pre-build:
+.else
+	${INSTALL_DATA} ${WRKSRC}/Make.inc/Makefile.FREEBSD10.SEQ \
+		${WRKSRC}/Makefile.inc
+.endif
 	${DIRNAME} `${FC} -print-libgcc-file-name` > ${WRKSRC}/LIBDIR
 .for MF in Makefile Makefile.inc PORD/lib/Makefile libseq/Makefile src/Makefile
 	${REINPLACE_CMD} -e 's+@CC@+${CC}+g ; s+@FC@+${FC}+g ; \
+	s+/usr/local+${LOCALBASE}+; \
 	s+@CFLAGS@+${CFLAGS} -fPIC+g; \
 	s+@FCFLAGS@+${FCFLAGS} -fPIC+g; \
 	s+@SOVER@+${VEM}+g; \
 	s+@GCCLIBDIR@+${GCCLIBDIR}+g; \
 	s+@FORTRANLIBS@+${FORTRANLIBS}+g; \
 	s+@BLAS_LIBS@+${BLAS_LIBS}+ ; \
+	s+@LAPACK_LIBS@+${LAPACK_LIBS}+ ; \
 	s+@LOCALBASE@+${LOCALBASE}+g;' \
 		${WRKSRC}/${MF}
 .endfor
-.ifdef WITH_METIS
-	${REINPLACE_CMD} -e 's+#LMETIS+LMETIS+' ${WRKSRC}/Makefile.inc
-.endif
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/include/*.h ${STAGEDIR}${PREFIX}/include
 	${INSTALL_DATA} ${WRKSRC}/lib/lib*.a ${STAGEDIR}${PREFIX}/lib
 	${INSTALL_LIB} ${WRKSRC}/lib/lib*.so.${VEM} ${STAGEDIR}${PREFIX}/lib
+.ifndef WITH_MPI
 	${INSTALL_DATA} ${WRKSRC}/libseq/libmpiseq.a ${STAGEDIR}${PREFIX}/lib
 	${INSTALL_LIB} ${WRKSRC}/libseq/libmpiseq*.so.${VEM} ${STAGEDIR}${PREFIX}/lib
+.endif
 .for lib in ${LIBS}
 	(cd ${STAGEDIR}${PREFIX}/lib && ${LN} -sf lib${lib}.so.${VEM} ${STAGEDIR}${PREFIX}/lib/lib${lib}.so)
 . endfor
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/userguide_${PORTVERSION}.pdf ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/doc/userguide_${PORTVERSION}.ps ${STAGEDIR}${DOCSDIR}
-	${GZIP_CMD} ${STAGEDIR}${DOCSDIR}/userguide_${PORTVERSION}.ps
+	${INSTALL_DATA} ${WRKSRC}/doc/userguide_${MUMPSVERSION}.pdf ${STAGEDIR}${DOCSDIR}
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 . for ex in Makefile README *.c *.F input_simpletest_*
 	${INSTALL_DATA} ${WRKSRC}/examples/${ex} ${STAGEDIR}${EXAMPLESDIR}
@@ -117,6 +107,23 @@ do-install:
 . endfor
 
 regression-test:	install
+.if defined (WITH_MPI) && defined(MAINTAINER_MODE)
+.  if !exists(${HOME}/.mpd.conf)
+	@${ECHO_CMD} "MPD_SECRETWORD=change_on_install" > ${HOME}/.mpd.conf
+	${CHMOD} go-r ${HOME}/.mpd.conf
+	@${ECHO_MSG} "${HOME}/.mpd.conf has been generated - please change the secret word!"
+.  endif
+	${LOCALBASE}/bin/mpd &
+	(cd ${WRKSRC}/examples &&	\
+	${LOCALBASE}/bin/mpirun -np 2 ./ssimpletest < input_simpletest_real ;	\
+	${LOCALBASE}/bin/mpirun -np 2 ./dsimpletest < input_simpletest_real ;	\
+	${LOCALBASE}/bin/mpirun -np 2 ./csimpletest < input_simpletest_cmplx ;	\
+	${LOCALBASE}/bin/mpirun -np 2 ./zsimpletest < input_simpletest_cmplx ;	\
+	${ECHO_MSG} "The solution should be (1,2,3,4,5)" ;	\
+	${LOCALBASE}/bin/mpirun -np 3 ./c_example ;	\
+	${ECHO_MSG} "The solution should be (1,2)")
+	${LOCALBASE}/bin/mpdallexit
+.else
 	(cd ${WRKSRC}/examples &&	\
 	./ssimpletest < input_simpletest_real ;			\
 	./dsimpletest < input_simpletest_real ;			\
@@ -125,5 +132,6 @@ regression-test:	install
 	${ECHO_MSG} "The solution should be (1,2,3,4,5)" ;	\
 	./c_example ;						\
 	${ECHO_MSG} "The solution should be (1,2)")
+.endif
 
 .include <bsd.port.post.mk>
