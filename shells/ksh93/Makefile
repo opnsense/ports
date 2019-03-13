@@ -26,6 +26,8 @@ LICENSE=	EPL
 
 USE_HARDENING=	pie:off relro:off
 
+BROKEN_aarch64=		Fails to compile: needs sbrk
+
 CONFLICTS=	ksh93-devel-*
 
 OPTIONS_DEFINE=	EXAMPLES STATIC
@@ -39,8 +41,6 @@ INITVERSION=	2013-05-24
 KSHVERSION=	2012-08-01
 
 STATIC_MAKE_ENV=	LDFLAGS+=-static
-
-BROKEN_aarch64=		Fails to compile: needs sbrk
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|SF_FLAGS|SFIO_FLAGS|g' ${WRKSRC}/src/lib/libast/include/sfio*.h ${WRKSRC}/src/lib/libast/sfio/*.c
