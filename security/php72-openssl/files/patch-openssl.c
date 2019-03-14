@@ -232,13 +232,13 @@
 +        RETVAL_LONG(-1);
 +
 +        if (untrusted) {
-+                untrustedchain = load_all_certs_from_file(untrusted);
++                untrustedchain = php_openssl_load_all_certs_from_file(untrusted);
 +                if (untrustedchain == NULL) {
 +                        goto clean_exit;
 +                }
 +        }
 +
-+        cainfo = setup_verify(zcainfo TSRMLS_CC);
++        cainfo = php_openssl_setup_verify(zcainfo TSRMLS_CC);
 +        if (cainfo == NULL) {
 +                goto clean_exit;
 +        }
