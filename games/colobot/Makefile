@@ -5,8 +5,8 @@ DISTVERSIONPREFIX=	${PORTNAME}-gold-
 DISTVERSION=	0.1.12
 DISTVERSIONSUFFIX=	-alpha
 CATEGORIES=	games
-MASTER_SITES=	https://colobot.info/files/music/
-DISTFILES=	colobot-music_ogg_0.1.12-alpha.tar.gz
+MASTER_SITES=	https://colobot.info/files/music/:music
+DISTFILES=	colobot-music_ogg_0.1.12-alpha.tar.gz:music
 
 MAINTAINER=	fernape@FreeBSD.org
 COMMENT=	Educational game aiming to teach programming to kids
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libboost_system.so:devel/boost-libs
 
 USES=		cmake gl gettext-runtime gettext-tools:build \
-		localbase:ldflags openal sdl
+		localbase:ldflags openal python:2.7 sdl
 USE_SDL=	image2 ttf2
 USE_GL=		gl glew glu
 USE_LDCONFIG=	yes
