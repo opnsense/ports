@@ -13,6 +13,8 @@
 
 set -e
 
+HBSD_DEV_EMAIL='dev@hardenedbsd.org'
+
 . ${SCRIPTSDIR}/functions.sh
 
 # lists an mtree file's contents, prefixed to dir.
@@ -181,9 +183,53 @@ check_orphans_from_plist() {
 	return ${ret}
 }
 
+# HardenedBSD sanity checks
+hardening_sanity_checks() {
+	local ret=0
+	local so_checks="safestack cfi"
+	local so_check
+
+	for so_check in ${so_checks}; do
+		if (echo ${USES} | grep -q ${so_check}); then
+			if grep -q '.so$' ${WRKDIR}/.PLIST.mktmp; then
+				cat <<EOF
+
+#############
+### Error ###
+#############
+
+This port installs shared objects, yet it has ${so_check} enabled.
+${so_check} does not currently support shared objects. Please report
+this to ${HBSD_DEV_EMAIL}. Please include the name of the port you are
+attempting to install with ${so_check} enabled. Please include the
+output from 'uname -a'.
+
+############################
+### Begin template email ###
+############################
+
+Subject: ${so_check} failed for port ${CATEGORY}/${PORTNAME}
+
+${so_check} was enabled for port ${CATEGORY}/${PORTNAME}. Enabling
+${so_check} resulted in a failed build.
+
+##########################
+### End template email ###
+##########################
+
+EOF
+				ret=1
+			fi
+		fi
+	done
+
+	return ${ret}
+}
+
 # Check for items in plist not in STAGEDIR (pkg lstat(2) errors)
 check_missing_plist_items() {
 	local ret=0
+	local i
 	echo "===> Checking for items in pkg-plist which are not in STAGEDIR"
 	: >${WRKDIR}/.invalid-plist-missing
 	comm -23 ${WRKDIR}/.plist-files-no-comments ${WRKDIR}/.staged-files | \
@@ -213,6 +259,10 @@ check_missing_plist_items() {
 		while read -r line; do
 			echo "Error: Missing: ${line}" >&2
 		done < ${WRKDIR}/.invalid-plist-missing
+	fi
+
+	if ! hardening_sanity_checks; then
+		ret=1
 	fi
 	return ${ret}
 }
