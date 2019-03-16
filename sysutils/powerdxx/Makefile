@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	powerdxx
-DISTVERSION=	0.4.0
+DISTVERSION=	0.4.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	rigoletto@FreeBSD.org
@@ -12,6 +12,7 @@ LICENSE=	ISCL
 USE_HARDENING=	safestack
 
 USES=		compiler:c++14-lang
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	lonkamikaze
 GH_TUPLE=	lonkamikaze:powerdxx:43c0db7:powerdxx/gh-pages
@@ -20,8 +21,6 @@ USE_LDCONFIG=	yes
 MAKE_ARGS=	DOCSDIR="${DOCSDIR}"
 
 OPTIONS_DEFINE=	DOCS
-
-CXXFLAGS+=	-Wno-error=sign-compare
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
