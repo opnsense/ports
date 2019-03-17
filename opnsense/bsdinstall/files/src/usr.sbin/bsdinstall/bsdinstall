@@ -72,15 +72,15 @@ f_dprintf "Running installation step: %s %s" "$VERB" "$*"
 if [ "$debug" ]; then
 	case "$debugFile" in
 	# If NULL, send errors to the bit-bucket
-	"") exec "/usr/libexec/bsdinstall/$VERB" "$@" 2> /dev/null ;;
+	"") exec "/usr/local/libexec/bsdinstall/$VERB" "$@" 2> /dev/null ;;
 	# If begins with `+', send errors to both terminal and file (no `+')
-	+*) exec "/usr/libexec/bsdinstall/$VERB" "$@" \
+	+*) exec "/usr/local/libexec/bsdinstall/$VERB" "$@" \
 		2>&1 >&$TERMINAL_STDOUT_PASSTHRU | tee "${debugFile#+}" ;;
 	# Otherwise, just send errors to the file specified
-	*) exec "/usr/libexec/bsdinstall/$VERB" "$@" 2>> "$debugFile"
+	*) exec "/usr/local/libexec/bsdinstall/$VERB" "$@" 2>> "$debugFile"
 	esac
 else
-	exec "/usr/libexec/bsdinstall/$VERB" "$@" 2> /dev/null
+	exec "/usr/local/libexec/bsdinstall/$VERB" "$@" 2> /dev/null
 fi
 
 ################################################################################
