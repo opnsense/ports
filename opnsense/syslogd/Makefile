@@ -25,7 +25,9 @@ CLOG_USES=		localbase
 
 IPV6_CFLAGS=		-DINET6
 
-MAKE_ENV=		SRCTOP=${.CURDIR}/files/src \
+MAKE_ENV=		SRCTOP=${WRKSRC} \
+			MANDIR=${PREFIX}/man/man \
+			BINDIR=${PREFIX}/sbin \
 			MK_INET6_SUPPORT=no
 
 do-extract:
