@@ -1,0 +1,131 @@
+#!/bin/sh
+#-
+# Copyright (c) 2011 Nathan Whitehorn
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions
+# are met:
+# 1. Redistributions of source code must retain the above copyright
+#    notice, this list of conditions and the following disclaimer.
+# 2. Redistributions in binary form must reproduce the above copyright
+#    notice, this list of conditions and the following disclaimer in the
+#    documentation and/or other materials provided with the distribution.
+#
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
+# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+# SUCH DAMAGE.
+#
+# $FreeBSD$
+
+: ${DIALOG_OK=0}
+: ${DIALOG_CANCEL=1}
+: ${DIALOG_HELP=2}
+: ${DIALOG_EXTRA=3}
+: ${DIALOG_ITEM_HELP=4}
+: ${DIALOG_ESC=255}
+
+_HBSD_VERSION=`uname -v | sed -n 's/.*\[\(.*\)\].*/\1/p'`
+_BUILD_TYPE=`echo ${_HBSD_VERSION} | cut -d ':' -f 1`
+
+case ${_BUILD_TYPE} in
+DEVEL|PLAYGROUND)
+	_BUILD_BRANCH=`echo ${_HBSD_VERSION} | cut -d ':' -f 2`
+	_BUILD_NUMBER=`echo ${_HBSD_VERSION} | cut -d ':' -f 3`
+
+	exec 3>&1
+	MIRROR=`dialog --backtitle "HardenedBSD Installer" \
+	    --title "Mirror Selection - development and experimental version" \
+	    --extra-button --extra-label "Other" \
+	    --menu "Please select the site closest to you or \"other\" if you'd like to specify a different choice.  Also note that not every site listed here carries more than the base distribution kits. Only Primary sites are guaranteed to carry the full range of possible distributions. Select a site that's close!" \
+	    0 0 0 \
+		http://jenkins.hardenedbsd.org	"Main Site"\
+		http://jenkins.hardenedbsd.org 	"IPv6 Main Site"\
+	    2>&1 1>&3`
+	MIRROR_BUTTON=$?
+	exec 3>&-
+
+	BSDINSTALL_DISTSITE="$MIRROR/builds/${_BUILD_BRANCH}/build-${_BUILD_NUMBER}"
+;;
+"STABLE")
+	_BUILD_TAG=`echo ${_HBSD_VERSION} | cut -d ':' -f 2`
+	_mirror_prefix="installer"
+
+	exec 3>&1
+	MIRROR=`dialog --backtitle "HardenedBSD Installer" \
+	    --title "Mirror Selection - HardenedBSD-stable ${_BUILD_TAG}" \
+	    --extra-button --extra-label "Other" \
+	    --menu "Please select the site closest to you or \"other\" if you'd like to specify a different choice.  Also note that not every site listed here carries more than the base distribution kits. Only Primary sites are guaranteed to carry the full range of possible distributions. Select a site that's close!" \
+	    0 0 0 \
+		http://installer.hardenedbsd.org	"Main Site (NYI)"\
+		http://ipv6.installer.hardenedbsd.org 	"IPv6 Main Site (NYI)"\
+		http://ca-01.installer.hardenedbsd.org	"Canada Mirror Site"\
+		http://dk-01.installer.hardenedbsd.org	"Denmark Mirror Site"\
+		http://pub.allbsd.org			"Japan Mirror Site" \
+	    2>&1 1>&3`
+	MIRROR_BUTTON=$?
+	exec 3>&-
+
+	BSDINSTALL_DISTSITE="$MIRROR/pub/HardenedBSD/releases/`uname -m`/`uname -p`/${_BUILD_TAG}"
+;;
+*)
+	case `uname -r` in
+	10.*)
+		_hbsd_dist_dir="pub/HardenedBSD/releases/`uname -m`/`uname -p`/hardenedbsd-10-stable-LAST"
+		;;
+	11.*)
+		_hbsd_dist_dir="pub/HardenedBSD/releases/`uname -m`/`uname -p`/hardenedbsd-11-stable-LAST"
+		;;
+	*)
+		_hbsd_dist_dir="pub/HardenedBSD/releases/`uname -m`/`uname -p`/hardenedbsd-master-LAST"
+		;;
+	esac
+
+	exec 3>&1
+	MIRROR=`dialog --backtitle "HardenedBSD Installer" \
+	    --title "Mirror Selection - Latest HardenedBSD-stable" \
+	    --extra-button --extra-label "Other" \
+	    --menu "Please select the site closest to you or \"other\" if you'd like to specify a different choice.  Also note that not every site listed here carries more than the base distribution kits. Only Primary sites are guaranteed to carry the full range of possible distributions. Select a site that's close!" \
+	    0 0 0 \
+		http://installer.hardenedbsd.org	"Main Site (NYI)"\
+		http://ipv6.installer.hardenedbsd.org 	"IPv6 Main Site (NYI)"\
+		http://ca-01.installer.hardenedbsd.org	"Canada Mirror Site"\
+		http://dk-01.installer.hardenedbsd.org	"Denmark Mirror Site"\
+		http://pub.allbsd.org			"Japan Mirror Site" \
+	    2>&1 1>&3`
+	MIRROR_BUTTON=$?
+	exec 3>&-
+
+	BSDINSTALL_DISTSITE="$MIRROR/${_hbsd_dist_dir}"
+;;
+esac
+
+
+case $MIRROR_BUTTON in
+$DIALOG_CANCEL)
+	exit 1
+	;;
+$DIALOG_OK)
+	;;
+$DIALOG_EXTRA)
+	exec 3>&1
+	BSDINSTALL_DISTSITE=`dialog --backtitle "HardenedBSD Installer" \
+	    --title "Mirror Selection" \
+	    --inputbox "Please enter the URL to an alternate HardenedBSD mirror:" \
+	    0 0 "$BSDINSTALL_DISTSITE" 2>&1 1>&3`
+	MIRROR_BUTTON=$?
+	exec 3>&-
+	test $MIRROR_BUTTON -eq 0 || exec $0 $@
+	;;
+esac
+
+export BSDINSTALL_DISTSITE
+echo $BSDINSTALL_DISTSITE >&2
