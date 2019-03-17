@@ -1,4 +1,5 @@
 # $FreeBSD$
+PORTREVISION=	1
 #
 
     COMMENT = Security tools
@@ -297,7 +298,6 @@
     SUBDIR += keepass
     SUBDIR += keepass-plugin-keepassrpc
     SUBDIR += keepassx-devel
-    SUBDIR += keepassx2
     SUBDIR += keepassxc
     SUBDIR += keybase
     SUBDIR += keychain
@@ -312,7 +312,6 @@
     SUBDIR += knocker
     SUBDIR += kpcli
     SUBDIR += kpkpass
-    SUBDIR += kqoauth
     SUBDIR += kr
     SUBDIR += krb5
     SUBDIR += krb5-115
@@ -1319,7 +1318,6 @@
     SUBDIR += tor-capsicum
     SUBDIR += tor-devel
     SUBDIR += tpm-tools
-    SUBDIR += tpmmanager
     SUBDIR += trezord
     SUBDIR += trinokiller
     SUBDIR += tripwire
@@ -1367,7 +1365,6 @@
     SUBDIR += yubico-piv-tool
     SUBDIR += yubikey-manager-qt
     SUBDIR += yubikey-personalization-gui
-    SUBDIR += yubikey-piv-manager
     SUBDIR += yubioath-desktop
     SUBDIR += zebedee
     SUBDIR += zenmap

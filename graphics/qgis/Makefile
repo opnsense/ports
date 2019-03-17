@@ -4,7 +4,7 @@
 PORTNAME=	qgis
 DISTVERSIONPREFIX=	final-
 DISTVERSION=	3_6_0
-PORTREVISION=	1
+PORTREVISION=	5
 CATEGORIES=	graphics geography
 
 MAINTAINER=	rhurlin@gwdg.de
@@ -65,11 +65,11 @@ LIB_DEPENDS=	libexiv2.so:graphics/exiv2 \
 		libhdf5.so:science/hdf5 \
 		libnetcdf.so:science/netcdf \
 		libproj.so:graphics/proj \
-		libqca-qt5.so:devel/qca@qt5 \
-		libqjson-qt5.so:devel/qjson@qt5 \
+		libqca-qt5.so:devel/qca \
+		libqjson-qt5.so:devel/qjson \
 		libqscintilla2_qt5.so:devel/qscintilla2-qt5 \
-		libqt5keychain.so:security/qtkeychain@qt5 \
-		libqwt6.so:x11-toolkits/qwt6@qt5 \
+		libqt5keychain.so:security/qtkeychain \
+		libqwt6.so:x11-toolkits/qwt6 \
 		libspatialindex.so:devel/spatialindex \
 		libspatialite.so:databases/spatialite \
 		libxerces-c.so:textproc/xerces-c3 \

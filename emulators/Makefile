@@ -23,7 +23,6 @@
     SUBDIR += cpmtools
     SUBDIR += cpmtools2
     SUBDIR += darcnes
-    SUBDIR += dboxfe
     SUBDIR += desmume
     SUBDIR += dgen-sdl
     SUBDIR += dolphin-emu
@@ -47,7 +46,6 @@
     SUBDIR += gens
     SUBDIR += gngb
     SUBDIR += gngeo
-    SUBDIR += gns3
     SUBDIR += gxemul
     SUBDIR += hatari
     SUBDIR += hercules
@@ -111,7 +109,6 @@
     SUBDIR += ppsspp-qt5
     SUBDIR += py-gns3-converter
     SUBDIR += py-unicorn
-    SUBDIR += q4wine
     SUBDIR += qemu
     SUBDIR += qemu-cheri
     SUBDIR += qemu-devel
@@ -121,7 +118,6 @@
     SUBDIR += qemu-user-static
     SUBDIR += qemu-utils
     SUBDIR += qmc2
-    SUBDIR += qtemu
     SUBDIR += quasi88
     SUBDIR += riscv-fesvr
     SUBDIR += riscv-isa-sim
@@ -134,7 +130,6 @@
     SUBDIR += spim
     SUBDIR += stella
     SUBDIR += stonx
-    SUBDIR += swine
     SUBDIR += teo
     SUBDIR += tiemu3
     SUBDIR += tilem
