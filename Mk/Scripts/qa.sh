@@ -118,7 +118,7 @@ baselibs() {
 		File:\ .*)
 			file=${f#File: .}
 			;;
-		*XXXNEEDED*\[libarchive.so.[56]]) # XXX opnsense/bsdinstall
+		*NEEDED*\[libarchive.so.[56]])
 			err "Bad linking on ${f##* } for ${file} please add USES=libarchive"
 			rc=1
 			;;
