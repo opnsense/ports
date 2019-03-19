@@ -26,7 +26,7 @@ CONFIGURE_ARGS=	--enable-phalcon
 
 .include <bsd.port.pre.mk>
 
-PBITS=		${ARCH::S/aarch64/64/:S/amd64/64/:C/armv.*/32/:S/i386/32/:S/x86_64/64/}
+PBITS=		${ARCH:S/aarch64/64/:S/amd64/64/:C/armv.*/32/:S/i386/32/:S/x86_64/64/}
 WRKSRC_SUBDIR=	build/php${PHP_VER:C/.$//}/${PBITS}bits
 
 post-patch:
