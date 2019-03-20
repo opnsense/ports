@@ -7,7 +7,7 @@ DISTVERSION=	3.4.3
 CATEGORIES=	www
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
-MAINTAINER=	linpct@gmail.com
+MAINTAINER=	franco@opnsense.org
 COMMENT=	Phalcon PHP Framework written in C-language
 
 LICENSE=	BSD3CLAUSE
