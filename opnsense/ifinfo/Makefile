@@ -3,9 +3,7 @@
 PORTNAME=	ifinfo
 PORTVERSION=	10.1
 CATEGORIES=	sysutils
-MASTER_SITES=	# empty
-DISTFILES=	# none
-EXTRACT_ONLY=	# empty
+DISTFILES=
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Interface statistics reader
@@ -13,6 +11,8 @@ COMMENT=	Interface statistics reader
 LICENSE=	MIT
 
 USE_HARDENING=	safestack
+
+MAKE_ENV=	BINDIR=${PREFIX}/sbin
 
 do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
