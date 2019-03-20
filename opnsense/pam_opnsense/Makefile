@@ -1,4 +1,3 @@
-# Created by: Ad Schellevis <ad@opnsense.org>
 # $FreeBSD$
 
 PORTNAME=	pam_opnsense

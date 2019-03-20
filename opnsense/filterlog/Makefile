@@ -1,4 +1,3 @@
-# Created by: Franco Fichtner <franco@opnsense.org>
 # $FreeBSD$
 
 PORTNAME=	filterlog
