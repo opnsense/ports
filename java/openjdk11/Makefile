@@ -2,6 +2,7 @@
 
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}.${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
+PORTREVISION=	1
 CATEGORIES=	java devel
 MASTER_SITES=	https://github.com/battleblow/openjdk-jdk11u/archive/
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
@@ -12,7 +13,7 @@ COMMENT=	Java Development Kit ${JDK_MAJOR_VERSION}
 
 LICENSE=	GPLv2
 
-ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS=	amd64 i386
 
 BUILD_DEPENDS=	zip:archivers/zip \
 		autoconf>0:devel/autoconf \
@@ -43,7 +44,7 @@ MAKE_ENV=	LANG="C" \
 		MAKEFLAGS="" \
 		USE_CLANG=true
 
-JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/}
+JDK_OSARCH=	bsd-${ARCH:S/amd64/x86_64/:S/i386/x86/}
 JDK_BUILDDIR=	${WRKSRC}/build/${JDK_OSARCH}-normal-${JDK_BUILD_JVM}-${JDK_BUILD_TYPE}
 JDK_IMAGEDIR=	${JDK_BUILDDIR}/images/jdk
 INSTALLDIR=	${PREFIX}/${PKGBASE}
@@ -130,6 +131,7 @@ do-install:
 	@cd ${JDK_IMAGEDIR} && ${COPYTREE_SHARE} . ${STAGEDIR}${INSTALLDIR}
 	@cd ${STAGEDIR}${INSTALLDIR} && \
 		${FIND} bin -type f -exec ${CHMOD} ${BINMODE} {} \;
+	@${CHMOD} ${BINMODE} ${STAGEDIR}${INSTALLDIR}/lib/jspawnhelper
 	@${FIND} ${STAGEDIR}${INSTALLDIR} -not -type d | ${SORT} | \
 		${SED} -e 's|^${STAGEDIR}${PREFIX}/||' >> ${TMPPLIST}
 
