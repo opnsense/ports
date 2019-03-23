@@ -4520,6 +4520,7 @@
     SUBDIR += py-darcsver
     SUBDIR += py-darts.util.lru
     SUBDIR += py-datatest
+    SUBDIR += py-dateparser
     SUBDIR += py-dateutil
     SUBDIR += py-dateutils
     SUBDIR += py-datrie
@@ -5613,6 +5614,7 @@
     SUBDIR += rubygem-cucumber
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-expressions
+    SUBDIR += rubygem-cucumber-expressions6
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-tag_expressions
