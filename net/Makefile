@@ -403,7 +403,6 @@
     SUBDIR += libproxy-mozjs
     SUBDIR += libproxy-perl
     SUBDIR += libproxy-python
-    SUBDIR += libproxy-webkit
     SUBDIR += libproxy-webkit3
     SUBDIR += librdkafka
     SUBDIR += librouteros
@@ -1227,6 +1226,7 @@
     SUBDIR += rubygem-fog-aws2
     SUBDIR += rubygem-fog-azure
     SUBDIR += rubygem-fog-brightbox
+    SUBDIR += rubygem-fog-brightbox0
     SUBDIR += rubygem-fog-cloudatcost
     SUBDIR += rubygem-fog-digitalocean
     SUBDIR += rubygem-fog-dnsimple
