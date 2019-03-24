@@ -7329,7 +7329,6 @@ security/cyassl|security/wolfssl|2015-03-28|Renamed upstream
 devel/rubygem-rcov||2015-03-28|Has expired: Does not work with Ruby 2.x
 emulators/linux_dist-gentoo-stage3||2015-03-28|Has expired: Broken for more than 6 months
 emulators/linux_base-gentoo-stage3||2015-03-28|Has expired: Broken for more than 6 months
-www/vimb|www/vimb-gtk3|2015-03-29|Split into www/vimb-gtk2 and www/vimb-gtk3 (former default)
 ports-mgmt/portbuilder||2015-03-31|Has expired: No longer developed and overcome by changed in the Ports Collection
 devel/subversion16|devel/subversion|2015-03-31|Has expired: EoL, use devel/subversion
 lang/nimrod|lang/nim|2015-04-03|Renamed by upstream
@@ -11923,7 +11922,6 @@ sysutils/qpxtool||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 sysutils/qsynergy||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 sysutils/qzeitgeist||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 sysutils/searchmonkey||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-sysutils/unetbootin||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 textproc/beediff||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 textproc/dixit||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 textproc/goldendict||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -11976,3 +11974,31 @@ security/yubikey-piv-manager||2019-03-16|Has expired: Qt4 has been EOL since dec
 textproc/xxdiff-scripts||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/py-pivy||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 security/pinentry-qt4||2019-03-17|Has expired: Qt4 has been EOL since december 2015
+www/libsocialweb||2019-03-23|Project was archived upstream
+www/vimb-gtk2|www/vimb|2019-03-24|Merged into www/vimb
+www/vimb-gtk3|www/vimb|2019-03-24|Merged into www/vimb
+audio/gmpc-wikipedia||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+cad/xtrkcad||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+deskutils/rednotebook||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+devel/dissy||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+devel/geany-plugin-devhelp||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+devel/geany-plugin-webhelper||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+editors/gwrite||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+mail/claws-mail-fancy||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+multimedia/miro||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+misc/xiphos||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+net/libproxy-webkit||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+net-im/hotot||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/deforaos-surfer||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/gnome-web-photo||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issue
+www/hs-webkit||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/p5-Gtk2-WebKit||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/py-jswebkit||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issue
+www/py-webkitgtk||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/rubygem-webkit-gtk||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/rubygem-webkit-gtk2||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/uzbl||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/webkit-gtk2||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/webkit-gtk3||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/webkit-sharp||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
+www/xombrero||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issue
