@@ -446,6 +446,7 @@
     SUBDIR += deheader
     SUBDIR += delta
     SUBDIR += dep
+    SUBDIR += deployer
     SUBDIR += derelict-sdl2
     SUBDIR += derelict-util
     SUBDIR += desktop-file-utils
@@ -5694,7 +5695,6 @@
     SUBDIR += rubygem-fog-core1
     SUBDIR += rubygem-fog-core210
     SUBDIR += rubygem-fog-json
-    SUBDIR += rubygem-fog-json102
     SUBDIR += rubygem-font-awesome-rails
     SUBDIR += rubygem-font-awesome-rails-rails5
     SUBDIR += rubygem-font-awesome-rails-rails50
