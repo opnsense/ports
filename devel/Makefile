@@ -1488,7 +1488,6 @@
     SUBDIR += liblouis
     SUBDIR += libltdl
     SUBDIR += liblxqt
-    SUBDIR += liblxqt-l10n
     SUBDIR += libmaa
     SUBDIR += libmatheval
     SUBDIR += libmba
@@ -4454,6 +4453,7 @@
     SUBDIR += py-certsrv
     SUBDIR += py-cffi
     SUBDIR += py-cfgparse
+    SUBDIR += py-cftime
     SUBDIR += py-chainmap
     SUBDIR += py-characteristic
     SUBDIR += py-check-manifest
@@ -5153,6 +5153,7 @@
     SUBDIR += py-sip
     SUBDIR += py-six
     SUBDIR += py-smmap2
+    SUBDIR += py-snakeviz
     SUBDIR += py-sortedcontainers
     SUBDIR += py-sourcemap
     SUBDIR += py-spark
@@ -5190,6 +5191,7 @@
     SUBDIR += py-termcolor
     SUBDIR += py-terminable_thread
     SUBDIR += py-termstyle
+    SUBDIR += py-testfixtures
     SUBDIR += py-testgears
     SUBDIR += py-testinfra
     SUBDIR += py-testoob
