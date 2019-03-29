@@ -720,7 +720,6 @@
     SUBDIR += textmail
     SUBDIR += thunderbird
     SUBDIR += thunderbird-dictionaries
-    SUBDIR += thunderbird-i18n
     SUBDIR += tlb
     SUBDIR += tmda
     SUBDIR += tpop3d
@@ -750,7 +749,5 @@
     SUBDIR += xmailbox
     SUBDIR += xmailwatcher
     SUBDIR += xpbiff
-    SUBDIR += xpi-displayquota
-    SUBDIR += xpi-dispmua
 
 .include <bsd.port.subdir.mk>

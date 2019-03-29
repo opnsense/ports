@@ -14,11 +14,11 @@ CONFLICTS_INSTALL=	rust
 # Which source to pull:
 #   https://static.rust-lang.org/dist/${NIGHTLY_DATE}/rustc-nightly-src.tar.gz
 #   https://static.rust-lang.org/dist/channel-rust-nightly.toml
-NIGHTLY_DATE=			2019-03-28
+NIGHTLY_DATE=			2019-03-30
 NIGHTLY_SUBDIR=			${NIGHTLY_DATE}/
 
 # See WRKSRC/src/stage0.txt for this date
-BOOTSTRAPS_DATE=		2019-02-27
+BOOTSTRAPS_DATE=		2019-03-20
 RUST_BOOTSTRAP_VERSION=		beta
 CARGO_BOOTSTRAP_VERSION=	beta
 

@@ -1373,6 +1373,7 @@
     SUBDIR += py-pyhamcrest
     SUBDIR += py-pyhwp
     SUBDIR += py-pyjade
+    SUBDIR += py-pykwalify
     SUBDIR += py-pylons-sphinx-themes
     SUBDIR += py-pypa-docs-theme
     SUBDIR += py-pypandoc
@@ -1416,9 +1417,12 @@
     SUBDIR += py-sphinx_rtd_theme
     SUBDIR += py-sphinx_wikipedia
     SUBDIR += py-sphinxcontrib-adadomain
+    SUBDIR += py-sphinxcontrib-applehelp
     SUBDIR += py-sphinxcontrib-bitbucket
+    SUBDIR += py-sphinxcontrib-devhelp
     SUBDIR += py-sphinxcontrib-fulltoc
     SUBDIR += py-sphinxcontrib-httpdomain
+    SUBDIR += py-sphinxcontrib-jsmath
     SUBDIR += py-sphinxcontrib-newsfeed
     SUBDIR += py-sphinxcontrib-programoutput
     SUBDIR += py-sphinxcontrib-websupport
