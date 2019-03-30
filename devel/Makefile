@@ -4289,6 +4289,7 @@
     SUBDIR += py-XStatic-tv4
     SUBDIR += py-ZopeUndo
     SUBDIR += py-adb
+    SUBDIR += py-addict
     SUBDIR += py-aenum
     SUBDIR += py-aiofiles
     SUBDIR += py-aioice
@@ -4519,6 +4520,7 @@
     SUBDIR += py-dal
     SUBDIR += py-darcsver
     SUBDIR += py-darts.util.lru
+    SUBDIR += py-dataclasses
     SUBDIR += py-datatest
     SUBDIR += py-dateparser
     SUBDIR += py-dateutil
@@ -4960,6 +4962,7 @@
     SUBDIR += py-pycodestyle
     SUBDIR += py-pycompilation
     SUBDIR += py-pycparser
+    SUBDIR += py-pydantic
     SUBDIR += py-pydenticon
     SUBDIR += py-pydevd
     SUBDIR += py-pydispatcher

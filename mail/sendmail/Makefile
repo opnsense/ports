@@ -25,6 +25,8 @@ MAKE_ARGS=	UBINOWN=${UID} UBINGRP=${GID} \
 		SBINOWN=${UID} SBINGRP=${GID} \
 		GBINOWN=${UID} GBINGRP=${GID} \
 		MANOWN=${UID} MANGRP=${GID} \
+		CFOWN=${UID} CFGRP=${GID} \
+		MSPQOWN=${UID} \
 		LIBMODE=0644 UBINMODE=0755 GBINMODE=2755
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 DOCS=		KNOWNBUGS LICENSE PGPKEYS README RELEASE_NOTES \
@@ -238,7 +240,7 @@ pre-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/mail
 	@${SED} \
 	 -e "s=\([ 	]\)/.*$$=\\1${SENDMAIL}=" \
-	 ${DESTDIR}/etc/mail/mailer.conf \
+	 ${FILESDIR}/mailer.conf \
 	 > ${STAGEDIR}${PREFIX}/etc/mail/mailer.conf.sendmail
 
 # We want mail.local and rmail for our system.
@@ -263,7 +265,6 @@ post-install:
 	${RM} ${STAGEDIR}${PREFIX}/man/cat*/*
 # final perm of sendmail is 2555 (see plist), needed for strip cmd
 	${CHMOD} 755 ${STAGEDIR}${PREFIX}/sbin/sendmail
-
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/vacation
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rmail
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/*
@@ -302,7 +303,7 @@ mailer.conf:
 	@${MKDIR} ${DESTDIR}${PREFIX}/etc/mail
 	@${SED} \
 	 -e "s=\([ 	]\)/.*$$=\\1${SENDMAIL}=" \
-	 ${DESTDIR}/etc/mail/mailer.conf \
+	 ${FILESDIR}/mailer.conf \
 	 > ${DESTDIR}${PREFIX}/etc/mail/mailer.conf
 .endif
 
