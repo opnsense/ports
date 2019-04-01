@@ -197,7 +197,6 @@
     SUBDIR += glpi
     SUBDIR += gnome-user-share
     SUBDIR += go-appengine-sdk
-    SUBDIR += go-fasthttp
     SUBDIR += go-www
     SUBDIR += gobuffalo
     SUBDIR += gohugo
@@ -1619,6 +1618,7 @@
     SUBDIR += py-django111
     SUBDIR += py-django20
     SUBDIR += py-django21
+    SUBDIR += py-django22
     SUBDIR += py-django_compressor
     SUBDIR += py-django_openstack_auth
     SUBDIR += py-django_polymorphic
@@ -2391,7 +2391,6 @@
     SUBDIR += udmsearch
     SUBDIR += ufdbguard
     SUBDIR += unit
-    SUBDIR += unit-go
     SUBDIR += unit-perl
     SUBDIR += unit-php
     SUBDIR += uwsgi
@@ -2424,7 +2423,6 @@
     SUBDIR += webcopy
     SUBDIR += webcrawl
     SUBDIR += webfs
-    SUBDIR += webgo
     SUBDIR += webgrind
     SUBDIR += webhook
     SUBDIR += webinject
