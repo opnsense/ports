@@ -11553,6 +11553,7 @@ math/wxMaxima|math/wxmaxima|2019-02-10|rename for consistency
 net-mgmt/py-snmp4|net-mgmt/py-pysnmp|2019-02-11|Renamed to match upstream naming
 net-mgmt/py-snmp4-apps|net-mgmt/py-pysnmp-apps|2019-02-11|Renamed to match upstream naming
 net-mgmt/py-snmp4-mibs|net-mgmt/py-pysnmp-mibs|2019-02-11|Renamed to match upstream naming
+databases/ruby-gdbm|databases/rubygem-gdbm|2019-02-18|Renamed because switch to use gem
 science/mmtf|science/mmtf-cpp|2019-02-16|Rename to match the project name on github
 dns/p5-pgeodns||2019-02-16|Has expired: Uses legacy GeoIP 1 format which no longer works; switch to GeoIP 2 where possible
 ftp/proftpd-mod_geoip||2019-02-16|Has expired: Uses legacy GeoIP 1 format which no longer works; switch to GeoIP 2 where possible
@@ -12116,3 +12117,41 @@ net/rubygem-gitlab_omniauth-ldap20|net/rubygem-gitlab_omniauth-ldap|2019-03-31|H
 net/rubygem-rubyntlm05|net/rubygem-rubyntlm|2019-03-31|Has expired: Use net/rubygem-rubyntlm instead
 security/kbfs|security/keybase|2019-03-31|Has expired: Merged into security/keybase
 security/rubygem-sshkey1|security/rubygem-sshkey|2019-03-31|Has expired: Use security/rubygem-sshkey instead
+devel/llvm38|devel/llvm80|2019-04-01|Has expired: Use a modern version instead
+archivers/go-compress||2019-04-01|Has expired: Go libraries should not be packaged
+textproc/go.text||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-hashicorp-logutils||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-cpuid||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-nuid||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-yaml||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-raw||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-go.uuid||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-goregen||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-runewidth||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-cobra||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-pflag||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-slices||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-form||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-bayesian||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-uuid||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-logrus||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-metrics||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-codec||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-faker||2019-04-01|Has expired: Go libraries should not be packaged
+devel/go-crc32||2019-04-01|Has expired: Go libraries should not be packaged
+security/goptlib||2019-04-01|Has expired: Go libraries should not be packaged
+security/go.crypto||2019-04-01|Has expired: Go libraries should not be packaged
+net/go-httppath||2019-04-01|Has expired: Go libraries should not be packaged
+net/go-amqp||2019-04-01|Has expired: Go libraries should not be packaged
+net/go.net||2019-04-01|Has expired: Go libraries should not be packaged
+net/go-nats||2019-04-01|Has expired: Go libraries should not be packaged
+net/go-httptreemux||2019-04-01|Has expired: Go libraries should not be packaged
+databases/gosqlite3||2019-04-01|Has expired: Go libraries should not be packaged
+databases/redigo||2019-04-01|Has expired: Go libraries should not be packaged
+databases/gomdb||2019-04-01|Has expired: Go libraries should not be packaged
+databases/radix.v2||2019-04-01|Has expired: Go libraries should not be packaged
+databases/levigo||2019-04-01|Has expired: Go libraries should not be packaged
+www/unit-go||2019-04-01|Has expired: Go libraries should not be packaged
+www/webgo||2019-04-01|Has expired: Go libraries should not be packaged
+www/go-fasthttp||2019-04-01|Has expired: Go libraries should not be packaged
+graphics/llpp||2019-04-01|Has expired: fails to build with mupdf 1.14.0 and unable to update due to outdated lang/ocaml
