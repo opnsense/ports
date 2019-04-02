@@ -18,15 +18,15 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtinyxml.so:textproc/tinyxml
 
-USE_HARDENING=	pie:off relro:off
-
-USES=		tar:bzip2
+USES=		compiler:c++0x tar:bzip2
 USE_XORG=	x11
 USE_GL=		gl
 USE_SDL=	image mixer sdl
 USE_CXXSTD=	gnu++98
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-optimize
+
+USE_HARDENING=	pie:off relro:off
 
 CONFLICTS=	shaaft-[0-9]*
 

@@ -1271,6 +1271,7 @@
     SUBDIR += py-agate-excel
     SUBDIR += py-alabaster
     SUBDIR += py-asciinema
+    SUBDIR += py-asonic
     SUBDIR += py-asv
     SUBDIR += py-autopep8
     SUBDIR += py-awesome-slugify
@@ -1724,6 +1725,7 @@
     SUBDIR += smi
     SUBDIR += smu
     SUBDIR += so-hunspell
+    SUBDIR += sonic
     SUBDIR += soothsayer
     SUBDIR += source-highlight
     SUBDIR += sowing
