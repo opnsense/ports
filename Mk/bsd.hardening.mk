@@ -70,7 +70,7 @@ HBSDVERSION!=		${AWK} '/^\#define[[:blank:]]__HardenedBSD_version/ {print $$3}' 
 HBSDVERSION=		0
 .endif
 
-HARDENING_ALL=		cfi pie relro retpoline safestack
+HARDENING_ALL=		cfi pie relro retpoline safestack slh
 HARDENING_OFF?=		# all features are on by default
 
 USE_HARDENING?=		# implicit auto-defaults may apply
@@ -313,6 +313,39 @@ OPTIONS_GROUP_HARDENING+=RETPOLINE
 OPTIONS_DEFAULT+=	RETPOLINE
 .if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=RETPOLINE
+.endif
+.endif
+
+.endif
+.endif
+
+###########################################
+### Spectulative Load Hardening support ###
+###########################################
+
+.if ${HARDENING_OFF:Mslh} == ""
+
+.if ${OSVERSION} >= 1200055 && ${HBSDVERSION} >= 1200057 \
+	&& ${ARCH} == "amd64" && ${LLD_IS_LD} == "yes" \
+	&& !defined(LLD_UNSAFE) && !defined(USE_GCC)
+
+slh_ARGS?=	auto
+
+.if ${slh_ARGS:Mauto}
+slh_ARGS:=	off
+.endif
+
+SLH_DESC=		Build with Speculative Load Hardening (large perf hit)
+SLH_USES=		speculative_load_hardening
+
+.if ${_USE_HARDENING:Mlock} == ""
+OPTIONS_GROUP_HARDENING+=SLH
+.endif
+
+.if ${USE_HARDENING:Mslh} && ${slh_ARGS:Moff} == ""
+OPTIONS_DEFAULT+=	SLH
+.if ${_USE_HARDENING:Mlock} != ""
+OPTIONS_GROUP_HARDENING+=SLH
 .endif
 .endif
 
