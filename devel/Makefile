@@ -4681,6 +4681,7 @@
     SUBDIR += py-jaraco.logging
     SUBDIR += py-jaraco.timing
     SUBDIR += py-jaraco.util
+    SUBDIR += py-javaproperties
     SUBDIR += py-jcc
     SUBDIR += py-jdcal
     SUBDIR += py-jedi
@@ -5100,6 +5101,7 @@
     SUBDIR += py-rwt
     SUBDIR += py-rx
     SUBDIR += py-sanetime
+    SUBDIR += py-saneyaml
     SUBDIR += py-sarge
     SUBDIR += py-schedule
     SUBDIR += py-schema
