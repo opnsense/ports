@@ -13,8 +13,7 @@ DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	The open source, standards compliant web browser
 
-DEPRECATED=	Multiple vulnerabilities and crashes if built by Clang 8
-EXPIRATION_DATE=2019-08-31
+BROKEN_FreeBSD_13_amd64=	xpcshell crashes after base Clang updated to 8.0.0
 
 BUILD_DEPENDS=	nspr>=4.13.1:devel/nspr \
 		nss>=3.28.6:security/nss \

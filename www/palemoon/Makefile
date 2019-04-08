@@ -10,8 +10,7 @@ CATEGORIES=	www ipv6
 MAINTAINER=	lichray@gmail.com
 COMMENT=	Open Source Goanna-based web browser
 
-DEPRECATED=	Multiple vulnerabilities and crashes if built by Clang 8
-EXPIRATION_DATE=2019-08-31
+BROKEN_FreeBSD_13_amd64=	xpcshell crashes after base Clang updated to 8.0.0
 
 BUILD_DEPENDS=	nspr>=4.15:devel/nspr \
 		nss>=3.31.1:security/nss \
