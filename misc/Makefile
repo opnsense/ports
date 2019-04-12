@@ -271,6 +271,7 @@
     SUBDIR += openmvg
     SUBDIR += openr2
     SUBDIR += orange3
+    SUBDIR += orion
     SUBDIR += orville-write
     SUBDIR += osinfo-db
     SUBDIR += ossp-uuid
@@ -373,6 +374,7 @@
     SUBDIR += py-colorbrewer
     SUBDIR += py-colored
     SUBDIR += py-crudini
+    SUBDIR += py-eemeter
     SUBDIR += py-emoji
     SUBDIR += py-fast-histogram
     SUBDIR += py-fuzzy

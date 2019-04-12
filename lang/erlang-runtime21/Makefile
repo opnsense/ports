@@ -3,7 +3,7 @@
 
 PORTNAME=	erlang
 DISTVERSIONPREFIX=	OTP-
-DISTVERSION=	21.3.3
+DISTVERSION=	21.3.4
 # NB when bumping OTP versions also bump PORTREVISION in databases/couchdb2
 CATEGORIES=	lang parallel java
 PKGNAMESUFFIX=	-runtime21
@@ -17,9 +17,13 @@ LICENSE=	APACHE20
 BROKEN_sparc64=	Fails to build: error: fp_except undeclared
 
 USES=		autoreconf:build gmake ncurses perl5
-USE_GITHUB=	yes
-GH_PROJECT=	otp
+USE_GITHUB=	nodefault
+GH_ACCOUNT=	erlang:otp,corba
+GH_PROJECT=	otp:otp corba:corba
+GH_TAGNAME=	4.5.2:corba
 USE_PERL5=	build
+
+WRKSRC=		${WRKSRC_otp}
 
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=yes
@@ -29,12 +33,12 @@ SUB_LIST=	ERLANG_LIB=${ERLANG_LIB}
 
 ERLANG_LIB=	${PORTNAME}${PORTVERSION:C/\..*//}
 
-OPTIONS_DEFINE=	DIRTY DTRACE GS HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP THREADS WX
-OPTIONS_DEFAULT=DIRTY DTRACE HIPE KQUEUE OPENSSL SCTP THREADS
+OPTIONS_DEFINE=	CORBA DIRTY DTRACE HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP THREADS WX
+OPTIONS_DEFAULT=CORBA DIRTY DTRACE HIPE KQUEUE OPENSSL SCTP THREADS
 OPTIONS_EXCLUDE_powerpc64=	HIPE
 
+CORBA_DESC=	Enable Corba support
 DIRTY_DESC=	Enable Dirty schedulers
-GS_DESC=	Enable GS application (deprecated)
 HIPE_DESC=	Build native HiPE compiler
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
 NATIVE_DESC=	Enable native libraries
@@ -66,7 +70,6 @@ DIRTY_CONFIGURE_ENABLE=	dirty-schedulers
 DTRACE_CFLAGS=		-fno-omit-frame-pointer
 DTRACE_CONFIGURE_WITH=	dynamic-trace=dtrace
 DTRACE_VARS=		STRIP=""
-GS_USES=		tk:run
 HIPE_CONFIGURE_ENABLE=	hipe
 JAVA_CONFIGURE_ENV=	ac_cv_prog_JAVAC="${JAVAC}"
 JAVA_CONFIGURE_WITH=	javac
@@ -112,8 +115,14 @@ post-configure-ODBC-on:
 pre-build-NATIVE-on:
 	@cd ${WRKSRC} && ${MAKE_CMD} clean
 
-post-install-GS-off:
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/gs-*
+post-build-CORBA-on:
+	cd ${WRKSRC_corba} \
+		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} ${MAKE_CMD}
+
+post-install-CORBA-on:
+	cd ${WRKSRC_corba} \
+		&& ${SETENV} OVERRIDE_TARGET=${CONFIGURE_TARGET} ERL_TOP=${WRKSRC_otp} \
+			${MAKE_CMD} release RELEASE_ROOT=${STAGEDIR}${PREFIX}/lib/${ERLANG_LIB}/lib
 
 post-install-JAVA-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/jinterface-*
@@ -127,6 +136,9 @@ post-install-OPENSSL-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/ssl-*
 
 post-install-WX-off:
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/debugger-*
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/et-*
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/observer-*
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/wx-*
 
 post-stage:

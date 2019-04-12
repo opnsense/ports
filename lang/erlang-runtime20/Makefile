@@ -28,12 +28,11 @@ SUB_LIST=	ERLANG_LIB=${ERLANG_LIB}
 
 ERLANG_LIB=	${PORTNAME}${PORTVERSION:C/\..*//}
 
-OPTIONS_DEFINE=	DIRTY DTRACE GS HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP THREADS WX
+OPTIONS_DEFINE=	DIRTY DTRACE HIPE JAVA KQUEUE NATIVE ODBC OPENSSL SCTP THREADS WX
 OPTIONS_DEFAULT=DIRTY DTRACE HIPE KQUEUE OPENSSL SCTP THREADS
 OPTIONS_EXCLUDE_powerpc64=	HIPE
 
 DIRTY_DESC=	Enable Dirty schedulers
-GS_DESC=	Enable GS application (deprecated)
 HIPE_DESC=	Build native HiPE compiler
 KQUEUE_DESC=	Enable Kernel Poll (kqueue) support
 NATIVE_DESC=	Enable native libraries
@@ -65,7 +64,6 @@ DIRTY_CONFIGURE_ENABLE=	dirty-schedulers
 DTRACE_CFLAGS=		-fno-omit-frame-pointer
 DTRACE_CONFIGURE_WITH=	dynamic-trace=dtrace
 DTRACE_VARS=		STRIP=""
-GS_USES=		tk:run
 HIPE_CONFIGURE_ENABLE=	hipe
 JAVA_CONFIGURE_ENV=	ac_cv_prog_JAVAC="${JAVAC}"
 JAVA_CONFIGURE_WITH=	javac
@@ -111,9 +109,6 @@ post-configure-ODBC-on:
 pre-build-NATIVE-on:
 	@cd ${WRKSRC} && ${MAKE_CMD} clean
 
-post-install-GS-off:
-	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/gs-*
-
 post-install-JAVA-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/jinterface-*
 
@@ -126,6 +121,9 @@ post-install-OPENSSL-off:
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/ssl-*
 
 post-install-WX-off:
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/debugger-*
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/et-*
+	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/observer-*
 	${RM} -r ${STAGEDIR}${PREFIX}/lib/erlang/lib/wx-*
 
 post-stage:
