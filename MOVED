@@ -9522,7 +9522,6 @@ databases/elixir-ecto_migrate||2017-11-11|Has expired: Broken for more than 6 mo
 audio/gspeakers||2017-11-11|Has expired: Broken for more than 6 months
 net/p5-Filesys-SmbClient||2017-11-11|Has expired: Broken for more than 6 months
 audio/tclmidi||2017-11-11|Has expired: Broken for more than 6 months
-security/py-xmlsec||2017-11-11|Has expired: Broken for more than 6 months
 security/samba-virusfilter||2017-11-11|Has expired: Broken for more than 6 months
 textproc/ocaml-pxp||2017-11-11|Has expired: Broken for more than 6 months
 audio/sooperlooper||2017-11-11|Has expired: Broken for more than 6 months
@@ -11940,7 +11939,6 @@ www/qt4-webkit||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 www/qupzilla-qt4||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11/leechcraft||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11/py-qt4-opengl||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-x11/qimageblitz||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11/qt4-graphicssystems-opengl||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11/qt4-inputmethods||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11/qxkb||2019-03-16|Has expired: Qt4 has been EOL since december 2015
