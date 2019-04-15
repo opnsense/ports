@@ -11,6 +11,7 @@ MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ada95 bindings for ncurses
 
 LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/README
 
 USE_HARDENING=	pie:off retpoline:off
 

@@ -1277,6 +1277,7 @@
     SUBDIR += py-awesome-slugify
     SUBDIR += py-bibtexparser
     SUBDIR += py-bugzillatools
+    SUBDIR += py-cchardet
     SUBDIR += py-chardet
     SUBDIR += py-citeproc-py
     SUBDIR += py-citeproc-py-styles
@@ -1345,6 +1346,7 @@
     SUBDIR += py-normality
     SUBDIR += py-numpydoc
     SUBDIR += py-openpyxl
+    SUBDIR += py-openpyxl24
     SUBDIR += py-openstackdocstheme
     SUBDIR += py-orange3-text
     SUBDIR += py-os-api-ref

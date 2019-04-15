@@ -2602,6 +2602,7 @@
     SUBDIR += p5-File-ShareDir-PAR
     SUBDIR += p5-File-ShareDir-PathClass
     SUBDIR += p5-File-ShareDir-ProjectDistDir
+    SUBDIR += p5-File-ShareDir-Tarball
     SUBDIR += p5-File-Slurp
     SUBDIR += p5-File-Slurp-Tiny
     SUBDIR += p5-File-Slurp-Tree
@@ -2978,6 +2979,7 @@
     SUBDIR += p5-MooX-Locale-Passthrough
     SUBDIR += p5-MooX-Options
     SUBDIR += p5-MooX-Role-Parameterized
+    SUBDIR += p5-MooX-Singleton
     SUBDIR += p5-MooX-StrictConstructor
     SUBDIR += p5-MooX-Thunking
     SUBDIR += p5-MooX-Traits
@@ -3026,6 +3028,7 @@
     SUBDIR += p5-MooseX-MethodAttributes
     SUBDIR += p5-MooseX-MultiInitArg
     SUBDIR += p5-MooseX-MultiMethods
+    SUBDIR += p5-MooseX-MungeHas
     SUBDIR += p5-MooseX-NonMoose
     SUBDIR += p5-MooseX-Object-Pluggable
     SUBDIR += p5-MooseX-OneArgNew
@@ -4649,6 +4652,7 @@
     SUBDIR += py-icalendar
     SUBDIR += py-ice
     SUBDIR += py-ice37
+    SUBDIR += py-ijson
     SUBDIR += py-imgkit
     SUBDIR += py-incremental
     SUBDIR += py-inflect
@@ -4710,6 +4714,7 @@
     SUBDIR += py-jsonrpclib
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
+    SUBDIR += py-jsonschema2
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter_client
     SUBDIR += py-jupyter_console
@@ -4915,6 +4920,7 @@
     SUBDIR += py-proglog
     SUBDIR += py-promise
     SUBDIR += py-prompt_toolkit
+    SUBDIR += py-prompt_toolkit1
     SUBDIR += py-prompt_toolkit2
     SUBDIR += py-protobuf
     SUBDIR += py-protocols
@@ -5162,6 +5168,7 @@
     SUBDIR += py-sysv_ipc
     SUBDIR += py-tables
     SUBDIR += py-tabulate
+    SUBDIR += py-tabulator
     SUBDIR += py-tapi
     SUBDIR += py-tarantool-queue
     SUBDIR += py-taskflow
