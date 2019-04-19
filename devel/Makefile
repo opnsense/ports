@@ -2003,6 +2003,7 @@
     SUBDIR += p5-Badger
     SUBDIR += p5-Benchmark-Timer
     SUBDIR += p5-Best
+    SUBDIR += p5-Border-Style
     SUBDIR += p5-Brannigan
     SUBDIR += p5-Bread-Board
     SUBDIR += p5-Bread-Board-Declare
@@ -2163,6 +2164,8 @@
     SUBDIR += p5-Clone-PP
     SUBDIR += p5-Code-Perl
     SUBDIR += p5-Color-ANSI-Util
+    SUBDIR += p5-Color-RGB-Util
+    SUBDIR += p5-Color-Theme-Role
     SUBDIR += p5-Commandable
     SUBDIR += p5-Commands-Guarded
     SUBDIR += p5-CommitBit
@@ -2637,6 +2640,7 @@
     SUBDIR += p5-Form-Sensible
     SUBDIR += p5-FreeBSD-i386-Ptrace
     SUBDIR += p5-FreezeThaw
+    SUBDIR += p5-Function-Fallback-CoreOrPP
     SUBDIR += p5-Function-Parameters
     SUBDIR += p5-Future
     SUBDIR += p5-Gearman
@@ -2878,6 +2882,7 @@
     SUBDIR += p5-Log-Simple
     SUBDIR += p5-Log-Trace
     SUBDIR += p5-Log-TraceMessages
+    SUBDIR += p5-Log-ger
     SUBDIR += p5-Logfile-Rotate
     SUBDIR += p5-Luka
     SUBDIR += p5-Lvalue
@@ -3157,6 +3162,7 @@
     SUBDIR += p5-Package-Constants
     SUBDIR += p5-Package-DeprecationManager
     SUBDIR += p5-Package-Generator
+    SUBDIR += p5-Package-MoreUtil
     SUBDIR += p5-Package-Stash
     SUBDIR += p5-Package-Stash-XS
     SUBDIR += p5-Package-Variant
@@ -3188,6 +3194,7 @@
     SUBDIR += p5-Parse-PerlConfig
     SUBDIR += p5-Parse-PlainConfig
     SUBDIR += p5-Parse-RecDescent
+    SUBDIR += p5-Parse-VarName
     SUBDIR += p5-Parse-Win32Registry
     SUBDIR += p5-Parse-Yapp
     SUBDIR += p5-ParseLex
@@ -3457,12 +3464,15 @@
     SUBDIR += p5-Term-ANSIColor
     SUBDIR += p5-Term-ANSIScreen
     SUBDIR += p5-Term-Animation
+    SUBDIR += p5-Term-App-Roles
     SUBDIR += p5-Term-CallEditor
     SUBDIR += p5-Term-Choose
     SUBDIR += p5-Term-Choose-Util
     SUBDIR += p5-Term-Clui
+    SUBDIR += p5-Term-Detect-Software
     SUBDIR += p5-Term-EditLine
     SUBDIR += p5-Term-Encoding
+    SUBDIR += p5-Term-Form
     SUBDIR += p5-Term-Menus
     SUBDIR += p5-Term-ProgressBar
     SUBDIR += p5-Term-ProgressBar-Quiet
@@ -4996,6 +5006,7 @@
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
     SUBDIR += py-pyrsistent
+    SUBDIR += py-pysdl2
     SUBDIR += py-pyshapelib
     SUBDIR += py-pyshp
     SUBDIR += py-pysparklines
@@ -5118,7 +5129,6 @@
     SUBDIR += py-schema
     SUBDIR += py-schematics-patched
     SUBDIR += py-scripttest
-    SUBDIR += py-sdl2
     SUBDIR += py-selection
     SUBDIR += py-selectors2
     SUBDIR += py-selectors34

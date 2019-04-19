@@ -13,6 +13,7 @@ LICENSE=	GPLv2
 
 USE_HARDENING=	safestack
 
+USES=		bison
 USE_RC_SUBR=	oidentd
 GNU_CONFIGURE=	yes
 
