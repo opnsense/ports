@@ -2,7 +2,7 @@
 
 PORTNAME=	colmap
 DISTVERSION=	3.5
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	graphics
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -24,7 +24,7 @@ LIB_DEPENDS=	libboost_filesystem.so:devel/boost-libs \
 		libfreeimage.so:graphics/freeimage \
 		libceres.so:math/ceres-solver
 
-USES=		cmake compiler:${OPENMP}c++11-lib eigen:3 fortran localbase qt:5 sqlite
+USES=		cmake compiler:${OPENMP}c++11-lib eigen:3 localbase qt:5 sqlite
 USE_GITHUB=	yes
 USE_GL=		gl glew
 USE_QT=		qmake_build buildtools_build core gui opengl_build widgets
@@ -43,14 +43,16 @@ CGAL_DESC=		Graph-cut on Delaunay triangulation based meshing algorithm
 CGAL_LIB_DEPENDS=	libCGAL.so:math/cgal
 CGAL_CMAKE_BOOL=	CGAL_ENABLED
 
-DOCS_BUILD_DEPENDS=	sphinx-build:textproc/py-sphinx
-DOCS_USES=		gmake
+DOCS_BUILD_DEPENDS=	gmake:devel/gmake \
+			sphinx-build:textproc/py-sphinx
 DOCS_PORTDOCS=		*
 
 OPENMP_USES=		compiler:openmp
 OPENMP_CMAKE_BOOL=	OPENMP_ENABLED
+.if !exists(/usr/include/omp.h)
 # XXX ports/199603 + ports/210337
 OPENMP_VARS=		OPENMP=gcc-
+.endif
 
 SIMD_CMAKE_BOOL=	SIMD_ENABLED
 
@@ -74,7 +76,7 @@ post-patch:
 .endif
 
 post-build-DOCS-on:
-	@${DO_MAKE_BUILD} html -C${WRKSRC}/doc
+	@${SETENV} ${MAKE_ENV} ${GMAKE} ${_MAKE_JOBS} html -C${WRKSRC}/doc
 
 pre-install-TEST-on: do-test
 
