@@ -18,12 +18,12 @@ COMMENT=	Interactive, integrated, graphical Scheme programming environment
 
 LICENSE=	LGPL3
 
+IGNORE_powerpc64=	./lightning/lightning.h:81:2: GNU lightning does not support the current target
+BROKEN_i386=		segfaults during build
+
 LIB_DEPENDS=	libffi.so:devel/libffi		\
 		libcairo.so:graphics/cairo	\
 		libpng.so:graphics/png
-
-IGNORE_powerpc64=	./lightning/lightning.h:81:2: GNU lightning does not support the current target
-BROKEN_i386=		segfaults during build
 
 MAKE_JOBS_UNSAFE=yes
 
@@ -40,8 +40,7 @@ USE_LDCONFIG=	yes
 REINPLACE_ARGS=	-i ""
 USE_GNOME=	cairo pango
 
-OPTIONS_DEFINE=	DOCS FUTURES
-OPTIONS_DEFAULT=FUTURES
+OPTIONS_DEFINE=	DOCS
 
 OPTIONS_DEFINE_amd64=	JIT FUTURES
 OPTIONS_DEFINE_i386=	JIT FUTURES
