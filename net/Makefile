@@ -1210,6 +1210,7 @@
     SUBDIR += rubygem-azure-core
     SUBDIR += rubygem-bunny
     SUBDIR += rubygem-connection_pool
+    SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-dogapi
     SUBDIR += rubygem-domain_name
     SUBDIR += rubygem-dropbox-sdk
@@ -1289,6 +1290,7 @@
     SUBDIR += rubygem-omniauth-twitter
     SUBDIR += rubygem-open-uri-cached
     SUBDIR += rubygem-opennebula
+    SUBDIR += rubygem-orchestrator_client
     SUBDIR += rubygem-ovirt-engine-sdk
     SUBDIR += rubygem-packetfu
     SUBDIR += rubygem-pcaprub
