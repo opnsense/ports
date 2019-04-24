@@ -16,6 +16,11 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	gawk:lang/gawk
 LIB_DEPENDS=	libjson-c.so:devel/json-c
 
+# FRR uses shared libraries as plugins, but
+# does not fail with safestack as no port depends
+# on these internal library plugins:
+USE_HARDENING=	safestack
+
 USES=		autoreconf bison compiler:c++11-lang gmake pkgconfig libtool \
 		makeinfo python:2.7,build readline
 
