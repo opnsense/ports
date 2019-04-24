@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openconnect
-PORTVERSION=	7.08
+PORTVERSION=	8.02
 CATEGORIES=	security
 MASTER_SITES=	ftp://ftp.infradead.org/pub/openconnect/ \
 		ZI
@@ -19,14 +19,18 @@ RUN_DEPENDS=	vpnc-script:sysutils/vpnc-scripts
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-nls --with-vpnc-script=${LOCALBASE}/sbin/vpnc-script \
 		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
-		--without-stoken --without-openssl-version-check
-USES=		cpe gmake iconv libtool pkgconfig python:build ssl
+		--without-openssl-version-check --without-libpcsclite \
+		--without-libpskc
+USES=		cpe gmake iconv libtool pkgconfig python:build ssl shebangfix
 CPE_VENDOR=	infradead
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
+SHEBANG_FILES=	trojans/csd-post.sh trojans/csd-wrapper.sh \
+		trojans/tncc-wrapper.py
 PORTDOCS=	*
 
-OPTIONS_DEFINE=	PROXY GNUTLS LZ4 P11
+OPTIONS_DEFINE=	DOCS PROXY GNUTLS GSSAPI LZ4 P11 STOKEN
+OPTIONS_DEFAULT=GSSAPI
 
 LZ4_DESC=		LZ4-based compression
 LZ4_LIB_DEPENDS=	liblz4.so:archivers/liblz4
@@ -40,8 +44,15 @@ GNUTLS_DESC=		Use GnuTLS instead of OpenSSL (experimental)
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_WITH=	gnutls
 
+GSSAPI_CONFIGURE_WITH=	gssapi
+
 P11_DESC=		PKCS#11 support via libp11
 P11_LIB_DEPENDS=	libp11.so:security/libp11
+
+STOKEN_DESC=		With RSA soft token support via libstoken
+STOKEN_LIB_DEPENDS=	libstoken.so:security/stoken \
+				libtomcrypt.so:security/libtomcrypt
+STOKEN_CONFIGURE_WITH=	stoken
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
