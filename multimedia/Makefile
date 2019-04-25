@@ -307,6 +307,7 @@
     SUBDIR += p5-Subtitles
     SUBDIR += p5-Umph-Prompt
     SUBDIR += pHash
+    SUBDIR += peek
     SUBDIR += phonon
     SUBDIR += phonon-designerplugin
     SUBDIR += phonon-gstreamer
@@ -406,6 +407,7 @@
     SUBDIR += tvheadend
     SUBDIR += umph
     SUBDIR += umr
+    SUBDIR += ustreamer
     SUBDIR += v4l-utils
     SUBDIR += v4l_compat
     SUBDIR += vamps

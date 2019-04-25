@@ -18,6 +18,8 @@ LIB_DEPENDS=	libzzip.so:devel/zziplib \
 		libfreetype.so:print/freetype2 \
 		libfreeimage.so:graphics/freeimage
 
+CONFLICTS=	ogre3d19-[0-9]*
+
 USE_LDCONFIG=	yes
 USES=		tar:bzip2 cmake pkgconfig compiler:c++11-lib
 USE_SDL=	sdl

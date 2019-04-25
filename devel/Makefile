@@ -616,6 +616,7 @@
     SUBDIR += eventxx
     SUBDIR += evolution-gconf-tools
     SUBDIR += exercisix
+    SUBDIR += f18
     SUBDIR += f77flow
     SUBDIR += fam
     SUBDIR += fastcrc
@@ -5146,6 +5147,7 @@
     SUBDIR += py-setuptools_hg
     SUBDIR += py-setuptools_scm
     SUBDIR += py-setuptools_scm_git_archive
+    SUBDIR += py-sexpdata
     SUBDIR += py-sh
     SUBDIR += py-shapely
     SUBDIR += py-shellingham
