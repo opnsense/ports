@@ -1011,7 +1011,9 @@
     SUBDIR += pwhois
     SUBDIR += pxe
     SUBDIR += pxe-pdhcp
+    SUBDIR += py-DTLSSocket
     SUBDIR += py-GeoIP2
+    SUBDIR += py-aiocoap
     SUBDIR += py-aiohttp-socks
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
@@ -1097,6 +1099,7 @@
     SUBDIR += py-python-ntlm
     SUBDIR += py-python-openstackclient
     SUBDIR += py-python-twitter
+    SUBDIR += py-pytradfri
     SUBDIR += py-pyvmomi
     SUBDIR += py-pyzmq
     SUBDIR += py-qt5-network
