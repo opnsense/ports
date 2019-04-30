@@ -4158,6 +4158,7 @@
     SUBDIR += projectcenter
     SUBDIR += protobuf
     SUBDIR += protobuf-c
+    SUBDIR += protobuf-java
     SUBDIR += protobuf25
     SUBDIR += protozero
     SUBDIR += pructl
@@ -4949,6 +4950,7 @@
     SUBDIR += py-ptrace
     SUBDIR += py-ptvsd
     SUBDIR += py-pudb
+    SUBDIR += py-purl
     SUBDIR += py-py
     SUBDIR += py-py-ubjson
     SUBDIR += py-py_interface
