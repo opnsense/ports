@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	R
-DISTVERSION=	3.5.3
-PORTREVISION=	4
+DISTVERSION=	3.6.0
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
 
@@ -127,7 +126,6 @@ X11_USE=		xorg=ice,sm,x11,xext,xmu,xscrnsaver,xt
 LIBVER=		${PORTVERSION:R}
 
 .include <bsd.port.options.mk>
-.include "compiler.mk"
 
 # LLVM, which gets pulled in with FLANG, provides libomp.  So, only depend on
 # devel/openmp when GFORTRAN and OPENMP are on.

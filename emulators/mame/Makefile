@@ -21,7 +21,8 @@ RUN_DEPENDS=	liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		compiler:c++14-lang gmake jpeg pkgconfig python:2.7,build qt:5 shebangfix
+USES=		compiler:c++14-lang gl gmake jpeg pkgconfig \
+		python:2.7,build qt:5 sdl shebangfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mamedev
