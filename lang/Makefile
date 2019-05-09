@@ -265,7 +265,6 @@
     SUBDIR += pbasic
     SUBDIR += pcc
     SUBDIR += perl5-devel
-    SUBDIR += perl5.24
     SUBDIR += perl5.26
     SUBDIR += perl5.28
     SUBDIR += petite-chez
@@ -305,7 +304,6 @@
     SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
-    SUBDIR += qore
     SUBDIR += qscheme
     SUBDIR += quack
     SUBDIR += racket
@@ -321,6 +319,7 @@
     SUBDIR += rubinius
     SUBDIR += ruby24
     SUBDIR += ruby25
+    SUBDIR += ruby26
     SUBDIR += runawk
     SUBDIR += rust
     SUBDIR += rust-nightly

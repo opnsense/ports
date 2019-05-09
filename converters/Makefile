@@ -32,11 +32,7 @@
     SUBDIR += fribidi
     SUBDIR += gbase
     SUBDIR += gbsdconv
-    SUBDIR += hs-aeson
-    SUBDIR += hs-aeson-compat
     SUBDIR += hs-aeson-pretty
-    SUBDIR += hs-json
-    SUBDIR += hs-sandi
     SUBDIR += htx
     SUBDIR += i18ntools
     SUBDIR += ical2html
