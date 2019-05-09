@@ -1651,6 +1651,7 @@
     SUBDIR += linux-c7-qt
     SUBDIR += linux-c7-sdl12
     SUBDIR += linux-c7-sdl20
+    SUBDIR += linux-ltp
     SUBDIR += linux_libusb
     SUBDIR += lion
     SUBDIR += listserialc
@@ -4143,7 +4144,6 @@
     SUBDIR += pmdk
     SUBDIR += poco
     SUBDIR += popt
-    SUBDIR += poslib
     SUBDIR += powerpc64-binutils
     SUBDIR += powerpc64-gcc
     SUBDIR += powerpc64-xtoolchain-gcc
