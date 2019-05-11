@@ -81,12 +81,15 @@
     SUBDIR += baloo-widgets
     SUBDIR += bamf
     SUBDIR += bareos-client
-    SUBDIR += bareos-client-static
     SUBDIR += bareos-docs
     SUBDIR += bareos-server
+    SUBDIR += bareos-traymonitor
     SUBDIR += bareos16-client
     SUBDIR += bareos16-client-static
     SUBDIR += bareos16-server
+    SUBDIR += bareos17-client
+    SUBDIR += bareos17-client-static
+    SUBDIR += bareos17-server
     SUBDIR += bastille
     SUBDIR += batmon
     SUBDIR += battmond

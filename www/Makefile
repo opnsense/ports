@@ -43,6 +43,7 @@
     SUBDIR += baikal
     SUBDIR += bareos-webui
     SUBDIR += bareos16-webui
+    SUBDIR += bareos17-webui
     SUBDIR += bigbluebutton
     SUBDIR += bins
     SUBDIR += bkmrkconv
@@ -345,6 +346,7 @@
     SUBDIR += miniminiweb
     SUBDIR += minio
     SUBDIR += minio-client
+    SUBDIR += miniserve
     SUBDIR += mitmproxy
     SUBDIR += mkapachepw
     SUBDIR += mknmz-wwwoffle

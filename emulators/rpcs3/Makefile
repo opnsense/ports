@@ -2,8 +2,8 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.6-8085 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g7ead021aa
+DISTVERSION=	0.0.6-8089 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g8194c92f1
 CATEGORIES=	emulators
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -56,10 +56,12 @@ ALSA_CMAKE_BOOL=	USE_ALSA
 
 EVDEV_DESC=		libevdev-based joystick support
 EVDEV_CMAKE_BOOL=	USE_LIBEVDEV
+EVDEV_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 EVDEV_LIB_DEPENDS=	libevdev.so:devel/libevdev
 
 GDB_DESC=		GDB remote stub (powerpc64 target)
 GDB_CMAKE_BOOL=		WITH_GDB
+GDB_BROKEN=		https://github.com/RPCS3/rpcs3/issues/5946
 
 LLVM_DESC=		LLVM-based PPU recompiler
 LLVM_CMAKE_BOOL_OFF=	WITHOUT_LLVM
