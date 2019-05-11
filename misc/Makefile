@@ -241,6 +241,7 @@
     SUBDIR += lxi-tools
     SUBDIR += magicpoint
     SUBDIR += man.el
+    SUBDIR += mate-user-guide
     SUBDIR += mbuffer
     SUBDIR += mc
     SUBDIR += mc-light
@@ -443,6 +444,7 @@
     SUBDIR += rubygem-rabbit
     SUBDIR += rubygem-vpim
     SUBDIR += rump
+    SUBDIR += rumprun
     SUBDIR += sdformat
     SUBDIR += seabios
     SUBDIR += sent
