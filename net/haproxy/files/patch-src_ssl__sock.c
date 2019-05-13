@@ -202,7 +202,7 @@
  
 -#if (OPENSSL_VERSION_NUMBER >= 0x10101000L)
 +#if (OPENSSL_VERSION_NUMBER >= 0x10101000L) && !defined(LIBRESSL_VERSION_NUMBER)
- 		if (!SSL_is_init_finished(conn->xprt_ctx)) {
+ 		if (!SSL_is_init_finished(conn->xprt_ctx) && conn_is_back(conn)) {
  			unsigned int max_early;
  
 @@ -5648,7 +5654,7 @@ static int ssl_sock_from_buf(struct conn
