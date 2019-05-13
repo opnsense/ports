@@ -16,7 +16,7 @@ LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 
 USE_HARDENING=	pie:off
 
-USES=		localbase tar:bzip2 pkgconfig python:2.7
+USES=		compiler:c++11-lang localbase tar:bzip2 pkgconfig python:2.7
 GNU_CONFIGURE=	yes
 USE_GL=		gl
 
