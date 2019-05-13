@@ -10193,7 +10193,6 @@ audio/kaudiocreator||2018-06-07|Has expired: Broken for more than 6 months
 audio/jxm||2018-06-07|Has expired: Depends on BROKEN and expiring comms/java-commapi
 audio/deforaos-mixer||2018-06-07|Has expired: Broken for more than 6 months
 audio/gkrellmss2||2018-06-07|Has expired: Broken for more than 6 months
-audio/ogg2mp3||2018-06-07|Has expired: Broken for more than 6 months
 audio/abcmidi||2018-06-07|Has expired: Broken for more than 6 months
 benchmarks/netpipe||2018-06-07|Has expired: Broken for more than 6 months
 biology/plink||2018-06-07|Has expired: Broken for more than 6 months
@@ -10564,7 +10563,6 @@ science/ecs|science/code_saturne|2018-11-04|Code_Saturne merged bft, ecs, fvm, m
 science/fvm|science/code_saturne|2018-11-04|Code_Saturne merged bft, ecs, fvm, mei and ncs
 science/mei|science/code_saturne|2018-11-04|Code_Saturne merged bft, ecs, fvm, mei and ncs
 x11-wm/cde|x11/cde|2018-11-05|Recategorise
-misc/rumprun||2018-11-06|Has expired: "fails with current compilers"
 security/ossec-hids-client|security/ossec-hids-agent|2018-11-09|Agent is the name used in documentation
 graphics/ImageMagick|graphics/ImageMagick6|2018-11-10|Port renamed
 graphics/ImageMagick-nox11|graphics/ImageMagick6-nox11|2018-11-10|Port renamed
