@@ -989,6 +989,7 @@ PORTREVISION=	1
     SUBDIR += py-safe
     SUBDIR += py-scp
     SUBDIR += py-scrypt
+    SUBDIR += py-securesystemslib
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
     SUBDIR += py-slowaes
