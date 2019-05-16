@@ -19,6 +19,7 @@
     SUBDIR += fd
     SUBDIR += fish
     SUBDIR += flash
+    SUBDIR += git-prompt.zsh
     SUBDIR += heirloom-sh
     SUBDIR += ibsh
     SUBDIR += ion
@@ -54,7 +55,9 @@
     SUBDIR += xonsh
     SUBDIR += zsh
     SUBDIR += zsh-antigen
+    SUBDIR += zsh-autosuggestions
     SUBDIR += zsh-completions
     SUBDIR += zsh-navigation-tools
+    SUBDIR += zsh-syntax-highlighting
 
 .include <bsd.port.subdir.mk>
