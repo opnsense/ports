@@ -435,6 +435,7 @@
     SUBDIR += darts
     SUBDIR += dash.el
     SUBDIR += datadraw
+    SUBDIR += date
     SUBDIR += dbus
     SUBDIR += dbus-c++
     SUBDIR += dbus-glib
@@ -492,6 +493,7 @@
     SUBDIR += dsymbol
     SUBDIR += dub
     SUBDIR += dulwich
+    SUBDIR += dupl
     SUBDIR += duplo
     SUBDIR += dwarfdump
     SUBDIR += dxa65
@@ -561,6 +563,7 @@
     SUBDIR += elixir-unsafe
     SUBDIR += embb
     SUBDIR += emscripten
+    SUBDIR += entt
     SUBDIR += epl.el
     SUBDIR += epm
     SUBDIR += epydoc
@@ -609,6 +612,7 @@
     SUBDIR += erlang-syslog
     SUBDIR += erlang-unicode_util_compat
     SUBDIR += es-eric6
+    SUBDIR += estd
     SUBDIR += etcd
     SUBDIR += etcd31
     SUBDIR += etcd32
@@ -5214,6 +5218,7 @@
     SUBDIR += qtcreator
     SUBDIR += quickcheck++
     SUBDIR += quilt
+    SUBDIR += rabs
     SUBDIR += racer
     SUBDIR += racerd
     SUBDIR += radare2
@@ -5305,6 +5310,7 @@
     SUBDIR += rubygem-attic
     SUBDIR += rubygem-attr_required
     SUBDIR += rubygem-authlogic
+    SUBDIR += rubygem-avro
     SUBDIR += rubygem-awesome_print
     SUBDIR += rubygem-aws-eventstream
     SUBDIR += rubygem-aws-sdk
@@ -5499,6 +5505,7 @@
     SUBDIR += rubygem-git-version-bump
     SUBDIR += rubygem-github_api
     SUBDIR += rubygem-gitlab-default_value_for
+    SUBDIR += rubygem-gitlab-labkit
     SUBDIR += rubygem-gitlab-pygments.rb
     SUBDIR += rubygem-gitlab-sidekiq-fetcher
     SUBDIR += rubygem-gitlab_git
@@ -5927,6 +5934,8 @@
     SUBDIR += rubygem-uuid
     SUBDIR += rubygem-uuidtools
     SUBDIR += rubygem-validatable
+    SUBDIR += rubygem-validate_email
+    SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-versionomy
     SUBDIR += rubygem-virtus
     SUBDIR += rubygem-warbler
@@ -5936,6 +5945,7 @@
     SUBDIR += rubygem-web-console-rails50
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-webby
+    SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-webpacker-rails5
     SUBDIR += rubygem-webpacker-rails50
     SUBDIR += rubygem-will_paginate

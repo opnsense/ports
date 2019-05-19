@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pyside2
-DISTVERSION=	5.12.2
+DISTVERSION=	5.12.3
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/QtForPython/shiboken2/PySide2-${DISTVERSION}-src
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -28,8 +28,6 @@ USE_QT=		3d buildtools_build charts core datavis3d declarative \
 
 CMAKE_ARGS+=	"-DUSE_PYTHON_VERSION=${PYTHON_VER}" \
 		"-DPYTHON_EXECUTABLE=${PYTHON_CMD}"
-
-MAKE_JOBS_UNSAFE=	yes
 
 .include <bsd.port.pre.mk>
 
