@@ -10562,6 +10562,7 @@ science/ecs|science/code_saturne|2018-11-04|Code_Saturne merged bft, ecs, fvm, m
 science/fvm|science/code_saturne|2018-11-04|Code_Saturne merged bft, ecs, fvm, mei and ncs
 science/mei|science/code_saturne|2018-11-04|Code_Saturne merged bft, ecs, fvm, mei and ncs
 x11-wm/cde|x11/cde|2018-11-05|Recategorise
+misc/rumprun||2018-11-06|Has expired: "fails with current compilers"
 security/ossec-hids-client|security/ossec-hids-agent|2018-11-09|Agent is the name used in documentation
 graphics/ImageMagick|graphics/ImageMagick6|2018-11-10|Port renamed
 graphics/ImageMagick-nox11|graphics/ImageMagick6-nox11|2018-11-10|Port renamed
@@ -11700,7 +11701,6 @@ audio/qmpdclient||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/skype-call-recorder||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 biology/clustalx||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/layouteditor||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-cad/leocad||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/meshlab||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/qfsm||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/qucs||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -12757,3 +12757,4 @@ dns/bind913|dns/bind9-devel|2019-05-16|Remove outdated development version
 databases/py-pg_pqueue||2019-05-16|Has expired: Upstream no longer maintained
 math/py-symeig|science/py-scipy|2019-05-16|Has expired: Consider using science/py-scipy as this library is included in py-scipy since 0.7 and onwards
 databases/py-mysql-connector-python2|databases/py-mysql-connector-python|2019-05-16|Has expired: Please consider using databases/py-mysql-connector-python which has been updated to latest upstream version
+www/py-requests1||2019-05-19|Temporary port while port consumers moved to requests 2.x support and the www/py-requests port. No longer depended on by any ports
