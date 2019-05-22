@@ -29,6 +29,7 @@
     SUBDIR += apache24
     SUBDIR += apercu
     SUBDIR += apt-cacher-ng
+    SUBDIR += aquatone
     SUBDIR += archiva
     SUBDIR += aria2
     SUBDIR += asql
@@ -1848,6 +1849,7 @@
     SUBDIR += py-url
     SUBDIR += py-urlgrabber
     SUBDIR += py-urlobject
+    SUBDIR += py-urlwatch
     SUBDIR += py-user_agent
     SUBDIR += py-utidylib
     SUBDIR += py-w3lib

@@ -787,6 +787,7 @@
     SUBDIR += git-modes
     SUBDIR += git-remote-hg
     SUBDIR += git-review
+    SUBDIR += git-subrepo
     SUBDIR += git-subversion
     SUBDIR += git-town
     SUBDIR += gitaly
@@ -4823,6 +4824,7 @@
     SUBDIR += py-pytvmaze
     SUBDIR += py-pytz
     SUBDIR += py-pyudev
+    SUBDIR += py-pyupgrade
     SUBDIR += py-pyutil
     SUBDIR += py-pyvalid
     SUBDIR += py-pyvisa
@@ -4979,6 +4981,7 @@
     SUBDIR += py-tinyarray
     SUBDIR += py-tinyrpc
     SUBDIR += py-tipper
+    SUBDIR += py-tokenize-rt
     SUBDIR += py-toolz
     SUBDIR += py-tooz
     SUBDIR += py-toposort
