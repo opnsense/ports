@@ -1114,10 +1114,12 @@
     SUBDIR += libbinio
     SUBDIR += libbonobo
     SUBDIR += libbonobo-reference
+    SUBDIR += libbpfjit
     SUBDIR += libbson
     SUBDIR += libburn
     SUBDIR += libcbor
     SUBDIR += libccid
+    SUBDIR += libcdb
     SUBDIR += libcfg
     SUBDIR += libcfu
     SUBDIR += libchipcard
@@ -1227,6 +1229,7 @@
     SUBDIR += liblangtag
     SUBDIR += liblas
     SUBDIR += liblas12
+    SUBDIR += liblpm
     SUBDIR += liblnk
     SUBDIR += liblockfile
     SUBDIR += liblogging
@@ -1289,6 +1292,7 @@
     SUBDIR += libpthread-stubs
     SUBDIR += libqb
     SUBDIR += libqcow
+    SUBDIR += libqsbr
     SUBDIR += libqtxdg
     SUBDIR += libr3
     SUBDIR += librcc
@@ -1339,6 +1343,7 @@
     SUBDIR += libtecla
     SUBDIR += libtermkey
     SUBDIR += libthai
+    SUBDIR += libthmap
     SUBDIR += libtifiles2
     SUBDIR += libtool
     SUBDIR += libtpl
@@ -4831,6 +4836,7 @@
     SUBDIR += py-pyvisa-py
     SUBDIR += py-pyxb
     SUBDIR += py-pyxml2obj
+    SUBDIR += py-q
     SUBDIR += py-qpid
     SUBDIR += py-qserve
     SUBDIR += py-qt5

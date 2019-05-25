@@ -3,7 +3,7 @@
 PORTNAME=	routinator
 PORTVERSION=	0.3.3
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net
 
 MAINTAINER=	jaap@NLnetLabs.nl
@@ -11,6 +11,9 @@ COMMENT=	RPKI signed route collector and validator
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS_REASON=	ring crate not ported to other architectures
 
 RUN_DEPENDS=	rsync:net/rsync
 
