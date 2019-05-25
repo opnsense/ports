@@ -43,7 +43,7 @@ DISTFILES+=	${CARGO_DIST_SUBDIR}/${_crate}.tar.gz:cargo_${_crate:S/-//g:S/.//g}
 
 CARGO_BUILDDEP?=	yes
 .if ${CARGO_BUILDDEP:tl} == "yes"
-BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.34.2:lang/${RUST_DEFAULT}
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.35.0:lang/${RUST_DEFAULT}
 .endif
 
 # Location of cargo binary (default to lang/rust's Cargo binary)
@@ -198,6 +198,10 @@ cargo-extract:
 	@${PRINTF} '{"package":"%s","files":{}}' \
 		$$(${SHA256} -q ${DISTDIR}/${CARGO_DIST_SUBDIR}/${_crate}.tar.gz) \
 		> ${CARGO_VENDOR_DIR}/${_crate}/.cargo-checksum.json
+	@if [ -r ${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig ]; then \
+		${MV} ${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig \
+			${CARGO_VENDOR_DIR}/${_crate}/Cargo.toml.orig-cargo; \
+	fi
 .endfor
 
 _CARGO_GIT_PATCH_CARGOTOML=
