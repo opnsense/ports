@@ -11,6 +11,7 @@
     SUBDIR += bcftools
     SUBDIR += bedtools
     SUBDIR += biococoa
+    SUBDIR += bolt-lmm
     SUBDIR += bowtie
     SUBDIR += bowtie2
     SUBDIR += bwa
@@ -22,6 +23,7 @@
     SUBDIR += clustal-omega
     SUBDIR += clustalw
     SUBDIR += consed
+    SUBDIR += cufflinks
     SUBDIR += cytoscape
     SUBDIR += ddocent
     SUBDIR += diamond

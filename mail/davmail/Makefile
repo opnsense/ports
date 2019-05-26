@@ -7,7 +7,7 @@ CATEGORIES=	mail java
 MASTER_SITES=	SF/davmail/davmail/${PORTVERSION}
 DISTNAME=	${PORTNAME}-src-${PORTVERSION}-${REVISION}
 
-MAINTAINER=	john.c.prather@gmail.com
+MAINTAINER=	jjuanino@gmail.com
 COMMENT=	POP/IMAP/SMTP/Caldav/Carddav/LDAP Exchange Gateway
 
 LICENSE=	GPLv2

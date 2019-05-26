@@ -20,6 +20,7 @@ USES=		python:3.5+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=		yes
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django-debug-toolbar
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}django-debug-toolbar \
+			${PYTHON_PKGNAMEPREFIX}dj22-django-debug-toolbar
 
 .include <bsd.port.mk>

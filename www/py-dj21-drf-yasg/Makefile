@@ -27,6 +27,7 @@ USES=		python:3.5+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=		yes
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}drf-yasg
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}drf-yasg \
+			${PYTHON_PKGNAMEPREFIX}dj22-drf-yasg
 
 .include <bsd.port.mk>

@@ -19,6 +19,7 @@ USES=		python:3.5+
 USE_PYTHON=	distutils autoplist
 
 NO_ARCH=		yes
-CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}dj21-django-taggit-serializer
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}dj21-django-taggit-serializer \
+			${PYTHON_PKGNAMEPREFIX}dj22-django-taggit-serializer
 
 .include <bsd.port.mk>
