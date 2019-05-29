@@ -210,6 +210,7 @@
     SUBDIR += ess
     SUBDIR += eukleides
     SUBDIR += eval
+    SUBDIR += exprtk
     SUBDIR += facile
     SUBDIR += fann
     SUBDIR += fcl
@@ -475,6 +476,7 @@
     SUBDIR += openlibm
     SUBDIR += openmesh
     SUBDIR += opensolaris-libm
+    SUBDIR += openturns
     SUBDIR += optpp
     SUBDIR += orpie
     SUBDIR += osi

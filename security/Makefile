@@ -1,5 +1,4 @@
 # $FreeBSD$
-PORTREVISION=	1
 #
 
     COMMENT = Security tools
@@ -12,7 +11,6 @@ PORTREVISION=	1
     SUBDIR += R-cran-ROAuth
     SUBDIR += R-cran-digest
     SUBDIR += R-cran-openssl
-    SUBDIR += acme-client
     SUBDIR += acme.sh
     SUBDIR += acmetool
     SUBDIR += aescrypt
@@ -240,6 +238,7 @@ PORTREVISION=	1
     SUBDIR += ipsec-tools
     SUBDIR += ipv6toolkit
     SUBDIR += isakmpd
+    SUBDIR += ismtp
     SUBDIR += isnprober
     SUBDIR += jbrofuzz
     SUBDIR += john
@@ -804,6 +803,7 @@ PORTREVISION=	1
     SUBDIR += php73-openssl
     SUBDIR += php73-sodium
     SUBDIR += phpsecinfo
+    SUBDIR += picosha2
     SUBDIR += pidentd
     SUBDIR += pidgin-encryption
     SUBDIR += pidgin-otr

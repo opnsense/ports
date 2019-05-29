@@ -194,11 +194,13 @@
     SUBDIR += dangerdeep-data
     SUBDIR += darkplaces
     SUBDIR += defendguin
+    SUBDIR += devilutionX
     SUBDIR += dhewm3
     SUBDIR += diameter
     SUBDIR += diaspora
     SUBDIR += digger-vgl
     SUBDIR += divide-and-succeed
+    SUBDIR += dMagnetic
     SUBDIR += dmjava
     SUBDIR += dodgindiamond2
     SUBDIR += domination

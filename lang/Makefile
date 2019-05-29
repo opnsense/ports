@@ -113,9 +113,6 @@
     SUBDIR += gcc9-devel
     SUBDIR += gforth
     SUBDIR += ghc
-    SUBDIR += ghc843
-    SUBDIR += ghc844
-    SUBDIR += ghc862
     SUBDIR += gjs
     SUBDIR += gnat_util
     SUBDIR += gnatcross-aarch64
@@ -162,6 +159,8 @@
     SUBDIR += julia
     SUBDIR += julia06
     SUBDIR += julia07
+    SUBDIR += julia10
+    SUBDIR += julia11
     SUBDIR += jython
     SUBDIR += kawa
     SUBDIR += kf5-kross

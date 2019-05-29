@@ -2,6 +2,7 @@
 
 PORTNAME=	libbpfjit
 PORTVERSION=	g2019052401
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	swills@FreeBSD.org
@@ -20,9 +21,10 @@ USE_LDCONFIG=	yes
 MAKEFILE=	GNUmakefile
 CFLAGS+=	-I${WRKSRC_sljit}/sljit_src
 
-PLIST_FILES=	lib/libbpfjit.a
+PLIST_FILES=	lib/libbpfjit.a include/bpfjit.h
 
 do-install:
 	${INSTALL_DATA} ${WRKSRC}/libbpfjit.a ${STAGEDIR}${PREFIX}/lib
+	${INSTALL_DATA} ${WRKSRC}/bpfjit.h ${STAGEDIR}${PREFIX}/include
 
 .include <bsd.port.mk>
