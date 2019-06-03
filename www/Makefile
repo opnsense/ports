@@ -1402,7 +1402,6 @@
     SUBDIR += phproxy
     SUBDIR += phpsysinfo
     SUBDIR += phpvirtualbox
-    SUBDIR += pivotx
     SUBDIR += piwigo
     SUBDIR += planet
     SUBDIR += plasma5-plasma-browser-integration
@@ -1594,7 +1593,6 @@
     SUBDIR += py-django-webpack-loader
     SUBDIR += py-django-widget-tweaks
     SUBDIR += py-django111
-    SUBDIR += py-django20
     SUBDIR += py-django21
     SUBDIR += py-django22
     SUBDIR += py-django_compressor
@@ -2010,7 +2008,7 @@
     SUBDIR += rubygem-hamlit-rails-rails5
     SUBDIR += rubygem-hamlit-rails-rails50
     SUBDIR += rubygem-hashicorp-checkpoint
-    SUBDIR += rubygem-heroku
+    SUBDIR += rubygem-heroics
     SUBDIR += rubygem-heroku-api
     SUBDIR += rubygem-heroku-nav
     SUBDIR += rubygem-hpricot
@@ -2082,6 +2080,7 @@
     SUBDIR += rubygem-ostatus2
     SUBDIR += rubygem-pagerduty
     SUBDIR += rubygem-passenger
+    SUBDIR += rubygem-platform-api
     SUBDIR += rubygem-puma
     SUBDIR += rubygem-puma_worker_killer
     SUBDIR += rubygem-pusher-client
@@ -2442,6 +2441,8 @@
     SUBDIR += yabb
     SUBDIR += yanopaste
     SUBDIR += yarn
+    SUBDIR += yarn-node10
+    SUBDIR += yarn-node8
     SUBDIR += yaws
     SUBDIR += you-get
     SUBDIR += yourls
