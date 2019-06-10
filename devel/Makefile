@@ -4258,6 +4258,7 @@
     SUBDIR += py-collective.z3cform.datetimewidget
     SUBDIR += py-colorama
     SUBDIR += py-coloredlogs
+    SUBDIR += py-colorful
     SUBDIR += py-colorlog
     SUBDIR += py-columnize
     SUBDIR += py-conditional
@@ -4716,6 +4717,7 @@
     SUBDIR += py-pqueue
     SUBDIR += py-pre-commit
     SUBDIR += py-pretend
+    SUBDIR += py-prettyprinter
     SUBDIR += py-prettytable
     SUBDIR += py-prioritized_methods
     SUBDIR += py-proglog
