@@ -1,4 +1,4 @@
---- src/libstrongswan/plugins/openssl/openssl_crl.c.orig	2018-09-19 18:46:55 UTC
+--- src/libstrongswan/plugins/openssl/openssl_crl.c.orig	2018-12-14 15:48:24 UTC
 +++ src/libstrongswan/plugins/openssl/openssl_crl.c
 @@ -50,6 +50,7 @@
  #include <credentials/certificates/x509.h>
@@ -8,9 +8,9 @@
  static inline void X509_CRL_get0_signature(const X509_CRL *crl, ASN1_BIT_STRING **psig, X509_ALGOR **palg) {
  	if (psig) { *psig = crl->signature; }
  	if (palg) { *palg = crl->sig_alg; }
-@@ -58,6 +59,7 @@ static inline void X509_CRL_get0_signatu
- #define X509_REVOKED_get0_revocationDate(r) ({ (r)->revocationDate; })
- #define X509_CRL_get0_extensions(c) ({ (c)->crl->extensions; })
+@@ -61,6 +62,7 @@ static inline void X509_CRL_get0_signatu
+ #define X509_CRL_get0_lastUpdate(c) X509_CRL_get_lastUpdate(c)
+ #define X509_CRL_get0_nextUpdate(c) X509_CRL_get_nextUpdate(c)
  #endif
 +#endif
  

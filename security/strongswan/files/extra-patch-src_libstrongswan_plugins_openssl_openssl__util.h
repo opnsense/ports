@@ -1,6 +1,6 @@
---- src/libstrongswan/plugins/openssl/openssl_util.h.orig	2018-09-19 18:32:30 UTC
+--- src/libstrongswan/plugins/openssl/openssl_util.h.orig	2018-12-14 15:48:24 UTC
 +++ src/libstrongswan/plugins/openssl/openssl_util.h
-@@ -146,6 +146,7 @@ time_t openssl_asn1_to_time(ASN1_TIME *t
+@@ -146,6 +146,7 @@ time_t openssl_asn1_to_time(const ASN1_T
   * Macros to define fallback getters/setters to access keys (BIGNUM*) for types
   * that were made opaque with OpenSSL 1.1.0.
   */

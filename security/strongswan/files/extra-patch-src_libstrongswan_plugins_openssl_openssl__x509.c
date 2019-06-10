@@ -1,4 +1,4 @@
---- src/libstrongswan/plugins/openssl/openssl_x509.c.orig	2018-09-19 18:43:17 UTC
+--- src/libstrongswan/plugins/openssl/openssl_x509.c.orig	2019-05-10 09:16:13 UTC
 +++ src/libstrongswan/plugins/openssl/openssl_x509.c
 @@ -62,11 +62,13 @@
  
