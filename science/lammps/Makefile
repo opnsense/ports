@@ -15,7 +15,7 @@ CONFLICTS_BUILD=	ga # conflicts with include/error.h, already fixed in the head
 
 USES=		blaslapack:openblas cmake:noninja eigen:3 fortran shebangfix
 USE_GITHUB=	yes
-GH_TAGNAME=	patch_31May2019
+GH_TAGNAME=	patch_5Jun2019
 SHEBANG_GLOB=	*.sh *.bash
 SHEBANG_FILES=	lib/kokkos/bin/nvcc_wrapper
 
@@ -55,6 +55,8 @@ VORONOI_LIB_DEPENDS=	libvoro++.so:science/voro++
 LATTE_DESC=		Use LATTE package
 LATTE_CMAKE_BOOL=	PKG_LATTE
 LATTE_LIB_DEPENDS=	liblatte.so:science/latte
+
+PORTSCOUT=	ignore # due to a special version tagging scheme that this project uses portscout fails to find new versions, watching their GitHub release page instead
 
 post-patch:
 	@${REINPLACE_CMD} 's|SHELL = /bin/bash|SHELL = ${LOCALBASE}/bin/bash|' ${WRKSRC}/src/Makefile
