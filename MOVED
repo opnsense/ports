@@ -12790,3 +12790,7 @@ dns/bind912|dns/bind914|2019-05-31|Has expired: Support ends, please move to dns
 multimedia/vdr-plugin-softhddevice||2019-05-31|Has expired: unmaintained and depends on vulnerable multimedia/ffmpeg0
 devel/pecl-pthreads||2019-06-02|Has expired: Does not work with recent versions of php
 net-mgmt/ccnet-client||2019-06-10|Removed, no longer has dependencies and has been abandoned upstream
+textproc/cdiff|textproc/ydiff|2019-06-11|Renamed to match upstream
+sysutils/zol|sysutils/openzfs|2019-06-11|Renamed to match upstream changes
+sysutils/zol-kmod|sysutils/openzfs-kmod|2019-06-11|Renamed to match upstream changes
+archivers/nulib||2019-06-12|Abandonware
