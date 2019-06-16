@@ -29,9 +29,7 @@ XYMONUSER?=	xymon
 XYMONHOSTNAME?=	xymon.example.com
 XYMONHOSTIP?=	127.0.0.1
 
-USE_HARDENING=	pie:off
-
-USES=		cpe gmake shebangfix ssl
+USES=		compiler:c11 cpe gmake shebangfix ssl
 SHEBANG_FILES=	${WRKSRC}/xymond/xymonreports.sh.DIST ${WRKSRC}/build/upgrade430.sh
 MAKE_JOBS_UNSAFE=	yes
 CONFIGURE_ENV=	MAKE=gmake
@@ -44,6 +42,8 @@ MAKE_ARGS+=	PKGBUILD="true"
 USE_RC_SUBR=	xymon-server
 SUB_LIST+=	XYMONUSER="${XYMONUSER}"
 PLIST_SUB+=	XYMONUSER="${XYMONUSER}"
+
+USE_HARDENING=	pie:off
 
 CONFIG_FILES=	cgioptions.cfg client-local.cfg \
 		columndoc.csv graphs.cfg protocols.cfg \

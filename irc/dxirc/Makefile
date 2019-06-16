@@ -14,8 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off
 
+USES=		cmake compiler:c++11-lang pkgconfig
 USE_XORG=	ice sm x11 xext
-USES=		cmake pkgconfig
 INSTALLS_ICONS=	yes
 
 OPTIONS_DEFINE=		NLS LUA ENCHANT NOTIFY

@@ -5,12 +5,12 @@ DISTVERSION=	1.2-186
 DISTVERSIONSUFFIX=	-g4982089
 CATEGORIES=	graphics kde
 
-LICENCE=	LPGL21
-
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Comic book viewer
 
-USES=		cmake pkgconfig kde:5 qt:5 tar:xz
+LICENSE=	LGPL21
+
+USES=		cmake compiler:c++11-lang pkgconfig kde:5 qt:5 tar:xz
 USE_GITHUB=	yes
 GH_ACCOUNT=	KDE
 USE_KDE=	archive baloo completion config coreaddons ecm filemetadata i18n \
