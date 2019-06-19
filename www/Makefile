@@ -739,6 +739,7 @@
     SUBDIR += p5-Catalyst-View-XML-Feed
     SUBDIR += p5-Catalyst-View-XML-Simple
     SUBDIR += p5-Catalyst-View-XSLT
+    SUBDIR += p5-Catalyst-View-vCard
     SUBDIR += p5-CatalystX-AppBuilder
     SUBDIR += p5-CatalystX-Component-Traits
     SUBDIR += p5-CatalystX-InjectComponent
@@ -1160,6 +1161,7 @@
     SUBDIR += p5-Template-Plugin-Clickable-Email
     SUBDIR += p5-Template-Plugin-Comma
     SUBDIR += p5-Template-Plugin-FillInForm
+    SUBDIR += p5-Template-Plugin-Gettext
     SUBDIR += p5-Template-Plugin-JSON
     SUBDIR += p5-Template-Plugin-JavaScript
     SUBDIR += p5-Template-Plugin-MP3

@@ -499,6 +499,7 @@
     SUBDIR += libwmf
     SUBDIR += libwmf-nox11
     SUBDIR += libwpg03
+    SUBDIR += libxatracker
     SUBDIR += libyuv
     SUBDIR += libzmf
     SUBDIR += lightzone
@@ -735,6 +736,7 @@
     SUBDIR += pecl-imagick
     SUBDIR += pecl-imagick-im7
     SUBDIR += pecl-qrencode
+    SUBDIR += pecl-vips
     SUBDIR += pecomato
     SUBDIR += pencil2d
     SUBDIR += peps

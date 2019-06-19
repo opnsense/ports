@@ -654,6 +654,7 @@
     SUBDIR += fmake
     SUBDIR += fnccheck
     SUBDIR += fnorb
+    SUBDIR += folly
     SUBDIR += fortran-utils
     SUBDIR += fortytwo-encore
     SUBDIR += fossil
@@ -1559,6 +1560,7 @@
     SUBDIR += msgpuck
     SUBDIR += msp430-debug-stack
     SUBDIR += mspdebug
+    SUBDIR += mstch
     SUBDIR += mtbl
     SUBDIR += mutagen
     SUBDIR += myrepos
@@ -2613,6 +2615,7 @@
     SUBDIR += p5-Locale-Msgfmt
     SUBDIR += p5-Locale-PGetText
     SUBDIR += p5-Locale-PO
+    SUBDIR += p5-Locale-XGettext
     SUBDIR += p5-Locale-gettext
     SUBDIR += p5-Locale-libintl
     SUBDIR += p5-LockFile-Simple
@@ -4846,6 +4849,7 @@
     SUBDIR += py-python-jenkins
     SUBDIR += py-python-magic
     SUBDIR += py-python-pcre
+    SUBDIR += py-pytest-relaxed
     SUBDIR += py-python-socketio
     SUBDIR += py-python-statsd
     SUBDIR += py-python-subunit

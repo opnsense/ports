@@ -301,6 +301,7 @@
     SUBDIR += it-hyphen
     SUBDIR += it-mythes
     SUBDIR += itstool
+    SUBDIR += itstool22
     SUBDIR += jade
     SUBDIR += jakarta-commons-digester
     SUBDIR += jalingo
@@ -1313,6 +1314,7 @@
     SUBDIR += py-parsel
     SUBDIR += py-parsimonious
     SUBDIR += py-parso
+    SUBDIR += py-patiencediff
     SUBDIR += py-pdfminer
     SUBDIR += py-pdfminer.six
     SUBDIR += py-pdfminer3k
