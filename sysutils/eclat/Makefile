@@ -3,12 +3,13 @@
 
 PORTNAME=	eclat
 PORTVERSION=	2.0
-CATEGORIES=	sysutils
+PORTREVISION=	1
+CATEGORIES=	sysutils net
 MASTER_SITES=	http://download.gnu.org.ua/pub/release/${PORTNAME}/ \
 		http://download.gnu.org.ua/pub/alpha/${PORTNAME}/
 
 MAINTAINER=	zeus@gnu.org.ua
-COMMENT=	EC2 command line administration tool
+COMMENT=	Amazon EC2 command line administration tool
 
 LICENSE=	GPLv3
 
@@ -17,7 +18,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 
 USES=		localbase tar:xz
 GNU_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=	yes
+TEST_TARGET=	check
 
 PORTDOCS=	AUTHORS ChangeLog NEWS README THANKS TODO
 
@@ -29,6 +30,10 @@ GDBM_CONFIGURE_WITH=	gdbm
 
 LDAP_USE=		OPENLDAP=yes
 LDAP_CONFIGURE_WITH=	ldap
+
+post-patch:
+	@${REINPLACE_CMD} -e '/DESTDIR/s,eclat\.conf,&.sample,' \
+		${WRKSRC}/etc/Makefile.in
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

@@ -80,6 +80,7 @@
     SUBDIR += R-cran-vcd
     SUBDIR += R-cran-vctrs
     SUBDIR += R-cran-withr
+    SUBDIR += R-cran-zeallot
     SUBDIR += RStudio
     SUBDIR += SpecTcl
     SUBDIR += aap
@@ -1237,12 +1238,12 @@
     SUBDIR += liblangtag
     SUBDIR += liblas
     SUBDIR += liblas12
-    SUBDIR += liblpm
     SUBDIR += liblnk
     SUBDIR += liblockfile
     SUBDIR += liblogging
     SUBDIR += liblognorm
     SUBDIR += liblouis
+    SUBDIR += liblpm
     SUBDIR += libltdl
     SUBDIR += liblxqt
     SUBDIR += libmaa
@@ -4117,6 +4118,7 @@
     SUBDIR += py-aws-sam-translator
     SUBDIR += py-aws-xray-sdk
     SUBDIR += py-azure-batch
+    SUBDIR += py-azure-cosmos
     SUBDIR += py-azure-datalake-store
     SUBDIR += py-azure-graphrbac
     SUBDIR += py-azure-keyvault
@@ -4768,7 +4770,6 @@
     SUBDIR += py-pydevd
     SUBDIR += py-pydispatcher
     SUBDIR += py-pydocstyle
-    SUBDIR += py-pydocumentdb
     SUBDIR += py-pydoop
     SUBDIR += py-pydrive
     SUBDIR += py-pyechonest
@@ -4829,6 +4830,7 @@
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-mock
     SUBDIR += py-pytest-pycodestyle
+    SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-sugar
     SUBDIR += py-pytest-timeout
@@ -4849,7 +4851,6 @@
     SUBDIR += py-python-jenkins
     SUBDIR += py-python-magic
     SUBDIR += py-python-pcre
-    SUBDIR += py-pytest-relaxed
     SUBDIR += py-python-socketio
     SUBDIR += py-python-statsd
     SUBDIR += py-python-subunit
@@ -5261,7 +5262,6 @@
     SUBDIR += qtcreator
     SUBDIR += quickcheck++
     SUBDIR += quilt
-    SUBDIR += R-cran-zeallot
     SUBDIR += rabs
     SUBDIR += racer
     SUBDIR += racerd
@@ -6119,6 +6119,7 @@
     SUBDIR += tablist
     SUBDIR += tailor
     SUBDIR += talloc
+    SUBDIR += talloc1
     SUBDIR += tass64
     SUBDIR += tbb
     SUBDIR += tcl-memchan
@@ -6142,6 +6143,7 @@
     SUBDIR += template-glib
     SUBDIR += terminality
     SUBDIR += tevent
+    SUBDIR += tevent1
     SUBDIR += tex-kpathsea
     SUBDIR += tex-libtexlua
     SUBDIR += tex-libtexluajit
