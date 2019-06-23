@@ -17,6 +17,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django111>=1.8:www/py-django111@${PY_FLAVOR}
 USES=		python
 USE_PYTHON=	autoplist distutils
 
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}dj22-django-prometheus
+
 NO_ARCH=		yes
 
 OPTIONS_GROUP=		DATABASE CACHE

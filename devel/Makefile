@@ -202,6 +202,7 @@
     SUBDIR += bashdb
     SUBDIR += bats-core
     SUBDIR += bazel
+    SUBDIR += bazel-buildtools
     SUBDIR += bbfreeze
     SUBDIR += bbfreeze-loader
     SUBDIR += bcc
@@ -326,6 +327,7 @@
     SUBDIR += clazy
     SUBDIR += cld2
     SUBDIR += clewn
+    SUBDIR += cli11
     SUBDIR += clig
     SUBDIR += cligen
     SUBDIR += clinfo
@@ -1079,6 +1081,7 @@
     SUBDIR += kimwitu
     SUBDIR += kio-extras
     SUBDIR += kiwix-lib
+    SUBDIR += kms-cmake-utils
     SUBDIR += kodi-platform
     SUBDIR += kore
     SUBDIR += kronosnet
@@ -5367,7 +5370,6 @@
     SUBDIR += rubygem-bacon
     SUBDIR += rubygem-baf
     SUBDIR += rubygem-batch-loader
-    SUBDIR += rubygem-batch-loader12
     SUBDIR += rubygem-benelux
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
