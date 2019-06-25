@@ -16,6 +16,7 @@
     SUBDIR += aescrypt
     SUBDIR += aespipe
     SUBDIR += afl
+    SUBDIR += afl++
     SUBDIR += afterglow
     SUBDIR += aide
     SUBDIR += akmos
@@ -133,7 +134,6 @@
     SUBDIR += dsniff
     SUBDIR += duo
     SUBDIR += easy-rsa
-    SUBDIR += easy-rsa2
     SUBDIR += elixir-comeonin
     SUBDIR += elixir-comeonin_i18n
     SUBDIR += elixir-jose

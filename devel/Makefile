@@ -35,6 +35,7 @@
     SUBDIR += R-cran-fansi
     SUBDIR += R-cran-foreach
     SUBDIR += R-cran-gbm
+    SUBDIR += R-cran-gbRd
     SUBDIR += R-cran-gdata
     SUBDIR += R-cran-generics
     SUBDIR += R-cran-glmnet
@@ -62,6 +63,7 @@
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-purrr
     SUBDIR += R-cran-randomForest
+    SUBDIR += R-cran-Rdpack
     SUBDIR += R-cran-registry
     SUBDIR += R-cran-repr
     SUBDIR += R-cran-reshape
@@ -145,6 +147,7 @@
     SUBDIR += argdata
     SUBDIR += argouml
     SUBDIR += argp-standalone
+    SUBDIR += args
     SUBDIR += argtable
     SUBDIR += arm-elf-binutils
     SUBDIR += arm-gnueabi-binutils

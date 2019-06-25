@@ -23,9 +23,7 @@ GH_TAGNAME=	${HASH}
 KSH_CONFLICTS=		pdksh-*
 KSH93_CONFLICTS=	ksh93-2* ast-ksh-*
 
-LDFLAGS+=	-lm
 MESON_BUILD_DIR=	build
-MAKE_ENV=	CCFLAGS="${CFLAGS}"
 
 OPTIONS_DEFAULT=	KSH93
 OPTIONS_SINGLE=		BIN_KSH
@@ -34,7 +32,6 @@ KSH_DESC=		Install to ${PREFIX}/bin/ksh
 KSH93_DESC=		Install to ${PREFIX}/bin/ksh93
 
 KSH93_EXTRA_PATCHES=	${FILESDIR}/extra-patch-install-as-ksh93
-KSH93_DESC=	Install to ${PREFIX}/bin/ksh93
 
 KSH_PLIST_SUB=		93=""
 KSH93_PLIST_SUB=	93="93"
