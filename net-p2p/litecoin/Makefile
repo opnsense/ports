@@ -1,4 +1,3 @@
-# Created by: Steve Wills <swills@FreeBSD.org>
 # $FreeBSD$
 
 PORTNAME=	litecoin
@@ -7,7 +6,7 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	6
 CATEGORIES=	net-p2p finance
 
-MAINTAINER=	swills@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	Virtual Peer-to-Peer Currency Client (QT)
 
 LICENSE=	MIT
