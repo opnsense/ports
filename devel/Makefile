@@ -15,6 +15,7 @@
     SUBDIR += R-cran-R6
     SUBDIR += R-cran-RUnit
     SUBDIR += R-cran-Rcpp
+    SUBDIR += R-cran-Rdpack
     SUBDIR += R-cran-abind
     SUBDIR += R-cran-bindr
     SUBDIR += R-cran-bindrcpp
@@ -34,8 +35,8 @@
     SUBDIR += R-cran-evaluate
     SUBDIR += R-cran-fansi
     SUBDIR += R-cran-foreach
-    SUBDIR += R-cran-gbm
     SUBDIR += R-cran-gbRd
+    SUBDIR += R-cran-gbm
     SUBDIR += R-cran-gdata
     SUBDIR += R-cran-generics
     SUBDIR += R-cran-glmnet
@@ -63,7 +64,6 @@
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-purrr
     SUBDIR += R-cran-randomForest
-    SUBDIR += R-cran-Rdpack
     SUBDIR += R-cran-registry
     SUBDIR += R-cran-repr
     SUBDIR += R-cran-reshape
@@ -780,6 +780,7 @@
     SUBDIR += gettext-runtime
     SUBDIR += gettext-tools
     SUBDIR += gflags
+    SUBDIR += ghidra
     SUBDIR += ghq
     SUBDIR += ghub
     SUBDIR += gindent
@@ -4327,6 +4328,7 @@
     SUBDIR += py-delfick_error
     SUBDIR += py-deliciousapi
     SUBDIR += py-demjson
+    SUBDIR += py-deprecated
     SUBDIR += py-deprecation
     SUBDIR += py-dexml
     SUBDIR += py-dialog
@@ -6069,6 +6071,7 @@
     SUBDIR += smake
     SUBDIR += smc
     SUBDIR += smv
+    SUBDIR += snorenotify
     SUBDIR += soapui
     SUBDIR += socket_wrapper
     SUBDIR += sonar-ant-task

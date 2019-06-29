@@ -89,8 +89,8 @@
     SUBDIR += closure-compiler
     SUBDIR += cntlm
     SUBDIR += codeigniter
-    SUBDIR += coppermine
     SUBDIR += colly
+    SUBDIR += coppermine
     SUBDIR += cplanet
     SUBDIR += cppcms
     SUBDIR += cpr
@@ -218,6 +218,7 @@
     SUBDIR += grafana3
     SUBDIR += grafana4
     SUBDIR += grafana5
+    SUBDIR += grafana6
     SUBDIR += grails
     SUBDIR += gregarius
     SUBDIR += groupoffice
