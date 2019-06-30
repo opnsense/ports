@@ -4722,6 +4722,7 @@
     SUBDIR += py-pip-api
     SUBDIR += py-pip-tools
     SUBDIR += py-pip-tools2
+    SUBDIR += py-pipdeptree
     SUBDIR += py-pipenv
     SUBDIR += py-pkgconfig
     SUBDIR += py-plac
@@ -4833,6 +4834,7 @@
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-cov
     SUBDIR += py-pytest-django
+    SUBDIR += py-pytest-fixture-config
     SUBDIR += py-pytest-flake8
     SUBDIR += py-pytest-flakes
     SUBDIR += py-pytest-forked
@@ -4841,10 +4843,13 @@
     SUBDIR += py-pytest-mock
     SUBDIR += py-pytest-pycodestyle
     SUBDIR += py-pytest-relaxed
+    SUBDIR += py-pytest-rerunfailures
     SUBDIR += py-pytest-runner
+    SUBDIR += py-pytest-shutil
     SUBDIR += py-pytest-sugar
     SUBDIR += py-pytest-timeout
     SUBDIR += py-pytest-tornado
+    SUBDIR += py-pytest-virtualenv
     SUBDIR += py-pytest-xdist
     SUBDIR += py-pytest-xprocess
     SUBDIR += py-python-Levenshtein

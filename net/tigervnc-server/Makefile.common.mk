@@ -10,6 +10,9 @@ MAINTAINER?=	meta@FreeBSD.org
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENCE.TXT
 
+USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
+
 USES+=		cmake:insource,noninja
 USE_GITHUB=	yes
 
