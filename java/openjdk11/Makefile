@@ -27,6 +27,8 @@ LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 USES=		compiler:features gmake iconv jpeg pkgconfig
 USE_XORG=	x11 xext xi xrender xt xtst
 
+USE_HARDENING=	pie:java
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	battleblow
 GH_PROJECT=	openjdk-jdk11u
