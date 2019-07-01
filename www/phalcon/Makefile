@@ -1,9 +1,8 @@
-# Created by: Jin-Sih Lin <linpct@gmail.com>
 # $FreeBSD$
 
 PORTNAME=	phalcon
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.4.3
+DISTVERSION=	3.4.4
 CATEGORIES=	www
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
