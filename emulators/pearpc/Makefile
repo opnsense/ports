@@ -3,7 +3,7 @@
 
 PORTNAME=	pearpc
 PORTVERSION=	0.5
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTVERSION}.0
 
@@ -12,11 +12,14 @@ COMMENT=	PowerPC architecture emulator
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off relro:off
+DEPRECATED=	Abandonware
+EXPIRATION_DATE=	2019-08-01
 
 USES=		tar:bzip2
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
+
+USE_HARDENING=	pie:off relro:off
 
 PORTEXAMPLES=	ppccfg.example
 PLIST_FILES=	bin/ppc man/man1/ppc.1.gz %%DATADIR%%/video.x
@@ -33,7 +36,7 @@ SDL_CONFIGURE_OFF=	--enable-ui=x11
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == "amd64" || ${ARCH} == "i386"
-USE_GCC=	yes
+USE_GCC=	8
 # The port does not build with C++11 or later (bug 219275).
 USE_CXXSTD=	gnu++98
 .else
