@@ -2,7 +2,7 @@
 
 PORTNAME=	caffe
 PORTVERSION=	1.0
-PORTREVISION=	22
+PORTREVISION=	23
 CATEGORIES=	graphics
 
 MAINTAINER=	eric@camachat.org
@@ -59,7 +59,7 @@ post-extract:
 
 post-patch:
 	@${REINPLACE_CMD} \
-	-e "s|%%CXX%%|${CXX}|g" \
+	-e "s|%%CXX%%|clang++|g" \
 	-e "s|%%LOCALBASE%%|${LOCALBASE}|g" \
 	-e "s|%%DATADIR%%|${DATADIR}|g" \
 	-e "s|%%PYTHON_INCLUDEDIR%%|${PYTHON_INCLUDEDIR}|g" \

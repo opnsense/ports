@@ -2,8 +2,8 @@
 
 PORTNAME=	svt-av1
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5.0-667
-DISTVERSIONSUFFIX=	-g9e67b319
+DISTVERSION=	0.6.0-16
+DISTVERSIONSUFFIX=	-g41b37cbe
 CATEGORIES=	multimedia
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -34,7 +34,8 @@ post-patch:
 		-Ee '/set.*(release|debug)_flags_to_test/,/\)/d' \
 		${WRKSRC}/CMakeLists.txt
 # Avoid platform whitelists for generic non-Windows code
+# https://github.com/OpenVisualCloud/SVT-AV1/pull/162
 	@${GREP} --exclude='*/third_party/*' -Flr '__linux' ${WRKSRC} | ${XARGS} \
-		${REINPLACE_CMD} -i .opsys -E 's/__linux(__)?/__${OPSYS}__/'
+		${REINPLACE_CMD} -i .opsys -E 's/__linux(__)?/__unix__/'
 
 .include <bsd.port.mk>

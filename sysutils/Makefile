@@ -42,6 +42,7 @@
     SUBDIR += ansible24
     SUBDIR += ansible25
     SUBDIR += ansible26
+    SUBDIR += ansible27
     SUBDIR += anvil
     SUBDIR += apachetop
     SUBDIR += apcpwr
@@ -148,10 +149,12 @@
     SUBDIR += cfengine-masterfiles311
     SUBDIR += cfengine-masterfiles312
     SUBDIR += cfengine-masterfiles313
+    SUBDIR += cfengine-masterfiles314
     SUBDIR += cfengine310
     SUBDIR += cfengine311
     SUBDIR += cfengine312
     SUBDIR += cfengine313
+    SUBDIR += cfengine314
     SUBDIR += chgrep
     SUBDIR += chyves
     SUBDIR += cinnamon-control-center
@@ -725,6 +728,7 @@
     SUBDIR += ncdu
     SUBDIR += ndmpd
     SUBDIR += neofetch
+    SUBDIR += netevent
     SUBDIR += nfcutils
     SUBDIR += nfsping
     SUBDIR += nitrogen

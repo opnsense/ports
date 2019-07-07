@@ -3,7 +3,7 @@
 
 PORTNAME=			${SAMBA4_BASENAME}48
 PORTVERSION=			${SAMBA4_VERSION}
-PORTREVISION=			1
+PORTREVISION=			3
 CATEGORIES?=			net
 MASTER_SITES=			SAMBA/samba/stable SAMBA/samba/rc
 DISTNAME=			${SAMBA4_DISTNAME}
@@ -73,7 +73,7 @@ USES=				compiler:c++11-lang cpe iconv gettext-runtime \
 				localbase:ldflags perl5 pkgconfig shebangfix \
 				ssl waf
 USE_PERL5=			build
-USE_LDCONFIG=			${SAMBA4_LIBDIR}
+USE_LDCONFIG=			${SAMBA4_LIBDIR} ${SAMBA4_LIBDIR}/private
 WAF_CMD=			buildtools/bin/waf
 CONFIGURE_LOG=			bin/config.log
 
@@ -157,14 +157,14 @@ BUILD_DEPENDS+=			libarchive>=3.1.2:archivers/libarchive
 RUN_DEPENDS+=			libarchive>=3.1.2:archivers/libarchive
 ### Bundled libraries
 SAMBA4_BUNDLED_CMOCKA?=		no
-SAMBA4_BUNDLED_TALLOC?=		no
-SAMBA4_BUNDLED_TEVENT?=		no
-SAMBA4_BUNDLED_TDB?=		no
+SAMBA4_BUNDLED_TALLOC?=		yes
+SAMBA4_BUNDLED_TEVENT?=		yes
+SAMBA4_BUNDLED_TDB?=		yes
 SAMBA4_BUNDLED_LDB?=		yes
-SAMBA4_LDB=			13
 # cmocka
 .if defined(SAMBA4_BUNDLED_CMOCKA) && ${SAMBA4_BUNDLED_CMOCKA} == yes
 SAMBA4_BUNDLED_LIBS+=		cmocka
+SAMBA4_BUILTIN_LIBS+=		cmocka
 CONFLICTS+=			cmocka-1.*
 PLIST_SUB+=			SAMBA4_BUNDLED_CMOCKA=""
 SUB_LIST+=			SAMBA4_BUNDLED_CMOCKA=""
@@ -178,6 +178,7 @@ SUB_LIST+=			SAMBA4_BUNDLED_CMOCKA="@comment "
 # talloc
 .if defined(SAMBA4_BUNDLED_TALLOC) && ${SAMBA4_BUNDLED_TALLOC} == yes
 SAMBA4_BUNDLED_LIBS+=		talloc
+SAMBA4_BUILTIN_LIBS+=		talloc
 CONFLICTS+=			talloc1-2.*
 PLIST_SUB+=			SAMBA4_BUNDLED_TALLOC=""
 SUB_LIST+=			SAMBA4_BUNDLED_TALLOC=""
@@ -191,6 +192,7 @@ SUB_LIST+=			SAMBA4_BUNDLED_TALLOC="@comment "
 # tevent
 .if defined(SAMBA4_BUNDLED_TEVENT) && ${SAMBA4_BUNDLED_TEVENT} == yes
 SAMBA4_BUNDLED_LIBS+=		tevent
+SAMBA4_BUILTIN_LIBS+=		tevent
 CONFLICTS+=			tevent1-0.*
 PLIST_SUB+=			SAMBA4_BUNDLED_TEVENT=""
 SUB_LIST+=			SAMBA4_BUNDLED_TEVENT=""
@@ -204,6 +206,7 @@ SUB_LIST+=			SAMBA4_BUNDLED_TEVENT="@comment "
 # tdb
 .if defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes
 SAMBA4_BUNDLED_LIBS+=		tdb
+SAMBA4_BUILTIN_LIBS+=		tdb
 CONFLICTS+=			tdb1-1.*
 PLIST_SUB+=			SAMBA4_BUNDLED_TDB=""
 SUB_LIST+=			SAMBA4_BUNDLED_TDB=""
@@ -215,32 +218,27 @@ PLIST_SUB+=			SAMBA4_BUNDLED_TDB="@comment "
 SUB_LIST+=			SAMBA4_BUNDLED_TDB="@comment "
 .endif
 # ldb
-.if (defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes) || !defined(SAMBA4_LDB)
+.if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes
 SAMBA4_BUNDLED_LDB=		yes
 SAMBA4_BUNDLED_LIBS+=		ldb
+SAMBA4_BUILTIN_LIBS+=		ldb
 CONFLICTS+=			ldb-1.* ldb1[23]-1.*
 PLIST_SUB+=			SAMBA4_BUNDLED_LDB=""
 SUB_LIST+=			SAMBA4_BUNDLED_LDB=""
 .else
-.       if ${SAMBA4_LDB} == 13
-BUILD_DEPENDS+=			ldb13>=1.3.6:databases/ldb13
-RUN_DEPENDS+=			ldb13>=1.3.6:databases/ldb13
-.       elif ${SAMBA4_LDB} == 12
-BUILD_DEPENDS+=			ldb12>=1.2.3:databases/ldb12
-RUN_DEPENDS+=			ldb12>=1.2.3:databases/ldb12
-.       elif ${SAMBA4_LDB} == 11
-BUILD_DEPENDS+=			ldb>=1.1.29:databases/ldb
-RUN_DEPENDS+=			ldb>=1.1.29:databases/ldb
-.       endif
 SAMBA4_BUNDLED_LIBS+=		!ldb
+BUILD_DEPENDS+=			ldb13>=1.3.8:databases/ldb13
+RUN_DEPENDS+=			ldb13>=1.3.8:databases/ldb13
 PLIST_SUB+=			SAMBA4_BUNDLED_LDB="@comment "
 SUB_LIST+=			SAMBA4_BUNDLED_LDB="@comment "
 .endif
 
 .if (defined(SAMBA4_BUNDLED_TALLOC)  && ${SAMBA4_BUNDLED_TEVENT} == yes) \
 	|| (defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes) \
+	|| (defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes) \
 	|| (defined(SAMBA4_BUNDLED_TEVENT) && ${SAMBA4_BUNDLED_TEVENT} == yes)
 SAMBA4_BUNDLED_LIBS+=		replace
+SAMBA4_BUILTIN_LIBS+=		replace
 .endif
 # Don't use external libcom_err
 SAMBA4_BUNDLED_LIBS+=		com_err
@@ -391,6 +389,47 @@ SAMBA4_MODULES+=		auth_skel pdb_test gpext_security gpext_registry gpext_scripts
 				vfs_fake_dfq vfs_skel_opaque vfs_skel_transparent vfs_shadow_copy_test vfs_fake_acls \
 				vfs_nfs4acl_xattr vfs_error_inject vfs_delay_inject
 .endif
+# Python bindings
+.if defined(NO_PYTHON)
+USES+=				python:2.7,build,test
+CONFIGURE_ARGS+=		--disable-python
+PLIST_SUB+=			SAMBA4_PYTHON2="@comment "
+SUB_LIST+=			SAMBA4_PYTHON2="@comment "
+.else
+USES+=				python:2.7
+PLIST_SUB+=			SAMBA4_PYTHON2=""
+SUB_LIST+=			SAMBA4_PYTHON2=""
+
+.if !defined(SAMBA4_BUNDLED_TALLOC)
+SAMBA4_BUNDLED_LIBS+=		!pytalloc-util
+.else
+SAMBA4_BUNDLED_LIBS+=		pytalloc-util
+.endif
+
+.if !defined(SAMBA4_BUNDLED_TEVENT)
+SAMBA4_BUNDLED_LIBS+=		!pytevent
+.else
+SAMBA4_BUNDLED_LIBS+=		pytevent
+.endif
+
+.if !defined(SAMBA4_BUNDLED_TDB)
+SAMBA4_BUNDLED_LIBS+=		!pytdb
+.else
+SAMBA4_BUNDLED_LIBS+=		pytdb
+.endif
+
+.if !defined(SAMBA4_BUNDLED_LDB)
+SAMBA4_BUNDLED_LIBS+=		!pyldb !pyldb-util
+.else
+SAMBA4_BUNDLED_LIBS+=		pyldb pyldb-util
+.endif
+# External Python modules
+BUILD_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}dnspython>=1.15.0:dns/py-dnspython@${PY_FLAVOR}
+RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}dnspython>=1.15.0:dns/py-dnspython@${PY_FLAVOR}
+
+BUILD_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
+RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
+.endif
 
 .if defined(WANT_EXP_MODULES) && !empty(WANT_EXP_MODULES)
 SAMBA4_MODULES+=		${WANT_EXP_MODULES}
@@ -398,6 +437,7 @@ SAMBA4_MODULES+=		${WANT_EXP_MODULES}
 
 .if defined(SAMBA4_BUNDLED_LIBS) && !empty(SAMBA4_BUNDLED_LIBS)
 CONFIGURE_ARGS+=		--bundled-libraries="${SAMBA4_BUNDLED_LIBS:Q:C|(\\\\ )+|,|g:S|\\||g}"
+CONFIGURE_ARGS+=		--builtin-libraries="${SAMBA4_BUILTIN_LIBS:Q:C|(\\\\ )+|,|g:S|\\||g}"
 .endif
 
 .if defined(SAMBA4_MODULES) && !empty(SAMBA4_MODULES)
@@ -408,66 +448,6 @@ CONFIGURE_ARGS+=		--with-shared-modules="${SAMBA4_MODULES:C|-|_|:Q:C|(\\\\ )+|,|
 .for module in ${SAMBA4_MODULES}
 PLIST_FILES+=			lib/shared-modules/${module:C|_|/|:C|-|_|}.so
 .endfor
-# Python bindings
-.if defined(NO_PYTHON)
-USES+=				python:2.7,build,test
-CONFIGURE_ARGS+=		--disable-python
-PLIST_SUB+=			SAMBA4_PYTHON2="@comment " SAMBA4_PYTHON3="@comment "
-SUB_LIST+=			SAMBA4_PYTHON2="@comment " SAMBA4_PYTHON3="@comment "
-.else
-USES+=				python:2.7
-PLIST_SUB+=			SAMBA4_PYTHON2=""
-SUB_LIST+=			SAMBA4_PYTHON2=""
-
-.if !defined(SAMBA4_BUNDLED_TALLOC)
-SAMBA4_BUNDLED_LIBS+=		!pytalloc-util
-.endif
-.if !defined(SAMBA4_BUNDLED_TEVENT)
-SAMBA4_BUNDLED_LIBS+=		!pytevent
-.endif
-.if !defined(SAMBA4_BUNDLED_TDB)
-SAMBA4_BUNDLED_LIBS+=		!pytdb
-.endif
-.if !defined(SAMBA4_BUNDLED_LDB)
-SAMBA4_BUNDLED_LIBS+=		!pyldb,!pyldb-util
-.endif
-# External Python modules
-BUILD_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}dnspython>=1.15.0:dns/py-dnspython@${PY_FLAVOR}
-RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}dnspython>=1.15.0:dns/py-dnspython@${PY_FLAVOR}
-
-BUILD_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
-RUN_DEPENDS+=			${PYTHON_PKGNAMEPREFIX}iso8601>=0.1.11:devel/py-iso8601@${PY_FLAVOR}
-# XXX: This is a gross hack to make port use both Python 2.7+ and 3.3+
-# This is not officially supported, use at your own risk
-.if defined(WITH_SAMBA4_PYTHON3) && ${WITH_SAMBA4_PYTHON3:M3\.[0-9]}
-SAMBA4_PYTHON3_VERSION=		${WITH_SAMBA4_PYTHON3}
-SAMBA4_PYTHON3=			python${SAMBA4_PYTHON3_VERSION}
-SAMBA4_PYTHON3_VER=		${SAMBA4_PYTHON3_VERSION:C/\.//}
-.if !exists(${PORTSDIR}/lang/python${SAMBA4_PYTHON3_VER})
-.error				unsupported or unknown Python version ${SAMBA4_PYTHON3_VERSION}
-.endif
-BUILD_DEPENDS+=			${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
-RUN_DEPENDS+=			${SAMBA4_PYTHON3}:lang/python${SAMBA4_PYTHON3_VER}
-# External Python modules
-BUILD_DEPENDS+=			py${SAMBA4_PYTHON3_VER}-dnspython>=1.15.0:dns/py-dnspython@py${SAMBA4_PYTHON3_VER}
-RUN_DEPENDS+=			py${SAMBA4_PYTHON3_VER}-dnspython>=1.15.0:dns/py-dnspython@py${SAMBA4_PYTHON3_VER}
-
-BUILD_DEPENDS+=			py${SAMBA4_PYTHON3_VER}-iso8601>=0.1.11:devel/py-iso8601@py${SAMBA4_PYTHON3_VER}
-RUN_DEPENDS+=			py${SAMBA4_PYTHON3_VER}-iso8601>=0.1.11:devel/py-iso8601@py${SAMBA4_PYTHON3_VER}
-# cpython-36m
-SAMBA4_PYTHON3_SO_ABI!=		[ ! -f "${LOCALBASE}/bin/${SAMBA4_PYTHON3}" ] || ${LOCALBASE}/bin/${SAMBA4_PYTHON3} -c 'import sysconfig; print(sysconfig.get_config_var("SOABI") or "")' 2>/dev/null
-SAMBA4_PYTHON3_SITELIBDIR=	lib/python${SAMBA4_PYTHON3_VERSION}/site-packages
-
-CONFIGURE_ENV+=			PYTHON3_SO_ABI_FLAG=.${SAMBA4_PYTHON3_SO_ABI}
-CONFIGURE_ARGS+=		--extra-python=${LOCALBASE}/bin/${SAMBA4_PYTHON3}
-
-PLIST_SUB+=			SAMBA4_PYTHON3="" SAMBA4_PYTHON3_SITELIBDIR="${SAMBA4_PYTHON3_SITELIBDIR}"
-SUB_LIST+=			SAMBA4_PYTHON3="" SAMBA4_PYTHON3_SITELIBDIR="${SAMBA4_PYTHON3_SITELIBDIR}"
-.else
-PLIST_SUB+=			SAMBA4_PYTHON3="@comment "
-SUB_LIST+=			SAMBA4_PYTHON3="@comment "
-.endif
-.endif
 # !SAMBA4_SUBPORT
 .endif
 
@@ -597,15 +577,27 @@ pre-build-MANDOC-off:
 .endif
 
 post-install-rm-junk:
-.for f in vfs_aio_linux.8 vfs_btrfs.8 vfs_ceph.8 vfs_gpfs.8
-				${RM} ${STAGEDIR}${PREFIX}/man/man8/${f}
-.endfor
 .if defined(NO_PYTHON)
 				${RM} -r ${STAGEDIR}${PYTHON_SITELIBDIR}/samba/third_party/dns \
 					 ${STAGEDIR}${PYTHON_SITELIBDIR}/samba/third_party/iso8601
 .endif
 
-post-install: post-install-rm-junk
+post-install-fix-manpages:
+.for f in vfs_aio_linux.8 vfs_btrfs.8 vfs_ceph.8 vfs_gpfs.8
+				${RM} ${STAGEDIR}${PREFIX}/man/man8/${f}
+.endfor
+.if defined(SAMBA4_BUNDLED_LDB) && ${SAMBA4_BUNDLED_LDB} == yes
+.	for f in ldbadd.1 ldbdel.1 ldbedit.1 ldbmodify.1 ldbrename.1 ldbsearch.1
+				${MV} ${STAGEDIR}${PREFIX}/man/man1/${f} ${STAGEDIR}${PREFIX}/man/man1/samba-${f}
+.	endfor
+.endif
+.if defined(SAMBA4_BUNDLED_TDB) && ${SAMBA4_BUNDLED_TDB} == yes
+.	for f in tdbbackup.8 tdbdump.8 tdbrestore.8 tdbtool.8
+				${MV} ${STAGEDIR}${PREFIX}/man/man8/${f} ${STAGEDIR}${PREFIX}/man/man8/samba-${f}
+.	endfor
+.endif
+
+post-install: post-install-rm-junk post-install-fix-manpages
 				${LN} -sf smb.conf.5.gz ${STAGEDIR}${PREFIX}/man/man5/smb4.conf.5.gz
 # Run post-install script
 .for dir in			${SAMBA4_LOGDIR} ${SAMBA4_RUNDIR} ${SAMBA4_LOCKDIR} ${SAMBA4_MODULEDIR}

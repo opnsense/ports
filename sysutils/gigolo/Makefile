@@ -6,7 +6,7 @@ PORTVERSION=	0.4.91
 CATEGORIES=	sysutils
 MASTER_SITES=	XFCE/apps
 
-MAINTAINER=	koalative@gmail.com
+MAINTAINER=	xfce@FreeBSD.org
 COMMENT=	Frontend to easily manage filesystem connections
 
 LICENSE=	GPLv2

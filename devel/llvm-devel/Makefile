@@ -115,6 +115,7 @@ LLD_GH_PROJECT=		lld:lld
 LLD_GH_SUBDIR=		tools/lld:lld
 LLD_GH_TAGNAME=		${LLD_COMMIT}:lld
 LLDB_BUILD_DEPENDS=	swig3.0:devel/swig30
+LLDB_EXTRA_PATCHES=	${PATCHDIR}/lldb
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_GH_PROJECT=	lldb:lldb
 LLDB_GH_SUBDIR=		tools/lldb:lldb
@@ -149,6 +150,7 @@ MAN1SRCS+=	bugpoint.1 \
 		llvm-build.1 \
 		llvm-config.1 \
 		llvm-cov.1 \
+		llvm-cxxfilt.1 \
 		llvm-cxxmap.1 \
 		llvm-diff.1 \
 		llvm-dis.1 \
@@ -156,14 +158,21 @@ MAN1SRCS+=	bugpoint.1 \
 		llvm-exegesis.1 \
 		llvm-extract.1 \
 		llvm-lib.1 \
+		llvm-lipo.1 \
 		llvm-link.1 \
 		llvm-mca.1 \
 		llvm-nm.1 \
+		llvm-objcopy.1 \
 		llvm-objdump.1 \
 		llvm-pdbutil.1 \
 		llvm-profdata.1 \
+		llvm-ranlib.1 \
+		llvm-readelf.1 \
 		llvm-readobj.1 \
+		llvm-size.1 \
 		llvm-stress.1 \
+		llvm-strings.1 \
+		llvm-strip.1 \
 		llvm-symbolizer.1 \
 		opt.1 \
 		tblgen.1
@@ -365,6 +374,7 @@ post-install:
 .endfor
 
 post-install-DOCS-on:
+	${RM} -r ${STAGEDIR}${DOCSDIR}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc/* ${STAGEDIR}${DOCSDIR}
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc

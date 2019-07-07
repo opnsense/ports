@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	11.11.3
+PORTVERSION=	11.11.5
 PORTREVISION=	1
 CATEGORIES=	www devel
 
@@ -19,13 +19,13 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 MY_DEPENDS=	git>=2.21.0:devel/git \
 	gitlab-shell>=9.1.0:devel/gitlab-shell \
 	gitlab-workhorse>=8.7.0:www/gitlab-workhorse \
-	gitaly>=1.42.4:devel/gitaly \
+	gitaly>=1.42.5:devel/gitaly \
 	gitlab-pages>=1.5.0:www/gitlab-pages \
 	redis>=3.2.12:databases/redis \
 	yarn>=1.10.0:www/yarn \
 	rubygem-rails5>=5.1.7:www/rubygem-rails5 \
 	rubygem-nakayoshi_fork>=0.0.4:devel/rubygem-nakayoshi_fork \
-	rubygem-responders-rails5>=2.0:www/rubygem-responders-rails5 \
+	rubygem-responders2-rails5>=2.0:www/rubygem-responders2-rails5 \
 	rubygem-sprockets3>=3.7:devel/rubygem-sprockets3 \
 	rubygem-gitlab-default_value_for>=3.1.1:devel/rubygem-gitlab-default_value_for \
 	rubygem-rugged>=0.28.0:devel/rubygem-rugged \
@@ -190,7 +190,7 @@ MY_DEPENDS=	git>=2.21.0:devel/git \
 	rubygem-sshkey>=2.0:security/rubygem-sshkey \
 	rubygem-ed25519>=1.2:security/rubygem-ed25519 \
 	rubygem-bcrypt_pbkdf>=1.0:security/rubygem-bcrypt_pbkdf \
-	rubygem-gitaly-proto>=1.27.0:net/rubygem-gitaly-proto \
+	rubygem-gitaly-proto>=1.27.2:net/rubygem-gitaly-proto \
 	rubygem-grpc>=1.19.0:net/rubygem-grpc \
 	rubygem-gitaly>=0.8.0:net/rubygem-gitaly \
 	rubygem-google-protobuf371>=3.7.1:devel/rubygem-google-protobuf371 \
@@ -229,7 +229,7 @@ USE_RC_SUBR=	gitlab
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find the here: https://gitlab.com/gitlab-org/gitlab-ce/tags
-GL_COMMIT=	e3eeb779d72006b9fbbaecf9f1d8fbd52a7d6383
+GL_COMMIT=	b85e6215a854a02fbb63c4e3be9998fc9fd4e58a
 
 USERS=	git
 GROUPS=	git
