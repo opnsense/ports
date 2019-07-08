@@ -2683,6 +2683,7 @@
     SUBDIR += p5-Luka
     SUBDIR += p5-Lvalue
     SUBDIR += p5-MCE
+    SUBDIR += p5-MCE-Shared
     SUBDIR += p5-MRO-Compat
     SUBDIR += p5-MRO-Define
     SUBDIR += p5-Mac-FileSpec-Unixish
@@ -5669,6 +5670,7 @@
     SUBDIR += rubygem-memoist
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-memoize
+    SUBDIR += rubygem-memory_profiler
     SUBDIR += rubygem-mercenary
     SUBDIR += rubygem-message_bus
     SUBDIR += rubygem-metaclass
