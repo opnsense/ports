@@ -18,6 +18,8 @@ USES=		php:ext
 USE_PHP=	hash:build json:build pdo:build
 IGNORE_WITH_PHP=71
 
+CONFLICTS_INSTALL=phalcon
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	phalcon
 GH_PROJECT=	c${PORTNAME}
