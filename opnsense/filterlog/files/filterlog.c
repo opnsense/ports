@@ -217,7 +217,7 @@ main(int argc, char **argv)
 
 	sbuf_new(&sbuf, sbuf_buf, 2048, SBUF_AUTOEXTEND);
 
-	openlog("filterlog", LOG_NDELAY | LOG_CONS, LOG_LOCAL0);
+	openlog("filterlog", LOG_NDELAY, LOG_LOCAL0);
 
 	while (1) {
 		if (tap != NULL)

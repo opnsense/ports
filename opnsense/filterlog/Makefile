@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	filterlog
-PORTVERSION=	0.2
+PORTVERSION=	0.3
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
