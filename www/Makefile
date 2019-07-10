@@ -53,6 +53,7 @@
     SUBDIR += boa
     SUBDIR += bolt
     SUBDIR += bozohttpd
+    SUBDIR += bugzilla2atom
     SUBDIR += buku
     SUBDIR += butterfly
     SUBDIR += c-icap
@@ -1517,6 +1518,7 @@
     SUBDIR += py-django-bitfield
     SUBDIR += py-django-bootstrap-form
     SUBDIR += py-django-bootstrap3
+    SUBDIR += py-django-bootstrap4
     SUBDIR += py-django-braces
     SUBDIR += py-django-bulk-update
     SUBDIR += py-django-cacheops

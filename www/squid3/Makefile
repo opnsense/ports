@@ -2,7 +2,7 @@
 
 PORTNAME=	squid
 PORTVERSION=	3.5.28
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www ipv6
 MASTER_SITES=	http://www.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
 		http://www2.us.squid-cache.org/Versions/v3/${PORTVERSION:R}/ \
@@ -149,11 +149,6 @@ GSSAPI_HEIMDAL_PLIST_SUB=	AUTH_KERB=""
 GSSAPI_MIT_USES=		gssapi:mit
 GSSAPI_MIT_CONFIGURE_ON=	--with-mit-krb5=${GSSAPIBASEDIR} ${GSSAPI_CONFIGURE_ARGS}
 GSSAPI_MIT_PLIST_SUB=		AUTH_KERB=""
-
-# OPNsense addition
-OPTIONS_DEFINE+=		NO_FORGERY
-NO_FORGERY_DESC=		Disable Host-Header-Forgery check in transparent SSL
-NO_FORGERY_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-host-header-forgery
 
 # TODO:
 # add an option for external_acl/session (requires some kind of external
