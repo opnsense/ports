@@ -47,7 +47,7 @@ post-build-PERL-on:
 		${MAKE_CMD})
 
 post-build-PYTHON-on:
-	( cd ${WRKSRC} && CFLAGS="-O0 -pipe" ${PYTHON_CMD} setup.py build )
+	( cd ${WRKSRC} && ${PYTHON_CMD} setup.py build )
 
 pre-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
