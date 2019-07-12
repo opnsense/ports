@@ -142,6 +142,7 @@
     SUBDIR += elixir-webassembly
     SUBDIR += emacs-w3m
     SUBDIR += encode-explorer
+    SUBDIR += envoy
     SUBDIR += ephemera
     SUBDIR += epiphany
     SUBDIR += erlang-cowboy
@@ -2462,6 +2463,7 @@
     SUBDIR += zend-framework1
     SUBDIR += zenphoto
     SUBDIR += zerowait-httpd
+    SUBDIR += zola
     SUBDIR += zope213
 
 .include <bsd.port.subdir.mk>
