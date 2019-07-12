@@ -27,6 +27,7 @@
 #include <netinet/in.h>
 #include <netinet/ip6.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 
 #include <netinet/udp.h>
 
@@ -198,7 +199,7 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 #endif
 
 	struct protoent *protoent = getprotobynumber(ip6->ip6_nxt);
-	char *proto = protoent != NULL ? protoent->p_name :
+	const char *proto = protoent != NULL ? protoent->p_name :
 	    code2str(ipproto_values, "unknown", ip6->ip6_nxt);
 
 	sbuf_printf(sbuf, "%u,%s,%u,%u,",

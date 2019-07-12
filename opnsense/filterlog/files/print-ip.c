@@ -291,7 +291,7 @@ ip_print(struct sbuf *sbuf,
 	sbuf_printf(sbuf, ",%u,", ipds->ip->ip_ttl);
 
 	struct protoent *protoent = getprotobynumber(ipds->ip->ip_p);
-	char *proto = protoent != NULL ?  protoent->p_name :
+	const char *proto = protoent != NULL ? protoent->p_name :
 	    code2str(ipproto_values, "unknown", ipds->ip->ip_p);
 
 	/*
