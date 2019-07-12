@@ -155,38 +155,3 @@ if [ "$2" = "POST-INSTALL" ]; then
 	 readme_directory=${READMEDIR} \
 	 upgrade-package
 fi
-
-# ==============================================================================
-# If FreeBSD <= 10.2 is deprecated check only LOCALBASE and remove BASE checks,
-# regardless if installed in BASE or LOCALBASE
-# Iff postfix is activated in BASE, also activate postfix in LOCALBASE!
-# ==============================================================================
-if [ "$2" = "POST-INSTALL" -a -z "${PACKAGE_BUILDING}" ]; then
-if [ -f "${MC_BASE}" ]; then
-	if [ "${USE_LOCALBASE_MAILER_CONF}" = "yes" ]; then
-		cmp_mailer ${MC_BASE}
-		if [ $? -eq 0 ]; then
-			show_activated_msg ${MC_BASE}
-			cmp_mailer ${MC_LOCALBASE} || install_mailer_conf ${MC_LOCALBASE}
-			try_reload
-		else
-			cmp_mailer ${MC_LOCALBASE} || install_choise ${MC_LOCALBASE}
-		fi
-	else
-		cmp_mailer ${MC_BASE}
-		if [ $? -ne 0 ]; then
-			install_choise ${MC_BASE}
-		else
-			show_activated_msg ${MC_BASE}
-			try_reload
-		fi
-	fi
-
-else
-	if [ "${USE_LOCALBASE_MAILER_CONF}" = "yes" ]; then
-		show_not_activated_msg ${MC_LOCALBASE}
-	else
-		show_not_activated_msg ${MC_BASE}
-	fi
-fi # -f "${MC_BASE}"
-fi # "$2" = "POST-INSTALL" -a -z "${PACKAGE_BUILDING}" 
