@@ -197,11 +197,12 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 	sbuf_printf(sbuf, "0x%05x,", flow & 0x000fffff);
 #endif
 
+	struct protoent *protoent = getprotobynumber(ip6->ip6_nxt);
+	char *proto = protoent != NULL ? protoent->p_name :
+	    code2str(ipproto_values, "unknown", ip6->ip6_nxt);
+
 	sbuf_printf(sbuf, "%u,%s,%u,%u,",
-		ip6->ip6_hlim,
-		code2str(ipproto_values, "unknown", ip6->ip6_nxt),
-		ip6->ip6_nxt, payload_len);
-	
+	    ip6->ip6_hlim, proto, ip6->ip6_nxt, payload_len);
 
 	/*
 	 * Cut off the snapshot length to the end of the IP payload.

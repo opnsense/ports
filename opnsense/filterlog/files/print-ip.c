@@ -290,26 +290,23 @@ ip_print(struct sbuf *sbuf,
 	}
 	sbuf_printf(sbuf, ",%u,", ipds->ip->ip_ttl);
 
+	struct protoent *protoent = getprotobynumber(ipds->ip->ip_p);
+	char *proto = protoent != NULL ?  protoent->p_name :
+	    code2str(ipproto_values, "unknown", ipds->ip->ip_p);
+
 	/*
 	 * for the firewall guys, print id, offset.
 	 * On all but the last stick a "+" in the flags portion.
 	 * For unfragmented datagrams, note the don't fragment flag.
 	 */
-	sbuf_printf(sbuf, "%u,%u,%s,%u,",
-			 EXTRACT_16BITS(&ipds->ip->ip_id),
-			 (ipds->off & 0x1fff) * 8,
-			 code2str(ip_frag_values, "none", ipds->off & 0xe000),
-			 ipds->ip->ip_p);
-
-	if (getprotobynumber(ipds->ip->ip_p) != NULL)
-		sbuf_printf(sbuf, "%s,", ((struct protoent *)getprotobynumber(ipds->ip->ip_p))->p_name);
-	else
-		sbuf_printf(sbuf, "%s,", 
-		 code2str(ipproto_values, "unknown", ipds->ip->ip_p));
-	sbuf_printf(sbuf, "%u,", EXTRACT_16BITS(&ipds->ip->ip_len));
+	sbuf_printf(sbuf, "%u,%u,%s,%u,%s,%u,",
+	    EXTRACT_16BITS(&ipds->ip->ip_id), (ipds->off & 0x1fff) * 8,
+	    code2str(ip_frag_values, "none", ipds->off & 0xe000),
+	    ipds->ip->ip_p, proto, EXTRACT_16BITS(&ipds->ip->ip_len));
 
 	sbuf_printf(sbuf, "%s,", inet_ntoa(ipds->ip->ip_src));
 	sbuf_printf(sbuf, "%s,", inet_ntoa(ipds->ip->ip_dst));
+
 	/*
 	 * If this is fragment zero, hand it to the next higher
 	 * level protocol.
@@ -317,7 +314,6 @@ ip_print(struct sbuf *sbuf,
 	if ((ipds->off & 0x1fff) == 0) {
 		ipds->cp = (const u_char *)ipds->ip + hlen;
 		ipds->nh = ipds->ip->ip_p;
-
 		ip_print_demux(sbuf, ipds);
 	}
 }
