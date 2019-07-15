@@ -18,7 +18,7 @@ USES=		php:ext
 USE_PHP=	hash:build json:build pdo:build
 IGNORE_WITH_PHP=71
 
-CONFLICTS_INSTALL=phalcon
+CONFLICTS_INSTALL=${PKGNAMEPREFIX}-phalcon
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	phalcon
