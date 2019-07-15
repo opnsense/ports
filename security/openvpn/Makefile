@@ -43,7 +43,7 @@ OPTIONS_SINGLE=		SSL
 OPTIONS_SINGLE_SSL=	OPENSSL MBEDTLS
 PKCS11_DESC=		Use security/pkcs11-helper
 EASYRSA_DESC=		Install security/easy-rsa RSA helper package
-MBEDTLS_DESC=		SSL/TLS via mbedTLS
+MBEDTLS_DESC=		SSL/TLS via mbedTLS (lacks TLS v1.3)
 TUNNELBLICK_DESC=	Tunnelblick XOR scramble patch (READ HELP!)
 X509ALTUSERNAME_DESC=	Enable --x509-username-field (OpenSSL only)
 SMALL_DESC=		Build a smaller executable with fewer features
@@ -115,17 +115,6 @@ _tlslibs=libmbedtls libmbedx509 libmbedcrypto
 .else
 # OpenSSL
 _tlslibs=libssl libcrypto
-.endif
-
-.if ${SSL_DEFAULT:Mlibressl*} && empty(PORT_OPTIONS:MMBEDTLS)
-pre-everything::
-	@${ECHO_CMD} "WARNING: OpenVPN does not officially support LibreSSL."
-	@${ECHO_CMD} "If things break, rebuild with OpenSSL or mbedTLS."
-	@${ECHO_CMD} "You may wish to change your default SSL library"
-	@${ECHO_CMD} "and press Ctrl+C within the next 10 seconds to abort."
-.  if !(defined(PACKAGE_BUILDING) || defined(BATCH))
-	@sleep 10
-.  endif
 .endif
 
 # sanity check that we don't inherit incompatible SSL libs through,
