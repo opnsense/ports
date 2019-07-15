@@ -43,7 +43,6 @@
     SUBDIR += antiword
     SUBDIR += apache-poi
     SUBDIR += apache-solr
-    SUBDIR += apache-solr3
     SUBDIR += apertium
     SUBDIR += archmage
     SUBDIR += artha
@@ -1302,6 +1301,7 @@
     SUBDIR += py-nltk
     SUBDIR += py-normality
     SUBDIR += py-numpydoc
+    SUBDIR += py-ocrmypdf
     SUBDIR += py-openpyxl
     SUBDIR += py-openpyxl24
     SUBDIR += py-openstackdocstheme

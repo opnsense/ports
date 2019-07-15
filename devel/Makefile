@@ -28,6 +28,7 @@
     SUBDIR += R-cran-chron
     SUBDIR += R-cran-classInt
     SUBDIR += R-cran-cli
+    SUBDIR += R-cran-clipr
     SUBDIR += R-cran-covr
     SUBDIR += R-cran-crayon
     SUBDIR += R-cran-data.table
@@ -391,6 +392,7 @@
     SUBDIR += cpu_features
     SUBDIR += cquery
     SUBDIR += cram
+    SUBDIR += crc32c
     SUBDIR += creduce
     SUBDIR += critcl
     SUBDIR += cscope
@@ -1602,6 +1604,7 @@
     SUBDIR += nsgenbind
     SUBDIR += nspr
     SUBDIR += nss_wrapper
+    SUBDIR += nsync
     SUBDIR += nuitka
     SUBDIR += obby
     SUBDIR += objecthash
@@ -3845,6 +3848,7 @@
     SUBDIR += pear-phing
     SUBDIR += pecl-APCu
     SUBDIR += pecl-dio
+    SUBDIR += pecl-ds
     SUBDIR += pecl-eio
     SUBDIR += pecl-ev
     SUBDIR += pecl-event
@@ -3987,6 +3991,7 @@
     SUBDIR += py-ExtensionClass
     SUBDIR += py-Faker
     SUBDIR += py-IBMQuantumExperience
+    SUBDIR += py-inifile
     SUBDIR += py-Jinja2
     SUBDIR += py-Jinja2-doc
     SUBDIR += py-Js2Py
@@ -5899,6 +5904,7 @@
     SUBDIR += rubygem-simple_form-rails5
     SUBDIR += rubygem-simple_form-rails50
     SUBDIR += rubygem-simplecov
+    SUBDIR += rubygem-skiptrace
     SUBDIR += rubygem-slack-notifier
     SUBDIR += rubygem-slack-notifier1
     SUBDIR += rubygem-slim
