@@ -29,6 +29,8 @@ CONFIGURE_ARGS+=--with-included-slang \
 		--without-gpm-mouse \
 		--with-edit
 
+SSP_CFLAGS?=    -fstack-protector-strong # XXX -all fails to build
+
 OPTIONS_DEFINE=	NLS SUBSHELL MC_IN_MC
 OPTIONS_SUB=	yes
 
