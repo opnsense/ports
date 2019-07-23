@@ -52,6 +52,7 @@
     SUBDIR += apricots
     SUBDIR += aquaria
     SUBDIR += arkanoidsb
+    SUBDIR += armagetronad
     SUBDIR += arx-libertatis
     SUBDIR += asc
     SUBDIR += ascii-invaders
@@ -1005,6 +1006,7 @@
     SUBDIR += vitetris
     SUBDIR += vkquake
     SUBDIR += vms-empire
+    SUBDIR += voadi
     SUBDIR += vodovod
     SUBDIR += volleyball
     SUBDIR += vor
