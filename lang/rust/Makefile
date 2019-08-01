@@ -3,7 +3,7 @@
 
 PORTNAME=	rust
 PORTVERSION?=	1.36.0
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://static.rust-lang.org/dist/:rust_bootstrap \
@@ -130,7 +130,7 @@ post-patch-SOURCES-off:
 	@${REINPLACE_CMD} -e 's/config.tools.*"src".*/false;/' \
 		${WRKSRC}/src/bootstrap/install.rs
 
-.if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE)
+.if defined(WITH_CCACHE_BUILD) && !defined(NO_CCACHE) && !defined(NOCCACHE)
 CCACHE_VALUE=	"${CCACHE_WRAPPER_PATH:C,/libexec/ccache$,,}/bin/ccache"
 .else
 CCACHE_VALUE=	false
