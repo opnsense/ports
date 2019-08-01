@@ -3,11 +3,11 @@
 
 PORTNAME=	makehuman
 DISTVERSION=	0.9.1-rc1a
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	graphics
 MASTER_SITES=	SF/${PORTNAME}/MakeHuman%20Source/MakeHuman_091
 
-MAINTAINER=	amdmi3@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Application for parametrical modeling of 3D humanoid characters
 
 LIB_DEPENDS=	libanimorph.so:graphics/animorph \

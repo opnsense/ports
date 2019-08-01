@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	mandelbulber2
-DISTVERSION=	2.18-1
+DISTVERSION=	2.19
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org

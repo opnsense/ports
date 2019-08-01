@@ -3,6 +3,7 @@
 
 PORTNAME=	unrar
 DISTVERSION=	5.71
+PORTREVISION=	1
 PORTEPOCH=	6
 CATEGORIES+=	archivers
 MASTER_SITES=	https://rarlab.com/rar/ \
@@ -17,9 +18,9 @@ LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_NAME=	UnRAR license
 LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror
 
-USE_HARDENING=	pie:off safestack
+USES+=		compiler:c++11-lang
 
-USES=		compiler:c++11-lang
+USE_HARDENING=	pie:off safestack
 
 OPTIONS_DEFINE=	OPENSSL_AES
 OPTIONS_DEFAULT=OPENSSL_AES

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	kubectl
-PORTVERSION=	1.15.0
+PORTVERSION=	1.15.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	sysutils
 
@@ -11,7 +11,7 @@ COMMENT=	Kubernetes command-line tool
 
 LICENSE=	APACHE20
 
-USES=		go
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	kubernetes

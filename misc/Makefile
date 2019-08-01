@@ -8,6 +8,7 @@
     SUBDIR += achievo
     SUBDIR += aclgen
     SUBDIR += actiona
+    SUBDIR += adios2
     SUBDIR += amanda-client
     SUBDIR += amanda-perl-wrapper
     SUBDIR += amanda-server
@@ -307,6 +308,7 @@
     SUBDIR += p5-Data-Buffer
     SUBDIR += p5-File-CounterFile
     SUBDIR += p5-File-Sort
+    SUBDIR += p5-Geo-Address-Formatter
     SUBDIR += p5-Geo-Cache
     SUBDIR += p5-Geo-Coder-Bing
     SUBDIR += p5-Geo-Coder-Google

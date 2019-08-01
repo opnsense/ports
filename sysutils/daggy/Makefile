@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	daggy
-DISTVERSION=	1.1.2
+DISTVERSION=	1.1.3
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org

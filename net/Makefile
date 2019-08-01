@@ -241,6 +241,7 @@
     SUBDIR += hostapd
     SUBDIR += howl
     SUBDIR += hping
+    SUBDIR += hping3
     SUBDIR += hs-network
     SUBDIR += hsflowd
     SUBDIR += htpdate
@@ -341,6 +342,7 @@
     SUBDIR += libcapn
     SUBDIR += libcmis
     SUBDIR += libcoap
+    SUBDIR += libdaq
     SUBDIR += libdmapsharing
     SUBDIR += libdnet
     SUBDIR += libexosip2

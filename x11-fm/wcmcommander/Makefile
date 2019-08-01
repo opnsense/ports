@@ -4,10 +4,10 @@
 PORTNAME=	wcmcommander
 PORTVERSION=	0.20.0
 DISTVERSIONPREFIX=	release-
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	x11-fm
 
-MAINTAINER=	amdmi3@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Multi-platform open source file manager
 
 LICENSE=	MIT
