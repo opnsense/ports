@@ -11422,7 +11422,6 @@ security/pecl-ssh2-0|security/pecl-ssh2|2019-01-01|Has expired: Works only with 
 security/bitwarden-ruby||2019-01-01|Has expired: Expects very specific rubygem versions for new updates. Please follow instructions in git repo
 devel/pecl-intl||2019-01-01|Has expired: Works only with EOL php 5.6
 devel/pecl-APCu4|devel/pecl-APCu|2019-01-01|Has expired: Works only with EOL php 5.6
-databases/pecl-memcache||2019-01-01|Has expired: Works only with EOL php 5.6
 databases/pecl-memcached2|databases/pecl-memcached|2019-01-01|Has expired: Works only with EOL php 5.6
 math/pecl-bitset2|math/pecl-bitset|2019-01-01|Has expired: Works only with EOL php 5.6
 multimedia/zoneminder-h264|multimedia/zoneminder|2019-01-01|Has expired: h264 feature was commited to main branch, please upgrade to www/zoneminder
@@ -12852,3 +12851,10 @@ databases/pecl-redis3|databases/pecl-redis|2019-07-19|No longer needed after PHP
 www/weblint||2019-07-20|Broken, uses nonexistant perl libraries, and upstream disappeared. Use www/p5-HTML-Lint instead
 www/august||2019-07-20|Uses removed weblint
 misc/bitwise|math/bitwise|2019-07-21|Moved to math category
+devel/gradle46||2019-07-26|Removed because the only user, biology/gatk, doesn't need it any more
+devel/subversion19|devel/subversion|2019-07-27|Has expired: subversion 1.9.x is end of life log time ago. Consider installing devel/subversion or devel/subversion-lts
+www/p5-WebService-MusicBrainz0|www/p5-WebService-MusicBrainz|2019-07-28|0.9x branch is no longer required after audio/abcde was updated to 2.9.1
+security/rubygem-googleauth06|security/rubygem-googleauth|2019-07-31|Has expired: Use security/rubygem-googleauth instead
+devel/ddd||2019-07-31|Has expired: does not work with modern gdb
+devel/py-pip-tools2|devel/py-pip-tools|2019-07-31|Has expired: Use devel/py-pip-tools instead
+lang/cint|lang/cling|2019-07-31|Has expired: Abandonware; superseded by lang/cling
