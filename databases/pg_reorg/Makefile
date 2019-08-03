@@ -15,9 +15,8 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 MAKE_ENV=	USE_PGXS=0
-USES=		gmake pgsql uidfix
+USES=		gmake pgsql:9.1-9.5 uidfix
 LLD_UNSAFE=	yes
-WANT_PGSQL_VER=	91+
 WANT_PGSQL=	server
 INSTALL_TARGET=	install-strip
 PORTDOCS=	*
