@@ -58,12 +58,12 @@ KDE_PLASMA_VERSION?=		5.16.4
 KDE_PLASMA_BRANCH?=		stable
 
 # Current KDE frameworks.
-KDE_FRAMEWORKS_VERSION?=	5.60.0
+KDE_FRAMEWORKS_VERSION?=	5.61.0
 KDE_FRAMEWORKS_BRANCH?= 	stable
 
 # Current KDE applications.
-KDE_APPLICATIONS_VERSION?=	19.04.3
-KDE_APPLICATIONS_SHLIB_VER?=	5.11.3
+KDE_APPLICATIONS_VERSION?=	19.08.0
+KDE_APPLICATIONS_SHLIB_VER?=	5.12.0
 KDE_APPLICATIONS_BRANCH?=	stable
 # Upstream moves old software to Attic/. Specify the newest applications release there.
 # Only the major version is used for the comparison.
@@ -746,7 +746,7 @@ kde-mbox-importer_PORT=		deskutils/mbox-importer
 kde-mbox-importer_PATH=		${KDE_PREFIX}/bin/mboximporter
 
 kde-pim-data-exporter_PORT=	deskutils/pim-data-exporter
-kde-pim-data-exporter_PATH=	${KDE_PREFIX}/bin/pimsettingexporter
+kde-pim-data-exporter_PATH=	${KDE_PREFIX}/bin/pimdataexporter
 # ====================== end of pim5 components ================================
 
 # ====================== multiversion component ================================

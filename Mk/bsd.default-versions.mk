@@ -53,8 +53,8 @@ GCC_DEFAULT?=		9
 GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: 0.6, 0.7, 1.0, 1.1
 JULIA_DEFAULT?=		1.0
-# Possible values: 2.0.0
-LAZARUS_DEFAULT?=	2.0.0
+# Possible values: 2.0.4
+LAZARUS_DEFAULT?=	2.0.4
 # Possible values: c6, c7
 LINUX_DEFAULT?=		c7
 # Possible values: 60, 70, 80, -devel (to be used when non-base compiler is required)
@@ -80,7 +80,7 @@ _PERL5_FROM_BIN!=	${LOCALBASE}/bin/perl -e 'printf "%vd\n", $$^V;'
 _EXPORTED_VARS+=	_PERL5_FROM_BIN
 PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .endif
-# Possible values: 9.4, 9.5, 9.6, 10, 11
+# Possible values: 9.4, 9.5, 9.6, 10, 11, 12
 PGSQL_DEFAULT?=		9.5
 # Possible values: 7.1, 7.2, 7.3
 PHP_DEFAULT?=		7.2

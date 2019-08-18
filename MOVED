@@ -10353,7 +10353,6 @@ security/shibboleth2-sp|security/shibboleth-sp|2018-08-07|Project updated to ver
 security/opensaml2|security/opensaml|2018-08-07|Project updated to version 3, so the 2 suffix is not valid anymore
 devel/lldb38|devel/llvm38|2018-08-08|METAPORT removed
 lang/clang38|devel/llvm38|2018-08-08|METAPORT removed
-science/py-tensorflow||2018-08-08|Has expired: build broken
 devel/bazel-clang38|devel/bazel|2018-08-08|Slave port depends on obsolete LLVM version
 security/libbeid|security/beid|2018-08-12|No longer just a library
 editors/joe2|editors/joe|2018-08-12|Patches from editors/joe2 have been integrated into editors/joe
@@ -10706,7 +10705,6 @@ games/gnomeattacks||2018-12-11|Has expired: GNOME 2 application
 games/gnomebreakout||2018-12-11|Has expired: GNOME 2 application
 x11-clocks/gtubeclock||2018-12-11|Has expired: GNOME 2 application
 x11-clocks/sanduhr||2018-12-11|Has expired: GNOME 2 application
-audio/grip||2018-12-11|Has expired: GNOME 2 application
 audio/jack-rack||2018-12-11|Has expired: GNOME 2 application
 math/gdcalc||2018-12-11|Has expired: GNOME 2 application
 x11/brightside||2018-12-11|Has expired: GNOME 2 application
@@ -11678,7 +11676,6 @@ multimedia/phonon-designerplugin@qt4||2019-03-16|Qt4 deprecation
 multimedia/phonon-designerplugin@qt5|multimedia/phonon-designerplugin|2019-03-16|Flavor has been removed
 multimedia/phonon-gstreamer@qt4||2019-03-16|Qt4 deprecation
 multimedia/phonon-gstreamer@qt5|multimedia/phonon-gstreamer|2019-03-16|Flavor has been removed
-devel/git-cola||2019-03-16|Removed
 emulators/gns3||2019-03-16|Removed
 accessibility/qt4-accessible||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 astro/qlandkartegt||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -12859,3 +12856,17 @@ devel/py-pip-tools2|devel/py-pip-tools|2019-07-31|Has expired: Use devel/py-pip-
 lang/cint|lang/cling|2019-07-31|Has expired: Abandonware; superseded by lang/cling
 emulators/pearpc||2019-08-01|Has expired: Abandonware
 sysutils/bbcp||2019-08-03|Has expired: the port is broken for more than a year
+multimedia/gnome-mpv|multimedia/celluloid|2019-08-08|Renamed upstream
+devel/py-mimeparse|devel/py-python-mimeparse|2019-08-11|Rename to match upstream naming
+devel/rubygem-web-console|devel/rubygem-web-console-rails5|2019-08-11|Rename to match our rubygem- port naming
+devel/rubygem-spring-rails5|devel/rubygem-spring|2019-08-11|Remove unnecessary port after devel/rubygem-spring update
+devel/rubygem-spring-rails50|devel/rubygem-spring|2019-08-11|Remove unnecessary port after devel/rubygem-spring update
+www/rubygem-turbolinks-rails5|www/rubygem-turbolinks|2019-08-11|Remove unnecessary port after www/rubygem-turbolinks RUN_DEPENDS fix
+www/rubygem-turbolinks-rails50|www/rubygem-turbolinks|2019-08-11|Remove unnecessary port after www/rubygem-turbolinks RUN_DEPENDS fix
+textproc/sphinxsearch-devel|textproc/sphinxsearch|2019-08-11|Has expired: Broken for more than 6 months
+lang/dmd2||2019-08-11|Has expired: Broken for more than 6 months and upstream has no fix for statfs64
+cad/elmerfem||2019-08-12|Has expired: Broken for more than 6 months
+sysutils/openhpi||2019-08-12|Has expired: Broken for more than 6 months
+textproc/scim-bridge||2019-08-17|Has expired: Broken for more than 6 months
+devel/py-efilter||2019-08-17|Has expired: No longer maintained
+sysutils/grub2||2019-08-17|Has expired: Unmaintained (more than five years), not updated (one-and-a-half years), does not build with modern compilers

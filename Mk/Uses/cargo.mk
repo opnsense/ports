@@ -43,7 +43,7 @@ DISTFILES+=	${CARGO_DIST_SUBDIR}/${_crate}.tar.gz:cargo_${_crate:C/[^a-zA-Z0-9_]
 
 CARGO_BUILDDEP?=	yes
 .if ${CARGO_BUILDDEP:tl} == "yes"
-BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.36.0:lang/${RUST_DEFAULT}
+BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.37.0:lang/${RUST_DEFAULT}
 .endif
 
 # Location of cargo binary (default to lang/rust's Cargo binary)
@@ -289,7 +289,7 @@ cargo-crates: extract
 			--manifest-path ${CARGO_CARGOTOML} \
 			--verbose; \
 	fi
-	@${SETENV} USE_GITHUB=${USE_GITHUB} \
+	@${SETENV} USE_GITHUB=${USE_GITHUB} USE_GITLAB=${USE_GITLAB} GL_SITE=${GL_SITE} \
 		${AWK} -f ${SCRIPTSDIR}/cargo-crates.awk ${CARGO_CARGOLOCK}
 
 # cargo-crates-licenses will try to grab license information from
