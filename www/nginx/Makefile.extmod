@@ -40,7 +40,7 @@ DRIZZLE_CONFIGURE_ON=	--add-module=${WRKSRC_drizzle}
 DYNAMIC_UPSTREAM_GH_TUPLE=	cubicdaiya:ngx_dynamic_upstream:cc5dac3:dynamic_upstream
 DYNAMIC_UPSTREAM_VARS=		DSO_EXTMODS+=dynamic_upstream
 
-DEVEL_KIT_GH_TUPLE=		simpl:ngx_devel_kit:v0.3.0:devel_kit
+DEVEL_KIT_GH_TUPLE=		simpl:ngx_devel_kit:v0.3.1:devel_kit
 DEVEL_KIT_VARS=			FIRST_DSO_EXTMODS+=devel_kit
 
 ECHO_GH_TUPLE=		openresty:echo-nginx-module:32859fc:echo
@@ -139,6 +139,8 @@ HTTP_RESPONSE_MASTER_SITES=	http://catap.ru/downloads/nginx/:response
 HTTP_RESPONSE_DISTFILES=	ngx_http_response-0.3.tar.gz:response
 HTTP_RESPONSE_CONFIGURE_ON=	--add-module=${WRKDIR}/ngx_http_response-0.3
 
+HTTP_SLICE_AHEAD_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-src_http_modules_ngx__http__slice_read_ahead.c
+
 HTTP_SUBS_FILTER_GH_TUPLE=	yaoweibin:ngx_http_substitutions_filter_module:v0.6.4:subs_filter
 HTTP_SUBS_FILTER_CONFIGURE_ON=	--add-module=${WRKSRC_subs_filter}
 
@@ -196,7 +198,7 @@ LUA_IMPLIES=		DEVEL_KIT
 LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
 LUA_CONFIGURE_ENV=	LUAJIT_INC=${LOCALBASE}/include/luajit-2.0 \
 			LUAJIT_LIB=${LOCALBASE}/lib
-LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.14:lua
+LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.15:lua
 LUA_VARS=		DSO_EXTMODS+=lua
 
 MEMC_GH_TUPLE=		openresty:memc-nginx-module:v0.18:memc
@@ -223,7 +225,7 @@ NAXSI_NGINX_VER=	0.56
 NAXSI_GH_TUPLE=		nbs-system:naxsi:${NAXSI_NGINX_VER}:naxsi
 NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 
-NJS_GH_TUPLE=		nginx:njs:f5272a0:njs
+NJS_GH_TUPLE=		nginx:njs:08ccd37:njs
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
 
 PASSENGER_NGINX_VER=	6.0.2
