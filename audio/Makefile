@@ -204,6 +204,7 @@
     SUBDIR += funktrackergold
     SUBDIR += gbemol
     SUBDIR += gbsplay
+    SUBDIR += geonkick-lv2
     SUBDIR += gervill
     SUBDIR += ghostess
     SUBDIR += giada
@@ -509,6 +510,7 @@
     SUBDIR += mixmos
     SUBDIR += mixxx
     SUBDIR += mixxx21
+    SUBDIR += mkcue
     SUBDIR += mma
     SUBDIR += moc
     SUBDIR += modplugplay

@@ -699,6 +699,14 @@
     SUBDIR += postgresql11-plpython
     SUBDIR += postgresql11-pltcl
     SUBDIR += postgresql11-server
+    SUBDIR += postgresql12-client
+    SUBDIR += postgresql12-contrib
+    SUBDIR += postgresql12-docs
+    SUBDIR += postgresql12-pgtcl
+    SUBDIR += postgresql12-plperl
+    SUBDIR += postgresql12-plpython
+    SUBDIR += postgresql12-pltcl
+    SUBDIR += postgresql12-server
     SUBDIR += postgresql94-client
     SUBDIR += postgresql94-contrib
     SUBDIR += postgresql94-docs
@@ -906,6 +914,7 @@
     SUBDIR += rubygem-bdb1
     SUBDIR += rubygem-bigrecord
     SUBDIR += rubygem-couchrest
+    SUBDIR += rubygem-dalli
     SUBDIR += rubygem-data_objects
     SUBDIR += rubygem-datamapper
     SUBDIR += rubygem-dbd-mysql

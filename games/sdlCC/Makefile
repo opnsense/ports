@@ -12,6 +12,8 @@ COMMENT=	Extensible Chinese checkers game using SDL
 
 LICENSE=	GPLv2
 
+BROKEN=		unfetchable
+
 USE_HARDENING=	pie:off relro:off
 
 USES=		libtool:keepla # ltdl used, .la may be needed to load plugins

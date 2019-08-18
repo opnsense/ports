@@ -1,9 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	ksh93
-DISTVERSION=2020.0.0-alpha1
+DISTVERSION=	2020.0.0-alpha1
 PORTEPOCH=	1
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	shells
 
 MAINTAINER=	cy@freebsd.org
@@ -36,7 +36,11 @@ KSH93_EXTRA_PATCHES=	${FILESDIR}/extra-patch-install-as-ksh93
 KSH_PLIST_SUB=		93=""
 KSH93_PLIST_SUB=	93="93"
 
-.include <bsd.port.options.mk>
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == gcc && ${COMPILER_VERSION} >= 90
+BROKEN=	GCC 9.1 changes the output of `gcc -E` which breaks the conf.sh script, fixed in shells/ksh93-devel
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/for name in/ s|python.*|${PYTHON_CMD}|g' ${WRKSRC}/scripts/python.sh
@@ -48,4 +52,4 @@ post-patch:
 	@# Keep portlint happy
 .endif
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

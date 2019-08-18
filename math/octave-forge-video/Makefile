@@ -3,7 +3,7 @@
 
 PORTNAME=	octave-forge-video
 PORTVERSION=	1.2.4
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org
@@ -13,6 +13,8 @@ LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKDIR}/${OCTSRC}/COPYING
 
 BROKEN=		does not build with octave>=5.1.0
+DEPRECATED=	Broken for more than 6 months
+EXPIRATION_DATE=	2019-09-04
 
 USES=		pkgconfig
 GNU_CONFIGURE=	yes

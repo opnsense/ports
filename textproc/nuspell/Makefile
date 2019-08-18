@@ -2,14 +2,8 @@
 
 PORTNAME=	nuspell
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.0
-PORTREVISION=	3
+DISTVERSION=	2.3.0
 CATEGORIES=	textproc
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	35ae2bd38585.patch:-p1
-PATCHFILES+=	1d4c96d3fe0f.patch:-p1
-PATCHFILES+=	ad0eea5e8028.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Free and open source C++ spell checking library
@@ -25,9 +19,11 @@ USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 CMAKE_ON=	BUILD_SHARED_LIBS
 
-OPTIONS_DEFINE=	DOCS TEST
+OPTIONS_DEFINE=	MANPAGES TEST
+OPTIONS_DEFAULT=MANPAGES
 
-DOCS_BUILD_DEPENDS=	ronn:textproc/rubygem-ronn
+MANPAGES_BUILD_DEPENDS=	ronn:textproc/rubygem-ronn
+MANPAGES_PLIST_FILES=	man/man1/${PORTNAME}.1.gz
 
 TEST_BUILD_DEPENDS=	catch>0:devel/catch \
 			bash:shells/bash

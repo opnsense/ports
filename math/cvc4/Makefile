@@ -2,6 +2,7 @@
 
 PORTNAME=	cvc4
 DISTVERSION=	1.7
+PORTREVISION=	1
 CATEGORIES=	math java
 MASTER_SITES+=	http://www.antlr3.org/download/:antlr3
 DISTFILES+=	antlr-3.4-complete.jar:antlr3
@@ -85,6 +86,10 @@ post-extract:
 	@${ECHO_CMD} "#!/bin/sh" > ${WRKDIR}/antlr3
 	@${ECHO_CMD} "JAVA_VERSION=1.7+ exec \"${LOCALBASE}/bin/java\" -classpath \"${WRKDIR}/antlr3.jar\" org.antlr.Tool \"\$$@\"" >> ${WRKDIR}/antlr3
 	@${CHMOD} +x ${WRKDIR}/antlr3
+
+post-patch:
+	@${REINPLACE_CMD} -e "s|sed -i 's|sed -i '' 's|g" \
+	${WRKSRC}/src/fix-install-headers.sh
 
 # make a relative symlink instead of absolute to build dir
 post-install-JAVA-on:

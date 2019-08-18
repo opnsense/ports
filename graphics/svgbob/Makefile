@@ -2,6 +2,7 @@
 
 PORTNAME=	svgbob
 DISTVERSION=	g20190412
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	tobik@FreeBSD.org
@@ -40,6 +41,9 @@ CARGO_CRATES=	ansi_term-0.11.0 \
 		winapi-0.3.6 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-x86_64-pc-windows-gnu-0.4.0
+
+# ignore #![deny(warnings)]
+RUSTFLAGS+=	--cap-lints warn
 
 WRKSRC_SUBDIR=	svgbob_cli
 

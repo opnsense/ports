@@ -143,6 +143,7 @@
     SUBDIR += drm-fbsd12.0-kmod
     SUBDIR += drm-kmod
     SUBDIR += drm-legacy-kmod
+    SUBDIR += drm_info
     SUBDIR += dspdfviewer
     SUBDIR += duhdraw
     SUBDIR += dynamechs
@@ -378,6 +379,7 @@
     SUBDIR += jhead
     SUBDIR += jogamp-jogl
     SUBDIR += jogl
+    SUBDIR += jp
     SUBDIR += jp2a
     SUBDIR += jpatch
     SUBDIR += jpeg

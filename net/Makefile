@@ -198,6 +198,7 @@
     SUBDIR += gofish
     SUBDIR += gogoc
     SUBDIR += google-cloud-sdk
+    SUBDIR += google-cloud-sdk-app-engine-go
     SUBDIR += googlecl
     SUBDIR += gopher
     SUBDIR += goreplay
@@ -855,6 +856,8 @@
     SUBDIR += p5-Text-Authinfo
     SUBDIR += p5-Twitter-API
     SUBDIR += p5-URI
+    SUBDIR += p5-URI-Encode-XS
+    SUBDIR += p5-URI-Fast
     SUBDIR += p5-URI-FromHash
     SUBDIR += p5-URI-Match
     SUBDIR += p5-URI-Nested
@@ -1254,6 +1257,7 @@
     SUBDIR += rubygem-gitlab_omniauth-ldap
     SUBDIR += rubygem-google-cloud-core
     SUBDIR += rubygem-google-cloud-env
+    SUBDIR += rubygem-google-cloud-storage
     SUBDIR += rubygem-grpc
     SUBDIR += rubygem-hangouts-chat
     SUBDIR += rubygem-http_parser.rb
@@ -1337,6 +1341,7 @@
     SUBDIR += samba48
     SUBDIR += samba410
     SUBDIR += samplicator
+    SUBDIR += savvycan
     SUBDIR += sbd
     SUBDIR += sbm
     SUBDIR += scamper
@@ -1402,6 +1407,7 @@
     SUBDIR += syncthing
     SUBDIR += tableutil
     SUBDIR += tac_plus4
+    SUBDIR += tacacs
     SUBDIR += tapidbus
     SUBDIR += tayga
     SUBDIR += tclsoap
@@ -1535,6 +1541,7 @@
     SUBDIR += yaz++
     SUBDIR += yazproxy
     SUBDIR += yconalyzer
+    SUBDIR += yggdrasil
     SUBDIR += yptransitd
     SUBDIR += zebra
     SUBDIR += zebra-server

@@ -3,7 +3,6 @@
 
 PORTNAME=	emacs
 DISTVERSION=	${EMACS_VER}.${EMACS_REV}
-PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	editors ipv6
 PKGNAMESUFFIX=	-devel
@@ -33,7 +32,7 @@ USE_XORG=	ice sm x11 xcb xext xfixes xinerama xmu xrandr xrender xt
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	b22b59c
+GH_TAGNAME=	2b329ed
 
 USE_HARDENING=	pie:off relro:off
 
@@ -201,7 +200,7 @@ XWIDGETS_LIB_DEPENDS=	libwebkit2gtk-4.0.so:www/webkit2-gtk3 \
 XWIDGETS_IMPLIES=	GTK3
 
 EMACS_VER=	27.0.50
-EMACS_REV=	20190801
+EMACS_REV=	20190812
 
 .include <bsd.port.options.mk>
 

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	12.0.4
+PORTVERSION=	12.0.6
 PORTREVISION=	0
 CATEGORIES=	www devel
 
@@ -19,8 +19,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 MY_DEPENDS=	git>=2.21.0:devel/git \
 	gitlab-shell>=9.3.0:devel/gitlab-shell \
 	gitlab-workhorse>=8.7.0:www/gitlab-workhorse \
-	gitaly>=1.47.0:devel/gitaly \
-	gitlab-pages>=1.6.1:www/gitlab-pages \
+	gitaly>=1.47.2:devel/gitaly \
+	gitlab-pages>=1.6.2:www/gitlab-pages \
 	redis>=3.2.12:databases/redis \
 	yarn>=1.10.0:www/yarn \
 	rubygem-rails5>=5.1.7:www/rubygem-rails5 \
@@ -56,7 +56,7 @@ MY_DEPENDS=	git>=2.21.0:devel/git \
 	rubygem-jwt21>=2.1.0:www/rubygem-jwt21 \
 	rubygem-recaptcha>=4.11:devel/rubygem-recaptcha \
 	rubygem-akismet>=2.0:devel/rubygem-akismet \
-	rubygem-devise-two-factor-rails5>=3.0.0:security/rubygem-devise-two-factor-rails5 \
+	rubygem-devise-two-factor30-rails5>=3.0.0:security/rubygem-devise-two-factor30-rails5 \
 	rubygem-rqrcode-rails3>=0.1.7:www/rubygem-rqrcode-rails3 \
 	rubygem-attr_encrypted>=3.1.0:security/rubygem-attr_encrypted \
 	rubygem-u2f0>=0.2.1:net/rubygem-u2f0 \
@@ -235,7 +235,7 @@ USE_RC_SUBR=	gitlab
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find the here: https://gitlab.com/gitlab-org/gitlab-ce/tags
-GL_COMMIT=	a5ac84a1d05212de6d1831e2d4e8f552139f2a3c
+GL_COMMIT=	914bed6c7a7182a2affcd8f399e257b950e6bace
 
 USERS=	git
 GROUPS=	git
