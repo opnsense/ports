@@ -1176,9 +1176,11 @@
     SUBDIR += remmina-plugin-nx
     SUBDIR += remmina-plugin-rdp
     SUBDIR += remmina-plugin-secret
-    SUBDIR += remmina-plugin-telepathy
+    SUBDIR += remmina-plugin-spice
+    SUBDIR += remmina-plugin-st
     SUBDIR += remmina-plugin-vnc
     SUBDIR += remmina-plugin-xdmcp
+    SUBDIR += remmina-plugin-www
     SUBDIR += remmina-plugins
     SUBDIR += remotebox
     SUBDIR += remotedesk
@@ -1209,6 +1211,7 @@
     SUBDIR += rubygem-azure-core
     SUBDIR += rubygem-beefcake
     SUBDIR += rubygem-bunny
+    SUBDIR += rubygem-cloudflare
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-dogapi
@@ -1257,6 +1260,7 @@
     SUBDIR += rubygem-gitlab_omniauth-ldap
     SUBDIR += rubygem-google-cloud-core
     SUBDIR += rubygem-google-cloud-env
+    SUBDIR += rubygem-google-cloud-logging
     SUBDIR += rubygem-google-cloud-storage
     SUBDIR += rubygem-grpc
     SUBDIR += rubygem-hangouts-chat
@@ -1322,6 +1326,7 @@
     SUBDIR += rubygem-rye
     SUBDIR += rubygem-serverengine
     SUBDIR += rubygem-simple_oauth
+    SUBDIR += rubygem-stackdriver-core
     SUBDIR += rubygem-stompserver
     SUBDIR += rubygem-t
     SUBDIR += rubygem-tweetstream
@@ -1336,8 +1341,6 @@
     SUBDIR += rude
     SUBDIR += ryu
     SUBDIR += s3ql
-    SUBDIR += samba46
-    SUBDIR += samba47
     SUBDIR += samba48
     SUBDIR += samba410
     SUBDIR += samplicator
@@ -1348,6 +1351,7 @@
     SUBDIR += scapy
     SUBDIR += scnc
     SUBDIR += scr_ipfm
+    SUBDIR += sctplib
     SUBDIR += sdl2_net
     SUBDIR += sdl_net
     SUBDIR += seda
@@ -1380,6 +1384,7 @@
     SUBDIR += sobby
     SUBDIR += socat
     SUBDIR += sock
+    SUBDIR += socketapi
     SUBDIR += socketbind
     SUBDIR += socketpipe
     SUBDIR += socketw
@@ -1401,6 +1406,7 @@
     SUBDIR += ssvnc
     SUBDIR += stone
     SUBDIR += stund
+    SUBDIR += subnetcalc
     SUBDIR += suckblow
     SUBDIR += sup
     SUBDIR += svnup
@@ -1458,6 +1464,7 @@
     SUBDIR += tramp
     SUBDIR += trickle
     SUBDIR += tsclient
+    SUBDIR += tsctp
     SUBDIR += tshark
     SUBDIR += tshark-lite
     SUBDIR += tsocks
