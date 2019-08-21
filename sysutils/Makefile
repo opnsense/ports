@@ -104,6 +104,7 @@
     SUBDIR += bfs
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
+    SUBDIR += bibelot
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
@@ -630,6 +631,7 @@
     SUBDIR += mac_nonet
     SUBDIR += mac_rtprio
     SUBDIR += magicrescue
+    SUBDIR += makeztxt
     SUBDIR += manck
     SUBDIR += mapchan
     SUBDIR += mapdir
