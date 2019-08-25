@@ -146,9 +146,11 @@
     SUBDIR += blas
     SUBDIR += blaze
     SUBDIR += blazeiterative
+    SUBDIR += blasfeo
     SUBDIR += blis
     SUBDIR += blitz++
     SUBDIR += blocksolve95
+    SUBDIR += bonmin
     SUBDIR += boolector
     SUBDIR += bsdnt
     SUBDIR += btor2tools
@@ -157,6 +159,7 @@
     SUBDIR += calcoo
     SUBDIR += calctool
     SUBDIR += cantor
+    SUBDIR += casadi
     SUBDIR += cbc
     SUBDIR += cblas
     SUBDIR += ccmath
@@ -186,6 +189,8 @@
     SUBDIR += concorde
     SUBDIR += convertall
     SUBDIR += coq
+    SUBDIR += couenne
+    SUBDIR += cppad
     SUBDIR += crlibm
     SUBDIR += cryptominisat
     SUBDIR += curv
@@ -276,6 +281,7 @@
     SUBDIR += hexcalc
     SUBDIR += hipmcl
     SUBDIR += hmat-oss
+    SUBDIR += hpipm
     SUBDIR += hs-Agda
     SUBDIR += hs-semigroups
     SUBDIR += ignition-math
@@ -851,6 +857,7 @@
     SUBDIR += superlu
     SUBDIR += superlu_mt
     SUBDIR += symmetrica
+    SUBDIR += symphony
     SUBDIR += tablix
     SUBDIR += taucs
     SUBDIR += tblis

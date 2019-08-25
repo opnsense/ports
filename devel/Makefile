@@ -1424,8 +1424,8 @@
     SUBDIR += linux-c6-dbus-glib
     SUBDIR += linux-c6-dbus-libs
     SUBDIR += linux-c6-devtools
+    SUBDIR += linux-c6-elfutils-libelf
     SUBDIR += linux-c6-icu
-    SUBDIR += linux-c6-libelf
     SUBDIR += linux-c6-libgfortran
     SUBDIR += linux-c6-libglade2
     SUBDIR += linux-c6-libpciaccess
@@ -1439,8 +1439,9 @@
     SUBDIR += linux-c7-dbus-glib
     SUBDIR += linux-c7-dbus-libs
     SUBDIR += linux-c7-devtools
+    SUBDIR += linux-c7-elfutils-libelf
+    SUBDIR += linux-c7-elfutils-libs
     SUBDIR += linux-c7-icu
-    SUBDIR += linux-c7-libelf
     SUBDIR += linux-c7-libgfortran
     SUBDIR += linux-c7-libglade2
     SUBDIR += linux-c7-libpciaccess
@@ -1452,6 +1453,7 @@
     SUBDIR += linux-c7-sdl12
     SUBDIR += linux-c7-sdl20
     SUBDIR += linux-c7-strace
+    SUBDIR += linux-c7-systemd-libs
     SUBDIR += linux-ltp
     SUBDIR += linux_libusb
     SUBDIR += lion
