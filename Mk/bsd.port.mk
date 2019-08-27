@@ -396,9 +396,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  Implies NO_LICENSES_INSTALL=yes, NO_MTREE=yes, and causes
 #				  Linux ldconfig to be used when USE_LDCONFIG is defined.
 ##
-# USE_XORG			- Set to a list of X.org module dependencies.
-#				  Implies inclusion of bsd.xorg.mk.
-##
 # USE_TEX			- A list of the TeX dependencies the port has.
 #
 ##
@@ -1378,10 +1375,6 @@ DISTNAME?=	${PORTNAME}-${DISTVERSIONFULL}
 
 INDEXFILE?=		INDEX-${OSVERSION:C/([0-9]*)[0-9]{5}/\1/}
 
-.if defined(USE_XORG) || defined(XORG_CAT)
-.include "${PORTSDIR}/Mk/bsd.xorg.mk"
-.endif
-
 PACKAGES?=		${PORTSDIR}/packages
 TEMPLATES?=		${PORTSDIR}/Templates
 KEYWORDS?=		${PORTSDIR}/Keywords
@@ -1397,6 +1390,18 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 
 .if defined(USE_LOCAL_MK)
 .include "${PORTSDIR}/Mk/bsd.local.mk"
+.endif
+
+.if defined(USE_XORG) && (!defined(USES) || !${USES:Mxorg})
+DEV_WARNING+=		"Using USE_XORG alone is deprecated, please use USES=xorg"
+USES+=	xorg
+.endif
+
+.if defined(XORG_CAT)
+DEV_WARNING+=		"Using XORG_CAT is deprecated, please use USES=xorg-cat:category"
+.if !defined(USES) || !${USES:Mxorg-cat*}
+USES+=	xorg-cat:${XORG_CAT}
+.endif
 .endif
 
 .if defined(USE_PHP) && (!defined(USES) || ( defined(USES) && !${USES:Mphp*} ))
@@ -1936,6 +1941,14 @@ USE_LDCONFIG=	${PREFIX}/lib
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 .endif
 
+.if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
+.if defined(USE_LINUX_PREFIX)
+PLIST_FILES+=	"@ldconfig-linux ${LINUXBASE}"
+.else
+PLIST_FILES+=	"@ldconfig"
+.endif
+.endif
+
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
 
 .if defined(_DESTDIR_VIA_ENV)
@@ -1977,8 +1990,9 @@ _FORCE_POST_PATTERNS=	rmdir kldxref mkfontscale mkfontdir fc-cache \
 .include "${PORTSDIR}/Mk/bsd.local.mk"
 .endif
 
-.if defined(USE_XORG) || defined(XORG_CAT)
-.include "${PORTSDIR}/Mk/bsd.xorg.mk"
+.if defined(USE_XORG) && (!defined(USES) || ( defined(USES) && !${USES:Mxorg} ))
+DEV_WARNING+=	"Using USE_XORG alone is deprecated, please use USES=xorg"
+_USES_POST+=	xorg
 .endif
 
 .if defined(WANT_GSTREAMER) || defined(USE_GSTREAMER) || defined(USE_GSTREAMER1)
@@ -2029,13 +2043,6 @@ ${_f}_ARGS:=	${f:C/^[^\:]*(\:|\$)//:S/,/ /g}
 .if defined(USE_LOCALE)
 CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
 MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-.endif
-
-.if defined(USE_XORG)
-# Add explicit X options to avoid problems with false positives in configure
-.if defined(GNU_CONFIGURE)
-CONFIGURE_ARGS+=--x-libraries=${LOCALBASE}/lib --x-includes=${LOCALBASE}/include
-.endif
 .endif
 
 # Macro for doing in-place file editing using regexps
@@ -4525,23 +4532,6 @@ generate-plist: ${WRKDIR}
 	@${ECHO_CMD} ${dir} | ${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} -e 's,^,@dir ,' >> ${TMPPLIST}
 .endfor
 
-.if defined(USE_LINUX_PREFIX)
-.if defined(USE_LDCONFIG)
-	@${ECHO_CMD} '@preexec [ -n "`/sbin/sysctl -q compat.linux.osrelease`" ] || ( echo "Cannot install package: kernel missing Linux support"; exit 1 )' >> ${TMPPLIST}
-	@${ECHO_CMD} "@postexec ${LINUXBASE}/sbin/ldconfig" >> ${TMPPLIST}
-	@${ECHO_CMD} "@postunexec ${LINUXBASE}/sbin/ldconfig" >> ${TMPPLIST}
-.endif
-.else
-.if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
-.if !defined(INSTALL_AS_USER)
-	@${ECHO_CMD} "@postexec /usr/sbin/service ldconfig restart > /dev/null" >> ${TMPPLIST}
-	@${ECHO_CMD} "@postunexec /usr/sbin/service ldconfig restart > /dev/null" >> ${TMPPLIST}
-.else
-	@${ECHO_CMD} "@postexec /usr/sbin/service ldconfig restart > /dev/null || ${TRUE}" >> ${TMPPLIST}
-	@${ECHO_CMD} "@postunexec /usr/sbin/service ldconfig restart > /dev/null || ${TRUE}" >> ${TMPPLIST}
-.endif
-.endif
-.endif
 .endif
 
 ${TMPPLIST}:

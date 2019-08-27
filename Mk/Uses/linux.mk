@@ -64,6 +64,8 @@ linux_dbusglib_DEP=		linux-${linux_ARGS}-dbus-glib>0:devel/linux-${linux_ARGS}-d
 linux_dbuslibs_DEP=		linux-${linux_ARGS}-dbus-libs>0:devel/linux-${linux_ARGS}-dbus-libs
 linux_devtools_DEP=		linux-${linux_ARGS}-devtools>0:devel/linux-${linux_ARGS}-devtools
 linux_dri_DEP=			linux-${linux_ARGS}-dri>0:graphics/linux-${linux_ARGS}-dri
+linux_elfutils-libelf_DEP=	linux-${linux_ARGS}-elfutils-libelf>0:devel/linux-${linux_ARGS}-elfutils-libelf
+linux_elfutils-libs_DEP=	linux-${linux_ARGS}-elfutils-libs>0:devel/linux-${linux_ARGS}-elfutils-libs
 linux_expat_DEP=		linux-${linux_ARGS}-expat>0:textproc/linux-${linux_ARGS}-expat
 .if ${linux_ARGS} == c6
 linux_flac_DEP=			linux-${linux_ARGS}-flac>0:audio/linux-${linux_ARGS}-flac
@@ -88,7 +90,6 @@ linux_libaudiofile_DEP=		linux-${linux_ARGS}-audiofile>0:audio/linux-${linux_ARG
 .else
 linux_libaudiofile_DEP=		linux-${linux_ARGS}-audiofile>0:audio/linux-${linux_ARGS}-audiofile
 .endif
-linux_libelf_DEP=		linux-${linux_ARGS}-elfutils-libelf>0:devel/linux-${linux_ARGS}-libelf
 linux_libgcrypt_DEP=		linux-${linux_ARGS}-libgcrypt>0:security/linux-${linux_ARGS}-libgcrypt
 linux_libgfortran_DEP=		linux-${linux_ARGS}-libgfortran>0:devel/linux-${linux_ARGS}-libgfortran
 linux_libglvnd_DEP=		linux-${linux_ARGS}-libglvnd>0:graphics/linux-${linux_ARGS}-libglvnd
@@ -107,6 +108,7 @@ linux_libv4l_DEP=		linux-${linux_ARGS}-libv4l>0:multimedia/linux-${linux_ARGS}-l
 linux_libvorbis_DEP=		linux-${linux_ARGS}-libvorbis>0:audio/linux-${linux_ARGS}-libvorbis
 linux_libxml2_DEP=		linux-${linux_ARGS}-libxml2>0:textproc/linux-${linux_ARGS}-libxml2
 linux_lttng-ust_DEP=		linux-${linux_ARGS}-lttng-ust>0:sysutils/linux-${linux_ARGS}-lttng-ust
+linux_lz4_DEP=			linux-${linux_ARGS}-lz4>0:archivers/linux-${linux_ARGS}-lz4
 linux_mikmod_DEP=		linux-${linux_ARGS}-libmikmod>0:audio/linux-${linux_ARGS}-mikmod
 linux_naslibs_DEP=		linux-${linux_ARGS}-nas>0:audio/linux-${linux_ARGS}-nas-libs
 linux_nettle_DEP=		linux-${linux_ARGS}-nettle>0:security/linux-${linux_ARGS}-nettle
@@ -123,7 +125,7 @@ linux_openmotif_DEP=		linux-${linux_ARGS}-motif>0:x11-toolkits/linux-${linux_ARG
 .if ${linux_ARGS} == c6
 linux_openssl_DEP=		linux-${linux_ARGS}-openssl>0:security/linux-${linux_ARGS}-openssl
 .else
-linux_openssl_DEP=		linux-${linux_ARGS}-openssl-libs>0:security/linux-${linux_ARGS}-openssl
+linux_openssl_DEP=		# empty
 .endif
 linux_p11-kit_DEP=		linux-${linux_ARGS}-p11-kit>0:security/linux-${linux_ARGS}-p11-kit
 linux_pango_DEP=		linux-${linux_ARGS}-pango>0:x11-toolkits/linux-${linux_ARGS}-pango
@@ -144,6 +146,7 @@ linux_sdl12_DEP=		linux-${linux_ARGS}-sdl>0:devel/linux-${linux_ARGS}-sdl12
 linux_sdlimage_DEP=		linux-${linux_ARGS}-sdl_image>0:graphics/linux-${linux_ARGS}-sdl_image
 linux_sdlmixer_DEP=		linux-${linux_ARGS}-sdl_mixer>0:audio/linux-${linux_ARGS}-sdl_mixer
 linux_sqlite3_DEP=		linux-${linux_ARGS}-sqlite>0:databases/linux-${linux_ARGS}-sqlite3
+linux_systemd-libs_DEP=		linux-${linux_ARGS}-systemd-libs>0:devel/linux-${linux_ARGS}-systemd-libs
 linux_tcl85_DEP=		linux-${linux_ARGS}-tcl85>0:lang/linux-${linux_ARGS}-tcl85
 linux_tcp_wrappers-libs_DEP=	linux-${linux_ARGS}-tcp_wrappers-libs>0:net/linux-${linux_ARGS}-tcp_wrappers-libs
 linux_tiff_DEP=			linux-${linux_ARGS}-libtiff>0:graphics/linux-${linux_ARGS}-tiff
