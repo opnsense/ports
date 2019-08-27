@@ -344,7 +344,6 @@
     SUBDIR += linux-c7-libtasn1
     SUBDIR += linux-c7-nettle
     SUBDIR += linux-c7-nss
-    SUBDIR += linux-c7-openssl
     SUBDIR += linux-c7-p11-kit
     SUBDIR += linux-c7-trousers
     SUBDIR += log2timeline
@@ -1089,6 +1088,7 @@
     SUBDIR += rubygem-devise-two-factor
     SUBDIR += rubygem-devise-two-factor-rails5
     SUBDIR += rubygem-devise-two-factor30-rails5
+    SUBDIR += rubygem-devise-two-factor30-rails52
     SUBDIR += rubygem-devise_pam_authenticatable2
     SUBDIR += rubygem-digest-crc
     SUBDIR += rubygem-doorkeeper

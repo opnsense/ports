@@ -9,19 +9,22 @@ MASTER_SITES=	https://unix4lyfe.org/darkstat/
 MAINTAINER=	emikulic@gmail.com
 COMMENT=	Network statistics gatherer and reporter
 
-USE_HARDENING=	safestack
+LICENSE=	GPLv2
+LICENSE_FILE=	${WRKSRC}/COPYING.GPL
 
-USE_RC_SUBR=	darkstat
+USE_HARDENING=	safestack
 
 USES=		tar:bzip2
 GNU_CONFIGURE=	yes
+
+USE_RC_SUBR=	darkstat
 
 PORTDOCS=	AUTHORS INSTALL README
 PLIST_FILES=	sbin/darkstat man/man8/darkstat.8.gz
 
 OPTIONS_DEFINE=	DOCS
 
-post-install:
+post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
 
