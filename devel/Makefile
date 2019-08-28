@@ -490,6 +490,7 @@
     SUBDIR += dlib
     SUBDIR += dmake
     SUBDIR += dmalloc
+    SUBDIR += dmlc-core
     SUBDIR += dmucs
     SUBDIR += docopt.cpp
     SUBDIR += doctorj
@@ -6142,6 +6143,7 @@
     SUBDIR += simian
     SUBDIR += simple_components
     SUBDIR += skalibs
+    SUBDIR += skypat
     SUBDIR += slf4j
     SUBDIR += slibtool
     SUBDIR += smake
