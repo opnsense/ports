@@ -16,12 +16,13 @@ LICENSE_FILE_GFDL=	${WRKSRC}/COPYING.FDL
 
 LIB_DEPENDS=	libogg.so:audio/libogg
 
-USES=		compiler:c11 iconv libtool pathfix pkgconfig tar:xz
+USES=		autoreconf compiler:c11 iconv libtool pathfix pkgconfig tar:xz
 
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-static \
 		--disable-sse \
+		--disable-vsx \
 		--with-ogg="${LOCALBASE}" \
 		--disable-doxygen-docs \
 		--disable-thorough-tests \
