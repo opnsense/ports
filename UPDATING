@@ -5,6 +5,17 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20190830:
+  AFFECTS: users of www/gitlab-ce
+  AUTHOR: mfechner@FreeBSD.org
+
+  Make sure you upgrade your PostgreSQL to version 11 as described in 20190829,
+  before you upgrade your gitlab-ce version.
+  Gitlab-ce 12.1 needs at least PostgreSQL version 9.6.
+
+  After this you can follow the usual upgrade guide:
+  https://gitlab.fechner.net/mfechner/Gitlab-docu/blob/master/update/12.0-12.1-freebsd.md
+
 20190829:
   AFFECTS: users of database/postgresql* and other software using PostgreSQL to run
   AUTHOR: tz@FreeBSD.org
@@ -57,8 +68,8 @@ you update your ports collection, before attempting any port upgrades.
   # service postgresql start
 
   ATTENTION:
-  1) The default user changed from "pgsql" to "postgres". The migration steps above prevent the
-     user "pgsql" as database user while the database itself is executed using the "postgres" user of FreeBSD
+  1) The default user changed from "pgsql" to "postgres". The migration steps above preserve
+     the "pgsql" database user while the database daemon is now executed as the "postgres" FreeBSD user.
   2) The default data dir changed from "/usr/local/pgsql/data/" to "/var/db/postgres/data11/"
   3) If you use non-default initdb options, you have to adjust the initdb-command accordingly
 
