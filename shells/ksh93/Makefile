@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	ksh93
-DISTVERSION=	2020.0.0-alpha1
+DISTVERSION=	2020.0.0-beta1
 PORTEPOCH=	1
-PORTREVISION=	3
 CATEGORIES=	shells
 
 MAINTAINER=	cy@freebsd.org
@@ -18,7 +17,6 @@ USES=		compiler:c11 meson ninja python:build
 USE_GITHUB=	yes
 GH_ACCOUNT=	att
 GH_PROJECT=	ast
-GH_TAGNAME=	${HASH}
 
 KSH_CONFLICTS=		pdksh-*
 KSH93_CONFLICTS=	ksh93-devel-* ast-ksh-*
@@ -46,7 +44,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/for name in/ s|python.*|${PYTHON_CMD}|g' ${WRKSRC}/scripts/python.sh
 	@${REINPLACE_CMD} -e 's|SF_FLAGS|SFIO_FLAGS|g' ${WRKSRC}/src/lib/libast/include/sfio*.h ${WRKSRC}/src/lib/libast/sfio/*.c
 .if ${PORT_OPTIONS:MKSH93}
-	@${MV} ${WRKSRC}/src/cmd/ksh93/ksh.1 ${WRKSRC}/src/cmd/ksh93/ksh93.1
+	@${MV} ${WRKSRC}/src/cmd/ksh93/docs/ksh.1 ${WRKSRC}/src/cmd/ksh93/docs/ksh93.1
 .endif
 .if ${PORT_OPTIONS:MKSH}
 	@# Keep portlint happy
