@@ -4,7 +4,6 @@
 PORTNAME=	cfengine
 PORTVERSION=	3.${CFENGINE_COMMIT_DATE}
 CATEGORIES=	sysutils
-MASTER_SITES=	https://s3.amazonaws.com/cfengine-package-repos/tarballs/
 PKGNAMESUFFIX=	-devel
 HASH=		b417fb6
 CFENGINE_COMMIT_DATE=	2019.08.11
@@ -20,8 +19,6 @@ USE_GITHUB=	yes
 GH_PROJECT=	core
 GH_TAGNAME=	${HASH}
 CPE_VENDOR=	gnu
-
-USE_GCC=	any
 
 CONFLICTS=	cfengine-2* cfengine3[0-9]-* cfengine31[02-9]-* cfengine-3.*
 
