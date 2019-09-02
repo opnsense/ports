@@ -3,7 +3,7 @@
 
 PORTNAME=	byobu
 PORTVERSION=	5.129
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	sysutils
 MASTER_SITES=	http://launchpad.net/${PORTNAME}/trunk/${PORTVERSION}/+download/
 DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
@@ -14,7 +14,8 @@ COMMENT=	Profile and configuration utilities for GNU Screen and/or tmux
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	bash:shells/bash
+RUN_DEPENDS=	bash:shells/bash \
+		gsed:textproc/gsed
 
 USES=		autoreconf python shebangfix
 

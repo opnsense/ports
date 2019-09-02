@@ -144,9 +144,9 @@
     SUBDIR += bitwise
     SUBDIR += blacs
     SUBDIR += blas
+    SUBDIR += blasfeo
     SUBDIR += blaze
     SUBDIR += blazeiterative
-    SUBDIR += blasfeo
     SUBDIR += blis
     SUBDIR += blitz++
     SUBDIR += blocksolve95
@@ -672,8 +672,6 @@
     SUBDIR += prng
     SUBDIR += proofgeneral
     SUBDIR += pspp
-    SUBDIR += pure-mpfr
-    SUBDIR += pure-rational
     SUBDIR += py-CyLP
     SUBDIR += py-Diofant
     SUBDIR += py-GridDataFormats
@@ -878,6 +876,7 @@
     SUBDIR += ump
     SUBDIR += units
     SUBDIR += unuran
+    SUBDIR += vampire
     SUBDIR += viennacl
     SUBDIR += visualpolylib
     SUBDIR += vowpal_wabbit

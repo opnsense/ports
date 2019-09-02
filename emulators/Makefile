@@ -9,6 +9,7 @@
     SUBDIR += advancemess
     SUBDIR += aftp
     SUBDIR += almostti
+    SUBDIR += anese 
     SUBDIR += aqemu
     SUBDIR += atari800
     SUBDIR += bfe
@@ -173,9 +174,9 @@
     SUBDIR += xen-kernel
     SUBDIR += xhomer
     SUBDIR += xsystem35
+    SUBDIR += xzx
     SUBDIR += yuzu
     SUBDIR += yuzu-qt5
-    SUBDIR += xzx
     SUBDIR += zsnes
 
 .include <bsd.port.subdir.mk>
