@@ -4594,6 +4594,7 @@
     SUBDIR += py-lazr.uri
     SUBDIR += py-lazy
     SUBDIR += py-lazy-object-proxy
+    SUBDIR += py-libioc
     SUBDIR += py-libiocage
     SUBDIR += py-liblarch
     SUBDIR += py-libpeas
@@ -5836,6 +5837,7 @@
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-graphiql-rails
     SUBDIR += rubygem-graphql
+    SUBDIR += rubygem-graphql-docs
     SUBDIR += rubygem-grit
     SUBDIR += rubygem-guess_html_encoding
     SUBDIR += rubygem-gyoku

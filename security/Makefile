@@ -1228,6 +1228,7 @@
     SUBDIR += softhsm2
     SUBDIR += sops
     SUBDIR += spass
+    SUBDIR += spass-qt5
     SUBDIR += spike-proxy
     SUBDIR += spybye
     SUBDIR += sqlmap
