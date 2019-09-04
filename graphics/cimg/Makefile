@@ -3,7 +3,7 @@
 
 PORTNAME=	cimg
 DISTVERSIONPREFIX=	v.
-DISTVERSION=	2.7.0
+DISTVERSION=	2.7.1
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 
@@ -32,6 +32,8 @@ USE_HARDENING=	pie:off
 USE_GITHUB=	yes
 GH_ACCOUNT=	dtschump
 GH_PROJECT=	CImg
+
+USES=	xorg
 
 .if !defined(WITHOUT_LAPACK)
 . if defined(WITH_ATLAS)
