@@ -2,6 +2,7 @@
 
 PORTNAME=	miniflux
 DISTVERSION=	2.0.17
+PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	krion@FreeBSD.org
@@ -12,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
-USES=		go pgsql
+USES=		go:modules
 
 USERS=	miniflux
 GROUPS=	miniflux
