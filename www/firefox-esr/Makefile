@@ -3,6 +3,7 @@
 
 PORTNAME=	firefox
 DISTVERSION=	68.1.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www ipv6
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -44,8 +45,6 @@ MOZ_OPTIONS=	--enable-application=browser \
 		--enable-official-branding
 
 MOZ_OPTIONS+=	--enable-pie
-
-OPTIONS_EXCLUDE=	WAYLAND
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 
