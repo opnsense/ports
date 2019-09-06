@@ -17,6 +17,7 @@ LICENSE=	GPLv2
 CONFLICTS_INSTALL=dnsmasq-devel-*
 
 USE_HARDENING=	cfi safestack
+CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 PORTDOCS=	CHANGELOG CHANGELOG.archive FAQ doc.html setup.html
 
