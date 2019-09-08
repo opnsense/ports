@@ -25,7 +25,7 @@ SHEBANG_FILES=		sample/sample-scripts/verify-cn \
 			sample/sample-scripts/auth-pam.pl \
 			sample/sample-scripts/ucn.pl
 CONFIGURE_ARGS+=	--enable-strict
-# avoid picking up CMAKE, we don't have cmocka in the tarballs..
+# avoid picking up CMAKE, we don't have cmocka in the tarballs.
 CONFIGURE_ENV+=		ac_cv_prog_CMAKE= CMAKE=
 
 # let OpenVPN's configure script pick up the requisite libraries,
@@ -73,7 +73,6 @@ MBEDTLS_LIB_DEPENDS=	libmbedtls.so:security/mbedtls
 MBEDTLS_CONFIGURE_ON=	--with-crypto-library=mbedtls
 
 USE_RC_SUBR=		openvpn
-USE_LDCONFIG=		${PREFIX}/lib
 
 SUB_FILES=		pkg-message openvpn-client
 
