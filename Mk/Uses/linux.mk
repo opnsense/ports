@@ -50,6 +50,7 @@ ONLY_FOR_ARCHS_REASON=	Linux compatibility is only available on amd64 and i386
 .endif
 
 linux_allegro_DEP=		linux-${linux_ARGS}-allegro>0:devel/linux-${linux_ARGS}-allegro
+linux_alsa-lib-devel_DEP=	linux-${linux_ARGS}-alsa-lib-devel>0:audio/linux-${linux_ARGS}-alsa-lib-devel
 linux_alsa-plugins-oss_DEP=	linux-${linux_ARGS}-alsa-plugins-oss>0:audio/linux-${linux_ARGS}-alsa-plugins-oss
 linux_alsa-plugins-pulseaudio_DEP=linux-${linux_ARGS}-alsa-plugins-pulseaudio>0:audio/linux-${linux_ARGS}-alsa-plugins-pulseaudio
 linux_alsalib_DEP=		linux-${linux_ARGS}-alsa-lib>0:audio/linux-${linux_ARGS}-alsa-lib
@@ -109,6 +110,7 @@ linux_libvorbis_DEP=		linux-${linux_ARGS}-libvorbis>0:audio/linux-${linux_ARGS}-
 linux_libxml2_DEP=		linux-${linux_ARGS}-libxml2>0:textproc/linux-${linux_ARGS}-libxml2
 linux_lttng-ust_DEP=		linux-${linux_ARGS}-lttng-ust>0:sysutils/linux-${linux_ARGS}-lttng-ust
 linux_lz4_DEP=			linux-${linux_ARGS}-lz4>0:archivers/linux-${linux_ARGS}-lz4
+linux_make_DEP=			linux-${linux_ARGS}-make>0:devel/linux-${linux_ARGS}-make
 linux_mikmod_DEP=		linux-${linux_ARGS}-libmikmod>0:audio/linux-${linux_ARGS}-mikmod
 linux_naslibs_DEP=		linux-${linux_ARGS}-nas>0:audio/linux-${linux_ARGS}-nas-libs
 linux_nettle_DEP=		linux-${linux_ARGS}-nettle>0:security/linux-${linux_ARGS}-nettle
