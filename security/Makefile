@@ -1262,6 +1262,7 @@
     SUBDIR += sudoscript
     SUBDIR += super
     SUBDIR += suricata
+    SUBDIR += suricata5
     SUBDIR += swatch
     SUBDIR += switzerland
     SUBDIR += symbion-sslproxy

@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	citra
-PORTVERSION=	s20190902
-PORTREVISION?=	0
+PORTVERSION=	s20190906
+PORTREVISION?=	1
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -23,7 +23,7 @@ BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	citra-emu
-GH_TAGNAME=	8acd2b966
+GH_TAGNAME=	4bc22aa35
 GH_TUPLE=	citra-emu:ext-libressl-portable:7d01cb0:libressl/externals/libressl \
 		citra-emu:ext-soundtouch:060181e:soundtouch/externals/soundtouch \
 		MerryMage:dynarmic:r1-992-g4e6848d1:dynarmic/externals/dynarmic \
@@ -45,13 +45,13 @@ LDFLAGS+=	-Wl,--as-needed # Qt5Network
 TEST_TARGET=	test
 
 OPTIONS_DEFINE=	ALSA FFMPEG PULSEAUDIO JACK SNDIO
-OPTIONS_DEFAULT=ALSA FFMPEG PULSEAUDIO JACK
+OPTIONS_DEFAULT=ALSA FFMPEG PULSEAUDIO JACK SNDIO
 OPTIONS_MULTI=	GUI
 OPTIONS_MULTI_GUI=	QT5 SDL
 OPTIONS_SLAVE?=	SDL
 OPTIONS_EXCLUDE:=	${OPTIONS_MULTI_GUI}
 
-ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_BUILD_DEPENDS=	alsa-lib>0:audio/alsa-lib
 ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
 ALSA_CMAKE_BOOL=	USE_ALSA
 
@@ -61,10 +61,10 @@ FFMPEG_CMAKE_BOOL=	ENABLE_FFMPEG_AUDIO_DECODER ENABLE_FFMPEG_VIDEO_DUMPER
 JACK_BUILD_DEPENDS=	jackit>0:audio/jack
 JACK_CMAKE_BOOL=	USE_JACK
 
-PULSEAUDIO_BUILD_DEPENDS=pulseaudio>0.:audio/pulseaudio
+PULSEAUDIO_BUILD_DEPENDS=pulseaudio>0:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	USE_PULSE
 
-SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
+SNDIO_BUILD_DEPENDS=	sndio>0:audio/sndio
 SNDIO_CMAKE_BOOL=	USE_SNDIO
 
 SDL_CMAKE_BOOL=	ENABLE_SDL2

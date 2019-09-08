@@ -534,8 +534,6 @@
     SUBDIR += linux-c7-wayland
     SUBDIR += lua-gd
     SUBDIR += luminance-qt5
-    SUBDIR += luxrender
-    SUBDIR += luxrender14
     SUBDIR += lximage-qt
     SUBDIR += magnum
     SUBDIR += magnum-examples
@@ -871,6 +869,7 @@
     SUBDIR += py-pycha
     SUBDIR += py-pycollada
     SUBDIR += py-pydot
+    SUBDIR += py-pyembree
     SUBDIR += py-pyepsg
     SUBDIR += py-pygal
     SUBDIR += py-pyganim

@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	yuzu
-PORTVERSION=	s20190901
-PORTREVISION?=	0
+PORTVERSION=	s20190905
+PORTREVISION?=	1
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -28,7 +28,7 @@ BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	50b5bb44a
+GH_TAGNAME=	4ee994963
 GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		DarkLordZach:mbedtls:a280e60:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:2c51218:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
@@ -40,7 +40,7 @@ GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		citra-emu:ext-libressl-portable:7d01cb0:libressl/externals/libressl \
 		citra-emu:ext-soundtouch:060181e:soundtouch/externals/soundtouch \
 		facebook:zstd:v1.3.8:zstd/externals/zstd \
-		fmtlib:fmt:5.3.0:fmt/externals/fmt \
+		fmtlib:fmt:6.0.0:fmt/externals/fmt \
 		kinetiknz:cubeb:cubeb-0.2-1098-g6f2420d:cubeb/externals/cubeb \
 		lz4:lz4:v1.8.0-8-g4db65c1:lz4/externals/lz4 \
 		ogniK5377:opus:v1.3-rc-20-g562f8ba5:opus/externals/opus \
@@ -53,23 +53,23 @@ LDFLAGS+=	-Wl,--as-needed # Qt5Network
 TEST_TARGET=	test
 
 OPTIONS_DEFINE=	ALSA PULSEAUDIO JACK SNDIO
-OPTIONS_DEFAULT=ALSA PULSEAUDIO JACK
+OPTIONS_DEFAULT=ALSA PULSEAUDIO JACK SNDIO
 OPTIONS_MULTI=	GUI
 OPTIONS_MULTI_GUI=	QT5 SDL
 OPTIONS_SLAVE?=	SDL
 OPTIONS_EXCLUDE:=	${OPTIONS_MULTI_GUI}
 
-ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
+ALSA_BUILD_DEPENDS=	alsa-lib>0:audio/alsa-lib
 ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
 ALSA_CMAKE_BOOL=	USE_ALSA
 
 JACK_BUILD_DEPENDS=	jackit>0:audio/jack
 JACK_CMAKE_BOOL=	USE_JACK
 
-PULSEAUDIO_BUILD_DEPENDS=pulseaudio>0.:audio/pulseaudio
+PULSEAUDIO_BUILD_DEPENDS=pulseaudio>0:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	USE_PULSE
 
-SNDIO_LIB_DEPENDS=	libsndio.so:audio/sndio
+SNDIO_BUILD_DEPENDS=	sndio>0:audio/sndio
 SNDIO_CMAKE_BOOL=	USE_SNDIO
 
 SDL_CMAKE_BOOL=	ENABLE_SDL2

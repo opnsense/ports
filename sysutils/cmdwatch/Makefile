@@ -10,6 +10,8 @@ MASTER_SITES=	http://www.chruetertee.ch/files/download/
 MAINTAINER=	beat@FreeBSD.org
 COMMENT=	Watches the output from a command at specified intervals
 
+LICENSE=	GPLv2+
+
 USE_HARDENING=	pie:off
 
 USES=		ncurses
