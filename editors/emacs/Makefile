@@ -37,7 +37,8 @@ nox_PKGNAMESUFFIX=	-nox
 
 USES=		cpe gmake localbase:ldflags makeinfo ncurses pkgconfig tar:xz
 .if ${FLAVOR:U} != nox
-USES+=		desktop-file-utils xorg
+USES+=		desktop-file-utils gnome xorg
+INSTALLS_ICONS=	yes
 USE_XORG=	ice sm x11 xcb xext xfixes xinerama xmu xrandr xt
 .endif
 CPE_VENDOR=	gnu
@@ -72,10 +73,6 @@ INFO=		ada-mode auth autotype bovine calc ccmode cl dbus dired-x \
 		sasl sc semantic ses sieve smtpmail speedbar srecode todo-mode \
 		tramp url vhdl-mode vip viper widget wisent woman
 INFO_PATH=	${DATADIR_REL}/info
-.if ${FLAVOR:U} != nox
-INSTALLS_ICONS=	yes
-USES+=		gnome
-.endif
 .if ${FLAVOR:U} == canna
 PLIST_FILES+=	${DATADIR}/${DISTVERSION}/lisp/canna.el.gz \
 		${DATADIR}/${DISTVERSION}/lisp/canna.elc \
@@ -106,26 +103,25 @@ OPTIONS_EXCLUDE=	ALSA CAIRO DBUS GCONF GFILE GIF GSETTINGS GTK2 GTK3 \
 OPTIONS_SUB=	YES
 
 ACL_DESC=	Access control list support
-CAIRO_DESC=	Experimental Cairo library support     (implies PNG, XFT)
+CAIRO_DESC=	Experimental Cairo library support  [implies PNG, XFT]
 FILENOTIFY_DESC=	File notification support
 GFILE_DESC=	File notification via gfile
 GRAPHICS_DESC=	Graphics support
 GSETTINGS_DESC=	GSettings API for application settings
 KQUEUE_DESC=	File notification via kqueue
 #LTO_DESC=	Enable link-time optimization
-M17N_DESC=	M17N support for text-shaping (implies XFT)
-MAGICK_DESC=	ImageMagick image processing support
+M17N_DESC=	M17N support for text-shaping       [implies XFT]
 MAILUTILS_DESC=	Mail framework via GNU Mailutils
 MODULES_DESC=	Dynamic modules support
-OTF_DESC=	Opentype fonts                         (implies XFT)
+OTF_DESC=	Opentype fonts                      [implies XFT]
 SCROLLBARS_DESC=	Toolkit scroll-bars
 SOURCES_DESC=	Install sources
-SVG_DESC=	Scalable vector graphics support       (implies PNG)
+SVG_DESC=	Scalable vector graphics support    [implies PNG]
 X11TOOLKIT_DESC=	X11 toolkit
 XAW3D_DESC=	Athena3D widgets
 XAW_DESC=	Athena widgets
 XIM_DESC=	X Input Method
-XWIDGETS_DESC=	Experimental GTK widgets               (requires GTK3)
+XWIDGETS_DESC=	Experimental GTK widgets            [implies GTK3]
 
 ACL_CONFIGURE_ENABLE=	acl
 ALSA_CONFIGURE_ON=	--with-sound=alsa
@@ -195,7 +191,7 @@ XFT_CONFIGURE_WITH=	xft
 XFT_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2
 XIM_CONFIGURE_WITH=	xim
-XML_USES=		gnome
+XML_USES=		gnome # portlint complains, but necessary for nox flavor
 XML_USE=		GNOME=libxml2
 XML_CONFIGURE_WITH=	xml2
 XPM_USE=		XORG=xpm
