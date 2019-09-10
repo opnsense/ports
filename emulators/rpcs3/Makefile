@@ -2,8 +2,9 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.7-8656 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g5ed700db5
+DISTVERSION=	0.0.7-8674 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-gcb66d0569
+PORTREVISION=	1
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -38,10 +39,14 @@ USES=		cmake compiler:c++17-lang iconv:wchar_t localbase:ldflags \
 USE_GL=		gl glew
 USE_QT=		qmake_build buildtools_build core dbus declarative gui network widgets
 USE_XORG=	x11
-LLD_UNSAFE=	yes # XXX ports/219089
 CMAKE_ON=	CMAKE_SKIP_RPATH USE_SYSTEM_FFMPEG USE_SYSTEM_LIBPNG
 CMAKE_OFF=	USE_NATIVE_INSTRUCTIONS
 LDFLAGS+=	-Wl,--as-needed # GLU
+
+# XXX Drop after FreeBSD 12.0 EOL
+.if exists(/usr/lib/clang/6.0.1)
+LLD_UNSAFE=	yes # XXX ports/219089
+.endif
 
 # XXX Remove after FreeBSD 11.2/12.0 reach EOL i.e., around 2020-02-01
 .if !exists(/usr/include/c++/v1/charconv) && exists(/usr/lib/libc++.so)
@@ -50,7 +55,7 @@ EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-revert-5bd17a44c972
 .endif
 
 OPTIONS_DEFINE=	ALSA EVDEV GDB LLVM PULSEAUDIO VULKAN
-OPTIONS_DEFAULT=ALSA LLVM VULKAN
+OPTIONS_DEFAULT=LLVM VULKAN
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins

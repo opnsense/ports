@@ -899,6 +899,7 @@
     SUBDIR += py-docker-pycreds
     SUBDIR += py-ecdsa
     SUBDIR += py-ed25519ll
+    SUBDIR += py-exscript
     SUBDIR += py-fail2ban
     SUBDIR += py-fchksum
     SUBDIR += py-fido2
@@ -1280,6 +1281,7 @@
     SUBDIR += tor
     SUBDIR += tor-capsicum
     SUBDIR += tor-devel
+    SUBDIR += totp-cli
     SUBDIR += tpm-tools
     SUBDIR += trezord
     SUBDIR += trinokiller
