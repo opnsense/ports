@@ -21,7 +21,6 @@ USE_HARDENING=	safestack
 
 USES=		cpe pathfix shebangfix libedit libtool localbase:ldflags \
 		pkgconfig
-USES+=		autoreconf # until trustedbsd-mac changes accepted upstream
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-leap-smear --enable-trustedbsd-mac \
