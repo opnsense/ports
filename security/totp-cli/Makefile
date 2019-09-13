@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	totp-cli
-PORTVERSION=	1.1.1
+PORTVERSION=	1.1.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
 
@@ -24,8 +24,5 @@ GH_TUPLE=	golang:crypto:71b5226:golang_crypto/vendor/golang.org/x/crypto \
 		yitsushi:github-release-check:v1.0.1:yitsushi_github_release_check/vendor/github.com/yitsushi/github-release-check \
 		yitsushi:go-commander:v1.1.0:yitsushi_go_commander/vendor/github.com/yitsushi/go-commander
 USE_GITHUB=	yes
-
-do-install:
-	${INSTALL_PROGRAM} ${GO_WRKDIR_BIN}/totp-cli ${STAGEDIR}${PREFIX}/bin/totp-cli
 
 .include <bsd.port.mk>
