@@ -327,6 +327,8 @@
     SUBDIR += ljdump
     SUBDIR += llgal
     SUBDIR += logtools
+    SUBDIR += lua-resty-core
+    SUBDIR += lua-resty-lrucache
     SUBDIR += luakit
     SUBDIR += lynx
     SUBDIR += lynx-current

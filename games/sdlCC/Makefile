@@ -13,6 +13,8 @@ COMMENT=	Extensible Chinese checkers game using SDL
 LICENSE=	GPLv2
 
 BROKEN=		unfetchable
+DEPRECATED=	Unfetchable, unmaintained
+EXPIRATION_DATE=	2019-10-16
 
 USE_HARDENING=	pie:off relro:off
 
