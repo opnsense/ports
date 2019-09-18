@@ -13,10 +13,6 @@ COMMENT=	Cyrus mail server, supporting POP3 and IMAP4 protocols
 LICENSE=	BSD4CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_armv6=		fails to compile: gmake[1]: *** [Makefile:6747: lib/imapopts.c] Error 1
-BROKEN_armv7=		fails to compile: gmake[1]: *** [Makefile:6718: lib/imapopts.c] Error 1
-BROKEN_powerpc64=	fails to compile: mailbox.h: redefinition of typedef 'message_t'
-
 LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2 \
 		libicuuc.so:devel/icu \
 		libjansson.so:devel/jansson \
@@ -24,7 +20,7 @@ LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2 \
 
 CONFLICTS_INSTALL=	cyrus-imapd-2.* cyrus-imapd2*
 
-USES=		cpe gmake libtool perl5 pkgconfig ssl
+USES=		compiler:c11 cpe gmake libtool perl5 pkgconfig ssl
 USE_RC_SUBR=	imapd
 GNU_CONFIGURE=	yes
 CYRUS_PREFIX=	${PREFIX}/cyrus
