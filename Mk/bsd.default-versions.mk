@@ -57,10 +57,10 @@ JULIA_DEFAULT?=		1.0
 LAZARUS_DEFAULT?=	2.0.4
 # Possible values: c6, c7
 LINUX_DEFAULT?=		c7
-# Possible values: 60, 70, 80, -devel (to be used when non-base compiler is required)
+# Possible values: 60, 70, 80, 90, -devel (to be used when non-base compiler is required)
 # Please give notice to the Graphics Team (x11@FreeBSD.org) in advance before 
 # bumping the LLVM version.
-LLVM_DEFAULT?=		80
+LLVM_DEFAULT?=		90
 # Possible values: 5.1, 5.2, 5.3
 LUA_DEFAULT?=		5.2
 # Possible values: 5.5, 5.6, 5.7, 8.0, 5.5m, 10.0m, 10.1m, 10.2m, 10.3m, 5.5p, 5.6p, 5.7p, 5.6w
@@ -82,7 +82,7 @@ PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .endif
 # Possible values: 9.4, 9.5, 9.6, 10, 11, 12
 PGSQL_DEFAULT?=		11
-# Possible values: 7.1, 7.2, 7.3
+# Possible values: 7.1, 7.2, 7.3, 7.4
 PHP_DEFAULT?=		7.2
 # Possible values: 2.7, 3.5, 3.6, 3.7
 PYTHON_DEFAULT?=	3.6
