@@ -17,7 +17,7 @@ LICENSE_COMB=	dual
 LIB_DEPENDS=	libmetis.so:math/metis \
 		liblapack.so:math/lapack
 
-USES=		cmake:insource compiler:openmp fortran gmake
+USES=		cmake:insource compiler:c++0x fortran gmake
 USE_LDCONFIG=	yes
 
 USE_HARDENING=	retpoline:off
@@ -47,6 +47,7 @@ CHOLMOD_CONFIG=
 CFLAGS+=	-I${LOCALBASE}/include
 CXXFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${WRKSRC}/lib # prevent linking with shared libs from the preinstalled older versions
+MAKE_ARGS+=	JOBS="${MAKE_JOBS_NUMBER}"
 MAKE_ARGS+=	MY_METIS_LIB="-L${LOCALBASE}/lib -lmetis $(LDFLAGS)"
 
 pre-configure:
@@ -78,9 +79,9 @@ do-configure:
 
 do-build:
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} PICFLAG= \
-		LD_LIBRARY_PATH=${WRKDIR}/SuiteSparse/lib ${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS}
+		LD_LIBRARY_PATH=${WRKDIR}/SuiteSparse/lib ${MAKE_CMD} ${MAKE_ARGS}
 	cd ${WRKSRC_SHARED} && ${SETENV} ${MAKE_ENV} PICFLAG=${PICFLAG} \
-		LD_LIBRARY_PATH=${WRKDIR}/SuiteSparse/lib ${MAKE_CMD} ${_MAKE_JOBS} ${MAKE_ARGS}
+		LD_LIBRARY_PATH=${WRKDIR}/SuiteSparse/lib ${MAKE_CMD} ${MAKE_ARGS}
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/include/suitesparse

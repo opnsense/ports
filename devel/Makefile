@@ -654,6 +654,7 @@
     SUBDIR += flang
     SUBDIR += flang-clang
     SUBDIR += flatbuffers
+    SUBDIR += flatcc
     SUBDIR += flatzebra
     SUBDIR += flex-sdk
     SUBDIR += flex-sdk35
@@ -3934,6 +3935,17 @@
     SUBDIR += php73-sysvsem
     SUBDIR += php73-sysvshm
     SUBDIR += php73-tokenizer
+    SUBDIR += php74-ffi
+    SUBDIR += php74-gettext
+    SUBDIR += php74-intl
+    SUBDIR += php74-json
+    SUBDIR += php74-pcntl
+    SUBDIR += php74-readline
+    SUBDIR += php74-shmop
+    SUBDIR += php74-sysvmsg
+    SUBDIR += php74-sysvsem
+    SUBDIR += php74-sysvshm
+    SUBDIR += php74-tokenizer
     SUBDIR += phpbt
     SUBDIR += phpsh
     SUBDIR += phpunit6
@@ -4370,6 +4382,7 @@
     SUBDIR += py-deprecation
     SUBDIR += py-dexml
     SUBDIR += py-dialog
+    SUBDIR += py-dialog3
     SUBDIR += py-diazo
     SUBDIR += py-dill
     SUBDIR += py-dirspec
@@ -6539,7 +6552,6 @@
     SUBDIR += xeus
     SUBDIR += xeus-cling
     SUBDIR += xfce4-dev-tools
-    SUBDIR += xfce4-vala
     SUBDIR += xmake
     SUBDIR += xmltooling
     SUBDIR += xorg-macros
