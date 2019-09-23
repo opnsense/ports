@@ -897,6 +897,7 @@
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-soya3d
+    SUBDIR += py-spectra
     SUBDIR += py-stltools
     SUBDIR += py-svgwrite
     SUBDIR += py-termtosvg
@@ -984,6 +985,7 @@
     SUBDIR += sane-epkowa
     SUBDIR += sane-frontends
     SUBDIR += scale2x
+    SUBDIR += scantailor
     SUBDIR += scr2png
     SUBDIR += scrot
     SUBDIR += scwm-icons
