@@ -102,7 +102,7 @@ PRELUDE_LIB_DEPENDS=		libprelude.so:security/libprelude \
 PRELUDE_CONFIGURE_ENABLE=	prelude
 PRELUDE_CONFIGURE_ON=		--with-libprelude-prefix=${LOCALBASE}
 
-PYTHON_USES=			python
+PYTHON_USES=			python:3.5+
 PYTHON_USE=			PYTHON=py3kplist
 PYTHON_CONFIGURE_ENABLE=	python
 PYTHON_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}yaml>0:devel/py-yaml@${PY_FLAVOR}
