@@ -2,7 +2,7 @@
 
 PORTNAME=	hugo
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.58.2
+DISTVERSION=	0.58.3
 CATEGORIES=	www
 PKGNAMEPREFIX=	go
 DIST_SUBDIR=	${PKGNAMEPREFIX}${PORTNAME}
@@ -57,7 +57,7 @@ GH_TUPLE=	\
 		google:go-genproto:c2c4e71fbf69:google_go_genproto/vendor/google.golang.org/genproto \
 		google:uuid:v1.1.1:google_uuid/vendor/github.com/google/uuid \
 		google:wire:v0.2.2:google_wire/vendor/github.com/google/wire \
-		googleapis:gax-go:v2.0.4:googleapis_gax_go/vendor/github.com/googleapis/gax-go \
+		googleapis:gax-go:v2.0.2:googleapis_gax_go/vendor/github.com/googleapis/gax-go \
 		googleapis:google-api-go-client:v0.5.0:googleapis_google_api_go_client/vendor/google.golang.org/api \
 		googleapis:google-cloud-go:v0.39.0:googleapis_google_cloud_go/vendor/cloud.google.com/go \
 		gorilla:websocket:v1.4.0:gorilla_websocket/vendor/github.com/gorilla/websocket \
@@ -106,9 +106,6 @@ GO_BUILDFLAGS=	-ldflags="\
 		-X github.com/gohugoio/hugo/hugolib.CommitHash=${COMMIT_ID}" \
 		${BUILD_TAGS}
 
-SOURCE_DATE_EPOCH_CMD=	date -r $$(grep TIMESTAMP ${DISTINFO_FILE} | ${SED} -e 's/[^0-9]//g') '+%FT%TZ%z'
-COMMIT_ID=	253e5fdc699fe915305c3f685843dcd45f05b3c9
-
 OPTIONS_DEFINE=		MANPAGES EXTENDED
 OPTIONS_DEFAULT=	MANPAGES EXTENDED
 OPTIONS_SUB=		yes
@@ -127,6 +124,12 @@ PORTMANS=	hugo-config.1 hugo-convert-toJSON.1 hugo-convert-toTOML.1 \
 		hugo-new-site.1 hugo-new-theme.1 hugo-new.1 hugo-server.1 \
 		hugo-version.1 hugo.1
 
+# needed to get DISTINFO_FILE in scope for the shell command evaluation by go.mk
+.include <bsd.port.pre.mk>
+
+SOURCE_DATE_EPOCH_CMD=	date -r $$(grep TIMESTAMP ${DISTINFO_FILE} | ${SED} -e 's/[^0-9]//g') '+%FT%TZ%z'
+COMMIT_ID=	4aac02d49c2e2bab9f36f0caabbbd9f3cb4715cd
+
 do-build-MANPAGES-on:
 	@cd ${GO_WRKSRC} && ${GO_WRKDIR_BIN}/${PORTNAME} gen man --dir man/man1/
 
@@ -135,4 +138,4 @@ do-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/man/man1/$i ${STAGEDIR}/${PREFIX}/man/man1
 .endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
