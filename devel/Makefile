@@ -50,6 +50,7 @@
     SUBDIR += R-cran-iterators
     SUBDIR += R-cran-itertools
     SUBDIR += R-cran-later
+    SUBDIR += R-cran-lifecycle
     SUBDIR += R-cran-lubridate
     SUBDIR += R-cran-magrittr
     SUBDIR += R-cran-memoise
@@ -1984,6 +1985,7 @@
     SUBDIR += p5-Commands-Guarded
     SUBDIR += p5-CommitBit
     SUBDIR += p5-Compiler-Lexer
+    SUBDIR += p5-Config-AST
     SUBDIR += p5-Config-Any
     SUBDIR += p5-Config-ApacheFormat
     SUBDIR += p5-Config-Auto
@@ -2009,6 +2011,8 @@
     SUBDIR += p5-Config-MySQL
     SUBDIR += p5-Config-Objective
     SUBDIR += p5-Config-Options
+    SUBDIR += p5-Config-Parser
+    SUBDIR += p5-Config-Parser-ldap
     SUBDIR += p5-Config-Perl-V
     SUBDIR += p5-Config-Properties
     SUBDIR += p5-Config-Record
@@ -5121,6 +5125,7 @@
     SUBDIR += py-traitlets
     SUBDIR += py-traits
     SUBDIR += py-transaction
+    SUBDIR += py-transitions
     SUBDIR += py-tree-format
     SUBDIR += py-trollius
     SUBDIR += py-ttystatus
@@ -5202,6 +5207,7 @@
     SUBDIR += py-xxhash
     SUBDIR += py-yaml
     SUBDIR += py-yamllint
+    SUBDIR += py-yamlordereddictloader
     SUBDIR += py-yandex-money-sdk
     SUBDIR += py-yappi
     SUBDIR += py-yapps2
@@ -5706,6 +5712,7 @@
     SUBDIR += rubygem-chef-provisioning
     SUBDIR += rubygem-cheffish
     SUBDIR += rubygem-childprocess
+    SUBDIR += rubygem-childprocess2
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
     SUBDIR += rubygem-clamp
