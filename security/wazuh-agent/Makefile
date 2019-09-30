@@ -18,9 +18,6 @@ COMMENT=	Security tool to monitor and check logs and intrusions
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	curl:ftp/curl
-RUN_DEPENDS=	curl:ftp/curl
-
 USES=		gmake perl5 readline shebangfix uidfix
 
 USE_GITHUB=	yes

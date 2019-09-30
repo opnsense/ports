@@ -1,0 +1,13 @@
+--- src/Makefile.orig	2019-09-30 08:22:34 UTC
++++ src/Makefile
+@@ -130,9 +130,8 @@ ifeq (${uname_S},Darwin)
+ else
+ ifeq (${uname_S},FreeBSD)
+ 		DEFINES+=-DFreeBSD
+-		OSSEC_CFLAGS+=-pthread -I/usr/local/include
++		OSSEC_CFLAGS+=-pthread
+ 		OSSEC_LDFLAGS+=-pthread
+-		OSSEC_LDFLAGS+=-L/usr/local/lib
+ 		OSSEC_LDFLAGS+='-Wl,-rpath,$$ORIGIN/../lib'
+ else
+ ifeq (${uname_S},NetBSD)
