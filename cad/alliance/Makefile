@@ -3,6 +3,7 @@
 
 PORTNAME=	alliance
 DISTVERSION=	5.1.1
+PORTREVISION=	1
 CATEGORIES=	cad
 MASTER_SITES=	ftp://asim.lip6.fr/pub/alliance/distribution/5.0/ \
 		ftp://ftp.lyx.org/lip6/softs/alliance/distribution/5.0/ \
@@ -26,7 +27,7 @@ USE_HARDENING=	pie:off
 USES=		autoreconf:build gmake libtool motif tar:bz2 xorg
 USE_GCC=	any
 USE_TEX=	dvipsk:build latex:build
-USE_XORG=	ice sm x11 xext xp xt
+USE_XORG=	ice sm x11 xext xt
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ENV+=	ALLIANCE_TOP=${ALLIANCE_TOP}
