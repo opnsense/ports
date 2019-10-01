@@ -10965,7 +10965,6 @@ devel/pecl-msgpack0|devel/pecl-msgpack|2018-12-30|Has expired: Works only with E
 devel/pecl-svn||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/php-uprofiler||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/pecl-statgrab||2018-12-30|Has expired: Works only with EOL php 5.6
-devel/pecl-uploadprogress||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/pecl-qb||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/php-memoize||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/php5-blitz-devel||2018-12-30|Has expired: Works only with EOL php 5.6
@@ -12983,3 +12982,63 @@ x11/rubygem-gnome2|x11/rubygem-gnome|2019-09-28|Upstream changed the project nam
 mail/fetchmail64|mail/fetchmail|2019-09-28|mail/fetchmail now provides the same version
 devel/rubygem-grape_logging181|devel/rubygem-grape_logging|2019-09-29|Obsolete, please use devel/rubygem-grape_logging
 devel/py-pip-tools3|devel/py-pip-tools|2019-09-30|Use devel/py-pip-tools instead
+textproc/py-openpyxl24|textproc/py-openpyxl|2019-09-30|Has expired: Use textproc/py-openpyxl instead
+textproc/rubygem-elasticsearch-api6|textproc/rubygem-elasticsearch-api|2019-09-30|Has expired: Usetextproc/rubygem-elasticsearch-api instead
+textproc/rubygem-elasticsearch-transport6|textproc/rubygem-elasticsearch-transport|2019-09-30|Has expired: Usetextproc/rubygem-elasticsearch-transport instead
+textproc/rubygem-elasticsearch-xpack6|textproc/rubygem-elasticsearch-xpack|2019-09-30|Has expired: Usetextproc/rubygem-elasticsearch-xpack instead
+textproc/rubygem-elasticsearch6|textproc/rubygem-elasticsearch|2019-09-30|Has expired: Usetextproc/rubygem-elasticsearch instead
+devel/rubygem-sprockets-rails|devel/rubygem-sprockets-rails-rails4|2019-09-30|Rename to match our rubygem- port naming
+java/linux-oracle-jdk9|java/openjdk11|2019-09-30|Has expired: No longer maintained upstream, please migrate to openjdk11
+java/linux-oracle-jdk10|java/openjdk11|2019-09-30|Has expired: No longer maintained upstream, please migrate to openjdk11
+graphics/imgvtopgm||2019-09-30|Has expired: obsolete technology
+sysutils/py-azure-cli-acs|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-advisor|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-ams|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-appservice|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-backup|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-batch|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-batchai|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-billing|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-botservice|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-cdn|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-cloud|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-cognitiveservices|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-configure|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-consumption|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-container|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-cosmosdb|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-dla|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-dls|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-dms|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-eventgrid|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-eventhubs|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-extension|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-feedback|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-find|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-hdinsight|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-interactive|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-iot|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-iotcentral|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-keyvault|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-kusto|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-lab|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-maps|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-monitor|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-network|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-policyinsights|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-profile|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-rdbms|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-redis|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-relay|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-reservations|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-resource|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-role|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-search|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-security|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-servicebus|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-servicefabric|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-signalr|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-sql|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-sqlvm|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-storage|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
+sysutils/py-azure-cli-vm|sysutils/py-azure-cli|2019-09-30|Has expired: Incorporated into azure-cli package
