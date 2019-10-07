@@ -196,6 +196,7 @@
     SUBDIR += curv
     SUBDIR += cvc3
     SUBDIR += cvc4
+    SUBDIR += darknet
     SUBDIR += dbcsr
     SUBDIR += deal.ii
     SUBDIR += diehard
@@ -245,6 +246,7 @@
     SUBDIR += gambit
     SUBDIR += gap
     SUBDIR += gau2grid
+    SUBDIR += gemmlowp
     SUBDIR += geogebra
     SUBDIR += geogram
     SUBDIR += geonext
@@ -354,6 +356,7 @@
     SUBDIR += matlab-installer
     SUBDIR += maxima
     SUBDIR += mbasecalc
+    SUBDIR += mcsim
     SUBDIR += metis
     SUBDIR += metis-edf
     SUBDIR += metis4

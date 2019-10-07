@@ -20,6 +20,7 @@
     SUBDIR += aluminum
     SUBDIR += anet
     SUBDIR += aoe
+    SUBDIR += apache-commons-net
     SUBDIR += apinger
     SUBDIR += appkonference
     SUBDIR += aprsc
@@ -35,7 +36,6 @@
     SUBDIR += asterisk-chan_sccp
     SUBDIR += asterisk-g72x
     SUBDIR += asterisk13
-    SUBDIR += asterisk15
     SUBDIR += asterisk16
     SUBDIR += avahi
     SUBDIR += avahi-app
@@ -136,6 +136,7 @@
     SUBDIR += dtcp
     SUBDIR += dtcpclient
     SUBDIR += dual-dhclient
+    SUBDIR += dual-dhclient-daemon
     SUBDIR += easysoap
     SUBDIR += echoping
     SUBDIR += elixir-kafka_ex
@@ -283,7 +284,6 @@
     SUBDIR += isc-dhcp44-relay
     SUBDIR += isc-dhcp44-server
     SUBDIR += istgt
-    SUBDIR += jakarta-commons-net
     SUBDIR += java-beepcore
     SUBDIR += jcifs
     SUBDIR += jgroups

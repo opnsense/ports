@@ -240,6 +240,7 @@
     SUBDIR += dim
     SUBDIR += dirdiff
     SUBDIR += direnv
+    SUBDIR += direvent
     SUBDIR += dirvish
     SUBDIR += diskcheckd
     SUBDIR += diskimage-tools
@@ -1069,6 +1070,7 @@
     SUBDIR += roct
     SUBDIR += roottail
     SUBDIR += rovclock
+    SUBDIR += rshim-user-space
     SUBDIR += rpi-firmware
     SUBDIR += rsnapshot
     SUBDIR += rsyncbackup
