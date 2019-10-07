@@ -12912,7 +12912,6 @@ sysutils/syslog-ng314|sysutils/syslog-ng|2019-09-04|Has expired: No longer suppo
 devel/ace+tao-doc||2019-09-05|Has expired: Broken for more than 6 months
 devel/dfmt||2019-09-05|Has expired: Broken for more than 6 months
 devel/ignition-transport||2019-09-05|Has expired: Broken for more than 6 months
-devel/spin||2019-09-05|Has expired: Broken for more than 6 months
 editors/dexed||2019-09-05|Has expired: Depends on expiring devel/dfmt
 editors/p5-Padre||2019-09-05|Has expired: Depends on expiring x11-toolkits/p5-Wx
 emulators/qemu2||2019-09-05|Has expired: Latest 3.X branch is in ports tree
@@ -13051,3 +13050,20 @@ x11/xdbedizzy||2019-10-01|Deprecated upstream
 x11/xplsprinters||2019-10-01|Deprecated upstream
 x11/xprehashprinterlist||2019-10-01|Deprecated upstream
 x11/xtrap||2019-10-01|Deprecated upstream
+security/softhsm|security/softhsm2|2019-10-04|Has expired: End-of-life announced, update to softhsm2 ASAP
+net/asterisk15|net/asterisk16|2019-10-04|Has expired: Asterisk 15.x will reach EOL on 2019-10-03. Please migrate to net/asterisk16
+x11-wm/fvwm|x11-wm/fvwm2|2019-10-06|Has expired: Unfetchable, unmaintained, unsupported upstream
+databases/jakarta-commons-dbutils|databases/apache-commons-dbutils|2019-10-06|Renamed upstream
+devel/jakarta-commons-configuration|devel/apache-commons-configuration|2019-10-06|Renamed upstream
+devel/jakarta-commons-io|devel/apache-commons-io|2019-10-06|Renamed upstream
+devel/jakarta-commons-jxpath|devel/apache-commons-jxpath|2019-10-06|Renamed upstream
+devel/jakarta-commons-modeler|devel/apache-commons-modeler|2019-10-06|Renamed upstream
+java/jakarta-commons-cli|java/apache-commons-cli|2019-10-06|Renamed upstream
+java/jakarta-commons-collections|java/apache-commons-collections|2019-10-06|Renamed upstream
+java/jakarta-commons-lang|java/apache-commons-lang|2019-10-06|Renamed upstream
+java/jakarta-commons-logging|java/apache-commons-logging|2019-10-06|Renamed upstream
+java/jakarta-commons-primitives|java/apache-commons-primitives|2019-10-06|Renamed upstream
+lang/jakarta-commons-jelly|lang/apache-commons-jelly|2019-10-06|Renamed upstream
+net/jakarta-commons-net|net/apache-commons-net|2019-10-06|Renamed upstream
+textproc/jakarta-commons-digester|textproc/apache-commons-digester|2019-10-06|Renamed upstream
+devel/jakarta-commons-daemon|devel/apache-commons-daemon|2019-10-07|Renamed upstream
