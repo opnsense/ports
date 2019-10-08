@@ -2,7 +2,7 @@
 
 PORTNAME=	prometheus
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.12.0
+DISTVERSION=	2.13.0
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	dor.bsd@xm0.uk
@@ -58,8 +58,11 @@ LD_FLAG_STRING=		-s \
 		${LD_FLAG_X_PREFIX}.BuildUser=${BUILD_USER}
 
 GO_BUILDFLAGS=	-v -ldflags "${LD_FLAG_STRING}"
+# A tsdb binary already exists in databases/opentsdb. Rename ours to
+# avoid issues.
 GO_TARGET=	./cmd/prometheus \
-		./cmd/promtool
+		./cmd/promtool \
+		./tsdb/cmd/tsdb:promtsdb
 
 post-install:
 	${INSTALL_DATA} \
