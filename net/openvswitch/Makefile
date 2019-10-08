@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openvswitch
-DISTVERSION=	2.11.1
-PORTREVISION=	1
+DISTVERSION=	2.12.0
 CATEGORIES=	net
 MASTER_SITES=	http://openvswitch.org/releases/
 
@@ -18,7 +17,7 @@ USE_HARDENING=	pie:off relro:off
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 
-USES=		compiler:c++14-lang cpe gmake libtool perl5 pkgconfig python:2.7 shebangfix ssl
+USES=		cpe gmake libtool perl5 pkgconfig python:2.7 shebangfix ssl
 SHEBANG_FILES=	ovn/utilities/ovndb-servers.ocf \
 		utilities/bugtool/ovs-bugtool-ovs-ofctl-loop-over-bridges \
 		utilities/ovs-docker \
