@@ -3,7 +3,7 @@
 PORTNAME=	radvd
 PORTVERSION=	1.15
 PKGNAMESUFFIX=	1
-CATEGORIES=	net ipv6
+CATEGORIES=	net
 MASTER_SITES=	http://www.litech.org/radvd/dist/
 
 MAINTAINER=	franco@opnsense.org

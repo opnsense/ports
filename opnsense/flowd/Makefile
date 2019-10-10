@@ -3,7 +3,7 @@
 PORTNAME=	flowd
 PORTVERSION=	0.9.1
 PORTREVISION=	3
-CATEGORIES=	net-mgmt ipv6
+CATEGORIES=	net-mgmt
 MASTER_SITES=	https://pkg.opnsense.org/distfiles
 
 MAINTAINER=	franco@opnsense.org
