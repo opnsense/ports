@@ -1,7 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	sanoid
-DISTVERSION=	v2.0.1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	2.0.1
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	hartzell@alerce.com
@@ -10,9 +12,9 @@ COMMENT=	Policy-driven snapshot management and replication tools
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	${LOCALBASE}/bin/lzop:archivers/lzop \
-		${LOCALBASE}/bin/mbuffer:misc/mbuffer \
-		${LOCALBASE}/bin/pv:sysutils/pv \
+RUN_DEPENDS=	lzop:archivers/lzop \
+		mbuffer:misc/mbuffer \
+		pv:sysutils/pv \
 		p5-Capture-Tiny>=0:devel/p5-Capture-Tiny \
 		p5-Config-IniFiles>=0:devel/p5-Config-IniFiles
 
@@ -24,18 +26,19 @@ GH_ACCOUNT=	jimsalterjrs
 USE_PERL5=	run
 SHEBANG_FILES=	findoid sanoid sleepymutex syncoid
 
+NO_BUILD=	yes
+NO_ARCH=	yes
+
 # line 19:  my %args = ("configdir" => "/etc/sanoid");
 post-patch:
 	@${REINPLACE_CMD} -i '' -e 's|/etc/sanoid|${PREFIX}/etc/sanoid|' \
 		${WRKSRC}/sanoid
 	@${REINPLACE_CMD} -i '' \
-		-e 's|/usr/bin/lzop|${PREFIX}/bin/lzop|' \
-		-e 's|/usr/bin/mbuffer|${PREFIX}/bin/mbuffer|' \
-		-e 's|/usr/bin/pv|${PREFIX}/bin/pv|' \
-		-e 's|/usr/bin/sudo|${PREFIX}/bin/sudo|' \
+		-e 's|/usr/bin/lzop|${LOCALBASE}/bin/lzop|' \
+		-e 's|/usr/bin/mbuffer|${LOCALBASE}/bin/mbuffer|' \
+		-e 's|/usr/bin/pv|${LOCALBASE}/bin/pv|' \
+		-e 's|/usr/bin/sudo|${LOCALBASE}/bin/sudo|' \
 		${WRKSRC}/syncoid
-
-do-build:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/findoid ${STAGEDIR}${PREFIX}/bin
