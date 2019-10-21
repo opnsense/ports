@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	emscripten
-DISTVERSION=	1.38.48
+DISTVERSION=	1.39.0
 CATEGORIES=	devel www
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,7 +10,10 @@ COMMENT=	LLVM-to-Web Compiler
 LICENSE=	MIT NCSA
 LICENSE_COMB=	dual
 
-RUN_DEPENDS=	llvm-devel>0:devel/llvm-devel # the upstream requires to use either the latest llvm version, or their own llvm fork called emscripten-fastcomp
+RUN_DEPENDS=	llvm-devel>0:devel/llvm-devel \
+		node:www/node \
+		${LOCALBASE}/include/unwind.h:devel/libunwind
+		# the upstream requires to use either the latest llvm version, or their own llvm fork called emscripten-fastcomp \
 
 USES=		python shebangfix
 USE_GITHUB=	yes
@@ -27,7 +30,18 @@ NO_ARCH=	yes
 PORTSCOUT=	skipv:i64
 
 post-patch:
-	@${REINPLACE_CMD} -i '' -E "s|^__rootpath__ = .*|__rootpath__ = '${PREFIX}/lib/${PORTNAME}'|" ${WRKSRC}/tools/shared.py
+	@${REINPLACE_CMD} -i '' -E " \
+			s|BINARYEN_ROOT = None|BINARYEN_ROOT = '${LOCALBASE}'| ; \
+			s|LLVM_ROOT = None|LLVM_ROOT = '${LOCALBASE}'| ; \
+			s|LLVM_ADD_VERSION = None|LLVM_ADD_VERSION = 'devel'| ; \
+			s|CLANG_ADD_VERSION = None|CLANG_ADD_VERSION = 'devel'| ; \
+			s|^__rootpath__ = .*|__rootpath__ = '${PREFIX}/lib/${PORTNAME}'| ; \
+			s|find_executable\('llvm-dis'\) or '/usr/bin/llvm-dis'|'${LOCALBASE}/bin/llvm-dis'| ; \
+			s|'-target', get_llvm_target\(\),|& '-I${LOCALBASE}/include',|" \
+			${WRKSRC}/tools/shared.py
+	@${REINPLACE_CMD} -i '' -E " \
+			s|os.getenv\('BINARYEN', ''\)|os.getenv('BINARYEN', '${LOCALBASE}')|" \
+			${WRKSRC}/tools/settings_template.py
 
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/${PORTNAME}

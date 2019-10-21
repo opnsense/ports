@@ -3,8 +3,7 @@
 
 PORTNAME=	qjackctl
 DISTVERSIONPREFIX=	qjackctl_
-DISTVERSION=	0_5_9
-PORTREVISION=	1
+DISTVERSION=	0_6_0
 CATEGORIES=	audio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -32,7 +31,6 @@ OPTIONS_GROUP_AIFACE=	ALSA PORTAUDIO
 
 AIFACE_DESC=		Other audio interfaces
 SYSTRAY_DESC=		System tray icon support
-TOOLKIT_DESC=		Qt toolkit
 XUNIQUE_DESC=		X11 unique/single instance
 
 ALSA_CONFIGURE_ENABLE=	alsa_seq
@@ -47,6 +45,7 @@ PORTAUDIO_LIB_DEPENDS=	libportaudio.so:audio/portaudio
 SYSTRAY_CONFIGURE_ENABLE=	system-tray
 
 XUNIQUE_CONFIGURE_ENABLE=	xunique
+XUNIQUE_USES=			xorg
 XUNIQUE_USE=			XORG=x11
 
 .include <bsd.port.mk>

@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	busybox
-PORTVERSION=	1.30.1
+PORTVERSION=	1.31.0
 PORTREVISION=	1
 CATEGORIES=	sysutils misc shells
 MASTER_SITES=	https://busybox.net/downloads/
