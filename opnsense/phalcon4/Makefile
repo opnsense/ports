@@ -12,13 +12,13 @@ COMMENT=	Phalcon PHP Framework written in C-language
 
 LICENSE=	BSD3CLAUSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386
+ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386
+
+CONFLICTS_INSTALL=	${PKGNAMEPREFIX}phalcon
 
 USES=		php:ext
 USE_PHP=	hash:build json:build pdo:build
 IGNORE_WITH_PHP=71
-
-CONFLICTS_INSTALL=${PKGNAMEPREFIX}-phalcon
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	phalcon
