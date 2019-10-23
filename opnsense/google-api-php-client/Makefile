@@ -4,7 +4,7 @@ PORTNAME=	google-api-php-client
 DISTVERSION=	2.4.0
 MASTER_SITES=	https://github.com/googleapis/${PORTNAME}/releases/download/v${DISTVERSION}/
 EXTRACT_SUFX=	.zip
-CATEGORIES=	security devel
+CATEGORIES=	devel
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
 MAINTAINER=	ad@opnsense.org
