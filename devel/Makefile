@@ -4336,8 +4336,8 @@
     SUBDIR += py-cov-core
     SUBDIR += py-coverage
     SUBDIR += py-crank
-    SUBDIR += py-crcmod
     SUBDIR += py-crc32c
+    SUBDIR += py-crcmod
     SUBDIR += py-ctags
     SUBDIR += py-cuisine
     SUBDIR += py-cursive
@@ -4492,6 +4492,7 @@
     SUBDIR += py-gobject
     SUBDIR += py-gobject3
     SUBDIR += py-google-apputils
+    SUBDIR += py-google-cloud-iam
     SUBDIR += py-google-i18n-address
     SUBDIR += py-google-pasta
     SUBDIR += py-googleapis-common-protos
@@ -4855,6 +4856,7 @@
     SUBDIR += py-pygithub
     SUBDIR += py-pygpx
     SUBDIR += py-pyhashxx
+    SUBDIR += py-pyhcl
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
@@ -5356,6 +5358,7 @@
     SUBDIR += raknet
     SUBDIR += rang
     SUBDIR += range-v3
+    SUBDIR += rapidcheck
     SUBDIR += rapidjson
     SUBDIR += raylib
     SUBDIR += rbenv
@@ -5389,13 +5392,13 @@
     SUBDIR += robodoc
     SUBDIR += ros-catkin_pkg
     SUBDIR += ros-console_bridge
-    SUBDIR += ros-urdfdom
-    SUBDIR += ros-urdfdom_headers
     SUBDIR += ros-rosdep
     SUBDIR += ros-rosdistro
     SUBDIR += ros-rosinstall
     SUBDIR += ros-rosinstall_generator
     SUBDIR += ros-rospkg
+    SUBDIR += ros-urdfdom
+    SUBDIR += ros-urdfdom_headers
     SUBDIR += ros-vcstools
     SUBDIR += ros-wstool
     SUBDIR += rote
@@ -5886,6 +5889,7 @@
     SUBDIR += rubygem-graphql
     SUBDIR += rubygem-graphql-docs
     SUBDIR += rubygem-grit
+    SUBDIR += rubygem-grpc-google-iam-v1
     SUBDIR += rubygem-guess_html_encoding
     SUBDIR += rubygem-gyoku
     SUBDIR += rubygem-hamster
@@ -6300,6 +6304,7 @@
     SUBDIR += rubygem-typed-array
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
+    SUBDIR += rubygem-tzinfo1
     SUBDIR += rubygem-uber
     SUBDIR += rubygem-unicode
     SUBDIR += rubygem-unicode-display_width
@@ -6557,6 +6562,7 @@
     SUBDIR += wxGlade
     SUBDIR += wxformbuilder
     SUBDIR += xa65
+    SUBDIR += xbyak
     SUBDIR += xc3sprog
     SUBDIR += xdg-user-dirs
     SUBDIR += xdg-utils

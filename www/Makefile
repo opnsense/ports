@@ -120,6 +120,7 @@
     SUBDIR += e107
     SUBDIR += e2guardian
     SUBDIR += edbrowse
+    SUBDIR += eden
     SUBDIR += efront
     SUBDIR += elgg
     SUBDIR += elinks
@@ -1476,6 +1477,7 @@
     SUBDIR += py-dj22-django-formset-js-improved
     SUBDIR += py-dj22-django-jquery-js
     SUBDIR += py-dj22-django-js-asset
+    SUBDIR += py-dj22-django-jsonfield2
     SUBDIR += py-dj22-django-mptt
     SUBDIR += py-dj22-django-prometheus
     SUBDIR += py-dj22-django-tables2

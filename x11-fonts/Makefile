@@ -154,6 +154,7 @@
     SUBDIR += mkfontscale
     SUBDIR += mkitalic
     SUBDIR += mondulkiri
+    SUBDIR += monoid
     SUBDIR += montecarlo_fonts
     SUBDIR += montserrat
     SUBDIR += moveable-type-fonts
@@ -207,6 +208,7 @@
     SUBDIR += sourceserifpro-ttf
     SUBDIR += spleen
     SUBDIR += stix-fonts
+    SUBDIR += sudo-font
     SUBDIR += suxus
     SUBDIR += symbola
     SUBDIR += tamsyn

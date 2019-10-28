@@ -1256,11 +1256,15 @@
     SUBDIR += rubygem-gitaly-proto
     SUBDIR += rubygem-gitlab_omniauth-ldap
     SUBDIR += rubygem-google-cloud-bigquery
+    SUBDIR += rubygem-google-cloud-bigtable
     SUBDIR += rubygem-google-cloud-core
     SUBDIR += rubygem-google-cloud-env
     SUBDIR += rubygem-google-cloud-logging
+    SUBDIR += rubygem-google-cloud-pubsub
+    SUBDIR += rubygem-google-cloud-spanner
     SUBDIR += rubygem-google-cloud-storage
     SUBDIR += rubygem-grpc
+    SUBDIR += rubygem-grpc124
     SUBDIR += rubygem-hangouts-chat
     SUBDIR += rubygem-http-parser
     SUBDIR += rubygem-http_parser.rb
