@@ -5,6 +5,25 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20191026:
+  AFFECTS: users of www/qt5-webengine
+  AUTHOR: kai@FreeBSD.org
+
+  Users that upgrade www/qt5-webengine without using pkg/poudriere might
+  experience failures due to conflicts with the installed version of 5.12.2.
+
+  In that case, pkg delete -f the qt5-webengine package before building
+  the updated version.
+
+20191025:
+  AFFECTS: users of x11/nvidia-driver (and slave ports)
+  AUTHOR: danfe@FreeBSD.org
+
+  x11/nvidia-driver* ports no longer install Linux programs and libraries,
+  which had been moved to their own ports (x11/linux-nvidia-libs*).  When
+  updating the driver package next time, remember to install them manually
+  if you need to run Linux OpenGL programs.
+
 20191016:
   AFFECTS: users of KDE Plasma Desktop (x11/plasma5*)
   AUTHOR: kde@FreeBSD.org
@@ -32,7 +51,7 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: users of textproc/groff
   AUTHOR: bapt@FreeBSD.org
 
-  with groff 1.2.4_3, groff does not depends anymore on ghostscript and
+  with groff 1.2.4_3, groff does not depend anymore on ghostscript and
   netpbm. In order to be able to properly use the html backend the user
   can install ghostscript and netpbm from ports without the need of
   reinstalling the package.
@@ -99,8 +118,8 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: users of net-mgmt/pushgateway
   AUTHOR: 0mp@FreeBSD.org
 
-  The persistent storage format used by pushgateway in the lastest version is
-  not backwards compatible. See the pushgateway changelogs for details.
+  The persistent storage format used by pushgateway in the latest version
+  is not backwards compatible. See the pushgateway changelogs for details.
 
 20190911:
   AFFECTS: users of security/bastillion
@@ -178,13 +197,13 @@ you update your ports collection, before attempting any port upgrades.
   speedup of the upgrade.
 
   The upgrade instructions consider a basic usage and do not match
-  complex scenarious like replication, sharding or similar.
+  complex scenarios like replication, sharding, or similar.
 
   Upgrade instructions:
 
   First stop your PostgreSQL, create PostgreSQL-binaries and backup your data.
   If you have another Version of PostgreSQL installed, for example 9.5.19, your
-  files are named accourding to this.
+  files are named according to this.
 
   # service postgresql stop
   # pkg create postgresql95-server postgresql95-contrib
@@ -231,7 +250,7 @@ you update your ports collection, before attempting any port upgrades.
   Riak support has been removed by upstream. For update instructions from
   19.05, please refer to:
 
-  https://docs.ejabberd.im/admin/upgrade/from_19.05_to_19.08/ 
+  https://docs.ejabberd.im/admin/upgrade/from_19.05_to_19.08/
 
 20190812:
   AFFECTS: users of lang/perl5*
@@ -276,7 +295,7 @@ you update your ports collection, before attempting any port upgrades.
 
   The zetacoin-nox11 slave port was renamed to zetacoin-daemon to align
   with the net-p2p/bitcoin format.
-  
+
   The zetacoin-cli and zetacoin-tx utilities have been re-packaged into
   a separate port. If you require these programs, or use the zetacoin-cli
   program to access the daemon or the GUI, install net-p2p/zetacoin-utils
@@ -392,8 +411,7 @@ you update your ports collection, before attempting any port upgrades.
   Caution: The given module is still considered EXPERIMENTAL.
 
 20190630:
-  AFFECTS: users of net/samba410, net/samba4[6-8] and devel/talloc?, devel/tevent?,
-           databases/tdb?, databases/ldb*
+  AFFECTS: users of net/samba410, net/samba4[6-8] and devel/talloc?, devel/tevent?, databases/tdb?, databases/ldb*
   AUTHOR: timur@FreeBSD.org
 
   The port of the new version of Samba 4.10 is introduced. Due necessarily
@@ -2882,13 +2900,13 @@ you update your ports collection, before attempting any port upgrades.
   speedup of the upgrade.
 
   The upgrade instructions consider a basic usage and do not match
-  complex scenarious like replication, sharding or similar.
+  complex scenarios like replication, sharding, or similar.
 
   Upgrade instructions:
 
   First stop your PostgreSQL, create PostgreSQL-binaries and backup your data.
   If you have another Version of PostgreSQL installed, for example 9.3.12, your
-  files are named accourding to this.
+  files are named according to this.
 
   # service postgresql stop
   # pkg create postgresql93-server postgresql93-contrib
@@ -3639,7 +3657,7 @@ you update your ports collection, before attempting any port upgrades.
   # portupgrade -o www/node6 www/node
 
 20161202:
-  AFFECTS: Users of textproc/p5-Search-Elasticsearch
+  AFFECTS: users of textproc/p5-Search-Elasticsearch
   AUTHOR: tj@FreeBSD.org
 
   As of the 5.01 release of ths package, the client libraries for older
@@ -3648,7 +3666,7 @@ you update your ports collection, before attempting any port upgrades.
   the textproc/p5-Search-Elasticsearch-Client-* ports.
 
 20161126:
-  AFFECTS: Users of security/gpgme-*
+  AFFECTS: users of security/gpgme-*
   AUTHOR: jhale@FreeBSD.org
 
   Gpgme has been updated to 1.8.0.
@@ -3666,14 +3684,14 @@ you update your ports collection, before attempting any port upgrades.
       portupgrade -fr security/gpgme
 
 20161121:
-  AFFECTS: Users of graphics/tiff
+  AFFECTS: users of graphics/tiff
   AUTHOR: antoine@FreeBSD.org
 
   The tiff port was updated to 4.0.7.
   The following tools are removed from this release: bmp2tiff, gif2tiff, ras2tiff, rgb2ycbcr and thumbnail.
 
 20161116:
-  AFFECTS: Users of sysutils/bareos-*
+  AFFECTS: users of sysutils/bareos-*
   AUTHOR: rand@iteris.com
 
   Bareos v1.6.x changed the configuration scheme, from one configuration
@@ -3939,7 +3957,7 @@ you update your ports collection, before attempting any port upgrades.
   # portmaster -o lang/python35 lang/python34
 
 20161011:
-  AFFECTS: Users of net-im/ejabberd
+  AFFECTS: users of net-im/ejabberd
   AUTHOR: ashish@FreeBSD.org
 
   Before upgrading ejabberd to 16.09, please make sure to backup your
@@ -3958,7 +3976,7 @@ you update your ports collection, before attempting any port upgrades.
   https://github.com/processone/ejabberd/issues/1305
 
 20161005:
-  AFFECTS: Users of audio/squeezeboxserver (now audio/logitechmediaserver)
+  AFFECTS: users of audio/squeezeboxserver (now audio/logitechmediaserver)
   AUTHOR: woodsb02@FreeBSD.org
 
   With the rename of the audio/squeezeboxserver port to
@@ -3975,7 +3993,7 @@ you update your ports collection, before attempting any port upgrades.
 
 20161004:
   AFFECTS: mail/roundcube-carddav
-  AUTHOR:  gahr@FreeBSD.org
+  AUTHOR: gahr@FreeBSD.org
 
   There is no upgrade path from the 1.0 version. You'll need to:
 
@@ -3993,7 +4011,7 @@ you update your ports collection, before attempting any port upgrades.
 
 20160927:
   AFFECTS: emulators/ppsspp
-  AUTHOR:  jbeich@FreeBSD.org
+  AUTHOR: jbeich@FreeBSD.org
 
   Qt* GUI was split into separate ports:
 
@@ -4002,7 +4020,7 @@ you update your ports collection, before attempting any port upgrades.
 
 20160927:
   AFFECTS: sysutils/android-file-transfer
-  AUTHOR:  jbeich@FreeBSD.org
+  AUTHOR: jbeich@FreeBSD.org
 
   Qt* GUI was split into separate ports:
 
@@ -4011,7 +4029,7 @@ you update your ports collection, before attempting any port upgrades.
 
 20160922:
   AFFECTS: users of databases/pglogical, databases/pglogical-output
-  AUTHOR:  matthew@FreeBSD.org
+  AUTHOR: matthew@FreeBSD.org
 
   As of version 1.2.0, databases/pglogical-output has been merged into
   databases/pglogical.  portmaster or portupgrade users should delete
