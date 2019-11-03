@@ -271,7 +271,6 @@
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += purescript
-    SUBDIR += phantomjs
     SUBDIR += pharo
     SUBDIR += phc
     SUBDIR += php-mode.el
@@ -309,6 +308,7 @@
     SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
+    SUBDIR += python38
     SUBDIR += qmasm
     SUBDIR += qscheme
     SUBDIR += quickjs

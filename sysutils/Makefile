@@ -379,6 +379,7 @@
     SUBDIR += fusefs-hfsfuse
     SUBDIR += fusefs-httpfs
     SUBDIR += fusefs-ifuse
+    SUBDIR += fusefs-jmtpfs
     SUBDIR += fusefs-libs
     SUBDIR += fusefs-libs3
     SUBDIR += fusefs-lkl
@@ -463,6 +464,7 @@
     SUBDIR += hare
     SUBDIR += hared
     SUBDIR += hatop
+    SUBDIR += hcloud
     SUBDIR += hdrecover
     SUBDIR += healthd
     SUBDIR += heartbeat
@@ -863,7 +865,6 @@
     SUBDIR += pcbsd-libsh
     SUBDIR += pcbsd-syscache
     SUBDIR += pcbsd-utils
-    SUBDIR += pcbsd-utils-qt5
     SUBDIR += pciutils
     SUBDIR += pcpustat
     SUBDIR += pdixtract
@@ -1254,8 +1255,6 @@
     SUBDIR += symon
     SUBDIR += synergy
     SUBDIR += synergy-1
-    SUBDIR += sysadm
-    SUBDIR += sysadm-client
     SUBDIR += sysctlinfo-kmod
     SUBDIR += sysgather
     SUBDIR += sysinfo
