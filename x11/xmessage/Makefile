@@ -9,7 +9,7 @@ COMMENT=	Display message or query in a X window
 
 USE_HARDENING=	safestack
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xt xaw
 
 .include <bsd.port.mk>

@@ -12,8 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	safestack
 
-USES=		iconv
-XORG_CAT=	app
+USES=		iconv xorg xorg-cat:app
 USE_XORG=	x11 xaw xft xkbfile xmu xrender xt
 
 .include <bsd.port.mk>

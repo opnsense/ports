@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	safestack
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	xkbfile x11
 
 CONFIGURE_ARGS=	--with-xkb-config-root=${LOCALBASE}/share/X11/xkb

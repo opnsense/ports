@@ -11,7 +11,7 @@ USE_HARDENING=	safestack
 
 LICENSE=	MIT
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xkbfile
 
 PLIST_FILES=	bin/xwd man/man1/xwd.1.gz
