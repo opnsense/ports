@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	powerdxx
-DISTVERSION=	0.4.1
-PORTREVISION=	1
+DISTVERSION=	0.4.3
 CATEGORIES=	sysutils
 
 MAINTAINER=	rigoletto@FreeBSD.org
@@ -12,11 +11,11 @@ LICENSE=	ISCL
 
 USE_HARDENING=	safestack
 
-USES=		compiler:c++14-lang
+USES=		compiler:c++17-lang
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	lonkamikaze
-GH_TUPLE=	lonkamikaze:powerdxx:43c0db7:powerdxx/gh-pages
+GH_TUPLE=	lonkamikaze:powerdxx:c555acd:powerdxx/gh-pages
 
 USE_LDCONFIG=	yes
 MAKE_ARGS=	DOCSDIR="${DOCSDIR}"

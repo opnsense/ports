@@ -165,6 +165,7 @@
     SUBDIR += gone
     SUBDIR += gonvert
     SUBDIR += gplink
+    SUBDIR += gpsim
     SUBDIR += granulate
     SUBDIR += grc
     SUBDIR += gwhich
@@ -227,6 +228,7 @@
     SUBDIR += libutf
     SUBDIR += lifelines
     SUBDIR += lingoteach
+    SUBDIR += locale-en_DK
     SUBDIR += localedata
     SUBDIR += logsurfer
     SUBDIR += loop
@@ -238,6 +240,7 @@
     SUBDIR += mate-user-guide
     SUBDIR += mbuffer
     SUBDIR += mc
+    SUBDIR += mc-nox11
     SUBDIR += mdp
     SUBDIR += metalink-checker
     SUBDIR += metalink-editor
@@ -251,6 +254,7 @@
     SUBDIR += mtail
     SUBDIR += mtx
     SUBDIR += najitool
+    SUBDIR += netron
     SUBDIR += nms
     SUBDIR += nnn
     SUBDIR += nsf

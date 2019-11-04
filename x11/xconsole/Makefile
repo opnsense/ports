@@ -12,7 +12,7 @@ USE_HARDENING=	safestack
 
 LICENSE=	MIT
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xmu xt xaw
 
 .include <bsd.port.mk>

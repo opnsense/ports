@@ -103,6 +103,7 @@
     SUBDIR += hdf5
     SUBDIR += hdf5-18
     SUBDIR += healpix
+    SUBDIR += highfive
     SUBDIR += hypre
     SUBDIR += iboview
     SUBDIR += isaac-cfd
@@ -336,7 +337,6 @@
     SUBDIR += xcrysden
     SUBDIR += xdrawchem
     SUBDIR += xfce4-equake-plugin
-    SUBDIR += xmakemol
     SUBDIR += yoda
 
 .include <bsd.port.subdir.mk>

@@ -12,7 +12,7 @@ USE_HARDENING=	safestack
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11
 
 PLIST_FILES=	bin/xmodmap man/man1/xmodmap.1.gz

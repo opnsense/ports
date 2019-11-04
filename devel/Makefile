@@ -174,6 +174,7 @@
     SUBDIR += asmx
     SUBDIR += astah-community
     SUBDIR += astyle
+    SUBDIR += asyncplusplus
     SUBDIR += atf
     SUBDIR += atlas
     SUBDIR += atlas-devel
@@ -213,6 +214,7 @@
     SUBDIR += bashdb
     SUBDIR += bats-core
     SUBDIR += bazel
+    SUBDIR += bazel029
     SUBDIR += bazel-buildtools
     SUBDIR += bbfreeze
     SUBDIR += bbfreeze-loader
@@ -634,6 +636,7 @@
     SUBDIR += etcd31
     SUBDIR += etcd32
     SUBDIR += etcd33
+    SUBDIR += etcd34
     SUBDIR += etl
     SUBDIR += euca2ools
     SUBDIR += evdev-proto
@@ -3977,6 +3980,7 @@
     SUBDIR += protobuf-c
     SUBDIR += protobuf-java
     SUBDIR += protobuf25
+    SUBDIR += prototool
     SUBDIR += protozero
     SUBDIR += pructl
     SUBDIR += psimd
@@ -4335,8 +4339,8 @@
     SUBDIR += py-cov-core
     SUBDIR += py-coverage
     SUBDIR += py-crank
-    SUBDIR += py-crcmod
     SUBDIR += py-crc32c
+    SUBDIR += py-crcmod
     SUBDIR += py-ctags
     SUBDIR += py-cuisine
     SUBDIR += py-cursive
@@ -4491,6 +4495,7 @@
     SUBDIR += py-gobject
     SUBDIR += py-gobject3
     SUBDIR += py-google-apputils
+    SUBDIR += py-google-cloud-iam
     SUBDIR += py-google-i18n-address
     SUBDIR += py-google-pasta
     SUBDIR += py-googleapis-common-protos
@@ -4564,6 +4569,7 @@
     SUBDIR += py-jep
     SUBDIR += py-jinja2-time
     SUBDIR += py-jira
+    SUBDIR += py-jitterentropy
     SUBDIR += py-jmespath
     SUBDIR += py-joblib
     SUBDIR += py-jsbeautifier
@@ -4853,6 +4859,7 @@
     SUBDIR += py-pygithub
     SUBDIR += py-pygpx
     SUBDIR += py-pyhashxx
+    SUBDIR += py-pyhcl
     SUBDIR += py-pyicu
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinstaller
@@ -4969,6 +4976,7 @@
     SUBDIR += py-rebulk
     SUBDIR += py-rednose
     SUBDIR += py-rekall-efilter
+    SUBDIR += py-remote-pdb
     SUBDIR += py-repoze.lru
     SUBDIR += py-repoze.sphinx.autointerface
     SUBDIR += py-repoze.tm2
@@ -5354,6 +5362,7 @@
     SUBDIR += raknet
     SUBDIR += rang
     SUBDIR += range-v3
+    SUBDIR += rapidcheck
     SUBDIR += rapidjson
     SUBDIR += raylib
     SUBDIR += rbenv
@@ -5387,13 +5396,13 @@
     SUBDIR += robodoc
     SUBDIR += ros-catkin_pkg
     SUBDIR += ros-console_bridge
-    SUBDIR += ros-urdfdom
-    SUBDIR += ros-urdfdom_headers
     SUBDIR += ros-rosdep
     SUBDIR += ros-rosdistro
     SUBDIR += ros-rosinstall
     SUBDIR += ros-rosinstall_generator
     SUBDIR += ros-rospkg
+    SUBDIR += ros-urdfdom
+    SUBDIR += ros-urdfdom_headers
     SUBDIR += ros-vcstools
     SUBDIR += ros-wstool
     SUBDIR += rote
@@ -5696,7 +5705,6 @@
     SUBDIR += rubygem-chef-provisioning
     SUBDIR += rubygem-cheffish
     SUBDIR += rubygem-childprocess
-    SUBDIR += rubygem-childprocess2
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
     SUBDIR += rubygem-clamp
@@ -5884,6 +5892,7 @@
     SUBDIR += rubygem-graphql
     SUBDIR += rubygem-graphql-docs
     SUBDIR += rubygem-grit
+    SUBDIR += rubygem-grpc-google-iam-v1
     SUBDIR += rubygem-guess_html_encoding
     SUBDIR += rubygem-gyoku
     SUBDIR += rubygem-hamster
@@ -6298,6 +6307,7 @@
     SUBDIR += rubygem-typed-array
     SUBDIR += rubygem-tzinfo
     SUBDIR += rubygem-tzinfo-data
+    SUBDIR += rubygem-tzinfo1
     SUBDIR += rubygem-uber
     SUBDIR += rubygem-unicode
     SUBDIR += rubygem-unicode-display_width
@@ -6555,6 +6565,7 @@
     SUBDIR += wxGlade
     SUBDIR += wxformbuilder
     SUBDIR += xa65
+    SUBDIR += xbyak
     SUBDIR += xc3sprog
     SUBDIR += xdg-user-dirs
     SUBDIR += xdg-utils

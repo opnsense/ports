@@ -1,9 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	node
-PORTVERSION=	10.16.3
+PORTVERSION=	10.17.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
 PKGNAMESUFFIX=	10
@@ -50,7 +49,7 @@ USES=		compiler:c++11-lib gmake python:2.7,build pkgconfig \
 
 HAS_CONFIGURE=	yes
 
-CONFLICTS_INSTALL=	node[68]-[0-9]* node-[0-9]*
+CONFLICTS_INSTALL=	node[68]-[0-9]* node12-[0-9]* node-[0-9]*
 
 CONFIGURE_ARGS=	--prefix=${PREFIX_RELDEST} \
 		--without-npm \

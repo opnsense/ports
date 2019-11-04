@@ -9,7 +9,7 @@ COMMENT=	Gamma correction through the X server
 
 USE_HARDENING=	safestack
 
-XORG_CAT=	app
+USES=		xorg xorg-cat:app
 USE_XORG=	x11 xxf86vm
 
 PLIST_FILES=	bin/xgamma man/man1/xgamma.1.gz

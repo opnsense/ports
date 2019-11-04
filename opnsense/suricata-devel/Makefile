@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	suricata
-DISTVERSION=	5.0.0-rc1
+DISTVERSION=	5.0.0
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 PKGNAMESUFFIX=	-devel
@@ -36,7 +36,7 @@ CPE_VENDOR=	openinfosecfoundation
 INSTALL_TARGET=		install-strip
 TEST_TARGET=		check
 
-OPTIONS_DEFINE=		IPFW JSON NETMAP NSS PORTS_PCAP PRELUDE \
+OPTIONS_DEFINE=		GEOIP IPFW JSON NETMAP NSS PORTS_PCAP PRELUDE \
 			PYTHON REDIS TESTS
 OPTIONS_DEFINE_amd64=	HYPERSCAN
 OPTIONS_DEFAULT=	IPFW JSON NETMAP PYTHON
@@ -45,8 +45,7 @@ OPTIONS_SUB=		yes
 OPTIONS_RADIO=		SCRIPTS
 OPTIONS_RADIO_SCRIPTS=	LUA LUAJIT
 
-SCRIPTS_DESC=		Scripting
-
+GEOIP_DESC=		GeoIP support
 HYPERSCAN_DESC=		Hyperscan support
 IPFW_DESC=		IPFW and IP Divert support for inline IDP
 JSON_DESC=		JSON output support
@@ -58,7 +57,11 @@ PORTS_PCAP_DESC=	Use libpcap from ports
 PRELUDE_DESC=		Prelude support for NIDS alerts
 PYTHON_DESC=		Python-based update and control utilities
 REDIS_DESC=		Redis output support
+SCRIPTS_DESC=		Scripting
 TESTS_DESC=		Unit tests in suricata binary
+
+GEOIP_LIB_DEPENDS=		libmaxminddb.so:net/libmaxminddb
+GEOIP_CONFIGURE_ON=		--enable-geoip
 
 HYPERSCAN_LIB_DEPENDS=		libhs.so:devel/hyperscan
 HYPERSCAN_CONFIGURE_ON=		--with-libhs-includes=${LOCALBASE}/include \
@@ -129,10 +132,6 @@ CONFIGURE_ARGS+=--enable-gccprotect \
 		--with-libhtp-libraries=${LOCALBASE}/lib \
 	        --disable-gccmarch-native
 
-CONFIG_DIR?=	${ETCDIR}
-CONFIG_FILES=	suricata.yaml classification.config reference.config threshold.config
-LOGS_DIR?=	/var/log/${PORTNAME}
-
 pre-patch:
 	@${CP} ${FILESDIR}/ax_check_compile_flag.m4 ${WRKSRC}/m4
 
@@ -141,10 +140,12 @@ post-patch-PYTHON-on:
 		${WRKSRC}/configure.ac
 
 post-install:
-	@${MKDIR} ${STAGEDIR}${CONFIG_DIR}
-	@${MKDIR} ${STAGEDIR}${LOGS_DIR}
-.for f in ${CONFIG_FILES}
-	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${CONFIG_DIR}/${f}.sample
+	@${MKDIR} ${STAGEDIR}${ETCDIR} ${STAGEDIR}/var/log/${PORTNAME}
+.for f in classification.config reference.config
+	@${MV} ${STAGEDIR}${DATADIR}/${f} ${STAGEDIR}${DATADIR}/${f}.sample
+.endfor
+.for f in suricata.yaml threshold.config
+	${INSTALL_DATA} ${WRKSRC}/${f} ${STAGEDIR}${ETCDIR}/${f}.sample
 .endfor
 
 post-install-PYTHON-on:

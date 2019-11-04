@@ -679,6 +679,7 @@
     SUBDIR += postgis23
     SUBDIR += postgis24
     SUBDIR += postgis25
+    SUBDIR += postgis30
     SUBDIR += postgresql-cstore_fdw
     SUBDIR += postgresql-jdbc
     SUBDIR += postgresql-libpgeasy
@@ -687,6 +688,7 @@
     SUBDIR += postgresql-libpqxx4
     SUBDIR += postgresql-mysql_fdw
     SUBDIR += postgresql-odbc
+    SUBDIR += postgresql-ogr_fdw
     SUBDIR += postgresql-orafce
     SUBDIR += postgresql-plproxy
     SUBDIR += postgresql-plv8js
@@ -998,7 +1000,6 @@
     SUBDIR += rubygem-redis-actionpack-rails50
     SUBDIR += rubygem-redis-actionpack-rails52
     SUBDIR += rubygem-redis-namespace
-    SUBDIR += rubygem-redis3
     SUBDIR += rubygem-seed-fu
     SUBDIR += rubygem-sqlite3
     SUBDIR += rubygem-sqlite3-ruby

@@ -11610,7 +11610,6 @@ www/moodle31|www/moodle35|2019-03-04|Has expired: Upstream no longer maintained
 www/moodle34|www/moodle35|2019-03-04|Has expired: Upstream no longer maintained
 net/wireshark-qt5|net/wireshark|2019-03-05|Only GUI for wireshark is Qt5
 devel/elixir-lager_logger||2019-03-06|Has expired: Broken for more than 6 months
-devel/gpsim||2019-03-06|Has expired: Broken for more than 6 months
 devel/hgview||2019-03-06|Has expired: Broken for more than 6 months
 games/mudmagic||2019-03-06|Has expired: Broken for more than 6 months
 math/mumps-mpich||2019-03-06|Has expired: Broken for more than 6 months
@@ -12921,7 +12920,6 @@ irc/irssi-otr||2019-09-05|Has expired: Broken for more than 6 months
 mail/p5-Mail-ClamAV||2019-09-05|Has expired: Broken for more than 6 months
 mail/qmail-ldap||2019-09-05|Has expired: Broken for more than 6 months
 math/fityk||2019-09-05|Has expired: Broken for more than 6 months
-math/octave-forge-fits||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-linear-algebra||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-mechanics||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-parallel||2019-09-05|Has expired: Broken for more than 6 months
@@ -13116,7 +13114,6 @@ biology/chemeq||2019-10-16|Has expired: Unfetchable, unmaintained
 biology/linux-foldingathome||2019-10-16|Has expired: Unfetchable, unmaintained
 cad/dxf2fig||2019-10-16|Has expired: Unfetchable, unmaintained
 cad/gerbv||2019-10-16|Has expired: Unfetchable, unmaintained
-cad/ghdl||2019-10-16|Has expired: Unfetchable, unmaintained
 comms/gsmlib||2019-10-16|Has expired: Unfetchable, unmaintained
 comms/nokryptia||2019-10-16|Has expired: Unfetchable, unmaintained
 databases/mrtg-mysql-load||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -13417,3 +13414,45 @@ net/kcalcore|net/kf5-kcalendarcore|2019-10-17|Became a KDE Framework
 java/linux-oracle-jre9|java/openjdk11|2019-10-18|Has expired: No longer maintained upstream, please migrate to openjdk11
 java/linux-oracle-jre10|java/openjdk11|2019-10-18|Has expired: No longer maintained upstream, please migrate to openjdk11
 www/glassfish5|www/glassfish|2019-10-20|glassfish5 became the default glassfish
+www/nuvolaplayer-8tracks||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-all-services||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-amazon-cloud-player||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-bandcamp||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-google-play-music||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-groove||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-jango||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-kexp||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-logitech-media-server||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-mixcloud||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-plex||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-soundcloud||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-spotify||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-tunein||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-yandex-music||2019-10-21|Useless without audio/nuvolaplayer
+www/nuvolaplayer-youtube||2019-10-21|Useless without audio/nuvolaplayer
+japanese/yasou-fpw||2019-10-23|Has expired: the only remaining mastersite times out
+lang/gcc5|lang/gcc|2019-10-30|Has expired: Unsupported by upstream. Use GCC 9 or newer instead.
+games/xpilot-ng-client||2019-11-01|Has expired: Depends on deprecated libXxf86misc
+science/xmakemol||2019-11-01|Has expired: Depends on expiring graphics/libGLw
+x11/libXp||2019-11-01|Deprecated upstream
+x11/libXxf86misc||2019-11-01|Deprecated upstream
+graphics/libGLw||2019-11-01|Deprecated upstream
+textproc/libutf8proc||2019-11-01|Has expired: No longer needed for www/netsurf
+devel/rubygem-childprocess2|devel/rubygem-childprocess|2019-11-01|Has expired: Use devel/rubygem-childprocess instead
+databases/rubygem-redis3|databases/rubygem-redis|2019-11-02|Has expired: Use databases/rubygem-redis instead
+lang/phantomjs||2019-11-02|Has expired: Project has been discontinued: https://github.com/ariya/phantomjs/issues/15344
+net-mgmt/statsd||2019-11-02|Has expired: depends on expired www/node6
+palm/p5-Palm||2019-11-02|Has expired: obsolete technology
+shells/sparforte||2019-11-02|Has expired: uses expired bdb48
+sysutils/pcbsd-utils-qt5||2019-11-02|Has expired: No longer maintained upstream
+sysutils/sysadm||2019-11-02|Has expired: No longer maintained upstream
+sysutils/sysadm-client||2019-11-02|Has expired: No longer maintained upstream
+textproc/kibana5|textproc/kibana6|2019-11-02|Has expired: depends on expired www/node6
+textproc/kibana5-search-guard||2019-11-02|Has expired: Depends on expired www/node6 via textproc/kibana5
+textproc/p5-EBook-Tools||2019-11-02|Has expired: Depends on expired palm/p5-Palm
+textproc/xml-parse.el||2019-11-02|Has expired: Unfetchable, unmaintained
+www/bigbluebutton||2019-11-02|Has expired: Depends on expired www/tomcat6
+www/node6|www/node8|2019-11-02|Has expired: Node.js 6.x LTS reaches end-of-life on 2019-04-30, see https://github.com/nodejs/Release
+www/pebble||2019-11-02|Has expired: depends on expired www/tomcat6
+www/tomcat6|www/tomcat7|2019-11-02|Has expired: End-of-life since 2017
+www/p5-WWW-Mechanize-PhantomJS||2019-11-02|Has expired: uses expired lang/phantomjs

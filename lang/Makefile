@@ -101,7 +101,6 @@
     SUBDIR += gcc-ecj45
     SUBDIR += gcc10-devel
     SUBDIR += gcc48
-    SUBDIR += gcc5
     SUBDIR += gcc6
     SUBDIR += gcc6-aux
     SUBDIR += gcc7
@@ -272,7 +271,6 @@
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += purescript
-    SUBDIR += phantomjs
     SUBDIR += pharo
     SUBDIR += phc
     SUBDIR += php-mode.el
@@ -294,6 +292,7 @@
     SUBDIR += py-mx-base
     SUBDIR += py-prolog
     SUBDIR += py-qt5-qml
+    SUBDIR += py-textX
     SUBDIR += pypy
     SUBDIR += pypy3
     SUBDIR += python
@@ -309,6 +308,7 @@
     SUBDIR += python35
     SUBDIR += python36
     SUBDIR += python37
+    SUBDIR += python38
     SUBDIR += qmasm
     SUBDIR += qscheme
     SUBDIR += quickjs
