@@ -21,7 +21,8 @@ LIB_DEPENDS=	libdiscid.so:audio/libdiscid \
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		desktop-file-utils gettext gmake gnome localbase pkgconfig tar:xz
+USES=		desktop-file-utils gettext gmake gnome localbase pkgconfig \
+		tar:xz xorg
 USE_GNOME=	glib20 gtk30 intlhack
 USE_XORG=	x11
 USE_GSTREAMER1=	yes

@@ -12,18 +12,17 @@ COMMENT=	3D collision detection and rigid body dynamics library
 LICENSE=	ZLIB
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	bulletphysics
 GH_PROJECT=	bullet3
 
-USE_HARDENING=	pie:off
-
-USES=		cmake compiler:c++11-lang
+USES=		cmake compiler:c++11-lang gl xorg
 USE_GL=		gl glu glut
 USE_LDCONFIG=	yes
 USE_XORG=	x11
 
-USES=		cmake tar:tgz
 CMAKE_ARGS=	-DBUILD_SHARED_LIBS:BOOL=ON \
 		-DINSTALL_LIBS:BOOL=ON \
 		-DINSTALL_EXTRA_LIBS:BOOL=ON \
