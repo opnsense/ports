@@ -1401,13 +1401,6 @@ DEV_WARNING+=		"Using USE_XORG alone is deprecated, please use USES=xorg"
 USES+=	xorg
 .endif
 
-.if defined(XORG_CAT)
-DEV_WARNING+=		"Using XORG_CAT is deprecated, please use USES=xorg-cat:category"
-.if !defined(USES) || !${USES:Mxorg-cat*}
-USES+=	xorg-cat:${XORG_CAT}
-.endif
-.endif
-
 .if defined(USE_PHP) && (!defined(USES) || ( defined(USES) && !${USES:Mphp*} ))
 DEV_WARNING+=		"Using USE_PHP alone is deprecated, please use USES=php"
 USES+=	php
@@ -2642,7 +2635,7 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	games geography german gnome gnustep graphics hamradio hardenedbsd haskell hebrew hungarian \
 	irc japanese java kde ${_KDE_CATEGORIES_SUPPORTED} kld korean lang linux lisp \
 	mail mate math mbone misc multimedia net net-im net-mgmt net-p2p net-vpn news \
-	palm parallel pear perl5 plan9 polish portuguese ports-mgmt \
+	parallel pear perl5 plan9 polish portuguese ports-mgmt \
 	print python ruby rubygems russian \
 	scheme science security shells spanish sysutils \
 	tcl textproc tk \
