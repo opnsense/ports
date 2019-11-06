@@ -18,7 +18,7 @@ LIB_DEPENDS=	libpng.so:graphics/png
 
 USE_HARDENING=	pie:off
 
-USES=		gmake
+USES=		gl gmake sdl
 USE_GL=		gl
 USE_SDL=	sdl sound
 GNU_CONFIGURE=	yes

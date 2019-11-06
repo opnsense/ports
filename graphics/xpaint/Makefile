@@ -23,10 +23,10 @@ RUN_DEPENDS=	psselect:print/psutils \
 
 USE_HARDENING=	pie:off relro:off
 
-USE_XORG=	xft xmu xpm
 GNU_CONFIGURE=	yes
 USES=		ghostscript:run jpeg libtool:build pkgconfig shebangfix \
-		tar:bzip2
+		tar:bzip2 xorg
+USE_XORG=	xft xmu xpm
 SHEBANG_FILES=	share/bin/imgmerge share/bin/xpaint_ocr
 
 CPPFLAGS+=	-I${LOCALBASE}/include

@@ -20,7 +20,7 @@ GH_ACCOUNT=	resurrecting-open-source-projects
 
 USE_HARDENING=	cfi safestack
 
-USES=		autoreconf
+USES=		autoreconf xorg
 USE_CSTD=	c99
 GNU_CONFIGURE=	yes
 USE_XORG=	x11 xfixes xcursor

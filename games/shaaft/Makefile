@@ -17,7 +17,7 @@ CONFLICTS=	criticalmass-*
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		tar:bzip2
+USES=		gl sdl tar:bzip2
 USE_SDL=	mixer image sdl
 USE_GL=		gl
 USE_GCC=	any

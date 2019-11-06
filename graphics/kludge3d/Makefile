@@ -15,7 +15,7 @@ LIB_DEPENDS=	lib3ds.so:graphics/lib3ds \
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		gmake pkgconfig python
+USES=		gl gmake gnome pkgconfig python
 USE_GL=		gl
 USE_GNOME=	gtk20
 GNU_CONFIGURE=	yes

@@ -29,8 +29,8 @@ LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 
 USE_HARDENING=	pie:off
 
-USES=		compiler:c++11-lib desktop-file-utils dos2unix gl gmake gnome iconv \
-		jpeg openal:al pkgconfig python:2.7,build sdl tar:xz
+USES=		compiler:c++11-lib desktop-file-utils dos2unix gl gmake gnome \
+		iconv jpeg openal:al pkgconfig python:2.7,build sdl tar:xz xorg
 USE_GNOME=	libxml2
 USE_GL=		gl
 USE_SDL=	sdl2

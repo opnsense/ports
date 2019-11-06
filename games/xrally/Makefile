@@ -16,8 +16,8 @@ USE_HARDENING=	pie:off relro:off
 WRKSRC=		${WRKDIR}/${PORTNAME}
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}
+USES=		gmake tar:bzip2 xorg
 USE_XORG=	x11 xi xpm
-USES=		gmake tar:bzip2
 CFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-lpthread -L${LOCALBASE}/lib
 MAKE_ENV=	INCLUDES="-I${LOCALBASE}/include"
