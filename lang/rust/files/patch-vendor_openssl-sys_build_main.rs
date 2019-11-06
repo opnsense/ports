@@ -4,7 +4,7 @@
              (8, 1) => ('8', '1'),
              (8, _) => ('8', 'x'),
              (9, 0) => ('9', '0'),
-+            (9, _) => ('9', 'x'),
++            (0, _) => ('9', 'x'),
              _ => version_error(),
          };
  
@@ -13,7 +13,7 @@
  
  This crate is only compatible with OpenSSL 1.0.1 through 1.1.1, or LibreSSL 2.5
 -through 2.9.0, but a different version of OpenSSL was found. The build is now aborting
-+through 2.9.x, but a different version of OpenSSL was found. The build is now aborting
++through 3.0.x, but a different version of OpenSSL was found. The build is now aborting
  due to this version mismatch.
  
  "
