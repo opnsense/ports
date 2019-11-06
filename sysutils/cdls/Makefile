@@ -11,6 +11,8 @@ COMMENT=	Curses based file manager for system managers
 
 USE_HARDENING=	pie:off
 
+BROKEN=		unfetchable
+
 PLIST_FILES=	bin/cdls
 
 USES=		ncurses

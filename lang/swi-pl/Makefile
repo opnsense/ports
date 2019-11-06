@@ -29,7 +29,7 @@ USE_HARDENING=	pie:off relro:off
 NOPRECIOUSMAKEVARS=	yes
 
 USES=		compiler:c11 libedit gmake jpeg libarchive pathfix pkgconfig \
-		readline shebangfix ssl
+		readline shebangfix ssl xorg
 USE_XORG=	ice sm x11 xext xft xinerama xpm xt
 
 MAKE_JOBS_UNSAFE=	yes

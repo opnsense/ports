@@ -10,7 +10,9 @@ MASTER_SITES=	ftp://sipb.mit.edu/pub/xrn/ \
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Usenet News reader for the X Window System
 
-USES=		bison gmake pkgconfig
+BROKEN=		unfetchable
+
+USES=		bison gmake pkgconfig xorg
 GNU_CONFIGURE=	yes
 USE_XORG=	ice sm x11 xaw xext xmu xpm xt
 

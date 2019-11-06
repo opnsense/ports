@@ -22,10 +22,9 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
-USE_HARDENING=	pie:off
+USES=		autoreconf:build libtool gmake ncurses jpeg xorg
 
-USES=		autoreconf:build libtool gmake ncurses jpeg
-USE_XORG=	x11 xcursor xext xorgproto xft xrandr xrender
+USE_HARDENING=	pie:off
 
 SFSUBDIR=	snapshot_2019-04-13
 

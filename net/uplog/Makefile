@@ -9,6 +9,8 @@ MASTER_SITES=	http://www.nerdlabs.org/downloads/${PORTNAME}/
 MAINTAINER=	jadawin@FreeBSD.org
 COMMENT=	UDP-based ping program
 
+BROKEN=		unfetchable
+
 USE_HARDENING=	pie:off
 
 GNU_CONFIGURE=	yes

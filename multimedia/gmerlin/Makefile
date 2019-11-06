@@ -17,9 +17,7 @@ LIB_DEPENDS=	libexif.so:graphics/libexif \
 		libgavl.so:multimedia/gavl \
 		libfontconfig.so:x11-fonts/fontconfig
 
-USE_HARDENING=	pie:off relro:off
-
-USES=		gettext libtool makeinfo pathfix pkgconfig sqlite
+USES=		gettext gl gnome libtool makeinfo pathfix pkgconfig sqlite xorg
 USE_GNOME=	gtk20 libxml2
 USE_XORG=	x11 xext xfixes xinerama xv
 USE_GL=		gl
@@ -32,6 +30,8 @@ USE_LDCONFIG=	yes
 LLD_UNSAFE=	yes
 INSTALL_TARGET=	install-strip
 INSTALLS_ICONS=	yes
+
+USE_HARDENING=	pie:off relro:off
 
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib

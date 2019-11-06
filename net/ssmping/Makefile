@@ -10,6 +10,8 @@ MASTER_SITES=	http://www.venaas.no/multicast/ssmping/
 MAINTAINER=	dikshie@lapi.itb.ac.id
 COMMENT=	Ping for ASM and SSM
 
+BROKEN=		unfetchable
+
 USE_HARDENING=	safestack
 
 PLIST_FILES=	bin/ssmping bin/asmping bin/mcfirst sbin/ssmpingd \
