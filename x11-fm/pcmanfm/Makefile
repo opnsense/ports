@@ -29,7 +29,7 @@ USE_HARDENING=	cfi safestack
 CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 USES=		desktop-file-utils gmake gnome gettext libtool localbase \
-		pkgconfig tar:xz
+		pkgconfig tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 intltool
 USE_XORG=	x11
 GNU_CONFIGURE=	yes

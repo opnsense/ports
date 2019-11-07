@@ -10,9 +10,9 @@ MASTER_SITES=	https://BSDforge.com/projects/source/x11/wmblob/
 MAINTAINER=	portmaster@bsdforge.com
 COMMENT=	Shows moving blobs
 
+USES=		pkgconfig tar:xz xorg
 USE_XORG=	xpm
 USE_GNOME=	gtk20
-USES=		pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 
 USE_HARDENING=	pie:off relro:off

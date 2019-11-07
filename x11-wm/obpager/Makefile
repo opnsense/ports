@@ -13,7 +13,7 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	gsed:textproc/gsed
 
-USES=		compiler gmake
+USES=		compiler gmake xorg
 USE_XORG=	x11 xext
 
 USE_HARDENING=	pie:off

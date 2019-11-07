@@ -14,8 +14,8 @@ LICENSE=	GPLv2
 USE_HARDENING=	pie:off
 
 SUB_FILES=	pkg-message
+USES=		pkgconfig gmake gnome tar:bzip2 xorg
 USE_GNOME=	gconf2
-USES=		pkgconfig gmake tar:bzip2
 USE_XORG=	x11
 GNU_CONFIGURE=	yes
 LIBS+=		-L${LOCALBASE}/lib -lX11
