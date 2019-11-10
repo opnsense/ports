@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USE_HARDENING=	pie:off
 
 USE_SDL=	sdl
-USES=		gmake
+USES=		gmake sdl
 GNU_CONFIGURE=	yes
 LIBS+=		-lcompat
 

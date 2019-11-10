@@ -12,6 +12,8 @@ COMMENT=	SQL powered OS instrumentation, monitoring, and analytics
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	pie:off
+
 BROKEN_aarch64=		fails to compile: the clang compiler does not support '-march=x86-64'
 
 BUILD_DEPENDS=	thrift>=0.11.0:devel/thrift \
@@ -30,10 +32,8 @@ LIB_DEPENDS=	libaugeas.so:textproc/augeas \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 
-USE_HARDENING=	pie:off
-
-USES=		cmake libtool python:2.7,build compiler:c++11-lib \
-		libarchive ssl
+USES=		cmake compiler:c++11-lib gnome libarchive libtool \
+		python:2.7,build ssl
 USE_GNOME=	libxml2
 CONFIGURE_ENV+=	OSQUERY_BUILD_VERSION="${PORTVERSION}" HOME="${WRKDIR}" \
 		SKIP_TESTS="yes" CC="${CC}" CXX="${CXX}" \

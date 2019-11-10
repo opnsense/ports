@@ -39,7 +39,7 @@ LIB_DEPENDS=	libassimp.so:multimedia/assimp \
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		cmake compiler:c++11-lib gl gnome pkgconfig
+USES=		cmake compiler:c++11-lib gl gnome pkgconfig sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	pioneerspacesim
 GH_TAGNAME=	20191009

@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		perl5 shebangfix ssl tar:tgz
+USES=		gnome perl5 shebangfix ssl tar:tgz
 SHEBANG_FILES=	demopipeprogram.pl.sample
 USE_PERL5=	run
 USE_GNOME=	libxml2

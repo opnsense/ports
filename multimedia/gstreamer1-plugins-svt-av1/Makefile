@@ -3,7 +3,7 @@
 PORTNAME=	svt-av1
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia
 PKGNAMEPREFIX=	gstreamer1-plugins-
 
@@ -15,7 +15,7 @@ LICENSE_FILE=	${_LICENSE_STORE}/LGPL21
 
 LIB_DEPENDS=	libSvtAv1Enc.so:multimedia/svt-av1
 
-USES=		meson pkgconfig
+USES=		gnome meson pkgconfig
 USE_GITHUB=	yes
 USE_GNOME=	glib20
 USE_GSTREAMER1=	yes

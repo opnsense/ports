@@ -20,7 +20,6 @@ USE_HARDENING?=	pie:off relro:off
 
 .if !defined(PKGNAMESUFFIX) || (${PKGNAMESUFFIX} != "-utils" && ${PKGNAMESUFFIX} != "-guest-agent")
 ONLY_FOR_ARCHS=	amd64 i386 powerpc powerpc64
-USES?+=		xorg
 USE_XORG=	pixman
 USE_GNOME+=	cairo glib20 libxml2
 .endif

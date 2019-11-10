@@ -15,8 +15,6 @@ COMMENT=	Three-Dimensional Structural Finite Element Program
 
 LICENSE=	GPLv2
 
-BROKEN_aarch64=		fails to link: shapeFunctions.c:(function attach_new): relocation R_AARCH64_CALL26 out of range
-
 RUN_DEPENDS=	ccx:cad/calculix-ccx
 
 USE_HARDENING=	pie:off relro:off

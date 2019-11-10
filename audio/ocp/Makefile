@@ -22,7 +22,8 @@ LIB_DEPENDS=	libid3tag.so:audio/libid3tag \
 		libsidplay.so:audio/libsidplay \
 		libogg.so:audio/libogg
 
-USES=		gmake iconv localbase:ldflags makeinfo ncurses pkgconfig tar:xz
+USES=		gmake gnome iconv localbase:ldflags makeinfo ncurses pkgconfig \
+		tar:xz
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
@@ -66,8 +67,8 @@ X11_PLIST_SUB_OFF=	XORG='@comment ' DESKTOP='@comment '
 X11_USE=		XORG=xxf86dga,xxf86vm,xpm,xext,x11
 
 # needed despite stage-qa's warning
-SDL_USES=	desktop-file-utils
-X11_USES=	desktop-file-utils
+SDL_USES=	desktop-file-utils sdl
+X11_USES=	desktop-file-utils xorg
 
 LDFLAGS_i386=	-Wl,-z,notext
 

@@ -14,7 +14,7 @@ COMMENT=	Traffic visualizer, similar to nettop
 USE_HARDENING=	pie:off
 
 GNU_CONFIGURE=	yes
-USES=		pkgconfig gmake
+USES=		gmake gnome pkgconfig
 USE_GNOME=	glib20
 
 LICENSE=	GPLv2
