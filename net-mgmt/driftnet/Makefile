@@ -21,6 +21,7 @@ USE_HARDENING=	pie:off relro:off
 GNU_CONFIGURE=	yes
 USES=		autoreconf gettext-runtime gmake gnome jpeg localbase:ldflags \
 		pkgconfig xorg
+USE_CSTD=	c99
 USE_GITHUB=	yes
 USE_GNOME=	gtk20
 USE_XORG=	x11 xext xi
