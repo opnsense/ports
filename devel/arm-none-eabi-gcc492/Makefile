@@ -17,8 +17,8 @@ LICENSE_COMB=	multi
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libmpfr.so:math/mpfr \
 		libmpc.so:math/mpc
-BUILD_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
-RUN_DEPENDS=	${BU_PREFIX}-as:devel/${PKGNAMEPREFIX}binutils
+BUILD_DEPENDS=	${BU_PREFIX}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g}
+RUN_DEPENDS=	${BU_PREFIX}-as:devel/binutils@${PKGNAMEPREFIX:C/-$//:C/-/_/g}
 
 USE_HARDENING=	pie:off relro:off
 
