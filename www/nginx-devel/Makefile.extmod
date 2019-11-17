@@ -79,7 +79,7 @@ HTTP_ACCEPT_LANGUAGE_CONFIGURE_ON=	--add-module=${WRKSRC_accept_language}
 HTTP_AUTH_DIGEST_GH_TUPLE=	atomx:nginx-http-auth-digest:274490c:auth_digest
 HTTP_AUTH_DIGEST_VARS=		DSO_EXTMODS+=auth_digest
 
-HTTP_AUTH_KRB5_GH_TUPLE=	stnoonan:spnego-http-auth-nginx-module:7e028a5:auth_krb5
+HTTP_AUTH_KRB5_GH_TUPLE=	stnoonan:spnego-http-auth-nginx-module:21bb963:auth_krb5
 HTTP_AUTH_KRB5_VARS=		DSO_EXTMODS+=auth_krb5
 HTTP_AUTH_KRB5_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-spnego-http-auth-nginx-module-config
 
@@ -202,6 +202,7 @@ LET_CONFIGURE_ON=	--add-module=${WRKSRC_let}
 
 LUA_IMPLIES=		DEVEL_KIT
 LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
+LUA_RUN_DEPENDS=	lua-resty-core>0:www/lua-resty-core
 LUA_CONFIGURE_ENV=	LUAJIT_INC=${LOCALBASE}/include/luajit-2.1 \
 			LUAJIT_LIB=${LOCALBASE}/lib
 LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.15:lua

@@ -491,11 +491,13 @@
     SUBDIR += madplay
     SUBDIR += malint
     SUBDIR += mate-media
+    SUBDIR += mclk-lv2
     SUBDIR += mctoolame-decoder
     SUBDIR += mctoolame-encoder
     SUBDIR += mda-lv2
     SUBDIR += mhwaveedit
     SUBDIR += midi-matrix-lv2
+    SUBDIR += midiomatic-lv2
     SUBDIR += midipp
     SUBDIR += mikmod
     SUBDIR += milkytracker
@@ -788,6 +790,7 @@
     SUBDIR += sratom
     SUBDIR += stegosaurus-lv2
     SUBDIR += stk
+    SUBDIR += stone-phaser-lv2
     SUBDIR += streamripper
     SUBDIR += streamtranscoder
     SUBDIR += string-machine-lv2

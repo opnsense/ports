@@ -41,6 +41,7 @@
     SUBDIR += R-cran-gbm
     SUBDIR += R-cran-gdata
     SUBDIR += R-cran-generics
+    SUBDIR += R-cran-getopt
     SUBDIR += R-cran-glmnet
     SUBDIR += R-cran-glue
     SUBDIR += R-cran-gmodels
@@ -55,6 +56,7 @@
     SUBDIR += R-cran-magrittr
     SUBDIR += R-cran-memoise
     SUBDIR += R-cran-microbenchmark
+    SUBDIR += R-cran-optparse
     SUBDIR += R-cran-pillar
     SUBDIR += R-cran-pkgconfig
     SUBDIR += R-cran-pkgmaker
@@ -771,6 +773,7 @@
     SUBDIR += geany-plugin-xmlsnippets
     SUBDIR += geany-plugins
     SUBDIR += geany-plugins-l10n
+    SUBDIR += geany-themes
     SUBDIR += gearmand
     SUBDIR += gearmand-devel
     SUBDIR += gecode
