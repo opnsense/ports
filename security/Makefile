@@ -358,7 +358,6 @@
     SUBDIR += md5deep
     SUBDIR += medusa
     SUBDIR += meek
-    SUBDIR += mere-auth
     SUBDIR += metasploit
     SUBDIR += mhash
     SUBDIR += mindterm-binary
