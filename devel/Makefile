@@ -703,6 +703,7 @@
     SUBDIR += fpc-zlib
     SUBDIR += fpp
     SUBDIR += frama-c
+    SUBDIR += freebsd-gcc6
     SUBDIR += frink
     SUBDIR += fsmtrie
     SUBDIR += fstrcmp
@@ -888,6 +889,7 @@
     SUBDIR += gputils
     SUBDIR += gradle
     SUBDIR += gradle4
+    SUBDIR += gradle5
     SUBDIR += grantlee5
     SUBDIR += graphql.el
     SUBDIR += grpc
