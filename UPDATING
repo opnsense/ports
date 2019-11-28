@@ -5,6 +5,74 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20191126:
+  AFFECTS: consumers of net/py-urllib3
+  AUTHOR: kai@FreeBSD.org
+
+  Since version 1.25 HTTPS connections are now verified by default which is
+  done via "cert_reqs = 'CERT_REQUIRED'".  While certificate verification
+  can be disabled via "cert_reqs = 'CERT_NONE'", it's highly recommended to
+  leave it on.
+
+  Various consumers of net/py-urllib3 already have implemented routines that
+  either explicitly enable or disable HTTPS certificate verification (e.g.
+  via configuration settings, CLI arguments, etc.).
+
+  Yet it may happen that there are still some consumers which don't
+  explicitly enable/disable certificate verification for HTTPS connections
+  which could then lead to errors (as is often the case with self-signed
+  certificates).
+
+  In case of an error one should try first to temporarily disable
+  certificate verification of the problematic urllib3 consumer to see if
+  this approach will remedy the issue.
+
+20191125:
+  AFFECTS: users of emulators/qemu
+  AUTHOR: bofh@FreeBSD.org
+
+  emulators/qemu31 has been updated to 4.1.1. Previous 3.1.X branch has 
+  been repocopied to emulators/qemu31. If someone wants to stick with 3.1.X
+  branch please use one of the following command:
+
+  # pkg install emulators/qemu31
+    or
+  # portmaster -o emulators/qemu31 emulators/qemu
+    or
+  # portupgrade -o emulators/qemu31 emulators/qemu
+
+20191124:
+  AFFECTS: users of irc/eggdrop
+  AUTHOR: dbaio@FreeBSD.org
+
+  The irc/eggdrop port has been updated to 1.8.4 and its config is not
+  backward compatible with 1.6.21. A new port was created to keep 1.6.21
+  version available at irc/eggdrop16 and it will be available for 3 months
+  until users have time to upgrade their configuration.
+
+  More information at:
+  https://raw.githubusercontent.com/eggheads/eggdrop/v1.8.4/NEWS
+
+  If you would like to keep using 1.6.21, please run the following command
+  to update pkg database:
+
+    pkg set -n eggdrop:eggdrop16
+    pkg set -o irc/eggdrop:irc/eggdrop16
+
+20191108:
+  AFFECTS: users of databases/redis[-devel]
+  AUTHOR: osa@FreeBSD.org
+
+  The databases/redis port has been updated to the recent stable release.
+  Users wanting to stay on v4.x can replace databases/redis with 
+  databases/redis4 with one of the following commands:
+
+  # pkg install databases/redis4
+    or
+  # portmaster -o databases/redis4 databases/redis
+    or
+  # portupgrade -o databases/redis4 databases/redis
+
 20191103:
   AFFECTS: users of www/node
   AUTHOR: bhughes@FreeBSD.org

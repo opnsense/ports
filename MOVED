@@ -2522,7 +2522,6 @@ www/mediawiki115||2011-09-03|Unsupported upstream
 www/p5-Catalyst-Plugin-Authentication-Store-DBIC||2011-09-03|Use p5-Catalyst-Authentication-Store-DBIx-Class instead
 net/uproxy||2011-09-04|Master site disappeared, abandonware
 x11/ebuttons||2011-09-05|Has expired: Website has disappeared
-cad/oregano||2011-09-05|Has expired: Website has disappeared
 devel/jakelib2||2011-09-05|Has expired: Website has disappeared
 x11-wm/epiwm||2011-09-07|Has expired: Abandonware
 x11-toolkits/p5-GdkPixbuf||2011-09-07|Has expired: Disappear from CPAN
@@ -13469,7 +13468,6 @@ devel/powerpc64-binutils|devel/binutils@powerpc64|2019-11-05|Moved to a flavored
 devel/riscv64-binutils|devel/binutils@riscv64|2019-11-05|Moved to a flavored version
 devel/s390x-binutils|devel/binutils@s390x|2019-11-05|Moved to a flavored version
 devel/sparc64-binutils|devel/binutils@sparc64|2019-11-05|Moved to a flavored version
-devel/xtoolchain-llvm-devel|devel/llvm-devel|2019-11-15|Subsumed into devel/llvm-devel
 mail/opensmtpd-extras-filter-clamav||2019-11-15| Deprecated upstream
 mail/opensmtpd-extras-filter-dkim||2019-11-15| Deprecated upstream
 mail/opensmtpd-extras-filter-dnsbl||2019-11-15| Deprecated upstream
@@ -13483,3 +13481,24 @@ mail/opensmtpd-extras-filter-spamassassin||2019-11-15| Deprecated upstream
 mail/opensmtpd-extras-tool-stats||2019-11-15| Deprecated upstream
 x11-wm/compton-yshui|x11-wm/picom|2019-11-18|Project renamed
 lang/ponyc-static|lang/ponyc@llvm_static|2019-11-20|Flavored
+devel/git-subversion|devel/git|2019-11-22|Subversion enabled by default in devel/git
+devel/libtrue||2019-11-22|Has expired: The joke is dead
+devel/rubygem-flipper-active_support_cache_store013|devel/rubygem-flipper-active_support_cache_store|2019-11-23|Obsolete, please use devel/rubygem-flipper-active_support_cache_store
+databases/rubygem-flipper-active_record013|databases/rubygem-flipper-active_record|2019-11-23|Obsolete, please use databases/rubygem-flipper-active_record instead
+devel/rubygem-flipper013|devel/rubygem-flipper|2019-11-23|Obsolete, please use devel/rubygem-flipper instead
+devel/rubygem-google-protobuf371|devel/rubygem-google-protobuf|2019-11-23|Obsolete, please use devel/rubygem-google-protobuf instead
+mail/rubygem-premailer-rails19-rails52|mail/rubygem-premailer-rails-rails52|2019-11-23|Obsolete, please use mail/rubygem-premailer-rails-rails52 instead
+mail/rubygem-premailer-rails19-rails5|mail/rubygem-premailer-rails-rails5|2019-11-23|Obsolete, please use mail/rubygem-premailer-rails-rails5 instead
+www/rubygem-rack-attack44|www/rubygem-rack-attack|2019-11-23|Obsolete, please use www/rubygem-rack-attack instead
+databases/rubygem-state_machines-activerecord05|databases/rubygem-state_machines-activerecord|2019-11-23|Obsolete, use databases/rubygem-state_machines-activerecord instead
+devel/rubygem-default_value_for32|devel/rubygem-default_value_for|2019-11-23|Obsolete, use devel/rubygem-default_value_for instead
+www/rubygem-responders2-rails52|www/rubygem-responders-rails52|2019-11-23|Obsolete, please use www/rubygem-responders-rails52 instead
+devel/rubygem-gitlab-default_value_for|devel/rubygem-default_value_for|2019-11-23|Obsolete, please use devel/rubygem-default_value_for instead
+www/httpdirfs|sysutils/fusefs-httpdirfs|2019-11-23|Rename for consistency with other FUSE ports
+math/tvm|misc/tvm|2019-11-24|Move to a more appropriate category
+math/onnx|misc/onnx|2019-11-24|Move to a more appropriate category
+math/py-onnx-tf|misc/py-onnx-tf|2019-11-24|Move to a more appropriate category
+misc/console-bridge|devel/ros-console_bridge|2019-11-24|Use devel/ros-console_bridge instead
+misc/urdfdom-headers|devel/ros-urdfdom_headers|2019-11-24|Use devel/ros-urdfdom_headers instead
+misc/urdfdom|devel/ros-urdfdom|2019-11-24|Use devel/ros-urdfdom instead
+sysutils/kdirstat|sysutils/k4dirstat|2019-11-25|Renamed to match the upstream name
