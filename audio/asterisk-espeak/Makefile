@@ -14,8 +14,8 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libespeak.so:audio/espeak \
 		libsamplerate.so:audio/libsamplerate
 
-FLAVORS=			asterisk13 asterisk16
-FLAVOR?=			${FLAVORS[1]}
+FLAVORS=			asterisk16 asterisk13
+FLAVOR?=			${FLAVORS:[1]}
 
 asterisk13_PKGNAMEPREFIX=	asterisk13-
 asterisk13_CONFLICTS_INSTALL=	asterisk16-espeak

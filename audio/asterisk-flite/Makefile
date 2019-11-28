@@ -13,8 +13,8 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libflite.so:audio/flite
 
-FLAVORS=			asterisk13 asterisk16
-FLAVOR?=			${FLAVORS[1]}
+FLAVORS=			asterisk16 asterisk13
+FLAVOR?=			${FLAVORS:[1]}
 
 asterisk13_PKGNAMEPREFIX=	asterisk13-
 asterisk13_CONFLICTS_INSTALL=	asterisk16-flite

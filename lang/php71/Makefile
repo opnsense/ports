@@ -13,7 +13,7 @@ COMMENT=	PHP Scripting Language
 
 LICENSE=	PHP301
 
-USES+=		tar:xz cpe
+USES+=		cpe gnome tar:xz
 CPE_PRODUCT=	php
 NO_OPTIONS_SORT=yes
 
@@ -28,7 +28,7 @@ CONFIGURE_ARGS+=--with-layout=GNU \
 		--with-libxml-dir=${LOCALBASE} \
 		--with-pcre-regex=${LOCALBASE} \
 		--program-prefix=""
-USES+=		autoreconf:build gnome
+USES+=		autoreconf:build
 USE_GNOME=	libxml2
 
 # PR230207 Allow relocations against read-only segments (override lld default)
@@ -39,6 +39,7 @@ OPTIONS_DEFAULT=CLI CGI FPM EMBED MYSQLND LINKTHR DTRACE
 OPTIONS_EXCLUDE_DragonFly=	DTRACE
 # ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
 OPTIONS_EXCLUDE_aarch64=	DTRACE
+OPTIONS_EXCLUDE_powerpc64=	DTRACE
 # dt_modtext:opensolaris/ib/libdtrace/common/dt_link.c: arm not impemented
 OPTIONS_EXCLUDE_armv6=		DTRACE
 OPTIONS_EXCLUDE_armv7=		DTRACE

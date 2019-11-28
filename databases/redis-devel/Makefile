@@ -2,15 +2,19 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-DISTVERSION=	5.0.6
+PORTVERSION=	6.0.0.20191125
 CATEGORIES=	databases
-MASTER_SITES=	http://download.redis.io/releases/
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	osa@FreeBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
 
 LICENSE=	BSD3CLAUSE
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	antirez
+GH_PROJECT=	${PORTNAME}
+GH_TAGNAME=	a1b6548
 
 OPTIONS_DEFINE=	JEMALLOC TESTS TRIB
 OPTIONS_RADIO=	EXTLUA
@@ -64,7 +68,7 @@ USES+=		tcl:build
 
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis-4.*
+CONFLICTS?=	redis4-4.* redis-5.*
 
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \

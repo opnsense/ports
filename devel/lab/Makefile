@@ -2,6 +2,7 @@
 
 PORTNAME=	lab
 PORTVERSION=	0.16.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	devel
 
@@ -11,13 +12,9 @@ COMMENT=	Lab makes it simple to work with repositories on GitLab
 LICENSE=	UNLICENSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+RUN_DEPENDS=	git:devel/git
+
 USES=		go:modules
-
-OPTIONS_DEFINE=	GIT_SUBVERSION
-
-GIT_SUBVERSION_DESC=		Use devel/git-subversion as backend
-GIT_SUBVERSION_RUN_DEPENDS=	git-subversion>0:devel/git-subversion
-GIT_SUBVERSION_RUN_DEPENDS_OFF=	git:devel/git
 
 USE_GITHUB=	yes
 

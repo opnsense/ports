@@ -2,12 +2,15 @@
 
 PORTNAME=	mergify
 PORTVERSION=	g20180512
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	joe@thrallingpenguin.com
 COMMENT=	Merge changes from a branch one commit at a time
 
 LICENSE=	BSD2CLAUSE
+
+RUN_DEPENDS=	git:devel/git
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	brooksdavis
@@ -20,11 +23,7 @@ NO_BUILD=	yes
 PLIST_FILES=	bin/mergify
 PORTDOCS=	README.md
 
-OPTIONS_DEFINE=	DOCS GIT_SUBVERSION
-
-GIT_SUBVERSION_DESC=	Use devel/git-subversion as backend
-GIT_SUBVERSION_RUN_DEPENDS=	git-subversion>0:devel/git-subversion
-GIT_SUBVERSION_RUN_DEPENDS_OFF=	git:devel/git
+OPTIONS_DEFINE=	DOCS
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/mergify ${STAGEDIR}${PREFIX}/bin

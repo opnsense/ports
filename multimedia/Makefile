@@ -176,6 +176,7 @@
     SUBDIR += kodi
     SUBDIR += kodi-addon-inputstream.adaptive-devel
     SUBDIR += kodi-addon-peripheral-joystick
+    SUBDIR += kodi-addon-peripheral.joystick-devel
     SUBDIR += kodi-addon-pvr-hts
     SUBDIR += kodi-addon-pvr-iptvsimple
     SUBDIR += kodi-addon-vfs.libarchive-devel
@@ -453,6 +454,7 @@
     SUBDIR += wf-recorder
     SUBDIR += win32-codecs
     SUBDIR += winff
+    SUBDIR += wlrobs
     SUBDIR += x264
     SUBDIR += x265
     SUBDIR += xanim

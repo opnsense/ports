@@ -16,6 +16,7 @@
     SUBDIR += brlcad
     SUBDIR += calculix
     SUBDIR += calculix-ccx
+    SUBDIR += caneda
     SUBDIR += cascade
     SUBDIR += chipvault
     SUBDIR += cura-engine
@@ -56,12 +57,14 @@
     SUBDIR += kicad-library-templates
     SUBDIR += kicad-library-templates-devel
     SUBDIR += klayout
+    SUBDIR += ktechlab
     SUBDIR += ldraw
     SUBDIR += leocad
     SUBDIR += lepton-eda
     SUBDIR += libopencad
     SUBDIR += librecad
     SUBDIR += libredwg
+    SUBDIR += librepcb
     SUBDIR += linux-eagle5
     SUBDIR += linuxcnc-devel
     SUBDIR += logisim
@@ -74,6 +77,7 @@
     SUBDIR += openscad
     SUBDIR += openscad-devel
     SUBDIR += openvsp
+    SUBDIR += oregano
     SUBDIR += p5-GDS2
     SUBDIR += p5-Verilog-Perl
     SUBDIR += pcb
