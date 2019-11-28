@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	gnupg
-PORTVERSION=	2.2.17
-PORTREVISION=	2
+PORTVERSION=	2.2.18
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -26,7 +25,7 @@ RUN_DEPENDS=	pinentry:security/pinentry
 USE_HARDENING=	cfi safestack
 CPPFLAGS=	-fPIC
 
-USES=		compiler:c11 cpe gmake iconv pkgconfig readline sqlite tar:bzip2
+USES=		compiler:c11 cpe gmake iconv makeinfo pkgconfig readline sqlite tar:bzip2
 
 CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
 CPE_VENDOR=	gnupg
@@ -63,6 +62,11 @@ NLS_USES=		gettext
 SCDAEMON_CONFIGURE_ENABLE=	scdaemon
 
 WKS_SERVER_CONFIGURE_ENABLE=	wks-tools
+
+# Touch the texinfo files to force makeinfo to run.  This fixes Linuxisms in
+# the paths in the man pages.
+pre-build:
+	@${TOUCH} ${WRKSRC}/doc/*.texi
 
 post-install:
 	@${MV} ${STAGEDIR}${DATADIR}/help*.txt ${STAGEDIR}${DOCSDIR}
