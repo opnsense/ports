@@ -116,6 +116,7 @@
     SUBDIR += dgd-lpmud
     SUBDIR += dhcp6
     SUBDIR += dhcpcd
+    SUBDIR += dhcpcd-devel
     SUBDIR += dhcpcd-ui
     SUBDIR += dhcpd
     SUBDIR += dhcpd-pools
@@ -211,6 +212,8 @@
     SUBDIR += grilo
     SUBDIR += grilo-plugins
     SUBDIR += grive2
+    SUBDIR += grpcox
+    SUBDIR += grpcui
     SUBDIR += grpcurl
     SUBDIR += grsync
     SUBDIR += gsk
