@@ -436,6 +436,7 @@
     SUBDIR += octave-forge-lssa
     SUBDIR += octave-forge-ltfat
     SUBDIR += octave-forge-mapping
+    SUBDIR += octave-forge-matgeom
     SUBDIR += octave-forge-miscellaneous
     SUBDIR += octave-forge-missing-functions
     SUBDIR += octave-forge-msh
@@ -685,6 +686,7 @@
     SUBDIR += py-algopy
     SUBDIR += py-altgraph
     SUBDIR += py-apgl
+    SUBDIR += py-arviz
     SUBDIR += py-autograd
     SUBDIR += py-basemap
     SUBDIR += py-basemap-data

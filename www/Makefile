@@ -208,7 +208,6 @@
     SUBDIR += gpx2map
     SUBDIR += grafana
     SUBDIR += grafana2
-    SUBDIR += grafana3
     SUBDIR += grafana4
     SUBDIR += grafana5
     SUBDIR += grafana6
@@ -339,7 +338,6 @@
     SUBDIR += mimetex
     SUBDIR += mini_httpd
     SUBDIR += miniflux
-    SUBDIR += miniminiweb
     SUBDIR += minio
     SUBDIR += minio-client
     SUBDIR += miniserve
@@ -1928,6 +1926,7 @@
     SUBDIR += retawq
     SUBDIR += riot-web
     SUBDIR += roundup
+    SUBDIR += rss-bridge
     SUBDIR += rsskit
     SUBDIR += rssowl
     SUBDIR += rssroll
