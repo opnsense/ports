@@ -9927,7 +9927,6 @@ audio/kscd|audio/kscd-kde4|2018-02-22|Make room for KDE updates
 comms/kremotecontrol|comms/kremotecontrol-kde4|2018-02-22|Make room for KDE updates
 graphics/ksnapshot|graphics/ksnapshot-kde4|2018-02-22|Make room for KDE updates
 graphics/ksaneplugin|graphics/ksaneplugin-kde4|2018-02-22|Make room for KDE updates
-graphics/kqtquickcharts|graphics/kqtquickcharts-kde4|2018-02-22|Make room for KDE updates
 x11/kde4-baseapps|x11/kde-baseapps-kde4|2018-02-22|Make room for KDE updates
 x11/kde4-runtime|x11/kde-runtime-kde4|2018-02-22|Make room for KDE updates
 x11/kde4-workspace|x11/kde-workspace-kde4|2018-02-22|Make room for KDE updates
@@ -11124,7 +11123,6 @@ graphics/kdegraphics-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
 graphics/kdegraphics-svgpart-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
 graphics/kcolorchooser-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
 graphics/okular-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
-graphics/kqtquickcharts-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
 graphics/libkipi-kde4||2018-12-31|Has expired: Qt4 has been EOL since december 2015
 graphics/libkexiv2-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
 graphics/kolourpaint-kde4||2018-12-31|Has expired: KDE4 is EOL upstream
@@ -13503,3 +13501,16 @@ misc/urdfdom-headers|devel/ros-urdfdom_headers|2019-11-24|Use devel/ros-urdfdom_
 misc/urdfdom|devel/ros-urdfdom|2019-11-24|Use devel/ros-urdfdom instead
 sysutils/kdirstat|sysutils/k4dirstat|2019-11-25|Renamed to match the upstream name
 lang/gcc7-devel|lang/gcc7|2019-11-28|The GCC 7 branch is end of life, use the final release (or a new major version)
+multimedia/cuse4bsd-kmod||2019-11-30|Removed, in base system on all supported versions
+java/jdk9-doc||2019-11-30|Has expired: The corresponding JDK port is EoL
+java/jdk10-doc||2019-11-30|Has expired: The corresponding JDK port is EoL
+databases/zabbix22-libzbxpgsql|databases/zabbix3-libzbxpgsql|2019-12-01|End-of-Life was August, 2019
+astro/garmindev||2019-12-01|Has expired: This port is useful only with the long expired QLandkarteGT
+net-mgmt/zabbix22-agent|net-mgmt/zabbix3-agent|2019-12-01|Has expired: End of Life was August, 2019
+net-mgmt/zabbix22-frontend|net-mgmt/zabbix3-frontend|2019-12-01|Has expired: End of Life was August, 2019
+net-mgmt/zabbix22-java|net-mgmt/zabbix3-java|2019-12-01|Has expired: End of Life was August, 2019
+net-mgmt/zabbix22-proxy|net-mgmt/zabbix3-proxy|2019-12-01|Has expired: End of Life was August, 2019
+net-mgmt/zabbix22-server|net-mgmt/zabbix3-server|2019-12-01|Has expired: End of Life was August, 2019
+sysutils/fusefs-ext4fuse|sysutils/fusefs-ext2|2019-12-01|Has expired: Please consider using sysutils/fusefs-ext2 as upstream development is stalled.  Contrary to what its name suggests it supports ext2, ext3, ext4 in read/write  mode.
+www/grafana3|www/grafana4|2019-12-01|Has expired: Depends on expired lang/phantomjs
+www/miniminiweb||2019-12-01|Has expired: Upstream no longer available
