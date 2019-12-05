@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	netpbm
-DISTVERSION=	10.88.00
+DISTVERSION=	10.88.01
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/t6/netpbm/releases/download/v${DISTVERSION}/ \
 		LOCAL/tobik
@@ -25,7 +25,7 @@ USE_HARDENING=	pie:off
 # http://netpbm.sourceforge.net/getting_netpbm.php.  To checkout the
 # sources yourself see the netpbm-version-check and netpbm-fetch
 # targets below.
-USES=		ghostscript:test gmake perl5 shebangfix
+USES=		ghostscript:test gmake perl5 shebangfix tar:xz
 USE_LDCONFIG=	yes
 USE_PERL5=	build test
 
