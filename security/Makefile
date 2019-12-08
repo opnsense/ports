@@ -258,6 +258,7 @@
     SUBDIR += knocker
     SUBDIR += kpcli
     SUBDIR += kpkpass
+    SUBDIR += kpmenu
     SUBDIR += krb5
     SUBDIR += krb5-115
     SUBDIR += krb5-116
