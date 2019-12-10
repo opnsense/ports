@@ -239,7 +239,7 @@
     SUBDIR += john
     SUBDIR += kbfsd
     SUBDIR += kc24
-    SUBDIR += kdbx-viewer
+    SUBDIR += kdbxviewer
     SUBDIR += kedpm
     SUBDIR += keepass
     SUBDIR += keepass-plugin-keepassrpc

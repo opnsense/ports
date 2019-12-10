@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	v
-PORTVERSION=	0.1.22
+PORTVERSION=	0.1.23.1
 CATEGORIES=	lang
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -11,7 +11,7 @@ COMMENT=	V Programming Language
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		gmake
+USES=		compiler:c11 gmake
 
 LDFLAGS+=	-lm
 
