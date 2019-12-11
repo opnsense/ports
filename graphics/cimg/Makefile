@@ -3,7 +3,7 @@
 
 PORTNAME=	cimg
 DISTVERSIONPREFIX=	v.
-DISTVERSION=	2.7.5
+DISTVERSION=	2.8.0
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 
@@ -19,13 +19,23 @@ LICENSE_FILE_CeCILL=	${WRKSRC}/Licence_CeCILL_V2-en.txt
 LICENSE_PERMS_CeCILL_C=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_CeCILL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	dtschump
 GH_PROJECT=	CImg
 
-USE_HARDENING=	pie:off
+BUILD_WRKSRC=	${WRKSRC}/examples
 
-USES=	compiler:c11 xorg
+OPTIONS_DEFINE=	DOCS EXAMPLES
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MEXAMPLES}
+USES+=		compiler:c11 gmake pkgconfig:build xorg
+.endif
+
+.if ${PORT_OPTIONS:MDOCS}
 
 .if !defined(WITHOUT_LAPACK)
 . if defined(WITH_ATLAS)
@@ -35,17 +45,6 @@ USES+=		blaslapack
 . endif
 .endif
 
-BUILD_WRKSRC=	${WRKSRC}/examples
-
-OPTIONS_DEFINE=	DOCS EXAMPLES
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MEXAMPLES}
-USES+=		gmake pkgconfig:build
-.endif
-
-.if ${PORT_OPTIONS:MDOCS}
 REINPLACE_ARGS=	-i ""
 LIB_DEPENDS+=	libboard.so:graphics/libboard
 
