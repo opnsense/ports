@@ -2,7 +2,7 @@
 
 PORTNAME=	6cord
 DISTVERSION=	9.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im
 
 MAINTAINER=	vulcan@wired.sh
@@ -12,12 +12,6 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules
-
-USE_GITLAB=	yes
-GL_ACCOUNT=	diamondburned
-GL_COMMIT=	0e534fe84bf5430d99309e50b213002ae545a8a1
-GL_TUPLE=	diamondburned:go-w3m:1b390b8a3d1fd142bcaf77a949223cb36ef84cbc:diamondburned_go_w3m/vendor/gitlab.com/diamondburned/go-w3m \
-		diamondburned:ueberzug-go:7c15a5f63b064530b92411f2850d0fc7fe9059ea:diamondburned_ueberzug_go/vendor/gitlab.com/diamondburned/ueberzug-go
 
 USE_GITHUB=	nodefault
 GH_TUPLE=	BurntSushi:freetype-go:b763ddbfe298:burntsushi_freetype_go/vendor/github.com/BurntSushi/freetype-go \
@@ -46,7 +40,7 @@ GH_TUPLE=	BurntSushi:freetype-go:b763ddbfe298:burntsushi_freetype_go/vendor/gith
 		godbus:dbus:v4.1.0:godbus_dbus/vendor/github.com/godbus/dbus \
 		golang:crypto:87dc89f01550:golang_crypto/vendor/golang.org/x/crypto \
 		golang:image:e7c1f5e7dbb8:golang_image/vendor/golang.org/x/image \
-		golang:sys:b09406accb47:golang_sys/vendor/golang.org/x/sys \
+		golang:sys:33540a1f6037:golang_sys/vendor/golang.org/x/sys \
 		golang:text:v0.3.2:golang_text/vendor/golang.org/x/text \
 		gopherjs:gopherjs:d3ddacdb130f:gopherjs_gopherjs/vendor/github.com/gopherjs/gopherjs \
 		gopherjs:gopherwasm:v1.1.0:gopherjs_gopherwasm/vendor/github.com/gopherjs/gopherwasm \
@@ -70,16 +64,21 @@ GH_TUPLE=	BurntSushi:freetype-go:b763ddbfe298:burntsushi_freetype_go/vendor/gith
 		valyala:fasttemplate:v1.1.0:valyala_fasttemplate/vendor/github.com/valyala/fasttemplate \
 		zalando:go-keyring:62750a1ff80d:zalando_go_keyring/vendor/github.com/zalando/go-keyring
 
-SUB_FILES=	pkg-message
+USE_GITLAB=	yes
+GL_ACCOUNT=	diamondburned
+GL_COMMIT=	0e534fe84bf5430d99309e50b213002ae545a8a1
+GL_TUPLE=	diamondburned:go-w3m:1b390b8a3d1fd142bcaf77a949223cb36ef84cbc:diamondburned_go_w3m/vendor/gitlab.com/diamondburned/go-w3m \
+		diamondburned:ueberzug-go:7c15a5f63b064530b92411f2850d0fc7fe9059ea:diamondburned_ueberzug_go/vendor/gitlab.com/diamondburned/ueberzug-go
 
+SUB_FILES=	pkg-message
 PLIST_FILES=	bin/${PORTNAME}
 
 PORTDOCS=	README.md
-PORTEXAMPLES=	6cord.toml
+PORTEXAMPLES=	${PORTNAME}.toml
 
-OPTIONS_DEFINE=		DOCS EXAMPLES
+OPTIONS_DEFINE=	DOCS EXAMPLES
 
-EXAMPLES_DESC=	Install example 6cord configuration file
+EXAMPLES_DESC=	Install example ${PORTNAME} configuration file
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

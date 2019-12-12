@@ -22,9 +22,9 @@ USE_HARDENING=	pie:off relro:off
 LICENSE=	GPLv2
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	CTSRD-CHERI
-GH_TAGNAME=	${QEMU_COMMIT}
-GH_TUPLE=	qemu:keycodemapdb:6b3d716:qemu/ui/keycodemapdb
+GH_TUPLE=	CTSRD-CHERI:qemu:${QEMU_COMMIT} \
+		CTSRD-CHERI:libslirp:${LIBSLIRP_COMMIT}:libslirp/slirp \
+		qemu:keycodemapdb:6b3d716:qemu/ui/keycodemapdb \
 
 HAS_CONFIGURE=	yes
 USES=	compiler:c11 gettext-runtime gl gmake gnome libtool makeinfo pkgconfig \
@@ -43,7 +43,6 @@ CONFIGURE_ARGS+= \
 		--disable-curl \
 		--disable-git-update \
 		--disable-gtk \
-		--disable-libssh2 \
 		--disable-linux-user \
 		--disable-linux-aio \
 		--disable-kvm \
