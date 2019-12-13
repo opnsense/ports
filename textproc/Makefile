@@ -1245,6 +1245,7 @@
     SUBDIR += py-cmarkgfm
     SUBDIR += py-colorclass
     SUBDIR += py-creole
+    SUBDIR += py-cssselect2
     SUBDIR += py-csvkit
     SUBDIR += py-custom_inherit
     SUBDIR += py-dbfread
@@ -1401,6 +1402,7 @@
     SUBDIR += py-textfsm
     SUBDIR += py-texttable
     SUBDIR += py-tinycss
+    SUBDIR += py-tinycss2
     SUBDIR += py-toml
     SUBDIR += py-toronado
     SUBDIR += py-towncrier
