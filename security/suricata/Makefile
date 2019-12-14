@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	suricata
-DISTVERSION=	4.1.5
-PORTREVISION=	1
+DISTVERSION=	4.1.6
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
