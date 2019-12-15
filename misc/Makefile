@@ -383,6 +383,7 @@
     SUBDIR += py-eemeter
     SUBDIR += py-emoji
     SUBDIR += py-fast-histogram
+    SUBDIR += py-fleep
     SUBDIR += py-fuzzy
     SUBDIR += py-glance
     SUBDIR += py-huepy
@@ -419,6 +420,7 @@
     SUBDIR += py-toil
     SUBDIR += py-tqdm
     SUBDIR += py-tvm
+    SUBDIR += py-xgboost
     SUBDIR += py-yolk
     SUBDIR += pylize
     SUBDIR += pyobd
@@ -535,6 +537,7 @@
     SUBDIR += xfce4-weather-plugin
     SUBDIR += xfce4-wm-themes
     SUBDIR += xgas
+    SUBDIR += xgboost
     SUBDIR += xless
     SUBDIR += xosd
     SUBDIR += xtail
