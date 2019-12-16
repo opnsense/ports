@@ -254,6 +254,7 @@
     SUBDIR += morse
     SUBDIR += mtail
     SUBDIR += mtx
+    SUBDIR += mxnet
     SUBDIR += najitool
     SUBDIR += netron
     SUBDIR += nms
@@ -386,9 +387,12 @@
     SUBDIR += py-fleep
     SUBDIR += py-fuzzy
     SUBDIR += py-glance
+    SUBDIR += py-gluoncv
+    SUBDIR += py-gluonnlp
     SUBDIR += py-huepy
     SUBDIR += py-kartograph
     SUBDIR += py-molequeue
+    SUBDIR += py-mxnet
     SUBDIR += py-onnx-tf
     SUBDIR += py-orange3-associate
     SUBDIR += py-orange3-datafusion

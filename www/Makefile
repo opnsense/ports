@@ -1365,6 +1365,7 @@
     SUBDIR += perlbal
     SUBDIR += pglogd
     SUBDIR += phalcon
+    SUBDIR += phalcon4
     SUBDIR += photo_gallery
     SUBDIR += php71-opcache
     SUBDIR += php71-session
@@ -1396,6 +1397,7 @@
     SUBDIR += pnews
     SUBDIR += podcastamatic
     SUBDIR += polipo
+    SUBDIR += pomerium
     SUBDIR += pound
     SUBDIR += privatebin
     SUBDIR += privoxy
