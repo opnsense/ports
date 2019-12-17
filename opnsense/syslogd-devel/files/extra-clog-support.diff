@@ -1,0 +1,203 @@
+--- usr.sbin/syslogd/syslogd.c.orig	2018-12-14 06:14:22 UTC
++++ usr.sbin/syslogd/syslogd.c
+@@ -91,6 +91,7 @@ __FBSDID("$FreeBSD$");
+ #include <sys/un.h>
+ #include <sys/wait.h>
+ #include <sys/types.h>
++#include <sys/mman.h>
+ 
+ #include <netinet/in.h>
+ #include <netdb.h>
+@@ -112,6 +113,7 @@ __FBSDID("$FreeBSD$");
+ #include <unistd.h>
+ #include <utmpx.h>
+ 
++#include "clog.h"
+ #include "pathnames.h"
+ #include "ttymsg.h"
+ 
+@@ -197,6 +199,11 @@ struct filed {
+ 			char	f_pname[MAXPATHLEN];
+ 			pid_t	f_pid;
+ 		} f_pipe;
++		struct {
++			char	f_rname[MAXPATHLEN];
++			struct clog_footer *f_footer;
++			size_t	f_size;
++		} f_ring;
+ 	} f_un;
+ 	char	f_prevline[MAXSVLINE];		/* last message logged */
+ 	char	f_lasttime[MAXDATELEN];		/* time of last occurrence */
+@@ -275,10 +282,12 @@ int	repeatinterval[] = { 30, 120, 600 };
+ #define F_USERS		5		/* list of users */
+ #define F_WALL		6		/* everyone logged on */
+ #define F_PIPE		7		/* pipe to program */
++#define F_RING		8		/* ring buffer (circular log) */
+ 
+-const char *TypeNames[8] = {
++const char *TypeNames[9] = {
+ 	"UNUSED",	"FILE",		"TTY",		"CONSOLE",
+-	"FORW",		"USERS",	"WALL",		"PIPE"
++	"FORW",		"USERS",	"WALL",		"PIPE",
++	"RING"
+ };
+ 
+ static struct filed *Files;	/* Log files that we write to */
+@@ -344,6 +353,8 @@ static int	skip_message(const char *, co
+ static void	printline(const char *, char *, int);
+ static void	printsys(char *);
+ static int	p_open(const char *, pid_t *);
++static ssize_t	rbwrite(struct filed *, char *, size_t);
++static ssize_t	rbwritev(struct filed *, struct iovec *, int);
+ static void	readklog(void);
+ static void	reapchild(int);
+ static const char *ttymsg_check(struct iovec *, int, char *, int);
+@@ -378,6 +389,11 @@ close_filed(struct filed *f)
+ 	case F_PIPE:
+ 		f->f_un.f_pipe.f_pid = 0;
+ 		break;
++	case F_RING:
++		(void)munmap(f->f_un.f_ring.f_footer,
++		    sizeof(struct clog_footer));
++		(void)close(f->f_file);
++		break;
+ 	}
+ 	(void)close(f->f_file);
+ 	f->f_file = -1;
+@@ -1355,6 +1371,20 @@ fprintlog(struct filed *f, int flags, co
+ 		}
+ 		break;
+ 
++	case F_RING:
++		dprintf(" %s\n", f->f_un.f_ring.f_rname);
++		v->iov_base = "\n";
++		v->iov_len = 1;
++		if (rbwritev(f, iov, 7)==-1) {
++			int e = errno;
++			(void)munmap(f->f_un.f_ring.f_footer,sizeof(struct clog_footer));
++			(void)close(f->f_file);
++			f->f_type = F_UNUSED;
++			errno = e;
++			logerror(f->f_un.f_fname);
++		}
++		break;
++
+ 	case F_PIPE:
+ 		dprintf(" %s\n", f->f_un.f_pipe.f_pname);
+ 		v->iov_base = lf;
+@@ -1832,6 +1862,7 @@ init(int signo)
+ 		case F_FORW:
+ 		case F_CONSOLE:
+ 		case F_TTY:
++		case F_RING:
+ 			close_filed(f);
+ 			break;
+ 		case F_PIPE:
+@@ -1904,6 +1935,10 @@ init(int signo)
+ 				}
+ 				break;
+ 
++			case F_RING:
++				printf("%s", f->f_un.f_ring.f_rname);
++				break;
++
+ 			case F_PIPE:
+ 				printf("%s", f->f_un.f_pipe.f_pname);
+ 				break;
+@@ -2174,6 +2209,42 @@ cfline(const char *line, struct filed *f
+ 		}
+ 		break;
+ 
++	case '%': {
++		struct stat sb;
++
++		if ((f->f_file = open(p + 1, O_RDWR, 0)) < 0) {
++			f->f_type = F_UNUSED;
++			logerror(p + 1);
++			break;
++		}
++		if (fstat(f->f_file, &sb) < 0) {
++			(void)close(f->f_file);
++			f->f_type = F_UNUSED;
++			logerror(p + 1);
++			break;
++		}
++		f->f_un.f_ring.f_footer = mmap(NULL,sizeof(struct clog_footer),
++		    PROT_READ|PROT_WRITE, MAP_SHARED, f->f_file,
++		    sb.st_size - sizeof(struct clog_footer));
++		if (f->f_un.f_ring.f_footer == NULL) {
++			(void)close(f->f_file);
++			f->f_type = F_UNUSED;
++			logerror(p + 1);
++			break;
++		}
++		if (memcmp(&(f->f_un.f_ring.f_footer->cf_magic), MAGIC_CONST, 4) != 0) {
++			(void)munmap(f->f_un.f_ring.f_footer, sizeof(struct clog_footer));
++			(void)close(f->f_file);
++			f->f_type = F_UNUSED;
++			errno = ENODEV;
++			logerror(p + 1);
++			break;
++		}
++		f->f_un.f_ring.f_size = sb.st_size;
++		(void)strcpy(f->f_un.f_ring.f_rname, p + 1);
++		f->f_type = F_RING;
++		break;
++	}
+ 	case '|':
+ 		f->f_un.f_pipe.f_pid = 0;
+ 		(void)strlcpy(f->f_un.f_pipe.f_pname, p + 1,
+@@ -2779,6 +2850,53 @@ deadq_remove(pid_t pid)
+ 	return (0);
+ }
+ 
++static ssize_t
++rbwritev(struct filed *f, struct iovec *iov, int iovcnt)
++{
++	ssize_t out = 0;
++	ssize_t n;
++	int i;
++
++	for (i = 0; i < iovcnt; i++) {
++		n = rbwrite(f, iov[i].iov_base, iov[i].iov_len);
++		if (n == -1)
++			return (-1);
++		out += n;
++	}
++	return (out);
++}
++
++static ssize_t
++rbwrite(struct filed *f, char *buf, size_t nbytes)
++{
++	size_t maxwrite = f->f_un.f_ring.f_footer->cf_max - f->f_un.f_ring.f_footer->cf_next;
++	ssize_t err;
++	ssize_t out = 0;
++
++	f->f_un.f_ring.f_footer->cf_lock = 1;
++	while (nbytes > 0) {
++		maxwrite = f->f_un.f_ring.f_footer->cf_max - f->f_un.f_ring.f_footer->cf_next;
++		if (maxwrite > nbytes)
++			maxwrite = nbytes;
++		err = pwrite(f->f_file, buf, maxwrite, f->f_un.f_ring.f_footer->cf_next);
++		if (err == -1) {
++			f->f_un.f_ring.f_footer->cf_lock = 0;
++			return (-1);
++		}
++		nbytes -= err;
++		out += err;
++		buf += err;
++		f->f_un.f_ring.f_footer->cf_next += err;
++		if (f->f_un.f_ring.f_footer->cf_next == f->f_un.f_ring.f_footer->cf_max) {
++			f->f_un.f_ring.f_footer->cf_next = 0;
++			f->f_un.f_ring.f_footer->cf_wrap = 1;
++		}
++
++	}
++	f->f_un.f_ring.f_footer->cf_lock = 0;
++	return (out);
++}
++
+ static void
+ log_deadchild(pid_t pid, int status, const char *name)
+ {
