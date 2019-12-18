@@ -14,7 +14,7 @@ LICENSE=	BSD3CLAUSE
 USE_HARDENING=	safestack
 
 OPTIONS_DEFINE=	CLOG
-OPTIONS_DEFAULT=CLOG
+#OPTIONS_DEFAULT=CLOG
 
 CLOG_DESC=	Enable clog(1) support
 
@@ -26,6 +26,8 @@ CLOG_USES=		localbase
 MAKE_ENV=	SRCTOP=${WRKSRC} \
 		MANDIR=${PREFIX}/man/man \
 		BINDIR=${PREFIX}/sbin \
+		MK_FTP=no MK_PPP=no MK_LPR=no \
+		MK_INET_SUPPORT=yes \
 		MK_INET6_SUPPORT=yes
 
 do-extract:
