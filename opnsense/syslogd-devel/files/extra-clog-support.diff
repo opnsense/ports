@@ -1,14 +1,6 @@
---- usr.sbin/syslogd/syslogd.c.orig	2018-12-14 06:14:22 UTC
+--- usr.sbin/syslogd/syslogd.c.orig	2019-12-18 09:01:39 UTC
 +++ usr.sbin/syslogd/syslogd.c
-@@ -91,6 +91,7 @@ __FBSDID("$FreeBSD$");
- #include <sys/un.h>
- #include <sys/wait.h>
- #include <sys/types.h>
-+#include <sys/mman.h>
- 
- #include <netinet/in.h>
- #include <netdb.h>
-@@ -112,6 +113,7 @@ __FBSDID("$FreeBSD$");
+@@ -144,6 +144,7 @@ __FBSDID("$FreeBSD$");
  #include <unistd.h>
  #include <utmpx.h>
  
@@ -16,7 +8,7 @@
  #include "pathnames.h"
  #include "ttymsg.h"
  
-@@ -197,6 +199,11 @@ struct filed {
+@@ -244,6 +245,11 @@ struct filed {
  			char	f_pname[MAXPATHLEN];
  			pid_t	f_pid;
  		} f_pipe;
@@ -26,35 +18,34 @@
 +			size_t	f_size;
 +		} f_ring;
  	} f_un;
- 	char	f_prevline[MAXSVLINE];		/* last message logged */
- 	char	f_lasttime[MAXDATELEN];		/* time of last occurrence */
-@@ -275,10 +282,12 @@ int	repeatinterval[] = { 30, 120, 600 };
+ #define	fu_uname	f_un.f_uname
+ #define	fu_forw_hname	f_un.f_forw.f_hname
+@@ -325,10 +331,12 @@ static int repeatinterval[] = { 30, 120,
  #define F_USERS		5		/* list of users */
  #define F_WALL		6		/* everyone logged on */
  #define F_PIPE		7		/* pipe to program */
 +#define F_RING		8		/* ring buffer (circular log) */
  
--const char *TypeNames[8] = {
-+const char *TypeNames[9] = {
+ static const char *TypeNames[] = {
  	"UNUSED",	"FILE",		"TTY",		"CONSOLE",
 -	"FORW",		"USERS",	"WALL",		"PIPE"
 +	"FORW",		"USERS",	"WALL",		"PIPE",
 +	"RING"
  };
  
- static struct filed *Files;	/* Log files that we write to */
-@@ -344,6 +353,8 @@ static int	skip_message(const char *, co
- static void	printline(const char *, char *, int);
+ static STAILQ_HEAD(, filed) fhead =
+@@ -407,6 +415,8 @@ static int	skip_message(const char *, co
+ static void	parsemsg(const char *, char *);
  static void	printsys(char *);
  static int	p_open(const char *, pid_t *);
 +static ssize_t	rbwrite(struct filed *, char *, size_t);
 +static ssize_t	rbwritev(struct filed *, struct iovec *, int);
- static void	readklog(void);
  static void	reapchild(int);
  static const char *ttymsg_check(struct iovec *, int, char *, int);
-@@ -378,6 +389,11 @@ close_filed(struct filed *f)
+ static void	usage(void);
+@@ -440,6 +450,11 @@ close_filed(struct filed *f)
  	case F_PIPE:
- 		f->f_un.f_pipe.f_pid = 0;
+ 		f->fu_pipe_pid = 0;
  		break;
 +	case F_RING:
 +		(void)munmap(f->f_un.f_ring.f_footer,
@@ -64,15 +55,14 @@
  	}
  	(void)close(f->f_file);
  	f->f_file = -1;
-@@ -1355,6 +1371,20 @@ fprintlog(struct filed *f, int flags, co
+@@ -1733,6 +1748,19 @@ fprintlog_write(struct filed *f, struct 
  		}
  		break;
  
 +	case F_RING:
 +		dprintf(" %s\n", f->f_un.f_ring.f_rname);
-+		v->iov_base = "\n";
-+		v->iov_len = 1;
-+		if (rbwritev(f, iov, 7)==-1) {
++		iovlist_append(il, "\n");
++		if (rbwritev(f, il->iov, 7)==-1) {
 +			int e = errno;
 +			(void)munmap(f->f_un.f_ring.f_footer,sizeof(struct clog_footer));
 +			(void)close(f->f_file);
@@ -83,9 +73,9 @@
 +		break;
 +
  	case F_PIPE:
- 		dprintf(" %s\n", f->f_un.f_pipe.f_pname);
- 		v->iov_base = lf;
-@@ -1832,6 +1862,7 @@ init(int signo)
+ 		dprintf(" %s\n", f->fu_pipe_pname);
+ 		iovlist_append(il, "\n");
+@@ -2393,6 +2421,7 @@ init(int signo)
  		case F_FORW:
  		case F_CONSOLE:
  		case F_TTY:
@@ -93,7 +83,7 @@
  			close_filed(f);
  			break;
  		case F_PIPE:
-@@ -1904,6 +1935,10 @@ init(int signo)
+@@ -2474,6 +2503,10 @@ init(int signo)
  				}
  				break;
  
@@ -102,9 +92,9 @@
 +				break;
 +
  			case F_PIPE:
- 				printf("%s", f->f_un.f_pipe.f_pname);
+ 				printf("%s", f->fu_pipe_pname);
  				break;
-@@ -2174,6 +2209,42 @@ cfline(const char *line, struct filed *f
+@@ -2754,6 +2787,42 @@ cfline(const char *line, const char *pro
  		}
  		break;
  
@@ -145,10 +135,10 @@
 +		break;
 +	}
  	case '|':
- 		f->f_un.f_pipe.f_pid = 0;
- 		(void)strlcpy(f->f_un.f_pipe.f_pname, p + 1,
-@@ -2779,6 +2850,53 @@ deadq_remove(pid_t pid)
- 	return (0);
+ 		f->fu_pipe_pid = 0;
+ 		(void)strlcpy(f->fu_pipe_pname, p + 1,
+@@ -3358,6 +3427,53 @@ deadq_removebypid(pid_t pid)
+ 	return (deadq_remove(dq));
  }
  
 +static ssize_t
