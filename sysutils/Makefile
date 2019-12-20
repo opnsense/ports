@@ -204,6 +204,7 @@
     SUBDIR += cpu-x
     SUBDIR += cpuburn
     SUBDIR += cpuid
+    SUBDIR += cpuid2cpuflags
     SUBDIR += cpulimit
     SUBDIR += cpupdate
     SUBDIR += cramfs
@@ -890,8 +891,6 @@
     SUBDIR += pftables
     SUBDIR += pftop
     SUBDIR += phantom
-    SUBDIR += php71-fileinfo
-    SUBDIR += php71-posix
     SUBDIR += php72-fileinfo
     SUBDIR += php72-posix
     SUBDIR += php73-fileinfo
@@ -1414,6 +1413,7 @@
     SUBDIR += vbetool
     SUBDIR += vchanger
     SUBDIR += vcp
+    SUBDIR += vector
     SUBDIR += videogen
     SUBDIR += vii
     SUBDIR += vils
