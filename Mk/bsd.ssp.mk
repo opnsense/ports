@@ -4,8 +4,8 @@
 SSP_Include_MAINTAINER=	portmgr@FreeBSD.org
 
 .if !defined(SSP_UNSAFE) && \
-    (${MACHINE} != "mips")
-# Overridable as a user may want to use -fstack-protector
+    (! ${ARCH:Mmips*})
+# Overridable as a user may want to use -fstack-protector-all
 SSP_CFLAGS?=	-fstack-protector-all
 CFLAGS+=	${SSP_CFLAGS}
 LDFLAGS+=	${SSP_CFLAGS}
