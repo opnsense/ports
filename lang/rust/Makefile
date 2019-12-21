@@ -40,7 +40,7 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libgit2.so:devel/libgit2 \
 		libssh2.so:security/libssh2
 
-USES=		pkgconfig python:3.3+,build ssl tar:xz
+USES=		pkgconfig python:build ssl tar:xz
 
 CONFLICTS_INSTALL?=	rust-nightly
 
