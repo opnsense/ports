@@ -21,13 +21,14 @@ RUN_DEPENDS=	${PHPBASE}/lib/php/${PHP_EXT_DIR}/psr.so:devel/pecl-psr@${PHP_FLAVO
 USES=		php:ext
 USE_PHP=	hash:build json:build pdo:build session
 PHP_MOD_PRIO=	30
-IGNORE_WITH_PHP=74
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	phalcon
 GH_PROJECT=	c${PORTNAME}
 
 CFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-Dulong=zend_ulong # PHP 7.4 build fix
+
 CONFIGURE_ARGS=	--enable-phalcon
 
 .include <bsd.port.pre.mk>
