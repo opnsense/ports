@@ -330,6 +330,7 @@
     SUBDIR += mediawiki131
     SUBDIR += mediawiki132
     SUBDIR += mediawiki133
+    SUBDIR += mediawiki134
     SUBDIR += mergelog
     SUBDIR += mhonarc
     SUBDIR += micro_httpd
@@ -1627,6 +1628,7 @@
     SUBDIR += py-flask-assets
     SUBDIR += py-flask-bootstrap
     SUBDIR += py-flask-cache
+    SUBDIR += py-flask-collect
     SUBDIR += py-flask-compress
     SUBDIR += py-flask-cors
     SUBDIR += py-flask-flatpages

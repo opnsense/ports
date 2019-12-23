@@ -31,7 +31,6 @@
     SUBDIR += chaiscript
     SUBDIR += chez-scheme
     SUBDIR += chibi-scheme
-    SUBDIR += chicken
     SUBDIR += chicken5
     SUBDIR += cim
     SUBDIR += cjs
@@ -378,6 +377,7 @@
     SUBDIR += v8
     SUBDIR += vala
     SUBDIR += visualworks
+    SUBDIR += voc
     SUBDIR += yabasic
     SUBDIR += yap
     SUBDIR += yap-devel
