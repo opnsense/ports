@@ -2,6 +2,7 @@
 
 PORTNAME=	compute-runtime
 DISTVERSION=	19.50.15079
+PORTREVISION=	2
 CATEGORIES=	lang
 PKGNAMEPREFIX=	intel-
 
@@ -9,7 +10,7 @@ PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	fb8df1a328e4.patch:-p1
 
 MAINTAINER=	jbeich@FreeBSD.org
-COMMENT=	OpenCL library for Intel HD 5000 (Gen8) or newer
+COMMENT=	OpenCL implementation for Intel HD 5000 (Gen8) or newer
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

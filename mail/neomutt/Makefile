@@ -20,6 +20,7 @@ CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 USE_GITHUB=	yes
 USE_PERL5=	build
+MAKE_JOBS_UNSAFE=	yes
 
 HAS_CONFIGURE=	yes
 

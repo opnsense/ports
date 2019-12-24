@@ -1636,7 +1636,9 @@
     SUBDIR += py-flask-marshmallow
     SUBDIR += py-flask-migrate
     SUBDIR += py-flask-moment
+    SUBDIR += py-flask-mongoengine
     SUBDIR += py-flask-oauthlib
+    SUBDIR += py-flask-peewee
     SUBDIR += py-flask-principal
     SUBDIR += py-flask-restful
     SUBDIR += py-flask-restplus
