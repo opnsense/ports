@@ -3,6 +3,7 @@
 
 PORTNAME=	astk
 DISTVERSION=	2019.0-1
+PORTREVISION=	1
 CATEGORIES=	cad
 .if !defined(CLIENT_SEUL)
 PKGNAMESUFFIX=	-serveur
@@ -14,6 +15,9 @@ MAINTAINER=	thierry@FreeBSD.org
 COMMENT?=	Graphical interface for Code_Aster (server side)
 
 LICENSE=	GPLv2
+
+NOT_FOR_ARCHS=		armv6 armv7 i386 mips powerpc
+NOT_FOR_ARCHS_REASON=	ARG_MAX is too small for Code_Aster on 32 bits systems
 
 #-----------------------------------------------------------------------
 # You may define these options:
@@ -32,7 +36,7 @@ RUN_DEPENDS+=	${SHELL_INSTALL_ASTER}:shells/${SHIADEP}
 
 USES=		gettext
 .if !defined(CLIENT_SEUL)
-USES+=		python:3.6 shebangfix tk:build
+USES+=		python:3.6+ shebangfix tk:build
 SHEBANG_FILES=	unittest/run_test.py
 .else
 USES+=		tk
@@ -59,7 +63,7 @@ conf_dir=	${WRKSRC}/etc/astkrc
 
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD && ((${OSREL:R} == 12 && ${OSVERSION} < 1201506)	\
+.if ${OPSYS} == FreeBSD && ((${OSREL:R} <= 12 && ${OSVERSION} < 1201506)	\
 			|| (${OSREL:R} > 12 && ${OSVERSION} < 1300068))
 # ASTK is not useful without french/aster
 IGNORE=	a larger value of ARG_MAX is needed for Code_Aster, please upgrade your system

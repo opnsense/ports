@@ -3,12 +3,16 @@
 
 PORTNAME=	aster
 DISTVERSION=	${ASTER_DISTVERSION}
+PORTREVISION=	1
 CATEGORIES=	french cad
 
 MAINTAINER=	thierry@FreeBSD.org
 COMMENT=	Code_Aster finite element method solver
 
 LICENSE=	GPLv2
+
+NOT_FOR_ARCHS=		armv6 armv7 i386 mips powerpc
+NOT_FOR_ARCHS_REASON=	ARG_MAX is too small for Code_Aster on 32 bits systems
 
 #-----------------------------------------------------------------------
 # You may define these options:
@@ -45,7 +49,7 @@ LIB_DEPENDS+=	libhdf5.so:science/hdf5				\
 RUN_DEPENDS+=	${SHELL_INSTALL_ASTER}:shells/${SHIADEP}	\
 		astk-serveur>0:cad/astk-serveur
 
-USES=		bison fortran gettext python:3.6 qt:5 tk
+USES=		bison fortran gettext python:3.6+ qt:5 tk
 USE_BINUTILS=	yes
 USE_QT=		linguisttools_build
 
@@ -83,7 +87,7 @@ INTERACTIVE_SCRIPTS=	check_compilers.py setup.py
 .include "${.CURDIR}/../../french/aster/bsd.aster.mk"
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD && ((${OSREL:R} == 12 && ${OSVERSION} < 1201506)	\
+.if ${OPSYS} == FreeBSD && ((${OSREL:R} <= 12 && ${OSVERSION} < 1201506)	\
 			|| (${OSREL:R} > 12 && ${OSVERSION} < 1300068))
 BROKEN=	a larger value of ARG_MAX is needed for Code_Aster, please upgrade your system
 .endif
