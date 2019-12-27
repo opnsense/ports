@@ -845,7 +845,6 @@
     SUBDIR += gnatpython
     SUBDIR += gnome-builder
     SUBDIR += gnome-common
-    SUBDIR += gnome-js-common
     SUBDIR += gnome-vfs
     SUBDIR += gnome-vfs-reference
     SUBDIR += gnome-vfsmm
@@ -1287,7 +1286,6 @@
     SUBDIR += liboil
     SUBDIR += libol
     SUBDIR += libolecf
-    SUBDIR += liboobs
     SUBDIR += libopenbsd
     SUBDIR += libopencm3
     SUBDIR += libopensync
