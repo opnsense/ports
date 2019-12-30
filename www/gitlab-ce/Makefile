@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	12.6.0
+PORTVERSION=	12.6.1
 PORTREVISION=	1
 CATEGORIES=	www devel
 
@@ -126,7 +126,7 @@ MY_DEPENDS=	git>=2.22.2:devel/git \
 	rubygem-rack-timeout>=0:www/rubygem-rack-timeout \
 	rubygem-state_machines-activerecord>=0.6.0<0.7.0:databases/rubygem-state_machines-activerecord \
 	rubygem-acts-as-taggable-on>=6.0<7.0:www/rubygem-acts-as-taggable-on \
-	rubygem-sidekiq>=5.2.7<5.3.0:devel/rubygem-sidekiq \
+	rubygem-sidekiq5>=5.2.7<5.3.0:devel/rubygem-sidekiq5 \
 	rubygem-sidekiq-cron>=1.0<2.0:devel/rubygem-sidekiq-cron \
 	rubygem-redis-namespace>=1.6.0<1.7.0:databases/rubygem-redis-namespace \
 	rubygem-gitlab-sidekiq-fetcher=0.5.2:devel/rubygem-gitlab-sidekiq-fetcher \
@@ -240,7 +240,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 GL_PROJECT=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT=	fc376e40baf83550d228e2cbfd4be00d3825b8c0
+GL_COMMIT=	a0094541f8725b2f9852086033be08d20caa4f01
 
 USERS=	git
 GROUPS=	git

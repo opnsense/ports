@@ -1633,6 +1633,7 @@
     SUBDIR += py-flask-compress
     SUBDIR += py-flask-cors
     SUBDIR += py-flask-flatpages
+    SUBDIR += py-flask-json
     SUBDIR += py-flask-login
     SUBDIR += py-flask-marshmallow
     SUBDIR += py-flask-migrate
@@ -1969,6 +1970,7 @@
     SUBDIR += rubygem-anemone
     SUBDIR += rubygem-asana
     SUBDIR += rubygem-async-http
+    SUBDIR += rubygem-async-pool
     SUBDIR += rubygem-async-rest
     SUBDIR += rubygem-async_sinatra
     SUBDIR += rubygem-atlassian-jwt
