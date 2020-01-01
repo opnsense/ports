@@ -93,7 +93,11 @@ check-depends::
 
 OPENSSLBASE=		${LOCALBASE}
 
+.  if exists(${PORTSDIR}/opnsense/${SSL_DEFAULT}/Makefile)
+OPENSSL_PORT=		opnsense/${SSL_DEFAULT}
+.  else
 OPENSSL_PORT=		security/${SSL_DEFAULT}
+.  endif
 
 # Get OPENSSL_SHLIBVER from the port
 .sinclude <${PORTSDIR}/${OPENSSL_PORT}/version.mk>
