@@ -3,26 +3,22 @@
 
 PORTNAME=	openssl
 PORTVERSION=	1.0.2u
-PORTEPOCH=	1
 CATEGORIES=	security devel
 MASTER_SITES=	http://www.openssl.org/source/ \
 		ftp://ftp.cert.dfn.de/pub/tools/net/openssl/source/
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION:C/[a-z]$//}
+PKGNAMESUFFIX=	102
 
-MAINTAINER=	brnrd@FreeBSD.org
+MAINTAINER=	franco@opnsense.org
 COMMENT=	SSL and crypto library
 
 LICENSE=	OpenSSL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-DEPRECATED=		OpenSSL 1.0.2 is End-of-Life 2019-12-31 at which \
-			time this port will update to 1.1.1 branch
-EXPIRATION_DATE=	2019-12-31
-
 OPTIONS_DEFINE=		DOCS MAN3 PADLOCK RFC3779 SHARED THREADS ZLIB
 CONFLICTS_INSTALL=	libressl-[0-9]* \
 			libressl-devel-[0-9]* \
-			openssl111-[0-9]*
+			openssl-[0-9]*
 
 OPTIONS_DEFAULT=	ASM MD2 MAN3 SCTP SHARED SSE2 SSL2 SSL3 THREADS
 OPTIONS_DEFINE_amd64=	EC
