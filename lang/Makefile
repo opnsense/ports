@@ -119,7 +119,6 @@
     SUBDIR += gnatdroid-binutils-x86
     SUBDIR += gnatdroid-sysroot
     SUBDIR += gnatdroid-sysroot-x86
-    SUBDIR += gnatdroid-x86
     SUBDIR += gnu-apl
     SUBDIR += gnu-cobol
     SUBDIR += gnustep-base
@@ -172,7 +171,6 @@
     SUBDIR += libobjc2
     SUBDIR += librep
     SUBDIR += libstdc++_stldoc_4.2.2
-    SUBDIR += linux-c6-tcl85
     SUBDIR += linux-c7-tcl85
     SUBDIR += linux-dotnet-cli
     SUBDIR += linux-dotnet-runtime
