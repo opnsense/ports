@@ -9972,9 +9972,9 @@ devel/alf||2018-03-02|Has expired: Abandonware, unused in the ports tree
 net/remmina-plugin-gnome|net/remmina-plugin-secret|2018-03-04|Renamed upstream
 databases/php71-memcache|databases/php-memcache@php71|2018-03-08|Merge into a flavorized version
 databases/php72-memcache|databases/php-memcache@php72|2018-03-08|Merge into a flavorized version
-ftp/php71-fastdfs|ftp/php-fastdfs@php71|2018-03-08|Merge into flavorized version
+ftp/php71-fastdfs|ftp/php-fastdfs@php72|2018-03-08|Merge into flavorized version
 ftp/php72-fastdfs|ftp/php-fastdfs@php72|2018-03-08|Merge into flavorized version
-www/unit-php71|www/unit-php@php71|2018-03-08|Merge into flavorized version
+www/unit-php71|www/unit-php@php72|2018-03-08|Merge into flavorized version
 www/unit-php72|www/unit-php@php72|2018-03-08|Merge into flavorized version
 databases/php70-memcached|databases/php-memcached|2018-03-08|Move to flavorized version
 www/openxmldir||2018-03-08|Has expired: Unmaintained, all www files wrongly belongs to www user
@@ -13687,7 +13687,6 @@ security/linux-c6-libtasn1|security/linux-c7-libtasn1|2019-12-31|Has expired: Su
 security/linux-c6-nss|security/linux-c7-nss|2019-12-31|Has expired: Superseded by CentOS 7
 security/linux-c6-openssl|emulators/linux_base-c7|2019-12-31|Has expired: Superseded by CentOS 7
 security/linux-c6-pam||2019-12-31|Has expired: Superseded by CentOS 7
-security/openssl||2019-12-31|Has expired: OpenSSL 1.0.2 is End-of-Life 2019-12-31 at which  time this port will update to 1.1.1 branch
 sysutils/eventlog||2019-12-31|Has expired: No longer supported by Balabit
 sysutils/linux-c6-lttng-ust|sysutils/linux-c7-lttng-ust|2019-12-31|Has expired: Superseded by CentOS 7
 sysutils/linux-c6-userspace-rcu|sysutils/linux-c7-userspace-rcu|2019-12-31|Has expired: Superseded by CentOS 7
