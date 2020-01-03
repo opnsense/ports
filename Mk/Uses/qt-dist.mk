@@ -10,6 +10,8 @@
 #
 # Usage
 #    qt-dist:<version>[,yes|modulename]
+#
+# MAINTAINER:	kde@FreeBSD.org
 
 .if !defined(_QT_DIST_MK_INCLUDED)
 _QT_DIST_MK_INCLUDED=	qt-dist.mk
@@ -110,7 +112,8 @@ EXTRACT_SUFX?=		.tar.xz
 # Other ports from other Qt modules will automatically build examples and
 # tests if the directories exist because of mkspecs/features/qt_parts.prf.
 EXTRACT_AFTER_ARGS?=	${DISTNAME:S,$,/examples,:S,^,--exclude ,} \
-			${DISTNAME:S,$,/tests,:S,^,--exclude ,}
+			${DISTNAME:S,$,/tests,:S,^,--exclude ,} \
+			--no-same-owner --no-same-permissions
 .  endif # ! ${_QT_VER:M5}
 
 CONFIGURE_ENV+=		MAKE="${MAKE:T}"
