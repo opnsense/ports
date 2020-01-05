@@ -883,7 +883,6 @@
     SUBDIR += goswagger
     SUBDIR += govendor
     SUBDIR += gperf
-    SUBDIR += gperf31
     SUBDIR += gpm
     SUBDIR += gprbuild
     SUBDIR += gputils
@@ -4302,6 +4301,7 @@
     SUBDIR += py-colorful
     SUBDIR += py-colorlog
     SUBDIR += py-columnize
+    SUBDIR += py-commandlines
     SUBDIR += py-conditional
     SUBDIR += py-configargparse
     SUBDIR += py-configobj
@@ -4491,6 +4491,7 @@
     SUBDIR += py-greenlet
     SUBDIR += py-grizzled
     SUBDIR += py-grouch
+    SUBDIR += py-grpc-google-iam-v1
     SUBDIR += py-grpcio
     SUBDIR += py-grpcio-gcp
     SUBDIR += py-grpcio-tools
@@ -4603,6 +4604,7 @@
     SUBDIR += py-lazr.uri
     SUBDIR += py-lazy
     SUBDIR += py-lazy-object-proxy
+    SUBDIR += py-libcst
     SUBDIR += py-libioc
     SUBDIR += py-libiocage
     SUBDIR += py-liblarch
@@ -4773,6 +4775,7 @@
     SUBDIR += py-pipdeptree
     SUBDIR += py-pipenv
     SUBDIR += py-pipreqs
+    SUBDIR += py-pipx
     SUBDIR += py-pkgconfig
     SUBDIR += py-plac
     SUBDIR += py-plan
@@ -5127,6 +5130,7 @@
     SUBDIR += py-typed-ast
     SUBDIR += py-typing
     SUBDIR += py-typing-extensions
+    SUBDIR += py-typing-inspect
     SUBDIR += py-tzlocal
     SUBDIR += py-u-msgpack-python
     SUBDIR += py-ua_parser
@@ -5144,6 +5148,7 @@
     SUBDIR += py-urwidtrees
     SUBDIR += py-usb
     SUBDIR += py-user_agents
+    SUBDIR += py-userpath
     SUBDIR += py-utils
     SUBDIR += py-uvloop
     SUBDIR += py-validators
@@ -6633,7 +6638,6 @@
     SUBDIR += yaml2argdata
     SUBDIR += yasm
     SUBDIR += yasm-devel
-    SUBDIR += yosys
     SUBDIR += youcompleteme
     SUBDIR += z80-asm
     SUBDIR += z80asm
