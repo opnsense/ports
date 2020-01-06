@@ -10405,7 +10405,6 @@ games/crafty-open-enormous||2018-08-21|Has expired: Broken for more than 5 month
 games/crafty-open-medium||2018-08-21|Has expired: Broken for more than 5 months
 math/jakarta-commons-math||2018-08-21|Has expired: Broken for more than 5 months
 math/hfst||2018-08-21|Has expired: Broken for more than 5 months
-math/octave-forge-communications||2018-08-21|Has expired: Broken for more than 5 months
 lang/v8-devel||2018-08-21|Has expired: Broken for more than 5 months
 sysutils/rubygem-fluentd010||2018-08-21|Has expired: Broken for more than 5 months
 mail/mutt14-lite||2018-08-21|Remove expired slave port
@@ -12913,7 +12912,6 @@ irc/irssi-otr||2019-09-05|Has expired: Broken for more than 6 months
 mail/p5-Mail-ClamAV||2019-09-05|Has expired: Broken for more than 6 months
 mail/qmail-ldap||2019-09-05|Has expired: Broken for more than 6 months
 math/fityk||2019-09-05|Has expired: Broken for more than 6 months
-math/octave-forge-mechanics||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-parallel||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-strings||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-tisean||2019-09-05|Has expired: Broken for more than 6 months
@@ -13105,7 +13103,6 @@ benchmarks/filebench||2019-10-16|Has expired: Unfetchable, unmaintained
 biology/chemeq||2019-10-16|Has expired: Unfetchable, unmaintained
 biology/linux-foldingathome||2019-10-16|Has expired: Unfetchable, unmaintained
 cad/dxf2fig||2019-10-16|Has expired: Unfetchable, unmaintained
-cad/gerbv||2019-10-16|Has expired: Unfetchable, unmaintained
 comms/gsmlib||2019-10-16|Has expired: Unfetchable, unmaintained
 comms/nokryptia||2019-10-16|Has expired: Unfetchable, unmaintained
 databases/mrtg-mysql-load||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -13724,3 +13721,5 @@ lang/erlang-runtime17|lang/erlang-runtime21|2020-01-01|Has expired: No longer su
 lang/erlang-runtime18|lang/erlang-runtime21|2020-01-01|Has expired: No longer supported upstream, use lang/erlang >=21
 lang/erlang-runtime19|lang/erlang-runtime21|2020-01-01|Has expired: No longer supported upstream, use lang/erlang >=21
 security/openssl111|security/openssl|2020-01-01|Upgrade security/openssl to 1.1.1 as promised in deprecation message
+devel/gperf31|devel/gperf|2020-01-04|No longer needed as devel/gperf has been updated to 3.1
+devel/yosys|cad/yosys|2020-01-04|Move to a proper category
