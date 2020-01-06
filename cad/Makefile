@@ -18,6 +18,7 @@
     SUBDIR += calculix-ccx
     SUBDIR += caneda
     SUBDIR += cascade
+    SUBDIR += cascade-compiler
     SUBDIR += chipvault
     SUBDIR += cura-engine
     SUBDIR += digital
@@ -34,6 +35,7 @@
     SUBDIR += gdsreader
     SUBDIR += gdt
     SUBDIR += geda
+    SUBDIR += gerbv
     SUBDIR += ghdl
     SUBDIR += gmsh
     SUBDIR += gnucap
@@ -104,6 +106,7 @@
     SUBDIR += tkgate
     SUBDIR += tochnog
     SUBDIR += transcalc
+    SUBDIR += ujprog
     SUBDIR += varkon
     SUBDIR += verilator
     SUBDIR += verilog-mode.el
