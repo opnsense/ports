@@ -26,6 +26,7 @@
     SUBDIR += R-cran-gridBase
     SUBDIR += R-cran-gridExtra
     SUBDIR += R-cran-munsell
+    SUBDIR += R-cran-pROC
     SUBDIR += R-cran-pixmap
     SUBDIR += R-cran-png
     SUBDIR += R-cran-qcc
@@ -66,6 +67,7 @@
     SUBDIR += barcode
     SUBDIR += batik
     SUBDIR += bitmap
+    SUBDIR += blend2d
     SUBDIR += blender
     SUBDIR += blender-doc
     SUBDIR += bmeps
