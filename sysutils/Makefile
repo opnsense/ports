@@ -255,7 +255,6 @@
     SUBDIR += docker
     SUBDIR += docker-compose
     SUBDIR += docker-credential-pass
-    SUBDIR += docker-freebsd
     SUBDIR += docker-machine
     SUBDIR += doctl
     SUBDIR += doinkd
@@ -1173,6 +1172,7 @@
     SUBDIR += safe-rm
     SUBDIR += safecat
     SUBDIR += safecopy
+    SUBDIR += samdruckerclientshell
     SUBDIR += samefile
     SUBDIR += samesame
     SUBDIR += sample
