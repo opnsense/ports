@@ -134,6 +134,7 @@
     SUBDIR += aphpunit
     SUBDIR += api-sanity-autotest
     SUBDIR += apitrace
+    SUBDIR += app-builder
     SUBDIR += appstream-glib
     SUBDIR += apr1
     SUBDIR += apr2
@@ -4244,6 +4245,7 @@
     SUBDIR += py-cachecontrol
     SUBDIR += py-cached-property
     SUBDIR += py-cachetools
+    SUBDIR += py-cachetools3
     SUBDIR += py-cachy
     SUBDIR += py-calendar
     SUBDIR += py-canonicaljson
@@ -5810,7 +5812,13 @@
     SUBDIR += rubygem-ditz
     SUBDIR += rubygem-diva
     SUBDIR += rubygem-docile
+    SUBDIR += rubygem-dry-configurable
+    SUBDIR += rubygem-dry-container
+    SUBDIR += rubygem-dry-core
+    SUBDIR += rubygem-dry-equalizer
     SUBDIR += rubygem-dry-inflector
+    SUBDIR += rubygem-dry-logic
+    SUBDIR += rubygem-dry-types
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-dynflow
     SUBDIR += rubygem-edavis10-object_daddy
@@ -6538,6 +6546,7 @@
     SUBDIR += tigcc
     SUBDIR += tijmp
     SUBDIR += tinycbor
+    SUBDIR += tinygo
     SUBDIR += tinylaf
     SUBDIR += tkcon
     SUBDIR += tkcvs
