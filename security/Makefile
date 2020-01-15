@@ -963,6 +963,7 @@
     SUBDIR += py-pyotp
     SUBDIR += py-pyptlib
     SUBDIR += py-pysaml2
+    SUBDIR += py-pysaml24
     SUBDIR += py-pyscard
     SUBDIR += py-pysha3
     SUBDIR += py-pysodium

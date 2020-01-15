@@ -1073,6 +1073,7 @@
     SUBDIR += py-pyenet
     SUBDIR += py-pygeoip
     SUBDIR += py-pyicap
+    SUBDIR += py-pynamecheap
     SUBDIR += py-pynmsg
     SUBDIR += py-pynsq
     SUBDIR += py-pypcap
@@ -1123,6 +1124,7 @@
     SUBDIR += py-suds-jurko
     SUBDIR += py-terminado
     SUBDIR += py-tofu
+    SUBDIR += py-transip
     SUBDIR += py-twitter-tools
     SUBDIR += py-txamqp
     SUBDIR += py-txrestapi

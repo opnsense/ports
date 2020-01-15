@@ -13,6 +13,8 @@ LICENSE_NAME=	unknown
 LICENSE_FILE=	${WRKSRC}/../LICENSE.md
 LICENSE_PERMS=	dist-mirror no-dist-sell pkg-mirror no-pkg-sell auto-accept
 
+ONLY_FOR_ARCHS=	amd64
+
 USES=		sdl cmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	TerryCavanagh
