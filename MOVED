@@ -10805,7 +10805,6 @@ math/surf||2018-12-21|Has expired: Uses obsolete glib12
 math/msieve||2018-12-21|Has expired: Broken for more than 6 months
 math/octave-forge-fl-core||2018-12-21|Has expired: Broken for more than 6 months
 math/octave-forge-pdb||2018-12-21|Has expired: Broken for more than 6 months
-math/octave-forge-audio||2018-12-21|Has expired: Broken for more than 6 months
 math/geg||2018-12-21|Has expired: Uses obsolete glib12
 x11/gdkxft||2018-12-21|Has expired: Uses obsolete glib12
 x11/gtk-theme-switch||2018-12-21|Has expired: Uses obsolete glib12
@@ -10935,7 +10934,6 @@ devel/pecl-spl_types||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/pecl-jsmin2||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/pecl-uri_template||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/pecl-params||2018-12-30|Has expired: Works only with EOL php 5.6
-devel/pecl-expect||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/php5-dav||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/php5-pinba||2018-12-30|Has expired: Works only with EOL php 5.6
 devel/pecl-htscanner||2018-12-30|Has expired: Works only with EOL php 5.6
@@ -11925,7 +11923,6 @@ x11-toolkits/qt4-gui||2019-03-16|Has expired: Qt4 has been EOL since december 20
 x11-toolkits/qt4pas||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11-toolkits/qwt5||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11-toolkits/qwt5-designerplugin||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-x11-toolkits/soqt||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 x11-wm/qlwm||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/dream||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/liblastfm||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -11939,7 +11936,6 @@ graphics/iccexamin||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/openfx-io||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 security/yubikey-piv-manager||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 textproc/xxdiff-scripts||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-graphics/py-pivy||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 security/pinentry-qt4||2019-03-17|Has expired: Qt4 has been EOL since december 2015
 www/libsocialweb||2019-03-23|Project was archived upstream
 www/vimb-gtk2|www/vimb|2019-03-24|Merged into www/vimb
@@ -13750,3 +13746,9 @@ science/molden|biology/molden|2020-01-12|The duplicate port was removed in rev.5
 www/web2ldap||2020-01-13|Broken: unfechable and missing dependencies
 net-mgmt/flow-extract||2020-01-14|Has expired: marked BROKEN for more than 6 months
 textproc/pootle||2020-01-14|Has expired: Unamaintained, marked BROKEN for more than 5 months
+cad/elmerfem|science/elmerfem|2020-01-15|Move to a proper category
+graphics/bugle|devel/apitrace|2020-01-15|Has expired: no longer actively developed; use devel/apitrace instead
+x11-toolkits/soqt-devel|x11-toolkits/soqt|2020-01-17|This is now the stable version
+graphics/py-pivy-devel|graphics/py-pivy|2020-01-17|This is now the stable version
+net/py-coherence||2020-01-18|fails with python-3.X, and python-2.7 is EOLed (GH bug#32)
+net/py-upnp-inspector||2020-01-18|Missing dependency: net/py-coherence is python-2.7-only
