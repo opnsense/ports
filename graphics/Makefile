@@ -422,6 +422,7 @@
     SUBDIR += libafterimage
     SUBDIR += libansilove
     SUBDIR += libart_lgpl
+    SUBDIR += libavif
     SUBDIR += libboard
     SUBDIR += libbpg
     SUBDIR += libcaca
@@ -851,6 +852,7 @@
     SUBDIR += py-pyepsg
     SUBDIR += py-pygal
     SUBDIR += py-pyganim
+    SUBDIR += py-pygeoapi
     SUBDIR += py-pyglet
     SUBDIR += py-pyglet12
     SUBDIR += py-pygooglechart
@@ -890,6 +892,7 @@
     SUBDIR += qgis
     SUBDIR += qgis-ltr
     SUBDIR += qiv
+    SUBDIR += qr-code-generator
     SUBDIR += qt5-3d
     SUBDIR += qt5-graphicaleffects
     SUBDIR += qt5-imageformats
