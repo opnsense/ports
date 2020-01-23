@@ -21,7 +21,7 @@ USE_HARDENING=	safestack
 OPTIONS_DEFINE=	DOCS EXAMPLES NLS
 OPTIONS_SUB=	yes
 
-USES=		charsetfix localbase makeinfo perl5 tar:xz
+USES=		charsetfix compiler:c11 localbase makeinfo perl5 tar:xz
 USE_PERL5=	build
 
 CONFIGURE_ARGS=	--disable-yacc --enable-relocatable
