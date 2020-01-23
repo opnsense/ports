@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	poppler
-DISTVERSION=	0.82.0
-PORTREVISION?=	1
+DISTVERSION=	0.84.0
 CATEGORIES=	graphics print
 MASTER_SITES=	https://poppler.freedesktop.org/
 
@@ -23,7 +22,7 @@ LIB_DEPENDS=	libnspr4.so:devel/nspr \
 RUN_DEPENDS=	poppler-data>0:graphics/poppler-data
 
 USES=		compiler:c++11-lang cpe cmake:insource gnome jpeg libtool \
-		localbase pathfix pkgconfig tar:xz
+		localbase:ldflags pathfix pkgconfig tar:xz
 CPE_VENDOR=	freedesktop
 USE_GNOME=	cairo libxml2
 USE_LDCONFIG=	yes
