@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tesseract
-PORTVERSION=	4.1.0
-PORTREVISION=	3
+PORTVERSION=	4.1.1
 CATEGORIES=	graphics
 
 MAINTAINER=	pkubaj@FreeBSD.org
@@ -52,7 +51,7 @@ TOOLS_USE=	GNOME=cairo,glib20,pango
 
 .include <bsd.port.pre.mk>
 
-.if ${OSREL:R} >= 12 && ${OSVERSION} < 1201000
+.if ${CHOSEN_COMPILER_TYPE} == clang && !exists(/usr/include/omp.h)
 OPENMP_LIB_DEPENDS=libomp.so:devel/openmp
 .endif
 
