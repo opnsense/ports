@@ -18,7 +18,6 @@ BROKEN_SSL_REASON=	Node.js 8.x LTS requires OpenSSL >= 1.0.2 or the BUNDLED_SSL 
 ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386 powerpc64
 
 OPTIONS_DEFINE=	BUNDLED_SSL DOCS NLS DTRACE
-OPTIONS_DEFAULT=DTRACE
 OPTIONS_SUB=	yes
 
 .if !exists(/usr/sbin/dtrace)
