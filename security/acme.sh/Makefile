@@ -2,7 +2,7 @@
 
 PORTNAME=	acme.sh
 PORTVERSION=	2.8.5
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 
 MAINTAINER=	dvl@FreeBSD.org
@@ -16,7 +16,7 @@ GH_ACCOUNT=	Neilpang
 USERS=	acme
 GROUPS=	acme
 
-OPTIONS_DEFINE=	BINDTOOLS DOCS EXAMPLES IDN STANDALONE
+OPTIONS_DEFINE=	BINDTOOLS DOCS IDN STANDALONE
 OPTIONS_SINGLE=	HTTP
 OPTIONS_SINGLE_HTTP=	CURL WGET
 OPTIONS_DEFAULT=	CURL STANDALONE
@@ -47,12 +47,6 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
 	${MKDIR} ${STAGEDIR}/var/db/acme/.acme.sh ${STAGEDIR}/var/db/acme/certs
 	${INSTALL_DATA} ${FILESDIR}/account.conf.sample ${STAGEDIR}/var/db/acme/.acme.sh
-
-do-install-DOCS-on:
-	${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
-
-do-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/deploy ${STAGEDIR}${EXAMPLESDIR}/dnsapi
 	( cd ${WRKSRC} && ${COPYTREE_BIN} deploy ${STAGEDIR}${EXAMPLESDIR} )
 	( cd ${WRKSRC} && ${COPYTREE_BIN} dnsapi ${STAGEDIR}${EXAMPLESDIR} )
@@ -61,5 +55,9 @@ do-install-EXAMPLES-on:
 	${RLN} ${STAGEDIR}/${EXAMPLESDIR}/deploy ${STAGEDIR}/var/db/acme/.acme.sh
 	${RLN} ${STAGEDIR}/${EXAMPLESDIR}/dnsapi ${STAGEDIR}/var/db/acme/.acme.sh
 	${RLN} ${STAGEDIR}/${EXAMPLESDIR}/notify ${STAGEDIR}/var/db/acme/.acme.sh
+
+do-install-DOCS-on:
+	${MKDIR} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>
