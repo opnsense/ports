@@ -71,12 +71,14 @@
     SUBDIR += erlang-couchbeam
     SUBDIR += erlang-epgsql
     SUBDIR += erlang-eredis
+    SUBDIR += erlfdb
     SUBDIR += evolution-data-server
     SUBDIR += fastdb
     SUBDIR += firebird25-client
     SUBDIR += firebird25-server
     SUBDIR += fortytwo-bdb
     SUBDIR += foundationdb
+    SUBDIR += foundationdb-devel
     SUBDIR += fpc-dblib
     SUBDIR += fpc-fpindexer
     SUBDIR += fpc-gdbm
@@ -90,7 +92,6 @@
     SUBDIR += freetds
     SUBDIR += freetds-devel
     SUBDIR += frontbase-jdbc
-    SUBDIR += gadfly
     SUBDIR += galera
     SUBDIR += galera26
     SUBDIR += gdbm
@@ -190,7 +191,6 @@
     SUBDIR += mdcached
     SUBDIR += memcached
     SUBDIR += memcacheq
-    SUBDIR += metakit
     SUBDIR += monetdb
     SUBDIR += mongodb34
     SUBDIR += mongodb34-tools
@@ -244,7 +244,6 @@
     SUBDIR += ocaml-dbm
     SUBDIR += ocaml-mysql
     SUBDIR += ocaml-sqlite3
-    SUBDIR += openark-kit
     SUBDIR += opendbviewer
     SUBDIR += opendbx
     SUBDIR += opentsdb
@@ -750,8 +749,6 @@
     SUBDIR += pxtools
     SUBDIR += py-Elixir
     SUBDIR += py-MySQLdb
-    SUBDIR += py-MySQLdb55
-    SUBDIR += py-MySQLdb56
     SUBDIR += py-PyGreSQL
     SUBDIR += py-Pyrseas
     SUBDIR += py-agate-sql
@@ -775,7 +772,6 @@
     SUBDIR += py-fdb
     SUBDIR += py-firebirdsql
     SUBDIR += py-flask-sqlalchemy
-    SUBDIR += py-forgetsql
     SUBDIR += py-gdbm
     SUBDIR += py-geoalchemy
     SUBDIR += py-geoalchemy2
@@ -795,7 +791,6 @@
     SUBDIR += py-mysql-connector-python
     SUBDIR += py-mysql2pgsql
     SUBDIR += py-mysqlclient
-    SUBDIR += py-oops
     SUBDIR += py-oursql
     SUBDIR += py-peewee
     SUBDIR += py-peewee_migrate
@@ -836,7 +831,6 @@
     SUBDIR += py-redis
     SUBDIR += py-redis2
     SUBDIR += py-riak
-    SUBDIR += py-rrdtool_lgpl
     SUBDIR += py-sispy
     SUBDIR += py-south
     SUBDIR += py-sqlalchemy-migrate

@@ -3,7 +3,7 @@
 
 PORTNAME=	hotssh
 PORTVERSION=	0.2.7
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 
@@ -13,6 +13,9 @@ COMMENT=	HotSSH is an interface to Secure Shell, for GNOME and OpenSSH
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-02-28
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR} \
 		${LOCALBASE}/libdata/pkgconfig/dbus-glib-1.pc:devel/dbus-glib \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
@@ -21,7 +24,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}vte>=0:x11-toolkits/py-vte@${PY_FLAVOR}
 
-USE_GNOME=	glib20 gnomedocutils intltool libxslt pygobject pygtk2
+USE_GNOME=	glib20 intltool libxslt pygobject pygtk2
 USES=		gettext gnome python:2.7 tar:bzip2 waf
 INSTALLS_ICONS=	yes
 NO_ARCH=	yes

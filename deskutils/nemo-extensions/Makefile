@@ -3,12 +3,15 @@
 
 PORTNAME=	nemo-extensions
 PORTVERSION=	2.4.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	deskutils gnome
 DIST_SUBDIR=	gnome3
 
 MAINTAINER=	gustau.perez@gmail.com
 COMMENT=	File manager extensions for the Cinnamon desktop
+
+DEPRECATED=	Old, uses EOLed python27
+EXPIRATION_DATE=	2020-03-01
 
 BUILD_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme \
 		gtkdocize:textproc/gtk-doc \
@@ -33,7 +36,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	linuxmint
 GH_TAGNAME=	6c8ec3a
 
-USE_GNOME=	gconf2 gnomeprefix gnomedocutils gtksourceview3 intlhack \
+USE_GNOME=	gconf2 gnomeprefix gtksourceview3 intlhack \
 		introspection:build libxml2 pygtk2
 USES=		autoreconf:build gettext gmake gnome libtool pathfix pkgconfig \
 		python:2.7 shebangfix

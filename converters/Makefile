@@ -148,12 +148,10 @@
     SUBDIR += php74-iconv
     SUBDIR += php74-mbstring
     SUBDIR += psiconv
-    SUBDIR += py-bcode
     SUBDIR += py-bencode.py
     SUBDIR += py-bencoder
     SUBDIR += py-better-bencode
     SUBDIR += py-bsdconv
-    SUBDIR += py-iconv
     SUBDIR += py-rencode
     SUBDIR += py-text-unidecode
     SUBDIR += py-unidecode
