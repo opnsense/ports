@@ -20,7 +20,6 @@ MAN3_DESC=	Install API manpages (section 3)
 NC_DESC=	Install TLS-enabled netcat
 
 CONFLICTS_INSTALL=	libressl-devel-[0-9]* \
-			openssl102-[0-9]* \
 			openssl-[0-9]*
 
 NC_CONFIGURE_ENABLE=	nc
