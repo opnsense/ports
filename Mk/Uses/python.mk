@@ -625,7 +625,7 @@ CMAKE_ARGS+=	-DPython_ADDITIONAL_VERSIONS=${PYTHON_VER}
 
 # Python 3rd-party modules
 PYGAME=		${PYTHON_PKGNAMEPREFIX}game>0:devel/py-game@${PY_FLAVOR}
-PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>0:math/py-numpy@${PY_FLAVOR}
+PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.15,1:math/py-numpy@${PY_FLAVOR}
 
 # Common Python modules that can be needed but only for some versions of Python.
 .if ${PYTHON_REL} < 3500
@@ -635,7 +635,7 @@ PY_TYPING=
 .endif
 
 .if ${PYTHON_REL} < 3400
-PY_ENUM34=	${PYTHON_PKGNAMEPREFIX}enum34>0:devel/py-enum34@${PY_FLAVOR}
+PY_ENUM34=	${PYTHON_PKGNAMEPREFIX}enum34>=1.0.4:devel/py-enum34@${PY_FLAVOR}
 PY_ENUM_COMPAT=	${PYTHON_PKGNAMEPREFIX}enum-compat>0:devel/py-enum-compat@${PY_FLAVOR}
 PY_PATHLIB=	${PYTHON_PKGNAMEPREFIX}pathlib>0:devel/py-pathlib@${PY_FLAVOR}
 .else
