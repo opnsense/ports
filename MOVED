@@ -13751,7 +13751,7 @@ graphics/py-pivy-devel|graphics/py-pivy|2020-01-17|This is now the stable versio
 net/py-coherence||2020-01-18|fails with python-3.X, and python-2.7 is EOLed (GH bug#32)
 net/py-upnp-inspector||2020-01-18|Missing dependency: net/py-coherence is python-2.7-only
 security/py-pymacaroons-pynacl|security/py-pymacaroons|2020-01-20|Rename to match upstream naming
-math/jakarta-commons-math3|apache-commons-math|2020-01-24|Renamed upstream
+math/jakarta-commons-math3|math/apache-commons-math|2020-01-24|Renamed upstream
 audio/py-mpd2|audio/py-python-mpd2|2020-01-25|Rename to match upstream naming
 devel/py-microversion-parse|devel/py-microversion_parse|2020-01-25|Rename to match upstream naming
 audio/gstreamer1-plugins-spc|audio/gstreamer1-plugins-gme|2020-01-26|spc was removed inflavour for the gme plugin
@@ -14003,4 +14003,4 @@ x11-wm/plwm||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 games/vegastrike-data||2020-01-27|Removed
 textproc/gnome-doc-utils||2020-01-27|Abandoned upstream, Python 2.7 only
 java/jakarta-commons-discovery|java/apache-commons-discovery|2020-01-29|Renamed upstream
-java/jakarta-commons-commons-beanutils|apache-commons-beanutils|2020-01-30|Renamed upstream
+java/jakarta-commons-commons-beanutils|java/apache-commons-beanutils|2020-01-30|Renamed upstream
