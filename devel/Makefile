@@ -1422,6 +1422,7 @@
     SUBDIR += llvm
     SUBDIR += llvm-cheri
     SUBDIR += llvm-devel
+    SUBDIR += llvm10
     SUBDIR += llvm60
     SUBDIR += llvm70
     SUBDIR += llvm80
@@ -1746,6 +1747,7 @@
     SUBDIR += p5-AutoLoader
     SUBDIR += p5-AutoXS-Header
     SUBDIR += p5-B-C
+    SUBDIR += p5-B-COW
     SUBDIR += p5-B-Compiling
     SUBDIR += p5-B-Deobfuscate
     SUBDIR += p5-B-Flags
@@ -3932,6 +3934,7 @@
     SUBDIR += pragmarcs
     SUBDIR += premake
     SUBDIR += premake4
+    SUBDIR += premake5
     SUBDIR += projectcenter
     SUBDIR += protobuf
     SUBDIR += protobuf-c
@@ -4321,6 +4324,7 @@
     SUBDIR += py-dal
     SUBDIR += py-darcsver
     SUBDIR += py-darts.util.lru
+    SUBDIR += py-dask
     SUBDIR += py-dataclasses
     SUBDIR += py-datatest
     SUBDIR += py-dateparser
@@ -4349,6 +4353,7 @@
     SUBDIR += py-dis3
     SUBDIR += py-distlib
     SUBDIR += py-distorm
+    SUBDIR += py-distributed
     SUBDIR += py-dj22-django-rq
     SUBDIR += py-django-rq
     SUBDIR += py-django-rq-dashboard
@@ -4481,6 +4486,7 @@
     SUBDIR += py-gtfslib
     SUBDIR += py-gyp
     SUBDIR += py-hash_ring
+    SUBDIR += py-heapdict
     SUBDIR += py-hghooks
     SUBDIR += py-hgsubversion
     SUBDIR += py-hgtools
@@ -5002,7 +5008,6 @@
     SUBDIR += py-selectors2
     SUBDIR += py-selectors34
     SUBDIR += py-semantic_version
-    SUBDIR += py-semantic_version26
     SUBDIR += py-semver
     SUBDIR += py-serializable
     SUBDIR += py-serpent
@@ -5169,7 +5174,6 @@
     SUBDIR += py-wsgiutils
     SUBDIR += py-wsme
     SUBDIR += py-xarray
-    SUBDIR += py-xarray011
     SUBDIR += py-xattr
     SUBDIR += py-xcaplib
     SUBDIR += py-xdg
@@ -5200,6 +5204,7 @@
     SUBDIR += py-zc.buildout
     SUBDIR += py-zclockfile
     SUBDIR += py-zconfig
+    SUBDIR += py-zict
     SUBDIR += py-zipp
     SUBDIR += py-zope.annotation
     SUBDIR += py-zope.app.applicationcontrol
@@ -6054,6 +6059,7 @@
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-hashie-forbidden_attributes
     SUBDIR += rubygem-hashie2
+    SUBDIR += rubygem-hashie3
     SUBDIR += rubygem-health_check
     SUBDIR += rubygem-health_check26-rails5
     SUBDIR += rubygem-health_check26-rails52
@@ -6254,6 +6260,9 @@
     SUBDIR += rubygem-puppet-resource_api
     SUBDIR += rubygem-pygments.rb
     SUBDIR += rubygem-r18n-core
+    SUBDIR += rubygem-r18n-desktop
+    SUBDIR += rubygem-r18n-rails
+    SUBDIR += rubygem-r18n-rails-api
     SUBDIR += rubygem-rabl
     SUBDIR += rubygem-rabl-rails50
     SUBDIR += rubygem-racc
@@ -6574,7 +6583,6 @@
     SUBDIR += sonar-scanner-cli
     SUBDIR += sonarqube
     SUBDIR += sope2
-    SUBDIR += sope3
     SUBDIR += sope4
     SUBDIR += sord
     SUBDIR += sourcenav

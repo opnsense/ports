@@ -814,7 +814,6 @@
     SUBDIR += py-imageio24
     SUBDIR += py-imagesize
     SUBDIR += py-img2pdf
-    SUBDIR += py-imgurpython
     SUBDIR += py-leather
     SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
@@ -871,7 +870,6 @@
     SUBDIR += py-wand
     SUBDIR += py-webcolors
     SUBDIR += py-willow
-    SUBDIR += py-willow11
     SUBDIR += py-yaswfp
     SUBDIR += pymorph
     SUBDIR += qcomicbook
@@ -928,6 +926,7 @@
     SUBDIR += rubygem-gitlab_emoji
     SUBDIR += rubygem-goocanvas
     SUBDIR += rubygem-gruff
+    SUBDIR += rubygem-image_processing
     SUBDIR += rubygem-image_science
     SUBDIR += rubygem-imagesize
     SUBDIR += rubygem-invisible_captcha
@@ -940,6 +939,7 @@
     SUBDIR += rubygem-rmagick
     SUBDIR += rubygem-rsvg2
     SUBDIR += rubygem-ruby-graphviz
+    SUBDIR += rubygem-ruby-vips
     SUBDIR += rubygem-scruffy
     SUBDIR += rx
     SUBDIR += s10sh

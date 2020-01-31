@@ -18,6 +18,8 @@ BROKEN=		Doesn't install anything since the last major release: https://github.c
 LIB_DEPENDS=	libtorrent-rasterbar.so:net-p2p/libtorrent-rasterbar \
 		${PY_BOOST}
 
+CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}-libtorrent-rasterbar11
+
 USES=		compiler:c11 iconv localbase python
 USE_PYTHON=	distutils autoplist
 

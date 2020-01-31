@@ -47,6 +47,7 @@
     SUBDIR += bluefish
     SUBDIR += bolt
     SUBDIR += bozohttpd
+    SUBDIR += browsh
     SUBDIR += bugzilla2atom
     SUBDIR += buku
     SUBDIR += butterfly
@@ -1103,6 +1104,7 @@
     SUBDIR += p5-RT-Extension-LDAPImport
     SUBDIR += p5-RT-Extension-MandatoryOnTransition
     SUBDIR += p5-RT-Extension-QuickAssign
+    SUBDIR += p5-RT-Extension-RepeatTicket
     SUBDIR += p5-RT-Extension-SLA
     SUBDIR += p5-RTx-Calendar
     SUBDIR += p5-Reaction
@@ -1449,19 +1451,6 @@
     SUBDIR += py-cssselect
     SUBDIR += py-cssutils
     SUBDIR += py-ddgr
-    SUBDIR += py-dj21-django-auth-ldap
-    SUBDIR += py-dj21-django-cors-headers
-    SUBDIR += py-dj21-django-crispy-forms
-    SUBDIR += py-dj21-django-debug-toolbar
-    SUBDIR += py-dj21-django-filter
-    SUBDIR += py-dj21-django-js-asset
-    SUBDIR += py-dj21-django-mptt
-    SUBDIR += py-dj21-django-tables2
-    SUBDIR += py-dj21-django-taggit
-    SUBDIR += py-dj21-django-taggit-serializer
-    SUBDIR += py-dj21-django-timezone-field
-    SUBDIR += py-dj21-djangorestframework
-    SUBDIR += py-dj21-drf-yasg
     SUBDIR += py-dj22-django-auth-ldap
     SUBDIR += py-dj22-django-cacheops
     SUBDIR += py-dj22-django-cors-headers
@@ -1545,7 +1534,6 @@
     SUBDIR += py-django-mezzanine-grappelli
     SUBDIR += py-django-model-utils
     SUBDIR += py-django-modelcluster
-    SUBDIR += py-django-modelcluster4
     SUBDIR += py-django-modern-rpc
     SUBDIR += py-django-mptt
     SUBDIR += py-django-netfields
@@ -1592,7 +1580,6 @@
     SUBDIR += py-django-webpack-loader
     SUBDIR += py-django-widget-tweaks
     SUBDIR += py-django111
-    SUBDIR += py-django21
     SUBDIR += py-django22
     SUBDIR += py-django30
     SUBDIR += py-django_compressor
@@ -1639,6 +1626,7 @@
     SUBDIR += py-flask-restful
     SUBDIR += py-flask-restplus
     SUBDIR += py-flask-script
+    SUBDIR += py-flask-security
     SUBDIR += py-flask-smorest
     SUBDIR += py-flask-socketio
     SUBDIR += py-flask-sockets
@@ -1817,6 +1805,7 @@
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt5-webkit
     SUBDIR += py-qt5-webkitwidgets
+    SUBDIR += py-qt5-websockets
     SUBDIR += py-rackspace-monitoring
     SUBDIR += py-recaptcha
     SUBDIR += py-requestbuilder
@@ -2256,8 +2245,6 @@
     SUBDIR += snarf
     SUBDIR += sogo2
     SUBDIR += sogo2-activesync
-    SUBDIR += sogo3
-    SUBDIR += sogo3-activesync
     SUBDIR += sogo4
     SUBDIR += sogo4-activesync
     SUBDIR += spawn-fcgi

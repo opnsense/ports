@@ -3,6 +3,7 @@
 
 PORTNAME=	mail-parser
 PORTVERSION=	3.12.0
+PORTREVISION=	1
 CATEGORIES=	mail python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -21,8 +22,5 @@ USES=		python
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|==|>=|' ${WRKSRC}/requirements.txt
 
 .include <bsd.port.mk>
