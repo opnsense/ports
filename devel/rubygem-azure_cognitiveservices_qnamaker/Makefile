@@ -2,14 +2,15 @@
 # $FreeBSD$
 
 PORTNAME=	azure_cognitiveservices_qnamaker
-PORTVERSION=	0.17.2
+PORTVERSION=	0.18.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Microsoft Azure Cognitive Services QnAMaker Client Library for Ruby
 
-LICENSE=	APACHE20
+LICENSE=	MIT
+LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 RUN_DEPENDS=	rubygem-ms_rest_azure>=0.11.1<0.12:devel/rubygem-ms_rest_azure
 

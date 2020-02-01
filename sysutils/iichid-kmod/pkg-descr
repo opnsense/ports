@@ -1,0 +1,4 @@
+iichid-kmod
+===========
+
+Kernel module for I2C HID support in FreeBSD/HardenedBSD.
