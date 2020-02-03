@@ -2,10 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=		crmsh
-PORTVERSION=		3.0.1
+PORTVERSION=		3.0.4
 CATEGORIES=		net-mgmt python
 
-MAINTAINER=		dpejesh@yahoo.com
+MAINTAINER=		egypcio@FreeBSD.org
 COMMENT=		Command-line interface for High-Availability cluster management
 
 LICENSE=		GPLv2

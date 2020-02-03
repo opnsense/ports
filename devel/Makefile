@@ -5354,6 +5354,7 @@
     SUBDIR += replxx
     SUBDIR += resolv_wrapper
     SUBDIR += rhtvision
+    SUBDIR += riscv32-unknown-elf-gcc
     SUBDIR += riscv64-gcc
     SUBDIR += riscv64-none-elf-gcc
     SUBDIR += riscv64-xtoolchain-gcc
@@ -5395,17 +5396,20 @@
     SUBDIR += rubygem-actionview5
     SUBDIR += rubygem-actionview50
     SUBDIR += rubygem-actionview52
+    SUBDIR += rubygem-actionview60
     SUBDIR += rubygem-active_scaffold
     SUBDIR += rubygem-activejob4
     SUBDIR += rubygem-activejob5
     SUBDIR += rubygem-activejob50
     SUBDIR += rubygem-activejob52
+    SUBDIR += rubygem-activejob60
     SUBDIR += rubygem-activemessaging
     SUBDIR += rubygem-activerecord-deprecated_finders
     SUBDIR += rubygem-activesupport4
     SUBDIR += rubygem-activesupport5
     SUBDIR += rubygem-activesupport50
     SUBDIR += rubygem-activesupport52
+    SUBDIR += rubygem-activesupport60
     SUBDIR += rubygem-airborne
     SUBDIR += rubygem-akismet
     SUBDIR += rubygem-algebrick
@@ -5915,6 +5919,7 @@
     SUBDIR += rubygem-devise
     SUBDIR += rubygem-devise-rails5
     SUBDIR += rubygem-devise-rails52
+    SUBDIR += rubygem-devise-rails60
     SUBDIR += rubygem-did_you_mean
     SUBDIR += rubygem-dig_rb
     SUBDIR += rubygem-directory_watcher
@@ -5930,6 +5935,7 @@
     SUBDIR += rubygem-dry-types
     SUBDIR += rubygem-drydock
     SUBDIR += rubygem-dynflow
+    SUBDIR += rubygem-e2mmap
     SUBDIR += rubygem-edavis10-object_daddy
     SUBDIR += rubygem-elif
     SUBDIR += rubygem-enumerize
@@ -6082,6 +6088,7 @@
     SUBDIR += rubygem-jbuilder-rails5
     SUBDIR += rubygem-jbuilder-rails50
     SUBDIR += rubygem-jbuilder-rails52
+    SUBDIR += rubygem-jbuilder-rails60
     SUBDIR += rubygem-jekyll-coffeescript
     SUBDIR += rubygem-jenkins_api_client
     SUBDIR += rubygem-jeweler
@@ -6391,6 +6398,7 @@
     SUBDIR += rubygem-sprockets-rails-rails5
     SUBDIR += rubygem-sprockets-rails-rails50
     SUBDIR += rubygem-sprockets-rails-rails52
+    SUBDIR += rubygem-sprockets-rails-rails60
     SUBDIR += rubygem-sprockets-sass
     SUBDIR += rubygem-sprockets2
     SUBDIR += rubygem-sprockets3
@@ -6433,6 +6441,7 @@
     SUBDIR += rubygem-thread_safe
     SUBDIR += rubygem-thread_safe1
     SUBDIR += rubygem-thrift
+    SUBDIR += rubygem-thwait
     SUBDIR += rubygem-tilt
     SUBDIR += rubygem-tilt1
     SUBDIR += rubygem-timeliness
@@ -6488,10 +6497,11 @@
     SUBDIR += rubygem-warbler
     SUBDIR += rubygem-warden
     SUBDIR += rubygem-wdm
-    SUBDIR += rubygem-web-console-rails5
-    SUBDIR += rubygem-web-console-rails50
-    SUBDIR += rubygem-web-console-rails52
+    SUBDIR += rubygem-web-console-rails60
     SUBDIR += rubygem-web-console2
+    SUBDIR += rubygem-web-console3-rails5
+    SUBDIR += rubygem-web-console3-rails50
+    SUBDIR += rubygem-web-console3-rails52
     SUBDIR += rubygem-webby
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-webpacker-rails5
