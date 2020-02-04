@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	rspamd
-PORTVERSION=	2.2
-PORTREVISION=	1
+PORTVERSION=	2.3
 CATEGORIES=	mail
 
 MAINTAINER=	vsevolod@FreeBSD.org
@@ -28,19 +27,19 @@ CONFLICTS_INSTALL=	rspamd-devel
 USERS=		rspamd
 GROUPS=		rspamd
 
-OPTIONS_DEFINE=		BLAS CGP GPERF LUAJIT
-OPTIONS_DEFINE_amd64=	HYPERSCAN
-OPTIONS_DEFAULT_amd64=  LUAJIT
-OPTIONS_DEFAULT_armv7=  LUAJIT
-OPTIONS_DEFAULT_i386=   LUAJIT
-OPTIONS_DEFAULT_powerpc=        LUAJIT
+OPTIONS_DEFINE=			BLAS CGP GPERF LUAJIT
+OPTIONS_DEFINE_amd64=		HYPERSCAN
+OPTIONS_DEFAULT_amd64=		LUAJIT
+OPTIONS_DEFAULT_armv7=		LUAJIT
+OPTIONS_DEFAULT_i386=		LUAJIT
+OPTIONS_DEFAULT_powerpc=	LUAJIT
 OPTIONS_SUB=	yes
 
-BLAS_DESC=		Use OpenBLAS to accelerate KANN
-CGP_DESC=		Install Communigate Pro(tm) helper
-GPERF_DESC=		Google perf-tools profiling
-HYPERSCAN_DESC=		Use hyperscan optimizations (amd64 only)
-LUAJIT_DESC=    Use LuaJIT instead of standard Lua
+BLAS_DESC=	Use OpenBLAS to accelerate KANN
+CGP_DESC=	Install Communigate Pro(tm) helper
+GPERF_DESC=	Google perf-tools profiling
+HYPERSCAN_DESC=	Use hyperscan optimizations (amd64 only)
+LUAJIT_DESC=	Use LuaJIT instead of standard Lua
 
 SUB_FILES=	pkg-message rspamd.newsyslog.conf.sample
 PLIST_SUB+=	ETCDIR=etc/rspamd \
@@ -67,8 +66,8 @@ GPERF_LIB_DEPENDS=	libprofiler.so:devel/google-perftools
 HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
 HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
 
-LUAJIT_LIB_DEPENDS=     libluajit-5.1.so:lang/luajit
-LUAJIT_USES_OFF=        lua:51
+LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
+LUAJIT_USES_OFF=	lua:51
 
 CGP_RUN_DEPENDS+=	\
 	p5-AnyEvent-HTTP>=0:www/p5-AnyEvent-HTTP \
@@ -86,7 +85,6 @@ post-install:
 	${RM} ${STAGEDIR}/${ETCDIR}/rspamd.systemd.conf
 	${RM} ${STAGEDIR}/${ETCDIR}/rspamd.sysvinit.conf
 	# No examples installed by the port
-	${RMDIR} ${STAGEDIR}/${EXAMPLESDIR}
 	${INSTALL_DATA} ${WRKDIR}/rspamd.newsyslog.conf.sample ${STAGEDIR}${ETCDIR}
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
 	${LN} -s ${ETCDIR}/rspamd.newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
