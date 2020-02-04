@@ -1436,7 +1436,6 @@
     SUBDIR += py-cheroot
     SUBDIR += py-cherrypy
     SUBDIR += py-clientform
-    SUBDIR += py-collective.templateengines
     SUBDIR += py-cookies
     SUBDIR += py-crossplane
     SUBDIR += py-css-parser
@@ -2401,6 +2400,5 @@
     SUBDIR += zenphoto
     SUBDIR += zerowait-httpd
     SUBDIR += zola
-    SUBDIR += zope213
 
 .include <bsd.port.subdir.mk>
