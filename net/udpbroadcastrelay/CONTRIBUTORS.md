@@ -2,10 +2,12 @@ CONTRIBUTORS
 -----------------
 
 (Reverse chronological)
-
--   [Martin Wasley](https://github.com/marjohn56) forked to
-    udpbroadcastrelay, added support for pid generation with id when in
-    backround mode.
+-   [Martin Wasley, Berto Furth] (https://github.com/marjohn56 ,
+    https://github.com/bertofurth/ ) Changed default packet
+    marking to use IP DSCP to cater for TTL sensitive protocols.
+    Added "-t|-ttl-id" to revert to original TTL marking,
+    "-h|--help" for descriptive help, signal handling and pid file
+    creation when run in background.
 -   [Michael Morrison](https://github.com/sonicsnes) forked to
     udp-broadcast-relay-redux, refactored the code, added support for
     FreeBSD / pfSense, multicast packets, and interface source address.
