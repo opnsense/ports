@@ -74,7 +74,9 @@ GO_PKGNAME=	${PORTNAME}
 .endif
 GO_TARGET?=	${GO_PKGNAME}
 
-GO_BUILDFLAGS+=	-v -buildmode=exe
+.if empty(GO_BUILDFLAGS:M-buildmode*)
+GO_BUILDFLAGS+=-v -buildmode=exe
+.endif
 .if !defined(WITH_DEBUG) && empty(GO_BUILDFLAGS:M-ldflags*)
 GO_BUILDFLAGS+=	-ldflags=-s
 .endif
