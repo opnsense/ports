@@ -55,8 +55,7 @@ VMAF_DESC=	Per frame and aggregate VMAF score
 
 OPTIONS_SUB=	yes
 USE_LDCONFIG=	yes
-CMAKE_ARGS=	-DENABLE_PIC=on -DENABLE_TESTS=on	\
-		-DENABLE_HDR10_PLUS:BOOL=true
+CMAKE_ARGS=	-DENABLE_TESTS=on -DENABLE_HDR10_PLUS:BOOL=true
 LDFLAGS_i386=	-Wl,-znotext
 EXTRACT_AFTER_ARGS+=	--exclude compat
 PATCH_WRKSRC=	${WRKSRC:H}
@@ -84,7 +83,7 @@ CFLAGS:=	${CFLAGS:N-O*} -O0 -g
 .for b in ${OTHER_DEPTHS:C/HI([0-9]+)P/\1/}
 EXTRA_LINK_FLAGS+=-L${WRKSRC:H}/$bbit
 
-.if ${ARCH} == i386 && $b != 8
+.if ${ARCH} == i386 && $b != 8 || ! ${BUILD_DEPENDS:Mnasm*}
 ASSEMBLY=false
 .else
 ASSEMBLY=true
@@ -110,13 +109,15 @@ CMAKE_ARGS+=	${OTHER_DEPTHS:C/HI([0-9]+)P/-DLINKED_\1BIT:BOOL=true/}
 
 CMAKE_ARGS+=	-DENABLE_SHARED:BOOL=true
 
-.if ${ARCH} == i386 && ${DEFAULT_DEPTH} != "HI8P"
+.if ${ARCH} == i386 && ${DEFAULT_DEPTH} != "HI8P" || ! ${BUILD_DEPENDS:Mnasm*}
 CMAKE_ARGS+=	-DENABLE_ASSEMBLY:BOOL=false
 .else
+CMAKE_ARGS+=	-DENABLE_ASSEMBLY:BOOL=true
 do-test:
 	${WRKDIR}/.build/test/TestBench
 .endif
 
 CMAKE_ARGS+=	-D_END_CUSTOM_OPTIONS=1
+CMAKE_ARGS+=	-DENABLE_PIC:BOOL=true
 
 .include <bsd.port.mk>

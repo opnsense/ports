@@ -43,6 +43,7 @@
     SUBDIR += gnome-icons-dropline-nou
     SUBDIR += gnome-icons-elementary
     SUBDIR += gnome-icons-faenza
+    SUBDIR += gnome-icons-gartoon-redux
     SUBDIR += gnome-icons-gentoo-test
     SUBDIR += gnome-icons-gion
     SUBDIR += gnome-icons-iris

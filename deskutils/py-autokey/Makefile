@@ -1,10 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	autokey
-DISTVERSION=	0.95.4
-PORTREVISION=	1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.95.9
 CATEGORIES=	deskutils python
-MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	daniel@shafer.cc
@@ -12,9 +11,6 @@ COMMENT=	Desktop automation utility for FreeBSD and X11
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-DEPRECATED=	Old, uses EOLed python27
-EXPIRATION_DATE=	2020-03-02
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyinotify>0:devel/py-pyinotify@${PY_FLAVOR} \
@@ -26,6 +22,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR} \
 
 USES=		python:3.6+ shebangfix
 USE_PYTHON=	distutils concurrent
+USE_GITHUB=	yes
+
+INSTALLS_ICONS=	yes
 
 NO_ARCH=	yes
 

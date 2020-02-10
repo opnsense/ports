@@ -1127,6 +1127,7 @@
     SUBDIR += pcrs
     SUBDIR += pdfgrep
     SUBDIR += pdfoutline
+    SUBDIR += pdfresurrect
     SUBDIR += pdfsandwich
     SUBDIR += pdftohtml
     SUBDIR += pear-File_Fortune
@@ -1212,6 +1213,7 @@
     SUBDIR += py-QDarkStyle
     SUBDIR += py-Tempita
     SUBDIR += py-acora
+    SUBDIR += py-aeidon
     SUBDIR += py-agate
     SUBDIR += py-agate-dbf
     SUBDIR += py-agate-excel

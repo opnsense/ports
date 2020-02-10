@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	notes
-PORTVERSION=	3.1.1
+PORTVERSION=	3.1.5
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/${PKGNAMEPREFIX:S/-//}/${PORTNAME}/releases/download/${DISTVERSIONPREFIX}${PORTVERSION}/
 PKGNAMEPREFIX=	nextcloud-
@@ -19,7 +19,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 RUN_DEPENDS=	nextcloud${PHP_PKGNAMESUFFIX}>=15:www/nextcloud@${PHP_FLAVOR}
 
 USES=		php:flavors
-IGNORE_WITH_PHP=	74
 NO_BUILD=	yes
 NO_ARCH=	yes
 

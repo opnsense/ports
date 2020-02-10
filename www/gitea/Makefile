@@ -18,7 +18,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	go-gitea
 USE_RC_SUBR=	gitea
 
-GO_BUILDFLAGS=	-tags "${GO_TAGS}" -ldflags '-X "main.Version=${PORTVERSION}"'
+GO_BUILDFLAGS=	-tags "${GO_TAGS}" -ldflags '-X "main.Version=${PORTVERSION}"' -buildmode=pie
 GO_TARGET=	:${PREFIX}/sbin/${PORTNAME}
 
 SUB_FILES+=	app.ini.sample
