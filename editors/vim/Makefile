@@ -33,7 +33,6 @@ GNU_CONFIGURE=	yes
 PLIST_SUB=	VIM_VER=${VIM_VER}
 PORTDATA?=	${VIM_VER}
 PORTSCOUT=	ignore:1
-REINPLACE_ARGS=	-i ''
 SHEBANG_FILES=	runtime/tools/demoserver.py runtime/tools/efm_perl.pl
 VIM_VER=	${PORTNAME}${PORTVERSION:R:S|.||g}
 
@@ -136,6 +135,7 @@ PERL_CONFIGURE_ENABLE=	perlinterp
 PERL_USES=		perl5
 
 PYTHON_USES=		python
+PYTHON_USES_OFF=	python:env
 
 RUBY_CONFIGURE_ENABLE=	rubyinterp
 RUBY_USE=		RUBY=yes
@@ -169,8 +169,6 @@ post-patch:
 	${ECHO_CMD} '#define SYS_GVIMRC_FILE "'${ETCDIR}'/gvimrc"' >> ${WRKSRC}/src/feature.h
 	${REINPLACE_CMD} -e 's|-liconv|${ICONV_LIB}|g; s|/usr/local|${LOCALBASE}|g' \
 		${WRKSRC}/src/auto/configure
-# Work around qa-check shebang error
-	${REINPLACE_CMD} -e 1d ${WRKSRC}/runtime/tools/demoserver.py
 
 post-configure:
 # Needed when devel/libsysinfo is installed:
