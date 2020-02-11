@@ -840,7 +840,6 @@
     SUBDIR += go-bindata-assetfs
     SUBDIR += go-git
     SUBDIR += go-glide
-    SUBDIR += go-godef
     SUBDIR += go-protobuf
     SUBDIR += go-tools
     SUBDIR += gob2
@@ -5299,7 +5298,6 @@
     SUBDIR += quilt
     SUBDIR += rabs
     SUBDIR += racer
-    SUBDIR += racerd
     SUBDIR += radare2
     SUBDIR += radian
     SUBDIR += ragel
