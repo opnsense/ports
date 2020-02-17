@@ -11819,7 +11819,6 @@ graphics/qt4-opengl||2019-03-16|Has expired: Qt4 has been EOL since december 201
 graphics/qt4-pixeltool||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/qt4-svg||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/qxv||2019-03-16|Has expired: Qt4 has been EOL since december 2015, qxv is unmaintained
-graphics/seexpr||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/smillaenlarger||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/structuresynth||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/yagf||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -14256,3 +14255,27 @@ devel/go-godef||2020-02-14|Removed
 devel/racerd||2020-02-14|Has expired: Old, unmaintained, and fails to build with Rust 1.41.0 or newer; use rls from lang/rust instead
 www/plexwatchweb||2020-02-14|Removed
 multimedia/plexwatch||2020-02-14|Removed
+textproc/rubygem-elasticsearch-model019|textproc/rubygem-elasticsearch-model|2020-02-14|Obsolete, use textproc/rubygem-elasticsearch-model instead
+textproc/rubygem-elasticsearch-rails019|textproc/rubygem-elasticsearch-rails|2020-02-14|Obsolete, use textproc/rubygem-elasticsearch-rails instead
+textproc/rubygem-elasticsearch503|textproc/rubygem-elasticsearch|2020-02-14|Obsolete, use textproc/rubygem-elasticsearch instead
+textproc/rubygem-elasticsearch-api503|textproc/rubygem-elasticsearch-api|2020-02-14|Obsolete, use textproc/rubygem-elasticsearch-api instead
+textproc/rubygem-elasticsearch-transport503|textproc/rubygem-elasticsearch-transport|2020-02-14|Obselete, use textproc/rubygem-elasticsearch-transport instead
+textproc/rubygem-asciidoctor-plantuml009|textproc/rubygem-asciidoctor-plantuml|2020-02-14|Obsolete, use textproc/rubygem-asciidoctor-plantuml instead
+archivers/rox-archive||2020-02-16|Has expired: Old, uses EOLed python27
+databases/ldb|databases/ldb14|2020-02-16|Has expired: Old version, uses EOLed python27
+databases/ldb12|databases/ldb14|2020-02-16|Has expired: Old version, uses EOLed python27
+databases/ldb13|databases/ldb14|2020-02-16|Has expired: Old version, uses EOLed python27
+databases/tdb1|databases/tdb|2020-02-16|Has expired: Old version, uses EOLed python27
+deskutils/rox-memo||2020-02-16|Has expired: Old, uses EOLed python27
+devel/py-roxlib||2020-02-16|Has expired: Old, uses EOLed python27
+devel/talloc1|devel/talloc|2020-02-16|Has expired: Old version, uses EOLed python27
+devel/tevent1|devel/tevent|2020-02-16|Has expired: Old version, uses EOLed python27
+editors/rox-edit||2020-02-16|Has expired: Old, uses EOLed python27
+graphics/ocre||2020-02-16|Has expired: unfetchable, author not reachable, seems discontinued
+math/py-basemap||2020-02-16|Has expired: Deprecated upstream
+multimedia/rox-videothumbnail||2020-02-16|Has expired: Old, uses EOLed python27
+security/morphis||2020-02-16|Has expired: Fails to build with recent versions of python, upstream git repository is gone
+x11/rox-wallpaper||2020-02-16|Has expired: Old, uses EOLed python27
+x11-fm/rox-mime-editor||2020-02-16|Has expired: Old, uses EOLed python27
+x11-fm/rox-session||2020-02-16|Has expired: Old, uses EOLed python27
+graphics/py-PyX|graphics/py-pyx|2020-02-16|Use lowercase port name
