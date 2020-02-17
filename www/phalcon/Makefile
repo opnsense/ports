@@ -16,6 +16,8 @@ ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386
 
 CONFLICTS_INSTALL=	${PKGNAMEPREFIX}phalcon4
 
+PORTSCOUT=	limit:^3\.
+
 USES=		localbase php:ext
 USE_PHP=	hash:build json:build pdo:build
 IGNORE_WITH_PHP=	74
