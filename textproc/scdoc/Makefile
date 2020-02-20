@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	scdoc
-DISTVERSION=	1.10.0
+DISTVERSION=	1.10.1
 CATEGORIES=	textproc
 MASTER_SITES=	https://git.sr.ht/~sircmpwn/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
@@ -23,8 +23,6 @@ USE_HARDENING=	pie:off
 
 post-patch:
 	@${REINPLACE_CMD} '/-static/d' ${WRKSRC}/Makefile
-	@${REINPLACE_CMD} -i '' -e 's,--date=,-jf "%F %T" ,' \
-		${WRKSRC}/test/preamble
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}

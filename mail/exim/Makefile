@@ -96,9 +96,10 @@ IGNORE=	you cannot enable DANE without DNSSEC support or without TLS support
 MASTER_SITES+=	http://marc.merlins.org/linux/exim/files/:sa_exim \
 		SF/sa-exim/sa-exim/${SA_EXIM_VERSION}:sa_exim
 DISTFILES+=	sa-exim-${SA_EXIM_VERSION}.tar.gz:sa_exim
+EXTRA_PATCHES+=	files/extra-patch-Local-sa-exim.c
 .endif
 
-EXIM_VERSION=	4.92.3
+EXIM_VERSION=	4.93
 SA_EXIM_VERSION=4.2
 EXIM_INSTALL_ARG+=	"-no_chown" "-no_symlink"
 
@@ -213,8 +214,8 @@ SEDLIST+=	-e 's,^\# (EXPERIMENTAL_CERTNAMES=),\1,'
 SEDLIST+=	-e 's,^\# (EXPERIMENTAL_DSN=),\1,'
 .endif
 
-.if ${PORT_OPTIONS:MDANE}
-SEDLIST+=	-e 's,^\# (SUPPORT_DANE=),\1,'
+.if !${PORT_OPTIONS:MDANE}
+SEDLIST+=	-e 's,^(SUPPORT_DANE=),\#\1,'
 .endif
 
 .if ${PORT_OPTIONS:MARC}
@@ -250,7 +251,7 @@ SEDLIST+=	-e 's,^\# (DISABLE_DNSSEC=),\1,'
 
 .if ${PORT_OPTIONS:MDMARC}
 SEDLIST+= -e 's,XX_DMARC_LIBS_XX,-L${LOCALBASE}/lib -lopendmarc,' \
-		-e 's,^\# (EXPERIMENTAL_DMARC=),\1,'
+		-e 's,^\# (SUPPORT_DMARC=),\1,'
 .else
 SEDLIST+= -e 's,XX_DMARC_LIBS_XX,,'
 .endif
@@ -268,14 +269,16 @@ SEDLIST+=	-e 's,^\# (EXIM_MONITOR=),\1,'
 .endif
 
 .if ${PORT_OPTIONS:MTLS}
-SEDLIST+=	-e 's,^\# (SUPPORT_TLS=),\1,'
 .if ! ${PORT_OPTIONS:MGNUTLS}
 USES+=		ssl
+SEDLIST+=	-e 's,^\# (USE_OPENSSL=),\1,'
 SEDLIST+=	-e 's,^\# (TLS_LIBS=.*-lssl[[:space:]]),\1,'
 .else
 SEDLIST+=	-e 's,^\# (USE_GNUTLS=),\1,'
 SEDLIST+=	-e 's,^\# (TLS_LIBS=.*-lgnutls[[:space:]]),\1,'
 .endif
+.else # TLS support
+SEDLIST+=	-e 's,^\# (DISABLE_TLS=),\1,'
 .endif
 
 .if ${PORT_OPTIONS:MEMBEDDED_PERL}
@@ -548,6 +551,7 @@ pre-everything::
 post-extract:
 .if ${PORT_OPTIONS:MSA_EXIM}
 	@cd ${WRKDIR} && ${TAR} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/sa-exim-${SA_EXIM_VERSION}.tar.gz ${EXTRACT_AFTER_ARGS}
+	@@${CP} ${WRKDIR}/sa-exim-${SA_EXIM_VERSION}/sa-exim.c ${WRKSRC}/Local
 .endif
 
 do-configure:
@@ -569,7 +573,6 @@ do-configure:
 		${WRKSRC}/OS/Makefile-Default
 	@${REINPLACE_CMD} -E -e 's/^(LOCAL_SCAN_SOURCE=).*/\1Local\/sa-exim.c/' \
 		${WRKSRC}/OS/Makefile-Default
-	@${CP} ${WRKDIR}/sa-exim-${SA_EXIM_VERSION}/sa-exim.c ${WRKSRC}/Local
 	@{ \
 	    ${ECHO_CMD} "char *version=\"${SA_EXIM_VERSION}\";"; \
 	    ${ECHO_CMD} "#define SPAMC_LOCATION		\"${LOCALBASE}/bin/spamc\""; \
