@@ -5,6 +5,33 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20200223:
+  AFFECTS: users of security/gsasl
+  AUTHOR: hrs@FreeBSD.org
+
+  The library part of security/gsasl has been split into security/libgsasl.
+  The security/gsasl now depends on security/libgsasl. Due to this change,
+  old security/gsasl conflicts with the new security/libgsasl and it can
+  prevent the installed security/gsasl from upgrading. Please remove the
+  installed security/gsasl before upgrading if a conflict error occurs.
+
+20200220:
+  AFFECTS: users of x11-servers/xorg-server
+  AUTHOR: zeising@FreeBSD.org
+
+  x11-servers/xorg-server has been updated to 1.20.7.
+
+  With this update, xorg-server has switched from using the devd backend to
+  the udev backend for device configuration on FreeBSD 12 and 13.  If you have
+  issues with input devices, please see the install message for details.
+
+  The HAL backend option has been completely removed, as it was deprecated.
+
+  If you have problems with input devices, ensure that both x11/libinput and
+  x11-drivers/xf86-input-libinput are installed.  They are installed in the
+  default configuration, but if you have a custom configuration, they might not
+  be.
+
 20200207:
   AFFECTS: users of security/nss
   AUTHOR: lwhsu@FreeBSD.org
