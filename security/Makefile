@@ -289,6 +289,7 @@
     SUBDIR += libgnome-keyring
     SUBDIR += libgpg-error
     SUBDIR += libgringotts
+    SUBDIR += libgsasl
     SUBDIR += libhijack
     SUBDIR += libident
     SUBDIR += libkleo
@@ -370,6 +371,7 @@
     SUBDIR += nextcloud-passman
     SUBDIR += nextcloud-twofactor_totp
     SUBDIR += nextcloud-twofactor_u2f
+    SUBDIR += nflib
     SUBDIR += ngrok
     SUBDIR += nikto
     SUBDIR += nist-kat
@@ -869,7 +871,6 @@
     SUBDIR += py-ckcc-protocol
     SUBDIR += py-cpe
     SUBDIR += py-cracklib
-    SUBDIR += py-cryptlib_py
     SUBDIR += py-cryptography
     SUBDIR += py-cryptography-vectors
     SUBDIR += py-ctypescrypto
@@ -998,20 +999,7 @@
     SUBDIR += py-yara
     SUBDIR += py-yubikey-manager
     SUBDIR += py-zkg
-    SUBDIR += py-zope.app.authentication
-    SUBDIR += py-zope.app.localpermission
-    SUBDIR += py-zope.app.principalannotation
-    SUBDIR += py-zope.app.security
-    SUBDIR += py-zope.app.securitypolicy
-    SUBDIR += py-zope.authentication
-    SUBDIR += py-zope.login
     SUBDIR += py-zope.password
-    SUBDIR += py-zope.pluggableauth
-    SUBDIR += py-zope.principalannotation
-    SUBDIR += py-zope.principalregistry
-    SUBDIR += py-zope.security
-    SUBDIR += py-zope.securitypolicy
-    SUBDIR += py-zope.session
     SUBDIR += py-zxcvbn
     SUBDIR += qtkeychain
     SUBDIR += quantis-kmod

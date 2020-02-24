@@ -18,6 +18,7 @@ COMMENT?=	High performance MTA for Unix systems on the Internet
 LICENSE=	GPLv2
 
 USES=		compiler cpe tar:bzip2 perl5
+USE_CSTD=	c99
 USE_PERL5=	run
 
 # Exim build system is job unsafe atm
@@ -96,7 +97,7 @@ IGNORE=	you cannot enable DANE without DNSSEC support or without TLS support
 MASTER_SITES+=	http://marc.merlins.org/linux/exim/files/:sa_exim \
 		SF/sa-exim/sa-exim/${SA_EXIM_VERSION}:sa_exim
 DISTFILES+=	sa-exim-${SA_EXIM_VERSION}.tar.gz:sa_exim
-EXTRA_PATCHES+=	files/extra-patch-Local-sa-exim.c
+EXTRA_PATCHES+=	${FILESDIR}/files/extra-patch-Local-sa-exim.c
 .endif
 
 EXIM_VERSION=	4.93
