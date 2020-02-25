@@ -218,6 +218,7 @@
     SUBDIR += horcrux
     SUBDIR += hotssh
     SUBDIR += hpenc
+    SUBDIR += hs-cryptol
     SUBDIR += hydra
     SUBDIR += i2p
     SUBDIR += i2pd

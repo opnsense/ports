@@ -6,13 +6,14 @@ PORTVERSION?=	${EXIM_VERSION}
 CATEGORIES=	mail
 MASTER_SITES=	EXIM:exim
 MASTER_SITE_SUBDIR=	/exim4/:exim \
+			/exim4/fixes/:exim \
 			/exim4/old/:exim
 DISTNAME=	${PORTNAME}-${EXIM_VERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}:exim
 DIST_SUBDIR=	exim
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	vsevolod@FreeBSD.org
+MAINTAINER=	fluffy@FreeBSD.org
 COMMENT?=	High performance MTA for Unix systems on the Internet
 
 LICENSE=	GPLv2
@@ -48,7 +49,7 @@ BDB_USES=	bdb
 DMARC_LIB_DEPENDS=	libopendmarc.so:mail/opendmarc
 EMBEDDED_PERL_USE=	perl5=run,build
 EXIMON_USES=	xorg
-EXIMON_USE=	xorg=x11,xaw,xt
+EXIMON_USE=	xorg=x11,xaw,xext,xmu,xt
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 ICONV_USES=	iconv:lib,build
 INTERNATIONAL_LIB_DEPENDS=	libidn.so:dns/libidn
@@ -97,11 +98,12 @@ IGNORE=	you cannot enable DANE without DNSSEC support or without TLS support
 MASTER_SITES+=	http://marc.merlins.org/linux/exim/files/:sa_exim \
 		SF/sa-exim/sa-exim/${SA_EXIM_VERSION}:sa_exim
 DISTFILES+=	sa-exim-${SA_EXIM_VERSION}.tar.gz:sa_exim
-EXTRA_PATCHES+=	${FILESDIR}/files/extra-patch-Local-sa-exim.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-Local-sa-exim.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-Local-sa-exim.conf
 .endif
 
-EXIM_VERSION=	4.93
-SA_EXIM_VERSION=4.2
+EXIM_VERSION=	4.93.0.4
+SA_EXIM_VERSION=4.2.1
 EXIM_INSTALL_ARG+=	"-no_chown" "-no_symlink"
 
 .if !defined(EXIMON_ONLY)
@@ -386,9 +388,9 @@ SEDLIST+=	-e 's,XX_RADIUS_LIBS_XX,-lradius,' \
 		-e 's,^\# (RADIUS_CONFIG_FILE=).*,\1/etc/radius.conf,' \
 		-e 's,^\# (RADIUS_LIB_TYPE=).*,\1RADLIB,'
 .elif ${WITH_RADIUS_TYPE:tl} == radiusclient
-LIB_DEPENDS+=	libradiusclient-ng.so:net/radiusclient
-SEDLIST+=	-e 's,XX_RADIUS_LIBS_XX,-L${LOCALBASE:S/,/\\,/g}/lib -lradiusclient-ng,' \
-		-e 's,^\# (RADIUS_CONFIG_FILE=).*,\1${LOCALBASE:S/,/\\,/g}/etc/radiusclient-ng/radiusclient.conf,' \
+LIB_DEPENDS+=	libfreeradius-client.so:net/freeradius-client
+SEDLIST+=	-e 's,XX_RADIUS_LIBS_XX,-L${LOCALBASE:S/,/\\,/g}/lib -lfreeradius-client,' \
+		-e 's,^\# (RADIUS_CONFIG_FILE=).*,\1${LOCALBASE:S/,/\\,/g}/etc/radiusclient/radiusclient.conf,' \
 		-e 's,^\# (RADIUS_LIB_TYPE=).*,\1RADIUSCLIENTNEW,'
 .else
 IGNORE=		the variable WITH_RADIUS_TYPE must be either RADLIB or RADIUSCLIENT
@@ -553,6 +555,7 @@ post-extract:
 .if ${PORT_OPTIONS:MSA_EXIM}
 	@cd ${WRKDIR} && ${TAR} ${EXTRACT_BEFORE_ARGS} ${_DISTDIR}/sa-exim-${SA_EXIM_VERSION}.tar.gz ${EXTRACT_AFTER_ARGS}
 	@@${CP} ${WRKDIR}/sa-exim-${SA_EXIM_VERSION}/sa-exim.c ${WRKSRC}/Local
+	@@${CP} ${WRKDIR}/sa-exim-${SA_EXIM_VERSION}/sa-exim.conf ${WRKSRC}/Local
 .endif
 
 do-configure:
@@ -580,7 +583,7 @@ do-configure:
 	    ${ECHO_CMD} "#define SPAMASSASSIN_CONF	\"${PREFIX}/etc/exim/sa-exim.conf\""; \
 	} > ${WRKSRC}/Local/sa-exim.h
 	@${REINPLACE_CMD} -e 's,/usr/bin/spamc,${LOCALBASE}/bin/spamc,' \
-	    ${WRKDIR}/sa-exim-${SA_EXIM_VERSION}/sa-exim.conf
+	    ${WRKSRC}/Local/sa-exim.conf
 .endif
 	@${REINPLACE_CMD} -E -e 's/XX_STRIPCMD_XX/${STRIP_CMD:S,/,\/,g}/' \
 		${WRKSRC}/OS/Makefile-FreeBSD
@@ -622,7 +625,7 @@ post-install:
 .endfor
 .endif
 .if ${PORT_OPTIONS:MSA_EXIM}
-	${INSTALL_DATA} ${WRKDIR}/sa-exim-${SA_EXIM_VERSION}/sa-exim.conf \
+	${INSTALL_DATA} ${WRKSRC}/Local/sa-exim.conf \
 		${STAGEDIR}${PREFIX}/etc/exim/sa-exim.conf.sample
 .endif
 
