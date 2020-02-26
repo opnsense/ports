@@ -10916,7 +10916,6 @@ www/pecl-yaf2|www/pecl-yaf|2018-12-30|Has expired: Works only with EOL php 5.6
 www/redaxo||2018-12-30|Has expired: Works only with EOL php 5.6
 www/dotproject||2018-12-30|Has expired: Works only with EOL php 5.6
 www/sitebar||2018-12-30|Has expired: Works only with EOL php 5.6
-www/limesurvey||2018-12-30|Has expired: Works only with EOL php 5.6
 www/mahara||2018-12-30|Has expired: Works only with EOL php 5.6
 www/mysar||2018-12-30|Has expired: Works only with EOL php 5.6
 www/oscommerce||2018-12-30|Has expired: Works only with EOL php 5.6
@@ -11804,7 +11803,6 @@ graphics/burplex||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/darknock||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/djview4-qt4||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/easypaint||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-graphics/eos-movrec||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/gle-graphics||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/lprof-devel||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 graphics/luminance||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -14387,3 +14385,4 @@ x11-wm/simple-ccsm||2020-02-22|Has expired: Broken, uses EOLed python27
 math/metis4|math/metis|2020-02-22|Has expired: EOL: use math/metis instead
 multimedia/cinelerra-gg||2020-02-22|Has expired: Broken, uses EOLed python27
 x11-toolkits/py-gnome2||2020-02-22|Has expired: Broken, uses EOLed python27
+devel/py-dialog3|devel/py-pythondialog|2020-02-25|Renamed to reflect PyPI name
