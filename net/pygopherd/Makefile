@@ -3,14 +3,17 @@
 
 PORTNAME=	pygopherd
 PORTVERSION=	2.0.18.4
-CATEGORIES=	net python
 DISTVERSIONPREFIX=	debian/
+CATEGORIES=	net python
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Multiprotocol Information Server
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	Unmaintained, uses EOLed python27
+EXPIRATION_DATE=	2020-03-31
 
 USES=		python:2.7
 USE_PYTHON=	distutils
@@ -31,6 +34,6 @@ post-patch:
 	@${MV} ${WRKSRC}/conf/pygopherd.conf ${WRKSRC}/conf/pygopherd.conf.sample
 
 post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/pygopherd.8 ${STAGEDIR}${MANPREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/doc/pygopherd.8 ${STAGEDIR}${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

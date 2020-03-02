@@ -339,6 +339,7 @@
     SUBDIR += libpoly
     SUBDIR += libqalculate
     SUBDIR += libranlip
+    SUBDIR += librdata
     SUBDIR += librsb
     SUBDIR += libtommath
     SUBDIR += libtsnnls
@@ -354,7 +355,6 @@
     SUBDIR += lrslib
     SUBDIR += ltl
     SUBDIR += ltl2ba
-    SUBDIR += lybniz
     SUBDIR += mate-calc
     SUBDIR += math77
     SUBDIR += mathgl

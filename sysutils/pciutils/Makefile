@@ -14,6 +14,7 @@ COMMENT=	PCI configuration utilities
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BUILD_DEPENDS=	libpci>=${PORTVERSION}:devel/libpci
 LIB_DEPENDS=	libpci.so:devel/libpci
 RUN_DEPENDS=	${LOCALBASE}/share/pciids/pci.ids:misc/pciids
 
@@ -29,9 +30,6 @@ PLIST_FILES=	bin/lspci \
 		bin/setpci \
 		share/man/man8/lspci.8.gz \
 		share/man/man8/setpci.8.gz
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^CC=/d; /^CFLAGS=/ s|=|+=|; /^IDSDIR=/ s|$$|/pciids|; /^OPT=/d; /^PREFIX=/d; s| lib/$$(PCILIB)||' ${WRKSRC}/Makefile
 
 do-configure:
 	${CP} ${LOCALBASE}/include/pci/config.h ${WRKSRC}/lib/config.h
