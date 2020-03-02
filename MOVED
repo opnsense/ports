@@ -11946,7 +11946,6 @@ devel/geany-plugin-webhelper||2019-03-24|Has expired: webkit-gtk* last release i
 editors/gwrite||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
 mail/claws-mail-fancy||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
 multimedia/miro||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
-misc/xiphos||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
 net/libproxy-webkit||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
 net-im/hotot||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
 www/deforaos-surfer||2019-03-24|Has expired: webkit-gtk* last release in 2016 and security issues
@@ -14386,3 +14385,70 @@ math/metis4|math/metis|2020-02-22|Has expired: EOL: use math/metis instead
 multimedia/cinelerra-gg||2020-02-22|Has expired: Broken, uses EOLed python27
 x11-toolkits/py-gnome2||2020-02-22|Has expired: Broken, uses EOLed python27
 devel/py-dialog3|devel/py-pythondialog|2020-02-25|Renamed to reflect PyPI name
+devel/rubygem-health_check26-rails5|devel/rubygem-health_check26-rails60|2020-02-26|Obsolete, please use devel/rubygem-health_check26-rails60 instead
+devel/rubygem-health_check26-rails52|devel/rubygem-health_check26-rails60|2020-02-26|Obsolete, please use devel/rubygem-health_check26-rails60 instead
+www/rubygem-webpack-rails-rails52|www/rubygem-webpack-rails-rails60|2020-02-26|Obsolete, please use www/rubygem-webpack-rails-rails60 instead
+security/rubygem-doorkeeper43|security/rubygem-doorkeeper|2020-02-26|Obsolete, please use security/rubygem-doorkeeper instead
+www/rubygem-gon-rails52|www/rubygem-gon-rails60|2020-02-26|Obsolete, please use www/rubygem-gon-rails60 instead
+databases/rubygem-peek-pg-rails52|databases/rubygem-peek-pg-rails5|2020-02-29|Obsolete by gitlab-ce upgrade, use databases/rubygem-peek-pg-rails5 instead
+devel/py-rwt|devel/py-pip-run|2020-02-29|Has expired: Superseded by devel/py-pip-run
+graphics/py-pyglet12|graphics/py-pyglet|2020-02-29|Has expired: Use graphics/py-pyglet instead
+net/p5-ZeroMQ||2020-02-29|Has expired: Deprecated by upstream
+mail/roundcube-sieverules||2020-02-29|Included in mail/roundcube
+mail/roundcube-markasjunk2||2020-02-29|Included in mail/roundcube
+audio/idjc||2020-03-01|Has expired: Old, uses EOLed python27
+cad/py-pycam||2020-03-01|Has expired: Old, uses EOLed python27
+chinese/gimp-help-zh_CN||2020-03-01|Has expired: Broken
+databases/emma||2020-03-01|Has expired: Old, uses EOLed python27
+deskutils/anamnesis||2020-03-01|Has expired: Old, uses EOLed python27
+deskutils/cherrytree||2020-03-01|Has expired: Old, uses EOLed python27
+deskutils/gbirthday||2020-03-01|Has expired: Old, uses EOLed python27
+deskutils/gtg||2020-03-01|Has expired: Old, uses EOLed python27
+deskutils/nemo-extensions||2020-03-01|Has expired: Old, uses EOLed python27
+deskutils/pybookreader||2020-03-01|Has expired: Old, uses EOLed python27
+devel/diffuse||2020-03-01|Has expired: Old, uses EOLed python27
+devel/dreampie||2020-03-01|Has expired: Old, uses EOLed python27
+devel/gtkparasite||2020-03-01|Has expired: Old, uses EOLed python27
+devel/py-orbit||2020-03-01|Has expired: Old, uses EOLed python27
+editors/py-room||2020-03-01|Has expired: Old, uses EOLed python27
+french/gimp-help||2020-03-01|Has expired: Broken
+games/magicor||2020-03-01|Has expired: Old, uses EOLed python27
+games/openalchemist||2020-03-01|Has expired: Old, uses EOLed python27
+games/pythonsudoku||2020-03-01|Has expired: Old, uses EOLed python27
+german/gimp-help||2020-03-01|Has expired: Broken
+graphics/driconf||2020-03-01|Has expired: Old, uses EOLed python27
+graphics/gimp-help||2020-03-01|Has expired: Broken
+graphics/nathive||2020-03-01|Has expired: Old, uses EOLed python27
+graphics/py-goocanvas||2020-03-01|Has expired: Old, uses EOLed python27
+graphics/py-mcomix||2020-03-01|Has expired: Old, uses EOLed python27
+graphics/uniconvw||2020-03-01|Has expired: Old, uses EOLed python27
+japanese/gimp-help||2020-03-01|Has expired: Broken
+java/jakarta-regexp||2020-03-01|Has expired: EOL: As of 2011-04-17, the Regexp project is retired
+korean/gimp-help||2020-03-01|Has expired: Broken
+mail/claws-mail-python||2020-03-01|Has expired: Old, uses EOLed python27
+math/lybniz||2020-03-01|Has expired: Old, uses EOLed python27
+misc/gimp-help-ca||2020-03-01|Has expired: Broken
+misc/gimp-help-da||2020-03-01|Has expired: Broken
+misc/gimp-help-el||2020-03-01|Has expired: Broken
+misc/gimp-help-en_GB||2020-03-01|Has expired: Broken
+misc/gimp-help-es||2020-03-01|Has expired: Broken
+misc/gimp-help-it||2020-03-01|Has expired: Broken
+misc/gimp-help-nl||2020-03-01|Has expired: Broken
+misc/gimp-help-nn||2020-03-01|Has expired: Broken
+misc/gimp-help-sl||2020-03-01|Has expired: Broken
+misc/gimp-help-sv||2020-03-01|Has expired: Broken
+misc/metromap||2020-03-01|Has expired: Old, uses EOLed python27
+misc/typetrainer||2020-03-01|Has expired: Old, uses EOLed python27
+multimedia/gtk-recordmydesktop||2020-03-01|Has expired: Old, uses EOLed python27
+portuguese/gimp-help-pt_BR||2020-03-01|Has expired: Broken
+russian/gimp-help||2020-03-01|Has expired: Broken
+security/hotssh||2020-03-01|Has expired: Old, uses EOLed python27
+security/zenmap||2020-03-01|Has expired: Old, uses EOLed python27
+x11/py-xdot06|x11/py-xdot|2020-03-01|Has expired: Old, uses EOLed python27
+x11/terminator||2020-03-01|Has expired: Old, uses EOLed python27
+x11-fm/sunflower||2020-03-01|Has expired: Old, uses EOLed python27
+x11-toolkits/hippo-canvas||2020-03-01|Has expired: Old, uses EOLed python27
+x11-toolkits/py-kiwi-gtk||2020-03-01|Has expired: Old, uses EOLed python27
+x11-toolkits/py-vte||2020-03-01|Has expired: Old, uses EOLed python27
+irc/gseen.mod||2020-03-01|Removed, unmaintained and does not build with irc/eggdrop
+irc/eggdrop16|irc/eggdrop|2020-03-01|Has expired: Outdated, use irc/eggdrop instead
