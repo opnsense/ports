@@ -1503,6 +1503,7 @@
     SUBDIR += mercurialeclipse
     SUBDIR += mergify
     SUBDIR += meson
+    SUBDIR += microsoft-gsl
     SUBDIR += mill
     SUBDIR += mimalloc
     SUBDIR += mime
@@ -4044,6 +4045,7 @@
     SUBDIR += py-applicationinsights
     SUBDIR += py-apptools
     SUBDIR += py-apscheduler
+    SUBDIR += py-archinfo
     SUBDIR += py-argcomplete
     SUBDIR += py-argh
     SUBDIR += py-argparse
