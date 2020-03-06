@@ -4215,6 +4215,7 @@
     SUBDIR += py-circuits
     SUBDIR += py-cjson
     SUBDIR += py-cld
+    SUBDIR += py-cle
     SUBDIR += py-cleo
     SUBDIR += py-cli-helpers
     SUBDIR += py-cliapp
@@ -4594,6 +4595,7 @@
     SUBDIR += py-meliae
     SUBDIR += py-memory-profiler
     SUBDIR += py-microversion_parse
+    SUBDIR += py-minidump
     SUBDIR += py-minimongo
     SUBDIR += py-minio
     SUBDIR += py-mock

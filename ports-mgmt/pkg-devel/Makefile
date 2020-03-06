@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	pkg
-DISTVERSION=	1.13.99.2
-PORTREVISION=	1
+DISTVERSION=	1.13.99.3
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 PKGNAMESUFFIX=	-devel
@@ -12,13 +11,10 @@ COMMENT=	Package manager
 
 LICENSE=	BSD2CLAUSE
 
-FORBIDDEN=	creates a package with bad ABI
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
-GH_TAGNAME=	6f4d6c5c
+GH_TAGNAME=	93c4c82e
 
-WITH_DEBUG=	yes
 CFLAGS+=	-O0 -g -Wno-error
 USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
 HAS_CONFIGURE=	yes

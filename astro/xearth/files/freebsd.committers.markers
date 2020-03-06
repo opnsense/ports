@@ -139,7 +139,7 @@
  45.27,		9.17,		"olgeni"			# Milano, Italy
  45.488328,	9.164711,	"ale"		align=left	# Milano, Italy
  48.53778,	9.04111,	"bz"				# Baden-Wuerttemberg
- 45.95904,	8.9227105,	"gahr"				# Garaverio, Switzerland
+ 46.050045,	8.9166476,	"gahr"				# Bedano, Switzerland
  52.05,		8.9,		"lkoeller"			# Lemgo, Germany
  45.667,	8.867,		"nivit"		align=left	# Fagnano Olona, Italy
  53.0793,	8.8017,		"tobik"				# Bremen, Germany
@@ -186,7 +186,6 @@
  50.383,	4.36,		"jylefort"	align=left	# Charleroi, Belgium
  50.7323,	3.104,		"vanhu"				# Tourcoing, France
  48.36,		2.99,		"charnier"	align=left	# Cannes Ecluse, France
- 48.8345364	2.7160113	"martymac"			# Bussy Saint Georges, France
  48.83,		2.36,		"antoine"			# Paris, France
  48.827111,	2.347019,	"sbz"				# Paris, France
  41.6666,	2.3333,		"jesusr"			# Barcelona, Spain
@@ -199,6 +198,7 @@
  46.75984,	1.738281,	"stephane"			# Orleans, France
  51.33046,	1.41088,	"matthew"			# Ramsgate, UK
  51.29870,	1.07005,	"tdb"				# Canterbury, United Kingdom
+ 52.18,		0.19,		"markm"		align=left	# Cambridge, Cambs, UK
  52.20360,	0.14134,	"rsm"				# Cambridge, UK
  50.84121667,	0.128383333,	"joe"				# Brighton, East Sussex, UK
  52.2035,	0.1200,		"fanf"				# Cambridge, UK
@@ -208,11 +208,11 @@
  50.819610,	-0.136490,	"sevan"				# Brighton, East Sussex, UK
  51.53,		-0.18,		"n_hibma"	align=above	# London, UK
  51.50,		-0.48,		"nik"		align=left	# West Drayton, Middx., UK
- 51.67,		-0.61,		"markm"		align=left	# Amersham, Bucks, UK
  52.01,		-0.75,		"tom"		align=left	# Milton Keynes, UK
  51.461916,	-1.011833,	"jesper"			# Reading, United Kingdom
  53.955666,	-1.072605,	"gavin"				# (CORE) York, United Kingdom
  52.635,	-1.135,		"hmp"				# Leicester, East Midlands, UK
+ 48.12,		-1.60,		"martymac"			# Cesson-Sevigne, France
  48.10927,	-1.61104,	"jadawin"			# Cesson-Sevigne, France
  47.394586,	-1.658038,	"olivier"			# Heric, France
  57.114807,	-2.179896,	"brucec"			# Aberdeen, United Kingdom
@@ -263,6 +263,7 @@
  35.8072,	-78.7994,	"gallatin"			# Cary, NC, USA
  35.653138,	-78.843137,	"swills"			# Holly Springs, NC, USA
  35.73,		-78.91,		"bsd"				# Apex, NC, USA
+-2.897414,	-79.004481,	"dmgk"				# Cuenca, Ecuador
  43.37,		-79.79,		"hoek"				# Burlington, ON, Canada
  43.22,		-79.86,		"allanjude"			# Hamilton, ON, Canada
  40.441667,	-80,		"rvb"				# Pittsburgh, PA, US
@@ -279,8 +280,8 @@
  35.555301,	-86.054649,	"rnoland"			# Manchester, TN, USA
  39.978436,	-86.11805,	"scf"				# Carmel, IN, USA
  34.81095,	-86.70977,	"steve"				# Huntsville, AL, USA
- 43.039,	-87.906,	"jwb"				# Milwaukee, WI, USA
  43.039,	-87.906,	"silby"				# Milwaukee, WI, USA
+ 43.039,	-87.906,	"jwb"				# Milwaukee, WI, USA
  48.400,	-89.233,	"tabthorpe"			# Thunder Bay, ON, Canada
  43.19,		-89.38,		"jlemon"			# Madison, WI, USA
  43.02,		-89.41,		"feld"				# Madison, WI, USA
@@ -321,7 +322,6 @@
  37.4014,	-121.9265,	"weongyo"			# San Jose, CA, USA
  37.40,		-121.94,	"alfred"			# Santa Clara, CA, USA
  37.75573,	-121.947116,	"peter"				# (CORE) San Ramon, CA, USA
- 47.75596,	-122.345697,	"seanc"				# Seattle, WA, USA
  37.359394,	-121.992,	"cjc"				# Santa Clara, CA, USA
  37.4,		-122.0,		"asami"				# Santa Clara, CA, USA
  37.3583,	-122.0154,	"stas"				# Sunnyvale, CA, USA
@@ -343,10 +343,10 @@
  37.913698,	-122.29414,	"julian"			# El Cerrito, CA, USA
  37.51,		-122.30,	"kbyanc"			# Belmont, CA, USA
  37.90641,	-122.30927,	"gshapiro"			# Richmond, CA, USA
+ 47.75596,	-122.345697,	"seanc"				# Seattle, WA, USA
  47.672538,	-122.383830,	"zml"				# Seattle, WA, USA
  45.31,		-122.39,	"alexbl"			# Portland, OR, USA
  37.781,	-122.398,	"billf"				# SOMA, San Francisco, CA, USA
- 37.8067,	-122.4113,	"jmallett"			# North Beach, San Francisco, CA, USA
  37.7749,	-122.4194,	"eadler"			# San Francisco, CA, USA
  37.76,		-122.42,	"lx"				# San Francisco, CA, USA
  37.80,		-122.43,	"njl"				# Downtown San Francisco, CA, USA
@@ -360,8 +360,8 @@
  49.349453,	-123.022793,	"brian"		align=left	# North Vancouver, Canada
  44.04, 	-123.06,	"anholt"			# Eugene, OR, USA
  49.2,		-123.08,	"gonzo"				# Vancouver, BC, Canada
+ 48.7390016,	-123.4424258,	"jmallett"			# Salt Spring Island, BC, Canada
  48.3898,	-123.4875,	"cy"				# Victoria, BC, Canada
  40.0,		-123.5,		"jkh"				# Miranda, CA, USA
 -17.56343,	-149.57844,	"romain"			# Faa'a, Tahiti, French Polynesia
  61.21884,	-149.888462,	"beech"				# Anchorage, AK, USA
--2.897414,	-79.004481,	"dmgk"				# Cuenca, Ecuador
