@@ -21,6 +21,8 @@ IGNORE+=	USES=cargo takes no arguments
 CARGO_CRATES?=
 
 # List of features to build (space separated list).
+# Use special token --no-default-features to disable default
+# features by passing it to cargo build/install/test.
 CARGO_FEATURES?=
 
 # Name of the local directory for vendoring crates.
