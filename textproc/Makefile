@@ -107,6 +107,7 @@
     SUBDIR += csb-aspell
     SUBDIR += csv2latex
     SUBDIR += csvdiff
+    SUBDIR += csvq
     SUBDIR += ctpl
     SUBDIR += ctpp2
     SUBDIR += cwtext
@@ -478,6 +479,7 @@
     SUBDIR += p5-Algorithm-RabinKarp
     SUBDIR += p5-Apache-ParseLog
     SUBDIR += p5-Apache-Solr
+    SUBDIR += p5-Template-AutoFilter
     SUBDIR += p5-BibTeX-Parser
     SUBDIR += p5-BigIP-ParseConfig
     SUBDIR += p5-Bloom-Filter
@@ -1744,6 +1746,7 @@
     SUBDIR += texi2html
     SUBDIR += texi2mdoc
     SUBDIR += textogif
+    SUBDIR += textql
     SUBDIR += the_silver_searcher
     SUBDIR += ti-hunspell
     SUBDIR += tidyp
