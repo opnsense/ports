@@ -12,6 +12,9 @@ COMMENT=	3D skeletal animation tool, powered by GTK+ and OpenGL
 
 LICENSE=	GPLv2
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 LIB_DEPENDS=	libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 
 USE_HARDENING=	pie:off

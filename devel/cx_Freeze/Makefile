@@ -11,6 +11,9 @@ COMMENT=	The cx_Freeze is a set of utilities for freezing Python scripts
 
 USE_HARDENING=	pie:off relro:off
 
+DEPRECATED=	Uses deprecated version of python
+EXPIRATION_DATE=	2020-09-15
+
 USE_GCC=	yes
 USES=		python:2.7
 USE_PYTHON=	distutils
