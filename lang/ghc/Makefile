@@ -3,7 +3,7 @@
 
 PORTNAME=	ghc
 PORTVERSION=	${GHC_VERSION}
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	lang haskell
 MASTER_SITES=	https://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
 		LOCAL/arrowd/:boot \
@@ -88,6 +88,11 @@ ONLY_FOR_ARCHS+=	aarch64 armv6 armv7 powerpc64
 
 .include <bsd.port.pre.mk>
 
+# This version of ncurses is needed by bootstrap compiler
+.if ${OSVERSION} > 1300078 && empty(PORT_OPTIONS:MBOOT) && ${ARCH} != powerpc64
+BUILD_DEPENDS+=	${LOCALBASE}/lib/compat/libncursesw.so.8:misc/compat12x
+.endif
+
 .if ${GHC_VERSION_MAJOR} == 8 && ${GHC_VERSION_MINOR} <= 4
 LLVM_VERSION=		50
 # Turn off for old GHCs, see PR 228727
@@ -100,7 +105,7 @@ LLVM_VERSION=		60
 CONFIGURE_ARGS+=	--enable-dtrace=0
 .endif
 
-.if ${ARCH} == amd64 || ${ARCH} == i386
+.if ${ARCH} == amd64 || ${ARCH} == i386 || (defined(PPC_ABI) && ${PPC_ABI} == ELFv2)
 BOOT_GHC_VERSION=	8.6.5
 .else
 BOOT_GHC_VERSION=	8.6.3

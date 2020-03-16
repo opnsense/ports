@@ -2,6 +2,7 @@
 
 PORTNAME=	slurm
 DISTVERSION=	19.05.5
+PORTREVISION=	2
 CATEGORIES=	sysutils python
 MASTER_SITES=	https://download.schedmd.com/slurm/
 PKGNAMESUFFIX=	-wlm
@@ -96,16 +97,9 @@ pre-configure:
 	@${CP} ${FILESDIR}/pty.h ${WRKSRC}/slurm
 	@${REINPLACE_CMD} -e 's|sched_setaffinity|cpuset_setaffinity|g' \
 		${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|/bin/mail|/usr/bin/mail|g' \
-		${WRKSRC}/src/common/read_config.h \
-		${WRKSRC}/contribs/seff/smail \
-		${WRKSRC}/doc/html/configurator.easy.html.in \
-		${WRKSRC}/doc/html/configurator.html.in \
-		${WRKSRC}/contribs/cray/slurm.conf.template \
-		${WRKSRC}/doc/man/man1/strigger.1 \
-		${WRKSRC}/doc/man/man5/slurm.conf.5
 
 	@${REINPLACE_CMD} -e 's|"/proc|"/compat/linux/proc|g' \
+		-e 's|(/proc)|(/compat/linux/proc)|g' \
 		${WRKSRC}/src/slurmd/slurmstepd/req.c \
 		${WRKSRC}/src/slurmd/slurmstepd/pdebug.c \
 		${WRKSRC}/src/slurmd/common/xcpuinfo.c \

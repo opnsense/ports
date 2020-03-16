@@ -844,6 +844,8 @@
     SUBDIR += py-YubiOTP
     SUBDIR += py-acme
     SUBDIR += py-acme-tiny
+    SUBDIR += py-ailment
+    SUBDIR += py-angr
     SUBDIR += py-argon2-cffi
     SUBDIR += py-artifacts
     SUBDIR += py-asyncssh
@@ -1226,7 +1228,7 @@
     SUBDIR += super
     SUBDIR += suricata
     SUBDIR += suricata5
-    SUBDIR += swatch
+    SUBDIR += swatchdog
     SUBDIR += switzerland
     SUBDIR += symbion-sslproxy
     SUBDIR += tclsasl
