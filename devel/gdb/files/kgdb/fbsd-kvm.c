@@ -42,7 +42,6 @@ __FBSDID("$FreeBSD$");
 #include "target.h"
 #include "value.h"
 #include "readline/tilde.h"
-#include "gdbsupport/pathstuff.h"
 
 #include <sys/user.h>
 #include <fcntl.h>
@@ -139,14 +138,14 @@ kgdb_dmesg(void)
 	 */
 	if (kgdb_quiet)
 		return;
-	try {
+	TRY {
 		bufp = parse_and_eval_address("msgbufp->msg_ptr");
 		size = parse_and_eval_long("msgbufp->msg_size");
 		rseq = parse_and_eval_long("msgbufp->msg_rseq");
 		wseq = parse_and_eval_long("msgbufp->msg_wseq");
-	} catch (const gdb_exception_error &e) {
+	} CATCH(e, RETURN_MASK_ERROR) {
 		return;
-	}
+	} END_CATCH
 	rseq = MSGBUF_SEQ_TO_POS(size, rseq);
 	wseq = MSGBUF_SEQ_TO_POS(size, wseq);
 	if (rseq == wseq)
@@ -203,7 +202,7 @@ fbsd_kernel_osabi_sniffer(bfd *abfd)
 	/* FreeBSD ELF kernels have an interpreter path of "/red/herring". */
 	bufp = buf;
 	s = bfd_get_section_by_name(abfd, ".interp");
-	if (s != NULL && bfd_section_size(s) == sizeof(buf) &&
+	if (s != NULL && bfd_section_size(abfd, s) == sizeof(buf) &&
 	    bfd_get_full_section_contents(abfd, s, &bufp) &&
 	    memcmp(buf, KERNEL_INTERP, sizeof(buf)) == 0)
 		return (GDB_OSABI_FREEBSD_KERNEL);
@@ -242,7 +241,7 @@ public:
   void files_info () override;
   bool thread_alive (ptid_t ptid) override;
   void update_thread_list () override;
-  std::string pid_to_str (ptid_t) override;
+  const char *pid_to_str (ptid_t) override;
   const char *extra_thread_info (thread_info *) override;
 
   bool has_all_memory () override { return false; }
@@ -279,15 +278,14 @@ fbsd_kvm_target_open (const char *args, int from_tty)
 	struct cleanup *old_chain;
 	struct kthr *kt;
 	kvm_t *nkvm;
-	const char *kernel;
-	char *temp, *filename;
+	char *temp, *kernel, *filename;
 	bool writeable;
 
 	if (ops == NULL || ops->supply_pcb == NULL || ops->cpu_pcb_addr == NULL)
 		error ("ABI doesn't support a vmcore target");
 
 	target_preopen (from_tty);
-	kernel = get_exec_file (0);
+	kernel = get_exec_file (1);
 	if (kernel == NULL)
 		error ("Can't open a vmcore without a kernel");
 
@@ -307,15 +305,17 @@ fbsd_kvm_target_open (const char *args, int from_tty)
 					error (_("Invalid argument"));
 
 				filename = tilde_expand (*argv);
-				if (filename[0] != '/') {
-					gdb::unique_xmalloc_ptr<char> temp (gdb_abspath (filename));
-
-					xfree (filename);
-					filename = temp.release ();
+				if (!IS_ABSOLUTE_PATH (filename)) {
+					temp = concat (current_directory, "/",
+					    filename, NULL);
+					xfree(filename);
+					filename = temp;
 				}
 			}
 		}
 	}
+
+	old_chain = make_cleanup (xfree, filename);
 
 #ifdef HAVE_KVM_OPEN2
 	nkvm = kvm_open2(kernel, filename,
@@ -324,12 +324,11 @@ fbsd_kvm_target_open (const char *args, int from_tty)
 	nkvm = kvm_openfiles(kernel, filename, NULL,
 	    writeable ? O_RDWR : O_RDONLY, kvm_err);
 #endif
-	if (nkvm == NULL) {
-		xfree (filename);
+	if (nkvm == NULL)
 		error ("Failed to open vmcore: %s", kvm_err);
-	}
 
 	/* Don't free the filename now and close any previous vmcore. */
+	discard_cleanups(old_chain);
 	unpush_target(&fbsd_kvm_ops);
 
 #ifdef HAVE_KVM_DISP
@@ -361,27 +360,27 @@ fbsd_kvm_target_open (const char *args, int from_tty)
 	 * symbol that is valid on all platforms, but kernbase is close
 	 * for most platforms.
 	 */
-	try {
+	TRY {
 		kernstart = parse_and_eval_address("vm_maxuser_address") + 1;
-	} catch (const gdb_exception_error &e) {
+	} CATCH(e, RETURN_MASK_ERROR) {
 		kernstart = kgdb_lookup("kernbase");
-	}
+	} END_CATCH
 
 	/*
 	 * Lookup symbols needed for stoppcbs[] handling, but don't
 	 * fail if they aren't present.
 	 */
 	stoppcbs = kgdb_lookup("stoppcbs");
-	try {
+	TRY {
 		pcb_size = parse_and_eval_long("pcb_size");
-	} catch (const gdb_exception_error &e) {
+	} CATCH(e, RETURN_MASK_ERROR) {
 		pcb_size = 0;
-	}
+	} END_CATCH
 
 	if (pcb_size == 0) {
-		try {
+		TRY {
 			pcb_size = parse_and_eval_long("sizeof(struct pcb)");
-		} catch (const gdb_exception_error &e) {
+		} CATCH(e, RETURN_MASK_ERROR) {
 #ifdef HAVE_KVM_OPEN2
 			if (kvm_native(nkvm))
 				pcb_size = sizeof(struct pcb);
@@ -390,7 +389,7 @@ fbsd_kvm_target_open (const char *args, int from_tty)
 #else
 			pcb_size = sizeof(struct pcb);
 #endif
-		}
+		} END_CATCH
 	}
 
 	kvm = nkvm;
@@ -509,10 +508,13 @@ fbsd_kvm_target::update_thread_list()
 #endif
 }
 
-std::string
+const char *
 fbsd_kvm_target::pid_to_str(ptid_t ptid)
 {
-  return string_printf (_("Thread %ld"), ptid.tid ());
+	static char buf[33];
+
+	snprintf(buf, sizeof(buf), "Thread %ld", ptid.tid());
+	return (buf);
 }
 
 bool
