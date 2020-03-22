@@ -13089,7 +13089,6 @@ audio/wmsmixer||2019-10-16|Has expired: Unfetchable, unmaintained
 audio/xmms2-scrobbler||2019-10-16|Has expired: Unfetchable, unmaintained
 benchmarks/filebench||2019-10-16|Has expired: Unfetchable, unmaintained
 biology/chemeq||2019-10-16|Has expired: Unfetchable, unmaintained
-biology/linux-foldingathome||2019-10-16|Has expired: Unfetchable, unmaintained
 cad/dxf2fig||2019-10-16|Has expired: Unfetchable, unmaintained
 comms/gsmlib||2019-10-16|Has expired: Unfetchable, unmaintained
 comms/nokryptia||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -14501,3 +14500,4 @@ net-mgmt/py-pdagent||2020-03-20|Has expired: Unmaintained, uses EOLed python27
 textproc/pychm||2020-03-20|Has expired: Unmaintained, uses EOLed python27
 x11/rxvt|x11/rxvt-unicode|2020-03-20|Has expired: Abandonware: stable release 2.6.4 / November 1, 2001 and no maintainer
 x11-wm/clementine-wm||2020-03-20|Removed, unmaintained and depends on expired x11/rxvt
+net/kdsoap|www/kdsoap|2020-03-21|Already existed in the tree
