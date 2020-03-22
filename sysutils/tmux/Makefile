@@ -19,8 +19,6 @@ USES=		ncurses pkgconfig
 USE_GITHUB=	nodefault
 GH_TUPLE=	imomaliev:tmux-bash-completion:ef56d3e:bash
 
-USE_HARDENING=	cfi safestack
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-utempter \
 		--sysconfdir=${PREFIX}/etc
