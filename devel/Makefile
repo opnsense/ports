@@ -4067,6 +4067,7 @@
     SUBDIR += py-attrs
     SUBDIR += py-autoflake
     SUBDIR += py-automaton
+    SUBDIR += py-autoprop
     SUBDIR += py-avro
     SUBDIR += py-aws-sam-translator
     SUBDIR += py-aws-xray-sdk
@@ -4290,6 +4291,7 @@
     SUBDIR += py-ddt
     SUBDIR += py-ddtrace
     SUBDIR += py-debtcollector
+    SUBDIR += py-debugtools
     SUBDIR += py-decorator
     SUBDIR += py-decoratortools
     SUBDIR += py-deepdiff
@@ -5225,6 +5227,7 @@
     SUBDIR += pythontidy
     SUBDIR += qbs
     SUBDIR += qca
+    SUBDIR += qca-legacy
     SUBDIR += qconf
     SUBDIR += qgit
     SUBDIR += qjson
