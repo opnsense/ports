@@ -5,7 +5,7 @@
  PRODUCT="OPNsense"
  PKG="pkg-static"
 -VERSION="20.1.2"
-+VERSION="20.7.a"
++VERSION="20.7.b"
  
  ORIGIN="/usr/local/etc/pkg/repos/${PRODUCT}.conf"
  PENDINGDIR="${WORKPREFIX}/.sets.pending"
