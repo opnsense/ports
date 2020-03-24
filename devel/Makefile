@@ -4693,6 +4693,7 @@
     SUBDIR += py-p4python
     SUBDIR += py-packaging
     SUBDIR += py-parallax
+    SUBDIR += py-parameterized
     SUBDIR += py-parsedatetime
     SUBDIR += py-parver
     SUBDIR += py-pastel
@@ -4856,6 +4857,7 @@
     SUBDIR += py-pytest-isort
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-mock
+    SUBDIR += py-pytest-verbose-parametrize
     SUBDIR += py-pytest-pep8
     SUBDIR += py-pytest-pycodestyle
     SUBDIR += py-pytest-relaxed

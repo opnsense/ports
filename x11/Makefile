@@ -37,6 +37,7 @@
     SUBDIR += cinnamon-session
     SUBDIR += cl-clx
     SUBDIR += cl-clx-sbcl
+    SUBDIR += clipman
     SUBDIR += compton-conf
     SUBDIR += conlecterm
     SUBDIR += controllermap
@@ -337,6 +338,7 @@
     SUBDIR += wev
     SUBDIR += wf-shell
     SUBDIR += wl-clipboard
+    SUBDIR += wlogout
     SUBDIR += wmappl
     SUBDIR += wmblob
     SUBDIR += wmbutton
@@ -348,6 +350,7 @@
     SUBDIR += wmutils-core
     SUBDIR += wmutils-opt
     SUBDIR += wmxss
+    SUBDIR += wofi
     SUBDIR += workrave
     SUBDIR += x11perf
     SUBDIR += x3270
