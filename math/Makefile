@@ -244,6 +244,7 @@
     SUBDIR += facile
     SUBDIR += fann
     SUBDIR += fcl
+    SUBDIR += fcl05
     SUBDIR += fflas-ffpack
     SUBDIR += fftw
     SUBDIR += fftw-float
@@ -787,6 +788,7 @@
     SUBDIR += py-pystan
     SUBDIR += py-pysym
     SUBDIR += py-python-louvain
+    SUBDIR += py-python_fcl
     SUBDIR += py-pyvtk
     SUBDIR += py-quadprog
     SUBDIR += py-random2
