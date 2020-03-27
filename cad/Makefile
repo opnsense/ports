@@ -20,12 +20,14 @@
     SUBDIR += cascade
     SUBDIR += cascade-compiler
     SUBDIR += chipvault
+    SUBDIR += cura
     SUBDIR += cura-engine
     SUBDIR += digital
     SUBDIR += dinotrace
     SUBDIR += electric
     SUBDIR += electric-ng
     SUBDIR += fasm
+    SUBDIR += fdm_materials
     SUBDIR += feappv
     SUBDIR += fidocadj
     SUBDIR += freecad
@@ -108,6 +110,7 @@
     SUBDIR += tkgate
     SUBDIR += tochnog
     SUBDIR += transcalc
+    SUBDIR += uranium
     SUBDIR += varkon
     SUBDIR += verilator
     SUBDIR += verilog-mode.el

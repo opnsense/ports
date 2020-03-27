@@ -345,9 +345,11 @@
     SUBDIR += ldapsh
     SUBDIR += leproxy
     SUBDIR += lft
+    SUBDIR += libarcus
     SUBDIR += libarms
     SUBDIR += libbgpdump
     SUBDIR += libcapn
+    SUBDIR += libcharon
     SUBDIR += libcmis
     SUBDIR += libcoap
     SUBDIR += libdaq

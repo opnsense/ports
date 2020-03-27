@@ -1242,6 +1242,7 @@
     SUBDIR += liblxqt
     SUBDIR += libmaa
     SUBDIR += libmatheval
+    SUBDIR += libmatthew
     SUBDIR += libmba
     SUBDIR += libmill
     SUBDIR += libmimedir
@@ -1310,6 +1311,7 @@
     SUBDIR += librolegen
     SUBDIR += libruin
     SUBDIR += libs11n
+    SUBDIR += libsavitar
     SUBDIR += libscca
     SUBDIR += libsearpc
     SUBDIR += libserialport
@@ -6525,9 +6527,9 @@
     SUBDIR += snorenotify
     SUBDIR += soapui
     SUBDIR += socket_wrapper
-    SUBDIR += sonar-ant-task
     SUBDIR += sonar-scanner-cli
-    SUBDIR += sonarqube
+    SUBDIR += sonarqube-ant-task
+    SUBDIR += sonarqube-community
     SUBDIR += sope2
     SUBDIR += sope4
     SUBDIR += sord

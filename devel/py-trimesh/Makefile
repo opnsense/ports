@@ -22,7 +22,7 @@ NEEDED_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}svg_path>0:graphics/py-svg.path@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sympy>0:math/py-sympy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}msgpack>0:devel/py-msgpack@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}pillow>0:graphics/py-pillow@${PY_FLAVOR} \
+		${PY_PILLOW} \
 		${PYTHON_PKGNAMEPREFIX}requests>0:www/py-requests@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xxhash>0:devel/py-xxhash@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pycollada>0:graphics/py-pycollada@${PY_FLAVOR} \
@@ -32,11 +32,11 @@ NEEDED_DEPENDS=	${PYTHON_PKGNAMEPREFIX}scipy>0:science/py-scipy@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>0:devel/py-jsonschema@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}scikit-image>0:graphics/py-scikit-image@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}python-fcl>0:math/py-python_fcl@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}python-fcl>0:math/py-python-fcl@${PY_FLAVOR}
 BUILD_DEPENDS=	${NEEDED_DEPENDS}
 RUN_DEPENDS=	${NEEDED_DEPENDS}
 
-USES=		compiler:c++11-lang python
+USES=		compiler:c++11-lang python:3.5+
 
 USE_PYTHON=	distutils autoplist concurrent
 
