@@ -188,8 +188,8 @@ mastodon:*:244:
 routinator:*:245:
 fahclient:*:246:fahclient
 fcron:*:247:
-# free: 248
-# free: 249
+signal-cli:*:248:
+sonarqube:*:249:
 sems:*:250:
 # free: 251
 # free: 252
@@ -395,7 +395,7 @@ ecartis:*:450:
 # free: 452
 # free: 453
 # free: 454
-inadyn:*:455
+inadyn:*:455:
 # free: 456
 # free: 457
 # free: 458
@@ -821,7 +821,7 @@ bitmark-recorder:*:873:
 # free: 878
 # free: 879
 # free: 880
-# free: 881
+ultimaker:*:881:
 midpoint:*:882:
 ipfs-go:*:883:
 telegraf:*:884:
