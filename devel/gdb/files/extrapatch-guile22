@@ -175,7 +175,7 @@
  
  /* Support for connecting Guile's stdio ports to GDB's stdio ports.  */
  
-@@ -218,6 +262,72 @@ ioscm_input_waiting (SCM port)
+@@ -218,6 +262,73 @@ ioscm_input_waiting (SCM port)
    }
  }
  
@@ -228,17 +228,18 @@
 +      scm_syserror("ioscm_write");
 +    }
 +
-+  try
++  TRY
 +    {
 +      if (scm_is_eq (port, error_port_scm))
 +	fputsn_filtered (ptr, count, gdb_stderr);
 +      else
 +	fputsn_filtered (ptr, count, gdb_stdout);
 +    }
-+  catch (gdbscm_gdb_exception &except)
++  CATCH (except, RETURN_MASK_ALL)
 +    {
 +      GDBSCM_HANDLE_GDB_EXCEPTION (except);
 +    }
++  END_CATCH
 +
 +  return count;
 +}
