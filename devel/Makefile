@@ -4159,6 +4159,7 @@
     SUBDIR += py-banal
     SUBDIR += py-bandit
     SUBDIR += py-bcdoc
+    SUBDIR += py-beautifultable
     SUBDIR += py-bidict
     SUBDIR += py-billiard
     SUBDIR += py-binaryornot
@@ -4321,6 +4322,7 @@
     SUBDIR += py-docopt
     SUBDIR += py-dogpile.cache
     SUBDIR += py-doit
+    SUBDIR += py-dotted
     SUBDIR += py-dtfabric
     SUBDIR += py-durus
     SUBDIR += py-dynrules
@@ -6333,7 +6335,6 @@
     SUBDIR += rubygem-skiptrace
     SUBDIR += rubygem-slack-messenger
     SUBDIR += rubygem-slack-notifier
-    SUBDIR += rubygem-slack-notifier1
     SUBDIR += rubygem-slim
     SUBDIR += rubygem-slop
     SUBDIR += rubygem-slop3

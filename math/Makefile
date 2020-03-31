@@ -27,6 +27,7 @@
     SUBDIR += R-cran-NMF
     SUBDIR += R-cran-RHmm
     SUBDIR += R-cran-RSvgDevice
+    SUBDIR += R-cran-raster
     SUBDIR += R-cran-RcppArmadillo
     SUBDIR += R-cran-RcppEigen
     SUBDIR += R-cran-RcppRoll
@@ -340,6 +341,7 @@
     SUBDIR += lapacke
     SUBDIR += laspack
     SUBDIR += latte-integrale
+    SUBDIR += lcalc
     SUBDIR += ldouble
     SUBDIR += lean
     SUBDIR += lemon
@@ -369,6 +371,7 @@
     SUBDIR += lis
     SUBDIR += lll_spect
     SUBDIR += lp_solve
+    SUBDIR += lrcalc
     SUBDIR += lrng
     SUBDIR += lrslib
     SUBDIR += ltl
@@ -689,6 +692,7 @@
     SUBDIR += physcalc
     SUBDIR += picosat
     SUBDIR += piranha
+    SUBDIR += planarity
     SUBDIR += plman
     SUBDIR += ploticus
     SUBDIR += ploticus-nox11

@@ -26,8 +26,6 @@ BUILD_DEPENDS=	nspr>=4.21:devel/nspr \
 		nasm:devel/nasm \
 		zip:archivers/zip
 
-USE_HARDENING=	pie:off relro:off
-
 SSP_UNSAFE=	yes
 USE_GECKO=	gecko
 USE_MOZILLA=	-vpx
@@ -37,8 +35,6 @@ USES=		tar:xz
 MOZ_OPTIONS=	--enable-application=comm/mail --enable-official-branding
 MOZ_MK_OPTIONS=	MOZ_THUNDERBIRD=1 MAIL_PKG_SHARED=1
 MOZ_EXPORT=		MOZ_THUNDERBIRD=1 MAIL_PKG_SHARED=1
-
-MOZ_OPTIONS+=	--enable-pie
 
 PORTNAME_ICON=	${MOZILLA}.png
 PORTNAME_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/chrome/icons/default/default48.png
