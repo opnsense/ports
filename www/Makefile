@@ -13,6 +13,7 @@
     SUBDIR += R-cran-rvest
     SUBDIR += R-cran-scrapeR
     SUBDIR += R-cran-selectr
+    SUBDIR += R-cran-servr
     SUBDIR += R-cran-shiny
     SUBDIR += Stikked
     SUBDIR += UniversalFeedCreator
@@ -946,6 +947,7 @@
     SUBDIR += p5-HTTP-Thin
     SUBDIR += p5-HTTP-Throwable
     SUBDIR += p5-HTTP-Tiny
+    SUBDIR += p5-HTTP-Tiny-Multipart
     SUBDIR += p5-HTTP-Tiny-SPDY
     SUBDIR += p5-HTTP-Tiny-UA
     SUBDIR += p5-HTTP-WebTest

@@ -281,7 +281,6 @@
     SUBDIR += dunst
     SUBDIR += dupd
     SUBDIR += duplicity
-    SUBDIR += duplicity-devel
     SUBDIR += duplicity07
     SUBDIR += duply
     SUBDIR += dupmerge
@@ -364,8 +363,8 @@
     SUBDIR += froxlor
     SUBDIR += fsbackup
     SUBDIR += fsc
-    SUBDIR += fselect
     SUBDIR += fsearch
+    SUBDIR += fselect
     SUBDIR += fstyp
     SUBDIR += fswatch-mon
     SUBDIR += ftwin

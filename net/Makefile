@@ -156,8 +156,8 @@
     SUBDIR += fb
     SUBDIR += fiche
     SUBDIR += file2pcap
-    SUBDIR += findomain
     SUBDIR += findmtu
+    SUBDIR += findomain
     SUBDIR += flent
     SUBDIR += flower
     SUBDIR += flowgrep
@@ -1143,7 +1143,6 @@
     SUBDIR += py-zeep
     SUBDIR += py-zeroconf
     SUBDIR += py-zope.proxy
-    SUBDIR += pygopherd
     SUBDIR += pynids
     SUBDIR += pyrad
     SUBDIR += qadsl
