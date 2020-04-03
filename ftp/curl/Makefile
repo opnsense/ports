@@ -3,6 +3,7 @@
 
 PORTNAME=	curl
 PORTVERSION=	7.69.1
+PORTREVISION=	1
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.haxx.se/download/ \
 		LOCAL/sunpoet
@@ -32,7 +33,7 @@ HTTP2_DESC=		HTTP/2 support (requires HTTP)
 HTTP2_IMPLIES=		HTTP
 IMAP_DESC=		IMAP/IMAPS support
 LDAPS_IMPLIES=		LDAP
-LIBSSH2_DESC=		SCP/SFTP support via libssh2
+LIBSSH2_DESC=		SCP/SFTP support via libssh2 (requires OPENSSL)
 LIBSSH2_IMPLIES=	OPENSSL
 POP3_DESC=		POP3/POP3S support
 PROXY_IMPLIES=		HTTP
