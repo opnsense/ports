@@ -1161,6 +1161,7 @@
     SUBDIR += secpanel
     SUBDIR += sectok
     SUBDIR += secure_delete
+    SUBDIR += sedutil
     SUBDIR += setaudit
     SUBDIR += sha
     SUBDIR += sha1collisiondetection

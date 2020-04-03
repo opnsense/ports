@@ -399,6 +399,7 @@
     SUBDIR += moo
     SUBDIR += mpc
     SUBDIR += mpexpr
+    SUBDIR += mpfi
     SUBDIR += mpfr
     SUBDIR += mpfrc++
     SUBDIR += mpir
@@ -842,6 +843,7 @@
     SUBDIR += qtiplot-doc
     SUBDIR += qwtplot3d
     SUBDIR += randlib
+    SUBDIR += rankwidth
     SUBDIR += rapid
     SUBDIR += reduce
     SUBDIR += reduce-psl
