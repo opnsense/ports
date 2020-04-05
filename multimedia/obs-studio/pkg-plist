@@ -43,6 +43,7 @@ include/obs/obs-data.h
 include/obs/obs-defs.h
 include/obs/obs-encoder.h
 include/obs/obs-ffmpeg-compat.h
+include/obs/obs-frontend-api.h
 include/obs/obs-hotkey.h
 include/obs/obs-hotkeys.h
 include/obs/obs-interaction.h
@@ -86,6 +87,8 @@ lib/cmake/LibObs/LibObsConfig.cmake
 lib/cmake/LibObs/LibObsConfigVersion.cmake
 lib/cmake/LibObs/LibObsTarget-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/LibObs/LibObsTarget.cmake
+lib/cmake/ObsHelpers.cmake
+lib/cmake/ObsPluginHelpers.cmake
 lib/libobs-frontend-api.so
 lib/libobs-frontend-api.so.0
 lib/libobs-frontend-api.so.0.0

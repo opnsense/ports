@@ -317,6 +317,7 @@
     SUBDIR += ideep
     SUBDIR += ignition-math
     SUBDIR += igraph
+    SUBDIR += iml
     SUBDIR += intervaltree
     SUBDIR += ipopt
     SUBDIR += ised
@@ -378,6 +379,7 @@
     SUBDIR += ltl
     SUBDIR += ltl2ba
     SUBDIR += m4ri
+    SUBDIR += m4rie
     SUBDIR += mate-calc
     SUBDIR += math77
     SUBDIR += mathgl
@@ -393,7 +395,6 @@
     SUBDIR += mingw32-libgmp
     SUBDIR += minisat
     SUBDIR += miracl
-    SUBDIR += mkl-dnn
     SUBDIR += mlpack
     SUBDIR += moab
     SUBDIR += moo
@@ -510,6 +511,7 @@
     SUBDIR += octave-forge-zeromq
     SUBDIR += octomap
     SUBDIR += oleo
+    SUBDIR += onednn
     SUBDIR += openblas
     SUBDIR += openfst
     SUBDIR += openlibm
