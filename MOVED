@@ -11787,7 +11787,6 @@ games/jag||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/kardsgt||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/kcheckers||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/openpref||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-games/pokerth||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/qgo||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/qtads||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 games/quackle||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -14522,3 +14521,4 @@ www/py-puppetboard02|www/py-puppetboard|2020-04-01|Has expired: Use www/py-puppe
 www/py-puppetboard03|www/py-puppetboard|2020-04-01|Has expired: Use www/py-puppetboard instead
 net/librsync2|net/librsync|2020-04-02|Remove PKGNAMESUFFIX 3 years after librsync removal
 lang/beignet|lang/intel-compute-runtime|2020-04-02|Has expired: Deprecated upstream, use lang/intel-compute-runtime
+devel/rubygem-cucumber-tag_expressions|devel/rubygem-cucumber-tag-expressions|2020-04-04|Renamed by upstream
