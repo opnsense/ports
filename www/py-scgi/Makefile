@@ -2,22 +2,18 @@
 # $FreeBSD$
 
 PORTNAME=	scgi
-PORTVERSION=	1.14
-PORTREVISION=	1
+DISTVERSION=	2.0
 CATEGORIES=	www python
 MASTER_SITES=	http://python.ca/scgi/releases/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	jlaffaye@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Python server implementation of the Simple Common Gateway Protocol
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-DEPRECATED=	Uses deprecated version of python
-EXPIRATION_DATE=	2020-08-15
-
-USES=		python:2.7
-USE_PYTHON=	distutils autoplist
+USES=		python
+USE_PYTHON=	autoplist concurrent distutils
 
 .include <bsd.port.mk>

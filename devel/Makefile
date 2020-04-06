@@ -4466,12 +4466,14 @@
     SUBDIR += py-importlib-metadata
     SUBDIR += py-importlib-resources
     SUBDIR += py-incremental
+    SUBDIR += py-infinity
     SUBDIR += py-inflect
     SUBDIR += py-inflection
     SUBDIR += py-inifile
     SUBDIR += py-iniparse
     SUBDIR += py-instant
     SUBDIR += py-intbitset
+    SUBDIR += py-intervals
     SUBDIR += py-intervaltree
     SUBDIR += py-invoke
     SUBDIR += py-ioflo
@@ -4673,6 +4675,7 @@
     SUBDIR += py-osc-lib
     SUBDIR += py-osc-lib1
     SUBDIR += py-oslo.cache
+    SUBDIR += py-oslo.cache1
     SUBDIR += py-oslo.concurrency
     SUBDIR += py-oslo.config
     SUBDIR += py-oslo.context
