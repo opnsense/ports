@@ -88,6 +88,7 @@
     SUBDIR += colly
     SUBDIR += coppermine
     SUBDIR += cplanet
+    SUBDIR += cpp-httplib
     SUBDIR += cpr
     SUBDIR += crawl
     SUBDIR += crp
@@ -1507,6 +1508,7 @@
     SUBDIR += py-django-crispy-forms
     SUBDIR += py-django-cron
     SUBDIR += py-django-datetime-widget
+    SUBDIR += py-django-debreach
     SUBDIR += py-django-debug-toolbar
     SUBDIR += py-django-dpaste
     SUBDIR += py-django-evolution
@@ -2168,6 +2170,7 @@
     SUBDIR += shellinabox
     SUBDIR += shttpd
     SUBDIR += silicon
+    SUBDIR += simple-web-server
     SUBDIR += sitecopy
     SUBDIR += skytemplate
     SUBDIR += slowcgi
@@ -2324,6 +2327,7 @@
     SUBDIR += unit
     SUBDIR += unit-perl
     SUBDIR += unit-php
+    SUBDIR += uwebsockets
     SUBDIR += uwsgi
     SUBDIR += uwsgitop
     SUBDIR += validator

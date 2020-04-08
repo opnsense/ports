@@ -1,7 +1,9 @@
+# Created by: Emanuel Haupt <ehaupt@FreeBSD.org>
+# $FreeBSD$
 
 PORTNAME=	fasttracker2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.17
+DISTVERSION=	1.18
 CATEGORIES=	audio
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -29,7 +31,7 @@ DESKTOP_ENTRIES="FastTracker II" \
 
 PLIST_FILES=	bin/fasttracker2 share/pixmaps/ft2-clone.ico
 
-OPTIONS_DEFINE=	ALSA
+OPTIONS_DEFINE=	ALSA PULSEAUDIO
 OPTIONS_DEFAULT=ALSA
 
 LDFLAGS+=	-lSDL2 -lpthread -lstdc++ -lm -liconv
@@ -37,6 +39,9 @@ LDFLAGS+=	-lSDL2 -lpthread -lstdc++ -lm -liconv
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_CFLAGS+=	-D__LINUX_ALSA__
 ALSA_LDFLAGS+=	-lasound
+
+PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
+PULSEAUDIO_LDFLAGS+=	-lpulse
 
 CFLAGS_i386+=	-msse2
 

@@ -68,10 +68,13 @@
     SUBDIR += R-cran-inline
     SUBDIR += R-cran-ipred
     SUBDIR += R-cran-irlba
+    SUBDIR += R-cran-isoband
     SUBDIR += R-cran-labeling
     SUBDIR += R-cran-lava
     SUBDIR += R-cran-lazyeval
+    SUBDIR += R-cran-linprog
     SUBDIR += R-cran-lme4
+    SUBDIR += R-cran-lpSolve
     SUBDIR += R-cran-magic
     SUBDIR += R-cran-maxLik
     SUBDIR += R-cran-mcmc
@@ -310,6 +313,7 @@
     SUBDIR += hexcalc
     SUBDIR += hipmcl
     SUBDIR += hmat-oss
+    SUBDIR += hpcombi
     SUBDIR += hpipm
     SUBDIR += hs-Agda
     SUBDIR += hs-penrose
@@ -363,6 +367,7 @@
     SUBDIR += libranlip
     SUBDIR += librdata
     SUBDIR += librsb
+    SUBDIR += libsemigroups
     SUBDIR += libtommath
     SUBDIR += libtsnnls
     SUBDIR += libxls
