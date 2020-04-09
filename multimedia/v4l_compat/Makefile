@@ -8,11 +8,10 @@ COMMENT=	Video4Linux IOCTL header files
 NO_BUILD=	yes
 NO_ARCH=	yes
 
-MASTERDIR=	${.CURDIR}/../../multimedia/libv4l
+MASTERDIR=	${.CURDIR}/../libv4l
 EXTRADIR=	${WRKSRC}/../linux
 DESCR=		${.CURDIR}/pkg-descr
 PLIST=		${.CURDIR}/pkg-plist
-LIBV4L_SLAVE=	compat
 
 BASE_HEADERS=	ivtv.h v4l2-controls.h \
 		v4l2-common.h videodev2.h

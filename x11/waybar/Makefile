@@ -2,6 +2,7 @@
 
 PORTNAME=	waybar
 DISTVERSION=	0.9.1
+PORTREVISION=	1
 CATEGORIES=	x11
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -24,11 +25,11 @@ COMMENT=	Highly customizable Wayland bar for Sway and wlroots-based compositors
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	spdlog>0:devel/spdlog \
-		wayland-protocols>0:graphics/wayland-protocols
+BUILD_DEPENDS=	wayland-protocols>0:graphics/wayland-protocols
 LIB_DEPENDS=	libtz.so:devel/date \
 		libjsoncpp.so:devel/jsoncpp \
 		libfmt.so:devel/libfmt \
+		libspdlog.so:devel/spdlog \
 		libwayland-client.so:graphics/wayland
 
 USES=		compiler:c++17-lang gnome meson pkgconfig
