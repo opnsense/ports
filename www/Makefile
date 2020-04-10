@@ -1547,6 +1547,7 @@
     SUBDIR += py-django-photologue
     SUBDIR += py-django-picklefield
     SUBDIR += py-django-pipeline
+    SUBDIR += py-django-polymorphic
     SUBDIR += py-django-post_office
     SUBDIR += py-django-profiles
     SUBDIR += py-django-prometheus
@@ -1587,7 +1588,6 @@
     SUBDIR += py-django30
     SUBDIR += py-django_compressor
     SUBDIR += py-django_openstack_auth
-    SUBDIR += py-django_polymorphic
     SUBDIR += py-djangocms-admin-style
     SUBDIR += py-djangorestframework
     SUBDIR += py-djangorestframework-csv
@@ -2227,6 +2227,7 @@
     SUBDIR += tivoka
     SUBDIR += tntnet
     SUBDIR += tokyopromenade
+    SUBDIR += tomcat-devel
     SUBDIR += tomcat-native
     SUBDIR += tomcat7
     SUBDIR += tomcat85
