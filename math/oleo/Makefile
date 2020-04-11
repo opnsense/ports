@@ -19,6 +19,8 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-x --without-xlt --without-SciPlot
 MAKE_ARGS+=	DESTDIR="${STAGEDIR}"
 
+BROKEN_amd64=	Broken by recent signal handling changes from FreeBSD
+
 BINARY_ALIAS=	makeinfo=false # disable detecting local makeinfo
 
 INFO=		oleo
