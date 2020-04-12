@@ -241,6 +241,7 @@
     SUBDIR += haproxy18
     SUBDIR += haproxy19
     SUBDIR += haproxy21
+    SUBDIR += hblock
     SUBDIR += hexinject
     SUBDIR += hinfo
     SUBDIR += hlmaster
@@ -297,6 +298,7 @@
     SUBDIR += jsch
     SUBDIR += jumpgate
     SUBDIR += jwhois
+    SUBDIR += k6
     SUBDIR += kafka
     SUBDIR += kafkacat
     SUBDIR += kalarmcal
@@ -1357,6 +1359,7 @@
     SUBDIR += ryu
     SUBDIR += s3ql
     SUBDIR += samba410
+    SUBDIR += samba411
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbd
