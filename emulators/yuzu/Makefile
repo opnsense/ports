@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	yuzu
-PORTVERSION=	s20200411
+PORTVERSION=	s20200413
 PORTREVISION?=	0
 CATEGORIES=	emulators
 
@@ -28,11 +28,11 @@ BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	75e39f7f8
+GH_TAGNAME=	7e4a132a7
 GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		DarkLordZach:mbedtls:a280e60:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:2c51218:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
-		KhronosGroup:Vulkan-Headers:v1.1.127-2-gd42d074:Vulkan_Headers/externals/Vulkan-Headers \
+		KhronosGroup:Vulkan-Headers:v1.2.136:Vulkan_Headers/externals/Vulkan-Headers \
 		MerryMage:dynarmic:r1-1438-gf6ae9e1c:dynarmic/externals/dynarmic \
 		ReinUsesLisp:sirit:a712959:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
@@ -56,8 +56,8 @@ CXXFLAGS+=	-Wno-narrowing # https://github.com/yuzu-emu/yuzu/issues/3407
 LDFLAGS+=	-Wl,--as-needed # Qt5Network
 TEST_TARGET=	test
 
-OPTIONS_DEFINE=	ALSA PULSEAUDIO JACK SNDIO
-OPTIONS_DEFAULT=ALSA PULSEAUDIO JACK SNDIO
+OPTIONS_DEFINE=	ALSA PULSEAUDIO JACK SNDIO VULKAN
+OPTIONS_DEFAULT=ALSA PULSEAUDIO JACK SNDIO VULKAN
 OPTIONS_MULTI=	GUI
 OPTIONS_MULTI_GUI=	QT5 SDL
 OPTIONS_SLAVE?=	SDL
@@ -87,6 +87,9 @@ QT5_PLIST_FILES=bin/${PORTNAME} \
 		share/applications/${PORTNAME}.desktop \
 		share/icons/hicolor/scalable/apps/${PORTNAME}.svg \
 		share/mime/packages/${PORTNAME}.xml
+
+VULKAN_DESC=		Vulkan renderer
+VULKAN_RUN_DEPENDS=	${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader
 
 post-patch:
 	@${REINPLACE_CMD} -e '/check_submodules_present()/d' \
