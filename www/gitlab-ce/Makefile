@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	12.9.2
+PORTVERSION=	12.9.3
 PORTREVISION=	0
 CATEGORIES=	www devel
 
@@ -16,7 +16,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 # which makes maintaining this long list much easier!
 MY_DEPENDS=	git>=2.22.2:devel/git \
 	gitlab-shell>=12.0.0:devel/gitlab-shell \
-	gitlab-workhorse>=8.25.1:www/gitlab-workhorse \
+	gitlab-workhorse>=8.25.2:www/gitlab-workhorse \
 	gitaly>=${PORTVERSION}:devel/gitaly \
 	gitlab-pages>=1.17.0:www/gitlab-pages \
 	redis>=3.2.12:databases/redis \
@@ -118,7 +118,7 @@ MY_DEPENDS=	git>=2.22.2:devel/git \
 	rubygem-icalendar>=0:devel/rubygem-icalendar \
 	rubygem-diffy>=3.3<4:textproc/rubygem-diffy \
 	rubygem-diff_match_patch>=0.1.0<0.2.0:textproc/rubygem-diff_match_patch \
-	rubygem-rack20>=2.0.7<2.1.0,3:www/rubygem-rack20 \
+	rubygem-rack20>=2.0.9<2.1.0,3:www/rubygem-rack20 \
 	rubygem-unicorn>=5.4.1<5.5.0:www/rubygem-unicorn \
 	rubygem-unicorn-worker-killer>=0.4.4<0.5.0:www/rubygem-unicorn-worker-killer \
 	rubygem-gitlab-puma>=4.3.3.g.2:www/rubygem-gitlab-puma \
@@ -176,7 +176,7 @@ MY_DEPENDS=	git>=2.22.2:devel/git \
 	rubygem-rack-attack>=6.2.0<6.3.0:www/rubygem-rack-attack \
 	rubygem-sentry-raven>=2.9<3.0:devel/rubygem-sentry-raven \
 	rubygem-premailer-rails-rails60>=1.10.3<1.11.0:mail/rubygem-premailer-rails-rails60 \
-	rubygem-gitlab-labkit=0.11.0:devel/rubygem-gitlab-labkit \
+	rubygem-gitlab-labkit>=0.11.0<0.11.1:devel/rubygem-gitlab-labkit \
 	rubygem-ruby_parser>=3.8<4.0:devel/rubygem-ruby_parser \
 	rubygem-rails-i18n-rails60>=6.0<7.0:devel/rubygem-rails-i18n-rails60 \
 	rubygem-gettext_i18n_rails>=1.8.0<1.9.0:devel/rubygem-gettext_i18n_rails \
@@ -210,7 +210,7 @@ MY_DEPENDS=	git>=2.22.2:devel/git \
 	rubygem-ed25519>=1.2<2.0:security/rubygem-ed25519 \
 	rubygem-bcrypt_pbkdf>=1.0<2.0:security/rubygem-bcrypt_pbkdf \
 	rubygem-gitaly>=12.9.0.p.r4<12.10.0:net/rubygem-gitaly \
-	rubygem-grpc>=1.24.0<1.25.0:net/rubygem-grpc \
+	rubygem-grpc124>=1.24.0<1.25.0:net/rubygem-grpc124 \
 	rubygem-google-protobuf38>=3.8.0<3.9.0:devel/rubygem-google-protobuf38 \
 	rubygem-toml-rb10>=1.0.0<1.1.0:www/rubygem-toml-rb10 \
 	rubygem-flipper>=0.17.1<0.18.0:devel/rubygem-flipper \
@@ -245,7 +245,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 GL_PROJECT=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT=	ac5568eb5d8cef68ced7c70729cc47f20d0a84b9
+GL_COMMIT=	571e31b8362a6903c97c5d42f2211151941a7cd3
 
 USERS=	git
 GROUPS=	git
