@@ -82,6 +82,7 @@
     SUBDIR += mikutter
     SUBDIR += mtxclient
     SUBDIR += mu-conference
+    SUBDIR += nextcloud-talk
     SUBDIR += nheko
     SUBDIR += openfire
     SUBDIR += oysttyer
@@ -185,6 +186,7 @@
     SUBDIR += toxbot
     SUBDIR += toxic
     SUBDIR += toxins
+    SUBDIR += tut
     SUBDIR += twirssi
     SUBDIR += twitmail
     SUBDIR += uTox
