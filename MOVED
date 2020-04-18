@@ -14541,3 +14541,7 @@ net/luasocket-51|net/luasocket@lua51|2020-04-14|Switched to use flavors
 net/luasocket-53|net/luasocket@lua53|2020-04-14|Switched to use flavors
 security/luasec-51|security/luasec@lua51|2020-04-14|Switched to use flavors
 textproc/luaexpat-51|textproc/luaexpat@lua51|2020-04-14|Switched to use flavors
+devel/libevdevPlus|devel/libevdevplus|2020-04-18|lowercase
+devel/libuIntputPlus|devel/libuinputplus|2020-04-18|lowercase
+net/pjsip-extsrtp||2020-04-18|Remove slave port not used anymore
+www/py-django-caching-app-plugins||2020-04-18|Doesn't work with Django 1.9+ and Python 3, no longer maintained
