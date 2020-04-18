@@ -1218,6 +1218,8 @@
     SUBDIR += sst
     SUBDIR += starttls
     SUBDIR += steghide
+    SUBDIR += step-certificates
+    SUBDIR += step-cli
     SUBDIR += stoken
     SUBDIR += strobe
     SUBDIR += strongswan

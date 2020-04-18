@@ -2,6 +2,7 @@
 
 PORTNAME=	sonic-visualiser
 DISTVERSION=	4.0.1
+PORTREVISION=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://code.soundsoftware.ac.uk/attachments/download/2607/
 
@@ -34,7 +35,7 @@ USE_GL=		gl
 GNU_CONFIGURE=	yes
 
 OPTIONS_DEFINE=		DEBUG FISHSOUND ID3TAG JACK MAD OSC PORTAUDIO PULSEAUDIO
-OPTIONS_DEFAULT=	FISHSOUND ID3TAG JACK MAD PORTAUDIO PULSEAUDIO
+OPTIONS_DEFAULT=	FISHSOUND ID3TAG JACK MAD PORTAUDIO
 OPTIONS_SUB=		yes
 
 DEBUG_CONFIGURE_ENABLE=	debug
@@ -67,6 +68,8 @@ PULSEAUDIO_LIB_DEPENDS=	libpulse.so:audio/pulseaudio
 
 post-patch: # remove the bundled vamp-plugin-sdk to avoid possible confusion
 	@${RM} -r ${WRKSRC}/vamp-plugin-sdk
+	# workaround for https://sourceforge.net/p/sv1/bugs/280/, also see Bug#236000
+	@${FIND} ${WRKSRC} -name "*.pro" -o -name "*.pri" | ${XARGS} ${REINPLACE_CMD} -e 's|-Werror| |'
 
 do-install:
 .for f in sonic-visualiser piper-vamp-simple-server piper-convert checker/vamp-plugin-load-checker

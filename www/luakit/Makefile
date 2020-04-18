@@ -35,6 +35,8 @@ LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
 LUAJIT_MAKE_ARGS=	USE_LUAJIT=1
 LUAJIT_MAKE_ARGS_OFF=	USE_LUAJIT=0
 
+CONFLICTS_INSTALL=	luakit-devel
+
 post-extract:
 	@${REINPLACE_CMD} -e \
 		's|share/man|man| ; s|luakit/doc|doc/luakit| ; \
