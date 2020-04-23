@@ -14440,7 +14440,6 @@ russian/gimp-help||2020-03-01|Has expired: Broken
 security/hotssh||2020-03-01|Has expired: Old, uses EOLed python27
 security/zenmap||2020-03-01|Has expired: Old, uses EOLed python27
 x11/py-xdot06|x11/py-xdot|2020-03-01|Has expired: Old, uses EOLed python27
-x11/terminator||2020-03-01|Has expired: Old, uses EOLed python27
 x11-fm/sunflower||2020-03-01|Has expired: Old, uses EOLed python27
 x11-toolkits/hippo-canvas||2020-03-01|Has expired: Old, uses EOLed python27
 x11-toolkits/py-kiwi-gtk||2020-03-01|Has expired: Old, uses EOLed python27
@@ -14520,6 +14519,7 @@ www/py-puppetboard03|www/py-puppetboard|2020-04-01|Has expired: Use www/py-puppe
 net/librsync2|net/librsync|2020-04-02|Remove PKGNAMESUFFIX 3 years after librsync removal
 lang/beignet|lang/intel-compute-runtime|2020-04-02|Has expired: Deprecated upstream, use lang/intel-compute-runtime
 devel/rubygem-cucumber-tag_expressions|devel/rubygem-cucumber-tag-expressions|2020-04-04|Renamed by upstream
+math/mkl-dnn|math/onednn|2020-04-04|Project renamed
 devel/p5-Glib2|devel/p5-Glib|2020-04-07|Rename to match our p5- port naming
 devel/jucipp|editors/jucipp|2020-04-07|Remove duplicate
 www/py-django_polymorphic|www/py-django-polymorphic|2020-04-11|Match canonical/registered (PyPI/CHEESESHOP) name
@@ -14545,3 +14545,9 @@ devel/libevdevPlus|devel/libevdevplus|2020-04-18|lowercase
 devel/libuIntputPlus|devel/libuinputplus|2020-04-18|lowercase
 net/pjsip-extsrtp||2020-04-18|Remove slave port not used anymore
 www/py-django-caching-app-plugins||2020-04-18|Doesn't work with Django 1.9+ and Python 3, no longer maintained
+net/openmpi2||2020-04-19|Removed, deprecated by upstream
+www/py-ddgr|www/ddgr|2020-04-19|Duplicate port
+sysutils/py-halite||2020-04-19|Hasexpired: Uses deprecated version of python
+security/suricata5|security/suricata|2020-04-20|Has expired: security/suricata is already at version 5
+finance/py-ebaysdk-python|finance/py-ebaysdk|2020-04-21|Renamed to match Pypy package
+emulators/qemu30|emulators/qemu31|2020-04-21|Has expired: No longer maintained by upstream
