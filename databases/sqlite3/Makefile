@@ -2,11 +2,10 @@
 # $FreeBSD$
 
 PORTNAME=	sqlite3
-DISTVERSION=	3.30.1
-PORTREVISION=	1
+DISTVERSION=	3.31.1
 PORTEPOCH=	1
 CATEGORIES=	databases
-MASTER_SITES=	https://www.sqlite.org/2019/ http://www2.sqlite.org/2019/ http://www3.sqlite.org/2019/
+MASTER_SITES=	https://www.sqlite.org/2020/ http://www2.sqlite.org/2020/ http://www3.sqlite.org/2020/
 DISTNAME=	sqlite-autoconf-${PORTVERSION:C/\.([[:digit:]])[[:>:]]/0\1/g:S/.//g}00
 
 MAINTAINER=	pavelivolkov@gmail.com
@@ -26,7 +25,7 @@ OPTIONS_DEFINE=		FTS4 URI URI_AUTHORITY METADATA \
 			DIRECT_READ MEMMAN SECURE_DELETE UNLOCK_NOTIFY THREADS \
 			EXTENSION ARMOR STMT DBPAGE DBSTAT FTS5 RBU NULL_TRIM \
 			LIKENOTBLOB STSHELL FTS3_TOKEN UNKNOWN_SQL SORT_REF \
-			NORMALIZE DQS
+			NORMALIZE DQS TRUSTED_SCHEMA
 OPTIONS_SINGLE=		RAMT
 OPTIONS_RADIO=		STAT
 OPTIONS_GROUP=		OPT_EXT OPT_FUNC UNICODE RTREEG RL
@@ -95,6 +94,9 @@ STMT_DESC=		Prepared statement scan status
 # https://www.sqlite.org/compile.html#enable_sorter_references
 SORT_REF_DESC=		To use references in the sorter
 
+# https://www.sqlite.org/compile.html#trusted_schema
+TRUSTED_SCHEMA_DESC=	SQL functions & virtual tables are considered unsafe
+
 # https://www.sqlite.org/tempfiles.html#tempstore
 OPTIONS_SINGLE_RAMT=	TS0 TS1 TS2 TS3
 RAMT_DESC=		Where to store temporary file
@@ -140,11 +142,12 @@ EDITLINE_PREVENTS=	READLINES READLINEP
 
 OPTIONS_DEFAULT=	FTS4 URI METADATA SECURE_DELETE UNLOCK_NOTIFY THREADS \
 			EXTENSION TS1 UNICODE61 RTREE DBSTAT STSHELL READLINES \
-			FTS3_TOKEN FTS5 DQS
+			FTS3_TOKEN FTS5 DQS JSON1
 # SECURE_DELETE, UNLOCK_NOTIFY, DBSTAT (since 41.0) used by www/firefox et al.
 # RTREE used by graphics/mapnik, databases/spatialite
 # FTS3_TOKEN used by audio/clementine-player, mail/thunderbird, www/seamonkey
 # FTS5 used by sysutils/tracker
+# JSON1 used by net-im/py-matrix-synapse
 
 PLIST_FILES=	bin/sqlite3 include/sqlite3.h include/sqlite3ext.h \
 		lib/libsqlite3.a lib/libsqlite3.so lib/libsqlite3.so.0 \
@@ -192,6 +195,8 @@ EXTENSION_CONFIGURE_ENABLE=	dynamic-extensions
 
 THREADS_CONFIGURE_ENABLE=	threadsafe
 THREADS_LIBS=		-lpthread
+
+TRUSTED_SCHEMA_CPPFLAGS=	-DSQLITE_TRUSTED_SCHEMA=0
 
 ICU_BUILD_DEPENDS=	${LOCALBASE}/bin/icu-config:devel/icu
 ICU_LIB_DEPENDS=	libicudata.so:devel/icu
