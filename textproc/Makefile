@@ -1596,6 +1596,7 @@
     SUBDIR += rubygem-regexp_property_values
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-reverse_markdown
+    SUBDIR += rubygem-rexml
     SUBDIR += rubygem-ri_cal
     SUBDIR += rubygem-rich
     SUBDIR += rubygem-rly
@@ -1604,6 +1605,7 @@
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rouge2
     SUBDIR += rubygem-rouge312
+    SUBDIR += rubygem-rouge317
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt

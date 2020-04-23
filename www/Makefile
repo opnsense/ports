@@ -1453,7 +1453,6 @@
     SUBDIR += py-cssmin
     SUBDIR += py-cssselect
     SUBDIR += py-cssutils
-    SUBDIR += py-ddgr
     SUBDIR += py-dj22-django-auth-ldap
     SUBDIR += py-dj22-django-cacheops
     SUBDIR += py-dj22-django-cors-headers
@@ -1758,6 +1757,7 @@
     SUBDIR += py-scrapy
     SUBDIR += py-seafdav
     SUBDIR += py-seafobj
+    SUBDIR += py-secure-cookie
     SUBDIR += py-selector
     SUBDIR += py-selenium
     SUBDIR += py-slimit
@@ -2110,6 +2110,7 @@
     SUBDIR += rubygem-roda
     SUBDIR += rubygem-rqrcode
     SUBDIR += rubygem-rqrcode-rails3
+    SUBDIR += rubygem-rss
     SUBDIR += rubygem-rtlit
     SUBDIR += rubygem-ruby-oembed
     SUBDIR += rubygem-ruby-readability

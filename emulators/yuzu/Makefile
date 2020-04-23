@@ -1,13 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	yuzu
-PORTVERSION=	s20200418
+PORTVERSION=	s20200420
 PORTREVISION?=	0
 CATEGORIES=	emulators
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	1a2df0a5f389.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/3719
-PATCHFILES+=	afcc84a17265.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/3720
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo Switch emulator/debugger
@@ -32,12 +28,12 @@ BUILD_DEPENDS=	boost-libs>=1.66:devel/boost-libs \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	530580607
+GH_TAGNAME=	cb5b8ca88
 GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		DarkLordZach:mbedtls:a280e60:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:2c51218:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.2.136:Vulkan_Headers/externals/Vulkan-Headers \
-		MerryMage:dynarmic:r1-1443-g57b987c1:dynarmic/externals/dynarmic \
+		MerryMage:dynarmic:r2-39-ga3cd0557:dynarmic/externals/dynarmic \
 		ReinUsesLisp:sirit:a712959:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		catchorg:Catch2:v2.3.0:catch/externals/catch \
@@ -54,8 +50,9 @@ GH_TUPLE=	yuzu-emu:unicorn:1.0.1-153-g73f45735:unicorn/externals/unicorn \
 		xiph:opus:v1.3.1-4-gad8fe90d:opus/externals/opus/opus
 
 USES=		cmake compiler:c++17-lang iconv localbase:ldflags \
-		python:build sdl
+		python:build sdl ssl
 USE_SDL=	sdl2
+CMAKE_OFF=	ENABLE_GNUTLS ENABLE_MBEDTLS
 CXXFLAGS+=	-Wno-narrowing # https://github.com/yuzu-emu/yuzu/issues/3407
 LDFLAGS+=	-Wl,--as-needed # Qt5Network
 TEST_TARGET=	test

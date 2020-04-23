@@ -3,7 +3,7 @@
 
 PORTNAME=	gitlab-ce
 PORTVERSION=	12.9.3
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	www devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -110,7 +110,7 @@ MY_DEPENDS=	git>=2.22.2:devel/git \
 	rubygem-asciidoctor>=2.0.10<2.1.0:textproc/rubygem-asciidoctor \
 	rubygem-asciidoctor-include-ext>=0.3.1<0.4.0:textproc/rubygem-asciidoctor-include-ext \
 	rubygem-asciidoctor-plantuml0010=0.0.10:textproc/rubygem-asciidoctor-plantuml0010 \
-	rubygem-rouge>=3.17.0<3.18:textproc/rubygem-rouge \
+	rubygem-rouge317>=3.17.0<3.18:textproc/rubygem-rouge317 \
 	rubygem-truncato>=0.7.11<0.8.0:textproc/rubygem-truncato \
 	rubygem-bootstrap_form>=4.2.0<4.3.0:devel/rubygem-bootstrap_form \
 	rubygem-nokogiri>=1.10.8<1.11.0:textproc/rubygem-nokogiri \
@@ -182,7 +182,7 @@ MY_DEPENDS=	git>=2.22.2:devel/git \
 	rubygem-gettext_i18n_rails>=1.8.0<1.9.0:devel/rubygem-gettext_i18n_rails \
 	rubygem-gettext_i18n_rails_js-rails60>=1.3<2.0:devel/rubygem-gettext_i18n_rails_js-rails60 \
 	rubygem-gettext32>=3.2.2<3.3.0:devel/rubygem-gettext32 \
-	rubygem-batch-loader>=1.4.0<1.5.0:devel/rubygem-batch-loader \
+	rubygem-batch-loader14>=1.4.0<1.5.0:devel/rubygem-batch-loader14 \
 	rubygem-peek-rails60>=1.1.0<2.0:devel/rubygem-peek-rails60 \
 	rubygem-snowplow-tracker>=0.6.1<0.7.0:devel/rubygem-snowplow-tracker \
 	rubygem-gitlab-derailed_benchmarks>0:benchmarks/rubygem-gitlab-derailed_benchmarks \

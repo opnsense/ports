@@ -149,6 +149,7 @@
     SUBDIR += erlang-xmlrpc
     SUBDIR += eternalterminal
     SUBDIR += etrace
+    SUBDIR += evans
     SUBDIR += eventviews
     SUBDIR += exabgp
     SUBDIR += exabgp4
@@ -552,7 +553,6 @@
     SUBDIR += openldap24-server
     SUBDIR += openmdns
     SUBDIR += openmpi
-    SUBDIR += openmpi2
     SUBDIR += openmpi3
     SUBDIR += openntpd
     SUBDIR += opennx
@@ -1099,6 +1099,7 @@
     SUBDIR += py-python-keystoneclient
     SUBDIR += py-python-neutronclient
     SUBDIR += py-python-novaclient
+    SUBDIR += py-python-novaclient16
     SUBDIR += py-python-ntlm
     SUBDIR += py-python-openstackclient
     SUBDIR += py-python-twitter

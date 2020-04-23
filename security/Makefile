@@ -60,6 +60,7 @@
     SUBDIR += bruteforceblocker
     SUBDIR += bsdsfv
     SUBDIR += bsmtrace
+    SUBDIR += bsmtrace3
     SUBDIR += bugs
     SUBDIR += bzrtp
     SUBDIR += ca_root_nss
@@ -1231,7 +1232,6 @@
     SUBDIR += sudoscript
     SUBDIR += super
     SUBDIR += suricata
-    SUBDIR += suricata5
     SUBDIR += swatchdog
     SUBDIR += switzerland
     SUBDIR += symbion-sslproxy

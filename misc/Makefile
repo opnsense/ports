@@ -415,6 +415,7 @@
     SUBDIR += py-spdx-tools
     SUBDIR += py-tflearn
     SUBDIR += py-tflite
+    SUBDIR += py-tflite-support
     SUBDIR += py-toil
     SUBDIR += py-tqdm
     SUBDIR += py-tvm
@@ -447,6 +448,7 @@
     SUBDIR += rubygem-mime-types-data
     SUBDIR += rubygem-mime-types1
     SUBDIR += rubygem-mimemagic
+    SUBDIR += rubygem-octicons
     SUBDIR += rubygem-rabbit
     SUBDIR += rubygem-vpim
     SUBDIR += rump

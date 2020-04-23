@@ -3,8 +3,7 @@
 
 PORTNAME=	zziplib
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.69
-PORTREVISION=	2
+PORTVERSION=	0.13.71
 CATEGORIES=	devel
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -20,7 +19,6 @@ BUILD_DEPENDS=	zip:archivers/zip
 USES=		libtool pathfix pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	gdraheim
-GH_PROJECT=	zziplib
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
