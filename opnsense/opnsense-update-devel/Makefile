@@ -2,7 +2,7 @@
 
 PORTNAME=	opnsense-update
 PORTVERSION=	20.7.b
-#PORTREVISION=	1 # GH_TAGNAME
+PORTREVISION=	1 # GH_TAGNAME
 PKGNAMESUFFIX=	-devel
 CATEGORIES=	sysutils
 
@@ -20,6 +20,6 @@ USE_HARDENING=	safestack
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
-GH_TAGNAME=	20.1.2
+GH_TAGNAME=	91b8239
 
 .include <bsd.port.mk>
