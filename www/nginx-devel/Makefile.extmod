@@ -37,8 +37,8 @@ DRIZZLE_LIB_DEPENDS=	libdrizzle.so:databases/libdrizzle
 DRIZZLE_CONFIGURE_ENV=	LIBDRIZZLE_INC=${LOCALBASE}/include \
 			LIBDRIZZLE_LIB=${LOCALBASE}/lib
 DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:e93542e:drizzle
-DRIZZLE_CONFIGURE_ON=	--add-module=${WRKSRC_drizzle}
 DRIZZLE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-openresty-drizzle-nginx-module-config
+DRIZZLE_VARS=		DSO_EXTMODS+=drizzle
 
 DYNAMIC_UPSTREAM_GH_TUPLE=	cubicdaiya:ngx_dynamic_upstream:v0.1.6:dynamic_upstream
 DYNAMIC_UPSTREAM_VARS=		DSO_EXTMODS+=dynamic_upstream
@@ -65,9 +65,9 @@ FORMINPUT_IMPLIES=	DEVEL_KIT
 FORMINPUT_GH_TUPLE=	calio:form-input-nginx-module:v0.12:forminput
 FORMINPUT_VARS=		DSO_EXTMODS+=forminput
 
-GRIDFS_GH_TUPLE=	mdirolf:nginx-gridfs:v0.8:gridfs \
-			mongodb:mongo-c-driver:v0.3.1:mongo_c
-GRIDFS_CONFIGURE_ON=	--add-module=${WRKSRC_gridfs}
+GRIDFS_GH_TUPLE=	technowledgy:nginx_http_gridfs_module:7970bab:gridfs \
+			10gen-archive:mongo-c-driver-legacy:f06669b:mongo_c
+GRIDFS_VARS=		DSO_EXTMODS+=gridfs
 
 HEADERS_MORE_GH_TUPLE=		openresty:headers-more-nginx-module:55fbdab:headers_more
 HEADERS_MORE_VARS=		DSO_EXTMODS+=headers_more
@@ -92,7 +92,7 @@ HTTP_AUTH_PAM_VARS=		DSO_EXTMODS+=auth_pam
 HTTP_DAV_EXT_IMPLIES=		HTTP_DAV
 HTTP_DAV_EXT_USE=		GNOME=libxml2,libxslt
 HTTP_DAV_EXT_GH_TUPLE=		arut:nginx-dav-ext-module:v3.0.0:dav_ext
-HTTP_DAV_EXT_CONFIGURE_ON=	--add-module=${WRKSRC_dav_ext}
+HTTP_DAV_EXT_VARS=		DSO_EXTMODS+=dav_ext
 
 HTTP_EVAL_GH_TUPLE=		openresty:nginx-eval-module:582bd25:eval
 HTTP_EVAL_VARS=			DSO_EXTMODS+=eval
@@ -101,7 +101,8 @@ HTTP_FANCYINDEX_GH_TUPLE=	aperezdc:ngx-fancyindex:v0.4.3:fancyindex
 HTTP_FANCYINDEX_VARS=		DSO_EXTMODS+=fancyindex
 
 HTTP_FOOTER_GH_TUPLE=		alibaba:nginx-http-footer-filter:1.2.2:footer
-HTTP_FOOTER_CONFIGURE_ON=	--add-module=${WRKSRC_footer}
+HTTP_FOOTER_VARS=		DSO_EXTMODS+=footer
+HTTP_FOOTER_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-http-footer-filter-config
 
 HTTP_GEOIP2_GH_TUPLE=		leev:ngx_http_geoip2_module:3.2:geoip2
 HTTP_GEOIP2_CFLAGS=		-I${LOCALBASE}/include
@@ -110,19 +111,21 @@ HTTP_GEOIP2_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
 
 HTTP_IP2LOCATION_GH_TUPLE=	ip2location:ip2location-nginx:7aa49ce:ip2location
 HTTP_IP2LOCATION_LIB_DEPENDS=	libIP2Location.so:net/ip2location
-HTTP_IP2LOCATION_CONFIGURE_ON=	--add-module=${WRKSRC_ip2location}
+HTTP_IP2LOCATION_VARS=		DSO_EXTMODS+=ip2location
 
 HTTP_IP2PROXY_GH_TUPLE=		ip2location:ip2proxy-nginx:f9815e3:ip2proxy
 HTTP_IP2PROXY_LIB_DEPENDS=	libIP2Proxy.so:net/ip2proxy
-HTTP_IP2PROXY_CONFIGURE_ON=	--add-module=${WRKSRC_ip2proxy}
+HTTP_IP2PROXY_VARS=		DSO_EXTMODS+=ip2proxy
 
 HTTP_JSON_STATUS_GH_TUPLE=	nginx-modules:ngx_http_json_status_module:1d2f303:json_status
-HTTP_JSON_STATUS_CONFIGURE_ON=	--add-module=${WRKSRC_json_status}
+HTTP_JSON_STATUS_VARS=		DSO_EXTMODS+=json_status
+HTTP_JSON_STATUS_EXTRA_PATCHES= ${PATCHDIR}/extra-patch-ngx_http_json_status_module-config
 
 HTTP_MOGILEFS_MASTER_SITES=	http://www.grid.net.ru/nginx/download/:mogilefs
 HTTP_MOGILEFS_DISTFILES=	nginx_mogilefs_module-1.0.4.tar.gz:mogilefs
-HTTP_MOGILEFS_CONFIGURE_ON=	--add-module=${WRKDIR}/nginx_mogilefs_module-1.0.4
-HTTP_MOGILEFS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_mogilefs_module.c
+HTTP_MOGILEFS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_mogilefs_module.c \
+				${PATCHDIR}/extra-patch-nginx_mogilefs_module-config
+HTTP_MOGILEFS_VARS=		DSO_EXTDIRS+=nginx_mogilefs_module-1.0.4
 
 HTTP_MP4_H264_MASTER_SITES=	http://h264.code-shop.com/download/:mp4streaming
 HTTP_MP4_H264_DISTFILES=	nginx_mod_h264_streaming-2.2.7.tar.gz:mp4streaming
@@ -130,14 +133,15 @@ HTTP_MP4_H264_CONFIGURE_ON=	--add-module=${WRKDIR}/nginx_mod_h264_streaming-2.2.
 HTTP_MP4_H264_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_streaming_module.c
 
 HTTP_NOTICE_GH_TUPLE=		kr:nginx-notice:3c95966:notice
-HTTP_NOTICE_CONFIGURE_ON=	--add-module=${WRKSRC_notice}
-HTTP_NOTICE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_notice_module.c
+HTTP_NOTICE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_notice_module.c \
+				${PATCHDIR}/extra-patch-nginx-notice-config
+HTTP_NOTICE_VARS=		DSO_EXTMODS+=notice
 
 HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.2.6:push
 HTTP_PUSH_VARS=			DSO_EXTMODS+=push
 
 HTTP_PUSH_STREAM_GH_TUPLE=	wandenberg:nginx-push-stream-module:0.5.4:pushstream
-HTTP_PUSH_STREAM_CONFIGURE_ON=	--add-module=${WRKSRC_pushstream}
+HTTP_PUSH_STREAM_VARS=		DSO_EXTMODS+=pushstream
 
 HTTP_REDIS_MASTER_SITES=	LOCAL/osa:redis
 HTTP_REDIS_DISTFILES=		ngx_http_redis-0.3.9.tar.gz:redis
@@ -176,19 +180,19 @@ HTTP_UPSTREAM_FAIR_GH_TUPLE=		jaygooby:nginx-upstream-fair:10ecdcf:upstreamfair
 HTTP_UPSTREAM_FAIR_VARS=		DSO_EXTMODS+=upstreamfair
 
 HTTP_UPSTREAM_STICKY_IMPLIES=		HTTP_SSL
-HTTP_UPSTREAM_STICKY_GH_TUPLE=		thomsonreuters:nginx-sticky-module-ng:0d58565:upstreamsticky
-HTTP_UPSTREAM_STICKY_CONFIGURE_ON=	--add-module=${WRKSRC_upstreamsticky}
+HTTP_UPSTREAM_STICKY_GH_TUPLE=		ayty-adrianomartins:nginx-sticky-module-ng:c407e0d:upstreamsticky
+HTTP_UPSTREAM_STICKY_VARS=		DSO_EXTMODS+=upstreamsticky
 
 HTTP_VIDEO_THUMBEXTRACTOR_LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg \
 					libavcodec.so:multimedia/ffmpeg \
 					libavutil.so:multimedia/ffmpeg \
 					libswscale.so:multimedia/ffmpeg
 HTTP_VIDEO_THUMBEXTRACTOR_USES=		jpeg
-HTTP_VIDEO_THUMBEXTRACTOR_GH_TUPLE=	wandenberg:nginx-video-thumbextractor-module:0.9.0:vte
-HTTP_VIDEO_THUMBEXTRACTOR_CONFIGURE_ON=	--add-module=${WRKSRC_vte}
+HTTP_VIDEO_THUMBEXTRACTOR_GH_TUPLE=	Novetta:nginx-video-thumbextractor-module:f5b5bae:vte
+HTTP_VIDEO_THUMBEXTRACTOR_VARS=		DSO_EXTMODS+=vte
 
-HTTP_ZIP_GH_TUPLE=	anthonyryan1:mod_zip:74ef235:mod_zip
-HTTP_ZIP_CONFIGURE_ON=	--add-module=${WRKSRC_mod_zip}
+HTTP_ZIP_GH_TUPLE=	rtm-ctrlz:mod_zip:cfd0be4:mod_zip
+HTTP_ZIP_VARS=		DSO_EXTMODS+=mod_zip
 
 ICONV_IMPLIES=		DEVEL_KIT
 ICONV_USES=		iconv
@@ -196,8 +200,8 @@ ICONV_GH_TUPLE=		calio:iconv-nginx-module:v0.14:iconv
 ICONV_VARS=		DSO_EXTMODS+=iconv
 ICONV_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-calio-iconv-nginx-module-config
 
-LET_GH_TUPLE=		arut:nginx-let-module:v0.0.4:let
-LET_CONFIGURE_ON=	--add-module=${WRKSRC_let}
+LET_GH_TUPLE=		baysao:nginx-let-module:c1f23aa:let
+LET_VARS=		DSO_EXTMODS+=let
 
 LUA_IMPLIES=		DEVEL_KIT
 LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
@@ -208,9 +212,9 @@ LUA_GH_TUPLE=		openresty:lua-nginx-module:v0.10.15:lua
 LUA_VARS=		DSO_EXTMODS+=lua
 
 LINK_GH_TUPLE=		Taymindis:nginx-link-function:3.2.1:link
-LINK_CONFIGURE_ON=	--add-module=${WRKSRC_link}
 LINK_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-link-function-config \
 			${PATCHDIR}/extra-patch-ngx_link_func_module.c
+LINK_VARS=		DSO_EXTMODS+=link
 
 MEMC_GH_TUPLE=		openresty:memc-nginx-module:v0.19:memc
 MEMC_VARS=		DSO_EXTMODS+=memc
@@ -260,10 +264,12 @@ POSTGRES_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_postgres-config
 POSTGRES_VARS=		DSO_EXTMODS+=postgres
 
 RDS_CSV_GH_TUPLE=	openresty:rds-csv-nginx-module:v0.09:rdscsv
-RDS_CSV_CONFIGURE_ON=	--add-module=${WRKSRC_rdscsv}
+RDS_CSV_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-rds-csv-nginx-module-config
+RDS_CSV_VARS=		DSO_EXTMODS+=rdscsv
 
 RDS_JSON_GH_TUPLE=	openresty:rds-json-nginx-module:v0.15:rdsjson
-RDS_JSON_CONFIGURE_ON=	--add-module=${WRKSRC_rdsjson}
+RDS_JSON_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-rds-json-nginx-module-config
+RDS_JSON_VARS=		DSO_EXTMODS+=rdsjson
 
 REDIS2_GH_TUPLE=	openresty:redis2-nginx-module:v0.15:redis2
 REDIS2_VARS=		DSO_EXTMODS+=redis2
@@ -283,9 +289,8 @@ SFLOW_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_sflow_config.c \
 SHIBBOLETH_GH_TUPLE=	nginx-shib:nginx-http-shibboleth:fe5fcd2:shibboleth
 SHIBBOLETH_VARS=	DSO_EXTMODS+=shibboleth
 
-SLOWFS_CACHE_MASTER_SITES=	http://labs.frickle.com/files/:slowfs_cache
-SLOWFS_CACHE_DISTFILES=		ngx_slowfs_cache-1.10.tar.gz:slowfs_cache
-SLOWFS_CACHE_CONFIGURE_ON=	--add-module=${WRKDIR}/ngx_slowfs_cache-1.10
+SLOWFS_CACHE_GH_TUPLE=	baysao:ngx_slowfs_cache:d011a18:slowfs_cache
+SLOWFS_CACHE_VARS=	DSO_EXTMODS+=slowfs_cache
 
 SMALL_LIGHT_LIB_DEPENDS=	libMagickWand-6.so:graphics/ImageMagick6 \
 				libpcre.so:devel/pcre
@@ -304,7 +309,8 @@ VTS_GH_TUPLE=		vozlt:nginx-module-vts:v0.1.18:vts
 VTS_VARS=		DSO_EXTMODS+=vts
 
 XSS_GH_TUPLE=		openresty:xss-nginx-module:v0.06:xss
-XSS_CONFIGURE_ON=	--add-module=${WRKSRC_xss}
+XSS_VARS=		DSO_EXTMODS+=xss
+XSS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-xss-nginx-module-config
 
 WEBSOCKIFY_GH_TUPLE=	tg123:websockify-nginx-module:c11bc9a:websockify
 WEBSOCKIFY_VARS=	DSO_EXTMODS+=websockify

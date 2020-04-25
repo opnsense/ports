@@ -15,6 +15,7 @@
     SUBDIR += abduco
     SUBDIR += abgx360
     SUBDIR += abgx360gui
+    SUBDIR += accounts-qml-module
     SUBDIR += accountsservice
     SUBDIR += acerhdf-kmod
     SUBDIR += acpi_call
@@ -1361,6 +1362,7 @@
     SUBDIR += u-boot-pine64
     SUBDIR += u-boot-pine64-lts
     SUBDIR += u-boot-pinebook
+    SUBDIR += u-boot-pinebookpro
     SUBDIR += u-boot-qemu-arm
     SUBDIR += u-boot-riotboard
     SUBDIR += u-boot-rock64
