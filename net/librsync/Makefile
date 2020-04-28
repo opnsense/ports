@@ -20,6 +20,8 @@ USE_GITHUB=	yes
 
 USE_LDCONFIG=	yes
 
+LDFLAGS=	-L/usr/local/lib # unbreak rdiff link
+
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
 .include <bsd.port.mk>
