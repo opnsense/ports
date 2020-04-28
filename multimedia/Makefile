@@ -59,6 +59,7 @@
     SUBDIR += dvdstyler
     SUBDIR += emby-server
     SUBDIR += emovix
+    SUBDIR += f3d
     SUBDIR += ffaudioconverter
     SUBDIR += ffdec
     SUBDIR += ffmpeg
@@ -389,6 +390,7 @@
     SUBDIR += snappy
     SUBDIR += spigot
     SUBDIR += spook
+    SUBDIR += streamlink
     SUBDIR += subsync
     SUBDIR += subtitlecomposer
     SUBDIR += subtitleoffsetmodifier

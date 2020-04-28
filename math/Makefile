@@ -310,6 +310,7 @@
     SUBDIR += gringo
     SUBDIR += grpn
     SUBDIR += gsl
+    SUBDIR += half
     SUBDIR += hexcalc
     SUBDIR += hipmcl
     SUBDIR += hmat-oss
@@ -932,6 +933,7 @@
     SUBDIR += vowpal_wabbit
     SUBDIR += vtk6
     SUBDIR += vtk8
+    SUBDIR += vtk9
     SUBDIR += wavelib
     SUBDIR += wcalc
     SUBDIR += wfmath
