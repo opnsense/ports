@@ -3,7 +3,7 @@
 
 PORTNAME=	emacs
 DISTVERSION=	26.3
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	3
 CATEGORIES=	editors
 MASTER_SITES=	GNU
@@ -178,7 +178,7 @@ LCMS2_CONFIGURE_WITH=		lcms2
 M17N_IMPLIES=			XFT
 M17N_LIB_DEPENDS=		libm17n.so:devel/m17n-lib
 M17N_CONFIGURE_WITH=		m17n-flt
-MAGICK_LIB_DEPENDS=		libMagickCore-6.so:graphics/ImageMagick6
+MAGICK_LIB_DEPENDS=		libMagickCore-7.so:graphics/ImageMagick7
 MAGICK_CONFIGURE_WITH=		imagemagick
 MAILUTILS_LIB_DEPENDS=		libmailutils.so:mail/mailutils
 MAILUTILS_CONFIGURE_WITH=	mailutils
