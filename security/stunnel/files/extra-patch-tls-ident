@@ -1,0 +1,38 @@
+From 63ae8b7d9e304aacde2d077778927972302ead03 Mon Sep 17 00:00:00 2001
+From: Ad Schellevis <ad@opnsense.org>
+Date: Thu, 30 Apr 2020 11:03:00 +0200
+Subject: [PATCH] When using mutual certificate authentication, we know which
+ client was responsible for starting the session on the remote end. let's send
+ out a log message so we can relate the rest of the messages more easily.
+
+adjust print_bound_address() to output an "IDENT Service" message.
+---
+ src/client.c | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
+
+diff --git src/client.c src/client.c
+index 2983bb3..578c9b1 100644
+--- src/client.c
++++ src/client.c
+@@ -1740,6 +1740,21 @@ NOEXPORT void print_bound_address(CLI *c) {
+         return;
+     }
+     txt=s_ntop(&addr, addrlen);
++    if (c->ssl) {
++        X509* peer_cert;
++        char *peer_cert_subject;
++        peer_cert = SSL_get_peer_certificate(c->ssl);
++        if (peer_cert) {
++            peer_cert_subject=X509_NAME2text(X509_get_subject_name(peer_cert));
++            s_log(LOG_NOTICE,
++                "IDENT Service [%s] from %s --> %s",
++                c->opt->servname, txt, peer_cert_subject
++            );
++            str_free(peer_cert_subject);
++            X509_free(peer_cert);
++        }
++    }
++
+     s_log(LOG_NOTICE,"Service [%s] connected remote server from %s",
+         c->opt->servname, txt);
+     str_free(txt);
