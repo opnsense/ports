@@ -45,6 +45,7 @@
     SUBDIR += ansible25
     SUBDIR += ansible26
     SUBDIR += ansible27
+    SUBDIR += ansible28
     SUBDIR += anvil
     SUBDIR += apache-mesos
     SUBDIR += apachetop
@@ -767,6 +768,7 @@
     SUBDIR += ods2
     SUBDIR += ohmu
     SUBDIR += omnibackup
+    SUBDIR += onefetch
     SUBDIR += open
     SUBDIR += opencorsairlink
     SUBDIR += openipmi
