@@ -13663,7 +13663,6 @@ security/linux-c6-pam||2019-12-31|Has expired: Superseded by CentOS 7
 sysutils/eventlog||2019-12-31|Has expired: No longer supported by Balabit
 sysutils/linux-c6-lttng-ust|sysutils/linux-c7-lttng-ust|2019-12-31|Has expired: Superseded by CentOS 7
 sysutils/linux-c6-userspace-rcu|sysutils/linux-c7-userspace-rcu|2019-12-31|Has expired: Superseded by CentOS 7
-sysutils/mkdesktop||2019-12-31|Has expired: defunct, will be deleted soon
 sysutils/syslog-ng311|sysutils/syslog-ng|2019-12-31|Has expired: No longer supported by Balabit
 sysutils/syslog-ng315|sysutils/syslog-ng|2019-12-31|Has expired: No longer supported by Balabit
 sysutils/syslog-ng317|sysutils/syslog-ng|2019-12-31|Has expired: No longer supported by Balabit
@@ -14550,3 +14549,4 @@ emulators/qemu30|emulators/qemu31|2020-04-21|Has expired: No longer maintained b
 editors/nano-devel||2020-04-23|Removed: Obsolete now, use editors/nano instead
 devel/py-liblarch||2020-04-25|Removed: uses deprecated version of python; no consumers left
 sysutils/DTraceToolkit|sysutils/dtrace-toolkit|2020-04-26|Renamed to match the package name
+devel/k8048|devel/pickle|2020-04-28|Project renamed
