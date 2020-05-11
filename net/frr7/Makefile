@@ -23,7 +23,7 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c \
 USE_HARDENING=	safestack
 
 USES=		autoreconf bison compiler:c++11-lang gmake pkgconfig libtool \
-		makeinfo python:2.7-3.8,build readline
+		makeinfo python:build readline
 
 BINARY_ALIAS=	python=${PYTHON_VERSION}
 
