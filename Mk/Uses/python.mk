@@ -463,6 +463,11 @@ PYTHON_ABIVER=		m
 .endif
 .endif
 
+.if ${PYTHON_MAJOR_VER} == 2
+DEPRECATED?=	Uses Python 2.7 which is EOLed upstream
+EXPIRATION_DATE?=	2020-12-31
+.endif
+
 .if !defined(PYTHONBASE)
 PYTHONBASE!=	(${PYTHON_CMD} -c 'import sys; print(sys.prefix)' \
 			2> /dev/null || ${ECHO_CMD} ${LOCALBASE}) | ${TAIL} -1
@@ -632,7 +637,7 @@ PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16,1<1.19,1:math/py-numpy@${PY_FLAVOR}
 # Common Python modules that can be needed but only for some versions of Python.
 .if ${PYTHON_REL} < 3500
 PY_PILLOW=	${PYTHON_PKGNAMEPREFIX}pillow6>=6.0.0:graphics/py-pillow6@${PY_FLAVOR}
-PY_TYPING=	${PYTHON_PKGNAMEPREFIX}typing>=3.7.4:devel/py-typing@${PY_FLAVOR}
+PY_TYPING=	${PYTHON_PKGNAMEPREFIX}typing>=3.7.4.1:devel/py-typing@${PY_FLAVOR}
 .else
 PY_PILLOW=	${PYTHON_PKGNAMEPREFIX}pillow>=7.0.0:graphics/py-pillow@${PY_FLAVOR}
 PY_TYPING=
