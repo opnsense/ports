@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	sonarqube
-DISTVERSION=	8.2.0.32929
-PORTREVISION=	5
+DISTVERSION=	8.3.0.34182
+PORTREVISION=	0
 CATEGORIES=	devel security www java
 MASTER_SITES=	https://binaries.sonarsource.com/Distribution/sonarqube/:m_core \
 		https://binaries.sonarsource.com/Distribution/sonar-csharp-plugin/:m_csharp \
@@ -47,15 +47,16 @@ APP_DIR=	libexec/${PORTNAME}
 LOG_DIR=	/var/log/${PORTNAME}
 PID_DIR=	/var/run/${PORTNAME}
 JAR_VERSION=	${DISTVERSION}
-DATA_DIR=	/var/db/${PORTNAME}/data
-TEMP_DIR=	/var/db/${PORTNAME}/temp
+DBBASE_DIR=	/var/db/${PORTNAME}
+DATA_DIR=	${DBBASE_DIR}/data
+TEMP_DIR=	${DBBASE_DIR}/temp
 
-SONARCSHARP_VER=	8.6.0.16497
+SONARCSHARP_VER=	8.6.1.17183
 SONARJAVA_VER=		6.3.0.21585
 SONARJAVASCRIPT_VER=	6.2.1.12157
 SONARPYTHON_VER=	2.8.0.6204
 SONARSCMGIT_VER=	1.11.1.2008
-SONARVBNET_VER=		8.6.0.16497
+SONARVBNET_VER=		8.6.1.17183
 
 USERS=		sonarqube
 GROUPS=		sonarqube
@@ -80,6 +81,7 @@ PLIST_SUB=	APP_NAME=${APP_NAME} \
 		LOG_DIR=${LOG_DIR} \
 		PID_DIR=${PID_DIR} \
 		JAR_VERSION=${JAR_VERSION} \
+		DBBASE_DIR=${DBBASE_DIR} \
 		DATA_DIR=${DATA_DIR} \
 		TEMP_DIR=${TEMP_DIR} \
 		SONARCSHARP_VER=${SONARCSHARP_VER} \
@@ -122,6 +124,7 @@ do-install:
 
 gen-plist:
 	${ECHO} '@sample ${APP_DIR}/conf/sonar.properties.sample' >${PLIST}.new
+	${ECHO} '@dir(sonarqube,sonarqube,755) %%DBBASE_DIR%%' >>${PLIST}.new
 	${ECHO} '@dir(sonarqube,sonarqube,755) %%DATA_DIR%%' >>${PLIST}.new
 	${ECHO} '@dir(sonarqube,sonarqube,755) %%TEMP_DIR%%' >>${PLIST}.new
 	${ECHO} '@dir %%APP_DIR%%/elasticsearch/plugins' >>${PLIST}.new

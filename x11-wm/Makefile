@@ -20,7 +20,6 @@
     SUBDIR += compiz
     SUBDIR += compiz-plugins-extra
     SUBDIR += compiz-plugins-main
-    SUBDIR += compiz-plugins-unsupported
     SUBDIR += compizconfig-backend-gconf
     SUBDIR += compizconfig-python
     SUBDIR += compton
@@ -46,7 +45,6 @@
     SUBDIR += evilwm
     SUBDIR += fbcmd
     SUBDIR += fluxbox
-    SUBDIR += fluxconf
     SUBDIR += fluxter
     SUBDIR += flwm
     SUBDIR += fvwm-crystal
@@ -59,7 +57,6 @@
     SUBDIR += i3
     SUBDIR += i3-gaps
     SUBDIR += icewm
-    SUBDIR += ion
     SUBDIR += jewel
     SUBDIR += jwm
     SUBDIR += kickshaw
@@ -75,16 +72,13 @@
     SUBDIR += lxqt-session
     SUBDIR += lxsession
     SUBDIR += marco
-    SUBDIR += matwm2
     SUBDIR += mcwm
     SUBDIR += metacity
     SUBDIR += muffin
     SUBDIR += mutter
-    SUBDIR += nickleby
     SUBDIR += obconf
     SUBDIR += obconf-qt
     SUBDIR += obpager
-    SUBDIR += olvwm
     SUBDIR += openbox
     SUBDIR += oroborus
     SUBDIR += pager
@@ -98,7 +92,6 @@
     SUBDIR += pwm
     SUBDIR += qtile
     SUBDIR += ratmen
-    SUBDIR += ratmenu
     SUBDIR += ratpoison
     SUBDIR += rubygem-uh-layout
     SUBDIR += rubygem-uh-wm

@@ -11,5 +11,7 @@ LICENSE=	BSD3CLAUSE
 
 USE_HARDENING=	pie:off
 
+IGNORE=		Haskell libraries are getting pushed out of the ports tree.
+
 .include "${.CURDIR}/../../lang/ghc/bsd.cabal.mk"
 .include <bsd.port.mk>

@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	transmission
-DISTVERSION=	2.94
-PORTREVISION?=	5
+DISTVERSION=	3.00
 CATEGORIES+=	net-p2p
 SLAVEPORT?=	cli
 PKGNAMESUFFIX?=	-cli
@@ -33,19 +32,21 @@ USES+=		cmake cpe iconv libtool localbase pkgconfig ssl
 
 .  if ${SLAVEPORT:Mcli}
 NLS_USES=	gettext-runtime:run
+CONFLICTS_INSTALL=      transmission-daemon
 .  endif
 
 CPE_VENDOR=	transmissionbt
 .endif
 
 USE_GITHUB=	yes
+GH_TAGNAME=	3ef10de6d97d8cf181fdef81cc435d6a84c86000
 
 .if ${SLAVEPORT} != web
 SLAVES=		cli daemon gtk qt
 CMAKE_ON+=	ENABLE_${SLAVEPORT:tu}
 CMAKE_OFF+=	${SLAVES:N${SLAVEPORT}:tu:S/^/ENABLE_/}
 
-.  if ${SLAVEPORT:Nweb:Ncli}
+.  if ${SLAVEPORT:Nweb:Ncli:Ndaemon}
 CMAKE_OFF+=	ENABLE_UTILS
 .  endif
 

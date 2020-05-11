@@ -25,6 +25,9 @@ CLOJURE_GH_TUPLE=	nginx-clojure:nginx-clojure:eb286b9:clojure
 CLOJURE_CONFIGURE_ENV=	"JNI_INCS=-I${LOCALBASE}/openjdk8/include -I${LOCALBASE}/openjdk8/include/freebsd"
 CLOJURE_VARS=		DSO_EXTMODS+=clojure CLOJURE_SUBDIR=/src/c
 
+COOKIE_FLAG_GH_TUPLE=	AirisX:nginx_cookie_flag_module:c4ff449:cookie_flag
+COOKIE_FLAG_VARS=	DSO_EXTMODS+=cookie_flag
+
 CT_IMPLIES=		HTTP_SSL
 CT_GH_TUPLE=		grahamedgecombe:nginx-ct:93e9884:ct
 CT_VARS=		DSO_EXTMODS+=ct
@@ -248,6 +251,11 @@ NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 
 NJS_GH_TUPLE=		nginx:njs:0.4.0:njs
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
+
+OPENTRACING_GH_TUPLE=		opentracing-contrib:nginx-opentracing:2d81c29:opentracing
+OPENTRACING_LIB_DEPENDS=	libopentracing.so:devel/libopentracing
+OPENTRACING_VARS=		DSO_EXTMODS+=opentracing OPENTRACING_SUBDIR=/opentracing
+OPENTRACING_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-opentracing-opentracing-config
 
 PASSENGER_NGINX_VER=	6.0.4
 PASSENGER_CATEGORIES=	ruby

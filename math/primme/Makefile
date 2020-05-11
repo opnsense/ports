@@ -2,7 +2,7 @@
 
 PORTNAME=	primme
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0.2
+DISTVERSION=	3.1
 PORTREVISION=	1
 CATEGORIES=	math
 
@@ -38,9 +38,9 @@ NETLIB_USES=		blaslapack:netlib
 NETLIB_LDFLAGS=		-lblas # XXX why this isn't covered by blaslapack:netlib?
 OPENBLAS_USES=		blaslapack:openblas
 
-TEST_ENV=	${MAKE_ENV} F77=gfortran${GCC_DEFAULT} FLDR=gfortran${GCC_DEFAULT} \
-		LDFLAGS="-lm -Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT} ${LOCALBASE}/lib/gcc${GCC_DEFAULT}/libgcc_s.so" \
+TEST_ENV=	${MAKE_ENV} LDFLAGS="-lm -Wl,-rpath=${LOCALBASE}/lib/gcc${GCC_DEFAULT} ${LOCALBASE}/lib/gcc${GCC_DEFAULT}/libgcc_s.so" \
 		USE_MPI=no USE_PETSC=no PETSC_DIR=${LOCALBASE}
+TEST_ARGS=	F77=gfortran${GCC_DEFAULT} FC=gfortran${GCC_DEFAULT} FLDR=gfortran${GCC_DEFAULT}
 TEST_TARGET=	all_tests test
 
 PLIST_FILES=	include/primme.h \

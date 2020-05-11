@@ -7,12 +7,10 @@
     SUBDIR += adsuck
     SUBDIR += amass
     SUBDIR += ares
-    SUBDIR += autotrust
     SUBDIR += axfr2acl
     SUBDIR += bind-tools
     SUBDIR += bind9-devel
     SUBDIR += bind911
-    SUBDIR += bind914
     SUBDIR += bind916
     SUBDIR += bindgraph
     SUBDIR += bundy
@@ -37,6 +35,7 @@
     SUBDIR += dnsblast
     SUBDIR += dnscap
     SUBDIR += dnscheckengine
+    SUBDIR += dnscontrol
     SUBDIR += dnscrypt-proxy2
     SUBDIR += dnscrypt-wrapper
     SUBDIR += dnsdbck
@@ -49,7 +48,6 @@
     SUBDIR += dnsjava
     SUBDIR += dnsmasq
     SUBDIR += dnsmax-perl
-    SUBDIR += dnsperf
     SUBDIR += dnsproxy
     SUBDIR += dnsrecon
     SUBDIR += dnsreflector
@@ -73,7 +71,6 @@
     SUBDIR += firedns
     SUBDIR += flamethrower
     SUBDIR += fpdns
-    SUBDIR += gdnsd
     SUBDIR += gdnsd2
     SUBDIR += gdnsd3
     SUBDIR += gen6dns
@@ -168,7 +165,6 @@
     SUBDIR += p5-POE-Component-Resolver
     SUBDIR += p5-POE-Component-Server-DNS
     SUBDIR += p5-POE-Filter-DNS-TCP
-    SUBDIR += p5-Stanford-DNSserver
     SUBDIR += p5-Tie-DNS
     SUBDIR += p5-URBL-Prepare
     SUBDIR += packetq
@@ -242,7 +238,6 @@
     SUBDIR += wrapsrv
     SUBDIR += yadifa
     SUBDIR += zkt
-    SUBDIR += zonecheck
     SUBDIR += zonenotify
 
 .include <bsd.port.subdir.mk>

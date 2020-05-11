@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	erkale
-DISTVERSION=	g20200416
+DISTVERSION=	g20200426
+PORTREVISION=	3
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -21,14 +22,14 @@ LIB_DEPENDS=	libderiv.so:science/libint \
 		libxc.so:science/libxc
 RUN_DEPENDS=	${LOCALBASE}/share/erkale/basis/6-21G.gbs:science/erkale-pseudopotentials
 
-FLAVORS=	serial parallel
+FLAVORS=	parallel serial
 FLAVOR?=	${FLAVORS:[1]}
 serial_PKGNAMESUFFIX=	-serial
 
 USES=		cmake:noninja compiler:c11 fortran pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	susilehtola
-GH_TAGNAME=	d2058856f8e762d904743900b580c73ea67a6f97
+GH_TAGNAME=	870e772f09631b3dbdd99a18e4f3d4786d684a01
 USE_LDCONFIG=	yes
 
 TEST_TARGET=	test
@@ -58,7 +59,6 @@ NETLIB_BROKEN=		choosing NETLIB causes a conflict: openblas-0.3.7_3,1 conflicts 
 
 OPENBLAS_USES=		blaslapack:openblas
 OPENBLAS_CMAKE_ON=	-DLAPACK_LIBRARIES:STRING=-lopenblas -DBLAS_LIBRARIES:STRING=-lopenblas
-OPENBLAS_LIB_DEPENDS=	libopenblas.so:math/openblas
 
 .if ${FLAVOR} == parallel
 post-install:

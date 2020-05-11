@@ -24,6 +24,7 @@ include/lammps/lmppython.h
 include/lammps/lmptype.h
 include/lammps/memory.h
 include/lammps/modify.h
+%%NO_MPI%%include/lammps/mpi/mpi.h
 include/lammps/neigh_list.h
 include/lammps/neighbor.h
 include/lammps/output.h
@@ -50,7 +51,8 @@ lib/cmake/LAMMPS/LAMMPSConfig.cmake
 lib/cmake/LAMMPS/LAMMPSConfigVersion.cmake
 lib/cmake/LAMMPS/LAMMPS_Targets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/cmake/LAMMPS/LAMMPS_Targets.cmake
-lib/liblammps.a
+lib/liblammps.so
+lib/liblammps.so.0
 libdata/pkgconfig/liblammps.pc
 man/man1/lmp.1.gz
 %%DATADIR%%/potentials/Ag_u3.eam
@@ -110,6 +112,8 @@ man/man1/lmp.1.gz
 %%DATADIR%%/potentials/Cu_u3.eam
 %%DATADIR%%/potentials/Cu_u6.eam
 %%DATADIR%%/potentials/Cu_zhou.eam.alloy
+%%DATADIR%%/potentials/FeCH_BOP_I.poly
+%%DATADIR%%/potentials/FeCH_BOP_II.poly
 %%DATADIR%%/potentials/FeCr.cdeam
 %%DATADIR%%/potentials/FeP_mm.eam.fs
 %%DATADIR%%/potentials/Fe_mm.eam.fs
@@ -205,6 +209,7 @@ man/man1/lmp.1.gz
 %%DATADIR%%/potentials/Ti.meam.spline
 %%DATADIR%%/potentials/Ti.meam.sw.spline
 %%DATADIR%%/potentials/TiO.meam.spline
+%%DATADIR%%/potentials/TlBr_msw.poly
 %%DATADIR%%/potentials/V6.1.mgpt.README
 %%DATADIR%%/potentials/V6.1.mgpt.parmin
 %%DATADIR%%/potentials/V6.1.mgpt.potin

@@ -3,14 +3,14 @@
 
 PORTNAME=	vtk
 PORTVERSION=	6.2.0
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	math graphics
 MASTER_SITES=	http://www.vtk.org/files/release/${VTK_SHORT_VER}/
 PKGNAMESUFFIX=	6
 DISTNAME=	${PORTNAME:tu}-${PORTVERSION}
 
 MAINTAINER=	stephen@FreeBSD.org
-COMMENT=	The Visualization Toolkit
+COMMENT=	Visualization toolkit
 
 LICENSE=	BSD3CLAUSE
 
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libtiff.so:graphics/tiff \
 # TODO
 # * VTK Groups
 
-CONFLICTS=	vtk8
+CONFLICTS=	vtk8 vtk9
 USES=		alias cmake jpeg localbase xorg
 USE_LDCONFIG=	${PREFIX}/lib/vtk-${VTK_SHORT_VER}
 USE_XORG=	xt sm ice x11 xext

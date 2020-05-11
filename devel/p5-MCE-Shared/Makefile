@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	MCE-Shared
-PORTVERSION=	1.864
+PORTVERSION=	1.867
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:MARIOROY
@@ -24,5 +24,7 @@ USES=		perl5
 USE_PERL5=	configure
 
 NO_ARCH=	yes
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 .include <bsd.port.mk>

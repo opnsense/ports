@@ -17,6 +17,7 @@
 %%DSO%%%%BROTLI%%libexec/nginx/ngx_http_brotli_static_module.so
 %%DSO%%%%CACHE_PURGE%%libexec/nginx/ngx_http_cache_purge_module.so
 %%DSO%%%%CLOJURE%%libexec/nginx/ngx_http_clojure_module.so
+%%DSO%%%%COOKIE_FLAG%%libexec/nginx/ngx_http_cookie_flag_filter_module.so
 %%DSO%%%%CT%%libexec/nginx/ngx_http_ssl_ct_module.so
 %%DSO%%%%CT%%libexec/nginx/ngx_ssl_ct_module.so
 %%DSO%%%%DEVEL_KIT%%libexec/nginx/ndk_http_module.so
@@ -69,6 +70,7 @@
 %%DSO%%%%MEMC%%libexec/nginx/ngx_http_memc_module.so
 %%DSO%%%%MODSECURITY3%%libexec/nginx/ngx_http_modsecurity_module.so
 %%DSO%%%%NAXSI%%libexec/nginx/ngx_http_naxsi_module.so
+%%DSO%%%%OPENTRACING%%libexec/nginx/ngx_http_opentracing_module.so
 %%DSO%%%%PASSENGER%%libexec/nginx/ngx_http_passenger_module.so
 %%DSO%%%%POSTGRES%%libexec/nginx/ngx_postgres_module.so
 %%DSO%%%%RDS_CSV%%libexec/nginx/ngx_http_rds_csv_filter_module.so
