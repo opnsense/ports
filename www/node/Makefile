@@ -68,7 +68,8 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 
 BUILD_DEPENDS+=	c-ares>=1.15.0:dns/c-ares\
 		libuv>=1.35.0:devel/libuv \
-		libnghttp2>=1.40.0:www/libnghttp2
+		libnghttp2>=1.40.0:www/libnghttp2 \
+		objdump:devel/binutils
 LIB_DEPENDS+=	libcares.so:dns/c-ares\
 		libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2
@@ -81,6 +82,10 @@ IGNORE=		cannot build node.js with LibreSSL. You must enable BUNDLED_SSL
 
 .if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
 EXTRA_PATCHES=		${PATCHDIR}/extra-patch-common.gypi
+.endif
+
+.if ${ARCH} == armv6 || ${ARCH} == armv7
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
 .endif
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200085
