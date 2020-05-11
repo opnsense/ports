@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	tmux
-PORTVERSION=	3.0a
+PORTVERSION=	3.1a
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/tmux/tmux/releases/download/${PORTVERSION}/
