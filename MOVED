@@ -14565,7 +14565,6 @@ biology/consed||2020-05-05|Has expired: Broken for more than 6 months
 biology/plinkseq||2020-05-05|Has expired: Broken for more than 6 months
 biology/seqtools||2020-05-05|Has expired: Broken for more than 6 months
 biology/t_coffee||2020-05-05|Has expired: Broken for more than 6 months
-biology/ugene||2020-05-05|Has expired: Broken for more than 6 months
 comms/ath3k-firmware||2020-05-05|Has expired: Broken for more than 6 months
 comms/geoid||2020-05-05|Has expired: Broken for more than 6 months
 comms/jerm||2020-05-05|Has expired: Broken for more than 6 months
@@ -14751,7 +14750,6 @@ misc/pantry||2020-05-05|Has expired: Broken for more than 6 months
 misc/phraze||2020-05-05|Has expired: Broken for more than 6 months
 misc/podsleuth||2020-05-05|Has expired: Broken for more than 6 months
 misc/py-osd||2020-05-05|Has expired: Broken for more than 6 months
-misc/rfc||2020-05-05|Has expired: Broken for more than 6 months
 misc/spamcalc||2020-05-05|Has expired: Broken for more than 6 months
 misc/us-zipcodes||2020-05-05|Has expired: Broken for more than 6 months
 misc/xtypo||2020-05-05|Has expired: Broken for more than 6 months
@@ -15008,3 +15006,8 @@ sysutils/rundeck|sysutils/rundeck2|2020-05-07|Rename to avoid confusion with sys
 x11-wm/compiz-plugins-unsupported||2020-05-07|Has expired: Broken for more than 6 months
 math/darknet|misc/darknet|2020-05-07|DarkNet is a machine learning project, not a math project
 www/rubygem-activeresource5|www/rubygem-activeresource|2020-05-08|Remove PKGNAMESUFFIX 3 years and 4 months after rubygem-activeresource removal
+finance/bitcoinnodestats||2020-05-12|Has expired: No longer maintained and not compatible with Django 2.2+
+devel/rubygem-webpacker-rails5|devel/rubygem-webpacker4-rails5|2020-05-12|Rename when rubygem-webpacker is 5.x now
+devel/rubygem-webpacker-rails50|devel/rubygem-webpacker4-rails50|2020-05-12|Rename when rubygem-webpacker is 5.x now
+net-p2p/parity-ethereum|net-p2p/openethereum|2020-05-13|Renamed upstream for transition to a DAO ownership and maintainer model
+net-im/linux-telegram-desktop|net-im/telegram-desktop|2020-05-13|Has expired: Broken for more than 6 months, use native version
