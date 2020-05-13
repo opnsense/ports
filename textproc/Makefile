@@ -1355,6 +1355,7 @@
     SUBDIR += py-sphinx-intl
     SUBDIR += py-sphinx-me
     SUBDIR += py-sphinx-tabs
+    SUBDIR += py-sphinx18
     SUBDIR += py-sphinx_numfig
     SUBDIR += py-sphinx_rtd_theme
     SUBDIR += py-sphinx_wikipedia
@@ -1363,11 +1364,15 @@
     SUBDIR += py-sphinxcontrib-bitbucket
     SUBDIR += py-sphinxcontrib-devhelp
     SUBDIR += py-sphinxcontrib-fulltoc
+    SUBDIR += py-sphinxcontrib-htmlhelp
     SUBDIR += py-sphinxcontrib-httpdomain
     SUBDIR += py-sphinxcontrib-jsmath
     SUBDIR += py-sphinxcontrib-newsfeed
     SUBDIR += py-sphinxcontrib-programoutput
+    SUBDIR += py-sphinxcontrib-qthelp
+    SUBDIR += py-sphinxcontrib-serializinghtml
     SUBDIR += py-sphinxcontrib-websupport
+    SUBDIR += py-sphinxcontrib-websupport11
     SUBDIR += py-stemming
     SUBDIR += py-tabletext
     SUBDIR += py-tablib

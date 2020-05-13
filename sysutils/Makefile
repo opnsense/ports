@@ -599,6 +599,7 @@
     SUBDIR += lr
     SUBDIR += lsblk
     SUBDIR += lscpu
+    SUBDIR += lsd
     SUBDIR += lsof
     SUBDIR += lsop
     SUBDIR += lsyncd
@@ -1248,6 +1249,7 @@
     SUBDIR += syslog-ng324
     SUBDIR += syslog-ng325
     SUBDIR += syslog-ng326
+    SUBDIR += syslog-ng327
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += system-tools-backends
