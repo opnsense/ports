@@ -184,8 +184,7 @@ BUILD_DEPENDS+=	${-${dep}_BUILD_DEPENDS}
 MOZ_OPTIONS+=	\
 		--enable-update-channel=${PKGNAMESUFFIX:Urelease:S/^-//} \
 		--disable-updater \
-		--with-system-zlib \
-		--with-system-bz2
+		--with-system-zlib
 
 # API keys from www/chromium 
 # http://www.chromium.org/developers/how-tos/api-keys
@@ -214,9 +213,7 @@ RUN_DEPENDS+=	libcanberra>0:audio/libcanberra
 .if ${PORT_OPTIONS:MDBUS}
 BUILD_DEPENDS+=	libnotify>0:devel/libnotify
 LIB_DEPENDS+=	libdbus-1.so:devel/dbus \
-				libdbus-glib-1.so:devel/dbus-glib \
-				libstartup-notification-1.so:x11/startup-notification
-MOZ_OPTIONS+=	--enable-startup-notification
+				libdbus-glib-1.so:devel/dbus-glib
 .else
 MOZ_OPTIONS+=	--disable-dbus
 .endif
@@ -224,14 +221,6 @@ MOZ_OPTIONS+=	--disable-dbus
 .if ${PORT_OPTIONS:MFFMPEG}
 # dom/media/platforms/ffmpeg/FFmpegRuntimeLinker.cpp
 RUN_DEPENDS+=	ffmpeg>=0.8,1:multimedia/ffmpeg
-.endif
-
-.if ${PORT_OPTIONS:MGCONF}
-# XXX USE_GNOME+=gconf2:build is not supported
-BUILD_DEPENDS+=	${LOCALBASE}/lib/libgconf-2.so:devel/gconf2
-MOZ_OPTIONS+=	--enable-gconf
-.else
-MOZ_OPTIONS+=	--disable-gconf
 .endif
 
 .if ${PORT_OPTIONS:MLIBPROXY}
