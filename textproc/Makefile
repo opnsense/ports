@@ -1271,6 +1271,7 @@
     SUBDIR += py-libxml2
     SUBDIR += py-libxslt
     SUBDIR += py-license-expression
+    SUBDIR += py-line-protocol-parser
     SUBDIR += py-m2r
     SUBDIR += py-mako
     SUBDIR += py-markdown
@@ -1594,6 +1595,7 @@
     SUBDIR += rubygem-rouge2
     SUBDIR += rubygem-rouge312
     SUBDIR += rubygem-rouge317
+    SUBDIR += rubygem-rouge318
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt

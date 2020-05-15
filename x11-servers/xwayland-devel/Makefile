@@ -2,7 +2,7 @@
 
 PORTNAME=	xwayland
 DISTVERSIONPREFIX=	xorg-server-
-DISTVERSION=	1.20.0-641
+DISTVERSION=	1.20.0-652
 DISTVERSIONSUFFIX=	-g${GL_COMMIT:C/(.{12}).*/\1/}
 PORTREVISION=	1
 CATEGORIES=	x11-servers
@@ -12,6 +12,8 @@ PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/commit/
 PATCHFILES+=	71749de24509.diff:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/393
 PATCHFILES+=	1e897704c822.diff:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/393
 PATCHFILES+=	83cda3ce3195.diff:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/393
+PATCHFILES+=	9e0086f99b39.diff:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/432
+PATCHFILES+=	30ea6cb622e9.diff:-p1 # https://gitlab.freedesktop.org/xorg/xserver/merge_requests/432
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	X11 server as Wayland client (development snapshot)
@@ -37,7 +39,7 @@ USE_XORG=	pixman xau xdmcp xfont2 xkbfile xshmfence xtrans
 GL_SITE=	https://gitlab.freedesktop.org
 GL_ACCOUNT=	xorg
 GL_PROJECT=	xserver
-GL_COMMIT=	785e59060c00129e47da6c0877604a56d7e0e32f
+GL_COMMIT=	0777cf46d7260f3d0c7fe82af5c94137d1e4f3de
 MESON_ARGS=	-Dxwayland=true \
 		-Dxorg=false \
 		-Dxnest=false \

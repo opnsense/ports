@@ -4297,6 +4297,7 @@
     SUBDIR += py-cxx
     SUBDIR += py-cycler
     SUBDIR += py-cymem
+    SUBDIR += py-cysignals
     SUBDIR += py-cytoolz
     SUBDIR += py-d2to1
     SUBDIR += py-daemon
@@ -4730,6 +4731,7 @@
     SUBDIR += py-oslo.rootwrap
     SUBDIR += py-oslo.rootwrap5
     SUBDIR += py-oslo.serialization
+    SUBDIR += py-oslo.serialization2
     SUBDIR += py-oslo.service
     SUBDIR += py-oslo.service1
     SUBDIR += py-oslo.upgradecheck

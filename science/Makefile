@@ -70,6 +70,7 @@
     SUBDIR += elmerfem
     SUBDIR += epte
     SUBDIR += erd
+    SUBDIR += ergo
     SUBDIR += erkale
     SUBDIR += erkale-pseudopotentials
     SUBDIR += fastcap
@@ -246,6 +247,7 @@
     SUBDIR += py-mlpy
     SUBDIR += py-mmtf-python
     SUBDIR += py-molmod
+    SUBDIR += py-moltemplate
     SUBDIR += py-netCDF4
     SUBDIR += py-obspy
     SUBDIR += py-oddt
