@@ -9804,8 +9804,6 @@ devel/beautifyphp||2018-01-29|only works for PHP4 which is gone long ago
 devel/clanlib22|devel/clanlib|2018-01-29|No users in the ports tree, newer version available
 devel/php-xdebug|devel/pecl-xdebug|2018-01-30|Moved to pecl
 astro/py-pyfits|astro/py-astropy|2018-01-31|Has expired: Use astro/py-astropy instead
-devel/py-gitdb|devel/py-gitdb2|2018-01-31|Has expired: Use devel/py-gitdb2 instead
-devel/py-smmap|devel/py-smmap2|2018-01-31|Has expired: Use devel/py-smmap2 instead
 devel/rubygem-moneta06|devel/rubygem-moneta|2018-01-31|Has expired: Use devel/rubygem-moneta instead
 lang/ruby22|lang/ruby24|2018-01-31|Has expired: Upgrade to newer version (e.g. lang/ruby24)
 net/tcptraceroute-devel|net/tcptraceroute|2018-01-31|Has expired: Use net/tcptraceroute instead
@@ -15011,3 +15009,6 @@ devel/rubygem-webpacker-rails5|devel/rubygem-webpacker4-rails5|2020-05-12|Rename
 devel/rubygem-webpacker-rails50|devel/rubygem-webpacker4-rails50|2020-05-12|Rename when rubygem-webpacker is 5.x now
 net-p2p/parity-ethereum|net-p2p/openethereum|2020-05-13|Renamed upstream for transition to a DAO ownership and maintainer model
 net-im/linux-telegram-desktop|net-im/telegram-desktop|2020-05-13|Has expired: Broken for more than 6 months, use native version
+devel/libphutil||2020-05-15|Has expired: Upstream merged functionality into downstream projects.
+print/frescobaldi|print/py-frescobaldi|2020-05-16|Renamed to comply with Python Ports Policy
+sysutils/rdiff-backup|sysutils/py-rdiff-backup@py37|2020-05-16|Renamed comply with Python Ports Policy and flavored

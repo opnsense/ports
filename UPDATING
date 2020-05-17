@@ -5,6 +5,36 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20200517:
+  AFFECTS: users of x11/sddm
+  AUTHOR: arrowd@FreeBSD.org
+
+  The home directory of sddm user has been moved to /var/lib/sddm. It is advised
+  to run following commands as root after updating the package:
+
+    # pw usermod -n sddm -d /var/lib/sddm
+    # pwd_mkdb /etc/master.passwd
+    # mv /usr/local/etc/sddm/home/state.conf /var/lib/sddm/state.conf
+    # rm -rf /usr/local/etc/sddm/home
+
+  Otherwise, SDDM will keep using /usr/local/etc/sddm/home/ as its HOME.
+
+20200515:
+  AFFECTS: users of devel/libphutil, devel/arcanist-lib, devel/phabricator
+  AUTHOR: grembo@FreeBSD.org
+
+  Upstream fully deprecated devel/libphutil and merged its functionality
+  into devel/arcanist-lib and devel/phabricator. As a result, the
+  devel/libphutil port will be removed from the ports tree.
+
+  After upgrading devel/(arcanist-lib|phabricator) to version 20200514, it is
+  recommended to remove the orphaned libphutil package by running:
+
+    # pkg delete php\*-libphutil
+
+  Alternatively, 'pkg autoremove' will also work as expected, but might
+  remove orphaned packages unrelated to this update.
+
 20200505:
   AFFECTS: users of net-im/pidgin-rocketchat
   AUTHOR: tobias.rehbein@web.de

@@ -58,12 +58,12 @@ KDE_PLASMA_VERSION?=		5.18.5
 KDE_PLASMA_BRANCH?=		stable
 
 # Current KDE frameworks.
-KDE_FRAMEWORKS_VERSION?=	5.69.0
+KDE_FRAMEWORKS_VERSION?=	5.70.0
 KDE_FRAMEWORKS_BRANCH?= 	stable
 
 # Current KDE applications.
-KDE_APPLICATIONS_VERSION?=	20.04.0
-KDE_APPLICATIONS_SHLIB_VER?=	5.14.0
+KDE_APPLICATIONS_VERSION?=	20.04.1
+KDE_APPLICATIONS_SHLIB_VER?=	5.14.1
 KDE_APPLICATIONS_BRANCH?=	stable
 # Upstream moves old software to Attic/. Specify the newest applications release there.
 # Only the major version is used for the comparison.
