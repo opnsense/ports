@@ -6795,7 +6795,6 @@ www/harvest||2014-09-01|Not staged
 www/htmlobject||2014-09-01|Not staged
 www/lusca-head||2014-09-01|Not staged
 www/mod_auth_form||2014-09-01|Not staged
-www/mod_auth_mellon||2014-09-01|Not staged
 www/mod_ftp||2014-09-01|Not staged
 www/mod_log_dbd||2014-09-01|Not staged
 www/moodle24||2014-09-01|Not staged
@@ -7973,7 +7972,6 @@ www/cakephp21||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/cakephp22||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/cakephp23||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/fluxcms||2016-01-25|Has expired: PHP 5.4 EOL reached
-www/fusionpbx||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/jawstats||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/ojs2||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/webcalendar||2016-01-25|Has expired: PHP 5.4 EOL reached
@@ -14819,9 +14817,7 @@ print/pmw||2020-05-05|Has expired: Broken for more than 6 months
 print/rprint||2020-05-05|Has expired: Broken for more than 6 months
 russian/p5-cyrillic||2020-05-05|Has expired: Broken for more than 6 months
 russian/tidyup-mail||2020-05-05|Has expired: Broken for more than 6 months
-science/abinit||2020-05-05|Has expired: Broken for more than 6 months
 science/atom||2020-05-05|Has expired: Broken for more than 6 months
-science/cp2k||2020-05-05|Has expired: Broken for more than 6 months
 science/esys-particle||2020-05-05|Has expired: Broken for more than 6 months
 science/openmx||2020-05-05|Has expired: Broken for more than 6 months
 science/p5-Geo-ReadGRIB||2020-05-05|Has expired: Broken for more than 6 months
@@ -15012,3 +15008,7 @@ net-im/linux-telegram-desktop|net-im/telegram-desktop|2020-05-13|Has expired: Br
 devel/libphutil||2020-05-15|Has expired: Upstream merged functionality into downstream projects.
 print/frescobaldi|print/py-frescobaldi|2020-05-16|Renamed to comply with Python Ports Policy
 sysutils/rdiff-backup|sysutils/py-rdiff-backup@py37|2020-05-16|Renamed comply with Python Ports Policy and flavored
+www/py-django-happenings|www/py-django-happenings-update|2020-05-17|Has expired: Doesn't work with Django 2.2+, please use www/py-django-happenings-update instead
+devel/py-django-tastypie-mongoengine||2020-05-17|Has expired: Not necessary anymore, and project unmaintained
+sysutils/py-cpuinfo|sysutils/py-py-cpuinfo|2020-05-18|Rename to match PyPI name
+devel/py-jupyterlab_server|devel/py-jupyterlab-server|2020-05-19|Rename to match upstream naming
