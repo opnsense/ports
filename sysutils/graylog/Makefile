@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	graylog
-DISTVERSION=	3.1.3
+DISTVERSION=	3.2.5
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://packages.graylog2.org/releases/graylog/
 

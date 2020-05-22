@@ -4097,6 +4097,7 @@
     SUBDIR += py-azure-functions-devops-build
     SUBDIR += py-azure-graphrbac
     SUBDIR += py-azure-keyvault
+    SUBDIR += py-azure-loganalytics
     SUBDIR += py-azure-mgmt-advisor
     SUBDIR += py-azure-mgmt-apimanagement
     SUBDIR += py-azure-mgmt-appconfiguration
@@ -4278,6 +4279,7 @@
     SUBDIR += py-contextlib2
     SUBDIR += py-convertdate
     SUBDIR += py-cookiecutter
+    SUBDIR += py-copier
     SUBDIR += py-coreapi
     SUBDIR += py-coreschema
     SUBDIR += py-country
@@ -4340,7 +4342,6 @@
     SUBDIR += py-dj22-django-rq
     SUBDIR += py-django-rq
     SUBDIR += py-django-rq-dashboard
-    SUBDIR += py-django-tastypie-mongoengine
     SUBDIR += py-docker-py
     SUBDIR += py-dockerpty
     SUBDIR += py-docopt
@@ -4471,6 +4472,7 @@
     SUBDIR += py-grpcio
     SUBDIR += py-grpcio-gcp
     SUBDIR += py-grpcio-tools
+    SUBDIR += py-gs_api_client
     SUBDIR += py-gtfslib
     SUBDIR += py-gyp
     SUBDIR += py-hash_ring
@@ -4565,8 +4567,8 @@
     SUBDIR += py-jupyter_console
     SUBDIR += py-jupyter_core
     SUBDIR += py-jupyterlab
+    SUBDIR += py-jupyterlab-server
     SUBDIR += py-jupyterlab_launcher
-    SUBDIR += py-jupyterlab_server
     SUBDIR += py-kaitaistruct
     SUBDIR += py-kaptan
     SUBDIR += py-kayako
@@ -4737,6 +4739,7 @@
     SUBDIR += py-oslo.service1
     SUBDIR += py-oslo.upgradecheck
     SUBDIR += py-oslo.utils
+    SUBDIR += py-oslo.utils3
     SUBDIR += py-oslo.versionedobjects
     SUBDIR += py-oslo.versionedobjects1
     SUBDIR += py-oslo.vmware
@@ -4793,6 +4796,7 @@
     SUBDIR += py-pluggy
     SUBDIR += py-pluginbase
     SUBDIR += py-ply
+    SUBDIR += py-pockets
     SUBDIR += py-podcastparser
     SUBDIR += py-polib
     SUBDIR += py-pooch
@@ -4902,6 +4906,7 @@
     SUBDIR += py-pytest-azurepipelines
     SUBDIR += py-pytest-benchmark
     SUBDIR += py-pytest-black
+    SUBDIR += py-pytest-black-multipy
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-cov
@@ -6169,6 +6174,7 @@
     SUBDIR += rubygem-micromachine
     SUBDIR += rubygem-micromachine2
     SUBDIR += rubygem-middleware
+    SUBDIR += rubygem-mini_histogram
     SUBDIR += rubygem-mini_portile2
     SUBDIR += rubygem-minitest
     SUBDIR += rubygem-mixlib-archive
@@ -6715,6 +6721,7 @@
     SUBDIR += tkp4
     SUBDIR += tl-expected
     SUBDIR += tla
+    SUBDIR += tllist
     SUBDIR += tmake
     SUBDIR += tnt
     SUBDIR += tokamak

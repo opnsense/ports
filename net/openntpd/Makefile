@@ -2,7 +2,7 @@
 
 PORTNAME=	openntpd
 PORTVERSION=	6.2p3
-PORTREVISION=	5
+PORTREVISION=	6
 PORTEPOCH=	2
 CATEGORIES=	net
 MASTER_SITES=	OPENBSD/OpenNTPD
@@ -12,13 +12,13 @@ COMMENT=	Network Time Protocol (NTP) daemon
 
 LICENSE=	ISCL
 
-RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
-
-CONFLICTS=	ntp-[0-9].* ntp-devel-*
-
 USE_HARDENING=	safestack
 
+RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
+
 USES=		ssl
+
+CONFLICTS=	ntp ntp-devel ntpsec
 
 USE_RC_SUBR=	openntpd
 USERS=		_ntp
@@ -27,7 +27,8 @@ GROUPS=		_ntp
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-cacert=${LOCALBASE}/etc/ssl/cert.pem
 
-SUB_FILES=	480.status-openntpd
+SUB_FILES=	480.status-openntpd pkg-message
+SUB_LIST=	MANPREFIX="${MANPREFIX}"
 
 pre-build:
 	${REINPLACE_CMD} -e 's,%%PREFIX%%,${PREFIX},g' \
