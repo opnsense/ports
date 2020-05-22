@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	librsync
-PORTVERSION=	2.3.0
+PORTVERSION=	2.3.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net devel
 
@@ -14,10 +14,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpopt.so:devel/popt
 
-USES=		cmake compiler:c11 localbase:ldflags
+USES=		cmake compiler:c11 perl5
+USE_PERL5=	test
 
 USE_GITHUB=	yes
 
+TEST_TARGET=	check
 USE_LDCONFIG=	yes
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
