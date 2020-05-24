@@ -255,7 +255,6 @@
     SUBDIR += nut
     SUBDIR += ompl
     SUBDIR += ondir
-    SUBDIR += onnx
     SUBDIR += opencyc
     SUBDIR += openhab2
     SUBDIR += openhab2-addons
@@ -377,6 +376,7 @@
     SUBDIR += py-kartograph
     SUBDIR += py-molequeue
     SUBDIR += py-mxnet
+    SUBDIR += py-onnx
     SUBDIR += py-onnx-tf
     SUBDIR += py-orange3-associate
     SUBDIR += py-orange3-datafusion

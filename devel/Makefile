@@ -854,6 +854,7 @@
     SUBDIR += godot2-tools
     SUBDIR += goffice
     SUBDIR += gogs
+    SUBDIR += golangci-lint
     SUBDIR += golint
     SUBDIR += google-cloud-cpp
     SUBDIR += google-gdata
@@ -4612,6 +4613,7 @@
     SUBDIR += py-logbook
     SUBDIR += py-logfury
     SUBDIR += py-logilab-common
+    SUBDIR += py-loguru
     SUBDIR += py-logutils
     SUBDIR += py-louie
     SUBDIR += py-lunardate
@@ -6335,6 +6337,7 @@
     SUBDIR += rubygem-ref
     SUBDIR += rubygem-reline
     SUBDIR += rubygem-request_store
+    SUBDIR += rubygem-request_store14
     SUBDIR += rubygem-require_all
     SUBDIR += rubygem-resque
     SUBDIR += rubygem-retriable

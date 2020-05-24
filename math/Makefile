@@ -780,7 +780,6 @@
     SUBDIR += py-numexpr
     SUBDIR += py-numpy
     SUBDIR += py-nzmath
-    SUBDIR += py-onnx
     SUBDIR += py-osqp
     SUBDIR += py-pandas
     SUBDIR += py-pandas-datareader
@@ -862,6 +861,7 @@
     SUBDIR += rngstreams
     SUBDIR += rocs
     SUBDIR += rpcalc
+    SUBDIR += rubiks
     SUBDIR += rubygem-algebra
     SUBDIR += rubygem-enumerable-statistics
     SUBDIR += rubygem-expression_parser
