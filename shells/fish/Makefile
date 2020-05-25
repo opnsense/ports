@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	fish
-PORTVERSION=	3.1.1
+PORTVERSION=	3.1.2
 CATEGORIES=	shells
 MASTER_SITES=	https://github.com/fish-shell/fish-shell/releases/download/${PORTVERSION}/
 
@@ -38,6 +38,12 @@ NLS_CMAKE_BOOL=		WITH_GETTEXT
 
 PORTDOCS=	*
 
+.include <bsd.port.pre.mk>
+
+.if ${NCURSESBASE:M${LOCALBASE}}
+CMAKE_ARGS+=	-DCURSES_NEED_NCURSES=TRUE
+.endif
+
 post-install:
 .for i in fish fish_indent fish_key_reader
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${i}
@@ -50,4 +56,4 @@ post-stage-MANPAGES-off:
 	@${RM} -rf ${STAGEDIR}${MANPREFIX}/man/man1
 	@${RM} -rf ${STAGEDIR}${DATADIR}/man
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>
