@@ -1477,6 +1477,7 @@
     SUBDIR += py-django-classy-tags
     SUBDIR += py-django-cms
     SUBDIR += py-django-common-helpers
+    SUBDIR += py-django-compat
     SUBDIR += py-django-configurations
     SUBDIR += py-django-constance
     SUBDIR += py-django-contact-form
@@ -1650,6 +1651,7 @@
     SUBDIR += py-html5-parser
     SUBDIR += py-html5lib
     SUBDIR += py-httmock
+    SUBDIR += py-httpcore
     SUBDIR += py-httpie
     SUBDIR += py-httplib2
     SUBDIR += py-httptools
