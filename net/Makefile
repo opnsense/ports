@@ -245,7 +245,6 @@
     SUBDIR += hostapd
     SUBDIR += hping
     SUBDIR += hping3
-    SUBDIR += hs-network
     SUBDIR += hsflowd
     SUBDIR += htpdate
     SUBDIR += http_ping
@@ -1075,6 +1074,7 @@
     SUBDIR += py-python-cinderclient5
     SUBDIR += py-python-designateclient
     SUBDIR += py-python-glanceclient
+    SUBDIR += py-python-glanceclient2
     SUBDIR += py-python-heatclient
     SUBDIR += py-python-keystoneclient
     SUBDIR += py-python-keystoneclient3

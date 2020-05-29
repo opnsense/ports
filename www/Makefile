@@ -233,6 +233,7 @@
     SUBDIR += hotcrp
     SUBDIR += hs-DAV
     SUBDIR += hs-hjsmin
+    SUBDIR += hs-postgrest
     SUBDIR += hs-wai-app-static
     SUBDIR += hs-yesod-bin
     SUBDIR += htdigest
@@ -1459,7 +1460,6 @@
     SUBDIR += py-dj22-swapper
     SUBDIR += py-django
     SUBDIR += py-django-allauth
-    SUBDIR += py-django-annotations
     SUBDIR += py-django-annoying
     SUBDIR += py-django-appconf
     SUBDIR += py-django-appmedia
@@ -1534,7 +1534,6 @@
     SUBDIR += py-django-recaptcha
     SUBDIR += py-django-redis
     SUBDIR += py-django-registration
-    SUBDIR += py-django-registration-defaults
     SUBDIR += py-django-registration-redux
     SUBDIR += py-django-rest-swagger
     SUBDIR += py-django-reversion
@@ -1565,7 +1564,6 @@
     SUBDIR += py-django22
     SUBDIR += py-django30
     SUBDIR += py-django_compressor
-    SUBDIR += py-django_openstack_auth
     SUBDIR += py-djangocms-admin-style
     SUBDIR += py-djangorestframework
     SUBDIR += py-djangorestframework-csv
@@ -1895,7 +1893,9 @@
     SUBDIR += rubygem-ethon
     SUBDIR += rubygem-eventmachine_httpserver
     SUBDIR += rubygem-faraday
+    SUBDIR += rubygem-faraday0
     SUBDIR += rubygem-faraday_middleware
+    SUBDIR += rubygem-faraday_middleware0
     SUBDIR += rubygem-faye
     SUBDIR += rubygem-faye-websocket
     SUBDIR += rubygem-fcgi

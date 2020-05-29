@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	12.10.6
-PORTREVISION=	0
+PORTVERSION=	12.10.7
+PORTREVISION=	1
 CATEGORIES=	www devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 MY_DEPENDS=	git>=2.24.3:devel/git \
 	gitaly>=${PORTVERSION}:devel/gitaly \
 	gitlab-shell>=12.2.0:devel/gitlab-shell \
-	gitlab-workhorse>=8.30.1:www/gitlab-workhorse \
+	gitlab-workhorse>=8.30.2:www/gitlab-workhorse \
 	gitlab-pages>=1.17.0:www/gitlab-pages \
 	gitlab-elasticsearch-indexer>=2.2.0:textproc/gitlab-elasticsearch-indexer \
 	redis>=3.2.12:databases/redis \
@@ -34,7 +34,7 @@ MY_DEPENDS=	git>=2.24.3:devel/git \
 	rubygem-pg>=1.1<2:databases/rubygem-pg \
 	rubygem-rugged>=0.28:devel/rubygem-rugged \
 	rubygem-grape-path-helpers>=1.2<2.0:devel/rubygem-grape-path-helpers \
-	rubygem-faraday>=0.12<1.0:www/rubygem-faraday \
+	rubygem-faraday0>=0.12<1.0:www/rubygem-faraday0 \
 	rubygem-marginalia>=1.8.0<1.9:databases/rubygem-marginalia \
 	rubygem-devise-rails60>=4.6<5.0:devel/rubygem-devise-rails60 \
 	rubygem-doorkeeper>=5.0.2<5.1:security/rubygem-doorkeeper \
@@ -251,7 +251,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 GL_PROJECT=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT=	833223f2a7f9b95823f6a570be3e65cd3ecfa71f
+GL_COMMIT=	e5e96554dd73c328b8375e04802f944ab2cab407
 SHEBANG_FILES=	bin/background_* scripts/build_assets_image scripts/clean-old-cached-assets scripts/create_postgres_user.sh scripts/prepare_postgres_fdw.sh scripts/review_apps/gcp_cleanup.sh scripts/rspec_helpers.sh scripts/security-harness
 
 USERS=	git

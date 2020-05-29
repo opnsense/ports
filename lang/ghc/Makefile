@@ -3,6 +3,7 @@
 
 PORTNAME=	ghc
 PORTVERSION=	${GHC_VERSION}
+PORTREVISION=	1
 CATEGORIES=	lang haskell
 MASTER_SITES=	https://www.haskell.org/ghc/dist/${PORTVERSION}/:source \
 		LOCAL/arrowd/:boot \
@@ -256,6 +257,11 @@ pre-configure: apply-slist
 .if empty(PORT_OPTIONS:MBOOT)
 	cd ${BOOT_DIR} && ${CONFIGURE_ENV} ${CONFIGURE_CMD} --prefix=${BOOT_DIR}
 	cd ${BOOT_DIR} && PACKAGES='' ${MAKE_CMD} install
+.else
+# otherwise, make sure we have "ghc" in PATH
+	if ! ${WHICH} -s ghc ; then \
+		echo "No 'ghc' executable is found in your PATH! Turn off BOOT option." ; false ; \
+	fi
 .endif
 # If DOCS are set, install HsColour in-place
 .if ${PORT_OPTIONS:MDOCS}

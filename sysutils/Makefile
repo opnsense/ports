@@ -479,6 +479,7 @@
     SUBDIR += hstr
     SUBDIR += htop
     SUBDIR += httplog
+    SUBDIR += hw-probe
     SUBDIR += hwstat
     SUBDIR += i2c-tools
     SUBDIR += i7z
@@ -1347,6 +1348,7 @@
     SUBDIR += u-boot-rpi-0-w
     SUBDIR += u-boot-rpi2
     SUBDIR += u-boot-rpi3
+    SUBDIR += u-boot-rpi3-32
     SUBDIR += u-boot-rpi4
     SUBDIR += u-boot-sinovoip-bpi-m3
     SUBDIR += u-boot-sopine
