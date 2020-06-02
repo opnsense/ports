@@ -13868,7 +13868,6 @@ graphics/pysvg||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 irc/py-supybot-plugins||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 japanese/kana-no-quiz||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 lang/py-prolog||2020-01-27|Has expired: Unmaintained, uses EOLed python27
-lang/sdcc||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 mail/archivemail||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 mail/mailfmt||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 mail/py-libgmail||2020-01-27|Has expired: Unmaintained, uses EOLed python27
@@ -14595,7 +14594,6 @@ devel/bouml-doc||2020-05-05|Has expired: Broken for more than 6 months
 devel/cobf||2020-05-05|Has expired: Broken for more than 6 months
 devel/djgpp-crx||2020-05-05|Has expired: Broken for more than 6 months
 devel/elfrc||2020-05-05|Has expired: Broken for more than 6 months
-devel/frink||2020-05-05|Has expired: Broken for more than 6 months
 devel/gogland-eap||2020-05-05|Has expired: Broken for more than 6 months
 devel/hive||2020-05-05|Has expired: Broken for more than 6 months
 devel/hs-bytestring-nums||2020-05-05|Has expired: No releases since 2012
@@ -15045,3 +15043,14 @@ devel/hs-data-default-instances-containers||2020-05-26|Deprecated: Haskell libra
 x11-wm/hs-xmonad-contrib||2020-05-26|Deprecated: Haskell libraries get pushed out of the ports tree
 x11/hs-X11||2020-05-26|Deprecated: Haskell libraries get pushed out of the ports tree
 x11/hs-X11-xft||2020-05-26|Deprecated: Haskell libraries get pushed out of the ports tree
+devel/rubygem-peek-redis-rails5|devel/rubygem-peek-redis-rails52|2020-05-29|Obsolete: Please use devel/rubygem-peek-redis-rails52 instead
+devel/rubygem-peek-rblineprof-rails5|devel/rubygem-peek-rblineprof-rails52|2020-05-29|Obsolete, please use devel/rubygem-peek-rblineprof-rails52 instead
+www/moodle36|www/moodle37|2020-05-30|Has expired: EOLed upstream
+sysutils/ansible24|sysutils/ansible|2020-05-31|Has expired: Upstream support ended. Consider upgrading to sysutils/ansible
+sysutils/ansible26|sysutils/ansible|2020-05-31|Has expired: Upstream support ended. Consider upgrading to sysutils/ansible
+sysutils/ansible25|sysutils/ansible|2020-05-31|Has expired: Upstream support ended. Consider upgrading to sysutils/ansible
+www/py-requests-futures097|www/py-requests-futures|2020-05-31|Has expired: Use www/py-requests-futures instead
+sysutils/ansible23|sysutils/ansible|2020-05-31|Has expired: Upstream support ended. Consider upgrading to sysutils/ansible
+devel/graphql.el||2020-05-31|Has expired: No longer required by anything
+lang/perl5.26|lang/perl5.28|2020-05-31|Has expired: Support ends three years after .0 release, please upgrade to a more recent version of Perl
+www/py-beautifulsoup460|www/py-beautifulsoup448|2020-05-31|Has expired: Use www/py-beautifulsoup448 instead
