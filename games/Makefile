@@ -492,6 +492,7 @@
     SUBDIR += libretro-dosbox
     SUBDIR += libretro-emux
     SUBDIR += libretro-fbalpha
+    SUBDIR += libretro-fbneo
     SUBDIR += libretro-fceumm
     SUBDIR += libretro-fmsx
     SUBDIR += libretro-fuse
@@ -529,6 +530,7 @@
     SUBDIR += libretro-vbanext
     SUBDIR += libretro-vecx
     SUBDIR += libretro-virtualjaguar
+    SUBDIR += libretro-yabause
     SUBDIR += libshhcards
     SUBDIR += libtmcg
     SUBDIR += lightsoff

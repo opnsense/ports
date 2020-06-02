@@ -361,6 +361,7 @@
     SUBDIR += libgrss
     SUBDIR += libgweather
     SUBDIR += libilbc
+    SUBDIR += libiscsi
     SUBDIR += libjson-rpc-cpp
     SUBDIR += libkgapi
     SUBDIR += libksieve
@@ -988,6 +989,7 @@
     SUBDIR += ptpd2
     SUBDIR += ptunnel
     SUBDIR += pvm
+    SUBDIR += pwnat
     SUBDIR += pwhois
     SUBDIR += pxe
     SUBDIR += pxe-pdhcp

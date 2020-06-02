@@ -529,6 +529,7 @@
     SUBDIR += megapov
     SUBDIR += meh
     SUBDIR += mesa-demos
+    SUBDIR += mesa-devel
     SUBDIR += mesa-dri
     SUBDIR += mesa-libs
     SUBDIR += metacam
@@ -1025,6 +1026,7 @@
     SUBDIR += tinyows
     SUBDIR += tkpng
     SUBDIR += togl
+    SUBDIR += tslib
     SUBDIR += ttygif
     SUBDIR += ttyplot
     SUBDIR += tumble

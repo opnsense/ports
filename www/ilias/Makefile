@@ -11,6 +11,8 @@ COMMENT=	Powerful, dynamic, PHP and MySQL based e-learning platform
 
 LICENSE=	GPLv2
 
+CONFLICTS=	ilias6-[0-9]*
+
 RUN_DEPENDS=	convert:graphics/ImageMagick6 \
 		zip:archivers/zip \
 		${UNZIP_CMD}:archivers/unzip \
