@@ -165,7 +165,7 @@ HTTP_TARANTOOL_VARS=		DSO_EXTMODS+=nginx_tarantool
 HTTP_TARANTOOL_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_tarantool-config \
 				${PATCHDIR}/extra-patch-ngx_http_tarantool-src-tp_transcode.c
 
-HTTP_UPLOAD_GH_TUPLE=		Austinb:nginx-upload-module:72ec037:upload
+HTTP_UPLOAD_GH_TUPLE=		fdintino:nginx-upload-module:aa42509:upload
 HTTP_UPLOAD_VARS=		DSO_EXTMODS+=upload
 
 HTTP_UPLOAD_PROGRESS_GH_TUPLE=	masterzen:nginx-upload-progress-module:afb2d31:uploadprogress
@@ -208,7 +208,7 @@ ICONV_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-calio-iconv-nginx-module-config
 LET_GH_TUPLE=		arut:nginx-let-module:v0.0.4:let
 LET_CONFIGURE_ON=	--add-module=${WRKSRC_let}
 
-LINK_GH_TUPLE=		Taymindis:nginx-link-function:3.2.1:link
+LINK_GH_TUPLE=		Taymindis:nginx-link-function:3.2.2:link
 LINK_CONFIGURE_ON=	--add-module=${WRKSRC_link}
 LINK_EXTRA_PATCHES=     ${PATCHDIR}/extra-patch-nginx-link-function-config \
 				${PATCHDIR}/extra-patch-ngx_link_func_module.c
