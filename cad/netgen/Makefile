@@ -3,6 +3,7 @@
 
 PORTNAME=	netgen
 PORTVERSION=	6.2.2004
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	cad
 
@@ -18,9 +19,7 @@ USES=		cmake python tcl tk gl xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	NGSolve
-GH_PROJECT=	netgen:1 pybind11:2
-GH_TAGNAME=	v${PORTVERSION}:1 v2.4.3:2
-GH_SUBDIR=	external_dependencies/pybind11:2
+GH_TUPLE=	NGSolve:pybind11:v2.4.3:pybind11/external_dependencies/pybind11
 
 USE_GL=		gl glu
 USE_XORG=	x11 xmu xi
@@ -28,6 +27,8 @@ USE_LDCONFIG=	yes
 
 CFLAGS+=	-I${LOCALBASE}/include -I${TK_INCLUDEDIR}/generic -I${TK_INCLUDEDIR}/unix
 CXXFLAGS+=	-I${LOCALBASE}/include -I${TK_INCLUDEDIR}/generic -I${TK_INCLUDEDIR}/unix
+
+CMAKE_ARGS+=	-DUSE_SUPERBUILD=OFF
 
 OPTIONS_DEFINE=	JPEG MPEG CGNS
 

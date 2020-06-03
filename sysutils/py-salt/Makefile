@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	salt
-PORTVERSION=	2019.2.5
+PORTVERSION=	3000.3
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -32,6 +32,8 @@ CPE_VENDOR=	saltstack
 CPE_PRODUCT=	salt
 USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
+
+CONFLICTS=	py[0-9]*-salt-2019*
 
 # we must pass these options before the target name, and python.mk has no
 # early-arguments variable, so we have to manipulate the target
@@ -91,7 +93,6 @@ post-patch:
 		-e 's|/srv/pillar|${ETCDIR}/pillar|' ${WRKSRC}/${file}
 .endfor
 	@${REINPLACE_CMD} -e 's|yumpkg5|pkgng|' ${WRKSRC}/conf/minion
-	@${REINPLACE_CMD} -e 's|msgpack-python|msgpack|' ${WRKSRC}/requirements/base.txt
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
