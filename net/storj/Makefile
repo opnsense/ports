@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	storj
-PORTVERSION=	1.4.2
+PORTVERSION=	1.5.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
@@ -17,8 +17,8 @@ USE_GITHUB=	yes
 .include "${.CURDIR}/Makefile.deps"
 
 STORJ_CMDS=	certificates identity inspector satellite segment-reaper \
-		storagenode storagenode-updater storj-sim uplink \
-		versioncontrol
+		storagenode storagenode-updater storj-admin storj-sim \
+		uplink versioncontrol
 
 GO_TARGET=	${STORJ_CMDS:S,^,./cmd/,}
 

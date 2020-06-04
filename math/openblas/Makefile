@@ -14,6 +14,7 @@ DIST_SUBDIR=	openblas
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES=	ee2e758278b5d82b7242f505ea694f082ef65879.patch:-p1 # fixes the regression: https://github.com/xianyi/OpenBLAS/pull/2512
+PATCHFILES+=	3eda3d34c3d9bfabb29e1d8a69860932334a815d.patch:-p1 # fixes build on powerpc (PPCG4)
 
 MAINTAINER=	phd_kimberlite@yahoo.co.jp
 COMMENT=	Optimized BLAS library based on GotoBLAS2
@@ -45,6 +46,7 @@ OPTIONS_DEFINE_i386=		AVX AVX2
 OPTIONS_DEFINE_amd64=		AVX AVX2
 OPTIONS_DEFINE_powerpc64=	POWER6
 OPTIONS_EXCLUDE_powerpc64=	OPENMP
+OPTIONS_EXCLUDE_powerpc=	OPENMP
 OPTIONS_SUB=	yes
 
 .if defined(BATCH) || defined(PACKAGE_BUILDING)
@@ -68,6 +70,11 @@ TARGET_CPU_ARCH=	POWER6
 .else
 TARGET_CPU_ARCH=	PPC970
 .  endif
+.endif
+
+.if ${ARCH} == powerpc
+USE_GCC=		yes
+TARGET_CPU_ARCH=	PPCG4
 .endif
 
 MAXTHREADS?=	64
