@@ -15061,3 +15061,21 @@ www/py-dojango||2020-06-03|Has expired: No longer maintained, not compatible wit
 www/py-django-json-rpc||2020-06-03|Has expired: No longer maintained, not compatible with Django 2.0+
 www/mediawiki132|www/mediawiki133|2020-06-03|Has expired: EOLed upstream
 devel/cargo-tree|lang/rust|2020-06-04|Integrated into cargo
+databases/rubygem-peek-mysql2-rails5||2020-06-05|Removed: not required by gitlab-ce anymore
+audio/workman||2020-06-05|Has expired: Depends on expired x11-toolkits/xview
+x11-toolkits/xview||2020-06-05|Has expired: 64-bit unsupported
+math/p5-Algorithm-KMeans||2020-06-05|Has expired: Depends on expired math/p5-Math-GSL
+math/p5-Math-GSL||2020-06-05|Has expired: Broken for more than 6 months
+net/openbsc||2020-06-05|Has expired: Depends on expired devel/libosmo-netif
+devel/libosmo-netif||2020-06-05|Has expired: Broken for more than 6 months
+audio/xvmixer||2020-06-05|Has expired: Depends on expired x11-toolkits/xview
+devel/libosmo-sccp||2020-06-05|Has expired: Depends on expired devel/libosmo-netif
+audio/p5-Audio||2020-06-05|Has expired: Depends on expired math/p5-Math-GSL
+databases/rubygem-peek-pg-rails5||2020-06-05|Removed: not required by gitlab-ce anymore
+devel/rubygem-peek-gc-rails5|devel/rubygem-peek-gc-rails52|2020-06-05|Removed: please use devel/rubygem-peek-gc-rails52 instead
+devel/rubygem-peek-rails5|devel/rubygem-peek-rails60|2020-06-05|Removed: please use devel/rubygem-peek-rails60 instead
+net/freerdp1|net/freerdp|2020-06-06|Has expired: Superseded by the freerdp port/package
+irc/psybnc||2020-06-06|Has expired: Broken for more than 6 months
+www/py-dj22-djangoql|www/py-djangoql|2020-06-06|Renamed to match the naming of other Django ports since Django 2.2 became default
+sysutils/beats|sysutils/beats6|2020-06-07|Renamed to match the naming of other ELK ports
+security/pam_pseudo||2020-06-07|Has expired: Broken for more than 6 months
