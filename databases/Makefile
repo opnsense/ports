@@ -188,6 +188,7 @@
     SUBDIR += mongodb36-tools
     SUBDIR += mongodb40
     SUBDIR += mongodb40-tools
+    SUBDIR += mongodb42
     SUBDIR += mroonga
     SUBDIR += mtools-mongodb
     SUBDIR += mtop
@@ -947,8 +948,6 @@
     SUBDIR += rubygem-mysql204
     SUBDIR += rubygem-openid-redis-store
     SUBDIR += rubygem-paranoia
-    SUBDIR += rubygem-peek-mysql2-rails5
-    SUBDIR += rubygem-peek-pg-rails5
     SUBDIR += rubygem-pg
     SUBDIR += rubygem-pg0
     SUBDIR += rubygem-pg018

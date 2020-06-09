@@ -67,8 +67,7 @@ CONFIGURE_ARGS=	--sysconfdir=${CONFDIR} \
 		--enable-unicode \
 		--disable-root-check \
 		--with-locking-method=fcntl \
-		--with-notice=unicode \
-		COURIERAUTHCONFIG=${PREFIX}/bin/courierauthconfig
+		--with-notice=unicode
 
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls \
 			libgcrypt.so:security/libgcrypt

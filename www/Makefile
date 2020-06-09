@@ -22,6 +22,7 @@
     SUBDIR += alef-webfont
     SUBDIR += amphetadesk
     SUBDIR += analog
+    SUBDIR += annie
     SUBDIR += anyremote2html
     SUBDIR += anyterm
     SUBDIR += apache-mode.el
@@ -1451,7 +1452,6 @@
     SUBDIR += py-dj22-django-timezone-field
     SUBDIR += py-dj22-django-treebeard
     SUBDIR += py-dj22-django_csp
-    SUBDIR += py-dj22-djangoql
     SUBDIR += py-dj22-djangorestframework
     SUBDIR += py-dj22-drf-yasg
     SUBDIR += py-dj22-jsonfield
@@ -1563,6 +1563,7 @@
     SUBDIR += py-django30
     SUBDIR += py-django_compressor
     SUBDIR += py-djangocms-admin-style
+    SUBDIR += py-djangoql
     SUBDIR += py-djangorestframework
     SUBDIR += py-djangorestframework-csv
     SUBDIR += py-djangorestframework-filters

@@ -1251,8 +1251,6 @@
     SUBDIR += liborcus
     SUBDIR += libosinfo
     SUBDIR += libosmo-abis
-    SUBDIR += libosmo-netif
-    SUBDIR += libosmo-sccp
     SUBDIR += libosmocore
     SUBDIR += libowfat
     SUBDIR += libpafe
@@ -6239,12 +6237,10 @@
     SUBDIR += rubygem-pathutil
     SUBDIR += rubygem-pdk
     SUBDIR += rubygem-peek
-    SUBDIR += rubygem-peek-gc-rails5
     SUBDIR += rubygem-peek-gc-rails52
     SUBDIR += rubygem-peek-host
     SUBDIR += rubygem-peek-performance_bar
     SUBDIR += rubygem-peek-rails4
-    SUBDIR += rubygem-peek-rails5
     SUBDIR += rubygem-peek-rails52
     SUBDIR += rubygem-peek-rails60
     SUBDIR += rubygem-peek-rblineprof-rails52

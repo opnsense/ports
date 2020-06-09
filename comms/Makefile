@@ -107,6 +107,9 @@
     SUBDIR += nmealib
     SUBDIR += o2sms
     SUBDIR += obexapp
+    SUBDIR += opencbm
+    SUBDIR += opencbm-kmod
+    SUBDIR += opencbm-plugin-xa1541
     SUBDIR += openobex
     SUBDIR += openzwave
     SUBDIR += openzwave-devel

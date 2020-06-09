@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	mesa
-DISTVERSION=	20.1-branchpoint-1495
-DISTVERSIONSUFFIX=	-g8252bb0ec6d
+DISTVERSION=	20.1-branchpoint-1590
+DISTVERSIONSUFFIX=	-ga6c747e8e0b
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -52,10 +52,11 @@ SHEBANG_FILES=	src/vulkan/overlay-layer/${PORTNAME}-overlay-control.py
 PLATFORMS=	${PORT_OPTIONS:MX11:tl} ${PORT_OPTIONS:MWAYLAND:tl} drm surfaceless
 MESON_ARGS=	-Dgallium-omx=disabled \
 		-Dgallium-opencl=disabled \
-		-Dgallium-xa=false \
-		-Dgallium-xvmc=false \
+		-Dgallium-xa=disabled \
+		-Dgallium-xvmc=disabled \
 		-Dplatforms=${PLATFORMS:ts,} \
 		${PKGNAMESUFFIX:S/^/-Degl-lib-suffix=/} \
+		${BINARY_ALIAS:D--native-file=binary_alias.ini} \
 		${NULL}
 SUB_FILES=	libmap.conf
 SUB_LIST=	PKGNAMESUFFIX=${PKGNAMESUFFIX}
@@ -66,7 +67,7 @@ PLIST_SUB=	ARCH=${ARCH:S/amd/x86_/} PKGNAMESUFFIX=${PKGNAMESUFFIX}
 LDFLAGS+=	-fuse-ld=lld
 .endif
 
-OPTIONS_DEFINE=		${OPTIONS_MULTI} LIBUNWIND LLVM VAAPI VDPAU WAYLAND X11 ZSTD
+OPTIONS_DEFINE=		${OPTIONS_MULTI} LIBUNWIND LLVM NLS VAAPI VDPAU WAYLAND X11 ZSTD
 OPTIONS_DEFAULT=	${OPTIONS_MULTI} LIBUNWIND LLVM VAAPI VDPAU WAYLAND X11 ZSTD
 OPTIONS_MULTI=		DRI GALLIUM VULKAN
 OPTIONS_MULTI_DRI=	i965
@@ -106,6 +107,8 @@ LLVM_BINARY_ALIAS=	llvm-config=llvm-config${LLVM_DEFAULT}
 ${i}_IMPLIES+=		LLVM
 .endfor
 
+NLS_USES=		gettext-tools
+
 VAAPI_BUILD_DEPENDS=	libva>0:multimedia/libva
 VAAPI_MESON_ENABLED=	gallium-va
 
@@ -129,6 +132,15 @@ ZSTD_DESC=		Use ZSTD for shader cache
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 ZSTD_MESON_ENABLED=	zstd
 
+post-extract:
+# Work around Meson lookup order e.g., llvm-config
+.if defined(BINARY_ALIAS)
+	@${ECHO_CMD} '[binaries]' >${WRKSRC}/binary_alias.ini
+	@for f in ${BINARY_ALIAS}; do \
+		${ECHO_CMD} "$${f%%=*} = '$${f#*=}'"; \
+	done >>${WRKSRC}/binary_alias.ini
+.endif
+
 post-patch:
 # Extract (snapshot) version from the port instead of empty string
 	@${REINPLACE_CMD} '/MESA_GIT_SHA1/s/""/" (git-${DISTVERSIONSUFFIX:C/.*-g//})"/' \
@@ -139,6 +151,10 @@ post-patch:
 	@${MV} ${WRKSRC}/src/util/00-${PORTNAME}-defaults.conf \
 		${WRKSRC}/src/util/00-${PKGBASE}-defaults.conf
 .endif
+
+pre-build-NLS-on:
+# Meson doesn't automatically generate translations
+	@${DO_MAKE_BUILD} -C ${BUILD_WRKSRC} xmlpool-gmo
 
 post-install:
 .if defined(PKGNAMESUFFIX)

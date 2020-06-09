@@ -169,7 +169,6 @@
     SUBDIR += freeradius-client
     SUBDIR += freeradius3
     SUBDIR += freerdp
-    SUBDIR += freerdp1
     SUBDIR += freeswitch
     SUBDIR += freevrrpd
     SUBDIR += frr5
@@ -534,7 +533,6 @@
     SUBDIR += open-isns
     SUBDIR += openbgpd
     SUBDIR += openbgpd6
-    SUBDIR += openbsc
     SUBDIR += openggsn
     SUBDIR += openldap24-client
     SUBDIR += openldap24-sasl-client
