@@ -115,6 +115,7 @@
     SUBDIR += deadbeef-waveform-seekbar-plugin
     SUBDIR += dekagen
     SUBDIR += denemo
+    SUBDIR += din
     SUBDIR += discid
     SUBDIR += dpf-plugins-lv2
     SUBDIR += drumgizmo
@@ -787,6 +788,7 @@
     SUBDIR += taglookup
     SUBDIR += tagtool
     SUBDIR += tagutil
+    SUBDIR += tamgamp-lv2
     SUBDIR += tap-plugins
     SUBDIR += tap-plugins-lv2
     SUBDIR += tcd
