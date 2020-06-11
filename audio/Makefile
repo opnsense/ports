@@ -204,6 +204,7 @@
     SUBDIR += freedesktop-sound-theme
     SUBDIR += freepats
     SUBDIR += funktrackergold
+    SUBDIR += ganv
     SUBDIR += gbemol
     SUBDIR += gbsplay
     SUBDIR += geonkick-lv2
@@ -686,6 +687,7 @@
     SUBDIR += qsampler
     SUBDIR += qsynth
     SUBDIR += quimup
+    SUBDIR += raul
     SUBDIR += rawrec
     SUBDIR += re
     SUBDIR += rebot3
