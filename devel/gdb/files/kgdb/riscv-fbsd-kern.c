@@ -32,7 +32,6 @@
 
 #include "riscv-tdep.h"
 #include "frame-unwind.h"
-#include "gdbarch.h"
 #include "gdbcore.h"
 #include "osabi.h"
 #include "regcache.h"
