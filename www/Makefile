@@ -430,6 +430,7 @@
     SUBDIR += newsboat
     SUBDIR += nextcloud
     SUBDIR += nextcloud-calendar
+    SUBDIR += nextcloud-circles
     SUBDIR += nextcloud-contacts
     SUBDIR += nextcloud-deck
     SUBDIR += nextcloud-notes
@@ -1439,8 +1440,6 @@
     SUBDIR += py-dj22-django-debug-toolbar
     SUBDIR += py-dj22-django-extensions
     SUBDIR += py-dj22-django-filter
-    SUBDIR += py-dj22-django-formset-js-improved
-    SUBDIR += py-dj22-django-jquery-js
     SUBDIR += py-dj22-django-js-asset
     SUBDIR += py-dj22-django-model-utils
     SUBDIR += py-dj22-django-mptt
@@ -1494,6 +1493,7 @@
     SUBDIR += py-django-extensions
     SUBDIR += py-django-filer
     SUBDIR += py-django-filter
+    SUBDIR += py-django-formset-js-improved
     SUBDIR += py-django-formtools
     SUBDIR += py-django-guardian
     SUBDIR += py-django-happenings-update
@@ -1502,6 +1502,7 @@
     SUBDIR += py-django-hijack
     SUBDIR += py-django-htmlmin
     SUBDIR += py-django-i18nfield
+    SUBDIR += py-django-jquery-js
     SUBDIR += py-django-js-asset
     SUBDIR += py-django-jsonfield
     SUBDIR += py-django-ldapdb

@@ -16,6 +16,7 @@
     SUBDIR += accounts-qml-module
     SUBDIR += accountsservice
     SUBDIR += acerhdf-kmod
+    SUBDIR += acltool
     SUBDIR += acpi_call
     SUBDIR += acpica-tools
     SUBDIR += acts
@@ -178,6 +179,7 @@
     SUBDIR += cmogstored
     SUBDIR += cmospwd
     SUBDIR += colorize
+    SUBDIR += conan
     SUBDIR += condor
     SUBDIR += confctl
     SUBDIR += conky
@@ -733,6 +735,7 @@
     SUBDIR += npadmin
     SUBDIR += nq
     SUBDIR += nrg2iso
+    SUBDIR += nss_ndb
     SUBDIR += nsysctl
     SUBDIR += ntfy
     SUBDIR += nut
@@ -904,6 +907,7 @@
     SUBDIR += plasma5-user-manager
     SUBDIR += plconfig
     SUBDIR += pmt
+    SUBDIR += pnscan
     SUBDIR += policykit
     SUBDIR += policykit-gnome
     SUBDIR += polkit
@@ -1062,6 +1066,7 @@
     SUBDIR += rsyncbackup
     SUBDIR += rsyncrypto
     SUBDIR += rsyslog8
+    SUBDIR += rtsx-kmod
     SUBDIR += rtty
     SUBDIR += rubygem-backup
     SUBDIR += rubygem-bolt
