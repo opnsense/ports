@@ -177,6 +177,7 @@
     SUBDIR += ceres-solver
     SUBDIR += cgal
     SUBDIR += cgl
+    SUBDIR += cglm
     SUBDIR += chaco
     SUBDIR += chryzodus
     SUBDIR += clasp
@@ -408,6 +409,7 @@
     SUBDIR += mpir
     SUBDIR += mppp
     SUBDIR += mprime
+    SUBDIR += mpsolve
     SUBDIR += mtrxmath
     SUBDIR += multichoose
     SUBDIR += mumps

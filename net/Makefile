@@ -394,7 +394,10 @@
     SUBDIR += libproxy-perl
     SUBDIR += libproxy-python
     SUBDIR += libproxy-webkit3
+    SUBDIR += libpushover
     SUBDIR += librdkafka
+    SUBDIR += librespeed-cli
+    SUBDIR += librespeed-go
     SUBDIR += librsync
     SUBDIR += libsignal
     SUBDIR += libsrtp2
@@ -474,6 +477,7 @@
     SUBDIR += nats-streaming-server
     SUBDIR += nats-top
     SUBDIR += nbd-server
+    SUBDIR += nbdkit
     SUBDIR += nc
     SUBDIR += ncp
     SUBDIR += ndisc6

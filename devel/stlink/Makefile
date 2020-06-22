@@ -23,6 +23,7 @@ GH_ACCOUNT=	texane
 USE_HARDENING=	pie:off
 
 USES=		cmake pkgconfig
+USE_CSTD=	c99
 USE_LDCONFIG=	yes
 
 PORTDOCS=	README.md ${ALLDOCS}

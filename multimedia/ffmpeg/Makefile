@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ffmpeg
-PORTVERSION=	4.2.3
+PORTVERSION=	4.3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
@@ -39,19 +39,19 @@ NOPRECIOUSMAKEVARS=	yes # ARCH
 PORTSCOUT=	limit:^4\.
 
 # Option CHROMAPRINT disabled, it cannot work and people are baffled.
-OPTIONS_DEFINE=	ALSA AMR_NB AMR_WB AOM ARIBB24 ASS BS2B CACA CDIO CELT \
+OPTIONS_DEFINE=	ALSA AMR_NB AMR_WB AOM ARIBB24 ASM ASS BS2B CACA CDIO CELT \
 		CODEC2 DAV1D DAVS2 DC1394 DEBUG DOCS DRM FDK_AAC FLITE \
-		FONTCONFIG FREETYPE FREI0R FRIBIDI GME GSM ICONV ILBC JACK \
+		FONTCONFIG FREETYPE FREI0R FRIBIDI GLSLANG GME GSM ICONV ILBC JACK \
 		KLVANC KVAZAAR LADSPA LAME LENSFUN LIBBLURAY LIBRSVG2 LIBXML2 \
 		LTO LV2 MFX MODPLUG MYSOFA OPENAL OPENCL OPENCV OPENGL OPENH264 \
 		OPENJPEG OPENMPT OPTIMIZED_CFLAGS OPUS POCKETSPHINX PULSEAUDIO \
-		RAV1E RTCPU RUBBERBAND SDL SMB SNAPPY SNDIO SOXR SPEEX SRT SSH \
+		RAV1E RABBITMQ RTCPU RUBBERBAND SDL SMB SNAPPY SNDIO SOXR SPEEX SRT SSH \
 		SVTAV1 SVTHEVC SVTVP9 TENSORFLOW TESSERACT THEORA TWOLAME V4L \
-		VAAPI VAPOURSYNTH VDPAU VIDSTAB VMAF VO_AMRWBENC VORBIS VPX \
+		VAAPI VAPOURSYNTH VDPAU VIDSTAB VMAF VO_AMRWBENC VORBIS VPX VULKAN \
 		WAVPACK WEBP X264 X265 XAVS2 XCB XVID XVIDEO ZIMG ZMQ ZVBI
 
-OPTIONS_DEFAULT=	AOM ASS DAV1D FONTCONFIG FREETYPE FREI0R GMP GNUTLS ICONV \
-			OPENCV OPTIMIZED_CFLAGS OPUS RTCPU THEORA V4L VAAPI VDPAU \
+OPTIONS_DEFAULT=	AOM ASM ASS DAV1D DRM FONTCONFIG FREETYPE FREI0R GMP GNUTLS ICONV \
+			LIBXML2 OPENCV OPTIMIZED_CFLAGS OPUS RTCPU THEORA V4L VAAPI VDPAU \
 			VORBIS VPX X264 X265 XCB XVID
 
 .if !exists(${.CURDIR:H:H}/multimedia/aribb24)
@@ -90,12 +90,6 @@ OPTIONS_RADIO_SSL=	GNUTLS MBEDTLS OPENSSL
 OPTIONS_GROUP=	LICENSE
 OPTIONS_GROUP_LICENSE=	GPL3 NONFREE
 
-OPTIONS_DEFINE_amd64=	MMX SSE
-OPTIONS_DEFINE_armv6=	VFP NEON
-OPTIONS_DEFINE_i386=	MMX SSE
-OPTIONS_DEFAULT_amd64=	MMX SSE
-OPTIONS_DEFAULT_i386=	MMX SSE
-
 ASS_DESC=	Subtitles rendering via libass
 AOM_DESC=	AV1 video encoding/decoding via libaom
 ARIBB24_DESC=	ARIB text and caption decoding via libaribb24
@@ -108,6 +102,7 @@ DC1394_DESC=	IIDC-1394 grabbing using libdc1394
 DRM_DESC=	KMS grabbing using libdrm
 FDK_AAC_DESC=	AAC audio encoding via Fraunhofer FDK
 FLITE_DESC=	Voice synthesis support via libflite
+GLSLANG_DESC=	GLSL->SPIRV compilation via libglslang
 GME_DESC=	Game Music Emu demuxer
 GPL3_DESC=	Allow (L)GPL version 3 code(cs)
 ILBC_DESC=	Internet Low Bit Rate codec
@@ -118,12 +113,12 @@ LTO_DESC=	Use Link-Time Optimization
 LV2_DESC=	LV2 audio filtering
 MFX_DESC=	Intel MediaSDK (aka Quick Sync Video)
 MYSOFA_DESC=	SOFAlizer binaural filter
-NEON_DESC=	Media Processing Engine instructions
 NONFREE_DESC=	Allow use of nonfree code
 OPENMPT_DESC=	Decoding tracked files via libopenmpt
 OPENH264_DESC=	H.264 video codec support via OpenH264
 POCKETSPHINX_DESC=	Automatic Speech Recognition via PocketSphinx
 RAV1E_DESC=	AV1 encoding via librav1e
+RABBITMQ_DESC=	AMQP 0-9-1 protocol via RabbitMQ
 RUBBERBAND_DESC=Time-stretching and pitch-shifting with librubberband
 RTCPU_DESC=	Detect CPU capabilities at runtime
 RTMP_DESC=	RTMP(T)E protocol support
@@ -135,9 +130,9 @@ LIBRTMP_DESC=	${RTMP_DESC} via librtmp
 TENSORFLOW_DESC=TensorFlow as a DNN module backend for DNN based filters like sr
 TESSERACT_DESC=	Optical Character Recognition via Tesseract
 VAPOURSYNTH_DESC=	VapourSynth demuxer
-VFP_DESC=	Vector Floating Point instructions
 VIDSTAB_DESC=	Video stabilization filter
 VMAF_DESC=	VMAF filter via libvmaf
+VULKAN_DESC=	Vulkan filters
 XAVS2_DESC=	AVS2 encoding via libxavs2
 XCB_DESC=	X11 grabbing using XCB
 ZIMG_DESC=	"z" library video scaling filter
@@ -167,6 +162,9 @@ AOM_CONFIGURE_ENABLE=	libaom
 # arib
 ARIBB24_LIB_DEPENDS=	libaribb24.so:multimedia/aribb24
 ARIBB24_CONFIGURE_ENABLE=	libaribb24
+
+# asm support
+ASM_CONFIGURE_ENABLE=	asm
 
 # ass
 ASS_LIB_DEPENDS=	libass.so:multimedia/libass
@@ -253,6 +251,12 @@ FRIBIDI_CONFIGURE_ENABLE=	libfribidi
 GCRYPT_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 GCRYPT_CONFIGURE_ENABLE=	gcrypt
 
+# glslang
+GLSLANG_BUILD_DEPENDS=	glslang>0:devel/glslang \
+			spirv-tools>0:devel/spirv-tools
+GLSLANG_CONFIGURE_ENABLE=	libglslang
+GLSLANG_LDFLAGS=	-lm
+
 # gnutls
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 GNUTLS_CONFIGURE_ENABLE=	gnutls
@@ -309,7 +313,7 @@ LIBBLURAY_CONFIGURE_ENABLE=	libbluray
 
 # librsvg
 LIBRSVG2_USES=			gnome
-LIBRSVG2_USE=			GNOME=librsvg2
+LIBRSVG2_USE=			GNOME=cairo,librsvg2
 LIBRSVG2_CONFIGURE_ENABLE=	librsvg
 
 # libxml
@@ -338,9 +342,6 @@ MBEDTLS_CONFIGURE_ENABLE=	mbedtls
 # mfx
 MFX_LIB_DEPENDS=	libmfx.so:multimedia/intel-media-sdk
 MFX_CONFIGURE_ENABLE=	libmfx
-
-# mmx support
-MMX_CONFIGURE_ENABLE=	mmx
 
 # modplug
 MODPLUG_LIB_DEPENDS=	libmodplug.so:audio/libmodplug
@@ -405,6 +406,10 @@ PULSEAUDIO_CONFIGURE_ENABLE=	libpulse
 RAV1E_LIB_DEPENDS=	librav1e.so:multimedia/librav1e
 RAV1E_CONFIGURE_ENABLE=	librav1e
 
+# rabbitmq
+RABBITMQ_LIB_DEPENDS=	librabbitmq.so:net/rabbitmq-c
+RABBITMQ_CONFIGURE_ENABLE=	librabbitmq
+
 # rubberband
 RUBBERBAND_LIB_DEPENDS=	librubberband.so:audio/rubberband
 RUBBERBAND_CONFIGURE_ENABLE=	librubberband
@@ -442,10 +447,6 @@ SOXR_CONFIGURE_ENABLE=	libsoxr
 SPEEX_LIB_DEPENDS=	libspeex.so:audio/speex
 SPEEX_CONFIGURE_ENABLE=	libspeex
 
-# sse support
-SSE_CONFIGURE_ENABLE=	sse
-SSE_IMPLIES=		MMX
-
 # ssh
 SSH_LIB_DEPENDS=	libssh.so:security/libssh
 SSH_CONFIGURE_ENABLE=	libssh
@@ -457,7 +458,7 @@ SRT_CONFIGURE_ENABLE=	libsrt
 # svt-av1
 SVTAV1_LIB_DEPENDS=	libSvtAv1Enc.so:multimedia/svt-av1
 SVTAV1_CONFIGURE_ENABLE=	libsvtav1
-SVTAV1_PATCH_SITES_=	https://github.com/OpenVisualCloud/SVT-AV1/raw/v0.8.3/ffmpeg_plugin/:svtav1
+SVTAV1_PATCH_SITES_=	https://github.com/OpenVisualCloud/SVT-AV1/raw/v0.8.3-52-gc40ee2492/ffmpeg_plugin/:svtav1
 SVTAV1_PATCHFILES_=	0001-Add-ability-for-ffmpeg-to-run-svt-av1-with-svt-hevc.patch:-p1:svtav1
 .if exists(/usr/bin/ld.lld) && (${/usr/bin/ld:L:tA} != /usr/bin/ld.lld)
 # https://github.com/OpenVisualCloud/SVT-AV1/issues/691
@@ -477,8 +478,8 @@ SVTHEVC_LDFLAGS=	-fuse-ld=lld
 # svt-vp9
 SVTVP9_LIB_DEPENDS=	libSvtVp9Enc.so:multimedia/svt-vp9
 SVTVP9_CONFIGURE_ENABLE=	libsvtvp9
-SVTVP9_PATCH_SITES_=	https://github.com/OpenVisualCloud/SVT-VP9/raw/v0.2.0-2-gefe9c5a/ffmpeg_plugin/:svtvp9
-SVTVP9_PATCHFILES_=	n4.2.3-0001-Add-ability-for-ffmpeg-to-run-svt-vp9-with-hevc-av1.patch:-p1:svtvp9
+SVTVP9_PATCH_SITES_=	https://github.com/OpenVisualCloud/SVT-VP9/raw/v0.2.0-5-g1b4277c/ffmpeg_plugin/:svtvp9
+SVTVP9_PATCHFILES_=	master-0001-Add-ability-for-ffmpeg-to-run-svt-vp9-with-hevc-av1.patch:-p1:svtvp9
 .if exists(/usr/bin/ld.lld) && (${/usr/bin/ld:L:tA} != /usr/bin/ld.lld)
 SVTVP9_LDFLAGS=		-fuse-ld=lld
 .endif
@@ -516,13 +517,6 @@ VDPAU_CONFIGURE_ENABLE=	vdpau
 VMAF_LIB_DEPENDS=	libvmaf.so:multimedia/vmaf
 VMAF_CONFIGURE_ENABLE=	libvmaf
 
-# armv6/armv7
-VFP_CONFIGURE_ENABLE=	vfp
-NEON_CONFIGURE_ENABLE=	neon
-.if ! ${CFLAGS:M-march*}
-NEON_CONFIGURE_ON=	--cpu=armv7-a
-.endif
-
 # vo-amrwbenc
 VO_AMRWBENC_LIB_DEPENDS=	libvo-amrwbenc.so:audio/vo-amrwbenc
 VO_AMRWBENC_CONFIGURE_ENABLE=	libvo-amrwbenc
@@ -539,6 +533,12 @@ VORBIS_CONFIGURE_ENABLE=	libvorbis
 # vp8
 VPX_LIB_DEPENDS=	libvpx.so:multimedia/libvpx
 VPX_CONFIGURE_ENABLE=	libvpx
+
+# vulkan
+VULKAN_BUILD_DEPENDS=	vulkan-headers>0:devel/vulkan-headers
+VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
+VULKAN_CONFIGURE_ENABLE=	vulkan
+VULKAN_IMPLIES=		GLSLANG
 
 # wavpack
 WAVPACK_LIB_DEPENDS=	libwavpack.so:audio/wavpack
@@ -615,7 +615,8 @@ CONFIGURE_ARGS+=--prefix="${PREFIX}" \
 		--enable-pic \
 		--enable-gpl \
 		--enable-avresample \
-		--cc="${CC}"
+		--cc="${CC}" \
+		--cxx="${CXX}"
 
 DOC_FILES=	Changelog CREDITS INSTALL.md LICENSE.md MAINTAINERS \
 		README.md RELEASE_NOTES

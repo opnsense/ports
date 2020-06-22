@@ -1,3 +1,3 @@
-TIMESTAMP = 1590927415
-SHA256 (rubygem/aws-sdk-snowball-1.27.0.gem) = 246087c9f3142f9ad5618abb286ff7607eb6b4199c7660c3548065fea331e08d
-SIZE (rubygem/aws-sdk-snowball-1.27.0.gem) = 35328
+TIMESTAMP = 1592835281
+SHA256 (rubygem/aws-sdk-snowball-1.29.0.gem) = 5e14b08ddd9962c42050f9f54a067738510727aa28e374bed3aab4e59b019767
+SIZE (rubygem/aws-sdk-snowball-1.29.0.gem) = 36352

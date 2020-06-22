@@ -369,6 +369,7 @@
     SUBDIR += ladspa
     SUBDIR += lame
     SUBDIR += lash
+    SUBDIR += lenticular-lv2
     SUBDIR += liba52
     SUBDIR += libaacplus
     SUBDIR += libadplug
@@ -450,6 +451,7 @@
     SUBDIR += linux-c7-alsa-utils
     SUBDIR += linux-c7-audiofile
     SUBDIR += linux-c7-flac
+    SUBDIR += linux-c7-gsm
     SUBDIR += linux-c7-libogg
     SUBDIR += linux-c7-libsndfile
     SUBDIR += linux-c7-libvorbis

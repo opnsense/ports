@@ -42,6 +42,7 @@
     SUBDIR += aalib
     SUBDIR += aaphoto
     SUBDIR += acidwarp
+    SUBDIR += acidwarp-sdl
     SUBDIR += agg
     SUBDIR += alembic
     SUBDIR += alpng
@@ -888,6 +889,7 @@
     SUBDIR += py-yaswfp
     SUBDIR += pymorph
     SUBDIR += qcomicbook
+    SUBDIR += qcustomplot-qt5
     SUBDIR += qgis
     SUBDIR += qgis-ltr
     SUBDIR += qiv

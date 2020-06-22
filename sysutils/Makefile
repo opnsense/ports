@@ -274,7 +274,6 @@
     SUBDIR += dunst
     SUBDIR += dupd
     SUBDIR += duplicity
-    SUBDIR += duplicity07
     SUBDIR += duply
     SUBDIR += dupmerge
     SUBDIR += dvd+rw-tools
@@ -363,6 +362,7 @@
     SUBDIR += fswatch-mon
     SUBDIR += ftwin
     SUBDIR += fusefs-afuse
+    SUBDIR += fusefs-bindfs
     SUBDIR += fusefs-chironfs
     SUBDIR += fusefs-cryptofs
     SUBDIR += fusefs-curlftpfs
@@ -745,6 +745,7 @@
     SUBDIR += nvramtool
     SUBDIR += oak
     SUBDIR += obliterate
+    SUBDIR += oc
     SUBDIR += odo
     SUBDIR += ods2
     SUBDIR += ohmu
@@ -755,6 +756,7 @@
     SUBDIR += openipmi
     SUBDIR += opensbi
     SUBDIR += openseachest
+    SUBDIR += openshift-install
     SUBDIR += openupsd
     SUBDIR += openzfs
     SUBDIR += openzfs-kmod
@@ -939,6 +941,7 @@
     SUBDIR += pv
     SUBDIR += pwd_unmkdb
     SUBDIR += pwgen
+    SUBDIR += pwol
     SUBDIR += pwsafe
     SUBDIR += pxattr
     SUBDIR += py-analyzemft

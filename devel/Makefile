@@ -109,6 +109,7 @@
     SUBDIR += agar
     SUBDIR += ahven
     SUBDIR += aifad
+    SUBDIR += aixlog
     SUBDIR += ald
     SUBDIR += allegro
     SUBDIR += allegro-devel
@@ -1543,6 +1544,7 @@
     SUBDIR += nlohmann-json
     SUBDIR += node-thrift
     SUBDIR += notcurses
+    SUBDIR += notify-sharp
     SUBDIR += npth
     SUBDIR += nsgenbind
     SUBDIR += nspr
@@ -3245,6 +3247,9 @@
     SUBDIR += p5-Term-ANSIScreen
     SUBDIR += p5-Term-Animation
     SUBDIR += p5-Term-App-Roles
+    SUBDIR += p5-Term-App-Util-Color
+    SUBDIR += p5-Term-App-Util-Interactive
+    SUBDIR += p5-Term-App-Util-Size
     SUBDIR += p5-Term-CallEditor
     SUBDIR += p5-Term-Choose
     SUBDIR += p5-Term-Choose-Util
@@ -5021,6 +5026,7 @@
     SUBDIR += py-ruamel.yaml
     SUBDIR += py-ruamel.yaml.clib
     SUBDIR += py-rubymarshal
+    SUBDIR += py-rush
     SUBDIR += py-rx
     SUBDIR += py-rx1
     SUBDIR += py-sanetime
@@ -5483,6 +5489,7 @@
     SUBDIR += rubygem-aws-sdk-cloudwatch
     SUBDIR += rubygem-aws-sdk-cloudwatchevents
     SUBDIR += rubygem-aws-sdk-cloudwatchlogs
+    SUBDIR += rubygem-aws-sdk-codeartifact
     SUBDIR += rubygem-aws-sdk-codebuild
     SUBDIR += rubygem-aws-sdk-codecommit
     SUBDIR += rubygem-aws-sdk-codedeploy
@@ -5860,6 +5867,7 @@
     SUBDIR += rubygem-chef-provisioning
     SUBDIR += rubygem-cheffish
     SUBDIR += rubygem-childprocess
+    SUBDIR += rubygem-childprocess3
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
     SUBDIR += rubygem-clamp
@@ -6656,7 +6664,7 @@
     SUBDIR += svn_load_dirs
     SUBDIR += svntrac
     SUBDIR += swank-clojure
-    SUBDIR += swig30
+    SUBDIR += swig
     SUBDIR += synfig
     SUBDIR += sysconftool
     SUBDIR += sysfsutils

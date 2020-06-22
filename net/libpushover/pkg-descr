@@ -1,0 +1,6 @@
+libpushover
+===========
+
+Native C API for the Pushover service.
+
+WWW: https://git-01.md.hardenedbsd.org/HardenedBSD/libpushover

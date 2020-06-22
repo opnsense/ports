@@ -1,3 +1,3 @@
-TIMESTAMP = 1590927265
-SHA256 (rubygem/aws-sdk-lambda-1.42.0.gem) = af8a6577d1c30c23c01d16e2f832bb522f9f8de66da388fc885cc6ac0b02624f
-SIZE (rubygem/aws-sdk-lambda-1.42.0.gem) = 69120
+TIMESTAMP = 1592419291
+SHA256 (rubygem/aws-sdk-lambda-1.44.0.gem) = d237178044913d8b8190af21973386bc9a6700e6af8542b15b5c0ef831e40b7e
+SIZE (rubygem/aws-sdk-lambda-1.44.0.gem) = 70144

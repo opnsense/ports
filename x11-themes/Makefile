@@ -121,8 +121,8 @@
     SUBDIR += metacity-theme-microgui
     SUBDIR += metacity-themes
     SUBDIR += mint-themes
+    SUBDIR += numix-gtk-theme
     SUBDIR += numix-icon-theme
-    SUBDIR += numix-theme
     SUBDIR += openbox-arc-theme
     SUBDIR += papirus-icon-theme
     SUBDIR += plasma5-breeze
@@ -139,6 +139,7 @@
     SUBDIR += qtcurve-utils
     SUBDIR += sawfish-themes
     SUBDIR += sddm-freebsd-black-theme
+    SUBDIR += sierra-gtk-themes
     SUBDIR += slim-freebsd-black-theme
     SUBDIR += slim-freebsd-themes
     SUBDIR += slim-themes

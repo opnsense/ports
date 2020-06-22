@@ -2,6 +2,7 @@
 
 PORTNAME=	irssi
 PORTVERSION=	1.2.2
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES?=	irc
 MASTER_SITES=	https://github.com/irssi/irssi/releases/download/${PORTVERSION}/
@@ -14,8 +15,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	safestack
 
-USES=		autoreconf cpe gettext-runtime gmake gnome libtool ncurses \
-		pkgconfig tar:xz
+USES=		autoreconf cpe gettext-runtime gmake gnome libtool localbase \
+		ncurses pkgconfig tar:xz
 USE_GNOME=	glib20
 
 GNU_CONFIGURE=	yes
@@ -47,16 +48,13 @@ TRUECOLOR_DESC=	Truecolor (24bit) support
 TRUECOLOR_CONFIGURE_ENABLE=	true-color
 UTF8PROC_DESC=	utf8proc support
 UTF8PROC_LIB_DEPENDS=	libutf8proc.so:textproc/utf8proc
+UTF8PROC_CONFIGURE_ENABLE=	utf8proc
 
 .if defined(WITHOUT_SSL)
 CONFIGURE_ARGS+=	--disable-ssl
 .else
 USES+=		ssl
 .endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr|${PREFIX}|' -e 's|/etc|${PREFIX}&|' \
-		${WRKSRC}/docs/irssi.1
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/irssi/modules
