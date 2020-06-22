@@ -4765,7 +4765,6 @@ textproc/xaira||2013-08-27|Has expired: Broken for more than 6 months
 graphics/f90gl||2013-08-27|Has expired: Broken for more than 6 months
 multimedia/linux-gspca-kmod||2013-08-27|Has expired: Broken for more than 6 months
 math/dislin||2013-08-27|Has expired: Broken for more than 6 months
-irc/smuxi||2013-08-27|Has expired: Broken for more than 6 months
 java/icedtea6-stubs||2013-08-27|Has expired: Broken for more than 6 months
 math/octave-forge-es||2013-08-27|Has expired: Broken for more than 6 months
 math/octave-forge-java||2013-08-27|Has expired: Broken for more than 6 months
@@ -14610,7 +14609,6 @@ devel/mime||2020-05-05|Has expired: Broken for more than 6 months
 devel/motor||2020-05-05|Has expired: Broken for more than 6 months
 devel/mq4cpp||2020-05-05|Has expired: Broken for more than 6 months
 devel/myrepos||2020-05-05|Has expired: Broken for more than 6 months
-devel/notify-sharp||2020-05-05|Has expired: Broken for more than 6 months
 devel/oozie||2020-05-05|Has expired: Broken for more than 6 months
 devel/p5-Cdk||2020-05-05|Has expired: Broken for more than 6 months
 devel/p5-Data-Average||2020-05-05|Has expired: Broken for more than 6 months
@@ -14994,7 +14992,6 @@ devel/libopensync||2020-05-06|Abandonware, website disappeared
 deskutils/libopensync-plugin-vformat-devel||2020-05-06|Abandonware, website disappeared
 devel/py-ipykernel|devel/py-ipykernel5|2020-05-07|Has expired: Old version, use devel/py-ipykernel5 instead
 sysutils/rundeck|sysutils/rundeck2|2020-05-07|Rename to avoid confusion with sysutils/rundeck3
-x11-wm/compiz-plugins-unsupported||2020-05-07|Has expired: Broken for more than 6 months
 math/darknet|misc/darknet|2020-05-07|DarkNet is a machine learning project, not a math project
 www/rubygem-activeresource5|www/rubygem-activeresource|2020-05-08|Remove PKGNAMESUFFIX 3 years and 4 months after rubygem-activeresource removal
 finance/bitcoinnodestats||2020-05-12|Has expired: No longer maintained and not compatible with Django 2.2+
@@ -15086,3 +15083,13 @@ mail/claws-mail-archiver|mail/claws-mail-archive|2020-06-11|Renamed to align por
 mail/claws-mail-attach_warner|mail/claws-mail-attachwarner|2020-06-11|Renamed to align port name to plugin name
 mail/claws-mail-spamreport|mail/claws-mail-spam_report|2020-06-11|Renamed to align port name to plugin name
 mail/claws-mail-tnef|mail/claws-mail-tnef_parse|2020-06-11|Renamed to align port name to plugin name
+x11-themes/numix-theme|x11-themes/numix-gtk-theme|2020-06-15|Renamed to match upstream naming
+www/py-djangorestframework36|www/py-djangorestframework|2020-06-15|Has expired: Not compatible with Django 2.0+, please use www/py-djangorestframework instead
+www/py-flask-restplus|www/py-flask-restx|2020-06-17|No longer maintained upstream, use www/py-flask-restx instead
+devel/swig30|devel/swig|2020-06-17|Remove PKGNAMESUFFIX since it is the only version in ports tree
+net-mgmt/zabbix42-java|net-mgmt/zabbix44-java|2020-06-21|Has expired: End of Life
+net-mgmt/zabbix42-server|net-mgmt/zabbix44-server|2020-06-21|Has expired: End of Life
+sysutils/duplicity07|sysutils/duplicity|2020-06-21|Has expired: Uses deprecated version of Python
+net-mgmt/zabbix42-proxy|net-mgmt/zabbix44-proxy|2020-06-21|Has expired: End of Life
+net-mgmt/zabbix42-agent|net-mgmt/zabbix44-agent|2020-06-21|Has expired: End of Life
+net-mgmt/zabbix42-frontend|net-mgmt/zabbix44-frontend|2020-06-21|Has expired: End of Life
