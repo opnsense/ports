@@ -4576,6 +4576,7 @@ generate-plist: ${WRKDIR}
 .for f in ${PLIST}
 	@if [ -f "${f}" ]; then \
 		${SED} ${PLIST_SUB:S/$/!g/:S/^/ -e s!%%/:S/=/%%!/} ${f} >> ${TMPPLIST}; \
+		for i in owner group mode; do ${ECHO_CMD} "@$$i"; done >> ${TMPPLIST}; \
 	fi
 .endfor
 .endif
@@ -4648,7 +4649,7 @@ install-rc-script:
 		_prefix=${PREFIX}; \
 		[ "${PREFIX}" = "/usr" ] && _prefix="" ; \
 		${INSTALL_SCRIPT} ${WRKDIR}/$${i} ${STAGEDIR}$${_prefix}/etc/rc.d/$${i%.sh}; \
-		${ECHO_CMD} "$${_prefix}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
+		${ECHO_CMD} "@(root,wheel,0755) $${_prefix}/etc/rc.d/$${i%.sh}" >> ${TMPPLIST}; \
 	done
 .endif
 .endif
