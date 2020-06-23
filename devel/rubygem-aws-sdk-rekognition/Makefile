@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	aws-sdk-rekognition
-PORTVERSION=	1.39.1
+PORTVERSION=	1.41.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

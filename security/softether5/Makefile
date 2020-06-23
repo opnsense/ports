@@ -2,7 +2,7 @@
 
 PORTNAME=	softether
 DISTVERSION=	5.01.9674
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security net-vpn
 PKGNAMESUFFIX=	5
@@ -10,7 +10,7 @@ DIST_SUBDIR=	${PORTNAME}
 
 # Some patches are managed in my GitHub fork
 PATCH_SITES=	https://github.com/metalefty/${GH_PROJECT}/commit/
-PATCHFILES=	6d077a2.patch:-p1 9da3bd8.patch:-p1
+PATCHFILES=	6d077a2.patch:-p1 9da3bd8.patch:-p1 7128bbc.patch:-p1
 
 MAINTAINER=	meta@FreeBSD.org
 COMMENT=	SoftEther VPN 5 (Developer Edition)
@@ -20,7 +20,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES+=		cmake:noninja compiler:c11 iconv:wchar_t \
 		localbase:ldflags ncurses readline ssl
-USE_RC_SUBR=	softether_bridge softether_client softether_server
+USE_RC_SUBR=	softether_bridge softether_client \
+		softether_server softether_trafficserver
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 
@@ -32,17 +33,7 @@ CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
 		-DSE_LOGDIR="${SE_LOGDIR}" \
 		-DSE_PIDDIR="${SE_PIDDIR}"
 
-OPTIONS_DEFINE=	DOCS UNLOCK
-
-# Use of some functions in Japan and China is restricted.
-# This option Unlocks regional lockout following functions:
-#  - RADIUS / NT Domain user authentication function
-#  - RSA certificate user authentication function
-#  - Deep-inspect packet logging function
-#  - Source IP address control list function
-#  - syslog transfer function
-UNLOCK_DESC=	Unlock regional lockout (JP and CN)
-UNLOCK_PATCHFILES=	7128bbc.patch:-p1
+OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	DISCLAIMER.md WARNING.TXT
 CONFLICTS_INSTALL=	softether-4.[0-9]* softether-devel-4.[0-9]*

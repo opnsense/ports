@@ -6,7 +6,7 @@ PKGNAMESUFFIX=	-qt5
 MASTERDIR=	${.CURDIR}/../ppsspp
 
 OPTIONS_SLAVE=	QT5
-# XXX https://github.com/hrydgard/ppsspp/blob/v1.6.3/Qt/QtMain.cpp#L533-L534
-OPTIONS_EXCLUDE=VULKAN
+# XXX No VULKAN per https://github.com/hrydgard/ppsspp/blob/v1.10/Qt/QtMain.cpp#L711-L712
+OPTIONS_EXCLUDE=${OPTIONS_DEFINE}
 
 .include "${MASTERDIR}/Makefile"

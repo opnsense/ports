@@ -3,6 +3,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	4.3
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
@@ -458,7 +459,7 @@ SRT_CONFIGURE_ENABLE=	libsrt
 # svt-av1
 SVTAV1_LIB_DEPENDS=	libSvtAv1Enc.so:multimedia/svt-av1
 SVTAV1_CONFIGURE_ENABLE=	libsvtav1
-SVTAV1_PATCH_SITES_=	https://github.com/OpenVisualCloud/SVT-AV1/raw/v0.8.3-52-gc40ee2492/ffmpeg_plugin/:svtav1
+SVTAV1_PATCH_SITES_=	https://github.com/OpenVisualCloud/SVT-AV1/raw/v0.8.4/ffmpeg_plugin/:svtav1
 SVTAV1_PATCHFILES_=	0001-Add-ability-for-ffmpeg-to-run-svt-av1-with-svt-hevc.patch:-p1:svtav1
 .if exists(/usr/bin/ld.lld) && (${/usr/bin/ld:L:tA} != /usr/bin/ld.lld)
 # https://github.com/OpenVisualCloud/SVT-AV1/issues/691

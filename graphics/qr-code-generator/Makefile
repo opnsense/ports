@@ -21,6 +21,8 @@ GH_TAGNAME=	67c6246
 
 PLIST_SUB=	VERSION=${PORTVERSION}
 
+BINARY_ALIAS=ar=elftc-ar
+
 post-patch:
 	${CP} ${FILESDIR}/Makefile ${WRKSRC}
 	${REINPLACE_CMD} -e 's,$$(DESTDIR)/usr,${STAGEDIR}${PREFIX},' ${WRKSRC}/c/Makefile
