@@ -1,7 +1,6 @@
 # $FreeBSD$
 
 PORTNAME=	syslogd
-PKGNAMESUFFIX=	-devel
 PORTVERSION=	12.1.d
 PORTREVISION=	1
 CATEGORIES=	sysutils
