@@ -2,9 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=		bash
-PATCHLEVEL=		17
+PATCHLEVEL=		18
 PORTVERSION=		5.0.${PATCHLEVEL:S/^0//g}
-PORTREVISION?=		0
+PORTREVISION?=		1
 CATEGORIES=		shells
 MASTER_SITES=		GNU
 DISTNAME=		${PORTNAME}-${PORTVERSION:R}
@@ -25,12 +25,14 @@ LICENSE_FILE=		${WRKSRC}/COPYING
 # STATIC option requires special hardening treatment, see below.
 USE_HARDENING=		safestack
 
-OPTIONS_DEFINE=		FDESCFS HELP NLS STATIC SYSBASHRC SYSLOG DOCS
+OPTIONS_DEFINE=		FDESCFS PORTS_READLINE HELP NLS STATIC SYSBASHRC \
+			SYSLOG DOCS
 FDESCFS_DESC=		Enable use of /dev/fd
 HELP_DESC=		Enable builtin help
+PORTS_READLINE_DESC=	libreadline from ports instead of bundled one
 SYSBASHRC_DESC=		Enable system-wide rc files
 
-OPTIONS_DEFAULT=	HELP
+OPTIONS_DEFAULT=	HELP PORTS_READLINE
 
 USES=			bison cpe iconv makeinfo pathfix localbase
 GNU_CONFIGURE=		yes
@@ -43,6 +45,9 @@ FDESCFS_SUB_FILES=	pkg-message
 HELP_CONFIGURE_ENABLE=	help-builtin
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
+
+PORTS_READLINE_CONFIGURE_WITH=	installed-readline
+PORTS_READLINE_USES=	readline
 
 INFO=			bash
 
