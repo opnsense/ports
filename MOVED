@@ -9148,7 +9148,6 @@ sysutils/sievelog||2017-04-30|Has expired: Unfetchable for more than six months 
 sysutils/ldapenter||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 sysutils/py-danzfs||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 sysutils/plasma-applet-apcups||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
-sysutils/scanmem||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 sysutils/pdsh||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 deskutils/superswitcher||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 deskutils/plasma-applet-playwolf||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
@@ -9201,7 +9200,6 @@ databases/jdbm2||2017-04-30|Has expired: Unfetchable for more than six months (g
 databases/akonadi-googledata||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 lang/ofc||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 comms/esmska||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
-x11/keynav||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 x11/hotwire-shell||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 security/fuzzdb||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
 security/truecrack||2017-04-30|Has expired: Unfetchable for more than six months (google code has gone away)
@@ -9866,7 +9864,6 @@ databases/pg_statsinfo||2018-02-10|Removed, only for PosgreSQL 9.2
 databases/postgresql-repmgr2||2018-02-10|Removed, only for PostgreSQL 9.2
 www/mod_security-devel|www/mod_security3|2018-02-12|Renamed, upstream has made a release
 devel/pear-channel-htmlpurifier|devel/pear-channel-htmlpurifier.org|2018-02-13|Rename for consistency
-games/lolcat|games/rubygem-lolcat|2018-02-13|Rename to match our rubygem- port naming
 net-mgmt/prometheus|net-mgmt/prometheus1|2018-02-14|Rename to include major version number in the portname
 textproc/rubygem-tidy||2018-02-14|Has expired: No longer needed and not maintained
 www/rubygem-scrapi||2018-02-14|Has expired: No longer maintained upstream
@@ -12714,7 +12711,6 @@ lang/spidermonkey170|lang/spidermonkey52|2019-05-23|Not depended on, use newer v
 lang/spidermonkey38|lang/spidermonkey52|2019-05-23|Not depended on, use newer version
 security/titan|security/ylva|2019-05-24|Project renamed by the developer
 www/npm-node6|www/npm|2019-05-25|node6 expired on Apr 30, 2019
-devel/py-prompt_toolkit2|devel/py-prompt_toolkit|2019-05-26|Has expired: No longer required, use devel/py-prompt_toolkit instead
 security/acme-client||2019-05-26|Removed
 net-im/qq||2019-05-26|Has expired: no longer supported upstream
 databases/rubygem-peek-mysql2-rails50|databases/rubygem-peek-mysql2-rails5|2019-05-28|Obsolete by gitlab-ce upgrade, use databases/rubygem-peek-mysql2-rails5 instead
@@ -14435,7 +14431,7 @@ textproc/rubygem-actionpack-xml_parser|textproc/rubygem-actionpack-xml_parser-ra
 textproc/rubygem-actionpack-xml_parser1|textproc/rubygem-actionpack-xml_parser1-rails4|2020-03-02|Renamed to match rubygem name convention
 textproc/rubygem-actionpack-xml_parser52|textproc/rubygem-actionpack-xml_parser-rails52|2020-03-02|Renamed to match rubygem name convention
 x11-toolkits/py-kivy||2020-03-02|Has expired: Old, uses EOLed python27
-lang/gcc6|lang/gcc|2020-03-07|Has expired: Unsupported by upstream. Use GCC 9 or newer instead.
+lang/gcc6|lang/gcc|2020-03-07|Has expired: Unsupported by upstream. Use GCC 9 or newer instead
 www/pycarddav|deskutils/py-khard|2020-03-07|Has expired: Deprecated by upstream, please migrate to deskutils/py-khard
 x11-wm/ccsm||2020-03-07|Has expired: Old, uses EOLed python27
 x11-toolkits/py-gtkglext||2020-03-07|Has expired: Old, uses EOLed python27
@@ -14504,7 +14500,6 @@ math/mkl-dnn|math/onednn|2020-04-04|Project renamed
 devel/p5-Glib2|devel/p5-Glib|2020-04-07|Rename to match our p5- port naming
 devel/jucipp|editors/jucipp|2020-04-07|Remove duplicate
 www/py-django_polymorphic|www/py-django-polymorphic|2020-04-11|Match canonical/registered (PyPI/CHEESESHOP) name
-dns/dnsmasq-devel|dns/dnsmasq|2020-04-12|dnsmasq is newer than dnsmasq-devel
 databases/mariadb55-server|databases/mariadb102-server|2020-04-12|Has expired: Upstream end-of-life 2020-04-11, switch to a newer version
 databases/mariadb55-client|databases/mariadb102-client|2020-04-12|Has expired: Upstream end-of-life 2020-04-11, switch to a newer version
 devel/aws-c-commons|devel/aws-c-common|2020-04-12|Renamed to the correct name
@@ -14956,7 +14951,6 @@ x11/keylaunch||2020-05-05|Has expired: Broken for more than 6 months
 x11/props||2020-05-05|Has expired: 64-bit unsupported
 x11/roxbg||2020-05-05|Has expired: Broken for more than 6 months
 x11/sisctrl||2020-05-05|Has expired: Broken for more than 6 months
-x11/wdm||2020-05-05|Has expired: Broken for more than 6 months
 x11/xaniroc||2020-05-05|Has expired: Broken for more than 6 months
 x11/xmove||2020-05-05|Has expired: Broken for more than 6 months
 x11/xnodecor||2020-05-05|Has expired: Broken for more than 6 months
@@ -14998,7 +14992,7 @@ devel/rubygem-webpacker-rails5|devel/rubygem-webpacker4-rails5|2020-05-12|Rename
 devel/rubygem-webpacker-rails50|devel/rubygem-webpacker4-rails50|2020-05-12|Rename when rubygem-webpacker is 5.x now
 net-p2p/parity-ethereum|net-p2p/openethereum|2020-05-13|Renamed upstream for transition to a DAO ownership and maintainer model
 net-im/linux-telegram-desktop|net-im/telegram-desktop|2020-05-13|Has expired: Broken for more than 6 months, use native version
-devel/libphutil||2020-05-15|Has expired: Upstream merged functionality into downstream projects.
+devel/libphutil||2020-05-15|Has expired: Upstream merged functionality into downstream projects
 print/frescobaldi|print/py-frescobaldi|2020-05-16|Renamed to comply with Python Ports Policy
 sysutils/rdiff-backup|sysutils/py-rdiff-backup@py37|2020-05-16|Renamed comply with Python Ports Policy and flavored
 www/py-django-happenings|www/py-django-happenings-update|2020-05-17|Has expired: Doesn't work with Django 2.2+, please use www/py-django-happenings-update instead
@@ -15112,3 +15106,51 @@ comms/py-serial|comms/py-pyserial|2020-06-27|Rename to match upstream naming
 devel/py-usb|devel/py-pyusb|2020-06-27|Rename to match upstream naming
 math/py-igraph|math/py-python-igraph|2020-06-27|Rename to match upstream naming
 net/bnxt-kmod||2020-06-28|Has expired: Unsupported on all supported FreeBSD versions
+databases/p5-Search-Xapian10|databases/p5-Search-Xapian|2020-06-30|Has expired: Depend on unsupported xapian-core. Use databases/p5-Search-Xapian instead
+databases/xapian-core10|databases/xapian-core|2020-06-30|Has expired: Unsupported by upstream. Use databases/xapian-core instead
+devel/py-dj22-django-rq|devel/py-django-rq|2020-06-30|Has expired: Obsolete, please use www/py-django-rq instead
+devel/rubygem-cucumber-expressions|devel/rubygem-cucumber-cucumber-expressions|2020-06-30|Has expired: Use devel/rubygem-cucumber-cucumber-expressions instead
+devel/rubygem-cucumber-expressions6|devel/rubygem-cucumber-cucumber-expressions|2020-06-30|Has expired: Use devel/rubygem-cucumber-cucumber-expressions instead
+devel/rubygem-cucumber-tag_expressions1|devel/rubygem-cucumber-tag-expressions|2020-06-30|Has expired: Use devel/rubygem-cucumber-tag_expressions instead
+print/xpp||2020-06-30|Has expired: Last update as 2004-12-09, unsupported by upstream
+textproc/rubygem-gherkin|textproc/rubygem-cucumber-gherkin|2020-06-30|Has expired: Use textproc/rubygem-cucumber-gherkin instead
+www/p5-Catalyst-Model-Xapian10|www/p5-Catalyst-Model-Xapian|2020-06-30|Has expired: Depend on unsupported xapian-core. Use www/p5-Catalyst-Model-Xapian instead
+www/py-dj22-django-auth-ldap|www/py-django-auth-ldap|2020-06-30|Has expired: Obsolete, please use www/py-django-auth-ldap instead
+www/py-dj22-django-cacheops|www/py-django-cacheops|2020-06-30|Has expired: Obsolete, please use www/py-django-cacheops instead
+www/py-dj22-django-cors-headers|www/py-django-cors-headers|2020-06-30|Has expired: Obsolete, please use www/py-django-cors-headers instead
+www/py-dj22-django-crispy-forms|www/py-django-crispy-forms|2020-06-30|Has expired: Obsolete, please use www/py-django-crispy-forms instead
+www/py-dj22-django-debug-toolbar|www/py-django-debug-toolbar|2020-06-30|Has expired: Obsolete, please use www/py-django-debug-toolbar instead
+www/py-dj22-django-extensions|www/py-django-extensions|2020-06-30|Has expired: Obsolete, please use www/py-django-extensions instead
+www/py-dj22-django-filter|www/py-django-filter|2020-06-30|Has expired: Obsolete, please use www/py-django-filter instead
+www/py-dj22-django-js-asset|www/py-django-js-asset|2020-06-30|Has expired: Obsolete, please use www/py-django-js-asset instead
+www/py-dj22-django-model-utils|www/py-django-model-utils|2020-06-30|Has expired: Obsolete, please use www/py-django-model-utils instead
+www/py-dj22-django-mptt|www/py-django-mptt|2020-06-30|Has expired: Obsolete, please use www/py-django-mptt instead
+www/py-dj22-django-prometheus|www/py-django-prometheus|2020-06-30|Has expired: Obsolete, please use www/py-django-prometheus instead
+www/py-dj22-django-redis|www/py-django-redis|2020-06-30|Has expired: Obsolete, please use www/py-django-redis instead
+www/py-dj22-django-tables2|www/py-django-tables2|2020-06-30|Has expired: Obsolete, please use www/py-django-tables2 instead
+www/py-dj22-django-taggit|www/py-django-taggit|2020-06-30|Has expired: Obsolete after r534835, use www/py-django-taggit instead
+www/py-dj22-django-taggit-serializer|www/py-django-taggit-serializer|2020-06-30|Has expired: Obsolete, please use www/py-django-taggit-serializer instead
+www/py-dj22-django-timezone-field|www/py-django-timezone-field|2020-06-30|Has expired: Obsolete, please use www/py-django-timezone-field instead
+www/py-dj22-django-treebeard|www/py-django-treebeard|2020-06-30|Has expired: Obsolete after r532093, use www/py-django-treebeard instead
+www/py-dj22-djangorestframework|www/py-djangorestframework|2020-06-30|Has expired: Obsolete, please use www/py-djangorestframework instead
+www/py-dj22-drf-yasg|www/py-drf-yasg|2020-06-30|Has expired: Obsolete, please use www/py-drf-yasg instead
+www/py-dj22-jsonfield|www/py-jsonfield|2020-06-30|Has expired: Obsolete, please use www/py-jsonfield instead
+www/py-dj22-jsonfield2|www/py-jsonfield2|2020-06-30|Has expired: Obsolete, please use www/py-jsonfield2 instead
+www/py-dj22-swapper|www/py-swapper|2020-06-30|Has expired: Obsolete, please use www/py-swapper instead
+www/rubygem-heroics00|www/rubygem-heroics|2020-06-30|Has expired: Use www/rubygem-heroics instead
+www/typo3-8|www/typo3-9|2020-06-30|Has expired: Upstream support ended in April 2020
+databases/mariadb101-client|databases/mariadb103-client|2020-07-01|Has expired: Port will be removed when 10.5 is added, please switch to a newer version
+databases/mariadb101-server|databases/mariadb103-server|2020-07-01|Has expired: Port will be removed when 10.5 is added, please switch to a newer version
+databases/mariadb102-server|databases/mariadb103-server|2020-07-01|Has expired: Port will be removed when 10.5 is added, please switch to a newer version
+databases/mariadb102-client|databases/mariadb103-client|2020-07-01|Has expired: Port will be removed when 10.5 is added, please switch to a newer version
+databases/py-django-transaction-hooks||2020-07-02|Has expired: Unmaintained upstream and merged into Django since 1.9
+multimedia/audacious-gtk3|multimedia/audacious|2020-07-08|GTK3 interface abandoned upstream
+multimedia/audacious-plugins-gtk3|multimedia/audacious-plugins|2020-07-08|GTK3 interface abandoned upstream
+devel/pear-channel-phpunit||2020-07-09|Remove obsolete
+multimedia/f3d|graphics/f3d|2020-07-09|Move to a proper category
+textproc/py-sphinx-hieroglyph|textproc/py-hieroglyph|2020-07-11|Renamed to reflect official name at PyPI
+devel/py-Pint|devel/py-pint|2020-07-11|Rename to match our py- port naming
+audio/aucatctl|audio/sndio|2020-07-12|Use sndioctl from audio/sndio instead
+devel/py-freenas.dispatcher||2020-07-14|Uses deprecated version of python
+textproc/scancode-toolkit||2020-07-14|Uses deprecated version of python
+www/py-kallithea||2020-07-14|Uses deprecated version of python

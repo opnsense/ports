@@ -5338,7 +5338,7 @@ _STAGE_SEQ=		050:stage-message 100:stage-dir 150:run-depends \
 				200:apply-slist 300:pre-install \
 				400:generate-plist 450:pre-su-install 475:create-users-groups \
 				500:do-install 550:kmod-post-install 600:fixup-lib-pkgconfig 700:post-install \
-				750:post-install-script 800:post-stage 850:compress-man \
+				750:post-install-script 800:post-stage 825:fixup-mitigations 850:compress-man \
 				860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
 				900:add-plist-info 910:add-plist-docs 920:add-plist-examples \
@@ -5364,6 +5364,26 @@ _PACKAGE_DEP=	stage
 _PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
 				500:do-package 850:post-package-script \
 				${_OPTIONS_package} ${_USES_package}
+
+fixup-mitigations:
+.for _file in ${PAGEEXEC_DISABLE}
+		-/usr/sbin/hbsdcontrol pax disable pageexec ${STAGEDIR}/${PREFIX}/${_file}
+.endfor
+.for _file in ${MPROTECT_DISABLE}
+		-/usr/sbin/hbsdcontrol pax disable mprotect ${STAGEDIR}/${PREFIX}/${_file}
+.endfor
+.for _file in ${SEGVGUARD_DISABLE}
+		-/usr/sbin/hbsdcontrol pax disable segvguard ${STAGEDIR}/${PREFIX}/${_file}
+.endfor
+.for _file in ${ASLR_DISABLE}
+		-/usr/sbin/hbsdcontrol pax disable aslr ${STAGEDIR}/${PREFIX}/${_file}
+.endfor
+.for _file in ${DISALLOW_MAP32BIT_DISABLE}
+		-/usr/sbin/hbsdcontrol pax disable disallow_map32bit ${STAGEDIR}/${PREFIX}/${_file}
+.endfor
+.for _file in ${SHLIBRANDOM_DISABLE}
+		-/usr/sbin/hbsdcontrol pax disable shlibrandom ${STAGEDIR}/${PREFIX}/${_file}
+.endfor
 
 # Enforce order for -jN builds
 .for _t in ${_TARGETS_STAGES}
