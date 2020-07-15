@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	curl
-PORTVERSION=	7.71.0
+PORTVERSION=	7.71.1
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.haxx.se/download/ \
 		LOCAL/sunpoet
@@ -69,7 +69,7 @@ SHEBANG_FILES=	*/*.pl
 ALTSVC_CONFIGURE_ENABLE=alt-svc
 BROTLI_CONFIGURE_WITH=	brotli
 BROTLI_LIB_DEPENDS=	libbrotlidec.so:archivers/brotli
-CA_BUNDLE_CONFIGURE_WITH=	ca-bundle=${LOCALBASE}/etc/ssl/cert.pem
+CA_BUNDLE_CONFIGURE_WITH=	ca-bundle=${LOCALBASE}/share/certs/ca-root-nss.crt
 CA_BUNDLE_RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 CARES_CONFIGURE_ENABLE=	ares
 CARES_LIB_DEPENDS=	libcares.so:dns/c-ares
