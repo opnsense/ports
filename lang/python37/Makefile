@@ -10,10 +10,6 @@ PKGNAMESUFFIX=	${PYTHON_SUFFIX}
 DISTNAME=	Python-${PORTVERSION}
 DIST_SUBDIR=	python
 
-PATCH_SITES=	https://github.com/python/cpython/commit/
-PATCHFILES=	b57a73694e26e8b2391731b5ee0b1be59437388e.patch:-p1 \
-		34f85af3229f86c004a954c3f261ceea1f5e9f95.patch:-p1
-
 MAINTAINER=	python@FreeBSD.org
 COMMENT=	Interpreted object-oriented programming language
 
@@ -27,6 +23,9 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 python_CMD=	${PREFIX}/bin/python${PYTHON_PORTVERSION:R}
 SHEBANG_FILES=	Lib/*.py Lib/*/*.py Lib/*/*/*.py Lib/*/*/*/*.py
+
+PAGEEXEC_DISABLE=	bin/python3.7
+MPROTECT_DISABLE=	bin/python3.7
 
 # Duplicate python.mk variables. TODO: Let lang/python?? ports use python.mk bits.
 PYTHON_VER=		${PYTHON_PORTVERSION:R}
