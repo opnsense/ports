@@ -24,6 +24,9 @@ SHEBANG_FILES+=	Lib/test/ziptestdata/exe_with_z64 \
 		Lib/test/ziptestdata/exe_with_zip \
 		Lib/test/ziptestdata/header.sh
 
+PAGEEXEC_DISABLE=	bin/python3.8
+MPROTECT_DISABLE=	bin/python3.8
+
 # Duplicate python.mk variables. TODO: Let lang/python?? ports use python.mk bits.
 PYTHON_VER=		${PYTHON_PORTVERSION:R}
 PYTHON_VERSION=		python${PYTHON_VER}

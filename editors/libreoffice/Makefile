@@ -115,6 +115,9 @@ USES=		autoreconf:build bison compiler:c++14-lang cpe gl gmake gnome \
 		perl5 pkgconfig python shebangfix shared-mime-info ssl tar:xz \
 		xorg
 
+PAGEEXEC_DISABLE=	lib/libreoffice/program/soffice.bin
+MPROTECT_DISABLE=	lib/libreoffice/program/soffice.bin
+
 OPTIONS_DEFINE=	CUPS DOCS GNOME GTK3 JAVA KF5 MMEDIA PGSQL QT5 SDK TEST WEBDAV
 OPTIONS_DEFAULT=	CUPS MMEDIA
 OPTIONS_DEFAULT_FreeBSD_12=	QT5

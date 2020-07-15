@@ -1,16 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	wlroots
-DISTVERSION=	0.10.1
-PORTREVISION=	1
+DISTVERSION=	0.11.0
 CATEGORIES=	x11-toolkits
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	f0594fb73225.patch:-p1 144d2041adfb.patch:-p1
-PATCHFILES+=	2bad34e02423.patch:-p1
-PATCHFILES+=	8d2e8d8a0612.patch:-p1
-PATCHFILES+=	9bd90890457d.patch:-p1 # https://github.com/swaywm/wlroots/pull/2064
-PATCHFILES+=	d069ab71d43e.patch:-p1 # https://github.com/swaywm/wlroots/pull/2064
+PATCHFILES+=	0fe36eb89754.patch:-p1 # https://github.com/swaywm/wlroots/pull/2064
+PATCHFILES+=	90cb6d26877b.patch:-p1 # https://github.com/swaywm/wlroots/pull/2064
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Modular Wayland compositor library
@@ -19,6 +15,7 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
+		wayland>=1.18:graphics/wayland \
 		wayland-protocols>=1.17:graphics/wayland-protocols
 LIB_DEPENDS=	libudev.so:devel/libudev-devd \
 		libdrm.so:graphics/libdrm \
@@ -48,7 +45,7 @@ OPTIONS_SUB=	yes
 
 CONSOLEKIT_DESC=	DRM sessions without root using ConsoleKit2
 CONSOLEKIT_PATCH_SITES=	https://github.com/myfreeweb/${GH_PROJECT}/commit/:ck2
-CONSOLEKIT_PATCHFILES=	e8cc137111bc.patch:-p1:ck2 # see #1467 upstream
+CONSOLEKIT_PATCHFILES=	b59460944208.patch:-p1:ck2 # see #1467 upstream
 CONSOLEKIT_LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 			libconsolekit.so:sysutils/consolekit2
 CONSOLEKIT_MESON_ENABLED=	consolekit2

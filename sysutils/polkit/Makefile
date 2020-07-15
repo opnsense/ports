@@ -41,6 +41,9 @@ CONFIGURE_ARGS=	--disable-gtk-doc-html \
 #MAKE_JOBS_UNSAFE=yes
 INSTALL_TARGET=	install-strip
 
+PAGEEXEC_DISABLE=	lib/polkit-1/polkitd
+MPROTECT_DISABLE=	lib/polkit-1/polkitd
+
 OPTIONS_DEFINE=	MANPAGES
 MANPAGES_BUILD_DEPENDS=	docbook-sgml>=4.5:textproc/docbook-sgml \
 		docbook-xsl>=1.76:textproc/docbook-xsl

@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	node
-PORTVERSION=	12.18.1
+PORTVERSION=	12.18.2
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	http://nodejs.org/dist/v${PORTVERSION}/
@@ -65,9 +66,9 @@ MAKE_ENV+=	CC.host=${CC} CFLAGS.host="${CFLAGS}" \
 		CXX.host=${CXX} CXXFLAGS.host="${CXXFLAGS}" \
 		LINK.host=${CXX} LDFLAGS.host="${LDFLAGS}"
 
-BUILD_DEPENDS+=	c-ares>=1.15.0:dns/c-ares\
-		libuv>=1.37.0:devel/libuv \
-		libnghttp2>=1.40.0:www/libnghttp2 \
+BUILD_DEPENDS+=	c-ares>=1.16.0:dns/c-ares \
+		libuv>=1.38.0:devel/libuv \
+		libnghttp2>=1.41.0:www/libnghttp2 \
 		objdump:devel/binutils
 LIB_DEPENDS+=	libcares.so:dns/c-ares\
 		libuv.so:devel/libuv \
@@ -81,6 +82,8 @@ BROKEN_SSL+=	base
 
 .if ${ARCH} == armv6 || ${ARCH} == armv7
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-tools_v8__gypfiles_v8.gyp
+.elif defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-common.gypi
 .endif
 
 .if ${PORT_OPTIONS:MBUNDLED_SSL} && ${ARCH} != amd64

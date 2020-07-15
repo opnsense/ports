@@ -39,7 +39,6 @@
     SUBDIR += asunder
     SUBDIR += atunes
     SUBDIR += aubio
-    SUBDIR += aucatctl
     SUBDIR += audacity
     SUBDIR += audiere
     SUBDIR += audiocd-kio
@@ -142,6 +141,7 @@
     SUBDIR += eteroj-lv2
     SUBDIR += etktab
     SUBDIR += exaile
+    SUBDIR += exhale
     SUBDIR += ezstream
     SUBDIR += faac
     SUBDIR += faad

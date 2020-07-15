@@ -46,6 +46,7 @@
     SUBDIR += R-cran-coda
     SUBDIR += R-cran-combinat
     SUBDIR += R-cran-conf.design
+    SUBDIR += R-cran-conquer
     SUBDIR += R-cran-ddalpha
     SUBDIR += R-cran-deldir
     SUBDIR += R-cran-dimRed
@@ -76,6 +77,7 @@
     SUBDIR += R-cran-lme4
     SUBDIR += R-cran-lpSolve
     SUBDIR += R-cran-magic
+    SUBDIR += R-cran-matrixStats
     SUBDIR += R-cran-maxLik
     SUBDIR += R-cran-mcmc
     SUBDIR += R-cran-memisc
@@ -749,6 +751,7 @@
     SUBDIR += py-fastdtw
     SUBDIR += py-ffc
     SUBDIR += py-fiat
+    SUBDIR += py-flax
     SUBDIR += py-fpconst
     SUBDIR += py-fpylll
     SUBDIR += py-gau2grid
@@ -762,6 +765,7 @@
     SUBDIR += py-hdbscan
     SUBDIR += py-hdmedians
     SUBDIR += py-intspan
+    SUBDIR += py-jax
     SUBDIR += py-keras
     SUBDIR += py-keras-applications
     SUBDIR += py-keras-preprocessing
@@ -781,6 +785,7 @@
     SUBDIR += py-numexpr
     SUBDIR += py-numpy
     SUBDIR += py-nzmath
+    SUBDIR += py-opt-einsum
     SUBDIR += py-osqp
     SUBDIR += py-pandas
     SUBDIR += py-pandas-datareader

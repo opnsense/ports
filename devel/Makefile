@@ -1165,6 +1165,7 @@
     SUBDIR += libfastjson
     SUBDIR += libffcall
     SUBDIR += libffi
+    SUBDIR += libffi321
     SUBDIR += libfirm
     SUBDIR += libfixposix
     SUBDIR += libflatarray
@@ -1433,6 +1434,7 @@
     SUBDIR += lua-bitlib
     SUBDIR += lua-bitop
     SUBDIR += lua-cjson
+    SUBDIR += lua-cqueues
     SUBDIR += lua-gettext
     SUBDIR += lua-lgi
     SUBDIR += lua-libevent
@@ -1909,6 +1911,11 @@
     SUBDIR += p5-Commands-Guarded
     SUBDIR += p5-CommitBit
     SUBDIR += p5-Compiler-Lexer
+    SUBDIR += p5-Complete-Common
+    SUBDIR += p5-Complete-Path
+    SUBDIR += p5-Complete-Sah
+    SUBDIR += p5-Complete-Sequence
+    SUBDIR += p5-Complete-Util
     SUBDIR += p5-Config-AST
     SUBDIR += p5-Config-Any
     SUBDIR += p5-Config-ApacheFormat
@@ -2946,6 +2953,7 @@
     SUBDIR += p5-Package-MoreUtil
     SUBDIR += p5-Package-Stash
     SUBDIR += p5-Package-Stash-XS
+    SUBDIR += p5-Package-Util-Lite
     SUBDIR += p5-Package-Variant
     SUBDIR += p5-PadWalker
     SUBDIR += p5-Parallel-Async
@@ -3164,6 +3172,7 @@
     SUBDIR += p5-Sort-Key-DateTime
     SUBDIR += p5-Sort-Key-Top
     SUBDIR += p5-Sort-Maker
+    SUBDIR += p5-Sort-Sub
     SUBDIR += p5-Sort-Tree
     SUBDIR += p5-Sort-Versions
     SUBDIR += p5-Specio
@@ -3588,6 +3597,7 @@
     SUBDIR += p5-asa
     SUBDIR += p5-autobox
     SUBDIR += p5-autobox-Core
+    SUBDIR += p5-autobox-Transform
     SUBDIR += p5-autodie
     SUBDIR += p5-autovivification
     SUBDIR += p5-bareword-filehandles
@@ -3823,7 +3833,6 @@
     SUBDIR += pear-channel-phing
     SUBDIR += pear-channel-phpdoc
     SUBDIR += pear-channel-phpmd
-    SUBDIR += pear-channel-phpunit
     SUBDIR += pear-channel-pirum
     SUBDIR += pear-channel-symfony
     SUBDIR += pear-channel-symfony2
@@ -3837,6 +3846,7 @@
     SUBDIR += pear-pdepend-staticReflection
     SUBDIR += pear-phing
     SUBDIR += pecl-APCu
+    SUBDIR += pecl-APCu_bc
     SUBDIR += pecl-ast
     SUBDIR += pecl-dio
     SUBDIR += pecl-ds
@@ -3985,7 +3995,6 @@
     SUBDIR += py-Js2Py
     SUBDIR += py-PEAK-Rules
     SUBDIR += py-PeachPy
-    SUBDIR += py-Pint
     SUBDIR += py-Products.ExternalEditor
     SUBDIR += py-Products.PloneLanguageTool
     SUBDIR += py-PyExecJS
@@ -4026,6 +4035,7 @@
     SUBDIR += py-XStatic-tv4
     SUBDIR += py-ZopeUndo
     SUBDIR += py-absl
+    SUBDIR += py-absl-py
     SUBDIR += py-adb
     SUBDIR += py-addict
     SUBDIR += py-aenum
@@ -4328,7 +4338,6 @@
     SUBDIR += py-distlib
     SUBDIR += py-distorm
     SUBDIR += py-distributed
-    SUBDIR += py-dj22-django-rq
     SUBDIR += py-django-rq
     SUBDIR += py-docker-py
     SUBDIR += py-dockerpty
@@ -4396,7 +4405,6 @@
     SUBDIR += py-foolscap
     SUBDIR += py-freebsd
     SUBDIR += py-freebsd-sysctl
-    SUBDIR += py-freenas.dispatcher
     SUBDIR += py-freenas.utils
     SUBDIR += py-freezegun
     SUBDIR += py-frozendict
@@ -4739,6 +4747,7 @@
     SUBDIR += py-oslo.vmware2
     SUBDIR += py-oslotest
     SUBDIR += py-osprofiler
+    SUBDIR += py-outcome
     SUBDIR += py-ovs
     SUBDIR += py-ovsdbapp
     SUBDIR += py-p4python
@@ -4774,6 +4783,7 @@
     SUBDIR += py-pika
     SUBDIR += py-pika-pool
     SUBDIR += py-pinocchio
+    SUBDIR += py-pint
     SUBDIR += py-pip
     SUBDIR += py-pip-api
     SUBDIR += py-pip-licenses
@@ -4811,6 +4821,7 @@
     SUBDIR += py-promise
     SUBDIR += py-prompt_toolkit
     SUBDIR += py-prompt_toolkit1
+    SUBDIR += py-prompt_toolkit2
     SUBDIR += py-protobuf
     SUBDIR += py-protocols
     SUBDIR += py-ptable
@@ -5287,6 +5298,7 @@
     SUBDIR += pybugz
     SUBDIR += pycanberra
     SUBDIR += pycharm-ce
+    SUBDIR += pycharm-pro
     SUBDIR += pycos
     SUBDIR += pycount
     SUBDIR += pydbus-common
@@ -5912,15 +5924,13 @@
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-cucumber
     SUBDIR += rubygem-cucumber-core
+    SUBDIR += rubygem-cucumber-create-meta
     SUBDIR += rubygem-cucumber-cucumber-expressions
-    SUBDIR += rubygem-cucumber-expressions
-    SUBDIR += rubygem-cucumber-expressions6
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-messages4
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
-    SUBDIR += rubygem-cucumber-tag_expressions1
     SUBDIR += rubygem-cucumber-wire
     SUBDIR += rubygem-curses
     SUBDIR += rubygem-cyoi
@@ -6130,6 +6140,7 @@
     SUBDIR += rubygem-jeweler
     SUBDIR += rubygem-jira-ruby
     SUBDIR += rubygem-jira-ruby1
+    SUBDIR += rubygem-jira-ruby20
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -6353,6 +6364,7 @@
     SUBDIR += rubygem-rr
     SUBDIR += rubygem-rrd-ffi
     SUBDIR += rubygem-rscm
+    SUBDIR += rubygem-rsec
     SUBDIR += rubygem-rspec
     SUBDIR += rubygem-rspec-core
     SUBDIR += rubygem-rspec-expectations

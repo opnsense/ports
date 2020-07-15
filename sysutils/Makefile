@@ -116,6 +116,7 @@
     SUBDIR += bsd-splash-changer
     SUBDIR += bsdconfig
     SUBDIR += bsdcrashtar
+    SUBDIR += bsdfan
     SUBDIR += bsdhwmon
     SUBDIR += bsdinfo
     SUBDIR += bsdisks
@@ -390,6 +391,7 @@
     SUBDIR += fusefs-s3backer
     SUBDIR += fusefs-s3fs
     SUBDIR += fusefs-sandboxfs
+    SUBDIR += fusefs-securefs
     SUBDIR += fusefs-simple-mtpfs
     SUBDIR += fusefs-smbnetfs
     SUBDIR += fusefs-sqlfs
@@ -967,6 +969,7 @@
     SUBDIR += py-ezjailremote
     SUBDIR += py-filelike
     SUBDIR += py-filelock
+    SUBDIR += py-focker
     SUBDIR += py-glances
     SUBDIR += py-gmailfs-fuse
     SUBDIR += py-google-compute-engine
@@ -975,6 +978,7 @@
     SUBDIR += py-honcho
     SUBDIR += py-hpilo
     SUBDIR += py-iowait
+    SUBDIR += py-jailconf
     SUBDIR += py-leviathan
     SUBDIR += py-liquidctl
     SUBDIR += py-mitogen
@@ -1181,6 +1185,7 @@
     SUBDIR += scalpel
     SUBDIR += scan_ffs
     SUBDIR += scanbuttond
+    SUBDIR += scanmem
     SUBDIR += scct
     SUBDIR += schedutils
     SUBDIR += screen

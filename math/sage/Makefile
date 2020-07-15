@@ -3,7 +3,7 @@
 
 PORTNAME=	sage
 PORTVERSION=	9.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	math
 MASTER_SITES=	https://mirrors.xmission.com/sage/src/		\
 		http://mirrors.xmission.com/sage/src/		\
@@ -18,9 +18,6 @@ COMMENT=	Open source Mathematics software
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
-
-# See https://lists.freebsd.org/pipermail/freebsd-python/2020-June/020710.html
-BROKEN_FreeBSD_13=	Bad plist caused by changes in Python
 
 BUILD_DEPENDS=	bash:shells/bash		\
 		dash:shells/dash		\
@@ -345,6 +342,13 @@ OPTIONS_DEFINE=	DOCS
 PORTDOCS=	*
 
 .include <bsd.port.pre.mk>
+
+# See https://lists.freebsd.org/pipermail/freebsd-python/2020-June/020710.html
+.if ${OSREL:R} < 13
+PLIST_SUB+=	EGG="" WHEEL="@comment "
+.else
+PLIST_SUB+=	EGG="@comment " WHEEL=""
+.endif
 
 WSDIR=		${BLDDIR}${PREFIX}
 SPKG_INST=	configure.ac configure build/sage_bootstrap/uninstall.py	\

@@ -1159,6 +1159,7 @@
     SUBDIR += rdapper
     SUBDIR += rdesktop
     SUBDIR += rdist6
+    SUBDIR += realtek-re-kmod
     SUBDIR += reaver
     SUBDIR += recvnet
     SUBDIR += redir
@@ -1183,6 +1184,7 @@
     SUBDIR += ripe-whois
     SUBDIR += routinator
     SUBDIR += rp-pppoe
+    SUBDIR += rpki-client
     SUBDIR += rsocket-cpp
     SUBDIR += rsplib
     SUBDIR += rsync
@@ -1343,6 +1345,7 @@
     SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
     SUBDIR += ryu
+    SUBDIR += sacc
     SUBDIR += samba410
     SUBDIR += samba411
     SUBDIR += samplicator

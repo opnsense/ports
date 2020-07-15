@@ -19,6 +19,7 @@
     SUBDIR += OpenTomb
     SUBDIR += abbayedesmorts
     SUBDIR += abe
+    SUBDIR += abstreet
     SUBDIR += abuse_sdl
     SUBDIR += ace-of-penguins
     SUBDIR += acm
@@ -570,6 +571,7 @@
     SUBDIR += lm-solve
     SUBDIR += lmarbles
     SUBDIR += lmpc
+    SUBDIR += lolcat
     SUBDIR += lordsawar
     SUBDIR += lpairs
     SUBDIR += lskat

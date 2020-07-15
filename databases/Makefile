@@ -24,6 +24,7 @@
     SUBDIR += arangodb32
     SUBDIR += arangodb33
     SUBDIR += arrow
+    SUBDIR += ateam_mysql57_ldap_auth
     SUBDIR += ateam_mysql_ldap_auth
     SUBDIR += autobackupmysql
     SUBDIR += automysqlbackup
@@ -174,14 +175,12 @@
     SUBDIR += mantis
     SUBDIR += mariadb-connector-c
     SUBDIR += mariadb-connector-odbc
-    SUBDIR += mariadb101-client
-    SUBDIR += mariadb101-server
-    SUBDIR += mariadb102-client
-    SUBDIR += mariadb102-server
     SUBDIR += mariadb103-client
     SUBDIR += mariadb103-server
     SUBDIR += mariadb104-client
     SUBDIR += mariadb104-server
+    SUBDIR += mariadb105-client
+    SUBDIR += mariadb105-server
     SUBDIR += mdbtools
     SUBDIR += mdcached
     SUBDIR += memcached
@@ -487,7 +486,6 @@
     SUBDIR += p5-Search-InvertedIndex
     SUBDIR += p5-Search-Namazu
     SUBDIR += p5-Search-Xapian
-    SUBDIR += p5-Search-Xapian10
     SUBDIR += p5-Search-Xapian12
     SUBDIR += p5-Store-CouchDB
     SUBDIR += p5-T2
@@ -747,7 +745,6 @@
     SUBDIR += py-couchdb
     SUBDIR += py-dbf
     SUBDIR += py-dbutils
-    SUBDIR += py-django-transaction-hooks
     SUBDIR += py-fakeredis
     SUBDIR += py-fdb
     SUBDIR += py-firebirdsql
@@ -762,6 +759,7 @@
     SUBDIR += py-influxdb
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
+    SUBDIR += py-litecli
     SUBDIR += py-lmdb
     SUBDIR += py-marshmallow-sqlalchemy
     SUBDIR += py-minidb
@@ -1031,7 +1029,6 @@
     SUBDIR += xapian-bindings
     SUBDIR += xapian-bindings12
     SUBDIR += xapian-core
-    SUBDIR += xapian-core10
     SUBDIR += xapian-core12
     SUBDIR += xrootd
     SUBDIR += xtrabackup

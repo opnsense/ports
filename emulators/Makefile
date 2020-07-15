@@ -31,6 +31,7 @@
     SUBDIR += dynamips-community
     SUBDIR += e-uae
     SUBDIR += edumips64
+    SUBDIR += elliott-803
     SUBDIR += emu64
     SUBDIR += emulationstation
     SUBDIR += fceux
@@ -117,6 +118,7 @@
     SUBDIR += qemu-utils
     SUBDIR += qemu31
     SUBDIR += qemu40
+    SUBDIR += qemu41
     SUBDIR += qmc2
     SUBDIR += quasi88
     SUBDIR += riscv-fesvr

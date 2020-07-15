@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	83.0.4103.106
+PORTVERSION=	83.0.4103.116
+PORTREVISION=	1
 CATEGORIES?=	www java
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		LOCAL/cpm/chromium/:fonts
@@ -137,6 +138,9 @@ GN_ARGS+=	google_api_key="AIzaSyBsp9n41JLW8jCokwn7vhoaMejDFRd1mp8" \
 		google_default_client_secret="IR1za9-1VK0zZ0f_O8MVFicn"
 
 USE_HARDENING=	relro:off
+
+PAGEEXEC_DISABLE=	share/chromium/chrome
+MPROTECT_DISABLE=	share/chromium/chrome
 
 .if !defined(GN_ONLY)
 SUB_FILES=	chromium-browser.desktop chrome pkg-message

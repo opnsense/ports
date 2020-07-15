@@ -2,6 +2,7 @@
 
 PORTNAME=	elementary-photos
 DISTVERSION=	2.7.0
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	miguel@gocobachi.dev
@@ -30,8 +31,8 @@ LIB_DEPENDS=	libaccounts-glib.so:net-im/libaccounts-glib \
 		libwebp.so:graphics/webp \
 		libxml2.so:textproc/libxml2
 
-USES=			desktop-file-utils gettext gnome meson ninja \
-			pkgconfig sqlite xorg
+USES=			compiler:c11 desktop-file-utils gettext gnome meson \
+			ninja pkgconfig sqlite xorg
 USE_GITHUB=		yes
 GH_ACCOUNT=		elementary
 GH_PROJECT=		photos
