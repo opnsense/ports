@@ -50,6 +50,8 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 PORTDOCS=	AUTHORS ChangeLog HACKING NEWS README TODO
 
+CFLAGS+=	-Wno-error
+
 post-patch:
 	@${REINPLACE_CMD} 's/LDLAGS/LDFLAGS/' ${WRKSRC}/configure
 

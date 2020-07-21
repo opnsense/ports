@@ -5,6 +5,7 @@
 
     SUBDIR += 2bsd-diff
     SUBDIR += CLDR
+    SUBDIR += R-cran-commonmark
     SUBDIR += R-cran-DT
     SUBDIR += R-cran-R2HTML
     SUBDIR += R-cran-XML
@@ -1366,6 +1367,7 @@
     SUBDIR += py-snowballstemmer
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
+    SUBDIR += py-sphinx-argparse
     SUBDIR += py-sphinx-autoapi
     SUBDIR += py-sphinx-autodoc-typehints
     SUBDIR += py-sphinx-intl
