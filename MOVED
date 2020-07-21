@@ -8322,7 +8322,6 @@ japanese/jyuroku||2016-07-04|Has expired: Broken for more than 6 months
 japanese/mtools||2016-07-04|Has expired: Broken for more than 6 months
 palm/pdbar||2016-07-04|Has expired: Broken for more than 6 months
 graphics/gplot||2016-07-04|Has expired: Broken for more than 6 months
-graphics/white_dune||2016-07-04|Has expired: Broken for more than 6 months
 graphics/whirlgif||2016-07-04|Has expired: Broken for more than 6 months
 graphics/libaux||2016-07-04|Has expired: Broken for more than 6 months
 graphics/import-pictures||2016-07-04|Has expired: Broken for more than 6 months
@@ -11661,7 +11660,6 @@ audio/qmpdclient||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/skype-call-recorder||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 biology/clustalx||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/layouteditor||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-cad/meshlab||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/qfsm||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 cad/qucs||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 chinese/gcin-qt4||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -15054,7 +15052,6 @@ databases/rubygem-peek-mysql2-rails5||2020-06-05|Removed: not required by gitlab
 audio/workman||2020-06-05|Has expired: Depends on expired x11-toolkits/xview
 x11-toolkits/xview||2020-06-05|Has expired: 64-bit unsupported
 math/p5-Algorithm-KMeans||2020-06-05|Has expired: Depends on expired math/p5-Math-GSL
-math/p5-Math-GSL||2020-06-05|Has expired: Broken for more than 6 months
 net/openbsc||2020-06-05|Has expired: Depends on expired devel/libosmo-netif
 devel/libosmo-netif||2020-06-05|Has expired: Broken for more than 6 months
 audio/xvmixer||2020-06-05|Has expired: Depends on expired x11-toolkits/xview
@@ -15154,3 +15151,10 @@ audio/aucatctl|audio/sndio|2020-07-12|Use sndioctl from audio/sndio instead
 devel/py-freenas.dispatcher||2020-07-14|Uses deprecated version of python
 textproc/scancode-toolkit||2020-07-14|Uses deprecated version of python
 www/py-kallithea||2020-07-14|Uses deprecated version of python
+graphics/white_dune|graphics/wdune|2020-07-18|Expired in 2016, brought back under new name
+www/py-django-subdomains||2020-07-18|Has expired: No longer maintained, not compatible with Django 2.0+
+www/py-django-datetime-widget||2020-07-18|Has expired: No longer maintained, not compatible with Django 2.1
+www/py-django-openid-auth|www/py-django-allauth|2020-07-18|Has expired: No longer maintained, not compatible with Django 2.0+, please use www/py-django-allauth instead
+www/py-django-overextends||2020-07-18|Has expired: No longer maintained, not compatible with Django 2.0+
+net/kdav|net/kf5-kdav|2020-07-21|Has become a proper KDE framework
+devel/py-trio|net/py-trio|2020-07-21|Remove duplicate port

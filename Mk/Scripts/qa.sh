@@ -456,7 +456,7 @@ proxydeps_suggest_uses() {
 	elif [ ${pkg} = "deskutils/kdepim-apps-libs" ]; then warn "you need to use USE_KDE+=kdepim-apps-libs"
 	elif [ ${pkg} = "net/kitinerary" ]; then warn "you need to use USE_KDE+=kitinerary"
 	elif [ ${pkg} = "net/kontactinterface" ]; then warn "you need to use USE_KDE+=kontactinterface"
-	elif [ ${pkg} = "net/kdav" ]; then warn "you need to use USE_KDE+=kpimdav"
+	elif [ ${pkg} = "net/kf5-kdav" ]; then warn "you need to use USE_KDE+=kdav"
 	elif [ ${pkg} = "security/kpkpass" ]; then warn "you need to use USE_KDE+=kpkpass"
 	elif [ ${pkg} = "net/ksmtp" ]; then warn "you need to use USE_KDE+=ksmtp"
 	elif [ ${pkg} = "net/kldap" ]; then warn "you need to use USE_KDE+=ldap"
@@ -1020,7 +1020,12 @@ checks="$checks license depends_blacklist pkgmessage reinplace"
 ret=0
 cd ${STAGEDIR} || exit 1
 for check in ${checks}; do
-	${check} || ret=1
+	eval check_test="\$IGNORE_QA_$check"
+	if [ -z "${check_test}" ]; then
+		${check} || ret=1
+	else
+		warn "Ignoring $check QA test"
+	fi
 done
 
 exit ${ret}
