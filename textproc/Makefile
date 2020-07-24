@@ -5,13 +5,13 @@
 
     SUBDIR += 2bsd-diff
     SUBDIR += CLDR
-    SUBDIR += R-cran-commonmark
     SUBDIR += R-cran-DT
     SUBDIR += R-cran-R2HTML
     SUBDIR += R-cran-XML
     SUBDIR += R-cran-bibtex
     SUBDIR += R-cran-brew
     SUBDIR += R-cran-cellranger
+    SUBDIR += R-cran-commonmark
     SUBDIR += R-cran-formatR
     SUBDIR += R-cran-highr
     SUBDIR += R-cran-htmltools
@@ -1561,6 +1561,7 @@
     SUBDIR += rubygem-js_regex
     SUBDIR += rubygem-jsmin
     SUBDIR += rubygem-kramdown
+    SUBDIR += rubygem-kramdown22
     SUBDIR += rubygem-kramdown-parser-gfm
     SUBDIR += rubygem-kramdown1
     SUBDIR += rubygem-kwalify

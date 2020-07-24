@@ -4618,6 +4618,7 @@
     SUBDIR += py-lunardate
     SUBDIR += py-lxml
     SUBDIR += py-macholib
+    SUBDIR += py-mac-vendor-lookup
     SUBDIR += py-magic
     SUBDIR += py-mailcap-fix
     SUBDIR += py-manuel
@@ -6224,6 +6225,7 @@
     SUBDIR += rubygem-msgpack
     SUBDIR += rubygem-mspec
     SUBDIR += rubygem-multi_json
+    SUBDIR += rubygem-multi_json114
     SUBDIR += rubygem-multi_test
     SUBDIR += rubygem-murmurhash3
     SUBDIR += rubygem-mustache
