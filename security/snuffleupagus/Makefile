@@ -2,7 +2,7 @@
 
 PORTNAME=	snuffleupagus
 DISTVERSIONPREFIX=v
-DISTVERSION=	0.5.0
+DISTVERSION=	0.5.1
 CATEGORIES=	security
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
@@ -22,7 +22,7 @@ USES=		localbase:ldflags php:ext
 USE_PHP=	hash:build session:build
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	nbs-system
+GH_ACCOUNT=	jvoisin
 
 CONFIGURE_ARGS=	--enable-snuffleupagus
 
