@@ -60,9 +60,7 @@
     SUBDIR += bjumblr-lv2
     SUBDIR += bliss
     SUBDIR += blop
-    SUBDIR += blop-lv2
     SUBDIR += bristol
-    SUBDIR += bs2b-lv2
     SUBDIR += bsequencer-lv2
     SUBDIR += bshapr-lv2
     SUBDIR += bslizr-lv2
@@ -653,23 +651,18 @@
     SUBDIR += py-apetag
     SUBDIR += py-aubio
     SUBDIR += py-audioread
-    SUBDIR += py-cddb
     SUBDIR += py-discid
     SUBDIR += py-discogs-client
     SUBDIR += py-eyed3
     SUBDIR += py-fmoo-audiotools
     SUBDIR += py-gmusicapi
-    SUBDIR += py-gmusicproxy
     SUBDIR += py-gtts
     SUBDIR += py-hsaudiotag3k
-    SUBDIR += py-karaoke
     SUBDIR += py-mpd
     SUBDIR += py-music21
     SUBDIR += py-musicbrainzngs
     SUBDIR += py-mutagen
-    SUBDIR += py-openal
     SUBDIR += py-opuslib
-    SUBDIR += py-py-jack
     SUBDIR += py-pyacoustid
     SUBDIR += py-pyaudio
     SUBDIR += py-pylast
@@ -684,7 +677,6 @@
     SUBDIR += py-tagpy
     SUBDIR += py-wavio
     SUBDIR += py-webrtcvad
-    SUBDIR += py-xmms2
     SUBDIR += qaudiosonar
     SUBDIR += qjackctl
     SUBDIR += qmidiarp
@@ -773,6 +765,7 @@
     SUBDIR += spotify-tui
     SUBDIR += spotifyd
     SUBDIR += squash
+    SUBDIR += squeezelite
     SUBDIR += sratom
     SUBDIR += stegosaurus-lv2
     SUBDIR += stk
@@ -817,7 +810,6 @@
     SUBDIR += toolame
     SUBDIR += tosha
     SUBDIR += traverso
-    SUBDIR += triceratops-lv2
     SUBDIR += tse3
     SUBDIR += tta
     SUBDIR += tuneradio

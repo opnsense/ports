@@ -16,6 +16,7 @@ COMMENT=	Apache module for rewriting web pages to reduce latency
 
 LICENSE=	APACHE20
 
+BROKEN=		SHA256 Checksum mismatch for mod_pagespeed/apache-httpd-2.2.29_GH0.tar.gz
 DEPRECATED=	Uses deprecated version of python
 EXPIRATION_DATE=	2020-09-15
 
@@ -37,7 +38,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libopencv_video.so:graphics/opencv
 
 USES=		apache:2.2+ compiler:c++14-lang gperf jpeg gmake localbase \
-		pkgconfig python:2.7 shebangfix ssl tar:xz
+		pkgconfig python:3.5+ shebangfix ssl tar:xz
 SHEBANG_GLOB=	*.gyp *.gypi *.py *.sh
 SHEBANG_FILES=	build/fix_proto_and_invoke_protoc
 

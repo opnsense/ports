@@ -129,6 +129,7 @@
     SUBDIR += kf5-kwindowsystem
     SUBDIR += kf5-plasma-framework
     SUBDIR += konsole
+    SUBDIR += lavalauncher
     SUBDIR += lemonbar
     SUBDIR += libICE
     SUBDIR += libSM
@@ -247,6 +248,7 @@
     SUBDIR += p5-XTerm-Conf
     SUBDIR += pcdm
     SUBDIR += perwindowlayoutd
+    SUBDIR += phosh
     SUBDIR += pipeglade
     SUBDIR += pixman
     SUBDIR += plank

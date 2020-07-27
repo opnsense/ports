@@ -17,8 +17,7 @@ COMMENT=	Compiler for the functional language Haskell
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-# other supported arches are added based on GHC_VERSION below
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	amd64 i386 aarch64 armv6 armv7 powerpc64
 
 USE_HARDENING=		pie:off
 LLVM_AR_UNSAFE=		yes
@@ -66,6 +65,8 @@ GMP_CONFIGURE_WITH=	gmp-includes=${LOCALBASE}/include \
 GMP_LIB_DEPENDS=	libgmp.so:math/gmp
 GMP_SUB_LIST=		INTEGER_LIBRARY="integer-gmp"
 GMP_SUB_LIST_OFF=	INTEGER_LIBRARY="integer-simple"
+GMP_PLIST_SUB=		GMP="" SIMPLE="@comment "
+GMP_PLIST_SUB_OFF=	GMP="@comment " SIMPLE=""
 
 # Append substitutions for build.mk
 BOOT_SUB_LIST=		HSC2HS=${LOCALBASE}/bin/hsc2hs
@@ -74,16 +75,13 @@ BOOT_SUB_LIST_OFF=	HSC2HS=${BOOT_HSC2HS}
 PROFILE_SUB_LIST=	WITH_PROFILE="YES"
 PROFILE_SUB_LIST_OFF=	WITH_PROFILE="NO"
 
-GHC_VERSION?=		${GHC_VERSION_DEFAULT}
-GHC_VERSION_DEFAULT=	8.8.4
-GHC_VERSION_MAJOR=	${GHC_VERSION:S/./ /g:[1]}
-GHC_VERSION_MINOR=	${GHC_VERSION:S/./ /g:[2]}
+PLIST_SUB=		GHC_VERSION=${GHC_VERSION} GHC_LIBDIR=${GHC_LIBDIR_REL}
 
+GHC_VERSION=		8.10.1
 HSCOLOUR_VERSION=	1.24.4
-
-.if ${GHC_VERSION_MAJOR} >= 8 && ${GHC_VERSION_MINOR} >= 6
-ONLY_FOR_ARCHS+=	aarch64 armv6 armv7 powerpc64
-.endif
+LLVM_VERSION=		90
+# LLVM version that bootstrap compiler uses
+BOOT_LLVM_VERSION=	60
 
 .include <bsd.port.pre.mk>
 
@@ -92,32 +90,18 @@ ONLY_FOR_ARCHS+=	aarch64 armv6 armv7 powerpc64
 BUILD_DEPENDS+=	${LOCALBASE}/lib/compat/libncursesw.so.8:misc/compat12x
 .endif
 
-.if ${GHC_VERSION_MAJOR} == 8 && ${GHC_VERSION_MINOR} == 4
-LLVM_VERSION=		50
-# Turn off for old GHCs, see PR 228727
-CONFIGURE_ARGS+=	--enable-dtrace=0
-.elif ${GHC_VERSION_MAJOR} == 8 && ${GHC_VERSION_MINOR} == 6
-LLVM_VERSION=		60
-.elif ${GHC_VERSION_MAJOR} == 8 && ${GHC_VERSION_MINOR} == 8
-LLVM_VERSION=		70
-.else # ghc 8.10
-LLVM_VERSION=		90
-.endif
-
 .if ${ARCH} == powerpc64
 CONFIGURE_ARGS+=	--enable-dtrace=0
+.endif
+
+.if ${ARCH} == i386
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-libraries_ghc-prim_cbits_atomic.c
 .endif
 
 .if defined(PPC_ABI) && ${PPC_ABI} == ELFv1
 BOOT_GHC_VERSION=      8.6.3
 .else
 BOOT_GHC_VERSION=	8.6.5
-.endif
-# LLVM version that bootstrap compiler uses
-BOOT_LLVM_VERSION=	60
-
-.if "${GHC_VERSION}" != "${GHC_VERSION_DEFAULT}"
-PATCHDIR=	${.CURDIR}/files${GHC_VERSION:S/.//g}/
 .endif
 
 NO_CCACHE=	ccache: error: Failed to create directory /nonexistent/.ccache/tmp: Permission denied
@@ -181,14 +165,6 @@ IGNORE=	qemu-user-static isn't able to build lang/ghc, but it builds fine on a r
 .  endif
 .endif
 
-PLIST_SUB+=	GHC_VERSION=${GHC_VERSION} GHC_LIBDIR=${GHC_LIBDIR_REL}
-
-.if ${GHC_VERSION_MAJOR} <= 8 && ${GHC_VERSION_MINOR} < 8
-WITH_GHC=	--with-ghc
-.else
-WITH_GHC=	GHC
-.endif
-
 .if empty(PORT_OPTIONS:MBOOT)
 BOOT_DIR=	${WRKDIR}/ghc-${BOOT_GHC_VERSION}-boot
 BOOT_GHC=	${BOOT_DIR}/bin/ghc-${BOOT_GHC_VERSION}
@@ -197,15 +173,11 @@ BOOT_HSC2HS=	${BOOT_DIR}/bin/hsc2hs
 
 SLAVE_ENV=	${SETENV} PATH=${BOOT_DIR}/bin:${PATH}
 
-CONFIGURE_ARGS+=	${WITH_GHC}=${BOOT_GHC}
+CONFIGURE_ARGS+=	GHC=${BOOT_GHC}
 .else # MBOOT
 SLAVE_ENV=		# empty
-CONFIGURE_ARGS+=	${WITH_GHC}=${LOCALBASE}/bin/ghc
+CONFIGURE_ARGS+=	GHC=${LOCALBASE}/bin/ghc
 .endif # MBOOT
-
-# override TMPDIR because /tmp often doesn't have enough space
-# to build some of the larger libraries.
-#TMPDIR=		${WRKSRC}/tmp
 
 SLAVES_PREFIX=		${WRKDIR}/slaves_prefix
 SLAVES_WRKDIRPREFIX=	${WRKDIR}/slaves_wrkdirprefix
@@ -216,19 +188,6 @@ post-install-script:
 		-e 's,^${STAGEDIR}${PREFIX}/?,,' \
 		-e '/^${GHC_LIBDIR:C/\//\\\//g}\/package.conf.d\/package\.cache/s|^|@comment |g' \
 		>> ${TMPPLIST}
-.if ${PORT_OPTIONS:MDOCS}
-	${FIND} -ds ${STAGEDIR}${DOCSDIR} -type f -print | ${SED} -E \
-		-e 's,^${STAGEDIR}${PREFIX}/?,,' \
-		-e '/^${STAGEDIR:C/\//\\\//g}${DOCSDIR:C/\//\\\//g}\/html\/libraries\/doc-index-[^.]+\.html/s|^|@comment |g' \
-		-e '/^${STAGEDIR:C/\//\\\//g}${DOCSDIR:C/\//\\\//g}\/html\/libraries\/index[^\/.]*\.html/s|^|@comment|g' \
-		-e '/^${STAGEDIR:C/\//\\\//g}${DOCSDIR:C/\//\\\//g}\/html\/libraries\/[^\/]+\.png/s|^|@comment |g' \
-		>> ${TMPPLIST}
-
-	# Cleanup the indexen created by gen_contents_index
-	${ECHO} "@postunexec ${RM} %D/${DOCSDIR_REL}/html/libraries/doc-index-*.html" >> ${TMPPLIST}
-	${ECHO} "@postunexec ${RM} %D/${DOCSDIR_REL}/html/libraries/index*.html" >> ${TMPPLIST}
-	${ECHO} "@postunexec ${RM} %D/${DOCSDIR_REL}/html/libraries/*.png" >> ${TMPPLIST}
-.endif
 	${ECHO} '@postunexec ${RM} %D/${GHC_LIBDIR_REL}/package.conf.d/package.cache' >>${TMPPLIST}
 
 post-patch:
@@ -236,8 +195,6 @@ post-patch:
 		s|%%AR%%|${AR}|; \
 		s|%%LD%%|${LD}|' \
 		${WRKSRC}/libraries/Cabal/Cabal/Distribution/Simple/Program/Builtin.hs
-	@${REINPLACE_CMD} -e 's/@SettingsLlcCommand@/llc${LLVM_VERSION}/' ${WRKSRC}/settings.in
-	@${REINPLACE_CMD} -e 's/@SettingsOptCommand@/opt${LLVM_VERSION}/' ${WRKSRC}/settings.in
 
 .if empty(PORT_OPTIONS:MBOOT)
 	@${REINPLACE_CMD} -e '/^mandir/d' ${BOOT_DIR}/mk/build.mk

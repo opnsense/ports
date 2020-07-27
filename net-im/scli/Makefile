@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	scli
-DISTVERSION=	g20200813
+DISTVERSION=	g20200817
+PORTREVISION=	2
 CATEGORIES=	net-im python
 
 MAINTAINER=	0mp@FreeBSD.org
@@ -11,12 +12,13 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}urwid>=0:devel/py-urwid@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}urwid-readline>=0:devel/py-urwid-readline@${PY_FLAVOR} \
 		signal-cli>=0.6.8_1:net-im/signal-cli
 
 USES=		python:run,3.5+ shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	isamert
-GH_TAGNAME=	157e3d1
+GH_TAGNAME=	6169d80
 SHEBANG_FILES=	${PORTNAME}
 
 NO_ARCH=	yes

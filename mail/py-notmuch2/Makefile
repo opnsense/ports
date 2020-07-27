@@ -8,8 +8,6 @@ COMMENT=	Pythonic bindings for the notmuch mail database using CFFI
 
 LICENSE=	GPLv3
 
-BROKEN=		fails to patch: Missing license file for GPLv3 in /ports/default/mail/py-notmuch2/work-py37/notmuch-0.29.1/bindings/python-cffi/../../COPYING-GPL-3
-
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.0.0:devel/py-cffi@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.0.0:devel/py-cffi@${PY_FLAVOR}
 LIB_DEPENDS=	libnotmuch.so:mail/notmuch
@@ -19,6 +17,8 @@ USE_PYTHON=	autoplist distutils
 
 MASTERDIR=	${.CURDIR}/../notmuch
 WRKSRC_SUBDIR=	bindings/python-cffi
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/notmuch2/_capi.abi3.so
