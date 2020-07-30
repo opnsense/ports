@@ -815,6 +815,7 @@
     SUBDIR += gitolite
     SUBDIR += gitolite2
     SUBDIR += gittrac
+    SUBDIR += gitui
     SUBDIR += glade
     SUBDIR += glademm
     SUBDIR += glib20
@@ -1405,6 +1406,7 @@
     SUBDIR += llvm-cheri
     SUBDIR += llvm-devel
     SUBDIR += llvm10
+    SUBDIR += llvm11
     SUBDIR += llvm60
     SUBDIR += llvm70
     SUBDIR += llvm80
@@ -6641,6 +6643,7 @@
     SUBDIR += silc-toolkit
     SUBDIR += silentbob
     SUBDIR += simavr
+    SUBDIR += simde
     SUBDIR += simdjson
     SUBDIR += simgear
     SUBDIR += simian

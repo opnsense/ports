@@ -1,3 +1,5 @@
-TIMESTAMP = 1595169515
-SHA256 (any1-wayvnc-v0.1.2-149-g85fca04_GH0.tar.gz) = 357fc4cdb332a45b532ae5cf0d71a6e9ffbab0a7c203ed89e45f123cc539600c
-SIZE (any1-wayvnc-v0.1.2-149-g85fca04_GH0.tar.gz) = 42501
+TIMESTAMP = 1595879519
+SHA256 (any1-wayvnc-v0.2.0_GH0.tar.gz) = a4ee6f49a821b326e89b2534048687330bc84ed3984499ab2cf39422517fb731
+SIZE (any1-wayvnc-v0.2.0_GH0.tar.gz) = 43615
+SHA256 (72dd8a159c44.patch) = 6ca1b77bdccf3cdf616ba63711dc6b821c131e53e39b7c45ede7d682afccebb3
+SIZE (72dd8a159c44.patch) = 728

@@ -12,6 +12,8 @@ COMMENT?=	Complete color management solution
 
 LICENSE=	BSD3CLAUSE
 
+USE_HARDENING=	pie:off
+
 USES=		alias cmake compiler:c++11-lang localbase:ldflags pkgconfig \
 		shebangfix
 
