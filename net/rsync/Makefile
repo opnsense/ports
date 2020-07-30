@@ -2,10 +2,9 @@
 # $FreeBSD$
 
 PORTNAME=	rsync
-DISTVERSION=	3.1.3
-PORTREVISION=	1
+DISTVERSION=	3.2.2
 CATEGORIES=	net
-MASTER_SITES=	https://rsync.samba.org/ftp/rsync/ \
+MASTER_SITES=   https://rsync.samba.org/ftp/rsync/ \
 		https://www.mirrorservice.org/sites/rsync.samba.org/ \
 		http://rsync.samba.org/ftp/rsync/ \
 		ftp://ftp.fu-berlin.de/pub/unix/network/rsync/ \
@@ -19,7 +18,10 @@ LICENSE=	GPLv3
 
 USE_HARDENING=	safestack
 
-USES=		cpe shebangfix
+LIB_DEPENDS=    libxxhash.so:devel/xxhash \
+		libzstd.so:archivers/zstd
+
+USES=		cpe shebangfix ssl
 SHEBANG_FILES=	support/rrsync
 
 CPE_VENDOR=	samba
@@ -35,8 +37,10 @@ TEST_TARGET=	check
 
 CONFIGURE_ARGS=	--disable-debug --enable-ipv6 \
 		--with-rsyncd-conf=${ETCDIR}/rsyncd.conf
+CPPFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib
 
-PORTDOCS=	NEWS README csprotocol.txt tech_report.tex
+PORTDOCS=	NEWS.md README.md csprotocol.txt tech_report.tex
 
 # define options
 OPTIONS_DEFINE=		DOCS POPT_PORT ZLIB_BASE SSH ICONV
@@ -69,28 +73,24 @@ ACL_EXTRA_PATCHES=		${WRKSRC}/patches/acls.diff \
 				${FILESDIR}/extrapatch-acl
 
 ICONV_USES=	iconv:translit
-ICONV_CPPFLAGS=	-I${LOCALBASE}/include
-ICONV_LDFLAGS=	-L${LOCALBASE}/lib
 ICONV_CONFIGURE_ENABLE=	iconv iconv-open
 
 POPT_PORT_LIB_DEPENDS=	libpopt.so:devel/popt
-POPT_PORT_CPPFLAGS=	-I${LOCALBASE}/include
-POPT_PORT_LDFLAGS=	-L${LOCALBASE}/lib
 
 POPT_PORT_CONFIGURE_OFF=	--with-included-popt
 
 SSH_CONFIGURE_ON=	--with-rsh=ssh
 SSH_CONFIGURE_OFF=	--with-rsh=rsh
 
-ACL_DISTFILES=		${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
-ATIMES_DISTFILES=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
-FLAGS_DISTFILES=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
-ICONV_DISTFILES=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
-RENAMED_DISTFILES=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
-TIMELIMIT_DISTFILES=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
+ACL_DISTFILES=		${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
+ATIMES_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
+FLAGS_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
+ICONV_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
+RENAMED_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
+TIMELIMIT_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 
 .if make(makesum)
-DISTFILES+=	${PORTNAME}-patches-${PORTVERSION}${EXTRACT_SUFX}
+DISTFILES+=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 .endif
 
 .include <bsd.port.pre.mk>
@@ -100,9 +100,8 @@ CONFIGURE_ARGS+=ac_cv_search_libiconv_open=no
 .endif
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|perl.*|${DO_NADA}|' ${WRKSRC}/Makefile.in
 	@${REINPLACE_CMD} -e 's:/etc/:${ETCDIR}/:g'  \
-		${WRKSRC}/rsync.h ${WRKSRC}/rsync.1 ${WRKSRC}/rsyncd.conf.5
+		${WRKSRC}/rsync.1 ${WRKSRC}/rsyncd.conf.5
 	@${REINPLACE_CMD} -e 's|/usr/bin/rsync|${PREFIX}/bin/rsync|g' ${WRKSRC}/support/rrsync
 
 post-install:
