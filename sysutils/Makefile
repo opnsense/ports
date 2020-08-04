@@ -708,6 +708,7 @@
     SUBDIR += msiklm
     SUBDIR += msktutil
     SUBDIR += mstflint
+    SUBDIR += mstflint-lite
     SUBDIR += msyslog
     SUBDIR += mtm
     SUBDIR += mtpfs
@@ -1094,6 +1095,8 @@
     SUBDIR += rubygem-chef-config
     SUBDIR += rubygem-chef-config12
     SUBDIR += rubygem-chef-dk
+    SUBDIR += rubygem-chef-utils
+    SUBDIR += rubygem-chef-vault
     SUBDIR += rubygem-chef-zero
     SUBDIR += rubygem-chef-zero5
     SUBDIR += rubygem-chef12
@@ -1362,6 +1365,7 @@
     SUBDIR += u-boot-pinebookpro
     SUBDIR += u-boot-qemu-arm
     SUBDIR += u-boot-qemu-arm64
+    SUBDIR += u-boot-qemu-riscv64
     SUBDIR += u-boot-riotboard
     SUBDIR += u-boot-rock64
     SUBDIR += u-boot-rockpro64

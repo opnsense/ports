@@ -846,6 +846,7 @@
     SUBDIR += py-bcrypt
     SUBDIR += py-btchip-python
     SUBDIR += py-cerealizer
+    SUBDIR += py-cert-human
     SUBDIR += py-certbot
     SUBDIR += py-certbot-apache
     SUBDIR += py-certbot-dns-cloudflare
@@ -867,6 +868,7 @@
     SUBDIR += py-certifi
     SUBDIR += py-certstream
     SUBDIR += py-ckcc-protocol
+    SUBDIR += py-coincurve
     SUBDIR += py-cpe
     SUBDIR += py-cracklib
     SUBDIR += py-cryptography
@@ -895,6 +897,7 @@
     SUBDIR += py-gpgme
     SUBDIR += py-gpsoauth
     SUBDIR += py-gssapi
+    SUBDIR += py-gtts-token
     SUBDIR += py-halberd
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
@@ -910,6 +913,7 @@
     SUBDIR += py-m2crypto
     SUBDIR += py-maec
     SUBDIR += py-mcrypt
+    SUBDIR += py-merkletools
     SUBDIR += py-mixbox
     SUBDIR += py-mnemonic
     SUBDIR += py-msoffcrypto-tool

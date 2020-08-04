@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	wine
-DISTVERSION=	5.13
+DISTVERSION=	5.14
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -102,7 +102,6 @@ MPG123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
 OPENAL_CONFIGURE_WITH=	openal
 OPENAL_USES=		openal
 
-STAGING_BROKEN=		fails to build
 STAGING_MASTER_SITES=	https://github.com/wine-staging/wine-staging/archive/:staging
 STAGING_DIST=		v${DISTVERSION}.tar.gz
 STAGING_DISTFILES=	${STAGING_DIST}:staging

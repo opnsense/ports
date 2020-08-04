@@ -2,7 +2,7 @@
 
 PORTNAME=	icedtea-web
 PORTVERSION=	1.8.4
-PORTREVISION=   1
+PORTREVISION=	3
 CATEGORIES=	java www
 MASTER_SITES=	https://github.com/AdoptOpenJDK/IcedTea-Web/archive/
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -44,9 +44,13 @@ CONFIGURE_ARGS+=	--enable-shell-launchers
 CONFIGURE_ARGS+=	--without-${opt}
 .endfor
 CONFIGURE_ENV=		BIN_BASH=${bash_CMD}
+CONFIGURE_ENV+=		bashcompdir=${PREFIX}/etc/bash_completion.d
 CONFIGURE_SHELL=	${bash_CMD}
 
 TEST_TARGET=	check
+
+# Upstream archive contains files with UTF-8 names
+EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 /usr/bin/bsdtar
 
 OPTIONS_DEFINE=	DOCS PLUGIN RHINO TAGSOUP
 OPTIONS_DEFAULT=PLUGIN
