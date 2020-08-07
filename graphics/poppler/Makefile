@@ -22,6 +22,8 @@ LIB_DEPENDS=	libnspr4.so:devel/nspr \
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=	poppler-data>0:graphics/poppler-data
 
+USE_HARDENING=	pie:off
+
 USES=		compiler:c++11-lang cpe cmake:insource gnome jpeg libtool \
 		localbase pathfix pkgconfig tar:xz
 CPE_VENDOR=	freedesktop
