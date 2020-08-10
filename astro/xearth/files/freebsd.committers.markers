@@ -81,6 +81,7 @@
  47.420,	8.6,		"beat"				# Wallisellen, Switzerland
  49.85958,	8.55246,	"bcr"				# Griesheim, Germany
  47.380458,	8.514722,	"ehaupt"			# Zurich, Switzerland
+ 47.413337,     8.5523847,      "tcberner"			# Zurich, Switzerland
  49.48,		8.42,		"naddy"				# Ludwigshafen, Germany
  51.4233,	7.76057,	"flo"				# Menden, Germany
  50.73389,	7.09972,	"egypcio"			# Bonn, Germany
@@ -100,7 +101,8 @@
  48.83,		2.36,		"antoine"			# Paris, France
  48.79964,	2.35058,	"bapt"				# Villejuif, France
  48.827111,	2.347019,	"sbz"				# Paris, France
- 48.87,		2.33,		"dumbbell,cognet" align=left	# Paris, France
+ 48.87,		2.33,		"cognet"	align=left	# Paris, France
+ 48.834312,	2.345937	"dumbbell"	align=left	# Paris, France
  48.8473,	2.2856,		"mat"				# Paris, France
  48.912,	2.256,		"mich"		align=left	# La Garenne-Colombes, France
  48.818344,	2.245696,	"roberto"	align=left	# Meudon, France
@@ -151,7 +153,7 @@
  45.0676,	-92.8234,	"xride"				# Stillwater, MN, USA
  44.89,		-93.35,		"bdrewery"			# Minneapolis, MN, USA
  39.168,	-96.620,	"kevans"			# Manhattan, KS, USA
- 30.47702408,	-97.64801025,	"ler"				# Pflugerville, TX, USA
+ 30.545,	-97.646,	"ler"				# Round Rock, TX, USA
  30.343,	-97.881,	"   ,linimon"			# Austin, TX, USA
  39.897418,	-104.981891,	"brd"				# Northglenn, CO, USA
  39.897418,	-105.074891,	"will"				# Westminster, CO, USA

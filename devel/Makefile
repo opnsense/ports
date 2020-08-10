@@ -31,6 +31,7 @@
     SUBDIR += R-cran-cli
     SUBDIR += R-cran-clipr
     SUBDIR += R-cran-covr
+    SUBDIR += R-cran-cpp11
     SUBDIR += R-cran-crayon
     SUBDIR += R-cran-data.table
     SUBDIR += R-cran-doParallel
@@ -4831,6 +4832,7 @@
     SUBDIR += py-prompt_toolkit1
     SUBDIR += py-prompt_toolkit2
     SUBDIR += py-proselint
+    SUBDIR += py-proto-plus
     SUBDIR += py-protobuf
     SUBDIR += py-protocols
     SUBDIR += py-ptable

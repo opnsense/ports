@@ -400,6 +400,8 @@
     SUBDIR += mfem
     SUBDIR += mingw32-libgmp
     SUBDIR += minisat
+    SUBDIR += minizinc
+    SUBDIR += minizinc-ide
     SUBDIR += miracl
     SUBDIR += mlpack
     SUBDIR += moab
@@ -777,6 +779,7 @@
     SUBDIR += py-luminol
     SUBDIR += py-matplotlib
     SUBDIR += py-matplotlib-scalebar
+    SUBDIR += py-mip
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-munkres10

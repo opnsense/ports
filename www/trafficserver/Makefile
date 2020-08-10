@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	trafficserver
-PORTVERSION=	8.0.2
-PORTREVISION=	1
+PORTVERSION=	8.0.8
 CATEGORIES=	www
 MASTER_SITES=	APACHE/${PORTNAME}
 
@@ -29,7 +28,6 @@ USES=		compiler:c++17-lang cpe gmake libtool localbase ncurses \
 
 CPE_VENDOR=	apache
 CPE_PRODUCT=	traffic_server
-USE_GCC=	yes
 USE_PERL5=	build run
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	${PORTNAME}
@@ -102,7 +100,6 @@ post-patch:
 		${WRKSRC}/config.layout
 	@${REINPLACE_CMD} '/^LUA_LDFLAGS =/s/$$/ @LDFLAGS@/' \
 		${WRKSRC}/lib/Makefile.in
-
 
 post-install:
 	${RMDIR} ${STAGEDIR}${DATADIR}
