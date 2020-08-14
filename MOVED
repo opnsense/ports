@@ -14828,7 +14828,6 @@ security/xspy||2020-05-05|Has expired: Broken for more than 6 months
 shells/osh||2020-05-05|Has expired: Broken for more than 6 months
 shells/shell-include||2020-05-05|Has expired: Broken for more than 6 months
 sysutils/abgx360gui||2020-05-05|Has expired: Broken for more than 6 months
-sysutils/autojump||2020-05-05|Has expired: Broken for more than 6 months
 sysutils/backupchecker||2020-05-05|Has expired: Broken for more than 6 months
 sysutils/cdf||2020-05-05|Has expired: Broken for more than 6 months
 sysutils/cdls||2020-05-05|Has expired: Broken for more than 6 months
@@ -15171,3 +15170,7 @@ graphics/wayland-info|graphics/wayland-utils|2020-08-02|Project renamed
 devel/rubygem-grape11|devel/rubygem-grape|2020-08-03|Has expired: use devel/rubygem-grape instead
 astro/pyephem|astro/py-ephem|2020-08-04|Has expired: Use py-ephem instead.
 www/mod_log_sql2|www/mod_log_sql|2020-08-06|Remove Apache major version suffix since it is the only version in ports tree
+editors/nvi2-port|editors/nvi2|2020-07-26|Rename to editors/nvi2
+net/kblog||2020-08-13|No longer shipped
+www/html|www/html3|2020-08-13|python3-compatible version is named html3
+audio/py-hsaudiotag|audio/py-hsaudiotag3k|2020-08-13|python3-compatible version is named hsaudiotag3k
