@@ -1,7 +1,7 @@
---- include/openssl/opensslv.h.orig	2019-10-11 11:40:31 UTC
+--- include/openssl/opensslv.h.orig	2020-06-12 15:42:59 UTC
 +++ include/openssl/opensslv.h
 @@ -8,7 +8,11 @@
- #define LIBRESSL_VERSION_TEXT   "LibreSSL 3.0.2"
+ #define LIBRESSL_VERSION_TEXT   "LibreSSL 3.1.3"
  
  /* These will never change */
 +#ifndef OPENSSL_IS_LIBRESSL
