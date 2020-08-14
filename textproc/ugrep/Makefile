@@ -2,7 +2,7 @@
 
 PORTNAME=	ugrep
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.5.0
+DISTVERSION=	2.5.1
 CATEGORIES=	textproc
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -11,7 +11,7 @@ COMMENT=	NEW ultra fast grep with interactive query UI
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USES=		gmake
+USES=		compiler:c++11-lang gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	Genivia
 

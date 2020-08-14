@@ -375,6 +375,7 @@
     SUBDIR += mod_fileiri
     SUBDIR += mod_gnutls
     SUBDIR += mod_h264_streaming
+    SUBDIR += mod_http2
     SUBDIR += mod_jk
     SUBDIR += mod_limitipconn2
     SUBDIR += mod_line_edit
@@ -1630,7 +1631,7 @@
     SUBDIR += py-horizon
     SUBDIR += py-hpack
     SUBDIR += py-hstspreload
-    SUBDIR += py-html
+    SUBDIR += py-html3
     SUBDIR += py-html5-parser
     SUBDIR += py-html5lib
     SUBDIR += py-httmock

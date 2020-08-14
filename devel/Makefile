@@ -4193,6 +4193,7 @@
     SUBDIR += py-bitarray
     SUBDIR += py-bitstring
     SUBDIR += py-black
+    SUBDIR += py-blessed
     SUBDIR += py-blessings
     SUBDIR += py-blinker
     SUBDIR += py-blist
@@ -4360,6 +4361,7 @@
     SUBDIR += py-efl
     SUBDIR += py-eggtestinfo
     SUBDIR += py-ejson
+    SUBDIR += py-enlighten
     SUBDIR += py-entrypoints
     SUBDIR += py-enum-compat
     SUBDIR += py-enum34
@@ -4384,6 +4386,7 @@
     SUBDIR += py-fastentrypoints
     SUBDIR += py-fastimport
     SUBDIR += py-fastnumbers
+    SUBDIR += py-fastprogress
     SUBDIR += py-fbprophet
     SUBDIR += py-filebytes
     SUBDIR += py-filemagic

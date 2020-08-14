@@ -65,6 +65,7 @@
     SUBDIR += atitvout
     SUBDIR += atop
     SUBDIR += auto-admin
+    SUBDIR += autojump
     SUBDIR += automount
     SUBDIR += automounter
     SUBDIR += autopsy
@@ -1031,6 +1032,7 @@
     SUBDIR += py-upt-rubygems
     SUBDIR += py-uptime
     SUBDIR += py-zdaemon
+    SUBDIR += py-zfs-autobackup
     SUBDIR += pydf
     SUBDIR += qchroot
     SUBDIR += qdirstat
