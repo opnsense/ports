@@ -1,0 +1,70 @@
+--- lib/alarms.c.orig	2020-08-18 05:38:39 UTC
++++ lib/alarms.c
+@@ -72,5 +72,5 @@ alarm_init(void)
+ 
+   memset(&sa, 0, sizeof(sa));
+   sa.sa_handler = sig_alarm_handler;
+-  sigaction(SIGALRM, &sa, NULL);
++  ng_sigaction(SIGALRM, &sa, NULL);
+ }
+--- lib/gprocess.c.orig	2020-08-18 05:38:45 UTC
++++ lib/gprocess.c
+@@ -1157,7 +1157,7 @@ g_process_perform_supervise(void)
+ 
+   memset(&sa, 0, sizeof(sa));
+   sa.sa_handler = SIG_IGN;
+-  sigaction(SIGHUP, &sa, NULL);
++  ng_sigaction(SIGHUP, &sa, NULL);
+ 
+   while (1)
+     {
+--- lib/mainloop.c.orig	2020-08-18 05:37:52 UTC
++++ lib/mainloop.c
+@@ -518,7 +518,7 @@ _ignore_signal(gint signum)
+ 
+   memset(&sa, 0, sizeof(sa));
+   sa.sa_handler = SIG_IGN;
+-  sigaction(signum, &sa, NULL);
++  ng_sigaction(signum, &sa, NULL);
+ }
+ 
+ static void
+--- lib/signal-handler.c.orig	2020-08-18 05:36:35 UTC
++++ lib/signal-handler.c
+@@ -42,18 +42,6 @@ trigger_sigchld_handler_chain(int signum)
+     }
+ }
+ 
+-static int
+-call_original_sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
+-{
+-  static int (*real_sa)(int, const struct sigaction *, struct sigaction *);
+-
+-  if (real_sa == NULL)
+-    {
+-      real_sa = dlsym(RTLD_NEXT, "sigaction");
+-    }
+-  return real_sa(signum, act, oldact);
+-}
+-
+ static gboolean
+ _save_handler(const struct sigaction *act)
+ {
+@@ -73,7 +61,7 @@ _save_handler(const struct sigaction *act)
+ 
+ /* This should be as defined in the <signal.h> */
+ int
+-sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
++ng_sigaction(int signum, const struct sigaction *act, struct sigaction *oldact)
+ {
+ 
+   if (signum == SIGCHLD)
+@@ -90,7 +78,7 @@ sigaction(int signum, const struct sigaction *act, str
+     }
+ 
+ 
+-  return call_original_sigaction(signum, act, oldact);
++  return sigaction(signum, act, oldact);
+ }
+ #endif
+ 
