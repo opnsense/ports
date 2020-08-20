@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	openvswitch
-DISTVERSION=	2.12.0
+DISTVERSION=	2.14.0
 CATEGORIES=	net
 MASTER_SITES=	http://openvswitch.org/releases/
 
@@ -17,10 +17,10 @@ USE_HARDENING=	pie:off relro:off
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 
-USES=		compiler:c11 cpe gmake libtool perl5 pkgconfig python:2.7 \
+USES=		compiler:c11 cpe gmake libtool perl5 pkgconfig python \
 		shebangfix ssl
-SHEBANG_FILES=	ovn/utilities/ovndb-servers.ocf \
-		utilities/bugtool/ovs-bugtool-ovs-ofctl-loop-over-bridges \
+SHEBANG_FILES=	utilities/bugtool/ovs-bugtool-ovs-ofctl-loop-over-bridges \
+		utilities/bugtool/ovs-bugtool-get-port-stats \
 		utilities/ovs-docker \
 		utilities/ovs-appctl-bashcomp.bash \
 		vtep/ovs-vtep.in
@@ -38,8 +38,8 @@ SHLIB_VER=	${DISTVERSION:C/\.[0-9]*$//}
 PLIST_SUB=	SHLIB_VER=${SHLIB_VER}
 
 post-install:
-	@${MKDIR} ${STAGEDIR}/var/run/openvswitch
-	@${MKDIR} ${STAGEDIR}/var/log/openvswitch
+	${MKDIR} ${STAGEDIR}/var/run/openvswitch
+	${MKDIR} ${STAGEDIR}/var/log/openvswitch
 	${INSTALL_DATA} ${WRKSRC}/vswitchd/vswitch.ovsschema ${STAGEDIR}${PREFIX}/share/openvswitch/
 
 .include <bsd.port.mk>
