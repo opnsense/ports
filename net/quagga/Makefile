@@ -15,8 +15,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	gawk:lang/gawk
 
-CONFLICTS=	frr5 frr6 frr7 openbgpd pimd zebra
-
 # Quagga uses shared libraries as plugins, but
 # does not fail with safestack as no port depends
 # on these internal library plugins:
@@ -24,7 +22,11 @@ USE_HARDENING=	safestack
 
 USES=		compiler:c11 cpe gmake libtool makeinfo \
 		perl5 readline ssl
+
+CONFLICTS=	frr5 frr6 frr7 openbgpd pimd zebra
+
 GNU_CONFIGURE=	yes
+CFLAGS+=	-fcommon
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 USE_PERL5=	build
