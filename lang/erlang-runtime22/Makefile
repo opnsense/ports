@@ -11,6 +11,8 @@ DIST_SUBDIR=	erlang
 MAINTAINER=	erlang@FreeBSD.org
 COMMENT=	Functional programming language from Ericsson
 
+USE_HARDENING=	pie:off relro:off
+
 LICENSE=	APACHE20
 
 BROKEN_sparc64=	Fails to build: error: fp_except undeclared

@@ -13,6 +13,8 @@ COMMENT=	Functional programming language from Ericsson
 
 LICENSE=	APACHE20
 
+USE_HARDENING= pie:off relro:off
+
 BROKEN_sparc64=	Fails to build: error: fp_except undeclared
 
 USES=		autoreconf:build compiler:c11 gmake ncurses perl5
