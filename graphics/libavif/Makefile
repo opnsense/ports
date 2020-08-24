@@ -6,6 +6,9 @@ DISTVERSION=	0.8.1
 PORTREVISION=	1
 CATEGORIES=	graphics
 
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	274766b5e5a4.patch:-p1 # https://github.com/AOMediaCodec/libavif/pull/270
+
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Library for encoding and decoding .avif files
 
@@ -35,18 +38,9 @@ DAV1D_CMAKE_BOOL=	AVIF_CODEC_DAV1D
 PIXBUF_USES=		gnome
 PIXBUF_USE=		GNOME=gdkpixbuf2
 PIXBUF_CMAKE_BOOL=	AVIF_BUILD_GDK_PIXBUF
-PIXBUF_CFLAGS=		-Wno-error=cast-qual # https://github.com/AOMediaCodec/libavif/issues/251
 
 RAV1E_DESC=		AV1 encoding via librav1e
 RAV1E_LIB_DEPENDS=	librav1e.so:multimedia/librav1e
 RAV1E_CMAKE_BOOL=	AVIF_CODEC_RAV1E
-
-# XXX Drop after misc/shared-mime-info is updated to 2.0
-PIXBUF_USES+=		shared-mime-info
-PIXBUF_PLIST_FILES+=	share/mime/packages/${PORTNAME}.xml
-do-install-PIXBUF-on:
-	${MKDIR} ${STAGEDIR}${PREFIX}/share/mime/packages
-	${INSTALL_DATA} ${FILESDIR}/mime.xml \
-		${STAGEDIR}${PREFIX}/share/mime/packages/${PORTNAME}.xml
 
 .include <bsd.port.mk>

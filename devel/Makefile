@@ -355,7 +355,6 @@
     SUBDIR += cmunge
     SUBDIR += coccinelle
     SUBDIR += codeblocks
-    SUBDIR += codeblocks-devel
     SUBDIR += codequery
     SUBDIR += codesearch-py
     SUBDIR += codeville
@@ -5535,6 +5534,7 @@
     SUBDIR += rubygem-aws-sdk-health
     SUBDIR += rubygem-aws-sdk-honeycode
     SUBDIR += rubygem-aws-sdk-iam
+    SUBDIR += rubygem-aws-sdk-identitystore
     SUBDIR += rubygem-aws-sdk-imagebuilder
     SUBDIR += rubygem-aws-sdk-importexport
     SUBDIR += rubygem-aws-sdk-inspector
@@ -6073,6 +6073,7 @@
     SUBDIR += rubygem-health_check26-rails60
     SUBDIR += rubygem-heapy
     SUBDIR += rubygem-highline
+    SUBDIR += rubygem-highline1
     SUBDIR += rubygem-hike
     SUBDIR += rubygem-hike1
     SUBDIR += rubygem-hitimes
@@ -6467,6 +6468,7 @@
     SUBDIR += rubygem-terrapin
     SUBDIR += rubygem-test-unit
     SUBDIR += rubygem-thor
+    SUBDIR += rubygem-thor0
     SUBDIR += rubygem-thread_safe
     SUBDIR += rubygem-thread_safe1
     SUBDIR += rubygem-thrift

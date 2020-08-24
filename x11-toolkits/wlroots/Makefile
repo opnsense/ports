@@ -55,10 +55,9 @@ CONSOLEKIT_MESON_ENABLED=	consolekit2
 
 LIBSEAT_DESC=		DRM sessions with/without root via libseat (experimental)
 LIBSEAT_PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/:libseat
-LIBSEAT_PATCHFILES=	be3753a4774f.patch:-p1:libseat # https://github.com/swaywm/wlroots/pull/2364
-LIBSEAT_PATCHFILES+=	c1955ad1ab05.patch:-p1:libseat # FreeBSD build fix
+LIBSEAT_PATCHFILES=	a112d04639c7.patch:-p1:libseat # https://github.com/swaywm/wlroots/pull/2364
 LIBSEAT_LIB_DEPENDS=	libseat.so:sysutils/seatd
-#LIBSEAT_MESON_ENABLED=	libseat
+LIBSEAT_MESON_ENABLED=	libseat
 .if make(makesum)
 .MAKEFLAGS:		WITH+=LIBSEAT
 .endif

@@ -41,6 +41,11 @@ PLIST_FILES=	bin/${PORTNAME}-chat-cli \
 		share/icons/hicolor/192x192/apps/${PORTNAME}.png
 PORTDATA=	*
 
+.if exists(/usr/bin/ld.lld) && ${/usr/bin/ld:L:tA} != /usr/bin/ld.lld
+# veloren_voxygen*rcgu* has 71718 section headers, breaking old GNU ld.bfd in base
+LDFLAGS+=	-fuse-ld=lld
+.endif
+
 DESKTOP_ENTRIES="Veloren (client)" \
 		"" \
 		"${PORTNAME}" \
