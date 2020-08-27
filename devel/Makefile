@@ -6073,7 +6073,6 @@
     SUBDIR += rubygem-hashie2
     SUBDIR += rubygem-hashie3
     SUBDIR += rubygem-health_check
-    SUBDIR += rubygem-health_check26-rails60
     SUBDIR += rubygem-heapy
     SUBDIR += rubygem-highline
     SUBDIR += rubygem-highline1
@@ -6103,7 +6102,6 @@
     SUBDIR += rubygem-jammit
     SUBDIR += rubygem-jaro_winkler
     SUBDIR += rubygem-jasmine-core
-    SUBDIR += rubygem-json_schemer
     SUBDIR += rubygem-jbuilder
     SUBDIR += rubygem-jbuilder-rails5
     SUBDIR += rubygem-jbuilder-rails50
@@ -6124,6 +6122,7 @@
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
+    SUBDIR += rubygem-json_schemer
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
@@ -6221,7 +6220,6 @@
     SUBDIR += rubygem-octopress-hooks
     SUBDIR += rubygem-oj
     SUBDIR += rubygem-omniauth_crowd
-    SUBDIR += rubygem-omniauth_crowd22
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
     SUBDIR += rubygem-opentracing

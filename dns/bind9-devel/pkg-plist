@@ -263,6 +263,7 @@ include/pk11/pk11.h
 include/pk11/result.h
 include/pk11/site.h
 include/pkcs11/pkcs11.h
+lib/bind/filter-aaaa.so
 lib/libbind9.so
 lib/libbind9.so.1701
 lib/libbind9.so.1701.0.2
@@ -297,7 +298,7 @@ lib/libns.so.1703.0.1
 @comment man/man1/dnssec-settime.1.gz
 @comment man/man1/dnssec-signzone.1.gz
 @comment man/man1/dnssec-verify.1.gz
-@comment man/man1/dnstap-read.1.gz
+%%MANPAGES%%%%DNSTAP%%man/man1/dnstap-read.1.gz
 @comment man/man1/host.1.gz
 @comment man/man1/mdig.1.gz
 %%MANPAGES%%man/man1/named-checkconf.1.gz
