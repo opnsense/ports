@@ -1144,7 +1144,6 @@
     SUBDIR += sancp
     SUBDIR += sandsifter
     SUBDIR += sasp
-    SUBDIR += scamp
     SUBDIR += scanlogd
     SUBDIR += scanssh
     SUBDIR += scrypt

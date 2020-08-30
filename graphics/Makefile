@@ -263,9 +263,8 @@
     SUBDIR += gmic
     SUBDIR += gmic-qt
     SUBDIR += gmt
-    SUBDIR += gmt5
-    SUBDIR += gmt5-dcw
-    SUBDIR += gmt5-gshhg
+    SUBDIR += gmt-dcw
+    SUBDIR += gmt-gshhg
     SUBDIR += gnash
     SUBDIR += gnome-color-manager
     SUBDIR += gnome-video-effects
@@ -512,6 +511,7 @@
     SUBDIR += linux-c7-libdrm
     SUBDIR += linux-c7-libepoxy
     SUBDIR += linux-c7-libglvnd
+    SUBDIR += linux-c7-librsvg2
     SUBDIR += linux-c7-png
     SUBDIR += linux-c7-sdl_image
     SUBDIR += linux-c7-sdl_ttf
