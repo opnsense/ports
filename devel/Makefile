@@ -811,6 +811,7 @@
     SUBDIR += gitinspector
     SUBDIR += gitlab-runner
     SUBDIR += gitlab-shell
+    SUBDIR += gitleaks
     SUBDIR += gitlist
     SUBDIR += gitolite
     SUBDIR += gitolite2
@@ -5341,6 +5342,7 @@
     SUBDIR += remotery
     SUBDIR += replay
     SUBDIR += replxx
+    SUBDIR += reproc
     SUBDIR += resolv_wrapper
     SUBDIR += revive
     SUBDIR += rhtvision
