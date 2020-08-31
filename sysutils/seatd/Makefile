@@ -5,6 +5,9 @@ DISTVERSION=	0.2.0
 CATEGORIES=	sysutils
 MASTER_SITES=	https://git.sr.ht/~kennylevinsen/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
 
+PATCH_SITES=	https://git.sr.ht/~kennylevinsen/${PORTNAME}/commit/
+PATCHFILES+=	8e1bf10d9dec.patch:-p1
+
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Minimal seat management daemon and universal library
 

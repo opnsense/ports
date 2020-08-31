@@ -4290,6 +4290,7 @@
     SUBDIR += py-crashtest
     SUBDIR += py-crc32c
     SUBDIR += py-crcmod
+    SUBDIR += py-csv23
     SUBDIR += py-ctags
     SUBDIR += py-curio
     SUBDIR += py-cursive
@@ -5441,6 +5442,7 @@
     SUBDIR += rubygem-aws-sdk-apigatewaymanagementapi
     SUBDIR += rubygem-aws-sdk-apigatewayv2
     SUBDIR += rubygem-aws-sdk-appconfig
+    SUBDIR += rubygem-aws-sdk-appflow
     SUBDIR += rubygem-aws-sdk-applicationautoscaling
     SUBDIR += rubygem-aws-sdk-applicationdiscoveryservice
     SUBDIR += rubygem-aws-sdk-applicationinsights
@@ -6676,6 +6678,7 @@
     SUBDIR += tablist
     SUBDIR += tailor
     SUBDIR += talloc
+    SUBDIR += taskflow
     SUBDIR += tass64
     SUBDIR += tbb
     SUBDIR += tcl-memchan
