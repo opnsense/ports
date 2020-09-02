@@ -55,7 +55,6 @@
     SUBDIR += ascii-invaders
     SUBDIR += asciiquarium
     SUBDIR += assaultcube
-    SUBDIR += asteroid
     SUBDIR += asteroids3d
     SUBDIR += astromenace
     SUBDIR += asylum
@@ -626,6 +625,7 @@
     SUBDIR += naev-data
     SUBDIR += narcissu2
     SUBDIR += nazghul
+    SUBDIR += NBlood
     SUBDIR += nehquake
     SUBDIR += nethack32
     SUBDIR += nethack33

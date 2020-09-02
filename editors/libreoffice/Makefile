@@ -117,7 +117,7 @@ USE_PERL5=	build
 USE_XORG=	ice sm x11 xaw xcb xext xinerama xrandr xrender
 USES=		autoreconf:build bison compiler:c++17-lang cpe desktop-file-utils \
 		gettext-runtime gl gmake gnome jpeg mysql:client perl5 pkgconfig \
-		pkgconfig python shebangfix shared-mime-info ssl tar:xz xorg
+		pkgconfig python:3.5+ shebangfix shared-mime-info ssl tar:xz xorg
 
 PAGEEXEC_DISABLE=	lib/libreoffice/program/soffice.bin
 MPROTECT_DISABLE=	lib/libreoffice/program/soffice.bin
