@@ -616,6 +616,7 @@
     SUBDIR += p5-OpenOffice-OODoc
     SUBDIR += p5-PDF-API2
     SUBDIR += p5-PDF-API2-Simple
+    SUBDIR += p5-PDF-API2-XS
     SUBDIR += p5-PDF-API3
     SUBDIR += p5-PDF-Create
     SUBDIR += p5-PDF-FromHTML
@@ -1295,6 +1296,7 @@
     SUBDIR += py-markdown
     SUBDIR += py-markdown-math
     SUBDIR += py-markdown2
+    SUBDIR += py-markuppy
     SUBDIR += py-markups
     SUBDIR += py-misaka
     SUBDIR += py-mistune

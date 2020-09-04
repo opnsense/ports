@@ -16,6 +16,7 @@
     SUBDIR += CaribbeanStud
     SUBDIR += HeroesOfMightAndMagic
     SUBDIR += KnightCap
+    SUBDIR += NBlood
     SUBDIR += OpenTomb
     SUBDIR += abbayedesmorts
     SUBDIR += abe
@@ -152,6 +153,7 @@
     SUBDIR += connectagram
     SUBDIR += connectfive
     SUBDIR += construo
+    SUBDIR += coronapoker
     SUBDIR += corsix-th
     SUBDIR += cosmo
     SUBDIR += cosmosmash
@@ -625,7 +627,6 @@
     SUBDIR += naev-data
     SUBDIR += narcissu2
     SUBDIR += nazghul
-    SUBDIR += NBlood
     SUBDIR += nehquake
     SUBDIR += nethack32
     SUBDIR += nethack33

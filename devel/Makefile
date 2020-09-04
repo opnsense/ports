@@ -1059,6 +1059,7 @@
     SUBDIR += kf5-solid
     SUBDIR += kf5-threadweaver
     SUBDIR += kio-extras
+    SUBDIR += kirigami-gallery
     SUBDIR += kiwix-lib
     SUBDIR += kms-cmake-utils
     SUBDIR += kodi-platform
@@ -4772,6 +4773,7 @@
     SUBDIR += py-pip-licenses
     SUBDIR += py-pip-run
     SUBDIR += py-pip-tools
+    SUBDIR += py-pip-tools4
     SUBDIR += py-pipdeptree
     SUBDIR += py-pipenv
     SUBDIR += py-pipreqs
