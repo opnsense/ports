@@ -40,6 +40,8 @@
     SUBDIR += android-file-transfer-qt5
     SUBDIR += angrysearch
     SUBDIR += ansible
+    SUBDIR += ansible-iocage
+    SUBDIR += ansible-kld
     SUBDIR += ansible-sysrc
     SUBDIR += ansible27
     SUBDIR += ansible28
@@ -248,6 +250,7 @@
     SUBDIR += dirvish
     SUBDIR += diskcheckd
     SUBDIR += diskimage-tools
+    SUBDIR += diskonaut
     SUBDIR += diskscrub
     SUBDIR += disktype
     SUBDIR += dmg2img
@@ -499,6 +502,7 @@
     SUBDIR += intel-pcm
     SUBDIR += intel-pcm-devel
     SUBDIR += intel-undervolt
+    SUBDIR += inxi
     SUBDIR += ioc
     SUBDIR += iocage
     SUBDIR += iocage-devel

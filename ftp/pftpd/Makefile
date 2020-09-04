@@ -3,7 +3,7 @@
 
 PORTNAME=	pftpd
 PORTVERSION=	1.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	ftp
 MASTER_SITES=	ftp://ftp.ifm.liu.se/pub/unix/pftpd/
 
@@ -12,12 +12,6 @@ COMMENT=	Multithreaded anonymous FTP daemon
 
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
-
-CFLAGS+=		-fcommon
-
-DEPRECATED=	Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
-EXPIRATION_DATE=2021-04-01
-
 
 PLIST_FILES=	sbin/pftpd \
 		man/man1/pftpd.1.gz \

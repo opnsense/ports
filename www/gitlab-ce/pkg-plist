@@ -5094,6 +5094,7 @@
 %%WWWDIR%%/app/finders/award_emojis_finder.rb
 %%WWWDIR%%/app/finders/boards/visits_finder.rb
 %%WWWDIR%%/app/finders/branches_finder.rb
+%%WWWDIR%%/app/finders/ci/auth_job_finder.rb
 %%WWWDIR%%/app/finders/ci/daily_build_group_report_results_finder.rb
 %%WWWDIR%%/app/finders/ci/job_artifacts_finder.rb
 %%WWWDIR%%/app/finders/ci/jobs_finder.rb
@@ -10390,6 +10391,7 @@
 %%WWWDIR%%/db/migrate/20200716120000_partition_audit_events.rb
 %%WWWDIR%%/db/migrate/20200716120419_add_text_limit_on_entity_path_to_audit_events.rb
 %%WWWDIR%%/db/migrate/20200716145156_add_text_limit_to_audit_event_target_details.rb
+%%WWWDIR%%/db/migrate/20200717040735_change_aws_roles_role_arn_null.rb
 %%WWWDIR%%/db/migrate/20200717080257_add_prevent_forking_to_namespace_settings.rb
 %%WWWDIR%%/db/migrate/20200717163656_add_moved_project_to_notification_settings.rb
 %%WWWDIR%%/db/migrate/20200718040100_add_index_on_merge_request_diffs_external_diff_store.rb
@@ -10420,6 +10422,7 @@
 %%WWWDIR%%/db/migrate/20200728163009_add_deployment_events_to_web_hooks.rb
 %%WWWDIR%%/db/migrate/20200728174137_add_index_on_design_management_designs_issue_id_and_relative_position_and_id.rb
 %%WWWDIR%%/db/migrate/20200728175710_add_enforce_namespace_storage_limit_to_application_settings.rb
+%%WWWDIR%%/db/migrate/20200728182311_add_o_auth_paths_to_protected_paths.rb
 %%WWWDIR%%/db/migrate/20200729151021_add_after_expiry_notification_delivered_to_personal_access_tokens.rb
 %%WWWDIR%%/db/migrate/20200729175935_add_dashboard_path_to_prometheus_metrics.rb
 %%WWWDIR%%/db/migrate/20200729180539_add_can_push_to_group_deploy_keys_groups.rb
@@ -11898,6 +11901,7 @@
 %%WWWDIR%%/db/schema_migrations/20200716120000
 %%WWWDIR%%/db/schema_migrations/20200716120419
 %%WWWDIR%%/db/schema_migrations/20200716145156
+%%WWWDIR%%/db/schema_migrations/20200717040735
 %%WWWDIR%%/db/schema_migrations/20200717080257
 %%WWWDIR%%/db/schema_migrations/20200717163656
 %%WWWDIR%%/db/schema_migrations/20200718040100
@@ -11936,6 +11940,7 @@
 %%WWWDIR%%/db/schema_migrations/20200728163009
 %%WWWDIR%%/db/schema_migrations/20200728174137
 %%WWWDIR%%/db/schema_migrations/20200728175710
+%%WWWDIR%%/db/schema_migrations/20200728182311
 %%WWWDIR%%/db/schema_migrations/20200729151021
 %%WWWDIR%%/db/schema_migrations/20200729175935
 %%WWWDIR%%/db/schema_migrations/20200729180539
@@ -15489,6 +15494,7 @@
 %%WWWDIR%%/lib/gitlab/auth/saml/origin_validator.rb
 %%WWWDIR%%/lib/gitlab/auth/saml/user.rb
 %%WWWDIR%%/lib/gitlab/auth/too_many_ips.rb
+%%WWWDIR%%/lib/gitlab/auth/two_factor_auth_verifier.rb
 %%WWWDIR%%/lib/gitlab/auth/unique_ips_limiter.rb
 %%WWWDIR%%/lib/gitlab/auth/user_access_denied_reason.rb
 %%WWWDIR%%/lib/gitlab/auth_logger.rb
@@ -19923,6 +19929,7 @@
 %%WWWDIR%%/spec/controllers/omniauth_callbacks_controller_spec.rb
 %%WWWDIR%%/spec/controllers/passwords_controller_spec.rb
 %%WWWDIR%%/spec/controllers/profiles/accounts_controller_spec.rb
+%%WWWDIR%%/spec/controllers/profiles/active_sessions_controller_spec.rb
 %%WWWDIR%%/spec/controllers/profiles/avatars_controller_spec.rb
 %%WWWDIR%%/spec/controllers/profiles/emails_controller_spec.rb
 %%WWWDIR%%/spec/controllers/profiles/keys_controller_spec.rb
@@ -20976,6 +20983,7 @@
 %%WWWDIR%%/spec/finders/award_emojis_finder_spec.rb
 %%WWWDIR%%/spec/finders/boards/visits_finder_spec.rb
 %%WWWDIR%%/spec/finders/branches_finder_spec.rb
+%%WWWDIR%%/spec/finders/ci/auth_job_finder_spec.rb
 %%WWWDIR%%/spec/finders/ci/daily_build_group_report_results_finder_spec.rb
 %%WWWDIR%%/spec/finders/ci/job_artifacts_finder_spec.rb
 %%WWWDIR%%/spec/finders/ci/jobs_finder_spec.rb
@@ -23952,6 +23960,7 @@
 %%WWWDIR%%/spec/lib/gitlab/auth/saml/identity_linker_spec.rb
 %%WWWDIR%%/spec/lib/gitlab/auth/saml/origin_validator_spec.rb
 %%WWWDIR%%/spec/lib/gitlab/auth/saml/user_spec.rb
+%%WWWDIR%%/spec/lib/gitlab/auth/two_factor_auth_verifier_spec.rb
 %%WWWDIR%%/spec/lib/gitlab/auth/unique_ips_limiter_spec.rb
 %%WWWDIR%%/spec/lib/gitlab/auth/user_access_denied_reason_spec.rb
 %%WWWDIR%%/spec/lib/gitlab/auth_spec.rb
@@ -25227,6 +25236,7 @@
 %%WWWDIR%%/spec/migrations/20200703125016_backfill_namespace_settings_spec.rb
 %%WWWDIR%%/spec/migrations/20200706035141_adjust_unique_index_alert_management_alerts_spec.rb
 %%WWWDIR%%/spec/migrations/20200728080250_replace_unique_index_on_cycle_analytics_stages_spec.rb
+%%WWWDIR%%/spec/migrations/20200728182311_add_o_auth_paths_to_protected_paths_spec.rb
 %%WWWDIR%%/spec/migrations/README.md
 %%WWWDIR%%/spec/migrations/active_record/schema_spec.rb
 %%WWWDIR%%/spec/migrations/add_default_and_free_plans_spec.rb
@@ -27316,6 +27326,7 @@
 %%WWWDIR%%/spec/support/shared_examples/controllers/application_settings_shared_examples.rb
 %%WWWDIR%%/spec/support/shared_examples/controllers/binary_blob_shared_examples.rb
 %%WWWDIR%%/spec/support/shared_examples/controllers/cache_control_shared_examples.rb
+%%WWWDIR%%/spec/support/shared_examples/controllers/clusters_controller_shared_examples.rb
 %%WWWDIR%%/spec/support/shared_examples/controllers/concerns/graceful_timeout_handling_shared_examples.rb
 %%WWWDIR%%/spec/support/shared_examples/controllers/content_disposition_shared_examples.rb
 %%WWWDIR%%/spec/support/shared_examples/controllers/deploy_token_shared_examples.rb

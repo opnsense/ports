@@ -74,6 +74,7 @@
     SUBDIR += kak-lsp
     SUBDIR += kakoune
     SUBDIR += kate
+    SUBDIR += kibi
     SUBDIR += kile
     SUBDIR += komodo-edit
     SUBDIR += lazarus
@@ -239,6 +240,7 @@
     SUBDIR += texmacs
     SUBDIR += texmaker
     SUBDIR += texstudio
+    SUBDIR += textadept
     SUBDIR += texworks
     SUBDIR += the
     SUBDIR += thoteditor
