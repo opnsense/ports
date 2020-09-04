@@ -2,10 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	mdns-repeater
-PORTVERSION=	1.10
-PORTREVISION=	2
+PORTVERSION=	1.11
 CATEGORIES=	net dns
-MASTER_SITES=	LOCAL/ehaupt
 
 MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Multicast DNS repeater to re-broadcast mDNS packets across interfaces
@@ -13,6 +11,9 @@ COMMENT=	Multicast DNS repeater to re-broadcast mDNS packets across interfaces
 LICENSE=	GPLv2
 
 USE_HARDENING=	safestack
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	kennylevinsen
 
 USE_RC_SUBR=	mdns-repeater
 
