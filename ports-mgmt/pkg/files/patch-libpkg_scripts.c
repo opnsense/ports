@@ -1,15 +1,15 @@
---- libpkg/scripts.c.orig	2019-09-18 07:11:10 UTC
+--- libpkg/scripts.c.orig	2020-09-07 15:52:56 UTC
 +++ libpkg/scripts.c
-@@ -68,7 +68,7 @@ pkg_script_run(struct pkg * const pkg, p
- 	ssize_t bytes_written;
+@@ -70,7 +70,7 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
  	size_t script_cmd_len;
  	long argmax;
+ 	int cur_pipe[2];
 -#ifdef PROC_REAP_KILL
 +#ifdef PROC_REAP_KILL_XXX
  	bool do_reap;
  	pid_t mypid;
  	struct procctl_reaper_status info;
-@@ -103,7 +103,7 @@ pkg_script_run(struct pkg * const pkg, p
+@@ -108,7 +108,7 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
  
  	assert(i < sizeof(map) / sizeof(map[0]));
  
@@ -18,7 +18,7 @@
  	mypid = getpid();
  	do_reap = procctl(P_PID, mypid, PROC_REAP_ACQUIRE, NULL) == 0;
  #endif
-@@ -218,7 +218,6 @@ pkg_script_run(struct pkg * const pkg, p
+@@ -303,7 +303,6 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
  					exit(0);
  
  				pkg_emit_error("%s script failed", map[i].arg);
@@ -26,7 +26,7 @@
  				goto cleanup;
  			}
  		}
-@@ -232,7 +231,7 @@ cleanup:
+@@ -318,7 +317,7 @@ cleanup:
  	if (stdin_pipe[1] != -1)
  		close(stdin_pipe[1]);
  
