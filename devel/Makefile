@@ -1916,6 +1916,8 @@
     SUBDIR += p5-Color-ANSI-Util
     SUBDIR += p5-Color-RGB-Util
     SUBDIR += p5-Color-Theme-Role
+    SUBDIR += p5-ColorThemeBase-Static
+    SUBDIR += p5-ColorThemeUtil-ANSI
     SUBDIR += p5-Commandable
     SUBDIR += p5-Commands-Guarded
     SUBDIR += p5-CommitBit
@@ -2743,6 +2745,7 @@
     SUBDIR += p5-Module-List
     SUBDIR += p5-Module-Load
     SUBDIR += p5-Module-Load-Conditional
+    SUBDIR += p5-Module-Load-Util
     SUBDIR += p5-Module-Loaded
     SUBDIR += p5-Module-Loader
     SUBDIR += p5-Module-Manifest
@@ -3094,6 +3097,7 @@
     SUBDIR += p5-Regexp-Compare
     SUBDIR += p5-Regexp-Grammars
     SUBDIR += p5-Regexp-Lexer
+    SUBDIR += p5-Regexp-Pattern-Perl
     SUBDIR += p5-Regexp-RegGrp
     SUBDIR += p5-Regexp-Shellish
     SUBDIR += p5-Regexp-Subst-Parallel
@@ -4661,6 +4665,7 @@
     SUBDIR += py-nose-timer
     SUBDIR += py-nose2
     SUBDIR += py-noseofyeti
+    SUBDIR += py-nosexcover
     SUBDIR += py-notify
     SUBDIR += py-notify2
     SUBDIR += py-num2words
