@@ -141,6 +141,7 @@
     SUBDIR += drm-legacy-kmod
     SUBDIR += drm_info
     SUBDIR += dspdfviewer
+    SUBDIR += dssim
     SUBDIR += duhdraw
     SUBDIR += dynamechs
     SUBDIR += ebsynth
@@ -261,6 +262,7 @@
     SUBDIR += glosm
     SUBDIR += glpng
     SUBDIR += gltt
+    SUBDIR += glx-utils
     SUBDIR += gmic
     SUBDIR += gmic-qt
     SUBDIR += gmt
@@ -326,6 +328,7 @@
     SUBDIR += guile-cairo
     SUBDIR += guilib
     SUBDIR += gwenview
+    SUBDIR += h3
     SUBDIR += hdr_tools
     SUBDIR += heimer
     SUBDIR += hiptext
@@ -703,6 +706,7 @@
     SUBDIR += p5-ming
     SUBDIR += panoglview
     SUBDIR += panomatic
+    SUBDIR += partio
     SUBDIR += pastel
     SUBDIR += pcl-pointclouds
     SUBDIR += pdf2svg
@@ -787,6 +791,7 @@
     SUBDIR += proj
     SUBDIR += pstoedit
     SUBDIR += ptex
+    SUBDIR += py-openshadinglanguage
     SUBDIR += py-OWSLib
     SUBDIR += py-PyOpenGL
     SUBDIR += py-PyOpenGL-accelerate
@@ -820,6 +825,7 @@
     SUBDIR += py-graphviz
     SUBDIR += py-graphy
     SUBDIR += py-gvgen
+    SUBDIR += py-h3
     SUBDIR += py-hiplot
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg
@@ -870,6 +876,7 @@
     SUBDIR += py-qt5-svg
     SUBDIR += py-rasterio
     SUBDIR += py-rawkit
+    SUBDIR += py-s2
     SUBDIR += py-scikit-image
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
@@ -962,6 +969,7 @@
     SUBDIR += rubygem-scruffy
     SUBDIR += rx
     SUBDIR += s10sh
+    SUBDIR += s2
     SUBDIR += s2tc
     SUBDIR += sage
     SUBDIR += sam2p

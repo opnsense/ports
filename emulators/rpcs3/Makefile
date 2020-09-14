@@ -2,8 +2,8 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.12-10838 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g10820fa13
+DISTVERSION=	0.0.12-10876 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-gfe9c61fe7
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -35,9 +35,9 @@ GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-27-g9220f5e:hidapi/3rdparty/hidapi \
 		KhronosGroup:SPIRV-Headers:1.5.3.reservations1:spirv_headers/Vulkan/spirv-headers \
 		KhronosGroup:SPIRV-Tools:v2020.4:spirv_tools/Vulkan/spirv-tools \
 		KhronosGroup:glslang:8.13.3743-225-g517f39ee:glslang/Vulkan/glslang \
-		RipleyTom:wolfssl:v4.3.0-stable-424-gd0749c654:wolfssl/3rdparty/wolfssl \
 		tcbrindle:span:9d7559a:span/3rdparty/span \
 		USCiLab:cereal:v1.3.0-5-g60c69df9:cereal/3rdparty/cereal \
+		wolfSSL:wolfssl:v4.5.0-stable-80-g39b544860:wolfssl/3rdparty/wolfssl \
 		zeux:pugixml:v1.9-51-g8bf806c:pugixml/3rdparty/pugixml
 
 USES=		cmake compiler:c++17-lang gl iconv:wchar_t localbase:ldflags \
@@ -55,6 +55,14 @@ USES:=		${USES:Ncompiler*}
 CC=		clang${LLVM_DEFAULT}
 CXX=		clang++${LLVM_DEFAULT}
 CPP=		clang-cpp${LLVM_DEFAULT}
+
+# XXX Drop after FreeBSD 11.3/12.1 EOL
+.if make(makesum) || (!exists(/usr/include/c++/v1/fenv.h) && exists(/usr/lib/libc++.so))
+MASTER_SITES+=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VER}/:libcxx
+DISTFILES+=	libcxx-${LLVM_VER}.src.tar.xz:libcxx
+CXXFLAGS+=	-nostdinc++ -isystem${WRKDIR}/libcxx-${LLVM_VER}.src/include
+LLVM_VER=	10.0.1
+.endif
 
 OPTIONS_DEFINE=	ALSA EVDEV FAUDIO PULSEAUDIO VULKAN
 OPTIONS_DEFAULT=EVDEV FAUDIO VULKAN

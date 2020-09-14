@@ -226,6 +226,7 @@
     SUBDIR += ike
     SUBDIR += imds-filterd
     SUBDIR += integrit
+    SUBDIR += intel-ipsec-mb
     SUBDIR += ipfilter2dshield
     SUBDIR += ipfmeta
     SUBDIR += ipfw2dshield

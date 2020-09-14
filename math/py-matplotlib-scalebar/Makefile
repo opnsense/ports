@@ -2,12 +2,12 @@
 # $FreeBSD$
 
 PORTNAME=	matplotlib-scalebar
-PORTVERSION=	0.6.1
+PORTVERSION=	0.6.2
 CATEGORIES=	math python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	rhurlin@gwdg.de
+MAINTAINER=	rhurlin@FreeBSD.org
 COMMENT=	Artist for matplotlib to display a scale bar
 
 LICENSE=	MIT
