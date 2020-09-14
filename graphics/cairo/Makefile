@@ -2,13 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	cairo
-PORTVERSION=	1.16.0
-PORTEPOCH=	2
+PORTVERSION=	1.16.0 # update to 1.17.2 causes problems, see bug#249290
+PORTEPOCH=	3
 CATEGORIES=	graphics
 MASTER_SITES=	http://cairographics.org/releases/ \
 		http://cairographics.org/snapshots/
 
-MAINTAINER=	gnome@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Vector graphics library with cross-device output support
 
 LICENSE=	LGPL21 MPL11
