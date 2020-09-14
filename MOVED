@@ -7961,7 +7961,6 @@ databases/php5-propel||2016-01-25|Has expired: PHP 5.4 EOL reached
 deskutils/fengoffice||2016-01-25|Has expired: PHP 5.4 EOL reached
 devel/simpletest||2016-01-25|Has expired: PHP 5.4 EOL reached
 graphics/php5-swfed||2016-01-25|Has expired: PHP 5.4 EOL reached
-sysutils/loganalyzer||2016-01-25|Has expired: PHP 5.4 EOL reached
 textproc/simplehtmldom||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/autoindex2||2016-01-25|Has expired: PHP 5.4 EOL reached
 www/cakephp11||2016-01-25|Has expired: PHP 5.4 EOL reached
@@ -13332,7 +13331,6 @@ x11/dynamag||2019-10-16|Has expired: Unfetchable, unmaintained
 x11/xcurs||2019-10-16|Has expired: Unfetchable, unmaintained
 x11/xscreensaver-gnome||2019-10-16|Has expired: Unfetchable, unmaintained
 x11/xscreensaver-gnome-hacks||2019-10-16|Has expired: Unfetchable, unmaintained
-x11-clocks/cairo-clock||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-clocks/pclock||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-clocks/stopwatch||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-clocks/wmfuzzy||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -13851,7 +13849,6 @@ graphics/imgtops||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 graphics/imgv||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 graphics/lcms-python||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 graphics/mirage||2020-01-27|Has expired: Unmaintained, uses EOLed python27
-graphics/partio||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 graphics/py-exif||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 graphics/py-gd||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 graphics/py-paint||2020-01-27|Has expired: Unmaintained, uses EOLed python27
@@ -15429,3 +15426,5 @@ x11-wm/e-module-mem||2020-09-09|Removed
 x11-wm/e-module-rmb||2020-09-09|Removed
 x11-wm/e-module-wlan||2020-09-09|Removed
 x11-wm/e-modules||2020-09-09|Removed
+net/frr6|net/frr7|2020-09-10|Has expired: Uses deprecated version of python and upstream no longer maintained
+graphics/libdssim||2020-09-13|Removed: C API is empty, only usable from Rust
