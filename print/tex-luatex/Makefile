@@ -15,6 +15,8 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	Extended version of pdfTeX using Lua
 
+CONFIGURE_ENV="CFLAGS=-fPIC -fPIE -O2" "CXXFLAGS=-fPIC -fPIE -O2"
+
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libmpfr.so:math/mpfr \
 		libzzip.so:devel/zziplib

@@ -58,6 +58,7 @@
     SUBDIR += gtksourceview3-reference
     SUBDIR += gtksourceview4
     SUBDIR += gtksourceviewmm3
+    SUBDIR += guile-gnome-platform
     SUBDIR += irrlicht
     SUBDIR += itk
     SUBDIR += iwidgets
@@ -85,6 +86,7 @@
     SUBDIR += libgnomeui-reference
     SUBDIR += libgnomeuimm26
     SUBDIR += libhandy
+    SUBDIR += libhandy0
     SUBDIR += libsexy
     SUBDIR += libsexymm
     SUBDIR += libunique3
