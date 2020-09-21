@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	pygments
-PORTVERSION=	2.5.2
+DISTVERSION=	2.6.1
 PORTREVISION=	0
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
@@ -17,6 +17,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		python
 USE_PYTHON=	distutils concurrent autoplist
+
+CONFLICTS_INSTALL=	py??-pygments-25
 
 NO_ARCH=	yes
 
