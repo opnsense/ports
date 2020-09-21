@@ -57,6 +57,7 @@
     SUBDIR += compat7x
     SUBDIR += compat8x
     SUBDIR += compat9x
+    SUBDIR += concourse
     SUBDIR += countrycodes
     SUBDIR += cpuid
     SUBDIR += crosti
@@ -161,7 +162,6 @@
     SUBDIR += grc
     SUBDIR += gwhich
     SUBDIR += hashdb
-    SUBDIR += hb
     SUBDIR += hello
     SUBDIR += help2man
     SUBDIR += heyu2
@@ -216,6 +216,7 @@
     SUBDIR += libpostal
     SUBDIR += libpredict
     SUBDIR += libpri
+    SUBDIR += libsolv
     SUBDIR += libsupertone
     SUBDIR += libsweep-lidar
     SUBDIR += libutf
@@ -244,7 +245,6 @@
     SUBDIR += mnn
     SUBDIR += molequeue
     SUBDIR += morse
-    SUBDIR += mtail
     SUBDIR += mtx
     SUBDIR += mxnet
     SUBDIR += najitool
@@ -519,7 +519,6 @@
     SUBDIR += wmtunlo
     SUBDIR += wmweather+
     SUBDIR += wmwork
-    SUBDIR += wotsap
     SUBDIR += xdelta
     SUBDIR += xdelta3
     SUBDIR += xfce4-appfinder

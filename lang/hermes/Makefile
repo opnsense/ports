@@ -2,7 +2,7 @@
 
 PORTNAME=	hermes
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5.2-rc1
+DISTVERSION=	0.7.0
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-javascript-engine
 
@@ -11,6 +11,8 @@ COMMENT=	JavaScript engine
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	https://github.com/facebook/hermes/issues/356
 
 LIB_DEPENDS=	libicui18n.so:devel/icu
 TEST_DEPENDS=	zip:archivers/zip

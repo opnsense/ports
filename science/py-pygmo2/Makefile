@@ -2,8 +2,8 @@
 
 PORTNAME=	pygmo2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.15.0-121
-DISTVERSIONSUFFIX=	-gbe6c148
+DISTVERSION=	2.15.0-139
+DISTVERSIONSUFFIX=	-g15cf30d
 CATEGORIES=	science graphics
 #MASTER_SITES=	CHEESESHOP # https://github.com/esa/pygmo2/issues/53
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,5 +24,7 @@ GH_ACCOUNT=	esa
 GH_PROJECT=	pygmo2
 
 CMAKE_ON=	PYGMO_ENABLE_IPO
+
+CXXFLAGS+=	-I${LOCALBASE}/include/coin # see https://github.com/esa/pygmo2/issues/58
 
 .include <bsd.port.mk>

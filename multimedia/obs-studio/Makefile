@@ -11,7 +11,7 @@ COMMENT=	Open source streaming/recording software
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN_aarch64=	Fails to compile: invalid conversion between vector type and integer type
+BROKEN_i386=	https://github.com/obsproject/obs-browser/issues/241
 
 BUILD_DEPENDS=	v4l_compat>=0:multimedia/v4l_compat \
 		swig:devel/swig

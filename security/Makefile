@@ -30,7 +30,6 @@
     SUBDIR += apache-xml-security-c
     SUBDIR += apg
     SUBDIR += arirang
-    SUBDIR += arm
     SUBDIR += arpCounterattack
     SUBDIR += asignify
     SUBDIR += autossh
@@ -236,7 +235,6 @@
     SUBDIR += ipv6toolkit
     SUBDIR += isakmpd
     SUBDIR += isal-kmod
-    SUBDIR += ismtp
     SUBDIR += isnprober
     SUBDIR += jbrofuzz
     SUBDIR += john
@@ -900,7 +898,6 @@
     SUBDIR += py-gpsoauth
     SUBDIR += py-gssapi
     SUBDIR += py-gtts-token
-    SUBDIR += py-halberd
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
     SUBDIR += py-itsdangerous
@@ -978,6 +975,7 @@
     SUBDIR += py-scramp
     SUBDIR += py-scrypt
     SUBDIR += py-securesystemslib
+    SUBDIR += py-sequoia
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
     SUBDIR += py-social-auth-core
@@ -1158,6 +1156,7 @@
     SUBDIR += sectok
     SUBDIR += secure_delete
     SUBDIR += sedutil
+    SUBDIR += sequoia
     SUBDIR += setaudit
     SUBDIR += sha
     SUBDIR += sha1collisiondetection
@@ -1213,6 +1212,7 @@
     SUBDIR += sst
     SUBDIR += starttls
     SUBDIR += steghide
+    SUBDIR += stegify
     SUBDIR += step-certificates
     SUBDIR += step-cli
     SUBDIR += stoken
@@ -1226,7 +1226,6 @@
     SUBDIR += super
     SUBDIR += suricata
     SUBDIR += swatchdog
-    SUBDIR += switzerland
     SUBDIR += symbion-sslproxy
     SUBDIR += tailscale
     SUBDIR += tclsasl
@@ -1255,7 +1254,6 @@
     SUBDIR += tripwire-131
     SUBDIR += trousers
     SUBDIR += truecrypt
-    SUBDIR += tsshbatch
     SUBDIR += tthsum
     SUBDIR += u2f-devd
     SUBDIR += unhide

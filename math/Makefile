@@ -158,7 +158,6 @@
     SUBDIR += blaze
     SUBDIR += blazeiterative
     SUBDIR += blis
-    SUBDIR += blitz++
     SUBDIR += blocksolve95
     SUBDIR += bonmin
     SUBDIR += boolector
@@ -522,7 +521,6 @@
     SUBDIR += oleo
     SUBDIR += onednn
     SUBDIR += openblas
-    SUBDIR += openfst
     SUBDIR += openlibm
     SUBDIR += opensolaris-libm
     SUBDIR += openturns
@@ -753,7 +751,6 @@
     SUBDIR += py-fastcluster
     SUBDIR += py-fastdtw
     SUBDIR += py-flax
-    SUBDIR += py-fpconst
     SUBDIR += py-fpylll
     SUBDIR += py-gau2grid
     SUBDIR += py-gimmik
@@ -776,6 +773,7 @@
     SUBDIR += py-luminol
     SUBDIR += py-matplotlib
     SUBDIR += py-matplotlib-scalebar
+    SUBDIR += py-matplotlib2
     SUBDIR += py-mip
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
@@ -787,6 +785,7 @@
     SUBDIR += py-numexpr
     SUBDIR += py-numpoly
     SUBDIR += py-numpy
+    SUBDIR += py-numpy-stl
     SUBDIR += py-opt-einsum
     SUBDIR += py-or-tools
     SUBDIR += py-osqp

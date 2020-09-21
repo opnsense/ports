@@ -136,9 +136,7 @@
     SUBDIR += kuserfeedback
     SUBDIR += latte-dock
     SUBDIR += libkdepim
-    SUBDIR += ljcharm
     SUBDIR += ljclive
-    SUBDIR += logjam
     SUBDIR += lookbook
     SUBDIR += lumina-archiver
     SUBDIR += lumina-calculator
@@ -150,7 +148,6 @@
     SUBDIR += lumina-screenshot
     SUBDIR += lumina-textedit
     SUBDIR += lxqt-notificationd
-    SUBDIR += mat
     SUBDIR += mate-notification-daemon
     SUBDIR += mate-utils
     SUBDIR += mbox-importer
