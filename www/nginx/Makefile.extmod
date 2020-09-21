@@ -137,6 +137,7 @@ HTTP_NOTICE_VARS=		DSO_EXTMODS+=notice
 
 HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.1.14:push
 HTTP_PUSH_VARS=			DSO_EXTMODS+=push
+HTTP_PUSH_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nchan-store-private.h
 
 HTTP_PUSH_STREAM_GH_TUPLE=	wandenberg:nginx-push-stream-module:0.5.4:pushstream
 HTTP_PUSH_STREAM_VARS=		DSO_EXTMODS+=pushstream
@@ -193,6 +194,10 @@ HTTP_VIDEO_THUMBEXTRACTOR_VARS=		DSO_EXTMODS+=vte
 
 HTTP_ZIP_GH_TUPLE=	rtm-ctrlz:mod_zip:cfd0be4:mod_zip
 HTTP_ZIP_VARS=		DSO_EXTMODS+=mod_zip
+
+HTTPV2_AUTOTUNE_IMPLIES=HTTPV2
+HTTPV2_AUTOTUNE_CONFIGURE_ON=	--with-http_v2_autotune_upload
+HTTPV2_AUTOTUNE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-h2-autotune
 
 ICONV_IMPLIES=		DEVEL_KIT
 ICONV_USES=		iconv
