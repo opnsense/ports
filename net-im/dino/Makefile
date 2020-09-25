@@ -2,7 +2,7 @@
 
 PORTNAME=		dino
 DISTVERSIONPREFIX=	v
-DISTVERSION=		0.1.0.20200802
+DISTVERSION=		0.1.0.20200919
 CATEGORIES=		net-im
 
 MAINTAINER=		ashish@FreeBSD.org
@@ -10,8 +10,6 @@ COMMENT=		Modern XMPP Chat Client using GTK+/Vala
 
 LICENSE=		GPLv3
 LICENSE_FILE=		${WRKSRC}/LICENSE
-
-BROKEN=		Does not build with glib 2.66.0
 
 BUILD_DEPENDS=	vala:lang/vala
 LIB_DEPENDS=	libsqlite3.so:databases/sqlite3 \
@@ -25,7 +23,7 @@ USES=		cmake desktop-file-utils gettext-tools gnome \
 		ninja pkgconfig
 
 USE_GITHUB=	yes
-GH_TAGNAME=	ff9a9a0
+GH_TAGNAME=	7b58c1596aa13a7ef0dd7897e25f9a80c5929a07
 
 OPTIONS_DEFINE=		OMEMO UPLOAD GNUPG
 OPTIONS_DEFAULT=	OMEMO UPLOAD GNUPG

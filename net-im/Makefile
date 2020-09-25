@@ -11,7 +11,6 @@
     SUBDIR += coccinella
     SUBDIR += convey
     SUBDIR += cordless
-    SUBDIR += corebird
     SUBDIR += coyim
     SUBDIR += cutegram
     SUBDIR += diligent
@@ -56,7 +55,6 @@
     SUBDIR += libaccounts-qt5
     SUBDIR += libmesode
     SUBDIR += libnice
-    SUBDIR += libnice-gst010
     SUBDIR += libnice-gst1
     SUBDIR += libpurple
     SUBDIR += libqmatrixclient

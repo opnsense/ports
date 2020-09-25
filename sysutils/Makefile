@@ -253,6 +253,7 @@
     SUBDIR += disktype
     SUBDIR += dmg2img
     SUBDIR += dmidecode
+    SUBDIR += dnf
     SUBDIR += docker
     SUBDIR += docker-compose
     SUBDIR += docker-credential-pass
@@ -573,6 +574,7 @@
     SUBDIR += libcdio-paranoia
     SUBDIR += libchk
     SUBDIR += libcpuid
+    SUBDIR += libdnf
     SUBDIR += libfvde
     SUBDIR += libgksu
     SUBDIR += libieee1284
@@ -735,6 +737,7 @@
     SUBDIR += netevent
     SUBDIR += nfcutils
     SUBDIR += nitrogen
+    SUBDIR += nix
     SUBDIR += no-login
     SUBDIR += node_exporter
     SUBDIR += nomad
@@ -773,6 +776,7 @@
     SUBDIR += osinfo-db-tools
     SUBDIR += osquery
     SUBDIR += p5-App-RunCron
+    SUBDIR += p5-App-ZFSCurses
     SUBDIR += p5-BSD-Jail-Object
     SUBDIR += p5-BSD-Process
     SUBDIR += p5-BSD-Sysctl

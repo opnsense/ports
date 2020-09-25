@@ -94,6 +94,7 @@
     SUBDIR += courier-authlib-ldap
     SUBDIR += courier-sox
     SUBDIR += cppzmq
+    SUBDIR += croc
     SUBDIR += cryptcat
     SUBDIR += csocks
     SUBDIR += ctrace
@@ -1339,6 +1340,8 @@
     SUBDIR += sacc
     SUBDIR += samba410
     SUBDIR += samba411
+    SUBDIR += samba412
+    SUBDIR += samba413
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbd

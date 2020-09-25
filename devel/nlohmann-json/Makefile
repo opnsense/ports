@@ -4,6 +4,7 @@
 PORTNAME=	json
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.9.1
+PORTREVISION=	2
 CATEGORIES=	devel
 PKGNAMEPREFIX=	nlohmann-
 
@@ -20,13 +21,8 @@ GH_ACCOUNT=	nlohmann
 NO_BUILD=	yes
 NO_ARCH=	yes
 
+CMAKE_ON=	JSON_MultipleHeaders
 CMAKE_OFF=	JSON_BuildTests
-
-PLIST_FILES=	lib/cmake/nlohmann_json/nlohmann_jsonConfig.cmake \
-		lib/cmake/nlohmann_json/nlohmann_jsonConfigVersion.cmake \
-		lib/cmake/nlohmann_json/nlohmann_jsonTargets.cmake \
-		libdata/pkgconfig/nlohmann_json.pc \
-		include/nlohmann/json.hpp
 
 do-test:
 	@cd ${BUILD_WRKSRC} && \
