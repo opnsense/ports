@@ -15591,7 +15591,6 @@ textproc/plover||2020-09-19|Has expired: Uses deprecated version of python
 textproc/py-esmre||2020-09-19|Has expired: Uses deprecated version of python
 textproc/py-libxslt||2020-09-19|Has expired: Uses deprecated version of python
 textproc/py-pdfminer||2020-09-19|Has expired: Uses deprecated version of python
-textproc/translate-toolkit||2020-09-19|Has expired: Uses deprecated version of python
 www/bluefish||2020-09-19|Has expired: Uses deprecated version of python
 www/calendarserver||2020-09-19|Has expired: Uses deprecated version of python
 www/geeknote||2020-09-19|Has expired: Uses deprecated version of python
@@ -15624,3 +15623,7 @@ mail/tmda||2020-09-19|Has expired: Uses EOL Python 2.7
 devel/storm||2020-09-19|Has expired: Uses deprecated version of python
 dns/dnsmasq-devel|dns/dnsmasq|2020-09-24|Has expired: use dns/dnsmasq instead, which is newer
 shells/poshinit|shells/switchBashZsh|2020-09-24|Tracking upstream name change
+net-im/corebird||2020-09-25|Stopped working in august 2018
+devel/py-pyqi||2020-09-25|No longer developed, use devel/py-click instead
+net-im/libnice-gst010|net-im/libnice-gst1|2020-09-25|Not depended on, gstream0.10 support has been removed in newer versions
+graphics/evince-lite|graphics/evince@lite|2020-09-26|Has been replaced by a flavor
