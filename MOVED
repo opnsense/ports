@@ -15181,7 +15181,6 @@ audio/py-openal||2020-08-15|Has expired: Uses deprecated version of python
 audio/py-py-jack||2020-08-15|Has expired: Uses deprecated version of python
 audio/py-xmms2||2020-08-15|Has expired: Uses deprecated version of python
 audio/triceratops-lv2||2020-08-15|Has expired: Uses deprecated version of python
-biology/py-biom-format||2020-08-15|Has expired: Uses deprecated version of python
 comms/py-bulksms||2020-08-15|Has expired: Uses deprecated version of python
 comms/py-gammu||2020-08-15|Has expired: Uses deprecated version of python
 databases/py-geoalchemy||2020-08-15|Has expired: Uses deprecated version of python
@@ -15389,7 +15388,6 @@ games/xminesweep||2020-08-27|Has expired: Broken for more than 6 months
 graphics/backfract||2020-08-27|Has expired: Broken for more than 6 months
 japanese/kanjipad||2020-08-27|Has expired: Broken for more than 6 months
 japanese/xdtp||2020-08-27|Has expired: Broken for more than 6 months
-math/barvinok||2020-08-27|Has expired: Broken for more than 6 months
 math/openmesh||2020-08-27|Has expired: Broken for more than 6 months
 math/rehearse||2020-08-27|Has expired: Broken for more than 6 months
 net/hinfo||2020-08-27|Has expired: Broken for more than 6 months
@@ -15535,7 +15533,6 @@ lang/julia11||2020-09-19|Has expired: Uses deprecated version of python
 lang/tinypy||2020-09-19|Has expired: Uses deprecated version of python
 mail/cleanup-maildir||2020-09-19|Has expired: Uses deprecated version of python
 mail/courier-pythonfilter||2020-09-19|Has expired: Uses deprecated version of python
-mail/getmail|mail/getmail6|2020-09-19|Has expired: Uses deprecated version of python
 mail/muttils||2020-09-19|Has expired: Uses deprecated version of python
 mail/nohtml||2020-09-19|Has expired: Uses deprecated version of python
 mail/offlineimap||2020-09-19|Has expired: Uses deprecated version of python
@@ -15625,3 +15622,5 @@ deskutils/logjam||2020-09-19|Abandonware does not work anymore
 mail/squirrelmail-tmda-plugin||2020-09-19|Removed, unmaintained and depends on expired mail/tmda
 mail/tmda||2020-09-19|Has expired: Uses EOL Python 2.7
 devel/storm||2020-09-19|Has expired: Uses deprecated version of python
+dns/dnsmasq-devel|dns/dnsmasq|2020-09-24|Has expired: use dns/dnsmasq instead, which is newer
+shells/poshinit|shells/switchBashZsh|2020-09-24|Tracking upstream name change
