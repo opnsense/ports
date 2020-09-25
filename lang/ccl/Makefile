@@ -3,6 +3,7 @@
 PORTNAME=	ccl
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.12
+PORTREVISION=	1
 CATEGORIES=	lang lisp
 MASTER_SITES+=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/v${PORTVERSION}/:bootstrap
 DISTFILES=	freebsdx86.tar.gz:bootstrap
@@ -32,6 +33,7 @@ USE_ASDF=	yes
 .if ${OSVERSION} < 1200000
 IGNORE=         does not build on FreeBSD < 12.0
 .endif
+BUILD_DEPENDS+=	as:devel/binutils
 
 LISP_ARCH=	x8664
 FX86CL=		fx86cl64

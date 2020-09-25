@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	got
-PORTVERSION=	0.40
+PORTVERSION=	0.41
 CATEGORIES=	devel
 MASTER_SITES=	https://gameoftrees.org/releases/
 
@@ -13,7 +13,12 @@ LICENSE_FILE=	${WRKSRC}/LICENCE
 
 USES=		uidfix
 
+n=		${.newline}
 post-extract:
+	@${FIND} ${WRKSRC} -name '*.[cy]' -exec \
+	    ${REINPLACE_CMD} '1,/^#include "/{ \
+	    /^#include "/i\$n#include "openbsd-compat.h"\$n$n}' \
+	    {} +
 	${CP} -R ${FILESDIR}/openbsd-compat ${WRKSRC}
 
 # The regression test suite requires:

@@ -107,7 +107,7 @@ PLIST+=		${.CURDIR}/pkg-plist.i386
 .if ${TARGETARCH:Mmips*}
 PLIST+=		${.CURDIR}/pkg-plist.mips
 .endif
-.if ${TARGETARCH} == "powerpc64"
+.if ${TARGETARCH:Mpowerpc64*}
 PLIST+=		${.CURDIR}/pkg-plist.powerpc64
 .elif ${TARGETARCH:Mpowerpc*}
 PLIST+=		${.CURDIR}/pkg-plist.powerpc

@@ -468,6 +468,7 @@
     SUBDIR += healthd
     SUBDIR += heirloom
     SUBDIR += helm
+    SUBDIR += hexpeek
     SUBDIR += hextools
     SUBDIR += hexyl
     SUBDIR += hfsexplorer
@@ -1294,6 +1295,7 @@
     SUBDIR += terraform
     SUBDIR += terraform-provider-gridscale
     SUBDIR += terraform-provider-vultr
+    SUBDIR += terragrunt
     SUBDIR += testdisk
     SUBDIR += thefish
     SUBDIR += timelimit
