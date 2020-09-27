@@ -11,6 +11,9 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	GNOME 3 display manager
 
+LICENSE=	GPLv2
+LICENSE_FILES=	${WRKSRC}/COPYING
+
 BUILD_DEPENDS=	zenity>=3.0.0:x11/zenity \
 		itstool:textproc/itstool \
 		iso-codes>=0:misc/iso-codes
@@ -20,7 +23,6 @@ LIB_DEPENDS=	libck-connector.so:sysutils/consolekit2 \
 		libcanberra.so:audio/libcanberra \
 		libcanberra-gtk3.so:audio/libcanberra-gtk3
 RUN_DEPENDS=	zenity>=3.0.0:x11/zenity \
-		gnome-shell>=3.15.92:x11/gnome-shell \
 		gnome-settings-daemon>=3.0.0:sysutils/gnome-settings-daemon \
 		gnome-keyring-3:security/gnome-keyring \
 		gnome-session>=3.0.0:x11/gnome-session \

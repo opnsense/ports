@@ -1073,6 +1073,7 @@
     SUBDIR += py-python-novaclient
     SUBDIR += py-python-novaclient16
     SUBDIR += py-python-openstackclient
+    SUBDIR += py-python-socks
     SUBDIR += py-python-twitter
     SUBDIR += py-pytradfri
     SUBDIR += py-pyvmomi

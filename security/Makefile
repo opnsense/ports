@@ -120,6 +120,7 @@
     SUBDIR += dehydrated
     SUBDIR += denyhosts
     SUBDIR += destroy
+    SUBDIR += digestpp
     SUBDIR += dirbuster
     SUBDIR += dirmngr
     SUBDIR += distcache
@@ -203,6 +204,7 @@
     SUBDIR += gwee
     SUBDIR += hackbot
     SUBDIR += hardening-check
+    SUBDIR += hash
     SUBDIR += hashcat
     SUBDIR += hashcat-legacy
     SUBDIR += heaan
