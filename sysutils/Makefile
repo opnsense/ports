@@ -276,6 +276,7 @@
     SUBDIR += dtrace-toolkit
     SUBDIR += du2ps
     SUBDIR += dua-cli
+    SUBDIR += duf
     SUBDIR += duff
     SUBDIR += dunst
     SUBDIR += dupd
@@ -1283,7 +1284,6 @@
     SUBDIR += syslog-ng329
     SUBDIR += syslogger
     SUBDIR += sysrc
-    SUBDIR += system-tools-backends
     SUBDIR += sysvbanner
     SUBDIR += tai64nfrac
     SUBDIR += tarsnap
