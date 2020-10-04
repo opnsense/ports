@@ -3,7 +3,7 @@
 
 PORTNAME=	amule
 PORTVERSION=	2.3.2
-PORTREVISION=	10
+PORTREVISION=	11
 CATEGORIES=	net-p2p
 MASTER_SITES=	SF/${PORTNAME}/aMule/${PORTVERSION}
 DISTNAME=	aMule-${PORTVERSION}
@@ -89,6 +89,7 @@ UPNP_LIB_DEPENDS=	libupnp.so:devel/upnp
 UPNP_CONFIGURE_OFF=	--disable-upnp
 
 WEBSERVER_CONFIGURE_ON=	--enable-webserver
+WEBSERVER_LIB_DEPENDS=  libpng.so:graphics/png
 WEBSERVER_USES=		readline
 
 WXCAS_CONFIGURE_ON=	--enable-wxcas

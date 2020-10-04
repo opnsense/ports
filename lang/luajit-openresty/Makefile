@@ -3,13 +3,12 @@
 
 PORTNAME=	luajit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1-20200102
+DISTVERSION=	2.1-20201002
+PORTREVISION=	1
 CATEGORIES=	lang
 PKGNAMESUFFIX=	-openresty
 
 PATCH_SITES=	https://github.com/openresty/luajit2/commit/
-PATCHFILES=	981ec8d2aac5cac76bdedd4015b6d32447b29597.patch:-p1 \
-		2763a421d6219c8cb2bbd39246de619dc796bab6.patch:-p1
 
 MAINTAINER=	mm@FreeBSD.org
 COMMENT=	Just-In-Time Compiler for Lua (OpenResty branch)
@@ -40,9 +39,15 @@ PLIST_SUB+=	VERSION=${LUAJIT_VERSION} SOVERSION=${LUAJIT_SOVERSION}
 USE_GCC=yes
 .endif
 
+.include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200000
+MAKE_ARGS+=	XCFLAGS=-DLJ_TARGET_HAS_GETENTROPY=0 Q=
+.endif
+
 post-install:
 	${LN} -sf ${PORTNAME}-${LUAJIT_VERSION} \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 	${INSTALL_MAN} ${WRKSRC}/etc/luajit.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

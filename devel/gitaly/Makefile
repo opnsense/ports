@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	gitaly
-DISTVERSION=	13.4.1
-PORTREVISION=	0
+DISTVERSION=	13.4.2
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -43,7 +43,7 @@ MAKE_ENV=	GOFLAGS="${GO_BUILDFLAGS}"
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find this here: https://gitlab.com/gitlab-org/gitaly/-/tags
-GL_COMMIT=	5e5eb156e8b4ece0df1e6253b3f5e2223ce3b8a0
+GL_COMMIT=	60a08d8121b1019ee7868a9d8e22e6f3d98233ad
 
 # for go dependencies
 USE_GITHUB=	nodefault
@@ -56,7 +56,7 @@ GH_TUPLE=	\
 		census-instrumentation:opencensus-go:v0.22.2:census_instrumentation_opencensus_go/vendor/go.opencensus.io \
 		client9:reopen:v1.0.0:client9_reopen/vendor/github.com/client9/reopen \
 		cloudflare:tableflip:4baec9811f2b:cloudflare_tableflip/vendor/github.com/cloudflare/tableflip \
-		codahale:hdrhistogram:3a0bb77429bd:codahale_hdrhistogram/vendor/github.com/codahale/hdrhistogram \
+		HdrHistogram:hdrhistogram-go:3a0bb77429bd:codahale_hdrhistogram_go/vendor/github.com/codahale/hdrhistogram \
 		davecgh:go-spew:v1.1.1:davecgh_go_spew/vendor/github.com/davecgh/go-spew \
 		getsentry:sentry-go:v0.5.1:getsentry_sentry_go/vendor/github.com/getsentry/sentry-go \
 		go-gorp:gorp:v1.7.2:go_gorp_gorp/vendor/gopkg.in/gorp.v1 \

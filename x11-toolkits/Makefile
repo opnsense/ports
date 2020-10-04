@@ -153,6 +153,7 @@
     SUBDIR += p5-Tk-ToolBar
     SUBDIR += p5-Tk-WaitBox
     SUBDIR += pango
+    SUBDIR += pangolin
     SUBDIR += pangomm
     SUBDIR += pangox-compat
     SUBDIR += pangoxsl
@@ -168,6 +169,7 @@
     SUBDIR += py-qt5-chart
     SUBDIR += py-qt5-gui
     SUBDIR += py-qt5-quick
+    SUBDIR += py-qt5-quick3d
     SUBDIR += py-qt5-quickwidgets
     SUBDIR += py-qt5-widgets
     SUBDIR += py-tkinter
