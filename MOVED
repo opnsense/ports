@@ -7068,7 +7068,6 @@ x11/gnome2-fifth-toe||2014-11-19|GNOME 2 was removed
 x11/gnome2-lite||2014-11-19|GNOME 2 was removed
 x11/gnome2-power-tools||2014-11-19|GNOME 2 was removed
 x11/xfce4-xfapplet-plugin||2014-11-19|Depends on removed gnome-panel
-net-im/telegram-cli||2014-11-19|Duplicate of net-im/tg
 emulators/wine-doors||2014-11-19|Abandonware, depends on non existing USE_GNOME components
 x11/gtstarter||2014-11-19|Abandonware, depends on non existing USE_GNOME components
 sysutils/serpentine||2014-11-19|Abandonware, depends on non existing USE_GNOME components
@@ -15633,3 +15632,6 @@ net/libproxy-gnome2||2020-09-30|Removed gnome2 port not depended on
 sysutils/system-tools-backends||2020-09-30|Abandonware from gnome2 era
 multimedia/py-gstreamer|multimedia/py-gstreamer1|2020-09-30|Has expired: Uses deprecated version of python
 lang/spidermonkey68|lang/spidermonkey78|2020-10-01|Replaced by a more recent version
+audio/zinf||2020-10-02|Has expired: Does not build, no upstream
+emulators/qemu-sbruno|emulators/qemu|2020-10-02|Has expired: Port will be removed in favor of emulators/qemu
+dns/knot2-lib|dns/knot3-lib|2020-10-04|Replaced by a more recent version
