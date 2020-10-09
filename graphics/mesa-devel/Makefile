@@ -1,8 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	mesa
-DISTVERSION=	20.2-branchpoint-2133
-DISTVERSIONSUFFIX=	-ge33f9dbc1af
+DISTVERSION=	20.2-branchpoint-2251
+DISTVERSIONSUFFIX=	-g0cb17757ff7
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -102,7 +102,7 @@ LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
 LIBUNWIND_MESON_ENABLED=	libunwind
 
 LLVM_DESC=		Build with LLVM support
-LLVM_LIB_DEPENDS=	libLLVM-${LLVM_DEFAULT:C/^([6-9])0/\1/:S/-devel/11/}.so:devel/llvm${LLVM_DEFAULT}
+LLVM_LIB_DEPENDS=	libLLVM-${LLVM_DEFAULT:C/^([6-9])0/\1/:S/-devel/12/}.so:devel/llvm${LLVM_DEFAULT}
 LLVM_MESON_ENABLED=	llvm
 LLVM_BINARY_ALIAS=	llvm-config=llvm-config${LLVM_DEFAULT}
 .for i in r600 radeonsi radv

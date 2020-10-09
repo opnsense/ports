@@ -31,6 +31,7 @@
     SUBDIR += atompaw
     SUBDIR += avogadro2
     SUBDIR += avogadrolibs
+    SUBDIR += axom
     SUBDIR += bagel
     SUBDIR += bddsolve
     SUBDIR += berkeleygw
@@ -52,6 +53,7 @@
     SUBDIR += clipper
     SUBDIR += code_saturne
     SUBDIR += colt
+    SUBDIR += conduit
     SUBDIR += coordgenlibs
     SUBDIR += cp2k
     SUBDIR += cp2k-data
