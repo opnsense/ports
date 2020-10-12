@@ -2,7 +2,7 @@
 
 PORTNAME=	luatex
 PORTVERSION=	0.80.0
-PORTREVISION=	20
+PORTREVISION=	21
 CATEGORIES=	print
 MASTER_SITES=	ftp://tug.org/historic/systems/texlive/2015/
 PKGNAMEPREFIX=	tex-
@@ -15,7 +15,7 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	Extended version of pdfTeX using Lua
 
-CONFIGURE_ENV="CFLAGS=-fPIC -fPIE -O2" "CXXFLAGS=-fPIC -fPIE -O2"
+CONFIGURE_ENV="CFLAGS=-fPIC -fPIE -O2 -fcommon" "CXXFLAGS=-fPIC -fPIE -O2 -fcommon"
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libmpfr.so:math/mpfr \

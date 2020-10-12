@@ -536,8 +536,10 @@
     SUBDIR += mpg321
     SUBDIR += mpiosh
     SUBDIR += mps
+    SUBDIR += mpz
     SUBDIR += mumble
     SUBDIR += murmur
+    SUBDIR += murmur-cli
     SUBDIR += muse-sequencer
     SUBDIR += musepack
     SUBDIR += musescore
