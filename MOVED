@@ -9785,7 +9785,6 @@ audio/linux-mbrola||2018-01-28|Has expired: Depends on expiring audio/mbrolavox
 audio/gigedit||2018-01-28|Has expired: Broken for more than 6 months
 audio/gnomoradio||2018-01-28|Has expired: Broken for more than 6 months
 math/asir2000||2018-01-28|Has expired: Broken for more than 6 months
-multimedia/librespot||2018-01-28|Has expired: Broken for more than 6 months
 multimedia/bombono||2018-01-28|Has expired: Broken for more than 6 months
 lang/gcl||2018-01-28|Has expired: Broken for more than 6 months
 lang/pike78||2018-01-28|Has expired: Broken for more than 6 months
@@ -15498,7 +15497,6 @@ devel/grumpy||2020-09-19|Has expired: Uses deprecated version of python
 devel/hg-git||2020-09-19|Has expired: Uses deprecated version of python
 devel/libnxt||2020-09-19|Has expired: Uses deprecated version of python
 devel/libredblack||2020-09-19|Has expired: Uses deprecated version of python
-devel/llvm-cheri||2020-09-19|Has expired: Uses deprecated version of python
 devel/phpsh||2020-09-19|Has expired: Uses deprecated version of python
 devel/py-backports.shutil_which||2020-09-19|Has expired: Uses deprecated version of python
 devel/py-notify||2020-09-19|Has expired: Uses deprecated version of python
@@ -15548,7 +15546,6 @@ misc/hb||2020-09-19|Has expired: Uses deprecated version of python
 misc/mtail||2020-09-19|Has expired: Uses deprecated version of python
 misc/wotsap||2020-09-19|Has expired: Uses deprecated version of python
 multimedia/freevo||2020-09-19|Has expired: Uses deprecated version of python
-multimedia/quodlibet||2020-09-19|Has expired: Uses deprecated version of python
 multimedia/tovid||2020-09-19|Has expired: Uses deprecated version of python
 net/ceph13|net/ceph14|2020-09-19|Has expired: Uses deprecated version of python
 net/cloud-init-azure||2020-09-19|Has expired: Uses deprecated version of python
@@ -15640,4 +15637,17 @@ lang/spidermonkey68|lang/spidermonkey78|2020-10-01|Replaced by a more recent ver
 audio/zinf||2020-10-02|Has expired: Does not build, no upstream
 emulators/qemu-sbruno|emulators/qemu|2020-10-02|Has expired: Port will be removed in favor of emulators/qemu
 dns/knot2-lib|dns/knot3-lib|2020-10-04|Replaced by a more recent version
+devel/git-gui|devel/git@gui|2020-10-12|Replaced by a flavor
+devel/git-lite|devel/git@lite|2020-10-12|Replaced by a flavor
 graphics/libxatracker|graphics/mesa-gallium-xa|2020-10-12|Rename to have all gallium driver properly named
+sysutils/gnome-mount||2020-10-12|Replaced by gio/gvfs
+sysutils/syslog-ng322|sysutils/syslog-ng|2020-10-12|Has expired: Agreed upon upstream one year deprecation policy
+sysutils/syslog-ng321|sysutils/syslog-ng|2020-10-12|Has expired: Agreed upon upstream one year deprecation policy
+sysutils/syslog-ng320|sysutils/syslog-ng|2020-10-12|Has expired: Agreed upon upstream one year deprecation policy
+dns/opendnssec|dns/opendnssec2|2020-10-12|Has expired: EOLed by upstream
+sysutils/syslog-ng323|sysutils/syslog-ng|2020-10-12|Has expired: Agreed upon upstream one year deprecation policy
+devel/libsoup-gnome|devel/libsoup|2020-10-12|Reunited into on package they have the same dependencies
+sysutils/plasma5-user-manager|x11/plasma5-plasma-desktop|2020-10-13|Reintegrated into other plasma5 components
+devel/geany-plugin-geanypy||2020-10-15|Has expired: Uses deprecated version of python
+comms/chirp||2020-10-16|Use deprecated version of python
+x11-toolkits/py-gtk2||2020-10-16|Remove deprecated binding replace by py-gobject
