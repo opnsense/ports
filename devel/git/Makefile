@@ -12,14 +12,26 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX} \
 		${PORTNAME}-manpages-${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	garga@FreeBSD.org
-COMMENT?=	Distributed source code management tool
+COMMENT=	Distributed source code management tool
+.if ${FLAVOR:U} == gui
+COMMENT+=	(GUI enabled flavor)
+.elif ${FLAVOR:U} == lite
+COMMENT+=	(lite flavor)
+.endif
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf gmake iconv shebangfix ssl tar:xz
+FLAVORS=	default gui lite
+default_CONFLICTS_INSTALL=	git-gui git-lite
+gui_CONFLICTS_INSTALL=		git git-lite
+gui_DESCR=			${.CURDIR}/pkg-descr-gui
+gui_PKGNAMESUFFIX=		-gui
+lite_CONFLICTS_INSTALL=		git git-gui
+lite_DESCR=			${.CURDIR}/pkg-descr-lite
+lite_PKGNAMESUFFIX=		-lite
 
-CONFLICTS_INSTALL?=	git-gui-[0-9]* git-lite-[0-9]*
+USES=		autoreconf gmake iconv shebangfix ssl tar:xz
 
 USERS=		git_daemon
 GROUPS=		git_daemon
@@ -60,6 +72,12 @@ OPTIONS_DEFINE=	GUI SVN GITWEB CONTRIB P4 CVS HTMLDOCS PERL ICONV CURL \
 		SEND_EMAIL NLS SUBTREE
 OPTIONS_DEFAULT=	CONTRIB P4 CVS PERL GITWEB ICONV CURL SEND_EMAIL PCRE \
 			SUBTREE SVN
+.if ${FLAVOR:U} == gui
+OPTIONS_DEFAULT+=	GUI
+.elif ${FLAVOR:U} == lite
+OPTIONS_EXCLUDE=	GUI SVN GITWEB CONTRIB P4 CVS PERL
+.endif
+
 OPTIONS_SUB=	yes
 
 CONTRIB_DESC=	Install contributed scripts
