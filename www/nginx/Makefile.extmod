@@ -39,8 +39,13 @@ DRIZZLE_VARS=		DSO_EXTMODS+=drizzle
 
 DYNAMIC_TLS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-dynamic_tls_records
 
-DYNAMIC_UPSTREAM_GH_TUPLE=	cubicdaiya:ngx_dynamic_upstream:cc5dac3:dynamic_upstream
+DYNAMIC_UPSTREAM_GH_TUPLE=	ZigzagAK:ngx_dynamic_upstream:960eef2:dynamic_upstream
 DYNAMIC_UPSTREAM_VARS=		DSO_EXTMODS+=dynamic_upstream
+
+DYNAMIC_HC_GH_TUPLE=	ZigzagAK:ngx_dynamic_healthcheck:61acf02:dynamic_hc
+DYNAMIC_HC_VARS=		DSO_EXTMODS+=dynamic_hc
+DYNAMIC_HC_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_dynamic_healthcheck-config
+DYNAMIC_HC_IMPLIES=	DYNAMIC_UPSTREAM
 
 DEVEL_KIT_GH_TUPLE=		simpl:ngx_devel_kit:v0.3.1:devel_kit
 DEVEL_KIT_VARS=			FIRST_DSO_EXTMODS+=devel_kit
@@ -73,7 +78,7 @@ HTTP_AUTH_JWT_GH_TUPLE=		TeslaGov:ngx-http-auth-jwt-module:80d89d9:http_auth_jwt
 HTTP_AUTH_JWT_VARS=			DSO_EXTMODS+=http_auth_jwt
 HTTP_AUTH_JWT_LIB_DEPENDS=	libjwt.so:www/libjwt libjansson.so:devel/jansson
 
-HTTP_AUTH_KRB5_GH_TUPLE=	stnoonan:spnego-http-auth-nginx-module:21bb963:auth_krb5
+HTTP_AUTH_KRB5_GH_TUPLE=	stnoonan:spnego-http-auth-nginx-module:72c8ee0:auth_krb5
 HTTP_AUTH_KRB5_VARS=		DSO_EXTMODS+=auth_krb5
 HTTP_AUTH_KRB5_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-spnego-http-auth-nginx-module-config
 
