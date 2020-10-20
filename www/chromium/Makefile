@@ -142,7 +142,7 @@ PAGEEXEC_DISABLE=	share/chromium/chrome
 MPROTECT_DISABLE=	share/chromium/chrome
 
 .if !defined(GN_ONLY)
-SUB_FILES=	chromium-browser.desktop chrome pkg-message
+SUB_FILES=	chromium-browser.desktop chrome
 SUB_LIST+=	COMMENT="${COMMENT}"
 
 OPTIONS_DEFINE=	CODECS CUPS DEBUG DRIVER KERBEROS TEST

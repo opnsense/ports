@@ -58,6 +58,9 @@ TEST_DEPENDS=	electron${ELECTRON_VER_MAJOR}:devel/electron${ELECTRON_VER_MAJOR} 
 USES=		desktop-file-utils gl gmake gnome jpeg pkgconfig \
 		python:build shebangfix xorg
 
+PAGEEXEC_DISABLE=	share/code-oss/code-oss
+MPROTECT_DISABLE=	share/code-oss/code-oss
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
 

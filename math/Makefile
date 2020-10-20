@@ -198,6 +198,7 @@
     SUBDIR += coin-or-data-sample
     SUBDIR += coin-or-data-stochastic
     SUBDIR += coinmp
+    SUBDIR += coinmumps
     SUBDIR += coinutils
     SUBDIR += combblas
     SUBDIR += concorde
@@ -837,6 +838,7 @@
     SUBDIR += py-snuggs
     SUBDIR += py-spectral
     SUBDIR += py-spot
+    SUBDIR += py-ssm
     SUBDIR += py-statsmodels
     SUBDIR += py-statsmodels010
     SUBDIR += py-svgmath

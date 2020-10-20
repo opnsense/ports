@@ -2,16 +2,14 @@
 # $FreeBSD$
 
 PORTNAME=	emacs
-DISTVERSION=	28.0.50.20201006
+DISTVERSION=	28.0.50.20201014
 PORTEPOCH=	2
 CATEGORIES=	editors
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	emacs@FreeBSD.org
-COMMENT=	GNU editing macros
-.if ${FLAVOR:U} == nox
-COMMENT+=	(No X flavor)
-.endif
+COMMENT=	GNU editing macros ${COMMENT_${FLAVOR}}
+COMMENT_nox=	(No X flavor)
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -30,7 +28,7 @@ USES=		autoreconf:build cpe gmake localbase:ldflags ncurses pkgconfig
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	278c9d6
+GH_TAGNAME=	051d31c
 
 .if ${FLAVOR:U} != nox
 USES+=		desktop-file-utils gnome xorg

@@ -2,8 +2,7 @@
 
 PORTNAME=	signal-cli
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.10
-PORTREVISION=	1
+DISTVERSION=	0.6.11
 CATEGORIES=	net-im java
 MASTER_SITES=	https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-annotations/2.9.0/:_jackson_annotations \
 		https://repo.maven.apache.org/maven2/com/fasterxml/jackson/core/jackson-core/2.9.9/:_jackson_core \
@@ -108,12 +107,14 @@ SUB_LIST=	JAVA_HOME="${JAVA_HOME}"
 USERS=		signal-cli
 GROUPS=		signal-cli
 
+PLIST_SUB=	VERSION=${DISTVERSION}
+
 OPTIONS_DEFINE=		DBUS
 OPTIONS_DEFAULT=	DBUS
 
+DBUS_RUN_DEPENDS=	dbus>0:devel/dbus
 DBUS_PLIST_FILES=	etc/dbus-1/system.d/org.asamk.Signal.conf \
 			share/dbus-1/services/org.asamk.Signal.service
-DBUS_RUN_DEPENDS=	dbus>0:devel/dbus
 
 _GRADLE_CMD=		${LOCALBASE}/bin/gradle
 _GRADLE_ARGS=		-Dorg.gradle.java.home="${JAVA_HOME}" --no-daemon --offline --quiet

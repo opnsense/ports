@@ -3,7 +3,7 @@
 
 PORTNAME=	gnome3
 PORTVERSION=	3.36
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES?=	x11 gnome
 
 MAINTAINER=	gnome@FreeBSD.org
@@ -21,7 +21,6 @@ RUN_DEPENDS?=	dconf-editor:devel/dconf-editor \
 		gnome-keyring>=3.0.0:security/gnome-keyring \
 		gnome-power-manager>=3.0.0:sysutils/gnome-power-manager \
 		orca>=3.0.0:accessibility/orca \
-		gnome-mount:sysutils/gnome-mount \
 		gnome-shell>=3.0.0:x11/gnome-shell \
 		gnome-shell-extensions>=3.0.0:x11/gnome-shell-extensions \
 		gnome-tweaks:deskutils/gnome-tweaks \
@@ -72,8 +71,7 @@ RUN_DEPENDS+=	epiphany>=3.0.0:www/epiphany \
 		gconf-editor>=3.0.0:sysutils/gconf-editor \
 		gnome-color-manager>=0:graphics/gnome-color-manager \
 		evolution>=3.0.0:mail/evolution \
-		cheese>=3.0.0:multimedia/cheese \
-		ekiga:net-im/ekiga
+		cheese>=3.0.0:multimedia/cheese
 
 .endif # !gnome3-lite section
 

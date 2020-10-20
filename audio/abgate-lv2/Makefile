@@ -2,8 +2,7 @@
 
 PORTNAME=	abGate
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.9
-PORTREVISION=	3
+DISTVERSION=	1.2.0
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -12,8 +11,6 @@ COMMENT=	Noise gate LV2 plugin
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN=		gate.cpp:47:41: error: unknown type name '_LV2_Descriptor'; did you mean 'LV2_Descriptor'?
 
 BUILD_DEPENDS=	lv2>0:audio/lv2
 

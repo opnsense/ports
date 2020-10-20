@@ -722,7 +722,6 @@
     SUBDIR += geany-plugin-defineformat
     SUBDIR += geany-plugin-doc
     SUBDIR += geany-plugin-extrasel
-    SUBDIR += geany-plugin-geanypy
     SUBDIR += geany-plugin-gendoc
     SUBDIR += geany-plugin-geniuspaste
     SUBDIR += geany-plugin-git-changebar
@@ -784,9 +783,7 @@
     SUBDIR += git-cola
     SUBDIR += git-delta
     SUBDIR += git-extras
-    SUBDIR += git-gui
     SUBDIR += git-lfs
-    SUBDIR += git-lite
     SUBDIR += git-merge-changelog
     SUBDIR += git-modes
     SUBDIR += git-review
@@ -1108,6 +1105,7 @@
     SUBDIR += libconcurrent
     SUBDIR += libconfig
     SUBDIR += libconfuse
+    SUBDIR += libcreg
     SUBDIR += libcrossguid
     SUBDIR += libcutl
     SUBDIR += libcwd
@@ -1161,6 +1159,7 @@
     SUBDIR += libfortuna
     SUBDIR += libfreefare
     SUBDIR += libfsapfs
+    SUBDIR += libfsext
     SUBDIR += libfsntfs
     SUBDIR += libftdi
     SUBDIR += libftdi1
@@ -1298,7 +1297,6 @@
     SUBDIR += libsmpp34
     SUBDIR += libsmraw
     SUBDIR += libsoup
-    SUBDIR += libsoup-gnome
     SUBDIR += libspark2012
     SUBDIR += libspice-server
     SUBDIR += libstatgrab
@@ -1386,6 +1384,7 @@
     SUBDIR += llbuild
     SUBDIR += llnextgen
     SUBDIR += llvm
+    SUBDIR += llvm-cheri
     SUBDIR += llvm-devel
     SUBDIR += llvm10
     SUBDIR += llvm11
@@ -1416,6 +1415,7 @@
     SUBDIR += love5
     SUBDIR += lpc21isp
     SUBDIR += lrmi
+    SUBDIR += lua-argparse
     SUBDIR += lua-bitlib
     SUBDIR += lua-bitop
     SUBDIR += lua-cjson
@@ -4177,6 +4177,7 @@
     SUBDIR += py-bandit
     SUBDIR += py-bcdoc
     SUBDIR += py-beautifultable
+    SUBDIR += py-behave
     SUBDIR += py-bidict
     SUBDIR += py-billiard
     SUBDIR += py-binaryornot
@@ -4784,6 +4785,8 @@
     SUBDIR += py-poetry-core
     SUBDIR += py-polib
     SUBDIR += py-pooch
+    SUBDIR += py-pop
+    SUBDIR += py-pop-config
     SUBDIR += py-portalocker
     SUBDIR += py-positional
     SUBDIR += py-posix_ipc
@@ -5105,6 +5108,7 @@
     SUBDIR += py-threema-msgapi
     SUBDIR += py-thrift
     SUBDIR += py-thriftpy
+    SUBDIR += py-tiamat
     SUBDIR += py-timelib
     SUBDIR += py-tinyarray
     SUBDIR += py-tinyrpc
@@ -5980,6 +5984,7 @@
     SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday_middleware-aws-signers-v4
     SUBDIR += rubygem-faraday_middleware-aws-sigv4
+    SUBDIR += rubygem-faraday_middleware-aws-sigv403
     SUBDIR += rubygem-faraday_middleware-multi_json
     SUBDIR += rubygem-fast-stemmer
     SUBDIR += rubygem-fast_blank

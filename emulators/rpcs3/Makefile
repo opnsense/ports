@@ -2,8 +2,8 @@
 
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.12-10987 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-gffea52dc3
+DISTVERSION=	0.0.12-11051 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-gea8e435b3
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -56,7 +56,7 @@ CC=		clang${LLVM_DEFAULT}
 CXX=		clang++${LLVM_DEFAULT}
 CPP=		clang-cpp${LLVM_DEFAULT}
 
-# XXX Drop after FreeBSD 11.3/12.1 EOL
+# XXX Drop after FreeBSD 12.1 EOL
 .if make(makesum) || (!exists(/usr/include/c++/v1/fenv.h) && exists(/usr/lib/libc++.so))
 MASTER_SITES+=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VER}/:libcxx
 DISTFILES+=	libcxx-${LLVM_VER}.src.tar.xz:libcxx

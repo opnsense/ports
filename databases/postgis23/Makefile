@@ -15,6 +15,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off relro:off
 
+DEPRECATED=	Upstream no longer maintained
+EXPIRATION_DATE=	2020-11-15
+
 LIB_DEPENDS=	libproj.so:graphics/proj \
 		libgeos.so:graphics/geos \
 		libjson-c.so:devel/json-c \

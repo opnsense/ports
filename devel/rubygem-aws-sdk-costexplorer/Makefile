@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	aws-sdk-costexplorer
-PORTVERSION=	1.50.0
+PORTVERSION=	1.52.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
