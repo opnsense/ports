@@ -454,6 +454,7 @@
     SUBDIR += node
     SUBDIR += node10
     SUBDIR += node12
+    SUBDIR += node14
     SUBDIR += nostromo
     SUBDIR += novnc
     SUBDIR += novnc-websockify
@@ -2271,6 +2272,7 @@
     SUBDIR += varnish-libvmod-digest
     SUBDIR += varnish-libvmod-dynamic
     SUBDIR += varnish-libvmod-maxminddb
+    SUBDIR += varnish-libvmod-querystring
     SUBDIR += varnish-modules
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
