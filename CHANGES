@@ -10,11 +10,27 @@ in the release notes and/or placed into UPDATING.
 
 All ports committers are allowed to commit to this file.
 
+20201022:
+AUTHOR: bapt@FreeBSD.org
+
+  New @rmempty keyword
+  Its purpose is to delete empty files at deinstallation time. It is meant
+  to be used for generated files/untracked by the package manager files.
+
+  It respects rootdir
+
+20201022:
+AUTHOR: bapt@FreeBSD.org
+
+  @shell has been rewritten in lua
+  It provide the exact same feature as the previous version but it is now
+  sandboxed ans is rootdir compliant (see pkg -r option)
+
 20201001:
 AUTHOR: manu@FreeBSD.org
 
  The @sample keyword was rewritten in lua.
- It behave exactly like the previous one but it is sandboxed and
+ It behaves exactly like the previous one but it is sandboxed and
  is rootdir compliant (see pkg -r option).
 
 20201001:

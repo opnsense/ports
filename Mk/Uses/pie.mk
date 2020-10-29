@@ -17,6 +17,8 @@ CONFIGURE_ARGS+=	--enable-pie
 CONFIGURE_ARGS+=	--with-extra-cflags="-fPIE -fPIC" \
 			--with-extra-cxxflags="-fPIE -fPIC" \
 			--with-extra-ldflags="-pie"
+.elif ${pie_ARGS:Mgolang}
+GO_BUILDFLAGS+=		-buildmode=pie
 .else
 CFLAGS+=		-fPIE -fPIC
 CXXFLAGS+=		-fPIE -fPIC

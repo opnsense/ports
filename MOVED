@@ -15651,3 +15651,15 @@ sysutils/plasma5-user-manager|x11/plasma5-plasma-desktop|2020-10-13|Reintegrated
 devel/geany-plugin-geanypy||2020-10-15|Has expired: Uses deprecated version of python
 comms/chirp||2020-10-16|Use deprecated version of python
 x11-toolkits/py-gtk2||2020-10-16|Remove deprecated binding replace by py-gobject
+www/py-unit|www/unit-python|2020-10-21|Rename to be more consistent with the naming convention
+sysutils/phpfpm_exporter|net-mgmt/phpfpm_exporter|2020-10-24|Move to net-mgmt category
+www/rubygem-uglifier27|www/rubygem-uglifier|2020-10-25|Obsolete, please use www/rubygem-uglifier instead
+www/rubygem-webpack-rails-rails60|devel/rubygem-webpacker-rails60|2020-10-25|Has expired: Upstream no longer maintained, use devel/rubygem-webpacker-rails* instead
+converters/zbase32||2020-10-26|Has expired: does not build with python3
+devel/py-PEAK-Rules||2020-10-26|Has expired: does not build with python3
+editors/nvi-devel|editors/nvi2|2020-10-26|Has expired: Unsupported upstream since 2015, please switch to editors/nvi2
+devel/py-repoze.what||2020-10-27|Has expired: does not build with python3
+net/reposado||2020-10-27|Has expired: Uses deprecated version of python
+devel/py-setuptools_darcs||2020-10-27|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-darcsver||2020-10-27|Has expired: does not build with python3
+devel/py-gdata|www/py-google-api-python-client|2020-10-27|Has expired: Unmaintained upstream, superseded by www/py-google-api-python-client
