@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	dmidecode
-PORTVERSION=	3.2
+PORTVERSION=	3.3
 CATEGORIES=	sysutils
 MASTER_SITES=	SAVANNAH
 
@@ -17,8 +17,6 @@ ONLY_FOR_ARCHS=	amd64 i386
 USES=		tar:xz
 
 USE_HARDENING=	safestack
-
-MAKE_ENV=	DOCSDIR="${DOCSDIR}"
 
 SUB_FILES=	dmidecode
 
