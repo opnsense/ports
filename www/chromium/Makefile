@@ -2,10 +2,11 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	84.0.4147.135
+PORTVERSION=	85.0.4183.121
+PORTREVISION=	1
 CATEGORIES?=	www java
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
-		LOCAL/cpm/chromium/:fonts
+		LOCAL/rene/chromium/:fonts
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER?=	chromium@FreeBSD.org
@@ -151,7 +152,7 @@ DRIVER_DESC=	Install chromedriver
 OPTIONS_GROUP=		AUDIO
 OPTIONS_GROUP_AUDIO=	ALSA PULSEAUDIO SNDIO
 
-OPTIONS_DEFAULT=	ALSA CODECS CUPS DRIVER KERBEROS
+OPTIONS_DEFAULT=	CODECS CUPS DRIVER KERBEROS SNDIO
 OPTIONS_SUB=		yes
 
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
@@ -204,7 +205,7 @@ SNDIO_VARS_OFF=		GN_ARGS+=use_sndio=false
 .include "Makefile.tests"
 TEST_ALL_TARGET=	${TEST_TARGETS}
 TEST_DISTFILES=		${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX} \
-			test_fonts${EXTRACT_SUFX}:fonts
+			test_fonts-85${EXTRACT_SUFX}:fonts
 
 .include <bsd.port.options.mk>
 
@@ -242,6 +243,7 @@ post-extract-TEST-on:
 	@${MV} ${WRKDIR}/test_fonts ${WRKSRC}/third_party/test_fonts/
 
 post-patch:
+	# XXX nop for www/chromium itself
 	@${REINPLACE_CMD} -e 's|@@PACKAGE@@|chromium|' \
 			-e 's|@@MENUNAME@@|Chromium Web Browser|' \
 			${WRKSRC}/chrome/app/resources/manpage.1.in

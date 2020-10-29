@@ -3,6 +3,7 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
+PORTREVISION=	1
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
@@ -130,8 +131,8 @@ NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	11
 JDK_MINOR_VERSION=	0
-JDK_PATCH_VERSION=	8
-JDK_BUILD_NUMBER=	10
+JDK_PATCH_VERSION=	9
+JDK_BUILD_NUMBER=	11
 BSD_JDK_VERSION=	1
 
 JDK_BUG_URL=	https://bugs.freebsd.org/bugzilla/enter_bug.cgi?product=Ports%20%26%20Packages&component=Individual%20Port(s)&short_desc=java/${PORTNAME}${JDK_MAJOR_VERSION}%3A%20
@@ -145,6 +146,7 @@ CONFIGURE_ARGS=	--with-boot-jdk=${BOOTSTRAPJDKDIR} \
 		--disable-ccache \
 		--disable-javac-server \
 		--disable-hotspot-gtest \
+		--with-jvm-features=shenandoahgc \
 		--with-alsa=${LOCALBASE} \
 		--with-cups=${LOCALBASE} \
 		--with-fontconfig=${LOCALBASE} \

@@ -90,6 +90,7 @@
     SUBDIR += gstreamer1-plugins-x
     SUBDIR += gstreamer1-plugins-ximagesrc
     SUBDIR += gsynaptics
+    SUBDIR += gtk-app-menu
     SUBDIR += gtk-theme-switch2
     SUBDIR += gtkchtheme
     SUBDIR += gtkterm2
@@ -325,6 +326,7 @@
     SUBDIR += thinglaunch
     SUBDIR += thingylaunch
     SUBDIR += tilda
+    SUBDIR += tilix
     SUBDIR += tint
     SUBDIR += trayer
     SUBDIR += tycoon
@@ -345,6 +347,7 @@
     SUBDIR += wf-shell
     SUBDIR += wl-clipboard
     SUBDIR += wlogout
+    SUBDIR += wlrctl
     SUBDIR += wmappl
     SUBDIR += wmblob
     SUBDIR += wmbutton

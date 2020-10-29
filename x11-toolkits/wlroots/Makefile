@@ -2,7 +2,7 @@
 
 PORTNAME=	wlroots
 DISTVERSION=	0.11.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	x11-toolkits
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -35,7 +35,7 @@ GH_ACCOUNT=	swaywm
 MESON_ARGS=	-Dexamples=false
 
 OPTIONS_DEFINE=	CONSOLEKIT LIBSEAT X11
-OPTIONS_DEFAULT=X11
+OPTIONS_DEFAULT=LIBSEAT X11
 OPTIONS_SUB=	yes
 
 CONSOLEKIT_DESC=	DRM sessions without root using ConsoleKit2
@@ -44,6 +44,8 @@ CONSOLEKIT_PATCHFILES=	b59460944208.patch:-p1:ck2 # https://github.com/swaywm/wl
 CONSOLEKIT_LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 			libconsolekit.so:sysutils/consolekit2
 CONSOLEKIT_MESON_ENABLED=	consolekit2
+CONSOLEKIT_PREVENTS=	LIBSEAT
+CONSOLEKIT_PREVENTS_MSG=CONSOLEKIT and LIBSEAT patches cannot be applied together
 .if make(makesum)
 .MAKEFLAGS:		WITH+=CONSOLEKIT
 .endif
@@ -59,10 +61,10 @@ LIBSEAT_MESON_ENABLED=	libseat
 .MAKEFLAGS:		WITH+=LIBSEAT
 .endif
 
-X11_LIB_DEPENDS=libxcb-errors.so:x11/xcb-util-errors \
-		libxcb-icccm.so:x11/xcb-util-wm
-X11_RUN_DEPENDS=xwayland-devel>0:x11-servers/xwayland-devel
-X11_USE=	XORG=x11,xcb
-X11_MESON_ENABLED=x11-backend xcb-icccm xwayland
+X11_LIB_DEPENDS=	libxcb-errors.so:x11/xcb-util-errors \
+			libxcb-icccm.so:x11/xcb-util-wm
+X11_RUN_DEPENDS=	xwayland-devel>0:x11-servers/xwayland-devel
+X11_USE=		XORG=x11,xcb
+X11_MESON_ENABLED=	x11-backend xcb-icccm xwayland
 
 .include <bsd.port.mk>

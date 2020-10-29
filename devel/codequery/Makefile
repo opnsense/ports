@@ -23,6 +23,8 @@ CMAKE_ON=	BUILD_QT5
 USE_GITHUB=	yes
 GH_ACCOUNT=	ruben2020
 
+USE_HARDENING=	pie:off
+
 PLIST_FILES=	bin/codequery \
 		bin/cqmakedb \
 		bin/cqsearch

@@ -228,6 +228,7 @@
     SUBDIR += bingrep
     SUBDIR += binutils
     SUBDIR += bison
+    SUBDIR += bit
     SUBDIR += bitkeeper
     SUBDIR += blame
     SUBDIR += blitz
@@ -504,6 +505,7 @@
     SUBDIR += e00compr
     SUBDIR += e2fsprogs-libss
     SUBDIR += eastl
+    SUBDIR += easyexif
     SUBDIR += easygit
     SUBDIR += easyloggingpp
     SUBDIR += ebnf2yacc
@@ -804,6 +806,7 @@
     SUBDIR += gitolite2
     SUBDIR += gittrac
     SUBDIR += gitui
+    SUBDIR += glab
     SUBDIR += glade
     SUBDIR += glademm
     SUBDIR += glib20
@@ -1275,6 +1278,7 @@
     SUBDIR += librevisa-vish
     SUBDIR += librevisa-vxi
     SUBDIR += librolegen
+    SUBDIR += librttopo
     SUBDIR += libruin
     SUBDIR += libs11n
     SUBDIR += libsavitar
@@ -3915,6 +3919,16 @@
     SUBDIR += php74-sysvsem
     SUBDIR += php74-sysvshm
     SUBDIR += php74-tokenizer
+    SUBDIR += php80-ffi
+    SUBDIR += php80-gettext
+    SUBDIR += php80-intl
+    SUBDIR += php80-pcntl
+    SUBDIR += php80-readline
+    SUBDIR += php80-shmop
+    SUBDIR += php80-sysvmsg
+    SUBDIR += php80-sysvsem
+    SUBDIR += php80-sysvshm
+    SUBDIR += php80-tokenizer
     SUBDIR += phpunit6
     SUBDIR += phpunit7
     SUBDIR += phpunit8
@@ -3988,7 +4002,6 @@
     SUBDIR += py-Jinja2
     SUBDIR += py-Jinja2-doc
     SUBDIR += py-Js2Py
-    SUBDIR += py-PEAK-Rules
     SUBDIR += py-PeachPy
     SUBDIR += py-Products.ExternalEditor
     SUBDIR += py-Products.PloneLanguageTool
@@ -4178,6 +4191,7 @@
     SUBDIR += py-bcdoc
     SUBDIR += py-beautifultable
     SUBDIR += py-behave
+    SUBDIR += py-beniget
     SUBDIR += py-bidict
     SUBDIR += py-billiard
     SUBDIR += py-binaryornot
@@ -4303,11 +4317,11 @@
     SUBDIR += py-daemonize
     SUBDIR += py-daemons
     SUBDIR += py-dal
-    SUBDIR += py-darcsver
     SUBDIR += py-darts.util.lru
     SUBDIR += py-dask
     SUBDIR += py-dataclasses
     SUBDIR += py-datadog
+    SUBDIR += py-datapackage
     SUBDIR += py-datatest
     SUBDIR += py-dateparser
     SUBDIR += py-dateutil
@@ -4321,6 +4335,7 @@
     SUBDIR += py-decorator
     SUBDIR += py-decoratortools
     SUBDIR += py-deepdiff
+    SUBDIR += py-deepmerge
     SUBDIR += py-defusedxml
     SUBDIR += py-delfick_error
     SUBDIR += py-demjson
@@ -4372,6 +4387,7 @@
     SUBDIR += py-fasteners
     SUBDIR += py-fastentrypoints
     SUBDIR += py-fastimport
+    SUBDIR += py-fastjsonschema
     SUBDIR += py-fastnumbers
     SUBDIR += py-fastprogress
     SUBDIR += py-fbprophet
@@ -4425,7 +4441,6 @@
     SUBDIR += py-game
     SUBDIR += py-game_sdl2
     SUBDIR += py-gast
-    SUBDIR += py-gdata
     SUBDIR += py-genson
     SUBDIR += py-genty
     SUBDIR += py-geojson
@@ -4989,7 +5004,6 @@
     SUBDIR += py-repoze.lru
     SUBDIR += py-repoze.sphinx.autointerface
     SUBDIR += py-repoze.tm2
-    SUBDIR += py-repoze.what
     SUBDIR += py-repoze.who
     SUBDIR += py-repoze.who-testutil
     SUBDIR += py-repoze.xmliter
@@ -5036,7 +5050,6 @@
     SUBDIR += py-setuptools
     SUBDIR += py-setuptools-git
     SUBDIR += py-setuptools-pkg
-    SUBDIR += py-setuptools_darcs
     SUBDIR += py-setuptools_hg
     SUBDIR += py-setuptools_scm
     SUBDIR += py-setuptools_scm_git_archive
@@ -5165,6 +5178,7 @@
     SUBDIR += py-validators
     SUBDIR += py-validictory
     SUBDIR += py-vcrpy
+    SUBDIR += py-vcver
     SUBDIR += py-vcversioner
     SUBDIR += py-venusian
     SUBDIR += py-verboselogs
@@ -6150,6 +6164,7 @@
     SUBDIR += rubygem-json_pure1
     SUBDIR += rubygem-json_schemer
     SUBDIR += rubygem-jsonapi-renderer
+    SUBDIR += rubygem-jsonpath
     SUBDIR += rubygem-kafo
     SUBDIR += rubygem-kafo_parsers
     SUBDIR += rubygem-kafo_wizards
@@ -6508,6 +6523,7 @@
     SUBDIR += rubygem-timers
     SUBDIR += rubygem-tins
     SUBDIR += rubygem-titlecase
+    SUBDIR += rubygem-to_regexp
     SUBDIR += rubygem-tool
     SUBDIR += rubygem-transaction-simple
     SUBDIR += rubygem-travis
@@ -6598,6 +6614,7 @@
     SUBDIR += scandoc
     SUBDIR += sccache
     SUBDIR += scons
+    SUBDIR += sd-mux
     SUBDIR += sdl12
     SUBDIR += sdl20
     SUBDIR += sdl2pp
@@ -6834,6 +6851,7 @@
     SUBDIR += yasm
     SUBDIR += yasm-devel
     SUBDIR += youcompleteme
+    SUBDIR += yuck
     SUBDIR += z80-asm
     SUBDIR += z80asm
     SUBDIR += z80ex

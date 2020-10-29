@@ -17,6 +17,8 @@ BROKEN_FreeBSD_11=	Uses newer API than in 11.x
 
 USES=		gmake
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	bsdimp
 GH_PROJECT=	nvme-cli

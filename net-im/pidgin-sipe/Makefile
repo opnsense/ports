@@ -27,7 +27,7 @@ RUN_DEPENDS=	pidgin:net-im/pidgin
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		gmake gnome libtool localbase pkgconfig tar:bzip2 ssl
+USES=		compiler:c11 gmake gnome libtool localbase pkgconfig tar:bzip2 ssl
 USE_GNOME=	gtk20 intltool libxml2
 USE_GSTREAMER1=	yes
 

@@ -14,6 +14,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl
 USES=		gnome sqlite:3
 USE_GNOME=	libxml2
 
+USE_HARDENING=	pie:off
+
 CEZ_VERSION=	1.05
 USE_GITHUB=	yes
 GH_ACCOUNT=	koue

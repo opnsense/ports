@@ -323,6 +323,7 @@
     SUBDIR += gxmms2
     SUBDIR += gxplugins-lv2
     SUBDIR += harp
+    SUBDIR += headsetcontrol
     SUBDIR += herrie
     SUBDIR += hexter
     SUBDIR += hts_engine-API
@@ -843,6 +844,7 @@
     SUBDIR += wavpack
     SUBDIR += wavplay
     SUBDIR += webrtc-audio-processing
+    SUBDIR += welle.io
     SUBDIR += whysynth
     SUBDIR += wildmidi
     SUBDIR += wmix

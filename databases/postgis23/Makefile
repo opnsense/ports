@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off relro:off
 
+BROKEN=		Does not build with graphics/gdal default (pgsql conflicts)
 DEPRECATED=	Upstream no longer maintained
 EXPIRATION_DATE=	2020-11-15
 

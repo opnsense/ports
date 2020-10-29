@@ -20,7 +20,7 @@ USE_RC_SUBR=	gitea
 NO_WRKSUBDIR=	yes
 PORTDATA=	*
 
-GO_BUILDFLAGS=	-buildmode=pie
+USE_HARDENING=	pie:golang relro:off retpoline:off
 
 SUB_FILES+=	app.ini.sample
 SUB_LIST+=	GITUSER=${USERS}

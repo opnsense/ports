@@ -908,7 +908,8 @@
     SUBDIR += php73-posix
     SUBDIR += php74-fileinfo
     SUBDIR += php74-posix
-    SUBDIR += phpfpm_exporter
+    SUBDIR += php80-fileinfo
+    SUBDIR += php80-posix
     SUBDIR += phybs
     SUBDIR += pick
     SUBDIR += pidof
@@ -1299,6 +1300,7 @@
     SUBDIR += terraform-docs
     SUBDIR += terraform-provider-gridscale
     SUBDIR += terraform-provider-vultr
+    SUBDIR += terraform-switcher
     SUBDIR += terragrunt
     SUBDIR += testdisk
     SUBDIR += thefish

@@ -15,8 +15,6 @@ COMMENT=		Standalone JavaScript based from Mozilla 24-esr
 BUILD_DEPENDS=		zip:archivers/zip
 LIB_DEPENDS=		libnspr4.so:devel/nspr
 
-CONFLICTS=		njs-[0-9]*
-
 USE_HARDENING=		pie:off relro:off
 
 GNU_CONFIGURE=		yes

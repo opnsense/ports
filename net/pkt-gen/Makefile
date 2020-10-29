@@ -19,6 +19,8 @@ MAKEFILE=	GNUmakefile
 WRKSRC_SUBDIR=	apps/pkt-gen
 PATCH_WRKSRC=	${WRKSRC}/..
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	PCAP
 PCAP_DESC=	Support loading packets from pcap file
 OPTIONS_DEFAULT=PCAP

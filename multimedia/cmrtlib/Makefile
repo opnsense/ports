@@ -23,4 +23,6 @@ GH_ACCOUNT=	intel
 GH_PROJECT=	media-driver
 WRKSRC_SUBDIR=	${PORTNAME}
 
+USE_HARDENING=	pie:off
+
 .include <bsd.port.mk>

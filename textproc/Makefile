@@ -1199,6 +1199,15 @@
     SUBDIR += php74-xmlreader
     SUBDIR += php74-xmlwriter
     SUBDIR += php74-xsl
+    SUBDIR += php80-ctype
+    SUBDIR += php80-dom
+    SUBDIR += php80-enchant
+    SUBDIR += php80-pspell
+    SUBDIR += php80-simplexml
+    SUBDIR += php80-xml
+    SUBDIR += php80-xmlreader
+    SUBDIR += php80-xmlwriter
+    SUBDIR += php80-xsl
     SUBDIR += pict
     SUBDIR += po4a
     SUBDIR += pod2mdoc
@@ -1556,7 +1565,9 @@
     SUBDIR += rubygem-inifile
     SUBDIR += rubygem-iso-639
     SUBDIR += rubygem-itextomml
+    SUBDIR += rubygem-jekyll-archives
     SUBDIR += rubygem-jekyll-assets
+    SUBDIR += rubygem-jekyll-email-protect
     SUBDIR += rubygem-jekyll-feed
     SUBDIR += rubygem-jekyll-gist
     SUBDIR += rubygem-jekyll-mentions
@@ -1661,6 +1672,7 @@
     SUBDIR += rubygem-syntax
     SUBDIR += rubygem-termcolor
     SUBDIR += rubygem-terminal-table
+    SUBDIR += rubygem-terser
     SUBDIR += rubygem-text
     SUBDIR += rubygem-tidy_ffi
     SUBDIR += rubygem-toml

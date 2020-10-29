@@ -1,3 +1,3 @@
-TIMESTAMP = 1602198225
-SHA256 (KDE/plasma/5.20.0/libkscreen-5.20.0.tar.xz) = 45c799f0d2c8c9d5ef2f6d0cc0451d5ae25c9d6f955924f57202fc88c85f655e
-SIZE (KDE/plasma/5.20.0/libkscreen-5.20.0.tar.xz) = 85460
+TIMESTAMP = 1603817818
+SHA256 (KDE/plasma/5.20.2/libkscreen-5.20.2.tar.xz) = 2ee2c77556ac30ec49be5bc7db552332f6b1084f6d7737b711d3c9c01b523c5d
+SIZE (KDE/plasma/5.20.2/libkscreen-5.20.2.tar.xz) = 85404

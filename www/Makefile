@@ -387,6 +387,7 @@
     SUBDIR += mod_php72
     SUBDIR += mod_php73
     SUBDIR += mod_php74
+    SUBDIR += mod_php80
     SUBDIR += mod_proctitle
     SUBDIR += mod_proxy_xml
     SUBDIR += mod_qos
@@ -1371,6 +1372,9 @@
     SUBDIR += php74-opcache
     SUBDIR += php74-session
     SUBDIR += php74-tidy
+    SUBDIR += php80-opcache
+    SUBDIR += php80-session
+    SUBDIR += php80-tidy
     SUBDIR += phpbb
     SUBDIR += phpbb3
     SUBDIR += phpgroupware
@@ -1722,7 +1726,6 @@
     SUBDIR += py-turbogears2
     SUBDIR += py-tvdb_api
     SUBDIR += py-txrequests
-    SUBDIR += py-unit
     SUBDIR += py-urlgrabber
     SUBDIR += py-urlman
     SUBDIR += py-urlobject
@@ -1988,6 +1991,7 @@
     SUBDIR += rubygem-rack15
     SUBDIR += rubygem-rack16
     SUBDIR += rubygem-rack20
+    SUBDIR += rubygem-rack21
     SUBDIR += rubygem-rack_csrf
     SUBDIR += rubygem-rails-settings-cached
     SUBDIR += rubygem-rails-settings-cached-rails5
@@ -2067,7 +2071,6 @@
     SUBDIR += rubygem-turbolinks-source
     SUBDIR += rubygem-typhoeus
     SUBDIR += rubygem-uglifier
-    SUBDIR += rubygem-uglifier27
     SUBDIR += rubygem-underscore-rails
     SUBDIR += rubygem-unicorn
     SUBDIR += rubygem-unicorn-worker-killer
@@ -2078,7 +2081,6 @@
     SUBDIR += rubygem-wasabi
     SUBDIR += rubygem-webdrivers
     SUBDIR += rubygem-webmock
-    SUBDIR += rubygem-webpack-rails-rails60
     SUBDIR += rubygem-webrick
     SUBDIR += rubygem-webrobots
     SUBDIR += rubygem-websocket
@@ -2255,8 +2257,11 @@
     SUBDIR += uchiwa
     SUBDIR += ufdbguard
     SUBDIR += unit
+    SUBDIR += unit-java
     SUBDIR += unit-perl
     SUBDIR += unit-php
+    SUBDIR += unit-python
+    SUBDIR += unit-ruby
     SUBDIR += uwebsockets
     SUBDIR += uwsgi
     SUBDIR += uwsgitop
@@ -2325,6 +2330,7 @@
     SUBDIR += you-get
     SUBDIR += yourls
     SUBDIR += youtube_dl
+    SUBDIR += youtube_dlc
     SUBDIR += ytdl
     SUBDIR += yuicompressor
     SUBDIR += zend-framework

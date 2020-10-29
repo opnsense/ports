@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	geany
-PORTVERSION=	1.36
+PORTVERSION=	1.37
 CATEGORIES=	devel editors
 MASTER_SITES=	http://download.geany.org/ SF
 
@@ -42,18 +42,19 @@ NLS_CONFIGURE_ENABLE=	nls
 
 VTE_DESC=	Embedded virtual terminal
 VTE_CONFIGURE_ENABLE=	vte
-VTE_USE=	GNOME=vte
 
 THEMES_DESC=	Additional color schemes
 THEMES_RUN_DEPENDS=	${LOCALBASE}/share/geany/colorschemes/bespin.conf:devel/geany-themes
 
 .if ${FLAVOR} == gtk2
 USE_GNOME+=	gtk20
-CONFIGURE_ARGS+=	--disable-gtk3
+VTE_USE=	GNOME=vte
+CONFIGURE_ARGS+=	--enable-gtk2
 PLIST_SUB+=	GTK2="" GTK3="@comment "
 .elif ${FLAVOR} == gtk3
 USE_GNOME+=	gtk30
-CONFIGURE_ARGS+=	--enable-gtk3
+VTE_USE=	GNOME=vte3
+CONFIGURE_ARGS+=	--disable-gtk2
 PLIST_SUB+=	GTK2="@comment " GTK3=""
 .endif
 

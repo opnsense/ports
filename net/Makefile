@@ -38,6 +38,7 @@
     SUBDIR += asterisk-g72x
     SUBDIR += asterisk13
     SUBDIR += asterisk16
+    SUBDIR += asterisk18
     SUBDIR += avahi
     SUBDIR += avahi-app
     SUBDIR += avahi-autoipd
@@ -959,6 +960,9 @@
     SUBDIR += php74-soap
     SUBDIR += php74-sockets
     SUBDIR += php74-xmlrpc
+    SUBDIR += php80-ldap
+    SUBDIR += php80-soap
+    SUBDIR += php80-sockets
     SUBDIR += phpldapadmin
     SUBDIR += pichi
     SUBDIR += pimcommon
@@ -1003,6 +1007,7 @@
     SUBDIR += py-dpkt
     SUBDIR += py-dugong
     SUBDIR += py-ec2-cli-tools
+    SUBDIR += py-errbot
     SUBDIR += py-eventlet
     SUBDIR += py-flask-xml-rpc
     SUBDIR += py-gntp
@@ -1167,7 +1172,6 @@
     SUBDIR += remotebox
     SUBDIR += remotedesk
     SUBDIR += repeater
-    SUBDIR += reposado
     SUBDIR += rfbproxy
     SUBDIR += rinetd
     SUBDIR += ripe-whois
