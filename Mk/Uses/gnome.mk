@@ -92,9 +92,9 @@ _USE_GNOME_ALL+=dconf evolutiondataserver3 gnomecontrolcenter3 gnomedesktop3 \
 		pygobject3 vte3
 
 # C++ bindings
-_USE_GNOME_ALL+=atkmm cairomm gconfmm26 glibmm gtkmm20 gtkmm24 \
+_USE_GNOME_ALL+=atkmm cairomm gconfmm26 glibmm gtkmm24 \
 		gtkmm30 gtksourceviewmm3 libgdamm5 \
-		libgtksourceviewmm libxml++26 libsigc++12 libsigc++20 \
+		libgtksourceviewmm libxml++26 libsigc++20 \
 		pangomm
 
 # glib-mkenums often fails with C locale
@@ -140,9 +140,6 @@ gsound_LIB_DEPENDS=	libgsound.so:audio/gsound
 gsound_RUN_DEPENDS=	gsound-play:audio/gsound
 gsound_USE_GNOME_IMPL=	glib20
 
-gtkmm20_LIB_DEPENDS=	libgtkmm-2.0.so:x11-toolkits/gtkmm20
-gtkmm20_USE_GNOME_IMPL=	libsigc++12 gtk20
-
 gtkmm24_LIB_DEPENDS=	libgtkmm-2.4.so:x11-toolkits/gtkmm24
 gtkmm24_USE_GNOME_IMPL=	glibmm cairomm atkmm pangomm gtk20
 
@@ -157,8 +154,6 @@ libgdamm5_USE_GNOME_IMPL=	libgda5 glibmm
 
 libgtksourceviewmm_LIB_DEPENDS=		libgtksourceviewmm-2.0.so:x11-toolkits/libgtksourceviewmm
 libgtksourceviewmm_USE_GNOME_IMPL=	gtksourceview2 gtkmm24
-
-libsigc++12_LIB_DEPENDS=	libsigc-1.2.so:devel/libsigc++12
 
 libsigc++20_LIB_DEPENDS=	libsigc-2.0.so:devel/libsigc++20
 

@@ -5,6 +5,33 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20201030:
+  AFFECTS: users of security/openvpn
+  AUTHOR: mandree@FreeBSD.org
+
+  The security/openvpn port has been updated to v2.5.0, which brings a
+  change to the default ciphersuite, which no longer contains BF-CBC.
+
+  Some options have been removed. Also, if you need to support very old (v2.3)
+  and unsupported clients or servers, you will need to adjust the
+  configuration. For details, see:
+  https://github.com/OpenVPN/openvpn/blob/release/2.5/Changes.rst#overview-of-changes-in-25
+
+20201029:
+  AFFECTS: users of www/node
+  AUTHOR: bhughes@FreeBSD.org
+
+  The www/node port has been updated to Node.js v15.0.0, the latest
+  upstream release. A new port, www/node14, has been created for the
+  v14.x LTS branch. Users wanting to stay on v14.x can replace www/node
+  with www/node14 with one of the following commands:
+
+  # pkg install www/node14
+    or
+  # portmaster -o www/node14 www/node
+    or
+  # portupgrade -o www/node14 www/node
+
 20201026:
   AFFECTS: users of emulators/qemu
   AUTHOR: bofh@FreeBSD.org

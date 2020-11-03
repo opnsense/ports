@@ -15592,7 +15592,6 @@ textproc/plover||2020-09-19|Has expired: Uses deprecated version of python
 textproc/py-esmre||2020-09-19|Has expired: Uses deprecated version of python
 textproc/py-libxslt||2020-09-19|Has expired: Uses deprecated version of python
 textproc/py-pdfminer||2020-09-19|Has expired: Uses deprecated version of python
-www/bluefish||2020-09-19|Has expired: Uses deprecated version of python
 www/calendarserver||2020-09-19|Has expired: Uses deprecated version of python
 www/geeknote||2020-09-19|Has expired: Uses deprecated version of python
 www/go-appengine-sdk||2020-09-19|Has expired: Uses deprecated version of python
@@ -15663,3 +15662,12 @@ net/reposado||2020-10-27|Has expired: Uses deprecated version of python
 devel/py-setuptools_darcs||2020-10-27|Has expired: Uses Python 2.7 which is EOLed upstream
 devel/py-darcsver||2020-10-27|Has expired: does not build with python3
 devel/py-gdata|www/py-google-api-python-client|2020-10-27|Has expired: Unmaintained upstream, superseded by www/py-google-api-python-client
+devel/libsigc++12|devel/libsigc++20|2020-10-31|Has expired: Use newer version
+x11/decurs||2020-11-01|Depends on removed x11-toolkits/gtkmm20
+x11/fluxbg||2020-11-01|Depends on removed x11-toolkits/gtkmm20
+x11-toolkits/gtkmm20|x11-toolkits/gtkmm24|2020-11-01|Broken after libsigc++12 removal
+www/radicale2|www/radicale|2020-11-01|Has expired: Please migrate to Radicale 3.x which you can find at www/radicale
+devel/pccts|devel/antlr|2020-11-01|Has expired: abandonedware, superseded by devel/antlr
+devel/gitg0|devel/gitg|2020-11-01|Has expired: ancient version of gitg not maintained
+devel/py-twext||2020-11-03|Has expired: Uses deprecated version of python
+databases/py-sqlparse020|databases/py-sqlparse|2020-11-03|Dependency of removed www/calendarserver
