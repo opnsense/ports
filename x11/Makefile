@@ -42,7 +42,6 @@
     SUBDIR += conlecterm
     SUBDIR += controllermap
     SUBDIR += cool-retro-term
-    SUBDIR += decurs
     SUBDIR += deforaos-desktop
     SUBDIR += deforaos-keyboard
     SUBDIR += deforaos-libdesktop
@@ -67,7 +66,6 @@
     SUBDIR += fireflies
     SUBDIR += florence
     SUBDIR += flruler
-    SUBDIR += fluxbg
     SUBDIR += fpc-x11
     SUBDIR += fstobdf
     SUBDIR += gdm
@@ -213,6 +211,7 @@
     SUBDIR += mate-applets
     SUBDIR += mate-base
     SUBDIR += mate-desktop
+    SUBDIR += mate-dock-applet
     SUBDIR += mate-menus
     SUBDIR += mate-panel
     SUBDIR += mate-screensaver

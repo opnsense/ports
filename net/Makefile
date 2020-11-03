@@ -1119,6 +1119,7 @@
     SUBDIR += py-uritools
     SUBDIR += py-urlextract
     SUBDIR += py-urllib3
+    SUBDIR += py-whois
     SUBDIR += py-wmi-query
     SUBDIR += py-wsdd
     SUBDIR += py-wsproto

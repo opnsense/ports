@@ -47,6 +47,7 @@
     SUBDIR += beehive
     SUBDIR += bkmrkconv
     SUBDIR += blastbeat
+    SUBDIR += bluefish
     SUBDIR += bolt
     SUBDIR += bozohttpd
     SUBDIR += browsh
@@ -1629,6 +1630,7 @@
     SUBDIR += py-httpcore
     SUBDIR += py-httpie
     SUBDIR += py-httplib2
+    SUBDIR += py-httpretty
     SUBDIR += py-httptools
     SUBDIR += py-httpx
     SUBDIR += py-httpx013
@@ -1765,7 +1767,6 @@
     SUBDIR += quark
     SUBDIR += qutebrowser
     SUBDIR += radicale
-    SUBDIR += radicale2
     SUBDIR += redmine4
     SUBDIR += rejik
     SUBDIR += reportmagic

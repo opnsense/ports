@@ -163,6 +163,7 @@
     SUBDIR += cfengine313
     SUBDIR += cfengine314
     SUBDIR += cfengine315
+    SUBDIR += chaoskube
     SUBDIR += checkrestart
     SUBDIR += chgrep
     SUBDIR += choria
@@ -521,6 +522,7 @@
     SUBDIR += istatserver
     SUBDIR += istio
     SUBDIR += jadm
+    SUBDIR += jail_exporter
     SUBDIR += jail-primer
     SUBDIR += jailadmin
     SUBDIR += jaildaemon

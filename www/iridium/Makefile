@@ -3,6 +3,7 @@
 
 PORTNAME=	iridium
 PORTVERSION=	2020.04.81
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	https://downloads.iridiumbrowser.de/source/
 PKGNAMESUFFIX=	-browser
@@ -64,7 +65,7 @@ ONLY_FOR_ARCHS=	amd64 i386
 
 USES=		bison cpe desktop-file-utils dos2unix gl gnome jpeg localbase:ldflags \
 		ninja perl5 pkgconfig python:2.7,build shebangfix tar:xz xorg
-USE_GL=		gl
+USE_GL=		gbm gl
 USE_LDCONFIG=	${DATADIR}
 USE_PERL5=	build
 USE_XORG=	x11 xcb xcomposite xcursor xext xdamage xfixes xi \

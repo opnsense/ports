@@ -795,7 +795,6 @@
     SUBDIR += gitblit
     SUBDIR += gitflow
     SUBDIR += gitg
-    SUBDIR += gitg0
     SUBDIR += github-backup-utils
     SUBDIR += gitinspector
     SUBDIR += gitlab-runner
@@ -1288,7 +1287,6 @@
     SUBDIR += libshbuf
     SUBDIR += libshhmsg
     SUBDIR += libshhopt
-    SUBDIR += libsigc++12
     SUBDIR += libsigc++20
     SUBDIR += libsigrok
     SUBDIR += libsigrokdecode
@@ -3664,7 +3662,6 @@
     SUBDIR += pasm
     SUBDIR += patch
     SUBDIR += pcc-libs
-    SUBDIR += pccts
     SUBDIR += pcl
     SUBDIR += pcre
     SUBDIR += pcre++
@@ -4175,6 +4172,7 @@
     SUBDIR += py-azure-storage-blob
     SUBDIR += py-azure-storage-common
     SUBDIR += py-azure-synapse-accesscontrol
+    SUBDIR += py-azure-synapse-artifacts
     SUBDIR += py-azure-synapse-spark
     SUBDIR += py-b2sdk
     SUBDIR += py-babel
@@ -5144,7 +5142,6 @@
     SUBDIR += py-trollius
     SUBDIR += py-ttictoc
     SUBDIR += py-ttystatus
-    SUBDIR += py-twext
     SUBDIR += py-twiggy
     SUBDIR += py-twilio
     SUBDIR += py-twine
@@ -6811,6 +6808,9 @@
     SUBDIR += vxlog
     SUBDIR += wand-libconfig
     SUBDIR += wandio
+    SUBDIR += wasi-compiler-rt11
+    SUBDIR += wasi-libc
+    SUBDIR += wasi-libcxx
     SUBDIR += websocketpp
     SUBDIR += websvn
     SUBDIR += wf-config
