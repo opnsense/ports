@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ntopng
-PORTVERSION=	4.2.d20201102
+PORTVERSION=	4.0.d20200917
 PORTEPOCH=	1
 CATEGORIES=	net
 
@@ -18,9 +18,7 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libndpi.so:net/ndpi \
 		libjson-c.so:devel/json-c \
 		libsodium.so:security/libsodium \
-		libmaxminddb.so:net/libmaxminddb \
-		libexpat.so:textproc/expat2 \
-		libzstd.so:archivers/zstd
+		libmaxminddb.so:net/libmaxminddb
 BUILD_DEPENDS=	bash:shells/bash
 
 USE_HARDENING=	pie:off relro:off
@@ -40,7 +38,7 @@ PLIST_SUB=	NTOPNGUSER="${USERS}" NTOPNGROUP="${GROUPS}"
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ntop
-GH_TAGNAME=	5e649a2
+GH_TAGNAME=	17bc5c0
 
 CPE_VENDOR=	ntop
 
@@ -53,6 +51,8 @@ NLS_USES=	gettext
 USE_RC_SUBR=	ntopng
 
 post-patch:
+	@${REINPLACE_CMD} -e 's/bind(/::bind(/' \
+		${WRKSRC}/src/SyslogCollectorInterface.cpp
 	cd ${WRKSRC} && ${SH} autogen.sh
 
 post-install:
