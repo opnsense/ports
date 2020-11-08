@@ -15654,6 +15654,7 @@ www/py-unit|www/unit-python|2020-10-21|Rename to be more consistent with the nam
 sysutils/phpfpm_exporter|net-mgmt/phpfpm_exporter|2020-10-24|Move to net-mgmt category
 www/rubygem-uglifier27|www/rubygem-uglifier|2020-10-25|Obsolete, please use www/rubygem-uglifier instead
 www/rubygem-webpack-rails-rails60|devel/rubygem-webpacker-rails60|2020-10-25|Has expired: Upstream no longer maintained, use devel/rubygem-webpacker-rails* instead
+misc/calendar-data|deskutils/calendar-data|2020-10-25|Move to the same category as the program
 converters/zbase32||2020-10-26|Has expired: does not build with python3
 devel/py-PEAK-Rules||2020-10-26|Has expired: does not build with python3
 editors/nvi-devel|editors/nvi2|2020-10-26|Has expired: Unsupported upstream since 2015, please switch to editors/nvi2
@@ -15672,3 +15673,10 @@ devel/gitg0|devel/gitg|2020-11-01|Has expired: ancient version of gitg not maint
 devel/py-twext||2020-11-03|Has expired: Uses deprecated version of python
 databases/py-sqlparse020|databases/py-sqlparse|2020-11-03|Dependency of removed www/calendarserver
 devel/nimble|lang/nim|2020-11-06|Integrated in lang/nim
+net-im/zephyr||2020-11-07|Has expired: Broken for more than 6 months
+net/samba410|net/samba411|2020-11-08|Has expired: yes
+audio/xfce4-mixer|audio/xfce4-pulseaudio-plugin|2020-11-08|Unsupported upstream since 2015. Try using audio/xfce4-pulseaudio-plugin
+multimedia/swfdec-gnome||2020-11-09|Depends on the expired gstreamer 0.10
+grapihcs/swfdec||2020-11-09|Depends on the expired gstreamer 0.10
+multimedia/py-openlp||2020-11-09|Depends on the expired gstreamer 0.10
+multimedia/p5-GStreamer||2020-11-09|Depends on the expired gstreamer 0.10
