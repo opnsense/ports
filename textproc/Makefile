@@ -1228,6 +1228,7 @@
     SUBDIR += py-agate-dbf
     SUBDIR += py-agate-excel
     SUBDIR += py-alabaster
+    SUBDIR += py-anyascii
     SUBDIR += py-arabic-reshaper
     SUBDIR += py-asciinema
     SUBDIR += py-asonic
@@ -1268,6 +1269,7 @@
     SUBDIR += py-feedparser
     SUBDIR += py-fingerprints
     SUBDIR += py-ftfy
+    SUBDIR += py-furo
     SUBDIR += py-gambit-elasticsearch
     SUBDIR += py-genshi
     SUBDIR += py-gensim
@@ -1332,6 +1334,7 @@
     SUBDIR += py-pdfminer3k
     SUBDIR += py-pdfrw
     SUBDIR += py-pdftotext
+    SUBDIR += py-petl
     SUBDIR += py-pikepdf
     SUBDIR += py-precis_i18n
     SUBDIR += py-pss

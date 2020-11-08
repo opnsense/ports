@@ -303,7 +303,6 @@
     SUBDIR += p5-FFmpeg-Command
     SUBDIR += p5-FLV-Info
     SUBDIR += p5-File-Format-RIFF
-    SUBDIR += p5-GStreamer
     SUBDIR += p5-MP4-Info
     SUBDIR += p5-Net-UPnP
     SUBDIR += p5-Subtitles
@@ -342,7 +341,6 @@
     SUBDIR += py-mido
     SUBDIR += py-mlt
     SUBDIR += py-moviepy
-    SUBDIR += py-openlp
     SUBDIR += py-periscope
     SUBDIR += py-pretty_midi
     SUBDIR += py-pymediainfo
@@ -394,7 +392,6 @@
     SUBDIR += svt-av1
     SUBDIR += svt-hevc
     SUBDIR += svt-vp9
-    SUBDIR += swfdec-gnome
     SUBDIR += syncplay
     SUBDIR += szap-s2
     SUBDIR += tautulli

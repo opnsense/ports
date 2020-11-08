@@ -97,6 +97,7 @@
     SUBDIR += cue2toc
     SUBDIR += cuetools
     SUBDIR += cutmp3
+    SUBDIR += cyanrip
     SUBDIR += dagrab
     SUBDIR += darkice
     SUBDIR += dcd
@@ -856,7 +857,6 @@
     SUBDIR += xanalyser
     SUBDIR += xcd
     SUBDIR += xcdplayer
-    SUBDIR += xfce4-mixer
     SUBDIR += xfce4-mpc-plugin
     SUBDIR += xfce4-pulseaudio-plugin
     SUBDIR += xfmpc

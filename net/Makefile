@@ -206,6 +206,7 @@
     SUBDIR += grsync
     SUBDIR += gscloud
     SUBDIR += gsk
+    SUBDIR += gsocket
     SUBDIR += gspoof
     SUBDIR += gssdp
     SUBDIR += gstreamer-plugins-libmms
@@ -1010,6 +1011,7 @@
     SUBDIR += py-errbot
     SUBDIR += py-eventlet
     SUBDIR += py-flask-xml-rpc
+    SUBDIR += py-gdown
     SUBDIR += py-gntp
     SUBDIR += py-gspread
     SUBDIR += py-h11
@@ -1098,6 +1100,7 @@
     SUBDIR += py-siosocks
     SUBDIR += py-smart-open
     SUBDIR += py-smbpasswd
+    SUBDIR += py-smbprotocol
     SUBDIR += py-soap2py
     SUBDIR += py-socketio-client
     SUBDIR += py-softlayer
@@ -1352,7 +1355,6 @@
     SUBDIR += rude
     SUBDIR += ryu
     SUBDIR += sacc
-    SUBDIR += samba410
     SUBDIR += samba411
     SUBDIR += samba412
     SUBDIR += samba413

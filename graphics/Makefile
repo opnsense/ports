@@ -399,6 +399,7 @@
     SUBDIR += kipi-plugins
     SUBDIR += klatexformula
     SUBDIR += kludge3d
+    SUBDIR += kmscube
     SUBDIR += kolourpaint
     SUBDIR += kooka
     SUBDIR += kphotoalbum
@@ -832,6 +833,7 @@
     SUBDIR += py-mapclassify
     SUBDIR += py-mcomix
     SUBDIR += py-ming
+    SUBDIR += py-mpl-interactions
     SUBDIR += py-mpl-scatter-density
     SUBDIR += py-nwdiag
     SUBDIR += py-open3d-python
@@ -1012,7 +1014,6 @@
     SUBDIR += svgalib
     SUBDIR += svgbob
     SUBDIR += swappy
-    SUBDIR += swfdec
     SUBDIR += swfmill
     SUBDIR += swftools
     SUBDIR += sxiv

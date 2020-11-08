@@ -284,6 +284,7 @@
     SUBDIR += py-scimath
     SUBDIR += py-scipy
     SUBDIR += py-scoria
+    SUBDIR += py-segyio
     SUBDIR += py-spglib
     SUBDIR += py-tensorflow
     SUBDIR += py-veusz
@@ -307,6 +308,7 @@
     SUBDIR += rubygem-ruby-dcl
     SUBDIR += rubygem-ruby-netcdf
     SUBDIR += scidavis
+    SUBDIR += segyio
     SUBDIR += siesta
     SUBDIR += sigrok-cli
     SUBDIR += sigrok-firmware
