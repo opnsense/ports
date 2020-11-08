@@ -3,7 +3,7 @@
 
 PORTNAME=	openssh
 DISTVERSION=	8.2p1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -193,8 +193,10 @@ post-configure-XMSS-on:
 	@${ECHO_CMD} "#define WITH_XMSS 1" >> ${WRKSRC}/config.h
 
 post-install:
+	${MV} ${STAGEDIR}${ETCDIR}/moduli \
+	    ${STAGEDIR}${ETCDIR}/moduli.sample
 	${MV} ${STAGEDIR}${ETCDIR}/ssh_config \
-	    ${STAGEDIR}${ETCDIR}//ssh_config.sample
+	    ${STAGEDIR}${ETCDIR}/ssh_config.sample
 	${MV} ${STAGEDIR}${ETCDIR}/sshd_config \
 	    ${STAGEDIR}${ETCDIR}/sshd_config.sample
 .if ${PORT_OPTIONS:MHPN} || ${PORT_OPTIONS:MNONECIPHER}
