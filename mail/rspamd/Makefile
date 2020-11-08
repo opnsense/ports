@@ -2,7 +2,7 @@
 
 PORTNAME=	rspamd
 PORTVERSION=	2.6
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	mail
 
 MAINTAINER=	vsevolod@FreeBSD.org
@@ -70,8 +70,9 @@ GPERF_LIB_DEPENDS=	libprofiler.so:devel/google-perftools
 HYPERSCAN_CMAKE_ON=	-DENABLE_HYPERSCAN=ON
 HYPERSCAN_LIB_DEPENDS=	libhs.so:devel/hyperscan
 
+LUAJIT_CMAKE_OFF=	-DENABLE_LUAJIT=OFF
 LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit
-LUAJIT_USES_OFF=	lua:51
+LUAJIT_USES_OFF=	lua:51+
 
 CGP_RUN_DEPENDS+=	\
 	p5-AnyEvent-HTTP>=0:www/p5-AnyEvent-HTTP \
