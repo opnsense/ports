@@ -768,6 +768,7 @@
     SUBDIR += py-hdbscan
     SUBDIR += py-hdmedians
     SUBDIR += py-intspan
+    SUBDIR += py-iohexperimenter
     SUBDIR += py-jax
     SUBDIR += py-keras
     SUBDIR += py-keras-applications
@@ -780,6 +781,7 @@
     SUBDIR += py-matplotlib-scalebar
     SUBDIR += py-matplotlib2
     SUBDIR += py-mip
+    SUBDIR += py-mixsimulator
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-munkres10
