@@ -1,0 +1,13 @@
+--- tests/Makefile.orig	2020-10-07 11:25:09 UTC
++++ tests/Makefile
+@@ -39,8 +39,8 @@ CFLAGS  ?= -O3 # can select custom optimization flags.
+ CFLAGS  += -Wall -Wextra -Wundef -Wcast-qual -Wcast-align -Wshadow \
+            -Wswitch-enum -Wdeclaration-after-statement -Wstrict-prototypes \
+            -Wpointer-arith -Wstrict-aliasing=1
+-CFLAGS  += $(DEBUGFLAGS) $(MOREFLAGS)
+-CPPFLAGS+= -I$(LZ4DIR) -I$(PRGDIR) -DXXH_NAMESPACE=LZ4_
++CFLAGS  += $(DEBUGFLAGS) $(MOREFLAGS) -fPIC
++CPPFLAGS+= -I$(LZ4DIR) -I$(PRGDIR) -DXXH_NAMESPACE=LZ4_ -fPIC
+ FLAGS    = $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+ 
+ include ../Makefile.inc

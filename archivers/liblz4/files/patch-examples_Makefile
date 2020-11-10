@@ -1,0 +1,14 @@
+--- examples/Makefile.orig	2020-10-07 11:25:33 UTC
++++ examples/Makefile
+@@ -27,9 +27,9 @@
+ # kindly provided by Takayuki Matsuoka
+ # ##########################################################################
+ 
+-CPPFLAGS += -I../lib
++CPPFLAGS += -I../lib -fPIC
+ CFLAGS   ?= -O3
+-CFLAGS   += -std=gnu99 -Wall -Wextra -Wundef -Wshadow -Wcast-align -Wstrict-prototypes
++CFLAGS   += -std=gnu99 -Wall -Wextra -Wundef -Wshadow -Wcast-align -Wstrict-prototypes -fPIC
+ FLAGS    := $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) $(MOREFLAGS)
+ 
+ TESTFILE  = Makefile

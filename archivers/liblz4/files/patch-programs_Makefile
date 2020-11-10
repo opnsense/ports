@@ -1,0 +1,17 @@
+--- programs/Makefile.orig	2020-10-07 11:24:21 UTC
++++ programs/Makefile
+@@ -44,12 +44,12 @@ LIBVER   := $(shell echo $(LIBVER_SCRIPT))
+ SRCFILES := $(sort $(wildcard $(LZ4DIR)/*.c) $(wildcard *.c))
+ OBJFILES := $(SRCFILES:.c=.o)
+ 
+-CPPFLAGS += -I$(LZ4DIR) -DXXH_NAMESPACE=LZ4_
++CPPFLAGS += -I$(LZ4DIR) -DXXH_NAMESPACE=LZ4_ -fPIC
+ CFLAGS   ?= -O3
+ DEBUGFLAGS:=-Wall -Wextra -Wundef -Wcast-qual -Wcast-align -Wshadow \
+             -Wswitch-enum -Wdeclaration-after-statement -Wstrict-prototypes \
+             -Wpointer-arith -Wstrict-aliasing=1
+-CFLAGS   += $(DEBUGFLAGS) $(MOREFLAGS)
++CFLAGS   += $(DEBUGFLAGS) $(MOREFLAGS) -fPIC
+ FLAGS     = $(CFLAGS) $(CPPFLAGS) $(LDFLAGS)
+ 
+ LZ4_VERSION=$(LIBVER)
