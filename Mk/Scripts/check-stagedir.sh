@@ -12,6 +12,7 @@
 #  c. Files in plist which are owned by dependencies/MTREEs
 
 set -e
+set -o pipefail
 
 HBSD_DEV_EMAIL='dev@hardenedbsd.org'
 
