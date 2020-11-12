@@ -18,14 +18,6 @@
  	mypid = getpid();
  	do_reap = procctl(P_PID, mypid, PROC_REAP_ACQUIRE, NULL) == 0;
  #endif
-@@ -303,7 +303,6 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
- 					exit(0);
- 
- 				pkg_emit_error("%s script failed", map[i].arg);
--				ret = EPKG_FATAL;
- 				goto cleanup;
- 			}
- 		}
 @@ -318,7 +317,7 @@ cleanup:
  	if (stdin_pipe[1] != -1)
  		close(stdin_pipe[1]);
