@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	openssh
-DISTVERSION=	8.2p1
-PORTREVISION=	2
+DISTVERSION=	8.4p1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -12,8 +12,10 @@ PKGNAMESUFFIX?=	-portable
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	The portable version of OpenBSD's OpenSSH
 
-#LICENSE=      BSD2,BSD3,MIT,public domain,BSD-Style,BEER-WARE,"any purpose with notice intact",ISC-Style
-#LICENSE_FILE= ${WRKSRC}/LICENCE
+LICENSE=	OPENSSH
+LICENSE_NAME=	OpenSSH Licenses
+LICENSE_FILE=	${WRKSRC}/LICENCE
+LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
@@ -40,8 +42,8 @@ gssapi_PKGNAMESUFFIX=		-portable-gssapi
 
 OPTIONS_DEFINE=		DOCS PAM TCP_WRAPPERS LIBEDIT BSM \
 			HPN KERB_GSSAPI \
-			LDNS NONECIPHER XMSS
-OPTIONS_DEFAULT=	LIBEDIT PAM TCP_WRAPPERS LDNS
+			LDNS NONECIPHER XMSS FIDO_U2F BLACKLISTD
+OPTIONS_DEFAULT=	LIBEDIT PAM TCP_WRAPPERS LDNS FIDO_U2F
 .if ${FLAVOR:U} == hpn
 OPTIONS_DEFAULT+=	HPN NONECIPHER
 .endif
@@ -60,6 +62,8 @@ HEIMDAL_BASE_DESC=	Heimdal Kerberos (base)
 MIT_DESC=		MIT Kerberos (security/krb5)
 NONECIPHER_DESC=	NONE Cipher support
 XMSS_DESC=		XMSS key support (experimental)
+FIDO_U2F_DESC=		FIDO/U2F support (security/libfido2)
+BLACKLISTD_DESC=	FreeBSD blacklistd(8) support
 
 OPTIONS_SUB=		yes
 
@@ -84,6 +88,12 @@ LIBEDIT_CONFIGURE_WITH=	libedit
 LIBEDIT_USES=		libedit
 BSM_CONFIGURE_ON=	--with-audit=bsm
 
+FIDO_U2F_LIB_DEPENDS=	libfido2.so:security/libfido2
+FIDO_U2F_CONFIGURE_ON=	--with-security-key-builtin
+FIDO_U2F_CONFIGURE_OFF=	--disable-security-key
+
+BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
+
 ETCDIR?=		${PREFIX}/etc/ssh
 
 .include <bsd.port.pre.mk>
@@ -99,13 +109,17 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
 .  endif
 # - See https://sources.debian.org/data/main/o/openssh/ for which subdir to
 # pull from.
-GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-4
+GSSAPI_DEBIAN_SUBDIR=	${DISTVERSION}-2
 # - Debian does not use a versioned filename so we trick fetch to make one for
 # us with the ?<anything>=/ trick.
 PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_SUBDIR}/debian/patches/gssapi.patch?dummy=/:gsskex
 # Bump this when updating the patch location
-GSSAPI_UPDATE_DATE=	20190719
+GSSAPI_UPDATE_DATE=	20200607
 PATCHFILES+=	openssh-${DISTVERSION}-gsskex-all-20141021-debian-rh-${GSSAPI_UPDATE_DATE}.patch:-p1:gsskex
+.endif
+
+.if ${PORT_OPTIONS:MBLACKLISTD}
+CONFIGURE_LIBS+=	-lblacklist
 .endif
 
 # https://www.psc.edu/hpn-ssh https://github.com/rapier1/openssh-portable/tree/hpn-openssl1.1-7_7_P1
@@ -192,6 +206,9 @@ post-patch:
 post-configure-XMSS-on:
 	@${ECHO_CMD} "#define WITH_XMSS 1" >> ${WRKSRC}/config.h
 
+post-configure-BLACKLISTD-on:
+	@${ECHO_CMD} "#define USE_BLACKLIST 1" >> ${WRKSRC}/config.h
+
 post-install:
 	${MV} ${STAGEDIR}${ETCDIR}/moduli \
 	    ${STAGEDIR}${ETCDIR}/moduli.sample
@@ -206,10 +223,11 @@ post-install:
 
 test: build
 	cd ${WRKSRC} && ${SETENV} -i \
-		OBJ=${WRKDIR} ${MAKE_ENV} \
+		OBJ=${WRKDIR} ${MAKE_ENV:NHOME=*} \
 		TEST_SHELL=${SH} \
 		SUDO="${SUDO}" \
 		LOGNAME="${LOGNAME}" \
+		HOME="${HOME}" \
 		TEST_SSH_TRACE=yes \
 		PATH=${WRKSRC}:${PREFIX}/bin:${PREFIX}/sbin:${PATH} \
 		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} tests
