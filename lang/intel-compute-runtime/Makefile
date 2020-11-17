@@ -1,9 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	compute-runtime
-DISTVERSION=	20.44.18297
+DISTVERSION=	20.45.18403
+PORTREVISION=	2
 CATEGORIES=	lang
 PKGNAMEPREFIX=	intel-
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	2a423820aaa4.patch:-p1 # https://github.com/intel/compute-runtime/pull/361
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	OpenCL implementation for Intel HD 5000 (Gen8) or newer
@@ -21,7 +25,7 @@ USES=		cmake compiler:c++14-lang localbase:ldflags pkgconfig
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	intel
-CMAKE_ON=	SKIP_UNIT_TESTS
+CMAKE_ON=	SKIP_UNIT_TESTS SUPPORT_DG1
 CMAKE_ARGS=	-DNEO_OCL_DRIVER_VERSION:STRING="${DISTVERSIONFULL}"
 PLIST_FILES=	bin/ocloc \
 		etc/OpenCL/vendors/intel.icd \

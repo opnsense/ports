@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	botan
-DISTVERSION=	2.17.1
+DISTVERSION=	2.17.2
 CATEGORIES=	security
 MASTER_SITES=	http://botan.randombit.net/releases/
 PKGNAMESUFFIX=	2
@@ -73,6 +73,12 @@ CONFIGURE_ARGS+=	--without-os-features=getentropy,elf_aux_info
 PLIST_SUB+=	HAS_RDRAND_RNG=""
 .else
 PLIST_SUB+=	HAS_RDRAND_RNG="@comment "
+.endif
+
+.if ${ARCH} == i386 || ${ARCH} == amd64 || ${ARCH:Mpowerpc64*}
+PLIST_SUB+=	HAS_PROCESSOR_RNG=""
+.else
+PLIST_SUB+=	HAS_PROCESSOR_RNG="@comment "
 .endif
 
 post-patch:

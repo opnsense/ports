@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mutt
-DISTVERSION=	2.0.0
+DISTVERSION=	2.0.1
 CATEGORIES+=	mail
 MASTER_SITES=	ftp://ftp.mutt.org/pub/mutt/ \
 		https://bitbucket.org/mutt/mutt/downloads/ \
@@ -26,16 +26,13 @@ RUN_DEPENDS=	${LOCALBASE}/etc/mime.types:misc/mime-support
 USES=		cpe perl5 shebangfix ssl
 USE_PERL5=	build
 
-CONFLICTS=	ja-mutt-[0-9]* ja-mutt-devel-[0-9]* mutt-1.4* mutt-devel-lite-[0-9]* mutt-lite-[0-9]* zh-mutt-devel-[0-9]*
+SHEBANG_FILES=	doc/gen-map-doc smime_keys.pl contrib/smime_keys_test.pl
 
+GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-fcntl --with-ssl=${OPENSSLBASE} \
 		--with-docdir=${DOCSDIR} --sysconfdir=${PREFIX}/etc \
 		--enable-external-dotlock --enable-pop --enable-imap \
 		--enable-compressed --enable-sidebar
-
-INFO=	${PORTNAME}
-
-SHEBANG_FILES=	doc/gen-map-doc smime_keys.pl contrib/smime_keys_test.pl
 
 USE_HARDENING=	cfi safestack
 CFI_OVERRIDE=	-fno-sanitize=cfi-icall
@@ -44,7 +41,9 @@ CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}
 .endif
 
-GNU_CONFIGURE=	yes
+CONFLICTS=	ja-mutt-[0-9]* ja-mutt-devel-[0-9]* mutt-1.4* mutt-devel-lite-[0-9]* mutt-lite-[0-9]* zh-mutt-devel-[0-9]*
+
+INFO=	${PORTNAME}
 
 OPTIONS_SUB=	yes
 
@@ -182,7 +181,7 @@ QUOTE_PATCH_PATCHFILES=	patch-${VVV_PATCH_VERSION}.vvv.initials.xz:vvv \
 .include <bsd.port.options.mk>
 
 VVV_PATCH_VERSION=	1.13.0
-GREETING_PATCH_VERSION=	2.0.0
+GREETING_PATCH_VERSION=	2.0.1
 
 post-install:
 	${INSTALL_MAN} ${FILESDIR}/mailcap.5 ${STAGEDIR}${MANPREFIX}/man/man5

@@ -60,6 +60,7 @@
     SUBDIR += erun
     SUBDIR += eterm
     SUBDIR += evilvte
+    SUBDIR += evtest
     SUBDIR += fbdesk
     SUBDIR += fbpanel
     SUBDIR += find-cursor
@@ -315,6 +316,7 @@
     SUBDIR += swaybg
     SUBDIR += swayidle
     SUBDIR += swaylock
+    SUBDIR += swaylock-effects
     SUBDIR += sxhkd
     SUBDIR += sxpc
     SUBDIR += tabbed
@@ -338,6 +340,7 @@
     SUBDIR += virtualgl
     SUBDIR += wallutils
     SUBDIR += waybar
+    SUBDIR += wayland-logout
     SUBDIR += wbar
     SUBDIR += wcm
     SUBDIR += wdisplays
@@ -346,6 +349,7 @@
     SUBDIR += wf-shell
     SUBDIR += wl-clipboard
     SUBDIR += wlogout
+    SUBDIR += wlr-randr
     SUBDIR += wlrctl
     SUBDIR += wmappl
     SUBDIR += wmblob
@@ -362,6 +366,7 @@
     SUBDIR += wofi
     SUBDIR += workrave
     SUBDIR += wshowkeys
+    SUBDIR += wtype
     SUBDIR += x11perf
     SUBDIR += x3270
     SUBDIR += xantfarm

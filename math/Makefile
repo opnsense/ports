@@ -732,6 +732,7 @@
     SUBDIR += py-affine
     SUBDIR += py-algopy
     SUBDIR += py-altgraph
+    SUBDIR += py-amply
     SUBDIR += py-apgl
     SUBDIR += py-arviz
     SUBDIR += py-autograd
@@ -786,7 +787,6 @@
     SUBDIR += py-munkres
     SUBDIR += py-munkres10
     SUBDIR += py-networkx
-    SUBDIR += py-networkx1
     SUBDIR += py-nevergrad
     SUBDIR += py-numeric
     SUBDIR += py-numexpr

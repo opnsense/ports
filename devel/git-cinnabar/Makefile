@@ -1,10 +1,9 @@
 # $FreeBSD$
 
 PORTNAME=	git-cinnabar
-DISTVERSION=	0.5.5
-PORTREVISION=	5
+DISTVERSION=	0.5.6
 CATEGORIES=	devel
-PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX:N-py27}
+py27_PKGNAMESUFFIX=	${PYTHON_PKGNAMESUFFIX}
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Git remote helper to interact with Mercurial repositories

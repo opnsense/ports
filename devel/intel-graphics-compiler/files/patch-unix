@@ -170,17 +170,6 @@ CMake Error at IGC/CMakeLists.txt:1974 (message):
  
  // Linux, Android
  #define MY_EXTERN_C    extern "C"
---- IGC/CMFE/AdaptorCM/InputArgsWrapper.cpp.orig	2020-08-29 06:30:46 UTC
-+++ IGC/CMFE/AdaptorCM/InputArgsWrapper.cpp
-@@ -55,7 +55,7 @@ void InputArgsWrapper::processSupportDirectories(const
-     return;
- 
- // TODO: enable this for Windows
--#if __linux__
-+#if !defined(_WIN32)
-   // process files
-   std::error_code EC;
-   SeqStrT IncludeFiles;
 --- IGC/GenISAIntrinsics/GenIntrinsics.h.orig	2020-02-10 06:06:31 UTC
 +++ IGC/GenISAIntrinsics/GenIntrinsics.h
 @@ -67,7 +67,7 @@ namespace GenISAIntrinsic {
@@ -223,6 +212,26 @@ CMake Error at IGC/CMakeLists.txt:1974 (message):
          if (!FCL_IGC_IS_FLAG_ENABLED(DumpToCurrentDir) && g_shaderOutputFolder == "" && !FCL_IGC_IS_FLAG_ENABLED(DumpToCustomDir))
          {
              bool needMkdir = true;
+--- IGC/VectorCompiler/lib/GenXCodeGen/GenXWrapper.cpp.orig	2020-10-30 09:08:26 UTC
++++ IGC/VectorCompiler/lib/GenXCodeGen/GenXWrapper.cpp
+@@ -24,7 +24,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+ ======================= end_copyright_notice ==================================*/
+ 
+-#if defined(__linux__)
++#if !defined(_WIN32)
+ #include <dlfcn.h>
+ #endif
+ 
+@@ -121,7 +121,7 @@ translateSPIRVToIR(ArrayRef<char> Input, ArrayRef<uint
+           void *ErrUserData);
+ 
+   const std::string SpirvLibPath = findSpirvDLL();
+-#if defined(__linux__)
++#if defined(RTLD_DEEPBIND)
+   // Hack to workaround cmoc crashes during loading of SPIRV library
+   static auto DeepBindHack =
+       dlopen(SpirvLibPath.c_str(), RTLD_NOW | RTLD_DEEPBIND);
 --- IGC/common/LLVMWarningsPop.hpp.orig	2019-11-27 01:05:20 UTC
 +++ IGC/common/LLVMWarningsPop.hpp
 @@ -58,6 +58,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

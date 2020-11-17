@@ -1242,6 +1242,7 @@
     SUBDIR += py-cjkwrap
     SUBDIR += py-cloud_sptheme
     SUBDIR += py-cmarkgfm
+    SUBDIR += py-collective.checkdocs
     SUBDIR += py-colorclass
     SUBDIR += py-creole
     SUBDIR += py-cssselect2
@@ -1641,6 +1642,7 @@
     SUBDIR += rubygem-rouge318
     SUBDIR += rubygem-rouge319
     SUBDIR += rubygem-rouge321
+    SUBDIR += rubygem-rouge324
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt

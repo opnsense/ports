@@ -174,6 +174,7 @@
     SUBDIR += geoclue
     SUBDIR += geocode-glib
     SUBDIR += geoipupdate
+    SUBDIR += gerbera
     SUBDIR += gfbgraph
     SUBDIR += glflow
     SUBDIR += glib-networking
@@ -1095,6 +1096,7 @@
     SUBDIR += py-ripe.atlas.tools
     SUBDIR += py-s3cmd
     SUBDIR += py-s3transfer
+    SUBDIR += py-saltyrtc.server
     SUBDIR += py-sbws
     SUBDIR += py-shodan
     SUBDIR += py-siosocks

@@ -46,6 +46,7 @@
     SUBDIR += couchdb3
     SUBDIR += courier-authlib-mysql
     SUBDIR += courier-authlib-pgsql
+    SUBDIR += courier-authlib-sqlite
     SUBDIR += courier-authlib-userdb
     SUBDIR += courier-authlib-usergdbm
     SUBDIR += cppdb
@@ -654,7 +655,6 @@
     SUBDIR += plpgsql_check
     SUBDIR += pointcloud
     SUBDIR += postgis-jdbc
-    SUBDIR += postgis23
     SUBDIR += postgis24
     SUBDIR += postgis25
     SUBDIR += postgis30
@@ -764,7 +764,6 @@
     SUBDIR += py-gdbm
     SUBDIR += py-geoalchemy2
     SUBDIR += py-hiredis
-    SUBDIR += py-htsql
     SUBDIR += py-influxdb
     SUBDIR += py-kyotocabinet
     SUBDIR += py-leveldb
@@ -822,6 +821,7 @@
     SUBDIR += py-sqlalchemy11
     SUBDIR += py-sqlalchemy12
     SUBDIR += py-sqlalchemy13
+    SUBDIR += py-sqlalchemy14
     SUBDIR += py-sqlite3
     SUBDIR += py-sqlobject
     SUBDIR += py-sqlparse

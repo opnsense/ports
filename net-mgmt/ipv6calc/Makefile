@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ipv6calc
-PORTVERSION=	2.2.0
+PORTVERSION=	3.0.0
 CATEGORIES=	net-mgmt
 MASTER_SITES=	ftp://ftp.bieringer.de/pub/linux/IPv6/ipv6calc/
 
@@ -17,7 +17,6 @@ USE_HARDENING=	cfi safestack
 USES=		gmake perl5 shebangfix ssl
 
 GNU_CONFIGURE=	yes
-CFLAGS+=	-fcommon
 
 SHEBANG_FILES=	tools/*.pl tools/*.sh.in
 

@@ -272,6 +272,7 @@
     SUBDIR += mps-youtube
     SUBDIR += mpv
     SUBDIR += mpv-mpris
+    SUBDIR += mpvpaper
     SUBDIR += msdl
     SUBDIR += msopenh264
     SUBDIR += mswebrtc
@@ -335,8 +336,6 @@
     SUBDIR += py-gstreamer1
     SUBDIR += py-guessit
     SUBDIR += py-kaa-base
-    SUBDIR += py-kaa-imlib2
-    SUBDIR += py-kaa-metadata
     SUBDIR += py-librtmp
     SUBDIR += py-mido
     SUBDIR += py-mlt
