@@ -3,7 +3,7 @@
 
 PORTNAME=	openssh
 DISTVERSION=	8.4p1
-PORTREVISION=	1
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -21,12 +21,12 @@ CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
 USE_HARDENING=		safestack
 
-USES=			alias autoreconf ncurses ssl
+USES=			alias autoreconf localbase ncurses pkgconfig ssl
 GNU_CONFIGURE=		yes
-CONFIGURE_ENV=		ac_cv_func_strnvis=no
-CONFIGURE_ARGS=		--prefix=${PREFIX} --with-md5-passwords \
-			--without-zlib-version-check --with-ssl-engine \
-			--with-mantype=man
+CONFIGURE_ARGS=		--prefix=${PREFIX} \
+			--with-ssl-engine \
+			--with-mantype=man \
+			--with-Werror
 
 ETCOLD=			${PREFIX}/etc
 
@@ -72,8 +72,6 @@ TCP_WRAPPERS_EXTRA_PATCHES=${FILESDIR}/extra-patch-tcpwrappers
 LDNS_CONFIGURE_WITH=	ldns=${LOCALBASE}
 LDNS_LIB_DEPENDS=	libldns.so:dns/ldns
 LDNS_EXTRA_PATCHES=	${FILESDIR}/extra-patch-ldns
-LDNS_CFLAGS=		-I${LOCALBASE}/include
-LDNS_CONFIGURE_ON=	--with-ldflags='-L${LOCALBASE}/lib'
 
 HPN_CONFIGURE_WITH=		hpn
 NONECIPHER_CONFIGURE_WITH=	nonecipher
@@ -91,6 +89,8 @@ BSM_CONFIGURE_ON=	--with-audit=bsm
 FIDO_U2F_LIB_DEPENDS=	libfido2.so:security/libfido2
 FIDO_U2F_CONFIGURE_ON=	--with-security-key-builtin
 FIDO_U2F_CONFIGURE_OFF=	--disable-security-key
+# Until https://reviews.freebsd.org/D27289 is committed
+FIDO_U2F_EXTRA_PATCHES=	${FILESDIR}/extra-patch-libfido2-configure.ac
 
 BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
 
@@ -116,6 +116,7 @@ PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_S
 # Bump this when updating the patch location
 GSSAPI_UPDATE_DATE=	20200607
 PATCHFILES+=	openssh-${DISTVERSION}-gsskex-all-20141021-debian-rh-${GSSAPI_UPDATE_DATE}.patch:-p1:gsskex
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-sshconnect2.c
 .endif
 
 .if ${PORT_OPTIONS:MBLACKLISTD}
@@ -135,8 +136,6 @@ EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hpn:-p2
 # Apply compatibility patch
 EXTRA_PATCHES+=		${FILESDIR}/extra-patch-hpn-compat
 .endif
-
-CONFIGURE_LIBS+=	-lutil
 
 CONFIGURE_ARGS+=	--disable-utmp --disable-wtmp --disable-wtmpx --without-lastlog
 
@@ -188,12 +187,9 @@ RC_SCRIPT_NAME=		openssh
 VERSION_ADDENDUM_DEFAULT?=	${OPSYS}-${PKGNAME}
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|-ldes|-lcrypto|g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} \
 	    -e 's|install: \(.*\) host-key check-config|install: \1|g' \
 	    ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${LOCALBASE}|' \
-		-e 's|%%RC_SCRIPT_NAME%%|${RC_SCRIPT_NAME}|' ${WRKSRC}/sshd.8
 	@${REINPLACE_CMD} \
 	    -e 's|\(VersionAddendum\) none|\1 ${VERSION_ADDENDUM_DEFAULT}|' \
 	    ${WRKSRC}/sshd_config
