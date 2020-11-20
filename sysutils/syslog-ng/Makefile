@@ -2,8 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	syslog-ng
-DISTVERSION=	3.29.1
-PORTREVISION=	2
+DISTVERSION=	3.30.1
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/balabit/syslog-ng/releases/download/syslog-ng-${DISTVERSION}/
 
@@ -182,6 +182,8 @@ PYTHON_PLIST_FILES=		lib/syslog-ng/libmod-python.so \
 		lib/syslog-ng/python/syslogng/debuggercli/__pycache__/templatelang.cpython-${PYTHON_SUFFIX}.pyc \
 		lib/syslog-ng/python/syslogng/debuggercli/templatelexer.py \
 		lib/syslog-ng/python/syslogng/debuggercli/__pycache__/templatelexer.cpython-${PYTHON_SUFFIX}.pyc \
+		lib/syslog-ng/python/syslogng/debuggercli/__pycache__/editline.cpython-37.pyc \
+		lib/syslog-ng/python/syslogng/debuggercli/editline.py \
 		lib/syslog-ng/python/syslogng/debuggercli/tflang.py \
 		lib/syslog-ng/python/syslogng/debuggercli/__pycache__/tflang.cpython-${PYTHON_SUFFIX}.pyc
 
@@ -210,6 +212,7 @@ BROKEN=		Default configuration does not currently support non-JSON builds
 post-patch:
 	@${CP} ${WRKSRC}/scl/syslog-ng.conf ${WRKSRC}/scl/syslog-ng.conf.dist
 	@${CP} ${WRKSRC}/scl/scl.conf ${WRKSRC}/scl/scl.conf.sample
+	touch -r ${WRKSRC}/lib/cfg-grammar.y ${WRKSRC}/lib/merge-grammar.py
 
 post-patch-JAVA_MOD-on:
 	@${REINPLACE_CMD} 's,$$(GRADLE),& --no-daemon,g' ${WRKSRC}/Makefile.in
@@ -224,8 +227,13 @@ post-install:
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.1 ${STAGEDIR}${PREFIX}/man/man1/
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.5 ${STAGEDIR}${PREFIX}/man/man5/
 	${INSTALL_MAN} ${WRKSRC}/doc/man/*.8 ${STAGEDIR}${PREFIX}/man/man8/
+.if ${OSVERSION} > 1200000
 	${INSTALL_DATA} ${FILESDIR}/syslog-ng.conf.sample \
 		${STAGEDIR}${PREFIX}/etc
+.else
+	${INSTALL_DATA} ${FILESDIR}/syslog-ng.conf.sample.11 \
+		${STAGEDIR}${PREFIX}/etc/syslog-ng.conf.sample
+.endif
 	${INSTALL_DATA} ${WRKSRC}/scl/syslog-ng.conf.dist \
 		${WRKSRC}/scl/scl.conf.sample ${STAGEDIR}${PREFIX}/etc
 	${INSTALL_DATA} ${WRKSRC}/lib/ivykis/src/include/iv*.h \
