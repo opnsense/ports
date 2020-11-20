@@ -3,8 +3,8 @@
 
 PORTNAME=	libreatlas
 PORTVERSION=	1.0.0a
-PORTREVISION=	25
-CATEGORIES=	graphics geography
+PORTREVISION=	26
+CATEGORIES=	graphics education geography
 MASTER_SITES=	http://www.gaia-gis.it/gaia-sins/
 
 MAINTAINER=	lbartoletti@FreeBSD.org

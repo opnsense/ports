@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	river
-PORTVERSION=	s20201111
+PORTVERSION=	s20201118
 CATEGORIES=	x11-wm
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -21,7 +21,7 @@ LIB_DEPENDS=	libevdev.so:devel/libevdev \
 USES=		pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	ifreund
-GH_TAGNAME=	ab5e2f7
+GH_TAGNAME=	cbd4a28
 GH_TUPLE=	ifreund:zig-wayland:931b6f7:zig_wayland/deps/zig-wayland
 CONFIGURE_ARGS=	--prefix "${STAGEDIR}${PREFIX}" \
 		${WITH_DEBUG:U-Drelease-fast=true} \
@@ -44,6 +44,11 @@ MANPAGES_PLIST_FILES=	share/man/man1/${PORTNAME}.1.gz \
 
 X11_CONFIGURE_ON=	-Dxwayland=true
 X11_CONFIGURE_OFF=	-Dxwayland=false
+
+post-patch:
+# Respect PREFIX for system-wide config (a la sysconfdir in Meson)
+	@${REINPLACE_CMD} -e 's,/etc,${PREFIX}&,' \
+		${WRKSRC}/river/main.zig
 
 do-build:
 	@(cd ${WRKSRC} && ${MAKE_ENV} zig build ${CONFIGURE_ARGS})

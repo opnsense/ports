@@ -1194,6 +1194,7 @@
     SUBDIR += libhoard
     SUBDIR += libhtp
     SUBDIR += libhyve-remote
+    SUBDIR += libibuddy
     SUBDIR += libical
     SUBDIR += libindicator
     SUBDIR += libinotify
@@ -1329,6 +1330,7 @@
     SUBDIR += libunicode
     SUBDIR += libuninum
     SUBDIR += libunistring
+    SUBDIR += libunit
     SUBDIR += libunwind
     SUBDIR += libuutil
     SUBDIR += libuv
@@ -4224,6 +4226,7 @@
     SUBDIR += py-cachy
     SUBDIR += py-canonicaljson
     SUBDIR += py-capstone
+    SUBDIR += py-case
     SUBDIR += py-castellan
     SUBDIR += py-castellan1
     SUBDIR += py-cbor
@@ -5048,6 +5051,7 @@
     SUBDIR += py-selectors2
     SUBDIR += py-semantic_version
     SUBDIR += py-semver
+    SUBDIR += py-sentry-sdk
     SUBDIR += py-serializable
     SUBDIR += py-serpent
     SUBDIR += py-setproctitle
