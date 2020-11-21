@@ -32,8 +32,8 @@ OPTIONS_DEFINE=	EXAMPLES
 
 .include <bsd.port.pre.mk>
 
-.if ${SSL_DEFAULT:Mlibressl*} || defined(LIBRESSL_IS_OPENSSL)
-IGNORE=	Detected LibreSSL which does not support Dynamic Engines
+.if ${SSL_DEFAULT:Mlibressl*}
+IGNORE=	Detected LibreSSL (RAND_METHOD structure unsupported)
 .endif
 
 post-patch:

@@ -1,5 +1,5 @@
 # Created by: Alex Dupre <ale@FreeBSD.org>
-# $FreeBSD: head/www/tomcat-native/Makefile 422874 2016-09-28 13:47:53Z mat $
+# $FreeBSD$
 
 PORTNAME=	tomcat-native
 PORTVERSION=	1.2.24

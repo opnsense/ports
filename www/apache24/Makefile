@@ -1,4 +1,4 @@
-# $FreeBSD: head/www/apache24/Makefile 465983 2018-03-30 16:44:52Z brnrd $
+# $FreeBSD$
 
 PORTNAME=	apache24
 PORTVERSION=	2.4.46

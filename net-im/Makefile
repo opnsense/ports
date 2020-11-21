@@ -59,6 +59,7 @@
     SUBDIR += libpurple
     SUBDIR += libqmatrixclient
     SUBDIR += libqtelegram-ae
+    SUBDIR += libquotient
     SUBDIR += libsignon-glib
     SUBDIR += libstrophe
     SUBDIR += licq
@@ -75,6 +76,7 @@
     SUBDIR += meanwhile
     SUBDIR += mikutter
     SUBDIR += mtxclient
+    SUBDIR += neochat
     SUBDIR += nextcloud-talk
     SUBDIR += nheko
     SUBDIR += openfire
