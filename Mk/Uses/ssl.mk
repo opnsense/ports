@@ -41,11 +41,6 @@ _SSL_BUILD_DEP=	1
 _SSL_RUN_DEP=	1
 .endif
 
-.if exists(/usr/lib/libtls.so)
-# analogous to CLANG_IS_CC
-LIBRESSL_IS_OPENSSL=   yes
-.endif
-
 .if defined(BROKEN_SSL) && ${BROKEN_SSL:M${SSL_DEFAULT}}
 .  if defined(BROKEN_SSL_REASON_${SSL_DEFAULT})
 BROKEN=	does not build with DEFAULT_VERSIONS+=ssl=${SSL_DEFAULT}: ${BROKEN_SSL_REASON_${SSL_DEFAULT}}
