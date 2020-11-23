@@ -3,7 +3,7 @@
 PORTNAME=	secadm
 PORTVERSION=	0.5.1
 DISTVERSIONPREFIX=	v
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	hardenedbsd
 
 MAINTAINER=	shawn.webb@hardenedbsd.org
@@ -17,7 +17,7 @@ USE_HARDENING?=	safestack
 USE_GITHUB=	yes
 GH_ACCOUNT=	HardenedBSD
 GH_PROJECT=	secadm
-GH_TAGNAME=	3ed5614
+GH_TAGNAME=	fcd8042
 
 .if !defined(KMOD)
 LIBDIR?=	${PREFIX}/lib
