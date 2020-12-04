@@ -3,7 +3,7 @@
 
 PORTNAME=	openssh
 DISTVERSION=	8.4p1
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -21,7 +21,8 @@ CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
 USE_HARDENING=		safestack
 
-USES=			alias autoreconf localbase ncurses pkgconfig ssl
+USES=			alias autoreconf compiler:c11 localbase ncurses \
+			pkgconfig ssl
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--prefix=${PREFIX} \
 			--with-ssl-engine \
@@ -117,6 +118,8 @@ PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_S
 GSSAPI_UPDATE_DATE=	20200607
 PATCHFILES+=	openssh-${DISTVERSION}-gsskex-all-20141021-debian-rh-${GSSAPI_UPDATE_DATE}.patch:-p1:gsskex
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-sshconnect2.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgssc.c
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgsss.c
 .endif
 
 .if ${PORT_OPTIONS:MBLACKLISTD}
@@ -185,6 +188,9 @@ CONFIGURE_ARGS+=	--with-xauth=${LOCALBASE}/bin/xauth
 
 RC_SCRIPT_NAME=		openssh
 VERSION_ADDENDUM_DEFAULT?=	${OPSYS}-${PKGNAME}
+
+CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}}
+CFLAGS_gcc=	-Wno-stringop-truncation
 
 post-patch:
 	@${REINPLACE_CMD} \
