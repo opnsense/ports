@@ -788,7 +788,6 @@ devel/p5-MooseX-Policy-SemiAffordanceAccessor|devel/p5-MooseX-SemiAffordanceAcce
 www/mediawiki12|www/mediawiki112|2009-08-19|Renamed
 lang/gcc42-withgcjawt|lang/gcc42|2009-08-19|Not needed any longer, still an option for the regular lang/gcc ports
 math/octave-forge-windows||2009-08-23|Abandoned upstream
-math/freefem++||2009-08-23|Has expired: unmaintained and consistently unportable
 math/it++||2009-08-23|Has expired: unmaintained and consistently unportable
 databases/firebird-client||2009-09-03|Removed: no longer under development
 databases/firebird-server||2009-09-03|Removed: no longer under development
@@ -12845,7 +12844,6 @@ textproc/rubygem-gitlab-linguist|textproc/rubygem-github-linguist|2019-08-31|Has
 textproc/rubygem-html-pipeline1|textproc/rubygem-html-pipeline|2019-08-31|Has expired: Use textproc/rubygem-html-pipeline instead
 devel/pure-stldict||2019-09-01|Has expired: Depends on expiring devel/llvm35
 lang/dmd1||2019-09-01|Has expired: No longer supported upstream
-lang/gprolog||2019-09-01|Has expired: Abandonware upstream (more than five years), fails in various ways with remotely recent compilers
 math/pure-mpfr||2019-09-01|Has expired: Depends on expiring devel/llvm35
 math/pure-rational||2019-09-01|Has expired: Depends on expiring devel/llvm35
 net/pure-sockets||2019-09-01|Has expired: Depends on expiring devel/llvm35
@@ -12872,7 +12870,6 @@ editors/dexed||2019-09-05|Has expired: Depends on expiring devel/dfmt
 editors/p5-Padre||2019-09-05|Has expired: Depends on expiring x11-toolkits/p5-Wx
 emulators/qemu2||2019-09-05|Has expired: Latest 3.X branch is in ports tree
 games/asc||2019-09-05|Has expired: Broken for more than 6 months
-games/slade||2019-09-05|Has expired: Broken for more than 6 months
 graphics/gimp-wavelet-decompose-plugin||2019-09-05|Has expired: Broken for more than 6 months
 irc/irssi-otr||2019-09-05|Has expired: Broken for more than 6 months
 mail/p5-Mail-ClamAV||2019-09-05|Has expired: Broken for more than 6 months
@@ -14678,7 +14675,6 @@ lang/ohugs||2020-05-05|Has expired: Broken for more than 6 months
 lang/opendylan||2020-05-05|Has expired: Broken for more than 6 months
 lang/phc||2020-05-05|Has expired: Broken for more than 6 months
 lang/starlogo||2020-05-05|Has expired: Broken for more than 6 months
-lang/yap||2020-05-05|Has expired: Broken for more than 6 months
 lang/yap-devel||2020-05-05|Has expired: Broken for more than 6 months
 mail/chk4mail||2020-05-05|Has expired: Broken for more than 6 months
 mail/librfc822||2020-05-05|Has expired: Broken for more than 6 months
@@ -15708,4 +15704,34 @@ www/py-meld3||2020-11-15|Has expired: EOLed upstream
 www/py-requestbuilder||2020-11-15|Has expired: Uses deprecated version of python
 x11-toolkits/py-SquareMap||2020-11-15|Has expired: Uses deprecated version of python
 devel/py-utils||2020-11-16|Removed on maintainers request, uses EOLed python27
-net-mgmt/cnagios4|net-mgmt/cnagio|2020-11-17|Moved to nagios4 flavored version
+net-mgmt/cnagios4|net-mgmt/cnagios|2020-11-17|Moved to nagios4 flavored version
+net/remmina-plugin-exec|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-nx|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-rdp|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-secret|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-spice|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-st|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-vnc|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-www|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugin-xdmcp|net/remmina|2020-11-24|Moved to remmina flavored version
+net/remmina-plugins|net/remmina|2020-11-24|Moved to remmina flavored version
+graphics/jpeg|graphics/jpeg-turbo|2020-12-01|Has expired: Outdated and vulnerable, new version breaks API and ABI
+databases/datamodeler||2020-12-01|Has expired: depends on expiring java/openjfx8-devel
+devel/gradle4||2020-12-01|Has expired: only needed for expiring java/openjfx8-devel
+devel/py-astroid1|devel/py-astroid|2020-12-01|Has expired: Use devel/py-astroid instead
+devel/pylint1|devel/pylint|2020-12-01|Has expired: Use devel/pylint instead
+german/mediathekview||2020-12-01|Has expired: depends on expiring java/openjfx8-devel
+java/openjfx8-devel||2020-12-01|Has expired: No longer maintained upstream
+java/openjfx8-scenebuilder||2020-12-01|Has expired: depends on expiring java/openjfx8-devel
+net-im/py-sleekxmpp|net-im/py-slixmpp|2020-12-01|Has expired: Upstream archived and advices to use net-im/py-slixmpp
+net-mgmt/zabbix44-agent|net-mgmt/zabbix5-agent|2020-12-01|Has expired: End of Life
+net-mgmt/zabbix44-frontend|net-mgmt/zabbix5-frontend|2020-12-01|Has expired: End of Life
+net-mgmt/zabbix44-java|net-mgmt/zabbix5-java|2020-12-01|Has expired: End of Life
+net-mgmt/zabbix44-proxy|net-mgmt/zabbix5-proxy|2020-12-01|Has expired: End of Life
+net-mgmt/zabbix44-server|net-mgmt/zabbix5-server|2020-12-01|Has expired: End of Life
+print/jabref||2020-12-01|Has expired: depends on expiring java/openjfx8-devel
+science/datawarrior||2020-12-01|Has expired: depends on expiring java/openjfx8-devel
+www/rubygem-dashing||2020-12-03|Has expired: Unmaintained by upstream, use www/rubygem-smashing instead
+www/rubygem-redmine_acts_as_taggable_on||2020-12-03|Has expired: Unmaintained by upstream
+www/rubygem-gitlab-grack||2020-12-03|Has expired: Deprecated by upstream
+databases/db6||2020-12-03|Has expired: latest 6.2.x version and newer not downloadable without registration
