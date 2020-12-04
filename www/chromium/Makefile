@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	chromium
-PORTVERSION=	85.0.4183.121
-PORTREVISION=	3
+PORTVERSION=	87.0.4280.88
 CATEGORIES?=	www java
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		LOCAL/rene/chromium/:fonts
@@ -60,7 +59,8 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
 		libsecret-1.so:security/libsecret \
 		libnss3.so:security/nss \
 		libexpat.so:textproc/expat2 \
-		libfontconfig.so:x11-fonts/fontconfig
+		libfontconfig.so:x11-fonts/fontconfig \
+		libxkbcommon.so:x11/libxkbcommon
 
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		noto-basic>0:x11-fonts/noto-basic
@@ -209,6 +209,10 @@ TEST_DISTFILES=		${PORTNAME}-${DISTVERSION}-testdata${EXTRACT_SUFX} \
 
 .include <bsd.port.options.mk>
 
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1300000
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-build_config_compiler_pgo_pgo.gni
+.endif
+
 # swiftshader/lib/{libEGL.so,libGLESv2.so} is x86 only
 .if ${ARCH} == aarch64
 PLIST_SUB+=	NOT_AARCH64="@comment "
@@ -241,12 +245,6 @@ pre-everything::
 post-extract-TEST-on:
 	@${MKDIR} ${WRKSRC}/third_party/test_fonts/test_fonts
 	@${MV} ${WRKDIR}/test_fonts ${WRKSRC}/third_party/test_fonts/
-
-post-patch:
-	# XXX nop for www/chromium itself
-	@${REINPLACE_CMD} -e 's|@@PACKAGE@@|chromium|' \
-			-e 's|@@MENUNAME@@|Chromium Web Browser|' \
-			${WRKSRC}/chrome/app/resources/manpage.1.in
 
 post-patch-SNDIO-on:
 	@${MKDIR} ${WRKSRC}/media/audio/sndio ${WRKSRC}/media/audio/openbsd

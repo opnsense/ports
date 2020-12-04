@@ -1,7 +1,8 @@
 # $FreeBSD$
 
 PORTNAME=	cargo-c
-DISTVERSION=	0.6.17+cargo-0.49
+DISTVERSION=	0.6.18+cargo-0.49
+PORTREVISION=	1
 CATEGORIES=	devel
 MASTER_SITES=	CRATESIO
 # XXX Teach USES=cargo to have proper default
@@ -83,7 +84,7 @@ CARGO_CRATES=	adler-0.2.3 \
 		libc-0.2.80 \
 		libgit2-sys-0.12.14+1.1.0 \
 		libnghttp2-sys-0.1.4+1.41.0 \
-		libssh2-sys-0.2.19 \
+		libssh2-sys-0.2.20 \
 		libz-sys-1.1.2 \
 		log-0.4.11 \
 		matches-0.1.8 \

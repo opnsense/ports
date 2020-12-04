@@ -2,8 +2,7 @@
 
 PORTNAME=	vulkan-tools
 DISTVERSIONPREFIX=	sdk-
-DISTVERSION=	1.2.135.0
-PORTREVISION=	3
+DISTVERSION=	1.2.154.0
 CATEGORIES=	devel graphics
 
 MAINTAINER=	greg@unrelenting.technology
@@ -34,7 +33,7 @@ XCB_DESC=	Build XCB WSI (Window System Integration) support
 XLIB_DESC=	Build Xlib WSI (Window System Integration) support
 
 WAYLAND_PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-WAYLAND_PATCHFILES=	6f6e3371c92a.patch:-p1
+WAYLAND_PATCHFILES=	ea2e75bea224.patch:-p1
 WAYLAND_BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
 			wayland-protocols>0:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
@@ -48,10 +47,6 @@ XLIB_LIB_DEPENDS=	libX11.so:x11/libX11 \
 			libXext.so:x11/libXext \
 			libICE.so:x11/libICE \
 			libSM.so:x11/libSM
-
-# https://github.com/KhronosGroup/Vulkan-Headers/issues/122
-display-build:		.IGNORE
-display-install:	.IGNORE
 
 # https://github.com/KhronosGroup/Vulkan-Tools/issues/307
 .for _wsi in display wayland xcb xlib

@@ -269,6 +269,7 @@
     SUBDIR += fpc-gmp
     SUBDIR += fpc-numlib
     SUBDIR += fplll
+    SUBDIR += freefem++
     SUBDIR += fricas
     SUBDIR += frobby
     SUBDIR += fxt
@@ -778,6 +779,7 @@
     SUBDIR += py-levmar
     SUBDIR += py-libpoly
     SUBDIR += py-luminol
+    SUBDIR += py-mathics
     SUBDIR += py-matplotlib
     SUBDIR += py-matplotlib-scalebar
     SUBDIR += py-matplotlib2

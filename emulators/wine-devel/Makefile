@@ -3,6 +3,7 @@
 
 PORTNAME=	wine
 DISTVERSION=	5.22
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -37,6 +38,7 @@ CONFIGURE_ARGS+=--verbose \
 		--without-gphoto --without-gsm --without-gstreamer \
 		--without-inotify \
 		--without-krb5 \
+		--without-mingw \
 		--without-opencl \
 		--without-osmesa \
 		--with-oss \
@@ -80,7 +82,7 @@ DOSBOX_RUN_DEPENDS=	dosbox:emulators/dosbox
 GCC_USE=		gcc=yes
 GCC_USES_OFF=		compiler:c11
 
-GECKO_RUN_DEPENDS=	${DATADIR}/gecko/wine-gecko-2.47.1-x86.msi:emulators/wine-gecko-devel
+GECKO_RUN_DEPENDS=	${DATADIR}/gecko/wine-gecko-2.47.2-x86.msi:emulators/wine-gecko-devel
 
 GNUTLS_CONFIGURE_WITH=	gnutls
 GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls

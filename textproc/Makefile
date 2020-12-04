@@ -82,6 +82,7 @@
     SUBDIR += c2html
     SUBDIR += c2man
     SUBDIR += ca-aspell
+    SUBDIR += cast2gif
     SUBDIR += castxml
     SUBDIR += catdoc
     SUBDIR += cdif
@@ -403,6 +404,7 @@
     SUBDIR += linuxdoc
     SUBDIR += linuxdoc-tools
     SUBDIR += localize
+    SUBDIR += lookatme
     SUBDIR += loook
     SUBDIR += lowdown
     SUBDIR += lt-aspell
@@ -1297,6 +1299,7 @@
     SUBDIR += py-jtextfsm
     SUBDIR += py-junit-xml
     SUBDIR += py-langdetect
+    SUBDIR += py-langid
     SUBDIR += py-laserhammer
     SUBDIR += py-libxml2
     SUBDIR += py-license-expression

@@ -14,8 +14,8 @@ COMMENT=	Network UPS Tools
 
 USE_GITHUB=	yes
 GH_ACCOUNT=     networkupstools 
-GH_TAGNAME=     27e15079
-NUT_COMMIT_DATE=	2020.11.16
+GH_TAGNAME=     503f6eae
+NUT_COMMIT_DATE=	2020.11.30
 
 BROKEN_powerpc64=	Poudriere builds fail.
 BROKEN_powerpc=		Poudriere builds fail.
@@ -57,6 +57,7 @@ PORTDOCS=	*
 
 .include <bsd.port.options.mk>
 
+TMPDIR?=	/tmp
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--program-transform-name="" \
 		--localstatedir=${STATEDIR} \

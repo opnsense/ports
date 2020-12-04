@@ -63,6 +63,7 @@
     SUBDIR += atf-rk3328
     SUBDIR += atf-rk3399
     SUBDIR += atf-sun50i_a64
+    SUBDIR += atf-sun50i_h6
     SUBDIR += atitvout
     SUBDIR += atop
     SUBDIR += auto-admin
@@ -1270,6 +1271,7 @@
     SUBDIR += stow
     SUBDIR += stowES
     SUBDIR += stress
+    SUBDIR += stressdisk
     SUBDIR += superiotool
     SUBDIR += swapd
     SUBDIR += swapexd
@@ -1378,6 +1380,7 @@
     SUBDIR += u-boot-orangepi-zero
     SUBDIR += u-boot-pandaboard
     SUBDIR += u-boot-pcduino3
+    SUBDIR += u-boot-pine-h64
     SUBDIR += u-boot-pine64
     SUBDIR += u-boot-pine64-lts
     SUBDIR += u-boot-pinebook

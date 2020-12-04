@@ -56,6 +56,7 @@
     SUBDIR += foomatic-db-engine
     SUBDIR += foomatic-db-hpijs
     SUBDIR += foomatic-filters
+    SUBDIR += fpc-libcups
     SUBDIR += fpdf
     SUBDIR += freetype
     SUBDIR += freetype2
@@ -89,7 +90,6 @@
     SUBDIR += html2ps
     SUBDIR += hyperlatex
     SUBDIR += indexinfo
-    SUBDIR += jabref
     SUBDIR += kde_poster
     SUBDIR += latex-beamer
     SUBDIR += latex-biber

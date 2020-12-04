@@ -155,6 +155,7 @@
     SUBDIR += flower
     SUBDIR += foreman-proxy
     SUBDIR += fpc-ldap
+    SUBDIR += fpc-libenet
     SUBDIR += fpc-pcap
     SUBDIR += fping
     SUBDIR += freebsd-uucp
@@ -231,6 +232,7 @@
     SUBDIR += haproxy19
     SUBDIR += haproxy20
     SUBDIR += haproxy21
+    SUBDIR += haproxy23
     SUBDIR += hblock
     SUBDIR += hexinject
     SUBDIR += hlmaster
@@ -1165,16 +1167,6 @@
     SUBDIR += redir
     SUBDIR += relayd
     SUBDIR += remmina
-    SUBDIR += remmina-plugin-exec
-    SUBDIR += remmina-plugin-nx
-    SUBDIR += remmina-plugin-rdp
-    SUBDIR += remmina-plugin-secret
-    SUBDIR += remmina-plugin-spice
-    SUBDIR += remmina-plugin-st
-    SUBDIR += remmina-plugin-vnc
-    SUBDIR += remmina-plugin-www
-    SUBDIR += remmina-plugin-xdmcp
-    SUBDIR += remmina-plugins
     SUBDIR += remotebox
     SUBDIR += remotedesk
     SUBDIR += repeater

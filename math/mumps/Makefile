@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mumps
-DISTVERSION=	5.1.2-aster6
-PORTREVISION=	2
+DISTVERSION=	5.1.2-aster7
 CATEGORIES=	math
 PKGNAMESUFFIX=	-edf
 
@@ -46,6 +45,10 @@ MAKE_JOBS_UNSAFE=yes
 
 .ifdef WITH_MPI
 PKGNAMESUFFIX+=		-mpich
+.endif
+
+.if ${FORTRAN_DEFAULT} == gfortran && ${GCC_DEFAULT} >= 10
+FCFLAGS+=	-fallow-argument-mismatch
 .endif
 
 post-patch-MPI-on:

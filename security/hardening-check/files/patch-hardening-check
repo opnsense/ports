@@ -1,0 +1,126 @@
+--- hardening-check.orig	2014-09-24 14:57:24 UTC
++++ hardening-check
+@@ -15,6 +15,7 @@ my $skip_stackprotector = 0;
+ my $skip_fortify = 0;
+ my $skip_relro = 0;
+ my $skip_bindnow = 0;
++my $skip_retpoline = 0;
+ my $report_functions = 0;
+ my $find_libc_functions = 0;
+ my $color = 0;
+@@ -145,7 +146,20 @@ sub find_functions($$) {
+     return \%funcs;
+ }
+ 
++sub find_safestack($) {
++    my $func_name = "__safestack_init";
++    my $safestack_output = output("readelf", "-sW", @_);
+ 
++    for my $line (split("\n", $safestack_output)) {
++        if ($line =~ /$func_name/) {
++            return 1;
++        }
++    }
++
++    return 0;
++}
++
++
+ $ENV{'LANG'} = "C";
+ 
+ if ($find_libc_functions) {
+@@ -160,7 +174,7 @@ if ($find_libc_functions) {
+     }
+     exit(0);
+ }
+-die "List of libc functions not defined!" if (scalar(keys %libc) < 1);
++##die "List of libc functions not defined!" if (scalar(keys %libc) < 1);
+ 
+ my $name;
+ foreach my $file (@ARGV) {
+@@ -190,7 +204,7 @@ foreach my $file (@ARGV) {
+     $PROG_REPORT =~ /^Elf file type is (\S+)/m;
+     my $elftype = $1 || "";
+     if ($elftype eq "DYN") {
+-        if ($PROG_REPORT =~ /^ *\bPHDR\b/m) {
++        if ($PROG_REPORT =~ /^ *\bINTERP\b/m) {
+             # Executable, DYN ELF type.
+             good($name, "yes");
+         }
+@@ -222,10 +236,17 @@ foreach my $file (@ARGV) {
+ 
+     # Stack-protected
+     $name = " Stack protected";
++    my $status = "";
+     if (defined($functions->{'__stack_chk_fail'}) ||
+         (!$elf && defined($functions->{'__stack_chk_fail_local'}))) {
+-        good($name, "yes")
++        $status = "StackProtector";
+     }
++    if (find_safestack($file)) {
++        $status = "$status SafeStack";
++    }
++    if ($status ne "") {
++        good($name, "yes", " ($status)")
++    }
+     else {
+         bad("no-stackprotector", $file, $name,
+             "no, not found!", $skip_stackprotector);
+@@ -295,14 +316,20 @@ foreach my $file (@ARGV) {
+ 
+     # BIND_NOW
+     # This marking keeps changing:
+-    # 0x0000000000000018 (BIND_NOW)           
++    # 0x0000000000000018 (BIND_NOW)
+     # 0x000000006ffffffb (FLAGS)              Flags: BIND_NOW
+     # 0x000000006ffffffb (FLAGS_1)            Flags: NOW
+ 
++    # Adaptation for FreeBSD
++    # 0x000000000000001e FLAGS
++    # 0x000000006ffffffb FLAGS_1
++
+     $name = " Immediate binding";
+     if ($DYN_REPORT =~ /^\s*\S+\s+\(BIND_NOW\)/m ||
+         $DYN_REPORT =~ /^\s*\S+\s+\(FLAGS\).*\bBIND_NOW\b/m ||
+-        $DYN_REPORT =~ /^\s*\S+\s+\(FLAGS_1\).*\bNOW\b/m) {
++        $DYN_REPORT =~ /^\s*\S+\s+\(FLAGS_1\).*\bNOW\b/m ||
++        $DYN_REPORT =~ /^\s*\S+\s+FLAGS\b/m ||
++        $DYN_REPORT =~ /^\s*\S+\s+FLAGS_1\b/m) {
+         good($name, "yes");
+     } else {
+         if ($elf) {
+@@ -312,6 +339,16 @@ foreach my $file (@ARGV) {
+         }
+     }
+ 
++    # retpoline
++    $name = " Retpoline";
++    if (defined($functions->{'__llvm_retpoline_r11'})) {
++        good($name, "yes")
++    }
++    else {
++        bad("no-retpoline", $file, $name,
++            "no, not found!", $skip_retpoline);
++    }
++    
+     if (!$lintian && (!$quiet || $rc != 0)) {
+         print $report,"\n";
+     }
+@@ -390,7 +427,7 @@ use cannot be verified at runtime), this check will le
+ In an effort to mitigate this, the check will pass if any fortified function
+ is found, and will fail if only unfortified functions are found. Uncheckable
+ conditions also pass (e.g. no functions that could be fortified are found, or
+-not linked against glibc).
++not linked against glibc). This function is currently Not supported on FreeBSD.
+ 
+ =item B<Read-only relocations>
+ 
+@@ -451,7 +488,7 @@ After the report, display all external functions neede
+ 
+ Instead of the regular report, locate the libc for the first ELF on the
+ command line and report all the known "fortified" functions exported by
+-libc.
++libc. Not supported on FreeBSD now.
+ 
+ =item B<--color>, B<-c>
+ 

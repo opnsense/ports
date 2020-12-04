@@ -2,7 +2,6 @@
 
 PORTNAME=	clover
 PORTVERSION=	${MESAVERSION}
-PORTREVISION=	1
 CATEGORIES=	lang
 
 COMMENT=	Mesa OpenCL implementation for AMD GPUs
@@ -16,6 +15,7 @@ RUN_DEPENDS=	libclc>=0.3.0:devel/libclc \
 
 ONLY_FOR_ARCHS=		i386 amd64
 ONLY_FOR_ARCHS_REASON=	Clover needs a GPU supported by the Radeon KMS driver
+BROKEN_FreeBSD_11=	undefined reference to `vl_video_buffer_plane_order'
 
 .include <bsd.port.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"

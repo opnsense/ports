@@ -667,6 +667,7 @@
     SUBDIR += fpc-fcl-passrc
     SUBDIR += fpc-fcl-pdf
     SUBDIR += fpc-fcl-registry
+    SUBDIR += fpc-fcl-report
     SUBDIR += fpc-fcl-res
     SUBDIR += fpc-fcl-sdo
     SUBDIR += fpc-fcl-sound
@@ -676,7 +677,9 @@
     SUBDIR += fpc-fppkg
     SUBDIR += fpc-fv
     SUBDIR += fpc-gdbint
+    SUBDIR += fpc-libmagic
     SUBDIR += fpc-newt
+    SUBDIR += fpc-odata
     SUBDIR += fpc-pthreads
     SUBDIR += fpc-regexpr
     SUBDIR += fpc-sdl
@@ -861,10 +864,10 @@
     SUBDIR += gputils
     SUBDIR += gradle
     SUBDIR += gradle-completion
-    SUBDIR += gradle4
     SUBDIR += gradle5
     SUBDIR += gradle62
     SUBDIR += grantlee5
+    SUBDIR += grcov
     SUBDIR += grpc
     SUBDIR += grv
     SUBDIR += gsettings-desktop-schemas
@@ -4078,7 +4081,6 @@
     SUBDIR += py-aspyct
     SUBDIR += py-astor
     SUBDIR += py-astroid
-    SUBDIR += py-astroid1
     SUBDIR += py-asttokens
     SUBDIR += py-astunparse
     SUBDIR += py-async_generator
@@ -5294,7 +5296,6 @@
     SUBDIR += pydbus-common
     SUBDIR += pygobject3-common
     SUBDIR += pylint
-    SUBDIR += pylint1
     SUBDIR += pyobfuscate
     SUBDIR += pyotherside-qt5
     SUBDIR += pyside2
@@ -5623,7 +5624,9 @@
     SUBDIR += rubygem-aws-sdk-mobile
     SUBDIR += rubygem-aws-sdk-mq
     SUBDIR += rubygem-aws-sdk-mturk
+    SUBDIR += rubygem-aws-sdk-mwaa
     SUBDIR += rubygem-aws-sdk-neptune
+    SUBDIR += rubygem-aws-sdk-networkfirewall
     SUBDIR += rubygem-aws-sdk-networkmanager
     SUBDIR += rubygem-aws-sdk-opsworks
     SUBDIR += rubygem-aws-sdk-opsworkscm
@@ -6814,6 +6817,7 @@
     SUBDIR += vera++
     SUBDIR += vexcl
     SUBDIR += viewvc
+    SUBDIR += viewvc-devel
     SUBDIR += violet
     SUBDIR += vitables
     SUBDIR += volk

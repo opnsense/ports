@@ -9,6 +9,8 @@ CATEGORIES=	devel python
 MAINTAINER=	ohauer@FreeBSD.org
 COMMENT=	Web-based Version Control Repository Browsing
 
+CONFLICTS_INSTALL=      py[23][6-8]-viewvc-1.3*
+
 LICENSE=	BSD2CLAUSE
 
 USES=		cpe python:2.7

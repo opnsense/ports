@@ -199,6 +199,7 @@
     SUBDIR += fpc-proj4
     SUBDIR += fpc-rsvg
     SUBDIR += fpc-svgalib
+    SUBDIR += fpc-vcl-compat
     SUBDIR += fracplanet
     SUBDIR += fractgen
     SUBDIR += fraqtive
@@ -237,6 +238,7 @@
     SUBDIR += giflib
     SUBDIR += gifmerge
     SUBDIR += gifsicle
+    SUBDIR += gifski
     SUBDIR += giftool
     SUBDIR += gimageview
     SUBDIR += gimmage
@@ -375,7 +377,6 @@
     SUBDIR += jp
     SUBDIR += jp2a
     SUBDIR += jpatch
-    SUBDIR += jpeg
     SUBDIR += jpeg-turbo
     SUBDIR += jpeg-xl
     SUBDIR += jpeginfo

@@ -59,7 +59,6 @@
     SUBDIR += cp2k-data
     SUBDIR += crf++
     SUBDIR += dalton
-    SUBDIR += datawarrior
     SUBDIR += dcl
     SUBDIR += devisor
     SUBDIR += dftbplus
@@ -328,6 +327,7 @@
     SUBDIR += szip
     SUBDIR += teem
     SUBDIR += tfel
+    SUBDIR += tfel-edf
     SUBDIR += tinker
     SUBDIR += udunits
     SUBDIR += v_sim
