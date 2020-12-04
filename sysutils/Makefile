@@ -966,8 +966,10 @@
     SUBDIR += puppet-mode.el
     SUBDIR += puppet5
     SUBDIR += puppet6
+    SUBDIR += puppet7
     SUBDIR += puppetserver5
     SUBDIR += puppetserver6
+    SUBDIR += puppetserver7
     SUBDIR += pv
     SUBDIR += pwd_unmkdb
     SUBDIR += pwgen
