@@ -3,7 +3,7 @@
 
 PORTNAME=	nginx
 PORTVERSION=	1.18.0
-PORTREVISION?=	30
+PORTREVISION?=	32
 PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
@@ -24,7 +24,7 @@ CONFLICTS_INSTALL=	nginx-devel
 
 PORTSCOUT=	limit:^1\.18\.[0-9]*
 
-USES=		cpe
+USES=		compiler:c11 cpe
 
 CPE_VENDOR=	nginx
 CPE_PRODUCT=	nginx
