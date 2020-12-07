@@ -19,7 +19,7 @@ USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--enable-pcre2-16 --enable-pcre2-32
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	DOCS JIT
 OPTIONS_RADIO=	CLI
 OPTIONS_RADIO_CLI=	LIBEDIT READLINE
 
@@ -31,7 +31,7 @@ READLINE_CONFIGURE_ENABLE=	pcre2test-libreadline
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} != "sparc64" && ${ARCH:Mmips64*} == "" && ${ARCH:Mriscv64*} == ""
+.if ${ARCH} != "sparc64" && ${ARCH:Mmips64*} == "" && ${ARCH:Mriscv64*} == "" && ${PORT_OPTIONS:MJIT}
 CONFIGURE_ARGS+=	--enable-jit
 .else
 CONFIGURE_ARGS+=	--disable-jit
