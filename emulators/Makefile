@@ -15,6 +15,7 @@
     SUBDIR += bochs
     SUBDIR += bsvc
     SUBDIR += cannonball
+    SUBDIR += cemu
     SUBDIR += cinc
     SUBDIR += cingb
     SUBDIR += citra
@@ -61,6 +62,7 @@
     SUBDIR += kcemu
     SUBDIR += klh10
     SUBDIR += lib765
+    SUBDIR += libc6-shim
     SUBDIR += libdsk
     SUBDIR += libretro-ppsspp
     SUBDIR += libspectrum
