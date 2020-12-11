@@ -210,10 +210,13 @@
     SUBDIR += rubygem-prawn-flexible-table
     SUBDIR += rubygem-prawn-format
     SUBDIR += rubygem-prawn-graph
+    SUBDIR += rubygem-prawn-icon
     SUBDIR += rubygem-prawn-js
     SUBDIR += rubygem-prawn-layout
     SUBDIR += rubygem-prawn-security
     SUBDIR += rubygem-prawn-svg
+    SUBDIR += rubygem-prawn-table
+    SUBDIR += rubygem-prawn-templates
     SUBDIR += rubygem-prawn_shapes
     SUBDIR += rubygem-rbpdf
     SUBDIR += rubygem-rbpdf-font

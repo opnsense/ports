@@ -927,6 +927,7 @@
     SUBDIR += py-oauth2client
     SUBDIR += py-oauthlib
     SUBDIR += py-obfsproxy-tor
+    SUBDIR += py-onlykey
     SUBDIR += py-openssl
     SUBDIR += py-ospd
     SUBDIR += py-paramiko
@@ -966,6 +967,7 @@
     SUBDIR += py-python-nss
     SUBDIR += py-python-openid
     SUBDIR += py-python-pam
+    SUBDIR += py-python-pkcs11
     SUBDIR += py-python-registry
     SUBDIR += py-python3-openid
     SUBDIR += py-python3-saml

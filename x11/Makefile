@@ -6,6 +6,7 @@
     SUBDIR += 3ddesktop
     SUBDIR += 9box
     SUBDIR += 9menu
+    SUBDIR += aclip
     SUBDIR += admiral
     SUBDIR += alacritty
     SUBDIR += albert
@@ -16,6 +17,7 @@
     SUBDIR += appres
     SUBDIR += apwal
     SUBDIR += arandr
+    SUBDIR += arcan-trayicon
     SUBDIR += aterm
     SUBDIR += babl
     SUBDIR += bbappconf

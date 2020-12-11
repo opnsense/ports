@@ -1508,6 +1508,7 @@
     SUBDIR += rubygem-asciidoctor
     SUBDIR += rubygem-asciidoctor-diagram
     SUBDIR += rubygem-asciidoctor-include-ext
+    SUBDIR += rubygem-asciidoctor-pdf
     SUBDIR += rubygem-asciidoctor-plantuml
     SUBDIR += rubygem-asciidoctor-plantuml0010
     SUBDIR += rubygem-autoprefixer-rails
@@ -1688,6 +1689,7 @@
     SUBDIR += rubygem-tidy_ffi
     SUBDIR += rubygem-toml
     SUBDIR += rubygem-tomlrb
+    SUBDIR += rubygem-tomlrb1
     SUBDIR += rubygem-truncato
     SUBDIR += rubygem-twitter-text
     SUBDIR += rubygem-twitter-text1

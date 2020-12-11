@@ -419,7 +419,6 @@
     SUBDIR += monolith
     SUBDIR += moodle310
     SUBDIR += moodle35
-    SUBDIR += moodle37
     SUBDIR += moodle38
     SUBDIR += moodle39
     SUBDIR += morty
@@ -1696,6 +1695,7 @@
     SUBDIR += py-pylsqpack
     SUBDIR += py-pyocclient
     SUBDIR += py-pyramid
+    SUBDIR += py-pyramid-mako
     SUBDIR += py-pyramid_rpc
     SUBDIR += py-pysmartdl
     SUBDIR += py-python-digitalocean
