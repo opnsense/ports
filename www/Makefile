@@ -328,6 +328,7 @@
     SUBDIR += madsonic
     SUBDIR += man2web
     SUBDIR += mathjax
+    SUBDIR += mathjax3
     SUBDIR += mathopd
     SUBDIR += matomo
     SUBDIR += mattermost-server
@@ -1691,7 +1692,6 @@
     SUBDIR += py-puppetboard
     SUBDIR += py-py-restclient
     SUBDIR += py-pyjwt
-    SUBDIR += py-pylons
     SUBDIR += py-pylsqpack
     SUBDIR += py-pyocclient
     SUBDIR += py-pyramid
@@ -1703,7 +1703,6 @@
     SUBDIR += py-python-multipart
     SUBDIR += py-pyweblib
     SUBDIR += py-pywikibot
-    SUBDIR += py-qpy
     SUBDIR += py-qt5-webchannel
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt5-webkit
@@ -1719,6 +1718,7 @@
     SUBDIR += py-requests-mock
     SUBDIR += py-requests-oauthlib
     SUBDIR += py-requests-toolbelt
+    SUBDIR += py-requests-unixsocket
     SUBDIR += py-requests_ntlm
     SUBDIR += py-restclient
     SUBDIR += py-rfc3986
@@ -2125,6 +2125,7 @@
     SUBDIR += serendipity
     SUBDIR += serf
     SUBDIR += servlet-api
+    SUBDIR += sfeed
     SUBDIR += sfnt2woff
     SUBDIR += shellinabox
     SUBDIR += shttpd

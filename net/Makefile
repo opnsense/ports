@@ -1112,7 +1112,6 @@
     SUBDIR += py-sshtunnel
     SUBDIR += py-sshuttle
     SUBDIR += py-stomp.py
-    SUBDIR += py-suds
     SUBDIR += py-suds-jurko
     SUBDIR += py-tacacs_plus
     SUBDIR += py-terminado
@@ -1133,7 +1132,6 @@
     SUBDIR += py-zeep
     SUBDIR += py-zeroconf
     SUBDIR += py-zope.proxy
-    SUBDIR += pynids
     SUBDIR += pyrad
     SUBDIR += qadsl
     SUBDIR += qoauth-qt5
