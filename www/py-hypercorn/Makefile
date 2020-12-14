@@ -32,10 +32,22 @@ USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
 
+OPTIONS_DEFINE=	H3 TRIO UVLOOP
+H3_DESC=	HTTP/3 support
+TRIO_DESC=	trio worker support
+UVLOOP_DESC=	uvloop worker support
+
+H3_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}aioquic>=0.9.0<1.0:www/py-aioquic@${PY_FLAVOR}
+TRIO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trio>=0.11.0:net/py-trio@${PY_FLAVOR}
+UVLOOP_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}uvloop>=0:devel/py-uvloop@${PY_FLAVOR}
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} < 3800
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR}
 .endif
+
+do-test:
+	cd ${WRKSRC} && ${SETENV} PYTHONPATH=${STAGEDIR}${PYTHON_SITELIBDIR} ${PYTHON_CMD} -m pytest -rs -v
 
 .include <bsd.port.post.mk>

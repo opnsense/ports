@@ -1296,6 +1296,7 @@
     SUBDIR += webscarab
     SUBDIR += whatweb
     SUBDIR += wipe
+    SUBDIR += wolfssh
     SUBDIR += wolfssl
     SUBDIR += wpa_supplicant
     SUBDIR += xca

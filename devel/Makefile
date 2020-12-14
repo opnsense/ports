@@ -5485,6 +5485,7 @@
     SUBDIR += rubygem-aws-sdk-appstream
     SUBDIR += rubygem-aws-sdk-appsync
     SUBDIR += rubygem-aws-sdk-athena
+    SUBDIR += rubygem-aws-sdk-auditmanager
     SUBDIR += rubygem-aws-sdk-augmentedairuntime
     SUBDIR += rubygem-aws-sdk-autoscaling
     SUBDIR += rubygem-aws-sdk-autoscalingplans
@@ -5529,6 +5530,7 @@
     SUBDIR += rubygem-aws-sdk-core2
     SUBDIR += rubygem-aws-sdk-costandusagereportservice
     SUBDIR += rubygem-aws-sdk-costexplorer
+    SUBDIR += rubygem-aws-sdk-customerprofiles
     SUBDIR += rubygem-aws-sdk-databasemigrationservice
     SUBDIR += rubygem-aws-sdk-dataexchange
     SUBDIR += rubygem-aws-sdk-datapipeline
@@ -5559,6 +5561,7 @@
     SUBDIR += rubygem-aws-sdk-elasticsearchservice
     SUBDIR += rubygem-aws-sdk-elastictranscoder
     SUBDIR += rubygem-aws-sdk-emr
+    SUBDIR += rubygem-aws-sdk-emrcontainers
     SUBDIR += rubygem-aws-sdk-eventbridge
     SUBDIR += rubygem-aws-sdk-firehose
     SUBDIR += rubygem-aws-sdk-fms
@@ -5575,6 +5578,7 @@
     SUBDIR += rubygem-aws-sdk-groundstation
     SUBDIR += rubygem-aws-sdk-guardduty
     SUBDIR += rubygem-aws-sdk-health
+    SUBDIR += rubygem-aws-sdk-healthlake
     SUBDIR += rubygem-aws-sdk-honeycode
     SUBDIR += rubygem-aws-sdk-iam
     SUBDIR += rubygem-aws-sdk-identitystore
@@ -5670,6 +5674,7 @@
     SUBDIR += rubygem-aws-sdk-s3control
     SUBDIR += rubygem-aws-sdk-s3outposts
     SUBDIR += rubygem-aws-sdk-sagemaker
+    SUBDIR += rubygem-aws-sdk-sagemakeredgemanager
     SUBDIR += rubygem-aws-sdk-sagemakerfeaturestoreruntime
     SUBDIR += rubygem-aws-sdk-sagemakerruntime
     SUBDIR += rubygem-aws-sdk-savingsplans
@@ -5948,6 +5953,7 @@
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-create-meta
     SUBDIR += rubygem-cucumber-cucumber-expressions
+    SUBDIR += rubygem-cucumber-cucumber-expressions10
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-messages4
