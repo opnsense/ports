@@ -5,6 +5,7 @@ PORTNAME=	mono
 PORTVERSION=	5.20.1.34
 CATEGORIES=	lang
 MASTER_SITES=	https://download.mono-project.com/sources/mono/
+PKGNAMESUFFIX=	5.20
 DISTFILES=	${PORTNAME}-${PORTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	mono@FreeBSD.org
@@ -20,6 +21,8 @@ BUILD_DEPENDS=	p5-XML-Parser>=0:textproc/p5-XML-Parser \
 		cmake>0:devel/cmake
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
+
+CONFLICTS_INSTALL=	mono5.10 mono6.8
 
 OPTIONS_DEFINE=		MONOLITE NLS X11 HEAPVIZ
 OPTIONS_DEFAULT=	MONOLITE X11

@@ -1,13 +1,13 @@
 # $FreeBSD$
 
 PORTNAME=	Flask-Bootstrap
-PORTVERSION=	3.3.2.1
+PORTVERSION=	3.3.7.1
 PORTREVISION=	1
 CATEGORIES=	www python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	che@bein.link
+MAINTAINER=	ygy@FreeBSD.org
 COMMENT=	Flask extension that adds Bootstrap to your projects
 
 LICENSE=	BSD3CLAUSE
