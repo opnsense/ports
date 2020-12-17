@@ -8,6 +8,7 @@
     SUBDIR += adapta-gtk-theme
     SUBDIR += adwaita-icon-theme
     SUBDIR += adwaita-qt
+    SUBDIR += ant-dracula-theme
     SUBDIR += arc-gruvbox-theme
     SUBDIR += audacious-skins
     SUBDIR += classiclooks
@@ -124,6 +125,7 @@
     SUBDIR += nordic-theme
     SUBDIR += numix-gtk-theme
     SUBDIR += numix-icon-theme
+    SUBDIR += numix-icon-theme-circle
     SUBDIR += openbox-arc-theme
     SUBDIR += papirus-icon-theme
     SUBDIR += plasma5-breeze
@@ -132,6 +134,7 @@
     SUBDIR += plasma5-oxygen
     SUBDIR += plasma5-plasma-workspace-wallpapers
     SUBDIR += plata-theme
+    SUBDIR += qgnomeplatform
     SUBDIR += qt5-style-plugins
     SUBDIR += qtcurve
     SUBDIR += qtcurve-gtk2

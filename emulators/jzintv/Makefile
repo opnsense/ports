@@ -17,6 +17,8 @@ USES=		alias compiler:c++11-lang dos2unix gmake sdl xorg zip
 USE_XORG=	x11 xau xdmcp
 USE_SDL=	sdl2
 
+USE_HARDENING=	pie:of
+
 DOS2UNIX_GLOB=	*.[ch]
 MAKE_ENV+=	LFLAGS="${LDFLAGS}"
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:S/^1.0.//1}-src

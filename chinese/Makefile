@@ -51,6 +51,7 @@
     SUBDIR += ibus-chewing
     SUBDIR += ibus-libpinyin
     SUBDIR += ibus-pinyin
+    SUBDIR += ibus-rime
     SUBDIR += ibus-table-chinese
     SUBDIR += jis2gb
     SUBDIR += kcfonts
@@ -92,6 +93,15 @@
     SUBDIR += pycangjie
     SUBDIR += pyzy
     SUBDIR += qe
+    SUBDIR += rime-bopomofo
+    SUBDIR += rime-cangjie
+    SUBDIR += rime-cantonese
+    SUBDIR += rime-data
+    SUBDIR += rime-essay
+    SUBDIR += rime-luna-pinyin
+    SUBDIR += rime-prelude
+    SUBDIR += rime-stroke
+    SUBDIR += rime-terra-pinyin
     SUBDIR += scim-fcitx
     SUBDIR += scim-pinyin
     SUBDIR += scim-tables

@@ -267,7 +267,6 @@
     SUBDIR += ip6_int
     SUBDIR += ipdecap
     SUBDIR += ipgrab
-    SUBDIR += iplog
     SUBDIR += ipsumdump
     SUBDIR += ipsvd
     SUBDIR += ipxe
@@ -1541,6 +1540,7 @@
     SUBDIR += xprobe
     SUBDIR += xrdesktop2
     SUBDIR += xrdp
+    SUBDIR += xrdp-devel
     SUBDIR += yami4
     SUBDIR += yaph
     SUBDIR += yate
