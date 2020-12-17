@@ -45,7 +45,7 @@ COROSYNC_DEFAULT?=	2
 FIREBIRD_DEFAULT?=	2.5
 # Possible values: flang (experimental), gfortran
 FORTRAN_DEFAULT?=	gfortran
-# Possible values: 3.0.4
+# Possible values: 3.2.0
 FPC_DEFAULT?=		3.2.0
 # Possible values: 8, 9 (powerpcspe was dropped with GCC 9)
 .if ${ARCH} == "powerpcspe"
@@ -59,7 +59,7 @@ GHOSTSCRIPT_DEFAULT?=	agpl
 JAVA_DEFAULT?=		8
 # Possible values: 0.6, 0.7, 1.0, 1.1
 JULIA_DEFAULT?=		1.0
-# Possible values: 2.0.8
+# Possible values: 2.0.10
 LAZARUS_DEFAULT?=	2.0.10
 # Possible values: rust legacy
 .if empty(ARCH:Naarch64:Narmv6:Narmv7:Namd64:Ni386:Npowerpc64:Npowerpc64le)
@@ -75,6 +75,8 @@ LINUX_DEFAULT?=		c7
 LLVM_DEFAULT?=		90
 # Possible values: 5.1, 5.2, 5.3, 5.4
 LUA_DEFAULT?=		5.2
+# Possible values: 5.10 (not yet committed), 5.20, 6.8
+MONO_DEFAULT=		5.20
 # Possible values: 5.5, 5.6, 5.7, 8.0, 10.3m, 10.4m, 10.5m, 5.5p, 5.6p, 5.7p, 5.6w, 5.7w
 MYSQL_DEFAULT?=		5.7
 # Possible values: 5.28, 5.30, 5.32, devel
