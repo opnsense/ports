@@ -1,12 +1,12 @@
 # $FreeBSD$
 
 PORTNAME=	pkginfo
-DISTVERSION=	1.5.0.1
+DISTVERSION=	1.6.1
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	che@bein.link
+MAINTAINER=	ygy@FreeBSD.org
 COMMENT=	Query metadatdata from sdists / bdists / installed packages
 
 LICENSE=	MIT
