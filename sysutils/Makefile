@@ -1122,6 +1122,7 @@
     SUBDIR += rubygem-chef-config
     SUBDIR += rubygem-chef-config12
     SUBDIR += rubygem-chef-dk
+    SUBDIR += rubygem-chef-telemetry
     SUBDIR += rubygem-chef-utils
     SUBDIR += rubygem-chef-vault
     SUBDIR += rubygem-chef-zero
@@ -1402,11 +1403,11 @@
     SUBDIR += u-boot-rockpro64
     SUBDIR += u-boot-rpi
     SUBDIR += u-boot-rpi-0-w
+    SUBDIR += u-boot-rpi-arm64
     SUBDIR += u-boot-rpi2
     SUBDIR += u-boot-rpi3
     SUBDIR += u-boot-rpi3-32
     SUBDIR += u-boot-rpi4
-    SUBDIR += u-boot-rpi-arm64
     SUBDIR += u-boot-sifive-fu540
     SUBDIR += u-boot-sinovoip-bpi-m3
     SUBDIR += u-boot-sopine
