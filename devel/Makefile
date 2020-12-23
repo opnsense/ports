@@ -3891,6 +3891,7 @@
     SUBDIR += phabricator
     SUBDIR += php-Psr_Log
     SUBDIR += php-composer
+    SUBDIR += php-composer2
     SUBDIR += php-geshi
     SUBDIR += php-ice37
     SUBDIR += php-libawl
@@ -6116,6 +6117,7 @@
     SUBDIR += rubygem-git-version-bump
     SUBDIR += rubygem-github_api
     SUBDIR += rubygem-gitlab-chronic
+    SUBDIR += rubygem-gitlab-experiment
     SUBDIR += rubygem-gitlab-labkit
     SUBDIR += rubygem-gitlab-license
     SUBDIR += rubygem-gitlab-pygments.rb
@@ -6468,6 +6470,7 @@
     SUBDIR += rubygem-safe_yaml
     SUBDIR += rubygem-scanf
     SUBDIR += rubygem-schash
+    SUBDIR += rubygem-scientist
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-semantic_puppet
     SUBDIR += rubygem-semantic_range
