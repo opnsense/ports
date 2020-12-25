@@ -2,19 +2,16 @@
 
 PORTNAME=	shaderc
 DISTVERSIONPREFIX=v
-DISTVERSION=	2020.0
+DISTVERSION=	2020.4
 CATEGORIES=	graphics devel
 
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	21c8be385b3f.patch:-p1 # https://github.com/google/shaderc/pull/463
-
-MAINTAINER=	greg@unrelenting.technology
+MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	GLSL/HLSL to SPIR-V shader compiler
 
 LICENSE=	APACHE20
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libSPIRV-Tools-opt.a:devel/spirv-tools \
-		${LOCALBASE}/lib/libHLSL.a:devel/glslang
+		${LOCALBASE}/lib/libHLSL.a:graphics/glslang
 
 USES=		cmake compiler:c++11-lib pkgconfig localbase:ldflags python:build
 USE_LDCONFIG=	yes
@@ -25,6 +22,7 @@ GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.3:headers/third_party/spirv-headers
 
 CMAKE_ON+=	SHADERC_SKIP_TESTS
 CMAKE_ARGS+=	-DSPIRV-Headers_SOURCE_DIR=${WRKSRC}/third_party/spirv-headers
+CMAKE_ARGS+=	-Dglslang_SOURCE_DIR=${LOCALBASE}/include/glslang
 
 # https://git.archlinux.org/svntogit/packages.git/tree/trunk/PKGBUILD?h=packages/shaderc
 

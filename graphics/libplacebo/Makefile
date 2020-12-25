@@ -23,7 +23,7 @@ OPTIONS_SINGLE_VULKAN=	GLSLANG SHADERC
 OPTIONS_SUB=	yes
 
 GLSLANG_DESC=		glslang SPIR-V compiler
-GLSLANG_BUILD_DEPENDS=	glslang>0:devel/glslang
+GLSLANG_BUILD_DEPENDS=	glslang>0:graphics/glslang
 GLSLANG_MESON_ENABLED=	glslang
 GLSLANG_VARS=		LLD_UNSAFE=yes
 GLSLANG_IMPLIES=	VULKAN
@@ -42,7 +42,7 @@ SHADERC_IMPLIES=	VULKAN
 TEST_MESON_TRUE=	tests
 
 VULKAN_DESC=		Vulkan-based renderer
-VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers \
+VULKAN_BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers \
 			${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR}
 VULKAN_LIB_DEPENDS=	libvulkan.so:graphics/vulkan-loader
 VULKAN_MESON_ENABLED=	vulkan

@@ -263,6 +263,7 @@
     SUBDIR += gliv
     SUBDIR += glosm
     SUBDIR += glpng
+    SUBDIR += glslang
     SUBDIR += gltt
     SUBDIR += glx-utils
     SUBDIR += gmic
@@ -1074,7 +1075,10 @@
     SUBDIR += vp
     SUBDIR += vpaint
     SUBDIR += vulkan-caps-viewer
+    SUBDIR += vulkan-headers
     SUBDIR += vulkan-loader
+    SUBDIR += vulkan-tools
+    SUBDIR += vulkan-validation-layers
     SUBDIR += vv
     SUBDIR += waffle
     SUBDIR += waifu2x-converter-cpp

@@ -819,7 +819,6 @@
     SUBDIR += global
     SUBDIR += glog
     SUBDIR += glrparser
-    SUBDIR += glslang
     SUBDIR += glui
     SUBDIR += gmake
     SUBDIR += gn
@@ -4426,6 +4425,7 @@
     SUBDIR += py-genson
     SUBDIR += py-genty
     SUBDIR += py-geojson
+    SUBDIR += py-get-reader
     SUBDIR += py-gevent
     SUBDIR += py-git-semver
     SUBDIR += py-git-up
@@ -5068,6 +5068,7 @@
     SUBDIR += py-speaklater
     SUBDIR += py-speg
     SUBDIR += py-spyder
+    SUBDIR += py-squint
     SUBDIR += py-srsly
     SUBDIR += py-stackexchange
     SUBDIR += py-statgrab
@@ -6715,6 +6716,7 @@
     SUBDIR += sonar-scanner-cli
     SUBDIR += sonarqube-ant-task
     SUBDIR += sonarqube-community
+    SUBDIR += sope
     SUBDIR += sope2
     SUBDIR += sope4
     SUBDIR += sord
@@ -6861,9 +6863,6 @@
     SUBDIR += vitables
     SUBDIR += volk
     SUBDIR += vstr
-    SUBDIR += vulkan-headers
-    SUBDIR += vulkan-tools
-    SUBDIR += vulkan-validation-layers
     SUBDIR += vxlog
     SUBDIR += wand-libconfig
     SUBDIR += wandio

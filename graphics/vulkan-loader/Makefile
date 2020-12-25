@@ -2,15 +2,15 @@
 
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=v
-DISTVERSION=	1.2.162
+DISTVERSION=	1.2.165
 CATEGORIES=	graphics devel
 
-MAINTAINER=	greg@unrelenting.technology
+MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Driver loader for the Vulkan graphics API
 
 LICENSE=	APACHE20
 
-BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:devel/vulkan-headers
+BUILD_DEPENDS=	${LOCALBASE}/include/vulkan/vulkan.h:graphics/vulkan-headers
 
 USES=		cmake compiler:${ARCH:Mi386:C/.+/gcc-/}c++11-lib pkgconfig python:3.4+,build
 USE_LDCONFIG=	yes
