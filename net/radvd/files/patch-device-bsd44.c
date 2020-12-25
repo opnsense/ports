@@ -1,6 +1,6 @@
---- device-bsd44.c.orig	2018-02-18 22:45:02 UTC
+--- device-bsd44.c.orig	2019-07-20 03:58:19 UTC
 +++ device-bsd44.c
-@@ -126,8 +126,37 @@ ret:
+@@ -126,8 +126,40 @@ ret:
  	return -1;
  }
  
@@ -14,6 +14,12 @@
 +		return (-1);
 +	}
 +
++	if (!iface->state_info.changed) {
++		return (0);
++	}
++
++	iface->state_info.changed = 0;
++
 +	memset(&mreq, 0, sizeof(mreq));
 +	mreq.ipv6mr_interface = iface->props.if_index;
 +
@@ -23,9 +29,6 @@
 +		flog(LOG_ERR, "inet_pton failed");
 +		return (-1);
 +	}
-+
-+	/* if we leave unconditionally the join cannot fail */
-+	setsockopt(sock, IPPROTO_IPV6, IPV6_LEAVE_GROUP, &mreq, sizeof(mreq));
 +
 +	if (setsockopt(sock, IPPROTO_IPV6, IPV6_JOIN_GROUP,
 +			&mreq, sizeof(mreq)) < 0) {
@@ -39,7 +42,7 @@
  int set_interface_linkmtu(const char *iface, uint32_t mtu)
  {
  	dlog(LOG_DEBUG, 4, "setting LinkMTU (%u) for %s is not supported", mtu, iface);
-@@ -161,5 +190,5 @@ int check_ip6_forwarding(void)
+@@ -161,5 +193,5 @@ int check_ip6_forwarding(void)
  int check_ip6_iface_forwarding(const char *iface)
  {
  	dlog(LOG_DEBUG, 4, "checking ipv6 forwarding of interface not supported");
