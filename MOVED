@@ -8165,9 +8165,6 @@ deskutils/ladon||2016-04-23|Has expired: Broken for more than 6 months
 java/linux-sun-jdk17||2016-04-24|Has expired: Unsupported and known for multiple security vulnerabilities
 devel/compiler-rt-devel|devel/llvm-devel|2016-04-24|Folded back in to devel/llvm-devel
 databases/rrdtool10|databases/rrdtool|2016-05-02|Old version, not maintained any more
-devel/sope|devel/sope2|2016-05-02|Renamed to devel/sope2
-www/sogo|www/sogo2|2016-05-02|Renamed to www/sogo2
-www/sogo-activesync|www/sogo2-activesync|2016-05-02|Renamed to www/sogo2-activesync
 textproc/rubygem-gherkin3|textproc/rubygem-gherkin|2016-05-03|Has expired: Use textproc/rubygem-gherkin instead
 dns/odsclient||2016-05-03|Has expired: ODS shuts service down, so client is probably useless
 games/Cockatrice|games/cockatrice|2016-05-05|Renamed to games/cockatrice
@@ -15252,7 +15249,6 @@ devel/py-yum-metadata-parser||2020-08-15|Has expired: Uses deprecated version of
 devel/rubygem-warden127||2020-08-15|Has expired: No longer needed
 dns/py-dnschain||2020-08-15|Has expired: Uses deprecated version of python
 dns/py-idnkit2||2020-08-15|Has expired: Uses deprecated version of python
-games/endgame-singularity||2020-08-15|Has expired: Uses deprecated version of python
 games/katawa-shoujo||2020-08-15|Has expired: Uses deprecated version of RenPy
 games/pyfa||2020-08-15|Has expired: Uses deprecated version of python
 games/renpy6||2020-08-15|Has expired: Uses deprecated version of python
@@ -15801,3 +15797,7 @@ devel/vulkan-headers|graphics/vulkan-headers|2020-12-23|Moved to a better catego
 devel/vulkan-tools|graphics/vulkan-tools|2020-12-23|Moved to a better category, aligning with vulkan-loader
 devel/vulkan-vulkan-validation-layers|graphics/vulkan-vulkan-validation-layers|2020-12-23|Moved to a better category, aligning with vulkan-loader
 devel/glslang|graphics/glslang|2020-12-23|Moved to a better category, aligning with shaderc
+devel/spirv-tools|graphics/spirv-tools|2020-12-25|Moved to a better category, aligning with glslang and shaderc
+sysutils/basu|devel/basu|2020-12-25|Moved to a better category, aligning with dbus
+audio/modplugplay|audio/modplug-tools|2020-12-27|Moved to GitHub under a different name
+www/py-flexget|www/flexget|2020-12-28|Dropped py- prefix due to be a standalone application
