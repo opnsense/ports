@@ -34,6 +34,7 @@
     SUBDIR += R-cran-cpp11
     SUBDIR += R-cran-crayon
     SUBDIR += R-cran-data.table
+    SUBDIR += R-cran-desc
     SUBDIR += R-cran-diffobj
     SUBDIR += R-cran-doParallel
     SUBDIR += R-cran-ellipsis
@@ -51,6 +52,7 @@
     SUBDIR += R-cran-gsubfn
     SUBDIR += R-cran-gtools
     SUBDIR += R-cran-hms
+    SUBDIR += R-cran-ini
     SUBDIR += R-cran-iterators
     SUBDIR += R-cran-itertools
     SUBDIR += R-cran-later
@@ -89,6 +91,8 @@
     SUBDIR += R-cran-tibble
     SUBDIR += R-cran-tidyr
     SUBDIR += R-cran-tidyselect
+    SUBDIR += R-cran-tinytest
+    SUBDIR += R-cran-uuid
     SUBDIR += R-cran-vcd
     SUBDIR += R-cran-vctrs
     SUBDIR += R-cran-withr
@@ -214,6 +218,7 @@
     SUBDIR += babeltrace
     SUBDIR += bam
     SUBDIR += bashdb
+    SUBDIR += basu
     SUBDIR += bats-core
     SUBDIR += bazel
     SUBDIR += bazel-buildtools
@@ -1169,7 +1174,9 @@
     SUBDIR += libfreefare
     SUBDIR += libfsapfs
     SUBDIR += libfsext
+    SUBDIR += libfshfs
     SUBDIR += libfsntfs
+    SUBDIR += libfsxfs
     SUBDIR += libftdi
     SUBDIR += libftdi1
     SUBDIR += libfwnt
@@ -1187,6 +1194,7 @@
     SUBDIR += libglade2
     SUBDIR += libglademm24
     SUBDIR += libgnt
+    SUBDIR += libgnuregex
     SUBDIR += libgpc
     SUBDIR += libgpkg
     SUBDIR += libgrading
@@ -6730,7 +6738,6 @@
     SUBDIR += spice-protocol
     SUBDIR += spin
     SUBDIR += spirv-llvm-translator
-    SUBDIR += spirv-tools
     SUBDIR += splint
     SUBDIR += spread-sheet-widget
     SUBDIR += srecord

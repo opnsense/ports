@@ -44,6 +44,7 @@
     SUBDIR += bareos16-webui
     SUBDIR += bareos17-webui
     SUBDIR += bareos18-webui
+    SUBDIR += bareos19-webui
     SUBDIR += beehive
     SUBDIR += bkmrkconv
     SUBDIR += blastbeat
@@ -164,6 +165,7 @@
     SUBDIR += firefox-esr
     SUBDIR += flashplayer
     SUBDIR += flat-frog
+    SUBDIR += flexget
     SUBDIR += flickcurl
     SUBDIR += fnord
     SUBDIR += formication
@@ -1615,7 +1617,6 @@
     SUBDIR += py-flask-sockets
     SUBDIR += py-flask-uploads
     SUBDIR += py-flask-wtf
-    SUBDIR += py-flexget
     SUBDIR += py-flup6
     SUBDIR += py-folium
     SUBDIR += py-forcediphttpsadapter

@@ -505,7 +505,7 @@
     SUBDIR += mixxx21
     SUBDIR += mkcue
     SUBDIR += moc
-    SUBDIR += modplugplay
+    SUBDIR += modplug-tools
     SUBDIR += moodbar
     SUBDIR += moony-lv2
     SUBDIR += mous
@@ -776,6 +776,7 @@
     SUBDIR += sratom
     SUBDIR += stegosaurus-lv2
     SUBDIR += stk
+    SUBDIR += stmp
     SUBDIR += stone-phaser-lv2
     SUBDIR += strawberry
     SUBDIR += streamripper

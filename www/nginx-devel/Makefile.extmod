@@ -33,13 +33,13 @@ CT_GH_TUPLE=		grahamedgecombe:nginx-ct:93e9884:ct
 CT_VARS=		DSO_EXTMODS+=ct
 CT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-ct-LibreSSL
 
-ECHO_GH_TUPLE=		openresty:echo-nginx-module:c65f5c6:echo
+ECHO_GH_TUPLE=		openresty:echo-nginx-module:5a402aa:echo
 ECHO_VARS=		DSO_EXTMODS+=echo
 
 DRIZZLE_LIB_DEPENDS=	libdrizzle.so:databases/libdrizzle
 DRIZZLE_CONFIGURE_ENV=	LIBDRIZZLE_INC=${LOCALBASE}/include \
 			LIBDRIZZLE_LIB=${LOCALBASE}/lib
-DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:e93542e:drizzle
+DRIZZLE_GH_TUPLE=	openresty:drizzle-nginx-module:92162d0:drizzle
 DRIZZLE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-openresty-drizzle-nginx-module-config
 DRIZZLE_VARS=		DSO_EXTMODS+=drizzle
 
@@ -90,6 +90,7 @@ HTTP_DAV_EXT_IMPLIES=		HTTP_DAV
 HTTP_DAV_EXT_USE=		GNOME=libxml2,libxslt
 HTTP_DAV_EXT_GH_TUPLE=		arut:nginx-dav-ext-module:v3.0.0:dav_ext
 HTTP_DAV_EXT_VARS=		DSO_EXTMODS+=dav_ext
+HTTP_DAV_EXT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_dav_ext_module.c
 
 HTTP_EVAL_GH_TUPLE=		openresty:nginx-eval-module:582bd25:eval
 HTTP_EVAL_VARS=			DSO_EXTMODS+=eval

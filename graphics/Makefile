@@ -25,6 +25,7 @@
     SUBDIR += R-cran-ggrepel
     SUBDIR += R-cran-gridBase
     SUBDIR += R-cran-gridExtra
+    SUBDIR += R-cran-jpeg
     SUBDIR += R-cran-munsell
     SUBDIR += R-cran-pROC
     SUBDIR += R-cran-pixmap
@@ -1019,6 +1020,7 @@
     SUBDIR += sk1libs
     SUBDIR += skanlite
     SUBDIR += spectacle
+    SUBDIR += spirv-tools
     SUBDIR += springgraph
     SUBDIR += squish
     SUBDIR += ssocr

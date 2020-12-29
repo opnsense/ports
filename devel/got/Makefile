@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	got
-PORTVERSION=	0.46
+PORTVERSION=	0.47
 CATEGORIES=	devel
 MASTER_SITES=	https://gameoftrees.org/releases/
 
@@ -11,7 +11,7 @@ COMMENT=	Game of Trees version control system
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
-USES=		uidfix
+USES=		compiler:c11 uidfix
 
 n=		${.newline}
 post-extract:

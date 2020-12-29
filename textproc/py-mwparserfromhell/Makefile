@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	mwparserfromhell
-DISTVERSION=	0.5.4
+DISTVERSION=	0.6
 CATEGORIES=	textproc python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -13,7 +13,7 @@ COMMENT=	Parser for MediaWiki wikicode
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python
+USES=		python:3.6+
 USE_PYTHON=	autoplist distutils
 
 post-install:
