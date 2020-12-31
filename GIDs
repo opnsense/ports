@@ -209,7 +209,7 @@ sshout:*:265:
 step:*:266:
 odoo:*:267:
 tenshi:*:268:tenshi
-# free: 269
+dendrite:*:269:
 _rpki-client:*:270:
 # free: 271
 # free: 272
@@ -886,7 +886,6 @@ teamspeak:*:942:
 dnetfold:*:943:
 bbs:*:944:
 dbxml:*:945:
-mediatomb:*:946:
 gnokii:*:947:
 dnrd:*:948:
 _lldpd:*:949:
