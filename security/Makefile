@@ -784,10 +784,6 @@
     SUBDIR += pgpdump
     SUBDIR += pgpgpg
     SUBDIR += pgpin
-    SUBDIR += php72-filter
-    SUBDIR += php72-hash
-    SUBDIR += php72-openssl
-    SUBDIR += php72-sodium
     SUBDIR += php73-filter
     SUBDIR += php73-hash
     SUBDIR += php73-openssl
@@ -953,7 +949,6 @@
     SUBDIR += py-pynacl
     SUBDIR += py-pyotp
     SUBDIR += py-pyotp2289
-    SUBDIR += py-pyptlib
     SUBDIR += py-pysaml2
     SUBDIR += py-pysaml24
     SUBDIR += py-pyscard

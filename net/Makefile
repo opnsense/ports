@@ -75,7 +75,6 @@
     SUBDIR += c3270
     SUBDIR += calendarsupport
     SUBDIR += ccxstream
-    SUBDIR += ceph12
     SUBDIR += ceph14
     SUBDIR += cf
     SUBDIR += charm
@@ -178,6 +177,7 @@
     SUBDIR += gerbera
     SUBDIR += gfbgraph
     SUBDIR += gitlab-agent
+    SUBDIR += gitup
     SUBDIR += glflow
     SUBDIR += glib-networking
     SUBDIR += glusterfs
@@ -431,7 +431,6 @@
     SUBDIR += mdns-repeater
     SUBDIR += measurement-kit
     SUBDIR += mediastreamer
-    SUBDIR += mediatomb
     SUBDIR += megacmd
     SUBDIR += megatools
     SUBDIR += messagelib
@@ -948,14 +947,9 @@
     SUBDIR += pecl-radius
     SUBDIR += pecl-rdkafka
     SUBDIR += pecl-smbclient
-    SUBDIR += pecl-yaz
     SUBDIR += pecl-zmq
     SUBDIR += pen
     SUBDIR += pfinger
-    SUBDIR += php72-ldap
-    SUBDIR += php72-soap
-    SUBDIR += php72-sockets
-    SUBDIR += php72-xmlrpc
     SUBDIR += php73-ldap
     SUBDIR += php73-soap
     SUBDIR += php73-sockets
@@ -1034,7 +1028,6 @@
     SUBDIR += py-ldappool
     SUBDIR += py-libcloud
     SUBDIR += py-libdnet
-    SUBDIR += py-libfte
     SUBDIR += py-magic-wormhole
     SUBDIR += py-matrix-synapse-ldap3
     SUBDIR += py-maxminddb

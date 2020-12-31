@@ -377,7 +377,7 @@
     SUBDIR += x11perf
     SUBDIR += x3270
     SUBDIR += xantfarm
-    SUBDIR += xapps
+    SUBDIR += xapp
     SUBDIR += xascii
     SUBDIR += xauth
     SUBDIR += xautolock
@@ -394,6 +394,7 @@
     SUBDIR += xcalib
     SUBDIR += xcape
     SUBDIR += xcb
+    SUBDIR += xcb-imdkit
     SUBDIR += xcb-proto
     SUBDIR += xcb-util
     SUBDIR += xcb-util-cursor
