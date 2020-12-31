@@ -21,7 +21,7 @@ CACHE_PURGE_CONFIGURE_ON=	--add-module=${WRKDIR}/ngx_cache_purge-23dc16a
 CLOJURE_CATEGORIES+=	java
 CLOJURE_USE=		JAVA=yes JAVA_OS=native JAVA_VERSION=1.8 \
 			JAVA_VENDOR=openjdk JAVA_BUILD=yes JAVA_RUN=yes
-CLOJURE_GH_TUPLE=	nginx-clojure:nginx-clojure:v0.5.1:clojure
+CLOJURE_GH_TUPLE=	nginx-clojure:nginx-clojure:v0.5.2:clojure
 CLOJURE_CONFIGURE_ENV=	"JNI_INCS=-I${LOCALBASE}/openjdk8/include -I${LOCALBASE}/openjdk8/include/freebsd"
 CLOJURE_VARS=		DSO_EXTMODS+=clojure CLOJURE_SUBDIR=/src/c
 
@@ -93,6 +93,7 @@ HTTP_DAV_EXT_IMPLIES=		HTTP_DAV
 HTTP_DAV_EXT_LIB_DEPENDS=	libexpat.so:textproc/expat2
 HTTP_DAV_EXT_GH_TUPLE=		arut:nginx-dav-ext-module:v3.0.0:dav_ext
 HTTP_DAV_EXT_VARS=		DSO_EXTMODS+=dav_ext
+HTTP_DAV_EXT_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_dav_ext_module.c
 
 HTTP_EVAL_GH_TUPLE=		openresty:nginx-eval-module:582bd25:eval
 HTTP_EVAL_VARS=			DSO_EXTMODS+=eval
