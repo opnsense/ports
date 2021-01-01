@@ -3,7 +3,6 @@
 
     COMMENT = Games and related software
 
-    SUBDIR += 0ad
     SUBDIR += 0verkill
     SUBDIR += 2048
     SUBDIR += 2048-qt
@@ -67,6 +66,7 @@
     SUBDIR += atris
     SUBDIR += atris-sounds
     SUBDIR += auralquiz
+    SUBDIR += automuteus
     SUBDIR += avanor
     SUBDIR += avoision
     SUBDIR += avp
@@ -183,7 +183,6 @@
     SUBDIR += d2x
     SUBDIR += dMagnetic
     SUBDIR += dangen
-    SUBDIR += dangerdeep
     SUBDIR += dangerdeep-data
     SUBDIR += darkplaces
     SUBDIR += defendguin
@@ -290,7 +289,6 @@
     SUBDIR += freeminer
     SUBDIR += freeminer-default
     SUBDIR += freeorion
-    SUBDIR += freera
     SUBDIR += freesweep
     SUBDIR += freesynd
     SUBDIR += freetennis
@@ -318,7 +316,6 @@
     SUBDIR += glest-data
     SUBDIR += glightoff
     SUBDIR += glmaze
-    SUBDIR += glob2
     SUBDIR += glsfcave
     SUBDIR += gltron
     SUBDIR += gmastermind
@@ -592,7 +589,6 @@
     SUBDIR += mancala
     SUBDIR += mangband
     SUBDIR += mari0
-    SUBDIR += marsnomercy
     SUBDIR += masterserver
     SUBDIR += maxr
     SUBDIR += meandmyshadow
@@ -641,7 +637,6 @@
     SUBDIR += nethack36
     SUBDIR += nethack36-nox11
     SUBDIR += netherearth
-    SUBDIR += netpanzer
     SUBDIR += netradiant
     SUBDIR += netrek-BRMH-bin
     SUBDIR += netrek-client-cow
@@ -744,7 +739,6 @@
     SUBDIR += phlipple
     SUBDIR += picmi
     SUBDIR += pinball
-    SUBDIR += pingus
     SUBDIR += pink-pony
     SUBDIR += pioneer
     SUBDIR += pioneers
@@ -827,7 +821,6 @@
     SUBDIR += redorblack
     SUBDIR += regoth
     SUBDIR += reminiscence
-    SUBDIR += renpy
     SUBDIR += rescue
     SUBDIR += residualvm
     SUBDIR += retroarch

@@ -60,7 +60,6 @@
     SUBDIR += ffaudioconverter
     SUBDIR += ffdec
     SUBDIR += ffmpeg
-    SUBDIR += ffmpeg2theora
     SUBDIR += ffmpegthumbnailer
     SUBDIR += ffms2
     SUBDIR += flvmeta
@@ -238,6 +237,7 @@
     SUBDIR += linux-c7-libv4l
     SUBDIR += linux-tsmuxer
     SUBDIR += linux_dvbwrapper-kmod
+    SUBDIR += livego
     SUBDIR += lives
     SUBDIR += livestreamer
     SUBDIR += lsdvd
@@ -246,7 +246,6 @@
     SUBDIR += makemkv
     SUBDIR += mediainfo
     SUBDIR += mencoder
-    SUBDIR += mimms
     SUBDIR += minitube
     SUBDIR += mjpegtools
     SUBDIR += mkclean

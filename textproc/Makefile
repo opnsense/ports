@@ -452,6 +452,7 @@
     SUBDIR += ml1
     SUBDIR += mn-aspell
     SUBDIR += modlogan
+    SUBDIR += mp_doccer
     SUBDIR += mr-aspell
     SUBDIR += ms-aspell
     SUBDIR += msort
@@ -524,6 +525,7 @@
     SUBDIR += p5-Geo-Parse-OSM
     SUBDIR += p5-Getopt-Lucid
     SUBDIR += p5-Google-Data-JSON
+    SUBDIR += p5-Grutatxt
     SUBDIR += p5-HTML-Copy
     SUBDIR += p5-HTML-Entities-ImodePictogram
     SUBDIR += p5-HTML-Entities-Interpolate

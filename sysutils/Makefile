@@ -175,7 +175,6 @@
     SUBDIR += chgrep
     SUBDIR += choria
     SUBDIR += chyves
-    SUBDIR += cinnamon-control-center
     SUBDIR += cinnamon-settings-daemon
     SUBDIR += ciso
     SUBDIR += ciso-maker
@@ -790,9 +789,7 @@
     SUBDIR += openupsd
     SUBDIR += openzfs
     SUBDIR += openzfs-kmod
-    SUBDIR += ori
     SUBDIR += osinfo-db-tools
-    SUBDIR += osquery
     SUBDIR += p5-App-RunCron
     SUBDIR += p5-App-ZFSCurses
     SUBDIR += p5-BSD-Jail-Object
@@ -1042,7 +1039,6 @@
     SUBDIR += py-salt-2019
     SUBDIR += py-scandir
     SUBDIR += py-scarab
-    SUBDIR += py-shutilwhich
     SUBDIR += py-supervisor
     SUBDIR += py-tarsnapper
     SUBDIR += py-tmuxp
@@ -1419,7 +1415,6 @@
     SUBDIR += ucspi-unix
     SUBDIR += udfclient
     SUBDIR += uefi-edk2-bhyve
-    SUBDIR += uefi-edk2-bhyve-csm
     SUBDIR += uefi-edk2-bhyve-devel
     SUBDIR += uefi-edk2-qemu
     SUBDIR += ufetch
@@ -1482,6 +1477,8 @@
     SUBDIR += wimlib
     SUBDIR += wmapmload
     SUBDIR += wmbluecpu
+    SUBDIR += wmbsdbatt
+    SUBDIR += wmcube
     SUBDIR += wmdiskmon
     SUBDIR += wmflame
     SUBDIR += wmmemfree
@@ -1492,6 +1489,7 @@
     SUBDIR += wuzzah
     SUBDIR += x86info
     SUBDIR += xbatt
+    SUBDIR += xbattbar
     SUBDIR += xcdroast
     SUBDIR += xcpustate
     SUBDIR += xdu
