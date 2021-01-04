@@ -8287,7 +8287,6 @@ devel/avltree||2016-07-04|Has expired: Broken for more than 6 months
 devel/cbind||2016-07-04|Has expired: Broken for more than 6 months
 devel/tclgetopts||2016-07-04|Has expired: Broken for more than 6 months
 devel/antlrworks||2016-07-04|Has expired: Broken for more than 6 months
-devel/acme||2016-07-04|Has expired: Broken for more than 6 months
 devel/libopensync022||2016-07-04|Has expired: Broken for more than 6 months
 archivers/epkg||2016-07-04|Has expired: Broken for more than 6 months
 print/enscriptfonts||2016-07-04|Has expired: Broken for more than 6 months
@@ -10810,7 +10809,6 @@ french/php_doc||2018-12-21|Has expired: unmaintained and documents obsolete PHP 
 japanese/php_doc||2018-12-21|Has expired: unmaintained and documents obsolete PHP < 5.6
 net/ntop||2018-12-21|Has expired: Broken for more than 6 months
 textproc/ots||2018-12-21|Has expired: Broken for more than 6 months
-x11/xdialog||2018-12-21|Has expired: Uses obsolete glib12
 net/netdude||2018-12-21|Has expired: Uses obsolete glib12
 japanese/jmode-skk||2018-12-21|Has expired: Uses obsolete glib12
 print/gsview||2018-12-21|Has expired: Uses obsolete glib12
@@ -15887,7 +15885,7 @@ sysutils/php72-fileinfo|sysutils/php74-fileinfo|2020-12-31|Has expired: Security
 devel/arm-none-eabi-gdb||2020-12-31|Has expired: This is an old, obsolete version of gdb
 devel/pecl-weakref2||2020-12-31|Has expired: PHP 7.2 extension
 graphics/py-imageio24|graphics/py-imageio|2020-12-31|Has expired: Use graphics/py-imageio instead
-mail/bogofilter-tc||2020-12-31|Has expired: TokyoCabinet is being phased out in favor of KyotoCabinet.
+mail/bogofilter-tc||2020-12-31|Has expired: TokyoCabinet is being phased out in favor of KyotoCabinet
 net/pecl-yaz||2020-12-31|Has expired: PHP 7.2 extension
 print/cloudprint||2020-12-31|Has expired: Google Cloud Print is being shut down by Google by end of 2020
 science/py-eccodes-python|science/py-eccodes|2020-12-31|Has expired: Use science/py-eccodes instead
@@ -15907,137 +15905,111 @@ www/mediawiki134|www/mediawiki135|2020-12-31|Has expired: Upstream end of life
 www/py-aiohttp2|www/py-aiohttp|2020-12-31|Has expired: Use www/py-aiohttp instead
 graphics/drm-legacy-kmod|graphics/drm-kmod|2020-12-31|Has expired: Obsolete version, use drm-kmod
 net/mediatomb|net/gerbera|2020-12-31|Removed: no new release for over 10 years
-audio/ardour||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-audio/mixxx21||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-audio/xmms2||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-chinese/sunpinyin||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-databases/arangodb32||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-databases/arangodb33||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/bzr||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/chromium-gn||2020-12-31|Has expired: Uses deprecated version of python, use devel/gn instead
-devel/electron4||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/electron5||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/electron6||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/electron7||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/gnatpython||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/godot2||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-devel/godot2-tools||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-devel/libhid||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/libosmocore||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/llvm60||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/mongo-cxx-driver||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-devel/p5-Log-Any-Adapter-Callback||2020-12-31|Has expired: Use devel/p5-Log-Any (Log::Any::Adapter::Capture) instead
-devel/py-backports.functools_lru_cache||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-backports.os||2020-12-31|Has expired: Python 2 is EOL upstream
-devel/py-backports.shutil_get_terminal_size||2020-12-31|Has expired: Python 2 is EOL upstream
-devel/py-backports_abc||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-cheetah||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-dis3||2020-12-31|Has expired: Python 2 only, backport of Python 3
-devel/py-enum34||2020-12-31|Has expired: Will be removed along with python27
-devel/py-functools32||2020-12-31|Has expired: Python 2 only, backport of Python 3
-devel/py-futures||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-more-itertools5||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-pathlib||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-selectors2||2020-12-31|Has expired: Python 2 is EOL upstream
-devel/py-should_dsl||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-singledispatch||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-subprocess32||2020-12-31|Has expired: Python 2 only, following EOL of lang/python27
-devel/py-total-ordering||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/py-typing||2020-12-31|Has expired: Python 2 only, backport of Python 3
-devel/py-weakrefmethod||2020-12-31|Has expired: Python 2 only, backport of Python 3
-devel/rbtools||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/subversion-lts||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-devel/viewvc||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-dns/py-dns||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-editors/atom||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-emulators/fceux||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-emulators/gem5||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-emulators/nonpareil||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/0ad||2020-12-31|Has expired: Uses deprecated version of python
-games/dangerdeep||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/freera||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/glob2||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/marsnomercy||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/netpanzer||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/pingus||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/renpy||2020-12-31|Has expired: Uses deprecated version of python
-graphics/goxel||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-graphics/py-pillow6||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-graphics/sk1libs||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-graphics/uniconvertor||2020-12-31|Has expired: Uses deprecated version of python
-lang/julia10||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-lang/pypy||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-lang/pypy3||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-lang/spidermonkey185||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-lang/spidermonkey24||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-lang/spidermonkey52||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-lang/spidermonkey60||2020-12-31|Has expired: Requires python2 to build
-lang/tolua++||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-mail/getmail||2020-12-31|Has expired: Uses deprecated version of python
-math/gringo||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-multimedia/ffmpeg2theora||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-multimedia/mimms||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-net/py-ipaddress||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-net-p2p/linuxdcpp||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-security/broccoli||2020-12-31|Has expired: Depends lang/python27 which is EOLed upstream
-security/orthrus||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-security/py-backports.ssl_match_hostname||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-security/sandsifter||2020-12-31|Has expired: Uses deprecated version of python, see https://github.com/rigred/sandsifter/issues/10
-sysutils/cinnamon-control-center||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-sysutils/ori||2020-12-31|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-sysutils/osquery||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-sysutils/py-shutilwhich||2020-12-31|Has expired: Python 2 only, backport of Python 3
-sysutils/uefi-edk2-bhyve-csm||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/cliqz||2020-12-31|Has expired: Uses deprecated version of python
-www/iridium||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/moinmoin||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/node10||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/node12||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-OhlohWidgetsMacro||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-TracGoogleAnalytics||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-accountmanager||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-advancedticketworkflow||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-autocomplete||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-ccselector||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-customfieldadmin||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-datefield||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-defaultcc||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-devel||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-discussion||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-downloads||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-email2trac||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-email2trac-postfix||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-estimator||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-fivestarvote||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-fullblog||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-fullblognotification||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-graphviz||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-iniadmin||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-keywords||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-keywordsecretticket||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-ldap||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-ldapauthstore||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-math||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-mercurial||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-navadd||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-permredirect||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-privatetickets||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-pydotorgtheme||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-scrumburndown||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-spam-filter||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-subtickets||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-tags||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-themeengine||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-ticketimport||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-tickettemplate||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-timingandestimation||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-tocmacro||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-tweakui||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-vote||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-wikigoodies||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-wikinotification||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-wikitemplates||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-wikitopdf||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-wysiwyg||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
-www/trac-xmlrpc||2020-12-31|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-backports.shutil_get_terminal_size||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-backports.os||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-cheetah||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-dis3||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-functools32||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-more-itertools5||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-pathlib||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-selectors2||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-should_dsl||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-subprocess32||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-total-ordering||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/py-weakrefmethod||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+dns/py-dns||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+security/py-backports.ssl_match_hostname||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+security/sandsifter||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+sysutils/py-shutilwhich||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-OhlohWidgetsMacro||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-TracGoogleAnalytics||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-ccselector||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-advancedticketworkflow||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-autocomplete||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-customfieldadmin||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-datefield||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-defaultcc||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-discussion||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-email2trac||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-downloads||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-devel||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-email2trac-postfix||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-estimator||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-fivestarvote||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-fullblognotification||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-graphviz||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-iniadmin||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-keywords||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-keywordsecretticket||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-ldapauthstore||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-math||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-mercurial||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-permredirect||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-navadd||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-privatetickets||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-pydotorgtheme||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-subtickets||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-scrumburndown||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-tags||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-ticketimport||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-tickettemplate||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-tocmacro||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-vote||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-tweakui||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-wikigoodies||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-wikinotification||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-wikitemplates||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-wikitopdf||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-wysiwyg||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-xmlrpc||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-fullblog||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-ldap||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-spam-filter||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-timingandestimation||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-themeengine||2021-01-01|Has expired: Uses Python 2.7 which is EOLed upstream
+www/iridium||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+editors/atom||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/electron4||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/electron5||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/electron6||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+audio/ardour|audio/ardour6|2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+audio/mixxx21|audio/mixxx|2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+databases/arangodb32||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+databases/arangodb33||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/bzr||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/chromium-gn|devel/gn|2021-01-02|Has expired: Uses deprecated version of python, use devel/gn instead
+devel/mongo-cxx-driver||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+emulators/fceux||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+emulators/gem5||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+emulators/nonpareil||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+games/freera||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+games/glob2||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+games/marsnomercy||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+games/netpanzer||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+games/pingus||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+graphics/goxel||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+graphics/sk1libs||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+graphics/uniconvertor||2021-01-02|Has expired: Uses deprecated version of python
+games/dangerdeep||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+games/dangerdeep-data||2021-01-02|Removed, useless without games/dangerdeep
+lang/julia||2021-01-02|Removed, useless without any consumers
+lang/julia10||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+lang/spidermonkey24||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+mail/getmail||2021-01-02|Has expired: Uses deprecated version of python
+security/broccoli||2021-01-02|Has expired: Depends lang/python27 which is EOLed upstream
+security/orthrus||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+sysutils/ori||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
+sysutils/osquery||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+www/cliqz||2021-01-02|Has expired: Uses deprecated version of python
+www/trac||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+www/trac-accountmanager||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
+print/xfce4-print||2021-01-02|Unmaintained, depends on dropped XFCE GTK2 support
+x11/xfce4-quicklauncher-plugin||2021-01-02|Unmaintained, depends on dropped XFCE GTK2 support
+x11/xfce4-wmdock-plugin||2021-01-02|Unmaintained, depends on dropped XFCE GTK2 support
+x11-toolkits/libxfce4gui||2012-01-02|Unmaintained, depends on dropped XFCE GTK2 support
+devel/py-backports.functools_lru_cache||2020-01-02|Uses Python 2.7 which is EOLed upstream
+devel/py-backports_abc||2020-01-02|Uses Python 2.7 which is EOLed upstream
+devel/py-futures||2020-01-02|Uses Python 2.7 which is EOLed upstream
+devel/py-singledispatch||2020-01-02|Uses Python 2.7 which is EOLed upstream
+graphics/py-pillow6|graphics/pillow|2020-01-02|Uses Python 2.7 which is EOLed upstream
+www/wt3|www/wt|2021-01-03|Has expired: Upstream end of life, switch to www/wt instead
