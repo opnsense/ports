@@ -20,6 +20,7 @@ LICENSE_FILE_QPL10=	${WRKSRC}/LICENSE
 LICENSE_PERMS_QPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BROKEN_aarch64=		Does not build: sh: as: not found
+BROKEN_riscv64=		fails to build: hasgot.c:3:12: use of undeclared identifier 'secure_getenv'
 BROKEN_sparc64=	No rule to make target 'none.o', needed by 'libasmrun.a'
 BROKEN_mips64=	No ASM support
 BROKEN_mips=	No ASM support
@@ -109,6 +110,10 @@ PLIST_SUB+=	PROF=""
 
 .if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-asmcomp_power_arch.ml
+USE_GCC=	yes
+.endif
+
+.if ${ARCH} == powerpc64le
 USE_GCC=	yes
 .endif
 

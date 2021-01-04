@@ -311,6 +311,7 @@
     SUBDIR += graphthing
     SUBDIR += gretl
     SUBDIR += gri
+    SUBDIR += gringo
     SUBDIR += grpn
     SUBDIR += gsl
     SUBDIR += half
@@ -746,6 +747,7 @@
     SUBDIR += py-chaospy
     SUBDIR += py-claripy
     SUBDIR += py-cma
+    SUBDIR += py-cmaes
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
     SUBDIR += py-cvxopt
@@ -794,6 +796,7 @@
     SUBDIR += py-numpy
     SUBDIR += py-numpy-stl
     SUBDIR += py-opt-einsum
+    SUBDIR += py-optuna
     SUBDIR += py-or-tools
     SUBDIR += py-osqp
     SUBDIR += py-pandas
@@ -840,7 +843,12 @@
     SUBDIR += py-simhash
     SUBDIR += py-snuggs
     SUBDIR += py-spectral
+    SUBDIR += py-spglm
+    SUBDIR += py-spint
+    SUBDIR += py-splot
     SUBDIR += py-spot
+    SUBDIR += py-spreg
+    SUBDIR += py-spvcm
     SUBDIR += py-ssm
     SUBDIR += py-statsmodels
     SUBDIR += py-statsmodels010
@@ -887,6 +895,7 @@
     SUBDIR += rubygem-narray_miss
     SUBDIR += rubygem-numru-misc
     SUBDIR += rubygem-numru-units
+    SUBDIR += rubygem-prime
     SUBDIR += rubygem-rb-gsl
     SUBDIR += rumur
     SUBDIR += saga

@@ -143,7 +143,6 @@
     SUBDIR += janet
     SUBDIR += jimtcl
     SUBDIR += jruby
-    SUBDIR += julia
     SUBDIR += jython
     SUBDIR += kawa
     SUBDIR += kf5-kross
@@ -274,6 +273,8 @@
     SUBDIR += py-lupa
     SUBDIR += py-qt5-qml
     SUBDIR += py-textX
+    SUBDIR += pypy
+    SUBDIR += pypy3
     SUBDIR += python
     SUBDIR += python-doc-html
     SUBDIR += python-doc-pdf-a4
@@ -333,6 +334,9 @@
     SUBDIR += snobol4
     SUBDIR += solidity
     SUBDIR += spidermonkey17
+    SUBDIR += spidermonkey185
+    SUBDIR += spidermonkey52
+    SUBDIR += spidermonkey60
     SUBDIR += spidermonkey78
     SUBDIR += spl
     SUBDIR += squeak
@@ -348,6 +352,7 @@
     SUBDIR += tcl87
     SUBDIR += tclX
     SUBDIR += tolua
+    SUBDIR += tolua++
     SUBDIR += tuareg-mode.el
     SUBDIR += twelf
     SUBDIR += ucc

@@ -3,7 +3,7 @@
 
 PORTNAME=	rawtherapee
 PORTVERSION=	5.8
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	graphics
 MASTER_SITES=	https://rawtherapee.com/shared/source/ \
 		LOCAL/mandree/
@@ -38,8 +38,11 @@ USE_BINUTILS=	yes
 
 # As of 2019-09-29, this port is known to be miscompiled by clang90
 # (SIGSEGV or SIBGUS) and 12.1's base clang.
-# So we shall stick to GCC 9.x for now
-USE_GCC=	9+
+# So we shall stick to a modern GCC for now,
+# XXX FIXME note that rawtherapee is somewhat sensitive 
+# versus compiler details so we may need to pin GCC 9.x
+# or a version range.
+USE_GCC=	yes
 
 USE_GNOME=	gtkmm30 librsvg2
 INSTALLS_ICONS=	yes
@@ -50,11 +53,12 @@ _LTO_FLAGS=	-flto=${MAKE_JOBS_NUMBER}
 #
 # llvm/clang needs -flto=thin and will automatically parallelize the link
 
+# Fix <https://bugs.freebsd.org/251041>:
 # 11.x has binutils that don't accept a --plugin option,
 # and gcc-ar9 appears to grab those, so make sure that USE_BINUTILS
 # override those in /usr/bin which usually is first in the PATH,
-# before ${LOCALBASE}/bin.  (For some reason, poudriere does not trigger this.)
-# Fixes https://bugs.freebsd.org/251041
+# before ${LOCALBASE}/bin.
+# (For some reason, poudriere does not trigger this.)
 BINARY_ALIAS+=	ar=${AR} ranlib=${RANLIB}
 #
 _AR=		${CC:S/gcc/gcc-ar/}
@@ -90,19 +94,13 @@ CMAKE_ARGS+=	-DCMAKE_C_COMPILER_LAUNCHER=${CCACHE_BIN} \
 .endif
 
 OPTIONS_DEFINE=		DOCS NATIVE
-OPTIONS_DEFINE_amd64=	OPENMP TCMALLOC
-OPTIONS_DEFINE_i386=	OPENMP TCMALLOC
-OPTIONS_DEFAULT=	OPENMP TCMALLOC
-# For some reason, 11.4-amd64 fails run-time tests with TCMALLOC, strip out:
-OPTIONS_EXCLUDE_FreeBSD_11=	TCMALLOC
+OPTIONS_DEFINE_amd64=	OPENMP
+OPTIONS_DEFINE_i386=	OPENMP
+OPTIONS_DEFAULT=	OPENMP
 NATIVE_DESC=		Use -march=native (avoid for generic packages!)
 OPENMP_DESC=		Enable OpenMP parallel processing (i386/amd64 only)
-TCMALLOC_DESC=		Use Google's tcmalloc instead of system allocator
 
 OPENMP_CMAKE_BOOL=	OPTION_OMP
-
-TCMALLOC_LIB_DEPENDS=	libtcmalloc.so:devel/google-perftools
-TCMALLOC_CMAKE_BOOL=	ENABLE_TCMALLOC
 
 .include <bsd.port.options.mk>
 
@@ -123,7 +121,7 @@ ONLY_FOR_ARCHS_REASON=On i386, rawtherapee malfunctions under FreeBSD 11.x - upg
 
 .if (${OPSYS} == FreeBSD) && (${OSVERSION} >= 1300000)
 # don't waste everybody's time with Tier-2 and moving targets.
-# might add ARM64 or SPARC64 later on if they are established by the
+# might add ARM64 later on if they are established by the
 # time FreeBSD 13 is out.
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=Only amd64 is supported on non-released FreeBSD versions.
@@ -148,7 +146,7 @@ _OPT_FLAGS=	-O3 -funroll-loops
 
 # x86_64/amd64 includes -msse2 by default
 .if ${ARCH} == i386
-# and SSE2 has been around since the years 2003 latest
+# and SSE2 has been around since the year 2003 latest
 _OPT_FLAGS+=	-msse2
 .endif
 
@@ -175,22 +173,29 @@ TESTIMAGES=	${FILESDIR}/../testimages
 _check_version=	${PKGVERSION:C/.g0//}
 _env=		LANG= LC_ALL=C LANGUAGE= DISPLAY= HOME="$$TMP" RT_SETTINGS=${WRKDIR}/rt-config RT_CACHE="$$TMP/rtcache"
 post-install:
-	@${ECHO_MSG} "===> Running smoke tests"
 	@${RM} -f ${WRKDIR}/selftest.exitcodes ${WRKDIR}/selftest.expect
-	@${RM} -rf ${WRKDIR}/rt-config
-	${MKDIR} ${WRKDIR}/rt-config ${WRKDIR}/rt-config/dcpprofiles ${WRKDIR}/rt-config/profiles
-	${CP} ${WRKSRC}/rtengine/camconst.json ${WRKDIR}/rt-config
-	${CP} ${WRKSRC}/rtdata/options/options.lin ${WRKDIR}/rt-config/options
-	(cd ${WRKSRC}/rtdata/ && ${COPYTREE_SHARE} "profiles dcpprofiles" ${WRKDIR}/rt-config )
-	@(set -x ; TMP=$$(${MKTEMP} -d -t ${PORTNAME}) && trap "rc=$$? ; ${RM} -rf \"$$TMP\" ; exit \$$rc" 0 && \
+	@(set -e; _mp=$$(/bin/df -P ${STAGEDIR}${PREFIX}/bin/rawtherapee | ${AWK} 'NR==2{print $$NF}') ; \
+	_fsflags=$$(${MOUNT} -p | ${AWK} "{ if (\$$2 == \"$$_mp\") { print \$$4 } }") ; \
+	case $$_fsflags in *noexec*) \
+		${TOUCH} ${WRKDIR}/selftest.expect ${WRKDIR}/selftest.exitcodes ; \
+		${ECHO_CMD} "===> Skipping smoke tests, STAGEDIR=${STAGEDIR} is on a noexec file system" ; \
+		exit 0 ;; \
+	esac ; \
+	${ECHO_MSG} "===> Running smoke tests" ; \
+	${RM} -rf ${WRKDIR}/rt-config ; \
+	${MKDIR} ${WRKDIR}/rt-config ${WRKDIR}/rt-config/dcpprofiles ${WRKDIR}/rt-config/profiles ; \
+	${CP} ${WRKSRC}/rtengine/camconst.json ${WRKDIR}/rt-config ; \
+	${CP} ${WRKSRC}/rtdata/options/options.lin ${WRKDIR}/rt-config/options ; \
+	(cd ${WRKSRC}/rtdata/ && ${COPYTREE_SHARE} "profiles dcpprofiles" ${WRKDIR}/rt-config ) ; \
+	(set -x ; TMP=$$(${MKTEMP} -d -t ${PORTNAME}) && trap "rc=$$? ; ${RM} -rf \"$$TMP\" ; exit \$$rc" 0 && \
 		( set +e ; ${SETENV} ${_env} ${STAGEDIR}${PREFIX}/bin/rawtherapee -v ; \
 		    echo $$? >&3 ) 3>&3 | ${EGREP} -q "RawTherapee, version ${_check_version:C/_.*//:C/,.*//}|cannot open display:" && \
 		( set +e ; ${SETENV} ${_env} ${STAGEDIR}${PREFIX}/bin/rawtherapee-cli ; \
 		    echo $$? >&3 ) 3>&3 | ${EGREP} -q "RawTherapee, version ${_check_version:C/_.*//:C/,.*//}" && \
-		expect='0\n0\n' && \
+		expect=$$'0\n0\n' && \
 		onefile=$$(ls "${TESTIMAGES}"/* | head -1) && \
 		if test -d "${TESTIMAGES}" && test -n "$$onefile" -a -r "$$onefile" ; then \
-		  expect='0\n0\n0\n0\n0\n' && \
+		  expect=$$'0\n0\n0\n0\n0\n' && \
 		  ( set +e ; \
 		  /usr/bin/time ${SETENV} ${_env} ${STAGEDIR}${PREFIX}/bin/rawtherapee-cli \
 			-o "$$TMP" -q -f -c ${TESTIMAGES} ; echo $$? >&3 ; \
@@ -200,7 +205,9 @@ post-install:
 			-o "$$TMP" -q -s -Y -tz -c ${TESTIMAGES} ; echo $$? >&3 ) 3>&3 ; \
 		fi ; \
 		ls -Rlbai "${TESTIMAGES}" "$${TMP}" || :; \
-	${PRINTF} "%s" "$$expect" >&4 ) 3>${WRKDIR}/selftest.exitcodes 4>${WRKDIR}/selftest.expect ; \
-	${PRINTF} "$$(cat ${WRKDIR}/selftest.expect)" | cmp - ${WRKDIR}/selftest.exitcodes || { ${ECHO_CMD} '===> !!! SELF-TEST FAILED !!! <===' ; exit 1 ; }
+	${PRINTF} "%s" "$$expect" >&4 ) ) 3>${WRKDIR}/selftest.exitcodes 4>${WRKDIR}/selftest.expect  ; \
+	${HEAD} ${WRKDIR}/selftest.exitcodes ${WRKDIR}/selftest.expect ; \
+	cmp ${WRKDIR}/selftest.expect ${WRKDIR}/selftest.exitcodes \
+	|| { ${ECHO_CMD} '===> !!! SELF-TEST FAILED !!! <===' ; exit 1 ; }
 
 .include <bsd.port.post.mk>

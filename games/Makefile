@@ -3,6 +3,7 @@
 
     COMMENT = Games and related software
 
+    SUBDIR += 0ad
     SUBDIR += 0verkill
     SUBDIR += 2048
     SUBDIR += 2048-qt
@@ -183,7 +184,6 @@
     SUBDIR += d2x
     SUBDIR += dMagnetic
     SUBDIR += dangen
-    SUBDIR += dangerdeep-data
     SUBDIR += darkplaces
     SUBDIR += defendguin
     SUBDIR += devilutionX
@@ -821,6 +821,7 @@
     SUBDIR += redorblack
     SUBDIR += regoth
     SUBDIR += reminiscence
+    SUBDIR += renpy
     SUBDIR += rescue
     SUBDIR += residualvm
     SUBDIR += retroarch

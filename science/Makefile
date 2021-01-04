@@ -222,6 +222,7 @@
     SUBDIR += py-PyFR
     SUBDIR += py-SimpleSpectral
     SUBDIR += py-abipy
+    SUBDIR += py-access
     SUBDIR += py-asdf
     SUBDIR += py-ase
     SUBDIR += py-avogadrolibs
@@ -232,6 +233,7 @@
     SUBDIR += py-coards
     SUBDIR += py-dlib
     SUBDIR += py-eccodes
+    SUBDIR += py-esda
     SUBDIR += py-geolinks
     SUBDIR += py-geomet
     SUBDIR += py-geometer
@@ -240,11 +242,13 @@
     SUBDIR += py-gsd
     SUBDIR += py-h5json
     SUBDIR += py-h5py
+    SUBDIR += py-inequality
     SUBDIR += py-jupyter_jsmol
     SUBDIR += py-kim-query
     SUBDIR += py-kinematics
     SUBDIR += py-kliff
     SUBDIR += py-liac-arff
+    SUBDIR += py-libpysal
     SUBDIR += py-lifelines
     SUBDIR += py-mdp
     SUBDIR += py-mmtf-python
@@ -285,9 +289,12 @@
     SUBDIR += py-scimath
     SUBDIR += py-scipy
     SUBDIR += py-scoria
+    SUBDIR += py-segregation
     SUBDIR += py-segyio
+    SUBDIR += py-spaghetti
     SUBDIR += py-spglib
     SUBDIR += py-tensorflow
+    SUBDIR += py-tobler
     SUBDIR += py-veusz
     SUBDIR += pybrain
     SUBDIR += pynn

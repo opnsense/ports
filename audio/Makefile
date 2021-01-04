@@ -558,6 +558,7 @@
     SUBDIR += ncspot
     SUBDIR += nekobi-lv2
     SUBDIR += noise-repellent-lv2
+    SUBDIR += noise-suppression-for-voice-lv2
     SUBDIR += normalize
     SUBDIR += nosefart
     SUBDIR += noson-app
@@ -867,6 +868,7 @@
     SUBDIR += xmix
     SUBDIR += xmixer
     SUBDIR += xmmix
+    SUBDIR += xmms2
     SUBDIR += xmp
     SUBDIR += xmradio
     SUBDIR += xoscope

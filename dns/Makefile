@@ -215,6 +215,8 @@
     SUBDIR += rubygem-net-dns
     SUBDIR += rubygem-public_suffix
     SUBDIR += rubygem-public_suffix_service
+    SUBDIR += rubygem-resolv
+    SUBDIR += rubygem-resolv-replace
     SUBDIR += rubygem-simpleidn
     SUBDIR += rubygem-validates_hostname
     SUBDIR += rubygem-zonefile

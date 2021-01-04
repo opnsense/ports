@@ -275,6 +275,7 @@
     SUBDIR += py-caffeine-ng
     SUBDIR += py-i3ipc
     SUBDIR += py-pyscreenshot
+    SUBDIR += py-python-xapp
     SUBDIR += py-pyvirtualdisplay
     SUBDIR += py-qt5-opengl
     SUBDIR += py-xcffib
@@ -326,6 +327,7 @@
     SUBDIR += sxhkd
     SUBDIR += sxpc
     SUBDIR += tabbed
+    SUBDIR += taiga
     SUBDIR += temperature.app
     SUBDIR += terminal.app
     SUBDIR += terminator
@@ -417,6 +419,7 @@
     SUBDIR += xcursorgen
     SUBDIR += xcut
     SUBDIR += xdg-desktop-portal-wlr
+    SUBDIR += xdialog
     SUBDIR += xditview
     SUBDIR += xdm
     SUBDIR += xdo
@@ -433,14 +436,12 @@
     SUBDIR += xfce4-dashboard
     SUBDIR += xfce4-embed-plugin
     SUBDIR += xfce4-goodies
-    SUBDIR += xfce4-quicklauncher-plugin
     SUBDIR += xfce4-screensaver
     SUBDIR += xfce4-screenshooter-plugin
     SUBDIR += xfce4-taskmanager
     SUBDIR += xfce4-terminal
     SUBDIR += xfce4-verve-plugin
     SUBDIR += xfce4-whiskermenu-plugin
-    SUBDIR += xfce4-wmdock-plugin
     SUBDIR += xfd
     SUBDIR += xfishtank
     SUBDIR += xforward

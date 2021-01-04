@@ -52,6 +52,7 @@
     SUBDIR += dvd-slideshow
     SUBDIR += dvdauthor
     SUBDIR += dvdid
+    SUBDIR += dvdread
     SUBDIR += dvdrip
     SUBDIR += dvdstyler
     SUBDIR += elementary-videos
@@ -60,6 +61,7 @@
     SUBDIR += ffaudioconverter
     SUBDIR += ffdec
     SUBDIR += ffmpeg
+    SUBDIR += ffmpeg2theora
     SUBDIR += ffmpegthumbnailer
     SUBDIR += ffms2
     SUBDIR += flvmeta
@@ -246,6 +248,7 @@
     SUBDIR += makemkv
     SUBDIR += mediainfo
     SUBDIR += mencoder
+    SUBDIR += mimms
     SUBDIR += minitube
     SUBDIR += mjpegtools
     SUBDIR += mkclean

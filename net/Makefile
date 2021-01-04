@@ -1018,6 +1018,7 @@
     SUBDIR += py-httpstat
     SUBDIR += py-ifaddr
     SUBDIR += py-impacket
+    SUBDIR += py-ipaddress
     SUBDIR += py-iplib
     SUBDIR += py-iptools
     SUBDIR += py-kafka-python
@@ -1270,8 +1271,10 @@
     SUBDIR += rubygem-net-netrc
     SUBDIR += rubygem-net-ntp
     SUBDIR += rubygem-net-ping
+    SUBDIR += rubygem-net-protocol
     SUBDIR += rubygem-netrc
     SUBDIR += rubygem-network_interface
+    SUBDIR += rubygem-nkf
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth2
     SUBDIR += rubygem-octokit
@@ -1293,6 +1296,7 @@
     SUBDIR += rubygem-omniauth-twitter
     SUBDIR += rubygem-omniauth-ultraauth
     SUBDIR += rubygem-omniauth_openid_connect
+    SUBDIR += rubygem-open-uri
     SUBDIR += rubygem-open-uri-cached
     SUBDIR += rubygem-openid_connect
     SUBDIR += rubygem-opennebula
