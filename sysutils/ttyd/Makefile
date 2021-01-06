@@ -1,10 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	ttyd
-DISTVERSION=	1.6.2
+DISTVERSION=	1.6.3
 CATEGORIES=	sysutils
 
-MAINTAINER=	neel@neelc.org
+MAINTAINER=	nc@FreeBSD.org
 COMMENT=	Program to share your terminal over the web
 
 LICENSE=	MIT
