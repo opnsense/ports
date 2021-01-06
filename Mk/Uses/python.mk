@@ -644,7 +644,6 @@ PYNUMPY=	${PYTHON_PKGNAMEPREFIX}numpy>=1.16,1<1.20,1:math/py-numpy@${PY_FLAVOR}
 
 # Common Python modules that can be needed but only for some versions of Python.
 .if ${PYTHON_REL} < 3500
-PY_PILLOW=	${PYTHON_PKGNAMEPREFIX}pillow6>=6.0.0:graphics/py-pillow6@${PY_FLAVOR}
 PY_PYGMENTS=	${PYTHON_PKGNAMEPREFIX}pygments-25>=2.5.1<3:textproc/py-pygments-25@${PY_FLAVOR}
 PY_SPHINX=	${PYTHON_PKGNAMEPREFIX}sphinx18>=0,1:textproc/py-sphinx18@${PY_FLAVOR}
 PY_TYPING=	${PYTHON_PKGNAMEPREFIX}typing>=3.7.4.1:devel/py-typing@${PY_FLAVOR}
@@ -667,12 +666,6 @@ PY_PATHLIB=
 PY_IPADDRESS=	${PYTHON_PKGNAMEPREFIX}ipaddress>=1.0.23:net/py-ipaddress@${PY_FLAVOR}
 .else
 PY_IPADDRESS=
-.endif
-
-.if ${PYTHON_REL} < 3200
-PY_FUTURES=	${PYTHON_PKGNAMEPREFIX}futures>=3.2:devel/py-futures@${PY_FLAVOR}
-.else
-PY_FUTURES=
 .endif
 
 .if ${PYTHON_VER} != ${PYTHON_DEFAULT}

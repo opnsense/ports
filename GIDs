@@ -211,9 +211,9 @@ odoo:*:267:
 tenshi:*:268:tenshi
 dendrite:*:269:
 _rpki-client:*:270:
-# free: 271
-# free: 272
-# free: 273
+signaling:*:271:
+gvm:*:272:
+seaweedfs:*:273:
 # free: 274
 haclient:*:275:
 frontbase:*:276:
