@@ -3,7 +3,7 @@
 
 PORTNAME=	fluent-bit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.6.7
+DISTVERSION=	1.6.9
 CATEGORIES=	sysutils
 
 MAINTAINER=	girgen@FreeBSD.org
@@ -44,7 +44,7 @@ USE_RC_SUBR=	${PORTNAME}
 EXTRA_PATCHES=	${PATCHDIR}/extra-patch-lib_luajit__src__lj_prng.c
 .endif
 
-.if ${ARCH} == powerpc64
+.if ${ARCH:Mpowerpc64*}
 CMAKE_ARGS+=	-DFLB_LUAJIT:BOOL=OFF
 .endif
 

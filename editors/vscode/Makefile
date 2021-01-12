@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	vscode
-DISTVERSION=	1.46.1
+DISTVERSION=	1.48.2
 CATEGORIES=	editors
 MASTER_SITES=	https://nodejs.org/dist/v${NODE_VER}/:node_headers \
 		https://github.com/tagattie/FreeBSD-VSCode/releases/download/${DISTVERSION}/:yarn_cache
@@ -64,7 +64,7 @@ MPROTECT_DISABLE=	share/code-oss/code-oss
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
 
-SOURCE_COMMIT_HASH=	cd9ea6488829f560dc949a8b2fb789f3cdc05f5d
+SOURCE_COMMIT_HASH=	a0479759d6e9ea56afa657e454193f72aef85bd0
 
 BINARY_ALIAS=	python=${PYTHON_CMD}
 

@@ -1,11 +1,11 @@
 # $FreeBSD$
 
-PORTNAME=	hwloc2
+PORTNAME=	hwloc
 PORTVERSION=	2.3.0
 CATEGORIES=	devel
 MASTER_SITES=	https://download.open-mpi.org/release/hwloc/v${PORTVERSION:R}/ \
 		http://icl.cs.utk.edu/open-mpi/software/hwloc/v${PORTVERSION:R}/downloads/
-DISTNAME=	hwloc-${PORTVERSION}
+PKGNAMESUFFIX=	2
 
 MAINTAINER=	phd_kimberlite@yahoo.co.jp
 COMMENT=	Portable Hardware Locality software package
@@ -29,9 +29,6 @@ CONFIGURE_ARGS=	--enable-static \
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-DATADIR=	${PREFIX}/share/hwloc
-DOCSDIR=	${PREFIX}/share/doc/hwloc
-
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	CAIRO DOCS
@@ -43,8 +40,16 @@ CAIRO_LIB_DEPENDS=	libcairo.so:graphics/cairo
 CAIRO_USES=		xorg
 CAIRO_USE=		XORG=x11
 
+.include <bsd.port.pre.mk>
+
+.if ${ARCH} != amd64 && ${ARCH} != i386
+PLIST_SUB=	X86="@comment "
+.else
+PLIST_SUB=	X86=""
+.endif
+
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}/html
 	${INSTALL_DATA} ${WRKSRC}/doc/doxygen-doc/html/* ${STAGEDIR}${DOCSDIR}/html/
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

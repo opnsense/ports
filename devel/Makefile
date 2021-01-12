@@ -41,6 +41,7 @@
     SUBDIR += R-cran-ellipsis
     SUBDIR += R-cran-evaluate
     SUBDIR += R-cran-fansi
+    SUBDIR += R-cran-filelock
     SUBDIR += R-cran-foreach
     SUBDIR += R-cran-gbRd
     SUBDIR += R-cran-gbm
@@ -67,6 +68,7 @@
     SUBDIR += R-cran-pillar
     SUBDIR += R-cran-pkgbuild
     SUBDIR += R-cran-pkgconfig
+    SUBDIR += R-cran-pkgload
     SUBDIR += R-cran-pkgmaker
     SUBDIR += R-cran-plogr
     SUBDIR += R-cran-plyr
@@ -78,6 +80,7 @@
     SUBDIR += R-cran-proto
     SUBDIR += R-cran-purrr
     SUBDIR += R-cran-randomForest
+    SUBDIR += R-cran-rappdirs
     SUBDIR += R-cran-registry
     SUBDIR += R-cran-rematch2
     SUBDIR += R-cran-remotes
@@ -644,6 +647,7 @@
     SUBDIR += fc++
     SUBDIR += fhist
     SUBDIR += fifechan
+    SUBDIR += fire-hpp
     SUBDIR += firmware-utils
     SUBDIR += fistgen
     SUBDIR += flang
@@ -5420,12 +5424,14 @@
     SUBDIR += rubygem-actionview50
     SUBDIR += rubygem-actionview52
     SUBDIR += rubygem-actionview60
+    SUBDIR += rubygem-actionview61
     SUBDIR += rubygem-active_scaffold
     SUBDIR += rubygem-activejob4
     SUBDIR += rubygem-activejob5
     SUBDIR += rubygem-activejob50
     SUBDIR += rubygem-activejob52
     SUBDIR += rubygem-activejob60
+    SUBDIR += rubygem-activejob61
     SUBDIR += rubygem-activemessaging
     SUBDIR += rubygem-activerecord-deprecated_finders
     SUBDIR += rubygem-activesupport4
@@ -5433,6 +5439,7 @@
     SUBDIR += rubygem-activesupport50
     SUBDIR += rubygem-activesupport52
     SUBDIR += rubygem-activesupport60
+    SUBDIR += rubygem-activesupport61
     SUBDIR += rubygem-airborne
     SUBDIR += rubygem-akismet
     SUBDIR += rubygem-algebrick
@@ -6195,6 +6202,7 @@
     SUBDIR += rubygem-jbuilder-rails50
     SUBDIR += rubygem-jbuilder-rails52
     SUBDIR += rubygem-jbuilder-rails60
+    SUBDIR += rubygem-jbuilder-rails61
     SUBDIR += rubygem-jekyll-coffeescript
     SUBDIR += rubygem-jenkins_api_client
     SUBDIR += rubygem-jeweler
@@ -6210,6 +6218,7 @@
     SUBDIR += rubygem-json1
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
+    SUBDIR += rubygem-json_schema
     SUBDIR += rubygem-json_schemer
     SUBDIR += rubygem-jsonapi-renderer
     SUBDIR += rubygem-jsonpath
@@ -6528,6 +6537,7 @@
     SUBDIR += rubygem-sprockets-rails-rails50
     SUBDIR += rubygem-sprockets-rails-rails52
     SUBDIR += rubygem-sprockets-rails-rails60
+    SUBDIR += rubygem-sprockets-rails-rails61
     SUBDIR += rubygem-sprockets-sass
     SUBDIR += rubygem-sprockets2
     SUBDIR += rubygem-sprockets3
@@ -6627,6 +6637,7 @@
     SUBDIR += rubygem-un
     SUBDIR += rubygem-unicode
     SUBDIR += rubygem-unicode-display_width
+    SUBDIR += rubygem-unicode-display_width1
     SUBDIR += rubygem-unicode_utils
     SUBDIR += rubygem-unleash
     SUBDIR += rubygem-useragent
@@ -6642,6 +6653,7 @@
     SUBDIR += rubygem-warden
     SUBDIR += rubygem-wdm
     SUBDIR += rubygem-web-console-rails60
+    SUBDIR += rubygem-web-console-rails61
     SUBDIR += rubygem-web-console2
     SUBDIR += rubygem-web-console3-rails5
     SUBDIR += rubygem-web-console3-rails50
@@ -6649,6 +6661,7 @@
     SUBDIR += rubygem-webby
     SUBDIR += rubygem-webfinger
     SUBDIR += rubygem-webpacker-rails60
+    SUBDIR += rubygem-webpacker-rails61
     SUBDIR += rubygem-webpacker4-rails5
     SUBDIR += rubygem-webpacker4-rails50
     SUBDIR += rubygem-webpacker4-rails60
