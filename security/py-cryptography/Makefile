@@ -17,8 +17,6 @@ LICENSE_FILE_BSD3CLAUSE=	${WRKSRC}/LICENSE.BSD
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.8:devel/py-cffi@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cffi>=1.8:devel/py-cffi@${PY_FLAVOR} \
-		${PY_ENUM34} \
-		${PY_IPADDRESS} \
 		${PYTHON_PKGNAMEPREFIX}six>=1.4.1:devel/py-six@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-vectors>=${PORTVERSION}:security/py-cryptography-vectors@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hypothesis>=1.11.4:devel/py-hypothesis@${PY_FLAVOR} \
@@ -28,7 +26,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cryptography-vectors>=${PORTVERSION}:securi
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR}
 
 # Python 2.7, 3.5-3.8
-USES=		compiler:env python ssl
+USES=		compiler:env python:3.6+ ssl
 USE_PYTHON=	autoplist concurrent distutils
 
 CFLAGS+=	-I${OPENSSLINC}
