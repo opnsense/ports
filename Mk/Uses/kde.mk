@@ -54,7 +54,7 @@ _KDE_RELNAME=		KDE${_KDE_VERSION}
 
 # === VERSIONS OF THE DIFFERENT COMPONENTS =====================================
 # Current KDE desktop.
-KDE_PLASMA_VERSION?=		5.20.4
+KDE_PLASMA_VERSION?=		5.20.5
 KDE_PLASMA_BRANCH?=		stable
 
 # Current KDE frameworks.
@@ -62,8 +62,8 @@ KDE_FRAMEWORKS_VERSION?=	5.77.0
 KDE_FRAMEWORKS_BRANCH?= 	stable
 
 # Current KDE applications.
-KDE_APPLICATIONS_VERSION?=	20.12.0
-KDE_APPLICATIONS_SHLIB_VER?=	5.16.0
+KDE_APPLICATIONS_VERSION?=	20.12.1
+KDE_APPLICATIONS_SHLIB_VER?=	5.16.1
 KDE_APPLICATIONS_BRANCH?=	stable
 # Upstream moves old software to Attic/. Specify the newest applications release there.
 # Only the major version is used for the comparison.
