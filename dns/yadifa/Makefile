@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USE_HARDENING=	pie:off relro:off
 
-USES=		libtool ssl
+USES=		compiler:c11 libtool ssl
 USE_RC_SUBR=	${PORTNAME}d
 
 GNU_CONFIGURE=	yes
