@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	redis
-PORTVERSION=	6.0.8.20200910
+DISTVERSION=	6.2.0rc2
 CATEGORIES=	databases
 PKGNAMESUFFIX=	-devel
 
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES+=		compiler:c11 gmake
 USE_GITHUB=	yes
-GH_TUPLE= 	redis:${PORTNAME}:03b59cd
+GH_TUPLE= 	redis:${PORTNAME}:ec2d180
 
 OPTIONS_DEFINE=	JEMALLOC TESTS TLS TRIB
 OPTIONS_RADIO=	EXTLUA
@@ -71,7 +71,7 @@ LDFLAGS=	-Wl,-E
 
 LDFLAGS+=	-lpthread -lm -lexecinfo
 
-CONFLICTS?=	redis4-4.* redis-5.*
+CONFLICTS?=	redis4-4.* redis5-5.* redis-6.*
 
 USE_RC_SUBR=	redis sentinel
 BIN_FILES=	redis-benchmark redis-check-aof redis-check-rdb \
