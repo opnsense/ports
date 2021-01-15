@@ -36,6 +36,7 @@
     SUBDIR += grzip
     SUBDIR += gtar
     SUBDIR += gzip
+    SUBDIR += gzip-hpp
     SUBDIR += gzrecover
     SUBDIR += ha
     SUBDIR += hlextract
@@ -256,6 +257,7 @@
     SUBDIR += zoo
     SUBDIR += zopfli
     SUBDIR += zstd
+    SUBDIR += zstr
     SUBDIR += zutils
 
 .include <bsd.port.subdir.mk>

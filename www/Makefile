@@ -772,6 +772,7 @@
     SUBDIR += p5-Feed-Find
     SUBDIR += p5-Feersum
     SUBDIR += p5-File-Mork
+    SUBDIR += p5-Firefox-Marionette
     SUBDIR += p5-Flea
     SUBDIR += p5-Flickr-API
     SUBDIR += p5-Flickr-Upload
@@ -1740,6 +1741,7 @@
     SUBDIR += py-tornado4
     SUBDIR += py-tornado6
     SUBDIR += py-treq
+    SUBDIR += py-ttrv
     SUBDIR += py-tuir
     SUBDIR += py-turbogears2
     SUBDIR += py-tvdb_api
