@@ -70,7 +70,7 @@ HBSDVERSION!=		${AWK} '/^\#define[[:blank:]]__HardenedBSD_version/ {print $$3}' 
 HBSDVERSION=		0
 .endif
 
-HARDENING_ALL=		cfi pie relro retpoline safestack slh
+HARDENING_ALL=		cfi pie relro retpoline safestack slh stackautoinit
 HARDENING_OFF?=		# all features are on by default
 
 USE_HARDENING?=		# implicit auto-defaults may apply
@@ -346,6 +346,39 @@ OPTIONS_GROUP_HARDENING+=SLH
 OPTIONS_DEFAULT+=	SLH
 .if ${_USE_HARDENING:Mlock} != ""
 OPTIONS_GROUP_HARDENING+=SLH
+.endif
+.endif
+
+.endif
+.endif
+
+#####################################
+### Stack Auto-Zero-Initialzation ###
+#####################################
+
+.if ${HARDENING_OFF:Mstackautoinit} == ""
+
+.if ${OSVERSION} >= 1300135 && ${HBSDVERSION} >= 1300061 \
+	&& ${ARCH} == "amd64" && ${LLD_IS_LD} == "yes" \
+	&& !defined(LLD_UNSAFE) && !defined(USE_GCC)
+
+stackautoinit_ARGS?=	auto
+
+.if ${stackautoinit_ARGS:Mauto}
+USE_HARDENING:=		stackautoinit ${USE_HARDENING:Nstackautoinit}
+.endif
+
+STACKAUTOINIT_DESC=		Stack Auto-Zero-Initialization
+STACKAUTOINIT_USES=		stack_autoinit
+
+.if ${_USE_HARDENING:Mlock} == ""
+OPTIONS_GROUP_HARDENING+=STACKAUTOINIT
+.endif
+
+.if ${USE_HARDENING:Mstackautoinit} && ${stackautoinit_ARGS:Moff} == ""
+OPTIONS_DEFAULT+=	STACKAUTOINIT
+.if ${_USE_HARDENING:Mlock} != ""
+OPTIONS_GROUP_HARDENING+=STACKAUTOINIT
 .endif
 .endif
 
