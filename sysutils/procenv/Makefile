@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	xmlwf:textproc/expat2
 
+USE_HARDENING=	stackautoinit:off
+
 #USES=		autoreconf gmake perl5
 USES=		autoreconf perl5
 USE_PERL5=	build

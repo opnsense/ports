@@ -23,6 +23,8 @@ DISTINFO_FILE=		${.CURDIR}/../thrift/distinfo
 BROKEN_SSL=	openssl
 BROKEN_SSL_REASON_openssl=	'configure: error: "Error: libcrypto required."'
 
+USE_HARDENING=		stackautoinit:off
+
 USES=			autoreconf pkgconfig gmake compiler:c++11-lang \
 			libtool pathfix ssl
 GNU_CONFIGURE=		yes

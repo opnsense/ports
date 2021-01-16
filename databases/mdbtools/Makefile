@@ -17,6 +17,8 @@ BUILD_DEPENDS=	bash-completion>=0:shells/bash-completion \
 LIB_DEPENDS=	libodbcinst.so:databases/unixODBC
 RUN_DEPENDS=	bash-completion>=0:shells/bash-completion
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf bison gnome iconv libtool pathfix \
 		pkgconfig readline
 USE_GITHUB=	yes

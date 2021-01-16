@@ -4494,6 +4494,7 @@
     SUBDIR += py-infinity
     SUBDIR += py-inflect
     SUBDIR += py-inflection
+    SUBDIR += py-iniconfig
     SUBDIR += py-inifile
     SUBDIR += py-iniparse
     SUBDIR += py-intbitset
@@ -5100,6 +5101,7 @@
     SUBDIR += py-tartiflette-aiohttp
     SUBDIR += py-taskflow
     SUBDIR += py-taskflow3
+    SUBDIR += py-tasklib
     SUBDIR += py-tblib
     SUBDIR += py-tempora
     SUBDIR += py-tempora1

@@ -37,7 +37,7 @@ SUFFIX=		${PORTVERSION:C/([0-9]+).*/\1/}
 CFLAGS:=	${CFLAGS:N-mretpoline}
 CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
 
-USE_HARDENING=	pie:off retpoline:off
+USE_HARDENING=	pie:off retpoline:off stackautoinit:off
 
 .include <bsd.port.pre.mk>
 

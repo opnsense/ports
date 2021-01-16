@@ -14,6 +14,8 @@ LICENSE=	LGPL21
 
 LIB_DEPENDS=	libp11.so:security/libp11
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		libtool pkgconfig ssl
 
 OPTIONS_DEFINE=	DOCS NLS

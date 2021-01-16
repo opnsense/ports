@@ -15,6 +15,8 @@ LICENSE_COMB=	multi
 
 IGNORE_DragonFly=	only supported on FreeBSD
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		gmake tar:bzip2
 
 PLIST_FILES=	man/man1/mmc.1.gz sbin/mmc

@@ -15,6 +15,8 @@ LICENSE=	BSD2CLAUSE
 LIB_DEPENDS=	libJudy.so:devel/judy
 TEST_DEPENDS=	p5-Test-Command-Simple>=0:devel/p5-Test-Command-Simple
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		ssl
 
 ALL_TARGET=	${PORTNAME}

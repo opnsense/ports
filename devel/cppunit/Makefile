@@ -18,6 +18,8 @@ DOXYGEN_BUILD_DEPENDS=	doxygen:devel/doxygen \
 DOXYGEN_CONFIGURE_ENABLE=	dot doxygen html-docs
 DOXYGEN_CONFIGURE_ON=	--htmldir="${DOCSDIR}/html"
 
+USE_HARDENING=	stackautoinit:off
+
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 OPTIONS_SUB=	yes

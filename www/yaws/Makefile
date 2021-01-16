@@ -16,6 +16,8 @@ RUN_DEPENDS:=	${BUILD_DEPENDS}
 OPTIONS_SUB=	yes
 PLIST_SUB=	VERSION="${PORTVERSION}"
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf gmake libtool pathfix shebangfix
 SHEBANG_FILES=	www/cgi-bin/foo.py
 

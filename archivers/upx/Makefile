@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libucl.so:archivers/ucl
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		gmake perl5
 USE_GITHUB=	yes
 USE_PERL5=	build # provides pod2man/pod2html/pod2text required for docs

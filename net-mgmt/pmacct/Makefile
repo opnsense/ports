@@ -11,6 +11,8 @@ COMMENT=	Accounting and aggregation tool for IPv4 and IPv6 traffic
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		libtool pkgconfig localbase
 USE_RC_SUBR=	pmacctd nfacctd sfacctd
 SUB_FILES=	pkg-message

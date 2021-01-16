@@ -16,7 +16,7 @@ COMMENT=	GNU Compiler Collection 9
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
-USE_HARDENING=	pie:off relro:off retpoline:off
+USE_HARDENING=	pie:off relro:off retpoline:off autostackinit:off
 
 ONLY_FOR_ARCHS=	aarch64 amd64 arm armv6 armv7 i386 powerpc powerpc64 sparc64
 
@@ -66,8 +66,8 @@ CONFIGURE_ENV+=	UNAME_m="powerpc64"
 . if defined(PPC_ABI) && ${PPC_ABI} == ELFv2
 CONFIGURE_ARGS+=	--with-abi=elfv2
 . else
-MAKE_ARGS+=		CFLAGS_FOR_TARGET="-O0" CXXFLAGS_FOR_TARGET="-O0" BOOT_CFLAGS="-O0"
-EXTRA_PATCHES+=		${FILESDIR}/extra-patch-libgcc_config_rs6000_t-crtstuff
+MAKE_ARGS+=	CFLAGS_FOR_TARGET="-O0" CXXFLAGS_FOR_TARGET="-O0" BOOT_CFLAGS="-O0"
+EXTRA_PATCHES+=	${FILESDIR}/extra-patch-libgcc_config_rs6000_t-crtstuff
 . endif
 .endif
 

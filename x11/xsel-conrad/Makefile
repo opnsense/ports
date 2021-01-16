@@ -19,6 +19,8 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS_INSTALL=	xsel-[0-9]*
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf localbase xorg
 USE_XORG=	x11 xt
 GNU_CONFIGURE=	yes

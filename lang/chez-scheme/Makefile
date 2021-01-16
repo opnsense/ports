@@ -20,6 +20,8 @@ ONLY_FOR_ARCHS=	amd64 i386
 
 LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		gmake iconv:lib ncurses
 USE_GITHUB=	yes
 GH_ACCOUNT=	cisco

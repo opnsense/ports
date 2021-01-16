@@ -11,6 +11,8 @@ COMMENT=	Language guessing by N-Gram-Based Text Categorization
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		gmake libtool pathfix tar:xz
 
 GNU_CONFIGURE=	yes

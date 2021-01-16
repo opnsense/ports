@@ -18,6 +18,8 @@ LIB_DEPENDS=	libpcre.so:devel/pcre
 
 CONFLICTS=	varnish-2.* varnish-3.*
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf cpe gmake libedit libtool ncurses pathfix \
 		pkgconfig python:build readline shebangfix
 SHEBANG_FILES=	lib/libvcc/vmodtool.py

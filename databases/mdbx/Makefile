@@ -16,6 +16,8 @@ LICENSE_NAME=	OpenLDAP Public License
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+USE_HARDENING=	pie:off stackautoinit:off
+
 USES=		gmake
 
 PLIST_SUB=	VERSION=${PORTVERSION}

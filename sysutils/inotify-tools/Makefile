@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libinotify.so:devel/libinotify
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf compiler:c11 gmake libtool localbase
 USE_GITHUB=	yes
 GNU_CONFIGURE=	yes
