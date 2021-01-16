@@ -20,6 +20,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libuv.so:devel/libuv \
 		librhash.so:security/rhash
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:c++11-lang ncurses
 
 HAS_CONFIGURE=	yes
