@@ -20,7 +20,7 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	AdaCore
 GH_TAGNAME=	376670f
 
-USE_HARDENING=	retpoline:off
+USE_HARDENING=	retpoline:off stackautoinit:off
 
 PORTDOCS=	*
 MAKE_ARGS=	PROCESSORS=${MAKE_JOBS_NUMBER}

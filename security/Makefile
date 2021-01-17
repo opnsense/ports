@@ -316,6 +316,7 @@
     SUBDIR += libpwstor
     SUBDIR += libressl
     SUBDIR += libressl-devel
+    SUBDIR += libretls
     SUBDIR += libscep
     SUBDIR += libscrypt
     SUBDIR += libsecret
@@ -907,7 +908,6 @@
     SUBDIR += py-gpgme
     SUBDIR += py-gpsoauth
     SUBDIR += py-gssapi
-    SUBDIR += py-gtts-token
     SUBDIR += py-gvm-tools
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
