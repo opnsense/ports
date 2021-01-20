@@ -21,7 +21,9 @@ USE_HARDENING=	pie:off
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	BENCHMARK_ENABLE_TESTING
 
-CXXFLAGS+=	-Wno-thread-safety-analysis # workaround for https://github.com/google/benchmark/issues/655
+CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
+CXXFLAGS_clang=	-Wno-thread-safety-analysis # workaround for https://github.com/google/benchmark/issues/655
+CXXFLAGS_gcc=	-Wno-stringop-truncation
 CXXFLAGS+=	-Wno-sign-compare # workaround for https://github.com/google/googletest/issues/1752
 
 do-test: # Broken: https://github.com/google/benchmark/issues/979

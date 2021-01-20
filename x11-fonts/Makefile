@@ -5,10 +5,12 @@
 
     SUBDIR += 3270font
     SUBDIR += Hasklig
+    SUBDIR += agave
     SUBDIR += alef
     SUBDIR += alegreya
     SUBDIR += alegreya-sans
     SUBDIR += alfont
+    SUBDIR += amigafonts
     SUBDIR += andika
     SUBDIR += anomaly-mono
     SUBDIR += anonymous-pro

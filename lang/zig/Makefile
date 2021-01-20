@@ -18,6 +18,8 @@ IGNORE_FreeBSD_11=	expects getrandom(2) which is unavailable on FreeBSD < 12.0
 _LLVM_VER=	11
 BUILD_DEPENDS=	llvm${_LLVM_VER}>=0:devel/llvm${_LLVM_VER}
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:c++11-lang tar:xz
 
 OPTIONS_DEFINE=		STATIC

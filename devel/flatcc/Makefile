@@ -11,6 +11,8 @@ COMMENT=	FlatBuffers compiler and library in C for C
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:c++11-lib
 USE_GITHUB=	yes
 GH_ACCOUNT=	dvidelabs

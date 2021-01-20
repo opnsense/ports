@@ -10,6 +10,8 @@ COMMENT=	Fork of OpenSSL
 LICENSE=	OpenSSL
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	pie:off stackautoinit:off
+
 USES=		cmake:insource go:no_targets localbase perl5
 
 USE_GITHUB=	yes

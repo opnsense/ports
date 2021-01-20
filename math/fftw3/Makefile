@@ -20,6 +20,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 FFTW3_FLAVOR?=	default
 FFTW3_SUFX=
 
+USE_HARDENING=	stackautoinit:off
+
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	smallcheck #bigcheck check exhaustive-check paranoid-check

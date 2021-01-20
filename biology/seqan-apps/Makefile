@@ -15,6 +15,8 @@ LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:openmp # once #199603 is resolved, add c++14-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	seqan

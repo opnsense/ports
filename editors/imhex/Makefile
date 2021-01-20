@@ -22,6 +22,8 @@ LIB_DEPENDS=	libcapstone.so:devel/capstone4 \
 		libstdc++.so:lang/gcc10 \
 		libtre.so:textproc/libtre
 
+USE_HARDENING=	retpoline:off stackautoinit:off
+
 USES=		cmake pkgconfig python:3.8+ ssl xorg
 USE_XORG=	x11 xcb xau xdmcp
 USE_GITHUB=	yes

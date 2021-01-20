@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:openmp tar:xz
 PLIST_FILES=	bin/pxz share/man/man1/pxz.1.gz
 

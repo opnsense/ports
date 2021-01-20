@@ -12,6 +12,8 @@
     SUBDIR += bedtools
     SUBDIR += bioawk
     SUBDIR += biococoa
+    SUBDIR += bioparser
+    SUBDIR += biosoup
     SUBDIR += bolt-lmm
     SUBDIR += bowtie
     SUBDIR += bowtie2
@@ -27,6 +29,7 @@
     SUBDIR += ddocent
     SUBDIR += diamond
     SUBDIR += dsr-pdb
+    SUBDIR += edlib
     SUBDIR += emboss
     SUBDIR += exonerate
     SUBDIR += fasta
@@ -145,6 +148,7 @@
     SUBDIR += pyfasta
     SUBDIR += python-nexus
     SUBDIR += rainbow
+    SUBDIR += rampler
     SUBDIR += recombine
     SUBDIR += ruby-bio
     SUBDIR += rubygem-bio
@@ -162,6 +166,7 @@
     SUBDIR += sim4
     SUBDIR += slclust
     SUBDIR += smithwaterman
+    SUBDIR += spoa
     SUBDIR += stacks
     SUBDIR += star
     SUBDIR += stringtie

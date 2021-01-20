@@ -14,6 +14,8 @@ LICENSE=	LGPL21
 
 BUILD_DEPENDS=	gprbuild:devel/gprbuild
 
+USE_HARDENING=	retpoline:off stackautoinit:off
+
 USES=		ada tar:bzip2
 ALL_TARGET=	all
 PORTDOCS=	html

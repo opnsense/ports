@@ -2,7 +2,7 @@
 
 PORTNAME=	gpg-gui
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.2
+DISTVERSION=	0.2.0
 CATEGORIES=	security
 
 MAINTAINER=	nc@FreeBSD.org
@@ -16,11 +16,10 @@ RUN_DEPENDS=	gpg2:security/gnupg
 
 USES=		gnome meson pkgconfig
 USE_GNOME=	glib20 gtk30
+INSTALLS_ICONS=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	AnsgarKlein
 GH_PROJECT=	GPG-Gui
-
-PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>

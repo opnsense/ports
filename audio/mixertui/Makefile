@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	mixertui
-DISTVERSION=	1.4
-PORTREVISION=	1
+DISTVERSION=	1.4.1
 CATEGORIES=	audio
 
 MAINTAINER=	alfix86@gmail.com
@@ -13,11 +12,10 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libsysctlmibinfo2.so:devel/libsysctlmibinfo2
 
-USES=		ncurses:port
 USE_GITLAB=	yes
 
 GL_ACCOUNT=	alfix
-GL_COMMIT=	a3e268cd8dced956f4657c019465d0ae611a8fa5
+GL_COMMIT=	26e4c85fe6afd7403bfd6596c1da9161de03f1b4
 
 PLIST_FILES=	sbin/${PORTNAME} \
 		share/man/man8/${PORTNAME}.8.gz
@@ -25,5 +23,13 @@ PLIST_FILES=	sbin/${PORTNAME} \
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
 	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 ${STAGEDIR}${MAN8PREFIX}/share/man/man8
+
+.include <bsd.port.options.mk>
+
+.if ${OPSYS} == "FreeBSD" && ${OSVERSION} >= 1300079
+USES+=          ncurses
+.else
+USES+=          ncurses:port
+.endif
 
 .include <bsd.port.mk>

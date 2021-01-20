@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USE_GITHUB=	yes
 GH_ACCOUNT=	vogel
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off stackautoinit:off
 
 USES=		cmake compiler:c++11-lib pathfix qt:5
 USE_QT=		core buildtools_build qmake_build testlib_build

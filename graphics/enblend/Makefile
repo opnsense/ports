@@ -23,6 +23,8 @@ LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
 		libIlmImf.so:graphics/openexr \
 		libpng.so:graphics/png
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:features gmake jpeg localbase pkgconfig
 
 GNU_CONFIGURE=	yes

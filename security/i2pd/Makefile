@@ -2,7 +2,8 @@
 # $FreeBSD$
 
 PORTNAME=	i2pd
-PORTVERSION=	2.33.0
+PORTVERSION=	2.35.0
+PORTREVISION=	1
 CATEGORIES=	security net-p2p
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -28,14 +29,12 @@ GROUPS=		_i2pd
 
 PLIST_SUB=	USER="${USERS}" GROUP="${GROUPS}"
 SUB_LIST=	USER="${USERS}" GROUP="${GROUPS}"
-SUB_FILES=	i2pd.newsyslog.conf
+SUB_FILES=	i2pd.newsyslog.conf pkg-message
 
-OPTIONS_DEFINE=	AESNI AVX UPNP DOCS HARDENING
+OPTIONS_DEFINE=	AESNI UPNP DOCS HARDENING
 
 AESNI_DESC=		Use AES-NI instructions set
 AESNI_CMAKE_BOOL=	WITH_AESNI
-AVX_DESC=		Use AVX instructions
-AVX_CMAKE_BOOL=		WITH_AVX
 UPNP_DESC=		Include support for UPnP client
 UPNP_CMAKE_BOOL=	WITH_UPNP
 UPNP_LIB_DEPENDS=	libminiupnpc.so:net/miniupnpc
@@ -47,6 +46,8 @@ do-install:
 	${INSTALL_MAN} ${WRKSRC}/debian/${PORTNAME}.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
 	@${MKDIR} ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d
 	${INSTALL_DATA} ${WRKDIR}/i2pd.newsyslog.conf ${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/i2pd.conf
+	@${MKDIR} ${STAGEDIR}${ETCDIR}
+	${INSTALL_DATA} ${WRKSRC}/contrib/i2pd.conf ${STAGEDIR}${ETCDIR}/i2pd.conf.sample
 	@${MKDIR} ${STAGEDIR}/var/run/i2pd
 	@${MKDIR} ${STAGEDIR}/var/log/i2pd
 	@${MKDIR} ${STAGEDIR}/var/db/i2pd

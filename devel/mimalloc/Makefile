@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS_i386=	libatomic_ops>0:devel/libatomic_ops
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:gcc-c++11-lib
 
 USE_GITHUB=	yes

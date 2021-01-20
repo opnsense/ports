@@ -14,6 +14,8 @@ COMMENT=	Wireless LAN Access Point Controller
 
 CONFLICTS=	coovachilli-[0-9]*
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:nestedfct shebangfix
 SHEBANG_FILES=	doc/hotspotlogin.cgi
 GNU_CONFIGURE=	yes

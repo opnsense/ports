@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libcppunit.so:devel/cppunit
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf libtool pkgconfig
 
 GNU_CONFIGURE=	yes

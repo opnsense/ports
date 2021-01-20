@@ -21,6 +21,8 @@ RUN_DEPENDS=	cups-filters>=0:print/cups-filters \
 
 CONFLICTS_INSTALL=	hpijs-[0-9]*
 
+USE_HARDENING=	pie:off
+
 INSTALL_TARGET=	install-strip
 USES=		dos2unix jpeg libtool pkgconfig python:3.6+ shebangfix
 USE_LDCONFIG=	yes

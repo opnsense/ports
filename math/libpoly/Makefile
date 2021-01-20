@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENCE
 
 LIB_DEPENDS=	libgmp.so:math/gmp
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	SRI-CSL

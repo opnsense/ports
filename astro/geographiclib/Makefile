@@ -17,6 +17,8 @@ COMMENT=	Library for geographic projections
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:c++14-lang localbase python:env
 PORTDOCS=	*
 USE_LDCONFIG=	yes

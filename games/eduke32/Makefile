@@ -33,6 +33,8 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libvpx.so:multimedia/libvpx \
 		libpng.so:graphics/png
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		dos2unix gl gmake gnome localbase pkgconfig sdl tar:xz
 USE_GL=		gl glu
 USE_GNOME=	gtk20

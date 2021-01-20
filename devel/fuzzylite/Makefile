@@ -16,7 +16,7 @@ USES=		cmake compiler:c++11-lang
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off stackautoinit:off
 
 CMAKE_OFF=	FL_BUILD_STATIC FL_BUILD_TESTS
 CMAKE_SOURCE_PATH=	${WRKSRC}/${PORTNAME}

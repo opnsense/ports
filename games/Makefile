@@ -192,6 +192,7 @@
     SUBDIR += digger-vgl
     SUBDIR += divide-and-succeed
     SUBDIR += dmjava
+    SUBDIR += dobutsu
     SUBDIR += dodgindiamond2
     SUBDIR += domination
     SUBDIR += dontspace
@@ -252,6 +253,7 @@
     SUBDIR += falconseye
     SUBDIR += fargoal
     SUBDIR += fbg2
+    SUBDIR += fheroes2
     SUBDIR += fightorperish
     SUBDIR += fillets-ng
     SUBDIR += filters

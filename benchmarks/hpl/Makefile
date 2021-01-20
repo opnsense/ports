@@ -13,6 +13,8 @@ COMMENT=	High Performance Computing Linpack Benchmark
 LIB_DEPENDS=	libblas.so:math/blas \
 		libmpich.so:net/mpich
 
+USE_HARDENING=	retpoline:off stackautoinit:off
+
 USES=		fortran
 USE_LDCONFIG=	yes
 HPL_ARCH?=	FreeBSD_PIV_CBLAS

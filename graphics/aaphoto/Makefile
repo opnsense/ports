@@ -18,6 +18,8 @@ LIB_DEPENDS=	libjasper.so:graphics/jasper \
 USE_GITHUB=	yes
 GH_ACCOUNT=	log69
 
+USE_HARDENING=	stackautoinit:off
+
 GNU_CONFIGURE=	yes
 USES=		compiler:openmp jpeg
 

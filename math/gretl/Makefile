@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	gretl
-DISTVERSION=	2020e
+DISTVERSION=	2021a
 CATEGORIES=	math finance
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSIONFULL}/
 
@@ -17,6 +17,8 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libgmp.so:math/gmp \
 		libjson-glib-1.0.so:devel/json-glib \
 		libmpfr.so:math/mpfr
+
+USE_HARDENING=	stackautoinit:off
 
 USES=		compiler:c11 fortran gmake gnome localbase libtool ncurses \
 		pathfix pkgconfig readline tar:xz

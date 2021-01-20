@@ -24,6 +24,8 @@ RUN_DEPENDS=	${BU_PREFIX}-as:devel/binutils@${TARGETARCH}
 FLAVORS=	aarch64 amd64 i386 mips mips64 powerpc powerpc64 riscv64 sparc64
 TARGETARCH=	${FLAVOR}
 
+USE_HARDENING=	stackautoinit:off
+
 USES=	gmake iconv libtool tar:xz makeinfo compiler:c++11-lang
 PLIST_SUB=	OPSYS=${OPSYS:tl} \
 		SUFFIX=${SUFFIX} \

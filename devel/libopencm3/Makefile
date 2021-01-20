@@ -16,6 +16,8 @@ BUILD_DEPENDS=	${LOCALBASE}/gcc-arm-embedded-${TOOLCHAIN_FULL_VERSION}/bin/arm-n
 USE_GITHUB=	yes
 GH_ACCOUNT=	libopencm3
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		gmake python:build shebangfix
 
 SHEBANG_FILES=	scripts/irq2nvic_h \

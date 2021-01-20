@@ -36,6 +36,8 @@ LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
 		libharfbuzz.so:print/harfbuzz \
 		libicuuc.so:devel/icu
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:gcc-c++11-lib desktop-file-utils dos2unix gnome \
 		jpeg pkgconfig qt:5 shared-mime-info ssl tar:xz
 USE_QT=		buildtools_build core declarative gui linguisttools_build \

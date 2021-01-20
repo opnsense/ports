@@ -23,7 +23,7 @@ BROKEN_armv7?=		does not build: /nxb-bin/usr/bin/ld: undefined reference to symb
 BROKEN_FreeBSD_11_powerpc64=	does not build: util/crc32c.cc:435:22: 'arch_ppc_probe' was not declared in this scope
 BROKEN_FreeBSD_12_powerpc64=	does not build: util/crc32c.cc:435:22: 'arch_ppc_probe' was not declared in this scope
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off stackautoinit:off
 
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libgflags.so:devel/gflags \

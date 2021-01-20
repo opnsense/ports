@@ -17,6 +17,8 @@ LICENSE=	LGPL21
 RUN_DEPENDS=	curl:ftp/curl \
 		gpatch:devel/patch
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		gmake
 USE_OCAML=	yes
 

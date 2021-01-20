@@ -19,6 +19,8 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 LIB_DEPENDS=	libmetis.so:math/metis
 
+USE_HARDENING=	retpoline:off stackautoinit:off
+
 USES=		blaslapack fortran tar:tgz
 USE_LDCONFIG=	yes
 

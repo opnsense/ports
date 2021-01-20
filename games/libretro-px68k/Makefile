@@ -9,6 +9,8 @@ COMMENT=	SHARP X68000 libretro core
 
 LICENSE=	GPLv2
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:gcc-c++11-lib gmake
 USE_LDCONFIG=	yes
 

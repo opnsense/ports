@@ -34,7 +34,7 @@ CONFLICTS=	gcc8-8.*
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}
 
-USE_HARDENING=	pie:off relro:off retpoline:off
+USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
 
 # DIST_VERSION relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.  A PORTVERSION of

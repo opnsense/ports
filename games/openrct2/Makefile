@@ -27,7 +27,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libbenchmark.so:devel/grpc \
 		libduktape.so:lang/duktape-lib
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off stackautoinit:off
 
 USES=		cmake compiler:c++17-lang desktop-file-utils gnome gl iconv \
 		localbase:ldflags pkgconfig sdl shared-mime-info ssl

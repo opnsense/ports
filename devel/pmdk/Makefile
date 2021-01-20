@@ -17,6 +17,8 @@ ONLY_FOR_ARCHS=	aarch64 amd64
 BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid
 
+USE_HARDENING=	retpoline:off
+
 USES=		autoreconf:build gmake pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	pmem

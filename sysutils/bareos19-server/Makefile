@@ -19,6 +19,8 @@ CONFLICTS?=	bacula18*-server bacula17*-server-*
 LIB_DEPENDS+=	liblzo2.so:archivers/lzo2 \
 		libjansson.so:devel/jansson
 
+USE_HARDENING=	stackautoinit:off
+
 USES+=		cmake compiler:c++11-lang localbase perl5 pkgconfig readline:port \
 		shebangfix
 USE_GITHUB=	yes

@@ -19,6 +19,8 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libarpack.so:math/arpack-ng	\
 		libspooles.so:math/spooles
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		blaslapack compiler:openmp fortran gmake tar:bzip2
 USE_PERL5=	build
 

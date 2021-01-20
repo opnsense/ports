@@ -11,7 +11,7 @@ COMMENT=	Notification system compatible with Growl
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off stackautoinit:off
 
 BUILD_DEPENDS=	desktop-file-install:devel/desktop-file-utils
 LIB_DEPENDS=	libcurl.so:ftp/curl \
