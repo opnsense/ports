@@ -43,6 +43,8 @@ OPENSSL_CONFIGURE_WITH=	ssl
 
 WRKSRC_SUBDIR=		open-vm-tools
 
+USE_HARDENING=		stackautoinit:off
+
 GNU_CONFIGURE=		yes
 USES=			autoreconf fuse gettext-runtime kmod libtool localbase pathfix pkgconfig gnome
 USE_GNOME=		glib20
