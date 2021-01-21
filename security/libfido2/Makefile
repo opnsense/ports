@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libcbor.so:devel/libcbor \
 		libhidapi.so.0:comms/hidapi
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:c11 pkgconfig ssl
 
 CFLAGS+=	-D_WITH_GETLINE
