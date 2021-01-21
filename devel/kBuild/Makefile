@@ -17,6 +17,8 @@ LICENSE_COMB=	multi
 NOT_FOR_ARCHS=		aarch64 armv6 armv7 mips mips64
 NOT_FOR_ARCHS_REASON=	./kBuild/env.sh: unknown cpu/arch
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf:build gmake makeinfo tar:xz
 
 CONFLICTS_INSTALL=	kBuild-devel-[0-9]*
