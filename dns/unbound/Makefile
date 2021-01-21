@@ -16,6 +16,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf cpe libtool pkgconfig ssl
 
 CPE_VENDOR=	nlnetlabs
