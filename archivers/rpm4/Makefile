@@ -21,6 +21,8 @@ LIB_DEPENDS=	libpopt.so:devel/popt \
 RUN_DEPENDS=	bash:shells/bash \
 		gxargs:misc/findutils
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		alias bdb sqlite compiler:openmp gmake iconv libarchive libtool \
 		lua:52+ pathfix pkgconfig shebangfix tar:bzip2
 USE_LDCONFIG=	yes

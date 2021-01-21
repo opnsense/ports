@@ -230,6 +230,7 @@
     SUBDIR += py-chainer-chemistry
     SUBDIR += py-chempy
     SUBDIR += py-coards
+    SUBDIR += py-dipy
     SUBDIR += py-dlib
     SUBDIR += py-eccodes
     SUBDIR += py-esda
@@ -255,6 +256,8 @@
     SUBDIR += py-moltemplate
     SUBDIR += py-netCDF4
     SUBDIR += py-netcdf-flattener
+    SUBDIR += py-nibabel
+    SUBDIR += py-nilearn
     SUBDIR += py-obspy
     SUBDIR += py-oddt
     SUBDIR += py-openpiv

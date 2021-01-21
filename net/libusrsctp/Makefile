@@ -10,6 +10,8 @@ COMMENT=	Portable SCTP userland stack
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake
 USE_LDCONFIG=	yes
 

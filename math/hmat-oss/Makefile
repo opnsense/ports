@@ -13,6 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libopenblas.so:math/openblas
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:openmp
 USE_GITHUB=	yes
 GH_ACCOUNT=	jeromerobert
