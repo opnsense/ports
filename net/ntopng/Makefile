@@ -16,6 +16,8 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libzmq.so:net/libzmq4 \
 		libcurl.so:ftp/curl \
 		libndpi.so:net/ndpi \
+		libgcrypt.so:security/libgcrypt \
+		libgpg-error.so:security/libgpg-error \
 		libjson-c.so:devel/json-c \
 		libsodium.so:security/libsodium \
 		libmaxminddb.so:net/libmaxminddb \
