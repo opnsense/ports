@@ -18,6 +18,8 @@ BUILD_DEPENDS=	bash:shells/bash \
 		${LOCALBASE}/lib/gnat/apq.gpr:databases/apq
 RUN_DEPENDS=	${LOCALBASE}/lib/gnat/apq.gpr:databases/apq
 
+USE_HARDENING=	retpoline:off stackautoinit:off
+
 USES=		ada tar:bzip2 pgsql
 WANT_PGSQL=	lib
 HAS_CONFIGURE=	yes

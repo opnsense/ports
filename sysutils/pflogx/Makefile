@@ -13,6 +13,8 @@ COMMENT=	Simple tool to export pf (packet filter) logs to XML files
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+USE_HARDENING=	stackautoinit:off
+
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 OPTIONS_DEFINE=	EXPAT DOCS EXAMPLES

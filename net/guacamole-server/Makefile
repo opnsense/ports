@@ -16,6 +16,8 @@ LIB_DEPENDS=	libossp-uuid.so:misc/ossp-uuid \
 
 CONFLICTS_BUILD=pulseaudio-*+jack_* ffmpeg-*+jack_*
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		autoreconf compiler:c11 gnome jpeg libtool localbase pkgconfig \
 		shebangfix
 

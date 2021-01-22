@@ -12,7 +12,7 @@ LIB_DEPENDS+=	libmad.so:audio/libmad \
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off relro:off
+USE_HARDENING=	pie:off relro:off stackautoinit:off
 
 USE_GNOME=	libxml2
 

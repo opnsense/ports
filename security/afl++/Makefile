@@ -18,7 +18,7 @@ ONLY_FOR_ARCHS_REASON=	uses x86-only instrumentation or requires complete LLVM s
 BUILD_DEPENDS=	ginstall:sysutils/coreutils
 TEST_DEPENDS=	bash:shells/bash
 
-USE_HARDENING=	pie:off
+USE_HARDENING=	pie:off retpoline:off stackautoinit:off
 
 USES=		gmake tar:tgz
 USE_GITHUB=	yes

@@ -12,6 +12,8 @@ COMMENT=	Octave-forge package ${OCTAVE_PKGNAME}
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKDIR}/${OCTSRC}/COPYING
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:openmp
 
 # OCTSRC is the name of the directory of the package.

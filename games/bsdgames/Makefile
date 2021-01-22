@@ -12,6 +12,8 @@ COMMENT=	Traditional BSD games taken mostly from DragonFly BSD
 
 LICENSE=	BSD3CLAUSE
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		ncurses tar:xz uidfix
 
 USE_GITHUB=	yes

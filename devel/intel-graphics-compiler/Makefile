@@ -3,6 +3,7 @@
 PORTNAME=	intel-graphics-compiler
 DISTVERSIONPREFIX=	igc-
 DISTVERSION=	1.0.5964
+PORTREVISION=	1
 CATEGORIES=	devel
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -20,6 +21,8 @@ ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	Only Intel GPUs on x86 are supported
 
 LIB_DEPENDS=	libopencl-clang.so:devel/opencl-clang
+
+USE_HARDENING=	pie:off
 
 USES=		bison cmake compiler:c++17-lang python:build
 USE_GITHUB=	yes

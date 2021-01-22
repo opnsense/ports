@@ -533,7 +533,7 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron7
+    SUBDIR += electron9
     SUBDIR += elf
     SUBDIR += elfio
     SUBDIR += elfkickers
@@ -4583,6 +4583,7 @@
     SUBDIR += py-libcst
     SUBDIR += py-libioc
     SUBDIR += py-libpeas
+    SUBDIR += py-libplist
     SUBDIR += py-libtaxii
     SUBDIR += py-libtmux
     SUBDIR += py-libusb1

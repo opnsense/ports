@@ -32,6 +32,8 @@ RUN_DEPENDS=	endian:sysutils/endian \
 		R:math/R \
 		${CRAN_DEPENDS}
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		compiler:openmp gettext gl gmake gnome iconv jpeg:run motif
 USES+=		perl5 python shebangfix tar:xz xorg
 USE_GITHUB=	yes

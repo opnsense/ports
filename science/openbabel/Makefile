@@ -19,6 +19,8 @@ LIB_DEPENDS=	libmaeparser.so:science/maeparser	\
 
 CONFLICTS_INSTALL=	babel-*
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:c++11-lang eigen:3 gnome pkgconfig tar:bz2
 USE_CXXSTD=	gnu++98
 USE_GNOME=	libxml2
