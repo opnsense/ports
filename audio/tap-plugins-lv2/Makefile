@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	lv2>0:audio/lv2
 
+USE_HARDENING=	pie:off
+
 USES=		gmake localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	moddevices

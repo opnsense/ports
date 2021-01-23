@@ -17,6 +17,8 @@ LIB_DEPENDS=	libnlopt.so:math/nlopt \
 		libopenblas.so:math/openblas \
 		libboost_program_options.so:devel/boost-libs
 
+USE_HARDENING=	stackautoinit:off
+
 # gcc-c++11-lib needed to link with boost. Also requires compiler:openmp, but
 # both merely add a GCC requirement.
 USES=		compiler:gcc-c++11-lib gmake

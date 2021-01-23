@@ -3,6 +3,7 @@
 
 PORTNAME=	eduke32
 PORTVERSION=	20201209
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://dukeworld.com/eduke32/synthesis/${PORTVERSION}-${GITREVISION}/:eduke32 \
 		http://www.duke4.org/files/nightfright/hrp/:hrp \
@@ -27,15 +28,15 @@ LICENSE_FILE_BUILDLIC=	${WRKSRC}/source/build/buildlic.txt
 LICENSE_FILE_GPLv2=	${WRKSRC}/source/duke3d/gpl-2.0.txt
 LICENSE_PERMS_BUILDLIC=	dist-mirror pkg-mirror auto-accept
 
+USE_HARDENING=	stackautoinit:off
+
 LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libogg.so:audio/libogg \
 		libvorbis.so:audio/libvorbis \
 		libvpx.so:multimedia/libvpx \
 		libpng.so:graphics/png
 
-USE_HARDENING=	stackautoinit:off
-
-USES=		dos2unix gl gmake gnome localbase pkgconfig sdl tar:xz
+USES=		compiler:c11 dos2unix gl gmake gnome localbase pkgconfig sdl tar:xz
 USE_GL=		gl glu
 USE_GNOME=	gtk20
 USE_SDL=	sdl2 mixer2
@@ -49,21 +50,16 @@ MAKE_ARGS=	CC=${CC} CXX=${CXX}
 PLIST_FILES=	bin/eduke32 bin/mapster32
 PORTEXAMPLES=	*
 
-OPTIONS_DEFINE=		EXAMPLES GCC HRP OFFENSIVE VOXEL
+OPTIONS_DEFINE=		EXAMPLES HRP OFFENSIVE VOXEL
 OPTIONS_RADIO=		GAMEDATA
 OPTIONS_RADIO_GAMEDATA=	SHAREWARE FULL
+OPTIONS_DEFINE_amd64=	ASM
+OPTIONS_DEFAULT_amd64=	ASM
 OPTIONS_DEFINE_i386=	ASM
 OPTIONS_DEFAULT_i386=	ASM
-OPTIONS_DEFAULT_amd64=	GCC
-OPTIONS_DEFAULT_powerpc=	GCC
-OPTIONS_DEFAULT_powerpcspe=	GCC
-OPTIONS_DEFAULT_powerpc64=	GCC
-OPTIONS_DEFAULT_sparc64=	GCC
 
 ASM_BUILD_DEPENDS=	nasm:devel/nasm
 ASM_MAKE_ARGS_OFF=	NOASM=1
-GCC_MAKE_ARGS_OFF=	CLANG=1 LTO=0
-GCC_USE=		gcc=yes
 HRP_DESC=		Install High Resolution Pack
 HRP_DISTFILES=		duke3d_hrp.zip:hrp
 HRP_PLIST_FILES=	${DATADIR}/duke3d_hrp.zip
@@ -81,6 +77,28 @@ VOXEL_PLIST_FILES=	${DATADIR}/duke3d_voxels.zip
 FULL_DESC=		Install duke3d.grp and duke.rts from $${DISTDIR}/duke3d
 FULL_DISTFILES=		duke3d/duke3d.grp duke3d/duke.rts
 FULL_PLIST_FILES=	${DATADIR}/duke3d.grp ${DATADIR}/duke.rts
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MFULL}
+
+# Avoid checksumming original (commercial) game data files: A variety of
+# editions exist with the same file names and they should all work.
+# This is a hack that would break when bsd.port.mk changes or DIST_SUBDIR
+# is set.
+_CKSUMFILES=	${ALLFILES:Nduke3d/duke*}
+
+.if !exists(${DISTDIR}/duke3d/duke3d.grp) || !exists(${DISTDIR}/duke3d/duke.rts)
+IGNORE=	option FULL selected, but duke3d.grp or duke.rts not found in ${DISTDIR}/duke3d
+.endif
+
+.endif
+
+.include <bsd.port.pre.mk>
+
+.if ${CHOSEN_COMPILER_TYPE} == clang
+MAKE_ARGS+=	CLANG=1
+.endif
 
 post-extract-SHAREWARE-on:
 	@cd ${WRKDIR} && ${UNZIP_NATIVE_CMD} -qo DN3DSW13.SHR
@@ -120,20 +138,4 @@ do-install-FULL-on:
 	${INSTALL_DATA} ${DISTDIR}/duke3d/duke3d.grp ${STAGEDIR}${DATADIR}/duke3d.grp
 	${INSTALL_DATA} ${DISTDIR}/duke3d/duke.rts ${STAGEDIR}${DATADIR}/duke.rts
 
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MFULL}
-
-# Avoid checksumming original (commercial) game data files: A variety of
-# editions exist with the same file names and they should all work.
-# This is a hack that would break when bsd.port.mk changes or DIST_SUBDIR
-# is set.
-_CKSUMFILES=	${ALLFILES:Nduke3d/duke*}
-
-.if !exists(${DISTDIR}/duke3d/duke3d.grp) || !exists(${DISTDIR}/duke3d/duke.rts)
-IGNORE=	option FULL selected, but duke3d.grp or duke.rts not found in ${DISTDIR}/duke3d
-.endif
-
-.endif
-
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

@@ -18,6 +18,8 @@ GH_TAGNAME=	v0.2
 
 LIB_DEPENDS=	libpru.so:devel/libpru
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake libedit
 USE_CSTD=	c99
 

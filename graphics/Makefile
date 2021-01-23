@@ -141,6 +141,7 @@
     SUBDIR += drm-devel-kmod
     SUBDIR += drm-fbsd11.2-kmod
     SUBDIR += drm-fbsd12.0-kmod
+    SUBDIR += drm-fbsd13-kmod
     SUBDIR += drm-kmod
     SUBDIR += drm_info
     SUBDIR += dspdfviewer
@@ -845,6 +846,7 @@
     SUBDIR += py-img2pdf
     SUBDIR += py-leather
     SUBDIR += py-mapclassify
+    SUBDIR += py-mayavi
     SUBDIR += py-mcomix
     SUBDIR += py-mgwr
     SUBDIR += py-ming

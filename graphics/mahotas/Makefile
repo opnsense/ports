@@ -13,7 +13,7 @@ COMMENT=	Computer vision and image processing library for Python
 BUILD_DEPENDS=	${PYNUMPY}
 LIB_DEPENDS=	libfreeimage.so:graphics/freeimage
 
-USE_HARDENING=	pie:off relro:off
+USE_HARDENING=	pie:off relro:off stackautoinit:off
 
 USE_GCC=	yes
 USES=		python:3.6+

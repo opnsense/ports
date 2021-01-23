@@ -16,6 +16,8 @@ LICENSE_PERMS=	dist-mirror auto-accept
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libpng.so:graphics/png
 
+USE_HARDENING=	stackautoinit:off
+
 USES=		cmake compiler:gcc-c++11-lib lua:51 jpeg openal pkgconfig sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	scp-fs2open
