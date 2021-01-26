@@ -2,7 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	ntopng
-PORTVERSION=	4.2.d20201228
+PORTVERSION=	4.2.d20210122
 PORTEPOCH=	1
 CATEGORIES=	net
 
@@ -16,13 +16,13 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libzmq.so:net/libzmq4 \
 		libcurl.so:ftp/curl \
 		libndpi.so:net/ndpi \
-		libgcrypt.so:security/libgcrypt \
-		libgpg-error.so:security/libgpg-error \
 		libjson-c.so:devel/json-c \
 		libsodium.so:security/libsodium \
 		libmaxminddb.so:net/libmaxminddb \
 		libexpat.so:textproc/expat2 \
-		libzstd.so:archivers/zstd
+		libzstd.so:archivers/zstd \
+		libgcrypt.so:security/libgcrypt \
+		libgpg-error.so:security/libgpg-error
 BUILD_DEPENDS=	bash:shells/bash
 
 USE_HARDENING=	pie:off relro:off
@@ -42,7 +42,7 @@ PLIST_SUB=	NTOPNGUSER="${USERS}" NTOPNGROUP="${GROUPS}"
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ntop
-GH_TAGNAME=	d2f4f8f
+GH_TAGNAME=	e91b1b5
 
 CPE_VENDOR=	ntop
 
