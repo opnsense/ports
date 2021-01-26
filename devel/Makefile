@@ -4300,6 +4300,7 @@
     SUBDIR += py-curio
     SUBDIR += py-cursive
     SUBDIR += py-curtsies
+    SUBDIR += py-cwcwidth
     SUBDIR += py-cxx
     SUBDIR += py-cycler
     SUBDIR += py-cymem
@@ -4554,6 +4555,7 @@
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
     SUBDIR += py-jsonsir
+    SUBDIR += py-jupyter-packaging
     SUBDIR += py-jupyter-telemetry
     SUBDIR += py-jupyter_client
     SUBDIR += py-jupyter_console
@@ -4909,6 +4911,7 @@
     SUBDIR += py-pytest-cov
     SUBDIR += py-pytest-datadir
     SUBDIR += py-pytest-django
+    SUBDIR += py-pytest-enabler
     SUBDIR += py-pytest-env
     SUBDIR += py-pytest-factoryboy
     SUBDIR += py-pytest-fixture-config
@@ -5632,6 +5635,8 @@
     SUBDIR += rubygem-aws-sdk-lambdapreview
     SUBDIR += rubygem-aws-sdk-lex
     SUBDIR += rubygem-aws-sdk-lexmodelbuildingservice
+    SUBDIR += rubygem-aws-sdk-lexmodelsv2
+    SUBDIR += rubygem-aws-sdk-lexruntimev2
     SUBDIR += rubygem-aws-sdk-licensemanager
     SUBDIR += rubygem-aws-sdk-lightsail
     SUBDIR += rubygem-aws-sdk-locationservice
@@ -6140,6 +6145,11 @@
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
     SUBDIR += rubygem-google-api-client
+    SUBDIR += rubygem-google-apis-core
+    SUBDIR += rubygem-google-apis-discovery_v1
+    SUBDIR += rubygem-google-apis-generator
+    SUBDIR += rubygem-google-apis-iamcredentials_v1
+    SUBDIR += rubygem-google-apis-storage_v1
     SUBDIR += rubygem-google-gax
     SUBDIR += rubygem-google-protobuf
     SUBDIR += rubygem-google-protobuf38
@@ -6380,6 +6390,7 @@
     SUBDIR += rubygem-pry
     SUBDIR += rubygem-pry-byebug
     SUBDIR += rubygem-pry-rails
+    SUBDIR += rubygem-pry-remote
     SUBDIR += rubygem-pry-remote-em
     SUBDIR += rubygem-ptreloaded
     SUBDIR += rubygem-puppet-resource_api
@@ -6861,8 +6872,8 @@
     SUBDIR += tortoisehg
     SUBDIR += tpasm
     SUBDIR += tradcpp
-    SUBDIR += transwarp
     SUBDIR += transient
+    SUBDIR += transwarp
     SUBDIR += treepy.el
     SUBDIR += trellis
     SUBDIR += trio
