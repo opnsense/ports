@@ -20,6 +20,7 @@
     SUBDIR += adguardhome
     SUBDIR += adzap
     SUBDIR += alef-webfont
+    SUBDIR += amfora
     SUBDIR += amphetadesk
     SUBDIR += analog
     SUBDIR += annie
@@ -41,7 +42,6 @@
     SUBDIR += bacula-web
     SUBDIR += baikal
     SUBDIR += bareos-webui
-    SUBDIR += bareos16-webui
     SUBDIR += bareos17-webui
     SUBDIR += bareos18-webui
     SUBDIR += bareos19-webui
