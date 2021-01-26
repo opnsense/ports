@@ -77,6 +77,156 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="425f2143-8876-4b0a-af84-e0238c5c2062">
+    <topic>jenkins -- Arbitrary file read vulnerability in workspace browsers</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.276</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.263.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2021-01-26/">
+	  <h1>Description</h1>
+	  <h5>(Medium) SECURITY-2197 / CVE-2021-21615</h5>
+	  <p>Arbitrary file read vulnerability in workspace browsers</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.jenkins.io/security/advisory/2021-01-26/</url>
+    </references>
+    <dates>
+      <discovery>2021-01-26</discovery>
+      <entry>2021-01-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="387bbade-5d1d-11eb-bf20-4437e6ad11c4">
+    <topic>mutt -- denial of service</topic>
+    <affects>
+      <package>
+	<name>mutt</name>
+	<range><lt>2.0.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tavis Ormandy reports:</p>
+	<blockquote cite="https://gitlab.com/muttmua/mutt/-/issues/323">
+	  <p>
+	    rfc822.c in Mutt through 2.0.4 allows remote attackers to cause a
+	    denial of service (mailbox unavailability) by sending email messages
+	    with sequences of semicolon characters in RFC822 address fields
+	    (aka terminators of empty groups). A small email message from the
+	    attacker can cause large memory consumption, and the victim
+	    may then be unable to see email messages from other persons.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+    <url>https://gitlab.com/muttmua/mutt/-/issues/323</url>
+    <cvename>CVE-2021-3181</cvename>
+    </references>
+    <dates>
+      <discovery>2021-01-17</discovery>
+      <entry>2021-01-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="31344707-5d87-11eb-929d-d4c9ef517024">
+    <topic>MySQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mysql56-client</name>
+	<range><lt>5.6.51</lt></range>
+      </package>
+      <package>
+	<name>mysql57-client</name>
+	<range><lt>5.7.33</lt></range>
+      </package>
+      <package>
+	<name>mysql80-client</name>
+	<range><lt>8.0.23</lt></range>
+      </package>
+      <package>
+	<name>mysql56-server</name>
+	<range><lt>5.6.51</lt></range>
+      </package>
+      <package>
+	<name>mysql57-server</name>
+	<range><lt>5.7.33</lt></range>
+      </package>
+      <package>
+	<name>mysql80-server</name>
+	<range><lt>8.0.23</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oracle reports:</p>
+	<blockquote cite="https://www.oracle.com/security-alerts/cpujan2021.html#AppendixMSQL">
+	  <p>This Critical Patch Update contains 34 new security patches for
+	    Oracle MySQL Server and 4 for MySQL Client. </p>
+	  <p>The highest CVSS v3.1 Base Score of vulnerabilities affecting Oracle
+	    MySQL is 6.8.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.oracle.com/security-alerts/cpujan2021.html#AppendixMSQL</url>
+      <url>CVE-2021-2046</url>
+      <url>CVE-2021-2020</url>
+      <url>CVE-2021-2024</url>
+      <url>CVE-2021-2011</url>
+      <url>CVE-2021-2006</url>
+      <url>CVE-2021-2048</url>
+      <url>CVE-2021-2028</url>
+      <url>CVE-2021-2122</url>
+      <url>CVE-2021-2058</url>
+      <url>CVE-2021-2001</url>
+      <url>CVE-2021-2016</url>
+      <url>CVE-2021-2021</url>
+      <url>CVE-2021-2030</url>
+      <url>CVE-2021-2031</url>
+      <url>CVE-2021-2036</url>
+      <url>CVE-2021-2055</url>
+      <url>CVE-2021-2060</url>
+      <url>CVE-2021-2070</url>
+      <url>CVE-2021-2076</url>
+      <url>CVE-2021-2065</url>
+      <url>CVE-2021-2014</url>
+      <url>CVE-2021-2002</url>
+      <url>CVE-2021-2012</url>
+      <url>CVE-2021-2009</url>
+      <url>CVE-2021-2072</url>
+      <url>CVE-2021-2081</url>
+      <url>CVE-2021-2022</url>
+      <url>CVE-2021-2038</url>
+      <url>CVE-2021-2061</url>
+      <url>CVE-2021-2056</url>
+      <url>CVE-2021-2087</url>
+      <url>CVE-2021-2088</url>
+      <url>CVE-2021-2032</url>
+      <url>CVE-2021-2010</url>
+      <url>CVE-2021-1998</url>
+      <url>CVE-2021-2007</url>
+      <url>CVE-2021-2019</url>
+      <url>CVE-2021-2042</url>
+    </references>
+    <dates>
+      <discovery>2021-01-23</discovery>
+      <entry>2021-01-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="4ed0e43c-5cef-11eb-bafd-3065ec8fd3ec">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
@@ -202,8 +352,8 @@ Notes:
 	<range><lt>3.0.1</lt></range>
       </package>
       <package>
-        <name>crispy-doom</name>
-        <range><lt>5.9.0</lt></range>
+	<name>crispy-doom</name>
+	<range><lt>5.9.0</lt></range>
       </package>
     </affects>
     <description>
@@ -211,10 +361,10 @@ Notes:
 	<p>Michal Dardas from LogicalTrust reports:</p>
 	<blockquote cite="https://github.com/chocolate-doom/chocolate-doom/issues/1293">
 	  <p>
-            The server in Chocolate Doom 3.0.0 and Crispy Doom 5.8.0 doesn't validate
-            the user-controlled num_players value, leading to a buffer overflow. A
-            malicious user can overwrite the server's stack.
-          </p>
+	    The server in Chocolate Doom 3.0.0 and Crispy Doom 5.8.0 doesn't validate
+	    the user-controlled num_players value, leading to a buffer overflow. A
+	    malicious user can overwrite the server's stack.
+	  </p>
 	</blockquote>
       </body>
     </description>
@@ -14008,25 +14158,24 @@ whitespace)
     </dates>
   </vuln>
 
-  &vuln-2019;
-  &vuln-2018;
-  &vuln-2017;
-  &vuln-2016;
-  &vuln-2015;
-  &vuln-2014;
-  &vuln-2013;
-  &vuln-2012;
-  &vuln-2011;
-  &vuln-2010;
-  &vuln-2009;
-  &vuln-2008;
-  &vuln-2007;
-  &vuln-2006;
-  &vuln-2005;
-  &vuln-2004;
-  &vuln-2003;
-
-</vuxml><!-- EOF -->
+&vuln-2019;
+&vuln-2018;
+&vuln-2017;
+&vuln-2016;
+&vuln-2015;
+&vuln-2014;
+&vuln-2013;
+&vuln-2012;
+&vuln-2011;
+&vuln-2010;
+&vuln-2009;
+&vuln-2008;
+&vuln-2007;
+&vuln-2006;
+&vuln-2005;
+&vuln-2004;
+&vuln-2003;</vuxml>
+<!-- EOF -->
 <!-- Note:  Please add new entries to the beginning of this file. -->
 <!-- ex: set ts=8 tw=80 sw=2: -->
 <!-- vim: set softtabstop=2 noexpandtab: -->
