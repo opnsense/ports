@@ -4556,6 +4556,7 @@
     SUBDIR += py-jsonschema
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-packaging
+    SUBDIR += py-jupyter-server
     SUBDIR += py-jupyter-telemetry
     SUBDIR += py-jupyter_client
     SUBDIR += py-jupyter_console
@@ -4654,6 +4655,7 @@
     SUBDIR += py-nanotime
     SUBDIR += py-natsort
     SUBDIR += py-natural
+    SUBDIR += py-nbclassic
     SUBDIR += py-nbclient
     SUBDIR += py-nbconvert
     SUBDIR += py-nbdime
