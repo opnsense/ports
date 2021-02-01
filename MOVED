@@ -13691,7 +13691,6 @@ sysutils/u-boot-zybo||2020-01-10|Has expired: Broken for more than 6 months
 x11-themes/kde-icons-kool-gorilla||2020-01-10|Has expired: Broken for more than 3 months, unmaintained
 sysutils/docker-freebsd||2020-01-11|Has expired: Broken for more than 9 months
 science/molden|biology/molden|2020-01-12|The duplicate port was removed in rev.505268
-www/web2ldap||2020-01-13|Broken: unfechable and missing dependencies
 net-mgmt/flow-extract||2020-01-14|Has expired: marked BROKEN for more than 6 months
 textproc/pootle||2020-01-14|Has expired: Unamaintained, marked BROKEN for more than 5 months
 cad/elmerfem|science/elmerfem|2020-01-15|Move to a proper category
@@ -14673,7 +14672,6 @@ mail/poppassd||2020-05-05|Has expired: Broken for more than 6 months
 mail/prayer||2020-05-05|Has expired: Broken for more than 6 months
 mail/py-cyruslib||2020-05-05|Has expired: Broken for more than 6 months
 mail/qmail-auditor||2020-05-05|Has expired: Broken for more than 6 months
-mail/qmailmrtg7||2020-05-05|Has expired: Broken for more than 6 months
 mail/qmqtool||2020-05-05|Has expired: Broken for more than 6 months
 mail/relaydb||2020-05-05|Has expired: Broken for more than 6 months
 mail/rftp||2020-05-05|Has expired: Broken for more than 6 months
@@ -15214,7 +15212,6 @@ devel/py-protocols||2020-08-15|Has expired: Uses deprecated version of python
 devel/py-ptrace||2020-08-15|Has expired: Uses deprecated version of python
 devel/py-pydoop||2020-08-15|Has expired: Uses deprecated version of python
 devel/py-pyke||2020-08-15|Has expired: Uses deprecated version of python
-devel/py-pymtbl||2020-08-15|Has expired: Uses deprecated version of python
 devel/py-pyshapelib||2020-08-15|Has expired: Uses deprecated version of python
 devel/py-pytemplate||2020-08-15|Has expired: Uses deprecated version of python
 devel/py-python2-pythondialog||2020-08-15|Has expired: Uses deprecated version of python
@@ -15267,7 +15264,6 @@ multimedia/py-flvlib||2020-08-15|Has expired: Uses deprecated version of python
 net/py-gspreadsheet||2020-08-15|Has expired: Uses deprecated version of python
 net/py-libnet||2020-08-15|Has expired: Uses deprecated version of python
 net/py-netlib||2020-08-15|Has expired: Uses deprecated version of python
-net/py-pynmsg||2020-08-15|Has expired: Uses deprecated version of python
 net/py-rainbowstream||2020-08-15|Has expired: Uses deprecated version of python
 net/py-wolframalpha||2020-08-15|Has expired: Uses deprecated version of python
 net-im/empathy||2020-08-15|Has expired: Uses deprecated version of python
@@ -16030,3 +16026,22 @@ security/py-rekall|security/py-volatility3|2021-01-28|Has expired: Unmaintained 
 security/py-rekall-core||2021-01-28|Has expired: Unmaintained upstream
 www/kurly||2021-01-28|Has expired: Upstream is gone
 security/regripper||2021-01-28|Has expired: Upstream repo disappeared
+ftp/bbftp||2021-01-30|Was split into client and server ports, install as needed
+graphics/opencv-core|graphics/opencv|2021-01-30|Reintegrated into a simple, maintainable port
+graphics/py-opencv|graphics/opencv|2021-01-30|Reintegrated into a simple, maintainable port
+graphics/opencv-java|graphics/opencv|2021-01-30|Reintegrated into a simple, maintainable port
+devel/py-automaton1|devel/py-automaton|2021-01-31|Has expired: Use devel/py-automaton instead
+devel/py-jaraco.functools2|devel/py-jaraco.functools|2021-01-31|Has expired: Use devel/py-jaraco.functools instead
+math/py-statsmodels010|math/py-statsmodels|2021-01-31|Has expired: Use math/py-statsmodels instead
+www/py-tornado6|www/py-tornado|2021-01-31|Has expired: Use www/py-tornado instead
+deskutils/orage||2021-02-01|Has expired: Unsupported upstream, cannot work with XFCE 4.16
+sysutils/rubygem-chef-config12|sysutils/rubygem-chef-config|2021-02-01|Has expired
+mail/openwebmail||2021-02-01|Has expired: Does not use modern Perl syntax and no development activity since 2006
+sysutils/rubygem-ohai8|sysutils/rubygem-ohai|2021-02-01|Has expired
+deskutils/xfce4-volumed||2021-02-01|Has expired: Unsupported upstream, cannot work with XFCE 4.16
+sysutils/rubygem-chef12|sysutils/rubygem-chef|2021-02-01|Has expired: Please use sysutils/rubygem-chef instead
+x11/xfce4-embed-plugin||2021-02-01|Has expired: Unsupported upstream, cannot work with XFCE 4.16
+net-p2p/py-transmissionrpc|net-p2p/py-transmission-rpc|2021-02-01|Has expired: Unmaintained and dead upstream, use net-p2p/py-transmission-rpc instead
+science/xfce4-equake-plugin||2021-02-01|Has expired: Unsupported upstream, cannot work with XFCE 4.16
+sysutils/xfce4-kbdleds-plugin||2021-02-01|Has expired: Unsupported upstream, cannot work with XFCE 4.16
+textproc/py-gfm|textproc/py-cmarkgfm|2021-02-01|Has expired: No longer maintained by upstream, please use textproc/py-cmarkgfm instead
