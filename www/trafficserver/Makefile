@@ -2,8 +2,7 @@
 # $FreeBSD$
 
 PORTNAME=	trafficserver
-PORTVERSION=	8.0.8
-PORTREVISION=	1
+PORTVERSION=	8.1.1
 CATEGORIES=	www
 MASTER_SITES=	APACHE/${PORTNAME}
 
@@ -17,7 +16,7 @@ USE_HARDENING=	pie:off
 ONLY_FOR_ARCHS=	amd64 powerpc64 powerpc64le
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libhwloc.so:devel/hwloc \
+		libhwloc.so:devel/hwloc2 \
 		libpcre.so:devel/pcre \
 		libxml2.so:textproc/libxml2 \
 		libbrotlienc.so:archivers/brotli \
@@ -86,6 +85,7 @@ PLIST_SUB+=	IMAGEMAGICK="@comment "
 
 .if ${PORT_OPTIONS:MWCCP}
 PLIST_SUB+=	WCCP=""
+USE_GCC=	yes
 .else
 PLIST_SUB+=	WCCP="@comment "
 .endif

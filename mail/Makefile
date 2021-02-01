@@ -273,7 +273,6 @@
     SUBDIR += opensmtpd-extras-table-sqlite
     SUBDIR += opensmtpd-filter-rspamd
     SUBDIR += opensmtpd-filter-senderscore
-    SUBDIR += openwebmail
     SUBDIR += osbf-lua
     SUBDIR += ovs
     SUBDIR += p5-CGP-CLI
@@ -529,6 +528,7 @@
     SUBDIR += qmail-tls
     SUBDIR += qmailadmin
     SUBDIR += qmailanalog
+    SUBDIR += qmailmrtg7
     SUBDIR += qmhandle
     SUBDIR += qpopper
     SUBDIR += qsf

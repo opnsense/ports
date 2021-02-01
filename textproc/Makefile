@@ -25,6 +25,7 @@
     SUBDIR += R-cran-rex
     SUBDIR += R-cran-rio
     SUBDIR += R-cran-rmarkdown
+    SUBDIR += R-cran-sass
     SUBDIR += R-cran-stringi
     SUBDIR += R-cran-stringr
     SUBDIR += R-cran-utf8
@@ -1276,7 +1277,6 @@
     SUBDIR += py-gambit-elasticsearch
     SUBDIR += py-genshi
     SUBDIR += py-gensim
-    SUBDIR += py-gfm
     SUBDIR += py-googletrans
     SUBDIR += py-grako
     SUBDIR += py-guess-language

@@ -18,6 +18,8 @@ BUILD_DEPENDS=	lv2>0:audio/lv2
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libfontconfig.so:x11-fonts/fontconfig
 
+USE_HARDENING=	relro:off
+
 USES=		gmake gnome localbase pkgconfig tar:tgz
 USE_GNOME=	cairo gdkpixbuf2 glib20 gtk20
 LLD_UNSAFE=	yes

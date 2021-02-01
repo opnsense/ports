@@ -4086,7 +4086,6 @@
     SUBDIR += py-attrs
     SUBDIR += py-autoflake
     SUBDIR += py-automaton
-    SUBDIR += py-automaton1
     SUBDIR += py-autoprop
     SUBDIR += py-avro
     SUBDIR += py-aws-sam-translator
@@ -4522,7 +4521,6 @@
     SUBDIR += py-jaraco.context
     SUBDIR += py-jaraco.context2
     SUBDIR += py-jaraco.functools
-    SUBDIR += py-jaraco.functools2
     SUBDIR += py-jaraco.itertools
     SUBDIR += py-jaraco.logging
     SUBDIR += py-jaraco.timing
@@ -4883,6 +4881,7 @@
     SUBDIR += py-pymaven-patch
     SUBDIR += py-pymisp
     SUBDIR += py-pympler
+    SUBDIR += py-pymtbl
     SUBDIR += py-pynest2d
     SUBDIR += py-pyopencl
     SUBDIR += py-pyparsing
@@ -6336,6 +6335,7 @@
     SUBDIR += rubygem-oci
     SUBDIR += rubygem-octopress-hooks
     SUBDIR += rubygem-oj
+    SUBDIR += rubygem-oj310
     SUBDIR += rubygem-omniauth_crowd
     SUBDIR += rubygem-open3
     SUBDIR += rubygem-open3_backport

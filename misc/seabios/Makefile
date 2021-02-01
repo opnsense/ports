@@ -17,7 +17,7 @@ ONLY_FOR_ARCHS_REASON=	specific to x86
 USES=	gmake python:build
 
 MAKE_ARGS=	HOSTCC="${CC}" LD="${LD}" PYTHON="${PYTHON_CMD}"
-USE_GCC=	yes
+USE_GCC=	yes:build
 USE_BINUTILS=	yes
 
 LLVM_OBJDUMP_UNSAFE=	yes
@@ -29,4 +29,3 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/out/bios.bin ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>
-RUN_DEPENDS:=	${RUN_DEPENDS:Ngcc*}

@@ -5,7 +5,7 @@ DISTVERSION=	2.0.0
 PORTREVISION=	1
 CATEGORIES=	math
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Nonlinear least squares minimizer
 
 LICENSE=	BSD3CLAUSE
@@ -53,7 +53,7 @@ GFLAGS_CMAKE_BOOL=	GFLAGS
 OPENMP_USES=		compiler:openmp
 OPENMP_CMAKE_ON=	-DCERES_THREADING_MODEL:STRING="OPENMP"
 .if !exists(/usr/include/omp.h)
-# XXX ports/199603: LLVM openmp in base doesn't support aarch64, armv6, armv7 yet
+# XXX ports/199603: LLVM openmp in base doesn't support armv6, armv7 yet
 OPENMP_VARS=		OPENMP=gcc-
 .endif
 
@@ -67,9 +67,6 @@ TEST_IMPLIES=		GFLAGS
 
 LAPACK_DESC=		Linear Algebra PACKage
 LAPACK_CMAKE_BOOL=	LAPACK
-# Avoid conflict with Ceres threading by using single-threaded BLAS library.
-# BLASLIB from USES=blaslapack cannot be used as it's multi-threaded.
-# https://github.com/xianyi/OpenBLAS/wiki/faq#multi-threaded
 ATLAS_USES=		blaslapack:atlas
 ATLAS_CMAKE_ON=		-DBLA_VENDOR:STRING="ATLAS" \
 			-DBLAS_LIBRARIES:FILEPATH="${LOCALBASE}/lib/libcblas.so" \

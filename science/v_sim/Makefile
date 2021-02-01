@@ -33,6 +33,8 @@ RUN_DEPENDS=	${PYNUMPY}	\
 		${PYTHON_PKGNAMEPREFIX}gobject3>0:devel/py-gobject3@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR}
 
+USE_HARDENING=	retpoline:off stackautoinit:off
+
 USES=		autoreconf blaslapack compiler:c11 fortran gl gmake gnome	\
 		libtool:keepla localbase:ldflags pkgconfig python:3.6+		\
 		shebangfix tar:bzip2 xorg
