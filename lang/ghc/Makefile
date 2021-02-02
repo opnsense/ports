@@ -134,8 +134,6 @@ _EXECUTABLES+=	${GHC_LIBDIR}/bin/ghc-iserv-prof
 _EXECUTABLES+=	${GHC_LIBDIR}/bin/ghc-iserv-dyn
 .endif
 
-.include <bsd.port.options.mk>
-
 .if empty(PORT_OPTIONS:MBOOT)
 BOOTSTRAPS_SUFFIX?=		${BOOTSTRAPS_SUFFIX_${ARCH}}
 BOOTSTRAPS_SUFFIX_powerpc64?=	-${PPC_ABI:tl}

@@ -315,6 +315,7 @@
     SUBDIR += gstreamer1-plugins-wavpack
     SUBDIR += gstreamer1-plugins-webrtcdsp
     SUBDIR += gtick
+    SUBDIR += gtk-mixer
     SUBDIR += gtkguitune
     SUBDIR += gtkpod
     SUBDIR += gtmixer
@@ -671,6 +672,7 @@
     SUBDIR += py-musicbrainzngs
     SUBDIR += py-mutagen
     SUBDIR += py-opuslib
+    SUBDIR += py-pulsectl
     SUBDIR += py-pyacoustid
     SUBDIR += py-pyaudio
     SUBDIR += py-pylast
