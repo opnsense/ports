@@ -3,7 +3,7 @@
 
 PORTNAME=	luajit
 DISTVERSION=	2.0.5
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	lang
 MASTER_SITES=	https://luajit.org/download/
 DISTNAME=	LuaJIT-${DISTVERSION}
@@ -17,13 +17,14 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 IGNORE_aarch64=		fails to compile: lj_arch.h:55:2: No support for this architecture (yet)
 IGNORE_powerpc64=	fails to compile: lj_arch.h:346:2: No support for PowerPC 64 bit mode
+IGNORE_riscv64=		fails to compile: lj_arch.h:55:2: No support for this architecture (yet)
 
 CONFLICTS_INSTALL=	luajit-openresty
 
 WRKSRC=		${WRKDIR}/LuaJIT-${DISTVERSION}
 USES=		gmake
 USE_LDCONFIG=	yes
-MAKE_ARGS=	CC=${CC}
+MAKE_ARGS=	CC=${CC} CCOPT= CCOPT_x86=
 
 PLIST_SUB+=	VERSION=${DISTVERSION}
 
