@@ -221,7 +221,6 @@
     SUBDIR += gregarius
     SUBDIR += groupoffice
     SUBDIR += grr
-    SUBDIR += gstreamer-plugins-neon
     SUBDIR += gstreamer1-plugins-neon
     SUBDIR += gtkhtml3
     SUBDIR += gtkhtml4
@@ -476,8 +475,6 @@
     SUBDIR += onionbalance
     SUBDIR += onionshare
     SUBDIR += opencart
-    SUBDIR += opera
-    SUBDIR += opera-linuxplugins
     SUBDIR += orangehrm
     SUBDIR += osrm-backend
     SUBDIR += osticket
