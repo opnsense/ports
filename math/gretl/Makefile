@@ -3,6 +3,7 @@
 
 PORTNAME=	gretl
 DISTVERSION=	2021a
+PORTREVISION=	1
 CATEGORIES=	math finance
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${DISTVERSIONFULL}/
 
@@ -47,11 +48,11 @@ ATLAS_VARS=		BLAS=-lf77blas LAPACK="-lalapack -lcblas"
 ATLAS_VARS_OFF=		BLAS=-lblas LAPACK=-llapack
 
 GUI_DESC=		Graphical user interface and plugins
-GUI_CONFIGURE_ON=	--enable-gtk2=yes --enable-gui=yes
+GUI_CONFIGURE_ON=	--enable-gui=yes
 GUI_CONFIGURE_OFF=	--enable-gui=no --enable-xdg=no
 GUI_VARS=		INSTALLS_ICONS=yes
-GUI_USE=		GNOME=cairo,gtksourceview2
-GUI_USE_OFF=		GNOME=glib20,libxml2
+GUI_USE=		GNOME=cairo,gtksourceview3
+GUI_USE_OFF=		GNOME=glib30,libxml2
 GUI_USES=		desktop-file-utils shared-mime-info
 GUI_BUILD_DEPENDS=	gnuplot:math/gnuplot
 GUI_LIB_DEPENDS=	libfreetype.so:print/freetype2 \
@@ -98,7 +99,7 @@ regression-test test check: build
 		${MAKE_ARGS} check
 
 post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gretl-gtk2/*.so
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/gretl-gtk3/*.so
 	@${RMDIR} ${STAGEDIR}${DATADIR}/doc
 
 .include <bsd.port.mk>
