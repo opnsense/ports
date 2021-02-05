@@ -1576,6 +1576,9 @@
     SUBDIR += rubygem-github-markup17
     SUBDIR += rubygem-gitlab-grit
     SUBDIR += rubygem-gitlab-markup
+    SUBDIR += rubygem-google-cloud-translate
+    SUBDIR += rubygem-google-cloud-translate-v2
+    SUBDIR += rubygem-google-cloud-translate-v3
     SUBDIR += rubygem-heredoc_unindent
     SUBDIR += rubygem-hikidoc
     SUBDIR += rubygem-html-pipeline
@@ -1885,7 +1888,6 @@
     SUBDIR += xlreader
     SUBDIR += xml-commons
     SUBDIR += xml-format
-    SUBDIR += xml-i18n-tools
     SUBDIR += xml-lite.el
     SUBDIR += xml2rfc
     SUBDIR += xmlada

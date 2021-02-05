@@ -17,6 +17,7 @@
     SUBDIR += R-cran-selectr
     SUBDIR += R-cran-servr
     SUBDIR += R-cran-shiny
+    SUBDIR += R-cran-webshot
     SUBDIR += Stikked
     SUBDIR += UniversalFeedCreator
     SUBDIR += adguardhome
@@ -287,13 +288,13 @@
     SUBDIR += kf5-kjsembed
     SUBDIR += kiwix-tools
     SUBDIR += kohana
+    SUBDIR += lagrange
     SUBDIR += larbin
     SUBDIR += libapreq2
     SUBDIR += libdom
     SUBDIR += libecap
     SUBDIR += libepc
     SUBDIR += libevhtp
-    SUBDIR += libgtkhtml
     SUBDIR += libhubbub
     SUBDIR += libjwt
     SUBDIR += libmicrohttpd
@@ -2158,7 +2159,6 @@
     SUBDIR += suphp
     SUBDIR += surf
     SUBDIR += swiggle
-    SUBDIR += syndigator
     SUBDIR += tclhttpd
     SUBDIR += tclwebtest
     SUBDIR += tdiary
@@ -2310,6 +2310,7 @@
     SUBDIR += yourls
     SUBDIR += youtube_dl
     SUBDIR += youtube_dlc
+    SUBDIR += yt-dlp
     SUBDIR += ytdl
     SUBDIR += yuicompressor
     SUBDIR += zend-framework

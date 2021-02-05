@@ -533,7 +533,7 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron9
+    SUBDIR += electron11
     SUBDIR += elf
     SUBDIR += elfio
     SUBDIR += elfkickers
@@ -887,6 +887,7 @@
     SUBDIR += grcov
     SUBDIR += grex
     SUBDIR += grpc
+    SUBDIR += grpc134
     SUBDIR += grv
     SUBDIR += gsettings-desktop-schemas
     SUBDIR += gsoap
@@ -2272,6 +2273,7 @@
     SUBDIR += p5-Devel-StackTrace-AsHTML
     SUBDIR += p5-Devel-StackTrace-WithLexicals
     SUBDIR += p5-Devel-StealthDebug
+    SUBDIR += p5-Devel-StrictMode
     SUBDIR += p5-Devel-Symdump
     SUBDIR += p5-Devel-Timer
     SUBDIR += p5-Devel-Trace
@@ -4591,6 +4593,7 @@
     SUBDIR += py-libversion
     SUBDIR += py-libvirt
     SUBDIR += py-libzfs
+    SUBDIR += py-linear-tsv
     SUBDIR += py-linecache2
     SUBDIR += py-lineedit
     SUBDIR += py-llfuse

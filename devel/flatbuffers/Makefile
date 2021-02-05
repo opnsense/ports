@@ -12,14 +12,12 @@ COMMENT=	Memory efficient serialization library
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USE_HARDENING=	stackautoinit:off
+USE_HARDENING=	pie:off stackautoinit:off
 
 USES=		cmake compiler:c++11-lib
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
-
-USE_HARDENING=	pie:off
 
 CMAKE_ON=	FLATBUFFERS_BUILD_SHAREDLIB
 CMAKE_OFF=	FLATBUFFERS_BUILD_FLATLIB FLATBUFFERS_BUILD_TESTS

@@ -25,6 +25,7 @@
     SUBDIR += alure
     SUBDIR += amarok
     SUBDIR += amb-plugins
+    SUBDIR += ampache
     SUBDIR += ample
     SUBDIR += amsynth
     SUBDIR += aqualung
@@ -676,6 +677,7 @@
     SUBDIR += ripit
     SUBDIR += ripperx
     SUBDIR += rkr-lv2
+    SUBDIR += rnnoise
     SUBDIR += rnnoise-nu
     SUBDIR += rosegarden
     SUBDIR += rplay

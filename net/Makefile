@@ -1258,6 +1258,7 @@
     SUBDIR += rubygem-google-cloud-storage
     SUBDIR += rubygem-grpc
     SUBDIR += rubygem-grpc124
+    SUBDIR += rubygem-grpc130
     SUBDIR += rubygem-hangouts-chat
     SUBDIR += rubygem-http-parser
     SUBDIR += rubygem-http_parser.rb
@@ -1475,7 +1476,6 @@
     SUBDIR += tsocks
     SUBDIR += tunneller
     SUBDIR += turnserver
-    SUBDIR += twitux
     SUBDIR += u6rd
     SUBDIR += ucarp
     SUBDIR += udpbroadcastrelay
