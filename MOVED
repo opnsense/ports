@@ -7843,7 +7843,6 @@ audio/scmpc||2015-11-28|Has expired: Broken for more than 6 months
 ftp/gnusget||2015-11-28|Has expired: Broken for more than 6 months
 comms/gpsk31||2015-11-28|Has expired: Broken for more than 6 months
 cad/geda-gschem||2015-11-28|Has expired: Broken for more than 6 months
-audio/ampache||2015-11-28|Has expired: Broken for more than 6 months
 cad/slffea||2015-11-28|Has expired: Broken for more than 6 months
 audio/cripple||2015-11-28|Has expired: Broken for more than 6 months
 cad/geda-gattrib||2015-11-28|Has expired: Broken for more than 6 months
@@ -16098,20 +16097,20 @@ audio/gstreamer-plugins-taglib|audio/gstreamer1-plugins-taglib|2021-02-04|Replac
 audio/gstreamer-plugins-twolame|audio/gstreamer1-plugins-twolame|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-vorbis|audio/gstreamer1-plugins-vorbis|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-wavpack|audio/gstreamer1-plugins-wavpack|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-aalib|net/gstreamer1-plugins-aalib|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-cairo|net/gstreamer1-plugins-cairo|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-aalib|graphics/gstreamer1-plugins-aalib|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-cairo|graphics/gstreamer1-plugins-cairo|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-gconf||2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-gdkpixbuf|net/gstreamer1-plugins-gdkpixbuf|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-gdkpixbuf|graphics/gstreamer1-plugins-gdkpixbuf|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-gio||2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-gl|net/gstreamer1-plugins-gl|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-gl|graphics/gstreamer1-plugins-gl|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-gnomevfs||2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-jpeg|net/gstreamer1-plugins-jpeg|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-libcaca|net/gstreamer1-plugins-libcaca|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-jpeg|graphics/gstreamer1-plugins-jpeg|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-libcaca|graphics/gstreamer1-plugins-libcaca|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-libpng|graphics/gstreamer1-plugins-png|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-libvisual|net/gstreamer1-plugins-libvisual|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-opencv|net/gstreamer1-plugins-opencv|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-libvisual|graphics/gstreamer1-plugins-libvisual|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-opencv|graphics/gstreamer1-plugins-opencv|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-sdl||2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-soup|graphics/gstreamer-plugins-soup|2021-02-04|Replaced by gstreamer1
+graphics/gstreamer-plugins-soup|devel/gstreamer1-plugins-soup|2021-02-04|Replaced by gstreamer1
 multimedia/gstreamer-ffmpeg|multimedia/gstreamer1-libav|2021-02-04|Replaced by gstreamer1
 multimedia/gstreamer-plugins-all|multimedia/gstreamer1-plugins-all|2021-02-04|Replaced by gstreamer1
 multimedia/gstreamer-plugins-annodex||2021-02-04|Replaced by gstreamer1
@@ -16143,4 +16142,26 @@ sysutils/gstreamer-plugins-hal||2021-02-04|Replaced by gstreamer1
 www/gstreamer-plugins-neon|www/gstreamer1-plugins-neon|2021-02-04|Replaced by gstreamer1
 x11-toolkits/gstreamer-plugins-pango|x11-toolkits/gstreamer1-plugins-pango|2021-02-04|Replaced by gstreamer1
 x11-themes/gnome-themes-extras|x11-themes/gnome-themes-extra|2021-02-04|Gnome2 desktop has been removed long ago
-math/why3||2021-02-04|Depends on deprecated gnome3 library, very outdated and unmaintained
+math/why3||2021-02-04|Depends on deprecated gnome2 library, very outdated and unmaintained
+www/syndigator||2021-02-05|Abandon upstream, does not work with recent perl5 use deprecated Gnome2 libraries
+x11-toolkits/p5-Gtk2-Html2||2021-02-05|Deprecated upstream, not depended on, dpeends on deprecated Gnome2 libraries
+www/libgtkhtml||2021-02-05|Deprecated upstream, not depended on
+net/twitux||2021-02-06|Does not work with actually twitter
+net-mgmt/ccnet-server||2021-02-07|Removed
+x11-toolkits/c++-gtk-utils||2021-02-07|Abandoned library not depended on
+textproc/xml-i18n-tools|textproc/intltool|2021-02-07|Has been replaced by intltools long ago
+sysutils/hal||2021-02-08|Has been abandonned upstream long ago, replacement have now hit the ports tree almost everywhere
+sysutils/hal-info||2021-02-08|Has no use without hal which has been removed
+devel/electron9|devel/electron11|2021-02-08|VSCode update requires a newer major version
+security/openvas8|security/gvm|2021-02-08|Has expired: End of life, please migrate to security/gvm port
+security/openvas8-cli||2021-02-08|Has expired: End of life
+security/openvas8-libraries|security/gvm-libs|2021-02-08|Has expired: End of life, please migrate to security/gvm-libs port
+security/openvas8-manager|security/gvmd|2021-02-08|Has expired: End of life, please migrate to security/gvmd port
+security/openvas8-scanner|security/openvas|2021-02-08|Has expired: End of life, please migrate to security/openvas port
+security/openvas9|security/gvm|2021-02-08|Has expired: End of life, please migrate to security/gvm port
+security/openvas9-cli||2021-02-08|Has expired: End of life
+security/openvas9-libraries|security/gvm-libs|2021-02-08|Has expired: End of life, please migrate to security/gvm-libs port
+security/openvas9-manager|security/gvmd|2021-02-08|Has expired: End of life, please migrate to security/gvmd port
+security/openvas9-scanner|security/openvas|2021-02-08|Has expired: End of life, please migrate to security/openvas port
+security/greenbone-security-assistant8|security/greenbone-security-assistant|2021-02-08|Has expired: End of life, please migrate to new version of greenbone-security-assistant
+security/greenbone-security-assistant9|security/greenbone-security-assistant|2021-02-08|Has expired: End of life, please migrate to new version of greenbone-security-assistant
