@@ -1,11 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	opnsense-update
-.if "${PRODUCT_ABI}" == 21.1
-PORTVERSION=	21.1
-PORTREVISION=	2 # GH_TAGNAME
-.else
+.if "${PRODUCT_ABI}" == 20.7
 PORTVERSION=	20.7.8
+.else
+PORTVERSION=	21.1.1
+#PORTREVISION=	1 # GH_TAGNAME
 .endif
 CATEGORIES=	sysutils
 
@@ -23,8 +23,6 @@ USE_HARDENING=	safestack
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
-.if "${PRODUCT_ABI}" == 21.1
-GH_TAGNAME=	09f015c
-.endif
+#GH_TAGNAME=	09f015c
 
 .include <bsd.port.mk>
