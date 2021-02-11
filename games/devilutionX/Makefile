@@ -2,10 +2,10 @@
 
 PORTNAME=	devilutionX
 PORTVERSION=	1.1.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	games
 
-MAINTAINER=	ed.arrakis@gmail.com
+MAINTAINER=	eduardo@FreeBSD.org
 COMMENT=	Diablo I engine for modern operating systems
 
 LICENSE=	UNLICENSE
