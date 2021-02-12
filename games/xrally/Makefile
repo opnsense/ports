@@ -13,9 +13,6 @@ COMMENT=	Clone of the classic Rally X arcade game
 
 USE_HARDENING=	pie:off relro:off
 
-BROKEN_FreeBSD_13=	duplicate symbol: radar
-BROKEN_FreeBSD_14=	duplicate symbol: radar
-
 WRKSRC=		${WRKDIR}/${PORTNAME}
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}
