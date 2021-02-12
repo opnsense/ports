@@ -29,7 +29,7 @@ USE_RC_SUBR=	${PORTNAME}
 
 GNU_CONFIGURE=	yes
 
-USE_HARDENING=	pie:configure safestack
+USE_HARDENING=	pie:configure
 
 CONFIGURE_ARGS+=--enable-gccprotect \
 		--enable-bundled-htp \
