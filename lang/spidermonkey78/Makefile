@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	spidermonkey
-DISTVERSION=	78.6.0
+DISTVERSION=	78.7.0
 PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source

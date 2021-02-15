@@ -3,14 +3,19 @@
 PORTNAME=	librespot
 PORTVERSION=	0.1.3
 DISTVERSIONPREFIX=	v
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	multimedia
 
-MAINTAINER=	ehaupt@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Open Source Spotify client library
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=		Broken API. Use audio/spotifyd instead.
+EXPIRATION_DATE=	2021-02-26
+
+BROKEN=			fails to run correctly due to a changed API
 
 USES=		cargo
 
