@@ -15,6 +15,9 @@ COMMENT=	Backward-compatible fork of Python 2.7 interpreter with Python 3.x feat
 
 LICENSE=	PSFL
 
+DEPRECATED=	Uses Python 2.7 codebase
+EXPIRATION_DATE=	2021-06-23
+
 USES=		pathfix shebangfix autoreconf ncurses pkgconfig readline:port ssl tar:xz
 PATHFIX_MAKEFILEIN=	Makefile.pre.in
 
