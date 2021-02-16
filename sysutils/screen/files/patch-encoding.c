@@ -13,7 +13,7 @@
      {0x30000, 0x3FFFD},
    };
  
-+  if (c >- 0xdf00 && c <= 0xdfff)
++  if (c >= 0xdf00 && c <= 0xdfff)
 +	return 1;	/* dw comining sequence */
    return ((bisearch(c, wide, sizeof(wide) / sizeof(struct interval) - 1)) ||
            (cjkwidth &&
