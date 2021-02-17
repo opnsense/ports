@@ -15,5 +15,10 @@ USES=		gmake gnome libtool pathfix pkgconfig
 GNU_CONFIGURE=	yes
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
+INSTALL_TARGET=	install-strip
+
+post-patch:
+	@${REINPLACE_CMD} -e 's,return NULL,return false,' \
+		${WRKSRC}/IccLibXML/IccProfileXml.cpp
 
 .include <bsd.port.mk>
