@@ -12,6 +12,9 @@ LICENSE=	GPLv2
 
 USE_HARDENING=	pie:off
 
+BROKEN_FreeBSD_13=	ld: error: duplicate symbol: config
+BROKEN_FreeBSD_14=	ld: error: duplicate symbol: config
+
 LIB_DEPENDS=	libldns.so:dns/ldns
 
 USES=		autoreconf gmake libtool

@@ -12,6 +12,9 @@ COMMENT=	Spread Group Communication System, a network toolkit
 
 USE_HARDENING=	pie:off
 
+BROKEN_FreeBSD_13=	ld: error: duplicate symbol: yyin
+BROKEN_FreeBSD_14=	ld: error: duplicate symbol: yyin
+
 GNU_CONFIGURE=	yes
 USES=		gmake
 USE_RC_SUBR=	spread

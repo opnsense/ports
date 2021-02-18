@@ -4339,6 +4339,7 @@
     SUBDIR += py-demjson
     SUBDIR += py-deprecated
     SUBDIR += py-deprecation
+    SUBDIR += py-devtools
     SUBDIR += py-dexml
     SUBDIR += py-diazo
     SUBDIR += py-dill
@@ -5022,6 +5023,7 @@
     SUBDIR += py-repoze.xmliter
     SUBDIR += py-represent
     SUBDIR += py-requestsexceptions
+    SUBDIR += py-requirementslib
     SUBDIR += py-resolver
     SUBDIR += py-resource
     SUBDIR += py-responses
@@ -5988,10 +5990,12 @@
     SUBDIR += rubygem-cucumber
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-create-meta
+    SUBDIR += rubygem-cucumber-create-meta2
     SUBDIR += rubygem-cucumber-cucumber-expressions
     SUBDIR += rubygem-cucumber-cucumber-expressions10
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
+    SUBDIR += rubygem-cucumber-messages13
     SUBDIR += rubygem-cucumber-messages4
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
