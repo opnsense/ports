@@ -4,6 +4,7 @@
 PORTNAME=	mtr
 PORTVERSION=	0.94
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	net
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -11,6 +12,8 @@ COMMENT=	Traceroute and ping in a single network diagnostic tool
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+USE_HARDENING=	safestack
 
 USES=		autoreconf ncurses pkgconfig
 
@@ -22,13 +25,14 @@ USE_GITHUB=	yes
 
 CONFLICTS_INSTALL?=	mtr-nox11
 
-USE_HARDENING=	safestack
-
-OPTIONS_DEFINE=	IPV6 X11
-OPTIONS_DEFAULT=X11
+OPTIONS_DEFINE=	IPV6 JSON X11
+OPTIONS_DEFAULT=JSON X11
+JSON_DESC=	JSON support
 X11_DESC=	Build X11-enabled mtr
 
 IPV6_CONFIGURE_ENABLE=	ipv6
+JSON_CONFIGURE_WITH=	jansson
+JSON_LIB_DEPENDS=	libjansson.so:devel/jansson
 X11_CONFIGURE_WITH=	gtk
 X11_USE=		GNOME=gtk20
 X11_USES=		gnome
