@@ -12866,10 +12866,7 @@ irc/irssi-otr||2019-09-05|Has expired: Broken for more than 6 months
 mail/p5-Mail-ClamAV||2019-09-05|Has expired: Broken for more than 6 months
 mail/qmail-ldap||2019-09-05|Has expired: Broken for more than 6 months
 math/fityk||2019-09-05|Has expired: Broken for more than 6 months
-math/octave-forge-parallel||2019-09-05|Has expired: Broken for more than 6 months
-math/octave-forge-strings||2019-09-05|Has expired: Broken for more than 6 months
 math/octave-forge-tisean||2019-09-05|Has expired: Broken for more than 6 months
-math/octave-forge-video||2019-09-05|Has expired: Broken for more than 6 months
 misc/gnustep-examples||2019-09-05|Has expired: Broken for more than 6 months
 net/turses||2019-09-05|Has expired: Depends on expiring net/py-tweepy
 security/clamcour||2019-09-05|Has expired: Broken for more than 6 months
@@ -15502,7 +15499,6 @@ lang/julia06|lang/julia10|2020-09-19|Has expired: Uses deprecated version of pyt
 lang/julia07|lang/julia10|2020-09-19|Has expired: Uses deprecated version of python
 lang/julia11||2020-09-19|Has expired: Uses deprecated version of python
 lang/tinypy||2020-09-19|Has expired: Uses deprecated version of python
-mail/cleanup-maildir||2020-09-19|Has expired: Uses deprecated version of python
 mail/courier-pythonfilter||2020-09-19|Has expired: Uses deprecated version of python
 mail/muttils||2020-09-19|Has expired: Uses deprecated version of python
 mail/nohtml||2020-09-19|Has expired: Uses deprecated version of python
@@ -16173,3 +16169,6 @@ textproc/py-sphinxcontrib-websupport11|textproc/py-sphinxcontrib-websupport|2021
 textproc/py-sphinx18|textproc/py-sphinx|2021-02-17|Has expired: Old version, use textproc/py-sphinx instead
 audio/herrie||2021-02-17|Removed
 sysutils/uefi-edk2-bhyve-devel|sysutils/uefi-edk2-bhyve|2021-02-17|Development version no longer necessary
+graphics/py-graph-core|graphics/py-pygraph|2021-02-19|Is outdated and broken with python3, use graphics/py-pygraph instead
+devel/llvm60||2021-02-19|Has expired: Uses Python 2.7 which is EOLed upstream, no more consumers left
+devel/allegro-devel|devel/allegro5|2021-02-20|Rename to better match upstream name
