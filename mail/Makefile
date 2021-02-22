@@ -68,6 +68,7 @@
     SUBDIR += claws-mail-tnef_parse
     SUBDIR += claws-mail-vcalendar
     SUBDIR += clawsker
+    SUBDIR += cleanup-maildir
     SUBDIR += cone
     SUBDIR += coolmail
     SUBDIR += courier
@@ -550,6 +551,7 @@
     SUBDIR += rmilter
     SUBDIR += roundcube
     SUBDIR += roundcube-automatic_addressbook
+    SUBDIR += roundcube-calendar-kolab
     SUBDIR += roundcube-carddav
     SUBDIR += roundcube-contextmenu
     SUBDIR += roundcube-html5_notifier

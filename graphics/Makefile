@@ -78,6 +78,7 @@
     SUBDIR += blender-doc
     SUBDIR += bmeps
     SUBDIR += bmp2html
+    SUBDIR += bonzomatic
     SUBDIR += box
     SUBDIR += bsd-plotutils
     SUBDIR += c-a-i-r
@@ -137,6 +138,7 @@
     SUBDIR += djview4
     SUBDIR += djvulibre
     SUBDIR += dmtx-utils
+    SUBDIR += drawing
     SUBDIR += drawpile
     SUBDIR += drm-current-kmod
     SUBDIR += drm-devel-kmod
@@ -824,7 +826,6 @@
     SUBDIR += py-glfw
     SUBDIR += py-glooey
     SUBDIR += py-gphoto2
-    SUBDIR += py-graph-core
     SUBDIR += py-graphviz
     SUBDIR += py-graphy
     SUBDIR += py-gvgen
@@ -865,6 +866,7 @@
     SUBDIR += py-pygeos
     SUBDIR += py-pyglet
     SUBDIR += py-pyglet150
+    SUBDIR += py-pygraph
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyinsane2
     SUBDIR += py-pymaging
