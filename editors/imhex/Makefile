@@ -10,8 +10,6 @@ COMMENT=	Hex editor for reverse engineers and programmers
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	retpoline:off stackautoinit:off
-
 NOT_FOR_ARCHS=	i386
 NOT_FOR_ARCHS_REASON=	__uint128_t and __int128_t are not supported
 
@@ -24,6 +22,8 @@ LIB_DEPENDS=	libcapstone.so:devel/capstone4 \
 		libglfw.so:graphics/glfw \
 		libstdc++.so:lang/gcc10 \
 		libtre.so:textproc/libtre
+
+USE_HARDENING=	retpoline:off stackautoinit:off
 
 USES=		cmake pkgconfig python:3.8+ xorg
 USE_XORG=	x11 xcb xau xdmcp
