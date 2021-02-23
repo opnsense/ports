@@ -287,6 +287,7 @@
     SUBDIR += gtkguitune
     SUBDIR += gtkpod
     SUBDIR += gtmixer
+    SUBDIR += guidoar
     SUBDIR += guidolib
     SUBDIR += guitarix-lv2
     SUBDIR += guspat
@@ -466,6 +467,7 @@
     SUBDIR += midifile
     SUBDIR += midiomatic-lv2
     SUBDIR += midipp
+    SUBDIR += midisharelight
     SUBDIR += mikmod
     SUBDIR += milkytracker
     SUBDIR += miniaudio
