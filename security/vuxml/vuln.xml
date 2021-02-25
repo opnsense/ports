@@ -78,6 +78,139 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="31ad2f10-7711-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- jail_remove(2) fails to kill all jailed processes</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>12.2</ge><lt>12.2_4</lt></range>
+	<range><ge>11.4</ge><lt>11.4_8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Due to a race condition in the jail_remove(2) implementation, it
+	may fail to kill some of the processes.</p>
+	<h1>Impact:</h1>
+	<p>A process running inside a jail can avoid being killed during jail
+	termination.  If a jail is subsequently started with the same root
+	path, a lingering jailed process may be able to exploit the window
+	during which a devfs filesystem is mounted but the jail's devfs
+	ruleset has not been applied, to access device nodes which are
+	ordinarily inaccessible.  If the process is privileged, it may be able
+	to escape the jail and gain full access to the system.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-25581</cvename>
+      <freebsdsa>SA-21:04.jail_remove</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-02-24</discovery>
+      <entry>2021-02-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5b8c6e1e-770f-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- Xen grant mapping error handling issues</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>12.2</ge><lt>12.2_4</lt></range>
+	<range><ge>11.4</ge><lt>11.4_8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Grant mapping operations often occur in batch hypercalls, where a
+	number of operations are done in a single hypercall, the success or
+	failure of each one reported to the backend driver, and the backend
+	driver then loops over the results, performing follow-up actions
+	based on the success or failure of each operation.</p>
+	<p>Unfortunately, when running in HVM/PVH mode, the FreeBSD backend
+	drivers mishandle this: Some errors are ignored, effectively implying
+	their success from the success of related batch elements. In other
+	cases, errors resulting from one batch element lead to further batch
+	elements not being inspected, and hence successful ones to not be
+	possible to properly unmap upon error recovery.</p>
+	<h1>Impact:</h1>
+	<p>A malicious or buggy frontend driver may be able to cause resource
+	leaks in the domain running the corresponding backend driver.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-26932</cvename>
+      <freebsdsa>SA-21:06.xen</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-02-24</discovery>
+      <entry>2021-02-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bba850fd-770e-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- jail_attach(2) relies on the caller to change the cwd</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>12.2</ge><lt>12.2_4</lt></range>
+	<range><ge>11.4</ge><lt>11.4_8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>When a process, such as jexec(8) or killall(1), calls jail_attach(2)
+	to enter a jail, the jailed root can attach to it using ptrace(2) before
+	the current working directory is changed.</p>
+	<h1>Impact:</h1>
+	<p>A process with superuser privileges running inside a jail could change
+	the root directory outside of the jail, thereby gaining full read and
+	writing access to all files and directories in the system.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-25582</cvename>
+      <freebsdsa>SA-21:05.jail_chdir</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-02-24</discovery>
+      <entry>2021-02-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a8654f1d-770d-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- login.access fails to apply rules</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>12.2</ge><lt>12.2_4</lt></range>
+	<range><ge>11.4</ge><lt>11.4_8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>A regression in the login.access(5) rule processor has the effect
+	of causing rules to fail to match even when they should not. This
+	means that rules denying access may be ignored.</p>
+	<h1>Impact:</h1>
+	<p>The configuration in login.access(5) may not be applied, permitting
+	login access to users even when the system is configured to deny it.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-25580</cvename>
+      <freebsdsa>SA-21:03.pam_login_access</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-02-24</discovery>
+      <entry>2021-02-25</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="0e38b8f8-75dd-11eb-83f2-8c164567ca3c">
     <topic>redis -- Integer overflow on 32-bit systems</topic>
     <affects>
