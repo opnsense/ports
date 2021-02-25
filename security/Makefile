@@ -1272,6 +1272,7 @@
     SUBDIR += truecrypt
     SUBDIR += tthsum
     SUBDIR += u2f-devd
+    SUBDIR += uacme
     SUBDIR += unhide
     SUBDIR += unicornscan
     SUBDIR += vanguards-tor
