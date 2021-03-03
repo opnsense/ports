@@ -16063,8 +16063,9 @@ audio/gstreamer-plugins-a52dec|audio/gstreamer1-plugins-a52dec|2021-02-04|Replac
 audio/gstreamer-plugins-amrnb|audio/gstreamer1-plugins-amrnb|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-amrwbdec|audio/gstreamer1-plugins-amrwbdec|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-cdaudio||2021-02-04|Replaced by gstreamer1
-audio/gstreamer-plugins-cdparanioa|audio/gstreamer1-plugins-cdparanioa|2021-02-04|Replaced by gstreamer1
+audio/gstreamer-plugins-cdparanoia|audio/gstreamer1-plugins-cdparanoia|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-faac|audio/gstreamer1-plugins-faac|2021-02-04|Replaced by gstreamer1
+audio/gstreamer-plugins-faad|audio/gstreamer1-plugins-faad|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-flac|audio/gstreamer1-plugins-flac|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-flite|audio/gstreamer1-plugins-flite|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-fluendo-mp3||2021-02-04|Replaced by gstreamer1
@@ -16091,20 +16092,20 @@ audio/gstreamer-plugins-taglib|audio/gstreamer1-plugins-taglib|2021-02-04|Replac
 audio/gstreamer-plugins-twolame|audio/gstreamer1-plugins-twolame|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-vorbis|audio/gstreamer1-plugins-vorbis|2021-02-04|Replaced by gstreamer1
 audio/gstreamer-plugins-wavpack|audio/gstreamer1-plugins-wavpack|2021-02-04|Replaced by gstreamer1
+devel/gstreamer-plugins-gconf||2021-02-04|Replaced by gstreamer1
+devel/gstreamer-plugins-gio||2021-02-04|Replaced by gstreamer1
+devel/gstreamer-plugins-gnomevfs||2021-02-04|Replaced by gstreamer1
+devel/gstreamer-plugins-sdl||2021-02-04|Replaced by gstreamer1
+devel/gstreamer-plugins-soup|devel/gstreamer1-plugins-soup|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-aalib|graphics/gstreamer1-plugins-aalib|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-cairo|graphics/gstreamer1-plugins-cairo|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-gconf||2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-gdkpixbuf|graphics/gstreamer1-plugins-gdkpixbuf|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-gio||2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-gl|graphics/gstreamer1-plugins-gl|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-gnomevfs||2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-jpeg|graphics/gstreamer1-plugins-jpeg|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-libcaca|graphics/gstreamer1-plugins-libcaca|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-libpng|graphics/gstreamer1-plugins-png|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-libvisual|graphics/gstreamer1-plugins-libvisual|2021-02-04|Replaced by gstreamer1
 graphics/gstreamer-plugins-opencv|graphics/gstreamer1-plugins-opencv|2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-sdl||2021-02-04|Replaced by gstreamer1
-graphics/gstreamer-plugins-soup|devel/gstreamer1-plugins-soup|2021-02-04|Replaced by gstreamer1
 multimedia/gstreamer-ffmpeg|multimedia/gstreamer1-libav|2021-02-04|Replaced by gstreamer1
 multimedia/gstreamer-plugins-all|multimedia/gstreamer1-plugins-all|2021-02-04|Replaced by gstreamer1
 multimedia/gstreamer-plugins-annodex||2021-02-04|Replaced by gstreamer1
@@ -16171,3 +16172,21 @@ audio/herrie||2021-02-17|Removed
 sysutils/uefi-edk2-bhyve-devel|sysutils/uefi-edk2-bhyve|2021-02-17|Development version no longer necessary
 graphics/py-graph-core|graphics/py-pygraph|2021-02-19|Is outdated and broken with python3, use graphics/py-pygraph instead
 devel/allegro-devel|devel/allegro5|2021-02-20|Rename to better match upstream name
+www/py-djangorestframework311||2021-02-26|Removed: Used as a transitional package for www/seahub, please use www/py-djangorestframework instead
+editors/mg-static|editors/mg@static|2021-02-28|Flavored
+devel/snorenotify||2021-02-28|Has expired: Unmaintained upstream
+multimedia/kodi-addon-pvr-iptvsimple|multimedia/kodi-addon-pvr.iptvsimple|2021-03-01|Renamed to match upstream name
+multimedia/kodi-addon-pvr-hts|multimedia/kodi-addon-pvr.hts|2021-03-01|Renamed to match upstream name
+audio/beatslash-lv2||2021-03-01|Has expired: Unmaintained and doesn't build with the latest audio/lvtk version 2.x
+multimedia/kodi-addon-vfs.libarchive-devel||2021-03-01|Has expired: Depends on deprecated multimedia/kodi-devel
+multimedia/kodi-addon-peripheral.joystick-devel||2021-03-01|Has expired: Depends on deprecated multimedia/kodi-devel
+multimedia/kodi-devel|multimedia/kodi|2021-03-01|Has expired: Deprecated. Please use multimedia/kodi instead.
+multimedia/kodi-addon-inputstream.adaptive-devel||2021-03-01|Has expired: Depends on deprecated multimedia/kodi-devel
+print/cloud-print-connector||2021-03-01|Has expired: Google Cloud Print has been shut down by Google as of December 31, 2020
+dns/knot2|dns/knot3|2021-03-01|Has expired: Use knot3, it is functionally compatible with 2.9.x
+print/cups-cloud-print||2021-03-01|Has expired: Google Cloud Print has been shut down by Google as of December 31, 2020
+www/helma||2021-03-01|Has expired: Upstream is basically dead and recommends ringojs.org
+multimedia/kodi-addon-peripheral-joystick|multimedia/kodi-addon-peripheral.joystick|2021-03-01|Renamed to match upstream name
+sysutils/py-salt-2019|sysutils/py-salt|2021-03-02|Has expired: Deprecated. Please use sysutils/py-salt instead.
+www/rubygem-gitlab-puma_worker_killer|www/rubygem-puma_worker_killer|2021-03-03|Obsolete, use www/rubygem-puma_worker_killer instead
+www/rubygem-gitlab-puma|www/rubygem-puma|2021-03-03|Obsolete, use www/rubygem-puma instead
