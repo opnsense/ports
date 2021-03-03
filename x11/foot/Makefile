@@ -24,6 +24,17 @@ LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
 USES=		compiler:c11 meson pkgconfig xorg
 USE_XORG=	pixman
 WRKSRC=		${WRKDIR}/${PORTNAME}
-MESON_ARGS=	-Dterminfo=disabled
+
+.if exists(/usr/bin/tic)
+PKGMESSAGE=	${NONEXISTENT}
+PLIST_FILES+=	share/site-terminfo/f/${PORTNAME} \
+		share/site-terminfo/f/${PORTNAME}-direct
+.else
+MESON_ARGS+=	-Dterminfo=disabled
+.endif
+
+post-patch:
+# Chase default TERMINFO_DIRS on FreeBSD, see lib/ncurses/ncurses/ncurses_cfg.h
+	@${REINPLACE_CMD} '/datadir/s/terminfo/site-&/' ${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

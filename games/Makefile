@@ -19,6 +19,7 @@
     SUBDIR += KnightCap
     SUBDIR += NBlood
     SUBDIR += OpenDiablo2
+    SUBDIR += OpenLara
     SUBDIR += OpenTomb
     SUBDIR += abbayedesmorts
     SUBDIR += abe
@@ -444,6 +445,11 @@
     SUBDIR += knetwalk
     SUBDIR += knights
     SUBDIR += kobodeluxe
+    SUBDIR += kodi-addon-game.libretro
+    SUBDIR += kodi-addon-game.libretro.beetle-psx
+    SUBDIR += kodi-addon-game.libretro.genplus
+    SUBDIR += kodi-addon-game.libretro.pcsx-rearmed
+    SUBDIR += kodi-addon-game.libretro.picodrive
     SUBDIR += kolf
     SUBDIR += kollision
     SUBDIR += konquest

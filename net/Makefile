@@ -388,6 +388,7 @@
     SUBDIR += libproxy-gnome3
     SUBDIR += libproxy-kde
     SUBDIR += libproxy-mozjs
+    SUBDIR += libproxy-pacrunner
     SUBDIR += libproxy-perl
     SUBDIR += libproxy-python
     SUBDIR += libproxy-webkit3
@@ -636,6 +637,11 @@
     SUBDIR += p5-Net-CascadeCopy
     SUBDIR += p5-Net-Cassandra
     SUBDIR += p5-Net-Cassandra-Easy
+    SUBDIR += p5-Net-Connection
+    SUBDIR += p5-Net-Connection-Match
+    SUBDIR += p5-Net-Connection-Sort
+    SUBDIR += p5-Net-Connection-lsof
+    SUBDIR += p5-Net-Connection-ncnetstat
     SUBDIR += p5-Net-DAV-Server
     SUBDIR += p5-Net-DHCP
     SUBDIR += p5-Net-DHCP-Watch

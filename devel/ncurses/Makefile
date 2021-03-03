@@ -16,11 +16,12 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BROKEN_sparc64=	cannot build: coredump: illegal instruction
 
-USES=		cpe pkgconfig shebangfix tar:tgz terminfo
+USES=		cpe pkgconfig shebangfix tar:tgz
 
-SNAPSHOT=		20210213
+SNAPSHOT=		20210227
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--datadir=${PREFIX}/share/misc \
+			--with-terminfo-dirs="${PREFIX}/share/misc/terminfo:${LOCALBASE}/share/site-terminfo" \
 			--disable-home-terminfo \
 			--disable-overwrite \
 			--disable-root-environ \
@@ -34,7 +35,7 @@ CONFIGURE_ARGS=		--datadir=${PREFIX}/share/misc \
 			--enable-widec \
 			--includedir=${PREFIX}/include/ncurses \
 			--program-prefix= \
-			--with-hashed-db \
+			--without-hashed-db \
 			--with-manpage-format=gzip \
 			--with-pkg-config-libdir=${PREFIX}/libdata/pkgconfig \
 			--with-pkg-config=yes \
@@ -99,8 +100,6 @@ post-install:
 
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.${DISTVERSION:S/-${SNAPSHOT}//}
 
-	${MV} ${STAGEDIR}${PREFIX}/share/misc/terminfo.db \
-		${STAGEDIR}${PREFIX}/share/misc/terminfo.db.default
 	# backwards compatibility, remove 2021-07-02
 	${RLN} ${STAGEDIR}${PREFIX}/lib/libncurses.so ${STAGEDIR}${PREFIX}/lib/libncursesw.so
 	${RLN} ${STAGEDIR}${PREFIX}/libdata/pkgconfig/ncurses.pc ${STAGEDIR}${PREFIX}/libdata/pkgconfig/ncursesw.pc
