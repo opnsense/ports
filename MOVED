@@ -12655,10 +12655,8 @@ games/tinymux||2019-05-09|Has expired: Broken for more than 6 months
 games/voxelands||2019-05-09|Has expired: Broken for more than 6 months
 games/voxelands-server||2019-05-09|Has expired: Broken for more than 6 months
 games/warsow||2019-05-09|Has expired: Broken for more than 6 months
-graphics/appleseed||2019-05-09|Has expired: Broken for more than 6 months
 graphics/apvlv||2019-05-09|Has expired: Broken for more than 6 months
 graphics/qslim||2019-05-09|Has expired: Broken for more than 6 months
-graphics/rawstudio||2019-05-09|Has expired: Broken for more than 6 months
 graphics/tulip||2019-05-09|Has expired: Broken for more than 6 months
 lang/qore||2019-05-09|Has expired: Broken for more than 6 months
 math/goblin||2019-05-09|Has expired: Broken for more than 6 months
@@ -13258,7 +13256,6 @@ security/ranpwd||2019-10-16|Has expired: Unfetchable, unmaintained
 security/rdigest||2019-10-16|Has expired: Unfetchable, unmaintained
 security/smap||2019-10-16|Has expired: Unfetchable, unmaintained
 security/sshblock||2019-10-16|Has expired: Unfetchable, unmaintained
-shells/bashc||2019-10-16|Has expired: Unfetchable, unmaintained
 shells/flash||2019-10-16|Has expired: Unfetchable, unmaintained
 sysutils/cotty||2019-10-16|Has expired: Unfetchable, unmaintained
 sysutils/dt||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -16190,3 +16187,8 @@ multimedia/kodi-addon-peripheral-joystick|multimedia/kodi-addon-peripheral.joyst
 sysutils/py-salt-2019|sysutils/py-salt|2021-03-02|Has expired: Deprecated. Please use sysutils/py-salt instead.
 www/rubygem-gitlab-puma_worker_killer|www/rubygem-puma_worker_killer|2021-03-03|Obsolete, use www/rubygem-puma_worker_killer instead
 www/rubygem-gitlab-puma|www/rubygem-puma|2021-03-03|Obsolete, use www/rubygem-puma instead
+korean/man-doc||2021-03-03|Has expired: Poor quality, severely outdated and undermaintained
+devel/relx||2021-03-03|Has expired: Script removed upstream, library included in devel/rebar3
+sysutils/synergy-1|sysutils/synergy|2021-03-03|Current version is 1.x.x, 2.x.x was tagged by the upstream by mistake
+www/moodle35|www/moodle39|2021-03-04|Has expired: Deprecated by upstream
+www/moodle38|www/moodle39|2021-03-04|Has expired: Deprecated by upstream
