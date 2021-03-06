@@ -56,6 +56,7 @@
     SUBDIR += aoi
     SUBDIR += apngasm
     SUBDIR += apngdis
+    SUBDIR += appleseed
     SUBDIR += argyllcms
     SUBDIR += art
     SUBDIR += asciio
@@ -930,6 +931,7 @@
     SUBDIR += radius-engine
     SUBDIR += rapid-photo-downloader
     SUBDIR += raster3d
+    SUBDIR += rawstudio
     SUBDIR += rawtherapee
     SUBDIR += rayshade
     SUBDIR += reactphysics3d

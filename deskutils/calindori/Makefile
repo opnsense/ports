@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	calindori
-DISTVERSION=	1.3
+DISTVERSION=	1.4
 CATEGORIES=	deskutils
 MASTER_SITES=	KDE/stable/${PORTNAME}/
 
@@ -17,7 +17,8 @@ USE_QT=		core dbus declarative gui \
 		network quickcontrols quickcontrols2 \
 		svg widgets \
 		buildtools_build linguist_build qmake_build
-USE_KDE=	calendarcore config coreaddons dbusaddons i18n kirigami2 notifications service \
+USE_KDE=	calendarcore config coreaddons dbusaddons i18n kirigami2 \
+		notifications people service \
 		ecm_build
 
 CMAKE_OFF=	BUILD_TESTING

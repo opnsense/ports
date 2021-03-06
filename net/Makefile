@@ -546,6 +546,7 @@
     SUBDIR += opennx
     SUBDIR += openpgm
     SUBDIR += openradius
+    SUBDIR += openrsync
     SUBDIR += openslp
     SUBDIR += opentracker
     SUBDIR += openvswitch

@@ -417,8 +417,6 @@
     SUBDIR += mongrel2
     SUBDIR += monolith
     SUBDIR += moodle310
-    SUBDIR += moodle35
-    SUBDIR += moodle38
     SUBDIR += moodle39
     SUBDIR += morty
     SUBDIR += mozplugger
@@ -1405,6 +1403,7 @@
     SUBDIR += py-WebError
     SUBDIR += py-WebFlash
     SUBDIR += py-WebTest
+    SUBDIR += py-adblock
     SUBDIR += py-aioh2
     SUBDIR += py-aiohttp
     SUBDIR += py-aiohttp-middlewares
