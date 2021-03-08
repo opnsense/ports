@@ -107,6 +107,7 @@
     SUBDIR += cracklib
     SUBDIR += crackpkcs12
     SUBDIR += create-cert
+    SUBDIR += crowdsec
     SUBDIR += cryptlib
     SUBDIR += cryptopp
     SUBDIR += ct-submit
@@ -416,6 +417,7 @@
     SUBDIR += openssh-portable
     SUBDIR += openssl
     SUBDIR += openssl-devel
+    SUBDIR += openssl-quictls
     SUBDIR += openssl-unsafe
     SUBDIR += openssl_tpm_engine
     SUBDIR += openvas

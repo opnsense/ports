@@ -1018,6 +1018,7 @@
     SUBDIR += py-eventlet
     SUBDIR += py-flask-xml-rpc
     SUBDIR += py-gdown
+    SUBDIR += py-geopy
     SUBDIR += py-gntp
     SUBDIR += py-gspread
     SUBDIR += py-h11
