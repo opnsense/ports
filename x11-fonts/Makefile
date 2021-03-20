@@ -189,6 +189,7 @@
     SUBDIR += oldschool-pc-fonts
     SUBDIR += open-sans
     SUBDIR += orbitron
+    SUBDIR += otf2bdf
     SUBDIR += ots
     SUBDIR += oxygen-fonts
     SUBDIR += p5-Font-AFM
@@ -248,7 +249,6 @@
     SUBDIR += uw-ttyp0
     SUBDIR += victor-mono-ttf
     SUBDIR += vollkorn-ttf
-    SUBDIR += vtfontcvt-ng
     SUBDIR += webfonts
     SUBDIR += wqy
     SUBDIR += xfontsel

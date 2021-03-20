@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	cbonsai
-DISTVERSION=	1.0.0
+DISTVERSION=	1.0.4
 CATEGORIES=	graphics
 
 MAINTAINER=	lcook@FreeBSD.org
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		compiler:c11 ncurses
 USE_GITLAB=	yes
 GL_ACCOUNT=	jallbrit
-GL_COMMIT=	41fdd6ec4c4f5b14cc33d0c3de5756b4bb0ea798
+GL_COMMIT=	bf12bd4a87e0435155e6be71b3d72b1a992e6f01
 
 MAKE_ARGS=	LDLIBS="${LDFLAGS} -lncurses -lpanel"
 ALL_TARGET=	${PORTNAME}

@@ -1275,6 +1275,7 @@
     SUBDIR += tthsum
     SUBDIR += u2f-devd
     SUBDIR += uacme
+    SUBDIR += ubuntu-keyring
     SUBDIR += unhide
     SUBDIR += unicornscan
     SUBDIR += vanguards-tor
@@ -1298,6 +1299,7 @@
     SUBDIR += wolfssh
     SUBDIR += wolfssl
     SUBDIR += wpa_supplicant
+    SUBDIR += wpa_supplicant-devel
     SUBDIR += xca
     SUBDIR += xinetd
     SUBDIR += xml-security

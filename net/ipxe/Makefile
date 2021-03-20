@@ -18,7 +18,7 @@ USE_HARDENING=	stackautoinit:off
 
 USES=		gmake perl5 shebangfix
 USE_BINUTILS=	yes
-USE_GCC=	yes
+USE_GCC=	yes:build
 USE_GITHUB=	yes
 GH_TAGNAME=	13a6d17
 USE_PERL5=	build
@@ -133,5 +133,3 @@ do-install-EFI-on:
 .endfor
 
 .include <bsd.port.post.mk>
-
-RUN_DEPENDS:=	${RUN_DEPENDS:Ngcc*}

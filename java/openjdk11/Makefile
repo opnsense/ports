@@ -3,6 +3,7 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
+PORTREVISION=	1
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
@@ -217,8 +218,10 @@ MAKE_ENV+=	USE_CLANG=true
 .endif
 
 .if ${ARCH} == aarch64 || ${ARCH:Mpowerpc64*}
-CONFIGURE_ARGS+=	--disable-warnings-as-errors \
-			--disable-dtrace
+CONFIGURE_ARGS+=	--disable-warnings-as-errors
+.endif
+.if ${ARCH} == aarch64 || (defined(PPC_ABI) && ${PPC_ABI} == ELFv1)
+CONFIGURE_ARGS+=	--disable-dtrace
 .endif
 .if (defined(PPC_ABI) && ${PPC_ABI} == ELFv2) || ${ARCH} == powerpc64le
 CONFIGURE_ARGS+=	--disable-precompiled-headers

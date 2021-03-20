@@ -32,6 +32,7 @@
     SUBDIR += R-cran-classInt
     SUBDIR += R-cran-cli
     SUBDIR += R-cran-clipr
+    SUBDIR += R-cran-clisymbols
     SUBDIR += R-cran-covr
     SUBDIR += R-cran-cpp11
     SUBDIR += R-cran-crayon
@@ -792,6 +793,7 @@
     SUBDIR += gettext
     SUBDIR += gettext-lint
     SUBDIR += gettext-msghack
+    SUBDIR += gettext-po-mode
     SUBDIR += gettext-runtime
     SUBDIR += gettext-tools
     SUBDIR += gflags
@@ -975,6 +977,7 @@
     SUBDIR += include-what-you-use
     SUBDIR += indicators
     SUBDIR += inifiled
+    SUBDIR += inih
     SUBDIR += inilib
     SUBDIR += inilike
     SUBDIR += iniparser
@@ -1377,6 +1380,7 @@
     SUBDIR += libvirt-java
     SUBDIR += libvmdk
     SUBDIR += libvolume_id
+    SUBDIR += libvsgpt
     SUBDIR += libvshadow
     SUBDIR += libvslvm
     SUBDIR += libvterm
@@ -1441,6 +1445,7 @@
     SUBDIR += log4net
     SUBDIR += log4sh
     SUBDIR += log4shib
+    SUBDIR += loguru
     SUBDIR += lokalize
     SUBDIR += loki
     SUBDIR += love
@@ -3705,6 +3710,7 @@
     SUBDIR += pasm
     SUBDIR += patch
     SUBDIR += pcc-libs
+    SUBDIR += pcg-cpp
     SUBDIR += pcl
     SUBDIR += pcre
     SUBDIR += pcre++
@@ -4486,6 +4492,7 @@
     SUBDIR += py-hg-evolve
     SUBDIR += py-hglib
     SUBDIR += py-hgtools
+    SUBDIR += py-hidraw
     SUBDIR += py-holidays
     SUBDIR += py-http-prompt
     SUBDIR += py-humanize
@@ -5418,6 +5425,7 @@
     SUBDIR += reproc
     SUBDIR += resolv_wrapper
     SUBDIR += revive
+    SUBDIR += rgbds
     SUBDIR += rhtvision
     SUBDIR += rinutils
     SUBDIR += riscv32-unknown-elf-gcc

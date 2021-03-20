@@ -1,8 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	vscode
-DISTVERSION=	1.53.2
-PORTREVISION=	2
+DISTVERSION=	1.54.3
 CATEGORIES=	editors
 MASTER_SITES=	https://registry.npmjs.org/esbuild-freebsd-64/-/:esbuild_binary \
 		https://nodejs.org/dist/v${NODE_VER}/:node_headers \
@@ -69,7 +68,7 @@ MPROTECT_DISABLE=	share/code-oss/code-oss
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
 
-SOURCE_COMMIT_HASH=	622cb03f7e070a9670c94bae1a45d78d7181fbd4
+SOURCE_COMMIT_HASH=	2b9aebd5354a3629c3aba0a5f5df49f43d6689f8
 
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
@@ -105,6 +104,9 @@ MAKE_ENV+=	PYTHONDONTWRITEBYTECODE=1
 
 ELECTRON_DIR=	${.CURDIR}/../../devel/electron11
 .include	"${ELECTRON_DIR}/Makefile.version"
+
+ELECTRON_DOWNLOAD_URL=	https://github.com/electron/electron/releases/download/v${ELECTRON_VER}
+ELECTRON_DOWNLOAD_URL_HASH!=	/sbin/sha256 -q -s ${ELECTRON_DOWNLOAD_URL}
 
 pre-everything::
 	@${ECHO_MSG} ""
@@ -180,12 +182,12 @@ pre-build:
 
 do-build:
 	# setup download cache for gulp-atom-electron
-	${MKDIR} ${WRKDIR}/gulp-electron-cache/atom/electron
+	${MKDIR} ${WRKDIR}/.cache/electron/${ELECTRON_DOWNLOAD_URL_HASH}
 	cd ${LOCALBASE}/share/electron${ELECTRON_VER_MAJOR} && \
-		zip -q -r ${WRKDIR}/gulp-electron-cache/atom/electron/electron-v${ELECTRON_VER}-linux-x64.zip .
-	cd ${WRKDIR}/gulp-electron-cache/atom/electron && \
+		zip -q -r ${WRKDIR}/.cache/electron/${ELECTRON_DOWNLOAD_URL_HASH}/electron-v${ELECTRON_VER}-linux-x64.zip .
+	cd ${WRKDIR}/.cache/electron/${ELECTRON_DOWNLOAD_URL_HASH} && \
 		${SHA256} -r *-v${ELECTRON_VER}-linux-*.zip | \
-		${SED} -e 's/ / */' > SHASUMS256.txt-${ELECTRON_VER}
+		${SED} -e 's/ / */' > SHASUMS256.txt
 	# build and package vscode
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} yarn gulp vscode-linux-x64-min
 	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} yarn gulp vscode-reh-linux-x64-min

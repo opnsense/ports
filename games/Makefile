@@ -596,6 +596,7 @@
     SUBDIR += manaplus
     SUBDIR += mancala
     SUBDIR += mangband
+    SUBDIR += marblemarcher
     SUBDIR += mari0
     SUBDIR += masterserver
     SUBDIR += maxr
@@ -612,6 +613,7 @@
     SUBDIR += minerbold
     SUBDIR += minetest
     SUBDIR += minetest_game
+    SUBDIR += minetestmapper
     SUBDIR += minilens
     SUBDIR += mirrormagic
     SUBDIR += miscom

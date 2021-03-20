@@ -98,6 +98,7 @@
     SUBDIR += R-cran-pls
     SUBDIR += R-cran-polynom
     SUBDIR += R-cran-prodlim
+    SUBDIR += R-cran-proxy
     SUBDIR += R-cran-psych
     SUBDIR += R-cran-quadprog
     SUBDIR += R-cran-qualityTools
@@ -756,6 +757,7 @@
     SUBDIR += py-apgl
     SUBDIR += py-arviz
     SUBDIR += py-autograd
+    SUBDIR += py-baycomp
     SUBDIR += py-bayesian-optimization
     SUBDIR += py-benford_py
     SUBDIR += py-bitmath
@@ -816,6 +818,7 @@
     SUBDIR += py-numpoly
     SUBDIR += py-numpy
     SUBDIR += py-numpy-stl
+    SUBDIR += py-openTSNE
     SUBDIR += py-opt-einsum
     SUBDIR += py-optuna
     SUBDIR += py-or-tools
@@ -920,6 +923,7 @@
     SUBDIR += rubygem-prime
     SUBDIR += rubygem-rb-gsl
     SUBDIR += rumur
+    SUBDIR += s2geometry
     SUBDIR += saga
     SUBDIR += sage
     SUBDIR += sc

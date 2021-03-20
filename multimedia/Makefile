@@ -64,6 +64,7 @@
     SUBDIR += ffmpeg2theora
     SUBDIR += ffmpegthumbnailer
     SUBDIR += ffms2
+    SUBDIR += filebot
     SUBDIR += flvmeta
     SUBDIR += flvstreamer
     SUBDIR += flvtool++
@@ -378,6 +379,7 @@
     SUBDIR += tautulli
     SUBDIR += tcmplex-panteltje
     SUBDIR += termplay
+    SUBDIR += tinyobjloader
     SUBDIR += tivodecode
     SUBDIR += totem
     SUBDIR += totem-pl-parser

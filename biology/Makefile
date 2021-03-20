@@ -48,6 +48,7 @@
     SUBDIR += gatk
     SUBDIR += gcta
     SUBDIR += gemma
+    SUBDIR += generand
     SUBDIR += gff2ps
     SUBDIR += gmap
     SUBDIR += gperiodic
@@ -131,7 +132,6 @@
     SUBDIR += py-cutadapt
     SUBDIR += py-dnaio
     SUBDIR += py-ete3
-    SUBDIR += py-fastTSNE
     SUBDIR += py-gffutils
     SUBDIR += py-gtfparse
     SUBDIR += py-hits

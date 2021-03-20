@@ -39,6 +39,7 @@
     SUBDIR += dnscrypt-proxy2
     SUBDIR += dnscrypt-wrapper
     SUBDIR += dnsdbck
+    SUBDIR += dnsdbflex
     SUBDIR += dnsdbq
     SUBDIR += dnsdist
     SUBDIR += dnsenum
@@ -47,6 +48,7 @@
     SUBDIR += dnshistory
     SUBDIR += dnsjava
     SUBDIR += dnsmasq
+    SUBDIR += dnsmasq-devel
     SUBDIR += dnsmax-perl
     SUBDIR += dnsproxy
     SUBDIR += dnsrecon

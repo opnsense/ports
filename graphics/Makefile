@@ -53,6 +53,7 @@
     SUBDIR += ampasCTL
     SUBDIR += animorph
     SUBDIR += ansilove
+    SUBDIR += anttweakbar
     SUBDIR += aoi
     SUBDIR += apngasm
     SUBDIR += apngdis
@@ -212,6 +213,7 @@
     SUBDIR += fraqtive
     SUBDIR += freeglut
     SUBDIR += freeimage
+    SUBDIR += freetype-gl
     SUBDIR += frei0r
     SUBDIR += frei0r-plugins
     SUBDIR += frei0r-plugins-gavl

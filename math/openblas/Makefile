@@ -4,6 +4,7 @@
 PORTNAME=	openblas
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.3.13
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	math
 MASTER_SITES=	NL/lapack/timing/:lapack_tmg
@@ -19,7 +20,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_HARDENING=	stackautoinit:off
 
-USES=		fortran gmake perl5 pkgconfig
+USES=		compiler:c11 fortran gmake perl5 pkgconfig
 
 CONFLICTS_INSTALL=	cblas lapacke
 
@@ -41,6 +42,7 @@ OPTIONS_DEFINE=			DYNAMIC_ARCH INTERFACE64 OPENMP
 OPTIONS_DEFAULT=		OPENMP
 OPTIONS_DEFINE_i386=		AVX AVX2
 OPTIONS_DEFINE_amd64=		AVX AVX2
+OPTIONS_EXCLUDE_powerpc64le=	OPENMP
 OPTIONS_EXCLUDE_powerpc64=	OPENMP
 OPTIONS_EXCLUDE_powerpc=	OPENMP
 OPTIONS_RADIO=	${OPTIONS_RADIO_${ARCH}}
@@ -90,19 +92,7 @@ MAXTHREADS?=	64
 MANUAL_PACKAGE_BUILD=	Optimizes for the build machine.
 .endif
 
-.if ${PORT_OPTIONS:MOPENMP}
-USES+=		compiler:openmp
-.else
-USES+=		compiler:c11
-.endif
-
 .include <bsd.port.pre.mk>
-
-.if ${PORT_OPTIONS:MOPENMP}
-.if ${CHOSEN_COMPILER_TYPE} == gcc
-USE_GCC=	yes
-.endif
-.endif
 
 post-extract:
 	cd ${DISTDIR}/${DIST_SUBDIR} ; \
