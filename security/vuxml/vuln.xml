@@ -78,6 +78,405 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="76b5068c-8436-11eb-9469-080027f515ea">
+    <topic>OpenSSH -- Double-free memory corruption in ssh-agent</topic>
+    <affects>
+      <package>
+	<name>openssh-portable</name>
+	<name>openssh-portable-hpn</name>
+	<name>openssh-portable-gssapi</name>
+	<range><ge>8.2p1,1</ge><lt>8.4p1,1_4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenBSD Project reports:</p>
+	<blockquote cite="https://www.openssh.com/txt/release-8.5">
+	  <p>
+	    ssh-agent(1): fixed a double-free memory corruption that was
+	    introduced in OpenSSH 8.2 . We treat all such memory faults as
+	    potentially exploitable. This bug could be reached by an attacker
+	    with access to the agent socket.
+	  </p>
+	  <p>
+	    On modern operating systems where the OS can provide information
+	    about the user identity connected to a socket, OpenSSH ssh-agent
+	    and sshd limit agent socket access only to the originating user
+	    and root. Additional mitigation may be afforded by the system's
+	    malloc(3)/free(3) implementation, if it detects double-free
+	    conditions.
+	  </p>
+	  <p>
+	    The most likely scenario for exploitation is a user forwarding an
+	    agent either to an account shared with a malicious user or to a
+	    host with an attacker holding root access.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-28041</cvename>
+      <url>https://www.openssh.com/txt/release-8.5</url>
+    </references>
+    <dates>
+      <discovery>2021-03-03</discovery>
+      <entry>2021-03-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="50e59056-87f2-11eb-b6a2-001b217b3468">
+    <topic>Gitlab -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>13.9.0</ge><lt>13.9.4</lt></range>
+	<range><ge>13.8.0</ge><lt>13.8.6</lt></range>
+	<range><ge>13.2.0</ge><lt>13.7.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gigtlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2021/03/17/security-release-gitlab-13-9-4-released/">
+	  <p>Remote code execution via unsafe user-controlled markdown rendering options</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://about.gitlab.com/releases/2021/03/17/security-release-gitlab-13-9-4-released/</url>
+    </references>
+    <dates>
+      <discovery>2021-03-17</discovery>
+      <entry>2021-03-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5b72b1ff-877c-11eb-bd4f-2f1d57dafe46">
+    <topic>dnsmasq -- cache poisoning vulnerability in certain configurations</topic>
+    <affects>
+      <package>
+	<name>dnsmasq</name>
+	<range><lt>2.85.r1,1</lt></range>
+      </package>
+      <package>
+	<name>dnsmasq-devel</name>
+	<range><lt>2.85.r1,3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Simon Kelley reports:</p>
+	<blockquote cite="https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2021q1/014835.html">
+	  <p>
+	    [In configurations where the forwarding server address contains an @
+	    character for specifying a sending interface or source address, the]
+	    random source port behavior was disabled, making cache poisoning
+	    attacks possible.
+	  </p>
+	</blockquote>
+	<p>
+	  This only affects configurations of the form server=1.1.1.1@em0 or
+	  server=1.1.1.1@192.0.2.1, i. e. those that specify an interface to
+	  send through, or an IP address to send from, or use together with
+	  NetworkManager.
+	</p>
+      </body>
+    </description>
+    <references>
+      <url>https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2021q1/014835.html</url>
+      <cvename>CVE-2021-3448</cvename>
+    </references>
+    <dates>
+      <discovery>2021-03-17</discovery>
+      <entry>2021-03-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b073677f-253a-41f9-bf2b-2d16072a25f6">
+    <topic>minio -- MITM attack</topic>
+    <affects>
+      <package>
+	<name>minio</name>
+	<range><lt>2021.03.17.02.33.02</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>minio developer report:</p>
+	<blockquote cite="https://github.com/minio/minio/security/advisories/GHSA-xr7r-7gpj-5pgp">
+	  <p>
+	    This is a security issue because it enables MITM modification of
+	    request bodies that are meant to have integrity guaranteed by chunk
+	    signatures.
+	  </p>
+	  <p>
+	    In a PUT request using aws-chunked encoding, MinIO ordinarily
+	    verifies signatures at the end of a chunk. This check can be skipped
+	    if the client sends a false chunk size that is much greater than the
+	    actual data sent: the server accepts and completes the request
+	    without ever reaching the end of the chunk + thereby without ever
+	    checking the chunk signature.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/minio/minio/security/advisories/GHSA-xr7r-7gpj-5pgp</url>
+    </references>
+    <dates>
+      <discovery>2021-03-17</discovery>
+      <entry>2021-03-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="eeca52dc-866c-11eb-b8d6-d4c9ef517024">
+    <topic>LibreSSL -- use-after-free</topic>
+    <affects>
+      <package>
+	<name>libressl</name>
+	<range><lt>3.2.4_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenBSD reports:</p>
+	<blockquote cite="https://marc.info/?l=openbsd-announce&amp;m=161582456312832&amp;w=2">
+	  <p>A TLS client using session resumption may cause a use-after-free.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://marc.info/?l=openbsd-announce&amp;m=161582456312832&amp;w=2</url>
+      <url>https://ftp.openbsd.org/pub/OpenBSD/patches/6.8/common/017_libssl.patch.sig</url>
+    </references>
+    <dates>
+      <discovery>2021-03-15</discovery>
+      <entry>2021-03-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b81ad6d6-8633-11eb-99c5-e09467587c17">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>89.0.4389.90</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2021/03/stable-channel-update-for-desktop_12.html">
+	  <p>This release includes 5 security fixes, including:</p>
+	  <ul>
+	    <li>[1167357] High CVE-2021-21191: Use after free in WebRTC.
+	      Reported by raven (@raid_akame)  on 2021-01-15</li>
+	    <li>[1181387] High CVE-2021-21192: Heap buffer overflow in tab
+	      groups. Reported by Abdulrahman Alqabandi, Microsoft Browser
+	      Vulnerability Research on 2021-02-23</li>
+	    <li>[1186287] High CVE-2021-21193: Use after free in Blink.
+	      Reported by Anonymous on 2021-03-09</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-11191</cvename>
+      <cvename>CVE-2021-11192</cvename>
+      <cvename>CVE-2021-11193</cvename>
+      <url>https://chromereleases.googleblog.com/2021/03/stable-channel-update-for-desktop_12.html</url>
+    </references>
+    <dates>
+      <discovery>2021-03-12</discovery>
+      <entry>2021-03-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="317487c6-85ca-11eb-80fa-14dae938ec40">
+    <topic>squashfs-tools -- Integer overflow</topic>
+    <affects>
+      <package>
+	<name>squashfs-tools</name>
+	<range><lt>4.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Phillip Lougher reports:</p>
+	<blockquote cite="https://github.com/plougher/squashfs-tools/commit/f95864afe8833fe3ad782d714b41378e860977b1">
+	  <p>Integer overflow in the read_fragment_table_4 function in unsquash-4.c in Squashfs and sasquatch allows remote attackers to cause a denial of service (application crash) via a crafted input, which triggers a stack-based buffer overflow.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-4645</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2015-4645</url>
+    </references>
+    <dates>
+      <discovery>2017-03-17</discovery>
+      <entry>2021-03-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="72709326-81f7-11eb-950a-00155d646401">
+    <topic>go -- encoding/xml: infinite loop when using xml.NewTokenDecoder with a custom TokenReader; archive/zip: panic when calling Reader.Open</topic>
+    <affects>
+      <package>
+	<name>go</name>
+	<range><lt>1.16.1,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://github.com/golang/go/issues/44913">
+	  <p>The Decode, DecodeElement, and Skip methods of an xml.Decoder
+	    provided by xml.NewTokenDecoder may enter an infinite loop when
+	    operating on a custom xml.TokenReader which returns an EOF in the
+	    middle of an open XML element.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/golang/go/issues/44916">
+	  <p>The Reader.Open API, new in Go 1.16, will panic when used on a ZIP
+	    archive containing files that start with "../".</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-27918</cvename>
+      <url>http://golang.org/issue/44913</url>
+      <cvename>CVE-2021-27919</cvename>
+      <url>http://golang.org/issue/44916</url>
+    </references>
+    <dates>
+      <discovery>2021-03-05</discovery>
+      <entry>2021-03-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="502ba001-7ffa-11eb-911c-0800278d94f0">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.13.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea Team reports for release 1.13.3:</p>
+	<blockquote cite="https://blog.gitea.io/2021/03/gitea-1.13.3-is-released/">
+	  <ul>
+	    <li>Turn default hash password algorithm back to pbkdf2 from argon2 until we find a better one </li>
+	  </ul>
+	</blockquote>
+	<p>The Gitea Team reports for release 1.13.4:</p>
+	<blockquote cite="https://blog.gitea.io/2021/03/gitea-1.13.4-is-released/">
+	  <ul>
+	    <li>Fix issue popups</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.13.3</url>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.13.4</url>
+      <freebsdpr>ports/254130</freebsdpr>
+    </references>
+    <dates>
+      <discovery>2021-01-07</discovery>
+      <entry>2021-02-06</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2dc8927b-54e0-11eb-9342-1c697a013f4b">
+    <topic>mantis -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mantis-php72</name>
+	<name>mantis-php73</name>
+	<name>mantis-php74</name>
+	<name>mantis-php80</name>
+	<range><lt>2.24.4,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mantis 2.24.4 release reports:</p>
+	<blockquote cite="https://mantisbt.org/bugs/changelog_page.php?project=mantisbt&amp;version=2.24.4">
+	  <p>Security and maintenance release, addressing 6 CVEs:</p>
+	  <ul>
+	    <li>0027726: CVE-2020-29603: disclosure of private project name</li>
+	    <li>0027727: CVE-2020-29605: disclosure of private issue summary</li>
+	    <li>0027728: CVE-2020-29604: full disclosure of private issue contents, including bugnotes and attachments</li>
+	    <li>0027361: Private category can be access/used by a non member of a private project (IDOR)</li>
+	    <li>0027779: CVE-2020-35571: XSS in helper_ensure_confirmed() calls</li>
+	    <li>0026794: User Account - Takeover</li>
+	    <li>0027363: Fixed in version can be changed to a version that doesn't exist</li>
+	    <li>0027350: When updating an issue, a Viewer user can be set as Reporter</li>
+	    <li>0027370: CVE-2020-35849: Revisions allow viewing private bugnotes id and summary</li>
+	    <li>0027495: CVE-2020-28413: SQL injection in the parameter "access" on the mc_project_get_users function throught the API SOAP.</li>
+	    <li>0027444: Printing unsanitized user input in install.php</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-28413</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-28413</url>
+      <cvename>CVE-2020-35849</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-35849</url>
+    </references>
+    <dates>
+      <discovery>2020-11-10</discovery>
+      <entry>2021-03-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2f3cd69e-7dee-11eb-b92e-0022489ad614">
+    <topic>Node.js -- February 2021 Security Releases</topic>
+    <affects>
+      <package>
+	<name>node10</name>
+	<range><lt>10.24.0</lt></range>
+      </package>
+      <package>
+	<name>node12</name>
+	<range><lt>12.21.0</lt></range>
+      </package>
+      <package>
+	<name>node14</name>
+	<range><lt>14.16.0</lt></range>
+      </package>
+      <package>
+	<name>node</name>
+	<range><lt>15.10.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="https://nodejs.org/en/blog/vulnerability/february-2021-security-releases/">
+	  <h1>HTTP2 'unknownProtocol' cause Denial of Service by resource exhaustion (Critical) (CVE-2021-22883)</h1>
+	  <p>Affected Node.js versions are vulnerable to denial of service attacks when too many connection attempts with an 'unknownProtocol' are established. This leads to a leak of file descriptors. If a file descriptor limit is configured on the system, then the server is unable to accept new connections and prevent the process also from opening, e.g. a file. If no file descriptor limit is configured, then this lead to an excessive memory usage and cause the system to run out of memory.</p>
+	  <h1>DNS rebinding in --inspect (CVE-2021-22884)</h1>
+	  <p>Affected Node.js versions are vulnerable to a DNS rebinding attack when the whitelist includes "localhost6". When "localhost6" is not present in /etc/hosts, it is just an ordinary domain that is resolved via DNS, i.e., over network. If the attacker controls the victim's DNS server or can spoof its responses, the DNS rebinding protection can be bypassed by using the "localhost6" domain. As long as the attacker uses the "localhost6" domain, they can still apply the attack described in CVE-2018-7160.</p>
+	  <h1>OpenSSL - Integer overflow in CipherUpdate (CVE-2021-23840)</h1>
+	  <p>This is a vulnerability in OpenSSL which may be exploited through Node.js. You can read more about it in https://www.openssl.org/news/secadv/20210216.txt</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://nodejs.org/en/blog/vulnerability/february-2021-security-releases/</url>
+      <cvename>CVE-2021-22883</cvename>
+      <cvename>CVE-2021-22884</cvename>
+      <cvename>CVE-2021-23840</cvename>
+    </references>
+    <dates>
+      <discovery>2021-02-23</discovery>
+      <entry>2021-03-09</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8bf856ea-7df7-11eb-9aad-001b217b3468">
     <topic>Gitlab -- Multiple vulnerabilities</topic>
     <affects>
