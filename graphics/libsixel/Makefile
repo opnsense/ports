@@ -1,11 +1,10 @@
 # $FreeBSD$
 
 PORTNAME=	libsixel
-PORTVERSION=	1.8.2
-PORTREVISION=	1
+PORTVERSION=	1.8.6
 PORTEPOCH=	1
 CATEGORIES=	graphics
-MASTER_SITES=	https://github.com/saitoha/libsixel/releases/download/v${PORTVERSION}/
+MASTER_SITES=	http://vault.101011010.xyz/distfiles/
 
 MAINTAINER=	sue@iwmt.org
 COMMENT=	Encoder/decoder library for DEC SIXEL graphics
@@ -44,7 +43,6 @@ PIXBUF_USE=		gnome=glib20,gdkpixbuf2
 PNG_LIB_DEPENDS=	libpng.so:graphics/png
 PNG_CONFIGURE_WITH=	png
 
-PYTHON_DESC=		Python interface
 PYTHON_USES=		python
 PYTHON_USE=		python=py3kplist
 PYTHON_CONFIGURE_ENABLE=	python
