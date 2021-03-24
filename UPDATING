@@ -5,6 +5,22 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20210322:
+  AFFECTS: users of net/wireguard
+  AUTHOR: decke@FreeBSD.org
+
+  A wireguard kernel implementation supporting FreeBSD 12.1 and newer was
+  added as net/wireguard-kmod recently.
+
+  The new default for users of net/wireguard is the kernel module.
+
+  If you experience problems with it you can switch back to wireguard-go
+  by removing net/wireguard-kmod and making sure net/wireguard-go is
+  installed.
+  The userland tools wg-quick(8) and wg(8) try to use kernel support if
+  the kernel module is available and otherwise fall back to wireguard-go
+  automatically. Config files are fully compatible.
+
 20210317:
   AFFECTS: users of security/strongswan
   AUTHOR: driesm.michiels@gmail.com
