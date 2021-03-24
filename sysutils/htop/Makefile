@@ -3,6 +3,7 @@
 
 PORTNAME=	htop
 DISTVERSION=	3.0.4
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	gaod@hychen.org
@@ -28,8 +29,7 @@ PLIST_FILES=	bin/htop \
 		share/icons/hicolor/scalable/apps/htop.svg \
 		share/pixmaps/htop.png
 
-OPTIONS_DEFINE=		LSOF
-OPTIONS_DEFAULT=	LSOF
+OPTIONS_DEFINE=	LSOF
 
 LSOF_RUN_DEPENDS=	lsof:sysutils/lsof
 

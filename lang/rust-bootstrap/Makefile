@@ -1,7 +1,11 @@
 # $FreeBSD$
 
+# Once the bootstraps are available on pkg.FreeBSD.org run sync.sh
+# to upload them to ~/public_distfiles on freefall in preparation
+# for the next lang/rust update.
 PORTNAME=	rust
 PORTVERSION=	1.50.0
+PORTREVISION=	1
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:rust \
 		LOCAL/mikael:armbase \
@@ -46,7 +50,7 @@ powerpc64le_PKGNAMEPREFIX=	powerpc64le-
 
 USES=		perl5 python:3.6+,build tar:xz
 .if ${FLAVOR} == powerpc64_elfv1
-USE_GCC=	9
+USE_GCC=	9:build
 .endif
 # for openssl-src crate
 USE_PERL5=	build

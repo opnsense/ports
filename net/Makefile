@@ -1531,6 +1531,7 @@
     SUBDIR += wireguard
     SUBDIR += wireguard-go
     SUBDIR += wireguard-kmod
+    SUBDIR += wireguard-tools
     SUBDIR += wireshark
     SUBDIR += wireshark-lite
     SUBDIR += wlan2eth

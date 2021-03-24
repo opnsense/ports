@@ -19,6 +19,9 @@ USES=		pkgconfig gmake
 
 USE_HARDENING=	safestack
 
+PAGEEXEC_DISABLE=	bin/ioquake3
+MPROTECT_DISABLE=	bin/ioquake3
+
 # Port configuration flags:
 #	CLIENT SERVER TOOLS DLRENDERER GAMELIBS OPUS OPENGL2
 IOQ3?=		CLIENT TOOLS GAMELIBS
