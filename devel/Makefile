@@ -4403,6 +4403,7 @@
     SUBDIR += py-filebytes
     SUBDIR += py-filedepot
     SUBDIR += py-filemagic
+    SUBDIR += py-filetype
     SUBDIR += py-first
     SUBDIR += py-five.globalrequest
     SUBDIR += py-fixtures
@@ -5207,6 +5208,7 @@
     SUBDIR += py-urwid
     SUBDIR += py-urwid-readline
     SUBDIR += py-urwidtrees
+    SUBDIR += py-us
     SUBDIR += py-user_agents
     SUBDIR += py-userpath
     SUBDIR += py-uvloop

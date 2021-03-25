@@ -1,7 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	yuzu
-PORTVERSION=	s20210321
+PORTVERSION=	s20210324
 PORTREVISION?=	0
 CATEGORIES=	emulators
 
@@ -45,7 +45,7 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	a50133fc5
+GH_TAGNAME=	65774084f
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-52-geac2416b8:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:2c51218:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.2.145:Vulkan_Headers/externals/Vulkan-Headers \
@@ -99,6 +99,12 @@ QT5_PLIST_FILES=bin/${PORTNAME} \
 
 VULKAN_DESC=		Vulkan renderer
 VULKAN_RUN_DEPENDS=	${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader
+
+.if !exists(${.CURDIR:H:H}/www/qt5-webengine)
+# Temporarily disable web applet if qt5-webengine is missing
+QT5_USE:=		${QT5_USE:S/,webengine//}
+QT5_CMAKE_BOOL:=	${QT5_CMAKE_BOOL:N*WEB_ENGINE}
+.endif
 
 post-patch:
 	@${REINPLACE_CMD} -e '/check_submodules_present()/d' \

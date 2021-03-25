@@ -2,7 +2,7 @@
 
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.172
+DISTVERSION=	1.2.173
 CATEGORIES=	graphics devel
 
 MAINTAINER=	jbeich@FreeBSD.org
