@@ -13639,7 +13639,6 @@ x11-toolkits/linux-c6-pango|x11-toolkits/linux-c7-pango|2019-12-31|Has expired: 
 x11-toolkits/linux-c6-qt47-x11|x11-toolkits/linux-c7-qt-x11|2019-12-31|Has expired: Superseded by CentOS 7
 x11-toolkits/linux-c6-tk85|x11-toolkits/linux-c7-tk85|2019-12-31|Has expired: Superseded by CentOS 7
 lang/gnatdroid-x86||2019-12-31|Has expired: Unfetchable, unmaintained
-net/py-tweepy||2019-12-31|Has expired: Broken for more than 6 months
 archivers/squeeze|archivers/xarchiver|2020-01-01|Removed, dead upstream and depends on expired x11-fm/thunar-vfs
 x11-fm/thunar-vfs||2020-01-01|Has expired: Functionality included in Thunar
 sysutils/ansible1||2020-01-01|Has expired: please upgrade to sysutils/ansible
@@ -16195,3 +16194,5 @@ emulators/open-vm-tools-nox11|emulators/open-vm-tools@nox11|2021-03-17|Moved to 
 math/s2geometry|graphics/s2|2021-03-22|Remove duplicate port
 net-p2p/sonarr-devel|net-p2p/sonarr|2021-03-23|Removed, use net-p2p/sonarr instead
 www/py-django-jsonfield||2021-03-24|Removed: This port will be deleted in the future, please switch to use www/py-jsonfield or www/py-jsonfield2
+devel/hs-c2hs||2021-03-27|Has expired: Was used as BUILD_DEPENDS, not useful on its own
+x11-toolkits/tile||2021-03-27|Has expired: The Tile widget set is part of Tk 8.5 and above, see TIP 248
