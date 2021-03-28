@@ -33,6 +33,8 @@ CONFLICTS_INSTALL=	firefox-esr
 USE_MOZILLA=	-sqlite
 CFLAGS_powerpc64le=	-DSQLITE_BYTEORDER=1234
 
+OPTIONS_DEFAULT+=	LTO
+
 USES=		tar:xz
 
 MPROTECT_DISABLE=	lib/firefox/firefox
