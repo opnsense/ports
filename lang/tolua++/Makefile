@@ -14,7 +14,7 @@ COMMENT=	Extended version of tolua, a tool to integrate C/C++ code with Lua
 USES=		scons:python2 lua:51 tar:bzip2
 MAKE_ARGS=	prefix=${PREFIX} SONAME="libtolua++-${LUA_VER}.so"
 
-CCFLAGS+=	-I${LUA_INCDIR}
+CCFLAGS+=	-I${LUA_INCDIR} -fPIC
 LDFLAGS+=	-L${LUA_LIBDIR}
 
 TGT_BINDIR=	${PREFIX}/bin
