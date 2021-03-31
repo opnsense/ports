@@ -2,14 +2,13 @@
 # $FreeBSD$
 
 PORTNAME=	rust
-PORTVERSION?=	1.50.0
-PORTREVISION?=	1
+PORTVERSION?=	1.51.0
+PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://dev-static.rust-lang.org/dist/:src \
-		LOCAL/bdragon/rust:bootstrap \
-		LOCAL/mikael/rust:bootstrap \
 		LOCAL/tobik/rust:bootstrap \
+		LOCAL/mikael/rust:bootstrap \
 		https://static.rust-lang.org/dist/:bootstrap
 DISTNAME?=	${PORTNAME}c-${PORTVERSION}-src
 DISTFILES?=	${NIGHTLY_DATE:D${NIGHTLY_DATE}/}${DISTNAME}${EXTRACT_SUFX}:src \
@@ -48,9 +47,6 @@ CONFLICTS_INSTALL?=	rust-nightly
 
 OPTIONS_DEFINE=		DOCS GDB SOURCES WASM
 OPTIONS_DEFAULT=	SOURCES WASM
-.if defined(NIGHTLY_DATE)
-OPTIONS_EXCLUDE+=	SOURCES
-.endif
 
 GDB_DESC=	Install ports gdb (necessary for debugging rust programs)
 SOURCES_DESC=	Install source files
@@ -65,8 +61,8 @@ WASM_VARS=		_RUST_BUILD_WASM=true \
 WASM_VARS_OFF=		_RUST_BUILD_WASM=false
 
 # See WRKSRC/src/stage0.txt for the date and version values.
-BOOTSTRAPS_DATE?=		2020-12-31
-RUST_BOOTSTRAP_VERSION?=	1.49.0
+BOOTSTRAPS_DATE?=		2021-02-11
+RUST_BOOTSTRAP_VERSION?=	1.50.0
 
 BOOTSTRAPS_SUFFIX?=		${BOOTSTRAPS_SUFFIX_${ARCH}}
 BOOTSTRAPS_SUFFIX_powerpc64?=	-${PPC_ABI:tl}
@@ -114,6 +110,11 @@ post-patch:
 # Disable vendor checksums
 	@${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
 		${CARGO_VENDOR_DIR}/*/.cargo-checksum.json
+.if defined(PPC_ABI) && ${PPC_ABI} == ELFv1 && ${LOCALBASE} != /usr/local
+	@${REINPLACE_CMD} 's,/usr/local/,${LOCALBASE}/,g' \
+		${WRKSRC}/compiler/rustc_llvm/build.rs \
+		${WRKSRC}/src/bootstrap/native.rs
+.endif
 
 do-configure:
 # Check that the running kernel has COMPAT_FREEBSD11 required by lang/rust post-ino64
@@ -125,6 +126,9 @@ do-configure:
 .endfor
 	@${ECHO_CMD} 'changelog-seen=2' > ${WRKSRC}/config.toml
 	@${ECHO_CMD} '[build]' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'build-stage=2' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'doc-stage=2' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'test-stage=2' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'vendor=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'extended=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'python="${PYTHON_CMD}"' >> ${WRKSRC}/config.toml
