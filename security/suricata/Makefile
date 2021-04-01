@@ -78,7 +78,7 @@ LUAJIT_LIB_DEPENDS=		libluajit-5.1.so:lang/luajit
 LUAJIT_CONFIGURE_ON=		--enable-luajit
 
 LUA_USES=			lua:51
-LUA_CONFIGURE_ON=		--enable-lua \
+LUA_CONFIGURE_ON=		--enable-lua
 
 NETMAP_CONFIGURE_ENABLE=	netmap
 
@@ -102,7 +102,8 @@ PYTHON_USES=			python
 PYTHON_USE=			PYTHON=py3kplist
 PYTHON_CONFIGURE_ENABLE=	python
 
-REDIS_LIB_DEPENDS=		libhiredis.so:databases/hiredis
+REDIS_LIB_DEPENDS=		libhiredis.so:databases/hiredis \
+				libevent_pthreads.so:devel/libevent
 REDIS_CONFIGURE_ON=		--enable-hiredis \
 
 TESTS_CONFIGURE_ENABLE=		unittests
