@@ -1,11 +1,7 @@
 # $FreeBSD$
 
 PORTNAME=	bsdinstaller
-.if "${PRODUCT_ABI}" == 21.1
 PORTVERSION=	21.1
-.else
-PORTVERSION=	20.7
-.endif
 #PORTREVISION=	1 # GH_TAGNAME
 CATEGORIES=	sysutils
 
