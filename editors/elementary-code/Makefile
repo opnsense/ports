@@ -1,8 +1,7 @@
-# $FreeBSD$
 
 PORTNAME=	elementary-code
 DISTVERSION=	3.4.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	editors
 
 MAINTAINER=	miguel@gocobachi.dev

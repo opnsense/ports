@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 
     COMMENT = Programming languages
 
@@ -303,7 +301,6 @@
     SUBDIR += rexx-regutil
     SUBDIR += rexx-wrapper
     SUBDIR += rhino
-    SUBDIR += ruby25
     SUBDIR += ruby26
     SUBDIR += ruby27
     SUBDIR += ruby30

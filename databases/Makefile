@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 
     COMMENT = Databases and related software
 
@@ -198,6 +196,7 @@
     SUBDIR += mongodb42
     SUBDIR += mongodb42-tools
     SUBDIR += mongodb44
+    SUBDIR += mongodb49
     SUBDIR += mroonga
     SUBDIR += mtop
     SUBDIR += mydumper
@@ -850,7 +849,6 @@
     SUBDIR += recutils
     SUBDIR += redis
     SUBDIR += redis-devel
-    SUBDIR += redis4
     SUBDIR += redis5
     SUBDIR += redis_exporter
     SUBDIR += redisdesktopmanager
@@ -1029,6 +1027,7 @@
     SUBDIR += virtualpg
     SUBDIR += virtuoso
     SUBDIR += vsqlite
+    SUBDIR += webdis
     SUBDIR += wfb2sql
     SUBDIR += xapian-bindings
     SUBDIR += xapian-bindings12
