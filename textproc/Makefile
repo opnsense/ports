@@ -1,4 +1,3 @@
-
     COMMENT = Text processing utilities (does not include desktop publishing)
 
     SUBDIR += 2bsd-diff
@@ -165,8 +164,6 @@
     SUBDIR += el-aspell
     SUBDIR += el-hyphen
     SUBDIR += elasticsearch-plugin-head
-    SUBDIR += elasticsearch5
-    SUBDIR += elasticsearch5-search-guard
     SUBDIR += elasticsearch6
     SUBDIR += elasticsearch7
     SUBDIR += elixir-earmark
@@ -260,7 +257,6 @@
     SUBDIR += hr-aspell
     SUBDIR += hs-lhs2tex
     SUBDIR += hs-pandoc
-    SUBDIR += hs-pandoc-citeproc
     SUBDIR += hs-pandoc-crossref
     SUBDIR += hs-yaml
     SUBDIR += hsb-aspell
@@ -353,7 +349,6 @@
     SUBDIR += latex-service
     SUBDIR += latex2html
     SUBDIR += libabw
-    SUBDIR += libcrm114
     SUBDIR += libcroco
     SUBDIR += libcss
     SUBDIR += libcsv

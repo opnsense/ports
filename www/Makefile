@@ -1,4 +1,3 @@
-
     COMMENT = Ports related to the World Wide Web
 
     SUBDIR += R-cran-RgoogleMaps
@@ -102,7 +101,6 @@
     SUBDIR += davix
     SUBDIR += dddbl
     SUBDIR += ddgr
-    SUBDIR += decss
     SUBDIR += demoroniser
     SUBDIR += deno
     SUBDIR += devd
@@ -221,7 +219,6 @@
     SUBDIR += groupoffice
     SUBDIR += grr
     SUBDIR += gstreamer1-plugins-neon
-    SUBDIR += gtkhtml3
     SUBDIR += gtkhtml4
     SUBDIR += guacamole-client
     SUBDIR += guile-www

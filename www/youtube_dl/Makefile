@@ -1,6 +1,5 @@
-
 PORTNAME=	youtube_dl
-PORTVERSION=	2021.04.01
+PORTVERSION=	2021.04.07
 CATEGORIES=	www
 MASTER_SITES=	https://yt-dl.org/downloads/${PORTVERSION}/
 DISTNAME=	youtube-dl-${PORTVERSION}

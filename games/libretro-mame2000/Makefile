@@ -1,4 +1,3 @@
-
 PORTNAME=	libretro-mame2000
 PORTVERSION=	0.20210214
 CATEGORIES=	games
@@ -8,7 +7,8 @@ COMMENT=	MAME (0.37b5) for libretro
 
 LICENSE=	GPLv2
 
-USES=		compiler:c++11-lib gmake
+USES=		compiler:c++11-lib dos2unix gmake
+DOS2UNIX_FILES=	src/cpu/tms9900/99xxstat.h
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes

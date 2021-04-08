@@ -1,4 +1,3 @@
-
     COMMENT = Games and related software
 
     SUBDIR += 0ad
@@ -104,7 +103,6 @@
     SUBDIR += bluemoon
     SUBDIR += bomber
     SUBDIR += bomberclone
-    SUBDIR += bomberinstinct
     SUBDIR += bombherman
     SUBDIR += bomns
     SUBDIR += bovo
@@ -127,7 +125,6 @@
     SUBDIR += bumprace
     SUBDIR += burgerspace
     SUBDIR += burrtools
-    SUBDIR += bygfoot
     SUBDIR += bzflag
     SUBDIR += bzflag-server
     SUBDIR += cake
@@ -137,7 +134,6 @@
     SUBDIR += cataclysm-dda-tiles
     SUBDIR += catesc
     SUBDIR += cave9
-    SUBDIR += cavezofphear
     SUBDIR += cdogs-sdl
     SUBDIR += cgoban
     SUBDIR += chapping
@@ -157,14 +153,12 @@
     SUBDIR += construo
     SUBDIR += coronapoker
     SUBDIR += corsix-th
-    SUBDIR += cosmo
     SUBDIR += cosmosmash
     SUBDIR += cowsay
     SUBDIR += crack-attack
     SUBDIR += craft
     SUBDIR += crafty
     SUBDIR += crashtest
-    SUBDIR += cre
     SUBDIR += cretan-hubris
     SUBDIR += crimson
     SUBDIR += crispy-doom
@@ -206,7 +200,6 @@
     SUBDIR += doomsday
     SUBDIR += dose-response
     SUBDIR += dreamchess
-    SUBDIR += drm
     SUBDIR += duel
     SUBDIR += dunelegacy
     SUBDIR += dungeon

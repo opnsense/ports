@@ -1,4 +1,3 @@
-
     COMMENT = Shells
 
     SUBDIR += 44bsd-csh
@@ -16,7 +15,6 @@
     SUBDIR += elvish
     SUBDIR += envy
     SUBDIR += es
-    SUBDIR += esh
     SUBDIR += fd
     SUBDIR += fish
     SUBDIR += git-prompt.zsh

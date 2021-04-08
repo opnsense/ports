@@ -1,4 +1,3 @@
-
     COMMENT = Security tools
 
     SUBDIR += 0d1n
@@ -60,7 +59,6 @@
     SUBDIR += bsdsfv
     SUBDIR += bsmtrace
     SUBDIR += bsmtrace3
-    SUBDIR += bugs
     SUBDIR += bzrtp
     SUBDIR += ca_root_nss
     SUBDIR += caesarcipher
@@ -126,9 +124,7 @@
     SUBDIR += dirbuster
     SUBDIR += dirmngr
     SUBDIR += distcache
-    SUBDIR += dmitry
     SUBDIR += doas
-    SUBDIR += doorman
     SUBDIR += doscan
     SUBDIR += dotdotpwn
     SUBDIR += dropbear
@@ -792,7 +788,6 @@
     SUBDIR += php80-sodium
     SUBDIR += phpsecinfo
     SUBDIR += picosha2
-    SUBDIR += pidentd
     SUBDIR += pidgin-encryption
     SUBDIR += pidgin-otr
     SUBDIR += pinentry

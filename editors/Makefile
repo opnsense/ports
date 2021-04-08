@@ -1,4 +1,3 @@
-
     COMMENT = Editors
 
     SUBDIR += 2bsd-vi
@@ -45,7 +44,6 @@
     SUBDIR += fpc-ide
     SUBDIR += fte
     SUBDIR += fxite
-    SUBDIR += gate
     SUBDIR += gedit
     SUBDIR += gedit-plugins
     SUBDIR += ghex
@@ -247,7 +245,6 @@
     SUBDIR += textadept
     SUBDIR += texworks
     SUBDIR += the
-    SUBDIR += thoteditor
     SUBDIR += treeform
     SUBDIR += tweak
     SUBDIR += uemacs

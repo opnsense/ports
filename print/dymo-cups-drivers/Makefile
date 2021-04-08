@@ -1,7 +1,6 @@
-
 PORTNAME=	dymo-cups-drivers
 PORTVERSION=	1.4.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	print
 MASTER_SITES=	http://download.dymo.com/Software/Linux/
 
@@ -17,7 +16,6 @@ WRKSRC=		${WRKDIR}/dymo-cups-drivers-1.4.0.5
 
 USE_HARDENING=	pie:off
 
-USES=		gmake
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

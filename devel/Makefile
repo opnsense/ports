@@ -1,4 +1,3 @@
-
     COMMENT = Development utilities
 
     SUBDIR += 9base
@@ -275,8 +274,6 @@
     SUBDIR += bugzilla50
     SUBDIR += build
     SUBDIR += buildstream
-    SUBDIR += buildtool
-    SUBDIR += buildtool-doc
     SUBDIR += bullet
     SUBDIR += busybee
     SUBDIR += byacc
@@ -726,7 +723,6 @@
     SUBDIR += gammaray
     SUBDIR += gauche-readline
     SUBDIR += gaul
-    SUBDIR += gb
     SUBDIR += gbump
     SUBDIR += gcc-arm-embedded
     SUBDIR += gcc-msp430-ti-toolchain
@@ -1531,7 +1527,6 @@
     SUBDIR += modd
     SUBDIR += mongo-c-driver
     SUBDIR += mono-addins
-    SUBDIR += monodevelop
     SUBDIR += monotone
     SUBDIR += mpatrol
     SUBDIR += mph
@@ -1634,7 +1629,6 @@
     SUBDIR += opengrok
     SUBDIR += openocd
     SUBDIR += openwince-include
-    SUBDIR += openzz
     SUBDIR += orc
     SUBDIR += osc
     SUBDIR += ossp-al
@@ -6809,7 +6803,6 @@
     SUBDIR += sope2
     SUBDIR += sope4
     SUBDIR += sord
-    SUBDIR += sourcenav
     SUBDIR += sparc64-gcc
     SUBDIR += sparc64-xtoolchain-gcc
     SUBDIR += spark
