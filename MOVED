@@ -16198,3 +16198,80 @@ lang/Gofer||2021-03-28|Has expired: Old, unmaintained language
 net/libsignal|net/libsignal-protocol-c|2021-03-30|Rename to match upstream naming
 databases/redis4|databases/redis|2021-03-06|Has expired: End of life, please use modern version
 lang/ruby25|lang/ruby27|2021-04-06|Has expired: Use newer version, e.g. lang/ruby27 or above. Ruby 2.5 is in security maintenance phase and planned for EOL on March 31, 2021
+www/gtkhtml3|www/gtkhtml4|2021-04-06|Has expired: Obsolete by upstream, doesn't build with recent versions of pango
+deskutils/tomboy||2021-04-06|Has expired: Unmaintained and dead upstream, depends on deprecated libraries  such as www/gtkhtml3. Upstream project is now called tomboy-ng.
+deskutils/tomboy-plugin-reminder||2021-04-06|Removed, part of deskutils/tomboy
+devel/monodevelop||2021-04-06|Has expired: outdated, depends on deprecated library www/gtkhtml3
+sysutils/syslog-ng327|sysutils/syslog-ng|2021-04-06|Has expired: Not officially supported by upstream
+sysutils/logstash5|sysutils/logstash6|2021-04-06|Has expired: End of life since release of 7.3.0
+www/decss||2021-04-06|Has expired: Abandonware
+textproc/elasticsearch5|textproc/elasticsearch6|2021-04-06|Has expired: End of life since release of 7.3.0
+textproc/elasticsearch5-search-guard||2021-04-06|Has expired: textproc/elasticsearch5 is scheduled for removal
+multimedia/gnome-subtitles||2021-04-06|Has expired: outdated, depends on deprecated library www/gtkhtml3
+net/libproxy-mozjs||2021-04-06|Has expired: Uses EOL Python 2.7 via lang/spidermonkey52
+lang/spidermonkey52|lang/spidermonkey78|2021-04-06|Has expired: Uses Python 2.7 which is EOLed upstream
+ftp/wzdftpd||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+astro/roadmap||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+games/cosmo||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+games/bomberinstinct||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+games/drm||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+games/bygfoot||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+games/cre||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+irc/hybserv||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+irc/xaric||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+mail/elmo||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+misc/cave||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+security/bugs||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+security/dmitry||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+security/doorman||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+shells/esh||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+sysutils/cpu||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+textproc/libcrm114||2021-04-07|Has expired: No known users, dead upstream
+x11/wmmatrix||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+x11/wmxss||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+x11/tycoon||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+x11/xgrab||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+x11/xbanner||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+x11/bricons||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+x11/xmon||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+games/cavezofphear||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+astro/saoimage||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/ksmp3play||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/jamin||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/musicbox-tag-editor||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/nspmod||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/cdplay||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/gimmix||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/ghostess||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/wmrecord||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/toolame||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+audio/shout||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+biology/grappa||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+biology/phylip||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+biology/lagan||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+cad/varkon||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+cad/transcalc||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+comms/seyon||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+comms/efax||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+converters/vda2fbd||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+converters/shftool||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+devel/openzz||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+devel/sourcenav||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+devel/gb||2021-04-07|Has expired: Unmaintained and dead upstream
+dns/checkdns||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+dns/inadyn-mt||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+editors/gate||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+editors/thoteditor||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+emulators/cinc||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+emulators/e-uae||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+emulators/dtcyber||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+ftp/jftpgw||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+ftp/pureadmin||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+textproc/hs-pandoc-citeproc||2021-04-07|Has expired: Integrated into textproc/hs-pandoc
+devel/buildtool-doc||2021-04-07|Removed, depends on expired devel/buildtool
+devel/buildtool||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+misc/floatator||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+finance/wmstock||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+ftp/frox||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
+databases/couchdb2|databases/couchdb3|2021-04-07|No longer supported upstream, uses spidermonkey68 & python2; move to databases/couchdb3
+
