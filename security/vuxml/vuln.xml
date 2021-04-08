@@ -76,6 +76,253 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="9ae2c00f-97d0-11eb-8cd6-080027f515ea">
+    <topic>clamav -- Multiple vulnerabilites</topic>
+    <affects>
+      <package>
+	<name>clamav</name>
+	<range><lt>0.103.2,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Micah Snyder reports:</p>
+	<blockquote cite="https://blog.clamav.net/2021/04/clamav-01032-security-patch-release.html">
+	  <dl>
+	    <dt>CVE-2021-1252</dt>
+	    <dd>Excel XLM parser infinite loop</dd>
+	    <dt>CVE-2021-1404</dt>
+	    <dd>PDF parser buffer over-read; possible crash. </dd>
+	    <dt>CVE-2021-1405</dt>
+	    <dd>Mail parser NULL-dereference crash. </dd>
+	  </dl>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-1252</cvename>
+      <cvename>CVE-2021-1404</cvename>
+      <cvename>CVE-2021-1405</cvename>
+      <url>https://blog.clamav.net/2021/04/clamav-01032-security-patch-release.html</url>
+    </references>
+    <dates>
+      <discovery>2021-04-07</discovery>
+      <entry>2021-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9595d002-edeb-4602-be2d-791cd654247e">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.287</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.277.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2021-04-07/">
+	  <h1>Description</h1>
+	  <h5>(Low) SECURITY-1721 / CVE-2021-21639</h5>
+	  <p>Lack of type validation in agent related REST API</p>
+	  <h5>(Medium) SECURITY-1871 / CVE-2021-21640</h5>
+	  <p>View name validation bypass</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.jenkins.io/security/advisory/2021-04-07/</url>
+    </references>
+    <dates>
+      <discovery>2021-04-07</discovery>
+      <entry>2021-04-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c0c1834c-9761-11eb-acfd-0022489ad614">
+    <topic>Node.js -- April 2021 Security Releases</topic>
+    <affects>
+      <package>
+	<name>node10</name>
+	<range><lt>10.24.1</lt></range>
+      </package>
+      <package>
+	<name>node12</name>
+	<range><lt>12.22.1</lt></range>
+      </package>
+      <package>
+	<name>node14</name>
+	<range><lt>14.16.1</lt></range>
+      </package>
+      <package>
+	<name>node</name>
+	<range><lt>15.14.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="https://nodejs.org/en/blog/vulnerability/april-2021-security-releases/">
+	  <h1>OpenSSL - CA certificate check bypass with X509_V_FLAG_X509_STRICT (High) (CVE-2021-3450)</h1>
+	  <p>This is a vulnerability in OpenSSL which may be exploited through Node.js. You can read more about it in https://www.openssl.org/news/secadv/20210325.txt</p>
+	  <h1>OpenSSL - NULL pointer deref in signature_algorithms processing (High) (CVE-2021-3449)</h1>
+	  <p>This is a vulnerability in OpenSSL which may be exploited through Node.js. You can read more about it in https://www.openssl.org/news/secadv/20210325.txt</p>
+	  <h1>npm upgrade - Update y18n to fix Prototype-Pollution (High) (CVE-2020-7774)</h1>
+	  <p>This is a vulnerability in the y18n npm module which may be exploited by prototype pollution. You can read more about it in https://github.com/advisories/GHSA-c4w7-xm78-47vh</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://nodejs.org/en/blog/vulnerability/april-2021-security-releases/</url>
+      <url>https://www.openssl.org/news/secadv/20210325.txt</url>
+      <url>https://github.com/advisories/GHSA-c4w7-xm78-47vh</url>
+      <cvename>CVE-2021-3450</cvename>
+      <cvename>CVE-2021-3449</cvename>
+      <cvename>CVE-2020-7774</cvename>
+    </references>
+    <dates>
+      <discovery>2021-04-06</discovery>
+      <entry>2021-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a7b97d26-9792-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- jail escape possible by mounting over jail root</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>12.2</ge><lt>12.2_6</lt></range>
+	<range><ge>11.4</ge><lt>11.4_9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Due to a race condition between lookup of ".." and remounting a filesystem,
+	a process running inside a jail might access filesystem hierarchy outside
+	of jail.</p>
+	<h1>Impact:</h1>
+	<p>A process with superuser privileges running inside a jail configured
+	with the allow.mount permission (not enabled by default) could change the root
+	directory outside of the jail, and thus gain full read and write access
+	to all files and directories in the system.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-25584</cvename>
+      <freebsdsa>SA-21:10.jail_mount</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-04-06</discovery>
+      <entry>2021-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f8e1e2a6-9791-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- double free in accept_filter(9) socket configuration interface</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>12.2</ge><lt>12.2_6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>An unprivileged process can configure an accept filter on a listening
+	socket.  This is done using the setsockopt(2) system call.  The process
+	supplies the name of the accept filter which is to be attached to the
+	socket, as well as a string containing filter-specific information.</p>
+	<p>If the filter implements the accf_create callback, the socket option
+	handler attempts to preserve the process-supplied argument string.  A
+	bug in the socket option handler caused this string to be freed
+	prematurely, leaving a dangling pointer.  Additional operations on the
+	socket can turn this into a double free or a use-after-free.</p>
+	<h1>Impact:</h1>
+	<p>The bug may be exploited to trigger local privilege escalation or
+	kernel memory disclosure.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-29627</cvename>
+      <freebsdsa>SA-21:09.accept_filter</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-04-06</discovery>
+      <entry>2021-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="13d37672-9791-11eb-b87a-901b0ef719ab">
+    <topic>FreeBSD -- Memory disclosure by stale virtual memory mapping</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>12.2</ge><lt>12.2_6</lt></range>
+	<range><ge>11.4</ge><lt>11.4_9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>A particular case of memory sharing is mishandled in the virtual memory
+	system.  It is possible and legal to establish a relationship where
+	multiple descendant processes share a mapping which shadows memory of an
+	ancestor process.  In this scenario, when one process modifies memory
+	through such a mapping, the copy-on-write logic fails to invalidate
+	other mappings of the source page.  These stale mappings may remain even
+	after the mapped pages have been reused for another purpose.</p>
+	<h1>Impact:</h1>
+	<p>An unprivileged local user process can maintain a mapping of a page
+	after it is freed, allowing that process to read private data belonging
+	to other processes or the kernel.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-29626</cvename>
+      <freebsdsa>SA-21:08.vm</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-04-06</discovery>
+      <entry>2021-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="79fa9f23-9725-11eb-b530-7085c2fb2c14">
+    <topic>upnp -- stack overflow vulnerability</topic>
+    <affects>
+      <package>
+	<name>upnp</name>
+	<range><lt>1.14.5,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mitre reports:</p>
+	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-28302">
+	  <p>
+	      A stack overflow in pupnp 1.16.1 can cause the denial of service through the
+	      Parser_parseDocument() function. ixmlNode_free() will release a child node
+	      recursively, which will consume stack space and lead to a crash.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-28302</cvename>
+      <url>https://github.com/pupnp/pupnp/issues/249</url>
+    </references>
+    <dates>
+      <discovery>2021-03-12</discovery>
+      <entry>2021-04-06</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="dec7e4b6-961a-11eb-9c34-080027f515ea">
     <topic>ruby -- XML round-trip vulnerability in REXML</topic>
     <affects>
@@ -297,6 +544,10 @@ Notes:
 	<name>openssl</name>
 	<range><lt>1.1.1k,1</lt></range>
       </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>12.2</ge><lt>12.2_5</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -321,10 +572,12 @@ Notes:
       <url>https://www.openssl.org/news/secadv/20210325.txt</url>
       <cvename>CVE-2021-3449</cvename>
       <cvename>CVE-2021-3450</cvename>
+      <freebsdsa>SA-21:07.openssl</freebsdsa>
     </references>
     <dates>
       <discovery>2021-03-25</discovery>
       <entry>2021-03-26</entry>
+      <modified>2021-04-07</modified>
     </dates>
   </vuln>
 
