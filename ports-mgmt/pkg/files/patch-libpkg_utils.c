@@ -1,6 +1,6 @@
---- libpkg/utils.c.orig	2019-09-18 07:11:10 UTC
+--- libpkg/utils.c.orig	2021-02-18 18:07:35 UTC
 +++ libpkg/utils.c
-@@ -350,7 +350,7 @@ is_valid_abi(const char *arch, bool emit
+@@ -401,7 +401,7 @@ is_valid_abi(const char *arch, bool emit_error) {
  bool
  is_valid_os_version(struct pkg *pkg)
  {
