@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	phpseclib
 DISTVERSION=	2.0.31
 CATEGORIES=	security devel

@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	filterlog
 PORTVERSION=	0.3
 CATEGORIES=	sysutils

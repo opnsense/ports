@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	ifinfo
 PORTVERSION=	10.1
 CATEGORIES=	sysutils

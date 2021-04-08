@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	opnsense-update
 PORTVERSION=	21.1.4
 #PORTREVISION=	0 # GH_TAGNAME

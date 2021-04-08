@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	opnsense-lang
 PORTVERSION=	20.1.4
 CATEGORIES=	sysutils

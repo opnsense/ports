@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	pam_opnsense
 PORTVERSION=	19.1.3
 CATEGORIES=	sysutils

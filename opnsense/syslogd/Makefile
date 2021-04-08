@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	syslogd
 PORTVERSION=	12.1
 CATEGORIES=	sysutils

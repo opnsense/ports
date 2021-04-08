@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	bsdinstaller
 PORTVERSION=	21.1
 #PORTREVISION=	1 # GH_TAGNAME

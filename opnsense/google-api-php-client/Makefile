@@ -1,5 +1,3 @@
-# $FreeBSD$
-
 PORTNAME=	google-api-php-client
 DISTVERSION=	2.4.0
 MASTER_SITES=	https://github.com/googleapis/${PORTNAME}/releases/download/v${DISTVERSION}/
