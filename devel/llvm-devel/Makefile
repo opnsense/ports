@@ -42,6 +42,7 @@ SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 CMAKE_INSTALL_PREFIX=	${LLVM_PREFIX}
 CMAKE_SOURCE_PATH=	${WRKSRC}/llvm
 CMAKE_ARGS=	-DLLVM_BUILD_LLVM_DYLIB=ON
+CMAKE_ARGS+=	-DLLVM_LINK_LLVM_DYLIB=ON
 CMAKE_ARGS+=	-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON
 CMAKE_ARGS+=	-DLLVM_ENABLE_RTTI=ON
 CMAKE_ARGS+=	-DLLVM_DEFAULT_TARGET_TRIPLE=${CONFIGURE_TARGET}
@@ -74,7 +75,7 @@ OPTIONS_DEFINE=	CLANG DOCS EXTRAS FLANG LIT LLD LLDB MLIR
 OPTIONS_DEFINE_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFINE_i386=	COMPILER_RT OPENMP
 OPTIONS_DEFINE_powerpc64=	GOLD OPENMP
-OPTIONS_DEFAULT=	CLANG EXTRAS LIT LLD LLDB MLIR
+OPTIONS_DEFAULT=	CLANG EXTRAS FLANG LIT LLD LLDB MLIR
 OPTIONS_DEFAULT_amd64=	COMPILER_RT GOLD OPENMP
 OPTIONS_DEFAULT_i386=	COMPILER_RT OPENMP
 OPTIONS_DEFAULT_powerpc64=     ${OPTIONS_DEFAULT_powerpc64_${OSREL:R}} OPENMP
@@ -128,8 +129,6 @@ FLANG_IMPLIES=		MLIR
 FLANG_PLIST_DIRS=	${LLVM_PREFIX:S|${PREFIX}/||}/include/flang/Config
 # Docs require sphinx-markdown-tables which requires py-markdown > 3.0.1
 FLANG_CMAKE_ON=		-DFLANG_INCLUDE_DOCS=OFF
-# flang is broken with DYLIB linkage
-FLANG_CMAKE_OFF=	-DLLVM_LINK_LLVM_DYLIB=ON
 LIT_DESC=		Install lit and FileCheck test tools
 LLD_DESC=		Install lld, the LLVM linker
 LLDB_BUILD_DEPENDS=	swig:devel/swig
@@ -155,8 +154,10 @@ COMMANDS=	${LLVM_COMMANDS}
 FIRST_COMMAND=	${COMMANDS:C/^/XXXX/1:MXXXX*:C/^XXXX//}
 
 MAN1SRCS+=	bugpoint.1 \
+		clang-tblgen.1 \
 		dsymutil.1 \
 		llc.1 \
+		lldb-tblgen.1 \
 		lli.1 \
 		llvm-addr2line.1 \
 		llvm-ar.1 \
@@ -192,8 +193,9 @@ MAN1SRCS+=	bugpoint.1 \
 		llvm-strings.1 \
 		llvm-strip.1 \
 		llvm-symbolizer.1 \
-		opt.1 \
-		xxx-tblgen.1
+		llvm-tblgen.1 \
+		mlir-tblgen.1 \
+		opt.1
 
 STRIP_LIBS=	BugpointPasses.so \
 		LLVMHello.so \
@@ -428,6 +430,7 @@ post-install-DOCS-on:
 	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/lit.1
 	${RM} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/FileCheck.1
 .endif
+	${RM} "${STAGEDIR}${LLVM_PREFIX}/share/man/man1/tblgen Family.1"
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/man/
 
