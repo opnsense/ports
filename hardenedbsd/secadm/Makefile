@@ -3,7 +3,7 @@
 PORTNAME=	secadm
 PORTVERSION=	0.5.1
 DISTVERSIONPREFIX=	v
-PORTREVISION?=	3
+PORTREVISION?=	4
 CATEGORIES=	hardenedbsd
 
 MAINTAINER=	shawn.webb@hardenedbsd.org
@@ -14,10 +14,11 @@ LICENSE=	BSD2CLAUSE
 USES+=		uidfix
 USE_HARDENING?=	safestack
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	HardenedBSD
-GH_PROJECT=	secadm
-GH_TAGNAME=	fcd8042
+USE_GITLAB=	yes
+GL_SITE=	https://git.hardenedbsd.org
+GL_ACCOUNT=	hardenedbsd
+GL_PROJECT=	secadm
+GL_COMMIT=	730801e051409d9a7382d5cab632557db3ee8f8a
 
 .if !defined(KMOD)
 LIBDIR?=	${PREFIX}/lib
