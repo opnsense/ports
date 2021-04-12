@@ -15516,7 +15516,6 @@ net/splatd||2020-09-19|Has expired: Uses deprecated version of python
 net-im/centerim-devel||2020-09-19|Has expired: Uses deprecated version of python
 net-im/fugu||2020-09-19|Has expired: Uses deprecated version of python
 net-im/proxy65||2020-09-19|Has expired: Uses deprecated version of python
-net-mgmt/crmsh||2020-09-19|Has expired: Uses deprecated version of python
 net-mgmt/librenms-agent||2020-09-19|Has expired: Uses deprecated version of python
 net-p2p/couchpotato||2020-09-19|Has expired: Uses deprecated version of python
 news/rawdog||2020-09-19|Has expired: Uses deprecated version of python
@@ -16276,3 +16275,6 @@ databases/couchdb2|databases/couchdb3|2021-04-07|No longer supported upstream, u
 security/pidentd||2021-04-07|Removed: Unmaintained, abandoned, does not build with recent OS versions
 dns/dnsmasq-devel|dns/dnsmasq|2021-04-08|Has expired: use dns/dnsmasq instead, which is newer
 net/coturn|net/turnserver|2021-04-09|Remove duplicate port: coturn is another name for turnserver
+databases/percona55-server||2021-04-11|EOL upstream
+databases/percona55-client||2021-04-11|EOL upstream
+graphics/ilmbase|math/Imath|2021-04-10|Ilmbase was split out into Imath and OpenEXR.
