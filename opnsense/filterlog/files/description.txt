@@ -1,7 +1,7 @@
 IPv4 rulenr,subrulenr,anchorname,ridentifier(tracker),interface,reason,action,dir,version, tos, ecn, ttl, id,offset,flags,proto,protoname,length,src,dst
 	UDP srcport,dstport, datalen
 	TCP srcport,dstport,datalen,flags,error?|seq,ack,window,urg,options
-	CARP type,ttl,vhid, version,advskew,advbase
+	CARP type,ttl,vhid, version,advskew,advbase[,label]
 
 IPv6 rulenr,subrulenr,anchorname,ridentifier(tracker),interface,reason,action,dir,version,class,flowlabel,hlim,next-header(protoname),next,payload-length,src,dst
 	HBHOPT, HBH, PAD1,
@@ -26,4 +26,4 @@ IPv6 rulenr,subrulenr,anchorname,ridentifier(tracker),interface,reason,action,di
 	ROUTING, len,type,segleft,reserved,TRUNC|hdridx,addr
 	UDP srcport,dstport, datalen
 	TCP srcport,dstport,datalen,flags,error?|seq,ack,window,urg,options
-	CARP type,ttl,vhid, version,advskew,advbase
+	CARP type,ttl,vhid, version,advskew,advbase[,label]

@@ -3,6 +3,7 @@
 #include <sys/socket.h>
 #include <sys/sbuf.h>
 #include <sys/file.h>
+#include <sys/ioctl.h>
 
 #include <net/if.h>
 #include <pcap/pcap.h>
@@ -27,6 +28,10 @@ static char errbuf[PCAP_ERRBUF_SIZE];
 static struct sbuf sbuf;
 static char *sbuf_buf;
 static char *pidfile;
+static char **rulelabels = NULL;
+static int rulelabels_max = -1;
+
+#define RULELABELS_STEP 64 /* could be higher but force use of realloc to ensure it works */
 
 static const struct tok pf_reasons[] = {
 	{ 0,	"match" },
@@ -95,6 +100,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	u_int hdrlen;
 	u_int caplen = pkthdr->caplen;
 	u_int32_t subrulenr;
+	u_int32_t rulenr;
 
 	/* check length */
 	if (caplen < sizeof(u_int8_t)) {
@@ -116,7 +122,8 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	}
 
 	/* print what we know */
-	sbuf_printf(&sbuf, "%u,", EXTRACT_32BITS(&hdr->rulenr));
+	rulenr = EXTRACT_32BITS(&hdr->rulenr);
+	sbuf_printf(&sbuf, "%u,", rulenr);
 	subrulenr = EXTRACT_32BITS(&hdr->subrulenr);
 	if (subrulenr == (u_int32_t)-1)
 		sbuf_printf(&sbuf, ",,");
@@ -150,6 +157,14 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
                 break;
         }
 
+	if (rulelabels) {
+		char *label = "";
+		if (rulelabels_max >= rulenr) {
+			label = rulelabels[rulenr];
+		}
+		sbuf_printf(&sbuf, ",%s", label);
+	}
+
 printsbuf:
 	sbuf_finish(&sbuf);
 	if (filterlog_pcap_file != NULL)
@@ -161,20 +176,115 @@ printsbuf:
 	return;
 }
 
+static void free_rulelabels()
+{
+	int i;
+
+	if (!rulelabels) {
+		return;
+	}
+
+	/* one more for probable offset */
+	for (i = 0; i < rulelabels_max + 1; ++i) {
+		if (rulelabels[i]) {
+			free(rulelabels[i]);
+			rulelabels[i] = NULL;
+		}
+	}
+
+	free(rulelabels);
+
+	rulelabels_max = -1;
+	rulelabels = NULL;
+}
+
+static int realloc_rulelabels(int nr)
+{
+	void *new = NULL;
+
+	if (rulelabels_max >= nr && rulelabels) {
+		return (0);
+	}
+
+	nr += RULELABELS_STEP;
+
+	/* one more for probable offset */
+	new = calloc(nr + 1, sizeof(char *));
+	if (!new) {
+		return (1);
+	}
+
+	if (rulelabels) {
+		/* one more for probable offset */
+		memcpy(new, rulelabels, sizeof(char *) * (rulelabels_max + 1));
+		free(rulelabels);
+	}
+
+	rulelabels = new;
+	rulelabels_max = nr;
+
+	return (0);
+}
+
+static int get_rulelabels()
+{
+	struct pfioc_rule pr;
+	struct pfl_entry *e;
+	u_int32_t nr, i;
+	int dev;
+
+	bzero(&pr, sizeof(pr));
+	pr.rule.action = PF_PASS;
+
+	if ((dev = open("/dev/pf", O_RDONLY)) == -1) {
+		return (1);
+	}
+
+	bzero(&pr, sizeof(pr));
+	pr.rule.action = PF_PASS;
+
+	if (ioctl(dev, DIOCGETRULES, &pr)) {
+		return (1);
+	}
+
+	for (nr = pr.nr, i = 0; i < nr; i++) {
+		pr.nr = i;
+
+		if (ioctl(dev, DIOCGETRULE, &pr)) {
+			return (1);
+		}
+
+		if (realloc_rulelabels(pr.rule.nr)) {
+			return (1);
+		}
+
+		if (pr.rule.label[0]) {
+			rulelabels[pr.rule.nr] = strdup(pr.rule.label);
+		}
+	}
+
+	close(dev);
+
+	return (0);
+}
+
 int
 main(int argc, char **argv)
 {
-	int perr, ch;
+	int perr, ch, labels_only = 0;
 	char *interface;
 
 	pidfile = NULL;
 	interface = filterlog_pcap_file = NULL;
 	tzset();
 
-	while ((ch = getopt(argc, argv, "i:p:P:")) != -1) {
+	while ((ch = getopt(argc, argv, "i:lp:P:")) != -1) {
 		switch (ch) {
 		case 'i':
 			interface = optarg;
+			break;
+		case 'l':
+			labels_only = 1;
 			break;
 		case 'p':
 			pidfile = optarg;
@@ -186,6 +296,24 @@ main(int argc, char **argv)
 			printf("Unknown option specified\n");
 			return (-1);
 		}
+	}
+
+	if (get_rulelabels()) {
+		printf("Could not load rule labels: continuing without them\n");
+		free_rulelabels();
+	}
+
+	if (labels_only) {
+		int i;
+
+		/* one more for probable offset */
+		for (i = 0; i < rulelabels_max + 1; ++i) {
+			if (rulelabels[i]) {
+				printf("%d: %s\n", i, rulelabels[i]);
+			}
+		}
+
+		exit(rulelabels ? 0 : 1);
 	}
 
 	if (interface == NULL && filterlog_pcap_file == NULL) {
@@ -254,6 +382,7 @@ main(int argc, char **argv)
 			break;
 	}
 
+	free_rulelabels();
 	closelog();
 
 	return (0);
