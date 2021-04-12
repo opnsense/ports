@@ -1,0 +1,5 @@
+libexec/bsdinstall/opnsense
+libexec/bsdinstall/opnsense-import
+libexec/bsdinstall/opnsense-install
+libexec/bsdinstall/opnsense-reset
+libexec/bsdinstall/opnsense-rootpass
