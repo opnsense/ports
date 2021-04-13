@@ -11,6 +11,9 @@ LICENSE=	BSD2CLAUSE
 RUN_DEPENDS=	cpdup:sysutils/cpdup
 PREFIX=		/usr
 
+NO_ARCH=	yes
+NO_BUILD=	yes
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	installer
