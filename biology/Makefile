@@ -123,9 +123,11 @@
     SUBDIR += protomol
     SUBDIR += psi88
     SUBDIR += py-Genesis-PyAPI
+    SUBDIR += py-bigwig
     SUBDIR += py-biom-format
     SUBDIR += py-biopython
     SUBDIR += py-bx-python
+    SUBDIR += py-crossmap
     SUBDIR += py-cutadapt
     SUBDIR += py-dnaio
     SUBDIR += py-ete3

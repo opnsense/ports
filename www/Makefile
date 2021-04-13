@@ -2293,8 +2293,6 @@
     SUBDIR += xfce4-smartbookmark-plugin
     SUBDIR += xist
     SUBDIR += xoops
-    SUBDIR += xshttpd
-    SUBDIR += xshttpd-devel
     SUBDIR += xsp
     SUBDIR += yabb
     SUBDIR += yanopaste
@@ -2306,7 +2304,6 @@
     SUBDIR += you-get
     SUBDIR += yourls
     SUBDIR += youtube_dl
-    SUBDIR += youtube_dlc
     SUBDIR += yt-dlp
     SUBDIR += ytdl
     SUBDIR += yuicompressor
