@@ -16185,13 +16185,13 @@ audio/fplib||2021-03-07|Dead service since 2015
 sysutils/prelink||2021-03-11|Has expired: Have no users in the ports tree
 x11-fonts/vtfontcvt-ng||2021-03-12|no longer useful on any supported releases; use vtfontcvt(8) instead
 biology/py-fastTSNE|math/py-openTSNE|2021-03-13|project renamed/reimplemented under a different name
+misc/py-XlsxWriter|textproc/py-xlsxwriter|2021-03-13|Remove duplicate
 emulators/open-vm-tools-nox11|emulators/open-vm-tools@nox11|2021-03-17|Moved to a flavored, generic, version
 math/s2geometry|graphics/s2|2021-03-22|Remove duplicate port
 net-p2p/sonarr-devel|net-p2p/sonarr|2021-03-23|Removed, use net-p2p/sonarr instead
 www/py-django-jsonfield||2021-03-24|Removed: This port will be deleted in the future, please switch to use www/py-jsonfield or www/py-jsonfield2
 devel/hs-c2hs||2021-03-27|Has expired: Was used as BUILD_DEPENDS, not useful on its own
 x11-toolkits/tile||2021-03-27|Has expired: The Tile widget set is part of Tk 8.5 and above, see TIP 248
-security/apg||2021-03-28|Has expired: Abandonware. Please try security/makepasswd or security/rndpassw instead
 lang/Gofer||2021-03-28|Has expired: Old, unmaintained language
 net/libsignal|net/libsignal-protocol-c|2021-03-30|Rename to match upstream naming
 databases/redis4|databases/redis|2021-04-06|Has expired: End of life, please use modern version
@@ -16284,3 +16284,5 @@ dns/credns||2021-04-12|Broken 12+, unmaintained upstream
 www/youtube_dlc|www/yt-dlp|2021-04-12|Upstream have made a complete transition to new project name
 security/netpgp||2021-04-12|Broken 12+, unmaintained upstream
 net/freenet6||2021-04-12|Broken 12+, service discontinued
+devel/sd-mux|devel/sd-mux-ctrl|2021-04-13|Renamed to match upstream naming
+sysutils/sd-mux-ctrl|devel/sd-mux-ctrl|2021-04-13|Remove duplicate port
