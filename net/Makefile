@@ -1473,7 +1473,6 @@
     SUBDIR += toonel
     SUBDIR += torsocks
     SUBDIR += traefik
-    SUBDIR += traefik2
     SUBDIR += traff
     SUBDIR += trafshow
     SUBDIR += trafshow3
