@@ -76,6 +76,208 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="75aae50b-9e3c-11eb-9bc3-8c164582fbac">
+    <topic>AccountService -- Insufficient path check in user_change_icon_file_authorized_cb()</topic>
+    <affects>
+      <package>
+	<name>accountsservice</name>
+	<range><lt>0.6.50</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NVD reports:</p>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2018-14036">
+	  <p>
+	    Directory Traversal with ../ sequences occurs in AccountsService
+	    before 0.6.50 because of an insufficient path check in
+	    user_change_icon_file_authorized_cb() in user.c.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>http://www.openwall.com/lists/oss-security/2018/07/02/2</url>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2018-14036</url>
+      <url>https://www.securityfocus.com/bid/104757</url>
+      <url>https://bugs.freedesktop.org/show_bug.cgi?id=107085</url>
+      <url>https://bugzilla.suse.com/show_bug.cgi?id=1099699</url>
+      <url>https://cgit.freedesktop.org/accountsservice/commit/?id=f9abd359f71a5bce421b9ae23432f539a067847a</url>
+      <cvename>CVE-2018-14036</cvename>
+    </references>
+    <dates>
+      <discovery>2018-07-13</discovery>
+      <entry>2021-04-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="40b481a9-9df7-11eb-9bc3-8c164582fbac">
+    <topic>mdbook -- XSS in mdBook's search page</topic>
+    <affects>
+      <package>
+	<name>mdbook</name>
+	<range><lt>0.4.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Rust Security Response Working Group reports:</p>
+	<blockquote cite="https://github.com/rust-lang/mdBook/security/advisories/GHSA-gx5w-rrhp-f436">
+	  <p>
+	    The search feature of mdBook (introduced in version 0.1.4) was
+	    affected by a cross site scripting vulnerability that allowed an
+	    attacker to execute arbitrary JavaScript code on an user's browser
+	    by tricking the user into typing a malicious search query, or
+	    tricking the user into clicking a link to the search page with the
+	    malicious search query prefilled.
+
+	    mdBook 0.4.5 fixes the vulnerability by properly escaping the search
+	    query.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/rust-lang/mdBook/blob/master/CHANGELOG.md#mdbook-045</url>
+      <url>https://github.com/rust-lang/mdBook/commit/32abeef088e98327ca0dfccdad92e84afa9d2e9b</url>
+      <url>https://github.com/rust-lang/mdBook/security/advisories/GHSA-gx5w-rrhp-f436</url>
+      <url>https://groups.google.com/g/rustlang-security-announcements/c/3-sO6of29O0?pli=1</url>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2020-26297</url>
+      <cvename>CVE-2020-26297</cvename>
+    </references>
+    <dates>
+      <discovery>2021-04-01</discovery>
+      <entry>2021-04-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fb6e53ae-9df6-11eb-ba8c-001b217b3468">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>13.10.0</ge><lt>13.10.3</lt></range>
+	<range><ge>13.9.0</ge><lt>13.9.6</lt></range>
+	<range><ge>7.12</ge><lt>13.8.8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>SO-AND-SO reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2021/04/14/security-release-gitlab-13-10-3-released/">
+	  <p>Remote code execution when uploading specially crafted image files</p>
+	  <p>Update Rexml</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://about.gitlab.com/releases/2021/04/14/security-release-gitlab-13-10-3-released/</url>
+      <cvename>CVE-2021-28965</cvename>
+    </references>
+    <dates>
+      <discovery>2021-04-14</discovery>
+      <entry>2021-04-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f3d86439-9def-11eb-97a0-e09467587c17">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>90.0.4430.72</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2021/04/stable-channel-update-for-desktop_14.html">
+	  <p>This release contains 37 security fixes, including:</p>
+	  <ul>
+	    <li>[1025683] High CVE-2021-21201: Use after free in permissions.
+	      Reported by Gengming Liu, Jianyu Chen at Tencent Keen Security
+	      Lab on 2019-11-18</li>
+	    <li>[1188889] High CVE-2021-21202: Use after free in extensions.
+	      Reported by David Erceg on 2021-03-16</li>
+	    <li>[1192054] High CVE-2021-21203: Use after free in Blink.
+	      Reported by asnine on 2021-03-24</li>
+	    <li>[1189926] High CVE-2021-21204: Use after free in Blink.
+	      Reported by Chelse Tsai-Simek, Jeanette Ulloa, and Emily
+	      Voigtlander of Seesaw on 2021-03-19</li>
+	    <li>[1165654] High CVE-2021-21205: Insufficient policy enforcement
+	     in navigation. Reported by Alison Huffman, Microsoft Browser
+	      Vulnerability Research on 2021-01-12</li>
+	    <li>[1195333] High CVE-2021-21221: Insufficient validation of
+	      untrusted input in Mojo. Reported by Guang Gong of Alpha Lab,
+	      Qihoo 360 on 2021-04-02</li>
+	    <li>[1185732] Medium CVE-2021-21207: Use after free in IndexedDB.
+	      Reported by koocola (@alo_cook) and Nan Wang (@eternalsakura13)
+	      of 360 Alpha Lab on 2021-03-08</li>
+	    <li>[1039539] Medium CVE-2021-21208: Insufficient data validation
+	      in QR scanner. Reported by Ahmed Elsobky (@0xsobky) on
+	      2020-01-07</li>
+	    <li>[1143526] Medium CVE-2021-21209: Inappropriate implementation
+	      in storage. Reported by Tom Van Goethem (@tomvangoethem) on
+	      2020-10-29</li>
+	    <li>[1184562] Medium CVE-2021-21210: Inappropriate implementation
+	      in Network. Reported by @bananabr on 2021-03-04</li>
+	    <li>[1103119] Medium CVE-2021-21211: Inappropriate implementation
+	      in Navigation. Reported by Akash Labade (m0ns7er) on
+	      2020-07-08</li>
+	    <li>[1145024] Medium CVE-2021-21212: Incorrect security UI in
+	      Network Config UI. Reported by Hugo Hue and Sze Yiu Chau of the
+	      Chinese University of Hong Kong on 2020-11-03</li>
+	    <li>[1161806] Medium CVE-2021-21213: Use after free in WebMIDI.
+	      Reported by raven (@raid_akame) on 2020-12-25</li>
+	    <li>[1170148] Medium CVE-2021-21214: Use after free in Network API.
+	      Reported by Anonymous on 2021-01-24</li>
+	    <li>[1172533] Medium CVE-2021-21215: Inappropriate implementation
+	      in Autofill. Reported by Abdulrahman Alqabandi, Microsoft Browser
+	      Vulnerability Research on 2021-01-30</li>
+	    <li>[1173297] Medium CVE-2021-21216: Inappropriate implementation
+	      in Autofill. Reported by Abdulrahman Alqabandi, Microsoft Browser
+	      Vulnerability Research on 2021-02-02</li>
+	    <li>[1166462] Low CVE-2021-21217: Uninitialized Use in PDFium.
+	      Reported by Zhou Aiting (@zhouat1) of Qihoo 360 Vulcan Team on
+	      2021-01-14</li>
+	    <li>[1166478] Low CVE-2021-21218: Uninitialized Use in PDFium.
+	      Reported by Zhou Aiting (@zhouat1) of Qihoo 360 Vulcan Team on
+	      2021-01-14</li>
+	    <li>[1166972] Low CVE-2021-21219: Uninitialized Use in PDFium.
+	      Reported by Zhou Aiting (@zhouat1) of Qihoo 360 Vulcan Team on
+	      2021-01-15</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-21201</cvename>
+      <cvename>CVE-2021-21202</cvename>
+      <cvename>CVE-2021-21203</cvename>
+      <cvename>CVE-2021-21204</cvename>
+      <cvename>CVE-2021-21205</cvename>
+      <cvename>CVE-2021-21221</cvename>
+      <cvename>CVE-2021-21207</cvename>
+      <cvename>CVE-2021-21208</cvename>
+      <cvename>CVE-2021-21209</cvename>
+      <cvename>CVE-2021-21210</cvename>
+      <cvename>CVE-2021-21211</cvename>
+      <cvename>CVE-2021-21212</cvename>
+      <cvename>CVE-2021-21213</cvename>
+      <cvename>CVE-2021-21214</cvename>
+      <cvename>CVE-2021-21215</cvename>
+      <cvename>CVE-2021-21216</cvename>
+      <cvename>CVE-2021-21217</cvename>
+      <cvename>CVE-2021-21218</cvename>
+      <cvename>CVE-2021-21219</cvename>
+      <url>https://chromereleases.googleblog.com/2021/04/stable-channel-update-for-desktop_14.html</url>
+    </references>
+    <dates>
+      <discovery>2021-04-14</discovery>
+      <entry>2021-04-15</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7c0d71a9-9d48-11eb-97a0-e09467587c17">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
