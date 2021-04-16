@@ -36,7 +36,7 @@ CONFIGURE_ARGS+=--enable-gccprotect \
 INSTALL_TARGET=		install-strip
 TEST_TARGET=		check
 
-CONFLICTS_INSTALL=	libhtp
+CONFLICTS_INSTALL=	libhtp suricata
 
 SUB_FILES=	pkg-message
 PLIST_SUB=	PORTVERSION=${DISTVERSION:C/-/_/g}
