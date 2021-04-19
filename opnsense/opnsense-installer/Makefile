@@ -1,6 +1,6 @@
 PORTNAME=	opnsense-installer
 PORTVERSION=	0.7
-#PORTREVISION=	0 # GH_TAGNAME
+PORTREVISION=	1 # GH_TAGNAME
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -17,6 +17,6 @@ NO_BUILD=	yes
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	installer
-#GH_TAGNAME=	92a4794
+GH_TAGNAME=	918e869
 
 .include <bsd.port.mk>
