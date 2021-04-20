@@ -481,6 +481,7 @@
     SUBDIR += heirloom
     SUBDIR += helm
     SUBDIR += helmfile
+    SUBDIR += herbe
     SUBDIR += hexpeek
     SUBDIR += hextools
     SUBDIR += hexyl
@@ -608,6 +609,7 @@
     SUBDIR += linux-c7-lttng-ust
     SUBDIR += linux-c7-numactl-libs
     SUBDIR += linux-c7-userspace-rcu
+    SUBDIR += linux-miniconda-installer
     SUBDIR += linux-rkbin
     SUBDIR += linuxfdisk
     SUBDIR += lizardfs
@@ -1102,6 +1104,7 @@
     SUBDIR += roct
     SUBDIR += rovclock
     SUBDIR += rpi-firmware
+    SUBDIR += rset
     SUBDIR += rsfetch
     SUBDIR += rshim-user-space
     SUBDIR += rsnapshot

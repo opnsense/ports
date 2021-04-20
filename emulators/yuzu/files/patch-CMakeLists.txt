@@ -1,15 +1,28 @@
 yuzu (Qt) currently needs SDL for input
 
---- CMakeLists.txt.orig	2020-06-29 05:12:38 UTC
+--- CMakeLists.txt.orig	2021-04-19 21:30:36 UTC
 +++ CMakeLists.txt
-@@ -225,7 +225,9 @@ if(ENABLE_SDL2)
-         list(APPEND CMAKE_MODULE_PATH "${CONAN_SDL2_ROOT_RELEASE}")
-         list(APPEND CMAKE_PREFIX_PATH "${CONAN_SDL2_ROOT_RELEASE}")
-     endif()
--    find_package(SDL2)
+@@ -273,9 +273,10 @@ if (ENABLE_SDL2)
+         add_library(SDL2 INTERFACE)
+         target_link_libraries(SDL2 INTERFACE "${SDL2_LIBRARY}")
+         target_include_directories(SDL2 INTERFACE "${SDL2_INCLUDE_DIR}")
+-    else()
+-        find_package(SDL2 2.0.12)
+-
++    endif()
 +endif()
-+find_package(SDL2)
-+if(ENABLE_SDL2)
-     if (NOT SDL2_FOUND)
-         # otherwise add this to the list of libraries to install
-         list(APPEND CONAN_REQUIRED_LIBS "sdl2/2.0.12@bincrafters/stable")
++if (NOT YUZU_USE_BUNDLED_SDL2)
++    find_package(SDL2 2.0.12)
+         if(SDL2_FOUND)
+             # Some installations don't set SDL2_LIBRARIES
+             if("${SDL2_LIBRARIES}" STREQUAL "")
+@@ -287,9 +288,6 @@ if (ENABLE_SDL2)
+             add_library(SDL2 INTERFACE)
+             target_link_libraries(SDL2 INTERFACE "${SDL2_LIBRARIES}")
+         endif()
+-    endif()
+-else()
+-    set(SDL2_FOUND NO)
+ endif()
+ 
+ # Install any missing dependencies with conan install
