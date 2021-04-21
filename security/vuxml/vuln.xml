@@ -76,6 +76,71 @@ Notes:
   * Do not forget port variants (linux-f10-libxml2, libxml2, etc.)
 -->
 <vuxml xmlns="http://www.vuxml.org/apps/vuxml-1">
+  <vuln vid="e358b470-b37d-4e47-bc8a-2cd9adbeb63c">
+    <topic>jenkins -- Denial of service vulnerability in bundled Jetty</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.286</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.277.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2021-04-20/">
+	  <h1>Description</h1>
+	  <h5>(High) JENKINS-65280 / CVE-2021-28165</h5>
+	  <p>Denial of service vulnerability in bundled Jetty</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.jenkins.io/security/advisory/2021-04-20/</url>
+    </references>
+    <dates>
+      <discovery>2021-04-20</discovery>
+      <entry>2021-04-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="56ba4513-a1be-11eb-9072-d4c9ef517024">
+    <topic>MySQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mysql57-server</name>
+	<range><lt>5.7.34</lt></range>
+      </package>
+      <package>
+	<name>mysql80-server</name>
+	<range><lt>8.0.24</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oracle reports:</p>
+	<blockquote cite="https://www.oracle.com/security-alerts/cpuapr2021.html">
+	  <p>This Critical Patch Update contains 49 new security patches for
+	    Oracle MySQL.  10 of these vulnerabilities may be remotely exploitable
+	    without authentication, i.e., may be exploited over a network without
+	    requiring user credentials.<br/>
+	    The highest CVSS v3.1 Base Score of vulnerabilities affecting Oracle
+	    MySQL is 9.8.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.oracle.com/security-alerts/cpuapr2021.html</url>
+    </references>
+    <dates>
+      <discovery>2021-04-20</discovery>
+      <entry>2021-04-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="e87c2647-a188-11eb-8806-1c1b0d9ea7e6">
     <topic>All versions of Apache OpenOffice through 4.1.9 can open non-http(s) hyperlinks. If the link is specifically crafted this could lead to untrusted code execution.</topic>
     <affects>
@@ -1288,7 +1353,7 @@ Notes:
 	<name>openssh-portable</name>
 	<name>openssh-portable-hpn</name>
 	<name>openssh-portable-gssapi</name>
-	<range><ge>8.2p1,1</ge><lt>8.4p1,1_4</lt></range>
+	<range><ge>8.2.p1,1</ge><lt>8.4.p1_4,1</lt></range>
       </package>
     </affects>
     <description>
@@ -1324,6 +1389,7 @@ Notes:
     <dates>
       <discovery>2021-03-03</discovery>
       <entry>2021-03-13</entry>
+      <modified>2021-04-20</modified>
     </dates>
   </vuln>
 
