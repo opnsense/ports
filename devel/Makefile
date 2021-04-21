@@ -781,7 +781,6 @@
     SUBDIR += geany-plugins-l10n
     SUBDIR += geany-themes
     SUBDIR += gearmand
-    SUBDIR += gearmand-devel
     SUBDIR += gecode
     SUBDIR += generate
     SUBDIR += gengetopt
@@ -4315,6 +4314,7 @@
     SUBDIR += py-curio
     SUBDIR += py-cursive
     SUBDIR += py-curtsies
+    SUBDIR += py-cvss
     SUBDIR += py-cwcwidth
     SUBDIR += py-cxx
     SUBDIR += py-cycler
@@ -4648,6 +4648,7 @@
     SUBDIR += py-memory-profiler
     SUBDIR += py-microversion-parse
     SUBDIR += py-milc
+    SUBDIR += py-mime
     SUBDIR += py-minidump
     SUBDIR += py-minimongo
     SUBDIR += py-minio
