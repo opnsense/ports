@@ -5,3 +5,4 @@ libexec/bsdinstall/opnsense-reset
 libexec/bsdinstall/opnsense-rootpass
 libexec/bsdinstall/opnsense-ufs
 libexec/bsdinstall/opnsense-zfs
+libexec/bsdinstall/opnsense.subr
