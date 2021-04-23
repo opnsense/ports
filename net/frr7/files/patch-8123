@@ -1,0 +1,43 @@
+From 2c56e8905de8e7282eeced4464731cd61a78dff4 Mon Sep 17 00:00:00 2001
+From: Wojciech Owczarek <wojciech@owczarek.co.uk>
+Date: Mon, 22 Feb 2021 23:23:47 +0000
+Subject: [PATCH] zebra: Fix for #3973, tunnel interfaces on FreeBSD always
+ unnumbered
+
+For interfaces with a peer address (tunnels, etc.),
+use the netmask of the peer destination, rather than local end,
+to establish if the interface should be treated as unnumbered.
+Affects frr on FreeBSD and anywhere else where tunnels have a
+peer / destination address - affects GRE, VTI and such.
+
+Signed-off-by: Wojciech Owczarek <wojciech@owczarek.co.uk>
+---
+ zebra/connected.c | 15 +++++++++++----
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+
+diff --git zebra/connected.c zebra/connected.c
+index c885c533e64..f9b1e6aa6d5 100644
+--- zebra/connected.c
++++ zebra/connected.c
+@@ -77,10 +77,17 @@ static void connected_announce(struct interface *ifp, struct connected *ifc)
+ 
+ 	if (!if_is_loopback(ifp) && ifc->address->family == AF_INET &&
+ 	    !IS_ZEBRA_IF_VRF(ifp)) {
+-		if (ifc->address->prefixlen == 32)
+-			SET_FLAG(ifc->flags, ZEBRA_IFA_UNNUMBERED);
+-		else
+-			UNSET_FLAG(ifc->flags, ZEBRA_IFA_UNNUMBERED);
++		if (CONNECTED_PEER(ifc)) {
++			if (ifc->destination->prefixlen == 32)
++				SET_FLAG(ifc->flags, ZEBRA_IFA_UNNUMBERED);
++			else
++				UNSET_FLAG(ifc->flags, ZEBRA_IFA_UNNUMBERED);
++		} else {
++			if (ifc->address->prefixlen == 32)
++				SET_FLAG(ifc->flags, ZEBRA_IFA_UNNUMBERED);
++			else
++				UNSET_FLAG(ifc->flags, ZEBRA_IFA_UNNUMBERED);
++		}
+ 	}
+ 
+ 	listnode_add(ifp->connected, ifc);
