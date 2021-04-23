@@ -17,6 +17,8 @@ LIB_DEPENDS=	libjansson.so:devel/jansson \
 		liblz4.so:archivers/liblz4 \
 		libyaml.so:textproc/libyaml
 
+USE_HARDENING=	pie:configure
+
 USES=		autoreconf cpe gmake iconv:translit libtool localbase \
 		pathfix pkgconfig
 
@@ -26,9 +28,6 @@ USE_LDCONFIG=	yes
 USE_RC_SUBR=	${PORTNAME}
 
 GNU_CONFIGURE=	yes
-
-USE_HARDENING=	pie:configure
-
 CONFIGURE_ARGS+=--enable-gccprotect \
 		--enable-bundled-htp \
 	        --disable-gccmarch-native
