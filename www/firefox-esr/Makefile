@@ -2,6 +2,7 @@
 
 PORTNAME=	firefox
 DISTVERSION=	78.10.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	www
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
@@ -40,8 +41,6 @@ FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default4
 FIREFOX_DESKTOP=	${MOZSRC}/taskcluster/docker/${MOZILLA}-snap/${MOZILLA}.desktop
 MOZ_OPTIONS=	--enable-application=browser \
 		--enable-official-branding
-
-MOZ_OPTIONS+=	--enable-pie
 
 .include "${.CURDIR}/../../www/firefox/Makefile.options"
 

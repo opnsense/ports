@@ -67,7 +67,6 @@
     SUBDIR += inspectrum
     SUBDIR += iwmbt-firmware
     SUBDIR += java-simple-serial-connector
-    SUBDIR += kb
     SUBDIR += kermit
     SUBDIR += klog
     SUBDIR += libconcord
@@ -169,6 +168,7 @@
     SUBDIR += soapyplutosdr
     SUBDIR += soapyredpitaya
     SUBDIR += soapyremote
+    SUBDIR += soapysdr-rtlsdr
     SUBDIR += soapysdrhackrf
     SUBDIR += soapyuhd
     SUBDIR += spandsp

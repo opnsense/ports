@@ -1,7 +1,7 @@
---- setup.py.orig	2020-10-08 12:15:02 UTC
+--- setup.py.orig	2021-04-27 14:22:26 UTC
 +++ setup.py
-@@ -61,7 +61,7 @@ setup(
-         "httpcore==0.12.*",
+@@ -63,7 +63,7 @@ setup(
+         "async_generator; python_version < '3.7'"
      ],
      extras_require={
 -        "http2": "h2==3.*",

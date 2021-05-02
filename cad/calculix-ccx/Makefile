@@ -20,7 +20,7 @@ LIB_DEPENDS=	libarpack.so:math/arpack-ng	\
 
 USE_HARDENING=	stackautoinit:off
 
-USES=		blaslapack compiler:openmp fortran gmake tar:bzip2
+USES=		blaslapack compiler:openmp fortran gmake perl5 tar:bzip2
 USE_PERL5=	build
 
 DIST_SOURCES=	ccx_${PORTVERSION}.src${EXTRACT_SUFX}

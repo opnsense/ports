@@ -11,7 +11,7 @@ LICENSE=	BSD2CLAUSE
 
 USE_HARDENING=	pie:off relro:off
 
-SSP_UNSAFE=	kernel module does not support ssp
+USES=		kmod uidfix
 
 OPTIONS_DEFINE=	PTABLE
 PTABLE_DESC=	Use O(1) lookup for tunnel hooks
@@ -20,19 +20,5 @@ PTABLE_DESC=	Use O(1) lookup for tunnel hooks
 # this option if you have many tunnels with single remote IP.
 
 PTABLE_MAKE_ARGS=	NO_LINEAR_HOOK_LOOKUP=1
-
-KMODDIR?=	/boot/modules
-PLIST_SUB+=	KMODDIR=${KMODDIR} \
-		PORTNAME=${PORTNAME}
-
-.include <bsd.port.options.mk>
-
-.if !exists(${SRC_BASE}/sys/sys/module.h)
-IGNORE=		requires kernel source files
-.endif
-
-do-install:
-	${MKDIR} "${STAGEDIR}${KMODDIR}"
-	${INSTALL_KLD} ${WRKSRC}/${PORTNAME}.ko "${STAGEDIR}${KMODDIR}"
 
 .include <bsd.port.mk>

@@ -166,7 +166,6 @@
     SUBDIR += libfm
     SUBDIR += libfm-extra
     SUBDIR += libfm-qt
-    SUBDIR += libgnome
     SUBDIR += libgnomekbd
     SUBDIR += libinput
     SUBDIR += libmatekbd
@@ -321,6 +320,7 @@
     SUBDIR += sselp
     SUBDIR += stalonetray
     SUBDIR += startup-notification
+    SUBDIR += station-tweak
     SUBDIR += sterm
     SUBDIR += stjerm
     SUBDIR += swarp

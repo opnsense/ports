@@ -20,7 +20,6 @@ USE_HARDENING=	cfi safestack
 USES=		compiler:c++11-lang cpe desktop-file-utils gmake localbase:ldflags \
 		tar:bzip2 xorg
 USE_XORG=	x11 xt xinerama
-USE_PERL5=	run
 CPE_VENDOR=	daniel_friesel
 
 MAKE_ENV+=	LDFLAGS="${LDFLAGS}" verscmp=0

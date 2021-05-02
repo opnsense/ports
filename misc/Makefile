@@ -132,7 +132,6 @@
     SUBDIR += frugally-deep
     SUBDIR += ftdi-eeprom
     SUBDIR += fxload
-    SUBDIR += gcstar
     SUBDIR += gedkeeper
     SUBDIR += geekcode
     SUBDIR += getopt
@@ -465,7 +464,6 @@
     SUBDIR += smssend
     SUBDIR += snakemake
     SUBDIR += soapysdr
-    SUBDIR += soapysdr-rtlsdr
     SUBDIR += solarized
     SUBDIR += sshbuddy
     SUBDIR += sssnips
