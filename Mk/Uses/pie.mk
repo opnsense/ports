@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 # Compile a port with PIE flags
 #
 # Feature:	pie

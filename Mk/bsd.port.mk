@@ -1901,6 +1901,10 @@ PKG_DEPENDS+=	${LOCALBASE}/sbin/pkg:${PKG_ORIGIN}
 .include "${PORTSDIR}/Mk/bsd.gcc.mk"
 .endif
 
+.if !defined(USE_GCC)
+CFLAGS+=	-Qunused-arguments
+.endif
+
 .if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 LDFLAGS+=	-fuse-ld=bfd
 BINARY_ALIAS+=	ld=${LD}
@@ -2303,11 +2307,11 @@ PKG_SUFX?=	.pkg
 .if defined(PKG_NOCOMPRESS)
 PKG_OLDSUFX?=	.tar
 .else
-.if ${OSVERSION} > 1400000
-PKG_OLDSUFX?=	.tzst
-.else
+#.if ${OSVERSION} > 1400000
+#PKG_OLDSUFX?=	.tzst
+#.else
 PKG_OLDSUFX?=	.txz
-.endif
+#.endif
 .endif
 .else
 .if defined(PKG_NOCOMPRESS)

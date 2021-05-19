@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 # Compile a port with RELRO flags
 #
 # Feature:	relro

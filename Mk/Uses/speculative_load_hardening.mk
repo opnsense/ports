@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 # Compile a port with Speculative Load Hardening
 #
 # Warning: this feature carries a large performance hit.

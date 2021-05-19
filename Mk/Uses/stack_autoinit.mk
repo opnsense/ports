@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 # Compile a port with stack zero-initialization
 #
 # Feature:	stack_autoinit

@@ -1,5 +1,3 @@
-# $FreeBSD$
-#
 # HardenedBSD-related ports options
 #
 # Hardening for binary applications is done via several techniques, e.g.
