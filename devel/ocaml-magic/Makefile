@@ -18,6 +18,8 @@ USE_OCAML=		yes
 USE_OCAML_FINDLIB=	yes
 USE_OCAML_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 MAKE_JOBS_UNSAFE=	yes
 
 USES=		gmake

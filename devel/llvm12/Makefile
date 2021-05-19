@@ -47,6 +47,8 @@ SHEBANG_FILES=	llvm/utils/lit/lit.py llvm/utils/llvm-lit/llvm-lit.in \
 		clang-tools-extra/clang-tidy/tool/clang-tidy-diff.py \
 		clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
 
+LLVM_AR_UNSAFE=	yes
+
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"
 

@@ -1,6 +1,5 @@
     COMMENT = HardenedBSD projects
 
-SUBDIR += rowhammer
 SUBDIR += secadm
 SUBDIR += secadm-kmod
 SUBDIR += testpie

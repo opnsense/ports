@@ -15,6 +15,8 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf localbase sdl
 USE_SDL=	sdl mixer
 
+USE_HARDENING=	pie:off
+
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 
 PLIST_FILES=	bin/epiphany-game

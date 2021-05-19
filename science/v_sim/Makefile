@@ -35,7 +35,7 @@ RUN_DEPENDS=	${PYNUMPY}	\
 USE_HARDENING=	retpoline:off stackautoinit:off
 
 USES=		autoreconf blaslapack compiler:c11 fortran gl gmake gnome	\
-		libtool:keepla localbase:ldflags pkgconfig python:3.6+		\
+		libtool:keepla localbase:ldflags pkgconfig python:3.7+		\
 		shebangfix tar:bzip2 xorg
 SHEBANG_GLOB=	*.py
 USE_XORG=	x11

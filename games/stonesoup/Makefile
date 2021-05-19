@@ -5,7 +5,7 @@ PORTVERSION=	0.23.2
 PORTREVISION=	1
 CATEGORIES=	games
 
-MAINTAINER=	lifanov@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Dungeon Crawl Stone Soup - a fun, free rogue-like game
 
 LICENSE=	GPLv2
@@ -22,6 +22,8 @@ USES=		bison compiler:c++11-lib gmake lua:51 perl5 pkgconfig \
 USE_GITHUB=	yes
 GH_ACCOUNT=	crawl
 GH_PROJECT=	crawl
+
+USE_HARDENING=	pie:off
 
 USE_PERL5=	build
 SHEBANG_FILES=	util/gen-mi-enum \

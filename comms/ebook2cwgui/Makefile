@@ -13,10 +13,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	ebook2cw:comms/ebook2cw
 
-USE_HARDENING=	pie:off
-
 USES=		compiler:c++11-lang
 USE_WX=		2.8
+
+USE_HARDENING=	pie:off
 
 PORTDOCS=	*
 

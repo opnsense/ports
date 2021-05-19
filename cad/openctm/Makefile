@@ -24,6 +24,8 @@ USE_GNOME=	gtk20 pango atk cairo gdkpixbuf2 glib20
 MAKEFILE=	Makefile.linux
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 WRKSRC=		${WRKDIR}/OpenCTM-${DISTVERSION}
 
 post-patch:

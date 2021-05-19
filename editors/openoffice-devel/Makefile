@@ -512,4 +512,6 @@ post-install:
 
 .include <${FILESDIR}/Makefile.others>
 
+USE_HARDENING=	pie:off
+
 .include <bsd.port.post.mk>

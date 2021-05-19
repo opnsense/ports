@@ -19,6 +19,9 @@ LIB_DEPENDS=	librazorback_api.so:security/razorback-api \
 		libfam.so:devel/fam
 
 USES=		autoreconf libtool pkgconfig
+
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

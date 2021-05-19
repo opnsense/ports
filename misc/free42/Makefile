@@ -10,6 +10,8 @@ COMMENT=	Simulation of the HP-42S scientific calculator and HP-82240 printer
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN_FreeBSD_11=	error: unknown type name 'cha'; did you mean 'char'?
+
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 
@@ -20,6 +22,8 @@ DOS2UNIX_FILES=	gtk/IntelRDFPMathLib20U1/LIBRARY/float128/op_system.h gtk/IntelR
 
 CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
 CXXFLAGS_clang=	-Wno-c++11-narrowing -Wno-constant-conversion # to accommodate some code breaking with clang-50
+
+USE_HARDENING=	pie:off
 
 BUILD_WRKSRC=	${WRKSRC}/gtk
 

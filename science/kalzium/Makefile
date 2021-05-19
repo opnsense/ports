@@ -31,6 +31,8 @@ USE_QT=		concurrent core dbus declarative gui network opengl printsupport script
 
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>

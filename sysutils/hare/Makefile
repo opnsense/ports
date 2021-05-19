@@ -12,6 +12,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	jpmens
 GH_PROJECT=	hared-hare
 
+USE_HARDENING=	pie:off
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin
 

@@ -22,4 +22,6 @@ GROUPS=		squid
 
 MAKE_JOBS_UNSAFE=	yes
 
+USE_HARDENING=	pie:off
+
 .include <bsd.port.mk>

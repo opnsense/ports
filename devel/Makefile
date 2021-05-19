@@ -105,6 +105,7 @@
     SUBDIR += R-cran-uuid
     SUBDIR += R-cran-vcd
     SUBDIR += R-cran-vctrs
+    SUBDIR += R-cran-waldo
     SUBDIR += R-cran-whisker
     SUBDIR += R-cran-withr
     SUBDIR += R-cran-zeallot
@@ -534,7 +535,7 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron11
+    SUBDIR += electron12
     SUBDIR += elf
     SUBDIR += elfio
     SUBDIR += elfkickers
@@ -781,7 +782,6 @@
     SUBDIR += geany-plugins-l10n
     SUBDIR += geany-themes
     SUBDIR += gearmand
-    SUBDIR += gecode
     SUBDIR += generate
     SUBDIR += gengetopt
     SUBDIR += genie
@@ -932,6 +932,7 @@
     SUBDIR += hs-ghc-events
     SUBDIR += hs-ghcprofview
     SUBDIR += hs-git-annex
+    SUBDIR += hs-git-brunch
     SUBDIR += hs-haddock
     SUBDIR += hs-happy
     SUBDIR += hs-haskell-language-server
@@ -1387,6 +1388,7 @@
     SUBDIR += libxalloc
     SUBDIR += libxo
     SUBDIR += libxs
+    SUBDIR += libxtend
     SUBDIR += libzim
     SUBDIR += libzookeeper
     SUBDIR += libzrtpcpp
@@ -4269,6 +4271,7 @@
     SUBDIR += py-cliapp
     SUBDIR += py-click
     SUBDIR += py-click-completion
+    SUBDIR += py-click-default-group
     SUBDIR += py-click-log
     SUBDIR += py-click-plugins
     SUBDIR += py-click-threading
@@ -4453,6 +4456,7 @@
     SUBDIR += py-furl
     SUBDIR += py-fusepy
     SUBDIR += py-future
+    SUBDIR += py-future-annotations
     SUBDIR += py-futurist
     SUBDIR += py-futurist1
     SUBDIR += py-fuzzywuzzy
@@ -4480,6 +4484,7 @@
     SUBDIR += py-google-crc32c0
     SUBDIR += py-google-i18n-address
     SUBDIR += py-google-pasta
+    SUBDIR += py-google-re2
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-grab
     SUBDIR += py-graphene
@@ -4584,13 +4589,13 @@
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
     SUBDIR += py-jsonsir
+    SUBDIR += py-jupyter-core
     SUBDIR += py-jupyter-packaging
     SUBDIR += py-jupyter-server
     SUBDIR += py-jupyter-server-mathjax
     SUBDIR += py-jupyter-telemetry
     SUBDIR += py-jupyter_client
     SUBDIR += py-jupyter_console
-    SUBDIR += py-jupyter_core
     SUBDIR += py-jupyterlab
     SUBDIR += py-jupyterlab-server
     SUBDIR += py-jupyterlab-widgets
@@ -4855,6 +4860,7 @@
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
     SUBDIR += py-pre-commit-hooks
+    SUBDIR += py-prefixed
     SUBDIR += py-preshed
     SUBDIR += py-pretend
     SUBDIR += py-prettyprinter
@@ -4960,6 +4966,7 @@
     SUBDIR += py-pytest-black-multipy
     SUBDIR += py-pytest-cache
     SUBDIR += py-pytest-capturelog
+    SUBDIR += py-pytest-checkdocs
     SUBDIR += py-pytest-cov
     SUBDIR += py-pytest-datadir
     SUBDIR += py-pytest-django
@@ -5068,6 +5075,7 @@
     SUBDIR += py-represent
     SUBDIR += py-requestsexceptions
     SUBDIR += py-requirementslib
+    SUBDIR += py-resolvelib
     SUBDIR += py-resolver
     SUBDIR += py-resource
     SUBDIR += py-responses
@@ -5083,6 +5091,7 @@
     SUBDIR += py-rply
     SUBDIR += py-rq
     SUBDIR += py-rq-scheduler
+    SUBDIR += py-rstr
     SUBDIR += py-rtree
     SUBDIR += py-rtslib-fb
     SUBDIR += py-ruamel.yaml
@@ -5135,6 +5144,7 @@
     SUBDIR += py-spyder
     SUBDIR += py-spyder-kernels
     SUBDIR += py-squint
+    SUBDIR += py-sre-yield
     SUBDIR += py-srsly
     SUBDIR += py-stackexchange
     SUBDIR += py-statgrab
@@ -5145,6 +5155,7 @@
     SUBDIR += py-strategies
     SUBDIR += py-streamparse
     SUBDIR += py-strict-rfc3339
+    SUBDIR += py-stringbrewer
     SUBDIR += py-stringcase
     SUBDIR += py-structlog
     SUBDIR += py-stsci.distutils
@@ -5640,6 +5651,8 @@
     SUBDIR += rubygem-aws-sdk-emr
     SUBDIR += rubygem-aws-sdk-emrcontainers
     SUBDIR += rubygem-aws-sdk-eventbridge
+    SUBDIR += rubygem-aws-sdk-finspace
+    SUBDIR += rubygem-aws-sdk-finspacedata
     SUBDIR += rubygem-aws-sdk-firehose
     SUBDIR += rubygem-aws-sdk-fis
     SUBDIR += rubygem-aws-sdk-fms
@@ -5785,6 +5798,8 @@
     SUBDIR += rubygem-aws-sdk-sns
     SUBDIR += rubygem-aws-sdk-sqs
     SUBDIR += rubygem-aws-sdk-ssm
+    SUBDIR += rubygem-aws-sdk-ssmcontacts
+    SUBDIR += rubygem-aws-sdk-ssmincidents
     SUBDIR += rubygem-aws-sdk-sso
     SUBDIR += rubygem-aws-sdk-ssoadmin
     SUBDIR += rubygem-aws-sdk-ssooidc
@@ -6220,6 +6235,7 @@
     SUBDIR += rubygem-google-gax
     SUBDIR += rubygem-google-protobuf
     SUBDIR += rubygem-google-protobuf314
+    SUBDIR += rubygem-google-protobuf315
     SUBDIR += rubygem-google-protobuf38
     SUBDIR += rubygem-googleapis-common-protos
     SUBDIR += rubygem-googleapis-common-protos-types
@@ -6828,6 +6844,7 @@
     SUBDIR += smv
     SUBDIR += soapui
     SUBDIR += socket_wrapper
+    SUBDIR += sol2
     SUBDIR += sonar-scanner-cli
     SUBDIR += sonarqube-ant-task
     SUBDIR += sonarqube-community

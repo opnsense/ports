@@ -18,6 +18,8 @@ USES=		gmake
 
 USE_HARDENING=	pie:off
 
+PLIST_FILES=	sbin/nvme
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	bsdimp
 GH_PROJECT=	nvme-cli

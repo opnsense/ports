@@ -25,6 +25,8 @@ USE_XORG=	x11 xcursor xext xinerama xrandr
 USE_GL=		gl glut
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 CPE_VENDOR=	artifex
 
 # pkg-config to avoid the conflict with openjpeg15

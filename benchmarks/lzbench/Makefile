@@ -14,6 +14,8 @@ USES=		compiler:c11 gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	inikep
 
+USE_HARDENING=	pie:off
+
 PLIST_FILES=	bin/lzbench
 PORTDOCS=	NEWS README.md
 

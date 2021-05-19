@@ -21,6 +21,8 @@ ALL_TARGET=	#
 DATADIR=	${PREFIX}/${PORTNAME}
 REINPLACE_SUB=	DATADIR="${DATADIR}"
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	DOCS
 
 SH2FIX=		maninst.sh genintro.sh crossln.sh

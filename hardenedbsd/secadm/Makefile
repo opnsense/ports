@@ -1,9 +1,8 @@
-# $FreeBSD$
 
 PORTNAME=	secadm
 PORTVERSION=	0.5.1
 DISTVERSIONPREFIX=	v
-PORTREVISION?=	4
+PORTREVISION?=	6
 CATEGORIES=	hardenedbsd
 
 MAINTAINER=	shawn.webb@hardenedbsd.org
@@ -18,7 +17,7 @@ USE_GITLAB=	yes
 GL_SITE=	https://git.hardenedbsd.org
 GL_ACCOUNT=	hardenedbsd
 GL_PROJECT=	secadm
-GL_COMMIT=	730801e051409d9a7382d5cab632557db3ee8f8a
+GL_COMMIT=	a40493492b91c3163ced0851800547be39dd4a03
 
 .if !defined(KMOD)
 LIBDIR?=	${PREFIX}/lib

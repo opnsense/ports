@@ -20,7 +20,7 @@ LIB_DEPENDS+=	liblzo2.so:archivers/lzo2 \
 USE_HARDENING=	stackautoinit:off
 
 USES+=		cmake:insource compiler:c++11-lang localbase perl5 pkgconfig \
-		readline:port shebangfix
+		readline shebangfix
 USE_GITHUB=	yes
 USE_PERL5=	run
 

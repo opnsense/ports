@@ -16,6 +16,8 @@ LIB_DEPENDS=	libre2.so:devel/re2 \
 
 USES=		cmake compiler:c++11-lang pkgconfig
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
 GH_TUPLE=	abseil:abseil-cpp:bea85b5:abseil/third_party/abseil-cpp \

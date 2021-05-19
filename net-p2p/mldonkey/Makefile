@@ -19,6 +19,9 @@ CONFLICTS=	mldonkey{-{core,gui},}-devel-[0-9]*
 USES=		compiler:c++11-lang gmake iconv pkgconfig tar:bzip2
 USE_OCAML=	yes
 USE_OCAML_CAMLP4=yes
+
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	ac_cv_lib_charset_locale_charset=no
 ALL_TARGET=	opt

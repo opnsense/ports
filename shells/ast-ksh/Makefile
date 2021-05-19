@@ -43,6 +43,8 @@ KSHVERSION=	2014-12-24
 
 STATIC_MAKE_ENV=	LDFLAGS+=-static
 
+USE_HARDENING=	pie:off
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|SF_FLAGS|SFIO_FLAGS|g' ${WRKSRC}/src/lib/libast/include/sfio*.h ${WRKSRC}/src/lib/libast/sfio/*.c
 

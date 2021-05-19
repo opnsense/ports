@@ -28,7 +28,7 @@ USE_HARDENING=	pie:off relro:off
 # - Create a meta-port for the recommended packages
 
 USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix perl5 \
-		readline:port
+		readline
 USE_LDCONFIG=	${PREFIX}/lib/R/lib
 USE_PERL5=	build
 

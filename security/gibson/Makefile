@@ -1,4 +1,3 @@
-# $FreeBSD$
 
 PORTNAME=	gibson
 PORTVERSION=	0.1.0

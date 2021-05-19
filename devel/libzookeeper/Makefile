@@ -1,7 +1,7 @@
 # Created by: skreuzer@FreeBSD.org
 
 PORTNAME=	zookeeper
-PORTVERSION=	3.6.2
+PORTVERSION=	3.7.0
 CATEGORIES=	devel
 MASTER_SITES=	APACHE/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 PKGNAMEPREFIX=	lib
@@ -18,9 +18,9 @@ LIB_DEPENDS=	libcppunit.so:devel/cppunit
 USE_HARDENING=	stackautoinit:off
 
 USES=		autoreconf libtool pkgconfig
+USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
-USE_LDCONFIG=	yes
 
 WRKSRC=		${WRKDIR}/${DISTNAME}/zookeeper-client/zookeeper-client-c
 

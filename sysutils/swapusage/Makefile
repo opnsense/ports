@@ -11,6 +11,8 @@ GH_ACCOUNT=	aduitsis
 GH_PROJECT=	freebsd_swapusage
 USE_GITHUB=	yes
 
+USE_HARDENING=	pie:off
+
 INSTALL_TARGET=	# empty
 
 PLIST_FILES=	bin/swapusage

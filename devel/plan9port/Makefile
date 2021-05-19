@@ -28,6 +28,8 @@ GH_TAGNAME=	1f098efb7370a0b28306d10681e21883fb1c1507
 USE_PERL5=	build
 USE_XORG=	x11 xext xt
 
+USE_HARDENING=	pie:off
+
 SHEBANG_GLOB=	*
 SHEBANG_LANG=	rc
 rc_OLD_CMD=	/bin/rc /usr/local/plan9/bin/rc

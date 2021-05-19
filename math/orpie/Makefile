@@ -19,6 +19,8 @@ USE_OCAML_CAMLP4=yes
 GNU_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 
+USE_HARDENING=	pie:off
+
 NOT_FOR_ARCHS=		armv6
 NOT_FOR_ARCHS_REASON=	architectures with double-word alignment for doubles are not supported
 

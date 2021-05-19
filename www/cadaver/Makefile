@@ -33,6 +33,8 @@ EXTRACT_AFTER_ARGS=	\
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+USE_HARDENING=	pie:off
+
 .if !defined(WITHOUT_OPENSSL)
 USES+=	ssl
 CONFIGURE_ARGS+=	--with-ssl --with-force-ssl

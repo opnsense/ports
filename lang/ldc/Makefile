@@ -33,6 +33,8 @@ GH_TUPLE=	ldc-developers:ldc:911589c:tree/ltsmaster \
 
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 CC=		${LOCALBASE}/bin/clang${LLVM_VERSION}
 CXX=		${LOCALBASE}/bin/clang++${LLVM_VERSION}
 LLVM_CONFIG=	${LOCALBASE}/bin/llvm-config${LLVM_VERSION}

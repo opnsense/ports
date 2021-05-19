@@ -13,6 +13,8 @@ LICENSE=	GPLv3
 USES=		ncurses
 PLIST_FILES=	bin/hexcompare
 
+USE_HARDENING=	pie:off
+
 post-patch:
 	@${REINPLACE_CMD} -e 's|gcc|${CC}|g' ${WRKSRC}/Makefile
 	@${REINPLACE_CMD} -e 's|-lncurses|$$(CFLAGS) $$(LDFLAGS) -lncurses|' \

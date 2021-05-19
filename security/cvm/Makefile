@@ -20,6 +20,8 @@ BGLIBS_INC=	${LOCALBASE}/include/bglibs
 BGLIBS_LIB=	${LOCALBASE}/lib/bglibs
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 DOCS=		NEWS README TODO *.html
 
 ALL_TARGET=	all

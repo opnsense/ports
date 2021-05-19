@@ -13,6 +13,8 @@ TEST_DEPENDS=	git:devel/git
 USES=		compiler:c11 gmake readline # c11 is induced by the FreeBSD headers via isnan(3), etc, otherwise the project is all c99 code
 USE_LDCONFIG=	yes
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	ccxvii
 
