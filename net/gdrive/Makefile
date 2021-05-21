@@ -22,6 +22,8 @@ USES=		go
 USE_GITHUB=	yes
 GH_ACCOUNT=	prasmussen
 
+USE_HARDENING=	pie:golang
+
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
 
 OPTIONS_DEFINE=	DOCS

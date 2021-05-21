@@ -133,6 +133,7 @@
     SUBDIR += kf5-kwayland
     SUBDIR += kf5-kwindowsystem
     SUBDIR += kf5-plasma-framework
+    SUBDIR += kitty
     SUBDIR += konsole
     SUBDIR += lavalauncher
     SUBDIR += lemonbar
@@ -317,6 +318,7 @@
     SUBDIR += slurp
     SUBDIR += smproxy
     SUBDIR += sprop
+    SUBDIR += srandrd
     SUBDIR += squeekboard
     SUBDIR += sselp
     SUBDIR += stalonetray
