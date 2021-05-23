@@ -15128,7 +15128,6 @@ net/kblog||2020-08-13|No longer shipped
 www/py-html|www/py-html3|2020-08-13|python3-compatible version is named html3
 audio/py-hsaudiotag|audio/py-hsaudiotag3k|2020-08-13|python3-compatible version is named hsaudiotag3k
 archivers/py-backports.lzma||2020-08-15|Has expired: Uses deprecated version of python
-archivers/py-bup||2020-08-15|Has expired: Uses deprecated version of python
 archivers/py-librtfcomp||2020-08-15|Has expired: Uses deprecated version of python
 audio/blop-lv2||2020-08-15|Has expired: Uses deprecated version of python
 audio/bs2b-lv2||2020-08-15|Has expired: Uses deprecated version of python
@@ -16338,3 +16337,4 @@ devel/py-jupyter_core|devel/py-jupyter-core|2021-05-18|Rename to match upstream 
 devel/sope4|devel/sope|2021-05-19|Obsolete, please use devel/sope
 sysutils/ansible27|sysutils/ansible|2021-05-21|Has expired: Upstream support ended; consider upgrading to sysutils/ansible
 sysutils/ansible28|sysutils/ansible|2021-05-21|Has expired: Upstream support ended; consider upgrading to sysutils/ansible
+devel/omnisharp-server||2021-05-23|Dead upstream, no depends in ports tree
