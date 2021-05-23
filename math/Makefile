@@ -164,6 +164,7 @@
     SUBDIR += blaze
     SUBDIR += blazeiterative
     SUBDIR += blis
+    SUBDIR += bliss
     SUBDIR += blocksolve95
     SUBDIR += bonmin
     SUBDIR += boolector
@@ -210,6 +211,7 @@
     SUBDIR += coinmumps
     SUBDIR += coinutils
     SUBDIR += combblas
+    SUBDIR += conauto
     SUBDIR += concorde
     SUBDIR += convertall
     SUBDIR += coq
