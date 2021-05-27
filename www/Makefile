@@ -108,12 +108,12 @@
     SUBDIR += dfileserver
     SUBDIR += dhttpd
     SUBDIR += dillo2
-    SUBDIR += dooble
     SUBDIR += dojo
     SUBDIR += dojo-shrinksafe
     SUBDIR += dokuwiki
     SUBDIR += dolibarr
     SUBDIR += domoticz
+    SUBDIR += dooble
     SUBDIR += drupal7
     SUBDIR += drupal7-wysiwyg
     SUBDIR += drupal8
@@ -1868,6 +1868,8 @@
     SUBDIR += rubygem-ethon
     SUBDIR += rubygem-eventmachine_httpserver
     SUBDIR += rubygem-faraday
+    SUBDIR += rubygem-faraday-em_http
+    SUBDIR += rubygem-faraday-em_synchrony
     SUBDIR += rubygem-faraday-net_http
     SUBDIR += rubygem-faraday-net_http_persistent
     SUBDIR += rubygem-faraday0
