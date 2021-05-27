@@ -12,6 +12,8 @@ LICENSE=	GPLv3
 
 USE_HARDENING=  safestack
 
+BROKEN=		Doesn't compile with Pango 1.46.2 or newer - PR 249879
+
 RUN_DEPENDS=	eiskaltdcpp-data>=0:net-p2p/eiskaltdcpp-data
 LIB_DEPENDS=	libeiskaltdcpp.so:net-p2p/eiskaltdcpp-lib
 

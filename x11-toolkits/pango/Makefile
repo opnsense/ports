@@ -2,6 +2,7 @@
 
 PORTNAME=	pango
 PORTVERSION=	1.48.4
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome2
@@ -22,7 +23,7 @@ RUN_DEPENDS=	xorg-fonts-truetype>0:x11-fonts/xorg-fonts-truetype \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		compiler:c11 gettext gnome localbase meson pkgconfig tar:xz
+USES=		compiler:c11 gettext gnome localbase meson pkgconfig python:env tar:xz
 USE_LDCONFIG=	yes
 USE_GNOME=	cairo glib20 introspection:build
 
@@ -38,7 +39,7 @@ OPTIONS_DEFINE=	X11 DOCS
 OPTIONS_DEFAULT=X11
 
 DOCS_MESON_TRUE=	gtk_doc
-DOCS_BUILD_DEPENDS=	gi-docgen>=0:textproc/gi-docgen
+DOCS_BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gi-docgen>=0:textproc/py-gi-docgen
 
 X11_MESON_ENABLED=	xft
 X11_USES=	xorg
