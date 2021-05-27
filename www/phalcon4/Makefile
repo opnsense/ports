@@ -1,6 +1,6 @@
 PORTNAME=	phalcon
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.1.1
+DISTVERSION=	4.1.2
 CATEGORIES=	www
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 PKGNAMESUFFIX=	4
@@ -18,6 +18,7 @@ USES=		localbase php:ext
 USE_GITHUB=	yes
 GH_PROJECT=	c${PORTNAME}
 
+# hash only required as long as PHP 7.3 is in the tree
 USE_PHP=	hash:build json:build mbstring pdo:build session
 IGNORE_WITH_PHP=	80
 PHP_MOD_PRIO=	30
