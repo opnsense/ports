@@ -344,6 +344,7 @@
     SUBDIR += minio-client
     SUBDIR += miniserve
     SUBDIR += mitmproxy
+    SUBDIR += mirrorselect
     SUBDIR += mknmz-wwwoffle
     SUBDIR += mnogosearch
     SUBDIR += mod_amazon_proxy
@@ -591,6 +592,7 @@
     SUBDIR += p5-CGI-SpeedyCGI
     SUBDIR += p5-CGI-Struct
     SUBDIR += p5-CGI-Thin
+    SUBDIR += p5-CGI-Tiny
     SUBDIR += p5-CGI-Untaint
     SUBDIR += p5-CGI-Untaint-date
     SUBDIR += p5-CGI-Untaint-email
@@ -1686,6 +1688,7 @@
     SUBDIR += py-praw
     SUBDIR += py-prawcore
     SUBDIR += py-priority
+    SUBDIR += py-protego
     SUBDIR += py-puppetboard
     SUBDIR += py-py-restclient
     SUBDIR += py-pyjwt
@@ -1791,6 +1794,7 @@
     SUBDIR += radicale
     SUBDIR += rearx
     SUBDIR += redmine4
+    SUBDIR += redmine42
     SUBDIR += rejik
     SUBDIR += reportmagic
     SUBDIR += repos-style
