@@ -1902,7 +1902,9 @@ PKG_DEPENDS+=	${LOCALBASE}/sbin/pkg:${PKG_ORIGIN}
 .endif
 
 .if !defined(USE_GCC)
+.if !defined(NO_UNUSED_ARGUMENTS_CHECK)
 CFLAGS+=	-Qunused-arguments
+.endif
 .endif
 
 .if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
