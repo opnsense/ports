@@ -1,7 +1,7 @@
 # Created by: Mahdi Mokhtari <mokhi64@gmail.com>
 
 PORTNAME?=	mysql
-PORTVERSION=	5.7.34
+PORTVERSION=	5.7.33
 PORTREVISION?=	0
 CATEGORIES=	databases
 MASTER_SITES=	MYSQL/MySQL-5.7
@@ -33,8 +33,6 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libprotobuf.so:devel/protobuf
 
 CMAKE_BUILD_TYPE=	Release
-
-CXXFLAGS+=	-DNDEBUG
 
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \
