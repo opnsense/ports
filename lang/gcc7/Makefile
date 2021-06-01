@@ -38,6 +38,8 @@ CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
 
 USE_HARDENING=	pie:off retpoline:off stackautoinit:off
 
+NO_UNUSED_ARGUMENTS_CHECK=	yes
+
 .include <bsd.port.pre.mk>
 
 .if ${ARCH} == amd64

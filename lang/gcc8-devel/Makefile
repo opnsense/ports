@@ -35,6 +35,8 @@ CPE_VERSION=	${GCC_VERSION}
 
 USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
 
+NO_UNUSED_ARGUMENTS_CHECK=	yes
+
 # DIST_VERSION relates to downloads, GCC_VERSION and SUFFIX to names
 # of executables and directories once installed.  A PORTVERSION of
 # Y.2.1.s20140817 results in values of Y-20140817, Y.2.1, and Y

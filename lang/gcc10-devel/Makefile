@@ -24,7 +24,9 @@ RUN_DEPENDS+=	${LOCALBASE}/bin/as:devel/binutils
 BUILD_DEPENDS+=	runtest:misc/dejagnu
 .endif
 
-USE_HARDENING=	stackautoinit:off
+USE_HARDENING=	stackautoinit:off pie:off stackautoinit:off relro:off retpoline:off
+
+NO_UNUSED_ARGUMENTS_CHECK=	yes
 
 USES=		compiler cpe gmake iconv libtool makeinfo perl5 tar:xz
 USE_BINUTILS=	yes

@@ -33,6 +33,8 @@ CPE_VENDOR=	gnu
 
 USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
 
+NO_UNSED_ARGUMENTS=	yes
+
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}
 SSP_UNSAFE=	yes
