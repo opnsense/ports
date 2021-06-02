@@ -37,6 +37,7 @@
     SUBDIR += cego
     SUBDIR += cegobridge
     SUBDIR += clickhouse
+    SUBDIR += closql
     SUBDIR += cockroach
     SUBDIR += couchdb3
     SUBDIR += courier-authlib-mysql
@@ -65,6 +66,7 @@
     SUBDIR += elixir-mongo
     SUBDIR += elixir-postgrex
     SUBDIR += elixir-timex_ecto
+    SUBDIR += emacsql
     SUBDIR += erlang-couchbeam
     SUBDIR += erlang-epgsql
     SUBDIR += erlang-eredis
