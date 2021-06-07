@@ -1,5 +1,5 @@
 PORTNAME=	opnsense-lang
-PORTVERSION=	20.1.4
+PORTVERSION=	21.1.7
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
