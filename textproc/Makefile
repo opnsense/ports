@@ -1327,6 +1327,7 @@
     SUBDIR += py-markuppy
     SUBDIR += py-markups
     SUBDIR += py-markupsafe
+    SUBDIR += py-mathics-pygments
     SUBDIR += py-mdit-py-plugins
     SUBDIR += py-misaka
     SUBDIR += py-mistune

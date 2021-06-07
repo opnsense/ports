@@ -1,8 +1,7 @@
-
 PORTNAME=	secadm
 PORTVERSION=	0.5.1
 DISTVERSIONPREFIX=	v
-PORTREVISION?=	6
+PORTREVISION?=	7
 CATEGORIES=	hardenedbsd
 
 MAINTAINER=	shawn.webb@hardenedbsd.org
@@ -17,7 +16,7 @@ USE_GITLAB=	yes
 GL_SITE=	https://git.hardenedbsd.org
 GL_ACCOUNT=	hardenedbsd
 GL_PROJECT=	secadm
-GL_COMMIT=	a40493492b91c3163ced0851800547be39dd4a03
+GL_COMMIT=	9a874be20a69bd5772115b33655f822b0e1c49a5
 
 .if !defined(KMOD)
 LIBDIR?=	${PREFIX}/lib

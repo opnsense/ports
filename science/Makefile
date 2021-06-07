@@ -276,6 +276,7 @@
     SUBDIR += py-pymol
     SUBDIR += py-pyosf
     SUBDIR += py-pysal
+    SUBDIR += py-pyscf
     SUBDIR += py-pyteomics
     SUBDIR += py-qcelemental
     SUBDIR += py-qcengine
@@ -352,6 +353,7 @@
     SUBDIR += wannier90
     SUBDIR += wwplot
     SUBDIR += wxmacmolplt
+    SUBDIR += xcfun
     SUBDIR += xcrysden
     SUBDIR += xdrawchem
     SUBDIR += xtb

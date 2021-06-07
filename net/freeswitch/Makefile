@@ -47,7 +47,7 @@ CONFLICTS_BUILD=	xmlrpc-c-*
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=	--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig \
-		--enable-zrtp
+		--enable-zrtp --with-pic
 CFLAGS+=	-Wno-error -I${LUA_INCDIR}
 
 USERS=		${PORTNAME}
