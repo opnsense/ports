@@ -421,6 +421,7 @@
     SUBDIR += lensfun
     SUBDIR += lepton
     SUBDIR += leptonica
+    SUBDIR += lerc
     SUBDIR += lfview
     SUBDIR += lib3ds
     SUBDIR += libGLU
@@ -639,6 +640,7 @@
     SUBDIR += p5-GD-Thumbnail
     SUBDIR += p5-Geo-EOP
     SUBDIR += p5-Geo-GDAL
+    SUBDIR += p5-Geo-GDAL-FFI
     SUBDIR += p5-Geo-GML
     SUBDIR += p5-Geo-Gpx
     SUBDIR += p5-Geometry-Primitive
