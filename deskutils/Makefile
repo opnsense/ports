@@ -145,6 +145,7 @@
     SUBDIR += kuserfeedback
     SUBDIR += latte-dock
     SUBDIR += libkdepim
+    SUBDIR += libportal
     SUBDIR += ljclive
     SUBDIR += lookbook
     SUBDIR += lumina-archiver
@@ -246,6 +247,7 @@
     SUBDIR += x026
     SUBDIR += xcalendar
     SUBDIR += xchm
+    SUBDIR += xdg-desktop-portal
     SUBDIR += xfce4-generic-slider
     SUBDIR += xfce4-notes-plugin
     SUBDIR += xfce4-notifyd
