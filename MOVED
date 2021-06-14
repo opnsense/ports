@@ -676,7 +676,6 @@ net-im/ocaml-jabbr||2009-06-13|Removed
 net-mgmt/nav||2009-06-13|Removed
 net/evolution-rss||2009-06-13|Removed
 net/openpbx.org||2009-06-13|Removed
-news/inn-current||2009-06-13|Removed
 science/elmerfront||2009-06-13|Removed
 science/openfoam||2009-06-13|Removed
 www/cacheboy||2009-06-13|Removed
@@ -16265,7 +16264,7 @@ finance/wmstock||2021-04-07|Has expired: Unmaintained and dead upstream, does no
 ftp/frox||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
 databases/couchdb2|databases/couchdb3|2021-04-07|No longer supported upstream, uses spidermonkey68 & python2; move to databases/couchdb3
 security/pidentd||2021-04-07|Removed: Unmaintained, abandoned, does not build with recent OS versions
-dns/dnsmasq-devel|dns/dnsmasq|2021-04-08|Has expired: use dns/dnsmasq instead, which is newer
+#dns/dnsmasq-devel|dns/dnsmasq|2021-04-08|Has expired: use dns/dnsmasq instead, which is newer
 net/coturn|net/turnserver|2021-04-09|Remove duplicate port: coturn is another name for turnserver
 databases/percona55-server||2021-04-11|EOL upstream
 databases/percona55-client||2021-04-11|EOL upstream
@@ -16387,3 +16386,14 @@ net/py-python-keystoneclient3|net/py-python-keystoneclient|2021-06-10|Remove obs
 net/py-python-novaclient16|net/py-python-novaclient|2021-06-10|Remove obsoleted port. Use net/py-python-novaclient instead
 print/py-pycups1|print/py-pycups|2021-06-10|Remove obsoleted port. Use print/py-pycups instead
 lang/gcc8-devel|lang/gcc8|2021-06-11|GCC 8 reached end of life, use the final release (or a new major version)
+news/inn-CURRENT|news/inn-current|2021-06-12|Port renamed on request
+databases/postgresql95-client||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-contrib||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-docs||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-pgtcl||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-plperl||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-plpython||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-pltcl||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/postgresql95-server||2021-06-13|Has expired: PostgreSQL-9.5 has reached end-of-life
+databases/pg_reorg||2021-06-13|Removed, abandonware only for PostgreSQL 9.5
+databases/pgespresso||2021-06-13|Removed, functionality part of PostgreSQL 9.6 and later.
