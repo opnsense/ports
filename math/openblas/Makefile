@@ -24,8 +24,6 @@ USE_HARDENING=	stackautoinit:off
 
 USES=		compiler:c11 fortran gmake perl5 pkgconfig
 
-CONFLICTS_INSTALL=	cblas lapacke
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	xianyi
 GH_PROJECT=	OpenBLAS
