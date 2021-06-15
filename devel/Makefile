@@ -356,6 +356,7 @@
     SUBDIR += cloudabi-toolchain
     SUBDIR += clthreads
     SUBDIR += cltune
+    SUBDIR += clxclient
     SUBDIR += cmake
     SUBDIR += cmake-doc
     SUBDIR += cmake-fedora
@@ -810,6 +811,7 @@
     SUBDIR += git-cola
     SUBDIR += git-delta
     SUBDIR += git-extras
+    SUBDIR += git-filter-repo
     SUBDIR += git-lab
     SUBDIR += git-lfs
     SUBDIR += git-merge-changelog
@@ -3646,6 +3648,7 @@
     SUBDIR += p5-XML-Compile-Tester
     SUBDIR += p5-XML-Pastor
     SUBDIR += p5-XS-Object-Magic
+    SUBDIR += p5-XS-Parse-Keyword
     SUBDIR += p5-XSLoader
     SUBDIR += p5-XXX
     SUBDIR += p5-Xporter
@@ -4688,6 +4691,7 @@
     SUBDIR += py-multi_key_dict
     SUBDIR += py-multipledispatch
     SUBDIR += py-multiprocess
+    SUBDIR += py-multitasking
     SUBDIR += py-munch
     SUBDIR += py-murmurhash
     SUBDIR += py-mygpoclient
@@ -4808,6 +4812,7 @@
     SUBDIR += py-pika-pool
     SUBDIR += py-pinocchio
     SUBDIR += py-pint
+    SUBDIR += py-pint-pandas
     SUBDIR += py-pip
     SUBDIR += py-pip-api
     SUBDIR += py-pip-licenses
@@ -5738,6 +5743,7 @@
     SUBDIR += rubygem-aws-sdk-polly
     SUBDIR += rubygem-aws-sdk-pricing
     SUBDIR += rubygem-aws-sdk-prometheusservice
+    SUBDIR += rubygem-aws-sdk-proton
     SUBDIR += rubygem-aws-sdk-qldb
     SUBDIR += rubygem-aws-sdk-qldbsession
     SUBDIR += rubygem-aws-sdk-quicksight
@@ -5999,6 +6005,7 @@
     SUBDIR += rubygem-cheffish
     SUBDIR += rubygem-childprocess
     SUBDIR += rubygem-childprocess3
+    SUBDIR += rubygem-childprocess40
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
     SUBDIR += rubygem-clamp
@@ -6170,6 +6177,7 @@
     SUBDIR += rubygem-forwardable-extended
     SUBDIR += rubygem-fugit
     SUBDIR += rubygem-fugit12
+    SUBDIR += rubygem-fuzzy_match
     SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-gdata
     SUBDIR += rubygem-gem-compare
@@ -6503,6 +6511,7 @@
     SUBDIR += rubygem-readwritesettings
     SUBDIR += rubygem-recaptcha
     SUBDIR += rubygem-recursive-open-struct
+    SUBDIR += rubygem-red-datasets
     SUBDIR += rubygem-redis-activesupport
     SUBDIR += rubygem-redis-activesupport-rails5
     SUBDIR += rubygem-redis-activesupport-rails50
@@ -6540,6 +6549,8 @@
     SUBDIR += rubygem-rspec_junit_formatter
     SUBDIR += rubygem-rubocop
     SUBDIR += rubygem-rubocop-ast
+    SUBDIR += rubygem-rubocop-performance
+    SUBDIR += rubygem-rubocop-rspec
     SUBDIR += rubygem-ruby-atmos-pure
     SUBDIR += rubygem-ruby-bugzilla
     SUBDIR += rubygem-ruby-enum

@@ -20,10 +20,9 @@ LIB_DEPENDS=	libvorbisfile.so:audio/libvorbis \
 
 USE_HARDENING=	pie:off
 
-USES=		compiler:c++11-lang gl gmake openal:al sdl tar:bzip2 xorg
+USES=		gl gmake openal:al sdl tar:bzip2 xorg
 USE_SDL=	image2 sdl2 ttf2
 USE_GL=		gl glu
-USE_CSTD=	gnu89
 SUB_FILES=	tome4
 
 MAKE_JOBS_UNSAFE=	yes
@@ -36,7 +35,13 @@ WRKSRC=		${WRKDIR}/t-engine4-src-${DISTVERSION}
 MAKE_ARGS+=	config=release verbose=yes ARCH="" CC=${CC} CXX=${CXX}
 LDFLAGS_i386=	-Wl,-znotext
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == powerpc
+USES+=		compiler:gcc-c++11-lib
+.else
+USES+=		compiler:c++11-lang
+.endif
 
 pre-build:
 	@${REINPLACE_CMD} 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/premake4.lua
@@ -57,4 +62,4 @@ do-install:
 	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}.png \
 		${STAGEDIR}${PREFIX}/share/pixmaps
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
