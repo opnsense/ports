@@ -16,6 +16,8 @@ LICENSE_PERMS=	no-auto-accept no-dist-mirror no-dist-sell no-pkg-mirror no-pkg-s
 
 ONLY_FOR_ARCHS= amd64
 
+CONFLICTS_INSTALL=	linux-wps-office-zh_CN
+
 USES=		desktop-file-utils linux shebangfix
 INSTALLS_ICONS=	yes
 USE_LINUX=	png pulseaudio-libs xorglibs
