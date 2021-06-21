@@ -16,6 +16,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	JLErvin
 USE_XORG=	x11 xft xinerama
 
+USE_HARDENING=  pie:off
+
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--mandir=${MANPREFIX}/man \
 		--prefix=${PREFIX}

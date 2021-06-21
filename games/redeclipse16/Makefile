@@ -22,6 +22,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	red-eclipse
 GH_PROJECT=	base
 
+USE_HARDENING=	pie:off
+
 USES=		gmake
 BUILD_WRKSRC=	${WRKSRC}/src
 

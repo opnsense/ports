@@ -14,6 +14,8 @@ LIB_DEPENDS=	libsysinfo.so:devel/libsysinfo
 
 USES=		gmake localbase:ldflags
 
+USE_HARDENING=	pie:off
+
 MAKEFILE=	${FILESDIR}/Makefile.pkg
 WRKSRC_SUBDIR=	src
 CFLAGS+=	-fcommon

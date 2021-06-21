@@ -16,6 +16,8 @@ LICENSE=	GPLv2
 
 USES=		cabal:nodefault tar:bzip2
 
+USE_HARDENING=	pie:off
+
 WRKSRC_SUBDIR=	gameServer
 
 USE_CABAL=	ConfigFile-1.1.4 \

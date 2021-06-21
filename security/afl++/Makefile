@@ -18,6 +18,7 @@ BUILD_DEPENDS=	ginstall:sysutils/coreutils
 TEST_DEPENDS=	bash:shells/bash
 
 USE_HARDENING=	pie:off retpoline:off stackautoinit:off
+NO_UNUSED_ARGUMENTS_CHECK=  yes
 
 USES=		gmake tar:tgz
 USE_GITHUB=	yes

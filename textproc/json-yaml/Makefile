@@ -14,6 +14,8 @@ LIB_DEPENDS=	libyajl.so:devel/yajl \
 USE_GITHUB=	yes
 GH_ACCOUNT=	sjmulder
 
+USE_HARDENING=	pie:off
+
 MAKE_ARGS+=	MANPREFIX=${PREFIX}/man CFLAGS=-I${PREFIX}/include\ -L${PREFIX}/lib
 
 PLIST_FILES=	bin/json-yaml \

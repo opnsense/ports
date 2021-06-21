@@ -1267,7 +1267,6 @@
     SUBDIR += tls-check
     SUBDIR += tlswrap
     SUBDIR += tor
-    SUBDIR += tor-capsicum
     SUBDIR += tor-devel
     SUBDIR += totp-cli
     SUBDIR += tpm-tools

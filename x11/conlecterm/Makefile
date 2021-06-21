@@ -22,6 +22,8 @@ OPTIONS_SUB=	yes
 INSTALLS_ICONS=	yes
 INSTALL_TARGET=	install-strip
 
+USE_HARDENING=	pie:off
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	hxw
 

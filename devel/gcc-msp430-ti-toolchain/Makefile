@@ -90,6 +90,8 @@ CONFIGURE_ARGS_COMMON=	--prefix=${INTERIM_PREFIX} \
 			--disable-nls \
 			--enable-initfini-array
 
+USE_HARDENING=	pie:off
+
 pre-patch:
 	@${ECHO_MSG} "===> Apply distribution patches..."
 	@${ECHO_MSG} "====> Patch gcc"

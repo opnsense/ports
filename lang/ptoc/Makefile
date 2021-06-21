@@ -24,6 +24,8 @@ EXAMPLES=	arr.pas bgidemo.pas ccall.pas coord.txt dos.h dos.pas \
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
+USE_HARDENING=	pie:off
+
 pre-build:
 	@${LN} -sf makefile.bsd ${WRKSRC}/Makefile
 	@${LN} -sf makefile.bsd ${WRKSRC}/Xbgi/Makefile

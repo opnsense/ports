@@ -28,6 +28,8 @@ USE_CXXSTD=	gnu++03
 USE_LDCONFIG=	${PREFIX}/lib/gcci/avr/${SUFFIX}
 USE_PERL5=	build
 
+USE_HARDENING=	pie:off
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-libssp \
 		--enable-languages="c c++" \

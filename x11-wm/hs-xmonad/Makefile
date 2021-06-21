@@ -30,6 +30,8 @@ USE_CABAL=	X11-1.9.1 \
 		setlocale-1.0.0.9_2 \
 		utf8-string-1.0.1.1_3
 
+USE_HARDENING=	pie:off
+
 OPTIONS_DEFINE=	EXAMPLES
 
 post-install:

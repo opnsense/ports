@@ -32,6 +32,8 @@ GH_ACCOUNT=	att
 GH_PROJECT=	ast
 GH_TAGNAME=	${HASH}
 
+USE_HARDENING=	pie:off
+
 # IMPORTANT:	Disabling conflicts, i.e. -DDISABLE_CONFLICTS will result in
 #		arcane build failures due to already installed ksh/ksh93 in
 #		$PATH.

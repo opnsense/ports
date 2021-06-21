@@ -13,6 +13,7 @@ LIB_DEPENDS=	libblas.so:math/blas \
 		libmpich.so:net/mpich
 
 USE_HARDENING=	retpoline:off stackautoinit:off
+NO_UNUSED_ARGUMENTS_CHECK=  yes
 
 USES=		fortran
 USE_LDCONFIG=	yes

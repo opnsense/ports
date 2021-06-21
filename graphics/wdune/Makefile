@@ -36,6 +36,8 @@ ALL_TARGET=	dune
 
 OPTIONS_DEFINE=	DOCS
 
+USE_HARDENING=	pie:off
+
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/dune ${STAGEDIR}${PREFIX}/bin
 	cd ${WRKSRC}/bin && ${INSTALL_SCRIPT} dune4kids illegal2vrml \

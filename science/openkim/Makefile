@@ -13,6 +13,7 @@ LICENSE=	CDDL
 MAKE_ENV+=	KIM_DIR=${WRKSRC}
 
 USE_HARDENING=	retpoline:off stackautoinit:off
+NO_UNUSED_ARGUMENTS_CHECK=	yes
 
 USES=		gmake fortran tar:tgz
 

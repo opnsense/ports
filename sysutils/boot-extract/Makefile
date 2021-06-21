@@ -14,6 +14,8 @@ GH_ACCOUNT=	csimmonds
 GH_PROJECT=	boot-extract
 GH_TAGNAME=	486995f
 
+USE_HARDENING=	pie:off
+
 PLIST_FILES=	bin/boot-extract
 
 do-install:

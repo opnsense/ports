@@ -19,6 +19,8 @@ USES=		gmake tar:bzip2
 PLIST_FILES=	bin/ssocr \
 		man/man1/ssocr.1.gz
 
+USE_HARDENING=	pie:off
+
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/bin ${STAGEDIR}${MANPREFIX}/man/man1
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/bin

@@ -13,6 +13,8 @@ RUN_DEPENDS=	zip:archivers/zip
 USES=		gmake ncurses
 MAKE_ARGS=	OPTS="" LIBS="${LDFLAGS} -lncurses"
 
+USE_HARDENING=	pie:off
+
 PLIST_FILES=	bin/mmail \
 		man/man1/mmail.1.gz
 

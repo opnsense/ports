@@ -38,6 +38,7 @@
     SUBDIR += cinnamon-translations
     SUBDIR += cldr-emoji-annotation
     SUBDIR += clex
+    SUBDIR += clifm
     SUBDIR += cloc
     SUBDIR += clpbar
     SUBDIR += cmatrix
@@ -261,6 +262,8 @@
     SUBDIR += ompl
     SUBDIR += ondir
     SUBDIR += opencyc
+    SUBDIR += openhab
+    SUBDIR += openhab-addons
     SUBDIR += openhab2
     SUBDIR += openhab2-addons
     SUBDIR += openhantek

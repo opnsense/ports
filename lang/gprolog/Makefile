@@ -31,6 +31,8 @@ OPTIONS_DEFINE=		FD DOCS EXAMPLES
 OPTIONS_DEFAULT=	FD
 OPTIONS_SUB=		yes
 
+USE_HARDENING=	pie:off
+
 FD_DESC=		Enable finite domain constraint solver
 FD_CONFIGURE_OFF=	--disable-fd-solver
 
