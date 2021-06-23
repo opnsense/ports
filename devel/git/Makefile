@@ -1,8 +1,7 @@
 # Created by: Eric Anholt
 
 PORTNAME=	git
-DISTVERSION=	2.31.1
-PORTREVISION=	1
+DISTVERSION=	2.32.0
 CATEGORIES=	devel
 MASTER_SITES=	KERNEL_ORG/software/scm/git
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
@@ -254,6 +253,7 @@ post-install-SUBTREE-on:
 post-install-CONTRIB-on:
 	@${ECHO_MSG} "===> Installing contributed scripts"
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/git-core/contrib
+	${RM} ${WRKSRC}/contrib/credential/netrc/test.netrc.gpg
 	${CP} -R ${WRKSRC}/contrib/* ${STAGEDIR}${PREFIX}/share/git-core/contrib
 
 post-install-P4-on:
