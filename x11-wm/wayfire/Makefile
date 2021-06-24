@@ -1,7 +1,6 @@
 PORTNAME=	wayfire
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.7.1
-PORTREVISION=	1
+DISTVERSION=	0.7.2
 CATEGORIES=	x11-wm
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -15,7 +14,7 @@ BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		${LOCALBASE}/include/xf86drmMode.h:graphics/libdrm \
 		wayland-protocols>=1.12:graphics/wayland-protocols \
 		glm>=0.9.8:math/glm \
-		wlroots>=0.13.0<0.14.0:x11-toolkits/wlroots
+		wlroots>=0.14.0<0.15.0:x11-toolkits/wlroots
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 		libwf-config.so:devel/wf-config \
 		libpng.so:graphics/png \
@@ -31,7 +30,7 @@ USE_GNOME=	cairo
 USE_XORG=	pixman
 GH_ACCOUNT=	WayfireWM
 GH_TUPLE=	WayfireWM:wf-touch:8974eb0:wftouch/subprojects/wf-touch \
-		WayfireWM:wf-utils:f45641b:wfutils/subprojects/wf-utils
+		WayfireWM:wf-utils:889fdaf:wfutils/subprojects/wf-utils
 
 OPTIONS_DEFINE=	SUID X11
 OPTIONS_DEFAULT=SUID X11
