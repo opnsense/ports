@@ -384,3 +384,6 @@ do-install:
 .endfor
 
 .include <bsd.port.mk>
+
+# XXX temporary fix for mangled distfile
+WRKSRC_go_plist:=	${WRKSRC_go_plist}-591f970eefbbeb04d7b37f334a0c4c3256e32876
