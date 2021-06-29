@@ -36,8 +36,6 @@
     SUBDIR += asql
     SUBDIR += authelia
     SUBDIR += awffull
-    SUBDIR += aws
-    SUBDIR += aws-demos
     SUBDIR += awstats
     SUBDIR += axis2
     SUBDIR += bacula-web
@@ -48,7 +46,6 @@
     SUBDIR += bareos19-webui
     SUBDIR += beehive
     SUBDIR += bkmrkconv
-    SUBDIR += blastbeat
     SUBDIR += bluefish
     SUBDIR += bolt
     SUBDIR += bozohttpd
@@ -103,14 +100,12 @@
     SUBDIR += davix
     SUBDIR += dddbl
     SUBDIR += ddgr
-    SUBDIR += demoroniser
     SUBDIR += deno
     SUBDIR += devd
     SUBDIR += dfileserver
     SUBDIR += dhttpd
     SUBDIR += dillo2
     SUBDIR += dojo
-    SUBDIR += dojo-shrinksafe
     SUBDIR += dokuwiki
     SUBDIR += dolibarr
     SUBDIR += domoticz
@@ -456,7 +451,6 @@
     SUBDIR += nift
     SUBDIR += node
     SUBDIR += node10
-    SUBDIR += node12
     SUBDIR += node14
     SUBDIR += nostromo
     SUBDIR += novnc
@@ -464,8 +458,6 @@
     SUBDIR += npapi-xine
     SUBDIR += npc
     SUBDIR += npm
-    SUBDIR += npm-node10
-    SUBDIR += npm-node12
     SUBDIR += npm-node14
     SUBDIR += nspluginwrapper
     SUBDIR += oauth2-proxy
@@ -2326,8 +2318,6 @@
     SUBDIR += yabb
     SUBDIR += yanopaste
     SUBDIR += yarn
-    SUBDIR += yarn-node10
-    SUBDIR += yarn-node12
     SUBDIR += yarn-node14
     SUBDIR += yaws
     SUBDIR += you-get

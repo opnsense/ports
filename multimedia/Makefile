@@ -30,6 +30,7 @@
     SUBDIR += celluloid
     SUBDIR += cheese
     SUBDIR += chilitags
+    SUBDIR += cineencoder
     SUBDIR += clive
     SUBDIR += clutter-gst
     SUBDIR += clutter-gst3
@@ -126,7 +127,6 @@
     SUBDIR += gstreamer1-validate
     SUBDIR += gstreamermm
     SUBDIR += gtk-youtube-viewer
-    SUBDIR += gxine
     SUBDIR += handbrake
     SUBDIR += haruna
     SUBDIR += harvid

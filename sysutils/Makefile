@@ -162,13 +162,11 @@
     SUBDIR += cfengine-masterfiles-devel
     SUBDIR += cfengine-masterfiles310
     SUBDIR += cfengine-masterfiles311
-    SUBDIR += cfengine-masterfiles314
     SUBDIR += cfengine-masterfiles315
     SUBDIR += cfengine-masterfiles316
     SUBDIR += cfengine-masterfiles317
     SUBDIR += cfengine310
     SUBDIR += cfengine311
-    SUBDIR += cfengine314
     SUBDIR += cfengine315
     SUBDIR += cfengine316
     SUBDIR += cfengine317
@@ -1262,6 +1260,7 @@
     SUBDIR += sensu-go
     SUBDIR += serf
     SUBDIR += setcdboot
+    SUBDIR += setsid
     SUBDIR += sformat
     SUBDIR += sg3_utils
     SUBDIR += shim
@@ -1296,7 +1295,6 @@
     SUBDIR += squashfs-tools
     SUBDIR += ssd_report
     SUBDIR += sshsudo
-    SUBDIR += ssid
     SUBDIR += ssync
     SUBDIR += stalepid
     SUBDIR += stanchion
@@ -1459,7 +1457,6 @@
     SUBDIR += uptimed
     SUBDIR += usb_modeswitch
     SUBDIR += usbhid-dump
-    SUBDIR += usbhotkey
     SUBDIR += usbtop
     SUBDIR += usbutils
     SUBDIR += uschedule

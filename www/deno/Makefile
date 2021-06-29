@@ -1,6 +1,7 @@
 PORTNAME=	deno
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.11.1
+DISTVERSION=	1.11.2
+PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	mikael@FreeBSD.org
@@ -355,7 +356,7 @@ CARGO_CRATES=	Inflector-0.11.4 \
 		time-0.1.44 \
 		tinyvec-1.2.0 \
 		tinyvec_macros-0.1.0 \
-		tokio-1.6.1 \
+		tokio-1.7.1 \
 		tokio-macros-1.2.0 \
 		tokio-rustls-0.22.0 \
 		tokio-stream-0.1.6 \

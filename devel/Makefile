@@ -579,7 +579,6 @@
     SUBDIR += elixir-quantum
     SUBDIR += elixir-smppex
     SUBDIR += elixir-timex
-    SUBDIR += elixir-tirexs
     SUBDIR += elixir-trailing_format_plug
     SUBDIR += elixir-tzdata
     SUBDIR += elixir-unsafe
@@ -843,7 +842,6 @@
     SUBDIR += glui
     SUBDIR += gmake
     SUBDIR += gn
-    SUBDIR += gnatpython
     SUBDIR += gnome-builder
     SUBDIR += gnome-common
     SUBDIR += gnu-efi
@@ -887,6 +885,7 @@
     SUBDIR += gradle
     SUBDIR += gradle-completion
     SUBDIR += gradle5
+    SUBDIR += gradle6
     SUBDIR += gradle62
     SUBDIR += grantlee5
     SUBDIR += grcov
@@ -1224,7 +1223,6 @@
     SUBDIR += libgudev
     SUBDIR += libgutenfetch
     SUBDIR += libhash
-    SUBDIR += libhid
     SUBDIR += libhoard
     SUBDIR += libhtp
     SUBDIR += libhyve-remote
@@ -1256,6 +1254,7 @@
     SUBDIR += libmba
     SUBDIR += libmill
     SUBDIR += libmimedir
+    SUBDIR += libmodi
     SUBDIR += libmowgli
     SUBDIR += libmowgli2
     SUBDIR += libmpcbdm
@@ -1277,8 +1276,6 @@
     SUBDIR += libopkele
     SUBDIR += liborcus
     SUBDIR += libosinfo
-    SUBDIR += libosmo-abis
-    SUBDIR += libosmocore
     SUBDIR += libowfat
     SUBDIR += libpafe
     SUBDIR += libpafe-ruby
@@ -4323,6 +4320,7 @@
     SUBDIR += py-cson
     SUBDIR += py-csv23
     SUBDIR += py-ctags
+    SUBDIR += py-ctypesgen
     SUBDIR += py-curio
     SUBDIR += py-cursive
     SUBDIR += py-curtsies
@@ -4580,6 +4578,7 @@
     SUBDIR += py-jsondiff
     SUBDIR += py-jsonform
     SUBDIR += py-jsonlines
+    SUBDIR += py-jsonnet
     SUBDIR += py-jsonpatch
     SUBDIR += py-jsonpath-rw
     SUBDIR += py-jsonpickle
@@ -5199,6 +5198,9 @@
     SUBDIR += py-txaio
     SUBDIR += py-typechecks
     SUBDIR += py-typed-ast
+    SUBDIR += py-types-PyYAML
+    SUBDIR += py-types-protobuf
+    SUBDIR += py-types-requests
     SUBDIR += py-typing-extensions
     SUBDIR += py-typing-inspect
     SUBDIR += py-tzlocal
@@ -6980,7 +6982,6 @@
     SUBDIR += vcglib
     SUBDIR += vera++
     SUBDIR += vexcl
-    SUBDIR += viewvc
     SUBDIR += viewvc-devel
     SUBDIR += violet
     SUBDIR += vitables
