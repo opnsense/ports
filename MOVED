@@ -16415,3 +16415,44 @@ devel/sparc64-xtoolchain-gcc|devel/freebsd-gcc6@sparc64|2021-06-18|Replaced by a
 devel/riscv64-xtoolchain-gcc|devel/freebsd-gcc9@riscv64|2021-06-19|Replaced by a flavor
 www/py-beautifulsoup448|www/py-beautifulsoup|2021-06-20|Remove obsoleted port. Use www/py-beautifulsoup instead
 comms/rtl-443|comms/rtl-433|2021-06-21|Fix typo in port directory name
+devel/elixir-tirexs||2021-06-24|Remove obsoleted port. No releases on hex.pm.
+lang/perl5.28||2021-06-26|Has expired: Support ends three years after .0 release. Please upgrade to a more recent version of Perl
+sysutils/cfengine314||2021-06-26|Has expired: Expire one year after cfengine 3.16.0 released
+sysutils/cfengine-masterfiles314||2021-06-26|Has expired: Expire one year after cfengine 3.16.0 released
+lang/pypy3||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+lang/pypy||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+databases/pypy-gdbm||2021-06-26|Has expired: Uses EOL Python 2.7 via lang/pypy
+databases/pypy-sqlite3||2021-06-26|Has expired: Uses EOL Python 2.7 via lang/pypy
+x11-toolkits/pypy-tkinter||2021-06-26|Has expired: Uses EOL Python 2.7 via lang/pypy
+multimedia/gxine||2021-06-26|Has expired: Uses EOL Python 2.7 via lang/spidermonkey185
+lang/spidermonkey185||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+www/aws||2021-06-26|Has expired: Uses EOL Python 2.7 via devel/gnatpython
+www/aws-demos||2021-06-26|Has expired: Uses EOL Python 2.7 via www/aws
+devel/gnatpython||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+devel/libosmocore||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+net/openggsn||2021-06-26|Has expired: Uses EOL Python 2.7 via devel/libosmocore
+devel/libosmo-abis||2021-06-26|Has expired: Uses EOL Python 2.7 via devel/libosmocore
+www/node12||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+www/npm-node12||2021-06-26|Removed, uses www/node12
+www/yarn-node12||2021-06-26|Has expired: Uses EOL Python 2.7 via www/node12
+www/npm-node10||2021-06-26|Removed, uses EOL Python 2.7 via www/node10
+www/yarn-node10||2021-06-26|Has expired: Uses EOL Python 2.7 via www/node10
+devel/libhid||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+sysutils/usbhotkey||2021-06-26|Has expired: Uses EOL Python 2.7 via devel/libhid
+net/panoptis||2021-06-26|Has expired: Unmaintained upstream
+databases/elixir-mongo||2021-06-26|Has expired: Upsupported by upstream
+irc/eggdrop-devel|irc/eggdrop|2021-06-26|Has expired: Use stable version instead, irc/eggdrop
+audio/xmms2||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+audio/gxmms2||2021-06-26|Has expired: Uses EOL Python 2.7 via audio/xmms2
+audio/lxmusic||2021-06-26|Has expired: Uses EOL Python 2.7 via audio/xmms2
+math/gringo||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+math/aspcud||2021-06-26|Has expired: Uses EOL Python 2.7 via math/gringo
+math/py-pyasp||2021-06-26|Has expired: Uses EOL Python 2.7 via math/gringo
+devel/viewvc|devel/viewvc-devel|2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+chinese/sunpinyin||2021-06-26|Has expired: Uses Python 2.7 which is EOLed upstream
+chinese/fcitx-sunpinyin||2021-06-26|Has expired: Uses EOL Python 2.7 via chinese/sunpinyin
+www/dojo-shrinksafe||2021-06-26|Removed, deprecated upstream
+www/blastbeat||2021-06-26|Removed, abandoned upstream, broken on 12.X since 2019
+www/demoroniser||2021-06-26|Removed, made for Microsoft Powerpoint 9x with Perl 4.0
+x11-toolkits/v||2021-06-27|Has expired: Dead upstream, unmaintained and no consumers
+sysutils/ssid|sysutils/setsid|2021-06-27|Move to more obvious package name
