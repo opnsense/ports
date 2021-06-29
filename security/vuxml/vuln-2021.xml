@@ -1,9 +1,162 @@
+  <vuln vid="7003b62d-7252-46ff-a9df-1b1900f1e65b">
+    <topic>RabbitMQ -- Denial of Service via improper input validation</topic>
+    <affects>
+      <package>
+	<name>rabbitmq</name>
+	<range><lt>3.8.16</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jonathon Knudsen of Synopsys Cybersecurity Research Center reports:</p>
+	<blockquote cite="https://tanzu.vmware.com/security/cve-2021-22116">
+      <p>All versions prior to 3.8.16 are prone to a denial of service
+	  vulnerability due to improper input validation in AMQP 1.0 client
+	  connection endpoint. A malicious client can exploit the vulnerability
+	  by sending malicious AMQP messages to the target RabbitMQ instance
+	  having the AMQP 1.0 plugin enabled.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-22116</cvename>
+      <url>https://tanzu.vmware.com/security/cve-2021-22116</url>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-22116</url>
+    </references>
+    <dates>
+      <discovery>2021-05-10</discovery>
+      <entry>2021-06-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7c555ce3-658d-4589-83dd-4b6a31c5d610">
+    <topic>RabbitMQ-C -- integer overflow leads to heap corruption</topic>
+    <affects>
+      <package>
+	<name>rabbitmq-c</name>
+	<name>rabbitmq-c-devel</name>
+	<range><lt>0.10.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>alanxz reports:</p>
+	<blockquote cite="https://github.com/alanxz/rabbitmq-c/commit/fc85be7123050b91b054e45b91c78d3241a5047a">
+	  <p>When parsing a frame header, validate that the frame_size is less than
+	or equal to INT32_MAX. Given frame_max is limited between 0 and
+	INT32_MAX in amqp_login and friends, this does not change the API.
+	This prevents a potential buffer overflow when a malicious client sends
+	a frame_size that is close to UINT32_MAX, in which causes an overflow
+	when computing state-&gt;target_size resulting in a small value there. A
+	buffer is then allocated with the small amount, then memcopy copies the
+	frame_size writing to memory beyond the end of the buffer.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-18609</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-18609</url>
+    </references>
+    <dates>
+      <discovery>2019-10-29</discovery>
+      <entry>2021-06-25</entry>
+    </dates>
+</vuln>
+
+  <vuln vid="41bc849f-d5ef-11eb-ae37-589cfc007716">
+    <topic>PuppetDB -- SQL Injection</topic>
+    <affects>
+      <package>
+       <name>puppetdb6</name>
+       <range><lt>6.17.0</lt></range>
+      </package>
+      <package>
+       <name>puppetdb7</name>
+       <range><lt>7.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Puppet reports:</p>
+       <blockquote cite="https://puppet.com/docs/puppetdb/latest/release_notes.html#security-fixes">
+	<p>Fixed an issue where someone with the ability to query PuppetDB
+	    could arbitrarily write, update, or delete data CVE-2021-27021
+	    PDB-5138.</p>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-27021</cvename>
+      <url>https://puppet.com/security/cve/cve-2021-27021/</url>
+      <url>https://tickets.puppetlabs.com/browse/PDB-5138</url>
+    </references>
+    <dates>
+      <discovery>2021-06-24</discovery>
+      <entry>2021-06-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4c9159ea-d4c9-11eb-aeee-8c164582fbac">
+    <topic>Ansible -- Templating engine bug</topic>
+    <affects>
+      <package>
+	<name>py36-ansible-core</name>
+	<name>py37-ansible-core</name>
+	<name>py38-ansible-core</name>
+	<name>py39-ansible-core</name>
+	<range><lt>2.11.2</lt></range>
+      </package>
+      <package>
+	<name>py36-ansible-base</name>
+	<name>py37-ansible-base</name>
+	<name>py38-ansible-base</name>
+	<name>py39-ansible-base</name>
+	<range><lt>2.10.11</lt></range>
+      </package>
+      <package>
+	<name>py36-ansible2</name>
+	<name>py37-ansible2</name>
+	<name>py38-ansible2</name>
+	<name>py39-ansible2</name>
+	<range><lt>2.9.23</lt></range>
+      </package>
+      <package>
+	<name>py36-ansible</name>
+	<name>py37-ansible</name>
+	<name>py38-ansible</name>
+	<name>py39-ansible</name>
+	<range><lt>2.9.23</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Ansible developers report:</p>
+	<blockquote cite="https://github.com/ansible/ansible/blob/stable-2.11/changelogs/CHANGELOG-v2.11.rst#security-fixes">
+	  <p>Templating engine fix for not preserving usnafe status
+	    when trying to preserve newlines.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-3583</cvename>
+      <url>https://github.com/ansible/ansible/blob/stable-2.11/changelogs/CHANGELOG-v2.11.rst#security-fixes</url>
+      <url>https://github.com/ansible/ansible/blob/stable-2.10/changelogs/CHANGELOG-v2.10.rst#security-fixes</url>
+      <url>https://github.com/ansible/ansible/pull/74960</url>
+      <url>https://groups.google.com/g/ansible-announce/c/tmIgD1DpZJg</url>
+    </references>
+    <dates>
+      <discovery>2021-06-10</discovery>
+      <entry>2021-06-24</entry>
+      <modified>2021-06-25</modified>
+    </dates>
+  </vuln>
+
   <vuln vid="f3fc2b50-d36a-11eb-a32c-00a0989e4ec1">
     <topic>dovecot-pigeonhole -- Sieve excessive resource usage</topic>
     <affects>
       <package>
 	<name>dovecot-pigeonhole</name>
-	<range><lt>2.3.15</lt></range>
+	<range><lt>0.5.15</lt></range>
       </package>
     </affects>
     <description>
@@ -268,12 +421,13 @@
       </body>
     </description>
     <references>
-      <cvename>2020-35701</cvename>
+      <cvename>CVE-2020-35701</cvename>
       <url>https://github.com/Cacti/cacti/issues/4022</url>
     </references>
     <dates>
       <discovery>2020-12-24</discovery>
       <entry>2021-06-10</entry>
+      <modified>2021-06-24</modified>
     </dates>
   </vuln>
 
