@@ -429,7 +429,6 @@
     SUBDIR += qt5-examples
     SUBDIR += qt5-l10n
     SUBDIR += qt5ct
-    SUBDIR += qtchooser
     SUBDIR += quantum++
     SUBDIR += raspberrypi-gpioshutdown
     SUBDIR += raspberrypi-userland
@@ -455,6 +454,7 @@
     SUBDIR += rubygem-vpim
     SUBDIR += rump
     SUBDIR += ruut
+    SUBDIR += schilytools
     SUBDIR += sdformat
     SUBDIR += seabios
     SUBDIR += sent

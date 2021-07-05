@@ -116,6 +116,7 @@
     SUBDIR += denemo
     SUBDIR += din
     SUBDIR += discid
+    SUBDIR += dmidiplayer
     SUBDIR += dpf-plugins-lv2
     SUBDIR += dragonfly-reverb-lv2
     SUBDIR += drumgizmo
@@ -869,6 +870,7 @@
     SUBDIR += yoshimi
     SUBDIR += zam-plugins-lv2
     SUBDIR += zita-convolver
+    SUBDIR += zita-njbridge
     SUBDIR += zita-resampler
     SUBDIR += zrythm
     SUBDIR += zynaddsubfx

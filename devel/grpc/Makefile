@@ -3,6 +3,7 @@
 PORTNAME=	grpc
 PORTVERSION=	1.38.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 PORTEPOCH=	2
 CATEGORIES=	devel
 
@@ -40,4 +41,11 @@ PLIST_SUB=	SHLIB_MAJOR=${PORTVERSION:R} \
 
 USE_HARDENING=	pie:off relro:off
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+# Remove openssl from grpc.pc because we do not ship openssl.pc in base system
+.if ${SSL_DEFAULT} == base
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-CMakeLists.txt
+.endif
+
+.include <bsd.port.post.mk>

@@ -669,6 +669,7 @@
     SUBDIR += fnccheck
     SUBDIR += folly
     SUBDIR += forge
+    SUBDIR += forge-devel
     SUBDIR += fortran-utils
     SUBDIR += fortytwo-encore
     SUBDIR += fossil
@@ -4109,6 +4110,7 @@
     SUBDIR += py-automaton
     SUBDIR += py-autoprop
     SUBDIR += py-avro
+    SUBDIR += py-awesomeversion
     SUBDIR += py-aws-sam-translator
     SUBDIR += py-aws-xray-sdk
     SUBDIR += py-azure-appconfiguration
@@ -4202,6 +4204,7 @@
     SUBDIR += py-backcall
     SUBDIR += py-backports
     SUBDIR += py-backports.csv
+    SUBDIR += py-backports.zoneinfo
     SUBDIR += py-banal
     SUBDIR += py-bandit
     SUBDIR += py-bcdoc
@@ -4262,6 +4265,7 @@
     SUBDIR += py-check-manifest
     SUBDIR += py-cheetah3
     SUBDIR += py-circuits
+    SUBDIR += py-ciso8601
     SUBDIR += py-cld
     SUBDIR += py-cle
     SUBDIR += py-cleo
@@ -4391,6 +4395,7 @@
     SUBDIR += py-entrypoints
     SUBDIR += py-enum-compat
     SUBDIR += py-envisage
+    SUBDIR += py-envs
     SUBDIR += py-epdb
     SUBDIR += py-epsilon
     SUBDIR += py-evdev
@@ -4444,6 +4449,7 @@
     SUBDIR += py-freebsd-sysctl
     SUBDIR += py-freenas.utils
     SUBDIR += py-freezegun
+    SUBDIR += py-frictionless
     SUBDIR += py-frozendict
     SUBDIR += py-fs
     SUBDIR += py-fs2
@@ -5056,6 +5062,7 @@
     SUBDIR += py-requestsexceptions
     SUBDIR += py-requirementslib
     SUBDIR += py-resolvelib
+    SUBDIR += py-resolvelib05
     SUBDIR += py-resolver
     SUBDIR += py-resource
     SUBDIR += py-responses
@@ -5198,6 +5205,7 @@
     SUBDIR += py-txaio
     SUBDIR += py-typechecks
     SUBDIR += py-typed-ast
+    SUBDIR += py-typer
     SUBDIR += py-types-PyYAML
     SUBDIR += py-types-protobuf
     SUBDIR += py-types-requests
@@ -6043,11 +6051,13 @@
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-create-meta
     SUBDIR += rubygem-cucumber-create-meta2
+    SUBDIR += rubygem-cucumber-create-meta4
     SUBDIR += rubygem-cucumber-cucumber-expressions
     SUBDIR += rubygem-cucumber-cucumber-expressions10
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-messages13
+    SUBDIR += rubygem-cucumber-messages15
     SUBDIR += rubygem-cucumber-messages4
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
@@ -6083,7 +6093,9 @@
     SUBDIR += rubygem-devise-rails5
     SUBDIR += rubygem-devise-rails52
     SUBDIR += rubygem-devise-rails60
+    SUBDIR += rubygem-devise-rails61
     SUBDIR += rubygem-devise47-rails60
+    SUBDIR += rubygem-devise47-rails61
     SUBDIR += rubygem-did_you_mean
     SUBDIR += rubygem-dig_rb
     SUBDIR += rubygem-directory_watcher
@@ -6151,6 +6163,7 @@
     SUBDIR += rubygem-flipper
     SUBDIR += rubygem-flipper-active_support_cache_store
     SUBDIR += rubygem-flipper-active_support_cache_store017
+    SUBDIR += rubygem-flipper-active_support_cache_store-rails61
     SUBDIR += rubygem-flipper-ui
     SUBDIR += rubygem-flipper-ui017
     SUBDIR += rubygem-flipper017
@@ -6195,6 +6208,7 @@
     SUBDIR += rubygem-gettext_i18n_rails_js-rails50
     SUBDIR += rubygem-gettext_i18n_rails_js-rails52
     SUBDIR += rubygem-gettext_i18n_rails_js-rails60
+    SUBDIR += rubygem-gettext_i18n_rails_js-rails61
     SUBDIR += rubygem-gh
     SUBDIR += rubygem-gibbler
     SUBDIR += rubygem-gio2
@@ -6206,6 +6220,7 @@
     SUBDIR += rubygem-gitlab-labkit
     SUBDIR += rubygem-gitlab-license
     SUBDIR += rubygem-gitlab-pygments.rb
+    SUBDIR += rubygem-gitlab-rdoc
     SUBDIR += rubygem-gitlab-sidekiq-fetcher
     SUBDIR += rubygem-gitlab_chronic_duration
     SUBDIR += rubygem-gitlab_git
@@ -6436,6 +6451,7 @@
     SUBDIR += rubygem-peek-rails4
     SUBDIR += rubygem-peek-rails52
     SUBDIR += rubygem-peek-rails60
+    SUBDIR += rubygem-peek-rails61
     SUBDIR += rubygem-peek-rblineprof-rails52
     SUBDIR += rubygem-peek-redis-rails52
     SUBDIR += rubygem-pkg-config
@@ -6483,6 +6499,7 @@
     SUBDIR += rubygem-rails-i18n-rails50
     SUBDIR += rubygem-rails-i18n-rails52
     SUBDIR += rubygem-rails-i18n-rails60
+    SUBDIR += rubygem-rails-i18n-rails61
     SUBDIR += rubygem-rails-observers
     SUBDIR += rubygem-rainbow
     SUBDIR += rubygem-rake
@@ -6512,6 +6529,7 @@
     SUBDIR += rubygem-redis-activesupport-rails50
     SUBDIR += rubygem-redis-activesupport-rails52
     SUBDIR += rubygem-redis-activesupport-rails60
+    SUBDIR += rubygem-redis-activesupport-rails61
     SUBDIR += rubygem-redis-store
     SUBDIR += rubygem-redmine_plugin_support
     SUBDIR += rubygem-reentrant_flock
@@ -6791,6 +6809,8 @@
     SUBDIR += scalatest
     SUBDIR += scandoc
     SUBDIR += sccache
+    SUBDIR += sccs
+    SUBDIR += schilybase
     SUBDIR += scons
     SUBDIR += sd-mux-ctrl
     SUBDIR += sdl12
@@ -6875,6 +6895,7 @@
     SUBDIR += subversion-book
     SUBDIR += subversion-lts
     SUBDIR += subversive
+    SUBDIR += sunpromake
     SUBDIR += svk
     SUBDIR += svn2git
     SUBDIR += svn_load_dirs
@@ -6951,6 +6972,7 @@
     SUBDIR += tradcpp
     SUBDIR += transient
     SUBDIR += transwarp
+    SUBDIR += tree-sitter
     SUBDIR += treepy.el
     SUBDIR += trellis
     SUBDIR += trio
