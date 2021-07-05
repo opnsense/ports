@@ -1,3 +1,162 @@
+  <vuln vid="d49f86ab-d9c7-11eb-a200-00155d01f201">
+    <topic>Exiv2 -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>exiv2</name>
+	<range><lt>0.27.4,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Exiv2 teams reports:</p>
+	<blockquote cite="https://github.com/Exiv2/exiv2/security/advisories">
+	  <p>Multiple vulnerabilities covering buffer overflows, out-of-bounds,
+	    read of uninitialized memory and denial of serivce. The heap
+	    overflow is triggered when Exiv2 is used to read the metadata of
+	    a crafted image file. An attacker could potentially exploit the
+	    vulnerability to gain code execution, if they can trick the victim
+	    into running Exiv2 on a crafted image file. The out-of-bounds read
+	    is triggered when Exiv2 is used to write metadata into a crafted
+	    image file. An attacker could potentially exploit the vulnerability
+	    to cause a denial of service by crashing Exiv2, if they can trick
+	    the victim into running Exiv2 on a crafted image file. The read of
+	    uninitialized memory is triggered when Exiv2 is used to read the
+	    metadata of a crafted image file. An attacker could potentially
+	    exploit the vulnerability to leak a few bytes of stack memory, if
+	    they can trick the victim into running Exiv2 on a crafted image
+	    file.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-29457</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-v74w-h496-cgqm</url>
+      <cvename>CVE-2021-29458</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-57jj-75fm-9rq5</url>
+      <cvename>CVE-2021-29463</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-5p8g-9xf3-gfrr</url>
+      <cvename>CVE-2021-29464</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-jgm9-5fw5-pw9p</url>
+      <cvename>CVE-2021-29470</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-8949-hhfh-j7rj</url>
+      <cvename>CVE-2021-29473</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-7569-phvm-vwc2</url>
+      <cvename>CVE-2021-29623</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-6253-qjwm-3q4v</url>
+      <cvename>CVE-2021-32617</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-w8mv-g8qq-36mj</url>
+      <cvename>CVE-2021-3482</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-9jp9-m3fv-2vg9</url>
+    </references>
+    <dates>
+      <discovery>2021-04-25</discovery>
+      <entry>2021-06-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f2596f27-db4c-11eb-8bc6-c556d71493c9">
+    <topic>openexr v3.0.5 -- fixes miscellaneous security issues</topic>
+    <affects>
+      <package>
+	<name>openexr</name>
+	<range><lt>3.0.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Cary Phillips reports:</p>
+	<blockquote cite="https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.0.5">
+	  <ul>
+	    <li>1038 fix/extend part number validation in MultiPart methods</li>
+	    <li>1037 verify data size in deepscanlines with NO_COMPRESSION</li>
+	    <li>1036 detect buffer overflows in RleUncompress</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.0.5</url>
+    </references>
+    <dates>
+      <discovery>2021-06-03</discovery>
+      <entry>2021-07-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8ba8278d-db06-11eb-ba49-001b217b3468">
+    <topic>Gitlab -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>14.0.0</ge><lt>14.0.2</lt></range>
+	<range><ge>13.12.0</ge><lt>13.12.6</lt></range>
+	<range><ge>8.0.0</ge><lt>13.11.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2021/07/01/security-release-gitlab-14-0-2-released/">
+	  <p>DoS using Webhook connections</p>
+	  <p>CSRF on GraphQL API allows executing mutations through GET requests</p>
+	  <p>Private projects information disclosure</p>
+	  <p>Denial of service of user profile page</p>
+	  <p>Single sign-on users not getting blocked</p>
+	  <p>Some users can push to Protected Branch with Deploy keys</p>
+	  <p>A deactivated user can access data through GraphQL</p>
+	  <p>Reflected XSS in release edit page</p>
+	  <p>Clipboard DOM-based XSS</p>
+	  <p>Stored XSS on Audit Log</p>
+	  <p>Forks of public projects by project members could leak codebase</p>
+	  <p>Improper text rendering</p>
+	  <p>HTML Injection in full name field</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://about.gitlab.com/releases/2021/07/01/security-release-gitlab-14-0-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2021-07-01</discovery>
+      <entry>2021-07-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9d271bab-da22-11eb-86f0-94c691a700a6">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.300</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.289.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2021-06-30/">
+	  <h1>Description</h1>
+	  <h5>(Medium) SECURITY-2278 / CVE-2021-21670</h5>
+	  <p>Improper permission checks allow canceling queue items and aborting builds</p>
+	  <h5>(High) SECURITY-2371 / CVE-2021-21671</h5>
+	  <p>Session fixation vulnerability</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-21670</cvename>
+      <cvename>CVE-2021-21671</cvename>
+      <url>https://www.jenkins.io/security/advisory/2021-06-30/</url>
+    </references>
+    <dates>
+      <discovery>2021-06-30</discovery>
+      <entry>2021-07-01</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7003b62d-7252-46ff-a9df-1b1900f1e65b">
     <topic>RabbitMQ -- Denial of Service via improper input validation</topic>
     <affects>
@@ -214,7 +373,7 @@
       <cvename>CVE-2021-29157</cvename>
       <url>https://dovecot.org/pipermail/dovecot-news/2021-June/000461.html</url>
       <cvename>CVE-2021-33515</cvename>
-      <url>>https://dovecot.org/pipermail/dovecot-news/2021-June/000462.html</url>
+      <url>https://dovecot.org/pipermail/dovecot-news/2021-June/000462.html</url>
     </references>
     <dates>
       <discovery>2021-03-22</discovery>
