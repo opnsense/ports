@@ -1,6 +1,5 @@
 PORTNAME=	clog
-PORTVERSION=	1.0.1
-PORTREVISION=	3
+PORTVERSION=	1.0.2
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none
@@ -12,9 +11,6 @@ COMMENT=	Circular log support for FreeBSD syslogd
 LICENSE=	BSD2CLAUSE
 
 USE_HARDENING=	safestack
-
-# -O2 is dangerous for clog! It breaks on i386 -O works.
-CFLAGS+=	-O
 
 .include <bsd.port.pre.mk>
 
