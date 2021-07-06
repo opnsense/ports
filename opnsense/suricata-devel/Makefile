@@ -1,7 +1,6 @@
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
-DISTVERSION=	6.0.2
-PORTREVISION=	1
+DISTVERSION=	6.0.3
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
