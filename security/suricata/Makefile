@@ -1,7 +1,7 @@
 # Created by: Patrick Tracanelli <eksffa@freebsdbrasil.com.br>
 
 PORTNAME=	suricata
-DISTVERSION=	5.0.6
+DISTVERSION=	5.0.7
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
