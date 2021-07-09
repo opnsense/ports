@@ -1,8 +1,8 @@
 # Created by: Torsten Zuehlsdorff <tz@FreeBSD.org>
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	14.0.2
-PORTREVISION=	1
+PORTVERSION=	14.0.4
+PORTREVISION=	0
 CATEGORIES=	www devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -186,7 +186,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-gitlab-license>=1.5<2.0:devel/rubygem-gitlab-license \
 	rubygem-rack-attack>=6.3.0<6.4.0:www/rubygem-rack-attack \
 	rubygem-sentry-raven>=3.1<4.0:devel/rubygem-sentry-raven \
-	rubygem-pg_query>=2.0.3<2.1:databases/rubygem-pg_query \
+	rubygem-pg_query>=2.1<3:databases/rubygem-pg_query \
 	rubygem-premailer-rails-rails61>=1.10.3<1.11.0:mail/rubygem-premailer-rails-rails61 \
 	rubygem-gitlab-labkit>=0.18.0<0.19:devel/rubygem-gitlab-labkit \
 	rubygem-thrift>=0.14.0:devel/rubygem-thrift \
@@ -269,7 +269,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT?=	gitlab-org
 GL_PROJECT?=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT?=	bac4ee4a9e2bc845fd5c91240cccaa293cb4f847
+GL_COMMIT?=	7fd059d6f16ac5af6572303dd21f3c0eca61ad43
 
 USERS=	git
 GROUPS=	git

@@ -13,6 +13,7 @@ COMMENT=	GNU Compiler Collection 4.8
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
+BROKEN=		Accidentally pulls in -Qunused-arguments, which is an unsupported argument by gcc48
 DEPRECATED=	Unsupported by upstream since 2015. Use GCC 10 or newer instead.
 ONLY_FOR_ARCHS=	amd64 i386
 
@@ -33,7 +34,7 @@ CPE_VENDOR=	gnu
 
 USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
 
-NO_UNSED_ARGUMENTS=	yes
+NO_UNSED_ARGUMENTS_CHECK=	yes
 
 GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).([0-9]+).*/\1\2/}

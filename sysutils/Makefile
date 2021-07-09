@@ -164,11 +164,13 @@
     SUBDIR += cfengine-masterfiles315
     SUBDIR += cfengine-masterfiles316
     SUBDIR += cfengine-masterfiles317
+    SUBDIR += cfengine-masterfiles318
     SUBDIR += cfengine310
     SUBDIR += cfengine311
     SUBDIR += cfengine315
     SUBDIR += cfengine316
     SUBDIR += cfengine317
+    SUBDIR += cfengine318
     SUBDIR += chaoskube
     SUBDIR += checkrestart
     SUBDIR += chezmoi
@@ -470,6 +472,8 @@
     SUBDIR += graveman
     SUBDIR += graylog
     SUBDIR += grub2-bhyve
+    SUBDIR += grub2-efi
+    SUBDIR += grub2-pcbsd
     SUBDIR += gsh
     SUBDIR += gsmartcontrol
     SUBDIR += gstopd
@@ -984,10 +988,8 @@
     SUBDIR += pstree
     SUBDIR += puppet-lint
     SUBDIR += puppet-mode.el
-    SUBDIR += puppet5
     SUBDIR += puppet6
     SUBDIR += puppet7
-    SUBDIR += puppetserver5
     SUBDIR += puppetserver6
     SUBDIR += puppetserver7
     SUBDIR += pv
