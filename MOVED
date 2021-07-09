@@ -12656,8 +12656,6 @@ net/linuxigd||2019-05-09|Has expired: Abandonware; use net/miniupnpd instead
 net/openafs||2019-05-09|Has expired: Broken for more than 6 months
 security/quantis||2019-05-09|Has expired: Broken for more than 6 months
 sysutils/boxbackup||2019-05-09|Has expired: Broken for more than 6 months
-sysutils/grub2-efi||2019-05-09|Has expired: Broken for more than 6 months
-sysutils/grub2-pcbsd||2019-05-09|Has expired: Broken for more than 6 months
 sysutils/mdcp||2019-05-09|Has expired: Broken for more than 6 months
 sysutils/sbsigntool||2019-05-09|Has expired: Broken for more than 6 months
 www/py-cherrypy-old||2019-05-09|Has expired: Lates version is in tree and no dependent ports
@@ -16197,7 +16195,6 @@ textproc/elasticsearch5-search-guard||2021-04-06|Has expired: textproc/elasticse
 multimedia/gnome-subtitles||2021-04-06|Has expired: outdated, depends on deprecated library www/gtkhtml3
 net/libproxy-mozjs||2021-04-06|Has expired: Uses EOL Python 2.7 via lang/spidermonkey52
 lang/spidermonkey52|lang/spidermonkey78|2021-04-06|Has expired: Uses Python 2.7 which is EOLed upstream
-ftp/wzdftpd||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
 astro/roadmap||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
 games/cosmo||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
 games/bomberinstinct||2021-04-07|Has expired: Unmaintained and dead upstream, does not build with -fno-common (llvm 11)
@@ -16458,3 +16455,8 @@ sysutils/ssid|sysutils/setsid|2021-06-27|Move to more obvious package name
 databases/pgpool-II-35||2021-07-01|Has expired: EOL since January 2021, please use one of the other pgpool-II-* ports
 sysutils/cdrtools-devel|sysutils/cdrtools|2021-07-01|Obsolete, use sysutils/cdrtools instead
 sysutils/sformat|sysutils/schilyutils|2021-07-01|Subsumed under sysutils/schilyutils
+misc/qtchooser||2021-07-04|No longer supported upstream
+databases/puppetdb5||2021-07-05|Has expired: Puppet 5 has reached EOL
+sysutils/puppet5||2021-07-05|Has expired: Puppet 5 has reached EOL
+sysutils/puppetserver5||2021-07-05|Has expired: Puppet 5 has reached EOL
+databases/puppetdb-terminus5||2021-07-05|Has expired: Puppet 5 has reached EOL
