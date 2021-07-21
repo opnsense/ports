@@ -1,3 +1,232 @@
+  <vuln vid="38a4a043-e937-11eb-9b84-d4c9ef517024">
+    <topic>MySQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mysql57-server</name>
+	<range><lt>5.7.35</lt></range>
+      </package>
+      <package>
+	<name>mysql80-server</name>
+	<range><lt>8.0.26</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oracle reports:</p>
+	<blockquote cite="https://www.oracle.com/security-alerts/cpujul2021.html">
+	  <p>This Critical Patch Update contains 41 new security patches for
+	    Oracle MySQL. 10 of these vulnerabilities may be remotely exploitable
+	    without authentication, i.e., may be exploited over a network without
+	    requiring user credentials.<br/>
+	    The highest CVSS v3.1 Base Score of vulnerabilities affecting Oracle
+	    MySQL is 8.8.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://www.oracle.com/security-alerts/cpujul2021.html</url>
+    </references>
+    <dates>
+      <discovery>2021-07-20</discovery>
+      <entry>2021-07-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="943d23b6-e65e-11eb-ad30-0800273f11ea">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.14.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea Team reports for release 1.14.5:</p>
+	<blockquote cite="https://blog.gitea.io/2021/07/gitea-1.14.5-is-released/">
+	  <ul>
+	    <li>Hide mirror passwords on repo settings page (#16022) (#16355)</li>
+	    <li>Update bluemonday to v1.0.15 (#16379) (#16380)</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.14.5</url>
+      <freebsdpr>ports/257221</freebsdpr>
+    </references>
+    <dates>
+      <discovery>2021-05-16</discovery>
+      <entry>2021-07-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1ba21ff1-e672-11eb-a686-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>91.0.4472.164</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2021/07/stable-channel-update-for-desktop.html">
+	  <p>This release contains 8 security fixes, including:</p>
+	  <ul>
+	    <li>[1219082] High CVE-2021-30559: Out of bounds write in ANGLE.
+	      Reported by Seong-Hwan Park (SeHwa) of SecunologyLab on
+	      2021-06-11</li>
+	    <li>[1214842] High CVE-2021-30541: Use after free in V8. Reported by
+	      Richard Wheeldon on 2021-05-31</li>
+	    <li>[1219209] High CVE-2021-30560: Use after free in Blink XSLT.
+	      Reported by Nick Wellnhofer on 2021-06-12</li>
+	    <li>[1219630] High CVE-2021-30561: Type Confusion in V8. Reported by
+	      Sergei Glazunov of Google Project Zero on 2021-06-14</li>
+	    <li>[1220078] High CVE-2021-30562: Use after free in WebSerial.
+	      Reported by Anonymous on 2021-06-15</li>
+	    <li>[1228407] High CVE-2021-30563: Type Confusion in V8. Reported by
+	      Anonymous on 2021-07-12</li>
+	    <li>[1221309] Medium CVE-2021-30564: Heap buffer overflow in WebXR.
+	      Reported by Ali Merchant, iQ3Connect VR Platform on
+	      2021-06-17</li>
+	  </ul>
+	  <p>Google is aware of reports that an exploit for CVE-2021-30563 exists in the wild.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-30541</cvename>
+      <cvename>CVE-2021-30559</cvename>
+      <cvename>CVE-2021-30560</cvename>
+      <cvename>CVE-2021-30561</cvename>
+      <cvename>CVE-2021-30562</cvename>
+      <cvename>CVE-2021-30563</cvename>
+      <cvename>CVE-2021-30564</cvename>
+      <url>https://chromereleases.googleblog.com/2021/07/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2021-07-15</discovery>
+      <entry>2021-07-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7ed5779c-e4c7-11eb-91d7-08002728f74c">
+    <topic>Ruby -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>ruby26</name>
+	<range><lt>2.6.8,1</lt></range>
+      </package>
+      <package>
+	<name>ruby</name>
+	<range><lt>2.7.4,1</lt></range>
+      </package>
+      <package>
+	<name>ruby30</name>
+	<range><lt>3.0.2,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Ruby news:</p>
+	<blockquote cite="https://www.ruby-lang.org/en/news/2021/07/07/ruby-3-0-2-released/">
+	  <p>This release includes security fixes. Please check the topics below for details.</p>
+	  <p>CVE-2021-31810: Trusting FTP PASV responses vulnerability in Net::FTP</p>
+	  <p>CVE-2021-32066: A StartTLS stripping vulnerability in Net::IMAP</p>
+	  <p>CVE-2021-31799: A command injection vulnerability in RDoc</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-31799</cvename>
+      <cvename>CVE-2021-31810</cvename>
+      <cvename>CVE-2021-32066</cvename>
+      <url>https://www.ruby-lang.org/en/news/2021/07/07/ruby-2-6-8-released/</url>
+      <url>https://www.ruby-lang.org/en/news/2021/07/07/ruby-2-7-4-released/</url>
+      <url>https://www.ruby-lang.org/en/news/2021/07/07/ruby-3-0-2-released/</url>
+      <url>https://www.ruby-lang.org/en/news/2021/05/02/os-command-injection-in-rdoc/</url>
+      <url>https://www.ruby-lang.org/en/news/2021/07/07/starttls-stripping-in-net-imap/</url>
+      <url>https://www.ruby-lang.org/en/news/2021/07/07/trusting-pasv-responses-in-net-ftp/</url>
+    </references>
+    <dates>
+      <discovery>2021-07-07</discovery>
+      <entry>2021-07-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c365536d-e3cf-11eb-9d8d-b37b683944c2">
+    <topic>go -- crypto/tls: clients can panic when provided a certificate of the wrong type for the negotiated parameters</topic>
+    <affects>
+      <package>
+	<name>go</name>
+	<range><lt>1.16.6,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://github.com/golang/go/issues/47143">
+		<p>crypto/tls clients can panic when provided a certificate of
+		 the wrong type for the negotiated parameters. net/http clients
+		 performing HTTPS requests are also affected. The panic can be
+		 triggered by an attacker in a privileged network position
+		 without access to the server certificate's private key, as
+		 long as a trusted ECDSA or Ed25519 certificate for the server
+		 exists (or can be issued), or the client is configured with
+		 Config.InsecureSkipVerify. Clients that disable all TLS_RSA
+		 cipher suites (that is, TLS 1.0–1.2 cipher suites without
+		 ECDHE), as well as TLS 1.3-only clients, are unaffected.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-34558</cvename>
+      <url>https://github.com/golang/go/issues/47143</url>
+    </references>
+    <dates>
+      <discovery>2021-07-07</discovery>
+      <entry>2021-07-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9b1699ff-d84c-11eb-92d6-1b6ff3dfe4d3">
+    <topic>mantis -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mantis-php73</name>
+	<name>mantis-php74</name>
+	<name>mantis-php80</name>
+	<range><lt>2.25.2,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mantis 2.25.1 and 2.25.2 releases report:</p>
+	<blockquote cite="https://mantisbt.org/bugs/changelog_page.php?version_id=362">
+	  <p>Security and maintenance release, PHPMailer update to 6.5.0</p>
+	  <ul>
+	    <li>0028552: XSS in manage_custom_field_edit_page.php (CVE-2021-33557)</li>
+	    <li>0028821: Update PHPMailer to 6.5.0 (CVE-2021-3603, CVE-2020-36326)</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-33557</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=2021-33557</url>
+      <cvename>CVE-2021-3603</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=2021-3603</url>
+      <cvename>CVE-2020-36326</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=2020-36326</url>
+    </references>
+    <dates>
+      <discovery>2021-04-28</discovery>
+      <entry>2021-07-09</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="01974420-dfaf-11eb-ba49-001b217b3468">
     <topic>Gitlab -- vulnerability</topic>
     <affects>
