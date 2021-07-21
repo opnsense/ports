@@ -18,8 +18,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 # R packages may require GNU make
 RUN_DEPENDS=	gmake:devel/gmake
 
-USE_HARDENING=	pie:off relro:off
-
 # possible TODO
 # - Use --with-recommended-packages=no by default
 # - Add an option for recommended packages
@@ -30,6 +28,8 @@ USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix perl5 \
 		readline
 USE_LDCONFIG=	${PREFIX}/lib/R/lib
 USE_PERL5=	build
+
+USE_HARDENING=	pie:off relro:off
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-java \

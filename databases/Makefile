@@ -384,6 +384,7 @@
     SUBDIR += p5-DBIx-DBHResolver
     SUBDIR += p5-DBIx-DBSchema
     SUBDIR += p5-DBIx-DataSource
+    SUBDIR += p5-DBIx-DisconnectAll
     SUBDIR += p5-DBIx-Dump
     SUBDIR += p5-DBIx-HA
     SUBDIR += p5-DBIx-Handler
@@ -396,6 +397,7 @@
     SUBDIR += p5-DBIx-Password
     SUBDIR += p5-DBIx-Perlish
     SUBDIR += p5-DBIx-QueryLog
+    SUBDIR += p5-DBIx-QuickDB
     SUBDIR += p5-DBIx-Recordset
     SUBDIR += p5-DBIx-RetryOverDisconnects
     SUBDIR += p5-DBIx-SQLEngine

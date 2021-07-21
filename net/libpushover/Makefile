@@ -1,6 +1,6 @@
 
 PORTNAME=	libpushover
-DISTVERSION=	g2020061601
+DISTVERSION=	g2021071201
 CATEGORIES=	net
 
 MAINTAINER=	shawn.webb@hardenedbsd.org
@@ -10,11 +10,11 @@ USES=		uidfix
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
-USE_GITLAB=	gitea
+USE_GITLAB=	yes
 GL_SITE=	https://git.hardenedbsd.org
 GL_ACCOUNT=	shawn.webb
 GL_PROJECT=	libpushover
-GL_COMMIT=	7041b121ddd8c774a72e944ab68c97a04dfc68a1
+GL_COMMIT=	8ecb3b225bf19dfec1b97827a86a710da1e03bb0
 
 .include <bsd.port.mk>
 

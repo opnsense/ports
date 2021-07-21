@@ -401,7 +401,6 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-utmpx
 .endif
 
 .if defined(SLAVE_TLS)
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-qmail-tls-LibreSSL
 CFLAGS+=	-I${OPENSSLBASE}/include -L${OPENSSLBASE}/lib -DTLS=${TLS_PATCH_DATE}
 . if ${PORT_OPTIONS:MTLS_DEBUG}
 CFLAGS+=	-DDEBUG
