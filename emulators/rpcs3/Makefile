@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.17-12509 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-gc84e5489f
+DISTVERSION=	0.0.17-12518 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g737b0dfd4
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -56,9 +56,8 @@ EVDEV_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 EVDEV_LIB_DEPENDS=	libevdev.so:devel/libevdev
 
 FAUDIO_DESC=		FAudio audio support
-FAUDIO_USES=		sdl
-FAUDIO_USE=		SDL=sdl2
-FAUDIO_CMAKE_BOOL=	USE_FAUDIO
+FAUDIO_LIB_DEPENDS=	libFAudio.so:audio/faudio
+FAUDIO_CMAKE_BOOL=	USE_FAUDIO USE_SYSTEM_FAUDIO
 
 PULSEAUDIO_LIB_DEPENDS=	libpulse-simple.so:audio/pulseaudio
 PULSEAUDIO_CMAKE_BOOL=	USE_PULSE
