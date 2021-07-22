@@ -109,19 +109,16 @@ struct tok tcp_option_values[] = {
 };
 
 void
-tcp_print(struct sbuf *sbuf, register const u_char *bp, register u_int length,
-	  register const u_char *bp2)
+tcp_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 {
-        register const struct tcphdr *tp;
-        register const struct ip *ip;
-        register u_char flags;
-        register u_int hlen;
-        register char ch;
+        const struct tcphdr *tp;
+        u_char flags;
+        u_int hlen;
+        char ch;
         u_int16_t sport, dport, win, urp;
         u_int32_t seq, ack;
-        register const struct ip6_hdr *ip6;
 
-        tp = (struct tcphdr *)bp;
+        tp = (const struct tcphdr *)bp;
 
         hlen = (tp->th_off & 0x0f) * 4;
         if (hlen < sizeof(*tp)) {
@@ -130,11 +127,6 @@ tcp_print(struct sbuf *sbuf, register const u_char *bp, register u_int length,
                 return;
         }
 
-        ip = (struct ip *)bp2;
-        if (IP_V(ip) == 6)
-                ip6 = (struct ip6_hdr *)bp2;
-        else
-                ip6 = NULL;
         ch = '\0';
         sport = EXTRACT_16BITS(&tp->th_sport);
         dport = EXTRACT_16BITS(&tp->th_dport);
@@ -182,9 +174,9 @@ tcp_print(struct sbuf *sbuf, register const u_char *bp, register u_int length,
          * Handle any options.
          */
         if (hlen > sizeof(*tp)) {
-                register const u_char *cp;
-                register u_int opt, datalen;
-                register u_int len;
+                const u_char *cp;
+                u_int opt, datalen;
+                u_int len;
 
                 hlen -= sizeof(*tp);
                 cp = (const u_char *)tp + sizeof(*tp);

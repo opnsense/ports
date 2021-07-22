@@ -1,62 +1,41 @@
+Packetfilter
+============
+
+rulenr, subrulenr, anchorname, label | "0", interface, reason, action, dir
+
+Label only set when system returned all labels correctly, otherwise "0".
+
 IPv4
 ====
 
-rulenr, subrulenr, anchorname, "0" (unused), interface, reason, action, dir,
-version, tos, ecn, ttl, id, offset, flags, protonum (!), protoname (!),
-length, src, dst
+[Packetfilter], version, tos, ecn, ttl, id, offset, flags, protonum (!), protoname (!), length, src, dst
+
+The protonum/protname order is reversed compared to IPv6.
 
 IPv6
 ====
 
-rulenr, subrulenr, anchorname, "0" (unused), interface, reason, action, dir,
-version, class, flowlabel, hoplimit, protoname (!), protonum (!),
-length, src, dst [, HBHOPT ][, DSTOPT ][, FRAG6 ][, ROUTING]
+[Packetfilter], version, class, flowlabel, hoplimit, protoname (!), protonum (!), length, src, dst
 
-HBHOPT
-======
-
-"HBH", PAD1, PADN | PADNTRUNC
-       RTALERT,data | RTALERTTRUNC | RTALERTINVALID, len
-       JUMBO,data | JUMBOTRUNC | JUMBOINVALID, len
-       HOMEADDR,addr, otheroptions? | HOMEADDRESSINVALID, len | HOMEADDRESSTRUNC
-
-DSTOPT
-======
-
-"DSTOPT", opts...
-
-FRAG6
-=====
-
-"FRAG6", frag
-
-ROUTING
-=======
-
-"ROUTING", len, type, segleft, reserved, TRUNC | hdridx, addr
-
-MOBILITY
-========
-
-"MOBILITY" [, "BINDINGACK", status, flags, sequence, lifetime ]
-           [, "BINDINGERR", status, homeaddr ]
-           [, "BINDINGUPDATE", seq, flags, lifetime ]
-           [, "BRR" (binding request) ]
-           [, "HoTI" | "CoTI" (test init), "Home" | "Care-of", cookie ]
-           [, "HoT" | "CoT" (test), nonce, "Home" | "Care-of", cookie, keygen-token ]
-           [, "TYPE", type , length ]
+The protonum/protname order is reversed compared to IPv4.
 
 UDP
 ===
 
-[IPv4 | IPv6], srcport, dstport, datalen [, label]
+[IPv4 | IPv6], srcport, dstport, datalen
 
 TCP
 ===
 
-[IPv4 | IPv6], srcport, dstport, datalen, flags, seq, ack, window, urg, options [, label]
+[IPv4 | IPv6], srcport, dstport, datalen, flags, seq, ack, window, urg, options
 
 CARP
 ====
 
-[IPv4], type, ttl, vhid, version, advskew, advbase [, label]
+[IPv4 | IPv6], type, ttl, vhid, version, advskew, advbase
+
+Caveats
+=======
+
+Partial data may be returned by each component depending on forged packet
+integrity, snap lentgh and other factors, e.g. hardware corruption of packages.

@@ -62,7 +62,7 @@ ip_print_demux(struct sbuf *sbuf, struct ip_print_demux_state *ipds)
 	switch (ipds->nh) {
 	case IPPROTO_TCP:
 		/* pass on the MF bit plus the offset to detect fragments */
-		tcp_print(sbuf, ipds->cp, ipds->len, (const u_char *)ipds->ip);
+		tcp_print(sbuf, ipds->cp, ipds->len);
 		break;
 	case IPPROTO_UDP: {
 		const struct udphdr *up = (const struct udphdr *)ipds->cp;
@@ -72,14 +72,6 @@ ip_print_demux(struct sbuf *sbuf, struct ip_print_demux_state *ipds)
 		    EXTRACT_16BITS(&up->uh_ulen));
 		break;
 	}
-	case IPPROTO_IPV4:
-		/* DVMRP multicast tunnel (ip-in-ip encapsulation) */
-		sbuf_printf(sbuf, "IPV4-IN-IPV4,");
-		break;
-	case IPPROTO_IPV6:
-		/* ip6-in-ip encapsulation */
-		sbuf_printf(sbuf, "IPV6-IN-IPV4,");
-		break;
 	case IPPROTO_VRRP:
 		/* Type, ttl, vhid, version, adbskew, advbase */
 		sbuf_printf(sbuf, "%s,%d,%d,%d,%d,%d",
@@ -88,7 +80,7 @@ ip_print_demux(struct sbuf *sbuf, struct ip_print_demux_state *ipds)
 				ipds->cp[2], ipds->cp[5]);
 		break;
 	default:
-		sbuf_printf(sbuf, "datalength=%d ", ipds->len);
+		sbuf_printf(sbuf, "datalength=%d", ipds->len);
 		break;
 	}
 }
@@ -111,23 +103,22 @@ ip_print(struct sbuf *sbuf,
 	sbuf_printf(sbuf, "%u,", IP_V(ipds->ip));
 
 	if (ntohs(ipds->ip->ip_len) > MAXIMUM_SNAPLEN) {
-		sbuf_printf(sbuf, "[|ip]),");
+		sbuf_printf(sbuf, "[|ip],");
 		return;
 	}
 	if (length < sizeof (struct ip)) {
-		sbuf_printf(sbuf, "truncated-ip= %u),", length);
+		sbuf_printf(sbuf, "truncated-ip=%u,", length);
 		return;
 	}
 	hlen = IP_HL(ipds->ip) * 4;
 	if (hlen < sizeof (struct ip)) {
-		sbuf_printf(sbuf, "bad-hlen=%u),", hlen);
+		sbuf_printf(sbuf, "bad-hlen=%u,", hlen);
 		return;
 	}
 
 	ipds->len = EXTRACT_16BITS(&ipds->ip->ip_len);
 	if (length < ipds->len)
-		sbuf_printf(sbuf, "error='truncated-ip %u bytes missing!',",
-			ipds->len - length);
+		sbuf_printf(sbuf, "truncated-ip=%u,", ipds->len);
 	if (ipds->len < hlen) {
 	    sbuf_printf(sbuf, "bad-len=%u,", ipds->len);
 	    return;
