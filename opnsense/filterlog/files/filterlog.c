@@ -129,7 +129,6 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 		sbuf_printf(&sbuf, ",,");
 	else
 		sbuf_printf(&sbuf, "%u,%s,", subrulenr, hdr->ruleset); 
-//	sbuf_printf(&sbuf, "%u,%s,", hdr->ridentifier, hdr->ifname);
 	sbuf_printf(&sbuf, "0,%s,", hdr->ifname);
 	sbuf_printf(&sbuf, "%s,", code2str(pf_reasons, "unkn(%u)", hdr->reason));
 	sbuf_printf(&sbuf, "%s,", code2str(pf_actions, "unkn(%u)", hdr->action));
@@ -144,6 +143,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
                 sbuf_printf(&sbuf, "%d, IP(truncated-ip %d) ", IP_V(ip), length);
 		goto printsbuf;
         }
+
         switch (IP_V(ip)) {
         case 4:
                 ip_print(&sbuf, packet, length);
@@ -152,7 +152,6 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
                 ip6_print(&sbuf, packet, length);
 		break;
         default:
-                ip_print(&sbuf, packet, length);
                 sbuf_printf(&sbuf, "%d", IP_V(ip));
                 break;
         }

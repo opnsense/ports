@@ -80,84 +80,6 @@ struct ip6_mobility {
 #define IP6MOPT_AUTH          0x5	/* Binding Authorization Data */
 #define IP6MOPT_AUTH_MINLEN    12
 
-#if 0
-static void
-mobility_opt_print(struct sbuf *sbuf, const u_char *bp, int len)
-{
-	int i;
-	int optlen;
-
-	for (i = 0; i < len; i += optlen) {
-		if (bp[i] == IP6MOPT_PAD1)
-			optlen = 1;
-		else {
-			if (i + 1 < len)
-				optlen = bp[i + 1] + 2;
-			else
-				goto trunc;
-		}
-		if (i + optlen > len)
-			goto trunc;
-
-		switch (bp[i]) {
-		case IP6MOPT_PAD1:
-			printf("(pad1)");
-			break;
-		case IP6MOPT_PADN:
-			if (len - i < IP6MOPT_MINLEN) {
-				printf("(padn: trunc)");
-				goto trunc;
-			}
-			printf("(padn)");
-			break;
-		case IP6MOPT_REFRESH:
-			if (len - i < IP6MOPT_REFRESH_MINLEN) {
-				printf("(refresh: trunc)");
-				goto trunc;
-			}
-			/* units of 4 secs */
-			printf("(refresh: %d)",
-				EXTRACT_16BITS(&bp[i+2]) << 2);
-			break;
-		case IP6MOPT_ALTCOA:
-			if (len - i < IP6MOPT_ALTCOA_MINLEN) {
-				printf("(altcoa: trunc)");
-				goto trunc;
-			}
-			printf("(alt-CoA: %s)", ip6addr_string(&bp[i+2]));
-			break;
-		case IP6MOPT_NONCEID:
-			if (len - i < IP6MOPT_NONCEID_MINLEN) {
-				printf("(ni: trunc)");
-				goto trunc;
-			}
-			printf("(ni: ho=0x%04x co=0x%04x)",
-				EXTRACT_16BITS(&bp[i+2]),
-				EXTRACT_16BITS(&bp[i+4]));
-			break;
-		case IP6MOPT_AUTH:
-			if (len - i < IP6MOPT_AUTH_MINLEN) {
-				printf("(auth: trunc)");
-				goto trunc;
-			}
-			printf("(auth)");
-			break;
-		default:
-			if (len - i < IP6MOPT_MINLEN) {
-				printf("(sopt_type %d: trunc)", bp[i]);
-				goto trunc;
-			}
-			printf("(type-0x%02x: len=%d)", bp[i], bp[i + 1]);
-			break;
-		}
-	}
-	return;
-
-trunc:
-	printf("[trunc] ");
-}
-#endif
-
 /*
  * Mobility Header
  */
@@ -174,24 +96,6 @@ mobility_print(struct sbuf *sbuf, const u_char *bp, int len)
 	/* 'ep' points to the end of available data. */
 	ep = bp + len;
 
-#if 0
-	if (!(ep - sizeof(mh->ip6m_len)) < ep) {
-		/*
-		 * There's not enough captured data to include the
-		 * mobility header length.
-		 *
-		 * Our caller expects us to return the length, however,
-		 * so return a value that will run to the end of the
-		 * captured data.
-		 *
-		 * XXX - "ip6_print()" doesn't do anything with the
-		 * returned length, however, as it breaks out of the
-		 * header-processing loop.
-		 */
-		mhlen = ep - bp;
-		goto trunc;
-	}
-#endif
 	mhlen = (int)((mh->ip6m_len + 1) << 3);
 
 	/* XXX ip6m_cksum */
@@ -233,22 +137,22 @@ mobility_print(struct sbuf *sbuf, const u_char *bp, int len)
 		sbuf_printf(sbuf, "BINDINGUPDATE,");
 		sbuf_printf(sbuf, "%d,", EXTRACT_16BITS(&mh->ip6m_data16[0]));
 		hlen = IP6M_MINLEN;
-		if (bp[hlen] & 0xf0)
-			sbuf_printf(sbuf, " ");
-		if (bp[hlen] & 0x80)
-			sbuf_printf(sbuf, "A");
-		if (bp[hlen] & 0x40)
-			sbuf_printf(sbuf, "H");
-		if (bp[hlen] & 0x20)
-			sbuf_printf(sbuf, "L");
-		if (bp[hlen] & 0x10)
-			sbuf_printf(sbuf, "K");
+		if (bp[hlen] & 0xf0) {
+			if (bp[hlen] & 0x80)
+				sbuf_printf(sbuf, "A");
+			if (bp[hlen] & 0x40)
+				sbuf_printf(sbuf, "H");
+			if (bp[hlen] & 0x20)
+				sbuf_printf(sbuf, "L");
+			if (bp[hlen] & 0x10)
+				sbuf_printf(sbuf, "K");
+		}
 		/* Reserved (4bits) */
 		hlen += 1;
 		/* Reserved (8bits) */
 		hlen += 1;
 		/* units of 4 secs */
-		sbuf_printf(sbuf, "%d,", EXTRACT_16BITS(&bp[hlen]) << 2);
+		sbuf_printf(sbuf, ",%d,", EXTRACT_16BITS(&bp[hlen]) << 2);
 		hlen += 2;
 		break;
 	case IP6M_BINDING_ACK:
@@ -278,9 +182,6 @@ mobility_print(struct sbuf *sbuf, const u_char *bp, int len)
 		return(mhlen);
 		break;
 	}
-#if 0
-	mobility_opt_print(sbuf, &bp[hlen], mhlen - hlen);
-#endif
 
 	return(mhlen);
 }

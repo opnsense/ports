@@ -57,67 +57,13 @@ struct ip_print_demux_state {
 };
 
 static void
-ip_print_demux(struct sbuf *sbuf,
-	       struct ip_print_demux_state *ipds)
+ip_print_demux(struct sbuf *sbuf, struct ip_print_demux_state *ipds)
 {
-#if 0
-	struct protoent *proto;
-	struct cksum_vec vec[1];
-
-again:
-#endif
 	switch (ipds->nh) {
-
-#if 0
-	case IPPROTO_AH:
-		ipds->nh = *ipds->cp;
-		ipds->advance = ah_print(ipds->cp);
-		if (ipds->advance <= 0)
-			break;
-		ipds->cp += ipds->advance;
-		ipds->len -= ipds->advance;
-		goto again;
-
-	case IPPROTO_ESP:
-	{
-		int enh, padlen;
-		ipds->advance = esp_print(ndo, ipds->cp, ipds->len,
-				    (const u_char *)ipds->ip,
-				    &enh, &padlen);
-		if (ipds->advance <= 0)
-			break;
-		ipds->cp += ipds->advance;
-		ipds->len -= ipds->advance + padlen;
-		ipds->nh = enh & 0xff;
-		goto again;
-	}
-
-	case IPPROTO_IPCOMP:
-	{
-		int enh;
-		ipds->advance = ipcomp_print(ipds->cp, &enh);
-		if (ipds->advance <= 0)
-			break;
-		ipds->cp += ipds->advance;
-		ipds->len -= ipds->advance;
-		ipds->nh = enh & 0xff;
-		goto again;
-	}
-
-	case IPPROTO_SCTP:
-		sctp_print(ipds->cp, (const u_char *)ipds->ip, ipds->len);
-		break;
-
-	case IPPROTO_DCCP:
-		dccp_print(ipds->cp, (const u_char *)ipds->ip, ipds->len);
-		break;
-#endif
-
 	case IPPROTO_TCP:
 		/* pass on the MF bit plus the offset to detect fragments */
 		tcp_print(sbuf, ipds->cp, ipds->len, (const u_char *)ipds->ip);
 		break;
-
 	case IPPROTO_UDP: {
 		const struct udphdr *up = (const struct udphdr *)ipds->cp;
 		sbuf_printf(sbuf, "%d,%d,%d",
@@ -126,82 +72,14 @@ again:
 		    EXTRACT_16BITS(&up->uh_ulen));
 		break;
 	}
-
-#if 0
-	case IPPROTO_ICMP:
-		/* pass on the MF bit plus the offset to detect fragments */
-		icmp_print(ipds->cp, ipds->len, (const u_char *)ipds->ip,
-			   ipds->off & (IP_MF|IP_OFFMASK));
-		break;
-
-	case IPPROTO_PIGP:
-		/*
-		 * XXX - the current IANA protocol number assignments
-		 * page lists 9 as "any private interior gateway
-		 * (used by Cisco for their IGRP)" and 88 as
-		 * "EIGRP" from Cisco.
-		 *
-		 * Recent BSD <netinet/in.h> headers define
-		 * IP_PROTO_PIGP as 9 and IP_PROTO_IGRP as 88.
-		 * We define IP_PROTO_PIGP as 9 and
-		 * IP_PROTO_EIGRP as 88; those names better
-		 * match was the current protocol number
-		 * assignments say.
-		 */
-		igrp_print(ipds->cp, ipds->len, (const u_char *)ipds->ip);
-		break;
-
-	case IPPROTO_EIGRP:
-		eigrp_print(ipds->cp, ipds->len);
-		break;
-
-	case IPPROTO_ND:
-		ND_PRINT((ndo, " nd %d", ipds->len));
-		break;
-
-	case IPPROTO_EGP:
-		egp_print(ipds->cp, ipds->len);
-		break;
-
-	case IPPROTO_OSPF:
-		ospf_print(ipds->cp, ipds->len, (const u_char *)ipds->ip);
-		break;
-	case IPPROTO_IGMP:
-		igmp_print(ipds->cp, ipds->len);
-		break;
-#endif
-
 	case IPPROTO_IPV4:
 		/* DVMRP multicast tunnel (ip-in-ip encapsulation) */
 		sbuf_printf(sbuf, "IPV4-IN-IPV4,");
-		//ip_print(sbuf, ipds->cp, ipds->len);
 		break;
-
 	case IPPROTO_IPV6:
 		/* ip6-in-ip encapsulation */
-		//ip6_print(sbuf, ipds->cp, ipds->len);
 		sbuf_printf(sbuf, "IPV6-IN-IPV4,");
 		break;
-#if 0
-	case IPPROTO_RSVP:
-		rsvp_print(ipds->cp, ipds->len);
-		break;
-
-	case IPPROTO_GRE:
-		/* do it */
-		gre_print(ipds->cp, ipds->len);
-		break;
-
-	case IPPROTO_MOBILE:
-		mobile_print(ipds->cp, ipds->len);
-		break;
-
-	case IPPROTO_PIM:
-		vec[0].ptr = ipds->cp;
-		vec[0].len = ipds->len;
-		pim_print(ipds->cp, ipds->len, in_cksum(vec, 1));
-		break;
-#endif
 	case IPPROTO_VRRP:
 		/* Type, ttl, vhid, version, adbskew, advbase */
 		sbuf_printf(sbuf, "%s,%d,%d,%d,%d,%d",
@@ -209,18 +87,7 @@ again:
 				ipds->ip->ip_ttl, ipds->cp[1], (ipds->cp[0] & 0xf0) >> 4,
 				ipds->cp[2], ipds->cp[5]);
 		break;
-
-#if 0
-	case IPPROTO_PGM:
-		pgm_print(ipds->cp, ipds->len, (const u_char *)ipds->ip);
-		break;
-
-	case IPPROTO_PFSYNC:
-		pfsync_ip_print(ipds->cp, ipds->len);
-		break;
-#endif
 	default:
-		//sbuf_printf(sbuf, "ip-proto=%d ", ipds->nh);
 		sbuf_printf(sbuf, "datalength=%d ", ipds->len);
 		break;
 	}

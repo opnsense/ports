@@ -110,50 +110,15 @@ frag6_print(struct sbuf *sbuf, register const u_char *bp, register const u_char 
 		       sizeof(struct ip6_hdr) + EXTRACT_16BITS(&ip6->ip6_plen) -
 			       (long)(bp - bp2) - sizeof(struct ip6_frag));
 
-#if 1
 	/* it is meaningless to decode non-first fragment */
 	if ((EXTRACT_16BITS(&dp->ip6f_offlg) & IP6F_OFF_MASK) != 0)
 		return -1;
 	else
-#endif
 	{
 		sbuf_printf(sbuf, ",");
 		return sizeof(struct ip6_frag);
 	}
 }
-
-/*
- * Compute a V6-style checksum by building a pseudoheader.
- */
-#if 0
-int
-nextproto6_cksum(const struct ip6_hdr *ip6, const u_int8_t *data,
-		 u_int len, u_int next_proto)
-{
-        struct {
-                struct in6_addr ph_src;
-                struct in6_addr ph_dst;
-                u_int32_t       ph_len;
-                u_int8_t        ph_zero[3];
-                u_int8_t        ph_nxt;
-        } ph;
-        struct cksum_vec vec[2];
-
-        /* pseudo-header */
-        memset(&ph, 0, sizeof(ph));
-        ph.ph_src = ip6->ip6_src;
-        ph.ph_dst = ip6->ip6_dst;
-        ph.ph_len = htonl(len);
-        ph.ph_nxt = next_proto;
-
-        vec[0].ptr = (const u_int8_t *)(void *)&ph;
-        vec[0].len = sizeof(ph);
-        vec[1].ptr = data;
-        vec[1].len = len;
-
-        return in_cksum(vec, 2);
-}
-#endif
 
 /*
  * print an IP6 datagram.
@@ -186,17 +151,10 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 			len - length);
 
 	flow = EXTRACT_32BITS(&ip6->ip6_flow);
-#if 0
-	/* rfc1883 */
-	if (flow & 0x0f000000)
-	(void)ND_PRINT((ndo, "pri 0x%02x, ", (flow & 0x0f000000) >> 24));
-	if (flow & 0x00ffffff)
-	(void)ND_PRINT((ndo, "flowlabel 0x%06x, ", flow & 0x00ffffff));
-#else
+
 	/* RFC 2460 */
 	sbuf_printf(sbuf, "0x%02x,", (flow & 0x0ff00000) >> 20);
 	sbuf_printf(sbuf, "0x%05x,", flow & 0x000fffff);
-#endif
 
 	struct protoent *protoent = getprotobynumber(ip6->ip6_nxt);
 	const char *proto = protoent != NULL ? protoent->p_name :
@@ -256,17 +214,10 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 			nh = *cp;
 			return;
 		case IPPROTO_ROUTING:
+			sbuf_printf(sbuf, "ROUTING,");
 			advance = rt6_print(sbuf, cp, len);
 			nh = *cp;
 			break;
-#if 0
-		case IPPROTO_SCTP:
-			sctp_print(cp, (const u_char *)ip6, len);
-			return;
-		case IPPROTO_DCCP:
-			dccp_print(cp, (const u_char *)ip6, len);
-			return;
-#endif
 		case IPPROTO_TCP:
 			tcp_print(sbuf, cp, len, (const u_char *)ip6);
 			return;
@@ -277,65 +228,16 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 			up = (struct udphdr *)cp;
 			sbuf_printf(sbuf, "%d,%d,%d", EXTRACT_16BITS(&up->uh_sport), EXTRACT_16BITS(&up->uh_dport),
 				EXTRACT_16BITS(&up->uh_ulen));
-
+			return;
 		}
-			return;
-#if 0
-		case IPPROTO_ICMPV6:
-			icmp6_print(ndo, cp, len, (const u_char *)ip6, fragmented);
-			return;
-		case IPPROTO_AH:
-			advance = ah_print(cp);
-			nh = *cp;
-			break;
-		case IPPROTO_ESP:
-		    {
-			int enh, padlen;
-			advance = esp_print(ndo, cp, len, (const u_char *)ip6, &enh, &padlen);
-			nh = enh & 0xff;
-			len -= padlen;
-			break;
-		    }
-		case IPPROTO_IPCOMP:
-		    {
-			int enh;
-			advance = ipcomp_print(cp, &enh);
-			nh = enh & 0xff;
-			break;
-		    }
-
-		case IPPROTO_PIM:
-			pim_print(cp, len, nextproto6_cksum(ip6, cp, len,
-							    IPPROTO_PIM));
-			return;
-
-		case IPPROTO_OSPF:
-			ospf6_print(cp, len);
-			return;
-#endif
 		case IPPROTO_IPV6:
 			sbuf_printf(sbuf, "IPV6-IN-IPV6,");
-			//ip6_print(sbuf, cp, len);
 			return;
 
 		case IPPROTO_IPV4:
 			sbuf_printf(sbuf, "IPV4-IN-IPV6,");
-		        //ip_print(sbuf, cp, len);
 			return;
 
-#if 0
-                case IPPROTO_PGM:
-                        pgm_print(cp, len, (const u_char *)ip6);
-                        return;
-
-		case IPPROTO_GRE:
-			gre_print(cp, len);
-			return;
-
-		case IPPROTO_RSVP:
-			rsvp_print(cp, len);
-			return;
-#endif
 		default:
 			return;
 		}
