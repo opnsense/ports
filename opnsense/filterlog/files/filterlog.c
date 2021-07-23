@@ -94,8 +94,9 @@ code2str(const struct tok *trans, const char *unknown, int action)
 static void
 decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_char *packet)
 {
+	const char *label = "0";
 	const struct pfloghdr *hdr;
-	struct ip *ip;
+	const struct ip *ip;
 	u_int length = pkthdr->len;
 	u_int hdrlen;
 	u_int caplen = pkthdr->caplen;
@@ -109,7 +110,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	}
 
 #define MIN_PFLOG_HDRLEN	45
-	hdr = (struct pfloghdr *)packet;
+	hdr = (const struct pfloghdr *)packet;
 	if (hdr->length < MIN_PFLOG_HDRLEN) {
 		sbuf_printf(&sbuf, "[pflog: invalid header length!]");
 		goto printsbuf;
@@ -129,7 +130,14 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 		sbuf_printf(&sbuf, ",,");
 	else
 		sbuf_printf(&sbuf, "%u,%s,", subrulenr, hdr->ruleset); 
-	sbuf_printf(&sbuf, "0,%s,", hdr->ifname);
+
+	if (rulelabels) {
+		if (rulelabels_max >= (int)rulenr) {
+			label = rulelabels[rulenr];
+		}
+	}
+
+	sbuf_printf(&sbuf, "%s,%s,", label, hdr->ifname);
 	sbuf_printf(&sbuf, "%s,", code2str(pf_reasons, "unkn(%u)", hdr->reason));
 	sbuf_printf(&sbuf, "%s,", code2str(pf_actions, "unkn(%u)", hdr->action));
 	sbuf_printf(&sbuf, "%s,", code2str(pf_directions, "unkn(%u)", hdr->dir));
@@ -137,7 +145,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	/* skip to the real packet */
 	length -= hdrlen;
 	packet += hdrlen;
-	ip = (struct ip *)packet;
+	ip = (const struct ip *)packet;
 
         if (length < 4) {
                 sbuf_printf(&sbuf, "%d, IP(truncated-ip %d) ", IP_V(ip), length);
@@ -155,14 +163,6 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
                 sbuf_printf(&sbuf, "%d", IP_V(ip));
                 break;
         }
-
-	if (rulelabels) {
-		char *label = "";
-		if (rulelabels_max >= rulenr) {
-			label = rulelabels[rulenr];
-		}
-		sbuf_printf(&sbuf, ",%s", label);
-	}
 
 printsbuf:
 	sbuf_finish(&sbuf);
@@ -228,7 +228,6 @@ static int realloc_rulelabels(int nr)
 static int get_rulelabels()
 {
 	struct pfioc_rule pr;
-	struct pfl_entry *e;
 	u_int32_t nr, i;
 	int dev;
 

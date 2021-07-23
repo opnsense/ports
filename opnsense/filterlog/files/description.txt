@@ -1,16 +1,24 @@
+Packetfilter
+============
+
+rulenr, subrulenr, anchorname, label | "0", interface, reason, action, dir
+
+Label only set when system returned all labels correctly, otherwise "0".
+
 IPv4
 ====
 
-rulenr, subrulenr, anchorname, "0" (unused), interface, reason, action, dir,
-version, tos, ecn, ttl, id, offset, flags, protonum (!), protoname (!),
-length, src, dst
+[Packetfilter], ipversion, tos, ecn, ttl, id, offset, flags, protonum, protoname, length, src, dst
+
+The protonum/protoname order is reversed compared to IPv6.
 
 IPv6
 ====
 
-rulenr, subrulenr, anchorname, "0" (unused), interface, reason, action, dir,
-version, class, flowlabel, hoplimit, protoname (!), protonum (!),
-length, src, dst [, HBHOPT ][, DSTOPT ][, FRAG6 ][, ROUTING]
+[Packetfilter], ipversion, class, flow, hoplimit, protoname, protonum, length, src, dst
+[, HBHOPT ][, DSTOPT ][, FRAG6 ][, ROUTING ][, MOBILITY]
+
+The protonum/protoname order is reversed compared to IPv4.
 
 HBHOPT
 ======
@@ -49,14 +57,14 @@ MOBILITY
 UDP
 ===
 
-[IPv4 | IPv6], srcport, dstport, datalen [, label]
+[IPv4 | IPv6], srcport, dstport, datalen
 
 TCP
 ===
 
-[IPv4 | IPv6], srcport, dstport, datalen, flags, seq, ack, window, urg, options [, label]
+[IPv4 | IPv6], srcport, dstport, datalen, flags, seq, ack, window, urg, options
 
 CARP
 ====
 
-[IPv4], type, ttl, vhid, version, advskew, advbase [, label]
+[IPv4 | IPv6], type, ttl | hoplimit, vhid, version, advskew, advbase

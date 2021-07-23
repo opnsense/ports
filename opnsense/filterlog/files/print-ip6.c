@@ -221,27 +221,25 @@ ip6_print(struct sbuf *sbuf, const u_char *bp, u_int length)
 		case IPPROTO_TCP:
 			tcp_print(sbuf, cp, len, (const u_char *)ip6);
 			return;
-		case IPPROTO_UDP:
-		{
-			const struct udphdr *up;
-
-			up = (struct udphdr *)cp;
+		case IPPROTO_UDP: {
+			const struct udphdr *up = (const struct udphdr *)cp;
 			sbuf_printf(sbuf, "%d,%d,%d", EXTRACT_16BITS(&up->uh_sport), EXTRACT_16BITS(&up->uh_dport),
 				EXTRACT_16BITS(&up->uh_ulen));
 			return;
 		}
+		case IPPROTO_VRRP:
+			sbuf_printf(sbuf, "%s,%d,%d,%d,%d,%d",
+			    (cp[0] & 0x0f) == 1 ? "advertise" : "unkwn",
+			    ip6->ip6_hlim, cp[1], (cp[0] & 0xf0) >> 4,
+			    cp[2], cp[5]);
 		case IPPROTO_IPV6:
 			sbuf_printf(sbuf, "IPV6-IN-IPV6,");
 			return;
-
 		case IPPROTO_IPV4:
 			sbuf_printf(sbuf, "IPV4-IN-IPV6,");
 			return;
-
 		default:
 			return;
 		}
 	}
-
-	return;
 }
