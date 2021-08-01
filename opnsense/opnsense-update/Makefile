@@ -1,11 +1,6 @@
 PORTNAME=	opnsense-update
-.if "${PRODUCT_ABI}" != 21.7
-PORTVERSION=	21.1.8
-PORTREVISION=	2 # GH_TAGNAME
-.else
 PORTVERSION=	21.7
 #PORTREVISION=	1 # GH_TAGNAME
-.endif
 CATEGORIES=	sysutils
 
 MAINTAINER=	franco@opnsense.org
@@ -24,8 +19,6 @@ MAKE_ENV=	UPDATE_RELEASE=${PORTVERSION}
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_PROJECT=	update
-.if "${PRODUCT_ABI}" != 21.7
-GH_TAGNAME=	9abe08e
-.endif
+#GH_TAGNAME=	9abe08e
 
 .include <bsd.port.mk>
