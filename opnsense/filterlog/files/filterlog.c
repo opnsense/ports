@@ -133,7 +133,9 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 
 	if (rulelabels) {
 		if (rulelabels_max >= (int)rulenr) {
-			label = rulelabels[rulenr];
+			if (rulelabels[rulenr]) {
+				label = rulelabels[rulenr];
+			}
 		}
 	}
 
