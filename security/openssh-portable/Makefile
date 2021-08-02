@@ -18,8 +18,6 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
-USE_HARDENING=		safestack
-
 USES=			alias autoreconf compiler:c11 localbase ncurses \
 			pkgconfig ssl
 GNU_CONFIGURE=		yes
