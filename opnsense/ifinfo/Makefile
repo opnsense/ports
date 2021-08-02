@@ -8,8 +8,6 @@ COMMENT=	Interface statistics reader
 
 LICENSE=	MIT
 
-USE_HARDENING=	safestack
-
 MAKE_ENV=	BINDIR=${PREFIX}/sbin
 
 do-extract:

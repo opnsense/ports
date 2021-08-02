@@ -24,9 +24,6 @@ COMMENT=	HTTP Caching Proxy
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-
-USE_HARDENING=	safestack
-
 USES=		compiler:c++11-lib cpe perl5 shebangfix tar:xz
 
 CONFLICTS=	squid3-* squid-devel-*

@@ -15,8 +15,6 @@ LIB_DEPENDS=	libevent.so:devel/libevent
 
 CONFLICTS=	ntp-devel ntpsec openntpd
 
-USE_HARDENING=	safestack
-
 USES=		cpe pathfix shebangfix libedit libtool localbase:ldflags \
 		pkgconfig
 USES+=		autoreconf # until rlimit_memlock changes accepted upstream

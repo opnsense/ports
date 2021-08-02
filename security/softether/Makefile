@@ -11,8 +11,6 @@ COMMENT=	SoftEther VPN 4 (RTM version)
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	safestack
-
 ONLY_FOR_ARCHS=	amd64 armv7 i386 powerpc powerpc64 powerpc64le
 
 USES=		dos2unix gmake iconv:wchar_t localbase:ldflags ncurses \

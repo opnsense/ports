@@ -10,8 +10,6 @@ COMMENT=	Circular log support for FreeBSD syslogd
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	safestack
-
 .include <bsd.port.pre.mk>
 
 do-extract:

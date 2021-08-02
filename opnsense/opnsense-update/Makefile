@@ -12,8 +12,6 @@ LIB_DEPENDS+=	libucl.so:textproc/libucl
 
 USES=		ssl
 
-USE_HARDENING=	safestack
-
 MAKE_ENV=	UPDATE_RELEASE=${PORTVERSION}
 
 USE_GITHUB=	yes

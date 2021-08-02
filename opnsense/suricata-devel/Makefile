@@ -17,8 +17,6 @@ LIB_DEPENDS=	libjansson.so:devel/jansson \
 		liblz4.so:archivers/liblz4 \
 		libyaml.so:textproc/libyaml
 
-USE_HARDENING=	pie:configure
-
 USES=		autoreconf cpe gmake iconv:translit libtool localbase \
 		pathfix pkgconfig
 
