@@ -15,8 +15,6 @@ USES=		charsetfix ncurses pkgconfig tar:xz
 
 GNU_CONFIGURE=	yes
 
-USE_HARDENING=	safestack
-
 CONFIGURE_ARGS=	--docdir=${DOCSDIR} --enable-utf8
 
 MAKE_ARGS+=	install_htmlmanDATA=install-htmlmanDATA
