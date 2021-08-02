@@ -24,8 +24,6 @@ BUILD_DEPENDS=	as:devel/binutils
 USES=		gmake compiler:c++14-lang
 USE_RC_SUBR=	zerotier
 
-USE_HARDENING=	safestack
-
 USE_GITHUB=	yes
 GH_PROJECT=	ZeroTierOne
 
