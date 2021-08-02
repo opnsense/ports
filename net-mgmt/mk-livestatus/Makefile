@@ -17,8 +17,6 @@ BROKEN_FreeBSD_14=	ld: error: duplicate symbol: g_mainthread_id
 
 USES=		compiler:c++11-lang
 
-USE_HARDENING=	safestack
-
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	lib/mk-livestatus/unixcat \
