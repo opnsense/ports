@@ -17,8 +17,6 @@ NOT_FOR_ARCHS_REASON=	Unable to determine endianness.
 
 LIB_DEPENDS=	libpci.so:devel/libpci
 
-USE_HARDEING=	safestack
-
 USES=		gmake tar:bzip2
 
 MAKE_ENV=	WARNERROR=no
