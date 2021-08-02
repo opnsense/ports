@@ -13,8 +13,6 @@ COMMENT=	Small, efficient HTTP proxy server
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		gmake tar:xz
 
 CONFIGURE_ARGS=	--bindir=${PREFIX}/sbin \
