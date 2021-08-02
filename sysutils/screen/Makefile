@@ -43,8 +43,6 @@ OPTIONS_SUB=
 USES=		gmake cpe
 MAKE_ARGS+=	WITH_MAN=1
 
-USE_HARDENING=	safestack
-
 CPE_VENDOR=	gnu
 
 .include <bsd.port.options.mk>
