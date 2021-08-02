@@ -18,9 +18,6 @@ LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libnpth.so:devel/npth
 RUN_DEPENDS=	pinentry:security/pinentry
 
-USE_HARDENING=	cfi safestack
-CPPFLAGS=	-fPIC
-
 USES=		compiler:c11 cpe gmake iconv makeinfo pkgconfig readline sqlite tar:bzip2
 
 CONFLICTS=	gnupg-2.0.* dirmngr-[0-9]*
