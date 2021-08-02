@@ -32,8 +32,6 @@ USE_GNOME=	glib20
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	vmware-guestd vmware-kmod
 
-USE_HARDENING=		stackautoinit:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-vgauth \
 		--sysconfdir=${PREFIX}/etc \
