@@ -20,8 +20,6 @@ CONFIGURE_WRKSRC=	"${WRKSRC}/src"
 
 USES=		ssl
 
-USE_HARDENING=	safestack
-
 .include <bsd.port.options.mk>
 
 MAKE_ARGS+=	OSVERSION=${OSVERSION}
