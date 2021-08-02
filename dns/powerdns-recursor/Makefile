@@ -19,8 +19,6 @@ BROKEN_FreeBSD_12_powerpc64=	fails to compile: Assembler messages: unaligned opc
 NOT_FOR_ARCHS=	i386
 NOT_FOR_ARCHS_REASON=	archs with 32-bits time_t are no longer supported by upstream
 
-USE_HARDENING=	pie:off
-
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/shared_ptr.hpp:devel/boost-libs
 LIB_DEPENDS=	libboost_context.so:devel/boost-libs
 
