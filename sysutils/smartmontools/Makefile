@@ -12,8 +12,6 @@ COMMENT=	S.M.A.R.T. disk monitoring tools
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		alias compiler:c++11-lib shebangfix
 USE_RC_SUBR=	smartd
 
