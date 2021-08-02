@@ -19,9 +19,6 @@ USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-lgcc
 
-USE_HARDENING=	cfi
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-ignore-dot \
 		--with-tty-tickets \
