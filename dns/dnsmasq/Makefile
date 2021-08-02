@@ -17,9 +17,6 @@ LICENSE=	GPLv2
 USES=		cpe shebangfix tar:xz
 CPE_VENDOR=	thekelleys
 
-USE_HARDENING=	cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 SHEBANG_FILES=	contrib/dnslist/dnslist.pl \
 		contrib/dynamic-dnsmasq/dynamic-dnsmasq.pl
 
