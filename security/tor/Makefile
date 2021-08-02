@@ -21,8 +21,6 @@ CONFIGURE_ENV=	TOR_CPPFLAGS_libevent="-I${LOCALBASE}/include" \
 		TOR_LDFLAGS_libevent="-L${LOCALBASE}/lib/" \
 		TOR_LIBEVENT_LIBS="${TOR_LIBEVENT_LIBS}"
 
-USE_HARDENING=	cfi safestack
-
 OPTIONS_DEFINE=	MANPAGES DOCS STATIC_TOR TCMALLOC
 OPTIONS_GROUP=	COMPRESSION TRACING
 OPTIONS_GROUP_COMPRESSION=	ZSTD LZMA
@@ -32,8 +30,6 @@ OPTIONS_SUB=	yes
 STATIC_TOR_DESC=	Build a static tor
 TCMALLOC_DESC=		Use the tcmalloc memory allocation library
 COMPRESSION_DESC=	Supported compression libraries
-OPTIONS_GROUP_HARDENING+=	CFI_ICALL
-CFI_ICALL_DESC=		Enable cfi-icall scheme. Breaks relay mode. Client only
 TRACING_DESC=		Tracing
 
 USE_RC_SUBR=	tor
@@ -67,12 +63,6 @@ LOG_DEBUG_DESC=			Build with tracing event to debug log
 LOG_DEBUG_CONFIGURE_ENABLE=	tracing-instrumentation-log-debug
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MCFI_ICALL}
-CFI_OVERRIDE=	-fsanitize-cfi-icall-generalize-pointers
-.else
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-.endif
 
 .if ${PORT_OPTIONS:MDOCS} || ${PORT_OPTIONS:MMANPAGES}
 BUILD_DEPENDS+=	asciidoc:textproc/asciidoc
