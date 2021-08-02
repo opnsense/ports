@@ -16,8 +16,6 @@ LICENSE_NAME=	lsof
 LICENSE_FILE=	${FILESDIR}/LICENSE
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USE_HARDENING=	safestack
-
 USES=		compiler shebangfix tar:bzip2
 
 HAS_CONFIGURE=	yes
