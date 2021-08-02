@@ -9,8 +9,6 @@ COMMENT=	Multicast DNS repeater to re-broadcast mDNS packets across interfaces
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	safestack
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	kennylevinsen
 
