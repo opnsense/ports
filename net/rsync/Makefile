@@ -16,8 +16,6 @@ COMMENT=	Network file distribution/synchronization utility
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 LIB_DEPENDS=	libxxhash.so:devel/xxhash \
 		libzstd.so:archivers/zstd \
 		liblz4.so:archivers/liblz4
