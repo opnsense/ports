@@ -18,8 +18,6 @@ MAKE_ENV=	DESTDIR=${STAGEDIR} MANDIR=${PREFIX}/man INSTALLUID=${UID} INSTALLGID=
 PLIST_FILES=	bin/sslsplit man/man1/sslsplit.1.gz man/man5/sslsplit.conf.5.gz \
 		"@sample %%ETCDIR%%/sslsplit.conf.sample"
 
-USE_HARDENING=	safestack
-
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sslsplit
 
