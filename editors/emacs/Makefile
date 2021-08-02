@@ -19,8 +19,6 @@ COMMENT_canna=	(Canna Japanese input flavor)
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off relro:off
-
 LIB_DEPENDS=	libgmp.so:math/gmp
 
 FLAVORS=			full canna nox
