@@ -1,3 +1,139 @@
+  <vuln vid="d34bef0b-f312-11eb-b12b-fc4dd43e2b6a">
+    <topic>tomcat -- HTTP request smuggling in multiple versions</topic>
+    <affects>
+      <package>
+	<name>tomcat85</name>
+	<range><ge>8.5.0</ge><le>8.5.66</le></range>
+      </package>
+      <package>
+	<name>tomcat9</name>
+	<range><ge>9.0.0</ge><le>9.0.46</le></range>
+      </package>
+      <package>
+	<name>tomcat10</name>
+	<range><ge>10.0.0</ge><le>10.0.6</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Bahruz Jabiyev, Steven Sprecher and Kaan Onarlioglu of NEU seclab reports:</p>
+	<blockquote cite="https://tomcat.apache.org/security.html">
+	  <p>Apache Tomcat did not correctly parse the HTTP transfer-encoding request header in some circumstances leading to the possibility to request smuggling when used with a reverse proxy. Specifically: Tomcat incorrectly ignored the transfer-encoding header if the client declared it would only accept an HTTP/1.0 response; Tomcat honoured the identify encoding; and Tomcat did not ensure that, if present, the chunked encoding was the final encoding.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-33037</cvename>
+      <url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-33037</url>
+    </references>
+    <dates>
+      <discovery>2021-05-07</discovery>
+      <entry>2021-08-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8b571fb2-f311-11eb-b12b-fc4dd43e2b6a">
+    <topic>tomcat -- JNDI Realm Authentication Weakness in multiple versions</topic>
+    <affects>
+      <package>
+	<name>tomcat7</name>
+	<range><ge>7.0.0</ge><le>7.0.108</le></range>
+      </package>
+      <package>
+	<name>tomcat85</name>
+	<range><ge>8.5.0</ge><le>8.5.65</le></range>
+      </package>
+      <package>
+	<name>tomcat9</name>
+	<range><ge>9.0.0</ge><le>9.0.45</le></range>
+      </package>
+      <package>
+	<name>tomcat10</name>
+	<range><ge>10.0.0</ge><le>10.0.5</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ilja.farber reports:</p>
+	<blockquote cite="https://tomcat.apache.org/security.html">
+	  <p>Queries made by the JNDI Realm did not always correctly escape parameters. Parameter values could be sourced from user provided data (eg user names) as well as configuration data provided by an administrator.
+In limited circumstances it was possible for users to authenticate using variations of their user name and/or to bypass some of the protection provided by the LockOut Realm.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-30640</cvename>
+      <url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-30640</url>
+    </references>
+    <dates>
+      <discovery>2021-04-08</discovery>
+      <entry>2021-08-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="cc7c85d9-f30a-11eb-b12b-fc4dd43e2b6a">
+    <topic>tomcat -- Remote Denial of Service in multiple versions</topic>
+    <affects>
+      <package>
+	<name>tomcat85</name>
+	<range><eq>8.5.64</eq></range>
+      </package>
+      <package>
+	<name>tomcat9</name>
+	<range><eq>9.0.44</eq></range>
+      </package>
+      <package>
+	<name>tomcat10</name>
+	<range><ge>10.0.3</ge><le>10.0.4</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>rbeaudry reports:</p>
+	<blockquote cite="https://tomcat.apache.org/security.html">
+	  <p>A vulnerability in Apache Tomcat allows an attacker to remotely trigger a denial of service. An error introduced as part of a change to improve error handling during non-blocking I/O meant that the error flag associated with the Request object was not reset between requests. This meant that once a non-blocking I/O error occurred, all future requests handled by that request object would fail. Users were able to trigger non-blocking I/O errors, e.g. by dropping a connection, thereby creating the possibility of triggering a DoS.</p>
+	  <p>Applications that do not use non-blocking I/O are not exposed to this vulnerability. This issue affects Apache Tomcat 10.0.3 to 10.0.4; 9.0.44; 8.5.64.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-30639</cvename>
+      <url>http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-30639</url>
+    </references>
+    <dates>
+      <discovery>2021-03-24</discovery>
+      <entry>2021-08-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="cbfd1874-efea-11eb-8fe9-036bd763ff35">
+    <topic>fetchmail -- 6.4.19 and older denial of service or information disclosure</topic>
+    <affects>
+      <package>
+	<name>fetchmail</name>
+	<range><lt>6.4.20</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Matthias Andree reports:</p>
+	<blockquote cite="https://sourceforge.net/p/fetchmail/mailman/message/37327392/">
+	  <p>When a log message exceeds c. 2 kByte in size, for instance, with very long
+	  header contents, and depending on verbosity option, fetchmail can crash or
+	  misreport each first log message that requires a buffer reallocation.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-36386</cvename>
+      <url>https://sourceforge.net/p/fetchmail/mailman/message/37327392/</url>
+    </references>
+    <dates>
+      <discovery>2021-07-07</discovery>
+      <entry>2021-07-28</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="c561ce49-eabc-11eb-9c3f-0800270512f4">
     <topic>redis -- Integer overflow issues with BITFIELD command on 32-bit systems</topic>
     <affects>
