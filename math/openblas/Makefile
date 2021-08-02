@@ -16,8 +16,6 @@ COMMENT=	Optimized BLAS library based on GotoBLAS2
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c11 fortran gmake perl5 pkgconfig
 
 USE_GITHUB=	yes
