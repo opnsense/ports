@@ -11,8 +11,6 @@ COMMENT=	Library implementing the SSH2 protocol
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake cpe tar:xz
 
 CMAKE_OFF=	WITH_EXAMPLES
