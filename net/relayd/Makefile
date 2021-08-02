@@ -10,8 +10,6 @@ LICENSE=	ISCL
 
 GH_ACCOUNT=	mmatuska
 
-USE_HARDENING=	safestack
-
 USES=		ssl uidfix
 USE_GITHUB=	yes
 USE_RC_SUBR=	relayd
