@@ -17,10 +17,6 @@ LICENSE_COMB=	multi
 
 .include "${.CURDIR}/Makefile.common"
 
-USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
-
-NO_UNUSED_ARGUMENTS_CHECK=	yes
-
 LANGS=			c c++ ada
 APPLY_DIFFS=		core cxx ada
 INTENDED_COMPILER=	NATIVE

@@ -14,11 +14,8 @@ LICENSE=	GPLv2
 
 RUN_DEPENDS=	gpg:security/gnupg
 
-USE_HARDENING=	pie:off
-
 USES=		tar:bzip2
 GNU_CONFIGURE=	yes
-
 TEST_TARGET=	tests
 
 PLIST_FILES=	bin/aespipe man/man1/aespipe.1.gz

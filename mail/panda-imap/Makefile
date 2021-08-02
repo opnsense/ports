@@ -22,8 +22,6 @@ CONFLICTS_INSTALL=	imap-uw-20* courier-0.65.*
 DOCSDIR=	${PREFIX}/share/doc/${PORTNAME}${PKGNAMESUFFIX}
 SUB_FILES=	pkg-message
 
-USE_HARDENING=	pie:off
-
 MAKE_JOBS_UNSAFE=	yes
 
 ALL_TARGET=	bsf

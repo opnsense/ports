@@ -23,8 +23,6 @@ DOS2UNIX_FILES=	gtk/IntelRDFPMathLib20U1/LIBRARY/float128/op_system.h gtk/IntelR
 CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
 CXXFLAGS_clang=	-Wno-c++11-narrowing -Wno-constant-conversion # to accommodate some code breaking with clang-50
 
-USE_HARDENING=	pie:off
-
 BUILD_WRKSRC=	${WRKSRC}/gtk
 
 VARIANTS=	bin dec

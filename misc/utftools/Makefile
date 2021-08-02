@@ -16,8 +16,6 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libutf.a:misc/libutf
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--libdir=${LOCALBASE}/lib --includedir=${LOCALBASE}/include
 

@@ -11,8 +11,6 @@ COMMENT=	Small Jabber console client
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	cfi safestack
-
 # it picks libcharset from converters/libiconv installed by glib,
 # so provide an explicit dependency
 LIB_DEPENDS=	libloudmouth-1.so:net-im/loudmouth \

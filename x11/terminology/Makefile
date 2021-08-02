@@ -17,8 +17,6 @@ LIB_DEPENDS=	libefl.so:devel/efl
 USES=		compiler:c11 meson pkgconfig tar:xz python:3.4+
 BINARY_ALIAS=   python3=${PYTHON_CMD}
 
-USE_HARDENING=	safestack
-
 OPTIONS_DEFINE=		NLS
 OPTIONS_SUB=		yes
 

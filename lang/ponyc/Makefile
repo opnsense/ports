@@ -24,8 +24,6 @@ llvm_static_CONFLICTS_INSTALL=	ponyc
 COMMENT+=			(statically linked with LLVM)
 .endif
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake ncurses compiler:c++11-lang
 
 LLVM_VERSION?=	70

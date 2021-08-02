@@ -11,8 +11,6 @@ COMMENT=	IPv4 socket library for Ada (TCP, UDP, and multicast)
 LICENSE=	GPLv2 GMGPL
 LICENSE_COMB=	multi
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		ada gmake libtool
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=--disable-doc --disable-shared

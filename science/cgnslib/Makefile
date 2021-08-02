@@ -15,8 +15,6 @@ LICENSE_NAME=	AS-IS
 LICENSE_FILE=	${WRKSRC}/license.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-USE_HARDENING=	pie:off
-
 USES=		cmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	CGNS

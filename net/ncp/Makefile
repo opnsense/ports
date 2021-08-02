@@ -10,8 +10,6 @@ COMMENT=	Fast file copy tool for LANs
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libowfat.a:devel/libowfat
 
-USE_HARDENING=	pie:off
-
 USES=		tar:bzip2
 
 PLIST_FILES=	bin/ncp bin/npush bin/npoll man/man1/ncp.1.gz man/man1/npush.1.gz

@@ -21,8 +21,6 @@ BROKEN_aarch64=	fails to link: collect2: error: ld returned 1 exit status
 BUILD_DEPENDS=	convert:graphics/ImageMagick7 \
 		fig2dev:print/fig2dev
 
-USE_HARDENING=	pie:off
-
 USES=		autoreconf:build gmake libtool motif tar:bz2 xorg
 USE_GCC=	yes
 USE_TEX=	dvipsk:build latex:build

@@ -25,8 +25,6 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 		libutp.so:net/libutp \
 		libminiupnpc.so:net/miniupnpc
 
-USE_HARDENING=	safestack
-
 USES+=		cmake cpe iconv libtool localbase pkgconfig ssl
 
 # Workaround: PR 248326

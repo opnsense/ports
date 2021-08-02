@@ -18,8 +18,6 @@ NOT_FOR_ARCHS_REASON=	Very slow to build on emulator
 
 BUILD_DEPENDS=		objdump:devel/binutils
 
-USE_HARDENING=	pie:off relro:off
-
 OPTIONS_DEFINE=	APROFILE PURE PYGDB EXAMPLES HTML PDF DOCS SYMLINK
 OPTIONS_DEFAULT=PURE PYGDB SYMLINK
 APROFILE_DESC=	Add support for Cortex-A profiles

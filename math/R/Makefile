@@ -29,8 +29,6 @@ USES=		compiler:c++11-lang gmake iconv libtool localbase pathfix perl5 \
 USE_LDCONFIG=	${PREFIX}/lib/R/lib
 USE_PERL5=	build
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-java \
 		--enable-R-shlib \

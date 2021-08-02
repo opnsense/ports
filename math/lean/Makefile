@@ -17,8 +17,6 @@ GH_ACCOUNT=	leanprover-community
 
 WRKSRC_SUBDIR=	src
 
-USE_HARDENING=	pie:off
-
 CMAKE_OFF=	BUILD_TESTING
 
 post-install:

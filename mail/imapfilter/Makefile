@@ -14,8 +14,6 @@ BROKEN_FreeBSD_11=Requires openssl111 to build
 
 LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 
-USE_HARDENING=	pie:off
-
 USES=		lua ssl
 
 CPPFLAGS+=	-I${LOCALBASE}/include -I${LUA_INCDIR}

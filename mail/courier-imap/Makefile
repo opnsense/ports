@@ -22,8 +22,6 @@ USES=		compiler:c++11-lang gmake localbase:ldflags perl5 pkgconfig ssl \
 USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
 		courier-imap-pop3d courier-imap-pop3d-ssl
 
-USE_HARDENING= pie:off relro:off
-
 CONFLICTS=	courier-[0-9]* imap-uw-[0-9]* panda-imap-[0-9]*
 
 GNU_CONFIGURE=	yes

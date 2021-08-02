@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 DISTVERSION=	12.0.1
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel lang
 MASTER_SITES=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${DISTVERSION:S/rc/-rc/}/ \
 		https://${PRE_}releases.llvm.org/${LLVM_RELEASE}/${RCDIR}
@@ -46,8 +46,6 @@ SHEBANG_FILES=	llvm/utils/lit/lit.py llvm/utils/llvm-lit/llvm-lit.in \
 		clang-tools-extra/clang-include-fixer/find-all-symbols/tool/run-find-all-symbols.py \
 		clang-tools-extra/clang-tidy/tool/clang-tidy-diff.py \
 		clang-tools-extra/clang-tidy/tool/run-clang-tidy.py
-
-LLVM_AR_UNSAFE=	yes
 
 SUB_FILES=	llvm-wrapper.sh
 SUB_LIST=	LLVM_PREFIX="${LLVM_PREFIX}" LLVM_SUFFIX="${LLVM_SUFFIX}"

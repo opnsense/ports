@@ -27,8 +27,6 @@ USE_XORG=	ice sm x11 xext xrender xscrnsaver
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 
-USE_HARDENING=	pie:off
-
 CMAKE_ARGS=	-DMANDIR:STRING=man
 
 PLIST_SUB=	VER=5.0

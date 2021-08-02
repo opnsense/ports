@@ -22,8 +22,6 @@ BUILD_DEPENDS_i386=	nasm:devel/nasm
 BUILD_DEPENDS_powerpc64=as:devel/binutils
 BUILD_DEPENDS_powerpc=	as:devel/binutils
 
-USE_HARDENING=	relro:off
-
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	ffbuild/config.log
 USES=		compiler:c11 cpe gmake localbase:ldflags perl5 \

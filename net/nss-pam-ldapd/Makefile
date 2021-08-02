@@ -2,6 +2,7 @@
 
 PORTNAME=		nss-pam-ldapd
 PORTVERSION=		0.9.11
+PORTREVISION=		1
 CATEGORIES=		net
 MASTER_SITES=		http://arthurdejong.org/nss-pam-ldapd/ \
 			ZI
@@ -11,8 +12,6 @@ COMMENT?=		Advanced fork of nss_ldap
 
 LICENSE=		LGPL21 LGPL3
 LICENSE_COMB=		dual
-
-USE_HARDENING=		pie:off relro:off
 
 USES=			cpe
 CPE_VENDOR=		arthurdejong
@@ -76,7 +75,6 @@ CONFIGURE_ARGS+=	--disable-kerberos
 .endif
 
 .if ${PORT_OPTIONS:MSASL}
-WANT_OPENLDAP_SASL=	yes
 CONFIGURE_ARGS+=	--enable-sasl
 .else
 CONFIGURE_ARGS+=	--disable-sasl

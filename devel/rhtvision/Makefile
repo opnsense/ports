@@ -15,8 +15,6 @@ OPTIONS_SUB=	yes
 
 WRKSRC=		${WRKDIR}/tvision
 
-USE_HARDENING=	pie:off
-
 USES=		gmake perl5 shebangfix
 SHEBANG_FILES=	config.pl confignt.pl conflib.pl linux/compress
 USE_GCC=	yes

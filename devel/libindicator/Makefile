@@ -6,8 +6,6 @@ MASTER_SITES=	https://launchpad.net/${PORTNAME}/${PORTVERSION:R}/${PORTVERSION}/
 MAINTAINER=	swills@FreeBSD.org
 COMMENT=	Symbols and convience functions for desktop indicators
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c++11-lang gmake gnome libtool pkgconfig
 USE_GNOME=	cairo gdkpixbuf2 gtk30
 GNU_CONFIGURE=	yes

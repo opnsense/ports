@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/GPL-2
 
 USES=		gmake iconv localbase
 
-USE_HARDENING=	pie:off
-
 PLIST_FILES=	bin/odt2txt \
 		share/man/man1/odt2txt.1.gz
 

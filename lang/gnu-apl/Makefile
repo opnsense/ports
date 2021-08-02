@@ -18,8 +18,6 @@ BROKEN_riscv64=	Fails to link: missing sbrk
 # XXX: should be optional, but no way to disable in the configure script
 LIB_DEPENDS=	libfftw3.so:math/fftw3
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c++11-lang gmake libtool localbase
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

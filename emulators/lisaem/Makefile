@@ -17,8 +17,6 @@ BROKEN_FreeBSD_14=	ld: error: duplicate symbol: mem68k_fetch_byte
 
 BUILD_DEPENDS=	pngtopnm:graphics/netpbm
 
-USE_HARDENING=	pie:off
-
 USES=		compiler:c++11-lang tar:bzip2
 USE_WX=		2.8
 

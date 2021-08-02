@@ -16,8 +16,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libburn.so:devel/libburn \
 		libisofs.so:devel/libisofs
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		gmake iconv libtool libedit pathfix pkgconfig readline shebangfix
 SHEBANG_FILES=	frontend/xorriso-tcltk
 GNU_CONFIGURE=	yes

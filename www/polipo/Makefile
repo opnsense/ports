@@ -12,8 +12,6 @@ COMMENT=	Small and fast caching web proxy
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		makeinfo
 USE_RC_SUBR=	polipo
 

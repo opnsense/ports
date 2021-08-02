@@ -12,8 +12,6 @@ COMMENT=	Version 3.00 beta API for Dallas Semiconductors 1-wire lan devices
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/license.txt
 
-USE_HARDENING=	pie:off
-
 BROKEN_FreeBSD_13=	ld: error: duplicate symbol: VERBOSE
 BROKEN_FreeBSD_14=	ld: error: duplicate symbol: VERBOSE
 

@@ -12,8 +12,6 @@ COMMENT=	Simple, customizable, and portable online handwriting recognition syste
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off
-
 USES=		libtool
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

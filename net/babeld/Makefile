@@ -10,8 +10,6 @@ COMMENT=	Distance-vector routing protocol
 
 LICENSE=	MIT
 
-USE_HARDENING=	pie:off
-
 MAKE_ARGS=	CDEBUGFLAGS="-O2 -g -Wall"
 
 PLIST_FILES=	bin/babeld \

@@ -15,8 +15,6 @@ LICENSE_NAME_ROM=	Commodore ROMs
 LICENSE_TEXT_ROM=	ROMs are copyrighted by Commodore Business Machines
 LICENSE_PERMS_ROM=	auto-accept
 
-USE_HARDENING=	pie:off relro:off
-
 BUILD_DEPENDS=	xa65:devel/xa65 \
 		xdg-open:devel/xdg-utils
 LIB_DEPENDS=	libpng.so:graphics/png \

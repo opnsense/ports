@@ -17,8 +17,6 @@ BUILD_DEPENDS=	intltool-update:textproc/intltool
 LIB_DEPENDS=	libnotify.so:devel/libnotify \
 		libpcre.so:devel/pcre
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:nestedfct gnome iconv libtool localbase pathfix \
 		pkgconfig xorg
 USE_GNOME=	gtk20

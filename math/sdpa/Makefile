@@ -17,8 +17,6 @@ COMMENT=	Very efficient SDP (semidefinite programming) solver
 LICENSE=	GPLv2 # (or later)
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		fortran gmake
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-blas="-L${LOCALBASE}/lib ${BLASLIB}" \

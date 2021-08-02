@@ -11,9 +11,6 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf pkgconfig
-
-USE_HARDENING=	pie:off
-
 USE_GITHUB=	yes
 GH_PROJECT=	ctags
 

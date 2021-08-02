@@ -18,8 +18,6 @@ LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror
 
 USES+=		compiler:c++11-lang
 
-USE_HARDENING=	pie:off safestack
-
 LDFLAGS+=	-lpthread
 MAKE_ARGS=	CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" LDFLAGS="${LDFLAGS}" STRIP="${STRIP_CMD}"
 MAKEFILE=	makefile

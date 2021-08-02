@@ -17,8 +17,6 @@ LIB_DEPENDS=	libevent.so:devel/libevent \
 		libdnet.so:net/libdnet \
 		libpcre.so:devel/pcre
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		libedit libtool shebangfix
 SHEBANG_FILES=	scripts/*.pl scripts/snmp/*.pl
 USE_LDCONFIG=	yes

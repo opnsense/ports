@@ -9,8 +9,6 @@ MASTER_SITES=	SF/${PORTNAME}/Spar/${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Modular math parser
 
-USE_HARDENING=	pie:off
-
 LICENSE=        GPLv2
 LICENSE_FILE=   ${WRKSRC}/COPYING
 

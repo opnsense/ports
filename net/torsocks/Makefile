@@ -12,8 +12,6 @@ COMMENT=	Easy way to make any app work through Tor
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/gpl-2.0.txt
 
-USE_HARDENING=	safestack
-
 USES=		alias gmake libtool tar:xz
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

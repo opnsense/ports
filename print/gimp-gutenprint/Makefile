@@ -8,8 +8,6 @@ COMMENT=	Gimp print plug-in
 
 MASTERDIR=	${.CURDIR}/../../print/gutenprint
 
-USE_HARDENING=	safestack
-
 GUT_SLAVE=	gimp
 PLIST=		${.CURDIR}/pkg-plist
 

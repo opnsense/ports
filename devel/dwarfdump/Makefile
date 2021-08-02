@@ -15,8 +15,6 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/libdwarf.a:devel/libdwarf
 
 WRKSRC=		${WRKDIR}/dwarf-${PORTVERSION}/dwarfdump
 
-USE_HARDENING=	pie:off
-
 USES=		localbase:ldflags
 GNU_CONFIGURE=	yes
 

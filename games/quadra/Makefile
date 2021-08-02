@@ -13,8 +13,6 @@ COMMENT=	Tetris like game with multiplayer support
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USE_HARDENING=	pie:off
-
 USES=		autoreconf gmake localbase sdl tar:bzip2 xorg
 USE_SDL=	sdl
 USE_XORG=	x11 xau xdmcp

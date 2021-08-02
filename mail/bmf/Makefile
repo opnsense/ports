@@ -12,8 +12,6 @@ COMMENT=	Fast Bayesian Mail Filter compatible with maildrop and procmail
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	pie:off
-
 HAS_CONFIGURE=	yes
 BINARY_ALIAS=	gcc=${CC} g++=${CXX}
 CONFIGURE_ENV=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"

@@ -335,7 +335,6 @@
     SUBDIR += sselp
     SUBDIR += stalonetray
     SUBDIR += startup-notification
-    SUBDIR += station-tweak
     SUBDIR += sterm
     SUBDIR += stjerm
     SUBDIR += swarp
@@ -343,6 +342,7 @@
     SUBDIR += swayidle
     SUBDIR += swaylock
     SUBDIR += swaylock-effects
+    SUBDIR += swaync
     SUBDIR += swayr
     SUBDIR += sxhkd
     SUBDIR += sxpc

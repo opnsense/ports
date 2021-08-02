@@ -21,8 +21,6 @@ USE_GITHUB=	yes
 GH_TUPLE=	tomac:yersinia:8c0d7c5
 GNU_CONFIGURE=	yes
 
-USE_HARDENING=	safestack
-
 PLIST_FILES=	sbin/yersinia \
 		man/man8/yersinia.8.gz
 

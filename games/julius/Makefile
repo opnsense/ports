@@ -19,8 +19,6 @@ USES=		cmake sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	bvschaik
 
-USE_HARDENING=	safestack
-
 USE_SDL=	mixer2 sdl2
 
 SUB_FILES=	pkg-message

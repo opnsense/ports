@@ -15,8 +15,6 @@ COMMENT=	Display PDF files and convert them to other formats
 
 LICENSE=	GPLv2
 
-USE_HARDENING=  safestack
-
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libpng.so:graphics/png
 

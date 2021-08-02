@@ -14,8 +14,6 @@ COMMENT=	C++ reference implementation of the Atlas protocol
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		libtool pathfix compiler:c++11-lib tar:bzip2
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

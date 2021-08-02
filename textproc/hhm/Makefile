@@ -13,8 +13,6 @@ LIB_DEPENDS=	liblzxcomp.so:archivers/liblzxcomp
 USES=		uidfix
 MAKEFILE=	${FILESDIR}/Makefile
 
-USE_HARDENING=	pie:off
-
 PLIST_FILES=	bin/hhm
 
 post-patch:

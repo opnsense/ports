@@ -15,8 +15,6 @@ LIB_DEPENDS=	libapr-1.so:devel/apr1 \
 		libpcre.so:devel/pcre \
 		libpuzzle.so:graphics/libpuzzle
 
-USE_HARDENING=	pie:off
-
 USES=		autoreconf bdb libarchive pkgconfig tar:bzip2
 
 USE_GITHUB=	yes

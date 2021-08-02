@@ -12,8 +12,6 @@ COMMENT=	Menu based USENET newsreader
 BROKEN_aarch64=	Fails to link: missing sbrk
 BROKEN_riscv64=	Fails to link: missing sbrk
 
-USE_HARDENING=	pie:off
-
 SUB_FILES=	pkg-message
 
 USES=		tar:Z

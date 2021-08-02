@@ -24,8 +24,6 @@ GH_ACCOUNT=	intel
 GH_PROJECT=	tinycbor
 USE_GITHUB=	yes
 
-USE_HARDENING=	pie:off
-
 do-configure:
 	@cd ${WRKSRC}/ && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} configure
 

@@ -27,8 +27,6 @@ USE_CXXSTD=	gnu++98
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-optimize
 
-USE_HARDENING=	pie:off relro:off
-
 CONFLICTS=	shaaft-[0-9]*
 
 PLIST_FILES=	bin/Packer \

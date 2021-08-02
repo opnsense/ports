@@ -576,6 +576,7 @@
     SUBDIR += kdf
     SUBDIR += kdialog
     SUBDIR += keyboard-daemon
+    SUBDIR += keyd
     SUBDIR += kf5-baloo
     SUBDIR += kf5-kwallet
     SUBDIR += kfloppy
@@ -1584,6 +1585,7 @@
     SUBDIR += zrepl
     SUBDIR += zsd
     SUBDIR += zsm
+    SUBDIR += ztop
     SUBDIR += zxfer
 
 .include <bsd.port.subdir.mk>

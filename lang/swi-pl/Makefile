@@ -12,8 +12,6 @@ COMMENT=	Edinburgh-style Prolog compiler
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	pie:off relro:off
-
 BROKEN_i386=	fails to link: libswipl.so: undefined reference to __atomic_compare_exchange_8
 BROKEN_mips=	fails to link: libswipl.so: undefined reference to '__sync_sub_and_fetch_4'
 BROKEN_mips64=	fails to link: libswipl.so: undefined reference to '__sync_sub_and_fetch_4'

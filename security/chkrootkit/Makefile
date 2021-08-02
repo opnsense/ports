@@ -11,8 +11,6 @@ COMMENT=	Tool to locally check for signs of a rootkit
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USE_HARDENING=	pie:off relro:off
-
 OPTIONS_DEFINE=	DOCS
 
 SCRIPT_FILES=	chkrootkit

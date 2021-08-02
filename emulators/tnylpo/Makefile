@@ -12,8 +12,6 @@ LICENSE=	BSD3CLAUSE
 
 USES=		tar:bzip2 gmake
 
-USE_HARDENING=	pie:off
-
 MAKEFILE=	makefile
 
 do-install:

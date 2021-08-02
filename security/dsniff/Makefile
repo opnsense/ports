@@ -19,8 +19,6 @@ LIB_DEPENDS=	libnet.so:net/libnet
 USES=		gettext gnome pkgconfig
 USE_GNOME=	glib20
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-libnet=${LOCALBASE}
 DESTDIRNAME=	install_prefix

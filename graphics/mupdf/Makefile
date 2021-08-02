@@ -26,12 +26,10 @@ USE_XORG=	x11 xcursor xext xinerama xrandr
 USE_GL=		gl glut
 USE_LDCONFIG=	yes
 
-USE_HARDENING=	pie:off
-
 CPE_VENDOR=	artifex
 
 # pkg-config to avoid the conflict with openjpeg15
-CFLAGS+=	`pkg-config --cflags libopenjp2` -fPIC
+CFLAGS+=	`pkg-config --cflags libopenjp2`
 LDFLAGS+=	`pkg-config --libs libjpeg libopenjp2` -ljbig2dec
 
 MAKE_ARGS=	build=release prefix=${PREFIX} mandir=${PREFIX}/man verbose=yes \

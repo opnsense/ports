@@ -11,8 +11,6 @@ COMMENT=	Store and access data published by OwnTracks apps
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake
 
 SUB_FILES=	ot-recorder

@@ -26,8 +26,6 @@ RUN_DEPENDS=	cl-asdf>=0:devel/cl-asdf
 
 USES=		gmake makeinfo tar:bzip2
 
-USE_HARDENING=	pie:off
-
 SUB_FILES=	pkg-message sbclrc
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}

@@ -16,8 +16,6 @@ RUN_DEPENDS=	git:devel/git
 USES=		gmake go:no_targets
 USE_RC_SUBR=	gitea
 
-USE_HARDENING=	pie:golang relro:off retpoline:off
-
 SUB_FILES+=	app.ini.sample
 SUB_LIST+=	GITUSER=${USERS}
 

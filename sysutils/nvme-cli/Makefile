@@ -16,8 +16,6 @@ BROKEN_FreeBSD_11=	Uses newer API than in 11.x
 
 USES=		gmake
 
-USE_HARDENING=	pie:off
-
 PLIST_FILES=	sbin/nvme
 
 USE_GITHUB=	yes

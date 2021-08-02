@@ -113,15 +113,4 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/local|${LOCALBASE}|' \
 		${WRKSRC}/cmake/Modules/*.cmake
 
-
-.if ${PORT_OPTIONS:MCLIENT}
-MPROTECT_DISABLE+=	bin/minetest
-DISALLOW_MAP32BIT_DISABLE+=	bin/minetest
-.endif
-
-.if ${PORT_OPTIONS:MSERVER}
-MPROTECT_DISABLE+=	bin/minetestserver
-DISALLOW_MAP32BIT_DISABLE+=	bin/minetestserver
-.endif
-
 .include <bsd.port.mk>

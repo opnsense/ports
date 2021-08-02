@@ -23,8 +23,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	crawl
 GH_PROJECT=	crawl
 
-USE_HARDENING=	pie:off
-
 USE_PERL5=	build
 SHEBANG_FILES=	util/gen-mi-enum \
 		util/good-depfile \

@@ -18,8 +18,6 @@ BUILD_DEPENDS=  v4l_compat>=1.0.20120501:multimedia/v4l_compat \
 RUN_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/fontconfig.pc:x11-fonts/fontconfig \
 		xorg-fonts-truetype>=0:x11-fonts/xorg-fonts-truetype
 
-USE_HARDENING=	pie:off
-
 USES=		cpe gettext gmake iconv:wchar_t jpeg pkgconfig shebangfix tar:bzip2
 CPE_VENDOR=	tvdr
 SHEBANG_FILES=	svdrpsend

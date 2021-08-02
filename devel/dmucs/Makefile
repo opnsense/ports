@@ -13,8 +13,6 @@ BROKEN_armv6=		fails to compile: passing char * to parameter of incompatible typ
 BROKEN_armv7=		fails to compile: passing char * to parameter of incompatible type __builtin_va_list
 BROKEN_aarch64=		fails to compile: passing char * to parameter of incompatible type __builtin_va_list
 
-USE_HARDENING=	pie:off relro:off
-
 WRKSRC=		${WRKDIR}/${PORTNAME}
 USES=	tar:bzip2
 GNU_CONFIGURE=	yes

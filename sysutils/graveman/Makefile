@@ -13,8 +13,6 @@ LIB_DEPENDS=	libmng.so:graphics/libmng
 BUILD_DEPENDS=	cdrecord:sysutils/cdrtools
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 USES=		gettext gmake gnome pathfix pkgconfig tar:bzip2
 USE_GNOME=	libglade2 intlhack gnomeprefix

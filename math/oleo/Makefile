@@ -22,8 +22,6 @@ CONFIGURE_ARGS=	--without-xlt --without-sciplot
 CONFIGURE_ENV=	CFLAGS="${CFLAGS:C/-O2//} -fwrapv"
 MAKE_ARGS+=	DESTDIR="${STAGEDIR}"
 
-BROKEN_amd64=	Broken by recent signal handling changes from FreeBSD
-
 BINARY_ALIAS=	makeinfo=false # disable detecting local makeinfo
 
 INFO=		oleo

@@ -12,8 +12,6 @@ COMMENT=	Nice clone of classical Breakout game
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off
-
 USE_SDL=	sdl
 USES=		gmake sdl
 GNU_CONFIGURE=	yes

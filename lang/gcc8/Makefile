@@ -36,10 +36,6 @@ SUFFIX=		${PORTVERSION:C/([0-9]+).*/\1/}
 CFLAGS:=	${CFLAGS:N-mretpoline}
 CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
 
-USE_HARDENING=	retpoline:off relro:off pie:off stackautoinit:off
-
-NO_UNUSED_ARGUMENTS_CHECK=	yes
-
 OPTIONS_DEFINE=		BOOTSTRAP
 OPTIONS_DEFAULT=	BOOTSTRAP
 BOOTSTRAP_DESC=		Build using a full bootstrap

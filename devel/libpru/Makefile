@@ -13,8 +13,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	rpaulo
 GH_TAGNAME=	v0.4
 
-USE_HARDENING=	stackautoinit:off
-
 IGNORE_DragonFly=	only supported on FreeBSD
 USES=		cmake compiler
 

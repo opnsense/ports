@@ -17,8 +17,6 @@ LLVM_VER=	70
 BUILD_DEPENDS=	llvm${LLVM_VER}>=0:devel/llvm${LLVM_VER}
 RUN_DEPENDS=	llvm${LLVM_VER}>=0:devel/llvm${LLVM_VER}
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake
 USE_LDCONFIG=	yes
 

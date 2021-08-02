@@ -12,8 +12,6 @@ COMMENT=	DVD slideshow maker
 LIB_DEPENDS=	libsox.so:audio/sox \
 		libavcodec.so:multimedia/ffmpeg
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 USES=		gmake gnome libtool localbase pkgconfig
 USE_GNOME=	gtk20 intltool libxslt

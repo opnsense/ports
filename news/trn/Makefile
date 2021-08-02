@@ -13,8 +13,6 @@ RUN_DEPENDS=	munpack:converters/mpack
 
 CONFLICTS_INSTALL=trn-4.[0-9]*
 
-USE_HARDENING=	pie:off
-
 USES=		ncurses
 WRKSRC=		${WRKDIR}/trn-3.6
 

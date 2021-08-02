@@ -17,8 +17,6 @@ BROKEN_FreeBSD_14=	ld: error: duplicate symbol: params_linecnt
 
 LIB_DEPENDS=	libdnet.so:net/libdnet
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		gmake readline ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrs-allbsd

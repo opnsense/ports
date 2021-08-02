@@ -1,7 +1,6 @@
 PORTNAME=	openjdk
 DISTVERSIONPREFIX=	jdk-
 DISTVERSION=	${JDK_MAJOR_VERSION}.${JDK_MINOR_VERSION}.${JDK_PATCH_VERSION}+${JDK_BUILD_NUMBER}-${BSD_JDK_VERSION}
-PORTREVISION=	1
 CATEGORIES=	java devel
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
 
@@ -28,79 +27,9 @@ RUN_DEPENDS=	javavm:java/javavmwrapper
 USES=		compiler:features gmake iconv jpeg pkgconfig xorg
 USE_XORG=	x11 xext xi xrandr xrender xt xtst
 
-USE_HARDENING=	pie:java
-
-MPROTECT_DISABLE=	openjdk13/bin/keytool
-MPROTECT_DISABLE+=	openjdk13/bin/jdeprscan
-MPROTECT_DISABLE+=	openjdk13/bin/javap
-MPROTECT_DISABLE+=	openjdk13/bin/jjs
-MPROTECT_DISABLE+=	openjdk13/bin/jaotc
-MPROTECT_DISABLE+=	openjdk13/bin/jmap
-MPROTECT_DISABLE+=	openjdk13/bin/jcmd
-MPROTECT_DISABLE+=	openjdk13/bin/javac
-MPROTECT_DISABLE+=	openjdk13/bin/jhsdb
-MPROTECT_DISABLE+=	openjdk13/bin/jar
-MPROTECT_DISABLE+=	openjdk13/bin/unpack200
-MPROTECT_DISABLE+=	openjdk13/bin/serialver
-MPROTECT_DISABLE+=	openjdk13/bin/java
-MPROTECT_DISABLE+=	openjdk13/bin/jmod
-MPROTECT_DISABLE+=	openjdk13/bin/jstat
-MPROTECT_DISABLE+=	openjdk13/bin/jlink
-MPROTECT_DISABLE+=	openjdk13/bin/rmiregistry
-MPROTECT_DISABLE+=	openjdk13/bin/jfr
-MPROTECT_DISABLE+=	openjdk13/bin/jstatd
-MPROTECT_DISABLE+=	openjdk13/bin/jps
-MPROTECT_DISABLE+=	openjdk13/bin/rmic
-MPROTECT_DISABLE+=	openjdk13/bin/jshell
-MPROTECT_DISABLE+=	openjdk13/bin/jstack
-MPROTECT_DISABLE+=	openjdk13/bin/rmid
-MPROTECT_DISABLE+=	openjdk13/bin/javadoc
-MPROTECT_DISABLE+=	openjdk13/bin/jdb
-MPROTECT_DISABLE+=	openjdk13/bin/jconsole
-MPROTECT_DISABLE+=	openjdk13/bin/pack200
-MPROTECT_DISABLE+=	openjdk13/bin/jinfo
-MPROTECT_DISABLE+=	openjdk13/bin/jdeps
-MPROTECT_DISABLE+=	openjdk13/bin/jimage
-MPROTECT_DISABLE+=	openjdk13/bin/jarsigner
-MPROTECT_DISABLE+=	openjdk13/bin/jrunscript
-
-PAGEEXEC_DISABLE=	openjdk13/bin/keytool
-PAGEEXEC_DISABLE+=	openjdk13/bin/jdeprscan
-PAGEEXEC_DISABLE+=	openjdk13/bin/javap
-PAGEEXEC_DISABLE+=	openjdk13/bin/jjs
-PAGEEXEC_DISABLE+=	openjdk13/bin/jaotc
-PAGEEXEC_DISABLE+=	openjdk13/bin/jmap
-PAGEEXEC_DISABLE+=	openjdk13/bin/jcmd
-PAGEEXEC_DISABLE+=	openjdk13/bin/javac
-PAGEEXEC_DISABLE+=	openjdk13/bin/jhsdb
-PAGEEXEC_DISABLE+=	openjdk13/bin/jar
-PAGEEXEC_DISABLE+=	openjdk13/bin/unpack200
-PAGEEXEC_DISABLE+=	openjdk13/bin/serialver
-PAGEEXEC_DISABLE+=	openjdk13/bin/java
-PAGEEXEC_DISABLE+=	openjdk13/bin/jmod
-PAGEEXEC_DISABLE+=	openjdk13/bin/jstat
-PAGEEXEC_DISABLE+=	openjdk13/bin/jlink
-PAGEEXEC_DISABLE+=	openjdk13/bin/rmiregistry
-PAGEEXEC_DISABLE+=	openjdk13/bin/jfr
-PAGEEXEC_DISABLE+=	openjdk13/bin/jstatd
-PAGEEXEC_DISABLE+=	openjdk13/bin/jps
-PAGEEXEC_DISABLE+=	openjdk13/bin/rmic
-PAGEEXEC_DISABLE+=	openjdk13/bin/jshell
-PAGEEXEC_DISABLE+=	openjdk13/bin/jstack
-PAGEEXEC_DISABLE+=	openjdk13/bin/rmid
-PAGEEXEC_DISABLE+=	openjdk13/bin/javadoc
-PAGEEXEC_DISABLE+=	openjdk13/bin/jdb
-PAGEEXEC_DISABLE+=	openjdk13/bin/jconsole
-PAGEEXEC_DISABLE+=	openjdk13/bin/pack200
-PAGEEXEC_DISABLE+=	openjdk13/bin/jinfo
-PAGEEXEC_DISABLE+=	openjdk13/bin/jdeps
-PAGEEXEC_DISABLE+=	openjdk13/bin/jimage
-PAGEEXEC_DISABLE+=	openjdk13/bin/jarsigner
-PAGEEXEC_DISABLE+=	openjdk13/bin/jrunscript
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	battleblow
-GH_PROJECT=	openjdk-jdk13u
+GH_PROJECT=	jdk13u
 
 NO_CCACHE=	yes
 
@@ -124,8 +53,8 @@ NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	13
 JDK_MINOR_VERSION=	0
-JDK_PATCH_VERSION=	7
-JDK_BUILD_NUMBER=	1
+JDK_PATCH_VERSION=	8
+JDK_BUILD_NUMBER=	5
 BSD_JDK_VERSION=	1
 
 JDK_BUG_URL=	https://bugs.freebsd.org/bugzilla/enter_bug.cgi?product=Ports%20%26%20Packages&component=Individual%20Port(s)&short_desc=java/${PORTNAME}${JDK_MAJOR_VERSION}%3A%20

@@ -17,8 +17,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjson-glib-1.0.so:devel/json-glib \
 		libmpfr.so:math/mpfr
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c11 fortran gmake gnome localbase libtool ncurses \
 		pathfix pkgconfig readline tar:xz
 GNU_CONFIGURE=	yes

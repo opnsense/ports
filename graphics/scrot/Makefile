@@ -2,7 +2,6 @@
 
 PORTNAME=	scrot
 DISTVERSION=	1.5
-PORTREVISION=	1
 CATEGORIES=	graphics
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -17,10 +16,6 @@ LIB_DEPENDS=	libgiblib.so:graphics/giblib \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	resurrecting-open-source-projects
-
-USE_HARDENING=	cfi safestack
-
-CFLAGS+=	-fuse-ld=lld
 
 USES=		autoreconf xorg
 USE_CSTD=	c99

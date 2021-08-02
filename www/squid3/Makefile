@@ -22,8 +22,6 @@ CONFLICTS=	squid-* squid-devel-*
 
 BROKEN_powerpc64=	Does not build: error: unrecognizable insn
 
-USE_HARDENING=	safestack
-
 USES=		compiler cpe perl5 shebangfix tar:xz
 CPE_VENDOR=	squid-cache
 SHEBANG_FILES=	scripts/*.pl contrib/*.pl src/*.pl tools/*.pl \

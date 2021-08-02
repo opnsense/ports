@@ -10,8 +10,6 @@ COMMENT=	ARP scanning and fingerprinting tool
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		autoreconf
 
 GNU_CONFIGURE=	yes

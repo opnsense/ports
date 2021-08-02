@@ -17,8 +17,6 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/man/man1/${PORTNAME}.1.gz \
 		share/man/man5/${PORTNAME}.5.gz
 
-USE_HARDENING=	pie:off
-
 post-patch:
 	@${REINPLACE_CMD} '/-static/d' ${WRKSRC}/Makefile
 

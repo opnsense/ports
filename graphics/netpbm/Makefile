@@ -16,8 +16,6 @@ LICENSE_PERMS_IJG=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 TEST_DEPENDS=	bash:shells/bash
 
-USE_HARDENING=	pie:off
-
 # The port follows the advanced release series.  Upstream does not
 # create tarballs for them, so we have to roll our own.  See
 # http://netpbm.sourceforge.net/getting_netpbm.php.  To checkout the

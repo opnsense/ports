@@ -11,8 +11,6 @@ COMMENT=	File and block device wiping utility
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		tar:bzip2
 GNU_CONFIGURE=	yes
 

@@ -11,8 +11,6 @@ COMMENT=	Watches the output from a command at specified intervals
 
 LICENSE=	GPLv2+
 
-USE_HARDENING=	pie:off
-
 USES=		ncurses
 PLIST_FILES=	bin/cmdwatch man/man1/cmdwatch.1.gz
 

@@ -18,6 +18,6 @@ USE_GL=		gl
 USE_QT=		qmake_build buildtools_build linguisttools_build \
 		core dbus gui network svg_run widgets x11extras
 
-USE_HARDENING=	safestack
+OPTIONS_DEFINE=	DOCS
 
 .include <bsd.port.mk>

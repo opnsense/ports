@@ -18,8 +18,6 @@ USE_GITHUB=	yes
 USE_PERL5=	build
 USE_RC_SUBR=	${PORTNAME}
 
-USE_HARDENING=	safestack
-
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--binary-dir=${PREFIX}/bin \
 		--config-dir=${ETCDIR} \

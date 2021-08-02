@@ -12,8 +12,6 @@ COMMENT=	File Delivery over Unidirectional Transport implementation
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libcurl.so:ftp/curl
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		dos2unix gmake ssl
 MAKE_ENV=	LFLAGS="${LDFLAGS}"
 MAKE_JOBS_UNSAFE= yes

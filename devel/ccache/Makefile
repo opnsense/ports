@@ -10,8 +10,6 @@ MASTER_SITES=	https://github.com/ccache/ccache/releases/download/v${DISTVERSION}
 MAINTAINER=	bdrewery@FreeBSD.org
 COMMENT=	Tool to minimize the compile time of C/C++ programs
 
-USE_HARDENING=	safestack stackautoinit:off
-
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/GPL-3.0.txt
 

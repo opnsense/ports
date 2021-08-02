@@ -9,8 +9,6 @@ COMMENT=	Tiny Lambda Calculus interpreter
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	stackautoinit:off
-
 USE_GITLAB=	yes
 GL_ACCOUNT=	herrhotzenplotz
 GL_COMMIT=	4a3dd51a872f36a513f06efa475922259dee91f1

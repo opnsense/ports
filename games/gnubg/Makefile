@@ -27,8 +27,6 @@ USE_GNOME=	glib20 gtk20 cairo pangox-compat
 USE_XORG+=	xmu xt sm ice x11
 USE_GL+=	glu gl
 
-USE_HARDENING=	pie:off relro:off
-
 CONFIGURE_ARGS=	--with-board3d --with-sqlite --with-python=${PYTHON_CMD}
 CONFIGURE_ENV=	ac_cv_path_ARTSC_CONFIG=no ac_cv_path_LIBART_CONFIG=no
 CPPFLAGS+=	-I${LOCALBASE}/include

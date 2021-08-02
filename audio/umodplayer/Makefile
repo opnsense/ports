@@ -16,8 +16,6 @@ LIB_DEPENDS=	libmodplug.so:audio/libmodplug \
 		libao.so:audio/libao
 BUILD_DEPENDS=	${LOCALBASE}/lib/libaiff.a:audio/libaiff
 
-USE_HARDENING=	pie:off
-
 USES=		localbase:ldflags
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--prefix=${PREFIX}

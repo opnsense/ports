@@ -15,8 +15,6 @@ LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	gprbuild:devel/gprbuild
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		ada gmake tar:bzip2
 HAS_CONFIGURE=	yes
 ALL_TARGET=	libs

@@ -38,9 +38,6 @@ CONFIGURE_ARGS=	--disable-fcntl \
 		--with-docdir=${DOCSDIR} \
 		--with-ssl=${OPENSSLBASE}
 
-USE_HARDENING=	cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 .if defined(MUTT_CONFIGURE_ARGS)
 CONFIGURE_ARGS+=	${MUTT_CONFIGURE_ARGS}
 .endif

@@ -10,8 +10,6 @@ LIB_DEPENDS+=	libmad.so:audio/libmad \
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off relro:off stackautoinit:off
-
 USE_GNOME=	libxml2
 
 OPTIONS_FILE=	${PORT_DBDIR}/${OPTIONS_NAME:C/-.*//}/options

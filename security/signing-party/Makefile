@@ -10,8 +10,6 @@ COMMENT=	Various OpenPGP related tools
 LICENSE=	BSD2CLAUSE BSD3CLAUSE GPLv2 GPLv2+ GPLv3+ MIT
 LICENSE_COMB=	multi
 
-USE_HARDENING=	pie:off
-
 BUILD_DEPENDS=	gsed:textproc/gsed
 RUN_DEPENDS=	gpg:security/gnupg \
 		p5-Net-IDN-Encode>=0:textproc/p5-Net-IDN-Encode \

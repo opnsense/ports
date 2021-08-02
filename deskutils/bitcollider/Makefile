@@ -9,8 +9,6 @@ MASTER_SITES=	SF/${PORTNAME}/Bitcollider/${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Bitzi metadata generator
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 USES=		libtool
 INSTALL_TARGET=	install-strip

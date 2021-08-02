@@ -13,8 +13,6 @@ COMMENT=	C source code reformatter
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=	groff:run localbase:ldflags makeinfo
 
 INFO=	indent

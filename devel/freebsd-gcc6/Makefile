@@ -111,7 +111,6 @@ PLIST+=		${.CURDIR}/pkg-plist.mips
 PLIST+=		${.CURDIR}/pkg-plist.powerpc
 .endif
 .if ${TARGETARCH} == "sparc64"
-USE_HARDENING=	pie:off
 PLIST+=		${.CURDIR}/pkg-plist.sparc64
 .endif
 

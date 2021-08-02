@@ -41,12 +41,6 @@ UDEV_CONFIGURE_ENABLE=	config-udev
 UDEV_CONFIGURE_ON=	--disable-config-udev-kms
 UDEV_LIB_DEPENDS=	libudev.so:devel/libudev-devd
 
-# HardenedBSD note:
-# Due to how xorg handles loadable modules, it cannot be compiled
-# with RELRO + BIND_NOW.
-USE_HARDENING=	relro:off cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 .include <bsd.port.options.mk>
 
 FONTPATH_ROOT?=	${LOCALBASE}/share/fonts

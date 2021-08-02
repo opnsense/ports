@@ -14,8 +14,6 @@ COMMENT=	GNU Image Manipulation Program
 LICENSE=	GPLv3 LGPL3
 LICENSE_COMB=	multi
 
-USE_HARDENING=	relro:off
-
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \
 		mypaint-brushes>0:graphics/mypaint-brushes

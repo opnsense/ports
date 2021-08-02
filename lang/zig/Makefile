@@ -15,11 +15,10 @@ ONLY_FOR_ARCHS_REASON=	not yet supported
 
 BUILD_DEPENDS=	llvm${_LLVM_VER}>=0:devel/llvm${_LLVM_VER}
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake compiler:c++11-lang localbase:ldflags tar:xz
 
 OPTIONS_DEFINE=		STATIC
+OPTIONS_DEFAULT=	STATIC
 
 STATIC_DESC=	sets ZIG_STATIC to avoid 800MiB LLVM dependencies
 

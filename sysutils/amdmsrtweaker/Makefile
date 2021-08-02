@@ -11,8 +11,6 @@ LICENSE=	GPLv3
 
 ONLY_FOR_ARCHS=	i386 amd64
 
-USE_HARDENING=	stackautoinit:off
-
 USE_GITHUB=	yes
 GH_PROJECT=	${PORTNAME}-lnx
 GH_ACCOUNT=	danfe

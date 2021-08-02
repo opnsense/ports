@@ -29,8 +29,6 @@ LIB_DEPENDS=	libcapstone.so:devel/capstone4 \
 		libmbedtls.so:security/mbedtls \
 		libtre.so:textproc/libtre
 
-USE_HARDENING=	retpoline:off stackautoinit:off
-
 USES=		cmake gnome pkgconfig python:3.8+ xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30
 USE_XORG=	x11 xcb xau xdmcp

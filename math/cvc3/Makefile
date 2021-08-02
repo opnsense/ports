@@ -11,8 +11,6 @@ COMMENT=	Automatic theorem prover for the SMT problem
 
 LIB_DEPENDS=	libgmp.so:math/gmp
 
-USE_HARDENING=	pie:off
-
 CONFIGURE_ARGS=	--enable-dynamic \
 		--with-arith=gmp \
 		--with-build=optimized \

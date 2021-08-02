@@ -13,8 +13,6 @@ LIB_DEPENDS=	libming.so:graphics/ming \
 		libpopt.so:devel/popt \
 		libImlib2.so:graphics/imlib2
 
-USE_HARDENING=	pie:off
-
 USES=		alias gmake localbase perl5
 USE_PERL5=	build
 GNU_CONFIGURE=	yes

@@ -12,8 +12,6 @@ COMMENT=	Foomatic wrapper scripts
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		autoreconf ghostscript perl5 pkgconfig
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_path_A2PS=${LOCALBASE}/bin/a2ps \

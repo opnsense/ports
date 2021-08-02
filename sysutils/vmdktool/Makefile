@@ -12,8 +12,6 @@ COMMENT=	Convert VMDK files to/from raw disk images
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		perl5
 # We need the prove utility from Perl 5.
 USE_PERL5=	test

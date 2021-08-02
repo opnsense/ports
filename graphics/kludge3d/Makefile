@@ -12,8 +12,6 @@ COMMENT=	Simple 3D editor
 LIB_DEPENDS=	lib3ds.so:graphics/lib3ds \
 		libgtkglext-x11-1.0.so:x11-toolkits/gtkglext
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		compiler:c++11-lang gl gmake gnome pkgconfig python
 USE_GL=		gl
 USE_GNOME=	gtk20

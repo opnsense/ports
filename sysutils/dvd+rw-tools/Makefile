@@ -25,8 +25,6 @@ RUN_DEPENDS=	cdrecord:sysutils/cdrtools
 # until the problem is analyzed and fixed - and please comment the fix here.
 USES=		gmake
 
-USE_HARDENING=	safestack
-
 BIN_FILES=	dvd+rw-booktype dvd+rw-format dvd+rw-mediainfo \
 		dvd-ram-control growisofs
 PLIST_FILES=	${BIN_FILES:S|^|bin/|} \

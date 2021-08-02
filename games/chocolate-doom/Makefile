@@ -15,8 +15,6 @@ USE_SDL=	mixer2 net2 sdl2
 GNU_CONFIGURE=	yes
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
-USE_HARDENING=	safestack
-
 PORTDOCS=	CMDLINE.doom ChangeLog INSTALL.doom NEWS.md NOT-BUGS.md PHILOSOPHY.md \
 		README.md README.Music.md
 

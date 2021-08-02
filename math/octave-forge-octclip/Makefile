@@ -17,8 +17,6 @@ OCTSRC=		${DISTNAME}
 
 WRKSRC=	${WRKDIR}/${OCTSRC}/src
 
-USE_HARDENING=	stackautoinit:off
-
 USES+=		compiler:gcc-c++11-lib
 
 .include "${.CURDIR}/../../Mk/bsd.octave.mk"

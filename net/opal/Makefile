@@ -13,8 +13,6 @@ LICENSE=	MPL10
 
 LIB_DEPENDS=	libpt.so:devel/ptlib
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		compiler:c11 gmake pathfix pkgconfig tar:xz
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

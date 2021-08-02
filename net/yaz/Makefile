@@ -14,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libgnutls.so:security/gnutls
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gnome iconv libtool ncurses pathfix pkgconfig readline \
 		shebangfix tcl
 SHEBANG_FILES=	src/yaz-asncomp

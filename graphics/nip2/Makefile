@@ -17,8 +17,6 @@ LIB_DEPENDS=	libvips.so:graphics/vips \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	xdg-open:devel/xdg-utils
 
-USE_HARDENING=	safestack
-
 USES=		bison desktop-file-utils dos2unix gettext gmake gnome pkgconfig \
 		shared-mime-info
 

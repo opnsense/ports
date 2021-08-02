@@ -11,8 +11,6 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS+=	${LOCALBASE}/lib/libowfat.a:${LIBOWFAT_PORT}
 
-USE_HARDENING=	pie:off relro:off
-
 SNAPSHOT=	20170319
 USES=		tar:bzip2 gmake ssl
 WRKSRC=		${WRKDIR}/${PORTNAME}

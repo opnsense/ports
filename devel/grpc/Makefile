@@ -38,8 +38,6 @@ USE_LDCONFIG=	yes
 PLIST_SUB=	SHLIB_MAJOR=${PORTVERSION:R} \
 		SHLIB_MINOR=${PORTVERSION:E}
 
-USE_HARDENING=	pie:off relro:off
-
 .include <bsd.port.pre.mk>
 
 # Remove openssl from grpc.pc because we do not ship openssl.pc in base system

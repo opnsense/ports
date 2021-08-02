@@ -38,8 +38,6 @@ LIB_DEPENDS=	libassimp.so:multimedia/assimp \
 		libsigc-2.0.so:devel/libsigc++20 \
 		libvorbisfile.so:audio/libvorbis
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		cmake compiler:c++11-lib gl gnome pkgconfig sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	pioneerspacesim

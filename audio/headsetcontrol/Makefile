@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/license
 BUILD_DEPENDS=	hidapi>=0:comms/hidapi
 LIB_DEPENDS=	libhidapi.so:comms/hidapi
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake
 
 USE_GITHUB=	yes

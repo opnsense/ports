@@ -8,8 +8,6 @@ COMMENT=	Print contents of X events
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xrandr
 

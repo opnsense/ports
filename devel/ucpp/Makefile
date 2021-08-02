@@ -15,8 +15,6 @@ GH_ACCOUNT=	lpsantil
 GH_TAGNAME=	31b719e
 USE_GITHUB=	yes
 
-USE_HARDENING=	pie:off
-
 PLIST_FILES=	bin/ucpp man/man1/ucpp.1.gz
 USES=		gmake
 

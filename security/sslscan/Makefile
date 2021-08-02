@@ -11,8 +11,6 @@ COMMENT=	Fast SSL port scanner
 
 LICENSE=	GPLv3
 
-USE_HARDENING=	cfi safestack
-
 USES=		gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	rbsec

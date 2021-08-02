@@ -12,8 +12,6 @@ COMMENT=	Amiga emulator
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off relro:off
-
 BUILD_DEPENDS=	zip:archivers/zip
 LIB_DEPENDS=	libmpeg2.so:multimedia/libmpeg2 \
 		libopenal.so:audio/openal-soft \

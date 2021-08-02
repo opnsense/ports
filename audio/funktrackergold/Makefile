@@ -15,8 +15,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BROKEN_armv6=		fails to compile: function definition is not allowed here
 BROKEN_armv7=		fails to compile: function definition is not allowed here
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:nestedfct ncurses tar:tgz
 
 WRKSRC=		${WRKDIR}/funkgold

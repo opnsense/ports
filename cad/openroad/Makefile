@@ -23,8 +23,6 @@ LIB_DEPENDS=	libcudd.so:math/cudd \
 USES=		bison compiler:c++17-lang cmake eigen:3 qt:5 localbase:ldflags python:3.7+,build tcl:86 # the code asks for tcl-87, but build fails: https://github.com/The-OpenROAD-Project/OpenROAD/issues/508
 USE_QT=		core gui widgets buildtools_build qmake_build
 
-USE_HARDEINING=	stackautoinit:off
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	The-OpenROAD-Project
 GH_PROJECT=	OpenROAD

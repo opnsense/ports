@@ -10,8 +10,6 @@ COMMENT=	Text mode editor with Unicode support
 
 LICENSE=	GPLv3
 
-USE_HARDENING=	pie:off
-
 OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=	*

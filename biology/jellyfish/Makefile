@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	yaggo:devel/yaggo
 LIB_DEPENDS=	libhts.so:biology/htslib
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes

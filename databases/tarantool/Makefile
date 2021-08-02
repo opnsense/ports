@@ -22,8 +22,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libyaml.so:textproc/libyaml \
 		libzstd.so:archivers/zstd
 
-USE_HARDENING=	pie:off
-
 USES=		cmake:noninja compiler:c++11-lang gettext-runtime gmake iconv perl5 readline ssl
 USE_PERL5=	build
 

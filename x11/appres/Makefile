@@ -5,8 +5,6 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Program to list application's resources
 
-USE_HARDENING=	safestack
-
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xt
 

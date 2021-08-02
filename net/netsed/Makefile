@@ -8,8 +8,6 @@ MASTER_SITES=	http://silicone.homelinux.org/release/netsed/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Alters the contents of network packets in real time
 
-USE_HARDENING=	safestack
-
 USES=		gmake
 MAKE_ARGS=	CFLAGS="${CFLAGS}"
 

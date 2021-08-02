@@ -39,6 +39,7 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 
 USES=		compiler cpe gl gmake gnome iconv libtool:keepla jpeg \
 		localbase pathfix perl5 pkgconfig tar:xz xorg
+LLD_UNSAFE=	yes
 CPE_PRODUCT=	xine-lib
 CPE_VENDOR=	xine
 GNU_CONFIGURE=	yes
@@ -50,8 +51,6 @@ CONFIGURE_ARGS=	--with-libflac \
 		--enable-musepack \
 		--enable-real-codecs \
 		--without-esound
-
-CONFIGURE_ARGS+= --disable-iconvtest
 
 MAKE_ENV=	V=1
 MAKE_ARGS=	pkgdatadir="${DATADIR}" \

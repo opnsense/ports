@@ -18,9 +18,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386 aarch64 armv6 armv7 powerpc64
 
-USE_HARDENING=		pie:off
-LLVM_AR_UNSAFE=		yes
-
 USES=			autoreconf compiler:c11 gmake iconv:patch,translit \
 			localbase:ldflags ncurses perl5 tar:xz
 USE_LOCALE=		en_US.UTF-8

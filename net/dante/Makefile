@@ -17,8 +17,6 @@ LIB_DEPENDS=	libminiupnpc.so:net/miniupnpc \
 
 CONFLICTS=	socks5-[0-9]*
 
-USE_HARDENING=	pie:off
-
 USES=		libtool localbase
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-socks-conf=${PREFIX}/etc/socks.conf \

@@ -8,8 +8,6 @@ COMMENT=	Server access control program for X
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xmuu xau
 

@@ -15,8 +15,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png
 
-USE_HARDENING=	pie:off
-
 USES=		gl gmake sdl
 USE_GL=		gl
 USE_SDL=	sdl sound

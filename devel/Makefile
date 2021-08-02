@@ -708,6 +708,7 @@
     SUBDIR += fpc-regexpr
     SUBDIR += fpc-sdl
     SUBDIR += fpc-symbolic
+    SUBDIR += fpc-tplylib
     SUBDIR += fpc-zlib
     SUBDIR += fpp
     SUBDIR += frama-c
@@ -2737,6 +2738,7 @@
     SUBDIR += p5-Mixin-Linewise
     SUBDIR += p5-Mknod
     SUBDIR += p5-Mo
+    SUBDIR += p5-Mock-MonkeyPatch
     SUBDIR += p5-Mock-Quick
     SUBDIR += p5-Module-Build
     SUBDIR += p5-Module-Build-Convert
@@ -4894,6 +4896,7 @@
     SUBDIR += py-pycmd
     SUBDIR += py-pycodeexport
     SUBDIR += py-pycodestyle
+    SUBDIR += py-pycognito
     SUBDIR += py-pycompilation
     SUBDIR += py-pycparser
     SUBDIR += py-pydantic
@@ -5041,6 +5044,7 @@
     SUBDIR += py-pyzipper
     SUBDIR += py-q
     SUBDIR += py-qasync
+    SUBDIR += py-qcs-api-client
     SUBDIR += py-qstylizer
     SUBDIR += py-qt5
     SUBDIR += py-qt5-core
@@ -5083,6 +5087,7 @@
     SUBDIR += py-responses
     SUBDIR += py-retrying
     SUBDIR += py-retype
+    SUBDIR += py-rfc3339
     SUBDIR += py-robotframework
     SUBDIR += py-robotframework-databaselibrary
     SUBDIR += py-robotframework-pabot
@@ -7087,6 +7092,7 @@
     SUBDIR += zapcc
     SUBDIR += zeal
     SUBDIR += zfp
+    SUBDIR += zls
     SUBDIR += zookeeper
     SUBDIR += zpu-binutils
     SUBDIR += zpu-gcc

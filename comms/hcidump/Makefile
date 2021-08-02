@@ -14,8 +14,6 @@ USES=		uidfix
 WRKSRC=		${WRKDIR}/${PORTNAME}
 INSTALL_WRKSRC=	${WRKSRC}/${PORTNAME}
 
-USE_HARDENING=	safestack
-
 CFLAGS+=	-DL2CAP_SOCKET_CHECKED=yes
 
 PLIST_FILES=	bin/hcidump man/man1/hcidump.1.gz

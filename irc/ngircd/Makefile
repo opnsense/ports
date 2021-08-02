@@ -17,8 +17,6 @@ USES=		cpe localbase:ldflags tar:xz
 GNU_CONFIGURE=	yes
 USE_RC_SUBR=	ngircd
 
-USE_HARDENING=	safestack
-
 CPE_VENDOR=	barton
 CPE_VERSION=	${PORTVERSION:C/^([0-9]+)$/\1.0/}
 

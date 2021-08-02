@@ -19,6 +19,4 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-USE_HARDENING=	pie:off
-
 .include <bsd.port.mk>

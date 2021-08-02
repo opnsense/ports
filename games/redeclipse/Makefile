@@ -24,8 +24,6 @@ GH_PROJECT=	base
 USES=		gmake pkgconfig
 BUILD_WRKSRC=	${WRKSRC}/src
 
-USE_HARDENING=	pie:off
-
 SUB_FILES=	${PLIST_FILES:Mbin/*:T}
 
 PORTDOCS=	*

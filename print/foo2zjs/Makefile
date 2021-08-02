@@ -25,8 +25,6 @@ RUN_DEPENDS=	${LOCALBASE}/share/foomatic/db/oldprinterids:print/foomatic-db \
 USES=		ghostscript gmake shebangfix
 SHEBANG_FILES=	msexpand printer-profile.sh
 
-USE_HARDENING=	safestack
-
 MAKE_JOBS_UNSAFE=	yes
 
 SUB_FILES=	${_DEVDCONF_FILE} pkg-message

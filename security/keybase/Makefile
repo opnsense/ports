@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/../LICENSE
 
 USES=		go tar:xz
 
-GO_BUILDFLAGS=	-tags production -buildmode=pie
+GO_BUILDFLAGS=	-tags production
 GO_PKGNAME=	github.com/keybase/client/go
 GO_TARGET=	${GO_PKGNAME}/keybase ${GO_PKGNAME}/kbfs/kbfsfuse ${GO_PKGNAME}/kbfs/kbfsgit/git-remote-keybase ${GO_PKGNAME}/kbfs/kbfstool
 WRKSRC=		${WRKDIR}/client-v${PORTVERSION}/go

@@ -28,8 +28,6 @@ GH_PROJECT=	megaglest-source
 
 SUB_FILES=	pkg-message
 
-USE_HARDENING=	pie:off
-
 USES=		cmake:insource compiler:c++11-lib display:build dos2unix jpeg lua \
 		openal:al,alut pkgconfig ssl localbase:ldflags sdl gl xorg
 USE_GL=		glew gl glu

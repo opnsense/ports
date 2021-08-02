@@ -9,8 +9,6 @@ COMMENT=	Number to number name and money text conversion libraries
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c++11-lang gmake libtool tar:xz
 
 GNU_CONFIGURE=	yes

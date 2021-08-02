@@ -10,8 +10,6 @@ COMMENT=	Library for fast Base64 encoding and decoding
 
 BUILD_DEPENDS=	makedepend:devel/makedepend
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake zip
 ALL_TARGET=	all_src
 USE_LDCONFIG=	yes

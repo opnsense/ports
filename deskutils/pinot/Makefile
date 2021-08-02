@@ -37,8 +37,6 @@ RUN_DEPENDS=	update-mime-database:misc/shared-mime-info	\
 USE_GITHUB=	yes
 GH_ACCOUNT=	FabriceColin
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		compiler:c++11-lang autoreconf gettext gnome libarchive \
 		libtool pkgconfig python shebangfix sqlite:3 ssl xorg
 USE_CXXSTD=	c++11

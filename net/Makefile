@@ -400,7 +400,6 @@
     SUBDIR += libproxy-perl
     SUBDIR += libproxy-python
     SUBDIR += libproxy-webkit3
-    SUBDIR += libpushover
     SUBDIR += librdkafka
     SUBDIR += librespeed-cli
     SUBDIR += librespeed-go
@@ -545,7 +544,6 @@
     SUBDIR += openbgpd
     SUBDIR += openbgpd6
     SUBDIR += openldap24-client
-    SUBDIR += openldap24-sasl-client
     SUBDIR += openldap24-server
     SUBDIR += openmdns
     SUBDIR += openmpi

@@ -14,8 +14,6 @@ COMMENT=	Kana-to-Kanji conversion system, library part
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		imake:notall,noman tar:bzip2
 USE_LDCONFIG=	yes
 ALL_TARGET=	canna

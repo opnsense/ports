@@ -27,8 +27,6 @@ USES=		autoreconf:build bison:alias gettext-tools \
 USE_GNOME=	libxml2
 GNU_CONFIGURE=	yes
 
-USE_HARDENING=	safestack
-
 SUB_FILES=	README.FreeBSD
 
 PORTDOCS=	*

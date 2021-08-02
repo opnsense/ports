@@ -13,8 +13,6 @@ COMMENT=	ISO/IEC 23008-12:2017 HEIF file format de- and encoder
 LICENSE=	LGPL3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=		stackautoinit:off
-
 USES=		cmake compiler:c++11-lang gettext-runtime gnome \
 		localbase:ldflags pkgconfig
 USE_GNOME=	gdkpixbuf2 glib20

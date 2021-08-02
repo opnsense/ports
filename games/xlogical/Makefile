@@ -12,8 +12,6 @@ COMMENT=	Remake of the classic puzzle game Logical
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir="/var/games"
 USES=		autoreconf dos2unix gmake sdl tar:bzip2

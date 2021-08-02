@@ -39,9 +39,6 @@ LDFLAGS_armv6=	-Wl,-znotext
 LDFLAGS_armv7=	-Wl,-znotext
 LDFLAGS_i386=	-Wl,-znotext
 
-USE_HARDENING=	pie:off relro:off
-LLVM_AR_UNSAFE=	yes
-
 CONFIGURE_ARGS=	-verbose -prefix "${PREFIX}" \
 		-cc "${CC}" \
 		-aspp "${CC} -c" \

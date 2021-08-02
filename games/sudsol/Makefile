@@ -8,8 +8,6 @@ MASTER_SITES=	http://rink.nu/downloads/projects/
 MAINTAINER=	rink@FreeBSD.org
 COMMENT=	Utility to solve Sudoku puzzles
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake
 GNU_CONFIGURE=	yes
 

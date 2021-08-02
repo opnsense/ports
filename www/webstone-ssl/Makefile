@@ -28,8 +28,6 @@ MAKE_JOBS_UNSAFE=	yes
 CFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
-USE_HARDENING=	pie:off
-
 .include <bsd.port.pre.mk>
 
 .if ${SSL_DEFAULT} == base

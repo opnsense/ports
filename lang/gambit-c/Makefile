@@ -13,8 +13,6 @@ COMMENT=	Gambit programming system where the compiler generates portable C code
 LICENSE=	APACHE20 LGPL21
 LICENSE_COMB=	dual
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	gambit

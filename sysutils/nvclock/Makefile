@@ -12,8 +12,6 @@ COMMENT=	NVidia graphic card status and overclocking tool
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		gmake
 GNU_CONFIGURE=	yes
 

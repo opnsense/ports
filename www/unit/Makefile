@@ -11,8 +11,6 @@ COMMENT?=	Dynamic web application server
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES+=		compiler:c11 cpe
 
 CPE_VENDOR=	nginx

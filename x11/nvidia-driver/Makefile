@@ -93,6 +93,7 @@ SUB_PATCHES+=	extra-patch-src-nv-misc.h
 
 OPTIONS_DEFINE=	ACPI_PM LINUX WBINVD DOCS
 OPTIONS_DEFINE_i386=	PAE
+OPTIONS_DEFAULT=	LINUX
 
 ACPI_PM_DESC=		ACPI Power Management support
 LINUX_DESC=		Linux compatibility support

@@ -11,8 +11,6 @@ COMMENT=	DragonFly Mail Agent, a small MTA for local/outbound mail
 
 LICENSE=	BSD3CLAUSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		ssl uidfix
 
 USE_GITHUB=	yes

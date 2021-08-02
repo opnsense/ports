@@ -6,8 +6,6 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Monitor system console messages with X
 
-USE_HARDENING=	safestack
-
 LICENSE=	MIT
 
 USES=		xorg xorg-cat:app

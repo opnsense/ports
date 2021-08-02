@@ -21,8 +21,6 @@ EXPIRATION_DATE=2021-10-24
 LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid \
 		libjansson.so:devel/jansson
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		bison compiler:c11 cpe gmake gnome iconv libedit localbase \
 		shebangfix sqlite ssl ncurses
 USE_GNOME=	libxml2

@@ -28,8 +28,6 @@ LLD_UNSAFE=	yes
 INSTALL_TARGET=	install-strip
 INSTALLS_ICONS=	yes
 
-USE_HARDENING=	pie:off relro:off
-
 CPPFLAGS+=	-I${LOCALBASE}/include
 LIBS+=		-L${LOCALBASE}/lib
 LDFLAGS+=	-Wl,--add-needed

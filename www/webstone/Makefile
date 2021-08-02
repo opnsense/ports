@@ -21,8 +21,6 @@ CONFIGURE_WRKSRC=	${WRKSRC}/src
 BUILD_WRKSRC=	${WRKSRC}/src
 ALL_TARGET=	install
 
-USE_HARDENING=	pie:off relro:off
-
 MAKE_JOBS_UNSAFE=	yes
 
 post-patch:

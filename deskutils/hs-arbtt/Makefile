@@ -9,8 +9,6 @@ COMMENT=		Completely automatic time tracker for X11 desktop
 LICENSE=		GPLv2
 LICENSE_FILE=		${WRKSRC}/LICENSE
 
-USE_HARDENING=	pie:off
-
 LIB_DEPENDS=		libpcre.so:devel/pcre
 
 USES=			xorg cabal

@@ -1,5 +1,5 @@
 PORTNAME=	cmake
-DISTVERSION=	3.20.5
+DISTVERSION=	3.21.0
 CATEGORIES=	devel
 MASTER_SITES=	https://www.cmake.org/files/v${PORTVERSION:R}/
 PKGNAMESUFFIX=	-gui
@@ -16,8 +16,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libjsoncpp.so:devel/jsoncpp \
 		libuv.so:devel/libuv \
 		librhash.so:security/rhash
-
-USE_HARDENING=	stackautoinit:off
 
 USES=		cmake:run,insource compiler:c++11-lang desktop-file-utils libarchive \
 		shared-mime-info qt:5

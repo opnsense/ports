@@ -9,8 +9,6 @@ COMMENT=	Libraries and utilities to access smart cards
 
 LICENSE=	LGPL21
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf compiler:c11 gmake libtool pkgconfig ssl
 
 OPTIONS_SINGLE=	BACKEND

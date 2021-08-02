@@ -12,8 +12,6 @@ LICENSE_COMB=		multi
 LICENSE_FILE_LGPL21+  =	${WRKSRC}/LICENCE-LGPL-2.1.txt
 LICENSE_FILE_GPLv2+   =	${WRKSRC}/LICENCE-GPL-2.txt
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf compiler:c11 libtool pathfix
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes

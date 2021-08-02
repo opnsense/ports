@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake libtool localbase pathfix pkgconfig
 
 CONFIGURE_ARGS=	enable_tests=yes

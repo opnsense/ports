@@ -17,8 +17,6 @@ GH_ACCOUNT=	jhasse
 GH_TAGNAME=	e6e63dd29ef0805b3e40fe1832c2f1fe2307943a
 USE_GL=		gl
 
-USE_HARDENING=	pie:off
-
 PLIST_FILES=	bin/p2t
 
 post-stage:

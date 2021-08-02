@@ -174,7 +174,6 @@
     SUBDIR += fwlogwatch
     SUBDIR += gcr
     SUBDIR += gef
-    SUBDIR += gibson
     SUBDIR += git-crypt
     SUBDIR += git-remote-gcrypt
     SUBDIR += git-secret

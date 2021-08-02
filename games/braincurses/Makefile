@@ -11,8 +11,6 @@ COMMENT=	Clone of the Mastermind game
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off
-
 USES=		compiler:c++11-lib gmake ncurses
 USE_CSTD=	c++11
 

@@ -9,9 +9,6 @@ COMMENT=	OpenBSD http server
 
 LICENSE=	BSD3CLAUSE
 
-
-USE_HARDENING=	pie:off
-
 USES=		uidfix
 
 USE_GITHUB=	yes

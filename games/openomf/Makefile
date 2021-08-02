@@ -12,8 +12,6 @@ EXTRACT_ONLY=	${DISTFILE_shadow} ${DISTFILE_libdumb} \
 MAINTAINER=	devel@stasyan.com
 COMMENT=	Rewritten engine for One Must Fall 2097
 
-USE_HARDENING=	pie:off
-
 LIB_DEPENDS=	libconfuse.so:devel/libconfuse \
 		libpng.so:graphics/png \
 		libargtable2.so:devel/argtable \

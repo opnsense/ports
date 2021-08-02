@@ -34,8 +34,6 @@ CONFIGURE_ARGS=	--with-freetype-include="`freetype-config --cflags | sed -e 's|^
 		--bindir=${PREFIX}/bin/${PORTNAME}-${MAJORVER}
 INSTALL_TARGET=	install-strip
 
-USE_HARDENING=	pie:off
-
 CPPFLAGS+=	-D__BSD_VISIBLE -D__EXT1_VISIBLE -D_XOPEN_SOURCE=700
 
 MAJORVER=	${PORTVERSION:R}

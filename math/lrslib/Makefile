@@ -25,8 +25,6 @@ MAKE_ARGS=	CFLAGS="${CFLAGS}" INCLUDEDIR=${LOCALBASE}/include LIBDIR=${LOCALBASE
 
 LDFLAGS+=	-lthr
 
-USE_HARDENING=	pie:off
-
 post-install:
 	@cd ${STAGEDIR}${PREFIX} && ${STRIP_CMD} bin/* lib/*.so
 

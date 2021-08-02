@@ -12,8 +12,6 @@ COMMENT=	Joystick to keyboard/mouse events translator written in C
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake:insource pkgconfig sdl tar:bzip2 xorg
 USE_SDL=	sdl2
 USE_XORG=	x11 xtst

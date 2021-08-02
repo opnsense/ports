@@ -15,12 +15,11 @@ PATCH_DIST_STRIP=	-p1
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple utility which reads and writes data across network connections
 
-USE_HARDENING=	safestack
-
 USES=		tar:tgz
 NO_WRKSUBDIR=	yes
 
 CFLAGS+=	-D${OPSYS:tu}
+LDFLAGS+=	-static
 
 PORTDOCS=	README
 PLIST_FILES=	bin/netcat man/man1/netcat.1.gz

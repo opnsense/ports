@@ -9,8 +9,6 @@ MASTER_SITES=	SF
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Spam detector using Bayesian analysis of word counts
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-default-8bit
 
