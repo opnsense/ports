@@ -11,8 +11,6 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Network UPS Tools
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes
 USES=		autoreconf gmake pkgconfig libtool
