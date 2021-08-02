@@ -12,8 +12,6 @@ COMMENT=	Parser generator from FSF, (mostly) compatible with Yacc
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 BUILD_DEPENDS=	${RUN_DEPENDS}
 RUN_DEPENDS=	m4>=1.4.16,1:devel/m4
 
