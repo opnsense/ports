@@ -24,8 +24,6 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libgpg-error.so:security/libgpg-error
 BUILD_DEPENDS=	bash:shells/bash
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		autoreconf compiler:c++11-lang cpe gmake libtool localbase \
 		mysql pathfix pkgconfig shebangfix sqlite ssl
 
