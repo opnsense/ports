@@ -28,7 +28,7 @@ install_depends()
 	fi
 
 	port_var_fetch "${origin}" "${depends_args}" \
-	    PKGFILE pkgfile \
+	    PKGOLDFILE pkgfile \
 	    PKGBASE pkgbase
 
 	if [ -r "${pkgfile}" -a "${target}" = "${dp_DEPENDS_TARGET}" ]; then
