@@ -1,6 +1,7 @@
-PORTNAME=	opnsense-update
+PORTNAME=	update
 PORTVERSION=	21.7.1
 CATEGORIES=	sysutils
+PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	OPNsense update utilities
@@ -14,8 +15,7 @@ USES=		ssl
 MAKE_ENV=	UPDATE_RELEASE=${PORTVERSION}
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
-GH_PROJECT=	update
+GH_ACCOUNT=	${CATEGORIES:[1]}
 GH_TAGNAME=	9abe08e
 
 .include <bsd.port.mk>

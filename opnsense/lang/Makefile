@@ -1,6 +1,7 @@
-PORTNAME=	opnsense-lang
+PORTNAME=	lang
 PORTVERSION=	21.1.7
 CATEGORIES=	sysutils
+PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	OPNsense translations
@@ -13,7 +14,6 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	opnsense
-GH_PROJECT=	lang
+GH_ACCOUNT=	${CATEGORIES:[1]}
 
 .include <bsd.port.mk>
