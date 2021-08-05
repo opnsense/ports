@@ -238,6 +238,7 @@
     SUBDIR += daemontools
     SUBDIR += daemontools-encore
     SUBDIR += daggy
+    SUBDIR += damager
     SUBDIR += dar
     SUBDIR += datadog-agent
     SUBDIR += datadog-integrations
@@ -312,6 +313,7 @@
     SUBDIR += dwatch-json
     SUBDIR += dwatch-pwsnoop
     SUBDIR += e2fsprogs
+    SUBDIR += e2tools
     SUBDIR += ebsnvme-id
     SUBDIR += ec2-scripts
     SUBDIR += eclat
