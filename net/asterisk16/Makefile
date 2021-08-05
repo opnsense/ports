@@ -285,12 +285,12 @@ post-install:
 	${FIND} ${STAGEDIR}${DATADIR}/moh -type f | ${SED} "s,^${STAGEDIR}${DATADIR},${DATADIR}," >> ${TMPPLIST}
 
 	(cd ${STAGEDIR} && \
-		${ECHO} "@owner ${ASTERISK_USER}" >> ${TMPPLIST} && \
-		${ECHO} "@group ${ASTERISK_GROUP}" >> ${TMPPLIST} && \
+		${ECHO_CMD} "@owner ${ASTERISK_USER}" >> ${TMPPLIST} && \
+		${ECHO_CMD} "@group ${ASTERISK_GROUP}" >> ${TMPPLIST} && \
 		${FIND} var/spool/${PORTNAME}/voicemail/default -type f | ${SED} "s,^,/," >> ${TMPPLIST} && \
 		${FIND} var/spool/${PORTNAME}/voicemail/ -type d | ${SED} "s,^,@dir /," >> ${TMPPLIST} && \
-		${ECHO} "@owner" >> ${TMPPLIST} && \
-		${ECHO} "@group" >> ${TMPPLIST});
+		${ECHO_CMD} "@owner" >> ${TMPPLIST} && \
+		${ECHO_CMD} "@group" >> ${TMPPLIST});
 
 post-install-ASTVERSION-off:
 	@${RM} ${STAGEDIR}${PREFIX}/sbin/astversion
