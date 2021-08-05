@@ -1,3 +1,156 @@
+  <vuln vid="1d651770-f4f5-11eb-ba49-001b217b3468">
+    <topic>Gitlab -- Gitlab</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>14.1.0</ge><lt>14.1.2</lt></range>
+	<range><ge>14.0.0</ge><lt>14.0.7</lt></range>
+	<range><ge>0</ge><lt>13.12.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2021/08/03/security-release-gitlab-14-1-2-released/">
+	  <p>Stored XSS in Mermaid when viewing Markdown files</p>
+	  <p>Stored XSS in default branch name</p>
+	  <p>Perform Git actions with an impersonation token even if impersonation is disabled</p>
+	  <p>Tag and branch name confusion allows Developer to access protected CI variables</p>
+	  <p>New subscriptions generate OAuth tokens on an incorrect OAuth client application</p>
+	  <p>Ability to list and delete impersonation tokens for your own user</p>
+	  <p>Pipelines page is partially visible for users that have no right to see CI/CD</p>
+	  <p>Improper email validation on an invite URL</p>
+	  <p>Unauthorised user was able to add meta data upon issue creation</p>
+	  <p>Unauthorized user can trigger deployment to a protected environment</p>
+	  <p>Guest in private project can see CI/CD Analytics</p>
+	  <p>Guest users can create issues for Sentry errors and track their status</p>
+	  <p>Private user email disclosure via group invitation</p>
+	  <p>Projects are allowed to add members with email address domain that should be blocked by group settings</p>
+	  <p>Misleading username could lead to impersonation in using SSH Certificates</p>
+	  <p>Unauthorized user is able to access and view project vulnerability reports</p>
+	  <p>Denial of service in repository caused by malformed commit author</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-22237</cvename>
+      <cvename>CVE-2021-22236</cvename>
+      <cvename>CVE-2021-22239</cvename>
+      <url>https://about.gitlab.com/releases/2021/08/03/security-release-gitlab-14-1-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2021-08-03</discovery>
+      <entry>2021-08-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5ef14250-f47c-11eb-8f13-5b4de959822e">
+    <topic>Prosody -- Remote Information Disclosure</topic>
+    <affects>
+      <package>
+	<name>prosody</name>
+	<range><lt>0.11.10</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>A Prosody XMPP server advisory reports:</p>
+	<blockquote cite="https://prosody.im/security/advisory_20210722/">
+	<p>It was discovered that Prosody allows any entity to access the list of
+	admins, members, owners and banned entities of any federated XMPP group chat
+	of which they know the address.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-37601</cvename>
+      <url>https://prosody.im/security/advisory_20210722/</url>
+    </references>
+    <dates>
+      <discovery>2021-07-22</discovery>
+      <entry>2021-08-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c3c6c4a3-f47d-11eb-b632-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>92.0.4515.131</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/search/label/Stable%20updates">
+	  <p>This release contains 10 security fixes, including:</p>
+	  <ul>
+	    <li>[1227777] High CVE-2021-30590: Heap buffer overflow in
+	      Bookmarks. Reported by Leecraso and Guang Gong of 360 Alpha Lab on
+	      2021-07-09</li>
+	    <li>[1229298] High CVE-2021-30591: Use after free in File System
+	      API. Reported by SorryMybad (@S0rryMybad) of Kunlun Lab on
+	      2021-07-14</li>
+	    <li>[1209469] High CVE-2021-30592: Out of bounds write in Tab
+	      Groups. Reported by David Erceg on 2021-05-15</li>
+	    <li>[1209616] High CVE-2021-30593: Out of bounds read in Tab Strip.
+	      Reported by David Erceg on 2021-05-16</li>
+	    <li>[1218468] High CVE-2021-30594: Use after free in Page Info UI.
+	      Reported by raven (@raid_akame) on 2021-06-10</li>
+	    <li>[1214481] Medium CVE-2021-30596: Incorrect security UI in
+	      Navigation. Reported by Mohit Raj (shadow2639) on 2021-05-29</li>
+	    <li>[1232617] Medium CVE-2021-30597: Use after free in Browser UI.
+	      Reported by raven (@raid_akame) on 2021-07-24</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-30590</cvename>
+      <cvename>CVE-2021-30591</cvename>
+      <cvename>CVE-2021-30592</cvename>
+      <cvename>CVE-2021-30593</cvename>
+      <cvename>CVE-2021-30594</cvename>
+      <cvename>CVE-2021-30596</cvename>
+      <cvename>CVE-2021-30597</cvename>
+      <url>https://chromereleases.googleblog.com/search/label/Stable%20updates</url>
+    </references>
+    <dates>
+      <discovery>2021-08-02</discovery>
+      <entry>2021-08-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b1aa54ae-74cb-42a0-b462-cbb6831c5c50">
+    <topic>RabbitMQ -- Denial of Service in AMQP1.0 plugin</topic>
+    <affects>
+      <package>
+	<name>rabbitmq</name>
+	<range><lt>3.8.16</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Pivotal.io reports:</p>
+	<blockquote cite="https://tanzu.vmware.com/security/cve-2021-22116">
+	<p>All versions prior to 3.8.16 are prone to a denial of
+	   service vulnerability due to improper input validation
+	   in AMQP 1.0 client connection endpoint.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2016-9877</cvename>
+      <url>https://tanzu.vmware.com/security/cve-2021-22116</url>
+      <url>https://github.com/rabbitmq/rabbitmq-server/releases/tag/v3.8.19</url>
+    </references>
+    <dates>
+      <discovery>2021-05-10</discovery>
+      <entry>2021-05-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="d34bef0b-f312-11eb-b12b-fc4dd43e2b6a">
     <topic>tomcat -- HTTP request smuggling in multiple versions</topic>
     <affects>
@@ -111,7 +264,8 @@ In limited circumstances it was possible for users to authenticate using variati
     <affects>
       <package>
 	<name>fetchmail</name>
-	<range><lt>6.4.20</lt></range>
+	<range><lt>6.3.9</lt></range>
+	<range><ge>6.3.17</ge><lt>6.4.20</lt></range>
       </package>
     </affects>
     <description>
@@ -126,11 +280,13 @@ In limited circumstances it was possible for users to authenticate using variati
     </description>
     <references>
       <cvename>CVE-2021-36386</cvename>
+      <cvename>CVE-2008-2711</cvename>
       <url>https://sourceforge.net/p/fetchmail/mailman/message/37327392/</url>
     </references>
     <dates>
       <discovery>2021-07-07</discovery>
       <entry>2021-07-28</entry>
+      <modified>2021-08-03</modified>
     </dates>
   </vuln>
 
@@ -526,6 +682,18 @@ In limited circumstances it was possible for users to authenticate using variati
 	<name>mysql80-server</name>
 	<range><lt>8.0.26</lt></range>
       </package>
+      <package>
+	<name>mariadb103-server</name>
+	<range><lt>10.3.31</lt></range>
+      </package>
+      <package>
+	<name>mariadb104-server</name>
+	<range><lt>10.4.21</lt></range>
+      </package>
+      <package>
+	<name>mariadb105-server</name>
+	<range><lt>10.5.12</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -537,15 +705,55 @@ In limited circumstances it was possible for users to authenticate using variati
 	    requiring user credentials.<br/>
 	    The highest CVSS v3.1 Base Score of vulnerabilities affecting Oracle
 	    MySQL is 8.8.</p>
+	  <p>MariaDB is affected by CVE-2021-2372 and CVE-2021-2389 only.</p>
 	</blockquote>
       </body>
     </description>
     <references>
       <url>https://www.oracle.com/security-alerts/cpujul2021.html</url>
+      <cvename>CVE-2019-17543</cvename>
+      <cvename>CVE-2021-2339</cvename>
+      <cvename>CVE-2021-2340</cvename>
+      <cvename>CVE-2021-2342</cvename>
+      <cvename>CVE-2021-2352</cvename>
+      <cvename>CVE-2021-2354</cvename>
+      <cvename>CVE-2021-2356</cvename>
+      <cvename>CVE-2021-2357</cvename>
+      <cvename>CVE-2021-2367</cvename>
+      <cvename>CVE-2021-2370</cvename>
+      <cvename>CVE-2021-2372</cvename>
+      <cvename>CVE-2021-2374</cvename>
+      <cvename>CVE-2021-2383</cvename>
+      <cvename>CVE-2021-2384</cvename>
+      <cvename>CVE-2021-2385</cvename>
+      <cvename>CVE-2021-2387</cvename>
+      <cvename>CVE-2021-2389</cvename>
+      <cvename>CVE-2021-2390</cvename>
+      <cvename>CVE-2021-2399</cvename>
+      <cvename>CVE-2021-2402</cvename>
+      <cvename>CVE-2021-2410</cvename>
+      <cvename>CVE-2021-2411</cvename>
+      <cvename>CVE-2021-2412</cvename>
+      <cvename>CVE-2021-2417</cvename>
+      <cvename>CVE-2021-2418</cvename>
+      <cvename>CVE-2021-2422</cvename>
+      <cvename>CVE-2021-2424</cvename>
+      <cvename>CVE-2021-2425</cvename>
+      <cvename>CVE-2021-2426</cvename>
+      <cvename>CVE-2021-2427</cvename>
+      <cvename>CVE-2021-2429</cvename>
+      <cvename>CVE-2021-2437</cvename>
+      <cvename>CVE-2021-2440</cvename>
+      <cvename>CVE-2021-2441</cvename>
+      <cvename>CVE-2021-2444</cvename>
+      <cvename>CVE-2021-3450</cvename>
+      <cvename>CVE-2021-22884</cvename>
+      <cvename>CVE-2021-22901</cvename>
     </references>
     <dates>
       <discovery>2021-07-20</discovery>
       <entry>2021-07-20</entry>
+      <modified>2021-08-04</modified>
     </dates>
   </vuln>
 
