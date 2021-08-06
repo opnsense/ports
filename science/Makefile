@@ -211,6 +211,7 @@
     SUBDIR += pagmo2
     SUBDIR += paje
     SUBDIR += pcmsolver
+    SUBDIR += phonopy
     SUBDIR += plumed
     SUBDIR += pnetcdf
     SUBDIR += pulseview
@@ -250,6 +251,7 @@
     SUBDIR += py-gsd
     SUBDIR += py-h5json
     SUBDIR += py-h5py
+    SUBDIR += py-hiphive
     SUBDIR += py-inequality
     SUBDIR += py-jupyter_jsmol
     SUBDIR += py-kim-query
