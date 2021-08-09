@@ -1320,6 +1320,7 @@
     SUBDIR += py-langdetect
     SUBDIR += py-langid
     SUBDIR += py-laserhammer
+    SUBDIR += py-latexcodec
     SUBDIR += py-libxml2
     SUBDIR += py-license-expression
     SUBDIR += py-line-protocol-parser
@@ -1340,6 +1341,7 @@
     SUBDIR += py-mkdocs-nature
     SUBDIR += py-mwparserfromhell
     SUBDIR += py-myst-parser
+    SUBDIR += py-nbsphinx
     SUBDIR += py-nltk
     SUBDIR += py-normality
     SUBDIR += py-numpydoc
@@ -1370,6 +1372,8 @@
     SUBDIR += py-pyPEG2
     SUBDIR += py-pyahocorasick
     SUBDIR += py-pyaml
+    SUBDIR += py-pybtex
+    SUBDIR += py-pybtex-docutils
     SUBDIR += py-pycountry
     SUBDIR += py-pyexcel
     SUBDIR += py-pyexcel-ezodf
@@ -1443,6 +1447,7 @@
     SUBDIR += py-sphinxcontrib-adadomain
     SUBDIR += py-sphinxcontrib-applehelp
     SUBDIR += py-sphinxcontrib-autoprogram
+    SUBDIR += py-sphinxcontrib-bibtex
     SUBDIR += py-sphinxcontrib-bitbucket
     SUBDIR += py-sphinxcontrib-devhelp
     SUBDIR += py-sphinxcontrib-fulltoc
