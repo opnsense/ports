@@ -1,0 +1,25 @@
+From 6724d5d4c2c502b098e708bd85b43f2a52848093 Mon Sep 17 00:00:00 2001
+From: "Christoph M. Becker" <cmbecker69@gmx.de>
+Date: Wed, 4 Aug 2021 15:15:26 +0200
+Subject: [PATCH] Fix #81327: Error build openssl extension on php 7.4.22
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+The recent fix for bug 52093 is not compatible with LibreSSL ≥ 2.7.0,
+which we recognize as mostly OpenSSL 1.1.0 compatible, but they still
+do not support `ASN1_INTEGER_set_int64()`.
+
+Closes GH-7339.
+
+--- openssl.c
++++ openssl.c
+@@ -3524,7 +3524,7 @@ PHP_FUNCTION(openssl_csr_sign)
+ 		goto cleanup;
+ 	}
+ 
+-#if PHP_OPENSSL_API_VERSION >= 0x10100
++#if PHP_OPENSSL_API_VERSION >= 0x10100 && !defined (LIBRESSL_VERSION_NUMBER)
+ 	ASN1_INTEGER_set_int64(X509_get_serialNumber(new_cert), serial);
+ #else
+ 	ASN1_INTEGER_set(X509_get_serialNumber(new_cert), serial);
