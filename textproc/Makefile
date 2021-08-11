@@ -233,6 +233,7 @@
     SUBDIR += gmetadom
     SUBDIR += gnugrep
     SUBDIR += go-md2man
+    SUBDIR += go-yq
     SUBDIR += goldendict
     SUBDIR += google-ctemplate
     SUBDIR += google-translate-cli
@@ -1818,6 +1819,7 @@
     SUBDIR += sk-hyphen
     SUBDIR += sk-mythes
     SUBDIR += sl-aspell
+    SUBDIR += sl-hunspell
     SUBDIR += sl-hyphen
     SUBDIR += sl-mythes
     SUBDIR += slides
