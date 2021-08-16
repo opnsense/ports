@@ -13655,7 +13655,6 @@ games/xtris||2020-01-10|Has expired: Broken for more than 3 months
 graphics/mapnik||2020-01-10|Has expired: Broken for more than 8 months
 lang/js_of_ocaml||2020-01-10|Has expired: Depends on broken and expiring devel/ocaml-deriving-ocsigen
 lang/rubinius||2020-01-10|Has expired: Broken for more than 7 months
-math/dynare||2020-01-10|Has expired: Broken for more than 9 months
 science/meep||2020-01-10|Has expired: Broken for more than 6 months
 sysutils/hfm||2020-01-10|Has expired: Broken for more than 4 months
 sysutils/u-boot-zedboard||2020-01-10|Has expired: Broken for more than 6 months
@@ -14747,7 +14746,6 @@ russian/p5-cyrillic||2020-05-05|Has expired: Broken for more than 6 months
 russian/tidyup-mail||2020-05-05|Has expired: Broken for more than 6 months
 science/atom||2020-05-05|Has expired: Broken for more than 6 months
 science/esys-particle||2020-05-05|Has expired: Broken for more than 6 months
-science/openmx||2020-05-05|Has expired: Broken for more than 6 months
 science/p5-Geo-ReadGRIB||2020-05-05|Has expired: Broken for more than 6 months
 science/py-tensorflow-estimator||2020-05-05|Has expired: Broken for more than 6 months
 security/firewalk||2020-05-05|Has expired: Broken for more than 6 months
@@ -16471,3 +16469,4 @@ multimedia/mlt-qt5|multimedia/mlt6-qt5|2021-07-30|Moved to a versioned directory
 multimedia/py-mlt|multimedia/py-mlt6|2021-07-30|Moved to a versioned directory to make place for future versions
 net/openldap24-sasl-client|net/openldap24-client|2021-08-01|SASL is always enabled for OpenLDAP
 textproc/py-python-language-server|textproc/py-python-lsp-server|2021-08-01|Has expired: Upstream forked and replaced by py-python-lsp-server
+games/ponscripter-sekai|games/ponscripter-07th-mod|2021-08-13|Switch to active fork
