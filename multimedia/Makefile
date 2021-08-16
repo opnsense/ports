@@ -109,6 +109,7 @@
     SUBDIR += gstreamer1-plugins-openh264
     SUBDIR += gstreamer1-plugins-resindvd
     SUBDIR += gstreamer1-plugins-rtmp
+    SUBDIR += gstreamer1-plugins-rust
     SUBDIR += gstreamer1-plugins-smoothstreaming
     SUBDIR += gstreamer1-plugins-svt-av1
     SUBDIR += gstreamer1-plugins-svt-hevc
@@ -154,6 +155,7 @@
     SUBDIR += kodi-addon-visualization.fishbmc
     SUBDIR += kodi-addon-visualization.shadertoy
     SUBDIR += kodi-addon-visualization.spectrum
+    SUBDIR += kooha
     SUBDIR += kvazaar
     SUBDIR += l-smash
     SUBDIR += libaacs

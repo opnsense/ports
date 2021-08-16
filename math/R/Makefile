@@ -2,10 +2,11 @@
 
 PORTNAME=	R
 DISTVERSION=	4.1.1
+PORTREVISION=	1
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	jrm@FreeBSD.org
 COMMENT=	Language for statistical computing and graphics
 
 LICENSE=	GPLv2
@@ -74,6 +75,7 @@ X11_DESC=		X11 graphics device
 ATLAS_USES=			blaslapack:atlas
 ATLAS_CONFIGURE_ON=		--disable-BLAS-shlib
 CAIROPANGO_IMPLIES=		X11
+CAIROPANGO_LIB_DEPENDS=		libharfbuzz.so:print/harfbuzz
 CAIROPANGO_USES=		gettext gnome jpeg pkgconfig
 CAIROPANGO_USE=			GNOME=cairo,pango
 CAIROPANGO_CONFIGURE_WITH=	cairo
