@@ -5,7 +5,7 @@ PORTVERSION=	5.59
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.stunnel.org/downloads/%SUBDIR%/ \
-		https://www.stunnel.org/downloads/beta/ \
+		https://www.stunnel.org/downloads/archive/5.x/ \
 		http://mirrors.zerg.biz/stunnel/%SUBDIR%/ \
 		http://mirrors.go-part.com/stunnel/%SUBDIR%/ \
 		http://ftp.nluug.nl/pub/networking/stunnel/%SUBDIR%/ \
