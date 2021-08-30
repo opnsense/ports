@@ -6030,7 +6030,6 @@ devel/bugzilla40|devel/bugzilla44|2014-06-21|Has expired
 devel/bugzilla42|devel/bugzilla44|2014-06-21|Has expired
 sysutils/sysupdate||2014-06-21|Removed, no longer needed/relevant with FreeBSD in SVN
 www/phpbb-devel|www/phpbb3|2014-06-22|Has expired: Use www/phpbb3 instead
-math/polymake||2014-06-22|Has expired: Does not build with any supported version of Perl
 www/phpsysinfo-dev|www/phpsysinfo|2014-06-22|Has expired: Use www/phpsysinfo instead
 print/pkg-texinfo|print/texinfo-minimal|2014-06-24|Has been renamed
 sysutils/pc-sysinstall|sysutils/pcbsd-utils|2014-06-24|Removed: pc-sysinstall is included in sysutils/pcbsd-utils
@@ -14474,7 +14473,6 @@ sysutils/DTraceToolkit|sysutils/dtrace-toolkit|2020-04-26|Renamed to match the p
 devel/k8048|devel/pickle|2020-04-28|Project renamed
 net-mgmt/bgpq|net-mgmt/bgpq3|2020-04-30|Has expired: Use net-mgmt/bgpq3 or net-mgmt/bgpq4
 net/boringtun||2020-04-30|Has expired: Status of the project and motivation is unclear
-dns/dnsperf||2020-04-30|Removed, depends on expired dns/bind914, not compatible with dns/bind916
 dns/bind914|dns/bind916|2020-04-30|Has expired: End of life, please migrate to a newer version of BIND9
 net/py-pcap|net/py-pypcap|2020-05-01|Has expired: Broken with python3 please consider using net/py-pypcap
 x11-drivers/xf86-video-tseng||2020-05-01|Has expired: broken
@@ -14680,7 +14678,6 @@ misc/yaunc||2020-05-05|Has expired: Broken for more than 6 months
 multimedia/clipgrab||2020-05-05|Has expired: Broken for more than 6 months
 multimedia/libsmacker||2020-05-05|Has expired: Broken for more than 6 months
 multimedia/lxdvdrip||2020-05-05|Has expired: Broken for more than 6 months
-multimedia/mjpg-streamer||2020-05-05|Has expired: Broken for more than 6 months
 multimedia/vcdpad||2020-05-05|Has expired: Broken for more than 6 months
 net/erlang-xmlrpc||2020-05-05|Has expired: Broken for more than 6 months
 net/etrace||2020-05-05|Has expired: Broken for more than 6 months
@@ -15471,7 +15468,6 @@ mail/nohtml||2020-09-19|Has expired: Uses deprecated version of python
 mail/offlineimap||2020-09-19|Has expired: Uses deprecated version of python
 mail/openemm2015||2020-09-19|Has expired: Uses deprecated version of python
 math/blitz++||2020-09-19|Has expired: Uses deprecated version of python
-math/openfst||2020-09-19|Has expired: Uses deprecated version of python
 math/py-fpconst||2020-09-19|Has expired: Uses deprecated version of python
 misc/hb||2020-09-19|Has expired: Uses deprecated version of python
 misc/mtail||2020-09-19|Has expired: Uses deprecated version of python
@@ -16469,3 +16465,9 @@ multimedia/py-mlt|multimedia/py-mlt6|2021-07-30|Moved to a versioned directory t
 net/openldap24-sasl-client|net/openldap24-client|2021-08-01|SASL is always enabled for OpenLDAP
 textproc/py-python-language-server|textproc/py-python-lsp-server|2021-08-01|Has expired: Upstream forked and replaced by py-python-lsp-server
 games/ponscripter-sekai|games/ponscripter-07th-mod|2021-08-13|Switch to active fork
+sysutils/graid5||2021-08-21|Has expired: Module contains subtile errors and is obsolete by ZFS raidz. Consider migrating to ZFS.
+x11-wm/gcompmgr||2021-08-21|Has expired: Abandonware since 2005, using discontinued libraries
+irc/lostirc||2021-08-21|Has expired: Abandonware since 2005, dependens on discontinued libraries
+math/normaliz|math/libnormaliz|2021-08-21|Remove duplicate
+devel/rubygem-paperclip||2021-08-28|Has expired: Use ActiveStorage or a fork kt-paperclip
+textproc/rubygem-rich||2021-08-28|Has expired: Depends on expired devel/rubygem-paperclip
