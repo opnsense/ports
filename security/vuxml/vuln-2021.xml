@@ -1,3 +1,238 @@
+  <vuln vid="1d6410e8-06c1-11ec-a35d-03ca114d16d6">
+    <topic>fetchmail -- STARTTLS bypass vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>fetchmail</name>
+	<range><lt>6.4.22.r1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Problem:</p>
+	<blockquote cite="https://www.fetchmail.info/fetchmail-SA-2021-02.txt">
+	  <p>In certain circumstances, fetchmail 6.4.21 and older would
+	    not encrypt the session using STARTTLS/STLS, and might not have
+	    cleared session state across the TLS negotiation.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-39272</cvename>
+      <url>https://www.fetchmail.info/fetchmail-SA-2021-02.txt</url>
+    </references>
+    <dates>
+      <discovery>2021-08-10</discovery>
+      <entry>2021-08-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d22b336d-0567-11ec-b69d-4062311215d5">
+    <topic>FreeBSD -- libfetch out of bounds read</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>13.0</ge><lt>13.0_4</lt></range>
+	<range><ge>12.2</ge><lt>12.2_10</lt></range>
+	<range><ge>11.4</ge><lt>11.4_13</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The passive mode in FTP communication allows an out of boundary read while
+	libfetch uses strtol to parse the relevant numbers into address bytes.  It
+	does not check if the line ends prematurely.  If it does, the for-loop
+	condition checks for *p == '\0' one byte too late because p++ was already
+	performed.</p>
+	<h1>Impact:</h1>
+	<p>The connection buffer size can be controlled by a malicious FTP server
+	because the size is increased until a newline is encountered (or no more
+	characters are read).  This also allows to move the buffer into more
+	interesting areas within the address space, potentially parsing relevant
+	numbers for the attacker.  Since these bytes become available to the server
+	in form of a new TCP connection to a constructed port number or even part of
+	the IPv6 address this is a potential information leak.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-36159</cvename>
+      <freebsdsa>SA-21:15.libfetch</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-08-24</discovery>
+      <entry>2021-08-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3e9d2fde-0567-11ec-b69d-4062311215d5">
+    <topic>FreeBSD -- Remote code execution in ggatec(8)</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>13.0</ge><lt>13.0_4</lt></range>
+	<range><ge>12.2</ge><lt>12.2_10</lt></range>
+	<range><ge>11.4</ge><lt>11.4_13</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The ggatec(8) daemon does not validate the size of a response before writing
+	it to a fixed-sized buffer.  This allows to overwrite the stack of ggatec(8).</p>
+	<h1>Impact:</h1>
+	<p>A malicious ggated(8) or an attacker in a priviledged network position can
+	overwrite the stack with crafted content and potentially execute arbitrary
+	code.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-29630</cvename>
+      <freebsdsa>SA-21:14.ggatec</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-08-24</discovery>
+      <entry>2021-08-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a6d5d4c1-0564-11ec-b69d-4062311215d5">
+    <topic>FreeBSD -- Missing error handling in bhyve(8) device models</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>13.0</ge><lt>13.0_4</lt></range>
+	<range><ge>12.2</ge><lt>12.2_10</lt></range>
+	<range><ge>11.4</ge><lt>11.4_13</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Certain VirtIO-based device models failed to handle errors when fetching
+	I/O descriptors.  Such errors could be triggered by a malicious guest.
+	As a result, the device model code could be tricked into operating on
+	uninitialized I/O vectors, leading to memory corruption.</p>
+	<h1>Impact:</h1>
+	<p>A malicious guest may be able to crash the bhyve process.  It may be
+	possible to exploit the memory corruption bugs to achieve arbitrary code
+	execution in the bhyve process.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-29631</cvename>
+      <freebsdsa>SA-21:13.bhyve</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-08-24</discovery>
+      <entry>2021-08-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="96811d4a-04ec-11ec-9b84-d4c9ef517024">
+    <topic>OpenSSL -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1l,1</lt></range>
+      </package>
+      <package>
+	<name>openssl-devel</name>
+	<range><lt>3.0.0.b3</lt></range>
+      </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>13.0</ge><lt>13.0_4</lt></range>
+	<range><ge>12.2</ge><lt>12.2_10</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20210824.txt">
+	  <p>SM2 Decryption Buffer Overflow (CVE-2021-3711: High)</p>
+	  <p>Read buffer overruns processing ASN.1 strings (CVE-2021-3712:
+	    Moderate)
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-3711</cvename>
+      <cvename>CVE-2021-3712</cvename>
+      <url>https://www.openssl.org/news/secadv/20210824.txt</url>
+      <freebsdsa>SA-21:16.openssl</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2021-08-24</discovery>
+      <entry>2021-08-24</entry>
+      <modified>2021-08-25</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="d3180f02-031e-11ec-875f-0800273f11ea">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.15.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea Team reports for release 1.15.0:</p>
+	<blockquote cite="https://blog.gitea.io/2021/08/gitea-1.15.0-is-released/">
+	  <ul>
+	    <li>Encrypt LDAP bind password in db with SECRET_KEY (#15547)</li>
+	    <li>Remove random password in Dockerfiles (#15362)</li>
+	    <li>Upgrade to the latest version of golang-jwt and increase minimum go to 1.15 (#16590) (#16606)</li>
+	    <li>Correctly create of git-daemon-export-ok files (#16508) (#16514)</li>
+	    <li>Don't show private user's repo in explore view (#16550) (#16554)</li>
+	    <li>Update node tar dependency to 6.1.6 (#16622) (#16623)</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.15.0</url>
+      <freebsdpr>ports/257994</freebsdpr>
+    </references>
+    <dates>
+      <discovery>2021-04-29</discovery>
+      <entry>2021-08-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="733afd81-01cf-11ec-aec9-0800273f11ea">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.14.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea Team reports for release 1.14.6:</p>
+	<blockquote cite="https://blog.gitea.io/2021/08/gitea-1.14.6-is-released/">
+	  <ul>
+	    <li>Bump github.com/markbates/goth from v1.67.1 to v1.68.0 (#16538) (#16540)</li>
+	    <li>Switch to maintained JWT lib (#16532) (#16535)</li>
+	    <li>Upgrade to latest version of golang-jwt (as forked for 1.14) (#16590) (#16607)</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.14.6</url>
+      <freebsdpr>ports/257973</freebsdpr>
+    </references>
+    <dates>
+      <discovery>2021-07-24</discovery>
+      <entry>2021-08-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="70e71a24-0151-11ec-bf0c-080027eedc6a">
     <topic>bouncycastle15 -- bcrypt password checking vulnerability</topic>
     <affects>
@@ -6577,6 +6812,11 @@ raptor_xml_writer_start_element_common.</p>
 	<name>openssl-devel</name>
 	<range><lt>3.0.0a12</lt></range>
       </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>12.2</ge><lt>12.2_10</lt></range>
+	<range><ge>11.4</ge><lt>11.4_13</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -6607,11 +6847,12 @@ raptor_xml_writer_start_element_common.</p>
       <cvename>CVE-2021-23841</cvename>
       <cvename>CVE-2021-23840</cvename>
       <cvename>CVE-2021-23839</cvename>
+      <freebsdsa>SA-21:17.openssl</freebsdsa>
     </references>
     <dates>
       <discovery>2021-02-16</discovery>
       <entry>2021-02-16</entry>
-      <modified>2021-02-18</modified>
+      <modified>2021-08-25</modified>
     </dates>
   </vuln>
 
