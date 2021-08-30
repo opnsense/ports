@@ -28,6 +28,7 @@
     SUBDIR += ccextractor
     SUBDIR += cclive
     SUBDIR += celluloid
+    SUBDIR += celluloid-devel
     SUBDIR += cheese
     SUBDIR += chilitags
     SUBDIR += cineencoder
@@ -231,6 +232,7 @@
     SUBDIR += minisatip
     SUBDIR += minitube
     SUBDIR += mjpegtools
+    SUBDIR += mjpg-streamer
     SUBDIR += mkclean
     SUBDIR += mkvalidator
     SUBDIR += mkvtoolnix

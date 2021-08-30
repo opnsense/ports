@@ -9,6 +9,7 @@
     SUBDIR += bbmap
     SUBDIR += bcftools
     SUBDIR += bedtools
+    SUBDIR += bfc
     SUBDIR += bioawk
     SUBDIR += biococoa
     SUBDIR += biolibc
@@ -45,6 +46,7 @@
     SUBDIR += fasttree
     SUBDIR += fastx-toolkit
     SUBDIR += figtree
+    SUBDIR += flash
     SUBDIR += fluctuate
     SUBDIR += freebayes
     SUBDIR += garlic

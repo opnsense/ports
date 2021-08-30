@@ -235,6 +235,7 @@
     SUBDIR += gmusicbrowser
     SUBDIR += gnaural
     SUBDIR += gnome-music
+    SUBDIR += gnome-podcasts
     SUBDIR += gnormalize
     SUBDIR += gnuitar
     SUBDIR += gnupod
@@ -726,6 +727,7 @@
     SUBDIR += shairport-sync
     SUBDIR += sherlock-lv2
     SUBDIR += shntool
+    SUBDIR += shortwave
     SUBDIR += sidplay
     SUBDIR += sidplay2
     SUBDIR += sidplayer

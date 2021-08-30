@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20210818
+PORTVERSION=	s20210827
 PORTREVISION?=	0
 CATEGORIES=	emulators
 
@@ -18,8 +18,9 @@ LICENSE_FILE_LGPL21+ =	${_LICENSE_STORE}/LGPL21 # soundtouch
 LICENSE_FILE_LGPL3+ =	${_LICENSE_STORE}/LGPL3 # sirit
 LICENSE_FILE_MIT=	${WRKSRC}/externals/sirit/externals/SPIRV-Headers/LICENSE
 
-ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64
-ONLY_FOR_ARCHS_REASON=	requires int128
+ONLY_FOR_ARCHS=	aarch64 amd64
+ONLY_FOR_ARCHS_REASON=	requires int128 and dynarmic backend
+BROKEN_aarch64=	https://github.com/yuzu-emu/yuzu/issues/5290
 
 BUILD_DEPENDS=	catch>0:devel/catch \
 		boost-libs>0:devel/boost-libs \
@@ -33,11 +34,11 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	aa40084c2
+GH_TAGNAME=	c20ea8939
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-32-ga3fdfe8:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.2.180:Vulkan_Headers/externals/Vulkan-Headers \
-		MerryMage:dynarmic:r5-88-g7946868a:dynarmic/externals/dynarmic \
+		MerryMage:dynarmic:r5-113-g517e35f8:dynarmic/externals/dynarmic \
 		ReinUsesLisp:sirit:a395963:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		benhoyt:inih:r52:inih/externals/inih/inih \

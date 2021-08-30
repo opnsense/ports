@@ -1,7 +1,7 @@
 PORTNAME=	deal.II
 DISTVERSIONPREFIX=	v
 DISTVERSION=	9.3.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -9,6 +9,8 @@ COMMENT=	Finite element Differential Equations Analysis Library (DEAL)
 
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+BROKEN_FreeBSD_14=	clang crashes: https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=257876
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/config.hpp:devel/boost-libs
 LIB_DEPENDS=	libboost_serialization.so:devel/boost-libs \

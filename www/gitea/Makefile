@@ -1,6 +1,6 @@
 PORTNAME=	gitea
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.14.5
+DISTVERSION=	1.15.0
 CATEGORIES=	www
 MASTER_SITES=	https://github.com/go-gitea/gitea/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/
 DISTNAME=	gitea-src-${DISTVERSION}
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	git:devel/git
 
-USES=		gmake go:no_targets
+USES=		cpe gmake go:no_targets
 USE_RC_SUBR=	gitea
 
 SUB_FILES+=	app.ini.sample
@@ -67,10 +67,6 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}/conf
 	${INSTALL_DATA} ${WRKDIR}/app.ini.sample ${STAGEDIR}${ETCDIR}/conf/app.ini.sample
 	${INSTALL_DATA} ${WRKSRC}/custom/conf/app.example.ini ${STAGEDIR}${ETCDIR}/conf/app.ini.defaults
-
-	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/db/${PORTNAME}
-	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/log/${PORTNAME}
-	@${MKDIR} ${STAGEDIR}${DESTDIR}/var/run/${PORTNAME}
 
 do-install-BINDATA-off:
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "options public templates" ${STAGEDIR}${DATADIR}

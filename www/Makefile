@@ -75,6 +75,7 @@
     SUBDIR += chpasswd
     SUBDIR += chrome-gnome-shell
     SUBDIR += chromium
+    SUBDIR += cinny
     SUBDIR += civetweb
     SUBDIR += ckeditor
     SUBDIR += cl-lml
@@ -221,6 +222,7 @@
     SUBDIR += guile-www
     SUBDIR += gurl
     SUBDIR += gwsocket
+    SUBDIR += h2c
     SUBDIR += h2o
     SUBDIR += h2o-devel
     SUBDIR += habari
@@ -466,6 +468,7 @@
     SUBDIR += oneshot
     SUBDIR += onionbalance
     SUBDIR += onionshare
+    SUBDIR += openarc
     SUBDIR += opencart
     SUBDIR += orangehrm
     SUBDIR += osrm-backend
@@ -2333,6 +2336,7 @@
     SUBDIR += wordpress
     SUBDIR += wpebackend-fdo
     SUBDIR += writeas-cli
+    SUBDIR += writefreely
     SUBDIR += wsdlpull
     SUBDIR += wslay
     SUBDIR += wsmake

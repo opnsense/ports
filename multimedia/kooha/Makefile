@@ -1,7 +1,7 @@
 PORTNAME=	kooha
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.1-624
-DISTVERSIONSUFFIX=	-gba1f8e8
+DISTVERSION=	1.2.1-652
+DISTVERSIONSUFFIX=	-g59f3b5e
 CATEGORIES=	multimedia
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -213,5 +213,10 @@ CARGO_CRATES=	aho-corasick-0.7.18 \
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
 CARGO_TEST=	no
+
+post-patch:
+# Make each cargo subcommand very verbose
+	@${REINPLACE_CMD} -e '/cargo/s/ --/&verbose&verbose&/' \
+		${WRKSRC}/build-aux/cargo.sh
 
 .include <bsd.port.mk>

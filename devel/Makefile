@@ -1438,6 +1438,7 @@
     SUBDIR += llvm10
     SUBDIR += llvm11
     SUBDIR += llvm12
+    SUBDIR += llvm13
     SUBDIR += llvm70
     SUBDIR += llvm80
     SUBDIR += llvm90
@@ -5069,6 +5070,7 @@
     SUBDIR += py-qtconsole
     SUBDIR += py-qutip
     SUBDIR += py-ramlfications
+    SUBDIR += py-rapidfuzz
     SUBDIR += py-ratelimiter
     SUBDIR += py-rauth
     SUBDIR += py-raven
@@ -5461,6 +5463,7 @@
     SUBDIR += rang
     SUBDIR += range-v3
     SUBDIR += rapidcheck
+    SUBDIR += rapidfuzz-cpp
     SUBDIR += rapidjson
     SUBDIR += raylib
     SUBDIR += rbenv
@@ -6478,7 +6481,6 @@
     SUBDIR += rubygem-p4ruby
     SUBDIR += rubygem-paint
     SUBDIR += rubygem-paint1
-    SUBDIR += rubygem-paperclip
     SUBDIR += rubygem-paperclip-rails5
     SUBDIR += rubygem-paperclip-rails50
     SUBDIR += rubygem-parser

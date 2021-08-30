@@ -339,6 +339,7 @@
     SUBDIR += exfat-utils
     SUBDIR += extipl
     SUBDIR += ezjail
+    SUBDIR += f2
     SUBDIR += f3
     SUBDIR += facter
     SUBDIR += fanout
@@ -429,6 +430,7 @@
     SUBDIR += fusefs-unionfs
     SUBDIR += fusefs-unreliablefs
     SUBDIR += fusefs-webdavfs
+    SUBDIR += fusefs-xfuse
     SUBDIR += fusefs-zip
     SUBDIR += fvcool
     SUBDIR += fwup
@@ -475,7 +477,6 @@
     SUBDIR += gotop
     SUBDIR += gpart
     SUBDIR += graffer
-    SUBDIR += graid5
     SUBDIR += graveman
     SUBDIR += graylog
     SUBDIR += grub2-bhyve
