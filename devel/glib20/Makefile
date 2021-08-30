@@ -1,8 +1,7 @@
 # Created by: Vanilla I. Shu <vanilla@FreeBSD.org>
 
 PORTNAME=	glib
-DISTVERSION=	2.68.3
-PORTREVISION=	0
+DISTVERSION=	2.68.4
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -27,12 +26,13 @@ MESON_ARGS=	-Db_lundef=false \
 		-Ddefault_library=both \
 		-Dinstalled_tests=false \
 		-Dlibmount=disabled \
+		-Dlocalstatedir=/var \
 		-Dselinux=disabled \
 		-Dxattr=false
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 PORTSCOUT=	limitw:1,even
 
-_LIBVERSION=	0.6800.3
+_LIBVERSION=	0.6800.4
 PLIST_SUB=	LIBVERSION=${_LIBVERSION}
 
 OPTIONS_DEFINE=	DEBUG FAM_ALTBACKEND MANPAGES NLS
