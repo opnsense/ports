@@ -2,6 +2,7 @@
 
 PORTNAME=	nut
 PORTVERSION=	${NUT_COMMIT_DATE}
+PORTREVISION=	1
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
 # MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
@@ -13,8 +14,8 @@ COMMENT=	Network UPS Tools
 
 USE_GITHUB=	yes
 GH_ACCOUNT=     networkupstools 
-GH_TAGNAME=     aa0b3d1d
-NUT_COMMIT_DATE=	2021.08.12
+GH_TAGNAME=     fab645cb
+NUT_COMMIT_DATE=	2021.08.27
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

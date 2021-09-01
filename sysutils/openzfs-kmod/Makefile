@@ -11,9 +11,8 @@ LICENSE=	CDDL
 
 BROKEN_i386=	build fails
 
-USES=		kmod
+USES=		cpe kmod
 USE_GITHUB=	yes
-GH_ACCOUNT=	openzfs
 GH_PROJECT=	zfs
 GH_TAGNAME=	7eebcd2be
 KMODTARGET?=	openzfs.ko

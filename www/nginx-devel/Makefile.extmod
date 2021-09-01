@@ -16,7 +16,7 @@ OPTIONS_GROUP_THIRDPARTYGRP=	AJP AWS_AUTH BROTLI CACHE_PURGE CLOJURE COOKIE_FLAG
 	REDIS2 RTMP SET_MISC SFLOW SHIBBOLETH SLOWFS_CACHE SMALL_LIGHT SRCACHE \
 	VOD VTS XSS WEBSOCKIFY
 
-AJP_GH_TUPLE=		yaoweibin:nginx_ajp_module:a964a0b:ajp
+AJP_GH_TUPLE=		msva:nginx_ajp_module:fcbb2cc:ajp
 AJP_VARS=		DSO_EXTMODS+=ajp
 
 ARRAYVAR_IMPLIES=	DEVEL_KIT
@@ -246,11 +246,11 @@ NAXSI_NGINX_VER=	1.3
 NAXSI_GH_TUPLE=		nbs-system:naxsi:${NAXSI_NGINX_VER}:naxsi
 NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 
-NJS_GH_TUPLE=		nginx:njs:0.6.1:njs
+NJS_GH_TUPLE=		nginx:njs:0.6.2:njs
 NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
 NJS_USES=		libedit
 
-OPENTRACING_GH_TUPLE=		opentracing-contrib:nginx-opentracing:2d81c29:opentracing
+OPENTRACING_GH_TUPLE=		opentracing-contrib:nginx-opentracing:842d21f:opentracing
 OPENTRACING_LIB_DEPENDS=	libopentracing.so:devel/libopentracing
 OPENTRACING_VARS=		DSO_EXTMODS+=opentracing OPENTRACING_SUBDIR=/opentracing
 OPENTRACING_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-nginx-opentracing-opentracing-config

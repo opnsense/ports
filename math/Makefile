@@ -343,6 +343,7 @@
     SUBDIR += gsl
     SUBDIR += half
     SUBDIR += hexcalc
+    SUBDIR += heyoka
     SUBDIR += highs
     SUBDIR += hipmcl
     SUBDIR += hmat-oss
@@ -471,6 +472,7 @@
     SUBDIR += nlopt
     SUBDIR += ntl
     SUBDIR += numdiff
+    SUBDIR += obake
     SUBDIR += ocaml-ocamlgraph
     SUBDIR += ocaml-zarith
     SUBDIR += ocamlgsl
@@ -821,6 +823,7 @@
     SUBDIR += py-gym
     SUBDIR += py-hdbscan
     SUBDIR += py-hdmedians
+    SUBDIR += py-heyoka
     SUBDIR += py-iminuit
     SUBDIR += py-intspan
     SUBDIR += py-iohexperimenter
