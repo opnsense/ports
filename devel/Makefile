@@ -5488,6 +5488,7 @@
     SUBDIR += resolv_wrapper
     SUBDIR += revive
     SUBDIR += rgbds
+    SUBDIR += rgxg
     SUBDIR += rhtvision
     SUBDIR += rinutils
     SUBDIR += riscv32-unknown-elf-gcc
@@ -6863,6 +6864,7 @@
     SUBDIR += scons
     SUBDIR += sd-mux-ctrl
     SUBDIR += sdl12
+    SUBDIR += sdl12-compat
     SUBDIR += sdl20
     SUBDIR += sdl2pp
     SUBDIR += sdl_console

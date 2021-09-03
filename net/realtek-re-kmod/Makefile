@@ -2,7 +2,7 @@
 
 PORTNAME=	re
 DISTVERSION=	v196.04
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	net
 MASTER_SITES=	LOCAL/ale
 PKGNAMEPREFIX=	realtek-
@@ -13,6 +13,9 @@ MAINTAINER=	ale@FreeBSD.org
 COMMENT=	Kernel driver for Realtek PCIe Ethernet Controllers
 
 LICENSE=	BSD4CLAUSE
+
+ONLY_FOR_ARCHS=		amd64 i386
+ONLY_FOR_ARCHS_REASON=	uses X86-specific code
 
 USES=		kmod tar:tgz uidfix
 
