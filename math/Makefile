@@ -570,6 +570,7 @@
     SUBDIR += oleo
     SUBDIR += onednn
     SUBDIR += openblas
+    SUBDIR += openfst
     SUBDIR += openlibm
     SUBDIR += openmesh
     SUBDIR += opensolaris-libm
@@ -758,6 +759,7 @@
     SUBDIR += picosat
     SUBDIR += piranha
     SUBDIR += planarity
+    SUBDIR += plantri
     SUBDIR += plman
     SUBDIR += ploticus
     SUBDIR += ploticus-nox11
