@@ -150,7 +150,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	ip = (const struct ip *)packet;
 
         if (length < 4) {
-                sbuf_printf(&sbuf, "%d, IP(truncated-ip %d) ", IP_V(ip), length);
+                sbuf_printf(&sbuf, "%d,truncated-ip=%u", IP_V(ip), length);
 		goto printsbuf;
         }
 

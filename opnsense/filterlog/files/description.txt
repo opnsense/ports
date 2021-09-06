@@ -16,43 +16,8 @@ IPv6
 ====
 
 [Packetfilter], ipversion, class, flow, hoplimit, protoname, protonum, length, src, dst
-[, HBHOPT ][, DSTOPT ][, FRAG6 ][, ROUTING ][, MOBILITY]
 
 The protonum/protoname order is reversed compared to IPv4.
-
-HBHOPT
-======
-
-"HBH", PAD1, PADN | PADNTRUNC
-       RTALERT,data | RTALERTTRUNC | RTALERTINVALID, len
-       JUMBO,data | JUMBOTRUNC | JUMBOINVALID, len
-       HOMEADDR,addr, otheroptions? | HOMEADDRESSINVALID, len | HOMEADDRESSTRUNC
-
-DSTOPT
-======
-
-"DSTOPT", opts...
-
-FRAG6
-=====
-
-"FRAG6", frag
-
-ROUTING
-=======
-
-"ROUTING", len, type, segleft, reserved, TRUNC | hdridx, addr
-
-MOBILITY
-========
-
-"MOBILITY" [, "BINDINGACK", status, flags, sequence, lifetime ]
-           [, "BINDINGERR", status, homeaddr ]
-           [, "BINDINGUPDATE", seq, flags, lifetime ]
-           [, "BRR" (binding request) ]
-           [, "HoTI" | "CoTI" (test init), "Home" | "Care-of", cookie ]
-           [, "HoT" | "CoT" (test), nonce, "Home" | "Care-of", cookie, keygen-token ]
-           [, "TYPE", type , length ]
 
 UDP
 ===
@@ -68,3 +33,9 @@ CARP
 ====
 
 [IPv4 | IPv6], type, ttl | hoplimit, vhid, version, advskew, advbase
+
+Caveats
+=======
+
+Partial data may be returned by each component depending on forged packet
+integrity, snap length and other factors, e.g. hardware corruption of packages.
