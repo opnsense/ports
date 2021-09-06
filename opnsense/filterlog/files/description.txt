@@ -38,4 +38,4 @@ Caveats
 =======
 
 Partial data may be returned by each component depending on forged packet
-integrity, snap lentgh and other factors, e.g. hardware corruption of packages.
+integrity, snap length and other factors, e.g. hardware corruption of packages.
