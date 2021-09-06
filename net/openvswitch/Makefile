@@ -1,7 +1,7 @@
 # Created by: Edward Tomasz Napierala <trasz@FreeBSD.org>
 
 PORTNAME=	openvswitch
-DISTVERSION=	2.15.1
+DISTVERSION=	2.16.0
 CATEGORIES=	net
 MASTER_SITES=	http://openvswitch.org/releases/
 
@@ -11,8 +11,6 @@ COMMENT=	Production quality, multilayer virtual switch
 LICENSE=	APACHE20
 
 BROKEN_mips64=		fails to compile: ofp-actions.h:486: flexible array member in otherwise empty struct
-
-USE_HARDENING=	pie:off relro:off
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 

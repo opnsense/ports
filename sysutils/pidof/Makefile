@@ -11,8 +11,6 @@ COMMENT=	Tool which prints PID of given process name
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	safestack
-
 CONFLICTS=	psmisc-1*
 
 PLIST_FILES=	bin/pidof

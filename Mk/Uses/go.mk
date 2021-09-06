@@ -82,10 +82,7 @@ GO_PKGNAME=	${PORTNAME}
 GO_TARGET?=	${GO_PKGNAME}
 GO_TESTTARGET?=	./...
 
-.if empty(GO_BUILDFLAGS:M-buildmode*)
-GO_BUILDFLAGS+=-v -buildmode=exe
-.endif
-GO_BUILDFLAGS+=	-trimpath
+GO_BUILDFLAGS+=	-v -buildmode=exe -trimpath
 .if !defined(WITH_DEBUG) && empty(GO_BUILDFLAGS:M-ldflags*)
 GO_BUILDFLAGS+=	-ldflags=-s
 .endif

@@ -11,8 +11,6 @@ COMMENT=	Bozotic HTTP server from NetBSD
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cpe uidfix tar:bzip2
 CPE_VENDOR=	eterna
 

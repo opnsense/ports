@@ -32,8 +32,6 @@ RUN_DEPENDS=	bash:shells/bash \
 
 CONFLICTS_INSTALL=	hadoop-1* yarn
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		cpe shebangfix
 CPE_VENDOR=	apache
 USE_JAVA=	yes

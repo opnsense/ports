@@ -1,5 +1,5 @@
 PORTNAME=	yoshimi
-DISTVERSION=	2.0.2
+DISTVERSION=	2.1.0
 CATEGORIES=	audio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -25,8 +25,6 @@ GH_ACCOUNT=	Yoshimi
 
 CMAKE_SOURCE_PATH=	${WRKSRC}/src
 LDFLAGS+=		-Wl,--as-needed
-
-INSTALLS_ICONS=	yes
 
 PORTDATA=	*
 PORTDOCS=	*

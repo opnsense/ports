@@ -15,8 +15,6 @@ SHEBANG_FILES=	asm_count break_filelist cobol_count count_extensions \
 		get_sloc_details haskell_count lex_count modula3_count \
 		objc_count perl_count print_sum python_count sql_count
 
-USE_HARDENING=	safestack
-
 MAKEFILE=	makefile
 INSTALL_TARGET=	install_programs install_man
 

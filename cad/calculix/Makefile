@@ -16,8 +16,6 @@ LICENSE=	GPLv2
 
 RUN_DEPENDS=	ccx:cad/calculix-ccx
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		gl gmake tar:bzip2 compiler:c++11-lib xorg
 USE_XORG=	ice sm x11 xext xi xmu xt
 USE_GL=		gl glu # uses its own glut

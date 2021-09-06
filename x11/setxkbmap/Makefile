@@ -8,8 +8,6 @@ COMMENT=	Set the keyboard using the X Keyboard Extension
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		xorg xorg-cat:app
 USE_XORG=	xkbfile x11
 

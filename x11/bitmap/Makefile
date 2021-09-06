@@ -8,8 +8,6 @@ COMMENT=	Bitmap editor and converter utilities for X
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		xorg xorg-cat:app
 USE_XORG=	x11 xaw xbitmaps xmu xorgproto xt
 

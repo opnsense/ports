@@ -5,8 +5,6 @@ CATEGORIES=	x11
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Dump an image of an X window
 
-USE_HARDENING=	safestack
-
 LICENSE=	MIT
 
 USES=		xorg xorg-cat:app

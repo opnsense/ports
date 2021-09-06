@@ -17,8 +17,6 @@ LIB_DEPENDS=	libfltk.so:x11-toolkits/fltk
 DESKTOP_ENTRIES=	"Fl_MoxGen" "${COMMENT}" "" "${PORTNAME}" \
 			"Network;HamRadio;" false
 
-USE_HARDENING=	pie:off
-
 OPTIONS_DEFINE=	PDF
 OPTIONS_DEFAULT=	PDF
 PDF_DESC=	Enable PDF Writing (requires libharu)

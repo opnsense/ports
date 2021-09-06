@@ -13,8 +13,6 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	help2man:misc/help2man
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake perl5 compiler
 
 USE_LDCONFIG=	yes

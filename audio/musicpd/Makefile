@@ -1,5 +1,5 @@
 PORTNAME=	musicpd
-PORTVERSION=	0.22.9
+PORTVERSION=	0.22.11
 CATEGORIES=	audio
 MASTER_SITES=	https://www.musicpd.org/download/mpd/${PORTVERSION:R}/
 DISTNAME=	mpd-${PORTVERSION}
@@ -51,7 +51,7 @@ OPTIONS_MULTI_FILE_FORMAT=	\
 OPTIONS_GROUP=	ACCESS PLAYBACK
 
 OPTIONS_GROUP_ACCESS=	CDPARANOIA CURL LAME MMS NFS PLAYLISTS QOBUZ \
-			SMB SOUNDCLOUD TIDAL YAJL
+			SMB SOUNDCLOUD YAJL
 
 OPTIONS_GROUP_PLAYBACK=	AO JACK OPENAL PULSEAUDIO \
 			SHOUTCAST SNDIO
@@ -67,7 +67,6 @@ QOBUZ_DESC=	Streaming service support: Qobuz
 SIDPLAY_DESC=	Sidplay support (C64 mono and stereo files)
 SMB_DESC=	SMB network support (currently strongly discouraged)
 SOUNDCLOUD_DESC=Streaming service support: SoundCloud
-TIDAL_DESC=	Streaming service support: TIDAL (currently defunct)
 TWOLAME_DESC=	TwoLAME support (mp2)
 VORBISENC_DESC=	Ogg Vorbis encoder
 WILDMIDI_DESC=	WildMIDI support (MIDI files)
@@ -192,8 +191,6 @@ QOBUZ_LIB_DEPENDS=	libgcrypt.so:security/libgcrypt
 QOBUZ_IMPLIES=		CURL YAJL
 SOUNDCLOUD_MESON_ENABLED=	soundcloud
 SOUNDCLOUD_IMPLIES=	CURL YAJL
-TIDAL_MESON_ENABLED=	tidal
-TIDAL_IMPLIES=		CURL YAJL
 
 # Misc library support
 AVAHI_MESON_ON=		-Dzeroconf=avahi
@@ -228,17 +225,8 @@ post-patch:
 # Insert selected linker for clang
 	@${REINPLACE_CMD} -e 's|%%MPD_CLANG_LD%%|${MPD_CLANG_LD}|' \
 		${WRKSRC}/meson.build
-# Replace ~/ with /var/mpd/ and make musicpd run as mpd by default
-	@${REINPLACE_CMD} -e 's,^#\([^"]*"\)~/,\1/var/mpd/,g' \
-		-e 's,^#\(user[^"]*"\)nobody,\1${MPDUSER},g' \
-		${WRKSRC}/doc/mpdconf.example
-# Uncomment OSS audio output part from mpd.conf; dragons!
-	start=$$(expr $$(${SED} -n '/^#	type	*"oss"/=' \
-		${WRKSRC}/doc/mpdconf.example) - 1); \
-	 finish=$$(for n in $$(${JOT} 10 $$start); do \
-		     [ "$$(${SED} -n $${n}p ${WRKSRC}/doc/mpdconf.example)" = \
-				"#}" ] && ${ECHO_CMD} $$n || true; done); \
-	 ${REINPLACE_CMD} -e "$${start},$${finish}s,^#,," \
+# Make musicpd run as ${MPDUSER} by default
+	@${REINPLACE_CMD} -e 's|%%MPDUSER%%|${MPDUSER}|' \
 		${WRKSRC}/doc/mpdconf.example
 # Fix man pages for executable names
 	@${REINPLACE_CMD} \

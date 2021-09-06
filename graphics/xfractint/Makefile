@@ -14,8 +14,6 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig
 USES=		gmake xorg
 USE_XORG=	x11 xft
 
-USE_HARDENING=	pie:off
-
 ALL_TARGET=	${PORTNAME}
 
 DESKTOP_ENTRIES=	"Xfracint" \

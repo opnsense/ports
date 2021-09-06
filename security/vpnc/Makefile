@@ -26,8 +26,6 @@ USES=		gmake perl5 shebangfix
 USE_PERL5=	build
 USE_RC_SUBR=	vpnc
 
-USE_HARDENING=	safestack
-
 ALL_TARGET=	all
 SHEBANG_FILES=	makeman.pl
 

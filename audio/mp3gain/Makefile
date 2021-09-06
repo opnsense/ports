@@ -11,8 +11,6 @@ COMMENT=	Tool to normalize the gain of MP3 files
 
 LICENSE=	LGPL21
 
-USE_HARDENING=	safestack
-
 LIB_DEPENDS=	libmpg123.so:audio/mpg123
 
 USES=		zip gmake uidfix

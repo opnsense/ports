@@ -8,8 +8,6 @@ MASTER_SITES=	http://fwlogwatch.inside-security.de/sw/
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Packet filter and firewall log analyzer
 
-USE_HARDENING=	pie:off
-
 USES=		gettext tar:bzip2
 MAKE_ENV=	MKDIR="${MKDIR}"
 INSTALL_TARGET=	install install-config install-i18n

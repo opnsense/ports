@@ -16,14 +16,13 @@ COMMENT=	GNU version of 'make' utility
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g \
 		--without-guile
 
 USES=		cpe tar:lz
 CPE_VENDOR=	gnu
+CPE_PRODUCT=	make
 
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes

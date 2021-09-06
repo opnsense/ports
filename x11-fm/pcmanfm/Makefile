@@ -24,9 +24,6 @@ gtk3_LIB_DEPENDS=	libfm-gtk3.so:x11/libfm@gtk3
 gtk2_CONFLICTS_INSTALL=	pcmanfm-gtk3
 gtk3_CONFLICTS_INSTALL=	pcmanfm
 
-USE_HARDENING=	cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 USES=		desktop-file-utils gmake gnome gettext libtool localbase \
 		pkgconfig tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 intltool

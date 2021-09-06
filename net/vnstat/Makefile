@@ -13,9 +13,6 @@ LICENSE=	GPLv2
 USES=		sqlite
 
 GNU_CONFIGURE=	yes
-
-USE_HARDENING=	cfi safestack
-
 USE_RC_SUBR=	vnstat
 
 USERS=		vnstat

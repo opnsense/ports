@@ -2,7 +2,7 @@
 
 PORTNAME=	inspircd
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.10.0
+DISTVERSION=	3.11.0
 CATEGORIES=	irc
 
 MAINTAINER=	driesm.michiels@gmail.com
@@ -17,8 +17,6 @@ CPE_PRODUCT=	inspircd
 USE_GITHUB=	yes
 USE_PERL5=	build
 USE_RC_SUBR=	${PORTNAME}
-
-USE_HARDENING=	safestack
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS=	--binary-dir=${PREFIX}/bin \

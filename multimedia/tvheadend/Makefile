@@ -12,8 +12,6 @@ COMMENT=	TV streaming server supporting DVB, IPTV, SAT>IP and more
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-USE_HARDENING=	pie:off
-
 BUILD_DEPENDS=	bash:shells/bash \
 		cmake:devel/cmake \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat

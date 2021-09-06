@@ -19,8 +19,6 @@ TEST_DEPENDS=	cmocka>0:sysutils/cmocka
 USE_GITHUB=	yes
 GH_ACCOUNT=	unicorn-engine
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c11 gmake python:build
 USE_LDCONFIG=	yes
 BINARY_ALIAS=	python=${PYTHON_CMD}

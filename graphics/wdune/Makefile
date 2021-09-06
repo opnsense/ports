@@ -2,7 +2,7 @@
 
 PORTNAME=	wdune
 PORTVERSION=	1.926
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	ftp://ftp.ourproject.org/pub/wdune/
 
@@ -35,8 +35,6 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 ALL_TARGET=	dune
 
 OPTIONS_DEFINE=	DOCS
-
-USE_HARDENING=	pie:off
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bin/dune ${STAGEDIR}${PREFIX}/bin

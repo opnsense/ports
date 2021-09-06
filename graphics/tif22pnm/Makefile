@@ -14,8 +14,6 @@ LICENSE=	GPLv2
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		pkgconfig
 
 GNU_CONFIGURE=	yes

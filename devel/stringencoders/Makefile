@@ -12,8 +12,6 @@ COMMENT=	Collection of high performance C-string transformations
 
 LICENSE=	MIT
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		libtool perl5
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

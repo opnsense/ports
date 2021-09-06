@@ -1,7 +1,6 @@
 PORTNAME=	fbzmq
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2021.07.19.00
-PORTREVISION=	1
+DISTVERSION=	2021.08.30.00
 CATEGORIES=	net
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -27,8 +26,6 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libwangle.so:net/wangle \
 		libzmq.so:net/libzmq4 \
 		libzstd.so:archivers/zstd
-
-USE_HARDENING=	pie:off stackautoinit:off
 
 USES=		cmake compiler:c++17-lang ssl
 USE_GITHUB=	yes

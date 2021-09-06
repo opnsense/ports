@@ -14,6 +14,7 @@ LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
 DEPRECATED=	Unsupported by upstream. Use GCC 10 or newer instead.
+EXPIRATION_DATE=2021-09-03
 ONLY_FOR_ARCHS=	amd64
 
 LIB_DEPENDS=	libgmp.so:math/gmp \
@@ -35,10 +36,6 @@ GCC_VERSION=	${PORTVERSION}
 SUFFIX=		${PORTVERSION:C/([0-9]+).*/\1/}
 CFLAGS:=	${CFLAGS:N-mretpoline}
 CXXFLAGS:=	${CXXFLAGS:N-mretpoline}
-
-USE_HARDENING=	pie:off retpoline:off stackautoinit:off
-
-NO_UNUSED_ARGUMENTS_CHECK=	yes
 
 .include <bsd.port.pre.mk>
 

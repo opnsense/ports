@@ -35,9 +35,6 @@ MESON_ARGS=	-Dpam_include=system \
 
 INSTALL_TARGET=	install-strip
 
-PAGEEXEC_DISABLE=	lib/polkit-1/polkitd
-MPROTECT_DISABLE=	lib/polkit-1/polkitd
-
 OPTIONS_DEFINE=		MANPAGES
 
 MANPAGES_BUILD_DEPENDS=	docbook-sgml>=4.5:textproc/docbook-sgml \

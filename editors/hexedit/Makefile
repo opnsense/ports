@@ -12,8 +12,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		autoreconf ncurses
 
-USE_HARDENING=	safestack
-
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/hexedit share/man/man1/hexedit.1.gz

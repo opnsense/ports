@@ -14,8 +14,6 @@ COMMENT=	Odyssey2 / Videopac console emulator
 
 LIB_DEPENDS=	liballeg.so:devel/allegro
 
-USE_HARDENING=	pie:off relro:off
-
 WRKSRC=		${WRKDIR}/o2em117src
 MAKEFILE=	Makefile.freebsd
 USES=		gmake zip

@@ -12,8 +12,6 @@ COMMENT=	Userland NFS command tool
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USE_HARDENING=	pie:off safestack
-
 USES=		localbase readline
 USE_GITHUB=	yes
 GH_ACCOUNT=	NetDirect

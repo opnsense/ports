@@ -1,6 +1,5 @@
 PORTNAME=	ansible-base
-DISTVERSION=	2.10.11
-PORTREVISION=	1
+DISTVERSION=	2.10.12
 CATEGORIES=	sysutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -31,6 +30,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}bcrypt>=0:security/py-bcrypt@${PY_FLAVOR} \
 
 USES=		ansible:env cpe gmake python:3.6+ shebangfix
 CPE_VENDOR=	redhat
+CPE_PRODUCT=	ansible
 USE_PYTHON=	autoplist concurrent distutils
 
 SHEBANG_REGEX=	[.]/test/.*[.]py

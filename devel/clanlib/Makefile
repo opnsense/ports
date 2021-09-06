@@ -17,6 +17,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BROKEN_i386=	typedef redefinition with different types ('ptrdiff_t' (aka 'int') vs 'khronos_intptr_t' (aka 'long'))
 BROKEN_powerpc=	typedef redefinition with different types ('ptrdiff_t' (aka 'int') vs 'khronos_intptr_t' (aka 'long'))
 
+DEPRECATED=	Upstream no longer maintained
+EXPIRATION_DATE=	2021-10-31
+
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libmikmod.so:audio/libmikmod \
 		libvorbis.so:audio/libvorbis \
@@ -25,7 +28,7 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 		libpcre.so:devel/pcre \
 		libfreetype.so:print/freetype2
 
-USES=		compiler:c++11-lib gl gmake jpeg libtool localbase:ldflags \
+USES=		compiler:c++11-lib cpe gl gmake jpeg libtool localbase:ldflags \
 		pathfix pkgconfig sqlite tar:tgz xorg
 USE_XORG=	x11 xrender
 USE_LDCONFIG=	yes

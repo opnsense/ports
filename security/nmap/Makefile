@@ -19,8 +19,6 @@ LICENSE_NAME=	Nmap Public Source License
 LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror pkg-sell
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USE_HARDENING?=	cfi safestack
-
 .if !defined(MASTERDIR)
 
 LIB_DEPENDS=	libpcre.so:devel/pcre

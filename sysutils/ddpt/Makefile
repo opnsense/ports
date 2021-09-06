@@ -1,7 +1,7 @@
 # Created by: Xin Li <delphij@FreeBSD.org>
 
 PORTNAME=	ddpt
-PORTVERSION=	0.95
+PORTVERSION=	0.97
 CATEGORIES=	sysutils
 MASTER_SITES=	http://sg.danny.cz/sg/p/
 
@@ -11,13 +11,17 @@ COMMENT=	dd tool that specializes in files that are block devices
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
+BROKEN_FreeBSD_11=	lack of NVME_STATUS_GET_SCT and NVME_STATUS_GET_SC
+
 USES=		gmake tar:tgz
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/ddpt
 PLIST_FILES+=	bin/ddptctl
+PLIST_FILES+=	bin/ddpt_sgl
 PLIST_FILES+=	man/man8/ddpt.8.gz
 PLIST_FILES+=	man/man8/ddptctl.8.gz
+PLIST_FILES+=	man/man8/ddpt_sgl.8.gz
 
 .include <bsd.port.mk>

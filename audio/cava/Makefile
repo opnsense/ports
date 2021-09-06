@@ -1,5 +1,5 @@
 PORTNAME=	cava
-DISTVERSION=	0.7.3
+DISTVERSION=	0.7.4
 CATEGORIES=	audio
 
 MAINTAINER=	vendion@gmail.com
@@ -10,8 +10,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libiniparser.so:devel/iniparser
-
-USE_HARDENING=	stackautoinit:off
 
 USES=		autoreconf compiler:c11 libtool localbase ncurses
 USE_GITHUB=	yes

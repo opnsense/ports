@@ -20,8 +20,6 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libpugixml.so:textproc/pugixml
 RUN_DEPENDS=	liberation-fonts-ttf>=0:x11-fonts/liberation-fonts-ttf
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		compiler:c++14-lang gl gmake jpeg localbase pkgconfig \
 		python:3.7,build qt:5 sdl shebangfix xorg
 

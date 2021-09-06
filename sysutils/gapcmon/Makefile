@@ -9,8 +9,6 @@ COMMENT=	Monitor apcupsd with GTK+2 GUI
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off
-
 SUB_FILES=	pkg-message
 USES=		pkgconfig gmake gnome tar:bzip2 xorg
 USE_GNOME=	gconf2

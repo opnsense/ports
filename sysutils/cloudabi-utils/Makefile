@@ -22,8 +22,6 @@ LIB_DEPENDS=	libargdata.so:devel/argdata \
 		libarpc.so:devel/arpc \
 		libyaml-cpp.so:devel/yaml-cpp
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		cmake localbase:ldflags pkgconfig
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes

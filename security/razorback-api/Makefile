@@ -18,8 +18,6 @@ LIB_DEPENDS=	libconfig.so:devel/libconfig \
 		libcurl.so:ftp/curl \
 		libjson-c.so:devel/json-c
 
-USE_HARDENING=	pie:off relro:off
-
 OPTIONS_DEFINE=	DEBUG ASSERT CNC_DEBUG STOMP_DEBUG
 
 CNC_DEBUG_DESC=		Enable Command and Control Debug

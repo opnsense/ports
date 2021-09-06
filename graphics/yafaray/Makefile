@@ -3,7 +3,7 @@
 PORTNAME=	yafaray
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.5.1
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -32,8 +32,6 @@ GH_ACCOUNT=	YafaRay
 GH_PROJECT=	libYafaRay
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
-
-USE_HARDENING=	pie:off
 
 LDFLAGS+=	-pthread # because build on 13 (head) was failing: ld: error: src/yafraycore/libyafaray_v3_core.so: undefined reference to pthread_create
 

@@ -1,7 +1,7 @@
 # Created by: Stefan Esser <se@FreeBSD.org>
 
 PORTNAME=	privatebin
-PORTVERSION=	1.3.4
+PORTVERSION=	1.3.5
 CATEGORIES=	www security
 
 MAINTAINER=	dvl@FreeBSD.org
@@ -10,7 +10,7 @@ COMMENT=	Simple end-to-end encrypting zero-knowledge paste-bin server
 LICENSE=	ZLIB
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-USES=		php
+USES=		cpe php
 
 NO_BUILD=	yes
 NO_ARCH=	yes

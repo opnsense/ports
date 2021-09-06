@@ -16,8 +16,6 @@ LIB_DEPENDS=	libltdl.so:devel/libltdl \
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 RUN_DEPENDS:=	${BUILD_DEPENDS}
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		cpe gnome libtool pkgconfig python ssl
 USE_GNOME=	glib20 libxml2 libxslt
 USE_LDCONFIG=	yes

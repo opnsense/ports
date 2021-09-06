@@ -364,11 +364,8 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # USE_OPENLDAP	- If set, this port uses the OpenLDAP libraries.
 #				  Implies: WANT_OPENLDAP_VER?=24
 # WANT_OPENLDAP_VER
-#				- Legal values are: 23, 24
+#				- Legal values are: 24
 #				  If set to an unknown value, the port is marked BROKEN.
-# WANT_OPENLDAP_SASL
-#				- If set, the system should use OpenLDAP libraries
-#				  with SASL support.
 ##
 # USE_JAVA		- If set, this port relies on the Java language.
 #				  Implies inclusion of bsd.java.mk.  (Also see
@@ -503,7 +500,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				- Similiar to INSTALL_PROGRAM and INSTALL_DATA commands but
 #				  working on whole trees of directories, takes 3 arguments,
 #				  last one is find(1) arguments and optional.
-#				  Example use: 
+#				  Example use:
 #				  cd ${WRKSRC}/doc && ${COPYTREE_SHARE} . ${DOCSDIR} "! -name *\.bak"
 #
 #				  Installs all directories and files from ${WRKSRC}/doc
@@ -1000,10 +997,16 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # DISABLE_SIZE	- Do not check the size of a distfile even if the SIZE field
 #				  has been specified in distinfo.  This is useful
 #				  when using an alternate FETCH_CMD.
-#
-# PKG_CREATE_VERBOSE		- If set, pass the -v option to pkg create which
+# PKG_CREATE_VERBOSE
+#				- If set, pass the -v option to pkg create which
 #				  ensures periodic output during packaging and
 #				  will help prevent timeouts by build monitors
+# PKG_COMPRESSION_FORMAT
+#				- the compression format used when creating a package, see
+#				  pkg-create(8) for valid formats
+# PKG_COMPRESSION_LEVEL
+#				- the compression level to use when creating a package, see
+#				  pkg-create(8) for valid values
 #
 # End of the list of all variables that need to be defined in a port.
 # Most port authors should not need to understand anything after this point.
@@ -1198,7 +1201,9 @@ _OSVERSION_MAJOR=	${OSVERSION:C/([0-9]?[0-9])([0-9][0-9])[0-9]{3}/\1/}
 # Skip if OSVERSION specified on cmdline for testing. Only works for bmake.
 .if !defined(.MAKEOVERRIDES) || !${.MAKEOVERRIDES:MOSVERSION}
 .if ${_OSVERSION_MAJOR} != ${_OSRELEASE:R}
+.if !defined(I_DONT_CARE_IF_MY_BUILDS_TARGET_THE_WRONG_RELEASE)
 .error UNAME_r (${_OSRELEASE}) and OSVERSION (${OSVERSION}) do not agree on major version number.
+.endif
 .elif ${_OSVERSION_MAJOR} != ${OSREL:R}
 .error OSREL (${OSREL}) and OSVERSION (${OSVERSION}) do not agree on major version number.
 .endif
@@ -1207,56 +1212,18 @@ _OSVERSION_MAJOR=	${OSVERSION:C/([0-9]?[0-9])([0-9][0-9])[0-9]{3}/\1/}
 # Only define tools here (for transition period with between pkg tools)
 .include "${PORTSDIR}/Mk/bsd.commands.mk"
 
-.if ${OSVERSION} < 1200020
-LLD_IS_LD=	no
-.endif
-
-.if !defined(LLD_IS_LD)
-_TEST_LD=/usr/bin/ld
-.if ${_TEST_LD:tA} == "/usr/bin/ld.lld"
-LLD_IS_LD=	yes
-.else
-LLD_IS_LD=	no
-.endif
-.endif
-_EXPORTED_VARS+=	LLD_IS_LD
-
-_TEST_AR=/usr/bin/ar
-.if ${_TEST_AR:tA} == "/usr/bin/llvm-ar"
-LLVM_AR_IS_AR=	yes
-.else
-LLVM_AR_IS_AR=	no
-.endif
-_EXPORTED_VARS+=	LLVM_AR_IS_AR
-
-_TEST_NM=/usr/bin/nm
-.if ${_TEST_NM:tA} == "/usr/bin/llvm-nm"
-LLVM_NM_IS_NM=	yes
-.else
-LLVM_NM_IS_NM=	no
-.endif
-_EXPORTED_VARS+=	LLVM_NM_IS_NM
-
-_TEST_RANLIB=/usr/bin/ranlib
-.if ${_TEST_RANLIB:tA} == "/usr/bin/llvm-ar"
-LLVM_RANLIB_IS_RANLIB=	yes
-.else
-LLVM_RANLIB_IS_RANLIB=	no
-.endif
-_EXPORTED_VARS+=	LLVM_RANLIB_IS_RANLIB
-
-_TEST_OBJDUMP=/usr/bin/objdump
-.if ${_TEST_OBJDUMP:tA} == "/usr/bin/llvm-objdump"
-LLVM_OBJDUMP_IS_OBJDUMP=	yes
-.else
-LLVM_OBJDUMP_IS_OBJDUMP=	no
-.endif
-_EXPORTED_VARS+=	LLVM_OBJDUMP_IS_OBJDUMP
-
 .if !defined(_PKG_CHECKED) && !defined(PACKAGE_BUILDING) && exists(${PKG_BIN})
 .if !defined(_PKG_VERSION)
 _PKG_VERSION!=	${PKG_BIN} -v
 .endif
+# XXX hack for smooth transition towards pkg 1.17
+_PKG_BEFORE_PKGEXT!= ${PKG_BIN} version -t ${_PKG_VERSION:C/-.*//g} 1.17.0
+.if ${_PKG_BEFORE_PKGEXT} == "<"
+_PKG_TRANSITIONING_TO_NEW_EXT=	yes
+_EXPORTED_VARS+=	_PKG_TRANSITIONING_TO_NEW_EXT
+WARNING+=	"It is strongly recommended to upgrade to a newer version of pkg first"
+.endif
+# XXX End of hack
 _PKG_STATUS!=	${PKG_BIN} version -t ${_PKG_VERSION:C/-.*//g} ${MINIMAL_PKG_VERSION}
 .if ${_PKG_STATUS} == "<"
 IGNORE=		pkg(8) must be version ${MINIMAL_PKG_VERSION} or greater, but you have ${_PKG_VERSION}. You must upgrade the ${PKG_ORIGIN} port first
@@ -1346,7 +1313,6 @@ WITH_DEBUG=	yes
 .endif
 
 .include "${PORTSDIR}/Mk/bsd.default-versions.mk"
-.include "${PORTSDIR}/Mk/bsd.hardening.mk"
 .include "${PORTSDIR}/Mk/bsd.options.mk"
 
 .endif
@@ -1718,10 +1684,7 @@ CO_ENV+=		STAGEDIR=${STAGEDIR} \
 				SCRIPTSDIR=${SCRIPTSDIR} \
 				PLIST_SUB_SED="${PLIST_SUB_SED}" \
 				PORT_OPTIONS="${PORT_OPTIONS}" \
-				PORTSDIR="${PORTSDIR}" \
-				USES="${USES}" \
-				PORTNAME="${PORTNAME}" \
-				CATEGORY="${CATEGORIES}"
+				PORTSDIR="${PORTSDIR}"
 
 .if defined(CROSS_SYSROOT)
 PKG_ENV+=		ABI_FILE=${CROSS_SYSROOT}/bin/sh
@@ -1901,20 +1864,9 @@ PKG_DEPENDS+=	${LOCALBASE}/sbin/pkg:${PKG_ORIGIN}
 .include "${PORTSDIR}/Mk/bsd.gcc.mk"
 .endif
 
-.if !defined(USE_GCC)
-.if !defined(NO_UNUSED_ARGUMENTS_CHECK)
-CFLAGS+=	-Qunused-arguments
-.endif
-.endif
-
 .if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 LDFLAGS+=	-fuse-ld=bfd
 BINARY_ALIAS+=	ld=${LD}
-.  if ${ARCH} == powerpc64
-# Base ld.bfd can't do ELFv2 which powerpc64 with Clang in base uses
-USE_BINUTILS=	yes
-LDFLAGS+=		-B${LOCALBASE}/bin
-.  endif
 .  if !defined(USE_BINUTILS)
 .    if exists(/usr/bin/ld.bfd)
 LD=	/usr/bin/ld.bfd
@@ -1924,27 +1876,6 @@ MAKE_ENV+=	LD=${LD}
 USE_BINUTILS=	yes
 .    endif
 .  endif
-.endif
-
-_TEST_AR=/usr/bin/ar
-.if defined(LLVM_AR_UNSAFE) && ${_TEST_AR:tA} == "/usr/bin/llvm-ar"
-AR=	elftc-ar
-RANLIB=	elftc-ranlib
-BINARY_ALIAS+=	ar=elftc-ar
-BINARY_ALIAS+=	ranlib=elftc-ranlib
-CONFIGURE_ENV+=	AR=${AR} RANLIB=${RANLIB}
-MAKE_ENV+=	AR=${AR} RANLIB=${RANLIB}
-CMAKE_ARGS+=	-DCMAKE_AR:STRING=${AR} -DCMAKE_RANLIB:STRING=${RANLIB}
-.endif
-
-_TEST_OBJDUMP=/usr.bin/gnu-objdump
-.if defined(LLVM_OBJDUMP_UNSAFE) && ${LLVM_OBJDUMP_IS_OBJDUMP} == "yes" && \
-		${_TEST_OBJDUMP:tA} == "/usr/bin/gnu-objdump"
-OBJDUMP=	gnu-objdump
-BINARY_ALIAS+=	objdump=gnu-objdump
-CONFIGURE_ENV+=	OBJDUMP=${OBJDUMP}
-MAKE_ENV+=	OBJDUMP=${OBJDUMP}
-CMAKE_ARGS+=	-DCMAKE_OBJDUMP:STRING=${OBJDUMP}
 .endif
 
 .if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
@@ -2304,24 +2235,31 @@ _PKGMESSAGES+=	${PKGMESSAGE}
 
 TMPPLIST?=	${WRKDIR}/.PLIST.mktmp
 
-.if ${WITH_PKG} == devel
-PKG_SUFX?=	.pkg
+# backward compatibility for users
+.if defined(_PKG_TRANSITIONING_TO_NEW_EXT)
 .if defined(PKG_NOCOMPRESS)
-PKG_OLDSUFX?=	.tar
+PKG_SUFX?=	.tar
+.else
+PKG_SUFX?=	.txz
+.endif
+PKG_COMPRESSION_FORMAT?=	${PKG_SUFX:S/.//}
+.else
+.if defined(PKG_SUFX)
+PKG_COMPRESSION_FORMAT?=	${PKG_SUFX:S/.//}
+WARNING+= "PKG_SUFX is defined, it should be replaced with PKG_COMPRESSION_FORMAT"
+.endif
+PKG_SUFX=	.pkg
+.endif
+.if defined(PKG_NOCOMPRESS)
+PKG_COMPRESSION_FORMAT?=	tar
 .else
 #.if ${OSVERSION} > 1400000
-#PKG_OLDSUFX?=	.tzst
+#PKG_COMPRESSION_FORMAT?=	tzst
 #.else
-PKG_OLDSUFX?=	.txz
+PKG_COMPRESSION_FORMAT?=	txz
 #.endif
 .endif
-.else
-.if defined(PKG_NOCOMPRESS)
-PKG_SUFX?=		.tar
-.else
-PKG_SUFX?=		.txz
-.endif
-.endif
+
 # where pkg(8) stores its data
 PKG_DBDIR?=		/var/db/pkg
 
@@ -2696,9 +2634,6 @@ VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	x11 x11-clocks x11-drivers x11-fm x11-fonts x11-servers x11-themes \
 	x11-toolkits x11-wm xfce zope base
 
-# HardenedBSD-related categories
-VALID_CATEGORIES+=	hardenedbsd
-
 check-categories:
 .for cat in ${CATEGORIES}
 .	if empty(VALID_CATEGORIES:M${cat})
@@ -2714,9 +2649,7 @@ PKGREPOSITORY?=		${PACKAGES}/${PKGREPOSITORYSUBDIR}
 PACKAGES:=	${PACKAGES:S/:/\:/g}
 _HAVE_PACKAGES=	yes
 PKGFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_SUFX}
-.if ${WITH_PKG} == devel
-PKGOLDFILE?=		${PKGREPOSITORY}/${PKGNAME}${PKG_OLDSUFX}
-.endif
+PKGOLDFILE?=		${PKGREPOSITORY}/${PKGNAME}.${PKG_COMPRESSION_FORMAT}
 .else
 PKGFILE?=		${.CURDIR}/${PKGNAME}${PKG_SUFX}
 .endif
@@ -2726,12 +2659,10 @@ WRKDIR_PKGFILE=	${WRKDIR}/pkg/${PKGNAME}${PKG_SUFX}
 PKGLATESTREPOSITORY?=	${PACKAGES}/Latest
 PKGBASE?=			${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}
 PKGLATESTFILE=		${PKGLATESTREPOSITORY}/${PKGBASE}${PKG_SUFX}
-.if ${WITH_PKG} == devel
-PKGOLDLATESTFILE=		${PKGLATESTREPOSITORY}/${PKGBASE}${PKG_OLDSUFX}
+PKGOLDLATESTFILE=		${PKGLATESTREPOSITORY}/${PKGBASE}.${PKG_COMPRESSION_FORMAT}
 # Temporary workaround to be deleted once every supported version of FreeBSD
 # have a bootstrap which handles the pkg extension.
-PKGOLDSIGFILE=			${PKGLATESTREPOSITORY}/${PKGBASE}${PKG_OLDSUFX}.sig
-.endif
+PKGOLDSIGFILE=			${PKGLATESTREPOSITORY}/${PKGBASE}.${PKG_COMPRESSION_FORMAT}.sig
 
 CONFIGURE_SCRIPT?=	configure
 CONFIGURE_CMD?=		./${CONFIGURE_SCRIPT}
@@ -3441,7 +3372,7 @@ identify-install-conflicts:
 
 .if !target(check-install-conflicts)
 check-install-conflicts:
-.if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) || ( defined(CONFLICTS_BUILD) && defined(DEFER_CONFLICTS_CHECK) ) ) && !defined(DISABLE_CONFLICTS) 
+.if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) || ( defined(CONFLICTS_BUILD) && defined(DEFER_CONFLICTS_CHECK) ) ) && !defined(DISABLE_CONFLICTS)
 .if defined(DEFER_CONFLICTS_CHECK)
 	@conflicts_with=$$( \
 	{ ${PKG_QUERY} -g "%n-%v %p %o" ${CONFLICTS:C/.+/'&'/} ${CONFLICTS_BUILD:C/.+/'&'/} ${CONFLICTS_INSTALL:C/.+/'&'/} 2>/dev/null || : ; } \
@@ -3514,7 +3445,7 @@ ${PKGFILE}: ${WRKDIR_PKGFILE} ${PKGREPOSITORY}
 	@${LN} -f ${WRKDIR_PKGFILE} ${PKGFILE} 2>/dev/null \
 			|| ${CP} -f ${WRKDIR_PKGFILE} ${PKGFILE}
 
-.if ${WITH_PKG} == devel
+.if !defined(_PKG_TRANSITIONING_TO_NEW_EXT)
 _EXTRA_PACKAGE_TARGET_DEP+= ${PKGOLDFILE}
 ${PKGOLDFILE}: ${PKGFILE}
 	${INSTALL} -l rs ${PKGFILE} ${PKGOLDFILE}
@@ -3529,7 +3460,7 @@ _EXTRA_PACKAGE_TARGET_DEP+=	${PKGLATESTFILE}
 ${PKGLATESTFILE}: ${PKGFILE} ${PKGLATESTREPOSITORY}
 	${INSTALL} -l rs ${PKGFILE} ${PKGLATESTFILE}
 
-.if ${WITH_PKG} == devel
+.if !defined(_PKG_TRANSITIONING_TO_NEW_EXT)
 _EXTRA_PACKAGE_TARGET_DEP+=	${PKGOLDLATESTFILE} ${PKGOLDSIGFILE}
 
 ${PKGOLDLATESTFILE}: ${PKGOLDFILE} ${PKGLATESTREPOSITORY}
@@ -3557,12 +3488,9 @@ _EXTRA_PACKAGE_TARGET_DEP+=	${WRKDIR_PKGFILE}
 # This will be the end of the loop
 
 .if !target(do-package)
-.if ${WITH_PKG} == devel
-.if defined(PKG_NOCOMPRESS)
-PKG_CREATE_ARGS+= -f ${PKG_OLDSUFX:S/.//}
-.endif
-.else
-PKG_CREATE_ARGS+= -f ${PKG_SUFX:S/.//}
+PKG_CREATE_ARGS+= -f ${PKG_COMPRESSION_FORMAT}
+.if defined(PKG_COMPRESSION_LEVEL)
+PKG_CREATE_ARGS+= -l ${PKG_COMPRESSION_LEVEL}
 .endif
 PKG_CREATE_ARGS+=	-r ${STAGEDIR}
 .  if defined(PKG_CREATE_VERBOSE)
@@ -3727,7 +3655,7 @@ security-check: ${TMPPLIST}
 #   4.  startup scripts, in conjunction with 2.
 #   5.  world-writable files/dirs
 #
-#  The ${NONEXISTENT} argument of ${READELF} is there so that there are always
+#  The ${NONEXISTENT} argument of ${READELF} is there so that there are always
 #  at least two file arguments, and forces it to always output the "File: foo"
 #  header lines.
 #
@@ -4207,7 +4135,7 @@ MISSING-DEPENDS-LIST=		${DEPENDS-LIST} -m ${_UNIFIED_DEPENDS:Q}
 BUILD-DEPENDS-LIST=			${DEPENDS-LIST} "${PKG_DEPENDS} ${EXTRACT_DEPENDS} ${PATCH_DEPENDS} ${FETCH_DEPENDS} ${BUILD_DEPENDS} ${LIB_DEPENDS}"
 RUN-DEPENDS-LIST=			${DEPENDS-LIST} "${LIB_DEPENDS} ${RUN_DEPENDS}"
 TEST-DEPENDS-LIST=			${DEPENDS-LIST} ${TEST_DEPENDS:Q}
-CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q} 
+CLEAN-DEPENDS-LIST=			${DEPENDS-LIST} -wr ${_UNIFIED_DEPENDS:Q}
 CLEAN-DEPENDS-LIMITED-LIST=	${DEPENDS-LIST} -w ${_UNIFIED_DEPENDS:Q}
 
 .if !target(clean-depends)
@@ -5407,7 +5335,7 @@ _STAGE_SEQ=		050:stage-message 100:stage-dir 150:run-depends \
 				300:pre-install \
 				400:generate-plist 450:pre-su-install 475:create-users-groups \
 				500:do-install 550:kmod-post-install 600:fixup-lib-pkgconfig 700:post-install \
-				750:post-install-script 800:post-stage 825:fixup-mitigations 850:compress-man \
+				750:post-install-script 800:post-stage 850:compress-man \
 				860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
 				900:add-plist-info 910:add-plist-docs 920:add-plist-examples \
@@ -5433,26 +5361,6 @@ _PACKAGE_DEP=	stage
 _PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
 				500:do-package 850:post-package-script \
 				${_OPTIONS_package} ${_USES_package}
-
-fixup-mitigations:
-.for _file in ${PAGEEXEC_DISABLE}
-		-/usr/sbin/hbsdcontrol pax disable pageexec ${STAGEDIR}/${PREFIX}/${_file}
-.endfor
-.for _file in ${MPROTECT_DISABLE}
-		-/usr/sbin/hbsdcontrol pax disable mprotect ${STAGEDIR}/${PREFIX}/${_file}
-.endfor
-.for _file in ${SEGVGUARD_DISABLE}
-		-/usr/sbin/hbsdcontrol pax disable segvguard ${STAGEDIR}/${PREFIX}/${_file}
-.endfor
-.for _file in ${ASLR_DISABLE}
-		-/usr/sbin/hbsdcontrol pax disable aslr ${STAGEDIR}/${PREFIX}/${_file}
-.endfor
-.for _file in ${DISALLOW_MAP32BIT_DISABLE}
-		-/usr/sbin/hbsdcontrol pax disable disallow_map32bit ${STAGEDIR}/${PREFIX}/${_file}
-.endfor
-.for _file in ${SHLIBRANDOM_DISABLE}
-		-/usr/sbin/hbsdcontrol pax disable shlibrandom ${STAGEDIR}/${PREFIX}/${_file}
-.endfor
 
 # Enforce order for -jN builds
 .for _t in ${_TARGETS_STAGES}

@@ -1,7 +1,7 @@
 # Created by: erich@rrnet.com
 
 PORTNAME=	sudo
-PORTVERSION=	1.9.7p1
+PORTVERSION=	1.9.7p2
 CATEGORIES=	security
 MASTER_SITES=	SUDO
 
@@ -18,9 +18,6 @@ CPE_VENDOR=	todd_miller
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
 LDFLAGS+=	-lgcc
-
-USE_HARDENING=	cfi
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
 
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc \
 		--with-ignore-dot \

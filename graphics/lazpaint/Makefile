@@ -1,5 +1,6 @@
 PORTNAME=	lazpaint
 PORTVERSION=	7.1.6
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
@@ -19,7 +20,6 @@ USE_XORG=	x11
 DOS2UNIX_REGEX=	.*\.([txt]|pas|lpi|txt)
 USE_GITHUB=	yes
 GH_ACCOUNT=	bgrabitmap
-GH_PROJECT=	lazpaint
 GH_TUPLE=	bgrabitmap:bgracontrols:95fc0d2:bgracontrols/bgracontrols \
 		bgrabitmap:bgrabitmap:ace7e0e:bgrabitmap/bgrabitmapnew
 

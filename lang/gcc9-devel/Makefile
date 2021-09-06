@@ -1,7 +1,7 @@
 # Created by: Gerald Pfeifer <gerald@FreeBSD.org>
 
 PORTNAME=	gcc
-PORTVERSION=	9.4.1.s20210715
+PORTVERSION=	9.4.1.s20210826
 CATEGORIES=	lang
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -12,10 +12,6 @@ COMMENT=	GNU Compiler Collection 9
 
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
-
-USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
-
-NO_UNUSED_ARGUMENTS_CHECK=	yes
 
 ONLY_FOR_ARCHS=	aarch64 amd64 arm armv6 armv7 i386 powerpc powerpc64 powerpc64le sparc64
 

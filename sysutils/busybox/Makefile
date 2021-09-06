@@ -13,8 +13,6 @@ LICENSE=	GPLv2
 
 BUILD_DEPENDS=	gsed:textproc/gsed
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		cpe gmake perl5 tar:bzip2
 USE_PERL5=	build
 

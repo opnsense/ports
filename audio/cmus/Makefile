@@ -3,6 +3,7 @@
 PORTNAME=	cmus
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.9.1
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	ports@FreeBSD.org
@@ -11,7 +12,7 @@ COMMENT=	Console-based music player with really cool features
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		compiler:c11 gmake iconv ncurses pkgconfig
+USES=		compiler:c11 cpe gmake iconv ncurses pkgconfig
 USE_GITHUB=	yes
 
 HAS_CONFIGURE=	yes

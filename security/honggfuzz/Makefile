@@ -10,8 +10,6 @@ COMMENT=	General-purpose fuzzer with simple, command-line interface
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off
-
 USES=		compiler:c11 gmake
 USE_GITHUB=	yes
 GH_ACCOUNT=	google

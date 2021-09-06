@@ -16,8 +16,6 @@ USES=		cpe ssl
 CPE_VENDOR=	miniupnp_project
 USE_RC_SUBR=	miniupnpd
 
-USE_HARDENING=	safestack
-
 HAS_CONFIGURE=	yes
 MAKE_JOBS_UNSAFE=	yes
 

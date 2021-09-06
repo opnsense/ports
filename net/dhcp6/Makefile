@@ -12,8 +12,6 @@ COMMENT=	KAME DHCP6 client, server, and relay
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USE_HARDENING=	safestack
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	hrs-allbsd
 GH_PROJECT=	wide-dhcpv6

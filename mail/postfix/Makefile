@@ -1,11 +1,11 @@
 # Created by: Torsten Blum <torstenb@FreeBSD.org>
 
 PORTNAME=	postfix
-DISTVERSION=	3.5.10
-PORTREVISION?=	0
+DISTVERSION=	3.6.2
+PORTREVISION?=	1
 PORTEPOCH=	1
 CATEGORIES=	mail
-MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/ \
+MASTER_SITES=	http://ftp.porcupine.org/mirrors/postfix-release/ \
 		http://de.postfix.org/ftpmirror/ \
 		http://cdn.postfix.johnriley.me/mirrors/postfix-release/ \
 		http://www.artfiles.org/postfix.org/postfix-release/ \
@@ -14,23 +14,23 @@ MASTER_SITES=	ftp://ftp.porcupine.org/mirrors/postfix-release/ \
 MASTER_SITES:=	${MASTER_SITES:S|$|official/|}
 DIST_SUBDIR=	${PORTNAME}
 
-MAINTAINER=	ohauer@FreeBSD.org
+MAINTAINER=	otis@FreeBSD.org
 COMMENT?=	Secure alternative to widely-used Sendmail
 
-LICENSE=	IPL10 EPL
+LICENSE=	EPL IPL10
 LICENSE_COMB=	multi
 LICENSE_FILE=	${WRKSRC}/LICENSE
 LICENSE_NAME_IPL10=	IBM PUBLIC LICENSE VERSION 1.0
 LICENSE_PERMS_IPL10=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
-PORTSCOUT=	limit:^3\.5\.
+PORTSCOUT=	limit:^3\.6\.
 
 CONFLICTS_INSTALL?=	courier-0.* opensmtpd-[0-9]* sendmail-8.* sendmail+*-8.* \
-		postfix-current-*
+		postfix35-* postfix-current-*
 
 USERS=		postfix
 GROUPS=		mail maildrop postfix
-USES=		shebangfix cpe
+USES=		shebangfix cpe ssl
 SHEBANG_FILES=	auxiliary/qshape/qshape.pl
 
 USE_RC_SUBR=	postfix
@@ -38,7 +38,7 @@ USE_SUBMAKE=	yes
 SCRIPTS_ENV+=	POSTFIX_DEFAULT_MTA="${POSTFIX_DEFAULT_MTA}"
 
 OPTIONS_SUB=	yes
-OPTIONS_DEFINE=	BDB BLACKLISTD CDB DOCS EAI INST_BASE LDAP LDAP_SASL \
+OPTIONS_DEFINE=	BDB BLACKLISTD CDB DOCS EAI INST_BASE LDAP \
 		LMDB MYSQL NIS PCRE PGSQL SASL SQLITE TEST TLS
 
 OPTIONS_RADIO=		RG1
@@ -57,14 +57,12 @@ PGSQL_USES=		pgsql
 SASLKMIT_LIB_DEPENDS=	libkrb5.so:security/krb5
 SASL_LIB_DEPENDS=	libsasl2.so:security/cyrus-sasl2
 SQLITE_USES=		sqlite
-TLS_USES=		ssl
 
 BLACKLISTD_DESC=	Enable blacklistd support (FreeBSD 11.0 and later only)
 CDB_DESC=	CDB maps lookups
 EAI_DESC=	Email Address Internationalization (SMTPUTF8) support
 INST_BASE_DESC=	Install into /usr and /etc/postfix
 LDAP_DESC=	LDAP maps (uses WITH_OPENLDAP_VER)
-LDAP_SASL_DESC=	LDAP client-to-server SASL auth
 LMDB_DESC=	LMDB maps
 TEST_DESC=	SMTP/LMTP test server and generator
 
@@ -88,6 +86,11 @@ MAKEFILEFLAGS+=	DEBUG=
 .endif
 
 MAKEFILEFLAGS+=	pie=yes CC="${CC}" OPT="${CFLAGS}"
+
+.if (${OSREL:R} < 12 && ${SSL_DEFAULT} == base) || (${SSL_DEFAULT} == libressl)
+BROKEN=		error: OpenSSL-1.1.1 is the minimum supported version. \
+		LibreSSL is not supported
+.endif
 
 .if ${PORT_OPTIONS:MINST_BASE}
 .if defined(SASL_SLAVE)
@@ -230,15 +233,9 @@ DYN_EXT+=		ldap
 WANT_OPENLDAP_VER=	${WITH_OPENLDAP_VER}
 . endif
 POSTFIX_CCARGS+=	-DHAS_LDAP -I${LOCALBASE}/include
+POSTFIX_CCARGS+=	-I${LOCALBASE}/include/sasl -DUSE_LDAP_SASL
 POSTFIX_DYN_AUXLIBS+=	"AUXLIBS_LDAP=-L${LOCALBASE}/lib -lldap -L${LOCALBASE}/lib -llber"
 _REQUIRE+=		slapd
-. if ${PORT_OPTIONS:MLDAP_SASL}
-.  if ! ${PORT_OPTIONS:MSASL}
-LIB_DEPENDS+=		libsasl2.so:security/cyrus-sasl2
-.  endif
-WANT_OPENLDAP_SASL=	yes
-POSTFIX_CCARGS+=	-I${LOCALBASE}/include/sasl -DUSE_LDAP_SASL
-. endif
 .endif
 
 .if ${PORT_OPTIONS:MCDB}

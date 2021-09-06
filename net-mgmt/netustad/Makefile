@@ -9,8 +9,6 @@ MASTER_SITES=	http://www.enderunix.org/netustad/
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Web based admin tool that manages network services
 
-USE_HARDENING=	pie:off relro:off
-
 BROKEN_FreeBSD_13=	ld: error: duplicate symbol: adminpasswd
 BROKEN_FreeBSD_14=	ld: error: duplicate symbol: adminpasswd
 

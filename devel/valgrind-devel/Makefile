@@ -15,8 +15,6 @@ COMMENT=	Memory debugging and profiling tool
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off relro:off
-
 ONLY_FOR_ARCHS=	amd64 i386
 
 USES=		pathfix pkgconfig gmake perl5 shebangfix autoreconf

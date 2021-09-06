@@ -1,5 +1,5 @@
 PORTNAME=	free42
-DISTVERSION=	3.0.5
+DISTVERSION=	3.0.6
 CATEGORIES=	misc
 MASTER_SITES=	http://thomasokken.com/free42/upstream/
 DISTNAME=	${PORTNAME}-nologo-${DISTVERSION}
@@ -22,8 +22,6 @@ DOS2UNIX_FILES=	gtk/IntelRDFPMathLib20U1/LIBRARY/float128/op_system.h gtk/IntelR
 
 CXXFLAGS+=	${CXXFLAGS_${CHOSEN_COMPILER_TYPE}}
 CXXFLAGS_clang=	-Wno-c++11-narrowing -Wno-constant-conversion # to accommodate some code breaking with clang-50
-
-USE_HARDENING=	pie:off
 
 BUILD_WRKSRC=	${WRKSRC}/gtk
 

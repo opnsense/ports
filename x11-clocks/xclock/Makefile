@@ -8,8 +8,6 @@ COMMENT=	Analog and digital clock for X
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		iconv xorg xorg-cat:app
 USE_XORG=	x11 xaw xft xkbfile xmu xrender xt
 

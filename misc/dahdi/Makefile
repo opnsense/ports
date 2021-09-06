@@ -15,8 +15,6 @@ LIB_DEPENDS=	libnewt.so:devel/newt
 DAHDI_VERSION=		2.4.0-rc5
 DAHDI_TOOLS_VERSION=	2.4.0-rc1
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 USES=		gmake
 CONFIGURE_ARGS=	--with-dahdi=../freebsd --sysconfdir=${PREFIX}/etc --with-newt=${LOCALBASE}

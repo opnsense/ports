@@ -21,9 +21,6 @@ COMMENT=		GNU Project's Bourne Again SHell
 LICENSE=		GPLv3+
 LICENSE_FILE=		${WRKSRC}/COPYING
 
-# STATIC option requires special hardening treatment, see below.
-USE_HARDENING=		safestack
-
 OPTIONS_DEFINE=		FDESCFS PORTS_READLINE HELP NLS STATIC SYSBASHRC \
 			SYSLOG DOCS
 FDESCFS_DESC=		Enable use of /dev/fd
@@ -72,13 +69,6 @@ CONFLICTS+=	bashc
 .if ${PORT_OPTIONS:MSTATIC} || defined(NO_DYNAMICROOT) || (defined(NOSHARED) && ${NOSHARED:tl} != "no")
 CONFIGURE_ARGS+=	--enable-static-link
 LLD_UNSAFE=		yes
-# For STATIC option undo all hardening.   This is a chicken vs. egg
-# problem in the way the options and their actions are handled, but
-# we end up with the correct port option state for hardening.
-.for _HARDENING in ${USE_HARDENING}
-PORT_OPTIONS:=		${PORT_OPTIONS:N${_HARDENING:tu}}
-USES:=			${USES:N${_HARDENING}}
-.endfor
 .else
 CONFIGURE_ARGS+=	--disable-static-link
 # Bash symbols must be exported in order to link runtime plugins, i.e.,

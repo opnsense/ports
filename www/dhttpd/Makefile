@@ -7,10 +7,12 @@ CATEGORIES=	www
 MASTER_SITES=	http://bsd-geek.de/FreeBSD/distfiles/
 EXTRACT_SUFX=	.tgz
 
-MAINTAINER=	lme@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Minimal secure webserver. Fast and efficient, no cgi-bin support
 
 LICENSE=	GPLv2
+
+USES=		cpe
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-1.02-4
 BUILD_WRKSRC=	${WRKSRC}/src

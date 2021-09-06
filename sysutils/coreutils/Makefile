@@ -22,8 +22,6 @@ CONFIGURE_ARGS=	--program-prefix=g	\
 		--program-transform-name=s/stat/nustat/
 CONFIGURE_ENV=	FORCE_UNSAFE_CONFIGURE=1
 
-USE_HARDENING=	pie:off relro:off
-
 INFO=		coreutils
 
 OPTIONS_DEFINE=	GMP NLS

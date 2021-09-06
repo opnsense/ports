@@ -12,8 +12,6 @@ COMMENT=	Scans networks for open proxies, SSH, web, and SMTP servers
 LIB_DEPENDS=	libdnet.so:net/libdnet \
 		libevent.so:devel/libevent
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	YES
 PLIST_FILES=	bin/scanssh man/man1/scanssh.1.gz
 

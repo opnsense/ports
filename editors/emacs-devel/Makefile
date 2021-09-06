@@ -1,7 +1,7 @@
 # Created by: Kenneth Vestergaard Schmidt <kvs@pil.dk>
 
 PORTNAME=	emacs
-DISTVERSION=	28.0.50.20210716
+DISTVERSION=	28.0.50.20210901
 PORTEPOCH=	2
 CATEGORIES=	editors
 PKGNAMESUFFIX=	-devel
@@ -12,8 +12,6 @@ COMMENT_nox=	(No X flavor)
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-USE_HARDENING=	pie:off relro:off
 
 BUILD_DEPENDS=	texinfo>=6.5,1:print/texinfo
 LIB_DEPENDS=	libgmp.so:math/gmp
@@ -27,7 +25,7 @@ USES=		autoreconf:build cpe gmake localbase:ldflags ncurses pkgconfig
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	109c273
+GH_TAGNAME=	a15f549
 
 .if ${FLAVOR:U} != nox
 USES+=		desktop-file-utils gnome xorg

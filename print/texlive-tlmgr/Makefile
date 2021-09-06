@@ -11,7 +11,7 @@ DISTFILES=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX}:tlmgr \
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=	${PORTNAME}-${PORTVERSION}-extra${EXTRACT_SUFX}
 
-MAINTAINER=	freebsd-tex@FreeBSD.org
+MAINTAINER=	tex@FreeBSD.org
 COMMENT=	TeXLive manager modules
 
 RUN_DEPENDS=	tex-kpathsea>=6.2.1_1:devel/tex-kpathsea
@@ -22,6 +22,7 @@ USES=		perl5 tar:xz
 USE_PERL5=	run
 USE_TEX=	kpathsea
 PATCH_WRKSRC=	${WRKDIR}
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 TLPKG_FILE=	${PORTNAME}-20150924.tlpdb

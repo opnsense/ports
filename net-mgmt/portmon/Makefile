@@ -14,8 +14,6 @@ COMMENT=	Daemon that monitor network services
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 
 PLIST_FILES=	bin/portmon etc/portmon.hosts.sample share/man/man8/portmon.8.gz

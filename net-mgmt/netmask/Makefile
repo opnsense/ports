@@ -10,8 +10,6 @@ DISTNAME=	netmask_${PORTVERSION}
 MAINTAINER=	mike@urgle.com
 COMMENT=	Tool for generating terse netmasks in several common formats
 
-USE_HARDENING=	pie:off
-
 WRKSRC=		${WRKDIR}/${DISTNAME:S/_/-/}
 GNU_CONFIGURE=	yes
 USES=		gmake

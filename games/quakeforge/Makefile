@@ -2,7 +2,7 @@
 
 PORTNAME=	quakeforge
 PORTVERSION=	0.7.2
-PORTREVISION=	8
+PORTREVISION=	9
 CATEGORIES=	games
 MASTER_SITES=	SF/quake/quake/${PORTVERSION}
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
@@ -16,8 +16,6 @@ LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libpng.so:graphics/png
-
-USE_HARDENING=	pie:off
 
 USES=		bison compiler:c11 gmake libtool localbase python:run shebangfix tar:bzip2
 SHEBANG_FILES=	tools/qfcc/source/qfpreqcc

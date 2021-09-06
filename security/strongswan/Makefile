@@ -1,6 +1,5 @@
 PORTNAME=	strongswan
-DISTVERSION=	5.9.2
-PORTREVISION=	2
+DISTVERSION=	5.9.3
 CATEGORIES=	security net-vpn
 MASTER_SITES=	http://download.strongswan.org/ \
 		http://download2.strongswan.org/
@@ -10,11 +9,6 @@ COMMENT=	Open Source IKEv2 IPsec-based VPN solution
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-# StrongSwan uses shared libraries as plugins, but
-# does not fail with safestack as no port depends
-# on these internal library plugins:
-USE_HARDENING=	safestack
 
 USES=		cpe libtool:keepla pkgconfig ssl tar:bzip2
 USE_LDCONFIG=	${PREFIX}/lib/ipsec

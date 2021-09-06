@@ -11,14 +11,12 @@ COMMENT=	Small Jabber console client
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	cfi safestack
-
 # it picks libcharset from converters/libiconv installed by glib,
 # so provide an explicit dependency
 LIB_DEPENDS=	libloudmouth-1.so:net-im/loudmouth \
 		libcharset.so:converters/libiconv
 
-USES=		gettext gnome iconv:wchar_t libtool localbase ncurses pathfix \
+USES=		cpe gettext gnome iconv:wchar_t libtool localbase ncurses pathfix \
 		pkgconfig tar:bzip2
 USE_GNOME=	glib20
 GNU_CONFIGURE=	yes

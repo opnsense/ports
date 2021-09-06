@@ -24,8 +24,6 @@ MAKE_ENV=	BDBINCLUDE="-I${BDB_INCLUDE_DIR}" \
 
 SUB_FILES=	pkg-message
 
-USE_HARDENING=	pie:off
-
 OPTIONS_DEFINE=	DOCS
 
 post-extract:

@@ -25,8 +25,6 @@ CONFIGURE_ARGS=	--exec-prefix=${PREFIX} --disable-mount-helper \
 		--disable-mtab --with-fuse=external --disable-ldconfig
 CPPFLAGS+=	-I${WRKSRC}/include/ntfs-3g/
 
-USE_HARDENING=	safestack
-
 OPTIONS_DEFINE=	LOCK UBLIO DOCS
 OPTIONS_DEFAULT=LOCK UBLIO
 LOCK_DESC=	Lock the device when mounting (avoids access)

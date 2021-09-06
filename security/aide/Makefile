@@ -11,8 +11,6 @@ COMMENT=	File and directory integrity checker
 LIB_DEPENDS=	libmhash.so:security/mhash \
 		libpcre.so:devel/pcre
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		autoreconf bison gmake localbase
 
 GNU_CONFIGURE=	yes

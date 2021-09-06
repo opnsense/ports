@@ -1,7 +1,7 @@
 # Created by: Bill Fumerola <billf@chc-chimes.com>
 
 PORTNAME?=	wireshark
-PORTVERSION=	3.4.7
+PORTVERSION=	3.4.8
 CATEGORIES=	net
 MASTER_SITES=	http://www.wireshark.org/download/src/ \
 		http://ftp.uni-kl.de/pub/wireshark/src/ \
@@ -23,8 +23,6 @@ CONFLICTS_INSTALL?=	wireshark-lite-[0-9]* tshark-[0-9]* tshark-lite-[0-9]*
 
 DATADIR_NAME=	wireshark
 DATADIR=	${PREFIX}/share/${DATADIR_NAME}
-
-USE_HARDENING=	safestack
 
 USES=		alias cmake compiler:c++11-lang cpe gettext-runtime gnome \
 		libtool localbase pathfix perl5 pkgconfig python:3.4+ ssl \

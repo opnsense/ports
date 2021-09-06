@@ -1,5 +1,5 @@
 PORTNAME=	spago
-DISTVERSION=	0.20.2
+DISTVERSION=	0.20.3
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/purescript/purescript-docs-search/releases/download/v0.0.11/docs-search-app.js?dummy=/:dsa11 \
 		https://github.com/purescript/purescript-docs-search/releases/download/v0.0.11/purescript-docs-search?dummy=/:pds11 \
@@ -19,11 +19,8 @@ LICENSE=	BSD3CLAUSE
 RUN_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 
 USES=		cabal
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	purescript
-GH_PROJECT=	spago
-
 USE_LOCALE=	en_US.UTF-8
 
 USE_CABAL=	Diff-0.4.0 \

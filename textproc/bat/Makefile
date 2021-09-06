@@ -1,7 +1,7 @@
 PORTNAME=	bat
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.18.2
-PORTREVISION=	0
+DISTVERSION=	0.18.3
+PORTREVISION=	1
 CATEGORIES=	textproc
 
 MAINTAINER=	pizzamig@FreeBSD.org
@@ -12,8 +12,6 @@ LICENSE=	APACHE20
 LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libonig.so:devel/oniguruma
 
-BROKEN_i386=	sys-info dependency crate won't build on FreeBSD
-BROKEN_powerpc=	sys-info dependency crate won't build on FreeBSD
 USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	sharkdp
@@ -36,7 +34,7 @@ CARGO_CRATES=	adler-1.0.2 \
 		bit-vec-0.6.3 \
 		bitflags-1.2.1 \
 		bstr-0.2.16 \
-		bugreport-0.4.0 \
+		bugreport-0.4.1 \
 		byteorder-1.4.3 \
 		cc-1.0.67 \
 		cfg-if-1.0.0 \
@@ -68,7 +66,7 @@ CARGO_CRATES=	adler-1.0.2 \
 		getrandom-0.2.2 \
 		git-version-0.3.4 \
 		git-version-macro-0.3.4 \
-		git2-0.13.19 \
+		git2-0.13.20 \
 		glob-0.3.0 \
 		globset-0.4.8 \
 		grep-cli-0.1.6 \
@@ -82,7 +80,7 @@ CARGO_CRATES=	adler-1.0.2 \
 		lazy_static-1.4.0 \
 		lazycell-1.3.0 \
 		libc-0.2.95 \
-		libgit2-sys-0.12.20+1.1.0 \
+		libgit2-sys-0.12.21+1.1.0 \
 		libz-sys-1.1.3 \
 		line-wrap-0.1.1 \
 		linked-hash-map-0.5.4 \
@@ -141,7 +139,6 @@ CARGO_CRATES=	adler-1.0.2 \
 		strsim-0.8.0 \
 		syn-1.0.72 \
 		syntect-4.5.0 \
-		sys-info-0.9.0 \
 		tempfile-3.2.0 \
 		term_size-0.3.2 \
 		termcolor-1.1.2 \

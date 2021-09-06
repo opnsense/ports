@@ -14,8 +14,6 @@ COMMENT=	SDL/OpenGL space shoot'em up game
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BROKEN=		fails to build
-
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtinyxml.so:textproc/tinyxml
 
@@ -26,8 +24,6 @@ USE_SDL=	image mixer sdl
 USE_CXXSTD=	gnu++98
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-optimize
-
-USE_HARDENING=	pie:off relro:off
 
 CONFLICTS=	shaaft-[0-9]*
 

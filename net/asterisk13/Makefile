@@ -1,6 +1,5 @@
 PORTNAME=	asterisk
-PORTVERSION=	13.38.2
-PORTREVISION=	1
+PORTVERSION=	13.38.3
 CATEGORIES=	net
 MASTER_SITES=	https://downloads.asterisk.org/pub/telephony/%SUBDIR%/:DEFAULT,g729
 MASTER_SITE_SUBDIR=	asterisk/ \
@@ -21,8 +20,6 @@ EXPIRATION_DATE=2021-10-24
 
 LIB_DEPENDS=	libuuid.so:misc/e2fsprogs-libuuid \
 		libjansson.so:devel/jansson
-
-USE_HARDENING=	pie:off relro:off
 
 USES=		bison compiler:c11 cpe gmake gnome iconv libedit localbase \
 		shebangfix sqlite ssl ncurses

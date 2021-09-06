@@ -10,8 +10,6 @@ COMMENT=	Server which provides telnet(1) access to one or more tty ports
 
 LICENSE=	BSD4CLAUSE
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		uidfix
 USE_RC_SUBR=	tits
 

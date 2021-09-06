@@ -1,5 +1,5 @@
 PORTNAME=	ifinfo
-PORTVERSION=	10.1
+PORTVERSION=	13.0
 CATEGORIES=	sysutils
 DISTFILES=
 
@@ -7,8 +7,6 @@ MAINTAINER=	franco@opnsense.org
 COMMENT=	Interface statistics reader
 
 LICENSE=	MIT
-
-USE_HARDENING=	safestack
 
 MAKE_ENV=	BINDIR=${PREFIX}/sbin
 

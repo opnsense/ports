@@ -14,8 +14,6 @@ LIB_DEPENDS=	libpng.so:graphics/png
 
 CONFLICTS=	criticalmass-*
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		gl sdl tar:bzip2
 USE_SDL=	mixer image sdl
 USE_GL=		gl

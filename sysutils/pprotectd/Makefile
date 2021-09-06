@@ -8,8 +8,6 @@ MASTER_SITES=	http://www.zonov.org/${PORTNAME}/
 MAINTAINER=	zont@FreeBSD.org
 COMMENT=	Daemon that protects processes from killing when memory is exhausted
 
-USE_HARDENING=	pie:off
-
 USE_RC_SUBR=	${PORTNAME}
 
 PLIST_FILES=	sbin/${PORTNAME} \

@@ -8,8 +8,6 @@ MASTER_SITES=	http://www.enderunix.org/voipong/
 MAINTAINER=	siseci@EnderUNIX.org
 COMMENT=	Detect Voice Over IP calls and dump them to separate wave files
 
-USE_HARDENING=	pie:off
-
 USE_LDCONFIG=	yes
 PORTDOCS=	ALGORITHMS AUTHORS ChangeLog COPYING INSTALL KNOWN_BUGS \
 		LICENSE  NEWS README THANKS TODO

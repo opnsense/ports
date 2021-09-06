@@ -19,8 +19,6 @@ LIB_DEPENDS+=	libcurl.so:ftp/curl \
 USES=		cmake ncurses libtool pkgconfig tar:xz
 USE_LDCONFIG=	yes
 
-USE_HARDENING=	safestack
-
 CMAKE_ARGS=	-DLIBDATADIR=${LOCALBASE}/libdata
 
 OPTIONS_DEFINE=		BACKTRACE DOCS CA_BUNDLE HEADLESS ICON ICONV \

@@ -43,8 +43,8 @@ COROSYNC_DEFAULT?=	2
 FIREBIRD_DEFAULT?=	2.5
 # Possible values: flang (experimental), gfortran
 FORTRAN_DEFAULT?=	gfortran
-# Possible values: 3.2.0
-FPC_DEFAULT?=		3.2.0
+# Possible values: 3.2.2
+FPC_DEFAULT?=		3.2.2
 # Possible values: 8 (last to support powerpcspe), 9, 10, 11
 # (Any other version is completely unsupported and not meant for general use.)
 .if ${ARCH} == "powerpcspe"
@@ -60,8 +60,12 @@ GHOSTSCRIPT_DEFAULT?=	agpl
 IMAGEMAGICK_DEFAULT?=	7
 # Possible values: 7, 8, 11, 12, 13, 14, 15, 16
 JAVA_DEFAULT?=		8
-# Possible values: 2.0.10
-LAZARUS_DEFAULT?=	2.0.10
+# Possible values: 2.0.12, 2.3.0
+.if !defined(WANT_LAZARUS_DEVEL)
+LAZARUS_DEFAULT?=       2.0.12
+.else
+LAZARUS_DEFAULT?=       2.3.0
+.endif
 # Possible values: rust, legacy
 .if empty(ARCH:Naarch64:Narmv6:Narmv7:Namd64:Ni386:Npowerpc64:Npowerpc64le:Npowerpc)
 LIBRSVG2_DEFAULT?=	rust
@@ -70,7 +74,7 @@ LIBRSVG2_DEFAULT?=	legacy
 .endif
 # Possible values: c7
 LINUX_DEFAULT?=		c7
-# Possible values: 70, 80, 90, 10, 11, -devel (to be used when non-base compiler is required)
+# Possible values: 70, 80, 90, 10, 11, 12, 13, -devel (to be used when non-base compiler is required)
 # Please give notice to the Graphics Team (x11@FreeBSD.org) in advance before
 # bumping the LLVM version.
 .if ${ARCH} == powerpc

@@ -30,9 +30,6 @@ USES=		blaslapack compiler:c++11-lang cmake fortran gl jpeg tar:tgz \
 USE_GL=		gl glu
 USE_XORG=	x11 xcursor xext xinerama xfixes xft xrender
 
-CFLAGS+=	-fPIC
-CXXFLAGS+=	-fPIC
-
 CMAKE_ARGS=	-DCMAKE_SKIP_RPATH:BOOL=YES
 
 OPTIONS_DEFINE=	CGNS DOCS MED OCC SHARED STATIC

@@ -4,8 +4,8 @@ PORTNAME=	cfengine-masterfiles
 PORTVERSION=	3.${CFENGINE_COMMIT_DATE}
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
-HASH=		591120a3
-CFENGINE_COMMIT_DATE=	2021.07.20
+HASH=		d4986771
+CFENGINE_COMMIT_DATE=	2021.08.30
 
 MAINTAINER=	cy@FreeBSD.org
 #		gjb@FreeBSD.org is also committer for this port
@@ -19,6 +19,7 @@ GH_ACCOUNT=	cfengine
 GH_PROJECT=     masterfiles
 GH_TAGNAME=     ${HASH}
 CPE_VENDOR=	gnu
+CPE_PRODUCT=	cfengine
 
 CONFLICTS=	cfengine-masterfiles3[0-9]-* cfengine-masterfiles31[02-9]-* \
 		cfengine-masterfiles-3.*

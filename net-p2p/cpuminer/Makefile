@@ -18,8 +18,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 OPTIONS_DEFINE=	GCC DOCS
 OPTIONS_DEFAULT=GCC
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf cpe
 GNU_CONFIGURE=	yes
 CPE_VENDOR=	cpuminer_project

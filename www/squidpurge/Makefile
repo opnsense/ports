@@ -17,8 +17,6 @@ LICENSE=	MIT
 USES=		gmake
 WRKSRC=		${WRKDIR}/purge
 
-USE_HARDENING=	pie:off
-
 PLIST_FILES=	sbin/purge
 
 post-patch:

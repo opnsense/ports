@@ -13,8 +13,6 @@ COMMENT=	Packet sniffer that displays TCP information like top(1)
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		ncurses
 GNU_CONFIGURE=	yes
 

@@ -13,8 +13,6 @@ COMMENT=	Client for polish IM service called Tlen.pl
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off
-
 LIB_DEPENDS=	libtlen.so:polish/libtlen
 
 USES=		gnome localbase:ldflags pkgconfig xorg

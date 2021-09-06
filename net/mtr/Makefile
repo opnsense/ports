@@ -12,8 +12,6 @@ COMMENT=	Traceroute and ping in a single network diagnostic tool
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 USES=		autoreconf ncurses pkgconfig
 
 GNU_CONFIGURE=	yes

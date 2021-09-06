@@ -23,8 +23,6 @@ RUN_DEPENDS=	bash:shells/bash
 
 CONFLICTS_INSTALL=	hadoop2-2*
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		cpe libtool ssl:build
 CPE_VENDOR=	apache
 USE_JAVA=	yes

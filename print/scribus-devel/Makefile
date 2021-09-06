@@ -2,7 +2,7 @@
 
 PORTNAME=	scribus
 PORTVERSION=	1.5.7
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	print editors
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}${PKGNAMESUFFIX}/${PORTVERSION}/ \
 		http://www.scribus.net/downloads/${PORTVERSION}/
@@ -37,8 +37,6 @@ LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
 		libicuuc.so:devel/icu \
 		libqxp-0.0.so:textproc/libqxp \
 		libzmf-0.0.so:graphics/libzmf
-
-USE_HARDENING=	stackautoinit:off
 
 USES=		cmake compiler:gcc-c++11-lib desktop-file-utils dos2unix gnome \
 		jpeg pkgconfig python:3.6+ qt:5 shared-mime-info tar:xz

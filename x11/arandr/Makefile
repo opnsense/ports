@@ -22,8 +22,6 @@ USE_PYTHON=	distutils noflavors py3kplist
 
 NO_ARCH=	yes
 
-USE_HARDENING=	safestack
-
 PORTDOCS=	ChangeLog NEWS README TODO
 
 OPTIONS_DEFINE=	DOCS

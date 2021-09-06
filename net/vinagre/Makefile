@@ -29,8 +29,6 @@ RUN_DEPENDS=	gnome-icon-theme>=0:misc/gnome-icon-theme
 
 PORTSCOUT=	limitw:1,even
 
-USE_HARDENING=	safestack
-
 USES=		autoreconf desktop-file-utils gettext gmake gnome localbase \
 		pathfix pkgconfig shared-mime-info tar:xz xorg
 USE_GNOME=	cairo gtk30 intlhack libxml2 vte3

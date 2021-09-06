@@ -10,8 +10,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libgtextutils.so:biology/libgtextutils
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf libtool perl5 pkgconfig shebangfix
 USE_PERL5=	run
 SHEBANG_FILES=	scripts/*.pl

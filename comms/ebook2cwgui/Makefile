@@ -16,8 +16,6 @@ RUN_DEPENDS=	ebook2cw:comms/ebook2cw
 USES=		compiler:c++11-lang
 USE_WX=		2.8
 
-USE_HARDENING=	pie:off
-
 PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS

@@ -20,8 +20,6 @@ USE_QT=		qmake_build buildtools_build gui network svg widgets x11extras
 QMAKE_SOURCE_PATH=${WRKSRC}/src
 QMAKE_ARGS=	lupdate="${LUPDATE}" lrelease="${LRELEASE}"
 
-USE_HARDENING=	safestack
-
 OPTIONS_DEFINE=	DOCS NLS NOTO
 OPTIONS_SUB=	yes
 

@@ -10,8 +10,6 @@ COMMENT=	GUI tool for creating and editing .torrent files
 
 LICENSE=	GPLv3+
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake compiler:c++11-lang desktop-file-utils qt:5
 USE_GITHUB=	yes
 USE_QT=		buildtools_build linguisttools_build qmake_build \

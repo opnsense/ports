@@ -9,7 +9,6 @@ lib/libmilou.so.%%KDE_PLASMA_VERSION%%
 %%QT_QMLDIR%%/org/kde/milou/libmilouqmlplugin.so
 %%QT_QMLDIR%%/org/kde/milou/qmldir
 share/kservices5/miloutextpreview.desktop
-share/kservices5/plasma-applet-org.kde.milou.desktop
 share/kservicetypes5/miloupreviewplugin.desktop
 share/locale/ast/LC_MESSAGES/milou.mo
 share/locale/ast/LC_MESSAGES/plasma_applet_org.kde.milou.mo
@@ -41,6 +40,8 @@ share/locale/gl/LC_MESSAGES/milou.mo
 share/locale/gl/LC_MESSAGES/plasma_applet_org.kde.milou.mo
 share/locale/he/LC_MESSAGES/milou.mo
 share/locale/he/LC_MESSAGES/plasma_applet_org.kde.milou.mo
+share/locale/hi/LC_MESSAGES/milou.mo
+share/locale/hi/LC_MESSAGES/plasma_applet_org.kde.milou.mo
 share/locale/hu/LC_MESSAGES/milou.mo
 share/locale/hu/LC_MESSAGES/plasma_applet_org.kde.milou.mo
 share/locale/ia/LC_MESSAGES/milou.mo

@@ -1,7 +1,8 @@
 # Created by: Allan Jude <allanjude@freebsd.org>
 
 PORTNAME=	gdnsd
-PORTVERSION=	3.5.1
+PORTVERSION=	3.7.0
+PORTREVISION=	1
 CATEGORIES=	dns
 MASTER_SITES=	https://github.com/gdnsd/gdnsd/releases/download/v${PORTVERSION}/ \
 		ZI \
@@ -22,7 +23,7 @@ FETCH_ARGS=	-Fpr
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var --with-buildinfo=${PORTVERSION}
 USE_LDCONFIG=	yes
-USES=		pkgconfig libtool tar:xz perl5 gmake
+USES=		cpe pkgconfig libtool tar:xz perl5 gmake
 USE_PERL5=	build
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

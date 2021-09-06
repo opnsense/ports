@@ -1,5 +1,5 @@
 PORTNAME=	gnupg
-PORTVERSION=	2.3.1
+PORTVERSION=	2.3.2
 CATEGORIES=	security
 MASTER_SITES=	GNUPG
 
@@ -17,9 +17,6 @@ LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libksba.so:security/libksba \
 		libnpth.so:devel/npth
 RUN_DEPENDS=	pinentry:security/pinentry
-
-USE_HARDENING=	cfi safestack
-CPPFLAGS=	-fPIC
 
 USES=		compiler:c11 cpe gmake iconv makeinfo pkgconfig readline sqlite tar:bzip2
 

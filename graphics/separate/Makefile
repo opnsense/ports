@@ -18,8 +18,6 @@ BUILD_DEPENDS=	gccmakedep:devel/gccmakedep
 LIB_DEPENDS=	liblcms.so.1:graphics/lcms \
 		libgimp-2.0.so:graphics/gimp-app
 
-USE_HARDENING=	safestack
-
 USES=		compiler:c++11-lang gettext-tools gmake pkgconfig zip
 
 BIN_TARGETS=	separate separate_import icc_colorspace

@@ -1,6 +1,6 @@
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
-DISTVERSION=	4.2.14
+DISTVERSION=	4.2.15
 CATEGORIES=	databases net
 MASTER_SITES=	https://fastdl.mongodb.org/src/ \
 		http://fastdl.mongodb.org/src/
@@ -10,8 +10,7 @@ DISTNAME=	mongodb-src-${DISTVERSIONPREFIX}${DISTVERSION}
 MAINTAINER=	ronald-lists@klop.ws
 COMMENT=	Distributed document-oriented "NoSQL" database (4.2.x Branch)
 
-# mongodb is SSPLv1, C++ driver is APACHE20
-LICENSE=	SSPLv1 APACHE20
+LICENSE=	SSPLv1 APACHE20 # mongodb is SSPLv1, C++ driver is APACHE20
 LICENSE_COMB=	multi
 LICENSE_NAME_SSPLv1=	Server Side Public License
 LICENSE_FILE_SSPLv1=	${WRKSRC}/LICENSE-Community.txt
@@ -29,7 +28,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libcurl.so:ftp/curl \
 		libsnappy.so:archivers/snappy
 
-USES=		compiler:c++17-lang cpe python:3.5+,build scons
+USES=		compiler:c++17-lang cpe python:3.5+,build scons shebangfix
 USE_RC_SUBR=	mongod
 
 CONFLICTS_BUILD=	mongo-cxx-driver
@@ -37,7 +36,11 @@ CONFLICTS_INSTALL=	mongodb36 mongodb4[04]
 
 OPTIONS_DEFINE=	LTO SASL SSL
 OPTIONS_DEFAULT=LTO SASL SSL
+OPTIONS_EXCLUDE_aarch64=        ${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
+OPTIONS_EXCLUDE_aarch64_14=     LTO # Does not work with llvm12 on aarch64.
 
+SHEBANG_FILES=	src/mongo/installer/compass/install_compass
+python_OLD_CMD=	@python_interpreter@
 MAKE_ARGS=	--prefix=${STAGEDIR}${PREFIX} \
 		--use-system-zlib \
 		--use-system-pcre \

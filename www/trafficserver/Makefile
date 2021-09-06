@@ -10,8 +10,6 @@ COMMENT=	Fast, scalable and extensible HTTP proxy server
 
 LICENSE=	APACHE20
 
-USE_HARDENING=	pie:off
-
 ONLY_FOR_ARCHS=	amd64 powerpc64 powerpc64le
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \

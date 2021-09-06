@@ -15,8 +15,6 @@ LICENSE=	MIT
 USES=		tar:tgz xorg
 USE_XORG=	x11 xt
 
-USE_HARDENING=	cfi safestack
-
 PLIST_FILES=	bin/drawterm
 PORTDOCS=	LICENSE README
 WRKSRC=		${WRKDIR}/${PORTNAME}

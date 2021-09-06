@@ -1,6 +1,6 @@
 PORTNAME=	libpoly
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.9
+DISTVERSION=	0.1.10
 CATEGORIES=	math
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,8 +10,6 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
 LIB_DEPENDS=	libgmp.so:math/gmp
-
-USE_HARDENING=	stackautoinit:off
 
 USES=		cmake
 USE_GITHUB=	yes

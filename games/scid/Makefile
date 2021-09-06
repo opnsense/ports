@@ -12,8 +12,6 @@ COMMENT=	Free chess database application
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		compiler:c++11-lang gmake python shebangfix tk zip
 SHEBANG_FILES=	scripts/eco2pgn.py scripts/pgnfix.py scripts/twic2scid.py \
 		tcl/lang/checklangs.tcl tcl/lang/propagatelang.tcl \

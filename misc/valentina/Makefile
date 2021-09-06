@@ -1,12 +1,11 @@
 PORTNAME=	valentina
-DISTVERSION=	0.7.47
-PORTREVISION=	1
+DISTVERSION=	0.7.49
 CATEGORIES=	misc
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Sewing pattern drafting tool aiming to remake the garment industry
 
-LICENSE=	GPLv3
+LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE_GPL.txt
 
 USES=		compiler:c++11-lang desktop-file-utils dos2unix gl gmake qmake qt:5
@@ -17,7 +16,7 @@ USE_LDCONFIG=	yes
 
 USE_GITLAB=	yes
 GL_ACCOUNT=	smart-pattern
-GL_COMMIT=	1ea8e1baaae9b06a4d290ddb654c076bb762ceac
+GL_COMMIT=	5b7e98bf48a86e3c444423a9f03533440a39aad9
 
 DOS2UNIX_FILES=	src/libs/vgeometry/vellipticalarc.cpp
 

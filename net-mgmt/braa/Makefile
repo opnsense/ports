@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 
-USE_HARDENING=	pie:off
-
 USES=		gmake
 
 LDFLAGS+=	-lcompat

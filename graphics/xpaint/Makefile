@@ -20,8 +20,6 @@ LIB_DEPENDS=	libpng.so:graphics/png \
 RUN_DEPENDS=	psselect:print/psutils \
 		bash:shells/bash
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 USES=		ghostscript:run jpeg libtool:build pkgconfig shebangfix \
 		tar:bzip2 xorg

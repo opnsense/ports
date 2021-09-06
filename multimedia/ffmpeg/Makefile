@@ -2,7 +2,7 @@
 
 PORTNAME=	ffmpeg
 PORTVERSION=	4.4
-PORTREVISION=	2
+PORTREVISION=	3
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio net
 MASTER_SITES=	https://ffmpeg.org/releases/
@@ -21,8 +21,6 @@ BUILD_DEPENDS_armv7=	as:devel/binutils
 BUILD_DEPENDS_i386=	nasm:devel/nasm
 BUILD_DEPENDS_powerpc64=as:devel/binutils
 BUILD_DEPENDS_powerpc=	as:devel/binutils
-
-USE_HARDENING=	relro:off
 
 HAS_CONFIGURE=	yes
 CONFIGURE_LOG=	ffbuild/config.log
@@ -51,6 +49,9 @@ OPTIONS_DEFINE=	ALSA AMR_NB AMR_WB AOM ARIBB24 ASM ASS BS2B CACA CDIO CELT \
 OPTIONS_DEFAULT=	AOM ASM ASS DAV1D DRM FONTCONFIG FREETYPE FREI0R GMP \
 			GNUTLS ICONV LAME LIBXML2 OPTIMIZED_CFLAGS OPUS RTCPU \
 			THEORA V4L VAAPI VDPAU VORBIS VPX X264 X265 XCB XVID
+
+# i386 is too register-starved for LTO (PR257124)
+OPTIONS_EXCLUDE_i386=	LTO
 
 .if !exists(${.CURDIR:H:H}/multimedia/aribb24)
 # https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/100bfac6d6ec

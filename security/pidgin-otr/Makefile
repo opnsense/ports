@@ -25,8 +25,6 @@ USE_GNOME=	gtk20 intltool
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 
-USE_HARDENING=	safestack
-
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 CONFIGURE_ARGS=	--with-libotr-prefix=${LOCALBASE}/lib \

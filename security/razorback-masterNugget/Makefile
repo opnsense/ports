@@ -33,6 +33,4 @@ ASSERT_DESC=	Enable Asserts
 ASSERT_CONFIGURE_ENABLE=	assert
 DEBUG_CONFIGURE_ENABLE=	debug
 
-USE_HARDENING=	pie:off
-
 .include <bsd.port.mk>

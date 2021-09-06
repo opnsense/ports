@@ -9,8 +9,6 @@ COMMENT=	Rescue still-readable data from a damaged harddisk
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/../COPYING
 
-LDFLAGS+=	-fPIE
-
 WRKSRC_SUBDIR=	src
 
 PLIST_FILES=	bin/myrescue \

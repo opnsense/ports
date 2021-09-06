@@ -20,8 +20,6 @@ USE_WX=		2.8
 WX_CONF_ARGS=	absolute
 LDFLAGS+=	-lpthread
 
-USE_HARDENING=	safestack
-
 OPTIONS_DEFINE=	NLS
 OPTIONS_SUB=	yes
 NLS_USES=	gettext

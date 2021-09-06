@@ -16,8 +16,6 @@ LIB_DEPENDS=	liblilv-0.so:audio/lilv \
 		libsord-0.so:devel/sord \
 		libsratom-0.so:audio/sratom
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		gmake pkgconfig tar:bz2
 GNU_CONFIGURE=	yes
 

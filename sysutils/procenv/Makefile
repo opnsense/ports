@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	xmlwf:textproc/expat2
 LIB_DEPENDS=	libsysinfo.so:devel/libsysinfo
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf localbase perl5
 
 USE_GITHUB=	yes

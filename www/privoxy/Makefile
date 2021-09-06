@@ -18,8 +18,6 @@ USE_RC_SUBR=	privoxy
 SHEBANG_FILES=	tools/privoxy-log-parser.pl tools/privoxy-regression-test.pl \
 		tools/uagen.pl tools/url-pattern-translator.pl
 
-USE_HARDENING=	safestack
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-extended-statistics --enable-pcre-host-patterns
 

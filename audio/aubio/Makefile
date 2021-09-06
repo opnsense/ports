@@ -2,7 +2,7 @@
 
 PORTNAME=	aubio
 PORTVERSION=	0.4.9
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES?=	audio
 MASTER_SITES=	https://aubio.org/pub/
 
@@ -12,7 +12,7 @@ COMMENT?=	Library for audio labelling
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES+=		pkgconfig tar:bzip2
+USES+=		cpe pkgconfig tar:bzip2
 
 BINARY_ALIAS=	python=${PYTHON_CMD}
 

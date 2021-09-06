@@ -12,8 +12,6 @@ COMMENT=	Liboping, a C library, and utility to generate ICMP echo requests
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		libtool ncurses perl5 shebangfix
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

@@ -11,8 +11,6 @@ COMMENT=	Commodore Amiga emulator
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off relro:off
-
 CONFLICTS=	e-uae-[0-9]*
 
 USES=		gmake gnome pkgconfig tar:bzip2

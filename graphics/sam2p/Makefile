@@ -17,8 +17,6 @@ BUILD_DEPENDS=	bash:shells/bash
 RUN_DEPENDS=	zip:archivers/zip \
 		tif22pnm:graphics/tif22pnm
 
-USE_HARDENING=	pie:off relro:off
-
 #USE_GITHUB=	yes
 GH_ACCOUNT=	pts
 

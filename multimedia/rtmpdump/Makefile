@@ -6,8 +6,6 @@ MASTER_SITES=	https://git.ffmpeg.org/gitweb/rtmpdump.git/snapshot/c5f04a58fc2aee
 MAINTAINER=	hrs@FreeBSD.org
 COMMENT=	RTMP streams download utility
 
-USE_HARDENING=	safestack
-
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 

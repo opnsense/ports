@@ -24,9 +24,8 @@ Obtained from:	https://chromium-review.googlesource.com/c/chromiumos/third_party
  openssl_time_callback (const SSL* ssl, int where, int ret)
  {
    if (where == SSL_CB_CONNECT_LOOP &&
--      (ssl->state == SSL3_ST_CR_SRVR_HELLO_A || ssl->state == SSL3_ST_CR_SRVR_HELLO_B))
-+#if OPENSSL_VERSION_NUMBER < 0x10100000L || defined(LIBRESSL_VERSION_NUMBER)
-+      (SSL_get_state(ssl) == SSL3_ST_CR_SRVR_HELLO_A || SSL_get_state(ssl) == SSL3_ST_CR_SRVR_HELLO_B))
++#if OPENSSL_VERSION_NUMBER < 0x10100000L
+       (ssl->state == SSL3_ST_CR_SRVR_HELLO_A || ssl->state == SSL3_ST_CR_SRVR_HELLO_B))
 +#else
 +      (SSL_get_state(ssl) == TLS_ST_CR_SRVR_HELLO))
 +#endif

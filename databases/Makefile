@@ -99,6 +99,7 @@
     SUBDIR += gdbm
     SUBDIR += geoserver-mysql-plugin
     SUBDIR += gigabase
+    SUBDIR += gmdb2
     SUBDIR += gnats4
     SUBDIR += gnatsweb4
     SUBDIR += go-carbon
@@ -192,6 +193,7 @@
     SUBDIR += mdbx
     SUBDIR += mdcached
     SUBDIR += memcached
+    SUBDIR += metabase
     SUBDIR += mongodb-tools
     SUBDIR += mongodb36
     SUBDIR += mongodb36-tools
@@ -200,7 +202,6 @@
     SUBDIR += mongodb42
     SUBDIR += mongodb42-tools
     SUBDIR += mongodb44
-    SUBDIR += mongodb49
     SUBDIR += mongodb50
     SUBDIR += mroonga
     SUBDIR += mtop
@@ -852,8 +853,10 @@
     SUBDIR += redis
     SUBDIR += redis-devel
     SUBDIR += redis5
+    SUBDIR += redis6
     SUBDIR += redis_exporter
     SUBDIR += redisdesktopmanager
+    SUBDIR += redisjson
     SUBDIR += retcl
     SUBDIR += rocksdb
     SUBDIR += rocksdb-lite
@@ -972,7 +975,6 @@
     SUBDIR += rubygem-redis-actionpack-rails61
     SUBDIR += rubygem-redis-namespace
     SUBDIR += rubygem-redis-namespace16
-    SUBDIR += rubygem-redis-namespace17
     SUBDIR += rubygem-sdbm
     SUBDIR += rubygem-seed-fu
     SUBDIR += rubygem-sqlite3

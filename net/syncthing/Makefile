@@ -1,5 +1,5 @@
 PORTNAME=	syncthing
-PORTVERSION=	1.18.0
+PORTVERSION=	1.18.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 MASTER_SITES=	https://github.com/syncthing/syncthing/releases/download/v${PORTVERSION}/
@@ -12,7 +12,7 @@ COMMENT=	Encrypted file sync tool
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/${PORTNAME}/LICENSE
 
-USES=		go
+USES=		cpe go
 
 USE_RC_SUBR=	syncthing syncthing-discosrv syncthing-relaysrv syncthing-relaypoolsrv
 

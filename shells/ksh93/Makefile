@@ -24,8 +24,6 @@ COMMENT=	AT&T KornShell 93
 
 LICENSE=	EPL
 
-USE_HARDENING=	pie:off relro:off
-
 BROKEN_aarch64=	Fails to compile: needs sbrk
 BROKEN_riscv64=	Fails to compile: needs sbrk
 

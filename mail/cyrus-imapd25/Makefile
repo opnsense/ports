@@ -11,8 +11,6 @@ COMMENT=	Cyrus mail server, supporting POP3 and IMAP4 protocols
 LICENSE=	BSD4CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off
-
 BROKEN_armv6=		fails to build: ./tools/config2header: Error code 1
 BROKEN_armv7=		fails to build: ./tools/config2header: Error code 1
 BROKEN_riscv64=		fails to build: lib/imapopts.c: Error 1

@@ -10,7 +10,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
 DIST_SUBDIR=	TeX
 EXTRACT_ONLY=	texlive-${DISTVERSION_TEXLIVE_SOURCE}-source${EXTRACT_SUFX}
 
-MAINTAINER=	freebsd-tex@FreeBSD.org
+MAINTAINER=	tex@FreeBSD.org
 COMMENT=	TeX System with Unicode and Modern Font Technologies
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
@@ -20,8 +20,6 @@ LIB_DEPENDS=	libfreetype.so:print/freetype2 \
 		libharfbuzz-icu.so:print/harfbuzz-icu \
 		libpng.so:graphics/png \
 		libTECkit.so:textproc/teckit
-
-USE_HARDENING=	pie:off
 
 USES=		compiler:c++11-lib gnome pkgconfig tar:xz xorg
 USE_CXXSTD=	gnu++11

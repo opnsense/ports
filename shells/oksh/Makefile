@@ -9,8 +9,6 @@ COMMENT=	Portable OpenBSD Korn shell
 
 LICENSE=	PD
 
-USE_HARDENING=	cfi safestack
-
 HAS_CONFIGURE=	yes
 
 OPTIONS_DEFINE=		CURSES STATIC

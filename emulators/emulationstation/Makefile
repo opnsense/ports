@@ -23,8 +23,6 @@ LIB_DEPENDS=	libboost_date_time.so:devel/boost-libs \
 		libpugixml.so:textproc/pugixml \
 		libvlc.so:multimedia/vlc
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake compiler:gcc-c++11-lib gl pkgconfig sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	RetroPie

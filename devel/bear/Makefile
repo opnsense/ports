@@ -1,8 +1,7 @@
 # Created by: Jov <amutu@amutu.com>
 
 PORTNAME=	bear
-DISTVERSION=	3.0.13
-PORTREVISION=	2
+DISTVERSION=	3.0.14
 CATEGORIES=	devel
 
 MAINTAINER=	jrm@FreeBSD.org
@@ -30,6 +29,13 @@ CMAKE_ARGS=	-DCMAKE_INSTALL_DOCDIR=${DOCSDIR} \
 		-DENABLE_UNIT_TESTS=OFF
 
 OPTIONS_DEFINE=	DOCS
+
+.include <bsd.port.options.mk>
+
+# Patch 11.x, which requires #define _WITH_DPRINTF
+.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1200000
+EXTRA_PATCHES=	${PATCHDIR}/extra-patch-source_intercept_source_report_libexec_Logger.cc
+.endif
 
 pre-install:
 	${MV} ${STAGEDIR}/${CONFIGURE_WRKSRC}/stage ${CONFIGURE_WRKSRC}/

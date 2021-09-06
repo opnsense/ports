@@ -14,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 PLIST_FILES=	bin/mp3guessenc
 SRC=		decode.c mp3guessenc.c bit_utils.c tags.c
 
-USE_HARDENING=	pie:off relro:off
-
 do-build:
 .for f in ${SRC}
 	${CC} ${CFLAGS} ${WRKSRC}/${f} -c -o ${WRKSRC}/${f:C/\.c/.o/}

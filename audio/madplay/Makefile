@@ -18,8 +18,6 @@ LIB_DEPENDS=	libmad.so:audio/libmad \
 
 USES=		localbase
 
-USE_HARDENING=	pie:off
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-esd
 LDFLAGS+=	-lz

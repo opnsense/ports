@@ -41,12 +41,6 @@ UDEV_CONFIGURE_ENABLE=	config-udev
 UDEV_CONFIGURE_ON=	--disable-config-udev-kms
 UDEV_LIB_DEPENDS=	libudev.so:devel/libudev-devd
 
-# HardenedBSD note:
-# Due to how xorg handles loadable modules, it cannot be compiled
-# with RELRO + BIND_NOW.
-USE_HARDENING=	relro:off cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 .include <bsd.port.options.mk>
 
 FONTPATH_ROOT?=	${LOCALBASE}/share/fonts
@@ -73,6 +67,7 @@ CONFIGURE_ARGS+=--without-doxygen --without-xmlto --without-fop \
 		--with-fallback-input-driver=libinput
 INSTALL_TARGET=	install-strip
 CPE_VENDOR=	x.org
+CPE_PRODUCT=	xorg-server
 
 .if ${SLAVE_PORT} == "no" || ${PORTNAME} == "xephyr" || ${PORTNAME} == "xwayland"
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm \

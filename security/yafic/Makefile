@@ -11,9 +11,7 @@ COMMENT=	Yet Another File Integrity Checker, similar to Tripwire
 
 GNU_CONFIGURE=	yes
 USES=		gmake
-#LDFLAGS+=	-static
-
-USE_HARDENING=	safestack
+LDFLAGS+=	-static
 
 OPTIONS_DEFINE=	CRYPTO
 OPTIONS_DEFAULT=	CRYPTO

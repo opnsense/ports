@@ -12,8 +12,6 @@ COMMENT=	Display PDF files and convert them to other formats
 
 LICENSE=	GPLv2
 
-USE_HARDENING=  safestack
-
 CONFLICTS_INSTALL=	xpdf
 .if !defined(MASTERDIR)
 CONFLICTS_INSTALL+=	xpdf3-* xpdf-*

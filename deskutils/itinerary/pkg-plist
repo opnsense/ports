@@ -3,7 +3,7 @@ lib/libSolidExtras.so
 %%QT_QMLDIR%%/org/kde/solidextras/libsolidextrasqmlplugin.so
 %%QT_QMLDIR%%/org/kde/solidextras/qmldir
 share/applications/org.kde.itinerary.desktop
-share/icons/hicolor/48x48/apps/itinerary.svg
+share/icons/hicolor/scalable/apps/org.kde.itinerary.svg
 share/knotifications5/itinerary.notifyrc
 share/locale/ca/LC_MESSAGES/kde-itinerary.mo
 share/locale/ca@valencia/LC_MESSAGES/kde-itinerary.mo
@@ -29,6 +29,7 @@ share/locale/ru/LC_MESSAGES/kde-itinerary.mo
 share/locale/sk/LC_MESSAGES/kde-itinerary.mo
 share/locale/sl/LC_MESSAGES/kde-itinerary.mo
 share/locale/sv/LC_MESSAGES/kde-itinerary.mo
+share/locale/tr/LC_MESSAGES/kde-itinerary.mo
 share/locale/uk/LC_MESSAGES/kde-itinerary.mo
 share/locale/zh_CN/LC_MESSAGES/kde-itinerary.mo
 share/locale/zh_TW/LC_MESSAGES/kde-itinerary.mo

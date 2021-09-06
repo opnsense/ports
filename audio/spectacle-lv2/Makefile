@@ -2,7 +2,7 @@ PORTNAME=	spectacle
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.0-1
 DISTVERSIONSUFFIX=	-g27b1525
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 PKGNAMESUFFIX=	-lv2
 
@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	lv2>0:audio/lv2 \
 		bash:shells/bash \
 		${LOCALBASE}/include/fftw3.h:math/fftw3 \
-		xxd:editors/vim-console
+		xxd:editors/vim
 LIB_DEPENDS=	libfftw3f.so:math/fftw3-float
 
 USES=		compiler:c++0x gl gmake gnome pkgconfig shebangfix xorg

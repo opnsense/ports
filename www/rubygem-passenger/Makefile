@@ -1,7 +1,7 @@
 # Created by: Jacob Atzen <jatzen@gmail.com>
 
 PORTNAME=	passenger
-PORTVERSION=	6.0.8
+PORTVERSION=	6.0.10
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -12,8 +12,6 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	rake:devel/rubygem-rake
-
-USE_HARDENING=	pie:off relro:off
 
 CPE_VENDOR=	phusion
 CPE_PRODUCT=	passenger

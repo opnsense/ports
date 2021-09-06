@@ -114,8 +114,14 @@
     SUBDIR += fslsfonts
     SUBDIR += gbdfed
     SUBDIR += geminifonts
+    SUBDIR += genryu
+    SUBDIR += genseki
+    SUBDIR += gensen
     SUBDIR += gentium-basic
     SUBDIR += gentium-plus
+    SUBDIR += genwan
+    SUBDIR += genyo
+    SUBDIR += genyog
     SUBDIR += gnu-unifont
     SUBDIR += gnu-unifont-ttf
     SUBDIR += gofont-ttf
@@ -214,6 +220,7 @@
     SUBDIR += py-fontmake
     SUBDIR += py-glyphsLib
     SUBDIR += py-opentype-sanitizer
+    SUBDIR += py-opentypespec
     SUBDIR += py-ufo2ft
     SUBDIR += py-ufoLib
     SUBDIR += py-ufolint

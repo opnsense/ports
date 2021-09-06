@@ -23,8 +23,6 @@ LIB_DEPENDS+=	libgcrypt.so:security/libgcrypt
 
 RUN_DEPENDS+=	${LOCALBASE}/GNUstep/System/Library/Makefiles/GNUstep.sh:devel/gnustep-make
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		pkgconfig iconv gnustep
 USE_GNUSTEP=	build
 USE_LDCONFIG=	${GNUSTEP_SYSTEM_LIBRARIES}

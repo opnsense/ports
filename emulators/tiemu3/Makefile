@@ -13,8 +13,6 @@ COMMENT=	TI89(ti)/92(+)/V200 hand-helds emulator
 
 LICENSE=	GPLv2
 
-USE_HARDENING=	pie:off
-
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
 		libticables2.so:comms/libticables2 \

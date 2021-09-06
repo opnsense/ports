@@ -19,8 +19,6 @@ PATCH_STRIP=	-p1
 
 TEST_DEPENDS=	bash:shells/bash
 
-USE_HARDENING=	safestack
-
 USES=		cpe charsetfix gmake tar:xz
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--program-prefix=g

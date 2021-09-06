@@ -1,6 +1,6 @@
 PORTNAME=	obs-studio
 DISTVERSION=	27.0.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	multimedia
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -48,9 +48,6 @@ USE_GNOME=	glib20
 USE_GL=		gl
 USE_XORG=	ice sm x11 xcb xcomposite xext xfixes xinerama xrandr
 USE_LDCONFIG=	yes
-
-MPROTECT_DISABLE=	bin/obs
-PAGEEXEC_DISABLE=	bin/obs
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	obsproject

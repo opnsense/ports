@@ -19,8 +19,6 @@ BUILD_DEPENDS=	libowfat>=0.31:devel/libowfat
 USES=		compiler:c++11-lang gmake ssl tar:xz
 USE_RC_SUBR=	gatling
 
-USE_HARDENING=	pie:off
-
 CFLAGS+=	-I${LOCALBASE}/include/libowfat -I${OPENSSLINC} -I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib -L${OPENSSLLIB}
 

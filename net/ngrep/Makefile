@@ -12,8 +12,6 @@ COMMENT=	Network grep
 LICENSE=	BSD4CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-USE_HARDENING=	safestack
-
 USES=		gmake tar:bzip2
 
 GNU_CONFIGURE=	yes

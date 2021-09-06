@@ -22,8 +22,6 @@ USE_LDCONFIG=	yes
 CPPFLAGS+=	-I${OPENSSLINC}
 LDFLAGS+=	-L${OPENSSLLIB}
 
-USE_HARDENING=	pie:off
-
 CONFIGURE_ARGS+=--enable-audio \
 		--enable-ipv6 \
 		--enable-exceptions \

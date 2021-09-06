@@ -1,7 +1,5 @@
 # Created by: Gerald Pfeifer <gerald@FreeBSD.org>
 
-BINARY_ALIAS= objdump=/usr/local/bin/objdump
-
 PORTNAME=	gcc
 PORTVERSION=	9.4.0
 CATEGORIES=	lang
@@ -13,10 +11,6 @@ COMMENT=	GNU Compiler Collection 9
 
 LICENSE=	GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
-
-USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
-
-NO_UNUSED_ARGUMENTS_CHECK=	yes
 
 ONLY_FOR_ARCHS=	aarch64 amd64 arm armv6 armv7 i386 powerpc powerpc64 sparc64
 
@@ -48,7 +42,9 @@ BOOTSTRAP_DESC=		Build using a full bootstrap
 
 .if exists(/usr/lib32/libc.so)
 OPTIONS_DEFINE_amd64+=		MULTILIB
+OPTIONS_DEFAULT_amd64+=	MULTILIB
 OPTIONS_DEFINE_powerpc64+=	MULTILIB
+OPTIONS_DEFAULT_powerpc64+=	MULTILIB
 MULTILIB_DESC=		Build support for 32-bit and 64-bit targets
 MULTILIB_CONFIGURE_ENABLE=	multilib
 .else

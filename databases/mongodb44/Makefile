@@ -1,6 +1,6 @@
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
-DISTVERSION=	4.4.6
+DISTVERSION=	4.4.8
 CATEGORIES=	databases net
 MASTER_SITES=	https://fastdl.mongodb.org/src/ \
 		http://fastdl.mongodb.org/src/
@@ -10,8 +10,7 @@ DISTNAME=	mongodb-src-${DISTVERSIONPREFIX}${DISTVERSION}
 MAINTAINER=	ronald-lists@klop.ws
 COMMENT=	Distributed document-oriented "NoSQL" database (4.4.x Branch)
 
-# mongodb is SSPLv1, C++ driver is APACHE20
-LICENSE=	SSPLv1 APACHE20
+LICENSE=	SSPLv1 APACHE20 # mongodb is SSPLv1, C++ driver is APACHE20
 LICENSE_COMB=	multi
 LICENSE_NAME_SSPLv1=	Server Side Public License Version 1
 LICENSE_FILE_SSPLv1=	${WRKSRC}/LICENSE-Community.txt
@@ -28,15 +27,18 @@ LIB_DEPENDS=	libpcre.so:devel/pcre \
 		libcurl.so:ftp/curl \
 		libsnappy.so:archivers/snappy
 
-USES=		compiler:c++17-lang cpe python:3.5+,build scons shebangfix
+USES=		compiler:c++17-lang cpe python:3.5+,build scons
 USE_RC_SUBR=	mongod
+
+PORTSCOUT=     limit:^4\.4\.
 
 CONFLICTS_INSTALL=	mongodb36 mongodb4[02]
 
 OPTIONS_DEFINE=	LTO SASL SSL
 OPTIONS_DEFAULT=LTO SASL SSL
+OPTIONS_EXCLUDE_aarch64=	${OPTIONS_EXCLUDE_${ARCH}_${OSREL:R}}
+OPTIONS_EXCLUDE_aarch64_14=	LTO # Does not work with llvm12 on aarch64.
 
-python_OLD_CMD=	@python_interpreter@
 MAKE_ARGS=	--use-system-zlib \
 		--use-system-pcre \
 		--use-system-snappy \
@@ -72,8 +74,6 @@ EXTRA_PATCHES=	${FILESDIR}/${ARCH}
 .endif
 
 ALL_TARGET=	install-core
-
-PORTSCOUT=	limitw:1,even
 
 CPE_PRODUCT=	mongodb
 

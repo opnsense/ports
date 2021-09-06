@@ -13,8 +13,6 @@ LICENSE=	APACHE20
 
 LIB_DEPENDS=	libaws-c-common.so:devel/aws-c-common
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake
 
 USE_GITHUB=	yes

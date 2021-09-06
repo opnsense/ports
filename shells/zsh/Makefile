@@ -19,8 +19,6 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 MAKE_JOBS_UNSAFE=	yes
 
-USE_HARDENING=	safestack
-
 USES=		autoreconf iconv localbase:ldflags ncurses shebangfix tar:xz
 
 SHEBANG_LANG=	zsh

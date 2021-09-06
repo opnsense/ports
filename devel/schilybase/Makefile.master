@@ -1,4 +1,4 @@
-DISTVERSION=	2021-06-07
+DISTVERSION=	2021-09-01
 MASTER_SITES=	SF/schilytools
 DISTNAME=	schily-${DISTVERSION}
 
@@ -25,11 +25,11 @@ LICENSE_PERMS_BSD1CLAUSE=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 # schilybase has all the libraries
 .if ${PORTNAME} != "schilybase"
-BUILD_DEPENDS+=	schilybase=${PORTVERSION}:devel/schilybase
-RUN_DEPENDS+=	schilybase=${PORTVERSION}:devel/schilybase
+BUILD_DEPENDS+=	schilybase=${PORTVERSION}_${PORTREVISION}:devel/schilybase
+RUN_DEPENDS+=	schilybase=${PORTVERSION}_${PORTREVISION}:devel/schilybase
 .endif
 
-.if "${BOOTSTRAP_SMAKE:tl}" != "yes"
+.if "${BOOTSTRAP_SMAKE}" != "yes"
 BUILD_DEPENDS+=	smake:devel/smake
 .endif
 
@@ -48,41 +48,37 @@ MAKE_ARGS=	INS_BASE=${PREFIX} \
 		NOECHO=
 MAKE_CMD=	${"${BOOTSTRAP_SMAKE}" == "yes":?${WRKSRC}/psmake/smake:smake}
 
-PLIST_SUB+=	ARCH=${ARCH} COMPILER_TYPE=${COMPILER_TYPE}
+PLIST_SUB+=	OPSYS=${OPSYS:tl} ARCH=${ARCH} COMPILER_TYPE=${COMPILER_TYPE}
 PLIST=		${.CURDIR}/pkg-plist
-PKGMESSAGE=	${.CURDIR}/pkg-message
+PKGMESSAGE?=	${.CURDIR}/pkg-message
 DESCR=		${.CURDIR}/pkg-descr
 
 post-extract:
-	cd ${WRKSRC}/rmt && ${MV} rmt.dfl srmt.dfl
-	cd ${WRKSRC}/rmt && ${MV} default-rmt.sample default-srmt.sample
+	@cd ${WRKSRC}/rmt && ${MV} rmt.dfl srmt.dfl
+	@cd ${WRKSRC}/rmt && ${MV} default-rmt.sample default-srmt.sample
 
-.if "${BOOTSTRAP_SMAKE:tl}" == "yes"
-# build a bootstrap smake as MAKE_CMD
-pre-configure:
-	cd ${WRKSRC}/psmake && ${SETENV} ${MAKE_ENV} ${SH} ./MAKE-all
-.endif
 
 do-configure:
-	for component in ${COMPONENTS} ; \
-	do \
-		cd ${WRKSRC}/$$component && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} config ; \
-	done
+.if "${BOOTSTRAP_SMAKE}" == "yes"
+	@${ECHO_MSG} "=> building a bootstrap smake"
+	cd ${WRKSRC}/psmake && ${SETENV} ${MAKE_ENV} ${SH} ./MAKE-all
+.endif
+	@${ECHO_MSG} "=> configuring components"
+.for component in ${COMPONENTS}
+	cd ${WRKSRC}/${component} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} config
+.endfor
 
 do-build:
-	for component in ${COMPONENTS} ; \
-	do \
-		cd ${WRKSRC}/$$component && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} all ; \
-	done
+.for component in ${COMPONENTS}
+	cd ${WRKSRC}/${component} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} all
+.endfor
 
 do-install:
-	for component in ${COMPONENTS} ; \
-	do \
-		cd ${WRKSRC}/$$component && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install ; \
-	done
-	[ -z "${COMPONENTS:Mlib*}" ] || ${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.*.* 
+.for component in ${COMPONENTS}
+	cd ${WRKSRC}/${component} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install
+.endfor
+.if "${COMPONENTS:Mlib}" != ""
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/*.so.*.* 
+.endif
 
 .include <bsd.port.mk>

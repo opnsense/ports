@@ -44,9 +44,6 @@ GROUPS=		git_daemon
 
 SUB_FILES=	pkg-message gitweb.conf
 
-USE_HARDENING=	cfi safestack
-CFI_OVERRIDE=	-fno-sanitize=cfi-icall
-
 GNU_CONFIGURE=	yes
 CPPFLAGS+=	-isystem${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib

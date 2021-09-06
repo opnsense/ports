@@ -1,6 +1,6 @@
 PORTNAME=	yadifa
-DISTVERSION=	2.4.1
-DISTVERSIONSUFFIX=	-9916
+DISTVERSION=	2.5.0
+DISTVERSIONSUFFIX=	-10188
 CATEGORIES=	dns
 MASTER_SITES=	https://www.yadifa.eu/sites/default/files/releases/ \
 		https://dns.company/downloads/yadifa/
@@ -11,13 +11,20 @@ COMMENT=	Authoritative nameserver with DNSSEC capabilities
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	pie:off relro:off
-
-USES=		compiler:c11 libtool ssl
+USES=		compiler:c11 cpe libtool ssl
 USE_RC_SUBR=	${PORTNAME}d
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var
+
+SUB_LIST+=	GROUPS="${GROUPS}" \
+		USERS="${USERS}"
+
+USERS=		yadifa
+GROUPS=		yadifa
+
+PLIST_SUB=	GROUPS="${GROUPS}" \
+		USERS="${USERS}"
 
 PORTDOCS=	AUTHORS COPYING ChangeLog INSTALL NEWS README VERSION
 
@@ -41,16 +48,16 @@ ZONESIGN_DESC=		Zonesign tool
 
 CTRL_CONFIGURE_OFF=		--disable-ctrl
 DDNS_CONFIGURE_OFF=		--disable-dynupdate
+DNSSECTOOLS_CONFIGURE_OFF=	--disable-dnssec-tools
 ECDSA_CONFIGURE_OFF=		--disable-ecdsa
+KEYGEN_CONFIGURE_ENABLE=	keygen
 LARGEFILE_CONFIGURE_OFF=	--disable-largefile
 MASTER_CONFIGURE_OFF=		--disable-master
 NSID_CONFIGURE_OFF=		--disable-nsid
 RRL_CONFIGURE_OFF=		--disable-rrl
 RRSIG_CONFIGURE_OFF=		--disable-rrsig-management
 TCL_USES=			tcl
-DNSSECTOOLS_OFF=		--disable-dnssec-tools
-KEYGEN_ENABLE=			keygen
-ZONESIGN_ENABLE=		zonesign
+ZONESIGN_CONFIGURE_ENABLE=	zonesign
 
 post-configure:
 	${REINPLACE_CMD} -e 's|^docdir = .*|docdir = ${EXAMPLESDIR}|' ${WRKSRC}/etc/Makefile

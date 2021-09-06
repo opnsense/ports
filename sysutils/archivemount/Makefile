@@ -14,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 USES=		fuse gmake iconv libarchive pkgconfig
 GNU_CONFIGURE=	yes
 
-USE_HARDENING=	pie:off relro:off
-
 PLIST_FILES=	bin/archivemount \
 		man/man1/archivemount.1.gz \
 		sbin/mount_archive

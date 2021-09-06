@@ -75,7 +75,9 @@
     SUBDIR += kile
     SUBDIR += komodo-edit
     SUBDIR += lazarus
+    SUBDIR += lazarus-devel
     SUBDIR += lazarus-qt5
+    SUBDIR += lazarus-qt5-devel
     SUBDIR += le
     SUBDIR += leafpad
     SUBDIR += led
@@ -259,8 +261,6 @@
     SUBDIR += vigor
     SUBDIR += vile
     SUBDIR += vim
-    SUBDIR += vim-console
-    SUBDIR += vim-tiny
     SUBDIR += vscode
     SUBDIR += web-mode
     SUBDIR += with-editor

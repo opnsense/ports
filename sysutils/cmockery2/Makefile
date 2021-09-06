@@ -11,8 +11,6 @@ COMMENT=	Cmockery2 revival of Cmockery unit test framework from Google
 
 LICENSE=	APACHE20
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf libtool pkgconfig
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes

@@ -14,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 CONFLICTS_INSTALL=	dhcpcd-devel
 
-USE_HARDENING=	safestack
-
 USES=		compiler:c11 cpe tar:xz
 
 CPE_VENDOR=	dhcpcd_project

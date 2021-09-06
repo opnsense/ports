@@ -1,21 +1,22 @@
 # Created by: Alan Eldridge <alane@FreeBSD.org>
 
 PORTNAME=	firefox
-DISTVERSION=	90.0.1
+DISTVERSION=	92.0
+PORTREVISION=	2
 PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}/source \
-		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build1/source
+		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}-candidates/build3/source
 DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}
 
 MAINTAINER=	gecko@FreeBSD.org
 COMMENT=	Web browser based on the browser portion of Mozilla
 
-BUILD_DEPENDS=	nspr>=4.26:devel/nspr \
-		nss>=3.64:security/nss \
+BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
+		nss>=3.69:security/nss \
 		icu>=67.1,1:devel/icu \
 		libevent>=2.1.8:devel/libevent \
-		harfbuzz>=2.8.0:print/harfbuzz \
+		harfbuzz>=2.8.1:print/harfbuzz \
 		graphite2>=1.3.14:graphics/graphite2 \
 		png>=1.6.37:graphics/png \
 		libvpx>=1.8.2:multimedia/libvpx \
@@ -31,12 +32,7 @@ CONFLICTS_INSTALL=	firefox-esr
 USE_MOZILLA=	-sqlite
 CFLAGS_powerpc64le=	-DSQLITE_BYTEORDER=1234
 
-OPTIONS_DEFAULT+=	LTO
-
 USES=		tar:xz
-
-MPROTECT_DISABLE=	lib/firefox/firefox
-MPROTECT_DISABLE+=	lib/firefox/plugin-container
 
 FIREFOX_ICON=		${MOZILLA}.png
 FIREFOX_ICON_SRC=	${PREFIX}/lib/${MOZILLA}/browser/chrome/icons/default/default48.png

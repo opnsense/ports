@@ -14,8 +14,6 @@ DISTFILES=	gcc-core-4.1-20060728.tar.bz2:gcc \
 MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	C compiler for the TI89, 92, and 92+ calculators
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		bison compiler:nestedfct gmake tar:bzip2
 USE_CSTD=	gnu89
 CFLAGS+=	-fcommon

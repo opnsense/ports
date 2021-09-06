@@ -41,6 +41,7 @@
     SUBDIR += conlecterm
     SUBDIR += controllermap
     SUBDIR += cool-retro-term
+    SUBDIR += coreterminal
     SUBDIR += deforaos-desktop
     SUBDIR += deforaos-keyboard
     SUBDIR += deforaos-libdesktop
@@ -52,6 +53,7 @@
     SUBDIR += docker-tray
     SUBDIR += dsbautostart
     SUBDIR += dsbxinput
+    SUBDIR += dwmblocks
     SUBDIR += dxpc
     SUBDIR += dzen2
     SUBDIR += eaglemode
@@ -105,6 +107,7 @@
     SUBDIR += hsetroot
     SUBDIR += i3blocks
     SUBDIR += i3lock
+    SUBDIR += i3lock-color
     SUBDIR += i3status
     SUBDIR += iceauth
     SUBDIR += ico
@@ -335,7 +338,6 @@
     SUBDIR += sselp
     SUBDIR += stalonetray
     SUBDIR += startup-notification
-    SUBDIR += station-tweak
     SUBDIR += sterm
     SUBDIR += stjerm
     SUBDIR += swarp
@@ -343,6 +345,7 @@
     SUBDIR += swayidle
     SUBDIR += swaylock
     SUBDIR += swaylock-effects
+    SUBDIR += swaync
     SUBDIR += swayr
     SUBDIR += sxhkd
     SUBDIR += sxpc
@@ -367,6 +370,7 @@
     SUBDIR += virtboard
     SUBDIR += virtualgl
     SUBDIR += wallutils
+    SUBDIR += wapanel
     SUBDIR += waybar
     SUBDIR += wayland-logout
     SUBDIR += wbar
@@ -450,9 +454,11 @@
     SUBDIR += xev
     SUBDIR += xeyes
     SUBDIR += xf86dga
+    SUBDIR += xfce4-appmenu-plugin
     SUBDIR += xfce4-clipman-plugin
     SUBDIR += xfce4-conf
     SUBDIR += xfce4-dashboard
+    SUBDIR += xfce4-docklike-plugin
     SUBDIR += xfce4-goodies
     SUBDIR += xfce4-screensaver
     SUBDIR += xfce4-screenshooter-plugin

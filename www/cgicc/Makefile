@@ -11,8 +11,6 @@ COMMENT=	C++ class library for writing CGI applications
 
 LICENSE=	LGPL3+
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		autoreconf:build compiler:gcc-c++11-lib libtool pathfix
 USE_LDCONFIG=	yes
 

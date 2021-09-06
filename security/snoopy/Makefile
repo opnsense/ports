@@ -14,8 +14,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 BUILD_DEPENDS=	bash:shells/bash
 TEST_DEPENDS=	socat:net/socat
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		autoreconf gmake libtool shebangfix
 
 CONFIGURE_ARGS=	--disable-datasource-tid_kernel \

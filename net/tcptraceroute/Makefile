@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libnet.so:net/libnet
 
-USE_HARDENING=	safestack
-
 USES=		gmake localbase
 
 GNU_CONFIGURE=	yes

@@ -1,7 +1,7 @@
-PORTNAME=	musescore
+PORTNAME=	${GH_PROJECT:tl}
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.6.1
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	audio
 
 MAINTAINER=	adridg@FreeBSD.org
@@ -25,7 +25,6 @@ USE_QT=		concurrent core declarative designer graphicaleffects gui \
 		buildtools_build linguisttools_build qmake_build uitools_build
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	musescore
 GH_PROJECT=	MuseScore
 
 # Each release gets a subdir containing the distfiles for that release,

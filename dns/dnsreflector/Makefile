@@ -8,8 +8,6 @@ MASTER_SITES=	http://www.wolfermann.org/
 MAINTAINER=	ismail.yenigul@endersys.com.tr
 COMMENT=	Listens for DNS queries on a UDP port and change the answer
 
-USE_HARDENING=	stackautoinit:off
-
 USE_RC_SUBR=	dnsreflector
 
 PORTDOCS=	README

@@ -1,5 +1,6 @@
 PORTNAME=	openjdk
 PORTVERSION=	${JDK_MAJOR_VERSION}.${JDK_UPDATE_VERSION}.${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
+PORTREVISION=	2
 CATEGORIES=	java devel
 MASTER_SITES=	LOCAL/jkim:jtreg
 PKGNAMESUFFIX?=	${JDK_MAJOR_VERSION}
@@ -8,8 +9,6 @@ MAINTAINER=	java@FreeBSD.org
 COMMENT?=	Java Development Kit ${JDK_MAJOR_VERSION}
 
 LICENSE=	GPLv2
-
-USE_HARDENING=	pie:java
 
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc powerpc64 powerpc64le
 
@@ -25,97 +24,9 @@ RUN_DEPENDS=	javavm:java/javavmwrapper \
 
 USES=		compiler:features gmake iconv pkgconfig
 
-MPROTECT_DISABLE=	openjdk8/bin/jinfo
-MPROTECT_DISABLE+=	openjdk8/bin/jdb
-MPROTECT_DISABLE+=	openjdk8/bin/java-rmi.cgi
-MPROTECT_DISABLE+=	openjdk8/bin/jdeps
-MPROTECT_DISABLE+=	openjdk8/bin/wsimport
-MPROTECT_DISABLE+=	openjdk8/bin/appletviewer
-MPROTECT_DISABLE+=	openjdk8/bin/extcheck
-MPROTECT_DISABLE+=	openjdk8/bin/tnameserv
-MPROTECT_DISABLE+=	openjdk8/bin/jps
-MPROTECT_DISABLE+=	openjdk8/bin/jarsigner
-MPROTECT_DISABLE+=	openjdk8/bin/jhat
-MPROTECT_DISABLE+=	openjdk8/bin/rmid
-MPROTECT_DISABLE+=	openjdk8/bin/javah
-MPROTECT_DISABLE+=	openjdk8/bin/keytool
-MPROTECT_DISABLE+=	openjdk8/bin/jstack
-MPROTECT_DISABLE+=	openjdk8/bin/policytool
-MPROTECT_DISABLE+=	openjdk8/bin/orbd
-MPROTECT_DISABLE+=	openjdk8/bin/xjc
-MPROTECT_DISABLE+=	openjdk8/bin/rmic
-MPROTECT_DISABLE+=	openjdk8/bin/idlj
-MPROTECT_DISABLE+=	openjdk8/bin/jrunscript
-MPROTECT_DISABLE+=	openjdk8/bin/servertool
-MPROTECT_DISABLE+=	openjdk8/bin/pack200
-MPROTECT_DISABLE+=	openjdk8/bin/jconsole
-MPROTECT_DISABLE+=	openjdk8/bin/jjs
-MPROTECT_DISABLE+=	openjdk8/bin/jstat
-MPROTECT_DISABLE+=	openjdk8/bin/jsadebugd
-MPROTECT_DISABLE+=	openjdk8/bin/jstatd
-MPROTECT_DISABLE+=	openjdk8/bin/java
-MPROTECT_DISABLE+=	openjdk8/bin/jcmd
-MPROTECT_DISABLE+=	openjdk8/bin/wsgen
-MPROTECT_DISABLE+=	openjdk8/bin/native2ascii
-MPROTECT_DISABLE+=	openjdk8/bin/clhsdb
-MPROTECT_DISABLE+=	openjdk8/bin/javap
-MPROTECT_DISABLE+=	openjdk8/bin/schemagen
-MPROTECT_DISABLE+=	openjdk8/bin/javac
-MPROTECT_DISABLE+=	openjdk8/bin/hsdb
-MPROTECT_DISABLE+=	openjdk8/bin/rmiregistry
-MPROTECT_DISABLE+=	openjdk8/bin/jar
-MPROTECT_DISABLE+=	openjdk8/bin/serialver
-MPROTECT_DISABLE+=	openjdk8/bin/javadoc
-MPROTECT_DISABLE+=	openjdk8/bin/jmap
-MPROTECT_DISABLE+=	openjdk8/bin/unpack200
-
-PAGEEXEC_DISABLE=	openjdk8/bin/jinfo
-PAGEEXEC_DISABLE+=	openjdk8/bin/jdb
-PAGEEXEC_DISABLE+=	openjdk8/bin/java-rmi.cgi
-PAGEEXEC_DISABLE+=	openjdk8/bin/jdeps
-PAGEEXEC_DISABLE+=	openjdk8/bin/wsimport
-PAGEEXEC_DISABLE+=	openjdk8/bin/appletviewer
-PAGEEXEC_DISABLE+=	openjdk8/bin/extcheck
-PAGEEXEC_DISABLE+=	openjdk8/bin/tnameserv
-PAGEEXEC_DISABLE+=	openjdk8/bin/jps
-PAGEEXEC_DISABLE+=	openjdk8/bin/jarsigner
-PAGEEXEC_DISABLE+=	openjdk8/bin/jhat
-PAGEEXEC_DISABLE+=	openjdk8/bin/rmid
-PAGEEXEC_DISABLE+=	openjdk8/bin/javah
-PAGEEXEC_DISABLE+=	openjdk8/bin/keytool
-PAGEEXEC_DISABLE+=	openjdk8/bin/jstack
-PAGEEXEC_DISABLE+=	openjdk8/bin/policytool
-PAGEEXEC_DISABLE+=	openjdk8/bin/orbd
-PAGEEXEC_DISABLE+=	openjdk8/bin/xjc
-PAGEEXEC_DISABLE+=	openjdk8/bin/rmic
-PAGEEXEC_DISABLE+=	openjdk8/bin/idlj
-PAGEEXEC_DISABLE+=	openjdk8/bin/jrunscript
-PAGEEXEC_DISABLE+=	openjdk8/bin/servertool
-PAGEEXEC_DISABLE+=	openjdk8/bin/pack200
-PAGEEXEC_DISABLE+=	openjdk8/bin/jconsole
-PAGEEXEC_DISABLE+=	openjdk8/bin/jjs
-PAGEEXEC_DISABLE+=	openjdk8/bin/jstat
-PAGEEXEC_DISABLE+=	openjdk8/bin/jsadebugd
-PAGEEXEC_DISABLE+=	openjdk8/bin/jstatd
-PAGEEXEC_DISABLE+=	openjdk8/bin/java
-PAGEEXEC_DISABLE+=	openjdk8/bin/jcmd
-PAGEEXEC_DISABLE+=	openjdk8/bin/wsgen
-PAGEEXEC_DISABLE+=	openjdk8/bin/native2ascii
-PAGEEXEC_DISABLE+=	openjdk8/bin/clhsdb
-PAGEEXEC_DISABLE+=	openjdk8/bin/javap
-PAGEEXEC_DISABLE+=	openjdk8/bin/schemagen
-PAGEEXEC_DISABLE+=	openjdk8/bin/javac
-PAGEEXEC_DISABLE+=	openjdk8/bin/hsdb
-PAGEEXEC_DISABLE+=	openjdk8/bin/rmiregistry
-PAGEEXEC_DISABLE+=	openjdk8/bin/jar
-PAGEEXEC_DISABLE+=	openjdk8/bin/serialver
-PAGEEXEC_DISABLE+=	openjdk8/bin/javadoc
-PAGEEXEC_DISABLE+=	openjdk8/bin/jmap
-PAGEEXEC_DISABLE+=	openjdk8/bin/unpack200
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	battleblow
-GH_PROJECT=	openjdk-jdk8u
+GH_PROJECT=	jdk8u
 GH_TAGNAME=	jdk${JDK_MAJOR_VERSION}u${JDK_UPDATE_VERSION}-b${JDK_BUILD_NUMBER}.${BSD_JDK_VERSION}
 
 _MAKE_JOBS=	#
@@ -139,8 +50,8 @@ INSTALLDIR=	${PREFIX}/${PKGBASE}
 NOPRECIOUSMAKEVARS=	yes
 
 JDK_MAJOR_VERSION=	8
-JDK_UPDATE_VERSION=	292
-JDK_BUILD_NUMBER=	10
+JDK_UPDATE_VERSION=	302
+JDK_BUILD_NUMBER=	08
 BSD_JDK_VERSION=	1
 JTREG_VERSION=		4.1
 JTREG_BUILD_NUMBER=	b08
@@ -281,7 +192,7 @@ CONFIGURE_ARGS+=	--disable-jfr
 MAKE_ENV+=	LFLAGS="-Wl,-z,notext"
 .endif
 
-.if ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
+.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH} == i386 || ${ARCH:Mpowerpc64*}
 JDK_BUILD_JVM=	server
 .else
 JDK_BUILD_JVM=	zero

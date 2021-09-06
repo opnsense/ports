@@ -1,7 +1,7 @@
 PORTNAME=	netbox
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.11.9
-CATEGORIES=	net-mgmt
+DISTVERSION=	2.11.12
+CATEGORIES=	net-mgmt python
 
 MAINTAINER=	kai@FreeBSD.org
 COMMENT=	IP address management tool
@@ -22,12 +22,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 # - www/py-dj32-django-tables2
 # - www/py-dj32-djangorestframework (in conjunction with www/py-dj32-drf-yasg)
 #
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django32>=3.2.5<3.3:www/py-django32@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django32>=3.2.6<3.3:www/py-django32@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dj32-django-cacheops>=6.0<7.0:www/py-dj32-django-cacheops@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}dj32-django-cors-headers>=3.7.0<3.8:www/py-dj32-django-cors-headers@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}dj32-django-cors-headers>=3.8.0<3.9:www/py-dj32-django-cors-headers@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dj32-django-debug-toolbar>=3.2.1<4:www/py-dj32-django-debug-toolbar@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dj32-django-filter>=2.4.0<2.5:www/py-dj32-django-filter@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}dj32-django-mptt>=0.12.0<0.13:www/py-dj32-django-mptt@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}dj32-django-mptt>=0.13.1<0.14:www/py-dj32-django-mptt@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dj32-django-prometheus>=2.1.0<2.2:www/py-dj32-django-prometheus@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dj32-django-rq>=2.4.1<2.5:devel/py-dj32-django-rq@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dj32-django-tables2>=2.4.0<2.5:www/py-dj32-django-tables2@${PY_FLAVOR} \
@@ -47,7 +47,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}django32>=3.2.5<3.3:www/py-django32@${PY_FLA
 		${PYTHON_PKGNAMEPREFIX}yaml>=5.4.1<6:devel/py-yaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}gunicorn>=19.9.0<21:www/py-gunicorn@${PY_FLAVOR}
 
-USES=		pgsql:9.6+ python:3.7+
+USES=		cpe pgsql:9.6+ python:3.7+
+CPE_VENDOR=	netbox_project
 USE_GITHUB=	yes
 GH_ACCOUNT=	netbox-community
 

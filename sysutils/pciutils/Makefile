@@ -22,8 +22,6 @@ ALL_TARGET=	lspci lspci.8 setpci setpci.8
 CFLAGS+=	-fPIC
 LDFLAGS+=	-lpci
 
-USE_HARDENING=	cfi safestack
-
 PLIST_FILES=	bin/lspci \
 		bin/setpci \
 		share/man/man8/lspci.8.gz \

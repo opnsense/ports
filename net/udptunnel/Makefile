@@ -12,8 +12,6 @@ COMMENT=	Tunnel UDP packets over a TCP connection
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USE_HARDENING=	safestack
-
 GNU_CONFIGURE=	yes
 PLIST_FILES=	bin/udptunnel
 

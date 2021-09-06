@@ -1,7 +1,7 @@
 # Created by: Gerald Pfeifer <gerald@FreeBSD.org>
 
 PORTNAME=	gcc
-PORTVERSION=	12.0.0.s20210718
+PORTVERSION=	12.0.0.s20210822
 CATEGORIES=	lang
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -27,10 +27,6 @@ BUILD_DEPENDS+=	runtest:misc/dejagnu
 USES=		compiler:c++11-lang cpe gmake iconv libtool makeinfo perl5 tar:xz
 USE_BINUTILS=	yes
 USE_PERL5=	build
-
-USE_HARDENING=	pie:off relro:off retpoline:off stackautoinit:off
-
-NO_UNUSED_ARGUMENTS_CHECK=	yes
 
 CPE_VENDOR=	gnu
 CPE_VERSION=	${GCC_VERSION}

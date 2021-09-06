@@ -14,8 +14,6 @@ LIB_DEPENDS=	libmp3lame.so:audio/lame \
 		libogg.so:audio/libogg \
 		libvorbis.so:audio/libvorbis
 
-USE_HARDENING=	pie:off
-
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
 post-patch:

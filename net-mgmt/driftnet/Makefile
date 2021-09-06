@@ -15,8 +15,6 @@ LIB_DEPENDS=	libgif.so:graphics/giflib \
 		libpng.so:graphics/png
 BUILD_DEPENDS=	makedepend:devel/makedepend
 
-USE_HARDENING=	pie:off relro:off
-
 GNU_CONFIGURE=	yes
 USES=		autoreconf gettext-runtime gmake gnome jpeg localbase:ldflags \
 		pkgconfig xorg

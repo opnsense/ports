@@ -2,7 +2,7 @@
 
 PORTNAME?=	gimp-app
 PORTVERSION=	2.10.24
-PORTREVISION=	9
+PORTREVISION=	11
 PORTEPOCH?=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -13,8 +13,6 @@ COMMENT=	GNU Image Manipulation Program
 
 LICENSE=	GPLv3 LGPL3
 LICENSE_COMB=	multi
-
-USE_HARDENING=	relro:off
 
 BUILD_DEPENDS=	${LOCALBASE}/libdata/pkgconfig/iso-codes.pc:misc/iso-codes \
 		glib-networking>=0:net/glib-networking \

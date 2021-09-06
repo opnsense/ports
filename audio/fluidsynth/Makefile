@@ -3,6 +3,7 @@
 PORTNAME=	fluidsynth
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.1.7
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	multimedia@FreeBSD.org
@@ -11,7 +12,7 @@ COMMENT=	Real-time software synthesizer based on the SoundFont 2 specifications
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake gnome pkgconfig
+USES=		cmake cpe gnome pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	FluidSynth
 USE_GNOME=	glib20

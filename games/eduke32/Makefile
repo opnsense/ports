@@ -26,8 +26,6 @@ LICENSE_FILE_BUILDLIC=	${WRKSRC}/source/build/buildlic.txt
 LICENSE_FILE_GPLv2=	${WRKSRC}/source/duke3d/gpl-2.0.txt
 LICENSE_PERMS_BUILDLIC=	dist-mirror pkg-mirror auto-accept
 
-USE_HARDENING=	stackautoinit:off
-
 LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libogg.so:audio/libogg \
 		libvorbis.so:audio/libvorbis \

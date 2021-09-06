@@ -6,7 +6,7 @@ MASTER_SITE_SUBDIR=	inn/snapshots
 DISTNAME=		inn-${BRANCH}-${SNAPSHOT}
 
 BRANCH=		CURRENT
-SNAPSHOT=	20210718
+SNAPSHOT=	20210829
 
 CONFLICTS=	inn-2.[0-9]*
 
@@ -15,6 +15,8 @@ FILESDIR=	${.CURDIR}/../inn/files
 PATCHDIR=	${.CURDIR}/../inn/files
 PLIST=		${.CURDIR}/../inn/pkg-plist
 WRKSRC=		${WRKDIR}/${DISTNAME}
+
+CPE_PRODUCT=	inn
 
 .include "${.CURDIR}/../inn/Makefile"
 

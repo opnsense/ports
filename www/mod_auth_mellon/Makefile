@@ -2,6 +2,7 @@
 
 PORTNAME=	mod_auth_mellon
 PORTVERSION=	0.17.0
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 DISTVERSIONPREFIX=	v
@@ -20,13 +21,13 @@ USES=		apache:2.2+ autoreconf cpe gettext-runtime gnome libtool \
 USE_GNOME=	glib20
 USE_GITHUB=	yes
 GH_ACCOUNT=	latchset
-CPE_VENDOR=	${GH_ACCOUNT}
+CPE_VENDOR=	mod_auth_mellon_project
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV+=	OPENSSL_CFLAGS="-I${OPENSSLINC}" OPENSSL_LIBS="-L${OPENSSLLIB} -lcrypto" \
 			PKG_CONFIG_PATH="${LOCALBASE}/libdata/pkgconfig"
 
-PLIST_FILES=	${APACHEMODDIR}/mod_auth_mellon.so
+PLIST_FILES=	${APACHEMODDIR}/mod_auth_mellon.so ${DATADIR}/mellon_create_metadata.sh
 SUB_FILES=	pkg-message
 
 post-patch:
@@ -35,9 +36,10 @@ post-patch:
 		${WRKSRC}/Makefile.in
 
 pre-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}
+	@${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEMODDIR} ${STAGEDIR}${DATADIR}
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}/${PORTNAME}.so
+	${INSTALL_SCRIPT} ${WRKSRC}/mellon_create_metadata.sh ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>

@@ -9,8 +9,6 @@ COMMENT=	Netgraph node for Mikrotik EoIP tunneling
 
 LICENSE=	BSD2CLAUSE
 
-USE_HARDENING=	pie:off relro:off
-
 USES=		kmod uidfix
 
 OPTIONS_DEFINE=	PTABLE

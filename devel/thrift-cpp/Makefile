@@ -19,8 +19,6 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 
 DISTINFO_FILE=		${.CURDIR}/../thrift/distinfo
 
-USE_HARDENING=		stackautoinit:off
-
 USES=			bison cmake pkgconfig compiler:c++11-lang \
 			libtool pathfix ssl
 USE_LDCONFIG=		yes

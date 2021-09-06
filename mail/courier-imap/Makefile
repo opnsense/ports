@@ -1,7 +1,7 @@
 # Created by: Neil Blakey-Milner
 
 PORTNAME=	courier-imap
-PORTVERSION=	5.1.3
+PORTVERSION=	5.1.4
 PORTEPOCH=	2
 CATEGORIES=	mail
 MASTER_SITES=	SF/courier/imap/${PORTVERSION}
@@ -21,8 +21,6 @@ USES=		compiler:c++11-lang gmake localbase:ldflags perl5 pkgconfig ssl \
 		tar:bzip2
 USE_RC_SUBR=	courier-imap-imapd courier-imap-imapd-ssl \
 		courier-imap-pop3d courier-imap-pop3d-ssl
-
-USE_HARDENING= pie:off relro:off
 
 CONFLICTS=	courier-[0-9]* imap-uw-[0-9]* panda-imap-[0-9]*
 
@@ -112,9 +110,6 @@ post-patch:
 		${WRKSRC}/libs/liblock/configure
 	@${REINPLACE_CMD} -e 's|%%INSTALL_MAN%%|${INSTALL_MAN}|' \
 		${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|TLS_PROTOCOL=SSL3|TLS_PROTOCOL=SSL23|g' \
-		${WRKSRC}/libs/imap/pop3d-ssl.dist.in \
-		${WRKSRC}/libs/imap/imapd-ssl.dist.in
 
 post-patch-INOTIFY-on:
 	@${REINPLACE_CMD} -e 's|LIBS = @LIBS@|& ${LOCALBASE}/lib/libinotify.a /usr/lib/libpthread.a|' \

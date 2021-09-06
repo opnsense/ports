@@ -16,8 +16,6 @@ USES=		makeinfo xorg
 USE_XORG=	x11
 MAKE_ARGS=	Y_HOME=relocatable Y_DOCDIR=/dev/null
 
-USE_HARDENING=	pie:off
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	dhmunro
 

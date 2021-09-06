@@ -1,6 +1,6 @@
 PORTNAME=	fractal
 DISTVERSION=	4.2.2
-PORTREVISION=	17
+PORTREVISION=	18
 CATEGORIES=	net-im
 MASTER_SITES=	https://gitlab.gnome.org/World/fractal/uploads/${GL_HASH}/
 
@@ -31,7 +31,8 @@ INSTALLS_ICONS=		yes
 # for the gettext-sys crate
 MAKE_ENV+=	GETTEXT_BIN_DIR=${LOCALBASE}/bin \
 		GETTEXT_LIB_DIR=${LOCALBASE}/lib \
-		GETTEXT_INCLUDE_DIR=${LOCALBASE}/include
+		GETTEXT_INCLUDE_DIR=${LOCALBASE}/include \
+		RUSTFLAGS="${RUSTFLAGS} -C linker=${CC:Q} ${LDFLAGS:C/.+/-C link-arg=&/}"
 
 post-patch:
 # Disable vendor checksums

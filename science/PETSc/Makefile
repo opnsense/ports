@@ -15,8 +15,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	cmake:devel/cmake
 LIB_DEPENDS=	libmpich.so:net/mpich
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		blaslapack fortran gmake python:3.7+ shebangfix xorg
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-shared-libraries=1 \

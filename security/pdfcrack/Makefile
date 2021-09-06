@@ -11,8 +11,6 @@ COMMENT=	Cracking tool for password-protected PDF-files
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USE_HARDENING=	safestack
-
 PLIST_FILES=	bin/pdfcrack bin/pdfreader man/man1/pdfcrack.1.gz
 ALL_TARGET=	pdfcrack pdfreader
 

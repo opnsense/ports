@@ -21,8 +21,6 @@ USE_JAVA=	1.8+
 USE_QT=		core concurrent gui network testlib_build widgets xml \
 		buildtools_build qmake_build
 
-USE_HARDENING=	pie:off stackautoinit:off
-
 CMAKE_ARGS=	-DMultiMC_LAYOUT="lin-system"
 CMAKE_OFF=	MultiMC_UPDATER
 CXXFLAGS+=	-Wno-inconsistent-missing-override \

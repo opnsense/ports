@@ -19,8 +19,6 @@ CONFIGURE_ARGS=	--program-prefix=g
 CONFIGURE_ENV+=	MAKEINFO="${MAKEINFO} --no-split"
 TEST_TARGET=	check
 
-USE_HARDENING=	safestack
-
 DATADIR=	${PREFIX}/share/${PKGBASE}
 DOCSDIR=	${PREFIX}/share/doc/${PKGBASE}
 EXAMPLESDIR=	${PREFIX}/share/examples/${PKGBASE}

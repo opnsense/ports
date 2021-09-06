@@ -13,8 +13,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
 
-USE_HARDENING=	stackautoinit:off
-
 USES=		cmake
 
 .include <bsd.port.mk>

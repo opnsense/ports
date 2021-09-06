@@ -175,6 +175,7 @@
     SUBDIR += btor2tools
     SUBDIR += cadabra2
     SUBDIR += cadical
+    SUBDIR += cado-nfs
     SUBDIR += calc
     SUBDIR += calcoo
     SUBDIR += cantor
@@ -289,6 +290,7 @@
     SUBDIR += flintqs
     SUBDIR += flopc++
     SUBDIR += form
+    SUBDIR += fparser
     SUBDIR += fpc-fftw
     SUBDIR += fpc-gmp
     SUBDIR += fpc-numlib
@@ -314,6 +316,7 @@
     SUBDIR += ggobi
     SUBDIR += gh-bc
     SUBDIR += giacxcas
+    SUBDIR += gismo
     SUBDIR += givaro
     SUBDIR += gkmap
     SUBDIR += glgraph
@@ -340,6 +343,7 @@
     SUBDIR += gsl
     SUBDIR += half
     SUBDIR += hexcalc
+    SUBDIR += heyoka
     SUBDIR += highs
     SUBDIR += hipmcl
     SUBDIR += hmat-oss
@@ -430,6 +434,7 @@
     SUBDIR += maxima
     SUBDIR += mbasecalc
     SUBDIR += mcsim
+    SUBDIR += mdal
     SUBDIR += metis
     SUBDIR += mfem
     SUBDIR += mingw32-libgmp
@@ -467,6 +472,7 @@
     SUBDIR += nlopt
     SUBDIR += ntl
     SUBDIR += numdiff
+    SUBDIR += obake
     SUBDIR += ocaml-ocamlgraph
     SUBDIR += ocaml-zarith
     SUBDIR += ocamlgsl
@@ -564,6 +570,7 @@
     SUBDIR += oleo
     SUBDIR += onednn
     SUBDIR += openblas
+    SUBDIR += openfst
     SUBDIR += openlibm
     SUBDIR += openmesh
     SUBDIR += opensolaris-libm
@@ -732,6 +739,7 @@
     SUBDIR += pari_galpol
     SUBDIR += pari_nftables
     SUBDIR += pari_seadata
+    SUBDIR += paritwine
     SUBDIR += parmetis
     SUBDIR += parmgridgen
     SUBDIR += pdal
@@ -751,6 +759,7 @@
     SUBDIR += picosat
     SUBDIR += piranha
     SUBDIR += planarity
+    SUBDIR += plantri
     SUBDIR += plman
     SUBDIR += ploticus
     SUBDIR += ploticus-nox11
@@ -758,6 +767,7 @@
     SUBDIR += plplot-ada
     SUBDIR += poly2tri
     SUBDIR += polylib
+    SUBDIR += polymake
     SUBDIR += primegen
     SUBDIR += primesieve
     SUBDIR += primme
@@ -815,6 +825,7 @@
     SUBDIR += py-gym
     SUBDIR += py-hdbscan
     SUBDIR += py-hdmedians
+    SUBDIR += py-heyoka
     SUBDIR += py-iminuit
     SUBDIR += py-intspan
     SUBDIR += py-iohexperimenter
@@ -868,6 +879,7 @@
     SUBDIR += py-pyhull
     SUBDIR += py-pyipopt
     SUBDIR += py-pymc3
+    SUBDIR += py-pynauty
     SUBDIR += py-pyneqsys
     SUBDIR += py-pynleq2
     SUBDIR += py-pynndescent
@@ -912,6 +924,7 @@
     SUBDIR += py-theano
     SUBDIR += py-triangle
     SUBDIR += py-uncertainties
+    SUBDIR += py-unyt
     SUBDIR += py-vincenty
     SUBDIR += py-yt
     SUBDIR += py-z3-solver
@@ -979,6 +992,8 @@
     SUBDIR += spooles-mpich
     SUBDIR += spot
     SUBDIR += sprng
+    SUBDIR += stan
+    SUBDIR += stanmath
     SUBDIR += stp
     SUBDIR += suitesparse
     SUBDIR += suitesparse-amd
