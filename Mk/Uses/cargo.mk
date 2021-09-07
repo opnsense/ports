@@ -14,6 +14,8 @@ _INCLUDE_USES_CARGO_MK=	yes
 IGNORE+=	USES=cargo takes no arguments
 .endif
 
+.sinclude "${MASTERDIR}/Makefile.crates"
+
 # List of static dependencies.  The format is cratename-version.
 # CARGO_CRATES will be downloaded from MASTER_SITE_CRATESIO.
 CARGO_CRATES?=
@@ -124,6 +126,14 @@ CARGO_TEST?=	yes
 # access the network during the build.
 CARGO_USE_GITHUB?=	no
 CARGO_USE_GITLAB?=	no
+
+# rustc stashes intermediary files in TMPDIR (default /tmp) which
+# might cause issues for users that for some reason space limit
+# their /tmp.  WRKDIR should have plenty of space.
+# Allow users and ports to still overwrite it.
+.if ${TMPDIR:U/tmp} == /tmp
+TMPDIR=		${WRKDIR}
+.endif
 
 # Manage crate features.
 .if !empty(CARGO_FEATURES:M--no-default-features)
