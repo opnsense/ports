@@ -2,7 +2,7 @@
 
 PORTNAME=	rust
 PORTVERSION?=	1.54.0
-PORTREVISION?=	0
+PORTREVISION?=	2
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://dev-static.rust-lang.org/dist/:src \
@@ -43,6 +43,12 @@ TEST_ENV=	${MAKE_ENV} \
 		ALLOW_NONZERO_RLIMIT_CORE=1
 
 CONFLICTS_INSTALL?=	rust-nightly
+
+# rustc stashes intermediary files in TMPDIR (default /tmp) which
+# might cause issues for users that for some reason space limit
+# their /tmp.  WRKDIR should have plenty of space.
+# ?= to allow users to still overwrite it in make.conf.
+TMPDIR?=	${WRKDIR}
 
 OPTIONS_DEFINE=		DOCS GDB SOURCES WASM
 OPTIONS_DEFAULT=	SOURCES WASM
