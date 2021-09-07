@@ -134,6 +134,7 @@
     SUBDIR += add
     SUBDIR += adept
     SUBDIR += adol-c
+    SUBDIR += alberta
     SUBDIR += algae
     SUBDIR += alglib
     SUBDIR += alps
@@ -773,6 +774,7 @@
     SUBDIR += primme
     SUBDIR += prng
     SUBDIR += pspp
+    SUBDIR += psurface
     SUBDIR += py-CyLP
     SUBDIR += py-Diofant
     SUBDIR += py-GridDataFormats

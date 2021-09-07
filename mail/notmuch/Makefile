@@ -1,12 +1,12 @@
 # Created by: DarwinSurvivor <darwinsurvivor@gmail.com>
 
 PORTNAME=	notmuch
-PORTVERSION=	0.32.3
+PORTVERSION=	0.33
 PORTREVISION?=	0
 CATEGORIES?=	mail
 MASTER_SITES=	https://notmuchmail.org/releases/
 
-MAINTAINER=	dbaio@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT?=	Thread-based email index, search and tagging application
 
 LICENSE=	GPLv3
