@@ -128,7 +128,8 @@ MASTER_SITES+=	${GO_GOPROXY}/${GO_MODNAME:C/([A-Z])/!\1/g:tl}/@v/
 DISTFILES+=	${GO_MODFILE} ${GO_DISTFILE}
 EXTRACT_ONLY+=	${GO_DISTFILE}
 WRKSRC=		${WRKDIR}/${GO_MODNAME}@${GO_MODVERSION}
-FETCH_DEPENDS+=	${GO_CMD}:${GO_PORT} \
+FETCH_DEPENDS+=	${LOCALBASE}/sbin/pkg-static:${PKG_ORIGIN} \
+		${GO_CMD}:${GO_PORT} \
 		ca_root_nss>0:security/ca_root_nss
 USES+=		zip
 .  else
