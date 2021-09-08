@@ -51,6 +51,14 @@ OPTIONS_SUB=		yes
 
 PRELUDE_BROKEN=		Compilation broken, see https://redmine.openinfosecfoundation.org/issues/4065
 
+# Opnsense addition
+OPTIONS_DEFINE+=		NETMAP_V14
+NETMAP_V14_DESC=		Netmap V14 API, see https://github.com/luigirizzo/netmap/blob/master/libnetmap/libnetmap.h
+NETMAP_V14_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-configure \
+				${FILESDIR}/extra-patch-runmode-netmap \
+				${FILESDIR}/extra-patch-source-netmap \
+				${FILESDIR}/extra-patch-suricata-common
+
 GEOIP_DESC=		GeoIP support
 HYPERSCAN_DESC=		Hyperscan support
 IPFW_DESC=		IPFW and IP Divert support for inline IDP
