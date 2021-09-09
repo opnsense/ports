@@ -1,13 +1,14 @@
 # Created by: Alex Dupre <ale@FreeBSD.org>
 
 PORTNAME=	re
-DISTVERSION=	v196.04
+PORTVERSION=	196.04
+DISTVERSIONPREFIX=	v
 PORTREVISION=	4
 CATEGORIES=	net
 MASTER_SITES=	LOCAL/ale
 PKGNAMEPREFIX=	realtek-
 PKGNAMESUFFIX=	-kmod
-DISTNAME=	rtl_bsd_drv_${DISTVERSION}
+DISTNAME=	rtl_bsd_drv_${DISTVERSIONPREFIX}${PORTVERSION}
 
 MAINTAINER=	ale@FreeBSD.org
 COMMENT=	Kernel driver for Realtek PCIe Ethernet Controllers
