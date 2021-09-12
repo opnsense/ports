@@ -1,8 +1,8 @@
 # Created by: Devon H. O'Dell <devon.odell@gmail.com>
 
 PORTNAME=	go
-PORTVERSION?=	1.17
-PORTREVISION?=	2
+PORTVERSION?=	1.17.1
+PORTREVISION?=	0
 PORTEPOCH?=	1
 CATEGORIES=	lang
 MASTER_SITES?=	https://golang.org/dl/ \
@@ -30,7 +30,9 @@ RUN_DEPENDS_aarch64=	binutils>0:devel/binutils
 TEST_DEPENDS=	${TEST_DEPENDS_${ARCH}}
 TEST_DEPENDS_aarch64=	binutils>0:devel/binutils
 
-USES=		shebangfix
+USES=		cpe shebangfix
+
+CPE_VENDOR=	golang
 
 SHEBANG_FILES=	misc/wasm/go_js_wasm_exec \
 		src/net/http/cgi/testdata/test.cgi
