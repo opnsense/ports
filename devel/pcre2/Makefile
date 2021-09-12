@@ -11,16 +11,18 @@ COMMENT=	Perl Compatible Regular Expressions library, version 2
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENCE
 
-USES=		autoreconf libtool pkgconfig
+USES=		autoreconf cpe libtool pkgconfig
 USE_LDCONFIG=	yes
+
+CPE_VENDOR=	pcre
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-pcre2-16 \
 		--enable-pcre2-32
 INSTALL_TARGET=	install-strip
 
-OPTIONS_DEFINE=	DOCS JIT
-OPTIONS_RADIO=	CLI
+OPTIONS_DEFINE=		DOCS JIT
+OPTIONS_RADIO=		CLI
 OPTIONS_RADIO_CLI=	LIBEDIT READLINE
 
 LIBEDIT_USES=			libedit
