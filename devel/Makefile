@@ -964,6 +964,7 @@
     SUBDIR += hs-hpack
     SUBDIR += hs-hspec-discover
     SUBDIR += hs-mueval
+    SUBDIR += hs-ormolu
     SUBDIR += hs-profiteur
     SUBDIR += hs-shake
     SUBDIR += hs-spago
@@ -1629,6 +1630,7 @@
     SUBDIR += ocaml-sdl
     SUBDIR += ocaml-sem
     SUBDIR += ocaml-sexplib
+    SUBDIR += ocaml-topkg
     SUBDIR += ocaml-type_conv
     SUBDIR += ocaml-uchar
     SUBDIR += ocaml-ulex

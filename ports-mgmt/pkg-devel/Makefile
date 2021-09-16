@@ -1,5 +1,5 @@
 PORTNAME=	pkg
-DISTVERSION=	1.17.99.3
+DISTVERSION=	1.17.99.4
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 PKGNAMESUFFIX=	-devel
@@ -11,7 +11,7 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
-GH_TAGNAME=	014693e3
+GH_TAGNAME=	9de47aa4
 
 CFLAGS+=	-O0 -g -Wno-error
 USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
@@ -71,13 +71,18 @@ post-patch:
 	${REINPLACE_CMD} -e "s|-llzma|${LIBLZMA_LIBS}|g" ${WRKSRC}/auto.def \
 		${WRKSRC}/src/Makefile.autosetup ${WRKSRC}/tests/Makefile.autosetup
 
+.if ${PORT_OPTIONS:MSAN}
+post-build:
+	@(cd ${WRKSRC}/src && \
+		${LN} -fs pkg pkg-static)
+.endif
+
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/compat/pkg
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/NEWS ${STAGEDIR}${DOCSDIR}/NEWS
 .if ${PORT_OPTIONS:MSAN}
-	@(cd ${STAGEDIR}${PREFIX}/sbin/ && \
-		${LN} -fs pkg pkg-static)
+	@${CP} ${STAGEDIR}${PREFIX}/sbin/pkg ${STAGEDIR}${PREFIX}/sbin/pkg-static
 .endif
 
 .include <bsd.port.post.mk>
