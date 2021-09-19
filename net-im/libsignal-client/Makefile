@@ -1,7 +1,7 @@
 PORTNAME=	libsignal-client
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.8.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net-im java
 
 MAINTAINER=	0mp@FreeBSD.org
@@ -234,7 +234,7 @@ MAKE_ENV=		CARGO_PROFILE_RELEASE_LTO=thin \
 PLIST_FILES=		lib/libsignal_jni.so
 
 do-install:
-	${INSTALL_LIB} ${CARGO_TARGET_DIR}/release/libsignal_jni.so \
+	${INSTALL_LIB} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/*/libsignal_jni.so \
 		${STAGEDIR}${PREFIX}/lib/
 
 .include <bsd.port.mk>

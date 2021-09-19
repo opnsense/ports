@@ -1,7 +1,7 @@
 PORTNAME=	zkgroup
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.7.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	net-im
 
 MAINTAINER=	0mp@FreeBSD.org
@@ -134,7 +134,7 @@ CARGO_USE_GITHUB=	yes
 PLIST_FILES=	lib/lib${PORTNAME}.so
 
 do-install:
-	${INSTALL_LIB} ${WRKDIR}/target/release/lib${PORTNAME}.so \
+	${INSTALL_LIB} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/*/lib${PORTNAME}.so \
 		${STAGEDIR}${PREFIX}/lib/
 
 .include <bsd.port.mk>

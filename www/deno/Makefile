@@ -1,6 +1,7 @@
 PORTNAME=	deno
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.14.0
+PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	mikael@FreeBSD.org
@@ -462,6 +463,6 @@ post-patch:
 		${WRKSRC}/cargo-crates/rusty_v8-${RUSTY_VERS}/buildtools/third_party/libc++/BUILD.gn
 
 do-install:
-	${INSTALL_PROGRAM} ${WRKDIR}/target/release/deno ${STAGEDIR}${LOCALBASE}/bin
+	${INSTALL_PROGRAM} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/*/deno ${STAGEDIR}${LOCALBASE}/bin
 
 .include <bsd.port.mk>

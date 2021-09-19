@@ -2,6 +2,7 @@
 
 PORTNAME=	pijul
 PORTVERSION=	1.0.0.a54
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	cs@FreeBSD.org
@@ -283,7 +284,7 @@ post-patch:
 	${MV} ${WRKSRC}/cargo-crates/pijul-1.0.0-alpha.54/* ${WRKSRC}/
 
 do-install:
-	${INSTALL_SCRIPT} ${WRKDIR}/target/release/pijul ${STAGEDIR}${PREFIX}/bin/pijul
+	${INSTALL_SCRIPT} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/*/pijul ${STAGEDIR}${PREFIX}/bin/pijul
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/pijul
