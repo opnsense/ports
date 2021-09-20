@@ -892,6 +892,7 @@
     SUBDIR += googletest
     SUBDIR += goprotobuf
     SUBDIR += goredo
+    SUBDIR += goreleaser
     SUBDIR += gorm
     SUBDIR += goswagger
     SUBDIR += got
@@ -4063,6 +4064,7 @@
     SUBDIR += ptmalloc2
     SUBDIR += ptypes
     SUBDIR += publib
+    SUBDIR += purescript-language-server
     SUBDIR += pushmi
     SUBDIR += py-Automat
     SUBDIR += py-BTrees
