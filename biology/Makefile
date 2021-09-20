@@ -78,6 +78,7 @@
     SUBDIR += libgtextutils
     SUBDIR += libnuml
     SUBDIR += libsbml
+    SUBDIR += libsedml
     SUBDIR += linux-foldingathome
     SUBDIR += mafft
     SUBDIR += mapm3
@@ -151,6 +152,7 @@
     SUBDIR += py-macs2
     SUBDIR += py-multiqc
     SUBDIR += py-libnuml
+    SUBDIR += py-libsedml
     SUBDIR += py-ont-fast5-api
     SUBDIR += py-orange3-bioinformatics
     SUBDIR += py-orange3-single-cell
