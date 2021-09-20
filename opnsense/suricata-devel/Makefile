@@ -1,7 +1,7 @@
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
 DISTVERSION=	6.0.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
@@ -54,10 +54,7 @@ PRELUDE_BROKEN=		Compilation broken, see https://redmine.openinfosecfoundation.o
 # Opnsense addition
 OPTIONS_DEFINE+=		NETMAP_V14
 NETMAP_V14_DESC=		Netmap V14 API, see https://github.com/luigirizzo/netmap/blob/master/libnetmap/libnetmap.h
-NETMAP_V14_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-configure \
-				${FILESDIR}/extra-patch-runmode-netmap \
-				${FILESDIR}/extra-patch-source-netmap \
-				${FILESDIR}/extra-patch-suricata-common
+NETMAP_V14_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-pr-6372
 
 GEOIP_DESC=		GeoIP support
 HYPERSCAN_DESC=		Hyperscan support
@@ -80,7 +77,7 @@ HYPERSCAN_LIB_DEPENDS=		libhs.so:devel/hyperscan
 
 IPFW_CONFIGURE_ON=		--enable-ipfw
 
-LUAJIT_LIB_DEPENDS=		libluajit-5.1.so:lang/luajit
+LUAJIT_LIB_DEPENDS=		libluajit-5.1.so:lang/luajit-openresty
 LUAJIT_CONFIGURE_ON=		--enable-luajit
 
 LUA_USES=			lua:51
@@ -116,6 +113,11 @@ TESTS_CONFIGURE_ENABLE=		unittests
 
 pre-patch:
 	@${CP} ${FILESDIR}/ax_check_compile_flag.m4 ${WRKSRC}/m4
+
+post-patch:
+# Disable vendor checksums
+	@${REINPLACE_CMD} 's,"files":{[^}]*},"files":{},' \
+		${WRKSRC}/rust/vendor/*/.cargo-checksum.json
 
 post-patch-PYTHON-on:
 	@${REINPLACE_CMD} -e "/AC_PATH_PROGS.*HAVE_PYTHON/ s/python[^,]*,/${PYTHON_VERSION},/g" \
