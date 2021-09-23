@@ -1,3 +1,335 @@
+  <vuln vid="d4d21998-bdc4-4a09-9849-2898d9b41459">
+    <topic>zeek -- several vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>zeek</name>
+	<range><lt>4.0.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tim Wojtulewicz of Corelight reports:</p>
+	<blockquote cite="https://github.com/zeek/zeek/releases/tag/v4.0.4">
+	  <p> Paths from log stream make it into system() unchecked,
+	  potentially leading to commands being run on the system
+	  unintentionally. This requires either bad scripting or a
+	  malicious package to be installed, and is considered low
+	  severity. </p>
+	  <p> Fix potential unbounded state growth in the PIA
+	  analyzer when receiving a connection with either a large
+	  number of zero-length packets, or one which continues
+	  ack-ing unseen segments. It is possible to run Zeek out
+	  of memory in these instances and cause it to crash. Due
+	  to the possibility of this happening with packets received
+	  from the network, this is a potential DoS vulnerability.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/zeek/zeek/releases/tag/v4.0.4</url>
+    </references>
+    <dates>
+      <discovery>2021-08-26</discovery>
+      <entry>2021-09-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7bba5b3b-1b7f-11ec-b335-d4c9ef517024">
+    <topic>mod_auth_mellon -- Redirect URL validation bypass</topic>
+    <affects>
+      <package>
+	<name>mod_auth_mellon</name>
+	<range><lt>0.18.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jakub Hrozek reports:</p>
+	<blockquote cite="https://github.com/latchset/mod_auth_mellon/releases/tag/v0.18.0">
+	  <p>Version 0.17.0 and older of mod_auth_mellon allows the redirect URL
+	    validation to be bypassed by specifying an URL formatted as
+	    ///fishing-site.example.com/logout.html</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-13038</cvename>
+      <url>https://github.com/latchset/mod_auth_mellon/releases/tag/v0.18.0</url>
+    </references>
+    <dates>
+      <discovery>2021-07-30</discovery>
+      <entry>2021-09-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7062bce0-1b17-11ec-9d9d-0022489ad614">
+    <topic>Node.js -- August 2021 Security Releases (2)</topic>
+    <affects>
+      <package>
+	<name>node14</name>
+	<range><lt>14.17.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="https://nodejs.org/en/blog/vulnerability/aug-2021-security-releases2/">
+	  <h1>npm 6 update - node-tar, arborist, npm cli modules</h1>
+	  <p>These are vulnerabilities in the node-tar, arborist, and npm cli modules which are related to the initial reports and subsequent remediation of node-tar vulnerabilities CVE-2021-32803 and CVE-2021-32804. Subsequent internal security review of node-tar and additional external bounty reports have resulted in another 5 CVE being remediated in core npm CLI dependencies including node-tar, and npm arborist.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-32803</cvename>
+      <cvename>CVE-2021-32804</cvename>
+      <cvename>CVE-2021-37701</cvename>
+      <cvename>CVE-2021-37712</cvename>
+      <cvename>CVE-2021-37713</cvename>
+      <cvename>CV#-2021-39134</cvename>
+      <cvename>CVE-2021-39135</cvename>
+      <url>https://nodejs.org/en/blog/vulnerability/aug-2021-security-releases2/</url>
+    </references>
+    <dates>
+      <discovery>2021-08-31</discovery>
+      <entry>2021-09-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b092bd4f-1b16-11ec-9d9d-0022489ad614">
+    <topic>Node.js -- August 2021 Security Releases</topic>
+    <affects>
+      <package>
+	<name>node14</name>
+	<range><lt>14.17.4</lt></range>
+      </package>
+      <package>
+	<name>node</name>
+	<range><lt>16.6.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="https://nodejs.org/en/blog/vulnerability/aug-2021-security-releases/">
+	  <h1>cares upgrade - Improper handling of untypical characters in domain names (High) (CVE-2021-22931)</h1>
+	  <p>Node.js was vulnerable to Remote Code Execution, XSS, application crashes due to missing input validation of host names returned by Domain Name Servers in the Node.js DNS library which can lead to output of wrong hostnames (leading to Domain Hijacking) and injection vulnerabilities in applications using the library.</p>
+	  <h1>Use after free on close http2 on stream canceling (High) (CVE-2021-22940)</h1>
+	  <p>Node.js was vulnerable to a use after free attack where an attacker might be able to exploit memory corruption to change process behavior. The issue is a follow on to CVE-2021-22930 as the issue was not completely resolved in the fix for CVE-2021-22930.</p>
+	  <h1>Incomplete validation of rejectUnauthorized parameter (Low) (CVE-2021-22939)</h1>
+	  <p>If the Node.js https API was used incorrectly and "undefined" was in passed for the "rejectUnauthorized" parameter, no error was returned and connections to servers with an expired certificate would have been accepted.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-22931</cvename>
+      <cvename>CVE-2021-22940</cvename>
+      <cvename>CVE-2021-22939</cvename>
+      <url>https://nodejs.org/en/blog/vulnerability/aug-2021-security-releases/</url>
+    </references>
+    <dates>
+      <discovery>2021-08-11</discovery>
+      <entry>2021-09-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f53dab71-1b15-11ec-9d9d-0022489ad614">
+    <topic>Node.js -- July 2021 Security Releases (2)</topic>
+    <affects>
+      <package>
+	<name>node14</name>
+	<range><lt>14.17.4</lt></range>
+      </package>
+      <package>
+	<name>node</name>
+	<range><lt>16.6.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="ihttps://nodejs.org/en/blog/vulnerability/july-2021-security-releases-2/">
+	  <h1>Use after free on close http2 on stream canceling (High) (CVE-2021-22930)</h1>
+	  <p>Node.js is vulnerable to a use after free attack where an attacker might be able to exploit the memory corruption, to change process behavior.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-22930</cvename>
+      <url>https://nodejs.org/en/blog/vulnerability/july-2021-security-releases-2/</url>
+    </references>
+    <dates>
+      <discovery>2021-07-29</discovery>
+      <entry>2021-09-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c174118e-1b11-11ec-9d9d-0022489ad614">
+    <topic>Node.js -- July 2021 Security Releases</topic>
+    <affects>
+      <package>
+	<name>node14</name>
+	<range><lt>14.17.2</lt></range>
+      </package>
+      <package>
+	<name>node</name>
+	<range><lt>16.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="https://nodejs.org/en/blog/vulnerability/july-2021-security-releases/">
+	  <h1>libuv upgrade - Out of bounds read (Medium) (CVE-2021-22918)</h1>
+	  <p>Node.js is vulnerable to out-of-bounds read in libuv's uv__idna_toascii() function which is used to convert strings to ASCII. This is called by Node's dns module's lookup() function and can lead to information disclosures or crashes.</p>
+	  <h1>Windows installer - Node Installer Local Privilege Escalation (Medium) (CVE-2021-22921)</h1>
+	  <p>Node.js is vulnerable to local privilege escalation attacks under certain conditions on Windows platforms. More specifically, improper configuration of permissions in the installation directory allows an attacker to perform two different escalation attacks: PATH and DLL hijacking.</p>
+	  <h1>npm upgrade - ssri Regular Expression Denial of Service (ReDoS) (High) (CVE-2021-27290)</h1>
+	  <p>This is a vulnerability in the ssri npm module which may be vulnerable to denial of service attacks.</p>
+	  <h1>npm upgrade - hosted-git-info Regular Expression Denial of Service (ReDoS) (Medium) (CVE-2021-23362)</h1>
+	  <p>This is a vulnerability in the hosted-git-info npm module which may be vulnerable to denial of service attacks.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-22918</cvename>
+      <cvename>CVE-2021-22921</cvename>
+      <cvename>CVE-2021-27290</cvename>
+      <cvename>CVE-2021-23362</cvename>
+      <url>https://nodejs.org/en/blog/vulnerability/july-2021-security-releases/</url>
+    </references>
+    <dates>
+      <discovery>2021-07-01</discovery>
+      <entry>2021-09-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3551e106-1b17-11ec-a8a7-704d7b472482">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>94.0.4606.54</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2021/09/stable-channel-update-for-desktop_21.html">
+	  <p>This update contains 19 security fixes, including:</p>
+	  <ul>
+	    <li>[1243117] High CVE-2021-37956: Use after free in Offline use.
+	      Reported by Huyna at Viettel Cyber Security on 2021-08-24</li>
+	    <li>[1242269] High CVE-2021-37957: Use after free in WebGPU.
+	      Reported by Looben Yang on 2021-08-23</li>
+	    <li>[1223290] High CVE-2021-37958: Inappropriate implementation in
+	      Navigation. Reported by James Lee (@Windowsrcer) on
+	      2021-06-24</li>
+	    <li>[1229625] High CVE-2021-37959: Use after free in Task Manager.
+	      Reported by raven (@raid_akame) on 2021-07-15</li>
+	    <li>[1247196] High CVE-2021-37960: Inappropriate implementation in
+	      Blink graphics. Reported by Atte Kettunen of OUSPG on
+	      2021-09-07</li>
+	    <li>[1228557] Medium CVE-2021-37961: Use after free in Tab Strip.
+	      Reported by Khalil Zhani on 2021-07-13</li>
+	    <li>[1231933] Medium CVE-2021-37962: Use after free in Performance
+	      Manager. Reported by Sri on 2021-07-22</li>
+	    <li>[1199865] Medium CVE-2021-37963: Side-channel information
+	      leakage in DevTools. Reported by Daniel Genkin and Ayush Agarwal,
+	      University of Michigan, Eyal Ronen and Shaked Yehezkel, Tel Aviv
+	      University, Sioli O'Connell, University of Adelaide, and Jason
+	      Kim, Georgia Institute of Technology  on 2021-04-16</li>
+	    <li>[1203612] Medium CVE-2021-37964: Inappropriate implementation in
+	      ChromeOS Networking. Reported by Hugo Hue and Sze Yiu Chau of the
+	      Chinese University of Hong Kong on 2021-04-28</li>
+	    <li>[1239709] Medium CVE-2021-37965: Inappropriate implementation in
+	      Background Fetch API. Reported by Maurice Dauer on 2021-08-13</li>
+	    <li>[1238944] Medium CVE-2021-37966: Inappropriate implementation in
+	      Compositing. Reported by Mohit Raj (shadow2639) on 2021-08-11</li>
+	    <li>[1243622] Medium CVE-2021-37967: Inappropriate implementation in
+	      Background Fetch API. Reported by SorryMybad (@S0rryMybad) of
+	      Kunlun Lab on 2021-08-26</li>
+	    <li>[1245053] Medium CVE-2021-37968: Inappropriate implementation in
+	      Background Fetch API. Reported by Maurice Dauer on 2021-08-30</li>
+	    <li>[1245879] Medium CVE-2021-37969: Inappropriate implementation in
+	      Google Updater. Reported by Abdelhamid Naceri (halov) on
+	      2021-09-02</li>
+	    <li>[1248030] Medium CVE-2021-37970: Use after free in File System
+	      API. Reported by SorryMybad (@S0rryMybad) of Kunlun Lab on
+	      2021-09-09</li>
+	    <li>[1219354] Low CVE-2021-37971: Incorrect security UI in Web
+	      Browser UI. Reported by Rayyan Bijoora on 2021-06-13</li>
+	    <li>[1234259] Low CVE-2021-37972: Out of bounds read in
+	      libjpeg-turbo. Reported by Xu Hanyu and Lu Yutao from
+	      Panguite-Forensics-Lab of Qianxin on 2021-07-29</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-37956</cvename>
+      <cvename>CVE-2021-37957</cvename>
+      <cvename>CVE-2021-37958</cvename>
+      <cvename>CVE-2021-37959</cvename>
+      <cvename>CVE-2021-37960</cvename>
+      <cvename>CVE-2021-37961</cvename>
+      <cvename>CVE-2021-37962</cvename>
+      <cvename>CVE-2021-37963</cvename>
+      <cvename>CVE-2021-37964</cvename>
+      <cvename>CVE-2021-37965</cvename>
+      <cvename>CVE-2021-37966</cvename>
+      <cvename>CVE-2021-37967</cvename>
+      <cvename>CVE-2021-37968</cvename>
+      <cvename>CVE-2021-37969</cvename>
+      <cvename>CVE-2021-37970</cvename>
+      <cvename>CVE-2021-37971</cvename>
+      <cvename>CVE-2021-37972</cvename>
+      <url>https://chromereleases.googleblog.com/2021/09/stable-channel-update-for-desktop_21.html</url>
+    </references>
+    <dates>
+      <discovery>2021-09-21</discovery>
+      <entry>2021-09-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="57b1ee25-1a7c-11ec-9376-0800272221cc">
+    <topic>libssh -- possible heap-buffer overflow vulnerability</topic>
+    <affects>
+      <package>
+	<name>libssh</name>
+	<range><ge>0.9.1</ge><le>0.9.5</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>libssh security advisories:</p>
+	<blockquote cite="https://www.libssh.org/security/advisories/CVE-2021-3634.txt">
+	  <p>The SSH protocol keeps track of two shared secrets during the lifetime
+	    of the session. One of them is called `secret_hash` and and the other
+	    `session_id`. Initially, both of them are the same, but after key
+	    re-exchange, previous `session_id` is kept and used as an input to new
+	    `secret_hash`.</p>
+	  <p>Historically, both of these buffers had shared length variable, which
+	    worked as long as these buffers were same. But the key re-exchange
+	    operation can also change the key exchange method, which can be based on
+	    hash of different size, eventually creating `secret_hash` of different
+	    size than the `session_id` has.</p>
+	  <p>This becomes an issue when the `session_id` memory is zeroized or when
+	    it is used again during second key re-exchange.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-3634</cvename>
+      <url>https://www.libssh.org/security/advisories/CVE-2021-3634.txt</url>
+      <url>https://www.libssh.org/2021/08/26/libssh-0-9-6-security-release/</url>
+    </references>
+    <dates>
+      <discovery>2021-08-26</discovery>
+      <entry>2021-09-21</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="882a38f9-17dd-11ec-b335-d4c9ef517024">
     <topic>Apache httpd -- multiple vulnerabilities</topic>
     <affects>
