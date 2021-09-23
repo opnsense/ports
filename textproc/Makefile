@@ -1257,6 +1257,7 @@
     SUBDIR += py-bracex
     SUBDIR += py-cchardet
     SUBDIR += py-chardet
+    SUBDIR += py-charset-normalizer
     SUBDIR += py-citeproc-py
     SUBDIR += py-citeproc-py-styles
     SUBDIR += py-cjkwrap
@@ -1291,6 +1292,7 @@
     SUBDIR += py-fastavro
     SUBDIR += py-feedparser
     SUBDIR += py-fingerprints
+    SUBDIR += py-fluent.syntax
     SUBDIR += py-ftfy
     SUBDIR += py-furo
     SUBDIR += py-gambit-elasticsearch
