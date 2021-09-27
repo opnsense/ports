@@ -1,8 +1,8 @@
 diff --git configure.ac configure.ac
-index 5d9411a46d..dba26d546f 100644
+index 5c5781feec..e415954749 100644
 --- configure.ac
 +++ configure.ac
-@@ -1527,61 +1527,29 @@
+@@ -1503,61 +1503,29 @@
          #include <net/netmap_user.h>
          ],[
          #ifndef NETMAP_API
@@ -81,7 +81,7 @@ index 5d9411a46d..dba26d546f 100644
  
    # Suricata-Update.
 diff --git src/runmode-netmap.c src/runmode-netmap.c
-index 27bb845ad1..3c8421f0f8 100644
+index e3ee89938a..699f4fbb10 100644
 --- src/runmode-netmap.c
 +++ src/runmode-netmap.c
 @@ -1,4 +1,4 @@
@@ -90,7 +90,7 @@ index 27bb845ad1..3c8421f0f8 100644
   *
   * You can copy, redistribute or modify this Program under the terms of
   * the GNU General Public License version 2 as published by the Free
-@@ -22,36 +22,28 @@
+@@ -22,36 +22,27 @@
  */
  
  /**
@@ -128,7 +128,6 @@ index 27bb845ad1..3c8421f0f8 100644
 -#include "util-cpu.h"
 -#include "util-affinity.h"
 -#include "util-device.h"
-+
  #include "util-runmodes.h"
  #include "util-ioctl.h"
  #include "util-byte.h"
@@ -141,7 +140,7 @@ index 27bb845ad1..3c8421f0f8 100644
  #include "source-netmap.h"
  
  extern int max_pending_packets;
-@@ -71,7 +63,7 @@ void RunModeIdsNetmapRegister(void)
+@@ -70,7 +62,7 @@ void RunModeIdsNetmapRegister(void)
              " tasks from acquisition to logging",
              RunModeIdsNetmapWorkers);
      RunModeRegisterNewRunMode(RUNMODE_NETMAP, "autofp",
@@ -150,7 +149,7 @@ index 27bb845ad1..3c8421f0f8 100644
              "each flow are assigned to a single detect "
              "thread.",
              RunModeIdsNetmapAutoFp);
-@@ -111,6 +103,14 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
+@@ -110,6 +102,14 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
          }
      }
  
@@ -165,7 +164,7 @@ index 27bb845ad1..3c8421f0f8 100644
      /* prefixed with netmap or vale means it's not a real interface
       * and we don't check offloading. */
      if (strncmp(ns->iface, "netmap:", 7) != 0 &&
-@@ -208,15 +208,13 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
+@@ -207,15 +207,13 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
  
      ns->ips = (ns->copy_mode != NETMAP_COPY_MODE_NONE);
  
@@ -184,7 +183,7 @@ index 27bb845ad1..3c8421f0f8 100644
          }
      }
      if (ns->threads <= 0) {
-@@ -227,15 +225,15 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
+@@ -226,15 +224,15 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
  }
  
  /**
@@ -209,7 +208,7 @@ index 27bb845ad1..3c8421f0f8 100644
  static void *ParseNetmapConfig(const char *iface_name)
  {
      ConfNode *if_root = NULL;
-@@ -246,11 +244,10 @@ static void *ParseNetmapConfig(const char *iface_name)
+@@ -245,11 +243,10 @@ static void *ParseNetmapConfig(const char *iface_name)
          return NULL;
      }
  
@@ -222,7 +221,7 @@ index 27bb845ad1..3c8421f0f8 100644
  
      aconf->DerefFunc = NetmapDerefConfig;
      strlcpy(aconf->iface_name, iface_name, sizeof(aconf->iface_name));
-@@ -276,19 +273,26 @@ static void *ParseNetmapConfig(const char *iface_name)
+@@ -275,19 +272,26 @@ static void *ParseNetmapConfig(const char *iface_name)
          if (strlen(out_iface) > 0) {
              if_root = ConfFindDeviceConfig(netmap_node, out_iface);
              ParseNetmapSettings(&aconf->out, out_iface, if_root, if_default);
@@ -259,7 +258,7 @@ index 27bb845ad1..3c8421f0f8 100644
      /* netmap needs all offloading to be disabled */
      if (aconf->in.real) {
          char base_name[sizeof(aconf->in.iface)];
-@@ -310,6 +314,7 @@ static void *ParseNetmapConfig(const char *iface_name)
+@@ -309,6 +313,7 @@ static void *ParseNetmapConfig(const char *iface_name)
      SCLogPerf("Using %d threads for interface %s", aconf->in.threads,
              aconf->iface_name);
  
@@ -267,7 +266,7 @@ index 27bb845ad1..3c8421f0f8 100644
      return aconf;
  }
  
-@@ -397,69 +402,83 @@ int NetmapRunModeIsIPS()
+@@ -396,69 +401,83 @@ int NetmapRunModeIsIPS()
      return has_ips;
  }
  
@@ -391,7 +390,7 @@ index 27bb845ad1..3c8421f0f8 100644
      SCReturnInt(0);
  }
  
-@@ -472,31 +491,10 @@ int RunModeIdsNetmapSingle(void)
+@@ -471,31 +490,10 @@ int RunModeIdsNetmapSingle(void)
  int RunModeIdsNetmapWorkers(void)
  {
      SCEnter();
@@ -436,7 +435,7 @@ index 80e3a7ac5c..f7efb2d2c4 100644
   * You can copy, redistribute or modify this Program under the terms of
   * the GNU General Public License version 2 as published by the Free
 diff --git src/source-netmap.c src/source-netmap.c
-index 136e9cb420..4414cff4a8 100644
+index 136e9cb420..ad24268c84 100644
 --- src/source-netmap.c
 +++ src/source-netmap.c
 @@ -1,4 +1,4 @@
@@ -528,7 +527,7 @@ index 136e9cb420..4414cff4a8 100644
  }
  
  void TmModuleReceiveNetmapRegister (void)
-@@ -119,14 +102,13 @@ void TmModuleDecodeNetmapRegister (void)
+@@ -119,14 +102,7 @@ void TmModuleDecodeNetmapRegister (void)
  #define POLL_EVENTS (POLLHUP|POLLERR|POLLNVAL)
  #endif
  
@@ -536,20 +535,15 @@ index 136e9cb420..4414cff4a8 100644
 -    NETMAP_OK,
 -    NETMAP_FAILURE,
 -};
-+enum { NETMAP_FLAG_ZERO_COPY = 1, NETMAP_FLAG_EXCL_RING_ACCESS = 2 };
- 
+-
 -enum {
 -    NETMAP_FLAG_ZERO_COPY = 1,
 -};
-+/**
-+ * \brief We use the nm_pkthdr structure to pass data around,
-+ *        so define a version suitable for our uses if it is
-+ *        not already defined via the <net/netmap_user.h> header.
-+ */
++enum { NETMAP_FLAG_ZERO_COPY = 1, NETMAP_FLAG_EXCL_RING_ACCESS = 2 };
  
  /**
   * \brief Netmap device instance. Each ring for each device gets its own
-@@ -134,7 +116,7 @@ enum {
+@@ -134,7 +110,7 @@ enum {
   */
  typedef struct NetmapDevice_
  {
@@ -558,7 +552,7 @@ index 136e9cb420..4414cff4a8 100644
      unsigned int ref;
      SC_ATOMIC_DECLARE(unsigned int, threads_run);
      TAILQ_ENTRY(NetmapDevice_) next;
-@@ -143,6 +125,9 @@ typedef struct NetmapDevice_
+@@ -143,6 +119,9 @@ typedef struct NetmapDevice_
      char ifname[32];
      int ring;
      int direction; // 0 rx, 1 tx
@@ -568,7 +562,7 @@ index 136e9cb420..4414cff4a8 100644
  } NetmapDevice;
  
  /**
-@@ -150,7 +135,7 @@ typedef struct NetmapDevice_
+@@ -150,7 +129,7 @@ typedef struct NetmapDevice_
   */
  typedef struct NetmapThreadVars_
  {
@@ -577,7 +571,7 @@ index 136e9cb420..4414cff4a8 100644
      NetmapDevice *ifsrc;
      /* dst interface for IPS mode */
      NetmapDevice *ifdst;
-@@ -185,12 +170,21 @@ static SCMutex netmap_devlist_lock = SCMUTEX_INITIALIZER;
+@@ -185,12 +164,21 @@ static SCMutex netmap_devlist_lock = SCMUTEX_INITIALIZER;
   */
  int NetmapGetRSSCount(const char *ifname)
  {
@@ -601,7 +595,7 @@ index 136e9cb420..4414cff4a8 100644
      int fd = open("/dev/netmap", O_RDWR);
      if (fd == -1) {
          SCLogError(SC_ERR_NETMAP_CREATE,
-@@ -199,19 +193,24 @@ int NetmapGetRSSCount(const char *ifname)
+@@ -199,19 +187,24 @@ int NetmapGetRSSCount(const char *ifname)
          goto error_open;
      }
  
@@ -634,7 +628,7 @@ index 136e9cb420..4414cff4a8 100644
  
  error_fd:
      close(fd);
-@@ -220,16 +219,68 @@ int NetmapGetRSSCount(const char *ifname)
+@@ -220,16 +213,68 @@ int NetmapGetRSSCount(const char *ifname)
      return rx_rings;
  }
  
@@ -705,7 +699,7 @@ index 136e9cb420..4414cff4a8 100644
  {
      SCEnter();
      SCLogDebug("ifname %s", ns->iface);
-@@ -248,8 +299,7 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
+@@ -248,8 +293,7 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
          int if_flags = GetIfaceFlags(base_name);
          if (if_flags == -1) {
              if (verbose) {
@@ -715,7 +709,7 @@ index 136e9cb420..4414cff4a8 100644
                          base_name, ns->iface);
              }
              goto error;
-@@ -268,19 +318,20 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
+@@ -268,19 +312,20 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
          }
      }
      NetmapDevice *pdev = NULL, *spdev = NULL;
@@ -739,7 +733,7 @@ index 136e9cb420..4414cff4a8 100644
      TAILQ_FOREACH(spdev, &netmap_devlist, next) {
          SCLogDebug("spdev %s", spdev->ifname);
          if (direction == spdev->direction && strcmp(ns->iface, spdev->ifname) == 0) {
-@@ -294,19 +345,40 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
+@@ -294,19 +339,40 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
      const char *opt_x = "x"; // not for IPS
      const char *opt_z = "z"; // zero copy, not for IPS
  
@@ -769,7 +763,7 @@ index 136e9cb420..4414cff4a8 100644
 +     * One endpoint -- usually a hardware NIC.
 +     *
 +     * IPS mode -- with one endpoint a host stack "NIC":
-+     * When using multiple rings/threads are being used, then the open of the initial Ring 0 MUST
++     * When using multiple rings/threads, then the open of the initial Ring 0 MUST
 +     * instruct netmap to open multiple Host Stack rings (as the default is to open only a single
 +     * pair). This is also critical for the HW NIC endpoint. This is done by adding
 +     * “@conf:host-rings=x” suffix option (where “x” is the number of host rings desired)
@@ -787,7 +781,7 @@ index 136e9cb420..4414cff4a8 100644
      // loop to retry opening if unsupported options are used
  retry:
      snprintf(optstr, sizeof(optstr), "%s%s%s", opt_z, opt_x, direction == 0 ? opt_R : opt_T);
-@@ -317,44 +389,91 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
+@@ -317,44 +383,91 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
                  ns->iface, ring, strlen(optstr) ? "/" : "", optstr);
      } else if (strlen(ns->iface) > 5 && strncmp(ns->iface, "vale", 4) == 0 && isdigit(ns->iface[4])) {
          snprintf(devname, sizeof(devname), "%s", ns->iface);
@@ -827,7 +821,7 @@ index 136e9cb420..4414cff4a8 100644
 +            SCLogDebug("device with HW-ring enabled (devname): %s", devname);
 +        } else {
 +            /* Hardware ring other than ring 0, or both endpoints are HW
-+             * and these is no host stack (SW) endpoint */
++             * and there is no host stack (SW) endpoint */
 +            snprintf(devname, sizeof(devname), "netmap:%s-%d%s%s", ns->iface, ring,
 +                    strlen(optstr) ? "/" : "", optstr);
 +            SCLogDebug("device with HW-ring enabled (devname): %s", devname);
@@ -901,7 +895,7 @@ index 136e9cb420..4414cff4a8 100644
      SCMutexUnlock(&netmap_devlist_lock);
      *pdevice = pdev;
  
-@@ -363,33 +482,6 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
+@@ -363,33 +476,6 @@ static int NetmapOpen(NetmapIfaceSettings *ns,
      return -1;
  }
  
@@ -935,7 +929,7 @@ index 136e9cb420..4414cff4a8 100644
  /**
   * \brief PcapDumpCounters
   * \param ntv
-@@ -413,23 +505,18 @@ static inline void NetmapDumpCounters(NetmapThreadVars *ntv)
+@@ -413,23 +499,18 @@ static inline void NetmapDumpCounters(NetmapThreadVars *ntv)
  static TmEcode ReceiveNetmapThreadInit(ThreadVars *tv, const void *initdata, void **data)
  {
      SCEnter();
@@ -961,7 +955,7 @@ index 136e9cb420..4414cff4a8 100644
  
      ntv->livedev = LiveGetDevice(aconf->iface_name);
      if (ntv->livedev == NULL) {
-@@ -437,30 +524,29 @@ static TmEcode ReceiveNetmapThreadInit(ThreadVars *tv, const void *initdata, voi
+@@ -437,30 +518,29 @@ static TmEcode ReceiveNetmapThreadInit(ThreadVars *tv, const void *initdata, voi
          goto error_ntv;
      }
  
@@ -1004,7 +998,7 @@ index 136e9cb420..4414cff4a8 100644
              goto error_src;
          }
      }
-@@ -491,17 +577,23 @@ static TmEcode ReceiveNetmapThreadInit(ThreadVars *tv, const void *initdata, voi
+@@ -491,17 +571,23 @@ static TmEcode ReceiveNetmapThreadInit(ThreadVars *tv, const void *initdata, voi
          }
      }
  
@@ -1028,7 +1022,7 @@ index 136e9cb420..4414cff4a8 100644
  error:
      aconf->DerefFunc(aconf);
      SCReturnInt(TM_ECODE_FAILED);
-@@ -521,16 +613,29 @@ static TmEcode NetmapWritePacket(NetmapThreadVars *ntv, Packet *p)
+@@ -521,16 +607,29 @@ static TmEcode NetmapWritePacket(NetmapThreadVars *ntv, Packet *p)
      }
      DEBUG_VALIDATE_BUG_ON(ntv->ifdst == NULL);
  
@@ -1063,7 +1057,7 @@ index 136e9cb420..4414cff4a8 100644
      return TM_ECODE_OK;
  }
  
-@@ -549,13 +654,11 @@ static void NetmapReleasePacket(Packet *p)
+@@ -549,13 +648,11 @@ static void NetmapReleasePacket(Packet *p)
      PacketFreeOrRelease(p);
  }
  
@@ -1079,7 +1073,7 @@ index 136e9cb420..4414cff4a8 100644
              return;
          }
      }
-@@ -573,12 +676,12 @@ static void NetmapCallback(u_char *user, const struct nm_pkthdr *ph, const u_cha
+@@ -573,12 +670,12 @@ static void NetmapCallback(u_char *user, const struct nm_pkthdr *ph, const u_cha
      ntv->bytes += ph->len;
  
      if (ntv->flags & NETMAP_FLAG_ZERO_COPY) {
@@ -1094,7 +1088,7 @@ index 136e9cb420..4414cff4a8 100644
              TmqhOutputPacketpool(ntv->tv, p);
              return;
          }
-@@ -593,6 +696,83 @@ static void NetmapCallback(u_char *user, const struct nm_pkthdr *ph, const u_cha
+@@ -593,6 +690,83 @@ static void NetmapCallback(u_char *user, const struct nm_pkthdr *ph, const u_cha
      (void)TmThreadsSlotProcessPkt(ntv->tv, ntv->slot, p);
  }
  
@@ -1178,7 +1172,7 @@ index 136e9cb420..4414cff4a8 100644
  /**
   *  \brief Main netmap reading loop function
   */
-@@ -608,6 +788,7 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
+@@ -608,6 +782,7 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
      fds.fd = ntv->ifsrc->nmd->fd;
      fds.events = POLLIN;
  
@@ -1186,7 +1180,7 @@ index 136e9cb420..4414cff4a8 100644
      for(;;) {
          if (unlikely(suricata_ctl_flags != 0)) {
              break;
-@@ -618,19 +799,17 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
+@@ -618,19 +793,17 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
          PacketPoolWait();
  
          int r = poll(&fds, 1, POLL_TIMEOUT);
@@ -1209,7 +1203,7 @@ index 136e9cb420..4414cff4a8 100644
              /* sync counters */
              NetmapDumpCounters(ntv);
              StatsSyncCountersIfSignalled(tv);
-@@ -642,18 +821,18 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
+@@ -642,18 +815,18 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
  
          if (unlikely(fds.revents & POLL_EVENTS)) {
              if (fds.revents & POLLERR) {
@@ -1234,7 +1228,7 @@ index 136e9cb420..4414cff4a8 100644
          }
  
          NetmapDumpCounters(ntv);
-@@ -713,7 +892,7 @@ static TmEcode ReceiveNetmapThreadDeinit(ThreadVars *tv, void *data)
+@@ -713,7 +886,7 @@ static TmEcode ReceiveNetmapThreadDeinit(ThreadVars *tv, void *data)
  
  /**
   * \brief Prepare netmap decode thread.
@@ -1263,7 +1257,7 @@ index adfdaf57d3..b60d544d5c 100644
  enum {
      NETMAP_COPY_MODE_NONE,
 diff --git src/suricata-common.h src/suricata-common.h
-index 06947c13ee..6bcfeb7504 100644
+index 8e8964ec6e..bf7459db12 100644
 --- src/suricata-common.h
 +++ src/suricata-common.h
 @@ -177,6 +177,10 @@ typedef unsigned char u_char
@@ -1278,10 +1272,10 @@ index 06947c13ee..6bcfeb7504 100644
  #include <sys/mman.h>
  #endif
 diff --git src/util-runmodes.c src/util-runmodes.c
-index c002395df0..2c76b9d401 100644
+index 10f5bd94d3..2e1042bf18 100644
 --- src/util-runmodes.c
 +++ src/util-runmodes.c
-@@ -261,7 +261,7 @@ static int RunModeSetLiveCaptureWorkersForDevice(ConfigIfaceThreadsCountFunc Mod
+@@ -260,7 +260,7 @@ static int RunModeSetLiveCaptureWorkersForDevice(ConfigIfaceThreadsCountFunc Mod
          threads_count = 1;
      } else {
          threads_count = MIN(ModThreadsCount(aconf), thread_max);

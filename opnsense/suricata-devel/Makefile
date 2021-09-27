@@ -1,7 +1,7 @@
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
 DISTVERSION=	6.0.3
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
@@ -54,7 +54,7 @@ PRELUDE_BROKEN=		Compilation broken, see https://redmine.openinfosecfoundation.o
 # Opnsense addition
 OPTIONS_DEFINE+=		NETMAP_V14
 NETMAP_V14_DESC=		Netmap V14 API, see https://github.com/luigirizzo/netmap/blob/master/libnetmap/libnetmap.h
-NETMAP_V14_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-pr-6372
+NETMAP_V14_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-pr-6401
 
 GEOIP_DESC=		GeoIP support
 HYPERSCAN_DESC=		Hyperscan support
