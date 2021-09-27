@@ -162,6 +162,7 @@
     SUBDIR += bcps
     SUBDIR += bitwise
     SUBDIR += blacs
+    SUBDIR += blahtexml
     SUBDIR += blas
     SUBDIR += blasfeo
     SUBDIR += blaze
@@ -937,6 +938,7 @@
     SUBDIR += qalculate
     SUBDIR += qd
     SUBDIR += qhull
+    SUBDIR += qhull8
     SUBDIR += qposases
     SUBDIR += qrupdate
     SUBDIR += qtiplot-doc
@@ -1032,6 +1034,7 @@
     SUBDIR += tetgen
     SUBDIR += teyjus
     SUBDIR += timbl
+    SUBDIR += tiny-bignum-c
     SUBDIR += tmv
     SUBDIR += tomsfastmath
     SUBDIR += topaz
