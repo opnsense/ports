@@ -1,6 +1,6 @@
 PORTNAME=	gitaly
 DISTVERSION=	14.3.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -35,6 +35,8 @@ LIB_DEPENDS=	libgit2.so:devel/libgit2
 
 USES=		cpe gmake go:modules,no_targets pkgconfig
 USE_RUBY=	yes
+
+CPE_VENDOR=	gitlab
 
 MAKE_ENV=	GOFLAGS="${GO_BUILDFLAGS}"
 # make sure to pass go build options into make process

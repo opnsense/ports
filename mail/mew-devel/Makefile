@@ -2,10 +2,11 @@ PORTNAME=	mew
 DISTVERSIONPREFIX=	v
 DISTVERSION=	6.8-72
 DISTVERSIONSUFFIX=	-gfc4bca6
+PORTREVISION=	1
 CATEGORIES=	mail elisp
 PKGNAMESUFFIX=	-devel${EMACS_PKGNAMESUFFIX}
 
-MAINTAINER=	yasu@utahime.org
+MAINTAINER=	yasu@FreeBSD.org
 COMMENT=	Messaging in the Emacs World for emacs (Development Version)
 
 LICENSE=	BSD3CLAUSE

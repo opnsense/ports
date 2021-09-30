@@ -1,8 +1,7 @@
 # Created by: Michael Johnson <ahze@FreeBSD.org>
 
 PORTNAME=	webkit
-DISTVERSION=	2.30.5
-PORTREVISION=	2
+DISTVERSION=	2.34.0
 CATEGORIES=	www
 MASTER_SITES=	https://webkitgtk.org/releases/
 PKGNAMESUFFIX=	2-gtk3
@@ -54,9 +53,11 @@ CXXFLAGS_powerpc64=	-DENABLE_YARR_JIT=0
 CMAKE_ARGS=		-DPORT=GTK
 CMAKE_OFF=		USE_LD_GOLD ${CMAKE_OFF_${ARCH}:U} \
 			ENABLE_GLES2 \
-			USE_SYSTEMD
+			USE_SYSTEMD \
+			ENABLE_GAMEPAD
 CMAKE_ON=		ENABLE_MINIBROWSER \
-			USE_SYSTEM_MALLOC
+			USE_SYSTEM_MALLOC \
+			USE_SOUP2
 CMAKE_OFF_armv6=	ENABLE_JIT
 CMAKE_OFF_armv7=	ENABLE_JIT
 CMAKE_OFF_powerpc=	ENABLE_JIT
@@ -88,6 +89,8 @@ GEOIP_CMAKE_BOOL=	ENABLE_GEOLOCATION
 GEOIP_BUILD_DEPENDS=	geoclue>=2.4.3:net/geoclue
 GEOIP_RUN_DEPENDS=	geoclue>=2.4.3:net/geoclue
 
+GSTREAMER_EXTRA_PATCHES_OFF=	${PATCHDIR}/extra-patch-revert-7c0f13f37ec5 \
+				${PATCHDIR}/extra-patch-guard-video
 GSTREAMER_USE=		GSTREAMER1=bad,gl
 GSTREAMER_CMAKE_BOOL=	ENABLE_VIDEO ENABLE_WEB_AUDIO
 
@@ -95,10 +98,6 @@ WAYLAND_CMAKE_BOOL=	ENABLE_WAYLAND_TARGET
 WAYLAND_LIB_DEPENDS=	libwayland-egl.so:graphics/wayland \
 			libwpe-1.0.so:www/libwpe \
 			libWPEBackend-fdo-1.0.so:www/wpebackend-fdo
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|/usr/lib/browser/plugins|${BROWSER_PLUGINS_DIR}|' \
-		${WRKSRC}/Source/WebKit/Shared/Plugins/unix/PluginSearchPath.cpp
 
 pre-configure:
 # .if !exists() evaluates too early before cairo has a chance to be installed
