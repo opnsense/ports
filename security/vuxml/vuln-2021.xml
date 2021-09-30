@@ -1,3 +1,108 @@
+  <vuln vid="5436f9a2-2190-11ec-a90b-0cc47a49470e">
+    <topic>ha -- Directory traversals</topic>
+    <affects>
+      <package>
+	<name>ha</name>
+	<range><lt>0.999b_2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Alexander Cherepanov reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2015/01/18/8">
+	  <p>Version 0.999b and older of ha archiver is susceptible to directory
+	  traversal vulnerabilities via absolute and relative paths.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-1198</cvename>
+      <url>http://www.openwall.com/lists/oss-security/2015/01/18/8</url>
+    </references>
+    <dates>
+      <discovery>2015-01-18</discovery>
+      <entry>2021-09-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="730e922f-20e7-11ec-a574-080027eedc6a">
+    <topic>nexus2-oss -- Apache ActiveMQ JMX vulnerability</topic>
+    <affects>
+      <package>
+	<name>nexus2-oss</name>
+	<range><lt>2.14.20</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Sonatype reports:</p>
+	<blockquote cite="https://help.sonatype.com/repomanager2/release-notes/2020-release-notes#id-2020ReleaseNotes-RepositoryManage">
+		<ul><li>CVE-2020-13920: Apache ActiveMQ JMX is vulnerable to a MITM attack</li></ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-13920</cvename>
+      <url>https://help.sonatype.com/repomanager2/release-notes/2020-release-notes#id-2020ReleaseNotes-RepositoryManage</url>
+    </references>
+    <dates>
+      <discovery>2020-12-28</discovery>
+      <entry>2021-09-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b2f1f86f-20e6-11ec-a574-080027eedc6a">
+    <topic>nexus2-oss -- NXRM2 Directory Traversal vulnerability</topic>
+    <affects>
+      <package>
+	<name>nexus2-oss</name>
+	<range><lt>2.14.19</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Sonatype reports:</p>
+	<blockquote cite="https://help.sonatype.com/repomanager2/release-notes/2020-release-notes#id-2020ReleaseNotes-RepositoryManager2.14.20">
+		<ul><li>CVE-2020-15012: NXRM2 Directory Traversal vulnerability</li></ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-15012</cvename>
+      <url>https://help.sonatype.com/repomanager2/release-notes/2020-release-notes#id-2020ReleaseNotes-RepositoryManage</url>
+    </references>
+    <dates>
+      <discovery>2020-06-23</discovery>
+      <entry>2021-09-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="576aa394-1d85-11ec-8b7d-4f5b624574e2">
+    <topic>webkit2-gtk3 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>webkit2-gtk3</name>
+	<range><lt>2.32.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The WebKitGTK project reports vulnerabilities:</p>
+	<blockquote cite="https://webkitgtk.org/security/WSA-2021-0005.html">
+		<ul><li>CVE-2021-30858: Processing maliciously crafted web content may lead to arbitrary code execution.</li></ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-30858</cvename>
+      <url>https://webkitgtk.org/security/WSA-2021-0005.html</url>
+    </references>
+    <dates>
+      <discovery>2021-09-20</discovery>
+      <entry>2021-09-24</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="b6c875f1-1d76-11ec-ae80-704d7b472482">
     <topic>chromium -- use after free in Portals</topic>
     <affects>
@@ -385,16 +490,17 @@
       </body>
     </description>
     <references>
-      <cvename>CVE-CVE-2021-33193</cvename>
-      <cvename>CVE-CVE-2021-34798</cvename>
-      <cvename>CVE-CVE-2021-36160</cvename>
-      <cvename>CVE-CVE-2021-39275</cvename>
-      <cvename>CVE-CVE-2021-40438</cvename>
+      <cvename>CVE-2021-33193</cvename>
+      <cvename>CVE-2021-34798</cvename>
+      <cvename>CVE-2021-36160</cvename>
+      <cvename>CVE-2021-39275</cvename>
+      <cvename>CVE-2021-40438</cvename>
       <url>http://httpd.apache.org/security/vulnerabilities_24.html</url>
     </references>
     <dates>
       <discovery>2021-09-16</discovery>
       <entry>2021-09-17</entry>
+      <modified>2021-09-28</modified>
     </dates>
   </vuln>
 
@@ -403,8 +509,7 @@
     <affects>
       <package>
        <name>curl</name>
-       <range><lt>7.79.0</lt></range>
-       <range><ge>7.20.0</ge></range>
+       <range><ge>7.20.0</ge><lt>7.79.0</lt></range>
      </package>
     </affects>
     <description>
@@ -428,6 +533,7 @@
     <dates>
       <discovery>2021-09-15</discovery>
       <entry>2021-09-17</entry>
+      <modified>2021-09-28</modified>
     </dates>
   </vuln>
 
