@@ -217,6 +217,7 @@
     SUBDIR += cpdup
     SUBDIR += cpu-x
     SUBDIR += cpuburn
+    SUBDIR += cpufetch
     SUBDIR += cpuid
     SUBDIR += cpuid2cpuflags
     SUBDIR += cpulimit
@@ -1121,11 +1122,11 @@
     SUBDIR += retail
     SUBDIR += rex
     SUBDIR += rhc
-    SUBDIR += riak-cs
     SUBDIR += rinse
     SUBDIR += rmlint
     SUBDIR += rocr
     SUBDIR += roct
+    SUBDIR += root-tail
     SUBDIR += rovclock
     SUBDIR += rpi-firmware
     SUBDIR += rset
@@ -1307,7 +1308,6 @@
     SUBDIR += sshsudo
     SUBDIR += ssync
     SUBDIR += stalepid
-    SUBDIR += stanchion
     SUBDIR += stepsync
     SUBDIR += storcli
     SUBDIR += stow

@@ -1,6 +1,6 @@
 PORTNAME=	gitaly
-DISTVERSION=	14.3.0
-PORTREVISION=	1
+DISTVERSION=	14.3.2
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -15,7 +15,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 		rubygem-rugged>=1.1<2:devel/rubygem-rugged \
 		rubygem-github-linguist>=7.12.1<8:textproc/rubygem-github-linguist \
 		rubygem-gitlab-markup>=1.7.1<1.8.0:textproc/rubygem-gitlab-markup \
-		rubygem-activesupport61>=6.1.3.2<6.2:devel/rubygem-activesupport61 \
+		rubygem-activesupport613>=6.1.3.2<6.1.4:devel/rubygem-activesupport613 \
 		rubygem-rdoc>=6.3.2<7.0:devel/rubygem-rdoc \
 		rubygem-gitlab-gollum-lib>=4.2.7.10.gitlab.1<4.2.8:www/rubygem-gitlab-gollum-lib \
 		rubygem-gitlab-gollum-rugged_adapter>=0.4.4.4.gitlab.1<0.4.5.0:www/rubygem-gitlab-gollum-rugged_adapter \
@@ -45,7 +45,7 @@ MAKE_ENV+=	${GO_ENV}
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find this here: https://gitlab.com/gitlab-org/gitaly/-/tags
-GL_COMMIT=	1a0e5d9b50a5ae76b5a11fd09cf66d2213ffbef6
+GL_COMMIT=	52407ecfce7fc39b4f5f6db15cc6cb4e9a8c1f60
 
 # for go dependencies
 USE_GITHUB=	nodefault

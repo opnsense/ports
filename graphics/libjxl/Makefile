@@ -1,11 +1,11 @@
 PORTNAME=	libjxl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5
-PORTREVISION=	1
+DISTVERSION=	0.6
 CATEGORIES=	graphics
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	adb32f3f8f37.patch:-p1 # https://github.com/libjxl/libjxl/pull/193
+PATCHFILES+=	c31dca74e68f.patch:-p1 # https://github.com/libjxl/libjxl/pull/678
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	JPEG XL reference encoder/decoder
@@ -42,6 +42,8 @@ GIF_LIB_DEPENDS=	libgif.so:graphics/giflib
 GIF_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_GIF
 
 GIMP_DESC=		GIMP plugin support
+GIMP_USES=		gnome
+GIMP_USE=		GNOME=gtk20
 GIMP_LIB_DEPENDS=	libgegl-0.4.so:graphics/gegl \
 			libgimp-2.0.so:graphics/gimp-app \
 			libbabl-0.1.so:x11/babl
@@ -69,8 +71,6 @@ PNG_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_PNG
 post-patch:
 	@${REINPLACE_CMD} 's,/usr,${LOCALBASE},' \
 		${WRKSRC}/plugins/gdk-pixbuf/jxl.thumbnailer
-	${REINPLACE_CMD} 's,OpenEXR::Int64,uint64_t,' \
-		${WRKSRC}/lib/extras/codec_exr.cc
 
 # pkg_check_modules doesn't support CMAKE_DISABLE_*
 post-patch-GIMP-off:

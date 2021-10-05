@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20210929
+PORTVERSION=	s20211004
 PORTREVISION?=	0
 CATEGORIES=	emulators
 
@@ -27,14 +27,13 @@ BUILD_DEPENDS=	catch>0:devel/catch \
 		nlohmann-json>0:devel/nlohmann-json \
 		glslangValidator:graphics/glslang
 LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
-		libzip.so:archivers/libzip \
 		libzstd.so:archivers/zstd \
 		libopus.so:audio/opus \
 		libavcodec.so:multimedia/ffmpeg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	b9251155f
+GH_TAGNAME=	b86943996
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-32-ga3fdfe8:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.2.180:Vulkan_Headers/externals/Vulkan-Headers \

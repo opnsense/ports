@@ -252,6 +252,7 @@
     SUBDIR += dune-istl
     SUBDIR += dune-localfunctions
     SUBDIR += dune-metagrid
+    SUBDIR += dune-multidomaingrid
     SUBDIR += dune-pdelab
     SUBDIR += dune-polygongrid
     SUBDIR += dune-spgrid
@@ -371,6 +372,7 @@
     SUBDIR += jtransforms
     SUBDIR += jts
     SUBDIR += kalgebra
+    SUBDIR += kalker
     SUBDIR += kbruch
     SUBDIR += kcalc
     SUBDIR += kfr
