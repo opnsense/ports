@@ -483,6 +483,7 @@
     SUBDIR += grub2-pcbsd
     SUBDIR += gsh
     SUBDIR += gsmartcontrol
+    SUBDIR += gstat-rs
     SUBDIR += gstopd
     SUBDIR += gstreamer1-plugins-cdio
     SUBDIR += gtk-imonc
@@ -1052,6 +1053,7 @@
     SUBDIR += py-ploy_ezjail
     SUBDIR += py-plumbum
     SUBDIR += py-power
+    SUBDIR += py-prometheus-zfs
     SUBDIR += py-psutil
     SUBDIR += py-psutil121
     SUBDIR += py-ptyprocess

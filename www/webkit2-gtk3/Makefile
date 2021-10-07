@@ -35,7 +35,7 @@ LIB_DEPENDS=	libenchant-2.so:textproc/enchant2 \
 
 PORTSCOUT=	limitw:1,even
 
-USES=		bison cmake compiler:c++14-lang gettext gl gnome gperf \
+USES=		bison cmake compiler:c++14-lang cpe gettext gl gnome gperf \
 		jpeg localbase:ldflags perl5 pkgconfig python:build \
 		sqlite tar:xz xorg
 USE_GNOME=	cairo gdkpixbuf2 gtk30 introspection:build libxml2 libxslt
@@ -45,6 +45,9 @@ USE_PERL5=	build
 USE_RUBY=	yes
 RUBY_NO_RUN_DEPENDS=	yes
 USE_XORG=	x11 xcomposite xdamage xext xrender xt ice
+
+CPE_VENDOR=	webkitgtk
+CPE_PRODUCT=	webkitgtk
 
 BINARY_ALIAS=		python=${PYTHON_CMD}
 CXXFLAGS+=		-DFIXED_EXECUTABLE_MEMORY_POOL_SIZE_IN_MB=32
@@ -62,7 +65,6 @@ CMAKE_OFF_armv6=	ENABLE_JIT
 CMAKE_OFF_armv7=	ENABLE_JIT
 CMAKE_OFF_powerpc=	ENABLE_JIT
 CMAKE_OFF_powerpc64=	ENABLE_JIT
-CONFIGURE_ENV=		XDG_CACHE_HOME=${WRKDIR}
 INSTALL_TARGET=		install
 
 BROWSER_PLUGINS_DIR?=	${LOCALBASE}/lib/browser_plugins/symlinks/webkit-gtk3
