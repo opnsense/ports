@@ -43,6 +43,7 @@
     SUBDIR += acidwarp
     SUBDIR += acidwarp-sdl
     SUBDIR += agg
+    SUBDIR += airsaned
     SUBDIR += akira
     SUBDIR += alembic
     SUBDIR += aloadimage
@@ -940,6 +941,7 @@
     SUBDIR += quat-gui
     SUBDIR += quesa
     SUBDIR += quesoglc
+    SUBDIR += quickqanava
     SUBDIR += qvge
     SUBDIR += radiance
     SUBDIR += radius-engine

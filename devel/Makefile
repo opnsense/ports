@@ -775,7 +775,6 @@
     SUBDIR += geany-plugin-macro
     SUBDIR += geany-plugin-markdown
     SUBDIR += geany-plugin-miniscript
-    SUBDIR += geany-plugin-multiterm
     SUBDIR += geany-plugin-numberedbookmarks
     SUBDIR += geany-plugin-overview
     SUBDIR += geany-plugin-pairtaghighlighter
@@ -5007,6 +5006,7 @@
     SUBDIR += py-pytest-black
     SUBDIR += py-pytest-black-multipy
     SUBDIR += py-pytest-cache
+    SUBDIR += py-pytest-canonical-data
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-checkdocs
     SUBDIR += py-pytest-cov
@@ -5033,6 +5033,7 @@
     SUBDIR += py-pytest-pycodestyle
     SUBDIR += py-pytest-randomly
     SUBDIR += py-pytest-regressions
+    SUBDIR += py-pytest-regtest
     SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-rerunfailures
     SUBDIR += py-pytest-runner
