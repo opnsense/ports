@@ -46,12 +46,6 @@
 #				file and add apropriate @postexec/@postunexec directives for
 #				each .omf file found to track OMF registration database.
 #
-# INSTALLS_ICONS	- If a GTK+ port installs Freedesktop-style icons to
-#				${LOCALBASE}/share/icons, then you should use this
-#				macro. Using this macro ensures that icons are cached
-#				and will display correctly. This macro isn't needed
-#				for QT based applications, which use a different method.
-#
 # MAINTAINER: gnome@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_GNOME_MK)
@@ -177,7 +171,6 @@ pangox-compat_USE_GNOME_IMPL=	glib20 pango
 gdkpixbuf2_LIB_DEPENDS=	libgdk_pixbuf-2.0.so:graphics/gdk-pixbuf2
 gdkpixbuf2_USE_GNOME_IMPL=glib20
 
-gtk-update-icon-cache_BUILD_DEPENDS=	gtk-update-icon-cache:graphics/gtk-update-icon-cache
 gtk-update-icon-cache_RUN_DEPENDS=	gtk-update-icon-cache:graphics/gtk-update-icon-cache
 gtk-update-icon-cache_USE_GNOME_IMPL=	atk pango gdkpixbuf2
 
@@ -318,10 +311,6 @@ gvfs_BUILD_DEPENDS=	gvfs>=0:devel/gvfs
 gvfs_RUN_DEPENDS=	gvfs>=0:devel/gvfs
 gvfs_USE_GNOME_IMPL=	glib20
 
-.if defined(INSTALLS_ICONS)
-USE_GNOME+=	gtk-update-icon-cache
-.endif
-
 # End component definition section
 
 .if defined(USE_GNOME)
@@ -456,25 +445,6 @@ gnome-post-omf:
 		${ECHO_CMD} "@postunexec scrollkeeper-uninstall -q %D/$${i} 2>/dev/null || /usr/bin/true" \
 			>> ${TMPPLIST}; \
 	done
-.endif
-
-.if defined(INSTALLS_ICONS)
-_USES_install+=	690:gnome-post-icons
-gnome-post-icons:
-	@${RM} ${TMPPLIST}.icons1
-	@for i in `${GREP} "^share/icons/.*/" ${TMPPLIST} | ${CUT} -d / -f 1-3 | ${SORT} -u`; do \
-		${ECHO_CMD} "@rmtry $${i}/icon-theme.cache" \
-			>> ${TMPPLIST}.icons1; \
-		${ECHO_CMD} "@postexec ${LOCALBASE}/bin/gtk-update-icon-cache -q -f %D/$${i} 2>/dev/null || /usr/bin/true" \
-			>> ${TMPPLIST}; \
-		${ECHO_CMD} "@postunexec ${LOCALBASE}/bin/gtk-update-icon-cache -q -f %D/$${i} 2>/dev/null || /usr/bin/true" \
-			>> ${TMPPLIST}; \
-	done
-	@if test -f ${TMPPLIST}.icons1; then \
-		${CAT} ${TMPPLIST}.icons1 ${TMPPLIST} > ${TMPPLIST}.icons2; \
-		${RM} ${TMPPLIST}.icons1; \
-		${MV} -f ${TMPPLIST}.icons2 ${TMPPLIST}; \
-	fi
 .endif
 
 .endif
