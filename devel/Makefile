@@ -292,6 +292,7 @@
     SUBDIR += caf
     SUBDIR += calibrator
     SUBDIR += capnproto
+    SUBDIR += capnproto080
     SUBDIR += capstone3
     SUBDIR += capstone4
     SUBDIR += cargo-c
@@ -822,15 +823,19 @@
     SUBDIR += git-cinnabar
     SUBDIR += git-codereview
     SUBDIR += git-cola
+    SUBDIR += git-cvs
     SUBDIR += git-delta
     SUBDIR += git-extras
     SUBDIR += git-filter-repo
+    SUBDIR += git-gui
     SUBDIR += git-lab
     SUBDIR += git-lfs
     SUBDIR += git-merge-changelog
     SUBDIR += git-modes
+    SUBDIR += git-p4
     SUBDIR += git-review
     SUBDIR += git-subrepo
+    SUBDIR += git-svn
     SUBDIR += git-town
     SUBDIR += gitaly
     SUBDIR += gitblit
@@ -4243,6 +4248,7 @@
     SUBDIR += py-babi_grammars
     SUBDIR += py-backcall
     SUBDIR += py-backports
+    SUBDIR += py-backports.cached-property
     SUBDIR += py-backports.csv
     SUBDIR += py-backports.entry-points-selectable
     SUBDIR += py-backports.zoneinfo
@@ -5129,6 +5135,7 @@
     SUBDIR += py-requirementslib
     SUBDIR += py-resolvelib
     SUBDIR += py-resolvelib05
+    SUBDIR += py-resolvelib07
     SUBDIR += py-resolver
     SUBDIR += py-resource
     SUBDIR += py-responses
@@ -5692,6 +5699,7 @@
     SUBDIR += rubygem-aws-sdk-connect
     SUBDIR += rubygem-aws-sdk-connectcontactlens
     SUBDIR += rubygem-aws-sdk-connectparticipant
+    SUBDIR += rubygem-aws-sdk-connectwisdomservice
     SUBDIR += rubygem-aws-sdk-core
     SUBDIR += rubygem-aws-sdk-core2
     SUBDIR += rubygem-aws-sdk-costandusagereportservice
@@ -5902,6 +5910,7 @@
     SUBDIR += rubygem-aws-sdk-transfer
     SUBDIR += rubygem-aws-sdk-translate
     SUBDIR += rubygem-aws-sdk-v1
+    SUBDIR += rubygem-aws-sdk-voiceid
     SUBDIR += rubygem-aws-sdk-waf
     SUBDIR += rubygem-aws-sdk-wafregional
     SUBDIR += rubygem-aws-sdk-wafv2
@@ -6327,10 +6336,14 @@
     SUBDIR += rubygem-glib2
     SUBDIR += rubygem-gobject-introspection
     SUBDIR += rubygem-google-api-client
+    SUBDIR += rubygem-google-apis-compute_v1
     SUBDIR += rubygem-google-apis-core
     SUBDIR += rubygem-google-apis-discovery_v1
     SUBDIR += rubygem-google-apis-generator
     SUBDIR += rubygem-google-apis-iamcredentials_v1
+    SUBDIR += rubygem-google-apis-monitoring_v3
+    SUBDIR += rubygem-google-apis-pubsub_v1
+    SUBDIR += rubygem-google-apis-sqladmin_v1beta4
     SUBDIR += rubygem-google-apis-storage_v1
     SUBDIR += rubygem-google-gax
     SUBDIR += rubygem-google-protobuf
