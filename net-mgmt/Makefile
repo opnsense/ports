@@ -293,6 +293,7 @@
     SUBDIR += prometheus-collectd-exporter
     SUBDIR += prometheus1
     SUBDIR += prometheus2
+    SUBDIR += promscale
     SUBDIR += pushgateway
     SUBDIR += py-adal
     SUBDIR += py-aggregate6
@@ -378,7 +379,6 @@
     SUBDIR += triton-guesttools
     SUBDIR += unbound_exporter
     SUBDIR += unifi-poller
-    SUBDIR += unifi5
     SUBDIR += unifi6
     SUBDIR += victoria-metrics
     SUBDIR += virt-viewer
