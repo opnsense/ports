@@ -882,6 +882,7 @@
     SUBDIR += gob2
     SUBDIR += gobject-introspection
     SUBDIR += gocheese
+    SUBDIR += gocritic
     SUBDIR += godot
     SUBDIR += godot-tools
     SUBDIR += godot2
@@ -1445,6 +1446,7 @@
     SUBDIR += linux-c7-strace
     SUBDIR += linux-c7-systemd-libs
     SUBDIR += linux-ltp
+    SUBDIR += linux-sublime-merge
     SUBDIR += linux_libusb
     SUBDIR += lion
     SUBDIR += listserialc
@@ -4273,6 +4275,7 @@
     SUBDIR += py-boolean.py
     SUBDIR += py-boto
     SUBDIR += py-botocore
+    SUBDIR += py-breathe
     SUBDIR += py-bsd
     SUBDIR += py-btest
     SUBDIR += py-build
@@ -7017,7 +7020,6 @@
     SUBDIR += stuffbin
     SUBDIR += stxxl
     SUBDIR += stylua
-    SUBDIR += sublime-merge
     SUBDIR += subversion
     SUBDIR += subversion-book
     SUBDIR += subversion-lts
