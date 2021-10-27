@@ -1471,7 +1471,9 @@
     SUBDIR += py-sphinxcontrib-programoutput
     SUBDIR += py-sphinxcontrib-qthelp
     SUBDIR += py-sphinxcontrib-serializinghtml
+    SUBDIR += py-sphinxcontrib-towncrier
     SUBDIR += py-sphinxcontrib-websupport
+    SUBDIR += py-sphinxemoji
     SUBDIR += py-sphinxext-opengraph
     SUBDIR += py-spylls
     SUBDIR += py-stemming
@@ -1486,7 +1488,7 @@
     SUBDIR += py-tinycss2
     SUBDIR += py-toml
     SUBDIR += py-tomli
-    SUBDIR += py-tomli_w
+    SUBDIR += py-tomli-w
     SUBDIR += py-tomlkit
     SUBDIR += py-toronado
     SUBDIR += py-towncrier
@@ -1571,7 +1573,6 @@
     SUBDIR += rubygem-actionpack-xml_parser1-rails4
     SUBDIR += rubygem-actiontext60
     SUBDIR += rubygem-actiontext61
-    SUBDIR += rubygem-actiontext613
     SUBDIR += rubygem-albino
     SUBDIR += rubygem-amatch
     SUBDIR += rubygem-asciidoctor
@@ -1598,10 +1599,6 @@
     SUBDIR += rubygem-colored
     SUBDIR += rubygem-colored2
     SUBDIR += rubygem-commonmarker
-    SUBDIR += rubygem-compass
-    SUBDIR += rubygem-compass-blueprint
-    SUBDIR += rubygem-compass-core
-    SUBDIR += rubygem-compass-import-once
     SUBDIR += rubygem-creole
     SUBDIR += rubygem-css_parser
     SUBDIR += rubygem-cssmin
@@ -1751,7 +1748,6 @@
     SUBDIR += rubygem-sass-rails-rails52
     SUBDIR += rubygem-sass-rails-rails60
     SUBDIR += rubygem-sass-rails-rails61
-    SUBDIR += rubygem-sass-rails-rails613
     SUBDIR += rubygem-sass32
     SUBDIR += rubygem-sass34
     SUBDIR += rubygem-sassc
@@ -1761,7 +1757,6 @@
     SUBDIR += rubygem-sassc-rails-rails52
     SUBDIR += rubygem-sassc-rails-rails60
     SUBDIR += rubygem-sassc-rails-rails61
-    SUBDIR += rubygem-sassc-rails-rails613
     SUBDIR += rubygem-sassc22
     SUBDIR += rubygem-sax-machine
     SUBDIR += rubygem-scss_lint

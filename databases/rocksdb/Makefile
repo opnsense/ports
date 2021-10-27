@@ -3,6 +3,7 @@
 PORTNAME=	rocksdb
 PORTVERSION=	6.22.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	databases
 
 MAINTAINER?=	sunpoet@FreeBSD.org
@@ -57,13 +58,13 @@ ZSTD_MAKE_ENV_OFF=	ROCKSDB_DISABLE_ZSTD=yes
 
 .if !defined(LITE)
 CONFLICTS_INSTALL=	rocksdb-lite
-PLIST_SUB+=	LITE="@comment "
+PLIST_SUB+=	LITE="@comment " NO_LITE=""
 .else
 PKGNAMESUFFIX=	-lite
 CONFLICTS_INSTALL=	rocksdb
 CFLAGS+=	-DROCKSDB_LITE=1
 MAKE_ENV+=	LIBNAME=librocksdb${PKGNAMESUFFIX} DISABLE_JEMALLOC=1
-PLIST_SUB+=	LITE=""
+PLIST_SUB+=	LITE="" NO_LITE="@comment "
 .endif
 
 .include <bsd.port.pre.mk>
@@ -82,8 +83,8 @@ post-patch:
 post-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}/
 	cd ${WRKSRC}/ && ${INSTALL_PROGRAM} ${BENCHMARKS} ${TOOLS} ${STAGEDIR}${PREFIX}/bin/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librocksdb${PKGNAMESUFFIX}.so
 	${INSTALL_DATA} ${WRKSRC}/librocksdb${PKGNAMESUFFIX}_tools.so ${STAGEDIR}${PREFIX}/lib/
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/librocksdb${PKGNAMESUFFIX}.so ${STAGEDIR}${PREFIX}/lib/librocksdb${PKGNAMESUFFIX}_tools.so
 	${INSTALL_DATA} ${WRKSRC}/make_config.mk ${STAGEDIR}${DATADIR}/
 
 .include <bsd.port.post.mk>
