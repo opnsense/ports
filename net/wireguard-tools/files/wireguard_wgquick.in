@@ -82,14 +82,17 @@ load_rc_config $name
 : ${wireguard_stdout="/var/log/wireguard.log"}
 : ${wireguard_stderr="&1"}
 
-if [ -n "${wireguard_stdout}" ]
+if [ "$1" == "start" -o "$1" == "restart" ]
 then
-	exec >"${wireguard_stdout}"
-fi
+	if [ -n "${wireguard_stdout}" ]
+	then
+		exec >"${wireguard_stdout}"
+	fi
 
-if [ -n "${wireguard_stderr}" ]
-then
-	exec 2>"${wireguard_stderr}"
+	if [ -n "${wireguard_stderr}" ]
+	then
+		exec 2>"${wireguard_stderr}"
+	fi
 fi
 
 run_rc_command "$1"
