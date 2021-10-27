@@ -12,6 +12,10 @@
 #                             (default: "")
 # wireguard_env (str):        Environment variables for the userspace
 #                             implementation. (eg: "LOG_LEVEL=debug")
+# wireguard_stdout (str):     Set the path for the stdout redirection.
+#                             (default: "/var/log/wireguard.log")
+# wireguard_stderr (str):     Set the stderr redirection.
+#                             (default: "&1")
 
 . /etc/rc.subr
 
@@ -75,5 +79,17 @@ load_rc_config $name
 : ${wireguard_enable="NO"}
 : ${wireguard_interfaces=""}
 : ${wireguard_env=""}
+: ${wireguard_stdout="/var/log/wireguard.log"}
+: ${wireguard_stderr="&1"}
+
+if [ -n "${wireguard_stdout}" ]
+then
+	exec >"${wireguard_stdout}"
+fi
+
+if [ -n "${wireguard_stderr}" ]
+then
+	exec 2>"${wireguard_stderr}"
+fi
 
 run_rc_command "$1"
