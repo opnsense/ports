@@ -83,12 +83,14 @@
     SUBDIR += py-astropy
     SUBDIR += py-astropy-helpers
     SUBDIR += py-ephem
+    SUBDIR += py-extension-helpers
     SUBDIR += py-horoscopegenerator
     SUBDIR += py-indiweb
     SUBDIR += py-jplephem
     SUBDIR += py-kosmorrolib
     SUBDIR += py-metar
     SUBDIR += py-metpy
+    SUBDIR += py-pyerfa
     SUBDIR += py-pykep
     SUBDIR += py-pymeeus
     SUBDIR += py-pymetar
