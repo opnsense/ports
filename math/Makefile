@@ -280,6 +280,7 @@
     SUBDIR += facile
     SUBDIR += faiss
     SUBDIR += fann
+    SUBDIR += fastops
     SUBDIR += fcl
     SUBDIR += fcl05
     SUBDIR += fflas-ffpack
@@ -858,6 +859,7 @@
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-munkres10
+    SUBDIR += py-ndindex
     SUBDIR += py-networkx
     SUBDIR += py-nevergrad
     SUBDIR += py-numexpr

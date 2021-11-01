@@ -353,7 +353,6 @@
     SUBDIR += cl-trivial-features-sbcl
     SUBDIR += cl-trivial-gray-streams
     SUBDIR += cl-trivial-gray-streams-sbcl
-    SUBDIR += clanlib
     SUBDIR += clanlib1
     SUBDIR += clazy
     SUBDIR += cld2
@@ -1598,6 +1597,7 @@
     SUBDIR += newtonsoft-json
     SUBDIR += nextpnr
     SUBDIR += nexus2-oss
+    SUBDIR += nimble
     SUBDIR += nini
     SUBDIR += ninja
     SUBDIR += nlohmann-json
@@ -4321,6 +4321,7 @@
     SUBDIR += py-characteristic
     SUBDIR += py-check-manifest
     SUBDIR += py-cheetah3
+    SUBDIR += py-circuitbreaker
     SUBDIR += py-circuits
     SUBDIR += py-ciso8601
     SUBDIR += py-clang
@@ -4568,6 +4569,7 @@
     SUBDIR += py-grpc-stubs
     SUBDIR += py-grpcio
     SUBDIR += py-grpcio-gcp
+    SUBDIR += py-grpcio-status
     SUBDIR += py-grpcio-tools
     SUBDIR += py-gs_api_client
     SUBDIR += py-gtfslib
@@ -4660,6 +4662,7 @@
     SUBDIR += py-jsonref
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
+    SUBDIR += py-jsonschema3
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-client
     SUBDIR += py-jupyter-core
