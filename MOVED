@@ -15589,7 +15589,6 @@ devel/pccts|devel/antlr|2020-11-01|Has expired: abandonedware, superseded by dev
 devel/gitg0|devel/gitg|2020-11-01|Has expired: ancient version of gitg not maintained
 devel/py-twext||2020-11-03|Has expired: Uses deprecated version of python
 databases/py-sqlparse020|databases/py-sqlparse|2020-11-03|Dependency of removed www/calendarserver
-devel/nimble|lang/nim|2020-11-06|Integrated in lang/nim
 net-im/zephyr||2020-11-07|Has expired: Broken for more than 6 months
 net/samba410|net/samba412|2020-11-08|Has expired: yes
 audio/xfce4-mixer|audio/xfce4-pulseaudio-plugin|2020-11-08|Unsupported upstream since 2015. Try using audio/xfce4-pulseaudio-plugin
@@ -16587,3 +16586,10 @@ net/irrd-legacy|net/irrd|2021-10-27|Has expired: Use net/irrd
 mail/postfix-ldap-sasl|mail/postfix@ldap|2021-10-28|Converted to flavor
 mail/postfix-sasl|mail/postfix@sasl|2021-10-28|Converted to flavor
 mail/postfix-current-sasl|mail/postfix-current@sasl|2021-10-28|Converted to flavor
+databases/mysqlsniffer||2021-10-30|Has expired: Development discontinued upstream, doesn't build on recent FreeBSD
+emulators/advancemenu||2021-10-31|Has expired: Heavily outdated and unmaintained
+emulators/qemu31|emulators/qemu|2021-10-31|Has expired: Use emulators/qemu or emulators/qemu-devel
+games/super_methane_brothers||2021-10-31|Removed, depnds on expired devel/clanlib
+emulators/advancemess||2021-10-31|Removed, depends on expired emulators/advancemame
+emulators/advancemame||2021-10-31|Has expired: Heavily outdated and unmaintained
+devel/clanlib||2021-10-31|Has expired: Upstream no longer maintained
