@@ -1,3 +1,5 @@
-TIMESTAMP = 1635315871
+TIMESTAMP = 1636019246
 SHA256 (opnsense-update-21.7.4-2187ea8_GH0.tar.gz) = 6d58dc67288f72a8cc1e0f1cb8a7e06cf64b1b7e7f7651c738dfabdf338565c9
 SIZE (opnsense-update-21.7.4-2187ea8_GH0.tar.gz) = 26545
+SHA256 (opnsense-update-22.1.b1-2187ea8_GH0.tar.gz) = 6d58dc67288f72a8cc1e0f1cb8a7e06cf64b1b7e7f7651c738dfabdf338565c9
+SIZE (opnsense-update-22.1.b1-2187ea8_GH0.tar.gz) = 26545
