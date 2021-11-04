@@ -24,7 +24,7 @@ GH_ACCOUNT=	${CATEGORIES:[1]}
 .if "${PRODUCT_ABI}" != 22.1
 GH_TAGNAME=	2187ea8
 .else
-GH_TAGNAME=	96c000f
+GH_TAGNAME=	e683ca4
 .endif
 
 .include <bsd.port.mk>
