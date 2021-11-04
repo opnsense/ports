@@ -226,6 +226,7 @@
     SUBDIR += gastex
     SUBDIR += gd-aspell
     SUBDIR += gdome2
+    SUBDIR += gh-grep
     SUBDIR += git-chglog
     SUBDIR += gitlab-elasticsearch-indexer
     SUBDIR += gl-aspell
@@ -1540,6 +1541,7 @@
     SUBDIR += redet
     SUBDIR += redisearch
     SUBDIR += redisearch16
+    SUBDIR += redisearch20
     SUBDIR += redland
     SUBDIR += redland-bindings
     SUBDIR += refdb
@@ -1928,6 +1930,7 @@
     SUBDIR += uz-aspell
     SUBDIR += vbindiff
     SUBDIR += ve-hunspell
+    SUBDIR += vgrep
     SUBDIR += wa-aspell
     SUBDIR += wa-hunspell
     SUBDIR += wbxml2

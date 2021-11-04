@@ -152,6 +152,7 @@
     SUBDIR += dspdfviewer
     SUBDIR += dssim
     SUBDIR += duhdraw
+    SUBDIR += dust3d
     SUBDIR += dynamechs
     SUBDIR += ebsynth
     SUBDIR += edje_viewer
@@ -897,6 +898,7 @@
     SUBDIR += py-pyx
     SUBDIR += py-qrencode
     SUBDIR += py-qt5-svg
+    SUBDIR += py-railroad-diagrams
     SUBDIR += py-rasterio
     SUBDIR += py-rasterstats
     SUBDIR += py-rawkit
