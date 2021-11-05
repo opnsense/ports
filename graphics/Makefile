@@ -1038,6 +1038,7 @@
     SUBDIR += simage
     SUBDIR += simpleviewer
     SUBDIR += skanlite
+    SUBDIR += skanpage
     SUBDIR += spectacle
     SUBDIR += spirv-tools
     SUBDIR += springgraph
@@ -1115,6 +1116,7 @@
     SUBDIR += webp-pixbuf-loader
     SUBDIR += wings
     SUBDIR += wmicons
+    SUBDIR += wrapland
     SUBDIR += wxsvg
     SUBDIR += xaos
     SUBDIR += xbmbrowser
