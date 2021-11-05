@@ -1,3 +1,154 @@
+  <vuln vid="17702e54-3da0-11ec-b7e0-3085a9a95629">
+    <topic>pyrad -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py36-pyrad</name>
+	<name>py37-pyrad</name>
+	<name>py38-pyrad</name>
+	<name>py39-pyrad</name>
+	<name>py310-pyrad</name>
+	<range><lt>2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Nathaniel McCallum reports:</p>
+	<blockquote cite="https://bugzilla.redhat.com/show_bug.cgi?id=911682">
+	  <p>packet.py in pyrad before 2.1 uses weak random numbers to generate RADIUS authenticators and hash passwords, which makes it easier for remote attackers to obtain sensitive information via a brute force attack.</p>
+	</blockquote>
+	<blockquote cite="https://bugzilla.redhat.com/show_bug.cgi?id=911685">
+	  <p>The CreateID function in packet.py in pyrad before 2.1 uses sequential packet IDs, which makes it easier for remote attackers to spoof packets by predicting the next ID, a different vulnerability than CVE-2013-0294.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2013-0294</cvename>
+      <cvename>CVE-2013-0342</cvename>
+      <url>https://bugzilla.redhat.com/show_bug.cgi?id=911682</url>
+      <url>https://bugzilla.redhat.com/show_bug.cgi?id=911685</url>
+    </references>
+    <dates>
+      <discovery>2013-01-15</discovery>
+      <entry>2021-11-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="930def19-3e05-11ec-9ba8-002324b2fba8">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go</name>
+	<range><lt>1.17.3,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://github.com/golang/go/issues/48990">
+	  <p>debug/macho fails out when loading a file that contains a dynamic
+	    symbol table command that indicates a larger number of symbols than
+	    exist in the loaded symbol table.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/golang/go/issues/48085">
+	  <p>Previously, opening a zip with (*Reader).Open could result in a
+	    panic if the zip contained a file whose name was exclusively made up
+	    of slash characters or ".." path elements. Open could also panic if
+	    passed the empty string directly as an argument.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-41771</cvename>
+      <url>https://github.com/golang/go/issues/48990</url>
+      <cvename>CVE-2021-41772</cvename>
+      <url>https://github.com/golang/go/issues/48085</url>
+    </references>
+    <dates>
+      <discovery>2021-11-04</discovery>
+      <entry>2021-11-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2bf56269-90f8-4a82-b82f-c0e289f2a0dc">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.319</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.303.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2021-11-04/">
+	  <h1>Description</h1>
+	  <h5>(Critical) SECURITY-2455 / CVE-2021-21685, CVE-2021-21686, CVE-2021-21687, CVE-2021-21688, CVE-2021-21689, CVE-2021-21690, CVE-2021-21691, CVE-2021-21692, CVE-2021-21693, CVE-2021-21694, CVE-2021-21695</h5>
+	  <p>Multiple vulnerabilities allow bypassing path filtering of agent-to-controller access control</p>
+	  <h5>(High) SECURITY-2423 / CVE-2021-21696</h5>
+	  <p>Agent-to-controller access control allowed writing to sensitive directory used by Pipeline: Shared Groovy Libraries Plugin</p>
+	  <h5>(High) SECURITY-2428 / CVE-2021-21697</h5>
+	  <p>Agent-to-controller access control allows reading/writing most content of build directories</p>
+	  <h5>(Medium) SECURITY-2506 / CVE-2021-21698</h5>
+	  <p>Path traversal vulnerability in Subversion Plugin allows reading arbitrary files</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-21685</cvename>
+      <cvename>CVE-2021-21686</cvename>
+      <cvename>CVE-2021-21687</cvename>
+      <cvename>CVE-2021-21688</cvename>
+      <cvename>CVE-2021-21689</cvename>
+      <cvename>CVE-2021-21690</cvename>
+      <cvename>CVE-2021-21691</cvename>
+      <cvename>CVE-2021-21692</cvename>
+      <cvename>CVE-2021-21693</cvename>
+      <cvename>CVE-2021-21694</cvename>
+      <cvename>CVE-2021-21695</cvename>
+      <cvename>CVE-2021-21696</cvename>
+      <cvename>CVE-2021-21697</cvename>
+      <cvename>CVE-2021-21698</cvename>
+      <url>https://www.jenkins.io/security/advisory/2021-11-04/</url>
+    </references>
+    <dates>
+      <discovery>2021-11-04</discovery>
+      <entry>2021-11-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="df794e5d-3975-11ec-84e8-0800273f11ea">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.15.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea Team reports for release 1.15.5:</p>
+	<blockquote cite="https://blog.gitea.io/2021/10/gitea-1.15.5-is-released/">
+	  <ul>
+	    <li>Upgrade Bluemonday to v1.0.16 (#17372) (#17374)</li>
+	    <li>Ensure correct SSH permissions check for private and restricted users (#17370) (#17373)</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.15.5</url>
+      <freebsdpr>ports/259548</freebsdpr>
+    </references>
+    <dates>
+      <discovery>2021-10-21</discovery>
+      <entry>2021-11-04</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="33557582-3958-11ec-90ba-001b217b3468">
     <topic>Gitlab -- Multiple Vulnerabilities</topic>
     <affects>
