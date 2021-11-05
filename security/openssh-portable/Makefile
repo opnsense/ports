@@ -1,8 +1,8 @@
 # Created by: dwcjr@inethouston.net
 
 PORTNAME=	openssh
-DISTVERSION=	8.6p1
-PORTREVISION=	0
+DISTVERSION=	8.8p1
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -18,7 +18,7 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 CONFLICTS?=		openssh-3.* ssh-1.* ssh2-3.* openssh-portable-devel-*
 
-USES=			alias autoreconf compiler:c11 localbase ncurses \
+USES=			alias autoreconf compiler:c11 cpe localbase ncurses \
 			pkgconfig ssl
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--prefix=${PREFIX} \
@@ -27,6 +27,8 @@ CONFIGURE_ARGS=		--prefix=${PREFIX} \
 			--with-Werror
 
 ETCOLD=			${PREFIX}/etc
+
+CPE_VENDOR=		openbsd
 
 FLAVORS=			default hpn gssapi
 default_CONFLICTS_INSTALL=	openssh-portable-hpn openssh-portable-gssapi \
@@ -87,8 +89,6 @@ BSM_CONFIGURE_ON=	--with-audit=bsm
 FIDO_U2F_LIB_DEPENDS=	libfido2.so:security/libfido2
 FIDO_U2F_CONFIGURE_ON=	--with-security-key-builtin
 FIDO_U2F_CONFIGURE_OFF=	--disable-security-key
-# Until https://reviews.freebsd.org/D27289 is committed
-FIDO_U2F_EXTRA_PATCHES=	${FILESDIR}/extra-patch-libfido2-configure.ac
 
 BLACKLISTD_EXTRA_PATCHES=	${FILESDIR}/extra-patch-blacklistd
 
@@ -189,10 +189,15 @@ VERSION_ADDENDUM_DEFAULT?=	${OPSYS}-${PKGNAME}
 CFLAGS+=	${CFLAGS_${CHOSEN_COMPILER_TYPE}}
 CFLAGS_gcc=	-Wno-stringop-truncation -Wno-stringop-overflow
 
+SSH_ASKPASS_PATH?=	${LOCALBASE}/bin/ssh-askpass
+
 post-patch:
 	@${REINPLACE_CMD} \
 	    -e 's|install: \(.*\) host-key check-config|install: \1|g' \
 	    ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} \
+	    -e 's|$$[{(]libexecdir[})]/ssh-askpass|${SSH_ASKPASS_PATH}|' \
+	    ${WRKSRC}/Makefile.in ${WRKSRC}/configure.ac
 	@${REINPLACE_CMD} \
 	    -e 's|\(VersionAddendum\) none|\1 ${VERSION_ADDENDUM_DEFAULT}|' \
 	    ${WRKSRC}/sshd_config
