@@ -63,7 +63,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  In this case, incrementing PORTEPOCH forces the revision.
 #				  Default: 0 (no effect).
 # PKGNAME		- Always defined as
-#				  ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}.
+#				  ${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PKGVERSION}.
 #				  Do not define this in your Makefile.
 # PKGNAMEPREFIX	- Prefix to specify that port is language-specific, etc.
 #				  Optional.
@@ -3359,6 +3359,7 @@ check-build-conflicts:
 .endif
 
 .if !target(identify-install-conflicts)
+CONFLICT_WARNING_WAIT?=	10
 identify-install-conflicts:
 .if ( defined(CONFLICTS) || defined(CONFLICTS_INSTALL) ) && !defined(DISABLE_CONFLICTS)
 	@conflicts_with=$$( \
@@ -3377,7 +3378,7 @@ identify-install-conflicts:
 		${ECHO_MSG}; \
 		${ECHO_MSG} "      They install files into the same place."; \
 		${ECHO_MSG} "      You may want to stop build with Ctrl + C."; \
-		sleep 10; \
+		sleep ${CONFLICT_WARNING_WAIT}; \
 	fi
 .endif
 .endif

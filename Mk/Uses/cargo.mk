@@ -100,14 +100,19 @@ CARGO_BUILDDEP?=	yes
 BUILD_DEPENDS+=	${RUST_DEFAULT}>=1.56.0:lang/${RUST_DEFAULT}
 .endif
 
-# Location of cargo binary (default to lang/rust's Cargo binary)
-CARGO_CARGO_BIN?=	${LOCALBASE}/bin/cargo
+# Location of toolchain (default to lang/rust's toolchain)
+CARGO?=		${LOCALBASE}/bin/cargo
+RUSTC?=		${LOCALBASE}/bin/rustc
+RUSTDOC?=	${LOCALBASE}/bin/rustdoc
 
 # Location of the cargo output directory.
 CARGO_TARGET_DIR?=	${WRKDIR}/target
 
 # Default target platform (affects some RUSTFLAGS if passed)
-CARGO_BUILD_TARGET?=	${ARCH:S/amd64/x86_64/:S/i386/i686/}-unknown-${OPSYS:tl}
+CARGO_BUILD_TARGET?=	${_CARGO_RUST_ARCH_${ARCH}:U${ARCH}}-unknown-${OPSYS:tl}
+
+_CARGO_RUST_ARCH_amd64=		x86_64
+_CARGO_RUST_ARCH_i386=		i686
 
 # Environment for cargo
 #  - CARGO_HOME: local cache of the registry index
@@ -124,8 +129,8 @@ CARGO_ENV+= \
 	CARGO_TARGET_DIR=${CARGO_TARGET_DIR} \
 	CARGO_TARGET_${CARGO_BUILD_TARGET:S/-/_/g:tu}_LINKER="${CC}" \
 	RUST_BACKTRACE=1 \
-	RUSTC=${LOCALBASE}/bin/rustc \
-	RUSTDOC=${LOCALBASE}/bin/rustdoc \
+	RUSTC=${RUSTC} \
+	RUSTDOC=${RUSTDOC} \
 	RUSTFLAGS="${RUSTFLAGS} ${LDFLAGS:C/.+/-C link-arg=&/}"
 
 # Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
@@ -143,7 +148,7 @@ STRIP_CMD=	${LOCALBASE}/bin/strip # unsupported e_type with base strip
 .endif
 
 # Helper to shorten cargo calls.
-_CARGO_RUN=		${SETENV} ${MAKE_ENV} ${CARGO_ENV} ${CARGO_CARGO_BIN}
+_CARGO_RUN=		${SETENV} ${MAKE_ENV} ${CARGO_ENV} ${CARGO}
 CARGO_CARGO_RUN=	cd ${WRKSRC}; ${SETENV} CARGO_FREEBSD_PORTS_SKIP_GIT_UPDATE=1 ${_CARGO_RUN}
 
 # User arguments for cargo targets.

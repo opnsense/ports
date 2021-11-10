@@ -5,6 +5,36 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20211109:
+  AFFECTS: users of security/libressl
+  AUTHOR: brnrd@FreeBSD.org
+
+  The port has been updated to the latest stable version 3.4 of LibreSSL.
+  The shared library versions of the libraries have been bumped.
+
+  After upgrading, manually update all packages that depend on any of the
+  libraries provided by LibreSSL (libssl, libcrypto and libtls) since the
+  versions of these libraries have changed. Normally, you can obtain the
+  list of dependent software by running the following command:
+
+  # pkg info -r libressl
+
+  Then you should rebuild all ports depending on libressl to avoid dangling
+  shared library dependencies.
+
+20211107:
+  AFFECTS: users of sysutils/devcpu-data
+  AUTHOR: jrm@FreeBSD.org
+
+  The RC variable name microcode_cpus is now deprecated.  Users should
+  instead use the variable microcode_update_cpus.
+
+  Two new ports were branched from sysutils/devcpu-data,
+  sysustils/devcpu-data-amd and sysustils/devcpu-data-intel.  The two
+  new ports contain only the CPU microcode updates for each vendor and
+  sysutils/devcpu-data now only contains an RC script.  Both new ports
+  are on-by-default, optional dependencies of sysutils/devcpu-data.
+
 20211101:
   AFFECTS: users of textproc/redisearch
   AUTHOR: osa@FreeBSD.org
@@ -696,7 +726,7 @@ reinstall the new ones without using the pkg upgrade facility.
 
 20210317:
   AFFECTS: users of security/strongswan
-  AUTHOR: driesm.michiels@gmail.com
+  AUTHOR: driesm@FreeBSD.org
 
   The stroke starter interface has been deprecated by upstream
   for some time now.  The default interface for controlling the charon
