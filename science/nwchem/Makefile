@@ -1,9 +1,12 @@
 PORTNAME=	nwchem
 DISTVERSIONPREFIX=	v
-DISTVERSION=	7.0.2
+DISTVERSION=	7.0.2.20211109
 DISTVERSIONSUFFIX=	-release
-PORTREVISION=	2
+MASTER_SITES=	https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/dft-d3/:dftd3 \
+		https://web.archive.org/web/20210527062154if_/https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/dft-d3/:dft3
+DISTFILES=	dftd3.tgz:dft3
 CATEGORIES=	science
+DIST_SUBDIR=	${PORTNAME}-${PORTVERSION}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	High-performance computational chemistry software
@@ -19,13 +22,14 @@ BUILD_DEPENDS=	bash:shells/bash
 LIB_DEPENDS=	libblas.so:math/blas \
 		libga.so:devel/ga
 RUN_DEPENDS=	nwchem-data>0:science/nwchem-data
+TEST_DEPENDS=	bash:shells/bash
 
-USES=		fortran gmake perl5 shebangfix
-SHEBANG_FILES=	../contrib/distro-tools/build_* ../contrib/add_* config/64_to_32
-SHEBANG_GLOB=	*.sh
+USES=		fortran gettext-runtime gmake perl5
+USE_PERL5=	build
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	nwchemgit
-USE_PERL5=	build
+GH_TAGNAME=	9fcb2bdb8826fd5790eab199cc25c29ef3e534bf
 
 MAKEFILE=	GNUmakefile
 ARCH_64BIT=	${ARCH:C/.*64.*/64/:S/${ARCH}//}
@@ -62,6 +66,8 @@ PYTHON_MAKE_ENV=	PYTHONVERSION=${PYTHON_VER} NWCHEM_MODULES="all python"
 
 post-extract:
 	@${RM} ${WRKSRC}/atomscf/src.orig
+	# symlink the downloaded dftd3.tgz
+	@${LN} -s ${DISTDIR}/${DIST_SUBDIR}/dftd3.tgz ${WRKSRC}/nwpw/nwpwlib/nwpwxc/
 
 post-patch:
 	@${REINPLACE_CMD} 's|nwchrc="/etc/nwchemrc"|nwchrc="${PREFIX}/etc/nwchemrc"|' ${WRKSRC}/util/util_nwchemrc.F

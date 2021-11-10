@@ -1,8 +1,7 @@
 # Created by: Gerald Pfeifer <gerald@FreeBSD.org>
 
 PORTNAME=	wine
-DISTVERSION=	6.20
-PORTREVISION=	2
+DISTVERSION=	6.21
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
@@ -48,6 +47,8 @@ CONFIGURE_ARGS+=--verbose \
 		--without-opencl \
 		--without-osmesa \
 		--with-oss \
+		--with-pcap \
+		--with-pthread \
 		--without-pulse \
 		--without-sane \
 		--with-sdl \
@@ -109,12 +110,11 @@ V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 
 WINEMAKER_RUN_DEPENDS=	p5-XML-LibXML>0:textproc/p5-XML-LibXML
 
-X11_CONFIGURE_WITH=	x cms fontconfig freetype jpeg opengl vkd3d xinerama xinput2 xrandr xrender
+X11_CONFIGURE_WITH=	x fontconfig freetype jpeg opengl vkd3d xinerama xinput2 xrandr xrender
 X11_USES=		gl jpeg xorg
 X11_USE=		GL=glu XORG=x11,xext,xcomposite,xcursor,xi,xinerama,xrandr,xrender
 X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 			libfreetype.so:print/freetype2 \
-			liblcms2.so:graphics/lcms2 \
 			libvulkan.so:graphics/vulkan-loader \
 			libvkd3d.so:graphics/vkd3d
 

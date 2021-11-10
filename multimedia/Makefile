@@ -12,6 +12,7 @@
     SUBDIR += atomicparsley
     SUBDIR += audacious
     SUBDIR += audacious-plugins
+    SUBDIR += av1an
     SUBDIR += avidemux
     SUBDIR += avidemux-cli
     SUBDIR += avidemux-plugins
@@ -28,7 +29,6 @@
     SUBDIR += ccextractor
     SUBDIR += cclive
     SUBDIR += celluloid
-    SUBDIR += celluloid-devel
     SUBDIR += cheese
     SUBDIR += chilitags
     SUBDIR += cineencoder

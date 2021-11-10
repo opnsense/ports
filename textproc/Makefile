@@ -244,6 +244,7 @@
     SUBDIR += greple
     SUBDIR += groff
     SUBDIR += gron
+    SUBDIR += gron.awk
     SUBDIR += groonga
     SUBDIR += gsed
     SUBDIR += gspell
@@ -1619,6 +1620,7 @@
     SUBDIR += rubygem-elasticsearch
     SUBDIR += rubygem-elasticsearch-api
     SUBDIR += rubygem-elasticsearch-api6
+    SUBDIR += rubygem-elasticsearch-api713
     SUBDIR += rubygem-elasticsearch-dsl
     SUBDIR += rubygem-elasticsearch-model
     SUBDIR += rubygem-elasticsearch-model6
@@ -1627,8 +1629,10 @@
     SUBDIR += rubygem-elasticsearch-rails6
     SUBDIR += rubygem-elasticsearch-transport
     SUBDIR += rubygem-elasticsearch-transport6
+    SUBDIR += rubygem-elasticsearch-transport713
     SUBDIR += rubygem-elasticsearch-xpack
     SUBDIR += rubygem-elasticsearch6
+    SUBDIR += rubygem-elasticsearch713
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-escape_utils
     SUBDIR += rubygem-escape_utils11

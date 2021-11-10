@@ -5,7 +5,7 @@ DISTVERSION=	9.4.1
 CATEGORIES=	net
 MASTER_SITES=	https://roy.marples.name/downloads/dhcpcd/
 
-MAINTAINER=	driesm.michiels@gmail.com
+MAINTAINER=	driesm@FreeBSD.org
 COMMENT=	DHCP/IPv4LL/IPv6RS/DHCPv6 client
 
 LICENSE=	BSD2CLAUSE
@@ -19,8 +19,6 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--datadir=${PREFIX}/share/examples \
 		--privsepuser="_dhcp" \
 		--without-udev
-
-CONFLICTS_INSTALL=	dhcpcd-devel
 
 post-install:
 	${MV} ${STAGEDIR}${PREFIX}/etc/dhcpcd.conf \

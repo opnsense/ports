@@ -109,6 +109,7 @@
     SUBDIR += dojo
     SUBDIR += dokuwiki
     SUBDIR += dolibarr
+    SUBDIR += dolibarr13
     SUBDIR += domoticz
     SUBDIR += dooble
     SUBDIR += drupal7
@@ -266,6 +267,7 @@
     SUBDIR += jesred
     SUBDIR += jetty8
     SUBDIR += jetty9
+    SUBDIR += jira-cli
     SUBDIR += jitsi-meet
     SUBDIR += jmeter
     SUBDIR += joomla3
@@ -463,6 +465,7 @@
     SUBDIR += npc
     SUBDIR += npm
     SUBDIR += npm-node14
+    SUBDIR += npm-node16
     SUBDIR += nspluginwrapper
     SUBDIR += oauth2-proxy
     SUBDIR += obhttpd
