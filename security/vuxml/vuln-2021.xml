@@ -1,3 +1,134 @@
+  <vuln vid="bfea59e0-41ee-11ec-9bac-589cfc007716">
+    <topic>puppet -- Silent Configuration Failure</topic>
+    <affects>
+      <package>
+	<name>puppet6</name>
+	<range><lt>6.25.1</lt></range>
+      </package>
+      <package>
+	<name>puppet7</name>
+	<range><lt>7.12.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Puppet reports:</p>
+	<blockquote cite="https://puppet.com/security/cve/cve-2021-27025">
+	  <p>A flaw was discovered in Puppet Agent where the agent may silently ignore Augeas settings or may be vulnerable to a Denial of Service condition prior to the first pluginsync.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-27025</cvename>
+      <url>https://puppet.com/security/cve/cve-2021-27025</url>
+    </references>
+    <dates>
+      <discovery>2021-11-09</discovery>
+      <entry>2021-11-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3bd3c9f8-41ee-11ec-9bac-589cfc007716">
+    <topic>puppet -- Unsafe HTTP Redirect</topic>
+    <affects>
+      <package>
+	<name>puppet6</name>
+	<range><lt>6.25.1</lt></range>
+      </package>
+      <package>
+	<name>puppet7</name>
+	<range><lt>7.12.1</lt></range>
+      </package>
+      <package>
+	<name>puppetserver6</name>
+	<range><lt>6.17.1</lt></range>
+      </package>
+      <package>
+	<name>puppetserver7</name>
+	<range><lt>7.4.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Puppet reports:</p>
+	<blockquote cite="https://puppet.com/security/cve/cve-2021-27023">
+	  <p>A flaw was discovered in Puppet Agent and Puppet Server that may result in a leak of HTTP credentials when following HTTP redirects to a different host. This is similar to CVE-2018-1000007.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-27023</cvename>
+      <url>https://puppet.com/security/cve/cve-2021-27023</url>
+    </references>
+    <dates>
+      <discovery>2021-11-09</discovery>
+      <entry>2021-11-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="646923b0-41c7-11ec-a3b2-005056a311d1">
+    <topic>samba -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>samba413</name>
+	<range><lt>4.13.14</lt></range>
+      </package>
+      <package>
+	<name>samba414</name>
+	<range><lt>4.14.10</lt></range>
+      </package>
+      <package>
+	<name>samba415</name>
+	<range><lt>4.15.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Samba Team reports:</p>
+	<blockquote cite="https://www.samba.org/samba/history/security.html">
+	  <ul>
+	  <li>CVE-2020-25717: A user in an AD Domain could become root on domain
+	      members.</li>
+	  <li>CVE-2020-25718: Samba AD DC did not correctly sandbox Kerberos
+	      tickets issued by an RODC.</li>
+	  <li>CVE-2020-25719: Samba AD DC did not always rely on the SID and PAC
+	      in Kerberos tickets.</li>
+	  <li>CVE-2020-25721: Kerberos acceptors need easy access to stable
+	      AD identifiers (eg objectSid).</li>
+	  <li>CVE-2020-25722: Samba AD DC did not do sufficient access and
+	      conformance checking of data stored.</li>
+	  <li>CVE-2016-2124: SMB1 client connections can be downgraded to plaintext
+	      authentication.</li>
+	  <li>CVE-2021-3738: Use after free in Samba AD DC RPC server.</li>
+	  <li>CVE-2021-23192: Subsequent DCE/RPC fragment injection vulnerability.</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-25717</cvename>
+      <cvename>CVE-2020-25718</cvename>
+      <cvename>CVE-2020-25719</cvename>
+      <cvename>CVE-2020-25721</cvename>
+      <cvename>CVE-2020-25722</cvename>
+      <cvename>CVE-2016-2124</cvename>
+      <cvename>CVE-2021-3738</cvename>
+      <cvename>CVE-2021-23192</cvename>
+      <url>https://www.samba.org/samba/security/CVE-2020-25717.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2020-25718.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2020-25719.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2020-25721.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2020-25722.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2016-2124.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2021-3738.html</url>
+      <url>https://www.samba.org/samba/security/CVE-2021-23192.html</url>
+    </references>
+    <dates>
+      <discovery>2021-11-10</discovery>
+      <entry>2021-11-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="17702e54-3da0-11ec-b7e0-3085a9a95629">
     <topic>pyrad -- multiple vulnerabilities</topic>
     <affects>
@@ -502,8 +633,24 @@
 	<range><lt>8.0.27</lt></range>
       </package>
       <package>
+	<name>mysql-connector-java</name>
+	<range><lt>8.0.27</lt></range>
+      </package>
+      <package>
 	<name>mysql80-server</name>
 	<range><lt>8.0.27</lt></range>
+      </package>
+      <package>
+	<name>mariadb103-server</name>
+	<range><lt>10.3.32</lt></range>
+      </package>
+      <package>
+	<name>mariadb104-server</name>
+	<range><lt>10.4.22</lt></range>
+      </package>
+      <package>
+	<name>mariadb105-server</name>
+	<range><lt>10.5.13</lt></range>
       </package>
     </affects>
     <description>
@@ -516,15 +663,75 @@
 	    requiring user credentials.<br/>
 	    The highest CVSS v3.1 Base Score of vulnerabilities affecting Oracle
 	    MySQL is 9.8.</p>
+	  <p>Note: MariaDB only vulnerable against CVE-2021-35604</p>
 	</blockquote>
       </body>
     </description>
     <references>
       <url>https://www.oracle.com/security-alerts/cpuoct2021.html</url>
+      <cvename>CVE-2021-22931</cvename>
+      <cvename>CVE-2021-3711</cvename>
+      <cvename>CVE-2021-22926</cvename>
+      <cvename>CVE-2021-36222</cvename>
+      <cvename>CVE-2021-35583</cvename>
+      <cvename>CVE-2021-35610</cvename>
+      <cvename>CVE-2021-35597</cvename>
+      <cvename>CVE-2021-35607</cvename>
+      <cvename>CVE-2021-2481</cvename>
+      <cvename>CVE-2021-35590</cvename>
+      <cvename>CVE-2021-35592</cvename>
+      <cvename>CVE-2021-35593</cvename>
+      <cvename>CVE-2021-35594</cvename>
+      <cvename>CVE-2021-35598</cvename>
+      <cvename>CVE-2021-35621</cvename>
+      <cvename>CVE-2021-2471</cvename>
+      <cvename>CVE-2021-35604</cvename>
+      <cvename>CVE-2021-35612</cvename>
+      <cvename>CVE-2021-35608</cvename>
+      <cvename>CVE-2021-35602</cvename>
+      <cvename>CVE-2021-35577</cvename>
+      <cvename>CVE-2021-2478</cvename>
+      <cvename>CVE-2021-2479</cvename>
+      <cvename>CVE-2021-35537</cvename>
+      <cvename>CVE-2021-35591</cvename>
+      <cvename>CVE-2021-35596</cvename>
+      <cvename>CVE-2021-35648</cvename>
+      <cvename>CVE-2021-35631</cvename>
+      <cvename>CVE-2021-35626</cvename>
+      <cvename>CVE-2021-35627</cvename>
+      <cvename>CVE-2021-35628</cvename>
+      <cvename>CVE-2021-35629</cvename>
+      <cvename>CVE-2021-35575</cvename>
+      <cvename>CVE-2021-35634</cvename>
+      <cvename>CVE-2021-35635</cvename>
+      <cvename>CVE-2021-35636</cvename>
+      <cvename>CVE-2021-35638</cvename>
+      <cvename>CVE-2021-35641</cvename>
+      <cvename>CVE-2021-35642</cvename>
+      <cvename>CVE-2021-35643</cvename>
+      <cvename>CVE-2021-35644</cvename>
+      <cvename>CVE-2021-35645</cvename>
+      <cvename>CVE-2021-35646</cvename>
+      <cvename>CVE-2021-35647</cvename>
+      <cvename>CVE-2021-35630</cvename>
+      <cvename>CVE-2021-35637</cvename>
+      <cvename>CVE-2021-35546</cvename>
+      <cvename>CVE-2021-35622</cvename>
+      <cvename>CVE-2021-35624</cvename>
+      <cvename>CVE-2021-35639</cvename>
+      <cvename>CVE-2021-35632</cvename>
+      <cvename>CVE-2021-35584</cvename>
+      <cvename>CVE-2021-35613</cvename>
+      <cvename>CVE-2021-35640</cvename>
+      <cvename>CVE-2021-35633</cvename>
+      <cvename>CVE-2021-35625</cvename>
+      <cvename>CVE-2021-35623</cvename>
+      <cvename>CVE-2021-35618</cvename>
     </references>
     <dates>
       <discovery>2021-10-16</discovery>
       <entry>2021-10-17</entry>
+      <modified>2021-11-09</modified>
     </dates>
   </vuln>
 
