@@ -1,7 +1,11 @@
 PORTNAME=	gitaly
-DISTVERSION=	14.4.0
+DISTVERSION=	14.4.2
 PORTREVISION=	0
 CATEGORIES=	devel
+
+PATCH_SITES=	https://gitlab.com/mfechner/gitaly/-/merge_requests/
+# Make sure we have grpc files for grpc 1.41.0 available
+PATCHFILES=	2.patch:-p1
 
 MAINTAINER=	mfechner@FreeBSD.org
 COMMENT=	Smart reverse proxy for GitLab
@@ -45,7 +49,7 @@ MAKE_ENV+=	${GO_ENV}
 USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 # Find this here: https://gitlab.com/gitlab-org/gitaly/-/tags
-GL_COMMIT=	7abdbce59731637552b86002fcbe8754b3d98623
+GL_COMMIT=	00071e4ab87eaae7c4f68705613191046cd023be
 
 # for go dependencies
 USE_GITHUB=	nodefault

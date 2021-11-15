@@ -1,7 +1,7 @@
 # Created by: Torsten Zuehlsdorff <tz@FreeBSD.org>
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	14.4.0
+PORTVERSION=	14.4.2
 PORTREVISION=	1
 CATEGORIES=	www devel
 
@@ -197,11 +197,12 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-gettext>=3.3<4:devel/rubygem-gettext \
 	rubygem-batch-loader>=2.0.1<2.1:devel/rubygem-batch-loader \
 	rubygem-peek-rails61>=1.1.0<2.0:devel/rubygem-peek-rails61 \
-	rubygem-snowplow-tracker>=0.6.1<0.7.0:devel/rubygem-snowplow-tracker \
+	rubygem-snowplow-tracker>=0.6.1<1:devel/rubygem-snowplow-tracker \
 	rubygem-method_source>=1.0<2:devel/rubygem-method_source \
 	rubygem-webrick>=1.6.1:www/rubygem-webrick \
 	rubygem-prometheus-client-mmap>=0.15.0<0.16.0:devel/rubygem-prometheus-client-mmap \
 	rubygem-warning>=1.2.0<1.3:devel/rubygem-warning \
+	rubygem-license_finder>=6.0<7:devel/rubygem-license_finder \
 	rubygem-octokit>=4.20<5.0:net/rubygem-octokit \
 	rubygem-gitlab-mail_room>=0.0.9<0.1.0:mail/rubygem-gitlab-mail_room \
 	rubygem-email_reply_trimmer>=0.1<1.0:mail/rubygem-email_reply_trimmer \
@@ -270,7 +271,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 GL_PROJECT=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT=	51b27ab58055b65e14e68b19604e4823389adb73
+GL_COMMIT=	1ce86e92f81869fc38ece6ae212b5ea9d5ffd405
 
 USERS=	git
 GROUPS=	git

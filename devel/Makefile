@@ -5007,6 +5007,7 @@
     SUBDIR += py-pynest2d
     SUBDIR += py-pyopencl
     SUBDIR += py-pyparsing
+    SUBDIR += py-pyparsing2
     SUBDIR += py-pyperclip
     SUBDIR += py-pyperf
     SUBDIR += py-pyplusplus
@@ -6467,6 +6468,7 @@
     SUBDIR += rubygem-librarian
     SUBDIR += rubygem-librarianp
     SUBDIR += rubygem-libyajl2
+    SUBDIR += rubygem-license_finder
     SUBDIR += rubygem-licensee
     SUBDIR += rubygem-listen
     SUBDIR += rubygem-little-plugger
@@ -6649,6 +6651,7 @@
     SUBDIR += rubygem-rblineprof
     SUBDIR += rubygem-rbs
     SUBDIR += rubygem-rbtrace
+    SUBDIR += rubygem-rbtree
     SUBDIR += rubygem-rdoc
     SUBDIR += rubygem-re2
     SUBDIR += rubygem-react-rails
@@ -6775,6 +6778,7 @@
     SUBDIR += rubygem-snowplow-tracker
     SUBDIR += rubygem-soap4r
     SUBDIR += rubygem-solve
+    SUBDIR += rubygem-sorted_set
     SUBDIR += rubygem-spring
     SUBDIR += rubygem-spring-watcher-listen
     SUBDIR += rubygem-sprockets
@@ -6832,6 +6836,7 @@
     SUBDIR += rubygem-test-unit
     SUBDIR += rubygem-thor
     SUBDIR += rubygem-thor0
+    SUBDIR += rubygem-thor10
     SUBDIR += rubygem-thread_safe
     SUBDIR += rubygem-thread_safe1
     SUBDIR += rubygem-thrift
@@ -6921,6 +6926,7 @@
     SUBDIR += rubygem-will_paginate
     SUBDIR += rubygem-windows_error
     SUBDIR += rubygem-wisper
+    SUBDIR += rubygem-with_env
     SUBDIR += rubygem-wmi-lite
     SUBDIR += rubygem-xdg
     SUBDIR += rubygem-xdg2
