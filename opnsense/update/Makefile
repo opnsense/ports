@@ -3,7 +3,7 @@ PORTNAME=	update
 PORTVERSION=	21.7.5
 PORTREVISION=	2
 .else
-PORTVERSION=	22.1.b1
+PORTVERSION=	22.1.b2
 .endif
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	${GH_ACCOUNT}-
@@ -24,7 +24,7 @@ GH_ACCOUNT=	${CATEGORIES:[1]}
 .if "${PRODUCT_ABI}" != 22.1
 GH_TAGNAME=	e1f2631
 .else
-GH_TAGNAME=	83d69c3
+GH_TAGNAME=	ab2c584
 .endif
 
 .include <bsd.port.mk>
