@@ -1,6 +1,6 @@
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.198
+DISTVERSION=	1.2.199
 CATEGORIES=	graphics devel
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -42,7 +42,7 @@ post-patch:
 		${WRKSRC}/CMakeLists.txt
 # https://bugs.llvm.org/show_bug.cgi?id=47348
 	@if [ "${CHOSEN_COMPILER_TYPE}-${ARCH}-${_OSRELEASE:C/.*-//}" = "clang-i386-CURRENT" ]; then \
-		${ECHO} "disabled" >${WRKSRC}/loader/asm_test.S; \
+		${ECHO} "disabled" >${WRKSRC}/loader/asm_test_x86.S; \
 	fi
 
 .include <bsd.port.mk>

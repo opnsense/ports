@@ -1,6 +1,7 @@
 PORTNAME=	electron
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${ELECTRON_VER:S/-beta./.b/}
+PORTREVISION=	1
 CATEGORIES=	devel java
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/:chromium \
 		https://commondatastorage.googleapis.com/chromium-fonts/:chromium_testfonts
@@ -126,7 +127,7 @@ NODE_VER=			14.16.0
 # See ${WRKSRC}/electron/DEPS for NAN_VER
 NAN_VER=			2c4ee8a32a299eada3cd6e468bbd0a473bfea96d
 
-YARN_TIMESTAMP=	1621487762
+YARN_TIMESTAMP=	1637036886
 
 GN_ARGS+=		clang_use_chrome_plugins=false \
 			enable_hangout_services_extension=true \

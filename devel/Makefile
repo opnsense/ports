@@ -7181,11 +7181,13 @@
     SUBDIR += xdg-user-dirs
     SUBDIR += xdg-utils
     SUBDIR += xdgpaths
+    SUBDIR += xelfviewer
     SUBDIR += xeus
     SUBDIR += xeus-cling
     SUBDIR += xfce4-dev-tools
     SUBDIR += xmake
     SUBDIR += xmltooling
+    SUBDIR += xopcodecalc
     SUBDIR += xorg-macros
     SUBDIR += xparam
     SUBDIR += xsd

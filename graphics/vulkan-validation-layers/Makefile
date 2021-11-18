@@ -1,7 +1,10 @@
 PORTNAME=	vulkan-validation-layers
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.198
+DISTVERSION=	1.2.199
 CATEGORIES=	graphics
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	ccbef81e020e.patch:-p1 # https://github.com/KhronosGroup/Vulkan-ValidationLayers/pull/3538/commits
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Validation layers for the Vulkan graphics API
@@ -17,11 +20,9 @@ USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-ValidationLayers
-GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-98-g449bc98:headers/external/spirv-headers \
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-123-g814e728:headers/external/spirv-headers \
 		martinus:robin-hood-hashing:3.11.3:robin_hood/external/robin-hood-hashing
 CMAKE_OFF=	BUILD_TESTS
-# https://github.com/KhronosGroup/Vulkan-ValidationLayers/issues/3520
-CMAKE_OFF+=	${${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 130:?BUILD_WERROR:}
 CMAKE_ON=	BUILD_LAYER_SUPPORT_FILES
 CMAKE_ARGS=	-DGLSLANG_INSTALL_DIR:PATH="${LOCALBASE}" \
 		-DROBIN_HOOD_HASHING_INSTALL_DIR:PATH="${WRKSRC_robin_hood}" \
