@@ -26,9 +26,6 @@ COMMENT=	SSL encryption wrapper for standard network daemons
 LICENSE=	GPLv2 GPLv3
 LICENSE_COMB=	dual
 
-BROKEN_SSL=	libressl libressl-devel
-BROKEN_SSL_REASON=	Missing upstream support
-
 USES=		cpe libtool perl5 shebangfix ssl
 USE_PERL5=	build
 USE_LDCONFIG=	yes
@@ -36,7 +33,7 @@ USE_RC_SUBR=	stunnel
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var/tmp --enable-static --disable-systemd \
-		--with-ssl="${OPENSSLBASE}"
+		${CONFIGURE_ARGS_SSL}
 SHEBANG_FILES=	src/stunnel3.in
 
 OPTIONS_DEFINE=			DOCS EXAMPLES FIPS IPV6 LIBWRAP
@@ -87,8 +84,20 @@ IGNORE=		LibreSSL does not support FIPS standard
 .endif
 
 .if ${SSL_DEFAULT:Mlibressl*}
-NO_PACKAGE=	The stunnel license restricts distribution when linked to non-OpenSSL non-base SSL-libraries
-.endif
+. ifnmake describe
+STAGEDIR_openssl!=	${MAKE} -V STAGEDIR -C ${PORTSDIR}/security/openssl
+. endif
+BUILD_DEPENDS+=		${NONEXISTENT}:security/openssl:stage
+CONFIGURE_ARGS_SSL=	--with-ssl="${STAGEDIR_openssl}${LOCALBASE}"
+
+post-configure:
+	${REINPLACE_CMD} 's|-lssl|${STAGEDIR_openssl}${LOCALBASE}/lib/libssl.a|g' \
+		 ${WRKSRC}/src/Makefile
+	${REINPLACE_CMD} 's|-lcrypto|${STAGEDIR_openssl}${LOCALBASE}/lib/libcrypto.a|g' \
+		${WRKSRC}/src/Makefile
+.else
+CONFIGURE_ARGS_SSL=	--with-ssl="${OPENSSLBASE}"
+.endif # SSL_DEFAULT
 
 post-patch:
 # place files under /var/tmp so that this can be run by an unprivileged
