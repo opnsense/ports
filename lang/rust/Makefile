@@ -114,7 +114,9 @@ EXTRA_PATCHES+=	${PATCHDIR}/${ARCH}${BOOTSTRAPS_SUFFIX}
 # anyway...
 .if exists(${PATCHDIR}/no-hardlinks)
 _KERN_OSRELDATE!=	${SYSCTL} -n kern.osreldate 2>/dev/null || echo 0
-.  if ${_KERN_OSRELDATE} < 1400040
+.  if ${_KERN_OSRELDATE} >= 1400040
+.  elif ${_KERN_OSRELDATE} >= 1300521
+.  else
 EXTRA_PATCHES+=		${PATCHDIR}/no-hardlinks
 .  endif
 .endif
@@ -166,6 +168,7 @@ do-configure:
 .endfor
 	@${ECHO_CMD} 'changelog-seen=2' > ${WRKSRC}/config.toml
 	@${ECHO_CMD} '[build]' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'build-dir="${WRKDIR}/_build"' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'build-stage=2' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'doc-stage=2' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'test-stage=2' >> ${WRKSRC}/config.toml
