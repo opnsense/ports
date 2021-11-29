@@ -41,6 +41,7 @@
     SUBDIR += crystal
     SUBDIR += csharp-mode.el
     SUBDIR += cython
+    SUBDIR += cython-devel
     SUBDIR += dlang-tools
     SUBDIR += dlv
     SUBDIR += duktape
@@ -285,6 +286,7 @@
     SUBDIR += python27
     SUBDIR += python3
     SUBDIR += python310
+    SUBDIR += python311
     SUBDIR += python36
     SUBDIR += python37
     SUBDIR += python38

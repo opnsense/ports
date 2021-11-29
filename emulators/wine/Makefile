@@ -7,8 +7,8 @@ CATEGORIES=	emulators
 MASTER_SITES=	SF/${PORTNAME}/Source \
 		http://mirrors.ibiblio.org/wine/source/6.0/
 
-MAINTAINER?=	gerald@FreeBSD.org
-COMMENT?=	Microsoft Windows compatibility environment
+MAINTAINER=	gerald@FreeBSD.org
+COMMENT=	Microsoft Windows compatibility environment
 
 LICENSE=	LGPL21 LGPL3
 LICENSE_COMB=	dual
@@ -27,7 +27,7 @@ USE_SDL=	sdl2
 
 CPE_VENDOR=	winehq
 
-CONFLICTS_INSTALL=	wine-devel-[0-9]*
+CONFLICTS_INSTALL=	wine-devel-*
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS+=--verbose \
@@ -44,6 +44,7 @@ CONFIGURE_ARGS+=--verbose \
 		--without-inotify \
 		--without-krb5 \
 		--without-mingw \
+		--without-netapi \
 		--without-opencl \
 		--without-osmesa \
 		--with-oss \
@@ -57,7 +58,7 @@ CONFIGURE_ARGS+=--verbose \
 		--without-unwind \
 		--without-usb
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
-WINELIBDIR?=	${PREFIX}/lib
+WINELIBDIR=	${PREFIX}/lib
 .if !defined(USE_LDCONFIG32)
 USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 .endif

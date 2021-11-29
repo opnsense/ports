@@ -1,7 +1,7 @@
 # Created by: Gerald Pfeifer <gerald@FreeBSD.org>
 
 PORTNAME=	gcc
-PORTVERSION=	12.0.0.s20211107
+PORTVERSION=	12.0.0.s20211121
 CATEGORIES=	lang
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -69,7 +69,7 @@ CONFIGURE_ARGS+=	--with-abi=elfv2
 . endif
 USE_GCC=	yes
 
-.elif ${ARCH} == powerpc64le
+.elif ${ARCH} == powerpc64le || ${ARCH} == powerpc
 USE_GCC=	yes
 .endif
 

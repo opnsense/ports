@@ -165,11 +165,9 @@
     SUBDIR += cfengine-devel
     SUBDIR += cfengine-masterfiles
     SUBDIR += cfengine-masterfiles-devel
-    SUBDIR += cfengine-masterfiles315
     SUBDIR += cfengine-masterfiles316
     SUBDIR += cfengine-masterfiles317
     SUBDIR += cfengine-masterfiles318
-    SUBDIR += cfengine315
     SUBDIR += cfengine316
     SUBDIR += cfengine317
     SUBDIR += cfengine318
@@ -618,6 +616,7 @@
     SUBDIR += libg15render
     SUBDIR += libgksu
     SUBDIR += libieee1284
+    SUBDIR += libptytty
     SUBDIR += libretto-config
     SUBDIR += libsunacl
     SUBDIR += libsysstat

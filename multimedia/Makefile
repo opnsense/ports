@@ -132,6 +132,7 @@
     SUBDIR += handbrake
     SUBDIR += haruna
     SUBDIR += harvid
+    SUBDIR += helvum
     SUBDIR += hypnotix
     SUBDIR += imagination
     SUBDIR += intel-media-sdk
@@ -343,6 +344,7 @@
     SUBDIR += py-tvnamer
     SUBDIR += qmmp-plugin-pack-qt5
     SUBDIR += qmmp-qt5
+    SUBDIR += qpwgraph
     SUBDIR += qt-faststart
     SUBDIR += qt5-multimedia
     SUBDIR += quodlibet

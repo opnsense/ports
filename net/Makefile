@@ -550,6 +550,8 @@
     SUBDIR += openldap24-server
     SUBDIR += openldap25-client
     SUBDIR += openldap25-server
+    SUBDIR += openldap26-client
+    SUBDIR += openldap26-server
     SUBDIR += openmdns
     SUBDIR += openmpi
     SUBDIR += openmpi3
@@ -1294,6 +1296,7 @@
     SUBDIR += rubygem-grpc
     SUBDIR += rubygem-grpc124
     SUBDIR += rubygem-grpc130
+    SUBDIR += rubygem-grpc142
     SUBDIR += rubygem-hangouts-chat
     SUBDIR += rubygem-http-parser
     SUBDIR += rubygem-http_parser.rb
