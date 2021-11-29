@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.19-13056 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g38bfefcdf
+DISTVERSION=	0.0.19-13060 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g270c2e58a
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -17,7 +17,6 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libpng.so:graphics/png \
 		libavcodec.so:multimedia/ffmpeg
 
-BROKEN_FreeBSD_12=	ld: error: undefined symbol: std::__1::__cxx_atomic_notify_one
 ONLY_FOR_ARCHS=	amd64
 ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 
@@ -25,13 +24,13 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
 GH_TUPLE=	RPCS3:hidapi:hidapi-0.8.0-rc1-125-g01f601a:hidapi/3rdparty/hidapi/hidapi \
 		RPCS3:llvm-mirror:318b8fe37466:llvm/llvm \
-		Cyan4973:xxHash:v0.8.0:xxHash/3rdparty/xxHash \
+		Cyan4973:xxHash:v0.8.1:xxHash/3rdparty/xxHash \
 		asmjit:asmjit:723f585:asmjit/3rdparty/asmjit/asmjit \
 		google:flatbuffers:v2.0.0:flatbuffers/3rdparty/flatbuffers \
 		jbeder:yaml-cpp:yaml-cpp-0.7.0-1-g0b67821:yamlcpp/3rdparty/yaml-cpp/yaml-cpp \
 		KhronosGroup:SPIRV-Headers:1.5.3.reservations1:spirv_headers/3rdparty/SPIRV/SPIRV-Headers \
 		KhronosGroup:SPIRV-Tools:v2020.4:spirv_tools/3rdparty/SPIRV/SPIRV-Tools \
-		KhronosGroup:glslang:11.6.0:glslang/3rdparty/glslang/glslang \
+		KhronosGroup:glslang:11.7.1:glslang/3rdparty/glslang/glslang \
 		kinetiknz:cubeb:cubeb-0.2-1341-gdcc5cb5:cubeb/3rdparty/cubeb/cubeb \
 		wolfSSL:wolfssl:v4.8.1-stable:wolfssl/3rdparty/wolfssl/wolfssl \
 		zeux:pugixml:v1.11.4:pugixml/3rdparty/pugixml
@@ -83,7 +82,12 @@ post-patch:
 
 post-install:
 .if exists(/usr/bin/elfctl)
+. if 0
 	elfctl -e +noaslr ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+. else
+# FreeBSD 12.2 lacks https://cgit.freebsd.org/src/commit/?id=f56d7f838f5b
+	elfctl -e +aslr ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+. endif
 .endif
 
 .include <bsd.port.pre.mk>
@@ -101,9 +105,16 @@ CPP=		clang-cpp${LLVM_DEFAULT}
 # XXX Drop after FreeBSD 12.2 EOL
 .if make(makesum) || (!exists(/usr/include/c++/v1/__bits) && exists(/usr/lib/libc++.so))
 MASTER_SITES+=	https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VER}/:libcxx
-DISTFILES+=	libcxx-${LLVM_VER}.src.tar.xz:libcxx
-CXXFLAGS+=	-nostdinc++ -D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS -isystem${WRKDIR}/libcxx-${LLVM_VER}.src/include
-LLVM_VER=	12.0.0
+DISTFILES+=	llvm-project-${LLVM_VER}.src.tar.xz:libcxx
+CXXFLAGS+=	-nostdinc++ -isystem${WRKDIR}/libcxx_prefix/include/c++/v1
+LDFLAGS+=	-nostdlib++ -L${WRKDIR}/libcxx_prefix/lib -l:libc++.a -lcxxrt
+LLVM_VER=	12.0.1
+
+pre-configure:
+	@${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS:M*Ninja*} \
+		-DCMAKE_INSTALL_PREFIX:PATH=${WRKDIR}/libcxx_prefix \
+		-B ${WRKDIR}/libcxx_build -S ${WRKDIR}/llvm-project-${LLVM_VER}.src/libcxx
+	@${DO_MAKE_BUILD:NDESTDIR*} install -C ${WRKDIR}/libcxx_build
 .endif
 
 .include <bsd.port.post.mk>
