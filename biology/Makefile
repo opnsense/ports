@@ -11,6 +11,7 @@
     SUBDIR += bcftools
     SUBDIR += bedtools
     SUBDIR += bfc
+    SUBDIR += bio-mocha
     SUBDIR += bioawk
     SUBDIR += biococoa
     SUBDIR += biolibc
@@ -77,6 +78,7 @@
     SUBDIR += kallisto
     SUBDIR += lamarc
     SUBDIR += libbigwig
+    SUBDIR += libgff
     SUBDIR += libgtextutils
     SUBDIR += libneurosim
     SUBDIR += libnuml

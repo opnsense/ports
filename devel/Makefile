@@ -812,6 +812,7 @@
     SUBDIR += generate
     SUBDIR += gengetopt
     SUBDIR += genie
+    SUBDIR += getoptions
     SUBDIR += gettext
     SUBDIR += gettext-lint
     SUBDIR += gettext-msghack
@@ -6446,6 +6447,7 @@
     SUBDIR += rubygem-io-wait
     SUBDIR += rubygem-iobuffer
     SUBDIR += rubygem-iostruct
+    SUBDIR += rubygem-ipynbdiff
     SUBDIR += rubygem-irb
     SUBDIR += rubygem-iso8601
     SUBDIR += rubygem-jaeger-client
@@ -6753,6 +6755,7 @@
     SUBDIR += rubygem-scanf
     SUBDIR += rubygem-schash
     SUBDIR += rubygem-scientist
+    SUBDIR += rubygem-sd_notify
     SUBDIR += rubygem-sdoc
     SUBDIR += rubygem-semantic_puppet
     SUBDIR += rubygem-semantic_range
