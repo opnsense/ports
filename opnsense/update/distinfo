@@ -1,5 +1,5 @@
-TIMESTAMP = 1637319600
-SHA256 (opnsense-update-21.7.5-e1f2631_GH0.tar.gz) = 5b53b081822b4bc6b9a0dc81535ad34c1ecf8b8b27bb0cf7acc8265ded26bb00
-SIZE (opnsense-update-21.7.5-e1f2631_GH0.tar.gz) = 26638
-SHA256 (opnsense-update-22.1.b2-387b811_GH0.tar.gz) = 0c1d1ab4e86a8c6066eceede391d09ee43b3cc8ba8b33184d2e646bb67043d9e
-SIZE (opnsense-update-22.1.b2-387b811_GH0.tar.gz) = 26964
+TIMESTAMP = 1638947264
+SHA256 (opnsense-update-21.7.7-a78649a_GH0.tar.gz) = 68bf6dd0f7acd2d8f7ad6f92eab99d82d6fc87893b35042a8335262fb693e3ae
+SIZE (opnsense-update-21.7.7-a78649a_GH0.tar.gz) = 26900
+SHA256 (opnsense-update-22.1.b3-387b811_GH0.tar.gz) = 0c1d1ab4e86a8c6066eceede391d09ee43b3cc8ba8b33184d2e646bb67043d9e
+SIZE (opnsense-update-22.1.b3-387b811_GH0.tar.gz) = 26964
