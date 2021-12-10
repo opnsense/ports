@@ -146,9 +146,11 @@ man/man1/suricata.1.gz
 %%DATADIR%%/rules/dns-events.rules
 %%DATADIR%%/rules/files.rules
 %%DATADIR%%/rules/http-events.rules
+%%DATADIR%%/rules/http2-events.rules
 %%DATADIR%%/rules/ipsec-events.rules
 %%DATADIR%%/rules/kerberos-events.rules
 %%DATADIR%%/rules/modbus-events.rules
+%%DATADIR%%/rules/mqtt-events.rules
 %%DATADIR%%/rules/nfs-events.rules
 %%DATADIR%%/rules/ntp-events.rules
 %%DATADIR%%/rules/smb-events.rules
