@@ -1,5 +1,6 @@
 PORTNAME=	marble
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	astro education kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -19,7 +20,7 @@ USE_KDE=	attica auth codecs completion config configwidgets coreaddons \
 		ecm_build
 USE_QT=		concurrent core dbus declarative designer gui location network opengl \
 		phonon4 printsupport script serialport sql svg webchannel widgets xml \
-		buildtools_build qmake_build
+		buildtools_build qmake_build testlib_build
 
 USE_LDCONFIG=	yes
 MAKE_ENV=	XDG_CONFIG_HOME=/dev/null
