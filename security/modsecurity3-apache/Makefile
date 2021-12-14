@@ -12,8 +12,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libmodsecurity.so:security/modsecurity3
 
-USES=		apache:2.4+ autoreconf localbase
-#USE_GCC=	yes
+USES=		apache:2.4+ autoreconf
+USE_GCC=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	SpiderLabs
