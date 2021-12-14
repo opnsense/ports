@@ -1,7 +1,7 @@
 # Created by: k@123.org
 
 PORTNAME?=	lighttpd
-PORTVERSION=	1.4.63
+PORTVERSION=	1.4.61
 CATEGORIES?=	www
 MASTER_SITES?=	https://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -13,7 +13,7 @@ LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 .endif
 
-LIB_DEPENDS+=	libpcre2-8.so:devel/pcre2
+LIB_DEPENDS+=	libpcre.so:devel/pcre
 
 USES=		autoreconf compiler:c11 gmake libtool localbase pkgconfig tar:xz
 USE_CSTD=	gnu99
@@ -24,8 +24,7 @@ USES+=	cpe
 
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd \
-		--with-pcre2
+CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd
 INSTALL_TARGET=	install-strip
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
