@@ -4448,7 +4448,7 @@
     SUBDIR += py-deprecated
     SUBDIR += py-deprecation
     SUBDIR += py-devtools
-    SUBDIR += py-dexml
+    SUBDIR += py-dexml2
     SUBDIR += py-diazo
     SUBDIR += py-dill
     SUBDIR += py-dirspec
@@ -4535,6 +4535,7 @@
     SUBDIR += py-freezegun
     SUBDIR += py-frictionless
     SUBDIR += py-frozendict
+    SUBDIR += py-frozenlist
     SUBDIR += py-fs
     SUBDIR += py-fs2
     SUBDIR += py-fsspec

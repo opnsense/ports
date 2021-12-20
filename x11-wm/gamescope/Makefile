@@ -1,6 +1,5 @@
 PORTNAME=	gamescope
-DISTVERSION=	3.9.5
-PORTREVISION=	1
+DISTVERSION=	3.10.3
 CATEGORIES=	x11-wm
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -34,8 +33,9 @@ USE_SDL=	sdl2
 USE_XORG=	x11 xcomposite xdamage xext xfixes xrender xres xtst xxf86vm
 GH_ACCOUNT=	Plagman
 GH_TUPLE=	nothings:stb:af1a5bc:stb/subprojects/stb
-GL_TUPLE=	https://gitlab.freedesktop.org:emersion:libliftoff:b7a6958bcacdedf6e451d8821c807299943ef150:libliftoff/subprojects/libliftoff
+GL_TUPLE=	https://gitlab.freedesktop.org:emersion:libliftoff:2e1dd93b60224e77f6a49ad8fb36d184e3a9a3bc:libliftoff/subprojects/libliftoff
 PLIST_FILES=	bin/${PORTNAME}
+MESON_ARGS=	--force-fallback-for=libliftoff # allow system wlroots
 
 OPTIONS_DEFINE=	PIPEWIRE
 OPTIONS_DEFAULT=PIPEWIRE
@@ -48,5 +48,4 @@ post-extract:
 # Merge patch_directory for subprojects without meson.build
 	@(cd ${WRKSRC}/subprojects/packagefiles && ${COPYTREE_SHARE} . ..)
 
-.include "${.CURDIR}/Makefile.wlroots"
 .include <bsd.port.mk>

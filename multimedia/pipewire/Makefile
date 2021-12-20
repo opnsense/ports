@@ -1,6 +1,6 @@
 PORTNAME=	pipewire
-DISTVERSION=	0.3.40
 PORTREVISION=	1
+DISTVERSION=	0.3.42
 CATEGORIES=	multimedia
 MASTER_SITES=	https://gitlab.freedesktop.org/pipewire/media-session/-/archive/${MEDIA_SESSION_VERSION}/:media_session
 DISTFILES=	media-session-${MEDIA_SESSION_VERSION}${EXTRACT_SUFX}:media_session
@@ -65,6 +65,14 @@ MESON_ARGS=	-D pw-cat=enabled \
 		-D systemd=disabled \
 		-D pipewire-v4l2=disabled \
 		-D udevrulesdir="${LOCALBASE}/lib/udev/rules.d"
+
+.include <bsd.port.options.mk>
+
+.if ${OPSYS} == "FreeBSD" && ${OSVERSION} >= 1400035
+USES+=		ncurses
+.else
+USES+=		ncurses:port
+.endif
 
 post-extract:
 	${LN} -s ${WRKDIR}/media-session-${MEDIA_SESSION_VERSION} ${WRKSRC}/subprojects/media-session

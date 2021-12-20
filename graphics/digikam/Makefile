@@ -1,11 +1,11 @@
 PORTNAME=	digikam
-DISTVERSION=	7.3.0
+DISTVERSION=	7.4.0
+PORTREVISION=	1
 CATEGORIES=	graphics kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}
 DIST_SUBDIR=	KDE/digikam/${PORTVERSION}
-
-PATCH_SITES=	https://invent.kde.org/graphics/digikam/-/commit/
-PATCHFILES=	95a8ece964681fc6823e968541da2da2da06b3dd.patch:-p1
+# One bit changed in the naming convention ..
+DISTFILES=	digiKam-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}${EXTRACT_SUFX}
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE digital photo management application
@@ -30,7 +30,7 @@ LIB_DEPENDS=	libKF5Sane.so:graphics/libksane \
 		libx265.so:multimedia/x265
 
 USES=		bison cmake compiler:c++11-lib desktop-file-utils eigen:3 gl \
-		gnome jpeg kde:5 magick:6 pkgconfig qt:5 shebangfix tar:xz xorg
+		gnome jpeg kde:5 magick pkgconfig qt:5 shebangfix tar:xz xorg
 USE_GL=		gl glu
 USE_GNOME=	glib20 libxml2 libxslt
 USE_KDE=	archive auth bookmarks calendarcore codecs completion config \
