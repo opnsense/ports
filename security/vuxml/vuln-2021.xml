@@ -1,3 +1,114 @@
+  <vuln vid="1ea05bb8-5d74-11ec-bb1e-001517a2e1a4">
+    <topic>serviio -- affected by log4j vulnerability</topic>
+    <affects>
+      <package>
+	<name>serviio</name>
+	<range><lt>2.2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Serviio reports:</p>
+	<blockquote cite="https://serviio.org/news/124-version-2-2-1-released">
+	  <p>Serviio is affectred by the log4j vulnerability.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44228</cvename>
+    </references>
+    <dates>
+      <discovery>2021-12-13</discovery>
+      <entry>2021-12-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="897e1962-5d5a-11ec-a3ed-040e3c3cf7e7">
+    <topic>Privoxy -- Multiple vulnerabilities (memory leak, XSS)</topic>
+    <affects>
+      <package>
+	<name>dropbear</name>
+	<range><lt>3.0.33</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Privoxy reports:</p>
+	<blockquote cite="https://lists.privoxy.org/pipermail/privoxy-announce/2021-December/000009.html">
+	<p>cgi_error_no_template(): Encode the template name to prevent
+	    XSS (cross-site scripting) when Privoxy is configured to servce
+	    the user-manual itself.</p>
+	<p>Commit 0e668e9409c. OVE-20211102-0001. CVE-2021-44543.
+	    Reported by: Artem Ivanov</p>
+	<p>get_url_spec_param(): Free memory of compiled pattern spec
+	    before bailing.
+	    Reported by Joshua Rogers (Opera) who also provided the fix.
+	    Commit 652b4b7cb0. OVE-20211201-0003. CVE-2021-44540.</p>
+	<p>process_encrypted_request_headers(): Free header memory when
+	    failing to get the request destination.
+	    Reported by Joshua Rogers (Opera) who also provided the fix.
+	    Commit 0509c58045. OVE-20211201-0002. CVE-2021-44541.</p>
+	<p>send_http_request(): Prevent memory leaks when handling errors
+	    Reported by Joshua Rogers (Opera) who also provided the fix.
+	    Commit c48d1d6d08. OVE-20211201-0001. CVE-2021-44542.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44540</cvename>
+      <cvename>CVE-2021-44541</cvename>
+      <cvename>CVE-2021-44542</cvename>
+      <cvename>CVE-2021-44543</cvename>
+      <url>https://lists.privoxy.org/pipermail/privoxy-announce/2021-December/000009.html</url>
+    </references>
+    <dates>
+      <discovery>2021-12-09</discovery>
+      <entry>2021-12-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0132ca5b-5d11-11ec-8be6-d4c9ef517024">
+    <topic>OpenSSL -- Certificate validation issue</topic>
+    <affects>
+      <package>
+	<name>openssl-devel</name>
+	<range><lt>3.0.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20211214.txt">
+	  <p>Invalid handling of X509_verify_cert() internal errors in libssl
+	    (Moderate)</p>
+	  <p>Internally libssl in OpenSSL calls X509_verify_cert() on the client
+	    side to verify a certificate supplied by a server. That function may
+	    return a negative return value to indicate an internal error (for
+	    example out of memory). Such a negative return value is mishandled by
+	    OpenSSL and will cause an IO function (such as SSL_connect() or
+	    SSL_do_handshake()) to not indicate success and a subsequent call to
+	    SSL_get_error() to return the value SSL_ERROR_WANT_RETRY_VERIFY.
+	    This return value is only supposed to be returned by OpenSSL if the
+	    application has previously called SSL_CTX_set_cert_verify_callback().
+	    Since most applications do not do this the
+	    SSL_ERROR_WANT_RETRY_VERIFY return value from SSL_get_error() will be
+	    totally unexpected and applications may not behave correctly as a
+	    result. The exact behaviour will depend on the application but it
+	    could result in crashes, infinite loops or other similar incorrect
+	    responses.</p>
+	  </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-4044</cvename>
+      <url>https://www.openssl.org/news/secadv/20211214.txt</url>
+    </references>
+    <dates>
+      <discovery>2021-12-14</discovery>
+      <entry>2021-12-14</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="515df85a-5cd7-11ec-a16d-001517a2e1a4">
     <topic>bastillion -- log4j vulnerability</topic>
     <affects>
@@ -181,6 +292,74 @@
     <dates>
       <discovery>2021-12-11</discovery>
       <entry>2021-12-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c2a7de31-5b42-11ec-8398-6c3be5272acd">
+    <topic>Grafana -- Directory Traversal</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<name>grafana8</name>
+	<range><ge>8.0.0</ge><lt>8.3.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>GitHub Security Labs reports:</p>
+	<blockquote cite="https://github.com/grafana/grafana/security/advisories/GHSA-7533-c8qv-jm9m">
+	  <p>A vulnerability through which authenticated users could read out fully lowercase or fully uppercase <code>.md</code> files through directory traversal. Doing our own follow-up investigation we found a related vulnerability through which authenticated users could read out arbitrary <code>.csv</code> files through directory traversal. Thanks to our defense-in-depth approach, at no time has <a href="https://grafana.com/cloud">Grafana Cloud</a> been vulnerable.</p>
+	  <p><strong>The vulnerable URL path is:</strong> <code>/api/ds/query</code></p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-43815</cvename>
+      <url>https://grafana.com/blog/2021/12/10/grafana-8.3.2-and-7.5.12-released-with-moderate-severity-security-fix/</url>
+    </references>
+    <dates>
+      <discovery>2021-12-09</discovery>
+      <entry>2021-12-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a994ff7d-5b3f-11ec-8398-6c3be5272acd">
+    <topic>Grafana -- Directory Traversal</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><ge>5.0.0</ge><lt>7.5.12</lt></range>
+	<range><ge>8.0.0</ge><lt>8.3.2</lt></range>
+      </package>
+      <package>
+	<name>grafana6</name>
+	<range><ge>6.0.0</ge></range>
+      </package>
+      <package>
+	<name>grafana7</name>
+	<range><ge>7.0.0</ge><lt>7.5.12</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><ge>8.0.0</ge><lt>8.3.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>GitHub Security Labs reports:</p>
+	<blockquote cite="https://github.com/grafana/grafana/security/advisories/GHSA-c3q8-26ph-9g2q">
+	  <p>A vulnerability through which authenticated users could read out fully lowercase or fully uppercase <code>.md</code> files through directory traversal. Doing our own follow-up investigation we found a related vulnerability through which authenticated users could read out arbitrary <code>.csv</code> files through directory traversal. Thanks to our defense-in-depth approach, at no time has <a href="https://grafana.com/cloud">Grafana Cloud</a> been vulnerable.</p>
+	  <p><strong>The vulnerable URL path is:</strong> <code>/api/plugins/.*/markdown/.*</code> for <code>.md</code> files</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-43813</cvename>
+      <url>https://grafana.com/blog/2021/12/10/grafana-8.3.2-and-7.5.12-released-with-moderate-severity-security-fix/</url>
+    </references>
+    <dates>
+      <discovery>2021-12-09</discovery>
+      <entry>2021-12-12</entry>
     </dates>
   </vuln>
 
