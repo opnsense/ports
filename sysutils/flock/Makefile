@@ -1,8 +1,6 @@
-# Created by: Andrey Zonov <andrey@zonov.org>
-
 PORTNAME=	flock
-PORTVERPREFIX=	2.30
-PORTVERSION=	${PORTVERPREFIX}.1
+PORTVERPREFIX=	2.37
+PORTVERSION=	${PORTVERPREFIX}.2
 CATEGORIES=	sysutils
 MASTER_SITES=	KERNEL_ORG/linux/utils/util-linux/v${PORTVERPREFIX}/
 DISTNAME=	util-linux-${PORTVERSION}
@@ -23,6 +21,8 @@ NLS_USES=	autoreconf gettext
 
 PLIST_FILES=	bin/flock man/man1/flock.1.gz \
 		etc/bash_completion.d/flock
+
+CFLAGS=		-D_WITH_CPU_SET_T
 
 do-build:
 	# skip building unneeded utils
