@@ -1,7 +1,7 @@
 # Created by: k@123.org
 
 PORTNAME?=	lighttpd
-PORTVERSION=	1.4.61
+PORTVERSION=	1.4.63
 CATEGORIES?=	www
 MASTER_SITES?=	https://download.lighttpd.net/lighttpd/releases-1.4.x/
 
@@ -24,7 +24,8 @@ USES+=	cpe
 
 GNU_CONFIGURE=	yes
 
-CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd
+CONFIGURE_ARGS+=	--libdir=${PREFIX}/lib/lighttpd \
+		--with-pcre
 INSTALL_TARGET=	install-strip
 
 .if !defined(_BUILDING_LIGHTTPD_MODULE)
