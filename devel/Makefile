@@ -830,6 +830,7 @@
     SUBDIR += gindent
     SUBDIR += gio-sharp
     SUBDIR += git
+    SUBDIR += git-arc
     SUBDIR += git-absorb
     SUBDIR += git-bug
     SUBDIR += git-cinnabar
@@ -4627,6 +4628,7 @@
     SUBDIR += py-iniparse
     SUBDIR += py-installer
     SUBDIR += py-intbitset
+    SUBDIR += py-intelhex
     SUBDIR += py-intervals
     SUBDIR += py-intervaltree
     SUBDIR += py-invoke
