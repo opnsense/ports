@@ -132,10 +132,22 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 		sbuf_printf(&sbuf, "%u,%s,", subrulenr, hdr->ruleset); 
 
 	if (rulelabels) {
-		if (rulelabels_max >= (int)rulenr) {
-			if (rulelabels[rulenr]) {
-				label = rulelabels[rulenr];
+		switch (hdr->action) {
+		case PF_NAT:
+		case PF_NONAT:
+		case PF_BINAT:
+		case PF_NOBINAT:
+		case PF_RDR:
+		case PF_NORDR:
+			/* no label support for NAT types */
+			break;
+		default:
+			if (rulelabels_max >= (int)rulenr) {
+				if (rulelabels[rulenr]) {
+					label = rulelabels[rulenr];
+				}
 			}
+			break;
 		}
 	}
 

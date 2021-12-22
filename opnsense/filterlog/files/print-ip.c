@@ -96,7 +96,6 @@ ip_print(struct sbuf *sbuf,
 {
 	struct ip_print_demux_state  ipd;
 	struct ip_print_demux_state *ipds=&ipd;
-	const u_char *ipend;
 	u_int hlen;
 
 	ipds->ip = (const struct ip *)bp;
@@ -127,7 +126,6 @@ ip_print(struct sbuf *sbuf,
 	/*
 	 * Cut off the snapshot length to the end of the IP payload.
 	 */
-	ipend = bp + ipds->len;
 	ipds->len -= hlen;
 	ipds->off = EXTRACT_16BITS(&ipds->ip->ip_off);
 
