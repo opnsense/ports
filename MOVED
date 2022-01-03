@@ -10693,7 +10693,6 @@ deskutils/ithought||2018-12-21|Has expired: Uses obsolete glib12
 deskutils/gaddr||2018-12-21|Has expired: Uses obsolete glib12
 x11-fonts/gfe||2018-12-21|Has expired: Uses obsolete glib12
 graphics/graphopt||2018-12-21|Has expired: Uses obsolete glib12
-graphics/fotoxx||2018-12-21|Has expired: Broken for more than 6 months
 graphics/gcolor||2018-12-21|Has expired: Uses obsolete glib12
 graphics/danpei||2018-12-21|Has expired: Uses obsolete glib12
 graphics/chbg||2018-12-21|Has expired: Uses obsolete glib12
@@ -13751,7 +13750,6 @@ devel/pychecker||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 devel/pymacs||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 devel/trac-bitten||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 devel/wxGlade||2020-01-27|Has expired: Unmaintained, uses EOLed python27
-emulators/catapult||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 emulators/dynagui||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 finance/mybudget||2020-01-27|Has expired: Unmaintained, uses EOLed python27
 finance/sabernetdcs-client||2020-01-27|Has expired: Unmaintained, uses EOLed python27
@@ -15922,7 +15920,6 @@ graphics/sk1libs||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstrea
 graphics/uniconvertor||2021-01-02|Has expired: Uses deprecated version of python
 games/dangerdeep||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 games/dangerdeep-data||2021-01-02|Removed, useless without games/dangerdeep
-lang/julia||2021-01-02|Removed, useless without any consumers
 lang/julia10||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
 lang/spidermonkey24||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
 mail/getmail||2021-01-02|Has expired: Uses deprecated version of python
@@ -16490,7 +16487,6 @@ sysutils/cfengine-masterfiles311|sysutils/cfengine-masterfiles317|2021-09-30|Has
 mail/postfix35|mail/postfix|2021-09-30|Has expired: It is only here until FreeBSD 11 is EoL (Postfix >= 3.6 requires OpenSSL >= 1.1.x)
 graphics/drm-fbsd11.2-kmod||2021-09-30|Removed, only useful on EOL FreeBSD 11.4
 devel/qca-legacy|devel/qca|2021-09-30|Removed, only useful on EOL FreeBSD 11.4
-www/py-pyjwt|www/py-pyjwt1|2021-10-02|Renamed to prepare for the addition of v2.x to the tree
 lang/erlang-runtime20|lang/erlang-runtime22|2021-10-04|Has expired: no longer supported upstream, use lang/erlang >=22
 lang/erlang-riak|lang/erlang-runtime22|2021-10-04|Has expired: no longer supported upstream, use lang/erlang >=22
 sysutils/stanchion||2021-10-04|Has expired: dependencies no longer supported upstream
@@ -16617,3 +16613,149 @@ security/putty-gtk2||2021-12-15|Has expired: putty-gtk2 is being phased out
 games/xnethack-nox11|games/xnethack@nox11|2021-12-05|Turned into flavor
 devel/py-dexml||2021-12-20|Has expired: Use devel/py-dexml2
 misc/cmatrix|games/cmatrix|2021-12-20|Move to a more appropriate category
+games/homura|games/suyimazu|2021-12-21|Project renamed
+textproc/py-markdown-math|textproc/py-python-markdown-math|2021-12-21|Rename to match upstream naming
+databases/rubygem-flipper-active_record017|databases/rubygem-flipper-active_record|2021-12-21|Remove obsoleted port. Use databases/rubygem-flipper-active_record instead
+databases/rubygem-mysql204|databases/rubygem-mysql2|2021-12-21|Remove obsoleted port. Use databases/rubygem-mysql2 instead
+databases/rubygem-pg0|databases/rubygem-pg|2021-12-21|Remove obsoleted port. Use databases/rubygem-pg instead
+databases/rubygem-pg018|databases/rubygem-pg|2021-12-21|Remove obsoleted port. Use databases/rubygem-pg instead
+databases/rubygem-redis-namespace16|databases/rubygem-redis-namespace|2021-12-21|Remove obsoleted port. Use databases/rubygem-redis-namespace instead
+devel/rubygem-batch-loader14|devel/rubygem-batch-loader|2021-12-21|Remove obsoleted port. Use devel/rubygem-batch-loader instead
+devel/rubygem-bootsnap14|devel/rubygem-bootsnap|2021-12-21|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-cucumber-create-meta2|devel/rubygem-cucumber-create-meta|2021-12-21|Remove obsoleted port. Use devel/rubygem-cucumber-create-meta instead
+devel/rubygem-cucumber-create-meta4|devel/rubygem-cucumber-create-meta|2021-12-21|Remove obsoleted port. Use devel/rubygem-cucumber-create-meta instead
+devel/rubygem-cucumber-cucumber-expressions10|devel/rubygem-cucumber-cucumber-expressions|2021-12-21|Remove obsoleted port. Use devel/rubygem-cucumber-cucumber-expressions instead
+devel/rubygem-cucumber-messages13|devel/rubygem-cucumber-messages|2021-12-21|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+devel/rubygem-cucumber-messages15|devel/rubygem-cucumber-messages|2021-12-21|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+devel/rubygem-devise47-rails60|devel/rubygem-devise-rails60|2021-12-21|Remove obsoleted port. Use devel/rubygem-devise-rails60 instead
+devel/rubygem-faraday_middleware-aws-signers-v4|devel/rubygem-faraday_middleware-aws-sigv4|2021-12-21|Upstream archived repository and suggest using faraday_middleware-aws-sigv4
+devel/rubygem-ffi110|devel/rubygem-ffi|2021-12-21|Remove obsoleted port. Use devel/rubygem-ffi instead
+devel/rubygem-flipper-active_support_cache_store017|devel/rubygem-flipper-active_support_cache_store|2021-12-21|Remove obsoleted port. Use devel/rubygem-flipper-active_support_cache_store instead
+devel/rubygem-flipper-ui017|devel/rubygem-flipper-ui|2021-12-21|Remove obsoleted port. Use devel/rubygem-flipper-ui instead
+devel/rubygem-flipper017|devel/rubygem-flipper|2021-12-21|Remove obsoleted port. Use devel/rubygem-flipper instead
+devel/rubygem-gettext32|devel/rubygem-gettext|2021-12-21|Remove obsoleted port. Use devel/rubygem-gettext instead
+devel/rubygem-google-protobuf314|devel/rubygem-google-protobuf|2021-12-21|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
+devel/rubygem-google-protobuf315|devel/rubygem-google-protobuf|2021-12-21|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
+devel/rubygem-google-protobuf317|devel/rubygem-google-protobuf|2021-12-21|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
+devel/rubygem-google-protobuf38|devel/rubygem-google-protobuf|2021-12-21|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
+devel/rubygem-googleapis-common-protos-types104|devel/rubygem-googleapis-common-protos-types|2021-12-21|Remove obsoleted port. Use devel/rubygem-googleapis-common-protos-types instead
+devel/rubygem-grape140|devel/rubygem-grape|2021-12-21|Remove obsoleted port. Use devel/rubygem-grape instead
+devel/rubygem-hashie2|devel/rubygem-hashie|2021-12-21|Remove obsoleted port. Use devel/rubygem-hashie instead
+devel/rubygem-hashie3|devel/rubygem-hashie|2021-12-21|Remove obsoleted port. Use devel/rubygem-hashie instead
+devel/rubygem-jira-ruby1|devel/rubygem-jira-ruby|2021-12-21|Remove obsoleted port. Use devel/rubygem-jira-ruby instead
+devel/rubygem-jira-ruby20|devel/rubygem-jira-ruby|2021-12-21|Remove obsoleted port. Use devel/rubygem-jira-ruby instead
+devel/rubygem-launchy22|devel/rubygem-launchy|2021-12-21|Remove obsoleted port. Use devel/rubygem-launchy instead
+devel/rubygem-method_source0|devel/rubygem-method_source|2021-12-21|Remove obsoleted port. Use devel/rubygem-method_source instead
+devel/rubygem-micromachine2|devel/rubygem-micromachine|2021-12-21|Remove obsoleted port. Use devel/rubygem-micromachine instead
+devel/rubygem-opentracing04|devel/rubygem-opentracing|2021-12-21|Remove obsoleted port. Use devel/rubygem-opentracing instead
+devel/rubygem-paint1|devel/rubygem-paint|2021-12-21|Remove obsoleted port. Use devel/rubygem-paint instead
+devel/rubygem-rails-i18n-4|devel/rubygem-rails-i18n-rails61|2021-12-21|Remove obsoleted port. Use devel/rubygem-rails-i18n-rails61 instead
+devel/rubygem-sentry-raven2|devel/rubygem-sentry-raven|2021-12-21|Remove obsoleted port. Use devel/rubygem-sentry-raven instead
+devel/rubygem-sentry-raven25|devel/rubygem-sentry-raven|2021-12-21|Remove obsoleted port. Use devel/rubygem-sentry-raven instead
+devel/rubygem-sentry-raven29|devel/rubygem-sentry-raven|2021-12-21|Remove obsoleted port. Use devel/rubygem-sentry-raven instead
+devel/rubygem-sidekiq5|devel/rubygem-sidekiq|2021-12-21|Remove obsoleted port. Use devel/rubygem-sidekiq instead
+devel/rubygem-thread_safe1|devel/rubygem-thread_safe|2021-12-21|Remove obsoleted port. Use devel/rubygem-thread_safe instead
+devel/rubygem-unicode-display_width1|devel/rubygem-unicode-display_width|2021-12-21|Remove obsoleted port. Use devel/rubygem-unicode-display_width instead
+devel/rubygem-webpacker4-rails5|devel/rubygem-webpacker-rails61|2021-12-21|Remove obsoleted port. Use devel/rubygem-webpacker-rails61 instead
+devel/rubygem-webpacker4-rails50|devel/rubygem-webpacker-rails61|2021-12-21|Remove obsoleted port. Use devel/rubygem-webpacker-rails61 instead
+misc/rubygem-mime-types1|misc/rubygem-mime-types|2021-12-21|Remove obsoleted port. Use misc/rubygem-mime-types instead
+net/rubygem-fog-brightbox0|net/rubygem-fog-brightbox|2021-12-21|Remove obsoleted port. Use net/rubygem-fog-brightbox instead
+net/rubygem-fog-google19|net/rubygem-fog-google|2021-12-21|Remove obsoleted port. Use net/rubygem-fog-google instead
+net/rubygem-grpc124|net/rubygem-grpc|2021-12-21|Remove obsoleted port. Use net/rubygem-grpc instead
+net/rubygem-grpc130|net/rubygem-grpc|2021-12-21|Remove obsoleted port. Use net/rubygem-grpc instead
+net/rubygem-omniauth-auth014|net/rubygem-omniauth-auth0|2021-12-21|Remove obsoleted port. Use net/rubygem-omniauth-auth0 instead
+security/rubygem-devise-two-factor30-rails52|security/rubygem-devise-two-factor|2021-12-21|Remove obsoleted port. Use security/rubygem-devise-two-factor instead
+security/rubygem-devise-two-factor30-rails60|security/rubygem-devise-two-factor|2021-12-21|Remove obsoleted port. Use security/rubygem-devise-two-factor instead
+security/rubygem-net-ssh-gateway1|security/rubygem-net-ssh-gateway|2021-12-21|Remove obsoleted port. Use security/rubygem-net-ssh-gateway instead
+security/rubygem-net-ssh4|security/rubygem-net-ssh|2021-12-21|Remove obsoleted port. Use security/rubygem-net-ssh instead
+sysutils/rubygem-bundler1|sysutils/rubygem-bundler|2021-12-21|Remove obsoleted port. Use sysutils/rubygem-bundler instead
+textproc/rubygem-actionpack-xml_parser1-rails4|textproc/rubygem-actionpack-xml_parser-rails5|2021-12-21|Remove obsoleted port. Use textproc/rubygem-actionpack-xml_parser-rails5 instead
+textproc/rubygem-asciidoctor-plantuml0010|textproc/rubygem-asciidoctor-plantuml|2021-12-21|Remove obsoleted port. Use textproc/rubygem-asciidoctor-plantuml instead
+textproc/rubygem-autoprefixer-rails1020|textproc/rubygem-autoprefixer-rails|2021-12-21|Remove obsoleted port. Use textproc/rubygem-autoprefixer-rails instead
+textproc/rubygem-cucumber-gherkin15|textproc/rubygem-cucumber-gherkin|2021-12-21|Remove obsoleted port. Use textproc/rubygem-cucumber-gherkin instead
+textproc/rubygem-cucumber-gherkin18|textproc/rubygem-cucumber-gherkin|2021-12-21|Remove obsoleted port. Use textproc/rubygem-cucumber-gherkin instead
+textproc/rubygem-cucumber-html-formatter13|textproc/rubygem-cucumber-html-formatter|2021-12-21|Remove obsoleted port. Use textproc/rubygem-cucumber-html-formatter instead
+textproc/rubygem-cucumber-html-formatter9|textproc/rubygem-cucumber-html-formatter|2021-12-21|Remove obsoleted port. Use textproc/rubygem-cucumber-html-formatter instead
+textproc/rubygem-escape_utils11|textproc/rubygem-escape_utils|2021-12-21|Remove obsoleted port. Use textproc/rubygem-escape_utils instead
+textproc/rubygem-html-pipeline27|textproc/rubygem-html-pipeline|2021-12-21|Remove obsoleted port. Use textproc/rubygem-html-pipeline instead
+textproc/rubygem-nokogiri18|textproc/rubygem-nokogiri|2021-12-21|Remove obsoleted port. Use textproc/rubygem-nokogiri instead
+textproc/rubygem-rouge317|textproc/rubygem-rouge|2021-12-21|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-rouge318|textproc/rubygem-rouge|2021-12-21|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-rouge319|textproc/rubygem-rouge|2021-12-21|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-rouge321|textproc/rubygem-rouge|2021-12-21|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-rouge324|textproc/rubygem-rouge|2021-12-21|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-rouge325|textproc/rubygem-rouge|2021-12-21|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-sanitize20|textproc/rubygem-sanitize|2021-12-21|Remove obsoleted port. Use textproc/rubygem-sanitize instead
+textproc/rubygem-sass32|textproc/rubygem-sass|2021-12-21|Remove obsoleted port. Use textproc/rubygem-sass instead
+textproc/rubygem-sass34|textproc/rubygem-sass|2021-12-21|Remove obsoleted port. Use textproc/rubygem-sass instead
+textproc/rubygem-terminal-table1|textproc/rubygem-terminal-table|2021-12-21|Remove obsoleted port. Use textproc/rubygem-terminal-table instead
+www/rubygem-acts-as-taggable-on3|www/rubygem-acts-as-taggable-on|2021-12-21|Remove obsoleted port. Use www/rubygem-acts-as-taggable-on instead
+www/rubygem-acts-as-taggable-on5|www/rubygem-acts-as-taggable-on|2021-12-21|Remove obsoleted port. Use www/rubygem-acts-as-taggable-on instead
+www/rubygem-addressable23|www/rubygem-addressable|2021-12-21|Remove obsoleted port. Use www/rubygem-addressable instead
+www/rubygem-addressable25|www/rubygem-addressable|2021-12-21|Remove obsoleted port. Use www/rubygem-addressable instead
+www/rubygem-haml4|www/rubygem-haml|2021-12-21|Remove obsoleted port. Use www/rubygem-haml instead
+www/rubygem-rack15|www/rubygem-rack|2021-12-21|Remove obsoleted port. Use www/rubygem-rack instead
+www/rubygem-rack20|www/rubygem-rack|2021-12-21|Remove obsoleted port. Use www/rubygem-rack instead
+www/rubygem-redis-rack1|www/rubygem-redis-rack|2021-12-21|Remove obsoleted port. Use www/rubygem-redis-rack instead
+x11-toolkits/rubygem-gtksourceview2|x11-toolkits/rubygem-gtksourceview3|2021-12-21|Remove obsoleted port. Use x11-toolkits/rubygem-gtksourceview3 instead
+x11-toolkits/rubygem-vte|x11-toolkits/rubygem-vte3|2021-12-21|Remove obsoleted port. Use x11-toolkits/rubygem-vte3 instead
+sysutils/asmon||2021-12-27|Has expired: Fails to build on modern FreeBSD
+java/intellij-rubymine|devel/rubymine|2021-12-31|Use better name and category
+lang/python36||2021-12-31|Has expired: Upgrade to a newer Python version. 3.6 is in maintenance status and gets security fixes only. End-of-Life: 2021-12-23. See https://devguide.python.org/
+devel/sdl_sge||2021-12-31|Has expired: Upstream no longer maintained
+net/appkonference||2021-12-31|Has expired: Outdated, depends on unsupported version of net/asterisk
+net/zebra||2021-12-31|Has expired: Abandoned upstream, last release in 2005. Consider migrating to net/frr7 or net/bird2
+audio/osalp||2021-12-31|Has expired: Abandoned upstream, listed as beta and no new release since 2008
+games/stransball2||2021-12-31|Has expired: Depends on expired devel/sdl_sge
+devel/rubygem-ruby-sdl-ffi||2021-12-31|Has expired: Depends on expired devel/sdl_sge
+devel/rubygem-rubygame||2021-12-31|Has expired: Depends on expired devel/sdl_sge
+devel/ruby-sdl||2021-12-31|Has expired: Depends on expired devel/sdl_sge
+games/magicmaze||2021-12-31|Has expired: Depends on expired devel/sdl_sge
+games/trophy||2021-12-31|Has expired: Depends on expired devel/clanlib1
+devel/clanlib1||2021-12-31|Has expired: Older than expired and removed devel/clanlib
+www/py-django31||2021-12-31|Has expired: Upgrade to Django 3.2+. Mainstream support ended (April 6, 2021). Extended support ends December 2021. See https://www.djangoproject.com/download/
+www/py-dj31-django-prometheus||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+databases/postgis24||2021-12-31|Has expired: Deprecated in favour of databases/postgis3x
+net-im/ekiga||2021-12-31|Has expired: Last release in 2013, not actively maintained
+sysutils/sample||2021-12-31|Has expired: abandoned upstream, incompatible with newer kernels
+www/mediawiki131||2021-12-31|Has expired: Upstream EOL
+www/py-dj31-django-mptt||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+net/py-flask-xml-rpc||2021-12-31|Has expired: No longer maintained upstream
+audio/libaacplus||2021-12-31|Has expired: Abandoned upstream, no new release since 2011
+security/obfsclient||2021-12-31|Has expired: https://github.com/Yawning/obfsclient/issues/37
+www/grafana||2021-12-31|Has expired: No longer maintained upstream, use www/grafana8
+www/py-dj31-django-auth-ldap||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-django-filter||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-drf-yasg||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-django-js-asset||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-django-timezone-field||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-django-tables2||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-django-taggit||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+graphics/librasterlite|graphics/librasterlite2|2021-12-31|Has expired: Deprecated in favour of graphics/librasterlite2
+www/py-dj31-django-cacheops||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+net-mgmt/p0f2|net-mgmt/p0f|2021-12-31|Has expired: newer version available in net-mgmt/p0f
+devel/libhash||2021-12-31|Has expired: Abandoned upstream
+www/py-dj31-django-debug-toolbar||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj31-django-cors-headers||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+audio/flake||2021-12-31|Has expired: Abandoned upstream, no new release since 2007
+audio/ifp-line||2021-12-31|Has expired: Abandoned upstream, no new release since 2005
+audio/libnjb||2021-12-31|Has expired: Abandoned upstream, no new release since 2011
+audio/lpac||2021-12-31|Has expired: Abandoned upstream in 2003
+multimedia/mmsclient||2021-12-31|Has expired: Abandoned upstream, Microsoft deprecated MMS in 2003
+www/plugger||2021-12-31|Has expired: Uses incompatible plugin interface NPAPI
+audio/mpiosh||2021-12-31|Has expired: Abandoned upstream, no new release since 2004
+audio/rplay||2021-12-31|Has expired: Abandoned upstream, no new releases since 1999
+audio/celt||2021-12-31|Has expired: Deprecated and considered obsolete by upstream in 2016 in favour of (lib)opus
+security/nacl|security/libsodium|2021-12-31|Has expired: Unmaintained by upstream, use libsodium instead
+net-mgmt/unifi-poller||2021-12-31|Has expired: Now called unpoller by upstream
+lang/nml||2021-12-31|Has expired: Abandoned upstream, last release 2004-04-19
+audio/mp32ogg||2021-12-31|Has expired: Abandoned upstream and unfetchable from upstream
+net/libstorj|net/storj|2021-12-31|Has expired: Deprecated in favour of net/storj due to v3 rearchitecture
+devel/yasm-devel|devel/yasm|2021-12-31|Has expired: No need to keep the -devel version due to upstream inactivity
+www/py-dj31-django-redis||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+devel/py-dj31-django-rq||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+graphics/libreatlas||2021-12-31|Has expired: Abandoned upstream, no new release since 2012
+www/py-dj31-djangorestframework||2021-12-31|Has expired: Extended support of Django 3.1 ends December 2021, upgrade to the Django 3.2+ version of this port. See https://www.djangoproject.com/download/
+astro/google-earth||2022-01-01|Has expired: Needs newer version to connect to server
+net/tramp||2022-01-01|Has expired: Not updated in 5 years and now part of Emacs
+archivers/p7zip-codec-rar||2022-01-01|Has expired: Unmaintained for years and has known vulnerabilities
