@@ -143,6 +143,7 @@
     SUBDIR += jimtcl
     SUBDIR += jpm
     SUBDIR += jruby
+    SUBDIR += julia
     SUBDIR += jython
     SUBDIR += kawa
     SUBDIR += kf5-kross
@@ -203,7 +204,6 @@
     SUBDIR += nhc98
     SUBDIR += nickle
     SUBDIR += nim
-    SUBDIR += nml
     SUBDIR += nqc
     SUBDIR += nwcc
     SUBDIR += nx
@@ -263,7 +263,9 @@
     SUBDIR += php74
     SUBDIR += php74-extensions
     SUBDIR += php80
+    SUBDIR += php81
     SUBDIR += php80-extensions
+    SUBDIR += php81-extensions
     SUBDIR += picoc
     SUBDIR += plexil
     SUBDIR += pocl
@@ -287,7 +289,6 @@
     SUBDIR += python3
     SUBDIR += python310
     SUBDIR += python311
-    SUBDIR += python36
     SUBDIR += python37
     SUBDIR += python38
     SUBDIR += python39

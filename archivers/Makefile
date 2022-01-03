@@ -133,7 +133,6 @@
     SUBDIR += p5-PerlIO-gzip
     SUBDIR += p5-PerlIO-via-Bzip2
     SUBDIR += p7zip
-    SUBDIR += p7zip-codec-rar
     SUBDIR += packddir
     SUBDIR += paq
     SUBDIR += par
@@ -162,9 +161,13 @@
     SUBDIR += php74-zip
     SUBDIR += php74-zlib
     SUBDIR += php80-bz2
+    SUBDIR += php81-bz2
     SUBDIR += php80-phar
+    SUBDIR += php81-phar
     SUBDIR += php80-zip
+    SUBDIR += php81-zip
     SUBDIR += php80-zlib
+    SUBDIR += php81-zlib
     SUBDIR += pigz
     SUBDIR += pixz
     SUBDIR += plzip

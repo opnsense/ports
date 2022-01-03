@@ -20,7 +20,6 @@
     SUBDIR += aoe
     SUBDIR += apache-commons-net
     SUBDIR += apinger
-    SUBDIR += appkonference
     SUBDIR += aprsc
     SUBDIR += aquantia-atlantic-kmod
     SUBDIR += arataga
@@ -341,6 +340,7 @@
     SUBDIR += l2tpd
     SUBDIR += ladvd
     SUBDIR += lambdamoo
+    SUBDIR += landrop
     SUBDIR += latd
     SUBDIR += ldap-stats
     SUBDIR += ldapbrowser
@@ -408,8 +408,8 @@
     SUBDIR += librespeed-go
     SUBDIR += librsync
     SUBDIR += libsignal-protocol-c
+    SUBDIR += libslirp
     SUBDIR += libsrtp2
-    SUBDIR += libstorj
     SUBDIR += libtnl
     SUBDIR += libtrace
     SUBDIR += libunp
@@ -983,8 +983,11 @@
     SUBDIR += php74-sockets
     SUBDIR += php74-xmlrpc
     SUBDIR += php80-ldap
+    SUBDIR += php81-ldap
     SUBDIR += php80-soap
+    SUBDIR += php81-soap
     SUBDIR += php80-sockets
+    SUBDIR += php81-sockets
     SUBDIR += phpldapadmin
     SUBDIR += pichi
     SUBDIR += pimcommon
@@ -1032,7 +1035,6 @@
     SUBDIR += py-ec2-cli-tools
     SUBDIR += py-errbot
     SUBDIR += py-eventlet
-    SUBDIR += py-flask-xml-rpc
     SUBDIR += py-gdown
     SUBDIR += py-geopy
     SUBDIR += py-gntp
@@ -1243,7 +1245,6 @@
     SUBDIR += rubygem-fog-aws
     SUBDIR += rubygem-fog-azure
     SUBDIR += rubygem-fog-brightbox
-    SUBDIR += rubygem-fog-brightbox0
     SUBDIR += rubygem-fog-cloudatcost
     SUBDIR += rubygem-fog-cloudstack
     SUBDIR += rubygem-fog-digitalocean
@@ -1251,7 +1252,6 @@
     SUBDIR += rubygem-fog-dynect
     SUBDIR += rubygem-fog-ecloud
     SUBDIR += rubygem-fog-google
-    SUBDIR += rubygem-fog-google19
     SUBDIR += rubygem-fog-gridscale
     SUBDIR += rubygem-fog-internet-archive
     SUBDIR += rubygem-fog-joyent
@@ -1294,8 +1294,6 @@
     SUBDIR += rubygem-google-cloud-spanner-v1
     SUBDIR += rubygem-google-cloud-storage
     SUBDIR += rubygem-grpc
-    SUBDIR += rubygem-grpc124
-    SUBDIR += rubygem-grpc130
     SUBDIR += rubygem-grpc142
     SUBDIR += rubygem-hangouts-chat
     SUBDIR += rubygem-http-parser
@@ -1323,7 +1321,6 @@
     SUBDIR += rubygem-octokit
     SUBDIR += rubygem-octopress-deploy
     SUBDIR += rubygem-omniauth-auth0
-    SUBDIR += rubygem-omniauth-auth014
     SUBDIR += rubygem-omniauth-authentiq
     SUBDIR += rubygem-omniauth-azure-activedirectory-v2
     SUBDIR += rubygem-omniauth-azure-oauth2
@@ -1511,7 +1508,6 @@
     SUBDIR += traff
     SUBDIR += trafshow
     SUBDIR += trafshow3
-    SUBDIR += tramp
     SUBDIR += trickle
     SUBDIR += tsclient
     SUBDIR += tsctp
@@ -1598,7 +1594,6 @@
     SUBDIR += yconalyzer
     SUBDIR += yggdrasil
     SUBDIR += yptransitd
-    SUBDIR += zebra
     SUBDIR += zebra-server
     SUBDIR += zeroconf-ioslave
     SUBDIR += zerotier

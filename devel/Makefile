@@ -358,7 +358,6 @@
     SUBDIR += cl-trivial-features-sbcl
     SUBDIR += cl-trivial-gray-streams
     SUBDIR += cl-trivial-gray-streams-sbcl
-    SUBDIR += clanlib1
     SUBDIR += clazy
     SUBDIR += cld2
     SUBDIR += clewn
@@ -830,8 +829,8 @@
     SUBDIR += gindent
     SUBDIR += gio-sharp
     SUBDIR += git
-    SUBDIR += git-arc
     SUBDIR += git-absorb
+    SUBDIR += git-arc
     SUBDIR += git-bug
     SUBDIR += git-cinnabar
     SUBDIR += git-codereview
@@ -961,6 +960,7 @@
     SUBDIR += hgsvn
     SUBDIR += hhdate
     SUBDIR += highlighterkit
+    SUBDIR += hoel
     SUBDIR += horde-content
     SUBDIR += horde-timeobjects
     SUBDIR += horde-whups
@@ -1262,8 +1262,8 @@
     SUBDIR += libgta
     SUBDIR += libgtop
     SUBDIR += libgudev
+    SUBDIR += libgusb
     SUBDIR += libgutenfetch
-    SUBDIR += libhash
     SUBDIR += libhoard
     SUBDIR += libhtp
     SUBDIR += libhyve-remote
@@ -1682,6 +1682,7 @@
     SUBDIR += openocd
     SUBDIR += openwince-include
     SUBDIR += orc
+    SUBDIR += orcania
     SUBDIR += osc
     SUBDIR += ossp-al
     SUBDIR += ossp-cfg
@@ -4034,15 +4035,25 @@
     SUBDIR += php74-sysvshm
     SUBDIR += php74-tokenizer
     SUBDIR += php80-ffi
+    SUBDIR += php81-ffi
     SUBDIR += php80-gettext
+    SUBDIR += php81-gettext
     SUBDIR += php80-intl
+    SUBDIR += php81-intl
     SUBDIR += php80-pcntl
+    SUBDIR += php81-pcntl
     SUBDIR += php80-readline
+    SUBDIR += php81-readline
     SUBDIR += php80-shmop
+    SUBDIR += php81-shmop
     SUBDIR += php80-sysvmsg
+    SUBDIR += php81-sysvmsg
     SUBDIR += php80-sysvsem
+    SUBDIR += php81-sysvsem
     SUBDIR += php80-sysvshm
+    SUBDIR += php81-sysvshm
     SUBDIR += php80-tokenizer
+    SUBDIR += php81-tokenizer
     SUBDIR += phpunit6
     SUBDIR += phpunit7
     SUBDIR += phpunit8
@@ -4129,6 +4140,7 @@
     SUBDIR += py-adb
     SUBDIR += py-addict
     SUBDIR += py-aenum
+    SUBDIR += py-aiocontextvars
     SUBDIR += py-aiofiles
     SUBDIR += py-aioice
     SUBDIR += py-aioitertools
@@ -4254,6 +4266,7 @@
     SUBDIR += py-azure-mgmt-servicebus
     SUBDIR += py-azure-mgmt-servicefabric
     SUBDIR += py-azure-mgmt-servicefabricmanagedclusters
+    SUBDIR += py-azure-mgmt-servicelinker
     SUBDIR += py-azure-mgmt-signalr
     SUBDIR += py-azure-mgmt-sql
     SUBDIR += py-azure-mgmt-sqlvirtualmachine
@@ -4455,7 +4468,6 @@
     SUBDIR += py-dirspec
     SUBDIR += py-distlib
     SUBDIR += py-distributed
-    SUBDIR += py-dj31-django-rq
     SUBDIR += py-dj32-django-rq
     SUBDIR += py-dj32-graphene-django
     SUBDIR += py-django-rq
@@ -5613,7 +5625,6 @@
     SUBDIR += ruby-build
     SUBDIR += ruby-gems
     SUBDIR += ruby-rbprof
-    SUBDIR += ruby-sdl
     SUBDIR += ruby-setup.rb
     SUBDIR += ruby-subversion
     SUBDIR += rubygem-CFPropertyList
@@ -5685,6 +5696,7 @@
     SUBDIR += rubygem-aws-sdk-apigatewaymanagementapi
     SUBDIR += rubygem-aws-sdk-apigatewayv2
     SUBDIR += rubygem-aws-sdk-appconfig
+    SUBDIR += rubygem-aws-sdk-appconfigdata
     SUBDIR += rubygem-aws-sdk-appflow
     SUBDIR += rubygem-aws-sdk-appintegrationsservice
     SUBDIR += rubygem-aws-sdk-applicationautoscaling
@@ -5760,6 +5772,7 @@
     SUBDIR += rubygem-aws-sdk-directoryservice
     SUBDIR += rubygem-aws-sdk-dlm
     SUBDIR += rubygem-aws-sdk-docdb
+    SUBDIR += rubygem-aws-sdk-drs
     SUBDIR += rubygem-aws-sdk-dynamodb
     SUBDIR += rubygem-aws-sdk-dynamodbstreams
     SUBDIR += rubygem-aws-sdk-ebs
@@ -6122,7 +6135,6 @@
     SUBDIR += rubygem-bacon
     SUBDIR += rubygem-baf
     SUBDIR += rubygem-batch-loader
-    SUBDIR += rubygem-batch-loader14
     SUBDIR += rubygem-benelux
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
@@ -6133,7 +6145,6 @@
     SUBDIR += rubygem-blockenspiel
     SUBDIR += rubygem-bones
     SUBDIR += rubygem-bootsnap
-    SUBDIR += rubygem-bootsnap14
     SUBDIR += rubygem-bootstrap_form
     SUBDIR += rubygem-bson
     SUBDIR += rubygem-buftok
@@ -6201,14 +6212,9 @@
     SUBDIR += rubygem-cucumber
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-create-meta
-    SUBDIR += rubygem-cucumber-create-meta2
-    SUBDIR += rubygem-cucumber-create-meta4
     SUBDIR += rubygem-cucumber-cucumber-expressions
-    SUBDIR += rubygem-cucumber-cucumber-expressions10
     SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
-    SUBDIR += rubygem-cucumber-messages13
-    SUBDIR += rubygem-cucumber-messages15
     SUBDIR += rubygem-cucumber-messages4
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
@@ -6247,7 +6253,6 @@
     SUBDIR += rubygem-devise-rails52
     SUBDIR += rubygem-devise-rails60
     SUBDIR += rubygem-devise-rails61
-    SUBDIR += rubygem-devise47-rails60
     SUBDIR += rubygem-devise47-rails61
     SUBDIR += rubygem-did_you_mean
     SUBDIR += rubygem-dig_rb
@@ -6288,7 +6293,6 @@
     SUBDIR += rubygem-faker
     SUBDIR += rubygem-faraday-cookie_jar
     SUBDIR += rubygem-faraday-excon
-    SUBDIR += rubygem-faraday_middleware-aws-signers-v4
     SUBDIR += rubygem-faraday_middleware-aws-sigv4
     SUBDIR += rubygem-faraday_middleware-aws-sigv403
     SUBDIR += rubygem-faraday_middleware-multi_json
@@ -6301,12 +6305,12 @@
     SUBDIR += rubygem-fastercsv
     SUBDIR += rubygem-fastri
     SUBDIR += rubygem-fattr
+    SUBDIR += rubygem-fcntl
     SUBDIR += rubygem-ffi
     SUBDIR += rubygem-ffi-compiler
     SUBDIR += rubygem-ffi-libarchive
     SUBDIR += rubygem-ffi-win32-extensions
     SUBDIR += rubygem-ffi-yajl
-    SUBDIR += rubygem-ffi110
     SUBDIR += rubygem-fiber-local
     SUBDIR += rubygem-fiddle
     SUBDIR += rubygem-file-tail
@@ -6317,10 +6321,7 @@
     SUBDIR += rubygem-flipper
     SUBDIR += rubygem-flipper-active_support_cache_store
     SUBDIR += rubygem-flipper-active_support_cache_store-rails61
-    SUBDIR += rubygem-flipper-active_support_cache_store017
     SUBDIR += rubygem-flipper-ui
-    SUBDIR += rubygem-flipper-ui017
-    SUBDIR += rubygem-flipper017
     SUBDIR += rubygem-flipper021
     SUBDIR += rubygem-fluent-logger
     SUBDIR += rubygem-fog
@@ -6358,7 +6359,6 @@
     SUBDIR += rubygem-getoptlong
     SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gettext-setup
-    SUBDIR += rubygem-gettext32
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gettext_i18n_rails_js-rails5
     SUBDIR += rubygem-gettext_i18n_rails_js-rails50
@@ -6375,6 +6375,7 @@
     SUBDIR += rubygem-gitlab-experiment
     SUBDIR += rubygem-gitlab-labkit
     SUBDIR += rubygem-gitlab-license
+    SUBDIR += rubygem-gitlab-license_finder
     SUBDIR += rubygem-gitlab-pygments.rb
     SUBDIR += rubygem-gitlab-sidekiq-fetcher
     SUBDIR += rubygem-gitlab_chronic_duration
@@ -6394,20 +6395,14 @@
     SUBDIR += rubygem-google-apis-storage_v1
     SUBDIR += rubygem-google-gax
     SUBDIR += rubygem-google-protobuf
-    SUBDIR += rubygem-google-protobuf314
-    SUBDIR += rubygem-google-protobuf315
-    SUBDIR += rubygem-google-protobuf317
-    SUBDIR += rubygem-google-protobuf38
     SUBDIR += rubygem-googleapis-common-protos
     SUBDIR += rubygem-googleapis-common-protos-types
-    SUBDIR += rubygem-googleapis-common-protos-types104
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
     SUBDIR += rubygem-grape-entity
     SUBDIR += rubygem-grape-path-helpers
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
-    SUBDIR += rubygem-grape140
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-graphiql-rails
     SUBDIR += rubygem-graphlient
@@ -6423,8 +6418,6 @@
     SUBDIR += rubygem-hashery
     SUBDIR += rubygem-hashie
     SUBDIR += rubygem-hashie-forbidden_attributes
-    SUBDIR += rubygem-hashie2
-    SUBDIR += rubygem-hashie3
     SUBDIR += rubygem-health_check
     SUBDIR += rubygem-heapy
     SUBDIR += rubygem-highline
@@ -6470,8 +6463,6 @@
     SUBDIR += rubygem-jenkins_api_client
     SUBDIR += rubygem-jeweler
     SUBDIR += rubygem-jira-ruby
-    SUBDIR += rubygem-jira-ruby1
-    SUBDIR += rubygem-jira-ruby20
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -6490,7 +6481,6 @@
     SUBDIR += rubygem-kafo_wizards
     SUBDIR += rubygem-kgio
     SUBDIR += rubygem-launchy
-    SUBDIR += rubygem-launchy22
     SUBDIR += rubygem-lazy_priority_queue
     SUBDIR += rubygem-librarian
     SUBDIR += rubygem-librarianp
@@ -6523,9 +6513,7 @@
     SUBDIR += rubygem-metaid
     SUBDIR += rubygem-metasm
     SUBDIR += rubygem-method_source
-    SUBDIR += rubygem-method_source0
     SUBDIR += rubygem-micromachine
-    SUBDIR += rubygem-micromachine2
     SUBDIR += rubygem-middleware
     SUBDIR += rubygem-mini_histogram
     SUBDIR += rubygem-mini_portile2
@@ -6559,6 +6547,7 @@
     SUBDIR += rubygem-mustache0
     SUBDIR += rubygem-mustermann
     SUBDIR += rubygem-mustermann-grape
+    SUBDIR += rubygem-mutex_m
     SUBDIR += rubygem-mutter
     SUBDIR += rubygem-nakayoshi_fork
     SUBDIR += rubygem-native-package-installer
@@ -6588,15 +6577,14 @@
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
     SUBDIR += rubygem-opentracing
-    SUBDIR += rubygem-opentracing04
     SUBDIR += rubygem-opt_parse_validator
     SUBDIR += rubygem-optimist
     SUBDIR += rubygem-optparse
     SUBDIR += rubygem-orm_adapter
     SUBDIR += rubygem-os
+    SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-p4ruby
     SUBDIR += rubygem-paint
-    SUBDIR += rubygem-paint1
     SUBDIR += rubygem-paperclip-rails5
     SUBDIR += rubygem-paperclip-rails50
     SUBDIR += rubygem-parser
@@ -6632,6 +6620,7 @@
     SUBDIR += rubygem-pp
     SUBDIR += rubygem-pqueue
     SUBDIR += rubygem-prettyprint
+    SUBDIR += rubygem-profile
     SUBDIR += rubygem-progressbar
     SUBDIR += rubygem-prometheus-client-mmap
     SUBDIR += rubygem-protected_attributes
@@ -6642,6 +6631,7 @@
     SUBDIR += rubygem-pry-rails
     SUBDIR += rubygem-pry-remote
     SUBDIR += rubygem-pry-remote-em
+    SUBDIR += rubygem-pstore
     SUBDIR += rubygem-ptreloaded
     SUBDIR += rubygem-puppet-resource_api
     SUBDIR += rubygem-pygments.rb
@@ -6657,7 +6647,6 @@
     SUBDIR += rubygem-rails-deprecated_sanitizer
     SUBDIR += rubygem-rails-deprecated_sanitizer-rails5
     SUBDIR += rubygem-rails-deprecated_sanitizer-rails50
-    SUBDIR += rubygem-rails-i18n-4
     SUBDIR += rubygem-rails-i18n-rails5
     SUBDIR += rubygem-rails-i18n-rails50
     SUBDIR += rubygem-rails-i18n-rails52
@@ -6677,9 +6666,11 @@
     SUBDIR += rubygem-rb-kqueue
     SUBDIR += rubygem-rblineprof
     SUBDIR += rubygem-rbs
+    SUBDIR += rubygem-rbs_json_schema
     SUBDIR += rubygem-rbtrace
     SUBDIR += rubygem-rbtree
     SUBDIR += rubygem-rdoc
+    SUBDIR += rubygem-rdoc63
     SUBDIR += rubygem-re2
     SUBDIR += rubygem-react-rails
     SUBDIR += rubygem-react-rails-rails5
@@ -6740,13 +6731,11 @@
     SUBDIR += rubygem-ruby-ole
     SUBDIR += rubygem-ruby-prof
     SUBDIR += rubygem-ruby-progressbar
-    SUBDIR += rubygem-ruby-sdl-ffi
     SUBDIR += rubygem-ruby-statistics
     SUBDIR += rubygem-ruby2_keywords
     SUBDIR += rubygem-ruby2ruby
     SUBDIR += rubygem-ruby_dep
     SUBDIR += rubygem-ruby_parser
-    SUBDIR += rubygem-rubygame
     SUBDIR += rubygem-rubygems-mirror
     SUBDIR += rubygem-rubygems-tasks
     SUBDIR += rubygem-rubygems-test
@@ -6769,9 +6758,6 @@
     SUBDIR += rubygem-semver2
     SUBDIR += rubygem-semverse
     SUBDIR += rubygem-sentry-raven
-    SUBDIR += rubygem-sentry-raven2
-    SUBDIR += rubygem-sentry-raven25
-    SUBDIR += rubygem-sentry-raven29
     SUBDIR += rubygem-sequel
     SUBDIR += rubygem-set
     SUBDIR += rubygem-settingslogic
@@ -6785,7 +6771,7 @@
     SUBDIR += rubygem-sidekiq-cron
     SUBDIR += rubygem-sidekiq-scheduler
     SUBDIR += rubygem-sidekiq-unique-jobs
-    SUBDIR += rubygem-sidekiq5
+    SUBDIR += rubygem-sidekiq62
     SUBDIR += rubygem-sidetiq
     SUBDIR += rubygem-sigdump
     SUBDIR += rubygem-simple-navigation
@@ -6866,7 +6852,6 @@
     SUBDIR += rubygem-thor0
     SUBDIR += rubygem-thor10
     SUBDIR += rubygem-thread_safe
-    SUBDIR += rubygem-thread_safe1
     SUBDIR += rubygem-thrift
     SUBDIR += rubygem-thwait
     SUBDIR += rubygem-tilt
@@ -6920,7 +6905,6 @@
     SUBDIR += rubygem-un
     SUBDIR += rubygem-unicode
     SUBDIR += rubygem-unicode-display_width
-    SUBDIR += rubygem-unicode-display_width1
     SUBDIR += rubygem-unicode_utils
     SUBDIR += rubygem-unleash
     SUBDIR += rubygem-useragent
@@ -6949,8 +6933,6 @@
     SUBDIR += rubygem-webpacker-rails60
     SUBDIR += rubygem-webpacker-rails61
     SUBDIR += rubygem-webpacker-rails61-node16
-    SUBDIR += rubygem-webpacker4-rails5
-    SUBDIR += rubygem-webpacker4-rails50
     SUBDIR += rubygem-webpacker4-rails60
     SUBDIR += rubygem-will_paginate
     SUBDIR += rubygem-windows_error
@@ -6968,6 +6950,7 @@
     SUBDIR += rubygem-zentest
     SUBDIR += rubygem-zhexdump
     SUBDIR += rubygem-zlib
+    SUBDIR += rubymine
     SUBDIR += rudeconfig
     SUBDIR += rudiments
     SUBDIR += rust-analyzer
@@ -6994,7 +6977,6 @@
     SUBDIR += sdl2pp
     SUBDIR += sdl_console
     SUBDIR += sdl_gnat
-    SUBDIR += sdl_sge
     SUBDIR += sdlmm
     SUBDIR += sdlskk
     SUBDIR += sdts++
@@ -7243,7 +7225,7 @@
     SUBDIR += yaml-cpp03
     SUBDIR += yaml2argdata
     SUBDIR += yasm
-    SUBDIR += yasm-devel
+    SUBDIR += yder
     SUBDIR += youcompleteme
     SUBDIR += yuck
     SUBDIR += z80-asm

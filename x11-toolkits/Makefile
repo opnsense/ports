@@ -189,14 +189,12 @@
     SUBDIR += rubygem-gtk2
     SUBDIR += rubygem-gtk3
     SUBDIR += rubygem-gtk4
-    SUBDIR += rubygem-gtksourceview2
     SUBDIR += rubygem-gtksourceview3
     SUBDIR += rubygem-gtksourceview4
     SUBDIR += rubygem-pango
     SUBDIR += rubygem-poppler
     SUBDIR += rubygem-tk
     SUBDIR += rubygem-uh
-    SUBDIR += rubygem-vte
     SUBDIR += rubygem-vte3
     SUBDIR += scintilla
     SUBDIR += sdl_pango

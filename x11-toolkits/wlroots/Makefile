@@ -1,12 +1,17 @@
 PORTNAME=	wlroots
 DISTVERSION=	0.15.0
 DISTVERSIONSUFFIX=	-g${GL_COMMIT:C/(.{12}).*/\1/}
+PORTREVISION=	1
 CATEGORIES=	x11-toolkits
 
-PATCH_SITES=	https://github.com/swaywm/${GL_PROJECT}/commit/
-PATCHFILES+=	7c0e2a271a4c.patch:-p1 # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/2064
-PATCHFILES+=	55a8d225cf8c.patch:-p1 # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/2064
+PATCH_SITES+=	https://github.com/swaywm/${GL_PROJECT}/commit/:github
+PATCHFILES+=	7c0e2a271a4c.patch:-p1:github # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/2064
+PATCHFILES+=	55a8d225cf8c.patch:-p1:github # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/2064
+PATCH_SITES+=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
 PATCHFILES+=	347b32642fb6.patch:-p1 # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3318
+PATCHFILES+=	823476e76ed1.patch:-p1 # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3409
+PATCHFILES+=	812951f5bc47.patch:-p1 # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3411
+PATCHFILES+=	9988eb3378db.patch:-p1 # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/3413
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Modular Wayland compositor library
@@ -40,8 +45,8 @@ DRM_VARS=		BACKENDS+="drm libinput"
 
 NVIDIA_DESC=		EGLStreams support for DRM backend (experimental)
 NVIDIA_PATCH_SITES=	https://github.com/danvd/${GL_PROJECT}-eglstreams/commit/:nvidia
-NVIDIA_PATCHFILES=	7660c54541d5.patch:-p1:nvidia # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/2769
-NVIDIA_IMPLIES=		OPENGL
+NVIDIA_PATCHFILES=	c0fc017207f0.patch:-p1:nvidia # https://gitlab.freedesktop.org/wlroots/wlroots/-/merge_requests/2769
+NVIDIA_IMPLIES=		DRM OPENGL X11
 .if make(makesum)
 .MAKEFLAGS:		WITH+=NVIDIA
 .endif

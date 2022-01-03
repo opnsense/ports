@@ -380,7 +380,6 @@
     SUBDIR += hitori
     SUBDIR += hllib
     SUBDIR += holotz-castle
-    SUBDIR += homura
     SUBDIR += hoverboard-sdl
     SUBDIR += hs-scroll
     SUBDIR += hypatia_engine
@@ -591,7 +590,6 @@
     SUBDIR += madbomber
     SUBDIR += maelstrom
     SUBDIR += magiccube4d
-    SUBDIR += magicmaze
     SUBDIR += mahjong
     SUBDIR += maitretarot
     SUBDIR += manaplus
@@ -926,13 +924,13 @@
     SUBDIR += stockfish
     SUBDIR += stonesoup
     SUBDIR += stormbaancoureur
-    SUBDIR += stransball2
     SUBDIR += stratagus
     SUBDIR += stuntrally
     SUBDIR += sudsol
     SUBDIR += supertux
     SUBDIR += supertux2
     SUBDIR += supertuxkart
+    SUBDIR += suyimazu
     SUBDIR += swell-foop
     SUBDIR += sxsame
     SUBDIR += tads
@@ -974,7 +972,6 @@
     SUBDIR += trimines
     SUBDIR += triplane
     SUBDIR += trojka
-    SUBDIR += trophy
     SUBDIR += tsito
     SUBDIR += tt
     SUBDIR += ttt

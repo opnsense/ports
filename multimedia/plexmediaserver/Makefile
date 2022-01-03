@@ -1,8 +1,8 @@
 # Created by: KalleDK <plexmaintainer@k-moeller.dk>
 
 PORTNAME=	plexmediaserver
-PORTVERSION?=	1.25.1.5286
-DISTVERSIONSUFFIX?=34f965be8
+PORTVERSION?=	1.25.2.5319
+DISTVERSIONSUFFIX?=c43dc0277
 PORTREVISION?=	0
 CATEGORIES=	multimedia
 MASTER_SITES?=	https://downloads.plex.tv/plex-media-server-new/${DISTVERSION}-${DISTVERSIONSUFFIX}/freebsd/
@@ -16,7 +16,7 @@ NO_BUILD=	yes
 WRKSRC=		${WRKDIR}/PlexMediaServer-${PORTVERSION}-${DISTVERSIONSUFFIX}
 
 CPE_VENDOR=	plex
-CPE_PRODUCT=	plex_media_server
+CPE_PRODUCT=	media_server
 CPE_VERSION=	${PORTVERSION:R}
 
 USE_RC_SUBR?=	${PORTNAME}

@@ -332,6 +332,7 @@
     SUBDIR += jrefentry
     SUBDIR += jshon
     SUBDIR += json-yaml
+    SUBDIR += json2yaml
     SUBDIR += jtc
     SUBDIR += kdiff3
     SUBDIR += kepubify
@@ -1230,14 +1231,23 @@
     SUBDIR += php74-xmlwriter
     SUBDIR += php74-xsl
     SUBDIR += php80-ctype
+    SUBDIR += php81-ctype
     SUBDIR += php80-dom
+    SUBDIR += php81-dom
     SUBDIR += php80-enchant
+    SUBDIR += php81-enchant
     SUBDIR += php80-pspell
+    SUBDIR += php81-pspell
     SUBDIR += php80-simplexml
+    SUBDIR += php81-simplexml
     SUBDIR += php80-xml
+    SUBDIR += php81-xml
     SUBDIR += php80-xmlreader
+    SUBDIR += php81-xmlreader
     SUBDIR += php80-xmlwriter
+    SUBDIR += php81-xmlwriter
     SUBDIR += php80-xsl
+    SUBDIR += php81-xsl
     SUBDIR += pict
     SUBDIR += po4a
     SUBDIR += pod2mdoc
@@ -1346,7 +1356,6 @@
     SUBDIR += py-mako
     SUBDIR += py-markdown
     SUBDIR += py-markdown-it-py
-    SUBDIR += py-markdown-math
     SUBDIR += py-markdown2
     SUBDIR += py-marko
     SUBDIR += py-markuppy
@@ -1354,6 +1363,7 @@
     SUBDIR += py-markupsafe
     SUBDIR += py-mathics-pygments
     SUBDIR += py-mdit-py-plugins
+    SUBDIR += py-mdurl
     SUBDIR += py-misaka
     SUBDIR += py-mistune
     SUBDIR += py-mkdocs
@@ -1423,6 +1433,7 @@
     SUBDIR += py-python-gettext
     SUBDIR += py-python-lsp-jsonrpc
     SUBDIR += py-python-lsp-server
+    SUBDIR += py-python-markdown-math
     SUBDIR += py-python-slugify
     SUBDIR += py-python-xmp-toolkit
     SUBDIR += py-pytidylib
@@ -1580,7 +1591,6 @@
     SUBDIR += rubygem-abbrev
     SUBDIR += rubygem-actionpack-xml_parser-rails5
     SUBDIR += rubygem-actionpack-xml_parser-rails52
-    SUBDIR += rubygem-actionpack-xml_parser1-rails4
     SUBDIR += rubygem-actiontext60
     SUBDIR += rubygem-actiontext61
     SUBDIR += rubygem-albino
@@ -1592,10 +1602,8 @@
     SUBDIR += rubygem-asciidoctor-kroki
     SUBDIR += rubygem-asciidoctor-pdf
     SUBDIR += rubygem-asciidoctor-plantuml
-    SUBDIR += rubygem-asciidoctor-plantuml0010
     SUBDIR += rubygem-autoprefixer-rails
     SUBDIR += rubygem-autoprefixer-rails-node16
-    SUBDIR += rubygem-autoprefixer-rails1020
     SUBDIR += rubygem-autoprefixer-rails1025
     SUBDIR += rubygem-babel-source
     SUBDIR += rubygem-babel-transpiler
@@ -1615,11 +1623,7 @@
     SUBDIR += rubygem-css_parser
     SUBDIR += rubygem-cssmin
     SUBDIR += rubygem-cucumber-gherkin
-    SUBDIR += rubygem-cucumber-gherkin15
-    SUBDIR += rubygem-cucumber-gherkin18
     SUBDIR += rubygem-cucumber-html-formatter
-    SUBDIR += rubygem-cucumber-html-formatter13
-    SUBDIR += rubygem-cucumber-html-formatter9
     SUBDIR += rubygem-diff-lcs
     SUBDIR += rubygem-diff_match_patch
     SUBDIR += rubygem-diffy
@@ -1643,7 +1647,6 @@
     SUBDIR += rubygem-elasticsearch713
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-escape_utils
-    SUBDIR += rubygem-escape_utils11
     SUBDIR += rubygem-extended-markdown-filter
     SUBDIR += rubygem-ezamar
     SUBDIR += rubygem-fast_xs
@@ -1662,7 +1665,6 @@
     SUBDIR += rubygem-heredoc_unindent
     SUBDIR += rubygem-hikidoc
     SUBDIR += rubygem-html-pipeline
-    SUBDIR += rubygem-html-pipeline27
     SUBDIR += rubygem-html-proofer
     SUBDIR += rubygem-html2text
     SUBDIR += rubygem-htmlentities
@@ -1703,7 +1705,6 @@
     SUBDIR += rubygem-multi_xml
     SUBDIR += rubygem-nokogiri
     SUBDIR += rubygem-nokogiri-diff
-    SUBDIR += rubygem-nokogiri18
     SUBDIR += rubygem-nokogumbo
     SUBDIR += rubygem-octopress-escape-code
     SUBDIR += rubygem-opml
@@ -1742,12 +1743,6 @@
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rouge2
     SUBDIR += rubygem-rouge312
-    SUBDIR += rubygem-rouge317
-    SUBDIR += rubygem-rouge318
-    SUBDIR += rubygem-rouge319
-    SUBDIR += rubygem-rouge321
-    SUBDIR += rubygem-rouge324
-    SUBDIR += rubygem-rouge325
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt
@@ -1755,7 +1750,6 @@
     SUBDIR += rubygem-rubypants
     SUBDIR += rubygem-rugments
     SUBDIR += rubygem-sanitize
-    SUBDIR += rubygem-sanitize20
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-listen
     SUBDIR += rubygem-sass-rails-rails4
@@ -1764,8 +1758,6 @@
     SUBDIR += rubygem-sass-rails-rails52
     SUBDIR += rubygem-sass-rails-rails60
     SUBDIR += rubygem-sass-rails-rails61
-    SUBDIR += rubygem-sass32
-    SUBDIR += rubygem-sass34
     SUBDIR += rubygem-sassc
     SUBDIR += rubygem-sassc-rails-rails4
     SUBDIR += rubygem-sassc-rails-rails5
@@ -1784,7 +1776,6 @@
     SUBDIR += rubygem-syntax
     SUBDIR += rubygem-termcolor
     SUBDIR += rubygem-terminal-table
-    SUBDIR += rubygem-terminal-table1
     SUBDIR += rubygem-terser
     SUBDIR += rubygem-text
     SUBDIR += rubygem-tidy_ffi

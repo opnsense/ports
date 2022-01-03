@@ -2,6 +2,13 @@ PORTNAME=	citra
 PORTVERSION=	s20211218
 PORTREVISION?=	0
 CATEGORIES=	emulators
+.if make(makesum)
+MASTER_SITES=	https://api.citra-emu.org/gamedb/?dummy=/:gamedb
+.else
+MASTER_SITES=	LOCAL/jbeich:gamedb
+.endif
+DISTFILES=	${PORTNAME}/compatibility_list.json:gamedb
+EXTRACT_ONLY=	${DISTFILES:N*\:gamedb:C/\:.*//}
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo 3DS emulator/debugger
@@ -88,5 +95,9 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/@GIT_BRANCH@/master/' \
 		-e 's/@GIT_DESC@/${GH_TAGNAME}/' \
 		${WRKSRC}/src/common/scm_rev.cpp.in
+
+post-configure:
+	@${CP} ${DISTFILES:M*\:gamedb:C/\:.*//:S,^,${_DISTDIR},} \
+		${BUILD_WRKSRC}/dist/compatibility_list/
 
 .include <bsd.port.mk>

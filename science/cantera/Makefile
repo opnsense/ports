@@ -1,7 +1,7 @@
 PORTNAME=	cantera
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.5.1-611
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-gc4d6ecc15
 CATEGORIES=	science # chemistry physics
 
@@ -50,6 +50,7 @@ OCTAVE_DESC=		Octave support
 OCTAVE_MAKE_ARGS=	matlab_toolbox=y matlab_path=${LOCALBASE}
 OCTAVE_CXXFLAGS=	-I${LOCALBASE}/include/octave-6.4.0/octave
 OCTAVE_LIB_DEPENDS=	liboctave.so:math/octave
+OCTAVE_SUB_FILES=	pkg-message-octave
 
 PYTHON_USES=		python:3.6+
 PYTHON_USE=		PYTHON=cython
@@ -71,5 +72,10 @@ do-install:
 
 do-install-PYTHON-on:
 	@${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/cantera/_cantera.cpython-${PYTHON_VER:S/.//}.so
+
+post-install-OCTAVE-on: # adjust .mex file name
+	@${MV} \
+		${STAGEDIR}${PREFIX}/lib/cantera/matlab/toolbox/ctmethods.mexa64 \
+		${STAGEDIR}${PREFIX}/lib/cantera/matlab/toolbox/ctmethods.mex
 
 .include <bsd.port.mk>

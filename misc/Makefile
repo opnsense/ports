@@ -106,6 +106,7 @@
     SUBDIR += fortune-mod-psalms
     SUBDIR += fortuneit
     SUBDIR += fpc-chm
+    SUBDIR += fq
     SUBDIR += free42
     SUBDIR += freebsd-doc-all
     SUBDIR += freebsd-doc-bn
@@ -358,6 +359,7 @@
     SUBDIR += php73-calendar
     SUBDIR += php74-calendar
     SUBDIR += php80-calendar
+    SUBDIR += php81-calendar
     SUBDIR += pinfo
     SUBDIR += pipe
     SUBDIR += posixtestsuite
@@ -448,7 +450,6 @@
     SUBDIR += rubygem-iesd
     SUBDIR += rubygem-mime-types
     SUBDIR += rubygem-mime-types-data
-    SUBDIR += rubygem-mime-types1
     SUBDIR += rubygem-mimemagic
     SUBDIR += rubygem-octicons
     SUBDIR += rubygem-rabbit

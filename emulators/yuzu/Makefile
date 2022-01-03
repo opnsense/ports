@@ -1,15 +1,20 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20211220
+PORTVERSION=	s20220101
 PORTREVISION?=	0
 CATEGORIES=	emulators
+.if make(makesum)
+MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
+.else
+MASTER_SITES=	LOCAL/jbeich:gamedb
+.endif
+DISTFILES=	${PORTNAME}/compatibility_list.json:gamedb
+EXTRACT_ONLY=	${DISTFILES:N*\:gamedb:C/\:.*//}
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	6904f055db88.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/6598 mainline-merge
 PATCHFILES+=	e919bea9c84e.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/7346 mainline-merge
 PATCHFILES+=	16e5fc080281.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/7497 mainline-merge
 PATCHFILES+=	57909b727b2e.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/7497 mainline-merge
-PATCHFILES+=	1a9576fdffd5.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/7602
-PATCHFILES+=	e57b13ad948e.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/7602
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo Switch emulator/debugger
@@ -38,11 +43,11 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	ee6d40d41
+GH_TAGNAME=	214b9fc9a
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-32-ga3fdfe8:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
-		KhronosGroup:Vulkan-Headers:v1.2.180:Vulkan_Headers/externals/Vulkan-Headers \
-		MerryMage:dynarmic:r5-127-gcce7e4ee:dynarmic/externals/dynarmic \
+		KhronosGroup:Vulkan-Headers:v1.2.202:Vulkan_Headers/externals/Vulkan-Headers \
+		MerryMage:dynarmic:r5-129-g28714ee7:dynarmic/externals/dynarmic \
 		ReinUsesLisp:sirit:a395963:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		benhoyt:inih:r52:inih/externals/inih/inih \
@@ -112,5 +117,9 @@ post-patch:
 post-patch-VAAPI-off:
 	@${REINPLACE_CMD} -i .nova '/pkg_check.*libva/d' \
 		${WRKSRC}/CMakeLists.txt
+
+post-configure:
+	@${CP} ${DISTFILES:M*\:gamedb:C/\:.*//:S,^,${_DISTDIR},} \
+		${BUILD_WRKSRC}/dist/compatibility_list/
 
 .include <bsd.port.mk>

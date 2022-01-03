@@ -3,6 +3,7 @@
     SUBDIR += 2ping
     SUBDIR += TkTopNetFlows
     SUBDIR += adcli
+    SUBDIR += adguard-exporter
     SUBDIR += aggregate
     SUBDIR += aircrack-ng
     SUBDIR += alertmanager
@@ -213,7 +214,6 @@
     SUBDIR += openlldp
     SUBDIR += openvmps
     SUBDIR += p0f
-    SUBDIR += p0f2
     SUBDIR += p5-AnyEvent-SNMP
     SUBDIR += p5-BigIP-iControl
     SUBDIR += p5-Cflow
@@ -281,6 +281,7 @@
     SUBDIR += php73-snmp
     SUBDIR += php74-snmp
     SUBDIR += php80-snmp
+    SUBDIR += php81-snmp
     SUBDIR += phpfpm_exporter
     SUBDIR += phpipam
     SUBDIR += phpweathermap
@@ -379,7 +380,6 @@
     SUBDIR += torrus
     SUBDIR += triton-guesttools
     SUBDIR += unbound_exporter
-    SUBDIR += unifi-poller
     SUBDIR += unifi6
     SUBDIR += victoria-metrics
     SUBDIR += virt-viewer

@@ -182,6 +182,7 @@ lib/pipewire-0.3/libpipewire-module-protocol-pulse.so
 lib/pipewire-0.3/libpipewire-module-protocol-simple.so
 %%PULSEAUDIO%%lib/pipewire-0.3/libpipewire-module-pulse-tunnel.so
 %%PULSEAUDIO%%lib/pipewire-0.3/libpipewire-module-raop-discover.so
+lib/pipewire-0.3/libpipewire-module-raop-sink.so
 lib/pipewire-0.3/libpipewire-module-rtkit.so
 lib/pipewire-0.3/libpipewire-module-session-manager.so
 lib/pipewire-0.3/libpipewire-module-spa-device-factory.so
@@ -196,6 +197,7 @@ lib/spa-0.2/audiotestsrc/libspa-audiotestsrc.so
 lib/spa-0.2/control/libspa-control.so
 lib/spa-0.2/support/libspa-dbus.so
 lib/spa-0.2/support/libspa-support.so
+lib/spa-0.2/v4l2/libspa-v4l2.so
 lib/spa-0.2/videoconvert/libspa-videoconvert.so
 lib/spa-0.2/videotestsrc/libspa-videotestsrc.so
 lib/spa-0.2/volume/libspa-volume.so

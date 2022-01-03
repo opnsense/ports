@@ -1,5 +1,6 @@
 PORTNAME=	wget2
 DISTVERSION=	2.0.0
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	GNU/wget
 
@@ -13,6 +14,7 @@ LICENSE_FILE_LGPL3+ =	${WRKSRC}/COPYING.LESSER
 
 USES=		autoreconf charsetfix cpe iconv libtool:build localbase pkgconfig tar:lz
 CPE_VENDOR=	gnu
+CPE_PRODUCT=	wget
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--without-lzip  # not in ports yet
 INSTALL_TARGET=	install-strip
