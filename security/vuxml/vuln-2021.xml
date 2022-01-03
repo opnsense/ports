@@ -1,3 +1,331 @@
+  <vuln vid="47197b47-6a1a-11ec-8be6-d4c9ef517024">
+    <topic>Roundcube -- XSS vulnerability</topic>
+    <affects>
+      <package>
+	<name>roundcube</name>
+	<range><lt>1.5.2,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Roundcube project reports:</p>
+	<blockquote cite="://roundcube.net/news/2021/12/30/update-1.5.2-released">
+	  <p>Cross-site scripting (XSS) via HTML messages with malicious CSS
+	    content</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://roundcube.net/news/2021/12/30/update-1.5.2-released</url>
+    </references>
+    <dates>
+      <discovery>2021-12-30</discovery>
+      <entry>2021-12-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c1b2b492-6999-11ec-a50c-001cc0382b2f">
+    <topic>Mbed TLS -- Potential double-free after an out of memory error</topic>
+    <affects>
+      <package>
+	<name>mbedtls</name>
+	<range><lt>2.16.12</lt></range>
+	<range><ge>2.17.0</ge><lt>2.28.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Manuel Pégourié-Gonnard reports:</p>
+	<blockquote cite="https://tls.mbed.org/tech-updates/security-advisories/mbedtls-security-advisory-2021-12">
+	  <p>If mbedtls_ssl_set_session() or mbedtls_ssl_get_session() were to
+	    fail with MBEDTLS_ERR_SSL_ALLOC_FAILED (in an out of memory
+	    condition), then calling mbedtls_ssl_session_free() and
+	    mbedtls_ssl_free() in the usual manner would cause an internal
+	    session buffer to be freed twice, due to two structures both having
+	    valid pointers to it after a call to ssl_session_copy().</p>
+	  <p>An attacker could potentially trigger the out of memory condition,
+	    and therefore use this bug to create memory corruption, which could
+	    then be further exploited or targetted.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44732</cvename>
+      <url>https://tls.mbed.org/tech-updates/security-advisories/mbedtls-security-advisory-2021-12</url>
+    </references>
+    <dates>
+      <discovery>2021-12-14</discovery>
+      <entry>2021-12-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ede832bf-6576-11ec-a636-000c29061ce6">
+    <topic>OpenDMARC - Remote denial of service</topic>
+    <affects>
+      <package>
+	<name>opendmarc</name>
+	<range><ge>1.4.1</ge><lt>1.4.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenDMARC 1.4.1 and 1.4.1.1 will dereference a NULL pointer when
+	encountering a multi-value From: header field. A remote attacker can
+	send a specially crafted message resulting in a denial of service.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-34555</cvename>
+      <url>https://github.com/trusteddomainproject/OpenDMARC/issues/179</url>
+    </references>
+    <dates>
+      <discovery>2021-06-09</discovery>
+      <entry>2021-12-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="937aa1d6-685e-11ec-a636-000c29061ce6">
+    <topic>OpenDMARC - Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>opendmarc</name>
+	<range><lt>1.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenDMARC releases prior to 1.4.1 are susceptible to the following
+	vulnerabilities:</p>
+	<ul>
+	  <li>(CVE-2019-16378) OpenDMARC through 1.3.2 and 1.4.x through
+	    1.4.0-Beta1 is prone to a signature-bypass vulnerability with
+	    multiple From: addresses, which might affect applications that
+	    consider a domain name to be relevant to the origin of an e-mail
+	    message.</li>
+	  <li>(CVE-2019-20790) OpenDMARC through 1.3.2 and 1.4.x, when used
+	    with pypolicyd-spf 2.0.2, allows attacks that bypass SPF and DMARC
+	    authentication in situations where the HELO field is inconsistent
+	    with the MAIL FROM field.</li>
+	  <li>(CVE-2020-12272) OpenDMARC through 1.3.2 and 1.4.x allows
+	    attacks that inject authentication results to provide false
+	    information about the domain that originated an e-mail
+	    message.</li>
+	  <li>(CVE-2020-12460) OpenDMARC through 1.3.2 and 1.4.x through
+	    1.4.0-Beta1 has improper null termination in the function
+	    opendmarc_xml_parse that can result in a one-byte heap overflow in
+	    opendmarc_xml when parsing a specially crafted DMARC aggregate
+	    report. This can cause remote memory corruption.</li>
+	</ul>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-16378</cvename>
+      <cvename>CVE-2019-20790</cvename>
+      <cvename>CVE-2020-12272</cvename>
+      <cvename>CVE-2020-12460</cvename>
+      <url>https://github.com/trusteddomainproject/OpenDMARC/blob/rel-opendmarc-1-4-1-1/RELEASE_NOTES</url>
+    </references>
+    <dates>
+      <discovery>2021-04-06</discovery>
+      <entry>2021-12-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a4ff3673-d742-4b83-8c2b-3ddafe732034">
+    <topic>minio -- User privilege escalation</topic>
+    <affects>
+      <package>
+	<name>minio</name>
+	<range><lt>2021.12.27.07.23.18</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>minio developers report:</p>
+	<blockquote cite="https://github.com/minio/minio/security/advisories/GHSA-j6jc-jqqc-p6cx">
+	  <p>AddUser() API endpoint was exposed to a legacy behavior. i.e it accepts a "policy" field</p>
+	  <p>This API is mainly used to create a user or update a user's password.</p>
+	  <p>However, a malicious client can hand-craft an HTTP API call that allows for updating Policy for a user and gaining higher privileges.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-43858</cvename>
+      <url>https://github.com/minio/minio/security/advisories/GHSA-j6jc-jqqc-p6cx</url>
+    </references>
+    <dates>
+      <discovery>2021-12-27</discovery>
+      <entry>2021-12-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ed8a4215-675c-11ec-8dd4-a0f3c100ae18">
+    <topic>Pillow -- Regular Expression Denial of Service (ReDoS)</topic>
+    <affects>
+      <package>
+	<name>py38-pillow</name>
+	<range><ge>5.2.0</ge><lt>8.3.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>GitHub Advisory Database reports:</p>
+	<blockquote cite="https://github.com/advisories/GHSA-98vv-pw6r-q6q4">
+	  <p>Uncontrolled Resource Consumption in pillow.</p>
+	  <p>The package pillow from 0 and before 8.3.2 are vulnerable to Regular
+	     Expression Denial of Service (ReDoS) via the getrgb function.</p>
+	  <p>References:</p>
+	  <ul>
+	    <li>https://nvd.nist.gov/vuln/detail/CVE-2021-23437</li>
+	    <li>https://github.com/python-pillow/Pillow/commit/9e08eb8f78fdfd2f476e1b20b7cf38683754866b</li>
+	    <li>https://pillow.readthedocs.io/en/stable/releasenotes/8.3.2.html</li>
+	    <li>https://snyk.io/vuln/SNYK-PYTHON-PILLOW-1319443</li>
+	    <li>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/RNSG6VFXTAROGF7ACYLMAZNQV4EJ6I2C/</li>
+	    <li>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/VKRCL7KKAKOXCVD7M6WC5OKFGL4L3SJT/</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-23437</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2021-23437</url>
+    </references>
+    <dates>
+      <discovery>2021-09-02</discovery>
+      <entry>2021-09-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d1be3d73-6737-11ec-9eea-589cfc007716">
+    <topic>OpenSearch -- Log4Shell</topic>
+    <affects>
+      <package>
+	<name>opensearch</name>
+	<range><lt>1.2.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenSearch reports:</p>
+	<blockquote cite="https://opensearch.org/blog/releases/2021/12/update-1-2-3/">
+	  <p>CVE-2021-45105 for Log4j was issued after the release of OpenSearch 1.2.2. This CVE advises upgrading to Log4j 2.17.0. While there has been no observed reproduction of the issue described in CVE-2021-45105 in OpenSearch, we have released OpenSearch 1.2.3 which updates Log4j to version 2.17.0.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-45105</cvename>
+      <url>https://opensearch.org/blog/releases/2021/12/update-1-2-3/</url>
+    </references>
+    <dates>
+      <discovery>2021-12-16</discovery>
+      <entry>2021-12-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b0f49cb9-6736-11ec-9eea-589cfc007716">
+    <topic>OpenSearch -- Log4Shell</topic>
+    <affects>
+      <package>
+	<name>opensearch</name>
+	<range><lt>1.2.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>OpenSearch reports:</p>
+	<blockquote cite="https://opensearch.org/blog/releases/2021/12/update-1-2-2/">
+	  <p>CVE-2021-45046 was issued shortly following the release of OpenSearch 1.2.1. This new CVE advises upgrading from Log4j 2.15.0 (used in OpenSearch 1.2.1) to Log4j 2.16.0. Out of an abundance of caution, the team is releasing OpenSearch 1.2.2 which includes Log4j 2.16.0. While there has been no observed reproduction of the issue described in CVE-2021-45046, Log4j 2.16.0 takes much more extensive JNDI mitigation measures.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-45046</cvename>
+      <url>https://opensearch.org/blog/releases/2021/12/update-1-2-2/</url>
+    </references>
+    <dates>
+      <discovery>2021-12-14</discovery>
+      <entry>2021-12-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1135e939-62b4-11ec-b8e2-1c1b0d9ea7e6">
+    <topic>opengrok -- Easily exploitable vulnerability allows low privileged attacker with network access via HTTPS to compromise OpenGrok.</topic>
+    <affects>
+      <package>
+	<name>opengrok</name>
+	<range><le>1.6.7</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Bobby Rauch of Accenture reports:</p>
+	<blockquote cite="https://medium.com/@bobbyrsec/oracle-opengrok-rce-cve-2021-2322-a284e5621bfe">
+	  <p>I ended up finding OpenGrok, and after careful testing, discovered that OpenGrok insecurely deserializes XML input, which can lead to Remote Code Execution. This vulnerability was found in all versions of OpenGrok &lt;1.6.8 and was reported to Oracle. The vulnerability has now been patched in OpenGrok 1.6.9, and has been issued a CVE. (https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-2322)</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-2322</cvename>
+      <url>https://www.oracle.com/security-alerts/oracle-open-source-cves-outside-other-oracle-public-documents.html</url>
+      <url>https://www.oracle.com/security-alerts/oracle-open-source-cves-outside-other-oracle-public-documents.html</url>
+      <url>https://github.com/oracle/opengrok/pull/3528</url>
+    </references>
+    <dates>
+      <discovery>2021-04-07</discovery>
+      <entry>2021-12-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0a50bb48-625f-11ec-a1fb-080027cb2f6f">
+    <topic>mediawiki -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mediawiki135</name>
+	<range><lt>1.35.5</lt></range>
+      </package>
+      <package>
+	<name>mediawiki136</name>
+	<range><lt>1.36.3</lt></range>
+      </package>
+      <package>
+	<name>mediawiki137</name>
+	<range><lt>1.37.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mediawiki reports:</p>
+	<blockquote cite="https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/QEN3EK4JXAVJMJ5GF3GYOAKNJPEKFQYA/">
+	  <p>(T292763. CVE-2021-44854) REST API incorrectly publicly caches
+	    autocomplete search results from private wikis.</p>
+	  <p>(T271037, CVE-2021-44856) Title blocked in AbuseFilter can be created via
+	    Special:ChangeContentModel.</p>
+	  <p>(T297322, CVE-2021-44857) Unauthorized users can use action=mcrundo to
+	    replace the content of arbitrary pages.</p>
+	  <p> (T297322, CVE-2021-44858) Unauthorized users can view contents of private
+	    wikis using various actions.</p>
+	  <p>(T297574, CVE-2021-45038) Unauthorized users can access private wiki
+	    contents using rollback action</p>
+	  <p>(T293589, CVE-2021-44855) Blind Stored XSS in VisualEditor media dialog.</p>
+	  <p>(T294686) Special:Nuke doesn't actually delete pages.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44854</cvename>
+      <cvename>CVE-2021-44856</cvename>
+      <cvename>CVE-2021-44857</cvename>
+      <cvename>CVE-2021-44858</cvename>
+      <cvename>CVE-2021-45038</cvename>
+      <cvename>CVE-2021-44855</cvename>
+      <url>https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/QEN3EK4JXAVJMJ5GF3GYOAKNJPEKFQYA/</url>
+    </references>
+    <dates>
+      <discovery>2021-12-01</discovery>
+      <entry>2021-12-21</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="650734b2-7665-4170-9a0a-eeced5e10a5e">
     <topic>graylog -- remote code execution in log4j from user-controlled log input</topic>
     <affects>
