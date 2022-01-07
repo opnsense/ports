@@ -19,7 +19,7 @@ https://github.com/EmbarkStudios/cfg-expr/commit/f8c59a8dccd0
          triple: Triple::new_const("powerpc-unknown-linux-gnu"),
          os: Some(Os::linux),
          arch: Arch::powerpc,
-@@ -1002,6 +1012,16 @@ pub const ALL_BUILTINS: &[TargetInfo] = &[
+@@ -992,6 +1002,16 @@ pub const ALL_BUILTINS: &[TargetInfo] = &[
          family: Some(Family::unix),
          pointer_width: 64,
          endian: Endian::big,
@@ -35,4 +35,4 @@ https://github.com/EmbarkStudios/cfg-expr/commit/f8c59a8dccd0
 +        endian: Endian::little,
      },
      TargetInfo {
-         triple: Triple::new_const("powerpc64-unknown-linux-musl"),
+         triple: Triple::new_const("powerpc64-unknown-linux-gnu"),
