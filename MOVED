@@ -15314,7 +15314,6 @@ graphics/backfract||2020-08-27|Has expired: Broken for more than 6 months
 japanese/kanjipad||2020-08-27|Has expired: Broken for more than 6 months
 japanese/xdtp||2020-08-27|Has expired: Broken for more than 6 months
 net/hinfo||2020-08-27|Has expired: Broken for more than 6 months
-science/fleur||2020-08-27|Has expired: Broken for more than 6 months
 science/lm||2020-08-27|Has expired: Broken for more than 6 months
 security/ddos_scan||2020-08-27|Has expired: Broken for more than 6 months
 security/gag||2020-08-27|Has expired: Broken for more than 6 months
@@ -16759,3 +16758,4 @@ www/py-dj31-djangorestframework||2021-12-31|Has expired: Extended support of Dja
 astro/google-earth||2022-01-01|Has expired: Needs newer version to connect to server
 net/tramp||2022-01-01|Has expired: Not updated in 5 years and now part of Emacs
 archivers/p7zip-codec-rar||2022-01-01|Has expired: Unmaintained for years and has known vulnerabilities
+textproc/askgit|textproc/mergestat|2022-01-03|Project renamed
