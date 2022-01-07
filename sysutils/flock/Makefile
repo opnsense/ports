@@ -11,18 +11,19 @@ COMMENT=	Manage locks from shell scripts
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-GNU_CONFIGURE=	yes
 USES=		libtool pkgconfig
 
-OPTIONS_DEFINE=	NLS
+GNU_CONFIGURE=	yes
 
-NLS_CONFIGURE_ENABLE=	nls
-NLS_USES=	autoreconf gettext
+CFLAGS=		-D_WITH_CPU_SET_T
 
 PLIST_FILES=	bin/flock man/man1/flock.1.gz \
 		etc/bash_completion.d/flock
 
-CFLAGS=		-D_WITH_CPU_SET_T
+OPTIONS_DEFINE=	NLS
+
+NLS_USES=	autoreconf gettext
+NLS_CONFIGURE_ENABLE=	nls
 
 do-build:
 	# skip building unneeded utils
