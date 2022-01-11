@@ -300,6 +300,7 @@
     SUBDIR += byacc
     SUBDIR += byaccj
     SUBDIR += c2mdoc
+    SUBDIR += c4core
     SUBDIR += caf
     SUBDIR += calibrator
     SUBDIR += capnproto
@@ -813,6 +814,7 @@
     SUBDIR += generate
     SUBDIR += gengetopt
     SUBDIR += genie
+    SUBDIR += genromfs
     SUBDIR += getoptions
     SUBDIR += gettext
     SUBDIR += gettext-lint
@@ -960,6 +962,7 @@
     SUBDIR += hgsvn
     SUBDIR += hhdate
     SUBDIR += highlighterkit
+    SUBDIR += highway
     SUBDIR += hoel
     SUBDIR += horde-content
     SUBDIR += horde-timeobjects
@@ -4769,6 +4772,7 @@
     SUBDIR += py-maturin
     SUBDIR += py-mccabe
     SUBDIR += py-mdv
+    SUBDIR += py-mediafile
     SUBDIR += py-medikit
     SUBDIR += py-meliae
     SUBDIR += py-memory-profiler
@@ -5567,6 +5571,7 @@
     SUBDIR += rapidcheck
     SUBDIR += rapidfuzz-cpp
     SUBDIR += rapidjson
+    SUBDIR += rapidyaml
     SUBDIR += raylib
     SUBDIR += rbenv
     SUBDIR += rbtools

@@ -14,6 +14,7 @@ USES=		dos2unix
 USE_GITHUB=	yes
 GH_ACCOUNT=	z3t0
 GH_PROJECT=	Arduino-IRremote
+PORTSCOUT=	limit:^[0-9]
 
 NO_BUILD=	yes
 

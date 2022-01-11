@@ -108,11 +108,10 @@
     SUBDIR += qemu-powernv
     SUBDIR += qemu-user-static
     SUBDIR += qemu-user-static-devel
-    SUBDIR += qemu-utils
-    SUBDIR += qemu42
     SUBDIR += qemu5
     SUBDIR += qmc2
     SUBDIR += quasi88
+    SUBDIR += ripes
     SUBDIR += riscv-isa-sim
     SUBDIR += rpcs3
     SUBDIR += rtc

@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 PHP_DESTDIR=	lib/php/arcanist
 USES=		php:cli,flavors python:env shebangfix
+IGNORE_WITH_PHP=	81
 SHEBANG_FILES=	bin/arc \
 		bin/phage \
 		scripts/*.php \
@@ -48,7 +49,7 @@ ENCODINGS_USE=	PHP=mbstring
 
 RUN_DEPENDS=	arcanist-lib${PHP_PKGNAMESUFFIX}>0:devel/arcanist-lib@${PHP_FLAVOR}
 
-CONFLICTS=	arc
+CONFLICTS=	arc arcanist-php??
 
 PLIST_FILES=	bin/arc
 

@@ -114,7 +114,7 @@ PLIST_FILES=
 PLIST_SUB_SED_EXCLUDE_VAL=	lib "3.0.0"
 
 CLANG_DESC=	Build clang
-CLANG_CONFLICTS_INSTALL=	clang-devel-3.[1234567]*
+CLANG_CONFLICTS_INSTALL=	clang-devel
 CLANG_CMAKE_ON=		-DCLANG_DEFAULT_OPENMP_RUNTIME=libomp \
 			-DCLANG_LINK_LLVM_DYLIB=ON
 CLANG_PORTDOCS=		clang
@@ -173,6 +173,8 @@ GOLD_DESC=		Build the LLVM Gold plugin for LTO
 GOLD_CMAKE_ON=		-DLLVM_BINUTILS_INCDIR=${LOCALBASE}/include
 GOLD_BUILD_DEPENDS=	${LOCALBASE}/bin/ld.gold:devel/binutils
 
+CONFLICTS_INSTALL=	llvm-devel llvm-devel-lite
+
 PLIST_SUB+=	LLVM_MAJOR=${LLVM_MAJOR} \
 		LLVM_RELEASE=${LLVM_RELEASE}
 
@@ -221,6 +223,7 @@ MAN1SRCS+=	bugpoint.1 \
 		llvm-strip.1 \
 		llvm-symbolizer.1 \
 		llvm-tblgen.1 \
+		llvm-tli-checker.1 \
 		mlir-tblgen.1 \
 		opt.1 \
 		tblgen.1
@@ -253,7 +256,7 @@ EXTRAS_PATTERN=	${EXTRAS_COMMANDS:tW:C/  */|/g}|${EXTRAS_LIBS:tW:C/  */|/g}|${EX
 
 FLANG_PATTERN=	${FLANG_COMMANDS:S/^/bin./:tW:C/  */|/g}|flang|libFIR|libFortran
 
-MLIR_PATTERN=	${MLIR_COMMANDS:S/^/bin./:tW:C/  */|/g}|mlir|libMLIR
+MLIR_PATTERN=	${MLIR_COMMANDS:S/^/bin./:tW:C/  */|/g}|mlir|libMLIR|obj.MLIRCAP
 
 .include <bsd.port.options.mk>
 
@@ -399,6 +402,7 @@ _COMPILER_RT_LIBS= \
 	libclang_rt.stats_client-x86_64.a \
 	libclang_rt.tsan-x86_64.a \
 	libclang_rt.tsan-x86_64.a.syms \
+	libclang_rt.tsan-x86_64.so \
 	libclang_rt.tsan_cxx-x86_64.a \
 	libclang_rt.tsan_cxx-x86_64.a.syms \
 	libclang_rt.ubsan_minimal-x86_64.a \
