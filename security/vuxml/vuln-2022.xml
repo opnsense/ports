@@ -1,3 +1,70 @@
+  <vuln vid="2a6106c6-73e5-11ec-8fa2-0800270512f4">
+    <topic>clamav -- invalid pointer read that may cause a crash</topic>
+    <affects>
+      <package>
+	<name>clamav</name>
+	<range><lt>0.104.2,1</lt></range>
+      </package>
+      <package>
+	<name>clamav-lts</name>
+	<range><lt>0.103.5,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Laurent Delosieres reports:</p>
+	<blockquote cite="https://blog.clamav.net/2022/01/clamav-01035-and-01042-security-patch.html">
+	  <p>
+	    Fix for invalid pointer read that may cause a crash. This issue affects
+	    0.104.1, 0.103.4 and prior when ClamAV is compiled with libjson-c and the
+	    <code>CL_SCAN_GENERAL_COLLECT_METADATA</code> scan option
+	    (the <code>clamscan --gen-json</code> option) is enabled.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-20698</cvename>
+      <url>https://blog.clamav.net/2022/01/clamav-01035-and-01042-security-patch.html</url>
+    </references>
+    <dates>
+      <discovery>2022-01-12</discovery>
+      <entry>2022-01-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="672eeea9-a070-4f88-b0f1-007e90a2cbc3">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.330</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.319.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2021-11-04/">
+	  <h1>Description</h1>
+	  <h5>(Medium) SECURITY-2558 / CVE-2022-20612</h5>
+	  <p>CSRF vulnerability in build triggers</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-20612</cvename>
+      <url>https://www.jenkins.io/security/advisory/2022-01-12/</url>
+    </references>
+    <dates>
+      <discovery>2022-01-12</discovery>
+      <entry>2022-01-12</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="b927b654-7146-11ec-ad4b-5404a68ad561">
     <topic>uriparser -- Multiple vulnerabilities</topic>
     <affects>
