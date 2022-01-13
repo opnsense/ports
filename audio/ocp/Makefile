@@ -1,7 +1,8 @@
 # Created by: Emanuel Haupt <ehaupt@critical.ch>
 
 PORTNAME=	ocp
-PORTVERSION=	0.2.91
+PORTVERSION=	0.2.92
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio
 MASTER_SITES=	https://github.com/mywave82/opencubicplayer/releases/download/v${PORTVERSION}/
@@ -94,5 +95,8 @@ post-install:
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/ocp
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/ocp/*.so
 	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/ocp/autoload/*.so
+
+post-install-X11-on:
+	${INSTALL_DATA} ${WRKSRC}/desktop/*.xpm ${STAGEDIR}${PREFIX}/share/pixmaps
 
 .include <bsd.port.mk>
