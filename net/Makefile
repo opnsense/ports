@@ -3,6 +3,7 @@
     SUBDIR += 3proxy
     SUBDIR += 44bsd-rdist
     SUBDIR += 6tunnel
+    SUBDIR += R-cran-pingr
     SUBDIR += R-cran-twitteR
     SUBDIR += Sockets
     SUBDIR += activemq
@@ -994,7 +995,6 @@
     SUBDIR += pimcommon
     SUBDIR += pimd
     SUBDIR += pimdd
-    SUBDIR += pipsecd
     SUBDIR += pjsip
     SUBDIR += pkt-gen
     SUBDIR += pktanon

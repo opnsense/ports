@@ -65,6 +65,7 @@
     SUBDIR += R-cran-gss
     SUBDIR += R-cran-gtable
     SUBDIR += R-cran-haven
+    SUBDIR += R-cran-hexbin
     SUBDIR += R-cran-igraph
     SUBDIR += R-cran-influenceR
     SUBDIR += R-cran-inline
@@ -339,7 +340,6 @@
     SUBDIR += gnuplot
     SUBDIR += gnuplot-lite
     SUBDIR += gnuplot-tex-extras
-    SUBDIR += gotoblas
     SUBDIR += gp2c
     SUBDIR += grace
     SUBDIR += graphthing
@@ -828,6 +828,7 @@
     SUBDIR += py-deap
     SUBDIR += py-ducc0
     SUBDIR += py-ecos
+    SUBDIR += py-faiss
     SUBDIR += py-fastcluster
     SUBDIR += py-fastdtw
     SUBDIR += py-flax

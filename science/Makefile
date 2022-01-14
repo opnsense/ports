@@ -135,7 +135,9 @@
     SUBDIR += libint2
     SUBDIR += libkml
     SUBDIR += liblinear
+    SUBDIR += libmbd
     SUBDIR += libmsym
+    SUBDIR += libnegf
     SUBDIR += liboglappth
     SUBDIR += libquantum
     SUBDIR += libssm

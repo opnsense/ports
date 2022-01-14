@@ -779,7 +779,7 @@ share/applications/emacsclient-mail.desktop
 %%DATADIR%%/%%EMACS_VER%%/etc/nxml/README
 %%DATADIR%%/%%EMACS_VER%%/etc/nxml/test-invalid.xml
 %%DATADIR%%/%%EMACS_VER%%/etc/nxml/test-valid.xml
-%%PGTK%%%%DATADIR%%/%%EMACS_VER%%/etc/org.gnu.emacs.defaults.gschema.valid
+%%GSETTINGS%%%%DATADIR%%/%%EMACS_VER%%/etc/org.gnu.emacs.defaults.gschema.valid
 %%DATADIR%%/%%EMACS_VER%%/etc/org.gnu.emacs.defaults.gschema.xml
 %%DATADIR%%/%%EMACS_VER%%/etc/org/OrgOdtContentTemplate.xml
 %%DATADIR%%/%%EMACS_VER%%/etc/org/OrgOdtStyles.xml
@@ -2463,6 +2463,8 @@ share/applications/emacsclient-mail.desktop
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/cyrillic.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/czech.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/czech.elc
+%%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/emoji.el.gz
+%%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/emoji.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/ethiopic.el.gz
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/ethiopic.elc
 %%DATADIR%%/%%EMACS_VER%%/lisp/leim/quail/georgian.el.gz
@@ -4263,7 +4265,7 @@ share/applications/emacsclient-mail.desktop
 %%SOURCES%%%%DATADIR%%/%%EMACS_VER%%/src/xwidget.c
 %%SOURCES%%%%DATADIR%%/%%EMACS_VER%%/src/xwidget.h
 include/emacs-module.h
-%%PGTK%%share/glib-2.0/schemas/org.gnu.emacs.defaults.gschema.xml
+%%GSETTINGS%%share/glib-2.0/schemas/org.gnu.emacs.defaults.gschema.xml
 share/icons/hicolor/128x128/apps/emacs.png
 share/icons/hicolor/16x16/apps/emacs.png
 share/icons/hicolor/24x24/apps/emacs.png
