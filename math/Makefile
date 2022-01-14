@@ -363,6 +363,7 @@
     SUBDIR += igraph
     SUBDIR += iml
     SUBDIR += intervaltree
+    SUBDIR += intx
     SUBDIR += ipopt
     SUBDIR += ised
     SUBDIR += jacal
@@ -887,6 +888,7 @@
     SUBDIR += py-plastex
     SUBDIR += py-point-annotator
     SUBDIR += py-pplpy
+    SUBDIR += py-primecountpy
     SUBDIR += py-primme
     SUBDIR += py-pyFFTW
     SUBDIR += py-pybloom
