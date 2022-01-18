@@ -1,6 +1,6 @@
 PORTNAME=	update
 .if "${PRODUCT_ABI}" != 22.1
-PORTVERSION=	21.7.7
+PORTVERSION=	21.7.8
 .else
 PORTVERSION=	22.1.r2
 .endif
