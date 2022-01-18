@@ -993,6 +993,7 @@
     SUBDIR += sc
     SUBDIR += sc-im
     SUBDIR += scalapack
+    SUBDIR += scalapackfx
     SUBDIR += scilab
     SUBDIR += scilab-toolbox-swt
     SUBDIR += scs
@@ -1058,6 +1059,7 @@
     SUBDIR += topcom
     SUBDIR += triangle
     SUBDIR += trlan
+    SUBDIR += trlib
     SUBDIR += tvmet
     SUBDIR += ump
     SUBDIR += units
