@@ -476,6 +476,7 @@
     SUBDIR += oneshot
     SUBDIR += onionbalance
     SUBDIR += onionshare
+    SUBDIR += onlyoffice-documentserver
     SUBDIR += openarc
     SUBDIR += opencart
     SUBDIR += orangehrm
@@ -1823,6 +1824,7 @@
     SUBDIR += rejik
     SUBDIR += reportmagic
     SUBDIR += repos-style
+    SUBDIR += reproxy
     SUBDIR += resin3
     SUBDIR += restbed
     SUBDIR += retawq
