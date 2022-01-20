@@ -85,9 +85,11 @@ include/frr/pullwr.h
 include/frr/pw.h
 include/frr/queue.h
 include/frr/qobj.h
+include/frr/resolver.h
 include/frr/ringbuf.h
 include/frr/route_types.h
 include/frr/routemap.h
+include/frr/routing_nb.h
 include/frr/sbuf.h
 include/frr/seqlock.h
 include/frr/sha256.h
@@ -98,6 +100,7 @@ include/frr/skiplist.h
 include/frr/sockopt.h
 include/frr/sockunion.h
 include/frr/srcdest_table.h
+include/frr/srte.h
 include/frr/srv6.h
 include/frr/stream.h
 include/frr/systemd.h
@@ -124,10 +127,15 @@ lib/libfrr.a
 lib/libfrr.so
 lib/libfrr.so.0
 lib/libfrr.so.0.0.0
+lib/libfrrcares.a
+lib/libfrrcares.so
+lib/libfrrcares.so.0
+lib/libfrrcares.so.0.0.0
 lib/libfrrospfapiclient.a
 lib/libfrrospfapiclient.so
 lib/libfrrospfapiclient.so.0
 lib/libfrrospfapiclient.so.0.0.0
+%%SNMP%%lib/frr/modules/bgpd_bmp.so
 %%SNMP%%lib/frr/modules/bgpd_snmp.so
 %%SNMP%%lib/frr/modules/ospf6d_snmp.so
 %%SNMP%%lib/frr/modules/ospfd_snmp.so
@@ -180,10 +188,7 @@ share/yang/frr-ripngd.yang
 share/yang/frr-route-types.yang
 share/yang/frr-test-module.yang
 share/yang/frr-filter.yang
-share/yang/frr-igmp.yang
 share/yang/frr-nexthop.yang
-share/yang/frr-pim-rp.yang
-share/yang/frr-pim.yang
 share/yang/frr-route-map.yang
 share/yang/frr-routing.yang
 share/yang/frr-staticd.yang
