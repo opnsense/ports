@@ -1,6 +1,6 @@
 PORTNAME=	installer
 .if "${PRODUCT_ABI}" == 22.1
-PORTVERSION=	22.1.d
+PORTVERSION=	22.1
 .else
 PORTVERSION=	21.7.1
 .endif
@@ -20,8 +20,5 @@ NO_BUILD=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	${CATEGORIES:[1]}
-.if "${PRODUCT_ABI}" == 22.1
-GH_TAGNAME=	8d01b88
-.endif
 
 .include <bsd.port.mk>
