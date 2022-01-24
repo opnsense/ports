@@ -2,7 +2,7 @@ PORTNAME=	update
 .if "${PRODUCT_ABI}" != 22.1
 PORTVERSION=	21.7.8
 .else
-PORTVERSION=	22.1.r2
+PORTVERSION=	22.1
 .endif
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	${GH_ACCOUNT}-
@@ -22,8 +22,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	${CATEGORIES:[1]}
 .if "${PRODUCT_ABI}" != 22.1
 GH_TAGNAME=	a78649a
-.else
-GH_TAGNAME=	7f7c464
 .endif
 
 .include <bsd.port.mk>
