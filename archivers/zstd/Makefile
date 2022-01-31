@@ -1,9 +1,9 @@
 # Created by: John Marino <marino@FreeBSD.org>
 
 PORTNAME=	zstd
-DISTVERSION=	1.5.1
+PORTVERSION=	1.5.2
 CATEGORIES=	archivers
-MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${DISTVERSION}/
+MASTER_SITES=	https://github.com/facebook/zstd/releases/download/v${PORTVERSION}/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Fast real-time compression algorithm
@@ -21,9 +21,9 @@ MESON_ARGS=	-Ddefault_library=both
 USE_LDCONFIG=	yes
 WRKSRC_SUBDIR=	build/meson
 
-SHEBANG_FILES=	*.py
+PLIST_SUB=	PORTVERSION=${PORTVERSION}
 
-PLIST_SUB=	DISTVERSION=${DISTVERSION}
+SHEBANG_FILES=	*.py
 
 OPTIONS_DEFINE=	LZ4 OPTIMIZED_CFLAGS TEST
 OPTIONS_DEFAULT=LZ4
