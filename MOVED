@@ -5220,7 +5220,6 @@ graphics/f-spot||2013-12-22|Has expired: Broken for more than 6 months
 sysutils/linux-megamgr||2013-12-22|Has expired: Broken for more than 6 months
 games/linux-savage-samuraiwars||2013-12-22|Has expired: Broken for more than 6 months
 devel/hs-DeepArrow||2013-12-22|Has expired: Broken for more than 6 months
-converters/py-svglib||2013-12-22|Has expired: Broken for more than 6 months
 converters/p5-Unicode-Lite||2013-12-22|Has expired: Broken for more than 6 months
 mail/squirrelmail-calendar_sql_backend-plugin||2013-12-22|Has expired: Broken for more than 6 months
 games/xkobo||2013-12-22|Has expired: Broken for more than 6 months
@@ -15906,7 +15905,6 @@ databases/arangodb33||2021-01-02|Has expired: Uses Python 2.7 which is EOLed ups
 devel/bzr||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
 devel/chromium-gn|devel/gn|2021-01-02|Has expired: Uses deprecated version of python, use devel/gn instead
 devel/mongo-cxx-driver||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-emulators/fceux||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 emulators/gem5||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 emulators/nonpareil||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 games/freera||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
@@ -16774,3 +16772,112 @@ devel/e2fsprogs-libss||2022-01-17|Folded back into sysutils/e2fsprogs, which was
 lang/spidermonkey60|lang/spidermonkey78|2022-01-18|Has expired: Requires python2 to build
 shells/ammonite|devel/ammonite|2022-01-18|Ammonite dropped built-in shell support
 emulators/yuzu-qt5|emulators/yuzu|2022-01-20|Merged as QT5 port option
+print/py-fonttools3|print/py-fonttools|2022-01-23|Remove obsoleted port. Use print/py-fonttools instead
+textproc/rubygem-rouge2|textproc/rubygem-rouge|2022-01-23|Remove obsoleted port. Use textproc/rubygem-rouge instead
+security/truecrypt|security/veracrypt|2022-01-23|Has expired: Development and support for truecrypt ended in 2014
+graphics/radiance||2022-01-23|Has expired: Application uses deprecated OpenGL support in libmpv, see the comment in https://github.com/zbanks/radiance/issues/118
+databases/postgis25||2022-01-25|Has expired: Deprecated in favour of databases/postgis3x
+www/zend-framework1|www/zend-framework|2022-01-25|Has expired: Fails to work with current active PHP versions
+archivers/php73-bz2|archivers/php74-bz2|2022-01-26|Has expired: Security support ended on 2021-12-06
+archivers/php73-zlib|archivers/php74-zlib|2022-01-26|Has expired: Security support ended on 2021-12-06
+archivers/php73-zip|archivers/php74-zip|2022-01-26|Has expired: Security support ended on 2021-12-06
+archivers/php73-phar|archivers/php74-phar|2022-01-26|Has expired: Security support ended on 2021-12-06
+math/php73-gmp|math/php74-gmp|2022-01-26|Has expired: Security support ended on 2021-12-06
+math/php73-bcmath|math/php74-bcmath|2022-01-26|Has expired: Security support ended on 2021-12-06
+net-mgmt/php73-snmp|net-mgmt/php74-snmp|2022-01-26|Has expired: Security support ended on 2021-12-06
+converters/php73-iconv|converters/php74-iconv|2022-01-26|Has expired: Security support ended on 2021-12-06
+converters/php73-mbstring|converters/php74-mbstring|2022-01-26|Has expired: Security support ended on 2021-12-06
+converters/php73-recode||2022-01-26|Has expired: Security support ended on 2021-12-06
+lang/php73|lang/php74|2022-01-26|Has expired: Security support ended on 2021-12-06
+lang/php73-extensions|lang/php74-extensions|2022-01-26|Has expired: Security support ended on 2021-12-06
+sysutils/php73-posix|sysutils/php74-posix|2022-01-26|Has expired: Security support ended on 2021-12-06
+sysutils/php73-fileinfo|sysutils/php74-fileinfo|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xmlreader|textproc/php74-xmlreader|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-ctype|textproc/php74-ctype|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-simplexml|textproc/php74-simplexml|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xsl|textproc/php74-xsl|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-dom|textproc/php74-dom|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xml|textproc/php74-xml|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-enchant|textproc/php74-enchant|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-pspell|textproc/php74-pspell|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-xmlwriter|textproc/php74-xmlwriter|2022-01-26|Has expired: Security support ended on 2021-12-06
+textproc/php73-wddx||2022-01-26|Has expired: Security support ended on 2021-12-06
+ftp/php73-curl|ftp/php74-curl|2022-01-26|Has expired: Security support ended on 2021-12-06
+ftp/php73-ftp|ftp/php74-ftp|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-shmop|devel/php74-shmop|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-readline|devel/php74-readline|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-sysvsem|devel/php74-sysvsem|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-sysvmsg|devel/php74-sysvmsg|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-pcntl|devel/php74-pcntl|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-tokenizer|devel/php74-tokenizer|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-json|devel/php74-json|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-sysvshm|devel/php74-sysvshm|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-gettext|devel/php74-gettext|2022-01-26|Has expired: Security support ended on 2021-12-06
+devel/php73-intl|devel/php74-intl|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/php73-opcache|www/php74-opcache|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/mod_php73|www/mod_php74|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/php73-tidy|www/php74-tidy|2022-01-26|Has expired: Security support ended on 2021-12-06
+www/php73-session|www/php74-session|2022-01-26|Has expired: Security support ended on 2021-12-06
+graphics/php73-gd|graphics/php74-gd|2022-01-26|Has expired: Security support ended on 2021-12-06
+graphics/php73-exif|graphics/php74-exif|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-sodium|security/php74-sodium|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-openssl|security/php74-openssl|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-filter|security/php74-filter|2022-01-26|Has expired: Security support ended on 2021-12-06
+security/php73-hash||2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_dblib|databases/php74-pdo_dblib|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo|databases/php74-pdo|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-dba|databases/php74-dba|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pgsql|databases/php74-pgsql|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-odbc|databases/php74-odbc|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-interbase||2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_sqlite|databases/php74-pdo_sqlite|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-sqlite3|databases/php74-sqlite3|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_pgsql|databases/php74-pdo_pgsql|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_odbc|databases/php74-pdo_odbc|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-mysqli|databases/php74-mysqli|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_mysql|databases/php74-pdo_mysql|2022-01-26|Has expired: Security support ended on 2021-12-06
+databases/php73-pdo_firebird|databases/php74-pdo_firebird|2022-01-26|Has expired: Security support ended on 2021-12-06
+misc/php73-calendar|misc/php74-calendar|2022-01-26|Has expired: Security support ended on 2021-12-06
+mail/php73-imap|mail/php74-imap|2022-01-26|Has expired: Security support ended on 2021-12-06
+net/php73-sockets|net/php74-sockets|2022-01-26|Has expired: Security support ended on 2021-12-06
+net/php73-xmlrpc|net/php74-xmlrpc|2022-01-26|Has expired: Security support ended on 2021-12-06
+net/php73-ldap|net/php74-ldap|2022-01-26|Has expired: Security support ended on 2021-12-06
+net/php73-soap|net/php74-soap|2022-01-26|Has expired: Security support ended on 2021-12-06
+mail/bogofilter|mail/bogofilter-bdb|2022-01-26|Port renamed to make LMDB the new default DB
+mail/bogofilter-lmdb|mail/bogofilter|2022-01-26|Port renamed to make LMDB the new default DB
+comms/py-qt5-sensors|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+comms/py-qt5-serialport|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+databases/py-qt5-sql|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-core|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-dbus|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-dbussupport|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-designer|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-designerplugin|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-help|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-location|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-positioning|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-remoteobjects|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+devel/py-qt5-test|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+graphics/py-qt5-svg|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+lang/py-qt5-qml|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+misc/py-qt5-demo|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+multimedia/py-qt5-multimedia|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+multimedia/py-qt5-multimediawidgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+net/py-qt5-network|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+print/py-qt5-printsupport|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+textproc/py-qt5-xml|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+textproc/py-qt5-xmlpatterns|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-webchannel|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-webkit|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-webkitwidgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+www/py-qt5-websockets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-gui|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-quick|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-quick3d|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-quickwidgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11-toolkits/py-qt5-widgets|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+x11/py-qt5-opengl|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
+net-mgmt/zabbix54-frontend|net-mgmt/zabbix54-frontend@php74|2022-01-27|Build as php 7.4-flavored only
+x11-fonts/sourcesanspro-ttf|x11-fonts/source-sans-ttf|2022-01-28|Rename to match upstream naming
+audio/nekobi-lv2|audio/dpf-plugins-lv2|2022-01-28|Nekobi is part of dpf-plugins
+audio/kars-lv2|audio/dpf-plugins-lv2|2022-01-28|Kars is part of dpf-plugins
