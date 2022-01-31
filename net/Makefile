@@ -977,10 +977,6 @@
     SUBDIR += pecl-zmq
     SUBDIR += pen
     SUBDIR += pfinger
-    SUBDIR += php73-ldap
-    SUBDIR += php73-soap
-    SUBDIR += php73-sockets
-    SUBDIR += php73-xmlrpc
     SUBDIR += php74-ldap
     SUBDIR += php74-soap
     SUBDIR += php74-sockets
@@ -1117,7 +1113,6 @@
     SUBDIR += py-pyu2f
     SUBDIR += py-pyvmomi
     SUBDIR += py-pyzmq
-    SUBDIR += py-qt5-network
     SUBDIR += py-qt5-networkauth
     SUBDIR += py-rabbitpy
     SUBDIR += py-radix
@@ -1136,6 +1131,7 @@
     SUBDIR += py-smbprotocol
     SUBDIR += py-soap2py
     SUBDIR += py-socketio-client
+    SUBDIR += py-socksio
     SUBDIR += py-softlayer
     SUBDIR += py-speedtest-cli
     SUBDIR += py-sshtunnel

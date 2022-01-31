@@ -88,6 +88,7 @@
     SUBDIR += mar
     SUBDIR += maxcso
     SUBDIR += minizip
+    SUBDIR += minizip-ng
     SUBDIR += mscompress
     SUBDIR += mtf
     SUBDIR += nfpm
@@ -152,10 +153,6 @@
     SUBDIR += php-lz4
     SUBDIR += php-snappy
     SUBDIR += php-zstd
-    SUBDIR += php73-bz2
-    SUBDIR += php73-phar
-    SUBDIR += php73-zip
-    SUBDIR += php73-zlib
     SUBDIR += php74-bz2
     SUBDIR += php74-phar
     SUBDIR += php74-zip
@@ -265,6 +262,7 @@
     SUBDIR += zip-ada
     SUBDIR += zipmix
     SUBDIR += zipper
+    SUBDIR += zlib-ng
     SUBDIR += zoo
     SUBDIR += zopfli
     SUBDIR += zstd

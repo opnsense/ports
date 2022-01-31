@@ -1,13 +1,12 @@
---- spa/tests/stress-ringbuffer.c.orig	2021-11-11 04:21:29.000000000 -0800
-+++ spa/tests/stress-ringbuffer.c	2021-12-12 12:11:15.939268000 -0800
-@@ -12,7 +12,10 @@
- #define MAX_VALUE 0x10000
+--- spa/tests/stress-ringbuffer.c.orig	2022-01-05 10:25:04 UTC
++++ spa/tests/stress-ringbuffer.c
+@@ -13,7 +13,8 @@
  
  #ifdef __FreeBSD__
-+#include <sys/param.h>
-+#if __FreeBSD_version < 1400043
+ #include <sys/param.h>
+-#if __FreeBSD_version < 1400043
++#if (__FreeBSD_version >= 1400000 && __FreeBSD_version < 1400043) \
++    || (__FreeBSD_version < 1300523)
  static int sched_getcpu(void) { return -1; };
-+#endif
  #endif
- 
- static struct spa_ringbuffer rb;
+ #endif

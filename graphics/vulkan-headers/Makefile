@@ -1,6 +1,6 @@
 PORTNAME=	vulkan-headers
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.203
+DISTVERSION=	1.3.204
 CATEGORIES=	graphics
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -14,5 +14,7 @@ STRIP=		# nothing to strip
 USE_GITHUB=	yes
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-Headers
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

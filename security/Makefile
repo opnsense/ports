@@ -799,10 +799,6 @@
     SUBDIR += pgpdump
     SUBDIR += pgpgpg
     SUBDIR += pgpin
-    SUBDIR += php73-filter
-    SUBDIR += php73-hash
-    SUBDIR += php73-openssl
-    SUBDIR += php73-sodium
     SUBDIR += php74-filter
     SUBDIR += php74-openssl
     SUBDIR += php74-sodium
@@ -1089,6 +1085,7 @@
     SUBDIR += rubygem-doorkeeper-rails5
     SUBDIR += rubygem-doorkeeper-rails50
     SUBDIR += rubygem-ed25519
+    SUBDIR += rubygem-ed2551912
     SUBDIR += rubygem-encryptor
     SUBDIR += rubygem-ezcrypto
     SUBDIR += rubygem-googleauth
@@ -1305,7 +1302,6 @@
     SUBDIR += tripwire
     SUBDIR += tripwire-131
     SUBDIR += trousers
-    SUBDIR += truecrypt
     SUBDIR += tthsum
     SUBDIR += u2f-devd
     SUBDIR += uacme

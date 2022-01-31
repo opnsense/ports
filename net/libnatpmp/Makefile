@@ -1,13 +1,12 @@
 # Created by: Hung-Yi Chen <gaod@hychen.org>
 
 PORTNAME=	libnatpmp
-PORTVERSION=	20211229
+PORTVERSION=	20220122
+PORTREVISION=	1
 CATEGORIES=	net
 
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	39ad4b34b967.patch:-p1	# https://github.com/miniupnp/libnatpmp/pull/20
-PATCHFILES+=	16ae5af7b7c5.patch:-p1	# https://github.com/miniupnp/libnatpmp/pull/21
-PATCHFILES+=	5f4a7c65837a.patch:-p1	# https://github.com/miniupnp/libnatpmp/pull/22
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/pull/
+PATCHFILES+=	26.patch:-p1
 
 MAINTAINER=	gaod@hychen.org
 COMMENT=	NAT-PMP lightweight library
@@ -19,10 +18,10 @@ USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	miniupnp
-GH_TAGNAME=	4b8b447
+GH_TAGNAME=	724dc69
 
 MAKE_ARGS+=	CC="${CC}"
-MAKE_ENV+=	INSTALLPREFIX=${STAGEDIR}${PREFIX}
+MAKE_ENV+=	INSTALLPREFIX=${PREFIX}
 
 PLIST_FILES=	bin/natpmpc \
 		include/natpmp.h \

@@ -1,5 +1,5 @@
 PORTNAME=	prowlarr
-PORTVERSION=	0.1.10.1375
+PORTVERSION=	0.2.0.1426
 CATEGORIES=	net-p2p
 MASTER_SITES=	https://github.com/Prowlarr/Prowlarr/releases/download/v${PORTVERSION}/
 DISTNAME=	Prowlarr.develop.${PORTVERSION}.freebsd-core-x64
@@ -23,9 +23,11 @@ USE_RC_SUBR=	${PORTNAME}
 
 NO_BUILD=	YES
 
-SUB_FILES=	${PORTNAME} pkg-message
+SUB_FILES=	${PORTNAME} package_info pkg-message
 SUB_LIST=	DATADIR=${DATADIR} \
 		GROUPS=${GROUPS} \
+		MAINTAINER=${MAINTAINER} \
+		PKGVERSION=${PKGVERSION} \
 		PORTNAME=${PORTNAME} \
 		USERS=${USERS}
 
@@ -36,9 +38,15 @@ WRKSRC=		${WRKDIR}/Prowlarr
 
 .include <bsd.port.options.mk>
 
+post-extract:
+	${RM} -rf ${WRKSRC}/Prowlarr.Update
+
 do-install:
-	${INSTALL} -d -m 755 ${STAGEDIR}/${DATADIR}
-	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR} "! -name Prowlarr"
-	${INSTALL_PROGRAM} ${WRKSRC}/Prowlarr ${STAGEDIR}/${DATADIR}
+	${INSTALL} -d -m 755 ${STAGEDIR}/${DATADIR}/bin/
+	cd ${WRKSRC} && ${COPYTREE_SHARE} \* ${STAGEDIR}/${DATADIR}/bin/ "! -name Prowlarr"
+	${INSTALL_PROGRAM} ${WRKSRC}/Prowlarr ${STAGEDIR}/${DATADIR}/bin/
+
+post-install:
+	${INSTALL_DATA} ${WRKDIR}/package_info ${STAGEDIR}/${DATADIR}/
 
 .include <bsd.port.mk>

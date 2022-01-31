@@ -1,6 +1,6 @@
 PORTNAME=	grass
 DISTVERSION=	8.0.0
-DISTVERSIONSUFFIX=	RC1
+DISTVERSIONSUFFIX=	RC2
 CATEGORIES=	databases geography
 MASTER_SITES=	https://grass.osgeo.org/%SUBDIR%/ \
 		http://grass.cict.fr/%SUBDIR%/ \
@@ -15,9 +15,6 @@ MASTER_SITES=	https://grass.osgeo.org/%SUBDIR%/ \
 		http://wgrass.media.osaka-cu.ac.jp/grassh/%SUBDIR%/
 MASTER_SITE_SUBDIR=	grass${VER}/source
 PKGNAMESUFFIX=	8
-
-PATCH_SITES=	https://github.com/osgeo/${PORTNAME}/commit/
-PATCHFILES=	fbbf6c01ac97.patch:-p1 # https://github.com/OSGeo/grass/pull/2075 fix g.extension
 
 MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Open source Geographical Information System (GIS)
@@ -73,7 +70,6 @@ CONFIGURE_ARGS=	--with-includes=${LOCALBASE}/include \
 		--with-geos=${LOCALBASE}/bin/geos-config \
 		--with-gdal=${LOCALBASE}/bin/gdal-config \
 		--with-pthread=yes \
-		--with-openmp \
 		--prefix=${LOCALBASE} \
 		--exec-prefix=${LOCALBASE}
 
@@ -117,6 +113,10 @@ PGSQL_CONFIGURE_WITH=	postgres
 
 .if !defined (GRASS_INST_DIR)
 GRASS_INST_DIR=	${PORTNAME}${VER}
+.endif
+
+.if ${ARCH} != powerpc
+CONFIGURE_ARGS+=	--with-openmp
 .endif
 
 MANDIRS=	${PREFIX}/grass${VER}/docs/man/man1

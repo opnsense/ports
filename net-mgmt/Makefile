@@ -45,6 +45,7 @@
     SUBDIR += check_ups_health
     SUBDIR += chillispot
     SUBDIR += choparp
+    SUBDIR += chronograf
     SUBDIR += cidr
     SUBDIR += ciscoconf
     SUBDIR += clog
@@ -278,7 +279,6 @@
     SUBDIR += percona-monitoring-plugins
     SUBDIR += pftabled
     SUBDIR += php-fpm_exporter
-    SUBDIR += php73-snmp
     SUBDIR += php74-snmp
     SUBDIR += php80-snmp
     SUBDIR += php81-snmp

@@ -2,7 +2,7 @@
 
 PORTNAME=	qgis
 DISTVERSION=	3.22.3
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics geography
 MASTER_SITES=	https://qgis.org/downloads/
 
@@ -11,9 +11,6 @@ COMMENT=	Free and Open Source Geographic Information System
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/doc/LICENSE
-
-DEPRECATED=	Uses EOL Python 2.7 via www/qt5-webengine
-EXPIRATION_DATE=2021-06-23
 
 BUILD_DEPENDS=	gpsbabel>=1.5.4:astro/gpsbabel \
 		opencl>=0:devel/opencl \
@@ -109,8 +106,7 @@ USES=		bison cmake compiler:features desktop-file-utils \
 USE_GL=		gl
 USE_GNOME=	libxml2
 USE_LDCONFIG=	yes
-USE_PYQT=	core gui location network positioning qml quick quickwidgets \
-		qscintilla2 pysip sip sql svg webkit_run webkitwidgets_run xml
+USE_PYQT=	pyqt5 qscintilla2 pysip sip 
 USE_QT=		3d buildtools_build core concurrent dbus declarative \
 		designer doc gamepad gui linguist_build location \
 		network printsupport qmake_build script serialport \

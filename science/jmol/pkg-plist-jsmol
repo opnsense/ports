@@ -217,6 +217,7 @@
 %%WWWDIR%%/images/test2.jpg
 %%WWWDIR%%/inchi.htm
 %%WWWDIR%%/inline_old.htm
+%%WWWDIR%%/j.js
 %%WWWDIR%%/j2s/J/Jmol.properties
 %%WWWDIR%%/j2s/J/adapter/readers/cif/Cif2DataParser.js
 %%WWWDIR%%/j2s/J/adapter/readers/cif/Cif2Reader.js
@@ -332,6 +333,7 @@
 %%WWWDIR%%/j2s/J/adapter/smarter/Bond.js
 %%WWWDIR%%/j2s/J/adapter/smarter/BondIterator.js
 %%WWWDIR%%/j2s/J/adapter/smarter/MSInterface.js
+%%WWWDIR%%/j2s/J/adapter/writers/PWMATWriter.js
 %%WWWDIR%%/j2s/J/adapter/smarter/Resolver.js
 %%WWWDIR%%/j2s/J/adapter/smarter/SmarterJmolAdapter.js
 %%WWWDIR%%/j2s/J/adapter/smarter/Structure.js
@@ -342,7 +344,6 @@
 %%WWWDIR%%/j2s/J/adapter/writers/QCJSONWriter.js
 %%WWWDIR%%/j2s/J/adapter/writers/MOLWriter.js
 %%WWWDIR%%/j2s/J/adapter/writers/PDBWriter.js
-%%WWWDIR%%/j2s/J/adapter/writers/PWMWriter.js
 %%WWWDIR%%/j2s/J/adapter/writers/XSFWriter.js
 %%WWWDIR%%/j2s/J/api/AtomIndexIterator.js
 %%WWWDIR%%/j2s/J/api/EventManager.js

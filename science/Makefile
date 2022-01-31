@@ -266,6 +266,7 @@
     SUBDIR += py-dlib
     SUBDIR += py-eccodes
     SUBDIR += py-esda
+    SUBDIR += py-fresnel
     SUBDIR += py-geolinks
     SUBDIR += py-geomet
     SUBDIR += py-geometer
@@ -275,6 +276,7 @@
     SUBDIR += py-h5json
     SUBDIR += py-h5py
     SUBDIR += py-hiphive
+    SUBDIR += py-hoomd-blue
     SUBDIR += py-inequality
     SUBDIR += py-jupyter_jsmol
     SUBDIR += py-kim-query
@@ -329,6 +331,7 @@
     SUBDIR += py-scoria
     SUBDIR += py-segregation
     SUBDIR += py-segyio
+    SUBDIR += py-sklearn-pandas
     SUBDIR += py-skrebate
     SUBDIR += py-spaghetti
     SUBDIR += py-spglib

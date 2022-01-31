@@ -1,5 +1,5 @@
 PORTNAME=	boringssl
-PORTVERSION=	0.0.0.0.2022.01.18.01
+PORTVERSION=	0.0.0.0.2022.01.28.01
 CATEGORIES=	security
 
 MAINTAINER=	osa@FreeBSD.org
@@ -20,7 +20,7 @@ CPE_VENDOR=	google
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	google
-GH_TAGNAME=	36a41bf
+GH_TAGNAME=	123eaae
 GH_TUPLE=	golang:crypto:c07d793c2f9a:golang_crypto/vendor/golang.org/x/crypto \
 		golang:net:04defd469f4e:golang_net/vendor/golang.org/x/net \
 		golang:sys:04245dca01da:golang_sys/vendor/golang.org/x/sys \
@@ -30,15 +30,7 @@ CMAKE_ARGS+=	-DBUILD_SHARED_LIBS=1 \
 USE_LDCONFIG=	yes
 LDFLAGS+=	-Wl,-rpath,${LOCALBASE}/lib
 TEST_TARGET=	run_tests
-GO_BUILDFLAGS+=	-mod=vendor
-MAKE_ENV+=	GOPATH=${WRKSRC}/vendor GOPROXY=off
-
-post-patch:
-	@${GREP} -FRl -- '-D_XOPEN_SOURCE=700' ${WRKSRC} | \
-		${XARGS} ${REINPLACE_CMD} -e 's,-D_XOPEN_SOURCE=700,,'
-	@${GREP} -FRl '${GO_EXECUTABLE} run ' ${WRKSRC} | \
-		${XARGS} ${REINPLACE_CMD} -r -e 's,([$][{]GO_EXECUTABLE[}] run),\1 ${GO_BUILDFLAGS},'
-	@${FIND} ${WRKSRC}/include -name '*.bak' -delete
+MAKE_ENV+=	GOPATH=${WRKSRC}/vendor GOPROXY=off GOFLAGS=-mod=vendor
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/tool/bssl ${STAGEDIR}${PREFIX}/bin/

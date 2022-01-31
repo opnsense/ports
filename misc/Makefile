@@ -356,7 +356,6 @@
     SUBDIR += pecl-timezonedb
     SUBDIR += perkeep
     SUBDIR += pfm
-    SUBDIR += php73-calendar
     SUBDIR += php74-calendar
     SUBDIR += php80-calendar
     SUBDIR += php81-calendar
@@ -409,7 +408,6 @@
     SUBDIR += py-pyprind
     SUBDIR += py-python-geohash
     SUBDIR += py-python-utils
-    SUBDIR += py-qt5-demo
     SUBDIR += py-scikit-fusion
     SUBDIR += py-serverfiles
     SUBDIR += py-soapy_power

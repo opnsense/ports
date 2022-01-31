@@ -114,6 +114,7 @@
     SUBDIR += hiredis
     SUBDIR += hsqldb
     SUBDIR += influxdb
+    SUBDIR += influxdb2-cli
     SUBDIR += innotop
     SUBDIR += iowow
     SUBDIR += ip4r
@@ -611,19 +612,6 @@
     SUBDIR += pguri
     SUBDIR += php-tarantool
     SUBDIR += php-xapian
-    SUBDIR += php73-dba
-    SUBDIR += php73-interbase
-    SUBDIR += php73-mysqli
-    SUBDIR += php73-odbc
-    SUBDIR += php73-pdo
-    SUBDIR += php73-pdo_dblib
-    SUBDIR += php73-pdo_firebird
-    SUBDIR += php73-pdo_mysql
-    SUBDIR += php73-pdo_odbc
-    SUBDIR += php73-pdo_pgsql
-    SUBDIR += php73-pdo_sqlite
-    SUBDIR += php73-pgsql
-    SUBDIR += php73-sqlite3
     SUBDIR += php74-dba
     SUBDIR += php74-mysqli
     SUBDIR += php74-odbc
@@ -669,7 +657,6 @@
     SUBDIR += plpgsql_check
     SUBDIR += pointcloud
     SUBDIR += postgis-jdbc
-    SUBDIR += postgis25
     SUBDIR += postgis30
     SUBDIR += postgis31
     SUBDIR += postgis32
@@ -779,6 +766,7 @@
     SUBDIR += py-dbf
     SUBDIR += py-dbutils
     SUBDIR += py-fakeredis
+    SUBDIR += py-fastapi-users-db-ormar
     SUBDIR += py-fdb
     SUBDIR += py-firebirdsql
     SUBDIR += py-flask-sqlalchemy
@@ -833,7 +821,6 @@
     SUBDIR += py-python-memcached
     SUBDIR += py-python-sql
     SUBDIR += py-python-swiftclient
-    SUBDIR += py-qt5-sql
     SUBDIR += py-queries
     SUBDIR += py-rb
     SUBDIR += py-redis

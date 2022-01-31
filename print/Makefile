@@ -179,9 +179,9 @@
     SUBDIR += py-fontparts
     SUBDIR += py-fontpens
     SUBDIR += py-fonttools
-    SUBDIR += py-fonttools3
     SUBDIR += py-fpdf
     SUBDIR += py-frescobaldi
+    SUBDIR += py-glyphsets
     SUBDIR += py-glyphtools
     SUBDIR += py-pdf
     SUBDIR += py-pdf2
@@ -190,7 +190,6 @@
     SUBDIR += py-psautohint
     SUBDIR += py-pycups
     SUBDIR += py-python-ly
-    SUBDIR += py-qt5-printsupport
     SUBDIR += py-relatorio
     SUBDIR += py-reportlab
     SUBDIR += py-rtf

@@ -30,8 +30,8 @@
     SUBDIR += bincimap
     SUBDIR += bmf
     SUBDIR += bogofilter
+    SUBDIR += bogofilter-bdb
     SUBDIR += bogofilter-kc
-    SUBDIR += bogofilter-lmdb
     SUBDIR += bogofilter-sqlite
     SUBDIR += bsfilter
     SUBDIR += bsmtp
@@ -448,7 +448,6 @@
     SUBDIR += perdition
     SUBDIR += pflogsumm
     SUBDIR += pfqueue
-    SUBDIR += php73-imap
     SUBDIR += php74-imap
     SUBDIR += php80-imap
     SUBDIR += php81-imap

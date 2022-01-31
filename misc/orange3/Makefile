@@ -7,9 +7,6 @@ COMMENT=	Component-based data mining software
 
 LICENSE=	GPLv3
 
-DEPRECATED=	Uses EOL Python 2.7 via www/py-qt5-webengine
-EXPIRATION_DATE=2021-06-23
-
 BUILD_DEPENDS=	${PYNUMPY}
 RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}AnyQt>=0.0.11:x11-toolkits/py-AnyQt@${PY_FLAVOR} \
@@ -42,7 +39,7 @@ RUN_DEPENDS=	${PYNUMPY} \
 
 USES=		python:3.7+ pyqt:5
 USE_PYTHON=	distutils cython autoplist noflavors
-USE_PYQT=	core_run gui_run printsupport_run widgets_run webengine_run
+USE_PYQT=	pyqt5_run webengine_run
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	biolab

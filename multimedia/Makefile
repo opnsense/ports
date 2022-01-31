@@ -290,6 +290,7 @@
     SUBDIR += onevpl
     SUBDIR += openh264
     SUBDIR += openshot
+    SUBDIR += opentimelineio
     SUBDIR += opentoonz
     SUBDIR += oscam
     SUBDIR += p5-Audio-M4P
@@ -333,11 +334,10 @@
     SUBDIR += py-mido
     SUBDIR += py-mlt6
     SUBDIR += py-moviepy
+    SUBDIR += py-opentimelineio
     SUBDIR += py-periscope
     SUBDIR += py-pretty_midi
     SUBDIR += py-pymediainfo
-    SUBDIR += py-qt5-multimedia
-    SUBDIR += py-qt5-multimediawidgets
     SUBDIR += py-soco
     SUBDIR += py-subliminal
     SUBDIR += py-tvnamer

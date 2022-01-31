@@ -1,5 +1,6 @@
 PORTNAME=	sway-audio-idle-inhibit
-PORTVERSION=	s20211224
+DISTVERSIONPREFIX=	v
+PORTVERSION=	0.1.1
 CATEGORIES=	x11
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -16,7 +17,6 @@ USES=		compiler:c++11-lang meson pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	ErikReider
 GH_PROJECT=	SwayAudioIdleInhibit
-GH_TAGNAME=	4a68078
 PLIST_FILES=	bin/${PORTNAME}
 
 .include <bsd.port.mk>
