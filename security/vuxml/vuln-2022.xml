@@ -1,3 +1,413 @@
+  <vuln vid="ee26f513-826e-11ec-8be6-d4c9ef517024">
+    <topic>Rust -- Race condition enabling symlink following</topic>
+    <affects>
+      <package>
+	<name>rust</name>
+	<range><lt>1.58.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>SO-AND-SO reports:</p>
+	<blockquote cite="https://blog.rust-lang.org/2022/01/20/cve-2022-21658.html">
+	  <p>The Rust Security Response WG was notified that the
+	    std::fs::remove_dir_all standard library function is vulnerable to a
+	    race condition enabling symlink following (CWE-363). An attacker could
+	    use this security issue to trick a privileged program into deleting
+	    files and directories the attacker couldn't otherwise access or
+	    delete.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-21658</cvename>
+      <url>https://blog.rust-lang.org/2022/01/20/cve-2022-21658.html</url>
+    </references>
+    <dates>
+      <discovery>2022-01-20</discovery>
+      <entry>2022-01-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b0c83e1a-8153-11ec-84f9-641c67a117d8">
+    <topic>varnish -- Request Smuggling Vulnerability</topic>
+    <affects>
+      <package>
+	<name>varnish6</name>
+	<range><lt>6.6.2</lt></range>
+      </package>
+      <package>
+	<name>varnish4</name>
+	<range><lt>4.1.11r6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Varnish Cache Project reports:</p>
+	<blockquote cite="https://varnish-cache.org/security/VSV00008.html">
+	  <p>A request smuggling attack can be performed on HTTP/1 connections on
+	    Varnish Cache servers. The smuggled request would be treated as an additional
+	    request by the Varnish server, go through normal VCL processing, and injected
+	    as a spurious response on the client connection.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23959</cvename>
+      <url>https://varnish-cache.org/security/VSV00008.html</url>
+      <url>https://docs.varnish-software.com/security/VSV00008/</url>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-23959</url>
+    </references>
+    <dates>
+      <discovery>2022-01-25</discovery>
+      <entry>2022-01-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b6ef8a53-8062-11ec-9af3-fb232efe4d2e">
+    <topic>OpenEXR -- Heap-buffer-overflow in Imf_3_1::LineCompositeTask::execute</topic>
+    <affects>
+      <package>
+	<name>openexr</name>
+	<range><lt>3.1.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Cary Phillips reports:</p>
+	<blockquote cite="https://github.com/AcademySoftwareFoundation/openexr/blob/v3.1.4/CHANGES.md#version-314-january-26-2022">
+	  <p>[OpenEXR Version 3.1.4 is a] patch release that [...]
+	    addresses one public security vulnerability:
+	    CVE-2021-45942 Heap-buffer-overflow in
+	    Imf_3_1::LineCompositeTask::execute [and several]
+	    specific OSS-fuzz issues [...].</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-45942</cvename>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/blob/v3.1.4/CHANGES.md#version-314-january-26-2022</url>
+      <url>https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=41416</url> <!-- reported for dates.discovery below -->
+      <url>https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=41999</url> <!-- reported 2021-12-04 -->
+      <url>https://github.com/AcademySoftwareFoundation/openexr/pull/1209</url> <!-- fix for CVE-inducing issue -->
+    </references>
+    <dates>
+      <discovery>2021-11-26</discovery>
+      <entry>2022-01-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1aaaa5c6-804d-11ec-8be6-d4c9ef517024">
+    <topic>OpenSSL -- BN_mod_exp incorrect results on MIPS</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1m,1</lt></range>
+      </package>
+      <package>
+	<name>openssl-devel</name>
+	<range><lt>3.0.1</lt></range>
+      </package>
+      <package>
+	<name>openssl-quictls</name>
+	<range><lt>3.0.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20220128.txt">
+	  <p>BN_mod_exp may produce incorrect results on MIPS (Moderate)</p>
+	  <p>There is a carry propagation bug in the MIPS32 and MIPS64 squaring
+	    procedure. Many EC algorithms are affected, including some of the
+	    TLS 1.3 default curves. Impact was not analyzed in detail, because the
+	    pre-requisites for attack are considered unlikely and include reusing
+	    private keys. Analysis suggests that attacks against RSA and DSA as a
+	    result of this defect would be very difficult to perform and are not
+	    believed likely. Attacks against DH are considered just feasible
+	    (although very difficult) because most of the work necessary to deduce
+	    information about a private key may be performed offline. The amount
+	    of resources required for such an attack would be significant.
+	    However, for an attack on TLS to be meaningful, the server would have
+	    to share the DH private key among multiple clients, which is no longer
+	    an option since CVE-2016-0701.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-4160</cvename>
+      <url>https://www.openssl.org/news/secadv/20220128.txt</url>
+    </references>
+    <dates>
+      <discovery>2022-01-28</discovery>
+      <entry>2022-01-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="65847d9d-7f3e-11ec-8624-b42e991fc52e">
+    <topic>mustache - Possible Remote Code Execution</topic>
+    <affects>
+      <package>
+	<name>phpmustache</name>
+	<range><lt>2.14.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>huntr.dev reports:</p>
+	<blockquote cite="https://huntr.dev/bounties/a5f5a988-aa52-4443-839d-299a63f44fb7/">
+	  <p>In Mustache.php v2.0.0 through v2.14.0, Sections tag can
+	    lead to arbitrary php code execution even if
+	    strict_callables is true when section value is
+	    controllable.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-0323</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=2022-0323</url>
+    </references>
+    <dates>
+      <discovery>2022-01-20</discovery>
+      <entry>2022-01-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0f8bf913-7efa-11ec-8c04-2cf05d620ecc">
+    <topic>polkit -- Local Privilege Escalation</topic>
+    <affects>
+      <package>
+	<name>polkit</name>
+	<range><lt>0.120_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Qualys reports:</p>
+	<blockquote cite="https://seclists.org/oss-sec/2022/q1/80">
+	  <p>We discovered a Local Privilege Escalation (from any user to root) in
+polkit's pkexec, a SUID-root program that is installed by default on
+every major Linux distribution.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-4034</cvename>
+      <url>https://seclists.org/oss-sec/2022/q1/80</url>
+      <freebsdpr>ports/261482</freebsdpr>
+    </references>
+    <dates>
+      <discovery>2022-01-25</discovery>
+      <entry>2022-01-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ccaea96b-7dcd-11ec-93df-00224d821998">
+    <topic>strongswan - Incorrect Handling of Early EAP-Success Messages</topic>
+    <affects>
+      <package>
+	<name>strongswan</name>
+	<range><lt>5.9.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Strongswan Release Notes reports:</p>
+	<blockquote cite="https://github.com/strongswan/strongswan/releases/tag/5.9.5">
+	  <p>Fixed a vulnerability in the EAP client implementation
+	    that was caused by incorrectly handling early EAP-Success
+	    messages. It may allow to bypass the client and in some
+	    scenarios even the server authentication, or could lead to
+	    a denial-of-service attack. This vulnerability has been
+	    registered as CVE-2021-45079.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-45079</cvename>
+      <url>https://www.strongswan.org/blog/2022/01/24/strongswan-vulnerability-(cve-2021-45079).html</url>
+    </references>
+    <dates>
+      <discovery>2021-12-16</discovery>
+      <entry>2022-01-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="58528a94-5100-4208-a04d-edc01598cf01">
+    <topic>strongswan - denial-of-service vulnerability in the gmp plugin/denial-of-service vulnerability in the in-memory certificate cache</topic>
+    <affects>
+      <package>
+	<name>strongswan</name>
+	<range><lt>5.9.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Strongswan Release Notes reports:</p>
+	<blockquote cite="https://github.com/strongswan/strongswan/releases/tag/5.9.4">
+	  <p>Fixed a denial-of-service vulnerability in the gmp plugin that
+	     was caused by an integer overflow when processing RSASSA-PSS
+	     signatures with very large salt lengths. This vulnerability has
+	     been registered as CVE-2021-41990.</p>
+	  <p>Fixed a denial-of-service vulnerability in the in-memory
+	     certificate cache if certificates are replaced and a very large
+	     random value caused an integer overflow. This vulnerability has
+	     been registered as CVE-2021-41991.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-41990</cvename>
+      <cvename>CVE-2021-41991</cvename>
+      <url>https://www.strongswan.org/blog/2021/10/18/strongswan-vulnerability-(cve-2021-41990).html</url>
+      <url>https://www.strongswan.org/blog/2021/10/18/strongswan-vulnerability-(cve-2021-41991).html</url>
+    </references>
+    <dates>
+      <discovery>2021-10-04</discovery>
+      <entry>2022-01-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="309c35f4-7c9f-11ec-a739-206a8a720317">
+    <topic>aide -- heap-based buffer overflow</topic>
+    <affects>
+      <package>
+	<name>aide</name>
+	<range><lt>0.17.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>David Bouman reports:</p>
+	<blockquote cite="INSERT URL HERE">
+	  <p>AIDE before 0.17.4 allows local users to obtain root privileges
+	     via crafted file metadata (such as XFS extended attributes or
+	     tmpfs ACLs), because of a heap-based buffer overflow.</p>
+	  <p>Aide uses a fixed size (16k bytes) for the return buffer in
+	     encode_base64/decode_base64 functions. This results in a segfault
+	     if aide processes a file with too large extended attribute value
+	     or ACL.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-45417</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-45417</url>
+    </references>
+    <dates>
+      <discovery>2022-01-15</discovery>
+      <entry>2022-01-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="51496cbc-7a0e-11ec-a323-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>97.0.4692.99</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/01/stable-channel-update-for-desktop_19.html">
+	  <p>This release contains 26 security fixes, including:</p>
+	  <ul>
+	    <li>[1284367] Critical CVE-2022-0289: Use after free in Safe
+	      browsing. Reported by Sergei Glazunov of Google Project Zero on
+	      2022-01-05</li>
+	    <li>[1260134][1260007] High CVE-2022-0290: Use after free in Site
+	      isolation. Reported by Brendon Tiszka and Sergei Glazunov of
+	      Google Project Zero on 2021-10-15</li>
+	    <li>[1281084] High CVE-2022-0291: Inappropriate implementation in
+	      Storage. Reported by Anonymous on 2021-12-19</li>
+	    <li>[1270358] High CVE-2022-0292: Inappropriate implementation in
+	      Fenced Frames. Reported by Brendon Tiszka  on 2021-11-16</li>
+	    <li>[1283371] High CVE-2022-0293: Use after free in Web packaging.
+	      Reported by Rong Jian and Guang Gong of 360 Alpha Lab on
+	      2021-12-30</li>
+	    <li>[1273017] High CVE-2022-0294: Inappropriate implementation in
+	      Push messaging. Reported by Rong Jian and Guang Gong of 360 Alpha
+	      Lab on 2021-11-23</li>
+	    <li>[1278180] High CVE-2022-0295: Use after free in Omnibox.
+	      Reported by Weipeng Jiang (@Krace) and Guang Gong of 360
+	      Vulnerability Research Institute on 2021-12-09</li>
+	    <li>[1283375] High CVE-2022-0296: Use after free in Printing.
+	      Reported by koocola(@alo_cook) and Guang Gong of 360 Vulnerability
+	      Research Institute on 2021-12-30</li>
+	    <li>[1274316] High CVE-2022-0297: Use after free in Vulkan. Reported
+	      by Cassidy Kim of Amber Security Lab, OPPO Mobile
+	      Telecommunications Corp. Ltd. on 2021-11-28</li>
+	    <li>[1212957] High CVE-2022-0298: Use after free in Scheduling.
+	      Reported by Yangkang (@dnpushme) of 360 ATA on 2021-05-25</li>
+	    <li>[1275438] High CVE-2022-0300: Use after free in Text Input
+	      Method Editor. Reported by Rong Jian and Guang Gong of 360 Alpha
+	      Lab on 2021-12-01</li>
+	    <li>[1276331] High CVE-2022-0301: Heap buffer overflow in DevTools.
+	      Reported by Abdulrahman Alqabandi, Microsoft Browser Vulnerability
+	      Research on 2021-12-03</li>
+	    <li>[1278613] High CVE-2022-0302: Use after free in Omnibox.
+	      Reported by Weipeng Jiang (@Krace) and Guang Gong of 360
+	      Vulnerability Research Institute on 2021-12-10</li>
+	    <li>[1281979] High CVE-2022-0303: Race in GPU Watchdog. Reported by
+	      Yigit Can YILMAZ (@yilmazcanyigit) on 2021-12-22</li>
+	    <li>[1282118] High CVE-2022-0304: Use after free in Bookmarks.
+	      Reported by Rong Jian and Guang Gong of 360 Alpha Lab on
+	      2021-12-22</li>
+	    <li>[1282354] High CVE-2022-0305: Inappropriate implementation in
+	      Service Worker API. Reported by @uwu7586 on 2021-12-23</li>
+	    <li>[1283198] High CVE-2022-0306: Heap buffer overflow in PDFium.
+	      Reported by Sergei Glazunov of Google Project Zero on
+	      2021-12-29</li>
+	    <li>[1281881] Medium CVE-2022-0307: Use after free in Optimization
+	      Guide. Reported by Samet Bekmezci @sametbekmezci on
+	      2021-12-21</li>
+	    <li>[1282480] Medium CVE-2022-0308: Use after free in Data Transfer.
+	      Reported by @ginggilBesel on 2021-12-24</li>
+	    <li>[1240472] Medium CVE-2022-0309: Inappropriate implementation in
+	      Autofill. Reported by Alesandro Ortiz on 2021-08-17</li>
+	    <li>[1283805] Medium CVE-2022-0310: Heap buffer overflow in Task
+	      Manager. Reported by Samet Bekmezci @sametbekmezci on
+	      2022-01-03</li>
+	    <li>[1283807] Medium CVE-2022-0311: Heap buffer overflow in Task
+	      Manager. Reported by Samet Bekmezci @sametbekmezci on
+	      2022-01-03</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-0289</cvename>
+      <cvename>CVE-2022-0290</cvename>
+      <cvename>CVE-2022-0291</cvename>
+      <cvename>CVE-2022-0292</cvename>
+      <cvename>CVE-2022-0293</cvename>
+      <cvename>CVE-2022-0294</cvename>
+      <cvename>CVE-2022-0295</cvename>
+      <cvename>CVE-2022-0296</cvename>
+      <cvename>CVE-2022-0297</cvename>
+      <cvename>CVE-2022-0298</cvename>
+      <cvename>CVE-2022-0300</cvename>
+      <cvename>CVE-2022-0301</cvename>
+      <cvename>CVE-2022-0302</cvename>
+      <cvename>CVE-2022-0303</cvename>
+      <cvename>CVE-2022-0304</cvename>
+      <cvename>CVE-2022-0305</cvename>
+      <cvename>CVE-2022-0306</cvename>
+      <cvename>CVE-2022-0307</cvename>
+      <cvename>CVE-2022-0308</cvename>
+      <cvename>CVE-2022-0309</cvename>
+      <cvename>CVE-2022-0310</cvename>
+      <cvename>CVE-2022-0311</cvename>
+      <url>https://chromereleases.googleblog.com/2022/01/stable-channel-update-for-desktop_19.html</url>
+    </references>
+    <dates>
+      <discovery>2022-01-19</discovery>
+      <entry>2022-01-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7262f826-795e-11ec-8be6-d4c9ef517024">
     <topic>MySQL -- Multiple vulnerabilities</topic>
     <affects>
@@ -80,7 +490,6 @@
       <cvename>CVE-2022-21265</cvename>
       <cvename>CVE-2022-21249</cvename>
       <cvename>CVE-2022-21372</cvename>
-      <cvename>INSERT CVE RECORD IF AVAILABLE</cvename>
       <url>https://www.oracle.com/security-alerts/cpujan2022.html#AppendixMSQL</url>
     </references>
     <dates>
