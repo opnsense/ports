@@ -240,6 +240,7 @@
     SUBDIR += dbcsr
     SUBDIR += deal.ii
     SUBDIR += dieharder
+    SUBDIR += dionysus
     SUBDIR += disco
     SUBDIR += djbfft
     SUBDIR += drgeo
@@ -825,6 +826,7 @@
     SUBDIR += py-cyipopt
     SUBDIR += py-cypari2
     SUBDIR += py-deap
+    SUBDIR += py-dionysus
     SUBDIR += py-ducc0
     SUBDIR += py-ecos
     SUBDIR += py-faiss

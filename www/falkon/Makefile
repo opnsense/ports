@@ -1,8 +1,7 @@
 PORTNAME=	falkon
-DISTVERSION=	3.1.0
-PORTREVISION=	1
+DISTVERSION=	3.2.0
 CATEGORIES=	www
-MASTER_SITES=	KDE/stable/falkon/${DISTVERSION:R}/
+MASTER_SITES=	KDE/stable/falkon/${DISTVERSION}/
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Web browser based on Webengine and Qt Framework
@@ -11,7 +10,8 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cmake desktop-file-utils kde:5 qt:5 ssl tar:xz xorg
-USE_KDE=	ecm_build i18n
+USE_KDE=	archive i18n \
+		ecm_build
 USE_QT=		concurrent core dbus declarative gui location network printsupport \
 		sql webchannel webengine widgets x11extras \
 		buildtools_build qmake_build
@@ -30,7 +30,7 @@ qtonly_CONFLICTS_INSTALL=	${PORTNAME}
 
 .if ${FLAVOR} != qtonly
 CMAKE_ON+=	ENABLE_KDE_FRAMEWORKS_INTEGRATION_PLUGIN
-USE_KDE+=	completion config coreaddons crash jobwidgets kio purpose service wallet widgetsaddons
+USE_KDE+=	completion config coreaddons crash jobwidgets kio purpose service solid wallet widgetsaddons windowsystem
 PLIST_SUB=	KDEINTEGRATION=""
 .else
 PLIST_SUB=	KDEINTEGRATION="@comment "
