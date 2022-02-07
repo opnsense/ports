@@ -140,6 +140,7 @@
     SUBDIR += bstack
     SUBDIR += btsixad
     SUBDIR += bulk_extractor
+    SUBDIR += bupstash
     SUBDIR += burp
     SUBDIR += burp-devel
     SUBDIR += busybox
@@ -1297,6 +1298,7 @@
     SUBDIR += smartmontools
     SUBDIR += smenu
     SUBDIR += smp_utils
+    SUBDIR += smug
     SUBDIR += snap
     SUBDIR += snapraid
     SUBDIR += snmp_exporter

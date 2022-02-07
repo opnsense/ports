@@ -115,6 +115,7 @@
     SUBDIR += cptutils
     SUBDIR += crw
     SUBDIR += curator
+    SUBDIR += curtail
     SUBDIR += cuttlefish
     SUBDIR += darktable
     SUBDIR += darktable38
@@ -409,6 +410,7 @@
     SUBDIR += klatexformula
     SUBDIR += kludge3d
     SUBDIR += kmscube
+    SUBDIR += knotter
     SUBDIR += kolourpaint
     SUBDIR += kontrast
     SUBDIR += kooka
