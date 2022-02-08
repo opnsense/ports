@@ -13,8 +13,7 @@ LICENSE=	MPL20
 WRKSRC=		${WRKDIR}/${PORTNAME}
 
 USES=		cpe php:web
-USE_PHP=	filter json mysqli pcre pdf session xml xmlrpc xmlwriter zlib
-IGNORE_WITH_PHP=	80 81
+USE_PHP=	filter json mysqli pcre session xml xmlrpc xmlwriter zlib
 FAQ_DIR=	attachments data images inc pdf xml
 NO_BUILD=	YES
 NO_ARCH=	YES
@@ -26,4 +25,10 @@ do-install:
 	@${MKDIR} ${STAGEDIR}${WWWDIR}/${i}
 .endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PHP_VER} < 80
+USE_PHP+=	pdf
+.endif
+
+.include <bsd.port.post.mk>
