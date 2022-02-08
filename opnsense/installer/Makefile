@@ -1,9 +1,5 @@
 PORTNAME=	installer
-.if "${PRODUCT_ABI}" == 22.1
 PORTVERSION=	22.1
-.else
-PORTVERSION=	21.7.1
-.endif
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	${GH_ACCOUNT}-
 

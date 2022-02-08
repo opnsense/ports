@@ -1,5 +1,3 @@
 TIMESTAMP = 1643010914
-SHA256 (opnsense-installer-21.7.1_GH0.tar.gz) = 625d49b7080674204eb1f8eba54425380e122e2d99f89281dafefce0238b5f70
-SIZE (opnsense-installer-21.7.1_GH0.tar.gz) = 23500
 SHA256 (opnsense-installer-22.1_GH0.tar.gz) = 08b161bf5c323ca76222b9cdaad1fcd8f6c034bb636599bf094835210ca70da9
 SIZE (opnsense-installer-22.1_GH0.tar.gz) = 24101
