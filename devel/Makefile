@@ -1483,6 +1483,7 @@
     SUBDIR += llvm11
     SUBDIR += llvm12
     SUBDIR += llvm13
+    SUBDIR += llvm14
     SUBDIR += llvm70
     SUBDIR += llvm80
     SUBDIR += llvm90
@@ -1582,6 +1583,7 @@
     SUBDIR += mm
     SUBDIR += mm-common
     SUBDIR += modd
+    SUBDIR += mold
     SUBDIR += mongo-c-driver
     SUBDIR += mono-addins
     SUBDIR += monotone
@@ -7202,6 +7204,7 @@
     SUBDIR += wininfo
     SUBDIR += wizardkit
     SUBDIR += woff2
+    SUBDIR += wrangler
     SUBDIR += wxformbuilder
     SUBDIR += xa65
     SUBDIR += xbyak

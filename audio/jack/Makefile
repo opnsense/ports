@@ -1,7 +1,11 @@
 PORTNAME=	jackit
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.9.20
+PORTREVISION=	1
 CATEGORIES=	audio
+
+PATCH_SITES=    https://github.com/jackaudio/jack2/commit/
+PATCHFILES+=    21b293dbc37d42446141a08922cdec0d2550c6a0.patch:-p1
 
 MAINTAINER=	dev@submerge.ch
 COMMENT=	Low latency audio server
@@ -12,7 +16,7 @@ LICENSE_COMB=	multi
 LIB_DEPENDS=	libsamplerate.so:audio/libsamplerate \
 		libsysinfo.so:devel/libsysinfo
 
-USES=		pkgconfig python:3.4+ shebangfix waf
+USES=		compiler:c11 pkgconfig python:3.4+ shebangfix waf
 USE_LDCONFIG=	yes
 USE_RC_SUBR=	jackd
 
@@ -48,14 +52,6 @@ OPUS_CONFIGURE_OFF=	--opus=no
 
 PROFILING_DESC=		Build with profiling information
 PROFILING_CONFIGURE_ON=	--profile
-
-.include <bsd.port.options.mk>
-
-.if ${ARCH} == powerpc || ${ARCH} == powerpc64 || ${ARCH} == powerpc64le
-USES+=		compiler:gcc-c++11-lib
-.else
-USES+=		compiler:c11
-.endif
 
 .include <bsd.port.pre.mk>
 

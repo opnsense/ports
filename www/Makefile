@@ -179,6 +179,7 @@
     SUBDIR += g-gcl
     SUBDIR += gallery-dl
     SUBDIR += gallery2
+    SUBDIR += garage
     SUBDIR += gatling
     SUBDIR += gauche-makiki
     SUBDIR += gecko-mediaplayer
@@ -2321,6 +2322,7 @@
     SUBDIR += vimb
     SUBDIR += visitors
     SUBDIR += volta
+    SUBDIR += vultr-cli
     SUBDIR += w3m
     SUBDIR += w3m-img
     SUBDIR += w3mir
