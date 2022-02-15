@@ -1,3 +1,65 @@
+  <vuln vid="24049967-88ec-11ec-88f5-901b0e934d69">
+    <topic>py-twisted -- cookie and authorization headers are leaked when following cross-origin redirects</topic>
+      <affects>
+	<package>
+	  <name>py37-twisted</name>
+	  <name>py38-twisted</name>
+	  <name>py39-twisted</name>
+	  <name>py310-twisted</name>
+	  <range><lt>22.1.0</lt></range>
+	</package>
+      </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Twisted developers report:</p>
+	<blockquote cite="https://github.com/twisted/twisted/security/advisories/GHSA-92x2-jw7w-xvvx">
+	  <p> Cookie and Authorization headers are leaked when following cross-origin redirects in <code>twited.web.client.RedirectAgent</code> and <code>twisted.web.client.BrowserLikeRedirectAgent</code>.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/twisted/twisted/security/advisories/GHSA-92x2-jw7w-xvvx</url>
+    </references>
+    <dates>
+      <discovery>2022-02-07</discovery>
+      <entry>2022-02-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d923fb0c-8c2f-11ec-aa85-0800270512f4">
+    <topic>zsh -- Arbitrary command execution vulnerability</topic>
+    <affects>
+      <package>
+	<name>zsh</name>
+	<range><lt>5.8.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p> Marc Cornellà reports:</p>
+	<blockquote cite="https://zsh.sourceforge.io/releases.html">
+	  <p>
+	    Some prompt expansion sequences, such as %F, support 'arguments'
+	    which are themselves expanded in case they contain colour values,
+	    etc. This additional expansion would trigger PROMPT_SUBST evaluation,
+	    if enabled. This could be abused to execute code the user didn't
+	    expect. e.g., given a certain prompt configuration, an attacker
+	    could trick a user into executing arbitrary code by having them
+	    check out a Git branch with a specially crafted name.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-45444</cvename>
+      <url>https://zsh.sourceforge.io/releases.html</url>
+    </references>
+    <dates>
+      <discovery>2022-02-12</discovery>
+      <entry>2022-02-12</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="0b0ad196-1ee8-4a98-89b1-4d5d82af49a9">
     <topic>jenkins -- DoS vulnerability in bundled XStream library</topic>
     <affects>
@@ -74,6 +136,7 @@
       <cvename>CVE-2022-24050</cvename>
       <cvename>CVE-2022-24048</cvename>
       <cvename>CVE-2021-46659</cvename>
+      <cvename>CVE-2021-46663</cvename>
       <url>https://mariadb.com/kb/en/cve/</url>
       <url>https://mariadb.com/kb/en/mdb-10333-rn/</url>
       <url>https://mariadb.com/kb/en/mdb-10423-rn/</url>
@@ -82,6 +145,7 @@
     <dates>
       <discovery>2022-02-10</discovery>
       <entry>2022-02-10</entry>
+      <modified>2022-02-15</modified>
     </dates>
   </vuln>
 
@@ -90,13 +154,11 @@
     <affects>
       <package>
 	<name>xrdp</name>
-	<range><lt>0.9.18.1</lt></range>
-	<range><ge>0.9.17</ge></range>
+	<range><ge>0.9.17,1</ge><lt>0.9.18.1,1</lt></range>
       </package>
       <package>
 	<name>xrdp-devel</name>
-	<range><lt>0.9.18.1</lt></range>
-	<range><ge>0.9.17</ge></range>
+	<range><ge>0.9.17,1</ge><lt>0.9.18.1,1</lt></range>
       </package>
 
     </affects>
@@ -115,6 +177,7 @@
     <dates>
       <discovery>2022-01-23</discovery>
       <entry>2022-02-08</entry>
+      <modified>2022-02-15</modified>
     </dates>
   </vuln>
 
