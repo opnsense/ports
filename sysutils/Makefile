@@ -345,6 +345,7 @@
     SUBDIR += f2
     SUBDIR += f3
     SUBDIR += facter
+    SUBDIR += fand
     SUBDIR += fanout
     SUBDIR += fatback
     SUBDIR += fcode-utils
@@ -1137,6 +1138,7 @@
     SUBDIR += rhc
     SUBDIR += rinse
     SUBDIR += rmlint
+    SUBDIR += rocinante
     SUBDIR += rocr
     SUBDIR += roct
     SUBDIR += root-tail

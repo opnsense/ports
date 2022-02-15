@@ -748,6 +748,7 @@
     SUBDIR += pam_yubico
     SUBDIR += pamtester
     SUBDIR += paperkey
+    SUBDIR += passh
     SUBDIR += passivedns
     SUBDIR += pbc
     SUBDIR += pbnj
@@ -802,10 +803,8 @@
     SUBDIR += php74-openssl
     SUBDIR += php74-sodium
     SUBDIR += php80-filter
-    SUBDIR += php80-openssl
     SUBDIR += php80-sodium
     SUBDIR += php81-filter
-    SUBDIR += php81-openssl
     SUBDIR += php81-sodium
     SUBDIR += phpsecinfo
     SUBDIR += picosha2
@@ -1245,6 +1244,7 @@
     SUBDIR += ssb
     SUBDIR += ssdeep
     SUBDIR += ssh-multiadd
+    SUBDIR += ssh-tools
     SUBDIR += ssh-vault
     SUBDIR += sshguard
     SUBDIR += sshpass

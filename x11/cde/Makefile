@@ -37,14 +37,9 @@ WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 ALL_TARGET=	World
 MAKE_ARGS+=	PERL=${PERL} "LOCAL_LDFLAGS=${LDFLAGS}"
 MAKE_JOBS_UNSAFE=yes
+MAKE_ENV=	MALLOC_CONF=junk:false
 SUB_FILES=	pkg-message
 LDFLAGS+=	-z muldefs #--allow-multiple-definition
-
-.include <bsd.port.pre.mk>
-
-.if ${ARCH} == powerpc64le
-CPPFLAGS+=	-DPOWERPC64LE
-.endif
 
 post-patch:
 	@if [ -f /usr/include/iconv.h ]; then \
@@ -124,4 +119,4 @@ post-install:
 	# Only a problem on armv7 so far
 	${FIND} ${STAGEDIR}/${PREFIX}/dt -type f -name 'ecp.*' -delete
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
