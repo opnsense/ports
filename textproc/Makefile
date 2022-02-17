@@ -377,6 +377,7 @@
     SUBDIR += libfo
     SUBDIR += libfolia
     SUBDIR += libgepub
+    SUBDIR += libixion
     SUBDIR += libkmfl
     SUBDIR += libkolabxml
     SUBDIR += libkomparediff2
@@ -429,6 +430,7 @@
     SUBDIR += lt-hyphen
     SUBDIR += lttoolbox
     SUBDIR += ltxml
+    SUBDIR += lua-icu-utils
     SUBDIR += lua-lyaml
     SUBDIR += luaexpat
     SUBDIR += lucene
