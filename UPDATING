@@ -5,6 +5,51 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20220219:
+  AFFECTS: users of sysutils/intel-pcm-devel
+  AUTHOR: egypcio@FreeBSD.org
+
+  sysutils/intel-pcm-devel became quite obsolte once sysutils/intel-pcm is
+  now pretty much following a constant and stable update cycle, so users of
+  the -devel version are encouraged to switch to it.
+
+  If you still have sysutils/intel-pcm-devel installed, please delete it from
+  your system and install sysutils/intel-pcm instead:
+
+  # pkg delete sysutils/intel-pcm-devel
+  # pkg install sysutils/intel-pcm
+
+20220219:
+  AFFECTS: users of math/qhull*
+  AUTHOR: stephen@FreeBSD.org
+
+  Because of entries in MOVED, portupgrade can get confused updating qhull.
+  It is recommended that you delete qhull and ports depending upon it, and
+  then reinstalling all the dependent ports.
+
+20220218:
+  AFFECTS: users of TeX*
+  AUTHOR: bofh@FreeBSD.org
+
+  TeX system has been updated to 2021 from 2015. Normal pkg upgrade or
+  portmaster -a should handle all the upgrade properly. In case not please
+  create a ticket or send a mail to tex@FreeBSD.org
+
+  print/tex-aleph has been removed as per upstream. This package should be
+  removed manually. Additionally users have reported to delete 
+  texlive-texmf prior to starting update, or pkg-static will indicate
+  there is a conflict during the upgrade of texlive-base :
+
+  # pkg remove tex-aleph texlive-texmf
+
+20220218:
+  AFFECTS: users of net-mgmt/librenms
+  AUTHOR: dvl@FreeBSD.org
+
+  The storage directory has moved from WWWDIR to /var/db/librenms/storage
+  to comply with man 7 hier. When upgrading, you may need to manually create
+  this symlink.
+
 20220212:
   AFFECTS: users of lang/php8[01][-extensions]?
   AUTHOR: bofh@FreeBSD.org
@@ -16,6 +61,23 @@ you update your ports collection, before attempting any port upgrades.
   been removed. There is no side effect of this for ports which have
   USE_PHP=openssl. In case for php74 as the default php74-openssl will
   be installed otherwise it will be used from php installation.
+
+  If you are using pkg, you have to remove php8[01]-openssl manually after
+  the upgrade :
+
+  # pkg info \*php8\* > ~/installed-php-ports-list
+
+  # pkg upgrade -y
+  # pkg delete -f php8[01]-openssl
+  # service -R
+
+  While rebuilding from ports users old php.conf is not overwritten. So 
+  have to manually remove the ports. For portmaster users:
+  # sh
+  # REINSTALL="$(pkg info -o "*php80*" | grep -v openssl | awk '{printf "%s ", $2}')"
+  # pkg delete -f "*php80*"
+  # portmaster $REINSTALL
+  # portmaster -a
 
 20220207:
   AFFECTS: users of security/amavisd-new
