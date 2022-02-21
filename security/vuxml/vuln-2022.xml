@@ -1,3 +1,160 @@
+  <vuln vid="43ae57f6-92ab-11ec-81b4-2cf05d620ecc">
+    <topic>Qt5 -- QProcess unexpected search path</topic>
+    <affects>
+      <package>
+	<name>qt5-core</name>
+	<range><lt>5.15.2p263_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Qt Company reports:</p>
+	<blockquote cite="https://lists.qt-project.org/pipermail/announce/2022-February/000333.html">
+	  <p>Recently, the Qt Project's security team was made aware of an issue regarding QProcess and determined it to be a security issue on Unix-based platforms only. We do not believe this to be a considerable risk for applications as the likelihood of it being triggered is minimal.
+</p>
+<p>Specifically, the problem is around using QProcess to start an application without having an absolute path, and as a result, it depends on it finding it in the PATH environment variable. As a result, it may be possible for an attacker to place their copy of the executable in question inside the working/current directory for the QProcess and have it invoked that instead.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-25255</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-25255</url>
+    </references>
+    <dates>
+      <discovery>2022-02-17</discovery>
+      <entry>2022-02-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4d763c65-9246-11ec-9aa3-4ccc6adda413">
+    <topic>libmysoft -- Heap-based buffer overflow vulnerability</topic>
+    <affects>
+      <package>
+	<name>libmysofa</name>
+	<range><lt>1.2.1.13</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Zhengjie Du reports:</p>
+	<blockquote cite="https://huntr.dev/bounties/7ca8d9ea-e2a6-4294-af28-70260bb53bc1/">
+	  <p>There are some heap-buffer-overflows in mysofa2json of
+	    libmysofa. They are in function loudness, mysofa_check and
+	    readOHDRHeaderMessageDataLayout.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-3756</cvename>
+      <url>https://www.huntr.dev/bounties/7ca8d9ea-e2a6-4294-af28-70260bb53bc1/</url>
+    </references>
+    <dates>
+      <discovery>2021-09-27</discovery>
+      <entry>2022-02-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="27bf9378-8ffd-11ec-8be6-d4c9ef517024">
+    <topic>MariaDB -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mariadb103-client</name>
+	<range><lt>10.3.34</lt></range>
+      </package>
+      <package>
+	<name>mariadb103-server</name>
+	<range><lt>10.3.34</lt></range>
+      </package>
+      <package>
+	<name>mariadb104-client</name>
+	<range><lt>10.4.24</lt></range>
+      </package>
+      <package>
+	<name>mariadb104-server</name>
+	<range><lt>10.4.24</lt></range>
+      </package>
+      <package>
+	<name>mariadb105-client</name>
+	<range><lt>10.5.15</lt></range>
+      </package>
+      <package>
+	<name>mariadb105-server</name>
+	<range><lt>10.5.15</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>MariaDB reports:</p>
+	<blockquote cite="https://mariadb.com/kb/en/cve/">
+	  <p>MariaDB reports 5 vulnerabilities in supported versions
+	    resulting from fuzzing tests</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-46661</cvename>
+      <cvename>CVE-2021-46663</cvename>
+      <cvename>CVE-2021-46664</cvename>
+      <cvename>CVE-2021-46665</cvename>
+      <cvename>CVE-2021-46668</cvename>
+      <url>https://mariadb.com/kb/en/cve/</url>
+      <url>https://mariadb.com/kb/en/mdb-10334-rn/</url>
+      <url>https://mariadb.com/kb/en/mdb-10424-rn/</url>
+      <url>https://mariadb.com/kb/en/mdb-10515-rn/</url>
+    </references>
+    <dates>
+      <discovery>2022-02-12</discovery>
+      <entry>2022-02-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="096ab080-907c-11ec-bb14-002324b2fba8">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go</name>
+	<range><lt>1.17.7,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://github.com/golang/go/issues/50974">
+	  <p>crypto/elliptic: fix IsOnCurve for big.Int values that are not
+	    valid coordinates</p>
+	  <p>Some big.Int values that are not valid field elements (negative or
+	    overflowing) might cause Curve.IsOnCurve to incorrectly return true.
+	    Operating on those values may cause a panic or an invalid curve
+	    operation. Note that Unmarshal will never return such values.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/golang/go/issues/50699">
+	  <p>math/big: prevent large memory consumption in Rat.SetString</p>
+	  <p>An attacker can cause unbounded memory growth in a program using
+	    (*Rat).SetString due to an unhandled overflow.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/golang/go/issues/35671">
+	  <p>cmd/go: prevent branches from materializing into versions</p>
+	  <p>A branch whose name resembles a version tag (such as "v1.0.0" or
+	    "subdir/v2.0.0-dev") can be considered a valid version by the go
+	    command. Materializing versions from branches might be unexpected
+	    and bypass ACLs that limit the creation of tags but not branches.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23806</cvename>
+      <url>https://github.com/golang/go/issues/50974</url>
+      <cvename>CVE-2022-23772</cvename>
+      <url>https://github.com/golang/go/issues/50699</url>
+      <cvename>CVE-2022-23773</cvename>
+      <url>https://github.com/golang/go/issues/35671</url>
+    </references>
+    <dates>
+      <discovery>2022-02-10</discovery>
+      <entry>2022-02-18</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="e12432af-8e73-11ec-8bc4-3065ec8fd3ec">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
@@ -189,7 +346,6 @@
       <cvename>CVE-2022-24050</cvename>
       <cvename>CVE-2022-24048</cvename>
       <cvename>CVE-2021-46659</cvename>
-      <cvename>CVE-2021-46663</cvename>
       <url>https://mariadb.com/kb/en/cve/</url>
       <url>https://mariadb.com/kb/en/mdb-10333-rn/</url>
       <url>https://mariadb.com/kb/en/mdb-10423-rn/</url>
@@ -198,7 +354,7 @@
     <dates>
       <discovery>2022-02-10</discovery>
       <entry>2022-02-10</entry>
-      <modified>2022-02-15</modified>
+      <modified>2022-02-17</modified>
     </dates>
   </vuln>
 
