@@ -1,12 +1,16 @@
 PORTNAME=	libjxl
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.6.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	graphics
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	adb32f3f8f37.patch:-p1 # https://github.com/libjxl/libjxl/pull/193
 PATCHFILES+=	c31dca74e68f.patch:-p1 # https://github.com/libjxl/libjxl/pull/678
+PATCHFILES+=	0b70567432ab.patch:-p1 # https://github.com/libjxl/libjxl/pull/797
+PATCHFILES+=	e0107a6ca637.patch:-p1 # https://github.com/libjxl/libjxl/pull/847
+PATCHFILES+=	e903d53a58b4.patch:-p1 # https://github.com/libjxl/libjxl/pull/1071
+PATCHFILES+=	600b59153882.patch:-p1 # https://github.com/libjxl/libjxl/pull/1156
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	JPEG XL reference encoder/decoder
@@ -16,15 +20,15 @@ LICENSE_COMB=	multi
 LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/LICENSE
 LICENSE_FILE_ZLIB=	${WRKSRC}/third_party/lodepng/LICENSE
 
-BUILD_DEPENDS=	highway>0:devel/highway
-LIB_DEPENDS=	libbrotlienc.so:archivers/brotli
+LIB_DEPENDS=	libbrotlienc.so:archivers/brotli \
+		libhwy.so:devel/highway
 TEST_DEPENDS=	googletest>0:devel/googletest
 
 USES=		cmake:testing compiler:c++11-lib cpe localbase:ldflags pkgconfig shared-mime-info
 CPE_VENDOR=	${PORTNAME}_project
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
-GH_TUPLE=	barmco:skcms:6437475:skcms/third_party/skcms \
+GH_TUPLE=	jbeich:skcms:6437475:skcms/third_party/skcms \
 		lvandeve:lodepng:48e5364:lodepng/third_party/lodepng \
 		webmproject:sjpeg:868ab55:sjpeg/third_party/sjpeg \
 		${NULL}

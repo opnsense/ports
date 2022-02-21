@@ -1,4 +1,5 @@
 PORTNAME=		afni
+PORTREVISION=		2
 DISTVERSIONPREFIX=	AFNI_
 DISTVERSION=		22.0.10
 CATEGORIES=		science biology graphics perl5 python

@@ -1,8 +1,7 @@
 # Created by: Ade Lovett <ade@FreeBSD.org>
 
 PORTNAME=	librsvg
-PORTVERSION=	2.52.5
-PORTREVISION=	2
+PORTVERSION=	2.52.6
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2-rust
@@ -25,6 +24,7 @@ CPE_VENDOR=	gnome
 USE_GNOME=	cairo gdkpixbuf2 gnomeprefix libxml2 pango introspection:build
 USE_LDCONFIG=	yes
 
+PORTSCOUT=	limitw:1,even
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-Bsymbolic \
 		--disable-dependency-tracking \

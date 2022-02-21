@@ -1,9 +1,6 @@
 PORTNAME=	labwc
-DISTVERSION=	0.4.0
+DISTVERSION=	0.5.0
 CATEGORIES=	x11-wm
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	6a3536cdd74e.patch:-p1 # https://github.com/labwc/labwc/pull/228
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Wayland stacking compositor
@@ -52,6 +49,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's,/etc,${PREFIX}&,' \
 		-e 's,/usr/local,${PREFIX},' \
 		${WRKSRC}/docs/${PORTNAME}-config.5.scd \
+		${WRKSRC}/docs/${PORTNAME}-environment.5.scd \
 		${WRKSRC}/src/common/dir.c
 
 .include <bsd.port.mk>
