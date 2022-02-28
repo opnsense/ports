@@ -1,3 +1,301 @@
+  <vuln vid="0eab001a-9708-11ec-96c9-589cfc0f81b0">
+    <topic>typo3 -- XSS vulnerability in svg-sanitize</topic>
+    <affects>
+      <package>
+       <name>typo3-10-php74</name>
+       <range><lt>10.4.25</lt></range>
+      </package>
+      <package>
+       <name>typo3-11-php74</name>
+       <name>typo3-11-php80</name>
+       <name>typo3-11-php81</name>
+       <range><lt>11.5.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>The TYPO3 project reports:</p>
+       <blockquote cite="https://typo3.org/article/typo3-psa-2022-001">
+	 <p>The SVG sanitizer library enshrined/svg-sanitize before version
+	 0.15.0 did not remove HTML elements wrapped in a CDATA section.
+	 As a result, SVG content embedded in HTML (fetched as text/html)
+	 was susceptible to cross-site scripting. Plain SVG files
+	 (fetched as image/svg+xml) were not affected.</p>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23638</cvename>
+      <url>https://github.com/typo3/typo3/commit/9940defb21</url>
+      <url>https://typo3.org/article/typo3-psa-2022-001</url>
+    </references>
+    <dates>
+      <discovery>2022-02-22</discovery>
+      <entry>2022-02-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d71d154a-8b83-11ec-b369-6c3be5272acd">
+    <topic>Grafana -- Teams API IDOR</topic>
+    <affects>
+      <package>
+	<name>grafana6</name>
+	<range><ge>6.0.0</ge></range>
+      </package>
+      <package>
+	<name>grafana7</name>
+	<range><lt>7.5.15</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><lt>8.3.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2022/02/08/grafana-7.5.15-and-8.3.5-released-with-moderate-severity-security-fixes/">
+	  <p>On Jan. 18, an external security researcher, Kürşad ALSAN from <a href="https://www.nspect.io/">NSPECT.IO</a> (<a href="https://twitter.com/nspectio">@nspectio</a> on Twitter), contacted Grafana to disclose an IDOR (Insecure Direct Object Reference) vulnerability on Grafana Teams APIs. This vulnerability only impacts the following API endpoints:</p>
+	  <ul>
+	    <li><strong>/teams/:teamId</strong> - an authenticated attacker can view unintended data by querying for the specific team ID.</li>
+	    <li><strong>/teams/:search</strong> - an authenticated attacker can search for teams and see the total number of available teams, including for those teams that the user does not have access to.</li>
+	    <li><strong>/teams/:teamId/members</strong> - when editors_can_admin flag is enabled, an authenticated attacker can see unintended data by querying for the specific team ID.</li>
+	  </ul>
+	  <p>We believe that this vulnerability is rated at CVSS 4.3 (CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:L/I:N/A:N).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-21713</cvename>
+      <url>https://grafana.com/blog/2022/02/08/grafana-7.5.15-and-8.3.5-released-with-moderate-severity-security-fixes/</url>
+    </references>
+    <dates>
+      <discovery>2022-01-18</discovery>
+      <entry>2022-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d4284c2e-8b83-11ec-b369-6c3be5272acd">
+    <topic>Grafana -- CSRF</topic>
+    <affects>
+      <package>
+	<name>grafana6</name>
+	<range><ge>6.0.0</ge></range>
+      </package>
+      <package>
+	<name>grafana7</name>
+	<range><lt>7.5.15</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><lt>8.3.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2022/02/08/grafana-7.5.15-and-8.3.5-released-with-moderate-severity-security-fixes/">
+	  <p>On Jan. 18, security researchers <a href="https://twitter.com/jub0bs">@jub0bs</a> and <a href="https://twitter.com/theabrahack">@abrahack</a> contacted Grafana to <a href="https://jub0bs.com/posts/2022-02-08-cve-2022-21703-writeup/">disclose a CSRF vulnerability</a> which allows anonymous attackers to elevate their privileges by mounting cross-origin attacks against authenticated high-privilege Grafana users (for example, Editors or Admins). An attacker can exploit this vulnerability for privilege escalation by tricking an authenticated user into inviting the attacker as a new user with high privileges. We believe that this vulnerability is rated at CVSS 6.8 (CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:N/A:N).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-21703</cvename>
+      <url>https://grafana.com/blog/2022/02/08/grafana-7.5.15-and-8.3.5-released-with-moderate-severity-security-fixes/</url>
+    </references>
+    <dates>
+      <discovery>2022-01-18</discovery>
+      <entry>2022-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="cecbc674-8b83-11ec-b369-6c3be5272acd">
+    <topic>Grafana -- XSS</topic>
+    <affects>
+      <package>
+	<name>grafana6</name>
+	<range><ge>6.0.0</ge></range>
+      </package>
+      <package>
+	<name>grafana7</name>
+	<range><lt>7.5.15</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><lt>8.3.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2022/02/08/grafana-7.5.15-and-8.3.5-released-with-moderate-severity-security-fixes/">
+	  <p>On Jan. 16, an external security researcher, Jasu Viding contacted Grafana to disclose an XSS vulnerability in the way that Grafana handles data sources. Should an existing data source connected to Grafana be compromised, it could be used to inappropriately gain access to other data sources connected to the same Grafana org. We believe that this vulnerability is rated at CVSS 6.8 (CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:H/I:N/A:N).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-21702</cvename>
+      <url>https://grafana.com/blog/2022/02/08/grafana-7.5.15-and-8.3.5-released-with-moderate-severity-security-fixes/</url>
+    </references>
+    <dates>
+      <discovery>2022-01-16</discovery>
+      <entry>2022-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7695b0af-958f-11ec-9aa3-4ccc6adda413">
+    <topic>cryptopp -- ElGamal implementation allows plaintext recovery</topic>
+    <affects>
+      <package>
+	<name>cryptopp</name>
+	<range><lt>8.6.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Crypto++ 8.6 release notes reports:</p>
+	<blockquote cite="https://www.cryptopp.com/release860.html">
+	  <p>The ElGamal implementation in Crypto++ through 8.5 allows plaintext
+	    recovery because, during interaction between two cryptographic
+	    libraries, a certain dangerous combination of the prime defined by
+	    the receiver's public key, the generator defined by the receiver's
+	    public key, and the sender's ephemeral exponents can lead to a
+	    cross-configuration attack against OpenPGP.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-40530</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2021-40530</url>
+    </references>
+    <dates>
+      <discovery>2021-09-06</discovery>
+      <entry>2022-02-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5e1440c6-95af-11ec-b320-f8b156b6dcc8">
+    <topic>flac -- fix encoder bug</topic>
+    <affects>
+      <package>
+	<name>flac</name>
+	<range><lt>1.3.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The FLAC 1.3.4 release reports:</p>
+	<blockquote cite="https://xiph.org/flac/changelog.html">
+	  <p>Fix 12 decoder bugs found by oss-fuzz.</p>
+	  <p>Fix encoder bug CVE-2021-0561.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-0561</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-0561</url>
+    </references>
+    <dates>
+      <discovery>2022-02-20</discovery>
+      <entry>2022-02-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="022dde12-8f4a-11ec-83ac-080027415d17">
+    <topic>cyrus-sasl -- Escape password for SQL insert/update commands</topic>
+    <affects>
+      <package>
+	<name>cyrus-sasl-sql</name>
+	<range><ge>2.1.27</ge><lt>2.1.27_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Cyrus SASL 2.1.x Release Notes New in 2.1.28 reports:</p>
+	<blockquote cite="https://www.cyrusimap.org/sasl/sasl/release-notes/2.1/index.html#new-in-2-1-28">
+	  <p>Escape password for SQL insert/update commands.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-24407</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24407</url>
+    </references>
+    <dates>
+      <discovery>2022-02-04</discovery>
+      <entry>2022-02-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="85d976be-93e3-11ec-aaad-14dae9d5a9d2">
+    <topic>The Update Framwork -- path traversal vulnerability</topic>
+    <affects>
+      <package>
+	<name>py37-tuf</name>
+	<name>py38-tuf</name>
+	<name>py39-tuf</name>
+	<name>py310-tuf</name>
+	<name>py311-tuf</name>
+	<range><le>0.18.1</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NVD reports:</p>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2021-41131">
+	  <p>python-tuf is a Python reference implementation of The Update Framework (TUF). In both clients (`tuf/client` and `tuf/ngclient`), there is a path traversal vulnerability that in the worst case can overwrite files ending in `.json` anywhere on the client system on a call to `get_one_valid_targetinfo()`. It occurs because the rolename is used to form the filename, and may contain path traversal characters (ie `../../name.json`). The impact is mitigated by a few facts: It only affects implementations that allow arbitrary rolename selection for delegated targets metadata, The attack requires the ability to A) insert new metadata for the path-traversing role and B) get the role delegated by an existing targets metadata, The written file content is heavily restricted since it needs to be a valid, signed targets file. The file extension is always .json. A fix is available in version 0.19 or newer. There are no workarounds that do not require code changes. Clients can restrict the allowed character set for rolenames, or they can store metadata in files named in a way that is not vulnerable: neither of these approaches is possible without modifying python-tuf.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-41131</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2021-41131</url>
+    </references>
+    <dates>
+      <discovery>2021-10-22</discovery>
+      <entry>2022-02-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1cd565da-455e-41b7-a5b9-86ad8e81e33e">
+    <topic>seatd-launch -- remove files with escalated privileges with SUID</topic>
+    <affects>
+      <package>
+	<name>seatd</name>
+	<range><ge>0.6.0</ge><lt>0.6.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Kenny Levinsen reports:</p>
+	<blockquote cite="https://lists.sr.ht/~kennylevinsen/seatd-announce/%3CETEO7R.QG8B1KGD531R1%40kl.wtf%3E">
+	  <p>seatd-launch could use a user-specified socket path instead of the
+	    internally generated socket path, and would unlink the socket path
+	    before use to guard against collision with leftover sockets. This
+	    meant that a caller could freely control what file path would be
+	    unlinked and replaced with a user-owned seatd socket for the duration
+	    of the session.</p>
+	  <p>If seatd-launch had the SUID bit set, this could be used by a
+	    malicious user to remove files with the privileges of the owner of
+	    seatd-launch, which is likely root, and replace it with a user-owned
+	    domain socket.</p>
+	  <p>This does not directly allow retrieving the contents of existing
+	    files, and the user-owned socket file is at the current time not
+	    believed to be directly useful for further exploitation.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://lists.sr.ht/~kennylevinsen/seatd-announce/%3CETEO7R.QG8B1KGD531R1%40kl.wtf%3E</url>
+      <cvename>CVE-2022-25643</cvename>
+    </references>
+    <dates>
+      <discovery>2022-02-21</discovery>
+      <entry>2022-02-21</entry>
+      <modified>2022-02-22</modified>
+    </dates>
+  </vuln>
+
   <vuln vid="43ae57f6-92ab-11ec-81b4-2cf05d620ecc">
     <topic>Qt5 -- QProcess unexpected search path</topic>
     <affects>
