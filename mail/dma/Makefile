@@ -2,7 +2,7 @@
 
 PORTNAME=	dma
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.20210614
+DISTVERSION=	0.13.20220128
 PORTEPOCH=	1
 CATEGORIES=	mail
 
@@ -15,7 +15,7 @@ USES=		ssl uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	corecode
-GH_TAGNAME=	430f3b59074d6303ce3eb4d9fcf16dcf3538ba31
+GH_TAGNAME=	92937587bbfeab53653b841afe76af2fa6dad345
 USE_RC_SUBR=	dma_flushq
 
 MAKE_ENV=	__MAKE_CONF=/dev/null \
@@ -28,16 +28,10 @@ CFLAGS+=	-DCONF_PATH='\"${PREFIX}/etc/dma\"' -DDMA_GROUP='\"mail\"' \
 LDFLAGS+=	-L${OPENSSLLIB}
 
 PORTSCOUT=	limit:^[0-9\.]*$$
-SUB_FILES=	pkg-message
+SUB_FILES=	dma_cron pkg-message
 
 BUILD_WRKSRC=	${WRKSRC}/bsd
 INSTALL_WRKSRC=	${WRKSRC}/bsd
-
-# 11.x has dma imported into base and /var/spool/dma added to mtree
-PLIST_SUB+=	VARDIR="@comment "
-
-# Allow subports to extend.
-CONFFILES+=	auth.conf dma.conf
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,/etc/dma,${PREFIX}/etc/dma,g' \
@@ -49,11 +43,13 @@ post-patch:
 		${WRKSRC}/bsd/dma-mbox-create/Makefile
 
 post-install:
-	${MKDIR} ${STAGEDIR}${ETCDIR}
+	${MKDIR} ${STAGEDIR}${ETCDIR}/cron.d
 	${MKDIR} ${STAGEDIR}/var/spool/dma
 	${INSTALL_DATA} ${WRKSRC}/dma.conf \
 		${STAGEDIR}${ETCDIR}/dma.conf.sample
 	${INSTALL_DATA} ${WRKSRC}/auth.conf \
 		${STAGEDIR}${ETCDIR}/auth.conf.sample
+	${INSTALL_DATA} ${WRKDIR}/dma_cron \
+		${STAGEDIR}${ETCDIR}/cron.d/dma
 
 .include <bsd.port.mk>

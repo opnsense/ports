@@ -2,7 +2,7 @@
 
 PORTNAME?=		mysql
 PORTVERSION=		8.0.28
-PORTREVISION?=		0
+PORTREVISION?=		1
 CATEGORIES=		databases
 MASTER_SITES=		MYSQL/MySQL-8.0
 PKGNAMESUFFIX?=		80-server
@@ -55,6 +55,7 @@ BUILD_DEPENDS_powerpc64le=	libunwind>0:devel/libunwind
 
 CMAKE_BUILD_TYPE=	Release
 CFLAGS+=		-fPIC -DNDEBUG -malign-double
+CFLAGS_aarch64?=	-march=armv8-a+crc+crypto
 
 CMAKE_ARGS+=	-DINSTALL_LAYOUT=FREEBSD \
 		-DINSTALL_LDCONFIGDIR="${LOCALBASE}/libdata/ldconfig" \

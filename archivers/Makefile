@@ -185,6 +185,7 @@
     SUBDIR += py-lzstring
     SUBDIR += py-python-lhafile
     SUBDIR += py-python-lzo
+    SUBDIR += py-python-rpm-packaging
     SUBDIR += py-python-snappy
     SUBDIR += py-rarfile
     SUBDIR += py-rcssmin
@@ -221,6 +222,7 @@
     SUBDIR += snzip
     SUBDIR += squsq
     SUBDIR += star
+    SUBDIR += stormlib
     SUBDIR += streamvbyte
     SUBDIR += stuffit
     SUBDIR += szip

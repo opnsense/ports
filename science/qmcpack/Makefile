@@ -1,7 +1,7 @@
 PORTNAME=	qmcpack
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.12.0-244 # 3.12.0 is broken: https://github.com/QMCPACK/qmcpack/issues/3698
-DISTVERSIONSUFFIX=	-ga6ecd880c
+DISTVERSION=	3.13.0
+PORTREVISION=	1
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,20 +18,23 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libmpich.so:net/mpich \
 		libopenblas.so:math/openblas \
 		libsz.so:science/szip
+TEST_DEPENDS=	bash:shells/bash
 
-USES=		cmake:testing compiler:c++17-lang fortran gnome localbase:ldflags pkgconfig shebangfix
+USES=		cmake:testing compiler:c++17-lang fortran gnome localbase:ldflags pkgconfig python shebangfix
 USE_GNOME=	libxml2
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PORTNAME:tu}
 
-SHEBANG_FILES=	${NEXUS_PLIST_FILES:C/^/nexus\//}
+SHEBANG_FILES=	src/QMCTools/gpaw4qmcpack.py \
+		${NEXUS_PLIST_FILES:C/^/nexus\//}
+SHEBANG_GLOB=	check.sh
 
 CMAKE_OFF=	BUILD_UNIT_TESTS
 CMAKE_ARGS=	-DFREEBSD_PYTHON_VER=${PYTHON_VER}
 CMAKE_TESTING_ON=	BUILD_UNIT_TESTS # at least 3 testcases are known to fail
 
-PROGS=		convert4qmc convertpw4qmc qmc-check-affinity qmc-extract-eshdf-kvectors qmc-get-supercell qmcfinitesize qmcpack qmcpack.settings
+PROGS=		convert4qmc convertpw4qmc gpaw4qmcpack.py ppconvert qmc-check-affinity qmc-extract-eshdf-kvectors qmc-get-supercell qmcfinitesize qmcpack qmcpack.settings
 PLIST_FILES=	${PROGS:C/^/bin\//}
 
 BINARY_ALIAS=	python=${PYTHON_CMD} python3=${PYTHON_CMD}
@@ -42,8 +45,6 @@ OPTIONS_SUB=		yes
 
 NEXUS_DESC=		Install Nexus (workflow utility) alongside QMCPACK
 NEXUS_CMAKE_BOOL=	INSTALL_NEXUS
-NEXUS_USES=		python
-NEXUS_USES_OFF=		python:build
 NEXUS_PY_DEPENDS=	${PYNUMPY} \
 			${PYTHON_PKGNAMEPREFIX}h5py>0:science/py-h5py@${PY_FLAVOR} \
 			${PYTHON_PKGNAMEPREFIX}pandas>0:math/py-pandas@${PY_FLAVOR} \

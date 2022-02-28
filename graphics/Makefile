@@ -262,6 +262,7 @@
     SUBDIR += gimp-beautify-plugin
     SUBDIR += gimp-data-extras
     SUBDIR += gimp-gmic-plugin
+    SUBDIR += gimp-jxl-plugin
     SUBDIR += gimp-lensfun-plugin
     SUBDIR += gimp-lqr-plugin
     SUBDIR += gimp-refocus-plugin
@@ -421,6 +422,7 @@
     SUBDIR += kqtquickcharts
     SUBDIR += kquickimageeditor
     SUBDIR += krita
+    SUBDIR += kseexpr
     SUBDIR += ksnip
     SUBDIR += kxstitch
     SUBDIR += l2p
@@ -458,7 +460,6 @@
     SUBDIR += libexif-gtk
     SUBDIR += libfpx
     SUBDIR += libfreehand
-    SUBDIR += libgaiagraphics
     SUBDIR += libgeotiff
     SUBDIR += libgfx
     SUBDIR += libgltext
@@ -1053,6 +1054,7 @@
     SUBDIR += showimage
     SUBDIR += silgraphite
     SUBDIR += simage
+    SUBDIR += simple-scan
     SUBDIR += simpleviewer
     SUBDIR += skanlite
     SUBDIR += skanpage

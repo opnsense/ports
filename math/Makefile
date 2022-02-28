@@ -216,8 +216,9 @@
     SUBDIR += coin-or-data-netlib
     SUBDIR += coin-or-data-sample
     SUBDIR += coin-or-data-stochastic
+    SUBDIR += coin-or-metis
+    SUBDIR += coin-or-mumps
     SUBDIR += coinmp
-    SUBDIR += coinmumps
     SUBDIR += coinutils
     SUBDIR += colpack
     SUBDIR += combblas
@@ -359,6 +360,7 @@
     SUBDIR += hpipm
     SUBDIR += hs-Agda
     SUBDIR += hs-penrose
+    SUBDIR += hsl
     SUBDIR += ideep
     SUBDIR += ignition-math
     SUBDIR += igraph
@@ -848,6 +850,7 @@
     SUBDIR += py-iminuit
     SUBDIR += py-intspan
     SUBDIR += py-iohexperimenter
+    SUBDIR += py-ipyopt
     SUBDIR += py-jax
     SUBDIR += py-keras
     SUBDIR += py-keras-applications
@@ -898,7 +901,6 @@
     SUBDIR += py-pygsl
     SUBDIR += py-pygslodeiv2
     SUBDIR += py-pyhull
-    SUBDIR += py-pyipopt
     SUBDIR += py-pymc3
     SUBDIR += py-pynauty
     SUBDIR += py-pyneqsys
@@ -954,6 +956,7 @@
     SUBDIR += py-z3-solver
     SUBDIR += pynac
     SUBDIR += qalculate
+    SUBDIR += qalculate-qt
     SUBDIR += qd
     SUBDIR += qhull
     SUBDIR += qhull7

@@ -2,6 +2,7 @@ PORTNAME=	veloren
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.12.0
 CATEGORIES=	games
+MASTER_SITES=	LOCAL/jbeich
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Multiplayer voxel RPG written in Rust
@@ -18,7 +19,8 @@ BUILD_DEPENDS=	glslang>0:graphics/glslang \
 		spirv-tools>0:graphics/spirv-tools \
 		libxkbcommon>0:x11/libxkbcommon
 LIB_DEPENDS=	libasound.so:audio/alsa-lib
-RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins
+RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-plugins \
+		${LOCALBASE}/lib/libvulkan.so:graphics/vulkan-loader
 
 USES=		cargo python:3.4+,build xorg
 USE_XORG=	xcb

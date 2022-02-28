@@ -62,6 +62,7 @@
     SUBDIR += R-cran-gmodels
     SUBDIR += R-cran-gsubfn
     SUBDIR += R-cran-gtools
+    SUBDIR += R-cran-hardhat
     SUBDIR += R-cran-hms
     SUBDIR += R-cran-ini
     SUBDIR += R-cran-iterators
@@ -1189,6 +1190,7 @@
     SUBDIR += libconfuse
     SUBDIR += libcreg
     SUBDIR += libcrossguid
+    SUBDIR += libcuckoo
     SUBDIR += libcutl
     SUBDIR += libcwd
     SUBDIR += libdaemon
