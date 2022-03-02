@@ -212,6 +212,7 @@
     SUBDIR += freepats
     SUBDIR += ft2play
     SUBDIR += funktrackergold
+    SUBDIR += furnace
     SUBDIR += ganv
     SUBDIR += gbemol
     SUBDIR += gbsplay
@@ -660,6 +661,7 @@
     SUBDIR += py-pylast
     SUBDIR += py-pyliblo
     SUBDIR += py-pymad
+    SUBDIR += py-pyogg
     SUBDIR += py-pysndfile
     SUBDIR += py-python-mpd2
     SUBDIR += py-soundcloud

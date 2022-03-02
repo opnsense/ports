@@ -183,6 +183,7 @@
     SUBDIR += git-remote-gcrypt
     SUBDIR += git-secret
     SUBDIR += gitjacker
+    SUBDIR += globalprotect-openconnect
     SUBDIR += gnome-keyring
     SUBDIR += gnome-keyring-sharp
     SUBDIR += gnome-ssh-askpass
@@ -293,7 +294,6 @@
     SUBDIR += lasso
     SUBDIR += lastpass-cli
     SUBDIR += lego
-    SUBDIR += libadacrypt
     SUBDIR += libargon2
     SUBDIR += libassuan
     SUBDIR += libcryptui

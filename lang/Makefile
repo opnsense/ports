@@ -2,18 +2,15 @@
 
     SUBDIR += J
     SUBDIR += abcl
-    SUBDIR += adacontrol
     SUBDIR += alchemist.el
     SUBDIR += algol68g
     SUBDIR += angelscript
     SUBDIR += apache-commons-jelly
-    SUBDIR += asis
     SUBDIR += asn1c
     SUBDIR += atlast
     SUBDIR += awka
     SUBDIR += bas2tap
     SUBDIR += basic256
-    SUBDIR += bf2c
     SUBDIR += bsh
     SUBDIR += bwbasic
     SUBDIR += c
@@ -105,7 +102,6 @@
     SUBDIR += ghc
     SUBDIR += gjs
     SUBDIR += gleam
-    SUBDIR += gnat_util
     SUBDIR += gnatcross-binutils-aarch64
     SUBDIR += gnatcross-sysroot-aarch64
     SUBDIR += gnatdroid-binutils
@@ -166,7 +162,6 @@
     SUBDIR += linux-dotnet11-runtime
     SUBDIR += linux-dotnet11-sdk
     SUBDIR += linux-j
-    SUBDIR += lua-ada
     SUBDIR += lua51
     SUBDIR += lua52
     SUBDIR += lua53
@@ -196,7 +191,6 @@
     SUBDIR += munger
     SUBDIR += myrddin
     SUBDIR += nawk
-    SUBDIR += nbc
     SUBDIR += nbfc
     SUBDIR += neko
     SUBDIR += nesasm

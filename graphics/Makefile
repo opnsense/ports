@@ -242,7 +242,6 @@
     SUBDIR += gdtclft
     SUBDIR += geeqie
     SUBDIR += gegl
-    SUBDIR += generic_image_decoder
     SUBDIR += geoapi
     SUBDIR += geomorph
     SUBDIR += geomview
@@ -823,6 +822,7 @@
     SUBDIR += price
     SUBDIR += processing
     SUBDIR += proj
+    SUBDIR += proj-data
     SUBDIR += pstoedit
     SUBDIR += ptex
     SUBDIR += py-OWSLib
