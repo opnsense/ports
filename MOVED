@@ -16877,6 +16877,9 @@ x11/py-qt5-opengl|devel/py-qt5-pyqt|2022-01-27|Merged into devel/py-qt5-pyqt
 x11-fonts/sourcesanspro-ttf|x11-fonts/source-sans-ttf|2022-01-28|Rename to match upstream naming
 audio/nekobi-lv2|audio/dpf-plugins-lv2|2022-01-28|Nekobi is part of dpf-plugins
 audio/kars-lv2|audio/dpf-plugins-lv2|2022-01-28|Kars is part of dpf-plugins
+converters/p5-JSON1|converters/p5-JSON|2022-01-29|Remove obsoleted port. Use converters/p5-JSON instead
+devel/rubygem-bootsnap19|devel/rubygem-bootsnap|2022-01-29|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+textproc/rubygem-rouge326|textproc/rubygem-rouge|2022-01-29|Remove obsoleted port. Use textproc/rubygem-rouge instead
 lang/scala-docs||2022-01-31|New 3.x versions dropped archived documentation
 x11/gnome3|x11/gnome|2022-01-31|GNOME has moved past version 3, including the Ports version
 security/krb5-117|security/krb5|2022-02-01|Has expired: EOL one year after the release of krb5 1.19
@@ -16893,3 +16896,56 @@ print/tex-aleph||2022-02-19|tex-aleph has been removed from texlive-2021 system
 sysutils/intel-pcm-devel||2022-02-19|intel-pcm-devel has been removed, encouraging users to use intel-pcm instead
 graphics/copperspice|x11-toolkits/copperspice|2022-02-20|Revive in more appropriate category
 math/mathics-django||2022-02-20|Mathics-Django now requires npm: you can use math/mathicsscript instead
+net-mgmt/percona-monitoring-plugins||2022-02-22|Has expired: Upstream EOL reached on 2020-08-01
+math/coinmumps|math/coin-or-mumps|2022-02-23|Renamed into a more appropriate name
+www/py-weboob|www/py-woob|2022-02-24|Project renamed
+www/py-weboob-qt|www/py-woob-qt|2022-02-24|Project renamed
+math/py-pyipopt||2022-02-24|Removed: not compatible with the latest Ipopt-3.14.4 and abandoned upstream
+x11-toolkits/py-wxPython40|x11-toolkits/py-wxPython4|2022-02-25|Renamed to py-wxPython4
+graphics/libgaiagraphics|graphics/librasterlite2|2022-02-27|Has expired: Abandoned upstream, replaced by graphics/librasterlite2
+databases/zabbix3-libzbxpgsql||2022-02-27|Has expired: Upstream EOL reached on 2021-02-28
+lang/bf2c||2022-02-28|Has expired: No development since 2013
+lang/nbc||2022-02-28|Has expired: No releases since 2011, for previous generation LEGO Mindstorms
+textproc/gutenmark||2022-02-28|Has expired: No releases since 2011
+net-mgmt/zabbix3-proxy||2022-02-28|Has expired: Upstream EOL reached on 2021-02-28
+net-mgmt/zabbix3-java||2022-02-28|Has expired: Upstream EOL reached on 2021-02-28
+net-mgmt/zabbix3-frontend||2022-02-28|Has expired: Upstream EOL reached on 2021-02-28
+net-mgmt/zabbix3-agent||2022-02-28|Has expired: Upstream EOL reached on 2021-02-28
+net-mgmt/zabbix3-server||2022-02-28|Has expired: Upstream EOL reached on 2021-02-28
+archivers/zip-ada||2022-02-28|Removed, depends on expired lang/gcc6-aux
+cad/ghdl||2022-02-28|Removed, depends on expired lang/gcc6-aux
+databases/adabase||2022-02-28|Removed, depends on expired lang/gcc6-aux
+databases/apq||2022-02-28|Removed, depends on expired lang/gcc6-aux
+databases/apq-mysql||2022-02-28|Removed, depends on expired lang/gcc6-aux
+databases/apq-odbc||2022-02-28|Removed, depends on expired lang/gcc6-aux
+databases/apq-pgsql||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/ada-util||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/adabooch||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/adaid||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/ahven||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/alog||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/aunit||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/florist-gpl||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/gprbuild||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/libspark2012||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/matreshka||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/pcsc-ada||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/pragmarcs||2022-02-28|Removed, depends on expired lang/gcc6-aux
+devel/sdl_gnat||2022-02-28|Removed, depends on expired lang/gcc6-aux
+dns/ironsides||2022-02-28|Removed, depends on expired lang/gcc6-aux
+graphics/generic_image_decoder||2022-02-28|Removed, depends on expired lang/gcc6-aux
+lang/adacontrol||2022-02-28|Removed, depends on expired lang/gcc6-aux
+lang/asis||2022-02-28|Removed, depends on expired lang/gcc6-aux
+lang/gnat_util||2022-02-28|Removed, depends on expired lang/gcc6-aux
+lang/lua-ada||2022-02-28|Removed, depends on expired lang/gcc6-aux
+math/plplot-ada||2022-02-28|Removed, depends on expired lang/gcc6-aux
+misc/excel-writer||2022-02-28|Removed, depends on expired lang/gcc6-aux
+net/adasockets||2022-02-28|Removed, depends on expired lang/gcc6-aux
+net/anet||2022-02-28|Removed, depends on expired lang/gcc6-aux
+security/libadacrypt||2022-02-28|Removed, depends on expired lang/gcc6-aux
+textproc/adabrowse||2022-02-28|Removed, depends on expired lang/gcc6-aux
+textproc/templates_parser||2022-02-28|Removed, depends on expired lang/gcc6-aux
+textproc/words||2022-02-28|Removed, depends on expired lang/gcc6-aux
+textproc/xmlada||2022-02-28|Removed, depends on expired lang/gcc6-aux
+x11-toolkits/gtkada||2022-02-28|Removed, depends on expired lang/gcc6-aux
+x11-toolkits/gtkada3||2022-02-28|Removed, depends on expired lang/gcc6-aux
