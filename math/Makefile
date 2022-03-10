@@ -843,6 +843,7 @@
     SUBDIR += py-grandalf
     SUBDIR += py-graphillion
     SUBDIR += py-gym
+    SUBDIR += py-gym-notices
     SUBDIR += py-hdbscan
     SUBDIR += py-hdmedians
     SUBDIR += py-heyoka
@@ -869,12 +870,14 @@
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-munkres10
+    SUBDIR += py-mutatormath
     SUBDIR += py-ndindex
     SUBDIR += py-networkx
     SUBDIR += py-nevergrad
     SUBDIR += py-numexpr
     SUBDIR += py-numpoly
     SUBDIR += py-numpy
+    SUBDIR += py-numpy-groupies
     SUBDIR += py-numpy-stl
     SUBDIR += py-openTSNE
     SUBDIR += py-opt-einsum

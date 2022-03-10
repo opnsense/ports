@@ -409,6 +409,7 @@
     SUBDIR += libxdiff
     SUBDIR += libxml++26
     SUBDIR += libxml2
+    SUBDIR += libxmlb
     SUBDIR += libxmlbird
     SUBDIR += libxode
     SUBDIR += libxslt
@@ -1749,6 +1750,7 @@
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rouge312
+    SUBDIR += rubygem-rouge327
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt

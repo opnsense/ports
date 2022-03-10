@@ -1,7 +1,7 @@
 # Created by: Po-Chuan Hsieh <sunpoet@FreeBSD.org>
 
 PORTNAME=	uharfbuzz
-PORTVERSION=	0.19.0
+PORTVERSION=	0.21.0
 CATEGORIES=	print python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,6 +20,7 @@ USE_PYTHON=	autoplist concurrent cython distutils
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/setup.py ${WRKSRC}/src/uharfbuzz/_harfbuzz.cpp
+	@${RM} ${WRKSRC}/src/uharfbuzz/_harfbuzz.cpp
 # Clean up bundled libraries
 	@${RM} -r ${WRKSRC}/harfbuzz/
 

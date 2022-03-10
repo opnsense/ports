@@ -7,7 +7,7 @@ CATEGORIES=	deskutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	koobs@FreeBSD.org
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Sync issue & bug tracking systems with taskwarrior
 
 LICENSE=	GPLv3

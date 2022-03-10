@@ -1,12 +1,12 @@
 # Created by: Kubilay Kocak <koobs@FreeBSD.org>
 
 PORTNAME=	taskw
-PORTVERSION=	1.2.0
+PORTVERSION=	1.3.0
 CATEGORIES=	deskutils python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	koobs@FreeBSD.org
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Python bindings for your taskwarrior database
 
 LICENSE=	GPLv3+

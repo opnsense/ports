@@ -2,6 +2,7 @@
 
 PORTNAME=	chromium
 PORTVERSION=	99.0.4844.51
+PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		https://nerd.hu/distfiles/:fonts
@@ -22,7 +23,6 @@ BUILD_DEPENDS=	bash:shells/bash \
 		flock:sysutils/flock \
 		node:www/node \
 		xcb-proto>0:x11/xcb-proto \
-		${LOCALBASE}/bin/ar:devel/binutils \
 		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
 		${LOCALBASE}/share/usbids/usb.ids:misc/usbids \
 		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR} \
@@ -79,7 +79,9 @@ SHEBANG_FILES=	chrome/tools/build/linux/chrome-wrapper buildtools/linux64/clang-
 MAKE_ARGS=	-C out/${BUILDTYPE}
 ALL_TARGET=	chrome
 
-BINARY_ALIAS=	python3=${PYTHON_CMD}
+BINARY_ALIAS=	ar=/usr/bin/llvm-ar \
+		nm=/usr/bin/llvm-nm \
+		python3=${PYTHON_CMD}
 
 # TODO bz@ : install libwidevinecdm.so (see third_party/widevine/cdm/BUILD.gn)
 #
@@ -96,7 +98,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		enable_wmax_tokens=false \
 		fatal_linker_warnings=false \
 		is_clang=true \
-		optimize_webui=false \
+		optimize_webui=true \
 		toolkit_views=true \
 		treat_warnings_as_errors=false \
 		use_allocator="none" \

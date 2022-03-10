@@ -1,12 +1,13 @@
 PORTNAME=	obs-studio
-DISTVERSION=	27.2.1
+DISTVERSION=	27.2.3
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	79aed14aff55c62fee78c0f4828c65ac05caf036.patch:-p1 \
-		ecd7a59aed665eca0a50b99939ef28e04e144876.patch:-p1 \
-		c201bd067fd3e4c9a6139ad52e0ad61bc1ca0117.patch:-p1 \
+PATCHFILES+=	ecd7a59aed665eca0a50b99939ef28e04e144876.patch:-p1 \
 		445f39764b8f11f951d41d14ee57ae13f57b13d4.patch:-p1 # backport the PR "Fix building OBS Studio on FreeBSD", https://github.com/obsproject/obs-studio/pull/6026
+PATCHFILES+=	46b3935959c0afd4d2128279912ee86f69e81048.patch:-p1 \
+		864cafd6e85be74e22637935d45fad33a4e7ce2a.patch:-p1 # v4l2loopback: Add support for non-Linux environments: https://github.com/obsproject/obs-studio/pull/5069
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Open source streaming/recording software

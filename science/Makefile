@@ -250,6 +250,8 @@
     SUBDIR += py-abipy
     SUBDIR += py-access
     SUBDIR += py-asdf
+    SUBDIR += py-asdf-standard
+    SUBDIR += py-asdf-transform-schemas
     SUBDIR += py-ase
     SUBDIR += py-avogadrolibs
     SUBDIR += py-cdo
@@ -337,6 +339,7 @@
     SUBDIR += py-spglib
     SUBDIR += py-tensorflow
     SUBDIR += py-tobler
+    SUBDIR += py-trainstation
     SUBDIR += py-veusz
     SUBDIR += pybrain
     SUBDIR += pynn
