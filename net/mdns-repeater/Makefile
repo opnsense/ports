@@ -2,6 +2,7 @@
 
 PORTNAME=	mdns-repeater
 PORTVERSION=	1.11
+PORTREVISION=	1
 CATEGORIES=	net dns
 
 MAINTAINER=	ehaupt@FreeBSD.org

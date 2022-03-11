@@ -1,4 +1,4 @@
---- mdns-repeater.c.orig	2015-04-03 07:03:21 UTC
+--- mdns-repeater.c.orig	2016-12-07 21:31:09 UTC
 +++ mdns-repeater.c
 @@ -32,6 +32,7 @@
  #include <netinet/in.h>
@@ -8,7 +8,7 @@
  
  #define PACKAGE "mdns-repeater"
  #define MDNS_ADDR "224.0.0.251"
-@@ -79,7 +80,7 @@ void log_message(int loglevel, char *fmt
+@@ -91,7 +92,7 @@ void log_message(int loglevel, char *fmt_str, ...) {
  static int create_recv_sock() {
  	int sd = socket(AF_INET, SOCK_DGRAM, 0);
  	if (sd < 0) {
@@ -17,7 +17,7 @@
  		return sd;
  	}
  
-@@ -87,7 +88,7 @@ static int create_recv_sock() {
+@@ -99,7 +100,7 @@ static int create_recv_sock() {
  
  	int on = 1;
  	if ((r = setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on))) < 0) {
@@ -26,7 +26,7 @@
  		return r;
  	}
  
-@@ -98,18 +99,18 @@ static int create_recv_sock() {
+@@ -110,18 +111,18 @@ static int create_recv_sock() {
  	serveraddr.sin_port = htons(MDNS_PORT);
  	serveraddr.sin_addr.s_addr = htonl(INADDR_ANY);	/* receive multicast */
  	if ((r = bind(sd, (struct sockaddr *)&serveraddr, sizeof(serveraddr))) < 0) {
@@ -48,7 +48,7 @@
  		return r;
  	}
  #endif
-@@ -120,7 +121,7 @@ static int create_recv_sock() {
+@@ -132,7 +133,7 @@ static int create_recv_sock() {
  static int create_send_sock(int recv_sockfd, const char *ifname, struct if_sock *sockdata) {
  	int sd = socket(AF_INET, SOCK_DGRAM, 0);
  	if (sd < 0) {
@@ -57,7 +57,7 @@
  		return sd;
  	}
  
-@@ -136,7 +137,7 @@ static int create_send_sock(int recv_soc
+@@ -148,7 +149,7 @@ static int create_send_sock(int recv_sockfd, const cha
  
  #ifdef SO_BINDTODEVICE
  	if ((r = setsockopt(sd, SOL_SOCKET, SO_BINDTODEVICE, &ifr, sizeof(struct ifreq))) < 0) {
@@ -66,7 +66,7 @@
  		return r;
  	}
  #endif
-@@ -156,7 +157,7 @@ static int create_send_sock(int recv_soc
+@@ -168,7 +169,7 @@ static int create_send_sock(int recv_sockfd, const cha
  
  	int on = 1;
  	if ((r = setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on))) < 0) {
@@ -75,7 +75,7 @@
  		return r;
  	}
  
-@@ -167,22 +168,28 @@ static int create_send_sock(int recv_soc
+@@ -179,22 +180,28 @@ static int create_send_sock(int recv_sockfd, const cha
  	serveraddr.sin_port = htons(MDNS_PORT);
  	serveraddr.sin_addr.s_addr = if_addr->s_addr;
  	if ((r = bind(sd, (struct sockaddr *)&serveraddr, sizeof(serveraddr))) < 0) {
@@ -107,7 +107,7 @@
  		return r;
  	}
  
-@@ -249,7 +256,7 @@ static void daemonize() {
+@@ -261,7 +268,7 @@ static void daemonize() {
  	pid_t running_pid;
  	pid_t pid = fork();
  	if (pid < 0) {
@@ -116,7 +116,7 @@
  		exit(1);
  	}
  
-@@ -385,7 +392,7 @@ int main(int argc, char *argv[]) {
+@@ -454,7 +461,7 @@ int main(int argc, char *argv[]) {
  
  	pkt_data = malloc(PACKET_SIZE);
  	if (pkt_data == NULL) {
@@ -125,8 +125,8 @@
  		r = 1;
  		goto end_main;
  	}
-@@ -409,7 +416,7 @@ int main(int argc, char *argv[]) {
- 			ssize_t recvsize = recvfrom(server_sockfd, pkt_data, PACKET_SIZE, 0, 
+@@ -478,7 +485,7 @@ int main(int argc, char *argv[]) {
+ 			ssize_t recvsize = recvfrom(server_sockfd, pkt_data, PACKET_SIZE, 0,
  				(struct sockaddr *) &fromaddr, &sockaddr_size);
  			if (recvsize < 0) {
 -				log_message(LOG_ERR, "recv(): %m");
@@ -134,12 +134,20 @@
  			}
  
  			int j;
-@@ -440,7 +447,7 @@ int main(int argc, char *argv[]) {
+@@ -523,11 +530,13 @@ int main(int argc, char *argv[]) {
+ 				// repeat data
  				ssize_t sentsize = send_packet(socks[j].sockfd, pkt_data, (size_t) recvsize);
  				if (sentsize != recvsize) {
- 					if (sentsize < 0)
+-					if (sentsize < 0)
 -						log_message(LOG_ERR, "send()");
-+						log_message(LOG_ERR, "send(): %s", strerror(errno));
- 					else
+-					else
++					if (sentsize < 0) {
++						if (foreground)
++							printf("send(): %s", strerror(errno));
++					} else {
  						log_message(LOG_ERR, "send_packet size differs: sent=%ld actual=%ld",
  							recvsize, sentsize);
++					}
+ 				}
+ 			}
+ 		}
