@@ -308,6 +308,7 @@
     SUBDIR += capnproto080
     SUBDIR += capstone3
     SUBDIR += capstone4
+    SUBDIR += capstone5
     SUBDIR += cargo-c
     SUBDIR += cargo-generate
     SUBDIR += cask
@@ -693,6 +694,7 @@
     SUBDIR += flexjson
     SUBDIR += flyspray
     SUBDIR += fmake
+    SUBDIR += fnc
     SUBDIR += fnccheck
     SUBDIR += folly
     SUBDIR += forge
@@ -4137,6 +4139,7 @@
     SUBDIR += py-adb
     SUBDIR += py-addict
     SUBDIR += py-aenum
+    SUBDIR += py-aioapns
     SUBDIR += py-aiocontextvars
     SUBDIR += py-aiofiles
     SUBDIR += py-aioice
