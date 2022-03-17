@@ -1,3 +1,300 @@
+  <vuln vid="5df757ef-a564-11ec-85fa-a0369f7f7be0">
+    <topic>wordpress -- multiple issues</topic>
+    <affects>
+      <package>
+	<name>wordpress</name>
+	<name>fr-wordpress</name>
+	<range><lt>5.9.2,1</lt></range>
+      </package>
+      <package>
+	<name>de-wordpress</name>
+	<name>zh_CN-wordpress</name>
+	<name>th_TW-wordpress</name>
+	<name>ja-wordpress</name>
+	<name>ru-wordpress</name>
+	<range><lt>5.9.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>wordpress developers reports:</p>
+	<blockquote cite="https://wordpress.org/news/2022/03/wordpress-5-9-2-security-maintenance-release/">
+	  <p>This security and maintenance release features 1 bug fix in addition to 3 security fixes.
+	    Because this is a security release, it is recommended that you update your sites immediately.
+	    All versions since WordPress 3.7 have also been updated.
+	    The security team would like to thank the following people for responsively reporting
+	    vulnerabilities, allowing them to be fixed in this release:
+	    -Melar Dev, for finding a Prototype Pollution Vulnerability in a jQuery dependency
+	    -Ben Bidner of the WordPress security team, for finding a Stored Cross Site Scripting Vulnerability
+	    -Researchers from Johns Hopkins University, for finding a Prototype Pollution Vulnerability in the block editor</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://wordpress.org/news/2022/03/wordpress-5-9-2-security-maintenance-release/</url>
+    </references>
+    <dates>
+      <discovery>2022-03-11</discovery>
+      <entry>2022-03-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3ba1ca94-a563-11ec-8be6-d4c9ef517024">
+    <topic>Weechat -- Possible man-in-the-middle attack in TLS connection to servers</topic>
+    <affects>
+      <package>
+	<name>weechat</name>
+	<range><lt>3.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Weechat project reports:</p>
+	<blockquote cite="https://weechat.org/doc/security/WSA-2022-1/">
+	  <p>After changing the options weechat.network.gnutls_ca_system or
+	    weechat.network.gnutls_ca_user, the TLS verification function is lost.
+	    Consequently, any connection to a server with TLS is made without
+	    verifying the certificate, which could lead to a man-in-the-middle
+	    attack. Connection to IRC servers with TLS is affected, as well as any
+	    connection a server made by a plugin or a script using the function
+	    hook_connect.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://weechat.org/doc/security/WSA-2022-1/</url>
+    </references>
+    <dates>
+      <discovery>2022-03-13</discovery>
+      <entry>2022-03-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ea05c456-a4fd-11ec-90de-1c697aa5a594">
+    <topic>OpenSSL -- Infinite loop in BN_mod_sqrt parsing certificates</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1n,1</lt></range>
+      </package>
+      <package>
+	<name>openssl-devel</name>
+	<range><lt>3.0.2</lt></range>
+      </package>
+      <package>
+	<name>openssl-quictls</name>
+	<range><lt>3.0.2</lt></range>
+      </package>
+      <package>
+	<name>libressl</name>
+	<range><lt>3.4.3</lt></range>
+      </package>
+      <package>
+	<name>libressl-devel</name>
+	<range><lt>3.5.1</lt></range>
+      </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>13.0</ge><lt>13.0_8</lt></range>
+	<range><ge>12.3</ge><lt>12.3_3</lt></range>
+	<range><ge>12.2</ge><lt>12.2_14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20220315.txt">
+	<p>Infinite loop in BN_mod_sqrt() reachable when parsing certificates
+	  (High)</p>
+	<p>The BN_mod_sqrt() function, which computes a modular square root,
+	  contains a bug that can cause it to loop forever for non-prime
+	  moduli.</p>
+	<p>Internally this function is used when parsing certificates that
+	  contain elliptic curve public keys in compressed form or explicit
+	  elliptic curve parameters with a base point encoded in compressed
+	  form.</p>
+	<p>It is possible to trigger the infinite loop by crafting a
+	  certificate that has invalid explicit curve parameters.</p>
+	<p>Since certificate parsing happens prior to verification of the
+	  certificate signature, any process that parses an externally
+	  supplied certificate may thus be subject to a denial of service
+	  attack. The infinite loop can also be reached when parsing crafted
+	  private keys as they can contain explicit elliptic curve
+	  parameters.</p>
+	<p>Thus vulnerable situations include:</p>
+	<ul>
+	  <li>TLS clients consuming server certificates</li>
+	  <li>TLS servers consuming client certificates</li>
+	  <li>Hosting providers taking certificates or private keys from
+	    customers</li>
+	  <li>Certificate authorities parsing certification requests from
+	    subscribers</li>
+	  <li>Anything else which parses ASN.1 elliptic curve parameters</li>
+	</ul>
+	<p>Also any other applications that use the BN_mod_sqrt() where the
+	  attacker can control the parameter values are vulnerable to this DoS
+	  issue.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-0778</cvename>
+      <url>https://www.openssl.org/news/secadv/20220315.txt</url>
+      <freebsdsa>SA-22:03.openssl</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2022-03-15</discovery>
+      <entry>2022-03-16</entry>
+      <modified>2022-03-16</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="8d20bd48-a4f3-11ec-90de-1c697aa5a594">
+    <topic>FreeBSD-kernel -- Multiple WiFi issues</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>13.0</ge><lt>13.0_8</lt></range>
+	<range><ge>12.3</ge><lt>12.3_3</lt></range>
+	<range><ge>12.2</ge><lt>12.2_14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The paper "Fragment and Forge: Breaking Wi-Fi Through Frame
+	Aggregation and Fragmentation" reported a number of security
+	vulnerabilities in the 802.11 specification related to frame
+	aggregation and fragmentation.</p>
+	<p>Additionally, FreeBSD 12.x missed length validation of SSIDs and
+	Information Elements (IEs).</p>
+	<h1>Impact:</h1>
+	<p>As reported on the FragAttacks website, the "design flaws are hard
+	to abuse because doing so requires user interaction or is only
+	possible when using uncommon network settings."  Under suitable
+	conditions an attacker may be able to extract sensitive data or inject
+	data.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-26147</cvename>
+      <cvename>CVE-2020-24588</cvename>
+      <cvename>CVE-2020-26144</cvename>
+      <freebsdsa>SA-22:02.wifi</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2022-03-15</discovery>
+      <entry>2022-03-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="857be71a-a4b0-11ec-95fc-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>98.0.4844.74</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/03/stable-channel-update-for-desktop_15.html">
+	  <p>This release contains 11 security fixes, including:</p>
+	  <ul>
+	    <li>[1299422] Critical CVE-2022-0971: Use after free in Blink
+	      Layout. Reported by Sergei Glazunov of Google Project Zero on
+	      2022-02-21</li>
+	    <li>[1301320] High CVE-2022-0972: Use after free in Extensions.
+	      Reported by Sergei Glazunov of Google Project Zero on
+	      2022-02-28</li>
+	    <li>[1297498] High CVE-2022-0973: Use after free in Safe Browsing.
+	      Reported by avaue and Buff3tts at S.S.L. on 2022-02-15</li>
+	    <li>[1291986] High CVE-2022-0974: Use after free in Splitscreen.
+	      Reported by @ginggilBesel on 2022-01-28</li>
+	    <li>[1295411] High CVE-2022-0975: Use after free in ANGLE. Reported
+	      by SeongHwan Park (SeHwa) on 2022-02-09</li>
+	    <li>[1296866] High CVE-2022-0976: Heap buffer overflow in GPU.
+	      Reported by Omair on 2022-02-13</li>
+	    <li>[1299225] High CVE-2022-0977: Use after free in Browser UI.
+	      Reported by Khalil Zhani on 2022-02-20</li>
+	    <li>[1299264] High CVE-2022-0978: Use after free in ANGLE. Reported
+	      by Cassidy Kim of Amber Security Lab, OPPO Mobile
+	      Telecommunications Corp. Ltd. on 2022-02-20</li>
+	    <li>[1302644] High CVE-2022-0979: Use after free in Safe Browsing.
+	      Reported by anonymous on 2022-03-03</li>
+	    <li>[1302157] Medium CVE-2022-0980: Use after free in New Tab Page.
+	      Reported by Krace on 2022-03-02</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-0971</cvename>
+      <cvename>CVE-2022-0972</cvename>
+      <cvename>CVE-2022-0973</cvename>
+      <cvename>CVE-2022-0974</cvename>
+      <cvename>CVE-2022-0975</cvename>
+      <cvename>CVE-2022-0976</cvename>
+      <cvename>CVE-2022-0977</cvename>
+      <cvename>CVE-2022-0978</cvename>
+      <cvename>CVE-2022-0979</cvename>
+      <cvename>CVE-2022-0980</cvename>
+      <url>https://chromereleases.googleblog.com/2022/03/stable-channel-update-for-desktop_15.html</url>
+    </references>
+    <dates>
+      <discovery>2022-03-15</discovery>
+      <entry>2022-03-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6601c08d-a46c-11ec-8be6-d4c9ef517024">
+    <topic>Apache httpd -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.53</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Apache httpd project reports:</p>
+	<blockquote cite="https://httpd.apache.org/security/vulnerabilities_24.html">
+	  <ul>
+	    <li><p>mod_lua: Use of uninitialized value of in r:parsebody (moderate)
+	      (CVE-2022-22719)</p><p>A carefully crafted request body can cause a
+	      read to a random memory area which could cause the process to crash.
+	    </p></li>
+	    <li><p>HTTP request smuggling vulnerability (important) (CVE-2022-22720)
+	      </p><p>httpd fails to close inbound connection when errors are
+	      encountered discarding the request body, exposing the server to HTTP
+	      Request Smuggling</p></li>
+	    <li><p>core: Possible buffer overflow with very large or unlimited
+	      LimitXMLRequestBody (low) (CVE-2022-22721)</p><p>If LimitXMLRequestBody
+	      is set to allow request bodies larger than 350MB (defaults to 1M) on 32
+	      bit systems an integer overflow happens which later causes out of
+	      bounds writes.</p></li>
+	    <li><p>mod_sed: Read/write beyond bounds (important) (CVE-2022-23924)</p>
+	      <p>Out-of-bounds Write vulnerability in mod_sed of Apache HTTP Server
+		allows an attacker to overwrite heap memory with possibly attacker
+		provided data.</p></li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-22719</cvename>
+      <cvename>CVE-2022-22720</cvename>
+      <cvename>CVE-2022-22721</cvename>
+      <cvename>CVE-2022-23943</cvename>
+      <url>https://httpd.apache.org/security/vulnerabilities_24.html</url>
+    </references>
+    <dates>
+      <discovery>2022-03-14</discovery>
+      <entry>2022-03-15</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="5aaf534c-a069-11ec-acdc-14dae9d5a9d2">
     <topic>Teeworlds -- Buffer Overflow</topic>
     <affects>
@@ -61,534 +358,6 @@
     <dates>
       <discovery>2022-02-25</discovery>
       <entry>2022-03-09</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="b3695b08-3b3a-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Public GLPIKEY can be used to decrypt any data</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-5248">
-	  <p>GLPI before before version 9.4.6 has a vulnerability involving a default encryption key. GLPIKEY is public and is used on every instance. This means anyone can decrypt sensitive data stored using this key. It is possible to change the key before installing GLPI. But on existing instances, data must be reencrypted with the new key. Problem is we can not know which columns or rows in the database are using that; espcially from plugins. Changing the key without updating data would lend in bad password sent from glpi; but storing them again from the UI will work.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-j222-j9mf-h6j9</url>
-      <url>https://github.com/glpi-project/glpi/commit/efd14468c92c4da43333aa9735e65fd20cbc7c6c</url>
-      <cvename>CVE-2020-5248</cvename>
-    </references>
-    <dates>
-      <discovery>2020-01-02</discovery>
-      <entry>2020-01-02</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="695b2310-3b3a-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Insecure Direct Object Reference on ajax/getDropdownValue.php</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.5.3</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27663">
-	  <p>In GLPI before 9.5.3, ajax/getDropdownValue.php has an Insecure Direct Object Reference (IDOR) vulnerability that allows an attacker to read data from any itemType (e.g., Ticket, Users, etc.).</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-pqfv-4pvr-55r4</url>
-      <cvename>CVE-2020-27663</cvename>
-    </references>
-    <dates>
-      <discovery>2020-10-22</discovery>
-      <entry>2020-10-22</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="190176ce-3b3a-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Insecure Direct Object Reference on ajax/comments.ph</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.5.3</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-27662">
-	  <p>In GLPI before 9.5.3, ajax/comments.php has an Insecure Direct Object Reference (IDOR) vulnerability that allows an attacker to read data from any database table (e.g., glpi_tickets, glpi_users, etc.).</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-wq38-gwxp-8p5p</url>
-      <cvename>CVE-2020-27662</cvename>
-    </references>
-    <dates>
-      <discovery>2020-10-22</discovery>
-      <entry>2020-10-22</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="6a467439-3b38-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Any CalDAV calendars is read-only for every authenticated user</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>9.5.0</gt></range>
-	<range><lt>9.5.3</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-26212">
-	  <p>In GLPI before version 9.5.3, any authenticated user has read-only permissions to the planning of every other user, even admin ones. This issue is fixed in version 9.5.3. As a workaround, one can remove the caldav.php file to block access to CalDAV server.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-qmw3-87hr-5wgx</url>
-      <url>https://github.com/glpi-project/glpi/commit/527280358ec78988ac57e9809d2eb21fcd74caf7</url>
-      <url>https://github.com/glpi-project/glpi/releases/tag/9.5.3</url>
-      <cvename>CVE-2020-26212</cvename>
-    </references>
-    <dates>
-      <discovery>2020-10-01</discovery>
-      <entry>2020-10-01</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="0ba61fcc-3b38-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- SQL Injection in Search API</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>9.1</gt></range>
-	<range><lt>9.5.2</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15226">
-	  <p>In GLPI before version 9.5.2, there is a SQL Injection in the API's search function. Not only is it possible to break the SQL syntax, but it is also possible to utilise a UNION SELECT query to reflect sensitive information such as the current database version, or database user. The most likely scenario for this vulnerability is with someone who has an API account to the system. The issue is patched in version 9.5.2. A proof-of-concept with technical details is available in the linked advisory.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/commit/3dc4475c56b241ad659cc5c7cb5fb65727409cf0</url>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-jwpv-7m4h-5gvc</url>
-      <cvename>CVE-2020-15226</cvename>
-    </references>
-    <dates>
-      <discovery>2020-06-25</discovery>
-      <entry>2020-06-25</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="5acd95db-3b16-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- leakage issue with knowledge base</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>9.5.0</gt></range>
-	<range><lt>9.5.2</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15217">
-	  <p>In GLPI before version 9.5.2, there is a leakage of user information through the public FAQ. The issue was introduced in version 9.5.0 and patched in 9.5.2. As a workaround, disable public access to the FAQ.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/commit/39e25591efddc560e3679ab07e443ee6198705e2</url>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-x9hg-j29f-wvvv</url>
-      <cvename>CVE-2020-15217</cvename>
-    </references>
-    <dates>
-      <discovery>2020-06-25</discovery>
-      <entry>2020-06-25</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="09eef008-3b16-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Unauthenticated Stored XSS</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>0.65</gt></range>
-	<range><lt>9.5.2</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15177">
-	  <p>In GLPI before version 9.5.2, the `install/install.php` endpoint insecurely stores user input into the database as `url_base` and `url_base_api`. These settings are referenced throughout the application and allow for vulnerabilities like Cross-Site Scripting and Insecure Redirection Since authentication is not required to perform these changes,anyone could point these fields at malicious websites or form input in a way to trigger XSS. Leveraging JavaScript it's possible to steal cookies, perform actions as the user, etc. The issue is patched in version 9.5.2.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/commit/a8109d4ee970a222faf48cf48fae2d2f06465796</url>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-prvh-9m4h-4m79</url>
-      <cvename>CVE-2020-15177</cvename>
-    </references>
-    <dates>
-      <discovery>2020-06-25</discovery>
-      <entry>2020-06-25</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="b7abdb0f-3b15-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Multiple SQL Injections Stemming From isNameQuoted()</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>0.68</gt></range>
-	<range><lt>9.5.2</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15176">
-	  <p>In GLPI before version 9.5.2, when supplying a back tick in input that gets put into a SQL query,the application does not escape or sanitize allowing for SQL Injection to occur. Leveraging this vulnerability an attacker is able to exfiltrate sensitive information like passwords, reset tokens, personal details, and more. The issue is patched in version 9.5.2</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/commit/f021f1f365b4acea5066d3e57c6d22658cf32575</url>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-x93w-64x9-58qw</url>
-      <cvename>CVE-2020-15176</cvename>
-    </references>
-    <dates>
-      <discovery>2020-06-25</discovery>
-      <entry>2020-06-25</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="675e5098-3b15-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Unauthenticated File Deletion</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>0.70</gt></range>
-	<range><lt>9.5.2</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15175">
-	  <p>In GLPI before version 9.5.2, the pluginimage.send.php endpoint allows a user to specify an image from a plugin. The parameters can be maliciously crafted to instead delete the .htaccess file for the files directory. Any user becomes able to read all the files and folders contained in /files/. Some of the sensitive information that is compromised are the user sessions, logs, and more. An attacker would be able to get the Administrators session token and use that to authenticate. The issue is patched in version 9.5.2.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-rm52-jx9h-rwcp</url>
-      <url>https://github.com/glpi-project/glpi/commit/6ca9a0e77299a755c356d758344a23278df67f65</url>
-      <cvename>CVE-2020-15175</cvename>
-    </references>
-    <dates>
-      <discovery>2020-06-25</discovery>
-      <entry>2020-06-25</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="7f163c81-3b12-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- SQL injection for all usages of "Clone" feature</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>9.5.0</gt></range>
-	<range><lt>9.5.1</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-15108">
-	  <p>In glpi before 9.5.1, there is a SQL injection for all usages of "Clone" feature. This has been fixed in 9.5.1.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-qv6w-68gq-wx2v</url>
-      <url>https://github.com/glpi-project/glpi/commit/a4baa64114eb92fd2adf6056a36e0582324414ba</url>
-      <url>https://github.com/glpi-project/glpi/pull/6684</url>
-      <cvename>CVE-2020-15108</cvename>
-    </references>
-    <dates>
-      <discovery>2020-06-25</discovery>
-      <entry>2020-06-25</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="07aecafa-3b12-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Reflexive XSS in Dropdown menus</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>0.68.1</gt></range>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11062">
-	  <p>In GLPI after 0.68.1 and before 9.4.6, multiple reflexive XSS occur in Dropdown endpoints due to an invalid Content-Type. This has been fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-3xxh-f5p2-jg3h</url>
-      <url>https://github.com/glpi-project/glpi/commit/5e1c52c5e8a30ceb4e9572964da7ed89ddfb1aaf</url>
-      <cvename>CVE-2020-11062</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="832fd11b-3b11-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Remote Code Execution (RCE) via the backup functionality</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11060">
-	  <p>In GLPI before 9.4.6, an attacker can execute system commands by abusing the backup functionality. Theoretically, this vulnerability can be exploited by an attacker without a valid account by using a CSRF. Due to the difficulty of the exploitation, the attack is only conceivable by an account having Maintenance privileges and the right to add WIFI networks. This is fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-cvvq-3fww-5v6f</url>
-      <url>https://github.com/glpi-project/glpi/commit/ad748d59c94da177a3ed25111c453902396f320c</url>
-      <cvename>CVE-2020-11060</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="27a230a2-3b11-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- multiple related stored XSS vulnerabilities</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11036">
-	  <p>In GLPI before version 9.4.6 there are multiple related stored XSS vulnerabilities. The package is vulnerable to Stored XSS in the comments of items in the Knowledge base. Adding a comment with content "alert(1)" reproduces the attack. This can be exploited by a user with administrator privileges in the User-Agent field. It can also be exploited by an outside party through the following steps: 1. Create a user with the surname `" onmouseover="alert(document.cookie)` and an empty first name. 2. With this user, create a ticket 3. As an administrator (or other privileged user) open the created ticket 4. On the "last update" field, put your mouse on the name of the user 5. The XSS fires This is fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-3g3h-rwhr-7385</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5WQMONZRWLWOXMHMYWR7A5Q5JJERPMVC/</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Q4BG2UTINBVV7MTJRXKBQ26GV2UINA6L/</url>
-      <cvename>CVE-2020-11036</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="b64edef7-3b10-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- weak csrf tokens</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>0.83.3</gt></range>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11035">
-	  <p>In GLPI after version 0.83.3 and before version 9.4.6, the CSRF tokens are generated using an insecure algorithm. The implementation uses rand and uniqid and MD5 which does not provide secure values. This is fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-w7q8-58qp-vmpf</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5WQMONZRWLWOXMHMYWR7A5Q5JJERPMVC/</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Q4BG2UTINBVV7MTJRXKBQ26GV2UINA6L/</url>
-      <cvename>CVE-2020-11035</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="3a63f478-3b10-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- bypass of the open redirect protection</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11034">
-	  <p>In GLPI before version 9.4.6, there is a vulnerability that allows bypassing the open redirect protection based which is based on a regexp. This is fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-gxv6-xq9q-37hg</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5WQMONZRWLWOXMHMYWR7A5Q5JJERPMVC/</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Q4BG2UTINBVV7MTJRXKBQ26GV2UINA6L/</url>
-      <cvename>CVE-2020-11034</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="aec9cbe0-3b0f-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- able to read any token through API user endpoint</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><gt>9.1</gt></range>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11033">
-	  <p>In GLPI from version 9.1 and before version 9.4.6, any API user with READ right on User itemtype will have access to full list of users when querying apirest.php/User. The response contains: - All api_tokens which can be used to do privileges escalations or read/update/delete data normally non accessible to the current user. - All personal_tokens can display another users planning. Exploiting this vulnerability requires the api to be enabled, a technician account. It can be mitigated by adding an application token. This is fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-rf54-3r4w-4h55</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5WQMONZRWLWOXMHMYWR7A5Q5JJERPMVC/</url>
-      <url>https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/Q4BG2UTINBVV7MTJRXKBQ26GV2UINA6L/</url>
-      <cvename>CVE-2020-11033</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="b3aae7ea-3aef-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- SQL injection for all helpdesk instances</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.4.6</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11032">
-	  <p>In GLPI before version 9.4.6, there is a SQL injection vulnerability for all helpdesk instances. Exploiting this vulnerability requires a technician account. This is fixed in version 9.4.6.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-344w-34h9-wwhh</url>
-      <cvename>CVE-2020-11032</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="0309c898-3aed-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Improve encryption algorithm</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.5.0</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-11031">
-	  <p>In GLPI before version 9.5.0, the encryption algorithm used is insecure. The security of the data encrypted relies on the password used, if a user sets a weak/predictable password, an attacker could decrypt data. This is fixed in version 9.5.0 by using a more secure encryption library. The library chosen is sodium.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-7xwm-4vjr-jvqh</url>
-      <url>https://github.com/glpi-project/glpi/commit/f1ae6c8481e5c19a6f1801a5548cada45702e01a#diff-b5d0ee8c97c7abd7e3fa29b9a27d1780</url>
-      <url>https://github.com/glpi-project/glpi/commit/f1ae6c8481e5c19a6f1801a5548cada45702e01a#diff-b5d0ee8c97c7abd7e3fa29b9a27d1780</url>
-      <cvename>CVE-2020-11031</cvename>
-    </references>
-    <dates>
-      <discovery>2020-03-30</discovery>
-      <entry>2020-03-30</entry>
-    </dates>
-  </vuln>
-
-  <vuln vid="d3f60db0-3aea-11eb-af2a-080027dbe4b7">
-    <topic>glpi -- Account takeover vulnerability</topic>
-    <affects>
-      <package>
-	<name>glpi</name>
-	<range><lt>9.4.4</lt></range>
-      </package>
-    </affects>
-    <description>
-      <body xmlns="http://www.w3.org/1999/xhtml">
-	<p>MITRE Corporation reports:</p>
-	<blockquote cite="https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14666">
-	  <p>GLPI through 9.4.3 is prone to account takeover by abusing the ajax/autocompletion.php autocompletion feature. The lack of correct validation leads to recovery of the token generated via the password reset functionality, and thus an authenticated attacker can set an arbitrary password for any user. This vulnerability can be exploited to take control of admin account. This vulnerability could be also abused to obtain other sensitive fields like API keys or password hashes.</p>
-	</blockquote>
-      </body>
-    </description>
-    <references>
-      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-14666</url>
-      <url>https://github.com/glpi-project/glpi/security/advisories/GHSA-47hq-pfrr-jh5q</url>
-      <url>https://www.tarlogic.com/advisories/Tarlogic-2019-GPLI-Account-Takeover.txt</url>
-      <cvename>CVE-2019-14666</cvename>
-    </references>
-    <dates>
-      <discovery>2019-08-05</discovery>
-      <entry>2019-08-05</entry>
     </dates>
   </vuln>
 
