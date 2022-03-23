@@ -24,8 +24,9 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libgpg-error.so:security/libgpg-error
 BUILD_DEPENDS=	bash:shells/bash
 
-USES=		autoreconf compiler:c++11-lang cpe gmake libtool localbase \
-		lua:54 mysql pathfix pkgconfig shebangfix sqlite ssl
+USES=		autoreconf compiler:c++11-lang cpe gmake gnome libtool \
+		localbase lua:54 mysql pathfix pkgconfig shebangfix sqlite ssl
+USE_GNOME=	glib20
 USE_OPENLDAP=	yes
 
 SUB_FILES=	ntopng-geoip2update.sh pkg-deinstall
