@@ -38,7 +38,8 @@ CPE_VENDOR=	rust-lang
 
 MAKE_ENV=	DESTDIR=${STAGEDIR} \
 		LIBGIT2_NO_PKG_CONFIG=1 \
-		OPENSSL_DIR="${OPENSSLBASE}"
+		OPENSSL_DIR="${OPENSSLBASE}" \
+		RUST_BACKTRACE=1
 TEST_ENV=	${MAKE_ENV} \
 		ALLOW_NONZERO_RLIMIT_CORE=1
 
@@ -95,16 +96,8 @@ IGNORE=		is only for FreeBSD
 
 .if ${ARCH} == powerpc
 # bfd to link rustc_driver; lld currently can't
-BUILD_DEPENDS+=	ld.bfd:devel/binutils \
-		clang12:devel/llvm12
-BINARY_ALIAS+=	cpp=${LOCALBASE}/bin/clang-cpp12 \
-		cc=${LOCALBASE}/bin/clang12 \
-		c++=${LOCALBASE}/bin/clang++12 \
-		ar=${LOCALBASE}/bin/llvm-ar12 \
-		nm=${LOCALBASE}/bin/llvm-nm12 \
-		ld=${LOCALBASE}/bin/ld.lld12
+BUILD_DEPENDS+=	ld.bfd:devel/binutils
 .else
-MAKE_ENV+=	RUST_BACKTRACE=1
 # rls needs 64-bit atomics
 _RUST_TOOLS+=	rls
 .endif
