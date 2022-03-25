@@ -2,6 +2,7 @@
 
 PORTNAME=	ntopng
 PORTVERSION=	5.2.d20220314
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net
 
@@ -24,9 +25,8 @@ LIB_DEPENDS=	librrd.so:databases/rrdtool \
 		libgpg-error.so:security/libgpg-error
 BUILD_DEPENDS=	bash:shells/bash
 
-USES=		autoreconf compiler:c++11-lang cpe gmake gnome libtool \
-		localbase lua:54 mysql pathfix pkgconfig shebangfix sqlite ssl
-USE_GNOME=	glib20
+USES=		autoreconf compiler:c++11-lang cpe gmake libtool localbase \
+		lua:54 mysql pathfix pkgconfig shebangfix sqlite ssl
 USE_OPENLDAP=	yes
 
 SUB_FILES=	ntopng-geoip2update.sh pkg-deinstall
