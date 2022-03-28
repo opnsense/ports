@@ -1607,6 +1607,7 @@
     SUBDIR += py-flask-babelex
     SUBDIR += py-flask-bootstrap
     SUBDIR += py-flask-cache
+    SUBDIR += py-flask-caching
     SUBDIR += py-flask-collect
     SUBDIR += py-flask-compress
     SUBDIR += py-flask-cors
@@ -2320,6 +2321,7 @@
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
     SUBDIR += varnish6
+    SUBDIR += varnish7
     SUBDIR += varnish_exporter
     SUBDIR += vdr-plugin-live
     SUBDIR += vdradmin-am

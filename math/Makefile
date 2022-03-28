@@ -834,6 +834,7 @@
     SUBDIR += py-fastdtw
     SUBDIR += py-flax
     SUBDIR += py-fpylll
+    SUBDIR += py-fraction
     SUBDIR += py-fvcore
     SUBDIR += py-gau2grid
     SUBDIR += py-gimmik
@@ -867,10 +868,10 @@
     SUBDIR += py-matplotlib2
     SUBDIR += py-mip
     SUBDIR += py-mixsimulator
+    SUBDIR += py-moarchiving
     SUBDIR += py-mpmath
     SUBDIR += py-munkres
     SUBDIR += py-munkres10
-    SUBDIR += py-mutatormath
     SUBDIR += py-ndindex
     SUBDIR += py-networkx
     SUBDIR += py-nevergrad
