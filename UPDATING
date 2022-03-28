@@ -5,6 +5,18 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20220326:
+  AFFECTS: users of misc/freebsd-doc-*
+  AUTHOR: blackend@FreeBSD.org
+
+  A change to the doc toolchain prevents the build of individual
+  localized HTML versions of the documentation without building the
+  en_US version.  HTML option is currently disabled until a good
+  solution is found.  PDF version, the default option, is now the only
+  available option.
+
+  Please re-run "make config" to pick up this new default.
+
 20220313:
   AFFECTS: users of net/unison
   AUTHOR: madpilot@FreeBSD.org
@@ -75,7 +87,7 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: users of sysutils/intel-pcm-devel
   AUTHOR: egypcio@FreeBSD.org
 
-  sysutils/intel-pcm-devel became quite obsolte once sysutils/intel-pcm is
+  sysutils/intel-pcm-devel became quite obsolete once sysutils/intel-pcm is
   now pretty much following a constant and stable update cycle, so users of
   the -devel version are encouraged to switch to it.
 
@@ -307,7 +319,7 @@ you update your ports collection, before attempting any port upgrades.
 
   emulators/qemu50 has been moved to emulators/qemu5 and updated to 5.2.0 
   which is the last version from 5.X.X branch. This is done in preparation
-  of updating emulators/qemu into latest 6.X bgranch. If someone wants to
+  of updating emulators/qemu into latest 6.X branch. If someone wants to
   stick with 5.X.X branch please use one of the following command:
 
   # pkg install qemu5
