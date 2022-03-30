@@ -1,6 +1,6 @@
 --- meson.build.orig	2022-03-09 17:46:34 UTC
 +++ meson.build
-@@ -105,7 +105,7 @@ endif
+@@ -105,7 +105,7 @@ subdir('etc')
  config_h = configure_file(output: 'config.h', configuration: cdata)
  
  subdir('etc')
