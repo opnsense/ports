@@ -249,7 +249,6 @@
     SUBDIR += honeyd
     SUBDIR += hostapd
     SUBDIR += hostapd-devel
-    SUBDIR += hping
     SUBDIR += hping3
     SUBDIR += hsflowd
     SUBDIR += htpdate
@@ -268,7 +267,6 @@
     SUBDIR += ilbc
     SUBDIR += imapproxy
     SUBDIR += incidenceeditor
-    SUBDIR += inlets
     SUBDIR += intel-em-kmod
     SUBDIR += intel-ix-kmod
     SUBDIR += intel-ixl-kmod
@@ -1074,6 +1072,7 @@
     SUBDIR += py-paho-mqtt
     SUBDIR += py-pamqp
     SUBDIR += py-pcapy
+    SUBDIR += py-pcapy-ng
     SUBDIR += py-port-for
     SUBDIR += py-portend
     SUBDIR += py-pyenet
@@ -1169,7 +1168,6 @@
     SUBDIR += qt5-network
     SUBDIR += qt5-networkauth
     SUBDIR += quagga
-    SUBDIR += queso
     SUBDIR += quiche
     SUBDIR += quiterss
     SUBDIR += quoted
@@ -1449,7 +1447,6 @@
     SUBDIR += ssldump
     SUBDIR += sslh
     SUBDIR += ssspl
-    SUBDIR += ssvnc
     SUBDIR += stone
     SUBDIR += storj
     SUBDIR += stund

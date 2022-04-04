@@ -1,8 +1,7 @@
 # Created by: Kenneth Vestergaard Schmidt <kvs@pil.dk>
 
 PORTNAME=	emacs
-DISTVERSION=	29.0.50.20220315
-PORTREVISION=	1
+DISTVERSION=	29.0.50.20220331
 PORTEPOCH=	2
 CATEGORIES=	editors
 PKGNAMESUFFIX=	-devel
@@ -26,7 +25,7 @@ USES=		autoreconf:build cpe gmake localbase:ldflags ncurses pkgconfig
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	d932e25
+GH_TAGNAME=	c5af19c
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--disable-build-details \
@@ -113,7 +112,7 @@ M17N_DESC=		M17N support for text-shaping [implies XFT]
 MAGICK_DESC=		ImageMagick image processing support (deprecated)
 MAILUTILS_DESC=		Mail framework via GNU Mailutils
 MODULES_DESC=		Dynamic modules support
-NATIVECOMP_DESC=	Emacs Lisp native compiler support
+NATIVECOMP_DESC=	Emacs Lisp native compiler support (experimental)
 OTF_DESC=		Opentype fonts [implies XFT]
 PGTK_DESC=		Pure GTK GUI [implies CAIRO, GTK3]
 SCROLLBARS_DESC=	Toolkit scroll-bars

@@ -2,6 +2,7 @@
 
 PORTNAME=	chromium
 PORTVERSION=	100.0.4896.60
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		https://nerd.hu/distfiles/:fonts
@@ -56,6 +57,7 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-atk \
 		libnss3.so:security/nss \
 		libexpat.so:textproc/expat2 \
 		libfontconfig.so:x11-fonts/fontconfig \
+		libwayland-client.so:graphics/wayland \
 		libxkbcommon.so:x11/libxkbcommon \
 		libxshmfence.so:x11/libxshmfence
 
@@ -108,6 +110,7 @@ GN_ARGS+=	clang_use_chrome_plugins=false \
 		use_system_freetype=false \
 		use_system_harfbuzz=true \
 		use_system_libjpeg=true \
+		use_system_wayland_scanner=true \
 		use_udev=false \
 		extra_cxxflags="${CXXFLAGS}" \
 		extra_ldflags="${LDFLAGS}"

@@ -86,7 +86,6 @@
     SUBDIR += cheesecutter
     SUBDIR += chordpack
     SUBDIR += chromaprint
-    SUBDIR += clementine-player
     SUBDIR += cli-visualizer
     SUBDIR += clunk
     SUBDIR += cmp3
@@ -718,6 +717,7 @@
     SUBDIR += schismtracker
     SUBDIR += screcord-lv2
     SUBDIR += sdl2_mixer
+    SUBDIR += sdl2_sound
     SUBDIR += sdl_mixer
     SUBDIR += sdl_sound
     SUBDIR += sfizz

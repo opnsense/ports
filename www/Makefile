@@ -89,7 +89,6 @@
     SUBDIR += cpp-httplib
     SUBDIR += cpr
     SUBDIR += crawl
-    SUBDIR += crp
     SUBDIR += css-mode.el
     SUBDIR += cssed
     SUBDIR += csso
@@ -188,7 +187,6 @@
     SUBDIR += geckodriver
     SUBDIR += geneweb
     SUBDIR += geolizer
-    SUBDIR += geronimo
     SUBDIR += get_flash_videos
     SUBDIR += getleft
     SUBDIR += gist
@@ -211,7 +209,6 @@
     SUBDIR += gopherus
     SUBDIR += gotty
     SUBDIR += gpx2map
-    SUBDIR += grafana6
     SUBDIR += grafana7
     SUBDIR += grafana8
     SUBDIR += grails
@@ -263,6 +260,7 @@
     SUBDIR += ilias
     SUBDIR += ilias6
     SUBDIR += interchange
+    SUBDIR += iridium
     SUBDIR += itop
     SUBDIR += janus
     SUBDIR += jericho-html
@@ -273,7 +271,6 @@
     SUBDIR += jitsi-meet
     SUBDIR += jmeter
     SUBDIR += joomla3
-    SUBDIR += jspwiki
     SUBDIR += jwt-cli
     SUBDIR += kanboard
     SUBDIR += kannel
@@ -284,6 +281,7 @@
     SUBDIR += kf5-khtml
     SUBDIR += kf5-kjs
     SUBDIR += kf5-kjsembed
+    SUBDIR += kineto
     SUBDIR += kiwix-tools
     SUBDIR += kohana
     SUBDIR += kristall
@@ -372,9 +370,7 @@
     SUBDIR += mod_auth_pubtkt
     SUBDIR += mod_auth_tkt
     SUBDIR += mod_auth_xradius
-    SUBDIR += mod_authnz_crowd
     SUBDIR += mod_authnz_external24
-    SUBDIR += mod_backtrace
     SUBDIR += mod_cfg_ldap
     SUBDIR += mod_cloudflare
     SUBDIR += mod_dav_svn
@@ -389,7 +385,6 @@
     SUBDIR += mod_http2
     SUBDIR += mod_jk
     SUBDIR += mod_limitipconn2
-    SUBDIR += mod_line_edit
     SUBDIR += mod_log_sql
     SUBDIR += mod_maxminddb
     SUBDIR += mod_memcache
@@ -401,7 +396,6 @@
     SUBDIR += mod_php80
     SUBDIR += mod_php81
     SUBDIR += mod_proctitle
-    SUBDIR += mod_proxy_xml
     SUBDIR += mod_qos
     SUBDIR += mod_realdoc
     SUBDIR += mod_reproxy
@@ -415,7 +409,6 @@
     SUBDIR += mod_webauth
     SUBDIR += mod_webkit
     SUBDIR += mod_wsgi4
-    SUBDIR += mod_xmlns
     SUBDIR += mod_xsendfile
     SUBDIR += mohawk
     SUBDIR += moinmoin
@@ -431,7 +424,6 @@
     SUBDIR += multisort
     SUBDIR += multiwatch
     SUBDIR += mybb
-    SUBDIR += myfaces
     SUBDIR += mysqlphp2postgres
     SUBDIR += mythplugin-mythweb
     SUBDIR += nanoblogger
@@ -462,7 +454,6 @@
     SUBDIR += nibbleblog
     SUBDIR += nift
     SUBDIR += node
-    SUBDIR += node10
     SUBDIR += node14
     SUBDIR += node16
     SUBDIR += nostromo
@@ -1318,7 +1309,6 @@
     SUBDIR += p5-pQuery
     SUBDIR += p5-webservice-validator-css-w3c
     SUBDIR += p5-webservice-validator-html-w3c
-    SUBDIR += paros
     SUBDIR += payara
     SUBDIR += pear-HTML_AJAX
     SUBDIR += pear-HTML_TagCloud
@@ -2176,7 +2166,6 @@
     SUBDIR += s
     SUBDIR += sabredav
     SUBDIR += sahi
-    SUBDIR += sakai
     SUBDIR += samdruckerserver
     SUBDIR += sarg
     SUBDIR += scloader
@@ -2249,7 +2238,6 @@
     SUBDIR += tomcat-devel
     SUBDIR += tomcat-native
     SUBDIR += tomcat10
-    SUBDIR += tomcat7
     SUBDIR += tomcat85
     SUBDIR += tomcat9
     SUBDIR += tomee
@@ -2297,7 +2285,6 @@
     SUBDIR += twms
     SUBDIR += typo3-10
     SUBDIR += typo3-11
-    SUBDIR += typo3-9
     SUBDIR += uchiwa
     SUBDIR += ufdbguard
     SUBDIR += ulfius

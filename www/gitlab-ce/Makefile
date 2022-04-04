@@ -97,7 +97,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-carrierwave>=1.3.2<2.0:www/rubygem-carrierwave \
 	rubygem-mini_magick410>=4.10.1<4.11:graphics/rubygem-mini_magick410 \
 	rubygem-fog-aws>=3.12<4:net/rubygem-fog-aws \
-	rubygem-fog-core210=2.1.0:devel/rubygem-fog-core210 \
+	rubygem-fog-core210>=2.1.0<2.1.1:devel/rubygem-fog-core210 \
 	rubygem-fog-google>=1.15<2:net/rubygem-fog-google \
 	rubygem-fog-local>=0.6<1.0:net/rubygem-fog-local \
 	rubygem-fog-openstack>=1.0<2.0:net/rubygem-fog-openstack \
@@ -160,7 +160,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-device_detector>=0:devel/rubygem-device_detector \
 	rubygem-redis44>=4.4.0<4.5:databases/rubygem-redis44 \
 	rubygem-connection_pool>=2.2.5<3.0:net/rubygem-connection_pool \
-	rubygem-redis-actionpack-rails61>=5.2.0<5.3:databases/rubygem-redis-actionpack-rails61 \
+	rubygem-redis-actionpack52-rails61>=5.2.0<5.3:databases/rubygem-redis-actionpack52-rails61 \
 	rubygem-discordrb-webhooks>=3.4<4.0:net-im/rubygem-discordrb-webhooks \
 	rubygem-jira-ruby>=2.1.4<2.2:devel/rubygem-jira-ruby \
 	rubygem-atlassian-jwt>=0.2.0<0.3.0:www/rubygem-atlassian-jwt \

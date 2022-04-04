@@ -159,7 +159,6 @@
     SUBDIR += apache-commons-daemon
     SUBDIR += apache-commons-io
     SUBDIR += apache-commons-jxpath
-    SUBDIR += apache-commons-modeler
     SUBDIR += apache-rat
     SUBDIR += aphpbreakdown
     SUBDIR += aphpunit
@@ -674,7 +673,6 @@
     SUBDIR += fam
     SUBDIR += fastcrc
     SUBDIR += fatal
-    SUBDIR += fb-adb
     SUBDIR += fbthrift
     SUBDIR += fc++
     SUBDIR += fhist
@@ -854,7 +852,6 @@
     SUBDIR += git-svn
     SUBDIR += git-town
     SUBDIR += gitaly
-    SUBDIR += gitblit
     SUBDIR += gitflow
     SUBDIR += gitg
     SUBDIR += github-backup-utils
@@ -952,8 +949,6 @@
     SUBDIR += gwenhywfar-gtk3
     SUBDIR += gwenhywfar-qt5
     SUBDIR += gzstream
-    SUBDIR += hadoop
-    SUBDIR += hadoop2
     SUBDIR += hapy
     SUBDIR += hcs12mem
     SUBDIR += heaptrack
@@ -1033,7 +1028,6 @@
     SUBDIR += interactive_rebase_tool
     SUBDIR += ioncube
     SUBDIR += ipython
-    SUBDIR += ipython5
     SUBDIR += ireport
     SUBDIR += isa-l
     SUBDIR += isfreedesktop
@@ -1145,7 +1139,6 @@
     SUBDIR += libabigail
     SUBDIR += libac
     SUBDIR += libafterbase
-    SUBDIR += liballium
     SUBDIR += libantlr3c
     SUBDIR += libantlr4
     SUBDIR += libappindicator
@@ -1555,8 +1548,6 @@
     SUBDIR += mate-common
     SUBDIR += maven
     SUBDIR += maven-wrapper
-    SUBDIR += maven3
-    SUBDIR += maven33
     SUBDIR += mcpp
     SUBDIR += mdb
     SUBDIR += mdds
@@ -1586,7 +1577,6 @@
     SUBDIR += mold
     SUBDIR += mongo-c-driver
     SUBDIR += mono-addins
-    SUBDIR += monotone
     SUBDIR += mpatrol
     SUBDIR += mph
     SUBDIR += msbuild
@@ -1673,6 +1663,7 @@
     SUBDIR += ocaml-uutf
     SUBDIR += ocaml-xstr
     SUBDIR += ocaml-xstrp4
+    SUBDIR += oci-cli
     SUBDIR += ocl-icd
     SUBDIR += oclgrind
     SUBDIR += ode
@@ -4435,7 +4426,6 @@
     SUBDIR += py-dal
     SUBDIR += py-darts.util.lru
     SUBDIR += py-dask
-    SUBDIR += py-dataclasses
     SUBDIR += py-dataclasses-json
     SUBDIR += py-datadog
     SUBDIR += py-datapackage
@@ -5062,6 +5052,7 @@
     SUBDIR += py-pyrsistent
     SUBDIR += py-pysdl2
     SUBDIR += py-pyshp
+    SUBDIR += py-pysimdjson
     SUBDIR += py-pysparklines
     SUBDIR += py-pystorm
     SUBDIR += py-pyte
@@ -5731,6 +5722,7 @@
     SUBDIR += rubygem-aws-sdk-backup
     SUBDIR += rubygem-aws-sdk-backupgateway
     SUBDIR += rubygem-aws-sdk-batch
+    SUBDIR += rubygem-aws-sdk-billingconductor
     SUBDIR += rubygem-aws-sdk-braket
     SUBDIR += rubygem-aws-sdk-budgets
     SUBDIR += rubygem-aws-sdk-chime
@@ -5821,6 +5813,7 @@
     SUBDIR += rubygem-aws-sdk-frauddetector
     SUBDIR += rubygem-aws-sdk-fsx
     SUBDIR += rubygem-aws-sdk-gamelift
+    SUBDIR += rubygem-aws-sdk-gamesparks
     SUBDIR += rubygem-aws-sdk-glacier
     SUBDIR += rubygem-aws-sdk-globalaccelerator
     SUBDIR += rubygem-aws-sdk-glue
@@ -7066,7 +7059,6 @@
     SUBDIR += sope
     SUBDIR += sope2
     SUBDIR += sord
-    SUBDIR += spark
     SUBDIR += sparsehash
     SUBDIR += spatialindex
     SUBDIR += spdlog
