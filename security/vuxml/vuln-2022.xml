@@ -1,3 +1,83 @@
+  <vuln vid="79ea6066-b40e-11ec-8b93-080027b24e86">
+    <topic>mediawiki -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mediawiki135</name>
+	<range><lt>1.35.6</lt></range>
+      </package>
+      <package>
+	<name>mediawiki136</name>
+	<range><lt>1.36.4</lt></range>
+      </package>
+      <package>
+	<name>mediawiki137</name>
+	<range><lt>1.37.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mediawiki reports:</p>
+	<blockquote cite="https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/YJNXKPV5Z56NSUQ4G3SXPDUIZG5EQ7UR/">
+	  <p>(T297543, CVE-2022-28202) Messages widthheight/widthheightpage/nbytes not
+	    escaped when used in galleries or Special:RevisionDelete.</p>
+	  <p>(T297571, CVE-2022-28201) Title::newMainPage() goes into an infinite
+	    recursion loop if it points to a local interwiki.</p>
+	  <p>(T297731, CVE-2022-28203) Requesting Special:NewFiles on a wiki with many
+	    file uploads with actor as a condition can result in a DoS.</p>
+	  <p>(T297754, CVE-2022-28204) Special:WhatLinksHere can result in a DoS when
+	    a page is used on a extremely large number of other pages.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-28201</cvename>
+      <cvename>CVE-2022-28202</cvename>
+      <cvename>CVE-2022-28203</cvename>
+      <cvename>CVE-2022-28204</cvename>
+      <url>https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/YJNXKPV5Z56NSUQ4G3SXPDUIZG5EQ7UR/</url>
+    </references>
+    <dates>
+      <discovery>2021-12-12</discovery>
+      <entry>2022-04-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3f321a5a-b33b-11ec-80c2-1bb2c6a00592">
+    <topic>dnsmasq -- heap use-after-free in dhcp6_no_relay</topic>
+    <affects>
+      <package>
+	<name>dnsmasq</name>
+	<range><lt>2.86_4,1</lt></range>
+      </package>
+      <package>
+	<name>dnsmasq-devel</name>
+	<range><lt>2.86_4,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Petr Menšík reports:</p>
+	<blockquote cite="https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2022q1/016272.html">
+	  <p>Possible vulnerability [...] found in latest dnsmasq. It [was] found
+	    with help of oss-fuzz Google project by me and short after that
+	    independently also by Richard Johnson of Trellix Threat Labs.</p>
+	  <p>It is affected only by DHCPv6 requests, which could be crafted to
+	    modify already freed memory. [...] We think it might be triggered
+	    remotely, but we do not think it could be used to execute remote
+	    code.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-0934</cvename>
+      <url>https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2022q1/016272.html</url>
+    </references>
+    <dates>
+      <discovery>2022-03-31</discovery>
+      <entry>2022-04-03</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="83466f76-aefe-11ec-b4b6-d05099c0c059">
     <topic>gitea -- Open Redirect on login</topic>
     <affects>
@@ -1396,6 +1476,53 @@
     </references>
     <dates>
       <discovery>2022-02-12</discovery>
+      <entry>2022-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="972ba0e8-8b8a-11ec-b369-6c3be5272acd">
+    <topic>Node.js -- January 2022 Security Releases</topic>
+    <affects>
+      <package>
+	<name>node</name>
+	<range><ge>12.0.0</ge><lt>12.22.9</lt></range>
+	<range><ge>14.0.0</ge><lt>14.18.3</lt></range>
+	<range><ge>16.0.0</ge><lt>16.13.2</lt></range>
+	<range><ge>17.0.0</ge><lt>17.3.1</lt></range>
+      </package>
+      <package>
+	<name>node16</name>
+	<range><lt>16.13.2</lt></range>
+      </package>
+      <package>
+	<name>node14</name>
+	<range><lt>14.18.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Node.js reports:</p>
+	<blockquote cite="https://nodejs.org/en/blog/vulnerability/jan-2022-security-releases/">
+	  <h1>Improper handling of URI Subject Alternative Names (Medium)(CVE-2021-44531)</h1>
+	  <p>Accepting arbitrary Subject Alternative Name (SAN) types, unless a PKI is specifically defined to use a particular SAN type, can result in bypassing name-constrained intermediates. Node.js was accepting URI SAN types, which PKIs are often not defined to use. Additionally, when a protocol allows URI SANs, Node.js did not match the URI correctly.</p>
+	  <h1>Certificate Verification Bypass via String Injection (Medium)(CVE-2021-44532)</h1>
+	  <p>Node.js converts SANs (Subject Alternative Names) to a string format. It uses this string to check peer certificates against hostnames when validating connections. The string format was subject to an injection vulnerability when name constraints were used within a certificate chain, allowing the bypass of these name constraints.</p>
+	  <h1>Incorrect handling of certificate subject and issuer fields (Medium)(CVE-2021-44533)</h1>
+	  <p>Node.js did not handle multi-value Relative Distinguished Names correctly. Attackers could craft certificate subjects containing a single-value Relative Distinguished Name that would be interpreted as a multi-value Relative Distinguished Name, for example, in order to inject a Common Name that would allow bypassing the certificate subject verification.</p>
+	  <h1>Prototype pollution via <code>console.table</code> properties (Low)(CVE-2022-21824)</h1>
+	  <p>Due to the formatting logic of the <code>console.table()</code> function it was not safe to allow user controlled input to be passed to the <code>properties</code> parameter while simultaneously passing a plain object with at least one property as the first parameter, which could be <code>__proto__</code>. The prototype pollution has very limited control, in that it only allows an empty string to be assigned to numerical keys of the object prototype.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44531</cvename>
+      <cvename>CVE-2021-44532</cvename>
+      <cvename>CVE-2021-44533</cvename>
+      <cvename>CVE-2022-21824</cvename>
+      <url>https://nodejs.org/en/blog/vulnerability/jan-2022-security-releases/</url>
+    </references>
+    <dates>
+      <discovery>2022-01-10</discovery>
       <entry>2022-02-12</entry>
     </dates>
   </vuln>
