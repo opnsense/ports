@@ -4822,6 +4822,7 @@
     SUBDIR += py-notify2
     SUBDIR += py-num2words
     SUBDIR += py-numba
+    SUBDIR += py-objgraph
     SUBDIR += py-oci
     SUBDIR += py-odfpy
     SUBDIR += py-offtrac
@@ -5526,6 +5527,7 @@
     SUBDIR += qbs
     SUBDIR += qca
     SUBDIR += qconf
+    SUBDIR += qcoro
     SUBDIR += qgit
     SUBDIR += qjson
     SUBDIR += qmake
