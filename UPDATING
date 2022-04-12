@@ -5,6 +5,16 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20220410:
+  AFFECTS: users of sysutils/screen
+  AUTHOR: cy@FreeBSD.org
+
+  As of sysutils/screen-4.9.0_5, the MULTUSER option is default, reverting
+  to the traditional setuid-root behavior. People who wish to secure their
+  screen install must terminate all screen sessions, then install screen
+  without the MULTIUSER option. The option was reversed because it caused
+  too much astonishment among users of screen.
+
 20220401:
   AFFECTS: security/sshguard
   AUTHOR: kevinz5000@gmail.com
@@ -205,6 +215,14 @@ you update your ports collection, before attempting any port upgrades.
   If you use Packer, you also want to delete the startup cache:
 
   # rm -rf ~/.config/nvim/plugin/packer_compiled.lua
+
+20220128:
+  AFFECTS: users of x11-fonts/source-sans-ttf
+  AUTHOR: fernape@FreeBSD.org
+
+  The font name has changed its prefix from SourceSansPro* to SourceSans*.
+  Users of this font might need to change their configurations to pick up
+  the new names.
 
 20220128:
   AFFECTS: users of net-im/dendrite
