@@ -38,6 +38,9 @@
     SUBDIR += awstats
     SUBDIR += axis2
     SUBDIR += bacula-web
+    SUBDIR += baculum-api
+    SUBDIR += baculum-common
+    SUBDIR += baculum-web
     SUBDIR += baikal
     SUBDIR += bareos-webui
     SUBDIR += bareos18-webui
@@ -2303,8 +2306,10 @@
     SUBDIR += varnish-ip2proxy
     SUBDIR += varnish-libvmod-digest
     SUBDIR += varnish-libvmod-dynamic
+    SUBDIR += varnish-libvmod-geoip2
     SUBDIR += varnish-libvmod-maxminddb
     SUBDIR += varnish-libvmod-querystring
+    SUBDIR += varnish-libvmod-redis
     SUBDIR += varnish-modules
     SUBDIR += varnish-nagios
     SUBDIR += varnish4
