@@ -909,6 +909,7 @@
     SUBDIR += py-oauthlib
     SUBDIR += py-onlykey
     SUBDIR += py-openssl
+    SUBDIR += py-oscrypto
     SUBDIR += py-ospd
     SUBDIR += py-ospd-openvas
     SUBDIR += py-paramiko
@@ -929,6 +930,7 @@
     SUBDIR += py-pycryptodome
     SUBDIR += py-pycryptodomex
     SUBDIR += py-pyelliptic
+    SUBDIR += py-pyhanko-certvalidator
     SUBDIR += py-pylibacl
     SUBDIR += py-pymacaroons
     SUBDIR += py-pynacl
@@ -977,6 +979,7 @@
     SUBDIR += py-stix2
     SUBDIR += py-stix2-patterns
     SUBDIR += py-taxii2-client
+    SUBDIR += py-tinyaes
     SUBDIR += py-tls-parser
     SUBDIR += py-tlslite
     SUBDIR += py-tlslite-ng
@@ -994,6 +997,7 @@
     SUBDIR += py-xkcdpass
     SUBDIR += py-xmlsec
     SUBDIR += py-yara
+    SUBDIR += py-yara-python-dex
     SUBDIR += py-yubikey-manager
     SUBDIR += py-zkg
     SUBDIR += py-zope.password

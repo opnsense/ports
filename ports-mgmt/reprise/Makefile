@@ -1,5 +1,5 @@
 PORTNAME=	reprise
-PORTVERSION=	0.0.1
+PORTVERSION=	0.3.2
 CATEGORIES=	ports-mgmt python
 
 MAINTAINER=	amdmi3@FreeBSD.org
@@ -8,11 +8,13 @@ COMMENT=	Port testing system
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}jsonslicer>=0:textproc/py-jsonslicer@${PY_FLAVOR}
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aiohttp>=0:www/py-aiohttp@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}jsonslicer>=0:textproc/py-jsonslicer@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}termcolor>=0:devel/py-termcolor@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=0:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-asyncio>=0:devel/py-pytest-asyncio@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.8+
 USE_GITHUB=	yes
 GH_ACCOUNT=	AMDmi3
 USE_PYTHON=	autoplist distutils noflavors
@@ -29,10 +31,4 @@ post-install-DOCS-on:
 do-test:
 	@cd ${TEST_WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m pytest -v -rs
 
-.include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 31000
-IGNORE=		does not yet support python < 3.10
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

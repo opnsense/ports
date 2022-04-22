@@ -1,8 +1,8 @@
 # Created by: Torsten Zuehlsdorff <tz@FreeBSD.org>
 
 PORTNAME=	gitlab-ce
-PORTVERSION=	14.9.2
-PORTREVISION=	0
+PORTVERSION=	14.9.3
+PORTREVISION=	1
 CATEGORIES=	www devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -231,7 +231,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-gitaly>=14.9.0.pre.rc4<14.10.0:net/rubygem-gitaly \
 	rubygem-kas-grpc>=0.0.2,1<0.0.3,1:net/rubygem-kas-grpc \
 	rubygem-grpc142>=1.42.0<1.43:net/rubygem-grpc142 \
-	rubygem-google-protobuf>=3.19.0<3.20:devel/rubygem-google-protobuf \
+	rubygem-google-protobuf319>=3.19.0<3.20:devel/rubygem-google-protobuf319 \
 	rubygem-toml-rb>=2.0.1<3:www/rubygem-toml-rb \
 	rubygem-flipper021>=0.21.0<0.22:devel/rubygem-flipper021 \
 	rubygem-flipper-active_record-rails61>=0.21.0<0.22:databases/rubygem-flipper-active_record-rails61 \
@@ -278,7 +278,7 @@ USE_GITLAB=	yes
 GL_ACCOUNT=	gitlab-org
 GL_PROJECT=	gitlab-foss
 # Find the here: https://gitlab.com/gitlab-org/gitlab-foss/-/tags
-GL_COMMIT=	56bec66a79f1fd82a130cb7963d86b76bd5f9185
+GL_COMMIT=	ec11aba56f1765125e699155cb39387aaa4d0ca3
 
 USERS=	git
 GROUPS=	git

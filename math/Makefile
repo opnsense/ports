@@ -486,6 +486,7 @@
     SUBDIR += ntl
     SUBDIR += numdiff
     SUBDIR += obake
+    SUBDIR += ocaml-num
     SUBDIR += ocaml-ocamlgraph
     SUBDIR += ocaml-zarith
     SUBDIR += ocamlgsl
@@ -819,6 +820,7 @@
     SUBDIR += py-claripy
     SUBDIR += py-cma
     SUBDIR += py-cmaes
+    SUBDIR += py-cmyt
     SUBDIR += py-colormath
     SUBDIR += py-cryptominisat
     SUBDIR += py-cvxopt
