@@ -135,8 +135,8 @@ RUBY?=			${LOCALBASE}/bin/ruby${RUBY_SUFFIX}
 #
 # Ruby 2.7
 #
-RUBY_DISTVERSION=	2.7.5
-RUBY_PORTREVISION=	1
+RUBY_DISTVERSION=	2.7.6
+RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 RUBY27=			""	# PLIST_SUB helpers
 
@@ -144,7 +144,7 @@ RUBY27=			""	# PLIST_SUB helpers
 #
 # Ruby 3.0
 #
-RUBY_DISTVERSION=	3.0.3
+RUBY_DISTVERSION=	3.0.4
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 RUBY30=			""	# PLIST_SUB helpers
@@ -152,10 +152,19 @@ RUBY30=			""	# PLIST_SUB helpers
 #
 # Ruby 3.1
 #
-RUBY_DISTVERSION=	3.1.1
+RUBY_DISTVERSION=	3.1.2
 RUBY_PORTREVISION=	0
 RUBY_PORTEPOCH=		1
 RUBY31=			""	# PLIST_SUB helpers
+
+. elif ${RUBY_VER} == 3.2
+#
+# Ruby 3.2
+#
+RUBY_DISTVERSION=	3.2.0-preview1
+RUBY_PORTREVISION=	1
+RUBY_PORTEPOCH=		1
+RUBY32=			""	# PLIST_SUB helpers
 
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
@@ -163,7 +172,7 @@ RUBY31=			""	# PLIST_SUB helpers
 #
 # Other versions
 #
-IGNORE=	Only ruby 2.7, 3.0 and 3.1 are supported
+IGNORE=	Only ruby 2.7, 3.0, 3.1 and 3.2 are supported
 _INVALID_RUBY_VER=	1
 . endif
 RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
@@ -174,6 +183,7 @@ RUBY_VERSION=	${RUBY_DISTVERSION:C/^([0-9]+\.[0-9]+\.[0-9]+).*/\1/}
 RUBY27?=		"@comment "
 RUBY30?=		"@comment "
 RUBY31?=		"@comment "
+RUBY32?=		"@comment "
 
 .if defined(BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E})
 .if ${BROKEN_RUBY${RUBY_VER:R}${RUBY_VER:E}} == "yes"
@@ -279,7 +289,8 @@ PLIST_SUB+=		${PLIST_RUBY_DIRS:C,DIR="(${LOCALBASE}|${PREFIX})/,DIR=",} \
 			RUBY_DEFAULT_SUFFIX="${RUBY_DEFAULT_SUFFIX}" \
 			RUBY27=${RUBY27} \
 			RUBY30=${RUBY30} \
-			RUBY31=${RUBY31}
+			RUBY31=${RUBY31} \
+			RUBY32=${RUBY32}
 
 .if ${PORT_OPTIONS:MDEBUG}
 RUBY_FLAGS+=	-d

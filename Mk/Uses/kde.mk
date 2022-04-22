@@ -79,14 +79,14 @@ KDE_PLASMA_VERSION?=		5.24.4
 KDE_PLASMA_BRANCH?=		stable
 
 # Current KDE frameworks.
-KDE_FRAMEWORKS_VERSION?=	5.92.0
+KDE_FRAMEWORKS_VERSION?=	5.93.0
 KDE_FRAMEWORKS_BRANCH?= 	stable
 
 # Current KDE applications.
-KDE_APPLICATIONS_VERSION?=	21.12.3
-KDE_APPLICATIONS_SHLIB_VER?=	5.19.3
+KDE_APPLICATIONS_VERSION?=	22.04.0
+KDE_APPLICATIONS_SHLIB_VER?=	5.20.0
 # G as in KDE Gear, and as in "don't make the variable name longer than required"
-KDE_APPLICATIONS_SHLIB_G_VER?=	21.12.3
+KDE_APPLICATIONS_SHLIB_G_VER?=	22.04.0
 KDE_APPLICATIONS_BRANCH?=	stable
 
 # Extended KDE universe applications.
@@ -274,7 +274,7 @@ _USE_PLASMA_ALL=	activitymanagerd breeze breeze-gtk \
 
 # List of components of the KDE PIM distribution (part of applications).
 _USE_KDEPIM5_ALL=	akonadicontacts akonadiimportwizard akonadimime akonadinotes \
-			akonadicalendar akonadisearch alarmcalendar \
+			akonadicalendar akonadisearch \
 			calendarcore calendarsupport calendarutils \
 			contacts eventviews gapi grantleetheme \
 			gravatar identitymanagement imap \
@@ -434,7 +434,7 @@ kde-kirigami2_PORT=		x11-toolkits/kf5-kirigami2
 kde-kirigami2_PATH=		${QT_QMLDIR}/org/kde/kirigami.2/libKirigamiPlugin.so
 
 kde-kquickcharts_PORT=		graphics/kf5-kquickcharts
-kde-kquickcharts_PATH=		${QT_QMLDIR}/org/kde/quickcharts/controls/libchartscontrolsplugin.so
+kde-kquickcharts_PATH=		${QT_QMLDIR}/org/kde/quickcharts/libQuickCharts.so
 
 kde-kross_PORT=			lang/kf5-kross
 kde-kross_LIB=			libKF5KrossCore.so
@@ -671,9 +671,6 @@ kde-akonadicalendar_LIB=	libKF5AkonadiCalendar.so
 
 kde-akonadisearch_PORT=		net/akonadi-search
 kde-akonadisearch_LIB=		libKF5AkonadiSearchCore.so
-
-kde-alarmcalendar_PORT=		net/kalarmcal
-kde-alarmcalendar_LIB=		libKF5AlarmCalendar.so
 
 kde-calendarsupport_PORT=	net/calendarsupport
 kde-calendarsupport_LIB=	libKF5CalendarSupport.so

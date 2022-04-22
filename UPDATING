@@ -5,6 +5,52 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20220421:
+  AFFECTS: users of lang/ruby27
+  AUTHOR: yasu@FreeBSD.org
+
+  The default ruby version has been updated from 2.7 to 3.0.
+
+  If you compile your own ports you may keep 2.7 as the default version by
+  adding the following lines to your /etc/make.conf file:
+
+  #
+  # Keep ruby 2.7 as default version
+  #
+  DEFAULT_VERSIONS+=ruby=2.7
+
+  If you wish to update to the new default version, you need to first stop any
+  software that uses ruby. Then, you will need to follow these steps, depending
+  upon how you manage your system.
+
+  If you use pkg, simply upgrade:
+  # pkg upgrade
+
+  If you do not use pkg, please check entry 20190420.
+  The description there should also work for this version.
+
+20220413:
+  AFFECTS: users of net-im/py-matrix-synapse
+  AUTHOR: ports@skyforge.at
+
+  Synapse will now refuse to start up if open registration is enabled,
+  in order to help mitigate abuse across the federation. If you would
+  like to provide registration to anyone, consider adding email,
+  recaptcha or token-based verification in order to prevent automated
+  registration from bad actors. This check can be disabled by setting
+  the enable_registration_without_verification option in your
+  homeserver configuration file to true. More details are available in
+  the upgrade notes[0].
+
+  Synapse will additionally now refuse to start when using PostgreSQL
+  with a non-C values for COLLATE and CTYPE, unless the config flag
+  allow_unsafe_locale, found in the database section of the
+  configuration file, is set to true. See the upgrade notes[1] for
+  details.
+
+  [0] https://matrix-org.github.io/synapse/v1.56/upgrade.html#open-registration-without-verification-is-now-disabled-by-default
+  [1] https://matrix-org.github.io/synapse/v1.56/upgrade#change-in-behaviour-for-postgresql-databases-with-unsafe-locale
+
 20220410:
   AFFECTS: users of sysutils/screen
   AUTHOR: cy@FreeBSD.org

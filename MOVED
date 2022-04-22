@@ -16973,6 +16973,7 @@ math/py-symcxx||2022-03-28|Deprecated because the upstream repository was experi
 net-p2p/bazarr-devel|net-p2p/bazarr|2022-03-29|Use net-p2p/bazarr instead
 dns/py-dnspython2|dns/py-dnspython|2022-03-30|Has expired: Use dns/py-dnspython
 net/inlets||2022-03-30|FOSS version removed, project went commercial
+devel/ipython5|devel/ipython|2022-03-30|Remove obsoleted port. Use devel/ipython instead
 editors/libreoffice6|editors/libreoffice|2022-03-31|Unsupported upstream. Please use editors/libreoffice instead
 security/revealrk||2022-03-31|Has expired: Deprecate, marked BROKEN on 12+ in 2018
 devel/apache-commons-modeler||2022-03-31|Has expired: Abandoned upstream, last release in 2013
@@ -17121,3 +17122,16 @@ databases/hbase||2022-03-31|Has expired: Outdated, unsupported by upstream since
 textproc/rubygem-diffy330|textproc/rubygem-diffy|2022-04-01|Obsolete, please use textproc/rubygem-diffy
 graphics/sxiv|graphics/nsxiv|2022-04-01|Has expired: Upstream has archived the project; please switch to the maintained fork (graphics/nsxiv)
 graphics/xface.el||2022-04-07|Port has failed to build for years; last release in 2003
+lang/gcc9-devel||2022-04-14|Has expired: Not serving its purpose any longer due to lack of maintenance
+games/pouetchess||2022-04-15|Has expired: Abandonware with last release in 2006
+devel/grpc130|devel/grpc|2022-04-16|Remove obsoleted port. Use devel/grpc instead
+devel/grpc134|devel/grpc|2022-04-16|Remove obsoleted port. Use devel/grpc instead
+devel/py-trollius||2022-04-16|Remove obsoleted port. The asyncio package has been included in the standard library since Python 3.4
+graphics/py-pyglet150|graphics/py-pyglet|2022-04-16|Has expired: No longer needed, use graphics/py-pyglet instead
+games/critterding||2022-04-16|Has expired: Abandonware with last release in 2013, newer version bundles depends and requires Qt4
+lang/gcc10-devel||2022-04-17|Has expired: Not serving its purpose any longer due to lack of maintenance
+devel/py-installer03|devel/py-installer|2022-04-17|Remove obsoleted port. Use devel/py-installer instead
+games/cultivation||2022-04-18|Has expired: Abandonware with last release in 2010, non-portable build system
+devel/ros-rosinstall||2022-04-20|Has expired: Upstream has archived the project and is no longer being used in the ROS project
+devel/py-aiorpcX-legacy|devel/py-aiorpcX|2022-04-20|Has expired: Legacy port is no longer required, please use devel/py-aiorpcX instead
+net/kalarmcal|deskutils/kalarm|2022-04-21|Packages were merged
