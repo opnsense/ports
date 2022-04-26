@@ -510,6 +510,7 @@
     SUBDIR += netwib
     SUBDIR += nfs-ganesha-kmod
     SUBDIR += nfsshell
+    SUBDIR += nfstrace
     SUBDIR += ng_mikrotik_eoip
     SUBDIR += ngrep
     SUBDIR += nifmon
@@ -1317,6 +1318,7 @@
     SUBDIR += rubygem-netrc
     SUBDIR += rubygem-network_interface
     SUBDIR += rubygem-nkf
+    SUBDIR += rubygem-no_proxy_fix
     SUBDIR += rubygem-oauth
     SUBDIR += rubygem-oauth2
     SUBDIR += rubygem-octokit

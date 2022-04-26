@@ -1,20 +1,15 @@
 PORTNAME=	vc-intrinsics
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.0
-PORTREVISION=	1
+DISTVERSION=	0.4.0
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-${FLAVOR}
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	8db834532b07.patch:-p1 # https://github.com/intel/vc-intrinsics/pull/105
-PATCHFILES+=	99ac111c2604.patch:-p1 # https://github.com/intel/vc-intrinsics/pull/105
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	LLVM intrinsics for SIMD on GPU
 
 LICENSE=	MIT
 
-FLAVORS=	${13 12 11:L:S/^/llvm/}
+FLAVORS=	${14 13 12 11:L:S/^/llvm/}
 
 BUILD_DEPENDS=	${FLAVOR}>0:devel/${FLAVOR}
 

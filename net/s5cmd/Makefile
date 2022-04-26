@@ -1,9 +1,8 @@
 # Created by: Emanuel Haupt <ehaupt@FreeBSD.org>
 
 PORTNAME=	s5cmd
-PORTVERSION=	1.4.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+DISTVERSION=	2.0.0-beta
 CATEGORIES=	net
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -17,6 +16,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	peak
 
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${PORTNAME}
+
+# portscout thinks 2.0.0-beta < v2.0.0-beta
+PORTSCOUT=	ignore:1
 
 PLIST_FILES=	bin/s5cmd
 

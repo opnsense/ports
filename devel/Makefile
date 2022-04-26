@@ -4378,6 +4378,7 @@
     SUBDIR += py-cog
     SUBDIR += py-collective.monkeypatcher
     SUBDIR += py-colorama
+    SUBDIR += py-colored-traceback
     SUBDIR += py-coloredlogs
     SUBDIR += py-colorful
     SUBDIR += py-colorlog
@@ -6206,6 +6207,8 @@
     SUBDIR += rubygem-childprocess40
     SUBDIR += rubygem-chronic
     SUBDIR += rubygem-chronic_duration
+    SUBDIR += rubygem-claide
+    SUBDIR += rubygem-claide-plugins
     SUBDIR += rubygem-clamp
     SUBDIR += rubygem-clamp11
     SUBDIR += rubygem-classifier
@@ -6239,6 +6242,7 @@
     SUBDIR += rubygem-cookbook-omnifetch
     SUBDIR += rubygem-cool.io
     SUBDIR += rubygem-corefines
+    SUBDIR += rubygem-cork
     SUBDIR += rubygem-countries
     SUBDIR += rubygem-crack
     SUBDIR += rubygem-cri
@@ -6259,6 +6263,8 @@
     SUBDIR += rubygem-cyoi
     SUBDIR += rubygem-daemon_controller
     SUBDIR += rubygem-daemons
+    SUBDIR += rubygem-danger
+    SUBDIR += rubygem-danger-gitlab
     SUBDIR += rubygem-date
     SUBDIR += rubygem-ddmemoize
     SUBDIR += rubygem-ddmetrics
@@ -6408,7 +6414,9 @@
     SUBDIR += rubygem-git
     SUBDIR += rubygem-git-version-bump
     SUBDIR += rubygem-github_api
+    SUBDIR += rubygem-gitlab
     SUBDIR += rubygem-gitlab-chronic
+    SUBDIR += rubygem-gitlab-dangerfiles
     SUBDIR += rubygem-gitlab-experiment
     SUBDIR += rubygem-gitlab-labkit
     SUBDIR += rubygem-gitlab-license
@@ -6594,6 +6602,7 @@
     SUBDIR += rubygem-mutex_m
     SUBDIR += rubygem-mutter
     SUBDIR += rubygem-nakayoshi_fork
+    SUBDIR += rubygem-nap
     SUBDIR += rubygem-native-package-installer
     SUBDIR += rubygem-naught
     SUBDIR += rubygem-necromancer

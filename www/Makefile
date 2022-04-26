@@ -1193,6 +1193,7 @@
     SUBDIR += p5-URI-Escape-JavaScript
     SUBDIR += p5-URI-Escape-XS
     SUBDIR += p5-URI-Fetch
+    SUBDIR += p5-URI-Normalize
     SUBDIR += p5-URI-ParseSearchString
     SUBDIR += p5-URI-Sequin
     SUBDIR += p5-URI-Title
@@ -1901,6 +1902,7 @@
     SUBDIR += rubygem-faraday
     SUBDIR += rubygem-faraday-em_http
     SUBDIR += rubygem-faraday-em_synchrony
+    SUBDIR += rubygem-faraday-http-cache
     SUBDIR += rubygem-faraday-httpclient
     SUBDIR += rubygem-faraday-multipart
     SUBDIR += rubygem-faraday-net_http
