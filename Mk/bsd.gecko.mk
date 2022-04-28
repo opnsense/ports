@@ -118,7 +118,7 @@ MOZILLA_PLIST_DIRS?=	bin lib share/pixmaps share/applications
 # Adjust -C target-cpu if -march/-mcpu is set by bsd.cpu.mk
 .    if ${ARCH} == amd64 || ${ARCH} == i386
 RUSTFLAGS+=	${CFLAGS:M-march=*:S/-march=/-C target-cpu=/}
-.    elif ${ARCH:Mpowerpc64*}
+.    elif ${ARCH:Mpowerpc*}
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/:S/power/pwr/}
 .    else
 RUSTFLAGS+=	${CFLAGS:M-mcpu=*:S/-mcpu=/-C target-cpu=/}
@@ -270,10 +270,18 @@ MOZ_OPTIONS+=	--disable-pulseaudio
 
 .    if ${PORT_OPTIONS:MSNDIO}
 BUILD_DEPENDS+=	${LOCALBASE}/include/sndio.h:audio/sndio
+.      if ${MOZILLA_VER:R:R} < 100
 post-patch-SNDIO-on:
 	@${REINPLACE_CMD} -e 's|OpenBSD|${OPSYS}|g' \
 		-e '/DISABLE_LIBSNDIO_DLOPEN/d' \
 		${MOZSRC}/media/libcubeb/src/moz.build
+.      else
+MOZ_OPTIONS+=	--enable-sndio
+.      endif
+.    else
+.      if ${MOZILLA_VER:R:R} >= 100
+MOZ_OPTIONS+=	--disable-sndio
+.      endif
 .    endif
 
 .    if ${PORT_OPTIONS:MDEBUG}
@@ -328,9 +336,6 @@ LDFLAGS+=	-B${LOCALBASE}/bin
 .      endif
 .    elif ${ARCH:Mpowerpc*}
 BUILD_DEPENDS+=	as:devel/binutils
-.      if ${ARCH} == "powerpc64"
-MOZ_EXPORT+=	UNAME_m="${ARCH}"
-.      endif
 .    endif
 
 .  else # bsd.port.post.mk
