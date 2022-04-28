@@ -2,6 +2,7 @@
 
 PORTNAME=	nut
 PORTVERSION=	${NUT_COMMIT_DATE}
+PORTREVISION=	1
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
 # MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
@@ -13,8 +14,8 @@ COMMENT=	Network UPS Tools
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	networkupstools
-GH_TAGNAME=	922bc7188
-NUT_COMMIT_DATE=	2022.04.25
+GH_TAGNAME=	9cb8de681
+NUT_COMMIT_DATE=	2022.04.27
 
 MAKE_JOBS_UNSAFE=	yes
 GNU_CONFIGURE=	yes
@@ -55,6 +56,7 @@ PORTDOCS=	*
 .include <bsd.port.options.mk>
 
 TMPDIR?=	/tmp
+INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--program-transform-name="" \
 		--localstatedir=${STATEDIR} \

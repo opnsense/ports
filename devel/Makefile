@@ -1915,6 +1915,7 @@
     SUBDIR += p5-Class-Contract
     SUBDIR += p5-Class-Data-ConfigHash
     SUBDIR += p5-Class-Data-Inheritable
+    SUBDIR += p5-Class-Data-Lite
     SUBDIR += p5-Class-Date
     SUBDIR += p5-Class-Declare
     SUBDIR += p5-Class-Default
@@ -4839,6 +4840,7 @@
     SUBDIR += py-onigurumacffi
     SUBDIR += py-opcodes
     SUBDIR += py-openapi-codec
+    SUBDIR += py-openapi-core
     SUBDIR += py-openapi-schema-validator
     SUBDIR += py-openapi-spec-validator
     SUBDIR += py-opencensus
@@ -4898,6 +4900,7 @@
     SUBDIR += py-patch-ng
     SUBDIR += py-path
     SUBDIR += py-path.py
+    SUBDIR += py-pathable
     SUBDIR += py-pathlib2
     SUBDIR += py-pathspec
     SUBDIR += py-pathtools
@@ -4946,6 +4949,7 @@
     SUBDIR += py-plette
     SUBDIR += py-plex
     SUBDIR += py-pluggy
+    SUBDIR += py-pluggy0
     SUBDIR += py-pluginbase
     SUBDIR += py-ply
     SUBDIR += py-pockets
@@ -5363,6 +5367,7 @@
     SUBDIR += py-types-psycopg2
     SUBDIR += py-types-requests
     SUBDIR += py-types-termcolor
+    SUBDIR += py-types-typed-ast
     SUBDIR += py-types-urllib3
     SUBDIR += py-types-xxhash
     SUBDIR += py-typing-extensions
