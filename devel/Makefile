@@ -675,6 +675,7 @@
     SUBDIR += fatal
     SUBDIR += fbthrift
     SUBDIR += fc++
+    SUBDIR += fccf
     SUBDIR += fhist
     SUBDIR += fifechan
     SUBDIR += fire-hpp
@@ -5544,6 +5545,7 @@
     SUBDIR += pysvn
     SUBDIR += pythontidy
     SUBDIR += pytype
+    SUBDIR += qbe
     SUBDIR += qbs
     SUBDIR += qca
     SUBDIR += qconf
