@@ -1,3 +1,241 @@
+  <vuln vid="fceb2b08-cb76-11ec-a06f-d4c9ef517024">
+    <topic>OpenSSL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1o,1</lt></range>
+      </package>
+      <package>
+	<name>openssl-devel</name>
+	<range><lt>3.0.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20220503.txt">
+	  <ul>
+	    <li>The c_rehash script allows command injection (CVE-2022-1292)
+	      (Moderate) <br/>The c_rehash script does not properly sanitise shell
+	      metacharacters to prevent command injection.  This script is distributed
+	      by some operating systems in a manner where it is automatically
+	      executed. On such operating systems, an attacker could execute arbitrary
+	      commands with the privileges of the script.</li>
+	    <li>OCSP_basic_verify may incorrectly verify the response signing
+	      certificate (CVE-2022-1343) (Moderate)<br/>The function
+	      `OCSP_basic_verify` verifies the signer certificate on an OCSP response.
+	      In the case where the (non-default) flag OCSP_NOCHECKS is used then the
+	      response will be positive (meaning a successful verification) even in
+	      the case where the response signing certificate fails to verify.</li>
+	    <li>Incorrect MAC key used in the RC4-MD5 ciphersuite (CVE-2022-1434)
+	      (Low)<br/>The OpenSSL 3.0 implementation of the RC4-MD5 ciphersuite
+	      incorrectly uses the AAD data as the MAC key. This makes the MAC key
+	      trivially predictable.</li>
+	    <li>Resource leakage when decoding certificates and keys (CVE-2022-1473)
+	      (Low)<br/>The OPENSSL_LH_flush() function, which empties a hash table,
+	      containsa bug that breaks reuse of the memory occuppied by the removed
+	      hash table entries.</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-1292</cvename>
+      <cvename>CVE-2022-1343</cvename>
+      <cvename>CVE-2022-1434</cvename>
+      <cvename>CVE-2022-1473</cvename>
+      <url>https://www.openssl.org/news/secadv/20220503.txt</url>
+    </references>
+    <dates>
+      <discovery>2022-05-03</discovery>
+      <entry>2022-05-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a8118db0-cac2-11ec-9288-0800270512f4">
+    <topic>rainloop -- cross-site-scripting (XSS) vulnerability</topic>
+    <affects>
+      <package>
+	<name>rainloop-php74</name>
+	<name>rainloop-php80</name>
+	<name>rainloop-php81</name>
+	<name>rainloop-community-php74</name>
+	<name>rainloop-community-php80</name>
+	<name>rainloop-community-php81</name>
+	<range><lt>1.16.0_2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Simon Scannell reports:</p>
+	<blockquote cite="https://blog.sonarsource.com/rainloop-emails-at-risk-due-to-code-flaw">
+	  <p>
+	    The code vulnerability can be easily exploited by an
+	    attacker by sending a malicious email to a victim that
+	    uses RainLoop as a mail client. When the email is viewed
+	    by the victim, the attacker gains full control over the
+	    session of the victim and can steal any of their emails,
+	    including those that contain highly sensitive information
+	    such as passwords, documents, and password reset links.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-29360</cvename>
+      <url>https://blog.sonarsource.com/rainloop-emails-at-risk-due-to-code-flaw</url>
+      <url>https://github.com/RainLoop/rainloop-webmail/issues/2142</url>
+    </references>
+    <dates>
+      <discovery>2022-04-19</discovery>
+      <entry>2022-05-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="61bce714-ca0c-11ec-9cfc-10c37b4ac2ea">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go</name>
+	<range><lt>1.17.9,1</lt></range>
+	<range><ge>1.18,1</ge><lt>1.18.1,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://github.com/golang/go/issues/51853">
+	  <p>encoding/pem: fix stack overflow in Decode.</p>
+	  <p>A large (more than 5 MB) PEM input can cause a stack
+	    overflow in Decode, leading the program to crash.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/golang/go/issues/52075">
+	  <p>crypto/elliptic: tolerate all oversized scalars in generic
+	    P-256.</p>
+	  <p>A crafted scalar input longer than 32 bytes can
+	    cause P256().ScalarMult or P256().ScalarBaseMult to panic.
+	    Indirect uses through crypto/ecdsa and crypto/tls are
+	    unaffected. amd64, arm64, ppc64le, and s390x are
+	    unaffected.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/golang/go/issues/51759">
+	  <p>crypto/x509: non-compliant certificates can cause a panic
+	    in Verify on macOS in Go 1.18.</p>
+	  <p>Verifying certificate chains containing certificates
+	    which are not compliant with RFC 5280 causes
+	    Certificate.Verify to panic on macOS. These chains can be
+	    delivered through TLS and can cause a crypto/tls or
+	    net/http client to crash.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-24675</cvename>
+      <url>https://github.com/golang/go/issues/51853</url>
+      <cvename>CVE-2022-28327</cvename>
+      <url>https://github.com/golang/go/issues/52075</url>
+      <cvename>CVE-2022-27536</cvename>
+      <url>https://github.com/golang/go/issues/51759</url>
+    </references>
+    <dates>
+      <discovery>2022-04-12</discovery>
+      <entry>2022-05-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9db93f3d-c725-11ec-9618-000d3ac47524">
+    <topic>Rails -- XSS vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>rubygem-actionpack52</name>
+	<range><lt>5.2.7.1</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionpack60</name>
+	<range><lt>6.0.4.8</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionpack61</name>
+	<range><lt>6.1.5.1</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionpack70</name>
+	<range><lt>7.0.2.4</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionview52</name>
+	<range><lt>5.2.7.1</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionview60</name>
+	<range><lt>6.0.4.8</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionview61</name>
+	<range><lt>6.1.5.1</lt></range>
+      </package>
+      <package>
+	<name>rubygem-actionview70</name>
+	<range><lt>7.0.2.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Ruby on Rails blog:</p>
+	<blockquote cite="https://rubyonrails.org/2022/4/26/Rails-7-0-2-4-6-1-5-1-6-0-4-8-and-5-2-7-1-have-been-released">
+	  <p>This is an announcement to let you know that Rails 7.0.2.4, 6.1.5.1,
+	    6.0.4.8, and 5.2.7.1 have been released!</p>
+	  <p>These are security releases so please update as soon as you can. Once
+	    again we've made these releases based on the last release tag, so
+	    hopefully upgrading will go smoothly.</p>
+	  <p>The releases address two vulnerabilities, CVE-2022-22577, and
+	    CVS-2022-27777. They are both XSS vulnerabilities, so please take a look
+	    at the forum posts to see how (or if) they might possibly impact your
+	    application.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-22577</cvename>
+      <cvename>CVE-2022-27777</cvename>
+      <url>https://rubyonrails.org/2022/4/26/Rails-7-0-2-4-6-1-5-1-6-0-4-8-and-5-2-7-1-have-been-released</url>
+    </references>
+    <dates>
+      <discovery>2022-04-26</discovery>
+      <entry>2022-04-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2220827b-c732-11ec-b272-901b0e934d69">
+    <topic>hiredis -- integer/buffer overflow</topic>
+    <affects>
+      <package>
+	<name>hiredis</name>
+	<range><lt>1.0.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>hiredis maintainers report:</p>
+	<blockquote cite="https://github.com/redis/hiredis/security/advisories/GHSA-hfm9-39pp-55p2">
+	  <p>
+	    Hiredis is vulnurable to integer overflow if provided maliciously crafted or corrupted RESP mult-bulk protocol data.
+
+	    When parsing multi-bulk (array-like) replies, hiredis fails to check if count * sizeof(redisReply*) can be represented in SIZE_MAX. If it can not, and the calloc() call doesn't itself make this check, it would result in a short allocation and subsequent buffer overflow.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-32765</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-32765</url>
+      <url>https://github.com/redis/hiredis/security/advisories/GHSA-hfm9-39pp-55p2</url>
+    </references>
+    <dates>
+      <discovery>2021-10-04</discovery>
+      <entry>2022-04-29</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="92a4d881-c6cf-11ec-a06f-d4c9ef517024">
     <topic>cURL -- Multiple vulnerabilities</topic>
     <affects>
@@ -115,6 +353,10 @@
       <package>
 	<name>redis</name>
 	<range><lt>6.2.7</lt></range>
+      </package>
+      <package>
+	<name>redis-devel</name>
+	<range><lt>7.0.0.20220428</lt></range>
       </package>
       <package>
 	<name>redis62</name>
