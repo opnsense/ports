@@ -5,6 +5,7 @@
     SUBDIR += apache-commons-cli
     SUBDIR += apache-commons-codec
     SUBDIR += apache-commons-collections
+    SUBDIR += apache-commons-collections4
     SUBDIR += apache-commons-dbcp
     SUBDIR += apache-commons-httpclient
     SUBDIR += apache-commons-lang
@@ -121,6 +122,8 @@
     SUBDIR += wildfly16
     SUBDIR += wildfly17
     SUBDIR += wildfly18
+    SUBDIR += wildfly25
+    SUBDIR += wildfly26
     SUBDIR += wildfly90
 
 .include <bsd.port.subdir.mk>

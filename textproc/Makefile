@@ -51,6 +51,7 @@
     SUBDIR += apache-commons-digester
     SUBDIR += apache-poi
     SUBDIR += apache-solr
+    SUBDIR += apache-xmlbeans
     SUBDIR += apertium
     SUBDIR += apertium-eng
     SUBDIR += artha
@@ -2024,9 +2025,9 @@
     SUBDIR += zed
     SUBDIR += zenxml
     SUBDIR += zorba
+    SUBDIR += zq
     SUBDIR += zu-aspell
     SUBDIR += zu-hunspell
     SUBDIR += zxing-cpp
-    SUBDIR += zq
 
 .include <bsd.port.subdir.mk>

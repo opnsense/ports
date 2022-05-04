@@ -502,6 +502,7 @@
     SUBDIR += p5-Crypt-GOST_PP
     SUBDIR += p5-Crypt-GPG
     SUBDIR += p5-Crypt-GeneratePassword
+    SUBDIR += p5-Crypt-GpgME
     SUBDIR += p5-Crypt-HCE_MD5
     SUBDIR += p5-Crypt-HCE_SHA
     SUBDIR += p5-Crypt-HSXKPasswd
@@ -781,7 +782,7 @@
     SUBDIR += pinentry-curses
     SUBDIR += pinentry-efl
     SUBDIR += pinentry-fltk
-    SUBDIR += pinentry-gnome3
+    SUBDIR += pinentry-gnome
     SUBDIR += pinentry-gtk2
     SUBDIR += pinentry-qt5
     SUBDIR += pinentry-tty
@@ -973,7 +974,6 @@
     SUBDIR += py-signedjson
     SUBDIR += py-social-auth-core
     SUBDIR += py-spake2
-    SUBDIR += py-ssh
     SUBDIR += py-ssh-audit
     SUBDIR += py-sshpubkeys
     SUBDIR += py-stem
@@ -1153,6 +1153,7 @@
     SUBDIR += seahorse
     SUBDIR += seal
     SUBDIR += seccure
+    SUBDIR += seclists
     SUBDIR += secpanel
     SUBDIR += sectok
     SUBDIR += secure_delete

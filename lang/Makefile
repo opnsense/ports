@@ -92,6 +92,7 @@
     SUBDIR += gcc11
     SUBDIR += gcc11-devel
     SUBDIR += gcc12-devel
+    SUBDIR += gcc13-devel
     SUBDIR += gcc48
     SUBDIR += gcc6-aux
     SUBDIR += gcc8
@@ -121,6 +122,7 @@
     SUBDIR += guile1
     SUBDIR += guile2
     SUBDIR += halide
+    SUBDIR += harec
     SUBDIR += haskell-mode.el
     SUBDIR += hermes
     SUBDIR += hla

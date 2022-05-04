@@ -1,7 +1,7 @@
 # Created by: Hugo Saro <hugo@barafranca.com>
 
 PORTNAME=	haproxy
-DISTVERSION=	2.6-dev3
+DISTVERSION=	2.6-dev8
 CATEGORIES=	net www
 MASTER_SITES=	http://www.haproxy.org/download/2.6/src/devel/
 PKGNAMESUFFIX=	-devel
@@ -44,7 +44,7 @@ SPCRE_DESC=		Link pcre(1) statically
 SPCRE2_DESC=		Link pcre2 statically
 DEVICEATLAS_DESC=	DeviceAtlas Device Detection support
 PROMEX_DESC=		Enable Prometheus exporter
-OPTIONS_DEFAULT=	DPCRE2 OPENSSL
+OPTIONS_DEFAULT=	DPCRE2 OPENSSL PROMEX
 
 DPCRE_LIB_DEPENDS=	libpcre.so:devel/pcre
 DPCRE_MAKE_ARGS=	USE_PCRE=1 USE_PCRE_JIT=1

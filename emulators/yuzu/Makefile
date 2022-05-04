@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20220427
+PORTVERSION=	s20220502
 CATEGORIES=	emulators
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
@@ -12,6 +12,8 @@ EXTRACT_ONLY=	${DISTFILES:N*\:gamedb:C/\:.*//}
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	4a8a248b47a2.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/6598 mainline-merge
 PATCHFILES+=	e919bea9c84e.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/7346 mainline-merge
+PATCHFILES+=	ec62889e2264.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/8240 mainline-merge
+PATCHFILES+=	bd6f73fd012e.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/8240 mainline-merge
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo Switch emulator/debugger
@@ -39,12 +41,12 @@ TEST_DEPENDS=	catch>0:devel/catch
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	9ed0b5c5f
+GH_TAGNAME=	8037f2eae
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-32-ga3fdfe8:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.2.202:Vulkan_Headers/externals/Vulkan-Headers \
 		MerryMage:dynarmic:r5-204-g57af72a5:dynarmic/externals/dynarmic \
-		ReinUsesLisp:sirit:a395963:sirit/externals/sirit \
+		ReinUsesLisp:sirit:b8f133b:sirit/externals/sirit \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		benhoyt:inih:r52:inih/externals/inih/inih \
 		fmtlib:fmt:8.0.0:fmt/externals/fmt \
@@ -86,9 +88,10 @@ QT5_USES=		desktop-file-utils qt:5 shared-mime-info
 QT5_USE=		QT=qmake_build,buildtools_build,concurrent_build,core,gui,widgets
 QT5_CMAKE_BOOL=		ENABLE_QT
 QT5_PLIST_FILES=	bin/${PORTNAME} \
-			share/applications/${PORTNAME}.desktop \
-			share/icons/hicolor/scalable/apps/${PORTNAME}.svg \
-			share/mime/packages/${PORTNAME}.xml
+			share/applications/org.yuzu_emu.yuzu.desktop \
+			share/icons/hicolor/scalable/apps/org.yuzu_emu.yuzu.svg \
+			share/metainfo/org.yuzu_emu.yuzu.metainfo.xml \
+			share/mime/packages/org.yuzu_emu.yuzu.xml
 
 SNDIO_BUILD_DEPENDS=	sndio>0:audio/sndio
 SNDIO_CMAKE_BOOL=	USE_SNDIO
