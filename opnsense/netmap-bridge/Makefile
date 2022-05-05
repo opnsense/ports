@@ -1,5 +1,5 @@
 PORTNAME=	netmap-bridge
-PORTVERSION=	1.0
+DISTVERSION!=	eval export $$(sh /usr/src/sys/conf/newvers.sh -V RELEASE) && echo $${RELEASE}
 CATEGORIES=	sysutils
 DISTFILES=
 
