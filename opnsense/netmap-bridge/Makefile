@@ -1,4 +1,4 @@
-PORTNAME=	bridge
+PORTNAME=	netmap-bridge
 PORTVERSION=	1.0
 CATEGORIES=	sysutils
 DISTFILES=
@@ -25,7 +25,8 @@ do-extract:
 	${CP} -r ${FILESDIR} ${WRKSRC}
 
 pre-install:
-	${CP} ${WRKSRC}/bridge.8 ${STAGEDIR}${PREFIX}/man/man8/
+	${CP} ${WRKSRC}/bridge.8 ${STAGEDIR}${PREFIX}/man/man8/netmap-bridge.8
+	${MV} ${WRKSRC}/bridge ${WRKSRC}/netmap-bridge
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin/
