@@ -36,6 +36,7 @@
     SUBDIR += R-cran-XLConnect
     SUBDIR += R-cran-Zelig
     SUBDIR += R-cran-acepack
+    SUBDIR += R-cran-admisc
     SUBDIR += R-cran-alabama
     SUBDIR += R-cran-assertthat
     SUBDIR += R-cran-backports
@@ -80,6 +81,7 @@
     SUBDIR += R-cran-linprog
     SUBDIR += R-cran-lme4
     SUBDIR += R-cran-lpSolve
+    SUBDIR += R-cran-ltm
     SUBDIR += R-cran-magic
     SUBDIR += R-cran-maps
     SUBDIR += R-cran-matrixStats
@@ -99,6 +101,7 @@
     SUBDIR += R-cran-partitions
     SUBDIR += R-cran-pbkrtest
     SUBDIR += R-cran-pls
+    SUBDIR += R-cran-polycor
     SUBDIR += R-cran-polynom
     SUBDIR += R-cran-prodlim
     SUBDIR += R-cran-proxy
