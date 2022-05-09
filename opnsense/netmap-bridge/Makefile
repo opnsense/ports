@@ -19,10 +19,10 @@ IGNORE=	requires kernel source files in ${SRC_BASE}
 .endif
 
 do-extract:
-	${CP} ${SRC_BASE}/tools/tools/netmap/Makefile ${FILESDIR}
-	${CP} ${SRC_BASE}/tools/tools/netmap/bridge.8 ${FILESDIR}
-	${CP} ${SRC_BASE}/tools/tools/netmap/bridge.c ${FILESDIR}
-	${CP} -r ${FILESDIR} ${WRKSRC}
+	${MKDIR} ${WRKSRC}
+	${CP} ${SRC_BASE}/tools/tools/netmap/Makefile ${WRKSRC}
+	${CP} ${SRC_BASE}/tools/tools/netmap/bridge.8 ${WRKSRC}
+	${CP} ${SRC_BASE}/tools/tools/netmap/bridge.c ${WRKSRC}
 
 pre-install:
 	${CP} ${WRKSRC}/bridge.8 ${STAGEDIR}${PREFIX}/man/man8/netmap-bridge.8
