@@ -11,6 +11,7 @@
     SUBDIR += R-cran-commonmark
     SUBDIR += R-cran-formatR
     SUBDIR += R-cran-highr
+    SUBDIR += R-cran-htmlTable
     SUBDIR += R-cran-htmltools
     SUBDIR += R-cran-hunspell
     SUBDIR += R-cran-markdown
@@ -1572,8 +1573,8 @@
     SUBDIR += re_graph
     SUBDIR += redet
     SUBDIR += redisearch
-    SUBDIR += redisearch16
     SUBDIR += redisearch20
+    SUBDIR += redisearch22
     SUBDIR += redland
     SUBDIR += redland-bindings
     SUBDIR += refdb

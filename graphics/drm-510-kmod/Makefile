@@ -1,5 +1,5 @@
 PORTNAME=	drm-510-kmod
-PORTVERSION=	5.10.0
+PORTVERSION=	5.10.113
 CATEGORIES=	graphics kld
 
 MAINTAINER=	x11@FreeBSD.org
@@ -18,7 +18,7 @@ USES=		kmod uidfix compiler:c++11-lang
 USE_GITHUB=	yes
 GH_ACCOUNT=	freebsd
 GH_PROJECT=	drm-kmod
-GH_TAGNAME=	drm_v5.10_4
+GH_TAGNAME=	drm_v5.10.113_1
 
 .include <bsd.port.options.mk>
 
