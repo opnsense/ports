@@ -1,7 +1,11 @@
 PORTNAME=	vulkan-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.212
+DISTVERSION=	1.3.213
+PORTREVISION=	1
 CATEGORIES=	graphics
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	fbb147443834.patch:-p1 # https://github.com/KhronosGroup/Vulkan-Tools/pull/650
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Tools and demos for the Vulkan graphics API
