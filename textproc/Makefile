@@ -1369,6 +1369,7 @@
     SUBDIR += py-mdurl
     SUBDIR += py-misaka
     SUBDIR += py-mistune
+    SUBDIR += py-mistune0
     SUBDIR += py-mkdocs
     SUBDIR += py-mkdocs-autorefs
     SUBDIR += py-mkdocs-material
@@ -1462,6 +1463,8 @@
     SUBDIR += py-restructuredtext-lint
     SUBDIR += py-reverend
     SUBDIR += py-rich
+    SUBDIR += py-rich-cli
+    SUBDIR += py-rich-rst
     SUBDIR += py-rnc2rng
     SUBDIR += py-rss2gen
     SUBDIR += py-rst2ansi
@@ -1519,6 +1522,7 @@
     SUBDIR += py-textdistance
     SUBDIR += py-textfsm
     SUBDIR += py-texttable
+    SUBDIR += py-textual
     SUBDIR += py-three-merge
     SUBDIR += py-tinycss
     SUBDIR += py-tinycss2

@@ -22,9 +22,9 @@
     SUBDIR += R-cran-brio
     SUBDIR += R-cran-broom
     SUBDIR += R-cran-caTools
-    SUBDIR += R-cran-checkmate
     SUBDIR += R-cran-callr
     SUBDIR += R-cran-caret
+    SUBDIR += R-cran-checkmate
     SUBDIR += R-cran-chron
     SUBDIR += R-cran-classInt
     SUBDIR += R-cran-cli
@@ -191,8 +191,8 @@
     SUBDIR += arduinoOTA
     SUBDIR += argdata
     SUBDIR += argouml
-    SUBDIR += argparse
     SUBDIR += argp-standalone
+    SUBDIR += argparse
     SUBDIR += args
     SUBDIR += argtable
     SUBDIR += arm-elf-binutils
@@ -692,6 +692,7 @@
     SUBDIR += flang
     SUBDIR += flang-clang
     SUBDIR += flatbuffers
+    SUBDIR += flatbuffers205
     SUBDIR += flatcc
     SUBDIR += flatzebra
     SUBDIR += flex-sdk
@@ -747,6 +748,7 @@
     SUBDIR += frama-c
     SUBDIR += freebsd-gcc6
     SUBDIR += freebsd-gcc9
+    SUBDIR += freebsd-git-devtools
     SUBDIR += freebsd-sysroot
     SUBDIR += frink
     SUBDIR += fsmtrie
@@ -841,7 +843,6 @@
     SUBDIR += gio-sharp
     SUBDIR += git
     SUBDIR += git-absorb
-    SUBDIR += git-arc
     SUBDIR += git-bug
     SUBDIR += git-cinnabar
     SUBDIR += git-codereview
@@ -4400,6 +4401,7 @@
     SUBDIR += py-configargparse
     SUBDIR += py-configobj
     SUBDIR += py-configparser
+    SUBDIR += py-configupdater
     SUBDIR += py-confusable_homoglyphs
     SUBDIR += py-confuse
     SUBDIR += py-connection_pool
@@ -4435,6 +4437,7 @@
     SUBDIR += py-cymbal
     SUBDIR += py-cymem
     SUBDIR += py-cysignals
+    SUBDIR += py-cython-test-exception-raiser
     SUBDIR += py-cytoolz
     SUBDIR += py-d2to1
     SUBDIR += py-daemon
@@ -4453,6 +4456,7 @@
     SUBDIR += py-dateutils
     SUBDIR += py-datrie
     SUBDIR += py-dbus
+    SUBDIR += py-ddsketch
     SUBDIR += py-ddt
     SUBDIR += py-ddtrace
     SUBDIR += py-debtcollector
@@ -4517,6 +4521,7 @@
     SUBDIR += py-fastcache
     SUBDIR += py-fasteners
     SUBDIR += py-fastentrypoints
+    SUBDIR += py-fastf1
     SUBDIR += py-fastimport
     SUBDIR += py-fastjsonschema
     SUBDIR += py-fastnumbers
@@ -5076,6 +5081,7 @@
     SUBDIR += py-pyrfc3339
     SUBDIR += py-pyro
     SUBDIR += py-pyrsistent
+    SUBDIR += py-pyscaffold
     SUBDIR += py-pysdl2
     SUBDIR += py-pyshp
     SUBDIR += py-pysimdjson
@@ -5272,6 +5278,7 @@
     SUBDIR += py-sh
     SUBDIR += py-shapely
     SUBDIR += py-shellingham
+    SUBDIR += py-signalr-client-aio
     SUBDIR += py-simpleeval
     SUBDIR += py-simplegeneric
     SUBDIR += py-simplejson
@@ -5338,6 +5345,7 @@
     SUBDIR += py-testresources
     SUBDIR += py-testscenarios
     SUBDIR += py-testtools
+    SUBDIR += py-thefuzz
     SUBDIR += py-threema-msgapi
     SUBDIR += py-thrift
     SUBDIR += py-thriftpy2
@@ -6546,6 +6554,7 @@
     SUBDIR += rubygem-json-canonicalization
     SUBDIR += rubygem-json-schema
     SUBDIR += rubygem-json1
+    SUBDIR += rubygem-json25
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
     SUBDIR += rubygem-json_schema
@@ -6802,6 +6811,7 @@
     SUBDIR += rubygem-rubocop
     SUBDIR += rubygem-rubocop-ast
     SUBDIR += rubygem-rubocop-performance
+    SUBDIR += rubygem-rubocop-rake
     SUBDIR += rubygem-rubocop-rspec
     SUBDIR += rubygem-ruby-atmos-pure
     SUBDIR += rubygem-ruby-bugzilla
@@ -6956,6 +6966,7 @@
     SUBDIR += rubygem-to_regexp
     SUBDIR += rubygem-tool
     SUBDIR += rubygem-tracer
+    SUBDIR += rubygem-traces
     SUBDIR += rubygem-trailblazer-option
     SUBDIR += rubygem-transaction-simple
     SUBDIR += rubygem-travis

@@ -91,6 +91,7 @@ CMAKE_ARGS+=	-DCMAKE_PREFIX_PATH=${PREFIX} \
 		-DINSTALL_DOCREADMEDIR="share/doc/mysql" \
 		-DINSTALL_INFODIR="info" \
 		-DINSTALL_LIBDIR="lib/mysql" \
+		-DINSTALL_MANDIR="share/man" \
 		-DINSTALL_MYSQLDATADIR="${MARIADB_DBDIR}" \
 		-DINSTALL_MYSQLSHAREDIR="share/mysql" \
 		-DINSTALL_MYSQLTESTDIR= \
@@ -273,7 +274,7 @@ post-install:
 		${STAGEDIR}${ETCDIR}/logrotate.d \
 		${STAGEDIR}${DOCSDIR}/COPYING
 	${MKDIR} ${STAGEDIR}${MARIADB_LOGDIR}
-	${SED} '/%%/d;/^@comment /d;s/^/@comment /' ../${PORTNAME}${PKGNAMESUFFIX:S/-server/-client/}/pkg-plist \
+	${SED} '/%%/d;/^@comment /d;s/^/@comment /' ${PORTSDIR}/${CATEGORIES:[1]}/${PORTNAME}${PKGNAMESUFFIX:S/-server/-client/}/pkg-plist \
 		>> ${TMPPLIST}
 
 post-install-MROONGA-on:
