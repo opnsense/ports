@@ -48,13 +48,13 @@ _GST1_PLUGINS_devel=	soup
 _GST1_PLUGINS_ftp=	curl
 _GST1_PLUGINS_graphics= aalib cairo gdkpixbuf gl jpeg kms libcaca libvisual \
 			opencv openexr openjpeg png qt rsvg vulkan webp zbar
-_GST1_PLUGINS_multimedia=	aom assrender bad dash dts dv dvd dvdread \
+_GST1_PLUGINS_multimedia=	aom assrender bad dash dts dv dvdread \
 			editing-services gnonlin good hls kate libav libde265 \
 			mpeg2dec mpeg2enc mplex mm openh264 resindvd rtmp \
 			smoothstreaming theora ttml ugly v4l2 vpx x264 x265
 _GST1_PLUGINS_net=	libmms srtp
 _GST1_PLUGINS_security=	dtls
-_GST1_PLUGINS_sysutils=	cdio hal
+_GST1_PLUGINS_sysutils=	cdio
 _GST1_PLUGINS_www=	neon
 _GST1_PLUGINS_x11=	x ximagesrc
 _GST1_PLUGINS_x11-toolkits=	gtk gtk4 pango
@@ -134,9 +134,6 @@ gst-gme_IMPL=		bad
 gst-gsm_PORT=		audio/gstreamer${_GST_VER}-plugins-gsm
 gst-gsm_IMPL=		bad
 
-gst-hal_PORT=		sysutils/gstreamer${_GST_VER}-plugins-hal
-gst-hal_IMPL=		good
-
 gst-jack_PORT=		audio/gstreamer${_GST_VER}-plugins-jack
 gst-jack_IMPL=		good
 
@@ -178,6 +175,7 @@ gst-sidplay_IMPL=	ugly
 
 gst-sndio_PORT=		audio/gstreamer${_GST_VER}-plugins-sndio
 gst-sndio_IMPL=		#
+gst-sndio_VERSION=	1.8.0
 
 gst-sndfile_PORT=	audio/gstreamer${_GST_VER}-plugins-sndfile
 gst-sndfile_IMPL=	bad
@@ -295,11 +293,9 @@ gst-dts_IMPL=		bad
 gst-dv_PORT=		multimedia/gstreamer${_GST_VER}-plugins-dv
 gst-dv_IMPL=		good
 
-gst-dvd_PORT=		multimedia/gstreamer${_GST_VER}-plugins-dvd
-gst-dvd_IMPL=		ugly
-
 gst-gnonlin_PORT=	multimedia/gstreamer${_GST_VER}-plugins-gnonlin
 gst-gnonlin_IMPL=	good
+gst-gnonlin_VERSION=	1.4.0
 
 gst-hls_PORT=		multimedia/gstreamer${_GST_VER}-plugins-hls
 gst-hls_IMPL=		bad
