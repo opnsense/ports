@@ -1,7 +1,7 @@
 # Created by: Hugo Saro <hugo@barafranca.com>
 
 PORTNAME=	haproxy
-DISTVERSION=	2.4.16
+DISTVERSION=	2.4.17
 CATEGORIES=	net www
 PKGNAMESUFFIX=	24
 MASTER_SITES=	http://www.haproxy.org/download/2.4/src/
@@ -19,7 +19,7 @@ default_CONFLICTS_INSTALL=	haproxy-lua
 lua_CONFLICTS_INSTALL=		haproxy
 lua_PKGNAMESUFFIX=		24-lua
 
-CONFLICTS_INSTALL=	haproxy-devel haproxy17 haproxy18 haproxy19 haproxy20 haproxy21
+CONFLICTS_INSTALL=	haproxy-devel haproxy17 haproxy18 haproxy20
 
 USES=		compiler:c++11-lang cpe gmake
 USE_RC_SUBR=	haproxy
