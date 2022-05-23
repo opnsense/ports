@@ -250,6 +250,7 @@
     SUBDIR += aws-sdk-php
     SUBDIR += awscli
     SUBDIR += axmldec
+    SUBDIR += ayatana-ido
     SUBDIR += b2
     SUBDIR += babeltrace
     SUBDIR += bam
@@ -1164,6 +1165,8 @@
     SUBDIR += libatomic_ops
     SUBDIR += libaura
     SUBDIR += libavl
+    SUBDIR += libayatana-appindicator
+    SUBDIR += libayatana-indicator
     SUBDIR += libb2
     SUBDIR += libbacktrace
     SUBDIR += libbde
@@ -1528,6 +1531,7 @@
     SUBDIR += lua-luacheck
     SUBDIR += lua-luarocks
     SUBDIR += lua-lunit
+    SUBDIR += lua-mode
     SUBDIR += lua-posix
     SUBDIR += lua-pty
     SUBDIR += lua-rds-parser
@@ -4493,6 +4497,7 @@
     SUBDIR += py-dotty-dict
     SUBDIR += py-dpcontracts
     SUBDIR += py-dtfabric
+    SUBDIR += py-dunamai
     SUBDIR += py-durus
     SUBDIR += py-dynrules
     SUBDIR += py-easyprocess
@@ -4591,7 +4596,6 @@
     SUBDIR += py-git-up
     SUBDIR += py-git-url-parse
     SUBDIR += py-gitdb
-    SUBDIR += py-gitdb2
     SUBDIR += py-gitless
     SUBDIR += py-gitpython
     SUBDIR += py-glance-store
@@ -4678,6 +4682,7 @@
     SUBDIR += py-itanium_demangler
     SUBDIR += py-itemadapter
     SUBDIR += py-itemloaders
+    SUBDIR += py-iteration-utilities
     SUBDIR += py-itypes
     SUBDIR += py-jaraco
     SUBDIR += py-jaraco.classes
@@ -4694,6 +4699,7 @@
     SUBDIR += py-jellyfish
     SUBDIR += py-jenkins-job-builder
     SUBDIR += py-jep
+    SUBDIR += py-jinja2-ansible-filters
     SUBDIR += py-jinja2-time
     SUBDIR += py-jira
     SUBDIR += py-jitterentropy
@@ -4976,6 +4982,7 @@
     SUBDIR += py-pockets
     SUBDIR += py-podcastparser
     SUBDIR += py-poetry-core
+    SUBDIR += py-poetry-dynamic-versioning
     SUBDIR += py-poetry2setup
     SUBDIR += py-polib
     SUBDIR += py-pooch
@@ -5203,6 +5210,7 @@
     SUBDIR += py-qt5-sip
     SUBDIR += py-qtbuilder
     SUBDIR += py-qtconsole
+    SUBDIR += py-questionary
     SUBDIR += py-qutip
     SUBDIR += py-ramlfications
     SUBDIR += py-rapidfuzz
@@ -5291,7 +5299,6 @@
     SUBDIR += py-sip4
     SUBDIR += py-six
     SUBDIR += py-smmap
-    SUBDIR += py-smmap2
     SUBDIR += py-snakeviz
     SUBDIR += py-sniffio
     SUBDIR += py-sortedcontainers
@@ -5353,6 +5360,7 @@
     SUBDIR += py-thriftpy2
     SUBDIR += py-tiamat
     SUBDIR += py-timelib
+    SUBDIR += py-timeout-decorator
     SUBDIR += py-tinyarray
     SUBDIR += py-tinyrpc
     SUBDIR += py-tipper
@@ -6283,14 +6291,10 @@
     SUBDIR += rubygem-cri
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-cucumber
+    SUBDIR += rubygem-cucumber-ci-environment
     SUBDIR += rubygem-cucumber-core
-    SUBDIR += rubygem-cucumber-create-meta
     SUBDIR += rubygem-cucumber-cucumber-expressions
-    SUBDIR += rubygem-cucumber-cucumber-expressions14
-    SUBDIR += rubygem-cucumber-formatter-dots
     SUBDIR += rubygem-cucumber-messages
-    SUBDIR += rubygem-cucumber-messages17
-    SUBDIR += rubygem-cucumber-messages4
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-wire

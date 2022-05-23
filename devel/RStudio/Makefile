@@ -32,13 +32,15 @@ LIB_DEPENDS=	libR.so:math/R \
 		libuuid.so:misc/e2fsprogs-libuuid \
 		libyaml-cpp.so:devel/yaml-cpp
 
+BROKEN=		Fails to compile: Cannot find module 'fuse-box/sparky'
+
 FLAVORS=	desktop server
 FLAVOR?=	${FLAVORS:[1]}
 server_PKGNAMESUFFIX=	-server
 
 USES=		cmake fortran localbase:ldflags pgsql pkgconfig sqlite ssl
 USE_JAVA=	yes
-JAVA_VERSION=	8
+JAVA_VERSION=	12 # Java 8 fails on aarch64: Internal Error (assembler_aarch64.hpp:237), pid=1644, tid=0x00000000000c62b6 guarantee(val < (1U << nbits)) failed: Field too big for insn
 JAVA_BUILD=	yes
 
 USE_GITHUB=	yes

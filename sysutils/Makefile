@@ -55,6 +55,7 @@
     SUBDIR += apcupsd
     SUBDIR += aptly
     SUBDIR += arcconf
+    SUBDIR += archey4
     SUBDIR += archivemount
     SUBDIR += ascpu
     SUBDIR += asfsm
@@ -805,6 +806,7 @@
     SUBDIR += nss_ndb
     SUBDIR += nsysctl
     SUBDIR += ntfy
+    SUBDIR += ntpstat
     SUBDIR += nut
     SUBDIR += nut-devel
     SUBDIR += nvclock

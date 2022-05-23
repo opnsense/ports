@@ -1,7 +1,7 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	gnome
-PORTVERSION=	41
+PORTVERSION=	42
 CATEGORIES?=	x11 gnome
 
 MAINTAINER=	gnome@FreeBSD.org
@@ -66,7 +66,6 @@ RUN_DEPENDS+=	epiphany>=3.0.0:www/epiphany \
 		gnome-games>=3.0.0:games/gnome-games \
 		totem>=3.0.0:multimedia/totem \
 		gconf-editor>=3.0.0:sysutils/gconf-editor \
-		gnome-color-manager>=0:graphics/gnome-color-manager \
 		evolution>=3.0.0:mail/evolution \
 		cheese>=3.0.0:multimedia/cheese
 

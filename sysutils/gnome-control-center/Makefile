@@ -1,8 +1,7 @@
 # Created by: Joe Marcus Clarke <marcus@FreeBSD.org>
 
 PORTNAME=	gnome-control-center
-PORTVERSION=	42.0
-PORTREVISION=	2
+PORTVERSION=	42.1
 CATEGORIES=	sysutils gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -38,7 +37,6 @@ LIB_DEPENDS=	libaccountsservice.so:sysutils/accountsservice \
 		libudisks2.so:sysutils/libudisks \
 		libupower-glib.so:sysutils/upower
 RUN_DEPENDS=	cantarell-fonts>=0:x11-fonts/cantarell-fonts \
-		gcm-import:graphics/gnome-color-manager \
 		gnome-settings-daemon>=3.4.0:sysutils/gnome-settings-daemon \
 		gsettings-desktop-schemas>=3.2.2:devel/gsettings-desktop-schemas
 
