@@ -17154,3 +17154,18 @@ graphics/magnum||2022-05-17|Has expired: Broken for more than a year
 graphics/magnum-plugins||2022-05-17|Has expired: Depends on broken graphics/magnum
 graphics/magnum-extras||2022-05-17|Has expired: Depends on broken graphics/magnum
 math/pantheon-calculator|math/elementary-calculator|2022-05-18|Switch to reverse domain name notation
+mail/p5-MIME-Fast||2022-05-19|Depends on long deprecated gmime-2.2
+mail/gmime2-sharp|mail/gmime26-sharp|2022-05-19|Depends on long deprecated gmime-2.2
+mail/gmime2|mail/gmime26|2022-05-19|Not used anymore overcome by gnime26
+graphics/p5-Geo-GDAL||2022-05-22|Remove obsoleted port. GDAL removed deprecated SWIG Perl bindings since 3.5.0
+devel/py-gitdb2|devel/py-gitdb|2022-05-22|Remove obsoleted port. Use devel/py-gitdb instead
+devel/py-smmap2|devel/py-smmap|2022-05-22|Remove obsoleted port. Use devel/py-smmap instead
+devel/rubygem-cucumber-create-meta|devel/rubygem-cucumber-ci-environment|2022-05-22|Remove obsoleted port. Use devel/rubygem-cucumber-ci-environment instead
+devel/rubygem-cucumber-cucumber-expressions14|devel/rubygem-cucumber-cucumber-expressions|2022-05-22|Remove obsoleted port. Use devel/rubygem-cucumber-cucumber-expressions instead
+devel/rubygem-cucumber-formatter-dots|textproc/rubygem-cucumber-html-formatter|2022-05-22|Remove obsoleted port. Use textproc/rubygem-cucumber-html-formatter instead
+devel/rubygem-cucumber-messages4|devel/rubygem-cucumber-messages|2022-05-22|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+devel/rubygem-cucumber-messages17|devel/rubygem-cucumber-messages|2022-05-22|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+textproc/rubygem-cucumber-gherkin22|textproc/rubygem-cucumber-gherkin|2022-05-22|Remove obsoleted port. Use textproc/rubygem-cucumber-gherkin instead
+textproc/rubygem-cucumber-html-formatter17|textproc/rubygem-cucumber-html-formatter|2022-05-22|Remove obsoleted port. Use textproc/rubygem-cucumber-html-formatter instead
+security/greenbone-security-assistant|security/gsa|2022-05-22|It was splitted into security/gsad and security/gsa
+security/py-ospd|security/py-ospd-openvas|2022-05-22|It was merged into security/py-ospd-openvas
