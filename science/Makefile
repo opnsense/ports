@@ -91,6 +91,7 @@
     SUBDIR += fvcom-mpi
     SUBDIR += gabedit
     SUBDIR += gamess-us
+    SUBDIR += gbtolib
     SUBDIR += gchemutils
     SUBDIR += gdma
     SUBDIR += getdp
@@ -190,6 +191,7 @@
     SUBDIR += openkim
     SUBDIR += openkim-models
     SUBDIR += openmc
+    SUBDIR += openmolcas
     SUBDIR += openmx
     SUBDIR += opensim-core
     SUBDIR += opensph
@@ -345,6 +347,7 @@
     SUBDIR += py-veusz
     SUBDIR += pybrain
     SUBDIR += pynn
+    SUBDIR += q
     SUBDIR += qbox
     SUBDIR += qcl
     SUBDIR += qiskit-aer
@@ -391,6 +394,7 @@
     SUBDIR += thermofun
     SUBDIR += tinker
     SUBDIR += udunits
+    SUBDIR += ukrmol+
     SUBDIR += v_sim
     SUBDIR += vipster
     SUBDIR += vmd

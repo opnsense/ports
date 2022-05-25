@@ -190,6 +190,7 @@
     SUBDIR += lmtp2nntp
     SUBDIR += lookout
     SUBDIR += lurker
+    SUBDIR += mail-expire
     SUBDIR += mail2sms
     SUBDIR += mailagent
     SUBDIR += maildrop
@@ -633,6 +634,7 @@
     SUBDIR += smtprc
     SUBDIR += smtprelay
     SUBDIR += smtptrapd
+    SUBDIR += snappymail
     SUBDIR += sortmail
     SUBDIR += spamass-ixhash
     SUBDIR += spamass-milter
