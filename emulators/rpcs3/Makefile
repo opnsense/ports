@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.22-13627 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-gcd74fb6a6d
+DISTVERSION=	0.0.22-13693 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g03df3c5293
 CATEGORIES=	emulators
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -12,7 +12,7 @@ LICENSE_COMB=	multi
 LICENSE_FILE_ISCL=	${WRKSRC_cubeb}/LICENSE
 LICENSE_FILE_ZLIB=	${WRKSRC_asmjit}/LICENSE.md
 
-BUILD_DEPENDS=	flatbuffers>=2.0.6,1:devel/flatbuffers
+BUILD_DEPENDS=	flatc:devel/flatbuffers
 LIB_DEPENDS=	libxxhash.so:devel/xxhash \
 		libcurl.so:ftp/curl \
 		libpng.so:graphics/png \
@@ -25,7 +25,7 @@ ONLY_FOR_ARCHS_REASON=	requires int128 and SSE2
 USE_GITHUB=	yes
 GH_ACCOUNT=	RPCS3
 GH_TUPLE=	RPCS3:hidapi:hidapi-0.11.2-4-g6cf1336:hidapi/3rdparty/hidapi/hidapi \
-		RPCS3:llvm-mirror:509d31ad8967:llvm/llvm \
+		RPCS3:llvm-mirror:c725f494c91:llvm/llvm \
 		RPCS3:soundtouch:2.3.1-16-g83cfba6:soundtouch/3rdparty/SoundTouch/soundtouch \
 		asmjit:asmjit:fc2a5d8:asmjit/3rdparty/asmjit/asmjit \
 		jbeder:yaml-cpp:yaml-cpp-0.7.0-1-g0b67821:yamlcpp/3rdparty/yaml-cpp/yaml-cpp \

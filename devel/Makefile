@@ -218,8 +218,8 @@
     SUBDIR += autobook
     SUBDIR += autoconf
     SUBDIR += autoconf-archive
-    SUBDIR += autoconf-wrapper
-    SUBDIR += autoconf213
+    SUBDIR += autoconf-switch
+    SUBDIR += autoconf2.13
     SUBDIR += autodia
     SUBDIR += autogen
     SUBDIR += automake
@@ -838,6 +838,7 @@
     SUBDIR += gettext-tiny
     SUBDIR += gettext-tools
     SUBDIR += gflags
+    SUBDIR += gfold
     SUBDIR += gh
     SUBDIR += ghidra
     SUBDIR += ghq
@@ -869,6 +870,7 @@
     SUBDIR += gitg
     SUBDIR += github-backup-utils
     SUBDIR += gitinspector
+    SUBDIR += gitlab-metrics-exporter
     SUBDIR += gitlab-runner
     SUBDIR += gitlab-shell
     SUBDIR += gitleaks
@@ -1239,6 +1241,7 @@
     SUBDIR += libffcall
     SUBDIR += libffi
     SUBDIR += libffi321
+    SUBDIR += libffi33
     SUBDIR += libfirm
     SUBDIR += libfixposix
     SUBDIR += libflatarray
@@ -4799,7 +4802,6 @@
     SUBDIR += py-mdv
     SUBDIR += py-mediafile
     SUBDIR += py-medikit
-    SUBDIR += py-meliae
     SUBDIR += py-memory-allocator
     SUBDIR += py-memory-profiler
     SUBDIR += py-mergedeep
@@ -5085,6 +5087,7 @@
     SUBDIR += py-pypugjs
     SUBDIR += py-pyqtree
     SUBDIR += py-pyquery
+    SUBDIR += py-pyquil
     SUBDIR += py-pyral
     SUBDIR += py-pyrepl
     SUBDIR += py-pyrfc3339
@@ -5177,6 +5180,7 @@
     SUBDIR += py-python-magic
     SUBDIR += py-python-mimeparse
     SUBDIR += py-python-pcre
+    SUBDIR += py-python-rapidjson
     SUBDIR += py-python-socketio
     SUBDIR += py-python-statsd
     SUBDIR += py-python-subunit
@@ -5238,6 +5242,7 @@
     SUBDIR += py-resolver
     SUBDIR += py-resource
     SUBDIR += py-responses
+    SUBDIR += py-retry2
     SUBDIR += py-retrying
     SUBDIR += py-retype
     SUBDIR += py-rfc3339
@@ -5249,6 +5254,7 @@
     SUBDIR += py-robotremoteserver
     SUBDIR += py-rope
     SUBDIR += py-rose
+    SUBDIR += py-rpcq
     SUBDIR += py-rply
     SUBDIR += py-rq
     SUBDIR += py-rq-scheduler
@@ -5267,6 +5273,7 @@
     SUBDIR += py-schema
     SUBDIR += py-schematics-patched
     SUBDIR += py-scikit-build
+    SUBDIR += py-scooby
     SUBDIR += py-scripttest
     SUBDIR += py-selection
     SUBDIR += py-semantic-version
@@ -5685,6 +5692,7 @@
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-build
     SUBDIR += ruby-gems
+    SUBDIR += ruby-install
     SUBDIR += ruby-rbprof
     SUBDIR += ruby-setup.rb
     SUBDIR += ruby-subversion
@@ -7248,6 +7256,7 @@
     SUBDIR += trellis
     SUBDIR += trio
     SUBDIR += truc
+    SUBDIR += tup
     SUBDIR += ua_parser-core
     SUBDIR += uclcmd
     SUBDIR += ucommon

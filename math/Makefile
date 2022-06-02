@@ -376,6 +376,7 @@
     SUBDIR += hmat-oss
     SUBDIR += hpcombi
     SUBDIR += hpipm
+    SUBDIR += hptt
     SUBDIR += hs-Agda
     SUBDIR += hs-penrose
     SUBDIR += hsl
@@ -832,7 +833,6 @@
     SUBDIR += py-bitvector
     SUBDIR += py-bottleneck
     SUBDIR += py-brial
-    SUBDIR += py-cdecimal
     SUBDIR += py-chaospy
     SUBDIR += py-claripy
     SUBDIR += py-cma
