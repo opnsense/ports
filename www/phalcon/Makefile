@@ -2,8 +2,7 @@
 
 PORTNAME=	phalcon
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.0.0beta3
-PORTREVISION=	1
+DISTVERSION=	5.0.0RC1
 CATEGORIES=	www
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
@@ -11,8 +10,6 @@ MAINTAINER=	franco@opnsense.org
 COMMENT=	Phalcon PHP Framework written in C-language
 
 LICENSE=	BSD3CLAUSE
-
-RUN_DEPENDS=	${PHPBASE}/lib/php/${PHP_EXT_DIR}/psr.so:devel/pecl-psr@${PHP_FLAVOR}
 
 USES=		localbase php:ext
 USE_GITHUB=	yes
