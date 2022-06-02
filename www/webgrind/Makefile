@@ -1,7 +1,5 @@
-# Created by: Li-Wen Hsu <lwhsu@FreeBSD.org>
-
 PORTNAME=	webgrind
-PORTVERSION=	1.5.0
+PORTVERSION=	1.9.1
 DISTVERSIONPREFIX=v
 CATEGORIES=	www
 
