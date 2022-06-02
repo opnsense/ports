@@ -23,6 +23,7 @@
 # This file can be linted with Tools/scripts/MOVEDlint.awk
 #
 # Port|Moved to|Date|Why
+deskutils/planner|deskutils/gnome-planner|2020-05-31|Revive in more appropriate port name
 audio/polypaudio|audio/pulseaudio|2008-01-01|Project renamed
 audio/akode-plugins-polypaudio||2008-01-01|Polypaudio is obsolete in favor of Pulseaudio
 audio/teknap|net-p2p/teknap|2008-01-09|Moved to net-p2p category
@@ -10610,7 +10611,6 @@ net/g2ipmsg||2018-12-11|Has expired: GNOME 2 application
 net/grdesktop||2018-12-11|Has expired: GNOME 2 application
 textproc/gnome-spell||2018-12-11|Has expired: GNOME 2 application
 textproc/sagasu||2018-12-11|Has expired: GNOME 2 application
-deskutils/planner||2018-12-11|Has expired: GNOME 2 application
 deskutils/multisync||2018-12-11|Has expired: GNOME 2 application
 deskutils/drivel||2018-12-11|Has expired: GNOME 2 application
 deskutils/notecase||2018-12-11|Has expired: GNOME 2 application
@@ -15479,7 +15479,6 @@ news/rawdog||2020-09-19|Has expired: Uses deprecated version of python
 ports-mgmt/portell||2020-09-19|Has expired: Uses deprecated version of python
 print/biblio-py||2020-09-19|Has expired: Uses deprecated version of python
 science/brian||2020-09-19|Has expired: Uses deprecated version of python
-science/paraview||2020-09-19|Has expired: Uses deprecated version of python
 security/arm||2020-09-19|Has expired: Uses deprecated version of python
 security/ismtp||2020-09-19|Has expired: Uses deprecated version of python
 security/py-halberd||2020-09-19|Has expired: Uses deprecated version of python
@@ -15990,7 +15989,6 @@ www/p5-RT-Extension-MandatoryOnTransition@rt42||2021-02-02|Removed, currently on
 www/p5-RT-Extension-RepeatTicket@rt42||2021-02-02|Removed, currently only supported with www/rt44
 www/p5-RT-Extension-RepeatTicket@rt44|www/p5-RT-Extension-RepeatTicket|2021-02-02|Unflavor, currently only supported with www/rt44
 www/p5-RTx-Calendar@rt42||2021-02-02|Removed, currently only supported with www/rt44
-www/p5-RTx-Calendar@rt44|www/p5-RTx-Calendar|2021-02-02|Unflavor, currently only supported with www/rt44
 www/rt42|www/rt44|2021-02-02|Has expired: Upstream support is ending; please migrate to RT-5.0 (www/rt50)
 www/opera||2021-02-04|Abandonware since 2013
 www/opera-linuxplugins||2021-02-04|Depends on opera browser
@@ -16961,7 +16959,7 @@ textproc/rarian||2022-03-15|Abandonware
 devel/ORBit2||2022-03-15|Gnome2 library unused anymore
 games/pushover|games/domino-chain|2022-03-17|Chase upstream rename
 graphics/darktable38|graphics/darktable|2022-03-19|Darktable was upgraded to 3.8, separate port no longer needed
-security/1password-client-devel|security/1password-client2|2022-03-19|cli version 2 is now released.
+security/1password-client-devel|security/1password-client2|2022-03-19|cli version 2 is now released
 x11-toolkits/pangoxsl||2022-03-20|Has expired: Abandonware and not used by any port
 print/lgrind||2022-03-22|Has expired: Abandonware as last release was in 2001
 devel/py-decorator4||2022-03-22|Has expired: Legacy version, use devel/py-decorator instead
@@ -17008,7 +17006,7 @@ security/vinetto||2022-03-31|Has expired: Obsolete, targets deprecated Windows o
 security/pbnj||2022-03-31|Has expired: Abandonware, last release in 2006 and reported broken upstream in 2017 upstream
 databases/jasperreports||2022-03-31|Has expired: Unsupported by upstream, released in 2013
 security/retranslator||2022-03-31|Has expired: Deprecated upstream (EOL)
-security/cp2fwb||2022-03-31|Has expired: Abandonware, used with deprecated software Firewall Builder.
+security/cp2fwb||2022-03-31|Has expired: Abandonware, used with deprecated software Firewall Builder
 security/webscarab||2022-03-31|Has expired: Deprecated by upstream in 2014
 security/pscan||2022-03-31|Has expired: Abandonware, last release in 2000
 security/vnccrack||2022-03-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while version in ports is 1.0.0
@@ -17177,4 +17175,14 @@ java/openjdk13||2022-05-24|Has expired: EOLed since 31 march 2020
 java/openjdk14||2022-05-24|Has expired: EOLed since 30 september 2020
 java/openjdk15||2022-05-24|Has expired: EOLed since 31 march 2021
 java/openjdk16||2022-05-24|Has expired: EOLed since 30 September 2021
+sysutils/uefi-edk2-bhyve|sysutils/edk2@bhyve|2022-05-24|No more need for this port: please use sysutils/edk2 FLAVOR bhyve instead
 archivers/p7zip|archivers/7-zip|2022-05-25|Unmaintained for years and has known vulnerabilities. Use 7-Zip instead
+graphics/blender-lts28|graphics/blender-lts29|2022-05-26|Has expired: EOLed
+devel/autoconf-wrapper|devel/autoconf-switch|2022-05-27|Autoconf restructuring
+devel/autoconf213|devel/autoconf2.13|2022-05-27|Autoconf restructuring
+math/py-cdecimal||2022-05-27|Has expired: upstream does not support it after Python-3.2
+devel/py-meliae||2022-05-27|Has expired: does not build against Python-3.9
+databases/R-cran-RSQLite.extfuns|databases/R-cran-RSQLite|2022-05-31|Has expired: RSQLite incorporates RSQLite.extfuns
+net/mpich2|net/mpich|2022-05-31|Has been deprecrated for a long time and build fails with GCC 11
+net-im/jabber.el||2022-06-01|Has expired: is marked as broken: fails to build: jabber-chat.el:25:1: Error: Wrong number of arguments: (3 . 3), 2
+x11-fm/Arqiver|x11-fm/arqiver|2022-06-01|Convert PORTNATE to lowercase
