@@ -220,6 +220,7 @@
     SUBDIR += autoconf-archive
     SUBDIR += autoconf-switch
     SUBDIR += autoconf2.13
+    SUBDIR += autoconf2.69
     SUBDIR += autodia
     SUBDIR += autogen
     SUBDIR += automake
@@ -933,6 +934,7 @@
     SUBDIR += goswagger
     SUBDIR += got
     SUBDIR += govendor
+    SUBDIR += gpds
     SUBDIR += gperf
     SUBDIR += gpm
     SUBDIR += gputils
@@ -5217,6 +5219,7 @@
     SUBDIR += py-qtconsole
     SUBDIR += py-questionary
     SUBDIR += py-qutip
+    SUBDIR += py-qutip-qip
     SUBDIR += py-ramlfications
     SUBDIR += py-rapidfuzz
     SUBDIR += py-rapidfuzz-capi
