@@ -1,6 +1,6 @@
 PORTNAME=	webgrind
 PORTVERSION=	1.9.2
-DISTVERSIONPREFIX=v
+DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 
 MAINTAINER=	franco@opnsense.org
@@ -9,26 +9,25 @@ COMMENT=	Xdebug Profiling Web Frontend in PHP
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/license.txt
 
-MAKEFILE=	${WRKSRC}/makefile
-
-OPTIONS_DEFINE=	CALLGRAPH
-
+USES=		cpe php
+CPE_VENDOR=	webgrind_project
 USE_GITHUB=	yes
 GH_ACCOUNT=	jokkedk
 
-USES=		cpe php
+MAKEFILE=	${WRKSRC}/makefile
 
-CPE_VENDOR=	webgrind_project
+PLIST_SUB=	WWWGRP="${WWWGRP}" \
+		WWWOWN="${WWWOWN}"
 
-PLIST_SUB=	WWWOWN="${WWWOWN}" WWWGRP="${WWWGRP}"
+OPTIONS_DEFINE=	CALLGRAPH
 
-CALLGRAPH_USES=		python
+CALLGRAPH_DESC=	Enable call graph
+
 CALLGRAPH_RUN_DEPENDS=	dot:graphics/graphviz
-
-CALLGRAPH_DESC=		Enable call graph
+CALLGRAPH_USES=		python
 
 post-patch-CALLGRAPH-on:
-	@${REINPLACE_CMD} -e 's,/usr/bin/python,${PYTHON_CMD},' ${WRKSRC}/config.php
+	@${REINPLACE_CMD} -e 's,/usr/bin/python3,${PYTHON_CMD},' ${WRKSRC}/config.php
 	@${REINPLACE_CMD} -e 's,/usr/bin/dot,/usr/local/bin/dot,' ${WRKSRC}/config.php
 
 do-install:
