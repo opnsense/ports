@@ -1481,6 +1481,7 @@
     SUBDIR += py-sphinx-autoapi
     SUBDIR += py-sphinx-autobuild
     SUBDIR += py-sphinx-autodoc-typehints
+    SUBDIR += py-sphinx-basic-ng
     SUBDIR += py-sphinx-book-theme
     SUBDIR += py-sphinx-copybutton
     SUBDIR += py-sphinx-design
@@ -1517,6 +1518,7 @@
     SUBDIR += py-sphinxext-opengraph
     SUBDIR += py-spylls
     SUBDIR += py-stemming
+    SUBDIR += py-tableschema-to-template
     SUBDIR += py-tabletext
     SUBDIR += py-tablib
     SUBDIR += py-terminaltables
