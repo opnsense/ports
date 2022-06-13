@@ -1,3 +1,59 @@
+  <vuln vid="55cff5d2-e95c-11ec-ae20-001999f8d30b">
+    <topic>XFCE -- Allows executing malicious .desktop files pointing to remote code</topic>
+    <affects>
+      <package>
+	<name>libexo</name>
+	<range><lt>4.16.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>XFCE Project reports:</p>
+	<blockquote cite="https://gitlab.xfce.org/xfce/exo/-/commit/cc047717c3b5efded2cc7bd419c41a3d1f1e48b6">
+	  <p>Prevent executing possibly malicious .desktop files
+	  from online sources (ftp://, http:// etc.).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-32278</cvename>
+      <url>https://gitlab.xfce.org/xfce/exo/-/commit/cc047717c3b5efded2cc7bd419c41a3d1f1e48b6</url>
+    </references>
+    <dates>
+      <discovery>2022-06-11</discovery>
+      <entry>2022-06-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b51cfaea-e919-11ec-9fba-080027240888">
+    <topic>py-numpy -- Missing return-value validation of the function PyArray_DescrNew</topic>
+    <affects>
+      <package>
+	<name>py38-numpy</name>
+	<name>py39-numpy</name>
+	<name>py310-numpy</name>
+	<range><lt>1.22.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Numpy reports:</p>
+	<blockquote cite="https://github.com/numpy/numpy/pull/20960">
+	  <p>At most call-sites for PyArray_DescrNew, there are no validations of its return,
+	    but an invalid address may be returned.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-41495</cvename>
+      <url>https://github.com/numpy/numpy/pull/20960</url>
+    </references>
+    <dates>
+      <discovery>2021-05-19</discovery>
+      <entry>2022-06-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="c80ce2dd-e831-11ec-bcd2-3065ec8fd3ec">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
@@ -38,7 +94,7 @@
     <affects>
       <package>
 	<name>apache24</name>
-	<range><lt>2.5.54</lt></range>
+	<range><lt>2.4.54</lt></range>
       </package>
     </affects>
     <description>
@@ -101,6 +157,7 @@
     <dates>
       <discovery>2022-06-08</discovery>
       <entry>2022-06-09</entry>
+      <modified>2022-06-10</modified>
     </dates>
   </vuln>
 
