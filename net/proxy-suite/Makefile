@@ -13,8 +13,6 @@ LICENSE=	GPLv2
 GNU_CONFIGURE=	yes
 USES=		gmake tar:bzip2
 
-MAKE_JOBS_UNSAFE=	yes
-
 #
 # basic configure args
 #
