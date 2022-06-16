@@ -4061,24 +4061,24 @@
     SUBDIR += php80-sysvshm
     SUBDIR += php80-tokenizer
     SUBDIR += php81-ffi
-    SUBDIR += php82-ffi
     SUBDIR += php81-gettext
-    SUBDIR += php82-gettext
     SUBDIR += php81-intl
-    SUBDIR += php82-intl
     SUBDIR += php81-pcntl
-    SUBDIR += php82-pcntl
     SUBDIR += php81-readline
-    SUBDIR += php82-readline
     SUBDIR += php81-shmop
-    SUBDIR += php82-shmop
     SUBDIR += php81-sysvmsg
-    SUBDIR += php82-sysvmsg
     SUBDIR += php81-sysvsem
-    SUBDIR += php82-sysvsem
     SUBDIR += php81-sysvshm
-    SUBDIR += php82-sysvshm
     SUBDIR += php81-tokenizer
+    SUBDIR += php82-ffi
+    SUBDIR += php82-gettext
+    SUBDIR += php82-intl
+    SUBDIR += php82-pcntl
+    SUBDIR += php82-readline
+    SUBDIR += php82-shmop
+    SUBDIR += php82-sysvmsg
+    SUBDIR += php82-sysvsem
+    SUBDIR += php82-sysvshm
     SUBDIR += php82-tokenizer
     SUBDIR += phpunit6
     SUBDIR += phpunit7
@@ -4501,6 +4501,8 @@
     SUBDIR += py-distributed
     SUBDIR += py-dj32-django-rq
     SUBDIR += py-dj32-graphene-django
+    SUBDIR += py-dj40-django-rq
+    SUBDIR += py-dj40-graphene-django
     SUBDIR += py-django-rq
     SUBDIR += py-docker-py
     SUBDIR += py-dockerpty
@@ -4532,6 +4534,7 @@
     SUBDIR += py-eventlib
     SUBDIR += py-ewmh
     SUBDIR += py-exam
+    SUBDIR += py-exceptiongroup
     SUBDIR += py-executing
     SUBDIR += py-expiringdict
     SUBDIR += py-extras
@@ -4572,6 +4575,7 @@
     SUBDIR += py-flexmock
     SUBDIR += py-flit
     SUBDIR += py-flit-core
+    SUBDIR += py-flit-scm
     SUBDIR += py-fluent
     SUBDIR += py-fluent-logger
     SUBDIR += py-flufl.i18n
@@ -4627,6 +4631,7 @@
     SUBDIR += py-graphene
     SUBDIR += py-graphene-django
     SUBDIR += py-graphene-sqlalchemy
+    SUBDIR += py-graphene2
     SUBDIR += py-graphql-core
     SUBDIR += py-graphql-core2
     SUBDIR += py-graphql-relay
@@ -5149,6 +5154,7 @@
     SUBDIR += py-pytest-mock
     SUBDIR += py-pytest-mutagen
     SUBDIR += py-pytest-mypy
+    SUBDIR += py-pytest-nunit
     SUBDIR += py-pytest-pep8
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-pycodestyle
@@ -5463,6 +5469,7 @@
     SUBDIR += py-venusian
     SUBDIR += py-verboselogs
     SUBDIR += py-versiontools
+    SUBDIR += py-verspec
     SUBDIR += py-vine
     SUBDIR += py-virtualenv
     SUBDIR += py-virtualenv-api
@@ -5477,6 +5484,7 @@
     SUBDIR += py-wadllib
     SUBDIR += py-warlock
     SUBDIR += py-watchdog
+    SUBDIR += py-watchfiles
     SUBDIR += py-watchgod
     SUBDIR += py-watermark
     SUBDIR += py-wcwidth
@@ -5964,6 +5972,7 @@
     SUBDIR += rubygem-aws-sdk-machinelearning
     SUBDIR += rubygem-aws-sdk-macie
     SUBDIR += rubygem-aws-sdk-macie2
+    SUBDIR += rubygem-aws-sdk-mainframemodernization
     SUBDIR += rubygem-aws-sdk-managedblockchain
     SUBDIR += rubygem-aws-sdk-managedgrafana
     SUBDIR += rubygem-aws-sdk-marketplacecatalog
@@ -6323,6 +6332,7 @@
     SUBDIR += rubygem-cucumber-ci-environment
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-cucumber-expressions
+    SUBDIR += rubygem-cucumber-cucumber-expressions15
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-messages18
     SUBDIR += rubygem-cucumber-rails
@@ -6584,6 +6594,7 @@
     SUBDIR += rubygem-jenkins_api_client
     SUBDIR += rubygem-jeweler
     SUBDIR += rubygem-jira-ruby
+    SUBDIR += rubygem-jira-ruby21
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -6604,6 +6615,8 @@
     SUBDIR += rubygem-kgio
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-lazy_priority_queue
+    SUBDIR += rubygem-libddprof
+    SUBDIR += rubygem-libddwaf
     SUBDIR += rubygem-librarian
     SUBDIR += rubygem-librarianp
     SUBDIR += rubygem-libyajl2
@@ -6903,12 +6916,12 @@
     SUBDIR += rubygem-shoulda-context
     SUBDIR += rubygem-shoulda-matchers
     SUBDIR += rubygem-sidekiq
-    SUBDIR += rubygem-sidekiq64
     SUBDIR += rubygem-sidekiq-bulk
     SUBDIR += rubygem-sidekiq-cron
     SUBDIR += rubygem-sidekiq-cron-sidekiq64
     SUBDIR += rubygem-sidekiq-scheduler
     SUBDIR += rubygem-sidekiq-unique-jobs
+    SUBDIR += rubygem-sidekiq64
     SUBDIR += rubygem-sidetiq
     SUBDIR += rubygem-sigdump
     SUBDIR += rubygem-simple-navigation
