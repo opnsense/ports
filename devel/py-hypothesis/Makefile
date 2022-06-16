@@ -1,8 +1,7 @@
 # Created by: Brendan Molloy <brendan+freebsd@bbqsrc.net>
 
 PORTNAME=	hypothesis
-PORTVERSION=	6.47.0
-PORTREVISION=	1
+PORTVERSION=	6.47.3
 CATEGORIES=	devel python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,7 +16,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=19.2.0:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}rich>=9.0.0:textproc/py-rich@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}sortedcontainers>=2.1.0<3.0.0:devel/py-sortedcontainers@${PY_FLAVOR}
 
-USES=		python:3.7+
+USES=		python:3.8+
 USE_PYTHON=	autoplist concurrent distutils
 
 NO_ARCH=	yes
@@ -50,4 +49,10 @@ PYTEST_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=4.6:devel/py-pytest@${PY_FLAV
 PYTZ_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytz>=2014.1,1:devel/py-pytz@${PY_FLAVOR}
 REDIS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}redis>=3.0.0:databases/py-redis@${PY_FLAVOR}
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 31100
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}exceptiongroup>=1.0.0rc8:devel/py-exceptiongroup@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>
