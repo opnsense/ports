@@ -246,6 +246,7 @@
     SUBDIR += hlmaster
     SUBDIR += honeyd
     SUBDIR += hostapd
+    SUBDIR += hostapd29
     SUBDIR += hostapd-devel
     SUBDIR += hping3
     SUBDIR += hsflowd
@@ -975,7 +976,6 @@
     SUBDIR += pecl-xmlrpc
     SUBDIR += pecl-zmq
     SUBDIR += pen
-    SUBDIR += pfinger
     SUBDIR += php74-ldap
     SUBDIR += php74-soap
     SUBDIR += php74-sockets

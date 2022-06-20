@@ -13,6 +13,7 @@
     SUBDIR += artikulate
     SUBDIR += asbutton
     SUBDIR += asr-manpages
+    SUBDIR += astc-encoder
     SUBDIR += bb
     SUBDIR += bbjd
     SUBDIR += bdelta
@@ -81,6 +82,7 @@
     SUBDIR += dynomite
     SUBDIR += e2fsprogs-libblkid
     SUBDIR += e2fsprogs-libuuid
+    SUBDIR += edfbrowser
     SUBDIR += edflib
     SUBDIR += elixir-mime
     SUBDIR += elixir-uuid
@@ -528,6 +530,7 @@
     SUBDIR += vdmfec
     SUBDIR += veles
     SUBDIR += vera
+    SUBDIR += vfc
     SUBDIR += vifm
     SUBDIR += visp
     SUBDIR += viz
