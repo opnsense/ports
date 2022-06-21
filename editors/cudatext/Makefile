@@ -1,5 +1,5 @@
 PORTNAME=	cudatext
-PORTVERSION=	1.166.0
+PORTVERSION=	1.166.2
 CATEGORIES=	editors
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
 
@@ -24,7 +24,7 @@ GH_TUPLE=	bgrabitmap:bgrabitmap:ace7e0e:bgrabitmap/bgrabitmap \
 		Alexey-T:ATSynEdit_Cmp:aa58946:atsyneditcmp/atsyneditcmp \
 		Alexey-T:ATBinHex-Lazarus:c63346b:atbinhex/atbinhex \
 		Alexey-T:UniqueInstance:753f823:uniqueinstance/uniqueinstance \
-		Alexey-T:EncConv:7197f21:encconv/encconv
+		Alexey-T:EncConv:061e871:encconv/encconv
 
 DOS2UNIX_FILES=	app/settings_default/default.json setup/debfiles/cudatext.desktop
 

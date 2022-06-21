@@ -52,6 +52,7 @@
     SUBDIR += dbow
     SUBDIR += dbtool
     SUBDIR += dbview
+    SUBDIR += duckdb
     SUBDIR += ejdb
     SUBDIR += elixir-calecto
     SUBDIR += elixir-db_connection
@@ -773,6 +774,7 @@
     SUBDIR += py-databases
     SUBDIR += py-dbf
     SUBDIR += py-dbutils
+    SUBDIR += py-duckdb
     SUBDIR += py-fakeredis
     SUBDIR += py-fastapi-users-db-ormar
     SUBDIR += py-fdb
