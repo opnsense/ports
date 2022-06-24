@@ -572,6 +572,7 @@
     SUBDIR += eiffelstudio
     SUBDIR += electron13
     SUBDIR += electron17
+    SUBDIR += electron18
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -1301,7 +1302,6 @@
     SUBDIR += libklel
     SUBDIR += liblangtag
     SUBDIR += liblas
-    SUBDIR += liblas12
     SUBDIR += liblnk
     SUBDIR += liblockfile
     SUBDIR += liblogging
@@ -4212,6 +4212,7 @@
     SUBDIR += py-atomicwrites
     SUBDIR += py-atpublic
     SUBDIR += py-attrs
+    SUBDIR += py-attrs-strict
     SUBDIR += py-autocommand
     SUBDIR += py-autoflake
     SUBDIR += py-automaton
@@ -4437,6 +4438,7 @@
     SUBDIR += py-coreschema
     SUBDIR += py-country
     SUBDIR += py-cov-core
+    SUBDIR += py-covdefaults
     SUBDIR += py-coverage
     SUBDIR += py-coverage_enable_subprocess
     SUBDIR += py-cppheaderparser
@@ -4951,6 +4953,7 @@
     SUBDIR += py-path.py
     SUBDIR += py-pathable
     SUBDIR += py-pathlib2
+    SUBDIR += py-pathos
     SUBDIR += py-pathspec
     SUBDIR += py-pathtools
     SUBDIR += py-paver
@@ -5013,7 +5016,9 @@
     SUBDIR += py-portalocker
     SUBDIR += py-positional
     SUBDIR += py-posix_ipc
+    SUBDIR += py-pox
     SUBDIR += py-poyo
+    SUBDIR += py-ppft
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
     SUBDIR += py-pre-commit-hooks
@@ -5079,6 +5084,7 @@
     SUBDIR += py-pyhashxx
     SUBDIR += py-pyhcl
     SUBDIR += py-pyicu
+    SUBDIR += py-pyina
     SUBDIR += py-pyinotify
     SUBDIR += py-pyinquirer
     SUBDIR += py-pyinstaller
@@ -5104,6 +5110,7 @@
     SUBDIR += py-pyperclip
     SUBDIR += py-pyperf
     SUBDIR += py-pyplusplus
+    SUBDIR += py-pyproject-fmt
     SUBDIR += py-pypugjs
     SUBDIR += py-pyqtree
     SUBDIR += py-pyquery
@@ -5294,6 +5301,7 @@
     SUBDIR += py-sarge
     SUBDIR += py-sarif-om
     SUBDIR += py-schedule
+    SUBDIR += py-scheduler
     SUBDIR += py-schema
     SUBDIR += py-schematics-patched
     SUBDIR += py-scikit-build
@@ -5858,6 +5866,7 @@
     SUBDIR += rubygem-aws-sdk-computeoptimizer
     SUBDIR += rubygem-aws-sdk-configservice
     SUBDIR += rubygem-aws-sdk-connect
+    SUBDIR += rubygem-aws-sdk-connectcampaignservice
     SUBDIR += rubygem-aws-sdk-connectcontactlens
     SUBDIR += rubygem-aws-sdk-connectparticipant
     SUBDIR += rubygem-aws-sdk-connectwisdomservice
@@ -6029,6 +6038,7 @@
     SUBDIR += rubygem-aws-sdk-recyclebin
     SUBDIR += rubygem-aws-sdk-redshift
     SUBDIR += rubygem-aws-sdk-redshiftdataapiservice
+    SUBDIR += rubygem-aws-sdk-redshiftserverless
     SUBDIR += rubygem-aws-sdk-rekognition
     SUBDIR += rubygem-aws-sdk-resiliencehub
     SUBDIR += rubygem-aws-sdk-resourcegroups
@@ -6803,6 +6813,7 @@
     SUBDIR += rubygem-ransack
     SUBDIR += rubygem-rapt
     SUBDIR += rubygem-rash
+    SUBDIR += rubygem-rash_alt
     SUBDIR += rubygem-rb-fsevent
     SUBDIR += rubygem-rb-inotify
     SUBDIR += rubygem-rb-kqueue
@@ -7069,6 +7080,7 @@
     SUBDIR += rubygem-validate_email
     SUBDIR += rubygem-validate_url
     SUBDIR += rubygem-validates_timeliness
+    SUBDIR += rubygem-version_gem
     SUBDIR += rubygem-versionomy
     SUBDIR += rubygem-view_component-rails61
     SUBDIR += rubygem-virtus

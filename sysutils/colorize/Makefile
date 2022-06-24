@@ -3,7 +3,7 @@
 PORTNAME=	colorize
 PORTVERSION=	0.3.4
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	sysutils
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -13,6 +13,7 @@ LICENSE=	GPLv2+
 
 USES=		shebangfix perl5
 
+NO_ARCH=	yes
 NO_BUILD=	yes
 
 SUB_FILES=	pkg-message
@@ -23,7 +24,7 @@ GH_ACCOUNT=	raszi
 SHEBANG_FILES=	colorize
 
 post-patch:
-	@${REINPLACE_CMD} -e 's|%%PREFFIX%%|${PREFIX}|' ${WRKSRC}/colorize
+	@${REINPLACE_CMD} -e 's|%%PREFIX%%|${PREFIX}|' ${WRKSRC}/colorize
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/colorize ${STAGEDIR}${PREFIX}/bin

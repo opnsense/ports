@@ -1219,6 +1219,7 @@
     SUBDIR += pecl-xdiff2
     SUBDIR += pecl-yaml
     SUBDIR += peco
+    SUBDIR += peg
     SUBDIR += perl2html
     SUBDIR += php-mecab
     SUBDIR += php74-ctype
@@ -1682,6 +1683,7 @@
     SUBDIR += rubygem-elasticsearch713
     SUBDIR += rubygem-emot
     SUBDIR += rubygem-escape_utils
+    SUBDIR += rubygem-escape_utils12
     SUBDIR += rubygem-extended-markdown-filter
     SUBDIR += rubygem-ezamar
     SUBDIR += rubygem-fast_xs
