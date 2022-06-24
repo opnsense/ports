@@ -1,3 +1,151 @@
+  <vuln vid="25be46f0-f25d-11ec-b62a-00e081b7aa2d">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.356</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.346.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2022-06-22/">
+	  <h1>Description</h1>
+	  <h5>(High) SECURITY-2781 / CVE-2022-34170 (SECURITY-2779), CVE-2022-34171 (SECURITY-2761), CVE-2022-34172 (SECURITY-2776), CVE-2022-34173 (SECURITY-2780)</h5>
+	  <p>Multiple XSS vulnerabilities</p>
+	  <h5>(Medium) SECURITY-2566 / CVE-2022-34174</h5>
+	  <p>Observable timing discrepancy allows determining username validity</p>
+	  <h5>(Medium) Unauthorized view fragment access</h5>
+	  <p>SECURITY-2777 / CVE-2022-34175</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-34170</cvename>
+      <cvename>CVE-2022-34171</cvename>
+      <cvename>CVE-2022-34172</cvename>
+      <cvename>CVE-2022-34173</cvename>
+      <cvename>CVE-2022-34174</cvename>
+      <cvename>CVE-2022-34175</cvename>
+      <url>https://www.jenkins.io/security/advisory/2022-06-22/</url>
+    </references>
+    <dates>
+      <discovery>2022-06-22</discovery>
+      <entry>2022-06-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4eeb93bf-f204-11ec-8fbd-d4c9ef517024">
+    <topic>OpenSSL -- Command injection vulnerability</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1p,1</lt></range>
+      </package>
+      <package>
+	<name>openssl-devel</name>
+	<range><lt>3.0.4</lt></range>
+      </package>
+      <package>
+	<name>openssl-quictls</name>
+	<range><lt>3.0.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20220621.txt">
+	  <p>Circumstances where the c_rehash script does not properly
+	    sanitise shell metacharacters to prevent command injection were
+	    found by code review.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-2068</cvename>
+      <url>https://www.openssl.org/news/secadv/20220621.txt</url>
+    </references>
+    <dates>
+      <discovery>2022-06-21</discovery>
+      <entry>2022-06-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b2a4c5f1-f1fe-11ec-bcd2-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>103.0.5060.53</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/06/stable-channel-update-for-desktop_21.html">
+	  <p>This release contains 14 security fixes, including:</p>
+	  <ul>
+	    <li>[1335458] Critical CVE-2022-2156: Use after free in Base. Reported by Mark Brand of Google Project Zero on 2022-06-11</li>
+	    <li>[1327312] High CVE-2022-2157: Use after free in Interest groups. Reported by Nan Wang(@eternalsakura13) and Guang Gong of 360 Alpha Lab on 2022-05-19</li>
+	    <li>[1321078] High CVE-2022-2158: Type Confusion in V8. Reported by Bohan Liu (@P4nda20371774) of Tencent Security Xuanwu Lab on 2022-04-29</li>
+	    <li>[1116450] Medium CVE-2022-2160: Insufficient policy enforcement in DevTools. Reported by David Erceg on 2020-08-14</li>
+	    <li>[1330289] Medium CVE-2022-2161: Use after free in WebApp Provider. Reported by Zhihua Yao of KunLun Lab on 2022-05-30</li>
+	    <li>[1307930] Medium CVE-2022-2162: Insufficient policy enforcement in File System API. Reported by Abdelhamid Naceri (halov) on 2022-03-19</li>
+	    <li>[1308341] Low CVE-2022-2163: Use after free in Cast UI and Toolbar. Reported by Chaoyuan Peng (@ret2happy) on 2022-03-21</li>
+	    <li>[1268445] Low CVE-2022-2164: Inappropriate implementation in Extensions API. Reported by José Miguel Moreno Computer Security Lab (COSEC) at UC3M on 2021-11-10</li>
+	    <li>[1250993] Low CVE-2022-2165: Insufficient data validation in URL formatting. Reported by Rayyan Bijoora on 2021-09-19</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-2156</cvename>
+      <cvename>CVE-2022-2157</cvename>
+      <cvename>CVE-2022-2158</cvename>
+      <cvename>CVE-2022-2160</cvename>
+      <cvename>CVE-2022-2161</cvename>
+      <cvename>CVE-2022-2162</cvename>
+      <cvename>CVE-2022-2163</cvename>
+      <cvename>CVE-2022-2164</cvename>
+      <cvename>CVE-2022-2165</cvename>
+      <url>https://chromereleases.googleblog.com/2022/06/stable-channel-update-for-desktop_21.html</url>
+    </references>
+    <dates>
+      <discovery>2022-06-21</discovery>
+      <entry>2022-06-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="482456fb-e9af-11ec-93b6-318d1419ea39">
+    <topic>Security Vulnerability found in ExifTool leading to RCE</topic>
+    <affects>
+      <package>
+	<name>p5-Image-ExifTool</name>
+	<range><lt>12.38</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Debian Security tracker reports:</p>
+	<blockquote cite="https://security-tracker.debian.org/tracker/CVE-2022-23935">
+	  <p>ExifTool.pm in ExifTool before 12.38 mishandles a file special characters check, leading to command injection</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23935</cvename>
+      <url>https://www.cvedetails.com/cve/CVE-2022-23935</url>
+    </references>
+    <dates>
+      <discovery>2022-01-25</discovery>
+      <entry>2022-06-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="ad37a349-ebb7-11ec-b9f7-21427354249d">
     <topic>mitmproxy -- Insufficient Protection against HTTP Request Smuggling</topic>
     <affects>
@@ -49,16 +197,15 @@
       <body xmlns="http://www.w3.org/1999/xhtml">
 	<p>Tor organization reports:</p>
 	<blockquote cite="https://gitlab.torproject.org/tpo/core/team/-/wikis/NetworkTeam/TROVE">
-	  <p>TBD</p>
+	  <p>TROVE-2022-001</p>
 	</blockquote>
       </body>
     </description>
     <references>
-      <cvename>TROVE-2022-001[0]</cvename>
       <url>https://gitlab.torproject.org/tpo/core/team/-/wikis/NetworkTeam/TROVE</url>
     </references>
     <dates>
-      <discovery>TBD</discovery>
+      <discovery>2022-06-14</discovery>
       <entry>2022-06-17</entry>
     </dates>
   </vuln>
