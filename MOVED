@@ -4916,7 +4916,6 @@ www/libghttp||2013-10-07|Component of the obsolete gnome1
 deskutils/gworkspace-clipbook||2013-10-07|Replaced by tabbed shelf in GWorkspace
 audio/yamt||2013-10-07|Depends on EOLed gnome1 libraries
 astro/nova||2013-10-07|Development ceased 8 years ago, depends on some gnome1 libraries
-textproc/libxml++||2013-10-07|Component of the obsolete gnome1
 devel/linux-f10-libglade|devel/linux-f10-libglade2|2013-10-07|Unused
 textproc/linux-f10-libxml|textproc/linux-f10-libxml2|2013-10-07|Unused
 www/moodle23||2013-10-08|Has expired: Unmaintained upstream
@@ -17124,6 +17123,7 @@ devel/grpc134|devel/grpc|2022-04-16|Remove obsoleted port. Use devel/grpc instea
 devel/py-trollius||2022-04-16|Remove obsoleted port. The asyncio package has been included in the standard library since Python 3.4
 graphics/py-pyglet150|graphics/py-pyglet|2022-04-16|Has expired: No longer needed, use graphics/py-pyglet instead
 games/critterding||2022-04-16|Has expired: Abandonware with last release in 2013, newer version bundles depends and requires Qt4
+devel/glibmm268||2022-04-16|port was added by accident
 lang/gcc10-devel||2022-04-17|Has expired: Not serving its purpose any longer due to lack of maintenance
 devel/py-installer03|devel/py-installer|2022-04-17|Remove obsoleted port. Use devel/py-installer instead
 games/cultivation||2022-04-18|Has expired: Abandonware with last release in 2010, non-portable build system
@@ -17212,3 +17212,144 @@ net-im/licq-osd||2022-06-21|Removed, part of expired net-im/licq
 net-im/licq-qt-gui||2022-06-21|Removed, part of expired net-im/licq
 x11-toolkits/py-xlib|x11-toolkits/py-python-xlib|2022-06-21|Use registered upstream (PyPI) name (Python ports compliance)
 www/openarc|mail/openarc|2022-06-21|Move to a proper category
+textproc/rubygem-elasticsearch-model6|textproc/rubygem-elasticsearch-model|2022-06-24|Obsolete use textproc/rubygem-elasticsearch-model instead
+textproc/rubygem-elasticsearch6|textproc/rubygem-elasticsearch|2022-06-24|Obsolete use textproc/rubygem-elasticsearch instead
+textproc/rubygem-elasticsearch-transport6|textproc/rubygem-elasticsearch-transport|2022-06-24|Obsolete use textproc/rubygem-elasticsearch-transport instead
+textproc/rubygem-elasticsearch-api6|textproc/rubygem-elasticsearch-api|2022-06-24|Obsolete use textproc/rubygem-elasticsearch-api instead
+textproc/rubygem-elasticsearch-rails6|textproc/rubygem-elasticsearch-rails|2022-06-24|Obsolete use textproc/rubygem-elasticsearch-rails instead
+devel/p5-Goo-Canvas|devel/p5-Goo-Canvas2|2022-06-24|Obsolete use devel/p5-Goo-Canvas2 instead
+graphics/goocanvas|graphics/goocanvas3|2022-06-24|Obsolete use graphics/goocanvas3
+x11-toolkits/tepl|x11-toolkits/tepl6|2022-06-25|Obsolete use x11-toolkits/tepl6
+lang/cmucl||2022-06-27|Has expired: Not supported upstream since 2017 and broken since FreeBSD 12.1
+devel/qbs||2022-06-27|Has expired: Abandoned and not working with modern clang
+lang/cmucl-extra||2022-06-27|Has expired: lang/cmucl is not supported upstream since 2017 and broken since FreeBSD 12.1
+security/protonvpn-cli||2022-06-27|Has expired: This version is deprecated and unsupported upstream. The port needs an update, which would require a fair amount of effort. Use OpenVPN or Wireguard with configuration files provided by ProtonVPN instead.
+sysutils/firstboot-growfs||2022-06-27|Has expired: A better version is available on all FreeBSD version
+security/modsecurity3-apache||2022-06-27|Has expired: The project was not developed further
+net-mgmt/zabbix54-frontend||2022-06-27|Has expired: Unsupported by upstream
+net-mgmt/zabbix54-server||2022-06-27|Has expired: Unsupported by upstream
+net-mgmt/zabbix54-agent||2022-06-27|Has expired: Unsupported by upstream
+net-mgmt/zabbix54-java||2022-06-27|Has expired: Unsupported by upstream
+net-mgmt/zabbix54-proxy||2022-06-27|Has expired: Unsupported by upstream
+archivers/erlang-snappy||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+converters/erlang-base64url||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-calecto||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-db_connection||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-ecto||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-geo||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-mariaex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-postgrex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/elixir-timex_ecto||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/erlang-couchbeam||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/erlang-epgsql||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+databases/erlang-eredis||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-apex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-bson||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-cachex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-calendar||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-combine||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-conform||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-connection||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-coverex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-crontab||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-csv||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-decimal||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-deppie||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-dialyze||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-distillery||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-estree||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-eternal||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-exactor||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-excoveralls||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-exjsx||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-exprotobuf||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-gen_stage||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-gettext||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-inflex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-libring||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-math||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-msgpax||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-nadia||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-nats||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-nimble_csv||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-paratize||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-plug||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-poison||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-quantum||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-smppex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-timex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-trailing_format_plug||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-tzdata||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/elixir-unsafe||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-bbmustache||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-certifi||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-cuttlefish||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-erlware_commons||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-gen_smtp||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-getopt||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-goldrush||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-hut||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-jobs||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-jsx||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-katana||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-lager||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-lager_syslog||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-meck||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-metrics||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-parse_trans||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-providers||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-ssl_verify_fun||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-unicode_util_compat||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+dns/erlang-idna||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+misc/elixir-mime||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+misc/elixir-uuid||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+misc/erlang-mimerl||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+misc/erlang-mimetypes||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+net/elixir-kafka_ex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+net/elixir-oauth2||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+net/erlang-ranch||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+security/elixir-comeonin||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+security/elixir-comeonin_i18n||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+security/elixir-jose||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+security/erlang-fast_tls||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+security/erlang-jose||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/elixir-earmark||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/elixir-funnel||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/elixir-sweet_xml||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/erlang-edown||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/erlang-fast_xml||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/erlang-p1_utils||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+textproc/erlang-yamerl||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-html_entities||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-html_sanitize_ex||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-httpoison||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-httpotion||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-joken||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-maru||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-phoenix||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-phoenix_ecto||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-phoenix_html||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-phoenix_pubsub||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/elixir-webassembly||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-cowboy||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-cowlib||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-hackney||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-ibrowse||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-mochiweb||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-mochiweb-basho||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+www/erlang-webmachine||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-backoff||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-bear||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-cf||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-common_lib||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-esdl||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-folsom||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-gen_leader||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-gpb||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-gproc||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-jsxd||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-neotoma||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-poolboy||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-pooler||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-sbroker||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead
+devel/erlang-syslog||2022-06-08|Remove expired ports. Use mix or rebar3 build tools instead

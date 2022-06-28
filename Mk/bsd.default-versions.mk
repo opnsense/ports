@@ -50,7 +50,7 @@ FPC_DEFAULT?=		3.2.2
 .  if ${ARCH} == "powerpcspe"
 GCC_DEFAULT?=		8
 .  else
-GCC_DEFAULT?=		10
+GCC_DEFAULT?=		11
 .  endif
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
@@ -112,11 +112,11 @@ PGSQL_DEFAULT?=		13
 # Possible values: 7.4, 8.0, 8.1
 PHP_DEFAULT?=		8.0
 # Possible values: 2.7, 3.7, 3.8, 3.9, 3.10, 3.11
-PYTHON_DEFAULT?=	3.8
+PYTHON_DEFAULT?=	3.9
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
 # Possible values: 3.7, 3.8, 3.9, 3.10, 3.11
-PYTHON3_DEFAULT?=	3.8
+PYTHON3_DEFAULT?=	3.9
 # Possible values: 2.7, 3.0, 3.1, 3.2
 RUBY_DEFAULT?=		3.0
 # Possible values: rust, rust-nightly
