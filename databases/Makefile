@@ -54,17 +54,7 @@
     SUBDIR += dbview
     SUBDIR += duckdb
     SUBDIR += ejdb
-    SUBDIR += elixir-calecto
-    SUBDIR += elixir-db_connection
-    SUBDIR += elixir-ecto
-    SUBDIR += elixir-geo
-    SUBDIR += elixir-mariaex
-    SUBDIR += elixir-postgrex
-    SUBDIR += elixir-timex_ecto
     SUBDIR += emacsql
-    SUBDIR += erlang-couchbeam
-    SUBDIR += erlang-epgsql
-    SUBDIR += erlang-eredis
     SUBDIR += erlfdb
     SUBDIR += evolution-data-server
     SUBDIR += fastdb
@@ -581,6 +571,7 @@
     SUBDIR += pg_tileserv
     SUBDIR += pgaccess
     SUBDIR += pgadmin3
+    SUBDIR += pgagroal
     SUBDIR += pgbackrest
     SUBDIR += pgbadger
     SUBDIR += pgbarman
@@ -979,6 +970,7 @@
     SUBDIR += rubygem-openid-redis-store
     SUBDIR += rubygem-paranoia
     SUBDIR += rubygem-pg
+    SUBDIR += rubygem-pg13
     SUBDIR += rubygem-pg_array_parser
     SUBDIR += rubygem-pg_query
     SUBDIR += rubygem-pghero

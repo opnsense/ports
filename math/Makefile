@@ -201,6 +201,7 @@
     SUBDIR += cadical
     SUBDIR += cado-nfs
     SUBDIR += calc
+    SUBDIR += calcium
     SUBDIR += calcoo
     SUBDIR += cantor
     SUBDIR += casadi
@@ -398,6 +399,7 @@
     SUBDIR += jsmath-fonts
     SUBDIR += jtransforms
     SUBDIR += jts
+    SUBDIR += kahip
     SUBDIR += kalgebra
     SUBDIR += kalker
     SUBDIR += kbruch
@@ -875,6 +877,7 @@
     SUBDIR += py-iohexperimenter
     SUBDIR += py-ipyopt
     SUBDIR += py-jax
+    SUBDIR += py-kahip
     SUBDIR += py-keras
     SUBDIR += py-keras-applications
     SUBDIR += py-keras-preprocessing

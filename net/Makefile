@@ -136,12 +136,9 @@
     SUBDIR += dual-dhclient-daemon
     SUBDIR += easysoap
     SUBDIR += echoping
-    SUBDIR += elixir-kafka_ex
-    SUBDIR += elixir-oauth2
     SUBDIR += empty
     SUBDIR += endlessh
     SUBDIR += enet
-    SUBDIR += erlang-ranch
     SUBDIR += eternalterminal
     SUBDIR += evans
     SUBDIR += eventviews
@@ -189,6 +186,7 @@
     SUBDIR += gmid
     SUBDIR += gnet2
     SUBDIR += gnetcat
+    SUBDIR += gnome-connections
     SUBDIR += gnome-nettool
     SUBDIR += gnome-online-accounts
     SUBDIR += gnome-online-miners
@@ -241,6 +239,7 @@
     SUBDIR += haproxy22
     SUBDIR += haproxy23
     SUBDIR += haproxy24
+    SUBDIR += haproxy25
     SUBDIR += hblock
     SUBDIR += hexinject
     SUBDIR += hlmaster
@@ -1424,6 +1423,7 @@
     SUBDIR += sipsak
     SUBDIR += skstream
     SUBDIR += sl2tps
+    SUBDIR += slackcat
     SUBDIR += smb4k
     SUBDIR += smcroute
     SUBDIR += smm++

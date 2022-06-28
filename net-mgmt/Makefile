@@ -403,11 +403,6 @@
     SUBDIR += zabbix5-java
     SUBDIR += zabbix5-proxy
     SUBDIR += zabbix5-server
-    SUBDIR += zabbix54-agent
-    SUBDIR += zabbix54-frontend
-    SUBDIR += zabbix54-java
-    SUBDIR += zabbix54-proxy
-    SUBDIR += zabbix54-server
     SUBDIR += zabbix6-agent
     SUBDIR += zabbix6-frontend
     SUBDIR += zabbix6-java

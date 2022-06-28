@@ -131,12 +131,7 @@
     SUBDIR += duo
     SUBDIR += duo_openvpn
     SUBDIR += easy-rsa
-    SUBDIR += elixir-comeonin
-    SUBDIR += elixir-comeonin_i18n
-    SUBDIR += elixir-jose
     SUBDIR += enchive
-    SUBDIR += erlang-fast_tls
-    SUBDIR += erlang-jose
     SUBDIR += eschalot
     SUBDIR += esteidfirefoxplugin
     SUBDIR += expiretable
@@ -350,7 +345,6 @@
     SUBDIR += minisign
     SUBDIR += mkp224o
     SUBDIR += modsecurity3
-    SUBDIR += modsecurity3-apache
     SUBDIR += modsecurity3-nginx
     SUBDIR += monkeysphere
     SUBDIR += munge
@@ -805,7 +799,6 @@
     SUBDIR += poly1305aes
     SUBDIR += portsentry
     SUBDIR += proftpd-mod_clamav
-    SUBDIR += protonvpn-cli
     SUBDIR += proxycheck
     SUBDIR += proxytunnel
     SUBDIR += pssh
@@ -1254,6 +1247,7 @@
     SUBDIR += uacme
     SUBDIR += ubuntu-keyring
     SUBDIR += unhide
+    SUBDIR += unix-selfauth-helper
     SUBDIR += vanguards-tor
     SUBDIR += vault
     SUBDIR += vaultwarden
