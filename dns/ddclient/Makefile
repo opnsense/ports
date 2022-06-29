@@ -1,9 +1,8 @@
 # Created by: Dirk Froemberg <dirk@FreeBSD.org>
 
 PORTNAME=	ddclient
-PORTVERSION=	3.10.0
 DISTVERSIONPREFIX=	v
-DISTVERSIONSUFFIX=	_2
+DISTVERSION=	3.9.1
 CATEGORIES=	dns
 
 MAINTAINER=	mjl@luckie.org.nz
@@ -14,15 +13,18 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 RUN_DEPENDS=	p5-Data-Validate-IP>0:net-mgmt/p5-Data-Validate-IP
 
-USES=		autoreconf gmake perl5 tar:bzip2
-GNU_CONFIGURE=	yes
+USES=		perl5 tar:bzip2
 USE_GITHUB=	yes
 USE_PERL5=	run
 USE_RC_SUBR=	${PORTNAME}
 
 NO_ARCH=	yes
+NO_BUILD=	yes
 SUB_FILES=	pkg-message ddclient_force
 
+PLIST_FILES=	"@sample(,,600) etc/ddclient.conf.sample" \
+		etc/periodic/daily/ddclient_force \
+		sbin/ddclient
 PORTDOCS=	COPYRIGHT ChangeLog README.cisco README.ssl README.md \
 		sample-etc_cron.d_ddclient sample-etc_dhclient-exit-hooks \
 		sample-etc_dhcpc_dhcpcd-eth0.exe sample-etc_ppp_ip-up.local
@@ -37,10 +39,12 @@ post-patch:
 	@${GREP} -lR '/usr' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e \
 		's|/usr|${PREFIX}|g'
 	@${REINPLACE_CMD} -e 's|%%ETCDIR%%|${PREFIX}/etc| ; \
-		 s|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/ddclient.in
+		 s|%%LOCALBASE%%|${LOCALBASE}|' ${WRKSRC}/ddclient
+	@${REINPLACE_CMD} -e '/^\#\!\/usr\/local\/local/d' \
+		${WRKSRC}/ddclient
 
 do-install:
-	(cd ${WRKSRC} && ${INSTALL_DATA} ddclient.conf \
+	(cd ${WRKSRC} && ${INSTALL_DATA} sample-etc_ddclient.conf \
 		${STAGEDIR}${PREFIX}/etc/ddclient.conf.sample)
 	(cd ${WRKSRC} && ${INSTALL_SCRIPT} ddclient \
 		${STAGEDIR}${PREFIX}/sbin)
