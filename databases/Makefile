@@ -129,7 +129,6 @@
     SUBDIR += libdrizzle
     SUBDIR += libdrizzle-redux
     SUBDIR += libgda5
-    SUBDIR += libgda5-bdb
     SUBDIR += libgda5-jdbc
     SUBDIR += libgda5-ldap
     SUBDIR += libgda5-mdb
@@ -204,8 +203,6 @@
     SUBDIR += mysql-q4m
     SUBDIR += mysql-udf
     SUBDIR += mysql2pgsql
-    SUBDIR += mysql55-client
-    SUBDIR += mysql55-server
     SUBDIR += mysql56-client
     SUBDIR += mysql56-server
     SUBDIR += mysql57-client
@@ -550,8 +547,6 @@
     SUBDIR += pecl-rrd
     SUBDIR += percona-pam-for-mysql
     SUBDIR += percona-toolkit
-    SUBDIR += percona56-client
-    SUBDIR += percona56-server
     SUBDIR += percona57-client
     SUBDIR += percona57-pam-for-mysql
     SUBDIR += percona57-server
@@ -582,7 +577,6 @@
     SUBDIR += pglogical
     SUBDIR += pgmetrics
     SUBDIR += pgmodeler
-    SUBDIR += pgpool-II-36
     SUBDIR += pgpool-II-37
     SUBDIR += pgpool-II-40
     SUBDIR += pgpool-II-41

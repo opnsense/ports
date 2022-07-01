@@ -511,7 +511,6 @@
     SUBDIR += deheader
     SUBDIR += delta
     SUBDIR += delve
-    SUBDIR += dep
     SUBDIR += deployer
     SUBDIR += derelict-sdl2
     SUBDIR += derelict-util
@@ -570,7 +569,6 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron13
     SUBDIR += electron17
     SUBDIR += electron18
     SUBDIR += electron19
@@ -840,6 +838,7 @@
     SUBDIR += go-perf
     SUBDIR += go-protobuf
     SUBDIR += go-tools
+    SUBDIR += go-wire
     SUBDIR += gob2
     SUBDIR += gobject-introspection
     SUBDIR += gocheese
@@ -864,7 +863,6 @@
     SUBDIR += gorm
     SUBDIR += goswagger
     SUBDIR += got
-    SUBDIR += govendor
     SUBDIR += gpds
     SUBDIR += gperf
     SUBDIR += gpm
@@ -981,7 +979,6 @@
     SUBDIR += isfreedesktop
     SUBDIR += isl
     SUBDIR += ispc
-    SUBDIR += itext
     SUBDIR += ivykis
     SUBDIR += jam
     SUBDIR += jansson
@@ -2752,6 +2749,7 @@
     SUBDIR += p5-Module-Build-Convert
     SUBDIR += p5-Module-Build-Kwalitee
     SUBDIR += p5-Module-Build-Pluggable
+    SUBDIR += p5-Module-Build-Pluggable-CPANfile
     SUBDIR += p5-Module-Build-Pluggable-ReadmeMarkdownFromPod
     SUBDIR += p5-Module-Build-Tiny
     SUBDIR += p5-Module-Build-Using-PkgConfig
@@ -4050,14 +4048,6 @@
     SUBDIR += protozero
     SUBDIR += pructl
     SUBDIR += psimd
-    SUBDIR += psptoolchain
-    SUBDIR += psptoolchain-binutils
-    SUBDIR += psptoolchain-gcc-stage1
-    SUBDIR += psptoolchain-gcc-stage2
-    SUBDIR += psptoolchain-gdb
-    SUBDIR += psptoolchain-newlib
-    SUBDIR += psptoolchain-pspsdk-stage1
-    SUBDIR += psptoolchain-pspsdk-stage2
     SUBDIR += pstreams
     SUBDIR += psvn
     SUBDIR += pth
@@ -4115,7 +4105,6 @@
     SUBDIR += py-apache_conf_parser
     SUBDIR += py-apipkg
     SUBDIR += py-apispec
-    SUBDIR += py-apns2
     SUBDIR += py-appdirs
     SUBDIR += py-applicationinsights
     SUBDIR += py-apptools
@@ -4282,6 +4271,7 @@
     SUBDIR += py-buildbot-worker
     SUBDIR += py-buildbot-www
     SUBDIR += py-bullet3
+    SUBDIR += py-bytecode
     SUBDIR += py-cabby
     SUBDIR += py-cachecontrol
     SUBDIR += py-cached-property
@@ -4431,12 +4421,9 @@
     SUBDIR += py-dirspec
     SUBDIR += py-distlib
     SUBDIR += py-distributed
-    SUBDIR += py-dj32-django-rq
-    SUBDIR += py-dj32-graphene-django
     SUBDIR += py-dj40-django-rq
     SUBDIR += py-dj40-graphene-django
     SUBDIR += py-django-rq
-    SUBDIR += py-docker-py
     SUBDIR += py-dockerpty
     SUBDIR += py-docopt
     SUBDIR += py-doctest-ignore-unicode
@@ -5292,7 +5279,6 @@
     SUBDIR += py-stringbrewer
     SUBDIR += py-stringcase
     SUBDIR += py-structlog
-    SUBDIR += py-stsci.distutils
     SUBDIR += py-subprocess-tee
     SUBDIR += py-subversion
     SUBDIR += py-sure
@@ -5589,7 +5575,6 @@
     SUBDIR += quickcheck++
     SUBDIR += quilt
     SUBDIR += rabs
-    SUBDIR += racer
     SUBDIR += radare2
     SUBDIR += radian
     SUBDIR += ragel

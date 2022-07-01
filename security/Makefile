@@ -192,7 +192,6 @@
     SUBDIR += gsa
     SUBDIR += gsad
     SUBDIR += gsasl
-    SUBDIR += gss
     SUBDIR += gstreamer1-plugins-dtls
     SUBDIR += gtkpasman
     SUBDIR += gvm
@@ -273,7 +272,6 @@
     SUBDIR += libgcrypt
     SUBDIR += libgnome-keyring
     SUBDIR += libgpg-error
-    SUBDIR += libgringotts
     SUBDIR += libgsasl
     SUBDIR += libhijack
     SUBDIR += libident
@@ -900,6 +898,7 @@
     SUBDIR += py-mnemonic
     SUBDIR += py-msoffcrypto-tool
     SUBDIR += py-muacrypt
+    SUBDIR += py-nassl
     SUBDIR += py-netbox-secretstore
     SUBDIR += py-netmiko
     SUBDIR += py-noiseprotocol
@@ -973,6 +972,7 @@
     SUBDIR += py-spake2
     SUBDIR += py-ssh-audit
     SUBDIR += py-sshpubkeys
+    SUBDIR += py-sslyze
     SUBDIR += py-stem
     SUBDIR += py-stix
     SUBDIR += py-stix2
@@ -1014,7 +1014,6 @@
     SUBDIR += rkhunter
     SUBDIR += rndpassw
     SUBDIR += rnp
-    SUBDIR += ruby-bitwarden
     SUBDIR += rubygem-acme-client
     SUBDIR += rubygem-aes_key_wrap
     SUBDIR += rubygem-airbrussh
@@ -1161,7 +1160,6 @@
     SUBDIR += sha1collisiondetection
     SUBDIR += sha2wordlist
     SUBDIR += shibboleth-sp
-    SUBDIR += shishi
     SUBDIR += sig2dot
     SUBDIR += signify
     SUBDIR += signing-party

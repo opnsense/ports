@@ -51,7 +51,6 @@
     SUBDIR += deskmenu
     SUBDIR += disman
     SUBDIR += dmenu
-    SUBDIR += dmenu-wayland
     SUBDIR += docker-tray
     SUBDIR += dsbautostart
     SUBDIR += dsbxinput
@@ -105,14 +104,11 @@
     SUBDIR += guake
     SUBDIR += gxkb
     SUBDIR += hamclock
-    SUBDIR += havoc
     SUBDIR += hhpc
     SUBDIR += hs-xmobar
     SUBDIR += hsetroot
     SUBDIR += i3blocks
-    SUBDIR += i3lock
     SUBDIR += i3lock-color
-    SUBDIR += i3status
     SUBDIR += iceauth
     SUBDIR += ico
     SUBDIR += idesk
@@ -447,7 +443,6 @@
     SUBDIR += xcb-util-renderutil
     SUBDIR += xcb-util-wm
     SUBDIR += xcb-util-xrm
-    SUBDIR += xcbautolock
     SUBDIR += xclickroot
     SUBDIR += xclip
     SUBDIR += xclipboard
