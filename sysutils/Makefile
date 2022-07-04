@@ -173,10 +173,12 @@
     SUBDIR += cfengine-masterfiles317
     SUBDIR += cfengine-masterfiles318
     SUBDIR += cfengine-masterfiles319
+    SUBDIR += cfengine-masterfiles320
     SUBDIR += cfengine316
     SUBDIR += cfengine317
     SUBDIR += cfengine318
     SUBDIR += cfengine319
+    SUBDIR += cfengine320
     SUBDIR += chaoskube
     SUBDIR += checkrestart
     SUBDIR += chezmoi
@@ -477,7 +479,6 @@
     SUBDIR += gnome-settings-daemon
     SUBDIR += gnome-system-monitor
     SUBDIR += gnome_subr
-    SUBDIR += go-btfs
     SUBDIR += go-wtf
     SUBDIR += goaccess
     SUBDIR += goawk
@@ -964,7 +965,6 @@
     SUBDIR += pefs-kmod
     SUBDIR += perp
     SUBDIR += personality
-    SUBDIR += pesign
     SUBDIR += pfetch
     SUBDIR += pflogx
     SUBDIR += pfstat

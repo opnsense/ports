@@ -412,6 +412,7 @@
     SUBDIR += kontrast
     SUBDIR += kooka
     SUBDIR += kphotoalbum
+    SUBDIR += kplot
     SUBDIR += kqtquickcharts
     SUBDIR += kquickimageeditor
     SUBDIR += krita
@@ -908,6 +909,7 @@
     SUBDIR += py-pyvips
     SUBDIR += py-pyvista
     SUBDIR += py-pyx
+    SUBDIR += py-qpageview
     SUBDIR += py-qrencode
     SUBDIR += py-railroad-diagrams
     SUBDIR += py-rasterio
