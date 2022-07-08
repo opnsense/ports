@@ -32,6 +32,9 @@
     SUBDIR += gbase
     SUBDIR += gbsdconv
     SUBDIR += hs-aeson-pretty
+    SUBDIR += hs-dhall-bash
+    SUBDIR += hs-dhall-json
+    SUBDIR += hs-dhall-yaml
     SUBDIR += i18ntools
     SUBDIR += ical2html
     SUBDIR += iconv
