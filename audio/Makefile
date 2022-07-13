@@ -594,6 +594,7 @@
     SUBDIR += pavucontrol-qt
     SUBDIR += pavumeter
     SUBDIR += pc-mixer
+    SUBDIR += pcaudiolib
     SUBDIR += pd
     SUBDIR += pear-Text_Spell_Audio
     SUBDIR += penguinsap
@@ -864,6 +865,7 @@
     SUBDIR += xmradio
     SUBDIR += xoscope
     SUBDIR += xsynth-dssi
+    SUBDIR += xuidesigner
     SUBDIR += xwave
     SUBDIR += yell
     SUBDIR += ympd

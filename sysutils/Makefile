@@ -87,6 +87,9 @@
     SUBDIR += bacula11-client-static
     SUBDIR += bacula11-docs
     SUBDIR += bacula11-server
+    SUBDIR += bacula13-client
+    SUBDIR += bacula13-docs
+    SUBDIR += bacula13-server
     SUBDIR += bacula9-client
     SUBDIR += bacula9-client-static
     SUBDIR += bacula9-docs
@@ -1517,6 +1520,7 @@
     SUBDIR += virtualmin
     SUBDIR += vivid
     SUBDIR += vm-bhyve
+    SUBDIR += vm-bhyve-devel
     SUBDIR += vmdktool
     SUBDIR += vmtouch
     SUBDIR += vobcopy

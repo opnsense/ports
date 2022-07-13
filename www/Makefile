@@ -2048,6 +2048,7 @@
     SUBDIR += rubygem-rack-test
     SUBDIR += rubygem-rack-timeout
     SUBDIR += rubygem-rack16
+    SUBDIR += rubygem-rack223
     SUBDIR += rubygem-rack_csrf
     SUBDIR += rubygem-rails-settings-cached
     SUBDIR += rubygem-rails-settings-cached-rails5
@@ -2091,6 +2092,7 @@
     SUBDIR += rubygem-responders-rails52
     SUBDIR += rubygem-responders-rails60
     SUBDIR += rubygem-responders-rails61
+    SUBDIR += rubygem-responders-rails70
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rfacebook
     SUBDIR += rubygem-rfeedfinder

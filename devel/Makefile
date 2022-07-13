@@ -1,7 +1,6 @@
     COMMENT = Development utilities
 
     SUBDIR += 9base
-    SUBDIR += ChipmunkPhysics
     SUBDIR += ElectricFence
     SUBDIR += R-cran-BH
     SUBDIR += R-cran-Defaults
@@ -4019,6 +4018,7 @@
     SUBDIR += picojson
     SUBDIR += picprog
     SUBDIR += pijul
+    SUBDIR += pika
     SUBDIR += pipestatus
     SUBDIR += pire
     SUBDIR += pit
@@ -4484,6 +4484,7 @@
     SUBDIR += py-five.globalrequest
     SUBDIR += py-fixtures
     SUBDIR += py-flake8
+    SUBDIR += py-flake8-black
     SUBDIR += py-flake8-bugbear
     SUBDIR += py-flake8-builtins
     SUBDIR += py-flake8-docstrings
@@ -5030,6 +5031,7 @@
     SUBDIR += py-pyperf
     SUBDIR += py-pyplusplus
     SUBDIR += py-pyproject-fmt
+    SUBDIR += py-pyproject-metadata
     SUBDIR += py-pypugjs
     SUBDIR += py-pyqtree
     SUBDIR += py-pyquery
@@ -6303,6 +6305,7 @@
     SUBDIR += rubygem-devise-rails52
     SUBDIR += rubygem-devise-rails60
     SUBDIR += rubygem-devise-rails61
+    SUBDIR += rubygem-devise-rails70
     SUBDIR += rubygem-devise47-rails61
     SUBDIR += rubygem-did_you_mean
     SUBDIR += rubygem-dig_rb
