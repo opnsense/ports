@@ -11,6 +11,8 @@ COMMENT=	Graphical user interface for several chemistry software packages
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/License
 
+BROKEN_armv6=	fatal error: 'omp.h' file not found
+BROKEN_armv7=	fatal error: 'omp.h' file not found
 BROKEN_i386=	undefined reference to `__atomic_load'
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
@@ -39,6 +41,12 @@ OPTIONS_DEFINE=		OPENMP
 OPTIONS_DEFAULT=	OPENMP
 OPTIONS_EXCLUDE_powerpc=	OPENMP
 
+.include <bsd.port.pre.mk>
+
+.if ${OSVERSION} < 1301000
+BROKEN_riscv64=	fatal error: 'omp.h' file not found
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} 's|/usr/|${PREFIX}/|; s| -O2| ${CFLAGS}|; s|gcc|${CC}|' ${WRKSRC}/CONFIG
 
@@ -53,4 +61,4 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/icons/Gabedit${SZ}.png ${STAGEDIR}${PREFIX}/share/icons/hicolor/${SZ}x${SZ}/apps/${PORTNAME}.png
 .endfor
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

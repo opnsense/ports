@@ -35,6 +35,7 @@
     SUBDIR += artyfx-lv2
     SUBDIR += asmix
     SUBDIR += asmixer
+    SUBDIR += asterisk-espeak
     SUBDIR += asterisk-flite
     SUBDIR += asunder
     SUBDIR += atunes
@@ -141,7 +142,7 @@
     SUBDIR += enscribe
     SUBDIR += epos-devel
     SUBDIR += eq10q-lv2
-    SUBDIR += espeak
+    SUBDIR += espeak-ng
     SUBDIR += espressivo-lv2
     SUBDIR += etcd
     SUBDIR += eteroj-lv2
