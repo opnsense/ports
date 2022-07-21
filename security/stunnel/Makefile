@@ -1,5 +1,3 @@
-# Created by: Martti Kuparinen <martti.kuparinen@ericsson.com>
-
 PORTNAME=	stunnel
 DISTVERSION=	5.63
 PORTEPOCH=	1

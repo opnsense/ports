@@ -1,5 +1,3 @@
-# Created by: dwcjr@inethouston.net
-
 PORTNAME=	openssh
 DISTVERSION=	8.9p1
 PORTREVISION=	4
