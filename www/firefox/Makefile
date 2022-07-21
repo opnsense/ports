@@ -1,9 +1,7 @@
-# Created by: Alan Eldridge <alane@FreeBSD.org>
-
 PORTNAME=	firefox
 DISTVERSION=	103.0
 PORTEPOCH=	2
-CATEGORIES=	www
+CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
 DISTFILES=	${DISTNAME}.source${EXTRACT_SUFX}

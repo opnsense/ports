@@ -1,5 +1,3 @@
-# Created by: Hye-Shik Chang
-
 PORTNAME=	llvm
 PORTVERSION=	${LLVM_MAJOR}.0.d${SNAPDATE}
 PORTREVISION=	0
@@ -553,7 +551,7 @@ post-install-FLANG-on:
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/Transforms/CMakeFiles
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/Optimizer/CMakeFiles
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/flang/CMakeFiles
-.if ${SNAPDATE} == 20220709
+.if ${SNAPDATE} == 20220720
 	# expected to be temporary
 	${LN} -f ${STAGEDIR}${LLVM_PREFIX}/bin/flang-new \
 	    ${STAGEDIR}${LLVM_PREFIX}/bin/flang

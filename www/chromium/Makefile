@@ -1,9 +1,6 @@
-# Created by: Florent Thoumie <flz@FreeBSD.org>
-
 PORTNAME=	chromium
-PORTVERSION=	103.0.5060.114
-PORTREVISION=	4
-CATEGORIES=	www
+PORTVERSION=	103.0.5060.134
+CATEGORIES=	www wayland
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		https://nerd.hu/distfiles/:external
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \

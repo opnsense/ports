@@ -1,8 +1,6 @@
-# Created by: Wen Heping <wenheping@gmail.com>
-
 PORTNAME=	netCDF4
 PORTVERSION=	1.5.8
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONPREFIX=	v
 DISTVERSIONSUFFIX=	rel
 CATEGORIES=	science python

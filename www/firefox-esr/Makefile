@@ -1,9 +1,7 @@
-# Created by: Alan Eldridge <alane@FreeBSD.org>
-
 PORTNAME=	firefox
 DISTVERSION=	91.12.0
 PORTEPOCH=	1
-CATEGORIES=	www
+CATEGORIES=	www wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}esr/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}esr-candidates/build1/source
 PKGNAMESUFFIX=	-esr

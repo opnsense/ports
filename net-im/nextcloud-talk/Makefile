@@ -1,5 +1,3 @@
-# Created by: Bernard Spil <brnrd@freebsd.org>
-
 PORTNAME=	talk
 PORTVERSION=	14.0.3
 DISTVERSIONPREFIX=	v
@@ -19,6 +17,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 RUN_DEPENDS=	nextcloud${PHP_PKGNAMESUFFIX}>=24:www/nextcloud@${PHP_FLAVOR}
 
 USES=		cpe php:flavors
+IGNORE_WITH_PHP=	82
 CPE_VENDOR=	nextcloud
 NO_BUILD=	yes
 NO_ARCH=	yes
