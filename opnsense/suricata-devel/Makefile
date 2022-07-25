@@ -34,7 +34,7 @@ MAKE_ENV=		RUSTFLAGS="${RUSTFLAGS} -C linker=${CC:Q} ${LDFLAGS:C/.+/-C link-arg=
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
-CONFLICTS_INSTALL=	libhtp suricata-devel
+CONFLICTS_INSTALL=	libhtp suricata
 
 SUB_FILES=	pkg-message
 PLIST_SUB=	PORTVERSION=${DISTVERSION:C/-/_/g} UPDATEVERSION=1.2.4
