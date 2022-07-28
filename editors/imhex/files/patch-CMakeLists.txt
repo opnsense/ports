@@ -1,6 +1,6 @@
---- CMakeLists.txt.orig	2022-07-04 19:53:18 UTC
+--- CMakeLists.txt.orig	2022-07-26 14:13:07 UTC
 +++ CMakeLists.txt
-@@ -12,7 +12,6 @@ include("${IMHEX_BASE_FOLDER}/cmake/build_helpers.cmak
+@@ -15,7 +15,6 @@ option(IMHEX_PATTERNS_PULL_MASTER "Download latest fil
  
  # Make sure project is configured correctly
  setDefaultBuiltTypeIfUnset()

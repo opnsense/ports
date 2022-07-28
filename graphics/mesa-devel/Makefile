@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	22.1-branchpoint-4414
-DISTVERSIONSUFFIX=	-g075564c251b
+DISTVERSION=	22.1-branchpoint-4954
+DISTVERSIONSUFFIX=	-g7d8942846da
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -55,7 +55,6 @@ OPTIONS_GROUP_VULKAN=	anv radv
 OPTIONS_EXCLUDE_DragonFly=	LIBUNWIND anv
 OPTIONS_EXCLUDE_i386=	LTO # anv: vkcube fails on vkCreateSwapchainKHR
 OPTIONS_EXCLUDE_powerpc64=	${"${/usr/bin/ld:L:tA}"==/usr/bin/ld.lld:?LTO:} # https://github.com/llvm/llvm-project/issues/46697
-OPTIONS_EXCLUDE+=	r600 # libc++ lacks <memory_resource>
 OPTIONS_EXCLUDE+=	${ARCH:Naarch64:C/.+/panfrost/}
 OPTIONS_EXCLUDE+=	${ARCH:Namd64:Ni386:Nx86_64:C/.+/anv crocus iris/}
 OPTIONS_EXCLUDE+=	${ARCH:Naarch64:Namd64:Ni386:Npowerpc64:Npowerpc64le:Nx86_64:C/.+/LIBUNWIND/}

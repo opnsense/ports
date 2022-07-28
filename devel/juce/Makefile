@@ -1,5 +1,6 @@
 PORTNAME=	juce
 DISTVERSION=	7.0.1
+PORTREVISION=	1
 CATEGORIES=	devel
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
@@ -12,6 +13,8 @@ LICENSE=	JUCE6
 LICENSE_NAME=	JUCE 6 End User License Agreement
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 LICENSE_PERMS=	auto-accept dist-mirror pkg-mirror
+
+BROKEN_riscv64=	Hard-float 'd' ABI can't be used for a target that doesn't support the D instruction set extension (ignoring target-abi)
 
 BUILD_DEPENDS=	ladspa>0:audio/ladspa
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
@@ -35,7 +38,7 @@ GH_PROJECT=	JUCE
 
 CMAKE_ON=	JUCE_BUILD_EXTRAS
 
-CXXFLAGS+=	-I${LOCALBASE}/include/freetype2
+CXXFLAGS+=	-I${LOCALBASE}/include/freetype2 -DJUCE_INCLUDE_PNGLIB_CODE=0
 LDFLAGS+=	-pthread -lfreetype -lpng16
 LDFLAGS+=	-lGL # while building NetworkGraphicsDemo ld: error: undefined symbol: glXGetCurrentContext referenced by ld-temp.o
 LDFLAGS+=	-lasound # while building AudioPerformanceTest ld: error: undefined symbol: snd_seq_system_info_sizeof

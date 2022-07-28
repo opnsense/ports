@@ -1,6 +1,7 @@
 PORTNAME=	adguardhome
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.107.8
+PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,6 +15,7 @@ RUN_DEPENDS=	ca_root_nss>=0:security/ca_root_nss
 USES=		cpe go:modules
 
 GO_MODULE=	github.com/AdguardTeam/AdGuardHome
+GO_BUILDFLAGS=  -ldflags="-s -w -X github.com/AdguardTeam/AdGuardHome/internal/version.version=${DISTVERSION}" # workaround for https://github.com/AdguardTeam/AdGuardHome/issues/4774
 
 # to rebuild the deps archives:
 #   1. set DEV_UPDATE_MODE=yes
