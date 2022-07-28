@@ -66,12 +66,20 @@ PKGNAMEPREFIX?=	hs-
 
 EXECUTABLES?=	${PORTNAME}
 
+CABAL_CMD?=	cabal
+CABAL_PORT=	devel/hs-cabal-install
 CABAL_HOME=	${WRKDIR}/cabal-home
 CABAL_LIBEXEC=	libexec/cabal
 CABAL_EXTRACT_SUFX=	.tar.gz
 CABAL_ARCH=	${ARCH:S/amd64/x86_64/:C/armv.*/arm/:S/powerpc64/ppc64/}
 CABAL_DEPSDIR=	${WRKSRC}/${CABAL_DEPS_SUBDIR}
 CABAL_DEPS_SUBDIR=	_cabal_deps
+# A special cookie used to signify that the user is a maintainer updating the port
+# using cabal-* targets. The presense of this cookie disables cabal-post-patch.
+CABAL_COOKIE=	${WRKDIR}/.cabal_update_done.${PORTNAME}.${PREFIX:S/\//_/g}
+
+HPACK_CMD?=		hpack
+_CABAL2TUPLE_CMD=	cabal2tuple
 
 .  if defined(BUILD_DEPENDS) && ${BUILD_DEPENDS:Mghc?*\:lang/ghc?*}
 CABAL_WITH_ARGS=	--with-compiler=${BUILD_DEPENDS:Mghc?*\:lang/ghc?*:C/\:.*//} \
@@ -80,17 +88,15 @@ CABAL_WITH_ARGS=	--with-compiler=${BUILD_DEPENDS:Mghc?*\:lang/ghc?*:C/\:.*//} \
 BUILD_DEPENDS+=	ghc:lang/ghc
 .  endif
 
-.  if !defined(CABAL_BOOTSTRAP)
-BUILD_DEPENDS+=	cabal:devel/hs-cabal-install
+.  if "${PORTNAME}" != "cabal-install"
+BUILD_DEPENDS+=	cabal:${CABAL_PORT}
 .  endif
 
 .  if ${cabal_ARGS:Mhpack}
 EXTRACT_DEPENDS+=	hpack:devel/hs-hpack
 .  endif
 
-# Inherited via lang/ghc we need to depend on iconv and libgmp.so (stage q/a)
-iconv_ARGS=	translit
-.include "${USESDIR}/iconv.mk"
+# Inherited via lang/ghc we need to depend on libffi.so and libgmp.so (stage q/a)
 LIB_DEPENDS+=	libgmp.so:math/gmp \
 		libffi.so:devel/libffi
 
@@ -106,14 +112,6 @@ _hackage_is_default=	no
 MASTER_SITES=	https://hackage.haskell.org/package/${PORTNAME}-${PORTVERSION}/ \
 		http://hackage.haskell.org/package/${PORTNAME}-${PORTVERSION}/
 DISTFILES+=	${PORTNAME}-${PORTVERSION}${CABAL_EXTRACT_SUFX}
-EXTRACT_ONLY+=	${PORTNAME}-${PORTVERSION}${CABAL_EXTRACT_SUFX}
-.  else
-.    if defined(USE_GITHUB) && !defined(DISTFILES) && !${USE_GITHUB:Mnodefault}
-EXTRACT_ONLY+=	${DISTNAME_DEFAULT}${_GITHUB_EXTRACT_SUFX}
-.    endif
-.    if defined(USE_GITLAB) && !defined(DISTFILES) && !${USE_GITLAB:Mnodefault}
-EXTRACT_ONLY+=	${DISTNAME}${_GITLAB_EXTRACT_SUFX}
-.    endif
 .  endif
 
 _USES_extract=	701:cabal-post-extract
@@ -122,10 +120,6 @@ _USES_configure=301:cabal-pre-configure
 _USES_stage=	751:cabal-post-install-script
 
 BUILD_TARGET?=	${EXECUTABLES:S/^/exe:&/}
-
-.  if defined(USE_LOCALE)
-LOCALE_ENV=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-.  endif
 
 _use_cabal=	${USE_CABAL:O:u}
 
@@ -138,67 +132,74 @@ MASTER_SITES+=	https://hackage.haskell.org/package/:${package:C/[\.-]//g} \
 		http://hackage.haskell.org/package/:${package:C/[\.-]//g}
 DISTFILES+=	${package:C/_[0-9]+//}/${package:C/_[0-9]+//}${CABAL_EXTRACT_SUFX}:${package:C/[\.-]//g}
 
-.    if !defined(CABAL_BOOTSTRAP)
-EXTRACT_ONLY+=	${package:C/_[0-9]+//}/${package:C/_[0-9]+//}${CABAL_EXTRACT_SUFX}
-.    endif
-
 .    if ${package:C/[^_]*//:S/_//} != ""
 DISTFILES+=	${package:C/_[0-9]+//}/revision/${package:C/[^_]*//:S/_//}.cabal:${package:C/[\.-]//g}
 .    endif
 
+_CABAL_EXTRACT_ONLY+=	${package:C/_[0-9]+//}/${package:C/_[0-9]+//}${CABAL_EXTRACT_SUFX}
 .  endfor
+
+.  if !defined(EXTRACT_ONLY)
+EXTRACT_ONLY=	${_DISTFILES:N*\.cabal}
+.  else
+.    if !defined(SKIP_CABAL_EXTRACT)
+EXTRACT_ONLY+= ${_CABAL_EXTRACT_ONLY}
+.    endif
+.  endif
 
 
 # Auxiliary targets used during port creation/updating.
 
 # Fetches and unpacks package source from Hackage using only PORTNAME and PORTVERSION.
-cabal-extract: ${WRKDIR}
-	${RM} -rf ${CABAL_HOME}/.cabal
-	${SETENV} HOME=${CABAL_HOME} cabal new-update
-.  if ${_hackage_is_default} == yes
-	cd ${WRKDIR} && \
-		${SETENV} ${LOCALE_ENV} HOME=${CABAL_HOME} cabal get ${PORTNAME}-${PORTVERSION}
-.  else
-	${MV} ${CABAL_HOME} /tmp/${PORTNAME}-cabal-home
-	cd ${.CURDIR} && ${MAKE} extract CABAL_BOOTSTRAP=yes
+cabal-extract: check-cabal
+.  if ${_hackage_is_default} == no
+	@${ECHO_MSG} "===> Recursing down to make extract"
+	@${MAKE} -C ${.CURDIR} extract SKIP_CABAL_EXTRACT=yes
 	${RM} -rf ${CABAL_HOME}
-	${MV} /tmp/${PORTNAME}-cabal-home ${CABAL_HOME}
 .  endif
-
-# Fetches and unpacks dependencies sources for a cabal-extract'ed package.
-# Builds them as side-effect.
-.  if !target(cabal-extract-deps)
-cabal-extract-deps:
+	@${ECHO_MSG} "===> Fetching Cabal package index into ${CABAL_HOME}/.cabal"
+	@${SETENV} HOME=${CABAL_HOME} ${CABAL_CMD} update
+.  if ${_hackage_is_default} == yes
+	@cd ${WRKDIR} && \
+		${SETENV} ${MAKE_ENV} HOME=${CABAL_HOME} ${CABAL_CMD} get ${PORTNAME}-${PORTVERSION}
+.  else
 .    if ${cabal_ARGS:Mhpack}
-	cd ${WRKSRC} && ${SETENV} HOME=${CABAL_HOME} hpack
+	@${ECHO_MSG} "===> Running ${HPACK_CMD} to generate .cabal file"
+	@cd ${WRKSRC} && ${SETENV} HOME=${CABAL_HOME} ${HPACK_CMD}
 .    endif
-	cd ${WRKSRC} && \
-		${SETENV} ${LOCALE_ENV} HOME=${CABAL_HOME} cabal new-configure --disable-benchmarks --disable-tests --flags="${CABAL_FLAGS}" ${CABAL_WITH_ARGS} ${CONFIGURE_ARGS}
-	cd ${WRKSRC} && \
-		${SETENV} ${LOCALE_ENV} HOME=${CABAL_HOME} cabal new-build --disable-benchmarks --disable-tests --dependencies-only ${CABAL_WITH_ARGS} ${BUILD_ARGS} ${BUILD_TARGET}
 .  endif
+	@${TOUCH} ${EXTRACT_COOKIE} ${CABAL_COOKIE}
 
-# Generates USE_CABAL= ... line ready to be pasted into the port based on artifacts of cabal-extract-deps.
-make-use-cabal:
-	@echo ====================
-	@echo -n USE_CABAL=
-	@find ${CABAL_HOME} -name '*.conf' -exec basename {} + | sed -E 's|-[0-9a-z]{64}\.conf||' | sort | sed 's/$$/ \\/'
-	@find ${CABAL_HOME} -name 'hsc2hs*.tar.gz' -exec basename {} + | sed -E 's|\.tar\.gz||' | sed 's/$$/ \\/'
-	@find ${CABAL_HOME} -name 'alex*.tar.gz' -exec basename {} + | sed -E 's|\.tar\.gz||' | sed 's/$$/ \\/'
-	@find ${CABAL_HOME} -name 'happy*.tar.gz' -exec basename {} + | sed -E 's|\.tar\.gz||' | sed 's/$$/ \\/'
+# Calls cabal configure on the Haskell package located in ${WRKSRC}
+cabal-configure: check-cabal
+	cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} HOME=${CABAL_HOME} ${CABAL_CMD} configure --disable-benchmarks --disable-tests --flags="${CABAL_FLAGS}" ${CABAL_WITH_ARGS} ${CONFIGURE_ARGS}
 
-# Re-generates USE_CABAL items to have revision numbers.
-make-use-cabal-revs:
-.  for package in ${_use_cabal}
-	@(${SETENV} HTTP_ACCEPT="application/json" fetch -q -o - http://hackage.haskell.org/package/${package:C/_[0-9]+//}/revisions/ | python3 -c "import sys, json; print(('${package:C/_[0-9]+//}_' + str(json.load(sys.stdin)[-1]['number'])).replace('_0',''), end='')")
-	@echo ' \'
-.  endfor
+# Calls cabal build on the Haskell package located in ${WRKSRC}
+cabal-build: check-cabal
+	cd ${WRKSRC} && \
+		${SETENV} ${MAKE_ENV} HOME=${CABAL_HOME} ${CABAL_CMD} build --disable-benchmarks --disable-tests ${CABAL_WITH_ARGS} ${BUILD_ARGS} ${BUILD_TARGET}
 
-.  if !defined(CABAL_BOOTSTRAP)
+# Generates USE_CABAL= ... line ready to be pasted into the port based on the plan.json file generated by cabal configure.
+make-use-cabal: check-cabal2tuple
+	@${ECHO_MSG} "===> Processing plan.json"
+	@${_CABAL2TUPLE_CMD} ${WRKSRC} || (${ECHO_CMD} "Did you forget to make cabal-configure ?" ; exit 1)
+
+check-cabal:
+	@if ! type ${CABAL_CMD} > /dev/null 2>&1; then \
+		${ECHO_MSG} "===> cabal executable not found, install ${CABAL_PORT} or set CABAL_CMD"; exit 1; \
+	fi; \
+
+check-cabal2tuple:
+	@if ! type ${_CABAL2TUPLE_CMD} > /dev/null 2>&1; then \
+		${ECHO_MSG} "===> cabal2tuple executable not found, install \"ports-mgmt/hs-cabal2tuple\""; exit 1; \
+	fi
+
 
 # Main targets implementation.
 
 cabal-post-extract:
+.  if !defined(SKIP_CABAL_EXTRACT)
 # Remove the project file as requested
 .    if "${CABAL_PROJECT}" == "remove"
 	${RM} ${WRKSRC}/cabal.project
@@ -208,7 +209,8 @@ cabal-post-extract:
 	${MV} ${WRKSRC}/cabal.project ${WRKSRC}/cabal.project.${PORTNAME}
 .    endif
 
-	@/bin/test ! -f ${WRKSRC}/cabal.project || (echo "cabal.project file is already present in WRKSRC! Set CABAL_PROJECT variable." && false)
+	@${TEST} ! -f ${WRKSRC}/cabal.project || \
+		(${ECHO_CMD} "cabal.project file is already present in WRKSRC! Set CABAL_PROJECT variable." && false)
 
 # Move extracted dependencies into ${CABAL_DEPSDIR} directory
 	${MKDIR} ${CABAL_DEPSDIR}
@@ -224,10 +226,17 @@ cabal-post-extract:
 # Create the cabal-install config
 	${MKDIR} ${CABAL_HOME}/.cabal
 	${ECHO_CMD} "jobs: ${MAKE_JOBS_NUMBER}" > ${CABAL_HOME}/.cabal/config
+.  endif # SKIP_CABAL_EXTRACT
 
 cabal-post-patch:
+.  if !defined(SKIP_CABAL_EXTRACT)
+	@${TEST} ! -f ${CABAL_COOKIE} || \
+		(${ECHO_CMD} "===> Patching done, skipping cabal-post-patch" && false)
 # Create our own cabal.project
-	${ECHO_CMD} "packages: ." > ${WRKSRC}/cabal.project
+	${ECHO_CMD} "packages:" > ${WRKSRC}/cabal.project
+.    if "${CABAL_PROJECT}" != "append"
+	${ECHO_CMD} "        ." >> ${WRKSRC}/cabal.project
+.    endif
 .    for package in ${_use_cabal}
 	${ECHO_CMD} "        ${CABAL_DEPS_SUBDIR}/${package:C/_[0-9]+//}" >> ${WRKSRC}/cabal.project
 .    endfor
@@ -235,46 +244,45 @@ cabal-post-patch:
 .    if "${CABAL_PROJECT}" == "append"
 	${CAT} ${WRKSRC}/cabal.project.${PORTNAME} >> ${WRKSRC}/cabal.project
 .    endif
+.  endif # SKIP_CABAL_EXTRACT && !CABAL_COOKIE
 
 cabal-pre-configure:
 # Generate .cabal file with hpack if requested
-.    if ${cabal_ARGS:Mhpack}
+.  if ${cabal_ARGS:Mhpack}
 	cd ${WRKSRC} && ${SETENV} HOME=${CABAL_HOME} hpack
-.    endif
+.  endif
 
-.    if !target(do-build)
+.  if !target(do-build)
 do-build:
 	cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} HOME=${CABAL_HOME} cabal new-build --offline --disable-benchmarks --disable-tests ${CABAL_WITH_ARGS} --flags "${CABAL_FLAGS}" ${BUILD_ARGS} ${BUILD_TARGET}
-.    endif
+		${SETENV} ${MAKE_ENV} HOME=${CABAL_HOME} ${CABAL_CMD} new-build --offline --disable-benchmarks --disable-tests ${CABAL_WITH_ARGS} --flags "${CABAL_FLAGS}" ${BUILD_ARGS} ${BUILD_TARGET}
+.  endif
 
-.    if !target(do-install)
+.  if !target(do-install)
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${CABAL_LIBEXEC}
-.      for exe in ${EXECUTABLES}
+.    for exe in ${EXECUTABLES}
 	${INSTALL_PROGRAM} \
 		$$(find ${WRKSRC}/dist-newstyle -name ${exe} -type f -perm +111) \
 		${STAGEDIR}${PREFIX}/${CABAL_LIBEXEC}/${exe}
 	${ECHO_CMD} '#!/bin/sh' > ${STAGEDIR}${PREFIX}/bin/${exe}
 	${ECHO_CMD} '' >> ${STAGEDIR}${PREFIX}/bin/${exe}
 	${ECHO_CMD} 'export ${exe:S/-/_/g}_datadir=${DATADIR}' >> ${STAGEDIR}${PREFIX}/bin/${exe}
-.        for dep in ${${exe}_DATADIR_VARS}
+.      for dep in ${${exe}_DATADIR_VARS}
 	${ECHO_CMD} 'export ${dep:S/-/_/g}_datadir=${DATADIR}' >> ${STAGEDIR}${PREFIX}/bin/${exe}
-.        endfor
+.      endfor
 	${ECHO_CMD} '' >> ${STAGEDIR}${PREFIX}/bin/${exe}
 	${ECHO_CMD} 'exec ${PREFIX}/${CABAL_LIBEXEC}/${exe} "$$@"' >> ${STAGEDIR}${PREFIX}/bin/${exe}
 	${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${exe}
-.      endfor
-.    endif
+.    endfor
+.  endif
 
-.    if !defined(SKIP_CABAL_PLIST)
+.  if !defined(SKIP_CABAL_PLIST)
 cabal-post-install-script:
 .      for exe in ${EXECUTABLES}
 		${ECHO_CMD} 'bin/${exe}' >> ${TMPPLIST}
 		${ECHO_CMD} '${CABAL_LIBEXEC}/${exe}' >> ${TMPPLIST}
-.      endfor
-.    endif
-
-.  endif # !defined(CABAL_BOOTSTRAP)
+.    endfor
+.  endif
 
 .endif

@@ -13644,7 +13644,6 @@ games/xtris||2020-01-10|Has expired: Broken for more than 3 months
 graphics/mapnik||2020-01-10|Has expired: Broken for more than 8 months
 lang/js_of_ocaml||2020-01-10|Has expired: Depends on broken and expiring devel/ocaml-deriving-ocsigen
 lang/rubinius||2020-01-10|Has expired: Broken for more than 7 months
-science/meep||2020-01-10|Has expired: Broken for more than 6 months
 sysutils/hfm||2020-01-10|Has expired: Broken for more than 4 months
 sysutils/u-boot-zedboard||2020-01-10|Has expired: Broken for more than 6 months
 sysutils/u-boot-zybo||2020-01-10|Has expired: Broken for more than 6 months
@@ -17514,3 +17513,10 @@ net/py-pyroute2.ipset|net/py-pyroute2|2022-07-18|Remove obsoleted port. Upstream
 net/py-pyroute2.ndb|net/py-pyroute2|2022-07-18|Remove obsoleted port. Upstream moves back to single package layout (net/py-pyroute2)
 net/py-pyroute2.nftables|net/py-pyroute2|2022-07-18|Remove obsoleted port. Upstream moves back to single package layout (net/py-pyroute2)
 net/py-pyroute2.nslink|net/py-pyroute2|2022-07-18|Remove obsoleted port. Upstream moves back to single package layout (net/py-pyroute2)
+math/intervaltree||2022-07-27|Has expired: Dependent ports now use GH_TUPLE
+security/gnomint||2022-07-27|Has expired: Abandonware, depending on gconf2
+japanese/im-ja||2022-07-27|Has expired: Abandonware, depending on gconf2
+sysutils/mgeupsd||2022-07-27|Has expired: Last release is 23 years old. It is not clear what devices are supported.
+x11-wm/lxmed||2022-07-27|Removed, depends on expired sysutils/gksu
+sysutils/gksu||2022-07-27|Has expired: Abandonware, depending on gconf2
+sysutils/libgksu||2022-07-27|Has expired: Abandonware, depending on gconf2
