@@ -1,5 +1,6 @@
 PORTNAME=	cabal-install
 PORTVERSION=	3.6.2.0
+PORTREVISION=	1
 CATEGORIES=	devel haskell
 EXTRACT_ONLY=	${DISTNAME_DEFAULT}${_GITHUB_EXTRACT_SUFX}
 
@@ -37,10 +38,8 @@ USE_CABAL=	async-2.2.4 \
 		th-compat-0.1.3 \
 		zlib-0.6.2.3_1
 
+EXECUTABLES=		cabal
 SKIP_CABAL_EXTRACT=	yes
-SKIP_CABAL_PLIST=	yes
-
-PLIST_FILES=	bin/cabal
 
 post-extract:
 	${MKDIR} ${WRKSRC}/_build/tarballs/

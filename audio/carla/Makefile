@@ -66,6 +66,8 @@ JACK_MAKE_ARGS_OFF=		HAVE_JACK=false
 PULSEAUDIO_LIB_DEPENDS=		libpulse-simple.so:audio/pulseaudio
 PULSEAUDIO_MAKE_ARGS_OFF=	HAVE_PULSEAUDIO=false
 
+CFLAGS_powerpc64le=	-DEEL_TARGET_PORTABLE
+
 post-install:
 	@${REINPLACE_CMD} -i '' -e ' \
 		s|^PYTHON=.*|PYTHON=${PYTHON_CMD}|; \

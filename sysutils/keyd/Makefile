@@ -20,8 +20,8 @@ SHEBANG_FILES=	scripts/*
 MAKE_ARGS=	DESTDIR="${DESTDIR}" PREFIX="${PREFIX}" \
 		VERSION="${DISTVERSIONFULL}" COMMIT=""
 PLIST_FILES=	bin/${PORTNAME} \
-		bin/${PORTNAME}-application-mapper \
-		"@dir ${ETCDIR}"
+		bin/${PORTNAME}-application-mapper
+PLIST_DIRS=	${ETCDIR}
 PORTDATA=	*
 PORTDOCS=	*
 PORTEXAMPLES=	*
@@ -53,5 +53,8 @@ post-patch:
 # https://lists.freebsd.org/pipermail/freebsd-x11/2019-March/023097.html
 	@${REINPLACE_CMD} -e 's,__FreeBSD,&_disabled,' \
 		${WRKSRC}/src/vkbd/uinput.c
+
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

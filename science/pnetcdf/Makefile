@@ -19,7 +19,10 @@ CONFLICTS_INSTALL=	hdf-4.*
 
 OPTIONS_SINGLE=	MPI
 OPTIONS_SINGLE_MPI=	OPENMPI MPICH
-OPTIONS_DEFAULT=OPENMPI
+OPTIONS_DEFAULT=${OPTIONS_DEFAULT_${ARCH}}
+OPTIONS_DEFAULT_amd64=	OPENMPI
+OPTIONS_DEFAULT_i386=	MPICH
+#OPTIONS_DEFAULT=OPENMPI
 
 MPICH_USES=	mpi:mpich
 OPENMPI_USES=	mpi:openmpi
@@ -31,10 +34,11 @@ OPENMPI_USES=	mpi:openmpi
 FCFLAGS+=	-fallow-argument-mismatch
 .endif
 
+.if ${ARCH} == i386 && ${PORT_OPTIONS:MOPENMPI}
+BROKEN=		Use MPICH option instead. PnetCDF requires MPI_Offset >= 8 but Open MPI sets MPI_Offset to 4 on 32-bit architecture regardless of LFS. See https://github.com/open-mpi/ompi/issues/3195 for details
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e '/$$(INSTALL.*$$(PREFIX)/ s|$$(PREFIX)|$$(DESTDIR)&|' ${WRKSRC}/Makefile.in
-
-x-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/cdfdiff ${STAGEDIR}${PREFIX}/bin/n* ${STAGEDIR}${PREFIX}/bin/pnetcdf_version
 
 .include <bsd.port.post.mk>

@@ -323,6 +323,7 @@
     SUBDIR += py-periscope
     SUBDIR += py-pretty_midi
     SUBDIR += py-pymediainfo
+    SUBDIR += py-pysubs2
     SUBDIR += py-soco
     SUBDIR += py-subliminal
     SUBDIR += py-tvnamer
@@ -418,7 +419,6 @@
     SUBDIR += w_scan2
     SUBDIR += webcamd
     SUBDIR += webcamoid
-    SUBDIR += webvfx-qt5
     SUBDIR += wf-recorder
     SUBDIR += win32-codecs
     SUBDIR += winff
