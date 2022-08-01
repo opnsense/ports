@@ -1305,7 +1305,7 @@ WITH_DEBUG=	yes
 
 .    if defined(USE_LTO)
 WITH_LTO=	${USE_LTO}
-WARNING+=	USE_LTO is precrecated in favor of WITH_LTO
+WARNING+=	USE_LTO is deprecated in favor of WITH_LTO
 .    endif
 
 .include "${PORTSDIR}/Mk/bsd.default-versions.mk"
@@ -1681,8 +1681,8 @@ CONFIGURE_ENV+=		PATH=${PATH}
 PKGCONFIG_LINKDIR=	${WRKDIR}/.pkgconfig
 PKGCONFIG_BASEDIR=	/usr/libdata/pkgconfig
 .    if !${MAKE_ENV:MPKG_CONFIG_LIBDIR=*} && !${CONFIGURE_ENV:MPKG_CONFIG_LIBDIR=*}
-MAKE_ENV+=			PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${PKGCONFIG_BASEDIR}
-CONFIGURE_ENV+=		PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${PKGCONFIG_BASEDIR}
+MAKE_ENV+=			PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${LOCALBASE}/share/pkgconfig:${PKGCONFIG_BASEDIR}
+CONFIGURE_ENV+=		PKG_CONFIG_LIBDIR=${PKGCONFIG_LINKDIR}:${LOCALBASE}/libdata/pkgconfig:${LOCALBASE}/share/pkgconfig:${PKGCONFIG_BASEDIR}
 .    endif
 
 .    if !defined(IGNORE_MASTER_SITE_GITHUB) && defined(USE_GITHUB) && empty(USE_GITHUB:Mnodefault)

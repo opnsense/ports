@@ -33,11 +33,20 @@
 #			and "-${opt_CABAL_FLAGS}" otherwise.
 #  opt_EXECUTABLES	Variant of EXECUTABLES to be used with options framework.
 #
+#  CABAL_WRAPPER_SCRIPTS	A subset of ${EXECUTABLES} containing Haskell
+#			programs to be wrapped into a shell script that sets
+#			*_datadir environment variables before running the program.
+#			This is needed for Haskell programs that install their
+#			data files under share/ directory.
+#
 #  FOO_DATADIR_VARS     Additional environment vars to add to FOO executable's
 #                       wrapper script.
 #
 #  CABAL_PROJECT	Sets how to treat existing cabal.project file. Possible
 #			values are "remove" and "append".
+#
+#  SKIP_CABAL_PLIST	Set to "yes" to prevent Haskell executables from being
+#			added to the pkg-plist automatically.
 #
 # MAINTAINER: haskell@FreeBSD.org
 
@@ -150,7 +159,10 @@ EXTRACT_ONLY+= ${_CABAL_EXTRACT_ONLY}
 
 # Auxiliary targets used during port creation/updating.
 
+# Populates Haskell package list from Hackage.
 # Fetches and unpacks package source from Hackage using only PORTNAME and PORTVERSION.
+# If Hackage isn't a default MASTER_SITE (for instance, when USE_GITHUB is present)
+# this target requires distinfo to be present too.
 cabal-extract: check-cabal
 .  if ${_hackage_is_default} == no
 	@${ECHO_MSG} "===> Recursing down to make extract"
@@ -168,6 +180,7 @@ cabal-extract: check-cabal
 	@cd ${WRKSRC} && ${SETENV} HOME=${CABAL_HOME} ${HPACK_CMD}
 .    endif
 .  endif
+	@${RM} -r ${WRKSRC}/dist-newstyle
 	@${TOUCH} ${EXTRACT_COOKIE} ${CABAL_COOKIE}
 
 # Calls cabal configure on the Haskell package located in ${WRKSRC}
@@ -260,20 +273,28 @@ do-build:
 
 .  if !target(do-install)
 do-install:
+.    if defined(CABAL_WRAPPER_SCRIPTS) && !empty(CABAL_WRAPPER_SCRIPTS)
 	${MKDIR} ${STAGEDIR}${PREFIX}/${CABAL_LIBEXEC}
+.    endif
 .    for exe in ${EXECUTABLES}
+.      if defined(CABAL_WRAPPER_SCRIPTS) && ${CABAL_WRAPPER_SCRIPTS:M${exe}}
 	${INSTALL_PROGRAM} \
 		$$(find ${WRKSRC}/dist-newstyle -name ${exe} -type f -perm +111) \
 		${STAGEDIR}${PREFIX}/${CABAL_LIBEXEC}/${exe}
 	${ECHO_CMD} '#!/bin/sh' > ${STAGEDIR}${PREFIX}/bin/${exe}
 	${ECHO_CMD} '' >> ${STAGEDIR}${PREFIX}/bin/${exe}
 	${ECHO_CMD} 'export ${exe:S/-/_/g}_datadir=${DATADIR}' >> ${STAGEDIR}${PREFIX}/bin/${exe}
-.      for dep in ${${exe}_DATADIR_VARS}
+.        for dep in ${${exe}_DATADIR_VARS}
 	${ECHO_CMD} 'export ${dep:S/-/_/g}_datadir=${DATADIR}' >> ${STAGEDIR}${PREFIX}/bin/${exe}
-.      endfor
+.        endfor
 	${ECHO_CMD} '' >> ${STAGEDIR}${PREFIX}/bin/${exe}
 	${ECHO_CMD} 'exec ${PREFIX}/${CABAL_LIBEXEC}/${exe} "$$@"' >> ${STAGEDIR}${PREFIX}/bin/${exe}
 	${CHMOD} +x ${STAGEDIR}${PREFIX}/bin/${exe}
+.      else
+	${INSTALL_PROGRAM} \
+		$$(find ${WRKSRC}/dist-newstyle -name ${exe} -type f -perm +111) \
+		${STAGEDIR}${PREFIX}/bin/${exe}
+.      endif
 .    endfor
 .  endif
 
@@ -281,7 +302,9 @@ do-install:
 cabal-post-install-script:
 .      for exe in ${EXECUTABLES}
 		${ECHO_CMD} 'bin/${exe}' >> ${TMPPLIST}
+.        if defined(CABAL_WRAPPER_SCRIPTS) && ${CABAL_WRAPPER_SCRIPTS:M${exe}}
 		${ECHO_CMD} '${CABAL_LIBEXEC}/${exe}' >> ${TMPPLIST}
+.        endif
 .    endfor
 .  endif
 
