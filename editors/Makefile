@@ -17,7 +17,6 @@
     SUBDIR += calligra
     SUBDIR += calligraplan
     SUBDIR += chexedit
-    SUBDIR += codelite
     SUBDIR += cooledit
     SUBDIR += cpeditor
     SUBDIR += cream
@@ -270,6 +269,7 @@
     SUBDIR += vscode
     SUBDIR += web-mode
     SUBDIR += with-editor
+    SUBDIR += with-editor-devel
     SUBDIR += wordgrinder
     SUBDIR += wxhexeditor
     SUBDIR += xcoral

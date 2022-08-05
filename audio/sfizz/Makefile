@@ -8,8 +8,11 @@ COMMENT=	SFZ parser and synth C++ library & LV2/VST3 plugins
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN_riscv64=	fails to compile: src/external/atomic_queue/defs.h:45:2: Unknown CPU architecture
+BROKEN_aarch64=	fails to compile: fatal error: 'linux/auxvec.h' file not found, see https://github.com/sfztools/sfizz/issues/1118
+BROKEN_armv6=	fails to compile: src/external/cpuid/src/cpuid/detail/init_linux_gcc_arm.hpp: unknown type name 'Elf32_auxv_t', see https://github.com/sfztools/sfizz/issues/1116
+BROKEN_armv7=	fails to compile: src/external/cpuid/src/cpuid/detail/init_linux_gcc_arm.hpp: unknown type name 'Elf32_auxv_t', see https://github.com/sfztools/sfizz/issues/1116
 BROKEN_i386=	fails to compile: unknown type name 'Elf64_Auxinfo', see https://github.com/sfztools/sfizz/issues/1110
+BROKEN_riscv64=	fails to compile: src/external/atomic_queue/defs.h:45:2: Unknown CPU architecture
 
 LIB_DEPENDS=	libsndfile.so:audio/libsndfile
 RUN_DEPENDS=	zenity:x11/zenity
@@ -62,6 +65,12 @@ VST_USE=		${LV2_USE}
 VST_LIB_DEPENDS=	${LV2_LIB_DEPENDS}
 VST_CMAKE_BOOL=		SFIZZ_VST
 
+.include <bsd.port.pre.mk>
+
+.if (${OSVERSION} < 1301505) # 20d21e43514502c0a346f3c2cdb1d8cd8c7cc6b0 commit in 13 fixed booleans in stdatomic.h that were causing breakage
+BROKEN=		fails to compile: unknown type name '_Bool'
+.endif
+
 post-install-LV2-on:
 	@${STRIP_CMD} \
 		${STAGEDIR}${PREFIX}/lib/lv2/sfizz.lv2/Contents/Binary/sfizz.so \
@@ -71,4 +80,4 @@ post-install-VST-on:
 	@${STRIP_CMD} \
 		${STAGEDIR}${PREFIX}/lib/vst3/sfizz.vst3/Contents/x86_64-linux/sfizz.so
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

@@ -1,5 +1,5 @@
 PORTNAME=	storj
-PORTVERSION=	1.59.1
+PORTVERSION=	1.60.3
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 
@@ -8,15 +8,15 @@ COMMENT=	Decentralized cloud object storage
 
 LICENSE=	AGPLv3
 
-USES=		go:modules
+USES=		go:1.18,modules
 USE_GITHUB=	yes
 
 .include "${.CURDIR}/Makefile.deps"
 
 STORJ_CMDS=	certificates connect-test crashcollect identity inspector \
 		metabase-orphaned-segments metabase-verify metric-receiver \
-		multinode nullify-bad-user-agents satellite storagenode \
-		storagenode-updater \
+		multinode node-cleanup nullify-bad-user-agents satellite \
+		storagenode storagenode-updater \
 		storj-admin storj-sim uplink versioncontrol
 
 GO_TARGET=	${STORJ_CMDS:S,^,./cmd/,}
