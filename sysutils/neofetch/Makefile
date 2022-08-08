@@ -1,5 +1,6 @@
 PORTNAME=	neofetch
 DISTVERSION=	7.1.0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	pkubaj@FreeBSD.org

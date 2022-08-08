@@ -195,7 +195,6 @@
     SUBDIR += octopus
     SUBDIR += openbabel
     SUBDIR += openems
-    SUBDIR += openkim
     SUBDIR += openkim-models
     SUBDIR += openmc
     SUBDIR += openmolcas
@@ -361,6 +360,7 @@
     SUBDIR += py-thewalrus
     SUBDIR += py-tobler
     SUBDIR += py-trainstation
+    SUBDIR += py-tweedledum
     SUBDIR += py-veusz
     SUBDIR += pybrain
     SUBDIR += pynn
@@ -411,6 +411,7 @@
     SUBDIR += thermofun
     SUBDIR += tinker
     SUBDIR += trilinos
+    SUBDIR += tweedledum
     SUBDIR += udunits
     SUBDIR += ukrmol+
     SUBDIR += v_sim
