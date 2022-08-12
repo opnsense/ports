@@ -1,3 +1,393 @@
+  <vuln vid="75c073cc-1a1d-11ed-bea0-48ee0c739857">
+    <topic>XFCE tumbler -- Vulnerability in the GStreamer plugin</topic>
+    <affects>
+      <package>
+	<name>xfce4-tumbler</name>
+	<range><lt>4.16.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The XFCE project reports:</p>
+	<blockquote cite="https://mail.xfce.org/pipermail/xfce-announce/2022-August/001133.html">
+	  <p>Added mime type check to the gst-thumbnailer plugin
+	  to fix an undisclosed vulnerability.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://mail.xfce.org/pipermail/xfce-announce/2022-August/001133.html</url>
+      <url>https://gitlab.xfce.org/xfce/tumbler/-/commit/a0fc191e8ab41fe579f3333085d649fdacb2daa5</url>
+    </references>
+    <dates>
+      <discovery>2022-08-02</discovery>
+      <entry>2022-08-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c3610f39-18f1-11ed-9854-641c67a117d8">
+    <topic>varnish -- Denial of Service Vulnerability</topic>
+    <affects>
+      <package>
+	<name>varnish7</name>
+	<range><lt>7.1.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Varnish Cache Project reports:</p>
+	<blockquote cite="https://varnish-cache.org/security/VSV00009.html">
+	<p>A denial of service attack can be performed against Varnish Cache
+	  servers by specially formatting the reason phrase of the backend response
+	  status line. In order to execute an attack, the attacker would have to
+	  be able to influence the HTTP/1 responses that the Varnish Server
+	  receives from its configured backends. A successful attack would cause
+	  the Varnish Server to assert and automatically restart.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://varnish-cache.org/security/VSV00009.html</url>
+    </references>
+    <dates>
+      <discovery>2022-08-09</discovery>
+      <entry>2022-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8eaaf135-1893-11ed-9b22-002590c1f29c">
+    <topic>FreeBSD -- Missing bounds check in 9p message handling</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>13.1</ge><lt>13.1_1</lt></range>
+	<range><ge>13.0</ge><lt>13.0_12</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The implementation of lib9p's handling of RWALK messages was
+	missing a bounds check needed when unpacking the message contents.
+	The missing check means that the receipt of a specially crafted
+	message will cause lib9p to overwrite unrelated memory.</p>
+	<h1>Impact:</h1>
+	<p>The bug can be triggered by a malicious bhyve guest kernel to
+	overwrite memory in the bhyve(8) process.  This could potentially lead
+	to user-mode code execution on the host, subject to bhyve's Capsicum
+	sandbox.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23092</cvename>
+      <freebsdsa>SA-22:12.lib9p</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2022-08-09</discovery>
+      <entry>2022-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="02fb9764-1893-11ed-9b22-002590c1f29c">
+    <topic>FreeBSD -- Memory disclosure by stale virtual memory mapping</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>13.1</ge><lt>13.1_1</lt></range>
+	<range><ge>13.0</ge><lt>13.0_12</lt></range>
+	<range><ge>12.3</ge><lt>12.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>A particular case of memory sharing is mishandled in the virtual
+	memory system.  This is very similar to SA-21:08.vm, but with a
+	different root cause.</p>
+	<h1>Impact:</h1>
+	<p>An unprivileged local user process can maintain a mapping of a page
+	after it is freed, allowing that process to read private data
+	belonging to other processes or the kernel.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23091</cvename>
+      <freebsdsa>SA-22:11.vm</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2022-08-09</discovery>
+      <entry>2022-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5ddbe47b-1891-11ed-9b22-002590c1f29c">
+    <topic>FreeBSD -- AIO credential reference count leak</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>13.0</ge><lt>13.0_12</lt></range>
+	<range><ge>12.3</ge><lt>12.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The aio_aqueue function, used by the lio_listio system call, fails
+	to release a reference to a credential in an error case.</p>
+	<h1>Impact:</h1>
+	<p>An attacker may cause the reference count to overflow, leading to a
+	use after free (UAF).</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23090</cvename>
+      <freebsdsa>SA-22:10.aio</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2022-08-09</discovery>
+      <entry>2022-08-10</entry>
+      <modified>2022-08-10</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="5028c1ae-1890-11ed-9b22-002590c1f29c">
+    <topic>FreeBSD -- Out of bound read in elf_note_prpsinfo()</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>13.1</ge><lt>13.1_1</lt></range>
+	<range><ge>13.0</ge><lt>13.0_12</lt></range>
+	<range><ge>12.3</ge><lt>12.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>When dumping core and saving process information, proc_getargv()
+	might return an sbuf which have a sbuf_len() of 0 or -1, which is not
+	properly handled.</p>
+	<h1>Impact:</h1>
+	<p>An out-of-bound read can happen when user constructs a specially
+	crafted ps_string, which in turn can cause the kernel to crash.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-23089</cvename>
+      <freebsdsa>SA-22:09.elf</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2022-08-09</discovery>
+      <entry>2022-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="21f43976-1887-11ed-9911-40b034429ecf">
+    <topic>rsync -- client-side arbitrary file write vulnerability</topic>
+    <affects>
+      <package>
+	<name>rsync</name>
+	<range><lt>3.2.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Openwall oss-security reports:</p>
+	<blockquote cite="https://www.openwall.com/lists/oss-security/2022/08/02/1">
+	  <p>We have discovered a critical arbitrary file write vulnerability
+	    in the rsync utility that allows malicious remote servers to write
+	    arbitrary files inside the directories of connecting peers.
+	    The server chooses which files/directories are sent to the client.
+	    Due to the insufficient controls inside the do_server_recv function
+	    a malicious rysnc server (or Man-in-The-Middle attacker) can
+	    overwrite arbitrary files in the rsync client target directory and
+	    subdirectories.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-29154</cvename>
+      <url>https://www.openwall.com/lists/oss-security/2022/08/02/1</url>
+    </references>
+    <dates>
+      <discovery>2022-08-02</discovery>
+      <entry>2022-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1cd0c17a-17c0-11ed-91a5-080027f5fec9">
+    <topic>gnutls -- double free vulnerability</topic>
+    <affects>
+      <package>
+	<name>gnutls</name>
+	<range><ge>3.6.0</ge><lt>3.7.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The GnuTLS project reports:</p>
+	<blockquote cite="https://www.gnutls.org/security-new.html#GNUTLS-SA-2022-07-07">
+	  <p>
+	    When gnutls_pkcs7_verify cannot verify signature against
+	    given trust list, it starts creating a chain of
+	    certificates starting from identified signer up to known
+	    root. During the creation of this chain the signer
+	    certificate gets freed which results in double free when
+	    the same signer certificate is freed at the end of the
+	    algorithm.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-2509</cvename>
+      <url>https://www.gnutls.org/security-new.html#GNUTLS-SA-2022-07-07</url>
+    </references>
+    <dates>
+      <discovery>2022-07-07</discovery>
+      <entry>2022-08-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9b9a5f6e-1755-11ed-adef-589cfc01894a">
+    <topic>wolfssl -- multiple issues</topic>
+    <affects>
+      <package>
+	<name>wolfssl</name>
+	<range><lt>5.4.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>wolfSSL blog  reports:</p>
+	<blockquote cite="https://www.wolfssl.com/wolfssl-5-4-0-release/">
+	  <p>In release 5.4.0 there were 3 vulnerabilities listed as
+	    fixed in wolfSSL. Two relatively new reports, one dealing with a DTLS
+	    1.0/1.2 denial of service attack and the other a ciphertext attack on
+	    ECC/DH operations. The last vulnerability listed was a public
+	    disclosure of a previous attack on AMD devices fixed since wolfSSL
+	    version 5.1.0. Coordination of the disclosure of the attack was done
+	    responsibly, in cooperation with the researchers, waiting for the
+	    public release of the attack details since it affects multiple
+	    security libraries.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-34293</cvename>
+      <cvename>CVE-2020-12966</cvename>
+      <cvename>CVE-2021-46744</cvename>
+      <url>https://github.com/wolfSSL/wolfssl/releases/tag/v5.4.0-stable</url>
+      <url>https://www.amd.com/en/corporate/product-security/bulletin/amd-sb-1013</url>
+      <url>https://www.amd.com/en/corporate/product-security/bulletin/amd-sb-1033</url>
+    </references>
+    <dates>
+      <discovery>2022-07-11</discovery>
+      <entry>2022-08-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8bec3994-104d-11ed-a7ac-0800273f11ea">
+    <topic>gitea -- multiple issues</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.17.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea team reports:</p>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/20114">
+	  <p>Use git.HOME_PATH for Git HOME directory</p>
+	</blockquote>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/20332">
+	  <p>Add write check for creating Commit status</p>
+	</blockquote>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/18697">
+	  <p>Remove deprecated SSH ciphers from default</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.17.0</url>
+    </references>
+    <dates>
+      <discovery>2022-07-12</discovery>
+      <entry>2022-08-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bc43a578-14ec-11ed-856e-d4c9ef517024">
+    <topic>Unbound -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>unbound</name>
+	<range><lt>1.16.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NLnet Labs reports:</p>
+	<blockquote cite="https://www.nlnetlabs.nl/projects/unbound/security-advisories/">
+	  <p>novel type of the "ghost domain names" attack. The vulnerability
+	    works by targeting an Unbound instance. Unbound is queried for a
+	    rogue domain name when the cached delegation information is about to
+	    expire. The rogue nameserver delays the response so that the cached
+	    delegation information is expired. Upon receiving the delayed answer
+	    containing the delegation information, Unbound overwrites the now
+	    expired entries. This action can be repeated when the delegation
+	    information is about to expire making the rogue delegation
+	    information ever-updating.</p>
+	  <p>novel type of the "ghost domain names" attack. The vulnerability
+	    works by targeting an Unbound instance. Unbound is queried for a
+	    subdomain of a rogue domain name. The rogue nameserver returns
+	    delegation information for the subdomain that updates Unbound's
+	    delegation cache. This action can be repeated before expiry of the
+	    delegation information by querying Unbound for a second level
+	    subdomain which the rogue nameserver provides new delegation
+	    information.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-30699</cvename>
+      <cvename>CVE-2022-30698</cvename>
+      <url>https://www.nlnetlabs.nl/projects/unbound/security-advisories/</url>
+    </references>
+    <dates>
+      <discovery>2022-08-01</discovery>
+      <entry>2022-08-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="df29c391-1046-11ed-a7ac-0800273f11ea">
+    <topic>gitea -- multiple issues</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.16.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea team reports:</p>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/20334">
+	  <p>Add write check for creating Commit status</p>
+	</blockquote>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/20196">
+	  <p>Check for permission when fetching user controlled issues</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.16.9</url>
+    </references>
+    <dates>
+      <discovery>2022-07-12</discovery>
+      <entry>2022-08-05</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="3b47104f-1461-11ed-a0c5-080027240888">
     <topic>Django -- multiple vulnerabilities</topic>
     <affects>
