@@ -353,6 +353,7 @@
     SUBDIR += f2
     SUBDIR += f3
     SUBDIR += facter
+    SUBDIR += fakertc
     SUBDIR += fand
     SUBDIR += fanout
     SUBDIR += fatback
@@ -1057,6 +1058,7 @@
     SUBDIR += py-dlipower
     SUBDIR += py-docker
     SUBDIR += py-drmaa
+    SUBDIR += py-elf_diff
     SUBDIR += py-execnet
     SUBDIR += py-filelike
     SUBDIR += py-filelock

@@ -1428,6 +1428,7 @@
     SUBDIR += llvm12
     SUBDIR += llvm13
     SUBDIR += llvm14
+    SUBDIR += llvm15
     SUBDIR += llvm70
     SUBDIR += llvm80
     SUBDIR += llvm90
@@ -4111,6 +4112,7 @@
     SUBDIR += py-anyconfig
     SUBDIR += py-anyio
     SUBDIR += py-anyjson
+    SUBDIR += py-anytree
     SUBDIR += py-apache_conf_parser
     SUBDIR += py-apipkg
     SUBDIR += py-apispec
@@ -4128,8 +4130,10 @@
     SUBDIR += py-asciimatics
     SUBDIR += py-asn1crypto
     SUBDIR += py-aspy.yaml
+    SUBDIR += py-asteval
     SUBDIR += py-astor
     SUBDIR += py-astroid
+    SUBDIR += py-astroid253
     SUBDIR += py-asttokens
     SUBDIR += py-astunparse
     SUBDIR += py-async_generator
@@ -4716,6 +4720,7 @@
     SUBDIR += py-libversion
     SUBDIR += py-libvirt
     SUBDIR += py-libzfs
+    SUBDIR += py-line-profiler
     SUBDIR += py-linear-tsv
     SUBDIR += py-linecache2
     SUBDIR += py-lineedit
@@ -4734,6 +4739,7 @@
     SUBDIR += py-logutils
     SUBDIR += py-logzero
     SUBDIR += py-louie
+    SUBDIR += py-lru-dict
     SUBDIR += py-lunardate
     SUBDIR += py-lxml
     SUBDIR += py-lxml-stubs
@@ -4805,6 +4811,7 @@
     SUBDIR += py-nose-cov
     SUBDIR += py-nose-timer
     SUBDIR += py-nose2
+    SUBDIR += py-noseofyeti
     SUBDIR += py-nosexcover
     SUBDIR += py-notebook-shim
     SUBDIR += py-notify2
@@ -5390,6 +5397,7 @@
     SUBDIR += py-tzlocal
     SUBDIR += py-u-msgpack-python
     SUBDIR += py-ua_parser
+    SUBDIR += py-ubelt
     SUBDIR += py-uhid-freebsd
     SUBDIR += py-ujson
     SUBDIR += py-unearth
@@ -5426,6 +5434,7 @@
     SUBDIR += py-visitor
     SUBDIR += py-vistir
     SUBDIR += py-voluptuous
+    SUBDIR += py-voluptuous-serialize
     SUBDIR += py-vsts
     SUBDIR += py-vsts-cd-manager
     SUBDIR += py-vulture
@@ -5457,6 +5466,7 @@
     SUBDIR += py-xcaplib
     SUBDIR += py-xdg
     SUBDIR += py-xdis
+    SUBDIR += py-xdoctest
     SUBDIR += py-xerox
     SUBDIR += py-xmltodict
     SUBDIR += py-xstatic

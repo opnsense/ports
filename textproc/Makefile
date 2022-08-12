@@ -1212,6 +1212,7 @@
     SUBDIR += pear-YAML
     SUBDIR += pecl-xdiff2
     SUBDIR += pecl-yaml
+    SUBDIR += pecl-zephir_parser
     SUBDIR += peco
     SUBDIR += peg
     SUBDIR += perl2html
@@ -1296,6 +1297,7 @@
     SUBDIR += py-csvkit
     SUBDIR += py-custom_inherit
     SUBDIR += py-dbfread
+    SUBDIR += py-dict2xml
     SUBDIR += py-diff-match-patch
     SUBDIR += py-docrepr
     SUBDIR += py-docstring-parser

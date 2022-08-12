@@ -1,6 +1,7 @@
 PORTNAME=	nvc
 DISTVERSIONPREFIX=	r
-DISTVERSION=	1.7.0
+DISTVERSION=	1.7.0-23
+DISTVERSIONSUFFIX=	-g265f2800
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -42,6 +43,12 @@ BUILD_WRKSRC=		${BUILD_DIR}
 CONFIGURE_WRKSRC=	${BUILD_DIR}
 INSTALL_WRKSRC=		${BUILD_DIR}
 CONFIGURE_CMD=		${WRKSRC}/configure
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == powerpc64
+CONFIGURE_ARGS+=	--enable-lto=no
+.endif
 
 post-install:
 	@${FIND} ${STAGEDIR}${PREFIX} -name "*.so" | ${XARGS} ${STRIP_CMD}

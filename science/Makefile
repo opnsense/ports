@@ -68,6 +68,7 @@
     SUBDIR += devisor
     SUBDIR += dftbplus
     SUBDIR += dftd4
+    SUBDIR += dirac
     SUBDIR += dkh
     SUBDIR += dlib-cpp
     SUBDIR += drawxtl
@@ -254,6 +255,8 @@
     SUBDIR += py-MDAnalysis
     SUBDIR += py-MDAnalysisTests
     SUBDIR += py-OpenFermion
+    SUBDIR += py-OpenFermion-Dirac
+    SUBDIR += py-OpenFermion-PySCF
     SUBDIR += py-OpenMC
     SUBDIR += py-PubChemPy
     SUBDIR += py-PyFR
@@ -338,6 +341,15 @@
     SUBDIR += py-pyteomics
     SUBDIR += py-qcelemental
     SUBDIR += py-qcengine
+    SUBDIR += py-qiskit
+    SUBDIR += py-qiskit-aer
+    SUBDIR += py-qiskit-experiments
+    SUBDIR += py-qiskit-ibm-experiment
+    SUBDIR += py-qiskit-ibm-provider
+    SUBDIR += py-qiskit-ibmq-provider
+    SUBDIR += py-qiskit-nature
+    SUBDIR += py-qiskit-optimization
+    SUBDIR += py-qiskit-terra
     SUBDIR += py-qspin
     SUBDIR += py-quantities
     SUBDIR += py-rmf
