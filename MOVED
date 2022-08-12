@@ -17534,3 +17534,8 @@ x11-servers/xorg-vfbserver|x11-servers/xorg-server@xvfb|2022-08-02|Merged into t
 x11-servers/xorg-dmx||2022-08-02|Discontinued upstream
 lang/go117||2022-08-02|Upstream support ended
 games/fishfight|games/jumpy|2022-08-02|Project renamed
+mail/roundcube-mobilecube||2022-08-05|Removed, broken and no upstream updates
+mail/roundcube-mvision2||2022-08-05|Removed, broken and no upstream updates
+mail/roundcube-umich||2022-08-05|Removed, broken and no upstream updates
+games/exult|games/exult-devel|2022-08-06|Follow 1.9.x devel snapshots
+science/openkim|science/openkim-models|2022-08-07|Retire obsolete science/openkim, users should install science/openkim-models instead
