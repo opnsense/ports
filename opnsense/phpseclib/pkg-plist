@@ -1,36 +1,379 @@
+%%DATADIR%%/Common/Functions/Strings.php
 %%DATADIR%%/Crypt/AES.php
-%%DATADIR%%/Crypt/Base.php
 %%DATADIR%%/Crypt/Blowfish.php
+%%DATADIR%%/Crypt/ChaCha20.php
+%%DATADIR%%/Crypt/Common/AsymmetricKey.php
+%%DATADIR%%/Crypt/Common/BlockCipher.php
+%%DATADIR%%/Crypt/Common/Formats/Keys/OpenSSH.php
+%%DATADIR%%/Crypt/Common/Formats/Keys/PKCS.php
+%%DATADIR%%/Crypt/Common/Formats/Keys/PKCS1.php
+%%DATADIR%%/Crypt/Common/Formats/Keys/PKCS8.php
+%%DATADIR%%/Crypt/Common/Formats/Keys/PuTTY.php
+%%DATADIR%%/Crypt/Common/Formats/Signature/Raw.php
+%%DATADIR%%/Crypt/Common/PrivateKey.php
+%%DATADIR%%/Crypt/Common/PublicKey.php
+%%DATADIR%%/Crypt/Common/StreamCipher.php
+%%DATADIR%%/Crypt/Common/SymmetricKey.php
+%%DATADIR%%/Crypt/Common/Traits/Fingerprint.php
+%%DATADIR%%/Crypt/Common/Traits/PasswordProtected.php
 %%DATADIR%%/Crypt/DES.php
+%%DATADIR%%/Crypt/DH.php
+%%DATADIR%%/Crypt/DH/Formats/Keys/PKCS1.php
+%%DATADIR%%/Crypt/DH/Formats/Keys/PKCS8.php
+%%DATADIR%%/Crypt/DH/Parameters.php
+%%DATADIR%%/Crypt/DH/PrivateKey.php
+%%DATADIR%%/Crypt/DH/PublicKey.php
+%%DATADIR%%/Crypt/DSA.php
+%%DATADIR%%/Crypt/DSA/Formats/Keys/OpenSSH.php
+%%DATADIR%%/Crypt/DSA/Formats/Keys/PKCS1.php
+%%DATADIR%%/Crypt/DSA/Formats/Keys/PKCS8.php
+%%DATADIR%%/Crypt/DSA/Formats/Keys/PuTTY.php
+%%DATADIR%%/Crypt/DSA/Formats/Keys/Raw.php
+%%DATADIR%%/Crypt/DSA/Formats/Keys/XML.php
+%%DATADIR%%/Crypt/DSA/Formats/Signature/ASN1.php
+%%DATADIR%%/Crypt/DSA/Formats/Signature/Raw.php
+%%DATADIR%%/Crypt/DSA/Formats/Signature/SSH2.php
+%%DATADIR%%/Crypt/DSA/Parameters.php
+%%DATADIR%%/Crypt/DSA/PrivateKey.php
+%%DATADIR%%/Crypt/DSA/PublicKey.php
+%%DATADIR%%/Crypt/EC.php
+%%DATADIR%%/Crypt/EC/BaseCurves/Base.php
+%%DATADIR%%/Crypt/EC/BaseCurves/Binary.php
+%%DATADIR%%/Crypt/EC/BaseCurves/KoblitzPrime.php
+%%DATADIR%%/Crypt/EC/BaseCurves/Montgomery.php
+%%DATADIR%%/Crypt/EC/BaseCurves/Prime.php
+%%DATADIR%%/Crypt/EC/BaseCurves/TwistedEdwards.php
+%%DATADIR%%/Crypt/EC/Curves/Curve25519.php
+%%DATADIR%%/Crypt/EC/Curves/Curve448.php
+%%DATADIR%%/Crypt/EC/Curves/Ed25519.php
+%%DATADIR%%/Crypt/EC/Curves/Ed448.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP160r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP160t1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP192r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP192t1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP224r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP224t1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP256r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP256t1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP320r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP320t1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP384r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP384t1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP512r1.php
+%%DATADIR%%/Crypt/EC/Curves/brainpoolP512t1.php
+%%DATADIR%%/Crypt/EC/Curves/nistb233.php
+%%DATADIR%%/Crypt/EC/Curves/nistb409.php
+%%DATADIR%%/Crypt/EC/Curves/nistk163.php
+%%DATADIR%%/Crypt/EC/Curves/nistk233.php
+%%DATADIR%%/Crypt/EC/Curves/nistk283.php
+%%DATADIR%%/Crypt/EC/Curves/nistk409.php
+%%DATADIR%%/Crypt/EC/Curves/nistp192.php
+%%DATADIR%%/Crypt/EC/Curves/nistp224.php
+%%DATADIR%%/Crypt/EC/Curves/nistp256.php
+%%DATADIR%%/Crypt/EC/Curves/nistp384.php
+%%DATADIR%%/Crypt/EC/Curves/nistp521.php
+%%DATADIR%%/Crypt/EC/Curves/nistt571.php
+%%DATADIR%%/Crypt/EC/Curves/prime192v1.php
+%%DATADIR%%/Crypt/EC/Curves/prime192v2.php
+%%DATADIR%%/Crypt/EC/Curves/prime192v3.php
+%%DATADIR%%/Crypt/EC/Curves/prime239v1.php
+%%DATADIR%%/Crypt/EC/Curves/prime239v2.php
+%%DATADIR%%/Crypt/EC/Curves/prime239v3.php
+%%DATADIR%%/Crypt/EC/Curves/prime256v1.php
+%%DATADIR%%/Crypt/EC/Curves/secp112r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp112r2.php
+%%DATADIR%%/Crypt/EC/Curves/secp128r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp128r2.php
+%%DATADIR%%/Crypt/EC/Curves/secp160k1.php
+%%DATADIR%%/Crypt/EC/Curves/secp160r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp160r2.php
+%%DATADIR%%/Crypt/EC/Curves/secp192k1.php
+%%DATADIR%%/Crypt/EC/Curves/secp192r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp224k1.php
+%%DATADIR%%/Crypt/EC/Curves/secp224r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp256k1.php
+%%DATADIR%%/Crypt/EC/Curves/secp256r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp384r1.php
+%%DATADIR%%/Crypt/EC/Curves/secp521r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect113r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect113r2.php
+%%DATADIR%%/Crypt/EC/Curves/sect131r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect131r2.php
+%%DATADIR%%/Crypt/EC/Curves/sect163k1.php
+%%DATADIR%%/Crypt/EC/Curves/sect163r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect163r2.php
+%%DATADIR%%/Crypt/EC/Curves/sect193r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect193r2.php
+%%DATADIR%%/Crypt/EC/Curves/sect233k1.php
+%%DATADIR%%/Crypt/EC/Curves/sect233r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect239k1.php
+%%DATADIR%%/Crypt/EC/Curves/sect283k1.php
+%%DATADIR%%/Crypt/EC/Curves/sect283r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect409k1.php
+%%DATADIR%%/Crypt/EC/Curves/sect409r1.php
+%%DATADIR%%/Crypt/EC/Curves/sect571k1.php
+%%DATADIR%%/Crypt/EC/Curves/sect571r1.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/Common.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/MontgomeryPrivate.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/MontgomeryPublic.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/OpenSSH.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/PKCS1.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/PKCS8.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/PuTTY.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/XML.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/libsodium.php
+%%DATADIR%%/Crypt/EC/Formats/Signature/ASN1.php
+%%DATADIR%%/Crypt/EC/Formats/Signature/Raw.php
+%%DATADIR%%/Crypt/EC/Formats/Signature/SSH2.php
+%%DATADIR%%/Crypt/EC/Parameters.php
+%%DATADIR%%/Crypt/EC/PrivateKey.php
+%%DATADIR%%/Crypt/EC/PublicKey.php
 %%DATADIR%%/Crypt/Hash.php
+%%DATADIR%%/Crypt/PublicKeyLoader.php
 %%DATADIR%%/Crypt/RC2.php
 %%DATADIR%%/Crypt/RC4.php
 %%DATADIR%%/Crypt/RSA.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/MSBLOB.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/OpenSSH.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/PKCS1.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/PKCS8.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/PSS.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/PuTTY.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/Raw.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/XML.php
+%%DATADIR%%/Crypt/RSA/PrivateKey.php
+%%DATADIR%%/Crypt/RSA/PublicKey.php
 %%DATADIR%%/Crypt/Random.php
 %%DATADIR%%/Crypt/Rijndael.php
+%%DATADIR%%/Crypt/Salsa20.php
 %%DATADIR%%/Crypt/TripleDES.php
 %%DATADIR%%/Crypt/Twofish.php
+%%DATADIR%%/Exception/BadConfigurationException.php
+%%DATADIR%%/Exception/BadDecryptionException.php
+%%DATADIR%%/Exception/BadModeException.php
+%%DATADIR%%/Exception/ConnectionClosedException.php
+%%DATADIR%%/Exception/FileNotFoundException.php
+%%DATADIR%%/Exception/InconsistentSetupException.php
+%%DATADIR%%/Exception/InsufficientSetupException.php
+%%DATADIR%%/Exception/NoKeyLoadedException.php
+%%DATADIR%%/Exception/NoSupportedAlgorithmsException.php
+%%DATADIR%%/Exception/UnableToConnectException.php
+%%DATADIR%%/Exception/UnsupportedAlgorithmException.php
+%%DATADIR%%/Exception/UnsupportedCurveException.php
+%%DATADIR%%/Exception/UnsupportedFormatException.php
+%%DATADIR%%/Exception/UnsupportedOperationException.php
 %%DATADIR%%/File/ANSI.php
 %%DATADIR%%/File/ASN1.php
 %%DATADIR%%/File/ASN1/Element.php
+%%DATADIR%%/File/ASN1/Maps/AccessDescription.php
+%%DATADIR%%/File/ASN1/Maps/AdministrationDomainName.php
+%%DATADIR%%/File/ASN1/Maps/AlgorithmIdentifier.php
+%%DATADIR%%/File/ASN1/Maps/AnotherName.php
+%%DATADIR%%/File/ASN1/Maps/Attribute.php
+%%DATADIR%%/File/ASN1/Maps/AttributeType.php
+%%DATADIR%%/File/ASN1/Maps/AttributeTypeAndValue.php
+%%DATADIR%%/File/ASN1/Maps/AttributeValue.php
+%%DATADIR%%/File/ASN1/Maps/Attributes.php
+%%DATADIR%%/File/ASN1/Maps/AuthorityInfoAccessSyntax.php
+%%DATADIR%%/File/ASN1/Maps/AuthorityKeyIdentifier.php
+%%DATADIR%%/File/ASN1/Maps/BaseDistance.php
+%%DATADIR%%/File/ASN1/Maps/BasicConstraints.php
+%%DATADIR%%/File/ASN1/Maps/BuiltInDomainDefinedAttribute.php
+%%DATADIR%%/File/ASN1/Maps/BuiltInDomainDefinedAttributes.php
+%%DATADIR%%/File/ASN1/Maps/BuiltInStandardAttributes.php
+%%DATADIR%%/File/ASN1/Maps/CPSuri.php
+%%DATADIR%%/File/ASN1/Maps/CRLDistributionPoints.php
+%%DATADIR%%/File/ASN1/Maps/CRLNumber.php
+%%DATADIR%%/File/ASN1/Maps/CRLReason.php
+%%DATADIR%%/File/ASN1/Maps/CertPolicyId.php
+%%DATADIR%%/File/ASN1/Maps/Certificate.php
+%%DATADIR%%/File/ASN1/Maps/CertificateIssuer.php
+%%DATADIR%%/File/ASN1/Maps/CertificateList.php
+%%DATADIR%%/File/ASN1/Maps/CertificatePolicies.php
+%%DATADIR%%/File/ASN1/Maps/CertificateSerialNumber.php
+%%DATADIR%%/File/ASN1/Maps/CertificationRequest.php
+%%DATADIR%%/File/ASN1/Maps/CertificationRequestInfo.php
+%%DATADIR%%/File/ASN1/Maps/Characteristic_two.php
+%%DATADIR%%/File/ASN1/Maps/CountryName.php
+%%DATADIR%%/File/ASN1/Maps/Curve.php
+%%DATADIR%%/File/ASN1/Maps/DHParameter.php
+%%DATADIR%%/File/ASN1/Maps/DSAParams.php
+%%DATADIR%%/File/ASN1/Maps/DSAPrivateKey.php
+%%DATADIR%%/File/ASN1/Maps/DSAPublicKey.php
+%%DATADIR%%/File/ASN1/Maps/DigestInfo.php
+%%DATADIR%%/File/ASN1/Maps/DirectoryString.php
+%%DATADIR%%/File/ASN1/Maps/DisplayText.php
+%%DATADIR%%/File/ASN1/Maps/DistributionPoint.php
+%%DATADIR%%/File/ASN1/Maps/DistributionPointName.php
+%%DATADIR%%/File/ASN1/Maps/DssSigValue.php
+%%DATADIR%%/File/ASN1/Maps/ECParameters.php
+%%DATADIR%%/File/ASN1/Maps/ECPoint.php
+%%DATADIR%%/File/ASN1/Maps/ECPrivateKey.php
+%%DATADIR%%/File/ASN1/Maps/EDIPartyName.php
+%%DATADIR%%/File/ASN1/Maps/EcdsaSigValue.php
+%%DATADIR%%/File/ASN1/Maps/EncryptedData.php
+%%DATADIR%%/File/ASN1/Maps/EncryptedPrivateKeyInfo.php
+%%DATADIR%%/File/ASN1/Maps/ExtKeyUsageSyntax.php
+%%DATADIR%%/File/ASN1/Maps/Extension.php
+%%DATADIR%%/File/ASN1/Maps/ExtensionAttribute.php
+%%DATADIR%%/File/ASN1/Maps/ExtensionAttributes.php
+%%DATADIR%%/File/ASN1/Maps/Extensions.php
+%%DATADIR%%/File/ASN1/Maps/FieldElement.php
+%%DATADIR%%/File/ASN1/Maps/FieldID.php
+%%DATADIR%%/File/ASN1/Maps/GeneralName.php
+%%DATADIR%%/File/ASN1/Maps/GeneralNames.php
+%%DATADIR%%/File/ASN1/Maps/GeneralSubtree.php
+%%DATADIR%%/File/ASN1/Maps/GeneralSubtrees.php
+%%DATADIR%%/File/ASN1/Maps/HashAlgorithm.php
+%%DATADIR%%/File/ASN1/Maps/HoldInstructionCode.php
+%%DATADIR%%/File/ASN1/Maps/InvalidityDate.php
+%%DATADIR%%/File/ASN1/Maps/IssuerAltName.php
+%%DATADIR%%/File/ASN1/Maps/IssuingDistributionPoint.php
+%%DATADIR%%/File/ASN1/Maps/KeyIdentifier.php
+%%DATADIR%%/File/ASN1/Maps/KeyPurposeId.php
+%%DATADIR%%/File/ASN1/Maps/KeyUsage.php
+%%DATADIR%%/File/ASN1/Maps/MaskGenAlgorithm.php
+%%DATADIR%%/File/ASN1/Maps/Name.php
+%%DATADIR%%/File/ASN1/Maps/NameConstraints.php
+%%DATADIR%%/File/ASN1/Maps/NetworkAddress.php
+%%DATADIR%%/File/ASN1/Maps/NoticeReference.php
+%%DATADIR%%/File/ASN1/Maps/NumericUserIdentifier.php
+%%DATADIR%%/File/ASN1/Maps/ORAddress.php
+%%DATADIR%%/File/ASN1/Maps/OneAsymmetricKey.php
+%%DATADIR%%/File/ASN1/Maps/OrganizationName.php
+%%DATADIR%%/File/ASN1/Maps/OrganizationalUnitNames.php
+%%DATADIR%%/File/ASN1/Maps/OtherPrimeInfo.php
+%%DATADIR%%/File/ASN1/Maps/OtherPrimeInfos.php
+%%DATADIR%%/File/ASN1/Maps/PBEParameter.php
+%%DATADIR%%/File/ASN1/Maps/PBES2params.php
+%%DATADIR%%/File/ASN1/Maps/PBKDF2params.php
+%%DATADIR%%/File/ASN1/Maps/PBMAC1params.php
+%%DATADIR%%/File/ASN1/Maps/PKCS9String.php
+%%DATADIR%%/File/ASN1/Maps/Pentanomial.php
+%%DATADIR%%/File/ASN1/Maps/PersonalName.php
+%%DATADIR%%/File/ASN1/Maps/PolicyInformation.php
+%%DATADIR%%/File/ASN1/Maps/PolicyMappings.php
+%%DATADIR%%/File/ASN1/Maps/PolicyQualifierId.php
+%%DATADIR%%/File/ASN1/Maps/PolicyQualifierInfo.php
+%%DATADIR%%/File/ASN1/Maps/PostalAddress.php
+%%DATADIR%%/File/ASN1/Maps/Prime_p.php
+%%DATADIR%%/File/ASN1/Maps/PrivateDomainName.php
+%%DATADIR%%/File/ASN1/Maps/PrivateKey.php
+%%DATADIR%%/File/ASN1/Maps/PrivateKeyInfo.php
+%%DATADIR%%/File/ASN1/Maps/PrivateKeyUsagePeriod.php
+%%DATADIR%%/File/ASN1/Maps/PublicKey.php
+%%DATADIR%%/File/ASN1/Maps/PublicKeyAndChallenge.php
+%%DATADIR%%/File/ASN1/Maps/PublicKeyInfo.php
+%%DATADIR%%/File/ASN1/Maps/RC2CBCParameter.php
+%%DATADIR%%/File/ASN1/Maps/RDNSequence.php
+%%DATADIR%%/File/ASN1/Maps/RSAPrivateKey.php
+%%DATADIR%%/File/ASN1/Maps/RSAPublicKey.php
+%%DATADIR%%/File/ASN1/Maps/RSASSA_PSS_params.php
+%%DATADIR%%/File/ASN1/Maps/ReasonFlags.php
+%%DATADIR%%/File/ASN1/Maps/RelativeDistinguishedName.php
+%%DATADIR%%/File/ASN1/Maps/RevokedCertificate.php
+%%DATADIR%%/File/ASN1/Maps/SignedPublicKeyAndChallenge.php
+%%DATADIR%%/File/ASN1/Maps/SpecifiedECDomain.php
+%%DATADIR%%/File/ASN1/Maps/SubjectAltName.php
+%%DATADIR%%/File/ASN1/Maps/SubjectDirectoryAttributes.php
+%%DATADIR%%/File/ASN1/Maps/SubjectInfoAccessSyntax.php
+%%DATADIR%%/File/ASN1/Maps/SubjectPublicKeyInfo.php
+%%DATADIR%%/File/ASN1/Maps/TBSCertList.php
+%%DATADIR%%/File/ASN1/Maps/TBSCertificate.php
+%%DATADIR%%/File/ASN1/Maps/TerminalIdentifier.php
+%%DATADIR%%/File/ASN1/Maps/Time.php
+%%DATADIR%%/File/ASN1/Maps/Trinomial.php
+%%DATADIR%%/File/ASN1/Maps/UniqueIdentifier.php
+%%DATADIR%%/File/ASN1/Maps/UserNotice.php
+%%DATADIR%%/File/ASN1/Maps/Validity.php
+%%DATADIR%%/File/ASN1/Maps/netscape_ca_policy_url.php
+%%DATADIR%%/File/ASN1/Maps/netscape_cert_type.php
+%%DATADIR%%/File/ASN1/Maps/netscape_comment.php
 %%DATADIR%%/File/X509.php
 %%DATADIR%%/Math/BigInteger.php
-%%DATADIR%%/Net/SCP.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath/Base.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath/BuiltIn.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath/DefaultEngine.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath/OpenSSL.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath/Reductions/Barrett.php
+%%DATADIR%%/Math/BigInteger/Engines/BCMath/Reductions/EvalBarrett.php
+%%DATADIR%%/Math/BigInteger/Engines/Engine.php
+%%DATADIR%%/Math/BigInteger/Engines/GMP.php
+%%DATADIR%%/Math/BigInteger/Engines/GMP/DefaultEngine.php
+%%DATADIR%%/Math/BigInteger/Engines/OpenSSL.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Base.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/DefaultEngine.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Montgomery.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/OpenSSL.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions/Barrett.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions/Classic.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions/EvalBarrett.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions/Montgomery.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions/MontgomeryMult.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions/PowerOfTwo.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP32.php
+%%DATADIR%%/Math/BigInteger/Engines/PHP64.php
+%%DATADIR%%/Math/BinaryField.php
+%%DATADIR%%/Math/BinaryField/Integer.php
+%%DATADIR%%/Math/Common/FiniteField.php
+%%DATADIR%%/Math/Common/FiniteField/Integer.php
+%%DATADIR%%/Math/PrimeField.php
+%%DATADIR%%/Math/PrimeField/Integer.php
 %%DATADIR%%/Net/SFTP.php
 %%DATADIR%%/Net/SFTP/Stream.php
-%%DATADIR%%/Net/SSH1.php
 %%DATADIR%%/Net/SSH2.php
 %%DATADIR%%/System/SSH/Agent.php
 %%DATADIR%%/System/SSH/Agent/Identity.php
+%%DATADIR%%/System/SSH/Common/Traits/ReadBytes.php
 %%DATADIR%%/bootstrap.php
 %%DATADIR%%/openssl.cnf
 @dir %%DATADIR%%
+@dir %%DATADIR%%/Common
+@dir %%DATADIR%%/Common/Functions
 @dir %%DATADIR%%/Crypt
+@dir %%DATADIR%%/Crypt/Common
+@dir %%DATADIR%%/Crypt/Common/Formats
+@dir %%DATADIR%%/Crypt/Common/Formats/Keys
+@dir %%DATADIR%%/Crypt/Common/Formats/Signature
+@dir %%DATADIR%%/Crypt/Common/Traits
+@dir %%DATADIR%%/Crypt/DH
+@dir %%DATADIR%%/Crypt/DH/Formats
+@dir %%DATADIR%%/Crypt/DH/Formats/Keys
+@dir %%DATADIR%%/Crypt/DSA
+@dir %%DATADIR%%/Crypt/DSA/Formats
+@dir %%DATADIR%%/Crypt/DSA/Formats/Keys
+@dir %%DATADIR%%/Crypt/DSA/Formats/Signature
+@dir %%DATADIR%%/Crypt/EC
+@dir %%DATADIR%%/Crypt/EC/BaseCurves
+@dir %%DATADIR%%/Crypt/EC/Curves
+@dir %%DATADIR%%/Crypt/EC/Formats
+@dir %%DATADIR%%/Crypt/EC/Formats/Keys
+@dir %%DATADIR%%/Crypt/EC/Formats/Signature
+@dir %%DATADIR%%/Crypt/RSA
+@dir %%DATADIR%%/Crypt/RSA/Formats
+@dir %%DATADIR%%/Crypt/RSA/Formats/Keys
+@dir %%DATADIR%%/Exception
 @dir %%DATADIR%%/File
 @dir %%DATADIR%%/File/ASN1
+@dir %%DATADIR%%/File/ASN1/Maps
 @dir %%DATADIR%%/Math
+@dir %%DATADIR%%/Math/BigInteger
+@dir %%DATADIR%%/Math/BigInteger/Engines
+@dir %%DATADIR%%/Math/BigInteger/Engines/BCMath
+@dir %%DATADIR%%/Math/BigInteger/Engines/BCMath/Reductions
+@dir %%DATADIR%%/Math/BigInteger/Engines/GMP
+@dir %%DATADIR%%/Math/BigInteger/Engines/PHP
+@dir %%DATADIR%%/Math/BigInteger/Engines/PHP/Reductions
+@dir %%DATADIR%%/Math/BinaryField
+@dir %%DATADIR%%/Math/Common
+@dir %%DATADIR%%/Math/Common/FiniteField
+@dir %%DATADIR%%/Math/PrimeField
 @dir %%DATADIR%%/Net
 @dir %%DATADIR%%/Net/SFTP
 @dir %%DATADIR%%/System
 @dir %%DATADIR%%/System/SSH
 @dir %%DATADIR%%/System/SSH/Agent
+@dir %%DATADIR%%/System/SSH/Common
+@dir %%DATADIR%%/System/SSH/Common/Traits
