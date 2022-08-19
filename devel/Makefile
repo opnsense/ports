@@ -682,6 +682,7 @@
     SUBDIR += frama-c
     SUBDIR += freebsd-gcc6
     SUBDIR += freebsd-gcc9
+    SUBDIR += freebsd-gcc12
     SUBDIR += freebsd-git-devtools
     SUBDIR += freebsd-sysroot
     SUBDIR += frink
@@ -1019,6 +1020,7 @@
     SUBDIR += kde-dev-scripts
     SUBDIR += kde-dev-utils
     SUBDIR += kdesdk
+    SUBDIR += kdesdk-kio
     SUBDIR += kdesdk-thumbnailers
     SUBDIR += kdesvn
     SUBDIR += kdev-php
@@ -4434,6 +4436,7 @@
     SUBDIR += py-diazo
     SUBDIR += py-dill
     SUBDIR += py-dirspec
+    SUBDIR += py-diskcache
     SUBDIR += py-distlib
     SUBDIR += py-distributed
     SUBDIR += py-dj40-django-rq
@@ -4596,6 +4599,7 @@
     SUBDIR += py-hgtools
     SUBDIR += py-hidraw
     SUBDIR += py-holidays
+    SUBDIR += py-homebase
     SUBDIR += py-http-prompt
     SUBDIR += py-humanize
     SUBDIR += py-hvac
@@ -4938,6 +4942,7 @@
     SUBDIR += py-platformdirs
     SUBDIR += py-plette
     SUBDIR += py-plex
+    SUBDIR += py-plucky
     SUBDIR += py-pluggy
     SUBDIR += py-pluggy0
     SUBDIR += py-pluginbase
@@ -5652,6 +5657,7 @@
     SUBDIR += rkcommon
     SUBDIR += rlog
     SUBDIR += rlwrap
+    SUBDIR += robin-hood-hashing
     SUBDIR += robin-map
     SUBDIR += roboctl
     SUBDIR += robodoc

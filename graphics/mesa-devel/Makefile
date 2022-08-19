@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	22.2-branchpoint-406
-DISTVERSIONSUFFIX=	-g4e9cce39d3f
+DISTVERSION=	22.2-branchpoint-655
+DISTVERSIONSUFFIX=	-g37aa92a3cd8
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -135,7 +135,7 @@ ZSTD_MESON_ENABLED=	zstd
 
 # Ignore Mk/bsd.default-versions.mk but respect make.conf(5)
 .if !defined(DEFAULT_VERSIONS) || ! ${DEFAULT_VERSIONS:Mllvm*}
-LLVM_DEFAULT=	13 # bump if not latest release
+LLVM_DEFAULT=	13 # chase mesa-dri
 .endif
 
 post-extract:
