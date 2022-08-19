@@ -1,8 +1,7 @@
-PORTNAME=	phpseclib
-DISTVERSION=	2.0.37
+PORTNAME=	phpseclib2_compat
+DISTVERSION=	1.0.4
 CATEGORIES=	security devel
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
-PKGNAMESUFFIX=	2
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	PHP Secure Communications Library
@@ -13,13 +12,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USES=		php:flavors
 
 USE_GITHUB=	yes
-
-CONFLICTS_INSTALL=	php*-phpseclib
+GH_ACCOUNT=	phpseclib
 
 NO_ARCH=	yes
 NO_BUILD=	yes
 
 do-install:
-	@cd ${WRKSRC}/${PORTNAME} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
+	@cd ${WRKSRC}/src && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>

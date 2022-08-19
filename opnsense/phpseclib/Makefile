@@ -13,8 +13,6 @@ USES=		php:flavors
 
 USE_GITHUB=	yes
 
-CONFLICTS_INSTALL=	php*-phpseclib2
-
 NO_ARCH=	yes
 NO_BUILD=	yes
 
