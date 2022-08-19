@@ -1,5 +1,5 @@
 PORTNAME=	stunnel
-DISTVERSION=	5.63
+DISTVERSION=	5.65
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.stunnel.org/downloads/archive/5.x/ \
@@ -22,6 +22,10 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var/tmp --enable-static --disable-systemd \
 		${CONFIGURE_ARGS_SSL}
 SHEBANG_FILES=	src/stunnel3.in
+SUB_FILES=	daemon.conf
+SUB_LIST=	STUNNEL_PIDFILE=${STUNNEL_PIDFILE} \
+		STUNNEL_USER=${STUNNEL_USER} \
+		STUNNEL_GROUP=${STUNNEL_GROUP}
 
 OPTIONS_DEFINE=			DOCS EXAMPLES FIPS IPV6 LIBWRAP
 OPTIONS_SINGLE=			THREAD
@@ -42,6 +46,7 @@ FORK_DESC=			Use the fork(3) threading model
 PTHREAD_DESC=			Use the pthread(3) threading model
 UCONTEXT_DESC=			Use the ucontext(3) threading model
 
+STUNNEL_PIDFILE=/var/run/stunnel/stunnel.pid
 STUNNEL_USER?=	stunnel
 STUNNEL_GROUP?=	stunnel
 
@@ -84,7 +89,7 @@ post-configure:
 		${WRKSRC}/src/Makefile
 .else
 CONFIGURE_ARGS_SSL=	--with-ssl="${OPENSSLBASE}"
-.endif # SSL_DEFAULT
+.endif
 
 post-patch:
 # place files under /var/tmp so that this can be run by an unprivileged
@@ -113,7 +118,7 @@ post-build:
 
 post-install:
 	${MKDIR} ${STAGEDIR}${ETCDIR}/conf.d/
-	${INSTALL_DATA} ${FILESDIR}/pid.conf ${STAGEDIR}${ETCDIR}/conf.d/00-pid.conf
+	${INSTALL_DATA} ${WRKDIR}/daemon.conf ${STAGEDIR}${ETCDIR}/conf.d/00-daemon.conf
 
 cert:
 	@${ECHO} ""
