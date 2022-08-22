@@ -60,5 +60,4 @@ function phpseclib_autoload($namespace, $dir, $type = 'psr4')
 
 phpseclib_autoload('ParagonIE', '/usr/local/share/phpseclib/paragonie');
 phpseclib_autoload('phpseclib3', '/usr/local/share/phpseclib');
-//phpseclib_autoload('phpseclib', '/usr/local/share/phpseclib2_compat');
 
