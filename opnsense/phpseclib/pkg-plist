@@ -329,6 +329,17 @@
 %%DATADIR%%/System/SSH/Common/Traits/ReadBytes.php
 %%DATADIR%%/bootstrap.php
 %%DATADIR%%/openssl.cnf
+%%DATADIR%%/paragonie/Base32.php
+%%DATADIR%%/paragonie/Base32Hex.php
+%%DATADIR%%/paragonie/Base64.php
+%%DATADIR%%/paragonie/Base64DotSlash.php
+%%DATADIR%%/paragonie/Base64DotSlashOrdered.php
+%%DATADIR%%/paragonie/Base64UrlSafe.php
+%%DATADIR%%/paragonie/Binary.php
+%%DATADIR%%/paragonie/EncoderInterface.php
+%%DATADIR%%/paragonie/Encoding.php
+%%DATADIR%%/paragonie/Hex.php
+%%DATADIR%%/paragonie/RFC4648.php
 @dir %%DATADIR%%
 @dir %%DATADIR%%/Common
 @dir %%DATADIR%%/Common/Functions
@@ -377,3 +388,4 @@
 @dir %%DATADIR%%/System/SSH/Agent
 @dir %%DATADIR%%/System/SSH/Common
 @dir %%DATADIR%%/System/SSH/Common/Traits
+@dir %%DATADIR%%/paragonie
