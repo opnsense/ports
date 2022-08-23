@@ -240,6 +240,7 @@
     SUBDIR += mc
     SUBDIR += mc-nox11
     SUBDIR += mdp
+    SUBDIR += meshoptimizer
     SUBDIR += metalink-checker
     SUBDIR += metalink-tools
     SUBDIR += mime-support
@@ -437,6 +438,7 @@
     SUBDIR += qt5-examples
     SUBDIR += qt5-l10n
     SUBDIR += qt5ct
+    SUBDIR += qt6-doc
     SUBDIR += quantum++
     SUBDIR += raspberrypi-gpioshutdown
     SUBDIR += raspberrypi-userland
@@ -535,6 +537,7 @@
     SUBDIR += visp
     SUBDIR += viz
     SUBDIR += vxl
+    SUBDIR += wego
     SUBDIR += whichman
     SUBDIR += window
     SUBDIR += with
