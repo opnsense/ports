@@ -11,11 +11,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		php:flavors
 
-DEPEND=	paragonie
-
 USE_GITHUB=	yes
-GH_ACCOUNT=	phpseclib
-GH_ACCOUNT+=	${DEPEND}:depend
+GH_ACCOUNT=	phpseclib paragonie:depend
 GH_PROJECT=	constant_time_encoding:depend
 GH_TAGNAME=	v2.6.3:depend
 
@@ -23,10 +20,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 
 post-extract:
-	@${MV} ${WRKSRC_depend}/src ${WRKSRC}/${PORTNAME}/${DEPEND}
-
-do-patch:
-	@${CP} ${FILESDIR}/Autoload.php ${WRKSRC}/${PORTNAME}
+	@${MV} ${WRKSRC_depend}/src ${WRKSRC}/${PORTNAME}/paragonie
 
 do-install:
 	@cd ${WRKSRC}/${PORTNAME} && ${COPYTREE_SHARE} . ${STAGEDIR}${DATADIR}

@@ -1,4 +1,3 @@
-%%DATADIR%%/Autoload.php
 %%DATADIR%%/Common/Functions/Strings.php
 %%DATADIR%%/Crypt/AES.php
 %%DATADIR%%/Crypt/Blowfish.php
