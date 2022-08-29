@@ -76,7 +76,7 @@ EXTRACT_SUFX?=		.tar.xz
 
 # Qt5 specific master sites
 _QT5_MASTER_SITES_kde=		LOCAL
-_QT5_MASTER_SITE_SUBDIR_kde=	tcberner/KDE/Qt/${_QT_VERSION}
+_QT5_MASTER_SITE_SUBDIR_kde=	kde/KDE/Qt/${_QT_VERSION}
 _QT5_MASTER_SITES=		${MASTER_SITE_QT}
 _QT5_MASTER_SITE_SUBDIR=	official_releases/qt/${_QT_VERSION:R}/${_QT_VERSION}/submodules/
 # Qt6 specific master sites
@@ -112,7 +112,7 @@ _KDE_multimedia=	1
 _KDE_networkauth=	0
 _KDE_quick3d=		1
 _KDE_quickcontrols=	0
-_KDE_quickcontrols2=	5
+_KDE_quickcontrols2=	6
 _KDE_quicktimeline=	0
 _KDE_remoteobjects=	0
 _KDE_script=		0
