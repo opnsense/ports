@@ -277,6 +277,7 @@
     SUBDIR += glosm
     SUBDIR += glpng
     SUBDIR += glslang
+    SUBDIR += glvis
     SUBDIR += glx-utils
     SUBDIR += gmic
     SUBDIR += gmic-qt
@@ -858,6 +859,7 @@
     SUBDIR += py-glfw
     SUBDIR += py-glooey
     SUBDIR += py-gphoto2
+    SUBDIR += py-gprof2dot
     SUBDIR += py-graphlib-backport
     SUBDIR += py-graphviz
     SUBDIR += py-graphy
@@ -869,6 +871,7 @@
     SUBDIR += py-imagesize
     SUBDIR += py-img2pdf
     SUBDIR += py-leather
+    SUBDIR += py-lerc
     SUBDIR += py-mapclassify
     SUBDIR += py-mayavi
     SUBDIR += py-mcomix

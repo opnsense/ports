@@ -1436,6 +1436,7 @@
     SUBDIR += py-caldav
     SUBDIR += py-cheroot
     SUBDIR += py-cherrypy
+    SUBDIR += py-cinemagoer
     SUBDIR += py-cookies
     SUBDIR += py-crossplane
     SUBDIR += py-css-parser
@@ -1571,6 +1572,7 @@
     SUBDIR += py-djangorestframework-xml
     SUBDIR += py-draftjs-exporter
     SUBDIR += py-drf-yasg
+    SUBDIR += py-dropbox
     SUBDIR += py-dtflickr
     SUBDIR += py-enmerkar
     SUBDIR += py-fake-useragent
@@ -1723,6 +1725,7 @@
     SUBDIR += py-requests-oauthlib
     SUBDIR += py-requests-toolbelt
     SUBDIR += py-requests-unixsocket
+    SUBDIR += py-requests-wsgi-adapter
     SUBDIR += py-requests_ntlm
     SUBDIR += py-respx
     SUBDIR += py-restclient
@@ -2125,6 +2128,7 @@
     SUBDIR += rubygem-sinatra-r18n
     SUBDIR += rubygem-sinatra-respond_to
     SUBDIR += rubygem-sinatra1
+    SUBDIR += rubygem-sitemap_generator
     SUBDIR += rubygem-smashing
     SUBDIR += rubygem-socksify
     SUBDIR += rubygem-stimulus-rails
@@ -2181,6 +2185,7 @@
     SUBDIR += sitecopy
     SUBDIR += slowcgi
     SUBDIR += slowhttptest
+    SUBDIR += smarty
     SUBDIR += smarty2
     SUBDIR += smarty3
     SUBDIR += smb_auth
