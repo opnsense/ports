@@ -3455,6 +3455,7 @@
     SUBDIR += p5-Test-Mock-Guard
     SUBDIR += p5-Test-Mock-LWP
     SUBDIR += p5-Test-Mock-LWP-Dispatch
+    SUBDIR += p5-Test-Mock-One
     SUBDIR += p5-Test-Mock-Redis
     SUBDIR += p5-Test-MockDateTime
     SUBDIR += p5-Test-MockModule
@@ -3671,6 +3672,7 @@
     SUBDIR += p5-Variable-Disposition
     SUBDIR += p5-Variable-Eject
     SUBDIR += p5-Variable-Magic
+    SUBDIR += p5-Venus
     SUBDIR += p5-Want
     SUBDIR += p5-WeakRef
     SUBDIR += p5-Workflow
@@ -4150,6 +4152,7 @@
     SUBDIR += py-atomiclong
     SUBDIR += py-atomicwrites
     SUBDIR += py-atpublic
+    SUBDIR += py-attrdict
     SUBDIR += py-attrs
     SUBDIR += py-attrs-strict
     SUBDIR += py-autocommand
@@ -4513,6 +4516,7 @@
     SUBDIR += py-flake8-docstrings
     SUBDIR += py-flake8-import-order
     SUBDIR += py-flake8-polyfill
+    SUBDIR += py-flake8-print
     SUBDIR += py-flake8-quotes
     SUBDIR += py-flaky
     SUBDIR += py-flask-babel
@@ -4597,6 +4601,7 @@
     SUBDIR += py-gyp
     SUBDIR += py-hash_ring
     SUBDIR += py-hatch
+    SUBDIR += py-hatch-vcs
     SUBDIR += py-hatchling
     SUBDIR += py-heapdict
     SUBDIR += py-helpdev
@@ -4739,6 +4744,7 @@
     SUBDIR += py-llvmcpy
     SUBDIR += py-llvmlite
     SUBDIR += py-lml
+    SUBDIR += py-localstack-client
     SUBDIR += py-locket
     SUBDIR += py-lockfile
     SUBDIR += py-logan
@@ -4954,6 +4960,7 @@
     SUBDIR += py-pluggy
     SUBDIR += py-pluggy0
     SUBDIR += py-pluginbase
+    SUBDIR += py-plux
     SUBDIR += py-ply
     SUBDIR += py-pockets
     SUBDIR += py-podcastparser
@@ -5334,6 +5341,7 @@
     SUBDIR += py-tables
     SUBDIR += py-tabulate
     SUBDIR += py-tabulator
+    SUBDIR += py-tailer
     SUBDIR += py-tapi
     SUBDIR += py-tarantool-queue
     SUBDIR += py-tartiflette
@@ -5628,6 +5636,7 @@
     SUBDIR += qt6-5compat
     SUBDIR += qt6-base
     SUBDIR += qt6-languageserver
+    SUBDIR += qt6-positioning
     SUBDIR += qt6-remoteobjects
     SUBDIR += qt6-scxml
     SUBDIR += qt6-tools
@@ -5802,6 +5811,7 @@
     SUBDIR += rubygem-aws-sdk-autoscalingplans
     SUBDIR += rubygem-aws-sdk-backup
     SUBDIR += rubygem-aws-sdk-backupgateway
+    SUBDIR += rubygem-aws-sdk-backupstorage
     SUBDIR += rubygem-aws-sdk-batch
     SUBDIR += rubygem-aws-sdk-billingconductor
     SUBDIR += rubygem-aws-sdk-braket
@@ -6006,6 +6016,7 @@
     SUBDIR += rubygem-aws-sdk-pinpointsmsvoicev2
     SUBDIR += rubygem-aws-sdk-polly
     SUBDIR += rubygem-aws-sdk-pricing
+    SUBDIR += rubygem-aws-sdk-privatenetworks
     SUBDIR += rubygem-aws-sdk-prometheusservice
     SUBDIR += rubygem-aws-sdk-proton
     SUBDIR += rubygem-aws-sdk-qldb
@@ -6066,6 +6077,7 @@
     SUBDIR += rubygem-aws-sdk-states
     SUBDIR += rubygem-aws-sdk-storagegateway
     SUBDIR += rubygem-aws-sdk-support
+    SUBDIR += rubygem-aws-sdk-supportapp
     SUBDIR += rubygem-aws-sdk-swf
     SUBDIR += rubygem-aws-sdk-synthetics
     SUBDIR += rubygem-aws-sdk-textract
@@ -6718,6 +6730,7 @@
     SUBDIR += rubygem-ostruct
     SUBDIR += rubygem-p4ruby
     SUBDIR += rubygem-paint
+    SUBDIR += rubygem-pairing_heap
     SUBDIR += rubygem-paperclip-rails5
     SUBDIR += rubygem-paperclip-rails50
     SUBDIR += rubygem-parser

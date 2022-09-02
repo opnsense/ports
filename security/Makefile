@@ -3,6 +3,7 @@
     SUBDIR += 0d1n
     SUBDIR += 1password-client
     SUBDIR += 1password-client2
+    SUBDIR += 1password-client2-beta
     SUBDIR += 2fa
     SUBDIR += ADMsmb
     SUBDIR += ADMsnmp
@@ -280,6 +281,7 @@
     SUBDIR += libmcrypt
     SUBDIR += libnitrokey
     SUBDIR += libntlm
+    SUBDIR += libomemo
     SUBDIR += liboqs
     SUBDIR += libotr
     SUBDIR += libotr3

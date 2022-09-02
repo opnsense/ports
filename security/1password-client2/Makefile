@@ -1,5 +1,5 @@
 PORTNAME=	1password-client2
-DISTVERSION=	2.6.2
+DISTVERSION=	2.7.0
 CATEGORIES=	security
 MASTER_SITES=	https://cache.agilebits.com/dist/1P/op2/pkg/v${DISTVERSION}/
 
@@ -14,7 +14,7 @@ NO_WRKSUBDIR=	yes
 NO_BUILD=	yes
 
 PLIST_FILES=		bin/op
-CONFLICTS_INSTALL=	security/1password-client security/op
+CONFLICTS_INSTALL=	security/1password-client security/op security/1password-client2-beta
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/op \

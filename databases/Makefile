@@ -985,7 +985,11 @@
     SUBDIR += rubygem-redis-actionpack-rails60
     SUBDIR += rubygem-redis-actionpack-rails61
     SUBDIR += rubygem-redis-actionpack52-rails61
+    SUBDIR += rubygem-redis-client
+    SUBDIR += rubygem-redis-cluster-client
     SUBDIR += rubygem-redis-namespace
+    SUBDIR += rubygem-redis-namespace18
+    SUBDIR += rubygem-redis4
     SUBDIR += rubygem-redis44
     SUBDIR += rubygem-sdbm
     SUBDIR += rubygem-seed-fu
