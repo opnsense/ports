@@ -1,12 +1,14 @@
 PORTNAME=	kmplot
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	math education kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Mathematical function plotter for KDE
 WWW=		https://www.kde.org/applications/education/kmplot
 
-USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lang desktop-file-utils gettext \
+		kde:5 qt:5 tar:xz xorg
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		coreaddons crash dbusaddons emoticons guiaddons i18n \
 		iconthemes init itemmodels itemviews jobwidgets \
@@ -15,6 +17,7 @@ USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		ecm_build
 USE_QT=		concurrent core dbus gui network printsupport svg widgets xml \
 		buildtools_build qmake_build
+USE_XORG=	x11
 
 OPTIONS_DEFINE=	DOCS
 

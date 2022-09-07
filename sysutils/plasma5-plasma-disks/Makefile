@@ -1,5 +1,6 @@
 PORTNAME=	plasma-disks
 DISTVERSION=	${KDE_PLASMA_VERSION}
+PORTREVISION=	1
 CATEGORIES=	sysutils kde kde-plasma
 
 MAINTAINER=	kde@FreeBSD.org
@@ -19,11 +20,11 @@ LICENSE_FILE_GPLv3=	${WRKSRC}/LICENSES/GPL-3.0-only.txt
 LICENSE_FILE_LGPL3=	${WRKSRC}/LICENSES/LGPL-3.0-only.txt
 #LICENSE_FILE_FSF=	${WRKSRC}/LICENSES/FSFAP.txt
 #LICENSE_PERMS_KDE-GPL=	gpl3
-#LICENSE_PERMS_KDE-LGPL= gpl3	
+#LICENSE_PERMS_KDE-LGPL= gpl3
 
 RUN_DEPENDS=	smartmontools>0:sysutils/smartmontools
 
-USES=		cmake compiler:c++11-lang kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++11-lang kde:5 qt:5 tar:xz xorg
 
 USE_KDE=	activities auth codecs config configwidgets coreaddons \
 		dbusaddons ecm i18n kdeclarative kio ksysguard notifications \
@@ -31,6 +32,7 @@ USE_KDE=	activities auth codecs config configwidgets coreaddons \
 USE_QT=		concurrent core dbus declarative gui network quickcontrols \
 		widgets xml \
 		buildtools_build qmake_build
+USE_XORG=	x11
 
 post-patch:
 	${REINPLACE_CMD} "s|LOCALBASE|${LOCALBASE}|" \

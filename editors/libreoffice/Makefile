@@ -10,6 +10,9 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
 DIST_SUBDIR=	libreoffice
 EXTRACT_ONLY:=	${DISTFILES}
 
+PATCH_SITES=	https://raw.githubusercontent.com/archlinux/svntogit-packages/packages/libreoffice-fresh/trunk/
+PATCHFILES=	libreoffice-poppler-22.09.0.patch:-p1
+
 COMMENT=	Full integrated office productivity suite
 WWW=		https://www.libreoffice.org/
 
@@ -345,7 +348,8 @@ LLD_UNSAFE=	yes
 .endif
 
 .if ${CHOSEN_COMPILER_TYPE} == clang
-CXXFLAGS_WARN=	-Woverloaded-virtual -Wno-unused-parameter -Wno-unused-local-typedefs
+CXXFLAGS_WARN=	-Woverloaded-virtual -Wno-c++11-narrowing \
+		-Wno-unused-parameter -Wno-unused-local-typedefs
 .else
 CXXFLAGS_WARN=	-Wshadow -Woverloaded-virtual
 .endif

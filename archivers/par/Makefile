@@ -10,7 +10,7 @@ WWW=		https://ibiblio.org/pub/linux/games/quake/
 
 LICENSE=	GPLv2
 
-CONFLICTS=	par_format # bin/par 
+CONFLICTS=	par_format # bin/par
 
 MAKEFILE=	Makefile.Linux
 MAKE_ARGS=	CC="${CC}"

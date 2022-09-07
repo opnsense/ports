@@ -1,6 +1,6 @@
 PORTNAME=	calindori
 DISTVERSION=	1.4
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	deskutils
 MASTER_SITES=	KDE/stable/${PORTNAME}/
 
@@ -11,7 +11,7 @@ WWW=		https://apps.kde.org/en/calindori
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSES/GPL-3.0-or-later.txt
 
-USES=		cmake compiler:c++17-lang gl kde:5 pkgconfig qt:5 tar:xz
+USES=		cmake compiler:c++17-lang desktop-file-utils gl kde:5 pkgconfig qt:5 tar:xz
 USE_GL=		gl
 USE_QT=		core dbus declarative gui \
 		network quickcontrols quickcontrols2 \

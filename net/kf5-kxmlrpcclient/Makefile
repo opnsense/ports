@@ -8,8 +8,8 @@ WWW=		https://api.kde.org/frameworks-api/frameworks5-apidocs/kxmlrpcclient/html/
 
 USES=		cmake compiler:c++11-lib gettext kde:5 qt:5 tar:xz
 USE_KDE=	config coreaddons i18n kio service \
-		doctools_build ecm_build 
+		doctools_build ecm_build
 USE_QT=		concurrent core dbus gui network xml \
-		buildtools_build qmake_build 
+		buildtools_build qmake_build
 
 .include <bsd.port.mk>

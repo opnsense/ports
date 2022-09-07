@@ -11,7 +11,7 @@ WWW=		https://github.com/Ultimaker/fdm_materials
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake 
+USES=		cmake
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	Ultimaker

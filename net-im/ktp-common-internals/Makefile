@@ -1,5 +1,6 @@
 PORTNAME=	ktp-common-internals
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	net-im kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -20,7 +21,7 @@ LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		cmake compiler:c++11-lang gettext pkgconfig kde:5 \
-		qt:5 tar:xz
+		qt:5 tar:xz xorg
 USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		coreaddons i18n iconthemes itemviews jobwidgets kcmutils \
 		kio notifications notifyconfig parts people service solid \
@@ -29,6 +30,7 @@ USE_KDE=	auth bookmarks codecs completion config configwidgets \
 		ecm_build
 USE_QT=		concurrent core dbus declarative gui network sql widgets xml \
 		buildtools_build qmake_build
+USE_XORG=	x11
 USE_LDCONFIG=	yes
 
 OPTIONS_DEFINE=	DOCS

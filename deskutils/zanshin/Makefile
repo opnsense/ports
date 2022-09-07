@@ -1,5 +1,6 @@
 PORTNAME=	zanshin
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	deskutils kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -8,7 +9,7 @@ WWW=		https://zanshin.kde.org/
 
 LIB_DEPENDS=	libical.so:devel/libical
 
-USES=		cmake compiler:c++14-lang gettext kde:5 qt:5 tar:xz
+USES=		cmake compiler:c++14-lang gettext kde:5 qt:5 tar:xz xorg
 USE_KDE=	akonadi auth bookmarks codecs completion config configwidgets \
 		coreaddons crash ecm guiaddons i18n iconthemes itemmodels \
 		itemviews jobwidgets kdelibs4support kio notifications package \
@@ -22,5 +23,6 @@ USE_KDE+=	akonadicalendar akonadicontacts akonadinotes akonadisearch \
 USE_QT=		concurrent core dbus declarative gui network printsupport testlib \
 		widgets xml \
 		buildtools_build qmake_build
+USE_XORG=	x11
 
 .include <bsd.port.mk>

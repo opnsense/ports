@@ -1,6 +1,6 @@
 PORTNAME=	fizz
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2022.08.29.00
+DISTVERSION=	2022.09.05.00
 CATEGORIES=	security
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -22,7 +22,7 @@ LIB_DEPENDS=	libboost_filesystem.so:devel/boost-libs \
 		libsnappy.so:archivers/snappy \
 		libsodium.so:security/libsodium \
 		libunwind.so:devel/libunwind \
-		libzstd.so:archivers/zstd			
+		libzstd.so:archivers/zstd
 
 USES=		cmake compiler:c++14-lang ssl cpe
 CPE_VENDOR=	facebook

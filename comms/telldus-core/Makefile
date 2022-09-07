@@ -11,6 +11,8 @@ WWW=		https://developer.telldus.com/wiki/TellStickInstallationSource
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN=		does not build: 'tr1/memory' file not found
+
 BUILD_DEPENDS=	help2man:misc/help2man
 LIB_DEPENDS=	libftdi.so:devel/libftdi \
 		libconfuse.so:devel/libconfuse \

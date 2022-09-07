@@ -26,6 +26,6 @@ PORTSCOUT=	limit:^6\.3\.
 post-install:
 	${RM} ${STAGEDIR}${PREFIX}/bin/rdoc
 	${RM} ${STAGEDIR}${PREFIX}/bin/ri
-	${RM} ${STAGEDIR}${PREFIX}/share/man/man1/ri.1 
+	${RM} ${STAGEDIR}${PREFIX}/share/man/man1/ri.1
 
 .include <bsd.port.post.mk>

@@ -2,7 +2,7 @@ PORTNAME=	pipe-viewer
 PORTVERSION=	0.2.3
 CATEGORIES=	multimedia perl5
 
-MAINTAINER?=	DtxdF@riseup.net
+MAINTAINER?=	DtxdF@disroot.org
 COMMENT?=	Application for searching and playing videos from YouTube
 WWW=		https://github.com/trizen/pipe-viewer
 

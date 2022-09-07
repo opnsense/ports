@@ -12,6 +12,8 @@ WWW=		https://github.com/lemonsqueeze/gogui
 LICENSE=	LGPL21 BSD3CLAUSE
 LICENSE_COMB=	multi
 
+BROKEN_aarch64=	compilation fails: Internal Error (assembler_aarch64.hpp:237) ..., and it breaks with Java 11 and Java 17, see https://github.com/lemonsqueeze/gogui/issues/3
+
 BUILD_DEPENDS=	xsltproc:textproc/libxslt \
 		docbook-xsl>0:textproc/docbook-xsl
 

@@ -833,6 +833,7 @@
     SUBDIR += py-sqlalchemy12
     SUBDIR += py-sqlalchemy13
     SUBDIR += py-sqlalchemy14
+    SUBDIR += py-sqlglot
     SUBDIR += py-sqlite-fts4
     SUBDIR += py-sqlite-utils
     SUBDIR += py-sqlite3
@@ -987,6 +988,7 @@
     SUBDIR += rubygem-redis-actionpack52-rails61
     SUBDIR += rubygem-redis-client
     SUBDIR += rubygem-redis-cluster-client
+    SUBDIR += rubygem-redis-clustering
     SUBDIR += rubygem-redis-namespace
     SUBDIR += rubygem-redis-namespace18
     SUBDIR += rubygem-redis4

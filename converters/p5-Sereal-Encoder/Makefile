@@ -1,5 +1,5 @@
 PORTNAME=	Sereal-Encoder
-PORTVERSION=	4.025
+PORTVERSION=	5.001
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:YVES
@@ -13,7 +13,7 @@ LICENSE=	ART10 GPLv1+
 LICENSE_COMB=	dual
 
 LIB_DEPENDS=	libzstd.so:archivers/zstd
-TEST_DEPENDS=	p5-Sereal-Decoder>=4.002:converters/p5-Sereal-Decoder \
+TEST_DEPENDS=	p5-Sereal-Decoder>=5.000:converters/p5-Sereal-Decoder \
 		p5-Test-Deep>=0:devel/p5-Test-Deep \
 		p5-Test-Differences>=0,1:devel/p5-Test-Differences \
 		p5-Test-LongString>=0:devel/p5-Test-LongString \
@@ -24,6 +24,8 @@ USE_PERL5=	configure
 
 MAKE_ENV=	PASTHRU_DEFINE="-I${LOCALBASE}/include"
 MAKE_JOBS_UNSAFE=	yes
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Encoder/Encoder.so

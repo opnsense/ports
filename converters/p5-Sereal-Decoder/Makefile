@@ -1,5 +1,5 @@
 PORTNAME=	Sereal-Decoder
-PORTVERSION=	4.025
+PORTVERSION=	5.001
 CATEGORIES=	converters perl5
 MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:YVES
@@ -23,6 +23,8 @@ USE_PERL5=	configure
 
 MAKE_ENV=	PASTHRU_DEFINE="-I${LOCALBASE}/include"
 MAKE_JOBS_UNSAFE=	yes
+
+PORTSCOUT=	limit:^[0-9\.]*$$
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Sereal/Decoder/Decoder.so

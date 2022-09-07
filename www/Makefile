@@ -324,7 +324,6 @@
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
     SUBDIR += mediawiki135
-    SUBDIR += mediawiki136
     SUBDIR += mediawiki137
     SUBDIR += mediawiki138
     SUBDIR += mergelog
@@ -1420,7 +1419,6 @@
     SUBDIR += py-azure-storage
     SUBDIR += py-beaker
     SUBDIR += py-beautifulsoup
-    SUBDIR += py-beautifulsoup449
     SUBDIR += py-betamax
     SUBDIR += py-biscuits
     SUBDIR += py-bjoern
@@ -1721,6 +1719,7 @@
     SUBDIR += py-requests-cache93
     SUBDIR += py-requests-file
     SUBDIR += py-requests-futures
+    SUBDIR += py-requests-futures0
     SUBDIR += py-requests-gssapi
     SUBDIR += py-requests-mock
     SUBDIR += py-requests-oauthlib
@@ -1780,6 +1779,7 @@
     SUBDIR += py-websocket-client
     SUBDIR += py-webunit
     SUBDIR += py-werkzeug
+    SUBDIR += py-werkzeug21
     SUBDIR += py-wfuzz
     SUBDIR += py-whitenoise
     SUBDIR += py-wikipedia
@@ -2041,6 +2041,7 @@
     SUBDIR += rubygem-protocol-http1
     SUBDIR += rubygem-protocol-http2
     SUBDIR += rubygem-protocol-rack
+    SUBDIR += rubygem-protocol-rack01
     SUBDIR += rubygem-protocol-websocket
     SUBDIR += rubygem-puma
     SUBDIR += rubygem-puma_worker_killer

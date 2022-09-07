@@ -1137,6 +1137,7 @@
     SUBDIR += libcwd
     SUBDIR += libdaemon
     SUBDIR += libdap
+    SUBDIR += libdatadog
     SUBDIR += libdatrie
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
@@ -1467,6 +1468,7 @@
     SUBDIR += lua-cjson
     SUBDIR += lua-cqueues
     SUBDIR += lua-gettext
+    SUBDIR += lua-language-server
     SUBDIR += lua-lgi
     SUBDIR += lua-libevent
     SUBDIR += lua-lpeg
@@ -1500,6 +1502,7 @@
     SUBDIR += magit-devel
     SUBDIR += make++
     SUBDIR += makedepend
+    SUBDIR += malloy
     SUBDIR += marisa-trie
     SUBDIR += marl
     SUBDIR += mate-common
@@ -3442,6 +3445,7 @@
     SUBDIR += p5-Test-LeakTrace
     SUBDIR += p5-Test-LectroTest
     SUBDIR += p5-Test-Lib
+    SUBDIR += p5-Test-Lives
     SUBDIR += p5-Test-LoadAllModules
     SUBDIR += p5-Test-Log-Log4perl
     SUBDIR += p5-Test-Log4perl
@@ -4695,6 +4699,7 @@
     SUBDIR += py-jsonref
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
+    SUBDIR += py-jsonschema-spec
     SUBDIR += py-jsonschema3
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-client
@@ -4750,7 +4755,6 @@
     SUBDIR += py-logan
     SUBDIR += py-logbook
     SUBDIR += py-logfury
-    SUBDIR += py-logfury0
     SUBDIR += py-logilab-common
     SUBDIR += py-loguru
     SUBDIR += py-logutils
@@ -4847,7 +4851,9 @@
     SUBDIR += py-openapi-codec
     SUBDIR += py-openapi-core
     SUBDIR += py-openapi-schema-validator
+    SUBDIR += py-openapi-schema-validator02
     SUBDIR += py-openapi-spec-validator
+    SUBDIR += py-openapi-spec-validator04
     SUBDIR += py-opencensus
     SUBDIR += py-opencensus-context
     SUBDIR += py-opendht
@@ -5332,7 +5338,7 @@
     SUBDIR += py-stringcase
     SUBDIR += py-structlog
     SUBDIR += py-subprocess-tee
-    SUBDIR += py-subversion
+#   SUBDIR += py-subversion
     SUBDIR += py-sure
     SUBDIR += py-swagger-spec-validator
     SUBDIR += py-synr
@@ -5365,6 +5371,7 @@
     SUBDIR += py-testscenarios
     SUBDIR += py-testtools
     SUBDIR += py-thefuzz
+    SUBDIR += py-threadpoolctl
     SUBDIR += py-threema-msgapi
     SUBDIR += py-thrift
     SUBDIR += py-thriftpy2
@@ -5578,7 +5585,7 @@
     SUBDIR += py-zope.testbrowser
     SUBDIR += py-zope.testing
     SUBDIR += py-zope.traversing
-    SUBDIR += py3c
+#   SUBDIR += py3c
     SUBDIR += pybind11
     SUBDIR += pybugz
     SUBDIR += pycanberra
@@ -5858,8 +5865,10 @@
     SUBDIR += rubygem-aws-sdk-connectcontactlens
     SUBDIR += rubygem-aws-sdk-connectparticipant
     SUBDIR += rubygem-aws-sdk-connectwisdomservice
+    SUBDIR += rubygem-aws-sdk-controltower
     SUBDIR += rubygem-aws-sdk-core
     SUBDIR += rubygem-aws-sdk-core2
+    SUBDIR += rubygem-aws-sdk-core3131
     SUBDIR += rubygem-aws-sdk-costandusagereportservice
     SUBDIR += rubygem-aws-sdk-costexplorer
     SUBDIR += rubygem-aws-sdk-customerprofiles
@@ -6948,6 +6957,7 @@
     SUBDIR += rubygem-slop
     SUBDIR += rubygem-slop3
     SUBDIR += rubygem-slow_enumerator_tools
+    SUBDIR += rubygem-snaky_hash
     SUBDIR += rubygem-snowplow-tracker
     SUBDIR += rubygem-soap4r
     SUBDIR += rubygem-solve
