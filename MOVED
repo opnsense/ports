@@ -13288,7 +13288,6 @@ x11-themes/cursor-grounation-theme||2019-10-16|Has expired: Unfetchable, unmaint
 x11-themes/cursor-neutral-theme||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-themes/cursor-polar-theme||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-themes/gtk-envy-theme||2019-10-16|Has expired: Unfetchable, unmaintained
-x11-themes/gtk-equinox-engine||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-themes/gtk-qnxtheme||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-themes/plank-theme-moka||2019-10-16|Has expired: Unfetchable, unmaintained
 x11-toolkits/swt-devel||2019-10-16|Has expired: Obsolete. Superseded by x11-toolkits/swt
@@ -17543,3 +17542,14 @@ shells/ksh93-devel|shells/ksh-devel|2022-08-28|Development has resumed under a n
 devel/boehm-gc-redirect||2022-08-29|No consumer in ports tree
 devel/libthreader|devel/libthreadar|2022-08-29|Fix directory name
 mail/rainloop-community|mail/rainloop|2022-09-01|Only one edition "legacy" is provided now
+java/openjdk7||2022-09-03|Has expired: EOLed since 31 July 2022
+java/openjdk7-jre||2022-09-03|Has expired: EOLed since 31 July 2022
+devel/py-logfury0|devel/py-logfury|2022-09-04|Remove obsoleted port. Use devel/py-logfury instead
+www/py-beautifulsoup449|www/py-beautifulsoup|2022-09-04|Remove obsoleted port. Use www/py-beautifulsoup instead
+x11-drivers/xf86-video-trident||2022-09-04|Has expired: Broken with recent xorg, no fixes upstream
+x11-drivers/xf86-video-s3||2022-09-04|Has expired: Broken with recent xorg, no fixes upstream
+x11-drivers/xf86-video-glint||2022-09-04|Has expired: Broken with recent xorg, no fixes upstream
+www/mediawiki136||2022-09-04|Has expired: Upstream no longer maintained
+games/sopwith|games/sdl-sopwith|2022-09-04|Moved to match upstream name
+graphics/drm-fbsd13-kmod|graphics/drm-510-kmod|2022-09-07|Obsolete, use graphics/drm-510-kmod
+graphics/drm-54-kmod|graphics/drm-510-kmod|2022-09-07|Obsolete, use graphics/drm-510-kmod
