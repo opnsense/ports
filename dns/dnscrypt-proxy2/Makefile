@@ -5,6 +5,7 @@ PKGNAMESUFFIX=	2
 
 MAINTAINER=	egypcio@FreeBSD.org
 COMMENT=	Flexible DNS proxy with support for encrypted protocols
+WWW=		https://github.com/jedisct1/dnscrypt-proxy
 
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE

@@ -20,6 +20,7 @@ PATCH_SITE_SUBDIR=	Versions/v4/changesets
 
 MAINTAINER=	timp87@gmail.com
 COMMENT=	HTTP Caching Proxy
+WWW=		http://www.squid-cache.org/
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING

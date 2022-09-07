@@ -5,6 +5,7 @@ CATEGORIES=	devel kde
 
 MAINTAINER=	thomas.sander@gmx.de
 COMMENT=	Graphical user interface around gdb using KDE
+WWW=		https://www.kdbg.org/
 
 LICENSE=	GPLv2
 

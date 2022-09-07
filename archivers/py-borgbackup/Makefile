@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	jjuanino@gmail.com
 COMMENT=	Deduplicating backup program
+WWW=		https://pypi.org/project/borgbackup/
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE

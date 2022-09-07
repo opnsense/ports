@@ -6,6 +6,7 @@ CATEGORIES=	www
 
 MAINTAINER=	lcook@FreeBSD.org
 COMMENT=	Friendly and fast tool for sending HTTP requests
+WWW=		https://github.com/ducaale/xh
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

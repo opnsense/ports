@@ -5,6 +5,7 @@ CATEGORIES=	benchmarks www
 
 MAINTAINER=	osa@FreeBSD.org
 COMMENT=	Modern HTTP benchmarking tool
+WWW=		https://github.com/wg/wrk
 
 LICENSE=	APACHE20
 

@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	DtxdF@riseup.net
 COMMENT=	Personal shell command keeper
+WWW=		https://github.com/OrkoHunter/keep
 
 LICENSE=	MIT
 LICENSE_FILE=	${FILESDIR}/LICENSE.md

@@ -6,6 +6,7 @@ DISTNAME=	${PORTNAME}_${PORTVERSION}.orig
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GPG keys for Ubuntu package signature verification
+WWW=		https://bugs.launchpad.net/ubuntu/+filebug
 
 LICENSE=	PD
 LICENSE_FILE=	${WRKSRC}/debian/copyright

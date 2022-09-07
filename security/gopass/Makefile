@@ -6,6 +6,7 @@ CATEGORIES=	security
 
 MAINTAINER=	eduardo@FreeBSD.org
 COMMENT=	Rewrite of the pass password manager in Go
+WWW=		https://www.gopass.pw/
 
 LICENSE=	MIT
 

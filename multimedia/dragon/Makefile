@@ -5,6 +5,7 @@ PKGNAMESUFFIX=	-player
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE multimedia player with a focus on simplicity
+WWW=		https://www.kde.org/applications/multimedia/dragonplayer/
 
 LICENSE=	GPLv2
 

@@ -5,6 +5,7 @@ PKGNAMEPREFIX=	qt6-
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qt6 SCXML module
+WWW=		https://qt.io
 
 BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
 

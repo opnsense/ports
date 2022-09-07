@@ -10,6 +10,7 @@ PATCHFILES=	6fece0e44feef43dcb879f3c2e6a2d84a26d518f.patch:-p1 # https://github.
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Python module for quantum chemistry
+WWW=		https://www.pymol.org/
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE

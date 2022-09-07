@@ -11,6 +11,7 @@ DIST_SUBDIR=	libreoffice
 EXTRACT_ONLY:=	${DISTFILES}
 
 COMMENT=	Full integrated office productivity suite
+WWW=		https://www.libreoffice.org/
 
 BUILD_DEPENDS=	p5-Archive-Zip>=0:archivers/p5-Archive-Zip \
 		zip:archivers/zip \

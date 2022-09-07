@@ -4,6 +4,7 @@ CATEGORIES=	astro education kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Virtual globe and world atlas for KDE
+WWW=		https://marble.kde.org/
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt

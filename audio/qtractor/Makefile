@@ -11,6 +11,7 @@ EXTRACT_ONLY=	${PORTNAME}_${DISTVERSION}${EXTRACT_SUFX}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Audio/MIDI multi-track sequencer
+WWW=		https://qtractor.org/
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE

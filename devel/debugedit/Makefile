@@ -4,6 +4,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	sobomax@FreeBSD.org
 COMMENT=	ELF file debug information extractor and editor
+WWW=		https://github.com/CoryXie/DebugEdit
 
 LICENSE=	GPLv2+
 

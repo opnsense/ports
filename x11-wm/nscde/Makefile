@@ -5,6 +5,7 @@ CATEGORIES=	x11-wm
 
 MAINTAINER=	freebsd@ny-central.org
 COMMENT=	Modern CDE clone based on fvwm
+WWW=		https://github.com/NsCDE/NsCDE
 
 LICENSE=	GPLv3
 

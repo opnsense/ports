@@ -4,6 +4,7 @@ CATEGORIES=	net kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	RDP and VNC client for KDE
+WWW=		https://kde.org/applications/internet/krdc/
 
 LIB_DEPENDS=	libvncserver.so:net/libvncserver
 

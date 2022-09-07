@@ -4,6 +4,7 @@ CATEGORIES=	sysutils kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Shows free space of devices for KDE
+WWW=		https://utils.kde.org/projects/kdf/
 
 USES=		cmake compiler:c++11-lang gettext kde:5 qt:5 tar:xz
 USE_KDE=	auth codecs completion config configwidgets coreaddons doctools \

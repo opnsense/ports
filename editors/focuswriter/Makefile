@@ -6,6 +6,7 @@ CATEGORIES=	editors
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Simple, distraction-free writing environment
+WWW=		https://gottcode.org/focuswriter/
 
 LICENSE=	GPLv3+ LGPL3+
 LICENSE_COMB=	multi

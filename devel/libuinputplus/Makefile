@@ -6,6 +6,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	bapt@FreeBSD.org
 COMMENT=	Easy-to-use uinput library in C++
+WWW=		https://github.com/YukiWorkshop/libuInputPlus
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

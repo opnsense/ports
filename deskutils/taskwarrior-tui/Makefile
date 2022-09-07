@@ -6,6 +6,7 @@ CATEGORIES=	deskutils
 
 MAINTAINER=	alexis.praga@free.fr
 COMMENT=	Terminal User Interface (TUI) for Taskwarrior
+WWW=		https://kdheepak.com/taskwarrior-tui/
 
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE

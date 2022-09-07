@@ -5,6 +5,7 @@ MASTER_SITES=	http://www.jwz.org/xscreensaver/
 
 MAINTAINER=	x11@FreeBSD.org
 COMMENT=	Save your screen while you entertain your cat
+WWW=		https://www.jwz.org/xscreensaver/
 
 LICENSE=	MIT
 

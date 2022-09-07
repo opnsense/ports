@@ -6,6 +6,7 @@ CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	PS3 emulator/debugger
+WWW=		https://rpcs3.net/
 
 LICENSE=	APACHE20 ISCL GPLv2 MIT ZLIB
 LICENSE_COMB=	multi

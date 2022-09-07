@@ -5,6 +5,7 @@ CATEGORIES=	security
 
 MAINTAINER=	michiel@vanbaak.eu
 COMMENT=	Synchronizing Key Server, a fast OpenPGP keyserver
+WWW=		https://hockeypuck.github.io
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE

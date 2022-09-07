@@ -4,6 +4,7 @@ CATEGORIES=	devel kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Python support for KDevelop
+WWW=		https://www.kdevelop.org/
 
 LICENSE=	GPLv2+
 

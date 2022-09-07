@@ -5,6 +5,7 @@ CATEGORIES=	multimedia kde
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	KDE video player
+WWW=		https://invent.kde.org/multimedia/haruna
 
 LIB_DEPENDS=	libmpv.so:multimedia/mpv
 RUN_DEPENDS=	kio-extras>0:devel/kio-extras \

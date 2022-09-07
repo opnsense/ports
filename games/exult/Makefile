@@ -5,6 +5,7 @@ CATEGORIES=	games
 
 MAINTAINER=	eduardo@FreeBSD.org
 COMMENT=	Engine for Ultima VII (BG, FOV, SI, SS)
+WWW=		http://exult.info
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING

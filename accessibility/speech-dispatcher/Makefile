@@ -5,6 +5,7 @@ MASTER_SITES=	https://github.com/brailcom/speechd/releases/download/${PORTVERSIO
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT?=	Common interface to speech synthesis
+WWW=		https://devel.freebsoft.org/speechd
 
 LICENSE=	GPLv2 LGPL21
 LICENSE_COMB=	multi

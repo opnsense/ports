@@ -6,6 +6,7 @@ CATEGORIES=	devel
 
 MAINTAINER=	bapt@FreeBSD.org
 COMMENT=	Easy-to-use event device library in C++
+WWW=		https://github.com/YukiWorkshop/libevdevPlus
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

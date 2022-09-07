@@ -4,6 +4,7 @@ CATEGORIES=	math education kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Mathematical function plotter for KDE
+WWW=		https://www.kde.org/applications/education/kmplot
 
 USES=		cmake compiler:c++11-lang desktop-file-utils gettext kde:5 qt:5 tar:xz
 USE_KDE=	auth bookmarks codecs completion config configwidgets \

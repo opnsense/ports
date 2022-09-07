@@ -6,6 +6,7 @@ PKGNAMEPREFIX=	mythplugin-
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Music playing plugin for MythTV
+WWW=		https://www.mythtv.org/wiki/MythMusic
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
