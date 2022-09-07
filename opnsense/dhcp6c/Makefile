@@ -6,6 +6,7 @@ CATEGORIES=	net
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	OPNsense WIDE-DHCPv6 client
+WWW=		https://github.com/opnsense/dhcp6c/
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT

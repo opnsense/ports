@@ -1,4 +1,2 @@
 The OPNsense installer scripts provide a bsdinstall-based
 installer using cpdup utility to clone a running system.
-
-WWW: https://opnsense.org/

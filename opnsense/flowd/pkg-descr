@@ -8,5 +8,3 @@ features:
     * Stores recorded flow data in a compact binary format which supports
       run-time choice over which flow fields are stored
     * Is licensed under a liberal BSD-like license
-
-WWW: https://www.mindrot.org/projects/flowd/

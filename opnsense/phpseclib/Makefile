@@ -5,6 +5,7 @@ PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	PHP Secure Communications Library
+WWW=		http://phpseclib.sourceforge.net
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

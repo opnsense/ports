@@ -7,6 +7,7 @@ PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
 MAINTAINER=	ad@opnsense.org
 COMMENT=	Google APIs Client Library for PHP
+WWW=		https://github.com/googleapis/google-api-php-client
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
