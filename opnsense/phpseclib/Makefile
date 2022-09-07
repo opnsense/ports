@@ -1,11 +1,11 @@
 PORTNAME=	phpseclib
-DISTVERSION=	3.0.14
+DISTVERSION=	3.0.16
 CATEGORIES=	security devel
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	PHP Secure Communications Library
-WWW=		http://phpseclib.sourceforge.net
+WWW=		https://phpseclib.com
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

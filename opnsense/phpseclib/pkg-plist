@@ -4,6 +4,7 @@
 %%DATADIR%%/Crypt/ChaCha20.php
 %%DATADIR%%/Crypt/Common/AsymmetricKey.php
 %%DATADIR%%/Crypt/Common/BlockCipher.php
+%%DATADIR%%/Crypt/Common/Formats/Keys/JWK.php
 %%DATADIR%%/Crypt/Common/Formats/Keys/OpenSSH.php
 %%DATADIR%%/Crypt/Common/Formats/Keys/PKCS.php
 %%DATADIR%%/Crypt/Common/Formats/Keys/PKCS1.php
@@ -114,6 +115,7 @@
 %%DATADIR%%/Crypt/EC/Curves/sect571k1.php
 %%DATADIR%%/Crypt/EC/Curves/sect571r1.php
 %%DATADIR%%/Crypt/EC/Formats/Keys/Common.php
+%%DATADIR%%/Crypt/EC/Formats/Keys/JWK.php
 %%DATADIR%%/Crypt/EC/Formats/Keys/MontgomeryPrivate.php
 %%DATADIR%%/Crypt/EC/Formats/Keys/MontgomeryPublic.php
 %%DATADIR%%/Crypt/EC/Formats/Keys/OpenSSH.php
@@ -133,6 +135,7 @@
 %%DATADIR%%/Crypt/RC2.php
 %%DATADIR%%/Crypt/RC4.php
 %%DATADIR%%/Crypt/RSA.php
+%%DATADIR%%/Crypt/RSA/Formats/Keys/JWK.php
 %%DATADIR%%/Crypt/RSA/Formats/Keys/MSBLOB.php
 %%DATADIR%%/Crypt/RSA/Formats/Keys/OpenSSH.php
 %%DATADIR%%/Crypt/RSA/Formats/Keys/PKCS1.php
