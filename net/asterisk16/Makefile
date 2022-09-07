@@ -265,7 +265,7 @@ post-patch:
 .if exists(${FILESDIR}/.asterisk.makeopts)
 	${CP} ${FILESDIR}/.asterisk.makeopts ${WRKSRC}/menuselect.makeopts
 .endif
- 
+
 post-patch-GEOLOCATION-on:
 	@${REINPLACE_CMD} -e 's/%%LLD_EMULATION%%/${LLD_EMULATION}/' ${WRKSRC}/Makefile.rules
 
@@ -281,7 +281,7 @@ post-configure:
 	@cd ${WRKSRC} && ./menuselect/menuselect --disable res_timing_kqueue menuselect.makeopts
 	@cd ${WRKSRC} && ./menuselect/menuselect --enable chan_mgcp menuselect.makeopts
 	@cd ${WRKSRC} && ./menuselect/menuselect --enable res_pktccops menuselect.makeopts
- 
+
 post-configure-GEOLOCATION-on:
 	@cd ${WRKSRC} && ./menuselect/menuselect --enable res_geolocation menuselect.makeopts
 
