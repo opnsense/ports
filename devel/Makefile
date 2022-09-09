@@ -388,9 +388,11 @@
     SUBDIR += cltune
     SUBDIR += clxclient
     SUBDIR += cmake
+    SUBDIR += cmake-core
     SUBDIR += cmake-doc
     SUBDIR += cmake-fedora
     SUBDIR += cmake-gui
+    SUBDIR += cmake-man
     SUBDIR += cmake-modules-webos
     SUBDIR += cmakedoc
     SUBDIR += cmph
@@ -5338,7 +5340,7 @@
     SUBDIR += py-stringcase
     SUBDIR += py-structlog
     SUBDIR += py-subprocess-tee
-#   SUBDIR += py-subversion
+    SUBDIR += py-subversion
     SUBDIR += py-sure
     SUBDIR += py-swagger-spec-validator
     SUBDIR += py-synr
@@ -5585,7 +5587,7 @@
     SUBDIR += py-zope.testbrowser
     SUBDIR += py-zope.testing
     SUBDIR += py-zope.traversing
-#   SUBDIR += py3c
+    SUBDIR += py3c
     SUBDIR += pybind11
     SUBDIR += pybugz
     SUBDIR += pycanberra
