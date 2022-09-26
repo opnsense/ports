@@ -1,6 +1,6 @@
 PORTNAME=	iridium
 PORTVERSION=	2022.04.100.0
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	www wayland
 MASTER_SITES=	https://downloads.iridiumbrowser.de/source/
 PKGNAMESUFFIX=	-browser
@@ -8,6 +8,7 @@ DISTNAME=	${PORTNAME}${PKGNAMESUFFIX}-${PORTVERSION}
 
 MAINTAINER=	chromium@FreeBSD.org
 COMMENT=	Iridium browser
+WWW=		https://iridiumbrowser.de/
 
 LICENSE=	BSD3CLAUSE LGPL21 MPL11
 LICENSE_COMB=	multi

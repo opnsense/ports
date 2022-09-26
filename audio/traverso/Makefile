@@ -1,6 +1,6 @@
 PORTNAME=	traverso
 DISTVERSION=	0.49.6
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	audio
 MASTER_SITES=	https://traverso-daw.org/download/12/
 
@@ -28,7 +28,7 @@ LIB_DEPENDS=	libfftw3.so:math/fftw3 \
 		libwavpack.so:audio/wavpack
 
 USES=		cmake compiler:c++11-lang desktop-file-utils localbase:ldflags pkgconfig qt:5
-USE_QT=		core gui printsupport xml widgets buildtools_build qmake_build
+USE_QT=		core gui printsupport xml widgets buildtools:build qmake:build
 
 CMAKE_OFF=	WANT_ALSA
 

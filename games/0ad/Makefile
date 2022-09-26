@@ -1,6 +1,5 @@
 PORTNAME=	0ad
-PORTVERSION=	0.0.25b
-PORTREVISION=	17
+PORTVERSION=	0.0.26
 CATEGORIES=	games
 MASTER_SITES=	http://releases.wildfiregames.com/ \
 		SF/zero-ad/releases
@@ -18,7 +17,7 @@ BROKEN_powerpc64=	fails to compile: _psutil_bsd.c: error: 'struct xtcpcb' has no
 
 BUILD_DEPENDS=	${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \
 		zip:archivers/zip \
-		cmake:devel/cmake
+		cmake:devel/cmake-core
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libicui18n.so:devel/icu \
 		libpng.so:graphics/png \
@@ -68,8 +67,6 @@ post-patch:
 			-e '1441s/"execinfo",/& "ssp_nonshared",/' \
 		${WRKSRC}/build/premake/premake5.lua
 .endif
-	@${ECHO_CMD} "patch < ../setuptools.diff" >> ${WRKSRC}/libraries/source/spidermonkey/patch.sh
-	@${CP} ${FILESDIR}/setuptools.diff ${WRKSRC}/libraries/source/spidermonkey/
 
 pre-build:
 	(cd ${WRKSRC}/build/workspaces && ${SETENV} ${MAKE_ENV} ./update-workspaces.sh --bindir=${PREFIX}/bin --datadir=${DATADIR} --libdir=${PREFIX}/lib/${PORTNAME})
