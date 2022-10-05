@@ -1,3 +1,236 @@
+  <vuln vid="854c2afb-4424-11ed-af97-adcabf310f9b">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go118</name>
+	<range><lt>1.18.7</lt></range>
+      </package>
+      <package>
+	<name>go119</name>
+	<range><lt>1.19.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://go.dev/issue/54853">
+	  <p>archive/tar: unbounded memory consumption when reading
+	    headers</p>
+	  <p>Reader.Read did not set a limit on the maximum size of
+	    file headers. A maliciously crafted archive could cause
+	    Read to allocate unbounded amounts of memory, potentially
+	    causing resource exhaustion or panics. Reader.Read now
+	    limits the maximum size of header blocks to 1 MiB.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/54663">
+	  <p>net/http/httputil: ReverseProxy should not forward
+	    unparseable query parameters</p>
+	  <p>Requests forwarded by ReverseProxy included the raw
+	    query parameters from the inbound request, including
+	    unparseable parameters rejected by net/http. This could
+	    permit query parameter smuggling when a Go proxy
+	    forwards a parameter with an unparseable value.</p>
+	  <p>ReverseProxy will now sanitize the query parameters in
+	    the forwarded query when the outbound request's Form
+	    field is set after the ReverseProxy.Director function
+	    returns, indicating that the proxy has parsed the query
+	    parameters. Proxies which do not parse query parameters
+	    continue to forward the original query parameters
+	    unchanged.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/55949">
+	  <p>regexp/syntax: limit memory used by parsing regexps</p>
+	  <p>The parsed regexp representation is linear in the size
+	    of the input, but in some cases the constant factor can be
+	    as high as 40,000, making relatively small regexps consume
+	    much larger amounts of memory.</p>
+	  <p>Each regexp being parsed is now limited to a 256 MB
+	    memory footprint. Regular expressions whose
+	    representation would use more space than that are now
+	    rejected. Normal use of regular expressions is
+	    unaffected.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-2879</cvename>
+      <cvename>CVE-2022-2880</cvename>
+      <cvename>CVE-2022-41715</cvename>
+      <url>https://groups.google.com/g/golang-announce/c/xtuG5faxtaU/m/jEhlI_5WBgAJ</url>
+    </references>
+    <dates>
+      <discovery>2022-10-04</discovery>
+      <entry>2022-10-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d487d4fc-43a8-11ed-8b01-b42e991fc52e">
+    <topic>zydis -- heap buffer overflow</topic>
+    <affects>
+      <package>
+	<name>zydis</name>
+	<range><lt>3.2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Zyantific reports:</p>
+	<blockquote cite="https://github.com/zyantific/zydis/security/advisories/GHSA-q42v-hv86-3m4g">
+	<p>
+	Zydis users of versions v3.2.0 and older
+	that use the string functions provided in zycore in order to
+	append untrusted user data to the formatter buffer within
+	their custom formatter hooks can run into heap buffer
+	overflows. Older versions of Zydis failed to properly
+	initialize the string object within the formatter buffer,
+	forgetting to initialize a few fields, leaving their value
+	to chance. This could then in turn cause zycore functions
+	like ZyanStringAppend to make incorrect calculations for the
+	new target size, resulting in heap memory corruption.
+	</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-41253</cvename>
+      <url>https://www.cvedetails.com/cve/CVE-2021-41253</url>
+    </references>
+    <dates>
+      <discovery>2021-11-08</discovery>
+      <entry>2022-10-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="67057b48-41f4-11ed-86c3-080027881239">
+    <topic>mediawiki -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mediawiki135</name>
+	<range><lt>1.35.8</lt></range>
+      </package>
+      <package>
+	<name>mediawiki137</name>
+	<range><lt>1.37.6</lt></range>
+      </package>
+      <package>
+	<name>mediawiki138</name>
+	<range><lt>1.38.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mediawiki reports:</p>
+	<blockquote cite="https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/SPYFDCGZE7KJNO73ET7QVSUXMHXVRFTE/">
+	  <p>(T316304, CVE-2022-41767) SECURITY: reassignEdits doesn't update results
+	    in an IP range check on Special:Contributions..</p>
+	  <p>(T309894, CVE-2022-41765) SECURITY: HTMLUserTextField exposes existence
+	    of hidden users.</p>
+	  <p> (T307278, CVE-2022-41766) SECURITY: On action=rollback the message
+	    "alreadyrolled" can leak revision deleted user name.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-41765</cvename>
+      <cvename>CVE-2022-41766</cvename>
+      <cvename>CVE-2022-41767</cvename>
+      <url>https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/SPYFDCGZE7KJNO73ET7QVSUXMHXVRFTE/</url>
+    </references>
+    <dates>
+      <discovery>2022-09-29</discovery>
+      <entry>2022-10-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d459c914-4100-11ed-9bc7-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>106.0.5249.91</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/09/stable-channel-update-for-desktop_30.html">
+	  <p>This release contains 3 security fixes, including:</p>
+	  <ul>
+	    <li>[1366813] High CVE-2022-3370: Use after free in Custom Elements. Reported by Aviv A. on 2022-09-22</li>
+	    <li>[1366399] High CVE-2022-3373: Out of bounds write in V8. Reported by Tibor Klajnscek on 2022-09-21</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-3370</cvename>
+      <cvename>CVE-2022-3373</cvename>
+      <url>https://chromereleases.googleblog.com/2022/09/stable-channel-update-for-desktop_30.html</url>
+    </references>
+    <dates>
+      <discovery>2022-09-30</discovery>
+      <entry>2022-09-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="04422df1-40d8-11ed-9be7-454b1dd82c64">
+    <topic>Gitlab -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>15.4.0</ge><lt>15.4.1</lt></range>
+	<range><ge>15.3.0</ge><lt>15.3.4</lt></range>
+	<range><ge>9.3.0</ge><lt>15.2.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2022/09/29/security-release-gitlab-15-4-1-released/">
+	  <p>Denial of Service via cloning an issue</p>
+	  <p>Arbitrary PUT request as victim user through Sentry error list</p>
+	  <p>Content injection via External Status Checks</p>
+	  <p>Project maintainers can access Datadog API Key from logs</p>
+	  <p>Unsafe serialization of Json data could lead to sensitive data leakage</p>
+	  <p>Import bug allows importing of private local git repos</p>
+	  <p>Maintainer can leak Github access tokens by changing integration URL (even after 15.2.1 patch)</p>
+	  <p>Unauthorized users able to create issues in any project</p>
+	  <p>Bypass group IP restriction on Dependency Proxy</p>
+	  <p>Healthcheck endpoint allow list can be bypassed when accessed over HTTP in an HTTPS enabled system</p>
+	  <p>Disclosure of Todo details to guest users</p>
+	  <p>A user's primary email may be disclosed through group member events webhooks</p>
+	  <p>Content manipulation due to branch/tag name confusion with the default branch name</p>
+	  <p>Leakage of email addresses in WebHook logs</p>
+	  <p>Specially crafted output makes job logs inaccessible</p>
+	  <p>Enforce editing approval rules on project level</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-3283</cvename>
+      <cvename>CVE-2022-3060</cvename>
+      <cvename>CVE-2022-2904</cvename>
+      <cvename>CVE-2022-3018</cvename>
+      <cvename>CVE-2022-3291</cvename>
+      <cvename>CVE-2022-3067</cvename>
+      <cvename>CVE-2022-2882</cvename>
+      <cvename>CVE-2022-3066</cvename>
+      <cvename>CVE-2022-3286</cvename>
+      <cvename>CVE-2022-3285</cvename>
+      <cvename>CVE-2022-3330</cvename>
+      <cvename>CVE-2022-3351</cvename>
+      <cvename>CVE-2022-3288</cvename>
+      <cvename>CVE-2022-3293</cvename>
+      <cvename>CVE-2022-3279</cvename>
+      <cvename>CVE-2022-3325</cvename>
+      <url>https://about.gitlab.com/releases/2022/09/29/security-release-gitlab-15-4-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2022-09-29</discovery>
+      <entry>2022-09-30</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="5a1c2e06-3fb7-11ed-a402-b42e991fc52e">
     <topic>unbound -- Non-Responsive Delegation Attack</topic>
     <affects>
