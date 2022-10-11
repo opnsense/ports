@@ -6,7 +6,7 @@ DISTFILES=		${BOOTSTRAP_PATH}:bootstrap
 DIST_SUBDIR=		${PORTNAME}
 EXTRACT_ONLY=		${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	greg@unrelenting.technology
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Language with Ruby-like syntax and static type checking
 WWW=		https://crystal-lang.org
 

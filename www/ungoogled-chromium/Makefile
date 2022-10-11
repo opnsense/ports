@@ -1,6 +1,7 @@
 PORTNAME=	ungoogled-chromium
-PORTVERSION=	106.0.5249.91
+PORTVERSION=	106.0.5249.103
 UGVERSION=	${DISTVERSION}-1
+PORTREVISION=	1
 CATEGORIES=	www wayland
 MASTER_SITES=	https://commondatastorage.googleapis.com/chromium-browser-official/ \
 		https://nerd.hu/distfiles/:external

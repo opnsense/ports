@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=		0.17.0
 CATEGORIES=		devel
 
-MAINTAINER=	greg@unrelenting.technology
+MAINTAINER=	dmgk@FreeBSD.org
 COMMENT=	Dependency manager for the Crystal programming language
 WWW=		https://github.com/crystal-lang/shards
 
