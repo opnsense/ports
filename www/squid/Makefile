@@ -141,9 +141,9 @@ GSSAPI_MIT_CONFIGURE_ON=	--with-mit-krb5=${GSSAPIBASEDIR} \
 GSSAPI_MIT_PLIST_SUB=		AUTH_KERB=""
 
 # OPNsense addition
-OPTIONS_DEFINE+=		NO_FORGERY
-NO_FORGERY_DESC=		Disable Host-Header-Forgery check in transparent SSL
-NO_FORGERY_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-host-header-forgery
+OPTIONS_DEFINE+=		NO_FORGERY5
+NO_FORGERY5_DESC=		Disable Host-Header-Forgery check in transparent SSL
+NO_FORGERY5_EXTRA_PATCHES+=	${FILESDIR}/extra-patch-host-header-forgery
 
 ARP_ACL_DESC=		ARP/MAC/EUI based authentification
 AUTH_DESC=		Authentication helpers
