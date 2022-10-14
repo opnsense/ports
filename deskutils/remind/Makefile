@@ -1,5 +1,5 @@
 PORTNAME=	remind
-DISTVERSION=	04.01.00
+DISTVERSION=	04.02.00
 CATEGORIES=	deskutils
 # upstream moves distfiles to OLD once a new release appears
 MASTER_SITES=	https://dianne.skoll.ca/projects/remind/download/ \
@@ -11,10 +11,16 @@ WWW=		https://dianne.skoll.ca/projects/remind/
 
 LICENSE=	GPLv2
 
+USES=		autoreconf
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--disable-perl-build-artifacts
 MAKE_ARGS=	INSTALL_SCRIPT="${INSTALL_SCRIPT}"
 INSTALL_TARGET=	${WITH_DEBUG:Dinstall:Uinstall-stripped}
+
+# disable LTO on riscv64
+EXTRA_PATCHES_riscv64=	${FILESDIR}/extra-patch-configure.in
+EXTRA_PATCHES=	${EXTRA_PATCHES_${ARCH}}
 
 OPTIONS_DEFINE=	A4 TCLTK REM2HTML REM2PDF
 OPTIONS_DEFAULT=	LANG_US REM2HTML REM2PDF
@@ -58,6 +64,8 @@ REM2PDF_RUN_DEPENDS=	p5-Cairo>0:graphics/p5-Cairo \
 DEFAULT_LATITUDE?=	45.42055555555555
 DEFAULT_LONGITUDE?=	-75.68972222222223
 LOCATION?=	Ottawa
+
+.include <bsd.port.options.mk>
 
 post-patch:
 	@${REINPLACE_CMD} \

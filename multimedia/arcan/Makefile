@@ -1,6 +1,9 @@
 PORTNAME=	arcan
-DISTVERSION=	0.6.2
+DISTVERSION=	0.6.2.1
 CATEGORIES=	multimedia
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	9b807ac75c6f.patch:-p2 # https://github.com/letoram/arcan/issues/258
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Display Server, Multimedia Framework, Game Engine
@@ -41,7 +44,7 @@ MANPAGES_USE=		RUBY=yes
 MANPAGES_VARS=		RUBY_NO_RUN_DEPENDS=yes
 
 LUAJIT_DESC=		Use LuaJIT instead of standard Lua
-LUAJIT_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit-openresty
+LUAJIT_USES=		luajit
 LUAJIT_USES_OFF=	lua:51
 LUAJIT_CMAKE_BOOL_OFF=	DISABLE_JIT
 
