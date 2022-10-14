@@ -5,6 +5,35 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20221016:
+  AFFECTS: textproc/apache-solr
+  AUTHOR: mfechner@FreeBSD.org
+
+  Apache solr version 9 is released and made available as extra port
+  textproc/apache-solr9.
+  Version 9 cannot start directly with data from version 8. Additional steps
+  for data migration is required.
+  If you like to use the new version, deinstall the old version and install
+  the new version:
+  # pkg delete apache-solr
+  # pkg install apache-solr9
+  After this you need to migrate data and migration, for this check the solr
+  documentation.
+
+20221015:
+  AFFECTS: users of gstreamer1-* when upgrading via port builds on the host
+  AUTHOR: riggs@FreeBSD.org
+
+  The update of the gstreamer1-* ports to 1.20.3 requires a clean install of
+  gstreamer1-* ports. In particular, when trying to update ports in-place using
+  portupgrade or portmaster, the builds are likely to fail due to dependency
+  mismatches. If this is your preferred update path, you need to deinstall
+  (pkg delete -f) gstreamer1 and the plugins before reinstalling them from
+  the ports tree.
+  Note that pkg upgrade will do the right thing: If you use official FreeBSD
+  packages or build your own set of packages using poudriere, nothing special
+  is needed.
+
 20221012:
   AFFECTS: devel/websvn
   AUTHOR: michael.osipov@siemens.com
@@ -170,8 +199,8 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: users of mail/rainloop-community
   AUTHOR: yasu@FreeBSD.org
 
-  Since 1.17.0 upstream distributes only one edition "lagacy" under MIT license
-  and mail/rainloop-community is remove as a result. So please uninstall
+  Since 1.17.0 upstream distributes only one "legacy" edition under MIT license
+  and mail/rainloop-community is removed as a result. So please uninstall
   mail/rainloop-community (rainloop-community-phpXY) and install mail/rainloop
   (rainloop-phpXY) instead.
 
@@ -269,7 +298,7 @@ you update your ports collection, before attempting any port upgrades.
   AUTHOR: dch@FreeBSD.org
 
   For more than a decade, the Elixir Mix tool and the Erlang rebar
-  or erlang.mk build tools have been the defacto way of installing
+  or erlang.mk build tools have been the de facto way of installing
   and managing packages for specific applications.
 
   All main-stream applications, from Riak, CouchDB, RabbitMQ, Phoenix,
