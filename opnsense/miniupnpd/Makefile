@@ -1,5 +1,5 @@
 PORTNAME=	miniupnpd
-PORTVERSION=	2.1.20200510
+PORTVERSION=	2.3.1
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	http://miniupnp.tuxfamily.org/files/ \
