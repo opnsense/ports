@@ -540,6 +540,7 @@
     SUBDIR += octave-forge-divand
     SUBDIR += octave-forge-doctest
     SUBDIR += octave-forge-econometrics
+    SUBDIR += octave-forge-fda
     SUBDIR += octave-forge-fenv
     SUBDIR += octave-forge-financial
     SUBDIR += octave-forge-fits
@@ -608,6 +609,7 @@
     SUBDIR += octave-forge-tcl-octave
     SUBDIR += octave-forge-tsa
     SUBDIR += octave-forge-video
+    SUBDIR += octave-forge-websockets
     SUBDIR += octave-forge-zenity
     SUBDIR += octave-forge-zeromq
     SUBDIR += octomap
@@ -867,6 +869,7 @@
     SUBDIR += py-docplex
     SUBDIR += py-ducc0
     SUBDIR += py-ecos
+    SUBDIR += py-evalidate
     SUBDIR += py-faiss
     SUBDIR += py-fastcluster
     SUBDIR += py-fastdtw

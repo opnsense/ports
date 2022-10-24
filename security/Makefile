@@ -215,6 +215,7 @@
     SUBDIR += hpenc
     SUBDIR += hs-cryptol
     SUBDIR += hydra
+    SUBDIR += hyperhotp
     SUBDIR += i2p
     SUBDIR += i2pd
     SUBDIR += iaikpkcs11wrapper
@@ -360,7 +361,6 @@
     SUBDIR += nextcloud-passman
     SUBDIR += nextcloud-twofactor_admin
     SUBDIR += nextcloud-twofactor_nextcloud_notification
-    SUBDIR += nextcloud-twofactor_totp
     SUBDIR += nextcloud-twofactor_webauthn
     SUBDIR += nflib
     SUBDIR += ngrok
