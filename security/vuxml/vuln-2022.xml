@@ -1,3 +1,132 @@
+  <vuln vid="68fcee9b-5259-11ed-89c9-0800276af896">
+    <topic>Cleartext leak in libudisks</topic>
+    <affects>
+      <package>
+	<name>libudisks</name>
+	<range><lt>2.9.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>From libudisks 2.9.4 NEWS:</p>
+	<blockquote cite="https://github.com/storaged-project/udisks/blob/udisks-2.9.4/NEWS">
+	  <p>udiskslinuxblock: Fix leaking cleartext block interface</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/storaged-project/udisks/blob/udisks-2.9.4/NEWS</url>
+    </references>
+    <dates>
+      <discovery>2021-09-29</discovery>
+      <entry>2022-10-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c253c4aa-5126-11ed-8a21-589cfc0f81b0">
+    <topic>phpmyfaq -- CSRF vulnerability</topic>
+    <affects>
+      <package>
+	<name>phpmyfaq</name>
+	<range><lt>3.1.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>phpmyfaq developers report:</p>
+	<blockquote cite="https://www.phpmyfaq.de/security/advisory-2022-10-02">
+	  <p> phpMyFAQ does not implement sufficient checks to avoid
+	   CSRF when logging out an user.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://huntr.dev/bounties/76095ac1-da12-449b-9564-4a086be96592/</url>
+    </references>
+    <dates>
+      <discovery>2022-10-02</discovery>
+      <entry>2022-10-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d6d088c9-5064-11ed-bade-080027881239">
+    <topic>Python -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>python37</name>
+	<range><lt>3.7.15</lt></range>
+      </package>
+      <package>
+	<name>python38</name>
+	<range><lt>3.8.15</lt></range>
+      </package>
+      <package>
+	<name>python39</name>
+	<range><lt>3.9.15</lt></range>
+      </package>
+      <package>
+	<name>python310</name>
+	<range><lt>3.10.8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Python reports:</p>
+	<blockquote cite="https://docs.python.org/release/3.9.15/whatsnew/changelog.html">
+	  <p>gh-97616: Fix multiplying a list by an integer (list *= int): detect
+	    the integer overflow when the new allocated length is close to the
+	    maximum size. Issue reported by Jordan Limor. Patch by Victor Stinner.</p>
+	  <p>gh-97612: Fix a shell code injection vulnerability in the
+	    get-remote-certificate.py example script. The script no longer uses
+	    a shell to run openssl commands. Issue reported and initial fix by
+	    Caleb Shortt. Patch by Victor Stinner.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://docs.python.org/release/3.9.15/whatsnew/changelog.html</url>
+    </references>
+    <dates>
+      <discovery>2022-09-29</discovery>
+      <entry>2022-10-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="676d4f16-4fb3-11ed-a374-8c164567ca3c">
+    <topic>nginx -- Two vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>nginx</name>
+	<range><ge>1.0.7</ge><lt>1.22.1</lt></range>
+      </package>
+      <package>
+	<name>nginx-devel</name>
+	<range><ge>1.1.3</ge><lt>1.23.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NGINX Development Team reports:</p>
+	<blockquote cite="https://mailman.nginx.org/archives/list/nginx@nginx.org/thread/F7TMIHDNNU3M52GYS23UWDWW2R2BLVVH/">
+	  <p>Two security issues were identified in the ngx_http_mp4_module,
+	   which might allow an attacker to cause a worker process crash
+	   or worker process memory disclosure by using a specially crafted
+	   mp4 file, or might have potential other impact (CVE-2022-41741,
+	   CVE-2022-41742).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-41741</cvename>
+      <cvename>CVE-2022-41742</cvename>
+      <url>https://mailman.nginx.org/archives/list/nginx@nginx.org/thread/F7TMIHDNNU3M52GYS23UWDWW2R2BLVVH/</url>
+    </references>
+    <dates>
+      <discovery>2022-10-19</discovery>
+      <entry>2022-10-19</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="2523bc76-4f01-11ed-929b-002590f2a714">
     <topic>git -- Multiple vulnerabilities</topic>
     <affects>
