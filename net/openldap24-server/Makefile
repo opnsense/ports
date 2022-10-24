@@ -33,6 +33,9 @@ LICENSE_NAME=		OpenLDAP Public License
 LICENSE_FILE=		${WRKSRC}/LICENSE
 LICENSE_PERMS=		dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
+DEPRECATED=		No longer supported by upstream.  Please use a newer version of OpenLDAP instead
+EXPIRATION_DATE=	2022-12-31
+
 .if defined(CLIENT_ONLY)
 CONFLICTS_INSTALL=	${PORTNAME}2[0-3][5-9]-client ${PORTNAME}2[0-35-9]-client ${PORTNAME}-client
 .else
@@ -49,7 +52,7 @@ BROKEN=			incompatible OpenLDAP version: ${WANT_OPENLDAP_VER}
 .endif
 
 PORTREVISION_CLIENT=	4
-PORTREVISION_SERVER=	10
+PORTREVISION_SERVER=	11
 OPENLDAP_SHLIB_MAJOR=	2
 OPENLDAP_SHLIB_MINOR=	11.7
 OPENLDAP_MAJOR=		${DISTVERSION:R}
