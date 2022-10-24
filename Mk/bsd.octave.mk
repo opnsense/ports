@@ -6,16 +6,6 @@
 # It is, in effect, a wrapper using the package handling already built
 # into math/octave.
 
-.if !empty(MASTER_SITE_OLD:MR2009_05)
-MASTER_SITES=	SF/octave/Octave%20Forge%20Packages/Old%20Monolithic%20Releases/R2009-05-08
-.elif !empty(MASTER_SITE_OLD:MR2009_06)
-MASTER_SITES=	SF/octave/Octave%20Forge%20Packages/Old%20Monolithic%20Releases/R2009-06-07
-.else
-MASTER_SITES=	SF/octave/Octave%20Forge%20Packages/Individual%20Package%20Releases
-.endif
-
-DISTNAME=	${OCTAVE_PKGNAME}-${DISTVERSIONFULL}
-
 bsd_octave_mk_MAINTAINER=	stephen@FreeBSD.org
 
 BUILD_DEPENDS+=	octave:math/octave
@@ -26,25 +16,26 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre
 USES+=		fortran gmake compiler:c++14-lang
 CXXFLAGS+=	-std=gnu++11
 
-DIST_SUBDIR=	octave-forge
+DIST_SUBDIR?=	octave-forge
 OCTAVE_PKGNAME=	${PORTNAME:S/octave-forge-//}
+OCTAVE_DISTNAME=	${OCTAVE_PKGNAME}-${DISTVERSION}
 TARBALLS_DIR=	${LOCALBASE}/share/octave/tarballs
 INSTALL_TARBALLS_DIR=	${STAGEDIR}${PREFIX}/share/octave/tarballs
 
 .include "${.CURDIR}/../../math/octave/Makefile.version"
 
-MAKE_ENV+=	PACKAGE=${WRKDIR}/${DISTNAME}.tar.gz
+MAKE_ENV+=	PACKAGE=${OCTAVE_DISTNAME}.tar.gz
 MAKE_ARGS=	CC="${CC}" CXX="${CXX}" LD_CXX="${CXX}" DL_LD="${CXX}" MKOCTFILE="${LOCALBASE}/bin/mkoctfile" OCTAVE_VERSION=-${OCTAVE_VERSION}
 
 LOAD_OCTAVE_PKG_CMD=	${LOCALBASE}/libexec/octave/load-octave-pkg
 
 do-install:
 	${MKDIR} ${INSTALL_TARBALLS_DIR}
-	${INSTALL_DATA} ${WRKDIR}/${DISTNAME}.tar.gz ${INSTALL_TARBALLS_DIR}/.
-	${LN} -s -f ${DISTNAME}.tar.gz ${INSTALL_TARBALLS_DIR}/${OCTAVE_PKGNAME}.tar.gz
+	${INSTALL_DATA} ${WRKDIR}/${OCTAVE_DISTNAME}.tar.gz ${INSTALL_TARBALLS_DIR}/.
+	${LN} -s -f ${OCTAVE_DISTNAME}.tar.gz ${INSTALL_TARBALLS_DIR}/${OCTAVE_PKGNAME}.tar.gz
 
 post-install:
-	@${ECHO_CMD} "share/octave/tarballs/${DISTNAME}.tar.gz" >> ${TMPPLIST}
+	@${ECHO_CMD} "share/octave/tarballs/${OCTAVE_DISTNAME}.tar.gz" >> ${TMPPLIST}
 	@${ECHO_CMD} "share/octave/tarballs/${OCTAVE_PKGNAME}.tar.gz" >> ${TMPPLIST}
 	@${ECHO_CMD} "@postunexec if [ -x ${LOAD_OCTAVE_PKG_CMD} ]; then ${LOAD_OCTAVE_PKG_CMD}; fi" >> ${TMPPLIST}
 	@${ECHO_CMD} "@postexec if [ -x ${LOAD_OCTAVE_PKG_CMD} ]; then ${LOAD_OCTAVE_PKG_CMD}; fi" >> ${TMPPLIST}
