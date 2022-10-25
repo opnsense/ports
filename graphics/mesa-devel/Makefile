@@ -1,6 +1,7 @@
 PORTNAME=	mesa
-DISTVERSION=	22.2-branchpoint-3982
-DISTVERSIONSUFFIX=	-g9a7e93f1f6b
+DISTVERSION=	22.2-branchpoint-4095
+DISTVERSIONSUFFIX=	-g977dbfc9dec
+PORTREVISION=	1
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -10,7 +11,6 @@ PATCHFILES+=	50433886a3e3.patch:-p1 # https://gitlab.freedesktop.org/mesa/mesa/-
 PATCHFILES+=	4356e7185193.patch:-p1 # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16987
 PATCHFILES+=	b2a22acce617.patch:-p1 # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16987
 PATCHFILES+=	19eb2c30bff0.patch:-p1 # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/16987
-PATCHFILES+=	2be78d6ba4c7.patch:-p1 # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/19177
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Bleeding edge Mesa drivers (OpenGL, Vulkan)
@@ -110,6 +110,7 @@ LTO_MESON_TRUE=		b_lto
 VAAPI_DESC=		Hardware encoding/decoding (only r600, radeonsi)
 VAAPI_BUILD_DEPENDS=	libva>0:multimedia/libva
 VAAPI_MESON_ENABLED=	gallium-va
+VAAPI_MESON_ON=		-Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc
 
 VDPAU_DESC=		Hardware decoding (only r600, radeonsi) (implies X11)
 VDPAU_BUILD_DEPENDS=	libvdpau>0:multimedia/libvdpau
