@@ -525,6 +525,7 @@
     SUBDIR += octave-forge
     SUBDIR += octave-forge-actuarial
     SUBDIR += octave-forge-audio
+    SUBDIR += octave-forge-automatic-differentiation
     SUBDIR += octave-forge-base
     SUBDIR += octave-forge-bim
     SUBDIR += octave-forge-bioinfo
@@ -541,6 +542,7 @@
     SUBDIR += octave-forge-doctest
     SUBDIR += octave-forge-econometrics
     SUBDIR += octave-forge-fda
+    SUBDIR += octave-forge-femoctave
     SUBDIR += octave-forge-fenv
     SUBDIR += octave-forge-financial
     SUBDIR += octave-forge-fits
@@ -549,6 +551,7 @@
     SUBDIR += octave-forge-ga
     SUBDIR += octave-forge-general
     SUBDIR += octave-forge-generate_html
+    SUBDIR += octave-forge-geographiclib
     SUBDIR += octave-forge-geometry
     SUBDIR += octave-forge-gnuplot
     SUBDIR += octave-forge-gsl
@@ -566,6 +569,7 @@
     SUBDIR += octave-forge-ltfat
     SUBDIR += octave-forge-mapping
     SUBDIR += octave-forge-matgeom
+    SUBDIR += octave-forge-mccabe-thiele
     SUBDIR += octave-forge-mechanics
     SUBDIR += octave-forge-miscellaneous
     SUBDIR += octave-forge-missing-functions
@@ -587,6 +591,7 @@
     SUBDIR += octave-forge-optiminterp
     SUBDIR += octave-forge-outliers
     SUBDIR += octave-forge-parallel
+    SUBDIR += octave-forge-pde1dm
     SUBDIR += octave-forge-plot
     SUBDIR += octave-forge-ponchon-savarit
     SUBDIR += octave-forge-quaternion
@@ -601,6 +606,7 @@
     SUBDIR += octave-forge-specfun
     SUBDIR += octave-forge-special-matrix
     SUBDIR += octave-forge-splines
+    SUBDIR += octave-forge-sqlite
     SUBDIR += octave-forge-statistics
     SUBDIR += octave-forge-statistics-bootstrap
     SUBDIR += octave-forge-stk
