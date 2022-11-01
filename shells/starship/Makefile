@@ -1,5 +1,6 @@
 PORTNAME=	starship
 DISTVERSION=	1.11.0
+PORTREVISION=	1
 CATEGORIES=	shells
 MASTER_SITES=	CRATESIO
 DISTFILES=	${CARGO_DIST_SUBDIR}/${DISTNAME}${CARGO_CRATE_EXT}
@@ -10,9 +11,6 @@ WWW=		https://starship.rs/
 
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_i386=	conflicting types for 'get_cpu_speed' in the sys-info-rs crate, see https://github.com/FillZpp/sys-info-rs/issues/80
-BROKEN_powerpc=	conflicting types for 'get_cpu_speed' in the sys-info-rs crate, see https://github.com/FillZpp/sys-info-rs/issues/80
 
 LIB_DEPENDS=	libgit2.so:devel/libgit2 \
 		libssh2.so:security/libssh2

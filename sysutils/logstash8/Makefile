@@ -1,11 +1,11 @@
 PORTNAME=	logstash
-PORTVERSION=	8.4.1
+PORTVERSION=	8.4.3
 DISTVERSIONSUFFIX=	-darwin-x86_64
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://artifacts.elastic.co/downloads/logstash/
 PKGNAMESUFFIX=	8
 
-MAINTAINER=	acm@FreeBSD.org
+MAINTAINER=	elastic@FreeBSD.org
 COMMENT=	Server-side data ingestion and transformation tool (8.x version)
 WWW=		https://www.elastic.co/products/logstash
 

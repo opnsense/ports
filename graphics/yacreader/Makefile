@@ -1,7 +1,9 @@
 PORTNAME=	yacreader
-DISTVERSION=	9.9.2
-PORTREVISION=	1
+DISTVERSION=	9.10.0
 CATEGORIES=	graphics
+
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	a35cb979e4d3.patch:-p1 # https://github.com/YACReader/yacreader/pull/350
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Yet another comic reader
@@ -15,8 +17,8 @@ LIB_DEPENDS=	libunarr.so:archivers/unarr
 USES=		compiler:c++11-lib desktop-file-utils pkgconfig qmake qt:5
 USE_GITHUB=	yes
 USE_QT=		qmake:build buildtools:build core concurrent:build declarative \
-		gui multimedia network quickcontrols2 sql sql-sqlite3:run svg \
-		testlib:build widgets
+		gui linguisttools:build multimedia network quickcontrols2 \
+		sql sql-sqlite3:run svg testlib:build widgets
 
 OPTIONS_DEFINE=	OPENGL POPPLER
 OPTIONS_DEFAULT=OPENGL POPPLER

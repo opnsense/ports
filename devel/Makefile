@@ -714,6 +714,7 @@
     SUBDIR += gconfmm26
     SUBDIR += gdb
     SUBDIR += gdcm
+    SUBDIR += gdmd
     SUBDIR += geany
     SUBDIR += geany-plugin-addons
     SUBDIR += geany-plugin-autoclose
@@ -5230,7 +5231,6 @@
     SUBDIR += py-pyvisa
     SUBDIR += py-pyvisa-py
     SUBDIR += py-pyxb
-    SUBDIR += py-pyxdg
     SUBDIR += py-pyyaml-include
     SUBDIR += py-pyyaml_env_tag
     SUBDIR += py-pyzipper

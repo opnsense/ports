@@ -89,6 +89,7 @@
     SUBDIR += fastcap
     SUBDIR += fasthenry
     SUBDIR += fastjet
+    SUBDIR += feff10
     SUBDIR += fisicalab
     SUBDIR += fleur
     SUBDIR += frontistr
@@ -201,6 +202,7 @@
     SUBDIR += nlcglib
     SUBDIR += nwchem
     SUBDIR += nwchem-data
+    SUBDIR += ocean
     SUBDIR += octopus
     SUBDIR += openbabel
     SUBDIR += openems
