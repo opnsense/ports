@@ -495,6 +495,7 @@
     SUBDIR += cxxtools
     SUBDIR += d-feet
     SUBDIR += d-scanner
+    SUBDIR += d-spy
     SUBDIR += darts
     SUBDIR += dash.el
     SUBDIR += dasm
@@ -4984,6 +4985,7 @@
     SUBDIR += py-pipreqs
     SUBDIR += py-pipx
     SUBDIR += py-pkgconfig
+    SUBDIR += py-pkgutil-resolve-name
     SUBDIR += py-plac
     SUBDIR += py-plan
     SUBDIR += py-platformdirs
@@ -5585,6 +5587,7 @@
     SUBDIR += py-zc.buildout
     SUBDIR += py-zclockfile
     SUBDIR += py-zconfig
+    SUBDIR += py-zfp
     SUBDIR += py-zict
     SUBDIR += py-zipp
     SUBDIR += py-zope.app.basicskin

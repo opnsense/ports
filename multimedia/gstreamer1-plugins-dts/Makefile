@@ -1,4 +1,4 @@
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	multimedia
 
 COMMENT=	GStreamer dts audio decode plugin
@@ -8,10 +8,10 @@ DIST=		bad
 
 MASTERDIR=	${.CURDIR}/../../multimedia/gstreamer1-plugins
 
-PLIST=  ${.CURDIR}/pkg-plist
+PLIST=		${.CURDIR}/pkg-plist
 
-LIB_DEPENDS=  libdca.so:multimedia/libdca
+LIB_DEPENDS=	libdca.so:multimedia/libdca
 
 .include "${MASTERDIR}/Makefile"
 
-MESON_ARGS+= -Dgpl=enabled
+MESON_ARGS+=	-Dgpl=enabled -Dv4l2codecs=disabled -Dsvthevcenc=disabled
