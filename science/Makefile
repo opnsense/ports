@@ -66,6 +66,7 @@
     SUBDIR += dakota
     SUBDIR += dalton
     SUBDIR += dcl
+    SUBDIR += dd_package
     SUBDIR += devisor
     SUBDIR += dftbplus
     SUBDIR += dftd4
@@ -472,5 +473,6 @@
     SUBDIR += xtb
     SUBDIR += yoda
     SUBDIR += zotero
+    SUBDIR += zx
 
 .include <bsd.port.subdir.mk>
