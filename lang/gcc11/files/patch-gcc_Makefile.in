@@ -5,7 +5,7 @@
  # Directory in which the compiler finds libraries etc.
  libsubdir = $(libdir)/gcc/$(real_target_noncanonical)/$(version)$(accel_dir_suffix)
 +# Directory in which the compiler finds headers.
-+libsubincludedir = $(libdir)/gcc/$(target_alias)/$(gcc_version)/include
++libsubincludedir = $(libdir)/gcc/$(target_alias)/$(version)/include
  # Directory in which the compiler finds executables
  libexecsubdir = $(libexecdir)/gcc/$(real_target_noncanonical)/$(version)$(accel_dir_suffix)
  # Directory in which all plugin resources are installed
