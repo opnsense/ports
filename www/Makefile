@@ -197,7 +197,6 @@
     SUBDIR += gopherus
     SUBDIR += gotty
     SUBDIR += gpx2map
-    SUBDIR += grafana7
     SUBDIR += grafana8
     SUBDIR += grafana9
     SUBDIR += grails
@@ -1819,6 +1818,7 @@
     SUBDIR += reproxy
     SUBDIR += resin3
     SUBDIR += restbed
+    SUBDIR += restinio
     SUBDIR += retawq
     SUBDIR += rss-bridge
     SUBDIR += rsskit
