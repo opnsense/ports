@@ -430,7 +430,6 @@
     SUBDIR += cpp-netlib
     SUBDIR += cpp2py
     SUBDIR += cppcheck
-    SUBDIR += cppcheck-gui
     SUBDIR += cppi
     SUBDIR += cpplint
     SUBDIR += cpprestsdk
@@ -1149,6 +1148,7 @@
     SUBDIR += libdatrie
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
+    SUBDIR += libdispatch
     SUBDIR += libddoc
     SUBDIR += libdevq
     SUBDIR += libdfui
