@@ -2939,6 +2939,7 @@ share/bash-completion/completions/ctest
 %%DATADIR%%/Modules/Platform/Windows-IntelLLVM-CXX.cmake
 %%DATADIR%%/Modules/Platform/Windows-IntelLLVM-Fortran.cmake
 %%DATADIR%%/Modules/Platform/Windows-IntelLLVM.cmake
+%%DATADIR%%/Modules/Platform/Windows-LLVMFlang-Fortran.cmake
 %%DATADIR%%/Modules/Platform/Windows-MSVC-C.cmake
 %%DATADIR%%/Modules/Platform/Windows-MSVC-CXX.cmake
 %%DATADIR%%/Modules/Platform/Windows-MSVC.cmake
@@ -3090,6 +3091,8 @@ share/bash-completion/completions/ctest
 %%DATADIR%%/Templates/Windows/Windows_TemporaryKey.pfx
 %%DATADIR%%/include/cmCPluginAPI.h
 %%PORTDOCS%%%%DOCSDIR%%/Copyright.txt
+%%PORTDOCS%%%%DOCSDIR%%/cmcurl/COPYING
+%%PORTDOCS%%%%DOCSDIR%%/cmnghttp2/COPYING
 %%PORTDOCS%%%%DOCSDIR%%/cmsys/Copyright.txt
 share/emacs/site-lisp/cmake-mode.el
 share/vim/vimfiles/indent/cmake.vim
