@@ -1,6 +1,6 @@
 PORTNAME=	miniupnpd
+PKGNAMESUFFIX=	-devel
 PORTVERSION=	2.3.1
-PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	http://miniupnp.tuxfamily.org/files/ \
 		http://miniupnp.free.fr/files/
