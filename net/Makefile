@@ -307,6 +307,7 @@
     SUBDIR += kdenetwork
     SUBDIR += kdenetwork-filesharing
     SUBDIR += kea
+    SUBDIR += keama
     SUBDIR += keycloak
     SUBDIR += kf5-kcalendarcore
     SUBDIR += kf5-kcontacts
@@ -1119,6 +1120,7 @@
     SUBDIR += py-pyvmomi
     SUBDIR += py-pyzmq
     SUBDIR += py-qt5-networkauth
+    SUBDIR += py-qt6-networkauth
     SUBDIR += py-rabbitpy
     SUBDIR += py-radix
     SUBDIR += py-raet
