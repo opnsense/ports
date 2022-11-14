@@ -1,7 +1,7 @@
 PORTNAME=	hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.0beta-61
-DISTVERSIONSUFFIX=	-gd0b3cdc
+DISTVERSION=	0.17.0beta-78
+DISTVERSIONSUFFIX=	-g2cdabf5
 CATEGORIES=	x11-wm wayland
 PKGNAMESUFFIX=	-devel
 
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		wayland-protocols>=1.25:graphics/wayland-protocols \
-		wlroots>=0.15.0.478<0.17.0:x11-toolkits/wlroots
+		wlroots>=0.16.0<0.17.0:x11-toolkits/wlroots
 LIB_DEPENDS=	libwayland-server.so:graphics/wayland \
 		libwlroots.so:x11-toolkits/wlroots \
 		libinput.so:x11/libinput \
@@ -47,5 +47,4 @@ post-patch:
 	@${REINPLACE_CMD} 's,/usr/share,${DATADIR:H},' \
 		${WRKSRC}/src/render/OpenGL.cpp
 
-.include "${.CURDIR:H:H}/x11-toolkits/wlroots-devel/override.mk"
 .include <bsd.port.mk>

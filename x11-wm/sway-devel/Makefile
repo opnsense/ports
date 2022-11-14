@@ -1,7 +1,6 @@
 PORTNAME=	sway
-DISTVERSION=	1.7-148
-DISTVERSIONSUFFIX=	-g3e19836f0
-PORTREVISION=	1
+DISTVERSION=	1.7-154 # v1.8 branch
+DISTVERSIONSUFFIX=	-g0143c7ade
 CATEGORIES=	x11-wm wayland
 PKGNAMESUFFIX=	-devel
 
@@ -18,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		wayland-protocols>=1.24:graphics/wayland-protocols \
-		wlroots>=0.15.0.478<0.17.0:x11-toolkits/wlroots
+		wlroots>=0.16.0<0.17.0:x11-toolkits/wlroots
 LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libevdev.so:devel/libevdev \
 		libudev.so:devel/libudev-devd \
@@ -66,5 +65,4 @@ post-patch:
 		-e '/project_version/s/@0@/${DISTVERSIONFULL}/' \
 		${WRKSRC}/meson.build
 
-.include "${.CURDIR:H:H}/x11-toolkits/wlroots-devel/override.mk"
 .include <bsd.port.mk>
