@@ -11,6 +11,8 @@ WWW=		https://mpv.io
 
 LICENSE=	GPLv2+ LGPL21+
 LICENSE_COMB=	multi
+LICENSE_FILE_GPLv2+ =	${WRKSRC}/LICENSE.GPL
+LICENSE_FILE_LGPL21+ =	${WRKSRC}/LICENSE.LGPL
 
 BUILD_DEPENDS=	ffmpeg>=4.0.2,1:multimedia/ffmpeg
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
@@ -28,8 +30,6 @@ MESON_ARGS=	-Dpdf-build=disabled \
 		-Dshaderc=disabled \
 		-Dvapoursynth=disabled \
 		-Dlibmpv=true
-
-CONFLICTS_INSTALL=	${PORTNAME}034
 
 OPTIONS_DEFINE=		ARCHIVE DOCS LCMS2 MANPAGES MUJS TEST UCHARDET EXAMPLES ZIMG
 OPTIONS_DEFAULT=	ARCHIVE DVDNAV LUAJIT MANPAGES NVDEC OPENGL UCHARDET \
@@ -183,10 +183,7 @@ post-patch-MANPAGES-on:
 		-e 's|/usr/local|${PREFIX}|g'
 
 pre-install-TEST-on:
-	@(cd ${WRKSRC} && ${SETENV} ${TEST_ENV} build/mpv --unittest=all-simple)
-
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/mpv
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libmpv.so
+	@(cd ${WRKSRC} && ${SETENV} ${TEST_ENV} \
+		${MESON_BUILD_DIR}/${PORTNAME} --unittest=all-simple)
 
 .include <bsd.port.mk>

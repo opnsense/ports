@@ -3794,6 +3794,7 @@
     SUBDIR += pcre
     SUBDIR += pcre++
     SUBDIR += pcre2
+    SUBDIR += pcsc-cyberjack
     SUBDIR += pcsc-lite
     SUBDIR += pdcurses
     SUBDIR += pear
@@ -7324,6 +7325,7 @@
     SUBDIR += termbox
     SUBDIR += termcolor
     SUBDIR += terminality
+    SUBDIR += test-drive
     SUBDIR += tevent
     SUBDIR += tex-kpathsea
     SUBDIR += tex-libtexlua

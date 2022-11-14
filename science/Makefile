@@ -190,6 +190,8 @@
     SUBDIR += mopac
     SUBDIR += mpb
     SUBDIR += mpqc
+    SUBDIR += mrchem
+    SUBDIR += mrcpp
     SUBDIR += msms
     SUBDIR += mstore
     SUBDIR += multicharge
@@ -339,6 +341,7 @@
     SUBDIR += py-mmtf-python
     SUBDIR += py-molmod
     SUBDIR += py-moltemplate
+    SUBDIR += py-mrchem
     SUBDIR += py-netCDF4
     SUBDIR += py-netcdf-flattener
     SUBDIR += py-nibabel
