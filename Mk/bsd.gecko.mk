@@ -61,7 +61,7 @@ MOZILLA_VER?=	${PORTVERSION}
 MOZILLA_BIN?=	${PORTNAME}-bin
 MOZILLA_EXEC_NAME?=${MOZILLA}
 USES+=		compiler:c++17-lang cpe gl gmake gnome iconv localbase perl5 pkgconfig \
-			python:3.6-3.10,build desktop-file-utils
+			python:3.6+,build desktop-file-utils
 CPE_VENDOR?=mozilla
 USE_GL=		gl
 USE_GNOME=	cairo gdkpixbuf2 gtk30
@@ -76,7 +76,7 @@ BUNDLE_LIBS=	yes
 
 BUILD_DEPENDS+=	llvm${LLVM_DEFAULT}>0:devel/llvm${LLVM_DEFAULT} \
 				rust-cbindgen>=0.24.3:devel/rust-cbindgen \
-				${RUST_DEFAULT}>=1.64.0:lang/${RUST_DEFAULT} \
+				${RUST_DEFAULT}>=1.65.0:lang/${RUST_DEFAULT} \
 				node:www/node
 LIB_DEPENDS+=	libdrm.so:graphics/libdrm
 RUN_DEPENDS+=	${LOCALBASE}/lib/libpci.so:devel/libpci

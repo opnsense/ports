@@ -3876,7 +3876,6 @@ java/jdk16|java/openjdk6|2012-12-10|Has expired: Outdated, consider using openjd
 java/linux-sun-jre15|java/linux-sun-jre16|2012-12-10|Has expired: EOLed upstream since October 2009
 java/linux-sun-jdk15|java/linux-sun-jdk16|2012-12-10|Has expired: EOLed upstream since October 2009
 java/jdk15-doc|java/jdk16-doc|2012-12-10|Has expired: EOLed upstream since October 2009
-science/py-openbabel||2012-12-11|Merged to science/openbabel
 www/moodle2|www/moodle23|2012-12-11|Renamed
 deskutils/horde-hermes|deskutils/horde3-hermes|2012-12-12|Rename of old horde apps
 deskutils/horde-klutz|deskutils/horde3-klutz|2012-12-12|Rename of old horde apps
@@ -17608,3 +17607,11 @@ devel/cppcheck-gui|devel/cppcheck|2022-11-07|GUI is now included in devel/cppche
 devel/py-types-termcolor||2022-11-11|No longer needed, type annotations are now available in termcolor module
 x11-toolkits/wlroots-devel|x11-toolkits/wlroots|2022-11-11|Out of date: use x11-toolkits/wlroots for now
 multimedia/mpv034||2022-11-14|No longer needed
+devel/py-types-xxhash||2022-11-15|No longer needed, type annotations are now available in xxhash module
+devel/awscli|devel/py-awscli|2022-11-15|Renamed comply with Python Ports Policy and flavored
+graphics/sciplot|science/sciplot|2022-11-15|Move to avoid conflict with graphics/SciPlot
+x11-wm/hyprland-devel|x11-wm/hyprland|2022-11-16|Updated to the latest stable version
+net/rabbitmq-c-devel|net/rabbitmq-c|2022-11-16|Remove obsolete devel port, use net/rabbitmq-c instead
+databases/foundationdb-devel|databases/foundationdb|2022-11-16|Remove obsolete devel port, use databases/foundationdb instead
+devel/py-pytest4-asyncio||2022-11-19|Has expired: legacy version for pytest4 no longer used by any port
+devel/tokamak||2022-11-20|Has expired: Last release in 2008, abandoned upstream, not used, website disappeared
