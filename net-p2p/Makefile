@@ -50,6 +50,7 @@
     SUBDIR += libtorrent
     SUBDIR += libtorrent-rasterbar
     SUBDIR += libtorrent-rasterbar2
+    SUBDIR += libutp
     SUBDIR += lidarr
     SUBDIR += linuxdcpp
     SUBDIR += litecoin
@@ -104,6 +105,7 @@
     SUBDIR += udpt
     SUBDIR += uhub
     SUBDIR += vuze
+    SUBDIR += xbt
     SUBDIR += xmrig
     SUBDIR += zetacoin
     SUBDIR += zetacoin-daemon

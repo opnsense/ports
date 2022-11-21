@@ -47,6 +47,7 @@
     SUBDIR += airsaned
     SUBDIR += akira
     SUBDIR += alembic
+    SUBDIR += alizams
     SUBDIR += aloadimage
     SUBDIR += alpng
     SUBDIR += ampasACES-container
@@ -155,6 +156,7 @@
     SUBDIR += edje_viewer
     SUBDIR += egl-wayland
     SUBDIR += eglexternalplatform
+    SUBDIR += elastix
     SUBDIR += electricsheep
     SUBDIR += elementary-photos
     SUBDIR += embree
@@ -618,6 +620,7 @@
     SUBDIR += openorienteering-mapper
     SUBDIR += openrm
     SUBDIR += openshadinglanguage
+    SUBDIR += openslide
     SUBDIR += opensubdiv
     SUBDIR += openvkl
     SUBDIR += optar
@@ -889,6 +892,7 @@
     SUBDIR += py-opencolorio
     SUBDIR += py-openimageio
     SUBDIR += py-openshadinglanguage
+    SUBDIR += py-openslide-python
     SUBDIR += py-optimize-images
     SUBDIR += py-osmnet
     SUBDIR += py-pandana
@@ -1000,6 +1004,7 @@
     SUBDIR += ristretto
     SUBDIR += rlottie
     SUBDIR += ruby-gd
+    SUBDIR += rubygem-blurhash
     SUBDIR += rubygem-cairo
     SUBDIR += rubygem-captcha
     SUBDIR += rubygem-chunky_png
@@ -1050,7 +1055,6 @@
     SUBDIR += sane-epkowa
     SUBDIR += scale2x
     SUBDIR += scantailor
-    SUBDIR += sciplot
     SUBDIR += scr2png
     SUBDIR += scrot
     SUBDIR += scwm-icons
@@ -1075,6 +1079,7 @@
     SUBDIR += silgraphite
     SUBDIR += simage
     SUBDIR += simple-scan
+    SUBDIR += simpleitk
     SUBDIR += simpleviewer
     SUBDIR += skanlite
     SUBDIR += skanpage

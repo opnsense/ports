@@ -87,6 +87,7 @@
     SUBDIR += clusterit
     SUBDIR += cnd
     SUBDIR += concourse-fly
+    SUBDIR += containernetworking-plugins
     SUBDIR += corkscrew
     SUBDIR += corosync2
     SUBDIR += corosync3
@@ -198,6 +199,7 @@
     SUBDIR += gnu-radius
     SUBDIR += go-bapu
     SUBDIR += go-cs
+    SUBDIR += go-tcping
     SUBDIR += gobgp
     SUBDIR += gofish
     SUBDIR += google-cloud-sdk
@@ -416,7 +418,6 @@
     SUBDIR += libunp
     SUBDIR += libusipp
     SUBDIR += libusrsctp
-    SUBDIR += libutp
     SUBDIR += libvncserver
     SUBDIR += libwebsockets
     SUBDIR += libyang
@@ -1180,7 +1181,6 @@
     SUBDIR += rabbiteer
     SUBDIR += rabbitmq
     SUBDIR += rabbitmq-c
-    SUBDIR += rabbitmq-c-devel
     SUBDIR += radcli
     SUBDIR += raddump
     SUBDIR += radiator
@@ -1457,6 +1457,7 @@
     SUBDIR += ssldump
     SUBDIR += sslh
     SUBDIR += ssspl
+    SUBDIR += stc
     SUBDIR += stone
     SUBDIR += storj
     SUBDIR += stund

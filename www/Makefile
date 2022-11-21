@@ -253,9 +253,9 @@
     SUBDIR += janus
     SUBDIR += jericho-html
     SUBDIR += jesred
+    SUBDIR += jetty10
     SUBDIR += jetty8
     SUBDIR += jetty9
-    SUBDIR += jetty10
     SUBDIR += jira-cli
     SUBDIR += jitsi-meet
     SUBDIR += jmeter
@@ -1944,6 +1944,7 @@
     SUBDIR += rubygem-hamlit-rails
     SUBDIR += rubygem-hamlit-rails-rails5
     SUBDIR += rubygem-hamlit-rails-rails50
+    SUBDIR += rubygem-hamlit-rails-rails61
     SUBDIR += rubygem-hashicorp-checkpoint
     SUBDIR += rubygem-heroics
     SUBDIR += rubygem-heroku-api
@@ -2073,6 +2074,7 @@
     SUBDIR += rubygem-rails-settings-cached
     SUBDIR += rubygem-rails-settings-cached-rails5
     SUBDIR += rubygem-rails-settings-cached-rails50
+    SUBDIR += rubygem-rails-settings-cached-rails61
     SUBDIR += rubygem-rails4
     SUBDIR += rubygem-rails5
     SUBDIR += rubygem-rails50
@@ -2121,7 +2123,9 @@
     SUBDIR += rubygem-robots
     SUBDIR += rubygem-roda
     SUBDIR += rubygem-rqrcode
+    SUBDIR += rubygem-rqrcode2
     SUBDIR += rubygem-rqrcode-rails3
+    SUBDIR += rubygem-rqrcode_core
     SUBDIR += rubygem-rss
     SUBDIR += rubygem-rtlit
     SUBDIR += rubygem-ruby-oembed

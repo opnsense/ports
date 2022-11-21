@@ -605,6 +605,7 @@
     SUBDIR += octave-forge-pde1dm
     SUBDIR += octave-forge-plot
     SUBDIR += octave-forge-ponchon-savarit
+    SUBDIR += octave-forge-psychrometrics
     SUBDIR += octave-forge-pythonic
     SUBDIR += octave-forge-quaternion
     SUBDIR += octave-forge-queueing
@@ -1156,6 +1157,7 @@
     SUBDIR += universal
     SUBDIR += unuran
     SUBDIR += vampire
+    SUBDIR += verdict
     SUBDIR += viennacl
     SUBDIR += vinci
     SUBDIR += visualpolylib

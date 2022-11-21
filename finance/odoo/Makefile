@@ -1,6 +1,5 @@
 PORTNAME=	odoo
-PORTVERSION=	15.0
-PORTREVISION=	1
+PORTVERSION=	16.0
 CATEGORIES=	finance www
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -11,7 +10,7 @@ WWW=		https://www.odoo.com
 LICENSE=	LGPL3
 
 USE_GITHUB=	yes
-GH_TAGNAME=	02b4e98ebb2c45d9a4af10fe1bc732f048708f85
+GH_TAGNAME=	0a766557bcf95e0b9fc3363103fce8277b0fa835
 
 LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
 		libxslt.so:textproc/libxslt \
@@ -78,12 +77,11 @@ GROUPS=		${USERS}
 USE_RC_SUBR=	${PORTNAME}
 SUB_FILES=	pkg-message
 
-CONFLICTS=	odoo14
+CONFLICTS=	odoo14 odoo15
 
 ETCDIR=		${PREFIX}/etc/odoo
 
 post-patch:
-	@${REINPLACE_CMD} -i "" -e '25d' ${WRKSRC}/odoo/service/wsgi_server.py
 	@${REINPLACE_CMD} -i "" -e 's|werkzeug.url_quote_plus|werkzeug.urls.url_quote_plus|g' \
 		${WRKSRC}/odoo/addons/base/models/ir_ui_view.py
 	@${REINPLACE_CMD} -i "" -e 's|werkzeug.url_unquote_plus|werkzeug.urls.url_quote_plus|g' \
@@ -93,6 +91,9 @@ post-patch:
 	@${REINPLACE_CMD} -i "" -e 's|from werkzeug import url_encode|from werkzeug.urls import url_encode|g' \
 		${WRKSRC}/odoo/addons/mail/models/mail_thread.py \
 		${WRKSRC}/odoo/addons/hr/models/hr_employee.py
+	@${REINPLACE_CMD} -i "" -e 's|(index !== |(index == |g' \
+		${WRKSRC}/odoo/addons/web/static/src/legacy/js/libs/content-disposition.js \
+		${WRKSRC}/odoo/addons/web/static/src/core/network/download.js
 
 post-extract:
 	@cd ${WRKSRC}/addons/ && ${MV} * ${WRKSRC}/odoo/addons/

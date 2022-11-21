@@ -1,5 +1,5 @@
 PORTNAME=	heimdal
-PORTVERSION=	7.7.0
+PORTVERSION=	7.8.0
 PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://github.com/heimdal/heimdal/releases/download/${DISTNAME}/
@@ -18,6 +18,12 @@ USES=		cpe gettext-runtime gssapi:bootstrap,heimdal libtool pathfix \
 CPE_VENDOR=	${PORTNAME}_project
 USE_LDCONFIG=	${GSSAPILIBDIR}
 
+# Needs clang-format which is only provided by the port.
+# Else asm1_fails resulting in a command not found error.
+BUILD_DEPENDS=	clang${LLVM_DEFAULT}:devel/llvm${LLVM_DEFAULT}
+
+LIB_DEPENDS=	liblockfile.so:devel/liblockfile
+
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_header_fnmatch_h=yes \
 		ac_cv_header_db_h=no \
@@ -25,7 +31,8 @@ CONFIGURE_ENV=	ac_cv_header_fnmatch_h=yes \
 		ac_cv_header_db4_db_h=no \
 		ac_cv_header_db5_db_h=no \
 		ac_cv_header_db6_db_h=no \
-		ac_cv_prog_COMPILE_ET=${WRKSRC}/lib/com_err/compile_et
+		ac_cv_prog_COMPILE_ET=${WRKSRC}/lib/com_err/compile_et \
+		PYTHON="${TRUE}"
 CONFIGURE_ARGS=	--with-berkeley-db \
 		--with-libintl \
 		--with-libintl-include="${LOCALBASE}/include" \
@@ -40,7 +47,8 @@ CONFIGURE_ARGS=	--with-berkeley-db \
 		--enable-pthread-support \
 		--with-readline="${LOCALBASE}" \
 		--with-hdbdir="/var/${PORTNAME}" \
-		--sysconfdir="${PREFIX}/etc"
+		--sysconfdir="${PREFIX}/etc" \
+		CLANG_FORMAT="${LOCALBASE}/bin/clang-format${LLVM_DEFAULT}"
 # XXX --with-readline picks up libreadline even if found in /usr/lib.
 MAKE_ENV=	INSTALL_CATPAGES=no
 INSTALL_TARGET=	install-strip

@@ -248,7 +248,6 @@
     SUBDIR += aws-crt-cpp
     SUBDIR += aws-sdk-cpp
     SUBDIR += aws-sdk-php
-    SUBDIR += awscli
     SUBDIR += axmldec
     SUBDIR += ayatana-ido
     SUBDIR += b2
@@ -1148,13 +1147,13 @@
     SUBDIR += libdatrie
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
-    SUBDIR += libdispatch
     SUBDIR += libddoc
     SUBDIR += libdevq
     SUBDIR += libdfui
     SUBDIR += libdill
     SUBDIR += libdisasm
     SUBDIR += libdisorder
+    SUBDIR += libdispatch
     SUBDIR += libdistance
     SUBDIR += libdlmalloc
     SUBDIR += libdlna
@@ -4194,6 +4193,7 @@
     SUBDIR += py-aws-requests-auth
     SUBDIR += py-aws-sam-translator
     SUBDIR += py-aws-xray-sdk
+    SUBDIR += py-awscli
     SUBDIR += py-awscrt
     SUBDIR += py-azure-appconfiguration
     SUBDIR += py-azure-batch
@@ -4553,6 +4553,7 @@
     SUBDIR += py-flaky
     SUBDIR += py-flask-babel
     SUBDIR += py-flatbuffers
+    SUBDIR += py-flatdict
     SUBDIR += py-flex
     SUBDIR += py-flexmock
     SUBDIR += py-flit
@@ -4871,6 +4872,7 @@
     SUBDIR += py-num2words
     SUBDIR += py-numba
     SUBDIR += py-objgraph
+    SUBDIR += py-objsize
     SUBDIR += py-oci
     SUBDIR += py-odfpy
     SUBDIR += py-offtrac
@@ -4957,6 +4959,7 @@
     SUBDIR += py-pebble
     SUBDIR += py-pefile
     SUBDIR += py-pendulum
+    SUBDIR += py-pep440
     SUBDIR += py-pep517
     SUBDIR += py-pep562
     SUBDIR += py-pep621
@@ -5138,6 +5141,7 @@
     SUBDIR += py-pytest-canonical-data
     SUBDIR += py-pytest-capturelog
     SUBDIR += py-pytest-checkdocs
+    SUBDIR += py-pytest-console-scripts
     SUBDIR += py-pytest-cov
     SUBDIR += py-pytest-datadir
     SUBDIR += py-pytest-django
@@ -5191,7 +5195,6 @@
     SUBDIR += py-pytest-xdist
     SUBDIR += py-pytest-xprocess
     SUBDIR += py-pytest4
-    SUBDIR += py-pytest4-asyncio
     SUBDIR += py-pytest4-cache
     SUBDIR += py-pytest4-cov
     SUBDIR += py-pytest4-flakes
@@ -5245,12 +5248,12 @@
     SUBDIR += py-qcs-api-client
     SUBDIR += py-qstylizer
     SUBDIR += py-qt5
-    SUBDIR += py-qt6
     SUBDIR += py-qt5-pyqt
-    SUBDIR += py-qt6-pyqt
     SUBDIR += py-qt5-qscintilla2
-    SUBDIR += py-qt6-qscintilla2
     SUBDIR += py-qt5-sip
+    SUBDIR += py-qt6
+    SUBDIR += py-qt6-pyqt
+    SUBDIR += py-qt6-qscintilla2
     SUBDIR += py-qt6-sip
     SUBDIR += py-qtbuilder
     SUBDIR += py-qtconsole
@@ -5467,7 +5470,6 @@
     SUBDIR += py-types-toml
     SUBDIR += py-types-typed-ast
     SUBDIR += py-types-urllib3
-    SUBDIR += py-types-xxhash
     SUBDIR += py-typing-extensions
     SUBDIR += py-typing-inspect
     SUBDIR += py-tzdata
@@ -6531,6 +6533,7 @@
     SUBDIR += rubygem-forwardable
     SUBDIR += rubygem-forwardable-extended
     SUBDIR += rubygem-fugit
+    SUBDIR += rubygem-fuubar
     SUBDIR += rubygem-fuzzy_match
     SUBDIR += rubygem-gapic-common
     SUBDIR += rubygem-gdata
@@ -6677,6 +6680,7 @@
     SUBDIR += rubygem-kafo_parsers
     SUBDIR += rubygem-kafo_wizards
     SUBDIR += rubygem-kgio
+    SUBDIR += rubygem-kt-paperclip-rails61
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-lazy_priority_queue
     SUBDIR += rubygem-libdatadog
@@ -6700,6 +6704,7 @@
     SUBDIR += rubygem-lru_redux
     SUBDIR += rubygem-lumberjack
     SUBDIR += rubygem-main
+    SUBDIR += rubygem-makara61
     SUBDIR += rubygem-manpages
     SUBDIR += rubygem-map
     SUBDIR += rubygem-marcel
@@ -6769,6 +6774,7 @@
     SUBDIR += rubygem-notify
     SUBDIR += rubygem-nprogress-rails
     SUBDIR += rubygem-nsa-rails5
+    SUBDIR += rubygem-nsa-rails61
     SUBDIR += rubygem-numerizer
     SUBDIR += rubygem-oci
     SUBDIR += rubygem-octopress-hooks
@@ -7356,7 +7362,6 @@
     SUBDIR += tlx
     SUBDIR += tmake
     SUBDIR += tnt
-    SUBDIR += tokamak
     SUBDIR += tokei
     SUBDIR += toml11
     SUBDIR += tortoisehg
