@@ -588,6 +588,7 @@
     SUBDIR += nsxiv
     SUBDIR += nurbs++
     SUBDIR += nvidia-texture-tools
+    SUBDIR += ocaml-cairo
     SUBDIR += ocaml-images
     SUBDIR += ocaml-lablgl
     SUBDIR += ocrad
@@ -914,6 +915,7 @@
     SUBDIR += py-pygeoapi
     SUBDIR += py-pygeos
     SUBDIR += py-pyglet
+    SUBDIR += py-pyglet1
     SUBDIR += py-pygraph
     SUBDIR += py-pygraphviz
     SUBDIR += py-pyinsane2
