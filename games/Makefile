@@ -681,6 +681,7 @@
     SUBDIR += numptyphysics-npcomplete
     SUBDIR += nwndata
     SUBDIR += nxengine
+    SUBDIR += oblige
     SUBDIR += odamex
     SUBDIR += oldrunner
     SUBDIR += omega
@@ -921,6 +922,7 @@
     SUBDIR += solarconquest
     SUBDIR += solarus
     SUBDIR += solarus-quest-editor
+    SUBDIR += solver
     SUBDIR += spacejunk
     SUBDIR += spacezero
     SUBDIR += speak

@@ -1,13 +1,15 @@
 PORTNAME=	mpv
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.35.0
-PORTREVISION=	4
+PORTREVISION=	6
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio wayland
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	b95111dda879.patch:-p1 # https://github.com/mpv-player/mpv/pull/10871
 PATCHFILES+=	f10b24e3c5c7.patch:-p1 # https://github.com/mpv-player/mpv/issues/10882
+PATCHFILES+=	b9b3342369c3.patch:-p1 # https://github.com/mpv-player/mpv/pull/10895
+PATCHFILES+=	e1a04cd8ac40.patch:-p1 # https://github.com/mpv-player/mpv/pull/10895
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Free and open-source general-purpose video player
@@ -33,7 +35,7 @@ MESON_ARGS=	-Dshaderc=disabled \
 		-Dlibmpv=true
 
 OPTIONS_DEFINE=		ARCHIVE DOCS LCMS2 MANPAGES MUJS RUBBERBAND TEST UCHARDET EXAMPLES ZIMG
-OPTIONS_DEFAULT=	ARCHIVE DVDNAV LUAJIT MANPAGES NVDEC OPENGL UCHARDET \
+OPTIONS_DEFAULT=	ARCHIVE DVDNAV LCMS2 LUAJIT MANPAGES NVDEC OPENGL UCHARDET \
 			V4L VAAPI VDPAU VULKAN WAYLAND X11 YTDLP
 OPTIONS_GROUP=		IN VO AO
 OPTIONS_GROUP_IN=	CDIO DVDNAV LIBBLURAY V4L VAPOURSYNTH
