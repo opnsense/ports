@@ -1,6 +1,6 @@
 PORTNAME=	acme.sh
-PORTVERSION=	3.0.4
-PORTREVISION=	2
+DISTVERSIONPREFIX=	v
+PORTVERSION=	3.0.5
 CATEGORIES=	security
 
 MAINTAINER=	dvl@FreeBSD.org
@@ -10,7 +10,7 @@ WWW=		https://github.com/Neilpang/acme.sh/
 LICENSE=	GPLv3+
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	Neilpang
+GH_ACCOUNT=	acmesh-official
 
 USERS=		acme
 GROUPS=		acme
@@ -48,14 +48,18 @@ post-patch-IDN-on:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} ${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
+
 	${MKDIR} ${STAGEDIR}/var/db/acme/.acme.sh \
 	         ${STAGEDIR}/var/db/acme/certs \
 	         ${STAGEDIR}${PREFIX}/etc/cron.d  \
 	         ${STAGEDIR}${PREFIX}/etc/newsyslog.d \
 	         ${STAGEDIR}${EXAMPLESDIR}
+
 	${INSTALL_DATA} ${FILESDIR}/account.conf.sample ${STAGEDIR}/var/db/acme/.acme.sh
+
 	# install the sample file; pkg-plist will install to etc/cron.d for us
 	${INSTALL_DATA} ${WRKDIR}/acme-crontab     ${STAGEDIR}${EXAMPLESDIR}/acme.sh-cron.d
+
 	${INSTALL_DATA} ${FILESDIR}/acme-newsyslog ${STAGEDIR}${PREFIX}/etc/newsyslog.d/acme.sh.sample
 
 do-install-DOCS-on:
@@ -64,6 +68,7 @@ do-install-DOCS-on:
 
 do-install-EXAMPLES-on:
 	${MKDIR} ${STAGEDIR}${EXAMPLESDIR}/deploy ${STAGEDIR}${EXAMPLESDIR}/dnsapi
+
 	( cd ${WRKSRC} && ${COPYTREE_BIN} deploy ${STAGEDIR}${EXAMPLESDIR} )
 	( cd ${WRKSRC} && ${COPYTREE_BIN} dnsapi ${STAGEDIR}${EXAMPLESDIR} )
 	( cd ${WRKSRC} && ${COPYTREE_BIN} notify ${STAGEDIR}${EXAMPLESDIR} )
