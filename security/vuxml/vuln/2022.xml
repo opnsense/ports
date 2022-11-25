@@ -1,3 +1,174 @@
+  <vuln vid="8d3838b0-6ca8-11ed-92ce-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>107.0.5304.121</lt></range>
+      </package>
+      <package>
+	<name>ungoogled-chromium</name>
+	<range><lt>107.0.5304.121</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/11/stable-channel-update-for-desktop_24.html">
+	  <p>This release contains 1 security fix:</p>
+	  <ul>
+	    <li>[1392715] High CVE-2022-4135: Heap buffer overflow in GPU. Reported by Clement Lecigne of Google's Threat Analysis Group on 2022-11-22</li>
+	  </ul>
+	  <p>Google is aware that an exploit for CVE-2022-4135 exists in the wild.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4135</cvename>
+      <url>https://chromereleases.googleblog.com/2022/11/stable-channel-update-for-desktop_24.html</url>
+    </references>
+    <dates>
+      <discovery>2022-11-24</discovery>
+      <entry>2022-11-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="84ab03b6-6c20-11ed-b519-080027f5fec9">
+    <topic>rubygem-cgi -- HTTP response splitting vulnerability</topic>
+    <affects>
+      <package>
+	<name>rubygem-cgi</name>
+	<range><lt>0.3.4</lt></range>
+      </package>
+      <package>
+	<name>ruby</name>
+	<range><ge>2.7.0,1</ge><lt>2.7.7,1</lt></range>
+	<range><ge>3.0.0,1</ge><lt>3.0.5,1</lt></range>
+	<range><ge>3.1.0,1</ge><lt>3.1.3,1</lt></range>
+	<range><ge>3.2.0.p1,1</ge></range>
+      </package>
+      <package>
+	<name>ruby27</name>
+	<range><ge>2.7.0,1</ge><lt>2.7.7,1</lt></range>
+      </package>
+      <package>
+	<name>ruby30</name>
+	<range><ge>3.0.0,1</ge><lt>3.0.5,1</lt></range>
+      </package>
+      <package>
+	<name>ruby31</name>
+	<range><ge>3.1.0,1</ge><lt>3.1.3,1</lt></range>
+      </package>
+      <package>
+	<name>ruby32</name>
+	<range><ge>3.2.0.p1,1</ge></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Hiroshi Tokumaru reports:</p>
+	<blockquote cite="https://www.ruby-lang.org/en/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/">
+	  <p>
+	    If an application that generates HTTP responses using the
+	    cgi gem with untrusted user input, an attacker can exploit
+	    it to inject a malicious HTTP response header and/or body.
+	    </p>
+	  <p>
+	    Also, the contents for a <code>CGI::Cookie</code> object
+	    were not checked properly. If an application creates a
+	    <code>CGI::Cookie</code> object based on user input, an
+	    attacker may exploit it to inject invalid attributes in
+	    <code>Set-Cookie</code> header. We think such applications
+	    are unlikely, but we have included a change to check
+	    arguments for <code>CGI::Cookie#initialize</code>
+	    preventatively.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-33621</cvename>
+      <url>https://www.ruby-lang.org/en/news/2022/11/22/http-response-splitting-in-cgi-cve-2021-33621/</url>
+    </references>
+    <dates>
+      <discovery>2022-11-22</discovery>
+      <entry>2022-11-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="658b9198-8106-4c3d-a2aa-dc4a0a7cc3b6">
+    <topic>zeek -- potential DoS vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>zeek</name>
+	<range><lt>5.0.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tim Wojtulewicz of Corelight reports:</p>
+	<blockquote cite="https://github.com/zeek/zeek/releases/tag/v5.0.4">
+	  <p> A specially-crafted series of HTTP 0.9 packets can
+	  cause Zeek to spend large amounts of time processing the
+	  packets. </p>
+	  <p> A specially-crafted FTP packet can cause Zeek to spend
+	  large amounts of time processing the command. </p>
+	  <p> A specially-crafted IPv6 packet can cause Zeek to
+	  overflow memory and potentially crash. </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/zeek/zeek/releases/tag/v5.0.4</url>
+    </references>
+    <dates>
+      <discovery>2022-11-24</discovery>
+      <entry>2022-11-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b6a84729-6bd0-11ed-8d9a-b42e991fc52e">
+    <topic>advancecomp -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>advancecomp</name>
+	<range><lt>2.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>GitHub advisories reports:</p>
+	<blockquote cite="https://github.com/advisories/GHSA-8xqx-5mpr-g8xj">
+	<p>Multiple vulnerabilities found in advancecomp including:</p>
+	<ul>
+	  <li>Three segmentation faults.</li>
+	  <li>Heap buffer overflow via le_uint32_read at /lib/endianrw.h.</li>
+	  <li>Three more heap buffer overflows.</li>
+	</ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-35014</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35014</url>
+      <cvename>CVE-2022-35015</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35015</url>
+      <cvename>CVE-2022-35016</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35016</url>
+      <cvename>CVE-2022-35017</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35017</url>
+      <cvename>CVE-2022-35018</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35018</url>
+      <cvename>CVE-2022-35019</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35019</url>
+      <cvename>CVE-2022-35020</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-35020</url>
+    </references>
+    <dates>
+      <discovery>2022-08-29</discovery>
+      <entry>2022-11-24</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="e0f26ac5-6a17-11ed-93e7-901b0e9408dc">
     <topic>tailscale -- Security vulnerability in the client</topic>
     <affects>
