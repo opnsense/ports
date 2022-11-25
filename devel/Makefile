@@ -1258,6 +1258,7 @@
     SUBDIR += libmatheval
     SUBDIR += libmatthew
     SUBDIR += libmba
+    SUBDIR += libmcfp
     SUBDIR += libmill
     SUBDIR += libmimedir
     SUBDIR += libmodi
@@ -1517,6 +1518,7 @@
     SUBDIR += mate-common
     SUBDIR += maven
     SUBDIR += maven-wrapper
+    SUBDIR += maven363
     SUBDIR += mcpp
     SUBDIR += mdb
     SUBDIR += mdds
