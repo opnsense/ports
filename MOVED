@@ -2481,7 +2481,6 @@ chinese/gbscript||2011-09-01|Has expired: No more public distfiles
 chinese/mplayer-fonts||2011-09-01|Has expired: No more public distfiles
 chinese/oxford||2011-09-01|Has expired: No more public distfiles
 chinese/vflib||2011-09-01|Has expired: No more public distfiles
-databases/mysql++||2011-09-01|Has expired: No more public distfiles
 databases/mysql_last_value||2011-09-01|Has expired: No Master Site
 databases/p5-DBIx-Table||2011-09-01|Has expired: No more public distfiles
 deskutils/gkrellm-gtodo||2011-09-01|Has expired: No more public distfiles
@@ -17615,3 +17614,6 @@ databases/foundationdb-devel|databases/foundationdb|2022-11-16|Remove obsolete d
 devel/py-pytest4-asyncio||2022-11-19|Has expired: legacy version for pytest4 no longer used by any port
 devel/tokamak||2022-11-20|Has expired: Last release in 2008, abandoned upstream, not used, website disappeared
 net/libutp|net-p2p/libutp|2022-11-20|Moved to a more adequated category
+x11-wm/sway-devel|x11-wm/sway|2022-11-26|Out of date: use x11-wm/sway for now
+math/suitesparse-slip_lu|math/suitesparse-spex|2022-11-26|Renamed by upstream
+graphics/giblib||2022-11-27|Has expired: Last release in 2004, abandoned upstream, not used, website disappeared

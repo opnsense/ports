@@ -5,6 +5,44 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20221126:
+  AFFECTS: textproc/kibana8
+  AUTHOR: otis@FreeBSD.org
+
+  kibana8 now installs kibana-specific utilities into LOCALBASE/bin as symbolic
+  links.
+
+  Please check whether it will overwrite your local files with names same as
+  these utilities and if so, please rename them or move out of the way in a
+  different manner.
+
+20221126:
+  AFFECTS: textproc/elasticsearch8
+  AUTHOR: otis@FreeBSD.org
+
+  elasticsearch8 now installs elasticsearch-specific utilities into
+  LOCALBASE/bin as symbolic links (i.e. elasticsearch-cli and similar).
+
+  Please check whether it will overwrite your local files with names same
+  as these utilities and if so, please rename them or move out of the way
+  in a different manner.
+
+20221126:
+  AFFECTS: users of lang/php80
+  AUTHOR: bofh@FreeBSD.org
+
+  The default version of PHP has been switched from 8.0 to 8.1.
+
+  If you use binary packages you should make a list of php packages
+  before running 'pkg upgrade':
+
+  # pkg info \*php80\* > ~/installed-php-ports-list
+
+  After the upgrade, check with such list if all your php extensions
+  are still installed, and reinstall them if needed.
+
+  If you use mod_php80 you need to deinstall it and install mod_php81.
+
 20221123:
   AFFECTS: x11-wm/jwm
   AUTHOR: fernape@FreeBSD.org
@@ -69,7 +107,7 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: users of security/acme.sh
   AUTHOR: dvl@FreeBSD.org
 
-  This update may break your install if you were using a symlink to 
+  This update may break your install if you were using a symlink to
   %%EXAMPLESDIR%%/acme.sh.conf - that file is no longer installed. Instead,
   a log rotation configuration is now installed to etc/cron.d/acme.sh.sample
   you should modify etc/cron.d/acme.sh to needs.
