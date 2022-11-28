@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20221122
+PORTVERSION=	s20221126
 CATEGORIES=	emulators
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
@@ -25,7 +25,6 @@ LICENSE_FILE_MIT=	${WRKSRC}/externals/sirit/externals/SPIRV-Headers/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	requires int128 and dynarmic backend
-BROKEN_aarch64=	https://github.com/yuzu-emu/yuzu/issues/5290
 BROKEN_FreeBSD_12=	htonl() in <x86/endian.h> fails -Werror=conversion
 
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
@@ -39,7 +38,7 @@ TEST_DEPENDS=	catch>0:devel/catch
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	168c9ee34
+GH_TAGNAME=	eabe45346
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-32-ga3fdfe8:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
 		KhronosGroup:Vulkan-Headers:v1.3.213:Vulkan_Headers/externals/Vulkan-Headers \

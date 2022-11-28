@@ -175,6 +175,7 @@
     SUBDIR += elasticsearch-plugin-head
     SUBDIR += elasticsearch6
     SUBDIR += elasticsearch7
+    SUBDIR += elasticsearch8
     SUBDIR += en-aspell
     SUBDIR += en-hunspell
     SUBDIR += en-mythes
@@ -341,6 +342,7 @@
     SUBDIR += kf5-sonnet
     SUBDIR += kf5-syntax-highlighting
     SUBDIR += kibana7
+    SUBDIR += kibana8
     SUBDIR += kiss-templates
     SUBDIR += kmfl-european-latin
     SUBDIR += kmfl-khmer

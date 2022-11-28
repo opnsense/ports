@@ -3,6 +3,7 @@
     SUBDIR += abyss
     SUBDIR += ad2vcf
     SUBDIR += artemis
+    SUBDIR += augustus
     SUBDIR += avida
     SUBDIR += babel
     SUBDIR += bamtools
@@ -92,6 +93,7 @@
     SUBDIR += mafft
     SUBDIR += mapm3
     SUBDIR += megahit
+    SUBDIR += metaeuk
     SUBDIR += migrate
     SUBDIR += minimap2
     SUBDIR += mmseqs2
