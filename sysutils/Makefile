@@ -463,7 +463,6 @@
     SUBDIR += g15daemon
     SUBDIR += gaffitter
     SUBDIR += ganglia-monitor-core
-    SUBDIR += ganglia-webfrontend
     SUBDIR += gapcmon
     SUBDIR += garcon
     SUBDIR += gather
@@ -1137,6 +1136,7 @@
     SUBDIR += pydf
     SUBDIR += qchroot
     SUBDIR += qdirstat
+    SUBDIR += qflipper
     SUBDIR += qjail
     SUBDIR += qjail54
     SUBDIR += qlogtools
