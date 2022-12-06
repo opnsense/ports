@@ -7911,7 +7911,6 @@ www/eliom||2015-12-30|Has expired: Depends on broken and expiring www/ocsigen
 audio/py-fastaudio||2015-12-30|Has expired: Broken for more than 6 months
 devel/jgoodies-common||2015-12-30|Has expired: Broken for more than 6 months
 games/kanatest||2015-12-30|Has expired: Broken for more than 6 months
-editors/bless||2015-12-30|Has expired: Broken for more than 6 months
 security/burpsuite||2015-12-30|Has expired: Broken for more than 6 months
 dns/bind10|dns/bundy|2015-12-31|Has expired: Is not developed any more, use dns/bundy
 lang/perl5.16||2015-12-31|Has expired: Unsupported, please upgrade to a more recent version of Perl
@@ -10712,7 +10711,6 @@ games/kajongg||2018-12-21|Has expired: Broken for more than 6 months
 games/netspades||2018-12-21|Has expired: Uses obsolete glib12
 games/gtklife||2018-12-21|Has expired: Uses obsolete glib12
 biology/xmolwt||2018-12-21|Has expired: Uses obsolete glib12
-x11-clocks/wmclockmon||2018-12-21|Has expired: Uses obsolete glib12
 x11-clocks/asclock-gtk||2018-12-21|Has expired: Uses obsolete glib12
 net-im/gale||2018-12-21|Has expired: Uses obsolete glib12
 audio/xmms-ahx||2018-12-21|Has expired: Uses obsolete glib12, use audio/hvl2wav instead
@@ -13173,7 +13171,6 @@ net/librouteros||2019-10-16|Has expired: Unfetchable, unmaintained
 net/nettest||2019-10-16|Has expired: Unfetchable, unmaintained
 net/py-netstring||2019-10-16|Has expired: Unfetchable, unmaintained
 net/radiusd-cistron||2019-10-16|Has expired: Unfetchable, unmaintained
-net/smbldap-tools||2019-10-16|Has expired: Unfetchable, unmaintained
 net/wackford-squeers||2019-10-16|Has expired: Unfetchable, unmaintained
 net/wmnet2||2019-10-16|Has expired: Unfetchable, unmaintained
 net-im/pidgin-birthday-reminder||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -17623,3 +17620,14 @@ www/ilias6||2022-11-29|Requires php74 which was EOL on 2022-11-28
 net/pecl-zmq||2022-11-29|Requires php74 which was EOL on 2022-11-28
 textproc/php-mecab||2022-11-29|Requires php74 which was EOL on 2022-11-28
 sysutils/ganglia-webfrontend||2022-11-29|Requires php74 which was EOL on 2022-11-28
+net/pecl-mosquitto||2022-11-30|Requires php74 which was EOL on 2022-11-28
+devel/pecl-propro2||2022-11-30|Requires php74 which was EOL on 2022-11-28
+devel/pecl-jsond||2022-11-30|Requires php74 which was EOL on 2022-11-28
+databases/pecl-cassandra||2022-11-30|Requires php74 which was EOL on 2022-11-28
+deskutils/egroupware||2022-12-01|Requires php74 which was EOL on 2022-11-28
+devel/pecl-APCu_bc||2022-12-01|Requires php74 which was EOL on 2022-11-28
+textproc/google-translate-cli|textproc/translate-shell|2022-12-02|Renamed by upstream
+net-mgmt/zabbix4-frontend||2022-12-05|Requires php74 which was EOL on 2022-11-28
+math/pecl-stats2||2022-12-05|Requires php74 which was EOL on 2022-11-28
+devel/pecl-jsmin||2022-12-05|Requires php74 which was EOL on 2022-11-28
+security/py-certbot-dns-cloudxns||2022-12-06|The CloudXNS DNS service is defunct and upstream removed plugin for it
