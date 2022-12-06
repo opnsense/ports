@@ -1,3 +1,187 @@
+  <vuln vid="2899da38-7300-11ed-92ce-3065ec8fd3ec">
+    <topic>chromium -- Type confusion in V8</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>108.0.5359.94</lt></range>
+      </package>
+      <package>
+	<name>ungoogled-chromium</name>
+	<range><lt>108.0.5359.94</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/12/stable-channel-update-for-desktop.html">
+	  <p>This release contains 1 security fix:</p>
+	  <ul>
+	    <li>[1394403] High CVE-2022-4262: Type Confusion in V8. Reported by Clement Lecigne of Google's Threat Analysis Group on 2022-11-29</li>
+	  </ul>
+	  <p>Google is aware that an exploit for CVE-2022-4262 exists in the wild.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4262</cvename>
+      <url>https://chromereleases.googleblog.com/2022/12/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2022-12-02</discovery>
+      <entry>2022-12-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0c52abde-717b-11ed-98ca-40b034429ecf">
+    <topic>rpm4 -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>rpm4</name>
+	<range><lt>4.18.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>rpm project reports:</p>
+	<blockquote cite="https://rpm.org/wiki/Releases/4.18.0">
+	  <p>Fix intermediate symlinks not verified (CVE-2021-35939).</p>
+	  <p>Fix subkey binding signatures not checked on PGP public keys (CVE-2021-3521).</p>
+	  <p>Refactor file and directory operations to use fd-based APIs throughout (CVE-2021-35938)</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-35939</cvename>
+      <cvename>CVE-2021-3521</cvename>
+      <cvename>CVE-2021-35938</cvename>
+    </references>
+    <dates>
+      <discovery>2022-08-22</discovery>
+      <entry>2022-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3cde510a-7135-11ed-a28b-bff032704f00">
+    <topic>Gitlab -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>15.6.0</ge><lt>15.6.1</lt></range>
+	<range><ge>15.5.0</ge><lt>15.5.5</lt></range>
+	<range><ge>9.3.0</ge><lt>15.4.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2022/11/30/security-release-gitlab-15-6-1-released/">
+	  <p>DAST API scanner exposes Authorization headers in vulnerabilities</p>
+	  <p>Group IP allow-list not fully respected by the Package Registry</p>
+	  <p>Deploy keys and tokens may bypass External Authorization service if it is enabled</p>
+	  <p>Repository import still allows to import 40 hexadecimal branches</p>
+	  <p>Webhook secret tokens leaked in webhook logs</p>
+	  <p>Maintainer can leak webhook secret token by changing the webhook URL</p>
+	  <p>Cross-site scripting in Jira Integration affecting self-hosted instances without strict CSP</p>
+	  <p>Release names visible in public projects despite release set as project members only</p>
+	  <p>Sidekiq background job DoS by uploading malicious NuGet packages</p>
+	  <p>SSRF in Web Terminal advertise_address</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4206</cvename>
+      <cvename>CVE-2022-3820</cvename>
+      <cvename>CVE-2022-3740</cvename>
+      <cvename>CVE-2022-4205</cvename>
+      <cvename>CVE-2022-3902</cvename>
+      <cvename>CVE-2022-4054</cvename>
+      <cvename>CVE-2022-3572</cvename>
+      <cvename>CVE-2022-3482</cvename>
+      <cvename>CVE-2022-3478</cvename>
+      <cvename>CVE-2022-4201</cvename>
+      <url>https://about.gitlab.com/releases/2022/11/30/security-release-gitlab-15-6-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2022-11-30</discovery>
+      <entry>2022-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5f7ed6ea-70a7-11ed-92ce-3065ec8fd3ec">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>chromium</name>
+	<range><lt>108.0.5359.71</lt></range>
+      </package>
+      <package>
+	<name>ungoogled-chromium</name>
+	<range><lt>108.0.5359.71</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Chrome Releases reports:</p>
+	<blockquote cite="https://chromereleases.googleblog.com/2022/11/stable-channel-update-for-desktop_29.html">
+	  <p>This release contains 28 security fixes, including:</p>
+	  <ul>
+	    <li>[1379054] High CVE-2022-4174: Type Confusion in V8. Reported by Zhenghang Xiao (@Kipreyyy) on 2022-10-27</li>
+	    <li>[1381401] High CVE-2022-4175: Use after free in Camera Capture. Reported by Leecraso and Guang Gong of 360 Alpha Lab on 2022-11-04</li>
+	    <li>[1361066] High CVE-2022-4176: Out of bounds write in Lacros Graphics. Reported by @ginggilBesel on 2022-09-08</li>
+	    <li>[1379242] High CVE-2022-4177: Use after free in Extensions. Reported by Chaoyuan Peng (@ret2happy) on 2022-10-28</li>
+	    <li>[1376099] High CVE-2022-4178: Use after free in Mojo. Reported by Sergei Glazunov of Google Project Zero on 2022-10-18</li>
+	    <li>[1377783] High CVE-2022-4179: Use after free in Audio. Reported by Sergei Glazunov of Google Project Zero on 2022-10-24</li>
+	    <li>[1378564] High CVE-2022-4180: Use after free in Mojo. Reported by Anonymous on 2022-10-26</li>
+	    <li>[1382581] High CVE-2022-4181: Use after free in Forms. Reported by Aviv A. on 2022-11-09</li>
+	    <li>[1368739] Medium CVE-2022-4182: Inappropriate implementation in Fenced Frames. Reported by Peter Nemeth on 2022-09-28</li>
+	    <li>[1251790] Medium CVE-2022-4183: Insufficient policy enforcement in Popup Blocker. Reported by David Sievers on 2021-09-22</li>
+	    <li>[1358647] Medium CVE-2022-4184: Insufficient policy enforcement in Autofill. Reported by Ahmed ElMasry on 2022-09-01</li>
+	    <li>[1373025] Medium CVE-2022-4185: Inappropriate implementation in Navigation. Reported by James Lee (@Windowsrcer) on 2022-10-10</li>
+	    <li>[1377165] Medium CVE-2022-4186: Insufficient validation of untrusted input in Downloads. Reported by Luan Herrera (@lbherrera_) on 2022-10-21</li>
+	    <li>[1381217] Medium CVE-2022-4187: Insufficient policy enforcement in DevTools. Reported by Axel Chong on 2022-11-04</li>
+	    <li>[1340879] Medium CVE-2022-4188: Insufficient validation of untrusted input in CORS. Reported by Philipp Beer (TU Wien) on 2022-06-30</li>
+	    <li>[1344647] Medium CVE-2022-4189: Insufficient policy enforcement in DevTools. Reported by NDevTK on 2022-07-15</li>
+	    <li>[1378997] Medium CVE-2022-4190: Insufficient data validation in Directory. Reported by Axel Chong on 2022-10-27</li>
+	    <li>[1373941] Medium CVE-2022-4191: Use after free in Sign-In. Reported by Jaehun Jeong(@n3sk) of Theori on 2022-10-12</li>
+	    <li>[1344514] Medium CVE-2022-4192: Use after free in Live Caption. Reported by Samet Bekmezci @sametbekmezci on 2022-07-14</li>
+	    <li>[1354518] Medium CVE-2022-4193: Insufficient policy enforcement in File System API. Reported by Axel Chong on 2022-08-19</li>
+	    <li>[1370562] Medium CVE-2022-4194: Use after free in Accessibility. Reported by Anonymous on 2022-10-03</li>
+	    <li>[1371926] Medium CVE-2022-4195: Insufficient policy enforcement in Safe Browsing. Reported by Eric Lawrence of Microsoft on 2022-10-06</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4174</cvename>
+      <cvename>CVE-2022-4175</cvename>
+      <cvename>CVE-2022-4176</cvename>
+      <cvename>CVE-2022-4177</cvename>
+      <cvename>CVE-2022-4178</cvename>
+      <cvename>CVE-2022-4179</cvename>
+      <cvename>CVE-2022-4180</cvename>
+      <cvename>CVE-2022-4181</cvename>
+      <cvename>CVE-2022-4182</cvename>
+      <cvename>CVE-2022-4183</cvename>
+      <cvename>CVE-2022-4184</cvename>
+      <cvename>CVE-2022-4185</cvename>
+      <cvename>CVE-2022-4186</cvename>
+      <cvename>CVE-2022-4187</cvename>
+      <cvename>CVE-2022-4188</cvename>
+      <cvename>CVE-2022-4189</cvename>
+      <cvename>CVE-2022-4190</cvename>
+      <cvename>CVE-2022-4191</cvename>
+      <cvename>CVE-2022-4192</cvename>
+      <cvename>CVE-2022-4193</cvename>
+      <cvename>CVE-2022-4194</cvename>
+      <cvename>CVE-2022-4195</cvename>
+      <url>https://chromereleases.googleblog.com/2022/11/stable-channel-update-for-desktop_29.html</url>
+    </references>
+    <dates>
+      <discovery>2022-11-29</discovery>
+      <entry>2022-11-30</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8d3838b0-6ca8-11ed-92ce-3065ec8fd3ec">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
@@ -3843,6 +4027,7 @@
 	<range><ge>8.4.0</ge><lt>8.4.10</lt></range>
 	<range><ge>8.5.0</ge><lt>8.5.9</lt></range>
 	<range><ge>9.0.0</ge><lt>9.0.3</lt></range>
+	<range><ge>9.1.0</ge><lt>9.2.7</lt></range>
       </package>
       <package>
 	<name>grafana8</name>
@@ -3853,6 +4038,7 @@
       <package>
 	<name>grafana9</name>
 	<range><lt>9.0.3</lt></range>
+	<range><ge>9.1.0</ge><lt>9.2.7</lt></range>
       </package>
     </affects>
     <description>
