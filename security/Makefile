@@ -390,6 +390,7 @@
     SUBDIR += openconnect-gui
     SUBDIR += opencryptoki
     SUBDIR += openct
+    SUBDIR += openfhe
     SUBDIR += openfortivpn
     SUBDIR += openiked
     SUBDIR += openiked-portable
@@ -842,7 +843,6 @@
     SUBDIR += py-certbot
     SUBDIR += py-certbot-apache
     SUBDIR += py-certbot-dns-cloudflare
-    SUBDIR += py-certbot-dns-cloudxns
     SUBDIR += py-certbot-dns-cpanel
     SUBDIR += py-certbot-dns-digitalocean
     SUBDIR += py-certbot-dns-dnsimple
@@ -1103,6 +1103,7 @@
     SUBDIR += rubygem-omniauth-oauth2-generic
     SUBDIR += rubygem-omniauth-rails_csrf_protection
     SUBDIR += rubygem-omniauth-saml
+    SUBDIR += rubygem-omniauth-saml1
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-omniauth1
     SUBDIR += rubygem-openssl

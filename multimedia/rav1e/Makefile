@@ -1,7 +1,7 @@
 PORTNAME=	rav1e
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.5.1
-PORTREVISION?=	9
+DISTVERSION=	0.6.1
+PORTREVISION?=	0
 CATEGORIES=	multimedia
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -21,8 +21,9 @@ PLIST_FILES?=	bin/${PORTNAME}
 
 post-patch:
 # Extract (snapshot) version from the port instead of CARGO_PKG_VERSION
-	@${REINPLACE_CMD} 's/env!("VERGEN_SEMVER_LIGHTWEIGHT")/"${DISTVERSIONFULL}"/' \
-		${WRKSRC}/src/capi.rs ${WRKSRC}/src/lib.rs
+	@${REINPLACE_CMD} -e 's/\<.*GIT_VERSION\.unwrap.*/"${DISTVERSIONFULL}"/' \
+		-e $$'/GIT_VERSION/,/UNKNOWN/c\\\n\t"${DISTVERSIONFULL}",\n' \
+		${WRKSRC}/src/bin/common.rs ${WRKSRC}/src/lib.rs
 
 .if !target(post-install)
 post-install:

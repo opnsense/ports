@@ -1,13 +1,15 @@
 PORTNAME=	npm
-PORTVERSION=	8.19.2
+PORTVERSION=	9.1.2
+PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/sunpoet
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Node package manager
-WWW=		https://www.npmjs.com/package/npm
+WWW=		https://www.npmjs.com/package/npm \
+		https://github.com/npm/cli
 
-LICENSE=	APACHE20
+LICENSE=	ART20
 LICENSE_FILE=	${WRKSRC}/lib/node_modules/npm/LICENSE
 
 RUN_DEPENDS=	gmake:devel/gmake
@@ -19,7 +21,7 @@ NO_ARCH=	yes
 NO_BUILD=	yes
 REINPLACE_ARGS=	-i ''
 
-CONFLICTS_INSTALL?=	npm-node14 npm-node16 npm-node18
+CONFLICTS_INSTALL?=	npm-node[0-9][0-9]
 
 CPE_VENDOR=	npmjs
 

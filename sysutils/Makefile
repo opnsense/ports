@@ -88,6 +88,7 @@
     SUBDIR += bacula11-docs
     SUBDIR += bacula11-server
     SUBDIR += bacula13-client
+    SUBDIR += bacula13-client-static
     SUBDIR += bacula13-docs
     SUBDIR += bacula13-server
     SUBDIR += bacula9-client
@@ -543,6 +544,7 @@
     SUBDIR += hs-cputype
     SUBDIR += hstr
     SUBDIR += htop
+    SUBDIR += httm
     SUBDIR += httplog
     SUBDIR += hw-probe
     SUBDIR += hwstat

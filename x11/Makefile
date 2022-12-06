@@ -318,6 +318,7 @@
     SUBDIR += rofi
     SUBDIR += rofi-calc
     SUBDIR += rofi-emoji
+    SUBDIR += rofi-file-browser-extended
     SUBDIR += rofi-pass
     SUBDIR += rofi-wayland
     SUBDIR += roxterm
@@ -337,6 +338,7 @@
     SUBDIR += sessreg
     SUBDIR += setlayout
     SUBDIR += setxkbmap
+    SUBDIR += sfwbar
     SUBDIR += shotman
     SUBDIR += showkeys
     SUBDIR += showmethekey
