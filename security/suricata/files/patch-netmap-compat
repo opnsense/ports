@@ -1,0 +1,73 @@
+diff --git src/source-netmap.c src/source-netmap.c
+index 00b4400b4..0e1ac70c8 100644
+--- src/source-netmap.c
++++ src/source-netmap.c
+@@ -703,12 +703,21 @@ static void NetmapReleasePacket(Packet *p)
+     PacketFreeOrRelease(p);
+ }
+ 
++#if USE_NEW_NETMAP_API
+ static void NetmapProcessPacket(NetmapThreadVars *ntv, const struct nm_pkthdr *ph)
++#else
++static void NetmapCallback(u_char *user, const struct nm_pkthdr *ph, const u_char *d)
++#endif
+ {
+ 
++#if USE_NEW_NETMAP_API
++    const u_char *d = ph->buf;
++#else
++    NetmapThreadVars *ntv = (NetmapThreadVars *)user;
++#endif
+     if (ntv->bpf_prog.bf_len) {
+         struct pcap_pkthdr pkthdr = { {0, 0}, ph->len, ph->len };
+-        if (pcap_offline_filter(&ntv->bpf_prog, &pkthdr, ph->buf) == 0) {
++        if (pcap_offline_filter(&ntv->bpf_prog, &pkthdr, d) == 0) {
+             return;
+         }
+     }
+@@ -726,12 +735,12 @@ static void NetmapProcessPacket(NetmapThreadVars *ntv, const struct nm_pkthdr *p
+     ntv->bytes += ph->len;
+ 
+     if (ntv->flags & NETMAP_FLAG_ZERO_COPY) {
+-        if (PacketSetData(p, (uint8_t *)ph->buf, ph->len) == -1) {
++        if (PacketSetData(p, (uint8_t *)d, ph->len) == -1) {
+             TmqhOutputPacketpool(ntv->tv, p);
+             return;
+         }
+     } else {
+-        if (PacketCopyData(p, (uint8_t *)ph->buf, ph->len) == -1) {
++        if (PacketCopyData(p, (uint8_t *)d, ph->len) == -1) {
+             TmqhOutputPacketpool(ntv->tv, p);
+             return;
+         }
+@@ -754,9 +763,6 @@ static void NetmapProcessPacket(NetmapThreadVars *ntv, const struct nm_pkthdr *p
+  */
+ #if USE_NEW_NETMAP_API
+ static TmEcode NetmapReadPackets(struct nmport_d *d, int cnt, NetmapThreadVars *ntv)
+-#else
+-static TmEcode NetmapReadPackets(struct nm_desc *d, int cnt, NetmapThreadVars *ntv)
+-#endif
+ {
+     struct nm_pkthdr hdr;
+     int last_ring = d->last_rx_ring - d->first_rx_ring + 1;
+@@ -826,6 +832,7 @@ static TmEcode NetmapReadPackets(struct nm_desc *d, int cnt, NetmapThreadVars *n
+     }
+     return got;
+ }
++#endif
+ 
+ /**
+  *  \brief Main netmap reading loop function
+@@ -890,8 +897,12 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
+         }
+ 
+         if (likely(fds.revents & POLLIN)) {
++#if USE_NEW_NETMAP_API
+             /* have data on RX ring, so copy to Packet for processing */
+             NetmapReadPackets(ntv->ifsrc->nmd, -1, ntv);
++#else
++            nm_dispatch(ntv->ifsrc->nmd, -1, NetmapCallback, (void *)ntv);
++#endif
+         }
+ 
+         NetmapDumpCounters(ntv);
