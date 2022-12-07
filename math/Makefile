@@ -49,6 +49,7 @@
     SUBDIR += R-cran-combinat
     SUBDIR += R-cran-conf.design
     SUBDIR += R-cran-conquer
+    SUBDIR += R-cran-cvar
     SUBDIR += R-cran-date
     SUBDIR += R-cran-ddalpha
     SUBDIR += R-cran-deldir
@@ -62,6 +63,7 @@
     SUBDIR += R-cran-forcats
     SUBDIR += R-cran-forecast
     SUBDIR += R-cran-fracdiff
+    SUBDIR += R-cran-gbutils
     SUBDIR += R-cran-geepack
     SUBDIR += R-cran-geometry
     SUBDIR += R-cran-gmp
