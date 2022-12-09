@@ -5,6 +5,9 @@ CATEGORIES=	graphics
 COMMENT=	OpenGL hardware acceleration drivers for DRI2+
 WWW=		https://www.mesa3d.org/
 
+LIB_DEPENDS+=	libLLVM-${LLVM_DEFAULT}.so:devel/llvm${LLVM_DEFAULT} \
+		libglapi.so:graphics/mesa-libs
+
 OPTIONS_GROUP=			PLATFORM
 OPTIONS_GROUP_PLATFORM=		PLATFORM_X11 PLATFORM_WAYLAND
 PLATFORM_X11_DESC=		Enable X11 support for GBM/EGL
@@ -23,6 +26,8 @@ WAYLAND_IMPLIES=	PLATFORM_WAYLAND
 ZSTD_DESC=		Use ZSTD for shader cache
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 ZSTD_MESON_ENABLED=	zstd
+
+USE_LDCONFIG=		yes
 
 .include <bsd.port.options.mk>
 .include "${.CURDIR:H:H}/graphics/mesa-dri/Makefile.common"
