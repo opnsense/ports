@@ -52,6 +52,7 @@
     SUBDIR += apcctrl
     SUBDIR += apcpwr
     SUBDIR += apcupsd
+    SUBDIR += apt-mirror-devel
     SUBDIR += aptly
     SUBDIR += arc_summary
     SUBDIR += arcconf
@@ -177,11 +178,9 @@
     SUBDIR += cfengine-devel
     SUBDIR += cfengine-masterfiles
     SUBDIR += cfengine-masterfiles-devel
-    SUBDIR += cfengine-masterfiles317
     SUBDIR += cfengine-masterfiles318
     SUBDIR += cfengine-masterfiles319
     SUBDIR += cfengine-masterfiles320
-    SUBDIR += cfengine317
     SUBDIR += cfengine318
     SUBDIR += cfengine319
     SUBDIR += cfengine320
