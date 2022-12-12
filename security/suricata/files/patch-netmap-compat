@@ -1,6 +1,4 @@
-diff --git configure.ac configure.ac
-index ea5019422..5dcc63aaf 100644
---- configure.ac
+--- configure.ac.orig	2022-12-12 09:59:09 UTC
 +++ configure.ac
 @@ -1481,16 +1481,11 @@
      ])
@@ -70,10 +68,17 @@ index ea5019422..5dcc63aaf 100644
    DAG enabled:                             ${enable_dag}
    Napatech enabled:                        ${enable_napatech}
    WinDivert enabled:                       ${enable_windivert}
-diff --git src/source-netmap.c src/source-netmap.c
-index 00b4400b4..0e1ac70c8 100644
---- src/source-netmap.c
+--- src/source-netmap.c.orig	2022-11-28 06:31:05 UTC
 +++ src/source-netmap.c
+@@ -412,7 +412,7 @@ retry:
+                 ns->iface, ring, strlen(optstr) ? "/" : "", optstr);
+     } else if (strlen(ns->iface) > 5 && strncmp(ns->iface, "vale", 4) == 0 && isdigit(ns->iface[4])) {
+         snprintf(devname, sizeof(devname), "%s", ns->iface);
+-#if NETMAP_API < 14 || !USET_NET_NETMAP_API
++#if NETMAP_API < 14 || !USE_NEW_NETMAP_API
+     } else if (ns->iface[strlen(ns->iface)-1] == '*' ||
+             ns->iface[strlen(ns->iface)-1] == '^') {
+         SCLogDebug("device with SW-ring enabled (ns->iface): %s",ns->iface);
 @@ -703,12 +703,21 @@ static void NetmapReleasePacket(Packet *p)
      PacketFreeOrRelease(p);
  }
@@ -97,7 +102,7 @@ index 00b4400b4..0e1ac70c8 100644
              return;
          }
      }
-@@ -726,12 +735,12 @@ static void NetmapProcessPacket(NetmapThreadVars *ntv, const struct nm_pkthdr *p
+@@ -726,12 +735,12 @@ static void NetmapProcessPacket(NetmapThreadVars *ntv,
      ntv->bytes += ph->len;
  
      if (ntv->flags & NETMAP_FLAG_ZERO_COPY) {
@@ -112,7 +117,7 @@ index 00b4400b4..0e1ac70c8 100644
              TmqhOutputPacketpool(ntv->tv, p);
              return;
          }
-@@ -754,9 +763,6 @@ static void NetmapProcessPacket(NetmapThreadVars *ntv, const struct nm_pkthdr *p
+@@ -754,9 +763,6 @@ static void NetmapProcessPacket(NetmapThreadVars *ntv,
   */
  #if USE_NEW_NETMAP_API
  static TmEcode NetmapReadPackets(struct nmport_d *d, int cnt, NetmapThreadVars *ntv)
@@ -122,7 +127,7 @@ index 00b4400b4..0e1ac70c8 100644
  {
      struct nm_pkthdr hdr;
      int last_ring = d->last_rx_ring - d->first_rx_ring + 1;
-@@ -826,6 +832,7 @@ static TmEcode NetmapReadPackets(struct nm_desc *d, int cnt, NetmapThreadVars *n
+@@ -826,6 +832,7 @@ static TmEcode NetmapReadPackets(struct nm_desc *d, in
      }
      return got;
  }
@@ -130,7 +135,7 @@ index 00b4400b4..0e1ac70c8 100644
  
  /**
   *  \brief Main netmap reading loop function
-@@ -890,8 +897,12 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void *data, void *slot)
+@@ -890,8 +897,12 @@ static TmEcode ReceiveNetmapLoop(ThreadVars *tv, void 
          }
  
          if (likely(fds.revents & POLLIN)) {
