@@ -1,0 +1,13 @@
+--- Makefile.in.orig	2022-12-12 08:06:49 UTC
++++ Makefile.in
+@@ -5,8 +5,8 @@
+ ###############################
+ 
+ # Source code directories
+-SRC_BASE=./src/
+-SRC_INCLUDE=./include/
++SRC_BASE:=./src/
++SRC_INCLUDE:=./include/
+ 
+ # Mainly used for rpmbuild
+ # DESTDIR=
