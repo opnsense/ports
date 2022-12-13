@@ -50,6 +50,7 @@ NOBLAS_MAKE_ENV=	NPY_BLAS_ORDER= NPY_LAPACK_ORDER=
 OPENBLAS_IMPLIES=	FORTRAN
 OPENBLAS_USES=		blaslapack:openblas
 OPENBLAS_VARS=		BLASLIBS="openblas, gfortran" BLASNAME=openblas LAPACKLIBS="openblas, gfortran" LIBRARIES=libraries
+SUITESPARSE_IMPLIES=	FORTRAN
 SUITESPARSE_LIB_DEPENDS=libumfpack.so:math/suitesparse-umfpack
 
 post-extract:
