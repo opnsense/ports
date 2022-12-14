@@ -16914,7 +16914,6 @@ security/libadacrypt||2022-02-28|Removed, depends on expired lang/gcc6-aux
 textproc/adabrowse||2022-02-28|Removed, depends on expired lang/gcc6-aux
 textproc/templates_parser||2022-02-28|Removed, depends on expired lang/gcc6-aux
 textproc/words||2022-02-28|Removed, depends on expired lang/gcc6-aux
-textproc/xmlada||2022-02-28|Removed, depends on expired lang/gcc6-aux
 x11-toolkits/gtkada||2022-02-28|Removed, depends on expired lang/gcc6-aux
 x11-toolkits/gtkada3||2022-02-28|Removed, depends on expired lang/gcc6-aux
 devel/py-zsm-lib|sysutils/zsm|2022-03-07|Remove obsoleted port. Use sysutils/zsm instead
@@ -17639,3 +17638,4 @@ multimedia/mlt7-qt5|multimedia/mlt7-qt|2022-12-10|Flavorized for Qt5 and Qt6
 sysutils/cfengine317||2022-12-10|Has expired: Expire one year after cfengine 3.19.0 released
 sysutils/cfengine-masterfiles317||2022-12-10|Has expired: Expire one year after cfengine-masterfiles 3.19.0 released
 www/ilias|www/ilias|2022-12-11|Flavorized for php
+net-mgmt/icingaweb2-module-ipl|net-mgmt/icinga-php-library|2022-12-13|Renamed by project
