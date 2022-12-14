@@ -1,5 +1,52 @@
+diff --git src/runmode-netmap.c src/runmode-netmap.c
+index 9e31b08b2..f6a5309ed 100644
+--- src/runmode-netmap.c
++++ src/runmode-netmap.c
+@@ -53,7 +53,7 @@
+ #include "util-ioctl.h"
+ #include "util-byte.h"
+ 
+-#ifdef HAVE_NETMAP
++#if HAVE_NETMAP && USE_NEW_NETMAP_API
+ #define NETMAP_WITH_LIBS
+ #include <net/netmap_user.h>
+ #endif /* HAVE_NETMAP */
+@@ -70,14 +70,9 @@ const char *RunModeNetmapGetDefaultMode(void)
+ void RunModeIdsNetmapRegister(void)
+ {
+ #if HAVE_NETMAP
+-    SCLogInfo("Using netmap version %d ["
+ #if USE_NEW_NETMAP_API
+-              "new"
+-#else
+-              "legacy"
++    SCLogInfo("Using netmap version %d" " API interfaces]", NETMAP_API);
+ #endif
+-              " API interfaces]",
+-            NETMAP_API);
+     RunModeRegisterNewRunMode(RUNMODE_NETMAP, "single",
+             "Single threaded netmap mode",
+             RunModeIdsNetmapSingle);
+@@ -127,13 +122,15 @@ static int ParseNetmapSettings(NetmapIfaceSettings *ns, const char *iface,
+         }
+     }
+ 
++#ifdef USE_NEW_NETMAP_API
+     /* we will need the base interface name for later */
+     char base_name[IFNAMSIZ];
+     strlcpy(base_name, ns->iface, sizeof(base_name));
+     if (strlen(base_name) > 0 &&
+-            (base_name[strlen(base_name) - 1] == '^' || base_name[strlen(base_name) - 1] == '*')) {
+-        base_name[strlen(base_name) - 1] = '\0';
+     }
++#else
++    char *base_name = ns->iface;
++#endif
+ 
+     /* prefixed with netmap or vale means it's not a real interface
+      * and we don't check offloading. */
 diff --git src/source-netmap.c src/source-netmap.c
-index 00b4400b4..5693fd1f2 100644
+index 00b4400b4..17e1f2534 100644
 --- src/source-netmap.c
 +++ src/source-netmap.c
 @@ -187,10 +187,15 @@ static SCMutex netmap_devlist_lock = SCMUTEX_INITIALIZER;
@@ -89,6 +136,22 @@ index 00b4400b4..5693fd1f2 100644
  
      SCLogInfo("devname [fd: %d] %s %s opened", pdev->nmd->fd, devname, ns->iface);
  
+@@ -667,12 +687,12 @@ static TmEcode NetmapWritePacket(NetmapThreadVars *ntv, Packet *p)
+     /* attempt to write the packet into the netmap ring buffer(s) */
+ #if USE_NEW_NETMAP_API
+     if (nmport_inject(ntv->ifdst->nmd, GET_PKT_DATA(p), GET_PKT_LEN(p)) == 0) {
+-        if (ntv->flags & NETMAP_FLAG_EXCL_RING_ACCESS) {
+-            SCMutexUnlock(&ntv->ifdst->netmap_dev_lock);
+-        }
+ #else
+     if (nm_inject(ntv->ifdst->nmd, GET_PKT_DATA(p), GET_PKT_LEN(p)) == 0) {
+ #endif
++        if (ntv->flags & NETMAP_FLAG_EXCL_RING_ACCESS) {
++            SCMutexUnlock(&ntv->ifdst->netmap_dev_lock);
++        }
+         SCLogDebug("failed to send %s -> %s", ntv->ifsrc->ifname, ntv->ifdst->ifname);
+         ntv->drops++;
+         return TM_ECODE_FAILED;
 @@ -703,12 +723,21 @@ static void NetmapReleasePacket(Packet *p)
      PacketFreeOrRelease(p);
  }
