@@ -1,5 +1,9 @@
 PORTNAME=	update
+.if "${PRODUCT_ABI}" != 23.1
 PORTVERSION=	22.7.9
+.else
+PORTVERSION=	23.1.b
+.endif
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
