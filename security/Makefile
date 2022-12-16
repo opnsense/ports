@@ -103,6 +103,7 @@
     SUBDIR += create-cert
     SUBDIR += crlfuzz
     SUBDIR += crowdsec
+    SUBDIR += crowdsec-blocklist-mirror
     SUBDIR += crowdsec-firewall-bouncer
     SUBDIR += cryptlib
     SUBDIR += cryptopp
@@ -183,6 +184,7 @@
     SUBDIR += gopass
     SUBDIR += gorilla
     SUBDIR += gost-engine
+    SUBDIR += gostsum
     SUBDIR += gpa
     SUBDIR += gpg-gui
     SUBDIR += gpg-tui
