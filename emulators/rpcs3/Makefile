@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.25-14474 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g18b7955384
+DISTVERSION=	0.0.25-14478 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g812224f7f7
 CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -38,7 +38,7 @@ GH_TUPLE=	RPCS3:hidapi:hidapi-0.12.0-2-gc2aa9dd:hidapi/3rdparty/hidapi/hidapi \
 		kinetiknz:cubeb:cubeb-0.2-1391-gdc511c6:cubeb/3rdparty/cubeb/cubeb \
 		wolfSSL:wolfssl:v5.5.0-stable:wolfssl/3rdparty/wolfssl/wolfssl
 
-USES=		cmake compiler:c++17-lang elfctl gl iconv:wchar_t localbase:ldflags \
+USES=		cmake elfctl gl iconv:wchar_t localbase:ldflags \
 		openal:soft pkgconfig python:3.4+,build qt:5 xorg
 USE_GL=		gl glew
 USE_QT=		qmake:build buildtools:build core concurrent dbus gui multimedia svg widgets

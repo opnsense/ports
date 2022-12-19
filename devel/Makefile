@@ -577,6 +577,7 @@
     SUBDIR += eiffelstudio
     SUBDIR += electron18
     SUBDIR += electron19
+    SUBDIR += electron21
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -876,6 +877,7 @@
     SUBDIR += gpds
     SUBDIR += gperf
     SUBDIR += gpm
+    SUBDIR += gprbuild
     SUBDIR += gputils
     SUBDIR += gradle
     SUBDIR += gradle-completion
@@ -4165,6 +4167,7 @@
     SUBDIR += py-arpeggio
     SUBDIR += py-arrow
     SUBDIR += py-asciimatics
+    SUBDIR += py-asgi-lifespan
     SUBDIR += py-asn1crypto
     SUBDIR += py-aspy.yaml
     SUBDIR += py-asteval
@@ -4371,6 +4374,7 @@
     SUBDIR += py-click
     SUBDIR += py-click-completion
     SUBDIR += py-click-default-group
+    SUBDIR += py-click-default-group-wheel
     SUBDIR += py-click-log
     SUBDIR += py-click-plugins
     SUBDIR += py-click-threading
@@ -4649,6 +4653,7 @@
     SUBDIR += py-homebase
     SUBDIR += py-http-prompt
     SUBDIR += py-humanize
+    SUBDIR += py-hupper
     SUBDIR += py-hvac
     SUBDIR += py-hypothesis
     SUBDIR += py-hypothesmith
@@ -4692,6 +4697,7 @@
     SUBDIR += py-itemloaders
     SUBDIR += py-iteration-utilities
     SUBDIR += py-itypes
+    SUBDIR += py-janus
     SUBDIR += py-jaraco
     SUBDIR += py-jaraco.classes
     SUBDIR += py-jaraco.context

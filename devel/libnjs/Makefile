@@ -1,6 +1,6 @@
 PORTNAME=	libnjs
 DISTVERSION=	0.7.9
-CATEGORIES=	lang www
+CATEGORIES=	devel www
 
 MAINTAINER=	osa@FreeBSD.org
 COMMENT=	NGINX JavaScript static library
@@ -16,6 +16,8 @@ CPE_VENDOR=	f5
 USE_GITHUB=	yes
 GH_TUPLE=	nginx:njs:${DISTVERSION}
 HAS_CONFIGURE=	yes
+
+LIB_DEPENDS=	libpcre2-8.so:devel/pcre2
 
 PLIST_FILES=	include/njs_addr2line.h \
 		include/njs_arr.h \
