@@ -1,0 +1,125 @@
+  <vuln vid="59c284f4-8d2e-11ed-9ce0-b42e991fc52e">
+    <topic>net-mgmt/cacti is vulnerable to remote command injection</topic>
+    <affects>
+      <package>
+	<name>cacti</name>
+	<range><lt>1.2.23</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cacti team reports:</p>
+	<blockquote cite="https://github.com/Cacti/cacti/security/advisories/GHSA-6p93-p743-35gf">
+	<p>
+	    A command injection vulnerability allows an
+	    unauthenticated user to execute arbitrary code on a server
+	    running Cacti, if a specific data source was selected for
+	    any monitored device.
+	</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-46169</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-46169</url>
+    </references>
+    <dates>
+      <discovery>2022-12-05</discovery>
+      <entry>2023-01-05</entry>
+      <modified>2023-01-09</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="541696ed-8d12-11ed-af80-ecf4bbc0bda0">
+    <topic>devel/viewvc-devel is vulnerable to cross-site scripting</topic>
+    <affects>
+      <package>
+	<name>py37-viewvc-devel</name>
+	<name>py38-viewvc-devel</name>
+	<name>py39-viewvc-devel</name>
+	<range><lt>1.3.0-20230104</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>C. Michael Pilato reports:</p>
+	<blockquote cite="https://github.com/viewvc/viewvc/releases/tag/1.1.30">
+	  <p>security fix: escape revision view copy paths (#311) [CVE-2023-22464]</p>
+	</blockquote>
+	<blockquote cite="https://github.com/viewvc/viewvc/releases/tag/1.1.29">
+	  <p>security fix: escape revision view changed paths (#311) [CVE-2023-22456]</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-22464</cvename>
+      <cvename>CVE-2023-22456</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-22464</url>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-22456</url>
+    </references>
+    <dates>
+      <discovery>2023-01-04</discovery>
+      <entry>2023-01-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5b2eac07-8b4d-11ed-8b23-a0f3c100ae18">
+    <topic>rxvt-unicode is vulnerable to a remote code execution</topic>
+    <affects>
+      <package>
+	<name>rxvt-unicode</name>
+	<range><lt>9.31</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Marc Lehmann reports:</p>
+	<blockquote cite="http://lists.schmorp.de/pipermail/rxvt-unicode/2023q1/002638.html">
+	  <p>The biggest issue is resolving CVE-2022-4170, which allows command
+	     execution inside urxvt from within the terminal (that means anything that
+	     can output text in the terminal can start commands in the context of the
+	     urxvt process, even remotely).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4170</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-4170</url>
+    </references>
+    <dates>
+      <discovery>2022-12-05</discovery>
+      <entry>2023-01-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="86c330fe-bbae-4ca7-85f7-5321e627a4eb">
+    <topic>gitea -- multiple issues</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.18.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Gitea team reports:</p>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/22219">
+	  <p>Remove ReverseProxy authentication from the API</p>
+	</blockquote>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/21139">
+	  <p>Support Go Vulnerability Management</p>
+	</blockquote>
+	<blockquote cite="https://github.com/go-gitea/gitea/pull/20935">
+	  <p>Forbid HTML string tooltips</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://blog.gitea.io/2022/12/gitea-1.18.0-is-released/</url>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.18.0</url>
+    </references>
+    <dates>
+      <discovery>2022-08-23</discovery>
+      <entry>2023-01-02</entry>
+    </dates>
+  </vuln>
