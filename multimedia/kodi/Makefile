@@ -1,6 +1,5 @@
 PORTNAME=	kodi
-DISTVERSION=	19.4
-PORTREVISION=	6
+DISTVERSION=	19.5
 CATEGORIES=	multimedia java
 
 MAINTAINER=	yzrh@noema.org
@@ -40,8 +39,9 @@ LIB_DEPENDS=	libass.so:multimedia/libass \
 		libtinyxml.so:textproc/tinyxml \
 		libuuid.so:misc/e2fsprogs-libuuid
 
-USES=		autoreconf:build cpe cmake:noninja compiler:c++17-lang gettext \
-		gmake gnome iconv jpeg libtool pkgconfig python:3.7+ sqlite ssl
+USES=		autoreconf:build cmake:noninja compiler:c++17-lang cpe \
+		desktop-file-utils gettext gmake gnome iconv jpeg libtool \
+		pkgconfig python:3.7+ sqlite ssl
 
 KODI_CODENAME=	Matrix
 LIBDVDCSS_VERSION=	1.4.2-Leia-Beta-5
@@ -219,6 +219,7 @@ GBM_LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim \
 			libxkbcommon.so:x11/libxkbcommon \
 			libinput.so:x11/libinput
 
+WAYLAND_CATEGORIES=	wayland
 WAYLAND_USES=		gl
 WAYLAND_USE=		GL=egl,glu
 WAYLAND_BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \

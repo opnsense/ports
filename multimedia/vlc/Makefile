@@ -117,6 +117,7 @@ ASS_LIB_DEPENDS=	libass.so:multimedia/libass
 ASS_CONFIGURE_ENABLE=	libass
 
 ALTIVEC_CONFIGURE_ENABLE=	altivec
+ALTIVEC_CFLAGS=		-maltivec
 
 AOM_LIB_DEPENDS=	libaom.so:multimedia/aom
 AOM_CONFIGURE_ENABLE=	aom
@@ -343,6 +344,7 @@ VPX_CONFIGURE_ENABLE=	vpx
 VORBIS_LIB_DEPENDS=	libvorbis.so:audio/libvorbis
 VORBIS_CONFIGURE_ENABLE=vorbis
 
+WAYLAND_CATEGORIES=	wayland
 WAYLAND_BUILD_DEPENDS=	wayland-protocols>=0:graphics/wayland-protocols
 WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland
 WAYLAND_CONFIGURE_ENABLE=	wayland
@@ -369,9 +371,6 @@ WITH_CDROM_DEVICE?=/dev/cd0
 WITH_DVD_DEVICE?=/dev/cd0
 
 .include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MX11}
-.endif
 
 .if ${PORT_OPTIONS:MDEBUG}
 WITH_DEBUG=yes

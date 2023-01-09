@@ -1,7 +1,6 @@
     COMMENT = Peer-to-peer network applications
 
     SUBDIR += amule
-    SUBDIR += amule-devel
     SUBDIR += arbitrum-avm
     SUBDIR += autoscan
     SUBDIR += awgg
@@ -92,6 +91,7 @@
     SUBDIR += rtorrent
     SUBDIR += shx
     SUBDIR += sonarr
+    SUBDIR += tootle
     SUBDIR += torrent-file-editor
     SUBDIR += torrentcheck
     SUBDIR += torrentsniff

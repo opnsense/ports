@@ -60,8 +60,6 @@
     SUBDIR += erlfdb
     SUBDIR += evolution-data-server
     SUBDIR += fastdb
-    SUBDIR += firebird25-client
-    SUBDIR += firebird25-server
     SUBDIR += firebird30-client
     SUBDIR += firebird30-server
     SUBDIR += firebird40-client
@@ -78,6 +76,7 @@
     SUBDIR += fpc-postgres
     SUBDIR += fpc-pxlib
     SUBDIR += fpc-sqlite
+    SUBDIR += frece
     SUBDIR += freetds
     SUBDIR += freetds-devel
     SUBDIR += frontbase-jdbc
@@ -91,6 +90,7 @@
     SUBDIR += gnatsweb4
     SUBDIR += go-carbon
     SUBDIR += go-pgweb
+    SUBDIR += gobang
     SUBDIR += gom
     SUBDIR += gqlplus
     SUBDIR += grass7
@@ -193,6 +193,7 @@
     SUBDIR += mongodb44
     SUBDIR += mongodb50
     SUBDIR += mongodb60
+    SUBDIR += movine
     SUBDIR += mroonga
     SUBDIR += mtop
     SUBDIR += mydumper
@@ -582,7 +583,6 @@
     SUBDIR += pglogical
     SUBDIR += pgmetrics
     SUBDIR += pgmodeler
-    SUBDIR += pgpool-II-37
     SUBDIR += pgpool-II-40
     SUBDIR += pgpool-II-41
     SUBDIR += pgpool-II-42
@@ -597,18 +597,6 @@
     SUBDIR += pguri
     SUBDIR += php-tarantool
     SUBDIR += php-xapian
-    SUBDIR += php74-dba
-    SUBDIR += php74-mysqli
-    SUBDIR += php74-odbc
-    SUBDIR += php74-pdo
-    SUBDIR += php74-pdo_dblib
-    SUBDIR += php74-pdo_firebird
-    SUBDIR += php74-pdo_mysql
-    SUBDIR += php74-pdo_odbc
-    SUBDIR += php74-pdo_pgsql
-    SUBDIR += php74-pdo_sqlite
-    SUBDIR += php74-pgsql
-    SUBDIR += php74-sqlite3
     SUBDIR += php80-dba
     SUBDIR += php80-mysqli
     SUBDIR += php80-odbc
@@ -857,6 +845,7 @@
     SUBDIR += py-zodbpickle
     SUBDIR += qdbm
     SUBDIR += qdbm-plus
+    SUBDIR += qdrant
     SUBDIR += qof
     SUBDIR += qt5-sql
     SUBDIR += qt5-sqldrivers-ibase
@@ -866,6 +855,7 @@
     SUBDIR += qt5-sqldrivers-sqlite2
     SUBDIR += qt5-sqldrivers-sqlite3
     SUBDIR += qt5-sqldrivers-tds
+    SUBDIR += quake
     SUBDIR += recutils
     SUBDIR += redis
     SUBDIR += redis-devel
@@ -874,6 +864,7 @@
     SUBDIR += redis_exporter
     SUBDIR += redisdesktopmanager
     SUBDIR += redisjson
+    SUBDIR += replibyte
     SUBDIR += retcl
     SUBDIR += rocksdb
     SUBDIR += rocksdb-lite

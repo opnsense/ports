@@ -1,5 +1,5 @@
 PORTNAME=	hyprpicker
-PORTVERSION=	s20221217
+PORTVERSION=	s20230109
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -18,10 +18,16 @@ USE_GCC=	yes:build # C++23
 USE_GNOME=	cairo
 USE_GITHUB=	yes
 GH_ACCOUNT=	hyprwm
-GH_TAGNAME=	aa3c2ac
+GH_TAGNAME=	fe4535a
 LDFLAGS+=	-static-libstdc++ -static-libgcc # avoid libc++ conflict
 PLIST_FILES=	bin/${PORTNAME} \
 		share/man/man1/${PORTNAME}.1.gz
+
+OPTIONS_DEFINE=	CLIPBOARD
+OPTIONS_DEFAULT=CLIPBOARD
+
+CLIPBOARD_DESC=		Copy to clipboard support
+CLIPBOARD_RUN_DEPENDS=	wl-copy:x11/wl-clipboard
 
 post-patch:
 # Extract (snapshot) version from the port instead of Git

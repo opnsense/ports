@@ -49,6 +49,7 @@
     SUBDIR += gtksourceview5
     SUBDIR += gtksourceviewmm3
     SUBDIR += guile-gnome-platform
+    SUBDIR += imgui
     SUBDIR += irrlicht
     SUBDIR += itk
     SUBDIR += iwidgets
@@ -63,6 +64,7 @@
     SUBDIR += kf5-ktextwidgets
     SUBDIR += kf5-kwidgetsaddons
     SUBDIR += kf5-kxmlgui
+    SUBDIR += kirigami-addons
     SUBDIR += kproperty
     SUBDIR += lesstif
     SUBDIR += libXaw
@@ -228,10 +230,6 @@
     SUBDIR += wlroots
     SUBDIR += wlroots015
     SUBDIR += wmapp
-    SUBDIR += wxgtk28
-    SUBDIR += wxgtk28-common
-    SUBDIR += wxgtk28-contrib
-    SUBDIR += wxgtk28-contrib-common
     SUBDIR += wxgtk30
     SUBDIR += wxgtk32
     SUBDIR += xbae

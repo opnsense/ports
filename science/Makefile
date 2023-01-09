@@ -38,6 +38,8 @@
     SUBDIR += bddsolve
     SUBDIR += berkeleygw
     SUBDIR += bodr
+    SUBDIR += bout++
+    SUBDIR += bout++-merging-filaments
     SUBDIR += buddy
     SUBDIR += cantera
     SUBDIR += cardioid
@@ -106,6 +108,7 @@
     SUBDIR += gbtolib
     SUBDIR += gchemutils
     SUBDIR += gdma
+    SUBDIR += geant4
     SUBDIR += gemmi
     SUBDIR += getdp
     SUBDIR += ghemical
@@ -256,6 +259,7 @@
     SUBDIR += p5-Geo-Calc
     SUBDIR += p5-Geo-Coordinates-Converter
     SUBDIR += p5-Geo-Coordinates-Converter-iArea
+    SUBDIR += p5-Geo-Coordinates-Transform
     SUBDIR += p5-Geo-WebService-Elevation-USGS
     SUBDIR += p5-Mcstas-Tools
     SUBDIR += p5-PerlMol
@@ -289,6 +293,7 @@
     SUBDIR += py-abipy
     SUBDIR += py-access
     SUBDIR += py-arbor
+    SUBDIR += py-arch
     SUBDIR += py-asap3
     SUBDIR += py-asdf
     SUBDIR += py-asdf-standard
@@ -296,6 +301,8 @@
     SUBDIR += py-ase
     SUBDIR += py-atomium
     SUBDIR += py-avogadrolibs
+    SUBDIR += py-boutdata
+    SUBDIR += py-boututils
     SUBDIR += py-cdo
     SUBDIR += py-chainer
     SUBDIR += py-chainer-chemistry
@@ -338,6 +345,7 @@
     SUBDIR += py-hiphive
     SUBDIR += py-hoomd-blue
     SUBDIR += py-inequality
+    SUBDIR += py-ipygany
     SUBDIR += py-jupyter_jsmol
     SUBDIR += py-kim-query
     SUBDIR += py-kimpy
@@ -425,6 +433,7 @@
     SUBDIR += py-trainstation
     SUBDIR += py-tweedledum
     SUBDIR += py-veusz
+    SUBDIR += py-xbout
     SUBDIR += pybrain
     SUBDIR += pynn
     SUBDIR += q

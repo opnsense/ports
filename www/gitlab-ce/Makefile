@@ -1,6 +1,6 @@
 PORTNAME=	gitlab-ce
 PORTVERSION=	15.5.6
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	www devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -26,8 +26,8 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	yarn>=1.10.0:www/yarn \
 	gtar>0:archivers/gtar \
 	bash>0:shells/bash \
-	rubygem-rails61>=6.1.6.1<6.1.7:www/rubygem-rails61 \
-	rubygem-bootsnap112>=1.12.0<1.13:devel/rubygem-bootsnap112 \
+	rubygem-rails61>=6.1.6.1<6.1.8:www/rubygem-rails61 \
+	rubygem-bootsnap>=1.13.0<1.15:devel/rubygem-bootsnap \
 	rubygem-openssl221>=2.2.1<2.2.2:security/rubygem-openssl221 \
 	rubygem-ipaddr122>=1.2.2<1.2.3:net/rubygem-ipaddr122 \
 	rubygem-responders-rails61>=3.0<4.0:www/rubygem-responders-rails61 \
@@ -136,7 +136,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-icalendar>=0:devel/rubygem-icalendar \
 	rubygem-diffy>=3.4<4:textproc/rubygem-diffy \
 	rubygem-diff_match_patch>=0.1.0<0.2.0:textproc/rubygem-diff_match_patch \
-	rubygem-rack>=2.2.4<2.3,3:www/rubygem-rack \
+	rubygem-rack22>=2.2.4<2.3,3:www/rubygem-rack22 \
 	rubygem-rack-timeout>=0.6.3<0.7:www/rubygem-rack-timeout \
 	rubygem-puma>=5.6.5<5.7:www/rubygem-puma \
 	rubygem-puma_worker_killer>=0.3.1:www/rubygem-puma_worker_killer \
@@ -198,7 +198,7 @@ MY_DEPENDS=	git>=2.32.0:devel/git \
 	rubygem-thrift>=0.16.0:devel/rubygem-thrift \
 	rubygem-ruby_parser>=3.15<4.0:devel/rubygem-ruby_parser \
 	rubygem-rails-i18n-rails61>=7.0<8:devel/rubygem-rails-i18n-rails61 \
-	rubygem-gettext_i18n_rails>=1.8.0<1.9.0:devel/rubygem-gettext_i18n_rails \
+	rubygem-gettext_i18n_rails18>=1.8.0<1.9.0:devel/rubygem-gettext_i18n_rails18 \
 	rubygem-gettext_i18n_rails_js-rails61>=1.3<2.0:devel/rubygem-gettext_i18n_rails_js-rails61 \
 	rubygem-gettext>=3.3<4:devel/rubygem-gettext \
 	rubygem-batch-loader>=2.0.1<2.1:devel/rubygem-batch-loader \

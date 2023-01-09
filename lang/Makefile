@@ -82,6 +82,7 @@
     SUBDIR += fpc-source
     SUBDIR += fpc-units
     SUBDIR += fpc-utils
+    SUBDIR += frawk
     SUBDIR += fsharp
     SUBDIR += fth
     SUBDIR += gambit-c
@@ -259,8 +260,6 @@
     SUBDIR += pfe
     SUBDIR += pharo
     SUBDIR += php-mode.el
-    SUBDIR += php74
-    SUBDIR += php74-extensions
     SUBDIR += php80
     SUBDIR += php80-extensions
     SUBDIR += php81
@@ -271,7 +270,7 @@
     SUBDIR += plexil
     SUBDIR += pocl
     SUBDIR += polyml
-    SUBDIR += ponyc
+    SUBDIR += pomsky
     SUBDIR += ptoc
     SUBDIR += purescript
     SUBDIR += py-hy

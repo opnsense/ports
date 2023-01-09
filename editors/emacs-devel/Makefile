@@ -1,5 +1,6 @@
 PORTNAME=	emacs
-DISTVERSION=	30.0.50.20221216
+DISTVERSION=	30.0.50.20230101
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	editors
 PKGNAMESUFFIX=	-devel
@@ -24,7 +25,7 @@ USES=		autoreconf:build cpe gmake localbase:ldflags ncurses pkgconfig
 CPE_VENDOR=	gnu
 USE_GITHUB=	yes
 GH_ACCOUNT=	emacs-mirror
-GH_TAGNAME=	4331771
+GH_TAGNAME=	4e4a808
 
 GNU_CONFIGURE=		yes
 CONFIGURE_ARGS=		--disable-build-details \
@@ -173,7 +174,7 @@ MAILUTILS_CONFIGURE_WITH=	mailutils
 MAILUTILS_CONFIGURE_ENV_OFF=	ac_cv_lib_lockfile_maillock=no \
 				ac_cv_prog_liblockfile=no
 MODULES_CONFIGURE_WITH=		modules
-NATIVECOMP_USE=			GCC=11+
+NATIVECOMP_USE=			GCC=yes
 NATIVECOMP_CONFIGURE_WITH=	native-compilation
 NATIVECOMP_MAKE_ARGS=		NATIVE_FULL_AOT=1
 OSS_CONFIGURE_ON=		--with-sound=oss
@@ -181,6 +182,7 @@ OTF_LIB_DEPENDS=		libotf.so:print/libotf
 OTF_CONFIGURE_WITH=		libotf
 PGTK_IMPLIES=			CAIRO GTK3
 PGTK_PREVENTS=			M17N XFT XPM
+PGTK_CATEGORIES=		wayland
 PGTK_CONFIGURE_WITH=		pgtk
 PNG_LIB_DEPENDS=		libpng.so:graphics/png
 PNG_CONFIGURE_WITH=		png

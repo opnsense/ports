@@ -1,6 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20221216
-PORTREVISION=	1
+PORTVERSION=	s20230106
 CATEGORIES=	emulators wayland
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
@@ -26,7 +25,10 @@ LICENSE_FILE_MIT=	${WRKSRC}/externals/sirit/externals/SPIRV-Headers/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	requires int128 and dynarmic backend
-BROKEN_FreeBSD_12=	htonl() in <x86/endian.h> fails -Werror=conversion
+# XXX Drop after FreeBSD 12.3 EOL around 2023-03-01
+.if !exists(/usr/include/c++/v1/concepts)
+BROKEN_FreeBSD_12=	base libc++ is too old
+.endif
 
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
 		nlohmann-json>0:devel/nlohmann-json \
@@ -51,11 +53,11 @@ qt6_OPTIONS_EXCLUDE=	QT5
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	bbb202cee
+GH_TAGNAME=	c0f17e1b2
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
-		yuzu-emu:sirit:d7ad93a:sirit/externals/sirit \
+		yuzu-emu:sirit:ab75463:sirit/externals/sirit \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-201-gc214f6f:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
-		MerryMage:dynarmic:6.4.0:dynarmic/externals/dynarmic \
+		MerryMage:dynarmic:6.4.3:dynarmic/externals/dynarmic \
 		arun11299:cpp-jwt:v1.4-14-ge12ef06:cpp_jwt/externals/cpp-jwt \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		benhoyt:inih:r52:inih/externals/inih/inih \
@@ -66,7 +68,7 @@ USES=		cmake:testing elfctl localbase:ldflags pkgconfig sdl ssl
 USE_SDL=	sdl2
 CMAKE_ON=	Boost_USE_STATIC_LIBS
 CMAKE_ON+=	BUNDLE_SPEEX # only used by cubeb tests
-CMAKE_OFF=	YUZU_CHECK_SUBMODULES YUZU_USE_EXTERNAL_SDL2
+CMAKE_OFF=	YUZU_CHECK_SUBMODULES YUZU_USE_EXTERNAL_SDL2 YUZU_USE_EXTERNAL_VULKAN_HEADERS
 CMAKE_OFF+=	${CMAKE_TESTING_ON}
 CMAKE_TESTING_ON=	YUZU_TESTS
 CXXFLAGS+=	-D_LIBCPP_HAS_NO_INCOMPLETE_RANGES # common/polyfill_ranges.h

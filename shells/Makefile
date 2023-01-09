@@ -26,12 +26,12 @@
     SUBDIR += klish
     SUBDIR += ksh
     SUBDIR += ksh-devel
-    SUBDIR += ksh2020
     SUBDIR += ksh93
     SUBDIR += mksh
     SUBDIR += modernish
     SUBDIR += nologinmsg
     SUBDIR += nsh
+    SUBDIR += nushell
     SUBDIR += ohmyzsh
     SUBDIR += oksh
     SUBDIR += p5-Bash-Completion
@@ -46,6 +46,8 @@
     SUBDIR += rush
     SUBDIR += sash
     SUBDIR += scponly
+    SUBDIR += shell-hist
+    SUBDIR += shellharden
     SUBDIR += starship
     SUBDIR += switchBashZsh
     SUBDIR += tcsh_nls

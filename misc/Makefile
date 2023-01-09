@@ -8,8 +8,10 @@
     SUBDIR += amanda-client
     SUBDIR += amanda-perl-wrapper
     SUBDIR += amanda-server
+    SUBDIR += amazon-qldb-shell
     SUBDIR += ansiweather
     SUBDIR += apparix
+    SUBDIR += arrow-datafusion
     SUBDIR += artikulate
     SUBDIR += asbutton
     SUBDIR += asr-manpages
@@ -23,6 +25,7 @@
     SUBDIR += bibletime
     SUBDIR += biblical-curse
     SUBDIR += binclock
+    SUBDIR += binocle
     SUBDIR += biosfont-demos
     SUBDIR += birthday
     SUBDIR += bogosort
@@ -44,6 +47,7 @@
     SUBDIR += cloc
     SUBDIR += clpbar
     SUBDIR += colortail
+    SUBDIR += coloursum
     SUBDIR += colwide
     SUBDIR += compat.el
     SUBDIR += compat10x
@@ -76,8 +80,10 @@
     SUBDIR += delay
     SUBDIR += diction
     SUBDIR += digitemp
+    SUBDIR += dijo
     SUBDIR += dive
     SUBDIR += dnetc
+    SUBDIR += dotenv-linter
     SUBDIR += dtach
     SUBDIR += dvorak7min
     SUBDIR += dynomite
@@ -93,6 +99,7 @@
     SUBDIR += explosions
     SUBDIR += ezc3d
     SUBDIR += far2l
+    SUBDIR += fastscapelib
     SUBDIR += felis
     SUBDIR += figlet
     SUBDIR += figlet-fonts
@@ -233,6 +240,7 @@
     SUBDIR += locale-en_DK
     SUBDIR += localedata
     SUBDIR += logsurfer
+    SUBDIR += lscolors
     SUBDIR += lv
     SUBDIR += lxde-common
     SUBDIR += lxi-tools
@@ -267,6 +275,7 @@
     SUBDIR += nut
     SUBDIR += ompl
     SUBDIR += ondir
+    SUBDIR += onnx
     SUBDIR += opencyc
     SUBDIR += openhab
     SUBDIR += openhab-addons
@@ -360,13 +369,13 @@
     SUBDIR += pecl-timezonedb
     SUBDIR += perkeep
     SUBDIR += pfm
-    SUBDIR += php74-calendar
     SUBDIR += php80-calendar
     SUBDIR += php81-calendar
     SUBDIR += php82-calendar
     SUBDIR += pinfo
     SUBDIR += pipe
     SUBDIR += posixtestsuite
+    SUBDIR += pqrs
     SUBDIR += proxyper
     SUBDIR += pspresent
     SUBDIR += ptsort
@@ -377,16 +386,20 @@
     SUBDIR += py-SoapySDR
     SUBDIR += py-alive-progress
     SUBDIR += py-apache-beam
+    SUBDIR += py-ascii-magic
     SUBDIR += py-boost-histogram
+    SUBDIR += py-censys
     SUBDIR += py-cinder
     SUBDIR += py-colorbrewer
     SUBDIR += py-colored
     SUBDIR += py-crudini
+    SUBDIR += py-detecta
     SUBDIR += py-dictdiffer
     SUBDIR += py-eemeter
     SUBDIR += py-emoji
     SUBDIR += py-ezc3d
     SUBDIR += py-fast-histogram
+    SUBDIR += py-fastscapelib
     SUBDIR += py-fleep
     SUBDIR += py-fuzzy
     SUBDIR += py-gluoncv
@@ -394,11 +407,13 @@
     SUBDIR += py-halo
     SUBDIR += py-histoprint
     SUBDIR += py-huepy
+    SUBDIR += py-ipyfastscape
     SUBDIR += py-kartograph
     SUBDIR += py-log_symbols
     SUBDIR += py-mffpy
     SUBDIR += py-molequeue
     SUBDIR += py-mxnet
+    SUBDIR += py-numcodecs
     SUBDIR += py-onnx
     SUBDIR += py-onnx-tf
     SUBDIR += py-openpaperwork-core
@@ -410,6 +425,7 @@
     SUBDIR += py-orange3-network
     SUBDIR += py-orange3-timeseries
     SUBDIR += py-palettable
+    SUBDIR += py-papermill
     SUBDIR += py-pexpect
     SUBDIR += py-powerline-status
     SUBDIR += py-progressbar
@@ -425,6 +441,7 @@
     SUBDIR += py-qiskit-machine-learning
     SUBDIR += py-scikit-fusion
     SUBDIR += py-serverfiles
+    SUBDIR += py-shap2
     SUBDIR += py-soapy_power
     SUBDIR += py-spdx
     SUBDIR += py-spdx-lookup
@@ -441,6 +458,7 @@
     SUBDIR += py-wurlitzer
     SUBDIR += py-xgboost
     SUBDIR += pyobd
+    SUBDIR += pytorch
     SUBDIR += qbrew
     SUBDIR += qlas
     SUBDIR += qt5-doc
@@ -457,6 +475,7 @@
     SUBDIR += ringtonetools
     SUBDIR += rname
     SUBDIR += rpl
+    SUBDIR += rsclock
     SUBDIR += rtfm
     SUBDIR += rubygem-dotenv
     SUBDIR += rubygem-dotenv-rails-rails4
@@ -483,6 +502,7 @@
     SUBDIR += shc
     SUBDIR += shuffle
     SUBDIR += shuffle-db
+    SUBDIR += silicon
     SUBDIR += since
     SUBDIR += skyutils
     SUBDIR += slides
@@ -494,6 +514,7 @@
     SUBDIR += solarized
     SUBDIR += sshbuddy
     SUBDIR += sssnips
+    SUBDIR += star-history
     SUBDIR += susv2
     SUBDIR += susv3
     SUBDIR += susv4
@@ -575,6 +596,7 @@
     SUBDIR += xtail
     SUBDIR += xtar
     SUBDIR += ytree
+    SUBDIR += zine
     SUBDIR += zoneinfo
 
 .include <bsd.port.subdir.mk>

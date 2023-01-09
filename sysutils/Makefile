@@ -45,7 +45,6 @@
     SUBDIR += ansible-kld
     SUBDIR += ansible-sshjail
     SUBDIR += ansible-sysrc
-    SUBDIR += ansible4
     SUBDIR += anvil
     SUBDIR += apache-mesos
     SUBDIR += apachetop
@@ -63,6 +62,7 @@
     SUBDIR += asmctl
     SUBDIR += asmem
     SUBDIR += asusoled
+    SUBDIR += async
     SUBDIR += atf-fvp
     SUBDIR += atf-master
     SUBDIR += atf-rk3328
@@ -120,7 +120,6 @@
     SUBDIR += bchunk
     SUBDIR += beadm
     SUBDIR += beadm-devel
-    SUBDIR += beats6
     SUBDIR += beats7
     SUBDIR += beats8
     SUBDIR += bfs
@@ -260,6 +259,7 @@
     SUBDIR += dc3dd
     SUBDIR += dcfldd
     SUBDIR += dd_rescue
+    SUBDIR += ddh
     SUBDIR += ddpt
     SUBDIR += ddrescue
     SUBDIR += debhelper
@@ -364,6 +364,7 @@
     SUBDIR += f3
     SUBDIR += facter
     SUBDIR += fakertc
+    SUBDIR += faketty
     SUBDIR += fand
     SUBDIR += fanout
     SUBDIR += fatback
@@ -471,6 +472,7 @@
     SUBDIR += gdisk
     SUBDIR += gdmap
     SUBDIR += gdu
+    SUBDIR += genimage
     SUBDIR += genisoimage
     SUBDIR += geomWatch
     SUBDIR += getdelta
@@ -672,7 +674,6 @@
     SUBDIR += logrotate
     SUBDIR += logstalgia
     SUBDIR += logstash-forwarder
-    SUBDIR += logstash6
     SUBDIR += logstash7
     SUBDIR += logstash8
     SUBDIR += logtool
@@ -690,6 +691,7 @@
     SUBDIR += ltrace
     SUBDIR += lttng-tools
     SUBDIR += lttng-ust
+    SUBDIR += lua-puremagic
     SUBDIR += luckybackup
     SUBDIR += lxinput
     SUBDIR += lxqt-admin
@@ -829,6 +831,7 @@
     SUBDIR += ntpstat
     SUBDIR += nut
     SUBDIR += nut-devel
+    SUBDIR += nut_exporter
     SUBDIR += nvclock
     SUBDIR += nvimpager
     SUBDIR += nvme-cli
@@ -989,8 +992,6 @@
     SUBDIR += pfstat
     SUBDIR += pftables
     SUBDIR += pftop
-    SUBDIR += php74-fileinfo
-    SUBDIR += php74-posix
     SUBDIR += php80-fileinfo
     SUBDIR += php80-posix
     SUBDIR += php81-fileinfo
@@ -1026,6 +1027,7 @@
     SUBDIR += polkit-qt
     SUBDIR += pot
     SUBDIR += potnet
+    SUBDIR += poweralertd
     SUBDIR += powerdxx
     SUBDIR += powerman
     SUBDIR += powermon
@@ -1033,6 +1035,7 @@
     SUBDIR += pprotectd
     SUBDIR += prips
     SUBDIR += procenv
+    SUBDIR += process-viewer
     SUBDIR += procmap
     SUBDIR += progsreiserfs
     SUBDIR += pslist
@@ -1055,7 +1058,6 @@
     SUBDIR += pxp-agent
     SUBDIR += py-ansible-compat
     SUBDIR += py-ansible-core
-    SUBDIR += py-ansible-core211
     SUBDIR += py-ansible-lint
     SUBDIR += py-ansible-runner
     SUBDIR += py-azure-cli
@@ -1282,6 +1284,7 @@
     SUBDIR += rubygem-yell
     SUBDIR += rundeck2
     SUBDIR += rundeck3
+    SUBDIR += runiq
     SUBDIR += runit
     SUBDIR += runit-faster
     SUBDIR += runj
@@ -1385,6 +1388,7 @@
     SUBDIR += syslogger
     SUBDIR += sysrc
     SUBDIR += sysvbanner
+    SUBDIR += szyszka
     SUBDIR += tai64nfrac
     SUBDIR += tarsnap
     SUBDIR += tarsnap-gui
@@ -1396,6 +1400,7 @@
     SUBDIR += tdir
     SUBDIR += tealdeer
     SUBDIR += tenshi
+    SUBDIR += tere
     SUBDIR += terraform
     SUBDIR += terraform-docs
     SUBDIR += terraform-provider-gridscale

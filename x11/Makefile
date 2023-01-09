@@ -39,6 +39,8 @@
     SUBDIR += cinnamon-session
     SUBDIR += cl-clx
     SUBDIR += cl-clx-sbcl
+    SUBDIR += clipcat
+    SUBDIR += cliphist
     SUBDIR += clipman
     SUBDIR += compton-conf
     SUBDIR += conlecterm
@@ -95,6 +97,7 @@
     SUBDIR += gnustep-app
     SUBDIR += grabc
     SUBDIR += grim
+    SUBDIR += grimshot
     SUBDIR += gromit
     SUBDIR += gromit-mpx
     SUBDIR += gskrab
@@ -318,6 +321,7 @@
     SUBDIR += remontoire
     SUBDIR += rendercheck
     SUBDIR += rgb
+    SUBDIR += rlaunch
     SUBDIR += rofi
     SUBDIR += rofi-calc
     SUBDIR += rofi-emoji
@@ -471,6 +475,7 @@
     SUBDIR += xconsole
     SUBDIR += xcursorgen
     SUBDIR += xcut
+    SUBDIR += xdg-desktop-portal-gtk
     SUBDIR += xdg-desktop-portal-hyprland
     SUBDIR += xdg-desktop-portal-wlr
     SUBDIR += xdialog

@@ -79,6 +79,7 @@
     SUBDIR += kibi
     SUBDIR += kile
     SUBDIR += komodo-edit
+    SUBDIR += languageclient-neovim
     SUBDIR += lapce
     SUBDIR += lazarus
     SUBDIR += lazarus-devel
@@ -199,7 +200,6 @@
     SUBDIR += linux-wps-office
     SUBDIR += lite
     SUBDIR += lite-xl
-    SUBDIR += madedit
     SUBDIR += marker
     SUBDIR += mg
     SUBDIR += micro
@@ -220,6 +220,7 @@
     SUBDIR += o
     SUBDIR += openoffice-4
     SUBDIR += openoffice-devel
+    SUBDIR += ox
     SUBDIR += p5-Proc-InvokeEditor
     SUBDIR += p5-Vimana
     SUBDIR += paredit-mode.el
@@ -239,6 +240,7 @@
     SUBDIR += py-vim-bridge
     SUBDIR += quilter
     SUBDIR += rehex
+    SUBDIR += retext
     SUBDIR += rubygem-neovim
     SUBDIR += scite
     SUBDIR += se

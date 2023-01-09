@@ -24,6 +24,7 @@
     SUBDIR += R-cran-gridExtra
     SUBDIR += R-cran-jpeg
     SUBDIR += R-cran-latticeExtra
+    SUBDIR += R-cran-magick
     SUBDIR += R-cran-munsell
     SUBDIR += R-cran-pROC
     SUBDIR += R-cran-pixmap
@@ -73,6 +74,7 @@
     SUBDIR += azpainterb
     SUBDIR += barcode
     SUBDIR += batik
+    SUBDIR += bgfx
     SUBDIR += birdfont
     SUBDIR += bitmap
     SUBDIR += blend2d
@@ -108,7 +110,6 @@
     SUBDIR += colmap
     SUBDIR += colord
     SUBDIR += colord-gtk
-    SUBDIR += comical
     SUBDIR += compupic
     SUBDIR += converseen
     SUBDIR += corrupter
@@ -120,6 +121,7 @@
     SUBDIR += cuttlefish
     SUBDIR += cxxplot
     SUBDIR += darktable
+    SUBDIR += darktable42
     SUBDIR += dataplot
     SUBDIR += dbow2
     SUBDIR += dc20pack
@@ -599,7 +601,6 @@
     SUBDIR += opencollada
     SUBDIR += opencolorio
     SUBDIR += opencolorio-tools
-    SUBDIR += opencoloriov1
     SUBDIR += opencsg
     SUBDIR += opencv
     SUBDIR += opendx
@@ -610,7 +611,6 @@
     SUBDIR += opengv
     SUBDIR += openicc-config
     SUBDIR += openimageio
-    SUBDIR += openimageio-ociov1
     SUBDIR += openjpeg
     SUBDIR += openjpeg15
     SUBDIR += openjph
@@ -618,6 +618,7 @@
     SUBDIR += openmvs
     SUBDIR += opennurbs
     SUBDIR += openorienteering-mapper
+    SUBDIR += openpgl
     SUBDIR += openrm
     SUBDIR += openshadinglanguage
     SUBDIR += openslide
@@ -775,8 +776,6 @@
     SUBDIR += phototonic
     SUBDIR += php-facedetect
     SUBDIR += php-geos
-    SUBDIR += php74-exif
-    SUBDIR += php74-gd
     SUBDIR += php80-exif
     SUBDIR += php80-gd
     SUBDIR += php81-exif
@@ -1000,6 +999,8 @@
     SUBDIR += recoverjpeg
     SUBDIR += renrot
     SUBDIR += repng2jpeg
+    SUBDIR += resvg
+    SUBDIR += resvg-capi
     SUBDIR += rgbpaint
     SUBDIR += rigsofrods-caelum
     SUBDIR += rigsofrods-pagedgeometry
@@ -1126,6 +1127,7 @@
     SUBDIR += tweeny
     SUBDIR += ufraw
     SUBDIR += unpaper
+    SUBDIR += upscaler
     SUBDIR += urho3d
     SUBDIR += urt
     SUBDIR += vapoursynth-fmtconv

@@ -1,6 +1,6 @@
 PORTNAME=	hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.19.2beta
+DISTVERSION=	0.20.1beta
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -21,7 +21,7 @@ LIB_DEPENDS=	libwayland-server.so:graphics/wayland \
 USES=		compiler:c++11-lib gl gnome meson pkgconfig xorg
 USE_GCC=	yes:build
 USE_GITHUB=	yes
-USE_GL=		egl gl
+USE_GL=		egl opengl
 USE_GNOME=	cairo
 USE_XORG=	pixman
 GH_ACCOUNT=	hyprwm
@@ -41,6 +41,7 @@ post-patch:
 		-e "/GIT_COMMIT_HASH/s/run_command.*/'${DISTVERSIONFULL}'/" \
 		-e "/GIT_COMMIT_MESSAGE/s/run_command.*/'<unknown>'/" \
 		-e "/GIT_DIRTY/s/run_command.*/'portbld'/" \
+		-e "/version.*jq/s/run_command.*/'${DISTVERSIONFULL}',/" \
 		${WRKSRC}/meson.build
 # Respect PREFIX for wallpapers
 	@${REINPLACE_CMD} 's,/usr/share,${DATADIR:H},' \

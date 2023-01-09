@@ -79,6 +79,7 @@
     SUBDIR += bibtex2html
     SUBDIR += bibtool
     SUBDIR += bibutils
+    SUBDIR += biodiff
     SUBDIR += bn-aspell
     SUBDIR += br-aspell
     SUBDIR += bsddiff
@@ -106,6 +107,7 @@
     SUBDIR += codesearch
     SUBDIR += codespell
     SUBDIR += colordiff
+    SUBDIR += comrak
     SUBDIR += confetti
     SUBDIR += confget
     SUBDIR += consul-template
@@ -158,6 +160,7 @@
     SUBDIR += docbook2odf
     SUBDIR += docbookrx
     SUBDIR += docproj
+    SUBDIR += docproj-fonts-cjk
     SUBDIR += docproj-legacy
     SUBDIR += dom4j
     SUBDIR += domc
@@ -173,7 +176,6 @@
     SUBDIR += el-aspell
     SUBDIR += el-hyphen
     SUBDIR += elasticsearch-plugin-head
-    SUBDIR += elasticsearch6
     SUBDIR += elasticsearch7
     SUBDIR += elasticsearch8
     SUBDIR += en-aspell
@@ -201,6 +203,7 @@
     SUBDIR += fcitx5-configtool
     SUBDIR += fcitx5-gtk
     SUBDIR += fcitx5-lua
+    SUBDIR += fcitx5-m17n
     SUBDIR += fcitx5-qt
     SUBDIR += fcitx5-qt-common
     SUBDIR += fex
@@ -263,6 +266,7 @@
     SUBDIR += hi-aspell
     SUBDIR += highlight
     SUBDIR += hil-aspell
+    SUBDIR += hq
     SUBDIR += hr-aspell
     SUBDIR += hs-lhs2tex
     SUBDIR += hs-pandoc
@@ -318,6 +322,7 @@
     SUBDIR += itstool
     SUBDIR += jade
     SUBDIR += jalingo
+    SUBDIR += jaq
     SUBDIR += jarnal
     SUBDIR += jarowinkler-cpp
     SUBDIR += java2html
@@ -503,9 +508,9 @@
     SUBDIR += openfts
     SUBDIR += openjade
     SUBDIR += opensearch
-    SUBDIR += opensearch13
     SUBDIR += opensearch-dashboards
     SUBDIR += opensearch-dashboards13
+    SUBDIR += opensearch13
     SUBDIR += opensp
     SUBDIR += openvanilla-framework
     SUBDIR += or-aspell
@@ -1227,15 +1232,6 @@
     SUBDIR += peco
     SUBDIR += peg
     SUBDIR += perl2html
-    SUBDIR += php74-ctype
-    SUBDIR += php74-dom
-    SUBDIR += php74-enchant
-    SUBDIR += php74-pspell
-    SUBDIR += php74-simplexml
-    SUBDIR += php74-xml
-    SUBDIR += php74-xmlreader
-    SUBDIR += php74-xmlwriter
-    SUBDIR += php74-xsl
     SUBDIR += php80-ctype
     SUBDIR += php80-dom
     SUBDIR += php80-enchant
@@ -1296,6 +1292,7 @@
     SUBDIR += py-chameleon
     SUBDIR += py-chardet
     SUBDIR += py-charset-normalizer
+    SUBDIR += py-chevron
     SUBDIR += py-citeproc-py
     SUBDIR += py-citeproc-py-styles
     SUBDIR += py-cjkwrap
@@ -1412,6 +1409,7 @@
     SUBDIR += py-ocrmypdf
     SUBDIR += py-openpyxl
     SUBDIR += py-openstackdocstheme
+    SUBDIR += py-openstep-plist
     SUBDIR += py-orange3-text
     SUBDIR += py-os-api-ref
     SUBDIR += py-packageurl-python
@@ -1592,6 +1590,7 @@
     SUBDIR += py-xmldiff
     SUBDIR += py-xmlschema
     SUBDIR += py-yapf
+    SUBDIR += py-youseedee
     SUBDIR += py-zope.i18nmessageid
     SUBDIR += py-zope.structuredtext
     SUBDIR += py-zope.tal
@@ -1623,7 +1622,6 @@
     SUBDIR += replaceit
     SUBDIR += resume
     SUBDIR += resume-extensions
-    SUBDIR += retext
     SUBDIR += rfcdiff
     SUBDIR += ripgrep
     SUBDIR += ripgrep-all
@@ -1646,6 +1644,7 @@
     SUBDIR += rubygem-abbrev
     SUBDIR += rubygem-actionpack-xml_parser-rails5
     SUBDIR += rubygem-actionpack-xml_parser-rails52
+    SUBDIR += rubygem-actionpack-xml_parser-rails61
     SUBDIR += rubygem-actiontext60
     SUBDIR += rubygem-actiontext61
     SUBDIR += rubygem-actiontext70
@@ -1861,6 +1860,7 @@
     SUBDIR += rxp
     SUBDIR += s5
     SUBDIR += sablotron
+    SUBDIR += sad
     SUBDIR += sansi
     SUBDIR += sarep
     SUBDIR += sary

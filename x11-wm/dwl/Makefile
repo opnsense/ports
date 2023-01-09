@@ -1,6 +1,6 @@
 PORTNAME=	dwl
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.4-rc2
+DISTVERSION=	0.4
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -24,6 +24,7 @@ LIB_DEPENDS=	libwayland-server.so:graphics/wayland \
 USES=		compiler:c11 gmake pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	djpohly
+MAKE_ARGS=	VERSION="${DISTVERSIONFULL}"
 PLIST_FILES=	bin/${PORTNAME} \
 		share/man/man1/${PORTNAME}.1.gz \
 		share/wayland-sessions/${PORTNAME}.desktop

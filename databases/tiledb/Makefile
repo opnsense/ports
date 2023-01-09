@@ -1,5 +1,5 @@
 PORTNAME=	tiledb
-PORTVERSION=	2.11.3
+PORTVERSION=	2.12.2
 CATEGORIES=	databases
 
 MAINTAINER=	sunpoet@FreeBSD.org
