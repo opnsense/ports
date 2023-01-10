@@ -1,5 +1,6 @@
 PORTNAME=	mpfr
 DISTVERSION=	4.1.1
+PORTEPOCH=	1
 CATEGORIES=	math devel
 MASTER_SITES=	GNU \
 		https://www.mpfr.org/mpfr-${DISTVERSION}/
