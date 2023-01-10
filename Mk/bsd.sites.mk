@@ -91,12 +91,6 @@ MASTER_SITE_BERLIOS+= \
 	${MASTER_SITE_SOURCEFORGE}
 .endif
 
-.if !defined(IGNORE_MASTER_SITE_CHEESESHOP)
-MASTER_SITE_CHEESESHOP+= \
-	https://files.pythonhosted.org/packages/%SUBDIR%/ \
-	https://pypi.org/packages/%SUBDIR%/
-.endif
-
 .if !defined(IGNORE_MASTER_SITE_COMP_SOURCES)
 MASTER_SITE_COMP_SOURCES+= \
 	http://ftp.isc.org/pub/usenet/comp.sources.%SUBDIR%/ \
@@ -598,19 +592,14 @@ MASTER_SITE_GNU+= \
 	https://ftp.gnu.org/gnu/%SUBDIR%/
 .endif
 
+# List: https://gnupg.org/download/mirrors.html (contains stale information)
 .if !defined(IGNORE_MASTER_SITE_GNUPG)
 MASTER_SITE_GNUPG+= \
-	https://gnupg.org/ftp/gcrypt/%SUBDIR%/ \
-	https://ftp.heanet.ie/mirrors/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
-	ftp://ftp.franken.de/pub/crypt/mirror/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
-	ftp://mirror.switch.ch/mirror/gnupg/%SUBDIR%/ \
 	https://mirrors.dotsrc.org/gcrypt/%SUBDIR%/ \
-	ftp://ftp.freenet.de/pub/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
-	ftp://ftp.crysys.hu/pub/gnupg/%SUBDIR%/ \
+	https://ftp.heanet.ie/mirrors/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
 	https://www.mirrorservice.org/sites/ftp.gnupg.org/gcrypt/%SUBDIR%/ \
-	https://artfiles.org/gnupg.org/%SUBDIR%/ \
-	ftp://ftp.gnupg.org/gcrypt/%SUBDIR%/ \
-	http://mirror.tje.me.uk/pub/mirrors/ftp.gnupg.org/%SUBDIR%/
+	http://www.ring.gr.jp/pub/net/gnupg/%SUBDIR%/ \
+	https://gnupg.org/ftp/gcrypt/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GNUSTEP)
@@ -849,6 +838,12 @@ MASTER_SITE_PGSQL+= \
 MASTER_SITE_PHP+= \
 	https://www.php.net/distributions/ \
 	https://raw.githubusercontent.com/php/web-php-distributions/master/
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_PYPI)
+MASTER_SITE_PYPI+= \
+	https://files.pythonhosted.org/packages/%SUBDIR%/ \
+	https://pypi.org/packages/%SUBDIR%/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_PYTHON)
@@ -1098,12 +1093,12 @@ MASTER_SITES_ABBREVS=	CPAN:PERL_CPAN \
 			LODEV:LIBREOFFICE_DEV \
 			NL:NETLIB \
 			RG:RUBYGEMS \
-			SF:SOURCEFORGE
+			SF:SOURCEFORGE \
+			CHEESESHOP:PYPI
 MASTER_SITES_SUBDIRS=	APACHE_COMMONS_BINARIES:${PORTNAME:S,commons-,,} \
 			APACHE_COMMONS_SOURCE:${PORTNAME:S,commons-,,} \
 			APACHE_JAKARTA:${PORTNAME:S,-,/,}/source \
 			BERLIOS:${PORTNAME:tl}.berlios \
-			CHEESESHOP:source/${DISTNAME:C/(.).*/\1/}/${DISTNAME:S/-${DISTVERSIONFULL}$//} \
 			CRATESIO:${PORTNAME}/${DISTVERSIONFULL} \
 			DEBIAN:pool/main/${PORTNAME:C/^((lib)?.).*$/\1/}/${PORTNAME} \
 			FARSIGHT:${PORTNAME} \
@@ -1123,6 +1118,7 @@ MASTER_SITES_SUBDIRS=	APACHE_COMMONS_BINARIES:${PORTNAME:S,commons-,,} \
 			MOZDEV:${PORTNAME:tl} \
 			NETLIB:${PORTNAME} \
 			PERL_CPAN:${PORTNAME:C/-.*//} \
+			PYPI:source/${DISTNAME:C/(.).*/\1/}/${DISTNAME:S/-${DISTVERSIONFULL}$//} \
 			QT:archive/qt/${PORTVERSION:R} \
 			SAMBA:${PORTNAME} \
 			SAVANNAH:${PORTNAME:tl} \
