@@ -706,6 +706,7 @@
     SUBDIR += fstrm
     SUBDIR += ftjam
     SUBDIR += ftnchek
+    SUBDIR += ftxui
     SUBDIR += fuel
     SUBDIR += functionalplus
     SUBDIR += fungw
@@ -5762,6 +5763,7 @@
     SUBDIR += readline
     SUBDIR += rebar
     SUBDIR += rebar3
+    SUBDIR += recycle
     SUBDIR += redasm
     SUBDIR += redo
     SUBDIR += regexx
@@ -7241,6 +7243,7 @@
     SUBDIR += rust-analyzer
     SUBDIR += rust-bindgen
     SUBDIR += rust-cbindgen
+    SUBDIR += rustc-demangle
     SUBDIR += rvi
     SUBDIR += rvm
     SUBDIR += sabre
