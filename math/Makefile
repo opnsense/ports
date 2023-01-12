@@ -167,6 +167,7 @@
     SUBDIR += amgcl
     SUBDIR += analitza
     SUBDIR += ann
+    SUBDIR += annoy
     SUBDIR += antic
     SUBDIR += apache-commons-math
     SUBDIR += apc
@@ -866,6 +867,7 @@
     SUBDIR += py-amply
     SUBDIR += py-animatplot
     SUBDIR += py-animatplot-ng
+    SUBDIR += py-annoy
     SUBDIR += py-apgl
     SUBDIR += py-arviz
     SUBDIR += py-arybo
