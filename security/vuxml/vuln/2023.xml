@@ -1,3 +1,242 @@
+  <vuln vid="53caf29b-9180-11ed-acbe-b42e991fc52e">
+    <topic>cassandra3 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cassandra3</name>
+	<range><lt>3.11.14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Cassandra tema reports:</p>
+	<blockquote cite="https://gitbox.apache.org/repos/asf?p=cassandra.git;a=blob_plain;f=CHANGES.txt;hb=refs/tags/cassandra-3.11.14">
+	  <p>This release contains 6 security fixes including</p>
+	  <ul>
+	      <li>CVE-2022-24823: When Netty's multipart decoders are used local information disclosure can occur via the local system temporary directory</li>
+	      <li>CVE-2020-7238: Netty 4.1.43.Final allows HTTP Request Smuggling because it mishandles Transfer-Encoding whitespace (such as a [space]Transfer-Encoding:chunked line) and a later Content-Length header.</li>
+	      <li>CVE-2019-2684: Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Java SE</li>
+	      <li>CVE-2022-25857: The package org.yaml:snakeyaml from 0 and before 1.31 are vulnerable to Denial of Service (DoS) due missing to nested depth limitation for collections.</li>
+	      <li>CVE-2022-42003: In FasterXML jackson-databind, resource exhaustion can occur because of a lack of a check in primitive value deserializers to avoid deep wrapper array nesting, when the UNWRAP_SINGLE_VALUE_ARRAYS feature is enabled.</li>
+	      <li>CVE-2022-42004: In FasterXML jackson-databind, resource exhaustion can occur because of a lack of a check in BeanDeserializer._deserializeFromArray to prevent use of deeply nested arrays.</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-24823</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-24823</url>
+      <cvename>CVE-2020-7238</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2020-7238</url>
+      <cvename>CVE-2019-2684</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2019-2684</url>
+      <cvename>CVE-2022-25857</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-25857</url>
+      <cvename>CVE-2022-42003</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-42003</url>
+      <cvename>CVE-2022-42004</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2022-42004</url>
+    </references>
+    <dates>
+      <discovery>2023-01-11</discovery>
+      <entry>2023-01-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="60624f63-9180-11ed-acbe-b42e991fc52e">
+    <topic>cassandra3 -- arbitrary code execution</topic>
+    <affects>
+      <package>
+	<name>cassandra3</name>
+	<range><lt>3.11.13</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Marcus Eriksson reports:</p>
+	<blockquote cite="https://lists.apache.org/thread/y4nb9s4co34j8hdfmrshyl09lokm7356">
+	  <p>
+	  When running Apache Cassandra with
+	  the following configuration:
+	  enable_user_defined_functions: true
+	  enable_scripted_user_defined_functions: true
+	  enable_user_defined_functions_threads: false
+	  it is possible for an attacker to execute arbitrary code on
+	  the host. The attacker would need to have enough permissions
+	  to create user defined functions in the cluster to be able
+	  to exploit this.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44521</cvename>
+      <url>https://www.cvedetails.com/cve/CVE-2021-44521</url>
+    </references>
+    <dates>
+      <discovery>2022-02-11</discovery>
+      <entry>2023-01-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b3fd12ea-917a-11ed-acbe-b42e991fc52e">
+    <topic>cassandra3 -- jBCrypt integer overflow</topic>
+    <affects>
+      <package>
+	<name>cassandra3</name>
+	<range><lt>3.11.12</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>mindrot project reports:</p>
+	<blockquote cite="http://www.mindrot.org/projects/jBCrypt/news/rel04.html">
+	  <p>There is an integer overflow that
+	  occurs with very large log_rounds values, first reported by
+	  Marcus Rathsfeld.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2015-0886</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-0886</url>
+    </references>
+    <dates>
+      <discovery>2015-01-30</discovery>
+      <entry>2023-01-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9fa7b139-c1e9-409e-bed0-006aadcf5845">
+    <topic>xorg-server -- Multiple security issues in X server extensions</topic>
+    <affects>
+      <package>
+	<name>xorg-server</name>
+	<name>xephyr</name>
+	<name>xorg-vfbserver</name>
+	<range><lt>21.1.5,1</lt></range>
+      </package>
+      <package>
+	<name>xorg-nestserver</name>
+	<range><lt>21.1.5,2</lt></range>
+      </package>
+      <package>
+	<name>xwayland</name>
+	<range><lt>22.1.6,1</lt></range>
+      </package>
+      <package>
+	<name>xwayland-devel</name>
+	<range><lt>21.0.99.1.319</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The X.org project reports:</p>
+	<blockquote cite="https://lists.x.org/archives/xorg-announce/2022-December/003302.html">
+	  <ul>
+	    <li>CVE-2022-46340/ZDI-CAN-19265: X.Org Server XTestSwapFakeInput stack
+	    overflow
+
+	    <p>The swap handler for the XTestFakeInput request of the XTest extension
+	    may corrupt the stack if GenericEvents with lengths larger than 32 bytes
+	    are sent through a the XTestFakeInput request.</p>
+
+	    <p>This issue does not affect systems where client and server use the same
+	    byte order.</p></li>
+
+	    <li>CVE-2022-46341/ZDI-CAN-19381: X.Org Server XIPassiveUngrab
+	    out-of-bounds access
+
+	    <p>The handler for the XIPassiveUngrab request accesses out-of-bounds
+	    memory when invoked with a high keycode or button code.</p></li>
+
+	    <li>CVE-2022-46342/ZDI-CAN-19400: X.Org Server XvdiSelectVideoNotify
+	    use-after-free
+
+	    <p>The handler for the XvdiSelectVideoNotify request may write to memory
+	    after it has been freed.</p></li>
+
+	    <li>CVE-2022-46343/ZDI-CAN-19404: X.Org Server ScreenSaverSetAttributes
+	    use-after-free
+
+	    <p>The handler for the ScreenSaverSetAttributes request may write to memory
+	    after it has been freed.</p></li>
+
+	    <li>CVE-2022-46344/ZDI-CAN-19405: X.Org Server XIChangeProperty
+	    out-of-bounds access
+
+	    <p>The handler for the XIChangeProperty request has a length-validation
+	    issues, resulting in out-of-bounds memory reads and potential
+	    information disclosure.</p></li>
+
+	    <li>CVE-2022-4283/ZDI-CAN-19530: X.Org Server XkbGetKbdByName use-after-free
+
+	    <p>The XkbCopyNames function left a dangling pointer to freed memory,
+	    resulting in out-of-bounds memory access on subsequent XkbGetKbdByName
+	    requests.</p></li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://lists.x.org/archives/xorg-announce/2022-December/003302.html</url>
+      <cvename>CVE-2022-46340</cvename>
+      <cvename>CVE-2022-46341</cvename>
+      <cvename>CVE-2022-46342</cvename>
+      <cvename>CVE-2022-46343</cvename>
+      <cvename>CVE-2022-46344</cvename>
+      <cvename>CVE-2022-4283</cvename>
+    </references>
+    <dates>
+      <discovery>2022-12-14</discovery>
+      <entry>2023-01-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3a023570-91ab-11ed-8950-001b217b3468">
+    <topic>Gitlab -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>15.7.0</ge><lt>15.7.2</lt></range>
+	<range><ge>15.6.0</ge><lt>15.6.4</lt></range>
+	<range><ge>6.6.0</ge><lt>15.5.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2023/01/09/security-release-gitlab-15-7-2-released/">
+	  <p>Race condition on gitlab.com enables verified email forgery and third-party account hijacking</p>
+	  <p>DOS and high resource consumption of Prometheus server through abuse of Grafana integration proxy endpoint</p>
+	  <p>Maintainer can leak sentry token by changing the configured URL</p>
+	  <p>Maintainer can leak masked webhook secrets by changing target URL of the webhook</p>
+	  <p>Cross-site scripting in wiki changes page affecting self-hosted instances running without strict CSP</p>
+	  <p>Group access tokens continue to work after owner loses ability to revoke them</p>
+	  <p>Users' avatar disclosure by user ID in private GitLab instances</p>
+	  <p>Arbitrary Protocol Redirection in GitLab Pages</p>
+	  <p>Regex DoS due to device-detector parsing user agents</p>
+	  <p>Regex DoS in the Submodule Url Parser</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4037</cvename>
+      <cvename>CVE-2022-3613</cvename>
+      <cvename>CVE-2022-4365</cvename>
+      <cvename>CVE-2022-4342</cvename>
+      <cvename>CVE-2022-3573</cvename>
+      <cvename>CVE-2022-4167</cvename>
+      <cvename>CVE-2022-3870</cvename>
+      <cvename>CVE-2023-0042</cvename>
+      <cvename>CVE-2022-4131</cvename>
+      <cvename>CVE-2022-3514</cvename>
+      <url>https://about.gitlab.com/releases/2023/01/09/security-release-gitlab-15-7-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2023-01-09</discovery>
+      <entry>2023-01-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="7b929503-911d-11ed-a925-3065ec8fd3ec">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
