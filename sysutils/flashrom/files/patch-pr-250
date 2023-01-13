@@ -1,13 +1,9 @@
-diff --git flashchips.c flashchips.c
-index 322414277..a8541de63 100644
---- flashchips.c
+--- flashchips.c.orig	2020-02-09 06:21:46 UTC
 +++ flashchips.c
-@@ -16067,6 +16067,35 @@ const struct flashchip flashchips[] = {
- 		.voltage	= {2700, 3600},
- 	},
+@@ -15443,6 +15443,35 @@ const struct flashchip flashchips[] = {
  
-+	{
-+		.vendor		= "Spansion",
+ 	{
+ 		.vendor		= "Spansion",
 +		.name		= "S25FL064L",
 +		.bustype	= BUS_SPI,
 +		.manufacture_id	= SPANSION_ID,
@@ -35,14 +31,14 @@ index 322414277..a8541de63 100644
 +		.voltage	= {2700, 3600},
 +	},
 +
- 	{
- 		.vendor		= "Spansion",
++	{
++		.vendor		= "Spansion",
  		.name		= "S25FL116K/S25FL216K", /* FIXME: separate them */
-diff --git flashchips.h flashchips.h
-index ba9771997..b12bc5585 100644
---- flashchips.h
+ 		.bustype	= BUS_SPI,
+ 		.manufacture_id	= SPANSION_ID,
+--- flashchips.h.orig	2020-01-20 13:02:48 UTC
 +++ flashchips.h
-@@ -659,6 +659,7 @@
+@@ -639,6 +639,7 @@
  #define SPANSION_S25FL016A	0x0214
  #define SPANSION_S25FL032A	0x0215	/* Same as S25FL032P, but the latter supports EDI and CFI */
  #define SPANSION_S25FL064A	0x0216	/* Same as S25FL064P, but the latter supports EDI and CFI */
@@ -50,11 +46,9 @@ index ba9771997..b12bc5585 100644
  #define SPANSION_S25FL128	0x2018	/* Same ID for various S25FL127S, S25FL128P, S25FL128S and S25FL129P (including dual-die S70FL256P) variants (EDI supported) */
  #define SPANSION_S25FL256	0x0219
  #define SPANSION_S25FL512	0x0220
-diff --git it87spi.c it87spi.c
-index 204816af7..6be380fbe 100644
---- it87spi.c
+--- it87spi.c.orig	2022-09-29 17:05:10 UTC
 +++ it87spi.c
-@@ -77,7 +77,14 @@ static uint16_t probe_id_ite(uint16_t port)
+@@ -64,7 +64,14 @@ static uint16_t probe_id_ite(uint16_t port)
  	enter_conf_mode_ite(port);
  	id = sio_read(port, CHIP_ID_BYTE1_REG) << 8;
  	id |= sio_read(port, CHIP_ID_BYTE2_REG);
