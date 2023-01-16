@@ -1,6 +1,6 @@
 PORTNAME=	graphviz
 PORTVERSION=	2.50.0
-PORTREVISION=	17
+PORTREVISION=	18
 CATEGORIES=	graphics tk
 MASTER_SITES=	https://gitlab.com/api/v4/projects/4207231/packages/generic/graphviz-releases/${PORTVERSION}/
 
@@ -96,7 +96,7 @@ PERL_USES=	perl5
 PHP_USES=	php:build gnome
 PHP_USE=	GNOME=libxml2
 PYTHON_USES=	python:build
-RUBY_USE=	RUBY=yes
+RUBY_USES=	ruby
 LUA_USES=	lua
 TK_USES=	tk:build
 GO_USES=	go:no_targets
