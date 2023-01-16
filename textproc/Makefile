@@ -126,6 +126,7 @@
     SUBDIR += ctpp2
     SUBDIR += cwtext
     SUBDIR += cy-aspell
+    SUBDIR += cy-hunspell
     SUBDIR += da-aspell
     SUBDIR += dadadodo
     SUBDIR += dasel
@@ -1887,6 +1888,7 @@
     SUBDIR += sdocbook-xml
     SUBDIR += sdom
     SUBDIR += senna
+    SUBDIR += sentencepiece
     SUBDIR += sgmlformat
     SUBDIR += sgmls
     SUBDIR += sgrep

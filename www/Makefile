@@ -1728,6 +1728,7 @@
     SUBDIR += py-pyweblib
     SUBDIR += py-pywikibot
     SUBDIR += py-qt5-webengine
+    SUBDIR += py-qt6-webengine
     SUBDIR += py-quilt3
     SUBDIR += py-recaptcha
     SUBDIR += py-requests
@@ -1816,6 +1817,7 @@
     SUBDIR += qt5-websockets-qml
     SUBDIR += qt5-webview
     SUBDIR += qt6-webchannel
+    SUBDIR += qt6-webengine
     SUBDIR += qt6-websockets
     SUBDIR += quark
     SUBDIR += qutebrowser
@@ -2363,6 +2365,7 @@
     SUBDIR += w3m-img
     SUBDIR += w3mir
     SUBDIR += wabt
+    SUBDIR += wasm-pack
     SUBDIR += web2ldap
     SUBDIR += webalizer
     SUBDIR += webbrowser
@@ -2384,6 +2387,7 @@
     SUBDIR += webstone-ssl
     SUBDIR += webtrees
     SUBDIR += webtrees20
+    SUBDIR += webtrees21
     SUBDIR += wget2
     SUBDIR += wgetpaste
     SUBDIR += wiki-tui

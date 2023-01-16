@@ -1,6 +1,6 @@
 PORTNAME=	gitlab-ce
 PORTVERSION=	15.6.4
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	www devel
 
 MAINTAINER=	mfechner@FreeBSD.org
@@ -269,8 +269,7 @@ CONFLICTS_INSTALL=	gitolite \
 			gitea \
 			gitosis
 
-USES=		go:modules shebangfix
-USE_RUBY=	yes
+USES=		go:modules ruby shebangfix
 
 USE_RC_SUBR=	gitlab
 USE_GITLAB=	yes
