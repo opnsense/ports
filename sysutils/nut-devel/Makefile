@@ -1,6 +1,5 @@
 PORTNAME=	nut
 PORTVERSION=	${NUT_COMMIT_DATE}
-PORTREVISION=	1
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
 # MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
@@ -19,8 +18,8 @@ CONFLICTS=	nut-[0-9]*
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	networkupstools
-GH_TAGNAME=	6be2db5f6
-NUT_COMMIT_DATE=	2023.01.02
+GH_TAGNAME=	408775bb1
+NUT_COMMIT_DATE=	2023.01.17
 
 MAKE_JOBS_UNSAFE=	yes
 USE_GCC=	yes
@@ -28,8 +27,10 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf:build compiler:c11 gmake libtool pkgconfig python
 USE_LDCONFIG=	yes
 
-NUT_USER?=	uucp
-NUT_GROUP?=	uucp
+NUT_USER?=	nut
+NUT_GROUP?=	nut
+USERS=		${NUT_USER} 
+GROUPS=		${NUT_GROUP}
 STATEDIR?=	/var/db/nut
 PLIST_SUB+=	NUT_USER=${NUT_USER}
 PLIST_SUB+=	NUT_GROUP=${NUT_GROUP}

@@ -1,5 +1,5 @@
 PORTNAME=	redis
-PORTVERSION=	6.0.16
+PORTVERSION=	6.0.17
 PORTREVISION=	3
 CATEGORIES=	databases
 MASTER_SITES=	https://download.redis.io/releases/
@@ -17,7 +17,9 @@ USES+=		compiler:c11 gmake
 MAKE_ENV=	OPTIMIZATION= \
 		V=yo
 
-CONFLICTS_INSTALL=	redis redis-devel # etc/rc.d/redis
+CONFLICTS_INSTALL=	redis redis-devel redis62 # etc/rc.d/redis
+
+PORTSCOUT=	limit:^6\.0
 
 OPTIONS_DEFINE=		JEMALLOC TESTS TLS TRIB
 OPTIONS_DEFAULT=	TLS

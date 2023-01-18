@@ -182,6 +182,7 @@
     SUBDIR += asl
     SUBDIR += asymptote
     SUBDIR += atlas
+    SUBDIR += audi
     SUBDIR += barvinok
     SUBDIR += basic-stats
     SUBDIR += bcal
@@ -976,6 +977,7 @@
     SUBDIR += py-primecountpy
     SUBDIR += py-primme
     SUBDIR += py-pyFFTW
+    SUBDIR += py-pyaudi
     SUBDIR += py-pybloom
     SUBDIR += py-pyclipper
     SUBDIR += py-pycosat
