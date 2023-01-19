@@ -13,6 +13,11 @@ WWW=		https://anyterm.org/
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	upstream is dead
+EXPIRATION_DATE=	2023-04-01	
+
+BROKEN=		segfaults on startup
+
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs
 
 USE_RC_SUBR=	anytermd
