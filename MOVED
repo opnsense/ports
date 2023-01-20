@@ -14667,7 +14667,6 @@ net/rtpbreak||2020-05-05|Has expired: Broken for more than 6 months
 net/s3ql||2020-05-05|Has expired: Broken for more than 6 months
 net/scnc||2020-05-05|Has expired: Broken for more than 6 months
 net/sip_scenario||2020-05-05|Has expired: Broken for more than 6 months
-net/slurm||2020-05-05|Has expired: Broken for more than 6 months
 net/ssmping||2020-05-05|Has expired: Broken for more than 6 months
 net/tcpdstat||2020-05-05|Has expired: Broken for more than 6 months
 net/uplog||2020-05-05|Has expired: Broken for more than 6 months
@@ -17758,3 +17757,6 @@ devel/xtoolchain-llvm90||2023-01-15|Depends on removed old llvm ports
 net-p2p/tootle|net-p2p/tooth|2023-01-16|Upstream archived, forked
 lang/zig-devel|lang/zig|2023-01-19|Development version no longer necessary
 irc/cwirc||2023-01-19|Has expired: No upstream, no apparent use seen online
+sysutils/ior|benchmarks/ior|2023-01-20|Moved to a better fit category
+emulators/qemu-guest-agent|emulators/qemu@guestagent|2023-01-20|Seperate port merged with main port as a flavor
+devel/rust-bindgen|devel/rust-bindgen-cli|2023-01-22|Renamed upstream
