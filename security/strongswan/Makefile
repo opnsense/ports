@@ -139,14 +139,7 @@ XAUTH_CONFIGURE_ON=		--enable-xauth-eap \
 				--enable-xauth-generic \
 				--enable-xauth-pam
 
-.include <bsd.port.pre.mk>
-
-.if ${SSL_DEFAULT:Mlibressl*}
-CFLAGS+=	-DOPENSSL_IS_LIBRESSL
-EXTRA_PATCHES+=	${FILESDIR}/extra-patch-src_libstrongswan_plugins_openssl_openssl__crl.c \
-		${FILESDIR}/extra-patch-src_libstrongswan_plugins_openssl_openssl__util.h \
-		${FILESDIR}/extra-patch-src_libstrongswan_plugins_openssl_openssl__x509.c
-.endif
+.include <bsd.port.options.mk>
 
 .if ${PORT_OPTIONS:MEAPSIMFILE} || ${PORT_OPTIONS:MEAPAKA3GPP2}
 PLIST_SUB+=	SIMAKA=""
@@ -180,4 +173,4 @@ post-install:
 		${STAGEDIR}${PREFIX}/include
 .endif
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
