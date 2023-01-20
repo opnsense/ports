@@ -1,6 +1,7 @@
 PORTNAME=	river
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.2.2
+PORTREVISION=	2
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -31,6 +32,8 @@ GH_TUPLE=	ifreund:zig-pixman:4a49ba1:zig_pixman/deps/zig-pixman \
 MAKE_ENV=	DESTDIR="${STAGEDIR}"
 CONFIGURE_ARGS=	--prefix "${PREFIX}" \
 		${WITH_DEBUG:D:U-Drelease-fast} \
+		${WITH_PIE:D-Dpie} \
+		${STRIP:C/.+/-Dstrip/} \
 		-Dcpu=${CPUTYPE:Ubaseline} \
 		--verbose
 NO_INSTALL=	yes # strip(1) breaks runtime
@@ -43,6 +46,9 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/fish/vendor_completions.d/${PORTNAME}ctl.fish \
 		share/zsh/site-functions/_${PORTNAME}ctl \
 		${NULL}
+
+# https://github.com/ziglang/zig/issues/12170 (pixman)
+MAKE_ENV+=	PKG_CONFIG_SYSTEM_LIBRARY_PATH="${LOCALBASE}/lib"
 
 OPTIONS_DEFINE=	MANPAGES X11
 OPTIONS_DEFAULT=MANPAGES X11

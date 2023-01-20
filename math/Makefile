@@ -925,6 +925,7 @@
     SUBDIR += py-intspan
     SUBDIR += py-iohexperimenter
     SUBDIR += py-ipyopt
+    SUBDIR += py-isosurfaces
     SUBDIR += py-jax
     SUBDIR += py-kahip
     SUBDIR += py-keras
@@ -936,6 +937,7 @@
     SUBDIR += py-linearmodels
     SUBDIR += py-lmfit
     SUBDIR += py-luminol
+    SUBDIR += py-mapbox-earcut
     SUBDIR += py-mathics
     SUBDIR += py-mathics-scanner
     SUBDIR += py-matplotlib
@@ -993,6 +995,7 @@
     SUBDIR += py-pyodeint
     SUBDIR += py-pyodesys
     SUBDIR += py-pyreadr
+    SUBDIR += py-pyrr
     SUBDIR += py-pysmt
     SUBDIR += py-pystan
     SUBDIR += py-pysym

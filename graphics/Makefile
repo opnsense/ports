@@ -833,6 +833,7 @@
     SUBDIR += proj-data
     SUBDIR += pstoedit
     SUBDIR += ptex
+    SUBDIR += py-ManimPango
     SUBDIR += py-OWSLib
     SUBDIR += py-PyOpenGL
     SUBDIR += py-PyOpenGL-accelerate
@@ -864,6 +865,7 @@
     SUBDIR += py-geopandas
     SUBDIR += py-giddy
     SUBDIR += py-gizeh
+    SUBDIR += py-glcontext
     SUBDIR += py-glfw
     SUBDIR += py-glooey
     SUBDIR += py-gphoto2
@@ -885,6 +887,8 @@
     SUBDIR += py-mcomix
     SUBDIR += py-mgwr
     SUBDIR += py-ming
+    SUBDIR += py-moderngl
+    SUBDIR += py-moderngl-window
     SUBDIR += py-momepy
     SUBDIR += py-mpl-interactions
     SUBDIR += py-mpl-scatter-density

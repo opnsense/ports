@@ -660,6 +660,7 @@
     SUBDIR += py-pulsectl
     SUBDIR += py-pyacoustid
     SUBDIR += py-pyaudio
+    SUBDIR += py-pydub
     SUBDIR += py-pyjacklib
     SUBDIR += py-pylast
     SUBDIR += py-pyliblo
@@ -669,6 +670,7 @@
     SUBDIR += py-pysndfile
     SUBDIR += py-python-mpd2
     SUBDIR += py-resampy
+    SUBDIR += py-simpleaudio
     SUBDIR += py-soundcloud
     SUBDIR += py-sounddevice
     SUBDIR += py-soundscrape
