@@ -437,9 +437,11 @@
     SUBDIR += libRmath
     SUBDIR += libbraiding
     SUBDIR += libccd
+    SUBDIR += libcerf
     SUBDIR += libdivide
     SUBDIR += libfixmath
     SUBDIR += libflame
+    SUBDIR += libformfactor
     SUBDIR += libhomfly
     SUBDIR += libmesh
     SUBDIR += libmissing
@@ -463,6 +465,7 @@
     SUBDIR += linpack
     SUBDIR += lis
     SUBDIR += lll_spect
+    SUBDIR += lmfit
     SUBDIR += lp_solve
     SUBDIR += lrcalc
     SUBDIR += lrng
