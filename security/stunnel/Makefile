@@ -12,6 +12,9 @@ WWW=		https://www.stunnel.org/
 
 LICENSE=	GPLv2+
 
+BROKEN_SSL=	libressl libressl-devel
+BROKEN_SSL_REASON=	missing upstream support
+
 USES=		cpe libtool perl5 shebangfix ssl
 USE_PERL5=	build
 USE_LDCONFIG=	yes
@@ -19,7 +22,7 @@ USE_RC_SUBR=	stunnel
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--localstatedir=/var/tmp --enable-static --disable-systemd \
-		${CONFIGURE_ARGS_SSL}
+		--with-ssl="${OPENSSLBASE}"
 SHEBANG_FILES=	src/stunnel3.in
 SUB_FILES=	daemon.conf
 SUB_LIST=	STUNNEL_PIDFILE=${STUNNEL_PIDFILE} \
@@ -75,19 +78,7 @@ IGNORE=		LibreSSL does not support FIPS standard
 .endif
 
 .if ${SSL_DEFAULT:Mlibressl*}
-. ifnmake describe
-STAGEDIR_openssl!=	${MAKE} -V STAGEDIR -C ${PORTSDIR}/security/openssl
-. endif
-BUILD_DEPENDS+=		${NONEXISTENT}:security/openssl:stage
-CONFIGURE_ARGS_SSL=	--with-ssl="${STAGEDIR_openssl}${LOCALBASE}"
-
-post-configure:
-	${REINPLACE_CMD} 's|-lssl|${STAGEDIR_openssl}${LOCALBASE}/lib/libssl.a|g' \
-		 ${WRKSRC}/src/Makefile
-	${REINPLACE_CMD} 's|-lcrypto|${STAGEDIR_openssl}${LOCALBASE}/lib/libcrypto.a|g' \
-		${WRKSRC}/src/Makefile
-.else
-CONFIGURE_ARGS_SSL=	--with-ssl="${OPENSSLBASE}"
+NO_PACKAGE=	The stunnel license restricts distribution when linked to non-OpenSSL non-base SSL-libraries
 .endif
 
 post-patch:
