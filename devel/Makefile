@@ -560,7 +560,6 @@
     SUBDIR += dsymbol
     SUBDIR += dtool
     SUBDIR += dub
-    SUBDIR += dulwich
     SUBDIR += dupl
     SUBDIR += duplo
     SUBDIR += dura
@@ -586,6 +585,7 @@
     SUBDIR += electron18
     SUBDIR += electron19
     SUBDIR += electron21
+    SUBDIR += electron22
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -4095,6 +4095,7 @@
     SUBDIR += pmd
     SUBDIR += pmdk
     SUBDIR += poco
+    SUBDIR += poetry
     SUBDIR += popt
     SUBDIR += poxml
     SUBDIR += ppl
@@ -4348,7 +4349,6 @@
     SUBDIR += py-bullet3
     SUBDIR += py-bytecode
     SUBDIR += py-cabby
-    SUBDIR += py-cachecontrol
     SUBDIR += py-cached-property
     SUBDIR += py-cachetools
     SUBDIR += py-cachetools3
@@ -4513,6 +4513,7 @@
     SUBDIR += py-dotty-dict
     SUBDIR += py-dpcontracts
     SUBDIR += py-dtfabric
+    SUBDIR += py-dulwich
     SUBDIR += py-dunamai
     SUBDIR += py-durus
     SUBDIR += py-dynrules
@@ -4875,6 +4876,7 @@
     SUBDIR += py-mutmut
     SUBDIR += py-mygpoclient
     SUBDIR += py-mypy
+    SUBDIR += py-mypy-boto3-s3
     SUBDIR += py-mypy-protobuf
     SUBDIR += py-mypy_extensions
     SUBDIR += py-naiveBayesClassifier
@@ -5037,6 +5039,7 @@
     SUBDIR += py-podcastparser
     SUBDIR += py-poetry-core
     SUBDIR += py-poetry-dynamic-versioning
+    SUBDIR += py-poetry-plugin-export
     SUBDIR += py-poetry2setup
     SUBDIR += py-polib
     SUBDIR += py-pooch
@@ -5388,6 +5391,7 @@
     SUBDIR += py-simpleparse
     SUBDIR += py-simpletal
     SUBDIR += py-simpy
+    SUBDIR += py-single-version
     SUBDIR += py-sip
     SUBDIR += py-sip4
     SUBDIR += py-six

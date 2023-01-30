@@ -181,6 +181,7 @@
     SUBDIR += gemserv
     SUBDIR += geoclue
     SUBDIR += geocode-glib
+    SUBDIR += geocode-glib2
     SUBDIR += geoipupdate
     SUBDIR += gerbera
     SUBDIR += gfbgraph
@@ -413,6 +414,7 @@
     SUBDIR += librdkafka
     SUBDIR += librespeed-cli
     SUBDIR += librespeed-go
+    SUBDIR += librest1
     SUBDIR += librsync
     SUBDIR += libsignal-protocol-c
     SUBDIR += libslirp

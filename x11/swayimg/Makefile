@@ -1,7 +1,6 @@
 PORTNAME=	swayimg
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9
-PORTREVISION=	1
+DISTVERSION=	1.10
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -69,5 +68,11 @@ WEBP_MESON_ENABLED=	webp
 
 ZSH_MESON_ENABLED=	zsh
 ZSH_PLIST_FILES=	share/zsh/site-functions/_${PORTNAME}
+
+post-patch:
+# Respect PREFIX for system-wide config
+	@${REINPLACE_CMD} 's,/etc,${PREFIX}&,' \
+		${WRKSRC}/extra/${PORTNAME}rc.5 \
+		${WRKSRC}/src/config.c
 
 .include <bsd.port.mk>
