@@ -15559,7 +15559,6 @@ multimedia/p5-GStreamer||2020-11-09|Depends on the expired gstreamer 0.10
 emulators/riscv-fesvr||2020-11-09|Now bundled with emulators/riscv-isa-sim
 databases/py-python-rrdtool||2020-11-10|Has expired: Uses deprecated version of python
 net/spideroak||2020-11-10|Has expired: Uses deprecated version of python
-emulators/playonbsd||2020-11-10|Has expired: Uses deprecated version of python
 net/xorp||2020-11-10|Has expired: Uses deprecated version of python
 archivers/py-pyliblzma||2020-11-15|Has expired: Uses deprecated version of python
 databases/postgis23|databases/postgis24|2020-11-15|Has expired: Upstream no longer maintained
@@ -17758,3 +17757,6 @@ irc/cwirc||2023-01-19|Has expired: No upstream, no apparent use seen online
 sysutils/ior|benchmarks/ior|2023-01-20|Moved to a better fit category
 emulators/qemu-guest-agent|emulators/qemu@guestagent|2023-01-20|Seperate port merged with main port as a flavor
 devel/rust-bindgen|devel/rust-bindgen-cli|2023-01-22|Renamed upstream
+graphics/darktable42||2023-01-27|Removed as part of the update of graphics/darktable to 4.2.0
+devel/py-cachecontrol|www/py-cachecontrol|2023-01-29|Remove duplicate added later
+devel/dulwich|devel/py-dulwich|2023-01-29|Add py- prefix
