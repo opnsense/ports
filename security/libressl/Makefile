@@ -1,5 +1,5 @@
 PORTNAME=	libressl
-PORTVERSION=	3.5.3
+PORTVERSION=	3.3.6
 CATEGORIES=	security devel
 MASTER_SITES=	OPENBSD/LibreSSL
 
@@ -24,10 +24,10 @@ LIBTLS_DESC=	Only install libtls (no libcrypto/libssl)
 MAN3_DESC=	Install API manpages (section 3)
 NC_DESC=	Install TLS-enabled netcat
 
-CONFLICTS_INSTALL=		libressl-devel
-libtls_CONFLICTS_INSTALL=	libretls
-default_CONFLICTS_INSTALL=	openssl \
-				openssl-devel
+CONFLICTS_INSTALL=		libressl-devel-libtls-[0-9]*
+libtls_CONFLICTS_INSTALL=	libretls-[0-9]*
+default_CONFLICTS_INSTALL=	openssl-[0-9]* \
+				openssl-devel-[0-9]*
 
 .if ${FLAVOR:U} == default
 OPTIONS_EXCLUDE=	LIBTLS
@@ -58,7 +58,7 @@ post-install:
 	${RM} -r ${STAGEDIR}/${PREFIX}/etc/ssl/cert.pem
 
 post-stage-MAN3-on:
-	(cd ${STAGEDIR}${MANPREFIX}; ${FIND} man/man3 -not -type d | \
+	(cd ${STAGEDIR}${MANPREFIX}; find man/man3 -not -type d | \
 		${SED} 's/$$/.gz/' >> ${TMPPLIST})
 
 .include <bsd.port.mk>
