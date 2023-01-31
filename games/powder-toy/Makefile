@@ -18,14 +18,15 @@ LIB_DEPENDS=	libfftw3f.so:math/fftw3-float \
 		libpng.so:graphics/png \
 		libjsoncpp.so:devel/jsoncpp
 
+USES=		compiler:c++17-lang desktop-file-utils luajit:luajit-openresty \
+		meson pkgconfig python:build sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	The-Powder-Toy
 GH_PROJECT=	The-Powder-Toy
-
-USES=		compiler:c++17-lang luajit:luajit-openresty meson pkgconfig \
-		python:build sdl
 USE_SDL=	sdl2
 MESON_ARGS=	-Dapp_exe="${PORTNAME}"
+
+CONFLICTS_INSTALL=powder-toy-devel
 
 PORTDOCS=	README.md changelog.txt
 
