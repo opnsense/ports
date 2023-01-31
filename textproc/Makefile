@@ -1342,6 +1342,7 @@
     SUBDIR += py-gi-docgen
     SUBDIR += py-googletrans
     SUBDIR += py-grako
+    SUBDIR += py-grapheme
     SUBDIR += py-guess-language
     SUBDIR += py-hashids
     SUBDIR += py-hexdump
@@ -1490,6 +1491,7 @@
     SUBDIR += py-rich
     SUBDIR += py-rich-cli
     SUBDIR += py-rich-rst
+    SUBDIR += py-rich12
     SUBDIR += py-rnc2rng
     SUBDIR += py-rss2gen
     SUBDIR += py-rst2ansi
@@ -1708,6 +1710,7 @@
     SUBDIR += rubygem-ferret
     SUBDIR += rubygem-fog-xml
     SUBDIR += rubygem-gemoji
+    SUBDIR += rubygem-gemoji3
     SUBDIR += rubygem-gepub
     SUBDIR += rubygem-github-linguist
     SUBDIR += rubygem-github-markup

@@ -40,7 +40,6 @@
     SUBDIR += gtkglext
     SUBDIR += gtkglextmm
     SUBDIR += gtkimageview
-    SUBDIR += gtkmathview
     SUBDIR += gtkmm24
     SUBDIR += gtkmm30
     SUBDIR += gtksourceview2
@@ -77,7 +76,6 @@
     SUBDIR += libgdiplus
     SUBDIR += libhandy
     SUBDIR += libhandy0
-    SUBDIR += libsexy
     SUBDIR += libshumate
     SUBDIR += libunique3
     SUBDIR += libwnck
@@ -224,7 +222,6 @@
     SUBDIR += tktray
     SUBDIR += tktreectrl
     SUBDIR += unique
-    SUBDIR += vdk
     SUBDIR += viewklass
     SUBDIR += vte
     SUBDIR += vte3
