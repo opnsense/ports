@@ -142,6 +142,7 @@ man/man1/suricata.1.gz
 %%DATADIR%%/rules/dnp3-events.rules
 %%DATADIR%%/rules/dns-events.rules
 %%DATADIR%%/rules/files.rules
+%%DATADIR%%/rules/ftp-events.rules
 %%DATADIR%%/rules/http-events.rules
 %%DATADIR%%/rules/http2-events.rules
 %%DATADIR%%/rules/ipsec-events.rules
