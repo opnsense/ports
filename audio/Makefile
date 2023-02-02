@@ -376,7 +376,6 @@
     SUBDIR += libgig
     SUBDIR += libgme
     SUBDIR += libgpod
-    SUBDIR += libgpod-sharp
     SUBDIR += libgroove
     SUBDIR += libid3tag
     SUBDIR += libinstpatch
@@ -560,6 +559,7 @@
     SUBDIR += osd-lyrics
     SUBDIR += osdmixer
     SUBDIR += oss
+    SUBDIR += owntone
     SUBDIR += p5-Audio-CD
     SUBDIR += p5-Audio-Ecasound
     SUBDIR += p5-Audio-FLAC-Header
