@@ -25,6 +25,8 @@ PLIST_FILES=	etc/miniupnpd.conf.sample \
 		man/man8/miniupnpd.8.gz \
 		sbin/miniupnpd
 
+CONFLICTS_INSTALL=		miniupnpd-devel
+
 OPTIONS_DEFINE=			CHECK_PORTINUSE IPV6 LEASEFILE UPNP_IGDV2 \
 				UPNP_STRICT
 OPTIONS_DEFAULT=		AUTODETECT_FW
