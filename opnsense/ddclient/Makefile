@@ -26,6 +26,8 @@ PORTDOCS=	COPYRIGHT ChangeLog README.cisco README.ssl README.md \
 		sample-etc_cron.d_ddclient sample-etc_dhclient-exit-hooks \
 		sample-etc_dhcpc_dhcpcd-eth0.exe sample-etc_ppp_ip-up.local
 
+CONFLICTS_INSTALL=	ddclient
+
 OPTIONS_DEFINE=	SSL DOCS
 OPTIONS_DEFAULT=SSL
 
