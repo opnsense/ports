@@ -1,12 +1,13 @@
 PORTNAME=	hyprland
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.21.0beta
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-wm wayland
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	c3adc9ec5602.patch:-p1 # https://github.com/hyprwm/Hyprland/pull/1448
 PATCHFILES+=	f90ff8303b4f.patch:-p1 # https://github.com/hyprwm/Hyprland/pull/1457
+PATCHFILES+=	fd3a1cd086d0.patch:-p1 # https://github.com/hyprwm/Hyprland/issues/1477
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Dynamic tiling Wayland compositor that doesn't sacrifice on its looks #'
@@ -58,6 +59,7 @@ post-install:
 .endif
 
 # XXX Drop after FreeBSD 13.2 EOL around 2024-05-01 (don't forget distinfo)
+.if ${CXX} == c++ && exists(/usr/lib/libc++.so)
 .if !exists(/usr/include/c++/v1/__ranges/as_rvalue_view.h) || make(makesum) || make(fetch)
 . if exists(/usr/include/c++/v1/__algorithm/ranges_all_of.h) && !make(makesum) && !make(fetch)
 CXXFLAGS+=	-fexperimental-library # std::ranges::all_of
@@ -86,5 +88,6 @@ bundled-libcxx:
 	@${DO_MAKE_BUILD:NDESTDIR*} install -C ${WRKDIR}/libcxx_build
 . endif
 .endif
+.endif # exists(/usr/lib/libc++.so)
 
 .include <bsd.port.mk>
