@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	23.0-branchpoint-990
-DISTVERSIONSUFFIX=	-gea413e826b2
+DISTVERSION=	23.0-branchpoint-1109
+DISTVERSIONSUFFIX=	-g79caf8a44b6
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -37,7 +37,6 @@ USE_LDCONFIG=	yes
 BINARY_ALIAS=	python=${PYTHON_CMD}
 SHEBANG_FILES=	src/vulkan/overlay-layer/${PORTNAME}-overlay-control.py
 MESON_ARGS=	-Dgallium-omx=disabled \
-		-Dgallium-opencl=disabled \
 		-Dgallium-xa=disabled \
 		-Dglvnd=true \
 		-Dplatforms=${PLATFORMS:O:[-1..1]:ts,} \
@@ -83,6 +82,7 @@ radv_BUILD_DEPENDS=	glslangValidator:graphics/glslang
 
 COINST_DESC=		Allow co-installation with another Mesa port
 COINST_MESON_ON=	-Degl-lib-suffix=${PKGNAMESUFFIX}
+COINST_RUN_DEPENDS=	mesa-dri>0:graphics/mesa-dri # ICD
 COINST_PLIST_SUB=	SUFFIX=${PKGNAMESUFFIX}
 COINST_SUB_FILES=	libmap.conf
 COINST_SUB_LIST=	SUFFIX=${PKGNAMESUFFIX}
@@ -113,7 +113,11 @@ OPENCL_CONFIGURE_ENV=	PKG_CONFIG_PATH="${LLVM_PREFIX}/libdata/pkgconfig"
 OPENCL_MESON_FALSE=	b_lundef # environ
 OPENCL_MESON_TRUE=	gallium-rusticl
 OPENCL_MESON_ON=	-Dgallium-opencl=icd
+OPENCL_MESON_OFF=	-Dgallium-opencl=disabled
 OPENCL_VARS=		LLVM_USES=llvm:15,lib # chase libclc + rust (LTO)
+.if ${MACHINE_ARCH} != aarch64 # XXX missing in ONLY_FOR_ARCHS
+OPENCL_VARS+=		COINST_RUN_DEPENDS+=clover>0:lang/clover # ICD
+.endif
 OPENCL_IMPLIES=		LLVM ${"${PORT_OPTIONS:Miris}":?iris:radeonsi} # any from OPTIONS_GROUP_GALLIUM
 
 VAAPI_DESC=		Hardware encoding/decoding (only r600, radeonsi)
