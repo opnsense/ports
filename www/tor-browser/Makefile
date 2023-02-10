@@ -1,9 +1,10 @@
 PORTNAME=	tor-browser
-DISTVERSION=	12.0-2
-PORTREVISION=	1
+DISTVERSION=	12.0.2
+PORTREVISION=	3 # previous DISTVERSION was 12.0-2 which becomes 12.0.2 too in PGKNAME
 CATEGORIES=	www net security wayland
-MASTER_SITES=	https://dist.torproject.org/torbrowser/12.0/
-DISTNAME=	src-firefox-tor-browser-102.5.0esr-${DISTVERSION}-build1
+MASTER_SITES=	TOR
+MASTER_SITE_SUBDIR=torbrowser/${DISTVERSION}
+DISTNAME=	src-firefox-tor-browser-102.7.0esr-${DISTVERSION:R}-1-build1
 
 MAINTAINER=	freebsd@sysctl.cz
 COMMENT=	Tor Browser for FreeBSD
@@ -24,13 +25,6 @@ BUILD_DEPENDS=	nspr>=4.32:devel/nspr \
 		nasm:devel/nasm \
 		yasm:devel/yasm \
 		zip:archivers/zip
-LIB_DEPENDS=	libgconf-2.so:devel/gconf2 \
-		libgtk-x11-2.0.so:x11-toolkits/gtk20 \
-		libpangocairo-1.0.so:x11-toolkits/pango \
-		libpulse.so:audio/pulseaudio \
-		libXt.so:x11-toolkits/libXt \
-		libIDL-2.so:devel/libIDL \
-		libnspr4.so:devel/nspr
 RUN_DEPENDS=	tor:security/tor \
 		obfs4proxy:security/obfs4proxy-tor
 
@@ -54,7 +48,7 @@ MOZ_EXPORT+=	MOZ_TELEMETRY_REPORTING="" \
 		MOZ_APP_DISPLAYNAME="Tor Browser" \
 		MOZ_APP_NAME="tor-browser"
 
-MOZ_OPTIONS=	--with-tor-browser-version=12.0-2 \
+MOZ_OPTIONS=	--with-tor-browser-version=${DISTVERSION}-1 \
 	--enable-official-branding \
 	--enable-optimize \
 	--enable-rust-simd \
@@ -71,8 +65,9 @@ MOZ_OPTIONS=	--with-tor-browser-version=12.0-2 \
 	--enable-verify-mar \
 	--with-distribution-id=org.torproject
 
-WRKSRC=		${WRKDIR}/firefox-tor-browser-102.5.0esr-12.0-2-build1
+WRKSRC=		${WRKDIR}/${DISTNAME:S/src-//}
 
+.include	"${.CURDIR}/../../www/firefox/Makefile.options"
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == powerpc64

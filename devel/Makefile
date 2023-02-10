@@ -337,6 +337,7 @@
     SUBDIR += ccache-static
     SUBDIR += cccc
     SUBDIR += ccdoc
+    SUBDIR += ccls
     SUBDIR += ccrtp
     SUBDIR += cctz
     SUBDIR += cdash
@@ -577,6 +578,7 @@
     SUBDIR += easyloggingpp
     SUBDIR += ebnf2yacc
     SUBDIR += ecgi
+    SUBDIR += edi
     SUBDIR += editline
     SUBDIR += efivar
     SUBDIR += efl
