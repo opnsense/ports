@@ -13,7 +13,6 @@
 @sample %%ETCDIR%%/conf.d/proxy.conf.sample
 @sample %%ETCDIR%%/conf.d/rrdtool.conf.sample
 @sample %%ETCDIR%%/conf.d/scgi.conf.sample
-@sample %%ETCDIR%%/conf.d/secdownload.conf.sample
 @sample %%ETCDIR%%/conf.d/simple_vhost.conf.sample
 @sample %%ETCDIR%%/conf.d/ssi.conf.sample
 @sample %%ETCDIR%%/conf.d/status.conf.sample
@@ -61,8 +60,8 @@ lib/lighttpd/mod_vhostdb.so
 lib/lighttpd/mod_webdav.so
 lib/lighttpd/mod_wstunnel.so
 %%WOLFSSL%%lib/lighttpd/mod_wolfssl.so
-man/man8/lighttpd.8.gz
-%%KRB5%%man/man8/lighttpd-angel.8.gz
+share/man/man8/lighttpd.8.gz
+%%KRB5%%share/man/man8/lighttpd-angel.8.gz
 sbin/lighttpd
 sbin/lighttpd-angel
 @dir %%WWWDIR%%
