@@ -1,3 +1,73 @@
+  <vuln vid="9c9ee9a6-ac5e-11ed-9323-080027d3a315">
+    <topic>Django -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py37-django32</name>
+	<name>py38-django32</name>
+	<name>py39-django32</name>
+	<name>py310-django32</name>
+	<range><lt>3.2.18</lt></range>
+      </package>
+      <package>
+	<name>py38-django40</name>
+	<name>py39-django40</name>
+	<name>py310-django40</name>
+	<range><lt>4.0.10</lt></range>
+      </package>
+      <package>
+	<name>py38-django41</name>
+	<name>py39-django41</name>
+	<name>py310-django41</name>
+	<range><lt>4.1.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Django reports:</p>
+	<blockquote cite="https://www.djangoproject.com/weblog/2023/feb/14/security-releases/">
+	  <p>CVE-2023-24580: Potential denial-of-service vulnerability in file uploads.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-24580</cvename>
+      <url>https://www.djangoproject.com/weblog/2023/feb/14/security-releases/</url>
+    </references>
+    <dates>
+      <discovery>2023-02-01</discovery>
+      <entry>2023-02-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0a7a5dfb-aba4-11ed-be2c-001cc0382b2f">
+    <topic>GnuTLS -- timing sidechannel in RSA decryption</topic>
+    <affects>
+      <package>
+	<name>gnutls</name>
+	<range><lt>3.7.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The GnuTLS project reports:</p>
+	<blockquote cite="https://gnutls.org/security-new.html#GNUTLS-SA-2020-07-14">
+	  <p>A vulnerability was found that the response times to malformed RSA
+	    ciphertexts in ClientKeyExchange differ from response times of
+	    ciphertexts with correct PKCS#1 v1.5 padding. Only TLS ciphertext
+	    processing is affected.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-0361</cvename>
+      <url>https://gnutls.org/security-new.html#GNUTLS-SA-2020-07-14</url>
+    </references>
+    <dates>
+      <discovery>2023-02-10</discovery>
+      <entry>2023-02-13</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="3eccc968-ab17-11ed-bd9e-589cfc0f81b0">
     <topic>phpmyfaq -- multiple vulnerabilities</topic>
     <affects>
