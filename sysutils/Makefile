@@ -644,6 +644,7 @@
     SUBDIR += libcdio-paranoia
     SUBDIR += libchk
     SUBDIR += libcpuid
+    SUBDIR += libdisplay-info
     SUBDIR += libdnf
     SUBDIR += libfvde
     SUBDIR += libg15
@@ -1351,6 +1352,7 @@
     SUBDIR += smug
     SUBDIR += snap
     SUBDIR += snapraid
+    SUBDIR += sndy
     SUBDIR += snmp_exporter
     SUBDIR += snooze
     SUBDIR += sockaddr

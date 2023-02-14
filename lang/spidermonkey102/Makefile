@@ -1,6 +1,6 @@
 PORTNAME=	spidermonkey
 DISTVERSION=	102.4.0
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	lang
 MASTER_SITES=	MOZILLA/firefox/releases/${DISTVERSION}esr/source
 PKGNAMESUFFIX=	${SP_VER}
@@ -12,8 +12,6 @@ WWW=		https://spidermonkey.dev/
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_FreeBSD_12=	ERROR: Cannot find readelf
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/python${PYTHON3_DEFAULT}:lang/python${PYTHON3_DEFAULT:S/.//g} \
 		${RUST_DEFAULT}>=1.35:lang/${RUST_DEFAULT} \

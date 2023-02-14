@@ -171,6 +171,7 @@
     SUBDIR += app-builder
     SUBDIR += appstream
     SUBDIR += appstream-glib
+    SUBDIR += appstream-qt
     SUBDIR += apr1
     SUBDIR += arachne-pnr
     SUBDIR += arcanist
@@ -7358,6 +7359,7 @@
     SUBDIR += shtool
     SUBDIR += shunit2
     SUBDIR += sigar
+    SUBDIR += signal-fts5-extension
     SUBDIR += sigslot
     SUBDIR += silc-toolkit
     SUBDIR += silentbob

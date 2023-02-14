@@ -425,6 +425,7 @@
     SUBDIR += jvgs
     SUBDIR += jzip
     SUBDIR += kanagram
+    SUBDIR += kanatest
     SUBDIR += kapman
     SUBDIR += kartofel
     SUBDIR += katomic
@@ -708,7 +709,6 @@
     SUBDIR += opencity
     SUBDIR += openclaw
     SUBDIR += openclonk
-    SUBDIR += opendungeons
     SUBDIR += openenroth
     SUBDIR += openfodder
     SUBDIR += opengfx
