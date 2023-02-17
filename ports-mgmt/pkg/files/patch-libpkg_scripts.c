@@ -1,6 +1,6 @@
---- libpkg/scripts.c.orig	2022-08-03 07:37:06 UTC
+--- libpkg/scripts.c.orig	2023-02-01 15:55:57 UTC
 +++ libpkg/scripts.c
-@@ -69,7 +69,7 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
+@@ -68,7 +68,7 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
  	ssize_t bytes_written;
  	long argmax;
  	int cur_pipe[2] = {-1, -1};
@@ -9,7 +9,7 @@
  	bool do_reap;
  	pid_t mypid;
  	struct procctl_reaper_status info;
-@@ -98,7 +98,7 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
+@@ -97,7 +97,7 @@ pkg_script_run(struct pkg * const pkg, pkg_script type
  
  	assert(i < sizeof(map) / sizeof(map[0]));
  
@@ -18,7 +18,7 @@
  	mypid = getpid();
  	do_reap = procctl(P_PID, mypid, PROC_REAP_ACQUIRE, NULL) == 0;
  #endif
-@@ -251,7 +251,7 @@ cleanup:
+@@ -241,7 +241,7 @@ cleanup:
  	if (cur_pipe[1] != -1)
  		close(cur_pipe[1]);
  
@@ -27,7 +27,7 @@
  	/*
  	 * If the prior PROCCTL_REAP_ACQUIRE call failed, the kernel
  	 * probably doesn't support this, so don't try.
-@@ -339,7 +339,7 @@ pkg_script_run_child(int pid, int *pstat, int inputfd,
+@@ -329,7 +329,7 @@ pkg_script_run_child(int pid, int *pstat, int inputfd,
  			exit(0);
  
  		pkg_emit_error("%s script failed", script_name);
