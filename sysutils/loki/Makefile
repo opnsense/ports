@@ -1,7 +1,7 @@
 PORTNAME=	loki
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.7.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	grafana-
 
@@ -12,7 +12,9 @@ WWW=		https://github.com/grafana/loki
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules cpe
+# Please keep this port always pinned to a specific version of Go,
+# it fails at runtime if built with version that it does not support.
+USES=		go:1.19,modules cpe
 CPE_VENDOR=	grafana
 USE_GITHUB=	yes
 

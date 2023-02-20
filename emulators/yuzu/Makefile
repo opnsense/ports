@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20230215
+PORTVERSION=	s20230217
 CATEGORIES=	emulators wayland
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
@@ -25,7 +25,7 @@ LICENSE_FILE_MIT=	${WRKSRC}/externals/sirit/externals/SPIRV-Headers/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	requires int128 and dynarmic backend
-# XXX Drop after FreeBSD 12.3 EOL around 2023-03-01
+# XXX Drop after FreeBSD 12.3 EOL around 2023-03-31
 .if !exists(/usr/include/c++/v1/concepts)
 BROKEN_FreeBSD_12=	base libc++ is too old
 .endif
@@ -53,7 +53,7 @@ qt6_OPTIONS_EXCLUDE=	QT5
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	6d77de96d
+GH_TAGNAME=	e91ff9b7b
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		yuzu-emu:sirit:ab75463:sirit/externals/sirit \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-201-gc214f6f:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \

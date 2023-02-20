@@ -1,7 +1,6 @@
 PORTNAME=	kwinft
 DISTVERSIONPREFIX=	${PORTNAME}@
-DISTVERSION=	5.26.0
-PORTREVISION=	2
+DISTVERSION=	5.27.0
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -10,8 +9,6 @@ WWW=		https://gitlab.com/kwinft/kwinft
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
-
-BROKEN=		requires https://invent.kde.org/plasma/kwin/-/commit/9e97c7383c73
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto
 LIB_DEPENDS=	libepoxy.so:graphics/libepoxy \
@@ -43,7 +40,7 @@ USE_QT=		qmake:build buildtools:build core dbus declarative gui \
 		multimedia:run quickcontrols2:run widgets x11extras
 USE_XORG=	pixman x11 xcb xi
 SHEBANG_FILES=	effect/effects/*.py kconf_update/*.py kconf_update/*.pl
-GL_COMMIT=	3005b261c7e069a2cee5f35ed676356b1a8c11b0
+GL_COMMIT=	6d47e3aebd58ea1e7556c67e0f7870e874922f7c
 PLIST_SUB=	VERSION=${PORTVERSION}
 LDFLAGS+=	-Wl,--as-needed # GL, ICE/SM/Xext, glib, intl, Qt5*, KF5*
 
@@ -71,7 +68,7 @@ post-patch:
 	@${REINPLACE_CMD} -e '/mounts/s,/proc,/compat/linux&,' \
 		${WRKSRC}/debug/perf/ftrace_impl.cpp
 
-# XXX Drop after FreeBSD 12.3 EOL around 2023-03-01 (don't forget distinfo)
+# XXX Drop after FreeBSD 12.3 EOL around 2023-03-31 (don't forget distinfo)
 .if ${CXX} == c++ && exists(/usr/lib/libc++.so)
 .if !exists(/usr/include/c++/v1/concepts) || make(makesum) || make(fetch)
 USES+=		llvm:13,build
