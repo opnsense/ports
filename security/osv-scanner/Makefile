@@ -1,7 +1,6 @@
 PORTNAME=	osv-scanner
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.0.2
-PORTREVISION=	3
+DISTVERSION=	1.1.0
 CATEGORIES=	security
 
 MAINTAINER=	lcook@FreeBSD.org
@@ -11,10 +10,10 @@ WWW=		https://github.com/google/osv-scanner
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.19,modules
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	e206217
+_BUILD_COMMIT=	a6c6cd7
 
 GO_MODULE=	github.com/google/${PORTNAME}
 GO_TARGET=	./cmd/${PORTNAME}

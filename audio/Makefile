@@ -288,6 +288,7 @@
     SUBDIR += gtkguitune
     SUBDIR += gtkpod
     SUBDIR += gtmixer
+    SUBDIR += gtultra
     SUBDIR += guidoar
     SUBDIR += guidolib
     SUBDIR += guitarix-lv2
@@ -675,6 +676,7 @@
     SUBDIR += py-soundcloud
     SUBDIR += py-sounddevice
     SUBDIR += py-soundscrape
+    SUBDIR += py-soxr
     SUBDIR += py-speechrecognition
     SUBDIR += py-spotipy
     SUBDIR += py-tagpy

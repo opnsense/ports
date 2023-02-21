@@ -170,6 +170,7 @@
     SUBDIR += apitrace
     SUBDIR += app-builder
     SUBDIR += appstream
+    SUBDIR += appstream-compose
     SUBDIR += appstream-glib
     SUBDIR += appstream-qt
     SUBDIR += apr1
@@ -4807,6 +4808,7 @@
     SUBDIR += py-lazr.uri
     SUBDIR += py-lazy
     SUBDIR += py-lazy-object-proxy
+    SUBDIR += py-lazy_loader
     SUBDIR += py-libcst
     SUBDIR += py-libcst03
     SUBDIR += py-libioc
@@ -7603,7 +7605,6 @@
     SUBDIR += yajl
     SUBDIR += yajl-tcl
     SUBDIR += yaml-cpp
-    SUBDIR += yaml-cpp03
     SUBDIR += yaml2argdata
     SUBDIR += yasm
     SUBDIR += yder
