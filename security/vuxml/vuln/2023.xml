@@ -1,3 +1,92 @@
+  <vuln vid="7a425536-74f7-4ce4-9768-0079a9d44d11">
+    <topic>zeek -- potential DoS vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>zeek</name>
+	<range><lt>5.0.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tim Wojtulewicz of Corelight reports:</p>
+	<blockquote cite="https://github.com/zeek/zeek/releases/tag/v5.0.6">
+	  <p> Receiving DNS responses from async DNS requests (via
+	  the lookup_addr, etc BIF methods) with the TTL set to
+	  zero could cause the DNS manager to eventually stop being
+	  able to make new requests. </p>
+	  <p> Specially-crafted FTP packets with excessively long
+	  usernames, passwords, or other fields could cause log
+	  writes to use large amounts of disk space. </p>
+	  <p> The find_all and find_all_ordered BIF methods could
+	  take extremely large amounts of time to process incoming
+	  data depending on the size of the input. </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/zeek/zeek/releases/tag/v5.0.7</url>
+    </references>
+    <dates>
+      <discovery>2023-02-21</discovery>
+      <entry>2023-02-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="421c0af9-b206-11ed-9fe5-f4a47516fb57">
+    <topic>libde256 -- multiple vulnabilities</topic>
+    <affects>
+      <package>
+	<name>libde265</name>
+	<range><lt>1.0.11</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Libde265 developer reports:</p>
+	<blockquote cite="https://github.com/strukturag/libde265/releases/tag/v1.0.10">
+	  <p>This release fixes the known CVEs below. Many of them are actually caused by the same underlying issues that manifest in different ways.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-21594</cvename>
+      <cvename>CVE-2020-21595</cvename>
+      <cvename>CVE-2020-21596</cvename>
+      <cvename>CVE-2020-21597</cvename>
+      <cvename>CVE-2020-21598</cvename>
+      <cvename>CVE-2020-21599</cvename>
+      <cvename>CVE-2020-21600</cvename>
+      <cvename>CVE-2020-21601</cvename>
+      <cvename>CVE-2020-21602</cvename>
+      <cvename>CVE-2020-21603</cvename>
+      <cvename>CVE-2020-21604</cvename>
+      <cvename>CVE-2020-21605</cvename>
+      <cvename>CVE-2020-21606</cvename>
+      <cvename>CVE-2022-1253</cvename>
+      <cvename>CVE-2022-43236</cvename>
+      <cvename>CVE-2022-43237</cvename>
+      <cvename>CVE-2022-43238</cvename>
+      <cvename>CVE-2022-43239</cvename>
+      <cvename>CVE-2022-43240</cvename>
+      <cvename>CVE-2022-43241</cvename>
+      <cvename>CVE-2022-43242</cvename>
+      <cvename>CVE-2022-43243</cvename>
+      <cvename>CVE-2022-43244</cvename>
+      <cvename>CVE-2022-43245</cvename>
+      <cvename>CVE-2022-43248</cvename>
+      <cvename>CVE-2022-43249</cvename>
+      <cvename>CVE-2022-43250</cvename>
+      <cvename>CVE-2022-43252</cvename>
+      <cvename>CVE-2022-43253</cvename>
+      <cvename>CVE-2022-47655</cvename>
+      <url>https://github.com/strukturag/libde265/releases/tag/v1.0.10</url>
+    </references>
+    <dates>
+      <discovery>2023-01-27</discovery>
+      <entry>2023-02-21</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="21f12de8-b1db-11ed-b0f4-002590f2a714">
     <topic>git -- "git apply" overwriting paths outside the working tree</topic>
     <affects>
