@@ -1,6 +1,7 @@
 PORTNAME=	verilator
 DISTVERSIONPREFIX=	v
 DISTVERSION=	5.006
+PORTREVISION=	1
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -31,7 +32,8 @@ SHEBANG_FILES=	bin/verilator_ccache_report \
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	INSTALL_PROGRAM="${INSTALL_SCRIPT}"
-CONFIGURE_ARGS=	AR=${LOCALBASE}/bin/ar
+CONFIGURE_ARGS=	AR=${LOCALBASE}/bin/ar \
+		PYTHON3=${PYTHON_CMD}
 CONFIGURE_SHELL=	${LOCALBASE}/bin/bash # see https://github.com/verilator/verilator/issues/3132
 
 TEST_TARGET=	test
@@ -48,8 +50,8 @@ LEAK_CHECKS_CXXFLAGS=		-DVL_LEAK_CHECKS
 LEAK_CHECKS_BROKEN=		compilation will be fixed in the next release
 
 post-patch:
-	${REINPLACE_CMD} -e 's|@pkgconfigdir@|${PREFIX}/libdata/pkgconfig|' \
-	    ${WRKSRC}/Makefile.in
+	@${REINPLACE_CMD} -e 's|@pkgconfigdir@|${PREFIX}/libdata/pkgconfig|' \
+		${WRKSRC}/Makefile.in
 
 pre-configure:
 	cd ${WRKSRC} && \
