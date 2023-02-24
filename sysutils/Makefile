@@ -1296,6 +1296,7 @@
     SUBDIR += runj
     SUBDIR += runwhen
     SUBDIR += rush
+    SUBDIR += rust-coreutils
     SUBDIR += rw
     SUBDIR += s-tui
     SUBDIR += s6
@@ -1320,7 +1321,6 @@
     SUBDIR += schilyutils
     SUBDIR += screen
     SUBDIR += screenfetch
-    SUBDIR += screenfetch-nox11
     SUBDIR += screenie
     SUBDIR += scterc
     SUBDIR += sd-agent
@@ -1545,7 +1545,6 @@
     SUBDIR += userneu-devel
     SUBDIR += usrinfo
     SUBDIR += utcount
-    SUBDIR += uutils
     SUBDIR += vagrant
     SUBDIR += vbetool
     SUBDIR += vchanger
