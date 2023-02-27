@@ -1,6 +1,6 @@
---- flashchips.c.orig	2020-02-09 06:21:46 UTC
+--- flashchips.c.orig	2022-12-13 20:49:56 UTC
 +++ flashchips.c
-@@ -15443,6 +15443,35 @@ const struct flashchip flashchips[] = {
+@@ -16069,6 +16069,35 @@ const struct flashchip flashchips[] = {
  
  	{
  		.vendor		= "Spansion",
@@ -12,7 +12,7 @@
 +		.page_size	= 256,
 +		.feature_bits	= FEATURE_WRSR_WREN,
 +		.tested		= TEST_OK_PREW,
-+		.probe		= probe_spi_rdid,
++		.probe		= PROBE_SPI_RDID,
 +		.probe_timing	= TIMING_ZERO,
 +		.block_erasers	=
 +		{
@@ -26,8 +26,8 @@
 +		},
 +		.printlock	= spi_prettyprint_status_register_plain, /* TODO: improve */
 +		.unlock		= spi_disable_blockprotect,
-+		.write		= spi_chip_write_256,
-+		.read		= spi_chip_read,
++		.write		= SPI_CHIP_WRITE256,
++		.read		= SPI_CHIP_READ, /* XXX */
 +		.voltage	= {2700, 3600},
 +	},
 +
@@ -36,9 +36,9 @@
  		.name		= "S25FL116K/S25FL216K", /* FIXME: separate them */
  		.bustype	= BUS_SPI,
  		.manufacture_id	= SPANSION_ID,
---- flashchips.h.orig	2020-01-20 13:02:48 UTC
-+++ flashchips.h
-@@ -639,6 +639,7 @@
+--- include/flashchips.h.orig	2022-06-20 16:49:24 UTC
++++ include/flashchips.h
+@@ -659,6 +659,7 @@
  #define SPANSION_S25FL016A	0x0214
  #define SPANSION_S25FL032A	0x0215	/* Same as S25FL032P, but the latter supports EDI and CFI */
  #define SPANSION_S25FL064A	0x0216	/* Same as S25FL064P, but the latter supports EDI and CFI */
@@ -46,9 +46,9 @@
  #define SPANSION_S25FL128	0x2018	/* Same ID for various S25FL127S, S25FL128P, S25FL128S and S25FL129P (including dual-die S70FL256P) variants (EDI supported) */
  #define SPANSION_S25FL256	0x0219
  #define SPANSION_S25FL512	0x0220
---- it87spi.c.orig	2022-09-29 17:05:10 UTC
+--- it87spi.c.orig	2022-11-10 17:23:07 UTC
 +++ it87spi.c
-@@ -64,7 +64,14 @@ static uint16_t probe_id_ite(uint16_t port)
+@@ -78,7 +78,14 @@ static uint16_t probe_id_ite(uint16_t port)
  	enter_conf_mode_ite(port);
  	id = sio_read(port, CHIP_ID_BYTE1_REG) << 8;
  	id |= sio_read(port, CHIP_ID_BYTE2_REG);
