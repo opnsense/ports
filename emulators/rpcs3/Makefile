@@ -1,8 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.26-14743 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g6b30cdac09
-PORTREVISION=	1
+DISTVERSION=	0.0.26-14764 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-gc570fd03d1
 CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -53,7 +52,7 @@ ELF_FEATURES=	+noaslr,wxneeded:bin/${PORTNAME}
 
 .if ${FLAVOR:U} == qt6 || make(makesum) || make(fetch)
 PATCH_SITES+=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/:qt6
-PATCHFILES+=	04a0a2e258d0.patch:-p1:qt6 # https://github.com/RPCS3/rpcs3/pull/12471
+PATCHFILES+=	98a2f373fd59.patch:-p1:qt6 # https://github.com/RPCS3/rpcs3/pull/12471
 PKGNAMESUFFIX=	-${FLAVOR}
 USES:=		${USES:S/qt:5/qt:6/}
 USE_QT=		base multimedia svg
@@ -106,6 +105,17 @@ post-patch:
 		 -e '/GIT_FULL_BRANCH/s/local_build/${GH_ACCOUNT}\/${GH_PROJECT}\/master/' \
 		-e '/GIT_VERSION/s/local_build/${GH_TAGNAME:C/[^-]*-//}/' \
 		${WRKSRC}/${PORTNAME}/git-version.cmake
+
+.include <bsd.port.options.mk>
+
+# XXX https://github.com/llvm/llvm-project/issues/58207
+.if ${_OSRELEASE:M*-CURRENT}
+# Ignore Clang assertions
+USES+=		llvm
+CC=		clang${LLVM_VERSION}
+CXX=		clang++${LLVM_VERSION}
+CPP=		clang-cpp${LLVM_VERSION}
+.endif
 
 # XXX Drop after FreeBSD 12.3 EOL around 2023-03-31 (don't forget distinfo)
 .if !exists(/usr/include/c++/v1/concepts) || make(makesum) || make(fetch)
