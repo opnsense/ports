@@ -73,21 +73,25 @@ const struct tok ipproto_values[] = {
 #define ZEROLENOPT(o) ((o) == TCPOPT_EOL || (o) == TCPOPT_NOP)
 #define TCP_SIGLEN 16
 
-#define TCPOPT_WSCALE           3       /* window scale factor (rfc1323) */
-#define TCPOPT_SACKOK           4       /* selective ack ok (rfc2018) */
-#define TCPOPT_SACK             5       /* selective ack (rfc2018) */
-#define TCPOPT_ECHO             6       /* echo (rfc1072) */
-#define TCPOPT_ECHOREPLY        7       /* echo (rfc1072) */
-#define TCPOPT_TIMESTAMP        8       /* timestamp (rfc1323) */
-#define    TCPOLEN_TIMESTAMP            10
-#define    TCPOLEN_TSTAMP_APPA          (TCPOLEN_TIMESTAMP+2) /* appendix A */
-#define TCPOPT_CC               11      /* T/TCP CC options (rfc1644) */
-#define TCPOPT_CCNEW            12      /* T/TCP CC options (rfc1644) */
-#define TCPOPT_CCECHO           13      /* T/TCP CC options (rfc1644) */
-#define TCPOPT_SIGNATURE        19      /* Keyed MD5 (rfc2385) */
-#define    TCPOLEN_SIGNATURE            18
-#define TCPOPT_AUTH             20      /* Enhanced AUTH option */
-#define TCPOPT_UTO              28      /* tcp user timeout (rfc5482) */
+#define TCPOPT_EOL		0
+#define TCPOPT_NOP		1
+#define TCPOPT_MAXSEG		2
+#define TCPOPT_WSCALE		3	/* window scale factor (rfc1323) */
+#define TCPOPT_SACKOK		4	/* selective ack ok (rfc2018) */
+#define TCPOPT_SACK		5	/* selective ack (rfc2018) */
+#define TCPOPT_ECHO		6	/* echo (rfc1072) */
+#define TCPOPT_ECHOREPLY	7	/* echo (rfc1072) */
+#define TCPOPT_TIMESTAMP	8	/* timestamp (rfc1323) */
+#define TCPOPT_CC		11	/* T/TCP CC options (rfc1644) */
+#define TCPOPT_CCNEW		12	/* T/TCP CC options (rfc1644) */
+#define TCPOPT_CCECHO		13	/* T/TCP CC options (rfc1644) */
+#define TCPOPT_SIGNATURE	19	/* Keyed MD5 (rfc2385) */
+#define TCPOPT_SCPS		20	/* SCPS-TP (CCSDS 714.0-B-2) */
+#define TCPOPT_UTO		28	/* tcp user timeout (rfc5482) */
+#define TCPOPT_TCPAO		29	/* TCP authentication option (rfc5925) */
+#define TCPOPT_MPTCP		30	/* MPTCP options */
+#define TCPOPT_FASTOPEN		34	/* TCP Fast Open (rfc7413) */
+#define TCPOPT_EXPERIMENT2	254	/* experimental headers (rfc4727) */
 
 struct tok tcp_option_values[] = {
         { TCPOPT_EOL, "eol" },
@@ -101,10 +105,14 @@ struct tok tcp_option_values[] = {
         { TCPOPT_TIMESTAMP, "TS" },
         { TCPOPT_CC, "cc" },
         { TCPOPT_CCNEW, "ccnew" },
-        { TCPOPT_CCECHO, "" },
+        { TCPOPT_CCECHO, "ccecho" }, /* filled out for convenience */
         { TCPOPT_SIGNATURE, "md5" },
-        { TCPOPT_AUTH, "enhanced auth" },
+        { TCPOPT_SCPS, "scps" },
         { TCPOPT_UTO, "uto" },
+        { TCPOPT_TCPAO, "tcp-ao" },
+        { TCPOPT_MPTCP, "mptcp" },
+        { TCPOPT_FASTOPEN, "tfo" },
+        { TCPOPT_EXPERIMENT2, "exp" },
         { 0, NULL }
 };
 
@@ -222,7 +230,7 @@ tcp_print(struct sbuf *sbuf, const u_char *bp, u_int length)
                         case TCPOPT_SIGNATURE:
                                 datalen = TCP_SIGLEN;
                                 break;
-                        case TCPOPT_AUTH:
+                        case TCPOPT_SCPS:
                                 datalen = len - 3;
                                 break;
                         case TCPOPT_EOL:
