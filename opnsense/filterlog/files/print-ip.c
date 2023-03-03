@@ -97,6 +97,7 @@ ip_print(struct sbuf *sbuf,
 	struct ip_print_demux_state  ipd;
 	struct ip_print_demux_state *ipds=&ipd;
 	u_int hlen;
+	char ubuf[64];
 
 	ipds->ip = (const struct ip *)bp;
 	sbuf_printf(sbuf, "%u,", IP_V(ipds->ip));
@@ -147,8 +148,11 @@ ip_print(struct sbuf *sbuf,
 	sbuf_printf(sbuf, ",%u,", ipds->ip->ip_ttl);
 
 	struct protoent *protoent = getprotobynumber(ipds->ip->ip_p);
+
+        sprintf(ubuf, "unknown(%hhu)", ipds->ip->ip_p);
+
 	const char *proto = protoent != NULL ? protoent->p_name :
-	    code2str(ipproto_values, "unknown", ipds->ip->ip_p);
+	    code2str(ipproto_values, ubuf, ipds->ip->ip_p);
 
 	/*
 	 * for the firewall guys, print id, offset.

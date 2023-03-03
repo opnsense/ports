@@ -102,6 +102,7 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	u_int caplen = pkthdr->caplen;
 	u_int32_t subrulenr;
 	u_int32_t rulenr;
+	char ubuf[64];
 
 	/* check length */
 	if (caplen < sizeof(u_int8_t)) {
@@ -152,9 +153,12 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 	}
 
 	sbuf_printf(&sbuf, "%s,%s,", label, hdr->ifname);
-	sbuf_printf(&sbuf, "%s,", code2str(pf_reasons, "unkn(%u)", hdr->reason));
-	sbuf_printf(&sbuf, "%s,", code2str(pf_actions, "unkn(%u)", hdr->action));
-	sbuf_printf(&sbuf, "%s,", code2str(pf_directions, "unkn(%u)", hdr->dir));
+        sprintf(ubuf, "unknown(%u)", hdr->reason);
+	sbuf_printf(&sbuf, "%s,", code2str(pf_reasons, ubuf, hdr->reason));
+        sprintf(ubuf, "unknown(%u)", hdr->action);
+	sbuf_printf(&sbuf, "%s,", code2str(pf_actions, ubuf, hdr->action));
+        sprintf(ubuf, "unknown(%u)", hdr->dir);
+	sbuf_printf(&sbuf, "%s,", code2str(pf_directions, ubuf, hdr->dir));
 
 	/* skip to the real packet */
 	length -= hdrlen;

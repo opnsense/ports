@@ -1,5 +1,5 @@
 PORTNAME=	filterlog
-PORTVERSION=	0.6
+PORTVERSION=	0.7
 CATEGORIES=	sysutils
 MASTER_SITES=	# empty
 DISTFILES=	# none

@@ -41,9 +41,13 @@ static void
 ip6_print_post(struct sbuf *sbuf, const struct ip6_hdr *ip6, u_char nh, u_int payload_len)
 {
 	struct protoent *protoent = getprotobynumber(nh);
-	const char *proto = protoent != NULL ? protoent->p_name :
-	    code2str(ipproto_values, "unknown", nh);
 	char ip6addr[INET6_ADDRSTRLEN];
+	const char *proto;
+	char ubuf[64];
+
+	sprintf(ubuf, "unknown(%hhu)", nh);
+
+	proto = protoent != NULL ? protoent->p_name : code2str(ipproto_values, ubuf, nh);
 
 	sbuf_printf(sbuf, "%u,%s,%u,%u,",
 	    ip6->ip6_hlim, proto, nh, payload_len);
