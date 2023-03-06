@@ -16,10 +16,10 @@ NOT_FOR_ARCHS_REASON=	Unable to determine endianness.
 
 LIB_DEPENDS=	libpci.so:devel/libpci
 
-USES=		gmake tar:bzip2
+USES=		gmake localbase:ldflags tar:bzip2
 
-CONFIGURE_ENV=	CONFIG_INTERNAL=yes
-MAKE_ENV=	WARNERROR=no
+MAKE_ENV=	CONFIG_INTERNAL=yes WARNERROR=no
+LDFLAGS=	-lpci
 
 PLIST_FILES=	bin/flashrom \
 		man/man8/flashrom.8.gz
