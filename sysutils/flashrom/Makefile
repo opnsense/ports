@@ -18,6 +18,7 @@ LIB_DEPENDS=	libpci.so:devel/libpci
 
 USES=		gmake tar:bzip2
 
+CONFIGURE_ENV=	CONFIG_INTERNAL=yes
 MAKE_ENV=	WARNERROR=no
 
 PLIST_FILES=	bin/flashrom \
