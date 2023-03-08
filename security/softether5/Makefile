@@ -1,7 +1,6 @@
 PORTNAME=	softether
-DISTVERSION=	5.02.5180-292
-DISTVERSIONSUFFIX=	-g8c64dc0c
-PORTREVISION=	1
+DISTVERSION=	5.02.5180-296
+DISTVERSIONSUFFIX=	-g21963c6c
 PORTEPOCH=	2
 CATEGORIES=	security net-vpn
 PKGNAMESUFFIX=	5
@@ -9,14 +8,13 @@ DIST_SUBDIR=	${PORTNAME}
 
 # Some patches are managed in my GitHub fork
 PATCH_SITES=	https://github.com/metalefty/${GH_PROJECT}/commit/
-PATCHFILES=	a672cffa.patch:-p1 \
-		8b3c335c.patch:-p1 \
-		f4e64e10.patch:-p1 \
-		0dc45a98.patch:-p1 \
-		0ace659a.patch:-p1 \
-		d560d962.patch:-p1 \
-		c4a8b52a.patch:-p1
-
+PATCHFILES=	4036e810.patch:-p1 \
+		d1840d64.patch:-p1 \
+		31833fff.patch:-p1 \
+		bbdb6ade.patch:-p1 \
+		e94439ec.patch:-p1 \
+		f99e0fc2.patch:-p1 \
+		eef633fd.patch:-p1
 MAINTAINER=	meta@FreeBSD.org
 COMMENT=	SoftEther VPN 5 (Developer Edition)
 WWW=		https://www.softether.org
@@ -39,14 +37,15 @@ GH_TUPLE=	SoftEtherVPN:libhamcore:2951ae5:libhamcore/src/libhamcore \
 		BLAKE2:BLAKE2:b52178a:BLAKE2/3rdparty/BLAKE2 \
 		cxong:tinydir:ec6bff2:tinydir/3rdparty/tinydir
 
-CMAKE_ARGS+=	-DSE_DBDIR="${SE_DBDIR}" \
+CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE=RelWithDebInfo \
+		-DSE_DBDIR="${SE_DBDIR}" \
 		-DSE_LOGDIR="${SE_LOGDIR}" \
 		-DSE_PIDDIR="${SE_PIDDIR}" \
 		-DSE_TAGNAME="${GH_TAGNAME}/freebsd"
 
 CFLAGS+=	-I${LOCALBASE}/include/cpu_features
 
-OPTIONS_DEFINE=	DOCS DEBUG
+OPTIONS_DEFINE=	DOCS
 
 PORTDOCS=		DISCLAIMER.md WARNING.TXT
 CONFLICTS_INSTALL=	softether-4.[0-9]* softether-devel-4.[0-9]*
@@ -61,14 +60,6 @@ SUB_LIST=	SE_DBDIR="${SE_DBDIR}" \
 		SE_LOGDIR="${SE_LOGDIR}" \
 		SE_PIDDIR="${SE_PIDDIR}"
 SUB_FILES=	pkg-message
-
-.include <bsd.port.options.mk>
-
-# CMAKE_BUILD_TYPE is automatically set by Mk/Uses/cmake.mk
-# just set WITH_DEBUG=yes, CMAKE_ARGS+=-DCMAKE_BUILD_TYPE=Debug takes no effect.
-.if ${PORT_OPTIONS:MDEBUG}
-WITH_DEBUG=	yes
-.endif
 
 .include <bsd.port.pre.mk>
 

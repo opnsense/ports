@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20230303
+PORTVERSION=	s20230306
 CATEGORIES=	emulators wayland
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
@@ -10,7 +10,7 @@ DISTFILES=	${PORTNAME}-${DISTVERSIONFULL}/compatibility_list.json:gamedb
 EXTRACT_ONLY=	${DISTFILES:N*\:gamedb:C/\:.*//}
 
 PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	d344bbb6b128.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/9786 mainline-merge
+PATCHFILES+=	2ce5bb9bd6cd.patch:-p1 # https://github.com/yuzu-emu/yuzu/pull/9822 mainline-merge
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	Nintendo Switch emulator/debugger
@@ -53,7 +53,7 @@ qt6_OPTIONS_EXCLUDE=	QT5
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	ce8f4da63
+GH_TAGNAME=	6d6143031
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		yuzu-emu:sirit:ab75463:sirit/externals/sirit \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-201-gc214f6f:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
@@ -68,7 +68,10 @@ USES=		cmake:testing elfctl localbase:ldflags pkgconfig sdl ssl
 USE_SDL=	sdl2
 CMAKE_ON=	Boost_USE_STATIC_LIBS
 CMAKE_ON+=	BUNDLE_SPEEX # only used by cubeb tests
+CMAKE_ON+=	CMAKE_DISABLE_FIND_PACKAGE_LLVM # only need Demangle but llvm* is huge
 CMAKE_OFF=	YUZU_CHECK_SUBMODULES YUZU_USE_EXTERNAL_SDL2 YUZU_USE_EXTERNAL_VULKAN_HEADERS
+CMAKE_OFF+=	HTTPLIB_USE_BROTLI_IF_AVAILABLE # unused by ENABLE_WEB_SERVICE
+CMAKE_OFF+=	${ARCH:Maarch64:C/.+/YUZU_USE_PRECOMPILED_HEADERS DYNARMIC_USE_PRECOMPILED_HEADERS/}
 CMAKE_OFF+=	${CMAKE_TESTING_ON}
 CMAKE_TESTING_ON=	YUZU_TESTS
 LDFLAGS+=	-Wl,--as-needed # Qt5Network
