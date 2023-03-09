@@ -1,5 +1,5 @@
 PORTNAME=	art
-DISTVERSION=	1.15
+DISTVERSION=	1.18.1
 PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	https://bitbucket.org/agriggio/art/downloads/
@@ -26,6 +26,7 @@ LIB_DEPENDS=	libcanberra.so:audio/libcanberra \
 		libharfbuzz.so:print/harfbuzz \
 		liblensfun.so:graphics/lensfun \
 		liblcms2.so:graphics/lcms2 \
+		libmimalloc.so:devel/mimalloc \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
@@ -39,12 +40,11 @@ LDFLAGS+=	-lpthread # otherwise build breaks on some systems: error: undefined s
 
 .if exists(/usr/include/omp.h)
 OPTIONS_DEFINE=		OPENMP
-#OPTIONS_DEFAULT=	OPENMP
+OPTIONS_DEFAULT=	OPENMP
 
 OPENMP_CMAKE_BOOL=	OPTION_OMP
-OPENMP_BROKEN=		OpenMP causes asserts, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=261360
 .else
-CMAKE_ARGS=	-DOPTION_OMP:BOOL=OFF
+CMAKE_OFF=	OPTION_OMP
 .endif
 
 post-install:
