@@ -339,6 +339,7 @@
     SUBDIR += ccache-memcached
     SUBDIR += ccache-memcached-static
     SUBDIR += ccache-static
+    SUBDIR += ccache4
     SUBDIR += cccc
     SUBDIR += ccdoc
     SUBDIR += ccls
@@ -1341,7 +1342,6 @@
     SUBDIR += libpo6
     SUBDIR += libpololu-avr
     SUBDIR += libpru
-    SUBDIR += libpthread-stubs
     SUBDIR += libqb
     SUBDIR += libqcow
     SUBDIR += libqsbr

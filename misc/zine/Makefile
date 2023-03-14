@@ -1,6 +1,6 @@
 PORTNAME=	zine
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.12.0
+DISTVERSION=	0.13.0
 CATEGORIES=	misc
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -36,7 +36,7 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		bytes-1.4.0 \
 		cc-1.0.79 \
 		cfg-if-1.0.0 \
-		chrono-0.4.23 \
+		chrono-0.4.24 \
 		chrono-tz-0.6.1 \
 		chrono-tz-build-0.0.2 \
 		clap-4.1.8 \
@@ -91,13 +91,13 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		form_urlencoded-1.1.0 \
 		fsevent-sys-4.1.0 \
 		futf-0.1.5 \
-		futures-0.3.26 \
-		futures-channel-0.3.26 \
-		futures-core-0.3.26 \
-		futures-io-0.3.26 \
-		futures-sink-0.3.26 \
-		futures-task-0.3.26 \
-		futures-util-0.3.26 \
+		futures-0.3.27 \
+		futures-channel-0.3.27 \
+		futures-core-0.3.27 \
+		futures-io-0.3.27 \
+		futures-sink-0.3.27 \
+		futures-task-0.3.27 \
+		futures-util-0.3.27 \
 		fxhash-0.2.1 \
 		generic-array-0.14.6 \
 		getopts-0.2.21 \
@@ -117,7 +117,7 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		httparse-1.8.0 \
 		httpdate-1.0.2 \
 		humansize-2.1.3 \
-		hyper-0.14.24 \
+		hyper-0.14.25 \
 		hyper-tls-0.5.0 \
 		hyper-tungstenite-0.9.0 \
 		iana-time-zone-0.1.53 \
@@ -141,7 +141,7 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		kqueue-sys-1.0.3 \
 		lazy_static-1.4.0 \
 		lazycell-1.3.0 \
-		libc-0.2.139 \
+		libc-0.2.140 \
 		libm-0.2.6 \
 		line-wrap-0.1.1 \
 		link-cplusplus-1.0.8 \
@@ -209,11 +209,11 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		proc-macro-error-1.0.4 \
 		proc-macro-error-attr-1.0.4 \
 		proc-macro-hack-0.5.20+deprecated \
-		proc-macro2-1.0.51 \
+		proc-macro2-1.0.52 \
 		promptly-0.3.1 \
 		pulldown-cmark-0.9.2 \
 		quick-xml-0.27.1 \
-		quote-1.0.23 \
+		quote-1.0.26 \
 		radix_trie-0.2.1 \
 		rand-0.7.3 \
 		rand-0.8.5 \
@@ -245,9 +245,9 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		security-framework-sys-2.8.0 \
 		selectors-0.22.0 \
 		self_cell-0.10.2 \
-		semver-1.0.16 \
-		serde-1.0.154 \
-		serde_derive-1.0.154 \
+		semver-1.0.17 \
+		serde-1.0.155 \
+		serde_derive-1.0.155 \
 		serde_json-1.0.94 \
 		servo_arc-0.1.1 \
 		sha1-0.10.5 \
@@ -316,7 +316,7 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		unicode-width-0.1.10 \
 		url-2.3.1 \
 		utf-8-0.7.6 \
-		utf8parse-0.2.0 \
+		utf8parse-0.2.1 \
 		vcpkg-0.2.15 \
 		version_check-0.9.4 \
 		walkdir-2.3.2 \
@@ -334,14 +334,14 @@ CARGO_CRATES=	addr2line-0.19.0 \
 		winapi-x86_64-pc-windows-gnu-0.4.0 \
 		windows-sys-0.42.0 \
 		windows-sys-0.45.0 \
-		windows-targets-0.42.1 \
-		windows_aarch64_gnullvm-0.42.1 \
-		windows_aarch64_msvc-0.42.1 \
-		windows_i686_gnu-0.42.1 \
-		windows_i686_msvc-0.42.1 \
-		windows_x86_64_gnu-0.42.1 \
-		windows_x86_64_gnullvm-0.42.1 \
-		windows_x86_64_msvc-0.42.1 \
+		windows-targets-0.42.2 \
+		windows_aarch64_gnullvm-0.42.2 \
+		windows_aarch64_msvc-0.42.2 \
+		windows_i686_gnu-0.42.2 \
+		windows_i686_msvc-0.42.2 \
+		windows_x86_64_gnu-0.42.2 \
+		windows_x86_64_gnullvm-0.42.2 \
+		windows_x86_64_msvc-0.42.2 \
 		xml5ever-0.17.0 \
 		yaml-rust-0.4.5
 

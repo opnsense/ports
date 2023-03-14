@@ -12,6 +12,7 @@
     SUBDIR += berry
     SUBDIR += blackbox
     SUBDIR += bspwm
+    SUBDIR += bspwm-devel
     SUBDIR += cage
     SUBDIR += cagebreak
     SUBDIR += chamfer
@@ -101,6 +102,7 @@
     SUBDIR += stumpwm
     SUBDIR += subtle
     SUBDIR += sway
+    SUBDIR += swayfx
     SUBDIR += tinywm
     SUBDIR += transset
     SUBDIR += treewm
