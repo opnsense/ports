@@ -11,6 +11,7 @@
     SUBDIR += beav
     SUBDIR += bee-host
     SUBDIR += biew
+    SUBDIR += bined
     SUBDIR += bitedit
     SUBDIR += bless
     SUBDIR += boiling-egg
@@ -213,6 +214,7 @@
     SUBDIR += ne
     SUBDIR += nedit
     SUBDIR += neovim
+    SUBDIR += neovim-gtk
     SUBDIR += neovim-qt
     SUBDIR += notepadnext
     SUBDIR += novelwriter
