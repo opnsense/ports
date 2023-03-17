@@ -117,6 +117,7 @@
     SUBDIR += dolibarr13
     SUBDIR += dolibarr14
     SUBDIR += dolibarr15
+    SUBDIR += dolibarr16
     SUBDIR += domoticz
     SUBDIR += dooble
     SUBDIR += dot-http
@@ -2359,6 +2360,7 @@
     SUBDIR += unit-php
     SUBDIR += unit-python
     SUBDIR += unit-ruby
+    SUBDIR += unitc
     SUBDIR += uwebsockets
     SUBDIR += uwsgi
     SUBDIR += uwsgitop

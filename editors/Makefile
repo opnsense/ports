@@ -12,6 +12,7 @@
     SUBDIR += bee-host
     SUBDIR += biew
     SUBDIR += bined
+    SUBDIR += bingrok
     SUBDIR += bitedit
     SUBDIR += bless
     SUBDIR += boiling-egg
@@ -204,6 +205,7 @@
     SUBDIR += lite-xl
     SUBDIR += marker
     SUBDIR += mg
+    SUBDIR += mickey
     SUBDIR += micro
     SUBDIR += mined
     SUBDIR += mle
@@ -273,6 +275,7 @@
     SUBDIR += turbo
     SUBDIR += tweak
     SUBDIR += uemacs
+    SUBDIR += uhex
     SUBDIR += uzap
     SUBDIR += ved
     SUBDIR += vigor
