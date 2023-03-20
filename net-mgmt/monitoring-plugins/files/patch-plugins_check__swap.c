@@ -1,5 +1,5 @@
---- plugins/check_swap.c.orig	2023-03-16 19:11:39 UTC
-+++ plugins/check_swap.c
+--- plugins/check_swap.c.orig	2023-03-19 09:10:16.525073000 +0100
++++ plugins/check_swap.c	2023-03-19 09:10:31.862180000 +0100
 @@ -34,9 +34,6 @@ const char *email = "devel@monitoring-plugins.org";
  #include "common.h"
  #include "popen.h"
