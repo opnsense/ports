@@ -1271,7 +1271,6 @@
     SUBDIR += libheinz
     SUBDIR += libhoard
     SUBDIR += libhtp
-    SUBDIR += libhyve-remote
     SUBDIR += libibuddy
     SUBDIR += libical
     SUBDIR += libindicator
@@ -3012,7 +3011,6 @@
     SUBDIR += p5-Multiplex-CMD
     SUBDIR += p5-NEXT
     SUBDIR += p5-Net-DBus
-    SUBDIR += p5-Net-ZooKeeper
     SUBDIR += p5-No-Worries
     SUBDIR += p5-Number-Bytes-Human
     SUBDIR += p5-Number-Tolerant

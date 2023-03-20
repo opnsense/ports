@@ -1,5 +1,5 @@
 PORTNAME=	yuzu
-PORTVERSION=	s20230313
+PORTVERSION=	s20230318
 CATEGORIES=	emulators wayland
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
@@ -50,7 +50,7 @@ qt6_OPTIONS_EXCLUDE=	QT5
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	yuzu-emu
-GH_TAGNAME=	8870fae67
+GH_TAGNAME=	0e7e98e24
 GH_TUPLE=	yuzu-emu:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		yuzu-emu:sirit:ab75463:sirit/externals/sirit \
 		KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-201-gc214f6f:SPIRV_Headers/externals/sirit/externals/SPIRV-Headers \
@@ -158,7 +158,7 @@ CONFIGURE_ENV+=	CC="${CC}" CXX="${CXX}" CPP="${CPP}"
 . endif
 
 # XXX Move into separate port and standardize via USES
-GH_TUPLE+=	llvm:llvm-project:llvmorg-16.0.0-rc2:libcxx
+GH_TUPLE+=	llvm:llvm-project:llvmorg-16.0.0:libcxx
 CXXFLAGS+=	-nostdinc++ -isystem${WRKDIR}/libcxx_prefix/include/c++/v1
 # Don't link against new libc++ to avoid ABI mismatch in Qt
 #LDFLAGS+=	-nostdlib++ -L${WRKDIR}/libcxx_prefix/lib -l:libc++.a -lcxxrt
