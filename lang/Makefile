@@ -1,6 +1,5 @@
     COMMENT = Programming languages
 
-    SUBDIR += J
     SUBDIR += abcl
     SUBDIR += alchemist.el
     SUBDIR += algol68g
@@ -365,7 +364,6 @@
     SUBDIR += v8
     SUBDIR += v8-beta
     SUBDIR += vala
-    SUBDIR += visualworks
     SUBDIR += voc
     SUBDIR += yabasic
     SUBDIR += yap

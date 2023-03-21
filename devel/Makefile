@@ -699,7 +699,6 @@
     SUBDIR += fpc-tplylib
     SUBDIR += fpc-zlib
     SUBDIR += fpp
-    SUBDIR += frama-c
     SUBDIR += freebsd-gcc12
     SUBDIR += freebsd-gcc6
     SUBDIR += freebsd-gcc9
@@ -1442,7 +1441,6 @@
     SUBDIR += libxtend
     SUBDIR += libzim
     SUBDIR += libzookeeper
-    SUBDIR += libzrtpcpp
     SUBDIR += libzvbi
     SUBDIR += lightning
     SUBDIR += linenoise-ng
@@ -5832,7 +5830,6 @@
     SUBDIR += rhtvision
     SUBDIR += rinutils
     SUBDIR += riscv32-unknown-elf-gcc
-    SUBDIR += riscv64-gcc
     SUBDIR += riscv64-none-elf-gcc
     SUBDIR += rkcommon
     SUBDIR += rlog

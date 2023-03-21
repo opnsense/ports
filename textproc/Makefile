@@ -1311,6 +1311,7 @@
     SUBDIR += py-csvkit
     SUBDIR += py-custom_inherit
     SUBDIR += py-dbfread
+    SUBDIR += py-dialect
     SUBDIR += py-dict2xml
     SUBDIR += py-diff-match-patch
     SUBDIR += py-docrepr
@@ -1502,7 +1503,6 @@
     SUBDIR += py-rss2gen
     SUBDIR += py-rst2ansi
     SUBDIR += py-rst2html5
-    SUBDIR += py-rstfmt
     SUBDIR += py-scour
     SUBDIR += py-sentencepiece
     SUBDIR += py-simplebayes
