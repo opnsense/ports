@@ -1811,6 +1811,12 @@
     SUBDIR += py-uvicorn
     SUBDIR += py-w3lib
     SUBDIR += py-wagtail
+    SUBDIR += py-wagtail-2fa
+    SUBDIR += py-wagtail-airtable
+    SUBDIR += py-wagtail-bakery
+    SUBDIR += py-wagtail-factories
+    SUBDIR += py-wagtail-localize
+    SUBDIR += py-wagtail-transfer
     SUBDIR += py-waitress
     SUBDIR += py-webargs
     SUBDIR += py-webassets
@@ -2104,6 +2110,7 @@
     SUBDIR += rubygem-rack-protection1
     SUBDIR += rubygem-rack-protection2
     SUBDIR += rubygem-rack-proxy
+    SUBDIR += rubygem-rack-session
     SUBDIR += rubygem-rack-ssl
     SUBDIR += rubygem-rack-test
     SUBDIR += rubygem-rack-timeout
