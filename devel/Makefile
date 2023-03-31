@@ -514,6 +514,7 @@
     SUBDIR += dasm
     SUBDIR += datadraw
     SUBDIR += date
+    SUBDIR += datovka
     SUBDIR += dbus
     SUBDIR += dbus-c++
     SUBDIR += dbus-glib
@@ -947,9 +948,6 @@
     SUBDIR += highlighterkit
     SUBDIR += highway
     SUBDIR += hoel
-    SUBDIR += horde-content
-    SUBDIR += horde-timeobjects
-    SUBDIR += horde-whups
     SUBDIR += hotspot
     SUBDIR += hp48cc
     SUBDIR += hp48xgcc
@@ -1180,6 +1178,7 @@
     SUBDIR += libdaemon
     SUBDIR += libdap
     SUBDIR += libdatadog
+    SUBDIR += libdatovka
     SUBDIR += libdatrie
     SUBDIR += libdbusmenu
     SUBDIR += libdbusmenu-qt
@@ -4085,8 +4084,6 @@
     SUBDIR += php82-sysvshm
     SUBDIR += php82-tokenizer
     SUBDIR += phpunit10
-    SUBDIR += phpunit6
-    SUBDIR += phpunit7
     SUBDIR += phpunit8
     SUBDIR += phpunit9
     SUBDIR += physfs
@@ -4916,6 +4913,7 @@
     SUBDIR += py-multi_key_dict
     SUBDIR += py-multipledispatch
     SUBDIR += py-multiprocess
+    SUBDIR += py-multiset
     SUBDIR += py-multitasking
     SUBDIR += py-munch
     SUBDIR += py-murmurhash
