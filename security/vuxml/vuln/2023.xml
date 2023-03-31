@@ -1,3 +1,288 @@
+  <vuln vid="54006796-cf7b-11ed-a5d5-001b217b3468">
+    <topic>Gitlab -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>15.10.0</ge><lt>15.10.1</lt></range>
+	<range><ge>15.9.0</ge><lt>15.9.4</lt></range>
+	<range><ge>8.1</ge><lt>15.8.5</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2023/03/30/security-release-gitlab-15-10-1-released/">
+	  <p>Cross-site scripting in "Maximum page reached" page</p>
+	  <p>Private project guests can read new changes using a fork</p>
+	  <p>Mirror repository error reveals password in Settings UI</p>
+	  <p>DOS and high resource consumption of Prometheus server through abuse of Prometheus integration proxy endpoint</p>
+	  <p>Unauthenticated users can view Environment names from public projects limited to project members only</p>
+	  <p>Copying information to the clipboard could lead to the execution of unexpected commands</p>
+	  <p>Maintainer can leak masked webhook secrets by adding a new parameter to the webhook URL</p>
+	  <p>Arbitrary HTML injection possible when :soft_email_confirmation feature flag is enabled in the latest release</p>
+	  <p>Framing of arbitrary content (leading to open redirects) on any page allowing user controlled markdown</p>
+	  <p>MR for security reports are available to everyone</p>
+	  <p>API timeout when searching for group issues</p>
+	  <p>Unauthorised user can add child epics linked to victim's epic in an unrelated group</p>
+	  <p>GitLab search allows to leak internal notes</p>
+	  <p>Ambiguous branch name exploitation in GitLab</p>
+	  <p>Improper permissions checks for moving an issue</p>
+	  <p>Private project branches names can be leaked through a fork</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-3513</cvename>
+      <cvename>CVE-2023-0485</cvename>
+      <cvename>CVE-2023-1098</cvename>
+      <cvename>CVE-2023-1733</cvename>
+      <cvename>CVE-2023-0319</cvename>
+      <cvename>CVE-2023-1708</cvename>
+      <cvename>CVE-2023-0838</cvename>
+      <cvename>CVE-2023-0523</cvename>
+      <cvename>CVE-2023-0155</cvename>
+      <cvename>CVE-2023-1167</cvename>
+      <cvename>CVE-2023-1417</cvename>
+      <cvename>CVE-2023-1710</cvename>
+      <cvename>CVE-2023-0450</cvename>
+      <cvename>CVE-2023-1071</cvename>
+      <cvename>CVE-2022-3375</cvename>
+      <url>https://about.gitlab.com/releases/2023/03/30/security-release-gitlab-15-10-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2023-03-30</discovery>
+      <entry>2023-03-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6bd2773c-cf1a-11ed-bd44-080027f5fec9">
+    <topic>rubygem-time -- ReDoS vulnerability</topic>
+    <affects>
+      <package>
+	<name>ruby</name>
+	<range><ge>2.7.0,1</ge><lt>2.7.8,1</lt></range>
+	<range><ge>3.0.0,1</ge><lt>3.0.6,1</lt></range>
+	<range><ge>3.1.0,1</ge><lt>3.1.4,1</lt></range>
+	<range><ge>3.2.0.p1,1</ge><lt>3.2.2,1</lt></range>
+      </package>
+      <package>
+	<name>ruby27</name>
+	<range><ge>2.7.0,1</ge><lt>2.7.8,1</lt></range>
+      </package>
+      <package>
+	<name>ruby30</name>
+	<range><ge>3.0.0,1</ge><lt>3.0.6,1</lt></range>
+      </package>
+      <package>
+	<name>ruby31</name>
+	<range><ge>3.1.0,1</ge><lt>3.1.4,1</lt></range>
+      </package>
+      <package>
+	<name>ruby32</name>
+	<range><ge>3.2.0.p1,1</ge><lt>3.2.2,1</lt></range>
+      </package>
+      <package>
+	<name>rubygem-time</name>
+	<range><lt>0.2.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>ooooooo_q reports:</p>
+	<blockquote cite="https://www.ruby-lang.org/en/news/2023/03/30/redos-in-time-cve-2023-28756/">
+	  <p>
+	    The Time parser mishandles invalid strings that have
+	    specific characters. It causes an increase in execution
+	    time for parsing strings to Time objects.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-28756</cvename>
+      <url>https://www.ruby-lang.org/en/news/2023/03/30/redos-in-time-cve-2023-28756/</url>
+    </references>
+    <dates>
+      <discovery>2023-03-30</discovery>
+      <entry>2023-03-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9b60bba1-cf18-11ed-bd44-080027f5fec9">
+    <topic>rubygem-uri -- ReDoS vulnerability</topic>
+    <affects>
+      <package>
+	<name>ruby</name>
+	<range><ge>2.7.0,1</ge><lt>2.7.8,1</lt></range>
+	<range><ge>3.0.0,1</ge><lt>3.0.6,1</lt></range>
+	<range><ge>3.1.0,1</ge><lt>3.1.4,1</lt></range>
+	<range><ge>3.2.0.p1,1</ge><lt>3.2.2,1</lt></range>
+      </package>
+      <package>
+	<name>ruby27</name>
+	<range><ge>2.7.0,1</ge><lt>2.7.8,1</lt></range>
+      </package>
+      <package>
+	<name>ruby30</name>
+	<range><ge>3.0.0,1</ge><lt>3.0.6,1</lt></range>
+      </package>
+      <package>
+	<name>ruby31</name>
+	<range><ge>3.1.0,1</ge><lt>3.1.4,1</lt></range>
+      </package>
+      <package>
+	<name>ruby32</name>
+	<range><ge>3.2.0.p1,1</ge><lt>3.2.2,1</lt></range>
+      </package>
+      <package>
+	<name>rubygem-uri</name>
+	<range><lt>0.12.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Dominic Couture reports:</p>
+	<blockquote cite="https://www.ruby-lang.org/en/news/2023/03/28/redos-in-uri-cve-2023-28755/">
+	  <p>
+	    A ReDoS issue was discovered in the URI component. The URI
+	    parser mishandles invalid URLs that have specific
+	    characters. It causes an increase in execution time for
+	    parsing strings to URI objects.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-28755</cvename>
+      <url>https://www.ruby-lang.org/en/news/2023/03/28/redos-in-uri-cve-2023-28755/</url>
+    </references>
+    <dates>
+      <discovery>2023-03-28</discovery>
+      <entry>2023-03-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="dc33795f-ced7-11ed-b1fe-6805ca2fa271">
+    <topic>powerdns-recursor -- denial of service</topic>
+    <affects>
+      <package>
+	<name>powerdns-recursor</name>
+	<range><lt>4.8.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PowerDNS Team reports:</p>
+	<blockquote cite="https://blog.powerdns.com/2023/03/29/security-advisory-2023-02-for-powerdns-recursor-up-to-and-including-4-6-5-4-7-4-and-4-8-3/">
+	  <p>PowerDNS Security Advisory 2023-02: Deterred spoofing attempts
+	    can lead to authoritative servers being marked unavailable</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-26437</cvename>
+      <url>https://doc.powerdns.com/recursor/security-advisories/powerdns-advisory-2023-02.html</url>
+    </references>
+    <dates>
+      <discovery>2023-03-29</discovery>
+      <entry>2023-03-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="96d84238-b500-490b-b6aa-2b77090a0410">
+    <topic>xorg-server -- Overlay Window Use-After-Free</topic>
+    <affects>
+      <package>
+	<name>xorg-server</name>
+	<name>xephyr</name>
+	<name>xorg-vfbserver</name>
+	<range><lt>21.1.8,1</lt></range>
+      </package>
+      <package>
+	<name>xorg-nestserver</name>
+	<range><lt>21.1.8,2</lt></range>
+      </package>
+      <package>
+	<name>xwayland</name>
+	<range><ge>23.0.0,1</ge><lt>23.1.1,1</lt></range>
+	<range><lt>22.1.9,1</lt></range>
+      </package>
+      <package>
+	<name>xwayland-devel</name>
+	<range><lt>21.0.99.1.439</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The X.Org project reports:</p>
+	<blockquote cite="https://lists.x.org/archives/xorg-announce/2023-March/003374.html">
+	  <ul>
+	    <li>ZDI-CAN-19866/CVE-2023-1393: X.Org Server Overlay Window Use-After-Free
+	    Local Privilege Escalation Vulnerability
+
+	    <p>If a client explicitly destroys the compositor overlay window (aka COW),
+	    the Xserver would leave a dangling pointer to that window in the CompScreen
+	    structure, which will trigger a use-after-free later.</p></li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://lists.x.org/archives/xorg-announce/2023-March/003374.html</url>
+      <cvename>CVE-2023-1393</cvename>
+    </references>
+    <dates>
+      <discovery>2023-03-29</discovery>
+      <entry>2023-03-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="425b9538-ce5f-11ed-ade3-d4c9ef517024">
+    <topic>OpenSSL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1t,1_2</lt></range>
+      </package>
+      <package>
+	<name>openssl30</name>
+	<range><lt>3.0.8_2</lt></range>
+      </package>
+      <package>
+	<name>openssl31</name>
+	<range><lt>3.1.0_2</lt></range>
+      </package>
+      <package>
+	<name>openssl-quic</name>
+	<range><lt>3.0.8_2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20230328.txt">
+	  <p>Severity: low</p>
+	  <p>Applications that use a non-default option when verifying certificates may be
+	    vulnerable to an attack from a malicious CA to circumvent certain checks.</p>
+	  <p>The function X509_VERIFY_PARAM_add0_policy() is documented to
+	    implicitly enable the certificate policy check when doing certificate
+	    verification. However the implementation of the function does not
+	    enable the check which allows certificates with invalid or incorrect
+	    policies to pass the certificate verification.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-0465</cvename>
+      <cvename>CVE-2023-0466</cvename>
+      <url>https://www.openssl.org/news/secadv/20230328.txt</url>
+    </references>
+    <dates>
+      <discovery>2023-03-28</discovery>
+      <entry>2023-03-29</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="5b0ae405-cdc7-11ed-bb39-901b0e9408dc">
     <topic>Matrix clients -- Prototype pollution in matrix-js-sdk</topic>
     <affects>
