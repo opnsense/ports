@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	7.88.1
+PORTVERSION=	8.0.1
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
 		https://github.com/curl/curl/releases/download/curl-${PORTVERSION:S|.|_|g}/
@@ -42,7 +42,7 @@ OPTIONS_DEFINE=	ALTSVC BROTLI CA_BUNDLE COOKIES CURL_DEBUG DEBUG DOCS EXAMPLES I
 OPTIONS_GROUP=	PROTOCOL
 OPTIONS_RADIO=	SSL
 OPTIONS_SINGLE=	GSSAPI RESOLV
-OPTIONS_GROUP_PROTOCOL=	DICT FTP GOPHER HTTP HTTP2 IMAP LDAP LDAPS LIBSSH2 MQTT POP3 RTMP RTSP SMB SMTP TELNET TFTP
+OPTIONS_GROUP_PROTOCOL=	DICT FTP GOPHER HTTP HTTP2 IMAP LDAP LDAPS LIBSSH2 MQTT POP3 RTMP RTSP SMB SMTP TELNET TFTP WEBSOCKET
 OPTIONS_RADIO_SSL=	GNUTLS OPENSSL WOLFSSL
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 OPTIONS_SINGLE_RESOLV=	CARES THREADED_RESOLVER
@@ -69,6 +69,7 @@ SMB_DESC=	SMB/CIFS support
 SMTP_DESC=	SMTP/SMTPS support
 THREADED_RESOLVER_DESC=	Threaded DNS resolver
 TLS_SRP_DESC=	TLS-SRP (Secure Remote Password) support
+WEBSOCKET_DESC=	WebSocket support (experimental)
 
 ALTSVC_CONFIGURE_ENABLE=alt-svc
 BROTLI_CONFIGURE_WITH=	brotli
@@ -137,6 +138,7 @@ TELNET_CONFIGURE_ENABLE=telnet
 TFTP_CONFIGURE_ENABLE=	tftp
 THREADED_RESOLVER_CONFIGURE_ENABLE=	pthreads threaded-resolver
 TLS_SRP_CONFIGURE_ENABLE=	tls-srp
+WEBSOCKET_CONFIGURE_ENABLE=	websockets
 WOLFSSL_CONFIGURE_WITH=	wolfssl
 WOLFSSL_LIB_DEPENDS=	libwolfssl.so:security/wolfssl
 ZSTD_CONFIGURE_WITH=	zstd
@@ -155,17 +157,6 @@ IGNORE=		only supports TLS-SRP with either OpenSSL or GnuTLS
 .if ${PORT_OPTIONS:MLDAPS} && !${PORT_OPTIONS:MGNUTLS} && !${PORT_OPTIONS:MOPENSSL} && !${PORT_OPTIONS:MWOLFSSL}
 IGNORE=		only supports LDAPS with SSL
 .endif
-
-.if ${PORT_OPTIONS:MGSSAPI_BASE} && exists(${LOCALBASE}/lib/libkrb5support.so)
-BROKEN=		The GSSAPI_BASE option is selected, but you have krb5 installed. \
-		This is incompatible. In order to build, either select GSSAPI_MIT, \
-		or temporarily deinstall krb5 to build curl, or build in poudriere
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e '/^SUBDIRS = / s|$$| docs scripts|; /^DIST_SUBDIRS = / s| docs scripts||; /cd docs &&/d' ${WRKSRC}/Makefile.in
-	@${REINPLACE_CMD} -e 's|\(flags_dbg_off=\)".*"|\1""|; s|\(flags_opt_off=\)".*"|\1""|' ${WRKSRC}/configure
-	@${REINPLACE_CMD} -e 's|include <gssapi.h>|include <gssapi/gssapi.h>|' ${WRKSRC}/lib/urldata.h
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/libcurl/libcurl.m4 ${STAGEDIR}${PREFIX}/share/aclocal/
