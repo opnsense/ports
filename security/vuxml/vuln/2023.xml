@@ -1,3 +1,984 @@
+  <vuln vid="02e51cb3-d7e4-11ed-9f7a-5404a68ad561">
+    <topic>traefik -- Use of vulnerable Go modules net/http, net/textproto</topic>
+    <affects>
+      <package>
+	<name>traefik</name>
+	<range><lt>2.9.9_1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://pkg.go.dev/vuln/GO-2023-1704">
+	  <p>HTTP and MIME header parsing can allocate large amounts
+	     of memory, even when parsing small inputs, potentially
+	     leading to a denial of service. Certain unusual patterns
+	     of input data can cause the common function used to parse
+	     HTTP and MIME headers to allocate substantially more
+	     memory than required to hold the parsed headers. An
+	     attacker can exploit this behavior to cause an HTTP
+	     server to allocate large amounts of memory from a small
+	     request, potentially leading to memory exhaustion and a
+	     denial of service. With fix, header parsing now correctly
+	     allocates only the memory required to hold parsed headers.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-24534</cvename>
+      <url>https://www.cve.org/CVERecord?id=CVE-2023-24534</url>
+      <cvename>CVE-2023-29013</cvename>
+      <url>https://www.cve.org/CVERecord?id=CVE-2023-29013</url>
+    </references>
+    <dates>
+      <discovery>2023-03-10</discovery>
+      <entry>2023-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f767d615-01db-47e9-b4ab-07bb8d3409fd">
+    <topic>py39-cinder -- insecure-credentials flaw</topic>
+    <affects>
+      <package>
+    <name>py39-cinder</name>
+    <range><lt>14.1.0</lt></range>
+    <range><ge>15.0.0</ge><lt>15.2.0</lt></range>
+    <range><ge>16.0.0</ge><lt>15.1.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>OpenStack project reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2020-228">
+      <p>An insecure-credentials flaw was found in all openstack-cinder versions before openstack-cinder 14.1.0, all openstack-cinder 15.x.x versions before openstack-cinder 15.2.0 and all openstack-cinder 16.x.x versions before openstack-cinder 16.1.0.</p>
+      <p>When using openstack-cinder with the Dell EMC ScaleIO or VxFlex OS backend storage driver, credentials for the entire backend are exposed in the ``connection_info`` element in all Block Storage v3 Attachments API calls containing that element.</p>
+      <p>This flaw enables an end-user to create a volume, make an API call to show the attachment detail information, and retrieve a username and password that may be used to connect to another user's volume.</p>
+      <p>Additionally, these credentials are valid for the ScaleIO or VxFlex OS Management API, should an attacker discover the Management API endpoint.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2020-10755</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2020-228</url>
+    </references>
+    <dates>
+      <discovery>2020-06-10</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e5d117b3-2153-4129-81ed-42b0221afa78">
+    <topic>py39-OWSLib -- arbitrary file read vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-OWSLib</name>
+    <range><lt>0.28.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>Jorge Rosillo reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-8h9c-r582-mggc">
+      <p>OWSLib's XML parser (which supports both `lxml` and `xml.etree`) does not disable entity resolution for `lxml`, and could lead to arbitrary file reads from an attacker-controlled XML payload.</p>
+      <p>This affects all XML parsing in the codebase.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-27476</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-8h9c-r582-mggc</url>
+    </references>
+    <dates>
+      <discovery>2023-03-07</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="17083017-d993-43eb-8aaf-7138f4486d1c">
+    <topic>py39-unicorn -- sandbox escape and arbitrary code execution vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-unicorn</name>
+    <range><lt>2.0.0rc1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>jwang-a reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2021-868">
+      <p>An issue was discovered in split_region in uc.c in Unicorn Engine before 2.0.0-rc5.</p>
+      <p>It allows local attackers to escape the sandbox.</p>
+      <p>An attacker must first obtain the ability to execute crafted code in the target sandbox in order to exploit this vulnerability.</p>
+      <p>The specific flaw exists within the virtual memory manager.</p>
+      <p>The issue results from the faulty comparison of GVA and GPA while calling uc_mem_map_ptr to free part of a claimed memory block.</p>
+      <p>An attacker can leverage this vulnerability to escape the sandbox and execute arbitrary code on the host machine.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-44078</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2021-868</url>
+    </references>
+    <dates>
+      <discovery>2021-12-26</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="43e9ffd4-d6e0-11ed-956f-7054d21a9e2a">
+    <topic>py39-pycares -- domain hijacking vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-pycares</name>
+    <range><lt>4.2.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>Philipp Jeitner and Haya Shulman report:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-c58j-88f5-h53f">
+      <p>A flaw was found in c-ares library, where a missing input validation check of host names returned by DNS (Domain Name Servers) can lead to output of wrong hostnames which might potentially lead to Domain Hijacking.</p>
+      <p>The highest threat from this vulnerability is to confidentiality and integrity as well as system availability.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-3672</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-c58j-88f5-h53f</url>
+    </references>
+    <dates>
+      <discovery>2021-06-11</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1b38aec4-4149-4c7d-851c-3c4de3a1fbd0">
+    <topic>py39-setuptools -- denial of service vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-setuptools</name>
+    <range><lt>65.5.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>SCH227 reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579">
+      <p>Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects.</p>
+      <p>Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`.</p>
+      <p>This has been patched in version 65.5.1.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-40897</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579</url>
+    </references>
+    <dates>
+      <discovery>2022-12-23</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="187ab98e-2953-4495-b379-4060bd4b75ee">
+    <topic>py27-setuptools44 -- denial of service vulnerability</topic>
+    <affects>
+      <package>
+    <name>py27-setuptools44</name>
+    <range><lt>65.5.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>SCH227 reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579">
+      <p>Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects.</p>
+      <p>Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`.</p>
+      <p>This has been patched in version 65.5.1.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-40897</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579</url>
+    </references>
+    <dates>
+      <discovery>2022-12-23</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="24da150a-33e0-4fee-b4ee-2c6b377d3395">
+    <topic>py39-setuptools58 -- denial of service vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-setuptools58</name>
+    <range><lt>65.5.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>SCH227 reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579">
+      <p>Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects.</p>
+      <p>Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`.</p>
+      <p>This has been patched in version 65.5.1.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-40897</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579</url>
+    </references>
+    <dates>
+      <discovery>2022-12-23</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="15dae5cc-9ee6-4577-a93e-2ab57780e707">
+    <topic>py39-sentry-sdk -- sensitive cookies leak</topic>
+    <affects>
+      <package>
+    <name>py39-sentry-sdk</name>
+    <range><lt>1.14.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>Tom Wolters reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-29pr-6jr8-q5jm">
+      <p>When using the Django integration of the Sentry SDK in a specific configuration it is possible to leak sensitive cookies values, including the session cookie to Sentry.</p>
+      <p>These sensitive cookies could then be used by someone with access to your Sentry issues to impersonate or escalate their privileges within your application.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-28117</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-29pr-6jr8-q5jm</url>
+    </references>
+    <dates>
+      <discovery>2023-03-21</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="28a37df6-ba1a-4eed-bb64-623fc8e8dfd0">
+    <topic>py39-py -- Regular expression Denial of Service vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-py</name>
+    <range><le>1.11.0</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>SCH227 reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2022-42969">
+      <p>The py library through 1.11.0 for Python allows remote attackers to conduct a ReDoS (Regular expression Denial of Service) attack via a Subversion repository with crafted info data, because the InfoSvnCommand argument is mishandled.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-42969</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2022-42969</url>
+      <url>https://osv.dev/vulnerability/GHSA-w596-4wvx-j9j6</url>
+    </references>
+    <dates>
+      <discovery>2022-11-04</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="845f8430-d0ee-4134-ae35-480a3e139b8a">
+    <topic>py39-joblib -- arbitrary code execution</topic>
+    <affects>
+      <package>
+    <name>py39-joblib</name>
+    <range><lt>1.2.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>jimlinntu reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2022-288">
+      <p>The package joblib from 0 and before 1.2.0 are vulnerable to Arbitrary Code Execution via the pre_dispatch flag in Parallel() class due to the eval() statement.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-21797</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2022-288</url>
+      <url>https://osv.dev/vulnerability/GHSA-6hrg-qmvc-2xh8</url>
+    </references>
+    <dates>
+      <discovery>2022-09-26</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="de970aef-d60e-466b-8e30-1ae945a047f1">
+    <topic>py39-configobj -- vulnerable to Regular Expression Denial of Service</topic>
+    <affects>
+      <package>
+    <name>py39-configobj</name>
+    <range><le>5.0.6_1</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>DarkTinia reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-c33w-24p9-8m24">
+      <p>All versions of the package configobj are vulnerable to Regular Expression Denial of Service (ReDoS) via the validate function, using (.+?)\((.*)\).</p>
+      <p>**Note:** This is only exploitable in the case of a developer, putting the offending value in a server side configuration file.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-26112</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-c33w-24p9-8m24</url>
+    </references>
+    <dates>
+      <discovery>2023-04-03</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0a38a0d9-757f-4ac3-9561-b439e933dfa9">
+    <topic>py39-celery -- command injection vulnerability</topic>
+    <affects>
+      <package>
+    <name>py39-celery</name>
+    <range><lt>5.2.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>Snyk reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2021-858">
+      <p>This affects the package celery before 5.2.2.</p>
+      <p>It by default trusts the messages and metadata stored in backends (result stores).</p>
+      <p>When reading task metadata from the backend, the data is deserialized.</p>
+      <p>Given that an attacker can gain access to, or somehow manipulate the metadata within a celery backend, they could trigger a stored command injection vulnerability and potentially gain further access to the system.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-23727</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2021-858</url>
+      <url>https://osv.dev/vulnerability/GHSA-q4xr-rc97-m4xx</url>
+    </references>
+    <dates>
+      <discovery>2021-12-09</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8aa6340d-e7c6-41e0-b2a3-3c9e9930312a">
+    <topic>py39-redis -- can send response data to the client of an unrelated request</topic>
+    <affects>
+      <package>
+    <name>py39-redis</name>
+    <range><ge>4.4.0</ge><lt>4.4.4</lt></range>
+    <range><ge>4.5.0</ge><lt>4.5.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>drago-balto reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-8fww-64cx-x8p5">
+      <p>redis-py through 4.5.3 and 4.4.3 leaves a connection open after canceling an async Redis command at an inopportune time (in the case of a non-pipeline operation), and can send response data to the client of an unrelated request.</p>
+      <p>NOTE: this issue exists because of an incomplete fix for CVE-2023-28858.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-28859</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-8fww-64cx-x8p5</url>
+    </references>
+    <dates>
+      <discovery>2023-03-26</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3f6d6181-79b2-4d33-bb1e-5d3f9df0c1d1">
+    <topic>py39-redis -- can send response data to the client of an unrelated request</topic>
+    <affects>
+      <package>
+    <name>py39-redis</name>
+    <range><lt>4.3.6</lt></range>
+    <range><ge>4.4.0</ge><lt>4.4.3</lt></range>
+    <range><ge>4.5.0</ge><lt>4.5.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>drago-balto reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/GHSA-24wv-mv5m-xv4h">
+      <p>redis-py before 4.5.3, as used in ChatGPT and other products, leaves a connection open after canceling an async Redis command at an inopportune time (in the case of a pipeline operation), and can send response data to the client of an unrelated request in an off-by-one manner.</p>
+      <p>The fixed versions for this CVE Record are 4.3.6, 4.4.3, and 4.5.3, but [are believed to be incomplete](https://github.com/redis/redis-py/issues/2665).</p>
+      <p>CVE-2023-28859 has been assigned the issues caused by the incomplete fixes.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-28858</cvename>
+      <url>https://osv.dev/vulnerability/GHSA-24wv-mv5m-xv4h</url>
+    </references>
+    <dates>
+      <discovery>2023-03-26</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d2293e22-4390-42c2-a323-34cca2066000">
+    <topic>py39-sqlalchemy12 -- multiple SQL Injection vulnerabilities</topic>
+    <affects>
+      <package>
+    <name>py39-sqlalchemy12</name>
+    <range><lt>1.3.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>21k reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-123">
+      <p>SQLAlchemy through 1.2.17 and 1.3.x through 1.3.0b2 allows SQL Injection via the order_by parameter.</p>
+    </blockquote>
+    <p>nosecurity reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-124">
+      <p>SQLAlchemy 1.2.17 has SQL Injection when the group_by parameter can be controlled.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-7548</cvename>
+      <cvename>CVE-2019-7164</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-123</url>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-124</url>
+      <url>https://osv.dev/vulnerability/GHSA-38fc-9xqv-7f7q</url>
+      <url>https://osv.dev/vulnerability/GHSA-887w-45rq-vxgf</url>
+    </references>
+    <dates>
+      <discovery>2019-02-06</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8ccff771-ceca-43a0-85ad-3e595e73b425">
+    <topic>py39-sqlalchemy11 -- multiple SQL Injection vulnerabilities</topic>
+    <affects>
+      <package>
+    <name>py39-sqlalchemy11</name>
+    <range><lt>1.3.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>21k reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-123">
+      <p>SQLAlchemy through 1.2.17 and 1.3.x through 1.3.0b2 allows SQL Injection via the order_by parameter.</p>
+    </blockquote>
+    <p>nosecurity reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-124">
+      <p>SQLAlchemy 1.2.17 has SQL Injection when the group_by parameter can be controlled.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-7164</cvename>
+      <cvename>CVE-2019-7548</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-123</url>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-124</url>
+      <url>https://osv.dev/vulnerability/GHSA-38fc-9xqv-7f7q</url>
+      <url>https://osv.dev/vulnerability/GHSA-887w-45rq-vxgf</url>
+    </references>
+    <dates>
+      <discovery>2019-02-06</discovery>
+      <entry>2023-04-09</entry>
+    </dates>
+   </vuln>
+
+  <vuln vid="e4181981-ccf1-11ed-956f-7054d21a9e2a">
+    <topic>py39-sqlalchemy10 -- multiple SQL Injection vulnerabilities</topic>
+    <affects>
+      <package>
+    <name>py39-sqlalchemy10</name>
+    <range><lt>1.3.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>21k reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-123">
+      <p>SQLAlchemy through 1.2.17 and 1.3.x through 1.3.0b2 allows SQL Injection via the order_by parameter.</p>
+    </blockquote>
+    <p>nosecurity reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-124">
+      <p>SQLAlchemy 1.2.17 has SQL Injection when the group_by parameter can be controlled.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-7164</cvename>
+      <cvename>CVE-2019-7548</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-123</url>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-124</url>
+      <url>https://osv.dev/vulnerability/GHSA-887w-45rq-vxgf</url>
+      <url>https://osv.dev/vulnerability/GHSA-38fc-9xqv-7f7q</url>
+    </references>
+    <dates>
+      <discovery>2019-02-06</discovery>
+      <entry>2023-03-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c13a8c17-cbeb-11ed-956f-7054d21a9e2a">
+    <topic>py39-lmdb -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+    <name>py39-lmdb</name>
+    <range><lt>0.98</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>TeamSeri0us reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-236">
+      <p>An issue was discovered in py-lmdb 0.97. For certain values of md_flags, mdb_node_add does not properly set up a memcpy destination, leading to an invalid write operation. NOTE: this outcome occurs when accessing a data.mdb file supplied by an attacker.</p>
+    </blockquote>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-237">
+      <p>An issue was discovered in py-lmdb 0.97. For certain values of mp_flags, mdb_page_touch does not properly set up mc->mc_pg[mc->top], leading to an invalid write operation. NOTE: this outcome occurs when accessing a data.mdb file supplied by an attacker.</p>
+    </blockquote>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-238">
+      <p>An issue was discovered in py-lmdb 0.97. mdb_node_del does not validate a memmove in the case of an unexpected node->mn_hi, leading to an invalid write operation. NOTE: this outcome occurs when accessing a data.mdb file supplied by an attacker.</p>
+    </blockquote>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-239">
+      <p>An issue was discovered in py-lmdb 0.97. For certain values of mn_flags, mdb_cursor_set triggers a memcpy with an invalid write operation within mdb_xcursor_init1. NOTE: this outcome occurs when accessing a data.mdb file supplied by an attacker.</p>
+    </blockquote>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2019-240">
+      <p>An issue was discovered in py-lmdb 0.97. There is a divide-by-zero error in the function mdb_env_open2 if mdb_env_read_header obtains a zero value for a certain size field. NOTE: this outcome occurs when accessing a data.mdb file supplied by an attacker.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2019-16224</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-236</url>
+      <cvename>CVE-2019-16225</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-237</url>
+      <cvename>CVE-2019-16226</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-238</url>
+      <cvename>CVE-2019-16227</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-239</url>
+      <cvename>CVE-2019-16228</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2019-240</url>
+    </references>
+    <dates>
+      <discovery>2019-09-11</discovery>
+      <entry>2023-03-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2991178f-cbe8-11ed-956f-7054d21a9e2a">
+    <topic>py39-Elixir -- weak use of cryptography</topic>
+    <affects>
+      <package>
+    <name>py39-Elixir</name>
+    <range><le>0.8.0</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>Red Hat Security Response Team reports:</p>
+    <blockquote cite="https://osv.dev/vulnerability/PYSEC-2012-13">
+      <p>Elixir 0.8.0 uses Blowfish in CFB mode without constructing a unique initialization vector (IV), which makes it easier for context-dependent users to obtain sensitive information and decrypt the database.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2012-2146</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2012-13</url>
+    </references>
+    <dates>
+      <discovery>2012-08-26</discovery>
+      <entry>2023-03-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="70d0d2ec-cb62-11ed-956f-7054d21a9e2a">
+    <topic>py39-rencode -- infinite loop that could lead to Denial of Service</topic>
+    <affects>
+      <package>
+    <name>py39-rencode</name>
+    <range><le>1.0.6_1</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+    <p>NIST reports:</p>
+    <blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2021-40839">
+      <p>The rencode package through 1.0.6 for Python allows an infinite loop in typecode decoding (such as via ;\x2f\x7f), enabling a remote attack that consumes CPU and memory.</p>
+    </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-40839</cvename>
+      <url>https://osv.dev/vulnerability/PYSEC-2021-345</url>
+      <url>https://osv.dev/vulnerability/GHSA-gh8j-2pgf-x458</url>
+    </references>
+    <dates>
+      <discovery>2021-09-09</discovery>
+      <entry>2023-03-25</entry>
+      <modified>2023-03-26</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="3d5581ff-d388-11ed-8581-a8a1599412c6">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>112.0.5615.49</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>112.0.5615.49</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2023/04/stable-channel-update-for-desktop.html">
+	 <p>This update includes 16 security fixes:</p>
+	 <ul>
+	   <li>[1414018] High CVE-2023-1810: Heap buffer overflow in Visuals. Reported by Weipeng Jiang (@Krace) of VRI on 2023-02-08</li>
+	   <li>[1420510] High CVE-2023-1811: Use after free in Frames. Reported by Thomas Orlita on 2023-03-01</li>
+	   <li>[1418224] Medium CVE-2023-1812: Out of bounds memory access in DOM Bindings. Reported by Shijiang Yu on 2023-02-22</li>
+	   <li>[1423258] Medium CVE-2023-1813: Inappropriate implementation in Extensions. Reported by Axel Chong on 2023-03-10</li>
+	   <li>[1417325] Medium CVE-2023-1814: Insufficient validation of untrusted input in Safe Browsing. Reported by Young Min Kim (@ylemkimon), CompSec Lab at Seoul National University on 2023-02-18</li>
+	   <li>[1278708] Medium CVE-2023-1815: Use after free in Networking APIs. Reported by DDV_UA on 2021-12-10</li>
+	   <li>[1413919] Medium CVE-2023-1816: Incorrect security UI in Picture In Picture. Reported by NDevTK on 2023-02-08</li>
+	   <li>[1418061] Medium CVE-2023-1817: Insufficient policy enforcement in Intents. Reported by Axel Chong on 2023-02-22</li>
+	   <li>[1223346] Medium CVE-2023-1818: Use after free in Vulkan. Reported by Abdulrahman Alqabandi, Microsoft Browser Vulnerability Research, Eric Lawrence, Microsoft, Patrick Walker (@HomeSen), and Kirtikumar Anandrao Ramchandani on 2021-06-24</li>
+	   <li>[1406588] Medium CVE-2023-1819: Out of bounds read in Accessibility. Reported by Microsoft Edge Team on 2023-01-12</li>
+	   <li>[1408120] Medium CVE-2023-1820: Heap buffer overflow in Browser History. Reported by raven at KunLun lab on 2023-01-17</li>
+	   <li>[1413618] Low CVE-2023-1821: Inappropriate implementation in WebShare. Reported by Axel Chong on 2023-02-07</li>
+	   <li>[1066555] Low CVE-2023-1822: Incorrect security UI in Navigation. Reported by 강우진 on 2020-04-01</li>
+	   <li>[1406900] Low CVE-2023-1823: Inappropriate implementation in FedCM. Reported by Jasper Rebane (popstonia) on 2023-01-13</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-1810</cvename>
+      <cvename>CVE-2023-1811</cvename>
+      <cvename>CVE-2023-1812</cvename>
+      <cvename>CVE-2023-1813</cvename>
+      <cvename>CVE-2023-1814</cvename>
+      <cvename>CVE-2023-1815</cvename>
+      <cvename>CVE-2023-1816</cvename>
+      <cvename>CVE-2023-1817</cvename>
+      <cvename>CVE-2023-1818</cvename>
+      <cvename>CVE-2023-1819</cvename>
+      <cvename>CVE-2023-1820</cvename>
+      <cvename>CVE-2023-1821</cvename>
+      <cvename>CVE-2023-1822</cvename>
+      <cvename>CVE-2023-1823</cvename>
+      <url>https://chromereleases.googleblog.com/2023/04/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2023-04-05</discovery>
+      <entry>2023-04-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="348ee234-d541-11ed-ad86-a134a566f1e6">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go119</name>
+	<range><lt>1.19.8</lt></range>
+      </package>
+      <package>
+	<name>go120</name>
+	<range><lt>1.20.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://go.dev/issue/59180">
+	  <p>go/parser: infinite loop in parsing</p>
+	  <p>Calling any of the Parse functions on Go source code
+	    which contains //line directives with very large line
+	    numbers can cause an infinite loop due to integer
+	    overflow.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/59234">
+	  <p>html/template: backticks not treated as string delimiters</p>
+	  <p>Templates did not properly consider backticks (`) as
+	    Javascript string delimiters, and as such did not escape
+	    them as expected. Backticks are used, since ES6, for JS
+	    template literals. If a template contained a Go template
+	    action within a Javascript template literal, the contents
+	    of the action could be used to terminate the literal,
+	    injecting arbitrary Javascript code into the Go template.
+	    As ES6 template literals are rather complex, and
+	    themselves can do string interpolation, we've decided
+	    to simply disallow Go template actions from being used
+	    inside of them (e.g. "var a = {{.}}"), since there is no
+	    obviously safe way to allow this behavior. This takes the
+	    same approach as github.com/google/safehtml.
+	    Template.Parse will now return an Error when it encounters
+	    templates like this, with a currently unexported ErrorCode
+	    with a value of 12. This ErrorCode will be exported in the
+	    next major release.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/58975">
+	  <p>net/http, net/textproto: denial of service from excessive
+	    memory allocation</p>
+	  <p>HTTP and MIME header parsing could allocate large
+	    amounts of memory, even when parsing small inputs.
+	    Certain unusual patterns of input data could cause the
+	    common function used to parse HTTP and MIME headers to
+	    allocate substantially more memory than required to hold
+	    the parsed headers. An attacker can exploit this
+	    behavior to cause an HTTP server to allocate large
+	    amounts of memory from a small request, potentially
+	    leading to memory exhaustion and a denial of service.
+	    Header parsing now correctly allocates only the memory
+	    required to hold parsed headers.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/59153">
+	  <p>net/http, net/textproto, mime/multipart: denial of service
+	    from excessive resource consumption</p>
+	  <p>Multipart form parsing can consume large amounts of CPU
+	    and memory when processing form inputs containing very
+	    large numbers of parts. This stems from several causes:
+	    mime/multipart.Reader.ReadForm limits the total memory a
+	    parsed multipart form can consume. ReadForm could
+	    undercount the amount of memory consumed, leading it to
+	    accept larger inputs than intended. Limiting total
+	    memory does not account for increased pressure on the
+	    garbage collector from large numbers of small
+	    allocations in forms with many parts. ReadForm could
+	    allocate a large number of short-lived buffers, further
+	    increasing pressure on the garbage collector. The
+	    combination of these factors can permit an attacker to
+	    cause an program that parses multipart forms to consume
+	    large amounts of CPU and memory, potentially resulting
+	    in a denial of service. This affects programs that use
+	    mime/multipart.Reader.ReadForm, as well as form parsing
+	    in the net/http package with the Request methods
+	    FormFile, FormValue, ParseMultipartForm, and
+	    PostFormValue. ReadForm now does a better job of
+	    estimating the memory consumption of parsed forms, and
+	    performs many fewer short-lived allocations. In
+	    addition, mime/multipart.Reader now imposes the
+	    following limits on the size of parsed forms: Forms
+	    parsed with ReadForm may contain no more than 1000
+	    parts. This limit may be adjusted with the environment
+	    variable GODEBUG=multipartmaxparts=. Form parts parsed
+	    with NextPart and NextRawPart may contain no more than
+	    10,000 header fields. In addition, forms parsed with
+	    ReadForm may contain no more than 10,000 header fields
+	    across all parts. This limit may be adjusted with the
+	    environment variable GODEBUG=multipartmaxheaders=.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-24537</cvename>
+      <cvename>CVE-2023-24538</cvename>
+      <cvename>CVE-2023-24534</cvename>
+      <cvename>CVE-2023-24536</cvename>
+      <url>https://groups.google.com/g/golang-dev/c/P-sOFU28bj0/m/QE_cqf22AgAJ</url>
+    </references>
+    <dates>
+      <discovery>2023-04-04</discovery>
+      <entry>2023-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e86b8e4d-d551-11ed-8d1e-005056a311d1">
+    <topic>samba -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>samba416</name>
+	<range><lt>4.16.10</lt></range>
+      </package>
+      <package>
+	<name>samba417</name>
+	<range><lt>4.17.7</lt></range>
+      </package>
+      <package>
+	<name>samba418</name>
+	<range><lt>4.18.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Samba Team reports:</p>
+	<blockquote cite="https://www.samba.org/samba/security/CVE-2023-0225.html">
+	  <p>An incomplete access check on dnsHostName allows
+	  authenticated but otherwise unprivileged users to
+	  delete this attribute from any object in the directory.</p>
+	</blockquote>
+	<blockquote cite="https://www.samba.org/samba/security/CVE-2023-0922.html">
+	  <p>The Samba AD DC administration tool, when operating
+	  against a remote LDAP server, will by default send
+	  new or reset passwords over a signed-only connection. </p>
+	</blockquote>
+	<blockquote cite="https://www.samba.org/samba/security/CVE-2023-0614.html">
+	  <p>The fix in 4.6.16, 4.7.9, 4.8.4 and 4.9.7 for
+	  CVE-2018-10919 Confidential attribute disclosure via
+	  LDAP filters was insufficient and an attacker may be
+	  able to obtain confidential BitLocker recovery keys
+	  from a Samba AD DC.</p>
+	  <p>Installations with such secrets in their Samba AD
+	  should assume they have been obtained and need replacing.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-0225</cvename>
+      <url>https://www.samba.org/samba/security/CVE-2023-0225.html</url>
+      <cvename>CVE-2023-0922</cvename>
+      <url>https://www.samba.org/samba/security/CVE-2023-0922.html</url>
+      <cvename>CVE-2023-0614</cvename>
+      <url>https://www.samba.org/samba/security/CVE-2023-0614.html</url>
+    </references>
+    <dates>
+      <discovery>2023-03-29</discovery>
+      <entry>2023-04-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="faf7c1d0-f5bb-47b4-a6a8-ef57317b9766">
+    <topic>ffmpeg -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>ffmpeg</name>
+	<range><ge>5.1,1</ge><lt>5.1.3,1</lt></range>
+	<range><ge>5.0,1</ge><lt>5.0.3,1</lt></range>
+	<range><lt>4.4.4,1</lt></range>
+      </package>
+      <package>
+	<name>ffmpeg4</name>
+	<range><lt>4.4.4</lt></range>
+      </package>
+      <package>
+	<name>avidemux</name>
+	<!-- avidemux-2.8.1 has ffmpeg-4.4.2 -->
+	<range><le>2.9</le></range>
+      </package>
+      <package>
+	<name>emby-server</name>
+	<name>emby-server-devel</name>
+	<!-- emby-server-4.7.11.0 has ffmpeg 5.0 fork -->
+	<!-- emby-server-devel-4.8.0.29 has old ffmpeg unlike upstream -->
+	<range><ge>0</ge></range>
+      </package>
+      <package>
+	<name>handbrake</name>
+	<!-- handbrake-1.5.1 has ffmpeg-4.4.1 -->
+	<range><lt>1.6.0</lt></range>
+      </package>
+      <package>
+	<name>mythtv</name>
+	<name>mythtv-frontend</name>
+	<!-- mythtv-32.0.60 has ffmpeg-4.4.1 fork -->
+	<range><le>33.0,1</le></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NVD reports:</p>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2022-3109">
+	  <p>An issue was discovered in the FFmpeg package, where
+	  vp3_decode_frame in libavcodec/vp3.c lacks check of the
+	  return value of av_malloc() and will cause a null pointer
+	  dereference, impacting availability.</p>
+	</blockquote>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2022-3341">
+	  <p>A null pointer dereference issue was discovered in
+	  'FFmpeg' in decode_main_header() function of
+	  libavformat/nutdec.c file. The flaw occurs because the
+	  function lacks check of the return value of
+	  avformat_new_stream() and triggers the null pointer
+	  dereference error, causing an application to crash.</p>
+	</blockquote>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2022-3964">
+	  <p>A vulnerability classified as problematic has been found
+	  in ffmpeg. This affects an unknown part of the file
+	  libavcodec/rpzaenc.c of the component QuickTime RPZA Video
+	  Encoder. The manipulation of the argument y_size leads to
+	  out-of-bounds read. It is possible to initiate the attack
+	  remotely. The name of the patch is
+	  92f9b28ed84a77138105475beba16c146bdaf984. It is recommended
+	  to apply a patch to fix this issue. The associated
+	  identifier of this vulnerability is VDB-213543.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-3109</cvename>
+      <cvename>CVE-2022-3341</cvename>
+      <cvename>CVE-2022-3964</cvename>
+      <url>https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/2cdddcd6ec90c7a248ffe792d85faa4d89eab9f7</url>
+      <url>https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/481e81be1271ac9a0124ee615700390c2371bd89</url>
+      <url>https://git.ffmpeg.org/gitweb/ffmpeg.git/commitdiff/1eb002596e3761d88de4aeea3158692b82fb6307</url>
+      <url>https://ffmpeg.org/security.html</url>
+    </references>
+    <dates>
+      <discovery>2022-11-12</discovery>
+      <entry>2023-04-07</entry>
+      <modified>2023-04-10</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="466ba8bd-d033-11ed-addf-080027eda32c">
+    <topic>mediawiki -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mediawiki135</name>
+	<range><lt>1.35.10</lt></range>
+      </package>
+    <package>
+	<name>mediawiki138</name>
+	<range><lt>1.38.6</lt></range>
+      </package>
+      <package>
+	<name>mediawiki139</name>
+	<range><lt>1.39.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mediawikwi reports:</p>
+	<blockquote cite="https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/6UQBHI5FWLATD7QO7DI4YS54U7XSSLAN/">
+	  <p>(T285159, CVE-2023-PENDING) SECURITY: X-Forwarded-For header allows
+	    brute-forcing autoblocked IP addresses.</p>
+	  <p>(T326946, CVE-2020-36649) SECURITY: Bundled PapaParse copy in
+	    VisualEditor has known ReDos.</p>
+	  <p>(T330086, CVE-2023-PENDING) SECURITY: OATHAuth allows replay attacks when
+	    MediaWiki is configured without ObjectCache; Insecure Default Configuration.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-PENDING</cvename>
+      <cvename>CVE-2020-36649</cvename>
+      <cvename>CVE-2023-PENDING</cvename>
+      <url>https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/6UQBHI5FWLATD7QO7DI4YS54U7XSSLAN/</url>
+    </references>
+    <dates>
+      <discovery>2020-04-02</discovery>
+      <entry>2023-04-01</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="54006796-cf7b-11ed-a5d5-001b217b3468">
     <topic>Gitlab -- Multiple Vulnerabilities</topic>
     <affects>
@@ -279,6 +1260,57 @@
     </references>
     <dates>
       <discovery>2023-03-28</discovery>
+      <entry>2023-03-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="955eb3cc-ce0b-11ed-825f-6c3be5272acd">
+    <topic>Grafana -- Stored XSS in Graphite FunctionDescription tooltip</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><lt>8.5.22</lt></range>
+	<range><ge>9.0.0</ge><lt>9.2.15</lt></range>
+	<range><ge>9.3.0</ge><lt>9.3.11</lt></range>
+	<range><ge>9.4.0</ge><lt>9.4.7</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><lt>8.5.22</lt></range>
+      </package>
+      <package>
+	<name>grafana9</name>
+	<range><lt>9.2.15</lt></range>
+	<range><ge>9.3.0</ge><lt>9.3.11</lt></range>
+	<range><ge>9.4.0</ge><lt>9.4.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2023/03/22/grafana-security-release-new-versions-with-security-fixes-for-cve-2023-1410/">
+	  <p>When a user adds a Graphite data source, they can then use the data source
+	  in a dashboard. This capability contains a feature to use Functions. Once
+	  a function is selected, a small tooltip appears when hovering over the name
+	  of the function. This tooltip allows you to delete the selected Function
+	  from your query or show the Function Description. However, no sanitization
+	  is done when adding this description to the DOM.</p>
+	  <p>Since it is not uncommon to connect to public data sources, an attacker
+	  could host a Graphite instance with modified Function Descriptions containing
+	  XSS payloads. When the victim uses it in a query and accidentally hovers
+	  over the Function Description, an attacker-controlled XSS payload
+	  will be executed.</p>
+	  <p>The severity of this vulnerability is of CVSSv3.1 5.7 Medium
+	  (CVSS: AV:N/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N (5.7)).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-1410</cvename>
+      <url>https://grafana.com/security/security-advisories/cve-2023-1410/</url>
+    </references>
+    <dates>
+      <discovery>2023-03-14</discovery>
       <entry>2023-03-29</entry>
     </dates>
   </vuln>
