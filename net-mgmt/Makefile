@@ -69,6 +69,7 @@
     SUBDIR += etherape
     SUBDIR += ettercap
     SUBDIR += fastnetmon
+    SUBDIR += fence-agents
     SUBDIR += fetchconfig
     SUBDIR += flow-tools
     SUBDIR += flowd

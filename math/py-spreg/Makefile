@@ -1,12 +1,13 @@
 PORTNAME=	spreg
-PORTVERSION=	1.3.0
+PORTVERSION=	1.3.1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	PySAL Spatial Econometrics Package
-WWW=		https://spreg.readthedocs.io/en/latest/
+WWW=		https://spreg.readthedocs.io/en/latest/ \
+		https://github.com/pysal/spreg
 
 LICENSE=	BSD3CLAUSE
 

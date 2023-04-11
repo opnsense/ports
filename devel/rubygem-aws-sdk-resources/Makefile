@@ -1,5 +1,5 @@
 PORTNAME=	aws-sdk-resources
-PORTVERSION=	3.159.0
+PORTVERSION=	3.162.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -161,6 +161,7 @@ RUN_DEPENDS=	rubygem-aws-sdk-accessanalyzer>=1<2:devel/rubygem-aws-sdk-accessana
 		rubygem-aws-sdk-importexport>=1<2:devel/rubygem-aws-sdk-importexport \
 		rubygem-aws-sdk-inspector>=1<2:devel/rubygem-aws-sdk-inspector \
 		rubygem-aws-sdk-inspector2>=1<2:devel/rubygem-aws-sdk-inspector2 \
+		rubygem-aws-sdk-internetmonitor>=1<2:devel/rubygem-aws-sdk-internetmonitor \
 		rubygem-aws-sdk-iot>=1<2:devel/rubygem-aws-sdk-iot \
 		rubygem-aws-sdk-iot1clickdevicesservice>=1<2:devel/rubygem-aws-sdk-iot1clickdevicesservice \
 		rubygem-aws-sdk-iot1clickprojects>=1<2:devel/rubygem-aws-sdk-iot1clickprojects \
@@ -180,6 +181,7 @@ RUN_DEPENDS=	rubygem-aws-sdk-accessanalyzer>=1<2:devel/rubygem-aws-sdk-accessana
 		rubygem-aws-sdk-iotwireless>=1<2:devel/rubygem-aws-sdk-iotwireless \
 		rubygem-aws-sdk-ivs>=1<2:devel/rubygem-aws-sdk-ivs \
 		rubygem-aws-sdk-ivschat>=1<2:devel/rubygem-aws-sdk-ivschat \
+		rubygem-aws-sdk-ivsrealtime>=1<2:devel/rubygem-aws-sdk-ivsrealtime \
 		rubygem-aws-sdk-kafka>=1<2:devel/rubygem-aws-sdk-kafka \
 		rubygem-aws-sdk-kafkaconnect>=1<2:devel/rubygem-aws-sdk-kafkaconnect \
 		rubygem-aws-sdk-kendra>=1<2:devel/rubygem-aws-sdk-kendra \
@@ -338,6 +340,7 @@ RUN_DEPENDS=	rubygem-aws-sdk-accessanalyzer>=1<2:devel/rubygem-aws-sdk-accessana
 		rubygem-aws-sdk-transfer>=1<2:devel/rubygem-aws-sdk-transfer \
 		rubygem-aws-sdk-translate>=1<2:devel/rubygem-aws-sdk-translate \
 		rubygem-aws-sdk-voiceid>=1<2:devel/rubygem-aws-sdk-voiceid \
+		rubygem-aws-sdk-vpclattice>=1<2:devel/rubygem-aws-sdk-vpclattice \
 		rubygem-aws-sdk-waf>=1<2:devel/rubygem-aws-sdk-waf \
 		rubygem-aws-sdk-wafregional>=1<2:devel/rubygem-aws-sdk-wafregional \
 		rubygem-aws-sdk-wafv2>=1<2:devel/rubygem-aws-sdk-wafv2 \

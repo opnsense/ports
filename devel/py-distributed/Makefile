@@ -1,5 +1,5 @@
 PORTNAME=	distributed
-PORTVERSION=	2023.2.1
+PORTVERSION=	2023.3.2.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,9 +11,9 @@ WWW=		https://github.com/dask/distributed
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>=7.0:devel/py-click@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>=8.0:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cloudpickle>=1.5.0:devel/py-cloudpickle@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}dask>=${PORTVERSION}<${PORTVERSION}_99:devel/py-dask@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}dask>=${PORTVERSION:R}<${PORTVERSION:R}_99:devel/py-dask@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}Jinja2>=2.10.3:devel/py-Jinja2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}locket>=1.0.0:devel/py-locket@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}msgpack>=1.0.0:devel/py-msgpack@${PY_FLAVOR} \

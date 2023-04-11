@@ -25,7 +25,6 @@
     SUBDIR += amphetadesk
     SUBDIR += analog
     SUBDIR += anyremote2html
-    SUBDIR += anyterm
     SUBDIR += apache-mode.el
     SUBDIR += apache24
     SUBDIR += apt-cacher-ng
@@ -47,6 +46,7 @@
     SUBDIR += bareos18-webui
     SUBDIR += bareos19-webui
     SUBDIR += bareos20-webui
+    SUBDIR += bareos21-webui
     SUBDIR += beehive
     SUBDIR += bkmrkconv
     SUBDIR += bluefish
@@ -1420,6 +1420,7 @@
     SUBDIR += py-aioh2
     SUBDIR += py-aiohttp
     SUBDIR += py-aiohttp-middlewares
+    SUBDIR += py-aiohttp-oauthlib
     SUBDIR += py-aiohttp-session
     SUBDIR += py-aiohttp-wsgi
     SUBDIR += py-aiohttp_cors
@@ -1591,6 +1592,7 @@
     SUBDIR += py-django32
     SUBDIR += py-django40
     SUBDIR += py-django41
+    SUBDIR += py-django42
     SUBDIR += py-django_compressor
     SUBDIR += py-djangocms-admin-style
     SUBDIR += py-djangoql
@@ -1923,7 +1925,6 @@
     SUBDIR += rubygem-em-websocket
     SUBDIR += rubygem-emk-sinatra-url-for
     SUBDIR += rubygem-erubi
-    SUBDIR += rubygem-erubi19
     SUBDIR += rubygem-erubis
     SUBDIR += rubygem-ethon
     SUBDIR += rubygem-eventmachine_httpserver
@@ -2381,6 +2382,7 @@
     SUBDIR += varnish6
     SUBDIR += varnish7
     SUBDIR += varnish_exporter
+    SUBDIR += vaultwarden-web_vault
     SUBDIR += vdr-plugin-live
     SUBDIR += vdradmin-am
     SUBDIR += vertx

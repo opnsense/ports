@@ -112,6 +112,9 @@
     SUBDIR += bareos20-client
     SUBDIR += bareos20-server
     SUBDIR += bareos20-traymonitor
+    SUBDIR += bareos21-client
+    SUBDIR += bareos21-server
+    SUBDIR += bareos21-traymonitor
     SUBDIR += barrier
     SUBDIR += bashtop
     SUBDIR += bastille
@@ -1114,6 +1117,7 @@
     SUBDIR += py-ptyprocess
     SUBDIR += py-puremagic
     SUBDIR += py-py-cpuinfo
+    SUBDIR += py-python-bareos
     SUBDIR += py-python-consul
     SUBDIR += py-python-consul2
     SUBDIR += py-python-crontab

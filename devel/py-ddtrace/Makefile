@@ -1,5 +1,5 @@
 PORTNAME=	ddtrace
-PORTVERSION=	1.8.0
+PORTVERSION=	1.11.1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,25 +14,26 @@ LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE.Apache
 LICENSE_FILE_BSD3CLAUSE=${WRKSRC}/LICENSE.BSD3
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools_scm>=4:devel/py-setuptools_scm@${PY_FLAVOR}
-xRUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=20:devel/py-attrs@${PY_FLAVOR} \
+RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}attrs>=20:devel/py-attrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}bytecode>=0:devel/py-bytecode@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cattrs>=0:devel/py-cattrs@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ddsketch>=2.0.1:devel/py-ddsketch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}envier>=0:devel/py-envier@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}jsonschema>=0:devel/py-jsonschema@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}opentelemetry-api>=1:devel/py-opentelemetry-api@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}protobuf>=3,1:devel/py-protobuf@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}tenacity>=5:devel/py-tenacity@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=0:devel/py-typing-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}xmltodict>=0.12:devel/py-xmltodict@${PY_FLAVOR}
 
-USES=		compiler:c11 python:3.8+
+USES=		compiler:c++17-lang python:3.8+
 USE_PYTHON=	autoplist concurrent cython distutils
 
 OPTIONS_DEFINE=	OPENTRACING
 OPTIONS_DEFAULT=OPENTRACING
 OPENTRACING_DESC=	OpenTracing support
 
-xOPENTRACING_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}opentracing>=2.0.0:devel/py-opentracing@${PY_FLAVOR}
+OPENTRACING_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}opentracing>=2.0.0:devel/py-opentracing@${PY_FLAVOR}
 
 .include <bsd.port.pre.mk>
 

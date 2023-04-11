@@ -1,5 +1,6 @@
 PORTNAME=	hyprpaper
-PORTVERSION=	s20230315
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.2.0
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -20,7 +21,6 @@ USES=		compiler:c++11-lib cmake gnome jpeg localbase:ldflags pkgconfig
 USE_GNOME=	cairo
 USE_GITHUB=	yes
 GH_ACCOUNT=	hyprwm
-GH_TAGNAME=	6196197
 PLIST_FILES=	bin/${PORTNAME}
 
 post-patch:
@@ -28,7 +28,7 @@ post-patch:
 	@${REINPLACE_CMD} -i .nogit -e '/Get git info/,/^#$$/d' \
 		-e 's/$${GIT_BRANCH}/main/' \
 		-e 's/$${GIT_COMMIT_HASH}/${GH_TAGNAME}/' \
-		-e 's/$${GIT_COMMIT_MESSAGE}/<unknown>/' \
+		-e 's/$${GIT_COMMIT_MESSAGE}/?/' \
 		-e 's/$${GIT_DIRTY}/portbld/' \
 		${WRKSRC}/CMakeLists.txt
 # https://clang.llvm.org/cxx_status.html#cxx23

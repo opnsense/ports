@@ -1394,6 +1394,7 @@
     SUBDIR += py-mdurl
     SUBDIR += py-mike
     SUBDIR += py-misaka
+    SUBDIR += py-mistletoe
     SUBDIR += py-mistune
     SUBDIR += py-mistune0
     SUBDIR += py-mkdocs
@@ -1719,7 +1720,6 @@
     SUBDIR += rubygem-gepub
     SUBDIR += rubygem-github-linguist
     SUBDIR += rubygem-github-markup
-    SUBDIR += rubygem-github-markup17
     SUBDIR += rubygem-gitlab-grit
     SUBDIR += rubygem-gitlab-markup
     SUBDIR += rubygem-google-cloud-translate
@@ -1762,7 +1762,7 @@
     SUBDIR += rubygem-liquid4
     SUBDIR += rubygem-loggability
     SUBDIR += rubygem-loofah
-    SUBDIR += rubygem-loofah218
+    SUBDIR += rubygem-loofah219
     SUBDIR += rubygem-ltsv
     SUBDIR += rubygem-markaby
     SUBDIR += rubygem-mdl
@@ -1809,7 +1809,7 @@
     SUBDIR += rubygem-rmmseg-cpp
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-rouge
-    SUBDIR += rubygem-rouge329
+    SUBDIR += rubygem-rouge3
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt

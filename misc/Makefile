@@ -5,6 +5,7 @@
     SUBDIR += aclgen
     SUBDIR += actiona
     SUBDIR += adios2
+    SUBDIR += aichat
     SUBDIR += amanda-client
     SUBDIR += amanda-perl-wrapper
     SUBDIR += amanda-server
@@ -82,6 +83,7 @@
     SUBDIR += digitemp
     SUBDIR += dijo
     SUBDIR += dive
+    SUBDIR += dlib-models
     SUBDIR += dnetc
     SUBDIR += dotenv-linter
     SUBDIR += dtach

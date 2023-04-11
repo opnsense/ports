@@ -1,5 +1,7 @@
 PORTNAME=	hyprpicker
-PORTVERSION=	s20230309
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.1.0
+PORTREVISION=	1
 CATEGORIES=	x11 wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -17,7 +19,6 @@ USES=		compiler:c++11-lib cmake gnome jpeg localbase:ldflags pkgconfig
 USE_GNOME=	cairo
 USE_GITHUB=	yes
 GH_ACCOUNT=	hyprwm
-GH_TAGNAME=	234c2da
 PLIST_FILES=	bin/${PORTNAME} \
 		share/man/man1/${PORTNAME}.1.gz
 
@@ -32,7 +33,7 @@ post-patch:
 	@${REINPLACE_CMD} -i .nogit -e '/Get git info/,/^#$$/d' \
 		-e 's/$${GIT_BRANCH}/main/' \
 		-e 's/$${GIT_COMMIT_HASH}/${GH_TAGNAME}/' \
-		-e 's/$${GIT_COMMIT_MESSAGE}/<unknown>/' \
+		-e 's/$${GIT_COMMIT_MESSAGE}/?/' \
 		-e 's/$${GIT_DIRTY}/portbld/' \
 		${WRKSRC}/CMakeLists.txt
 # https://clang.llvm.org/cxx_status.html#cxx23

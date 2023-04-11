@@ -33,7 +33,7 @@ OPTIONS_DEFAULT=	GSTREAMER PIPEWIRE_JACK MANPAGES MEDIASESSION
 OPTIONS_SUB=	yes
 
 GSTREAMER_USES=		gstreamer
-GSTREAMER_MESON_ENABLED=gstreamer
+GSTREAMER_MESON_ENABLED=gstreamer gstreamer-device-provider
 
 PIPEWIRE_JACK_DESC=		Build pipewire-jack
 PIPEWIRE_JACK_MESON_ENABLED=	pipewire-jack
@@ -74,6 +74,7 @@ MESON_ARGS=	-D pw-cat=enabled \
 		-D media-session:systemd=disabled \
 		-D roc=disabled \
 		-D systemd=disabled \
+		-D x11=disabled \
 		-D x11-xfixes=disabled \
 		-D pipewire-v4l2=disabled \
 		-D udevrulesdir="${LOCALBASE}/lib/udev/rules.d"
