@@ -390,7 +390,6 @@ java/ecj-bootstrap||2009-01-06|Removed
 emulators/mupen64plus-sound||2009-01-06|No supported anymore by mupen64plus team
 misc/heyu||2009-01-07|Has expired: no longer under development, use misc/heyu2
 sysutils/pkill||2009-01-07|Part of the base system since FreeBSD 5.3
-ports-mgmt/portsnap||2009-01-07|Part of the base system since FreeBSD 5.5
 lang/py-compiler||2009-01-08|Included with Python since 2.2
 net/nvnet||2009-01-08|Part of the base system since FreeBSD 6.0
 security/openssl-beta|security/openssl|2009-01-09|Removed
@@ -7775,7 +7774,6 @@ devel/py-experimental.cssselect||2015-11-15|The only consumer of this port switc
 databases/mariadb-client||2015-11-18|Vulnerable, no updates expected, use mariadb55 or mariadb100 instead
 databases/mariadb-server||2015-11-18|Vulnerable, no updates expected, use mariadb55 or mariadb100 instead
 databases/mariadb-scripts||2015-11-18|Vulnerable, no updates expected, use mariadb55 or mariadb100 instead
-devel/py-asn1|devel/py-pyasn1|2015-11-18|Renamed to match upstream naming
 devel/py-pytz3|devel/py3-pytz|2015-11-19|Port Renamed
 devel/ocaml-typeconv|devel/ocaml-type_conv|2015-11-20|Renamed to match upstream naming
 www/py3-aiohttp|www/py-aiohttp|2015-11-21|Duplicate port
@@ -17790,6 +17788,7 @@ security/openssl-devel|security/openssl30|2023-03-14|3.0 is not devel, prevent c
 net-p2p/openethereum||2023-03-15|Has expired: not maintained anymore
 devel/pydio-packr||2023-03-15|Was only used for building www/pydio-cells before, not needed anymore
 math/hs-penrose||2023-03-16|Perose Haskell app is deprecated upstrean, it was rewritten in TypeScript
+devel/rubygem-octicons|misc/rubygem-octicons|2023-03-16|Remove duplicate port
 multimedia/libquicktime-lame||2023-03-18|Abandoned upstream and fails to build with newer versions of FFmpeg, consider using multimedia/ffmpeg
 multimedia/libquicktime||2023-03-18|Abandoned upstream and fails to build with newer versions of FFmpeg, consider using multimedia/ffmpeg
 devel/p5-Net-ZooKeeper||2023-03-19|Has expired: Broken since 2020
@@ -17823,8 +17822,9 @@ graphics/gimp-gmic-plugin||2023-03-21|Has expired: Broken since 2021
 science/InsightToolkit521|science/InsightToolkit|2023-03-21|Retire InsightToolkit521: it was there only to support graphics/elastix
 sysutils/etcupdate||2023-03-21|Part of the base system since FreeBSD 10.0
 devel/freebsd-gcc6||2023-03-22|No longer able to build base system, use GCC 9 or later instead
+net/rubygem-gitlab-omniauth-openid-connect|net/rubygem-omniauth_openid_connect|2023-03-22|Obsolete use net/rubygem-omniauth_openid_connect instead
 japanese/mutt-devel||2023-03-25|Has expired: Broken since 2019
-audio/amarok||2023-03-31|Has expired: No longer actively maintained upstream.
+audio/amarok||2023-03-31|Has expired: No longer actively maintained upstream
 audio/cd2mp3||2023-03-31|Has expired: Depends on deprecated port audio/dagrab, consider using audio/abcde or audio/cyanrip
 audio/cmp3||2023-03-31|Has expired: Abandonware, no development in 20 years. Please consider using audio/cmus or audio/musicpd
 audio/cpige||2023-03-31|Has expired: Doesn't work, newer versions also fails
@@ -17852,13 +17852,13 @@ devel/horde-whups||2023-03-31|Has expired: Requires php74
 devel/phpunit6||2023-03-31|Has expired: End of Life since February 1, 2019
 devel/phpunit7||2023-03-31|Has expired: End of Life since February 7, 2020
 emulators/pcsxr||2023-03-31|Has expired: Abandoned upstream and no development in 5+ years, consider using games/retroarch
-games/acm||2023-03-31|Has expired: Abandoned upstream. Does not work.
+games/acm||2023-03-31|Has expired: Abandoned upstream. Does not work
 mail/horde-webmail||2023-03-31|Has expired: Requires php74
 multimedia/dvdrip||2023-03-31|Has expired: Depends on broken transcode port
 multimedia/mkxvcd||2023-03-31|Has expired: Depends on broken transcode port
 multimedia/win32-codecs||2023-03-31|Has expired: Obsolete and users are recommended to utilize ffmpeg instead
 net/minisapserver||2023-03-31|Has expired: Obsolete utility, functionality is now included in multimedia/vlc
-net/tightvnc||2023-03-31|Has expired: Last release in 2009, newer version 2.x is available for Windows only.
+net/tightvnc||2023-03-31|Has expired: Last release in 2009, newer version 2.x is available for Windows only
 news/nntpcache||2023-03-31|Has expired: Upstream site no longer available
 ports-mgmt/p5-FreeBSD-Portindex||2023-03-31|Has expired: Not working, and no fix forthcoming
 print/ghostscript9-x11||2023-03-31|Has expired: Released over 10 years ago and unsupported by upstream, consider print/ghostscript9-agpl-x11
@@ -17887,3 +17887,23 @@ devel/horde-timeobjects||2023-03-31|Has expired: Requires php74
 www/horde-base||2023-03-31|Has expired: Requires php74
 multimedia/transcode||2023-03-31|Has expired: abandoned by upstream and does not build
 security/teleport5|security/teleport|2023-03-31|More recent version than expired teleport port
+www/anyterm||2023-04-01|Has expired: upstream is dead
+audio/mousai-devel|audio/mousai|2023-04-06|Updated to the latest stable version
+multimedia/pHash||2023-04-09|Has expired: No users left in tree and fails to build with FFmpeg 6.0
+devel/py-jsonschema49|devel/py-jsonschema|2023-04-09|Remove obsoleted port. Use devel/py-jsonschema instead
+devel/rubygem-aws-sdk-core3168|devel/rubygem-aws-sdk-core|2023-04-09|Remove obsoleted port. Use devel/rubygem-aws-sdk-core instead
+devel/rubygem-aws-sdk-s31117|devel/rubygem-aws-sdk-s3|2023-04-09|Remove obsoleted port. Use devel/rubygem-aws-sdk-s3 instead
+devel/rubygem-bootsnap111|devel/rubygem-bootsnap|2023-04-09|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-bootsnap112|devel/rubygem-bootsnap|2023-04-09|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-bootsnap114|devel/rubygem-bootsnap|2023-04-09|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-bootsnap115|devel/rubygem-bootsnap|2023-04-09|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-cucumber-messages19|devel/rubygem-cucumber-messages|2023-04-09|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+devel/rubygem-fugit17|devel/rubygem-fugit|2023-04-09|Remove obsoleted port. Use devel/rubygem-fugit instead
+devel/rubygem-ruby-fogbugz021|devel/rubygem-ruby-fogbugz|2023-04-09|Remove obsoleted port. Use devel/rubygem-ruby-fogbugz instead
+devel/rubygem-sidekiq-cron-sidekiq64|devel/rubygem-sidekiq-cron|2023-04-09|Remove obsoleted port. Use devel/rubygem-sidekiq-cron instead
+devel/rubygem-sidekiq64|devel/rubygem-sidekiq|2023-04-09|Remove obsoleted port. Use devel/rubygem-sidekiq instead
+security/rubygem-openssl221|security/rubygem-openssl|2023-04-09|Remove obsoleted port. Use security/rubygem-openssl instead
+textproc/rubygem-github-markup17|textproc/rubygem-github-markup|2023-04-09|Remove obsoleted port. Use textproc/rubygem-github-markup instead
+textproc/rubygem-loofah218|textproc/rubygem-loofah|2023-04-09|Remove obsoleted port. Use textproc/rubygem-loofah instead
+textproc/rubygem-rouge329|textproc/rubygem-rouge|2023-04-09|Remove obsoleted port. Use textproc/rubygem-rouge instead
+www/rubygem-erubi19|www/rubygem-erubi|2023-04-09|Remove obsoleted port. Use www/rubygem-erubi instead
