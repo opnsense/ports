@@ -47,7 +47,7 @@
 
 #include "ifinfo.h"
 
-static void printit(const struct ifmibdata *, const char *);
+static void printit(const struct ifmibdata *, const char *, int);
 static const char *iftype(int);
 static int isit(int, char **, const char *);
 static printfcn findlink(int);
@@ -126,7 +126,7 @@ main(int argc, char **argv)
 				dname = NULL;
 			}
 		}
-		printit(&ifmd, dname);
+		printit(&ifmd, dname, i);
 		free(dname);
 		if (dolink && (pf = findlink(ifmd.ifmd_data.ifi_type))) {
 			name[5] = IFDATA_LINKSPECIFIC;
@@ -152,12 +152,13 @@ main(int argc, char **argv)
 }
 
 static void
-printit(const struct ifmibdata *ifmd, const char *dname)
+printit(const struct ifmibdata *ifmd, const char *dname, int index)
 {
 	printf("Interface %.*s", IFNAMSIZ, ifmd->ifmd_name);
 	if (dname != NULL)
 		printf(" (%s)", dname);
 	printf(":\n");
+	printf("\tindex: %d\n", index);
 	printf("\tflags: %x\n", ifmd->ifmd_flags);
 	printf("\tpromiscuous listeners: %d\n", ifmd->ifmd_pcount);
 	printf("\tsend queue length: %d\n", ifmd->ifmd_snd_len);
