@@ -1551,6 +1551,7 @@
     SUBDIR += malloy
     SUBDIR += marisa-trie
     SUBDIR += marl
+    SUBDIR += massif-visualizer
     SUBDIR += mate-common
     SUBDIR += maven
     SUBDIR += maven-wrapper
@@ -5430,6 +5431,7 @@
     SUBDIR += py-schema
     SUBDIR += py-schematics-patched
     SUBDIR += py-scikit-build
+    SUBDIR += py-scikit-build-core
     SUBDIR += py-scooby
     SUBDIR += py-scripttest
     SUBDIR += py-selection
@@ -7477,6 +7479,7 @@
     SUBDIR += statik
     SUBDIR += statsvn
     SUBDIR += stb
+    SUBDIR += stdman
     SUBDIR += stdx-allocator
     SUBDIR += stfl
     SUBDIR += stlfilt
