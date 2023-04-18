@@ -1,5 +1,6 @@
 PORTNAME=	tayga
 PORTVERSION=	0.9.2
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://www.litech.org/tayga/
 
