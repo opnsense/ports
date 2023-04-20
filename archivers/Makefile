@@ -177,6 +177,7 @@
     SUBDIR += ppunpack
     SUBDIR += pxz
     SUBDIR += py-acefile
+    SUBDIR += py-blosc2
     SUBDIR += py-borgbackup
     SUBDIR += py-borgbackup11
     SUBDIR += py-brotli
@@ -190,6 +191,7 @@
     SUBDIR += py-lz4
     SUBDIR += py-lzma
     SUBDIR += py-lzstring
+    SUBDIR += py-pyminizip
     SUBDIR += py-python-lhafile
     SUBDIR += py-python-lzo
     SUBDIR += py-python-rpm-packaging
