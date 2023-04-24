@@ -47,6 +47,7 @@
     SUBDIR += hikari
     SUBDIR += hs-xmonad
     SUBDIR += hyprland
+    SUBDIR += hyprland-devel
     SUBDIR += i3
     SUBDIR += icewm
     SUBDIR += ittywm
@@ -101,6 +102,7 @@
     SUBDIR += stumpwm
     SUBDIR += subtle
     SUBDIR += sway
+    SUBDIR += sway-devel
     SUBDIR += swayfx
     SUBDIR += tinywm
     SUBDIR += transset
