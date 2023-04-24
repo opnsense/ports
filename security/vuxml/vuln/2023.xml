@@ -1,3 +1,75 @@
+  <vuln vid="f504a8d2-e105-11ed-85f6-84a93843eb75">
+    <topic>MySQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mysql-connector-java</name>
+	<range><lt>8.0.33</lt></range>
+      </package>
+      <package>
+	<name>mysql-client57</name>
+	<range><lt>5.7.42</lt></range>
+      </package>
+      <package>
+	<name>mysql-server57</name>
+	<range><lt>5.7.42</lt></range>
+      </package>
+      <package>
+	<name>mysql-client80</name>
+	<range><lt>8.0.33</lt></range>
+      </package>
+      <package>
+	<name>mysql-server80</name>
+	<range><lt>8.0.33</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oracle reports:</p>
+	<blockquote cite="https://www.oracle.com/security-alerts/cpuapr2023.html#AppendixMSQL">
+	  <p>This Critical Patch Update contains 34 new security patches, plus
+	    additional third party patches noted below, for Oracle MySQL. 11 of
+	    these vulnerabilities may be remotely exploitable without
+	    authentication, i.e., may be exploited over a network without
+	    requiring user credentials.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-37434</cvename>
+      <cvename>CVE-2023-21912</cvename>
+      <cvename>CVE-2023-21980</cvename>
+      <cvename>CVE-2023-21946</cvename>
+      <cvename>CVE-2023-21929</cvename>
+      <cvename>CVE-2023-21971</cvename>
+      <cvename>CVE-2023-21911</cvename>
+      <cvename>CVE-2023-21962</cvename>
+      <cvename>CVE-2023-21919</cvename>
+      <cvename>CVE-2023-21933</cvename>
+      <cvename>CVE-2023-21972</cvename>
+      <cvename>CVE-2023-21966</cvename>
+      <cvename>CVE-2023-21913</cvename>
+      <cvename>CVE-2023-21917</cvename>
+      <cvename>CVE-2023-21920</cvename>
+      <cvename>CVE-2023-21935</cvename>
+      <cvename>CVE-2023-21945</cvename>
+      <cvename>CVE-2023-21976</cvename>
+      <cvename>CVE-2023-21977</cvename>
+      <cvename>CVE-2023-21982</cvename>
+      <cvename>CVE-2023-21953</cvename>
+      <cvename>CVE-2023-21955</cvename>
+      <cvename>CVE-2023-21940</cvename>
+      <cvename>CVE-2023-21947</cvename>
+      <cvename>CVE-2023-21963</cvename>
+      <url>https://www.oracle.com/security-alerts/cpuapr2023.html#AppendixMSQL</url>
+    </references>
+    <dates>
+      <discovery>2023-04-19</discovery>
+      <entry>2023-04-22</entry>
+      <modified>2023-04-22</modified>
+    </dates>
+  </vuln>
+
   <vuln vid="90c48c04-d549-4fc0-a503-4775e32d438e">
     <topic>chromium -- multiple vulnerabilities</topic>
     <affects>
@@ -138,16 +210,16 @@
   <vuln vid="25872b25-da2d-11ed-b715-a1e76793953b">
     <topic>ghostscript -- exploitable buffer overflow in (T)BCP in PS interpreter</topic>
     <affects>
-      <package><name>ghostscript</name> <range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript7-base</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript7-commfont</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript7-jpnfont</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript7-korfont</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript7-x11</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript8-base</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript8-x11</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript9-agpl-base</name><range><lt>10.01.0</lt></range></package>
-      <package><name>ghostscript9-agpl-x11</name><range><lt>10.01.0</lt></range></package>
+      <package><name>ghostscript</name> <range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript7-base</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript7-commfont</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript7-jpnfont</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript7-korfont</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript7-x11</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript8-base</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript8-x11</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript9-agpl-base</name><range><lt>10.01.1</lt></range></package>
+      <package><name>ghostscript9-agpl-x11</name><range><lt>10.01.1</lt></range></package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -170,6 +242,7 @@
     <dates>
       <discovery>2023-03-23</discovery>
       <entry>2023-04-13</entry>
+      <modified>2023-04-23</modified>
     </dates>
   </vuln>
 
