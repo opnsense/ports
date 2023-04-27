@@ -80,12 +80,15 @@
     SUBDIR += R-cran-optparse
     SUBDIR += R-cran-pak
     SUBDIR += R-cran-parallelly
+    SUBDIR += R-cran-parsedate
     SUBDIR += R-cran-pillar
     SUBDIR += R-cran-pkgbuild
     SUBDIR += R-cran-pkgcache
     SUBDIR += R-cran-pkgconfig
+    SUBDIR += R-cran-pkgdepends
     SUBDIR += R-cran-pkgload
     SUBDIR += R-cran-pkgmaker
+    SUBDIR += R-cran-pkgsearch
     SUBDIR += R-cran-plogr
     SUBDIR += R-cran-plyr
     SUBDIR += R-cran-praise
@@ -129,6 +132,7 @@
     SUBDIR += R-cran-vctrs
     SUBDIR += R-cran-waldo
     SUBDIR += R-cran-whisker
+    SUBDIR += R-cran-whoami
     SUBDIR += R-cran-withr
     SUBDIR += R-cran-zeallot
     SUBDIR += RStudio
@@ -4357,6 +4361,7 @@
     SUBDIR += py-boolean.py
     SUBDIR += py-boto
     SUBDIR += py-botocore
+    SUBDIR += py-bps-restpy
     SUBDIR += py-breathe
     SUBDIR += py-bsd
     SUBDIR += py-btest
@@ -5211,6 +5216,7 @@
     SUBDIR += py-pymaven-patch
     SUBDIR += py-pymisp
     SUBDIR += py-pympler
+    SUBDIR += py-pymsgbox
     SUBDIR += py-pymtbl
     SUBDIR += py-pynest2d
     SUBDIR += py-pyopencl
@@ -5346,6 +5352,7 @@
     SUBDIR += py-pytools
     SUBDIR += py-pytrie
     SUBDIR += py-pytvmaze
+    SUBDIR += py-pytweening
     SUBDIR += py-pytz
     SUBDIR += py-pytz-deprecation-shim
     SUBDIR += py-pytzdata
@@ -5481,6 +5488,7 @@
     SUBDIR += py-simplejson
     SUBDIR += py-simpleparse
     SUBDIR += py-simpletal
+    SUBDIR += py-simple-term-menu
     SUBDIR += py-simpy
     SUBDIR += py-single-version
     SUBDIR += py-sip

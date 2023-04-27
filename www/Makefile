@@ -15,6 +15,7 @@
     SUBDIR += R-cran-selectr
     SUBDIR += R-cran-servr
     SUBDIR += R-cran-shiny
+    SUBDIR += R-cran-shinyjs
     SUBDIR += R-cran-webshot
     SUBDIR += Stikked
     SUBDIR += UniversalFeedCreator
@@ -1823,6 +1824,7 @@
     SUBDIR += py-wcag-contrast-ratio
     SUBDIR += py-webargs
     SUBDIR += py-webassets
+    SUBDIR += py-webdriver_manager
     SUBDIR += py-webob
     SUBDIR += py-websocket-client
     SUBDIR += py-webunit
