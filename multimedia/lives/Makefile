@@ -1,6 +1,6 @@
 PORTNAME=	lives
 DISTVERSION=	3.2.0
-PORTREVISION=	17
+PORTREVISION=	18
 CATEGORIES=	multimedia
 MASTER_SITES=	http://lives-video.com/releases/
 DISTNAME=	LiVES-${PORTVERSION}
@@ -13,6 +13,8 @@ LICENSE=		GPLv3+ LGPL3+
 LICENSE_COMB=		multi
 LICENSE_FILE_GPLv3+ =	${WRKSRC}/COPYING
 LICENSE_FILE_LGPL3+ =	${WRKSRC}/COPYING.LGPL
+
+BROKEN=		fails to build with FFmpeg 6
 
 BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
 		analyseplugin:audio/ladspa
