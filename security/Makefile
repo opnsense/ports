@@ -62,6 +62,7 @@
     SUBDIR += bzrtp
     SUBDIR += ca_root_nss
     SUBDIR += caesarcipher
+    SUBDIR += caldera
     SUBDIR += calife
     SUBDIR += cardpeek
     SUBDIR += cargo-audit
@@ -898,6 +899,7 @@
     SUBDIR += py-fail2ban
     SUBDIR += py-fido2
     SUBDIR += py-first-server
+    SUBDIR += py-flask-bcrypt
     SUBDIR += py-flask-httpauth
     SUBDIR += py-flask-kerberos
     SUBDIR += py-flask-saml
@@ -913,6 +915,14 @@
     SUBDIR += py-gvm-tools
     SUBDIR += py-hkdf
     SUBDIR += py-htpasswd
+    SUBDIR += py-iris-check-module
+    SUBDIR += py-iris-client
+    SUBDIR += py-iris-evtx-module
+    SUBDIR += py-iris-intelowl-module
+    SUBDIR += py-iris-misp-module
+    SUBDIR += py-iris-module-interface
+    SUBDIR += py-iris-vt-module
+    SUBDIR += py-iris-webhooks-module
     SUBDIR += py-itsdangerous
     SUBDIR += py-josepy
     SUBDIR += py-keepkey

@@ -6,9 +6,7 @@
     SUBDIR += Hermes
     SUBDIR += IPA
     SUBDIR += ImageMagick6
-    SUBDIR += ImageMagick6-nox11
     SUBDIR += ImageMagick7
-    SUBDIR += ImageMagick7-nox11
     SUBDIR += O2-tools
     SUBDIR += R-cran-DiagrammeR
     SUBDIR += R-cran-GDD
@@ -63,6 +61,7 @@
     SUBDIR += appleseed
     SUBDIR += argyllcms
     SUBDIR += art
+    SUBDIR += asciinema-agg
     SUBDIR += asciio
     SUBDIR += aseprite
     SUBDIR += atril
@@ -555,6 +554,7 @@
     SUBDIR += maim
     SUBDIR += mandelbulber
     SUBDIR += mapcache
+    SUBDIR += mapnik
     SUBDIR += mapserver
     SUBDIR += mapyrus
     SUBDIR += matplotlib-cpp
@@ -950,6 +950,7 @@
     SUBDIR += py-seqdiag
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-spectra
+    SUBDIR += py-sqlalchemy-imageattach
     SUBDIR += py-svg.path
     SUBDIR += py-svgwrite
     SUBDIR += py-termtosvg

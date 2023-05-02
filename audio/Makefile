@@ -131,6 +131,7 @@
     SUBDIR += eawpats
     SUBDIR += eawplus
     SUBDIR += ebumeter
+    SUBDIR += ebur128
     SUBDIR += ecasound
     SUBDIR += elisa
     SUBDIR += emms
@@ -832,6 +833,7 @@
     SUBDIR += vamp-plugin-sdk
     SUBDIR += vban
     SUBDIR += vgmplay
+    SUBDIR += vgmtools
     SUBDIR += vimpc
     SUBDIR += virtual_oss
     SUBDIR += virtual_oss_ctl
@@ -867,6 +869,7 @@
     SUBDIR += xanalyser
     SUBDIR += xcd
     SUBDIR += xcdplayer
+    SUBDIR += xfce4-mixer
     SUBDIR += xfce4-mpc-plugin
     SUBDIR += xfce4-pulseaudio-plugin
     SUBDIR += xfmpc

@@ -194,6 +194,7 @@
     SUBDIR += es-mythes
     SUBDIR += estraier
     SUBDIR += et-aspell
+    SUBDIR += evtx
     SUBDIR += exempi
     SUBDIR += expat2
     SUBDIR += extract_url
@@ -446,7 +447,6 @@
     SUBDIR += lt-aspell
     SUBDIR += lt-hyphen
     SUBDIR += lttoolbox
-    SUBDIR += ltxml
     SUBDIR += lua-icu-utils
     SUBDIR += lua-lyaml
     SUBDIR += luaexpat
@@ -1320,7 +1320,10 @@
     SUBDIR += py-docstring-parser
     SUBDIR += py-docstring-to-markdown
     SUBDIR += py-docutils
+    SUBDIR += py-docx-generator
     SUBDIR += py-docx2txt
+    SUBDIR += py-docxcompose
+    SUBDIR += py-docxtpl
     SUBDIR += py-dominate
     SUBDIR += py-dparse
     SUBDIR += py-duecredit
@@ -1337,6 +1340,7 @@
     SUBDIR += py-enchant
     SUBDIR += py-enrich
     SUBDIR += py-et_xmlfile
+    SUBDIR += py-evtx2splunk
     SUBDIR += py-extract-msg
     SUBDIR += py-fastavro
     SUBDIR += py-feedparser
@@ -1554,6 +1558,7 @@
     SUBDIR += py-sphinxcontrib-websupport
     SUBDIR += py-sphinxemoji
     SUBDIR += py-sphinxext-opengraph
+    SUBDIR += py-splunk-hec
     SUBDIR += py-spylls
     SUBDIR += py-stemming
     SUBDIR += py-tableschema-to-template

@@ -115,9 +115,6 @@
     SUBDIR += dojo
     SUBDIR += dokuwiki
     SUBDIR += dolibarr
-    SUBDIR += dolibarr13
-    SUBDIR += dolibarr14
-    SUBDIR += dolibarr15
     SUBDIR += dolibarr16
     SUBDIR += domoticz
     SUBDIR += dooble
@@ -414,7 +411,6 @@
     SUBDIR += mongrel2
     SUBDIR += monolith
     SUBDIR += moodle311
-    SUBDIR += moodle39
     SUBDIR += moodle40
     SUBDIR += moodle41
     SUBDIR += moodle42
