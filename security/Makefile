@@ -196,7 +196,7 @@
     SUBDIR += gpgdir
     SUBDIR += gpgme
     SUBDIR += gpgme-cpp
-    SUBDIR += gpgme-qt5
+    SUBDIR += gpgme-qt
     SUBDIR += gsa
     SUBDIR += gsad
     SUBDIR += gsasl
@@ -1294,6 +1294,7 @@
     SUBDIR += tinc-devel
     SUBDIR += tinyca
     SUBDIR += tls-check
+    SUBDIR += tlsc
     SUBDIR += tor
     SUBDIR += tor-devel
     SUBDIR += totp-cli
