@@ -14,6 +14,7 @@
     SUBDIR += bspwm
     SUBDIR += bspwm-devel
     SUBDIR += cage
+    SUBDIR += cage-devel
     SUBDIR += cagebreak
     SUBDIR += chamfer
     SUBDIR += compiz
@@ -47,7 +48,6 @@
     SUBDIR += hikari
     SUBDIR += hs-xmonad
     SUBDIR += hyprland
-    SUBDIR += hyprland-devel
     SUBDIR += i3
     SUBDIR += icewm
     SUBDIR += ittywm

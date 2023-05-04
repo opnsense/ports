@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.27-14956 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-gea3a73b598
+DISTVERSION=	0.0.27-14962 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-gb00b8ae71b
 CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -51,7 +51,7 @@ ELF_FEATURES=	+noaslr,wxneeded:bin/${PORTNAME}
 
 .if ${FLAVOR:U} == qt6 || make(makesum) || make(fetch)
 PATCH_SITES+=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/:qt6
-PATCHFILES+=	ec621e5b401e.patch:-p1:qt6 # https://github.com/RPCS3/rpcs3/pull/12471
+PATCHFILES+=	6e2df1839f63.patch:-p1:qt6 # https://github.com/RPCS3/rpcs3/pull/12471
 PKGNAMESUFFIX=	-${FLAVOR}
 USES:=		${USES:S/qt:5/qt:6/}
 USE_QT=		base multimedia svg
@@ -107,16 +107,5 @@ post-patch:
 		 -e '/GIT_FULL_BRANCH/s/local_build/${GH_ACCOUNT}\/${GH_PROJECT}\/master/' \
 		-e '/GIT_VERSION/s/local_build/${GH_TAGNAME:C/[^-]*-//}/' \
 		${WRKSRC}/${PORTNAME}/git-version.cmake
-
-.include <bsd.port.options.mk>
-
-# XXX https://github.com/llvm/llvm-project/issues/58207
-.if ${_OSRELEASE:M*-CURRENT}
-# Ignore Clang assertions
-USES+=		llvm
-CC=		clang${LLVM_VERSION}
-CXX=		clang++${LLVM_VERSION}
-CPP=		clang-cpp${LLVM_VERSION}
-.endif
 
 .include <bsd.port.mk>
