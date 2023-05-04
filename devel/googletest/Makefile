@@ -1,9 +1,9 @@
 PORTNAME=	googletest
-DISTVERSIONPREFIX=	release-
-DISTVERSION=	1.12.1
+DISTVERSIONPREFIX=	v
+DISTVERSION=	1.13.0
 CATEGORIES=	devel
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Framework for writing C++ tests on a variety of platforms
 WWW=		https://github.com/google/googletest
 
