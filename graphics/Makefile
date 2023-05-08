@@ -852,6 +852,7 @@
     SUBDIR += py-cartopy
     SUBDIR += py-cogdumper
     SUBDIR += py-colorcet
+    SUBDIR += py-colorthief
     SUBDIR += py-colour
     SUBDIR += py-descartes
     SUBDIR += py-django-easy-thumbnails
@@ -878,6 +879,7 @@
     SUBDIR += py-graphy
     SUBDIR += py-gvgen
     SUBDIR += py-h3
+    SUBDIR += py-haishoku
     SUBDIR += py-hiplot
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg

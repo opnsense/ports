@@ -1,9 +1,6 @@
 PORTNAME=	veloren
-PORTVERSION=	s20230503
+PORTVERSION=	s20230506
 CATEGORIES=	games wayland
-.if !make(makesum)
-MASTER_SITES=	LOCAL/jbeich
-.endif
 PKGNAMESUFFIX=	-weekly
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -27,7 +24,7 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-pl
 USES=		cargo xorg
 USE_XORG=	xcb
 USE_GITLAB=	yes
-GL_COMMIT=	4e3eb3ef44725cfa4f0e1ad377cbe5127695adc1
+GL_COMMIT=	95a38ff8f60d8895461971eb1266a5530cca8cce
 CARGO_ENV=	VELOREN_USERDATA_STRATEGY=system SHADERC_LIB_DIR="${LOCALBASE}/lib"
 PLIST_FILES=	bin/${PORTNAME}-server-cli \
 		bin/${PORTNAME}-voxygen \
@@ -38,6 +35,10 @@ PORTDATA=	*
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
+.if ${MACHINE_ARCH} == i386
+# Fixes error "Rust cannot catch foreign exceptions"
+CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false
+.endif
 # Fixes error "Instruction does not dominate all uses!"
 LTO_UNSAFE=	yes
 
@@ -52,7 +53,7 @@ post-patch:
 		${WRKSRC}/common/build.rs
 # Extract (snapshot) version from the port instead of empty file
 	@${REINPLACE_CMD} -e '/GIT_HASH/s/=.*/= "${GL_COMMIT:C/(.{8}).*/\1/}";/' \
-		-e "/GIT_DATE.*static/s/=.*/= \"$$(date -r $$(${AWK} '/TIMESTAMP/ { print $$3 }' \
+		-e "/GIT_DATE.*static/s/=.*/= \"$$(date -ur $$(${AWK} '/TIMESTAMP/ { print $$3 }' \
 			${DISTINFO_FILE}) +'%Y-%m-%d-%H:%M')\";/" \
 		${WRKSRC}/common/src/util/mod.rs
 # Respect PREFIX != /usr/local for system assets
