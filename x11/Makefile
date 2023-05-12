@@ -58,6 +58,7 @@
     SUBDIR += deskmenu
     SUBDIR += disman
     SUBDIR += dmenu
+    SUBDIR += dmenu2
     SUBDIR += docker-tray
     SUBDIR += dsbautostart
     SUBDIR += dsbxinput
@@ -542,6 +543,7 @@
     SUBDIR += xlogo
     SUBDIR += xlsatoms
     SUBDIR += xlsclients
+    SUBDIR += xlupe
     SUBDIR += xmag
     SUBDIR += xman
     SUBDIR += xmangekyou
