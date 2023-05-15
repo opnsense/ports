@@ -5437,6 +5437,7 @@
     SUBDIR += py-rfc3339
     SUBDIR += py-rfc3339-validator
     SUBDIR += py-rfc3986-validator
+    SUBDIR += py-rich-click
     SUBDIR += py-robotframework
     SUBDIR += py-robotframework-databaselibrary
     SUBDIR += py-robotframework-pabot
@@ -6300,6 +6301,7 @@
     SUBDIR += rubygem-aws-sdk-route53resolver
     SUBDIR += rubygem-aws-sdk-s3
     SUBDIR += rubygem-aws-sdk-s31119
+    SUBDIR += rubygem-aws-sdk-s31121
     SUBDIR += rubygem-aws-sdk-s3control
     SUBDIR += rubygem-aws-sdk-s3outposts
     SUBDIR += rubygem-aws-sdk-sagemaker
@@ -6578,6 +6580,7 @@
     SUBDIR += rubygem-coffee-script-source
     SUBDIR += rubygem-colorize
     SUBDIR += rubygem-columnize
+    SUBDIR += rubygem-corefoundation
     SUBDIR += rubygem-commander
     SUBDIR += rubygem-concurrent-ruby
     SUBDIR += rubygem-concurrent-ruby-edge
@@ -6786,6 +6789,7 @@
     SUBDIR += rubygem-gobject-introspection
     SUBDIR += rubygem-google-api-client
     SUBDIR += rubygem-google-apis-androidpublisher_v3
+    SUBDIR += rubygem-google-apis-androidpublisher_v3034
     SUBDIR += rubygem-google-apis-bigquery_v2
     SUBDIR += rubygem-google-apis-cloudbilling_v1
     SUBDIR += rubygem-google-apis-cloudresourcemanager_v1
@@ -7177,6 +7181,7 @@
     SUBDIR += rubygem-ruby-macho
     SUBDIR += rubygem-ruby-magic
     SUBDIR += rubygem-ruby-ole
+    SUBDIR += rubygem-ruby-openai
     SUBDIR += rubygem-ruby-prof
     SUBDIR += rubygem-ruby-progressbar
     SUBDIR += rubygem-ruby-statistics
