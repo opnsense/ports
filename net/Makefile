@@ -1242,6 +1242,7 @@
     SUBDIR += rubygem-bunny
     SUBDIR += rubygem-cloudflare
     SUBDIR += rubygem-connection_pool
+    SUBDIR += rubygem-devfile
     SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-dogapi
     SUBDIR += rubygem-domain_name
@@ -1336,6 +1337,7 @@
     SUBDIR += rubygem-oauth2
     SUBDIR += rubygem-oauth21
     SUBDIR += rubygem-octokit
+    SUBDIR += rubygem-octokit4
     SUBDIR += rubygem-octopress-deploy
     SUBDIR += rubygem-omniauth-auth0
     SUBDIR += rubygem-omniauth-authentiq

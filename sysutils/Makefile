@@ -53,6 +53,7 @@
     SUBDIR += apcpwr
     SUBDIR += apcupsd
     SUBDIR += appjail
+    SUBDIR += appjail-devel
     SUBDIR += apt-mirror-devel
     SUBDIR += aptly
     SUBDIR += arc_summary
@@ -1031,6 +1032,7 @@
     SUBDIR += plasma5-powerdevil
     SUBDIR += plasma5-systemsettings
     SUBDIR += plconfig
+    SUBDIR += plocate
     SUBDIR += pmt
     SUBDIR += pnscan
     SUBDIR += podman
@@ -1302,7 +1304,6 @@
     SUBDIR += rubygem-winrm-elevated
     SUBDIR += rubygem-winrm-fs
     SUBDIR += rubygem-yell
-    SUBDIR += rundeck2
     SUBDIR += rundeck3
     SUBDIR += runiq
     SUBDIR += runit
