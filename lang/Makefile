@@ -104,6 +104,7 @@
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += ghc810
+    SUBDIR += ghc92
     SUBDIR += gir-to-d
     SUBDIR += gjs
     SUBDIR += gleam
@@ -189,6 +190,7 @@
     SUBDIR += micropython
     SUBDIR += mit-scheme
     SUBDIR += mixal
+    SUBDIR += mlkit
     SUBDIR += mlton
     SUBDIR += mmix
     SUBDIR += mono
