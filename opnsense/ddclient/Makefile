@@ -1,15 +1,16 @@
 PORTNAME=	ddclient
 PORTVERSION=	3.10.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	dns
 PKGNAMESUFFIX=	-devel
 
 PATCH_SITES=	https://github.com/ddclient/ddclient/commit/
 PATCHFILES=	fa6c95f.patch:-p1 \
 		cca4291.patch:-p1 \
-		11a5bd5e7.patch:-p1 \
-		5596ee83d.patch:-p1
+		11a5bd5.patch:-p1 \
+		5596ee8.patch:-p1 \
+		1c91a5a.patch:-p1
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Update dynamic DNS entries
