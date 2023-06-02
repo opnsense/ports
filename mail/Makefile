@@ -113,7 +113,6 @@
     SUBDIR += enma
     SUBDIR += eps
     SUBDIR += epstools
-    SUBDIR += esmtp
     SUBDIR += evolution
     SUBDIR += evolution-ews
     SUBDIR += exilog
@@ -654,7 +653,6 @@
     SUBDIR += spambnc
     SUBDIR += spamcup
     SUBDIR += spamd
-    SUBDIR += spamdyke
     SUBDIR += spamguard
     SUBDIR += spamilter
     SUBDIR += spampd

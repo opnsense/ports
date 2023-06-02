@@ -207,7 +207,6 @@
     SUBDIR += argtable
     SUBDIR += arm-elf-binutils
     SUBDIR += arm-none-eabi-gcc
-    SUBDIR += arm-none-eabi-gcc492
     SUBDIR += arm-none-eabi-newlib
     SUBDIR += aros-sdk
     SUBDIR += arpc
@@ -5383,7 +5382,6 @@
     SUBDIR += py-pyusb
     SUBDIR += py-pyvisa
     SUBDIR += py-pyvisa-py
-    SUBDIR += py-pyxb
     SUBDIR += py-pyxb-x
     SUBDIR += py-pyyaml-include
     SUBDIR += py-pyyaml5

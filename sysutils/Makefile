@@ -104,9 +104,6 @@
     SUBDIR += bareos-client
     SUBDIR += bareos-server
     SUBDIR += bareos-traymonitor
-    SUBDIR += bareos18-client
-    SUBDIR += bareos18-server
-    SUBDIR += bareos18-traymonitor
     SUBDIR += bareos19-client
     SUBDIR += bareos19-server
     SUBDIR += bareos19-traymonitor
@@ -139,7 +136,6 @@
     SUBDIR += blisp
     SUBDIR += boot-extract
     SUBDIR += bottom
-    SUBDIR += boxbackup-devel
     SUBDIR += bpytop
     SUBDIR += brasero
     SUBDIR += brename
@@ -965,7 +961,6 @@
     SUBDIR += pacman
     SUBDIR += paicc
     SUBDIR += paladin
-    SUBDIR += pam_mount
     SUBDIR += pam_xdg
     SUBDIR += panicmail
     SUBDIR += parafly
@@ -1061,10 +1056,8 @@
     SUBDIR += pstree
     SUBDIR += puppet-lint
     SUBDIR += puppet-mode.el
-    SUBDIR += puppet6
     SUBDIR += puppet7
     SUBDIR += puppet8
-    SUBDIR += puppetserver6
     SUBDIR += puppetserver7
     SUBDIR += puppetserver8
     SUBDIR += pv
