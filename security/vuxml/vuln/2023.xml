@@ -1,3 +1,133 @@
+  <vuln vid="eb9a3c57-ff9e-11ed-a0d1-84a93843eb75">
+    <topic>OpenSSL -- Possible DoS translating ASN.1 identifiers</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>1.1.1u,1</lt></range>
+      </package>
+      <package>
+	<name>openssl30</name>
+	<range><lt>3.0.9</lt></range>
+      </package>
+      <package>
+	<name>openssl31</name>
+	<range><lt>3.1.1</lt></range>
+      </package>
+      <package>
+	<name>openssl-quictls</name>
+	<range><lt>3.0.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20230530.txt">
+	  <p>Severity: Moderate. Processing some specially crafted ASN.1
+	    object identifiers or data containing them may be very slow.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-2650</cvename>
+      <url>https://www.openssl.org/news/secadv/20230530.txt</url>
+    </references>
+    <dates>
+      <discovery>2023-05-30</discovery>
+      <entry>2023-05-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="79514fcd-feb4-11ed-92b5-b42e991fc52e">
+    <topic>Kanboard -- Clipboard based cross-site scripting (blocked with default CSP) in Kanboard</topic>
+    <affects>
+      <package>
+	<name>php80-kanboard</name>
+	<range><lt>1.2.29</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/kanboard/kanboard/commit/26b6eebb78d4306e48b836a58f7c386251aa2bc7">
+	  <p>Kanboard is project management software that focuses on the Kanban
+	methodology.  Due to improper handling of elements under the
+	`contentEditable` element, maliciously crafted clipboard content
+	can inject arbitrary HTML tags into the DOM.  A low-privileged
+	attacker with permission to attach a document on a vulnerable
+	Kanboard instance can trick the victim into pasting malicious
+	screenshot data and achieve cross-site scripting if CSP is improperly
+	configured.  This issue has been patched in version 1.2.29.
+	</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-32685</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-32685</url>
+    </references>
+    <dates>
+      <discovery>2023-05-30</discovery>
+      <entry>2023-05-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fd87a250-ff78-11ed-8290-a8a1599412c6">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>114.0.5735.90</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>114.0.5735.90</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2023/05/stable-channel-update-for-desktop_30.html">
+	 <p>This update includes 16 security fixes:</p>
+	 <ul>
+	    <li>[1410191] High CVE-2023-2929: Out of bounds write in Swiftshader. Reported by Jaehun Jeong(@n3sk) of Theori on 2023-01-25</li>
+	    <li>[1443401] High CVE-2023-2930: Use after free in Extensions. Reported by asnine on 2023-05-08</li>
+	    <li>[1444238] High CVE-2023-2931: Use after free in PDF. Reported by Huyna at Viettel Cyber Security on 2023-05-10</li>
+	    <li>[1444581] High CVE-2023-2932: Use after free in PDF. Reported by Huyna at Viettel Cyber Security on 2023-05-11</li>
+	    <li>[1445426] High CVE-2023-2933: Use after free in PDF. Reported by Quang Nguyễn (@quangnh89) of Viettel Cyber Security and Nguyen Phuong  on 2023-05-15</li>
+	    <li>[1429720] High CVE-2023-2934: Out of bounds memory access in Mojo. Reported by Mark Brand of Google Project Zero on 2023-04-01</li>
+	    <li>[1440695] High CVE-2023-2935: Type Confusion in V8. Reported by Sergei Glazunov of Google Project Zero on 2023-04-27</li>
+	    <li>[1443452] High CVE-2023-2936: Type Confusion in V8. Reported by Sergei Glazunov of Google Project Zero on 2023-05-08</li>
+	    <li>[1413813] Medium CVE-2023-2937: Inappropriate implementation in Picture In Picture. Reported by NDevTK on 2023-02-08</li>
+	    <li>[1416350] Medium CVE-2023-2938: Inappropriate implementation in Picture In Picture. Reported by Alesandro Ortiz on 2023-02-15</li>
+	    <li>[1427431] Medium CVE-2023-2939: Insufficient data validation in Installer. Reported by ycdxsb from VARAS@IIE on 2023-03-24</li>
+	    <li>[1426807] Medium CVE-2023-2940: Inappropriate implementation in Downloads. Reported by Axel Chong on 2023-03-22</li>
+	    <li>[1430269] Low CVE-2023-2941: Inappropriate implementation in Extensions API. Reported by Jasper Rebane on 2023-04-04</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-2929</cvename>
+      <cvename>CVE-2023-2930</cvename>
+      <cvename>CVE-2023-2931</cvename>
+      <cvename>CVE-2023-2932</cvename>
+      <cvename>CVE-2023-2933</cvename>
+      <cvename>CVE-2023-2934</cvename>
+      <cvename>CVE-2023-2935</cvename>
+      <cvename>CVE-2023-2936</cvename>
+      <cvename>CVE-2023-2937</cvename>
+      <cvename>CVE-2023-2938</cvename>
+      <cvename>CVE-2023-2939</cvename>
+      <cvename>CVE-2023-2940</cvename>
+      <cvename>CVE-2023-2941</cvename>
+      <url>https://chromereleases.googleblog.com/2023/05/stable-channel-update-for-desktop_30.html</url>
+    </references>
+    <dates>
+      <discovery>2023-05-30</discovery>
+      <entry>2023-05-31</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="5d1b1a0a-fd36-11ed-a0d1-84a93843eb75">
     <topic>MariaDB -- Nullpointer dereference</topic>
     <affects>
