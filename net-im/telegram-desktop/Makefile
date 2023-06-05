@@ -1,6 +1,6 @@
 PORTNAME=	telegram-desktop
 DISTVERSION=	4.8.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/v${DISTVERSION}/
 DISTNAME=	tdesktop-${DISTVERSION}-full
@@ -14,6 +14,8 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_i386=	does not build, webrtc related
+BROKEN_SSL=	openssl30 openssl31
+BROKEN_SSL_REASON=	undefined symbol: ERR_load_BIO_strings
 NOT_FOR_ARCHS=		powerpc powerpc64 powerpcspe
 NOT_FOR_ARCHS_REASON=	Only little endian is supported
 

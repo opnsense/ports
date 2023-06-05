@@ -918,6 +918,7 @@
     SUBDIR += gradle5
     SUBDIR += gradle6
     SUBDIR += gradle62
+    SUBDIR += gradle761
     SUBDIR += grantlee5
     SUBDIR += grcov
     SUBDIR += grex
@@ -1221,6 +1222,7 @@
     SUBDIR += libevdev
     SUBDIR += libevdevplus
     SUBDIR += libevent
+    SUBDIR += libevent-devel
     SUBDIR += libevt
     SUBDIR += libevtx
     SUBDIR += libewf
@@ -4122,6 +4124,7 @@
     SUBDIR += poco
     SUBDIR += poetry
     SUBDIR += popt
+    SUBDIR += poser
     SUBDIR += poxml
     SUBDIR += ppl
     SUBDIR += pprof

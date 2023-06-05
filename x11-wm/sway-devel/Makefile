@@ -1,6 +1,6 @@
 PORTNAME=	sway
-DISTVERSION?=	1.8.1-144 # git rev-list --count 1.8.1..
-DISTVERSIONSUFFIX?=	-g48d6eda3c
+DISTVERSION?=	1.8.1-148 # git rev-list --count 1.8.1..
+DISTVERSIONSUFFIX?=	-gb5cb49bce
 CATEGORIES=	x11-wm wayland
 PKGNAMESUFFIX?=	-devel
 
@@ -17,7 +17,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
 		wayland-protocols>=1.24:graphics/wayland-protocols \
-		wlroots>=0.16.0.368<0.17.0:x11-toolkits/wlroots
+		wlroots>=0.16.0.474<0.17.0:x11-toolkits/wlroots
 LIB_DEPENDS=	libjson-c.so:devel/json-c \
 		libevdev.so:devel/libevdev \
 		libudev.so:devel/libudev-devd \

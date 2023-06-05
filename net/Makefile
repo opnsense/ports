@@ -125,6 +125,7 @@
     SUBDIR += dhcperf
     SUBDIR += dhcping
     SUBDIR += dhcprelya
+    SUBDIR += dico
     SUBDIR += dictd
     SUBDIR += dimes
     SUBDIR += downzemall
@@ -200,7 +201,6 @@
     SUBDIR += gnome-nettool
     SUBDIR += gnome-online-accounts
     SUBDIR += gnome-online-miners
-    SUBDIR += gnu-dico
     SUBDIR += gnu-radius
     SUBDIR += go-bapu
     SUBDIR += go-cs
@@ -245,8 +245,6 @@
     SUBDIR += hanstunnel
     SUBDIR += haproxy
     SUBDIR += haproxy-devel
-    SUBDIR += haproxy17
-    SUBDIR += haproxy18
     SUBDIR += haproxy20
     SUBDIR += haproxy22
     SUBDIR += haproxy24

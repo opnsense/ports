@@ -205,7 +205,6 @@
     SUBDIR += ng_ipacct
     SUBDIR += nitpicker
     SUBDIR += nrpe
-    SUBDIR += nrpe3
     SUBDIR += nsca
     SUBDIR += nsca-client
     SUBDIR += nsca-ng
@@ -370,7 +369,6 @@
     SUBDIR += seafile-gui
     SUBDIR += seafile-server
     SUBDIR += semaphore
-    SUBDIR += send
     SUBDIR += sendip
     SUBDIR += sipcalc
     SUBDIR += sjitter
