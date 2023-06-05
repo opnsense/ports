@@ -4672,7 +4672,6 @@ audio/py-karaoke||2020-08-15|Has expired: Uses deprecated version of python
 audio/py-openal||2020-08-15|Has expired: Uses deprecated version of python
 audio/py-py-jack||2020-08-15|Has expired: Uses deprecated version of python
 audio/py-xmms2||2020-08-15|Has expired: Uses deprecated version of python
-audio/triceratops-lv2||2020-08-15|Has expired: Uses deprecated version of python
 comms/py-bulksms||2020-08-15|Has expired: Uses deprecated version of python
 comms/py-gammu||2020-08-15|Has expired: Uses deprecated version of python
 databases/py-geoalchemy||2020-08-15|Has expired: Uses deprecated version of python
@@ -7611,3 +7610,13 @@ sysutils/bareos18-server|sysutils/bareos19-server|2023-06-01|Has expired: Upstre
 sysutils/bareos18-traymonitor|sysutils/bareos19-traymonitor|2023-06-01|Has expired: Upstream EOL reached on 2020-02-03
 net-mgmt/nagircbot||2023-06-01|Has expired: Broken for more than a year and fails to build on all supported release
 mail/spamdyke||2023-06-01|Has expired: Broken for more than a year and last upstream release was in 2015
+net/haproxy17||2023-06-03|Has expired: Upstream EOL reached on 2021-03-31
+net/haproxy18||2023-06-03|Has expired: Upstream EOL reached on 2022-12-31
+net-mgmt/send||2023-06-03|Has expired: Implementation is based on older obsolete RFC
+dns/validns||2023-06-03|Has expired: Last upstream release was 10 years ago and last upstream activity in 2017
+sysutils/cfengine319||2023-06-03|Has expired: Upstream EOL reached on 2022-06-30
+sysutils/cfengine-masterfiles319||2023-06-03|Removed, part of expired sysutils/cfengine319
+net-mgmt/nrpe3|net-mgmt/nrpe|2023-06-03|Has expired: Fails to build with recent OpenSSL so use net-mgmt/nrpe
+games/spacezero||2023-06-03|Has expired: broken, abandoned upstream, depends on deprecated gtk2
+net/gnu-dico|net/dico|2023-06-03|Renamed to match upstream naming
+editors/o|editors/orbiton|2023-06-04|Project was renamed
