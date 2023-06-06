@@ -969,8 +969,6 @@
     SUBDIR += rubygem-openid-redis-store
     SUBDIR += rubygem-paranoia
     SUBDIR += rubygem-pg
-    SUBDIR += rubygem-pg13
-    SUBDIR += rubygem-pg14
     SUBDIR += rubygem-pg_array_parser
     SUBDIR += rubygem-pg_query
     SUBDIR += rubygem-pghero
@@ -997,7 +995,6 @@
     SUBDIR += rubygem-redis-cluster-client
     SUBDIR += rubygem-redis-clustering
     SUBDIR += rubygem-redis-namespace
-    SUBDIR += rubygem-redis-namespace18
     SUBDIR += rubygem-redis-namespace19
     SUBDIR += rubygem-redis4
     SUBDIR += rubygem-scenic61

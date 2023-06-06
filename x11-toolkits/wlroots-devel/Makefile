@@ -1,5 +1,5 @@
 PORTNAME=	wlroots
-DISTVERSION=	0.16.0-494
+DISTVERSION=	0.16.0-504
 DISTVERSIONSUFFIX=	-g${GL_COMMIT:C/(.{12}).*/\1/}
 CATEGORIES=	x11-toolkits
 PKGNAMESUFFIX=	-devel
@@ -27,7 +27,7 @@ USE_GL=		gbm
 USE_XORG=	pixman
 USE_LDCONFIG=	yes
 GL_SITE=	https://gitlab.freedesktop.org
-GL_COMMIT=	b61d5922f1d0910a848deb100570ad8587aea38d
+GL_COMMIT=	3dc646ea889084cd7aa980f38124b5df548cf10d
 MESON_ARGS=	-Dexamples=false -Dbackends=${BACKENDS:ts,} -Drenderers=${RENDERERS:ts,}
 
 .ifdef PKGNAMESUFFIX
@@ -75,5 +75,12 @@ post-patch:
 # Extract (snapshot) version from the port instead of meson.build
 	@${REINPLACE_CMD} "/STR/s/meson.project_version()/'${DISTVERSIONFULL}'/" \
 		${WRKSRC}/include/wlr/meson.build
+# XXX Drop after FreeBSD 12.4 EOL around 2023-12-31
+# https://cgit.freebsd.org/src/commit/?id=d7535fb3e3cb
+	@if [ ${OPSYS} = FreeBSD -a ${OSVERSION} -lt 1300515 ]; then \
+		${REINPLACE_CMD} -e '/POSIX/s/199309/200112/' \
+		${WRKSRC}/render/gles2/pass.c \
+		${WRKSRC}/render/gles2/renderer.c; \
+	fi
 
 .include <bsd.port.mk>

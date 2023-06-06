@@ -1779,8 +1779,6 @@
     SUBDIR += rubygem-liquid4
     SUBDIR += rubygem-loggability
     SUBDIR += rubygem-loofah
-    SUBDIR += rubygem-loofah220
-    SUBDIR += rubygem-loofah221
     SUBDIR += rubygem-ltsv
     SUBDIR += rubygem-markaby
     SUBDIR += rubygem-mdl
@@ -1789,6 +1787,7 @@
     SUBDIR += rubygem-nokogiri
     SUBDIR += rubygem-nokogiri-diff
     SUBDIR += rubygem-nokogiri111
+    SUBDIR += rubygem-nokogiri114
     SUBDIR += rubygem-nokogumbo
     SUBDIR += rubygem-octopress-escape-code
     SUBDIR += rubygem-opml
