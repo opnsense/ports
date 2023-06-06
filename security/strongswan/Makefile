@@ -4,6 +4,8 @@ PORTREVISION=	1
 CATEGORIES=	security net-vpn
 MASTER_SITES=	https://download.strongswan.org/ \
 		https://download2.strongswan.org/
+PATCH_SITES=	https://github.com/strongswan/strongswan/commit/
+PATCHFILES=	3d0d3f5d028a0c630f89cb4fec5b2cd5364f568b.patch:-p1
 
 MAINTAINER=	strongswan@nanoteq.com
 COMMENT=	Open Source IKEv2 IPsec-based VPN solution
