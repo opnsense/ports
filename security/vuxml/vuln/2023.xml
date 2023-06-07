@@ -1,3 +1,229 @@
+  <vuln vid="d86becfe-05a4-11ee-9d4a-080027eda32c">
+    <topic>Python -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>python37</name>
+	<range><lt>3.7.17</lt></range>
+      </package>
+      <package>
+	<name>python38</name>
+	<range><lt>3.8.17</lt></range>
+      </package>
+      <package>
+	<name>python39</name>
+	<range><lt>3.9.17</lt></range>
+      </package>
+      <package>
+	<name>python310</name>
+	<range><lt>3.10.12</lt></range>
+      </package>
+      <package>
+	<name>python311</name>
+	<range><lt>3.11.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Python reports:</p>
+	<blockquote cite="https://pythoninsider.blogspot.com/2023/06/python-3114-31012-3917-3817-3717-and.html">
+	  <p>gh-103142: The version of OpenSSL used in Windows and Mac installers has been upgraded
+	    to 1.1.1u to address CVE-2023-2650, CVE-2023-0465, CVE-2023-0466, CVE-2023-0464, as well
+	    as CVE-2023-0286, CVE-2022-4303, and CVE-2022-4303 fixed previously in 1.1.1t (gh-101727).</p>
+	  <p>gh-102153: urllib.parse.urlsplit() now strips leading C0 control and space characters
+	    following the specification for URLs defined by WHATWG in response to CVE-2023-24329.</p>
+	  <p>gh-99889: Fixed a security in flaw in uu.decode() that could allow for directory traversal
+	    based on the input if no out_file was specified.</p>
+	  <p>gh-104049: Do not expose the local on-disk location in directory indexes produced by
+	    http.client.SimpleHTTPRequestHandler.</p>
+	  <p>gh-101283: subprocess.Popen now uses a safer approach to find cmd.exe when launching with
+	    shell=True.</p>
+	  <p>gh-103935: trace.__main__ now uses io.open_code() for files to be executed instead of raw open().</p>
+	  <p>gh-102953: The extraction methods in tarfile, and shutil.unpack_archive(), have a new filter
+	    argument that allows limiting tar features than may be surprising or dangerous, such as creating
+	    files outside the destination directory. </p>
+	  <p>gh-102126: Fixed a deadlock at shutdown when clearing thread states if any finalizer tries to
+	    acquire the runtime head lock.</p>
+	  <p>gh-100892: Fixed a crash due to a race while iterating over thread states in clearing
+	    threading.local.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-4303</cvename>
+      <cvename>CVE-2023-2650</cvename>
+      <cvename>CVE-2023-0286</cvename>
+      <cvename>CVE-2023-0464</cvename>
+      <cvename>CVE-2023-0465</cvename>
+      <cvename>CVE-2023-0466</cvename>
+      <cvename>CVE-2023-24329</cvename>
+      <url>https://pythoninsider.blogspot.com/2023/06/python-3114-31012-3917-3817-3717-and.html</url>
+    </references>
+    <dates>
+      <discovery>2022-06-08</discovery>
+      <entry>2023-06-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="12741b1f-04f9-11ee-8290-a8a1599412c6">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>114.0.5735.106</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>114.0.5735.106</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2023/06/stable-channel-update-for-desktop.html">
+	 <p>This update includes 2 security fixes:</p>
+	 <ul>
+	    <li>[1450481] High CVE-2023-3079: Type Confusion in V8. Reported by Clément Lecigne of Google's Threat Analysis Group on 2023-06-01</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-3079</cvename>
+      <url>https://chromereleases.googleblog.com/2023/06/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2023-06-05</discovery>
+      <entry>2023-06-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="cdb5338d-04ec-11ee-9c88-001b217b3468">
+    <topic>Gitlab -- Vulnerability</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>16.0.0</ge><lt>16.0.2</lt></range>
+	<range><ge>15.11.0</ge><lt>15.11.7</lt></range>
+	<range><ge>15.10.0</ge><lt>15.10.8</lt></range>
+	<range><ge>1.2</ge><lt>15.9.8</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2023/06/05/security-release-gitlab-16-0-2-released/">
+	  <p>Stored-XSS with CSP-bypass in Merge requests</p>
+	  <p>ReDoS via FrontMatterFilter in any Markdown fields</p>
+	  <p>ReDoS via InlineDiffFilter in any Markdown fields</p>
+	  <p>ReDoS via DollarMathPostFilter in Markdown fields</p>
+	  <p>DoS via malicious test report artifacts</p>
+	  <p>Restricted IP addresses can clone repositories of public projects</p>
+	  <p>Reflected XSS in Report Abuse Functionality</p>
+	  <p>Privilege escalation from maintainer to owner by importing members from a project</p>
+	  <p>Bypassing tags protection in GitLab</p>
+	  <p>Denial of Service using multiple labels with arbitrarily large descriptions</p>
+	  <p>Ability to use an unverified email for public and commit emails</p>
+	  <p>Open Redirection Through HTTP Response Splitting</p>
+	  <p>Disclosure of issue notes to an unauthorized user when exporting a project</p>
+	  <p>Ambiguous branch name exploitation</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-2442</cvename>
+      <cvename>CVE-2023-2199</cvename>
+      <cvename>CVE-2023-2198</cvename>
+      <cvename>CVE-2023-2132</cvename>
+      <cvename>CVE-2023-0121</cvename>
+      <cvename>CVE-2023-2589</cvename>
+      <cvename>CVE-2023-2015</cvename>
+      <cvename>CVE-2023-2485</cvename>
+      <cvename>CVE-2023-2001</cvename>
+      <cvename>CVE-2023-0921</cvename>
+      <cvename>CVE-2023-1204</cvename>
+      <cvename>CVE-2023-0508</cvename>
+      <cvename>CVE-2023-1825</cvename>
+      <cvename>CVE-2023-2013</cvename>
+      <url>https://about.gitlab.com/releases/2023/06/05/security-release-gitlab-16-0-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2023-06-05</discovery>
+      <entry>2023-06-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2f38c6a2-04a4-11ee-8cb0-e41f13b9c674">
+    <topic>qpress -- directory traversal</topic>
+    <affects>
+      <package>
+	<name>qpress</name>
+	<range><lt>11.3</lt></range>
+      </package>
+      <package>
+	<name>xtrabackup8</name>
+	<range><lt>8.0.32</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="https://github.com/EvgeniyPatlan/qpress/commit/ddb312090ebd5794e81bc6fb1dfb4e79eda48761">
+	  <p>qpress before PierreLvx/qpress 20220819 and before version 11.3,
+	as used in Percona XtraBackup and other products, allows directory
+	traversal via ../ in a .qp file.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-45866</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-45866</url>
+    </references>
+    <dates>
+      <discovery>2022-11-23</discovery>
+      <entry>2023-06-06</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bfca647c-0456-11ee-bafd-b42e991fc52e">
+    <topic>Kanboard -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>php80-kanboard</name>
+	<range><lt>1.2.30</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p></p>
+	<p>Kanboard is project management software that focuses on the Kanban
+	methodology. The last update includes 4 vulnerabilities:</p>
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/kanboard/kanboard/commit/b501ef44bc28ee9cf603a4fa446ee121d66f652f">
+	  <ul>
+	    <li>Missing access control in internal task links feature</li>
+	    <li>Stored Cross site scripting in the Task External Link Functionality in Kanboard</li>
+	    <li>Missing Access Control allows User to move and duplicate tasks in Kanboard</li>
+	    <li>Parameter based Indirect Object Referencing leading to private file exposure in Kanboard</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-33970</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-33970</url>
+      <cvename>CVE-2023-33969</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-33969</url>
+      <cvename>CVE-2023-33968</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-33968</url>
+      <cvename>CVE-2023-33956</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-33956</url>
+    </references>
+    <dates>
+      <discovery>2023-06-05</discovery>
+      <entry>2023-06-06</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="eb9a3c57-ff9e-11ed-a0d1-84a93843eb75">
     <topic>OpenSSL -- Possible DoS translating ASN.1 identifiers</topic>
     <affects>
