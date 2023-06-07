@@ -325,6 +325,7 @@
     SUBDIR += duply
     SUBDIR += dupmerge
     SUBDIR += dust
+    SUBDIR += dutree
     SUBDIR += dvd+rw-tools
     SUBDIR += dvdbackup
     SUBDIR += dvdimagecmp
@@ -1311,6 +1312,7 @@
     SUBDIR += safe-rm
     SUBDIR += safecat
     SUBDIR += safecopy
+    SUBDIR += sake
     SUBDIR += samdruckerclientshell
     SUBDIR += samefile
     SUBDIR += samesame

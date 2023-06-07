@@ -11,6 +11,7 @@ WWW=		https://github.com/puppetlabs/pdk
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Broken with all supported Ruby versions
 BROKEN_RUBY30=	yes
 BROKEN_RUBY31=	yes
 BROKEN_RUBY32=	yes

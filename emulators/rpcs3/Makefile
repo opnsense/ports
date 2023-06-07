@@ -1,7 +1,7 @@
 PORTNAME=	rpcs3
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.0.28-15132 # git rev-list --count HEAD
-DISTVERSIONSUFFIX=	-g6d2f7f6e54
+DISTVERSION=	0.0.28-15143 # git rev-list --count HEAD
+DISTVERSIONSUFFIX=	-g6f834e99d2
 CATEGORIES=	emulators wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -58,11 +58,13 @@ USE_QT=		base multimedia svg
 
 CONFLICTS_INSTALL=	${PORTNAME}
 
+pre-patch:	${FLAVOR}-pre-patch
+${FLAVOR}-pre-patch:
+# XXX Drop after reverting https://github.com/RPCS3/rpcs3/commit/5e6aa45658ef
+	@${REINPLACE_CMD} '/quarterly/s/^#//' ${WRKSRC}/.ci/install-freebsd.sh
+
 post-patch:	${FLAVOR}-post-patch
 ${FLAVOR}-post-patch:
-# XXX Drop after devel/qt6-base >= 6.5 update
-	@${REINPLACE_CMD} -e '/QT_MIN_VER/s/6\.5\.0/6.4.2/' \
-		${WRKSRC}/3rdparty/qt6.cmake
 # patch(1) doesn't support renames unlike git-apply(1)
 	@${MV}  ${WRKSRC}/rpcs3/rpcs3qt/qt_camera_video_surface.cpp \
 		${WRKSRC}/rpcs3/rpcs3qt/qt_camera_video_sink.cpp
