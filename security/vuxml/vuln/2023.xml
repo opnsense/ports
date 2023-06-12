@@ -1,3 +1,28 @@
+  <vuln vid="fdca9418-06f0-11ee-abe2-ecf4bbefc954">
+    <topic>acme.sh -- closes potential remote vuln</topic>
+    <affects>
+      <package>
+	<name>acme.sh</name>
+	<range><lt>3.0.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Neil Pang reports:</p>
+	<blockquote cite="https://github.com/acmesh-official/acme.sh/issues/4659">
+	  <p>HiCA was injecting arbitrary code/commands into the certificate obtaining process and acme.sh is running them on the client machine.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/acmesh-official/acme.sh/issues/4665</url>
+    </references>
+    <dates>
+      <discovery>2023-06-08</discovery>
+      <entry>2023-06-09</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="d86becfe-05a4-11ee-9d4a-080027eda32c">
     <topic>Python -- multiple vulnerabilities</topic>
     <affects>
@@ -61,6 +86,90 @@
     <dates>
       <discovery>2022-06-08</discovery>
       <entry>2023-06-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6c1de144-056f-11ee-8e16-6c3be5272acd">
+    <topic>Grafana -- Broken access control: viewer can send test alerts</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><ge>8.0.0</ge><lt>8.5.26</lt></range>
+	<range><ge>9.0.0</ge><lt>9.2.19</lt></range>
+	<range><ge>9.3.0</ge><lt>9.3.15</lt></range>
+	<range><ge>9.4.0</ge><lt>9.4.12</lt></range>
+	<range><ge>9.5.0</ge><lt>9.5.3</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><ge>8.0.0</ge><lt>8.5.26</lt></range>
+      </package>
+      <package>
+	<name>grafana9</name>
+	<range><lt>9.2.19</lt></range>
+	<range><ge>9.3.0</ge><lt>9.3.15</lt></range>
+	<range><ge>9.4.0</ge><lt>9.4.12</lt></range>
+	<range><ge>9.5.0</ge><lt>9.5.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2023/06/06/grafana-security-release-new-grafana-versions-with-security-fixes-for-cve-2023-2183-and-cve-2023-2801/">
+	  <p>Grafana can allow an attacker in the <strong>Viewer</strong> role
+	  to send alerts by <strong>API Alert - Test</strong>. This option,
+	  however, is not available in the user panel UI for the Viewer role.
+	  </p>
+	  <p>The CVSS score for this vulnerability is 4.1 Medium
+	  (CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:N/A:N).</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-2183</cvename>
+      <url>https://grafana.com/security/security-advisories/cve-2023-2183/</url>
+    </references>
+    <dates>
+      <discovery>2023-06-06</discovery>
+      <entry>2023-06-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="652064ef-056f-11ee-8e16-6c3be5272acd">
+    <topic>Grafana -- Grafana DS proxy race condition</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><ge>9.4.0</ge><lt>9.4.12</lt></range>
+	<range><ge>9.5.0</ge><lt>9.5.3</lt></range>
+      </package>
+      <package>
+	<name>grafana9</name>
+	<range><ge>9.4.0</ge><lt>9.4.12</lt></range>
+	<range><ge>9.5.0</ge><lt>9.5.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2023/06/06/grafana-security-release-new-grafana-versions-with-security-fixes-for-cve-2023-2183-and-cve-2023-2801/">
+	  <p>We have discovered a vulnerability with Grafana’s data source query
+	  endpoints that could end up crashing a Grafana instance.</p>
+	  <p>If you have public dashboards (PD) enabled, we
+	  are scoring this as a CVSS 7.5 High.</p>
+	  <p>If you have disabled PD, this vulnerability is still a risk,
+	  but triggering the issue requires data source read privileges
+	  and access to the Grafana API through a developer script.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-2801</cvename>
+      <url>CVE-2023-2801</url>
+    </references>
+    <dates>
+      <discovery>2023-06-06</discovery>
+      <entry>2023-06-07</entry>
     </dates>
   </vuln>
 
