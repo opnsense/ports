@@ -367,6 +367,7 @@
     SUBDIR += slop
     SUBDIR += slurp
     SUBDIR += smproxy
+    SUBDIR += somebar
     SUBDIR += sprop
     SUBDIR += squeekboard
     SUBDIR += srandrd
@@ -396,7 +397,6 @@
     SUBDIR += terminal.app
     SUBDIR += terminator
     SUBDIR += terminology
-    SUBDIR += thinglaunch
     SUBDIR += thingylaunch
     SUBDIR += tilda
     SUBDIR += tilix

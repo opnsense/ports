@@ -43,6 +43,7 @@
     SUBDIR += audacity
     SUBDIR += audiere
     SUBDIR += audiocd-kio
+    SUBDIR += audiowmark
     SUBDIR += aumix
     SUBDIR += autocd
     SUBDIR += autotalent
@@ -293,7 +294,6 @@
     SUBDIR += hexter
     SUBDIR += hpsjam
     SUBDIR += hts_engine-API
-    SUBDIR += hvl2wav
     SUBDIR += hydrogen
     SUBDIR += icecast
     SUBDIR += icecast-kh

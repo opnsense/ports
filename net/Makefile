@@ -998,6 +998,9 @@
     SUBDIR += php82-ldap
     SUBDIR += php82-soap
     SUBDIR += php82-sockets
+    SUBDIR += php83-ldap
+    SUBDIR += php83-soap
+    SUBDIR += php83-sockets
     SUBDIR += phpldapadmin
     SUBDIR += pichi
     SUBDIR += pimcommon
@@ -1032,6 +1035,7 @@
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
     SUBDIR += py-avahi
+    SUBDIR += py-bonsai
     SUBDIR += py-cepa
     SUBDIR += py-cjdns
     SUBDIR += py-cloudflare-scrape
