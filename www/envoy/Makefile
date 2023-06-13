@@ -15,12 +15,14 @@ BROKEN_i386=	makes a lot of 64-bit assumptions (patches welcome)
 BROKEN_SSL=	base openssl libressl libressl-devel
 BROKEN_SSL_REASON=	requires BoringSSL
 
-BUILD_DEPENDS=	${NONEXISTENT}:devel/protobuf:patch \
+BUILD_DEPENDS=	${NONEXISTENT}:devel/grpc:patch \
+		${NONEXISTENT}:devel/protobuf:patch \
 		${LOCALBASE}/include/flatbuffers/reflection.h:devel/flatbuffers \
 		${LOCALBASE}/include/nlohmann/json.hpp:devel/nlohmann-json \
 		${LOCALBASE}/include/spdlog/spdlog.h:devel/spdlog \
 		${LOCALBASE}/include/tclap/CmdLine.h:devel/tclap12
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
+		libbrotlidec.so:archivers/brotli \
 		libcares.so:dns/c-ares \
 		libcircllhist.so:devel/libcircllhist \
 		libevent.so:devel/libevent-devel \
@@ -31,23 +33,24 @@ LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libprotobuf.so:devel/protobuf \
 		libre2.so:devel/re2 \
 		libxxhash.so:devel/xxhash \
-		libyaml-cpp.so:devel/yaml-cpp
+		libyaml-cpp.so:devel/yaml-cpp \
+		libzstd.so:archivers/zstd
 
 USES=		compiler:c++17-lang cpe gmake python:build shebangfix ssl
 CPE_VENDOR=	${PORTNAME}proxy
 SHEBANG_FILES=	examples/*/verify.sh examples/grpc-bridge/client/client.py \
 		examples/shared/postgres/docker-healthcheck.sh
 USE_GITHUB=	yes
-
 GH_ACCOUNT=	${PORTNAME}proxy bufbuild:pgv cncf:xds googleapis:gapis \
 		census-instrumentation:ocp prometheus:pcm google:quiche \
-		open-telemetry:otp google:cel grpc:grpc
+		open-telemetry:otp google:cel
 GH_PROJECT=	protoc-gen-validate:pgv xds:xds googleapis:gapis \
 		opencensus-proto:ocp client_model:pcm quiche:quiche \
-		opentelemetry-proto:otp cel-cpp:cel grpc:grpc
+		opentelemetry-proto:otp cel-cpp:cel
 GH_TAGNAME=	v0.10.1:pgv 46e39c7:xds 114a745:gapis v0.4.1:ocp 147c58e:pcm \
-		37de4f7:quiche v0.19.0:otp 11f9d66:cel v1.49.2:grpc
+		37de4f7:quiche v0.19.0:otp 11f9d66:cel
 
+_GRPC_WRKSRC=		${MAKE} -C ${PORTSDIR}/devel/grpc -V WRKSRC
 _PROTOBUF_WRKSRC=	${MAKE} -C ${PORTSDIR}/devel/protobuf -V WRKSRC
 
 PLIST_FILES=	bin/envoy
@@ -59,12 +62,11 @@ post-extract:
 	${LN} -s \
 		 ../../client_model-147c58e/io \
 		 ../../googleapis-114a745/google \
-		 ../../grpc-1.49.2/src \
 		 ../../opencensus-proto-0.4.1/src/opencensus \
 		 ../../opentelemetry-proto-0.19.0/opentelemetry \
 		 ../../protoc-gen-validate-0.10.1/validate \
-		 ../../xds-46e39c7/udpa \
-		 ../../xds-46e39c7/xds ${WRKSRC}/api
+		 ../../xds-46e39c7/udpa ../../xds-46e39c7/xds \
+		 ${_GRPC_WRKSRC:sh}/src ${WRKSRC}/api
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,__APPLE__,__${OPSYS}__,' \

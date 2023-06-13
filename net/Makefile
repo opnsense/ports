@@ -276,9 +276,11 @@
     SUBDIR += imapproxy
     SUBDIR += incidenceeditor
     SUBDIR += intel-em-kmod
+    SUBDIR += intel-ice-kmod
     SUBDIR += intel-igb-kmod
     SUBDIR += intel-ix-kmod
     SUBDIR += intel-ixl-kmod
+    SUBDIR += intel-ixv-kmod
     SUBDIR += iodine
     SUBDIR += ip2location
     SUBDIR += ip2proxy

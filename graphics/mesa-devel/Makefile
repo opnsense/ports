@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	23.1-branchpoint-2849
-DISTVERSIONSUFFIX=	-g0ce595a89a7
+DISTVERSION=	23.1-branchpoint-2930
+DISTVERSIONSUFFIX=	-gb717a438261
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -98,7 +98,7 @@ LIBUNWIND_LIB_DEPENDS=	libunwind.so:devel/libunwind
 LIBUNWIND_MESON_ENABLED=	libunwind
 
 LLVM_DESC=		Build with LLVM support (see implies)
-LLVM_USES=		llvm:min=11,lib
+LLVM_USES=		llvm:min=15,lib
 LLVM_CONFIGURE_ENV=	LLVM_CONFIG=${LLVM_CONFIG}
 LLVM_MESON_ENABLED=	llvm
 .for i in r600 radeonsi radv
