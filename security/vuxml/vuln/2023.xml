@@ -1,3 +1,101 @@
+  <vuln vid="b4db7d78-bb62-4f4c-9326-6e9fc2ddd400">
+    <topic>jenkins -- CSRF protection bypass vulnerability</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.400</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.401.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2023-06-14/">
+	  <h1>Description</h1>
+	  <h5>(High) SECURITY-3135 / CVE-2023-35141</h5>
+	  <p>CSRF protection bypass vulnerability</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-35141</cvename>
+      <url>https://www.jenkins.io/security/advisory/2023-06-14/</url>
+    </references>
+    <dates>
+      <discovery>2023-06-14</discovery>
+      <entry>2023-06-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f0250129-fdb8-41ed-aa9e-661ff5026845">
+    <topic>vscode -- VS Code Information Disclosure Vulnerability</topic>
+    <affects>
+      <package>
+	<name>vscode</name>
+	<range><lt>1.79.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>VSCode developers reports:</p>
+	<blockquote cite="https://github.com/microsoft/vscode/security/advisories/GHSA-j5wm-6crw-xvmr">
+	  <p>VS Code Information Disclosure Vulnerability</p>
+	  <p>A information disclosure vulnerability exists in VS Code 1.79.0 and earlier versions on Windows when file system operations are performed on malicious UNC paths. Examples include reading or resolving metadata of such paths. An authorised attacker must send the user a malicious file and convince the user to open it for the vulnerability to occur. Exploiting this vulnerability could allow the disclosure of NTLM hashes.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-33144</cvename>
+      <url>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2023-33144</url>
+    </references>
+    <dates>
+      <discovery>2023-06-13</discovery>
+      <entry>2023-06-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1567be8c-0a15-11ee-8290-a8a1599412c6">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>114.0.5735.133</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>114.0.5735.133</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2023/06/stable-channel-update-for-desktop_13.html">
+	 <p>This update includes 5 security fixes:</p>
+	 <ul>
+	    <li>[1450568] Critical CVE-2023-3214: Use after free in Autofill payments. Reported by Rong Jian of VRI on 2023-06-01</li>
+	    <li>[1446274] High CVE-2023-3215: Use after free in WebRTC. Reported by asnine on 2023-05-17</li>
+	    <li>[1450114] High CVE-2023-3216: Type Confusion in V8. Reported by 5n1p3r0010 from Topsec ChiXiao Lab on 2023-05-31</li>
+	    <li>[1450601] High CVE-2023-3217: Use after free in WebXR. Reported by Sergei Glazunov of Google Project Zero on 2023-06-01</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-3214</cvename>
+      <cvename>CVE-2023-3215</cvename>
+      <cvename>CVE-2023-3216</cvename>
+      <cvename>CVE-2023-3217</cvename>
+      <url>https://chromereleases.googleblog.com/2023/06/stable-channel-update-for-desktop_13.html</url>
+    </references>
+    <dates>
+      <discovery>2023-06-13</discovery>
+      <entry>2023-06-13</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="f7e9a1cc-0931-11ee-94b4-6cc21735f730">
     <topic>xmltooling -- remote resource access</topic>
     <affects>
