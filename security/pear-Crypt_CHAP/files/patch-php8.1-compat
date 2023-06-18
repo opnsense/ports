@@ -1,0 +1,197 @@
+--- CHAP.php.orig	2023-06-18 12:10:00.249816000 +0200
++++ CHAP.php	2023-06-18 12:35:52.222421000 +0200
+@@ -85,9 +85,9 @@
+      * Generates a random challenge
+      * @return void
+      */
+-    function Crypt_CHAP()
++    public function __construct()
+     {
+-        $this->PEAR();
++        parent::__construct();
+         $this->generateChallenge();
+     }
+     
+@@ -98,7 +98,7 @@
+      * @param  integer $size     Size of the challenge in Bytes
+      * @return void
+      */
+-    function generateChallenge($varname = 'challenge', $size = 8)
++    public function generateChallenge($varname = 'challenge', $size = 8)
+     {
+         $this->$varname = '';
+         for ($i = 0; $i < $size; $i++) {
+@@ -112,7 +112,7 @@
+      *
+      * @return void
+      */    
+-    function challengeResponse()
++    public function challengeResponse()
+     {
+     }
+         
+@@ -136,7 +136,7 @@
+      *
+      * @return string
+      */ 
+-    function challengeResponse()
++    public function challengeResponse()
+     {
+         return pack('H*', md5(pack('C', $this->chapid) . $this->password . $this->challenge));
+     }
+@@ -167,9 +167,9 @@
+      * Loads the hash extension
+      * @return void
+      */
+-    function Crypt_CHAP_MSv1()
++    public function __construct()
+     {
+-        $this->Crypt_CHAP();
++        parent::__construct();
+         $this->loadExtension('hash');        
+     }
+     
+@@ -179,7 +179,7 @@
+      * @access public
+      * @return string
+      */
+-    function ntPasswordHash($password = null) 
++    public function ntPasswordHash($password = null) 
+     {
+         if (isset($password)) {
+             return pack('H*',hash('md4', $this->str2unicode($password)));
+@@ -194,12 +194,12 @@
+      * @access public
+      * @return string
+      */
+-    function str2unicode($str) 
++    public function str2unicode($str) 
+     {
+         $uni = '';
+         $str = (string) $str;
+         for ($i = 0; $i < strlen($str); $i++) {
+-            $a = ord($str{$i}) << 8;
++            $a = ord($str[$i]) << 8;
+             $uni .= sprintf("%X", $a);
+         }
+         return pack('H*', $uni);
+@@ -211,7 +211,7 @@
+      * @access public
+      * @return string
+      */  
+-    function challengeResponse() 
++    public function challengeResponse() 
+     {
+         return $this->_challengeResponse();
+     }
+@@ -222,7 +222,7 @@
+      * @access public
+      * @return string
+      */  
+-    function ntChallengeResponse() 
++    public function ntChallengeResponse() 
+     {
+         return $this->_challengeResponse(false);
+     }    
+@@ -233,7 +233,7 @@
+      * @access public
+      * @return string
+      */
+-    function lmChallengeResponse()
++    public function lmChallengeResponse()
+     {
+         return $this->_challengeResponse(true);
+     }
+@@ -247,7 +247,7 @@
+      * @access private
+      * @return string
+      */
+-    function _challengeResponse($lm = false)
++    protected function _challengeResponse($lm = false)
+     {
+         if ($lm) {
+             $hash = $this->lmPasswordHash();
+@@ -286,7 +286,7 @@
+      * @access public
+      * @return string
+      */
+-    function lmPasswordHash($password = null)
++    public function lmPasswordHash($password = null)
+     {
+         $plain = isset($password) ? $password : $this->password;
+ 
+@@ -304,7 +304,7 @@
+      * @access private
+      * @return string
+      */
+-    function _desHash($plain)
++    protected function _desHash($plain)
+     {
+         $key = $this->_desAddParity($plain);
+         $td = mcrypt_module_open(MCRYPT_DES, '', MCRYPT_MODE_ECB, '');
+@@ -323,7 +323,7 @@
+      * @param  string  $key 7-Bytes Key without parity
+      * @return string
+      */
+-    function _desAddParity($key)
++    protected function _desAddParity($key)
+     {
+         static $odd_parity = array(
+                 1,  1,  2,  2,  4,  4,  7,  7,  8,  8, 11, 11, 13, 13, 14, 14,
+@@ -345,7 +345,7 @@
+ 
+         $bin = '';
+         for ($i = 0; $i < strlen($key); $i++) {
+-            $bin .= sprintf('%08s', decbin(ord($key{$i})));
++            $bin .= sprintf('%08s', decbin(ord($key[$i])));
+         }
+ 
+         $str1 = explode('-', substr(chunk_split($bin, 7, '-'), 0, -1));
+@@ -365,7 +365,7 @@
+      * @access private
+      * @return string
+      */      
+-    function response($lm = false)
++    protected function response($lm = false)
+     {
+         $ntresp = $this->ntChallengeResponse();
+         if ($lm) {
+@@ -415,9 +415,9 @@
+      * Generates the 16 Bytes peer and authentication challenge
+      * @return void
+      */
+-    function Crypt_CHAP_MSv2()
++    public function __construct()
+     {
+-        $this->Crypt_CHAP_MSv1();
++        parent::__construct(); 
+         $this->generateChallenge('peerChallenge', 16);
+         $this->generateChallenge('authChallenge', 16);
+     }    
+@@ -429,7 +429,7 @@
+      * @param  string  $nthash The NT-HASH
+      * @return string
+      */    
+-    function ntPasswordHashHash($nthash) 
++    public function ntPasswordHashHash($nthash) 
+     {
+         return pack('H*',hash('md4', $nthash));
+     }
+@@ -441,7 +441,7 @@
+      * @access public
+      * @return string
+      */   
+-    function challengeHash() 
++    public function challengeHash() 
+     {
+         return substr(pack('H*',hash('sha1', $this->peerChallenge . $this->authChallenge . $this->username)), 0, 8);
+     }    
+@@ -452,7 +452,7 @@
+      * @access public
+      * @return string
+      */  
+-    function challengeResponse() 
++    public function challengeResponse() 
+     {
+         $this->challenge = $this->challengeHash();
+         return $this->_challengeResponse();
