@@ -4229,6 +4229,7 @@
     SUBDIR += py-asgi-lifespan
     SUBDIR += py-asn1
     SUBDIR += py-asn1crypto
+    SUBDIR += py-aspectlib
     SUBDIR += py-aspy.yaml
     SUBDIR += py-ast-decompiler
     SUBDIR += py-asteval
@@ -4553,6 +4554,7 @@
     SUBDIR += py-devtools
     SUBDIR += py-dexml2
     SUBDIR += py-diazo
+    SUBDIR += py-diff-cover
     SUBDIR += py-dill
     SUBDIR += py-dirspec
     SUBDIR += py-diskcache
@@ -5604,6 +5606,7 @@
     SUBDIR += py-thrift
     SUBDIR += py-thriftpy2
     SUBDIR += py-tiamat
+    SUBDIR += py-time-machine
     SUBDIR += py-timelib
     SUBDIR += py-timeout-decorator
     SUBDIR += py-tinyarray
@@ -5653,7 +5656,9 @@
     SUBDIR += py-types-protobuf
     SUBDIR += py-types-psutil
     SUBDIR += py-types-psycopg2
+    SUBDIR += py-types-python-dateutil
     SUBDIR += py-types-requests
+    SUBDIR += py-types-retry
     SUBDIR += py-types-setuptools
     SUBDIR += py-types-toml
     SUBDIR += py-types-typed-ast
@@ -5847,6 +5852,8 @@
     SUBDIR += pyotherside-qt5
     SUBDIR += pyside2
     SUBDIR += pyside2-tools
+    SUBDIR += pyside6
+    SUBDIR += pyside6-tools
     SUBDIR += pystring
     SUBDIR += pysvn
     SUBDIR += pythontidy
@@ -7501,6 +7508,7 @@
     SUBDIR += shflags
     SUBDIR += shfmt
     SUBDIR += shiboken2
+    SUBDIR += shiboken6
     SUBDIR += shmap
     SUBDIR += shroud
     SUBDIR += shtk
