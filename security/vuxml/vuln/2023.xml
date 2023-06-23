@@ -1,3 +1,77 @@
+  <vuln vid="a03b2d9e-b3f2-428c-8f66-21092ed2ba94">
+    <topic>electron{23,24} -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron23</name>
+	<range><lt>23.3.8</lt></range>
+      </package>
+      <package>
+	<name>electron24</name>
+	<range><lt>24.6.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v23.3.8">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2023-3215.</li>
+	    <li>Security: backported fix for CVE-2023-3216.</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-3215</cvename>
+      <url>https://github.com/advisories/GHSA-5rw6-vf4w-p4j3</url>
+      <cvename>CVE-2023-3216</cvename>
+      <url>https://github.com/advisories/GHSA-f35r-mcw4-gg3w</url>
+    </references>
+    <dates>
+      <discovery>2023-06-22</discovery>
+      <entry>2023-06-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="770d88cc-f6dc-4385-bdfe-497f8080c3fb">
+    <topic>electron22 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron22</name>
+	<range><lt>22.3.14</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v22.3.14">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2023-3215.</li>
+	    <li>Security: backported fix for CVE-2023-3216.</li>
+	    <li>Security: backported fix for CVE-2023-0698.</li>
+	    <li>Security: backported fix for CVE-2023-0932.</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-3215</cvename>
+      <url>https://github.com/advisories/GHSA-5rw6-vf4w-p4j3</url>
+      <cvename>CVE-2023-3216</cvename>
+      <url>https://github.com/advisories/GHSA-f35r-mcw4-gg3w</url>
+      <cvename>CVE-2023-0698</cvename>
+      <url>https://github.com/advisories/GHSA-q6xx-4pmr-m3m4</url>
+      <cvename>CVE-2023-0932</cvename>
+      <url>https://github.com/advisories/GHSA-hh2g-39pc-2575</url>
+    </references>
+    <dates>
+      <discovery>2023-06-22</discovery>
+      <entry>2023-06-22</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="734b8f46-773d-4fef-bed3-61114fe8e4c5">
     <topic>libX11 -- Sub-object overflows</topic>
     <affects>
@@ -2759,7 +2833,9 @@
     <affects>
       <package>
     <name>py39-setuptools</name>
-    <range><lt>65.5.1</lt></range>
+    <range><lt>44.1.1</lt></range>
+    <range><ge>57.0.0</ge><lt>58.5.3_3</lt></range>
+    <range><ge>62.1.0</ge><lt>63.1.0_1</lt></range>
       </package>
     </affects>
     <description>
@@ -2768,7 +2844,7 @@
     <blockquote cite="https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579">
       <p>Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects.</p>
       <p>Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`.</p>
-      <p>This has been patched in version 65.5.1.</p>
+      <p>This has been patched in version 65.5.1. The patch backported to the revision 63.1.0_1.</p>
     </blockquote>
       </body>
     </description>
