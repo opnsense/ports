@@ -323,6 +323,7 @@
     SUBDIR += lychee
     SUBDIR += lynx
     SUBDIR += lynx-current
+    SUBDIR += lzr
     SUBDIR += madsonic
     SUBDIR += man2web
     SUBDIR += mathjax
@@ -2457,6 +2458,7 @@
     SUBDIR += zend-framework
     SUBDIR += zenphoto
     SUBDIR += zerowait-httpd
+    SUBDIR += zgrab2
     SUBDIR += zola
 
 .include <bsd.port.subdir.mk>

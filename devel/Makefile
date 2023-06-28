@@ -602,6 +602,7 @@
     SUBDIR += electron22
     SUBDIR += electron23
     SUBDIR += electron24
+    SUBDIR += electron25
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -5345,6 +5346,7 @@
     SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-services
     SUBDIR += py-pytest-shutil
+    SUBDIR += py-pytest-subprocess
     SUBDIR += py-pytest-subtests
     SUBDIR += py-pytest-sugar
     SUBDIR += py-pytest-timeout

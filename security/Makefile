@@ -262,7 +262,6 @@
     SUBDIR += kpkpass
     SUBDIR += kpmenu
     SUBDIR += krb5
-    SUBDIR += krb5-118
     SUBDIR += krb5-119
     SUBDIR += krb5-120
     SUBDIR += krb5-121
@@ -685,8 +684,6 @@
     SUBDIR += p5-Nmap-Scanner
     SUBDIR += p5-OpenCA-CRL
     SUBDIR += p5-OpenCA-CRR
-    SUBDIR += p5-OpenCA-OpenSSL
-    SUBDIR += p5-OpenCA-PKCS7
     SUBDIR += p5-OpenCA-REQ
     SUBDIR += p5-OpenCA-X509
     SUBDIR += p5-PBKDF2-Tiny
@@ -1334,6 +1331,7 @@
     SUBDIR += wazuh-manager
     SUBDIR += wazuh-server
     SUBDIR += webfwlog
+    SUBDIR += webtunnel-tor
     SUBDIR += weggli
     SUBDIR += whatweb
     SUBDIR += wipe
@@ -1363,6 +1361,7 @@
     SUBDIR += zaproxy
     SUBDIR += zeek
     SUBDIR += zeronet
+    SUBDIR += zlint
     SUBDIR += zzuf
 
 .include <bsd.port.subdir.mk>

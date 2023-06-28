@@ -263,6 +263,7 @@
     SUBDIR += perl5.32
     SUBDIR += perl5.34
     SUBDIR += perl5.36
+    SUBDIR += perl5.38
     SUBDIR += petite-chez
     SUBDIR += pfe
     SUBDIR += pharo
@@ -297,7 +298,6 @@
     SUBDIR += python3
     SUBDIR += python310
     SUBDIR += python311
-    SUBDIR += python37
     SUBDIR += python38
     SUBDIR += python39
     SUBDIR += qmasm
