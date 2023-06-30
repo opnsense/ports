@@ -7509,6 +7509,7 @@ science/cdcl||2023-04-21|Has expired: Broken since 2021
 science/rubygem-ruby-dcl||2023-04-21|Has expired: requires deprecated science/cdcl
 net-im/webinar||2023-04-24|Has expired: Requires EOLed electron18
 devel/electron18||2023-04-24|Has expired: EOLed upstream, switch to newer version
+x11/libdmx||2023-04-25|Upstream removed support for Xdmx server
 devel/datovka|mail/datovka|2023-04-25|Move port to proper category
 benchmarks/super-smack||2023-04-30|Has expired: Unfetchable
 www/moodle39||2023-04-30|Has expired: Requires php74 which has been removed from the tree
@@ -7650,3 +7651,60 @@ games/poker-eval||2023-06-20|Upstream vanished
 graphics/3d-ascii-viewer-c|graphics/3d-ascii-viewer|2023-06-21|Project was renamed
 archivers/libunrar6|archivers/libunrar|2023-06-21|Moved to unversioned origin. Use archivers/libunrar instead
 japanese/font-plemoljp-nfj||2023-06-22|Removed by upstream
+graphics/fotofix||2023-06-23|Has expired: Depends on expired graphics/IPA
+graphics/IPA||2023-06-23|Has expired: Broken since 2021
+security/p5-OpenCA-PKCS7||2023-06-23|Has expired: Depends on expired security/p5-OpenCA-OpenSSL
+security/p5-OpenCA-OpenSSL||2023-06-23|Has expired: Broken since 2021
+security/krb5-118|security/krb5|2023-06-25|Has expired: EOL one year after the release of krb5 1.19
+x11-wm/pager|x11-wm/sawfish-pager|2023-06-27|Renamed to match upstream naming
+lang/python37|lang/python38|2023-06-27|Has expired: Upgrade to a newer Python version. 3.7 is in maintenance status and gets security fixes only. End-of-Life: 2023-06-27. See https://devguide.python.org/versions/
+databases/mysql-q4m||2023-06-30|Has expired: Requires upstream EOL MySQL 5.6
+databases/mysqlbigram||2023-06-30|Has expired: Requires upstream EOL MySQL 5.6
+databases/ateam_mysql_ldap_auth||2023-06-30|Has expired: Requires upstream EOL MySQL 5.6
+databases/mysqlwsrep56-server||2023-06-30|Has expired: Requires upstream EOL MySQL 5.6
+databases/mysql56-server||2023-06-30|Has expired: Upstream support ended in February 2021
+databases/mysql56-client||2023-06-30|Has expired: Upstream support ended in February 2021
+databases/mysac||2023-06-30|Has expired: Requires upstream EOL MySQL 5.6
+www/moodle311||2023-06-30|Has expired: Requires php80 which is set to expire on 2023-11-26
+www/moodle40||2023-06-30|Has expired: Requires php80 which is set to expire on 2023-11-26
+www/yarn-node19||2023-06-30|Has expired: This port depends on deprecated www/node19. Migrate to www/yarn-node18 or www/yarn-node20 instead
+www/npm-node19||2023-06-30|Has expired: This port depends on deprecated www/node19. Migrate to www/npm-node18 or www/npm-node20 instead
+www/node19||2023-06-30|Has expired: Nodejs 19.* will reach its EoL on 2023-06-01. Use Node.js 18.* (www/node18) or 20.* (www/node20) instead
+emulators/qemu6||2023-06-30|Has expired: Version 8 is on the horizon while version 7 is stable
+audio/gbemol||2023-06-30|Has expired: Unmaintained for years and depends on deprecated GTK2
+audio/glurp||2023-06-30|Has expired: Unmaintained for years and depends on deprecated GTK2
+finance/R-cran-ccgarch||2023-06-30|Has expired: Fails to build with R 4.3.0+ and abandoned upstream
+www/redmine42||2023-06-30|Has expired: Broken with all supported Ruby versions
+www/tomcat10||2023-06-30|Has expired: EOLd, potential security issues (https://tomcat.apache.org/tomcat-10.0-eol.html), use www/tomcat101 instead
+databases/mongodb40-tools||2023-06-30|Has expired: Upstream EOL reached on 2022-04-30
+databases/mongodb40||2023-06-30|Has expired: Upstream EOL reached on 2022-04-30
+dns/djbdns-tools||2023-06-30|Has expired: No longer compliant with current DNS standards and source code hasn't been centrally managed for over 20 years
+dns/djbdns||2023-06-30|Has expired: No longer compliant with current DNS standards and source code hasn't been centrally managed for over 20 years
+dns/libdjbdns||2023-06-30|Has expired: No longer compliant with current DNS standards and source code hasn't been centrally managed for over 20 years
+sysutils/mcollective-actionpolicy-auth||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-nrpe-client||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-puppet-agent||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-puppet-client||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-nettest-client||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-nettest-agent||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-service-agent||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-service-client||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-shell-client||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-shell-agent||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-nrpe-agent||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-nrpe-common||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-service-common||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-puppet-common||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective-nettest-common||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mnrpes||2023-06-30|Has expired: Depends on broken sysutils/mcollective
+sysutils/mcollective||2023-06-30|Has expired: Broken with all supported Ruby versions
+databases/mariadb104-server||2023-06-30|Has expired: Use databases/mariadb106-server
+databases/mariadb104-client||2023-06-30|Has expired: Use databases/mariadb106-client
+dns/mydns-ng||2023-06-30|Has expired: Abandonware, last release in 2010. Consider migrating to dns/powerdns
+dns/mydns||2023-06-30|Has expired: Abandonware, last release in 2006. Consider migrating to dns/powerdns
+net/opal||2023-06-30|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is still active
+math/R-cran-RHmm||2023-06-30|Has expired: Fails to build with R 4.3.0+ and abandoned upstream
+databases/py-caterva||2023-06-30|Has expired: Use archivers/py-blosc2 instead. All the features of Python-Caterva have been included in the Python-Blosc2 NDArray object
+net-im/purple-hangouts||2023-06-30|Has expired: Google Hangouts discontinued 2022-11-01, data deleted 2023-01-01
+dns/ares||2023-06-30|Has expired: Deprecated upstream as of March 12, 2023
+security/rubygem-omniauth-cas3||2023-06-30|Has expired: Deprecated by upstream. The repository has been archived by the owner on Aug 23, 2022
