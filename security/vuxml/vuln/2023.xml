@@ -1,3 +1,127 @@
+  <vuln vid="06428d91-152e-11ee-8b14-dbdd62da85fb">
+    <topic>OpenEXR -- heap buffer overflow in internal_huf_decompress</topic>
+    <affects>
+      <package>
+	<name>openexr</name>
+	<range><lt>3.1.9</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>oss-fuzz reports:</p>
+	<blockquote cite="https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=59382">
+	  <p>heap buffer overflow in internal_huf_decompress.</p>
+	</blockquote>
+	<p>Cary Phillips reports:</p>
+	<blockquote cite="https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.1.9">
+	  <p>v3.1.9 - Patch release that addresses [...] also OSS-fuzz 59382 Heap-buffer-overflow in internal_huf_decompress</p>
+	</blockquote>
+	<p>Kimball Thurston reports:</p>
+	<blockquote cite="https://github.com/AcademySoftwareFoundation/openexr/pull/1439">
+	  <p>Fix scenario where malformed dwa file could read past end of buffer - fixes OSS-Fuzz 59382</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=59382</url>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.1.9</url>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/commit/e431f7e189d0785bb84a5bfb83391e9e58590c49</url>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/pull/1439</url>
+    </references>
+    <dates>
+      <discovery>2023-05-28</discovery>
+      <entry>2023-06-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ad05a737-14bd-11ee-8290-a8a1599412c6">
+    <topic>chromium -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>114.0.5735.198</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>114.0.5735.198</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2023/06/stable-channel-update-for-desktop_26.html">
+	 <p>This update includes 4 security fixes:</p>
+	 <ul>
+	    <li>[1452137] High CVE-2023-3420: Type Confusion in V8. Reported by Man Yue Mo of GitHub Security Lab on 2023-06-07</li>
+	    <li>[1447568] High CVE-2023-3421: Use after free in Media. Reported by Piotr Bania of Cisco Talos on 2023-05-22</li>
+	    <li>[1450397] High CVE-2023-3422: Use after free in Guest View. Reported by asnine on 2023-06-01</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-3420</cvename>
+      <cvename>CVE-2023-3421</cvename>
+      <cvename>CVE-2023-3422</cvename>
+      <url>https://chromereleases.googleblog.com/2023/06/stable-channel-update-for-desktop_26.html</url>
+    </references>
+    <dates>
+      <discovery>2023-06-26</discovery>
+      <entry>2023-06-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fdbe9aec-118b-11ee-908a-6c3be5272acd">
+    <topic>Grafana -- Account takeover / authentication bypass</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><ge>6.7.0</ge><lt>8.5.27</lt></range>
+	<range><ge>9.0.0</ge><lt>9.2.20</lt></range>
+	<range><ge>9.3.0</ge><lt>9.3.16</lt></range>
+	<range><ge>9.4.0</ge><lt>9.4.13</lt></range>
+	<range><ge>9.5.0</ge><lt>9.5.5</lt></range>
+	<range><ge>10.0.0</ge><lt>10.0.1</lt></range>
+      </package>
+      <package>
+	<name>grafana8</name>
+	<range><lt>8.5.27</lt></range>
+      </package>
+      <package>
+	<name>grafana9</name>
+	<range><lt>9.2.20</lt></range>
+	<range><ge>9.3.0</ge><lt>9.3.16</lt></range>
+	<range><ge>9.4.0</ge><lt>9.4.13</lt></range>
+	<range><ge>9.5.0</ge><lt>9.5.5</lt></range>
+      </package>
+      <package>
+	<name>grafana10</name>
+	<range><lt>10.0.1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2023/06/22/grafana-security-release-for-cve-2023-3128/">
+	  <p>Grafana validates Azure Active Directory accounts based on the email claim.
+	  On Azure AD, the profile email field is not unique across Azure AD tenants.
+	  This can enable a Grafana account takeover and authentication bypass when
+	  Azure AD OAuth is configured with a multi-tenant Azure AD OAuth application.
+	  </p>
+	  <p>The CVSS score for this vulnerability is 9.4 Critical.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-3128</cvename>
+      <url>https://grafana.com/security/security-advisories/cve-2023-3128</url>
+    </references>
+    <dates>
+      <discovery>2023-06-22</discovery>
+      <entry>2023-06-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="a03b2d9e-b3f2-428c-8f66-21092ed2ba94">
     <topic>electron{23,24} -- multiple vulnerabilities</topic>
     <affects>
@@ -2833,7 +2957,7 @@
     <affects>
       <package>
     <name>py39-setuptools</name>
-    <range><lt>44.1.1</lt></range>
+    <range><lt>44.1.1_1</lt></range>
     <range><ge>57.0.0</ge><lt>58.5.3_3</lt></range>
     <range><ge>62.1.0</ge><lt>63.1.0_1</lt></range>
       </package>
@@ -2863,7 +2987,9 @@
     <affects>
       <package>
     <name>py27-setuptools44</name>
-    <range><lt>65.5.1</lt></range>
+    <range><lt>44.1.1_1</lt></range>
+    <range><ge>57.0.0</ge><lt>58.5.3_3</lt></range>
+    <range><ge>62.1.0</ge><lt>63.1.0_1</lt></range>
       </package>
     </affects>
     <description>
@@ -2872,7 +2998,7 @@
     <blockquote cite="https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579">
       <p>Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects.</p>
       <p>Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`.</p>
-      <p>This has been patched in version 65.5.1.</p>
+      <p>This has been patched in version 65.5.1. The patch backported to the revision 44.1.1_1.</p>
     </blockquote>
       </body>
     </description>
@@ -2891,7 +3017,9 @@
     <affects>
       <package>
     <name>py39-setuptools58</name>
-    <range><lt>65.5.1</lt></range>
+    <range><lt>44.1.1_1</lt></range>
+    <range><ge>57.0.0</ge><lt>58.5.3_3</lt></range>
+    <range><ge>62.1.0</ge><lt>63.1.0_1</lt></range>
       </package>
     </affects>
     <description>
@@ -2900,7 +3028,7 @@
     <blockquote cite="https://osv.dev/vulnerability/GHSA-r9hx-vwmv-q579">
       <p>Python Packaging Authority (PyPA)'s setuptools is a library designed to facilitate packaging Python projects.</p>
       <p>Setuptools version 65.5.0 and earlier could allow remote attackers to cause a denial of service by fetching malicious HTML from a PyPI package or custom PackageIndex page due to a vulnerable Regular Expression in `package_index`.</p>
-      <p>This has been patched in version 65.5.1.</p>
+      <p>This has been patched in version 65.5.1. The patch backported to the revision 58.5.3_3.</p>
     </blockquote>
       </body>
     </description>
