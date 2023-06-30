@@ -415,8 +415,6 @@
     SUBDIR += mongoose
     SUBDIR += mongrel2
     SUBDIR += monolith
-    SUBDIR += moodle311
-    SUBDIR += moodle40
     SUBDIR += moodle41
     SUBDIR += moodle42
     SUBDIR += morty
@@ -456,7 +454,6 @@
     SUBDIR += node
     SUBDIR += node16
     SUBDIR += node18
-    SUBDIR += node19
     SUBDIR += node20
     SUBDIR += nostromo
     SUBDIR += novnc
@@ -466,7 +463,6 @@
     SUBDIR += npm
     SUBDIR += npm-node16
     SUBDIR += npm-node18
-    SUBDIR += npm-node19
     SUBDIR += npm-node20
     SUBDIR += oauth2-proxy
     SUBDIR += obhttpd
@@ -1850,7 +1846,6 @@
     SUBDIR += radicale
     SUBDIR += rearx
     SUBDIR += reddsaver
-    SUBDIR += redmine42
     SUBDIR += redmine50
     SUBDIR += rejik
     SUBDIR += remark42
@@ -2305,7 +2300,6 @@
     SUBDIR += tokyopromenade
     SUBDIR += tomcat-devel
     SUBDIR += tomcat-native
-    SUBDIR += tomcat10
     SUBDIR += tomcat101
     SUBDIR += tomcat85
     SUBDIR += tomcat9
@@ -2445,7 +2439,6 @@
     SUBDIR += yarn
     SUBDIR += yarn-node16
     SUBDIR += yarn-node18
-    SUBDIR += yarn-node19
     SUBDIR += yarn-node20
     SUBDIR += yarr
     SUBDIR += yaws

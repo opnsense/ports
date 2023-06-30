@@ -1572,6 +1572,7 @@
     SUBDIR += mcpp
     SUBDIR += mdb
     SUBDIR += mdds
+    SUBDIR += mdspan
     SUBDIR += menhir
     SUBDIR += mercator
     SUBDIR += mercurial
@@ -5911,6 +5912,7 @@
     SUBDIR += qtcreator
     SUBDIR += quantum
     SUBDIR += quickcheck++
+    SUBDIR += quickcpplib
     SUBDIR += quilt
     SUBDIR += qxlsx
     SUBDIR += rabs

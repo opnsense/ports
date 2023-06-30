@@ -213,12 +213,10 @@
     SUBDIR += funktrackergold
     SUBDIR += furnace
     SUBDIR += ganv
-    SUBDIR += gbemol
     SUBDIR += gbsplay
     SUBDIR += geonkick-lv2
     SUBDIR += ggwave
     SUBDIR += giada
-    SUBDIR += glurp
     SUBDIR += gmsynth-lv2
     SUBDIR += gmtp
     SUBDIR += gmusicbrowser

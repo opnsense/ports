@@ -222,6 +222,7 @@
     SUBDIR += lesspipe
     SUBDIR += lf
     SUBDIR += libad9361-iio
+    SUBDIR += libartnet
     SUBDIR += libcomps
     SUBDIR += libeatmydata
     SUBDIR += libemos
@@ -279,6 +280,7 @@
     SUBDIR += nsf
     SUBDIR += numchar
     SUBDIR += nut
+    SUBDIR += ola
     SUBDIR += ompl
     SUBDIR += ondir
     SUBDIR += onnx
