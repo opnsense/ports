@@ -6,7 +6,8 @@ MASTER_SITES=	RG
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Ruby SDK for the oVirt Engine API
-WWW=		https://ovirt.org/
+WWW=		https://ovirt.org/ \
+		https://github.com/oVirt/ovirt-engine-sdk-ruby
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -16,11 +17,5 @@ RUN_DEPENDS=	rubygem-json>=1<3:devel/rubygem-json
 
 USES=		gem gnome
 USE_GNOME=	libxml2
-
-.include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400091
-CONFIGURE_ARGS+=	--with-cflags="-Wno-error=incompatible-function-pointer-types"
-.endif
 
 .include <bsd.port.mk>

@@ -467,6 +467,7 @@
     SUBDIR += py-spdx-lookup
     SUBDIR += py-spdx-tools
     SUBDIR += py-spinners
+    SUBDIR += py-synced-collections
     SUBDIR += py-tes
     SUBDIR += py-tflearn
     SUBDIR += py-tflite
@@ -485,6 +486,7 @@
     SUBDIR += pytorch
     SUBDIR += qbrew
     SUBDIR += qlas
+    SUBDIR += qlcplus
     SUBDIR += qt5-doc
     SUBDIR += qt5-examples
     SUBDIR += qt5-l10n

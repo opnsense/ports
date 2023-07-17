@@ -1,5 +1,6 @@
 PORTNAME=	libquotient
 DISTVERSION=	0.7.1
+PORTREVISION=	2
 CATEGORIES=	net-im
 
 MAINTAINER=	adridg@FreeBSD.org
@@ -11,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libqt5keychain.so:security/qtkeychain@qt5
 
-USES=		cmake compiler:c++14-lang qt:5 tar:xz
+USES=		cmake qt:5 tar:xz
 USE_QT=		concurrent core gui multimedia network \
 		buildtools:build qmake:build testlib:build
 
@@ -23,10 +24,10 @@ GH_PROJECT=	libQuotient
 
 CMAKE_ARGS=	-DQuotient_INSTALL_TESTS=OFF
 
-.include <bsd.port.pre.mk>
+# Work around compiler bug, see pr: 272285
+USES+=		llvm
+CC=		${LLVM_PREFIX}/bin/clang
+CPP=		${LLVM_PREFIX}/bin/clang-cpp
+CXX=		${LLVM_PREFIX}/bin/clang++
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} < 1301507
-CMAKE_ARGS+=	-DBUILD_TESTING=OFF
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

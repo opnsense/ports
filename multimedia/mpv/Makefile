@@ -1,7 +1,7 @@
 PORTNAME=	mpv
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.35.1
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	multimedia audio
 
@@ -9,6 +9,7 @@ PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
 PATCHFILES+=	b95111dda879.patch:-p1 # https://github.com/mpv-player/mpv/pull/10871
 PATCHFILES+=	94c189dae76b.patch:-p1 # https://github.com/mpv-player/mpv/pull/11398
 PATCHFILES+=	362256edbc4f.patch:-p1 # https://github.com/mpv-player/mpv/pull/11398
+PATCHFILES+=	3a2f8d42ab20.patch:-p1 # https://github.com/mpv-player/mpv/pull/11447
 
 MAINTAINER=	multimedia@FreeBSD.org
 COMMENT=	Free and open-source general-purpose video player
@@ -52,7 +53,6 @@ LUA_NONE_DESC=		Disable Lua scripting language support
 LUAJIT_DESC=		Use LuaJIT instead of Lua scripting language support
 MUJS_DESC=		Use MuJS for Javascript language support
 NVDEC_DESC=		NVIDIA decoder with CUDA support
-PIPEWIRE_DESC=		Pipewire sound server support
 RUBBERBAND_DESC=	High quality pitch correction with librubberband
 SIXEL_DESC=		Sixel graphics support
 UCHARDET_DESC=		Guess subtitle encoding via uchardet

@@ -1,5 +1,5 @@
 PORTNAME=	qgis
-DISTVERSION=	3.28.7
+DISTVERSION=	3.28.8
 PORTREVISION=	1
 CATEGORIES=	graphics geography
 MASTER_SITES=	https://qgis.org/downloads/
@@ -40,7 +40,6 @@ LIB_DEPENDS=	libexiv2.so:graphics/exiv2 \
 		libgeos.so:graphics/geos \
 		libgsl.so:math/gsl \
 		libhdf5.so:science/hdf5 \
-		liblazperf.so:archivers/lazperf \
 		libmdal.so:math/mdal \
 		libnetcdf.so:science/netcdf \
 		libOpenCL.so:devel/ocl-icd \
@@ -118,12 +117,13 @@ USE_QT=		3d buildtools:build core concurrent dbus declarative \
 
 SHEBANG_FILES=	src/plugins/grass/scripts/*.py
 
+# Python_EXECUTABLE: Use the default version if multiple Pythons are available
 CMAKE_ARGS+=	-DCMAKE_BUILD_TYPE:STRING=Release \
 		-DHAVE_PGCONFIG=1 \
-		-DLazPerf_INCLUDE_DIR:PATH=${LOCALBASE}/include/lazperf \
 		-DWITH_INTERNAL_MDAL:BOOL=false \
 		-DPYRCC_PROGRAM:FILEPATH=${LOCALBASE}/bin/pyrcc5-${PYTHON_VER} \
 		-DPYUIC_PROGRAM:FILEPATH=${LOCALBASE}/bin/pyuic5-${PYTHON_VER} \
+		-DPython_EXECUTABLE=${PYTHON_CMD} \
 		-DQSCI_SIP_DIR:PATH=${PYQT_SIPDIR}/Qsci \
 		-DQWT_INCLUDE_DIR:PATH=${LOCALBASE}/include/qt5/qwt6 \
 		-DQWT_LIBRARY:FILEPATH=${LOCALBASE}/lib/qt5/libqwt6.so \

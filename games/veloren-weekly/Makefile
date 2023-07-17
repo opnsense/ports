@@ -1,6 +1,5 @@
 PORTNAME=	veloren
-PORTVERSION=	s20230627
-PORTREVISION=	1
+PORTVERSION=	s20230712
 CATEGORIES=	games wayland
 PKGNAMESUFFIX=	-weekly
 
@@ -25,7 +24,7 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-pl
 USES=		cargo xorg
 USE_XORG=	xcb
 USE_GITLAB=	yes
-GL_COMMIT=	99d2dc381709059761c75796b7fa5a2143a002c5
+GL_TAGNAME=	e48ef2695209a6bac35916406589fdc627b55c8e
 CARGO_ENV=	VELOREN_USERDATA_STRATEGY=system SHADERC_LIB_DIR="${LOCALBASE}/lib"
 PLIST_FILES=	bin/${PORTNAME}-server-cli \
 		bin/${PORTNAME}-voxygen \
@@ -53,7 +52,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/"git"/"${TRUE}"/' \
 		${WRKSRC}/common/build.rs
 # Extract (snapshot) version from the port instead of empty file
-	@${REINPLACE_CMD} -e '/GIT_HASH/s/=.*/= "${GL_COMMIT:C/(.{8}).*/\1/}";/' \
+	@${REINPLACE_CMD} -e '/GIT_HASH/s/=.*/= "${GL_TAGNAME:C/(.{8}).*/\1/}";/' \
 		-e "/GIT_DATE.*static/s/=.*/= \"$$(date -ur $$(${AWK} '/TIMESTAMP/ { print $$3 }' \
 			${DISTINFO_FILE}) +'%Y-%m-%d-%H:%M')\";/" \
 		${WRKSRC}/common/src/util/mod.rs

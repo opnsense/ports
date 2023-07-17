@@ -13,7 +13,9 @@ WWW=		https://www.haskell.org/ghc/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=		aarch64 amd64 armv6 armv7 i386
+ONLY_FOR_ARCHS=		aarch64 amd64 i386
+
+BUILD_DEPENDS=		${LOCALBASE}/lib/libgmp.so:math/gmp
 
 USES=			autoreconf compiler:c11 gmake \
 			ncurses perl5 python:build shebangfix \
@@ -203,15 +205,6 @@ post-patch:
 		${PATCHDIR}/UserSettings.hs > ${WRKSRC}/hadrian/src/UserSettings.hs
 .endif
 
-.if ${BOOT_GHC_VERSION:C/\..*//g} < 9
-# TODO: remove this after rerolling all bootstraps
-post-patch-BOOT-off:
-	@${REINPLACE_CMD} -e '/^mandir/d' ${BOOT_DIR}/mk/build.mk
-	@${REINPLACE_CMD} -e '/^infodir/d' ${BOOT_DIR}/mk/build.mk
-	@${REINPLACE_CMD} -e '/^docdir/d' ${BOOT_DIR}/mk/build.mk
-	@${REINPLACE_CMD} -e '/^htmldir/d' ${BOOT_DIR}/mk/build.mk
-.endif
-
 pre-configure:
 	# Call the bootstrap script
 	cd ${WRKSRC}/ && ${BOOT_SCRIPT}
@@ -322,7 +315,7 @@ create-hadrian-bootstrap:
 	@${ECHO_CMD} "Generating Hadrian bootstrap without bootstrap GHC isn't supported"
 	${FALSE}
 .endif
-	${MAKE} -C ${.CURDIR} patch build-depends IGNORE_MISSING_HADRIAN=yes
+	${MAKE} -C ${.CURDIR} patch build-depends USE_PACKAGE_DEPENDS_ONLY=yes IGNORE_MISSING_HADRIAN=yes
 # We always would need to create our own plan.json file and put it into PATCHDIR:
 # Predefined plans use integer-gmp, while we build bootstraps with integer-simple
 # Predefined plans aren't pretty-printed, so we can't easily patch them

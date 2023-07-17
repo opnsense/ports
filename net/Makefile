@@ -250,6 +250,7 @@
     SUBDIR += haproxy24
     SUBDIR += haproxy25
     SUBDIR += haproxy26
+    SUBDIR += haproxy27
     SUBDIR += hblock
     SUBDIR += hexinject
     SUBDIR += hlmaster
@@ -551,7 +552,6 @@
     SUBDIR += ntpsec
     SUBDIR += ntraceroute
     SUBDIR += nusoap
-    SUBDIR += nuster
     SUBDIR += nxproxy
     SUBDIR += nyancat
     SUBDIR += nylon
@@ -1037,6 +1037,7 @@
     SUBDIR += py-aiohttp-socks
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
+    SUBDIR += py-anonfile
     SUBDIR += py-avahi
     SUBDIR += py-bonsai
     SUBDIR += py-cepa
@@ -1050,6 +1051,7 @@
     SUBDIR += py-duet
     SUBDIR += py-dugong
     SUBDIR += py-ec2-cli-tools
+    SUBDIR += py-ephemeral-port-reserve
     SUBDIR += py-errbot
     SUBDIR += py-eventlet
     SUBDIR += py-gdown
@@ -1329,7 +1331,6 @@
     SUBDIR += rubygem-mqtt
     SUBDIR += rubygem-nats-pure
     SUBDIR += rubygem-net-ldap
-    SUBDIR += rubygem-net-ldap017
     SUBDIR += rubygem-net-netrc
     SUBDIR += rubygem-net-ntp
     SUBDIR += rubygem-net-ping

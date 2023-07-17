@@ -19,9 +19,15 @@ USES=		cmake compiler:c++11-lang gettext pkgconfig kde:5 \
 		qt:5 tar:xz
 USE_KDE=	auth codecs config configwidgets coreaddons dbusaddons \
 		i18n iconthemes kcmutils kdeclarative kio service wallet widgetsaddons \
-		akonadi \
 		ecm:build
 USE_QT=		concurrent core dbus declarative gui network widgets xml \
 		buildtools:build qmake:build
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH:Mpowerpc*} && ${OSVERSION} < 1400092
+CXX=		clang++${LLVM_VERSION}
+USES+=		llvm:min=16
+.endif
 
 .include <bsd.port.mk>

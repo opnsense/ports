@@ -393,6 +393,7 @@
     SUBDIR += hs-syfco
     SUBDIR += hsl
     SUBDIR += hydrogen
+    SUBDIR += hyperdeal
     SUBDIR += ideep
     SUBDIR += ignition-math
     SUBDIR += igraph
@@ -410,6 +411,7 @@
     SUBDIR += jtransforms
     SUBDIR += jts
     SUBDIR += kahip
+    SUBDIR += kalc
     SUBDIR += kalgebra
     SUBDIR += kalk
     SUBDIR += kalker
@@ -658,6 +660,7 @@
     SUBDIR += openfst
     SUBDIR += openlibm
     SUBDIR += openmesh
+    SUBDIR += openscop
     SUBDIR += opensolaris-libm
     SUBDIR += openturns
     SUBDIR += optpp
@@ -930,7 +933,6 @@
     SUBDIR += py-fvcore
     SUBDIR += py-gau2grid
     SUBDIR += py-gimmik
-    SUBDIR += py-gmpy
     SUBDIR += py-gmpy2
     SUBDIR += py-grandalf
     SUBDIR += py-graphillion
@@ -1042,6 +1044,7 @@
     SUBDIR += py-rpy2
     SUBDIR += py-rustworkx
     SUBDIR += py-rvlib
+    SUBDIR += py-scikit-fem
     SUBDIR += py-scikit-umfpack
     SUBDIR += py-scs
     SUBDIR += py-seaborn
@@ -1187,6 +1190,7 @@
     SUBDIR += the-algorithms-c++
     SUBDIR += timbl
     SUBDIR += tiny-bignum-c
+    SUBDIR += tinymt
     SUBDIR += tlapack
     SUBDIR += tmv
     SUBDIR += tomsfastmath

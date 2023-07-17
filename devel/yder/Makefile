@@ -14,11 +14,12 @@ BUILD_DEPENDS=	orcania>=2.3.2:devel/orcania
 LIB_DEPENDS=	liborcania.so:devel/orcania
 RUN_DEPENDS=	jansson>=2.4:devel/jansson
 
-USES=		cmake
+USES=		cmake pathfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	babelouest
 
 CMAKE_OFF=	DOWNLOAD_DEPENDENCIES WITH_JOURNALD
+PIE_UNSAFE=	yes
 
 PLIST_SUB=	PORTVERSION=${PORTVERSION}
 

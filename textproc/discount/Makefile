@@ -1,25 +1,29 @@
 PORTNAME=	discount
-PORTVERSION=	2.2.7b
+PORTVERSION=	2.2.7c
+DISTVERSIONPREFIX=	v
 CATEGORIES=	textproc devel
-MASTER_SITES=	https://www.pell.portland.or.us/~orc/Code/discount/
+#MASTER_SITES=	https://www.pell.portland.or.us/~orc/Code/discount/
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	C implementation of the Markdown markup language
-WWW=		https://www.pell.portland.or.us/~orc/Code/discount/
+WWW=		https://www.pell.portland.or.us/~orc/Code/discount/ \
+		https://github.com/Orc/discount
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
-USES=		cpe pkgconfig tar:bz2
+USES=		cpe pathfix pkgconfig tar:bz2
 
 CFLAGS+=	-fPIC
 CONFIGURE_ARGS=	--mandir=${PREFIX}/share/man --prefix=${PREFIX} --shared
 CONFIGURE_SCRIPT=	configure.sh
 HAS_CONFIGURE=	yes
-MAKE_JOBS_UNSAFE=	yes # libmarkdown is used before it is built
 INSTALL_TARGET=	install install.man
 TEST_TARGET=	test
 USE_LDCONFIG=	yes
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	Orc
 
 CONFLICTS_INSTALL=	markdown
 
@@ -37,12 +41,6 @@ TAB8_DESC=	Use a tabstop of 8 (default is 4)
 EXTRA_CONFIGURE_ON=	--with-dl=both --with-fenced-code --with-github-tags --with-id-anchor
 SAMPLES_INSTALL_TARGET=	install.samples
 TAB8_CONFIGURE_ON=	--with-tabstops=8
-
-.include <bsd.port.options.mk>
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400091
-CFLAGS+=	-Wno-error=incompatible-function-pointer-types
-.endif
 
 post-install:
 	${INSTALL_DATA} ${WRKSRC}/libmarkdown.a ${STAGEDIR}${PREFIX}/lib/libmarkdown.a

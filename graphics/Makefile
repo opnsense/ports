@@ -361,7 +361,6 @@
     SUBDIR += iec16022
     SUBDIR += igt-gpu-tools
     SUBDIR += iiview
-    SUBDIR += ikona
     SUBDIR += imageindex
     SUBDIR += imageviewer
     SUBDIR += imageworsener
@@ -427,6 +426,7 @@
     SUBDIR += kqtquickcharts
     SUBDIR += kquickimageeditor
     SUBDIR += krita
+    SUBDIR += krita-gmic-plugin
     SUBDIR += ksanecore
     SUBDIR += kseexpr
     SUBDIR += ksnip

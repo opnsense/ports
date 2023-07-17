@@ -14,6 +14,7 @@
     SUBDIR += bsh
     SUBDIR += bwbasic
     SUBDIR += c
+    SUBDIR += cairo
     SUBDIR += cbmbasic
     SUBDIR += ccl
     SUBDIR += ceylon
@@ -281,6 +282,7 @@
     SUBDIR += pocl
     SUBDIR += polyml
     SUBDIR += pomsky
+    SUBDIR += prql
     SUBDIR += ptoc
     SUBDIR += purescript
     SUBDIR += py-hy
