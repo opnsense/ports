@@ -53,7 +53,7 @@ GCC_DEFAULT?=		8
 .  else
 GCC_DEFAULT?=		12
 .  endif
-# Possible values: 7, 8, 9, agpl
+# Possible values: 9, agpl, 10
 GHOSTSCRIPT_DEFAULT?=	agpl
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
@@ -65,7 +65,7 @@ GO_DEFAULT?=		1.20
 # Format:	     version[-flavor]
 # Examples:	     6-nox11, 7
 IMAGEMAGICK_DEFAULT?=	7
-# Possible values: 7, 8, 11, 17, 18
+# Possible values: 8, 11, 17, 18
 JAVA_DEFAULT?=		8
 # Possible values: 2.2.6, 2.3.0
 .  if !defined(WANT_LAZARUS_DEVEL)
@@ -118,7 +118,7 @@ PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .  endif
 # Possible values: 11, 12, 13, 14, 15
 PGSQL_DEFAULT?=		13
-# Possible values: 8.0, 8.1, 8.2 8.3
+# Possible values: 8.0, 8.1, 8.2, 8.3
 PHP_DEFAULT?=		8.1
 # Possible values: 2.7, 3.8, 3.9, 3.10, 3.11
 PYTHON_DEFAULT?=	3.9
