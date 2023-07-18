@@ -14,6 +14,8 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 USES=		imake xorg
 USE_XORG=	ice sm x11 xaw xbitmaps xext xmu xpm xt
 
+CFLAGS+=	-Wno-incompatible-function-pointer-types
+
 post-patch:
 # Fix the build with -fno-common (for Clang 11 and GCC 10)
 	@${REINPLACE_CMD} -e '/In_Bogus_Mail_File;/d' ${WRKSRC}/xmail.c
