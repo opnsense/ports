@@ -1,8 +1,12 @@
 PORTNAME=	phalcon
 DISTVERSIONPREFIX=	v
 DISTVERSION=	5.2.2
+PORTREVISION=	1
 CATEGORIES=	www
 PKGNAMEPREFIX=	${PHP_PKGNAMEPREFIX}
+PATCH_SITES=	https://github.com/phalcon/cphalcon/commit/
+PATCHFILES=	0c12a33.patch:-p1
+PATCH_WRKSRC=	${WRKSRC}/../..
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Phalcon PHP Framework written in C-language
