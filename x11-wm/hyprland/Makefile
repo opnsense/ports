@@ -1,7 +1,6 @@
 PORTNAME=	hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.27.0
-PORTREVISION=	2
+DISTVERSION=	0.27.1
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -36,14 +35,6 @@ OPTIONS_DEFAULT=X11
 
 X11_USE=		XORG=xcb
 X11_MESON_ENABLED=	xwayland
-
-post-extract:
-.if defined(PATCHFILES) && ${PATCHFILES:M147e96237006*}
-# Pretend to be a regular file for vendor patch to apply as is
-	@${RMDIR} ${WRKSRC}/subprojects/wlroots
-	@${ECHO_CMD} "Subproject commit 6668c822b3bf58ca5af5d370ef03b075be3e4d27" \
-		>${WRKSRC}/subprojects/wlroots
-.endif
 
 post-patch:
 # Extract (snapshot) version from the port instead of meson.build
