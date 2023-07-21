@@ -1,8 +1,10 @@
 PORTNAME=	unbound
 DISTVERSION=	1.17.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	dns
 MASTER_SITES=	https://www.nlnetlabs.nl/downloads/unbound/
+PATCH_SITES=	https://github.com/NLnetLabs/unbound/commit/
+PATCHFILES=	52581f8.patch:-p1
 
 MAINTAINER=	jaap@NLnetLabs.nl
 COMMENT=	Validating, recursive, and caching DNS resolver
