@@ -949,6 +949,7 @@
     SUBDIR += py-pyx
     SUBDIR += py-qpageview
     SUBDIR += py-qrencode
+    SUBDIR += py-qt6-3d
     SUBDIR += py-railroad-diagrams
     SUBDIR += py-rasterio
     SUBDIR += py-rasterstats
@@ -994,6 +995,7 @@
     SUBDIR += qt6-3d
     SUBDIR += qt6-imageformats
     SUBDIR += qt6-lottie
+    SUBDIR += qt6-quickeffectmaker
     SUBDIR += qt6-svg
     SUBDIR += qt6-wayland
     SUBDIR += qtawesome

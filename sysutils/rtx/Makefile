@@ -1,7 +1,6 @@
 PORTNAME=	rtx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.34.2
-PORTREVISION=	0
+DISTVERSION=	1.35.1
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -97,7 +96,7 @@ CARGO_CRATES=	addr2line-0.20.0 \
 		getrandom-0.2.10 \
 		gimli-0.27.3 \
 		git2-0.17.2 \
-		globset-0.4.11 \
+		globset-0.4.12 \
 		globwalk-0.8.1 \
 		h2-0.3.20 \
 		hashbrown-0.12.3 \
@@ -133,7 +132,7 @@ CARGO_CRATES=	addr2line-0.20.0 \
 		lazy_static-1.4.0 \
 		libc-0.2.147 \
 		libgit2-sys-0.15.2+1.6.4 \
-		libz-sys-1.1.10 \
+		libz-sys-1.1.12 \
 		linked-hash-map-0.5.6 \
 		linux-raw-sys-0.3.8 \
 		linux-raw-sys-0.4.3 \
@@ -190,7 +189,7 @@ CARGO_CRATES=	addr2line-0.20.0 \
 		rustls-0.21.5 \
 		rustls-native-certs-0.6.3 \
 		rustls-pemfile-1.0.3 \
-		rustls-webpki-0.101.1 \
+		rustls-webpki-0.101.2 \
 		ryu-1.0.15 \
 		same-file-1.0.6 \
 		schannel-0.1.22 \
@@ -200,9 +199,9 @@ CARGO_CRATES=	addr2line-0.20.0 \
 		security-framework-sys-2.9.1 \
 		self_update-0.37.0 \
 		semver-1.0.18 \
-		serde-1.0.175 \
-		serde_derive-1.0.175 \
-		serde_json-1.0.103 \
+		serde-1.0.177 \
+		serde_derive-1.0.177 \
+		serde_json-1.0.104 \
 		serde_spanned-0.6.3 \
 		serde_urlencoded-0.7.1 \
 		sha2-0.10.7 \
