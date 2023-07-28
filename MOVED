@@ -2680,7 +2680,6 @@ games/quake3-ra3||2019-10-16|Has expired: Unfetchable, unmaintained
 games/sdlCC||2019-10-16|Has expired: Unfetchable, unmaintained
 games/speyes||2019-10-16|Has expired: Unfetchable, unmaintained
 games/vodovod||2019-10-16|Has expired: Unfetchable, unmaintained
-games/wmeyes||2019-10-16|Has expired: Unfetchable, unmaintained
 games/wmshuffle||2019-10-16|Has expired: Unfetchable, unmaintained
 games/xabacus||2019-10-16|Has expired: Unfetchable, unmaintained
 games/xpacman||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -4269,7 +4268,6 @@ net/tcpdstat||2020-05-05|Has expired: Broken for more than 6 months
 net/uplog||2020-05-05|Has expired: Broken for more than 6 months
 net/vblade||2020-05-05|Has expired: Broken for more than 6 months
 net/wizd||2020-05-05|Has expired: Broken for more than 6 months
-net/wmnetload||2020-05-05|Has expired: Broken for more than 6 months
 net/wmnetmon||2020-05-05|Has expired: Broken for more than 6 months
 net/wmpiki||2020-05-05|Has expired: Broken for more than 6 months
 net/xipmsg||2020-05-05|Has expired: Broken for more than 6 months
@@ -7775,3 +7773,4 @@ graphics/gmic-qt@krita|graphics/krita-gmic-plugin|2023-07-14|Forked to a seperat
 devel/capstone5|devel/capstone|2023-07-15|Keep the latest version without any pkgnamesufix
 games/naev-data||2023-07-15|Remove obsoleted port. Now games/naev installs data files
 graphics/pecl-imagick-im7|graphics/pecl-imagick|2023-07-19|Merged into master port
+x11-toolkits/fox14||2023-07-27|Has expired: Obsolete leaf port, use x11-toolkits/fox(16,17) instead
