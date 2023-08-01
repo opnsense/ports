@@ -3208,7 +3208,6 @@ devel/gperf31|devel/gperf|2020-01-04|No longer needed as devel/gperf has been up
 devel/yosys|cad/yosys|2020-01-04|Move to a proper category
 cad/ujprog|comms/ujprog|2020-01-05|Move to a proper category
 net/gnatsd|net/nats-server|2020-01-06|Renamed upstream
-astro/viking||2020-01-10|Has expired: Depends on broken and expiring graphics/mapnik
 audio/slv2||2020-01-10|Has expired: Broken for more than 5 months (last version 0.6.6 released in 2009, replaced by lilv)
 cad/brickutils||2020-01-10|Has expired: Broken for more than 3 months, unmaintained
 devel/elixir-gen_state_machine||2020-01-10|Has expired: Broken for more than 6 months
@@ -7774,3 +7773,7 @@ devel/capstone5|devel/capstone|2023-07-15|Keep the latest version without any pk
 games/naev-data||2023-07-15|Remove obsoleted port. Now games/naev installs data files
 graphics/pecl-imagick-im7|graphics/pecl-imagick|2023-07-19|Merged into master port
 x11-toolkits/fox14||2023-07-27|Has expired: Obsolete leaf port, use x11-toolkits/fox(16,17) instead
+x11-wm/cage-devel|x11-wm/cage|2023-07-27|Out of date: use x11-wm/cage for now
+games/cockatrice||2023-07-31|Has expired: Upstream releases haven't occured for multiple years and will require a new portbuild
+graphics/blender-lts29||2023-07-31|Has expired: Deprecated upstream
+x11-fm/wcmcommander||2023-07-31|Has expired: Abandoned upstream
