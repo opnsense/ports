@@ -1,5 +1,6 @@
 PORTNAME=	gegl
 PORTVERSION=	0.4.46
+PORTREVISION=	1
 CATEGORIES=	graphics
 MASTER_SITES=	GIMP
 
@@ -35,7 +36,10 @@ MESON_ARGS=	-Ddocs=false \
 		-Dmaxflow=disabled \
 		-Dmrg=disabled \
 		-Dpygobject=disabled \
-		-Dlua=disabled
+		-Dlua=disabled \
+		${MESON_ARGS_${ARCH}}
+MESON_ARGS_armv6=	-Dopenmp=disabled
+MESON_ARGS_armv7=	-Dopenmp=disabled
 
 GEGL_SHLIB=	0.445.1
 GEGL_VER=	0.4

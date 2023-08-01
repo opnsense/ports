@@ -50,6 +50,7 @@
     SUBDIR += controllermap
     SUBDIR += cool-retro-term
     SUBDIR += coreterminal
+    SUBDIR += damask
     SUBDIR += deforaos-keyboard
     SUBDIR += deforaos-libdesktop
     SUBDIR += deskmenu
@@ -279,6 +280,7 @@
     SUBDIR += nwg-menu
     SUBDIR += nxcomp
     SUBDIR += openrgb
+    SUBDIR += oscar
     SUBDIR += p5-Clipboard
     SUBDIR += p5-X11-GUITest
     SUBDIR += p5-X11-IdleTime
@@ -492,6 +494,7 @@
     SUBDIR += xconsole
     SUBDIR += xcursorgen
     SUBDIR += xcut
+    SUBDIR += xdg-desktop-portal-gnome
     SUBDIR += xdg-desktop-portal-gtk
     SUBDIR += xdg-desktop-portal-hyprland
     SUBDIR += xdg-desktop-portal-wlr

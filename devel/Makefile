@@ -1493,6 +1493,7 @@
     SUBDIR += llvm14
     SUBDIR += llvm15
     SUBDIR += llvm16
+    SUBDIR += llvm17
     SUBDIR += lm4tools
     SUBDIR += lmdbg
     SUBDIR += lndir
@@ -4560,6 +4561,7 @@
     SUBDIR += py-deprecat
     SUBDIR += py-deprecated
     SUBDIR += py-deprecation
+    SUBDIR += py-deptry
     SUBDIR += py-devtools
     SUBDIR += py-dexml2
     SUBDIR += py-diazo
@@ -4858,6 +4860,7 @@
     SUBDIR += py-jsonschema-spec
     SUBDIR += py-jsonschema-specifications
     SUBDIR += py-jsonschema3
+    SUBDIR += py-jsonschema417
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-client
     SUBDIR += py-jupyter-core
@@ -7512,6 +7515,7 @@
     SUBDIR += sbt
     SUBDIR += scalatest
     SUBDIR += scandoc
+    SUBDIR += scc
     SUBDIR += sccache
     SUBDIR += sccs
     SUBDIR += schilybase

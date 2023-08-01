@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	23.2.0-branchpoint-687
-DISTVERSIONSUFFIX=	-g365b14489d6
+DISTVERSION=	23.2.0-branchpoint-806
+DISTVERSIONSUFFIX=	-gc9b2f83a2fb
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -147,7 +147,7 @@ WAYLAND_VARS=		PLATFORMS+=wayland
 X11_USES=		xorg
 X11_USE=		XORG=x11,xcb,xdamage,xext,xfixes,xorgproto,xrandr,xshmfence,xxf86vm
 X11_VARS=		PLATFORMS+=x11
-X11_MESON_OFF=		-Dglx=disabled
+X11_MESON_OFF=		-Dglx=disabled -Dxlib-lease=disabled
 
 ZSTD_DESC=		Use ZSTD for shader cache
 ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
