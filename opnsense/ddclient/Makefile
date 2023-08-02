@@ -1,7 +1,7 @@
 PORTNAME=	ddclient
 PORTVERSION=	3.10.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	dns
 PKGNAMESUFFIX=	-devel
 
@@ -11,6 +11,7 @@ PATCHFILES=	fa6c95f.patch:-p1 \
 		11a5bd5.patch:-p1 \
 		5596ee8.patch:-p1 \
 		1c91a5a.patch:-p1 \
+		d35d62f.patch:-p1 \
 		d35d62f.patch:-p1
 
 MAINTAINER=	franco@opnsense.org
