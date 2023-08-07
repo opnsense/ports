@@ -1,7 +1,7 @@
 PORTNAME=	ddclient
 PORTVERSION=	3.10.0
 DISTVERSIONPREFIX=	v
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	dns
 PKGNAMESUFFIX=	-devel
 
@@ -12,7 +12,8 @@ PATCHFILES=	fa6c95f.patch:-p1 \
 		5596ee8.patch:-p1 \
 		1c91a5a.patch:-p1 \
 		d35d62f.patch:-p1 \
-		d35d62f.patch:-p1
+		d35d62f.patch:-p1 \
+		f01110a.patch:-p1
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Update dynamic DNS entries
