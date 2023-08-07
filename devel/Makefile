@@ -293,6 +293,7 @@
     SUBDIR += blame
     SUBDIR += blitz
     SUBDIR += bloaty
+    SUBDIR += bloomberg-bde
     SUBDIR += blueprint-compiler
     SUBDIR += bmake
     SUBDIR += bmkdep
@@ -725,6 +726,7 @@
     SUBDIR += fungw
     SUBDIR += fuzzylite
     SUBDIR += fxdiv
+    SUBDIR += g-golf
     SUBDIR += g-wrap
     SUBDIR += ga
     SUBDIR += gaa
@@ -951,7 +953,6 @@
     SUBDIR += hexd
     SUBDIR += hgreviewboard
     SUBDIR += hgsvn
-    SUBDIR += hhdate
     SUBDIR += highlighterkit
     SUBDIR += highway
     SUBDIR += hoel
@@ -4525,6 +4526,7 @@
     SUBDIR += py-cwcwidth
     SUBDIR += py-cxx
     SUBDIR += py-cycler
+    SUBDIR += py-cykhash
     SUBDIR += py-cymbal
     SUBDIR += py-cymem
     SUBDIR += py-cysignals
