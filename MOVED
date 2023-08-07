@@ -1205,7 +1205,6 @@ audio/esperanza||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/lastfm-desktop||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/minitunes||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/mixxx20||2019-03-16|Has expired: Qt4 has been EOL since december 2015
-audio/puddletag||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/qmpdclient||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 audio/skype-call-recorder||2019-03-16|Has expired: Qt4 has been EOL since december 2015
 biology/clustalx||2019-03-16|Has expired: Qt4 has been EOL since december 2015
@@ -7778,3 +7777,5 @@ games/cockatrice||2023-07-31|Has expired: Upstream releases haven't occured for 
 graphics/blender-lts29||2023-07-31|Has expired: Deprecated upstream
 x11-fm/wcmcommander||2023-07-31|Has expired: Abandoned upstream
 x11/cde-24|x11/cde-25|2023-08-01|Has expired: Desupported by upstream
+lang/go118||2023-08-04|Upstream support ended
+devel/hhdate|devel/date|2023-08-05|Dedup library
