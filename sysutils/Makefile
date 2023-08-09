@@ -667,6 +667,7 @@
     SUBDIR += libretto-config
     SUBDIR += libsunacl
     SUBDIR += libsysstat
+    SUBDIR += libtpms
     SUBDIR += libtree
     SUBDIR += libudisks
     SUBDIR += liburcu
@@ -1391,6 +1392,7 @@
     SUBDIR += swapmon
     SUBDIR += swapusage
     SUBDIR += sweeper
+    SUBDIR += swtpm
     SUBDIR += symlinks
     SUBDIR += symon
     SUBDIR += synergy
