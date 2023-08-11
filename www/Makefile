@@ -27,7 +27,17 @@
     SUBDIR += amphetadesk
     SUBDIR += analog
     SUBDIR += angie
+    SUBDIR += angie-module-auth-jwt
+    SUBDIR += angie-module-brotli
+    SUBDIR += angie-module-cache-purge
     SUBDIR += angie-module-geoip2
+    SUBDIR += angie-module-image-filter
+    SUBDIR += angie-module-jwt
+    SUBDIR += angie-module-keyval
+    SUBDIR += angie-module-njs
+    SUBDIR += angie-module-perl
+    SUBDIR += angie-module-redis2
+    SUBDIR += angie-module-xslt
     SUBDIR += anyremote2html
     SUBDIR += apache-mode.el
     SUBDIR += apache24
