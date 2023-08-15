@@ -1,3 +1,78 @@
+  <vuln vid="a6986f0f-3ac0-11ee-9a88-206a8a720317">
+    <topic>krb5 -- Double-free in KDC TGS processing</topic>
+    <affects>
+      <package>
+	<name>krb5</name>
+	<range><lt>1.21.1_1</lt></range>
+      </package>
+      <package>
+	<name>krb5-121</name>
+	<range><lt>1.21.1_1</lt></range>
+      </package>
+      <package>
+	<name>krb5-devel</name>
+	<range><lt>2023.08.07</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>SO-AND-SO reports:</p>
+	<blockquote cite="https://github.com/krb5/krb5/commit/88a1701b423c13991a8064feeb26952d3641d840">
+	  <p>When issuing a ticket for a TGS renew or validate request, copy
+	     only the server field from the outer part of the header ticket
+	     to the new ticket.  Copying the whole structure causes the
+	     enc_part pointer to be aliased to the header ticket until
+	     krb5_encrypt_tkt_part() is called, resulting in a double-free
+	     if handle_authdata() fails..</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-39975</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2023-39975</url>
+    </references>
+    <dates>
+      <discovery>2023-08-07</discovery>
+      <entry>2023-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b1ac663f-3aa9-11ee-b887-b42e991fc52e">
+    <topic>typo3 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>typo3-11-php80</name>
+	<name>typo3-11-php81</name>
+	<range><lt>11.5.30</lt></range>
+      </package>
+      <package>
+	<name>typo3-12-php80</name>
+	<name>typo3-12-php81</name>
+	<range><lt>12.4.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>TYPO3 reports:</p>
+	<blockquote cite="https://typo3.org/article/typo3-1211-11520-and-10433-security-releases-published">
+	  <p>TYPO3-CORE-SA-2023-002: By-passing Cross-Site Scripting Protection in HTML Sanitizer</p>
+	  <p>TYPO3-CORE-SA-2023-003: Information Disclosure due to Out-of-scope Site Resolution</p>
+	  <p>TYPO3-CORE-SA-2023-004: Cross-Site Scripting in CKEditor4 WordCount Plugin</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-38500</cvename>
+      <cvename>CVE-2023-38499</cvename>
+      <cvename>CVE-2023-37905</cvename>
+      <url>https://typo3.org/article/typo3-1244-and-11530-security-releases-published</url>
+    </references>
+    <dates>
+      <discovery>2023-07-25</discovery>
+      <entry>2023-08-14</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="59a43a73-3786-11ee-94b4-6cc21735f730">
     <topic>postgresql-server -- MERGE fails to enforce UPDATE or SELECT row security policies</topic>
     <affects>
