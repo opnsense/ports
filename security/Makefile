@@ -1018,6 +1018,7 @@
     SUBDIR += py-scrypt
     SUBDIR += py-secure
     SUBDIR += py-securesystemslib
+    SUBDIR += py-service-identity
     SUBDIR += py-service_identity
     SUBDIR += py-signedjson
     SUBDIR += py-social-auth-core
@@ -1036,6 +1037,7 @@
     SUBDIR += py-tlslite-ng
     SUBDIR += py-trezor
     SUBDIR += py-trustme
+    SUBDIR += py-truststore
     SUBDIR += py-tuf
     SUBDIR += py-txtorcon
     SUBDIR += py-uhashring
