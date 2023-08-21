@@ -1,6 +1,6 @@
 PORTNAME=	surelog
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.71
+DISTVERSION=	1.72
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -29,9 +29,8 @@ JAVA_RUN=	no
 USE_GITHUB=	yes
 GH_ACCOUNT=	chipsalliance
 GH_PROJECT=	Surelog
-GH_TUPLE=	alainmarcel:antlr4:ce7f5e7:antlr4/third_party/antlr4 \
-		google:googletest:01e1837:googletest/third_party/googletest \
-		google:flatbuffers:48da238:flatbuffers/third_party/flatbuffers
+GH_TUPLE=	alainmarcel:antlr4:a27cf84:antlr4/third_party/antlr4 \
+		google:googletest:9fce548:googletest/third_party/googletest
 
 CMAKE_ON=	BUILD_SHARED_LIBS SURELOG_USE_HOST_UHDM
 CMAKE_OFF=	SURELOG_BUILD_TESTS
@@ -39,8 +38,6 @@ CMAKE_ARGS=	-DFREEBSD_JAVA_VERSION=${USE_JAVA} \
 		-DPython3_EXECUTABLE=${PYTHON_CMD}
 CMAKE_TESTING_ON=	SURELOG_BUILD_TESTS # 2 tests fail, see https://github.com/chipsalliance/Surelog/issues/3545
 CMAKE_TESTING_TARGET=	UnitTests
-
-CONFLICTS_INSTALL=	capnproto capnproto080
 
 BINARY_ALIAS=	python3=${PYTHON_CMD} tclsh=${TCLSH}
 
@@ -61,7 +58,7 @@ TCMALLOC_LIB_DEPENDS=	libtcmalloc.so:devel/google-perftools
 
 PORTSCOUT=	limit:^.*[0-9]\.[0-9] # prevent tags like 'show'
 
-post-install: # workaound for https://github.com/chipsalliance/Surelog/issues/3596
+post-install: # workaround for https://github.com/chipsalliance/Surelog/issues/3596
 	@${RMDIR} \
 		${STAGEDIR}${DATADIR}/pkg/work \
 		${STAGEDIR}${DATADIR}/pkg \
