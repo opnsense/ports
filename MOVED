@@ -7785,3 +7785,14 @@ sysutils/devcpu-data-amd|sysutils/cpu-microcode-amd|2023-08-16|Reorganize CPU mi
 sysutils/devcpu-data-intel|sysutils/cpu-microcode-intel|2023-08-16|Reorganize CPU microcode ports
 sysutils/devcpu-data|sysutils/cpu-microcode-rc|2023-08-16|Reorganize CPU microcode ports
 devel/py-python-Levenshtein|devel/py-Levenshtein|2023-08-17|Rename to match upstream
+devel/py-jaraco||2023-08-21|Remove obsoleted port
+security/rubygem-openssl2|security/rubygem-openssl|2023-08-21|Remove obsoleted port. Use security/rubygem-openssl instead
+games/cataclysm-dda-tiles|games/cataclysm-dda@tiles|2023-08-22|Moved to a flavored version
+devel/lua-language-server||2023-08-22|Has expired: Versions after 3.6.9 dump core (and do not compile)
+security/py-netbox-secretstore|security/py-netbox-secrets|2023-08-22|Has expired: No longer maintained by upstream, not compatible with NetBox 3.5, please migrate to security/py-netbox-secrets
+benchmarks/dbs||2023-08-22|Has expired: Broken on all supported releases for more than an year
+databases/virtuoso||2023-08-22|Has expired: Broken on all supported FreeBSD releases for more than an year
+sysutils/muse||2023-08-22|Has expired: Broken on all supported FreeBSD releases for more than an year
+devel/py-pytest-freezegun|devel/py-pytest-freezer|2023-08-22|Has expired: Use devel/py-pytest-freezer as upstream is unmaintained
+multimedia/QtAV||2023-08-22|Has expired: Abandoned project and broken with FFmpeg 6
+mail/vmailmgr||2023-08-22|Has expired: Last upstream release was in 2005 and upstream points to different site

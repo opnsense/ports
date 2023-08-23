@@ -62,15 +62,15 @@ MOZILLA_BIN?=	${PORTNAME}-bin
 MOZILLA_EXEC_NAME?=${MOZILLA}
 USES+=		compiler:c++17-lang cpe gl gmake gnome iconv localbase pkgconfig \
 			python:build desktop-file-utils
-.if ${MOZILLA_VER:R:R} < 115
+.    if ${MOZILLA_VER:R:R} < 115
 USES+=		perl5
-.endif
+.    endif
 CPE_VENDOR?=mozilla
 USE_GL=		gl
 USE_GNOME=	cairo gdkpixbuf2 gtk30
-.if ${MOZILLA_VER:R:R} < 115
+.    if ${MOZILLA_VER:R:R} < 115
 USE_PERL5=	build
-.endif
+.    endif
 USE_XORG=	x11 xcb xcomposite xdamage xext xfixes xrandr xrender xt xtst
 HAS_CONFIGURE=	yes
 CONFIGURE_OUTSOURCE=	yes
@@ -89,9 +89,9 @@ LIB_DEPENDS+=	libepoll-shim.so:devel/libepoll-shim
 MOZ_EXPORT+=	${CONFIGURE_ENV} \
 				PYTHON3="${PYTHON_CMD}" \
 				RUSTFLAGS="${RUSTFLAGS}"
-.if ${MOZILLA_VER:R:R} < 115
+.    if ${MOZILLA_VER:R:R} < 115
 MOZ_EXPORT+=	 PERL="${PERL}"
-.endif
+.    endif
 MOZ_OPTIONS+=	--prefix="${PREFIX}"
 MOZ_MK_OPTIONS+=MOZ_OBJDIR="${BUILD_WRKSRC}"
 
@@ -239,7 +239,11 @@ MOZ_OPTIONS+=	--disable-dbus
 
 .    if ${PORT_OPTIONS:MFFMPEG}
 # dom/media/platforms/ffmpeg/FFmpegRuntimeLinker.cpp
-RUN_DEPENDS+=	ffmpeg>=0.8,1:multimedia/ffmpeg
+.      if ${MOZILLA_VER:R:R} < 112
+RUN_DEPENDS+=	ffmpeg4>=4.4:multimedia/ffmpeg4
+.      else
+RUN_DEPENDS+=	ffmpeg>=6.0,1:multimedia/ffmpeg
+.      endif
 .    endif
 
 .    if ${PORT_OPTIONS:MLIBPROXY}
