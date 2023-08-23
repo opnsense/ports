@@ -125,7 +125,10 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 
 	/* print what we know */
 	rulenr = EXTRACT_32BITS(&hdr->rulenr);
-	sbuf_printf(&sbuf, "%u,", rulenr);
+	if (rulenr == (u_int32_t)-1)
+		sbuf_printf(&sbuf, ",");
+	else
+		sbuf_printf(&sbuf, "%u,", rulenr);
 	subrulenr = EXTRACT_32BITS(&hdr->subrulenr);
 	if (subrulenr == (u_int32_t)-1)
 		sbuf_printf(&sbuf, ",,");
@@ -143,7 +146,8 @@ decode_packet(u_char *user __unused, const struct pcap_pkthdr *pkthdr, const u_c
 			/* no label support for NAT types */
 			break;
 		default:
-			if (rulelabels_max >= (int)rulenr) {
+			if ((int)rulenr >= 0 &&
+			    (int)rulenr < rulelabels_max + 1) {
 				if (rulelabels[rulenr]) {
 					label = rulelabels[rulenr];
 				}
