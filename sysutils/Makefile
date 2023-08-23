@@ -803,7 +803,6 @@
     SUBDIR += munin-contrib
     SUBDIR += munin-master
     SUBDIR += munin-node
-    SUBDIR += muse
     SUBDIR += mxkill
     SUBDIR += mybashburn
     SUBDIR += myrescue
@@ -1429,6 +1428,7 @@
     SUBDIR += testdisk
     SUBDIR += tflint
     SUBDIR += thefish
+    SUBDIR += tiempo
     SUBDIR += timelimit
     SUBDIR += timemon
     SUBDIR += tiramisu
@@ -1611,6 +1611,7 @@
     SUBDIR += xbatt
     SUBDIR += xbattbar
     SUBDIR += xcdroast
+    SUBDIR += xcp
     SUBDIR += xcpustate
     SUBDIR += xdu
     SUBDIR += xe
