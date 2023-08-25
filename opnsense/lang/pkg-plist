@@ -4,8 +4,9 @@ share/locale/es_ES/LC_MESSAGES/OPNsense.mo
 share/locale/fr_FR/LC_MESSAGES/OPNsense.mo
 share/locale/it_IT/LC_MESSAGES/OPNsense.mo
 share/locale/ja_JP/LC_MESSAGES/OPNsense.mo
+share/locale/ko_KR/LC_MESSAGES/OPNsense.mo
 share/locale/no_NO/LC_MESSAGES/OPNsense.mo
-share/locale/po_PL/LC_MESSAGES/OPNsense.mo
+share/locale/pl_PL/LC_MESSAGES/OPNsense.mo
 share/locale/pt_BR/LC_MESSAGES/OPNsense.mo
 share/locale/pt_PT/LC_MESSAGES/OPNsense.mo
 share/locale/ru_RU/LC_MESSAGES/OPNsense.mo
