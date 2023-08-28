@@ -3,7 +3,6 @@
     SUBDIR += anope
     SUBDIR += atheme-services
     SUBDIR += bip
-    SUBDIR += birch
     SUBDIR += bitchx
     SUBDIR += bitlbee
     SUBDIR += bitlbee-discord
@@ -49,7 +48,6 @@
     SUBDIR += irssi-xmpp
     SUBDIR += irssistats
     SUBDIR += keitairc2
-    SUBDIR += komanda-cli
     SUBDIR += konversation
     SUBDIR += kvirc
     SUBDIR += libircclient
