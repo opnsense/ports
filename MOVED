@@ -3882,7 +3882,6 @@ cad/py-pycam||2020-03-01|Has expired: Old, uses EOLed python27
 chinese/gimp-help-zh_CN||2020-03-01|Has expired: Broken
 databases/emma||2020-03-01|Has expired: Old, uses EOLed python27
 deskutils/anamnesis||2020-03-01|Has expired: Old, uses EOLed python27
-deskutils/cherrytree||2020-03-01|Has expired: Old, uses EOLed python27
 deskutils/gbirthday||2020-03-01|Has expired: Old, uses EOLed python27
 deskutils/gtg||2020-03-01|Has expired: Old, uses EOLed python27
 deskutils/nemo-extensions||2020-03-01|Has expired: Old, uses EOLed python27
@@ -7764,7 +7763,6 @@ devel/rubygem-aws-sdk-core3172|devel/rubygem-aws-sdk-core|2023-07-09|Remove obso
 devel/rubygem-aws-sdk-s31122|devel/rubygem-aws-sdk-s3|2023-07-09|Remove obsoleted port. Use devel/rubygem-aws-sdk-s3 instead
 devel/rubygem-google-protobuf322|devel/rubygem-google-protobuf|2023-07-09|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
 devel/rubygem-grape15|devel/rubygem-grape|2023-07-09|Remove obsoleted port. Use devel/rubygem-grape instead
-net/rubygem-net-ldap017|net/rubygem-net-ldap|2023-07-09|Remove obsoleted port. Use net/rubygem-net-ldap instead
 textproc/rubygem-nokogiri114|textproc/rubygem-nokogiri|2023-07-09|Remove obsoleted port. Use textproc/rubygem-nokogiri instead
 japanese/kterm||2023-07-12|Has expired: Last upstream release was in 2011
 graphics/gmic-qt@krita|graphics/krita-gmic-plugin|2023-07-14|Forked to a seperate project
@@ -7836,3 +7834,9 @@ devel/py-zope.location||2023-08-27|Remove leaf zope ports that have no sense in 
 textproc/py-zope.structuredtext||2023-08-27|Remove leaf zope ports that have no sense in absence of zope itself
 textproc/py-zope.tal||2023-08-27|Remove leaf zope ports that have no sense in absence of zope itself
 databases/mysql-connector-java|databases/mysql-connector-j|2023-08-27|Following rename with upstream
+deskutils/kalendar|deskutils/merkuro|2023-08-28|Renamed upstream
+www/joomla3|www/joomla4|2023-08-30|Has expired: EOL upstream
+sysutils/llama|sysutils/walk|2023-08-31|Renamed to match upstream naming
+devel/py-typed-ast||2023-08-31|Has expired: This project is no longer maintained. Use the standard library ast module instead
+devel/py-retype||2023-08-31|Has expired: This project is no longer supported/maintained
+ports-mgmt/parfetch-overlay||2023-08-31|Has expired: Unmaintained
