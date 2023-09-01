@@ -34,6 +34,7 @@
     SUBDIR += cfiles
     SUBDIR += charmtimetracker
     SUBDIR += chart
+    SUBDIR += cherrytree
     SUBDIR += clipit
     SUBDIR += clipmenu
     SUBDIR += clipnotify
@@ -53,6 +54,7 @@
     SUBDIR += elementary-calendar
     SUBDIR += fasd
     SUBDIR += fbreader
+    SUBDIR += feathernotes
     SUBDIR += fet
     SUBDIR += fff
     SUBDIR += flameshot
@@ -131,7 +133,6 @@
     SUBDIR += just
     SUBDIR += kaddressbook
     SUBDIR += kalarm
-    SUBDIR += kalendar
     SUBDIR += kcharselect
     SUBDIR += kchmviewer
     SUBDIR += kdeconnect-kde
@@ -179,10 +180,12 @@
     SUBDIR += mbox-importer
     SUBDIR += mencal
     SUBDIR += menumaker
+    SUBDIR += merkuro
     SUBDIR += meteo
     SUBDIR += mindforger
     SUBDIR += moregroupware
     SUBDIR += mozo
+    SUBDIR += mytetra
     SUBDIR += nautilus-sendto
     SUBDIR += nextcloudclient
     SUBDIR += note
@@ -271,6 +274,7 @@
     SUBDIR += ultralist
     SUBDIR += virt-manager
     SUBDIR += vit
+    SUBDIR += vnote
     SUBDIR += vym
     SUBDIR += walld
     SUBDIR += when
