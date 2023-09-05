@@ -4129,7 +4129,6 @@ editors/omegaT||2020-05-05|Has expired: Broken for more than 6 months
 finance/cbb||2020-05-05|Has expired: Broken for more than 6 months
 ftp/llnlxdir||2020-05-05|Has expired: Broken for more than 6 months
 ftp/llnlxftp||2020-05-05|Has expired: Broken for more than 6 months
-games/adom||2020-05-05|Has expired: Broken for more than 6 months
 games/bsdrain||2020-05-05|Has expired: Broken for more than 6 months
 games/bunnysay||2020-05-05|Has expired: Broken for more than 6 months
 games/castlevox||2020-05-05|Has expired: Broken for more than 6 months
@@ -7781,7 +7780,6 @@ x11-toolkits/wlinfo||2023-08-10|Redundant with wayland-info from graphics/waylan
 www/bareos18-webui|www/bareos19-webui|2023-08-16|Has expired
 sysutils/devcpu-data-amd|sysutils/cpu-microcode-amd|2023-08-16|Reorganize CPU microcode ports
 sysutils/devcpu-data-intel|sysutils/cpu-microcode-intel|2023-08-16|Reorganize CPU microcode ports
-sysutils/devcpu-data|sysutils/cpu-microcode-rc|2023-08-16|Reorganize CPU microcode ports
 devel/py-python-Levenshtein|devel/py-Levenshtein|2023-08-17|Rename to match upstream
 devel/py-jaraco||2023-08-21|Remove obsoleted port
 security/rubygem-openssl2|security/rubygem-openssl|2023-08-21|Remove obsoleted port. Use security/rubygem-openssl instead
@@ -7840,3 +7838,11 @@ sysutils/llama|sysutils/walk|2023-08-31|Renamed to match upstream naming
 devel/py-typed-ast||2023-08-31|Has expired: This project is no longer maintained. Use the standard library ast module instead
 devel/py-retype||2023-08-31|Has expired: This project is no longer supported/maintained
 ports-mgmt/parfetch-overlay||2023-08-31|Has expired: Unmaintained
+cad/py-cq-editor||2023-09-01|Has expired: Depends on expiring cad/py-cadquery
+cad/py-cadquery||2023-09-01|Has expired: Depends on exppired cad/py-ocp
+www/squid-devel||2023-09-01|Has expired: Not used anymore to create rc-state releases
+databases/rubygem-red-plasma||2023-09-04|Remove deprecated port. red-plasma is deprecated since 10.0.0. red-plasma will not be released from Apache Arrow 12.0.0 or so
+devel/rubygem-cucumber-cucumber-expressions15|devel/rubygem-cucumber-cucumber-expressions|2023-09-04|Remove obsoleted port. Use devel/rubygem-cucumber-cucumber-expressions instead
+devel/rubygem-cucumber-messages18|devel/rubygem-cucumber-messages|2023-09-04|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+textproc/rubygem-cucumber-gherkin23|textproc/rubygem-cucumber-gherkin|2023-09-04|Remove obsoleted port. Use textproc/rubygem-cucumber-gherkin instead
+textproc/rubygem-cucumber-html-formatter19|textproc/rubygem-cucumber-html-formatter|2023-09-04|Remove obsoleted port. Use textproc/rubygem-cucumber-html-formatter instead
