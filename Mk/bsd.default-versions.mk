@@ -89,7 +89,7 @@ LIBRSVG2_DEFAULT?=	legacy
 .  endif
 # Possible values: c7
 LINUX_DEFAULT?=		c7
-# Possible values: 10, 11, 12, 13, 14, 15, -devel (to be used when non-base compiler is required)
+# Possible values: 10, 11, 12, 13, 14, 15, 16, -devel (to be used when non-base compiler is required)
 LLVM_DEFAULT?=		15
 # Possible values: 5.1, 5.2, 5.3, 5.4
 LUA_DEFAULT?=		5.4
@@ -125,7 +125,7 @@ _EXPORTED_VARS+=	_PERL5_FROM_BIN
 PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .  endif
 # Possible values: 11, 12, 13, 14, 15
-PGSQL_DEFAULT?=		13
+PGSQL_DEFAULT?=		15
 # Possible values: 8.0, 8.1, 8.2, 8.3
 PHP_DEFAULT?=		8.1
 # Possible values: rust, legacy
