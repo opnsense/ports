@@ -613,6 +613,7 @@
     SUBDIR += opencv
     SUBDIR += opendx
     SUBDIR += openexr
+    SUBDIR += openexr-website-docs
     SUBDIR += openfx-arena
     SUBDIR += openfx-misc
     SUBDIR += opengl-man
@@ -889,6 +890,7 @@
     SUBDIR += py-h3
     SUBDIR += py-haishoku
     SUBDIR += py-hiplot
+    SUBDIR += py-hsluv
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imagesize

@@ -46,6 +46,7 @@ CONFIGURE_ARGS+=--verbose \
 		--without-opencl \
 		--without-osmesa \
 		--without-pcap \
+		--without-pcsclite \
 		--with-pthread \
 		--without-pulse \
 		--without-sane \
@@ -114,7 +115,7 @@ X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 .include <bsd.port.pre.mk>
 
 .if (${LLVM_DEFAULT} == 10 || ${LLVM_DEFAULT} == 11)
-_LLVM_VERSION=	12
+_LLVM_VERSION=	15
 .else
 _LLVM_VERSION=	${LLVM_DEFAULT}
 .endif
