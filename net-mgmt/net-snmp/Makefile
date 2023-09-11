@@ -1,6 +1,6 @@
 PORTNAME=	snmp
 PORTVERSION=	5.9.1
-PORTREVISION=	3
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	SF/net-${PORTNAME}/net-${PORTNAME}/${PORTVERSION} \
@@ -250,6 +250,8 @@ post-patch:
 .endif
 	@${CP} ${WRKSRC}/include/net-snmp/system/freebsd12.h \
 		${WRKSRC}/include/net-snmp/system/freebsd13.h
+	@${CP} ${WRKSRC}/include/net-snmp/system/freebsd14.h \
+		${WRKSRC}/include/net-snmp/system/freebsd15.h
 .for header in darwin7.h darwin8.h darwin9.h darwin10.h darwin11.h darwin12.h \
 	darwin13.h darwin14.h darwin15.h darwin16.h darwin17.h
 	@${CP} ${WRKSRC}/include/net-snmp/system/darwin.h \
