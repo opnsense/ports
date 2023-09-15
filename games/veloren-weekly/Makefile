@@ -1,5 +1,6 @@
 PORTNAME=	veloren
-PORTVERSION=	s20230901
+PORTVERSION=	s20230913
+PORTREVISION=	1
 CATEGORIES=	games wayland
 PKGNAMESUFFIX=	-weekly
 
@@ -10,7 +11,6 @@ WWW=		https://veloren.net/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BROKEN=		fails to build with rust 1.72 https://gitlab.com/veloren/veloren/-/issues/1875
 BROKEN_aarch64=	https://github.com/rust-lang/libc/issues/3217
 ONLY_FOR_ARCHS=	aarch64 amd64 i386
 ONLY_FOR_ARCHS_REASON=	unsupported platform by https://github.com/wasmerio/wasmer
@@ -24,7 +24,7 @@ RUN_DEPENDS=	${LOCALBASE}/lib/alsa-lib/libasound_module_pcm_oss.so:audio/alsa-pl
 USES=		cargo xorg
 USE_XORG=	xcb
 USE_GITLAB=	yes
-GL_TAGNAME=	19742bb9300fb0be9fdc92f30766c95230a8a371
+GL_TAGNAME=	6c57d177144a9cb8f6ddae91f3094d31fb6fcd67
 CARGO_ENV=	VELOREN_USERDATA_STRATEGY=system SHADERC_LIB_DIR="${LOCALBASE}/lib"
 PLIST_FILES=	bin/${PORTNAME}-server-cli \
 		bin/${PORTNAME}-voxygen \

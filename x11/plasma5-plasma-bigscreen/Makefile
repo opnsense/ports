@@ -12,8 +12,7 @@ USES=		cmake compiler:c++11-lib cpe desktop-file-utils gettext kde:5 \
 USE_KDE=	activities activities-stats auth codecs completion config \
 		configwidgets coreaddons i18n jobwidgets kcmutils kdeclarative \
 		kio kirigami2 notifications package plasma-framework \
-		plasma-workspace service solid wayland widgetsaddons \
-		windowsystem \
+		plasma-workspace service solid widgetsaddons windowsystem \
 		ecm:build
 USE_QT=		concurrent core dbus declarative gui network widgets xml \
 		buildtools:build qmake:build

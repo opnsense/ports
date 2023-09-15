@@ -9,14 +9,11 @@ WWW=		https://www.kde.org/plasma-desktop
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libfftw3_threads.so:math/fftw3
-
 USES=		cmake compiler:c++11-lib gettext kde:5 pkgconfig qt:5 tar:xz \
 		xorg
 USE_KDE=	auth breeze-icons codecs config configwidgets coreaddons \
 		decoration frameworkintegration guiaddons i18n iconthemes \
-		kcmutils kirigami2 plasma-framework service wayland \
-		widgetsaddons windowsystem \
+		kcmutils kirigami2 service widgetsaddons windowsystem \
 		ecm:build
 USE_QT=		core dbus declarative gui network widgets x11extras xml \
 		buildtools:build qmake:build

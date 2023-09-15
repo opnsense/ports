@@ -13,8 +13,7 @@ LIB_DEPENDS=	libgcrypt.so:security/libgcrypt \
 USES=		cmake gettext kde:5 qt:5 tar:xz
 USE_KDE=	wallet \
 		ecm:build
-USE_QT=		gui \
-		buildtools:build qmake:build
+USE_QT=		buildtools:build qmake:build
 
 post-patch:
 	@${REINPLACE_CMD} -e 's,socat,nc,' -e 's,/security,,' \
