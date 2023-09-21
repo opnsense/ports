@@ -1,3 +1,162 @@
+  <vuln vid="58a738d4-57af-11ee-8c58-b42e991fc52e">
+    <topic>libwebp heap buffer overflow</topic>
+    <affects>
+      <package>
+	<name>tor-browser</name>
+	<range><lt>12.5.3</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>chrome-cve-admin@google.com reports:</p>
+	<blockquote cite="https://adamcaudill.com/2023/09/14/whose-cve-is-it-anyway/">
+	  <p>Heap buffer overflow in WebP in Google Chrome prior to 116.0.5845.187
+	allowed a remote attacker to perform an out of bounds memory write
+	via a crafted HTML page.  (Chromium security severity: Critical)
+	The Tor browser is based on Firefox and GeckoView and uses also
+	libwep so it is affected by this bug.
+	</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-4863</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-4863</url>
+    </references>
+    <dates>
+      <discovery>2023-09-12</discovery>
+      <entry>2023-09-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="32a4896a-56da-11ee-9186-001b217b3468">
+    <topic>Gitlab -- vulnerability</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>16.3.0</ge><lt>16.3.4</lt></range>
+	<range><ge>13.12.0</ge><lt>16.2.7</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2023/09/18/security-release-gitlab-16-3-4-released/">
+	  <p>Attacker can abuse scan execution policies to run pipelines as another user</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-4998</cvename>
+      <url>https://about.gitlab.com/releases/2023/09/18/security-release-gitlab-16-3-4-released/</url>
+    </references>
+    <dates>
+      <discovery>2023-09-18</discovery>
+      <entry>2023-09-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="11982747-544c-11ee-ac3e-a04a5edf46d9">
+    <topic>routinator -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>routinator</name>
+	<range><lt>0.12.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>NLnet Labs report:</p>
+	<blockquote cite="https://nlnetlabs.nl/news/2023/Sep/13/routinator-0.12.2-released/">
+	  <p>This release fixes two issues in Routinator that can be exploited
+	  remotely by rogue RPKI CAs and repositories. We therefore advise all
+	  users of Routinator to upgrade to this release at their earliest
+	  convenience.</p>
+	  <p>The first issue, CVE-2022-39915, can lead to Routinator crashing
+	  when trying to decode certain illegal RPKI objects.</p>
+	  <p>The second issue, CVE-2022-39916, only affects users that have the
+	  rrdp-keep-responses option enabled which allows storing all received
+	  RRDP responses on disk. Because the file name for these responses is
+	  derived from the URI and the path wasn't checked properly, a RRDP URI
+	could be constructed that results in the response stored outside the
+	directory, possibly overwriting existing files.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2022-39915</cvename>
+      <url>https://nlnetlabs.nl/downloads/routinator/CVE-2023-39915.txt</url>
+      <cvename>CVE-2022-39916</cvename>
+      <url>https://nlnetlabs.nl/downloads/routinator/CVE-2023-39916.txt</url>
+    </references>
+    <dates>
+      <discovery>2022-12-08</discovery>
+      <entry>2023-09-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="833b469b-5247-11ee-9667-080027f5fec9">
+    <topic>curl -- HTTP headers eat all memory</topic>
+    <affects>
+      <package>
+	<name>curl</name>
+	<range><lt>8.3.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>selmelc on hackerone reports:</p>
+	<blockquote cite="https://curl.se/docs/CVE-2023-38039.html">
+	  <p>
+	    When curl retrieves an HTTP response, it stores the
+	    incoming headers so that they can be accessed later via
+	    the libcurl headers API.
+	  </p>
+	  <p>
+	    However, curl did not have a limit in how many or how
+	    large headers it would accept in a response, allowing a
+	    malicious server to stream an endless series of headers
+	    and eventually cause curl to run out of heap memory.
+	  </p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-38039</cvename>
+      <url>https://curl.se/docs/CVE-2023-38039.html HERE</url>
+    </references>
+    <dates>
+      <discovery>2023-09-13</discovery>
+      <entry>2023-09-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b5508c08-547a-11ee-85eb-84a93843eb75">
+    <topic>Roundcube -- XSS vulnerability</topic>
+    <affects>
+      <package>
+	<name>roundcube</name>
+	<range><lt>1.6.3,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Roundcube webmail project reports:</p>
+	<blockquote cite="https://roundcube.net/news/2023/09/15/security-update-1.6.3-released">
+	  <p>cross-site scripting (XSS) vulnerability in handling of
+	    linkrefs in plain text messages</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://roundcube.net/news/2023/09/15/security-update-1.6.3-released</url>
+    </references>
+    <dates>
+      <discovery>2023-09-15</discovery>
+      <entry>2023-09-16</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="773ce35b-eabb-47e0-98ca-669b2b98107a">
     <topic>electron{24,25} -- multiple vulnerabilities</topic>
     <affects>
