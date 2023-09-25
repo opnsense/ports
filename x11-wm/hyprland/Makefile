@@ -1,6 +1,6 @@
 PORTNAME=	hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.29.1
+DISTVERSION=	0.30.0
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -9,6 +9,8 @@ WWW=		https://hyprland.org/
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_FreeBSD_12=	libc++ too old
 
 BUILD_DEPENDS=	cmake:devel/cmake-core \
 		evdev-proto>0:devel/evdev-proto \
@@ -29,6 +31,11 @@ GH_PROJECT=	Hyprland
 GH_TUPLE=	hyprwm:hyprland-protocols:v0.2:hyprland_protocols/subprojects/hyprland-protocols \
 		canihavesomecoffee:udis86:1.7.2-186-g5336633:udis86/subprojects/udis86
 MESON_ARGS=	-Dsystemd=disabled
+
+# XXX Drop after FreeBSD 14.0 EOL around 2025-03-01
+.if exists(/usr/lib/libc++.so) && !exists(/usr/include/c++/v1/__format/write_escaped.h)
+CXXFLAGS+=	-fexperimental-library
+.endif
 
 OPTIONS_DEFINE=	X11
 OPTIONS_DEFAULT=X11
@@ -61,11 +68,8 @@ post-install:
 # XXX Drop after FreeBSD 13.2 EOL around 2024-05-01 (don't forget distinfo)
 .if ${CXX} == c++ && exists(/usr/lib/libc++.so)
 .if !exists(/usr/include/c++/v1/__ranges/as_rvalue_view.h) || make(makesum) || make(fetch)
-USES+=		llvm:min=16,build
+USES+=		llvm:min=16,build,export
 PATH:=		${LLVM_PREFIX}/bin:${PATH} # XXX _CMAKE_TOOLCHAIN_SUFFIX vs. devel/llvm*
-CC=		clang${LLVM_VERSION}
-CXX=		clang++${LLVM_VERSION}
-CPP=		clang-cpp${LLVM_VERSION}
 CONFIGURE_ENV+=	CC="${CC}" CXX="${CXX}" CPP="${CPP}"
 CMAKE_BIN=	${LOCALBASE}/bin/cmake
 

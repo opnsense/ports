@@ -466,6 +466,7 @@
     SUBDIR += markdownfmt
     SUBDIR += markdownpart
     SUBDIR += mathml-xsd
+    SUBDIR += md2roff
     SUBDIR += md4c
     SUBDIR += mdbook
     SUBDIR += mdbook-linkcheck
@@ -1861,6 +1862,7 @@
     SUBDIR += rubygem-rubypants
     SUBDIR += rubygem-rugments
     SUBDIR += rubygem-sanitize
+    SUBDIR += rubygem-sanitize60
     SUBDIR += rubygem-sass
     SUBDIR += rubygem-sass-listen
     SUBDIR += rubygem-sass-rails-rails4

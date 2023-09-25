@@ -414,6 +414,7 @@
     SUBDIR += libpcapnav
     SUBDIR += libpfctl
     SUBDIR += libproxy
+    SUBDIR += libproxy-duktape
     SUBDIR += libproxy-gnome3
     SUBDIR += libproxy-kde
     SUBDIR += libproxy-pacrunner
@@ -1119,7 +1120,6 @@
     SUBDIR += py-pystun
     SUBDIR += py-python-barbicanclient
     SUBDIR += py-python-bitcoinrpc
-    SUBDIR += py-python-ceilometerclient
     SUBDIR += py-python-cinderclient
     SUBDIR += py-python-designateclient
     SUBDIR += py-python-glanceclient
@@ -1420,6 +1420,7 @@
     SUBDIR += rubygem-uri-redis
     SUBDIR += rubygem-uri_template
     SUBDIR += rubygem-whois
+    SUBDIR += rubygem-x
     SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
     SUBDIR += rustdesk-server

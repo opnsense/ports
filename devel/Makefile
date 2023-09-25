@@ -4215,6 +4215,7 @@
     SUBDIR += py-addict
     SUBDIR += py-aenum
     SUBDIR += py-aioapns
+    SUBDIR += py-aiobotocore
     SUBDIR += py-aiocontextvars
     SUBDIR += py-aiofiles
     SUBDIR += py-aiohttp-apispec
@@ -4260,6 +4261,7 @@
     SUBDIR += py-asn1crypto
     SUBDIR += py-aspectlib
     SUBDIR += py-aspy.yaml
+    SUBDIR += py-assertpy
     SUBDIR += py-ast-decompiler
     SUBDIR += py-asteval
     SUBDIR += py-astor
@@ -4425,6 +4427,7 @@
     SUBDIR += py-buildbot-worker
     SUBDIR += py-buildbot-www
     SUBDIR += py-bullet3
+    SUBDIR += py-bump2version
     SUBDIR += py-bytecode
     SUBDIR += py-cabby
     SUBDIR += py-cached-property
@@ -4726,6 +4729,7 @@
     SUBDIR += py-game_sdl2
     SUBDIR += py-gapic-generator
     SUBDIR += py-gast
+    SUBDIR += py-gcsfs
     SUBDIR += py-gelidum
     SUBDIR += py-genson
     SUBDIR += py-genty
@@ -5269,6 +5273,8 @@
     SUBDIR += py-pydantic
     SUBDIR += py-pydantic-core
     SUBDIR += py-pydantic-extra-types
+    SUBDIR += py-pydantic-vault
+    SUBDIR += py-pydantic-yaml
     SUBDIR += py-pydantic2
     SUBDIR += py-pydash
     SUBDIR += py-pydecor
@@ -5548,6 +5554,7 @@
     SUBDIR += py-rush
     SUBDIR += py-rx
     SUBDIR += py-rx1
+    SUBDIR += py-s3fs
     SUBDIR += py-saneyaml
     SUBDIR += py-sarge
     SUBDIR += py-sarif-om
@@ -6737,6 +6744,7 @@
     SUBDIR += rubygem-docile
     SUBDIR += rubygem-docopt
     SUBDIR += rubygem-drb
+    SUBDIR += rubygem-dry-cli
     SUBDIR += rubygem-dry-configurable
     SUBDIR += rubygem-dry-container
     SUBDIR += rubygem-dry-core
@@ -6804,6 +6812,7 @@
     SUBDIR += rubygem-flipper-active_support_cache_store-rails70
     SUBDIR += rubygem-flipper-ui
     SUBDIR += rubygem-flipper025
+    SUBDIR += rubygem-flipper026
     SUBDIR += rubygem-fluent-logger
     SUBDIR += rubygem-fog
     SUBDIR += rubygem-fog-core
@@ -7393,6 +7402,7 @@
     SUBDIR += rubygem-sugar-high
     SUBDIR += rubygem-sumbur
     SUBDIR += rubygem-sundawg_country_codes
+    SUBDIR += rubygem-sus
     SUBDIR += rubygem-svn2git
     SUBDIR += rubygem-swagger-blocks
     SUBDIR += rubygem-sync
@@ -7485,6 +7495,8 @@
     SUBDIR += rubygem-view_component-rails61
     SUBDIR += rubygem-view_component-rails70
     SUBDIR += rubygem-virtus
+    SUBDIR += rubygem-vite_rails-rails70
+    SUBDIR += rubygem-vite_ruby
     SUBDIR += rubygem-warbler
     SUBDIR += rubygem-warden
     SUBDIR += rubygem-warning

@@ -31,6 +31,7 @@
     SUBDIR += angie-module-auth-spnego
     SUBDIR += angie-module-brotli
     SUBDIR += angie-module-cache-purge
+    SUBDIR += angie-module-dav-ext
     SUBDIR += angie-module-echo
     SUBDIR += angie-module-enhanced-memcached
     SUBDIR += angie-module-eval
@@ -39,6 +40,7 @@
     SUBDIR += angie-module-image-filter
     SUBDIR += angie-module-jwt
     SUBDIR += angie-module-keyval
+    SUBDIR += angie-module-lua
     SUBDIR += angie-module-ndk
     SUBDIR += angie-module-njs
     SUBDIR += angie-module-perl
@@ -250,6 +252,7 @@
     SUBDIR += hiawatha-monitor
     SUBDIR += hotcrp
     SUBDIR += hs-DAV
+    SUBDIR += hs-gitit
     SUBDIR += hs-hjsmin
     SUBDIR += hs-postgrest
     SUBDIR += hs-wai-app-static
@@ -1822,6 +1825,7 @@
     SUBDIR += py-selenium-wire
     SUBDIR += py-semiphemeral
     SUBDIR += py-sentinelhub
+    SUBDIR += py-simple-websocket
     SUBDIR += py-slimit
     SUBDIR += py-slumber
     SUBDIR += py-social-auth-app-django
