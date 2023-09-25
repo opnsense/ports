@@ -66,7 +66,6 @@ x11-toolkits/hs-wxcore||2018-10-23|Has expired: Doesn't build with recent GHC ve
 devel/hs-TypeCompose||2018-10-23|Has expired: Doesn't build with recent GHC version
 devel/hs-PSQueue||2018-10-23|Has expired: Doesn't build with recent GHC version
 devel/hs-blaze-builder-enumerator||2018-10-23|Has expired: Doesn't build with recent GHC version
-www/hs-gitit||2018-10-23|Has expired: Doesn't build with newest packages
 cad/kicad-library||2018-10-25|Has expired: KiCad has been upgraded to 5.0.0
 devel/linux-kernel||2018-10-29|Has expired: no longer useful
 audio/py-musicbrainz2||2018-10-29|Has expired: Musicbrainz Web Service 1.0 support ended 2018-08-01
@@ -4463,7 +4462,6 @@ sysutils/livecd||2020-05-05|Has expired: Broken for more than 6 months
 deskutils/osynctool||2020-05-06|Abandonware, website disappeared
 devel/libopensync||2020-05-06|Abandonware, website disappeared
 deskutils/libopensync-plugin-vformat-devel||2020-05-06|Abandonware, website disappeared
-sysutils/rundeck|sysutils/rundeck2|2020-05-07|Rename to avoid confusion with sysutils/rundeck3
 math/darknet|misc/darknet|2020-05-07|DarkNet is a machine learning project, not a math project
 www/rubygem-activeresource5|www/rubygem-activeresource|2020-05-08|Remove PKGNAMESUFFIX 3 years and 4 months after rubygem-activeresource removal
 finance/bitcoinnodestats||2020-05-12|Has expired: No longer maintained and not compatible with Django 2.2+
@@ -7025,7 +7023,6 @@ x11/i3status|deskutils/i3status|2022-07-01|move desktop utility to its right cat
 x11/xcbautolock|deskutils/xcbautolock|2022-07-01|move desktop utility to its right category
 x11/havoc|deskutils/havoc|2022-07-01|move desktop utility to its right category
 devel/go-glide||2022-07-01|Has expired: use go mod instead of glide
-irc/unreal||2022-07-01|Has expired: Very outdated, listed as end of life in 2016 and has known security issues
 sysutils/go-btfs||2022-07-01|Has expired: Requires go 1.15
 sysutils/pesign||2022-07-01|Has expired: Unmaintaned since 2016, very much out of date, does not build with GCC 11 (PR #263544)
 sysutils/cfengine316||2022-07-06|Has expired: Expire one year after cfengine 3.18.0 released
@@ -7857,3 +7854,5 @@ security/rosenpass|net/rosenpass|2023-09-12|Remove duplicate port
 dns/tinystats||2023-09-20|Has expired: djbdns got removed, port is no longer required
 mail/cyrus-imapd23||2023-09-20|Has expired: No longer supported by upstream
 mail/cyrus-imapd24||2023-09-20|Has expired: No longer supported by upstream
+net/py-python-ceilometerclient||2023-09-22|Remove obsoleted port. This project is no longer maintained
+sysutils/rundeck3|sysutils/rundeck|2023-09-23|Rename to avoid confusion
