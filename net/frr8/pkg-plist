@@ -146,6 +146,8 @@ lib/libfrrcares.so.0
 lib/libfrrcares.so.0.0.0
 %%SNMP%%lib/frr/modules/bgpd_snmp.so
 %%SNMP%%lib/frr/modules/bgpd_bmp.so
+%%SNMP%%lib/frr/modules/isisd_snmp.so
+%%SNMP%%lib/frr/modules/ldpd_snmp.so
 %%SNMP%%lib/frr/modules/ospf6d_snmp.so
 %%SNMP%%lib/frr/modules/ospfd_snmp.so
 %%SNMP%%lib/frr/modules/ripd_snmp.so

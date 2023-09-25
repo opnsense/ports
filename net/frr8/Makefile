@@ -1,5 +1,6 @@
 PORTNAME=	frr
 PORTVERSION=	8.5.3
+PORTREVISION=	1
 DISTVERSIONPREFIX=	frr-
 CATEGORIES=	net
 .if defined(PYTHONTOOLS)
@@ -124,7 +125,6 @@ RPKI_LIB_DEPENDS=		librtr.so:net-mgmt/rtrlib \
 TCMALLOC_CONFIGURE_ENABLE=	tcmalloc
 TCMALLOC_LIB_DEPENDS=		libtcmalloc.so:devel/google-perftools
 SNMP_CONFIGURE_ENABLE=		snmp
-SNMP_CFLAGS=			"-std=gnu99"
 SNMP_LIB_DEPENDS=		libnetsnmp.so:net-mgmt/net-snmp
 SNMP_USES=			ssl
 SHARPD_CONFIGURE_ENABLE=		sharpd
