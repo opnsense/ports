@@ -227,7 +227,6 @@
     SUBDIR += ocaml-autoconf
     SUBDIR += ocaml-camlidl
     SUBDIR += ocaml-nox11
-    SUBDIR += onyx
     SUBDIR += oo2c
     SUBDIR += opencoarrays
     SUBDIR += opensycl
@@ -266,7 +265,6 @@
     SUBDIR += pbasic
     SUBDIR += pcc
     SUBDIR += perl5-devel
-    SUBDIR += perl5.32
     SUBDIR += perl5.34
     SUBDIR += perl5.36
     SUBDIR += perl5.38

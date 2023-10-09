@@ -1,11 +1,11 @@
 PORTNAME=	netpbm
-DISTVERSION=	11.03.05
+DISTVERSION=	11.04.02
 CATEGORIES=	graphics
 MASTER_SITES=	LOCAL/leres/netpbm
 
 MAINTAINER=	leres@FreeBSD.org
 COMMENT=	Toolkit for conversion of images between different formats
-WWW=		http://netpbm.sourceforge.net/
+WWW=		https://netpbm.sourceforge.net/
 
 LICENSE=	GPLv2 IJG LGPL21 MIT PD
 LICENSE_COMB=	multi
@@ -22,7 +22,7 @@ USES=		cpe gmake jpeg perl5 shebangfix tar:xz
 USE_LDCONFIG=	yes
 CPE_VENDOR=	netpbm_project
 
-SVN_REV=	r4636
+SVN_REV=	r4709
 
 SHEBANG_FILES=	buildtools/makeman converter/pbm/pbmtox10bm \
 		editor/pnmflip editor/pnmquant editor/ppmfade \
@@ -52,7 +52,6 @@ X11_USE=	xorg=x11,xau,xcb,xdmcp
 
 post-patch:
 	${REINPLACE_CMD} -e 's|misc|share/netpbm|g' ${WRKSRC}/common.mk
-	${REINPLACE_CMD} -e 's|pkg-config|false|g' ${WRKSRC}/GNUmakefile
 .ifdef WITH_PIE
 .for dn in buildtools test
 	${REINPLACE_CMD} -e '/^all:/s/^/CFLAGS_FOR_BUILD+=${PIE_CFLAGS}\n/' \
@@ -72,7 +71,7 @@ do-fetch:
 	${RM} -rf ${WRKDIR}
 	${MKDIR} ${WRKDIR}
 	svn export -r${SVN_REV} \
-	    svn://svn.code.sf.net/p/${PORTNAME}/code/advanced ${WRKSRC}
+	    https://svn.code.sf.net/p/${PORTNAME}/code/advanced ${WRKSRC}
 	${TAR} -jcf ${DISTDIR}/${DISTNAME}${EXTRACT_SUFX} -C${WRKDIR} \
 	    ${DISTNAME}
 	${RM} -rf ${WRKDIR}

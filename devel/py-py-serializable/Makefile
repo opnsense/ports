@@ -1,8 +1,8 @@
 PORTNAME=	py-serializable
-PORTVERSION=	0.12.0
-PORTREVISION=	1
+PORTVERSION=	0.14.0
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI
+MASTER_SITES=	PYPI \
+		https://github.com/madpah/serializable/releases/download/v${PORTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org

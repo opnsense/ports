@@ -124,6 +124,7 @@
     SUBDIR += cyrus-sasl2-sql
     SUBDIR += cyrus-sasl2-srp
     SUBDIR += d0_blind_id
+    SUBDIR += debian-keyring
     SUBDIR += dehydrated
     SUBDIR += denyhosts
     SUBDIR += destroy
@@ -166,7 +167,6 @@
     SUBDIR += ftimes
     SUBDIR += fuzz
     SUBDIR += fwanalog
-    SUBDIR += fwbuilder
     SUBDIR += fwknop
     SUBDIR += fwlogwatch
     SUBDIR += gcr
@@ -270,7 +270,6 @@
     SUBDIR += krb5-119
     SUBDIR += krb5-120
     SUBDIR += krb5-121
-    SUBDIR += krb5-appl
     SUBDIR += krb5-devel
     SUBDIR += kstart
     SUBDIR += ktls_isa-l_crypto-kmod

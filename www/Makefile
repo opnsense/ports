@@ -61,7 +61,6 @@
     SUBDIR += aria2
     SUBDIR += asql
     SUBDIR += authelia
-    SUBDIR += awffull
     SUBDIR += awstats
     SUBDIR += axis2
     SUBDIR += bacula-web
@@ -71,7 +70,6 @@
     SUBDIR += badwolf
     SUBDIR += baikal
     SUBDIR += bareos-webui
-    SUBDIR += bareos19-webui
     SUBDIR += bareos20-webui
     SUBDIR += bareos21-webui
     SUBDIR += beehive
@@ -137,7 +135,6 @@
     SUBDIR += deno
     SUBDIR += devd
     SUBDIR += dfileserver
-    SUBDIR += dhttpd
     SUBDIR += dillo2
     SUBDIR += dojo
     SUBDIR += dokuwiki
@@ -151,7 +148,6 @@
     SUBDIR += drupal10
     SUBDIR += drupal7
     SUBDIR += drupal7-wysiwyg
-    SUBDIR += drupal8
     SUBDIR += drupal9
     SUBDIR += drush
     SUBDIR += dtse
@@ -185,7 +181,7 @@
     SUBDIR += flat-frog
     SUBDIR += flexget
     SUBDIR += flickcurl
-    SUBDIR += fnord
+    SUBDIR += foreign-cdm
     SUBDIR += formication
     SUBDIR += foswiki
     SUBDIR += fpc-fastcgi
@@ -230,7 +226,6 @@
     SUBDIR += gopherus
     SUBDIR += gotty
     SUBDIR += gpx2map
-    SUBDIR += grafana8
     SUBDIR += grafana9
     SUBDIR += grails
     SUBDIR += gregarius
@@ -334,6 +329,7 @@
     SUBDIR += links1
     SUBDIR += linux-c7-qtwebkit
     SUBDIR += linux-opera
+    SUBDIR += linux-widevine-cdm
     SUBDIR += litmus
     SUBDIR += ljdeps
     SUBDIR += llhttp
@@ -359,7 +355,6 @@
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
     SUBDIR += mediawiki135
-    SUBDIR += mediawiki138
     SUBDIR += mediawiki139
     SUBDIR += mediawiki140
     SUBDIR += mergelog
@@ -445,6 +440,7 @@
     SUBDIR += monolith
     SUBDIR += moodle41
     SUBDIR += moodle42
+    SUBDIR += moodle43
     SUBDIR += morty
     SUBDIR += mozplugger
     SUBDIR += multisort
@@ -1435,14 +1431,12 @@
     SUBDIR += pmwiki
     SUBDIR += pnews
     SUBDIR += podcastamatic
-    SUBDIR += polipo
     SUBDIR += pomerium
     SUBDIR += pound
     SUBDIR += privatebin
     SUBDIR += privoxy
     SUBDIR += protovis
     SUBDIR += proxygen
-    SUBDIR += pserv
     SUBDIR += publicfile
     SUBDIR += punbb
     SUBDIR += py-Pituophis
@@ -1488,6 +1482,7 @@
     SUBDIR += py-cinemagoer
     SUBDIR += py-cookies
     SUBDIR += py-crossplane
+    SUBDIR += py-css-html-js-minify
     SUBDIR += py-css-parser
     SUBDIR += py-csscompressor
     SUBDIR += py-cssmin
@@ -1604,6 +1599,7 @@
     SUBDIR += py-django-redis
     SUBDIR += py-django-registration
     SUBDIR += py-django-registration-redux
+    SUBDIR += py-django-requests-debug-toolbar
     SUBDIR += py-django-reversion
     SUBDIR += py-django-reversion-compare
     SUBDIR += py-django-rich

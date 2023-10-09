@@ -33,6 +33,7 @@
     SUBDIR += bogofilter-bdb
     SUBDIR += bogofilter-kc
     SUBDIR += bogofilter-sqlite
+    SUBDIR += bsd-vacation
     SUBDIR += bsfilter
     SUBDIR += bsmtp
     SUBDIR += bulk_mailer
@@ -498,6 +499,7 @@
     SUBDIR += py-alot
     SUBDIR += py-authheaders
     SUBDIR += py-authres
+    SUBDIR += py-checkdmarc
     SUBDIR += py-django-mailbox
     SUBDIR += py-django-mailman3
     SUBDIR += py-dkimpy
@@ -553,7 +555,6 @@
     SUBDIR += qpopper
     SUBDIR += qsf
     SUBDIR += qsheff
-    SUBDIR += qtools
     SUBDIR += queue-fix
     SUBDIR += queue-repair
     SUBDIR += rainloop

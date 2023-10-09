@@ -187,8 +187,6 @@
     SUBDIR += memcached
     SUBDIR += metabase
     SUBDIR += mongodb-tools
-    SUBDIR += mongodb42
-    SUBDIR += mongodb42-tools
     SUBDIR += mongodb44
     SUBDIR += mongodb50
     SUBDIR += mongodb60
@@ -544,11 +542,7 @@
     SUBDIR += pecl-mongodb
     SUBDIR += pecl-redis
     SUBDIR += pecl-rrd
-    SUBDIR += percona-pam-for-mysql
     SUBDIR += percona-toolkit
-    SUBDIR += percona57-client
-    SUBDIR += percona57-pam-for-mysql
-    SUBDIR += percona57-server
     SUBDIR += pg-gvm
     SUBDIR += pg.el
     SUBDIR += pgFormatter
@@ -873,7 +867,6 @@
     SUBDIR += recutils
     SUBDIR += redis
     SUBDIR += redis-devel
-    SUBDIR += redis6
     SUBDIR += redis62
     SUBDIR += redis70
     SUBDIR += redis_exporter

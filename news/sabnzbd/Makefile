@@ -1,6 +1,5 @@
 PORTNAME=	sabnzbd
-DISTVERSION=	4.0.2
-PORTREVISION=	1
+DISTVERSION=	4.1.0
 CATEGORIES=	news
 MASTER_SITES=	https://github.com/sabnzbd/sabnzbd/releases/download/${DISTVERSION}/
 DISTNAME=	SABnzbd-${DISTVERSION}-src
@@ -58,7 +57,7 @@ DBUS_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>=0:devel/py-dbus@${PY_FLAVOR}
 NOTIFY2_IMPLIES=	DBUS
 NOTIFY2_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}notify2>=0:devel/py-notify2@${PY_FLAVOR}
 PYGOBJECT_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gobject3>=3.10.2:devel/py-gobject3@${PY_FLAVOR}
-SSL_USES=		pycryptography:run
+SSL_USE=		PYTHON=cryptography
 
 post-patch:
 	@${REINPLACE_CMD} -e "s:%%DATADIR%%:'${DATADIR}':g" \

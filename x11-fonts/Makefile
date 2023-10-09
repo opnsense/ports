@@ -129,6 +129,7 @@
     SUBDIR += genyo
     SUBDIR += genyog
     SUBDIR += gnu-unifont
+    SUBDIR += gnu-unifont-otf
     SUBDIR += gnu-unifont-ttf
     SUBDIR += gofont-ttf
     SUBDIR += gohufont
@@ -257,9 +258,9 @@
     SUBDIR += sgifonts
     SUBDIR += sharefonts
     SUBDIR += showfont
+    SUBDIR += source-code-pro-ttf
     SUBDIR += source-sans-ttf
-    SUBDIR += sourcecodepro-ttf
-    SUBDIR += sourceserifpro-ttf
+    SUBDIR += source-serif-ttf
     SUBDIR += spleen
     SUBDIR += steps-mono
     SUBDIR += stix-fonts

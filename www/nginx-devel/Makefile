@@ -1,6 +1,6 @@
 PORTNAME?=	nginx
 PORTVERSION=	1.25.2
-PORTREVISION=	5
+PORTREVISION=	7
 CATEGORIES=	www
 MASTER_SITES=	https://nginx.org/download/ \
 		LOCAL/osa
@@ -265,6 +265,10 @@ pre-everything::
 .endif
 	@${ECHO_MSG}
 
+post-extract-NAXSI-on:
+	@${RMDIR} ${WRKSRC_naxsi}/naxsi_src/libinjection
+	@${LN} -s ${WRKSRC_libinjection} ${WRKSRC_naxsi}/naxsi_src/libinjection
+
 pre-patch-HTTPV3-on:
 	@${MV} ${WRKSRC}/README ${WRKSRC}/README.1st
 
@@ -273,6 +277,9 @@ post-patch:
 		s!%%PREFIX%%!${PREFIX}!; \
 		s!%%NGINX_ERRORLOG%%!${NGINX_ERRORLOG}!' \
 		${WRKSRC}/conf/nginx.conf
+
+post-patch-BROTLI-on:
+	@${REINPLACE_CMD} 's!%%PREFIX%%!${LOCALBASE}!g' ${WRKSRC_brotli}/filter/config
 
 post-patch-DRIZZLE-on:
 	@${REINPLACE_CMD} 's!%%PREFIX%%!${LOCALBASE}!g' ${WRKSRC_drizzle}/config
@@ -355,7 +362,7 @@ do-install-LINK-on:
 
 do-install-NAXSI-on:
 	${INSTALL_DATA} \
-	${WRKDIR}/naxsi-${NAXSI_NGINX_VER}/naxsi_config/naxsi_core.rules \
+	${WRKDIR}/naxsi-${NAXSI_NGINX_VER}/naxsi_rules/naxsi_core.rules \
 	${STAGEDIR}${ETCDIR}
 .endif
 

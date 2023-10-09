@@ -1,10 +1,7 @@
 PORTNAME=	xdg-desktop-portal-hyprland
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.0
+DISTVERSION=	1.2.1
 CATEGORIES=	x11 wayland
-
-PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-PATCHFILES+=	54b5467ec12f.patch:-p1 # https://github.com/hyprwm/xdg-desktop-portal-hyprland/pull/98
 
 MAINTAINER=	jbeich@FreeBSD.org
 COMMENT=	xdg-desktop-portal backend for hyprland
@@ -27,7 +24,7 @@ qt5_CONFLICTS_INSTALL=	${PORTNAME}-qt6
 qt6_CONFLICTS_INSTALL=	${PORTNAME}
 qt6_PKGNAMESUFFIX=	-qt6
 
-USES=		compiler:gcc-c++11-lib gl meson pkgconfig
+USES=		compiler:c++11-lib gl meson pkgconfig
 USE_GITHUB=	yes
 USE_GL=		gbm
 GH_ACCOUNT=	hyprwm
@@ -39,9 +36,7 @@ PLIST_FILES=	libexec/${PORTNAME} \
 
 # XXX Drop after FreeBSD 14.0 EOL around 2025-03-01
 .if exists(/usr/lib/libc++.so) && !exists(/usr/include/c++/v1/__format/write_escaped.h)
-# Emulate -fexperimental-library for GCC
-CXXFLAGS+=	-D_LIBCPP_ENABLE_EXPERIMENTAL # std::vformat
-LDFLAGS+=	-lc++experimental
+CXXFLAGS+=	-fexperimental-library
 .endif
 
 post-patch:
@@ -58,6 +53,8 @@ post-configure:
 .if ${CXX} == c++ && exists(/usr/lib/libc++.so)
 .if !exists(/usr/include/c++/v1/__ranges/as_rvalue_view.h) || make(makesum) || make(fetch)
 BUILD_DEPENDS+=	${CMAKE_BIN}:devel/cmake-core
+USES+=		llvm:min=16,build,export
+PATH:=		${LLVM_PREFIX}/bin:${PATH} # XXX _CMAKE_TOOLCHAIN_SUFFIX vs. devel/llvm*
 CONFIGURE_ENV+=	CC="${CC}" CXX="${CXX}" CPP="${CPP}"
 CMAKE_BIN=	${LOCALBASE}/bin/cmake
 
@@ -78,7 +75,3 @@ bundled-libcxx:
 .endif # exists(/usr/lib/libc++.so)
 
 .include <bsd.port.mk>
-
-# XXX USES=compiler:gcc-c++11-lib
-RUN_DEPENDS:=	${RUN_DEPENDS:Ngcc*}
-LDFLAGS+=	-static-libgcc

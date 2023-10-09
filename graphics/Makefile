@@ -827,7 +827,6 @@
     SUBDIR += poppler-utils
     SUBDIR += potrace
     SUBDIR += povray-meta
-    SUBDIR += povray36
     SUBDIR += povray37
     SUBDIR += povray38
     SUBDIR += ppmcaption
@@ -918,6 +917,7 @@
     SUBDIR += py-photocollage
     SUBDIR += py-piexif
     SUBDIR += py-pillow
+    SUBDIR += py-pillow-heif
     SUBDIR += py-pivy
     SUBDIR += py-plotly
     SUBDIR += py-png

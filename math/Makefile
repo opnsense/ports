@@ -274,7 +274,6 @@
     SUBDIR += dihydrogen
     SUBDIR += dionysus
     SUBDIR += disco
-    SUBDIR += djbfft
     SUBDIR += drgeo
     SUBDIR += dsdp
     SUBDIR += dune-alugrid
@@ -973,7 +972,6 @@
     SUBDIR += py-matplotlib
     SUBDIR += py-matplotlib-inline
     SUBDIR += py-matplotlib-scalebar
-    SUBDIR += py-matplotlib2
     SUBDIR += py-minorminer
     SUBDIR += py-mip
     SUBDIR += py-mixsimulator

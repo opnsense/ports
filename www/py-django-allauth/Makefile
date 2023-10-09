@@ -1,5 +1,5 @@
 PORTNAME=	django-allauth
-PORTVERSION=	0.56.1
+PORTVERSION=	0.57.0
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -24,5 +24,12 @@ USES=		python
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+OPTIONS_DEFINE=	MFA SAML
+MFA_DESC=	Multi-Factor Authentication support
+SAML_DESC=	Security Assertion Markup Language support
+
+MFA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}qrcode>=7.0.0:textproc/py-qrcode@${PY_FLAVOR}
+SAML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}python3-saml>=1.15.0<2.0.0:security/py-python3-saml@${PY_FLAVOR}
 
 .include <bsd.port.mk>

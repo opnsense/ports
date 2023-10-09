@@ -1,6 +1,6 @@
 PORTNAME=	libremidi
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.0
+DISTVERSION=	4.2.2
 CATEGORIES=	audio
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -19,12 +19,9 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	jcelerier
 
 CMAKE_ON=	BUILD_SHARED_LIBS \
-		LIBREMIDI_NO_ALSA
+		LIBREMIDI_NO_ALSA # ALSA support requires libalsa, sys/eventfd.h, sys/timerfd.h
 CMAKE_OFF=	LIBREMIDI_TESTS
-CMAKE_TESTING_ON=	LIBREMIDI_TESTS
-
-# test fail to configure: https://github.com/jcelerier/libremidi/issues/84
-# before that was: 2 tests fail, see https://github.com/jcelerier/libremidi/issues/72
+CMAKE_TESTING_ON=	LIBREMIDI_TESTS # 1 test fails: https://github.com/jcelerier/libremidi/issues/86
 
 # This library can also be used as a header-only library
 

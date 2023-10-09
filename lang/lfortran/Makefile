@@ -1,6 +1,6 @@
 PORTNAME=	lfortran
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.20.3
+DISTVERSION=	0.21.2
 CATEGORIES=	lang
 
 MAINTAINER=	fortran@FreeBSD.org
@@ -30,10 +30,12 @@ SHEBANG_FILES=	*.sh
 BINARY_ALIAS=	python=${PYTHON_CMD}
 CMAKE_ON=	LFORTRAN_BUILD_ALL WITH_DWARFDUMP WITH_FMT WITH_JSON	\
 		WITH_LINKH WITH_LLVM WITH_STACKTRACE WITH_UNWIND
+USE_LDCONFIG=	yes
 
-LLVM_VERSION=	15
+LLVM_VERSION=	15	# 16 is supported too
 
-OPTIONS_DEFINE=	DOCS
+OPTIONS_DEFINE=	EXAMPLES
+PORTEXAMPLES=	*
 
 # Xeus: version 3.0.5 is required and xeus-zmq 1.0.2
 # + xtl-quant-stack + cppzmq + nlohmann_json + LibUUID + libzmq4
@@ -51,7 +53,13 @@ USE_BINUTILS=	yes
 CMAKE_ON+=	WITH_BFD
 LIB_DEPENDS+=	libbfd.so:devel/binutils
 
+PLIST_SUB=	VER=${PORTVERSION}
+
 pre-configure:
 	${ECHO_CMD} ${PORTVERSION} > ${WRKSRC}/version
+
+post-install-EXAMPLES-on:
+	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
+	(cd ${WRKSRC}/examples && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
 
 .include <bsd.port.mk>
