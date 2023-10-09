@@ -5,6 +5,42 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20231004:
+  AFFECTS: www/gitlab-ce
+  AUTHOR:  mfechner@FreeBSD.org
+
+  Before you upgrade to version 16.4.x or higher, make sure you did the
+  upgrade to 16.3.x!
+
+  The database migration for 16.4.1 can fail due to unexpected name of a foreign key.
+  So it is recommended to have a database backup available in case the solution
+  described in the update manual does not work for you.
+
+  The upgrade manual can be found as usual here:
+  https://gitlab.fechner.net/mfechner/Gitlab-docu/-/blob/master/update/16.3-16.4-freebsd.md
+  
+  
+20230930:
+  AFFECTS: users of Transmission (net-p2p/transmission@*)
+  AUTHOR:  mondo.debater_0q@icloud.com
+
+  Fixes Bug 274065 by reorganizing the port as a metaport
+  (net-p2p/transmission) and components port (net-p2p/transmission-components).
+  Each component may be installed through the flavors of
+  transmission-componenents (@cli, @daemon, @docs, @gtk, @qt, @utils).
+  Alternatively, one or more component may be installed by running make config
+  on the metaport net-p2p/transmission.
+
+  AFFECTS: users of devel/php-composer2
+  AUTHOR: madpilot@FreeBSD.org
+
+  The composer2 ports has been moved over the old devel/php-composer
+  port, which was still providing the old EOLed version 1 of the
+  software.
+
+  Please use `pkg install php81-composer` (substitute 81 with the
+  PHP version you're using) to properly upgrade.
+
 20230924:
   AFFECTS: users of XFCE desktop (x11-wm/xfce4)
   AUTHOR: madpilot@FreeBSD.org

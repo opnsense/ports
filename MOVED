@@ -5681,7 +5681,6 @@ biology/py-fastTSNE|math/py-openTSNE|2021-03-13|project renamed/reimplemented un
 misc/py-XlsxWriter|textproc/py-xlsxwriter|2021-03-13|Remove duplicate
 emulators/open-vm-tools-nox11|emulators/open-vm-tools@nox11|2021-03-17|Moved to a flavored, generic, version
 math/s2geometry|graphics/s2|2021-03-22|Remove duplicate port
-net-p2p/sonarr-devel|net-p2p/sonarr|2021-03-23|Removed, use net-p2p/sonarr instead
 www/py-django-jsonfield||2021-03-24|Removed: This port will be deleted in the future, please switch to use www/py-jsonfield or www/py-jsonfield2
 devel/hs-c2hs||2021-03-27|Has expired: Was used as BUILD_DEPENDS, not useful on its own
 x11-toolkits/tile||2021-03-27|Has expired: The Tile widget set is part of Tk 8.5 and above, see TIP 248
@@ -7843,12 +7842,7 @@ textproc/rubygem-cucumber-gherkin23|textproc/rubygem-cucumber-gherkin|2023-09-04
 textproc/rubygem-cucumber-html-formatter19|textproc/rubygem-cucumber-html-formatter|2023-09-04|Remove obsoleted port. Use textproc/rubygem-cucumber-html-formatter instead
 cad/py-ocp||2023-09-05|Has expired: Broken since 2021
 sysutils/bacula11-libs3|sysutils/bacula-libs3|2023-09-10|No reason to have version in the port name. Works with 11 and 13
-net-p2p/transmission-cli|net-p2p/transmission|2023-09-10|Moved to a flavored version
-net-p2p/transmission-daemon|net-p2p/transmission|2023-09-10|Moved to a flavored version
-net-p2p/transmission-gtk|net-p2p/transmission|2023-09-10|Moved to a flavored version
-net-p2p/transmission-qt|net-p2p/transmission|2023-09-10|Moved to a flavored version
-net-p2p/transmission-utils|net-p2p/transmission|2023-09-10|Moved to a flavored version
-www/transmission-web|net-p2p/transmission|2023-09-10|Moved to the daemon flavor
+www/transmission-web|net-p2p/transmission-components@daemon|2023-09-10|Moved to the daemon flavor
 devel/rubygem-cucumber-tag-expressions4|devel/rubygem-cucumber-tag-expressions|2023-09-11|Remove obsoleted port. Use devel/rubygem-cucumber-tag-expressions instead
 security/rosenpass|net/rosenpass|2023-09-12|Remove duplicate port
 dns/tinystats||2023-09-20|Has expired: djbdns got removed, port is no longer required
@@ -7856,3 +7850,94 @@ mail/cyrus-imapd23||2023-09-20|Has expired: No longer supported by upstream
 mail/cyrus-imapd24||2023-09-20|Has expired: No longer supported by upstream
 net/py-python-ceilometerclient||2023-09-22|Remove obsoleted port. This project is no longer maintained
 sysutils/rundeck3|sysutils/rundeck|2023-09-23|Rename to avoid confusion
+games/weebsay||2023-09-26|Has expired: API server is no longer functional
+devel/rubygem-mustache0|devel/rubygem-mustache|2023-09-27|Has expired: Use devel/mustache
+sysutils/rsfetch||2023-09-27|Has expired: Upstream unmaintained
+sysutils/sysrc||2023-09-27|Has expired: Migrated into src
+deskutils/budgie-trash-applet||2023-09-29|Has expired: Merged into newer x11/budgie-desktop >= 10.8
+x11-fonts/sourcecodepro-ttf|x11-fonts/source-code-pro-ttf|2023-09-30|Move x11-fonts/sourcecodepro-ttf to x11-fonts/source-code-pro-ttf
+x11-fonts/sourceserifpro-ttf|x11-fonts/source-serif-ttf|2023-09-30|Move x11-fonts/sourceserifpro-ttf to x11-fonts/source-serif-ttf
+www/pserv||2023-09-30|Has expired: Abandonware, last release in 2005. Consider migrating to www/apache24 , www/lighttpd or www/nginx
+www/polipo||2023-09-30|Has expired: No longer maintained upstream
+audio/aacgain||2023-09-30|Has expired: Obsolete way of handling volume adjustment, consider using audio/rsgain
+audio/ample||2023-09-30|Has expired: Abandonware, last release over 19 years ago
+audio/ccaudio2||2023-09-30|Has expired: Abandonware, no development since 2011
+audio/libtremor||2023-09-30|Has expired: Obsolete, we only support hardware with a fpu and other decoding libraries offer better performance
+audio/rioutil||2023-09-30|Has expired: Obsolete, supported hardware ia about 20 years old
+audio/waveplay||2023-09-30|Has expired: Abandoned upstream
+databases/mongodb42-tools||2023-09-30|Has expired: Upstream EOL reached on 2023-04-30
+databases/mongodb42|databases/mongodb44|2023-09-30|Has expired: Upstream EOL reached on 2023-04-30
+databases/redis6|databases/redis62|2023-09-30|Has expired: Has reached its EoL. Please migrate to newer version
+devel/capstone3|devel/capstone4|2023-09-30|Has expired: Use more recent upstream version from devel/capstone
+devel/directfb||2023-09-30|Has expired: Last upstream release was in 2015
+devel/electron23|devel/electron24|2023-09-30|Has expired: EOLed upstream, switch to newer version
+devel/libtar||2023-09-30|Has expired: Abandonware since 2013 and multiple CVEs over the years
+devel/pear-htmlpurifier||2023-09-30|Has expired: Unfetchable as the pear channel no longer works
+devel/pear-channel-htmlpurifier.org||2023-09-30|Has expired: PEAR Channel is no longer functional
+devel/pmdk||2023-09-30|Has expired: FreeBSD has been deprecated since 1.13.X and support has been dropped on 2.0
+graphics/povray36|graphics/povray37|2023-09-30|Has expired: No longer supported upstream; use POV-Ray 3.7 instead
+lang/onyx||2023-09-30|Has expired: Requires deprecated cook port
+lang/perl5.32|lang/perl5.34|2023-09-30|Has expired: Support ends three years after .0 release. Please upgrade to a more recent version of Perl
+mail/qtools||2023-09-30|Has expired: Upstream last activity in 2003
+math/djbfft||2023-09-30|Has expired: Abandonware, slow and untouched by upstream for over 20 years
+math/py-matplotlib2|math/py-matplotlib|2023-09-30|Has expired: Upstream support ended in 2020 and do not support python3 versions existing on the tree
+net-im/kde-telepathy||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net/easysoap||2023-09-30|Has expired: Last release was in 2006
+net-im/ktp-accounts-kcm||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-approver||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-auth-handler||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-call-ui||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-contact-runner||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-desktop-applets||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-kded-module||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-send-file||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-text-ui||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-contact-list||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-filetransfer-handler||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net-im/ktp-common-internals||2023-09-30|Has expired: Will not be part of KDE Gear 23.08 in August
+net/openldap24-client|net/openldap25-client|2023-09-30|Has expired: No longer supported by upstream.  Please use a newer version of OpenLDAP instead
+net/openldap24-server|net/openldap25-server|2023-09-30|Has expired: No longer supported by upstream.  Please use a newer version of OpenLDAP instead
+science/crf++||2023-09-30|Has expired: Last upstream activity was in 2015
+security/fwbuilder||2023-09-30|Has expired: Abandonware since Jan 2021
+sysutils/istatserver||2023-09-30|Has expired: Upstream last activity was in 2018
+sysutils/logstash-forwarder||2023-09-30|Has expired: Migrate to sysutils/beats8
+textproc/libextractor||2023-09-30|Has expired: does not compile with exiv2 0.28, and no ports tree users
+www/bareos19-webui|www/bareos20-webui|2023-09-30|Has expired: Upstream EOL reached
+sysutils/bareos19-traymonitor|sysutils/bareos20-traymonitor|2023-09-30|Has expired: Upstream EOL reached
+sysutils/bareos19-client|sysutils/bareos20-client|2023-09-30|Has expired: Upstream EOL reached
+sysutils/bareos19-server|sysutils/bareos20-server|2023-09-30|Has expired: Upstream EOL reached
+textproc/popup||2023-09-30|Has expired: Abandonware, last release in 2004 and dead upstream
+textproc/yamcha||2023-09-30|Has expired: Last upstream release was in 2005
+japanese/awffull||2023-09-30|Has expired: Abandonware, last release in 14+ years ago. Consider using www/awstats
+www/dhttpd||2023-09-30|Has expired: Abandonware, last release in 15+ years ago. Consider using www/darkhttpd, www/obhttpd or www/miniserve
+www/drupal8|www/drupal9|2023-09-30|Has expired: Upstream EOL reached on 2021-11-17
+www/fnord||2023-09-30|Has expired: Deprecated upstream, consider using www/apache24, www/lighttpd or www/nginx
+www/grafana8|www/grafana9|2023-09-30|Has expired: EOLed upstream
+www/mediawiki138|www/mediawiki139|2023-09-30|Has expired: end of life upstream
+www/awffull||2023-09-30|Has expired: Abandonware, last release in 14+ years ago. Consider using www/awstats
+textproc/raptor||2023-09-30|Has expired: No new release in 10+ years and superseded by 2.0-branch, consider using textproc/raptor2
+devel/php-composer2|devel/php-composer|2023-09-30|Port for newer version moved over old EOL version port
+net-p2p/transmission-cli|net-p2p/transmission-components@cli|2023-09-30|Moved for metaport
+net-p2p/transmission-daemon|net-p2p/transmission-components@daemon|2023-09-30|Moved for metaport
+net-p2p/transmission-gtk|net-p2p/transmission-components@gtk|2023-09-30|Moved for metaport
+net-p2p/transmission-qt|net-p2p/transmission-components@qt|2023-09-30|Moved for metaport
+net-p2p/transmission-utils|net-p2p/transmission-components@utils|2023-09-30|Moved for metaport
+databases/percona-pam-for-mysql||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-pam-for-mysql||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-server||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
+databases/percona57-client||2023-10-01|Has expired: Upstream EOL reaches on 2023-10-01
+sysutils/nfs-over-tls||2023-10-01|Has expired: All supported releases of FreeBSD include this in base
+x11/antimicro|x11/antimicrox|2023-10-01|Has expired: Replaced by x11/antimicrox upstream no longer maintained
+security/krb5-appl||2023-10-01|Has expired: Desupported by upstream, uses old ciphers
+sysutils/mstflint-lite|sysutils/mstflint|2023-10-05|Parent port is now lite by default
+net/frr7|net/frr8|2023-10-05|Keeping only the 2 last major branches in port tree
+devel/rubygem-gitlab-license_finder||2023-10-06|Removed
+devel/rubygem-thor10|devel/rubygem-thor|2023-10-06|Removed
+devel/rubygem-gitlab-sidekiq-fetcher||2023-10-06|Removed
+devel/rubygem-aws-sdk-s31126|devel/rubygem-aws-sdk-s3|2023-10-06|Use devel/rubygem-aws-sdk-s3
+devel/rubygem-aws-sdk-core3175|devel/rubygem-aws-sdk-core|2023-10-06|Use devel/rubygem-aws-sdk-core
+devel/gitlab-metrics-exporter||2023-10-06|Removed
+net/rubygem-octokit5|net/rubygem-octokit|2023-10-06|Use net/rubygem-octokit
+games/minilens||2023-10-08|Has expired: Depends on expired devel/godot2 (use devel/godot instead)
+games/tanks-of-freedom||2023-10-08|Has expired: Depends on expired devel/godot2 (use devel/godot instead)
+devel/godot2|devel/godot|2023-10-08|Has expired: Requires legacy OpenSSL 1.1.1 so use devel/godot
