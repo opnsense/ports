@@ -2,6 +2,7 @@
 
 # PROVIDE: tailscaled
 # REQUIRE: NETWORKING
+# REQUIRE: miniupnpd
 # KEYWORD: shutdown
 #
 # Add the following lines to /etc/rc.conf.local or /etc/rc.conf
