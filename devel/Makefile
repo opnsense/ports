@@ -4892,6 +4892,7 @@
     SUBDIR += py-jsonschema417
     SUBDIR += py-jsonsir
     SUBDIR += py-jupyter-client
+    SUBDIR += py-jupyter-collaboration
     SUBDIR += py-jupyter-core
     SUBDIR += py-jupyter-events
     SUBDIR += py-jupyter-kernel-test
@@ -4901,7 +4902,6 @@
     SUBDIR += py-jupyter-server-fileid
     SUBDIR += py-jupyter-server-mathjax
     SUBDIR += py-jupyter-server-terminals
-    SUBDIR += py-jupyter-server-ydoc
     SUBDIR += py-jupyter-telemetry
     SUBDIR += py-jupyter-ydoc
     SUBDIR += py-jupyter_console
@@ -5118,7 +5118,6 @@
     SUBDIR += py-ovsdbapp
     SUBDIR += py-p4python
     SUBDIR += py-packaging
-    SUBDIR += py-packaging21
     SUBDIR += py-parallax
     SUBDIR += py-param
     SUBDIR += py-parameterized
@@ -6708,6 +6707,7 @@
     SUBDIR += rubygem-daemons
     SUBDIR += rubygem-danger
     SUBDIR += rubygem-danger-gitlab
+    SUBDIR += rubygem-datadog-ci
     SUBDIR += rubygem-date
     SUBDIR += rubygem-ddmemoize
     SUBDIR += rubygem-ddmetrics
@@ -6913,7 +6913,6 @@
     SUBDIR += rubygem-google-iam-credentials-v1
     SUBDIR += rubygem-google-iam-v1
     SUBDIR += rubygem-google-protobuf
-    SUBDIR += rubygem-google-protobuf323
     SUBDIR += rubygem-googleapis-common-protos
     SUBDIR += rubygem-googleapis-common-protos-types
     SUBDIR += rubygem-graf

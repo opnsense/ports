@@ -1477,6 +1477,7 @@
     SUBDIR += py-cachecontrol
     SUBDIR += py-cachelib
     SUBDIR += py-caldav
+    SUBDIR += py-channels
     SUBDIR += py-cheroot
     SUBDIR += py-cherrypy
     SUBDIR += py-cinemagoer
@@ -1488,6 +1489,7 @@
     SUBDIR += py-cssmin
     SUBDIR += py-cssselect
     SUBDIR += py-cssutils
+    SUBDIR += py-daphne
     SUBDIR += py-dj-database-url
     SUBDIR += py-dj41-django-auth-ldap
     SUBDIR += py-dj41-django-cors-headers
