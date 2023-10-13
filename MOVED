@@ -7943,3 +7943,5 @@ devel/godot2|devel/godot|2023-10-08|Has expired: Requires legacy OpenSSL 1.1.1 s
 devel/py-jupyter-server-ydoc|devel/py-jupyter-collaboration|2023-10-11|Remove obsoleted port. Use devel/py-jupyter-collaboration instead
 devel/py-packaging21|devel/py-packaging|2023-10-11|Remove obsoleted port. Use devel/py-packaging instead
 devel/rubygem-google-protobuf323|devel/rubygem-google-protobuf|2023-10-11|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
+audio/rem||2023-10-12|Has expired: Deprecated, replaced by libre
+net/openmpi3|net/openmpi|2023-10-12|Has expired: OpenMPI 3 is not maintained by the upstream project anymore and will be removed
