@@ -1,11 +1,11 @@
 PORTNAME=	wine
-DISTVERSION=	8.15
+DISTVERSION=	8.18
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://dl.winehq.org/wine/source/8.x/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	damjan.jov@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Microsoft Windows compatibility environment
 WWW=		https://www.winehq.org
 
@@ -80,7 +80,7 @@ WINEMAKER_DESC=	Fully support winemaker (requires Perl)
 GECKO_DESC=	Bundle Gecko MSI package for Wine
 MONO_DESC=	Bundle Mono MSI package for Wine
 
-ALSA_CONFIGURE_ON=	--with-alsa --without-oss
+ALSA_CONFIGURE_WITH=	alsa
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_RUN_DEPENDS=	alsa-plugins>0:audio/alsa-plugins
 
@@ -96,7 +96,7 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 
 MONO_RUN_DEPENDS=	wine-mono-devel>0:emulators/wine-mono-devel
 
-OSS_CONFIGURE_ON=	--without-alsa --with-oss
+OSS_CONFIGURE_WITH=	oss
 
 V4L_CONFIGURE_WITH=	v4l2
 V4L_BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat

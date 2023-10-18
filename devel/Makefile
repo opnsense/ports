@@ -4886,6 +4886,7 @@
     SUBDIR += py-jsonref
     SUBDIR += py-jsonrpclib-pelix
     SUBDIR += py-jsonschema
+    SUBDIR += py-jsonschema-path
     SUBDIR += py-jsonschema-spec
     SUBDIR += py-jsonschema-specifications
     SUBDIR += py-jsonschema3
@@ -6700,6 +6701,7 @@
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
+    SUBDIR += rubygem-cucumber-tag-expressions5
     SUBDIR += rubygem-cucumber-wire
     SUBDIR += rubygem-curses
     SUBDIR += rubygem-cyoi
@@ -7112,6 +7114,12 @@
     SUBDIR += rubygem-open3
     SUBDIR += rubygem-open3_backport
     SUBDIR += rubygem-open4
+    SUBDIR += rubygem-opentelemetry-api
+    SUBDIR += rubygem-opentelemetry-common
+    SUBDIR += rubygem-opentelemetry-instrumentation-base
+    SUBDIR += rubygem-opentelemetry-registry
+    SUBDIR += rubygem-opentelemetry-sdk
+    SUBDIR += rubygem-opentelemetry-semantic_conventions
     SUBDIR += rubygem-opentracing
     SUBDIR += rubygem-opt_parse_validator
     SUBDIR += rubygem-optimist
