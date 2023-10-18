@@ -112,7 +112,7 @@ OPENLDAP_DEFAULT?=	26
 # Possible values: 5.34, 5.36, 5.38, devel
 .  if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
-PERL5_DEFAULT?=		5.34
+PERL5_DEFAULT?=		5.36
 .  elif !defined(PERL5_DEFAULT)
 # There's no need to replace development versions, like "5.23" with "devel"
 # because 1) nobody is supposed to use it outside of poudriere, and 2) it must
@@ -144,7 +144,7 @@ RUBY_DEFAULT?=		3.1
 RUST_DEFAULT?=		rust
 # Possible values: 4.13, 4.16
 SAMBA_DEFAULT?=		4.13
-# Possible values: base, openssl, libressl, libressl-devel
+# Possible values: base, openssl, openssl111, openssl31, openssl32, libressl, libressl-devel
 .  if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.
