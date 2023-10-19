@@ -1,3 +1,169 @@
+  <vuln vid="f923205f-6e66-11ee-85eb-84a93843eb75">
+    <topic>Apache httpd -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.58</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Apache httpd project reports:</p>
+	<blockquote cite="https://dlcdn.apache.org/httpd/CHANGES_2.4.58">
+	  <ul>
+	    <li>CVE-2023-45802: Apache HTTP Server: HTTP/2 stream
+	      memory not reclaimed right away on RST</li>
+	    <li>CVE-2023-43622: Apache HTTP Server: DoS in HTTP/2 with
+	      initial windows size 0</li>
+	    <li>CVE-2023-31122: mod_macro buffer over-read</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-45802</cvename>
+      <cvename>CVE-2023-43622</cvename>
+      <cvename>CVE-2023-31122</cvename>
+      <url>https://dlcdn.apache.org/httpd/CHANGES_2.4.58</url>
+    </references>
+    <dates>
+      <discovery>2023-10-19</discovery>
+      <entry>2023-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f8c2f741-6be1-11ee-b33a-a04a5edf46d9">
+    <topic>moonlight-embedded -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>moonlight-embedded</name>
+	<range><lt>2.6.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The moonlight-embedded project reports:</p>
+	<blockquote cite="https://github.com/moonlight-stream/moonlight-embedded/releases/tag/v2.6.1">
+	  <p>Moonlight Embedded v2.6.1 fixed CVE-2023-42799, CVE-2023-42800,
+	    and CVE-2023-42801.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2022-42799</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-42799</url>
+      <cvename>CVE-2022-42800</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-42800</url>
+      <cvename>CVE-2022-42801</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2022-42801</url>
+    </references>
+    <dates>
+      <discovery>2022-01-11</discovery>
+      <entry>2023-10-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1ee26d45-6ddb-11ee-9898-00e081b7aa2d">
+    <topic>jenkins -- HTTP/2 denial of service vulnerability in bundled Jetty</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.428</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.414.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2023-10-18/">
+	  <h1>Description</h1>
+	  <h5>(High) SECURITY-3291 / CVE-2023-36478, CVE-2023-44487</h5>
+	  <p>HTTP/2 denial of service vulnerability in bundled Jetty</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-36478</cvename>
+      <cvename>CVE-2023-44487</cvename>
+      <url>https://www.jenkins.io/security/advisory/2023-10-18/</url>
+    </references>
+    <dates>
+      <discovery>2023-10-18</discovery>
+      <entry>2023-10-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d2ad7647-6dd9-11ee-85eb-84a93843eb75">
+    <topic>Roundcube -- XSS vulnerability in SVG</topic>
+    <affects>
+      <package>
+	<name>roundcube</name>
+	<range><lt>1.6.4,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Roundcube project reports:</p>
+	<blockquote cite="https://roundcube.net/news/2023/10/16/security-update-1.6.4-released">
+	  <p>cross-site scripting (XSS) vulnerability in handling of SVG in HTML messages</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://roundcube.net/news/2023/10/16/security-update-1.6.4-released</url>
+    </references>
+    <dates>
+      <discovery>2023-10-16</discovery>
+      <entry>2023-10-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8706e097-6db7-11ee-8744-080027f5fec9">
+    <topic>redis -- Possible bypassing Unix socket permissions</topic>
+    <affects>
+      <package>
+	<name>redis</name>
+	<range><lt>7.2.2</lt></range>
+      </package>
+      <package>
+	<name>redis-devel</name>
+	<range><lt>7.2.2.20231018</lt></range>
+      </package>
+      <package>
+	<name>redis70</name>
+	<range><lt>7.0.14</lt></range>
+      </package>
+      <package>
+	<name>redis62</name>
+	<range><lt>6.2.14</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Redis core team  reports:</p>
+	<blockquote cite="https://groups.google.com/g/redis-db/c/r81pHa-dcI8">
+	  <p>
+	    The wrong order of listen(2) and chmod(2) calls creates a
+	    race condition that can be used by another process to
+	    bypass desired Unix socket permissions on startup.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-45145</cvename>
+      <url>https://groups.google.com/g/redis-db/c/r81pHa-dcI8</url>
+    </references>
+    <dates>
+      <discovery>2023-10-18</discovery>
+      <entry>2023-10-18</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="ae0ee356-6ae1-11ee-bfb6-8c164567ca3c">
     <topic>libcue -- out-of-bounds array access</topic>
     <affects>
