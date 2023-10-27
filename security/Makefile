@@ -66,6 +66,7 @@
     SUBDIR += ca_root_nss
     SUBDIR += caesarcipher
     SUBDIR += caldera
+    SUBDIR += caldera-ot
     SUBDIR += calife
     SUBDIR += cardpeek
     SUBDIR += cargo-audit
@@ -193,6 +194,7 @@
     SUBDIR += gonepass
     SUBDIR += gopass
     SUBDIR += gorilla
+    SUBDIR += gosec
     SUBDIR += gost-engine
     SUBDIR += gostsum
     SUBDIR += gpa
@@ -1091,6 +1093,7 @@
     SUBDIR += rubygem-devise-two-factor-rails61
     SUBDIR += rubygem-devise-two-factor-rails70
     SUBDIR += rubygem-devise-two-factor40-rails70
+    SUBDIR += rubygem-devise-two-factor41-rails70
     SUBDIR += rubygem-devise_pam_authenticatable2
     SUBDIR += rubygem-devise_pam_authenticatable2-rails61
     SUBDIR += rubygem-digest
@@ -1323,6 +1326,7 @@
     SUBDIR += trezord
     SUBDIR += tripwire
     SUBDIR += trousers
+    SUBDIR += trufflehog
     SUBDIR += tthsum
     SUBDIR += u2f-devd
     SUBDIR += uacme

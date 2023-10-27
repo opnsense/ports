@@ -120,6 +120,7 @@
     SUBDIR += kbibtex
     SUBDIR += kdb
     SUBDIR += kexi
+    SUBDIR += keydb
     SUBDIR += kyotocabinet
     SUBDIR += kyototycoon
     SUBDIR += ldb15
@@ -647,6 +648,7 @@
     SUBDIR += postgis31
     SUBDIR += postgis32
     SUBDIR += postgis33
+    SUBDIR += postgis34
     SUBDIR += postgresql-cstore_fdw
     SUBDIR += postgresql-idn
     SUBDIR += postgresql-jdbc
@@ -755,6 +757,10 @@
     SUBDIR += py-couchdb
     SUBDIR += py-databases
     SUBDIR += py-dbf
+    SUBDIR += py-dbt-core
+    SUBDIR += py-dbt-duckdb
+    SUBDIR += py-dbt-semantic-interfaces
+    SUBDIR += py-dbt-snowflake
     SUBDIR += py-dbutils
     SUBDIR += py-duckdb
     SUBDIR += py-fakeredis
@@ -823,7 +829,10 @@
     SUBDIR += py-redis3
     SUBDIR += py-redis4
     SUBDIR += py-rrdtool
+    SUBDIR += py-schemachange
     SUBDIR += py-sispy
+    SUBDIR += py-snowddl
+    SUBDIR += py-snowflake-connector-python
     SUBDIR += py-south
     SUBDIR += py-sqlalchemy-json
     SUBDIR += py-sqlalchemy-migrate
