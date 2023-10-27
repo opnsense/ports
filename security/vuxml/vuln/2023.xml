@@ -1,21 +1,225 @@
-  <vuln vid="e14b9870-62a4-11ee-897b-000bab9f87f1">
-    <topic>Request Tracker -- multiple vulnerabilities</topic>
+  <vuln vid="9e2fdfc7-e237-4393-9fa5-2d50908c66b3">
+    <topic>xorg-server -- Multiple vulnerabilities</topic>
     <affects>
       <package>
-        <name>rt44</name>
-        <range><lt>4.4.6</lt></range>
+	<name>xorg-server</name>
+	<name>xephyr</name>
+	<name>xorg-vfbserver</name>
+	<range><lt>21.1.9,1</lt></range>
       </package>
       <package>
-        <name>rt50</name>
-        <range><lt>5.0.4</lt></range>
+	<name>xorg-nestserver</name>
+	<range><lt>21.1.9,2</lt></range>
+      </package>
+      <package>
+	<name>xwayland</name>
+	<range><lt>23.2.2,1</lt></range>
+      </package>
+      <package>
+	<name>xwayland-devel</name>
+	<range><lt>21.0.99.1.542</lt></range>
       </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
-        <p>Request Tracker reports:</p>
-        <p>CVE-2023-41259 SECURITY: RT is vulnerable to unvalidated email headers in incoming email and the mail-gateway REST interface.</p>
-        <p>CVE-2023-41260 SECURITY: RT is vulnerable to information leakage via response messages returned from requests sent via the mail-gateway REST interface.</p>
-        <p>CVE-2023-45024 SECURITY: RT 5.0 is vulnerable to information leakage via transaction searches made by authenticated users in the transaction query builder.</p>
+	<p>The X.Org project reports:</p>
+	<blockquote cite="https://lists.x.org/archives/xorg-announce/2023-October/003430.html">
+	  <ul>
+	    <li>ZDI-CAN-22153/CVE-2023-5367: X.Org server: OOB write
+	    in XIChangeDeviceProperty/RRChangeOutputProperty
+
+	    <p>When prepending values to an existing property an
+	    invalid offset calculation causes the existing values to
+	    be appended at the wrong offset. The resulting memcpy()
+	    would write into memory outside the heap-allocated
+	    array.</p></li>
+
+	    <li>ZDI-CAN-21608/CVE-2023-5380: Use-after-free bug in
+	    DestroyWindow
+
+	    <p>This vulnerability requires a legacy multi-screen setup
+	    with multiple protocol screens ("Zaphod"). If the pointer
+	    is warped from one screen to the root window of the other
+	    screen, the enter/leave code may retain a reference to the
+	    previous pointer window. Destroying this window leaves
+	    that reference in place, other windows may then trigger a
+	    use-after-free bug when they are destroyed. </p></li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://lists.x.org/archives/xorg-announce/2023-October/003430.html</url>
+      <cvename>CVE-2023-5367</cvename>
+      <cvename>CVE-2023-5380</cvename>
+    </references>
+    <dates>
+      <discovery>2023-10-25</discovery>
+      <entry>2023-10-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a8fb8e3a-730d-11ee-ab61-b42e991fc52e">
+    <topic>squid -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>squid</name>
+	<range><lt>6.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The squid-cache project reports:</p>
+	<blockquote cite="https://github.com/squid-cache/squid/security/advisories?page=1">
+	  <ul>
+	    <li>Denial of Service in FTP</li>
+	    <li>Request/Response smuggling in HTTP/1.1 and ICAP</li>
+	    <li>Denial of Service in HTTP Digest Authentication</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/squid-cache/squid/security/advisories/GHSA-2g3c-pg7q-g59w</url>
+      <url>https://github.com/squid-cache/squid/security/advisories/GHSA-j83v-w3p4-5cqh</url>
+      <url>https://github.com/squid-cache/squid/security/advisories/GHSA-phqj-m8gv-cq4g</url>
+    </references>
+    <dates>
+      <discovery>2023-10-21</discovery>
+      <entry>2023-10-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4a4712ae-7299-11ee-85eb-84a93843eb75">
+    <topic>OpenSSL -- potential loss of confidentiality</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>3.0.12,1</lt></range>
+      </package>
+      <package>
+	<name>openssl31</name>
+	<range><lt>3.1.4</lt></range>
+      </package>
+      <package>
+	<name>openssl-quictls</name>
+	<range><lt>3.0.12</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>SO-AND-SO reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20231024.txt">
+	  <p>Moderate severity: A bug has been identified in the processing
+	    of key and initialisation vector (IV) lengths. This can lead to
+	    potential truncation or overruns during the initialisation of
+	    some symmetric ciphers.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-5363</cvename>
+      <url>https://www.openssl.org/news/secadv/20231024.txt</url>
+    </references>
+    <dates>
+      <discovery>2023-10-24</discovery>
+      <entry>2023-10-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="22df5074-71cd-11ee-85eb-84a93843eb75">
+    <topic>MySQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mysql57-server</name>
+	<range><lt>5.7.44</lt></range>
+      </package>
+      <package>
+	<name>mysql-connector-c++</name>
+	<range><lt>8.0.35</lt></range>
+      </package>
+      <package>
+	<name>mysql-connector-j</name>
+	<range><lt>8.1.1</lt></range>
+      </package>
+      <package>
+	<name>mysql-connector-odbc</name>
+	<range><lt>8.1.1</lt></range>
+      </package>
+      <package>
+	<name>mysql80-server</name>
+	<range><lt>8.0.35</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oracle reports:</p>
+	<blockquote cite="https://www.oracle.com/security-alerts/cpuoct2023.html#AppendixMSQL">
+	  <p>This Critical Patch Update contains 37 new security patches, plus
+	    additional third party patches noted below, for Oracle MySQL. 9 of
+	    these vulnerabilities may be remotely exploitable without
+	    authentication, i.e., may be exploited over a network without
+	    requiring user credentials.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2022-42898</cvename>
+      <cvename>CVE-2023-2650</cvename>
+      <cvename>CVE-2023-3817</cvename>
+      <cvename>CVE-2023-22015</cvename>
+      <cvename>CVE-2023-22026</cvename>
+      <cvename>CVE-2023-22028</cvename>
+      <cvename>CVE-2023-22032</cvename>
+      <cvename>CVE-2023-22059</cvename>
+      <cvename>CVE-2023-22064</cvename>
+      <cvename>CVE-2023-22065</cvename>
+      <cvename>CVE-2023-22066</cvename>
+      <cvename>CVE-2023-22068</cvename>
+      <cvename>CVE-2023-22070</cvename>
+      <cvename>CVE-2023-22078</cvename>
+      <cvename>CVE-2023-22079</cvename>
+      <cvename>CVE-2023-22084</cvename>
+      <cvename>CVE-2023-22092</cvename>
+      <cvename>CVE-2023-22094</cvename>
+      <cvename>CVE-2023-22095</cvename>
+      <cvename>CVE-2023-22097</cvename>
+      <cvename>CVE-2023-22102</cvename>
+      <cvename>CVE-2023-22103</cvename>
+      <cvename>CVE-2023-22104</cvename>
+      <cvename>CVE-2023-22110</cvename>
+      <cvename>CVE-2023-22111</cvename>
+      <cvename>CVE-2023-22112</cvename>
+      <cvename>CVE-2023-22113</cvename>
+      <cvename>CVE-2023-22114</cvename>
+      <cvename>CVE-2023-22115</cvename>
+      <cvename>CVE-2023-38545</cvename>
+      <url>https://www.oracle.com/security-alerts/cpuoct2023.html#AppendixMSQL</url>
+    </references>
+    <dates>
+      <discovery>2023-10-17</discovery>
+      <entry>2023-10-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e14b9870-62a4-11ee-897b-000bab9f87f1">
+    <topic>Request Tracker -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>rt44</name>
+	<range><lt>4.4.6</lt></range>
+      </package>
+      <package>
+	<name>rt50</name>
+	<range><lt>5.0.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Request Tracker reports:</p>
+	<p>CVE-2023-41259 SECURITY: RT is vulnerable to unvalidated email headers in incoming email and the mail-gateway REST interface.</p>
+	<p>CVE-2023-41260 SECURITY: RT is vulnerable to information leakage via response messages returned from requests sent via the mail-gateway REST interface.</p>
+	<p>CVE-2023-45024 SECURITY: RT 5.0 is vulnerable to information leakage via transaction searches made by authenticated users in the transaction query builder.</p>
       </body>
     </description>
     <references>
