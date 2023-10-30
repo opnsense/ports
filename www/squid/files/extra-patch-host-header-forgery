@@ -1,6 +1,6 @@
---- src/client_side_request.cc.orig	2022-09-05 04:06:48 UTC
+--- src/client_side_request.cc.orig	2023-10-20 22:40:41 UTC
 +++ src/client_side_request.cc
-@@ -535,6 +535,13 @@ ClientRequestContext::hostHeaderIpVerify(const ipcache
+@@ -487,6 +487,13 @@ ClientRequestContext::hostHeaderIpVerify(const ipcache
          http->doCallouts();
          return;
      }
@@ -11,6 +11,6 @@
 +        http->doCallouts();
 +        return;
 +    }
-     debugs(85, 3, HERE << "FAIL: validate IP " << clientConn->local << " possible from Host:");
+     debugs(85, 3, "FAIL: validate IP " << clientConn->local << " possible from Host:");
      hostHeaderVerifyFailed("local IP", "any domain IP");
  }
