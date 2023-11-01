@@ -5,6 +5,33 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20231031:
+  AFFECTS: users of devel/subversion-lts
+  AUTHOR: michaelo@FreeBSD.org
+
+  devel/subversion-lts has been updated from 1.10.x to the latest LTS version,
+  1.14.x. Some changes between these releases may require attention from
+  administrators or users.
+  Refer to https://subversion.apache.org/docs/release-notes/1.14.html#compat-misc for details.
+
+20231028:
+  AFFECTS: users of net-mgmt/nfdump
+
+  nfdump-1.7.x is compatible to nfdump-1.6.18, which means it can
+  read files created with nfdump-1.6.18 or newer. Flow files created
+  with earlier nfdump versions may not contain all flow elements.
+  If you have older files, it is recommended to use nfdump-1.6.17
+  to update the records.
+
+  nfdump 1.7.x provides the same set of programs as 1.6.x and can
+  be used almost as a drop-in replacement. This may change in future
+  and older legacy programs may be removed. You can convert any old
+  files from nfdump-1.6 to nfdump-1.7 format by reading/writing
+  files: ./nfdump -r old-flowfile -y -w new-flowfile
+
+  Please note, that only nfdump may read older flow files. All other
+  programs relay on the new file format.
+
 20231027:
   AFFECTS: users of net-mgmt/librenms
   AUTHOR: dvl@FreeBSD.org
@@ -59,6 +86,23 @@ you update your ports collection, before attempting any port upgrades.
   binary packages to upgrade your system, you do not have anything to do, pkg
   upgrade will do the right thing.  For the other people, follow the
   instructions in entry 20181213, it should still be the same.
+
+20231014:
+  AFFECTS: users of security/openssl and security/openssl30
+  AUTHOR: brnrd@FreeBSD.org
+
+  The openssl port was renamed to openssl111 and subsequently the
+  openssl30 port was renamed to openssl.
+
+  The shared library version of OpenSSL has been bumped.
+
+  Users of DEFAULT_VERSIONS= ssl=openssl30 must update this to
+  ssl=openssl.
+  Users of DEFAULT_VERSIONS= ssl=openssl should not change this unless
+  they use ports that require the deprecated OpenSSL 1.1.1 version.
+
+  You must rebuild all ports that depend on OpenSSL if you use OpenSSL
+  from ports.
 
 20231011:
   AFFECTS: users of www/caddy
