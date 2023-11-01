@@ -559,7 +559,7 @@
     SUBDIR += p5-CDDB-File
     SUBDIR += p5-CDDB_get
     SUBDIR += p5-Filesys-Virtual-DAAP
-    SUBDIR += p5-MIDI
+    SUBDIR += p5-MIDI-Perl
     SUBDIR += p5-MP3-Find
     SUBDIR += p5-MP3-ID3v1Tag
     SUBDIR += p5-MP3-Info
@@ -579,6 +579,7 @@
     SUBDIR += p5-Test-Corpus-Audio-MPD
     SUBDIR += p5-libvorbis
     SUBDIR += p5-tagged
+    SUBDIR += pa-applet
     SUBDIR += pacpl
     SUBDIR += padthv1-lv2
     SUBDIR += paman

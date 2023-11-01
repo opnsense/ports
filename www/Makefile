@@ -134,6 +134,7 @@
     SUBDIR += ddgr
     SUBDIR += deno
     SUBDIR += devd
+    SUBDIR += dezoomify-rs
     SUBDIR += dfileserver
     SUBDIR += dillo2
     SUBDIR += dojo
@@ -245,6 +246,7 @@
     SUBDIR += hedgedoc
     SUBDIR += hiawatha
     SUBDIR += hiawatha-monitor
+    SUBDIR += homer-web
     SUBDIR += hotcrp
     SUBDIR += hs-DAV
     SUBDIR += hs-gitit
@@ -480,6 +482,7 @@
     SUBDIR += node16
     SUBDIR += node18
     SUBDIR += node20
+    SUBDIR += node21
     SUBDIR += nostromo
     SUBDIR += novnc
     SUBDIR += novnc-websockify
@@ -491,6 +494,7 @@
     SUBDIR += npm-node20
     SUBDIR += oauth2-proxy
     SUBDIR += obhttpd
+    SUBDIR += offpunk
     SUBDIR += oneshot
     SUBDIR += onionbalance
     SUBDIR += onionshare
@@ -1955,6 +1959,7 @@
     SUBDIR += rubygem-browser
     SUBDIR += rubygem-cal-heatmap-rails
     SUBDIR += rubygem-carrierwave
+    SUBDIR += rubygem-carrierwave1
     SUBDIR += rubygem-cgi
     SUBDIR += rubygem-cgi_multipart_eof_fix
     SUBDIR += rubygem-chosen-rails
