@@ -8,6 +8,8 @@ WWW=		https://opnsense.org/
 
 LICENSE=	BSD3CLAUSE
 
+CONFLICTS_INSTALL=	isc-dhcp44-relay
+
 MAKE_ENV=	BINDIR=${PREFIX}/sbin MANDIR=${PREFIX}/man/man
 
 USE_GITHUB=	yes
