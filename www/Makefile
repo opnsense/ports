@@ -243,7 +243,6 @@
     SUBDIR += h2o
     SUBDIR += h2o-devel
     SUBDIR += habari
-    SUBDIR += hedgedoc
     SUBDIR += hiawatha
     SUBDIR += hiawatha-monitor
     SUBDIR += homer-web
@@ -2315,7 +2314,6 @@
     SUBDIR += serf
     SUBDIR += servlet-api
     SUBDIR += sfeed
-    SUBDIR += sfnt2woff
     SUBDIR += shellinabox
     SUBDIR += shiori
     SUBDIR += silicon

@@ -606,7 +606,6 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron22
     SUBDIR += electron24
     SUBDIR += electron25
     SUBDIR += electron26
@@ -7863,7 +7862,6 @@
     SUBDIR += xtensa-esp32-elf
     SUBDIR += xtl
     SUBDIR += xtl-quant-stack
-    SUBDIR += xtoolchain-llvm-devel
     SUBDIR += xwpe
     SUBDIR += xxgdb
     SUBDIR += xxhash
