@@ -903,6 +903,7 @@
     SUBDIR += rubygem-activemodel60
     SUBDIR += rubygem-activemodel61
     SUBDIR += rubygem-activemodel70
+    SUBDIR += rubygem-activemodel71
     SUBDIR += rubygem-activerecord-explain-analyze
     SUBDIR += rubygem-activerecord-import
     SUBDIR += rubygem-activerecord-jdbc-adapter
@@ -916,6 +917,7 @@
     SUBDIR += rubygem-activerecord60
     SUBDIR += rubygem-activerecord61
     SUBDIR += rubygem-activerecord70
+    SUBDIR += rubygem-activerecord71
     SUBDIR += rubygem-after_commit_queue
     SUBDIR += rubygem-amalgalite
     SUBDIR += rubygem-arel
@@ -972,6 +974,7 @@
     SUBDIR += rubygem-globalid-rails60
     SUBDIR += rubygem-globalid-rails61
     SUBDIR += rubygem-globalid-rails70
+    SUBDIR += rubygem-globalid-rails71
     SUBDIR += rubygem-her
     SUBDIR += rubygem-hiredis
     SUBDIR += rubygem-influxdb
