@@ -1,0 +1,4 @@
+man/man8/dhcrelay.8.gz
+man/man8/dhcrelay6.8.gz
+sbin/dhcrelay
+sbin/dhcrelay6

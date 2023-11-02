@@ -1,0 +1,7 @@
+This is the FreeBSD port of the OpenBSD dhcrelay daemons.
+
+The Dynamic Host Configuration Protocol (DHCP) is a standardized
+network protocol used on Internet Protocol (IP) networks for dynamically
+distributing network configuration parameters, such as IP addresses for
+interfaces and services.  The relay allows to forward DHCP requests to
+remote DHCP servers which are not found in the same broadcast domain.
