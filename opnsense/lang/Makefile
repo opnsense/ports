@@ -5,7 +5,7 @@ PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	OPNsense translations
-WWW=		https://translate.opnsense.org/
+WWW=		https://github.com/opnsense/lang
 
 LICENSE=	BSD2CLAUSE
 

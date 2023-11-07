@@ -5,7 +5,7 @@ PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	OPNsense installer scripts
-WWW=		https://opnsense.org/
+WWW=		https://github.com/opnsense/installer
 
 LICENSE=	BSD2CLAUSE
 
