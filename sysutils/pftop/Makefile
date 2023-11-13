@@ -8,10 +8,13 @@ WWW=		https://github.com/grembo/pftop/
 
 LICENSE=	BSD2CLAUSE
 
+LIB_DEPENDS=	libpfctl.so:net/libpfctl
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	grembo
 
-LDFLAGS+=	-lnv
+CFLAGS+=	-I${LOCALBASE}/include
+LDFLAGS+=	-L${LOCALBASE}/lib -lpfctl
 
 OPTIONS_DEFINE=	ALTQ
 
@@ -19,16 +22,24 @@ ALTQ_DESC=	ALTQ support for queue statistics
 
 .include <bsd.port.options.mk>
 
-CFLAGS+=	-DHAVE_SNPRINTF=1 -DHAVE_VSNPRINTF=1 -I${SRC_BASE}/lib/libpfctl
+MAKE_ARGS=	LOCALBASE="${PREFIX}"
+
+CFLAGS+=	-DHAVE_SNPRINTF=1 -DHAVE_VSNPRINTF=1
 
 .if ${PORT_OPTIONS:MALTQ}
 CFLAGS+=	-DHAVE_ALTQ=1
 .endif
 
-MAKE_ARGS+=	SRC_BASE=${SRC_BASE}
+MAKE_ARGS+=	CSTD=gnu89
 MAKE_ENV+=	__MAKE_CONF=/dev/null
 
 PLIST_FILES=	man/man8/pftop.8.gz \
 		sbin/pftop
+
+do-install:
+	${INSTALL_PROGRAM} ${WRKSRC}/pftop \
+		${STAGEDIR}${PREFIX}/sbin
+	${INSTALL_MAN} ${WRKSRC}/pftop.8 \
+		${STAGEDIR}${MANPREFIX}/man/man8
 
 .include <bsd.port.mk>
