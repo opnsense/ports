@@ -1,5 +1,5 @@
 PORTNAME=	pftop
-PORTVERSION=	0.9
+PORTVERSION=	0.10
 CATEGORIES=	sysutils net
 
 MAINTAINER=	grembo@FreeBSD.org
@@ -10,12 +10,9 @@ LICENSE=	BSD2CLAUSE
 
 LIB_DEPENDS=	libpfctl.so:net/libpfctl
 
+USES=		localbase
 USE_GITHUB=	yes
 GH_ACCOUNT=	grembo
-GH_TAGNAME=	4f965c5
-
-CFLAGS+=	-I${LOCALBASE}/include
-LDFLAGS+=	-L${LOCALBASE}/lib -lpfctl
 
 OPTIONS_DEFINE=	ALTQ
 
@@ -25,14 +22,7 @@ ALTQ_DESC=	ALTQ support for queue statistics
 
 MAKE_ARGS=	LOCALBASE="${PREFIX}"
 
-CFLAGS+=	-DHAVE_SNPRINTF=1 -DHAVE_VSNPRINTF=1 \
-		-DHAVE_FINE_GRAINED_LOCKING=1
-
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400090
-MAKE_ARGS+=	OSLEVEL=46
-.else
-MAKE_ARGS+=	OSLEVEL=45
-.endif
+CFLAGS+=	-DHAVE_SNPRINTF=1 -DHAVE_VSNPRINTF=1
 
 .if ${PORT_OPTIONS:MALTQ}
 CFLAGS+=	-DHAVE_ALTQ=1
@@ -43,11 +33,5 @@ MAKE_ENV+=	__MAKE_CONF=/dev/null
 
 PLIST_FILES=	man/man8/pftop.8.gz \
 		sbin/pftop
-
-do-install:
-	${INSTALL_PROGRAM} ${WRKSRC}/pftop \
-		${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/pftop.8 \
-		${STAGEDIR}${MANPREFIX}/man/man8
 
 .include <bsd.port.mk>
