@@ -1,36 +1,36 @@
---- ddclient.in.orig	2022-05-16 00:12:34 UTC
+--- ddclient.in.orig	2023-10-25 19:22:47 UTC
 +++ ddclient.in
-@@ -29,6 +29,7 @@ use Getopt::Long;
- use IO::Socket::INET;
- use Socket qw(AF_INET AF_INET6 PF_INET PF_INET6);
+@@ -20,6 +20,7 @@ use File::Path qw(make_path);
+ use File::Temp;
+ use Getopt::Long;
  use Sys::Hostname;
 +use POSIX 'setsid';
  
- use version 0.77; our $VERSION = version->declare('v3.10.0_2');
- (my $version = $VERSION->stringify()) =~ s/^v//;
-@@ -48,9 +49,9 @@ sub subst_var {
+ use version 0.77; our $VERSION = version->declare('3.11.1');
+ my $version = $VERSION->stringify();
+@@ -39,9 +40,9 @@ sub subst_var {
      return $subst;
  }
  
 -my $etc = subst_var('@sysconfdir@', '/etc/ddclient');
 -my $cachedir = subst_var('@localstatedir@', '/var') . '/cache/ddclient';
 -my $savedir = '/tmp';
-+my $etc = subst_var('@sysconfdir@', '%%ETCDIR%%');
++my $etc = subst_var('@sysconfdir@', '/usr/local/etc');
 +my $cachedir = subst_var('@localstatedir@', '/var') . '/tmp';
 +my $savedir = '/var/tmp';
  if ($program =~ /test/i) {
      $etc = '.';
      $cachedir = '.';
-@@ -68,7 +69,7 @@ use vars qw($file $lineno);
+@@ -59,7 +60,7 @@ use vars qw($file $lineno);
  local $file   = '';
  local $lineno = '';
  
 -$ENV{'PATH'} = (exists($ENV{PATH}) ? "$ENV{PATH}:" : "") . "/sbin:/usr/sbin:/bin:/usr/bin:/etc:/usr/lib:";
-+$ENV{'PATH'} = (exists($ENV{PATH}) ? "$ENV{PATH}:" : "") . "/sbin:/usr/sbin:/bin:";
++$ENV{'PATH'} = (exists($ENV{PATH}) ? "$ENV{PATH}:" : "") . "/sbin:/usr/local/sbin:/bin:";
  
  our %globals;
  my ($result, %config, %cache);
-@@ -1022,6 +1023,9 @@ sub main {
+@@ -1131,6 +1132,9 @@ sub main {
          ;
      } elsif (opt('daemon')) {
          $SIG{'CHLD'} = 'IGNORE';
@@ -40,7 +40,7 @@
          my $pid = fork;
          if ($pid < 0) {
              print STDERR "${program}: can not fork ($!)\n";
-@@ -1029,10 +1033,9 @@ sub main {
+@@ -1138,10 +1142,9 @@ sub main {
          } elsif ($pid) {
              exit 0;
          }
@@ -53,7 +53,7 @@
          write_pid();
      }
  
-@@ -2011,17 +2014,17 @@ sub pipecmd {
+@@ -2164,17 +2167,17 @@ sub pipecmd {
      ## execute the command.
      local *FD;
      if (!open(FD, $cmd)) {
@@ -75,11 +75,3 @@
  
      } else {
          $ok = 1;
-@@ -2461,6 +2464,7 @@ sub fetch_via_socket_io {
-         PeerPort => $port,
-         Proto => 'tcp',
-         MultiHomed => 1,
-+        SSL_ca_file => '%%LOCALBASE%%/share/certs/ca-root-nss.crt',
-         Timeout => opt('timeout'),
-     );
-     my $socket_class = 'IO::Socket::INET';

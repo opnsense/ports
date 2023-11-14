@@ -1,21 +1,11 @@
 PORTNAME=	ddclient
-PORTVERSION=	3.10.0
+PORTVERSION=	3.11.1
 DISTVERSIONPREFIX=	v
-PORTREVISION=	7
 CATEGORIES=	dns
 PKGNAMESUFFIX=	-devel
 
-PATCH_SITES=	https://github.com/ddclient/ddclient/commit/
-PATCHFILES=	fa6c95f.patch:-p1 \
-		cca4291.patch:-p1 \
-		11a5bd5.patch:-p1 \
-		5596ee8.patch:-p1 \
-		1c91a5a.patch:-p1 \
-		d35d62f.patch:-p1 \
-		d35d62f.patch:-p1 \
-		f01110a.patch:-p1 \
-		1a6e443.patch:-p1 \
-		8d3a383.patch:-p1
+#PATCH_SITES=	https://github.com/ddclient/ddclient/commit/
+#PATCHFILES=	xxxxxxx.patch:-p1
 
 MAINTAINER=	franco@opnsense.org
 COMMENT=	Update dynamic DNS entries
@@ -24,7 +14,9 @@ WWW=		https://github.com/ddclient/ddclient
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-RUN_DEPENDS=	p5-Data-Validate-IP>0:net-mgmt/p5-Data-Validate-IP
+BUILD_DEPENDS=	curl:ftp/curl
+RUN_DEPENDS=	p5-Data-Validate-IP>0:net-mgmt/p5-Data-Validate-IP \
+		curl:ftp/curl
 
 USES=		autoreconf gmake perl5 tar:bzip2
 GNU_CONFIGURE=	yes
@@ -35,17 +27,13 @@ USE_RC_SUBR=	${PORTNAME}
 NO_ARCH=	yes
 SUB_FILES=	pkg-message ddclient_force
 
-PORTDOCS=	COPYRIGHT ChangeLog README.cisco README.ssl README.md \
+PORTDOCS=	COPYRIGHT ChangeLog README.cisco README.md \
 		sample-etc_cron.d_ddclient sample-etc_dhclient-exit-hooks \
 		sample-etc_dhcpc_dhcpcd-eth0.exe sample-etc_ppp_ip-up.local
 
 CONFLICTS_INSTALL=	ddclient
 
-OPTIONS_DEFINE=	SSL DOCS
-OPTIONS_DEFAULT=SSL
-
-SSL_RUN_DEPENDS=ca_root_nss>0:security/ca_root_nss \
-		p5-IO-Socket-SSL>0:security/p5-IO-Socket-SSL
+OPTIONS_DEFINE=	DOCS
 
 post-patch:
 	@${GREP} -lR '/usr' ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} -e \
