@@ -197,7 +197,8 @@ printsbuf:
 	return;
 }
 
-static void free_rulelabels()
+static void
+free_rulelabels(void)
 {
 	int i;
 
@@ -219,7 +220,8 @@ static void free_rulelabels()
 	rulelabels = NULL;
 }
 
-static int realloc_rulelabels(int nr)
+static int
+realloc_rulelabels(int nr)
 {
 	void *new = NULL;
 
@@ -247,7 +249,8 @@ static int realloc_rulelabels(int nr)
 	return (0);
 }
 
-static int get_rulelabels()
+static int
+get_rulelabels(void)
 {
 	struct pfioc_rule pr;
 	u_int32_t nr, i;
