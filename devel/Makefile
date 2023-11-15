@@ -5243,6 +5243,7 @@
     SUBDIR += py-pycapsicum
     SUBDIR += py-pycerberus
     SUBDIR += py-pycmd
+    SUBDIR += py-pycnite
     SUBDIR += py-pycocotools
     SUBDIR += py-pycodeexport
     SUBDIR += py-pycodestyle
@@ -6278,6 +6279,7 @@
     SUBDIR += rubygem-aws-sdk-lakeformation
     SUBDIR += rubygem-aws-sdk-lambda
     SUBDIR += rubygem-aws-sdk-lambdapreview
+    SUBDIR += rubygem-aws-sdk-launchwizard
     SUBDIR += rubygem-aws-sdk-lex
     SUBDIR += rubygem-aws-sdk-lexmodelbuildingservice
     SUBDIR += rubygem-aws-sdk-lexmodelsv2
@@ -6688,6 +6690,7 @@
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-cucumber-expressions
     SUBDIR += rubygem-cucumber-messages
+    SUBDIR += rubygem-cucumber-messages22
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-tag-expressions5
@@ -6766,6 +6769,7 @@
     SUBDIR += rubygem-etc
     SUBDIR += rubygem-event_emitter
     SUBDIR += rubygem-event_stream_parser
+    SUBDIR += rubygem-event_stream_parser0
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-excon
     SUBDIR += rubygem-execjs
@@ -6916,6 +6920,7 @@
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grape-swagger-entity
+    SUBDIR += rubygem-grape1
     SUBDIR += rubygem-grape17
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-graphiql-rails
@@ -7277,6 +7282,8 @@
     SUBDIR += rubygem-ruby-fogbugz
     SUBDIR += rubygem-ruby-libvirt
     SUBDIR += rubygem-ruby-lsp
+    SUBDIR += rubygem-ruby-lsp-rails
+    SUBDIR += rubygem-ruby-lsp-rspec
     SUBDIR += rubygem-ruby-macho
     SUBDIR += rubygem-ruby-magic
     SUBDIR += rubygem-ruby-ole
@@ -7777,6 +7784,7 @@
     SUBDIR += upslug
     SUBDIR += urjtag
     SUBDIR += utf8cpp
+    SUBDIR += utf8cpp3
     SUBDIR += uthash
     SUBDIR += util-linux
     SUBDIR += valgrind
