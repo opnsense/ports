@@ -1,5 +1,6 @@
 PORTNAME=	nut
-PORTVERSION=	2.8.1
+PORTVERSION=	2.8.0
+PORTREVISION=	24
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 
@@ -68,15 +69,9 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--with-pidpath=${STATEDIR} \
 		--with-pkgconfig-dir=${PREFIX}/libdata/pkgconfig \
 		--with-user=${NUT_USER} \
-		--with-group=${NUT_GROUP} \
-		--with-python=${PYTHON_CMD} \
-		--without-python2 \
-		--with-python3=${PYTHON_CMD} \
-		--without-nut_monitor \
-		--with-ltdl --with-nut-scanner
+		--with-group=${NUT_GROUP}
 
-CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -pthread
-CPPFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
+CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 LIB_DEPENDS+=	libltdl.so:devel/libltdl
 
 MANPAGES_CONFIGURE_ON=	--with-doc=man=auto
@@ -148,7 +143,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/cables/*.txt ${STAGEDIR}${DOCSDIR}/cables
 	${INSTALL_DATA} ${WRKSRC}/docs/*.txt ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/FAQ.txt ${STAGEDIR}${DOCSDIR}
-.for file in AUTHORS COPYING ChangeLog INSTALL MAINTAINERS NEWS README
+.for file in AUTHORS COPYING ChangeLog INSTALL MAINTAINERS NEWS README UPGRADING
 	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
 .endfor
 .endif
@@ -157,5 +152,7 @@ post-install:
 	${INSTALL_DATA} ${PATCHDIR}/nut.newsyslog ${STAGEDIR}${EXAMPLESDIR}/newsyslog.sample
 	${INSTALL_DATA} ${PATCHDIR}/nut_upslog.sample ${STAGEDIR}${EXAMPLESDIR}/nut_upslog.sample
 	${MKDIR} ${STAGEDIR}/var/log/nut
+	@${RM} ${STAGEDIR}${PREFIX}/etc/nut/solaris-init/nut
+	@${RMDIR} ${STAGEDIR}${PREFIX}/etc/nut/solaris-init
 
 .include <bsd.port.post.mk>
