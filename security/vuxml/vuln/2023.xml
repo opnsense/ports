@@ -1,3 +1,90 @@
+  <vuln vid="2fe004f5-83fd-11ee-9f5d-31909fb2f495">
+    <topic>openvpn -- 2.6.0...2.6.6 --fragment option division by zero crash, and TLS data leak</topic>
+    <affects>
+      <package>
+	<name>openvpn</name>
+	<range><ge>2.6.0</ge><lt>2.6.7_1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenVPN community project team reports:</p>
+	<blockquote cite="https://github.com/OpenVPN/openvpn/blob/v2.6.7/Changes.rst#overview-of-changes-in-267">
+		<p>CVE-2023-46849 OpenVPN versions between 2.6.0 and 2.6.6 incorrectly restore "--fragment" configuration in some circumstances, leading to a division by zero when "--fragment" is used. On platforms where division by zero is fatal, this will cause an OpenVPN crash.
+		<br />
+Reported by Niccolo Belli and WIPocket (Github #400, #417).
+	</p>
+	<p>CVE-2023-46850 OpenVPN versions between 2.6.0 and 2.6.6 incorrectly use a send buffer after it has been free()d in some circumstances, causing some free()d memory to be sent to the peer. All configurations using TLS (e.g. not using --secret) are affected by this issue. (found while tracking down CVE-2023-46849 / Github #400, #417)</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-46849</cvename>
+      <cvename>CVE-2023-46850</cvename>
+      <url>https://github.com/OpenVPN/openvpn/blob/v2.6.7/Changes.rst#overview-of-changes-in-267</url>
+    </references>
+    <dates>
+      <discovery>2023-08-29</discovery>
+      <entry>2023-11-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7cc003cb-83b9-11ee-957d-b42e991fc52e">
+    <topic>typo3 -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>typo3-11</name>
+	<name>typo3-12</name>
+	<range><lt>11.5.33</lt></range>
+	<range><lt>12.4.33</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/TYPO3/typo3/commit/535dfbdc54fd5362e0bc08d911db44eac7f64019">
+	<p>Weak Authentication in Session Handling in typo3/cms-core:
+	In typo3 installations there are always
+	at least two different sites.  Eg.  first.example.org and
+	second.example.com.  In affected versions a session cookie
+	generated for the first site can be reused on the second site
+	without requiring additional authentication.  This
+	vulnerability has been addressed in versions 8.7.55, 9.5.44,
+	10.4.41, 11.5.33, and 12.4.8.  Users are advised to upgrade.
+	There are no known workarounds for this vulnerability.</p>
+	<p>Information Disclosure in Install Tool in typo3/cms-install:
+	In affected versions the login screen of the standalone
+	install tool discloses the full path of the transient data
+	directory (e.g.  /var/www/html/var/transient/).  This applies
+	to composer-based scenarios only - classic non-composer
+	installations are not affected.  This issue has been addressed
+	in version 12.4.8.  Users are advised to upgrade.  There are
+	no known workarounds for this vulnerability.
+	</p>
+	<p>By-passing Cross-Site Scripting Protection in HTML Sanitizer:
+	In affected versions DOM processing instructions are not
+	handled correctly.  This allows bypassing the cross-site
+	scripting mechanism of typo3/html-sanitizer.  This
+	vulnerability has been addressed in versions 1.5.3 and 2.1.4.
+	Users are advised to upgrade.  There are no known workarounds
+	for this vulnerability.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-47125</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-47125</url>
+      <cvename>CVE-2023-47126</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-47126</url>
+      <cvename>CVE-2023-47127</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-47127</url>
+    </references>
+    <dates>
+      <discovery>2023-11-14</discovery>
+      <entry>2023-11-15</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="31f45d06-7f0e-11ee-94b4-6cc21735f730">
     <topic>postgresql-server -- Memory disclosure in aggregate function calls</topic>
     <affects>
