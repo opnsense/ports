@@ -2633,7 +2633,6 @@ devel/py-pqueue||2019-10-16|Has expired: Unfetchable, unmaintained
 devel/pypersrc||2019-10-16|Has expired: Unfetchable, unmaintained
 devel/root-doc||2019-10-16|Has expired: Unfetchable, unmaintained
 devel/sfio||2019-10-16|Has expired: Unfetchable, unmaintained
-devel/styx||2019-10-16|Has expired: Unfetchable, unmaintained
 devel/tclmore||2019-10-16|Has expired: Unfetchable, unmaintained
 devel/umem||2019-10-16|Has expired: Unfetchable, unmaintained
 dns/ez-ipupdate||2019-10-16|Has expired: Unfetchable, unmaintained
@@ -5443,7 +5442,6 @@ devel/mongo-cxx-driver||2021-01-02|Has expired: Uses Python 2.7 version of scons
 emulators/gem5||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 emulators/nonpareil||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 games/freera||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
-games/glob2||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 games/marsnomercy||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 games/netpanzer||2021-01-02|Has expired: Uses Python 2.7 version of scons, and Python 2.7 which is EOLed upstream
 graphics/sk1libs||2021-01-02|Has expired: Uses Python 2.7 which is EOLed upstream
@@ -8079,3 +8077,4 @@ x11-fonts/fpc-libfontconfig|lang/fpc|2023-11-12|This port was merged into lang/f
 x11-toolkits/fpc-xforms|lang/fpc|2023-11-12|This port was merged into lang/fpc
 x11-toolkits/fpc-gtk2|lang/fpc|2023-11-12|This port was merged into lang/fpc
 sysutils/fpc-users|lang/fpc|2023-11-14|This port was merged into lang/fpc
+net/py-ldap|net/py-python-ldap|2023-11-17|Rename to conform upstream name
