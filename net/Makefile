@@ -130,6 +130,7 @@
     SUBDIR += downzemall
     SUBDIR += dpdk
     SUBDIR += dpdk-20.11
+    SUBDIR += dpdk-22.11
     SUBDIR += dpinger
     SUBDIR += drawterm
     SUBDIR += drive
@@ -1064,7 +1065,6 @@
     SUBDIR += py-iptools
     SUBDIR += py-kafka-python
     SUBDIR += py-kombu
-    SUBDIR += py-ldap
     SUBDIR += py-ldap0
     SUBDIR += py-ldap3
     SUBDIR += py-ldapdomaindump
@@ -1117,6 +1117,7 @@
     SUBDIR += py-python-glanceclient
     SUBDIR += py-python-heatclient
     SUBDIR += py-python-keystoneclient
+    SUBDIR += py-python-ldap
     SUBDIR += py-python-neutronclient
     SUBDIR += py-python-novaclient
     SUBDIR += py-python-openstackclient
@@ -1554,6 +1555,7 @@
     SUBDIR += trafshow3
     SUBDIR += trickle
     SUBDIR += trippy
+    SUBDIR += ts-warp
     SUBDIR += tsclient
     SUBDIR += tsctp
     SUBDIR += tsocks
