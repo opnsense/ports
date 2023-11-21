@@ -1,3 +1,3 @@
-TIMESTAMP = 1698954415
-SHA256 (opnsense-dhcrelay-0.2-8565947_GH0.tar.gz) = a6ab3c313698a8a1405a9561d80a477e837eef249f08cff85dcfc67544117e52
-SIZE (opnsense-dhcrelay-0.2-8565947_GH0.tar.gz) = 40347
+TIMESTAMP = 1700555062
+SHA256 (opnsense-dhcrelay-0.3-c8adef5_GH0.tar.gz) = 993b009160dcdc010d2fda0d6cdc9bbf893ade1adfe3f2ae395ff00e348e1700
+SIZE (opnsense-dhcrelay-0.3-c8adef5_GH0.tar.gz) = 40313
