@@ -684,6 +684,7 @@
     SUBDIR += fp16
     SUBDIR += fpp
     SUBDIR += freebsd-gcc12
+    SUBDIR += freebsd-gcc13
     SUBDIR += freebsd-gcc9
     SUBDIR += freebsd-git-devtools
     SUBDIR += freebsd-sysroot
@@ -1567,15 +1568,6 @@
     SUBDIR += mill
     SUBDIR += mimalloc
     SUBDIR += mimir
-    SUBDIR += mingw32-bin-msvcrt
-    SUBDIR += mingw32-directx
-    SUBDIR += mingw32-gcc
-    SUBDIR += mingw32-libffi
-    SUBDIR += mingw32-libyaml
-    SUBDIR += mingw32-openssl
-    SUBDIR += mingw32-pdcurses
-    SUBDIR += mingw32-pthreads
-    SUBDIR += mingw32-zlib
     SUBDIR += mir-core
     SUBDIR += mk-configure
     SUBDIR += mm
@@ -7578,7 +7570,6 @@
     SUBDIR += sdlmm
     SUBDIR += sdlskk
     SUBDIR += sdsl-lite
-    SUBDIR += sdts++
     SUBDIR += sedsed
     SUBDIR += seer-gdb
     SUBDIR += selene

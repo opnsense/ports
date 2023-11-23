@@ -135,7 +135,6 @@
     SUBDIR += deno
     SUBDIR += devd
     SUBDIR += dezoomify-rs
-    SUBDIR += dfileserver
     SUBDIR += dillo2
     SUBDIR += dojo
     SUBDIR += dokuwiki
@@ -230,7 +229,6 @@
     SUBDIR += gstreamer1-plugins-srt
     SUBDIR += gtkhtml4
     SUBDIR += guacamole-client
-    SUBDIR += guile-www
     SUBDIR += gurl
     SUBDIR += gwsocket
     SUBDIR += h2c
