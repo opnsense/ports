@@ -132,6 +132,7 @@
     SUBDIR += davix
     SUBDIR += dddbl
     SUBDIR += ddgr
+    SUBDIR += deforaos-surfer
     SUBDIR += deno
     SUBDIR += devd
     SUBDIR += dezoomify-rs
@@ -294,6 +295,7 @@
     SUBDIR += kineto
     SUBDIR += kiwix-tools
     SUBDIR += kohana
+    SUBDIR += ladybird
     SUBDIR += lagrange
     SUBDIR += larbin
     SUBDIR += libapreq2
