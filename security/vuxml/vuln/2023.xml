@@ -1,3 +1,73 @@
+  <vuln vid="388e6557-8c80-11ee-9ee3-84a93843eb75">
+    <topic>MariaDB -- Denial-of-Service vulnerability</topic>
+    <affects>
+      <package>
+	<name>mariadb105-server</name>
+	<range><lt>10.5.23</lt></range>
+      </package>
+      <package>
+	<name>mariadb106-server</name>
+	<range><lt>10.6.16</lt></range>
+      </package>
+      <package>
+	<name>mariadb1011-server</name>
+	<range><lt>10.11.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The MariaDB project reports:</p>
+	<blockquote cite="https://mariadb.com/kb/en/mariadb-10-11-6-release-notes/">
+	  <p>Easily exploitable vulnerability allows high privileged attacker
+	    with network access via multiple protocols to compromise MySQL
+	    Server. Successful attacks of this vulnerability can result in
+	    unauthorized ability to cause a hang or frequently repeatable crash
+	    (complete DOS) of MySQL Server.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-22084</cvename>
+      <url>https://mariadb.com/kb/en/mariadb-10-11-6-release-notes/</url>
+      <url>https://mariadb.com/kb/en/mariadb-10-6-16-release-notes/</url>
+      <url>https://mariadb.com/kb/en/mariadb-10-5-23-release-notes/</url>
+    </references>
+    <dates>
+      <discovery>2023-11-13</discovery>
+      <entry>2023-11-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a62c0c50-8aa0-11ee-ac0d-00e0670f2660">
+    <topic>strongSwan -- vulnerability in charon-tkm</topic>
+    <affects>
+      <package>
+	<name>strongswan</name>
+	<range><ge>5.3.0</ge><lt>5.9.11_3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>strongSwan reports:</p>
+	<blockquote cite="https://www.strongswan.org/blog/2023/11/20/strongswan-vulnerability-(cve-2023-41913).html">
+	  <p>A vulnerability in charon-tkm related to processing
+	     DH public values was discovered in strongSwan
+	     that can result in a buffer overflow and potentially
+	     remote code execution. All versions since
+	     5.3.0 are affected.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-41913</cvename>
+      <url>https://www.strongswan.org/blog/2023/11/20/strongswan-vulnerability-(cve-2023-41913).html</url>
+    </references>
+    <dates>
+      <discovery>2023-11-20</discovery>
+      <entry>2023-11-24</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="147353a3-c33b-46d1-b751-e72c0d7f29df">
     <topic>electron{25,26} -- use after free in Garbage Collection</topic>
     <affects>
@@ -41,6 +111,10 @@
       <package>
        <name>ungoogled-chromium</name>
        <range><lt>119.0.6045.159</lt></range>
+      </package>
+      <package>
+       <name>qt5-webengine</name>
+       <range><lt>5.15.16.p5</lt></range>
       </package>
     </affects>
     <description>
@@ -1491,6 +1565,10 @@ Reported by Niccolo Belli and WIPocket (Github #400, #417).
       <package>
 	<name>curl</name>
 	<range><gt>7.69.0</gt><lt>8.4.0</lt></range>
+      </package>
+      <package>
+        <name>cmake-core</name>
+        <range><lt>3.27.8</lt></range>
       </package>
     </affects>
     <description>
