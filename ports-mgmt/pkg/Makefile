@@ -1,7 +1,11 @@
 PORTNAME=	pkg
 DISTVERSION=	1.19.2
+PORTREVISION=	1
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
+
+PATCH_SITES=	https://github.com/freebsd/${PORTNAME}/commit/
+PATCHFILES=	fc09e75.patch:-p1 69e28e7.patch:-p1
 
 MAINTAINER=	pkg@FreeBSD.org
 COMMENT=	Package manager
