@@ -8092,3 +8092,13 @@ databases/postgis30||2023-11-22|Removed
 math/gri||2023-11-26|Has expired: Last upstream release was in 2012 and gnuplot generates better results
 comms/telldus-core||2023-11-26|Has expired: BROKEN for more than a year
 sysutils/openshift-install||2023-11-26|Has expired: BROKEN for more than a year
+devel/capnproto080|devel/capnproto1|2023-11-27|Remove obsoleted port. Use devel/capnproto1 instead
+devel/py-cachetools3|devel/py-cachetools|2023-11-27|Remove obsoleted port. Use devel/py-cachetools instead
+www/rubygem-asana1|www/rubygem-asana|2023-11-27|Remove obsoleted port. Use www/rubygem-asana instead
+devel/rubygem-rdoc63|devel/rubygem-rdoc|2023-11-27|Remove obsoleted port. Use devel/rubygem-rdoc instead
+security/rubygem-devise-two-factor40-rails70|security/rubygem-devise-two-factor41-rails70|2023-11-27|Remove obsoleted port. Use security/rubygem-devise-two-factor41-rails70 instead
+www/rubygem-rqrcode-rails3|www/rubygem-rqrcode|2023-11-27|Remove obsoleted port. Use www/rubygem-rqrcode instead
+textproc/py-pygments-25|textproc/py-pygments|2023-11-27|Remove obsoleted port. Use textproc/py-pygments instead
+devel/rubygem-devise48-rails70|devel/rubygem-devise-rails70|2023-11-29|Use devel/rubygem-devise-rails70 instead
+textproc/rubygem-rouge41|textproc/rubygem-rouge|2023-11-29|Use textproc/rubygem-rouge instead
+devel/rubygem-aws-sdk-s31121|devel/rubygem-aws-sdk-s3|2023-11-29|Use devel/rubygem-aws-sdk-s3 instead
