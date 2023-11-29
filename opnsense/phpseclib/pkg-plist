@@ -125,6 +125,7 @@
 %%DATADIR%%/Crypt/EC/Formats/Keys/XML.php
 %%DATADIR%%/Crypt/EC/Formats/Keys/libsodium.php
 %%DATADIR%%/Crypt/EC/Formats/Signature/ASN1.php
+%%DATADIR%%/Crypt/EC/Formats/Signature/IEEE.php
 %%DATADIR%%/Crypt/EC/Formats/Signature/Raw.php
 %%DATADIR%%/Crypt/EC/Formats/Signature/SSH2.php
 %%DATADIR%%/Crypt/EC/Parameters.php
