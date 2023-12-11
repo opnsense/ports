@@ -1,3 +1,314 @@
+  <vuln vid="4405e9ad-97fe-11ee-86bb-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>120.0.6099.62</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>120.0.6099.62</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2023/12/stable-channel-update-for-desktop.html">
+	 <p>This update includes 10 security fixes:</p>
+	 <ul>
+	    <li>[1497984] High CVE-2023-6508: Use after free in Media Stream. Reported by Cassidy Kim(@cassidy6564) on 2023-10-31</li>
+	    <li>[1494565] High CVE-2023-6509: Use after free in Side Panel Search. Reported by Khalil Zhani on 2023-10-21</li>
+	    <li>[1480152] Medium CVE-2023-6510: Use after free in Media Capture. Reported by [pwn2car] on 2023-09-08</li>
+	    <li>[1478613] Low CVE-2023-6511: Inappropriate implementation in Autofill. Reported by Ahmed ElMasry on 2023-09-04</li>
+	    <li>[1457702] Low CVE-2023-6512: Inappropriate implementation in Web Browser UI. Reported by Om Apip on 2023-06-24</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6508</cvename>
+      <cvename>CVE-2023-6509</cvename>
+      <cvename>CVE-2023-6510</cvename>
+      <cvename>CVE-2023-6511</cvename>
+      <cvename>CVE-2023-6512</cvename>
+      <url>https://chromereleases.googleblog.com/2023/12/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2023-12-05</discovery>
+      <entry>2023-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2bc376c0-977e-11ee-b4bc-b42e991fc52e">
+    <topic>apache -- Apache ZooKeeper: Authorization bypass in SASL Quorum Peer Authentication</topic>
+    <affects>
+      <package>
+	<name>apache</name>
+	<range><lt>3.7.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@apache.org reports:</p>
+	<blockquote cite="http://www.openwall.com/lists/oss-security/2023/10/11/4">
+	  <p>Authorization Bypass Through User-Controlled Key vulnerability in
+	Apache ZooKeeper.  If SASL Quorum Peer authentication is enabled
+	in ZooKeeper (quorum.auth.enableSasl=true), the authorization is
+	done by verifying that the instance part in SASL authentication ID
+	is listed in zoo.cfg server list.  The instance part in SASL auth
+	ID is optional and if it&apos;s missing, like &apos;eve@EXAMPLE.COM&apos;,
+	the authorization check will be skipped.As a result an arbitrary
+	endpoint could join the cluster and begin propagating counterfeit
+	changes to the leader, essentially giving it complete read-write
+	access to the data tree.Quorum Peer authentication is not enabled
+	by default.
+	Users are recommended to upgrade to version 3.9.1, 3.8.3, 3.7.2,
+	which fixes the issue.
+	Alternately ensure the ensemble election/quorum communication is
+	protected by a firewall as this will mitigate the issue.
+	See the documentation for more details on correct cluster administration.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-44981</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-44981</url>
+    </references>
+    <dates>
+      <discovery>2023-10-11</discovery>
+      <entry>2023-12-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e07a7754-12a4-4661-b852-fd221d68955f">
+    <topic>electron25 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron25</name>
+	<range><lt>25.9.8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v25.9.8">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2023-6350.</li>
+	    <li>Security: backported fix for CVE-2023-6351.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6350</cvename>
+      <url>https://github.com/advisories/GHSA-wmh6-7xp9-5gh8</url>
+      <cvename>CVE-2023-6351</cvename>
+      <url>https://github.com/advisories/GHSA-47vw-3hx2-6877</url>
+    </references>
+    <dates>
+      <discovery>2023-12-06</discovery>
+      <entry>2023-12-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9cbbc506-93c1-11ee-8e38-002590c1f29c">
+    <topic>FreeBSD -- TCP spoofing vulnerability in pf(4)</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.0</ge><lt>14.0_2</lt></range>
+	<range><ge>13.2</ge><lt>13.2_4</lt></range>
+	<range><ge>12.4</ge><lt>12.4_9</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>As part of its stateful TCP connection tracking implementation,
+	pf performs sequence number validation on inbound packets.  This
+	makes it difficult for a would-be attacker to spoof the sender and
+	inject packets into a TCP stream, since crafted packets must contain
+	sequence numbers which match the current connection state to avoid
+	being rejected by the firewall.</p>
+	<p>A bug in the implementation of sequence number validation means
+	that the sequence number is not in fact validated, allowing an
+	attacker who is able to impersonate the remote host and guess the
+	connection's port numbers to inject packets into the TCP stream.</p>
+	<h1>Impact:</h1>
+	<p>An attacker can, with relatively little effort, inject packets
+	into a TCP stream destined to a host behind a pf firewall.  This
+	could be used to implement a denial-of-service attack for hosts
+	behind the firewall, for example by sending TCP RST packets to the
+	host.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6534</cvename>
+      <freebsdsa>SA-23:17.pf</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2023-12-05</discovery>
+      <entry>2023-12-05</entry>
+      <modified>2023-12-07</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="f25a34b1-910d-11ee-a1a2-641c67a117d8">
+    <topic>varnish -- HTTP/2 Rapid Reset Attack</topic>
+    <affects>
+      <package>
+	<name>varnish7</name>
+	<range><lt>7.4.2</lt></range>
+      </package>
+      <package>
+	<name>varnish6</name>
+	<range><lt>6.6.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Varnish Cache Project reports:</p>
+	<blockquote cite="https://varnish-cache.org/security/VSV00013.html">
+	  <p>A denial of service attack can be performed on Varnish Cache servers
+	that have the HTTP/2 protocol turned on. An attacker can create a large
+	volume of streams and immediately reset them without ever reaching the
+	maximum number of concurrent streams allowed for the session, causing
+	the Varnish server to consume unnecessary resources processing requests
+	for which the response will not be delivered.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-44487</cvename>
+      <url>https://varnish-cache.org/security/VSV00013.html</url>
+    </references>
+    <dates>
+      <discovery>2023-11-13</discovery>
+      <entry>2023-12-02</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3b14b2b4-9014-11ee-98b3-001b217b3468">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>16.6.0</ge><lt>16.6.1</lt></range>
+	<range><ge>16.5.0</ge><lt>16.5.3</lt></range>
+	<range><ge>8.13.0</ge><lt>16.4.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2023/11/30/security-release-gitlab-16-6-1-released/">
+	  <p>XSS and ReDoS in Markdown via Banzai pipeline of Jira</p>
+	  <p>Members with admin_group_member custom permission can add members with higher role</p>
+	  <p>Release Description visible in public projects despite release set as project members only through atom response</p>
+	  <p>Manipulate the repository content in the UI (CVE-2023-3401 bypass)</p>
+	  <p>External user can abuse policy bot to gain access to internal projects</p>
+	  <p>Client-side DOS via Mermaid Flowchart</p>
+	  <p>Developers can update pipeline schedules to use protected branches even if they don't have permission to merge</p>
+	  <p>Users can install Composer packages from public projects even when Package registry is turned off</p>
+	  <p>Unauthorized member can gain Allowed to push and merge access and affect integrity of protected branches</p>
+	  <p>Guest users can react (emojis) on confidential work items which they cant see in a project</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6033</cvename>
+      <cvename>CVE-2023-6396</cvename>
+      <cvename>CVE-2023-3949</cvename>
+      <cvename>CVE-2023-5226</cvename>
+      <cvename>CVE-2023-5995</cvename>
+      <cvename>CVE-2023-4912</cvename>
+      <cvename>CVE-2023-4317</cvename>
+      <cvename>CVE-2023-3964</cvename>
+      <cvename>CVE-2023-4658</cvename>
+      <cvename>CVE-2023-3443</cvename>
+      <url>https://about.gitlab.com/releases/2023/11/30/security-release-gitlab-16-6-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2023-11-30</discovery>
+      <entry>2023-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7e1a508f-7167-47b0-b9fc-95f541933a86">
+    <topic>electron26 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron26</name>
+	<range><lt>26.6.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v26.6.2">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2023-6345.</li>
+	    <li>Security: backported fix for CVE-2023-6346.</li>
+	    <li>Security: backported fix for CVE-2023-6347.</li>
+	    <li>Security: backported fix for CVE-2023-6350.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6345</cvename>
+      <url>https://github.com/advisories/GHSA-xm5p-7w7v-qqr5</url>
+      <cvename>CVE-2023-6346</cvename>
+      <url>https://github.com/advisories/GHSA-w427-5x7p-xj8x</url>
+      <cvename>CVE-2023-6347</cvename>
+      <url>https://github.com/advisories/GHSA-6jj9-4hh8-6xpv</url>
+      <cvename>CVE-2023-6350</cvename>
+      <url>https://github.com/advisories/GHSA-wmh6-7xp9-5gh8</url>
+    </references>
+    <dates>
+      <discovery>2023-11-30</discovery>
+      <entry>2023-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="302fc846-860f-482e-a8f6-ee9f254dfacf">
+    <topic>electron25 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron25</name>
+	<range><lt>25.9.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v25.9.7">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2023-6345.</li>
+	    <li>Security: backported fix for CVE-2023-6346.</li>
+	    <li>Security: backported fix for CVE-2023-6347.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6345</cvename>
+      <url>https://github.com/advisories/GHSA-xm5p-7w7v-qqr5</url>
+      <cvename>CVE-2023-6346</cvename>
+      <url>https://github.com/advisories/GHSA-w427-5x7p-xj8x</url>
+      <cvename>CVE-2023-6347</cvename>
+      <url>https://github.com/advisories/GHSA-6jj9-4hh8-6xpv</url>
+    </references>
+    <dates>
+      <discovery>2023-12-01</discovery>
+      <entry>2023-12-01</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8cdd38c7-8ebb-11ee-86bb-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
@@ -158,6 +469,10 @@
       <package>
        <name>qt5-webengine</name>
        <range><lt>5.15.16.p5</lt></range>
+      </package>
+      <package>
+       <name>qt6-webengine</name>
+       <range><lt>6.6.1</lt></range>
       </package>
     </affects>
     <description>
@@ -704,6 +1019,10 @@ Reported by Niccolo Belli and WIPocket (Github #400, #417).
       <package>
        <name>ungoogled-chromium</name>
        <range><lt>119.0.6045.105</lt></range>
+      </package>
+      <package>
+       <name>qt6-webengine</name>
+       <range><lt>6.6.1</lt></range>
       </package>
     </affects>
     <description>
@@ -1525,6 +1844,10 @@ Reported by Niccolo Belli and WIPocket (Github #400, #417).
        <name>ungoogled-chromium</name>
        <range><lt>118.0.5993.70</lt></range>
       </package>
+      <package>
+       <name>qt6-webengine</name>
+       <range><lt>6.6.1</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -2000,6 +2323,10 @@ Reported by Niccolo Belli and WIPocket (Github #400, #417).
       <package>
        <name>ungoogled-chromium</name>
        <range><lt>117.0.5938.132</lt></range>
+      </package>
+      <package>
+       <name>qt6-webengine</name>
+       <range><lt>6.6.1</lt></range>
       </package>
     </affects>
     <description>
