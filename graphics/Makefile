@@ -29,7 +29,6 @@
     SUBDIR += R-cran-png
     SUBDIR += R-cran-qcc
     SUBDIR += R-cran-rgdal
-    SUBDIR += R-cran-rtiff
     SUBDIR += R-cran-s2
     SUBDIR += R-cran-scales
     SUBDIR += R-cran-shape
@@ -329,6 +328,7 @@
     SUBDIR += guile-cairo
     SUBDIR += guilib
     SUBDIR += gwenview
+    SUBDIR += gwenview-devel
     SUBDIR += h3
     SUBDIR += halftone
     SUBDIR += hdr_tools
@@ -397,6 +397,11 @@
     SUBDIR += kf5-kplotting
     SUBDIR += kf5-kquickcharts
     SUBDIR += kf5-prison
+    SUBDIR += kf6-kimageformats
+    SUBDIR += kf6-kplotting
+    SUBDIR += kf6-kquickcharts
+    SUBDIR += kf6-ksvg
+    SUBDIR += kf6-prison
     SUBDIR += kgeotag
     SUBDIR += kgraphviewer
     SUBDIR += kimageannotator
@@ -472,6 +477,7 @@
     SUBDIR += libjxr
     SUBDIR += libkdcraw
     SUBDIR += libkexiv2
+    SUBDIR += libkexiv2-devel
     SUBDIR += libkipi
     SUBDIR += libksane
     SUBDIR += libliftoff
@@ -594,6 +600,7 @@
     SUBDIR += ogre3d19
     SUBDIR += oidn
     SUBDIR += okular
+    SUBDIR += okular-devel
     SUBDIR += open3d
     SUBDIR += opencollada
     SUBDIR += opencolorio

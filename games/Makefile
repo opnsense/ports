@@ -25,7 +25,6 @@
     SUBDIR += SpaceCadetPinball-devel
     SUBDIR += abbayedesmorts
     SUBDIR += abe
-    SUBDIR += abstreet
     SUBDIR += abuse_sdl
     SUBDIR += ace-of-penguins
     SUBDIR += adom
@@ -341,7 +340,6 @@
     SUBDIR += gnome-nibbles
     SUBDIR += gnome-robots
     SUBDIR += gnome-sudoku
-    SUBDIR += gnome-taquin
     SUBDIR += gnome-tetravex
     SUBDIR += gnubg
     SUBDIR += gnubik
@@ -393,7 +391,6 @@
     SUBDIR += hs-scroll
     SUBDIR += hypatia_engine
     SUBDIR += hyperrogue
-    SUBDIR += iagno
     SUBDIR += icbm3d
     SUBDIR += icebreaker
     SUBDIR += iceicepenguin
@@ -797,7 +794,7 @@
     SUBDIR += py-cbeams
     SUBDIR += py-discord.py
     SUBDIR += py-fife
-    SUBDIR += py-mnemosyne
+    SUBDIR += py-mnemosyne-proj
     SUBDIR += py-pychess
     SUBDIR += py-pysol-cards
     SUBDIR += py-sgflib

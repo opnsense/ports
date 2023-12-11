@@ -322,6 +322,7 @@
     SUBDIR += fastops
     SUBDIR += fcl
     SUBDIR += fcl05
+    SUBDIR += fend
     SUBDIR += fenics-basix
     SUBDIR += fflas-ffpack
     SUBDIR += fftw
@@ -352,7 +353,6 @@
     SUBDIR += gemmlowp
     SUBDIR += geogebra
     SUBDIR += geogram
-    SUBDIR += geonext
     SUBDIR += gexpr
     SUBDIR += gf2x
     SUBDIR += gfan
@@ -1006,7 +1006,6 @@
     SUBDIR += py-pdal
     SUBDIR += py-permutation
     SUBDIR += py-petsc4py
-    SUBDIR += py-piranha
     SUBDIR += py-plastex
     SUBDIR += py-point-annotator
     SUBDIR += py-pplpy

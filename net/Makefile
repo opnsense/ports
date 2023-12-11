@@ -229,12 +229,8 @@
     SUBDIR += guacamole-server
     SUBDIR += gupnp
     SUBDIR += gupnp-av
-    SUBDIR += gupnp-dlna
     SUBDIR += gupnp-igd
-    SUBDIR += gupnp-igd12
     SUBDIR += gupnp-tools
-    SUBDIR += gupnp-ui
-    SUBDIR += gupnp14
     SUBDIR += gutenfetch
     SUBDIR += gwhois
     SUBDIR += h323plus
@@ -324,6 +320,11 @@
     SUBDIR += kf5-kholidays
     SUBDIR += kf5-kxmlrpcclient
     SUBDIR += kf5-syndication
+    SUBDIR += kf6-kcalendarcore
+    SUBDIR += kf6-kcontacts
+    SUBDIR += kf6-kdav
+    SUBDIR += kf6-kholidays
+    SUBDIR += kf6-syndication
     SUBDIR += kget
     SUBDIR += kidentitymanagement
     SUBDIR += kimap
@@ -384,7 +385,6 @@
     SUBDIR += libiscsi
     SUBDIR += libkgapi
     SUBDIR += libksieve
-    SUBDIR += libkvkontakte
     SUBDIR += liblinphone
     SUBDIR += libmaia
     SUBDIR += libmateweather
@@ -424,6 +424,7 @@
     SUBDIR += librsync
     SUBDIR += libsignal-protocol-c
     SUBDIR += libslirp
+    SUBDIR += libsockpp
     SUBDIR += libsrtp2
     SUBDIR += libtnl
     SUBDIR += libtrace
@@ -1033,7 +1034,6 @@
     SUBDIR += py-aiohttp-socks
     SUBDIR += py-amqp
     SUBDIR += py-amqplib
-    SUBDIR += py-anonfile
     SUBDIR += py-avahi
     SUBDIR += py-blobfile
     SUBDIR += py-bonsai
@@ -1454,6 +1454,7 @@
     SUBDIR += shmux
     SUBDIR += sie-nmsg
     SUBDIR += simpleproxy
+    SUBDIR += sing-box
     SUBDIR += siproxd
     SUBDIR += sipsak
     SUBDIR += skstream

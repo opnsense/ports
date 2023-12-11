@@ -78,6 +78,7 @@
     SUBDIR += R-cran-magrittr
     SUBDIR += R-cran-memoise
     SUBDIR += R-cran-microbenchmark
+    SUBDIR += R-cran-mlbench
     SUBDIR += R-cran-mockery
     SUBDIR += R-cran-msm
     SUBDIR += R-cran-multicool
@@ -344,6 +345,7 @@
     SUBDIR += cargo-c
     SUBDIR += cargo-depgraph
     SUBDIR += cargo-generate
+    SUBDIR += cargo-leptos
     SUBDIR += cargo-mutants
     SUBDIR += cask
     SUBDIR += catch
@@ -575,10 +577,12 @@
     SUBDIR += doctest
     SUBDIR += doctorj
     SUBDIR += dolphin-plugins
+    SUBDIR += dolphin-plugins-devel
     SUBDIR += dotconf
     SUBDIR += double-conversion
     SUBDIR += doxygen
     SUBDIR += dparser
+    SUBDIR += dra
     SUBDIR += dragon
     SUBDIR += ds2
     SUBDIR += dsymbol
@@ -607,9 +611,9 @@
     SUBDIR += efl
     SUBDIR += egypt
     SUBDIR += eiffelstudio
-    SUBDIR += electron24
     SUBDIR += electron25
     SUBDIR += electron26
+    SUBDIR += electron27
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -672,7 +676,6 @@
     SUBDIR += flyspray
     SUBDIR += fmake
     SUBDIR += fnc
-    SUBDIR += fnccheck
     SUBDIR += fnm
     SUBDIR += folly
     SUBDIR += forge
@@ -1080,6 +1083,35 @@
     SUBDIR += kf5-kunitconversion
     SUBDIR += kf5-solid
     SUBDIR += kf5-threadweaver
+    SUBDIR += kf6-extra-cmake-modules
+    SUBDIR += kf6-kapidox
+    SUBDIR += kf6-kauth
+    SUBDIR += kf6-kbookmarks
+    SUBDIR += kf6-kcmutils
+    SUBDIR += kf6-kconfig
+    SUBDIR += kf6-kcoreaddons
+    SUBDIR += kf6-kcrash
+    SUBDIR += kf6-kdbusaddons
+    SUBDIR += kf6-kdeclarative
+    SUBDIR += kf6-kdoctools
+    SUBDIR += kf6-kfilemetadata
+    SUBDIR += kf6-ki18n
+    SUBDIR += kf6-kidletime
+    SUBDIR += kf6-kio
+    SUBDIR += kf6-kitemmodels
+    SUBDIR += kf6-knewstuff
+    SUBDIR += kf6-knotifications
+    SUBDIR += kf6-knotifyconfig
+    SUBDIR += kf6-kpackage
+    SUBDIR += kf6-kparts
+    SUBDIR += kf6-kpeople
+    SUBDIR += kf6-kpty
+    SUBDIR += kf6-kservice
+    SUBDIR += kf6-ktexteditor
+    SUBDIR += kf6-ktexttemplate
+    SUBDIR += kf6-kunitconversion
+    SUBDIR += kf6-solid
+    SUBDIR += kf6-threadweaver
     SUBDIR += kio-extras
     SUBDIR += kirigami-gallery
     SUBDIR += klib
@@ -4117,6 +4149,9 @@
     SUBDIR += plasma5-khotkeys
     SUBDIR += plasma5-kwrited
     SUBDIR += plasma5-plasma-sdk
+    SUBDIR += plasma6-kwrited
+    SUBDIR += plasma6-plasma-sdk
+    SUBDIR += plasma6-plasma5support
     SUBDIR += please
     SUBDIR += pmccabe
     SUBDIR += pmd
@@ -4146,8 +4181,6 @@
     SUBDIR += pthsem
     SUBDIR += ptl
     SUBDIR += ptlib
-    SUBDIR += ptmalloc
-    SUBDIR += ptmalloc2
     SUBDIR += ptypes
     SUBDIR += publib
     SUBDIR += purescript-language-server
@@ -4218,6 +4251,7 @@
     SUBDIR += py-argh
     SUBDIR += py-argparse
     SUBDIR += py-args
+    SUBDIR += py-ariadne
     SUBDIR += py-arpeggio
     SUBDIR += py-array-api-compat
     SUBDIR += py-arrow
@@ -4781,6 +4815,7 @@
     SUBDIR += py-immutables
     SUBDIR += py-importlab
     SUBDIR += py-importlib-metadata
+    SUBDIR += py-importlib-metadata6
     SUBDIR += py-importlib-resources
     SUBDIR += py-incremental
     SUBDIR += py-infinity
@@ -6111,11 +6146,15 @@
     SUBDIR += rubygem-aws-sdk-augmentedairuntime
     SUBDIR += rubygem-aws-sdk-autoscaling
     SUBDIR += rubygem-aws-sdk-autoscalingplans
+    SUBDIR += rubygem-aws-sdk-b2bi
     SUBDIR += rubygem-aws-sdk-backup
     SUBDIR += rubygem-aws-sdk-backupgateway
     SUBDIR += rubygem-aws-sdk-backupstorage
     SUBDIR += rubygem-aws-sdk-batch
+    SUBDIR += rubygem-aws-sdk-bcmdataexports
     SUBDIR += rubygem-aws-sdk-bedrock
+    SUBDIR += rubygem-aws-sdk-bedrockagent
+    SUBDIR += rubygem-aws-sdk-bedrockagentruntime
     SUBDIR += rubygem-aws-sdk-bedrockruntime
     SUBDIR += rubygem-aws-sdk-billingconductor
     SUBDIR += rubygem-aws-sdk-braket
@@ -6127,6 +6166,7 @@
     SUBDIR += rubygem-aws-sdk-chimesdkmessaging
     SUBDIR += rubygem-aws-sdk-chimesdkvoice
     SUBDIR += rubygem-aws-sdk-cleanrooms
+    SUBDIR += rubygem-aws-sdk-cleanroomsml
     SUBDIR += rubygem-aws-sdk-cloud9
     SUBDIR += rubygem-aws-sdk-cloudcontrolapi
     SUBDIR += rubygem-aws-sdk-clouddirectory
@@ -6174,6 +6214,7 @@
     SUBDIR += rubygem-aws-sdk-core2
     SUBDIR += rubygem-aws-sdk-costandusagereportservice
     SUBDIR += rubygem-aws-sdk-costexplorer
+    SUBDIR += rubygem-aws-sdk-costoptimizationhub
     SUBDIR += rubygem-aws-sdk-customerprofiles
     SUBDIR += rubygem-aws-sdk-databasemigrationservice
     SUBDIR += rubygem-aws-sdk-dataexchange
@@ -6200,6 +6241,7 @@
     SUBDIR += rubygem-aws-sdk-ecs
     SUBDIR += rubygem-aws-sdk-efs
     SUBDIR += rubygem-aws-sdk-eks
+    SUBDIR += rubygem-aws-sdk-eksauth
     SUBDIR += rubygem-aws-sdk-elasticache
     SUBDIR += rubygem-aws-sdk-elasticbeanstalk
     SUBDIR += rubygem-aws-sdk-elasticinference
@@ -6220,6 +6262,7 @@
     SUBDIR += rubygem-aws-sdk-forecastqueryservice
     SUBDIR += rubygem-aws-sdk-forecastservice
     SUBDIR += rubygem-aws-sdk-frauddetector
+    SUBDIR += rubygem-aws-sdk-freetier
     SUBDIR += rubygem-aws-sdk-fsx
     SUBDIR += rubygem-aws-sdk-gamelift
     SUBDIR += rubygem-aws-sdk-gamesparks
@@ -6356,6 +6399,8 @@
     SUBDIR += rubygem-aws-sdk-privatenetworks
     SUBDIR += rubygem-aws-sdk-prometheusservice
     SUBDIR += rubygem-aws-sdk-proton
+    SUBDIR += rubygem-aws-sdk-qbusiness
+    SUBDIR += rubygem-aws-sdk-qconnect
     SUBDIR += rubygem-aws-sdk-qldb
     SUBDIR += rubygem-aws-sdk-qldbsession
     SUBDIR += rubygem-aws-sdk-quicksight
@@ -6367,6 +6412,7 @@
     SUBDIR += rubygem-aws-sdk-redshiftdataapiservice
     SUBDIR += rubygem-aws-sdk-redshiftserverless
     SUBDIR += rubygem-aws-sdk-rekognition
+    SUBDIR += rubygem-aws-sdk-repostspace
     SUBDIR += rubygem-aws-sdk-resiliencehub
     SUBDIR += rubygem-aws-sdk-resourceexplorer2
     SUBDIR += rubygem-aws-sdk-resourcegroups
@@ -6445,6 +6491,7 @@
     SUBDIR += rubygem-aws-sdk-workmail
     SUBDIR += rubygem-aws-sdk-workmailmessageflow
     SUBDIR += rubygem-aws-sdk-workspaces
+    SUBDIR += rubygem-aws-sdk-workspacesthinclient
     SUBDIR += rubygem-aws-sdk-workspacesweb
     SUBDIR += rubygem-aws-sdk-xray
     SUBDIR += rubygem-aws-sdk2
@@ -6613,7 +6660,6 @@
     SUBDIR += rubygem-blockenspiel
     SUBDIR += rubygem-bones
     SUBDIR += rubygem-bootsnap
-    SUBDIR += rubygem-bootsnap116
     SUBDIR += rubygem-bootstrap_form
     SUBDIR += rubygem-bson
     SUBDIR += rubygem-buftok
@@ -6823,7 +6869,6 @@
     SUBDIR += rubygem-fog-json
     SUBDIR += rubygem-font-awesome-rails
     SUBDIR += rubygem-font-awesome-rails-rails5
-    SUBDIR += rubygem-font-awesome-rails-rails50
     SUBDIR += rubygem-font-awesome-rails-rails52
     SUBDIR += rubygem-font-awesome-rails-rails60
     SUBDIR += rubygem-foreigner
@@ -6854,7 +6899,6 @@
     SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gettext_i18n_rails111
-    SUBDIR += rubygem-gettext_i18n_rails18
     SUBDIR += rubygem-gettext_i18n_rails_js-rails5
     SUBDIR += rubygem-gettext_i18n_rails_js-rails50
     SUBDIR += rubygem-gettext_i18n_rails_js-rails52
@@ -6920,6 +6964,7 @@
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grape-swagger-entity
+    SUBDIR += rubygem-grape-swagger16
     SUBDIR += rubygem-grape1
     SUBDIR += rubygem-grape17
     SUBDIR += rubygem-grape_logging
