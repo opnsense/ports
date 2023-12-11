@@ -8100,3 +8100,77 @@ textproc/py-pygments-25|textproc/py-pygments|2023-11-27|Remove obsoleted port. U
 devel/rubygem-devise48-rails70|devel/rubygem-devise-rails70|2023-11-29|Use devel/rubygem-devise-rails70 instead
 textproc/rubygem-rouge41|textproc/rubygem-rouge|2023-11-29|Use textproc/rubygem-rouge instead
 devel/rubygem-aws-sdk-s31121|devel/rubygem-aws-sdk-s3|2023-11-29|Use devel/rubygem-aws-sdk-s3 instead
+games/py-mnemosyne|games/py-mnemosyne-proj|2023-11-30|Rename to match PyPI name
+databases/p5-Search-Xapian12|databases/p5-Search-Xapian|2023-12-01|Remove obsoleted port. Use databases/p5-Search-Xapian instead
+databases/xapian-bindings12|databases/xapian-bindings|2023-12-01|Remove obsoleted port. Use databases/xapian-bindings instead
+databases/xapian-core12|databases/xapian-core|2023-12-01|Remove obsoleted port. Use databases/xapian-core instead
+www/xapian-omega12|www/xapian-omega|2023-12-01|Remove obsoleted port. Use www/xapian-omega instead
+devel/rubygem-bootsnap116|devel/rubygem-bootsnap|2023-12-01|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-gettext_i18n_rails18|devel/rubygem-gettext_i18n_rails|2023-12-01|Remove obsoleted port. Use devel/rubygem-gettext_i18n_rails instead
+sysutils/rubygem-chef17|sysutils/rubygem-chef|2023-12-01|Remove obsoleted port. Use sysutils/rubygem-chef instead
+sysutils/rubygem-chef-bin17|sysutils/rubygem-chef-bin|2023-12-01|Remove obsoleted port. Use sysutils/rubygem-chef-bin instead
+sysutils/rubygem-chef-config17|sysutils/rubygem-chef-config|2023-12-01|Remove obsoleted port. Use sysutils/rubygem-chef-config instead
+sysutils/rubygem-chef-utils17|sysutils/rubygem-chef-utils|2023-12-01|Remove obsoleted port. Use sysutils/rubygem-chef-utils instead
+sysutils/rubygem-ohai17|sysutils/rubygem-ohai|2023-12-01|Remove obsoleted port. Use sysutils/rubygem-ohai instead
+net-im/scudcloud||2023-12-01|Has expired: Project was abandoned in 2018
+java/wildfly24||2023-12-02|Has expired: End of life upstream
+devel/fnccheck||2023-12-02|Has expired: BROKEN for more than an year and last upstream release was in 2012
+mail/qmail-spamcontrol||2023-12-02|Has expired: BROKEN for more than 4+ years
+java/wildfly16||2023-12-02|Has expired: End of life upstream
+java/wildfly90||2023-12-02|Has expired: End of life upstream
+java/wildfly17||2023-12-02|Has expired: End of life upstream
+java/wildfly15||2023-12-02|Has expired: End of life upstream
+astro/ptiger||2023-12-02|Has expired: Depends on expired astro/tkgeomap
+devel/ptmalloc2||2023-12-02|Has expired: Abandonware, last release in 2006 and there are other alternative malloc implementations available
+java/wildfly25||2023-12-02|Has expired: End of life upstream
+net/gupnp-ui||2023-12-02|Has expired: Depends on deprecated port net/gupnp14
+graphics/R-cran-rtiff||2023-12-02|Has expired: Fails to build and abandoned upstream
+games/iagno||2023-12-02|Has expired: BROKEN for more than a year and no upstream activity for the last 2 years
+emulators/ines||2023-12-02|Has expired: Ancient NES emulator that only works on i386, consider using emulators/higan
+www/varnish-nagios||2023-12-02|Has expired: Marked BROKEN for months, also depends on deprecated version of Varnish
+net/gupnp14||2023-12-02|Has expired: Unsupported legacy version upstream, also fails to build with newer versions of libxml2. Consider migrating to net/gupnp
+net/gupnp-dlna||2023-12-02|Has expired: Depends on deprecated port net/gupnp14
+net/gupnp-igd12||2023-12-02|Has expired: Depends on deprecated port net/gupnp14
+irc/irssi-dcc_send_limiter||2023-12-02|Has expired: BROKEN for more than a year
+www/linux-opera||2023-12-02|Has expired: outdated and unsupported version
+sysutils/gtk-imonc||2023-12-02|Has expired: BROKEN for more than 2 years
+audio/gradio||2023-12-02|Has expired: BROKEN for more than a year
+java/wildfly13||2023-12-02|Has expired: End of life upstream
+astro/xeartk||2023-12-02|Has expired: Depends on expired astro/tkgeomap
+math/py-piranha||2023-12-02|Has expired: BROKEN for more than a year and last upstream activity was in 2018
+games/abstreet||2023-12-02|Has expired: BROKEN for more than a year and issue does not seem to be resolvable soon
+security/tor-devel||2023-12-02|Has expired: Ignored for more than a year and security/tor is more recent than this
+java/wildfly12||2023-12-02|Has expired: End of life upstream
+java/wildfly11||2023-12-02|Has expired: End of life upstream
+net-p2p/arbitrum-avm||2023-12-02|Has expired: BROKEN for more than an year
+www/mozplugger||2023-12-02|Has expired: Obsolete, defunct as Mozilla Firefox dropped support for plugin interface as of ESR 60
+devel/ptmalloc||2023-12-02|Has expired: Abandonware, last release in 2006 and there are other alternative malloc implementations available
+java/wildfly18||2023-12-02|Has expired: End of life upstream
+java/wildfly14||2023-12-02|Has expired: End of life upstream
+www/madsonic||2023-12-02|Has expired: Depends on www/jetty8 which has been listed as end of life since 2015
+www/jetty8||2023-12-02|Has expired: End of life in 2014, consider migrating to www/jetty10
+textproc/bibtool||2023-12-02|Has expired: BROKEN for more than an year
+games/gnome-taquin||2023-12-02|Has expired: BROKEN for more than a year and no upstream activity for more than 2 years
+audio/mous||2023-12-02|Has expired: BROKEN for more than a year
+audio/mixxx22|audio/mixxx|2023-12-02|Has expired: Deprecated upstream, consider migrating to audio/mixxx
+www/jetty9||2023-12-02|Has expired: End of life as of 2022-06-01, consider migrating to www/jetty10
+multimedia/obs-scrab||2023-12-02|Has expired: Fails to package and marked broken over 10 months ago
+archivers/jzlib||2023-12-02|Has expired: Abandonware, untouched for over 10 years and Java Platform 8+ provides a Deflater class
+java/wildfly26||2023-12-02|Has expired: End of life upstream
+science/libgeodecomp||2023-12-02|Has expired: BROKEN for more than an year
+astro/tkgeomap||2023-12-02|Has expired: abandoned
+astro/tclgeomap||2023-12-02|Has expired: abandoned
+devel/electron24||2023-12-03|Has expired: Upstream EOL reached on 2023-10-10
+audio/festlex-ogi||2023-12-04|Has expired: Both MASTER_SITES and WWW are defunct
+net/libkvontakte||2023-12-04|Has expired: Depends on deprecated www/qt5-webkit
+french/geonext||2023-12-05|Has expired: Last upstream release was in 2014
+german/geonext||2023-12-05|Has expired: Last upstream release was in 2014
+math/geonext||2023-12-05|Has expired: Last upstream release was in 2014
+polish/gnugadu2||2023-12-05|Has expired: Last upstream release was in 2006
+net-im/centerim||2023-12-05|Has expired: Last upstream release was in 2011
+net-im/jggtrans||2023-12-05|Has expired: Upstream last release was in 2014
+polish/tleenx2||2023-12-05|Has expired: Last upstream release was in 2004
+polish/libtlen||2023-12-05|Has expired: Last upstream release was in 2004
+devel/rubygem-font-awesome-rails-rails50|devel/rubygem-font-awesome-rails-rails60|2023-12-06|Obsolete, use devel/rubygem-font-awesome-rails-rails60 instead
+security/rubygem-devise-two-factor-rails61|security/rubygem-devise-two-factor-rails70|2023-12-06|Obsolete, use security/rubygem-devise-two-factor-rails70 instead
+net/py-anonfile||2023-12-07|Has expired: anonfile.com has shut down
