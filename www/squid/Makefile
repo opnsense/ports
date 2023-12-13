@@ -1,6 +1,5 @@
 PORTNAME=	squid
-DISTVERSION=	6.5
-PORTREVISION=	1
+DISTVERSION=	6.6
 CATEGORIES=	www
 MASTER_SITES=	http://www2.pl.squid-cache.org/Versions/v6/ \
 		http://www1.il.squid-cache.org/Versions/v6/ \
@@ -8,8 +7,12 @@ MASTER_SITES=	http://www2.pl.squid-cache.org/Versions/v6/ \
 		http://ca2.squid-cache.org/Versions/v6/ \
 		http://www.squid-cache.org/Versions/v6/
 
-PATCH_SITES=	https://github.com/squid-cache/squid/commit/
-PATCHFILES=	b6c01a2.patch:-p1
+PATCH_SITES=	http://www2.pl.squid-cache.org/%SUBDIR%/ \
+		http://www1.il.squid-cache.org/%SUBDIR%/ \
+		http://www2.gr.squid-cache.org/%SUBDIR%/ \
+		http://ca2.squid-cache.org/%SUBDIR%/ \
+		http://www.squid-cache.org/%SUBDIR%/
+PATCH_SITE_SUBDIR=	Versions/v6/changesets
 
 MAINTAINER=	timp87@gmail.com
 COMMENT=	HTTP Caching Proxy
