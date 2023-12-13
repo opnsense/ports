@@ -835,6 +835,7 @@
     SUBDIR += glab
     SUBDIR += glade
     SUBDIR += glademm
+    SUBDIR += glaze
     SUBDIR += glib20
     SUBDIR += glibd
     SUBDIR += glibmm
@@ -7829,6 +7830,7 @@
     SUBDIR += upp
     SUBDIR += upslug
     SUBDIR += urjtag
+    SUBDIR += ut
     SUBDIR += utf8cpp
     SUBDIR += utf8cpp3
     SUBDIR += uthash
