@@ -317,12 +317,14 @@
     SUBDIR += juk
     SUBDIR += juke
     SUBDIR += julius
+    SUBDIR += kaldi
     SUBDIR += kapitonov-plugins-pack-lv2
     SUBDIR += kid3
     SUBDIR += klystrack
     SUBDIR += kmix
     SUBDIR += komposter
     SUBDIR += kwave
+    SUBDIR += ladish
     SUBDIR += ladspa
     SUBDIR += lame
     SUBDIR += lash
@@ -667,6 +669,7 @@
     SUBDIR += py-speechrecognition
     SUBDIR += py-spotipy
     SUBDIR += py-tagpy
+    SUBDIR += py-torchaudio
     SUBDIR += py-wavio
     SUBDIR += py-webrtcvad
     SUBDIR += py-zita-audiotools

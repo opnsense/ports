@@ -38,7 +38,6 @@
     SUBDIR += bsmtp
     SUBDIR += bulk_mailer
     SUBDIR += c-sig
-    SUBDIR += cclient
     SUBDIR += claws-mail
     SUBDIR += claws-mail-acpi_notifier
     SUBDIR += claws-mail-address_keeper
@@ -158,7 +157,6 @@
     SUBDIR += heirloom-mailx
     SUBDIR += ifile
     SUBDIR += im
-    SUBDIR += imap-uw
     SUBDIR += imapdedup
     SUBDIR += imapfilter
     SUBDIR += imapsync
@@ -208,7 +206,6 @@
     SUBDIR += mailpit
     SUBDIR += mailscanner
     SUBDIR += mailslurper
-    SUBDIR += mailsync
     SUBDIR += mailutils
     SUBDIR += mailx
     SUBDIR += mairix

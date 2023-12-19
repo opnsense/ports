@@ -1,5 +1,5 @@
 PORTNAME=	mlmmj
-PORTVERSION=	1.4.1
+PORTVERSION=	1.4.2
 CATEGORIES=	mail
 MASTER_SITES=	https://codeberg.org/mlmmj/mlmmj/releases/download/RELEASE_${PORTVERSION:S/./_/g}/
 
@@ -25,6 +25,9 @@ PERL_RUN_DEPENDS=	p5-URI>0:net/p5-URI \
 			p5-CGI-FastTemplate>0:www/p5-CGI-FastTemplate \
 			p5-HTML-Parser>0:www/p5-HTML-Parser
 PHP_USES=		php:web
+
+BUILD_DEPENDS=		kyua:devel/kyua \
+			atf-sh:devel/atf
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
