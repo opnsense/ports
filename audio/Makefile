@@ -318,6 +318,7 @@
     SUBDIR += juke
     SUBDIR += julius
     SUBDIR += kaldi
+    SUBDIR += kaldi-vosk
     SUBDIR += kapitonov-plugins-pack-lv2
     SUBDIR += kid3
     SUBDIR += klystrack
@@ -670,6 +671,7 @@
     SUBDIR += py-spotipy
     SUBDIR += py-tagpy
     SUBDIR += py-torchaudio
+    SUBDIR += py-vosk
     SUBDIR += py-wavio
     SUBDIR += py-webrtcvad
     SUBDIR += py-zita-audiotools
@@ -848,6 +850,7 @@
     SUBDIR += volumeicon
     SUBDIR += vorbis-tools
     SUBDIR += vorbisgain
+    SUBDIR += vosk-api
     SUBDIR += vsound
     SUBDIR += vst3sdk
     SUBDIR += waon

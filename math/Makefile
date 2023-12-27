@@ -640,7 +640,7 @@
     SUBDIR += octave-forge-splines
     SUBDIR += octave-forge-sqlite
     SUBDIR += octave-forge-statistics
-    SUBDIR += octave-forge-statistics-bootstrap
+    SUBDIR += octave-forge-statistics-resampling
     SUBDIR += octave-forge-stk
     SUBDIR += octave-forge-strings
     SUBDIR += octave-forge-struct
@@ -661,6 +661,7 @@
     SUBDIR += onednn252
     SUBDIR += openblas
     SUBDIR += openfst
+    SUBDIR += openfst-vosk
     SUBDIR += openlibm
     SUBDIR += openmesh
     SUBDIR += openscop
@@ -876,6 +877,7 @@
     SUBDIR += py-Diofant
     SUBDIR += py-GridDataFormats
     SUBDIR += py-MutatorMath
+    SUBDIR += py-POT
     SUBDIR += py-PuLP
     SUBDIR += py-Py-BOBYQA
     SUBDIR += py-PyMetis

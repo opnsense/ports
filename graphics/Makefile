@@ -449,6 +449,7 @@
     SUBDIR += libcaca
     SUBDIR += libcdr01
     SUBDIR += libchamplain
+    SUBDIR += libdicom
     SUBDIR += libdmtx
     SUBDIR += libdrm
     SUBDIR += libecwj2
@@ -842,6 +843,7 @@
     SUBDIR += py-PyOpenGL
     SUBDIR += py-PyOpenGL-accelerate
     SUBDIR += py-actdiag
+    SUBDIR += py-albumentations
     SUBDIR += py-altair
     SUBDIR += py-asciitree
     SUBDIR += py-beziers
@@ -953,6 +955,7 @@
     SUBDIR += py-qpageview
     SUBDIR += py-qrencode
     SUBDIR += py-qt6-3d
+    SUBDIR += py-qudida
     SUBDIR += py-railroad-diagrams
     SUBDIR += py-rasterio
     SUBDIR += py-rasterstats
@@ -1081,6 +1084,7 @@
     SUBDIR += sane-airscan
     SUBDIR += sane-backends
     SUBDIR += sane-epkowa
+    SUBDIR += satty
     SUBDIR += scale2x
     SUBDIR += scantailor
     SUBDIR += scr2png

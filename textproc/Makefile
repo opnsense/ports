@@ -1385,6 +1385,7 @@
     SUBDIR += py-html2json
     SUBDIR += py-html2text
     SUBDIR += py-html2text2018
+    SUBDIR += py-htmlmin2
     SUBDIR += py-humanfriendly
     SUBDIR += py-hunspell
     SUBDIR += py-ini2toml
@@ -1437,9 +1438,11 @@
     SUBDIR += py-mistune2
     SUBDIR += py-mkdocs
     SUBDIR += py-mkdocs-autorefs
+    SUBDIR += py-mkdocs-git-revision-date-localized-plugin
     SUBDIR += py-mkdocs-material
     SUBDIR += py-mkdocs-material-extensions
     SUBDIR += py-mkdocs-mermaid2-plugin
+    SUBDIR += py-mkdocs-minify-plugin
     SUBDIR += py-mkdocs-nature
     SUBDIR += py-mkdocs-redirects
     SUBDIR += py-mkdocs-simple-hooks

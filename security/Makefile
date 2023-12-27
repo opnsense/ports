@@ -497,6 +497,7 @@
     SUBDIR += p5-Bytes-Random-Secure
     SUBDIR += p5-Bytes-Random-Secure-Tiny
     SUBDIR += p5-CACertOrg-CA
+    SUBDIR += p5-CPAN-Audit
     SUBDIR += p5-CSP
     SUBDIR += p5-Cisco-Hash
     SUBDIR += p5-Crypt-Anubis
@@ -1086,6 +1087,7 @@
     SUBDIR += rndpassw
     SUBDIR += rnp
     SUBDIR += rotate
+    SUBDIR += rpm-sequoia
     SUBDIR += rubygem-acme-client
     SUBDIR += rubygem-aes_key_wrap
     SUBDIR += rubygem-airbrussh
