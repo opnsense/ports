@@ -6483,7 +6483,6 @@ databases/postgresql96-server||2022-03-11|Has expired: PostgreSQL-9.6 has reache
 net-im/pidgin-bs|net-im/pidgin-bot-sentry|2022-03-13|Project was renamed
 math/qalculate|math/qalculate-gtk|2022-03-14|Renamed to match upstream naming
 deskutils/nautilus-actions||2022-03-15|Abandonware
-textproc/rarian||2022-03-15|Abandonware
 devel/ORBit2||2022-03-15|Gnome2 library unused anymore
 games/pushover|games/domino-chain|2022-03-17|Chase upstream rename
 graphics/darktable38|graphics/darktable|2022-03-19|Darktable was upgraded to 3.8, separate port no longer needed
@@ -8184,3 +8183,187 @@ mail/cclient|mail/panda-cclient|2023-12-16|Has expired: Last upstream release wa
 www/yanopaste||2023-12-18|Has expired: Last upstream release was in 2011
 www/py-yt-dlp-devel|www/py-yt-dlp|2023-12-22|Remove the -devel suffix
 math/octave-forge-statistics-bootstrap|math/octave-forge-statistics-resampling|2023-12-24|Name change upstream
+comms/openzwave-devel||2023-12-28|Has expired: Upstream no longer maintained, indicates to move to openzwave JS instead
+net/net/dpdk-22.11|net/dpdk|2023-12-30|Instead of expiring dpdk move dpdk-22.11 to dpdk
+databases/ateam_mysql57_ldap_auth||2023-12-31|Depends on upstream EOL MySQL 5.7
+databases/mysql-udf||2023-12-31|Has expired: Upstream last update was in 2007
+databases/mysqlwsrep57-server||2023-12-31|Depends on upstream EOL MySQL 5.7
+net-mgmt/glpi-plugins-fusioninventory-server||2023-12-31|Has expired: Requires php80 which is set to expire on 2023-11-26
+x11-fonts/fontmatrix||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+cad/jspice3||2023-12-31|Has expired: BROKEN for more than 2 years on all supported versions after the EOL of 12
+emulators/rtc||2023-12-31|Has expired: Driver doesn't actually work with current FreeBSD versions
+emulators/gngeo||2023-12-31|Has expired: BROKEN for more that 2 years after the EOL of 12
+net/rp-pppoe||2023-12-31|Has expired: Upstream restricting future OS support to Linux. Use net/mpd5 or pppoed instead. https://dianne.skoll.ca/pipermail/rp-pppoe/2023q2/000639.html
+net/spread4||2023-12-31|Has expired: BROKEN on all supported versions after the EOL of 12
+net/quiterss||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+net/ipsvd||2023-12-31|Has expired: bogus assumption of system type widths, likely crash-prone
+devel/atlas||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years
+net-im/gitterdone||2023-12-31|Has expired: Upstream has gone away
+databases/pgpool-II-40||2023-12-31|Has expired: Upstream EOL reaches on 2023-12-31
+www/varnish6|www/varnish7|2023-12-31|Has expired: Unsupported version upstream, consider migrating to www/varnish7
+net-im/teamwords||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+devel/eris||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+devel/zanata-platform||2023-12-31|Has expired: Depends on expired java/wildfly10, last release from 2018
+textproc/bsdgrep||2023-12-31|Has expired: Merged into base from 13
+mail/postforward||2023-12-31|Has expired: Obsolete as postsrsd 2.x uses unix sockets instead of tcp
+devel/tmake||2023-12-31|Has expired: Last release in 2004 and dead upstream, superseded by qmake
+comms/ncid||2023-12-31|Has expired: Umaintained for over a year, outdated and unsupported version upstream
+multimedia/gmerlin||2023-12-31|Has expired: Upstream last activity was in 2012
+mail/trojita||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+games/springlobby||2023-12-31|Has expired: Depends on expired games/spring
+graphics/libgfx||2023-12-31|Has expired: unmaintained upstream since sep 2005
+devel/cook||2023-12-31|Has expired: Upstream last release was in 2008
+multimedia/omxplayer||2023-12-31|Has expired: Depends on legacy APIs and interfaces, functionality is being in integrated into VLC
+devel/mercator||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+comms/sdr-wspr||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+devel/atlas-devel||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+mail/qsheff||2023-12-31|Has expired: BROKEN on all supported versions after the EOL of 12
+textproc/py-googletrans||2023-12-31|Has expired: Umaintained for over 3 years, depends on old www/py-httpx013
+multimedia/smtube||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+net/thcrut||2023-12-31|Has expired: BROKEN on all supported versions after the EOL of 12
+games/OpenDiablo2||2023-12-31|Has expired: Upstream repository has been archived on Dec 20, 2021
+graphics/figurine||2023-12-31|Has expired: BROKEN for more than 2 years on all supported versions after the EOL of 12
+editors/xi-term||2023-12-31|Has expired: Frontend depends on deprecated editors/xi-core. No upstream activity.
+net/wmwlmon||2023-12-31|Has expired: BROKEN on all supported versions after the EOL of 12
+devel/strace||2023-12-31|Has expired: BROKEN on all supported versions after EOL of 12
+audio/tuneradio||2023-12-31|Has expired: Requires defunct bktr
+net/skstream||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+mail/libspf||2023-12-31|Has expired: Abandonware, last commit upstream 14 years ago. Consider migrating to mail/libspf2
+graphics/sage||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+dns/updatedd||2023-12-31|Has expired: Last release in 2006 and upstream is dead. Consider migrating to dns/inadyn, dns/ddclient or dns/godns
+multimedia/ppm2fli||2023-12-31|Has expired: BROKEN on all supported versions after the EOL of 12
+www/drupal9||2023-12-31|Has expired: Upstream EOL reaches on 2023-11-01
+net/asterisk16|net/asterisk18|2023-12-31|Has expired: Upstream EOL reaches on 2023-10-09
+games/quake3||2023-12-31|Has expired: BROKEN for more than 4 years on all supported versions after the EOL of 12
+audio/xmradio||2023-12-31|Has expired: Requires defunct bktr
+editors/xi-core||2023-12-31|Has expired: Project is currently discontinued, one depend port broken (editors/xi-term set to deprecation too). Upstream recommends editors/lapce
+editors/pdfedit||2023-12-31|Has expired: BROKEN on all supported versions for 2 years after the EOL of 12
+games/spring||2023-12-31|Has expired: Fails to build and marked broken for several months
+java/wildfly10||2023-12-31|Has expired: End of life upstream
+graphics/xfpovray||2023-12-31|Has expired: BROKEN for more than 2 years on all supported versions after the EOL of 12
+audio/mp3splt-gtk||2023-12-31|Has expired: BROKEN on all supported versions for more than 2 years after the EOL of 12
+audio/mp3info||2023-12-31|Has expired: Last release in 2006 and lacks support for ID3v2
+comms/uartlirc||2023-12-31|Has expired: BROKEN on all supported versions for more than 2 years after the EOL of 12
+comms/mlan3||2023-12-31|Has expired: BROKEN on all supported versions for more than 2 years after the EOL of 12
+multimedia/fxtv||2023-12-31|Has expired: Requires defunct bktr
+devel/rubygem-aws-sdk-sso|devel/rubygem-aws-sdk-core|2023-12-31|Has expired: SSO is included as part of aws-sdk-core. Use devel/rubygem-aws-sdk-core instead
+devel/libwfut||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+devel/fuel||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+devel/rubygem-aws-sdk-macie||2023-12-31|Has expired: Deprecated by upstream
+sysutils/devcpu-data|sysutils/cpu-microcode|2023-12-31|Has expired: Use sysutils/cpu-microcode
+math/wfmath||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+sysutils/ffs2recov||2023-12-31|Has expired: BROKEN on supported versions after EOL of 12
+sysutils/iichid||2023-12-31|Has expired: Merged into base from 13
+devel/varconf||2023-12-31|Has expired: There has been no release for most of the Worldforge libraries in the past 10 years.
+multimedia/bsdbktr_tvtune||2023-12-31|Has expired: Requires defunct bktr
+sysutils/lttng-tools||2023-12-31|Has expired: BROKEN on all supported versions after the EOL of 12
+multimedia/phonon-gstreamer||2023-12-31|Has expired: No longer maintained upstream -- the vlc backend is the one to use
+net-mgmt/zabbix4-server|net-mgmt/zabbix5-server|2023-12-31|Has expired: Upstream EOL reaches on 2023-10-31
+net-mgmt/zabbix4-agent|net-mgmt/zabbix5-agent|2023-12-31|Has expired: Upstream EOL reaches on 2023-10-31
+net-mgmt/zabbix4-java|net-mgmt/zabbix5-java|2023-12-31|Has expired: Upstream EOL reaches on 2023-10-31
+net-mgmt/zabbix4-proxy|net-mgmt/zabbix5-proxy|2023-12-31|Has expired: Upstream EOL reaches on 2023-10-31
+devel/py-dj41-django-rq|devel/py-dj42-django-rq|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+net/p5-MaxMind-DB-Writer||2023-12-31|Has expired: This is the final release. This distribution is no longer being developed
+www/py-dj41-django-graphiql-debug-toolbar|www/py-dj42-django-graphiql-debug-toolbar|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-drf-spectacular|www/py-dj42-drf-spectacular|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-django-tables2|www/py-dj42-django-tables2|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-httpx013||2023-12-31|Has expired: Old repo-copy needed for deprecated textproc/py-googletrans
+graphics/drm-fbsd12.0-kmod||2023-12-31|Has expired: Requires soon to reach EOL FreeBSD 12
+www/py-dj41-django-taggit|www/py-dj42-django-taggit|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+sysutils/etc_os-release||2023-12-31|Has expired: No longer required after the EOL of 12
+sysutils/afbinit||2023-12-31|Has expired: sparc64 architecture is deprecated in FreeBSD
+x11-drivers/xf86-video-sunffb||2023-12-31|Removed
+www/py-dj41-django-rich|www/py-dj42-django-rich|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-django-redis|www/py-dj42-django-redis|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-django-prometheus|www/py-dj42-django-prometheus|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-django-mptt|www/py-dj42-django-mptt|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-drf-yasg|www/py-dj42-drf-yasg|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+print/ghostscript9-agpl-x11|print/ghostscript10|2023-12-31|Has expired: Obsolete and unsupported upstream, consider using print/ghostscipt10
+print/ghostscript9-agpl-base|print/ghostscript10|2023-12-31|Has expired: Obsolete and unsupported upstream, consider using print/ghostscipt10
+www/py-dj41-django-cors-headers|www/py-dj42-django-cors-headers|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+databases/mysql57-server|databases/mysql80-server|2023-12-31|Has expired: Upstream support ended in October 2019
+databases/mysql57-client|databases/mysql80-client|2023-12-31|Has expired: Upstream support ended in October 2019
+www/py-dj41-django-filter|www/py-dj42-django-filter|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-django-debug-toolbar|www/py-dj42-django-debug-toolbar|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/kf5-kdewebkit||2023-12-31|Has expired: Depends on deprecated www/qt5-webkit
+www/py-dj41-django-auth-ldap|www/py-dj42-django-auth-ldap|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+sysutils/kfloppy||2023-12-31|Has expired: No longer part of KDE Gear since 23.08
+net/wireguard||2023-12-31|Has expired: Only useful for FreeBSD 12 which is EoL soon
+net/wireguard-kmod||2023-12-31|Has expired: Only useful for FreeBSD 12 which is EoL soon
+www/py-dj41-django-js-asset|www/py-dj42-django-js-asset|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-django-timezone-field|www/py-dj42-django-timezone-field|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+lang/gcc8||2023-12-31|Has expired: Unsupported by upstream. Use GCC 11 or newer instead.
+devel/py-dj41-graphene-django|devel/py-dj42-graphene-django|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-dj41-drf-spectacular-sidecar|www/py-dj42-drf-spectacular-sidecar|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+graphics/php80-exif|graphics/php81-exif|2023-12-31|Has expired: Security support ended on 2023-11-26
+graphics/php80-gd|graphics/php81-gd|2023-12-31|Has expired: Security support ended on 2023-11-26
+mail/php80-imap|mail/php81-imap|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-ffi|devel/php81-ffi|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-gettext|devel/php81-gettext|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-sysvshm|devel/php81-sysvshm|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-tokenizer|devel/php81-tokenizer|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-intl|devel/php81-intl|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-pcntl|devel/php81-pcntl|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-sysvsem|devel/php81-sysvsem|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-sysvmsg|devel/php81-sysvmsg|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-readline|devel/php81-readline|2023-12-31|Has expired: Security support ended on 2023-11-26
+devel/php80-shmop|devel/php81-shmop|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-zlib|archivers/php81-zlib|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-phar|archivers/php81-phar|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-bz2|archivers/php81-bz2|2023-12-31|Has expired: Security support ended on 2023-11-26
+archivers/php80-zip|archivers/php81-zip|2023-12-31|Has expired: Security support ended on 2023-11-26
+misc/php80-calendar|misc/php81-calendar|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-enchant|textproc/php81-enchant|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-pspell|textproc/php81-pspell|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xmlwriter|textproc/php81-xmlwriter|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xmlreader|textproc/php81-xmlreader|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xsl|textproc/php81-xsl|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-dom|textproc/php81-dom|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-simplexml|textproc/php81-simplexml|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-ctype|textproc/php81-ctype|2023-12-31|Has expired: Security support ended on 2023-11-26
+textproc/php80-xml|textproc/php81-xml|2023-12-31|Has expired: Security support ended on 2023-11-26
+converters/php80-mbstring|converters/php81-mbstring|2023-12-31|Has expired: Security support ended on 2023-11-26
+converters/php80-iconv|converters/php81-iconv|2023-12-31|Has expired: Security support ended on 2023-11-26
+security/php80-sodium|security/php81-sodium|2023-12-31|Has expired: Security support ended on 2023-11-26
+security/php80-filter|security/php81-filter|2023-12-31|Has expired: Security support ended on 2023-11-26
+net-mgmt/php80-snmp|net-mgmt/php81-snmp|2023-12-31|Has expired: Security support ended on 2023-11-26
+lang/php80-extensions|lang/php81-extensions|2023-12-31|Has expired: Security support ended on 2023-11-26
+lang/php80|lang/php81|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/php80-opcache|www/php81-opcache|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/php80-tidy|www/php81-tidy|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/php80-session|www/php81-session|2023-12-31|Has expired: Security support ended on 2023-11-26
+www/mod_php80|www/mod_php81|2023-12-31|Has expired: Security support ended on 2023-11-26
+ftp/php80-curl|ftp/php81-curl|2023-12-31|Has expired: Security support ended on 2023-11-26
+ftp/php80-ftp|ftp/php81-ftp|2023-12-31|Has expired: Security support ended on 2023-11-26
+sysutils/php80-fileinfo|sysutils/php81-fileinfo|2023-12-31|Has expired: Security support ended on 2023-11-26
+sysutils/php80-posix|sysutils/php81-posix|2023-12-31|Has expired: Security support ended on 2023-11-26
+math/php80-bcmath|math/php81-bcmath|2023-12-31|Has expired: Security support ended on 2023-11-26
+math/php80-gmp|math/php81-gmp|2023-12-31|Has expired: Security support ended on 2023-11-26
+net/php80-ldap|net/php81-ldap|2023-12-31|Has expired: Security support ended on 2023-11-26
+net/php80-soap|net/php81-soap|2023-12-31|Has expired: Security support ended on 2023-11-26
+net/php80-sockets|net/php81-sockets|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-dba|databases/php81-dba|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo|databases/php81-pdo|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_dblib|databases/php81-pdo_dblib|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-sqlite3|databases/php81-sqlite3|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_pgsql|databases/php81-pdo_pgsql|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_firebird|databases/php81-pdo_firebird|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pgsql|databases/php81-pgsql|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_odbc|databases/php81-pdo_odbc|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_sqlite|databases/php81-pdo_sqlite|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-odbc|databases/php81-odbc|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-mysqli|databases/php81-mysqli|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/php80-pdo_mysql|databases/php81-pdo_mysql|2023-12-31|Has expired: Security support ended on 2023-11-26
+databases/postgresql11-pltcl|databases/postgresql12-pltcl|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-docs|databases/postgresql12-docs|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-plperl|databases/postgresql12-plperl|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-server|databases/postgresql12-server|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-plpython|databases/postgresql12-plpython|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-contrib|databases/postgresql12-contrib|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-client|databases/postgresql12-client|2023-12-31|Has expired: Security support ended on 2023-11-09
+databases/postgresql11-pgtcl|databases/postgresql12-pgtcl|2023-12-31|Has expired: Security support ended on 2023-11-09
+www/py-dj41-djangorestframework|www/py-dj42-djangorestframework|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
+www/py-django41|www/py-django42|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to a newer version of Django. See https://www.djangoproject.com/download/
+www/qt5-webkit||2023-12-31|Has expired: No longer actively maintained, increasing security concers
+textproc/py-grako||2023-12-31|Project is abandoned
+math/p5-Math-BigRat|math/p5-Math-BigInt|2024-01-01|Subsumed into math/p5-Math-BigInt

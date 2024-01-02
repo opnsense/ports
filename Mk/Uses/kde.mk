@@ -100,7 +100,7 @@ KDE_PLASMA5_VERSION?=		5.27.10
 KDE_PLASMA5_BRANCH?=		stable
 
 # Next KDE Plasma desktop
-KDE_PLASMA6_VERSION?=		5.90.0
+KDE_PLASMA6_VERSION?=		5.91.0
 KDE_PLASMA6_BRANCH?=		unstable
 
 # Current KDE frameworks.
@@ -108,7 +108,7 @@ KDE_FRAMEWORKS5_VERSION?=	5.112.0
 KDE_FRAMEWORKS5_BRANCH?=	stable
 
 # Next KDE Frameworks (Qt6 based)
-KDE_FRAMEWORKS6_VERSION?=	5.246.0
+KDE_FRAMEWORKS6_VERSION?=	5.247.0
 KDE_FRAMEWORKS6_BRANCH?=	unstable
 
 # Current KDE applications.
@@ -215,7 +215,7 @@ PKGNAMEPREFIX?=		kf${_KDE_VERSION}-
 WWW?=			https://api.kde.org/frameworks/${PORTNAME}/html/index.html
 # This is a slight duplication of _USE_FRAMEWORKS_PORTING -- it maybe would be
 # better to rely on ${_USE_FRAMEWORKS_PORTING:S/^/k/g}
-_PORTINGAIDS=		kjs kjsembed kdelibs4support kdesignerplugin kdewebkit khtml kmediaplayer kross kxmlrpcclient
+_PORTINGAIDS=		kjs kjsembed kdelibs4support kdesignerplugin khtml kmediaplayer kross kxmlrpcclient
 .        if ${_KDE_VERSION:M5}
 .          if ${_PORTINGAIDS:M*${PORTNAME}*}
 MASTER_SITES?=		KDE/${KDE_FRAMEWORKS_BRANCH}/frameworks/${KDE_FRAMEWORKS_VERSION:R}/portingAids
@@ -288,7 +288,7 @@ _USE_FRAMEWORKS_TIER2=	auth completion crash doctools \
 _USE_FRAMEWORKS_TIER3=	activities activities-stats baloo5 bookmarks configwidgets \
 			designerplugin emoticons globalaccel guiaddons \
 			iconthemes init kcmutils kdav kdeclarative \
-			kded kdesu kdewebkit kio kpipewire newstuff notifyconfig parts \
+			kded kdesu kio kpipewire newstuff notifyconfig parts \
 			people plasma-framework purpose runner service texteditor \
 			textwidgets wallet xmlgui xmlrpcclient
 
@@ -316,7 +316,7 @@ _USE_FRAMEWORKS6_ALL=	ecm colorscheme \
 			userfeedback \
 			${_USE_FRAMEWORKS_TIER1:Noxygen-icons5:Nwayland} \
 			${_USE_FRAMEWORKS_TIER2} \
-			${_USE_FRAMEWORKS_TIER3:Nkdewebkit:Nemoticons:Ndesignerplugin:Nactivities:Nactivities-stats:Ninit:Nplasma-framework:Nxmlrpcclient:Nkpipewire} \
+			${_USE_FRAMEWORKS_TIER3:Nemoticons:Ndesignerplugin:Nactivities:Nactivities-stats:Ninit:Nplasma-framework:Nxmlrpcclient:Nkpipewire} \
 			${_USE_FRAMEWORKS_TIER4} \
 			${_USE_FRAMEWORKS_EXTRA}
 _USE_FRAMEWORKS_ALL=	${_USE_FRAMEWORKS${_KDE_VERSION}_ALL}
@@ -500,9 +500,6 @@ kde-kdelibs4support_LIB=	libKF${_KDE_VERSION}KDELibs4Support.so
 
 kde-kdesu_PORT=			security/kf${_KDE_VERSION}-kdesu
 kde-kdesu_LIB=			libKF${_KDE_VERSION}Su.so
-
-kde-kdewebkit_PORT=		www/kf${_KDE_VERSION}-kdewebkit
-kde-kdewebkit_LIB=		libKF${_KDE_VERSION}WebKit.so
 
 kde-khtml_PORT=			www/kf${_KDE_VERSION}-khtml
 kde-khtml_LIB=			libKF${_KDE_VERSION}KHtml.so
