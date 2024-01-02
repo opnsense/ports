@@ -131,13 +131,8 @@ CLANG_SUB_LIST=		XCC=clang${LLVM_SUFFIX} \
 			X_COMPILER_TYPE=clang
 CLANG_USE=		GNOME=libxml2
 COMPILER_RT_DESC=	Sanitizer libraries
-# An unwind.h is require to build.  I think an in-tree one should be used
-# but this seems to work as a workaround...
-COMPILER_RT_BUILD_DEPENDS=	libunwind>0:devel/libunwind
 COMPILER_RT_CMAKE_ON= \
 	-DCOMPILER_RT_INSTALL_PATH=${LLVM_PREFIX}/lib/clang/${LLVM_RELEASE}
-# Allow unwind.h to be found reliably
-COMPILER_RT_USES=	localbase
 COMPILER_RT_PLIST_FILES=${_COMPILER_RT_LIBS:S|^|${_CRTLIBDIR}/|} \
 			${_COMPILER_RT_BLACKLISTS:S|^|${_CRTBLDIR}/|}
 DOCS_BUILD_DEPENDS= \
@@ -322,7 +317,7 @@ CMAKE_ARGS+=	-DLLVM_ENABLE_PROJECTS="${LLVM_ENABLE_PROJECTS:ts;}"
 .include "${.CURDIR}/Makefile.COMMANDS"
 .include "${.CURDIR}/Makefile.MAN1SRCS"
 
-_FREEBSD_BACKENDS=	AArch64 ARM Mips PowerPC RISCV Sparc X86
+_FREEBSD_BACKENDS=	AArch64 ARM Mips PowerPC RISCV X86
 FREEBSD_BACKENDS=	${_FREEBSD_BACKENDS}
 .if ${ARCH} == amd64
 _NATIVE_BACKENDS=	X86
@@ -349,7 +344,7 @@ FREEBSD_BACKENDS+=	WebAssembly
 NATIVE_BACKENDS+=	WebAssembly
 .endif
 STANDARD_BACKENDS=	${_FREEBSD_BACKENDS} AMDGPU AVR BPF Hexagon Lanai \
-			MSP430 NVPTX SystemZ WebAssembly XCore
+			MSP430 NVPTX Sparc SystemZ WebAssembly XCore
 _BE_LIBS_COMMON=	CodeGen Desc Info
 _BE_LIBS_AArch64=	AsmParser Disassembler Utils
 _BE_LIBS_BACKWARDS_AArch64=Exegesis

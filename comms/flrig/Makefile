@@ -1,6 +1,5 @@
 PORTNAME=	flrig
-PORTVERSION=	2.0.04
-PORTREVISION=	1
+PORTVERSION=	2.0.05
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SF/fldigi/${PORTNAME} \
 		http://www.w1hkj.com/files/fldigi/
@@ -8,8 +7,6 @@ MASTER_SITES=	SF/fldigi/${PORTNAME} \
 MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Ham Radio rig control program, cooperates with fldigi
 WWW=		http://www.w1hkj.com/flrig-help/index.html
-
-IGNORE_FreeBSD_12=	no hid support
 
 LICENSE=	GPLv2
 

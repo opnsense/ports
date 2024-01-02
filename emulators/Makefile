@@ -42,7 +42,6 @@
     SUBDIR += gbe
     SUBDIR += gens
     SUBDIR += gngb
-    SUBDIR += gngeo
     SUBDIR += gxemul
     SUBDIR += hatari
     SUBDIR += hercules
@@ -121,7 +120,6 @@
     SUBDIR += ripes
     SUBDIR += riscv-isa-sim
     SUBDIR += rpcs3
-    SUBDIR += rtc
     SUBDIR += rubygem-fission
     SUBDIR += sameboy
     SUBDIR += simh

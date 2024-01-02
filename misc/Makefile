@@ -379,7 +379,6 @@
     SUBDIR += pecl-timezonedb
     SUBDIR += perkeep
     SUBDIR += pfm
-    SUBDIR += php80-calendar
     SUBDIR += php81-calendar
     SUBDIR += php82-calendar
     SUBDIR += php83-calendar
@@ -402,6 +401,7 @@
     SUBDIR += py-alive-progress
     SUBDIR += py-apache-beam
     SUBDIR += py-ascii-magic
+    SUBDIR += py-ast-comments
     SUBDIR += py-boost-histogram
     SUBDIR += py-censys
     SUBDIR += py-cinder
@@ -414,6 +414,7 @@
     SUBDIR += py-einops
     SUBDIR += py-emoji
     SUBDIR += py-ezc3d
+    SUBDIR += py-facenet-pytorch
     SUBDIR += py-fast-histogram
     SUBDIR += py-fastscapelib
     SUBDIR += py-fleep
@@ -433,6 +434,10 @@
     SUBDIR += py-lightning-utilities
     SUBDIR += py-log_symbols
     SUBDIR += py-mffpy
+    SUBDIR += py-mmcv
+    SUBDIR += py-mmdet
+    SUBDIR += py-mmengine
+    SUBDIR += py-mmsegmentation
     SUBDIR += py-molequeue
     SUBDIR += py-mxnet
     SUBDIR += py-npTDMS
@@ -494,6 +499,7 @@
     SUBDIR += py-tqdm
     SUBDIR += py-tvm
     SUBDIR += py-uhi
+    SUBDIR += py-vaderSentiment
     SUBDIR += py-wandb
     SUBDIR += py-wurlitzer
     SUBDIR += py-xgboost

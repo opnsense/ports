@@ -94,7 +94,6 @@
     SUBDIR += gcc14-devel
     SUBDIR += gcc48
     SUBDIR += gcc6-aux
-    SUBDIR += gcc8
     SUBDIR += gcc9
     SUBDIR += gforth
     SUBDIR += ghc
@@ -266,8 +265,6 @@
     SUBDIR += pfe
     SUBDIR += pharo
     SUBDIR += php-mode.el
-    SUBDIR += php80
-    SUBDIR += php80-extensions
     SUBDIR += php81
     SUBDIR += php81-extensions
     SUBDIR += php82
@@ -380,5 +377,6 @@
     SUBDIR += ypsilon
     SUBDIR += zephir
     SUBDIR += zig
+    SUBDIR += zig010
 
 .include <bsd.port.subdir.mk>

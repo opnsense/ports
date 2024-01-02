@@ -22,7 +22,6 @@
     SUBDIR += acpica-tools
     SUBDIR += acts
     SUBDIR += adtool
-    SUBDIR += afbinit
     SUBDIR += afflib
     SUBDIR += afio
     SUBDIR += agedu
@@ -287,7 +286,6 @@
     SUBDIR += deltup
     SUBDIR += desktop-installer
     SUBDIR += detox
-    SUBDIR += devcpu-data
     SUBDIR += devctl-jail-kmod
     SUBDIR += devd-mount
     SUBDIR += devedeng
@@ -370,7 +368,6 @@
     SUBDIR += epazote
     SUBDIR += equinix-metal-cli
     SUBDIR += erdtree
-    SUBDIR += etc_os-release
     SUBDIR += etcmerge
     SUBDIR += ethname
     SUBDIR += evhz
@@ -397,7 +394,6 @@
     SUBDIR += fd
     SUBDIR += fdupes
     SUBDIR += fetchlog
-    SUBDIR += ffs2recov
     SUBDIR += file
     SUBDIR += filedupe
     SUBDIR += filelight
@@ -571,7 +567,6 @@
     SUBDIR += i2c-tools
     SUBDIR += i7z
     SUBDIR += iat
-    SUBDIR += iichid
     SUBDIR += imgurbash2
     SUBDIR += immortal
     SUBDIR += incron
@@ -640,7 +635,6 @@
     SUBDIR += kf6-baloo
     SUBDIR += kf6-kuserfeedback
     SUBDIR += kf6-kwallet
-    SUBDIR += kfloppy
     SUBDIR += khelpcenter
     SUBDIR += kiconvtool
     SUBDIR += kio-fuse
@@ -716,7 +710,6 @@
     SUBDIR += lsyncd
     SUBDIR += ltfs
     SUBDIR += ltrace
-    SUBDIR += lttng-tools
     SUBDIR += lttng-ust
     SUBDIR += lua-puremagic
     SUBDIR += luckybackup
@@ -1003,8 +996,6 @@
     SUBDIR += pfstat
     SUBDIR += pftables
     SUBDIR += pftop
-    SUBDIR += php80-fileinfo
-    SUBDIR += php80-posix
     SUBDIR += php81-fileinfo
     SUBDIR += php81-posix
     SUBDIR += php82-fileinfo
@@ -1199,6 +1190,7 @@
     SUBDIR += rename
     SUBDIR += renameutils
     SUBDIR += reoback
+    SUBDIR += reproduce
     SUBDIR += reptyr
     SUBDIR += respond
     SUBDIR += rest-server

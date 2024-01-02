@@ -21,7 +21,6 @@
     SUBDIR += fractal
     SUBDIR += freetalk
     SUBDIR += gajim
-    SUBDIR += gitterdone
     SUBDIR += gloox
     SUBDIR += gomuks
     SUBDIR += gotktrix
@@ -143,7 +142,6 @@
     SUBDIR += talkatu
     SUBDIR += tdlib
     SUBDIR += tdlib-purple
-    SUBDIR += teamwords
     SUBDIR += telegram-cli
     SUBDIR += telegram-desktop
     SUBDIR += telegram-purple

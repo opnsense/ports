@@ -149,7 +149,6 @@
     SUBDIR += drupal10
     SUBDIR += drupal7
     SUBDIR += drupal7-wysiwyg
-    SUBDIR += drupal9
     SUBDIR += drush
     SUBDIR += dtse
     SUBDIR += dufs
@@ -287,7 +286,6 @@
     SUBDIR += kannel-sqlbox
     SUBDIR += kcgi
     SUBDIR += kdsoap
-    SUBDIR += kf5-kdewebkit
     SUBDIR += kf5-khtml
     SUBDIR += kf5-kjs
     SUBDIR += kf5-kjsembed
@@ -352,6 +350,7 @@
     SUBDIR += mediawiki135
     SUBDIR += mediawiki139
     SUBDIR += mediawiki140
+    SUBDIR += mediawiki141
     SUBDIR += mergelog
     SUBDIR += mhonarc
     SUBDIR += micro_httpd
@@ -408,7 +407,6 @@
     SUBDIR += mod_mono
     SUBDIR += mod_mpm_itk
     SUBDIR += mod_perl2
-    SUBDIR += mod_php80
     SUBDIR += mod_php81
     SUBDIR += mod_php82
     SUBDIR += mod_php83
@@ -1025,6 +1023,7 @@
     SUBDIR += p5-MediaWiki-API
     SUBDIR += p5-Mobile-UserAgent
     SUBDIR += p5-ModPerl-VersionUtil
+    SUBDIR += p5-Mojo-DOM58
     SUBDIR += p5-Mojo-IOLoop-Delay
     SUBDIR += p5-Mojo-IOLoop-ForkCall
     SUBDIR += p5-Mojo-Server-FastCGI
@@ -1402,9 +1401,6 @@
     SUBDIR += pglogd
     SUBDIR += phalcon
     SUBDIR += php-google-api-php-client
-    SUBDIR += php80-opcache
-    SUBDIR += php80-session
-    SUBDIR += php80-tidy
     SUBDIR += php81-opcache
     SUBDIR += php81-session
     SUBDIR += php81-tidy
@@ -1491,23 +1487,6 @@
     SUBDIR += py-cssutils
     SUBDIR += py-daphne
     SUBDIR += py-dj-database-url
-    SUBDIR += py-dj41-django-auth-ldap
-    SUBDIR += py-dj41-django-cors-headers
-    SUBDIR += py-dj41-django-debug-toolbar
-    SUBDIR += py-dj41-django-filter
-    SUBDIR += py-dj41-django-graphiql-debug-toolbar
-    SUBDIR += py-dj41-django-js-asset
-    SUBDIR += py-dj41-django-mptt
-    SUBDIR += py-dj41-django-prometheus
-    SUBDIR += py-dj41-django-redis
-    SUBDIR += py-dj41-django-rich
-    SUBDIR += py-dj41-django-tables2
-    SUBDIR += py-dj41-django-taggit
-    SUBDIR += py-dj41-django-timezone-field
-    SUBDIR += py-dj41-djangorestframework
-    SUBDIR += py-dj41-drf-spectacular
-    SUBDIR += py-dj41-drf-spectacular-sidecar
-    SUBDIR += py-dj41-drf-yasg
     SUBDIR += py-dj42-django-auth-ldap
     SUBDIR += py-dj42-django-cors-headers
     SUBDIR += py-dj42-django-debug-toolbar
@@ -1627,7 +1606,6 @@
     SUBDIR += py-django-webpack-loader
     SUBDIR += py-django-widget-tweaks
     SUBDIR += py-django32
-    SUBDIR += py-django41
     SUBDIR += py-django42
     SUBDIR += py-django50
     SUBDIR += py-django_compressor
@@ -1738,7 +1716,6 @@
     SUBDIR += py-httpx-gssapi
     SUBDIR += py-httpx-oauth
     SUBDIR += py-httpx-socks
-    SUBDIR += py-httpx013
     SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
@@ -1790,6 +1767,7 @@
     SUBDIR += py-python-multipart
     SUBDIR += py-pyweblib
     SUBDIR += py-pywikibot
+    SUBDIR += py-pywry
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine
     SUBDIR += py-quilt3
@@ -1890,7 +1868,6 @@
     SUBDIR += qt5-webchannel
     SUBDIR += qt5-webengine
     SUBDIR += qt5-webglplugin
-    SUBDIR += qt5-webkit
     SUBDIR += qt5-websockets
     SUBDIR += qt5-websockets-qml
     SUBDIR += qt5-webview
@@ -2450,7 +2427,6 @@
     SUBDIR += varnish-libvmod-querystring
     SUBDIR += varnish-libvmod-redis
     SUBDIR += varnish-modules
-    SUBDIR += varnish6
     SUBDIR += varnish7
     SUBDIR += varnish_exporter
     SUBDIR += vaultwarden-web_vault

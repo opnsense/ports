@@ -233,7 +233,6 @@
     SUBDIR += p5-Vimana
     SUBDIR += paredit-mode.el
     SUBDIR += parinfer-rust
-    SUBDIR += pdfedit
     SUBDIR += pico-alpine
     SUBDIR += picpas
     SUBDIR += pluma
@@ -294,8 +293,6 @@
     SUBDIR += wxhexeditor
     SUBDIR += xcoral
     SUBDIR += xed
-    SUBDIR += xi-core
-    SUBDIR += xi-term
     SUBDIR += xmlcopyeditor
     SUBDIR += xvile
     SUBDIR += yudit

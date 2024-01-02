@@ -1,6 +1,6 @@
 PORTNAME=	rtx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2023.12.38
+DISTVERSION=	2023.12.40
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -47,7 +47,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		chrono-0.4.31 \
 		clap-4.4.11 \
 		clap_builder-4.4.11 \
-		clap_complete-4.4.4 \
+		clap_complete-4.4.5 \
 		clap_derive-4.4.7 \
 		clap_lex-0.6.0 \
 		clap_mangen-0.2.15 \
@@ -222,7 +222,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		rustversion-1.0.14 \
 		ryu-1.0.16 \
 		same-file-1.0.6 \
-		schannel-0.1.22 \
+		schannel-0.1.23 \
 		sct-0.7.1 \
 		security-framework-2.9.2 \
 		security-framework-sys-2.9.1 \
@@ -251,19 +251,19 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		strum_macros-0.25.3 \
 		subtle-2.5.0 \
 		syn-1.0.109 \
-		syn-2.0.42 \
+		syn-2.0.43 \
 		sys-info-0.9.1 \
 		system-configuration-0.5.1 \
 		system-configuration-sys-0.5.0 \
 		tabled-0.15.0 \
 		tabled_derive-0.7.0 \
 		tar-0.4.40 \
-		tempfile-3.8.1 \
+		tempfile-3.9.0 \
 		tera-1.19.1 \
 		termcolor-1.1.3 \
 		terminal_size-0.3.0 \
-		thiserror-1.0.51 \
-		thiserror-impl-1.0.51 \
+		thiserror-1.0.52 \
+		thiserror-impl-1.0.52 \
 		thread_local-1.1.7 \
 		time-0.3.31 \
 		time-core-0.1.2 \
@@ -350,9 +350,9 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		windows_x86_64_msvc-0.42.2 \
 		windows_x86_64_msvc-0.48.5 \
 		windows_x86_64_msvc-0.52.0 \
-		winnow-0.5.30 \
+		winnow-0.5.31 \
 		winreg-0.50.0 \
-		xattr-1.1.3 \
+		xattr-1.2.0 \
 		yaml-rust-0.4.5 \
 		yansi-0.5.1 \
 		zeroize-1.7.0 \
