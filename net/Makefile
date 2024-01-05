@@ -145,6 +145,7 @@
     SUBDIR += endlessh
     SUBDIR += enet
     SUBDIR += eternalterminal
+    SUBDIR += eturnal
     SUBDIR += evans
     SUBDIR += eventviews
     SUBDIR += exabgp4
@@ -1034,6 +1035,7 @@
     SUBDIR += py-avahi
     SUBDIR += py-blobfile
     SUBDIR += py-bonsai
+    SUBDIR += py-casttube
     SUBDIR += py-cepa
     SUBDIR += py-cjdns
     SUBDIR += py-cloudflare-scrape
