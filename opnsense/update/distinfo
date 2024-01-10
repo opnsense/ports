@@ -1,3 +1,5 @@
-TIMESTAMP = 1703142690
+TIMESTAMP = 1704875445
 SHA256 (opnsense-update-23.7.10-edd4105_GH0.tar.gz) = e7f4c3539016eb65eb6eff0bffef0f739c5bb5bb20096b25504969da2452fb16
 SIZE (opnsense-update-23.7.10-edd4105_GH0.tar.gz) = 27781
+SHA256 (opnsense-update-24.1.r1-edd4105_GH0.tar.gz) = e7f4c3539016eb65eb6eff0bffef0f739c5bb5bb20096b25504969da2452fb16
+SIZE (opnsense-update-24.1.r1-edd4105_GH0.tar.gz) = 27781
