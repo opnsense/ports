@@ -104,7 +104,7 @@ KDE_PLASMA6_VERSION?=		5.91.0
 KDE_PLASMA6_BRANCH?=		unstable
 
 # Current KDE frameworks.
-KDE_FRAMEWORKS5_VERSION?=	5.112.0
+KDE_FRAMEWORKS5_VERSION?=	5.113.0
 KDE_FRAMEWORKS5_BRANCH?=	stable
 
 # Next KDE Frameworks (Qt6 based)
@@ -119,10 +119,10 @@ KDE_APPLICATIONS5_SHLIB_G_VER?=	23.8.4
 KDE_APPLICATIONS5_BRANCH?=	stable
 
 # Next KDE applications.
-KDE_APPLICATIONS6_VERSION?=	24.01.80
+KDE_APPLICATIONS6_VERSION?=	24.01.85
 KDE_APPLICATIONS6_SHLIB_VER?=	5.24.3
 # G as in KDE Gear, and as in "don't make the variable name longer than required"
-KDE_APPLICATIONS6_SHLIB_G_VER?=	24.01.80
+KDE_APPLICATIONS6_SHLIB_G_VER?=	24.01.85
 KDE_APPLICATIONS6_BRANCH?=	unstable
 
 # Extended KDE universe applications.
@@ -967,7 +967,7 @@ kde-libkcddb5_LIB=		libKF${_KDE_VERSION}Cddb.so
 kde-libkcompactdisc5_PORT=	audio/libkcompactdisc
 kde-libkcompactdisc5_LIB=	libKF${_KDE_VERSION}CompactDisc.so
 
-kde-libkdcraw5_PORT=		graphics/libkdcraw
+kde-libkdcraw5_PORT=		graphics/libkdcraw@qt${_KDE_VERSION}
 kde-libkdcraw5_LIB=		libKF${_KDE_VERSION}KDcraw.so
 
 kde-libkdegames5_PORT=		games/libkdegames
