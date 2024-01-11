@@ -1,6 +1,6 @@
 PORTNAME=	fpc
 PORTVERSION=	3.2.2
-PORTREVISION=	8
+PORTREVISION=	10
 CATEGORIES=	lang
 MASTER_SITES=	SF/freepascal/Source/${PORTVERSION}:source \
 		https://downloads.freepascal.org/${PORTNAME}/dist/${PORTVERSION}/source/:source \
@@ -142,6 +142,8 @@ post-patch:
 		${WRKSRC}/packages/opencl/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/proj4/fpmake.pp
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
+		${WRKSRC}/packages/ptc/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|os2|freebsd,os2|g' \
 		${WRKSRC}/packages/rexx/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
@@ -166,8 +168,8 @@ do-install:
 		${MAKE_CMD} install ${MAKE_ARGS} ${BOOTPPC})
 
 	# Installing manpages
-	${INSTALL_MAN} ${WRKDIR}/man/man1/* ${STAGEDIR}${MAN1PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKDIR}/man/man5/* ${STAGEDIR}${MAN1PREFIX}/man/man5
+	${INSTALL_MAN} ${WRKDIR}/man/man1/* ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/man/man5/* ${STAGEDIR}${PREFIX}/share/man/man5
 	# symlinking compiler
 	(cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf ../lib/fpc/${PORTVERSION}/${PPNAME})
 	# creating sample configuration file

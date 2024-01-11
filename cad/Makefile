@@ -6,6 +6,7 @@
     SUBDIR += adms
     SUBDIR += alliance
     SUBDIR += antimony
+    SUBDIR += apio
     SUBDIR += appcsxcad
     SUBDIR += archimedes
     SUBDIR += astk-client
@@ -141,6 +142,7 @@
     SUBDIR += svlint
     SUBDIR += svls
     SUBDIR += sweethome3d
+    SUBDIR += symbiyosys
     SUBDIR += tkgate
     SUBDIR += tochnog
     SUBDIR += uhdm

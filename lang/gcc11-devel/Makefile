@@ -1,5 +1,5 @@
 PORTNAME=	gcc
-PORTVERSION=	11.4.1.s20231228
+PORTVERSION=	11.4.1.s20240104
 CATEGORIES=	lang
 MASTER_SITES=	GCC/snapshots/${DIST_VERSION}
 PKGNAMESUFFIX=	${SUFFIX}-devel
@@ -76,7 +76,7 @@ CXXFLAGS:=	${CFLAGS:S/mcpu=g/mcpu=G/}
 .if ${ARCH} == amd64
 CONFIGURE_TARGET=	x86_64-portbld-${OPSYS:tl}${OSREL}
 
-.elif defined(PPC_ABI) && ${PPC_ABI} == ELFv2
+.elif ${ARCH} == powerpc64
 CONFIGURE_ARGS+=	--with-abi=elfv2
 .endif
 

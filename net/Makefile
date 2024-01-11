@@ -166,6 +166,7 @@
     SUBDIR += freeradius-client
     SUBDIR += freeradius3
     SUBDIR += freerdp
+    SUBDIR += freerdp3
     SUBDIR += freeswitch
     SUBDIR += freevrrpd
     SUBDIR += frp
@@ -1092,6 +1093,7 @@
     SUBDIR += py-pcapy-ng
     SUBDIR += py-port-for
     SUBDIR += py-portend
+    SUBDIR += py-pychromecast
     SUBDIR += py-pyenet
     SUBDIR += py-pyfixbuf
     SUBDIR += py-pygeoip
