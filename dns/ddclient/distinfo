@@ -1,3 +1,5 @@
-TIMESTAMP = 1700741617
+TIMESTAMP = 1705326897
 SHA256 (ddclient-ddclient-v3.11.2_GH0.tar.gz) = 243cd832abd3cdd2b49903e1b5ed7f450e2d9c4c0eaf8ce4fe692c244d3afd77
 SIZE (ddclient-ddclient-v3.11.2_GH0.tar.gz) = 278314
+SHA256 (fc4f87b.patch) = fb659510d1b6f999e2031fc2b8a2a98e61b44b3836f952cab1bd2463029077e3
+SIZE (fc4f87b.patch) = 3966

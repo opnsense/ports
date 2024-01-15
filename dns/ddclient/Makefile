@@ -1,7 +1,11 @@
 PORTNAME=	ddclient
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.11.2
+PORTREVISION=	1
 CATEGORIES=	dns
+
+PATCH_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/commit/
+PATCHFILES=	fc4f87b.patch:-p1
 
 MAINTAINER=	mjl@luckie.org.nz
 COMMENT=	Update dynamic DNS entries
