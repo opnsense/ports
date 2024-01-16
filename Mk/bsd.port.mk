@@ -503,10 +503,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #
 # MANPREFIX		- The directory prefix for manual pages.
 #				  Default: ${PREFIX}
-# MAN<sect>PREFIX
-#				- If manual pages of some sections install in different
-#				  locations than others, use these.
-#				  Default: ${MANPREFIX}
 #
 # Set the following to specify all .info files your port installs.
 #
@@ -1329,11 +1325,21 @@ LDCONFIG32_DIR=	libdata/ldconfig32
 TMPDIR?=	/tmp
 .    endif # defined(PACKAGE_BUILDING)
 
-.    if defined(WITH_DEBUG_PORTS)
-.      if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
-WITH_DEBUG=	yes
+# For each Feature we support, process the
+# WITH_FEATURE_PORTS and WITHOUT_FEATURE_PORTS variables
+.    for feature in ${_LIST_OF_WITH_FEATURES}
+.      if ${_DEFAULT_WITH_FEATURES:M${feature}}
+_WITH_OR_WITHOUT=	WITHOUT
+.      else
+_WITH_OR_WITHOUT=	WITH
 .      endif
-.    endif
+
+.      if defined(${_WITH_OR_WITHOUT}_${feature:tu}_PORTS)
+.        if ${${_WITH_OR_WITHOUT}_${feature:tu}_PORTS:M${PKGORIGIN}}
+${_WITH_OR_WITHOUT}_${feature:tu}=	yes
+.        endif
+.      endif
+.    endfor
 
 .    if defined(USE_LTO)
 WITH_LTO=	${USE_LTO}
@@ -1442,13 +1448,7 @@ USES+=mysql:${USE_MYSQL}
 .include "${PORTSDIR}/Mk/bsd.wx.mk"
 .    endif
 
-.    if !defined(UID)
-.      if defined(.MAKE.UID)
-UID=	${.MAKE.UID}
-.      else
-UID!=	${ID} -u
-.      endif
-.    endif
+UID?=	${.MAKE.UID}
 
 DESTDIRNAME?=	DESTDIR
 
@@ -2753,11 +2753,6 @@ MANDIRS+=	${PREFIX}/share/man
 .    endif
 
 MANDIRS+=	${MANPREFIX}/man
-.    for sect in 1 2 3 4 5 6 7 8 9
-MAN${sect}PREFIX?=	${MANPREFIX}
-.    endfor
-MANLPREFIX?=	${MANPREFIX}
-MANNPREFIX?=	${MANPREFIX}
 INFO_PATH?=	share/info
 
 .    if defined(INFO)
