@@ -29,6 +29,7 @@
     SUBDIR += arping
     SUBDIR += arpoison
     SUBDIR += arprelease
+    SUBDIR += arrowdl
     SUBDIR += asio
     SUBDIR += aslookup
     SUBDIR += asterisk-chan_sccp
@@ -126,7 +127,6 @@
     SUBDIR += dico
     SUBDIR += dictd
     SUBDIR += dimes
-    SUBDIR += downzemall
     SUBDIR += dpdk
     SUBDIR += dpdk-20.11
     SUBDIR += dpinger
@@ -1578,7 +1578,6 @@
     SUBDIR += ulxmlrpcpp
     SUBDIR += unfs3
     SUBDIR += unison
-    SUBDIR += unison232
     SUBDIR += unison240
     SUBDIR += unison248
     SUBDIR += unison251

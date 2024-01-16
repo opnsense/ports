@@ -430,7 +430,6 @@
     SUBDIR += moinmoin
     SUBDIR += moinmoincli
     SUBDIR += mongoose
-    SUBDIR += mongrel2
     SUBDIR += monolith
     SUBDIR += moodle41
     SUBDIR += moodle42
@@ -2311,6 +2310,7 @@
     SUBDIR += sogo2-activesync
     SUBDIR += spawn-fcgi
     SUBDIR += spreadlogd
+    SUBDIR += sqlpage
     SUBDIR += sqstat
     SUBDIR += squid
     SUBDIR += squid-langpack

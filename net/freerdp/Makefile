@@ -8,6 +8,8 @@ MASTER_SITES=	https://pub.freerdp.com/releases/ \
 PATCH_SITES=	https://github.com/FreeRDP/FreeRDP/commit/
 PATCHFILES+=	61983cd6dcb86097d91b7ef405abc1266444a368.patch:-p1 # ffmpeg6 support: AVPicture
 								   # https://github.com/FreeRDP/FreeRDP/pull/8941
+PATCHFILES+=	78cdb555c57c33b7f331cb280ac2f615cb87fa74.patch:-p1 # add additional neon check
+								   # https://github.com/FreeRDP/FreeRDP/issues/9746
 
 MAINTAINER=	vvd@FreeBSD.org
 COMMENT=	Free implementation of Remote Desktop Protocol
@@ -24,8 +26,8 @@ LIB_DEPENDS=	libepoll-shim.so:devel/libepoll-shim
 USES=		alias cmake compiler:c++11-lib cpe localbase pathfix pkgconfig ssl
 USE_LDCONFIG=	yes
 
-PATCHVERSION=	${PORTVERSION}
-MAJORVERSION=	${PORTVERSION:R:R}
+PATCHVERSION=	${DISTVERSION}
+MAJORVERSION=	${DISTVERSION:R:R}
 
 CMAKE_ARGS+=	${CMAKE_ARGS_${ARCH}}
 CMAKE_ON=	WITH_CHANNELS WITH_OPENSSL WITH_OSS WITH_ZLIB CHANNEL_URBDRC_CLIENT
@@ -37,6 +39,8 @@ CMAKE_OFF=	WITH_DSP_EXPERIMENTAL WITH_GPROF WITH_GSSAPI WITH_GSTREAMER_0_10 WITH
 
 PLIST_SUB+=	PATCHVERSION="${PATCHVERSION}"
 PLIST_SUB+=	MAJORVERSION="${MAJORVERSION}"
+
+PORTSCOUT=	limit:^2\.
 
 OPTIONS_DEFINE=		ALSA BROKENFOCUS CUPS FAAC FAAD FFMPEG GSM GSTREAMER \
 			ICU JPEG LAME MANPAGES OPENH264 PCSC \

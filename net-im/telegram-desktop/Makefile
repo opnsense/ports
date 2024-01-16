@@ -1,5 +1,5 @@
 PORTNAME=	telegram-desktop
-DISTVERSION=	4.14.3
+DISTVERSION=	4.14.4
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/v${DISTVERSION}/
 DISTNAME=	tdesktop-${DISTVERSION}-full
@@ -105,8 +105,8 @@ TELEGRAM_API_ID=	601761
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400000 && ${OSVERSION} < 1400079
-USES+=	llvm:max=15,build
+.if ${OPSYS} == FreeBSD && ((${OSVERSION} >= 1400000 && ${OSVERSION} < 1400091) || ${OSVERSION} < 1302507)
+USES+=	llvm:min=16,build
 .else
 USES+=	compiler:c++20-lang
 .endif
