@@ -2949,3 +2949,20 @@ editors/edith||2024-01-17|Has expired: Upstream last release was in 2000
 x11-toolkits/p5-Gtk2-GladeXML||2024-01-17|Has expired: Upstream marked this module as Deprecated
 x11-toolkits/p5-Gtk2-TrayIcon||2024-01-17|Has expired: Upstream marked this module as Deprecated
 editors/led||2024-01-17|Has expired: Last upstream release was in 2002 reconsider using editors/nano
+editors/jove||2024-01-18|Has expired: No upstream update in last 23 years
+editors/impress||2024-01-18|Has expired: Upstream last release was in 2000
+biology/sim4||2024-01-18|Has expired: Upstream last update was in 2005
+x11-wm/w9wm||2024-01-18|Has expired: Last upstream release was in 2002
+biology/seqio||2024-01-18|Has expired: Upstream last release was in 2000
+x11-wm/tvtwm||2024-01-18|Has expired: Upstream last release was in 2001 reconsider using vtwm
+x11-wm/treewm||2024-01-18|Has expired: Last upstream release was in 2003
+biology/recombine|biology/lamarc|2024-01-18|Has expired: Upstream advises to use biology/lamarc
+x11-wm/phluid||2024-01-18|Has expired: Last upstream release was in 2000
+x11-wm/lwm||2024-01-18|Has expired: Last upstream release was in 2016
+x11-wm/ratmen||2024-01-18|Has expired: Last upstream release was in 2008
+x11-wm/larswm||2024-01-18|Has expired: Last upstream release was in 2010
+x11-wm/flwm||2024-01-19|Has expired: Last upstream release and activity was in 2015
+x11-wm/jewel||2024-01-19|Has expired: Last upstream release was in 2004
+x11-wm/antiwm||2024-01-20|Has expired: Last upstream release was in 2009
+databases/qt5-sqldrivers-ibase||2024-01-21|Has expired: No fix with the oldest Firebird and BROKEN around 1 year
+multimedia/libva-glx|multimedia/libva|2024-01-21|Merged into main port
