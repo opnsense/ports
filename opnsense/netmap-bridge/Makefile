@@ -25,7 +25,7 @@ do-extract:
 	${CP} ${SRC_BASE}/tools/tools/netmap/bridge.c ${WRKSRC}
 
 pre-install:
-	${CP} ${WRKSRC}/bridge.8 ${STAGEDIR}${PREFIX}/man/man8/netmap-bridge.8
+	${CP} ${WRKSRC}/bridge.8 ${STAGEDIR}${PREFIX}/share/man/man8/netmap-bridge.8
 	${MV} ${WRKSRC}/bridge ${WRKSRC}/netmap-bridge
 
 do-install:
