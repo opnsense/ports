@@ -1,6 +1,7 @@
-PORTNAME=	pam_opnsense
+PORTNAME=	pam
 PORTVERSION=	24.1
 CATEGORIES=	sysutils
+PKGNAMESUFFIX=	_${GH_ACCOUNT}
 
 MAINTAINER=	ad@opnsense.org
 COMMENT=	OPNsense shared authentication system using PAM
