@@ -202,7 +202,6 @@
     SUBDIR += rainbow
     SUBDIR += rampler
     SUBDIR += readseq
-    SUBDIR += recombine
     SUBDIR += rna-seq
     SUBDIR += ruby-bio
     SUBDIR += rubygem-bio
@@ -218,12 +217,10 @@
     SUBDIR += seqan-apps
     SUBDIR += seqan1
     SUBDIR += seqan3
-    SUBDIR += seqio
     SUBDIR += seqkit
     SUBDIR += seqtk
     SUBDIR += seqwish
     SUBDIR += sigviewer
-    SUBDIR += sim4
     SUBDIR += slclust
     SUBDIR += smithwaterman
     SUBDIR += snpeff

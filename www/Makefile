@@ -72,6 +72,7 @@
     SUBDIR += bareos-webui
     SUBDIR += bareos20-webui
     SUBDIR += bareos21-webui
+    SUBDIR += bareos22-webui
     SUBDIR += beehive
     SUBDIR += bkmrkconv
     SUBDIR += bluefish
@@ -1737,6 +1738,7 @@
     SUBDIR += py-multidict
     SUBDIR += py-mwoauth
     SUBDIR += py-nevow
+    SUBDIR += py-nh3
     SUBDIR += py-notebook
     SUBDIR += py-onetimepass
     SUBDIR += py-openbrokerapi

@@ -1529,6 +1529,7 @@
     SUBDIR += py-qrcode
     SUBDIR += py-rdflib
     SUBDIR += py-readchar
+    SUBDIR += py-readthedocs-sphinx-ext
     SUBDIR += py-readtime
     SUBDIR += py-recommonmark
     SUBDIR += py-regex
@@ -2136,6 +2137,7 @@
     SUBDIR += yi-hunspell
     SUBDIR += yodl
     SUBDIR += yq
+    SUBDIR += ytt
     SUBDIR += zed
     SUBDIR += zenxml
     SUBDIR += zorba

@@ -1,6 +1,6 @@
 PORTNAME=	mise
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2024.1.22
+DISTVERSION=	2024.1.24
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -22,13 +22,13 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		android_system_properties-0.1.5 \
 		ansi-str-0.8.0 \
 		ansitok-0.2.0 \
-		anstream-0.6.8 \
+		anstream-0.6.11 \
 		anstyle-1.0.4 \
 		anstyle-parse-0.2.3 \
 		anstyle-query-1.0.2 \
 		anstyle-wincon-3.0.2 \
 		arrayvec-0.5.2 \
-		async-compression-0.4.5 \
+		async-compression-0.4.6 \
 		autocfg-1.1.0 \
 		backtrace-0.3.69 \
 		base64-0.21.7 \
@@ -47,7 +47,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		chrono-0.4.31 \
 		clap-4.4.18 \
 		clap_builder-4.4.18 \
-		clap_complete-4.4.7 \
+		clap_complete-4.4.8 \
 		clap_derive-4.4.7 \
 		clap_lex-0.6.0 \
 		clap_mangen-0.2.17 \
@@ -73,7 +73,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		ctrlc-3.4.2 \
 		curve25519-dalek-4.1.1 \
 		curve25519-dalek-derive-0.1.1 \
-		demand-0.3.0 \
+		demand-0.4.0 \
 		der-0.7.8 \
 		deranged-0.3.11 \
 		diff-0.1.13 \
@@ -115,11 +115,11 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		globset-0.4.14 \
 		globwalk-0.8.1 \
 		globwalk-0.9.1 \
-		h2-0.3.23 \
+		h2-0.3.24 \
 		hashbrown-0.14.3 \
 		heck-0.3.3 \
 		heck-0.4.1 \
-		hermit-abi-0.3.3 \
+		hermit-abi-0.3.4 \
 		home-0.5.9 \
 		http-0.2.11 \
 		http-body-0.4.6 \
@@ -165,10 +165,10 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		number_prefix-0.4.0 \
 		object-0.32.2 \
 		once_cell-1.19.0 \
-		openssl-0.10.62 \
+		openssl-0.10.63 \
 		openssl-macros-0.1.1 \
 		openssl-probe-0.1.5 \
-		openssl-sys-0.9.98 \
+		openssl-sys-0.9.99 \
 		os_pipe-1.1.5 \
 		owo-colors-3.5.0 \
 		papergrid-0.11.0 \
@@ -184,7 +184,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		pin-project-lite-0.2.13 \
 		pin-utils-0.1.0 \
 		pkcs8-0.10.2 \
-		pkg-config-0.3.28 \
+		pkg-config-0.3.29 \
 		platforms-3.3.0 \
 		portable-atomic-1.6.0 \
 		powerfmt-0.2.0 \
@@ -198,8 +198,8 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		rand-0.8.5 \
 		rand_chacha-0.3.1 \
 		rand_core-0.6.4 \
-		rayon-1.8.0 \
-		rayon-core-1.12.0 \
+		rayon-1.8.1 \
+		rayon-core-1.12.1 \
 		redox_syscall-0.4.1 \
 		regex-1.10.2 \
 		regex-automata-0.4.3 \
@@ -288,7 +288,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		unic-segment-0.9.0 \
 		unic-ucd-segment-0.9.0 \
 		unic-ucd-version-0.9.0 \
-		unicode-bidi-0.3.14 \
+		unicode-bidi-0.3.15 \
 		unicode-ident-1.0.12 \
 		unicode-normalization-0.1.22 \
 		unicode-segmentation-1.10.1 \
@@ -314,7 +314,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		wasm-bindgen-shared-0.2.90 \
 		web-sys-0.3.67 \
 		webpki-roots-0.25.3 \
-		which-5.0.0 \
+		which-6.0.0 \
 		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-util-0.1.6 \

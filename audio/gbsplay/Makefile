@@ -1,5 +1,6 @@
 PORTNAME=	gbsplay
 DISTVERSION=	0.0.94
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	audio
 
@@ -18,8 +19,10 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	mmitch
 
 HAS_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
-CONFIGURE_ARGS+=	--prefix=${PREFIX} \
+CONFIGURE_ARGS+=	--mandir=${PREFIX}/share/man \
+			--prefix=${PREFIX} \
 			--sysconfdir=${PREFIX}/etc \
 			--without-xmmsplugin
 
