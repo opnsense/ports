@@ -1,6 +1,7 @@
 PORTNAME=	suricata
 PKGNAMESUFFIX=	-devel
 DISTVERSION=	7.0.2
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
@@ -28,6 +29,7 @@ USE_LDCONFIG=	yes
 USE_RC_SUBR=	${PORTNAME}
 
 GNU_CONFIGURE=		yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS+=	--disable-gccmarch-native \
 			--enable-bundled-htp \
 			--enable-gccprotect
