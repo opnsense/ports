@@ -1,0 +1,8 @@
+bin/mumble-server
+etc/mumble/MumbleServer.ice
+@sample etc/mumble/mumble-server.ini.sample
+share/dbus-1/system.d/mumble-server.conf
+share/man/man1/mumble-server.1.gz
+%%PORTDOCS%%%%DOCSDIR%%/README.md
+%%PORTDOCS%%%%DOCSDIR%%/SECURITY.md
+%%PORTDOCS%%%%DOCSDIR%%/README.static.linux
