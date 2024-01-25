@@ -10,6 +10,7 @@ LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
+GH_PROJECT=	${PORTNAME}_${GH_ACCOUNT}
 
 post-stage:
 	${RM} ${STAGEDIR}${PREFIX}/lib/*.a
