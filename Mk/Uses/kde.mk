@@ -104,7 +104,7 @@ KDE_PLASMA6_VERSION?=		5.92.0
 KDE_PLASMA6_BRANCH?=		unstable
 
 # Current KDE frameworks.
-KDE_FRAMEWORKS5_VERSION?=	5.113.0
+KDE_FRAMEWORKS5_VERSION?=	5.114.0
 KDE_FRAMEWORKS5_BRANCH?=	stable
 
 # Next KDE Frameworks (Qt6 based)
@@ -248,11 +248,7 @@ CMAKE_ARGS+=	-DCMAKE_MODULE_PATH="${LOCALBASE};${KDE_PREFIX}" \
 		-DCMAKE_INSTALL_PREFIX="${KDE_PREFIX}" \
 		-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=true
 
-# Set man-page installation prefix.
-# TODO: Remove the KDE_MAN_PREFIX knob once all kde ports are switched to use share/man
-KDE_MAN_PREFIX?=	${KDE_PREFIX}/man
-CMAKE_ARGS+=	-DKDE_INSTALL_MANDIR:PATH="${KDE_MAN_PREFIX}" \
-		-DMAN_INSTALL_DIR:PATH="${KDE_MAN_PREFIX}"
+KDE_MAN_PREFIX?=	${KDE_PREFIX}/share/man
 
 # Disable autotests unless TEST_TARGET is defined.
 .    if !defined(TEST_TARGET)
