@@ -5,7 +5,7 @@ CATEGORIES=	dns perl5
 MASTER_SITES=	https://BSDforge.com/projects/source/dns/dnscheckengine/
 DISTNAME=	DNSCheck-1.1
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	DNS checker from the folks that run the .SE top level domain
 WWW=		https://dnscheck.iis.se/
 

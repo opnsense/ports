@@ -612,6 +612,7 @@
     SUBDIR += electron25
     SUBDIR += electron26
     SUBDIR += electron27
+    SUBDIR += electron28
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -1160,7 +1161,6 @@
     SUBDIR += libast
     SUBDIR += libastylej
     SUBDIR += libastylej-arduino
-    SUBDIR += libasyncplusplus
     SUBDIR += libatomic_ops
     SUBDIR += libaura
     SUBDIR += libavl
@@ -1514,6 +1514,7 @@
     SUBDIR += llvm15
     SUBDIR += llvm16
     SUBDIR += llvm17
+    SUBDIR += llvm18
     SUBDIR += lm4tools
     SUBDIR += lmdbg
     SUBDIR += lndir
@@ -2464,6 +2465,7 @@
     SUBDIR += p5-FFI-CheckLib
     SUBDIR += p5-FFI-Platypus
     SUBDIR += p5-FFI-Platypus-Declare
+    SUBDIR += p5-FFI-Platypus-Lang-Rust
     SUBDIR += p5-FFI-Platypus-Type-Enum
     SUBDIR += p5-FFI-Platypus-Type-PtrObject
     SUBDIR += p5-FSA-Rules
@@ -5491,6 +5493,7 @@
     SUBDIR += py-q
     SUBDIR += py-qasync
     SUBDIR += py-qcs-api-client
+    SUBDIR += py-qcs-sdk-python
     SUBDIR += py-qstylizer
     SUBDIR += py-qt5
     SUBDIR += py-qt5-pyqt
@@ -5662,6 +5665,7 @@
     SUBDIR += py-sure
     SUBDIR += py-swagger-spec-validator
     SUBDIR += py-synr
+    SUBDIR += py-syrupy
     SUBDIR += py-sysctl
     SUBDIR += py-sysv_ipc
     SUBDIR += py-tables

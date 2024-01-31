@@ -3,7 +3,7 @@ PORTVERSION=	2.1
 CATEGORIES=	dns
 MASTER_SITES=	https://BSDforge.com/projects/source/dns/dns_balance/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Dynamic load-balancing DNS server
 WWW=		https://www.netlab.cs.tsukuba.ac.jp/~yokota/izumi/dns_balance/
 

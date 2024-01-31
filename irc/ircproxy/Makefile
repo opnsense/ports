@@ -4,7 +4,7 @@ PORTREVISION=	3
 CATEGORIES=	irc
 MASTER_SITES=	https://BSDforge.com/projects/source/irc/ircproxy/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	IRC proxy/bouncer daemon
 WWW=		http://ircproxy.sourceforge.net/
 

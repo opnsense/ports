@@ -1,5 +1,6 @@
 PORTNAME=		krb5
 PORTVERSION=		1.22.${MIT_COMMIT_DATE}
+PORTREVISION=		2
 CATEGORIES=		security
 .if !defined(MASTERDIR)
 PKGNAMESUFFIX=		-devel
@@ -30,6 +31,7 @@ USES=			autoreconf compiler:c11 cpe gmake localbase perl5 \
 			libtool:build gssapi:bootstrap,mit pkgconfig ssl
 CONFIGURE_ARGS?=	--enable-shared --without-system-verto \
 			--disable-rpath
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ENV=		INSTALL="${INSTALL}" INSTALL_LIB="${INSTALL_LIB}" YACC="${YACC}" WARN_CFLAGS=-Wno-strict-prototypes
 MAKE_ARGS=		INSTALL="${INSTALL}" INSTALL_LIB="${INSTALL_LIB}"
 
@@ -108,9 +110,6 @@ CONFIGURE_ARGS+=	--program-transform-name="${PROGRAM_TRANSFORM_NAME}"
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/share/doc/krb5
-	${ECHO_CMD} @dir share/doc/krb5 >> ${TMPPLIST}
-	@${SED} "s|%%PREFIX%%|${PREFIX}|" ${FILESDIR}/kdc.in > ${STAGEDIR}${PREFIX}/sbin/kdc; \
-	${CHMOD} +x ${STAGEDIR}${PREFIX}/sbin/kdc
 
 post-install-LDAP-on:
 	${MKDIR} ${STAGEDIR}${DATADIR}

@@ -3,7 +3,7 @@ PORTVERSION=	1.4.4
 CATEGORIES=	comms net
 MASTER_SITES=	https://BSDforge.com/projects/source/comms/comserv/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	portmaster@BSDforge.com
 COMMENT=	Access local serial ports via network connections
 WWW=		https://BSDforge.com/projects/comms/comserv/
 

@@ -424,6 +424,8 @@
     SUBDIR += fortunelock
     SUBDIR += fpart
     SUBDIR += frand
+    SUBDIR += freebsd-bsdlabel
+    SUBDIR += freebsd-fdisk
     SUBDIR += freebsd-snapshot
     SUBDIR += freecolor
     SUBDIR += freedt
@@ -822,6 +824,7 @@
     SUBDIR += nfcutils
     SUBDIR += nitrogen
     SUBDIR += nix
+    SUBDIR += nmdaemon
     SUBDIR += nmrpflash
     SUBDIR += no-login
     SUBDIR += node_exporter

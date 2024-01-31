@@ -398,6 +398,7 @@
     SUBDIR += libsonic
     SUBDIR += libsoxr
     SUBDIR += libspecbleach
+    SUBDIR += libvgm
     SUBDIR += libvorbis
     SUBDIR += libxmp
     SUBDIR += lilv
@@ -763,9 +764,6 @@
     SUBDIR += speex
     SUBDIR += speexdsp
     SUBDIR += spek
-    SUBDIR += sphinx
-    SUBDIR += sphinx3
-    SUBDIR += sphinxbase
     SUBDIR += spiralloops
     SUBDIR += spiralsynth
     SUBDIR += spiralsynthmodular

@@ -1,7 +1,7 @@
 PORTNAME=	wlmaker
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1-438
-DISTVERSIONSUFFIX=	-gebcc667
+DISTVERSION=	0.1-444
+DISTVERSIONSUFFIX=	-ga388205
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -22,8 +22,7 @@ USES=		cmake compiler:c11 gnome pkgconfig
 USE_GITHUB=	yes
 USE_GNOME=	cairo
 GH_ACCOUNT=	phkaeser
-GH_TUPLE=	phkaeser:libbase:c7a0cca:libbase/submodules/libbase
-CFLAGS+=	-ffile-prefix-map="${WRKSRC}"=
+GH_TUPLE=	phkaeser:libbase:66a3992:libbase/submodules/libbase
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/wlmclock \
 		share/icons/${PORTNAME}/chrome-48x48.png \
@@ -36,10 +35,16 @@ post-patch:
 # Drop dependency on unreleased version of libwayland
 	@${REINPLACE_CMD} -e 's/1\.22\.90/1.22.0/' \
 		${WRKSRC}/CMakeLists.txt
+# Respect PREFIX for icons
+	@${REINPLACE_CMD} 's,/usr/share,${DATADIR:H},' \
+		${WRKSRC}/src/decorations.c
 # Respect LOCALBASE for apps and use open source Chrome
 	@${REINPLACE_CMD} -e 's,/usr/bin,${LOCALBASE}/bin,' \
 		 -e 's/google-chrome/chrome/' \
 		${WRKSRC}/src/dock.c \
 		${WRKSRC}/src/${PORTNAME}.c
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=276743
+	@${GREP} -Flr _POSIX_C_SOURCE ${WRKSRC} | ${XARGS} ${REINPLACE_CMD} \
+		'/_POSIX_C_SOURCE/d'
 
 .include <bsd.port.mk>

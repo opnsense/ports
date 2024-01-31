@@ -55,6 +55,7 @@
     SUBDIR += bfbtester
     SUBDIR += binwalk
     SUBDIR += bitwarden-cli
+    SUBDIR += blst
     SUBDIR += boringssl
     SUBDIR += botan2
     SUBDIR += botan3
@@ -73,6 +74,7 @@
     SUBDIR += ccrypt
     SUBDIR += ccsrch
     SUBDIR += certmgr
+    SUBDIR += certspotter
     SUBDIR += cfs
     SUBDIR += cfssl
     SUBDIR += cfv
@@ -1073,6 +1075,7 @@
     SUBDIR += qtkeychain
     SUBDIR += quantis-kmod
     SUBDIR += racoon2
+    SUBDIR += rage-encryption
     SUBDIR += ratproxy
     SUBDIR += rats
     SUBDIR += rcracki_mt
