@@ -137,6 +137,7 @@
     SUBDIR += kdemultimedia
     SUBDIR += kdemultimedia-ffmpegthumbs
     SUBDIR += kdenlive
+    SUBDIR += kew
     SUBDIR += kf5-kmediaplayer
     SUBDIR += kmplayer
     SUBDIR += kodi
@@ -213,6 +214,7 @@
     SUBDIR += lsdvd
     SUBDIR += m2vrequantiser
     SUBDIR += makemkv
+    SUBDIR += mediaelch
     SUBDIR += mediainfo
     SUBDIR += mencoder
     SUBDIR += minisatip
