@@ -1,5 +1,4 @@
 PORTNAME=	suricata
-PKGNAMESUFFIX=	-devel
 DISTVERSION=	7.0.2
 PORTREVISION=	3
 CATEGORIES=	security
@@ -38,7 +37,7 @@ MAKE_ENV=		RUSTFLAGS="${RUSTFLAGS} -C linker=${CC:Q} ${LDFLAGS:C/.+/-C link-arg=
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
-CONFLICTS_INSTALL=	libhtp suricata-stable
+CONFLICTS_INSTALL=	libhtp
 
 SUB_FILES=	pkg-message
 
