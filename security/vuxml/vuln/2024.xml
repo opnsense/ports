@@ -1,3 +1,167 @@
+  <vuln vid="f161a5ad-c9bd-11ee-b7a7-353f1e043d9a">
+    <topic>openexr -- Heap Overflow in Scanline Deep Data Parsing</topic>
+    <affects>
+      <package>
+	<name>openexr</name>
+	<range><lt>3.1.12</lt></range>
+	<range><ge>3.2.0</ge><lt>3.2.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Austin Hackers Anonymous report:</p>
+	<blockquote cite="https://takeonme.org/cves/CVE-2023-5841.html">
+	  <p>Due to a failure in validating the number of scanline samples of a OpenEXR file containing deep scanline data, Academy Software Foundation OpenEXR image parsing library version 3.2.1 and prior is susceptible to a heap-based buffer overflow vulnerability.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.2.2">
+	  <p>[...] it is in a routine that is predominantly used for development and
+	    testing. It is not likely to appear in production code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-5841</cvename>
+      <url>https://takeonme.org/cves/CVE-2023-5841.html</url>
+      <url>https://github.com/AcademySoftwareFoundation/openexr/releases/tag/v3.2.2</url>
+    </references>
+    <dates>
+      <discovery>2023-10-26</discovery>
+      <entry>2024-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="388eefc0-c93f-11ee-92ce-4ccc6adda413">
+    <topic>readstat -- Heap buffer overflow in readstat_convert</topic>
+    <affects>
+      <package>
+	<name>readstat</name>
+	<range><lt>1.1.9</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Google reports:</p>
+	<blockquote cite="https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=33991">
+	  <p>A heap buffer overflow exists in readstat_convert.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://bugs.chromium.org/p/oss-fuzz/issues/detail?id=33991</url>
+      <url>https://osv.dev/vulnerability/OSV-2021-732</url>
+      <url>https://github.com/WizardMac/ReadStat/issues/285</url>
+    </references>
+    <dates>
+      <discovery>2021-05-05</discovery>
+      <entry>2024-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="cb22a9a6-c907-11ee-8d1c-40b034429ecf">
+    <topic>p5-Spreadsheet-ParseExcel -- Remote Code Execution Vulnerability</topic>
+    <affects>
+      <package>
+	<name>p5-Spreadsheet-ParseExcel</name>
+	<range><lt>0.66</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Spreadsheet-ParseExcel reports:</p>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2023-7101">
+	  <p>
+	    Spreadsheet::ParseExcel version 0.65 is a Perl module used for parsing Excel files.
+	    Spreadsheet::ParseExcel is vulnerable to an arbitrary code execution (ACE) vulnerability
+	    due to passing unvalidated input from a file into a string-type eval "eval".
+	    Specifically, the issue stems from the evaluation of Number format strings
+	    (not to be confused with printf-style format strings) within the Excel parsing logic.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-7101</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-7101</url>
+    </references>
+    <dates>
+      <discovery>2023-12-29</discovery>
+      <entry>2024-02-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="19e6dd1b-c6a5-11ee-9cd0-6cc21735f730">
+    <topic>postgresql-server -- non-owner REFRESH MATERIALIZED VIEW CONCURRENTLY executes arbitrary SQL</topic>
+    <affects>
+      <package>
+	<name>postgresql-server</name>
+	<range><lt>15.6</lt></range>
+	<range><lt>14.11</lt></range>
+	<range><lt>13.14</lt></range>
+	<range><lt>12.18</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL Project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2024-0985/">
+	  <p>
+	    One step of a concurrent refresh command was run under
+	    weak security restrictions. If a materialized view's
+	    owner could persuade a superuser or other
+	    high-privileged user to perform a concurrent refresh on
+	    that view, the view's owner could control code executed
+	    with the privileges of the user running REFRESH. The fix
+	    for the vulnerability makes is so that all
+	    user-determined code is run as the view's owner, as
+	    expected.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-0985</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2024-0985/</url>
+    </references>
+    <dates>
+      <discovery>2024-02-08</discovery>
+      <entry>2024-02-08</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6b2cba6a-c6a5-11ee-97d0-001b217b3468">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>16.8.0</ge><lt>16.8.2</lt></range>
+	<range><ge>16.7.0</ge><lt>16.7.5</lt></range>
+	<range><ge>13.3.0</ge><lt>16.6.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/02/07/security-release-gitlab-16-8-2-released/">
+	  <p>Restrict group access token creation for custom roles</p>
+	  <p>Project maintainers can bypass group's scan result policy block_branch_modification setting</p>
+	  <p>ReDoS in CI/CD Pipeline Editor while verifying Pipeline syntax</p>
+	  <p>Resource exhaustion using GraphQL vulnerabilitiesCountByDay</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-1250</cvename>
+      <cvename>CVE-2023-6840</cvename>
+      <cvename>CVE-2023-6386</cvename>
+      <cvename>CVE-2024-1066</cvename>
+      <url>https://about.gitlab.com/releases/2024/02/07/security-release-gitlab-16-8-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-02-07</discovery>
+      <entry>2024-02-08</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="33ba2241-c68e-11ee-9ef3-001999f8d30b">
     <topic>Composer -- Code execution and possible privilege escalation</topic>
     <affects>
@@ -82,6 +246,14 @@
       <package>
        <name>ungoogled-chromium</name>
        <range><lt>121.0.6167.160</lt></range>
+      </package>
+      <package>
+       <name>qt5-webengine</name>
+       <range><lt>5.15.16.p5_5</lt></range>
+      </package>
+      <package>
+       <name>qt6-webengine</name>
+       <range><lt>6.6.1_5</lt></range>
       </package>
     </affects>
     <description>
@@ -214,6 +386,14 @@
        <name>ungoogled-chromium</name>
        <range><lt>121.0.6167.139</lt></range>
       </package>
+      <package>
+       <name>qt5-webengine</name>
+       <range><lt>5.15.16.p5_5</lt></range>
+      </package>
+      <package>
+       <name>qt6-webengine</name>
+       <range><lt>6.6.1_5</lt></range>
+      </package>
     </affects>
     <description>
       <body xmlns="http://www.w3.org/1999/xhtml">
@@ -331,6 +511,10 @@
   <vuln vid="bbcb1584-c068-11ee-bdd6-4ccc6adda413">
     <topic>qt6-webengine -- Multiple vulnerabilities</topic>
     <affects>
+      <package>
+	<name>qt5-webengine</name>
+	<range><lt>5.15.16.p5_5</lt></range>
+      </package>
       <package>
 	<name>qt6-webengine</name>
 	<range><lt>6.6.1_4</lt></range>
