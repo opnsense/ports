@@ -1,6 +1,6 @@
 PORTNAME=	paraview
 DISTVERSION=	${PARAVIEW_VER}.2
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	science graphics
 MASTER_SITES=	http://www.paraview.org/files/v${PARAVIEW_VER}/
 DISTNAME=	ParaView-v${PORTVERSION}
@@ -30,7 +30,6 @@ LIB_DEPENDS=	libhdf5.so:science/hdf5 \
 		libpcre.so:devel/pcre \
 		libicuuc.so:devel/icu \
 		libffi.so:devel/libffi \
-		liblas.so:devel/liblas \
 		libtbb.so:devel/onetbb \
 		libogg.so:audio/libogg \
 		libgl2ps.so:print/gl2ps \
@@ -75,7 +74,7 @@ CMAKE_ARGS+=	-DPARAVIEW_BUILD_SHARED_LIBS=ON \
 		-DVTK_HAVE_GETSOCKNAME_WITH_SOCKLEN_T=1 \
 		-DPARAVIEW_USE_PYTHON:BOOL=ON \
 		-DPARAVIEW_ENABLE_FFMPEG:BOOL=ON \
-		-DPARAVIEW_ENABLE_LAS:BOOL=ON \
+		-DPARAVIEW_ENABLE_LAS:BOOL=OFF \
 		-DPARAVIEW_ENABLE_WEB:BOOL=ON \
 		-DPARAVIEW_ENABLE_GDAL:BOOL=ON \
 		-DPARAVIEW_ENABLE_PDAL:BOOL=ON \

@@ -4651,6 +4651,7 @@
     SUBDIR += py-exceptiongroup
     SUBDIR += py-executing
     SUBDIR += py-expandvars
+    SUBDIR += py-expecttest
     SUBDIR += py-expiringdict
     SUBDIR += py-extras
     SUBDIR += py-extremes
@@ -5295,6 +5296,7 @@
     SUBDIR += py-pydantic-yaml
     SUBDIR += py-pydantic2
     SUBDIR += py-pydash
+    SUBDIR += py-pydbus
     SUBDIR += py-pydecor
     SUBDIR += py-pydenticon
     SUBDIR += py-pydevd

@@ -1,6 +1,5 @@
 PORTNAME=	emacs-w3m
 PORTVERSION=	1.4.632.b.${SNAPDATE}
-PORTREVISION=	2
 CATEGORIES=	www elisp
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
@@ -16,13 +15,13 @@ RUN_DEPENDS=	w3m:www/w3m
 
 USES=		autoreconf emacs tar:xz
 USE_GITHUB=	yes
-GH_TAGNAME=	ea60411
+GH_TAGNAME=	dc5136d
 
 ALL_TARGET=	default
 INSTALL_TARGET=	install install-icons
 
 NO_ARCH=	yes
-SNAPDATE=	20230630
+SNAPDATE=	20240208
 MAKE_JOBS_UNSAFE=	yes
 
 GNU_CONFIGURE=	yes
@@ -50,14 +49,6 @@ OCTET_VIEWER_RUN_DEPENDS=\
 		wvHtml:textproc/wv \
 		xlhtml:textproc/xlhtml
 
-.include <bsd.port.pre.mk>
-
-.if ${EMACS_MAJOR_VER} == 28
-PLIST_SUB+=	EMACS28=""
-.else
-PLIST_SUB+=	EMACS28="@comment "
-.endif
-
 post-patch:
 	@${MV} ${WRKSRC}/aclocal.m4 ${WRKSRC}/acinclude.m4
 
@@ -69,4 +60,4 @@ post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} ${STAGEDIR}${DOCSDIR}
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
