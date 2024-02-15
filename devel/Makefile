@@ -1453,6 +1453,7 @@
     SUBDIR += libvirt-java
     SUBDIR += libvmdk
     SUBDIR += libvolume_id
+    SUBDIR += libvsapm
     SUBDIR += libvsgpt
     SUBDIR += libvshadow
     SUBDIR += libvslvm
@@ -4210,6 +4211,7 @@
     SUBDIR += py-about-time
     SUBDIR += py-absl
     SUBDIR += py-absl-py
+    SUBDIR += py-acstore
     SUBDIR += py-adb
     SUBDIR += py-addict
     SUBDIR += py-aenum
