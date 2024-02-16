@@ -4681,6 +4681,7 @@
     SUBDIR += py-findlibs
     SUBDIR += py-findpython
     SUBDIR += py-fire
+    SUBDIR += py-fireREST
     SUBDIR += py-first
     SUBDIR += py-fixtures
     SUBDIR += py-flake8
@@ -7859,6 +7860,7 @@
     SUBDIR += utf8cpp3
     SUBDIR += uthash
     SUBDIR += util-linux
+    SUBDIR += uv
     SUBDIR += valgrind
     SUBDIR += valgrind-devel
     SUBDIR += vasm

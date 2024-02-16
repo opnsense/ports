@@ -245,6 +245,7 @@
     SUBDIR += lifelines
     SUBDIR += lightgbm
     SUBDIR += lingoteach
+    SUBDIR += llama-cpp
     SUBDIR += locale-en_DK
     SUBDIR += localedata
     SUBDIR += logsurfer
@@ -583,6 +584,7 @@
     SUBDIR += team
     SUBDIR += tellico
     SUBDIR += tempcontrol
+    SUBDIR += tenere
     SUBDIR += termatrix
     SUBDIR += terminfo-db
     SUBDIR += teseq
