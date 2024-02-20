@@ -1,6 +1,7 @@
 PORTNAME=	pytorch
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.2.0
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	https://github.com/pytorch/pytorch/releases/download/v${DISTVERSION}/
 DIST_SUBDIR=	${PORTNAME}
@@ -19,7 +20,7 @@ BUILD_DEPENDS=	gmake:devel/gmake \
 LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libblis.so:math/blis \
 		libopenblas.so:math/openblas \
-		libmpi.so:net/openmpi \
+		libmpi_cxx.so:net/openmpi4 \
 		libonnx.so:misc/onnx \
 		libpthreadpool.so:devel/pthreadpool \
 		libprotobuf.so:devel/protobuf \

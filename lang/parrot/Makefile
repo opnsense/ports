@@ -5,11 +5,17 @@ CATEGORIES=	lang
 MASTER_SITES=	ftp://ftp.parrot.org/pub/parrot/releases/supported/${PORTVERSION}/ \
 		LOCAL/sunpoet
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Virtual machine for dynamic languages
 WWW=		https://www.parrotcode.org/
 
 LICENSE=	ART20
+
+DEPRECATED=	Development stopped in 2017
+EXPIRATION_DATE=	2024-12-31
+
+BROKEN_FreeBSD_14=	Fails to package
+BROKEN_FreeBSD_15=	Fails to package
 
 BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex \
 		p5-Pod-Parser>=0:textproc/p5-Pod-Parser \

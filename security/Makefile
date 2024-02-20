@@ -67,6 +67,7 @@
     SUBDIR += ca_root_nss
     SUBDIR += caesarcipher
     SUBDIR += caldera
+    SUBDIR += caldera4
     SUBDIR += caldera-ot
     SUBDIR += calife
     SUBDIR += cardpeek
@@ -1006,7 +1007,6 @@
     SUBDIR += py-pysaml24
     SUBDIR += py-pysaml26
     SUBDIR += py-pyscard
-    SUBDIR += py-pysha3
     SUBDIR += py-pysodium
     SUBDIR += py-pyspnego
     SUBDIR += py-python-axolotl
