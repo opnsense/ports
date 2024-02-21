@@ -200,7 +200,7 @@
     SUBDIR += flphoto
     SUBDIR += fly
     SUBDIR += fortytwo
-    SUBDIR += fotoxx
+    SUBDIR += fotocx
     SUBDIR += founts
     SUBDIR += fracplanet
     SUBDIR += fractgen
@@ -594,6 +594,7 @@
     SUBDIR += nurbs++
     SUBDIR += nvidia-drm-510-kmod
     SUBDIR += nvidia-drm-515-kmod
+    SUBDIR += nvidia-drm-61-kmod
     SUBDIR += nvidia-drm-kmod
     SUBDIR += nvidia-texture-tools
     SUBDIR += ocaml-cairo

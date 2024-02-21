@@ -1,6 +1,6 @@
 PORTNAME=	cimg
 DISTVERSIONPREFIX=	v.
-DISTVERSION=	3.3.3
+DISTVERSION=	3.3.4
 PORTEPOCH=	3
 CATEGORIES=	graphics devel
 
@@ -18,7 +18,7 @@ LICENSE_PERMS_CeCILL_C=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_PERMS_CeCILL=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	dtschump
+GH_ACCOUNT=	GreycLab
 GH_PROJECT=	CImg
 
 BUILD_WRKSRC=	${WRKSRC}/examples
