@@ -2732,7 +2732,6 @@ net/py-anonfile||2023-12-07|Has expired: anonfile.com has shut down
 www/thundersnarf||2023-12-12|Has expired: Depends on deprecated php80
 textproc/stardict-quick||2023-12-12|Has expired: unfetchable
 devel/rubygem-view_component-rails61|devel/rubygem-view_component-rails70|2023-12-14|Obsolete, use devel/rubygem-view_component-rails70 instead
-devel/rubygem-cucumber-messages23|devel/rubygem-cucumber-messages|2023-12-14|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
 devel/py-astroid253|devel/py-astroid|2023-12-14|Remove obsoleted port. Use devel/py-astroid instead
 mail/imap-uw|mail/panda-imap|2023-12-16|Has expired: Last upstream release was in 2007 so use the fork mail/panda-imap
 mail/mailsync||2023-12-16|Has expired: Depends on outdated mail/cclient
@@ -2824,7 +2823,7 @@ net/p5-MaxMind-DB-Writer||2023-12-31|Has expired: This is the final release. Thi
 www/py-dj41-django-graphiql-debug-toolbar|www/py-dj42-django-graphiql-debug-toolbar|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
 www/py-dj41-drf-spectacular|www/py-dj42-drf-spectacular|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
 www/py-dj41-django-tables2|www/py-dj42-django-tables2|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
-www/py-httpx013||2023-12-31|Has expired: Old repo-copy needed for deprecated textproc/py-googletrans
+www/py-httpx013|www/py-httpx|2023-12-31|Has expired: Old repo-copy needed for deprecated textproc/py-googletrans
 graphics/drm-fbsd12.0-kmod||2023-12-31|Has expired: Requires soon to reach EOL FreeBSD 12
 www/py-dj41-django-taggit|www/py-dj42-django-taggit|2023-12-31|Has expired: Extended support of Django 4.1 ends December 2023, upgrade to the Django 4.2+ version of this port. See https://www.djangoproject.com/download/
 sysutils/etc_os-release||2023-12-31|Has expired: No longer required after the EOL of 12
@@ -2993,3 +2992,4 @@ security/py-pysha3||2024-02-17|Merged into python standard library since version
 graphics/qcustomplot-qt5|graphics/qcustomplot|2024-02-19|Renamed to support flavors
 audio/play||2024-02-20|Has expired: Upstream vaporized and last release was in 2000
 graphics/fotoxx|graphics/fotocx|2024-02-21|Project was renamed upstream
+databases/xtrabackup8|databases/xtrabackup80|2024-02-22|Rename port to avoid confusion
