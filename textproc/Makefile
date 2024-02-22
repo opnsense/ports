@@ -1403,8 +1403,10 @@
     SUBDIR += py-junit-xml
     SUBDIR += py-jupyter_sphinx
     SUBDIR += py-jupyterlab-pygments
+    SUBDIR += py-langcodes
     SUBDIR += py-langdetect
     SUBDIR += py-langid
+    SUBDIR += py-language-data
     SUBDIR += py-laserhammer
     SUBDIR += py-latexcodec
     SUBDIR += py-libxml2
@@ -1550,10 +1552,15 @@
     SUBDIR += py-rst2ansi
     SUBDIR += py-rst2html5
     SUBDIR += py-scour
+    SUBDIR += py-sense2vec
     SUBDIR += py-sentencepiece
     SUBDIR += py-simplebayes
     SUBDIR += py-smartypants
     SUBDIR += py-snowballstemmer
+    SUBDIR += py-spacy
+    SUBDIR += py-spacy-legacy
+    SUBDIR += py-spacy-llm
+    SUBDIR += py-spacy-loggers
     SUBDIR += py-sparqlwrapper
     SUBDIR += py-sphinx
     SUBDIR += py-sphinx-argparse
@@ -1638,6 +1645,7 @@
     SUBDIR += py-ufal.udpipe
     SUBDIR += py-unicodeitplus
     SUBDIR += py-untangle
+    SUBDIR += py-wasabi
     SUBDIR += py-wavedrom
     SUBDIR += py-wcmatch
     SUBDIR += py-whatthepatch
@@ -1749,6 +1757,7 @@
     SUBDIR += rubygem-cssmin
     SUBDIR += rubygem-cucumber-gherkin
     SUBDIR += rubygem-cucumber-gherkin26
+    SUBDIR += rubygem-cucumber-gherkin27
     SUBDIR += rubygem-cucumber-html-formatter
     SUBDIR += rubygem-dartsass
     SUBDIR += rubygem-diff-lcs

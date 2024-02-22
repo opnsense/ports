@@ -1049,7 +1049,10 @@
     SUBDIR += py-dugong
     SUBDIR += py-ec2-cli-tools
     SUBDIR += py-ephemeral-port-reserve
+    SUBDIR += py-err-backend-discord
+    SUBDIR += py-err-backend-mattermost
     SUBDIR += py-errbot
+    SUBDIR += py-errbot-backend-slackv3
     SUBDIR += py-eventlet
     SUBDIR += py-gdown
     SUBDIR += py-geopy
@@ -1326,6 +1329,7 @@
     SUBDIR += rubygem-google-cloud-spanner-v1
     SUBDIR += rubygem-google-cloud-storage
     SUBDIR += rubygem-google-cloud-storage144
+    SUBDIR += rubygem-google-cloud-storage145
     SUBDIR += rubygem-google-cloud-trace
     SUBDIR += rubygem-google-cloud-trace-v1
     SUBDIR += rubygem-google-cloud-trace-v2
