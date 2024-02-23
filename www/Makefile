@@ -49,6 +49,7 @@
     SUBDIR += angie-module-rtmp
     SUBDIR += angie-module-set-misc
     SUBDIR += angie-module-subs
+    SUBDIR += angie-module-testcookie
     SUBDIR += angie-module-upload
     SUBDIR += angie-module-vod
     SUBDIR += angie-module-xslt
@@ -1498,6 +1499,7 @@
     SUBDIR += py-dj42-django-celery-results
     SUBDIR += py-dj42-django-compression-middleware
     SUBDIR += py-dj42-django-cors-headers
+    SUBDIR += py-dj42-django-crispy-forms
     SUBDIR += py-dj42-django-debug-toolbar
     SUBDIR += py-dj42-django-extensions
     SUBDIR += py-dj42-django-filter
@@ -1512,6 +1514,7 @@
     SUBDIR += py-dj42-django-tables2
     SUBDIR += py-dj42-django-taggit
     SUBDIR += py-dj42-django-timezone-field
+    SUBDIR += py-dj42-djangoql
     SUBDIR += py-dj42-djangorestframework
     SUBDIR += py-dj42-djangorestframework-guardian
     SUBDIR += py-dj42-drf-spectacular
@@ -1872,6 +1875,7 @@
     SUBDIR += py-webtest
     SUBDIR += py-webunit
     SUBDIR += py-werkzeug
+    SUBDIR += py-werkzeug2
     SUBDIR += py-wfuzz
     SUBDIR += py-whitenoise
     SUBDIR += py-wikipedia
