@@ -1,3 +1,184 @@
+  <vuln vid="5ecfb588-d2f4-11ee-ad82-dbdfaa8acfc2">
+    <topic>gitea -- Fix XSS vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.21.6</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>The Wiki page did not sanitize author name</li>
+       <li>the reviewer name on a "dismiss review" comment is also affected</li>
+       <li>the migration page has some spots</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://blog.gitea.com/release-of-1.21.6/</url>
+    </references>
+    <dates>
+      <discovery>2024-02-23</discovery>
+      <entry>2024-02-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2a470712-d351-11ee-86bb-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>122.0.6261.57</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>122.0.6261.57</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/02/stable-channel-update-for-desktop_20.html">
+	 <p>This update includes 12 security fixes:</p>
+	 <ul>
+	    <li>[41495060] High CVE-2024-1669: Out of bounds memory access in Blink. Reported by Anonymous on 2024-01-26</li>
+	    <li>[41481374] High CVE-2024-1670: Use after free in Mojo. Reported by Cassidy Kim(@cassidy6564) on 2023-12-06</li>
+	    <li>[41487933] Medium CVE-2024-1671: Inappropriate implementation in Site Isolation. Reported by Harry Chen on 2024-01-03</li>
+	    <li>[41485789] Medium CVE-2024-1672: Inappropriate implementation in Content Security Policy. Reported by Georg Felber (TU Wien) &amp; Marco Squarcina (TU Wien) on 2023-12-19</li>
+	    <li>[41490491] Medium CVE-2024-1673: Use after free in Accessibility. Reported by Weipeng Jiang (@Krace) of VRI on 2024-01-11</li>
+	    <li>[40095183] Medium CVE-2024-1674: Inappropriate implementation in Navigation. Reported by David Erceg on 2019-05-27</li>
+	    <li>[41486208] Medium CVE-2024-1675: Insufficient policy enforcement in Download. Reported by Bartłomiej Wacko on 2023-12-21</li>
+	    <li>[40944847] Low CVE-2024-1676: Inappropriate implementation in Navigation. Reported by Khalil Zhani on 2023-11-21</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <url>https://chromereleases.googleblog.com/2024/02/stable-channel-update-for-desktop_20.html</url>
+    </references>
+    <dates>
+      <discovery>2024-02-20</discovery>
+      <entry>2024-02-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6a851dc0-cfd2-11ee-ac09-6c3be5272acd">
+    <topic>Grafana -- Email verification is not required after email change</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><lt>9.5.16</lt></range>
+	<range><ge>10.0.0</ge><lt>10.0.11</lt></range>
+	<range><ge>10.1.0</ge><lt>10.1.7</lt></range>
+	<range><ge>10.2.0</ge><lt>10.2.4</lt></range>
+	<range><ge>10.3.0</ge><lt>10.3.3</lt></range>
+      </package>
+      <package>
+	<name>grafana9</name>
+	<range><lt>9.5.16</lt></range>
+      </package>
+      <package>
+	<name>grafana10</name>
+	<range><lt>10.0.11</lt></range>
+	<range><ge>10.1.0</ge><lt>10.1.7</lt></range>
+	<range><ge>10.2.0</ge><lt>10.2.4</lt></range>
+	<range><ge>10.3.0</ge><lt>10.3.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2024/02/14/grafana-security-release-medium-severity-security-fix-for-cve-2023-6152/">
+	  <p>The vulnerability impacts instances where
+	  <a href="https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/grafana/">
+	  Grafana basic authentication</a> is enabled.</p>
+	  <p>Grafana has a
+	  <a href="https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#verify_email_enabled">
+	  verify_email_enabled</a> configuration option. When this option is enabled,
+	  users are required to confirm their email addresses before the sign-up process
+	  is complete. However, the email is only checked at the time of the sign-up.
+	  No further verification is carried out if a user’s email address is updated
+	  after the initial sign-up. Moreover, Grafana allows using an email address
+	  as the user’s login name, and no verification is ever carried out for this email
+	  address.</p>
+	  <p>This means that even if the
+	  <a href="https://grafana.com/docs/grafana/latest/setup-grafana/configure-grafana/#verify_email_enabled">
+	  verify_email_enabled</a> configuration option is enabled, users can use
+	  unverified email addresses to log into Grafana if the email address
+	  has been changed after the sign up, or if an email address is set as the login
+	  name.</p>
+	  <p>The CVSS score for this vulnerability is [5.4 Medium] (CVSS).</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6152</cvename>
+      <url>https://grafana.com/security/security-advisories/cve-2023-6152/</url>
+    </references>
+    <dates>
+      <discovery>2023-11-10</discovery>
+      <entry>2024-02-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="255bf44c-d298-11ee-9c27-40b034429ecf">
+    <topic>dns/c-ares -- malformatted file causes application crash</topic>
+    <affects>
+      <package>
+	<name>c-ares</name>
+	<range><lt>1.27.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>c-ares project reports:</p>
+	<blockquote cite="https://c-ares.org/changelog.html">
+	  <p>Reading malformatted /etc/resolv.conf, /etc/nsswitch.conf or the HOSTALIASES file could result in a crash.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-25629</cvename>
+      <url>https://github.com/c-ares/c-ares/security/advisories/GHSA-mg26-v6qh-x48q</url>
+    </references>
+    <dates>
+      <discovery>2024-02-23</discovery>
+      <entry>2024-02-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="979dc373-d27d-11ee-8b84-b42e991fc52e">
+    <topic>suricata -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>suricata</name>
+	<range><lt>7.0.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Suricata team reports:</p>
+	<blockquote cite="https://suricata.io/2024/02/08/suricata-7-0-3-and-6-0-16-released/">
+	  <p>Multiple vulnerabilities fixed in the last release of suricata.</p>
+	</blockquote>
+	<p>No details have been disclosed yet</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-23839</cvename>
+      <cvename>CVE-2024-23836</cvename>
+      <cvename>CVE-2024-23835</cvename>
+      <cvename>CVE-2024-24568</cvename>
+      <cvename>CVE-2024-23837</cvename>
+    </references>
+    <dates>
+      <discovery>2024-01-22</discovery>
+      <entry>2024-02-23</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="80ad6d6c-b398-457f-b88f-bf6be0bbad44">
     <topic>electron27 -- multiple vulnerabilities</topic>
     <affects>
