@@ -1,6 +1,6 @@
 PORTNAME=	sirc
 PORTVERSION=	2.211
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	irc
 MASTER_SITES=	LOCAL/bdrewery/${PORTNAME} \
 		http://www.iagora.com/~espel/sirc/ \
@@ -12,6 +12,9 @@ EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Small (150k), fast, perl-based IRC client
+
+DEPRECATED=	Abandonware, upstream is gone and current version was released over 20 years ago. Consider irc/irssi , irc/epic5 or irc/ircII
+EXPIRATION_DATE=2024-03-31
 
 RUN_DEPENDS=	p5-Perl4-CoreLibs>=0:devel/p5-Perl4-CoreLibs
 
@@ -55,8 +58,8 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/dsirc ${SIRCLIBDIR}
 	${INSTALL_PROGRAM} ${WRKSRC}/ssfe ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKDIR}/sirc ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/ssfe.1 ${STAGEDIR}${PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKSRC}/sirc.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/ssfe.1 ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKSRC}/sirc.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_DATA} ${WRKSRC}/socks.pl ${SIRCLIBDIR}
 
 do-install-SIRC_SCRIPTS-on:

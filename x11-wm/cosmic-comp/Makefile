@@ -1,6 +1,5 @@
 PORTNAME=	cosmic-comp
-PORTVERSION=	s20240215
-PORTREVISION=	1
+PORTVERSION=	s20240222
 CATEGORIES=	x11-wm wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -22,11 +21,17 @@ USES=		cargo gl
 USE_GITHUB=	yes
 USE_GL=		gbm
 GH_ACCOUNT=	pop-os
-GH_TAGNAME=	e74b0df
+GH_TAGNAME=	3036448
 GH_TUPLE=	pop-os:iced:0.4.2-1768-g6115280d:iced/../${WRKSRC_crate_iced:T}/iced
 CARGO_FEATURES=	--no-default-features # disable systemd
 PLIST_FILES=	bin/${PORTNAME} \
 		share/wayland-sessions/${PORTNAME:S/-comp//}.desktop \
+
+.if ${MACHINE_ARCH} == i386 || ${MACHINE_ARCH:Marmv?}
+# https://github.com/rust-lang/rust/issues/85598
+LTO_UNSAFE=	yes
+CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false
+.endif
 
 post-patch:
 # XXX Strip double / to help "make cargo-crates"

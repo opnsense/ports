@@ -190,6 +190,7 @@
     SUBDIR += formication
     SUBDIR += foswiki
     SUBDIR += free-sa-devel
+    SUBDIR += freenginx
     SUBDIR += fswiki
     SUBDIR += fusionpbx
     SUBDIR += g-cows
@@ -329,6 +330,7 @@
     SUBDIR += litmus
     SUBDIR += ljdeps
     SUBDIR += llhttp
+    SUBDIR += loco
     SUBDIR += logswan
     SUBDIR += logtools
     SUBDIR += ls-qpack
@@ -1972,6 +1974,7 @@
     SUBDIR += rubygem-crass
     SUBDIR += rubygem-cssbundling-rails
     SUBDIR += rubygem-cssbundling-rails-rails70
+    SUBDIR += rubygem-cssbundling-rails13-rails70
     SUBDIR += rubygem-cuba
     SUBDIR += rubygem-d3_rails
     SUBDIR += rubygem-davclient

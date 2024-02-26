@@ -1,5 +1,6 @@
 PORTNAME=	epic4
 PORTVERSION=	2.10.10
+PORTREVISION=	1
 CATEGORIES=	irc
 MASTER_SITES=	http://ftp.epicsol.org/pub/epic/EPIC4-PRODUCTION/ \
 		http://ftp.cc.uoc.gr/mirrors/irc/epic/EPIC4-PRODUCTION/
@@ -12,11 +13,15 @@ WWW=		http://www.epicsol.org/
 
 LICENSE=	BSD3CLAUSE
 
+DEPRECATED=	Last release 2021, superseded by epic5. Consider migrating to irc/epic5 or irc/irssi 
+EXPIRATION_DATE=2024-03-31
+
 USES=		ncurses tar:xz
 
 CONFLICTS=	epic5-0.[0-2]*
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 CFLAGS:=	${CFLAGS:C/-O2/-g -O/g}
 

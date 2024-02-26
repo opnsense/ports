@@ -1,6 +1,6 @@
 PORTNAME=	sablevm
 PORTVERSION=	1.13
-PORTREVISION=	14
+PORTREVISION=	15
 CATEGORIES=	java devel
 MASTER_SITES=	SF
 
@@ -10,12 +10,16 @@ WWW=		http://www.sablevm.org/
 
 LICENSE=	LGPL21
 
+DEPRECATED=	Abandonware, last release in 2007 and is no longer being developed
+EXPIRATION_DATE=2024-03-31
+
 LIB_DEPENDS=	libpopt.so:devel/popt \
 		libffi.so:devel/libffi \
 		libltdl.so:devel/libltdl
 RUN_DEPENDS=	fastjar:archivers/fastjar
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 USES=		gettext gmake iconv libtool pkgconfig
 USE_LDCONFIG=	yes

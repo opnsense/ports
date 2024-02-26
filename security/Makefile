@@ -1354,6 +1354,7 @@
     SUBDIR += vouch-proxy
     SUBDIR += vpnc
     SUBDIR += vuls
+    SUBDIR += vulsrepo
     SUBDIR += vuxml
     SUBDIR += vxquery
     SUBDIR += wapiti
@@ -1378,6 +1379,7 @@
     SUBDIR += xmlsec1
     SUBDIR += xorsearch
     SUBDIR += xray-core
+    SUBDIR += xhash
     SUBDIR += yafic
     SUBDIR += yapet
     SUBDIR += yara

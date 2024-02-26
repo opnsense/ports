@@ -8,7 +8,7 @@ WWW=		http://www.mplayerhq.hu/
 
 .include "${.CURDIR}/../../multimedia/mplayer/Makefile.common"
 
-OPTIONS_DEFINE=	AALIB AMR_NB AMR_WB ASS BLURAY CACA CDIO DV DVDNAV \
+OPTIONS_DEFINE=	AALIB AMR_NB AMR_WB ASS BLURAY CACA CDIO DEBUG DV DVDNAV \
 		ENCA FONTCONFIG FRIBIDI GIF GNUTLS GSM GUI IPV6 JACK \
 		JPEG LADSPA LIBMNG LIRC LZO NAS NLS OPENAL OPENGL \
 		OPENJPEG OPUS PULSEAUDIO RTMP \
@@ -90,7 +90,8 @@ post-install:
 .if ${PORT_OPTIONS:MGUI} && ${PORT_OPTIONS:MX11}
 	@${LN} -sf mplayer ${STAGEDIR}${PREFIX}/bin/gmplayer
 	@(cd ${STAGEDIR}${PREFIX}/share/man/man1 && ${LN} -sf mplayer.1.gz gmplayer.1.gz)
-	${CP} -f ${WRKSRC}/etc/mplayer256x256.png ${STAGEDIR}${PREFIX}/share/pixmaps/mplayer.png
+	${MKDIR} ${STAGEDIR}${PREFIX}/share/pixmaps
+	${CP} ${WRKSRC}/etc/mplayer256x256.png ${STAGEDIR}${PREFIX}/share/pixmaps/mplayer.png
 .endif
 
 .include <bsd.port.post.mk>
