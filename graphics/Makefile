@@ -635,6 +635,7 @@
     SUBDIR += openslide
     SUBDIR += opensubdiv
     SUBDIR += openvkl
+    SUBDIR += openxr
     SUBDIR += optar
     SUBDIR += optipng
     SUBDIR += osg
@@ -1121,6 +1122,7 @@
     SUBDIR += skanpage
     SUBDIR += spectacle
     SUBDIR += spectacle-devel
+    SUBDIR += spirv-cross
     SUBDIR += spirv-tools
     SUBDIR += springgraph
     SUBDIR += squish
