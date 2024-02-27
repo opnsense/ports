@@ -669,11 +669,17 @@
             ..
             cat8
             ..
+            cat9
+            ..
             es              uname=root
 /set uname=root
                 man7
                 ..
                 man8
+                ..
+            ..
+            fr
+                man7
                 ..
             ..
             ja              uname=root
