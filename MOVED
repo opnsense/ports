@@ -2637,7 +2637,6 @@ devel/mingw32-bin-msvcrt||2023-11-21|Has expired: Last upstream release was in 2
 devel/mingw32-zlib||2023-11-21|Has expired: Last upstream release was in 2014 and project mingw32 is defunct
 devel/mingw32-gcc||2023-11-21|Has expired: Upstream release was in 2015 and mingw32 project is defunct
 www/guile-www||2023-11-21|Has expired: Last upstream release was in 2002 and no longer relevant nowadays
-x11-toolkits/wlroots-devel|x11-toolkits/wlroots|2023-11-21|Out of date: use x11-toolkits/wlroots for now
 games/suyimazu|games/mizuma|2023-11-22|Project was renamed upstream
 www/dfileserver||2023-11-22|Has expired: Obsolete, consider using www/darkhttpd
 devel/sdts++||2023-11-22|Has expired: Last upstream release was in 2003 and both MASTER_SITES and WWW are unreachable
@@ -2995,3 +2994,42 @@ graphics/fotoxx|graphics/fotocx|2024-02-21|Project was renamed upstream
 databases/xtrabackup8|databases/xtrabackup80|2024-02-22|Rename port to avoid confusion
 audio/kid3@qt5|audio/kid3@qt6|2024-02-25|The legacy qt5 flavor has been replaced by the qt6 flavor
 devel/py-setuptools_scm|devel/py-setuptools-scm|2024-02-29|Package name changed
+audio/sweep||2024-02-29|Has expired: Abandonware, last release in 2008 and upstream is dead. Consider using audio/audacity
+audio/gnormalize||2024-02-29|Has expired: Last release in 2008, upstream is dead, depends on deprecated library GTK2 and uses legacy workarounds that can potentially cause lossy conversions. Consider using audio/rsgain and audio/cyanrip
+audio/mp3ck||2024-02-29|Has expired: Last release in 2005 and dead upstream, consider using multimedia/ffmpeg
+audio/mp3rename||2024-02-29|Has expired: Doesn't support ID3v2 tags properly
+audio/pm3umpdl||2024-02-29|Has expired: Deprecated utility as this is supported natively in musicpd
+benchmarks/ramspeed||2024-02-29|Has expired: Upstream is dead and port is unfetchable
+comms/comserv||2024-02-29|Has expired: Abandonware, last release in 2002. Consider using comms/remserial
+comms/sms_client||2024-02-29|Has expired: Abandonware, dead upstream and relies on legacy hardware and or networks that are obsolete
+devel/codeville||2024-02-29|Has expired: Abandonware, dead upstream for at least 10 years. Consider using devel/git or devel/mercurial
+dns/dns_balance||2024-02-29|Has expired: Abandonware, last release in 2005. Consider using dns/dnsdist
+dns/dnscheckengine||2024-02-29|Has expired: Deprecated upstream in favour of Zonemaster Project
+dns/sheerdns||2024-02-29|Has expired: Abandonware, upstream dead and last update over 10 years ago
+finance/cointop||2024-02-29|Has expired: Repo archived upstream Nov 18, 2023
+finance/xtrader||2024-02-29|Has expired: Abandoned upstream
+graphics/acidwarp||2024-02-29|Has expired: Unmaintained by upstream use acidwarp-sdl instead
+graphics/gimmage||2024-02-29|Has expired: Last release in 2007, depends on legacy libraries such as GTK2. Consider using graphics/geeqie or graphics/imv
+misc/smssend||2024-02-29|Has expired: Depends on legacy websites / pages to send SMS
+multimedia/aegisub||2024-02-29|Has expired: BROKEN for nearly a year
+multimedia/camserv||2024-02-29|Has expired: Last upstream release was in 2002, reconsider using multimedia/ustreamer or multimedia/ffmpeg
+multimedia/flvstreamer||2024-02-29|Has expired: Last release 2010 and no active development since, consider using multimedia/ffmpeg
+devel/ptypes||2024-02-29|Has expired: Abandoned upstream, doesn't fetch
+misc/skyutils||2024-02-29|Has expired: Library used for deprecated port misc/smssend
+net-mgmt/unifi7||2024-02-29|Has expired: EOLed upstream, switch to newer version
+net/aslookup||2024-02-29|Has expired: Lookup returns nothing
+net/dimes||2024-02-29|Has expired: The project vaporized in early 2005 and is no longer active
+net/nakenchat||2024-02-29|Has expired: Discontinued upstream and never left BETA stage
+net/sbd||2024-02-29|Has expired: Abandonware and unfetchable, consider using ncat in security/nmap
+security/f-prot||2024-02-29|Has expired: F-Prot Antivirus reached end-of-life on July 31, 2021
+security/fakebo||2024-02-29|Has expired: Remote admin software that hasn't been relevant for last 15 years
+security/fcheck||2024-02-29|Has expired: Abandonware, upstream is gone and notes refers to Windows 98 as the newest OS
+security/fl0p||2024-02-29|Has expired: Abandonware, last release in 2006 and no longer relevant
+security/libzrtpcppcore||2024-02-29|Has expired: Obscure protocol that never got any traction, superseded by SRTP
+security/pbc||2024-02-29|Has expired: Abandonware, last release in 2013 and no development since
+security/poly1305aes||2024-02-29|Has expired: Fails to build on Tier 1 and most other platforms
+www/cgichk||2024-02-29|Has expired: Deprecated utility that checks a list of URLs and lacks HTTPS support
+www/nibbleblog||2024-02-29|Has expired: Upstream WWW redirects to a different CMS software
+chinese/phpbb-tw||2024-02-29|Has expired: Last upstream was released in 2008 use chinese/phpbb3
+www/phpbb||2024-02-29|Has expired: Last upstream was released in 2008 use www/phpbb3
+devel/pcre++||2024-02-29|Unused in the ports tree depends on pcre which is EOLed since 2021
