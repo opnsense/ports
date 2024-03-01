@@ -25,10 +25,8 @@
     SUBDIR += dns-ui
     SUBDIR += dns2blackhole
     SUBDIR += dns2tcp
-    SUBDIR += dns_balance
     SUBDIR += dnsblast
     SUBDIR += dnscap
-    SUBDIR += dnscheckengine
     SUBDIR += dnscontrol
     SUBDIR += dnscrypt-proxy2
     SUBDIR += dnscrypt-wrapper
@@ -227,7 +225,6 @@
     SUBDIR += rubygem-zonefile
     SUBDIR += samba-nsupdate
     SUBDIR += scavenge
-    SUBDIR += sheerdns
     SUBDIR += sleuth
     SUBDIR += subfinder
     SUBDIR += totd

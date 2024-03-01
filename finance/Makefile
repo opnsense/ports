@@ -21,7 +21,6 @@
     SUBDIR += beancount
     SUBDIR += beanie
     SUBDIR += chiapos
-    SUBDIR += cointop
     SUBDIR += electrum
     SUBDIR += expense
     SUBDIR += fabric
@@ -151,6 +150,5 @@
     SUBDIR += tickrs
     SUBDIR += venice
     SUBDIR += weberp
-    SUBDIR += xtrader
 
 .include <bsd.port.subdir.mk>

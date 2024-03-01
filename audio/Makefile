@@ -215,7 +215,6 @@
     SUBDIR += gnome-metronome
     SUBDIR += gnome-music
     SUBDIR += gnome-podcasts
-    SUBDIR += gnormalize
     SUBDIR += gnuitar
     SUBDIR += gnupod
     SUBDIR += gnuspeechsa
@@ -477,13 +476,11 @@
     SUBDIR += mp3blaster
     SUBDIR += mp3burn
     SUBDIR += mp3check
-    SUBDIR += mp3ck
     SUBDIR += mp3gain
     SUBDIR += mp3guessenc
     SUBDIR += mp3lint
     SUBDIR += mp3mover
     SUBDIR += mp3plot
-    SUBDIR += mp3rename
     SUBDIR += mp3riot
     SUBDIR += mp3splt
     SUBDIR += mp3stat
@@ -608,7 +605,6 @@
     SUBDIR += playgsf
     SUBDIR += playmidi
     SUBDIR += playumidi
-    SUBDIR += pm3umpdl
     SUBDIR += pms
     SUBDIR += pms-devel
     SUBDIR += pocketsphinx
@@ -786,7 +782,6 @@
     SUBDIR += supercollider
     SUBDIR += surge-synthesizer-lv2
     SUBDIR += surge-synthesizer-xt-lv2
-    SUBDIR += sweep
     SUBDIR += swh-lv2
     SUBDIR += swhplugins
     SUBDIR += synthpod-lv2

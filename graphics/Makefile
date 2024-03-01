@@ -39,7 +39,6 @@
     SUBDIR += a2png
     SUBDIR += aalib
     SUBDIR += aaphoto
-    SUBDIR += acidwarp
     SUBDIR += acidwarp-sdl
     SUBDIR += aeskulap
     SUBDIR += agg
@@ -243,7 +242,6 @@
     SUBDIR += gifski
     SUBDIR += giftool
     SUBDIR += gimageview
-    SUBDIR += gimmage
     SUBDIR += gimp
     SUBDIR += gimp-app
     SUBDIR += gimp-beautify-plugin

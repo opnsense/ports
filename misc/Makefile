@@ -562,11 +562,9 @@
     SUBDIR += shuffle-db
     SUBDIR += silicon
     SUBDIR += since
-    SUBDIR += skyutils
     SUBDIR += slides
     SUBDIR += sloccount
     SUBDIR += sls
-    SUBDIR += smssend
     SUBDIR += snakemake
     SUBDIR += soapysdr
     SUBDIR += solarized

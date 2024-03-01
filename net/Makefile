@@ -31,7 +31,6 @@
     SUBDIR += arprelease
     SUBDIR += arrowdl
     SUBDIR += asio
-    SUBDIR += aslookup
     SUBDIR += asterisk-chan_sccp
     SUBDIR += asterisk-g72x
     SUBDIR += asterisk18
@@ -126,7 +125,6 @@
     SUBDIR += dhcprelya
     SUBDIR += dico
     SUBDIR += dictd
-    SUBDIR += dimes
     SUBDIR += dpdk
     SUBDIR += dpdk-20.11
     SUBDIR += dpinger
@@ -496,7 +494,6 @@
     SUBDIR += mtr-nox11
     SUBDIR += multicat
     SUBDIR += mvfst
-    SUBDIR += nakenchat
     SUBDIR += nanomsg
     SUBDIR += narrowlink
     SUBDIR += nast
@@ -1445,7 +1442,6 @@
     SUBDIR += samba419
     SUBDIR += samplicator
     SUBDIR += savvycan
-    SUBDIR += sbd
     SUBDIR += sbm
     SUBDIR += scamper
     SUBDIR += scapy
