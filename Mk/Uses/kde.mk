@@ -100,16 +100,16 @@ KDE_PLASMA5_VERSION?=		5.27.10
 KDE_PLASMA5_BRANCH?=		stable
 
 # Next KDE Plasma desktop
-KDE_PLASMA6_VERSION?=		5.92.0
-KDE_PLASMA6_BRANCH?=		unstable
+KDE_PLASMA6_VERSION?=		6.0.0
+KDE_PLASMA6_BRANCH?=		stable
 
 # Current KDE frameworks.
 KDE_FRAMEWORKS5_VERSION?=	5.115.0
 KDE_FRAMEWORKS5_BRANCH?=	stable
 
 # Next KDE Frameworks (Qt6 based)
-KDE_FRAMEWORKS6_VERSION?=	5.248.0
-KDE_FRAMEWORKS6_BRANCH?=	unstable
+KDE_FRAMEWORKS6_VERSION?=	6.0.0
+KDE_FRAMEWORKS6_BRANCH?=	stable
 
 # Current KDE applications.
 KDE_APPLICATIONS5_VERSION?=	23.08.5
@@ -223,7 +223,7 @@ MASTER_SITES?=		KDE/${KDE_FRAMEWORKS_BRANCH}/frameworks/${KDE_FRAMEWORKS_VERSION
 MASTER_SITES?=		KDE/${KDE_FRAMEWORKS_BRANCH}/frameworks/${KDE_FRAMEWORKS_VERSION:R}
 .          endif
 .        else
-MASTER_SITES?=		KDE/${KDE_FRAMEWORKS_BRANCH}/frameworks/${KDE_FRAMEWORKS_VERSION}
+MASTER_SITES?=		KDE/${KDE_FRAMEWORKS_BRANCH}/frameworks/${KDE_FRAMEWORKS_VERSION:R}
 .        endif
 DIST_SUBDIR?=		KDE/frameworks/${KDE_FRAMEWORKS_VERSION}
 .        if ${_KDE_VERSION:M6}
@@ -265,14 +265,14 @@ PLIST_SUB+=		KDE_APPLICATIONS_VERSION="${KDE_APPLICATIONS_VERSION}" \
 			KDE_PLASMA_VERSION="${KDE_PLASMA_VERSION}"
 # ==============================================================================
 
-_USE_KDE_BOTH=		akonadi attica libkcddb libkcompactdisc libkdcraw libkdegames \
-			libkeduvocdocument libkexiv2 libkipi libksane okular \
-			baloo baloo-widgets kate marble
+_USE_KDE_BOTH=		akonadi libkcddb libkcompactdisc libkdcraw libkdegames \
+			libkeduvocdocument libkipi libksane okular \
+			baloo-widgets kate marble
 
 # List of components of the KDE Frameworks distribution.
 # The *_TIER<n> variables are internal, primarily for checking
 # that our list of frameworks matches the structure offered upstream.
-_USE_FRAMEWORKS_TIER1=	apidox archive attica5 breeze-icons codecs config \
+_USE_FRAMEWORKS_TIER1=	apidox archive attica breeze-icons codecs config \
 			coreaddons dbusaddons dnssd holidays i18n idletime itemmodels \
 			itemviews kirigami2 kquickcharts oxygen-icons5 plotting prison \
 			qqc2-desktop-style solid sonnet syntaxhighlighting \
@@ -283,7 +283,7 @@ _USE_FRAMEWORKS_TIER2=	auth completion crash doctools \
 			filemetadata kimageformats jobwidgets notifications \
 			package pty syndication unitconversion
 
-_USE_FRAMEWORKS_TIER3=	activities activities-stats baloo5 bookmarks configwidgets \
+_USE_FRAMEWORKS_TIER3=	activities activities-stats baloo bookmarks configwidgets \
 			designerplugin emoticons globalaccel guiaddons \
 			iconthemes init kcmutils kdav kdeclarative \
 			kded kdesu kio kpipewire newstuff notifyconfig parts \
@@ -354,7 +354,8 @@ _USE_KDE5_ALL=		${_USE_FRAMEWORKS_ALL} \
 			${_USE_PLASMA_ALL} \
 			${_USE_KDEPIM5_ALL} \
 			${_USE_KDE_BOTH} \
-			${_USE_PHONON_ALL}
+			${_USE_PHONON_ALL} \
+			libkexiv2
 # TODO: fix
 _USE_KDE6_ALL=		ecm colorscheme \
 			svg \
@@ -363,7 +364,8 @@ _USE_KDE6_ALL=		ecm colorscheme \
 			${_USE_FRAMEWORKS_ALL}  \
 			${_USE_PLASMA_ALL} \
 			plasma5support activities activities-stats kpipewire wayland globalacceld libplasma \
-			${_USE_PHONON_ALL}
+			${_USE_PHONON_ALL} \
+			libkexiv2
 
 # ====================== frameworks components =================================
 kde-activities_PORT5=		x11/kf${_KDE_VERSION}-kactivities
@@ -387,14 +389,14 @@ kde-apidox_TYPE=		run
 kde-archive_PORT=		archivers/kf${_KDE_VERSION}-karchive
 kde-archive_LIB=		libKF${_KDE_VERSION}Archive.so
 
-kde-attica5_PORT=		x11-toolkits/kf${_KDE_VERSION}-attica
-kde-attica5_LIB=		libKF${_KDE_VERSION}Attica.so
+kde-attica_PORT=		x11-toolkits/kf${_KDE_VERSION}-attica
+kde-attica_LIB=			libKF${_KDE_VERSION}Attica.so
 
 kde-auth_PORT=			devel/kf${_KDE_VERSION}-kauth
 kde-auth_LIB=			libKF${_KDE_VERSION}AuthCore.so
 
-kde-baloo5_PORT=		sysutils/kf${_KDE_VERSION}-baloo
-kde-baloo5_LIB=			libKF${_KDE_VERSION}Baloo.so
+kde-baloo_PORT=			sysutils/kf${_KDE_VERSION}-baloo
+kde-baloo_LIB=			libKF${_KDE_VERSION}Baloo.so
 
 kde-bookmarks_PORT=		devel/kf${_KDE_VERSION}-kbookmarks
 kde-bookmarks_LIB=		libKF${_KDE_VERSION}Bookmarks.so
@@ -734,7 +736,9 @@ kde-libkscreen_PORT=		x11/plasma${_KDE_VERSION}-libkscreen
 kde-libkscreen_LIB=		libKF${_KDE_VERSION}Screen.so
 
 kde-libksysguard_PORT=		sysutils/plasma${_KDE_VERSION}-libksysguard
-kde-libksysguard_LIB=		libksgrd.so
+kde-libksysguard_LIB5=		libksgrd.so
+kde-libksysguard_LIB6=		libKSysGuardSystemStats.so
+kde-libksysguard_LIB=		${kde-libksysguard_LIB${_KDE_VERSION}}
 
 kde-milou_PORT=			deskutils/plasma${_KDE_VERSION}-milou
 kde-milou_PATH5=			${KDE_PREFIX}/lib/libmilou.so.5
@@ -974,8 +978,12 @@ kde-libkdegames5_LIB=		libKF${_KDE_VERSION}KDEGames.so
 kde-libkeduvocdocument5_PORT=	misc/libkeduvocdocument
 kde-libkeduvocdocument5_LIB=	libKEduVocDocument.so
 
-kde-libkexiv25_PORT=		graphics/libkexiv2
-kde-libkexiv25_LIB=		libKF${_KDE_VERSION}KExiv2.so
+kde-libkexiv2_PORT5=		graphics/libkexiv2
+kde-libkexiv2_PORT6=		graphics/libkexiv2-devel
+kde-libkexiv2_PORT=		${kde-libkexiv2_PORT${_KDE_VERSION}}
+kde-libkexiv2_LIB5=		libKF${_KDE_VERSION}KExiv2.so
+kde-libkexiv2_LIB6=		libKExiv2Qt${_KDE_VERSION}.so
+kde-libkexiv2_LIB=		${kde-libkexiv2_LIB${_KDE_VERSION}}
 
 kde-libkipi5_PORT=		graphics/libkipi
 kde-libkipi5_LIB=		libKF${_KDE_VERSION}Kipi.so
