@@ -15,7 +15,8 @@ WWW=		https://github.com/ValveSoftware/gamescope
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	evdev-proto>0:devel/evdev-proto \
+BUILD_DEPENDS=	cmake:devel/cmake-core \
+		evdev-proto>0:devel/evdev-proto \
 		glslangValidator:graphics/glslang \
 		vulkan-headers>0:graphics/vulkan-headers \
 		wayland-protocols>=1.17:graphics/wayland-protocols \
@@ -46,6 +47,8 @@ MESON_ARCH_FAMILY=	${ARCH:S/amd/x86_/:S/i3/x/:C/v[67]//:S/power/p/:S/le$//}
 PLIST_FILES=	bin/${PORTNAME} \
 		lib/libVkLayer_FROG_${PORTNAME}_wsi_${MESON_ARCH_FAMILY}.so \
 		share/vulkan/implicit_layer.d/VkLayer_FROG_${PORTNAME}_wsi.${MESON_ARCH_FAMILY}.json
+
+CXXFLAGS+=	-DGLM_ENABLE_EXPERIMENTAL  # GLM_GTX_string_cast is an experimental extension
 
 # https://github.com/freebsd/drm-kmod/issues/271
 PORTSCOUT=	ignore:1

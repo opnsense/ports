@@ -10,7 +10,7 @@
 
 PORTNAME=	dovecot
 PORTVERSION=	2.3.21
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	mail
 MASTER_SITES=	https://dovecot.org/releases/2.3/
 
@@ -27,6 +27,7 @@ USES=		cpe iconv libtool pkgconfig ssl
 USE_RC_SUBR=	dovecot
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ARGS=	--localstatedir=/var \
 		--with-docs \
 		--with-ssl=openssl \
