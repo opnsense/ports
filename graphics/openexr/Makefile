@@ -1,6 +1,6 @@
 PORTNAME?=	openexr
 PORTVERSION=	3.2.2
-PORTREVISION?=	0
+PORTREVISION?=	1
 CATEGORIES=	graphics devel
 .if !defined(MASTERDIR)
 MASTER_SITES=	https://raw.githubusercontent.com/AcademySoftwareFoundation/openexr-images/v1.0/:testimages \
@@ -78,8 +78,10 @@ _imath_libcxx=	${COMPILER_FEATURES:Mlib*c++}
 # so we do not benefit from our checksumming and the distdir caching.
 post-extract:
 	${MKDIR} ${CONFIGURE_WRKSRC}/src/test/bin
-.for i in ${DISTFILES:M*.exr}
-	${PRINTF} %s ${i} | ( cd ${DISTDIR}/${DIST_SUBDIR} && ${CPIO} -dumpl ${CONFIGURE_WRKSRC}/src/test/bin/ 2>/dev/null )
+.for i in ${DISTFILES:M*.exr?testimages}
+	d="$$(dirname "${CONFIGURE_WRKSRC}/src/test/bin/${i:S/:testimages//}")" \
+	  && ${MKDIR} "$$d" \
+	  && ${CP} ${DISTDIR}/${DIST_SUBDIR}/${i:S/:testimages//} "$$d"
 .endfor
 
 pre-configure:
