@@ -18,7 +18,9 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}monty>=2021.3:devel/py-monty@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=3.7<5.0:devel/py-typing-extensions@${PY_FLAVOR}
 #RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pymatgen>=2023.5.8:science/py-pymatgen@${PY_FLAVOR} # break dependency circle: pymatgen -> mp-api -> emmet-core, see https://github.com/materialsproject/api/issues/825
 
-USES=		python pytest
+USES=		python
 USE_PYTHON=	distutils autoplist pytest
+
+NO_ARCH=	yes
 
 .include <bsd.port.mk>

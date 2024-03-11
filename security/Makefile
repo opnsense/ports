@@ -941,6 +941,7 @@
     SUBDIR += py-iris-webhooks-module
     SUBDIR += py-itsdangerous
     SUBDIR += py-josepy
+    SUBDIR += py-joserfc
     SUBDIR += py-jwcrypto
     SUBDIR += py-keepkey
     SUBDIR += py-kerberos
@@ -1328,6 +1329,7 @@
     SUBDIR += transcrypt
     SUBDIR += trezord
     SUBDIR += tripwire
+    SUBDIR += trivy
     SUBDIR += trousers
     SUBDIR += trufflehog
     SUBDIR += tthsum
@@ -1366,12 +1368,12 @@
     SUBDIR += wpa_supplicant-devel
     SUBDIR += wpa_supplicant29
     SUBDIR += xca
+    SUBDIR += xhash
     SUBDIR += xinetd
     SUBDIR += xml-security
     SUBDIR += xmlsec1
     SUBDIR += xorsearch
     SUBDIR += xray-core
-    SUBDIR += xhash
     SUBDIR += yafic
     SUBDIR += yapet
     SUBDIR += yara

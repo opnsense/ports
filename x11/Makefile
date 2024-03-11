@@ -122,6 +122,7 @@
     SUBDIR += hs-xmobar
     SUBDIR += hsetroot
     SUBDIR += hybrid-bar
+    SUBDIR += hyprcursor
     SUBDIR += hypridle
     SUBDIR += hyprlock
     SUBDIR += hyprpaper
@@ -528,6 +529,7 @@
     SUBDIR += xcoloredit
     SUBDIR += xcolors
     SUBDIR += xconsole
+    SUBDIR += xcur2png
     SUBDIR += xcursorgen
     SUBDIR += xcut
     SUBDIR += xdg-desktop-portal-gnome

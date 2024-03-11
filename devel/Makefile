@@ -4605,6 +4605,7 @@
     SUBDIR += py-deepmerge
     SUBDIR += py-defusedxml
     SUBDIR += py-demjson
+    SUBDIR += py-dep-logic
     SUBDIR += py-deprecat
     SUBDIR += py-deprecated
     SUBDIR += py-deprecation
@@ -5088,6 +5089,7 @@
     SUBDIR += py-num2words
     SUBDIR += py-numba
     SUBDIR += py-objgraph
+    SUBDIR += py-objprint
     SUBDIR += py-objsize
     SUBDIR += py-oci
     SUBDIR += py-odfpy
@@ -5429,6 +5431,7 @@
     SUBDIR += py-pytest-isort
     SUBDIR += py-pytest-jupyter
     SUBDIR += py-pytest-lazy-fixture
+    SUBDIR += py-pytest-lazy-fixtures
     SUBDIR += py-pytest-localserver
     SUBDIR += py-pytest-markdown
     SUBDIR += py-pytest-metadata
@@ -6203,6 +6206,7 @@
     SUBDIR += rubygem-aws-sdk-billingconductor
     SUBDIR += rubygem-aws-sdk-braket
     SUBDIR += rubygem-aws-sdk-budgets
+    SUBDIR += rubygem-aws-sdk-chatbot
     SUBDIR += rubygem-aws-sdk-chime
     SUBDIR += rubygem-aws-sdk-chimesdkidentity
     SUBDIR += rubygem-aws-sdk-chimesdkmediapipelines
