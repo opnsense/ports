@@ -23,7 +23,6 @@ LICENSE_FILE_MIT=	${WRKSRC}/externals/sirit/externals/SPIRV-Headers/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	requires int128 and dynarmic backend
-
 # XXX Need Ryujinx or a Yuzu fork that regularly improves game compatibility
 DEPRECATED=	Project discontinued
 
@@ -158,14 +157,8 @@ post-patch-VAAPI-off:
 	@${REINPLACE_CMD} -i .nova '/pkg_check.*libva/d' \
 		${WRKSRC}/CMakeLists.txt
 
-# XXX Drop after FreeBSD 13.2 EOL around 2024-05-01 (don't forget distinfo)
+# XXX Drop after FreeBSD 13.2 EOL around 2024-07-01 (don't forget distinfo)
 .if !exists(/usr/include/c++/v1/__ranges/as_rvalue_view.h) || make(makesum) || make(fetch)
-. if !exists(/usr/include/c++/v1/__memory/concepts.h)
-USES+=		llvm:min=14,build,export
-PATH:=		${LLVM_PREFIX}/bin:${PATH} # XXX _CMAKE_TOOLCHAIN_SUFFIX vs. devel/llvm*
-CONFIGURE_ENV+=	CC="${CC}" CXX="${CXX}" CPP="${CPP}"
-. endif
-
 # XXX Move into separate port and standardize via USES
 GH_TUPLE+=	llvm:llvm-project:llvmorg-16.0.1:libcxx
 CXXFLAGS+=	-nostdinc++ -isystem${WRKDIR}/libcxx_prefix/include/c++/v1
