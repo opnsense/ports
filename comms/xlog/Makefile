@@ -1,10 +1,10 @@
 PORTNAME=	xlog
 DISTVERSION=	2.0.24
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	comms hamradio
 MASTER_SITES=	SAVANNAH
 
-MAINTAINER=	bofh@FreeBSD.org
+MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Amateur Radio logging application
 WWW=		https://xlog.nongnu.org/
 

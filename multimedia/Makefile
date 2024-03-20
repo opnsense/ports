@@ -99,7 +99,6 @@
     SUBDIR += gstreamer1-plugins-msdk
     SUBDIR += gstreamer1-plugins-openh264
     SUBDIR += gstreamer1-plugins-resindvd
-    SUBDIR += gstreamer1-plugins-rtmp
     SUBDIR += gstreamer1-plugins-rust
     SUBDIR += gstreamer1-plugins-smoothstreaming
     SUBDIR += gstreamer1-plugins-svt-av1
@@ -390,6 +389,7 @@
     SUBDIR += webcamoid
     SUBDIR += wf-recorder
     SUBDIR += winff
+    SUBDIR += wireplumber
     SUBDIR += wl-screenrec
     SUBDIR += wlrobs
     SUBDIR += x264

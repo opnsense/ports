@@ -5248,6 +5248,7 @@
     SUBDIR += py-plux
     SUBDIR += py-ply
     SUBDIR += py-pnio-dcp
+    SUBDIR += py-pnu-libpnu
     SUBDIR += py-pockets
     SUBDIR += py-podcastparser
     SUBDIR += py-poetry
@@ -7650,7 +7651,7 @@
     SUBDIR += rubygem-will_paginate
     SUBDIR += rubygem-windows_error
     SUBDIR += rubygem-wisper
-    SUBDIR += rubygem-with_advisory_lock
+    SUBDIR += rubygem-with_advisory_lock61
     SUBDIR += rubygem-with_env
     SUBDIR += rubygem-wmi-lite
     SUBDIR += rubygem-xdg
