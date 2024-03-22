@@ -1,6 +1,6 @@
 PORTNAME=	libgd
 PORTVERSION=	2.3.3
-PORTREVISION=	9
+PORTREVISION=	10
 PORTEPOCH=	1
 CATEGORIES+=	graphics
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/gd-${PORTVERSION}/
@@ -70,6 +70,7 @@ ICONV_USES=	iconv
 ICONV_CONFIGURE_ON=	${ICONV_CONFIGURE_ARG}
 THREADS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-threads
 THREADS_USES=		autoreconf
+TEST_USES=		autoreconf
 
 .include <bsd.port.options.mk>
 
