@@ -16,7 +16,7 @@ LICENSE=	APACHE20
 
 BUILD_DEPENDS=	xcaddy:www/xcaddy
 
-USES=		go:no_targets
+USES=		go:no_targets,1.21
 
 NO_PACKAGE=	Requires network access (see pkg-descr)
 
@@ -41,7 +41,7 @@ XCADDY_ENV+=	XCADDY_WHICH_GO="${GO_CMD}" \
 
 do-build:
 	${MKDIR} ${WRKSRC}
-	cd ${WRKSRC} && ${XCADDY_ENV} ${LOCALBASE}/bin/xcaddy build ${PLUGINS}
+	cd ${WRKSRC} && ${XCADDY_ENV} ${LOCALBASE}/bin/xcaddy build ${CADDY_CUSTOM_VERSION} ${PLUGINS}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/caddy ${STAGEDIR}${PREFIX}/bin
