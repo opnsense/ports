@@ -64,7 +64,7 @@ GHOSTSCRIPT_DEFAULT?=	10
 # Possible values: mesa-libs, mesa-devel
 GL_DEFAULT?=		mesa-libs
 # Possible values: 1.19, 1.20, 1.21, 1.22, 1.23-devel
-GO_DEFAULT?=		1.20
+GO_DEFAULT?=		1.21
 # Possible values: 1.8, 2.2, 3.0
 GUILE_DEFAULT?=		2.2
 # Possible versions: 6, 7
@@ -75,11 +75,11 @@ GUILE_DEFAULT?=		2.2
 IMAGEMAGICK_DEFAULT?=	7
 # Possible values: 8, 11, 17, 18, 19, 20, 21
 JAVA_DEFAULT?=		8
-# Possible values: 3.0.0, 3.1.0
+# Possible values: 3.2.0, 3.1.0
 .  if !defined(WANT_LAZARUS_DEVEL)
-LAZARUS_DEFAULT?=	3.0.0
+LAZARUS_DEFAULT?=	3.2.0
 .  else
-LAZARUS_DEFAULT?=	3.1.0
+LAZARUS_DEFAULT?=	3.3.1
 .  endif
 # Possible values: rust, legacy
 .  if empty(ARCH:Naarch64:Namd64:Narmv7:Ni386:Npowerpc64:Npowerpc64le:Npowerpc:Nriscv64)
