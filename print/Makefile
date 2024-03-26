@@ -204,6 +204,7 @@
     SUBDIR += rubygem-color-tools
     SUBDIR += rubygem-color_diff
     SUBDIR += rubygem-pdf-core
+    SUBDIR += rubygem-pdf-core09
     SUBDIR += rubygem-pdf-reader
     SUBDIR += rubygem-pdf-writer
     SUBDIR += rubygem-prawn
@@ -218,10 +219,12 @@
     SUBDIR += rubygem-prawn-svg
     SUBDIR += rubygem-prawn-table
     SUBDIR += rubygem-prawn-templates
+    SUBDIR += rubygem-prawn24
     SUBDIR += rubygem-prawn_shapes
     SUBDIR += rubygem-rbpdf
     SUBDIR += rubygem-rbpdf-font
     SUBDIR += rubygem-ttfunk
+    SUBDIR += rubygem-ttfunk17
     SUBDIR += scribus
     SUBDIR += scribus-devel
     SUBDIR += sgf2tex

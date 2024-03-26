@@ -1,6 +1,6 @@
 PORTNAME=	llvm
 PORTVERSION=	${LLVM_MAJOR}.0.d${SNAPDATE}
-PORTREVISION=	1
+PORTREVISION=	0
 CATEGORIES=	devel lang
 PKGNAMESUFFIX=	${LLVM_SUFFIX}
 
@@ -23,6 +23,7 @@ FLAVORS=	default lite
 FLAVOR?=	${FLAVORS:[1]}
 lite_PKGNAMESUFFIX=	${LLVM_SUFFIX}-lite
 
+LLVM_MAJOR_MINOR=${LLVM_RELEASE:C/\.[0-9]$//}
 LLVM_SUFFIX=	-devel
 LLVM_DIR=	llvm${LLVM_SUFFIX}
 LLVM_PREFIX=	${PREFIX}/${LLVM_DIR}
@@ -156,7 +157,9 @@ LIT_DESC=		Install lit and FileCheck test tools
 LIT_VARS=		_USES_PYTHON=python
 LIT_PLIST_SUB=		LIT_MOD_NAME=${LIT_MOD_NAME}
 LLD_DESC=		Install lld, the LLVM linker
-LLDB_BUILD_DEPENDS=	swig:devel/swig
+LLDB_BUILD_DEPENDS=	\
+	{PYTHON_PKGNAMEPREFIX}pexpect>0:misc/py-pexpect@${PY_FLAVOR} \
+	swig:devel/swig
 LLDB_DESC=		Install lldb, the LLVM debugger
 LLDB_IMPLIES=		CLANG
 LLDB_PLIST_SUB=		PYTHON_ABIVER=${PYTHON_ABIVER}
@@ -176,7 +179,8 @@ STATIC_LIBS_DESC= Install static libraries (does not effect sanitizers)
 
 CONFLICTS_INSTALL=	${PORTNAME}${LLVM_SUFFIX} ${PORTNAME}${LLVM_SUFFIX}-lite
 
-PLIST_SUB+=	LLVM_MAJOR=${LLVM_MAJOR} \
+PLIST_SUB+=	LLVM_MAJOR_MINOR=${LLVM_MAJOR_MINOR} \
+		LLVM_MAJOR=${LLVM_MAJOR} \
 		LLVM_RELEASE=${LLVM_RELEASE}
 
 COMMANDS=	${LLVM_COMMANDS}
@@ -494,6 +498,7 @@ build-plist:
 	    -e 's|${PORTVERSION}|%%PORTVERSION%%|' \
 	    -e 's|release.cmake|%%CMAKE_BUILD_TYPE%%.cmake|' \
 	    -e 's|${LLVM_RELEASE:C/\./\\./g}|%%LLVM_RELEASE%%|' \
+	    -e 's|${LLVM_MAJOR_MINOR:C/\./\\./}git|%%LLVM_MAJOR_MINOR%%git|' \
 	    -e 's|${LLVM_MAJOR}git|%%LLVM_MAJOR%%git|' \
 	    -e 's|/${LLVM_MAJOR}/|/%%LLVM_MAJOR%%/|' \
 	    -e 's|\([-./]\)${LLVM_MAJOR:C/\./\\./}$$|\1%%LLVM_MAJOR%%|' \

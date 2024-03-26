@@ -240,7 +240,6 @@
     SUBDIR += gwsocket
     SUBDIR += h2c
     SUBDIR += h2o
-    SUBDIR += h2o-devel
     SUBDIR += habari
     SUBDIR += hiawatha
     SUBDIR += hiawatha-monitor
@@ -1623,6 +1622,7 @@
     SUBDIR += py-django-timezone-field
     SUBDIR += py-django-tinymce
     SUBDIR += py-django-treebeard
+    SUBDIR += py-django-unfold
     SUBDIR += py-django-voting
     SUBDIR += py-django-webpack-loader
     SUBDIR += py-django-widget-tweaks
@@ -2375,9 +2375,7 @@
     SUBDIR += thumbnail_index
     SUBDIR += thundercache
     SUBDIR += tidy
-    SUBDIR += tidy-devel
     SUBDIR += tidy-html5
-    SUBDIR += tidy-lib
     SUBDIR += tikiwiki
     SUBDIR += tinymce
     SUBDIR += tinyproxy

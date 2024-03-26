@@ -1,6 +1,7 @@
 PORTNAME=	hyperswitch
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.106.1
+PORTREVISION=	1
 CATEGORIES=	finance
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -125,6 +126,7 @@ CARGO_CRATES=	actix-codec-0.5.1 \
 		cargo-platform-0.1.3 \
 		cargo_metadata-0.14.2 \
 		cargo_metadata-0.15.4 \
+		cargo_metadata-0.18.1 \
 		cast-0.3.0 \
 		cc-1.0.83 \
 		cfb-0.7.3 \
