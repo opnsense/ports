@@ -1,3 +1,78 @@
+  <vuln vid="8b3be705-eba7-11ee-99b3-589cfc0f81b0">
+    <topic>phpmyfaq -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>phpmyfaq-php81</name>
+	<name>phpmyfaq-php82</name>
+	<name>phpmyfaq-php83</name>
+	<range><lt>3.2.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>phpMyFAQ team reports:</p>
+	<blockquote cite="https://www.phpmyfaq.de/security/advisory-2024-03-25">
+	  <p>The phpMyFAQ Team has learned of multiple security issues that'd
+	    been discovered in phpMyFAQ 3.2.5 and earlier. phpMyFAQ contains
+	    cross-site scripting (XSS), SQL injection and bypass
+	    vulnerabilities.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-mmh6-5cpf-2c72</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-hm8r-95g3-5hj9</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-48vw-jpf8-hwqh</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-2grw-mc9r-822r</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-6p68-36m6-392r</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-pwh2-fpfr-x5gf</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-q7g6-xfh2-vhpx</url>
+      <url>https://github.com/thorsten/phpMyFAQ/security/advisories/GHSA-qgxx-4xv5-6hcw</url>
+    </references>
+    <dates>
+      <discovery>2024-03-25</discovery>
+      <entry>2024-03-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f661184a-eb90-11ee-92fc-1c697a616631">
+    <topic>emacs -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>emacs</name>
+       <name>emacs-canna</name>
+       <name>emacs-nox</name>
+       <range><lt>29.3,3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>GNU Emacs developers report:</p>
+	<blockquote cite="https://git.savannah.gnu.org/cgit/emacs.git/tree/etc/NEWS?h=emacs-29.3">
+	  <p>Emacs 29.3 is an emergency bugfix release intended to fix several security vulnerabilities.</p>
+	<ul>
+	  <li>Arbitrary Lisp code is no longer evaluated as part of turning on Org mode.  This is for security reasons, to avoid evaluating malicious Lisp code.</li>
+	  <li>New buffer-local variable 'untrusted-content'.  When this is non-nil, Lisp programs should treat buffer contents with extra caution.</li>
+	  <li>Gnus now treats inline MIME contents as untrusted.  To get back previous insecure behavior, 'untrusted-content' should be reset to nil in the buffer.</li>
+	  <li>LaTeX preview is now by default disabled for email attachments.  To get back previous insecure behavior, set the variable 'org--latex-preview-when-risky' to a non-nil value.</li>
+	  <li>Org mode now considers contents of remote files to be untrusted.  Remote files are recognized by calling 'file-remote-p'.</li>
+	</ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-30202</cvename>
+      <cvename>CVE-2024-30203</cvename>
+      <cvename>CVE-2024-30204</cvename>
+      <cvename>CVE-2024-30205</cvename>
+      <url>https://git.savannah.gnu.org/cgit/emacs.git/tree/etc/NEWS?h=emacs-29.3</url>
+    </references>
+    <dates>
+      <discovery>2024-03-24</discovery>
+      <entry>2024-03-26</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="80815c47-e84f-11ee-8e76-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
@@ -312,6 +387,60 @@
     <dates>
       <discovery>2023-03-12</discovery>
       <entry>2024-03-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6d31ef38-df85-11ee-abf1-6c3be5272acd">
+    <topic>Grafana -- Data source permission escalation</topic>
+    <affects>
+      <package>
+	<name>grafana</name>
+	<range><ge>8.5.0</ge><lt>9.5.17</lt></range>
+	<range><ge>10.0.0</ge><lt>10.0.12</lt></range>
+	<range><ge>10.1.0</ge><lt>10.1.8</lt></range>
+	<range><ge>10.2.0</ge><lt>10.2.5</lt></range>
+	<range><ge>10.3.0</ge><lt>10.3.4</lt></range>
+      </package>
+      <package>
+	<name>grafana9</name>
+	<range><lt>9.5.17</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Grafana Labs reports:</p>
+	<blockquote cite="https://grafana.com/blog/2024/03/07/grafana-security-release-medium-severity-security-fix-for-cve-2024-1442/">
+	  <p>The vulnerability impacts Grafana Cloud and Grafana Enterprise instances,
+	  and it is exploitable if a user who should not be able to access all data
+	  sources is granted permissions to create a data source.</p>
+	  <p>By default, only organization Administrators are allowed to create a data
+	  source and have full access to all data sources. All other users need to be
+	  explicitly granted permission to create a data source, which then means they
+	  could exploit this vulnerability.</p>
+	  <p>When a user creates a data source via the
+	  <a href="https://grafana.com/docs/grafana/latest/developers/http_api/data_source/#create-a-data-source">API</a>,
+	  they can specify data source UID. If the UID is set to an asterisk (*),
+	  the user gains permissions to query, update, and delete all data sources
+	  in the organization. The exploit, however, does not stretch across
+	  organizations — to exploit the vulnerability in several organizations, a user
+	  would need permissions to create data sources in each organization.</p>
+	  <p>The vulnerability comes from a lack of UID validation. When evaluating
+	  permissions, we interpret an asterisk (*) as a wild card for all resources.
+	  Therefore, we should treat it as a reserved value, and not allow the creation
+	  of a resource with the UID set to an asterisk.</p>
+	  <p>The CVSS score for this vulnerability is
+	  <a href="https://nvd.nist.gov/vuln-metrics/cvss/v3-calculator?vector=AV:N/AC:L/PR:H/UI:N/S:U/C:H/I:L/A:L&amp;version=3.1">6 Medium</a>.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-1442</cvename>
+      <url>https://grafana.com/security/security-advisories/cve-2024-1442/</url>
+    </references>
+    <dates>
+      <discovery>2024-02-12</discovery>
+      <entry>2024-03-11</entry>
+      <modified>2024-03-26</modified>
     </dates>
   </vuln>
 
