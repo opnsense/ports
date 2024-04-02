@@ -23,7 +23,6 @@
     SUBDIR += afterglow
     SUBDIR += age
     SUBDIR += aide
-    SUBDIR += akmos
     SUBDIR += amavisd-milter
     SUBDIR += amavisd-new
     SUBDIR += apache-xml-security-c
@@ -299,6 +298,7 @@
     SUBDIR += libkleo
     SUBDIR += libkpass
     SUBDIR += libksba
+    SUBDIR += libmacaroons
     SUBDIR += libmcrypt
     SUBDIR += libnitrokey
     SUBDIR += libntlm
@@ -394,6 +394,7 @@
     SUBDIR += nist-kat
     SUBDIR += nitrokey-app
     SUBDIR += nmap
+    SUBDIR += nmap-devel
     SUBDIR += nss
     SUBDIR += nss_compat_ossl
     SUBDIR += nuclei
@@ -961,7 +962,6 @@
     SUBDIR += py-mnemonic
     SUBDIR += py-msoffcrypto-tool
     SUBDIR += py-muacrypt
-    SUBDIR += py-nassl
     SUBDIR += py-netbox-secrets
     SUBDIR += py-netmiko
     SUBDIR += py-noiseprotocol
@@ -1003,7 +1003,6 @@
     SUBDIR += py-pyotp
     SUBDIR += py-pyotp2289
     SUBDIR += py-pysaml2
-    SUBDIR += py-pysaml24
     SUBDIR += py-pysaml26
     SUBDIR += py-pyscard
     SUBDIR += py-pysodium
@@ -1040,7 +1039,6 @@
     SUBDIR += py-spake2
     SUBDIR += py-ssh-audit
     SUBDIR += py-sshpubkeys
-    SUBDIR += py-sslyze
     SUBDIR += py-stem
     SUBDIR += py-stix
     SUBDIR += py-stix2
@@ -1139,7 +1137,6 @@
     SUBDIR += rubygem-net-scp
     SUBDIR += rubygem-net-scp1
     SUBDIR += rubygem-net-sftp
-    SUBDIR += rubygem-net-sftp2
     SUBDIR += rubygem-net-ssh
     SUBDIR += rubygem-net-ssh-gateway
     SUBDIR += rubygem-net-ssh-krb

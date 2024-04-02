@@ -696,6 +696,7 @@
     SUBDIR += proftpd-mod_sql_sqlite
     SUBDIR += proftpd-mod_sql_tds
     SUBDIR += prometheus-postgresql-adapter
+    SUBDIR += proxysql
     SUBDIR += pspg
     SUBDIR += puppetdb-terminus7
     SUBDIR += puppetdb-terminus8
@@ -993,7 +994,6 @@
     SUBDIR += rubygem-redis-clustering50
     SUBDIR += rubygem-redis-namespace
     SUBDIR += rubygem-redis-namespace110
-    SUBDIR += rubygem-redis-namespace19
     SUBDIR += rubygem-redis4
     SUBDIR += rubygem-redis50
     SUBDIR += rubygem-ruby-mysql
@@ -1061,6 +1061,7 @@
     SUBDIR += twemproxy
     SUBDIR += unixODBC
     SUBDIR += usql
+    SUBDIR += valkey
     SUBDIR += vfront
     SUBDIR += virtualpg
     SUBDIR += vsqlite

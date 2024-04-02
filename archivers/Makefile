@@ -83,7 +83,6 @@
     SUBDIR += lziprecover
     SUBDIR += lzlib
     SUBDIR += lzma
-    SUBDIR += lzmalib
     SUBDIR += lzo2
     SUBDIR += lzop
     SUBDIR += lzsa
@@ -272,7 +271,6 @@
     SUBDIR += urbackup-server
     SUBDIR += v1541commander
     SUBDIR += vbz-compression
-    SUBDIR += xar
     SUBDIR += xarchive
     SUBDIR += xarchiver
     SUBDIR += xdms

@@ -410,6 +410,7 @@ include/folly/experimental/io/IoUringBase.h
 include/folly/experimental/io/IoUringBackend.h
 include/folly/experimental/io/IoUringEvent.h
 include/folly/experimental/io/IoUringEventBaseLocal.h
+include/folly/experimental/io/IoUringProvidedBufferRing.h
 include/folly/experimental/io/Liburing.h
 include/folly/experimental/io/MuxIOThreadPoolExecutor.h
 include/folly/experimental/io/SimpleAsyncIO.h
@@ -663,7 +664,6 @@ include/folly/lang/Extern.h
 include/folly/lang/Hint-inl.h
 include/folly/lang/Hint.h
 include/folly/lang/Keep.h
-include/folly/lang/Launder.h
 include/folly/lang/New.h
 include/folly/lang/Ordering.h
 include/folly/lang/Pretty.h
@@ -780,10 +780,9 @@ include/folly/python/import.h
 include/folly/python/iobuf.h
 include/folly/small_vector.h
 include/folly/sorted_vector_types.h
-include/folly/ssl/Init.h
 include/folly/ssl/OpenSSLCertUtils.h
 include/folly/ssl/OpenSSLHash.h
-include/folly/ssl/OpenSSLLockTypes.h
+include/folly/ssl/OpenSSLKeyUtils.h
 include/folly/ssl/OpenSSLPtrTypes.h
 include/folly/ssl/OpenSSLTicketHandler.h
 include/folly/ssl/OpenSSLVersionFinder.h
@@ -791,7 +790,6 @@ include/folly/ssl/PasswordCollector.h
 include/folly/ssl/SSLSession.h
 include/folly/ssl/SSLSessionManager.h
 include/folly/ssl/detail/OpenSSLSession.h
-include/folly/ssl/detail/OpenSSLThreading.h
 include/folly/stats/BucketedTimeSeries-inl.h
 include/folly/stats/BucketedTimeSeries.h
 include/folly/stats/DigestBuilder-inl.h

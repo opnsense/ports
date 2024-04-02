@@ -7,7 +7,6 @@
     SUBDIR += aewan
     SUBDIR += amp
     SUBDIR += apel
-    SUBDIR += asedit
     SUBDIR += beav
     SUBDIR += bee-host
     SUBDIR += biew
@@ -195,7 +194,6 @@
     SUBDIR += libreoffice-zu
     SUBDIR += linux-bcompare
     SUBDIR += linux-r7-office
-    SUBDIR += linux-sublime
     SUBDIR += linux-sublime-text4
     SUBDIR += linux-sublime3
     SUBDIR += linux-wps-office
@@ -207,7 +205,6 @@
     SUBDIR += micro
     SUBDIR += mined
     SUBDIR += mle
-    SUBDIR += morla
     SUBDIR += mousepad
     SUBDIR += mp
     SUBDIR += nano

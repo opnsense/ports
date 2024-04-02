@@ -1,6 +1,7 @@
 PORTNAME=	desktop-installer
-DISTVERSION=	0.8.3
+DISTVERSION=	0.8.3-9
 PORTREVISION=	1
+DISTVERSIONSUFFIX=	-g9820283
 CATEGORIES=	sysutils
 
 MAINTAINER=	jwb@FreeBSD.org
@@ -10,7 +11,7 @@ WWW=		https://acadix.biz/desktop-installer.php
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	auto-admin>=0.8.0:sysutils/auto-admin
+RUN_DEPENDS=	auto-admin>=0.8.0.25:sysutils/auto-admin
 
 USES=		desktop-file-utils tar:xz
 USE_GITHUB=	yes

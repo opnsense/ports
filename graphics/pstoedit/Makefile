@@ -1,6 +1,5 @@
 PORTNAME=	pstoedit
-DISTVERSION=	4.00
-PORTREVISION=	2
+DISTVERSION=	4.01
 CATEGORIES=	graphics print
 MASTER_SITES=	SF
 
@@ -53,9 +52,6 @@ post-patch:
 		 s|-lstdc++||g ; \
 		 s|-pedantic||g' ${WRKSRC}/configure
 	@${REINPLACE_CMD} -e 's|-ldl||g' ${WRKSRC}/src/Makefile.in
-
-post-install:
-	${INSTALL_MAN} ${WRKSRC}/doc/*.1 ${STAGEDIR}${PREFIX}/man/man1/
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

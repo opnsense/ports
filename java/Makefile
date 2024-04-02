@@ -81,7 +81,6 @@
     SUBDIR += mmake
     SUBDIR += mx4j
     SUBDIR += netbeans
-    SUBDIR += netcomponents
     SUBDIR += netrexx
     SUBDIR += netty
     SUBDIR += openjdk11
@@ -98,8 +97,6 @@
     SUBDIR += openjfx14
     SUBDIR += phpeclipse
     SUBDIR += proguard
-    SUBDIR += sablevm
-    SUBDIR += sablevm-classpath
     SUBDIR += servingxml
     SUBDIR += sigar
     SUBDIR += springframework

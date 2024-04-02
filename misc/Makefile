@@ -1,6 +1,7 @@
     COMMENT = Miscellaneous utilities
 
     SUBDIR += R-cran-mime
+    SUBDIR += R-cran-optimx
     SUBDIR += R-cran-xfun
     SUBDIR += aclgen
     SUBDIR += actiona
@@ -37,7 +38,6 @@
     SUBDIR += boxes
     SUBDIR += broot
     SUBDIR += bsod
-    SUBDIR += buffer
     SUBDIR += caffe
     SUBDIR += chatgpt-shell-cli
     SUBDIR += cheat

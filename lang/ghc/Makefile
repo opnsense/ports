@@ -135,7 +135,7 @@ CONFIGURE_ARGS+=	--with-system-libffi --with-ffi-includes=${LOCALBASE}/include -
 CONFIGURE_ENV+=		CC=${CC} CXX=${CXX}
 SHEBANG_FILES+=		hadrian/bootstrap/bootstrap.py
 HADRIAN_CMD=		${WRKSRC}/hadrian/bootstrap/_build/bin/hadrian ${HADRIAN_DOCS_ARG} ${HADRIAN_GMP_ARG}
-DO_MAKE_BUILD=		${SETENV} ${MAKE_ENV} ${HADRIAN_CMD} ${_MAKE_JOBS} --flavour=ports
+DO_MAKE_BUILD=		${SETENVI} ${WRK_ENV} ${HADRIAN_CMD} ${_MAKE_JOBS} --flavour=ports
 ALL_TARGET=		binary-dist-dir
 INSTALL_WRKSRC=		${WRKSRC}/_build/bindist/ghc-${GHC_VERSION}-${CONFIGURE_TARGET}
 INSTALL_TARGET=		install
@@ -174,10 +174,11 @@ BUILD_DEPENDS+=	${LOCALBASE}/lib/compat/libncursesw.so.8:misc/compat12x
 
 .if empty(PORT_OPTIONS:MBOOT)
 DISTFILES+=		ghc-${BOOT_GHC_VERSION}-boot-${ARCH}-freebsd${EXTRACT_SUFX}:boot
-.   if !defined(IGNORE_MISSING_HADRIAN) && defined(USE_HADRIAN)
-DISTFILES+=		hadrian-${GHC_VERSION}-boot.tar.gz:boot
-.   endif
 .endif # MBOOT
+
+.if !defined(IGNORE_MISSING_HADRIAN) && defined(USE_HADRIAN)
+DISTFILES+=		hadrian-${GHC_VERSION}-boot.tar.gz:boot
+.endif
 
 .if ${ARCH} == aarch64 || ${ARCH:Marmv*}
 # ghc-8.10.x on arm requires devel/llvm10
