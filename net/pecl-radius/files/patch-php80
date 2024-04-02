@@ -1,4 +1,8 @@
---- pecl-compat/src/zend_resource.h
+Obtained from:	https://github.com/Jan-E/php-radius/commit/d2d10e1781dbae70c39112a98ef14602bf99a221
+		https://github.com/fichtner/php-radius/commit/8a756ae7a411b7f7fdbcb44102736b09d0d1cec5
+		https://github.com/fichtner/php-radius/commit/a82b0b9e3c45241f9a9e67dabbe21face8ad6282
+
+--- pecl-compat/src/zend_resource.h.orig	2016-02-15 15:11:50 UTC
 +++ pecl-compat/src/zend_resource.h
 @@ -54,7 +54,7 @@
   *
@@ -9,7 +13,7 @@
  
  /**
   * Fetches the resource.
-@@ -68,7 +68,7 @@ static void compat_zend_delete_resource(const zval *zv TSRMLS_DC);
+@@ -68,7 +68,7 @@ static void compat_zend_delete_resource(const zval *zv
   * @return A void pointer to the resource, which needs to be typecast, or NULL
   *         on error.
   */
@@ -18,7 +22,7 @@
  
  /**
   * Registers a new resource.
-@@ -77,12 +77,12 @@ static void *compat_zend_fetch_resource(zval *zv, const char *rsrc_type_name, in
+@@ -77,12 +77,12 @@ static void *compat_zend_fetch_resource(zval *zv, cons
   * @param ptr       A void pointer to the resource.
   * @param rsrc_type The resource type ID.
   */
@@ -33,7 +37,7 @@
  {
  	if (IS_RESOURCE != Z_TYPE_P(zv)) {
  		return;
-@@ -91,7 +91,7 @@ static void compat_zend_delete_resource(const zval *zv TSRMLS_DC)
+@@ -91,7 +91,7 @@ static void compat_zend_delete_resource(const zval *zv
  	zend_list_close(Z_RES_P(zv));
  }
  
@@ -42,7 +46,7 @@
  {
  	if (IS_RESOURCE != Z_TYPE_P(zv)) {
  		return NULL;
-@@ -100,7 +100,7 @@ static void *compat_zend_fetch_resource(zval *zv, const char *rsrc_type_name, in
+@@ -100,7 +100,7 @@ static void *compat_zend_fetch_resource(zval *zv, cons
  	return zend_fetch_resource(Z_RES_P(zv), rsrc_type_name, rsrc_type);
  }
  
@@ -51,7 +55,7 @@
  {
  	ZVAL_RES(zv, zend_register_resource(ptr, rsrc_type));
  }
-@@ -111,7 +111,7 @@ static void compat_zend_register_resource(zval *zv, void *ptr, int rsrc_type TSR
+@@ -111,7 +111,7 @@ typedef zend_rsrc_list_entry zend_resource;
  /* Used for destructors. */
  typedef zend_rsrc_list_entry zend_resource;
  
@@ -60,7 +64,7 @@
  {
  	if (IS_RESOURCE != Z_TYPE_P(zv)) {
  		return;
-@@ -120,16 +120,16 @@ static void compat_zend_delete_resource(const zval *zv TSRMLS_DC)
+@@ -120,16 +120,16 @@ static void compat_zend_delete_resource(const zval *zv
  	zend_list_delete(Z_LVAL_P(zv));
  }
  
@@ -81,7 +85,7 @@
  {
  	ZEND_REGISTER_RESOURCE(zv, ptr, rsrc_type);
  }
---- radius.c
+--- radius.c.orig	2016-02-15 15:11:50 UTC
 +++ radius.c
 @@ -51,12 +51,12 @@ any other GPL-like (LGPL, GPL2) License.
  
@@ -98,7 +102,7 @@
  	if (!radh) { \
  		RETURN_FALSE; \
  	}
-@@ -65,6 +65,102 @@ static int _init_options(struct rad_attr_options *out, int options, int tag);
+@@ -65,6 +65,102 @@ ZEND_DECLARE_MODULE_GLOBALS(radius)
  ZEND_DECLARE_MODULE_GLOBALS(radius)
  */
  
@@ -201,7 +205,7 @@
  /* True global resources - no need for thread safety here */
  static int le_radius;
  
-@@ -73,34 +169,34 @@ static int le_radius;
+@@ -73,34 +169,34 @@ zend_function_entry radius_functions[] = {
   * Every user visible function must have an entry in radius_functions[].
   */
  zend_function_entry radius_functions[] = {
@@ -523,7 +527,7 @@
  		return;
  	}
  
-@@ -844,7 +940,7 @@ int _init_options(struct rad_attr_options *out, int options, int tag) {
+@@ -844,7 +940,7 @@ int _init_options(struct rad_attr_options *out, int op
  /* }}} */
  
  /* {{{ _radius_close() */
@@ -532,9 +536,9 @@
  {
  	struct rad_handle *radh = (struct rad_handle *)res->ptr;
  	rad_close(radh);
---- radlib.c
+--- radlib.c.orig	2016-02-15 15:11:50 UTC
 +++ radlib.c
-@@ -497,9 +497,9 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
+@@ -497,9 +497,9 @@ rad_continue_send_request(struct rad_handle *h, int se
  
  	if (selected) {
  		struct sockaddr_in from;
@@ -570,7 +574,7 @@
  		h->errmsg[0] = '\0';
  		memset(h->request, 0, sizeof h->request);
  		h->req_len = 0;
-@@ -1035,7 +1033,7 @@ rad_put_vendor_attr(struct rad_handle *h, int vendor, int type,
+@@ -1035,7 +1033,7 @@ rad_put_vendor_attr(struct rad_handle *h, int vendor, 
  	/* OK, allocate and start building the attribute. */
  	attr = emalloc(va_len);
  	if (attr == NULL) {
@@ -579,7 +583,7 @@
  		goto end;
  	}
  
-@@ -1218,12 +1216,12 @@ rad_demangle_mppe_key(struct rad_handle *h, const void *mangled, size_t mlen, u_
+@@ -1218,12 +1216,12 @@ rad_demangle_mppe_key(struct rad_handle *h, const void
  	*/
  	*len = *P;
  	if (*len > mlen - 1) {
@@ -594,7 +598,7 @@
  		return -1;
  	}
  
-@@ -1235,14 +1233,13 @@ int rad_salt_value(struct rad_handle *h, const char *in, size_t len, struct rad_
+@@ -1235,14 +1233,13 @@ int rad_salt_value(struct rad_handle *h, const char *i
  {
  	char authenticator[16];
  	size_t i;
@@ -610,7 +614,7 @@
  
  	if (len == 0) {
  		out->len = 0;
-@@ -1276,7 +1273,7 @@ int rad_salt_value(struct rad_handle *h, const char *in, size_t len, struct rad_
+@@ -1276,7 +1273,7 @@ int rad_salt_value(struct rad_handle *h, const char *i
  	memset(out->data, 0, out->len);
  
  	/* Grab the request authenticator. */
@@ -619,7 +623,7 @@
  		generr(h, "Cannot obtain the RADIUS request authenticator");
  		goto err;
  	}
-@@ -1289,7 +1286,7 @@ int rad_salt_value(struct rad_handle *h, const char *in, size_t len, struct rad_
+@@ -1289,7 +1286,7 @@ int rad_salt_value(struct rad_handle *h, const char *i
  	}
  
  	/* Generate a random number to use as the salt. */
@@ -628,7 +632,7 @@
  
  	/* The RFC requires that the high bit of the salt be 1. Otherwise,
  	 * let's set up the header. */
-@@ -1301,7 +1298,7 @@ int rad_salt_value(struct rad_handle *h, const char *in, size_t len, struct rad_
+@@ -1301,7 +1298,7 @@ int rad_salt_value(struct rad_handle *h, const char *i
  	 * calls b1 first. */
  	MD5Init(&md5);
  	MD5Update(&md5, secret, strlen(secret));
