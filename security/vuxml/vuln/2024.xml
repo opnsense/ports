@@ -1,3 +1,140 @@
+  <vuln vid="d58726ff-ef5e-11ee-8d8e-080027a5b8e9">
+    <topic>mediawiki -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mediawiki139</name>
+	<range><lt>1.39.7</lt></range>
+      </package>
+      <package>
+	<name>mediawiki140</name>
+	<range><lt>1.40.3</lt></range>
+      </package>
+      <package>
+	<name>mediawiki141</name>
+	<range><lt>1.41.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mediawiki reports:</p>
+	<blockquote cite="https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/V3WXEPXV2DU6WTVEKK4XHW4QXD5OFKD7/">
+	  <p>(T355538, CVE-2024-PENDING) SECURITY: XSS in edit summary parser.</p>
+	  <p>(T357760, CVE-2024-PENDING) SECURITY: Denial of service vector via GET
+	    request to Special:MovePage on pages with thousands of subpages.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://lists.wikimedia.org/hyperkitty/list/mediawiki-announce@lists.wikimedia.org/message/V3WXEPXV2DU6WTVEKK4XHW4QXD5OFKD7/</url>
+    </references>
+    <dates>
+      <discovery>2024-03-15</discovery>
+      <entry>2024-03-31</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bdcd041e-5811-4da3-9243-573a9890fdb1">
+    <topic>electron{27,28} -- Object lifecycle issue in V8</topic>
+    <affects>
+      <package>
+	<name>electron27</name>
+	<range><lt>27.3.8</lt></range>
+      </package>
+      <package>
+	<name>electron28</name>
+	<range><lt>28.2.9</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v27.3.8">
+	  <p>This update fixes the following vulnerability:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-2625.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-2625</cvename>
+      <url>https://github.com/advisories/GHSA-j7h3-fcrw-g6j8</url>
+    </references>
+    <dates>
+      <discovery>2024-03-28</discovery>
+      <entry>2024-03-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d2992bc2-ed18-11ee-96dc-001b217b3468">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>16.10.0</ge><lt>16.10.1</lt></range>
+	<range><ge>16.9.0</ge><lt>16.9.3</lt></range>
+	<range><lt>16.8.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/03/27/security-release-gitlab-16-10-1-released/">
+	  <p>Stored-XSS injected in Wiki page via Banzai pipeline</p>
+	  <p>DOS using crafted emojis</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-6371</cvename>
+      <cvename>CVE-2024-2818</cvename>
+      <url>https://about.gitlab.com/releases/2024/03/27/security-release-gitlab-16-10-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-03-27</discovery>
+      <entry>2024-03-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="814af1be-ec63-11ee-8e76-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>123.0.6312.86</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>123.0.6312.86</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/03/stable-channel-update-for-desktop_26.html">
+	 <p>This update includes 7 security fixes:</p>
+	 <ul>
+	    <li>[327807820] Critical CVE-2024-2883: Use after free in ANGLE. Reported by Cassidy Kim(@cassidy6564) on 2024-03-03</li>
+	    <li>[328958020] High CVE-2024-2885: Use after free in Dawn. Reported by wgslfuzz on 2024-03-11</li>
+	    <li>[330575496] High CVE-2024-2886: Use after free in WebCodecs. Reported by Seunghyun Lee (@0x10n) of KAIST Hacking Lab, via Pwn2Own 2024 on 2024-03-21</li>
+	    <li>[330588502] High CVE-2024-2887: Type Confusion in WebAssembly. Reported by Manfred Paul, via Pwn2Own 2024 on 2024-03-21</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-2883</cvename>
+      <cvename>CVE-2024-2885</cvename>
+      <cvename>CVE-2024-2886</cvename>
+      <cvename>CVE-2024-2887</cvename>
+      <url>https://chromereleases.googleblog.com/2024/03/stable-channel-update-for-desktop_26.html</url>
+    </references>
+    <dates>
+      <discovery>2024-03-26</discovery>
+      <entry>2024-03-27</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8b3be705-eba7-11ee-99b3-589cfc0f81b0">
     <topic>phpmyfaq -- multiple vulnerabilities</topic>
     <affects>
@@ -69,6 +206,45 @@
     </references>
     <dates>
       <discovery>2024-03-24</discovery>
+      <entry>2024-03-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="34f98d06-eb56-11ee-8007-6805ca2fa271">
+    <topic>quiche -- Multiple Vulnerabilities</topic>
+    <affects>
+      <package>
+       <name>quiche</name>
+       <range><lt>0.20.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Quiche Releases reports:</p>
+	<blockquote cite="https://github.com/cloudflare/quiche/releases/tag/0.20.1">
+	 <p>This release includes 2 security fixes:</p>
+	 <ul>
+	  <li>
+		CVE-2024-1410: Unbounded storage of information related to
+		connection ID retirement, in quiche. Reported by Marten
+		Seeman (@marten-seeman)
+	  </li>
+	  <li>
+		CVE-2024-1765: Unlimited resource allocation by QUIC
+		CRYPTO frames flooding in quiche. Reported by Marten
+		Seeman (@marten-seeman)
+	  </li>
+	 </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-1410</cvename>
+      <cvename>CVE-2024-1765</cvename>
+      <url>https://github.com/cloudflare/quiche/releases/tag/0.20.1</url>
+    </references>
+    <dates>
+      <discovery>2024-03-12</discovery>
       <entry>2024-03-26</entry>
     </dates>
   </vuln>
@@ -1333,6 +1509,11 @@
 	<name>unbound</name>
 	<range><lt>1.19.1</lt></range>
       </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.0</ge><lt>14.0_6</lt></range>
+	<range><ge>13.2</ge><lt>13.2_11</lt></range>
+      </package>
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
@@ -1369,10 +1550,12 @@
       <url>https://lists.thekelleys.org.uk/pipermail/dnsmasq-discuss/2024q1/017430.html</url>
       <url>https://blog.powerdns.com/2024/02/13/powerdns-recursor-4-8-6-4-9-3-5-0-2-released</url>
       <url>https://nlnetlabs.nl/news/2024/Feb/13/unbound-1.19.1-released/</url>
+      <freebsdsa>SA-24:03.unbound</freebsdsa>
     </references>
     <dates>
       <discovery>2024-02-06</discovery>
       <entry>2024-02-13</entry>
+      <modified>2024-04-01</modified>
     </dates>
   </vuln>
 
