@@ -3043,6 +3043,8 @@ net-im/gtkcord4|net-im/dissent|2024-03-03|Project renamed
 devel/anjuta|devel/gnome-builder|2024-03-12|Has expired: Unmaintained, upstream WWW owned by gambling site, use devel/gnome-builder
 deskutils/rubrica||2024-03-12|Has expired: Upstream WWW redirects to a different site not related to the application
 x11/mrxvt-devel|x11/mrxvt|2024-03-12|Merge most recent version into main port
+math/qalculate-qt@qt5|math/qalculate-qt|2024-03-13|Flavorization has been removed. Qt 5.x has been long deprecated upstream. Please use the unflavored math/qalculate-qt port based on Qt 6.x instead
+math/qalculate-qt@qt6|math/qalculate-qt|2024-03-13|Flavorization has been removed. Continue to enjoy math/qalculate-qt based on Qt 6.x as usual
 games/xataxx||2024-03-16|Has expired: No available WWW
 editors/kak-lsp|editors/kakoune-lsp|2024-03-17|Project was renamed upstream
 www/npm-node16||2024-03-17|Has expired: Depends on deprecated node16
@@ -3060,3 +3062,78 @@ security/rubygem-metasploit-aggregator||2024-03-24|Has expired: No longer used, 
 net-p2p/tooth||2024-03-24|Has expired: Project has been renamed to Tuba. Consider porting to the new project. See https://github.com/GeopJr/Tuba
 www/tidy-devel|www/tidy-html5|2024-03-25|Has expired: no more dev at SF, replaced by www/tidy-html5
 www/tidy-lib|www/tidy-html5|2024-03-25|Has expired: no more dev at SF, replaced by www/tidy-html5
+lang/ruby30||2024-03-31|Has expired: Please migrate to newer versions. Ruby 3.0 will reach its EoL on March 30, 2024
+devel/py-pybind11210|devel/py-pybind11|2024-03-31|Remove obsoleted port. Use devel/py-pybind11 instead
+devel/py-y-py|devel/py-pycrdt|2024-03-31|Remove obsoleted port. Use devel/py-pycrdt instead
+devel/py-ypy-websocket|devel/py-pycrdt-websocket|2024-03-31|Remove obsoleted port. Use devel/py-pycrdt-websocket instead
+math/py-munkres10|math/py-munkres|2024-03-31|Remove obsoleted port. Use math/py-munkres instead
+security/py-pysaml24|security/py-pysaml2|2024-03-31|Remove obsoleted port. Use security/py-pysaml2 instead
+textproc/py-atoml|textproc/py-tomlkit|2024-03-31|Remove obsoleted port. This project has been merged back to tomlkit and is no longer maintained. Use textproc/py-tomlkit>=0.8.0 instead
+databases/rubygem-redis-namespace19|databases/rubygem-redis-namespace|2024-03-31|Remove obsoleted port. Use databases/rubygem-redis-namespace instead
+devel/rubygem-cucumber-core12|devel/rubygem-cucumber-core|2024-03-31|Remove obsoleted port. Use devel/rubygem-cucumber-core instead
+devel/rubygem-cucumber-tag-expressions5|devel/rubygem-cucumber-tag-expressions|2024-03-31|Remove obsoleted port. Use devel/rubygem-cucumber-tag-expressions instead
+devel/rubygem-grape-swagger16|devel/rubygem-grape-swagger|2024-03-31|Remove obsoleted port. Use devel/rubygem-grape-swagger instead
+devel/rubygem-grape17|devel/rubygem-grape|2024-03-31|Remove obsoleted port. Use devel/rubygem-grape instead
+devel/rubygem-sidekiq-cron18|devel/rubygem-sidekiq-cron|2024-03-31|Remove obsoleted port. Use devel/rubygem-sidekiq-cron instead
+devel/rubygem-sidekiq6|devel/rubygem-sidekiq|2024-03-31|Remove obsoleted port. Use devel/rubygem-sidekiq instead
+net/rubygem-google-cloud-storage144|net/rubygem-google-cloud-storage|2024-03-31|Remove obsoleted port. Use net/rubygem-google-cloud-storage instead
+security/rubygem-net-sftp2|security/rubygem-net-sftp|2024-03-31|Remove obsoleted port. Use security/rubygem-net-sftp instead
+textproc/rubygem-cucumber-gherkin26|textproc/rubygem-cucumber-gherkin|2024-03-31|Remove obsoleted port. Use textproc/rubygem-cucumber-gherkin instead
+textproc/rubygem-loofah221|textproc/rubygem-loofah|2024-03-31|Remove obsoleted port. Use textproc/rubygem-loofah instead
+www/rubygem-faraday14|www/rubygem-faraday|2024-03-31|Remove obsoleted port. Use www/rubygem-faraday instead
+devel/rubygem-request_store14|devel/rubygem-request_store|2024-03-31|Remove obsoleted port. Use devel/rubygem-request_store instead
+devel/llvm10||2024-04-01|Has expired: No longer supported by upstream
+net-mgmt/phpweathermap||2024-04-01|Has expired: WWW vaporized and has not been updated in last 14 years
+net/csocks||2024-04-01|Has expired: Last release in 2013 and no development since, consider net/microsocks or net/3proxy
+java/sablevm-classpath||2024-04-01|Has expired: Only user in tree is java/sablevm which is deprecated
+java/sablevm||2024-04-01|Has expired: Abandonware, last release in 2007 and is no longer being developed
+editors/asedit||2024-04-01|Has expired: Last upstream release was in 2003
+devel/premake||2024-04-01|Has expired: Legacy unsupported version, consider devel/premake4 or devel/premake5
+devel/lion||2024-04-01|Has expired: Upstream site is removed and library is no longer available
+irc/keitairc2||2024-04-01|Has expired: Abandonware and obsolete, last upstream release in 2010 and now phones have native clients
+irc/bopm||2024-04-01|Has expired: Upstream is dead and archived repo Jul 3 2023
+www/mediawiki135||2024-04-01|Has expired: Upstream reached EOL on 2023-12-21
+net-p2p/bitflu||2024-04-01|Has expired: No development in years and lack common functionality found in modern clients
+devel/busybee||2024-04-01|Has expired: Abandoned upstream, last release 2015 and last commit 2017
+textproc/rubygem-zmq||2024-04-01|Has expired: Last releasee was in 2011 and depends on deprecated libzmq2
+misc/buffer|misc/mbuffer|2024-04-01|Has expired: No upstream updates since 1995.  Switch to misc/mbuffer
+irc/thales||2024-04-01|Has expired: End of life upstream
+irc/sirc||2024-04-01|Has expired: Abandonware, upstream is gone and current version was released over 20 years ago. Consider irc/irssi , irc/epic5 or irc/ircII
+net-p2p/btpd||2024-04-01|Has expired: Abandoned upstream, lacks support for common functionality such as Magnet links, DHT, PEX and HTTPS. Consider net-p2p/qbittorrent or net-p2p/transmission
+net-im/cawbird||2024-04-01|Has expired: No longer developed due to Twitter changes
+irc/ninja||2024-04-01|Has expired: Abandonware, last release around 2002 and upstream is gone. Consider irc/ircII or irc/irssi
+net-p2p/liberator||2024-04-01|Has expired: Abandoned project with last release in 2003
+devel/electron26||2024-04-01|Has expired: EOLed upstream, switch to newer version
+irc/darkbot||2024-04-01|Has expired: Abandonware, last release in 2005 and no activity upstream since 2014
+sysutils/rubygem-vagrant-vbguest||2024-04-01|Has expired: This project is archived and will not receive further updates or support
+net-p2p/frost||2024-04-01|Has expired: Outdated version and unsupported upstream
+archivers/lzmalib||2024-04-01|Has expired: Upstream hasn't been active for over 20 years and no users of this library in tree
+net-p2p/libbt||2024-04-01|Has expired: Last release in 2007 and no active development, lacks functionality found in modern implementations. Consider using net-p2p/libtorrent-rasterbar or net-p2p/libtorrent-rasterbar2
+www/youtube_dl|www/yt-dlp|2024-04-01|Has expired: Many extractors are brokena and upstream can't keep up, consider using www/yt-dlp
+devel/codeworker||2024-04-01|Has expired: Abandonware, outdated version in ports and last release upstream in 2010
+net/libzmq2||2024-04-01|Has expired: Last release was in 2012 switch to libzmq3
+irc/insub||2024-04-01|Has expired: Outdated version, unmaintained in ports since 2015
+archivers/xar||2024-04-01|Has expired: Last release was in 2012 and upstream is dead, consider archivers/libarchive or archivers/7-zip
+editors/morla||2024-04-01|Has expired: Project is unmaintained and last upstream release was in 2011
+java/netcomponents||2024-04-01|Has expired: Last upstream release was in 2000 and upstream unmaintained consider using net/apache-commons-net
+devel/upslug||2024-04-01|Has expired: Utility for a NAS released in 2004 and discontinued in 2008
+security/py-sslyze||2024-04-01|Has expired: It does not support OpenSSL 3.0+
+security/py-nassl||2024-04-01|Has expired: It does not support OpenSSL 3.0+
+devel/cil||2024-04-01|Has expired: Unmaintained upstream due to lack of time
+irc/infobot||2024-04-01|Has expired: Abandonware, outdated version and last upstream release in 2008
+devel/py-mox3||2024-04-01|Has expired: Upstream no longer active and repository has been archived. See also: https://lists.openstack.org/pipermail/openstack-discuss/2020-June/015518.html
+net-p2p/py-vertex||2024-04-01|Has expired: Abandoned project since 7 years back
+textproc/py-html2text2018|textproc/py-html2text|2024-04-01|Has expired: Old version without consumers left, use updated textproc/py-html2text instead
+irc/evangeline||2024-04-01|Has expired: Abandonware, upstream is gone
+devel/libght||2024-04-01|Has expired: Depends on expired devel/liblas
+devel/liblas||2024-04-01|Has expired: Upstream no longer continuing
+www/get_flash_videos|www/yt-dlp|2024-04-01|Has expired: Abandonware, consider using www/yt-dlp
+irc/rbot||2024-04-01|Has expired: Outdated, unmaintained in ports since 2016
+editors/linux-sublime||2024-04-01|Has expired: This is the legacy version Use linux-sublime-text4
+irc/pircbot||2024-04-01|Has expired: Abandoned upstream, last release in 2009 and superseded by pircbotx (fork)
+security/akmos||2024-04-01|Has expired: Last release in 2018, no active development for years and no users in tree
+sysutils/uefi-edk2-bhyve-csm||2024-04-01|Has expired: Requires old edk2 version and gcc 4.8
+net/samba413||2024-04-01|Has expired: Reached its EoL on March 21, 2022
+science/py-asdf-unit-schemas|science/py-asdf-standard|2024-04-01|Has expired: This package is decommissioned and no longer provides any ASDF schemas. The schemas provided by the package were duplicates of the schemas provided by asdf-standard. Use science/py-asdf-standard instead
+textproc/rubygem-autoprefixer-rails1025|textproc/rubygem-autoprefixer-rails|2024-04-02|Obsolete, please use textproc/rubygem-autoprefixer-rails instead
+www/rubygem-cssbundling-rails13-rails70|www/rubygem-cssbundling-rails-rails70|2024-04-02|Obsolete, please use www/rubygem-cssbundling-rails-rails70 instead
