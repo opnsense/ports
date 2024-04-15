@@ -1,3 +1,510 @@
+  <vuln vid="cdb5e0e3-fafc-11ee-9c21-901b0e9408dc">
+    <topic>go -- http2: close connections when receiving too many headers</topic>
+    <affects>
+      <package>
+	<name>go122</name>
+	<range><lt>1.22.2</lt></range>
+      </package>
+      <package>
+	<name>go121</name>
+	<range><lt>1.21.9</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://go.dev/issue/65051">
+	  <p>http2: close connections when receiving too many headers</p>
+	  <p>Maintaining HPACK state requires that we parse and
+	  process all HEADERS and CONTINUATION frames on a
+	  connection. When a request's headers exceed MaxHeaderBytes,
+	  we don't allocate memory to store the excess headers but we
+	  do parse them. This permits an attacker to cause an HTTP/2
+	  endpoint to read arbitrary amounts of header data, all
+	  associated with a request which is going to be
+	  rejected. These headers can include Huffman-encoded data
+	  which is significantly more expensive for the receiver to
+	  decode than for an attacker to send.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-45288</cvename>
+      <url>https://groups.google.com/g/golang-announce/c/YgW0sx8mN3M/m/khALNYGdAAAJ</url>
+    </references>
+    <dates>
+      <discovery>2024-04-03</discovery>
+      <entry>2024-04-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7314942b-0889-46f0-b02b-2c60aabe4a82">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>123.0.6312.122</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>123.0.6312.122</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/04/stable-channel-update-for-desktop_10.html">
+	 <p>This update includes 3 security fixes:</p>
+	 <ul>
+	    <li>[331237485] High CVE-2024-3157: Out of bounds write in Compositing. Reported by DarkNavy on 2024-03-26</li>
+	    <li>[328859176] High CVE-2024-3516: Heap buffer overflow in ANGLE. Reported by Bao (zx) Pham and Toan (suto) Pham of Qrious Secure on 2024-03-09</li>
+	    <li>[331123811] High CVE-2024-3515: Use after free in Dawn. Reported by wgslfuzz on 2024-03-25</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-3157</cvename>
+      <cvename>CVE-2024-3516</cvename>
+      <cvename>CVE-2024-3515</cvename>
+      <url>https://chromereleases.googleblog.com/2024/04/stable-channel-update-for-desktop_10.html</url>
+    </references>
+    <dates>
+      <discovery>2024-04-10</discovery>
+      <entry>2024-04-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="31617e47-7eec-4c60-9fdf-8aee61622bab">
+    <topic>electron{27,28} -- Out of bounds memory access in V8</topic>
+    <affects>
+      <package>
+	<name>electron27</name>
+	<range><lt>27.3.10</lt></range>
+      </package>
+      <package>
+	<name>electron28</name>
+	<range><lt>28.3.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v27.3.10">
+	  <p>This update fixes the following vulnerability:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-3159.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-3159</cvename>
+      <url>https://github.com/advisories/GHSA-mh2p-2x66-3hr4</url>
+    </references>
+    <dates>
+      <discovery>2024-04-10</discovery>
+      <entry>2024-04-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7c217849-f7d7-11ee-a490-84a93843eb75">
+    <topic>OpenSSL -- Unbounded memory growth with session handling in TLSv1.3</topic>
+    <affects>
+      <package>
+	<name>openssl</name>
+	<range><lt>3.0.13_3,1</lt></range>
+      </package>
+      <package>
+	<name>openssl31</name>
+	<range><lt>3.1.5_3</lt></range>
+      </package>
+      <package>
+	<name>openssl32</name>
+	<range><lt>3.2.1_2</lt></range>
+      </package>
+      <package>
+	<name>openssl-quictls</name>
+	<range><lt>3.0.13_3</lt></range>
+      </package>
+      <package>
+	<name>openssl31-quictls</name>
+	<range><lt>3.1.5_1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://www.openssl.org/news/secadv/20240408.txt">
+	  <p>Some non-default TLS server configurations can cause unbounded
+	    memory growth when processing TLSv1.3 sessions</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-2511</cvename>
+      <url>https://www.openssl.org/news/secadv/20240408.txt</url>
+    </references>
+    <dates>
+      <discovery>2024-04-08</discovery>
+      <entry>2024-04-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c092be0e-f7cc-11ee-aa6b-b42e991fc52e">
+    <topic>forgejo -- HTTP/2 CONTINUATION flood in net/http</topic>
+    <affects>
+      <package>
+	<name>forgejo</name>
+	<range><lt>1.21.8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@golang.org reports:</p>
+	<blockquote cite="https://go.dev/cl/576155">
+	  <p>An attacker may cause an HTTP/2 endpoint to read arbitrary amounts
+	of header data by sending an excessive number of CONTINUATION frames.
+	Maintaining HPACK state requires parsing and processing all HEADERS
+	and CONTINUATION frames on a connection.  When a request&apos;s
+	headers exceed MaxHeaderBytes, no memory is allocated to store the
+	excess headers, but they are still parsed.  This permits an attacker
+	to cause an HTTP/2 endpoint to read arbitrary amounts of header
+	data, all associated with a request which is going to be rejected.
+	These headers can include Huffman-encoded data which is significantly
+	more expensive for the receiver to decode than for an attacker to
+	send.  The fix sets a limit on the amount of excess header frames
+	we will process before closing a connection.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-45288</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-45288</url>
+    </references>
+    <dates>
+      <discovery>2024-04-04</discovery>
+      <entry>2024-04-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="02be46c1-f7cc-11ee-aa6b-b42e991fc52e">
+    <topic>jose -- DoS vulnerability</topic>
+    <affects>
+      <package>
+	<name>jose</name>
+	<range><lt>13</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="https://github.com/P3ngu1nW/CVE_Request/blob/main/latch-jose.md">
+	<p>
+	  latchset jose through version 11 allows attackers to cause
+	  a denial of service (CPU consumption) via a large p2c (aka
+	  PBES2 Count) value.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-50967</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2023-50967</url>
+    </references>
+    <dates>
+      <discovery>2024-03-20</discovery>
+      <entry>2024-04-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="dad6294c-f7c1-11ee-bb77-001b217b3468">
+    <topic>Gitlab -- Patch Release: 16.10.2, 16.9.4, 16.8.6</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<range><ge>16.10.0</ge><lt>16.10.2</lt></range>
+	<range><ge>16.9.0</ge><lt>16.9.4</lt></range>
+	<range><lt>16.8.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/04/10/patch-release-gitlab-16-10-2-released/">
+	  <p>Stored XSS injected in diff viewer</p>
+	  <p>Stored XSS via autocomplete results</p>
+	  <p>Redos on Integrations Chat Messages</p>
+	  <p>Redos During Parse Junit Test Report</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-3092</cvename>
+      <cvename>CVE-2024-2279</cvename>
+      <cvename>CVE-2023-6489</cvename>
+      <cvename>CVE-2023-6678</cvename>
+      <url>https://about.gitlab.com/releases/2024/04/10/patch-release-gitlab-16-10-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-04-10</discovery>
+      <entry>2024-04-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ea4a2dfc-f761-11ee-af2c-589cfc0f81b0">
+    <topic>wordpress -- XSS</topic>
+    <affects>
+      <package>
+	<name>wordpress</name>
+	<name>fr-wordpress-fr_FR</name>
+	<range><ge>6.5.0,1</ge><lt>6.5.1,1</lt></range>
+	<range><lt>6.4.4,1</lt></range>
+      </package>
+      <package>
+	<name>ru-wordpress-ru_RU</name>
+	<name>ja-wordpress-ja</name>
+	<name>zh-wordpress-zh_CN</name>
+	<name>zh-wordpress-zh_TW</name>
+	<name>de-wordpress-de_DE</name>
+	<range><ge>6.5.0</ge><lt>6.5.1</lt></range>
+	<range><lt>6.4.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Wordpress team reports:</p>
+	<blockquote cite="https://wordpress.org/documentation/wordpress-version/version-6-4-4/">
+	  <p>A cross-site scripting (XSS) vulnerability affecting the Avatar block type</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://wordpress.org/documentation/wordpress-version/version-6-4-4/</url>
+    </references>
+    <dates>
+      <discovery>2024-04-09</discovery>
+      <entry>2024-04-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8e6f684b-f333-11ee-a573-84a93843eb75">
+    <topic>Apache httpd -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>apache24</name>
+	<range><lt>2.4.59</lt></range>
+      </package>
+      <package>
+	<name>mod_http2</name>
+	<range><lt>2.0.27</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Apache httpd project reports:</p>
+	<blockquote cite="https://downloads.apache.org/httpd/CHANGES_2.4.59">
+	  <p>HTTP/2 DoS by memory exhaustion on endless continuation frames</p>
+	  <p>HTTP Response Splitting in multiple modules</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-27316</cvename>
+      <cvename>CVE-2024-24795</cvename>
+      <cvename>CVE-2024-38709</cvename>
+      <url>https://downloads.apache.org/httpd/CHANGES_2.4.59</url>
+    </references>
+    <dates>
+      <discovery>2024-04-04</discovery>
+      <entry>2024-04-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c2431c4e-622c-4d92-996d-d8b5258ae8c9">
+    <topic>electron{27,28} -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron27</name>
+	<range><lt>27.3.9</lt></range>
+      </package>
+      <package>
+	<name>electron28</name>
+	<range><lt>28.2.10</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v27.3.9">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-2885.</li>
+	    <li>Security: backported fix for CVE-2024-2883.</li>
+	    <li>Security: backported fix for CVE-2024-2887.</li>
+	    <li>Security: backported fix for CVE-2024-2886.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-2885</cvename>
+      <url>https://github.com/advisories/GHSA-qccw-wmvp-8pv9</url>
+      <cvename>CVE-2024-2883</cvename>
+      <url>https://github.com/advisories/GHSA-gg9c-7j6m-3qq2</url>
+      <cvename>CVE-2024-2887</cvename>
+      <url>https://github.com/advisories/GHSA-q75f-2pp5-9phj</url>
+      <cvename>CVE-2024-2886</cvename>
+      <url>https://github.com/advisories/GHSA-5pj4-f8gh-j3mr</url>
+    </references>
+    <dates>
+      <discovery>2024-04-03</discovery>
+      <entry>2024-04-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4a026b6c-f2b8-11ee-8e76-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>123.0.6312.105</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>123.0.6312.105</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/04/stable-channel-update-for-desktop.html">
+	 <p>This update includes 3 security fixes:</p>
+	 <ul>
+	    <li>[329130358] High CVE-2024-3156: Inappropriate implementation in V8. Reported by Zhenghang Xiao (@Kipreyyy) on 2024-03-12</li>
+	    <li>[329965696] High CVE-2024-3158: Use after free in Bookmarks. Reported by undoingfish on 2024-03-17</li>
+	    <li>[330760873] High CVE-2024-3159: Out of bounds memory access in V8. Reported by Edouard Bochin (@le_douds) and Tao Yan (@Ga1ois) of Palo Alto Networks, via Pwn2Own 2024 on 2024-03-22</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-3156</cvename>
+      <cvename>CVE-2024-3158</cvename>
+      <cvename>CVE-2024-3159</cvename>
+      <url>https://chromereleases.googleblog.com/2024/04/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2024-04-02</discovery>
+      <entry>2024-04-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="57561cfc-f24b-11ee-9730-001fc69cd6dc">
+    <topic>xorg server -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>xorg-server</name>
+	<name>xephyr</name>
+	<name>xorg-vfbserver</name>
+	<range><lt>21.1.12,1</lt></range>
+      </package>
+      <package>
+	<name>xorg-nextserver</name>
+	<range><lt>21.1.12,2</lt></range>
+      </package>
+      <package>
+	<name>xwayland</name>
+	<range><lt>23.2.5</lt></range>
+      </package>
+      <package>
+	<name>xwayland-devel</name>
+	<range><ge>21.0.99.1.672</ge><lt>21.0.99.1.841_1</lt></range>
+	<range><lt>21.0.99.1.671_1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The X.Org project reports:</p>
+	<blockquote cite="https://lists.x.org/archives/xorg-announce/2024-April/003497.html">
+	  <ul>
+	    <li>
+	      CVE-2024-31080: Heap buffer overread/data leakage in
+	      ProcXIGetSelectedEvents
+
+	      <p>The ProcXIGetSelectedEvents() function uses the byte-swapped
+	      length of the return data for the amount of data to return to
+	      the client, if the client has a different endianness than
+	      the X server.</p>
+	    </li>
+	    <li>CVE-2024-31081: Heap buffer overread/data leakage in
+	    ProcXIPassiveGrabDevice
+
+	    <p>The ProcXIPassiveGrabDevice() function uses the byte-swapped
+	    length of the return data for the amount of data to return to
+	    the client, if the client has a different endianness than
+	    the X server.</p>
+	    </li>
+
+	    <li>CVE-2024-31083: User-after-free in ProcRenderAddGlyphs
+
+	    <p>The ProcRenderAddGlyphs() function calls the AllocateGlyph()
+	    function to store new glyphs sent by the client to the X server.
+	    AllocateGlyph() would return a new glyph with refcount=0 and
+	    a re-used glyph would end up not changing the refcount at all.
+	    The resulting glyph_new array would thus have multiple entries
+	    pointing to the same non-refcounted glyphs.
+
+	    ProcRenderAddGlyphs() may free a glyph, resulting in a
+	    use-after-free when the same glyph pointer is then later used.</p>
+	    </li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-31080</cvename>
+      <cvename>CVE-2024-31081</cvename>
+      <cvename>CVE-2024-31083</cvename>
+      <url>https://lists.x.org/archives/xorg-announce/2024-April/003497.html</url>
+    </references>
+    <dates>
+      <discovery>2024-04-03</discovery>
+      <entry>2024-04-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2e3bea0c-f110-11ee-bc57-00e081b7aa2d">
+    <topic>jenkins -- HTTP/2 denial of service vulnerability in bundled Jetty</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.444</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.440.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2024-03-20/">
+	  <h1>Description</h1>
+	  <h5>(High) SECURITY-3379 / CVE-2024-22201</h5>
+	  <p>HTTP/2 denial of service vulnerability in bundled Jetty</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-22201</cvename>
+      <url>https://www.jenkins.io/security/advisory/2024-03-20/</url>
+    </references>
+    <dates>
+      <discovery>2024-03-20</discovery>
+      <entry>2024-04-02</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="d58726ff-ef5e-11ee-8d8e-080027a5b8e9">
     <topic>mediawiki -- multiple vulnerabilities</topic>
     <affects>
