@@ -12,6 +12,7 @@
     SUBDIR += R-cran-GDD
     SUBDIR += R-cran-RColorBrewer
     SUBDIR += R-cran-colorspace
+    SUBDIR += R-cran-cowplot
     SUBDIR += R-cran-diagram
     SUBDIR += R-cran-dichromat
     SUBDIR += R-cran-dygraphs
@@ -28,6 +29,7 @@
     SUBDIR += R-cran-pixmap
     SUBDIR += R-cran-png
     SUBDIR += R-cran-qcc
+    SUBDIR += R-cran-ragg
     SUBDIR += R-cran-rgdal
     SUBDIR += R-cran-s2
     SUBDIR += R-cran-scales
@@ -483,7 +485,6 @@
     SUBDIR += libksane
     SUBDIR += libliftoff
     SUBDIR += liblqr-1
-    SUBDIR += liblug
     SUBDIR += libmng
     SUBDIR += libmorph
     SUBDIR += libmypaint

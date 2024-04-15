@@ -1,6 +1,7 @@
 PORTNAME=	nwchem
 DISTVERSIONPREFIX=	v
 DISTVERSION=	7.2.2
+PORTREVISION=	1
 DISTVERSIONSUFFIX=	-release
 CATEGORIES=	science
 MASTER_SITES=	https://www.chemie.uni-bonn.de/pctc/mulliken-center/software/dft-d3/:dftd3 \
@@ -29,11 +30,12 @@ LIB_DEPENDS=	libblas.so:math/blas \
 RUN_DEPENDS=	nwchem-data>0:science/nwchem-data
 TEST_DEPENDS=	bash:shells/bash
 
-USES=		fortran gettext-runtime gmake perl5 pkgconfig
+USES=		cmake:indirect fortran gettext-runtime gmake perl5 pkgconfig
 USE_PERL5=	build
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	nwchemgit
+GH_TAGNAME=	a83175e # hotfix/release-7-2-0 branch fixing extremely long compilation time with gmake-4.4.1
 
 MAKEFILE=	GNUmakefile
 ARCH_64BIT=	${ARCH:C/.*64.*/64/:S/${ARCH}//}
@@ -76,7 +78,7 @@ OPENMPI_RUN_DEPENDS=	openmpi>0:net/openmpi
 OPENMPI_VARS=		CONFLICTS_BUILD=mpich
 
 LIBXC_DESC=		Use libxc
-LIBXC_BUILD_DEPENDS=	cmake:devel/cmake-core
+LIBXC_USES=		cmake:indirect
 LIBXC_MAKE_ENV=		USE_LIBXC=Y
 
 PYTHON_DESC=		Enable Python syntax in input files

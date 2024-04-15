@@ -405,7 +405,6 @@
     SUBDIR += libnumbertext
     SUBDIR += libnxml
     SUBDIR += libodfgen01
-    SUBDIR += libparsifal
     SUBDIR += libqxp
     SUBDIR += librevenge
     SUBDIR += libsass
@@ -1997,7 +1996,6 @@
     SUBDIR += sowing
     SUBDIR += spellutils
     SUBDIR += sphinxsearch
-    SUBDIR += spiff
     SUBDIR += splitpatch
     SUBDIR += sq-hunspell
     SUBDIR += sr-aspell

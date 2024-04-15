@@ -345,6 +345,7 @@
     SUBDIR += py-gsd
     SUBDIR += py-h5json
     SUBDIR += py-h5py
+    SUBDIR += py-h5pyd
     SUBDIR += py-hiphive
     SUBDIR += py-hoomd-blue
     SUBDIR += py-inequality
@@ -406,17 +407,6 @@
     SUBDIR += py-pyteomics
     SUBDIR += py-qcelemental
     SUBDIR += py-qcengine
-    SUBDIR += py-qiskit
-    SUBDIR += py-qiskit-aer
-    SUBDIR += py-qiskit-dynamics
-    SUBDIR += py-qiskit-experiments
-    SUBDIR += py-qiskit-finance
-    SUBDIR += py-qiskit-ibm-experiment
-    SUBDIR += py-qiskit-ibm-provider
-    SUBDIR += py-qiskit-ibmq-provider
-    SUBDIR += py-qiskit-nature
-    SUBDIR += py-qiskit-optimization
-    SUBDIR += py-qiskit-terra
     SUBDIR += py-qspin
     SUBDIR += py-quantities
     SUBDIR += py-rmf

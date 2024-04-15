@@ -802,7 +802,6 @@
     SUBDIR += msiklm
     SUBDIR += msktutil
     SUBDIR += mstflint
-    SUBDIR += msyslog
     SUBDIR += mtm
     SUBDIR += mtpfs
     SUBDIR += mtxorbd
@@ -1347,6 +1346,7 @@
     SUBDIR += schedutils
     SUBDIR += schilyutils
     SUBDIR += screen
+    SUBDIR += screen-devel
     SUBDIR += screenfetch
     SUBDIR += screenie
     SUBDIR += scterc
@@ -1483,6 +1483,7 @@
     SUBDIR += tuptime
     SUBDIR += turbostat
     SUBDIR += tw_cli
+    SUBDIR += twa-kmod
     SUBDIR += twmn
     SUBDIR += tzdialog
     SUBDIR += u-boot-a13-olinuxino
@@ -1599,7 +1600,6 @@
     SUBDIR += vmtouch
     SUBDIR += vobcopy
     SUBDIR += volman
-    SUBDIR += vordog
     SUBDIR += vpnc-scripts
     SUBDIR += vttest
     SUBDIR += vzvol

@@ -1,5 +1,5 @@
 PORTNAME=	aws-sdk-resources
-PORTVERSION=	3.189.0
+PORTVERSION=	3.191.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -107,6 +107,7 @@ RUN_DEPENDS=	rubygem-aws-sdk-accessanalyzer>=1<2:devel/rubygem-aws-sdk-accessana
 		rubygem-aws-sdk-connectcontactlens>=1<2:devel/rubygem-aws-sdk-connectcontactlens \
 		rubygem-aws-sdk-connectparticipant>=1<2:devel/rubygem-aws-sdk-connectparticipant \
 		rubygem-aws-sdk-connectwisdomservice>=1<2:devel/rubygem-aws-sdk-connectwisdomservice \
+		rubygem-aws-sdk-controlcatalog>=1<2:devel/rubygem-aws-sdk-controlcatalog \
 		rubygem-aws-sdk-controltower>=1<2:devel/rubygem-aws-sdk-controltower \
 		rubygem-aws-sdk-costandusagereportservice>=1<2:devel/rubygem-aws-sdk-costandusagereportservice \
 		rubygem-aws-sdk-costexplorer>=1<2:devel/rubygem-aws-sdk-costexplorer \
@@ -118,6 +119,7 @@ RUN_DEPENDS=	rubygem-aws-sdk-accessanalyzer>=1<2:devel/rubygem-aws-sdk-accessana
 		rubygem-aws-sdk-datasync>=1<2:devel/rubygem-aws-sdk-datasync \
 		rubygem-aws-sdk-datazone>=1<2:devel/rubygem-aws-sdk-datazone \
 		rubygem-aws-sdk-dax>=1<2:devel/rubygem-aws-sdk-dax \
+		rubygem-aws-sdk-deadline>=1<2:devel/rubygem-aws-sdk-deadline \
 		rubygem-aws-sdk-detective>=1<2:devel/rubygem-aws-sdk-detective \
 		rubygem-aws-sdk-devicefarm>=1<2:devel/rubygem-aws-sdk-devicefarm \
 		rubygem-aws-sdk-devopsguru>=1<2:devel/rubygem-aws-sdk-devopsguru \

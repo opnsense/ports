@@ -1,7 +1,8 @@
 PORTNAME=	byacc
 PORTVERSION=	20240109
 CATEGORIES=	devel
-MASTER_SITES=	https://invisible-mirror.net/archives/byacc/ \
+MASTER_SITES=	https://invisible-island.net/archives/byacc/ \
+		https://invisible-mirror.net/archives/byacc/ \
 		LOCAL/sunpoet
 
 MAINTAINER=	sunpoet@FreeBSD.org
@@ -13,7 +14,6 @@ LICENSE=	PD
 USES=		tar:tgz
 
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 MAKE_ARGS=	DEFINES="-DMAXTABLE=INT_MAX"
 MAKEFILE=	makefile
 TEST_TARGET=	check

@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	24.0-branchpoint-3875
-DISTVERSIONSUFFIX=	-g3f50d72ec56
+DISTVERSION=	24.0-branchpoint-4724
+DISTVERSIONSUFFIX=	-g7f246bca045
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -38,7 +38,6 @@ MESON_ARGS=	-Dgallium-omx=disabled \
 		-Dlmsensors=disabled \
 		-Dmicrosoft-clc=disabled \
 		-Dvalgrind=disabled \
-		-Dglvnd=true \
 		-Dplatforms=${PLATFORMS:O:[-1..1]:ts,} \
 		-Dvideo-codecs=all \
 		${NULL}
@@ -120,7 +119,6 @@ OPENCL_MESON_FALSE=	b_lundef # environ
 OPENCL_MESON_TRUE=	gallium-rusticl
 OPENCL_MESON_ON=	-Dgallium-opencl=icd
 OPENCL_MESON_OFF=	-Dgallium-opencl=disabled
-OPENCL_VARS=		LLVM_USES=llvm:15,lib,noexport # chase libclc + rust (LTO)
 OPENCL_VARS+=		COINST_RUN_DEPENDS+=clover>0:lang/clover # ICD
 OPENCL_IMPLIES=		LLVM ${"${PORT_OPTIONS:Miris}":?iris:radeonsi} # any from OPTIONS_GROUP_GALLIUM
 

@@ -438,7 +438,6 @@
     SUBDIR += ldouble
     SUBDIR += lean
     SUBDIR += lean4
-    SUBDIR += lean4-std
     SUBDIR += leangz
     SUBDIR += lemon
     SUBDIR += levmar
@@ -615,6 +614,7 @@
     SUBDIR += octave-forge-octave-pool
     SUBDIR += octave-forge-octclip
     SUBDIR += octave-forge-octproj
+    SUBDIR += octave-forge-odbc
     SUBDIR += octave-forge-odebvp
     SUBDIR += octave-forge-onsas
     SUBDIR += octave-forge-optics

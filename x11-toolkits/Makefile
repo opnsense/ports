@@ -7,6 +7,7 @@
     SUBDIR += blt
     SUBDIR += bwidget
     SUBDIR += color-widgets-qt5
+    SUBDIR += como
     SUBDIR += copperspice
     SUBDIR += ctk
     SUBDIR += fltk
@@ -114,7 +115,6 @@
     SUBDIR += osm-gps-map
     SUBDIR += otk
     SUBDIR += p5-Alien-wxWidgets
-    SUBDIR += p5-Glade2
     SUBDIR += p5-Gtk2
     SUBDIR += p5-Gtk2-Chmod
     SUBDIR += p5-Gtk2-Ex-Dialogs
@@ -228,7 +228,6 @@
     SUBDIR += termit
     SUBDIR += tix
     SUBDIR += tk-wrapper
-    SUBDIR += tk85
     SUBDIR += tk86
     SUBDIR += tk87
     SUBDIR += tkdnd

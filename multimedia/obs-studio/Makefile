@@ -1,5 +1,5 @@
 PORTNAME=	obs-studio
-DISTVERSION=	30.1.1
+DISTVERSION=	30.1.2
 CATEGORIES=	multimedia
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -8,6 +8,8 @@ WWW=		https://obsproject.com/
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN_i386=	link fails: relocation R_386_PC32 cannot be used against symbol 'strlist_split'; recompile with -fPIC, see https://github.com/obsproject/obs-studio/issues/10481
 
 BUILD_DEPENDS=	asio>0:net/asio \
 		${LOCALBASE}/include/nlohmann/json.hpp:devel/nlohmann-json \

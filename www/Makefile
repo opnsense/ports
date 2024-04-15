@@ -683,7 +683,6 @@
     SUBDIR += p5-Catalyst-Plugin-Email
     SUBDIR += p5-Catalyst-Plugin-ErrorCatcher
     SUBDIR += p5-Catalyst-Plugin-FillInForm
-    SUBDIR += p5-Catalyst-Plugin-FormBuilder
     SUBDIR += p5-Catalyst-Plugin-FormValidator
     SUBDIR += p5-Catalyst-Plugin-I18N
     SUBDIR += p5-Catalyst-Plugin-Log-Dispatch
@@ -1332,7 +1331,6 @@
     SUBDIR += p5-chklinks
     SUBDIR += p5-jQuery-File-Upload
     SUBDIR += p5-libapreq2
-    SUBDIR += p5-libservlet
     SUBDIR += p5-libwww
     SUBDIR += p5-pQuery
     SUBDIR += p5-webservice-validator-css-w3c
@@ -2011,6 +2009,7 @@
     SUBDIR += rubygem-faraday-rack1
     SUBDIR += rubygem-faraday-retry
     SUBDIR += rubygem-faraday-retry1
+    SUBDIR += rubygem-faraday-typhoeus
     SUBDIR += rubygem-faraday0
     SUBDIR += rubygem-faraday1
     SUBDIR += rubygem-faraday_middleware

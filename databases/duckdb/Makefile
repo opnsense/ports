@@ -3,6 +3,9 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	0.10.1
 CATEGORIES=	databases
 
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	ca28b1954bbbb66d4d78221e3dd5f47e0b54dcca.patch:-p1 # check for IUTF8 flag defined before setting it: https://github.com/duckdb/duckdb/pull/11488
+
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	In-process SQL OLAP database management system
 WWW=		https://duckdb.org/

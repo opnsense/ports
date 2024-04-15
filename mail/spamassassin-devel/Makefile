@@ -9,8 +9,8 @@ WWW=		https://spamassassin.apache.org/
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	apache
-GH_TAGNAME=	b2c090d55
-SA_COMMIT_DATE=	2024.03.30
+GH_TAGNAME=	e7141a12b
+SA_COMMIT_DATE=	2024.04.11
 
 LICENSE=	APACHE20
 
@@ -123,7 +123,8 @@ DMARC_RUN_DEPENDS=	p5-Mail-DMARC>=0:mail/p5-Mail-DMARC \
 			p5-URI>=0:net/p5-URI
 GNUPG_RUN_DEPENDS=	gnupg1>=1.4.7:security/gnupg1
 GNUPG2_RUN_DEPENDS=	gpg2:security/gnupg
-MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
+MYSQL_RUN_DEPENDS=	${DBD_MYSQL}
+MYSQL_USES=		mysql
 PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=0:databases/p5-DBD-Pg
 PYZOR_RUN_DEPENDS=	pyzor:mail/pyzor
 RAZOR_RUN_DEPENDS=	razor-agents>=2.84:mail/razor-agents \

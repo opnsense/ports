@@ -1,18 +1,18 @@
 PORTNAME=	emby-server
 DISTVERSION?=	4.8.3.0
-PORTREVISION?=	2
+PORTREVISION?=	3
 CATEGORIES=	multimedia
 MASTER_SITES=	https://github.com/MediaBrowser/Emby.Releases/releases/download/${DISTVERSION}/ \
 		https://mediabrowser.github.io/embytools/
 DISTNAME=	emby-server-freebsd14_${DISTVERSION}_amd64
 DISTFILES=	${DISTNAME}.tar.xz \
-		ffdetect-${FFVERSION}-x64_freebsd13.tar.xz \
-		ffmpeg-${FFVERSION}.tar.gz \
+		ffdetect-${FFDETECT_VERSION}.tar.xz \
+		ffmpeg-${FFMPEG_VERSION}.tar.gz \
 		license.docx
 DIST_SUBDIR?=	${PORTNAME}
 EXTRACT_ONLY=	${DISTNAME}.tar.xz \
-		ffdetect-${FFVERSION}-x64_freebsd13.tar.xz \
-		ffmpeg-${FFVERSION}.tar.gz
+		ffdetect-${FFDETECT_VERSION}.tar.xz \
+		ffmpeg-${FFMPEG_VERSION}.tar.gz
 
 MAINTAINER=	driesm@FreeBSD.org
 COMMENT=	Media server to organize, play & stream audio/video to various devices
@@ -122,7 +122,7 @@ SUB_LIST=	GROUP=${GROUPS} \
 		RC_NAME=emby_server \
 		USER=${USERS}
 
-WRKSRC=		${WRKDIR}/ffmpeg-${FFVERSION}_public
+WRKSRC=		${WRKDIR}/${FFMPEG_WRKSRC}
 
 USERS=		emby
 GROUPS=		emby
@@ -133,7 +133,9 @@ OPTIONS_DEFAULT=	LAME
 LAME_LIB_DEPENDS=	libmp3lame.so:audio/lame
 LAME_CONFIGURE_ENABLE=	libmp3lame
 
-FFVERSION=	2022_05_07
+FFDETECT_VERSION=	2023_06_25-x64_freebsd14
+FFMPEG_VERSION=		2023_06_25-u1
+FFMPEG_WRKSRC=		ffmpeg-2023_06_25_public
 
 do-install:
 	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/emby-server/bin
