@@ -1216,7 +1216,6 @@ lang/gcc10-devel||2022-04-17|Has expired: Not serving its purpose any longer due
 devel/py-installer03|devel/py-installer|2022-04-17|Remove obsoleted port. Use devel/py-installer instead
 games/cultivation||2022-04-18|Has expired: Abandonware with last release in 2010, non-portable build system
 devel/ros-rosinstall||2022-04-20|Has expired: Upstream has archived the project and is no longer being used in the ROS project
-devel/py-aiorpcX-legacy|devel/py-aiorpcX|2022-04-20|Has expired: Legacy port is no longer required, please use devel/py-aiorpcX instead
 net/kalarmcal|deskutils/kalarm|2022-04-21|Packages were merged
 math/py-gmpy2-devel|math/py-gmpy2|2022-04-22|No more need for the -devel port, py-gmpy2 is at latest
 net/google-cloud-sdk-app-engine-go||2022-04-27|Obsolete, not supported by the current GCP SDK
@@ -3137,3 +3136,49 @@ net/samba413||2024-04-01|Has expired: Reached its EoL on March 21, 2022
 science/py-asdf-unit-schemas|science/py-asdf-standard|2024-04-01|Has expired: This package is decommissioned and no longer provides any ASDF schemas. The schemas provided by the package were duplicates of the schemas provided by asdf-standard. Use science/py-asdf-standard instead
 textproc/rubygem-autoprefixer-rails1025|textproc/rubygem-autoprefixer-rails|2024-04-02|Obsolete, please use textproc/rubygem-autoprefixer-rails instead
 www/rubygem-cssbundling-rails13-rails70|www/rubygem-cssbundling-rails-rails70|2024-04-02|Obsolete, please use www/rubygem-cssbundling-rails-rails70 instead
+databases/xtrabackup|databases/xtrabackup80|2024-04-02|Has expired: Percona XtraBackup 2.4 has reached EOL status
+net/rubygem-octokit6|net/rubygem-octokit|2024-04-03|Obsolete, please use net/rubygem-octokit instead
+devel/gearmand||2024-04-04|Has expired: Broken and unmaintained in ports
+devel/p5-Gearman-XS||2024-04-04|Depends on removed devel/gearmand and last updated in 2012
+emulators/tuxnes||2024-04-04|Has expired: BROKEN for more than 4 months
+sysutils/vordog||2024-04-04|Has expired: BROKEN for more than 4 months
+science/py-qiskit-terra||2024-04-04|Removed: the upstream gutted the old project and re-imported some other repo; it should be re-ported as a totally new project
+misc/py-qiskit-machine-learning||2024-04-05|Removed
+science/py-qiskit||2024-04-05|Removed
+science/py-qiskit-aer||2024-04-05|Removed
+science/py-qiskit-dynamics||2024-04-05|Removed
+science/py-qiskit-experiments||2024-04-05|Removed
+science/py-qiskit-finance||2024-04-05|Removed
+science/py-qiskit-ibm-experiment||2024-04-05|Removed
+science/py-qiskit-ibm-provider||2024-04-05|Removed
+science/py-qiskit-ibmq-provider||2024-04-05|Removed
+science/py-qiskit-nature||2024-04-05|Removed
+science/py-qiskit-optimization||2024-04-05|Removed
+games/spider||2024-04-06|Has expired: SUNSITE is no longer maintained
+graphics/liblug||2024-04-06|Has expired: SUNSITE is no longer maintained
+misc/xgas||2024-04-06|Has expired: SUNSITE is no longer maintained
+devel/dmucs||2024-04-06|Has expired: Unmaintained, upstream last release was in 2006
+multimedia/mjpg-streamer||2024-04-06|Has expired: Unmaintained for a long time and does not work
+irc/tircproxy||2024-04-06|Has expired: Unmaintained, dead upstream, vaporized from the net
+devel/ds2||2024-04-06|Has expired: Upstream deprecated and archived
+devel/bazel029||2024-04-08|Removed
+math/lean4-std||2024-04-08|Removed: Lean4 doesn't yet support seperate library packages, although it should
+misc/urbit||2024-04-08|Deprecated: Can't be built with a reasonable effort
+lang/tcl85||2024-04-09|EOL
+x11-toolkits/tk85||2024-04-09|EOL
+audio/fasttracker2|audio/ft2-clone|2024-04-10|Renamed to match upstream
+lang/ocaml-nox11|lang/ocaml|2024-04-10|X11 support removed upstream
+lang/qscheme||2024-04-10|Has expired: Unmaintained and there are more modern alternatives
+x11/nvidia-hybrid-graphics||2024-04-11|Has expired: Not maintained and obsoleted by glvnd and nvidia-drm-kmod
+lang/cython-devel|lang/cython3|2024-04-11|Has expired: use lang/cython3
+x11-wm/kwinft|x11-wm/theseus-ship|2024-04-13|Project renamed
+textproc/spiff||2024-04-13|Has expired: Active development of this port has been ceased
+www/p5-libservlet||2024-04-13|Has expired: Upstream unmaintained and last release was in 2001
+textproc/libparsifal||2024-04-13|Has expired: Upsrteam no longer available including WWW and distfile
+www/p5-Catalyst-Plugin-FormBuilder||2024-04-13|Has expired: Deprecated by upstream
+security/sancp||2024-04-13|Has expired: Upstream unmaintained and last release in 2007
+x11-toolkits/p5-Glade2||2024-04-13|Has expired: Deprecated by upstream
+sysutils/msyslog||2024-04-13|Has expired: Unmaintained and last upstream release in 2003
+x11/xdtm||2024-04-13|Has expired: Unmaintained, last upstream release was in 2000 or earlier
+x11/multi-aterm||2024-04-13|Has expired: Unmaintained, last upstream release in 2004
+devel/py-dateutil|devel/py-python-dateutil|2024-04-13|Move devel/py-dateutil to devel/py-python-dateutil

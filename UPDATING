@@ -5,11 +5,40 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20240409:
+  AFFECTS: x11-servers/xwayland-devel
+  AUTHOR: jbeich@FreeBSD.org
+
+  xwayland-devel has dropped HiDPI patches thus currently incompatible
+  with stable/legacy versions of wlroots. Only affects builds when
+  /usr/local/bin/Xwayland is already installed. Doesn't affect
+  hyprland and sway-devel or non-wlroots compositors.
+
+  If you use portmaster:
+    # portmaster -o x11-servers/xwayland-devel x11-servers/xwayland
+  If you use portupgrade:
+    # portupgrade -o x11-servers/xwayland-devel x11-servers/xwayland
+
+20240408:
+  AFFECTS: users of databases/p5-DBD-mysql
+  AUTHOR: flo@FreeBSD.org
+
+  Upstream removed support for MariaDB from the 5.0 branch. So if you use
+  MariaDB you need to use databases/p5-DBD-mysql4 from now on.
+
+  Portmaster users:
+        portmaster -o databases/p5-DBD-mysql4 databases/p5-DBD-mysql
+        portmaster -a
+
+  Portupgrade users:
+        portupgrade -o databases/p5-DBD-mysql4 -f databases/p5-DBD-mysql
+        portupgrade -a
+
 20240330:
   AFFECTS: users of mail/spamassassin
   AUTHOR: cy@FreeBSD.org
 
-  sa-update must be run following update and prior to restaring sa-spamd
+  sa-update must be run following update and prior to restarting sa-spamd
   else it will fail to start due to a syntax error.
 
 20240326:
@@ -54,7 +83,7 @@ you update your ports collection, before attempting any port upgrades.
   AFFECTS: users of www/redmine50
   AUTHOR: bofh@FreeBSD.org
 
-  The default vesion of ruby has been switched from 3.1 to 3.2.
+  The default version of ruby has been switched from 3.1 to 3.2.
 
   However www/redmine50 does not support ruby 3.2. Users should add the
   following in their relevant make.conf file:
