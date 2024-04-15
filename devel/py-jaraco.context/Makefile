@@ -1,12 +1,11 @@
 PORTNAME=	jaraco.context
-PORTVERSION=	4.3.0
-PORTREVISION=	4
+PORTVERSION=	5.3.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	Context managers by jaraco
+COMMENT=	Useful decorators and context managers
 WWW=		https://github.com/jaraco/jaraco.context
 
 LICENSE=	MIT
@@ -26,4 +25,10 @@ USE_PYTHON=	autoplist concurrent pep517 pytest
 
 NO_ARCH=	yes
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 31200
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}backports.tarfile>=0:devel/py-backports.tarfile@${PY_FLAVOR}
+.endif
+
+.include <bsd.port.post.mk>
