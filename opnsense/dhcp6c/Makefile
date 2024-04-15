@@ -16,9 +16,8 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
-CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc \
-		--with-localdbdir=/var/db
+CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc --with-localdbdir=/var/db
+
 USE_RC_SUBR=	dhcp6c
 
 post-install:
