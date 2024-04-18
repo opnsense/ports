@@ -1,6 +1,6 @@
 PORTNAME=	freebsd-route6d
 DISTVERSIONPREFIX=	v
-DISTVERSION=	15.0
+DISTVERSION=	15.0.1
 CATEGORIES=	net
 
 MAINTAINER=	cy@FreeBSD.org
@@ -11,7 +11,6 @@ LICENSE=	BSD3CLAUSE
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	cschuber
-GH_TAGNAME=	32fa35d
 GH_PROJECT=	freebsd-routed
 
 USES=		uidfix
@@ -26,5 +25,8 @@ MAKE_ENV+=		MAKESYSPATH=/usr/src/share/mk \
 
 post-patch:
 	@${CP} ${FILESDIR}/Makefile.in ${WRKSRC}/Makefile
+
+post-install:
+	@${INSTALL_SCRIPT} ${WRKSRC}/libexec/rc/rc.d/route6d ${STAGEDIR}${PREFIX}/etc/rc.d
 
 .include <bsd.port.mk>
