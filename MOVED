@@ -3185,3 +3185,9 @@ devel/py-dateutil|devel/py-python-dateutil|2024-04-13|Move devel/py-dateutil to 
 science/p5-Algorithm-SVMLight||2024-04-16|Has expired: Depends on DEPRECATED science/svmlight
 science/svmlight||2024-04-16|Has expired: Unmaintained, last upstream release in 2008 and there are more modern alternatives
 security/krb5-119||2024-04-16|Has expired: Desupported by MIT following 1.21
+audio/gnuitar||2024-04-18|Has expired: Unmaintained, last upstream release in 2005
+emulators/hugo||2024-04-18|Has expired: Unmaintained, last release in 2005 and uses deprecated gtk2 library
+net-p2p/gtorrentviewer||2024-04-18|Has expired: Unmaintained, last release in 2004 and uses deprecated gtk2
+net-im/tut||2024-04-18|Has expired: Requires deprecated lang/go119
+net/gost||2024-04-18|Has expired: Requires deprecated lang/go119
+lang/go119||2024-04-18|Has expired: Upsrteam EOL reached on 2023-09-06
