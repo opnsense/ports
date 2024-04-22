@@ -217,6 +217,7 @@
     SUBDIR += clockspeed
     SUBDIR += clone
     SUBDIR += clonehdd
+    SUBDIR += cloud-nuke
     SUBDIR += cloudabi-utils
     SUBDIR += clsync
     SUBDIR += cluster-glue
@@ -298,6 +299,7 @@
     SUBDIR += devstat
     SUBDIR += dfc
     SUBDIR += di
+    SUBDIR += diffoci
     SUBDIR += digdag
     SUBDIR += dim
     SUBDIR += dirdiff

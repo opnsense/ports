@@ -207,7 +207,7 @@
     SUBDIR += ghostunnel
     SUBDIR += gist
     SUBDIR += gitea
-    SUBDIR += gitlab-ce
+    SUBDIR += gitlab
     SUBDIR += gitlab-pages
     SUBDIR += gitlab-workhorse
     SUBDIR += glassfish
@@ -436,6 +436,7 @@
     SUBDIR += moodle41
     SUBDIR += moodle42
     SUBDIR += moodle43
+    SUBDIR += moodle44
     SUBDIR += morty
     SUBDIR += multisort
     SUBDIR += multiwatch
