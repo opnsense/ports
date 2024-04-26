@@ -5094,6 +5094,7 @@
     SUBDIR += py-mypy_extensions
     SUBDIR += py-mystic
     SUBDIR += py-naiveBayesClassifier
+    SUBDIR += py-nanobind
     SUBDIR += py-nanotime
     SUBDIR += py-natsort
     SUBDIR += py-natural
@@ -5209,6 +5210,7 @@
     SUBDIR += py-pbr
     SUBDIR += py-pbs-installer
     SUBDIR += py-pcodedmp
+    SUBDIR += py-pcpp
     SUBDIR += py-pdm
     SUBDIR += py-pdm-autoexport
     SUBDIR += py-pdm-backend
