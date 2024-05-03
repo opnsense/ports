@@ -109,7 +109,6 @@
     SUBDIR += figlet
     SUBDIR += figlet-fonts
     SUBDIR += findutils
-    SUBDIR += firestring
     SUBDIR += flag
     SUBDIR += flashlight
     SUBDIR += fortune-mod-bible
@@ -400,6 +399,7 @@
     SUBDIR += py-SQSnobFit
     SUBDIR += py-SimpleSoapy
     SUBDIR += py-SoapySDR
+    SUBDIR += py-accelerate
     SUBDIR += py-alive-progress
     SUBDIR += py-apache-beam
     SUBDIR += py-ascii-magic
@@ -407,6 +407,7 @@
     SUBDIR += py-boost-histogram
     SUBDIR += py-censys
     SUBDIR += py-cinder
+    SUBDIR += py-codecarbon
     SUBDIR += py-colorbrewer
     SUBDIR += py-colored
     SUBDIR += py-crudini

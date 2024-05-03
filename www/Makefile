@@ -1550,7 +1550,6 @@
     SUBDIR += py-django-csp
     SUBDIR += py-django-debreach
     SUBDIR += py-django-debug-toolbar
-    SUBDIR += py-django-dpaste
     SUBDIR += py-django-extensions
     SUBDIR += py-django-filer
     SUBDIR += py-django-filter
@@ -2384,6 +2383,7 @@
     SUBDIR += tokyopromenade
     SUBDIR += tomcat-devel
     SUBDIR += tomcat-native
+    SUBDIR += tomcat-native2
     SUBDIR += tomcat101
     SUBDIR += tomcat85
     SUBDIR += tomcat9
