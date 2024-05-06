@@ -454,6 +454,7 @@
     SUBDIR += containers
     SUBDIR += convco
     SUBDIR += corrade
+    SUBDIR += corrosion
     SUBDIR += courier-unicode
     SUBDIR += coursier
     SUBDIR += covtool
@@ -7285,8 +7286,6 @@
     SUBDIR += rubygem-p4ruby
     SUBDIR += rubygem-paint
     SUBDIR += rubygem-pairing_heap
-    SUBDIR += rubygem-paperclip-rails5
-    SUBDIR += rubygem-paperclip-rails50
     SUBDIR += rubygem-parser
     SUBDIR += rubygem-pastel
     SUBDIR += rubygem-patch_finder
