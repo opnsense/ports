@@ -155,6 +155,12 @@ MASTER_SITE_CENTOS_LINUX+= \
 	http://vault.centos.org/%SUBDIR%/:DEFAULT,aarch64,amd64,i386,SOURCE
 .endif
 
+.if !defined(IGNORE_MASTER_SITE_ROCKY_LINUX)
+MASTER_SITE_ROCKY_LINUX+= \
+	https://dl.rockylinux.org/pub/rocky/%SUBDIR%/:DEFAULT,aarch64,amd64,SOURCE \
+	https://dl.rockylinux.org/vault/rocky/%SUBDIR%/:DEFAULT,aarch64,amd64,SOURCE
+.endif
+
 .if !defined(IGNORE_MASTER_SITE_EPEL7)
 MASTER_SITE_EPEL7+= \
 	https://dl.fedoraproject.org/pub/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
@@ -163,6 +169,13 @@ MASTER_SITE_EPEL7+= \
 	http://dl.fedoraproject.org/pub/epel/7/aarch64/Packages/%SUBDIR%/:DEFAULT,aarch64 \
 	http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/%SUBDIR%/:DEFAULT,amd64 \
 	http://dl.fedoraproject.org/pub/epel/7/SRPMS/Packages/%SUBDIR%/:SOURCE
+.endif
+
+.if !defined(IGNORE_MASTER_SITE_RPMFUSION9)
+MASTER_SITE_RPMFUSION9+= \
+	https://ftp.icm.edu.pl/pub/Linux/dist/rpmfusion/free/el/updates/9/aarch64/%SUBDIR%/:DEFAULT,aarch64 \
+	https://ftp.icm.edu.pl/pub/Linux/dist/rpmfusion/free/el/updates/9/x86_64/%SUBDIR%/:DEFAULT,amd64 \
+	https://ftp.icm.edu.pl/pub/Linux/dist/rpmfusion/free/el/updates/9/SRPMS/%SUBDIR%/:DEFAULT,SOURCE
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_FARSIGHT)
@@ -916,8 +929,6 @@ MASTER_SITE_SUDO+= \
 	http://sudo.p8ra.de/sudo/dist/ \
 	http://sudo.cybermirror.org/ \
 	http://sudo-ftp.basemirror.de/ \
-	http://core.ring.gr.jp/archives/misc/sudo/ \
-	http://www.ring.gr.jp/archives/misc/sudo/ \
 	http://ftp.twaren.net/Unix/Security/Sudo/ \
 	ftp://ftp.sudo.ws/pub/sudo/ \
 	ftp://plier.ucar.edu/pub/sudo/ \
@@ -933,8 +944,6 @@ MASTER_SITE_SUDO+= \
 	ftp://ftp.informatik.uni-hamburg.de/pub/os/unix/utils/sudo/ \
 	ftp://ftp.st.ryukoku.ac.jp/pub/security/tool/sudo/ \
 	ftp://ftp.cin.nihon-u.ac.jp/pub/misc/sudo/ \
-	ftp://core.ring.gr.jp/pub/misc/sudo/ \
-	ftp://ftp.ring.gr.jp/pub/misc/sudo/ \
 	ftp://sunsite.icm.edu.pl/packages/sudo/ \
 	ftp://mirror.cdmon.com/pub/sudo/ \
 	ftp://ftp.twaren.net/Unix/Security/Sudo/
