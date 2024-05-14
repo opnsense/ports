@@ -1,5 +1,6 @@
 PORTNAME=	uv
 DISTVERSION=	0.1.39
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -537,6 +538,8 @@ PROGS=		uv \
 		uv-dev
 
 PLIST_FILES=	${PROGS:S/^/bin\//}
+
+PORTSCOUT=	ignore:perma-31 # portscout picked up this non-existent tag
 
 do-install:
 	# workaround for error: found a virtual manifest at `xx` instead of a package manifest
