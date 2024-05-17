@@ -195,6 +195,7 @@
     SUBDIR += noto-jp
     SUBDIR += noto-kr
     SUBDIR += noto-kufi-arabic
+    SUBDIR += noto-music
     SUBDIR += noto-naskh-arabic
     SUBDIR += noto-sans
     SUBDIR += noto-sans-arabic
@@ -216,6 +217,7 @@
     SUBDIR += noto-sans-myanmar
     SUBDIR += noto-sans-runic
     SUBDIR += noto-sans-sc
+    SUBDIR += noto-sans-sign-writing
     SUBDIR += noto-sans-sinhala
     SUBDIR += noto-sans-symbols
     SUBDIR += noto-sans-symbols2
