@@ -1,3 +1,218 @@
+  <vuln vid="a431676c-f86c-4371-b48a-b7d2b0bec3a3">
+    <topic>electron29 -- setuid() does not affect libuv's internal io_uring</topic>
+    <affects>
+      <package>
+	<name>electron29</name>
+	<range><lt>29.4.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v29.4.0">
+	  <p>This update fixes the following vulnerability:</p>
+	  <ul>
+	    <li>Backported fix for CVE-2024-22017.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-22017</cvename>
+      <url>https://github.com/advisories/GHSA-vr4q-vx84-9g5x</url>
+    </references>
+    <dates>
+      <discovery>2024-05-15</discovery>
+      <entry>2024-05-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c6f03ea6-12de-11ef-83d8-4ccc6adda413">
+    <topic>qt6-webengine -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>qt6-webengine</name>
+	<range><lt>6.7.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Qt qtwebengine-chromium repo reports:</p>
+	<blockquote cite="https://code.qt.io/cgit/qt/qtwebengine-chromium.git/log/?h=118-based">
+	  <p>Backports for 16 security bugs in Chromium:</p>
+	  <ul>
+	    <li>CVE-2024-2625: Object lifecycle issue in V8</li>
+	    <li>CVE-2024-2626: Out of bounds read in Swiftshader</li>
+	    <li>CVE-2024-2885: Use after free in Dawn</li>
+	    <li>CVE-2024-2887: Type Confusion in WebAssembly</li>
+	    <li>CVE-2024-3157: Out of bounds write in Compositing</li>
+	    <li>CVE-2024-3159: Out of bounds memory access in V8</li>
+	    <li>CVE-2024-3516: Heap buffer overflow in ANGLE</li>
+	    <li>CVE-2024-3837: Use after free in QUIC</li>
+	    <li>CVE-2024-3839: Out of bounds read in Fonts</li>
+	    <li>CVE-2024-3914: Use after free in V8</li>
+	    <li>CVE-2024-3840: Insufficient policy enforcement in Site Isolation</li>
+	    <li>CVE-2024-4058: Type Confusion in ANGLE</li>
+	    <li>CVE-2024-4060: Use after free in Dawn</li>
+	    <li>CVE-2024-4331: Use after free in Picture In Picture</li>
+	    <li>CVE-2024-4368: Use after free in Dawn</li>
+	    <li>CVE-2024-4671: Use after free in Visuals</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-2625</cvename>
+      <cvename>CVE-2024-2626</cvename>
+      <cvename>CVE-2024-2885</cvename>
+      <cvename>CVE-2024-2887</cvename>
+      <cvename>CVE-2024-3157</cvename>
+      <cvename>CVE-2024-3159</cvename>
+      <cvename>CVE-2024-3516</cvename>
+      <cvename>CVE-2024-3837</cvename>
+      <cvename>CVE-2024-3839</cvename>
+      <cvename>CVE-2024-3914</cvename>
+      <cvename>CVE-2024-3840</cvename>
+      <cvename>CVE-2024-4058</cvename>
+      <cvename>CVE-2024-4060</cvename>
+      <cvename>CVE-2024-4331</cvename>
+      <cvename>CVE-2024-4368</cvename>
+      <cvename>CVE-2024-4671</cvename>
+      <url>https://code.qt.io/cgit/qt/qtwebengine-chromium.git/log/?h=118-based</url>
+    </references>
+    <dates>
+      <discovery>2024-04-03</discovery>
+      <entry>2024-05-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e79cc4e2-12d7-11ef-83d8-4ccc6adda413">
+    <topic>qt6-base (core module) -- Invalid pointer in QStringConverter</topic>
+    <affects>
+      <package>
+	<name>qt6-base</name>
+	<range><ge>6.5.0</ge><le>6.5.5</le></range>
+	<range><ge>6.6.0</ge><lt>6.7.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Andy Shaw reports:</p>
+	<blockquote cite="https://www.qt.io/blog/security-advisory-qstringconverter">
+	  <p>QStringConverter has an invalid pointer being passed as a callback
+	    which can allow modification of the stack. Qt itself is not vulnerable
+	    to remote attack however an application using QStringDecoder either
+	    directly or indirectly can be vulnerable.</p>
+	  <p>This requires:</p>
+	  <ol>
+	    <li>the attacker be able to tell the application a specific codec to use</li>
+	    <li>the attacker be able to feed the application data in a specific way to cause the desired modification</li>
+	    <li>the attacker what in the stack will get modified, which requires knowing the build of the application (and not all builds will be vulnerable)</li>
+	    <li>the modification do anything in particular that is useful to the attacker, besides maybe crashing the application</li>
+	  </ol>
+	  <p>Qt does not automatically use any of those codecs, so this needs the application
+	    to implement something using QStringDecoder to be vulnerable.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-33861</cvename>
+      <url>https://www.qt.io/blog/security-advisory-qstringconverter</url>
+    </references>
+    <dates>
+      <discovery>2024-05-02</discovery>
+      <entry>2024-05-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f2d8342f-1134-11ef-8791-6805ca2fa271">
+    <topic>dnsdist -- Transfer requests received over DoH can lead to a denial of service</topic>
+    <affects>
+      <package>
+	<name>dnsdist</name>
+	<range><lt>1.9.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PowerDNS Security Advisory reports:</p>
+	<blockquote cite="https://dnsdist.org/security-advisories/index.html">
+	  <p>When incoming DNS over HTTPS support is enabled using the nghttp2 provider,
+	    and queries are routed to a tcp-only or DNS over TLS backend, an attacker can
+	    trigger an assertion failure in DNSdist by sending a request for a zone transfer (AXFR
+	    or IXFR) over DNS over HTTPS, causing the process to stop and thus leading to a
+	    Denial of Service. DNS over HTTPS is not enabled by default, and backends are using
+	    plain DNS (Do53) by default.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-25581</cvename>
+      <url>https://dnsdist.org/security-advisories/powerdns-advisory-for-dnsdist-2024-03.html</url>
+    </references>
+    <dates>
+      <discovery>2024-05-13</discovery>
+      <entry>2024-05-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5afd64ae-122a-11ef-8eed-1c697a616631">
+    <topic>Intel CPUs -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cpu-microcode-intel</name>
+	<range><lt>20240514</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Intel reports:</p>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01036.html">
+	 <p>
+	  Potential security vulnerabilities in some Intel Trust Domain
+	  Extensions (TDX) module software may allow escalation of
+	  privilege. Improper input validation in some Intel TDX module
+	  software before version 1.5.05.46.698 may allow a privileged user to
+	  potentially enable escalation of privilege via local access.  Intel
+	  is releasing firmware updates to mitigate these potential
+	  vulnerabilities.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01051.html">
+	 <p>
+	  A potential security vulnerability in some Intel Processors may
+	  allow information disclosure.  Hardware logic contains race
+	  conditions in some Intel Processors that may allow an authenticated
+	  user to potentially enable partial information disclosure via local
+	  access. Intel is releasing microcode updates to mitigate this
+	  potential vulnerability.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01052.html">
+	 <p>
+	  A potential security vulnerability in Intel Core Ultra Processors
+	  may allow denial of service.  Sequence of processor instructions
+	  leads to unexpected behavior in Intel Core Ultra Processors may
+	  allow an authenticated user to potentially enable denial of service
+	  via local access.  Intel is releasing microcode updates to mitigate
+	  this potential vulnerability.
+	 </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-45745</cvename>
+      <cvename>CVE-2023-45733</cvename>
+      <cvename>CVE-2023-46103</cvename>
+      <url>https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases/tag/microcode-20240514</url>
+    </references>
+    <dates>
+      <discovery>2024-05-14</discovery>
+      <entry>2024-05-14</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="8e0e8b56-11c6-11ef-9f97-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
