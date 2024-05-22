@@ -1425,6 +1425,7 @@
     SUBDIR += syslinux
     SUBDIR += syslog-ng
     SUBDIR += syslogger
+    SUBDIR += systeroid
     SUBDIR += sysvbanner
     SUBDIR += szyszka
     SUBDIR += tai64nfrac
@@ -1582,7 +1583,6 @@
     SUBDIR += userneu-devel
     SUBDIR += usrinfo
     SUBDIR += utcount
-    SUBDIR += uutils-coreutils
     SUBDIR += vagrant
     SUBDIR += vbetool
     SUBDIR += vchanger
