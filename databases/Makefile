@@ -69,7 +69,10 @@
     SUBDIR += firebird40-client
     SUBDIR += firebird40-server
     SUBDIR += fortytwo-bdb
-    SUBDIR += foundationdb
+    SUBDIR += foundationdb71-client
+    SUBDIR += foundationdb71-server
+    SUBDIR += foundationdb73-client
+    SUBDIR += foundationdb73-server
     SUBDIR += frece
     SUBDIR += freetds
     SUBDIR += freetds-devel
@@ -202,6 +205,8 @@
     SUBDIR += mysql80-server
     SUBDIR += mysql81-client
     SUBDIR += mysql81-server
+    SUBDIR += mysql84-client
+    SUBDIR += mysql84-server
     SUBDIR += mysqlbackup
     SUBDIR += mysqldump-secure
     SUBDIR += mysqlreport

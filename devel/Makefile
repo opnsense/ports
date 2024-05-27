@@ -887,6 +887,7 @@
     SUBDIR += gogs
     SUBDIR += golangci-lint
     SUBDIR += golint
+    SUBDIR += gomigrate
     SUBDIR += google-cloud-cpp
     SUBDIR += google-perftools
     SUBDIR += google-styleguide
@@ -4684,7 +4685,6 @@
     SUBDIR += py-distlib
     SUBDIR += py-distributed
     SUBDIR += py-dj42-django-rq
-    SUBDIR += py-dj42-graphene-django
     SUBDIR += py-django-rq
     SUBDIR += py-dm-tree
     SUBDIR += py-docformatter
@@ -4847,6 +4847,7 @@
     SUBDIR += py-grab
     SUBDIR += py-graphene
     SUBDIR += py-graphene-django
+    SUBDIR += py-graphene-django300
     SUBDIR += py-graphene-sqlalchemy
     SUBDIR += py-graphene2
     SUBDIR += py-graphql-core

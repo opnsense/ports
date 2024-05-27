@@ -29,6 +29,7 @@
     SUBDIR += R-cran-spelling
     SUBDIR += R-cran-stringi
     SUBDIR += R-cran-stringr
+    SUBDIR += R-cran-tth
     SUBDIR += R-cran-utf8
     SUBDIR += R-cran-vroom
     SUBDIR += R-cran-xml2
@@ -521,6 +522,7 @@
     SUBDIR += ocaml-csv
     SUBDIR += ocaml-expat
     SUBDIR += ocaml-text
+    SUBDIR += ocaml-yojson
     SUBDIR += odt2txt
     SUBDIR += openfts
     SUBDIR += openjade
