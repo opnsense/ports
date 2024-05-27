@@ -1,3 +1,108 @@
+  <vuln vid="04e78f32-04b2-4c23-bfae-72600842d317">
+    <topic>electron29 -- use after free in Dawn</topic>
+    <affects>
+      <package>
+	<name>electron29</name>
+	<range><lt>29.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v29.4.1">
+	  <p>This update fixes the following vulnerability:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-4948.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-4948</cvename>
+      <url>https://github.com/advisories/GHSA-xvp9-87cv-m4fv</url>
+    </references>
+    <dates>
+      <discovery>2024-05-22</discovery>
+      <entry>2024-05-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="43d1c381-a3e5-4a1d-b3ed-f37b61a451af">
+    <topic>electron28 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron28</name>
+	<range><lt>28.3.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v28.3.2">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-4948.</li>
+	    <li>Security: backported fix for CVE-2024-3914.</li>
+	    <li>Security: backported fix for CVE-2024-4060.</li>
+	    <li>Security: backported fix for CVE-2024-4058.</li>
+	    <li>Security: backported fix for CVE-2024-4558.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-4948</cvename>
+      <url>https://github.com/advisories/GHSA-xvp9-87cv-m4fv</url>
+      <cvename>CVE-2024-3914</cvename>
+      <url>https://github.com/advisories/GHSA-jv87-hfr8-8j2r</url>
+      <cvename>CVE-2024-4060</cvename>
+      <url>https://github.com/advisories/GHSA-4qw6-vwc8-mh38</url>
+      <cvename>CVE-2024-4058</cvename>
+      <url>https://github.com/advisories/GHSA-23rw-79p3-xgcm</url>
+      <cvename>CVE-2024-4558</cvename>
+      <url>https://github.com/advisories/GHSA-r4j8-j63p-24j8</url>
+    </references>
+    <dates>
+      <discovery>2024-05-22</discovery>
+      <entry>2024-05-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f5fa174d-19de-11ef-83d8-4ccc6adda413">
+    <topic>QtNetworkAuth -- predictable seeding of PRNG in QAbstractOAuth</topic>
+    <affects>
+      <package>
+	<name>qt5-networkauth</name>
+	<range><lt>5.15.13_1</lt></range>
+      </package>
+      <package>
+	<name>qt6-networkauth</name>
+	<range><lt>6.7.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Andy Shaw reports:</p>
+	<blockquote cite="https://www.qt.io/blog/security-advisory-qstringconverter-0">
+	  <p>The OAuth1 implementation in QtNetworkAuth created nonces using
+	    a PRNG that was seeded with a predictable seed.</p>
+	  <p>This means that an attacker that can somehow control the time of
+	    the first OAuth1 flow of the process has a high chance of predicting
+	    the nonce used in said OAuth flow.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-36048</cvename>
+      <url>https://www.qt.io/blog/security-advisory-qstringconverter-0</url>
+      <url>https://codereview.qt-project.org/c/qt/qtnetworkauth/+/560317</url>
+    </references>
+    <dates>
+      <discovery>2024-05-08</discovery>
+      <entry>2024-05-24</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="f848ef90-1848-11ef-9850-001b217b3468">
     <topic>Gitlab -- Vulnerabilities</topic>
     <affects>
