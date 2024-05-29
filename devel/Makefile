@@ -1360,7 +1360,6 @@
     SUBDIR += libopenbsd
     SUBDIR += libopencm3
     SUBDIR += libopentracing
-    SUBDIR += libopkele
     SUBDIR += liborcus
     SUBDIR += libosinfo
     SUBDIR += libowfat
@@ -1743,9 +1742,9 @@
     SUBDIR += ocaml-pcre
     SUBDIR += ocaml-pcre2
     SUBDIR += ocaml-pomap
+    SUBDIR += ocaml-ppx-tools
     SUBDIR += ocaml-ppx_derivers
     SUBDIR += ocaml-ppx_sexp_conv
-    SUBDIR += ocaml-ppx-tools
     SUBDIR += ocaml-ppxlib
     SUBDIR += ocaml-re
     SUBDIR += ocaml-react
@@ -1755,8 +1754,8 @@
     SUBDIR += ocaml-sdl
     SUBDIR += ocaml-sem
     SUBDIR += ocaml-seq
-    SUBDIR += ocaml-sexplib0
     SUBDIR += ocaml-sexplib
+    SUBDIR += ocaml-sexplib0
     SUBDIR += ocaml-stdio
     SUBDIR += ocaml-topkg
     SUBDIR += ocaml-type_conv
@@ -5796,6 +5795,7 @@
     SUBDIR += py-tartiflette
     SUBDIR += py-tartiflette-aiohttp
     SUBDIR += py-taskflow
+    SUBDIR += py-taskgroup
     SUBDIR += py-tasklib
     SUBDIR += py-tblib
     SUBDIR += py-tdworkflow
@@ -6480,6 +6480,7 @@
     SUBDIR += rubygem-aws-sdk-lookoutmetrics
     SUBDIR += rubygem-aws-sdk-machinelearning
     SUBDIR += rubygem-aws-sdk-macie2
+    SUBDIR += rubygem-aws-sdk-mailmanager
     SUBDIR += rubygem-aws-sdk-mainframemodernization
     SUBDIR += rubygem-aws-sdk-managedblockchain
     SUBDIR += rubygem-aws-sdk-managedblockchainquery
@@ -7009,10 +7010,8 @@
     SUBDIR += rubygem-flexmock
     SUBDIR += rubygem-flipper
     SUBDIR += rubygem-flipper-active_support_cache_store
-    SUBDIR += rubygem-flipper-active_support_cache_store-rails61
     SUBDIR += rubygem-flipper-active_support_cache_store-rails70
     SUBDIR += rubygem-flipper-ui
-    SUBDIR += rubygem-flipper025
     SUBDIR += rubygem-flipper026
     SUBDIR += rubygem-fluent-logger
     SUBDIR += rubygem-fog
@@ -7053,6 +7052,7 @@
     SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gettext_i18n_rails
     SUBDIR += rubygem-gettext_i18n_rails111
+    SUBDIR += rubygem-gettext_i18n_rails_js
     SUBDIR += rubygem-gettext_i18n_rails_js-rails5
     SUBDIR += rubygem-gettext_i18n_rails_js-rails50
     SUBDIR += rubygem-gettext_i18n_rails_js-rails52
@@ -7196,7 +7196,6 @@
     SUBDIR += rubygem-jenkins_api_client
     SUBDIR += rubygem-jeweler
     SUBDIR += rubygem-jira-ruby
-    SUBDIR += rubygem-jira-ruby21
     SUBDIR += rubygem-jmespath
     SUBDIR += rubygem-jquery-ui-themes
     SUBDIR += rubygem-jruby-jars
@@ -7554,8 +7553,6 @@
     SUBDIR += rubygem-semi_semantic
     SUBDIR += rubygem-semver2
     SUBDIR += rubygem-semver_dialects
-    SUBDIR += rubygem-semver_dialects1
-    SUBDIR += rubygem-semver_dialects12
     SUBDIR += rubygem-semver_dialects2
     SUBDIR += rubygem-semverse
     SUBDIR += rubygem-sentry-rails
@@ -7775,10 +7772,6 @@
     SUBDIR += rubygem-wmi-lite
     SUBDIR += rubygem-xdg
     SUBDIR += rubygem-xdg2
-    SUBDIR += rubygem-xdg3
-    SUBDIR += rubygem-xdg4
-    SUBDIR += rubygem-xdg5
-    SUBDIR += rubygem-xdg6
     SUBDIR += rubygem-xdg7
     SUBDIR += rubygem-xorcist
     SUBDIR += rubygem-xpath
@@ -7839,6 +7832,7 @@
     SUBDIR += shadered
     SUBDIR += shapelib
     SUBDIR += shards
+    SUBDIR += shedskin
     SUBDIR += shell-toolbox
     SUBDIR += shflags
     SUBDIR += shfmt
