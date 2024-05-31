@@ -34,6 +34,9 @@ XCADDY_VERSION!=${MAKE} -C ${.CURDIR}/../xcaddy -V '$${DISTVERSION}.$${PORTREVIS
 PLUGINS+=	--with ${plugin}
 .endfor
 
+# Extract the first three numbers from CADDY_VERSION and prepend with 'v'
+BUILDVERSION= v${CADDY_VERSION:C/^([0-9]+)\.([0-9]+)\.([0-9]+).*/\1.\2.\3/}
+
 XCADDY_GO_BUILD_FLAGS?=	${GO_BUILDFLAGS}
 
 XCADDY_ENV+=	XCADDY_WHICH_GO="${GO_CMD}" \
@@ -41,7 +44,7 @@ XCADDY_ENV+=	XCADDY_WHICH_GO="${GO_CMD}" \
 
 do-build:
 	${MKDIR} ${WRKSRC}
-	cd ${WRKSRC} && ${XCADDY_ENV} ${LOCALBASE}/bin/xcaddy build ${PLUGINS}
+	cd ${WRKSRC} && ${XCADDY_ENV} ${LOCALBASE}/bin/xcaddy build ${BUILDVERSION} ${PLUGINS}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/caddy ${STAGEDIR}${PREFIX}/bin
