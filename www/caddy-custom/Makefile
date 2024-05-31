@@ -29,13 +29,11 @@ PLIST_FILES=	bin/caddy
 
 CADDY_VERSION!=	${MAKE} -C ${.CURDIR}/../caddy  -V '$${DISTVERSION}.$${PORTREVISION}'
 XCADDY_VERSION!=${MAKE} -C ${.CURDIR}/../xcaddy -V '$${DISTVERSION}.$${PORTREVISION}'
+CADDY_BUILD!=	${MAKE} -C ${.CURDIR}/../caddy  -v '$${DISTVERSIONPREFIX}$${DISTVERSION}'
 
 .for plugin in ${CADDY_CUSTOM_PLUGINS}
 PLUGINS+=	--with ${plugin}
 .endfor
-
-# Extract the first three numbers from CADDY_VERSION and prepend with 'v'
-BUILDVERSION= v${CADDY_VERSION:C/^([0-9]+)\.([0-9]+)\.([0-9]+).*/\1.\2.\3/}
 
 XCADDY_GO_BUILD_FLAGS?=	${GO_BUILDFLAGS}
 
@@ -44,7 +42,7 @@ XCADDY_ENV+=	XCADDY_WHICH_GO="${GO_CMD}" \
 
 do-build:
 	${MKDIR} ${WRKSRC}
-	cd ${WRKSRC} && ${XCADDY_ENV} ${LOCALBASE}/bin/xcaddy build ${BUILDVERSION} ${PLUGINS}
+	cd ${WRKSRC} && ${XCADDY_ENV} ${LOCALBASE}/bin/xcaddy build ${CADDY_BUILD} ${PLUGINS}
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/caddy ${STAGEDIR}${PREFIX}/bin
