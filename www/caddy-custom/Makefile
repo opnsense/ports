@@ -27,9 +27,9 @@ SUB_FILES=	caddy
 
 PLIST_FILES=	bin/caddy
 
+CADDY_BUILD!=	${MAKE} -C ${.CURDIR}/../caddy  -v '$${DISTVERSIONPREFIX}$${DISTVERSION}'
 CADDY_VERSION!=	${MAKE} -C ${.CURDIR}/../caddy  -v '$${DISTVERSION}.$${PORTREVISION}'
 XCADDY_VERSION!=${MAKE} -C ${.CURDIR}/../xcaddy -v '$${DISTVERSION}.$${PORTREVISION}'
-CADDY_BUILD!=	${MAKE} -C ${.CURDIR}/../caddy  -v '$${DISTVERSIONPREFIX}$${DISTVERSION}'
 
 .for plugin in ${CADDY_CUSTOM_PLUGINS}
 PLUGINS+=	--with ${plugin}
