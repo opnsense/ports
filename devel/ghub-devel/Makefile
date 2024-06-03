@@ -1,7 +1,7 @@
 PORTNAME=	ghub
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.6.0-26
-DISTVERSIONSUFFIX=	-ge0a6545
+DISTVERSION=	3.6.0-35
+DISTVERSIONSUFFIX=	-g1df5298
 CATEGORIES=	devel elisp
 PKGNAMESUFFIX=	-devel${EMACS_PKGNAMESUFFIX}
 
@@ -12,9 +12,9 @@ WWW=		https://github.com/magit/ghub
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.4:misc/compat.el@${EMACS_FLAVOR} \
+BUILD_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.5:misc/compat.el@${EMACS_FLAVOR} \
 		treepy.el${EMACS_PKGNAMESUFFIX}>=0.1.2:devel/treepy.el@${EMACS_FLAVOR}
-RUN_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.4:misc/compat.el@${EMACS_FLAVOR} \
+RUN_DEPENDS=	compat.el${EMACS_PKGNAMESUFFIX}>=29.1.4.5:misc/compat.el@${EMACS_FLAVOR} \
 		treepy.el${EMACS_PKGNAMESUFFIX}>=0.1.2:devel/treepy.el@${EMACS_FLAVOR}
 
 USES=		emacs gmake makeinfo
@@ -39,7 +39,6 @@ PDF_DESC=	Build and install PDF document
 DOCS_BUILD_DEPENDS=	gsed:textproc/gsed
 DOCS_ALL_TARGET=	html
 DOCS_BINARY_ALIAS=	sed=gsed
-PDF_BROKEN=		Does not build with texinfo
 PDF_BUILD_DEPENDS=	texi2pdf:print/texinfo
 PDF_USES=		tex
 PDF_USE=		TEX=dvipdfmx:build

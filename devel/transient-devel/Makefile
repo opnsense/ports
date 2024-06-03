@@ -1,7 +1,7 @@
 PORTNAME=	transient
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.6.0-17
-DISTVERSIONSUFFIX=	-g2dd0102
+DISTVERSION=	0.6.0-30
+DISTVERSIONSUFFIX=	-g0dd6438
 CATEGORIES=	devel elisp
 PKGNAMESUFFIX=	-devel${EMACS_PKGNAMESUFFIX}
 
@@ -38,7 +38,6 @@ PDF_DESC=	Build and install PDF document
 DOCS_BUILD_DEPENDS=	gsed:textproc/gsed
 DOCS_ALL_TARGET=	html
 DOCS_BINARY_ALIAS=	sed=gsed
-PDF_BROKEN=		Does not build with texinfo
 PDF_BUILD_DEPENDS=	texi2pdf:print/texinfo
 PDF_USES=		tex
 PDF_USE=		TEX=dvipdfmx:build
