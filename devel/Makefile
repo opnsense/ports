@@ -1722,6 +1722,7 @@
     SUBDIR += ocaml-cppo
     SUBDIR += ocaml-csexp
     SUBDIR += ocaml-cstruct
+    SUBDIR += ocaml-curses
     SUBDIR += ocaml-domain-name
     SUBDIR += ocaml-dune
     SUBDIR += ocaml-extlib
@@ -6619,6 +6620,7 @@
     SUBDIR += rubygem-aws-sdk-supportapp
     SUBDIR += rubygem-aws-sdk-swf
     SUBDIR += rubygem-aws-sdk-synthetics
+    SUBDIR += rubygem-aws-sdk-taxsettings
     SUBDIR += rubygem-aws-sdk-textract
     SUBDIR += rubygem-aws-sdk-timestreaminfluxdb
     SUBDIR += rubygem-aws-sdk-timestreamquery
