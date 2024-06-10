@@ -361,6 +361,7 @@
     SUBDIR += cargo-leptos
     SUBDIR += cargo-llvm-cov
     SUBDIR += cargo-mutants
+    SUBDIR += cargo-spellcheck
     SUBDIR += cargo-tarpaulin
     SUBDIR += cargo-udeps
     SUBDIR += cask
@@ -827,6 +828,7 @@
     SUBDIR += git-subrepo
     SUBDIR += git-svn
     SUBDIR += git-town
+    SUBDIR += git-tui
     SUBDIR += git-workspace
     SUBDIR += gitaly
     SUBDIR += gitflow
@@ -872,6 +874,7 @@
     SUBDIR += go-bindata
     SUBDIR += go-bindata-assetfs
     SUBDIR += go-git
+    SUBDIR += go-mode.el
     SUBDIR += go-perf
     SUBDIR += go-protobuf
     SUBDIR += go-tools
@@ -7054,7 +7057,6 @@
     SUBDIR += rubygem-gettext
     SUBDIR += rubygem-gettext-setup
     SUBDIR += rubygem-gettext_i18n_rails
-    SUBDIR += rubygem-gettext_i18n_rails111
     SUBDIR += rubygem-gettext_i18n_rails_js
     SUBDIR += rubygem-gettext_i18n_rails_js-rails5
     SUBDIR += rubygem-gettext_i18n_rails_js-rails50
@@ -7911,6 +7913,7 @@
     SUBDIR += stxxl
     SUBDIR += stylua
     SUBDIR += styx
+    SUBDIR += subprocess
     SUBDIR += subversion
     SUBDIR += subversion-book
     SUBDIR += subversion-lts
