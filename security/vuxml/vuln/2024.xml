@@ -1,3 +1,194 @@
+  <vuln vid="219aaa1e-2aff-11ef-ab37-5404a68ad561">
+    <topic>traefik -- Unexpected behavior with IPv4-mapped IPv6 addresses</topic>
+    <affects>
+      <package>
+	<name>traefik</name>
+	<range><lt>2.11.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The traefik authors report:</p>
+	<blockquote cite="https://github.com/traefik/traefik/security/advisories/GHSA-7jmw-8259-q9jx">
+	  <p>There is a vulnerability in Go managing various Is methods
+	     (IsPrivate, IsLoopback, etc) for IPv4-mapped IPv6 addresses.
+	     They didn't work as expected returning false for addresses
+	     which would return true in their traditional IPv4 forms.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-24790</cvename>
+      <url>https://github.com/traefik/traefik/security/advisories/GHSA-7jmw-8259-q9jx</url>
+    </references>
+    <dates>
+      <discovery>2024-06-05</discovery>
+       <entry>2024-06-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a5c64f6f-2af3-11ef-a77e-901b0e9408dc">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go122</name>
+	<range><lt>1.22.4</lt></range>
+      </package>
+      <package>
+	<name>go121</name>
+	<range><lt>1.21.11</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://go.dev/issue/66869">
+	  <p>archive/zip: mishandling of corrupt central directory record</p>
+	  <p>The archive/zip package's handling of certain types of
+	  invalid zip files differed from the behavior of most zip
+	  implementations. This misalignment could be exploited to
+	  create an zip file with contents that vary depending on the
+	  implementation reading the file. The archive/zip package now
+	  rejects files containing these errors.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/67680">
+	  <p>net/netip: unexpected behavior from Is methods for
+	  IPv4-mapped IPv6 addresses</p>
+	  <p>The various Is methods (IsPrivate, IsLoopback, etc) did
+	  not work as expected for IPv4-mapped IPv6 addresses,
+	  returning false for addresses which would return true in
+	  their traditional IPv4 forms.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-24789</cvename>
+      <cvename>CVE-2024-24790</cvename>
+      <url>https://groups.google.com/g/golang-announce/c/XbxouI9gY7k/m/TuoGEhxIEwAJ</url>
+    </references>
+    <dates>
+      <discovery>2024-06-04</discovery>
+      <entry>2024-06-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="92cd1c03-2940-11ef-bc02-001b217b3468">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.0.0</ge><lt>17.0.2</lt></range>
+	<range><ge>16.11.0</ge><lt>16.11.4</lt></range>
+	<range><ge>5.1</ge><lt>16.10.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/06/12/patch-release-gitlab-17-0-2-released/">
+	  <p>ReDoS in gomod dependency linker</p>
+	  <p>ReDoS in CI interpolation (fix bypass)</p>
+	  <p>ReDoS in Asana integration issue mapping when webhook is called</p>
+	  <p>XSS and content injection when viewing raw XHTML files on iOS devices</p>
+	  <p>Missing agentk request validation could cause KAS to panic</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-1495</cvename>
+      <cvename>CVE-2024-1736</cvename>
+      <cvename>CVE-2024-1963</cvename>
+      <cvename>CVE-2024-4201</cvename>
+      <cvename>CVE-2024-5469</cvename>
+      <url>https://about.gitlab.com/releases/2024/06/12/patch-release-gitlab-17-0-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-06-12</discovery>
+      <entry>2024-06-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="479df73e-2838-11ef-9cab-4ccc6adda413">
+    <topic>plasma[56]-plasma-workspace -- Unauthorized users can access session manager</topic>
+    <affects>
+      <package>
+	<name>plasma5-plasma-workspace</name>
+	<range><lt>5.27.11.1</lt></range>
+      </package>
+      <package>
+	<name>plasma6-plasma-workspace</name>
+	<range><lt>6.0.4_2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>David Edmundson reports:</p>
+	<blockquote cite="https://kde.org/info/security/advisory-20240531-1.txt">
+	  <p>KSmserver, KDE's XSMP manager, incorrectly allows connections via ICE
+	    based purely on the host, allowing all local connections. This allows
+	    another user on the same machine to gain access to the session
+	    manager.</p>
+	  <p>A well crafted client could use the session restore feature to execute
+	    arbitrary code as the user on the next boot.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-36041</cvename>
+      <url>https://kde.org/info/security/advisory-20240531-1.txt</url>
+    </references>
+    <dates>
+      <discovery>2024-05-31</discovery>
+      <entry>2024-06-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5f608c68-276c-11ef-8caa-0897988a1c07">
+    <topic>Composer -- Multiple command injections via malicious git/hg branch names</topic>
+    <affects>
+      <package>
+	<name>php81-composer</name>
+	<range><lt>2.7.7</lt></range>
+      </package>
+      <package>
+	<name>php82-composer</name>
+	<range><lt>2.7.7</lt></range>
+      </package>
+      <package>
+	<name>php83-composer</name>
+	<range><lt>2.7.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Composer project reports:</p>
+	<blockquote cite="https://github.com/composer/composer/security/advisories/GHSA-47f6-5gq3-vx9c">
+	  <p>The status, reinstall and remove commands with packages
+	  installed from source via git containing specially crafted
+	  branch names in the repository can be used to execute
+	  code.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/composer/composer/security/advisories/GHSA-v9qv-c7wm-wgmf">
+	  <p>The composer install command running inside a git/hg
+	  repository which has specially crafted branch names can
+	  lead to command injection. So this requires cloning
+	  untrusted repositories.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-35241</cvename>
+      <url>https://github.com/composer/composer/security/advisories/GHSA-47f6-5gq3-vx9c</url>
+      <cvename>CVE-2024-35242</cvename>
+      <url>https://github.com/composer/composer/security/advisories/GHSA-v9qv-c7wm-wgmf</url>
+    </references>
+    <dates>
+      <discovery>2024-06-10</discovery>
+      <entry>2024-06-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="91929399-249e-11ef-9296-b42e991fc52e">
     <topic>kanboard -- Project Takeover via IDOR in ProjectPermissionController</topic>
     <affects>
