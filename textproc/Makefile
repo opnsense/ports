@@ -481,7 +481,6 @@
     SUBDIR += mdocml
     SUBDIR += meilisearch
     SUBDIR += meld
-    SUBDIR += mergestat
     SUBDIR += metauml
     SUBDIR += mgdiff
     SUBDIR += mi-aspell
@@ -1887,12 +1886,14 @@
     SUBDIR += rubygem-representable
     SUBDIR += rubygem-reverse_markdown
     SUBDIR += rubygem-rexml
+    SUBDIR += rubygem-rexml32
     SUBDIR += rubygem-ri_cal
     SUBDIR += rubygem-rly
     SUBDIR += rubygem-rmmseg-cpp
     SUBDIR += rubygem-ronn
     SUBDIR += rubygem-rouge
     SUBDIR += rubygem-rouge3
+    SUBDIR += rubygem-rouge42
     SUBDIR += rubygem-rttool
     SUBDIR += rubygem-ruby-augeas
     SUBDIR += rubygem-ruby-xslt

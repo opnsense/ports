@@ -1,6 +1,5 @@
 PORTNAME=	telegram-desktop
-DISTVERSION=	5.1.5
-PORTREVISION=	3
+DISTVERSION=	5.1.7
 CATEGORIES=	net-im
 MASTER_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/v${DISTVERSION}/
 DISTNAME=	tdesktop-${DISTVERSION}-full
@@ -134,16 +133,16 @@ post-extract:
 		${WRKSRC}/Telegram/ThirdParty/hime \
 		${WRKSRC}/Telegram/ThirdParty/hunspell \
 		${WRKSRC}/Telegram/ThirdParty/jemalloc \
+		${WRKSRC}/Telegram/ThirdParty/jimf \
+		${WRKSRC}/Telegram/ThirdParty/kcoreaddons \
+		${WRKSRC}/Telegram/ThirdParty/kimageformats \
 		${WRKSRC}/Telegram/ThirdParty/lz4 \
 		${WRKSRC}/Telegram/ThirdParty/minizip \
-		${WRKSRC}/Telegram/ThirdParty/jimf \
 		${WRKSRC}/Telegram/ThirdParty/plasma-wayland-protocols \
 		${WRKSRC}/Telegram/ThirdParty/range-v3 \
 		${WRKSRC}/Telegram/ThirdParty/wayland \
 		${WRKSRC}/Telegram/ThirdParty/wayland-protocols \
-		${WRKSRC}/Telegram/ThirdParty/xxHash \
-		${WRKSRC}/Telegram/ThirdParty/kcoreaddons \
-		${WRKSRC}/Telegram/ThirdParty/kimageformats
+		${WRKSRC}/Telegram/ThirdParty/xxHash
 
 post-patch:
 	# XXX fix the following on every source file

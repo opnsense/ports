@@ -1,6 +1,7 @@
 PORTNAME=	cargo-spellcheck
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.14.0
+PORTREVISION=	1
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -18,6 +19,8 @@ USES=		cargo llvm
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	drahnr
+
+RUSTFLAGS=	${ARCH:S/i386/YES/:C/^[a-z].*//:S/YES/-C target-feature=+sse,+sse2/} # add sse sse2 target-features only on i386
 
 CARGO_CRATES=	addr2line-0.21.0 \
 		adler-1.0.2 \

@@ -1,5 +1,6 @@
 PORTNAME=	ncdu
 PORTVERSION=	2.4
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://dev.yorhel.nl/download/
 PKGNAMESUFFIX=	2
@@ -12,7 +13,7 @@ WWW=		https://dev.yorhel.nl/ncdu \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSES/MIT.txt
 
-BUILD_DEPENDS=	zig>=0.12<0.12_99:lang/zig
+BUILD_DEPENDS=	zig>=0.12.0<0.12.1_99:lang/zig
 
 USES=		ncurses
 

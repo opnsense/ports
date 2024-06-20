@@ -56,7 +56,6 @@
     SUBDIR += anyremote2html
     SUBDIR += apache-mode.el
     SUBDIR += apache24
-    SUBDIR += apt-cacher-ng
     SUBDIR += aquatone
     SUBDIR += archiva
     SUBDIR += aria2
@@ -75,7 +74,6 @@
     SUBDIR += bareos21-webui
     SUBDIR += bareos22-webui
     SUBDIR += beehive
-    SUBDIR += bkmrkconv
     SUBDIR += bluefish
     SUBDIR += bolt
     SUBDIR += bozohttpd
@@ -99,7 +97,6 @@
     SUBDIR += cgicc
     SUBDIR += cgiwrap
     SUBDIR += checkbot
-    SUBDIR += chems
     SUBDIR += chisel
     SUBDIR += choqok
     SUBDIR += chpasswd
@@ -122,10 +119,8 @@
     SUBDIR += cpr
     SUBDIR += crawl
     SUBDIR += css-mode.el
-    SUBDIR += cssed
     SUBDIR += csso
     SUBDIR += csstidy
-    SUBDIR += ctemplate
     SUBDIR += cutelyst
     SUBDIR += darkhttpd
     SUBDIR += dasherr
@@ -221,7 +216,6 @@
     SUBDIR += gohugo
     SUBDIR += googlebook_dl
     SUBDIR += googler
-    SUBDIR += goose
     SUBDIR += gophernicus
     SUBDIR += gopherus
     SUBDIR += gotty
@@ -299,7 +293,6 @@
     SUBDIR += kohana
     SUBDIR += ladybird
     SUBDIR += lagrange
-    SUBDIR += larbin
     SUBDIR += libapreq2
     SUBDIR += libdatachannel
     SUBDIR += libdom
@@ -315,7 +308,6 @@
     SUBDIR += libresonic-standalone
     SUBDIR += librespeed
     SUBDIR += librewolf
-    SUBDIR += librtcdcpp
     SUBDIR += libwpe
     SUBDIR += libwww
     SUBDIR += lightsquid
@@ -1490,32 +1482,6 @@
     SUBDIR += py-cssutils
     SUBDIR += py-daphne
     SUBDIR += py-dj-database-url
-    SUBDIR += py-dj42-channels
-    SUBDIR += py-dj42-django-allauth
-    SUBDIR += py-dj42-django-auth-ldap
-    SUBDIR += py-dj42-django-cors-headers
-    SUBDIR += py-dj42-django-crispy-forms
-    SUBDIR += py-dj42-django-debug-toolbar
-    SUBDIR += py-dj42-django-extensions
-    SUBDIR += py-dj42-django-filter
-    SUBDIR += py-dj42-django-graphiql-debug-toolbar
-    SUBDIR += py-dj42-django-guardian
-    SUBDIR += py-dj42-django-js-asset
-    SUBDIR += py-dj42-django-modelcluster
-    SUBDIR += py-dj42-django-mptt
-    SUBDIR += py-dj42-django-otp
-    SUBDIR += py-dj42-django-permissionedforms
-    SUBDIR += py-dj42-django-prometheus
-    SUBDIR += py-dj42-django-redis
-    SUBDIR += py-dj42-django-rich
-    SUBDIR += py-dj42-django-tables2
-    SUBDIR += py-dj42-django-taggit
-    SUBDIR += py-dj42-django-timezone-field
-    SUBDIR += py-dj42-django-treebeard
-    SUBDIR += py-dj42-djangoql
-    SUBDIR += py-dj42-djangorestframework
-    SUBDIR += py-dj42-drf-spectacular
-    SUBDIR += py-dj42-drf-spectacular-sidecar
     SUBDIR += py-django-admin-rangefilter
     SUBDIR += py-django-advanced-filters
     SUBDIR += py-django-allauth
@@ -1797,6 +1763,7 @@
     SUBDIR += py-pyweblib
     SUBDIR += py-pywikibot
     SUBDIR += py-pywry
+    SUBDIR += py-qh3
     SUBDIR += py-qt5-webengine
     SUBDIR += py-qt6-webengine
     SUBDIR += py-quilt3
@@ -2346,7 +2313,6 @@
     SUBDIR += slowcgi
     SUBDIR += slowhttptest
     SUBDIR += smarty
-    SUBDIR += smarty2
     SUBDIR += smarty3
     SUBDIR += smarty4
     SUBDIR += smb_auth
@@ -2489,7 +2455,6 @@
     SUBDIR += vdradmin-am
     SUBDIR += vertx
     SUBDIR += vger
-    SUBDIR += vieb
     SUBDIR += vigil
     SUBDIR += vimb
     SUBDIR += visitors

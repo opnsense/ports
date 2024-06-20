@@ -203,6 +203,7 @@
     SUBDIR += qt6-virtualkeyboard
     SUBDIR += qt6pas
     SUBDIR += qtermwidget
+    SUBDIR += qtermwidget-qt5
     SUBDIR += qwt5-qt5
     SUBDIR += qwt6
     SUBDIR += redkite
@@ -245,6 +246,7 @@
     SUBDIR += vte3
     SUBDIR += wlroots
     SUBDIR += wlroots-devel
+    SUBDIR += wlroots-hyprland
     SUBDIR += wlroots015
     SUBDIR += wlroots016
     SUBDIR += wmapp

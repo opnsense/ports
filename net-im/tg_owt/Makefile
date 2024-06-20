@@ -1,12 +1,11 @@
 PORTNAME=	tg_owt
 PORTVERSION=	0.0.20231221
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	net-im
 
 PATCH_SITES=	https://github.com/desktop-app/tg_owt/commit/
-PATCHFILES=	a264c3311dec000dbe2ad8e3c819364f409d7897.patch \
-		62672f3756ecf218252098211d78c13369ab6d28.patch
-PATCH_DIST_STRIP=	-p1
+PATCHFILES=	a264c3311dec000dbe2ad8e3c819364f409d7897.patch:-p1 \
+		62672f3756ecf218252098211d78c13369ab6d28.patch:-p1
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Webrtc library used by telegram-desktop
@@ -35,12 +34,16 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	desktop-app
 GH_TAGNAME=	afd9d5d
 
+CMAME_ON=	TG_OWT_PACKAGED_BUILD
+
 # libyuv cloned from https://chromium.googlesource.com/libyuv/libyuv
 # when updating port check if hash tag in the submodule was updated
-GH_TUPLE=	klemensn:libyuv:3aae5c7:libyuv/src/third_party/libyuv
+GH_TUPLE=	osokin:libyuv:04821d1:libyuv/src/third_party/libyuv
 
 post-extract:
-		${RM} -rf \
+	${RM} -rf \
+		${WRKSRC}/src/sdk/android \
+		${WRKSRC}/src/sdk/objc \
 		${WRKSRC}/src/third_party/abseil-cpp \
 		${WRKSRC}/src/third_party/crc32c \
 		${WRKSRC}/src/third_party/libsrtp \
@@ -48,5 +51,20 @@ post-extract:
 		${WRKSRC}/src/third_party/libvpx \
 		${WRKSRC}/src/third_party/openh264 \
 		${WRKSRC}/src/third_party/yasm
+
+# remove more sources not needed to build telegram-desktop, they are however
+# required at tg_owt configure-time even though they are not built, see
+# nice_target_sources()/remove_target_sources() calls in CMakeLists.txt
+post-configure:
+	${RM} -rf \
+		${WRKSRC}/src/modules/audio_device/android \
+		${WRKSRC}/src/modules/audio_device/mac \
+		${WRKSRC}/src/modules/audio_device/win \
+		${WRKSRC}/src/modules/desktop_capture/mac \
+		${WRKSRC}/src/modules/desktop_capture/wayland \
+		${WRKSRC}/src/modules/desktop_capture/win \
+		${WRKSRC}/src/modules/video_capture/windows \
+		${WRKSRC}/src/rtc_base/win \
+		${WRKSRC}/src/rtc_base/win32*.h
 
 .include <bsd.port.mk>
