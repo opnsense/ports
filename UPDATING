@@ -5,6 +5,30 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20240615:
+  AFFECTS: mail/cyrus-imapd25
+  AUTHOR: ume@FreeBSD.org
+
+  The BDB option is disabled by default.
+
+  If you are using the berkeley cyrusdb backend, we strongly recommend
+  that you switch to something other than the berkeley cyrusdb
+  backend.  If you want to continue using the berkeley cyrusdb
+  backend, build the cyrus-imapd25 port yourself with the BDB option
+  enabled.
+
+20240613:
+  AFFECTS: multimedia/audacios and multimedia/audacious-plugins
+  AUTHOR: madpilot@FreeBSD.org
+
+  Upstream project made qt6 the new default, so the port flavors have
+  been updated to follow this change.
+
+  If you are using the qt6 flavor, you should uninstall it and install
+  the unflavored package. If you want to keep using the qt5 version it
+  will be updated automatically to the qt6 version. If you should
+  uninstall the unflavored package and instal the qt5 version.
+
 20240606:
   AFFECTS: users of net-mgmt/unifi8
   AUTHOR: ronald@FreeBSD.org
