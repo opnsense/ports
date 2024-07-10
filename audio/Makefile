@@ -35,7 +35,6 @@
     SUBDIR += asmixer
     SUBDIR += asterisk-espeak
     SUBDIR += asterisk-flite
-    SUBDIR += asunder
     SUBDIR += atracdenc
     SUBDIR += atunes
     SUBDIR += aubio
@@ -889,6 +888,7 @@
     SUBDIR += xsynth-dssi
     SUBDIR += xuidesigner
     SUBDIR += xwave
+    SUBDIR += xwax
     SUBDIR += yell
     SUBDIR += ympd
     SUBDIR += yoshimi

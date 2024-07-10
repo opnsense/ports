@@ -363,7 +363,6 @@
     SUBDIR += inkscape
     SUBDIR += inkscape-open-symbols
     SUBDIR += instant-meshes
-    SUBDIR += intel-backlight
     SUBDIR += intergif
     SUBDIR += ipe
     SUBDIR += jalbum
@@ -772,7 +771,6 @@
     SUBDIR += p5-VCG
     SUBDIR += p5-Visio
     SUBDIR += p5-feedgnuplot
-    SUBDIR += p5-ming
     SUBDIR += panoglview
     SUBDIR += panomatic
     SUBDIR += partio
@@ -885,6 +883,7 @@
     SUBDIR += py-colorz
     SUBDIR += py-colour
     SUBDIR += py-descartes
+    SUBDIR += py-diplib
     SUBDIR += py-django-easy-thumbnails
     SUBDIR += py-djvulibre
     SUBDIR += py-exifread
@@ -924,7 +923,6 @@
     SUBDIR += py-mayavi
     SUBDIR += py-mcomix
     SUBDIR += py-mgwr
-    SUBDIR += py-ming
     SUBDIR += py-moderngl
     SUBDIR += py-moderngl-window
     SUBDIR += py-momepy
@@ -1214,7 +1212,6 @@
     SUBDIR += wayland-protocols
     SUBDIR += wayland-utils
     SUBDIR += waylandpp
-    SUBDIR += wdune
     SUBDIR += webp
     SUBDIR += webp-pixbuf-loader
     SUBDIR += wings

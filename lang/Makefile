@@ -95,10 +95,10 @@
     SUBDIR += gcc12-devel
     SUBDIR += gcc13
     SUBDIR += gcc13-devel
+    SUBDIR += gcc14
     SUBDIR += gcc14-devel
     SUBDIR += gcc15-devel
     SUBDIR += gcc6-aux
-    SUBDIR += gcc9
     SUBDIR += gforth
     SUBDIR += ghc
     SUBDIR += ghc810
@@ -145,7 +145,6 @@
     SUBDIR += hs-koka
     SUBDIR += hs-unlambda
     SUBDIR += huc
-    SUBDIR += icc
     SUBDIR += inko
     SUBDIR += intel-compute-runtime
     SUBDIR += intercal
@@ -268,7 +267,6 @@
     SUBDIR += pbasic
     SUBDIR += pcc
     SUBDIR += perl5-devel
-    SUBDIR += perl5.34
     SUBDIR += perl5.36
     SUBDIR += perl5.38
     SUBDIR += perl5.40
@@ -284,6 +282,7 @@
     SUBDIR += php83-extensions
     SUBDIR += picoc
     SUBDIR += picolisp
+    SUBDIR += pkl
     SUBDIR += plexil
     SUBDIR += pocl
     SUBDIR += polyml

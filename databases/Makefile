@@ -820,7 +820,6 @@
     SUBDIR += py-sqlalchemy-migrate
     SUBDIR += py-sqlalchemy-utils
     SUBDIR += py-sqlalchemy10
-    SUBDIR += py-sqlalchemy13
     SUBDIR += py-sqlalchemy14
     SUBDIR += py-sqlalchemy20
     SUBDIR += py-sqlcipher3
@@ -842,6 +841,7 @@
     SUBDIR += py-whisper
     SUBDIR += py-xapian
     SUBDIR += py-zodbpickle
+    SUBDIR += pythoncego
     SUBDIR += qdbm
     SUBDIR += qdbm-plus
     SUBDIR += qdrant

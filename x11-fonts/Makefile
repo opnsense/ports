@@ -199,8 +199,10 @@
     SUBDIR += noto-kufi-arabic
     SUBDIR += noto-music
     SUBDIR += noto-naskh-arabic
+    SUBDIR += noto-naskh-arabic-ui
     SUBDIR += noto-sans
     SUBDIR += noto-sans-arabic
+    SUBDIR += noto-sans-arabic-ui
     SUBDIR += noto-sans-armenian
     SUBDIR += noto-sans-bengali
     SUBDIR += noto-sans-cham

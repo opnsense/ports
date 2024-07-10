@@ -1,6 +1,5 @@
 PORTNAME=	sssd
-PORTVERSION=	2.9.4
-PORTREVISION=	5
+PORTVERSION=	2.9.5
 CATEGORIES=	security
 PKGNAMESUFFIX=	2
 
@@ -13,7 +12,8 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 CONFLICTS_INSTALL?=	sssd*
 
-BUILD_DEPENDS=	bash:shells/bash \
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		bash:shells/bash \
 		docbook-xsl>=1:textproc/docbook-xsl \
 		krb5>=1.20:security/krb5 \
 		p11-kit:security/p11-kit \
