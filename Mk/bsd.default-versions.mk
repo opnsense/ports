@@ -56,7 +56,7 @@ FPC_DEFAULT?=		3.2.3
 .  else
 FPC_DEFAULT?=		3.3.1
 .  endif
-# Possible values: 9, 10, 11, 12, 13, 14, 15
+# Possible values: 10, 11, 12, 13, 14, 15
 # (Any other version is completely unsupported and not meant for general use.)
 GCC_DEFAULT?=		13
 # Possible values: 10
@@ -105,11 +105,11 @@ MONO_DEFAULT?=		5.20
 MYSQL_DEFAULT?=		8.0
 # Possible values: ninja, samurai
 NINJA_DEFAULT?=		ninja
-# Possible value: 18, 20, 21, 22, current, lts (Note: current = 22 and lts = 20)
+# Possible value: 18, 20, 22, current, lts (Note: current = 22 and lts = 20)
 NODEJS_DEFAULT?=	lts
 # Possible value: 25, 26
 OPENLDAP_DEFAULT?=	26
-# Possible values: 5.34, 5.36, 5.38, 5.40, devel
+# Possible values: 5.36, 5.38, 5.40, devel
 .  if !exists(${LOCALBASE}/bin/perl) || (!defined(_PORTS_ENV_CHECK) && \
     defined(PACKAGE_BUILDING))
 # When changing the default here, make sure the DEPRECATED/EXPIRATION lines in

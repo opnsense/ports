@@ -5,6 +5,65 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20240705:
+  AFFECTS: sysutils/bacula*-{client,server}
+  AUTHOR: netchildFreeBSD.org
+
+  The start scripts of bacula have been renamed to bacula_fd, bacula_dir and
+  bacula_sd for improved compatibility with other parts of the
+  system. The automatic start at boot (rc.conf variable settings) is
+  not affected, but if you have some other automatism you may want to
+  change
+    ".../etc/rc.d/bacula-fd"  to ".../etc/rc.d/bacula_fd"
+    ".../etc/rc.d/bacula-dir" to ".../etc/rc.d/bacula_dir"
+    ".../etc/rc.d/bacula-sd"  to ".../etc/rc.d/bacula_sd"
+  or
+    "service bacula-fd ..."  to "service bacula_fd ..."
+    "service bacula-dir ..." to "service bacula_dir ..."
+    "service bacula-sd ..."  to "service bacula_sd ..."
+
+20240704:
+  AFFECTS: net/xrdp and x11-drivers/xorgxrdp
+  AUTHOR: meta@FreeBSD.org
+
+  xrdp has been updated to the releases of the latest stable branch v0.10.
+  This version significantly improves performance improvement especially if the
+  client is Windows 11. There are to things to be careful about when updating.
+
+  1) Make sure to update both net/xrdp and x11-drivers/xorgxrdp ports
+     simultaneously.
+  2) Config files require manual migration (follow the steps below).
+
+  Review and backup changes you made to xrdp.ini and sesman.ini before updating
+  xrdp. The following example only mentions xrdp.ini however make sure to do the
+  same review, backup and migration for sesman.ini as well.
+
+  Before updating xrdp, review and backup your changes.
+
+  # cd /usr/local/etc/xrdp
+  # diff -u xrdp.ini.sample xrdp.ini > xrdp.ini.diff
+
+  After updating xrdp, migrate your changes to new configuration files.
+  xrdp.ini.sample is replaced with new version at this point. See diff and
+  manually apply changes.
+
+  # cp xrdp.ini.sample xrdp.ini
+  # vi xrdp.ini
+
+20240620:
+  AFFECTS: net-mgmt/net-snmp
+  AUTHOR: markj@FreeBSD.org
+
+  The snmpd and snmptrapd daemons now drop privileges by default when started
+  using the rc scripts provided in the package.  Make sure that snmpd
+  configuration in /usr/local/share/snmp is readable by the "snmpd" user.  If
+  you have defined extension scripts in snmpd.conf, make sure that they can be
+  executed by an unprivileged user.  To revert to the old behavior of always
+  running as root, set snmpd_sugid="NO" or snmptrapd_sugid="NO" in /etc/rc.conf.
+
+  See the snmpd rc script for a hint on how to debug any permission problems
+  that might arise as a result of this change.
+
 20240615:
   AFFECTS: mail/cyrus-imapd25
   AUTHOR: ume@FreeBSD.org
@@ -41,6 +100,10 @@ you update your ports collection, before attempting any port upgrades.
   For an in-place upgrade it is important that the MongoDB
   'featureCompatibilityVersion' is set to 5.0.
   See: https://www.mongodb.com/docs/v6.0/release-notes/6.0-upgrade-standalone/#feature-compatibility-version
+  Run these commands in mongodb50 before upgrading (e.g. while unifi is running):
+  $ mongo --port 27117
+  > db.adminCommand( { setFeatureCompatibilityVersion: "5.0" } )
+  > exit
 
   See updating entry 20230310 for a backup/restore upgrade.
 
