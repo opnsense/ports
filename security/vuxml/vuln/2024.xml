@@ -1,3 +1,224 @@
+  <vuln vid="3b018063-4358-11ef-b611-84a93843eb75">
+    <topic>MySQL -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mysql80-client</name>
+	<range><lt>8.0.38</lt></range>
+      </package>
+      <package>
+	<name>mysql80-server</name>
+	<range><lt>8.0.38</lt></range>
+      </package>
+      <package>
+	<name>mysql81-client</name>
+	<range><lt>8.1.1</lt></range>
+      </package>
+      <package>
+	<name>mysql80-server</name>
+	<range><lt>8.1.1</lt></range>
+      </package>
+      <package>
+	<name>mysql84-client</name>
+	<range><lt>8.4.1</lt></range>
+      </package>
+      <package>
+	<name>mysql84-server</name>
+	<range><lt>8.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oracle reports:</p>
+	<blockquote cite="https://www.oracle.com/security-alerts/cpujul2024.html#MySQL">
+	  <p>36 new security patches for Oracle MySQL. 11 of these vulnerabilities
+	    may be remotely exploitable without authentication, i.e., may be
+	    exploited over a network without requiring user credentials.
+	    The highest CVSS v3.1 Base Score of vulnerabilities affecting Oracle
+	    MySQL is 9.8.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://www.oracle.com/security-alerts/cpujul2024.html#MySQL</url>
+    </references>
+    <dates>
+      <discovery>2024-07-16</discovery>
+      <entry>2024-07-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6410f91d-1214-4f92-b7e0-852e39e265f9">
+    <topic>electron30 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron30</name>
+	<range><lt>30.2.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v30.2.0">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-5493.</li>
+	    <li>Security: backported fix for CVE-2024-5831.</li>
+	    <li>Security: backported fix for CVE-2024-5832.</li>
+	    <li>Security: backported fix for CVE-2024-6100.</li>
+	    <li>Security: backported fix for CVE-2024-6101.</li>
+	    <li>Security: backported fix for CVE-2024-6103.</li>
+	    <li>Security: backported fix for CVE-2024-6291.</li>
+	    <li>Security: backported fix for CVE-2024-6293.</li>
+	    <li>Security: backported fix for CVE-2024-6290.</li>
+	    <li>Security: backported fix for CVE-2024-6292.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-5493</cvename>
+      <url>https://github.com/advisories/GHSA-f6rr-qfxh-hcf9</url>
+      <cvename>CVE-2024-5831</cvename>
+      <url>https://github.com/advisories/GHSA-9pmm-wf44-xjqc</url>
+      <cvename>CVE-2024-5832</cvename>
+      <url>https://github.com/advisories/GHSA-rw9q-cwc5-qqp5</url>
+      <cvename>CVE-2024-6100</cvename>
+      <url>https://github.com/advisories/GHSA-g779-vpj7-v6c4</url>
+      <cvename>CVE-2024-6101</cvename>
+      <url>https://github.com/advisories/GHSA-rg42-f9ww-x3w7</url>
+      <cvename>CVE-2024-6103</cvename>
+      <url>https://github.com/advisories/GHSA-ph5m-227m-fc5g</url>
+      <cvename>CVE-2024-6291</cvename>
+      <url>https://github.com/advisories/GHSA-rpvg-h6p6-42qj</url>
+      <cvename>CVE-2024-6293</cvename>
+      <url>https://github.com/advisories/GHSA-9f8f-453p-rg87</url>
+      <cvename>CVE-2024-6290</cvename>
+      <url>https://github.com/advisories/GHSA-r5mh-qgc2-26p2</url>
+      <cvename>CVE-2024-6292</cvename>
+      <url>https://github.com/advisories/GHSA-m848-8f5r-6j4g</url>
+    </references>
+    <dates>
+      <discovery>2024-07-10</discovery>
+      <entry>2024-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="55d4a92f-c75f-43e8-ab1f-4a0efc9795c4">
+    <topic>electron29 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron29</name>
+	<range><lt>29.4.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v29.4.4">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-6291.</li>
+	    <li>Security: backported fix for CVE-2024-6293.</li>
+	    <li>Security: backported fix for CVE-2024-6290.</li>
+	    <li>Security: backported fix for CVE-2024-6292.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6291</cvename>
+      <url>https://github.com/advisories/GHSA-rpvg-h6p6-42qj</url>
+      <cvename>CVE-2024-6293</cvename>
+      <url>https://github.com/advisories/GHSA-9f8f-453p-rg87</url>
+      <cvename>CVE-2024-6290</cvename>
+      <url>https://github.com/advisories/GHSA-r5mh-qgc2-26p2</url>
+      <cvename>CVE-2024-6292</cvename>
+      <url>https://github.com/advisories/GHSA-m848-8f5r-6j4g</url>
+    </references>
+    <dates>
+      <discovery>2024-07-11</discovery>
+      <entry>2024-07-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="acb4eab6-3f6d-11ef-8657-001b217b3468">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.1.0</ge><lt>17.1.2</lt></range>
+	<range><ge>17.0.0</ge><lt>17.0.4</lt></range>
+	<range><ge>11.8.0</ge><lt>16.11.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/07/10/patch-release-gitlab-17-1-2-released/">
+	  <p>An attacker can run pipeline jobs as an arbitrary user</p>
+	  <p>Developer user with admin_compliance_framework permission can change group URL</p>
+	  <p>Admin push rules custom role allows creation of project level deploy token</p>
+	  <p>Package registry vulnerable to manifest confusion</p>
+	  <p>User with admin_group_member permission can ban group members</p>
+	  <p>Subdomain takeover in GitLab Pages</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6385</cvename>
+      <cvename>CVE-2024-5257</cvename>
+      <cvename>CVE-2024-5470</cvename>
+      <cvename>CVE-2024-6595</cvename>
+      <cvename>CVE-2024-2880</cvename>
+      <cvename>CVE-2024-5528</cvename>
+      <url>https://about.gitlab.com/releases/2024/07/10/patch-release-gitlab-17-1-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-07-10</discovery>
+      <entry>2024-07-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="171afa61-3eba-11ef-a58f-080027836e8b">
+    <topic>Django -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py39-django42</name>
+	<name>py310-django42</name>
+	<name>py311-django42</name>
+	<range><lt>4.2.14</lt></range>
+      </package>
+      <package>
+	<name>py310-django50</name>
+	<name>py311-django50</name>
+	<range><lt>5.0.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Django reports:</p>
+	<blockquote cite="https://www.djangoproject.com/weblog/2024/jul/09/security-releases/">
+	  <p>CVE-2024-38875: Potential denial-of-service in django.utils.html.urlize().</p>
+	  <p>CVE-2024-39329: Username enumeration through timing difference for users with unusable passwords.</p>
+	  <p>CVE-2024-39330: Potential directory-traversal in django.core.files.storage.Storage.save().</p>
+	  <p>CVE-2024-39614: Potential denial-of-service in django.utils.translation.get_supported_language_variant().</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+	<cvename>CVE-2024-38875</cvename>
+	<cvename>CVE-2024-39329</cvename>
+	<cvename>CVE-2024-39330</cvename>
+	<cvename>CVE-2024-39614</cvename>
+	<url>https://www.djangoproject.com/weblog/2024/jul/09/security-releases/</url>
+    </references>
+    <dates>
+	<discovery>2024-07-01</discovery>
+	<entry>2024-07-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="767dfb2d-3c9e-11ef-a829-5404a68ad561">
     <topic>traefik -- Bypassing IP allow-lists via HTTP/3 early data requests</topic>
     <affects>
