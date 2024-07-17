@@ -277,8 +277,6 @@
     SUBDIR += damager
     SUBDIR += dar
     SUBDIR += darling-dmg
-    SUBDIR += datadog-agent
-    SUBDIR += datadog-integrations
     SUBDIR += dateutils
     SUBDIR += dc3dd
     SUBDIR += dcfldd
@@ -699,6 +697,7 @@
     SUBDIR += linux-miniconda-installer
     SUBDIR += linux-rkbin
     SUBDIR += linuxfdisk
+    SUBDIR += littlejet
     SUBDIR += lizardfs
     SUBDIR += lmmon
     SUBDIR += lmon

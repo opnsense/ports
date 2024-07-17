@@ -576,7 +576,6 @@
     SUBDIR += devtodo
     SUBDIR += dfuife-curses
     SUBDIR += dia2code
-    SUBDIR += dia2code+
     SUBDIR += dill
     SUBDIR += ding-libs
     SUBDIR += dispy
@@ -1322,7 +1321,6 @@
     SUBDIR += libindicator
     SUBDIR += libinjection
     SUBDIR += libinotify
-    SUBDIR += libiqxmlrpc
     SUBDIR += libisofs
     SUBDIR += libixp
     SUBDIR += libjitterentropy
@@ -2173,6 +2171,7 @@
     SUBDIR += p5-Const-Fast
     SUBDIR += p5-Context-Preserve
     SUBDIR += p5-Contextual-Return
+    SUBDIR += p5-Convert-Age
     SUBDIR += p5-Convert-Scalar
     SUBDIR += p5-Coro
     SUBDIR += p5-Curses
@@ -4696,6 +4695,8 @@
     SUBDIR += py-diskcache
     SUBDIR += py-distlib
     SUBDIR += py-distributed
+    SUBDIR += py-dj50-django-rq
+    SUBDIR += py-dj50-strawberry-graphql
     SUBDIR += py-django-rq
     SUBDIR += py-dm-tree
     SUBDIR += py-docformatter
@@ -5734,6 +5735,7 @@
     SUBDIR += py-setproctitle
     SUBDIR += py-setuptools
     SUBDIR += py-setuptools-declarative-requirements
+    SUBDIR += py-setuptools-dso
     SUBDIR += py-setuptools-gettext
     SUBDIR += py-setuptools-git
     SUBDIR += py-setuptools-git-versioning
@@ -6129,6 +6131,7 @@
     SUBDIR += quantum
     SUBDIR += quickcheck++
     SUBDIR += quickcpplib
+    SUBDIR += quill
     SUBDIR += quilt
     SUBDIR += qxlsx
     SUBDIR += rabs
@@ -7356,6 +7359,7 @@
     SUBDIR += rubygem-opentelemetry-common
     SUBDIR += rubygem-opentelemetry-exporter-otlp
     SUBDIR += rubygem-opentelemetry-helpers-sql-obfuscation
+    SUBDIR += rubygem-opentelemetry-instrumentation-action_mailer
     SUBDIR += rubygem-opentelemetry-instrumentation-action_pack
     SUBDIR += rubygem-opentelemetry-instrumentation-action_view
     SUBDIR += rubygem-opentelemetry-instrumentation-active_job

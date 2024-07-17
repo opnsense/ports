@@ -36,7 +36,6 @@
     SUBDIR += hs-dhall-bash
     SUBDIR += hs-dhall-json
     SUBDIR += hs-dhall-yaml
-    SUBDIR += i18ntools
     SUBDIR += ical2html
     SUBDIR += iconv
     SUBDIR += iconv-extra
@@ -172,7 +171,6 @@
     SUBDIR += ta2as
     SUBDIR += tnef
     SUBDIR += trans
-    SUBDIR += tuc
     SUBDIR += unix2dos
     SUBDIR += uudeview
     SUBDIR += uulib

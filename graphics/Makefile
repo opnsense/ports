@@ -865,6 +865,7 @@
     SUBDIR += py-PyOpenGL
     SUBDIR += py-PyOpenGL-accelerate
     SUBDIR += py-actdiag
+    SUBDIR += py-albucore
     SUBDIR += py-albumentations
     SUBDIR += py-altair
     SUBDIR += py-asciitree
@@ -1085,6 +1086,7 @@
     SUBDIR += rubygem-imagesize
     SUBDIR += rubygem-invisible_captcha
     SUBDIR += rubygem-mini_magick
+    SUBDIR += rubygem-mini_magick4
     SUBDIR += rubygem-opengl
     SUBDIR += rubygem-pdfkit
     SUBDIR += rubygem-png

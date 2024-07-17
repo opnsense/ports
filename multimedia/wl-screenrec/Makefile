@@ -1,7 +1,6 @@
 PORTNAME=	wl-screenrec
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.3
-PORTREVISION=	5
+DISTVERSION=	0.1.4
 CATEGORIES=	multimedia wayland
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -19,9 +18,6 @@ GH_ACCOUNT=	russelltg
 PLIST_FILES=	bin/${PORTNAME}
 
 post-patch:
-# Extract (snapshot) version from the port instead of Cargo.toml
-	@${REINPLACE_CMD} -i .nogit -e '/^version/s/0\.1\.0/&-${DISTVERSION}-g${GH_TAGNAME}/' \
-		${WRKSRC}/Cargo.toml
 	@${REINPLACE_CMD} -e 's,"llvm-config,"${LLVM_CONFIG},' \
 		${WRKSRC_crate_clang-sys}/build/common.rs \
 		${WRKSRC_crate_clang-sys}/src/support.rs

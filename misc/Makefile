@@ -88,6 +88,7 @@
     SUBDIR += dijo
     SUBDIR += dive
     SUBDIR += dlib-models
+    SUBDIR += dlpack
     SUBDIR += dnetc
     SUBDIR += dotenv-linter
     SUBDIR += dtach
@@ -246,7 +247,6 @@
     SUBDIR += libxdf
     SUBDIR += lifelines
     SUBDIR += lightgbm
-    SUBDIR += lingoteach
     SUBDIR += llama-cpp
     SUBDIR += locale-en_DK
     SUBDIR += localedata
