@@ -1,5 +1,5 @@
 PORTNAME=	installer
-PORTVERSION=	24.7.d
+PORTVERSION=	24.7
 CATEGORIES=	sysutils
 PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
@@ -17,6 +17,5 @@ NO_BUILD=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	${CATEGORIES:[1]}
-GH_TAGNAME=	5c84ae3
 
 .include <bsd.port.mk>
