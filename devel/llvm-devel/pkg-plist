@@ -11,6 +11,7 @@ bin/llvm-bcanalyzer-devel
 bin/llvm-bitcode-strip-devel
 bin/llvm-cat-devel
 bin/llvm-cfi-verify-devel
+bin/llvm-cgdata-devel
 bin/llvm-config-devel
 bin/llvm-cov-devel
 bin/llvm-cvtres-devel
@@ -98,6 +99,7 @@ bin/sancov-devel
 %%EXTRAS%%bin/clang-include-fixer-devel
 %%EXTRAS%%bin/clang-installapi-devel
 %%EXTRAS%%bin/clang-move-devel
+%%EXTRAS%%bin/clang-nvlink-wrapper-devel
 %%EXTRAS%%bin/clang-pseudo-devel
 %%EXTRAS%%bin/clang-query-devel
 %%EXTRAS%%bin/clang-rename-devel
@@ -185,6 +187,7 @@ llvm-devel/bin/bugpoint
 %%EXTRAS%%llvm-devel/bin/clang-installapi
 %%CLANG%%llvm-devel/bin/clang-linker-wrapper
 %%EXTRAS%%llvm-devel/bin/clang-move
+%%EXTRAS%%llvm-devel/bin/clang-nvlink-wrapper
 %%CLANG%%llvm-devel/bin/clang-offload-bundler
 %%CLANG%%llvm-devel/bin/clang-offload-packager
 %%EXTRAS%%llvm-devel/bin/clang-pseudo
@@ -226,6 +229,7 @@ llvm-devel/bin/llvm-bitcode-strip
 llvm-devel/bin/llvm-c-test
 llvm-devel/bin/llvm-cat
 llvm-devel/bin/llvm-cfi-verify
+llvm-devel/bin/llvm-cgdata
 llvm-devel/bin/llvm-config
 llvm-devel/bin/llvm-cov
 llvm-devel/bin/llvm-cvtres
@@ -1852,6 +1856,7 @@ llvm-devel/bin/verify-uselistorder
 %%FLANG%%llvm-devel/include/flang/ieee_features.mod
 %%FLANG%%llvm-devel/include/flang/iso_c_binding.mod
 %%FLANG%%llvm-devel/include/flang/iso_fortran_env.mod
+%%FLANG%%llvm-devel/include/flang/iso_fortran_env_impl.mod
 %%FLANG%%llvm-devel/include/flang/mma.mod
 %%FLANG%%%%OPENMP%%llvm-devel/include/flang/omp_lib.f18.mod
 %%FLANG%%%%OPENMP%%llvm-devel/include/flang/omp_lib.mod
@@ -1920,6 +1925,7 @@ llvm-devel/bin/verify-uselistorder
 %%LLDB%%llvm-devel/include/lldb/API/SBQueue.h
 %%LLDB%%llvm-devel/include/lldb/API/SBQueueItem.h
 %%LLDB%%llvm-devel/include/lldb/API/SBReproducer.h
+%%LLDB%%llvm-devel/include/lldb/API/SBSaveCoreOptions.h
 %%LLDB%%llvm-devel/include/lldb/API/SBScriptObject.h
 %%LLDB%%llvm-devel/include/lldb/API/SBSection.h
 %%LLDB%%llvm-devel/include/lldb/API/SBSourceManager.h
@@ -2235,6 +2241,7 @@ llvm-devel/bin/verify-uselistorder
 %%LLDB%%llvm-devel/include/lldb/Symbol/ObjectContainer.h
 %%LLDB%%llvm-devel/include/lldb/Symbol/ObjectFile.h
 %%LLDB%%llvm-devel/include/lldb/Symbol/PostfixExpression.h
+%%LLDB%%llvm-devel/include/lldb/Symbol/SaveCoreOptions.h
 %%LLDB%%llvm-devel/include/lldb/Symbol/SourceModule.h
 %%LLDB%%llvm-devel/include/lldb/Symbol/Symbol.h
 %%LLDB%%llvm-devel/include/lldb/Symbol/SymbolContext.h
@@ -2991,6 +2998,10 @@ llvm-devel/include/llvm/CodeGen/WasmEHPrepare.h
 llvm-devel/include/llvm/CodeGen/WinEHFuncInfo.h
 llvm-devel/include/llvm/CodeGen/WinEHPrepare.h
 llvm-devel/include/llvm/CodeGen/WindowScheduler.h
+llvm-devel/include/llvm/CodeGenData/CodeGenData.h
+llvm-devel/include/llvm/CodeGenData/CodeGenData.inc
+llvm-devel/include/llvm/CodeGenData/CodeGenDataReader.h
+llvm-devel/include/llvm/CodeGenData/CodeGenDataWriter.h
 llvm-devel/include/llvm/CodeGenData/OutlinedHashTree.h
 llvm-devel/include/llvm/CodeGenData/OutlinedHashTreeRecord.h
 llvm-devel/include/llvm/CodeGenTypes/LowLevelType.h
@@ -6498,8 +6509,8 @@ llvm-devel/lib/cmake/llvm/llvm-driver-template.cpp.in
 %%POLLY%%llvm-devel/lib/cmake/polly/PollyConfig.cmake
 %%POLLY%%llvm-devel/lib/cmake/polly/PollyConfigVersion.cmake
 %%POLLY%%llvm-devel/lib/cmake/polly/PollyExports-all.cmake
-%%STATIC_LIBS%%llvm-devel/lib/libCUFAttrs.a
-%%STATIC_LIBS%%llvm-devel/lib/libCUFDialect.a
+%%STATIC_LIBS%%%%FLANG%%llvm-devel/lib/libCUFAttrs.a
+%%STATIC_LIBS%%%%FLANG%%llvm-devel/lib/libCUFDialect.a
 %%STATIC_LIBS%%%%FLANG%%llvm-devel/lib/libFIRAnalysis.a
 %%STATIC_LIBS%%%%FLANG%%llvm-devel/lib/libFIRBuilder.a
 %%STATIC_LIBS%%%%FLANG%%llvm-devel/lib/libFIRCodeGen.a

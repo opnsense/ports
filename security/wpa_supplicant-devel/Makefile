@@ -1,5 +1,6 @@
 PORTNAME=	wpa_supplicant
 PORTVERSION=	${COMMIT_DATE}
+PORTREVISION=	1
 CATEGORIES=	security net
 PKGNAMESUFFIX=	-devel
 
@@ -51,7 +52,7 @@ OPTIONS_DEFAULT=	BSD WIRED \
 			INTERWORKING HS20 DBUS MATCH IEEE80211R IEEE80211W \
 			IEEE8021X_EAPOL WPS_ER WPS_NFC WPS_UPNP \
 			FAST PWD PAX SAKE GPSK TNC IKEV2 EKE \
-			WNM MBO RSN_PREAUTH WEP
+			WNM MBO RSN_PREAUTH WEP PASN
 OPTIONS_SUB=
 
 WPS_DESC=		Wi-Fi Protected Setup
@@ -78,7 +79,7 @@ INTERWORKING_DESC=	Improve ext. network interworking (IEEE 802.11u)
 HS20_DESC=		Hotspot 2.0
 NO_ROAMING_DESC=	Disable roaming
 P2P_DESC=		Peer-to-Peer support
-PASN_DESC=		PASN support
+PASN_DESC=		Pre-Association Security Negotiation
 TDLS_DESC=		Tunneled Direct Link Setup
 MATCH_DESC=		Interface match mode
 

@@ -35,6 +35,7 @@
     SUBDIR += closql
     SUBDIR += closql-devel
     SUBDIR += cockroach
+    SUBDIR += compass
     SUBDIR += couchdb3
     SUBDIR += courier-authlib-mysql
     SUBDIR += courier-authlib-pgsql
@@ -192,6 +193,7 @@
     SUBDIR += mongodb50
     SUBDIR += mongodb60
     SUBDIR += mongodb70
+    SUBDIR += mongodb80
     SUBDIR += movine
     SUBDIR += mroonga
     SUBDIR += mtop

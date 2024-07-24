@@ -8,6 +8,7 @@
     SUBDIR += bind-tools
     SUBDIR += bind9-devel
     SUBDIR += bind918
+    SUBDIR += bind920
     SUBDIR += bindgraph
     SUBDIR += blocky
     SUBDIR += c-ares
@@ -187,6 +188,7 @@
     SUBDIR += py-idna
     SUBDIR += py-idna_ssl
     SUBDIR += py-ldns
+    SUBDIR += py-libknot
     SUBDIR += py-localzone
     SUBDIR += py-ns1-python
     SUBDIR += py-publicsuffix
