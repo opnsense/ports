@@ -913,6 +913,7 @@
     SUBDIR += py-haishoku
     SUBDIR += py-hiplot
     SUBDIR += py-hsluv
+    SUBDIR += py-imagecodecs
     SUBDIR += py-imageio
     SUBDIR += py-imageio-ffmpeg
     SUBDIR += py-imagesize
@@ -1014,6 +1015,7 @@
     SUBDIR += qcustomplot
     SUBDIR += qgis
     SUBDIR += qgis-ltr
+    SUBDIR += qimgv
     SUBDIR += qiv
     SUBDIR += qr-code-generator
     SUBDIR += qt5-3d
