@@ -110,7 +110,7 @@ DIST_SUBDIR=	PECL
 
 PHPBASE?=	${LOCALBASE}
 
-_ALL_PHP_VERSIONS=	81 82 83
+_ALL_PHP_VERSIONS=	81 82 83 84
 
 # Make the already installed PHP the default one.
 .  if exists(${PHPBASE}/etc/php.conf)
@@ -179,7 +179,10 @@ PHP_VER=	${FLAVOR:S/^php//}
 	(${FLAVOR:Mphp[0-9][0-9]} && ${FLAVOR} != ${FLAVORS:[1]})
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.
-.    if ${PHP_VER} == 83
+.    if ${PHP_VER} == 84
+PHP_EXT_DIR=   20230901
+PHP_EXT_INC=    hash json openssl pcre random spl
+.    elif ${PHP_VER} == 83
 PHP_EXT_DIR=   20230831
 PHP_EXT_INC=    hash json openssl pcre random spl
 .    elif ${PHP_VER} == 82
@@ -371,7 +374,7 @@ add-plist-phpext:
 # non-version specific components
 _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		enchant exif ffi fileinfo filter ftp gd gettext gmp \
-		hash iconv igbinary imap intl json ldap mbstring mcrypt \
+		hash iconv igbinary intl json ldap mbstring mcrypt \
 		memcache memcached mysqli odbc opcache \
 		openssl pcntl pcre pdo pdo_dblib pdo_firebird pdo_mysql \
 		pdo_odbc pdo_pgsql pdo_sqlite phar pgsql posix \
@@ -380,9 +383,10 @@ _USE_PHP_ALL=	bcmath bitset bz2 calendar ctype curl dba dom \
 		tidy tokenizer xml xmlreader xmlrpc xmlwriter xsl zephir_parser \
 		zip zlib
 # version specific components
-_USE_PHP_VER81=	${_USE_PHP_ALL}
-_USE_PHP_VER82=	${_USE_PHP_ALL}
-_USE_PHP_VER83=	${_USE_PHP_ALL}
+_USE_PHP_VER81=	${_USE_PHP_ALL} imap
+_USE_PHP_VER82=	${_USE_PHP_ALL} imap
+_USE_PHP_VER83=	${_USE_PHP_ALL} imap
+_USE_PHP_VER84=	${_USE_PHP_ALL}
 
 bcmath_DEPENDS=	math/php${PHP_VER}-bcmath
 bitset_DEPENDS=	math/pecl-bitset@${PHP_FLAVOR}
@@ -424,7 +428,11 @@ pdo_sqlite_DEPENDS=	databases/php${PHP_VER}-pdo_sqlite
 pgsql_DEPENDS=	databases/php${PHP_VER}-pgsql
 phar_DEPENDS=	archivers/php${PHP_VER}-phar
 posix_DEPENDS=	sysutils/php${PHP_VER}-posix
+.    if ${PHP_VER} <= 83
 pspell_DEPENDS=	textproc/php${PHP_VER}-pspell
+.    else
+pspell_DEPENDS=	textproc/pecl-pspell@${PHP_FLAVOR}
+.    endif
 radius_DEPENDS=	net/pecl-radius@${PHP_FLAVOR}
 readline_DEPENDS=	devel/php${PHP_VER}-readline
 redis_DEPENDS=	databases/pecl-redis@${PHP_FLAVOR}

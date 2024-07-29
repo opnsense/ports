@@ -5,15 +5,30 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
-20240724:
+20240727:
+  AFFECTS: lang/php8[13]
+  AUTHOR: netchildFreeBSD.org
+
+  The start scripts of php-fpm have been renamed to php_fpm for improved
+  compatibility with other parts of the system. The automatic start at boot
+  (rc.conf variable settings) is not affected, but if you have some other
+  automatism you may want to change
+    ".../etc/rc.d/php-fpm" to ".../etc/rc.d/php_fpm"
+  or
+    "service php-fpm ..." to "service php_fpm ..."
+
+  If you have custom start scripts which depend upon php-fpm, you need to
+  change the REQUIRE lines in them from "php-fpm" to "php_fpm".
+
+20240726:
   AFFECTS: users of archivers/py-borgbackup
   AUTHOR: mandree@FreeBSD.org
 
-  Borgbackup has been upgraded to version 1.4.0, which does not yet
-  support FreeBSD 13.x, see https://github.com/borgbackup/borg/issues/8269
+  Borgbackup has been upgraded to version 1.4.0.
+  The FreeBSD port as of 2024-07-26 reinstates FreeBSD 13 compatibility.
 
-  For users who are on FreeBSD 13, or who wish to continue using
-  version 1.2, use either of these commands for upgrading:
+  For users who wish to continue using version 1.2,
+  use either of these commands for upgrading:
 
   With binary packages through pkg:
     pkg set -o archivers/py-borgbackup:archivers/py-borgbackup12
