@@ -1,10 +1,10 @@
 PORTNAME=	google-protobuf
-PORTVERSION=	4.27.2
+PORTVERSION=	3.25.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
-PKGNAMESUFFIX=	4
+PKGNAMESUFFIX=	3
 
-MAINTAINER=	ruby@FreeBSD.org
+MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Ruby extension to Google Protocol Buffers
 WWW=		https://protobuf.dev/ \
 		https://github.com/protocolbuffers/protobuf \
@@ -12,10 +12,11 @@ WWW=		https://protobuf.dev/ \
 
 LICENSE=	BSD3CLAUSE
 
-BUILD_DEPENDS=	rubygem-bigdecimal>=0:math/rubygem-bigdecimal \
-		rubygem-rake>=0:devel/rubygem-rake
+BUILD_DEPENDS=	rubygem-rake>=0:devel/rubygem-rake
 
 USES=		gem shebangfix
+
+PORTSCOUT=	limit:^3\.
 
 SHEBANG_GLOB=	*.rb
 
