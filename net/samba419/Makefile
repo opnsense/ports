@@ -216,8 +216,8 @@ PLIST_SUB+=			SAMBA4_BUNDLED_TALLOC=""
 SUB_LIST+=			SAMBA4_BUNDLED_TALLOC=""
 .else
 SAMBA4_BUNDLED_LIBS+=		!talloc
-BUILD_DEPENDS+=			talloc>=2.3.3:devel/talloc
-RUN_DEPENDS+=			talloc>=2.3.3:devel/talloc
+BUILD_DEPENDS+=			talloc>=2.4.1:devel/talloc
+RUN_DEPENDS+=			talloc>=2.4.1:devel/talloc
 PLIST_SUB+=			SAMBA4_BUNDLED_TALLOC="@comment "
 SUB_LIST+=			SAMBA4_BUNDLED_TALLOC="@comment "
 .endif
@@ -229,8 +229,8 @@ PLIST_SUB+=			SAMBA4_BUNDLED_TEVENT=""
 SUB_LIST+=			SAMBA4_BUNDLED_TEVENT=""
 .else
 SAMBA4_BUNDLED_LIBS+=		!tevent
-BUILD_DEPENDS+=			tevent>=0.11.0:devel/tevent
-RUN_DEPENDS+=			tevent>=0.11.0:devel/tevent
+BUILD_DEPENDS+=			tevent>=0.15.0:devel/tevent
+RUN_DEPENDS+=			tevent>=0.15.0:devel/tevent
 PLIST_SUB+=			SAMBA4_BUNDLED_TEVENT="@comment "
 SUB_LIST+=			SAMBA4_BUNDLED_TEVENT="@comment "
 .endif
@@ -256,8 +256,8 @@ SUB_LIST+=			SAMBA4_BUNDLED_LDB=""
 SAMBA4_MODULEDIR=		${SAMBA4_LIBDIR}/modules
 .else
 SAMBA4_BUNDLED_LIBS+=		!ldb
-BUILD_DEPENDS+=			ldb25>=2.5.2:databases/ldb25
-RUN_DEPENDS+=			ldb25>=2.5.2:databases/ldb25
+BUILD_DEPENDS+=			ldb28>=2.8.1:databases/ldb28
+RUN_DEPENDS+=			ldb28>=2.8.1:databases/ldb28
 PLIST_SUB+=			SAMBA4_BUNDLED_LDB="@comment "
 SUB_LIST+=			SAMBA4_BUNDLED_LDB="@comment "
 SAMBA4_MODULEDIR=		${PREFIX}/lib/shared-modules

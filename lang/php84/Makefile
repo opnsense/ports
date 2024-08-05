@@ -1,5 +1,5 @@
 PORTNAME=	php84
-DISTVERSION=	8.4.0alpha2
+DISTVERSION=	8.4.0alpha4
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	https://downloads.php.net/~saki/ \
@@ -389,9 +389,10 @@ CONFIGURE_ARGS+= --with-unixODBC=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "opcache"
+LIB_DEPENDS+=	libcapstone.so:devel/capstone
 # This is needed by Zend extensions, keep before everything.
 PHP_MOD_PRIO=		10
-CONFIGURE_ARGS+=        --enable-opcache
+CONFIGURE_ARGS+=        --enable-opcache --with-capstone
 .endif
 
 .if ${PHP_MODNAME} == "pcntl"
@@ -591,6 +592,12 @@ USES+=			pkgconfig
 
 .if ${ARCH} == aarch64 && ${PHP_MODNAME} == "opcache"
 CONFIGURE_ARGS+=--disable-opcache-jit
+.endif
+
+.if ${PHP_MODNAME} == "opcache"
+post-configure:
+	@${BSDMAKE} -C ${WRKSRC} ./jit/ir/ir_fold_hash.h
+	@${BSDMAKE} -C ${WRKSRC} ./jit/ir/ir_emit.lo
 .endif
 
 .if ${PHP_MODNAME} == "soap"

@@ -55,7 +55,6 @@
     SUBDIR += benthos
     SUBDIR += bindtest
     SUBDIR += binkd
-    SUBDIR += bird
     SUBDIR += bird2
     SUBDIR += bittwist
     SUBDIR += bmon
@@ -1031,6 +1030,7 @@
     SUBDIR += py-DTLSSocket
     SUBDIR += py-GeoIP2
     SUBDIR += py-aiocoap
+    SUBDIR += py-aiohappyeyeballs
     SUBDIR += py-aiohttp-socks
     SUBDIR += py-amqp
     SUBDIR += py-amqplib

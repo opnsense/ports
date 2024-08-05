@@ -871,7 +871,6 @@
     SUBDIR += plantri
     SUBDIR += plman
     SUBDIR += ploticus
-    SUBDIR += ploticus-nox11
     SUBDIR += plplot
     SUBDIR += poly2tri
     SUBDIR += polyclipper
@@ -917,6 +916,7 @@
     SUBDIR += py-bitmath
     SUBDIR += py-bitvector
     SUBDIR += py-blis
+    SUBDIR += py-blis07
     SUBDIR += py-bottleneck
     SUBDIR += py-brial
     SUBDIR += py-chaospy
