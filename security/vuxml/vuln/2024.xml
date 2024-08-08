@@ -1,3 +1,172 @@
+  <vuln vid="db8fa362-0ccb-4aa8-9220-72b7763e9a4a">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.471</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.462.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2024-08-07/">
+	  <h1>Description</h1>
+	  <h5>(Critical) SECURITY-3430 / CVE-2024-43044</h5>
+	  <p>Arbitrary file read vulnerability through agent connections can lead to RCE</p>
+	  <h1>Description</h1>
+	  <h5>(Medium) SECURITY-3349 / CVE-2024-43045</h5>
+	  <p>Missing permission check allows accessing other users' "My Views"</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-43044</cvename>
+      <cvename>CVE-2024-43045</cvename>
+      <url>https://www.jenkins.io/security/advisory/2024-08-07/</url>
+    </references>
+    <dates>
+      <discovery>2024-08-07</discovery>
+      <entry>2024-08-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="729008b9-54bf-11ef-a61b-2cf05da270f3">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.2.0</ge><lt>17.2.2</lt></range>
+	<range><ge>17.1.0</ge><lt>17.1.4</lt></range>
+	<range><ge>12.0.0</ge><lt>17.0.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/08/07/patch-release-gitlab-17-2-2-released/">
+	  <p>Privilege Escalation via LFS Tokens Granting Unrestricted Repository Access</p>
+	  <p>Cross project access of Security policy bot</p>
+	  <p>Advanced search ReDOS in highlight for code results</p>
+	  <p>Denial of Service via banzai pipeline</p>
+	  <p>Denial of service using adoc files</p>
+	  <p>ReDoS in RefMatcher when matching branch names using wildcards</p>
+	  <p>Path encoding can cause the Web interface to not render diffs correctly</p>
+	  <p>XSS while viewing raw XHTML files through API</p>
+	  <p>Ambiguous tag name exploitation</p>
+	  <p>Logs disclosings potentially sensitive data in query params</p>
+	  <p>Password bypass on approvals using policy projects</p>
+	  <p>ReDoS when parsing git push</p>
+	  <p>Webhook deletion audit log can preserve auth credentials</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-3035</cvename>
+      <cvename>CVE-2024-6356</cvename>
+      <cvename>CVE-2024-5423</cvename>
+      <cvename>CVE-2024-4210</cvename>
+      <cvename>CVE-2024-2800</cvename>
+      <cvename>CVE-2024-6329</cvename>
+      <cvename>CVE-2024-4207</cvename>
+      <cvename>CVE-2024-3958</cvename>
+      <cvename>CVE-2024-4784</cvename>
+      <cvename>CVE-2024-3114</cvename>
+      <cvename>CVE-2024-7586</cvename>
+      <url>https://about.gitlab.com/releases/2024/08/07/patch-release-gitlab-17-2-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-08-07</discovery>
+      <entry>2024-08-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="94d441d2-5497-11ef-9d2f-080027836e8b">
+    <topic>Django -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py39-django42</name>
+	<name>py310-django42</name>
+	<name>py311-django42</name>
+	<range><lt>4.2.15</lt></range>
+      </package>
+      <package>
+	<name>py310-django50</name>
+	<name>py311-django50</name>
+	<range><lt>5.0.8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Django reports:</p>
+	<blockquote cite="https://www.djangoproject.com/weblog/2024/aug/06/security-releases/">
+	  <p>CVE-2024-41989: Memory exhaustion in django.utils.numberformat.floatformat().</p>
+	  <p>CVE-2024-41990: Potential denial-of-service in django.utils.html.urlize().</p>
+	  <p>CVE-2024-41991: Potential denial-of-service vulnerability in
+	    django.utils.html.urlize() and AdminURLFieldWidget.</p>
+	  <p>CVE-2024-42005: Potential SQL injection in QuerySet.values() and values_list().</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-41989</cvename>
+      <cvename>CVE-2024-41990</cvename>
+      <cvename>CVE-2024-41991</cvename>
+      <cvename>CVE-2024-42005</cvename>
+      <url>https://www.djangoproject.com/weblog/2024/aug/06/security-releases/</url>
+    </references>
+    <dates>
+      <discovery>2024-08-01</discovery>
+      <entry>2024-08-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="05cd9f82-5426-11ef-8a0f-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>127.0.6533.99</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>127.0.6533.99</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/08/stable-channel-update-for-desktop.html">
+	 <p>This update includes 5 security fixes:</p>
+	 <ul>
+	    <li>[350528343] Critical CVE-2024-7532: Out of bounds memory access in ANGLE. Reported by wgslfuzz on 2024-07-02</li>
+	    <li>[353552540] High CVE-2024-7533: Use after free in Sharing. Reported by lime(@limeSec_) from TIANGONG Team of Legendsec at QI-ANXIN Group on 2024-07-17</li>
+	    <li>[355256380] High CVE-2024-7550: Type Confusion in V8. Reported by Zhenghang Xiao (@Kipreyyy) on 2024-07-25</li>
+	    <li>[352467338] High CVE-2024-7534: Heap buffer overflow in Layout. Reported by Tashita Software Security on 2024-07-11</li>
+	    <li>[352690885] High CVE-2024-7535: Inappropriate implementation in V8. Reported by Tashita Software Security on 2024-07-12</li>
+	    <li>[354847246] High CVE-2024-7536: Use after free in WebAudio. Reported by Cassidy Kim(@cassidy6564) on 2024-07-23</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7532</cvename>
+      <cvename>CVE-2024-7550</cvename>
+      <cvename>CVE-2024-7534</cvename>
+      <cvename>CVE-2024-7535</cvename>
+      <cvename>CVE-2024-7536</cvename>
+      <url>https://chromereleases.googleblog.com/2024/08/stable-channel-update-for-desktop.html</url>
+    </references>
+    <dates>
+      <discovery>2024-08-06</discovery>
+      <entry>2024-08-06</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="15d398ea-4f73-11ef-8a0f-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
@@ -273,7 +442,7 @@
 	<range><lt>8.1.1</lt></range>
       </package>
       <package>
-	<name>mysql80-server</name>
+	<name>mysql81-server</name>
 	<range><lt>8.1.1</lt></range>
       </package>
       <package>
