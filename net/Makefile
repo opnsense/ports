@@ -538,7 +538,6 @@
     SUBDIR += nng
     SUBDIR += norm
     SUBDIR += nqptp
-    SUBDIR += ns3
     SUBDIR += nsq
     SUBDIR += nss-pam-ldapd
     SUBDIR += nss-pam-ldapd-sasl
@@ -1501,6 +1500,7 @@
     SUBDIR += speedtest
     SUBDIR += speedtest-go
     SUBDIR += spiritvnc
+    SUBDIR += spoofdpi
     SUBDIR += spoofer
     SUBDIR += spread
     SUBDIR += spread-j
