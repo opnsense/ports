@@ -159,8 +159,10 @@
 %%DATADIR%%/Exception/FileNotFoundException.php
 %%DATADIR%%/Exception/InconsistentSetupException.php
 %%DATADIR%%/Exception/InsufficientSetupException.php
+%%DATADIR%%/Exception/InvalidPacketLengthException.php
 %%DATADIR%%/Exception/NoKeyLoadedException.php
 %%DATADIR%%/Exception/NoSupportedAlgorithmsException.php
+%%DATADIR%%/Exception/TimeoutException.php
 %%DATADIR%%/Exception/UnableToConnectException.php
 %%DATADIR%%/Exception/UnsupportedAlgorithmException.php
 %%DATADIR%%/Exception/UnsupportedCurveException.php
