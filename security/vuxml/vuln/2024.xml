@@ -1,3 +1,174 @@
+  <vuln vid="7d631146-5769-11ef-b618-1c697a616631">
+    <topic>AMD CPUs -- Guest Memory Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cpu-microcode-amd</name>
+	<range><lt>20240810</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>AMD reports:</p>
+	<blockquote cite="https://www.amd.com/en/resources/product-security/bulletin/amd-sb-7014.html">
+	  <p>
+	   Researchers from IOActive have reported that it may be possible for
+	   an attacker with ring 0 access to modify the configuration of System
+	   Management Mode (SMM) even when SMM Lock is enabled.  Improper
+	   validation in a model specific register (MSR) could allow a malicious
+	   program with ring0 access to modify SMM configuration while SMI lock
+	   is enabled, potentially leading to arbitrary code execution.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-31315</cvename>
+      <url>https://www.amd.com/en/resources/product-security/bulletin/amd-sb-7014.html</url>
+    </references>
+    <dates>
+      <discovery>2024-08-09</discovery>
+      <entry>2024-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5776cc4f-5717-11ef-b611-84a93843eb75">
+    <topic>Roundcube -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>roundcube</name>
+	<range><lt>1.6.8,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Roundcube project reports:</p>
+	<blockquote cite="https://roundcube.net/news/2024/08/04/security-updates-1.6.8-and-1.5.8">
+	  <p>XSS vulnerability in post-processing of sanitized HTML content [CVE-2024-42009]</p>
+	  <p>XSS vulnerability in serving of attachments other than HTML or SVG [CVE-2024-42008]</p>
+	  <p>information leak (access to remote content) via insufficient CSS filtering [CVE-2024-42010]</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-42009</cvename>
+      <cvename>CVE-2024-42008</cvename>
+      <cvename>CVE-2024-42010</cvename>
+      <url>https://roundcube.net/news/2024/08/04/security-updates-1.6.8-and-1.5.8</url>
+    </references>
+    <dates>
+      <discovery>2024-08-04</discovery>
+      <entry>2024-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="aa1c7af9-570e-11ef-a43e-b42e991fc52e">
+    <topic>mozilla firefox -- protocol information guessing</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>127.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1883693">
+	  <p>By monitoring the time certain operations take, an attacker could
+	have guessed which external protocol handlers were functional on a
+	user&apos;s system.  This vulnerability affects Firefox &lt; 127,
+	Firefox ESR &lt; 115.12, and Thunderbird &lt; 115.12.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-5690</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-5690</url>
+    </references>
+    <dates>
+      <discovery>2024-06-11</discovery>
+      <entry>2024-08-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8c342a6c-563f-11ef-a77e-901b0e9408dc">
+    <topic>soft-serve -- Remote code execution vulnerability</topic>
+    <affects>
+      <package>
+	<name>soft-serve</name>
+	<range><lt>0.7.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>soft-serve team reports:</p>
+	<blockquote cite="https://github.com/charmbracelet/soft-serve/security/advisories/GHSA-m445-w3xr-vp2f">
+	  <p>Arbitrary code execution by crafting git ssh requests</p>
+	  <p>It is possible for a user who can commit files to a
+	  repository hosted by Soft Serve to execute arbitrary code
+	  via environment manipulation and Git.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-41956</cvename>
+      <url>https://github.com/charmbracelet/soft-serve/security/advisories/GHSA-m445-w3xr-vp2f</url>
+    </references>
+    <dates>
+      <discovery>2024-08-01</discovery>
+      <entry>2024-08-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="48e6d514-5568-11ef-af48-6cc21735f730">
+    <topic>PostgreSQL -- Prevent unauthorized code execution during pg_dump</topic>
+    <affects>
+      <package>
+	<name>postgresql-client</name>
+	<range><lt>16.4</lt></range>
+	<range><lt>15.8</lt></range>
+	<range><lt>14.13</lt></range>
+	<range><lt>13.16</lt></range>
+	<range><lt>12.20</lt></range>
+      </package>
+      <package>
+	<name>postgresql-server</name>
+	<range><lt>16.4</lt></range>
+	<range><lt>15.8</lt></range>
+	<range><lt>14.13</lt></range>
+	<range><lt>13.16</lt></range>
+	<range><lt>12.20</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2024-7348/">
+	   <p>
+	     An attacker able to create and drop non-temporary objects could
+	     inject SQL code that would be executed by a concurrent pg_dump
+	     session with the privileges of the role running pg_dump
+	     (which is often a superuser). The attack involves replacing a
+	     sequence or similar object with a view or foreign table that will
+	     execute malicious code. To prevent this, introduce a new server
+	     parameter restrict_nonsystem_relation_kind that can disable
+	     expansion of non-builtin views as well as access to foreign
+	     tables, and teach pg_dump to set it when available. Note that the
+	     attack is prevented only if both pg_dump and the server it is
+	     dumping from are new enough to have this fix.
+	   </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7348</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2024-7348/</url>
+    </references>
+    <dates>
+      <discovery>2024-08-08</discovery>
+      <entry>2024-08-08</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="db8fa362-0ccb-4aa8-9220-72b7763e9a4a">
     <topic>jenkins -- multiple vulnerabilities</topic>
     <affects>
