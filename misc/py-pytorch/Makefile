@@ -1,7 +1,7 @@
 PORTNAME=	pytorch
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.3.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	https://github.com/pytorch/pytorch/releases/download/v${DISTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -25,7 +25,7 @@ BUILD_DEPENDS=	cmake:devel/cmake-core \
 		${LOCALBASE}/include/fxdiv.h:devel/fxdiv \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>0:devel/py-typing-extensions@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyyaml>=0:devel/py-pyyaml@${PY_FLAVOR}
-LIB_DEPENDS=	libabsl_flags.so:devel/abseil \
+LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libblis.so:math/blis \
 		libmpi_cxx.so:net/openmpi4 \
 		libonnx.so:misc/onnx \

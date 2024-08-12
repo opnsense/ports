@@ -454,6 +454,7 @@
     SUBDIR += color
     SUBDIR += colorgcc
     SUBDIR += colormake
+    SUBDIR += comlin
     SUBDIR += commit-patch
     SUBDIR += commitizen
     SUBDIR += commoncpp
@@ -987,6 +988,7 @@
     SUBDIR += hyprlang
     SUBDIR += hyprutils
     SUBDIR += hyprwayland-scanner
+    SUBDIR += iaito
     SUBDIR += ice
     SUBDIR += ice37
     SUBDIR += icestorm
@@ -1679,6 +1681,7 @@
     SUBDIR += myrepos
     SUBDIR += nana
     SUBDIR += nano-signal-slot
+    SUBDIR += nanobind
     SUBDIR += nanopb
     SUBDIR += nant
     SUBDIR += nasm
@@ -6092,6 +6095,7 @@
     SUBDIR += pybind11-json
     SUBDIR += pybugz
     SUBDIR += pycanberra
+    SUBDIR += pycdc
     SUBDIR += pycharm-ce
     SUBDIR += pycharm-pro
     SUBDIR += pycomposefile

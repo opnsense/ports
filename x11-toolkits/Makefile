@@ -167,6 +167,7 @@
     SUBDIR += py-AnyQt
     SUBDIR += py-Pmw
     SUBDIR += py-awesometkinter
+    SUBDIR += py-customtkinter
     SUBDIR += py-easygui
     SUBDIR += py-fltk
     SUBDIR += py-guietta
@@ -246,7 +247,6 @@
     SUBDIR += vte
     SUBDIR += vte3
     SUBDIR += wlroots
-    SUBDIR += wlroots-hyprland
     SUBDIR += wlroots015
     SUBDIR += wlroots016
     SUBDIR += wlroots017
