@@ -107,6 +107,7 @@
     SUBDIR += R-cran-praise
     SUBDIR += R-cran-prettycode
     SUBDIR += R-cran-prettyunits
+    SUBDIR += R-cran-profvis
     SUBDIR += R-cran-progress
     SUBDIR += R-cran-progressr
     SUBDIR += R-cran-promises
@@ -143,6 +144,7 @@
     SUBDIR += R-cran-timechange
     SUBDIR += R-cran-tinytest
     SUBDIR += R-cran-tzdb
+    SUBDIR += R-cran-urlchecker
     SUBDIR += R-cran-usethis
     SUBDIR += R-cran-uuid
     SUBDIR += R-cran-vcd

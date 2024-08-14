@@ -1,7 +1,7 @@
 PORTNAME=	86Box
 DISTVERSIONPREFIX=	v
 DISTVERSION=	4.2
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	emulators
 
 MAINTAINER=	tiago.gasiba@gmail.com
@@ -11,7 +11,7 @@ WWW=		https://86box.net/
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-ONLY_FOR_ARCHS=	amd64
+ONLY_FOR_ARCHS=	aarch64 amd64 powerpc64le
 
 BUILD_DEPENDS=	evdev-proto>=5.8:devel/evdev-proto
 LIB_DEPENDS=	libevdev.so:devel/libevdev \
@@ -29,7 +29,7 @@ FLAVOR?=		${FLAVORS:[2]}
 qt5_PKGNAMESUFFIX=	-qt5
 qt6_PKGNAMESUFFIX=	-qt6
 
-USES=		cmake compiler gnome pkgconfig qmake sdl xorg
+USES=		cmake compiler:c++11-lang gnome pkgconfig qmake sdl xorg
 USE_GITHUB=	yes
 USE_GNOME=	glib20
 USE_SDL=	sdl2
@@ -48,9 +48,14 @@ CMAKE_ON=	USE_QT6
 CXXFLAGS+=	-I${LOCALBASE}/include/qt6/QtGui/`pkg-config --modversion Qt6Gui`/QtGui
 .endif
 
-SUB_FILES=	86Box-install-roms.sh
-SUB_LIST=	DISTVERSION=${DISTVERSION} \
-		DISTVERSIONPREFIX=${DISTVERSIONPREFIX}
+CMAKE_ON+=		RELEASE	${CMAKE_ON_${ARCH}}
+CMAKE_ON_aarch64=	NEW_DYNAREC
+CMAKE_OFF=		DISCORD ${CMAKE_OFF_${ARCH}}
+CMAKE_OFF_powerpc64le=	DYNAREC
+
+SUB_FILES=		86Box-install-roms.sh
+SUB_LIST=		DISTVERSION=${DISTVERSION} \
+			DISTVERSIONPREFIX=${DISTVERSIONPREFIX}
 
 OPTIONS_DEFINE=		NLS WAYLAND
 OPTIONS_DEFAULT=	WAYLAND
@@ -68,7 +73,7 @@ ICON_RESOLUTIONS=	128x128 192x192 256x256 48x48 512x512 64x64 72x72 96x96
 do-install:
 	${INSTALL_PROGRAM} ${WRKDIR}/.build/src/86Box ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_SCRIPT} ${WRKDIR}/86Box-install-roms.sh ${STAGEDIR}${PREFIX}/bin
-	${REINPLACE_CMD} -e 's|Exec=86Box|Exec=/bin/sh -c "${PREFIX}/bin/86Box -C $${HOME}/86box.cfg"|' \
+	${REINPLACE_CMD} -e 's|Exec=86Box|Exec=/bin/sh -c "${PREFIX}/bin/86Box -C $${HOME}/.config/86Box.cfg"|' \
 		${WRKSRC}/src/unix/assets/net.86box.86Box.desktop
 	${INSTALL_DATA} ${WRKSRC}/src/unix/assets/net.86box.86Box.desktop \
 		${STAGEDIR}${DESKTOPDIR}
