@@ -3743,7 +3743,6 @@
     SUBDIR += p5-Test2-Plugin-MemUsage
     SUBDIR += p5-Test2-Plugin-NoWarnings
     SUBDIR += p5-Test2-Plugin-UUID
-    SUBDIR += p5-Test2-Suite
     SUBDIR += p5-Test2-Tools-Explain
     SUBDIR += p5-Test2-Tools-FFI
     SUBDIR += p5-Test2-Tools-LoadModule
@@ -4354,6 +4353,7 @@
     SUBDIR += py-argcomplete
     SUBDIR += py-argh
     SUBDIR += py-argparse
+    SUBDIR += py-argparse_addons
     SUBDIR += py-args
     SUBDIR += py-ariadne
     SUBDIR += py-arpeggio
@@ -4583,6 +4583,8 @@
     SUBDIR += py-cli-helpers
     SUBDIR += py-cliapp
     SUBDIR += py-click
+    SUBDIR += py-click-aliases
+    SUBDIR += py-click-command-tree
     SUBDIR += py-click-completion
     SUBDIR += py-click-creds
     SUBDIR += py-click-default-group
@@ -4618,6 +4620,7 @@
     SUBDIR += py-columnize
     SUBDIR += py-comm
     SUBDIR += py-commandlines
+    SUBDIR += py-commentjson
     SUBDIR += py-conditional
     SUBDIR += py-confection
     SUBDIR += py-configargparse
@@ -5081,6 +5084,7 @@
     SUBDIR += py-libplist
     SUBDIR += py-libtaxii
     SUBDIR += py-libtmux
+    SUBDIR += py-libusb-package
     SUBDIR += py-libusb1
     SUBDIR += py-libversion
     SUBDIR += py-libvirt
@@ -5495,6 +5499,7 @@
     SUBDIR += py-pyopencl
     SUBDIR += py-pyparsing
     SUBDIR += py-pyparsing2
+    SUBDIR += py-pypemicro
     SUBDIR += py-pyperclip
     SUBDIR += py-pyperf
     SUBDIR += py-pyperscan
@@ -6095,6 +6100,8 @@
     SUBDIR += py3c
     SUBDIR += pybind11
     SUBDIR += pybind11-json
+    SUBDIR += pybind11_abseil
+    SUBDIR += pybind11_protobuf
     SUBDIR += pybugz
     SUBDIR += pycanberra
     SUBDIR += pycdc
@@ -8085,6 +8092,7 @@
     SUBDIR += tomlplusplus
     SUBDIR += tortoisehg
     SUBDIR += tpasm
+    SUBDIR += tracy
     SUBDIR += tradcpp
     SUBDIR += transient
     SUBDIR += transient-devel

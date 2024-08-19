@@ -1,5 +1,6 @@
 PORTNAME=	screen
 DISTVERSION=	5.0.0.${SCREEN_COMMIT_DATE}
+PORTREVISION=	1
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
 MASTER_SITES=	#
@@ -50,8 +51,8 @@ CPE_VENDOR=	gnu
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386 || \
-    ${ARCH:Mpowerpc*}
+.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7 || \
+    ${ARCH} == i386 || ${ARCH:Mpowerpc*}
 SSP_CFLAGS?=	-fno-stack-protector
 .endif
 
