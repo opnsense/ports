@@ -1,6 +1,6 @@
 PORTNAME=	screen
 PORTVERSION=	4.9.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	sysutils
 MASTER_SITES=	GNU \
 		ftp://ftp.gnu.org/gnu/screen/ \
@@ -52,8 +52,8 @@ CPE_VENDOR=	gnu
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == armv6 || ${ARCH} == armv7 || ${ARCH} == i386 || \
-    ${ARCH:Mpowerpc*}
+.if ${ARCH} == aarch64 || ${ARCH} == armv6 || ${ARCH} == armv7 || \
+    ${ARCH} == i386 || ${ARCH:Mpowerpc*}
 SSP_CFLAGS?=	-fno-stack-protector
 .endif
 
