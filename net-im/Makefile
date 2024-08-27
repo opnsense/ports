@@ -51,6 +51,8 @@
     SUBDIR += libsignal-node
     SUBDIR += libsignon-glib
     SUBDIR += libstrophe
+    SUBDIR += linux-discord
+    SUBDIR += linux-whatsdesk
     SUBDIR += loudmouth
     SUBDIR += lurch
     SUBDIR += mastodon
@@ -157,7 +159,6 @@
     SUBDIR += telepathy-logger-qt5
     SUBDIR += telepathy-mission-control
     SUBDIR += telepathy-qt
-    SUBDIR += telepathy-salut
     SUBDIR += telepathy-sofiasip
     SUBDIR += tg_owt
     SUBDIR += tkabber

@@ -244,7 +244,6 @@
     SUBDIR += gstreamer1-plugins-lv2
     SUBDIR += gstreamer1-plugins-modplug
     SUBDIR += gstreamer1-plugins-mpg123
-    SUBDIR += gstreamer1-plugins-musepack
     SUBDIR += gstreamer1-plugins-ogg
     SUBDIR += gstreamer1-plugins-openmpt
     SUBDIR += gstreamer1-plugins-opus
@@ -280,7 +279,6 @@
     SUBDIR += hts_engine-API
     SUBDIR += hydrogen
     SUBDIR += icecast
-    SUBDIR += icecast-kh
     SUBDIR += icegenerator
     SUBDIR += ices
     SUBDIR += id3el
