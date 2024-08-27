@@ -1,3 +1,303 @@
+  <vuln vid="49ef501c-62b6-11ef-bba5-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.3.0</ge><lt>17.3.1</lt></range>
+	<range><ge>17.2.0</ge><lt>17.2.4</lt></range>
+	<range><ge>8.2.0</ge><lt>17.1.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/08/21/patch-release-gitlab-17-3-1-released/">
+	  <p>The GitLab Web Interface Does Not Guarantee Information Integrity When Downloading Source Code from Releases</p>
+	  <p>Denial of Service by importing maliciously crafted GitHub repository</p>
+	  <p>Prompt injection in "Resolve Vulnerabilty" results in arbitrary command execution in victim's pipeline</p>
+	  <p>An unauthorized user can perform certain actions through GraphQL after a group owner enables IP restrictions</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6502</cvename>
+      <cvename>CVE-2024-8041</cvename>
+      <cvename>CVE-2024-7110</cvename>
+      <cvename>CVE-2024-3127</cvename>
+      <url>https://about.gitlab.com/releases/2024/08/21/patch-release-gitlab-17-3-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-08-21</discovery>
+      <entry>2024-08-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7e6e932f-617b-11ef-8a7d-b42e991fc52e">
+    <topic>firefox -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>127</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1414937">
+	  <ul>
+	    <li>CVE-2024-5697: A website was able to detect when a
+	      user took a screenshot of a page using the built-in
+	      Screenshot functionality in Firefox.</li>
+	    <li>CVE-2024-5698: By manipulating the fullscreen
+	      feature while opening a data-list, an attacker could
+	      have overlaid a text box over the address bar. This
+	      could have led to user confusion and possible spoofing
+	      attacks.
+	    </li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-5697</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-5697</url>
+      <cvename>CVE-2024-5698</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-5698</url>
+    </references>
+    <dates>
+      <discovery>2024-06-11</discovery>
+      <entry>2024-08-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6e8b9c75-6179-11ef-8a7d-b42e991fc52e">
+    <topic>mcpp -- Heap-based buffer overflow</topic>
+    <affects>
+      <package>
+	<name>mcpp</name>
+	<range><lt>2.7.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="http://lists.opensuse.org/opensuse-security-announce/2020-03/msg00032.html">
+	  <p>MCPP 2.7.2 has a heap-based buffer overflow in the do_msg() function
+	in support.c.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2019-14274</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2019-14274</url>
+    </references>
+    <dates>
+      <discovery>2019-07-26</discovery>
+      <entry>2024-08-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f2b1da2e-6178-11ef-8a7d-b42e991fc52e">
+    <topic>md4c -- DoS attack</topic>
+    <affects>
+      <package>
+	<name>md4c</name>
+	<range><lt>0.4.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="https://github.com/mity/md4c/commit/4fc808d8fe8d8904f8525bb4231d854f45e23a19">
+	  <p>md_analyze_line in md4c.c in md4c 0.4.7 allows attackers
+	  to trigger use of uninitialized memory, and cause a denial
+	  of service via a malformed Markdown document.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2021-30027</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2021-30027</url>
+    </references>
+    <dates>
+      <discovery>2021-04-29</discovery>
+      <entry>2024-08-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b339992e-6059-11ef-8a0f-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>128.0.6613.84</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>128.0.6613.84</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/08/stable-channel-update-for-desktop_21.html">
+	 <p>This update includes 38 security fixes:</p>
+	 <ul>
+	    <li>[358296941] High CVE-2024-7964: Use after free in Passwords. Reported by Anonymous on 2024-08-08</li>
+	    <li>[356196918] High CVE-2024-7965: Inappropriate implementation in V8. Reported by TheDog on 2024-07-30</li>
+	    <li>[355465305] High CVE-2024-7966: Out of bounds memory access in Skia. Reported by Renan Rios (@HyHy100) on 2024-07-25</li>
+	    <li>[355731798] High CVE-2024-7967: Heap buffer overflow in Fonts. Reported by Tashita Software Security on 2024-07-27</li>
+	    <li>[349253666] High CVE-2024-7968: Use after free in Autofill. Reported by Han Zheng (HexHive) on 2024-06-25</li>
+	    <li>[351865302] High CVE-2024-7969: Type Confusion in V8. Reported by CFF of Topsec Alpha Team on 2024-07-09</li>
+	    <li>[360700873] High CVE-2024-7971: Type confusion in V8. Reported by Microsoft Threat Intelligence Center (MSTIC), Microsoft Security Response Center (MSRC) on 2024-08-19</li>
+	    <li>[345960102] Medium CVE-2024-7972: Inappropriate implementation in V8. Reported by Simon Gerst (intrigus-lgtm) on 2024-06-10</li>
+	    <li>[345518608] Medium CVE-2024-7973: Heap buffer overflow in PDFium. Reported by soiax on 2024-06-06</li>
+	    <li>[339141099] Medium CVE-2024-7974: Insufficient data validation in V8 API. Reported by bowu(@gocrashed) on 2024-05-07</li>
+	    <li>[347588491] Medium CVE-2024-7975: Inappropriate implementation in Permissions. Reported by Thomas Orlita on 2024-06-16</li>
+	    <li>[339654392] Medium CVE-2024-7976: Inappropriate implementation in FedCM. Reported by Alesandro Ortiz on 2024-05-10</li>
+	    <li>[324770940] Medium CVE-2024-7977: Insufficient data validation in Installer. Reported by Kim Dong-uk (@justlikebono) on 2024-02-11</li>
+	    <li>[40060358] Medium CVE-2024-7978: Insufficient policy enforcement in Data Transfer. Reported by NDevTK on 2022-07-21</li>
+	    <li>[356064205] Medium CVE-2024-7979: Insufficient data validation in Installer. Reported by VulnNoob on 2024-07-29</li>
+	    <li>[356328460] Medium CVE-2024-7980: Insufficient data validation in Installer. Reported by VulnNoob on 2024-07-30</li>
+	    <li>[40067456] Low CVE-2024-7981: Inappropriate implementation in Views. Reported by Thomas Orlita on 2023-07-14</li>
+	    <li>[350256139] Low CVE-2024-8033: Inappropriate implementation in WebApp Installs. Reported by Lijo A.T on 2024-06-30</li>
+	    <li>[353858776] Low CVE-2024-8034: Inappropriate implementation in Custom Tabs. Reported by Bharat (mrnoob) on 2024-07-18</li>
+	    <li>[40059470] Low CVE-2024-8035: Inappropriate implementation in Extensions. Reported by Microsoft on 2022-04-26</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7964</cvename>
+      <cvename>CVE-2024-7965</cvename>
+      <cvename>CVE-2024-7966</cvename>
+      <cvename>CVE-2024-7967</cvename>
+      <cvename>CVE-2024-7968</cvename>
+      <cvename>CVE-2024-7969</cvename>
+      <cvename>CVE-2024-7971</cvename>
+      <cvename>CVE-2024-7972</cvename>
+      <cvename>CVE-2024-7973</cvename>
+      <cvename>CVE-2024-7974</cvename>
+      <cvename>CVE-2024-7975</cvename>
+      <cvename>CVE-2024-7976</cvename>
+      <cvename>CVE-2024-7977</cvename>
+      <cvename>CVE-2024-7978</cvename>
+      <cvename>CVE-2024-7979</cvename>
+      <cvename>CVE-2024-7980</cvename>
+      <cvename>CVE-2024-7981</cvename>
+      <cvename>CVE-2024-8033</cvename>
+      <cvename>CVE-2024-8034</cvename>
+      <cvename>CVE-2024-8035</cvename>
+      <url>https://chromereleases.googleblog.com/2024/08/stable-channel-update-for-desktop_21.html</url>
+    </references>
+    <dates>
+      <discovery>2024-08-21</discovery>
+      <entry>2024-08-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="addc71b8-6024-11ef-86a1-8c164567ca3c">
+    <topic>nginx -- Vulnerability in the ngx_http_mp4_module</topic>
+    <affects>
+      <package>
+	<name>nginx-devel</name>
+	<range><ge>1.5.13</ge><lt>1.27.1</lt></range>
+      </package>
+      <package>
+	<name>nginx</name>
+	<range><ge>1.6.0</ge><lt>1.26.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The nginx development team reports:</p>
+	<blockquote cite="http://nginx.org/en/security_advisories.html">
+	  <p>This update fixes the buffer overread vulnerability in the
+	ngx_http_mp4_module.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7347</cvename>
+    </references>
+    <dates>
+      <discovery>2024-08-14</discovery>
+      <entry>2024-08-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="04c9c3f8-5ed3-11ef-8262-b0416f0c4c67">
+    <topic>Jinja2 -- Vulnerable to HTML attribute injection when passing user input as keys to xmlattr filter</topic>
+    <affects>
+      <package>
+	<name>py38-Jinja2</name>
+	<name>py39-Jinja2</name>
+	<name>py310-Jinja2</name>
+	<name>py311-Jinja2</name>
+	<range><lt>3.1.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/pallets/jinja/commit/0668239dc6b44ef38e7a6c9f91f312fd4ca581cb">
+	  <p>Jinja is an extensible templating engine.  The `xmlattr` filter in
+	affected versions of Jinja accepts keys containing non-attribute
+	characters.  XML/HTML attributes cannot contain spaces, `/`, `&gt;`,
+	or `=`, as each would then be interpreted as starting a separate
+	attribute.  If an application accepts keys (as opposed to only
+	values) as user input, and renders these in pages that other users
+	see as well, an attacker could use this to inject other attributes
+	and perform XSS.  The fix for CVE-2024-22195 only addressed spaces
+	but not other characters.  Accepting keys as user input is now
+	explicitly considered an unintended use case of the `xmlattr` filter,
+	and code that does so without otherwise validating the input should
+	be flagged as insecure, regardless of Jinja version.  Accepting
+	_values_ as user input continues to be safe.  This vulnerability
+	is fixed in 3.1.4.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-34064</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-34064</url>
+    </references>
+    <dates>
+      <discovery>2024-05-06</discovery>
+      <entry>2024-08-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d0ac9a17-5e68-11ef-b8cc-b42e991fc52e">
+    <topic>mozilla products -- spoofing attack</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>129</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1875354">
+	  <p>Select options could obscure the fullscreen notification dialog.
+	This could be used by a malicious site to perform a spoofing attack.
+	This vulnerability affects Firefox &lt; 129, Firefox ESR &lt; 128.1,
+	and Thunderbird &lt; 128.1.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7518</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-7518</url>
+    </references>
+    <dates>
+      <discovery>2024-08-06</discovery>
+      <entry>2024-08-19</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="e61af8f4-455d-4f99-8d81-fbb004929dab">
     <topic>electron31 -- multiple vulnerabilities</topic>
     <affects>
@@ -483,20 +783,44 @@ All of these are related to the CometVisu add-on for openHAB - if you are a user
     <topic>PostgreSQL -- Prevent unauthorized code execution during pg_dump</topic>
     <affects>
       <package>
-	<name>postgresql-client</name>
-	<range><lt>16.4</lt></range>
-	<range><lt>15.8</lt></range>
-	<range><lt>14.13</lt></range>
-	<range><lt>13.16</lt></range>
+	<name>postgresql12-client</name>
 	<range><lt>12.20</lt></range>
       </package>
       <package>
-	<name>postgresql-server</name>
-	<range><lt>16.4</lt></range>
-	<range><lt>15.8</lt></range>
-	<range><lt>14.13</lt></range>
+	<name>postgresql13-client</name>
 	<range><lt>13.16</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-client</name>
+	<range><lt>14.13</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-client</name>
+	<range><lt>15.8</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-client</name>
+	<range><lt>16.4</lt></range>
+      </package>
+      <package>
+	<name>postgresql12-server</name>
 	<range><lt>12.20</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-server</name>
+	<range><lt>13.16</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-server</name>
+	<range><lt>14.13</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-server</name>
+	<range><lt>15.8</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-server</name>
+	<range><lt>16.4</lt></range>
       </package>
     </affects>
     <description>
