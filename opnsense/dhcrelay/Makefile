@@ -1,5 +1,5 @@
 PORTNAME=	dhcrelay
-PORTVERSION=	0.6
+PORTVERSION=	1.0
 CATEGORIES=	net
 
 MAINTAINER=	franco@opnsense.org
@@ -12,6 +12,5 @@ CONFLICTS_INSTALL=	isc-dhcp44-relay
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	${CATEGORIES:[1]}
-GH_TAGNAME=	7335e6f
 
 .include <bsd.port.mk>
