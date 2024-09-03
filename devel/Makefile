@@ -630,7 +630,6 @@
     SUBDIR += egypt
     SUBDIR += eiffelstudio
     SUBDIR += electron27
-    SUBDIR += electron28
     SUBDIR += electron29
     SUBDIR += electron30
     SUBDIR += electron31
@@ -1086,6 +1085,7 @@
     SUBDIR += kdev-python
     SUBDIR += kdevelop
     SUBDIR += kdevelop-pg-qt
+    SUBDIR += kdsingleapplication
     SUBDIR += kerl
     SUBDIR += kf5-extra-cmake-modules
     SUBDIR += kf5-kapidox
@@ -1373,7 +1373,6 @@
     SUBDIR += libolecf
     SUBDIR += libopenbsd
     SUBDIR += libopencm3
-    SUBDIR += libopentracing
     SUBDIR += liborcus
     SUBDIR += libosinfo
     SUBDIR += libowfat
@@ -5003,7 +5002,6 @@
     SUBDIR += py-jaraco.packaging
     SUBDIR += py-jaraco.stream
     SUBDIR += py-jaraco.text
-    SUBDIR += py-jaraco.timing
     SUBDIR += py-jaraco.util
     SUBDIR += py-javaproperties
     SUBDIR += py-jdcal
@@ -7323,6 +7321,7 @@
     SUBDIR += rubygem-locale
     SUBDIR += rubygem-lockfile
     SUBDIR += rubygem-logger
+    SUBDIR += rubygem-logger15
     SUBDIR += rubygem-logging
     SUBDIR += rubygem-logster
     SUBDIR += rubygem-loquacious

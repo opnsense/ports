@@ -1,5 +1,6 @@
 PORTNAME=	spoofdpi
-DISTVERSION=	0.10.11
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.11.1
 CATEGORIES=	net
 
 MAINTAINER=	nxjoseph@protonmail.com
@@ -36,7 +37,7 @@ GH_TUPLE=	atomicgo:cursor:v0.2.0:atomicgo_cursor/vendor/atomicgo.dev/cursor \
 		xo:terminfo:abceb7e1c41e:xo_terminfo/vendor/github.com/xo/terminfo
 
 USE_RC_SUBR=	${PORTNAME}
-GO_TARGET=	./cmd/spoof-dpi:${PORTNAME}
+GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags="-s -w"
 SUB_LIST=	USER=${USERS}
 USERS=		${PORTNAME}
