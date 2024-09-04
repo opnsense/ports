@@ -271,6 +271,7 @@
     SUBDIR += gu-aspell
     SUBDIR += gv-aspell
     SUBDIR += halibut
+    SUBDIR += harper
     SUBDIR += heirloom-doctools
     SUBDIR += hevea
     SUBDIR += hexcode
@@ -336,7 +337,6 @@
     SUBDIR += jalingo
     SUBDIR += jaq
     SUBDIR += jarnal
-    SUBDIR += jarowinkler-cpp
     SUBDIR += java2html
     SUBDIR += jaxup
     SUBDIR += jdictionary
@@ -451,7 +451,6 @@
     SUBDIR += linuxdoc
     SUBDIR += linuxdoc-tools
     SUBDIR += localize
-    SUBDIR += logseq
     SUBDIR += lookatme
     SUBDIR += loook
     SUBDIR += lowdown
