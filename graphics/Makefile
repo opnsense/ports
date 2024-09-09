@@ -988,6 +988,7 @@
     SUBDIR += py-rasterio
     SUBDIR += py-rasterstats
     SUBDIR += py-rawkit
+    SUBDIR += py-rawpy
     SUBDIR += py-rich-pixels
     SUBDIR += py-s2
     SUBDIR += py-scikit-image
@@ -1007,6 +1008,7 @@
     SUBDIR += py-urbansim
     SUBDIR += py-utm
     SUBDIR += py-vecrec
+    SUBDIR += py-vispy
     SUBDIR += py-visvis
     SUBDIR += py-wand
     SUBDIR += py-webcolors

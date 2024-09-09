@@ -284,6 +284,7 @@
     SUBDIR += hs-lhs2tex
     SUBDIR += hs-pandoc
     SUBDIR += hs-pandoc-crossref
+    SUBDIR += hs-pandoc32
     SUBDIR += hs-yaml
     SUBDIR += hsb-aspell
     SUBDIR += htdig
@@ -458,8 +459,8 @@
     SUBDIR += lt-hyphen
     SUBDIR += lttoolbox
     SUBDIR += lua-icu-utils
+    SUBDIR += lua-luaexpat
     SUBDIR += lua-lyaml
-    SUBDIR += luaexpat
     SUBDIR += lucene
     SUBDIR += lucene5
     SUBDIR += luceneplusplus
@@ -1461,6 +1462,7 @@
     SUBDIR += py-mkdocs-minify-plugin
     SUBDIR += py-mkdocs-nature
     SUBDIR += py-mkdocs-redirects
+    SUBDIR += py-mkdocs-rss-plugin
     SUBDIR += py-mkdocs-simple-hooks
     SUBDIR += py-mkdocstrings
     SUBDIR += py-mkdocstrings-crystal
@@ -1699,6 +1701,7 @@
     SUBDIR += qt5-xml
     SUBDIR += qt5-xmlpatterns
     SUBDIR += qu-aspell
+    SUBDIR += quarto
     SUBDIR += quickwit
     SUBDIR += rand
     SUBDIR += randlm

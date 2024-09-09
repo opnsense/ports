@@ -135,6 +135,7 @@
     SUBDIR += bhyve+
     SUBDIR += bhyve-firmware
     SUBDIR += bhyve-rc
+    SUBDIR += bhyvemgr
     SUBDIR += biosfont
     SUBDIR += bkpupsd
     SUBDIR += bksh
@@ -1361,9 +1362,9 @@
     SUBDIR += schedutils
     SUBDIR += schilyutils
     SUBDIR += screen
+    SUBDIR += screen-devel
     SUBDIR += screen49
     SUBDIR += screen50
-    SUBDIR += screen-devel
     SUBDIR += screenfetch
     SUBDIR += screenie
     SUBDIR += scterc

@@ -267,6 +267,7 @@
     SUBDIR += pagmo2
     SUBDIR += paje
     SUBDIR += paraview
+    SUBDIR += parthenon
     SUBDIR += pastix
     SUBDIR += pcmsolver
     SUBDIR += phonopy
@@ -420,6 +421,7 @@
     SUBDIR += py-rmf
     SUBDIR += py-rmsd
     SUBDIR += py-ruffus
+    SUBDIR += py-sarpy
     SUBDIR += py-scikit-fuzzy
     SUBDIR += py-scikit-learn
     SUBDIR += py-scikit-optimize

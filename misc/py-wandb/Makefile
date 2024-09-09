@@ -1,6 +1,6 @@
 PORTNAME=	wandb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.7
+DISTVERSION=	0.17.9
 CATEGORIES=	misc # machine-learning
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,6 +12,7 @@ WWW=		https://wandb.ai/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_armv7=	compilation fails: Go fails: cannot use math.MaxInt64 (untyped int constant 9223372036854775807) as int value in argument to strconv.Itoa (overflows)
 BROKEN_i386=	compilation fails: Go fails: cannot use math.MaxInt64 (untyped int constant 9223372036854775807) as int value in argument to strconv.Itoa (overflows)
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \

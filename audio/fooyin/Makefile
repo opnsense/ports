@@ -1,7 +1,12 @@
 PORTNAME=	fooyin
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.6.2
+PORTREVISION=	1
 CATEGORIES=	audio multimedia
+
+PATCH_SITES=	https://github.com/fooyin/fooyin/commit/
+PATCHFILES=	a7388331090465ae9c22600bee4769d4c00bbc53.patch:-p1 \
+		318f2e00952f37e1d237789d7b2605f05639c687.patch:-p1
 
 MAINTAINER=	diizzy@FreeBSD.org
 COMMENT=	foobar2000 inspired audio player
@@ -9,6 +14,9 @@ WWW=		https://github.com/fooyin/fooyin
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+NOT_FOR_ARCHS=  armv7 i386 powerpc
+NOT_FOR_ARCHS_REASON=	Fails to build on 32-bit platforms with various errors
 
 LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg \
 		libgme.so:audio/libgme \
