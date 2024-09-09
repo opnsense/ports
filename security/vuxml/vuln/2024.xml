@@ -1,3 +1,535 @@
+  <vuln vid="80fbe184-2358-11ef-996e-40b034455553">
+    <topic>minio -- unintentional information disclosure</topic>
+    <affects>
+      <package>
+	<name>minio</name>
+	<range><lt>2024.05.27.19.17.46</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Minio security advisory GHSA-95fr-cm4m-q5p9 reports:</p>
+	<blockquote cite="https://github.com/minio/minio/security/advisories/GHSA-95fr-cm4m-q5p9">
+	  <p>when used with anonymous requests by sending a random
+	    object name requests you can figure out if the object
+	  exists or not on the server on a specific bucket and also
+	  gain access to some amount of information.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-36107</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-36107</url>
+    </references>
+    <dates>
+      <discovery>2024-05-28</discovery>
+      <entry>2024-06-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="144836e3-2358-11ef-996e-40b034455553">
+    <topic>minio -- privilege escalation via permissions inheritance</topic>
+    <affects>
+      <package>
+	<name>minio</name>
+	<range><lt>2024.01.31.20.20.33</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Minio security advisory GHSA-xx8w-mq23-29g4 ports:</p>
+	<blockquote cite="https://github.com/minio/minio/security/advisories/GHSA-xx8w-mq23-29g4">
+	<p>
+	  When someone creates an access key, it inherits the
+	  permissions of the parent key. Not only for s3:* actions,
+	  but also admin:* actions. Which means unless somewhere
+	  above in the access-key hierarchy, the admin rights are
+	  denied, access keys will be able to simply override their
+	  own s3 permissions to something more permissive.
+	</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-24747</cvename>
+      <url>https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-24747</url>
+    </references>
+    <dates>
+      <discovery>2024-01-31</discovery>
+      <entry>2024-06-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7ade3c38-6d1f-11ef-ae11-b42e991fc52e">
+    <topic>firefox -- Potential memory corruption and exploitable crash</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>128.0,2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1901411">
+	  <p>An error in the ECMA-262 specification relating to Async Generators
+	could have resulted in a type confusion, potentially leading to
+	memory corruption and an exploitable crash.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7652</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-7652</url>
+    </references>
+    <dates>
+      <discovery>2024-09-06</discovery>
+      <entry>2024-09-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3e44c35f-6cf4-11ef-b813-4ccc6adda413">
+    <topic>exiv2 -- Out-of-bounds read in AsfVideo::streamProperties</topic>
+    <affects>
+      <package>
+	<name>exiv2</name>
+	<range><ge>0.28.0,1</ge><lt>0.28.3,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Kevin Backhouse reports:</p>
+	<blockquote cite="https://github.com/Exiv2/exiv2/security/advisories/GHSA-38rv-8x93-pvrh">
+	  <p>An out-of-bounds read was found in Exiv2 version v0.28.2. The vulnerability
+	   is in the parser for the ASF video format, which was a new feature in v0.28.0,
+	   so Exiv2 versions before v0.28 are not affected. The out-of-bounds read is
+	   triggered when Exiv2 is used to read the metadata of a crafted video file.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-39695</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-38rv-8x93-pvrh</url>
+    </references>
+    <dates>
+      <discovery>2024-04-21</discovery>
+      <entry>2024-09-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a5e13973-6c75-11ef-858b-23eeba13701a">
+    <topic>forgejo -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>forgejo</name>
+	<range><lt>8.0.3</lt></range>
+      </package>
+      <package>
+	<name>forgejo7</name>
+	<range><lt>7.0.9</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>Replace v-html with v-text in search inputbox</li>
+       <li>Upgrade webpack to v5.94.0 as a precaution to mitigate
+       CVE-2024-43788, although we were not yet able to confirm that this
+       can be exploited in Forgejo.</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-43788</cvename>
+      <url>https://codeberg.org/forgejo/forgejo/milestone/8231</url>
+    </references>
+    <dates>
+      <discovery>2024-09-03</discovery>
+      <entry>2024-09-06</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="943f8915-6c5d-11ef-810a-f8b46a88f42c">
+    <topic>binutils -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>binutils</name>
+	<range><lt>2.43,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>alster@vinterdalen.se reports PR/281070:</p>
+	<blockquote cite="https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=281070">
+	  <p>A new version of devel/binutils has been released fixing
+	     CVE-2023-1972, CVE-2023-25585, CVE-2023-25586, and
+	     CVE-2023-25588.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-1972</cvename>
+      <cvename>CVE-2023-25585</cvename>
+      <cvename>CVE-2023-25586</cvename>
+      <cvename>CVE-2023-25588</cvename>
+    </references>
+    <dates>
+      <discovery>2024-08-25</discovery>
+      <entry>2024-09-06</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f5d0cfe7-6ba6-11ef-858b-23eeba13701a">
+    <topic>gitea -- multiple issues</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.22.2</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>Replace v-html with v-text in search inputbox</li>
+       <li>Fix nuget/conan/container packages upload bugs</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/releases/tag/v1.22.2</url>
+    </references>
+    <dates>
+      <discovery>2024-09-03</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="66907dab-6bb2-11ef-b813-4ccc6adda413">
+    <topic>qt5-webengine -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>qt5-webengine</name>
+	<range><lt>5.15.17.p3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<blockquote cite="https://code.qt.io/cgit/qt/qtwebengine-chromium.git/log/?h=87-based">
+	  <p>Backports for 6 security bugs in Chromium:</p>
+	  <ul>
+	    <li>CVE-2024-5496: Use after free in Media Session</li>
+	    <li>CVE-2024-5846: Use after free in PDFium</li>
+	    <li>CVE-2024-6291: Use after free in Swiftshader</li>
+	    <li>CVE-2024-6989: Use after free in Loader</li>
+	    <li>CVE-2024-6996: Race in Frames</li>
+	    <li>CVE-2024-7536: Use after free in WebAudio</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-5496</cvename>
+      <cvename>CVE-2024-5846</cvename>
+      <cvename>CVE-2024-6291</cvename>
+      <cvename>CVE-2024-6989</cvename>
+      <cvename>CVE-2024-6996</cvename>
+      <cvename>CVE-2024-7536</cvename>
+      <url>https://code.qt.io/cgit/qt/qtwebengine-chromium.git/log/?h=87-based</url>
+    </references>
+    <dates>
+      <discovery>2024-08-05</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a3a1caf5-6ba1-11ef-b9e8-b42e991fc52e">
+    <topic>firefox -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>130.0_1,2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1908496">
+	<p>This entry contains 8 vulnerabilities:</p>
+	<ul>
+	<li>CVE-2024-8381: A potentially exploitable type
+	confusion could be triggered when looking up a property
+	name on an object being used as the `with` environment.</li>
+	<li>CVE-2024-8382: Internal browser event interfaces were
+	exposed to web content when privileged EventHandler listener
+	callbacks ran for those events. Web content that tried to
+	use those interfaces would not be able to use them with
+	elevated privileges, but their presence would indicate
+	certain browser features had been used, such as when a user
+	opened the Dev Tools console.</li>
+	<li>CVE-2024-8383: Firefox normally asks for confirmation
+	before asking the operating system to find an application to
+	handle a scheme that the browser does not support. It did not
+	ask before doing so for the Usenet-related schemes news: and
+	snews:.  Since most operating systems don&apos;t have a
+	trusted newsreader installed by default, an unscrupulous
+	program that the user downloaded could register itself as a
+	handler. The website that served the application download
+	could then launch that application at will.</li>
+	<li>CVE-2024-8384: The JavaScript garbage collector could
+	mis-color cross-compartment objects if OOM conditions were
+	detected at the right point between two passes. This could have
+	led to memory corruption.</li>
+	<li>CVE-2024-8385: A difference in the handling of
+	StructFields and ArrayTypes in WASM could be used to trigger
+	an exploitable type confusion vulnerability.</li>
+	<li>CVE-2024-8386: If a site had been granted the permission
+	to open popup windows, it could cause Select elements to
+	appear on top of another site to perform a spoofing attack.</li>
+	<li>CVE-2024-8387: Memory safety bugs present in Firefox 129,
+	Firefox ESR 128.1, and Thunderbird 128.1. Some of these bugs
+	showed evidence of memory corruption and we presume that with
+	enough effort some of these could have been exploited to run
+	arbitrary code.</li>
+	<li>CVE-2024-8389: Memory safety bugs present in Firefox 129.
+	Some of these bugs showed evidence of memory corruption and we
+	presume that with enough effort some of these could have been
+	exploited to run arbitrary code.</li>
+  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-8381</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8381</url>
+      <cvename>CVE-2024-8382</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8382</url>
+      <cvename>CVE-2024-8383</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8383</url>
+      <cvename>CVE-2024-8384</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8384</url>
+      <cvename>CVE-2024-8385</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8385</url>
+      <cvename>CVE-2024-8386</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8386</url>
+      <cvename>CVE-2024-8387</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8387</url>
+      <cvename>CVE-2024-8389</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-8389</url>
+    </references>
+    <dates>
+      <discovery>2024-09-03</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7e079ce2-6b51-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- umtx Kernel panic or Use-After-Free</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+	<range><ge>13.3</ge><lt>13.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Concurrent removals of such a mapping by using the UMTX_SHM_DESTROY
+	sub-request of UMTX_OP_SHM can lead to decreasing the reference
+	count of the object representing the mapping too many times, causing
+	it to be freed too early.</p>
+	<h1>Impact:</h1>
+	<p>A malicious code exercizing the UMTX_SHM_DESTROY sub-request
+	in parallel can panic the kernel or enable further Use-After-Free
+	attacks, potentially including code execution or Capsicum sandbox
+	escape.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-43102</cvename>
+      <freebsdsa>SA-24:14.umtx</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-04</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4edaa9f4-6b51-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- bhyve(8) privileged guest escape via USB controller</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+	<range><ge>13.3</ge><lt>13.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>bhyve can be configured to emulate devices on a virtual USB
+	controller (XHCI), such as USB tablet devices.  An insufficient
+	boundary validation in the USB code could lead to an out-of-bounds
+	write on the heap, with data controlled by the caller.</p>
+	<h1>Impact:</h1>
+	<p>A malicious, privileged software running in a guest VM can
+	exploit the vulnerability to achieve code execution on the host in
+	the bhyve userspace process, which typically runs as root.  Note
+	that bhyve runs in a Capsicum sandbox, so malicious code is constrained
+	by the capabilities available to the bhyve process.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-32668</cvename>
+      <freebsdsa>SA-24:12.bhyve</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-04</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9bd5e47b-6b50-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- Multiple issues in ctl(4) CAM Target Layer</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+	<range><ge>13.3</ge><lt>13.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Several vulnerabilities were found in the ctl subsystem.</p>
+	<p>The function ctl_write_buffer incorrectly set a flag which resulted
+	in a kernel Use-After-Free when a command finished processing
+	(CVE-2024-45063).  The ctl_write_buffer and ctl_read_buffer functions
+	allocated memory to be returned to userspace, without initializing
+	it (CVE-2024-8178).  The ctl_report_supported_opcodes function did
+	not sufficiently validate a field provided by userspace, allowing
+	an arbitrary write to a limited amount of kernel help memory
+	(CVE-2024-42416).  The ctl_request_sense function could expose up
+	to three bytes of the kernel heap to userspace (CVE-2024-43110).</p>
+	<p>Guest virtual machines in the bhyve hypervisor can send SCSI commands
+	to the corresponding kernel driver via the virtio_scsi interface.
+	This provides guests with direct access to the vulnerabilities
+	covered by this advisory.</p>
+	<p>The CAM Target Layer iSCSI target daemon ctld(8) accepts incoming
+	iSCSI connections, performs authentication and passes connections
+	to the kernel ctl(4) target layer.</p>
+	<h1>Impact:</h1>
+	<p>Malicious software running in a guest VM that exposes virtio_scsi
+	can exploit the vulnerabilities to achieve code execution on the
+	host in the bhyve userspace process, which typically runs as root.
+	Note that bhyve runs in a Capsicum sandbox, so malicious code is
+	constrained by the capabilities available to the bhyve process.</p>
+	<p>A malicious iSCSI initiator could achieve remote code execution on
+	the iSCSI target host.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-8178</cvename>
+      <cvename>CVE-2024-42416</cvename>
+      <cvename>CVE-2024-43110</cvename>
+      <freebsdsa>SA-24:11.ctl</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-04</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="56d76414-6b50-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- bhyve(8) privileged guest escape via TPM device passthrough</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>bhyve can be configured to provide access to the host's TPM
+	device, where it passes the communication through an emulated device
+	provided to the guest.  This may be performed on the command-line
+	by starting bhyve with the `-l tpm,passthru,/dev/tpmX` parameters.</p>
+	<p>The MMIO handler for the emulated device did not validate the offset
+	and size of the memory access correctly, allowing guests to read
+	and write memory contents outside of the memory area effectively
+	allocated.</p>
+	<h1>Impact:</h1>
+	<p>Malicious software running in a guest VM can exploit the buffer
+	overflow to achieve code execution on the host in the bhyve userspace
+	process, which typically runs as root.  Note that bhyve runs in a
+	Capsicum sandbox, so malicious code is constrained by the capabilities
+	available to the bhyve process.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-41928</cvename>
+      <freebsdsa>SA-24:10.bhyve</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-04</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8d1f9adf-6b4f-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- Multiple vulnerabilities in libnv</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+	<range><ge>13.3</ge><lt>13.3_6</lt></range>
+      </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+	<range><ge>13.3</ge><lt>13.3_6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>CVE-2024-45287 is a vulnerability that affects both the kernel
+	and userland.  A malicious value of size in a structure of packed
+	libnv can cause an integer overflow, leading to the allocation of
+	a smaller buffer than required for the parsed data.</p>
+	<p>CVE-2024-45288 is a vulnerability that affects both the kernel and
+	userland.  A missing null-termination character in the last element
+	of an nvlist array string can lead to writing outside the allocated
+	buffer.</p>
+	<h1>Impact:</h1>
+	<p>It is possible for an attacker to overwrite portions of memory
+	(in userland or the kernel) as the allocated buffer might be smaller
+	than the data received from a malicious process.  This vulnerability
+	could result in privilege escalation or cause a system panic.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45287</cvename>
+      <cvename>CVE-2024-45288</cvename>
+      <freebsdsa>SA-24:09.libnv</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-04</discovery>
+      <entry>2024-09-05</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="21f505f4-6a1c-11ef-b611-84a93843eb75">
     <topic>OpenSSL -- Multiple vulnerabilities</topic>
     <affects>
@@ -25,11 +557,16 @@
 	<name>openssl31-quictls</name>
 	<range><lt>3.1.7</lt></range>
       </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_4</lt></range>
+	<range><ge>14.0</ge><lt>14.0_10</lt></range>
+      </package>
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
 	<p>The OpenSSL project reports:</p>
-	<blockquote cite="https://www.openssl.org/news/secadv/20240528.txt">
+	<blockquote cite="https://openssl-library.org/news/secadv/20240903.txt">
 	  <p>Possible denial of service in X.509 name checks [Moderate severity]
 	    Applications performing certificate name checks (e.g., TLS clients
 	    checking server certificates) may attempt to read an invalid
@@ -45,11 +582,14 @@
     <references>
       <cvename>CVE-2024-5535</cvename>
       <cvename>CVE-2024-6119</cvename>
-      <url>https://openssl-library.org/news/vulnerabilities/</url>
+      <url>https://openssl-library.org/news/secadv/20240627.txt</url>
+      <url>https://openssl-library.org/news/secadv/20240903.txt</url>
+      <freebsdsa>SA-24:13.openssl</freebsdsa>
     </references>
     <dates>
       <discovery>2024-09-03</discovery>
       <entry>2024-09-03</entry>
+      <modified>2024-09-05</modified>
     </dates>
   </vuln>
 
@@ -155,7 +695,7 @@
     <affects>
       <package>
 	<name>firefox</name>
-	<range><lt>129.0</lt></range>
+	<range><lt>129.0,2</lt></range>
       </package>
     </affects>
     <description>
@@ -310,7 +850,7 @@
     <affects>
       <package>
 	<name>firefox</name>
-	<range><lt>127</lt></range>
+	<range><lt>127,2</lt></range>
       </package>
     </affects>
     <description>
@@ -546,7 +1086,7 @@
     <affects>
       <package>
 	<name>firefox</name>
-	<range><lt>129</lt></range>
+	<range><lt>129,2</lt></range>
       </package>
     </affects>
     <description>
@@ -757,7 +1297,7 @@
     <affects>
       <package>
 	<name>mozilla</name>
-	<range><lt>129.0</lt></range>
+	<range><lt>129.0,2</lt></range>
       </package>
     </affects>
     <description>
@@ -998,7 +1538,7 @@ All of these are related to the CometVisu add-on for openHAB - if you are a user
     <affects>
       <package>
 	<name>firefox</name>
-	<range><lt>127.0</lt></range>
+	<range><lt>127.0,2</lt></range>
       </package>
     </affects>
     <description>
