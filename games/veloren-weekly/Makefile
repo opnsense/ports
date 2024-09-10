@@ -1,5 +1,6 @@
 PORTNAME=	veloren
 PORTVERSION=	s20240828
+PORTREVISION=	1
 CATEGORIES=	games wayland
 PKGNAMESUFFIX=	-weekly
 
@@ -70,7 +71,6 @@ do-install:
 .endfor
 
 post-install:
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/*
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} assets ${STAGEDIR}${DATADIR})
 	${RLN} ${STAGEDIR}${DATADIR}/assets/voxygen/*.desktop \
 		${STAGEDIR}${PREFIX}/share/applications

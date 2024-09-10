@@ -1,5 +1,6 @@
 PORTNAME=	ddtrace
 PORTVERSION=	2.11.3
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/abseil/abseil-cpp/releases/download/${ABSEIL_VERSION}/:abseil
@@ -53,8 +54,5 @@ OPENTRACING_RUN_DEPENDS=${PYTHON_PKGNAMEPREFIX}opentracing>=2.0.0:devel/py-opent
 
 post-patch:
 	${MV} ${WRKDIR}/abseil-cpp-${ABSEIL_VERSION}/ ${WRKSRC}/ddtrace/appsec/_iast/_taint_tracking/_deps/
-
-post-install:
-	${FIND} ${STAGEDIR}${PYTHON_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
 
 .include <bsd.port.mk>
