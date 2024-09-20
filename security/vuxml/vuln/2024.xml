@@ -1,3 +1,403 @@
+  <vuln vid="c02b8db5-771b-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- NFS client accepts file names containing path separators</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_3</lt></range>
+	<range><ge>14.0</ge><lt>14.0_9</lt></range>
+	<range><ge>13.3</ge><lt>13.3_5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>When mounting a remote filesystem using NFS, the kernel did not
+	sanitize remotely provided filenames for the path separator character,
+	"/".  This allows readdir(3) and related functions to return
+	filesystem entries with names containing additional path components.</p>
+	<h1>Impact:</h1>
+	<p>The lack of validation described above gives rise to a confused
+	deputy problem.  For example, a program copying files from an NFS
+	mount could be tricked into copying from outside the intended source
+	directory, and/or to a location outside the intended destination
+	directory.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6759</cvename>
+      <freebsdsa>SA-24:07.nfsclient</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-08-07</discovery>
+      <entry>2024-09-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8fb61d94-771b-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- ktrace(2) fails to detach when executing a setuid binary</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_3</lt></range>
+	<range><ge>14.0</ge><lt>14.0_9</lt></range>
+	<range><ge>13.3</ge><lt>13.3_5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>A logic bug in the code which disables kernel tracing for setuid
+	programs meant that tracing was not disabled when it should have,
+	allowing unprivileged users to trace and inspect the behavior of
+	setuid programs.</p>
+	<h1>Impact:</h1>
+	<p>The bug may be used by an unprivileged user to read the contents
+	of files to which they would not otherwise have access, such as the
+	local password database.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6760</cvename>
+      <freebsdsa>SA-24:06.ktrace</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-08-07</discovery>
+      <entry>2024-09-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f140cff0-771a-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- pf incorrectly matches different ICMPv6 states in the state table</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_3</lt></range>
+	<range><ge>14.0</ge><lt>14.0_9</lt></range>
+	<range><ge>13.3</ge><lt>13.3_5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>In ICMPv6 Neighbor Discovery (ND), the ID is always 0.  When
+	pf is configured to allow ND and block incoming Echo Requests, a
+	crafted Echo Request packet after a Neighbor Solicitation (NS) can
+	trigger an Echo Reply.  The packet has to come from the same host
+	as the NS and have a zero as identifier to match the state created
+	by the Neighbor Discovery and allow replies to be generated.</p>
+	<h1>Impact:</h1>
+	<p>ICMPv6 packets with identifier value of zero bypass firewall
+	rules written on the assumption that the incoming packets are going
+	to create a state in the state table.</p>
+	<h1>Note:</h1>
+	<p>This advisory introduced additional issues that were addressed by
+	FreeBSD-EN-24:16.pf.  Please refer to that erratum for additional
+	fixes.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6640</cvename>
+      <freebsdsa>SA-24:05.pf</freebsdsa>
+      <url>https://www.freebsd.org/security/advisories/FreeBSD-EN-24:16.pf.asc</url>
+    </references>
+    <dates>
+      <discovery>2024-08-07</discovery>
+      <entry>2024-09-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="93c12fe5-7716-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- Integer overflow in libnv</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_5</lt></range>
+	<range><ge>14.0</ge><lt>14.0_11</lt></range>
+	<range><ge>13.4</ge><lt>13.4_1</lt></range>
+	<range><ge>13.3</ge><lt>13.3_7</lt></range>
+      </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_5</lt></range>
+	<range><ge>14.0</ge><lt>14.0_11</lt></range>
+	<range><ge>13.4</ge><lt>13.4_1</lt></range>
+	<range><ge>13.3</ge><lt>13.3_7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>A malicious value of size in a structure of packed libnv can
+	cause an integer overflow, leading to the allocation of a smaller
+	buffer than required for the parsed data.  The introduced check was
+	incorrect, as it took into account the size of the pointer, not the
+	structure.  This vulnerability affects both kernel and userland.</p>
+	<p>This issue was originally intended to be addressed as part of
+	FreeBSD-SA-24:09.libnv, but due to a logic issue, this issue was
+	not properly addressed.</p>
+	<h1>Impact:</h1>
+	<p>It is possible for an attacker to overwrite portions of memory
+	(in userland or the kernel) as the allocated buffer might be smaller
+	than the data received from a malicious process.  This vulnerability
+	could result in privilege escalation or cause a system panic.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45287</cvename>
+      <freebsdsa>SA-24:16.libnv</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-19</discovery>
+      <entry>2024-09-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1febd09b-7716-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- bhyve(8) out-of-bounds read access via XHCI emulation</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_5</lt></range>
+	<range><ge>14.0</ge><lt>14.0_11</lt></range>
+	<range><ge>13.4</ge><lt>13.4_1</lt></range>
+	<range><ge>13.3</ge><lt>13.3_7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>bhyve can be configured to emulate devices on a virtual USB
+	controller (XHCI), such as USB tablet devices.  An insufficient
+	boundary validation in the USB code could lead to an out-of-bounds read
+	on the heap, which could potentially lead to an arbitrary write and
+	remote code execution.</p>
+	<h1>Impact:</h1>
+	<p>A malicious, privileged software running in a guest VM can exploit
+	the vulnerability to crash the hypervisor process or potentially achieve
+	code execution on the host in the bhyve userspace process, which
+	typically runs as root.  Note that bhyve runs in a Capsicum sandbox, so
+	malicious code is constrained by the capabilities available to the bhyve
+	process.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-41721</cvename>
+      <freebsdsa>SA-24:15.bhyve</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-09-19</discovery>
+      <entry>2024-09-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3e738678-7582-11ef-bece-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.3.0</ge><lt>17.3.3</lt></range>
+	<range><ge>17.2.0</ge><lt>17.2.7</lt></range>
+	<range><ge>0</ge><lt>17.1.8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/09/17/patch-release-gitlab-17-3-3-released/">
+	  <p>SAML authentication bypass</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45409</cvename>
+      <url>https://about.gitlab.com/releases/2024/09/17/patch-release-gitlab-17-3-3-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-09-17</discovery>
+      <entry>2024-09-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="58750d49-7302-11ef-8c95-195d300202b3">
+    <topic>OpenSSH -- Pre-authentication async signal safety issue</topic>
+    <affects>
+      <package>
+	<name>openssh-portable</name>
+	<range><lt>9.8.p1_1,1</lt></range>
+      </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_3</lt></range>
+	<range><ge>14.0</ge><lt>14.0_9</lt></range>
+	<range><ge>13.3</ge><lt>13.3_5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The FreeBSD Project reports:</p>
+	<blockquote cite="https://www.freebsd.org/security/advisories/FreeBSD-SA-24:08.openssh.asc">
+	  <p>
+	    A signal handler in sshd(8) may call a logging function that is not async-
+	    signal-safe. The signal handler is invoked when a client does not
+	    authenticate within the LoginGraceTime seconds (120 by default).
+	    This signal handler executes in the context of the sshd(8)'s privileged
+	    code, which is not sandboxed and runs with full root privileges.</p>
+	    <p>This issue is another instance of the problem in CVE-2024-6387 addressed by
+	    FreeBSD-SA-24:04.openssh.  The faulty code in this case is from the
+	    integration of blacklistd in OpenSSH in FreeBSD.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-7589</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-7589</url>
+      <freebsdsa>SA-24:08.openssh</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-08-06</discovery>
+      <entry>2024-09-15</entry>
+      <modified>2024-09-20</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="bd940aba-7467-11ef-a5c4-08002784c58d">
+    <topic>SnappyMail -- multiple mXSS in HTML sanitizer</topic>
+    <affects>
+      <package>
+	<name>snappymail-php81</name>
+	<name>snappymail-php82</name>
+	<name>snappymail-php83</name>
+	<name>snappymail-php84</name>
+	<range><lt>2.38.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Oskar reports:</p>
+	<blockquote cite="https://github.com/the-djmaze/snappymail/security/advisories/GHSA-2rq7-79vp-ffxm">
+	  <p>
+	    SnappyMail uses the `cleanHtml()` function to cleanup HTML
+	    and CSS in emails. Research discovered that the function
+	    has a few bugs which cause an mXSS exploit. Because the
+	    function allowed too many (invalid) HTML elements, it was
+	    possible (with incorrect markup) to trick the browser to
+	    "fix" the broken markup into valid markup. As a result a
+	    motivated attacker may be able to inject javascript.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45800</cvename>
+      <url>https://github.com/the-djmaze/snappymail/security/advisories/GHSA-2rq7-79vp-ffxm</url>
+    </references>
+    <dates>
+      <discovery>2024-09-16</discovery>
+      <entry>2024-09-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e464f777-719e-11ef-8a0f-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>128.0.6613.137</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>128.0.6613.137</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/09/stable-channel-update-for-desktop_10.html">
+	 <p>This update includes 4 security fixes:</p>
+	 <ul>
+	    <li>[361461526] High CVE-2024-8636: Heap buffer overflow in Skia. Reported by Renan Rios (@hyhy_100) on 2024-08-22</li>
+	    <li>[361784548] High CVE-2024-8637: Use after free in Media Router. Reported by lime(@limeSec_) from TIANGONG Team of Legendsec at QI-ANXIN Group on 2024-08-23</li>
+	    <li>[362539773] High CVE-2024-8638: Type Confusion in V8. Reported by Zhenghang Xiao (@Kipreyyy) on 2024-08-28</li>
+	    <li>[362658609] High CVE-2024-8639: Use after free in Autofill. Reported by lime(@limeSec_) from TIANGONG Team of Legendsec at QI-ANXIN Group on 2024-08-28</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-8636</cvename>
+      <cvename>CVE-2024-8637</cvename>
+      <cvename>CVE-2024-8638</cvename>
+      <cvename>CVE-2024-8639</cvename>
+      <url>https://chromereleases.googleblog.com/2024/09/stable-channel-update-for-desktop_10.html</url>
+    </references>
+    <dates>
+      <discovery>2024-09-10</discovery>
+      <entry>2024-09-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bcc8b21e-7122-11ef-bece-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.3.0</ge><lt>17.3.2</lt></range>
+	<range><ge>17.2.0</ge><lt>17.2.5</lt></range>
+	<range><ge>8.14.0</ge><lt>17.1.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/09/11/patch-release-gitlab-17-3-2-released/">
+	  <p>Execute environment stop actions as the owner of the stop action job</p>
+	  <p>Prevent code injection in Product Analytics funnels YAML</p>
+	  <p>SSRF via Dependency Proxy</p>
+	  <p>Denial of Service via sending a large glm_source parameter</p>
+	  <p>CI_JOB_TOKEN can be used to obtain GitLab session token</p>
+	  <p>Variables from settings are not overwritten by PEP if a template is included</p>
+	  <p>Guests can disclose the full source code of projects using custom group-level templates</p>
+	  <p>IdentitiesController allows linking of arbitrary unclaimed provider identities</p>
+	  <p>Open redirect in repo/tree/:id endpoint can lead to account takeover through broken OAuth flow</p>
+	  <p>Open redirect in release permanent links can lead to account takeover through broken OAuth flow</p>
+	  <p>Guest user with Admin group member permission can edit custom role to gain other permissions</p>
+	  <p>Exposure of protected and masked CI/CD variables by abusing on-demand DAST</p>
+	  <p>Credentials disclosed when repository mirroring fails</p>
+	  <p>Commit information visible through release atom endpoint for guest users</p>
+	  <p>Dependency Proxy Credentials are Logged in Plaintext in graphql Logs</p>
+	  <p>User Application can spoof the redirect url</p>
+	  <p>Group Developers can view group runners information</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-6678</cvename>
+      <cvename>CVE-2024-8640</cvename>
+      <cvename>CVE-2024-8635</cvename>
+      <cvename>CVE-2024-8124</cvename>
+      <cvename>CVE-2024-8641</cvename>
+      <cvename>CVE-2024-8311</cvename>
+      <cvename>CVE-2024-4660</cvename>
+      <cvename>CVE-2024-4283</cvename>
+      <cvename>CVE-2024-4612</cvename>
+      <cvename>CVE-2024-8631</cvename>
+      <cvename>CVE-2024-2743</cvename>
+      <cvename>CVE-2024-5435</cvename>
+      <cvename>CVE-2024-6389</cvename>
+      <cvename>CVE-2024-4472</cvename>
+      <cvename>CVE-2024-6446</cvename>
+      <cvename>CVE-2024-6685</cvename>
+      <url>https://about.gitlab.com/releases/2024/09/11/patch-release-gitlab-17-3-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-09-11</discovery>
+      <entry>2024-09-12</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="d5026193-6fa2-11ef-99bc-1c697a616631">
     <topic>Intel CPUs -- multiple vulnerabilities</topic>
     <affects>
@@ -1141,11 +1541,11 @@
     <affects>
       <package>
 	<name>nginx-devel</name>
-	<range><ge>1.5.13</ge><lt>1.27.1</lt></range>
+	<range><ge>1.5.13,3</ge><lt>1.27.1,3</lt></range>
       </package>
       <package>
 	<name>nginx</name>
-	<range><ge>1.6.0</ge><lt>1.26.2</lt></range>
+	<range><ge>1.6.0,3</ge><lt>1.26.2,3</lt></range>
       </package>
     </affects>
     <description>
@@ -2685,6 +3085,13 @@ All of these are related to the CometVisu add-on for openHAB - if you are a user
 	<name>openssh-portable</name>
 	<range><lt>9.7.p1_2,1</lt></range>
       </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_2</lt></range>
+	<range><ge>14.0</ge><lt>14.0_8</lt></range>
+	<range><ge>13.3</ge><lt>13.3_4</lt></range>
+	<range><ge>13.2</ge><lt>13.2_12</lt></range>
+      </package>
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
@@ -2697,11 +3104,12 @@ All of these are related to the CometVisu add-on for openHAB - if you are a user
     <references>
       <cvename>CVE-2024-6387</cvename>
       <url>https://www.openssh.com/security.html</url>
+      <freebsdsa>SA-24:04.openssh</freebsdsa>
     </references>
     <dates>
       <discovery>2024-07-01</discovery>
       <entry>2024-07-01</entry>
-      <modified>2024-07-03</modified>
+      <modified>2024-09-20</modified>
     </dates>
   </vuln>
 
