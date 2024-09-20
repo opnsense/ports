@@ -2206,8 +2206,8 @@ audio/glurp||2023-06-30|Has expired: Unmaintained for years and depends on depre
 finance/R-cran-ccgarch||2023-06-30|Has expired: Fails to build with R 4.3.0+ and abandoned upstream
 www/redmine42||2023-06-30|Has expired: Broken with all supported Ruby versions
 www/tomcat10|www/tomcat101|2023-06-30|Has expired: EOLd, potential security issues (https://tomcat.apache.org/tomcat-10.0-eol.html), use www/tomcat101 instead
-databases/mongodb40-tools||2023-06-30|Has expired: Upstream EOL reached on 2022-04-30
-databases/mongodb40||2023-06-30|Has expired: Upstream EOL reached on 2022-04-30
+databases/mongodb40-tools|databases/mongodb-tools|2023-06-30|Has expired: Upstream EOL reached on 2022-04-30
+databases/mongodb40|databases/mongodb42|2023-06-30|Has expired: Upstream EOL reached on 2022-04-30
 dns/djbdns-tools||2023-06-30|Has expired: No longer compliant with current DNS standards and source code hasn't been centrally managed for over 20 years
 dns/djbdns||2023-06-30|Has expired: No longer compliant with current DNS standards and source code hasn't been centrally managed for over 20 years
 dns/libdjbdns||2023-06-30|Has expired: No longer compliant with current DNS standards and source code hasn't been centrally managed for over 20 years
@@ -2406,7 +2406,7 @@ audio/ccaudio2||2023-09-30|Has expired: Abandonware, no development since 2011
 audio/libtremor||2023-09-30|Has expired: Obsolete, we only support hardware with a fpu and other decoding libraries offer better performance
 audio/rioutil||2023-09-30|Has expired: Obsolete, supported hardware ia about 20 years old
 audio/waveplay||2023-09-30|Has expired: Abandoned upstream
-databases/mongodb42-tools||2023-09-30|Has expired: Upstream EOL reached on 2023-04-30
+databases/mongodb42-tools|databases/mongodb-tools|2023-09-30|Has expired: Upstream EOL reached on 2023-04-30
 databases/mongodb42|databases/mongodb44|2023-09-30|Has expired: Upstream EOL reached on 2023-04-30
 databases/redis6|databases/redis62|2023-09-30|Has expired: Has reached its EoL. Please migrate to newer version
 devel/capstone3|devel/capstone4|2023-09-30|Has expired: Use more recent upstream version from devel/capstone
@@ -3418,7 +3418,7 @@ audio/epos-devel||2024-08-04|Has expired: Abandonware, last release in 2006 and 
 audio/sidplay2|audio/sidplayfp|2024-08-04|Has expired: Abandonware and superseded by audio/sidplayfp
 audio/sidplay|audio/sidplayfp|2024-08-04|Has expired: Abandonware and superseded by audio/sidplayfp
 audio/optimfrog||2024-08-04|Has expired: Obsolete format that never gained traction, consider using audio/flac
-databases/mongodb44||2024-08-04|Has expired: EOL as of February 2024, https://www.mongodb.com/legal/support-policy/lifecycles
+databases/mongodb44|database/mongodb50|2024-08-04|Has expired: EOL as of February 2024, https://www.mongodb.com/legal/support-policy/lifecycles
 graphics/svg2pdf||2024-08-04|Has expired: Depends on deprecated library graphics/libsvg-cairo, please consider using ImageMagick or librsvg
 audio/libsidplay2||2024-08-04|Has expired: Abandonware and superseded by audio/libsidplayfp
 www/py-imdbpy|www/py-cinemagoer|2024-08-04|Has expired: IMDbPY is now cinemagoer. Use www/py-cinemagoer instead
@@ -3463,3 +3463,20 @@ net/luasocket|net/lua-luasocket|2024-09-05|Move net/luasocket to net/lua-luasock
 textproc/luaexpat|textproc/lua-luaexpat|2024-09-05|Move textproc/luaexpat to textproc/lua-luaexpat
 devel/py-sip4||2024-09-05|Has expired: Fails to build with modern python
 audio/resid|emulators/vice|2024-09-05|Has expired: Upstream recommends using emulators/vice instead
+devel/rubygem-grape-swagger20|devel/rubygem-grape-swagger|2024-09-11|Has expired: Use devel/rubygem-grape-swagger instead
+devel/rubygem-semver_dialects2|devel/rubygem-semver_dialects|2024-09-11|Has expired: Use devel/rubygem-semver_dialects instead
+www/rubygem-net-http011|www/rubygem-net-http|2024-09-11|Has expired: Use www/rubygem-net-http instead
+textproc/rubygem-rouge42|textproc/rubygem-rouge|2024-09-11|Has expired: Use textproc/rubygem-rouge instead
+mail/rubygem-premailer-rails110-rails70|mail/rubygem-premailer-rails-rails70|2024-09-11|Has expired: Use mail/rubygem-premailer-rails-rails70 instead
+devel/rubygem-json26|devel/rubygem-json|2024-09-11|Has expired: Use devel/rubygem-json instead
+www/rubygem-json-jwt115|www/rubygem-json-jwt|2024-09-11|Has expired: Use www/rubygem-json-jwt instead
+security/rubygem-rack-oauth21|security/rubygem-rack-oauth2|2024-09-11|Has expired: Use security/rubygem-rack-oauth2 instead
+textproc/rubygem-static_holmes|textproc/rubygem-charlock_holmes|2024-09-11|Has expired: Use textproc/rubygem-charlock_holmes instead
+textproc/rubygem-elasticsearch713|textproc/rubygem-elasticsearch|2024-09-11|Has expired: Use textproc/rubygem-elasticsearch instead
+graphics/svg2png||2024-09-14|Has expired: Depends on deprecated library graphics/libsvg-cairo, please consider using ImageMagick or librsvg
+graphics/libsvg-cairo||2024-09-14|Has expired: Depends on deprecated library graphics/libsvg
+graphics/libsvg||2024-09-14|Has expired: Abandoned upstream, obsolete and fails to build with newer versions of libxml2. Consider migrating to librsvg or (lib)resvg
+www/libresonic-standalone||2024-09-15|Has expired: Abandonware, repo deleted
+security/rubygem-ruby-saml115|security/rubygem-ruby-saml|2024-09-18|Has expired: Use security/rubygem-ruby-saml instead
+databases/ldb15||2024-09-18|Has expired: Outdated and not necessary for any supported version of Samba
+net/rubygem-kas-grpc|net/rubygem-gitlab-kas-grpc|2024-09-19|Renamed, use net/rubygem-gitlab-kas-grpc instead
