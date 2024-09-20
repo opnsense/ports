@@ -507,8 +507,6 @@
     SUBDIR += libsixel
     SUBDIR += libspiro
     SUBDIR += libspng
-    SUBDIR += libsvg
-    SUBDIR += libsvg-cairo
     SUBDIR += libsvgtiny
     SUBDIR += libvisual
     SUBDIR += libvisual04
@@ -993,6 +991,7 @@
     SUBDIR += py-s2
     SUBDIR += py-scikit-image
     SUBDIR += py-seqdiag
+    SUBDIR += py-simplejpeg
     SUBDIR += py-sorl-thumbnail
     SUBDIR += py-spectra
     SUBDIR += py-sqlalchemy-imageattach
@@ -1155,7 +1154,6 @@
     SUBDIR += ssocr
     SUBDIR += sswf
     SUBDIR += stamp
-    SUBDIR += svg2png
     SUBDIR += svgalib
     SUBDIR += svgbob
     SUBDIR += svgpp

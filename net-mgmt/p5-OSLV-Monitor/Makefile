@@ -1,7 +1,9 @@
 PORTNAME=	OSLV-Monitor
 PORTVERSION=	0.0.1
+PORTREVISION=	3
 CATEGORIES=	net-mgmt
-MASTER_SITES=	#
+MASTER_SITES=	CPAN
+MASTER_SITE_SUBDIR=	CPAN:VVELOX
 PKGNAMEPREFIX=	p5-
 
 MAINTAINER=	dan@langille.org
@@ -10,16 +12,16 @@ WWW=		https://github.com/VVelox/OSLV-Monitor
 
 LICENSE=	GPLv3
 
-RUN_DEPENDS=	p5-Clone>0:devel/p5-Clone \
+RUN_DEPENDS=	jq>0:textproc/jq \
+		p5-Clone>0:devel/p5-Clone \
 		p5-ExtUtils-MakeMaker>0:devel/p5-ExtUtils-MakeMaker \
 		p5-File-Slurp>0:devel/p5-File-Slurp \
+		p5-IO-Interface>0:net/p5-IO-Interface \
 		p5-JSON>0:converters/p5-JSON \
 		p5-MIME-Base64>0:converters/p5-MIME-Base64
 
 USES=		perl5
 USE_PERL5=	configure
-USE_GITHUB=	yes
-GH_ACCOUNT=	VVelox
 NO_BUILD=	YES
 
 SUB_FILES=	pkg-message
