@@ -5026,6 +5026,7 @@
     SUBDIR += py-jaraco.text
     SUBDIR += py-jaraco.util
     SUBDIR += py-javaproperties
+    SUBDIR += py-jaxtyping
     SUBDIR += py-jdcal
     SUBDIR += py-jedi
     SUBDIR += py-jeepney
@@ -6089,6 +6090,7 @@
     SUBDIR += py-xstatic-angular-gettext
     SUBDIR += py-xstatic-angular-lrdragndrop
     SUBDIR += py-xstatic-angular-schema-form
+    SUBDIR += py-xstatic-autosize
     SUBDIR += py-xstatic-bootstrap
     SUBDIR += py-xstatic-bootstrap3
     SUBDIR += py-xstatic-bootstrap-datepicker
@@ -7722,7 +7724,6 @@
     SUBDIR += rubygem-sidekiq-cron-rails70
     SUBDIR += rubygem-sidekiq-scheduler
     SUBDIR += rubygem-sidekiq-unique-jobs
-    SUBDIR += rubygem-sidekiq71
     SUBDIR += rubygem-sidekiq72
     SUBDIR += rubygem-sidetiq
     SUBDIR += rubygem-sigdump
@@ -8251,7 +8252,7 @@
     SUBDIR += xpeviewer
     SUBDIR += xsd
     SUBDIR += xsimd
-    SUBDIR += xtensa-esp32-elf
+    SUBDIR += xtensa-esp-elf
     SUBDIR += xtl
     SUBDIR += xtl-quant-stack
     SUBDIR += xwpe
