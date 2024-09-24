@@ -11,6 +11,8 @@ LICENSE=	APACHE20
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
 		libuuid.so:misc/e2fsprogs-libuuid
 
+AP_EXTRAS=	-L ${PREFIX}/lib -linotify -luuid
+
 USES=		apache autoreconf
 USE_GITHUB=	yes
 GH_ACCOUNT=	bombadil
