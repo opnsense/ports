@@ -1,0 +1,2 @@
+mod_proxy_msrpc is an Apache module to allow a reverse proxy setup
+in front of a MS Exchange server offering Outlook Anywyere services.
