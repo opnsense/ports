@@ -1,6 +1,7 @@
 PORTNAME=	mod_proxy_msrpc
 PORTVERSION=	0.6
 DISTVERSIONPREFIX=${PORTNAME}-
+PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 CATEGORIES=	www
 
 MAINTAINER=	franco@opnsense.org
@@ -23,7 +24,7 @@ CONFIGURE_ENV=	CFLAGS="${CFLAGS}" LDFLAGS="${LDFLAGS}"
 
 post-patch:
 	${REINPLACE_CMD} -e 's|@APXS@|@APXS@ -DENODATA=EIO|g' \
-	    -e 's|@APXS@|@APXS@ ${LDFLAGS:N-fstack-protector-strong}|g' \
+	    -e 's|@APXS@|@APXS@ ${LDFLAGS:N-fstack-protector-strong} -linotify|g' \
 	    ${WRKSRC}/Makefile.in
 
 post-configure:
