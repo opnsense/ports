@@ -1,3 +1,84 @@
+  <vuln vid="ca5f3bbc-7a62-11ef-9533-f875a43e1796">
+    <topic>expat -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>expat2</name>
+	<range><lt>2.6.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>libexpat reports:</p>
+	<blockquote cite="https://github.com/libexpat/libexpat/blob/master/expat/Changes">
+	<ul>
+	<li>CVE-2024-45490: Calling function XML_ParseBuffer with
+	len &lt; 0 without noticing and then calling XML_GetBuffer
+	will have XML_ParseBuffer fail to recognize the problem
+	and XML_GetBuffer corrupt memory.
+	With the fix, XML_ParseBuffer now complains with error
+	XML_ERROR_INVALID_ARGUMENT just like sibling XML_Parse
+	has been doing since Expat 2.2.1, and now documented.
+	Impact is denial of service to potentially artitrary code
+	execution.</li>
+	<li>CVE-2024-45491: Internal function dtdCopy can have an
+	integer overflow for nDefaultAtts on 32-bit platforms
+	(where UINT_MAX equals SIZE_MAX).
+	Impact is denial of service to potentially artitrary code
+	execution.</li>
+	<li>CVE-2024-45492: Internal function nextScaffoldPart can
+	have an integer overflow for m_groupSize on 32-bit
+	platforms (where UINT_MAX equals SIZE_MAX).
+	Impact is denial of service to potentially artitrary code
+	execution.</li>
+	</ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45490</cvename>
+      <cvename>CVE-2024-45491</cvename>
+      <cvename>CVE-2024-45492</cvename>
+      <url>https://github.com/libexpat/libexpat/blob/master/expat/Changes</url>
+    </references>
+    <dates>
+      <discovery>2024-09-24</discovery>
+      <entry>2024-09-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4b7ed61f-7bbf-11ef-9369-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.4.0</ge><lt>17.4.1</lt></range>
+	<range><ge>17.3.0</ge><lt>17.3.4</lt></range>
+	<range><ge>15.6.0</ge><lt>17.2.8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/09/25/patch-release-gitlab-17-4-1-released/">
+	  <p>Maintainer can leak Dependency Proxy password by changing Dependency Proxy URL via crafted POST request</p>
+	  <p>AI feature reads unsanitized content, allowing for attacker to hide prompt injection</p>
+	  <p>Project reference can be exposed in system notes</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-4278</cvename>
+      <cvename>CVE-2024-4099</cvename>
+      <cvename>CVE-2024-8974</cvename>
+      <url>https://about.gitlab.com/releases/2024/09/25/patch-release-gitlab-17-4-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-09-25</discovery>
+      <entry>2024-09-26</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="802961eb-7a89-11ef-bdd7-a0423f48a938">
     <topic>frr - BGP</topic>
     <affects>
