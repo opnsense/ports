@@ -1,4 +1,0 @@
-etc/dhcp6c.conf.sample
-sbin/dhcp6c
-share/man/man5/dhcp6c.conf.5.gz
-share/man/man8/dhcp6c.8.gz

@@ -1,6 +1,7 @@
 PORTNAME=	dhcp6c
-DISTVERSION=	20240919
 DISTVERSIONPREFIX=v
+DISTVERSION=	20240919
+PORTREVISION=	1
 CATEGORIES=	net
 
 MAINTAINER=	franco@opnsense.org
@@ -14,6 +15,12 @@ CONFLICTS_INSTALL=	dhcp6
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
+GH_TAGNAME=	272dc41
+
+PLIST_FILES=	etc/dhcp6c.conf.sample \
+		sbin/dhcp6c \
+		share/man/man5/dhcp6c.conf.5.gz \
+		share/man/man8/dhcp6c.8.gz
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--sysconfdir=${LOCALBASE}/etc --with-localdbdir=/var/db
