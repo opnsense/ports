@@ -1,6 +1,6 @@
 PORTNAME=	mise
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2024.9.7
+DISTVERSION=	2024.9.10
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -135,7 +135,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		filetime-0.2.25 \
 		filetime_creation-0.2.0 \
 		fixedbitset-0.4.2 \
-		flate2-1.0.33 \
+		flate2-1.0.34 \
 		float-cmp-0.9.0 \
 		fnv-1.0.7 \
 		foreign-types-0.3.2 \
@@ -179,7 +179,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		hyper-1.4.1 \
 		hyper-rustls-0.27.3 \
 		hyper-tls-0.6.0 \
-		hyper-util-0.1.8 \
+		hyper-util-0.1.9 \
 		iana-time-zone-0.1.61 \
 		iana-time-zone-haiku-0.1.2 \
 		idna-0.5.0 \
@@ -201,7 +201,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		js-sys-0.3.70 \
 		kdl-4.6.0 \
 		lazy_static-1.5.0 \
-		libc-0.2.158 \
+		libc-0.2.159 \
 		libgit2-sys-0.17.0+1.8.1 \
 		libm-0.2.8 \
 		libredox-0.1.3 \
@@ -278,8 +278,6 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		phf_macros-0.11.2 \
 		phf_shared-0.10.0 \
 		phf_shared-0.11.2 \
-		pin-project-1.1.5 \
-		pin-project-internal-1.1.5 \
 		pin-project-lite-0.2.14 \
 		pin-utils-0.1.0 \
 		pkcs8-0.10.2 \
@@ -305,7 +303,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		rand_core-0.6.4 \
 		rayon-1.10.0 \
 		rayon-core-1.12.1 \
-		redox_syscall-0.5.4 \
+		redox_syscall-0.5.6 \
 		regex-1.10.6 \
 		regex-automata-0.1.10 \
 		regex-automata-0.4.7 \
@@ -343,7 +341,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		serde_derive-1.0.210 \
 		serde_ignored-0.1.10 \
 		serde_json-1.0.128 \
-		serde_spanned-0.6.7 \
+		serde_spanned-0.6.8 \
 		serde_urlencoded-0.7.1 \
 		servo_arc-0.3.0 \
 		sevenz-rust-0.6.1 \
@@ -383,12 +381,12 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		system-configuration-sys-0.6.0 \
 		tabled-0.16.0 \
 		tabled_derive-0.8.0 \
-		tar-0.4.41 \
+		tar-0.4.42 \
 		tempfile-3.12.0 \
 		tendril-0.4.3 \
 		tera-1.20.0 \
 		termcolor-1.4.1 \
-		terminal_size-0.3.0 \
+		terminal_size-0.4.0 \
 		termtree-0.4.1 \
 		test-case-3.3.1 \
 		test-case-core-3.3.1 \
@@ -410,9 +408,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		tokio-util-0.7.12 \
 		toml-0.8.19 \
 		toml_datetime-0.6.8 \
-		toml_edit-0.22.21 \
-		tower-0.4.13 \
-		tower-layer-0.3.3 \
+		toml_edit-0.22.22 \
 		tower-service-0.3.3 \
 		tracing-0.1.40 \
 		tracing-core-0.1.32 \
@@ -437,7 +433,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		untrusted-0.9.0 \
 		url-2.5.2 \
 		urlencoding-2.1.3 \
-		usage-lib-0.3.1 \
+		usage-lib-0.7.0-beta.1 \
 		utf-8-0.7.6 \
 		utf8parse-0.2.2 \
 		valuable-0.1.0 \
@@ -474,27 +470,18 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		windows-result-0.1.2 \
 		windows-result-0.2.0 \
 		windows-strings-0.1.0 \
-		windows-sys-0.48.0 \
 		windows-sys-0.52.0 \
 		windows-sys-0.59.0 \
-		windows-targets-0.48.5 \
 		windows-targets-0.52.6 \
-		windows_aarch64_gnullvm-0.48.5 \
 		windows_aarch64_gnullvm-0.52.6 \
-		windows_aarch64_msvc-0.48.5 \
 		windows_aarch64_msvc-0.52.6 \
-		windows_i686_gnu-0.48.5 \
 		windows_i686_gnu-0.52.6 \
 		windows_i686_gnullvm-0.52.6 \
-		windows_i686_msvc-0.48.5 \
 		windows_i686_msvc-0.52.6 \
-		windows_x86_64_gnu-0.48.5 \
 		windows_x86_64_gnu-0.52.6 \
-		windows_x86_64_gnullvm-0.48.5 \
 		windows_x86_64_gnullvm-0.52.6 \
-		windows_x86_64_msvc-0.48.5 \
 		windows_x86_64_msvc-0.52.6 \
-		winnow-0.6.18 \
+		winnow-0.6.20 \
 		winsafe-0.0.19 \
 		xattr-1.3.1 \
 		xx-1.1.8 \

@@ -243,6 +243,7 @@
     SUBDIR += haproxy26
     SUBDIR += haproxy27
     SUBDIR += haproxy28
+    SUBDIR += haproxy29
     SUBDIR += hblock
     SUBDIR += hexinject
     SUBDIR += hlmaster
@@ -396,6 +397,7 @@
     SUBDIR += libnet
     SUBDIR += libnfs
     SUBDIR += libngtcp2
+    SUBDIR += libngtcp2-gnutls
     SUBDIR += libnids
     SUBDIR += libnpupnp
     SUBDIR += libnss-cache

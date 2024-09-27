@@ -153,7 +153,7 @@ MY_DEPENDS=	git>=2.41.0:devel/git \
 	rubygem-asciidoctor-include-ext>=0.4.0<0.5.0:textproc/rubygem-asciidoctor-include-ext \
 	rubygem-asciidoctor-plantuml00>=0.0.16<0.1:textproc/rubygem-asciidoctor-plantuml00 \
 	rubygem-asciidoctor-kroki>=0.10.0<0.11:textproc/rubygem-asciidoctor-kroki \
-	rubygem-rouge>=4.3.0<4.4:textproc/rubygem-rouge \
+	rubygem-rouge43>=4.3.0<4.4:textproc/rubygem-rouge43 \
 	rubygem-truncato>=0.7.12<0.8.0:textproc/rubygem-truncato \
 	rubygem-tty-prompt>=0.23<1:devel/rubygem-tty-prompt \
 	rubygem-nokogiri>=1.16<2:textproc/rubygem-nokogiri \
@@ -270,7 +270,7 @@ MY_DEPENDS=	git>=2.41.0:devel/git \
 	rubygem-ssh_data>=1.3<2:security/rubygem-ssh_data \
 	rubygem-spamcheck>=1.3.0<1.4:net/rubygem-spamcheck \
 	rubygem-gitaly>=17.4.0:net/rubygem-gitaly \
-	rubygem-gitlab-kas-grpc>=17.4.0<17.5:net/rubygem-gitlab-kas-grpc \
+	rubygem-gitlab-kas-grpc>=${GITLAB_VERSION}:net/rubygem-gitlab-kas-grpc \
 	rubygem-grpc>=1.63.0<2:net/rubygem-grpc \
 	rubygem-google-protobuf3>=3.25.3<4:devel/rubygem-google-protobuf3 \
 	rubygem-toml-rb>=2.2.0<3:www/rubygem-toml-rb \
@@ -539,6 +539,7 @@ makesum:
 	(cd ../../net/gitlab-agent && ${MAKE} makesum)
 	(cd ../../www/gitlab-pages && ${MAKE} makesum)
 	(cd ../../www/gitlab-workhorse && ${MAKE} makesum)
+	(cd ../../net/rubygem-gitlab-kas-grpc && ${MAKE} makesum)
 
 .endif
 
