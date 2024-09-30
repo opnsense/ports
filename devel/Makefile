@@ -6110,6 +6110,7 @@
     SUBDIR += py-xstatic-hogan
     SUBDIR += py-xstatic-jasmine
     SUBDIR += py-xstatic-jquery
+    SUBDIR += py-xstatic-jquery-file-upload
     SUBDIR += py-xstatic-jquery-migrate
     SUBDIR += py-xstatic-jquery-ui
     SUBDIR += py-xstatic-jquery.quicksearch
@@ -6217,6 +6218,7 @@
     SUBDIR += qt6
     SUBDIR += qt6-5compat
     SUBDIR += qt6-base
+    SUBDIR += qt6-grpc
     SUBDIR += qt6-languageserver
     SUBDIR += qt6-location
     SUBDIR += qt6-positioning
@@ -8097,6 +8099,7 @@
     SUBDIR += tagref
     SUBDIR += tailor
     SUBDIR += talloc
+    SUBDIR += task
     SUBDIR += taskctl
     SUBDIR += taskflow
     SUBDIR += tass64
