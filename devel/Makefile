@@ -1258,11 +1258,9 @@
     SUBDIR += libdombey
     SUBDIR += libdparse
     SUBDIR += libds
-    SUBDIR += libdsp
     SUBDIR += libdwarf
     SUBDIR += libe
     SUBDIR += libedit
-    SUBDIR += libegit2
     SUBDIR += libeio
     SUBDIR += libelf
     SUBDIR += libepoll-shim
@@ -1499,7 +1497,6 @@
     SUBDIR += libx86
     SUBDIR += libxalloc
     SUBDIR += libxo
-    SUBDIR += libxs
     SUBDIR += libxsd
     SUBDIR += libxsd-frontend
     SUBDIR += libxtend
@@ -5155,6 +5152,7 @@
     SUBDIR += py-mac-vendor-lookup
     SUBDIR += py-macholib
     SUBDIR += py-magic
+    SUBDIR += py-magnet2torrent
     SUBDIR += py-mailcap-fix
     SUBDIR += py-makefun
     SUBDIR += py-manuel
@@ -5420,6 +5418,7 @@
     SUBDIR += py-pox
     SUBDIR += py-poyo
     SUBDIR += py-ppft
+    SUBDIR += py-pprintpp
     SUBDIR += py-prance
     SUBDIR += py-pre-commit
     SUBDIR += py-pre-commit-hooks
@@ -6303,7 +6302,6 @@
     SUBDIR += rpc2
     SUBDIR += rpclib
     SUBDIR += rsvndump
-    SUBDIR += rth
     SUBDIR += rttr
     SUBDIR += ruby-bsearch
     SUBDIR += ruby-build
@@ -7576,6 +7574,7 @@
     SUBDIR += rubygem-pry-remote-em
     SUBDIR += rubygem-pstore
     SUBDIR += rubygem-ptreloaded
+    SUBDIR += rubygem-puppet-modulebuilder
     SUBDIR += rubygem-puppet-resource_api
     SUBDIR += rubygem-pygments.rb
     SUBDIR += rubygem-que
