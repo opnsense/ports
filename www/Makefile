@@ -428,6 +428,7 @@
     SUBDIR += mod_wsgi4
     SUBDIR += mod_xsendfile
     SUBDIR += mohawk
+    SUBDIR += moin2
     SUBDIR += moinmoin
     SUBDIR += moinmoincli
     SUBDIR += mongoose

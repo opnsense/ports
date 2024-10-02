@@ -649,6 +649,7 @@
     SUBDIR += postgis32
     SUBDIR += postgis33
     SUBDIR += postgis34
+    SUBDIR += postgis35
     SUBDIR += postgresql-cstore_fdw
     SUBDIR += postgresql-idn
     SUBDIR += postgresql-jdbc
@@ -892,6 +893,7 @@
     SUBDIR += replibyte
     SUBDIR += retcl
     SUBDIR += rocksdb
+    SUBDIR += rocksdb-jni
     SUBDIR += rqlite
     SUBDIR += rrdman
     SUBDIR += rrdmerge

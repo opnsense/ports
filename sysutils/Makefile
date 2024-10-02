@@ -254,6 +254,7 @@
     SUBDIR += cramfs
     SUBDIR += crashme
     SUBDIR += crate
+    SUBDIR += createrepo_c
     SUBDIR += cronic
     SUBDIR += cronolog
     SUBDIR += cronolog-devel
@@ -456,6 +457,7 @@
     SUBDIR += fusefs-libs
     SUBDIR += fusefs-libs3
     SUBDIR += fusefs-lkl
+    SUBDIR += fusefs-mergerfs
     SUBDIR += fusefs-mhddfs
     SUBDIR += fusefs-mp3fs
     SUBDIR += fusefs-nbt
