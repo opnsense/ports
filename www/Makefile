@@ -1551,6 +1551,7 @@
     SUBDIR += py-django-formset-js-improved
     SUBDIR += py-django-formtools
     SUBDIR += py-django-graphiql-debug-toolbar
+    SUBDIR += py-django-graphql-jwt
     SUBDIR += py-django-gravatar2
     SUBDIR += py-django-guardian
     SUBDIR += py-django-hashid-field
@@ -1714,6 +1715,7 @@
     SUBDIR += py-grafana-dashboard-manager
     SUBDIR += py-graphite-api
     SUBDIR += py-grequests
+    SUBDIR += py-grimoirelab
     SUBDIR += py-grip
     SUBDIR += py-gunicorn
     SUBDIR += py-h2
@@ -2407,6 +2409,7 @@
     SUBDIR += tomcat-native
     SUBDIR += tomcat-native2
     SUBDIR += tomcat101
+    SUBDIR += tomcat110
     SUBDIR += tomcat9
     SUBDIR += tomee
     SUBDIR += tor-browser
