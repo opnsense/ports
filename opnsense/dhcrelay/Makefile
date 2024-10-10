@@ -1,5 +1,5 @@
 PORTNAME=	dhcrelay
-PORTVERSION=	1.0
+DISTVERSION=	1.0
 CATEGORIES=	net
 
 MAINTAINER=	franco@opnsense.org
