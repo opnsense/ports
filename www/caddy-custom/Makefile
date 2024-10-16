@@ -2,6 +2,8 @@
 # This port will NOT build in poudriere without (simple) manual
 # intervention.
 
+.PHONY: do-build do-install 
+
 PORTNAME=	caddy-custom
 PORTVERSION=	${CADDY_VERSION}.${XCADDY_VERSION}
 PORTREVISION=	5
