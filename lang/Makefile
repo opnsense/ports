@@ -88,7 +88,6 @@
     SUBDIR += gauche
     SUBDIR += gawk
     SUBDIR += gcc
-    SUBDIR += gcc10
     SUBDIR += gcc11
     SUBDIR += gcc11-devel
     SUBDIR += gcc12
@@ -362,6 +361,7 @@
     SUBDIR += snobol4
     SUBDIR += solidity
     SUBDIR += spidermonkey102
+    SUBDIR += spidermonkey128
     SUBDIR += spidermonkey78
     SUBDIR += spidermonkey91
     SUBDIR += spl
