@@ -1,6 +1,29 @@
---- external/libfetch/common.c.orig	2024-10-15 11:15:39 UTC
+--- external/libfetch/common.c.orig	2023-06-29 13:25:53 UTC
 +++ external/libfetch/common.c
-@@ -1189,6 +1189,27 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
+@@ -1089,7 +1089,7 @@ fetch_ssl_setup_peer_verification(SSL_CTX *ctx, int ve
+ {
+ 	X509_LOOKUP *crl_lookup;
+ 	X509_STORE *crl_store;
+-	const char *ca_cert_file, *ca_cert_path, *crl_file;
++	const char *ca_cert_file, *ca_cert_path, *crl_file, *crl_verify;
+ 
+ 	if (getenv("SSL_NO_VERIFY_PEER") == NULL) {
+ 		ca_cert_file = getenv("SSL_CA_CERT_FILE");
+@@ -1119,6 +1119,13 @@ fetch_ssl_setup_peer_verification(SSL_CTX *ctx, int ve
+ 			    ca_cert_path);
+ 		else
+ 			SSL_CTX_set_default_verify_paths(ctx);
++		if ((crl_verify = getenv("SSL_CRL_VERIFY")) != NULL) {
++			if (verbose)
++				fetch_info("Using CRL verify: yes");
++			X509_VERIFY_PARAM_set_flags(SSL_CTX_get0_param(ctx),
++			    X509_V_FLAG_CRL_CHECK |
++			    X509_V_FLAG_CRL_CHECK_ALL);
++		}
+ 		if ((crl_file = getenv("SSL_CRL_FILE")) != NULL) {
+ 			if (verbose)
+ 				fetch_info("Using CRL file: %s", crl_file);
+@@ -1189,6 +1196,27 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
  	char *str;
  
  	str = NULL;
@@ -28,7 +51,7 @@
  	if (!verified) {
  		if ((crt = X509_STORE_CTX_get_current_cert(ctx)) != NULL &&
  		    (name = X509_get_subject_name(crt)) != NULL)
-@@ -1197,6 +1218,7 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
+@@ -1197,6 +1225,7 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
  		    str != NULL ? str : "no relevant certificate");
  		OPENSSL_free(str);
  	}
