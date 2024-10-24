@@ -1,6 +1,6 @@
 PORTNAME=	uv
 DISTVERSION=	0.4.21
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -37,7 +37,7 @@ do-install:
 # workaround for error: found a virtual manifest at `xx` instead of a package manifest
 .for p in ${PROGS}
 	${INSTALL_PROGRAM} \
-		${WRKDIR}/target/*/release/${p} \
+		${WRKDIR}/target/release/${p} \
 		${STAGEDIR}${PREFIX}/bin
 .endfor
 

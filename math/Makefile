@@ -451,6 +451,7 @@
     SUBDIR += libRmath
     SUBDIR += libbraiding
     SUBDIR += libccd
+    SUBDIR += libceed
     SUBDIR += libcerf
     SUBDIR += libdivide
     SUBDIR += libdivsufsort
@@ -985,6 +986,7 @@
     SUBDIR += py-keras-preprocessing
     SUBDIR += py-kiwisolver
     SUBDIR += py-levmar
+    SUBDIR += py-libceed
     SUBDIR += py-libpoly
     SUBDIR += py-linearmodels
     SUBDIR += py-lmfit

@@ -1,7 +1,7 @@
 PORTNAME=	jujutsu
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.22.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	se@FreeBSD.org
@@ -23,7 +23,7 @@ GH_PROJECT=	jj
 PLIST_FILES=	bin/jj
 
 do-install:
-		${INSTALL_PROGRAM} ${WRKDIR}/target/*-unknown-freebsd/release/jj \
+		${INSTALL_PROGRAM} ${WRKDIR}/target/release/jj \
 			${STAGEDIR}${PREFIX}/bin/
 
 .include <bsd.port.mk>

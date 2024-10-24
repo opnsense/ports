@@ -1,7 +1,7 @@
 PORTNAME=	spr
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.3.5-4
-PORTREVISION=	1
+PORTREVISION=	2
 DISTVERSIONSUFFIX=	-gd90b197
 CATEGORIES=	devel
 
@@ -259,7 +259,7 @@ PLIST_FILES=	bin/${PORTNAME}
 do-install:
 	# workaround for error: found a virtual manifest at `xx` instead of a package manifest
 	${INSTALL_PROGRAM} \
-		${WRKDIR}/target/*/release/${PORTNAME} \
+		${WRKDIR}/target/release/${PORTNAME} \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>
