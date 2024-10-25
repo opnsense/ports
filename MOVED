@@ -3543,3 +3543,15 @@ security/fprint_demo||2024-10-21|Most features are integrated into fprintd's hel
 multimedia/gstreamer1-qt||2024-10-22|Has expired: Project abandoned 10 years ago
 multimedia/gstreamer1-plugins-gnonlin||2024-10-22|Has expired: Deprecated upstream. Use the gstnle plugin from multimedia/gstreamer1-editing-services instead
 finance/frontaccounting24|finance/frontaccounting|2024-10-22|Move finance/frontaccounting24 to finance/frontaccounting
+www/rubygem-rails-settings-cached-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+databases/rubygem-pghero-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+devel/rubygem-kt-paperclip-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+devel/rubygem-nsa-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+devel/rubygem-simple-navigation-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+devel/rubygem-simple_form-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+www/rubygem-hamlit-rails-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+misc/rubygem-dotenv-rails-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+devel/rubygem-i18n-tasks-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+databases/rubygem-discard-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+security/rubygem-devise_pam_authenticatable2-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+security/rubygem-doorkeeper-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
