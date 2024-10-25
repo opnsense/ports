@@ -7346,7 +7346,6 @@
     SUBDIR += rubygem-holidays
     SUBDIR += rubygem-http_accept_language
     SUBDIR += rubygem-i18n
-    SUBDIR += rubygem-i18n-tasks-rails61
     SUBDIR += rubygem-i18n_data
     SUBDIR += rubygem-icalendar
     SUBDIR += rubygem-ice_cube
@@ -7403,7 +7402,6 @@
     SUBDIR += rubygem-kafo_parsers
     SUBDIR += rubygem-kafo_wizards
     SUBDIR += rubygem-kgio
-    SUBDIR += rubygem-kt-paperclip-rails61
     SUBDIR += rubygem-language_server-protocol
     SUBDIR += rubygem-launchy
     SUBDIR += rubygem-launchy2
@@ -7503,7 +7501,6 @@
     SUBDIR += rubygem-notify
     SUBDIR += rubygem-nprogress-rails
     SUBDIR += rubygem-nsa-rails5
-    SUBDIR += rubygem-nsa-rails61
     SUBDIR += rubygem-numerizer
     SUBDIR += rubygem-observer
     SUBDIR += rubygem-oci
@@ -7787,11 +7784,9 @@
     SUBDIR += rubygem-sigdump
     SUBDIR += rubygem-simple-navigation
     SUBDIR += rubygem-simple-navigation-rails50
-    SUBDIR += rubygem-simple-navigation-rails61
     SUBDIR += rubygem-simple_form
     SUBDIR += rubygem-simple_form-rails5
     SUBDIR += rubygem-simple_form-rails50
-    SUBDIR += rubygem-simple_form-rails61
     SUBDIR += rubygem-simple_po_parser
     SUBDIR += rubygem-simplecov
     SUBDIR += rubygem-simplecov_json_formatter
