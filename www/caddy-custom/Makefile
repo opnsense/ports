@@ -4,7 +4,7 @@
 
 PORTNAME=	caddy-custom
 PORTVERSION=	${CADDY_VERSION}.${XCADDY_VERSION}
-PORTREVISION=	5
+PORTREVISION=	6
 CATEGORIES=	www
 DISTFILES=	# none
 
@@ -16,7 +16,7 @@ LICENSE=	APACHE20
 
 BUILD_DEPENDS=	xcaddy:www/xcaddy
 
-USES=		go:no_targets
+USES=		go:no_targets,1.23
 
 NO_PACKAGE=	Requires network access (see pkg-descr)
 
