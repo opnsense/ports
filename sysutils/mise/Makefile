@@ -1,11 +1,12 @@
 PORTNAME=	mise
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2024.10.9
+DISTVERSION=	2024.11.0
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Runtime Executor (asdf rust clone)
-WWW=		https://mise.jdx.dev/
+WWW=		https://mise.jdx.dev/ \
+		https://github.com/jdx/mise
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -29,11 +30,11 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		android_system_properties-0.1.5 \
 		ansi-str-0.8.0 \
 		ansitok-0.2.0 \
-		anstream-0.6.15 \
-		anstyle-1.0.8 \
-		anstyle-parse-0.2.5 \
-		anstyle-query-1.1.1 \
-		anstyle-wincon-3.0.4 \
+		anstream-0.6.17 \
+		anstyle-1.0.9 \
+		anstyle-parse-0.2.6 \
+		anstyle-query-1.1.2 \
+		anstyle-wincon-3.0.6 \
 		anyhow-1.0.91 \
 		arbitrary-1.3.2 \
 		arrayvec-0.5.2 \
@@ -76,9 +77,9 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		color-print-0.3.6 \
 		color-print-proc-macro-0.3.6 \
 		color-spantrace-0.2.1 \
-		colorchoice-1.0.2 \
-		confique-0.2.6 \
-		confique-macro-0.0.10 \
+		colorchoice-1.0.3 \
+		confique-0.3.0 \
+		confique-macro-0.0.11 \
 		console-0.15.8 \
 		const-oid-0.9.6 \
 		constant_time_eq-0.3.1 \
@@ -122,7 +123,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		ego-tree-0.6.3 \
 		either-1.13.0 \
 		encode_unicode-0.3.6 \
-		encoding_rs-0.8.34 \
+		encoding_rs-0.8.35 \
 		env_filter-0.1.2 \
 		env_logger-0.11.5 \
 		envmnt-0.10.4 \
@@ -165,7 +166,6 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		h2-0.4.6 \
 		hashbrown-0.12.3 \
 		hashbrown-0.15.0 \
-		heck-0.3.3 \
 		heck-0.4.1 \
 		heck-0.5.0 \
 		hermit-abi-0.3.9 \
@@ -182,7 +182,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		hyper-1.5.0 \
 		hyper-rustls-0.27.3 \
 		hyper-tls-0.6.0 \
-		hyper-util-0.1.9 \
+		hyper-util-0.1.10 \
 		iana-time-zone-0.1.61 \
 		iana-time-zone-haiku-0.1.2 \
 		idna-0.5.0 \
@@ -193,11 +193,10 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		indicatif-0.17.8 \
 		indoc-2.0.5 \
 		inout-0.1.3 \
-		insta-1.40.0 \
+		insta-1.41.1 \
 		instant-0.1.13 \
 		ipnet-2.10.1 \
 		is_terminal_polyfill-1.70.1 \
-		itertools-0.12.1 \
 		itertools-0.13.0 \
 		itoa-1.0.11 \
 		jobserver-0.1.32 \
@@ -208,7 +207,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		lazy_static-1.5.0 \
 		libc-0.2.161 \
 		libgit2-sys-0.17.0+1.8.1 \
-		libm-0.2.8 \
+		libm-0.2.11 \
 		libredox-0.1.3 \
 		libssh2-sys-0.3.0 \
 		libz-sys-1.1.20 \
@@ -234,9 +233,9 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		miniz_oxide-0.7.4 \
 		miniz_oxide-0.8.0 \
 		mio-1.0.2 \
-		mlua-0.9.9 \
-		mlua-sys-0.6.3 \
-		mlua_derive-0.9.3 \
+		mlua-0.10.0 \
+		mlua-sys-0.6.4 \
+		mlua_derive-0.10.0 \
 		native-tls-0.2.12 \
 		new_debug_unreachable-1.0.6 \
 		nix-0.29.0 \
@@ -281,7 +280,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		phf_macros-0.11.2 \
 		phf_shared-0.10.0 \
 		phf_shared-0.11.2 \
-		pin-project-lite-0.2.14 \
+		pin-project-lite-0.2.15 \
 		pin-utils-0.1.0 \
 		pkcs8-0.10.2 \
 		pkg-config-0.3.31 \
@@ -300,7 +299,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		quick-xml-0.23.1 \
 		quinn-0.11.5 \
 		quinn-proto-0.11.8 \
-		quinn-udp-0.5.5 \
+		quinn-udp-0.5.6 \
 		quote-1.0.37 \
 		rand-0.8.5 \
 		rand_chacha-0.3.1 \
@@ -308,12 +307,12 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		rayon-1.10.0 \
 		rayon-core-1.12.1 \
 		redox_syscall-0.5.7 \
-		regex-1.11.0 \
+		regex-1.11.1 \
 		regex-automata-0.1.10 \
 		regex-automata-0.4.8 \
 		regex-syntax-0.6.29 \
 		regex-syntax-0.8.5 \
-		reqwest-0.12.8 \
+		reqwest-0.12.9 \
 		ring-0.17.8 \
 		rmp-0.8.14 \
 		rmp-serde-1.3.0 \
@@ -321,8 +320,8 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		rustc-demangle-0.1.24 \
 		rustc-hash-2.0.0 \
 		rustc_version-0.4.1 \
-		rustix-0.38.37 \
-		rustls-0.23.15 \
+		rustix-0.38.38 \
+		rustls-0.23.16 \
 		rustls-native-certs-0.8.0 \
 		rustls-pemfile-2.2.0 \
 		rustls-pki-types-1.10.0 \
@@ -339,9 +338,9 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		self-replace-1.5.0 \
 		self_update-0.41.0 \
 		semver-1.0.23 \
-		serde-1.0.213 \
+		serde-1.0.214 \
 		serde-value-0.7.0 \
-		serde_derive-1.0.213 \
+		serde_derive-1.0.214 \
 		serde_ignored-0.1.10 \
 		serde_json-1.0.132 \
 		serde_spanned-0.6.8 \
@@ -376,7 +375,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		strum_macros-0.26.4 \
 		subtle-2.6.1 \
 		syn-1.0.109 \
-		syn-2.0.85 \
+		syn-2.0.86 \
 		sync_wrapper-1.0.1 \
 		sys-info-0.9.1 \
 		system-configuration-0.6.1 \
@@ -395,8 +394,8 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		test-case-macros-3.3.1 \
 		test-log-0.2.16 \
 		test-log-macros-0.2.16 \
-		thiserror-1.0.65 \
-		thiserror-impl-1.0.65 \
+		thiserror-1.0.66 \
+		thiserror-impl-1.0.66 \
 		thread_local-1.1.8 \
 		time-0.3.36 \
 		time-core-0.1.2 \
@@ -420,7 +419,7 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		try-lock-0.2.5 \
 		typeid-1.0.2 \
 		typenum-1.17.0 \
-		ubi-0.2.0 \
+		ubi-0.2.1 \
 		ucd-trie-0.1.7 \
 		unic-char-property-0.9.0 \
 		unic-char-range-0.9.0 \
@@ -436,14 +435,14 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		untrusted-0.9.0 \
 		url-2.5.2 \
 		urlencoding-2.1.3 \
-		usage-lib-0.11.0 \
+		usage-lib-0.12.1 \
 		utf-8-0.7.6 \
 		utf8parse-0.2.2 \
 		valuable-0.1.0 \
 		vcpkg-0.2.15 \
 		version_check-0.9.5 \
 		versions-6.3.2 \
-		vfox-0.1.6 \
+		vfox-0.2.1 \
 		vte-0.10.1 \
 		vte_generate_state_changes-0.1.2 \
 		wait-timeout-0.2.0 \
@@ -488,7 +487,6 @@ CARGO_CRATES=	addr2line-0.21.0 \
 		winsafe-0.0.19 \
 		xattr-1.3.1 \
 		xx-1.1.8 \
-		xz-0.1.0 \
 		xz2-0.1.7 \
 		yansi-1.0.1 \
 		zerocopy-0.7.35 \

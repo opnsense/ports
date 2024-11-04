@@ -389,7 +389,6 @@
     SUBDIR += mod_authnz_external24
     SUBDIR += mod_authz_unixgroup24
     SUBDIR += mod_cfg_ldap
-    SUBDIR += mod_cloudflare
     SUBDIR += mod_dav_svn
     SUBDIR += mod_defensible
     SUBDIR += mod_dnssd
@@ -434,7 +433,6 @@
     SUBDIR += mongoose
     SUBDIR += monolith
     SUBDIR += moodle41
-    SUBDIR += moodle42
     SUBDIR += moodle43
     SUBDIR += moodle44
     SUBDIR += moodle45
@@ -1694,7 +1692,6 @@
     SUBDIR += py-frappe-bench
     SUBDIR += py-freenit
     SUBDIR += py-frozen-flask
-    SUBDIR += py-gandi.cli
     SUBDIR += py-gevent-websocket
     SUBDIR += py-ghp-import
     SUBDIR += py-google
@@ -1732,6 +1729,7 @@
     SUBDIR += py-html5-parser
     SUBDIR += py-html5lib
     SUBDIR += py-html5lib-modern
+    SUBDIR += py-html5rdf
     SUBDIR += py-htmldate
     SUBDIR += py-httmock
     SUBDIR += py-http-parser
@@ -1782,6 +1780,7 @@
     SUBDIR += py-priority
     SUBDIR += py-priority1
     SUBDIR += py-protego
+    SUBDIR += py-proxy_tools
     SUBDIR += py-puppetboard
     SUBDIR += py-py-restclient
     SUBDIR += py-pygsheets

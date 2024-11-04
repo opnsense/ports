@@ -1,11 +1,11 @@
 PORTNAME=	usql
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.19.4
+DISTVERSION=	0.19.12
 CATEGORIES=	databases
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Universal command-line interface for SQL databases
-WWW=		https://github.com/xo/usql/
+WWW=		https://github.com/xo/usql
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE

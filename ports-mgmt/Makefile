@@ -1,5 +1,6 @@
     COMMENT = Ports for managing, installing, and developing FreeBSD ports and packages
 
+    SUBDIR += appstream-generator
     SUBDIR += bsdadminscripts2
     SUBDIR += caronade
     SUBDIR += create-rb-port
@@ -8,7 +9,6 @@
     SUBDIR += distilator
     SUBDIR += fallout
     SUBDIR += fastest_pkg
-    SUBDIR += freebsd-bugzilla-cli
     SUBDIR += genpatch
     SUBDIR += genplist
     SUBDIR += hs-cabal2tuple

@@ -6,7 +6,8 @@ CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Git tool to manage worktrees and integrate with GitHub and GitLab
-WWW=		https://hakoerber.github.io/git-repo-manager/
+WWW=		https://hakoerber.github.io/git-repo-manager/ \
+		https://github.com/hakoerber/git-repo-manager/tags
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -18,6 +19,8 @@ USES=		cargo localbase
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	hakoerber
+
+RUSTFLAGS=	${ARCH:S/i386/YES/:C/^[a-z].*//:S/YES/-C target-feature=+sse,+sse2/} # add sse sse2 target-features only on i386
 
 CARGO_CRATES=	adler2-2.0.0 \
 		aho-corasick-1.1.3 \

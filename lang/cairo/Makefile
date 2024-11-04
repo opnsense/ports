@@ -6,10 +6,14 @@ PKGNAMESUFFIX=	-language
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Turing-complete language for creating provable programs
-WWW=		https://cairo-by-example.com/
+WWW=		https://www.cairo-lang.org/ \
+		https://cairo-by-example.com/ \
+		https://github.com/starkware-libs/cairo
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	compilation fails: error: undefined symbol: __atomic_load
 
 BUILD_DEPENDS=	gmake:devel/gmake
 LIB_DEPENDS=	libzstd.so:archivers/zstd

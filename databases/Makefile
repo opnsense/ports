@@ -59,7 +59,6 @@
     SUBDIR += diesel
     SUBDIR += duckdb
     SUBDIR += ejdb
-    SUBDIR += emacs-sqlite3-api
     SUBDIR += emacsql
     SUBDIR += emacsql-devel
     SUBDIR += erlfdb
@@ -141,14 +140,12 @@
     SUBDIR += libiodbc
     SUBDIR += libmemcache
     SUBDIR += libmemcached
-    SUBDIR += libmongo-client
     SUBDIR += libmongocrypt
     SUBDIR += libmswstr
     SUBDIR += libnvpair
     SUBDIR += libodbc++
     SUBDIR += libpbl
     SUBDIR += libpg_query
-    SUBDIR += libpqtypes
     SUBDIR += libsdb
     SUBDIR += libzdb
     SUBDIR += linux-c7-sqlite3
@@ -550,6 +547,7 @@
     SUBDIR += pgFormatter
     SUBDIR += pg_activity
     SUBDIR += pg_citus
+    SUBDIR += pg_cron
     SUBDIR += pg_dirtyread
     SUBDIR += pg_ed25519
     SUBDIR += pg_filedump

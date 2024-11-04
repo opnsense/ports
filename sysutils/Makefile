@@ -655,6 +655,7 @@
     SUBDIR += kubectl
     SUBDIR += kubie
     SUBDIR += kubo-go
+    SUBDIR += kustomize
     SUBDIR += kvmclock-kmod
     SUBDIR += lava
     SUBDIR += lbl-cf
@@ -700,6 +701,7 @@
     SUBDIR += lmmon
     SUBDIR += lmon
     SUBDIR += lnav
+    SUBDIR += loaders-update
     SUBDIR += lockfile-progs
     SUBDIR += loganalyzer
     SUBDIR += logrotate
@@ -1175,7 +1177,6 @@
     SUBDIR += py-uptime
     SUBDIR += py-zdaemon
     SUBDIR += py-zfs-autobackup
-    SUBDIR += pydf
     SUBDIR += qchroot
     SUBDIR += qdirstat
     SUBDIR += qflipper

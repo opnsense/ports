@@ -1,5 +1,5 @@
 PORTNAME=	squashfuse
-PORTVERSION=	0.1.104
+DISTVERSION=	0.5.2
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/vasi/${PORTNAME}/releases/download/${DISTVERSION}/
@@ -12,10 +12,18 @@ WWW=		https://github.com/vasi/squashfuse
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		autoreconf fuse libtool pkgconfig
+LIB_DEPENDS=	liblzo2.so:archivers/lzo2 \
+		liblz4.so:archivers/liblz4 \
+		libzstd.so:archivers/zstd
+
+USES=		fuse:3 libtool localbase:ldflags pkgconfig
+USE_LDCONFIG=	yes
+
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 INSTALL_TARGET=	install-strip
+
+CONFIGURE_ARGS=	--disable-static \
+		--with-pkgconfigdir=${PREFIX}/libdata/pkgconfig
 
 .include <bsd.port.mk>

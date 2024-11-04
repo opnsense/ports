@@ -1249,7 +1249,6 @@
     SUBDIR += libdbusmenu-qt
     SUBDIR += libddoc
     SUBDIR += libddwaf
-    SUBDIR += libdevq
     SUBDIR += libdfui
     SUBDIR += libdill
     SUBDIR += libdisasm
@@ -4839,6 +4838,7 @@
     SUBDIR += py-fastnumbers
     SUBDIR += py-fastprogress
     SUBDIR += py-fbprophet
+    SUBDIR += py-fiddle
     SUBDIR += py-fields
     SUBDIR += py-filebytes
     SUBDIR += py-filedepot
@@ -5097,7 +5097,9 @@
     SUBDIR += py-jupyter
     SUBDIR += py-jupyter-client
     SUBDIR += py-jupyter-collaboration
+    SUBDIR += py-jupyter-collaboration-ui
     SUBDIR += py-jupyter-core
+    SUBDIR += py-jupyter-docprovider
     SUBDIR += py-jupyter-events
     SUBDIR += py-jupyter-kernel-test
     SUBDIR += py-jupyter-lsp
@@ -5107,6 +5109,7 @@
     SUBDIR += py-jupyter-server-fileid
     SUBDIR += py-jupyter-server-mathjax
     SUBDIR += py-jupyter-server-terminals
+    SUBDIR += py-jupyter-server-ydoc
     SUBDIR += py-jupyter-telemetry
     SUBDIR += py-jupyter-ydoc
     SUBDIR += py-jupyter_console
@@ -5803,8 +5806,11 @@
     SUBDIR += py-rfc3339-validator
     SUBDIR += py-rfc3986-validator
     SUBDIR += py-rich-click
+    SUBDIR += py-riot
     SUBDIR += py-robotframework
+    SUBDIR += py-robotframework-assertion-engine
     SUBDIR += py-robotframework-databaselibrary
+    SUBDIR += py-robotframework-excellib
     SUBDIR += py-robotframework-pabot
     SUBDIR += py-robotframework-pythonlibcore
     SUBDIR += py-robotframework-requests
@@ -5883,6 +5889,7 @@
     SUBDIR += py-simpleparse
     SUBDIR += py-simpletal
     SUBDIR += py-simpy
+    SUBDIR += py-simsimd
     SUBDIR += py-single-version
     SUBDIR += py-sip
     SUBDIR += py-sirmordred
@@ -5983,6 +5990,7 @@
     SUBDIR += py-tooz
     SUBDIR += py-toposort
     SUBDIR += py-tox
+    SUBDIR += py-tox-toml-fmt
     SUBDIR += py-traceback2
     SUBDIR += py-trailrunner
     SUBDIR += py-traitlets
@@ -6049,6 +6057,7 @@
     SUBDIR += py-unidep
     SUBDIR += py-unidiff
     SUBDIR += py-unipath
+    SUBDIR += py-unittest-parallel
     SUBDIR += py-unittest2
     SUBDIR += py-unittest2pytest
     SUBDIR += py-unpaddedbase64
@@ -6066,6 +6075,7 @@
     SUBDIR += py-usort
     SUBDIR += py-uvloop
     SUBDIR += py-validate-pyproject
+    SUBDIR += py-validate-pyproject-schema-store
     SUBDIR += py-validators
     SUBDIR += py-validictory
     SUBDIR += py-vcrpy
@@ -6581,6 +6591,9 @@
     SUBDIR += rubygem-aws-sdk-fsx
     SUBDIR += rubygem-aws-sdk-gamelift
     SUBDIR += rubygem-aws-sdk-gamesparks
+    SUBDIR += rubygem-aws-sdk-geomaps
+    SUBDIR += rubygem-aws-sdk-geoplaces
+    SUBDIR += rubygem-aws-sdk-georoutes
     SUBDIR += rubygem-aws-sdk-glacier
     SUBDIR += rubygem-aws-sdk-globalaccelerator
     SUBDIR += rubygem-aws-sdk-glue
@@ -6981,7 +6994,6 @@
     SUBDIR += rubygem-bcp47_spec
     SUBDIR += rubygem-benelux
     SUBDIR += rubygem-better_html
-    SUBDIR += rubygem-better_html-rails61
     SUBDIR += rubygem-bin_utils
     SUBDIR += rubygem-bindata
     SUBDIR += rubygem-bindex
@@ -7071,11 +7083,13 @@
     SUBDIR += rubygem-cucumber-core
     SUBDIR += rubygem-cucumber-core13
     SUBDIR += rubygem-cucumber-cucumber-expressions
+    SUBDIR += rubygem-cucumber-cucumber-expressions17
     SUBDIR += rubygem-cucumber-messages
     SUBDIR += rubygem-cucumber-messages22
     SUBDIR += rubygem-cucumber-messages23
     SUBDIR += rubygem-cucumber-messages24
     SUBDIR += rubygem-cucumber-messages25
+    SUBDIR += rubygem-cucumber-messages26
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-wire
@@ -7158,6 +7172,7 @@
     SUBDIR += rubygem-event_stream_parser0
     SUBDIR += rubygem-eventmachine
     SUBDIR += rubygem-excon
+    SUBDIR += rubygem-excon0
     SUBDIR += rubygem-execjs
     SUBDIR += rubygem-extlib
     SUBDIR += rubygem-extpp
@@ -7206,6 +7221,7 @@
     SUBDIR += rubygem-fog-core1
     SUBDIR += rubygem-fog-core210
     SUBDIR += rubygem-fog-core220
+    SUBDIR += rubygem-fog-core250
     SUBDIR += rubygem-fog-json
     SUBDIR += rubygem-font-awesome-rails
     SUBDIR += rubygem-font-awesome-rails-rails5
@@ -8113,6 +8129,7 @@
     SUBDIR += str
     SUBDIR += string_theory
     SUBDIR += stringencoders
+    SUBDIR += stringzilla
     SUBDIR += stuffbin
     SUBDIR += stxxl
     SUBDIR += stylua

@@ -633,8 +633,6 @@
     SUBDIR += tvbrowser
     SUBDIR += tvm
     SUBDIR += tzdiff
-    SUBDIR += uk-phone
-    SUBDIR += uk-postcodes
     SUBDIR += umodunpack
     SUBDIR += unclutter
     SUBDIR += unclutter-xfixes

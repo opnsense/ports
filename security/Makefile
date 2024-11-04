@@ -746,7 +746,6 @@
     SUBDIR += p5-openxpki
     SUBDIR += p5-openxpki-i18n
     SUBDIR += p5-plog
-    SUBDIR += palisade
     SUBDIR += pam-modules
     SUBDIR += pam-mysql
     SUBDIR += pam-pgsql
@@ -1032,6 +1031,7 @@
     SUBDIR += py-pyscard
     SUBDIR += py-pysodium
     SUBDIR += py-pyspnego
+    SUBDIR += py-pysrp
     SUBDIR += py-python-axolotl
     SUBDIR += py-python-axolotl-curve25519
     SUBDIR += py-python-cas
@@ -1139,6 +1139,7 @@
     SUBDIR += rubygem-doorkeeper-rails5
     SUBDIR += rubygem-doorkeeper-rails50
     SUBDIR += rubygem-doorkeeper-rails70
+    SUBDIR += rubygem-doorkeeper57-rails70
     SUBDIR += rubygem-duo_api
     SUBDIR += rubygem-ed25519
     SUBDIR += rubygem-encryptor
