@@ -2234,7 +2234,7 @@ dns/mydns-ng||2023-06-30|Has expired: Abandonware, last release in 2010. Conside
 dns/mydns||2023-06-30|Has expired: Abandonware, last release in 2006. Consider migrating to dns/powerdns
 net/opal||2023-06-30|Has expired: Very outdated, current version in tree was released back in 2013 and upstream is still active
 math/R-cran-RHmm||2023-06-30|Has expired: Fails to build with R 4.3.0+ and abandoned upstream
-databases/py-caterva||2023-06-30|Has expired: Use archivers/py-blosc2 instead. All the features of Python-Caterva have been included in the Python-Blosc2 NDArray object
+databases/py-caterva|archivers/py-blosc2|2023-06-30|Has expired: Use archivers/py-blosc2 instead. All the features of Python-Caterva have been included in the Python-Blosc2 NDArray object
 net-im/purple-hangouts||2023-06-30|Has expired: Google Hangouts discontinued 2022-11-01, data deleted 2023-01-01
 dns/ares||2023-06-30|Has expired: Deprecated upstream as of March 12, 2023
 security/rubygem-omniauth-cas3||2023-06-30|Has expired: Deprecated by upstream. The repository has been archived by the owner on Aug 23, 2022
@@ -2482,7 +2482,6 @@ net/rubygem-octokit5|net/rubygem-octokit|2023-10-06|Use net/rubygem-octokit
 games/minilens||2023-10-08|Has expired: Depends on expired devel/godot2 (use devel/godot instead)
 games/tanks-of-freedom||2023-10-08|Has expired: Depends on expired devel/godot2 (use devel/godot instead)
 devel/godot2|devel/godot|2023-10-08|Has expired: Requires legacy OpenSSL 1.1.1 so use devel/godot
-devel/py-jupyter-server-ydoc|devel/py-jupyter-collaboration|2023-10-11|Remove obsoleted port. Use devel/py-jupyter-collaboration instead
 devel/py-packaging21|devel/py-packaging|2023-10-11|Remove obsoleted port. Use devel/py-packaging instead
 devel/rubygem-google-protobuf323|devel/rubygem-google-protobuf|2023-10-11|Remove obsoleted port. Use devel/rubygem-google-protobuf instead
 audio/rem||2023-10-12|Has expired: Deprecated, replaced by libre
@@ -3555,3 +3554,26 @@ devel/rubygem-i18n-tasks-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x re
 databases/rubygem-discard-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
 security/rubygem-devise_pam_authenticatable2-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
 security/rubygem-doorkeeper-rails61||2024-10-24|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+devel/rubygem-better_html-rails61||2024-10-27|Has expired: Ruby on Rails 6.1.x reaches EOL on 2024-10-01
+x11-wm/sway-devel|x11-wm/sway|2024-10-27|Out of date: use x11-wm/sway for now
+math/lean|math/lean4|2024-10-30|lean has been superseded by lean4, new generation
+security/palisade|security/openfhe|2024-10-30|palisade has been superseded by openfhe, new generation
+emulators/wine8||2024-10-31|Has expired: The transition to Wine 9.0 should be mostly done now
+audio/funktrackergold||2024-10-31|Has expired: Software looks abandoned: last release is in 1999 and WWW link had nothing to do with the software. Does not build with GCC 14.2
+cad/tkgate||2024-10-31|Has expired: Upstream is gone
+www/py-gandi.cli||2024-10-31|Has expired: Upstream no longer continuing
+devel/libdevq||2024-10-31|Has expired: Upstream repo archived Dec 14, 2023
+www/mod_cloudflare||2024-10-31|Has expired: Deprecated upstream 20 Jul 2021, upstream recommends mod_remoteip
+audio/libshairport||2024-10-31|Has expired: Abandonware, project removed upstream and hasn't seen development since 2011
+databases/libpqtypes||2024-10-31|Has expired: Abandonware, upstream is no longer around
+databases/libmongo-client||2024-10-31|Has expired: Abandonware, upstream removed repo
+archivers/rubygem-archive-tar-minitar|archivers/rubygem-minitar|2024-10-31|Has expired: archive-tar-minitar has been deprecated. Use archivers/rubygem-minitar instead
+audio/audiere||2024-10-31|Has expired: last release in 2006, no consumers in the Ports tree
+databases/emacs-sqlite3-api||2024-10-31|Has expired: Emacs 29 and later support sqlite3 natively
+lang/ferite||2024-10-31|Has expired: Abandonware and outdated, last release in 2009 (current version in 2005)
+www/moodle42||2024-10-31|Has expired: Upstream EOL
+misc/uk-postcodes||2024-10-31|Has expired: Obsolete, 20+ year old data
+misc/uk-phone||2024-10-31|Has expired: Obsolete, 20+ year old data
+textproc/ssddiff||2024-10-31|Has expired: Abandonware, unfetchable and upstream is gone
+sysutils/pydf||2024-11-02|Has expired: Inactive upstream. Does not properly work on FreeBSD
+ports-mgmt/freebsd-bugzilla-cli||2024-11-02|Has expired: Broken. Upstream unavailable
