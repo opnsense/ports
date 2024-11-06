@@ -1,15 +1,14 @@
 PORTNAME=	numpy
-PORTVERSION=	1.25.0
-PORTREVISION=	7
+PORTVERSION=	1.26.4
+PORTREVISION=	2
 PORTEPOCH=	1
 CATEGORIES=	math python
 MASTER_SITES=	PYPI \
-		https://numpy.org/doc/1.23/:doc
+		https://numpy.org/doc/1.26/:doc
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTFILES=	${DISTNAME}${EXTRACT_SUFX} \
-		${PORTNAME}-ref.pdf:doc \
-		${PORTNAME}-user.pdf:doc
-DIST_SUBDIR=	${PORTNAME}-${PORTVERSION:R}
+DISTFILES=	numpy-${PORTVERSION}${EXTRACT_SUFX} \
+		numpy-html.zip:doc
+DIST_SUBDIR=	numpy-${PORTVERSION:R}
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	python@FreeBSD.org
@@ -22,7 +21,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>=6.2.5:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}hypothesis>=6.24.1:devel/py-hypothesis@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.2.0:devel/py-typing-extensions@${PY_FLAVOR}
-USES=		compiler:c11 cpe python:3.9-3.11
+USES=		compiler:c11 cpe python:3.9+
 USE_PYTHON=	allflavors autoplist concurrent cython distutils
 
 GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e s/libgfortran.so//
@@ -31,6 +30,8 @@ PYDISTUTILS_BUILDARGS=		${PYFARGS}
 PYDISTUTILS_CONFIGUREARGS=	${PYFARGS}
 
 PORTDOCS=	*
+
+PORTSCOUT=	limit:^1\.
 
 OPTIONS_DEFINE=		DOCS FORTRAN SUITESPARSE
 OPTIONS_SINGLE=		BLASLIB
@@ -44,9 +45,9 @@ ATLAS_VARS=		BLASLIBS="ptf77blas, ptcblas" BLASNAME=atlas LAPACKLIBS=alapack LIB
 FORTRAN_USES=		fortran
 FORTRAN_VARS=		PYFARGS=--fcompiler=gnu95
 NETLIB_IMPLIES=		FORTRAN
+NETLIB_LIB_DEPENDS=	libcblas.so:math/cblas
 NETLIB_USES=		blaslapack:netlib
 NETLIB_VARS=		BLASLIBS="blas, cblas" BLASNAME=atlas LAPACKLIBS=lapack LIBRARIES=atlas_libs
-NETLIB_LIB_DEPENDS=	libcblas.so:math/cblas
 NOBLAS_MAKE_ENV=	NPY_BLAS_ORDER= NPY_LAPACK_ORDER=
 OPENBLAS_IMPLIES=	FORTRAN
 OPENBLAS_USES=		blaslapack:openblas
@@ -82,8 +83,8 @@ post-install:
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}-ref.pdf ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${_DISTDIR}/${PORTNAME}-user.pdf ${STAGEDIR}${DOCSDIR}
+	${UNZIP_NATIVE_CMD} -qo ${DISTDIR}/${DIST_SUBDIR}/numpy-html.zip -d ${STAGEDIR}${DOCSDIR}
+	@${RM} ${STAGEDIR}${DOCSDIR}/.buildinfo
 
 do-test:
 	@cd ${WRKSRC} && ${PYTHON_CMD} runtests.py
