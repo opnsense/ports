@@ -1,7 +1,7 @@
 PORTNAME=	conserve
 DISTVERSIONPREFIX=	v
 DISTVERSION=	24.8.0
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,6 +10,8 @@ WWW=		https://github.com/sourcefrog/conserve
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+BROKEN_i386=	rust/llvm runs out of memory
 
 USES=		cargo
 

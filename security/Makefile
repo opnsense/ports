@@ -201,7 +201,6 @@
     SUBDIR += gpgme
     SUBDIR += gpgme-cpp
     SUBDIR += gpgme-qt
-    SUBDIR += gpgme-qt-headers
     SUBDIR += gsa
     SUBDIR += gsad
     SUBDIR += gsasl
@@ -1239,6 +1238,7 @@
     SUBDIR += rubygem-sshkit
     SUBDIR += rubygem-sslshake
     SUBDIR += rubygem-ssrf_filter
+    SUBDIR += rubygem-ssrf_filter10
     SUBDIR += rubygem-timfel-krb5
     SUBDIR += rubygem-tpm-key_attestation
     SUBDIR += rubygem-twitter_oauth

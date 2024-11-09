@@ -693,7 +693,6 @@
     SUBDIR += firmware-utils
     SUBDIR += fistgen
     SUBDIR += flatbuffers
-    SUBDIR += flatbuffers205
     SUBDIR += flatcc
     SUBDIR += flatzebra
     SUBDIR += flex-sdk
@@ -1522,6 +1521,7 @@
     SUBDIR += linux-c7-systemd-libs
     SUBDIR += linux-c7-zlib-devel
     SUBDIR += linux-ltp
+    SUBDIR += linux-pvs-studio
     SUBDIR += linux-rl9-dbus-libs
     SUBDIR += linux-rl9-devtools
     SUBDIR += linux-rl9-elfutils-libelf
@@ -1541,6 +1541,7 @@
     SUBDIR += linux-rl9-nspr
     SUBDIR += linux-rl9-ocl-icd
     SUBDIR += linux-rl9-orc
+    SUBDIR += linux-rl9-qt5
     SUBDIR += linux-rl9-qt5-qtbase
     SUBDIR += linux-rl9-qt5-qtdeclarative
     SUBDIR += linux-rl9-qt5-qtscript
@@ -5652,6 +5653,8 @@
     SUBDIR += py-pytest-qt
     SUBDIR += py-pytest-random-order
     SUBDIR += py-pytest-randomly
+    SUBDIR += py-pytest-recorder
+    SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-regressions
     SUBDIR += py-pytest-regtest
     SUBDIR += py-pytest-relaxed
