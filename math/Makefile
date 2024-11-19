@@ -624,6 +624,7 @@
     SUBDIR += octave-forge-oct2mat
     SUBDIR += octave-forge-octave-pool
     SUBDIR += octave-forge-octave_tar
+    SUBDIR += octave-forge-octave_zstd
     SUBDIR += octave-forge-octclip
     SUBDIR += octave-forge-octproj
     SUBDIR += octave-forge-odbc
@@ -947,6 +948,7 @@
     SUBDIR += py-docplex
     SUBDIR += py-ducc0
     SUBDIR += py-ecos
+    SUBDIR += py-emcee
     SUBDIR += py-evalidate
     SUBDIR += py-faiss
     SUBDIR += py-fastcluster

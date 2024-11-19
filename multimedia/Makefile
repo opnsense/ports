@@ -204,6 +204,7 @@
     SUBDIR += libzen
     SUBDIR += linux-c7-libtheora
     SUBDIR += linux-c7-libv4l
+    SUBDIR += linux-rl9-aom
     SUBDIR += linux-rl9-ffmpeg
     SUBDIR += linux-rl9-gstreamer1
     SUBDIR += linux-rl9-gstreamer1-libav
@@ -212,6 +213,7 @@
     SUBDIR += linux-rl9-libva
     SUBDIR += linux-rl9-libvdpau
     SUBDIR += linux-rl9-libvpx
+    SUBDIR += linux-rl9-qt5-qtmultimedia
     SUBDIR += linux-tsmuxer
     SUBDIR += linux_dvbwrapper-kmod
     SUBDIR += livego
@@ -274,6 +276,7 @@
     SUBDIR += opentimelineio
     SUBDIR += opentoonz
     SUBDIR += oscam
+    SUBDIR += ossia-score
     SUBDIR += p5-Audio-M4P
     SUBDIR += p5-FFmpeg-Command
     SUBDIR += p5-FLV-Info

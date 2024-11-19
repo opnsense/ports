@@ -1,5 +1,6 @@
     COMMENT = File systems and related utilities
 
+    SUBDIR += R-cran-fs
     SUBDIR += acfgfs
     SUBDIR += afuse
     SUBDIR += archivemount
@@ -32,6 +33,7 @@
     SUBDIR += gitfs
     SUBDIR += gphotofs
     SUBDIR += gvfs
+    SUBDIR += hammer2
     SUBDIR += hfsexplorer
     SUBDIR += hfsfuse
     SUBDIR += hfsutils
@@ -77,6 +79,7 @@
     SUBDIR += ntfs
     SUBDIR += ntfs-compression
     SUBDIR += ntfs2btrfs
+    SUBDIR += ods2
     SUBDIR += openzfs
     SUBDIR += openzfs-kmod
     SUBDIR += p5-Filesys-Statvfs
@@ -97,9 +100,7 @@
     SUBDIR += py-pyfakefs
     SUBDIR += py-s3fs
     SUBDIR += py-zfs-autobackup
-    SUBDIR += R-cran-fs
     SUBDIR += rar2fs
-    SUBDIR += rubygem-aws-sdk-efs
     SUBDIR += rubygem-winrm-fs
     SUBDIR += s3backer
     SUBDIR += s3fs
@@ -139,6 +140,7 @@
     SUBDIR += zisofs-tools
     SUBDIR += zrepl
     SUBDIR += zrepl-dsh2dsh
+    SUBDIR += ztop
     SUBDIR += zxfer
 
 .include <bsd.port.subdir.mk>

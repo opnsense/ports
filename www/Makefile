@@ -498,6 +498,7 @@
     SUBDIR += onlyoffice-documentserver
     SUBDIR += opencart
     SUBDIR += openemr
+    SUBDIR += opengist
     SUBDIR += openresty
     SUBDIR += orangehrm
     SUBDIR += osrm-backend
@@ -1681,6 +1682,7 @@
     SUBDIR += py-flask-script
     SUBDIR += py-flask-security
     SUBDIR += py-flask-session
+    SUBDIR += py-flask-simpleldap
     SUBDIR += py-flask-smorest
     SUBDIR += py-flask-socketio
     SUBDIR += py-flask-sockets

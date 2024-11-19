@@ -1,6 +1,6 @@
 PORTNAME=	shibboleth-sp
 PORTVERSION=	3.5.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	security www
 MASTER_SITES=	http://shibboleth.net/downloads/service-provider/${PORTVERSION}/
 
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libsaml.so:security/opensaml \
 		libgdbm.so:databases/gdbm \
 		libexpat.so:textproc/expat2
 
-USES=		gmake tar:bzip2 cpe pkgconfig libtool bdb
+USES=		gmake tar:bzip2 cpe pkgconfig libtool
 USE_CXXSTD=	c++14
 
 GNU_CONFIGURE=	yes
@@ -39,14 +39,14 @@ OPTIONS_GROUP=	CONNECT SESSION
 OPTIONS_GROUP_CONNECT=FASTCGI APACHE
 CONNECT_DESC=	Webserver modules
 
-OPTIONS_GROUP_SESSION=ODBC # broken MEMCACHED
+OPTIONS_GROUP_SESSION=ODBC MEMCACHED
 SESSION_DESC=	Optional session storage
 
 OPTIONS_DEFAULT=ODBC APACHE
 
 # Descriptions
 ODBC_DESC=	ODBC database backend - store sessions in a database
-# broken MEMCACHED_DESC=	Store sessions in memcached
+MEMCACHED_DESC=	Store sessions in memcached
 FASTCGI_DESC=	FastCGI protocol support, e.g. for NGINX
 APACHE_DESC=	Build Apache module
 
@@ -58,8 +58,8 @@ ODBC_LIB_DEPENDS=	libodbc.so:databases/unixODBC
 FASTCGI_CONFIGURE_WITH=	fastcgi=${LOCALBASE}
 FASTCGI_LIB_DEPENDS=	libfcgi++.so:www/fcgi
 
-#MEMCACHED_CONFIGURE_WITH=	memcached=${LOCALBASE}
-#MEMCACHED_LIB_DEPENDS=		libmemcached.so:databases/libmemcached
+MEMCACHED_CONFIGURE_WITH=	memcached=${LOCALBASE}
+MEMCACHED_LIB_DEPENDS=		libmemcached.so:databases/libmemcached
 
 OPTIONS_SUB=	yes
 

@@ -1,5 +1,5 @@
 PORTNAME=	pillow-heif
-PORTVERSION=	0.18.0
+PORTVERSION=	0.20.0
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -12,14 +12,12 @@ WWW=		https://github.com/bigcat88/pillow_heif
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-BROKEN=		does not build with libheif 1.19.0+
-
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=61:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 LIB_DEPENDS=	libheif.so:graphics/libheif
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pillow>=10.1.0:graphics/py-pillow@${PY_FLAVOR}
 
-USES=		localbase python
+USES=		localbase python:3.9+
 USE_PYTHON=	autoplist concurrent pep517
 
 LDFLAGS+=	-lheif

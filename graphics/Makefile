@@ -502,8 +502,8 @@
     SUBDIR += librsvg2
     SUBDIR += librsvg2-rust
     SUBDIR += librtprocess
-    SUBDIR += libskiasharp
     SUBDIR += libsixel
+    SUBDIR += libskiasharp
     SUBDIR += libspiro
     SUBDIR += libspng
     SUBDIR += libsvgtiny
@@ -539,6 +539,7 @@
     SUBDIR += linux-rl9-cairo-gobject
     SUBDIR += linux-rl9-dri
     SUBDIR += linux-rl9-gdk-pixbuf2
+    SUBDIR += linux-rl9-graphene
     SUBDIR += linux-rl9-graphite2
     SUBDIR += linux-rl9-jasper
     SUBDIR += linux-rl9-jbigkit
@@ -546,6 +547,7 @@
     SUBDIR += linux-rl9-libdrm
     SUBDIR += linux-rl9-libepoxy
     SUBDIR += linux-rl9-libglvnd
+    SUBDIR += linux-rl9-libjxl
     SUBDIR += linux-rl9-librsvg2
     SUBDIR += linux-rl9-openjpeg
     SUBDIR += linux-rl9-png
@@ -554,6 +556,8 @@
     SUBDIR += linux-rl9-qt5-qtimageformats
     SUBDIR += linux-rl9-qt5-qtsvg
     SUBDIR += linux-rl9-qt5-qtwayland
+    SUBDIR += linux-rl9-shaderc
+    SUBDIR += linux-rl9-spirv-tools
     SUBDIR += linux-rl9-tiff
     SUBDIR += linux-rl9-vulkan
     SUBDIR += linux-rl9-wayland

@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	24.3-branchpoint-84-gae9d3656860
-DISTVERSIONSUFFIX=	-g7e0e4334820
+DISTVERSION=	24.3-branchpoint-439
+DISTVERSIONSUFFIX=	-g0fb4609d944
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -151,8 +151,6 @@ post-patch:
 		${WRKSRC}/bin/git_sha1_gen.py
 
 post-patch-COINST-on:
-	@${MV} ${WRKSRC}/src/gallium/targets/opencl/MesaOpenCL.def.in \
-		${WRKSRC}/src/gallium/targets/opencl/MesaOpenCL${PKGNAMESUFFIX}.def.in
 	@${MV} ${WRKSRC}/src/util/00-${PORTNAME}-defaults.conf \
 		${WRKSRC}/src/util/00-${PKGBASE}-defaults.conf
 	@${MV} ${WRKSRC}/src/util/00-radv-defaults.conf \

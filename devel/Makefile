@@ -282,7 +282,6 @@
     SUBDIR += aws-sdk-php
     SUBDIR += axmldec
     SUBDIR += ayatana-ido
-    SUBDIR += b2
     SUBDIR += babelflow
     SUBDIR += babeltrace
     SUBDIR += bacnet-stack
@@ -514,6 +513,7 @@
     SUBDIR += ctypes.sh
     SUBDIR += cunit
     SUBDIR += cut
+    SUBDIR += cutelee
     SUBDIR += cutils
     SUBDIR += cutter
     SUBDIR += cvise
@@ -640,6 +640,7 @@
     SUBDIR += electron30
     SUBDIR += electron31
     SUBDIR += electron32
+    SUBDIR += electron33
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -1219,6 +1220,7 @@
     SUBDIR += libcdb
     SUBDIR += libcds
     SUBDIR += libcfu
+    SUBDIR += libchdr
     SUBDIR += libchipcard
     SUBDIR += libcidr
     SUBDIR += libcii
@@ -4522,6 +4524,7 @@
     SUBDIR += py-azure-synapse-artifacts
     SUBDIR += py-azure-synapse-managedprivateendpoints
     SUBDIR += py-azure-synapse-spark
+    SUBDIR += py-b2
     SUBDIR += py-b2sdk
     SUBDIR += py-babel
     SUBDIR += py-babelfish
@@ -4600,6 +4603,7 @@
     SUBDIR += py-cerberus
     SUBDIR += py-cereslib
     SUBDIR += py-certsrv
+    SUBDIR += py-cf-xarray
     SUBDIR += py-cffi
     SUBDIR += py-cfgv
     SUBDIR += py-cfn-lint
@@ -5926,6 +5930,7 @@
     SUBDIR += py-sysv_ipc
     SUBDIR += py-tables
     SUBDIR += py-tabulate
+    SUBDIR += py-tabulate2
     SUBDIR += py-tabulator
     SUBDIR += py-tailer
     SUBDIR += py-tapi
@@ -6551,6 +6556,7 @@
     SUBDIR += rubygem-aws-sdk-ecr
     SUBDIR += rubygem-aws-sdk-ecrpublic
     SUBDIR += rubygem-aws-sdk-ecs
+    SUBDIR += rubygem-aws-sdk-efs
     SUBDIR += rubygem-aws-sdk-eks
     SUBDIR += rubygem-aws-sdk-eksauth
     SUBDIR += rubygem-aws-sdk-elasticache
