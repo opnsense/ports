@@ -1,3 +1,722 @@
+  <vuln vid="28ffa931-a510-11ef-8109-b42e991fc52e">
+    <topic>mongodb -- Buffer over-reads in MongoDB Server</topic>
+    <affects>
+      <package>
+	<name>mongodb50</name>
+	<range><lt>5.0.30</lt></range>
+      </package>
+      <package>
+	<name>mongodb60</name>
+	<range><lt>6.0.19</lt></range>
+      </package>
+      <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.15</lt></range>
+      </package>
+      <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cna@mongodb.com reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-96419">
+	  <p>An authorized user may trigger crashes or receive the contents of
+	buffer over-reads of Server memory by issuing specially crafted
+	requests that construct malformed BSON in the MongoDB Server.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10921</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-10921</url>
+    </references>
+    <dates>
+      <discovery>2024-11-14</discovery>
+      <entry>2024-11-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="aba28514-a414-11ef-98e7-84a93843eb75">
+    <topic>Vaultwarden -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>vaultwarden</name>
+	<range><lt>1.32.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Vaultwarden project reports:</p>
+	<blockquote cite="https://github.com/dani-garcia/vaultwarden/releases/tag/1.32.4">
+	  <p>This release has fixed some CVE Reports reported by a third party
+	    security auditor and we recommend everybody to update to the
+	    latest version as soon as possible.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/dani-garcia/vaultwarden/releases/tag/1.32.4</url>
+    </references>
+    <dates>
+      <discovery>2024-11-10</discovery>
+      <entry>2024-11-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8fe4f296-a3ec-11ef-8c1c-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>131.0.6778.69</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>131.0.6778.69</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/11/stable-channel-update-for-desktop_12.html">
+	 <p>This update includes 12 security fixes:</p>
+	 <ul>
+	    <li>[373263969] High CVE-2024-11110: Inappropriate implementation in Blink. Reported by Vsevolod Kokorin (Slonser) of Solidlab on 2024-10-14</li>
+	    <li>[360520331] Medium CVE-2024-11111: Inappropriate implementation in Autofill. Reported by Narendra Bhati, Suma Soft Pvt. Ltd - Pune (India) on 2024-08-18</li>
+	    <li>[354824998] Medium CVE-2024-11112: Use after free in Media. Reported by Nan Wang(@eternalsakura13) and Zhenghang Xiao(@Kipreyyy) of 360 Vulnerability Research Institute on 2024-07-23</li>
+	    <li>[360274917] Medium CVE-2024-11113: Use after free in Accessibility. Reported by Weipeng Jiang (@Krace) of VRI on 2024-08-16</li>
+	    <li>[370856871] Medium CVE-2024-11114: Inappropriate implementation in Views. Reported by Micky on 2024-10-02</li>
+	    <li>[371929521] Medium CVE-2024-11115: Insufficient policy enforcement in Navigation. Reported by mastersplinter on 2024-10-07</li>
+	    <li>[40942531] Medium CVE-2024-11116: Inappropriate implementation in Paint. Reported by Thomas Orlita on 2023-11-14</li>
+	    <li>[40062534] Low CVE-2024-11117: Inappropriate implementation in FileSystem. Reported by Ameen Basha M K on 2023-01-06</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-11110</cvename>
+      <cvename>CVE-2024-11111</cvename>
+      <cvename>CVE-2024-11112</cvename>
+      <cvename>CVE-2024-11113</cvename>
+      <cvename>CVE-2024-11114</cvename>
+      <cvename>CVE-2024-11115</cvename>
+      <cvename>CVE-2024-11116</cvename>
+      <cvename>CVE-2024-11117</cvename>
+      <url>https://chromereleases.googleblog.com/2024/11/stable-channel-update-for-desktop_12.html</url>
+    </references>
+    <dates>
+      <discovery>2024-11-12</discovery>
+      <entry>2024-11-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="773e7eb2-af19-4fc7-be7f-0f6a2523b98b">
+    <topic>electron31 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron31</name>
+	<range><lt>31.7.5</lt></range>
+      </package>
+      <package>
+	<name>electron32</name>
+	<range><lt>32.2.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v31.7.5">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-10827.</li>
+	    <li>Security: backported fix for CVE-2024-11110.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10827</cvename>
+      <url>https://github.com/advisories/GHSA-58wv-w3hc-2c76</url>
+      <cvename>CVE-2024-11110</cvename>
+      <url>https://github.com/advisories/GHSA-4mww-gp9h-h59m</url>
+    </references>
+    <dates>
+      <discovery>2024-11-15</discovery>
+      <entry>2024-11-15</entry>
+      <modified>2024-11-16</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="a03636f4-a29f-11ef-af48-6cc21735f730">
+    <topic>PostgreSQL -- PL/Perl environment variable changes execute arbitrary code</topic>
+    <affects>
+      <package>
+	<name>postgresql17-plperl</name>
+	<range><lt>17.1</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-plperl</name>
+	<range><lt>16.5</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-plperl</name>
+	<range><lt>15.9</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-plperl</name>
+	<range><lt>14.14</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-plperl</name>
+	<range><lt>13.17</lt></range>
+      </package>
+      <package>
+	<name>postgresql12-plperl</name>
+	<range><lt>12.21</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2024-10979/">
+	<p>
+	Incorrect control of environment variables in PostgreSQL
+	PL/Perl allows an unprivileged database user to change
+	sensitive process environment variables (e.g. PATH).
+	That often suffices to enable arbitrary code execution,
+	even if the attacker lacks a database server operating
+	system user.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10979</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2024-10979/</url>
+    </references>
+    <dates>
+      <discovery>2024-11-14</discovery>
+      <entry>2024-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="12e3feab-a29f-11ef-af48-6cc21735f730">
+    <topic>PostgreSQL -- SET ROLE, SET SESSION AUTHORIZATION reset to wrong user ID</topic>
+    <affects>
+      <package>
+	<name>postgresql17-server</name>
+	<range><lt>17.1</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-server</name>
+	<range><lt>16.5</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-server</name>
+	<range><lt>15.9</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-server</name>
+	<range><lt>14.14</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-server</name>
+	<range><lt>13.17</lt></range>
+      </package>
+      <package>
+	<name>postgresql12-server</name>
+	<range><lt>12.21</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2024-10978/">
+	<p>
+	Incorrect privilege assignment in PostgreSQL allows a
+	less-privileged application user to view or change
+	different rows from those intended. An attack requires
+	the application to use SET ROLE, SET SESSION
+	AUTHORIZATION, or an equivalent feature. The problem
+	arises when an application query uses parameters from
+	the attacker or conveys query results to the attacker.
+	If that query reacts to current_setting('role') or the
+	current user ID, it may modify or return data as though
+	the session had not used SET ROLE or SET SESSION
+	AUTHORIZATION. The attacker does not control which
+	incorrect user ID applies. Query text from
+	less-privileged sources is not a concern here, because
+	SET ROLE and SET SESSION AUTHORIZATION are not sandboxes
+	for unvetted queries
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10978</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2024-10978/</url>
+    </references>
+    <dates>
+      <discovery>2024-11-14</discovery>
+      <entry>2024-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a61ef21b-a29e-11ef-af48-6cc21735f730">
+    <topic>PostgreSQL -- libpq retains an error message from man-in-the-middle</topic>
+    <affects>
+      <package>
+	<name>postgresql17-client</name>
+	<range><lt>17.1</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-client</name>
+	<range><lt>16.5</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-client</name>
+	<range><lt>15.9</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-client</name>
+	<range><lt>14.14</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-client</name>
+	<range><lt>13.17</lt></range>
+      </package>
+      <package>
+	<name>postgresql12-client</name>
+	<range><lt>12.21</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2024-10977/">
+	<p>
+	Client use of server error message in PostgreSQL allows
+	a server not trusted under current SSL or GSS settings
+	to furnish arbitrary non-NUL bytes to the libpq
+	application. For example, a man-in-the-middle attacker
+	could send a long error message that a human or
+	screen-scraper user of psql mistakes for valid query
+	results. This is probably not a concern for clients
+	where the user interface unambiguously indicates the
+	boundary between one error message and other text.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10977</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2024-10977/</url>
+    </references>
+    <dates>
+      <discovery>2024-11-14</discovery>
+      <entry>2024-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3831292b-a29d-11ef-af48-6cc21735f730">
+    <topic>PostgreSQL -- PostgreSQL row security below e.g. subqueries disregards user ID changes</topic>
+    <affects>
+      <package>
+	<name>postgresql17-server</name>
+	<range><lt>17.1</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-server</name>
+	<range><lt>16.5</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-server</name>
+	<range><lt>15.9</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-server</name>
+	<range><lt>14.14</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-server</name>
+	<range><lt>13.17</lt></range>
+      </package>
+      <package>
+	<name>postgresql12-server</name>
+	<range><lt>12.21</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2024-10976/">
+	<p>
+	Incomplete tracking in PostgreSQL of tables with row
+	security allows a reused query to view or change
+	different rows from those intended. CVE-2023-2455 and
+	CVE-2016-2193 fixed most interaction between row
+	security and user ID changes. They missed cases where a
+	subquery, WITH query, security invoker view, or
+	SQL-language function references a table with a
+	row-level security policy. This has the same
+	consequences as the two earlier CVEs. That is to say, it
+	leads to potentially incorrect policies being applied in
+	cases where role-specific policies are used and a given
+	query is planned under one role and then executed under
+	other roles. This scenario can happen under security
+	definer functions or when a common user and query is
+	planned initially and then re-used across multiple SET
+	ROLEs.
+
+	Applying an incorrect policy may permit a user to complete
+	otherwise-forbidden reads and modifications. This affects only databases
+	that have used CREATE POLICY to define a row security policy. An
+	attacker must tailor an attack to a particular application's pattern of
+	query plan reuse, user ID changes, and role-specific row security
+	policies.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10976</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2024-10976/</url>
+    </references>
+    <dates>
+      <discovery>2024-11-14</discovery>
+      <entry>2024-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6b591e05-971c-4077-8ae4-1310554971b7">
+    <topic>electron31 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron31</name>
+	<range><lt>31.7.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v31.7.4">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-10231.</li>
+	    <li>Security: backported fix for CVE-2024-10229.</li>
+	    <li>Security: backported fix for CVE-2024-10487.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-10231</cvename>
+      <url>https://github.com/advisories/GHSA-3wfx-mj93-vf8v</url>
+      <cvename>CVE-2024-10229</cvename>
+      <url>https://github.com/advisories/GHSA-3hjp-j522-245f</url>
+      <cvename>CVE-2024-10487</cvename>
+      <url>https://github.com/advisories/GHSA-h72p-7xmw-gpp8</url>
+    </references>
+    <dates>
+      <discovery>2024-11-12</discovery>
+      <entry>2024-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1eb4d32c-a245-11ef-998c-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.5.0</ge><lt>17.5.2</lt></range>
+	<range><ge>17.4.0</ge><lt>17.4.4</lt></range>
+	<range><ge>16.0.0</ge><lt>17.3.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/11/13/patch-release-gitlab-17-5-2-released/">
+	  <p>Unauthorized access to Kubernetes cluster agent</p>
+	  <p>Device OAuth flow allows for cross window forgery</p>
+	  <p>Denial of Service by importing malicious crafted FogBugz import payload</p>
+	  <p>Stored XSS through javascript URL in Analytics dashboards</p>
+	  <p>HTML injection in vulnerability Code flow could lead to XSS on self hosted instances</p>
+	  <p>Information disclosure through an API endpoint</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-9693</cvename>
+      <cvename>CVE-2024-7404</cvename>
+      <cvename>CVE-2024-8648</cvename>
+      <cvename>CVE-2024-8180</cvename>
+      <cvename>CVE-2024-10240</cvename>
+      <url>https://about.gitlab.com/releases/2024/11/13/patch-release-gitlab-17-5-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-11-13</discovery>
+      <entry>2024-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ce0f52e1-a174-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- Certificate revocation list fetch(1) option fails</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_6</lt></range>
+	<range><ge>13.4</ge><lt>13.4_2</lt></range>
+	<range><ge>13.3</ge><lt>13.3_8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The fetch(3) library uses environment variables for passing
+	certain information, including the revocation file pathname.  The
+	environment variable name used by fetch(1) to pass the filename to
+	the library was incorrect, in effect ignoring the option.</p>
+	<h1>Impact:</h1>
+	<p>Fetch would still connect to a host presenting a certificate
+	included in the revocation file passed to the --crl option.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45289</cvename>
+      <freebsdsa>SA-24:19.fetch</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-10-29</discovery>
+      <entry>2024-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="8caa5d60-a174-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- Unbounded allocation in ctl(4) CAM Target Layer</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.1</ge><lt>14.1_6</lt></range>
+	<range><ge>13.4</ge><lt>13.4_2</lt></range>
+	<range><ge>13.3</ge><lt>13.3_8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The command ctl_persistent_reserve_out allows the caller to
+	specify an arbitrary size which will be passed to the kernel's
+	memory allocator.</p>
+	<h1>Impact:</h1>
+	<p>A malicious guest could cause a Denial of Service (DoS) on the
+	host.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-39281</cvename>
+      <freebsdsa>SA-24:18.ctl</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-10-29</discovery>
+      <entry>2024-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="eb5c615d-a173-11ef-9a62-002590c1f29c">
+    <topic>FreeBSD -- Multiple issues in the bhyve hypervisor</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.1</ge><lt>14.1_6</lt></range>
+	<range><ge>13.4</ge><lt>13.4_2</lt></range>
+	<range><ge>13.3</ge><lt>13.3_8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>Several vulnerabilities were found in the bhyve hypervisor's
+	device models.</p>
+	<p>The NVMe driver function nvme_opc_get_log_page is vulnerable to a
+	buffer over- read from a guest-controlled value.  (CVE-2024-51562)</p>
+	<p>The virtio_vq_recordon function is subject to a time-of-check to
+	time-of-use (TOCTOU) race condition.  (CVE-2024-51563)</p>
+	<p>A guest can trigger an infinite loop in the hda audio driver.
+	(CVE-2024-51564)</p>
+	<p>The hda driver is vulnerable to a buffer over-read from a
+	guest-controlled value.  (CVE-2024-51565)</p>
+	<p>The NVMe driver queue processing is vulernable to guest-induced
+	infinite loops.  (CVE-2024-51566)</p>
+	<h1>Impact:</h1>
+	<p>Malicious guest virtual machines may be able to perform a denial
+	of service (DoS) of the bhyve host, and may read memory within the
+	bhyve process that they should not be able to access.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-51562</cvename>
+      <cvename>CVE-2024-51563</cvename>
+      <cvename>CVE-2024-51564</cvename>
+      <cvename>CVE-2024-51565</cvename>
+      <cvename>CVE-2024-51566</cvename>
+      <freebsdsa>SA-24:17.bhyve</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2024-10-29</discovery>
+      <entry>2024-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ab4e6f65-a142-11ef-84e9-901b0e9408dc">
+    <topic>element-web -- several vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>element-web</name>
+	<range><lt>1.11.85</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Element team reports:</p>
+	<blockquote cite="https://github.com/element-hq/element-web/security/advisories/GHSA-5486-384g-mcx2">
+	  <p>Versions of Element Web and Desktop earlier than 1.11.85 do
+	  not check if thumbnails for attachments, stickers and images
+	  are coherent. It is possible to add thumbnails to events
+	  trigger a file download once clicked.</p>
+	</blockquote>
+	<blockquote cite="https://github.com/element-hq/element-web/security/advisories/GHSA-w36j-v56h-q9pc">
+	  <p>A malicious homeserver can send invalid messages over
+	  federation which can prevent Element Web and Desktop from
+	  rendering single messages or the entire room containing
+	  them.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-51749</cvename>
+      <cvename>CVE-2024-51750</cvename>
+      <url>https://github.com/element-hq/element-web/security/advisories/GHSA-5486-384g-mcx2</url>
+      <url>https://github.com/element-hq/element-web/security/advisories/GHSA-w36j-v56h-q9pc</url>
+    </references>
+    <dates>
+      <discovery>2024-11-12</discovery>
+      <entry>2024-11-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="574f7bc9-a141-11ef-84e9-901b0e9408dc">
+    <topic>Matrix clients -- mxc uri validation in js sdk</topic>
+    <affects>
+      <package>
+	<name>cinny</name>
+	<range><lt>4.2.3</lt></range>
+      </package>
+      <package>
+	<name>element-web</name>
+	<range><lt>1.11.85</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>matrix-js-sdk upstream reports:</p>
+	<blockquote cite="https://github.com/matrix-org/matrix-js-sdk/security/advisories/GHSA-xvg8-m4x3-w6xr">
+	  <p>matrix-js-sdk before 34.11.0 is vulnerable to client-side
+	  path traversal via crafted MXC URIs. A malicious room member
+	  can trigger clients based on the matrix-js-sdk to issue
+	  arbitrary authenticated GET requests to the client's
+	  homeserver.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-50336</cvename>
+      <url>https://github.com/matrix-org/matrix-js-sdk/security/advisories/GHSA-xvg8-m4x3-w6xr</url>
+    </references>
+    <dates>
+      <discovery>2024-11-12</discovery>
+      <entry>2024-11-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0a82bc4d-a129-11ef-8351-589cfc0f81b0">
+    <topic>icinga2 -- TLS Certificate Validation Bypass</topic>
+    <affects>
+      <package>
+	<name>icinga2</name>
+	<range><lt>2.14.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Icinga project reports:</p>
+	<blockquote cite="https://github.com/Icinga/icinga2/commit/0419a2c36de408e9a703aec0962061ec9a285d3c">
+	  <p>Icinga is a monitoring system which checks the availability of
+	network resources, notifies users of outages, and generates performance
+	data for reporting.  The TLS certificate validation in all Icinga
+	2 versions starting from 2.4.0 was flawed, allowing an attacker to
+	impersonate both trusted cluster nodes as well as any API users
+	that use TLS client certificates for authentication (ApiUser objects
+	with the client_cn attribute set).  This vulnerability has been
+	fixed in v2.14.3, v2.13.10, v2.12.11, and v2.11.12.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-49369</cvename>
+      <url>https://icinga.com/blog/2024/11/12/critical-icinga-2-security-releases-2-14-3/</url>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-49369</url>
+    </references>
+    <dates>
+      <discovery>2024-11-12</discovery>
+      <entry>2024-11-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="33236f80-a11d-11ef-a964-1c697a616631">
+    <topic>Intel CPUs -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cpu-microcode-intel</name>
+	<range><lt>20241112</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Intel reports:</p>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01101.html">
+	 <p>
+	  A potential security vulnerability in some 4th and 5th Generation
+	  Intel Xeon Processors may allow denial of service. Intel released
+	  microcode updates to mitigate this potential vulnerability.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01079.html">
+	 <p>
+	  Potential security vulnerabilities in some Intel Xeon processors using
+	  Intel Software Guard Extensions (Intel SGX) may allow escalation of
+	  privilege.  Intel released firmware updates to mitigate these
+	  potential vulnerabilities.
+	 </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-21853</cvename>
+      <cvename>CVE-2024-23918</cvename>
+      <cvename>CVE-2024-21820</cvename>
+      <url>https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases/tag/microcode-20241112</url>
+    </references>
+    <dates>
+      <discovery>2024-09-10</discovery>
+      <entry>2024-09-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="305ceb2c-9df8-11ef-a660-d85ed309193e">
     <topic>x11vnc -- access to shared memory segments</topic>
     <affects>
@@ -2076,7 +2795,7 @@
     <affects>
       <package>
 	<name>cpu-microcode-intel</name>
-	<range><lt>20240910</lt></range>
+	<range><lt>20241112</lt></range>
       </package>
     </affects>
     <description>
@@ -2107,6 +2826,7 @@
     <dates>
       <discovery>2024-09-10</discovery>
       <entry>2024-09-10</entry>
+      <modified>2024-11-12</modified>
     </dates>
   </vuln>
 
