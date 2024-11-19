@@ -36,7 +36,7 @@
  		if ((crl_file = getenv("SSL_CRL_FILE")) != NULL) {
  			if (verbose)
  				fetch_info("Using CRL file: %s", crl_file);
-@@ -1189,6 +1188,27 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
+@@ -1189,14 +1188,37 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
  	char *str;
  
  	str = NULL;
@@ -64,8 +64,12 @@
  	if (!verified) {
  		if ((crt = X509_STORE_CTX_get_current_cert(ctx)) != NULL &&
  		    (name = X509_get_subject_name(crt)) != NULL)
-@@ -1197,6 +1217,7 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
- 		    str != NULL ? str : "no relevant certificate");
+ 			str = X509_NAME_oneline(name, 0, 0);
+-		fprintf(stderr, "Certificate verification failed for %s\n",
+-		    str != NULL ? str : "no relevant certificate");
++		fprintf(stderr, "Certificate verification failed for %s (%d)\n",
++		    str != NULL ? str : "no relevant certificate",
++		    X509_STORE_CTX_get_error(ctx));
  		OPENSSL_free(str);
  	}
 +
