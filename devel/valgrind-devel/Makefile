@@ -1,6 +1,7 @@
 PORTNAME=	valgrind
 PORTVERSION=	3.25.0.g20241104
 DISTVERSIONPREFIX=	freebsd-
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	https://snapshots.sourceware.org/valgrind/trunk/2024-11-04_12-31_1730723461/
@@ -59,6 +60,8 @@ MANPAGES_BUILD_DEPENDS=	docbook-xsl>=0:textproc/docbook-xsl \
 MPI_LIB_DEPENDS=	libmpich.so:net/mpich
 
 .include <bsd.port.options.mk>
+
+PLIST_SUB+=	ARCH=${ARCH:S/i386/x86/:S/aarch64/arm64/}
 
 .if ${ARCH} == "amd64"
 PLIST_SUB+=		AMD64=""

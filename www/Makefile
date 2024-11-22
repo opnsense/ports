@@ -1497,6 +1497,7 @@
     SUBDIR += py-cssselect
     SUBDIR += py-cssutils
     SUBDIR += py-daphne
+    SUBDIR += py-dash
     SUBDIR += py-dj-database-url
     SUBDIR += py-dj50-django-auth-ldap
     SUBDIR += py-dj50-django-choices-field
@@ -1664,6 +1665,7 @@
     SUBDIR += py-flask-collect
     SUBDIR += py-flask-compress
     SUBDIR += py-flask-cors
+    SUBDIR += py-flask-dance
     SUBDIR += py-flask-flatpages
     SUBDIR += py-flask-json
     SUBDIR += py-flask-jwt
@@ -1686,6 +1688,7 @@
     SUBDIR += py-flask-smorest
     SUBDIR += py-flask-socketio
     SUBDIR += py-flask-sockets
+    SUBDIR += py-flask-sphinx-themes
     SUBDIR += py-flask-theme
     SUBDIR += py-flask-uploads
     SUBDIR += py-flask-wtf
@@ -1696,6 +1699,7 @@
     SUBDIR += py-formencode
     SUBDIR += py-fqdn
     SUBDIR += py-frappe-bench
+    SUBDIR += py-free-proxy
     SUBDIR += py-freenit
     SUBDIR += py-frozen-flask
     SUBDIR += py-gevent-websocket
@@ -1749,6 +1753,7 @@
     SUBDIR += py-httpx-gssapi
     SUBDIR += py-httpx-oauth
     SUBDIR += py-httpx-socks
+    SUBDIR += py-httpx-ws
     SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
@@ -1792,6 +1797,7 @@
     SUBDIR += py-proxy_tools
     SUBDIR += py-puppetboard
     SUBDIR += py-py-restclient
+    SUBDIR += py-pydrive2
     SUBDIR += py-pygsheets
     SUBDIR += py-pyjwt
     SUBDIR += py-pyjwt1
@@ -2182,6 +2188,7 @@
     SUBDIR += rubygem-net-http-persistent
     SUBDIR += rubygem-net-http-persistent2
     SUBDIR += rubygem-net-http-pipeline
+    SUBDIR += rubygem-net-http041
     SUBDIR += rubygem-nicovideo
     SUBDIR += rubygem-ntlm-http
     SUBDIR += rubygem-octopress
@@ -2274,6 +2281,7 @@
     SUBDIR += rubygem-responders-rails61
     SUBDIR += rubygem-responders-rails70
     SUBDIR += rubygem-responders-rails71
+    SUBDIR += rubygem-responders-rails72
     SUBDIR += rubygem-rest-client
     SUBDIR += rubygem-rfacebook
     SUBDIR += rubygem-rfeedfinder
