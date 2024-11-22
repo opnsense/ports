@@ -3574,7 +3574,6 @@ misc/uk-postcodes||2024-10-31|Has expired: Obsolete, 20+ year old data
 misc/uk-phone||2024-10-31|Has expired: Obsolete, 20+ year old data
 textproc/ssddiff||2024-10-31|Has expired: Abandonware, unfetchable and upstream is gone
 sysutils/pydf||2024-11-02|Has expired: Inactive upstream. Does not properly work on FreeBSD
-ports-mgmt/freebsd-bugzilla-cli||2024-11-02|Has expired: Broken. Upstream unavailable
 sysutils/zap|filesystems/zap|2024-11-06|Moved to new category filesystems
 sysutils/fusefs-mergerfs|filesystems/mergerfs|2024-11-06|Moved to new category filesystems
 sysutils/squashfs-tools-ng|filesystems/squashfs-tools-ng|2024-11-06|Moved to new category filesystems
@@ -3652,7 +3651,6 @@ sysutils/R-cran-fs|filesystems/R-cran-fs|2024-11-06|Moved to new category filesy
 security/clamfs|filesystems/clamfs|2024-11-06|Moved to new category filesystems
 emulators/mtools|filesystems/mtools|2024-11-06|Moved to new category filesystems
 devel/tclvfs|filesystems/tclvfs|2024-11-06|Moved to new category filesystems
-devel/rubygem-aws-sdk-efs|filesystems/rubygem-aws-sdk-efs|2024-11-06|Moved to new category filesystems
 devel/py-s3fs|filesystems/py-s3fs|2024-11-06|Moved to new category filesystems
 devel/py-pyfakefs|filesystems/py-pyfakefs|2024-11-06|Moved to new category filesystems
 devel/py-llfuse|filesystems/py-llfuse|2024-11-06|Moved to new category filesystems
@@ -3717,3 +3715,10 @@ sysutils/dsbmc|filesystems/dsbmc|2024-11-06|Moved to new category filesystems
 misc/e2fsprogs-libblkid|filesystems/e2fsprogs-libblkid|2024-11-06|Moved to new category filesystems
 security/gpgme-qt-headers|security/gpgme-qt|2024-11-10|Flavored headers are now installed by security/gpgme-qt
 devel/flatbuffers205|devel/flatbuffers|2024-11-10|Not needed any more
+lang/gcc11-devel|lang/gcc11|2024-11-12|GCC 11 reached end of life; use the final release (or a newer major version)
+sysutils/hammer2|filesystems/hammer2|2024-11-13|Moved to new category filesystems
+sysutils/ods2|filesystems/ods2|2024-11-13|Moved to new category filesystems
+sysutils/ztop|filesystems/ztop|2024-11-13|Moved to new category filesystems
+devel/b2|devel/py-b2|2024-11-14|Add py- prefix
+misc/morse||2024-11-14|Project discontinued upstream
+games/minetest|games/luanti|2024-11-17|Chase upstream rename
