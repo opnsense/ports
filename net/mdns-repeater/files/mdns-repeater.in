@@ -7,6 +7,7 @@
 # Add the following lines to /etc/rc.conf to enable mdns-repeater
 # mdns_repeater_enable="YES"
 # mdns_repeater_interfaces="vr0 vr1"
+# mdns_repeater_blacklist="-b 192.168.1.1/24"
 
 . /etc/rc.subr
 
@@ -20,7 +21,7 @@ load_rc_config ${name}
 
 pidfile="/var/run/mdns-repeater.pid"
 command="%%PREFIX%%/bin/mdns-repeater"
-command_args=" -p ${pidfile} ${mdns_repeater_interfaces}"
+command_args=" -p ${pidfile} $(mdns_repeater_blacklist) ${mdns_repeater_interfaces}"
 
 # run service
 run_rc_command "$1"
