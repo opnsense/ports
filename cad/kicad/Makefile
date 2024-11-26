@@ -1,6 +1,6 @@
 PORTNAME=	kicad
 PORTVERSION=	7.0.2
-PORTREVISION=	7
+PORTREVISION=	8
 PORTEPOCH=	2
 CATEGORIES=	cad
 MASTER_SITES=	https://gitlab.com/${PORTNAME}/code/${PORTNAME}/-/archive/${DISTVERSION}${DISTVERSIONSUFFIX}/
@@ -10,8 +10,6 @@ COMMENT=	Schematic and PCB editing software
 WWW=		https://kicad.org/
 
 LICENSE=	GPLv2
-
-BROKEN=		fails to build with boost-1.86+
 
 BUILD_DEPENDS=	${LOCALBASE}/include/glm/glm.hpp:math/glm	\
 		swig:devel/swig

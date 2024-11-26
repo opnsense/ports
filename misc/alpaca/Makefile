@@ -1,5 +1,5 @@
 PORTNAME=	alpaca
-DISTVERSION=	2.7.0
+DISTVERSION=	2.8.0
 CATEGORIES=	misc
 
 MAINTAINER=	nivit@FreeBSD.org
@@ -20,11 +20,13 @@ RUN_DEPENDS=	${PY_PILLOW} \
 		ollama:misc/ollama
 
 USES=		desktop-file-utils gettext-runtime gettext-tools gnome meson \
-		python
+		python shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	Jeffser
 GH_PROJECT=	Alpaca
 USE_GNOME=	pygobject3:run vte3
+
+SHEBANG_FILES=	src/alpaca_search_provider.py.in
 
 post-patch:
 	@${REINPLACE_CMD} \
