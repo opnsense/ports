@@ -829,8 +829,8 @@
     SUBDIR += git-extras
     SUBDIR += git-filter-repo
     SUBDIR += git-filter-repo-devel
-    SUBDIR += git-gui
     SUBDIR += git-graph
+    SUBDIR += git-gui
     SUBDIR += git-lab
     SUBDIR += git-lfs
     SUBDIR += git-merge-changelog
@@ -1529,6 +1529,7 @@
     SUBDIR += linux-rl9-devtools
     SUBDIR += linux-rl9-elfutils-libelf
     SUBDIR += linux-rl9-elfutils-libs
+    SUBDIR += linux-rl9-highway
     SUBDIR += linux-rl9-icu
     SUBDIR += linux-rl9-libatomic
     SUBDIR += linux-rl9-libevent
@@ -1540,13 +1541,15 @@
     SUBDIR += linux-rl9-libthai
     SUBDIR += linux-rl9-libtool-ltdl
     SUBDIR += linux-rl9-libunistring
+    SUBDIR += linux-rl9-lld
+    SUBDIR += linux-rl9-lldb
     SUBDIR += linux-rl9-llvm
+    SUBDIR += linux-rl9-npth
     SUBDIR += linux-rl9-nspr
     SUBDIR += linux-rl9-ocl-icd
     SUBDIR += linux-rl9-orc
     SUBDIR += linux-rl9-qt5
     SUBDIR += linux-rl9-qt5-qtbase
-    SUBDIR += linux-rl9-qt5-qtdeclarative
     SUBDIR += linux-rl9-qt5-qtscript
     SUBDIR += linux-rl9-qt5-qttools
     SUBDIR += linux-rl9-strace
@@ -6708,6 +6711,8 @@
     SUBDIR += rubygem-aws-sdk-networkmanager
     SUBDIR += rubygem-aws-sdk-networkmonitor
     SUBDIR += rubygem-aws-sdk-nimblestudio
+    SUBDIR += rubygem-aws-sdk-notifications
+    SUBDIR += rubygem-aws-sdk-notificationscontacts
     SUBDIR += rubygem-aws-sdk-oam
     SUBDIR += rubygem-aws-sdk-omics
     SUBDIR += rubygem-aws-sdk-opensearchserverless

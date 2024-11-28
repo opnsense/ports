@@ -447,6 +447,7 @@
     SUBDIR += linux-c7-libxml2
     SUBDIR += linux-c7-libxslt
     SUBDIR += linux-rl9-expat
+    SUBDIR += linux-rl9-libstemmer
     SUBDIR += linux-rl9-libxml2
     SUBDIR += linux-rl9-libxslt
     SUBDIR += linux-rl9-qt5-qtxmlpatterns
@@ -2116,6 +2117,7 @@
     SUBDIR += tth
     SUBDIR += tttcmds
     SUBDIR += ttynt
+    SUBDIR += tui-journal
     SUBDIR += turboxsl
     SUBDIR += txt2html
     SUBDIR += txt2man
