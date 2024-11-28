@@ -1,3 +1,78 @@
+  <vuln vid="7d7a28cd-7f5a-450a-852f-c49aaab3fa7e">
+    <topic>keycloak -- Multiple security fixes</topic>
+    <affects>
+      <package>
+	<name>keycloak</name>
+	<range><lt>26.0.6</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Keycloak reports:</p>
+	<blockquote cite="https://www.keycloak.org/2024/11/keycloak-2606-released.html">
+	  <p>This update includes 5 security fixes:</p>
+	  <ul>
+	    <li>CVE-2024-10451: Sensitive Data Exposure in Keycloak Build Process</li>
+	    <li>CVE-2024-10270: Potential Denial of Service</li>
+	    <li>CVE-2024-10492: Keycloak path trasversal</li>
+	    <li>CVE-2024-9666: Keycloak proxy header handling Denial-of-Service (DoS) vulnerability</li>
+	    <li>CVE-2024-10039: Bypassing mTLS validation</li>
+	  </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2021-9666</cvename>
+      <cvename>CVE-2021-10039</cvename>
+      <cvename>CVE-2021-10270</cvename>
+      <cvename>CVE-2021-10451</cvename>
+      <cvename>CVE-2021-10492</cvename>
+    </references>
+    <dates>
+      <discovery>2024-11-22</discovery>
+      <entry>2024-11-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2263ea04-ac81-11ef-998c-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.6.0</ge><lt>17.6.1</lt></range>
+	<range><ge>17.5.0</ge><lt>17.5.3</lt></range>
+	<range><ge>8.12.0</ge><lt>17.4.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2024/11/26/patch-release-gitlab-17-6-1-released/">
+	  <p>Privilege Escalation via LFS Tokens</p>
+	  <p>DoS through uncontrolled resource consumption when viewing a maliciously crafted cargo.toml file</p>
+	  <p>Unintended Access to Usage Data via Scoped Tokens</p>
+	  <p>Gitlab DOS via Harbor registry integration</p>
+	  <p>Resource exhaustion and denial of service with test_report API calls</p>
+	  <p>Streaming endpoint did not invalidate tokens after revocation</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-8114</cvename>
+      <cvename>CVE-2024-8237</cvename>
+      <cvename>CVE-2024-11669</cvename>
+      <cvename>CVE-2024-8177</cvename>
+      <cvename>CVE-2024-11828</cvename>
+      <cvename>CVE-2024-11668</cvename>
+      <url>https://about.gitlab.com/releases/2024/11/26/patch-release-gitlab-17-6-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2024-11-26</discovery>
+      <entry>2024-11-27</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="9dfca0cd-ab09-11ef-8c1c-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
