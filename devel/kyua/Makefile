@@ -52,7 +52,7 @@ TEST_CONFIGURE_WITH=	atf
 .include <bsd.port.pre.mk>
 
 .if ${OPSYS} == FreeBSD && ${OSREL:R} >= 14
-IGNORE=		kyua from base must be used for FreeBSD 14.x and newer
+#IGNORE=		kyua from base must be used for FreeBSD 14.x and newer
 .endif
 
 post-install:
