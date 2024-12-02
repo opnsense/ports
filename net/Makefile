@@ -179,7 +179,6 @@
     SUBDIR += fspd
     SUBDIR += fsplib
     SUBDIR += gamenetworkingsockets
-    SUBDIR += gdrive
     SUBDIR += gemserv
     SUBDIR += geoclue
     SUBDIR += geocode-glib
@@ -1496,7 +1495,6 @@
     SUBDIR += serveez
     SUBDIR += serviio
     SUBDIR += sflowtool
-    SUBDIR += shadowsocks-libev
     SUBDIR += shadowsocks-rust
     SUBDIR += shelldap
     SUBDIR += shmux

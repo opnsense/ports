@@ -352,6 +352,7 @@
     SUBDIR += rubygem-streamio-ffmpeg
     SUBDIR += scte35dump
     SUBDIR += shotcut
+    SUBDIR += shotcut-qt6
     SUBDIR += simplescreenrecorder
     SUBDIR += smpeg
     SUBDIR += smpeg2
@@ -394,7 +395,6 @@
     SUBDIR += video-trimmer
     SUBDIR += vlc
     SUBDIR += vmaf
-    SUBDIR += vtkmpeg2encode
     SUBDIR += vvdec
     SUBDIR += vvenc
     SUBDIR += w_scan2

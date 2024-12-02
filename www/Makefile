@@ -295,7 +295,6 @@
     SUBDIR += kf5-kjsembed
     SUBDIR += kineto
     SUBDIR += kiwix-tools
-    SUBDIR += kohana
     SUBDIR += ladybird
     SUBDIR += lagrange
     SUBDIR += libapreq2
@@ -481,7 +480,6 @@
     SUBDIR += nostromo
     SUBDIR += novnc
     SUBDIR += novnc-websockify
-    SUBDIR += npapi-xine
     SUBDIR += npc
     SUBDIR += npm
     SUBDIR += npm-node18

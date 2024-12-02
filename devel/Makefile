@@ -436,8 +436,6 @@
     SUBDIR += clisp-hyperspec
     SUBDIR += clixon
     SUBDIR += clojure-cider
-    SUBDIR += cloudabi
-    SUBDIR += cloudabi-toolchain
     SUBDIR += clthreads
     SUBDIR += cltune
     SUBDIR += clxclient
@@ -4934,6 +4932,7 @@
     SUBDIR += py-googleapis-common-protos
     SUBDIR += py-gptscript
     SUBDIR += py-gpxpy
+    SUBDIR += py-gql
     SUBDIR += py-graal
     SUBDIR += py-grab
     SUBDIR += py-graphene
