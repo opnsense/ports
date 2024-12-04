@@ -155,6 +155,7 @@
     SUBDIR += diffutils
     SUBDIR += dikt
     SUBDIR += discount
+    SUBDIR += dmenu-translate
     SUBDIR += doc-mode.el
     SUBDIR += docbook
     SUBDIR += docbook-sgml
@@ -533,8 +534,10 @@
     SUBDIR += opensearch
     SUBDIR += opensearch-dashboards
     SUBDIR += opensearch-dashboards210
+    SUBDIR += opensearch-dashboards213
     SUBDIR += opensearch13
     SUBDIR += opensearch210
+    SUBDIR += opensearch213
     SUBDIR += opensp
     SUBDIR += openvanilla-framework
     SUBDIR += or-aspell

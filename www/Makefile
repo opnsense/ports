@@ -297,6 +297,7 @@
     SUBDIR += kiwix-tools
     SUBDIR += ladybird
     SUBDIR += lagrange
+    SUBDIR += lexbor
     SUBDIR += libapreq2
     SUBDIR += libdatachannel
     SUBDIR += libdom
@@ -2038,6 +2039,7 @@
     SUBDIR += rubygem-faraday-follow_redirects-gitlab
     SUBDIR += rubygem-faraday-gitlab
     SUBDIR += rubygem-faraday-http-cache
+    SUBDIR += rubygem-faraday-http-cache-gitlab
     SUBDIR += rubygem-faraday-httpclient
     SUBDIR += rubygem-faraday-httpclient1
     SUBDIR += rubygem-faraday-multipart
