@@ -48,8 +48,8 @@ do-install:
 
 do-install-ETCSYMLINK-on:
 	${MKDIR} ${STAGEDIR}${PREFIX}/openssl
-	${LN} -sf ../${CERTDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/openssl/cert.pem
+	${LN} -sf ../etc/ssl/cert.pem ${STAGEDIR}${PREFIX}/openssl/cert.pem
 	${MKDIR} ${STAGEDIR}/etc/ssl
-	${LN} -sf ../..${PREFIX}/${CERTDIR}/ca-root-nss.crt ${STAGEDIR}/etc/ssl/cert.pem
+	${LN} -sf ../..${PREFIX}/etc/ssl/cert.pem ${STAGEDIR}/etc/ssl/cert.pem
 
 .include <bsd.port.mk>
