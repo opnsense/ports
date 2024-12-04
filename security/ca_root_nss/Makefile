@@ -21,7 +21,7 @@ OPTIONS_DEFAULT=	ETCSYMLINK
 
 OPTIONS_SUB=		yes
 
-ETCSYMLINK_DESC=	Add symlink to /etc/ssl/cert.pem
+ETCSYMLINK_DESC=	Add symlink to /etc/ssl/cert.pem and openssl/cert.pem
 ETCSYMLINK_CONFLICTS_INSTALL=	ca-roots-[0-9]*
 
 CERTDIR?=	share/certs
@@ -45,10 +45,10 @@ do-install:
 	${INSTALL_DATA} ${WRKDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/${CERTDIR}
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/ssl
 	${LN} -sf ../../${CERTDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/etc/ssl/cert.pem.sample
-	${MKDIR} ${STAGEDIR}${PREFIX}/openssl
-	${LN} -sf ../${CERTDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/openssl/cert.pem.sample
 
 do-install-ETCSYMLINK-on:
+	${MKDIR} ${STAGEDIR}${PREFIX}/openssl
+	${LN} -sf ../${CERTDIR}/ca-root-nss.crt ${STAGEDIR}${PREFIX}/openssl/cert.pem
 	${MKDIR} ${STAGEDIR}/etc/ssl
 	${LN} -sf ../..${PREFIX}/${CERTDIR}/ca-root-nss.crt ${STAGEDIR}/etc/ssl/cert.pem
 
