@@ -143,6 +143,7 @@
     SUBDIR += dolibarr16
     SUBDIR += dolibarr17
     SUBDIR += dolibarr18
+    SUBDIR += dolibarr19
     SUBDIR += domoticz
     SUBDIR += domoticz-devel
     SUBDIR += dooble
@@ -289,6 +290,7 @@
     SUBDIR += kanboard
     SUBDIR += kannel
     SUBDIR += kannel-sqlbox
+    SUBDIR += katana
     SUBDIR += kcgi
     SUBDIR += kdsoap
     SUBDIR += kf5-khtml
