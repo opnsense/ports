@@ -1794,7 +1794,6 @@
     SUBDIR += ocaml-rresult
     SUBDIR += ocaml-sdl
     SUBDIR += ocaml-sem
-    SUBDIR += ocaml-seq
     SUBDIR += ocaml-sexplib
     SUBDIR += ocaml-sexplib0
     SUBDIR += ocaml-stdio
@@ -8071,7 +8070,6 @@
     SUBDIR += serdisplib
     SUBDIR += sfml
     SUBDIR += sfml1
-    SUBDIR += sfml251
     SUBDIR += sfsexp
     SUBDIR += sgb
     SUBDIR += shadered
