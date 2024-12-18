@@ -1,6 +1,6 @@
 PORTNAME=	mdns-repeater
 PORTVERSION=	1.11
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	net dns
 
 MAINTAINER=	ehaupt@FreeBSD.org
@@ -10,11 +10,13 @@ WWW=		https://github.com/kennylevinsen/mdns-repeater/
 LICENSE=	GPLv2
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	kennylevinsen
+GH_ACCOUNT=	Alphix
+GH_TAGNAME=	75966e2
 
 USE_RC_SUBR=	mdns-repeater
 
-CFLAGS+=	-DHGVERSION="\"${PORTVERSION}\""
+CFLAGS+=	-DHGVERSION="\"${PORTVERSION}\"" \
+		-DIPV6_ADD_MEMBERSHIP=IPV6_JOIN_GROUP
 
 PLIST_FILES=	bin/mdns-repeater
 
