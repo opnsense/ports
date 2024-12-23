@@ -1,12 +1,12 @@
---- ddclient.in.orig	2023-10-25 19:22:47 UTC
+--- ddclient.in.orig	2024-12-23 14:05:36 UTC
 +++ ddclient.in
-@@ -20,6 +20,7 @@ use File::Path qw(make_path);
+@@ -20,6 +20,7 @@ use Sys::Hostname;
  use File::Temp;
  use Getopt::Long;
  use Sys::Hostname;
 +use POSIX 'setsid';
  
- use version 0.77; our $VERSION = version->declare('3.11.1');
+ use version 0.77; our $VERSION = version->declare('3.11.2');
  my $version = $VERSION->stringify();
 @@ -39,9 +40,9 @@ sub subst_var {
      return $subst;
@@ -21,7 +21,7 @@
  if ($program =~ /test/i) {
      $etc = '.';
      $cachedir = '.';
-@@ -59,7 +60,7 @@ use vars qw($file $lineno);
+@@ -59,7 +60,7 @@ local $lineno = '';
  local $file   = '';
  local $lineno = '';
  
@@ -53,7 +53,7 @@
          write_pid();
      }
  
-@@ -2164,17 +2167,17 @@ sub pipecmd {
+@@ -2166,17 +2169,17 @@ sub pipecmd {
      ## execute the command.
      local *FD;
      if (!open(FD, $cmd)) {
@@ -75,3 +75,39 @@
  
      } else {
          $ok = 1;
+@@ -7107,7 +7110,7 @@ sub nic_porkbun_update {
+             info("setting %s address to %s for %s", $ipv, $ip, $host);
+             verbose("UPDATE:","updating %s", $host);
+ 
+-            my $url = "https://porkbun.com/api/json/v3/dns/retrieveByNameType/$domain/$rrset_type/$sub_domain";
++            my $url = "https://api.porkbun.com/api/json/v3/dns/retrieveByNameType/$domain/$rrset_type/$sub_domain";
+             my $data = encode_json({
+                 secretapikey => $config{$host}{'secretapikey'},
+                 apikey       => $config{$host}{'apikey'},
+@@ -7123,7 +7126,7 @@ sub nic_porkbun_update {
+             # No response, declare as failed
+             if (!defined($reply) || !$reply) {
+                 $config{$host}{"status-$ipv"} = "bad";
+-                failed("updating %s: Could not connect to porkbun.com.", $host);
++                failed("updating %s: Could not connect to api.porkbun.com.", $host);
+                 next;
+             }
+             if (!header_ok($host, $reply)) {
+@@ -7161,7 +7164,7 @@ sub nic_porkbun_update {
+                 my $notes = $records->[0]->{'notes'};
+                 debug("ttl = %s", $ttl);
+                 debug("notes = %s", $notes);
+-                $url = "https://porkbun.com/api/json/v3/dns/editByNameType/$domain/$rrset_type/$sub_domain";
++                $url = "https://api.porkbun.com/api/json/v3/dns/editByNameType/$domain/$rrset_type/$sub_domain";
+                 $data = encode_json({
+                     secretapikey => $config{$host}{'secretapikey'},
+                     apikey       => $config{$host}{'apikey'},
+@@ -7178,7 +7181,7 @@ sub nic_porkbun_update {
+                 );
+                 # No response, declare as failed
+                 if (!defined($reply) || !$reply) {
+-                    failed("updating %s: Could not connect to porkbun.com.", $host);
++                    failed("updating %s: Could not connect to api.porkbun.com.", $host);
+                     next;
+                 }
+                 if (!header_ok($host, $reply)) {
