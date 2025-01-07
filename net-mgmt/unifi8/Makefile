@@ -1,5 +1,6 @@
 PORTNAME=	unifi8
 PORTVERSION=	8.6.9
+PORTREVISION?=	1
 CATEGORIES=	net-mgmt java
 MASTER_SITES=	http://dl.ubnt.com/unifi/%SUBDIR%/:unifi \
 		https://repo1.maven.org/maven2/%SUBDIR%/:jax
@@ -21,13 +22,10 @@ FLAVOR?=	${FLAVORS:[1]}
 
 externaldb_PKGNAMESUFFIX=	-externaldb
 
-USES=		cpe
-
+USES=		cpe java
 CPE_VENDOR=	ui
 CPE_PRODUCT=	unifi_controller
-USE_JAVA=	yes
 JAVA_VERSION=	17
-JAVA_RUN=	jre
 USE_RC_SUBR=	unifi
 
 CONFLICTS_INSTALL=	unifi7

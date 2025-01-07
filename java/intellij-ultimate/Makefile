@@ -1,5 +1,5 @@
 PORTNAME=	intellij-ultimate
-DISTVERSION=	2024.2.4
+DISTVERSION=	2024.3.1.1
 CATEGORIES=	java devel
 MASTER_SITES=	https://download-cdn.jetbrains.com/idea/
 DISTNAME=	ideaIU-${DISTVERSION}
@@ -20,7 +20,7 @@ RUN_DEPENDS=	intellij-fsnotifier>0:java/intellij-fsnotifier \
 		jetbrains-sqlite>=241.15989.150:devel/jetbrains-sqlite \
 		lsof:sysutils/lsof
 
-USE_JAVA=	yes
+USES=		java
 JAVA_VERSION=	17+
 
 CONFLICTS=	idea intellij
@@ -29,7 +29,7 @@ NO_BUILD=	yes
 SUB_FILES=	idea idea.desktop pkg-message
 
 BUILD_TYPE=	IU
-BUILD_VERSION=	242.23726.103
+BUILD_VERSION=	243.22562.218
 BUILD_MARKER=	${BUILD_TYPE}-${BUILD_VERSION}
 PLIST_SUB=	BUILD_MARKER=${BUILD_MARKER}
 WRKSRC=		${WRKDIR}/idea-${BUILD_MARKER}
@@ -39,10 +39,8 @@ post-patch:
 	@${RM} -r \
 		${WRKSRC}/bin/fsnotifier \
 		${WRKSRC}/bin/idea \
-		${WRKSRC}/bin/libdbm.so \
 		${WRKSRC}/bin/remote-dev-server \
 		${WRKSRC}/bin/remote-dev-server.sh \
-		${WRKSRC}/bin/repair \
 		${WRKSRC}/bin/restarter \
 		${WRKSRC}/help/plugin-resources \
 		${WRKSRC}/jbr/ \
@@ -66,6 +64,8 @@ post-patch:
 
 .if ${ARCH} == "amd64"
 JNI_ARCH=	x86-64
+.elif ${ARCH} == "powerpc64le"
+JNI_ARCH=	ppc64le
 .else
 JNI_ARCH=	${ARCH}
 .endif

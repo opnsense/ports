@@ -41,7 +41,6 @@
     SUBDIR += dragon
     SUBDIR += droidcam
     SUBDIR += dtv-scan-tables
-    SUBDIR += dumpmpeg
     SUBDIR += dv2sub
     SUBDIR += dvb-apps
     SUBDIR += dvbcut
@@ -341,7 +340,6 @@
     SUBDIR += qwinff
     SUBDIR += rage
     SUBDIR += rav1e
-    SUBDIR += recmpeg
     SUBDIR += recordmydesktop
     SUBDIR += replex
     SUBDIR += ringrtc

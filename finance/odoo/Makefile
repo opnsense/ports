@@ -10,11 +10,13 @@ WWW=		https://www.odoo.com
 
 LICENSE=	LGPL3
 
+DEPRECATED=	Depends on expired converters/wkhtmltopdf
+EXPIRATION_DATE=2025-03-31
+
 USE_GITHUB=	yes
 GH_TAGNAME=	c18b9f44be3d666ca1e082807a2fdfc7ef2049d2
 
-LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
-		libxslt.so:textproc/libxslt \
+LIB_DEPENDS=	libxslt.so:textproc/libxslt \
 		libevent.so:devel/libevent \
 		libsasl2.so:security/cyrus-sasl2
 RUN_DEPENDS=	wkhtmltopdf>0:converters/wkhtmltopdf \
@@ -70,7 +72,8 @@ RUN_DEPENDS=	wkhtmltopdf>0:converters/wkhtmltopdf \
 		${PYTHON_PKGNAMEPREFIX}openssl>0:security/py-openssl@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}urllib3>0:net/py-urllib3@${PY_FLAVOR}
 
-USES=		cpe ldap python pgsql shebangfix
+USES=		cpe gnome ldap python pgsql shebangfix
+USE_GNOME=	libxml2
 USE_PYTHON=	cryptography distutils
 
 SHEBANG_LANG=	python

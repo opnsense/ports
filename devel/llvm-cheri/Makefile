@@ -8,13 +8,11 @@ MAINTAINER=	brooks@FreeBSD.org
 COMMENT?=	LLVM and Clang with support for the CHERI architecture
 WWW?=		https://cheri-cpu.org
 
-LICENSE_DIR=	${WRKSRC}/llvm
+.if !defined(LLVM_SUFFIX) || ${LLVM_SUFFIX} == "-morello"
+# XXX: really (LLVM_MAJOR < 16), but it's not defined here
+LICENSE_FILE_BSD3CLAUSE=${LICENSE_DIR}/utils/unittest/googletest/LICENSE.TXT
+.endif
 .include "${.PARSEDIR}/../llvm-devel/Makefile.LICENSE"
-LICENSE:=       ${LICENSE:NARM}
-LICENSE+=	LLVM2
-LICENSE_FILE_LLVM2=	${LICENSE_DIR}/LICENSE.TXT
-LICENSE_NAME_LLVM2=	Apache License 2.0 with LLVM Exceptions
-LICENSE_PERMS_LLVM2=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 
 NOT_FOR_ARCHS=		i386 armv6 armv7 powerpc mips
 NOT_FOR_ARCHS_REASON=	No one will develop CHERI from 32-bit
@@ -113,11 +111,6 @@ STRIP_LIBS=	BugpointPasses.so \
 		${LIBNAME}.0 \
 		libLTO.so
 
-EXTRA_PATCHES+=	${PATCHDIR}/llvm${LLVM_MAJOR}
-.if ${.PARSEDIR} != ${.CURDIR} && exists(${.CURDIR}/files)
-EXTRA_PATCHES+=	${.CURDIR}/files
-.endif
-
 .include <bsd.port.options.mk>
 
 # keep in sync with /usr/src/lib/clang/clang.build.mk
@@ -156,6 +149,14 @@ _USES_PYTHON?=	python:build
 USES+=		${_USES_PYTHON}
 
 .include <bsd.port.pre.mk>
+
+.if exists(${PATCHDIR}/llvm${LLVM_MAJOR})
+EXTRA_PATCHES+=	${PATCHDIR}/llvm${LLVM_MAJOR}
+.endif
+.if ${.PARSEDIR} != ${.CURDIR} && exists(${.CURDIR}/files)
+EXTRA_PATCHES+=	${.CURDIR}/files
+.endif
+
 .include "${.CURDIR}/Makefile.COMMANDS"
 .sinclude "${.CURDIR}/Makefile.MAN1SRCS"
 
@@ -176,19 +177,17 @@ post-install:
 	${LN} -f ${STAGEDIR}${PREFIX}/bin/${COMMAND_PREFIX}${FIRST_COMMAND}${COMMAND_SUFFIX} \
 	    ${STAGEDIR}${PREFIX}/bin/${COMMAND_PREFIX}${command}${COMMAND_SUFFIX}
 .endfor
+.if ${LLVM_SUFFIX} != "-cheriot"
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/llvm/CHERI/cheri-compressed-cap/.github/workflows
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/include/llvm/CHERI/cheri-compressed-cap/.github
+.endif
 
 post-install-DOCS-on:
-.if ${LLVM_MAJOR} == 13
-	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc ${STAGEDIR}${DOCSDIR}
-.else
 	${RM} -r ${STAGEDIR}${DOCSDIR}
 	${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/doc/LLVM/* ${STAGEDIR}${DOCSDIR}
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc/LLVM
 	${RMDIR} ${STAGEDIR}${LLVM_PREFIX}/share/doc
-.endif
 .for _man in ${MAN1SRCS}
 	${MV} ${STAGEDIR}${LLVM_PREFIX}/share/man/man1/${_man} \
 	    ${STAGEDIR}${PREFIX}/share/man/man1/${_man:R}${LLVM_SUFFIX}.1

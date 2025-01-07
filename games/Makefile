@@ -806,6 +806,7 @@
     SUBDIR += py-pysol-cards
     SUBDIR += py-sgflib
     SUBDIR += py-sgfsummary
+    SUBDIR += py-trueskill
     SUBDIR += pysolfc
     SUBDIR += pysolfc-cardsets
     SUBDIR += pyspacewar
@@ -947,6 +948,7 @@
     SUBDIR += stratagus
     SUBDIR += stuntrally
     SUBDIR += sudsol
+    SUBDIR += sulis
     SUBDIR += supertux
     SUBDIR += supertux2
     SUBDIR += supertuxkart
@@ -1086,6 +1088,7 @@
     SUBDIR += xdino
     SUBDIR += xemeraldia
     SUBDIR += xeyesplus
+    SUBDIR += xfce4-eyes-plugin
     SUBDIR += xfireworks
     SUBDIR += xfrisk
     SUBDIR += xgalaga

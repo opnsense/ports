@@ -1,7 +1,7 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-DISTVERSION=	9.21.1
+DISTVERSION=	9.21.3
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
@@ -37,20 +37,20 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2 \
-		liburcu.so:sysutils/liburcu \
-		libxml2.so:textproc/libxml2
+		liburcu.so:sysutils/liburcu
 
 .if !defined(BIND_TOOLS_SLAVE)
 RUN_DEPENDS=	bind-tools>0:dns/bind-tools
 .endif
 
-USES=		autoreconf compiler:c11 cpe libedit libtool pkgconfig ssl tar:xz
+USES=		autoreconf compiler:c11 cpe gnome libedit libtool pkgconfig ssl tar:xz
 
 CPE_VENDOR=	isc
 CPE_VERSION=	${DISTVERSION:C/-.*//}
 .if ${DISTVERSION:M*-*}
 CPE_UPDATE=	${DISTVERSION:C/.*-//:tl}
 .endif
+USE_GNOME=	libxml2
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
@@ -214,8 +214,7 @@ post-install:
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/CHANGES* \
-		${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/arm
 .else
 

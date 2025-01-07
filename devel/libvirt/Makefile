@@ -11,8 +11,7 @@ WWW=		https://libvirt.org/
 LICENSE=	LGPL3
 
 LIB_DEPENDS=	libcurl.so:ftp/curl \
-		libgnutls.so:security/gnutls \
-		libxml2.so:textproc/libxml2
+		libgnutls.so:security/gnutls
 BUILD_DEPENDS=	dnsmasq:dns/dnsmasq \
 		${LOCALBASE}/bin/grep:textproc/gnugrep \
 		gsed:textproc/gsed \
@@ -71,8 +70,6 @@ LIBSSH2_LIB_DEPENDS=	libssh2.so:security/libssh2
 
 ZFS_MESON_ENABLED=	storage_zfs
 
-VARDIR=		/var
-
 MESON_ARGS+=	\
 		-Dapparmor=disabled \
 		-Dapparmor_profiles=disabled \
@@ -122,8 +119,7 @@ MESON_ARGS+=	\
 		-Dwireshark_dissector=disabled \
 		-Dinit_script=none \
 		-Dbash_completion=disabled \
-		-Duserfaultfd_sysctl=disabled \
-		-Dlocalstatedir=${VARDIR}
+		-Duserfaultfd_sysctl=disabled
 
 # random_data fix can be removed when 8.x is eol
 CONFIGURE_ENV=	ac_cv_type_struct_random_data=""
@@ -135,7 +131,7 @@ LDFLAGS+=	-L${LOCALBASE}/lib -fstack-protector
 
 USES=		gnome charsetfix compiler:c++0x cpe gettext-runtime gmake \
 	        meson pathfix perl5 python:build pkgconfig shebangfix tar:xz
-USE_GNOME=	glib20
+USE_GNOME=	glib20 libxml2
 USE_RC_SUBR=	libvirtd virtlogd
 CPE_VENDOR=	redhat
 USE_PERL5=	build
@@ -203,7 +199,7 @@ post-install:
 	lib/libvirt/network \
 	lib/libvirt/qemu/channel/target \
 	cache/libvirt/qemu
-	@${MKDIR} "${STAGEDIR}/${VARDIR}/${dir}"
+	@${MKDIR} "${STAGEDIR}/var/${dir}"
 .endfor
 
 .for file in ${CONF_FILES}

@@ -138,7 +138,7 @@ HTTP_NOTICE_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_notice_module.c \
 				${PATCHDIR}/extra-patch-nginx-notice-config
 HTTP_NOTICE_VARS=		DSO_EXTMODS+=notice
 
-HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.3.6:push
+HTTP_PUSH_GH_TUPLE=		slact:nchan:v1.3.7:push
 HTTP_PUSH_VARS=			DSO_EXTMODS+=push
 
 HTTP_PUSH_STREAM_GH_TUPLE=	wandenberg:nginx-push-stream-module:8c02220:pushstream
@@ -231,7 +231,7 @@ MEMC_VARS=		DSO_EXTMODS+=memc
 
 MODSECURITY3_IMPLIES=		HTTP_ADDITION HTTP_IMAGE_FILTER HTTP_GUNZIP_FILTER HTTP_XSLT
 MODSECURITY3_LIB_DEPENDS=	libmodsecurity.so:security/modsecurity3
-MODSECURITY3_GH_TUPLE=		SpiderLabs:ModSecurity-nginx:v1.0.3:modsecurity3
+MODSECURITY3_GH_TUPLE=		SpiderLabs:ModSecurity-nginx:ef64996:modsecurity3
 MODSECURITY3_VARS=		DSO_EXTMODS+=modsecurity3
 
 NAXSI_NGINX_VER=	1.6
@@ -241,19 +241,17 @@ NAXSI_VARS=		DSO_EXTMODS+=naxsi NAXSI_SUBDIR=/naxsi_src
 NAXSI_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-naxsi-libinjection__sqli_c \
 			${PATCHDIR}/extra-patch-naxsi_config
 
-NJS_GH_TUPLE=		nginx:njs:0.8.7:njs
-NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
-NJS_IMPLIES=		STREAM
-
-NJS_QJS_IMPLIES=	HTTP NJS
-NJS_QJS_LIB_DEPENDS=	libquickjs.so:lang/quickjs
-NJS_QJS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-njs-auto-quickjs
-
-NJS_XML_IMPLIES=	HTTP NJS
-NJS_XML_LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
+NJS_GH_TUPLE=		nginx:njs:0.8.8:njs
+NJS_CONFIGURE_ON=	--with-cc-opt="-I ${LOCALBASE}/include/quickjs"
+NJS_LIB_DEPENDS=	libquickjs.so:lang/quickjs \
+			libxml2.so:textproc/libxml2 \
 			libxslt.so:textproc/libxslt
+NJS_QJS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-njs-auto-quickjs \
+			${PATCHDIR}/extra-patch-njs-nginx-config
+NJS_VARS=		DSO_EXTMODS+=njs NJS_SUBDIR=/nginx
+NJS_IMPLIES=		HTTP STREAM
 
-OTEL_GH_TUPLE=		osokin:nginx-otel:b185501:otel
+OTEL_GH_TUPLE=		osokin:nginx-otel:3a655df:otel
 OTEL_VARS=		DSO_EXTMODS+=otel OTEL_SUBDIR=/
 OTEL_LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 			libcares.so:dns/c-ares \
@@ -304,7 +302,7 @@ SFLOW_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-ngx_http_sflow_config.c \
 			${PATCHDIR}/extra-patch-ngx_http_sflow_config.h \
 			${PATCHDIR}/extra-patch-ngx_http_sflow_module.c
 
-SHIBBOLETH_GH_TUPLE=	nginx-shib:nginx-http-shibboleth:be12df5:shibboleth
+SHIBBOLETH_GH_TUPLE=	nginx-shib:nginx-http-shibboleth:629ae1f:shibboleth
 SHIBBOLETH_VARS=	DSO_EXTMODS+=shibboleth
 
 SLOWFS_CACHE_GH_TUPLE=	baysao:ngx_slowfs_cache:d011a18:slowfs_cache
@@ -317,13 +315,13 @@ STS_IMPLIES=		STREAM
 STS_GH_TUPLE=		vozlt:nginx-module-sts:3c10d42:sts
 STS_VARS=		DSO_EXTMODS+=sts
 
-VOD_GH_TUPLE=		kaltura:nginx-vod-module:1.31:vod
+VOD_GH_TUPLE=		kaltura:nginx-vod-module:26f0687:vod
 VOD_LIB_DEPENDS=	libxml2.so:textproc/libxml2 \
 			libavutil.so:multimedia/ffmpeg
 VOD_USES=		iconv
 VOD_VARS=		DSO_EXTMODS+=vod
 
-VTS_GH_TUPLE=		vozlt:nginx-module-vts:bf64dbf:vts
+VTS_GH_TUPLE=		vozlt:nginx-module-vts:a18c3f6:vts
 VTS_VARS=		DSO_EXTMODS+=vts
 
 XSS_GH_TUPLE=		openresty:xss-nginx-module:v0.06:xss

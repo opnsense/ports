@@ -20,7 +20,6 @@
     SUBDIR += R-cran-shiny
     SUBDIR += R-cran-shinyjs
     SUBDIR += R-cran-webshot
-    SUBDIR += Stikked
     SUBDIR += UniversalFeedCreator
     SUBDIR += adguardhome
     SUBDIR += adjuster
@@ -75,6 +74,7 @@
     SUBDIR += bareos20-webui
     SUBDIR += bareos21-webui
     SUBDIR += bareos22-webui
+    SUBDIR += bareos23-webui
     SUBDIR += beehive
     SUBDIR += bluefish
     SUBDIR += bozohttpd
@@ -108,6 +108,8 @@
     SUBDIR += civetweb
     SUBDIR += ckeditor
     SUBDIR += cl-lml
+    SUBDIR += cl-lml-ccl
+    SUBDIR += cl-lml-clisp
     SUBDIR += cl-lml-sbcl
     SUBDIR += clearsilver
     SUBDIR += closure-compiler
@@ -151,6 +153,7 @@
     SUBDIR += dpp
     SUBDIR += drill
     SUBDIR += drupal10
+    SUBDIR += drupal11
     SUBDIR += drupal7
     SUBDIR += drupal7-wysiwyg
     SUBDIR += drush
@@ -229,7 +232,6 @@
     SUBDIR += gotty
     SUBDIR += gpx2map
     SUBDIR += grafana
-    SUBDIR += grafana9
     SUBDIR += grails
     SUBDIR += gregarius
     SUBDIR += groupoffice
@@ -362,6 +364,7 @@
     SUBDIR += mediawiki139
     SUBDIR += mediawiki141
     SUBDIR += mediawiki142
+    SUBDIR += mediawiki143
     SUBDIR += mergelog
     SUBDIR += mhonarc
     SUBDIR += micro_httpd
@@ -1502,6 +1505,7 @@
     SUBDIR += py-daphne
     SUBDIR += py-dash
     SUBDIR += py-dj-database-url
+    SUBDIR += py-dj50-channels
     SUBDIR += py-dj50-django-auth-ldap
     SUBDIR += py-dj50-django-choices-field
     SUBDIR += py-dj50-django-cors-headers
@@ -1715,6 +1719,7 @@
     SUBDIR += py-google-cloud-audit-log
     SUBDIR += py-google-cloud-bigquery
     SUBDIR += py-google-cloud-bigtable
+    SUBDIR += py-google-cloud-compute
     SUBDIR += py-google-cloud-core
     SUBDIR += py-google-cloud-datastore
     SUBDIR += py-google-cloud-dlp
@@ -1753,16 +1758,17 @@
     SUBDIR += py-httpretty
     SUBDIR += py-httptools
     SUBDIR += py-httpx
-    SUBDIR += py-httpx_gssapi
     SUBDIR += py-httpx-oauth
     SUBDIR += py-httpx-socks
     SUBDIR += py-httpx-ws
+    SUBDIR += py-httpx_gssapi
     SUBDIR += py-hypercorn
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
     SUBDIR += py-inlinestyler
     SUBDIR += py-instabot
     SUBDIR += py-internetarchive
+    SUBDIR += py-jh2
     SUBDIR += py-jonpy
     SUBDIR += py-jsonfield
     SUBDIR += py-kiss-headers
@@ -1781,6 +1787,7 @@
     SUBDIR += py-nicegui
     SUBDIR += py-nicegui-highcharts
     SUBDIR += py-nicegui-nogui
+    SUBDIR += py-niquests
     SUBDIR += py-notebook
     SUBDIR += py-onetimepass
     SUBDIR += py-openbrokerapi
@@ -1874,8 +1881,6 @@
     SUBDIR += py-textile
     SUBDIR += py-ticketutil
     SUBDIR += py-tornado
-    SUBDIR += py-tornado4
-    SUBDIR += py-tornado5
     SUBDIR += py-treq
     SUBDIR += py-ttrv
     SUBDIR += py-tuir
@@ -1965,6 +1970,7 @@
     SUBDIR += rubygem-actioncable70
     SUBDIR += rubygem-actioncable71
     SUBDIR += rubygem-actioncable72
+    SUBDIR += rubygem-actioncable80
     SUBDIR += rubygem-actionpack4
     SUBDIR += rubygem-actionpack5
     SUBDIR += rubygem-actionpack50
@@ -1974,6 +1980,7 @@
     SUBDIR += rubygem-actionpack70
     SUBDIR += rubygem-actionpack71
     SUBDIR += rubygem-actionpack72
+    SUBDIR += rubygem-actionpack80
     SUBDIR += rubygem-activeresource
     SUBDIR += rubygem-activeresource4
     SUBDIR += rubygem-acts-as-taggable-on
@@ -2020,6 +2027,7 @@
     SUBDIR += rubygem-cssbundling-rails
     SUBDIR += rubygem-cssbundling-rails-rails70
     SUBDIR += rubygem-cssbundling-rails-rails71
+    SUBDIR += rubygem-cssbundling-rails-rails72
     SUBDIR += rubygem-cuba
     SUBDIR += rubygem-d3_rails
     SUBDIR += rubygem-davclient
@@ -2113,7 +2121,6 @@
     SUBDIR += rubygem-http4
     SUBDIR += rubygem-http_router
     SUBDIR += rubygem-httparty
-    SUBDIR += rubygem-httparty020
     SUBDIR += rubygem-httparty021
     SUBDIR += rubygem-httpclient
     SUBDIR += rubygem-httpi
@@ -2121,6 +2128,7 @@
     SUBDIR += rubygem-importmap-rails
     SUBDIR += rubygem-importmap-rails-rails70
     SUBDIR += rubygem-importmap-rails-rails71
+    SUBDIR += rubygem-importmap-rails-rails72
     SUBDIR += rubygem-innate
     SUBDIR += rubygem-jekyll
     SUBDIR += rubygem-jekyll-sanity
@@ -2139,11 +2147,14 @@
     SUBDIR += rubygem-jsbundling-rails
     SUBDIR += rubygem-jsbundling-rails-rails70
     SUBDIR += rubygem-jsbundling-rails-rails71
+    SUBDIR += rubygem-jsbundling-rails-rails72
     SUBDIR += rubygem-jsobfu
     SUBDIR += rubygem-json-jwt
     SUBDIR += rubygem-json-jwt-gitlab
     SUBDIR += rubygem-jsonb_accessor
     SUBDIR += rubygem-jwt
+    SUBDIR += rubygem-jwt29
+    SUBDIR += rubygem-kamal
     SUBDIR += rubygem-kaminari
     SUBDIR += rubygem-kaminari-actionview
     SUBDIR += rubygem-kaminari-actionview-rails5
@@ -2213,6 +2224,7 @@
     SUBDIR += rubygem-propshaft
     SUBDIR += rubygem-propshaft-rails70
     SUBDIR += rubygem-propshaft-rails71
+    SUBDIR += rubygem-propshaft-rails72
     SUBDIR += rubygem-protocol-hpack
     SUBDIR += rubygem-protocol-http
     SUBDIR += rubygem-protocol-http1
@@ -2244,6 +2256,7 @@
     SUBDIR += rubygem-rack22
     SUBDIR += rubygem-rack_csrf
     SUBDIR += rubygem-rackup
+    SUBDIR += rubygem-rackup21
     SUBDIR += rubygem-rails-settings-cached
     SUBDIR += rubygem-rails-settings-cached-rails5
     SUBDIR += rubygem-rails-settings-cached-rails50
@@ -2256,6 +2269,7 @@
     SUBDIR += rubygem-rails70
     SUBDIR += rubygem-rails71
     SUBDIR += rubygem-rails72
+    SUBDIR += rubygem-rails80
     SUBDIR += rubygem-rails_12factor
     SUBDIR += rubygem-rails_autolink
     SUBDIR += rubygem-rails_serve_static_assets
@@ -2269,6 +2283,7 @@
     SUBDIR += rubygem-railties70
     SUBDIR += rubygem-railties71
     SUBDIR += rubygem-railties72
+    SUBDIR += rubygem-railties80
     SUBDIR += rubygem-raindrops
     SUBDIR += rubygem-ramaze
     SUBDIR += rubygem-raphael-rails
@@ -2330,12 +2345,15 @@
     SUBDIR += rubygem-stimulus-rails
     SUBDIR += rubygem-stimulus-rails-rails70
     SUBDIR += rubygem-stimulus-rails-rails71
+    SUBDIR += rubygem-stimulus-rails-rails72
     SUBDIR += rubygem-swd
     SUBDIR += rubygem-tailwindcss-rails
     SUBDIR += rubygem-tailwindcss-rails-rails70
     SUBDIR += rubygem-tailwindcss-rails-rails71
+    SUBDIR += rubygem-tailwindcss-rails-rails72
     SUBDIR += rubygem-task_list
     SUBDIR += rubygem-thin
+    SUBDIR += rubygem-thruster
     SUBDIR += rubygem-tinyatom
     SUBDIR += rubygem-tinymce-rails
     SUBDIR += rubygem-toml-rb
@@ -2344,6 +2362,7 @@
     SUBDIR += rubygem-turbo-rails
     SUBDIR += rubygem-turbo-rails-rails70
     SUBDIR += rubygem-turbo-rails-rails71
+    SUBDIR += rubygem-turbo-rails-rails72
     SUBDIR += rubygem-turbolinks
     SUBDIR += rubygem-turbolinks-source
     SUBDIR += rubygem-typhoeus
@@ -2380,7 +2399,6 @@
     SUBDIR += serf
     SUBDIR += servlet-api
     SUBDIR += sfeed
-    SUBDIR += shellinabox
     SUBDIR += shiori
     SUBDIR += silicon
     SUBDIR += simple-web-server
@@ -2556,7 +2574,6 @@
     SUBDIR += websocat
     SUBDIR += websocketd
     SUBDIR += webstone
-    SUBDIR += webtrees20
     SUBDIR += webtrees21
     SUBDIR += wget2
     SUBDIR += wgetpaste

@@ -1,5 +1,5 @@
 PORTNAME=	passenger
-PORTVERSION=	6.0.23
+PORTVERSION=	6.0.24
 CATEGORIES=	www rubygems
 MASTER_SITES=	RG
 
@@ -11,6 +11,8 @@ WWW=		https://www.phusionpassenger.com/ \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN_FreeBSD_15=	no member named 'sumOfWeights' in 'DiscExpMovingAverageWithStddev<alpha, alphaTimeUnit, maxAge>' # https://github.com/phusion/passenger/issues/2580
+
 BUILD_DEPENDS=	rubygem-rack>=1.6.13,3:www/rubygem-rack \
 		rubygem-rake>=12.3.3:devel/rubygem-rake \
 		utf8cpp>=4.0.3:devel/utf8cpp
@@ -19,7 +21,7 @@ LIB_DEPENDS=	libapr-1.so:devel/apr1 \
 		libuv.so:devel/libuv
 RUN_DEPENDS=	rubygem-etc>=0:devel/rubygem-etc \
 		rubygem-rack>=1.6.13,3:www/rubygem-rack \
-		rubygem-rackup>=0:www/rubygem-rackup \
+		rubygem-rackup>=2.0.0:www/rubygem-rackup \
 		rubygem-rake>=12.3.3:devel/rubygem-rake
 
 USES=		compiler:c++11-lang cpe gem libtool python:env ssl

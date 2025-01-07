@@ -1,10 +1,11 @@
 PORTNAME=	javaservicewrapper
 PORTVERSION=	3.5.53
+PORTREVISION=	1
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://wrapper.tanukisoftware.com/download/${PORTVERSION}/
 DISTNAME=	wrapper_${PORTVERSION}_src
 
-MAINTAINER=	michael.osipov@siemens.com
+MAINTAINER=	michael.osipov@innomotics.com
 COMMENT=	JSW enables a Java application to be run as a Unix daemon
 WWW=		https://wrapper.tanukisoftware.org/
 
@@ -13,11 +14,8 @@ LICENSE_COMB=	dual
 
 ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc64 powerpc64le
 
-USES=		gmake iconv
-USE_JAVA=	yes
-JAVA_VERSION=	8+
+USES=		gmake iconv java:ant,run
 
-USE_ANT=	yes
 USE_LDCONFIG=	${PREFIX}/lib/javaservicewrapper/lib
 
 DATADIR=	${PREFIX}/lib/${PORTNAME}

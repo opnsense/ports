@@ -1,6 +1,6 @@
 PORTNAME=	mailpit
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.21.6
+DISTVERSION=	1.21.8
 CATEGORIES=	mail devel
 MASTER_SITES=	https://www.madpilot.net/mailpit/:npmcache \
 		LOCAL/madpilot/mailpit:npmcache
@@ -12,6 +12,8 @@ WWW=		https://github.com/axllent/mailpit
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+BROKEN_i386=	Fails to build on i386
 
 BUILD_DEPENDS=	npm>0:www/npm
 

@@ -42,6 +42,8 @@
     SUBDIR += cinnamon-screensaver
     SUBDIR += cinnamon-session
     SUBDIR += cl-clx
+    SUBDIR += cl-clx-ccl
+    SUBDIR += cl-clx-clisp
     SUBDIR += cl-clx-sbcl
     SUBDIR += clip
     SUBDIR += clipcat
@@ -219,6 +221,7 @@
     SUBDIR += libxdg-basedir
     SUBDIR += libxfce4menu
     SUBDIR += libxfce4util
+    SUBDIR += libxfce4windowing
     SUBDIR += libxkbcommon
     SUBDIR += libxkbfile
     SUBDIR += libxklavier
@@ -640,6 +643,7 @@
     SUBDIR += xscreensaver.app
     SUBDIR += xsel-conrad
     SUBDIR += xset
+    SUBDIR += xseticon
     SUBDIR += xsetroot
     SUBDIR += xsettingsd
     SUBDIR += xskyroot

@@ -1,7 +1,6 @@
 PORTNAME=	rdkit
 DISTVERSIONPREFIX=	Release_
-DISTVERSION=	2024_03_6
-PORTREVISION=	2
+DISTVERSION=	2024_09_4
 CATEGORIES=	science
 MASTER_SITES=	LOCAL/yuri/:font # unstable, changing font file: https://fonts.google.com/download?family=Comic%20Neue&dummy=/:font
 DISTFILES=	ComicNeue-Regular.ttf:font
@@ -10,14 +9,15 @@ EXTRACT_ONLY=	${DISTFILES:C/:.*//:N*.ttf}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Collection of cheminformatics and machine-learning software
-WWW=		https://www.rdkit.org/
+WWW=		https://www.rdkit.org/ \
+		https://github.com/rdkit/rdkit
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/license.txt
 
-BROKEN_i386=	non-constant-expression cannot be narrowed from type 'unsigned int' to 'npy_intp', see https://github.com/rdkit/rdkit/issues/4934
 BROKEN_FreeBSD_15_aarch64=	clang-17 crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272652
 BROKEN_FreeBSD_15_amd64=	clang-17 crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272652
+BROKEN_FreeBSD_15_i386=		clang-17 crashes, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=272652
 
 BUILD_DEPENDS=	catch>0:devel/catch \
 		flex:textproc/flex \
@@ -30,6 +30,7 @@ LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 USES=		bison:build cmake:testing compiler:c++11-lang eigen:3 python
 USE_GITHUB=	yes
 GH_TUPLE=	rareylab:RingDecomposerLib:v1.1.3_rdkit:RingDecomposerLib/External/RingFamilies/RingDecomposerLib
+GH_TUPLE+=	ncbi:pubchem-align3d:daefab3:align3d/External/pubchem_shape/pubchem-align3d
 USE_LDCONFIG=	yes
 
 CMAKE_OFF=	RDK_INSTALL_INTREE RDK_USE_FLEXBISON \
@@ -75,10 +76,10 @@ PORTDOCS=	*
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == aarch64 || ${ARCH} == amd64 || ${ARCH:Marm*} || ${ARCH} == i386 || ${ARCH:Mmips*el*} || ${ARCH} == riscv
-PLIST_SUB+=	LITTLE_ENDIAN=""
-.else
+.if ${ARCH} == powerpc || ${ARCH} == powerpc64
 PLIST_SUB+=	LITTLE_ENDIAN="@comment "
+.else
+PLIST_SUB+=	LITTLE_ENDIAN=""
 .endif
 
 post-extract:

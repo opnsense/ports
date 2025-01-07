@@ -65,7 +65,6 @@
     SUBDIR += hnb
     SUBDIR += hte
     SUBDIR += imhex
-    SUBDIR += imhex-current
     SUBDIR += jed
     SUBDIR += jedit
     SUBDIR += joe
@@ -249,6 +248,7 @@
     SUBDIR += rubygem-neovim
     SUBDIR += sam
     SUBDIR += scite
+    SUBDIR += sciteco
     SUBDIR += se
     SUBDIR += semi
     SUBDIR += setzer

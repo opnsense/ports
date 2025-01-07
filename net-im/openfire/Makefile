@@ -1,10 +1,10 @@
 PORTNAME=	openfire
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.9.1
+DISTVERSION=	4.9.2
 PORTEPOCH=	1
 CATEGORIES=	net-im java
 
-MASTER_SITES=	LOCAL/fuz:maven
+MASTER_SITES=	LOCAL/fernape:maven
 
 MAINTAINER=	nikita@druba.su
 COMMENT=	Enterprise instant messaging server
@@ -15,12 +15,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
 BUILD_DEPENDS=	maven>0:devel/maven
 
-USES=		cpe
+USES=		java cpe
 CPE_VENDOR=	igniterealtime
 USE_GITHUB=	YES
 GH_ACCOUNT=	igniterealtime
 GH_PROJECT=	Openfire
-USE_JAVA=	yes
 
 USE_RC_SUBR=	${PORTNAME}
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}

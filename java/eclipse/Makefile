@@ -1,5 +1,6 @@
 PORTNAME=	eclipse
 DISTVERSION=	4.34
+PORTREVISION=	1
 CATEGORIES=	java devel
 ECLIPSE_TAG=	R${DISTVERSION:S|.|_|g}
 
@@ -20,8 +21,7 @@ BUILD_DEPENDS=	git:devel/git \
 LIB_DEPENDS=	libsecret-1.so:security/libsecret \
 		libwebkit2gtk-4.0.so:www/webkit2-gtk3
 
-USES=		compiler:c++17-lang gl gmake pkgconfig gnome
-
+USES=		compiler:c++17-lang gl gmake java pkgconfig gnome
 # The github repositories.  The repository under NorbertXYZ is for a predefined maven
 # download, so the build does not need to download while do-build is running
 USE_GITHUB=	yes
@@ -41,7 +41,7 @@ GH_TUPLE=	chirontt:eclipse.platform.releng.aggregator:${ECLIPSE_TAG}_maintenance
 		NorbertXYZ:eclipse_maven:${DISTVERSION}:n
 USE_GL=		gl glu
 USE_GNOME=	gtk30
-USE_JAVA=	17+
+JAVA_VERSION=	17+
 
 DESKTOP_ENTRIES=	"Eclipse" \
 			"${COMMENT}" \

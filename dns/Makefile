@@ -162,6 +162,9 @@
     SUBDIR += p5-POE-Filter-DNS-TCP
     SUBDIR += p5-Tie-DNS
     SUBDIR += p5-URBL-Prepare
+    SUBDIR += p5-Zonemaster-Backend
+    SUBDIR += p5-Zonemaster-CLI
+    SUBDIR += p5-Zonemaster-Engine
     SUBDIR += p5-Zonemaster-LDNS
     SUBDIR += packetq
     SUBDIR += pdnsd
@@ -182,7 +185,6 @@
     SUBDIR += py-dnspython1
     SUBDIR += py-easyzone
     SUBDIR += py-idna
-    SUBDIR += py-idna_ssl
     SUBDIR += py-ldns
     SUBDIR += py-libknot
     SUBDIR += py-localzone

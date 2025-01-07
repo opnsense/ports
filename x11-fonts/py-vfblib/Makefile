@@ -1,5 +1,5 @@
 PORTNAME=	vfblib
-PORTVERSION=	0.7.1
+PORTVERSION=	0.8.0
 CATEGORIES=	x11-fonts python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,9 +18,14 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}fonttools>=4.45.1:print/py-fonttools@${PY_FL
 		${PYTHON_PKGNAMEPREFIX}ufolib2>=0.16.0:print/py-ufolib2@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}ufonormalizer>=0.6.1:x11-fonts/py-ufonormalizer@${PY_FLAVOR}
 
-USES=		python
+USES=		python:3.10+
 USE_PYTHON=	autoplist concurrent pep517
 
 NO_ARCH=	yes
+
+OPTIONS_DEFINE=	TOML YAML
+
+TOML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tomli-w>=1.0.0:textproc/py-tomli-w@${PY_FLAVOR}
+YAML_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyyaml>=6.0.2:devel/py-pyyaml@${PY_FLAVOR}
 
 .include <bsd.port.mk>

@@ -1,15 +1,17 @@
 PORTNAME=	vvenc
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.12.0
+DISTVERSION=	1.13.0
 CATEGORIES=	multimedia
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Versatile Video Coding (VVC) encoder
-WWW=		https://www.hhi.fraunhofer.de/en/departments/vca/technologies-and-solutions/h266-vvc.html
+WWW=		https://www.hhi.fraunhofer.de/en/departments/vca/technologies-and-solutions/h266-vvc.html \
+		https://github.com/fraunhoferhhi/vvenc
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BROKEN_armv7=	compilation fails: error: unused variable 'src8tOff', see https://github.com/fraunhoferhhi/vvenc/issues/496
 BROKEN_i386=	compilation fails: error: use of undeclared identifier 'read_x86_extension_flags'
 BROKEN_powerpc=	compilation fails: error: use of undeclared identifier 'read_x86_extension_flags'
 

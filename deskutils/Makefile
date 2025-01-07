@@ -13,7 +13,6 @@
     SUBDIR += ausweisapp2
     SUBDIR += autocutsel
     SUBDIR += baobab
-    SUBDIR += basket
     SUBDIR += belcard
     SUBDIR += bigyear
     SUBDIR += bijiben
@@ -52,6 +51,7 @@
     SUBDIR += dstask
     SUBDIR += easystroke
     SUBDIR += elementary-calendar
+    SUBDIR += elementary-iconbrowser
     SUBDIR += fasd
     SUBDIR += fbreader
     SUBDIR += feathernotes
@@ -126,7 +126,6 @@
     SUBDIR += i3lock
     SUBDIR += i3status
     SUBDIR += ical
-    SUBDIR += iconbrowser
     SUBDIR += itinerary
     SUBDIR += jjclient
     SUBDIR += jlj

@@ -88,6 +88,8 @@
     SUBDIR += ckpass
     SUBDIR += cksfv
     SUBDIR += cl-md5
+    SUBDIR += cl-md5-ccl
+    SUBDIR += cl-md5-clisp
     SUBDIR += cl-md5-sbcl
     SUBDIR += clamassassin
     SUBDIR += clamav
@@ -133,7 +135,6 @@
     SUBDIR += diffcode
     SUBDIR += digestpp
     SUBDIR += dirbuster
-    SUBDIR += dirmngr
     SUBDIR += distcache
     SUBDIR += diswall
     SUBDIR += doas
@@ -180,7 +181,6 @@
     SUBDIR += globalprotect-openconnect
     SUBDIR += gnome-keyring
     SUBDIR += gnome-keyring-sharp
-    SUBDIR += gnome-ssh-askpass
     SUBDIR += gnupg
     SUBDIR += gnupg-pkcs11-scd
     SUBDIR += gnupg1
@@ -218,6 +218,7 @@
     SUBDIR += heimdal-devel
     SUBDIR += helib
     SUBDIR += hexl
+    SUBDIR += hidden-lake
     SUBDIR += highwayhash
     SUBDIR += hitch
     SUBDIR += hockeypuck
@@ -373,13 +374,12 @@
     SUBDIR += lxqt-sudo
     SUBDIR += lynis
     SUBDIR += mac-robber
-    SUBDIR += maia
     SUBDIR += mailzu
     SUBDIR += makepasswd
     SUBDIR += maltrail
     SUBDIR += masscan
     SUBDIR += mate-pam-helper
-    SUBDIR += mbedtls
+    SUBDIR += mbedtls2
     SUBDIR += mbedtls3
     SUBDIR += mcrypt
     SUBDIR += md5deep
@@ -523,6 +523,7 @@
     SUBDIR += p5-Bytes-Random-Secure-Tiny
     SUBDIR += p5-CACertOrg-CA
     SUBDIR += p5-CPAN-Audit
+    SUBDIR += p5-CPANSA-DB
     SUBDIR += p5-CSP
     SUBDIR += p5-Cisco-Hash
     SUBDIR += p5-Crypt-Anubis
@@ -937,7 +938,6 @@
     SUBDIR += py-exscript
     SUBDIR += py-fail2ban
     SUBDIR += py-fido2
-    SUBDIR += py-first-server
     SUBDIR += py-flask-bcrypt
     SUBDIR += py-flask-httpauth
     SUBDIR += py-flask-kerberos
@@ -993,6 +993,7 @@
     SUBDIR += py-oauthlib
     SUBDIR += py-omemo-dr
     SUBDIR += py-onlykey
+    SUBDIR += py-openssh-wrapper
     SUBDIR += py-openssl
     SUBDIR += py-oscrypto
     SUBDIR += py-ospd-openvas
@@ -1028,7 +1029,6 @@
     SUBDIR += py-pyotp
     SUBDIR += py-pyotp2289
     SUBDIR += py-pysaml2
-    SUBDIR += py-pysaml26
     SUBDIR += py-pyscard
     SUBDIR += py-pysodium
     SUBDIR += py-pyspnego
@@ -1085,6 +1085,7 @@
     SUBDIR += py-volatility3
     SUBDIR += py-vpn-slice
     SUBDIR += py-vulndb
+    SUBDIR += py-wassima
     SUBDIR += py-webauthn
     SUBDIR += py-xkcdpass
     SUBDIR += py-xmlsec
@@ -1146,6 +1147,7 @@
     SUBDIR += rubygem-ed25519
     SUBDIR += rubygem-encryptor
     SUBDIR += rubygem-ezcrypto
+    SUBDIR += rubygem-gitlab-cloud-connector
     SUBDIR += rubygem-googleauth
     SUBDIR += rubygem-googleauth-gitlab
     SUBDIR += rubygem-gpgme
@@ -1190,6 +1192,7 @@
     SUBDIR += rubygem-omniauth-oauth2-generic-gitlab
     SUBDIR += rubygem-omniauth-rails_csrf_protection
     SUBDIR += rubygem-omniauth-saml
+    SUBDIR += rubygem-omniauth-saml-gitlab
     SUBDIR += rubygem-omniauth-saml1
     SUBDIR += rubygem-omniauth-shibboleth
     SUBDIR += rubygem-omniauth-shibboleth-redux
@@ -1235,6 +1238,7 @@
     SUBDIR += rubygem-ruby-hmac
     SUBDIR += rubygem-ruby-rc4
     SUBDIR += rubygem-ruby-saml
+    SUBDIR += rubygem-ruby-saml-gitlab
     SUBDIR += rubygem-safety_net_attestation
     SUBDIR += rubygem-scrypt
     SUBDIR += rubygem-securecompare
@@ -1321,7 +1325,6 @@
     SUBDIR += sslproxy
     SUBDIR += sslscan
     SUBDIR += sslsplit
-    SUBDIR += sssd
     SUBDIR += sssd2
     SUBDIR += ssss
     SUBDIR += sst

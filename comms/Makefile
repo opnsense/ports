@@ -18,7 +18,6 @@
     SUBDIR += bpl+
     SUBDIR += chirp
     SUBDIR += chu
-    SUBDIR += concordance
     SUBDIR += conserver-com
     SUBDIR += cqrlog
     SUBDIR += cubicsdr
@@ -70,7 +69,6 @@
     SUBDIR += java-simple-serial-connector
     SUBDIR += kermit
     SUBDIR += klog
-    SUBDIR += libconcord
     SUBDIR += libdc
     SUBDIR += libfap
     SUBDIR += libfec
