@@ -1,3 +1,466 @@
+  <vuln vid="ed0a052a-c5e6-11ef-a457-b42e991fc52e">
+    <topic>Apache Tomcat -- RCE due to TOCTOU issue in JSP compilation</topic>
+    <affects>
+      <package>
+	<name>tomcat110</name>
+	<range>
+	  <gt>11.0.0</gt>
+	  <lt>11.0.1</lt>
+	</range>
+      </package>
+      <package>
+	<name>tomcat101</name>
+	<range>
+	  <gt>10.1.0</gt>
+	  <lt>10.1.33</lt>
+	</range>
+      </package>
+      <package>
+	<name>tomcat9</name>
+	<range>
+	  <gt>9.0.0</gt>
+	  <lt>9.0.97</lt>
+	</range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@apache.org reports:</p>
+	<blockquote cite="https://lists.apache.org/thread/b2b9qrgjrz1kvo4ym8y2wkfdvwoq6qbp">
+	  <p>Time-of-check Time-of-use (TOCTOU) Race Condition
+	The mitigation for CVE-2024-50379 was incomplete.
+	Users running Tomcat on a case insensitive file system with the
+	default servlet write enabled (readonly initialisation parameter
+	set to the non-default value of false) may need additional configuration
+	to fully mitigate CVE-2024-50379 depending on which version of Java
+	they are using with Tomcat: - running on Java 8 or Java 11: the
+	system propertysun.io.useCanonCaches must be explicitly set to false
+	(it defaults to true) - running on Java 17: thesystem property
+	sun.io.useCanonCaches, if set, must be set to false(it defaults to
+	false) - running on Java 21 onwards: no further configuration is
+	required(the system property and the problematic cache have been
+	removed)
+	Tomcat 11.0.3, 10.1.35 and 9.0.99 onwards will include checks
+	thatsun.io.useCanonCaches is set appropriately before allowing the
+	default servlet to be write enabled on a case insensitive file
+	system.  Tomcat will also setsun.io.useCanonCaches to false by
+	default where it can.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-56337</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-56337</url>
+    </references>
+    <dates>
+      <discovery>2024-12-20</discovery>
+      <entry>2024-12-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="94b2d58a-c1e9-11ef-aa3f-dcfe074bd614">
+    <topic>kanboard -- Insufficient session invalidation</topic>
+    <affects>
+      <package>
+	<name>kanboard</name>
+	<range><lt>1.2.43</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/kanboard/kanboard/blob/main/app/Core/Session/SessionHandler.php#L40">
+	  <p>Kanboard is project management software that focuses on the Kanban
+	methodology.  In affected versions sessions are still usable even
+	though their lifetime has exceeded.  Kanboard implements a cutom
+	session handler (`app/Core/Session/SessionHandler.php`), to store
+	the session data in a database.  Therefore, when a `session_id` is
+	given, kanboard queries the data from the `sessions` sql table.  At
+	this point, it does not correctly verify, if a given `session_id`
+	has already exceeded its lifetime (`expires_at`).  Thus, a session
+	which&apos;s lifetime is already `&gt; time()`, is still queried
+	from the database and hence a valid login.  The implemented
+	**SessionHandlerInterface::gc** function, that does remove invalid
+	sessions, is called only **with a certain probability** (_Cleans
+	up expired sessions.  Called by `session_start()`, based on
+	`session.gc_divisor`, `session.gc_probability` and `session.gc_maxlifetime`
+	settings_) accordingly to the php documentation.  In the official
+	Kanboard docker image these values default to: session.gc_probability=1,
+	session.gc_divisor=1000. Thus, an expired session is only terminated
+	with probability 1/1000. There are no known workarounds for
+	this vulnerability.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-55603</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-55603</url>
+    </references>
+    <dates>
+      <discovery>2024-12-19</discovery>
+      <entry>2024-12-24</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0a8dbc7f-bedc-11ef-b5a1-000ec6d40964">
+    <topic>Vaultwarden -- Admin organization permissions</topic>
+    <affects>
+      <package>
+	<name>vaultwarden</name>
+	<range><lt>1.32.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Vaultwarden project reports:</p>
+	<blockquote cite="https://github.com/dani-garcia/vaultwarden/pull/5291">
+	  <p>Admins from any organization were able to modify or delete groups in any other organization if they know the group's uuid.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/dani-garcia/vaultwarden/pull/5291</url>
+    </references>
+    <dates>
+      <discovery>2024-12-20</discovery>
+      <entry>2024-12-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e18c5c8d-be01-11ef-8c1c-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>131.0.6778.204</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>131.0.6778.204</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2024/12/stable-channel-update-for-desktop_18.html">
+	 <p>This update includes 3 security fixes:</p>
+	 <ul>
+	    <li>[382291459] High CVE-2024-12692: Type Confusion in V8. Reported by Seunghyun Lee (@0x10n) on 2024-12-05</li>
+	    <li>[382190919] High CVE-2024-12693: Out of bounds memory access in V8. Reported by 303f06e3 on 2024-12-04</li>
+	    <li>[368222741] High CVE-2024-12694: Use after free in Compositing. Reported by Anonymous on 2024-09-19</li>
+	    <li>[383647255] High CVE-2024-12695: Out of bounds write in V8. Reported by 303f06e3 on 2024-12-12</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-12692</cvename>
+      <cvename>CVE-2024-12693</cvename>
+      <cvename>CVE-2024-12694</cvename>
+      <cvename>CVE-2024-12695</cvename>
+      <url>https://chromereleases.googleblog.com/2024/12/stable-channel-update-for-desktop_18.html</url>
+    </references>
+    <dates>
+      <discovery>2024-12-18</discovery>
+      <entry>2024-12-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="dc087dad-bd71-11ef-b5a1-000ec6d40964">
+    <topic>liboqs -- Correctness error in HQC decapsulation</topic>
+    <affects>
+      <package>
+	<name>liboqs</name>
+	<range><lt>0.12.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Open Quantum Safe project reports:</p>
+	<blockquote cite="https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-gpf4-vrrw-r8v7">
+	  <p>A correctness error has been identified in the reference implementation of the HQC key encapsulation mechanism. Due to an indexing error, part of the secret key is incorrectly treated as non-secret data. This results in an incorrect shared secret value being returned when the decapsulation function is called with a malformed ciphertext.</p>
+	  <p>No concrete attack exploiting the error has been identified at this point. However, the error involves mishandling of the secret key, and in principle this presents a security vulnerability.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-54137</cvename>
+      <url>https://github.com/open-quantum-safe/liboqs/security/advisories/GHSA-gpf4-vrrw-r8v7</url>
+    </references>
+    <dates>
+      <discovery>2024-11-29</discovery>
+      <entry>2024-12-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="38e6f778-bca3-11ef-8926-9b4f2d14eb53">
+    <topic>gitea -- Fix misuse of PublicKeyCallback</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.22.6</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>Misuse of ServerConfig.PublicKeyCallback may cause authorization
+       bypass in golang.org/x/crypto</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/pull/32810</url>
+      <url>https://github.com/advisories/GHSA-v778-237x-gjrc</url>
+    </references>
+    <dates>
+      <discovery>2024-12-12</discovery>
+      <entry>2024-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="453cd84e-bca4-11ef-8926-9b4f2d14eb53">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.22.5</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>Fix delete branch perm checking</li>
+       <li>Upgrade crypto library</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/pull/32791</url>
+      <url>https://github.com/go-gitea/gitea/pull/32654</url>
+    </references>
+    <dates>
+      <discovery>2024-11-27</discovery>
+      <entry>2024-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6ea20f0c-bca3-11ef-8926-9b4f2d14eb53">
+    <topic>gitea -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitea</name>
+	<range><lt>1.22.4</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>Fix basic auth with webauthn</li>
+       <li>Refactor internal routers (partial backport, auth token const time comparing)</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://github.com/go-gitea/gitea/pull/32531</url>
+      <url>https://github.com/go-gitea/gitea/pull/32473</url>
+    </references>
+    <dates>
+      <discovery>2024-11-16</discovery>
+      <entry>2024-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5ca064a6-bca1-11ef-8926-9b4f2d14eb53">
+    <topic>forgejo -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>forgejo</name>
+	<range><lt>9.0.2</lt></range>
+      </package>
+      <package>
+	<name>forgejo7</name>
+	<range><lt>7.0.11</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>It was possible to use a token sent via email for secondary email validation to reset the password instead. In other words, a token sent for a given action (registration, password reset or secondary email validation) could be used to perform a different action. It is no longer possible to use a token for an action that is different from its original purpose.</li>
+       <li>A fork of a public repository would show in the list of forks, even if its owner was not a public user or organization. Such a fork is now hidden from the list of forks of the public repository.</li>
+       <li>The members of an organization team with read access to a repository (e.g. to read issues) but no read access to the code could read the RSS or atom feeds which include the commit activity. Reading the RSS or atom feeds is now denied unless the team has read permissions on the code.</li>
+       <li>The tokens used when replying by email to issues or pull requests were weaker than the rfc2104 recommendations. The tokens are now truncated to 128 bits instead of 80 bits. It is no longer possible to reply to emails sent before the upgrade because the weaker tokens are invalid.</li>
+       <li>A registered user could modify the update frequency of any push mirror (e.g. every 4h instead of every 8h). They are now only able to do that if they have administrative permissions on the repository.</li>
+       <li>It was possible to use basic authorization (i.e. user:password) for requests to the API even when security keys were enrolled for a user. It is no longer possible, an application token must be used instead.</li>
+       <li>Some markup sanitation rules were not as strong as they could be (e.g. allowing emoji somethingelse as well as emoji). The rules are now stricter and do not allow for such cases.</li>
+       <li>When Forgejo is configured to enable instance wide search (e.g. with bleve), results found in the repositories of private or limited users were displayed to anonymous visitors. The results found in private or limited organizations were not displayed. The search results found in the repositories of private or limited user are no longer displayed to anonymous visitors.</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/5974</url>
+    </references>
+    <dates>
+      <discovery>2024-12-12</discovery>
+      <entry>2024-12-17</entry>
+      <modified>2024-12-18</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="25a697de-bca1-11ef-8926-9b4f2d14eb53">
+    <topic>forgejo -- unauthorized user impersonation</topic>
+    <affects>
+      <package>
+	<name>forgejo</name>
+	<range><lt>7.0.12</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>When Forgejo is configured to run the internal ssh server with
+       [server].START_SSH_SERVER=true, it was possible for a registered user
+       to impersonate another user.  The rootless container image uses the
+       internal ssh server by default and was vulnerable.  A Forgejo
+       instance running from a binary or from a root container image does
+       not use the internal ssh server by default and was not vulnerable.
+       The incorrect use of the crypto package is the root cause of the
+       vulnerability and was fixed for the internal ssh server.</li>
+       <li>Revert "allow synchronizing user status from OAuth2 login
+       providers"</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/6248</url>
+    </references>
+    <dates>
+      <discovery>2024-12-12</discovery>
+      <entry>2024-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6dcf6fc6-bca0-11ef-8926-9b4f2d14eb53">
+    <topic>forgejo -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>forgejo</name>
+	<range><lt>9.0.3</lt></range>
+      </package>
+    </affects>
+    <description>
+       <body xmlns="http://www.w3.org/1999/xhtml">
+       <h1>Problem Description:</h1>
+       <ul>
+       <li>When Forgejo is configured to run the internal ssh server with
+       [server].START_SSH_SERVER=true, it was possible for a registered user
+       to impersonate another user.  The rootless container image uses the
+       internal ssh server by default and was vulnerable.  A Forgejo
+       instance running from a binary or from a root container image does
+       not use the internal ssh server by default and was not vulnerable.
+       The incorrect use of the crypto package is the root cause of the
+       vulnerability and was fixed for the internal ssh server.</li>
+       <li>Revert "allow synchronizing user status from OAuth2 login
+       providers"</li>
+       </ul>
+      </body>
+    </description>
+    <references>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/6248</url>
+      <url>https://codeberg.org/forgejo/forgejo/pulls/6249</url>
+    </references>
+    <dates>
+      <discovery>2024-12-12</discovery>
+      <entry>2024-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="71f3e9f0-bafc-11ef-885d-901b0e934d69">
+    <topic>py-matrix-synapse -- multiple vulnerabilities in versions prior to 1.120.1</topic>
+    <affects>
+      <package>
+	<name>py38-matrix-synapse</name>
+	<name>py39-matrix-synapse</name>
+	<name>py310-matrix-synapse</name>
+	<name>py311-matrix-synapse</name>
+	<range><lt>1.120.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+		<p>element-hq/synapse developers report:</p>
+	<blockquote cite="https://github.com/element-hq/synapse/releases/tag/v1.120.2">
+		<p>[The 1.120.1] release fixes multiple security
+		vulnerabilities, some affecting all prior versions of
+		Synapse. Server administrators are encouraged to
+		update Synapse as soon as possible. We are not aware
+		of these vulnerabilities being exploited in the
+		wild.</p>
+		<p>Administrators who are unable to update Synapse may
+		use the workarounds described in the linked GitHub
+		Security Advisory below.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-52805</cvename>
+      <url>https://github.com/element-hq/synapse/security/advisories/GHSA-rfq8-j7rh-8hf2</url>
+      <cvename>CVE-2024-52815</cvename>
+      <url>https://github.com/element-hq/synapse/security/advisories/GHSA-f3r3-h2mq-hx2h</url>
+      <cvename>CVE-2024-53863</cvename>
+      <url>https://github.com/element-hq/synapse/security/advisories/GHSA-vp6v-whfm-rv3g</url>
+      <cvename>CVE-2024-53867</cvename>
+      <url>https://github.com/element-hq/synapse/security/advisories/GHSA-56w4-5538-8v8h</url>
+      <cvename>CVE-2024-37302</cvename>
+      <url>https://github.com/element-hq/synapse/security/advisories/GHSA-4mhg-xv73-xq2x</url>
+      <cvename>CVE-2024-37303</cvename>
+      <url>https://github.com/element-hq/synapse/security/advisories/GHSA-gjgr-7834-rhxr</url>
+    </references>
+    <dates>
+      <discovery>2024-12-03</discovery>
+      <entry>2024-12-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ef56065e-81fe-4731-a1e3-606c55925bef">
+    <topic>zeek -- potential DoS vulnerability</topic>
+    <affects>
+      <package>
+	<name>zeek</name>
+	<range><lt>7.0.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Tim Wojtulewicz of Corelight reports:</p>
+	<blockquote cite="https://github.com/zeek/zeek/releases/tag/v7.0.5">
+	  <p> Large QUIC packets can cause Zeek to overflow memory
+	  and potentially crash. Due to the possibility of receiving
+	  these packets from remote hosts, this is a DoS risk. </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/zeek/zeek/releases/tag/v7.0.5</url>
+    </references>
+    <dates>
+      <discovery>2024-12-16</discovery>
+      <entry>2024-12-16</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="275ac414-b847-11ef-9877-2cf05da270f3">
     <topic>Gitlab -- Vulnerabilities</topic>
     <affects>
@@ -129,7 +592,8 @@
       </package>
       <package>
 	<name>thunderbird</name>
-	<range><lt>133.0.0</lt></range>
+	<range><lt>128.5</lt></range>
+	<range><ge>129</ge><lt>133</lt></range>
       </package>
     </affects>
     <description>
@@ -3041,15 +3505,15 @@
     <affects>
       <package>
 	<name>sqlite3</name>
-	<range><lt>3.43.2,1</lt></range>
+	<range><ge>3.43.0</ge><lt>3.43.2,1</lt></range>
       </package>
       <package>
 	<name>linux-rl9-sqlite</name>
-	<range><lt>3.43.2</lt></range>
+	<range><ge>3.43.0</ge><lt>3.43.2</lt></range>
       </package>
       <package>
 	<name>linux-c7-sqlite</name>
-	<range><lt>3.43.2</lt></range>
+	<range><ge>3.43.0</ge><lt>3.43.2</lt></range>
       </package>
     </affects>
     <description>
