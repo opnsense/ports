@@ -1,11 +1,11 @@
 PORTNAME=	tree-sitter
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.24.4
+DISTVERSION=	0.24.6
 CATEGORIES=	devel
 
 MAINTAINER=	adamw@FreeBSD.org
 COMMENT=	Incremental parser generator
-WWW=		https://tree-sitter.github.io/
+WWW=		https://tree-sitter.github.io/tree-sitter/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
