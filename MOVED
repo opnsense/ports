@@ -3754,3 +3754,250 @@ x11-toolkits/py-qt5-chart|x11-toolkits/py-qt5-charts|2024-12-08|Renamed to be co
 x11-toolkits/py-qt6-chart|x11-toolkits/py-qt6-charts|2024-12-08|Renamed to be consistent with the Qt module name
 devel/sfml251|devel/sfml|2024-12-09|Removed pinned port because the last user is gone
 devel/ocaml-seq|lang/ocaml|2024-12-10|Has expired: Seq is provided by lang/ocaml
+textproc/mdocml|textproc/mandoc|2024-12-17|Upstream reanamed
+www/shellinabox|sysutils/ttyd|2024-12-24|Has expired: Abandonware and outdated, last release in 2016. Use sysutils/ttyd instead
+audio/spiralsynth|audio/spiralsynthmodular|2024-12-24|Has expired: SpiralSynth isn't being supported any more, use audio/spiralsynthmodular
+textproc/apache-solr8|textproc/apache-solr|2024-12-24|Has expired: Deprecated upstream 2024-10-25, upgrade to version 9 in textproc/apache-solr instead
+editors/ghostwriter@qt5|editors/ghostwriter|2024-12-29|Flavors removed, now supports only qt6
+editors/ghostwriter@qt6|editors/ghostwriter|2024-12-29|Flavors removed, now supports only qt6
+java/bouncycastle15|java/bouncycastle|2024-12-31|Instead of removing bouncycastle replace it with java/bouncycastle15
+x11-toolkits/py-fltk|x11-toolkits/py-pyfltk|2024-12-31|Rename to match upstream naming. Move x11-toolkits/py-fltk to x11-toolkits/py-pyfltk
+databases/py-pgspecial1|databases/py-pgspecial|2024-12-31|Remove obsoleted port. Use databases/py-pgspecial instead
+devel/py-prompt-toolkit1|devel/py-prompt-toolkit|2024-12-31|Remove obsoleted port. Use devel/py-prompt-toolkit instead
+devel/py-protobuf4|devel/py-protobuf|2024-12-31|Remove obsoleted port. Use devel/py-protobuf instead
+math/py-blis07|math/py-blis|2024-12-31|Remove obsoleted port. Use math/py-blis instead
+security/py-pysaml26|security/py-pysaml2|2024-12-31|Remove obsoleted port. Use security/py-pysaml2 instead
+textproc/py-mistune2|textproc/py-mistune|2024-12-31|Remove obsoleted port. Use textproc/py-mistune instead
+textproc/py-rich12|textproc/py-rich|2024-12-31|Remove obsoleted port. Use textproc/py-rich instead
+www/py-tornado4|www/py-tornado|2024-12-31|Remove obsoleted port. Use www/py-tornado instead
+www/py-tornado5|www/py-tornado|2024-12-31|Remove obsoleted port. Use www/py-tornado instead
+archivers/rubygem-minitar-cli0|archivers/rubygem-minitar-cli|2024-12-31|Remove obsoleted port. Use archivers/rubygem-minitar-cli instead
+archivers/rubygem-rubyzip20|archivers/rubygem-rubyzip|2024-12-31|Remove obsoleted port. Use archivers/rubygem-rubyzip instead
+databases/rubygem-redis-clustering52|databases/rubygem-redis-clustering|2024-12-31|Remove obsoleted port. Use databases/rubygem-redis-clustering instead
+databases/rubygem-redis4|databases/rubygem-redis|2024-12-31|Remove obsoleted port. Use databases/rubygem-redis instead
+databases/rubygem-redis52|databases/rubygem-redis|2024-12-31|Remove obsoleted port. Use databases/rubygem-redis instead
+devel/rubygem-bootsnap117|devel/rubygem-bootsnap|2024-12-31|Remove obsoleted port. Use devel/rubygem-bootsnap instead
+devel/rubygem-childprocess3|devel/rubygem-childprocess|2024-12-31|Remove obsoleted port. Use devel/rubygem-childprocess instead
+devel/rubygem-childprocess40|devel/rubygem-childprocess|2024-12-31|Remove obsoleted port. Use devel/rubygem-childprocess instead
+devel/rubygem-cucumber-messages23|devel/rubygem-cucumber-messages|2024-12-31|Remove obsoleted port. Use devel/rubygem-cucumber-messages instead
+devel/rubygem-event_stream_parser0|devel/rubygem-event_stream_parser|2024-12-31|Remove obsoleted port. Use devel/rubygem-event_stream_parser instead
+devel/rubygem-faraday_middleware-aws-sigv403|devel/rubygem-faraday_middleware-aws-sigv4|2024-12-31|Remove obsoleted port. Use devel/rubygem-faraday_middleware-aws-sigv4 instead
+devel/rubygem-fugit18|devel/rubygem-fugit|2024-12-31|Remove obsoleted port. Use devel/rubygem-fugit instead
+devel/rubygem-gettext_i18n_rails112|devel/rubygem-gettext_i18n_rails|2024-12-31|Remove obsoleted port. Use devel/rubygem-gettext_i18n_rails instead
+devel/rubygem-google-apis-cloudresourcemanager_v1035|devel/rubygem-google-apis-cloudresourcemanager_v1|2024-12-31|Remove obsoleted port. Use devel/rubygem-google-apis-cloudresourcemanager_v1 instead
+devel/rubygem-google-apis-core011|devel/rubygem-google-apis-core|2024-12-31|Remove obsoleted port. Use devel/rubygem-google-apis-core instead
+devel/rubygem-google-apis-iam_v1050|devel/rubygem-google-apis-iam_v1|2024-12-31|Remove obsoleted port. Use devel/rubygem-google-apis-iam_v1 instead
+devel/rubygem-grape1|devel/rubygem-grape|2024-12-31|Remove obsoleted port. Use devel/rubygem-grape instead
+devel/rubygem-libddprof|devel/rubygem-libdatadog|2024-12-31|Remove obsoleted port. Use devel/rubygem-libdatadog instead
+net/rubygem-google-cloud-storage145|net/rubygem-google-cloud-storage|2024-12-31|Remove obsoleted port. Use net/rubygem-google-cloud-storage instead
+net/rubygem-octokit8|net/rubygem-octokit|2024-12-31|Remove obsoleted port. Use net/rubygem-octokit instead
+textproc/rubygem-elasticsearch-api713|textproc/rubygem-elasticsearch-api|2024-12-31|Remove obsoleted port. Use textproc/rubygem-elasticsearch-api instead
+textproc/rubygem-elasticsearch-transport713|textproc/rubygem-elasticsearch-transport|2024-12-31|Remove obsoleted port. Use textproc/rubygem-elasticsearch-transport instead
+textproc/rubygem-kramdown1|textproc/rubygem-kramdown|2024-12-31|Remove obsoleted port. Use textproc/rubygem-kramdown instead
+textproc/rubygem-kramdown23|textproc/rubygem-kramdown|2024-12-31|Remove obsoleted port. Use textproc/rubygem-kramdown instead
+textproc/rubygem-rexml32|textproc/rubygem-rexml|2024-12-31|Remove obsoleted port. Use textproc/rubygem-rexml instead
+textproc/rubygem-rexml33|textproc/rubygem-rexml|2024-12-31|Remove obsoleted port. Use textproc/rubygem-rexml instead
+textproc/rubygem-rouge43|textproc/rubygem-rouge|2024-12-31|Remove obsoleted port. Use textproc/rubygem-rouge instead
+textproc/rubygem-terser11|textproc/rubygem-terser|2024-12-31|Remove obsoleted port. Use textproc/rubygem-terser instead
+www/rubygem-httparty020|www/rubygem-httparty|2024-12-31|Remove obsoleted port. Use www/rubygem-httparty instead
+devel/rubygem-fog-core220|devel/rubygem-fog-core|2024-12-31|Remove obsoleted port. Use devel/rubygem-fog-core instead
+devel/rubygem-childprocess41|devel/rubygem-childprocess|2024-12-31|Remove obsoleted port. Use devel/rubygem-childprocess instead
+multimedia/recmpeg|multimedia/ffmpeg|2025-01-01|Has expired: Depends on deprecated and obsolete library libfame, consider migrating to multimedia/ffmpeg
+net-mgmt/zabbix64-java||2025-01-01|Has expired: Zabbix 6.4 is expected to reach EoL on December 31, 2024
+net-mgmt/zabbix64-agent||2025-01-01|Has expired: Zabbix 6.4 is expected to reach EoL on December 31, 2024
+net-mgmt/zabbix64-proxy||2025-01-01|Has expired: Zabbix 6.4 is expected to reach EoL on December 31, 2024
+net-mgmt/zabbix64-frontend||2025-01-01|Has expired: Zabbix 6.4 is expected to reach EoL on December 31, 2024
+net-mgmt/zabbix64-server||2025-01-01|Has expired: Zabbix 6.4 is expected to reach EoL on December 31, 2024
+www/webtrees20|www/webtrees21|2025-01-01|Has expired: Uses obsolete PHP version; use www/webtrees21 or www/webtrees22 instead
+dns/py-idna_ssl||2025-01-01|Has expired: Upstream repository has been archived on Oct 22, 2020
+science/py-nilearn||2025-01-01|Has expired: Depends on expired devel/py-codecov
+biology/ncbi-vdb||2025-01-01|Has expired: Very outdated, unmaintained and unsupported upstream
+www/grafana9|www/grafana|2025-01-01|Has expired: EOLed upstream
+textproc/cl-meta-sbcl||2025-01-01|Removed, depends on expired and unfetchable textproc/cl-meta
+textproc/cl-meta||2025-01-01|Has expired: Upstream is gone
+databases/postgis32||2025-01-01|Has expired: Please use newer versions
+math/sage||2025-01-01|Has expired: Broken for more than two years
+security/gnome-ssh-askpass||2025-01-01|Has expired: Uses deprecated gtk2 library
+comms/concordance||2025-01-01|Has expired: Logitech Harmony were officially discontinued in 2021, last major product in 2019
+lang/parrot||2025-01-01|Has expired: Development stopped in 2017
+net-im/purple-plugin-pack||2025-01-01|Has expired: Uses deprecated gtk2 libraries
+security/sssd|security/sssd2|2025-01-01|Has expired: Not supported, please use deve/sssd2
+databases/ldb22||2025-01-01|Has expired: Required only by security/sssd, which expires on 2024-12-31
+databases/postgresql12-contrib||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-client||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-plperl||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-pltcl||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-plpython||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-docs||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+databases/postgresql12-pgtcl||2025-01-01|Removed, PostgreSQL-12 is end-of-life
+databases/postgresql12-server||2025-01-01|Has expired: PostgreSQL-12 is end-of-life
+devel/kdesvn||2025-01-01|Has expired: Dwindling amount of users and streamlining of ports for the KDE Team to maintain
+databases/compass||2025-01-01|Has expired: Depends on expired devel/electron29
+security/dirmngr|security/gnupg|2025-01-01|Has expired: Obsolete, now maintained within GNU Privacy Guard (GnuPG). Please use security/gnupg
+math/opensolaris-libm||2025-01-01|Has expired: Obsolete, consider using libm in base or math/openlibm
+textproc/sgrep||2025-01-01|Has expired: Abandonware, primary site is dead and according to website not touched in 20 years. Consider migrating to textproc/p5-ack
+devel/gitflow||2025-01-01|Has expired: Upstream repo archived Jun 19, 2023
+filesystems/sqlfs||2025-01-01|Has expired: Abandoned upstream, superseded by forks
+filesystems/gitfs||2025-01-01|Has expired: Abandonware, last release on 2019
+filesystems/httpfs||2025-01-01|Has expired: Abandonware, last release in 2012 and there are multiple issues unresolved
+multimedia/dumpmpeg|multimedia/ffmpeg|2025-01-01|Has expired: Obsolete utility, consider using multimedia/ffmpeg
+devel/cquery|devel/ccls|2025-01-01|Has expired: Abandonware, upstream repo archived Jul 30, 2020. Consider using migrating to devel/ccls
+security/py-first-server||2025-01-01|Has expired: Upstream project has been archived
+security/maia||2025-01-01|Has expired: Depends on deprecated dependencies and doesn't work with PHP 8
+devel/grv||2025-01-01|Has expired: Unmaintained for years, outdated
+deskutils/basket||2025-01-01|Has expired: Unmaintained for years, fails to build with libgit 1.8.1
+www/Stikked||2025-01-01|Has expired: Broken with PHP 8+ (see PR 281858)
+databases/pgpool-II-41||2025-01-01|Has expired: Upstream EOL reaches on 2024-10-31
+devel/electron29||2025-01-01|Has expired: EOLed upstream, switch to newer version
+devel/electron30||2025-01-01|Has expired: EOLed upstream, switch to newer version
+comms/libconcord||2025-01-01|Has expired: Logitech Harmony were officially discontinued in 2021, last major product in 2019
+japanese/onew||2025-01-01|Has expired: Unfetchabled and listed BROKEN for over year
+lang/twelf||2025-01-01|Has expired: Dead upstream and fails to build
+devel/py-codecov||2025-01-01|Has expired: Deprecated by upstream. On February 1, 2022 this uploader will be completely deprecated and will no longer be able to upload coverage to Codecov
+editors/imhex-current||2025-01-02|Replaced with editors/imhex
+graphics/yacreader@qt5|graphics/yacreader|2025-01-02|Flavorization has been removed. Qt 5.x has been long deprecated upstream. Please use the unflavored graphics/yacreader port based on Qt 6.x instead
+graphics/yacreader@qt6|graphics/yacreader|2025-01-02|Flavorization has been removed. Continue to enjoy graphics/yacreader based on Qt 6.x as usual
+security/mbedtls|security/mbedtls2|2025-01-02|Legacy version
+audio/gstreamer1-plugins-musepack||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+audio/libumidi||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+audio/lms||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+biology/py-bigwig||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+cad/kicad-library-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+chinese/xemacs21||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+comms/tqsllib||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+comms/umcs7840||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+converters/aha||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+databases/mariadb114-connector-c||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+databases/pymongo28||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/appstream-qt5||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/avr-gcc-42||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/cppunit113||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/gitlab-workhorse||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/gmake43||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/libuInputPlus||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/linux-c7-libffi||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/node-gyp||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/node-nan||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/npm-minidump||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/p4d||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/p4ftpd||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/p4p||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/p4web||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/p5-String-RewritePrefix||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/py-azure-keyvault-keys||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/py-fake-factory||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/py-jail||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/py-jailconf||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/py-zeep||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/rubygem-acts-as-taggable-on||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/rubygem-google-apis-serviceusage_v1_041||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/rubygem-validates_timeliness7||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/sublime-merge||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/vulkan-validation-layers||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/xlocale||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/xtoolchain-llvm60||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+devel/xtoolchain-llvm70||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+editors/sublime-test4||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+editors/sublime-text4||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+emulators/Elliott-803||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+emulators/ppsspp-qt5-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+emulators/qemu50||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+filesystems/rubygem-aws-sdk-efs||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+finance/bitcoin-armory||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+finance/openerp||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+games/knights-kde4||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+graphics/cairomm16||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+graphics/openscenegraph||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+graphics/poppler-qt4||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+graphics/py-poppler-qt4||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+graphics/py-svg_path||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+graphics/sverchok-blender||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+japanese/asterisk16-sounds||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+java/jakarta-commons-beanutils||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+java/linux-sun-jdk18||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+lang/slib-guile1||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+lang/slib-guile2||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+math/py-python_fcl||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+math/py-z3||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+math/rubygem-ruby-statistics||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+math/superlu_mt||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+misc/ossp-uuid-perl||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+multimedia/gstreamer1-plugins-kate||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+multimedia/gstreamer1-plugins-schroedinger||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net-mgmt/snap||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/frr7-pythontools||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/haproxy19||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/haproxy21||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/haproxy23||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/openistgt||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/p5-SOAP-Transport-HTTP-Plack||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/samba4-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/softethervpn||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+net/wifi-firmware-base||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-areafix-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-fidoconf-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-hpt-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-htick-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-huskylib-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+news/husky-smapi-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+print/harfbuzz-bh-view||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+security/mere-auth||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+security/pam_fprint||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+security/php74-hash||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+security/py-winrm||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+security/pyptlib||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+security/sshguard-ipfilter||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+shells/tcsh_nls||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/blackbox_exporter||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/diskprep||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/openshift-install-devel||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/openshift-install45||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/openshift-install46||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/psgconf||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/py-logbook||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/u-boot-duovero||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+sysutils/watchman450||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+textproc/checkbashisms||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+textproc/fmtlib||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+textproc/logseq||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+textproc/node-re2||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+textproc/py-elasticsearch-curator-py||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+textproc/rubygem-sassc-rails||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+vietnamese/kde4-l10n||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+www/asp2php||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+www/graylog-web-interface||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+www/httpd||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+www/py-demjson||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+www/py-vcrpy||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+www/redmine-stuff_to_do||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-apm||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-ark||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-chips||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-cirrus||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-geode||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-i128||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-i740||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-mach64||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-neomagic||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-openchrome||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-r128||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-rendition||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-savage||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-siliconmotion||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-sis||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-tdfx||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-drivers/xf86-video-voodoo||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11-toolkits/gnome-sharp20||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11/libfmqt-l10n||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11/lightdm-slick-greeter||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11/mere-about||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+x11/mere-utils||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
+editors/neovim-qt@qt5|editors/neovim-qt|2025-01-02|Flavorization has been removed. Qt 5.x has been long deprecated upstream. Please use the unflavored editors/neovim-qt port based on Qt 6.x instead
+editors/neovim-qt@qt6|editors/neovim-qt|2025-01-02|Flavorization has been removed. Continue to enjoy editors/neovim-qt based on Qt 6.x as usual
+deskutils/copyq@qt5|deskutils/copyq|2025-01-02|Flavorization has been removed. Qt 5.x has been long deprecated upstream. Please use the unflavored deskutils/copyq port based on Qt 6.x instead
+deskutils/copyq@qt6|deskutils/copyq|2025-01-02|Flavorization has been removed. Continue to enjoy deskutils/copyq based on Qt 6.x as usual
+devel/py-pyls-black||2025-01-04|Repository has been archived by the owner. Use textproc/py-python-lsp-black instead
+net-im/telegram-desktop@qt5|net-im/telegram-desktop|2025-01-05|Flavorization has been removed. Qt 5.x has been long deprecated upstream. Please use unflavored net-im/telegram-desktop port based on Qt 6.x instead
+net-im/telegram-desktop@qt6|net-im/telegram-desktop|2025-01-05|Flavorization has been removed. Continue to enjoy net-im/telegram-desktop based on Qt 6.x as usual
+deskutils/iconbrowser|deskutils/elementary-iconbrowser|2025-01-06|Switch to reverse domain name notation

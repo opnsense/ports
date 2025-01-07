@@ -288,8 +288,8 @@ snmpd:*:344:
 _metronome:*:345:
 ngircd:*:346:
 eturnal:*:347:
-# free: 348
-# free: 349
+davfs2:*:348:
+tempo:*:349:
 _sabnzbd:*:350:
 sonarr:*:351:
 radarr:*:352:
@@ -596,7 +596,7 @@ _xrdp:*:648:
 # free: 652
 # free: 653
 # free: 654
-# free: 655
+tinc:*:655:
 # free: 656
 # free: 657
 # free: 658
@@ -677,7 +677,7 @@ bopm:*:717:
 # free: 733
 # free: 734
 c-lightning:*:735:
-# free: 736
+zonemaster:*:736:
 # free: 737
 # free: 738
 # free: 739

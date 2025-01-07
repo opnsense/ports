@@ -73,7 +73,7 @@ GUILE_DEFAULT?=		2.2
 # Format:	     version[-flavor]
 # Examples:	     6-nox11, 7
 IMAGEMAGICK_DEFAULT?=	7
-# Possible values: 8, 11, 17, 18, 19, 20, 21
+# Possible values: 8, 11, 17, 18, 19, 20, 21, 22 23
 JAVA_DEFAULT?=		8
 # Possible values: 3.4.0, 3.99
 .  if (defined(WANT_LAZARUS_DEVEL) && !empty(WANT_LAZARUS_DEVEL)) || ${ARCH:Maarch64}
@@ -126,10 +126,10 @@ _PERL5_FROM_BIN!=	${LOCALBASE}/bin/perl -e 'printf "%vd\n", $$^V;'
 _EXPORTED_VARS+=	_PERL5_FROM_BIN
 PERL5_DEFAULT:=		${_PERL5_FROM_BIN:R}
 .  endif
-# Possible values: 12, 13, 14, 15, 16, 17
+# Possible values: 13, 14, 15, 16, 17
 PGSQL_DEFAULT?=		16
 # Possible values: 8.1, 8.2, 8.3, 8.4
-PHP_DEFAULT?=		8.2
+PHP_DEFAULT?=		8.3
 # Possible values: rust, legacy
 .  if empty(ARCH:Naarch64:Namd64:Narmv7:Ni386:Npowerpc64:Npowerpc64le:Npowerpc:Nriscv64)
 PYCRYPTOGRAPHY_DEFAULT?=	rust
