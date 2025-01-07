@@ -1,5 +1,5 @@
 PORTNAME=	curl
-PORTVERSION=	8.11.0
+PORTVERSION=	8.11.1
 PORTREVISION=	1
 CATEGORIES=	ftp net www
 MASTER_SITES=	https://curl.se/download/ \
@@ -24,6 +24,7 @@ CONFIGURE_ARGS=	--disable-test-bundles \
 		--enable-headers-api \
 		--enable-hsts \
 		--enable-http-auth \
+		--enable-manual \
 		--enable-mime \
 		--enable-netrc \
 		--enable-openssl-auto-load-config \
