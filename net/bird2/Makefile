@@ -15,8 +15,7 @@ rtsock_PKGNAMESUFFIX=	2-rtsock
 
 USES=		bison cpe gmake ncurses readline
 
-CONFLICTS=	bird
-CONFLICTS+=	bird6
+CONFLICTS=	bird3
 
 CPE_VENDOR=	nic
 
