@@ -3,9 +3,9 @@ PORTVERSION=	3.25.${CFENGINE_COMMIT_DATE}
 PORTEPOCH=	1
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
-CFENGINE_HASH=		50afb6fe5
-LIBNTECH_HASH=		69e2624
-CFENGINE_COMMIT_DATE=	20241203
+CFENGINE_HASH=		39e3f9cb0
+LIBNTECH_HASH=		3b5afdb
+CFENGINE_COMMIT_DATE=	20250108
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Systems administration tool for networks
@@ -55,7 +55,8 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libpcre2-posix.so:devel/pcre2 \
 		liblmdb.so:databases/lmdb \
 		libyaml.so:textproc/libyaml \
-		libcurl.so:ftp/curl
+		libcurl.so:ftp/curl \
+		librsync.so:net/librsync
 
 OPTIONS_DEFINE=	PGSQL MYSQL LIBVIRT
 

@@ -1,6 +1,6 @@
 PORTNAME=	virtualbox-ose
 DISTVERSION=	5.2.44
-PORTREVISION?=	24
+PORTREVISION?=	25
 CATEGORIES=	emulators
 MASTER_SITES=	https://download.virtualbox.org/virtualbox/${DISTVERSION}/:src \
 		LOCAL/bofh/emulators/virtualbox-ose-legacy:docs
@@ -301,10 +301,6 @@ post-patch:
 	@${REINPLACE_CMD} \
 	    -e 's|^versions =.*|versions = ["${PYTHON_VER}${PYTHON_ABIVER}"]|' \
 	    ${WRKSRC}/src/libs/xpcom18a4/python/gen_python_deps.py
-.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1400093
-	@${REINPLACE_CMD} -e 's|enum vtype|enum enum_vtype_uint8|g' \
-	    ${WRKSRC}/src/VBox/Additions/freebsd/vboxvfs/vboxvfs*.[ch]
-.endif
 
 do-build:
 	cd ${WRKSRC} && ${SH} -c '. ${WRKSRC}/env.sh && \

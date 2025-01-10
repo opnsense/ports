@@ -1,10 +1,13 @@
---- src/tools/networkTools.cpp.orig	2024-12-26 02:42:25 UTC
+Has been upstreamed via https://github.com/kiwix/libkiwix/pull/1173 and will be
+included in next release (14.1.0), so remove this patch at next update.
+
+--- src/tools/networkTools.cpp.orig	2024-10-09 17:18:52 UTC
 +++ src/tools/networkTools.cpp
-@@ -27,6 +27,7 @@
- #include <string.h>
- 
- #include <curl/curl.h>
+@@ -42,6 +42,7 @@
+ #include <arpa/inet.h>
+ #include <ifaddrs.h>
+ #include <sys/socket.h>
 +#include <netinet/in.h>
- 
- #include <sstream>
- #include <iostream>
+ #include <net/if.h>
+ #include <netdb.h>
+ #endif
