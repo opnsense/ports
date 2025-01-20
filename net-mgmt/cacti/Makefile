@@ -1,8 +1,9 @@
 PORTNAME=	cacti
-DISTVERSION=	1.2.26
+DISTVERSION=	1.2.28
 CATEGORIES=	net-mgmt www
 MASTER_SITES=	http://www.cacti.net/downloads/ \
 		ftp://ftpmirror.uk/freebsd-ports/cacti/
+PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
 
 MAINTAINER=	m.muenz@gmail.com
 COMMENT=	Web-driven graphing interface for RRDTool
@@ -13,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	rrdtool:databases/rrdtool
 
-USES=		cpe mysql php:web shebangfix
+USES=		cpe mysql php:flavors,web shebangfix
 
 USE_PHP=	ctype filter gd gettext gmp intl ldap mbstring pcntl pdo \
 		pdo_mysql posix session simplexml sockets snmp xml zlib
@@ -47,7 +48,7 @@ SUB_LIST=	CACTIDIR=${CACTIDIR} CACTIUSER=${CACTIUSER} \
 
 post-patch:
 	@${FIND} ${WRKSRC} -name \*.orig -delete; \
-	${MV} ${WRKSRC}/include/config.php ${WRKSRC}/include/config.php.sample
+	${MV} ${WRKSRC}/include/config.php.dist ${WRKSRC}/include/config.php.sample
 	${RM} -r ${WRKSRC}/log ${WRKSRC}/rra
 
 do-install:

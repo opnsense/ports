@@ -93,10 +93,8 @@
     SUBDIR += irssi-themes
     SUBDIR += kde-icons-black-and-white
     SUBDIR += kde-icons-nuovext2
-    SUBDIR += kf5-breeze-icons
     SUBDIR += kf5-kemoticons
     SUBDIR += kf5-kiconthemes
-    SUBDIR += kf5-oxygen-icons5
     SUBDIR += kf5-qqc2-desktop-style
     SUBDIR += kf6-breeze-icons
     SUBDIR += kf6-kcolorscheme
@@ -132,6 +130,7 @@
     SUBDIR += numix-icon-theme
     SUBDIR += numix-icon-theme-circle
     SUBDIR += openbox-arc-theme
+    SUBDIR += oxygen-icons
     SUBDIR += papirus-icon-theme
     SUBDIR += plasma5-breeze
     SUBDIR += plasma5-breeze-gtk

@@ -467,6 +467,7 @@
     SUBDIR += nextcloud-deck
     SUBDIR += nextcloud-forms
     SUBDIR += nextcloud-groupfolders
+    SUBDIR += nextcloud-news
     SUBDIR += nextcloud-notes
     SUBDIR += nextcloud-tasks
     SUBDIR += nghttp2
@@ -1342,6 +1343,7 @@
     SUBDIR += p5-Woothee
     SUBDIR += p5-WordPress-XMLRPC
     SUBDIR += p5-Yahoo-Search
+    SUBDIR += p5-Zonemaster-GUI
     SUBDIR += p5-chklinks
     SUBDIR += p5-jQuery-File-Upload
     SUBDIR += p5-libapreq2
@@ -1520,6 +1522,7 @@
     SUBDIR += py-dj50-django-tables2
     SUBDIR += py-dj50-django-taggit
     SUBDIR += py-dj50-django-timezone-field
+    SUBDIR += py-dj50-django-tree-queries
     SUBDIR += py-dj50-djangorestframework
     SUBDIR += py-dj50-drf-spectacular
     SUBDIR += py-dj50-drf-spectacular-sidecar

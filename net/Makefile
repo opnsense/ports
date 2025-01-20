@@ -35,6 +35,7 @@
     SUBDIR += asterisk-g72x
     SUBDIR += asterisk18
     SUBDIR += asterisk20
+    SUBDIR += asterisk22
     SUBDIR += astron
     SUBDIR += avahi
     SUBDIR += avahi-app
@@ -417,13 +418,6 @@
     SUBDIR += libpcapnav
     SUBDIR += libpfctl
     SUBDIR += libproxy
-    SUBDIR += libproxy-duktape
-    SUBDIR += libproxy-gnome3
-    SUBDIR += libproxy-kde
-    SUBDIR += libproxy-pacrunner
-    SUBDIR += libproxy-perl
-    SUBDIR += libproxy-python
-    SUBDIR += libproxy-webkit3
     SUBDIR += librdkafka
     SUBDIR += librespeed-cli
     SUBDIR += librespeed-go
@@ -501,6 +495,7 @@
     SUBDIR += mrouted
     SUBDIR += mrtparse
     SUBDIR += msend
+    SUBDIR += msgraph
     SUBDIR += msoak
     SUBDIR += mtr
     SUBDIR += multicat
@@ -1208,6 +1203,7 @@
     SUBDIR += qt5-network
     SUBDIR += qt5-networkauth
     SUBDIR += qt6-coap
+    SUBDIR += qt6-mqtt
     SUBDIR += qt6-networkauth
     SUBDIR += quagga
     SUBDIR += quiche
@@ -1468,6 +1464,7 @@
     SUBDIR += rubygem-twitter4r
     SUBDIR += rubygem-u2f
     SUBDIR += rubygem-uri
+    SUBDIR += rubygem-uri-gitlab
     SUBDIR += rubygem-uri-redis
     SUBDIR += rubygem-uri_template
     SUBDIR += rubygem-whois
