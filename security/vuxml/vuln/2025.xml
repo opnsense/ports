@@ -1,3 +1,374 @@
+  <vuln vid="41711c0d-db27-11ef-873e-8447094a420f">
+    <topic>Vaultwarden -- Muiltiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>vaultwarden</name>
+	<range><lt>1.33.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Vaultwarden project reports:</p>
+	<blockquote cite="https://github.com/dani-garcia/vaultwarden/releases/tag/1.33.0">
+	  <p>RCE in the admin panel.</p>
+	  <p>Getting access to the Admin Panel via CSRF.</p>
+	  <p>Escalation of privilege via variable confusion in OrgHeaders trait.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/dani-garcia/vaultwarden/releases/tag/1.33.0</url>
+    </references>
+    <dates>
+      <discovery>2025-01-25</discovery>
+      <entry>2025-01-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c53cd328-8131-4fc2-a083-a9e9d45e3028">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>132.0.6834.110</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>132.0.6834.110</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/01/stable-channel-update-for-desktop_22.html">
+	 <p>This update includes 3 security fixes:</p>
+	 <ul>
+	    <li>[386143468] High CVE-2025-0611: Object corruption in V8. Reported by 303f06e3 on 2024-12-26</li>
+	    <li>[385155406] High CVE-2025-0612: Out of bounds memory access in V8. Reported by Alan Goodman on 2024-12-20</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-0611</cvename>
+      <cvename>CVE-2025-0612</cvename>
+      <url>https://chromereleases.googleblog.com/2025/01/stable-channel-update-for-desktop_22.html</url>
+    </references>
+    <dates>
+      <discovery>2025-01-22</discovery>
+      <entry>2025-01-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="756839e1-cd78-4082-9f9e-d0da616ca8dd">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>132.0.6834.83</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>132.0.6834.83</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/01/stable-channel-update-for-desktop_14.html">
+	 <p>This update includes 16 security fixes:</p>
+	 <ul>
+	    <li>[374627491] High CVE-2025-0434: Out of bounds memory access in V8. Reported by ddme on 2024-10-21</li>
+	    <li>[379652406] High CVE-2025-0435: Inappropriate implementation in Navigation. Reported by Alesandro Ortiz on 2024-11-18</li>
+	    <li>[382786791] High CVE-2025-0436: Integer overflow in Skia. Reported by Han Zheng (HexHive) on 2024-12-08</li>
+	    <li>[378623799] High CVE-2025-0437: Out of bounds read in Metrics. Reported by Xiantong Hou of Wuheng Lab and Pisanbao on 2024-11-12</li>
+	    <li>[384186539] High CVE-2025-0438: Stack buffer overflow in Tracing. Reported by Han Zheng (HexHive) on 2024-12-15</li>
+	    <li>[371247941] Medium CVE-2025-0439: Race in Frames. Reported by Hafiizh on 2024-10-03</li>
+	    <li>[40067914] Medium CVE-2025-0440: Inappropriate implementation in Fullscreen. Reported by Umar Farooq on 2023-07-22</li>
+	    <li>[368628042] Medium CVE-2025-0441: Inappropriate implementation in Fenced Frames. Reported by someoneverycurious on 2024-09-21</li>
+	    <li>[40940854] Medium CVE-2025-0442: Inappropriate implementation in Payments. Reported by Ahmed ElMasry on 2023-11-08</li>
+	    <li>[376625003] Medium CVE-2025-0443: Insufficient data validation in Extensions. Reported by Anonymous on 2024-10-31</li>
+	    <li>[359949844] Low CVE-2025-0446: Inappropriate implementation in Extensions. Reported by Hafiizh on 2024-08-15</li>
+	    <li>[375550814] Low CVE-2025-0447: Inappropriate implementation in Navigation. Reported by Khiem Tran (@duckhiem) on 2024-10-25</li>
+	    <li>[377948403] Low CVE-2025-0448: Inappropriate implementation in Compositing. Reported by Dahyeon Park on 2024-11-08</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-0434</cvename>
+      <cvename>CVE-2025-0435</cvename>
+      <cvename>CVE-2025-0436</cvename>
+      <cvename>CVE-2025-0437</cvename>
+      <cvename>CVE-2025-0438</cvename>
+      <cvename>CVE-2025-0439</cvename>
+      <cvename>CVE-2025-0440</cvename>
+      <cvename>CVE-2025-0441</cvename>
+      <cvename>CVE-2025-0442</cvename>
+      <cvename>CVE-2025-0443</cvename>
+      <cvename>CVE-2025-0446</cvename>
+      <cvename>CVE-2025-0447</cvename>
+      <cvename>CVE-2025-0448</cvename>
+      <url>https://chromereleases.googleblog.com/2025/01/stable-channel-update-for-desktop_14.html</url>
+    </references>
+    <dates>
+      <discovery>2025-01-14</discovery>
+      <entry>2025-01-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ef303b6a-7d9e-4e28-b92e-21f39d519d9e">
+    <topic>electron32 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron32</name>
+	<range><lt>32.3.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v32.3.0">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-12693.</li>
+	    <li>Security: backported fix for CVE-2024-12694.</li>
+	    <li>Security: backported fix for CVE-2024-12695.</li>
+	    <li>Security: backported fix for CVE-2025-0434.</li>
+	    <li>Security: backported fix for CVE-2025-0436.</li>
+	    <li>Security: backported fix for CVE-2025-0437.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-12693</cvename>
+      <url>https://github.com/advisories/GHSA-m84q-p89f-6cc5</url>
+      <cvename>CVE-2024-12694</cvename>
+      <url>https://github.com/advisories/GHSA-cgc6-4xgf-5q5x</url>
+      <cvename>CVE-2024-12695</cvename>
+      <url>https://github.com/advisories/GHSA-6895-2frg-pq5j</url>
+      <cvename>CVE-2025-0434</cvename>
+      <url>https://github.com/advisories/GHSA-fpmx-pfpg-92xg</url>
+      <cvename>CVE-2025-0436</cvename>
+      <url>https://github.com/advisories/GHSA-ww3g-8h77-wr7v</url>
+      <cvename>CVE-2025-0437</cvename>
+      <url>https://github.com/advisories/GHSA-4353-vp82-4qq4</url>
+    </references>
+    <dates>
+      <discovery>2025-01-23</discovery>
+      <entry>2025-01-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2def27c7-7dd0-42cb-adf6-8e5a7afe4db3">
+    <topic>electron33 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron33</name>
+	<range><lt>33.3.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v33.3.2">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2025-0434.</li>
+	    <li>Security: backported fix for CVE-2025-0436.</li>
+	    <li>Security: backported fix for CVE-2025-0437.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-0434</cvename>
+      <url>https://github.com/advisories/GHSA-fpmx-pfpg-92xg</url>
+      <cvename>CVE-2025-0436</cvename>
+      <url>https://github.com/advisories/GHSA-ww3g-8h77-wr7v</url>
+      <cvename>CVE-2025-0437</cvename>
+      <url>https://github.com/advisories/GHSA-4353-vp82-4qq4</url>
+    </references>
+    <dates>
+      <discovery>2025-01-22</discovery>
+      <entry>2025-01-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="24c93a28-d95b-11ef-b6b2-2cf05da270f3">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.8.0</ge><lt>17.8.1</lt></range>
+	<range><ge>17.7.0</ge><lt>17.7.3</lt></range>
+	<range><ge>15.7.0</ge><lt>17.6.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/01/22/patch-release-gitlab-17-8-1-released/">
+	  <p>Stored XSS via Asciidoctor render</p>
+	  <p>Developer could exfiltrate protected CI/CD variables via CI lint</p>
+	  <p>Cyclic reference of epics leads resource exhaustion</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-0314</cvename>
+      <cvename>CVE-2024-11931</cvename>
+      <cvename>CVE-2024-6324</cvename>
+      <url>https://about.gitlab.com/releases/2025/01/22/patch-release-gitlab-17-8-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-01-22</discovery>
+      <entry>2025-01-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1e109b60-d92e-11ef-a661-08002784c58d">
+    <topic>clamav -- Possbile denial-of-service vulnerability</topic>
+    <affects>
+      <package>
+	<name>clamav</name>
+	<range><ge>1.0.0,1</ge><lt>1.4.2,1</lt></range>
+      </package>
+      <package>
+	<name>clamav-lts</name>
+	<range><ge>1.0.0,1</ge><lt>1.0.8,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The ClamAV project reports:</p>
+	<blockquote cite="https://blog.clamav.net/2025/01/clamav-142-and-108-security-patch.html">
+	  <p>
+	    A possible buffer overflow read bug is found in the OLE2
+	    file parser that could cause a denial-of-service (DoS)
+	    condition.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-20128</cvename>
+      <url>https://blog.clamav.net/2025/01/clamav-142-and-108-security-patch.html</url>
+    </references>
+    <dates>
+      <discovery>2025-01-22</discovery>
+      <entry>2025-01-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7d17676d-4828-4a43-85d6-1ee14362de6e">
+    <topic>electron32 -- Type Confusion in V8</topic>
+    <affects>
+      <package>
+	<name>electron32</name>
+	<range><lt>32.2.8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v32.2.8">
+	  <p>This update fixes the following vulnerability:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-12053.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-12053</cvename>
+      <url>https://github.com/advisories/GHSA-wvx7-72hc-rp32</url>
+    </references>
+    <dates>
+      <discovery>2025-01-06</discovery>
+      <entry>2025-01-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="704aa72a-d840-11ef-a205-901b0e9408dc">
+    <topic>go -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>go122</name>
+	<range><lt>1.22.11</lt></range>
+      </package>
+      <package>
+	<name>go123</name>
+	<range><lt>1.23.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Go project reports:</p>
+	<blockquote cite="https://go.dev/issue/71156">
+	  <p>crypto/x509: usage of IPv6 zone IDs can bypass URI name constraints</p>
+	  <p>A certificate with a URI which has a IPv6 address with a
+	  zone ID may incorrectly satisfy a URI name constraint that
+	  applies to the certificate chain.</p>
+	</blockquote>
+	<blockquote cite="https://go.dev/issue/70530">
+	  <p>net/http: sensitive headers incorrectly sent after cross-domain redirect</p>
+	  <p>The HTTP client drops sensitive headers after following a
+	  cross-domain redirect.  For example, a request to a.com/
+	  containing an Authorization header which is redirected to
+	  b.com/ will not send that header to b.com.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-45341</cvename>
+      <cvename>CVE-2024-45336</cvename>
+      <url>https://go.dev/issue/71156</url>
+      <url>https://go.dev/issue/70530</url>
+    </references>
+    <dates>
+      <discovery>2025-01-07</discovery>
+      <entry>2025-01-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3161429b-3897-4593-84a0-b41ffbbfa36b">
+    <topic>electron31 -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>electron31</name>
+	<range><lt>31.7.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Electron developers report:</p>
+	<blockquote cite="https://github.com/electron/electron/releases/tag/v31.7.7">
+	  <p>This update fixes the following vulnerabilities:</p>
+	  <ul>
+	    <li>Security: backported fix for CVE-2024-12053.</li>
+	    <li>Security: backported fix for CVE-2024-12693.</li>
+	    <li>Security: backported fix for CVE-2024-12694.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-12053</cvename>
+      <url>https://github.com/advisories/GHSA-wvx7-72hc-rp32</url>
+      <cvename>CVE-2024-12693</cvename>
+      <url>https://github.com/advisories/GHSA-m84q-p89f-6cc5</url>
+      <cvename>CVE-2024-12694</cvename>
+      <url>https://github.com/advisories/GHSA-cgc6-4xgf-5q5x</url>
+    </references>
+    <dates>
+      <discovery>2025-01-14</discovery>
+      <entry>2025-01-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="d9b0fea0-d564-11ef-b9bc-d05099c0ae8c">
     <topic>age -- age vulnerable to malicious plugin names, recipients, or identities causing arbitrary binary execution</topic>
     <affects>
