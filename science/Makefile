@@ -352,6 +352,7 @@
     SUBDIR += py-h5pyd
     SUBDIR += py-hiphive
     SUBDIR += py-hoomd-blue
+    SUBDIR += py-icet
     SUBDIR += py-inequality
     SUBDIR += py-ipygany
     SUBDIR += py-jupyter_jsmol
@@ -430,6 +431,7 @@
     SUBDIR += py-scipy
     SUBDIR += py-scoria
     SUBDIR += py-sdf
+    SUBDIR += py-seekpath
     SUBDIR += py-segregation
     SUBDIR += py-segyio
     SUBDIR += py-signac

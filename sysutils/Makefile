@@ -99,12 +99,6 @@
     SUBDIR += bareos-client
     SUBDIR += bareos-server
     SUBDIR += bareos-traymonitor
-    SUBDIR += bareos20-client
-    SUBDIR += bareos20-server
-    SUBDIR += bareos20-traymonitor
-    SUBDIR += bareos21-client
-    SUBDIR += bareos21-server
-    SUBDIR += bareos21-traymonitor
     SUBDIR += bareos22-client
     SUBDIR += bareos22-server
     SUBDIR += bareos22-traymonitor
@@ -722,6 +716,7 @@
     SUBDIR += modman
     SUBDIR += modules
     SUBDIR += mog
+    SUBDIR += mongodb_exporter
     SUBDIR += monit
     SUBDIR += monitord
     SUBDIR += monitorix

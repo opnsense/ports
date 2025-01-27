@@ -597,7 +597,6 @@
     SUBDIR += pipewire-spa-oss
     SUBDIR += pithos
     SUBDIR += plasma5-kpipewire
-    SUBDIR += plasma5-oxygen-sounds
     SUBDIR += plasma5-plasma-pa
     SUBDIR += plasma6-kpipewire
     SUBDIR += plasma6-ocean-sound-theme
@@ -847,6 +846,7 @@
     SUBDIR += wavplay
     SUBDIR += webrtc-audio-processing
     SUBDIR += webrtc-audio-processing0
+    SUBDIR += webrtc-audio-processing2
     SUBDIR += welle.io
     SUBDIR += whysynth
     SUBDIR += wildmidi

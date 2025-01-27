@@ -71,8 +71,6 @@
     SUBDIR += badwolf
     SUBDIR += baikal
     SUBDIR += bareos-webui
-    SUBDIR += bareos20-webui
-    SUBDIR += bareos21-webui
     SUBDIR += bareos22-webui
     SUBDIR += bareos23-webui
     SUBDIR += beehive
@@ -355,6 +353,7 @@
     SUBDIR += lzr
     SUBDIR += man2web
     SUBDIR += manpageblog
+    SUBDIR += marmite
     SUBDIR += mathjax
     SUBDIR += mathjax3
     SUBDIR += mathopd
@@ -362,7 +361,6 @@
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
     SUBDIR += mediawiki139
-    SUBDIR += mediawiki141
     SUBDIR += mediawiki142
     SUBDIR += mediawiki143
     SUBDIR += mergelog
@@ -430,6 +428,7 @@
     SUBDIR += mod_scgi
     SUBDIR += mod_security
     SUBDIR += mod_setenvifplus
+    SUBDIR += mod_tls
     SUBDIR += mod_umask
     SUBDIR += mod_webauth
     SUBDIR += mod_webkit
@@ -2093,7 +2092,6 @@
     SUBDIR += rubygem-goldfinger
     SUBDIR += rubygem-gollum
     SUBDIR += rubygem-gollum-grit_adapter
-    SUBDIR += rubygem-gollum-grit_adapter10
     SUBDIR += rubygem-gollum-lib
     SUBDIR += rubygem-gollum-rugged_adapter
     SUBDIR += rubygem-gon-rails5
@@ -2569,8 +2567,7 @@
     SUBDIR += webgrind
     SUBDIR += webhook
     SUBDIR += webinject
-    SUBDIR += webkit2-gtk3
-    SUBDIR += webkit2-gtk4
+    SUBDIR += webkit2-gtk
     SUBDIR += weblint++
     SUBDIR += webpy
     SUBDIR += webresolve

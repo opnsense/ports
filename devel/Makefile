@@ -1104,8 +1104,6 @@
     SUBDIR += kdevelop-pg-qt
     SUBDIR += kdsingleapplication
     SUBDIR += kerl
-    SUBDIR += kf5-extra-cmake-modules
-    SUBDIR += kf5-kapidox
     SUBDIR += kf5-kauth
     SUBDIR += kf5-kbookmarks
     SUBDIR += kf5-kcmutils
@@ -7896,7 +7894,6 @@
     SUBDIR += rubygem-strings
     SUBDIR += rubygem-strings-ansi
     SUBDIR += rubygem-strong_migrations
-    SUBDIR += rubygem-strong_migrations61
     SUBDIR += rubygem-strptime
     SUBDIR += rubygem-strscan
     SUBDIR += rubygem-structured_warnings

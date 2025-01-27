@@ -106,7 +106,6 @@
     SUBDIR += ipa_sdb
     SUBDIR += iplike
     SUBDIR += jdb
-    SUBDIR += jdbc-oracle11g
     SUBDIR += jetbrains-datagrip
     SUBDIR += jlog
     SUBDIR += jrobin
@@ -896,7 +895,6 @@
     SUBDIR += ruby-tokyocabinet
     SUBDIR += ruby-xapian
     SUBDIR += rubygem-active_model_serializers
-    SUBDIR += rubygem-active_model_serializers61
     SUBDIR += rubygem-active_record_query_trace
     SUBDIR += rubygem-activemodel-serializers-xml
     SUBDIR += rubygem-activemodel4

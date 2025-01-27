@@ -1,5 +1,6 @@
 PORTNAME=	arrow-datafusion
 DISTVERSION=	44.0.0
+PORTREVISION=	1
 CATEGORIES=	misc
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -453,4 +454,11 @@ CARGO_CRATES=	addr2line-0.24.2 \
 
 PLIST_FILES=	bin/datafusion-cli
 
-.include <bsd.port.mk>
+.include <bsd.port.pre.mk>
+
+.if ${ARCH:Marmv?}
+LTO_UNSAFE=	yes
+CARGO_ENV+=	CARGO_PROFILE_RELEASE_LTO=false
+.endif
+
+.include <bsd.port.post.mk>

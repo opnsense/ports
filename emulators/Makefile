@@ -128,6 +128,7 @@
     SUBDIR += riscv-isa-sim
     SUBDIR += rpcs3
     SUBDIR += rubygem-fission
+    SUBDIR += rvvm
     SUBDIR += sameboy
     SUBDIR += simh
     SUBDIR += simh-hp2100
@@ -169,7 +170,6 @@
     SUBDIR += vmsbackup
     SUBDIR += vmw
     SUBDIR += vt100
-    SUBDIR += vxtools
     SUBDIR += wine
     SUBDIR += wine-devel
     SUBDIR += wine-gecko

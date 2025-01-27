@@ -1,6 +1,6 @@
 PORTNAME=	vimb
 DISTVERSION=	3.7.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	www
 
 MAINTAINER=	mew14930xvi@inbox.lv
@@ -11,7 +11,7 @@ LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
-		libwebkit2gtk-4.0.so:www/webkit2-gtk3
+		libwebkit2gtk-4.0.so:www/webkit2-gtk@40
 
 USES=		compiler:c11 desktop-file-utils gmake gnome pkgconfig
 USE_GITHUB=	yes
