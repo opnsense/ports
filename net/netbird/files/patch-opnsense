@@ -1,0 +1,13 @@
+--- client/system/info_freebsd.go
++++ client/system/info_freebsd.go
+@@ -39,7 +39,7 @@ func GetInfo(ctx context.Context) *Info {
+ 	systemHostname, _ := os.Hostname()
+ 
+ 	return &Info{
+-		GoOS:               runtime.GOOS,
++		GoOS:               "linux",
+ 		Kernel:             osInfo[0],
+ 		Platform:           runtime.GOARCH,
+- 		OS:                 osName,
++ 		OS:                 strings.Replace(osName, "FreeBSD", "FakeBSD", -1),
+
