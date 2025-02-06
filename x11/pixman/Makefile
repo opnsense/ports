@@ -15,7 +15,13 @@ MESON_ARGS=	-Dloongson-mmi=disabled \
 		-Dgtk=disabled \
 		-Ddemos=disabled
 
-OPTIONS_DEFINE=	TEST
+OPTIONS_DEFINE=		OPENMP TEST
+OPTIONS_DEFAULT=	OPENMP
+OPTIONS_EXCLUDE_armv6=	OPENMP
+OPTIONS_EXCLUDE_armv7=	OPENMP
+OPTIONS_EXCLUDE_powerpc=OPENMP
+
+OPENMP_MESON_ENABLED=	openmp
 
 TEST_LIB_DEPENDS=	libpng.so:graphics/png
 TEST_MESON_ENABLED=	libpng tests
@@ -23,14 +29,12 @@ TEST_MESON_ENABLED=	libpng tests
 .include <bsd.port.options.mk>
 
 .if ${ARCH} == armv6
-MESON_ARGS+=	-Darm-simd=enabled \
-		-Dopenmp=disabled
+MESON_ARGS+=	-Darm-simd=enabled
 .else
 MESON_ARGS+=	-Darm-simd=disabled
 .endif
 .if ${ARCH} == armv7
-MESON_ARGS+=	-Dneon=enabled \
-		-Dopenmp=disabled
+MESON_ARGS+=	-Dneon=enabled
 .else
 MESON_ARGS+=	-Dneon=disabled
 .endif
