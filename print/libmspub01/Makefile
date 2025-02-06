@@ -10,6 +10,7 @@ COMMENT=	Library and tools for parsing Microsoft Publisher file format
 WWW=		https://wiki.documentfoundation.org/DLP/Libraries/libmspub
 
 LICENSE=	MPL20
+LICENSE_FILE=	${WRKSRC}/COPYING.MPL
 
 BUILD_DEPENDS=	${LOCALBASE}/include/boost/cstdint.hpp:devel/boost-libs
 LIB_DEPENDS=	libicui18n.so:devel/icu \

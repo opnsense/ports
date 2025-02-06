@@ -118,6 +118,7 @@
     SUBDIR += kyototycoon
     SUBDIR += ldb25
     SUBDIR += ldb28
+    SUBDIR += ldb29
     SUBDIR += leo_center
     SUBDIR += leofs
     SUBDIR += leveldb
@@ -200,8 +201,6 @@
     SUBDIR += mysql80-server
     SUBDIR += mysql84-client
     SUBDIR += mysql84-server
-    SUBDIR += mysql90-client
-    SUBDIR += mysql90-server
     SUBDIR += mysql91-client
     SUBDIR += mysql91-server
     SUBDIR += mysqlbackup
@@ -1084,6 +1083,7 @@
     SUBDIR += tcl-lmdb
     SUBDIR += tcl-sqlite3
     SUBDIR += tdb
+    SUBDIR += tdb1410
     SUBDIR += tdbc
     SUBDIR += tile38
     SUBDIR += tiledb
@@ -1108,7 +1108,6 @@
     SUBDIR += xls2txt
     SUBDIR += xrootd
     SUBDIR += xtrabackup80
-    SUBDIR += xtrabackup81
     SUBDIR += xtrabackup84
     SUBDIR += zodb
 

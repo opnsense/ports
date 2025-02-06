@@ -1,22 +1,14 @@
-# TODO: - libipsec issue ?
-#       - cleanup...
-#       - SYSCONFDIR
-#       - $LOCALBASE/sbin/setkey Vs /usr/sbin/setkey
-
 PORTNAME=	ipsec-tools
 PORTVERSION=	0.8.2
 PORTREVISION=	13
 CATEGORIES=	security
 MASTER_SITES=	SF
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	eugen@FreeBSD.org
 COMMENT=	KAME racoon IKE daemon, ipsec-tools version
-WWW=		https://ipsec-tools.sourceforge.net/
+WWW=		http://cvsweb.netbsd.org/bsdweb.cgi/src/crypto/dist/ipsec-tools/src/racoon/
 
 LICENSE=	BSD3CLAUSE
-
-DEPRECATED=	Deprecated by upstream in 2014, contains security issues
-EXPIRATION_DATE=2025-01-31
 
 USES=		cpe libtool tar:bzip2 ssl
 

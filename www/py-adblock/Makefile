@@ -1,6 +1,6 @@
 PORTNAME=	adblock
 DISTVERSION=	0.6.0
-PORTREVISION=	22
+PORTREVISION=	23
 CATEGORIES=	www python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -118,11 +118,6 @@ do-build:
 # Due to upstream not supplying a setup.py file or other way to install
 # using pip command for now...
 do-install:
-.if ${ARCH:Mpowerpc64*}
-	@(cd ${INSTALL_WRKSRC}; \
-		${FIND} . -name "*whl" -exec ${SH} -c 'mv {} `echo {} | ${SED}  -E -e "s/powerpc.*/powerpc.whl/"`' \
-		\;)
-.endif
 	@(cd ${INSTALL_WRKSRC} ; \
 		${INSTALL_DATA} "target/release/libadblock.so" \
 		"${STAGEDIR}/${PREFIX}/lib" ; \

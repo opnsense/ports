@@ -10,6 +10,7 @@
     SUBDIR += R-cran-httpuv
     SUBDIR += R-cran-httr
     SUBDIR += R-cran-httr2
+    SUBDIR += R-cran-jose
     SUBDIR += R-cran-jquerylib
     SUBDIR += R-cran-miniUI
     SUBDIR += R-cran-pkgdown
@@ -293,6 +294,7 @@
     SUBDIR += katana
     SUBDIR += kcgi
     SUBDIR += kdsoap
+    SUBDIR += kdsoap-ws-discovery-client
     SUBDIR += kf5-khtml
     SUBDIR += kf5-kjs
     SUBDIR += kf5-kjsembed
@@ -493,6 +495,7 @@
     SUBDIR += npm-node20
     SUBDIR += npm-node22
     SUBDIR += npm-node23
+    SUBDIR += nyxt
     SUBDIR += oauth2-proxy
     SUBDIR += obhttpd
     SUBDIR += offpunk
@@ -579,7 +582,6 @@
     SUBDIR += p5-CGI-Application-Plugin-Forward
     SUBDIR += p5-CGI-Application-Plugin-HTDot
     SUBDIR += p5-CGI-Application-Plugin-HTMLPrototype
-    SUBDIR += p5-CGI-Application-Plugin-HtmlTidy
     SUBDIR += p5-CGI-Application-Plugin-JSON
     SUBDIR += p5-CGI-Application-Plugin-LinkIntegrity
     SUBDIR += p5-CGI-Application-Plugin-LogDispatch
@@ -1436,7 +1438,6 @@
     SUBDIR += phpvirtualbox
     SUBDIR += phpvirtualbox-legacy
     SUBDIR += piwigo
-    SUBDIR += plasma5-plasma-browser-integration
     SUBDIR += plasma6-plasma-browser-integration
     SUBDIR += pmwiki
     SUBDIR += pnews
@@ -1776,6 +1777,7 @@
     SUBDIR += py-jsonfield
     SUBDIR += py-kiss-headers
     SUBDIR += py-laces
+    SUBDIR += py-legacy-cgi
     SUBDIR += py-lektor
     SUBDIR += py-lesscpy
     SUBDIR += py-libsass
@@ -1949,6 +1951,7 @@
     SUBDIR += reddsaver
     SUBDIR += redmine50
     SUBDIR += redmine51
+    SUBDIR += redmine60
     SUBDIR += rejik
     SUBDIR += remark42
     SUBDIR += reportmagic
@@ -2395,7 +2398,6 @@
     SUBDIR += scloader
     SUBDIR += script4rss
     SUBDIR += seahub
-    SUBDIR += searx
     SUBDIR += selenium
     SUBDIR += serendipity
     SUBDIR += serf
