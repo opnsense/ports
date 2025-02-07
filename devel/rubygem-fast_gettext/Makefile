@@ -1,5 +1,5 @@
 PORTNAME=	fast_gettext
-PORTVERSION=	4.1.0
+PORTVERSION=	3.1.0
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 
@@ -10,8 +10,7 @@ WWW=		https://github.com/grosser/fast_gettext
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-RUN_DEPENDS=	rubygem-prime>=0:math/rubygem-prime \
-		rubygem-racc>=0:devel/rubygem-racc
+RUN_DEPENDS=	rubygem-prime>=0:math/rubygem-prime
 
 USES=		gem
 
