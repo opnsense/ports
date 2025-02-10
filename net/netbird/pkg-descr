@@ -1,10 +1,18 @@
-Netbird is an open-source, peer-to-peer VPN built on top of WireGuard. It enables secure and private networking between devices across different locations without the need for complex configurations.
+Netbird is an open-source, peer-to-peer VPN built on top of WireGuard.
+It enables secure and private networking between devices across different
+locations without the need for complex configurations.
 
 Key features:
-Zero-config VPN: Easily create secure connections between devices without manual network setup.
-Built on WireGuard: Leverages WireGuard’s high-performance encryption for fast and secure communication.
-Self-hosted or Cloud-managed: Users can deploy their own Netbird management server or use Netbird Cloud for centralized control.
-Access Control & Routing: Fine-grained access control policies and automatic network routing simplify connectivity.
-This FreeBSD port provides the Netbird client daemon and CLI tools, allowing FreeBSD systems to join a Netbird mesh network and securely communicate with other peers.
+- Zero-config VPN: Easily create secure connections between devices without
+manual network setup.
+- Built on WireGuard: Leverages WireGuard?s high-performance encryption for
+fast and secure communication.
+- Self-hosted or Cloud-managed: Users can deploy their own Netbird management
+server or use Netbird Cloud for centralized control.
+- Access Control & Routing: Fine-grained access control policies and automatic
+network routing simplify connectivity.
+- This FreeBSD port provides the Netbird client daemon and CLI tools, allowing
+FreeBSD systems to join a Netbird mesh network and securely communicate with
+other peers.
 
 For more details, visit: https://netbird.io

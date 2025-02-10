@@ -1,29 +1,26 @@
-PORTNAME=	netbird
-DISTVERSION=	0.36.5
+PORTNAME=		netbird
 DISTVERSIONPREFIX=	v
-PORTREVISION=   1
-CATEGORIES=	net security net-vpn
+DISTVERSION=		0.36.5
+CATEGORIES=		net security net-vpn
 
-WRKSRC=		${WRKDIR}/netbird-${PORTVERSION}
+MAINTAINER=		opn-netbird@sun-ri.se
+COMMENT=		Mesh VPN
+WWW=			https://netbird.io/
 
-MAINTAINER=	opn-netbird@sun-ri.se
-COMMENT=	Mesh VPN
-WWW=		https://netbird.io/
+LICENSE=		BSD3CLAUSE
+LICENSE_FILE=		${WRKSRC}/LICENSE
 
-LICENSE=        BSD3CLAUSE
-LICENSE_FILE=   ${WRKSRC}/LICENSE
+USES=			go:1.23,modules
+WRKSRC=			${WRKDIR}/netbird-${PORTVERSION}
 
-USES=		go:1.23,modules
+GO_MODULE=		github.com/netbirdio/netbird
 
-GO_MODULE=	github.com/netbirdio/netbird
+USE_RC_SUBR=		netbird
 
-USE_RC_SUBR=	netbird
+GO_TARGET=		./client:netbird
+GO_BUILDFLAGS=		-tags freebsd -o ${PORTNAME} -ldflags "\
+			-s -w -X github.com/netbirdio/netbird/version.version=${PORTVERSION}"
 
-GO_TARGET=	./client:netbird
-GO_BUILDFLAGS=	-tags freebsd -o ${PORTNAME} -ldflags "\
-		 -s -w -X github.com/netbirdio/netbird/version.version=${PORTVERSION}"
-
-PLIST_FILES=	bin/netbird
-
+PLIST_FILES=		bin/netbird
 
 .include <bsd.port.mk>
