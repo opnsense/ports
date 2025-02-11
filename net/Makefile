@@ -10,6 +10,7 @@
     SUBDIR += addrwatch
     SUBDIR += afpfs-ng
     SUBDIR += aget
+    SUBDIR += akhq
     SUBDIR += akonadi-calendar
     SUBDIR += akonadi-contacts
     SUBDIR += akonadi-mime
@@ -182,6 +183,7 @@
     SUBDIR += fsplib
     SUBDIR += gamenetworkingsockets
     SUBDIR += gdrive
+    SUBDIR += gemget
     SUBDIR += gemserv
     SUBDIR += geoclue
     SUBDIR += geocode-glib

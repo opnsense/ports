@@ -24,6 +24,7 @@ USE_KDE=	archive attica auth bookmarks codecs completion config \
 		guiaddons i18n iconthemes itemviews jobwidgets kdeclarative \
 		kio newstuff notifications notifyconfig package service solid \
 		sonnet textwidgets widgetsaddons windowsystem xmlgui \
+		qqc2-desktop-style:run \
 		ecm:build
 USE_QT=		base networkauth
 USE_XORG=	x11
