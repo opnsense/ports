@@ -1,3 +1,293 @@
+  <vuln vid="20485d27-e540-11ef-a845-b42e991fc52e">
+    <topic>mozilla -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>135.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>128.7,1</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>128.7</lt></range>
+	<range><gt>129</gt><lt>135</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1926256%2C1935984%2C1935471">
+	<p>A bug in WebAssembly code generation could have lead to a crash.
+	It may have been possible for an attacker to leverage this to achieve
+	code execution.</p>
+	<p>A race condition could have led to private browsing tabs being
+	opened in normal browsing windows.  This could have resulted in a
+	potential privacy leak.</p>
+	<p>Certificate length was not properly checked when added to a certificate
+	store.  In practice only trusted data was processed.</p>
+	<p>Memory safety bugs present in Firefox 134, Thunderbird 134, Firefox
+	ESR 128.6, and Thunderbird 128.6.  Some of these bugs showed evidence
+	of memory corruption and we presume that with enough effort some
+	of these could have been exploited to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1011</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1011</url>
+      <cvename>CVE-2025-1013</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1013</url>
+      <cvename>CVE-2025-1014</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1014</url>
+      <cvename>CVE-2025-1017</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1017</url>
+    </references>
+    <dates>
+      <discovery>2025-02-04</discovery>
+      <entry>2025-02-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f7ca4ff7-e53f-11ef-a845-b42e991fc52e">
+    <topic>mozilla -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>mozilla</name>
+	<range><lt>135.0.0,2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1939063%2C1942169">
+	  <p>Memory safety bugs present in Firefox 134 and Thunderbird 134.  Some
+	of these bugs showed evidence of memory corruption and we presume
+	that with enough effort some of these could have been exploited to
+	run arbitrary code.</p>
+	  <p>The fullscreen notification is prematurely hidden when fullscreen
+	is re-requested quickly by the user.  This could have been leveraged
+	to perform a potential spoofing attack.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1018</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1018</url>
+      <cvename>CVE-2025-1019</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1019</url>
+      <cvename>CVE-2025-1020</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1020</url>
+    </references>
+    <dates>
+      <discovery>2025-02-04</discovery>
+      <entry>2025-02-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e54a1413-e539-11ef-a845-b42e991fc52e">
+    <topic>mozilla -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>135.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>115.20,1</lt></range>
+	<range><gt>116.0,1</gt><lt>128.6,1</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>128.7</lt></range>
+	<range><gt>129</gt><lt>135</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1936601%2C1936844%2C1937694%2C1938469%2C1939583%2C1940994">
+	<p>An attacker could have caused a use-after-free via crafted XSLT
+	data, leading to a potentially exploitable crash.</p>
+	<p>An attacker could have caused a use-after-free via the Custom
+	Highlight API, leading to a potentially exploitable crash.</p>
+	<p>A race during concurrent delazification could have led to a
+	use-after-free.</p>
+	<p>Memory safety bugs present in Firefox 134, Thunderbird 134, Firefox
+	ESR 115.19, Firefox ESR 128.6, Thunderbird 115.19, and Thunderbird
+	128.6.  Some of these bugs showed evidence of memory corruption and
+	we presume that with enough effort some of these could have been
+	exploited to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1009</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1009</url>
+      <cvename>CVE-2025-1010</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1010</url>
+      <cvename>CVE-2025-1012</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1012</url>
+      <cvename>CVE-2025-1016</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1016</url>
+    </references>
+    <dates>
+      <discovery>2025-02-04</discovery>
+      <entry>2025-02-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="830381c7-e539-11ef-a845-b42e991fc52e">
+    <topic>Thundirbird -- unprivileged JavaScript code execution</topic>
+    <affects>
+      <package>
+	<name>mozilla</name>
+	<range><lt>128.7,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1939458">
+	  <p>The Thunderbird Address Book URI fields contained unsanitized links.
+	This could be used by an attacker to create and export an address
+	book containing a malicious payload in a field.  For example, in
+	the Other field of the Instant Messaging section.  If another user
+	imported the address book, clicking on the link could result in
+	opening a web page inside Thunderbird, and that page could execute
+	(unprivileged) JavaScript.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1015</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1015</url>
+    </references>
+    <dates>
+      <discovery>2025-02-04</discovery>
+      <entry>2025-02-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7bcfca95-e563-11ef-873e-8447094a420f">
+    <topic>MariaDB -- DoS vulnerability in InnoDB</topic>
+    <affects>
+      <package>
+	<name>mariadb105-server</name>
+	<range><lt>10.5.28</lt></range>
+      </package>
+      <package>
+	<name>mariadb106-server</name>
+	<range><lt>10.6.21</lt></range>
+      </package>
+      <package>
+	<name>mariadb1011-server</name>
+	<range><lt>10.11.11</lt></range>
+      </package>
+      <package>
+	<name>mariadb114-server</name>
+	<range><lt>11.4.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>MariaDB reports:</p>
+	<blockquote cite="https://mariadb.com/kb/en/security/">
+	  <p>Easily exploitable vulnerability allows high privileged attacker with network access via multiple protocols to compromise MySQL Server. Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of MySQL Server.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-21490</cvename>
+      <url>http://mariadb.com/kb/en/security/</url>
+    </references>
+    <dates>
+      <discovery>2025-02-04</discovery>
+      <entry>2025-02-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c10b639c-e51c-11ef-9e76-4ccc6adda413">
+    <topic>libcaca -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>libcaca</name>
+	<range><lt>0.99.b20</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Sam Hocevar reports:</p>
+	<blockquote cite="https://github.com/cacalabs/libcaca/releases/tag/v0.99.beta20">
+	  <p>Multiple memory leaks and invalid memory accesses:</p>
+	  <ul>
+	    <li>CVE-2018-20545: Illegal WRITE memory access at common-image.c</li>
+	    <li>CVE-2018-20546: Illegal READ memory access at caca/dither.c</li>
+	    <li>CVE-2018-20547: Illegal READ memory access at caca/dither.c</li>
+	    <li>CVE-2018-20548: Illegal WRITE memory access at common-image.c</li>
+	    <li>CVE-2018-20549: Illegal WRITE memory access at caca/file.c</li>
+	    <li>CVE-2021-3410:  Buffer overflow in libcaca/caca/canvas.c in function caca_resize</li>
+	    <li>CVE-2021-30498: Heap buffer overflow in export.c in function export_tga</li>
+	    <li>CVE-2021-30499: Buffer overflow in export.c in function export_troff</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2018-20545</cvename>
+      <cvename>CVE-2018-20546</cvename>
+      <cvename>CVE-2018-20547</cvename>
+      <cvename>CVE-2018-20548</cvename>
+      <cvename>CVE-2018-20549</cvename>
+      <cvename>CVE-2021-3410</cvename>
+      <cvename>CVE-2021-30498</cvename>
+      <cvename>CVE-2021-30499</cvename>
+      <url>https://github.com/cacalabs/libcaca/releases/tag/v0.99.beta20</url>
+    </references>
+    <dates>
+      <discovery>2021-10-19</discovery>
+      <entry>2025-02-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e7974ca5-e4c8-11ef-aab3-40b034429ecf">
+    <topic>cacti -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cacti</name>
+	<range><lt>1.2.29</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Cacti repo reports:</p>
+	<blockquote cite="https://github.com/Cacti/cacti/releases/tag/release%2F1.2.29">
+	  <ul>
+	    <li>security #GHSA-c5j8-jxj3-hh36: Authenticated RCE via multi-line SNMP responses</li>
+	    <li>security #GHSA-f9c7-7rc3-574c: SQL Injection vulnerability when using tree rules through Automation API</li>
+	    <li>security #GHSA-fh3x-69rr-qqpp: SQL Injection vulnerability when request automation devices</li>
+	    <li>security #GHSA-fxrq-fr7h-9rqq: Arbitrary File Creation leading to RCE</li>
+	    <li>security #GHSA-pv2c-97pp-vxwg: Local File Inclusion (LFI) Vulnerability via Poller Standard Error Log Path</li>
+	    <li>security #GHSA-vj9g-p7f2-4wqj: SQL Injection vulnerability when view host template</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-22604</cvename>
+      <cvename>CVE-2025-24368</cvename>
+      <cvename>CVE-2024-54145</cvename>
+      <cvename>CVE-2025-24367</cvename>
+      <cvename>CVE-2024-45598</cvename>
+      <cvename>CVE-2024-54146</cvename>
+    </references>
+    <dates>
+      <discovery>2025-02-02</discovery>
+      <entry>2025-02-05</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="9761af78-e3e4-11ef-9f4a-589cfc10a551">
     <topic>nginx-devel -- SSL session reuse vulnerability</topic>
     <affects>
