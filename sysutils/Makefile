@@ -956,6 +956,7 @@
     SUBDIR += pmt
     SUBDIR += pnscan
     SUBDIR += podman
+    SUBDIR += podman-compose
     SUBDIR += podman-suite
     SUBDIR += polkit
     SUBDIR += polkit-gnome
@@ -1281,6 +1282,7 @@
     SUBDIR += signon-plugin-oauth2
     SUBDIR += signon-ui
     SUBDIR += signond
+    SUBDIR += simplesnap
     SUBDIR += sispmctl
     SUBDIR += skopeo
     SUBDIR += slack

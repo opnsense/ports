@@ -3,6 +3,7 @@
 #  devel/kdev-python
 PORTNAME=	kdevelop
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	devel kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -45,9 +46,7 @@ CMAKE_ARGS=	-DCMAKE_POLICY_DEFAULT_CMP0074=NEW \
 CMAKE_OFF=	USE_QTWEBKIT
 
 # Versioning values, to reduce plist churn
-SO_VER=		61
-SO_VER_LONG=	6.1.241202
-PLIST_SUB+=	SO_VER=${SO_VER} SO_VER_LONG=${SO_VER_LONG}
+.include "${.CURDIR}/kdevelop.mk"
 
 SHEBANG_LANG=	zsh
 zsh_OLD_CMD=	/bin/zsh
