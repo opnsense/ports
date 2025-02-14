@@ -1,3 +1,265 @@
+  <vuln vid="cbf5d976-656b-4bb6-805f-3af038e2de3e">
+    <topic>vscode -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>vscode</name>
+	<range><lt>1.97.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>VSCode developers report:</p>
+	<blockquote cite="https://github.com/microsoft/vscode/releases/tag/1.97.1">
+	  <p>The update addresses these issues, including a fix for a security vulnerability.</p>
+	  <ul>
+	    <li>Scope node_module binary resolution in js-debug</li>
+	    <li>Elevation of Privilege Vulnerability with VS Code server for web UI</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-24042</cvename>
+      <url>https://github.com/microsoft/vscode/security/advisories/GHSA-f85p-3684-2g3j</url>
+      <cvename>CVE-2025-24039</cvename>
+      <url>https://github.com/microsoft/vscode/security/advisories/GHSA-532g-4pv9-25f2</url>
+    </references>
+    <dates>
+      <discovery>2025-02-11</discovery>
+      <entry>2025-02-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e915b60e-ea25-11ef-a1c0-0050569f0b83">
+    <topic>security/openvpn-auth-ldap -- Fix buffer overflow in challenge/response</topic>
+    <affects>
+      <package>
+	<name>openvpn-auth-ldap</name>
+	<range><lt>2.0.4_3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Graham Northup reports:</p>
+	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2024-28820">
+	  <p>A buffer overflow in extract_openvpn_cr allows attackers with a valid
+	     LDAP username and who can control the challenge/response password field
+	     to pass a string with more than 14 colons into this field and cause a
+	     buffer overflow.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-28820</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-28820</url>
+    </references>
+    <dates>
+      <discovery>2024-06-27</discovery>
+      <entry>2025-02-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fadf3b41-ea19-11ef-a540-6cc21735f730">
+    <topic>PostgreSQL -- PostgreSQL quoting APIs miss neutralizing quoting syntax in text that fails encoding validation</topic>
+    <affects>
+      <package>
+	<name>postgresql17-client</name>
+	<range><lt>17.3</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-client</name>
+	<range><lt>16.7</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-client</name>
+	<range><lt>15.11</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-client</name>
+	<range><lt>14.16</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-client</name>
+	<range><lt>13.19</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The PostgreSQL Project reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2025-1094/">
+	<p>
+	  Improper neutralization of quoting syntax in PostgreSQL
+	  libpq functions PQescapeLiteral(), PQescapeIdentifier(),
+	  PQescapeString(), and PQescapeStringConn() allows a
+	  database input provider to achieve SQL injection in
+	  certain usage patterns. Specifically, SQL injection
+	  requires the application to use the function result to
+	  construct input to psql, the PostgreSQL interactive
+	  terminal. Similarly, improper neutralization of quoting
+	  syntax in PostgreSQL command line utility programs
+	  allows a source of command line arguments to achieve SQL
+	  injection when client_encoding is BIG5 and
+	  server_encoding is one of EUC_TW or MULE_INTERNAL.
+	  Versions before PostgreSQL 17.3, 16.7, 15.11, 14.16, and
+	  13.19 are affected.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1094</cvename>
+      <url>https://www.postgresql.org/support/security/CVE-2025-1094/</url>
+    </references>
+    <dates>
+      <discovery>2025-02-13</discovery>
+      <entry>2025-02-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1a8c5720-e9cf-11ef-9e96-2cf05da270f3">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>17.8.0</ge><lt>17.8.2</lt></range>
+	<range><ge>17.7.0</ge><lt>17.7.4</lt></range>
+	<range><ge>8.3.0</ge><lt>17.6.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/02/12/patch-release-gitlab-17-8-2-released/">
+	  <p>A CSP-bypass XSS in merge-request page</p>
+	  <p>Denial of Service due to Unbounded Symbol Creation</p>
+	  <p>Exfiltrate content from private issues using Prompt Injection</p>
+	  <p>A custom permission may allow overriding Repository settings</p>
+	  <p>Internal HTTP header leak via route confusion in workhorse</p>
+	  <p>SSRF via workspaces</p>
+	  <p>Unauthorized Incident Closure and Deletion by Planner Role in GitLab</p>
+	  <p>ActionCable does not invalidate tokens after revocation</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-0376</cvename>
+      <cvename>CVE-2024-12379</cvename>
+      <cvename>CVE-2024-3303</cvename>
+      <cvename>CVE-2025-1042</cvename>
+      <cvename>CVE-2025-1212</cvename>
+      <cvename>CVE-2024-9870</cvename>
+      <cvename>CVE-2025-0516</cvename>
+      <cvename>CVE-2025-1198</cvename>
+      <url>https://about.gitlab.com/releases/2025/02/12/patch-release-gitlab-17-8-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-02-12</discovery>
+      <entry>2025-02-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d598266d-7772-4a31-9594-83b76b1fb837">
+    <topic>Intel CPUs -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>cpu-microcode-intel</name>
+	<range><lt>20250211</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Intel reports:</p>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01166.html">
+	 <p>
+	  A potential security vulnerability in some Intel Processors may allow
+	  denial of service.  Intel released microcode updates to mitigate this
+	  potential vulnerability.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01213.html">
+	 <p>
+	  A potential security vulnerability in some Intel Software Guard
+	  Extensions (Intel SGX) Platforms may allow denial of service.  Intel
+	  is released microcode updates to mitigate this potential
+	  vulnerability.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01139.html">
+	 <p>
+	  Potential security vulnerabilities in the UEFI firmware for some Intel
+	  Processors may allow escalation of privilege, denial of service, or
+	  information disclosure. Intel released UEFI firmware and CPU microcode
+	  updates to mitigate these potential vulnerabilities.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01228.html">
+	 <p>
+	  A potential security vulnerability in some 13th and 14th Generation
+	  Intel Core™ Processors may allow denial of service.  Intel released
+	  microcode and UEFI reference code updates to mitigate this potential
+	  vulnerability.
+	 </p>
+	</blockquote>
+	<blockquote cite="https://www.intel.com/content/www/us/en/security-center/advisory/intel-sa-01194.html">
+	 <p>
+	  A potential security vulnerability in the Intel Data Streaming
+	  Accelerator (Intel DSA) for some Intel Xeon Processors may allow
+	  denial of service.  Intel released software updates to mitigate this
+	  potential vulnerability.
+	 </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-31068</cvename>
+      <cvename>CVE-2024-36293</cvename>
+      <cvename>CVE-2023-43758</cvename>
+      <cvename>CVE-2024-39355</cvename>
+      <cvename>CVE-2024-37020</cvename>
+      <url>https://github.com/intel/Intel-Linux-Processor-Microcode-Data-Files/releases/tag/microcode-20250211</url>
+    </references>
+    <dates>
+      <discovery>2025-02-11</discovery>
+      <entry>2025-02-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a64761a1-e895-11ef-873e-8447094a420f">
+    <topic>OpenSSL -- Man-in-the-Middle vulnerability</topic>
+    <affects>
+      <package>
+	<name>openssl32</name>
+	<range><lt>3.2.4</lt></range>
+      </package>
+      <package>
+	<name>openssl33</name>
+	<range><lt>3.3.2</lt></range>
+      </package>
+      <package>
+	<name>openssl34</name>
+	<range><lt>3.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The OpenSSL project reports:</p>
+	<blockquote cite="https://openssl-library.org/news/secadv/20250211.txt">
+	  <p>RFC7250 handshakes with unauthenticated servers don't abort as expected (High).
+	    Clients using RFC7250 Raw Public Keys (RPKs) to authenticate a server may fail to notice that the server was not authenticated, because handshakes don't abort as expected when the SSL_VERIFY_PEER verification mode is set.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-12797</cvename>
+      <url>https://openssl-library.org/news/secadv/20250211.txt</url>
+    </references>
+    <dates>
+      <discovery>2025-02-11</discovery>
+      <entry>2025-02-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="20485d27-e540-11ef-a845-b42e991fc52e">
     <topic>mozilla -- multiple vulnerabilities</topic>
     <affects>
