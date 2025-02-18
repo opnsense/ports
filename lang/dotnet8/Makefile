@@ -1,7 +1,7 @@
 PORTNAME=	dotnet
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${DOTNETVERSION}.6
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	lang devel
 MASTER_SITES=	https://github.com/dotnet/dotnet/releases/download/${DISTVERSIONPREFIX}${DISTVERSION}/release.json?dummy=/:dotnetmanifest \
 		LOCAL/arrowd/dotnet/:bootstrap
@@ -29,7 +29,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libinotify.so:devel/libinotify \
 		libunwind.so:devel/libunwind
 RUN_DEPENDS=	terminfo-db>0:misc/terminfo-db \
-		dotnet:lang/dotnet-runtime
+		dotnet:lang/dotnet-host
 
 USES=		autoreconf:build gssapi:mit llvm:noexport nodejs pkgconfig \
 		python:build,3.9+ shebangfix ssl
