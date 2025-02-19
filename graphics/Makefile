@@ -1264,6 +1264,7 @@
     SUBDIR += xfractint
     SUBDIR += xglurbules
     SUBDIR += xgrasp
+    SUBDIR += xiccd
     SUBDIR += ximaging
     SUBDIR += xli
     SUBDIR += xmedcon
