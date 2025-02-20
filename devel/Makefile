@@ -1566,6 +1566,8 @@
     SUBDIR += linux-rl9-qt5-qtbase
     SUBDIR += linux-rl9-qt5-qtscript
     SUBDIR += linux-rl9-qt5-qttools
+    SUBDIR += linux-rl9-sdl12
+    SUBDIR += linux-rl9-sdl20
     SUBDIR += linux-rl9-strace
     SUBDIR += linux-rl9-systemd-libs
     SUBDIR += linux-sublime-merge
@@ -4640,6 +4642,7 @@
     SUBDIR += py-check-jsonschema
     SUBDIR += py-check-manifest
     SUBDIR += py-check-sdist
+    SUBDIR += py-check-wheel-contents
     SUBDIR += py-cheetah3
     SUBDIR += py-circuitbreaker
     SUBDIR += py-circuits
@@ -6152,6 +6155,7 @@
     SUBDIR += py-websockets
     SUBDIR += py-websockify
     SUBDIR += py-wheel
+    SUBDIR += py-wheel-filename
     SUBDIR += py-whichcraft
     SUBDIR += py-whistle
     SUBDIR += py-widgetsnbextension
