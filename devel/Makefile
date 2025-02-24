@@ -733,6 +733,7 @@
     SUBDIR += freebsd-gcc13
     SUBDIR += freebsd-gcc14
     SUBDIR += freebsd-git-devtools
+    SUBDIR += freebsd-nvme-shim
     SUBDIR += freebsd-sysroot
     SUBDIR += frink
     SUBDIR += fruit
@@ -823,6 +824,7 @@
     SUBDIR += gettext-runtime
     SUBDIR += gettext-tiny
     SUBDIR += gettext-tools
+    SUBDIR += gf2
     SUBDIR += gflags
     SUBDIR += gfold
     SUBDIR += gh
@@ -831,6 +833,7 @@
     SUBDIR += ghq
     SUBDIR += ghub
     SUBDIR += ghub-devel
+    SUBDIR += gilt
     SUBDIR += gindent
     SUBDIR += gio-sharp
     SUBDIR += git
@@ -1381,6 +1384,7 @@
     SUBDIR += libnjs
     SUBDIR += libnotify
     SUBDIR += libnsutils
+    SUBDIR += libnvme
     SUBDIR += liboil
     SUBDIR += libolecf
     SUBDIR += libopenbsd
@@ -5743,7 +5747,6 @@
     SUBDIR += py-python-editor
     SUBDIR += py-python-engineio
     SUBDIR += py-python-gflags
-    SUBDIR += py-python-gilt
     SUBDIR += py-python-gist
     SUBDIR += py-python-gitlab
     SUBDIR += py-python-jenkins
@@ -8195,6 +8198,7 @@
     SUBDIR += stdman
     SUBDIR += stdx-allocator
     SUBDIR += stfl
+    SUBDIR += stgit
     SUBDIR += stlfilt
     SUBDIR += stlink
     SUBDIR += str

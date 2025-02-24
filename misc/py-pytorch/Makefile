@@ -1,7 +1,7 @@
 PORTNAME=	pytorch
 DISTVERSIONPREFIX=	v
 DISTVERSION=	2.5.1
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	misc # machine-learning
 MASTER_SITES=	https://github.com/pytorch/pytorch/releases/download/v${DISTVERSION}/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -56,6 +56,7 @@ MAKE_ENV+=	USE_CUDNN=0
 MAKE_ENV+=	USE_LAPACK=1 # needed on FreeBSD to run w/out GPU
 MAKE_ENV+=	USE_QNNPACK=0
 LDFLAGS+=	-lexecinfo
+LDFLAGS_powerpc64le=	-pthread
 
 BINARY_ALIAS=	make=${GMAKE}
 

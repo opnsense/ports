@@ -3,7 +3,7 @@ DISTVERSION=	${KDE_PLASMA_VERSION}.${KDE_APPLICATIONS_VERSION}
 CATEGORIES=	x11 kde
 
 MAINTAINER=	kde@FreeBSD.org
-COMMENT=	KDE Plasma Desktop and Applications (current)
+COMMENT=	KDE Plasma Desktop and Applications (meta port)
 WWW=		https://www.kde.org
 
 RUN_DEPENDS=	kde-baseapps>=0:x11/kde-baseapps \
@@ -15,9 +15,9 @@ USES=		kde:6 metaport qt:6
 USE_QT=		# empty
 
 OPTIONS_DEFINE=	KDEADMIN KDEEDU KDEGAMES KDEGRAPHICS KDEMULTIMEDIA KDENETWORK \
-		KDEPIM KDEUTILS PULSEAUDIO
+		KDEPIM KDEUTILS
 
-OPTIONS_DEFAULT=${OPTIONS_DEFINE:NPULSEAUDIO}
+OPTIONS_DEFAULT=${OPTIONS_DEFINE}
 
 KDEADMIN_DESC=		Administration utilities
 KDEADMIN_RUN_DEPENDS=	kdeadmin>=${KDE_APPLICATIONS_VERSION}:sysutils/kdeadmin
@@ -42,7 +42,5 @@ KDEPIM_RUN_DEPENDS=	kdepim>=${KDE_APPLICATIONS_VERSION}:deskutils/kdepim
 
 KDEUTILS_DESC=		Collection of utilities for KDE
 KDEUTILS_RUN_DEPENDS=	kdeutils>=${KDE_APPLICATIONS_VERSION}:misc/kdeutils
-
-PULSEAUDIO_USE=		KDE=plasma-pa
 
 .include <bsd.port.mk>

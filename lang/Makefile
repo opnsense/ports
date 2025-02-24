@@ -217,7 +217,6 @@
     SUBDIR += neocmakelsp
     SUBDIR += nesasm
     SUBDIR += newlisp
-    SUBDIR += nhc98
     SUBDIR += nickle
     SUBDIR += nim
     SUBDIR += njs
@@ -230,6 +229,7 @@
     SUBDIR += ocaml
     SUBDIR += ocaml-autoconf
     SUBDIR += ocaml-camlidl
+    SUBDIR += odin
     SUBDIR += oo2c
     SUBDIR += opencoarrays
     SUBDIR += opensycl

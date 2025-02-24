@@ -21,6 +21,7 @@
     SUBDIR += R-cran-shiny
     SUBDIR += R-cran-shinyjs
     SUBDIR += R-cran-webshot
+    SUBDIR += R-cran-webutils
     SUBDIR += UniversalFeedCreator
     SUBDIR += adguardhome
     SUBDIR += adjuster
@@ -118,7 +119,6 @@
     SUBDIR += codeigniter
     SUBDIR += colly
     SUBDIR += coppermine
-    SUBDIR += cplanet
     SUBDIR += cpp-httplib
     SUBDIR += cpr
     SUBDIR += crawl
@@ -1546,6 +1546,7 @@
     SUBDIR += py-dj51-djangorestframework
     SUBDIR += py-dj51-drf-spectacular
     SUBDIR += py-dj51-drf-spectacular-sidecar
+    SUBDIR += py-dj51-social-auth-app-django
     SUBDIR += py-dj51-strawberry-graphql-django
     SUBDIR += py-django-admin-rangefilter
     SUBDIR += py-django-advanced-filters
