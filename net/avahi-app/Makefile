@@ -1,6 +1,6 @@
 PORTNAME=	avahi
 PORTVERSION=	0.8
-PORTREVISION?=	2	# don't delete, reset to 0, check slave ports
+PORTREVISION?=	4	# don't delete, reset to 0, check slave ports
 CATEGORIES?=	net dns
 MASTER_SITES=	http://www.avahi.org/download/
 PKGNAMESUFFIX?=	-app
@@ -30,7 +30,6 @@ USE_GNOME+=	glib20 intltool introspection:build
 USE_GNOME_SUBR=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS?=--with-distro=freebsd \
 		--with-dbus-system-socket=unix:path=/var/run/dbus/system_bus_socket \
 		--enable-introspection=yes \
