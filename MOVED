@@ -4152,3 +4152,14 @@ net-im/qxmpp@qt5||2025-02-16|Qt5 flavor is no longer needed
 net-im/qxmpp@qt6|net-im/qxmpp|2025-02-16|Unflavorize; only Qt6 is supported
 databases/redis70||2025-02-16|Has expired: Has already reached its EoL
 x11-toolkits/wlroots|x11-toolkits/wlroots018|2025-02-19|Renamed to match versioned API
+www/cplanet||2025-02-20|Abandonware
+graphics/spectacle|graphics/plasma6-spectacle|2025-02-20|Switch to KDE Plasma distribution
+lang/nhc98||2025-02-21|Has expired: only for i386, latest release in 2010, does not build with GCC 14
+graphics/kipi-plugins||2025-02-22|Discontinued upstream
+graphics/showimage||2025-02-22|Depends on discontinued libkipi
+graphics/libkipi||2025-02-22|Discontinued upstream
+deskutils/knotes||2025-02-22|Discontinued upstream
+net-im/kopete||2025-02-22|Discontinued upstream
+sysutils/shim||2025-02-22|Has expired: upstream has been inactive for 10 years and does not build with GCC 14
+devel/py-python-gilt|devel/gilt|2025-02-23|Project switched language from python to go
+textproc/uim-gtk|textproc/uim-gtk2|2025-02-23|Rename with versioned suffix
