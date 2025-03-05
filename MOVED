@@ -4163,3 +4163,35 @@ net-im/kopete||2025-02-22|Discontinued upstream
 sysutils/shim||2025-02-22|Has expired: upstream has been inactive for 10 years and does not build with GCC 14
 devel/py-python-gilt|devel/gilt|2025-02-23|Project switched language from python to go
 textproc/uim-gtk|textproc/uim-gtk2|2025-02-23|Rename with versioned suffix
+x11-toolkits/scenefx|x11-toolkits/scenefx02|2025-02-25|Renamed to match versioned API
+www/kdsoap@qt5||2025-02-26|Qt5 flavor is no longer needed
+www/kdsoap@qt6|www/kdsoap|2025-02-26|Unflavorize; only Qt6 support is needed
+net/drive||2025-02-28|Remove expired port
+print/py-pypdf3||2025-02-28|Remove expired port
+sysutils/py-python-consul2||2025-02-28|Remove expired port
+textproc/py-pytoml||2025-02-28|Remove expired port
+textproc/py-trans||2025-02-28|Remove expired port
+www/py-instabot||2025-02-28|Remove expired port
+www/py-jsonfield||2025-02-28|Remove expired port
+devel/rubygem-aws-sdk-iot1clickdevicesservice||2025-02-28|Remove expired port
+devel/rubygem-aws-sdk-iot1clickprojects||2025-02-28|Remove expired port
+databases/postgis31||2025-03-01|Has expired: Please use newer versions
+textproc/zorba||2025-03-01|Has expired: Unmaintained, outdated and fails to build with ICU 76.1
+graphics/xpeps||2025-03-01|Has expired: Depends on expired graphics/peps
+graphics/peps||2025-03-01|Has expired: Ancient port, upstream gone
+www/glewlwyd||2025-03-01|Has expired: Upstream repo archived on Oct 20, 2024
+databases/tarantool2||2025-03-01|Has expired
+java/cos||2025-03-01|Has expired: Upstream seems gone since 2024-08-22
+sysutils/pass-secrets||2025-03-01|Has expired: Listed as BROKEN and unmaintained for months
+sysutils/fluxengine||2025-03-01|Has expired: Broken for several months
+textproc/py-pyjade||2025-03-01|Has expired: Upstream is inactive for almost 8.5 years
+math/parmetis||2025-03-01|Has expired: Fails to fetch, unmaintained for years in tree
+math/pspp||2025-03-01|Has expired: Listed as broken for more than 5 months
+games/shaaft||2025-03-02|Has expired: Unmaintained upstream for ages, breaks with modern toolchains
+devel/asmutils||2025-03-02|Has expired: latest upstream release is 19 years ago, replaced by a-Linux, does not build with GCC 14
+multimedia/libfame||2025-03-02|Has expired: Obsolete library, last release in 2004. Consider migrating to multimedia/ffmpeg
+graphics/kquickimageeditor@qt5||2025-03-03|Unflavorize; only Qt6 support is needed
+graphics/kquickimageeditor@qt6|graphics/kquickimageeditor|2025-03-03|Unflavorize; only Qt6 support is needed
+devel/d-feet|devel/d-spy|2025-03-04|No longer maintained use d-spy instead
+devel/glademm||2025-03-05|Dead upstream, now consumers in the ports tree
+devel/libvolume_id||2025-03-05|Dead upstream, now consumers in the ports tree
