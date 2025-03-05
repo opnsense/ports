@@ -1,6 +1,6 @@
 PORTNAME=	libnvme
 DISTVERSION=	1.11.1
-PORTREVISION=	1
+PORTREVISION=	4
 CATEGORIES=	devel
 
 MAINTAINER=	imp@FreeBSD.org
@@ -12,10 +12,10 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 BUILD_DEPENDS=	freebsd-nvme-shim>0:devel/freebsd-nvme-shim \
-		bash>0:shells/bash \
-		swig>0:devel/swig
+		bash>0:shells/bash
+LIB_DEPENDS=	libjson-c.so:devel/json-c
 
-USES=		meson
+USES=		meson pkgconfig
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
@@ -27,8 +27,7 @@ CFLAGS+=	-I${LOCALBASE}/include/freebsd-nvme-shim
 PLIST_SUB=	DISTVERSION=${DISTVERSION} \
 		MAJORVER=${DISTVERSION:R:R}
 
-MESON_ARGS=	-Djson-c=disabled \
-		-Dkeyutils=disabled \
+MESON_ARGS=	-Dkeyutils=disabled \
 		-Dopenssl=disabled \
 		-Dpython=disabled \
 		-Dtests=false

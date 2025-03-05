@@ -871,7 +871,6 @@
     SUBDIR += pari_nftables
     SUBDIR += pari_seadata
     SUBDIR += paritwine
-    SUBDIR += parmetis
     SUBDIR += parmgridgen
     SUBDIR += pcalc
     SUBDIR += pdal
@@ -909,7 +908,6 @@
     SUBDIR += primme
     SUBDIR += prng
     SUBDIR += proxsuite
-    SUBDIR += pspp
     SUBDIR += psurface
     SUBDIR += py-CyLP
     SUBDIR += py-Diofant

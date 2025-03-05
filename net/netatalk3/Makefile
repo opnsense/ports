@@ -78,7 +78,7 @@ SPOTLIGHT_MESON_OFF=	-Dwith-spotlight=false
 
 SHEBANG_GLOB=	afpstats
 
-CONFLICTS=	jday yudit # bin/dbd man/man1/uniconv.1.gz
+CONFLICTS=	netatalk4
 
 .include <bsd.port.pre.mk>
 

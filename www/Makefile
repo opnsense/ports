@@ -219,7 +219,6 @@
     SUBDIR += gitlab-workhorse
     SUBDIR += glassfish
     SUBDIR += glassfish4
-    SUBDIR += glewlwyd
     SUBDIR += glpi
     SUBDIR += gnome-user-share
     SUBDIR += go-www
@@ -1793,11 +1792,9 @@
     SUBDIR += py-hyperframe
     SUBDIR += py-hyperlink
     SUBDIR += py-inlinestyler
-    SUBDIR += py-instabot
     SUBDIR += py-internetarchive
     SUBDIR += py-jh2
     SUBDIR += py-jonpy
-    SUBDIR += py-jsonfield
     SUBDIR += py-kiss-headers
     SUBDIR += py-laces
     SUBDIR += py-legacy-cgi
