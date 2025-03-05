@@ -36,6 +36,7 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/tools/etc/frr/support_bundle_commands.conf ${STAGEDIR}${ETCDIR}/
 .else
 
+BUILD_DEPENDS=	gsed:textproc/gsed
 LIB_DEPENDS=	libcares.so:dns/c-ares \
 		libjson-c.so:devel/json-c \
 		libpcre2-8.so:devel/pcre2 \
@@ -67,6 +68,8 @@ PLIST=		${.CURDIR}/pkg-plist
 PKGMESSAGE=	""
 .else
 INFO=		frr
+
+BINARY_ALIAS=	sed=gsed
 
 OPTIONS_DEFINE=		BACKTRACE CONFIGROLLBACKS DATACENTER FPM LDPD MANPAGES MULTIPATH \
 			PAM RPKI SHARPD SHELLACCESS SNMP TCMALLOC
