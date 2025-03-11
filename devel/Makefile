@@ -1686,7 +1686,6 @@
     SUBDIR += mir-core
     SUBDIR += mk-configure
     SUBDIR += mm
-    SUBDIR += mm-common
     SUBDIR += modd
     SUBDIR += mold
     SUBDIR += mongo-c-driver
@@ -1718,9 +1717,6 @@
     SUBDIR += ncc
     SUBDIR += ncnf
     SUBDIR += ncurses
-    SUBDIR += ndesk-dbus
-    SUBDIR += ndesk-dbus-glib
-    SUBDIR += ndesk-options
     SUBDIR += netscape-java40
     SUBDIR += netsurf-buildsystem
     SUBDIR += newfile
@@ -8286,6 +8282,7 @@
     SUBDIR += tinycbor
     SUBDIR += tinygo
     SUBDIR += tinylaf
+    SUBDIR += tinysparql
     SUBDIR += tkcon
     SUBDIR += tkcvs
     SUBDIR += tkp4

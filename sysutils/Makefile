@@ -642,6 +642,7 @@
     SUBDIR += lmon
     SUBDIR += lnav
     SUBDIR += loaders-update
+    SUBDIR += localsearch
     SUBDIR += lockfile-progs
     SUBDIR += loganalyzer
     SUBDIR += logrotate
@@ -1383,9 +1384,6 @@
     SUBDIR += toshctl
     SUBDIR += touchegg
     SUBDIR += toybox
-    SUBDIR += tracker
-    SUBDIR += tracker-miners
-    SUBDIR += tracker3
     SUBDIR += tree
     SUBDIR += triton
     SUBDIR += trueos-libqt5

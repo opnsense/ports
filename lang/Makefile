@@ -70,6 +70,7 @@
     SUBDIR += erlang-runtime25
     SUBDIR += erlang-runtime26
     SUBDIR += erlang-runtime27
+    SUBDIR += erlang-runtime28
     SUBDIR += erlang-wx
     SUBDIR += execline
     SUBDIR += expect
@@ -124,6 +125,7 @@
     SUBDIR += go121
     SUBDIR += go122
     SUBDIR += go123
+    SUBDIR += go124
     SUBDIR += gomacro
     SUBDIR += gprolog
     SUBDIR += gptscript

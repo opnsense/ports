@@ -1,6 +1,7 @@
 PORTNAME=	spirv-llvm-translator
 DISTVERSIONPREFIX=	v
 DISTVERSION=	${DISTVERSION_${FLAVOR}}
+DISTVERSION_llvm20=	20.1.0
 DISTVERSION_llvm19=	19.1.5
 DISTVERSION_llvm18=	18.1.10
 DISTVERSION_llvm17=	17.0.10
@@ -22,7 +23,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.TXT
 
 LIB_DEPENDS=	libLLVM-${FLAVOR:S/llvm//}.so:devel/${FLAVOR}
 
-FLAVORS=	${19 18 17 16 15 14 13 12 11:L:S/^/llvm/}
+FLAVORS=	${20 19 18 17 16 15 14 13 12 11:L:S/^/llvm/}
 CONFLICTS_BUILD=${FLAVOR}-lite
 
 USES=		cmake compiler:c++11-lib
@@ -30,13 +31,14 @@ USE_GITHUB=	yes
 USE_LDCONFIG=	${PREFIX}/${FLAVOR}/lib
 GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	SPIRV-LLVM-Translator
-.if !defined(FLAVOR) || ${FLAVOR} == llvm19
-# https://github.com/KhronosGroup/SPIRV-LLVM-Translator/issues/2415#issuecomment-2358890668
+.if ${FLAVOR:U:Mllvm1[12]}
+# empty
+.elif ${FLAVOR:U:Mllvm1[378]}
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-332-g1c6bb27:headers/projects/SPIRV-Headers
+.elif ${FLAVOR:U} == llvm19
 GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-350-gb73e168:headers/projects/SPIRV-Headers
-.elif ${FLAVOR:Mllvm1[4-6]}
-GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-390-g2b2e05e:headers/projects/SPIRV-Headers
 .else
-GH_TUPLE=	${${FLAVOR:S/llvm//}<13:?:KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-332-g1c6bb27:headers/projects/SPIRV-Headers}
+GH_TUPLE=	KhronosGroup:SPIRV-Headers:1.5.4.raytracing.fixed-390-g2b2e05e:headers/projects/SPIRV-Headers
 .endif
 DISTINFO_FILE=	${.CURDIR}/distinfo.${FLAVOR}
 CXXFLAGS+=	${${FLAVOR:S/llvm//} < 16 && ${COMPILER_TYPE} == clang:?-Wno-enum-constexpr-conversion:}

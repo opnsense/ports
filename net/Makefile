@@ -201,7 +201,6 @@
     SUBDIR += gnome-connections
     SUBDIR += gnome-nettool
     SUBDIR += gnome-online-accounts
-    SUBDIR += gnome-online-miners
     SUBDIR += gnu-radius
     SUBDIR += go-bapu
     SUBDIR += go-cs
@@ -376,6 +375,7 @@
     SUBDIR += libbgpdump
     SUBDIR += libcapn
     SUBDIR += libcharon
+    SUBDIR += libcloudproviders
     SUBDIR += libcmis
     SUBDIR += libcoap
     SUBDIR += libdaq
