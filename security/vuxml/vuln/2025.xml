@@ -1,3 +1,132 @@
+  <vuln vid="a02a6d94-fe53-11ef-85f3-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>134.0.6998.88</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>134.0.6998.88</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/03/stable-channel-update-for-desktop_10.html">
+	 <p>This update includes 5 security fixes:</p>
+	 <ul>
+	    <li>[398065918] High CVE-2025-1920: Type Confusion in V8. Reported by Excello s.r.o. on 2025-02-21</li>
+	    <li>[400052777] High CVE-2025-2135: Type Confusion in V8. Reported by Zhenghang Xiao (@Kipreyyy) on 2025-03-02</li>
+	    <li>[401059730] High CVE-TBD: Out of bounds write in GPU. Reported on 2025-03-05</li>
+	    <li>[395032416] Medium CVE-2025-2136: Use after free in Inspector. Reported by Sakana.S on 2025-02-10</li>
+	    <li>[398999390] Medium CVE-2025-2137: Out of bounds read in V8. Reported by zeroxiaobai@ on 2025-02-25</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1920</cvename>
+      <cvename>CVE-2025-2135</cvename>
+      <cvename>CVE-2025-2136</cvename>
+      <cvename>CVE-2025-2137</cvename>
+      <url>https://chromereleases.googleblog.com/2025/03/stable-channel-update-for-desktop_10.html</url>
+    </references>
+    <dates>
+      <discovery>2025-03-10</discovery>
+      <entry>2025-03-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a86f9189-fdd9-11ef-91ff-b42e991fc52e">
+    <topic>libreoffice -- Macro URL arbitrary script execution</topic>
+    <affects>
+      <package>
+	<name>libreoffice</name>
+	<range><ge>24.8</ge><lt>24.8.5</lt></range>
+	<range><ge>25.2</ge><lt>25.2.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@documentfoundation.org reports:</p>
+	<blockquote cite="https://www.libreoffice.org/about-us/security/advisories/cve-2025-1080">
+	  <p>LibreOffice supports Office URI Schemes to enable browser integration
+	of LibreOffice with MS SharePoint server.  An additional scheme
+	&apos;vnd.libreoffice.command&apos; specific to LibreOffice was
+	added.  In the affected versions of LibreOffice a link in a browser
+	using that scheme could be constructed with an embedded inner URL
+	that when passed to LibreOffice could call internal macros with
+	arbitrary arguments.  This issue affects LibreOffice: from 24.8
+	before &lt; 24.8.5, from 25.2 before &lt; 25.2.1.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-1080</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-1080</url>
+    </references>
+    <dates>
+      <discovery>2025-03-04</discovery>
+      <entry>2025-03-10</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2ec7816d-fdb7-11ef-91ff-b42e991fc52e">
+    <topic>vim -- Improper Input Validation in Vim</topic>
+    <affects>
+      <package>
+	<name>vim</name>
+	<range><lt>9.1.1164</lt></range>
+      </package>
+      <package>
+	<name>vim-gtk2</name>
+	<range><lt>9.1.1164</lt></range>
+      </package>
+      <package>
+	<name>vim-gtk3</name>
+	<range><lt>9.1.1164</lt></range>
+      </package>
+      <package>
+	<name>vim-motif</name>
+	<range><lt>9.1.1164</lt></range>
+      </package>
+      <package>
+	<name>vim-tiny</name>
+	<range><lt>9.1.1164</lt></range>
+      </package>
+      <package>
+	<name>vim-x11</name>
+	<range><lt>9.1.1164</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/vim/vim/commit/129a8446d23cd9cb4445fcfea259cba5e0487d29">
+	  <p>Vim is distributed with the tar.vim plugin, that allows
+	  easy editing and viewing of (compressed or uncompressed) tar
+	  files.  Starting with 9.1.0858, the tar.vim plugin uses the
+	  &quot;:read&quot; ex command line to append below the
+	  cursor position, however the is not sanitized and is taken
+	  literally from the tar archive.  This allows to execute
+	  shellcommands via special crafted tar archives. Whether
+	  this really happens, depends on the shell being used
+	  (&apos;shell&apos; option, which is set using $SHELL).
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-27423</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-27423</url>
+    </references>
+    <dates>
+      <discovery>2025-03-03</discovery>
+      <entry>2025-03-10</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="6ba9e26e-c9c6-49f7-ae43-47e5864f0b66">
     <topic>electron33 -- multiple vulnerabilities</topic>
     <affects>
