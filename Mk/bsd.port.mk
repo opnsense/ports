@@ -1210,7 +1210,7 @@ _EXPORTED_VARS+=	_PKG_TRANSITIONING_TO_NEW_EXT
 WARNING+=	"It is strongly recommended to upgrade to a newer version of pkg first"
 .      endif
 # XXX End of hack
-_PKG_STATUS!=	${PKG_BIN} version -t ${_PKG_VERSION:C/-.*//g} ${MINIMAL_PKG_VERSION}
+_PKG_STATUS!=	${PKG_VERSION} -t ${_PKG_VERSION:C/-.*//g} ${MINIMAL_PKG_VERSION}
 .      if ${_PKG_STATUS} == "<"
 IGNORE=		pkg(8) must be version ${MINIMAL_PKG_VERSION} or greater, but you have ${_PKG_VERSION}. You must upgrade the ${PKG_ORIGIN} port first
 .      endif
@@ -1882,12 +1882,31 @@ USE_LDCONFIG=	${PREFIX}/lib
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 .    endif
 
+_ALL_LIB_DIRS=	${LIB_DIRS} ${USE_LDCONFIG}
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_NATIVE="${_ALL_LIB_DIRS:O:u:ts,}"
+.    if defined(HAVE_COMPAT_IA32_KERN)
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_32="/usr/lib32,${LOCALBASE}/lib32"
+.    endif
+.    if ${LINUX_DEFAULT} == c7 || ${LINUX_DEFAULT} == rl9
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_LINUX="${LINUXBASE}/usr/lib64"
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_LINUX_32="${LINUXBASE}/usr/lib"
+.    else
+.      warning "Unknown Linux distribution ${LINUX_DEFAULT}, SHLIB_PROVIDE_PATHS_COMPAT_LINUX will not be set!"
+.    endif
+
 .    if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
 .      if defined(USE_LINUX_PREFIX)
 PLIST_FILES+=	"@ldconfig-linux ${LINUXBASE}"
 .      else
 PLIST_FILES+=	"@ldconfig"
 .      endif
+.    endif
+
+.    if defined(NO_SHLIB_REQUIRES_GLOB)
+PKG_ENV+=	SHLIB_REQUIRE_IGNORE_GLOB="${NO_SHLIB_REQUIRES_GLOB:ts,}"
+.    endif
+.    if defined(NO_SHLIBS_REQUIRES_REGEX)
+PKG_ENV+=	SHLIB_REQUIRE_IGNORE_REGEX="${NO_SHLIBS_REQUIRES_REGEX:ts,}"
 .    endif
 
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
