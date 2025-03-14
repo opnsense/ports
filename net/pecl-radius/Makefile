@@ -12,7 +12,7 @@ LICENSE=	BSD3CLAUSE
 
 USES=		php:pecl
 
-CONFIGURE_ARGS=	--enable-radius
+CONFIGURE_ARGS=	--enable-radius --enable-openssl
 
 OPTIONS_DEFINE=	EXAMPLES
 
