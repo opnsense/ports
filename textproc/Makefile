@@ -1406,6 +1406,7 @@
     SUBDIR += py-gensim
     SUBDIR += py-gi-docgen
     SUBDIR += py-grapheme
+    SUBDIR += py-graphemeu
     SUBDIR += py-grep-ast
     SUBDIR += py-griffe
     SUBDIR += py-grimoire-elk
@@ -1690,7 +1691,6 @@
     SUBDIR += py-tomlkit
     SUBDIR += py-toronado
     SUBDIR += py-towncrier
-    SUBDIR += py-towncrier23
     SUBDIR += py-translationstring
     SUBDIR += py-transpopy
     SUBDIR += py-ttp

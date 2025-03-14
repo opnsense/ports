@@ -658,6 +658,7 @@
     SUBDIR += electron31
     SUBDIR += electron32
     SUBDIR += electron33
+    SUBDIR += electron34
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -6080,6 +6081,7 @@
     SUBDIR += py-typeshed-client
     SUBDIR += py-typing-extensions
     SUBDIR += py-typing-inspect
+    SUBDIR += py-typing-inspection
     SUBDIR += py-tzdata
     SUBDIR += py-tzlocal
     SUBDIR += py-u-msgpack-python
