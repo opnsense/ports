@@ -176,6 +176,7 @@
     SUBDIR += aegis
     SUBDIR += agar
     SUBDIR += aifad
+    SUBDIR += air-go
     SUBDIR += aixlog
     SUBDIR += ald
     SUBDIR += alire
@@ -392,7 +393,6 @@
     SUBDIR += cccc
     SUBDIR += ccdoc
     SUBDIR += ccls
-    SUBDIR += ccrtp
     SUBDIR += cctz
     SUBDIR += cdecl
     SUBDIR += cdialog
@@ -8390,6 +8390,7 @@
     SUBDIR += xeus-zmq
     SUBDIR += xfce4-dev-tools
     SUBDIR += xmake
+    SUBDIR += xmake-io
     SUBDIR += xmltooling
     SUBDIR += xopcodecalc
     SUBDIR += xorg-macros

@@ -116,6 +116,7 @@
     SUBDIR += closure-compiler
     SUBDIR += cntlm
     SUBDIR += cobalt
+    SUBDIR += codeberg-pages-server
     SUBDIR += codeigniter
     SUBDIR += colly
     SUBDIR += coppermine
@@ -2054,6 +2055,7 @@
     SUBDIR += rubygem-coverband
     SUBDIR += rubygem-crass
     SUBDIR += rubygem-cssbundling-rails
+    SUBDIR += rubygem-cssbundling-rails-gitlab
     SUBDIR += rubygem-cssbundling-rails-rails70
     SUBDIR += rubygem-cssbundling-rails-rails71
     SUBDIR += rubygem-cssbundling-rails-rails72

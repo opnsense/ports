@@ -1,5 +1,5 @@
 PORTNAME=	gtk
-PORTVERSION=	4.16.12
+PORTVERSION=	4.18.1
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	4
@@ -31,14 +31,14 @@ USES=		compiler:c11 cpe gettext gnome jpeg localbase meson \
 CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 USE_PERL5=	build
-USE_GNOME=	atk cairo gdkpixbuf2 introspection:build pango \
+USE_GNOME=	atk cairo gdkpixbuf introspection:build pango \
 		librsvg2:run
 MESON_ARGS=	-Dbuild-testsuite=false
 LDFLAGS+=	-lexecinfo
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 
-LIBVERSION=	1.1600.12
+LIBVERSION=	1.1800.1
 PLIST_SUB+=	LIBVERSION=${LIBVERSION}
 
 GLIB_SCHEMAS=	org.gtk.Demo4.gschema.xml \
