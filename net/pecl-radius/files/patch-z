@@ -64,7 +64,7 @@ index 82d8b63..d47accf 100644
  	} else {
  		RETURN_TRUE;
 diff --git radlib.c radlib.c
-index 3fe104d..768a7c8 100644
+index 3fe104d..763032e 100644
 --- radlib.c
 +++ radlib.c
 @@ -49,6 +49,14 @@
@@ -201,7 +201,7 @@ index 3fe104d..768a7c8 100644
  {
  	int i;
  
-@@ -588,6 +663,14 @@ rad_create_request(struct rad_handle *h, int code)
+@@ -588,6 +663,16 @@ rad_create_request(struct rad_handle *h, int code)
  	h->req_len = POS_ATTRS;
  	h->request_created = 1;    
  	clear_password(h);
@@ -210,6 +210,8 @@ index 3fe104d..768a7c8 100644
 +	if (msg_auth) {
 +		h->msg_auth = true;
 +		h->req_len += LEN_MSG_AUTH;
++	} else {
++		h->msg_auth = false;
 +	}
 +#endif
 +
