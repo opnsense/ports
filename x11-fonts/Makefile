@@ -10,6 +10,7 @@
     SUBDIR += alfont
     SUBDIR += amigafonts
     SUBDIR += andika
+    SUBDIR += andika-compact
     SUBDIR += anomaly-mono
     SUBDIR += anonymous-pro
     SUBDIR += apl385
@@ -127,6 +128,7 @@
     SUBDIR += gensen
     SUBDIR += gentium-basic
     SUBDIR += gentium-plus
+    SUBDIR += gentium-plus-compact
     SUBDIR += genwan
     SUBDIR += genyo
     SUBDIR += genyog

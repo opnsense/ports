@@ -218,6 +218,7 @@
     SUBDIR += gitlab
     SUBDIR += gitlab-pages
     SUBDIR += gitlab-workhorse
+    SUBDIR += glance
     SUBDIR += glassfish
     SUBDIR += glassfish4
     SUBDIR += glpi
@@ -1789,6 +1790,7 @@
     SUBDIR += py-httptools
     SUBDIR += py-httpx
     SUBDIR += py-httpx-oauth
+    SUBDIR += py-httpx-sse
     SUBDIR += py-httpx-socks
     SUBDIR += py-httpx-ws
     SUBDIR += py-httpx_gssapi
