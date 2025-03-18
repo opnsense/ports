@@ -27,7 +27,7 @@ index c7d2d95..6176f36 100644
 +  ])
 +fi
 diff --git radius.c radius.c
-index 82d8b63..2fface6 100644
+index 82d8b63..d47accf 100644
 --- radius.c
 +++ radius.c
 @@ -93,6 +93,7 @@ ZEND_END_ARG_INFO()
@@ -48,7 +48,7 @@ index 82d8b63..2fface6 100644
  {
  	long code;
  	struct rad_handle *radh;
-+	bool msg_auth = false;
++	zend_bool msg_auth = 0;
  	zval *z_radh;
  
 -	if (zend_parse_parameters(ZEND_NUM_ARGS(), "rl", &z_radh, &code) == FAILURE) {
