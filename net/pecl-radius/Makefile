@@ -10,9 +10,10 @@ WWW=		https://pecl.php.net/package/radius \
 
 LICENSE=	BSD3CLAUSE
 
-USES=		php:pecl
+USES=		php:pecl ssl
 
 CONFIGURE_ARGS=	--enable-radius --enable-openssl
+LDFLAGS+=	-L${OPENSSLLIB} -lcrypto
 
 OPTIONS_DEFINE=	EXAMPLES
 
