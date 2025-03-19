@@ -1,0 +1,263 @@
+diff --git config.m4 config.m4
+index c7d2d95..6176f36 100644
+--- config.m4
++++ config.m4
+@@ -5,6 +5,9 @@ PHP_ARG_ENABLE(radius, whether to enable radius support,
+ dnl Make sure that the comment is aligned:
+ [  --enable-radius           Enable radius support])
+ 
++PHP_ARG_ENABLE(openssl, for OpenSSL support,
++[  --enable-openssl   Include OpenSSL support])
++
+ if test "$PHP_RADIUS" != "no"; then
+ 
+   AC_TRY_COMPILE([
+@@ -18,3 +21,13 @@ ulongint = 1;
+ 
+  PHP_NEW_EXTENSION(radius, radius.c radlib.c, $ext_shared)
+ fi
++
++if test "$PHP_OPENSSL" != "no"; then
++  AC_CHECK_LIB([crypto], [EVP_md5], [
++    AC_DEFINE(HAVE_OPENSSL, 1, [ ])
++    PHP_ADD_LIBRARY(crypto,, EXT_SHARED_LIBADD)
++    PHP_ADD_INCLUDE(/usr/include/openssl)
++  ], [
++    AC_MSG_ERROR([OpenSSL (libcrypto) not found])
++  ])
++fi
+diff --git radius.c radius.c
+index 82d8b63..d47accf 100644
+--- radius.c
++++ radius.c
+@@ -93,6 +93,7 @@ ZEND_END_ARG_INFO()
+ ZEND_BEGIN_ARG_INFO_EX(arginfo_radius_create_request, 0, 0, 2)
+ 	ZEND_ARG_INFO(0, "radius_handle")
+ 	ZEND_ARG_INFO(0, "type")
++	ZEND_ARG_INFO(0, "msg_auth")
+ ZEND_END_ARG_INFO()
+ 
+ ZEND_BEGIN_ARG_INFO_EX(arginfo_radius_put_string, 0, 0, 3)
+@@ -364,20 +365,21 @@ PHP_FUNCTION(radius_add_server)
+ }
+ /* }}} */
+ 
+-/* {{{ proto bool radius_create_request(desc, code) */
++/* {{{ proto bool radius_create_request(desc, code, msg_auth) */
+ PHP_FUNCTION(radius_create_request)
+ {
+ 	long code;
+ 	struct rad_handle *radh;
++	zend_bool msg_auth = 0;
+ 	zval *z_radh;
+ 
+-	if (zend_parse_parameters(ZEND_NUM_ARGS(), "rl", &z_radh, &code) == FAILURE) {
++	if (zend_parse_parameters(ZEND_NUM_ARGS(), "rl|b", &z_radh, &code, &msg_auth) == FAILURE) {
+ 		return;
+ 	}
+ 
+ 	RADIUS_FETCH_RESOURCE(radh, z_radh);
+ 
+-	if (rad_create_request(radh, code) == -1) {
++	if (rad_create_request(radh, code, msg_auth) == -1) {
+ 		RETURN_FALSE;
+ 	} else {
+ 		RETURN_TRUE;
+diff --git radlib.c radlib.c
+index 3fe104d..763032e 100644
+--- radlib.c
++++ radlib.c
+@@ -49,6 +49,14 @@
+ #include <unistd.h>
+ #endif
+ 
++#ifdef HAVE_CONFIG_H
++#include "config.h"
++#endif
++
++#ifdef HAVE_OPENSSL
++#include <openssl/hmac.h>
++#endif
++
+ #include "radlib_compat.h"
+ #include "radlib_md5.h"
+ #include "radlib_private.h"
+@@ -78,6 +86,29 @@ clear_password(struct rad_handle *h)
+ 	h->pass_pos = 0;
+ }
+ 
++#ifdef HAVE_OPENSSL
++static void
++compute_hmac_md5(const char *key, unsigned char *data, int datalen, unsigned char *output)
++{
++	unsigned int len = 16;
++
++	HMAC(EVP_md5(), key, strlen(key), (unsigned char *)data, datalen, output, &len);
++}
++
++static void
++insert_message_authenticator(struct rad_handle *h, int srv)
++{
++	const struct rad_server *srvp;
++
++	srvp = &h->servers[srv];
++	h->request[POS_MSG_AUTH] = RAD_MSG_AUTH;
++	h->request[POS_MSG_AUTH + 1] = LEN_MSG_AUTH;
++	memset(&h->request[POS_MSG_AUTH + 2], 0, LEN_MSG_AUTH_HASH);
++
++	compute_hmac_md5(srvp->secret, h->request, h->req_len, &h->request[POS_MSG_AUTH + 2]);
++}
++#endif
++
+ static void
+ generr(struct rad_handle *h, const char *format, ...)
+ {
+@@ -149,8 +180,12 @@ is_valid_response(struct rad_handle *h, int srv,
+ {
+ 	MD5_CTX ctx;
+ 	unsigned char md5[16];
++	unsigned char buf[MSGSIZE];
+ 	const struct rad_server *srvp;
+-	int len;
++	int len, resp_type, resp_attr_len;
++	int resp_pos = 0;
++	bool found = false;
++
+ 
+ 	srvp = &h->servers[srv];
+ 
+@@ -166,6 +201,8 @@ is_valid_response(struct rad_handle *h, int srv,
+ 	len = h->response[POS_LENGTH] << 8 | h->response[POS_LENGTH+1];
+ 	if (len > h->resp_len)
+ 		return 0;
++	if (len > MSGSIZE)
++		return 0;
+ 
+ 	/* Check the response authenticator */
+ 	MD5Init(&ctx);
+@@ -177,6 +214,39 @@ is_valid_response(struct rad_handle *h, int srv,
+ 	if (memcmp(&h->response[POS_AUTH], md5, sizeof md5) != 0)
+ 		return 0;
+ 
++#ifdef HAVE_OPENSSL
++	if (h->msg_auth &&
++	    (h->response[POS_CODE] == RAD_ACCESS_ACCEPT ||
++	     h->response[POS_CODE] == RAD_ACCESS_REJECT ||
++	     h->response[POS_CODE] == RAD_ACCESS_CHALLENGE)) {
++		resp_pos = POS_ATTRS;
++		while (true) {
++			if (resp_pos >= h->resp_len)
++				break;
++
++			resp_type = h->response[resp_pos++];
++			resp_attr_len = h->response[resp_pos++] - 2;
++
++			if (resp_type == RAD_MSG_AUTH && resp_attr_len == LEN_MSG_AUTH_HASH) {
++				found = true;
++				break;
++			}
++
++			resp_pos += resp_attr_len;
++		}
++
++		if (found) {
++			memcpy(&buf[POS_CODE], &h->response[POS_CODE], POS_AUTH - POS_CODE);
++			memcpy(&buf[POS_AUTH], &h->request[POS_AUTH], LEN_AUTH);
++			memcpy(&buf[POS_ATTRS], &h->response[POS_ATTRS], len - POS_ATTRS);
++			memset(&buf[resp_pos], 0, LEN_MSG_AUTH_HASH);
++			compute_hmac_md5(srvp->secret, buf, len, md5);
++			if (memcmp(&h->response[resp_pos], md5, LEN_MSG_AUTH_HASH) != 0)
++				return 0;
++		}
++	}
++#endif
++
+ 	return 1;
+ }
+ 
+@@ -541,10 +611,15 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
+ 	    || h->request[POS_CODE] == RAD_DISCONNECT_NAK)
+ 		/* Insert the request authenticator into the request */
+ 		insert_request_authenticator(h, h->srv);
+-	else
++	else {
+ 		/* Insert the scrambled password into the request */
+ 		if (h->pass_pos != 0)
+ 			insert_scrambled_password(h, h->srv);
++#ifdef HAVE_OPENSSL
++		if (h->msg_auth)
++			insert_message_authenticator(h, h->srv);
++#endif
++	}
+ 
+ 	/* Send the request */
+ 	n = sendto(h->fd, h->request, h->req_len, 0,
+@@ -572,7 +647,7 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
+ }
+ 
+ int
+-rad_create_request(struct rad_handle *h, int code)
++rad_create_request(struct rad_handle *h, int code, bool msg_auth)
+ {
+ 	int i;
+ 
+@@ -588,6 +663,16 @@ rad_create_request(struct rad_handle *h, int code)
+ 	h->req_len = POS_ATTRS;
+ 	h->request_created = 1;    
+ 	clear_password(h);
++
++#ifdef HAVE_OPENSSL
++	if (msg_auth) {
++		h->msg_auth = true;
++		h->req_len += LEN_MSG_AUTH;
++	} else {
++		h->msg_auth = false;
++	}
++#endif
++
+ 	return 0;
+ }
+ 
+diff --git radlib.h radlib.h
+index f3484e6..2fe3976 100644
+--- radlib.h
++++ radlib.h
+@@ -133,6 +133,7 @@
+ #define RAD_PORT_LIMIT			62	/* Integer */
+ #define RAD_LOGIN_LAT_PORT		63	/* Integer */
+ #define RAD_CONNECT_INFO		77	/* String */
++#define RAD_MSG_AUTH			80  	/* String */
+ 
+ #define RAD_NAS_IPV6_ADDRESS		95      /* IPv6 address */
+ #define RAD_FRAMED_INTERFACE_ID		96      /* 8 octets */
+@@ -223,7 +224,7 @@ void			 rad_close(struct rad_handle *);
+ int			 rad_config(struct rad_handle *, const char *);
+ int			 rad_continue_send_request(struct rad_handle *, 
+ 				int, int *, struct timeval *);
+-int			 rad_create_request(struct rad_handle *, int);
++int			 rad_create_request(struct rad_handle *, int, bool);
+ struct in_addr		 rad_cvt_addr(const void *);
+ u_int32_t		 rad_cvt_int(const void *);
+ char			*rad_cvt_string(const void *, size_t);
+diff --git radlib_private.h radlib_private.h
+index b6869ab..b104001 100644
+--- radlib_private.h
++++ radlib_private.h
+@@ -64,6 +64,9 @@
+ #define POS_AUTH	4		/* Authenticator */
+ #define LEN_AUTH	16		/* Length of authenticator */
+ #define POS_ATTRS	20		/* Start of attributes */
++#define POS_MSG_AUTH	20		/* Start of message authentication, if applicable */
++#define LEN_MSG_AUTH	18		/* Length of message authentication attribute */
++#define LEN_MSG_AUTH_HASH	16		/* Length of message authentication hash */
+ 
+ struct rad_server {
+ 	struct sockaddr_in addr;	/* Address of server */
+@@ -86,6 +89,7 @@ struct rad_handle {
+ 	int		 pass_len;	/* Length of cleartext password */
+ 	int		 pass_pos;	/* Position of scrambled password */
+ 	char	 	 chap_pass;	/* Have we got a CHAP_PASSWORD ? */
++	bool    	 msg_auth;	/* Are we doing message authentication? */
+ 	unsigned char	 response[MSGSIZE];	/* Response received */
+ 	int		 resp_len;	/* Length of response */
+ 	int		 resp_pos;	/* Current position scanning attrs */
