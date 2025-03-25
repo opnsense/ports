@@ -1,5 +1,6 @@
 PORTNAME=	libsoup
-PORTVERSION=	3.6.4
+PORTVERSION=	3.6.5
+PORTREVISION=	2
 CATEGORIES=	devel gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -50,13 +51,14 @@ MESON_ARGS=	-Dtests=false \
 		-Dntlm=disabled
 
 GSSAPI_BASE_USES=		gssapi
-GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_BASE_MESON_ON=		-Dgssapi=enabled
+GSSAPI_BASE_VARS=		pkgconfig_paths=${PATCHDIR}
 
 GSSAPI_HEIMDAL_USES=		gssapi:heimdal
-GSSAPI_HEIMDAL_MESON_ON=	-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_HEIMDAL_MESON_ON=	-Dgssapi=enabled
 
 GSSAPI_MIT_USES=		gssapi:mit
-GSSAPI_MIT_MESON_ON=		-Dgssapi=enabled -Dkrb5_config=${KRB5CONFIG}
+GSSAPI_MIT_MESON_ON=		-Dgssapi=enabled
 
 GSSAPI_NONE_MESON_DISABLED=	gssapi
 
@@ -64,5 +66,9 @@ VAPI_USES=			vala:build
 VAPI_MESON_ENABLED=		vapi
 
 BINARY_ALIAS=	python3=${PYTHON_CMD}
+
+post-install-GSSAPI_BASE-on:
+	${SED} -e 's|krb5-gssapi,||' \
+		${BUILD_WRKSRC}/meson-private/libsoup-3.0.pc > ${STAGEDIR}${PREFIX}/libdata/pkgconfig/libsoup-3.0.pc
 
 .include <bsd.port.mk>
