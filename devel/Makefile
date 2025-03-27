@@ -987,12 +987,14 @@
     SUBDIR += hs-ShellCheck
     SUBDIR += hs-alex
     SUBDIR += hs-cabal-install
+    SUBDIR += hs-cabal-plan
     SUBDIR += hs-cpphs
     SUBDIR += hs-darcs
     SUBDIR += hs-ghc-events
     SUBDIR += hs-ghcprofview
     SUBDIR += hs-git-annex
     SUBDIR += hs-git-brunch
+    SUBDIR += hs-hadolint
     SUBDIR += hs-happy
     SUBDIR += hs-haskell-language-server
     SUBDIR += hs-hasktags
@@ -1185,6 +1187,7 @@
     SUBDIR += kyra
     SUBDIR += kyua
     SUBDIR += lab
+    SUBDIR += lace
     SUBDIR += lager
     SUBDIR += laminar
     SUBDIR += lasi
@@ -8089,6 +8092,7 @@
     SUBDIR += rust-mode
     SUBDIR += rust-script
     SUBDIR += rustc-demangle
+    SUBDIR += rustup-init
     SUBDIR += rvi
     SUBDIR += rvm
     SUBDIR += rxcpp
@@ -8314,6 +8318,7 @@
     SUBDIR += trompeloeil
     SUBDIR += truc
     SUBDIR += tup
+    SUBDIR += tvision
     SUBDIR += twiggy
     SUBDIR += typeshare
     SUBDIR += ua_parser-core
@@ -8360,11 +8365,13 @@
     SUBDIR += wasi-compiler-rt17
     SUBDIR += wasi-compiler-rt18
     SUBDIR += wasi-compiler-rt19
+    SUBDIR += wasi-compiler-rt20
     SUBDIR += wasi-libc
     SUBDIR += wasi-libcxx
     SUBDIR += wasi-libcxx17
     SUBDIR += wasi-libcxx18
     SUBDIR += wasi-libcxx19
+    SUBDIR += wasi-libcxx20
     SUBDIR += wasm3
     SUBDIR += wasmer
     SUBDIR += websocketpp

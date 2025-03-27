@@ -266,6 +266,7 @@
     SUBDIR += gtultra
     SUBDIR += guidoar
     SUBDIR += guidolib
+    SUBDIR += guitarix-lv2
     SUBDIR += gula-plugins-lv2
     SUBDIR += guspat
     SUBDIR += gvolwheel
@@ -517,6 +518,7 @@
     SUBDIR += ncpamixer
     SUBDIR += ncspot
     SUBDIR += netease-music-tui
+    SUBDIR += neuralrack-lv2
     SUBDIR += noise-repellent-lv2
     SUBDIR += noise-suppression-for-voice-lv2
     SUBDIR += normalize
@@ -684,6 +686,7 @@
     SUBDIR += qtractor
     SUBDIR += quimup
     SUBDIR += qxgedit
+    SUBDIR += ratatouille-lv2
     SUBDIR += raul
     SUBDIR += rawrec
     SUBDIR += re
