@@ -1,6 +1,6 @@
 PORTNAME=	rust
-PORTVERSION?=	1.85.0
-PORTREVISION?=	1
+PORTVERSION?=	1.85.1
+PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
 		https://dev-static.rust-lang.org/dist/:src \
@@ -47,7 +47,7 @@ CONFLICTS_INSTALL?=	rust-nightly
 TMPDIR?=	${WRKDIR}
 
 OPTIONS_DEFINE=		DOCS GDB LTO PORT_LLVM SOURCES WASM
-OPTIONS_DEFAULT=	SOURCES WASM
+OPTIONS_DEFAULT=	DOCS SOURCES WASM
 OPTIONS_DEFINE_i386=	SSE2
 OPTIONS_DEFAULT_i386=	SSE2
 
@@ -64,7 +64,7 @@ DOCS_VARS=		_RUST_BUILD_DOCS=true \
 			_RUST_TOOLS+=rustdoc
 DOCS_VARS_OFF=		_RUST_BUILD_DOCS=false
 GDB_RUN_DEPENDS=	${LOCALBASE}/bin/gdb:devel/gdb
-PORT_LLVM_USES=		llvm:min=18,lib,noexport
+PORT_LLVM_USES=		llvm:min=18,max=19,lib,noexport
 PORT_LLVM_MAKE_ENV=	RUSTFLAGS="-Lnative=${LOCALBASE}/lib"
 SOURCES_VARS=		_COMPONENTS+=rust-src-${_PACKAGE_VERS} \
 			_RUST_TOOLS+=src
@@ -83,7 +83,7 @@ _RUST_ARCH_i386=	i686
 _RUST_ARCH_riscv64=	riscv64gc
 _RUST_TARGET=		${_RUST_ARCH_${ARCH}:U${ARCH}}-unknown-${OPSYS:tl}
 _RUST_TARGETS=		${_RUST_TARGET}
-_RUST_TOOLS=		analysis cargo clippy rust-analyzer rustdoc rustfmt
+_RUST_TOOLS=		analysis cargo clippy rust-analyzer rustfmt
 
 _RUSTC_BOOTSTRAP=	${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rustc-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${_RUST_TARGET}
 _RUST_STD_BOOTSTRAP=	${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rust-std-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${_RUST_TARGET}
@@ -171,11 +171,7 @@ do-configure:
 	@${ECHO_CMD} 'vendor=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'extended=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} 'python="${PYTHON_CMD}"' >> ${WRKSRC}/config.toml
-.if ${ARCH} == "armv7"
-	@${ECHO_CMD} 'docs=false' >> ${WRKSRC}/config.toml
-.else
 	@${ECHO_CMD} 'docs=${_RUST_BUILD_DOCS}' >> ${WRKSRC}/config.toml
-.endif
 	@${ECHO_CMD} 'verbose=2' >> ${WRKSRC}/config.toml
 .if defined(NIGHTLY_DATE)
 	@${ECHO_CMD} 'profiler=true' >> ${WRKSRC}/config.toml
