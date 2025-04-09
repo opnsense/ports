@@ -46,6 +46,7 @@
     SUBDIR += acidwarp-sdl
     SUBDIR += aeskulap
     SUBDIR += agg
+    SUBDIR += agg26
     SUBDIR += airsaned
     SUBDIR += akira
     SUBDIR += alembic
@@ -259,6 +260,7 @@
     SUBDIR += gimp-lqr-plugin
     SUBDIR += gimp-refocus-plugin
     SUBDIR += gimp-resynthesizer
+    SUBDIR += gimp3-app
     SUBDIR += gkrellkam2
     SUBDIR += glad
     SUBDIR += glaxnimate
@@ -986,7 +988,6 @@
     SUBDIR += py-pydot
     SUBDIR += py-pydotplus
     SUBDIR += py-pyepsg
-    SUBDIR += py-pygal
     SUBDIR += py-pyganim
     SUBDIR += py-pygeoapi
     SUBDIR += py-pygeos

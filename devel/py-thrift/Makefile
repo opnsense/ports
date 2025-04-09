@@ -1,12 +1,11 @@
 PORTNAME=	thrift
 PORTVERSION=	${THRIFT_PORTVERSION} # to keep in sync with thrift
-PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel python
 MASTER_SITES=	APACHE/thrift/${PORTVERSION}
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	komarov@valerka.net
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python interface to Thrift
 WWW=		https://thrift.apache.org/
 

@@ -57,6 +57,8 @@ include/backend/platforms/PlatformOSMesa.h
 include/backend/platforms/PlatformWGL.h
 include/backend/platforms/PlatformWebGL.h
 include/backend/platforms/VulkanPlatform.h
+include/backend/platforms/VulkanPlatformAndroid.h
+include/backend/platforms/WebGPUPlatform.h
 include/camutils/Bookmark.h
 include/camutils/Manipulator.h
 include/camutils/compiler.h
@@ -177,6 +179,7 @@ include/utils/PrivateImplementation-impl.h
 include/utils/PrivateImplementation.h
 include/utils/SingleInstanceComponentManager.h
 include/utils/Slice.h
+include/utils/StaticString.h
 include/utils/StructureOfArrays.h
 include/utils/Systrace.h
 include/utils/algorithm.h

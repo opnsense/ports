@@ -693,7 +693,6 @@
     SUBDIR += mcelog
     SUBDIR += mcfly
     SUBDIR += mcron
-    SUBDIR += mcweject
     SUBDIR += mdcat
     SUBDIR += mdf2iso
     SUBDIR += megacli
@@ -965,6 +964,7 @@
     SUBDIR += polkit
     SUBDIR += polkit-gnome
     SUBDIR += polkit-qt-1
+    SUBDIR += pollinfo
     SUBDIR += popeye
     SUBDIR += porch
     SUBDIR += pot
@@ -1028,7 +1028,6 @@
     SUBDIR += py-filelock
     SUBDIR += py-focker
     SUBDIR += py-glances
-    SUBDIR += py-google-compute-engine
     SUBDIR += py-hared
     SUBDIR += py-hcloud
     SUBDIR += py-honcho

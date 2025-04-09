@@ -1,19 +1,21 @@
 PORTNAME=	acidwarp-sdl
 PORTVERSION=	g2022112701
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Eye candy program which displays various patterns
 WWW=		https://github.com/dreamlayers/acidwarp
 
-USES=		cmake magick:7,build sdl
-USE_SDL=	sdl2
+DEPRECATED=		Unmaintained by upstream as last release was in 2022
+EXPIRATION_DATE=	2025-05-03
 
+USES=		cmake magick:7,build sdl
 USE_GITHUB=	yes
 GH_ACCOUNT=	dreamlayers
 GH_PROJECT=	acidwarp
 GH_TAGNAME=	c48e1e2
+USE_SDL=	sdl2
 
 # Fix build on recent current (clang11)
 CFLAGS+=	-fcommon

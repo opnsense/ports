@@ -127,6 +127,7 @@
     SUBDIR += hybrid-bar
     SUBDIR += hyprcursor
     SUBDIR += hypridle
+    SUBDIR += hyprland-qtutils
     SUBDIR += hyprlock
     SUBDIR += hyprpaper
     SUBDIR += hyprpicker
@@ -146,6 +147,7 @@
     SUBDIR += kb2mb2
     SUBDIR += kde
     SUBDIR += kde-baseapps
+    SUBDIR += kde-gear
     SUBDIR += kdisplay
     SUBDIR += keybinder
     SUBDIR += keybinder-gtk3

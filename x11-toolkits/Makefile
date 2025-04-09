@@ -49,6 +49,7 @@
     SUBDIR += gtksourceview5
     SUBDIR += gtksourceviewmm3
     SUBDIR += guile-gnome-platform
+    SUBDIR += hyprland-qt-support
     SUBDIR += imgui
     SUBDIR += irrlicht
     SUBDIR += itk
@@ -239,7 +240,6 @@
     SUBDIR += scintilla
     SUBDIR += sdl2_pango
     SUBDIR += sdl_pango
-    SUBDIR += shared-desktop-ontologies
     SUBDIR += skinlf
     SUBDIR += soqt
     SUBDIR += swt

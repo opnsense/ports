@@ -1,5 +1,6 @@
 PORTNAME=	thunderbird
-DISTVERSION=	137.0
+DISTVERSION=	137.0.1
+PORTREVISION=	1
 CATEGORIES=	mail news net-im wayland
 MASTER_SITES=	MOZILLA/${PORTNAME}/releases/${DISTVERSION}${DISTVERSIONSUFFIX}/source \
 		MOZILLA/${PORTNAME}/candidates/${DISTVERSION}${DISTVERSIONSUFFIX}-candidates/build1/source
@@ -30,9 +31,8 @@ LIB_DEPENDS=	libjson-c.so:devel/json-c
 
 USE_GECKO=	gecko
 CONFLICTS_INSTALL=	thunderbird-esr
-# cannot use system icu: too old on 2025Q1
-# before re-enabling, check:
-  # https://unicode-org.atlassian.net/browse/ICU-22132 (fix not in 74.1)
+# cannot use system icu: calendar is completely broken by
+# https://unicode-org.atlassian.net/browse/ICU-22132 (fix not in 76.1)
 USE_MOZILLA=	-icu -sqlite
 CFLAGS_powerpc64le=	-DSQLITE_BYTEORDER=1234
 

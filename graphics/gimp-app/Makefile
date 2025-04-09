@@ -1,6 +1,6 @@
 PORTNAME=	gimp
 DISTVERSION=	2.10.38
-PORTREVISION=	2
+PORTREVISION=	4
 PORTEPOCH=	1
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -80,6 +80,8 @@ TEST_TARGET=	check
 
 LIBS+=		-lexecinfo -lm
 
+CONFLICTS_INSTALL=	gimp3-app
+
 PLIST_SUB+=	LIBVER=0.1000.${PORTVERSION:E}
 
 OPTIONS_DEFINE=			AALIB GHOSTSCRIPT HEIF JXL LIBMNG OPENEXR OPENJPEG \
@@ -132,6 +134,7 @@ post-patch:
 			${WRKSRC}/plug-ins/pygimp/Makefile.in
 	@${REINPLACE_CMD} \
 		-e 's|x86_64|amd64|g' \
+		-e 's|libpixbufloader-svg.so|libpixbufloader_svg.so|g' \
 		${WRKSRC}/configure.ac
 
 .include <bsd.port.mk>
