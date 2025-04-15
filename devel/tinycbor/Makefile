@@ -1,10 +1,11 @@
 PORTNAME=	tinycbor
 PORTVERSION=	0.6.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	devel
 
-PATCHTSITES=	https://github.com/intel/tinycbor/commit/
-PATCH_FILES=	628dee0d65f857d62ab1a6e1af9b9224d7df8fad.diff:-p1
+PATCH_SITES=	https://github.com/intel/tinycbor/commit/
+PATCHFILES=	628dee0d65f857d62ab1a6e1af9b9224d7df8fad.diff:-p1
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Concise Binary Object Representation (CBOR) library

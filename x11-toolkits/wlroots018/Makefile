@@ -4,7 +4,7 @@ CATEGORIES=	x11-toolkits
 PKGNAMESUFFIX=	018
 
 MAINTAINER=	jbeich@FreeBSD.org
-COMMENT=	Modular Wayland compositor library (current 0.18.* series)
+COMMENT=	Modular Wayland compositor library (deprecated 0.18.* series)
 WWW=		https://gitlab.freedesktop.org/wlroots/wlroots
 
 LICENSE=	MIT

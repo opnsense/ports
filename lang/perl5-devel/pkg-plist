@@ -195,6 +195,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/ExtUtils/ParseXS/Constants.pm
 %%PRIV_LIB%%/ExtUtils/ParseXS/CountLines.pm
 %%PRIV_LIB%%/ExtUtils/ParseXS/Eval.pm
+%%PRIV_LIB%%/ExtUtils/ParseXS/Node.pm
 %%PRIV_LIB%%/ExtUtils/ParseXS/Utilities.pm
 %%PRIV_LIB%%/ExtUtils/Typemaps.pm
 %%PRIV_LIB%%/ExtUtils/Typemaps/Cmd.pm
@@ -437,7 +438,6 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/Test.pm
 %%PRIV_LIB%%/Test/Builder.pm
 %%PRIV_LIB%%/Test/Builder/Formatter.pm
-%%PRIV_LIB%%/Test/Builder/IO/Scalar.pm
 %%PRIV_LIB%%/Test/Builder/Module.pm
 %%PRIV_LIB%%/Test/Builder/Tester.pm
 %%PRIV_LIB%%/Test/Builder/Tester/Color.pm
@@ -497,6 +497,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/Test2/Compare/String.pm
 %%PRIV_LIB%%/Test2/Compare/Undef.pm
 %%PRIV_LIB%%/Test2/Compare/Wildcard.pm
+%%PRIV_LIB%%/Test2/Env.pm
 %%PRIV_LIB%%/Test2/Event.pm
 %%PRIV_LIB%%/Test2/Event/Bail.pm
 %%PRIV_LIB%%/Test2/Event/Diag.pm
@@ -616,6 +617,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/Test2/Util/HashBase.pm
 %%PRIV_LIB%%/Test2/Util/Importer.pm
 %%PRIV_LIB%%/Test2/Util/Ref.pm
+%%PRIV_LIB%%/Test2/Util/Sig.pm
 %%PRIV_LIB%%/Test2/Util/Stash.pm
 %%PRIV_LIB%%/Test2/Util/Sub.pm
 %%PRIV_LIB%%/Test2/Util/Table.pm
@@ -798,7 +800,6 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%ARCH_LIB%%/CORE/XSUB.h
 %%ARCH_LIB%%/CORE/av.h
 %%ARCH_LIB%%/CORE/bitcount.h
-%%ARCH_LIB%%/CORE/charclass_invlists.h
 %%ARCH_LIB%%/CORE/config.h
 %%ARCH_LIB%%/CORE/cop.h
 %%ARCH_LIB%%/CORE/cv.h
@@ -861,6 +862,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%ARCH_LIB%%/CORE/regcomp.h
 %%ARCH_LIB%%/CORE/regcomp_internal.h
 %%ARCH_LIB%%/CORE/regexp.h
+%%ARCH_LIB%%/CORE/regexp_constants.h
 %%ARCH_LIB%%/CORE/reginline.h
 %%ARCH_LIB%%/CORE/regnodes.h
 %%ARCH_LIB%%/CORE/sbox32_hash.h
@@ -967,6 +969,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%ARCH_LIB%%/PerlIO/mmap.pm
 %%ARCH_LIB%%/PerlIO/via.pm
 %%ARCH_LIB%%/SDBM_File.pm
+%%ARCH_LIB%%/Scalar/List/Utils.pm
 %%ARCH_LIB%%/Scalar/Util.pm
 %%ARCH_LIB%%/Socket.pm
 %%ARCH_LIB%%/Storable.pm
@@ -1117,11 +1120,20 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN1%%/perl5380delta.1.gz
 %%MAN1%%/perl5381delta.1.gz
 %%MAN1%%/perl5382delta.1.gz
+%%MAN1%%/perl5383delta.1.gz
 %%MAN1%%/perl5400delta.1.gz
+%%MAN1%%/perl5401delta.1.gz
 %%MAN1%%/perl5410delta.1.gz
+%%MAN1%%/perl54110delta.1.gz
 %%MAN1%%/perl5411delta.1.gz
 %%MAN1%%/perl5412delta.1.gz
 %%MAN1%%/perl5413delta.1.gz
+%%MAN1%%/perl5414delta.1.gz
+%%MAN1%%/perl5415delta.1.gz
+%%MAN1%%/perl5416delta.1.gz
+%%MAN1%%/perl5417delta.1.gz
+%%MAN1%%/perl5418delta.1.gz
+%%MAN1%%/perl5419delta.1.gz
 %%MAN1%%/perl561delta.1.gz
 %%MAN1%%/perl56delta.1.gz
 %%MAN1%%/perl581delta.1.gz
@@ -1449,6 +1461,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/ExtUtils::ParseXS.3.gz
 %%MAN3%%/ExtUtils::ParseXS::Constants.3.gz
 %%MAN3%%/ExtUtils::ParseXS::Eval.3.gz
+%%MAN3%%/ExtUtils::ParseXS::Node.3.gz
 %%MAN3%%/ExtUtils::ParseXS::Utilities.3.gz
 %%MAN3%%/ExtUtils::Typemaps.3.gz
 %%MAN3%%/ExtUtils::Typemaps::Cmd.3.gz
@@ -1643,6 +1656,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/Pod::Usage.3.gz
 %%MAN3%%/SDBM_File.3.gz
 %%MAN3%%/Safe.3.gz
+%%MAN3%%/Scalar::List::Utils.3.gz
 %%MAN3%%/Scalar::Util.3.gz
 %%MAN3%%/Search::Dict.3.gz
 %%MAN3%%/SelectSaver.3.gz
@@ -1752,6 +1766,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/Test2::Compare::String.3.gz
 %%MAN3%%/Test2::Compare::Undef.3.gz
 %%MAN3%%/Test2::Compare::Wildcard.3.gz
+%%MAN3%%/Test2::Env.3.gz
 %%MAN3%%/Test2::Event.3.gz
 %%MAN3%%/Test2::Event::Bail.3.gz
 %%MAN3%%/Test2::Event::Diag.3.gz
@@ -1871,6 +1886,7 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/Test2::Util::HashBase.3.gz
 %%MAN3%%/Test2::Util::Importer.3.gz
 %%MAN3%%/Test2::Util::Ref.3.gz
+%%MAN3%%/Test2::Util::Sig.3.gz
 %%MAN3%%/Test2::Util::Stash.3.gz
 %%MAN3%%/Test2::Util::Sub.3.gz
 %%MAN3%%/Test2::Util::Table.3.gz
@@ -1887,7 +1903,6 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%MAN3%%/Test2::Workflow::Task::Group.3.gz
 %%MAN3%%/Test::Builder.3.gz
 %%MAN3%%/Test::Builder::Formatter.3.gz
-%%MAN3%%/Test::Builder::IO::Scalar.3.gz
 %%MAN3%%/Test::Builder::Module.3.gz
 %%MAN3%%/Test::Builder::Tester.3.gz
 %%MAN3%%/Test::Builder::Tester::Color.3.gz
@@ -2061,11 +2076,20 @@ etc/man.d/perl%%PKGNAMESUFFIX%%.conf
 %%PRIV_LIB%%/pod/perl5380delta.pod
 %%PRIV_LIB%%/pod/perl5381delta.pod
 %%PRIV_LIB%%/pod/perl5382delta.pod
+%%PRIV_LIB%%/pod/perl5383delta.pod
 %%PRIV_LIB%%/pod/perl5400delta.pod
+%%PRIV_LIB%%/pod/perl5401delta.pod
 %%PRIV_LIB%%/pod/perl5410delta.pod
+%%PRIV_LIB%%/pod/perl54110delta.pod
 %%PRIV_LIB%%/pod/perl5411delta.pod
 %%PRIV_LIB%%/pod/perl5412delta.pod
 %%PRIV_LIB%%/pod/perl5413delta.pod
+%%PRIV_LIB%%/pod/perl5414delta.pod
+%%PRIV_LIB%%/pod/perl5415delta.pod
+%%PRIV_LIB%%/pod/perl5416delta.pod
+%%PRIV_LIB%%/pod/perl5417delta.pod
+%%PRIV_LIB%%/pod/perl5418delta.pod
+%%PRIV_LIB%%/pod/perl5419delta.pod
 %%PRIV_LIB%%/pod/perl561delta.pod
 %%PRIV_LIB%%/pod/perl56delta.pod
 %%PRIV_LIB%%/pod/perl581delta.pod

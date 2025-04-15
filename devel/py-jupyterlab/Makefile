@@ -1,5 +1,5 @@
 PORTNAME=	jupyterlab
-PORTVERSION=	4.3.5
+PORTVERSION=	4.3.6
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/jupyterlab/jupyterlab/releases/download/v${PORTVERSION}/
@@ -37,10 +37,6 @@ USE_PYTHON=	autoplist concurrent pep517
 NO_ARCH=	yes
 
 .include <bsd.port.pre.mk>
-
-.if ${PYTHON_REL} < 30900
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-resources>=1.4:devel/py-importlib-resources@${PY_FLAVOR}
-.endif
 
 .if ${PYTHON_REL} < 31000
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}importlib-metadata>=4.8.3:devel/py-importlib-metadata@${PY_FLAVOR}
