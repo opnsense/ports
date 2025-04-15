@@ -4162,6 +4162,7 @@ sysutils/shim||2025-02-22|Has expired: upstream has been inactive for 10 years a
 devel/py-python-gilt|devel/gilt|2025-02-23|Project switched language from python to go
 textproc/uim-gtk|textproc/uim-gtk2|2025-02-23|Rename with versioned suffix
 x11-toolkits/scenefx|x11-toolkits/scenefx02|2025-02-25|Renamed to match versioned API
+textproc/rubygem-rexml-gitlab|textproc/rubygem-rexml|2025-02-25|Use textproc/rubygem-rexml
 www/kdsoap@qt5||2025-02-26|Qt5 flavor is no longer needed
 www/kdsoap@qt6|www/kdsoap|2025-02-26|Unflavorize; only Qt6 support is needed
 net/drive||2025-02-28|Remove expired port
@@ -4219,3 +4220,90 @@ x11-toolkits/Xaw3d|x11-toolkits/libXaw3d|2025-03-23|Rename in preparation to reb
 sysutils/pprotectd||2025-03-24|Has expired: Obsolete utility, superseded by protect in base
 www/ytdl|www/yt-dlp|2025-03-24|ytdl doesn't work and is archived upstream, www/yt-dlp be used instead
 textproc/py-docstring-parser|textproc/py-docstring_parser|2025-03-25|Renamed to match upstream naming
+www/py-flask-security||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+devel/py-aiocontextvars||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+converters/libutf-8||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+science/py-moltemplate||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+math/py-numdifftools||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+graphics/py-pygal||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+www/choqok||2025-03-31|Has expired: Project discontinued upstream
+net-p2p/vuze||2025-03-31|Has expired: Abandoned upstream
+finance/odoo15||2025-03-31|Has expired: Depends on expired converters/wkhtmltopdf and print/py-pypdf2
+devel/py-fbprophet||2025-03-31|Has expired: Depends on expired math/py-pystan
+multimedia/ogmrip||2025-03-31|Has expired: Abandonware, last activity in 2018 and lacks support for new formats. Consider using multimedia/handbrake
+databases/py-pgxnclient||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+misc/jirust||2025-03-31|Has expired: Listed as broken for over 6+ months
+math/py-Diofant||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+devel/py-prettyprinter||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+textproc/py-wstools||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+devel/peg.el||2025-03-31|Has expired: Emacs 30 and later include peg.el as standard library
+textproc/py-citeproc-py-styles||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+multimedia/gdialog||2025-03-31|Has expired: Support for a 20 year old obsolete STB that only supports DVB-T(1) and MPEG-2
+multimedia/emovix||2025-03-31|Has expired: Abandonware, uses over a decade year old software and no support for anything recent
+textproc/m17n-im-config||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+databases/pgfouine||2025-03-31|Has expired: Upstream project disappeared in 2010
+multimedia/spook||2025-03-31|Has expired: Abandonware and obsolete, consider using multimedia/ffmpeg or multimedia/vlc
+finance/odoo14||2025-03-31|Has expired: Depends on expired converters/wkhtmltopdf and print/py-pypdf2
+net/nsscache||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+security/caldera4||2025-03-31|Has expired: Upgrade to a newer caldera version. 4.2.0 is vulnerable to remote code execution
+net/opensips31||2025-03-31|Has expired: Deprecated upstream
+textproc/rubygem-nokogumbo||2025-03-31|Has expired: Upstream has merged into textproc/rubygem-nokogiri
+net/libmediawiki||2025-03-31|Has expired: Project abandoned upstream
+net/py-tacacs_plus||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+devel/py-imgkit||2025-03-31|Has expired: Depends on expired converters/wkhtmltopdf
+sysutils/py-google-compute-engine||2025-03-31|Has expired: Depends on expired devel/py-boto
+devel/ocaml-type_conv|devel/ocaml-ppxlib|2025-03-31|Has expired: Deprecated, upstream recommends migrating to devel/ocaml-ppxlib
+multimedia/dirac||2025-03-31|Has expired: Legacy video codec superseded by multiple formats. Files can be decoded using FFmpeg
+ports-mgmt/py-pytoport||2025-03-31|Has expired: Depends on expired misc/py-spdx-lookup
+net/py-ec2-cli-tools||2025-03-31|Has expired: Depends on expired devel/py-boto
+emulators/libretro-mame||2025-03-31|Has expired: Uses expired Python 3.8
+lang/python38|lang/python39|2025-03-31|Has expired: Reached end-of-life in October 2024
+devel/py-python-pcre||2025-03-31|Has expired: Upstream is inactive for over 9 years
+textproc/p5-PDF-WebKit||2025-03-31|Has expired: Depends on expired converters/wkhtmltopdf
+net-im/py-telepot||2025-03-31|Has expired: Upstream repository has been archived on Jun 2, 2019
+multimedia/msdl||2025-03-31|Has expired: Obsolete utility for obsolete protocols
+net-im/sayaka||2025-03-31|Has expired: Depends on expired security/mbedtls2
+databases/grass7|databases/grass8|2025-03-31|Has expired: Please use databases/grass8
+multimedia/tcmplex-panteltje||2025-03-31|Has expired: Abandonware, upstream is gone and no consumers in tree
+games/minecraft-client||2025-03-31|Has expired: dead upstream, no longer functional
+www/redmine50|www/redmine51|2025-03-31|Has expired: Requires ruby31
+multimedia/projectx||2025-03-31|Has expired: Abandonware, last release in 2011 and dependens on legacy version of Java. Consider using multimedia/ffmpeg or multimedia/vlc
+x11-toolkits/shared-desktop-ontologies||2025-03-31|Has expired: Abandonedware, not used by KDE for a long time
+devel/jrtplib||2025-03-31|Has expired: Abandonware, no longer maintained upstream as of 2020
+net-mgmt/netdot||2025-03-31|Has expired: Upstream has been inactive for 4 years, consider migrating to net-mgmt/netbox
+japanese/esecanna-module-wnn6||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+japanese/esecanna-module-vje25||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+japanese/esecanna-module-vje30||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+chinese/muni||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+devel/buildstream||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+www/py-django-hijack||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+security/heimdal-devel||2025-03-31|Has expired: Upstream commits are incompatible
+lang/ruby31||2025-03-31|Has expired: Please migrate to newer version. Ruby 3.1 is expected to reach its EoL on March 31, 2025
+multimedia/gnome-mplayer||2025-03-31|Has expired: Abandonware, last activity from upstream 11 years ago and multiple unresolved issue reports
+devel/py-opengrok-tools||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+multimedia/gmtk||2025-03-31|Has expired: Support library for deprecated port multimedia/gnome-mplayer
+lang/neko||2025-03-31|Has expired: Depends on expired security/mbedtls2
+devel/radian||2025-03-31|Has expired: Depends on expired devel/py-pytest-runner
+japanese/esecanna||2025-03-31|Has expired: Upstream disapeared and distfile is no more available
+devel/rubygem-aws-sdk-elasticinference||2025-03-31|Has expired: Deprecated by upstream
+devel/electron31||2025-03-31|Has expired: EOLed upstream, switch to newer version
+net-im/telepathy-logger-qt5||2025-03-31|Has expired: Abandoned project
+devel/py-boto|www/py-boto3|2025-03-31|Has expired: This version is discontinued upstream, please use www/py-boto3
+print/py-pypdf2|print/py-pypdf|2025-03-31|Has expired: Upstream moved the development back to PyPDF. Use print/py-pypdf instead
+math/py-pystan||2025-03-31|Has expired: Marked as BROKEN for years
+net-im/telepathy-qt||2025-03-31|Has expired: Leaf library depending on Qt5
+devel/py-pkgutil-resolve-name||2025-03-31|Removed, only for Python 3.8
+devel/appstream-qt@qt5||2025-04-03|Unflavorize; only Qt6 support is needed
+devel/appstream-qt@qt6|devel/appstream-qt|2025-04-03|Unflavorize; only Qt6 support is needed
+ports-mgmt/packagekit-qt@qt5||2025-04-03|Unflavorize; only Qt6 support is needed
+ports-mgmt/packagekit-qt@qt6|ports-mgmt/packagekit-qt|2025-04-03|Unflavorize; only Qt6 support is needed
+devel/rubygem-makara61||2025-04-04|Has expired: Uses EOL version 6.1.X of Rails
+security/rubygem-pundit61||2025-04-04|Has expired: Uses EOL version 6.1.X of Rails
+math/matlab-installer||2025-04-04|Has expired: Unmaintained, does not support recent Matlab
+sysutils/mcweject||2025-04-04|Has expired: Unmaintained, redundant to "cdcontrol eject"
+ports-mgmt/genplist||2025-04-04|Has expired: Unmaintained, obsoleted by "make makeplist"
+databases/rubygem-scenic61||2025-04-04|Has expired: Uses EOL version 6.1.X of Rails
+devel/py-blist||2025-04-04|Has expired: Abandoned project, no consumers, no modern python support
+textproc/rubygem-case_transform61||2025-04-04|Has expired: Uses EOL version 6.1.X of Rails
+lang/python-doc-pdf-letter|lang/python-doc-pdf-a4|2025-04-09|Letter-size PDF no longer provided since 3.12
+net-im/py-punjab||2025-04-13|Has expired: Abandoned project, not compatible with decent python/twisted

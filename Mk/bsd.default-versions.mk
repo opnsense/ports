@@ -73,7 +73,7 @@ GUILE_DEFAULT?=		2.2
 # Format:	     version[-flavor]
 # Examples:	     6-nox11, 7
 IMAGEMAGICK_DEFAULT?=	7
-# Possible values: 8, 11, 17, 18, 19, 20, 21, 22 23
+# Possible values: 8, 11, 17, 18, 19, 20, 21, 22, 23, 24
 JAVA_DEFAULT?=		8
 # Possible values: 3.8.0, 4.99
 .  if (defined(WANT_LAZARUS_DEVEL) && !empty(WANT_LAZARUS_DEVEL)) || ${ARCH:Maarch64}
@@ -88,7 +88,11 @@ LIBRSVG2_DEFAULT?=	rust
 LIBRSVG2_DEFAULT?=	legacy
 .  endif
 # Possible values: c7 rl9
+.  if ${ARCH:Mi386}
 LINUX_DEFAULT?=		c7
+.  else
+LINUX_DEFAULT?=		rl9
+.  endif
 # Possible values: 11, 12, 13, 14, 15, 16, 17, 18, 19, -devel (to be used when non-base compiler is required)
 LLVM_DEFAULT?=		19
 # Possible values: 5.1, 5.2, 5.3, 5.4
@@ -136,7 +140,7 @@ PYCRYPTOGRAPHY_DEFAULT?=	rust
 .  else
 PYCRYPTOGRAPHY_DEFAULT?=	legacy
 .  endif
-# Possible values: 3.8, 3.9, 3.10, 3.11
+# Possible values: 3.9, 3.10, 3.11, 3.12
 PYTHON_DEFAULT?=	3.11
 # Possible values: 2.7
 PYTHON2_DEFAULT?=	2.7
