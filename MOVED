@@ -4184,7 +4184,6 @@ java/cos||2025-03-01|Has expired: Upstream seems gone since 2024-08-22
 sysutils/pass-secrets||2025-03-01|Has expired: Listed as BROKEN and unmaintained for months
 sysutils/fluxengine||2025-03-01|Has expired: Broken for several months
 textproc/py-pyjade||2025-03-01|Has expired: Upstream is inactive for almost 8.5 years
-math/parmetis||2025-03-01|Has expired: Fails to fetch, unmaintained for years in tree
 math/pspp||2025-03-01|Has expired: Listed as broken for more than 5 months
 games/shaaft||2025-03-02|Has expired: Unmaintained upstream for ages, breaks with modern toolchains
 devel/asmutils||2025-03-02|Has expired: latest upstream release is 19 years ago, replaced by a-Linux, does not build with GCC 14
@@ -4307,3 +4306,22 @@ devel/py-blist||2025-04-04|Has expired: Abandoned project, no consumers, no mode
 textproc/rubygem-case_transform61||2025-04-04|Has expired: Uses EOL version 6.1.X of Rails
 lang/python-doc-pdf-letter|lang/python-doc-pdf-a4|2025-04-09|Letter-size PDF no longer provided since 3.12
 net-im/py-punjab||2025-04-13|Has expired: Abandoned project, not compatible with decent python/twisted
+devel/linux-rl9-libsigsegv|emulators/linux_base-rl9|2025-04-15|Integrated into linux_base-rl9
+devel/linux-rl9-libatomic|devel/linux-rl9-devtools|2025-04-15|Integrated into linux-rl9-devtools
+devel/rubygem-sidekiq72|devel/rubygem-sidekiq-gitlab|2025-04-18|Please use devel/sidekiq-gitlab instead
+security/solana|security/agave|2025-04-18|Solana repository is archived, switched to the fork Agave
+graphics/diffpdf||2025-04-20|Has expired: withdrawn from author
+net/linux-rl9-libproxy|emulators/linux_base-rl9|2025-04-21|Merged into linux_base
+graphics/linux-c7-jasper|graphics/linux-c7-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-jasper|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-c7-jbigkit|graphics/linux-c7-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-jbigkit|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-c7-jpeg|graphics/linux-c7-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-jpeg|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-c7-png|graphics/linux-c7-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-png|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-c7-tiff|graphics/linux-c7-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-tiff|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-openjpeg|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+graphics/linux-rl9-webp|graphics/linux-rl9-imageformats-libs|2025-04-21|Merged into imageformats-libs
+textproc/py-grapheme||2025-04-21|Has expired: Upstream is inactive for 4 years
