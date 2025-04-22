@@ -446,7 +446,6 @@
     SUBDIR += linux-c7-openldap
     SUBDIR += linux-c7-tcp_wrappers-libs
     SUBDIR += linux-rl9-avahi-libs
-    SUBDIR += linux-rl9-libproxy
     SUBDIR += linux-rl9-openldap
     SUBDIR += linux-rl9-sdl2_net
     SUBDIR += linux-rl9-sdl_net
@@ -1281,6 +1280,7 @@
     SUBDIR += rubygem-cloudflare
     SUBDIR += rubygem-connection_pool
     SUBDIR += rubygem-devfile
+    SUBDIR += rubygem-devfile-gitlab
     SUBDIR += rubygem-docker-api
     SUBDIR += rubygem-dogapi
     SUBDIR += rubygem-domain_name

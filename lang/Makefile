@@ -330,6 +330,8 @@
     SUBDIR += rizin-cutter
     SUBDIR += ruby32
     SUBDIR += ruby33
+    SUBDIR += ruby34
+    SUBDIR += ruby35
     SUBDIR += rubygem-rb_sys
     SUBDIR += rubygem-ruby_language_server
     SUBDIR += runawk
@@ -347,6 +349,7 @@
     SUBDIR += scheme48
     SUBDIR += scm
     SUBDIR += scratch
+    SUBDIR += scryer-prolog
     SUBDIR += sdcc
     SUBDIR += see
     SUBDIR += seed7
@@ -381,6 +384,7 @@
     SUBDIR += tclX
     SUBDIR += tolua
     SUBDIR += tolua++
+    SUBDIR += trealla-prolog
     SUBDIR += tuareg-mode.el
     SUBDIR += typstfmt
     SUBDIR += typstyle

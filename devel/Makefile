@@ -697,6 +697,7 @@
     SUBDIR += eventxx
     SUBDIR += exercisix
     SUBDIR += exomizer
+    SUBDIR += expected
     SUBDIR += f77flow
     SUBDIR += fam
     SUBDIR += fastcrc
@@ -1552,12 +1553,10 @@
     SUBDIR += linux-rl9-elfutils-libs
     SUBDIR += linux-rl9-highway
     SUBDIR += linux-rl9-icu
-    SUBDIR += linux-rl9-libatomic
     SUBDIR += linux-rl9-libevent
     SUBDIR += linux-rl9-libgfortran
     SUBDIR += linux-rl9-libpciaccess
     SUBDIR += linux-rl9-libsigc++20
-    SUBDIR += linux-rl9-libsigsegv
     SUBDIR += linux-rl9-libsoup
     SUBDIR += linux-rl9-libthai
     SUBDIR += linux-rl9-libtool-ltdl
@@ -1637,6 +1636,7 @@
     SUBDIR += lua-luacheck
     SUBDIR += lua-luarocks
     SUBDIR += lua-lunit
+    SUBDIR += lua-lunitx
     SUBDIR += lua-mode
     SUBDIR += lua-posix
     SUBDIR += lua-pty
@@ -1719,6 +1719,7 @@
     SUBDIR += nanopb
     SUBDIR += nant
     SUBDIR += nasm
+    SUBDIR += nativefiledialog-extended
     SUBDIR += naturaldocs
     SUBDIR += ncc
     SUBDIR += ncnf
@@ -7504,6 +7505,7 @@
     SUBDIR += rubygem-locale
     SUBDIR += rubygem-lockfile
     SUBDIR += rubygem-logger
+    SUBDIR += rubygem-logger-gitlab
     SUBDIR += rubygem-logger15
     SUBDIR += rubygem-logging
     SUBDIR += rubygem-logster
@@ -7863,9 +7865,9 @@
     SUBDIR += rubygem-sidekiq-bulk
     SUBDIR += rubygem-sidekiq-cron
     SUBDIR += rubygem-sidekiq-cron-rails70
+    SUBDIR += rubygem-sidekiq-gitlab
     SUBDIR += rubygem-sidekiq-scheduler
     SUBDIR += rubygem-sidekiq-unique-jobs
-    SUBDIR += rubygem-sidekiq72
     SUBDIR += rubygem-sidetiq
     SUBDIR += rubygem-sigdump
     SUBDIR += rubygem-simple-navigation

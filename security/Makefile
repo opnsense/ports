@@ -21,6 +21,7 @@
     SUBDIR += aespipe
     SUBDIR += afl++
     SUBDIR += afterglow
+    SUBDIR += agave
     SUBDIR += age
     SUBDIR += aide
     SUBDIR += amavisd-milter
@@ -395,6 +396,7 @@
     SUBDIR += monocypher
     SUBDIR += munge
     SUBDIR += n2n
+    SUBDIR += naabu
     SUBDIR += ncrack
     SUBDIR += ncrypt
     SUBDIR += nebula
@@ -408,9 +410,9 @@
     SUBDIR += nikto
     SUBDIR += nist-kat
     SUBDIR += nitrokey-app
-    SUBDIR += node-sqlcipher
     SUBDIR += nmap
     SUBDIR += nmap-devel
+    SUBDIR += node-sqlcipher
     SUBDIR += nss
     SUBDIR += nss_compat_ossl
     SUBDIR += nuclei
@@ -1302,7 +1304,6 @@
     SUBDIR += softether-devel
     SUBDIR += softether5
     SUBDIR += softhsm2
-    SUBDIR += solana
     SUBDIR += sops
     SUBDIR += spass
     SUBDIR += spass-qt5

@@ -1,7 +1,6 @@
 PORTNAME=	mongodb
 DISTVERSIONPREFIX=	r
-DISTVERSION=	7.0.16
-PORTREVISION=	2
+DISTVERSION=	7.0.18
 CATEGORIES=	databases net
 MASTER_SITES=	https://hg.mozilla.org/mozilla-central/raw-rev/:patches
 PKGNAMESUFFIX=	${DISTVERSION:R:S/.//}
@@ -46,7 +45,7 @@ USES=		compiler:c++20-lang cpe python:build scons shebangfix ssl
 USES+=		gmake pkgconfig
 
 # mozjs tag comes from ${WRKSRC}/src/third_party/mozjs/get-sources.sh
-MOZJS_TAG=	22954e1ce6bf72c7cf36f3a29ef030fff4ff6d33
+MOZJS_TAG=	4c197344dfc48dfbbd242333878f17f0379e6205
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	mongodb mongodb-forks:mozjs
@@ -136,6 +135,10 @@ MOZJS_ARCH=	ppc64le
 MOZJS_ARCH=	${ARCH}
 .endif
 
+post-extract:
+# Verify we downloaded the proper mozjs git tag.
+	${SH} -xc "test \"X`grep -E '^LIB_GIT_REVISION=' ${WRKSRC}/src/third_party/mozjs/get-sources.sh`\" = \"XLIB_GIT_REVISION=${MOZJS_TAG}\""
+
 post-patch:
 # fix build with python-3.11
 	${REINPLACE_CMD} -e 's#rU#r#g' ${WRKDIR}/spidermonkey-${MOZJS_TAG}/python/mozbuild/mozbuild/util.py
@@ -143,10 +146,6 @@ post-patch:
 	${REINPLACE_CMD} -e 's#rU#r#g' ${WRKDIR}/spidermonkey-${MOZJS_TAG}/python/mozbuild/mozbuild/backend/base.py
 	${REINPLACE_CMD} -e 's#rU#r#g' ${WRKDIR}/spidermonkey-${MOZJS_TAG}/python/mozbuild/mozbuild/action/process_define_files.py
 	${PATCH} -d ${WRKSRC}/src/third_party/mozjs/extract --quiet -p1 -V none < ${DISTDIR}/223087fdc29f18678f6174e9807b8780e439acf6
-
-pre-configure:
-# Verify we downloaded the proper mozjs git tag.
-	${SH} -c "test \"X`grep -E '^LIB_GIT_REVISION=' ${WRKSRC}/src/third_party/mozjs/get-sources.sh`\" = \"XLIB_GIT_REVISION=${MOZJS_TAG}\""
 
 do-configure:
 # Replacement of ${WRKSRC}/src/third_party/mozjs/get-sources.sh

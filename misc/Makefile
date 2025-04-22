@@ -423,6 +423,7 @@
     SUBDIR += py-codecarbon
     SUBDIR += py-colorbrewer
     SUBDIR += py-colored
+    SUBDIR += py-colorzero
     SUBDIR += py-crudini
     SUBDIR += py-datasets
     SUBDIR += py-detecta
@@ -628,6 +629,7 @@
     SUBDIR += thrill
     SUBDIR += timetrace
     SUBDIR += timezonemap
+    SUBDIR += timr-tui
     SUBDIR += tkcron
     SUBDIR += tkinfo
     SUBDIR += tkregexp
