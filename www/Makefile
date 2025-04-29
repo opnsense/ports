@@ -1445,6 +1445,7 @@
     SUBDIR += phpsysinfo
     SUBDIR += phpvirtualbox
     SUBDIR += phpvirtualbox-70
+    SUBDIR += phpvirtualbox-71
     SUBDIR += phpvirtualbox-legacy
     SUBDIR += piwigo
     SUBDIR += plasma6-plasma-browser-integration
@@ -2356,6 +2357,8 @@
     SUBDIR += rubygem-roda
     SUBDIR += rubygem-rqrcode
     SUBDIR += rubygem-rqrcode_core
+    SUBDIR += rubygem-rqrcode_core-gitlab
+    SUBDIR += rubygem-rqrcode-gitlab
     SUBDIR += rubygem-rss
     SUBDIR += rubygem-rtlit
     SUBDIR += rubygem-ruby-oembed
@@ -2591,6 +2594,7 @@
     SUBDIR += w3m-img
     SUBDIR += w3mir
     SUBDIR += wabt
+    SUBDIR += wasm-bindgen-cli
     SUBDIR += wasm-pack
     SUBDIR += waterfox
     SUBDIR += web2ldap
