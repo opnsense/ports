@@ -22,6 +22,7 @@
     SUBDIR += R-cran-shinyjs
     SUBDIR += R-cran-webshot
     SUBDIR += R-cran-webutils
+    SUBDIR += SNIP
     SUBDIR += UniversalFeedCreator
     SUBDIR += adguardhome
     SUBDIR += adjuster
@@ -446,8 +447,6 @@
     SUBDIR += moinmoincli
     SUBDIR += mongoose
     SUBDIR += monolith
-    SUBDIR += moodle41
-    SUBDIR += moodle43
     SUBDIR += moodle44
     SUBDIR += moodle45
     SUBDIR += moodle50
@@ -1458,7 +1457,6 @@
     SUBDIR += privoxy
     SUBDIR += protovis
     SUBDIR += proxygen
-    SUBDIR += publicfile
     SUBDIR += punbb
     SUBDIR += py-Pituophis
     SUBDIR += py-Tenjin
@@ -1795,6 +1793,7 @@
     SUBDIR += py-httptools
     SUBDIR += py-httpx
     SUBDIR += py-httpx-oauth
+    SUBDIR += py-httpx-retries
     SUBDIR += py-httpx-socks
     SUBDIR += py-httpx-sse
     SUBDIR += py-httpx-ws
@@ -2356,9 +2355,9 @@
     SUBDIR += rubygem-robots
     SUBDIR += rubygem-roda
     SUBDIR += rubygem-rqrcode
+    SUBDIR += rubygem-rqrcode-gitlab
     SUBDIR += rubygem-rqrcode_core
     SUBDIR += rubygem-rqrcode_core-gitlab
-    SUBDIR += rubygem-rqrcode-gitlab
     SUBDIR += rubygem-rss
     SUBDIR += rubygem-rtlit
     SUBDIR += rubygem-ruby-oembed

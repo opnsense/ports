@@ -41,11 +41,9 @@
     SUBDIR += R-cran-xtable
     SUBDIR += R-cran-yaml
     SUBDIR += UCD
-    SUBDIR += add-css-links
     SUBDIR += addts
     SUBDIR += adoc-mode.el
     SUBDIR += af-aspell
-    SUBDIR += aft
     SUBDIR += agrep
     SUBDIR += aha
     SUBDIR += aiksaurus
@@ -70,7 +68,6 @@
     SUBDIR += aspell
     SUBDIR += aspell-ispell
     SUBDIR += ast-aspell
-    SUBDIR += atom
     SUBDIR += augeas
     SUBDIR += az-aspell
     SUBDIR += bar
@@ -90,14 +87,11 @@
     SUBDIR += bn-aspell
     SUBDIR += br-aspell
     SUBDIR += bsd-spell
-    SUBDIR += bsddiff
     SUBDIR += c2html
-    SUBDIR += c2man
     SUBDIR += ca-aspell
     SUBDIR += cast2gif
     SUBDIR += castxml
     SUBDIR += catdoc
-    SUBDIR += cdif
     SUBDIR += cg3
     SUBDIR += cgrep
     SUBDIR += chkascii
@@ -116,7 +110,6 @@
     SUBDIR += codespell
     SUBDIR += colordiff
     SUBDIR += comrak
-    SUBDIR += confetti
     SUBDIR += confget
     SUBDIR += consul-template
     SUBDIR += cpp-peglib
@@ -169,12 +162,9 @@
     SUBDIR += docbook-xsl-ns
     SUBDIR += docbook2X
     SUBDIR += docbook2mdoc
-    SUBDIR += docbook2odf
     SUBDIR += docbookrx
     SUBDIR += docproj
     SUBDIR += docproj-fonts-cjk
-    SUBDIR += dom4j
-    SUBDIR += domc
     SUBDIR += dsssl-docbook-modular
     SUBDIR += dtd-catalogs
     SUBDIR += dtd2relax
@@ -183,7 +173,6 @@
     SUBDIR += dwdiff
     SUBDIR += easydiff
     SUBDIR += ebook-tools
-    SUBDIR += ekhtml
     SUBDIR += el-aspell
     SUBDIR += el-hyphen
     SUBDIR += elasticsearch-plugin-head
@@ -200,7 +189,6 @@
     SUBDIR += es-hunspell
     SUBDIR += es-hyphen
     SUBDIR += es-mythes
-    SUBDIR += estraier
     SUBDIR += et-aspell
     SUBDIR += evtx
     SUBDIR += exempi
@@ -228,7 +216,6 @@
     SUBDIR += fixrtf
     SUBDIR += fldiff
     SUBDIR += flex
-    SUBDIR += flip
     SUBDIR += fmtlatex
     SUBDIR += fo-aspell
     SUBDIR += foiltex
@@ -248,7 +235,6 @@
     SUBDIR += gitlab-elasticsearch-indexer
     SUBDIR += gl-aspell
     SUBDIR += gladtex
-    SUBDIR += gmetadom
     SUBDIR += gnugrep
     SUBDIR += go-md2man
     SUBDIR += go-transifex-client
@@ -259,6 +245,7 @@
     SUBDIR += google-ctemplate
     SUBDIR += gpp
     SUBDIR += grap
+    SUBDIR += grass
     SUBDIR += grc-aspell
     SUBDIR += greple
     SUBDIR += groff
@@ -289,7 +276,6 @@
     SUBDIR += hs-pandoc-crossref
     SUBDIR += hs-yaml
     SUBDIR += hsb-aspell
-    SUBDIR += htdig
     SUBDIR += html
     SUBDIR += html-pretty
     SUBDIR += html-xml-utils
@@ -340,8 +326,6 @@
     SUBDIR += jalingo
     SUBDIR += jaq
     SUBDIR += jarnal
-    SUBDIR += java2html
-    SUBDIR += jaxup
     SUBDIR += jdictionary
     SUBDIR += jdictionary-int-eng
     SUBDIR += jid
@@ -493,7 +477,6 @@
     SUBDIR += metauml
     SUBDIR += mgdiff
     SUBDIR += mi-aspell
-    SUBDIR += mifluz
     SUBDIR += miller
     SUBDIR += minify
     SUBDIR += minised
@@ -513,7 +496,6 @@
     SUBDIR += multimarkdown
     SUBDIR += muse
     SUBDIR += mxml
-    SUBDIR += mysqlviz
     SUBDIR += mythes
     SUBDIR += nb-aspell
     SUBDIR += nds-aspell
@@ -524,7 +506,6 @@
     SUBDIR += nn-aspell
     SUBDIR += nunnimcax
     SUBDIR += nuspell
-    SUBDIR += nux
     SUBDIR += ny-aspell
     SUBDIR += obsidian
     SUBDIR += ocaml-csv
@@ -813,7 +794,6 @@
     SUBDIR += p5-Search-Odeum
     SUBDIR += p5-Search-QueryParser
     SUBDIR += p5-Search-QueryParser-SQL
-    SUBDIR += p5-Search-Saryer
     SUBDIR += p5-Search-Sitemap
     SUBDIR += p5-Search-VectorSpace
     SUBDIR += p5-Senna
@@ -1312,7 +1292,6 @@
     SUBDIR += pod2mdoc
     SUBDIR += popup-stacks
     SUBDIR += ppower4
-    SUBDIR += print-n-times
     SUBDIR += pugixml
     SUBDIR += pup
     SUBDIR += py-CommonMark
@@ -1750,8 +1729,6 @@
     SUBDIR += reflex
     SUBDIR += regex2dfa
     SUBDIR += replaceit
-    SUBDIR += resume
-    SUBDIR += resume-extensions
     SUBDIR += rfcdiff
     SUBDIR += riffdiff
     SUBDIR += ripgrep
@@ -2010,10 +1987,7 @@
     SUBDIR += sad
     SUBDIR += sansi
     SUBDIR += sarep
-    SUBDIR += sary
     SUBDIR += sassc
-    SUBDIR += saxon
-    SUBDIR += saxon-devel
     SUBDIR += saxon-he
     SUBDIR += sc-aspell
     SUBDIR += scdoc
@@ -2030,7 +2004,6 @@
     SUBDIR += sd
     SUBDIR += sdcv
     SUBDIR += sdf
-    SUBDIR += sdif
     SUBDIR += sdocbook-xml
     SUBDIR += sdom
     SUBDIR += senna
@@ -2056,7 +2029,6 @@
     SUBDIR += snowballstemmer
     SUBDIR += so-hunspell
     SUBDIR += sonic
-    SUBDIR += soothsayer
     SUBDIR += source-highlight
     SUBDIR += sowing
     SUBDIR += spellutils
@@ -2076,8 +2048,6 @@
     SUBDIR += sv-mythes
     SUBDIR += svn2cl
     SUBDIR += sw-aspell
-    SUBDIR += sxml
-    SUBDIR += syck
     SUBDIR += ta-aspell
     SUBDIR += tagsoup
     SUBDIR += te-aspell
@@ -2118,7 +2088,6 @@
     SUBDIR += tttcmds
     SUBDIR += ttynt
     SUBDIR += tui-journal
-    SUBDIR += turboxsl
     SUBDIR += txt2html
     SUBDIR += txt2man
     SUBDIR += txt2tags
@@ -2140,7 +2109,6 @@
     SUBDIR += uni
     SUBDIR += uni-algo
     SUBDIR += uni2ascii
-    SUBDIR += unoconv
     SUBDIR += unroff
     SUBDIR += unrtf
     SUBDIR += up
@@ -2160,7 +2128,6 @@
     SUBDIR += weka
     SUBDIR += wiggle
     SUBDIR += wikiman
-    SUBDIR += word2x
     SUBDIR += wordnet
     SUBDIR += write-good
     SUBDIR += wv
@@ -2200,7 +2167,6 @@
     SUBDIR += xmlwrapp
     SUBDIR += xom
     SUBDIR += xorg-sgml-doctools
-    SUBDIR += xp
     SUBDIR += xslide.el
     SUBDIR += xstream
     SUBDIR += xsv-rs

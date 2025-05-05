@@ -1042,6 +1042,7 @@
     SUBDIR += py-mitogen
     SUBDIR += py-mqttwarn
     SUBDIR += py-nagiosplugin
+    SUBDIR += py-overlord
     SUBDIR += py-packet-python
     SUBDIR += py-pkginfo
     SUBDIR += py-ploy
@@ -1136,6 +1137,7 @@
     SUBDIR += rsyncbackup
     SUBDIR += rsyncrypto
     SUBDIR += rsyslog8
+    SUBDIR += rtkit-unix
     SUBDIR += rtty
     SUBDIR += rubygem-backup
     SUBDIR += rubygem-bolt
@@ -1448,8 +1450,8 @@
     SUBDIR += u-boot-qemu-riscv64
     SUBDIR += u-boot-quartz64-a
     SUBDIR += u-boot-quartz64-b
-    SUBDIR += u-boot-riotboard
     SUBDIR += u-boot-radxa-zero3
+    SUBDIR += u-boot-riotboard
     SUBDIR += u-boot-rock-pi-4
     SUBDIR += u-boot-rock64
     SUBDIR += u-boot-rockpro64

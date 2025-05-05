@@ -874,12 +874,14 @@
     SUBDIR += redis-devel
     SUBDIR += redis62
     SUBDIR += redis72
+    SUBDIR += redis74
     SUBDIR += redis_exporter
     SUBDIR += redisdesktopmanager
     SUBDIR += redisjson
     SUBDIR += retcl
     SUBDIR += rocksdb
     SUBDIR += rocksdb-jni
+    SUBDIR += rocksdb9
     SUBDIR += rqlite
     SUBDIR += rrdman
     SUBDIR += rrdmerge
