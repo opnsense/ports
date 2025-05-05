@@ -11,6 +11,9 @@ rcvar=ndproxy_enable
 start_cmd="ndproxy_start"
 stop_cmd="ndproxy_stop"
 
+# Promiscuous mode may be disabled if uplink_interface and downlink_mac_address are same interface
+: ${ndproxy_promisc_enable:=YES}
+
 ndproxy_start()
 {
     echo "Starting ndproxy:"
@@ -44,14 +47,24 @@ ndproxy_start()
 
     # Note that ndproxy_exception_ipv6_addresses may be left empty.
     
-    if [ -n "${ndproxy_uplink_interface}" ]; then
-	ifconfig ${ndproxy_uplink_interface} | head -1 | grep PPROMISC > /dev/null
-	if [ $? -eq 1 ]; then
-	    echo "Putting interface ${ndproxy_uplink_interface} into permanently promiscuous mode."
-	    ifconfig ${ndproxy_uplink_interface} promisc
-	fi
-    fi
-    
+    case "${ndproxy_promisc_enable}" in
+        [Yy][Ee][Ss])
+            if [ -n "${ndproxy_uplink_interface}" ]; then
+                ifconfig ${ndproxy_uplink_interface} | head -1 | grep PPROMISC > /dev/null
+                if [ $? -ne 0 ]; then
+                    echo "Putting interface ${ndproxy_uplink_interface} into permanently promiscuous mode."
+                    ifconfig ${ndproxy_uplink_interface} promisc
+                fi
+            fi
+            ;;
+        [Nn][Oo])
+            echo "Skipping promiscuous mode on ${ndproxy_uplink_interface} (ndproxy_promisc_enable=NO)"
+            ;;
+        *)
+            echo "Warning — invalid value '${ndproxy_promisc_enable}' for ndproxy_promisc_enable (expected YES or NO), skipping promiscuous mode."
+            ;;
+    esac
+
     echo Done.
 }
 
