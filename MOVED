@@ -3141,7 +3141,6 @@ emulators/tuxnes||2024-04-04|Has expired: BROKEN for more than 4 months
 sysutils/vordog||2024-04-04|Has expired: BROKEN for more than 4 months
 science/py-qiskit-terra||2024-04-04|Removed: the upstream gutted the old project and re-imported some other repo; it should be re-ported as a totally new project
 misc/py-qiskit-machine-learning||2024-04-05|Removed
-science/py-qiskit||2024-04-05|Removed
 science/py-qiskit-aer||2024-04-05|Removed
 science/py-qiskit-dynamics||2024-04-05|Removed
 science/py-qiskit-experiments||2024-04-05|Removed
@@ -4332,3 +4331,65 @@ shells/oil|shells/oils|2025-04-27|Project was renamed upstream
 security/weggli||2025-04-28|Has expired: Upstream inactive as last release was in 2022
 databases/py-carbon||2025-04-28|Has expired: In bandaid mode as the concentration is on go-carbon
 x11-toolkits/SoXt||2025-04-28|Has expired: Broken for more than 6 months
+graphics/agg26|graphics/agg|2025-05-01|Merged into agg
+graphics/linux-c7-sdl_ttf|misc/linux-c7-sdl12-extralibs|2025-05-03|Merged into misc/linux-c7-sdl12-extralibs
+graphics/linux-rl9-sdl_image|misc/linux-rl9-sdl12-extralibs|2025-05-03|Merged into misc/linux-rl9-sdl12-extralibs
+graphics/linux-rl9-sdl_ttf|misc/linux-rl9-sdl12-extralibs|2025-05-03|Merged into misc/linux-rl9-sdl12-extralibs
+graphics/linux-rl9-sdl_gfx|misc/linux-rl9-sdl12-extralibs|2025-05-03|Merged into misc/linux-rl9-sdl12-extralibs
+audio/linux-c7-sdl_mixer|misc/linux-c7-sdl12-extralibs|2025-05-03|Merged into misc/linux-c7-sdl12-extralibs
+audio/linux-rl9-sdl_sound|misc/linux-rl9-sdl12-extralibs|2025-05-03|Merged into misc/linux-rl9-sdl12-extralibs
+graphics/acidwarp-sdl||2025-05-04|Has expired: Unmaintained by upstream as last release was in 2022
+games/xjewel||2025-05-04|Has expired: Unmaintained as last release was in 1994
+textproc/mysqlviz||2025-05-04|Has expired: Repo deleted upstream
+textproc/sdif||2025-05-04|Has expired: Deprecated upstream, repo archived Nov 21, 2018
+textproc/xp||2025-05-04|Has expired: Obsolete, never versions of Java already include XML parser(s)
+textproc/turboxsl||2025-05-04|Has expired: Obsolete, supports only legacy versions of XML and XSLT
+textproc/docbook2odf||2025-05-04|Has expired: Upstream is gone and unmaintained in tree for years
+textproc/sxml||2025-05-04|Has expired: No consumers in tree and no active development upstream for over a decade
+textproc/java2html||2025-05-04|Has expired: Upstream is gone and last update 20 years ago
+textproc/word2x||2025-05-04|Has expired: Obsolete converter than only supports ancient versions of Word documents
+textproc/unoconv||2025-05-04|Has expired: Deprecated upstream in 2021
+textproc/syck||2025-05-04|Has expired: Unfetchable, no response from upstream in a year
+textproc/soothsayer||2025-05-04|Has expired: Deprecated upstream, consider using deskutils/presage
+textproc/nux||2025-05-04|Has expired: Depends on deprecated port textproc/saxon-devel
+textproc/saxon-devel|textproc/saxon-he|2025-05-04|Has expired: Deprecated and unsupported upstream, consider using textproc/saxon-he
+textproc/saxon|textproc/saxon-he|2025-05-04|Has expired: Deprecated and unsupported upstream, consider using textproc/saxon-he
+textproc/p5-Search-Saryer||2025-05-04|Has expired: Depends on deprecated port textproc/sary
+textproc/sary||2025-05-04|Has expired: Last release in 2005 and unmaintained in tree for years
+textproc/mifluz||2025-05-04|Has expired: Obsolete, no activity upstream since 2014 and unmaintained in tree for years
+textproc/atom||2025-05-04|Has expired: Upstream is gone and utility is considered obsolete
+textproc/jaxup||2025-05-04|Has expired: Abandonware and obsolete, last release in 2003
+textproc/htdig||2025-05-04|Has expired: Abandonware, multiple unresolved bugs and no unicode support etc
+textproc/gmetadom||2025-05-04|Has expired: Abandonware, last release in 2007
+textproc/flip|converters/dos2unix|2025-05-04|Has expired: Unmaintained and dead upstream, consider using converters/dos2unix
+textproc/dom4j||2025-05-04|Has expired: Outdated and unsupported upstream
+textproc/domc||2025-05-04|Has expired: Obsolete, doesn't support HTML5, DOM Level 4 and DOM 2020-06
+textproc/ekhtml||2025-05-04|Has expired: Abandonware and obsolete, last release in 2002
+textproc/estraier||2025-05-04|Has expired: Obsolete and abandonware, last update in 2005
+textproc/confetti||2025-05-04|Has expired: Outdated and unmaintained in tree since 2018
+textproc/c2man||2025-05-04|Has expired: Not recommended for use in new projects
+textproc/bsddiff||2025-05-04|Has expired: Obsolete, newer version imported into base as 2017
+textproc/aft||2025-05-04|Has expired: Obscure markup language and unmaintained in tree for years
+textproc/resume-extensions||2025-05-04|Has expired: Depends on deprecated port textproc/resume
+textproc/resume||2025-05-04|Has expired: Obsolete XML and XSL based system that targets résumés and curricu vitae
+textproc/add-css-links||2025-05-04|Has expired: Obsolete and unmaintained in tree for years
+textproc/print-n-times||2025-05-04|Has expired: Obsolete and unmaintained in tree for years
+textproc/cdif||2025-05-04|Has expired: Deprecated upstream, repo archived on Jun 25, 2018
+security/i2p||2025-05-04|Has expired: Outdated and unsupported upstream
+security/libuecc||2025-05-04|Has expired: Deprecated, only user was some never properly ported FreiFunk control plane software
+net-p2p/p5-Net-BitTorrent-PeerPacket||2025-05-04|Has expired: Deprecated, no active development in more than a decade so any "new" functionality is missing and interoperability with recent software is very limited if not completely broken
+net-p2p/p5-Net-BitTorrent||2025-05-04|Has expired: Deprecated, no active development in more than a decade so any "new" functionality is missing and interoperability with recent software is very limited if not completely broken
+net-p2p/p5-Net-BitTorrent-File||2025-05-04|Has expired: Deprecated, no active development in more than a decade so any "new" functionality is missing and interoperability with recent software is very limited if not completely broken
+net-p2p/libswift||2025-05-04|Has expired: Upstream archived repo on Feb 19, 2024 and no active development in several years
+net-p2p/phex|net-p2p/gtk-gnutella|2025-05-04|Has expired: Abandonware, last update upstream in 2009. Consider using net-p2p/gtk-gnutella
+net-p2p/shx||2025-05-04|Has expired: Obsolete protocol that has been superseded by many others
+net/openbgpd||2025-05-04|Has expired: Unsupported upstream, consider using net/openbgpd8
+japanese/namazu|japanese/namazu2|2025-05-04|Has expired: Obsolete and superseded by namazu2, last release in 2000
+games/stuntrally||2025-05-04|Has expired: Broken for months and outdated
+editors/ssed||2025-05-04|Has expired: Legacy "fork" that's based on legacy GNU sed 4.1 and last release in 2005
+devel/rubygem-webby||2025-05-04|Has expired: Deprecated upstream in 2011
+devel/ccdoc||2025-05-04|Has expired: Obsolete utility
+www/moodle43||2025-05-04|Has expired: EOLed upstream
+net/libtnl||2025-05-04|Has expired: Unmaintained upstream and no consumers in the ports tree
+www/moodle41||2025-05-04|Has expired: Outdated version
+www/publicfile||2025-05-04|Has expired: Unmaintained for years upstream and in tree, consider using www/darkhttpd , www/miniserve and/or ftp/tnftpd , ftp/unftp
