@@ -48,7 +48,9 @@ ndproxy_start()
     # Note that ndproxy_exception_ipv6_addresses may be left empty.
     
     case "${ndproxy_promisc_enable}" in
-        [Yy][Ee][Ss])
+        [Nn][Oo])
+            ;;
+        *)
             if [ -n "${ndproxy_uplink_interface}" ]; then
                 ifconfig ${ndproxy_uplink_interface} | head -1 | grep PPROMISC > /dev/null
                 if [ $? -ne 0 ]; then
@@ -56,12 +58,6 @@ ndproxy_start()
                     ifconfig ${ndproxy_uplink_interface} promisc
                 fi
             fi
-            ;;
-        [Nn][Oo])
-            echo "Skipping promiscuous mode on ${ndproxy_uplink_interface} (ndproxy_promisc_enable=NO)"
-            ;;
-        *)
-            echo "Warning — invalid value '${ndproxy_promisc_enable}' for ndproxy_promisc_enable (expected YES or NO), skipping promiscuous mode."
             ;;
     esac
 
