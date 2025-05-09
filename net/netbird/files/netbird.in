@@ -1,0 +1,41 @@
+#!/bin/sh
+
+# PROVIDE: netbird
+# REQUIRE: FILESYSTEMS devfs
+# BEFORE:  pf ipfw
+# KEYWORD: shutdown
+
+. /etc/rc.subr
+
+name="netbird"
+rcvar=netbird_enable
+load_rc_config $name
+desc="netbird mesh vpn"
+pidfile="/var/run/${name}.pid"
+netbird_tun_dev="wt0"
+procname="/usr/local/bin/netbird"
+start_cmd="${name}_start"
+stop_postcmd="${name}_poststop"
+
+netbird_start()
+{
+        logger -s -t netbird "Starting ${name}."
+        # Check for orphaned netbird network interface
+        # And if it exists, then destroy it
+        /sbin/ifconfig ${netbird_tun_dev} >/dev/null 2>&1 && (
+                /sbin/ifconfig ${netbird_tun_dev} | fgrep -qw PID ||
+                /sbin/ifconfig ${netbird_tun_dev} destroy
+        )
+
+        /usr/sbin/daemon -p ${pidfile} -f -t ${name} /usr/local/bin/netbird service run --config /usr/local/etc/netbird/config.json --log-level info --log-file syslog
+}
+
+netbird_poststop()
+{
+        /sbin/ifconfig ${netbird_tun_dev} >/dev/null 2>&1 && (
+                logger -s -t netbird "Destroying ${netbird_tun_dev} adapter"
+                /sbin/ifconfig ${netbird_tun_dev} destroy || logger -s -t netbird "Failed to destroy ${netbird_tun_dev} adapter"
+        )
+}
+
+run_rc_command "$1"
