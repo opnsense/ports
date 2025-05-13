@@ -14,7 +14,7 @@
 PORTNAME?=	nvidia-driver
 DISTVERSION?=	${NVIDIA_DISTVERSION}
 # Always try to set PORTREVISION as it can be overridden by the slave ports
-PORTREVISION?=	3
+PORTREVISION?=	0
 CATEGORIES=	x11
 MASTER_SITES=	NVIDIA/XFree86/FreeBSD-${ARCH_SUFX}/${DISTVERSION}
 DISTNAME=	NVIDIA-FreeBSD-${ARCH_SUFX}-${DISTVERSION}
@@ -32,6 +32,12 @@ LICENSE_FILE=	${WRKSRC}/doc/license.txt
 # themselves in non existing lib32 libraries, so we don't want the package
 # to end up depending on non existing libraries
 NO_SHLIB_REQUIRES_GLOB=*:32
+
+# Choose proper distinfo file using PKGNAMESUFFIX for slave ports.
+# Kept for switching to centralized distinfo with suffixes.
+.ifdef PKGNAMESUFFIX
+DISTINFO_FILE=	${.CURDIR}/distinfo
+.endif
 
 # Pull GNU sed(1) for "binary" patching of obj/libglvnd/libEGL.so.1 and
 # obj/libEGL_nvidia.so.0 (see below)
@@ -83,7 +89,7 @@ SUB_PATCHES+=	extra-patch-src-nvidia_subr.c
 # Temporarily disable GSP firmware as it is known to cause
 # issues with suspend/resume
 .if ${NVVERSION} >= 565.00000
-SUB_PATCHES+=	extra-gsp-patch-src-nvidia_subr.c
+SUB_PATCHES+=	extra-gsp-patch-src-common-inc-nv_firmware_registry.h
 .endif
 
 DOCSDIR=	${PREFIX}/share/doc/NVIDIA_GLX-1.0

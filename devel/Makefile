@@ -504,7 +504,6 @@
     SUBDIR += covtool
     SUBDIR += cpan-upload
     SUBDIR += cpan-upload-http
-    SUBDIR += cpp-hocon
     SUBDIR += cpp-netlib
     SUBDIR += cpp-utilities
     SUBDIR += cpp2py
@@ -690,6 +689,8 @@
     SUBDIR += etcd32
     SUBDIR += etcd33
     SUBDIR += etcd34
+    SUBDIR += etcd35
+    SUBDIR += etcd36
     SUBDIR += etl
     SUBDIR += evcxr-jupyter
     SUBDIR += evdev-proto
@@ -726,6 +727,7 @@
     SUBDIR += folly
     SUBDIR += forge
     SUBDIR += forge-devel
+    SUBDIR += fortran-stdlib
     SUBDIR += fortran-utils
     SUBDIR += fortytwo-encore
     SUBDIR += fossil
@@ -1198,7 +1200,6 @@
     SUBDIR += lazygit
     SUBDIR += lcov
     SUBDIR += leaktracer
-    SUBDIR += leatherman
     SUBDIR += lefthook
     SUBDIR += leiningen
     SUBDIR += lemon
@@ -5239,6 +5240,7 @@
     SUBDIR += py-memory-allocator
     SUBDIR += py-memory-profiler
     SUBDIR += py-mergedeep
+    SUBDIR += py-merossiot
     SUBDIR += py-methodtools
     SUBDIR += py-microversion-parse
     SUBDIR += py-milc

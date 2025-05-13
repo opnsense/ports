@@ -370,7 +370,6 @@
     SUBDIR += f-upgrade
     SUBDIR += f2
     SUBDIR += f3
-    SUBDIR += facter
     SUBDIR += fakertc
     SUBDIR += faketty
     SUBDIR += fand
@@ -986,9 +985,7 @@
     SUBDIR += pstree
     SUBDIR += puppet-lint
     SUBDIR += puppet-mode.el
-    SUBDIR += puppet7
     SUBDIR += puppet8
-    SUBDIR += puppetserver7
     SUBDIR += puppetserver8
     SUBDIR += pv
     SUBDIR += pwd_unmkdb
@@ -996,7 +993,6 @@
     SUBDIR += pwol
     SUBDIR += pwsafe
     SUBDIR += pxattr
-    SUBDIR += pxp-agent
     SUBDIR += py-ansible-compat
     SUBDIR += py-ansible-core
     SUBDIR += py-ansible-lint
@@ -1028,6 +1024,7 @@
     SUBDIR += py-filelock
     SUBDIR += py-focker
     SUBDIR += py-glances
+    SUBDIR += py-google-compute-engine
     SUBDIR += py-hared
     SUBDIR += py-hcloud
     SUBDIR += py-honcho

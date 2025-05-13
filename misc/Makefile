@@ -62,6 +62,7 @@
     SUBDIR += compat11x
     SUBDIR += compat12x
     SUBDIR += compat13x
+    SUBDIR += compat14x
     SUBDIR += compat4x
     SUBDIR += compat5x
     SUBDIR += compat6x
@@ -115,6 +116,7 @@
     SUBDIR += figlet-fonts
     SUBDIR += findutils
     SUBDIR += flag
+    SUBDIR += flag-icons
     SUBDIR += flashlight
     SUBDIR += fortune-mod-bible
     SUBDIR += fortune-mod-bofh
@@ -669,6 +671,7 @@
     SUBDIR += viz
     SUBDIR += vote
     SUBDIR += vxl
+    SUBDIR += wavedrom
     SUBDIR += wego
     SUBDIR += whichman
     SUBDIR += window

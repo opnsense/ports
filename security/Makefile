@@ -357,7 +357,6 @@
     SUBDIR += linux-rl9-libsecret
     SUBDIR += linux-rl9-libssh
     SUBDIR += linux-rl9-libtasn1
-    SUBDIR += linux-rl9-libxcrypt
     SUBDIR += linux-rl9-nettle
     SUBDIR += linux-rl9-nss
     SUBDIR += linux-rl9-p11-kit
@@ -401,6 +400,7 @@
     SUBDIR += ncrack
     SUBDIR += ncrypt
     SUBDIR += nebula
+    SUBDIR += netbird
     SUBDIR += nettle
     SUBDIR += nextcloud-end_to_end_encryption
     SUBDIR += nextcloud-passman
@@ -631,6 +631,7 @@
     SUBDIR += p5-Crypt-SmbHash
     SUBDIR += p5-Crypt-Sodium
     SUBDIR += p5-Crypt-Solitaire
+    SUBDIR += p5-Crypt-SysRandom
     SUBDIR += p5-Crypt-TEA
     SUBDIR += p5-Crypt-T_e_a
     SUBDIR += p5-Crypt-Tea_JS
