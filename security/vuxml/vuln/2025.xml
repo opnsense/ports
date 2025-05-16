@@ -1,3 +1,172 @@
+  <vuln vid="79400d31-3166-11f0-8cb5-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>136.0.7103.113</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>136.0.7103.113</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/05/stable-channel-update-for-desktop_14.html">
+	 <p>This update includes 4 security fixes:</p>
+	 <ul>
+	    <li>[415810136] High CVE-2025-4664: Insufficient policy enforcement in Loader. Source: X post from @slonser_ on 2025-05-05</li>
+	    <li>[412578726] High CVE-2025-4609: Incorrect handle provided in unspecified circumstances in Mojo. Reported by Micky on 2025-04-22</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-4664</cvename>
+      <cvename>CVE-2025-4609</cvename>
+      <url>https://chromereleases.googleblog.com/2025/05/stable-channel-update-for-desktop_14.html</url>
+    </references>
+    <dates>
+      <discovery>2025-05-14</discovery>
+      <entry>2025-05-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="52efdd56-30bd-11f0-81be-b42e991fc52e">
+    <topic>Mozilla -- memory safety bugs</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>138.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>128.10</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>138.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1951161%2C1952105">
+	  <p>Memory safety bugs present in Firefox 137, Thunderbird 137,
+	  Firefox ESR 128.9, and Thunderbird 128.9. Some of these bugs
+	  showed evidence of memory corruption and we presume that
+	  with enough effort some of these could have been exploited
+	  to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-4091</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-4091</url>
+    </references>
+    <dates>
+      <discovery>2025-04-29</discovery>
+      <entry>2025-05-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4f17db64-30bd-11f0-81be-b42e991fc52e">
+    <topic>Mozilla -- memory corruption</topic>
+    <affects>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>128.10</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>128.10</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1894100">
+	  <p>Memory safety bug present in Firefox ESR 128.9, and
+	  Thunderbird 128.9. This bug showed evidence of memory
+	  corruption and we presume that with enough effort this could
+	  have been exploited to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-4093</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-4093</url>
+    </references>
+    <dates>
+      <discovery>2025-04-29</discovery>
+      <entry>2025-05-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6f10b49d-07b1-4be4-8abf-edf880b16ad2">
+    <topic>vscode -- security feature bypass vulnerability</topic>
+    <affects>
+      <package>
+	<name>vscode</name>
+	<range><lt>1.100.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>VSCode developers report:</p>
+	<blockquote cite="https://github.com/microsoft/vscode/security/advisories/GHSA-742r-ggwg-vqxm">
+	  <p>A security feature bypass vulnerability exists in VS Code 1.100.0 and earlier versions where a maliciously crafted URL could be considered trusted when it should not have due to how VS Code handled glob patterns in the trusted domains feature. When paired with the #fetch tool in Chat, this scenario would require the attacker to convince an LLM (via prompt injection) to fetch the maliciously crafted URL but when fetched, the user would have no moment to confirm the flighting of the request.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-21264</cvename>
+      <url>https://github.com/microsoft/vscode/security/advisories/GHSA-742r-ggwg-vqxm</url>
+      <url>https://msrc.microsoft.com/update-guide/vulnerability/CVE-2025-21264</url>
+    </references>
+    <dates>
+      <discovery>2025-05-13</discovery>
+      <entry>2025-05-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a96cd659-303e-11f0-94b5-54ee755069b5">
+    <topic>libxslt -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>libxslt</name>
+	<range><lt>1.1.43</lt></range>
+      </package>
+    </affects>
+    <description>
+    <body xmlns="http://www.w3.org/1999/xhtml">
+    <h1>[CVE-2024-55549] Fix UAF related to excluded namespaces</h1>
+    <blockquote cite="https://gitlab.gnome.org/GNOME/libxslt/-/issues/127">
+    <p>xsltGetInheritedNsList in libxslt before 1.1.43 has a use-after-free issue related to exclusion of result prefixes.</p>
+    </blockquote>
+    <h1>[CVE-2025-24855] Fix use-after-free of XPath context node</h1>
+    <blockquote cite="https://gitlab.gnome.org/GNOME/libxslt/-/issues/128">
+      <p>numbers.c in libxslt before 1.1.43 has a use-after-free because
+	, in nested XPath evaluations, an XPath context node can be
+	modified but never restored. This is related to
+	xsltNumberFormatGetValue, xsltEvalXPathPredicate,
+	xsltEvalXPathStringNs, and xsltComputeSortResultInternal.</p>
+    </blockquote>
+    </body>
+    </description>
+    <references>
+      <cvename>CVE-2024-55549</cvename>
+      <cvename>CVE-2025-24855</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-55549</url>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-24855</url>
+    </references>
+    <dates>
+      <discovery>2025-03-13</discovery>
+      <entry>2025-05-13</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="89c668d5-2f80-11f0-9632-641c67a117d8">
     <topic>www/varnish7 -- Request Smuggling Attack</topic>
     <affects>
