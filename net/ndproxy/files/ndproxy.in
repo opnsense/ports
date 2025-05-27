@@ -11,7 +11,6 @@ rcvar=ndproxy_enable
 start_cmd="ndproxy_start"
 stop_cmd="ndproxy_stop"
 
-# Promiscuous mode may be disabled if uplink_interface and downlink_mac_address are same interface
 : ${ndproxy_promisc_enable:=YES}
 
 ndproxy_start()
