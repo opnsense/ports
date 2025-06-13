@@ -1,5 +1,5 @@
 PORTNAME=	rust
-PORTVERSION?=	1.85.1
+PORTVERSION?=	1.87.0
 PORTREVISION?=	0
 CATEGORIES=	lang
 MASTER_SITES=	https://static.rust-lang.org/dist/:src \
@@ -60,11 +60,10 @@ WASM_DESC=	Build the WebAssembly target (wasm32-unknown-unknown)
 SSE2_EXTRA_PATCHES_OFF+=	${FILESDIR}/extra-patch-compiler_rustc__target_src_spec_targets_i686__unknown__freebsd.rs
 
 DOCS_VARS=		_RUST_BUILD_DOCS=true \
-			_COMPONENTS+="rust-docs-${_PACKAGE_VERS}-${_RUST_TARGET} rust-docs-json-${_PACKAGE_VERS}-${_RUST_TARGET}" \
-			_RUST_TOOLS+=rustdoc
+			_COMPONENTS+="rust-docs-${_PACKAGE_VERS}-${_RUST_TARGET} rust-docs-json-${_PACKAGE_VERS}-${_RUST_TARGET}"
 DOCS_VARS_OFF=		_RUST_BUILD_DOCS=false
 GDB_RUN_DEPENDS=	${LOCALBASE}/bin/gdb:devel/gdb
-PORT_LLVM_USES=		llvm:min=18,max=19,lib,noexport
+PORT_LLVM_USES=		llvm:min=18,lib,noexport
 PORT_LLVM_MAKE_ENV=	RUSTFLAGS="-Lnative=${LOCALBASE}/lib"
 SOURCES_VARS=		_COMPONENTS+=rust-src-${_PACKAGE_VERS} \
 			_RUST_TOOLS+=src
@@ -72,8 +71,8 @@ WASM_VARS=		_COMPONENTS+="rust-analysis-${_PACKAGE_VERS}-wasm32-unknown-unknown 
 			_RUST_TARGETS+=wasm32-unknown-unknown
 
 # See WRKSRC/src/stage0 for the date and version values
-BOOTSTRAPS_DATE?=		2025-01-09
-RUST_BOOTSTRAP_VERSION?=	1.84.0
+BOOTSTRAPS_DATE?=		2025-04-03
+RUST_BOOTSTRAP_VERSION?=	1.86.0
 
 CARGO_VENDOR_DIR?=		${WRKSRC}/vendor
 
@@ -83,7 +82,7 @@ _RUST_ARCH_i386=	i686
 _RUST_ARCH_riscv64=	riscv64gc
 _RUST_TARGET=		${_RUST_ARCH_${ARCH}:U${ARCH}}-unknown-${OPSYS:tl}
 _RUST_TARGETS=		${_RUST_TARGET}
-_RUST_TOOLS=		analysis cargo clippy rust-analyzer rustfmt
+_RUST_TOOLS=		analysis cargo clippy rust-analyzer rustdoc rustfmt
 
 _RUSTC_BOOTSTRAP=	${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rustc-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${_RUST_TARGET}
 _RUST_STD_BOOTSTRAP=	${BOOTSTRAPS_DATE_${ARCH}:U${BOOTSTRAPS_DATE}}/rust-std-${RUST_BOOTSTRAP_VERSION_${ARCH}:U${RUST_BOOTSTRAP_VERSION}}-${_RUST_TARGET}
@@ -106,12 +105,6 @@ IGNORE=		is only for FreeBSD
 .if ${ARCH} == powerpc
 LIB_DEPENDS+=	libatomic.so:lang/gcc${GCC_DEFAULT}
 MAKE_ENV+=	RUSTFLAGS="-L/usr/local/lib/gcc${GCC_DEFAULT}"
-.endif
-
-# rls doesn't build on rust nightly
-.if !defined(NIGHTLY_DATE)
-_RUST_TOOLS+=	rls
-_COMPONENTS+=	rls-${_PACKAGE_VERS}-${_RUST_TARGET}
 .endif
 
 .if ${ARCH} != powerpc64le
@@ -199,7 +192,7 @@ do-configure:
 .endif
 	@${ECHO_CMD} 'remap-debuginfo=true' >> ${WRKSRC}/config.toml
 	@${ECHO_CMD} '[llvm]' >> ${WRKSRC}/config.toml
-	@${ECHO_CMD} 'download-ci-llvm = false' >> ${WRKSRC}/config.toml
+	@${ECHO_CMD} 'download-ci-llvm=false' >> ${WRKSRC}/config.toml
 .if ${PORT_OPTIONS:MLTO}
 	@${ECHO_CMD} 'thin-lto=true' >> ${WRKSRC}/config.toml
 .endif
