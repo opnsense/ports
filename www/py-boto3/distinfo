@@ -1,3 +1,3 @@
-TIMESTAMP = 1747546588
-SHA256 (boto3-1.38.5.tar.gz) = 4cd581f77e67dbc28579134e1ee7b522797cfde30e0c735e7537ec4a3fb6af45
-SIZE (boto3-1.38.5.tar.gz) = 111813
+TIMESTAMP = 1748831258
+SHA256 (boto3-1.38.26.tar.gz) = d129dac62e8973322d29ce72fc71cb81eb9ed0cef7c5ebef5f5bf2a0af5af245
+SIZE (boto3-1.38.26.tar.gz) = 111807
