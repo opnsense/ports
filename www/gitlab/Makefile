@@ -32,7 +32,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	gitlab-elasticsearch-indexer>=5.5.1:textproc/gitlab-elasticsearch-indexer \
 	gitlab-agent>=${GITLAB_VERSION}:net/gitlab-agent \
 	gitlab-pages>=${GITLAB_VERSION}:www/gitlab-pages \
-	gitlab-shell>=14.41.0:devel/gitlab-shell \
+	gitlab-shell>=14.42.0:devel/gitlab-shell \
 	gitlab-workhorse>=${GITLAB_VERSION}:www/gitlab-workhorse \
 	redis>=6.2.11:databases/redis \
 	yarn${NODEJS_SUFFIX}>=1.10.0:www/yarn${NODEJS_SUFFIX} \
@@ -184,7 +184,6 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-redis-clustering>=5.4.0<5.5:databases/rubygem-redis-clustering \
 	rubygem-connection_pool>=2.5.0<3.0:net/rubygem-connection_pool \
 	rubygem-redis-actionpack-rails-gitlab>=5.5.0<5.6:databases/rubygem-redis-actionpack-rails-gitlab \
-	rubygem-discordrb-webhooks>=3.5<4.0:net-im/rubygem-discordrb-webhooks \
 	rubygem-jira-ruby>=2.3.0<2.4:devel/rubygem-jira-ruby \
 	rubygem-atlassian-jwt>=0.2.1<0.3.0:www/rubygem-atlassian-jwt \
 	rubygem-slack-messenger>=2.3.5<2.4.0:devel/rubygem-slack-messenger \
@@ -292,7 +291,7 @@ MY_DEPENDS=	gitaly>=${GITLAB_VERSION}:devel/gitaly \
 	rubygem-lockbox>=1.3.0<1.4:security/rubygem-lockbox \
 	rubygem-valid_email>=0.1<1:mail/rubygem-valid_email \
 	rubygem-jsonb_accessor>=1.4<2:www/rubygem-jsonb_accessor \
-	rubygem-json>=2.11.2<2.12:devel/rubygem-json \
+	rubygem-json-gitlab>=2.11.2<2.12:devel/rubygem-json-gitlab \
 	rubygem-json_schemer>=2.3.0<2.4:devel/rubygem-json_schemer \
 	rubygem-oj>=3.16.0<3.17:devel/rubygem-oj \
 	rubygem-oj-introspect>=0.8<1:devel/rubygem-oj-introspect \

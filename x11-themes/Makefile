@@ -4,6 +4,7 @@
     SUBDIR += adapta-backgrounds
     SUBDIR += adapta-gtk-theme
     SUBDIR += adwaita-icon-theme
+    SUBDIR += adwaita-icon-theme-legacy
     SUBDIR += adwaita-qt5
     SUBDIR += adwaita-qt6
     SUBDIR += ant-dracula-theme
@@ -145,6 +146,7 @@
     SUBDIR += qogir-gtk-themes
     SUBDIR += qogir-icon-themes
     SUBDIR += qt5-style-plugins
+    SUBDIR += qt6gtk2
     SUBDIR += qtcurve
     SUBDIR += qtcurve-gtk2
     SUBDIR += qtcurve-kf5

@@ -1,6 +1,7 @@
 PORTNAME=	dissent
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.0.34
+PORTREVISION=	3
 CATEGORIES=	net-im
 
 MAINTAINER=	nxjoseph@protonmail.com

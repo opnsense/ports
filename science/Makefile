@@ -79,7 +79,6 @@
     SUBDIR += dlib-cpp
     SUBDIR += drawxtl
     SUBDIR += dssp
-    SUBDIR += dvc
     SUBDIR += dwave-preprocessing
     SUBDIR += dynare
     SUBDIR += eccodes
@@ -278,7 +277,6 @@
     SUBDIR += precice
     SUBDIR += psi4
     SUBDIR += pulseview
-    SUBDIR += py-DendroPy
     SUBDIR += py-GPy
     SUBDIR += py-GPyOpt
     SUBDIR += py-HepMC3
@@ -414,7 +412,6 @@
     SUBDIR += py-pyphot
     SUBDIR += py-pyprecice
     SUBDIR += py-pyqubo
-    SUBDIR += py-pysal
     SUBDIR += py-pyscf
     SUBDIR += py-pyteomics
     SUBDIR += py-qcelemental

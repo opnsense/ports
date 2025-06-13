@@ -8,6 +8,10 @@ DIST_SUBDIR=	gnome2
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	Personal file-sharing service for the GNOME Desktop
 
+BROKEN=		Package 'libnautilus-extension' not found
+DEPRECATED=	Broken build for months
+EXPIRATION_DATE=2025-06-30
+
 BUILD_DEPENDS=	itstool:textproc/itstool
 LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 		libnotify.so:devel/libnotify \
@@ -18,7 +22,7 @@ RUN_DEPENDS=	${APACHE_PKGNAMEPREFIX}mod_dnssd>=0:www/mod_dnssd \
 
 USES=		apache gettext gmake gnome libtool pkgconfig tar:xz xorg
 USE_XORG=	sm
-USE_GNOME=	gnomeprefix gtk30 intlhack nautilus3
+USE_GNOME=	gnomeprefix gtk30 intlhack nautilus4
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--with-modules-path=${LOCALBASE}/${APACHEMODDIR} \
 		--disable-bluetooth

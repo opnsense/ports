@@ -1,10 +1,10 @@
 PORTNAME=	vhs
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.9.0
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	graphics
 
-MAINTAINER=	DtxdF@disroot.org
+MAINTAINER=	dtxdf@FreeBSD.org
 COMMENT=	Your CLI home video recorder
 WWW=		https://github.com/charmbracelet/vhs
 

@@ -1,6 +1,6 @@
 PORTNAME=	mesa
-DISTVERSION=	25.1-branchpoint-1349
-DISTVERSIONSUFFIX=	-g2212865ce0d
+DISTVERSION=	25.1-branchpoint-2283
+DISTVERSIONSUFFIX=	-g6b2331d5f75
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
@@ -33,7 +33,7 @@ USE_LDCONFIG=	yes
 GL_SITE=	https://gitlab.freedesktop.org
 BINARY_ALIAS=	python=${PYTHON_CMD}
 SHEBANG_FILES=	src/vulkan/*/*control.py
-MESON_ARGS=	-Dgallium-xa=disabled \
+MESON_ARGS=	-Dgallium-mediafoundation=disabled \
 		-Dandroid-libbacktrace=disabled \
 		-Dlibunwind=disabled \
 		-Dlmsensors=disabled \

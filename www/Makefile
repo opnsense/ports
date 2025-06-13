@@ -185,6 +185,7 @@
     SUBDIR += ffproxy
     SUBDIR += ffsend
     SUBDIR += fgallery
+    SUBDIR += filebrowser
     SUBDIR += filtron
     SUBDIR += firedm
     SUBDIR += firefox
@@ -1419,6 +1420,7 @@
     SUBDIR += pecl-solr
     SUBDIR += pecl-yaf
     SUBDIR += pecl-yar
+    SUBDIR += peersuite
     SUBDIR += perlbal
     SUBDIR += persepolis
     SUBDIR += pglogd
@@ -1516,26 +1518,6 @@
     SUBDIR += py-daphne
     SUBDIR += py-dash
     SUBDIR += py-dj-database-url
-    SUBDIR += py-dj50-channels
-    SUBDIR += py-dj50-django-auth-ldap
-    SUBDIR += py-dj50-django-choices-field
-    SUBDIR += py-dj50-django-cors-headers
-    SUBDIR += py-dj50-django-debug-toolbar
-    SUBDIR += py-dj50-django-filter
-    SUBDIR += py-dj50-django-htmx
-    SUBDIR += py-dj50-django-js-asset
-    SUBDIR += py-dj50-django-mptt
-    SUBDIR += py-dj50-django-prometheus
-    SUBDIR += py-dj50-django-redis
-    SUBDIR += py-dj50-django-rich
-    SUBDIR += py-dj50-django-tables2
-    SUBDIR += py-dj50-django-taggit
-    SUBDIR += py-dj50-django-timezone-field
-    SUBDIR += py-dj50-django-tree-queries
-    SUBDIR += py-dj50-djangorestframework
-    SUBDIR += py-dj50-drf-spectacular
-    SUBDIR += py-dj50-drf-spectacular-sidecar
-    SUBDIR += py-dj50-strawberry-graphql-django
     SUBDIR += py-dj51-channels
     SUBDIR += py-dj51-channels-redis
     SUBDIR += py-dj51-django-allauth
@@ -1679,7 +1661,6 @@
     SUBDIR += py-django-webpack-loader
     SUBDIR += py-django-widget-tweaks
     SUBDIR += py-django42
-    SUBDIR += py-django50
     SUBDIR += py-django51
     SUBDIR += py-django52
     SUBDIR += py-django_compressor
@@ -1702,7 +1683,6 @@
     SUBDIR += py-fake-useragent
     SUBDIR += py-falcon
     SUBDIR += py-fastapi
-    SUBDIR += py-fastapi-users
     SUBDIR += py-feedgen
     SUBDIR += py-feedgenerator
     SUBDIR += py-flasgger
@@ -1805,6 +1785,7 @@
     SUBDIR += py-httpretty
     SUBDIR += py-httptools
     SUBDIR += py-httpx
+    SUBDIR += py-httpx-aiohttp
     SUBDIR += py-httpx-oauth
     SUBDIR += py-httpx-retries
     SUBDIR += py-httpx-socks
@@ -1819,6 +1800,7 @@
     SUBDIR += py-jh2
     SUBDIR += py-jonpy
     SUBDIR += py-kiss-headers
+    SUBDIR += py-klein
     SUBDIR += py-laces
     SUBDIR += py-legacy-cgi
     SUBDIR += py-lektor
@@ -1855,7 +1837,6 @@
     SUBDIR += py-proxy_tools
     SUBDIR += py-puppetboard
     SUBDIR += py-py-restclient
-    SUBDIR += py-pydrive2
     SUBDIR += py-pygsheets
     SUBDIR += py-pyjwt
     SUBDIR += py-pyjwt1
