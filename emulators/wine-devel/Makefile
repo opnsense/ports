@@ -1,12 +1,11 @@
 PORTNAME=	wine
-DISTVERSION=	10.6
-PORTREVISION=	1
+DISTVERSION=	10.8
 PORTEPOCH=	1
 CATEGORIES=	emulators
 MASTER_SITES=	https://dl.winehq.org/wine/source/10.x/
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	monwarez@mailoo.org
 COMMENT=	Microsoft Windows compatibility environment
 WWW=		https://www.winehq.org
 
@@ -72,7 +71,7 @@ PIE_UNSAFE=	yes
 PORTDATA=	wine.inf
 
 OPTIONS_DEFINE=	CUPS DOCS DOSBOX GNUTLS V4L WAYLAND X11 GECKO MONO
-OPTIONS_DEFAULT=ALSA GNUTLS X11
+OPTIONS_DEFAULT=ALSA GNUTLS WAYLAND X11
 OPTIONS_RADIO=	AUDIO
 OPTIONS_RADIO_AUDIO=	ALSA OSS
 OPTIONS_SUB=	yes
@@ -100,10 +99,6 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 
 MONO_RUN_DEPENDS=	wine-mono-devel>0:emulators/wine-mono-devel
 
-WAYLAND_BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
-WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
-			libxkbcommon.so:x11/libxkbcommon
-
 OSS_CONFIGURE_WITH=	oss
 OSS_USES=		gnome gstreamer
 OSS_USE=		GNOME=glib20
@@ -113,6 +108,9 @@ V4L_BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
 V4L_LIB_DEPENDS=	libv4l2.so:multimedia/libv4l
 
 WAYLAND_CONFIGURE_WITH=	wayland
+WAYLAND_BUILD_DEPENDS=	${LOCALBASE}/include/linux/input.h:devel/evdev-proto
+WAYLAND_LIB_DEPENDS=	libwayland-client.so:graphics/wayland \
+			libxkbcommon.so:x11/libxkbcommon
 
 X11_CONFIGURE_WITH=	x fontconfig freetype opengl xinerama xinput2 xrandr xrender
 X11_USES=		gl xorg
