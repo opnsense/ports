@@ -45,7 +45,7 @@ LIB_DEPENDS=	libcares.so:dns/c-ares \
 USES=		autoreconf bison compiler:c++11-lang gmake libtool makeinfo \
 		pkgconfig python:build readline shebangfix
 
-BINARY_ALIAS=	python=${PYTHON_VERSION}
+BINARY_ALIAS=	python=${PYTHON_VERSION} sed=gsed
 
 CONFLICTS=	frr9 frr10 openbgpd openospfd quagga zebra
 
@@ -68,8 +68,6 @@ PLIST=		${.CURDIR}/pkg-plist
 PKGMESSAGE=	""
 .else
 INFO=		frr
-
-BINARY_ALIAS=	sed=gsed
 
 OPTIONS_DEFINE=		BACKTRACE CONFIGROLLBACKS DATACENTER FPM LDPD MANPAGES MULTIPATH \
 			PAM RPKI SHARPD SHELLACCESS SNMP TCMALLOC
