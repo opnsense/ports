@@ -1,3 +1,71 @@
+  <vuln vid="201cccc1-4a01-11f0-b0f8-b42e991fc52e">
+    <topic>Mozilla -- control access bypass</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>138.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>128.10</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>128.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1917536">
+	  <p>Thunderbird&apos;s update mechanism allowed a medium-integrity user
+	process to interfere with the SYSTEM-level updater by manipulating
+	the file-locking behavior.  By injecting code into the user-privileged
+	process, an attacker could bypass intended access controls, allowing
+	SYSTEM-level file operations on paths controlled by a non-privileged
+	user and enabling privilege escalation.  This vulnerability affects
+	Firefox &lt; 138, Firefox ESR &lt; 128.10, Firefox ESR &lt; 115.23,
+	Thunderbird &lt; 138, and Thunderbird &lt; 128.10.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-2817</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-2817</url>
+    </references>
+    <dates>
+      <discovery>2025-04-29</discovery>
+      <entry>2025-06-15</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="805ad2e0-49da-11f0-87e8-bcaec55be5e5">
+    <topic>webmin -- CGI Command Injection Remote Code Execution</topic>
+    <affects>
+      <package>
+	<name>webmin</name>
+	<range><le>2.105</le></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Webmin reports:</p>
+	<blockquote cite="https://webmin.com/security/">
+	  <p>A less-privileged Webmin user can execute commands as root via a vulnerability in the shell autocomplete feature.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2024-12828</cvename>
+      <url>https://webmin.com/security/</url>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2024-12828</url>
+    </references>
+    <dates>
+      <discovery>2024-12-30</discovery>
+      <entry>2025-06-15</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="ae028662-475e-11f0-9ca4-2cf05da270f3">
     <topic>Gitlab -- Vulnerabilities</topic>
     <affects>
@@ -56,20 +124,20 @@
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
 	<p>PostgreSQL JDBC Driver project reports:</p>
-	<blockquote cite="https://jdbc.postgresql.org/changelogs/2025-06-11-42"/>
+	<blockquote cite="https://jdbc.postgresql.org/changelogs/2025-06-11-42">
 	<p>
-                Client Allows Fallback to Insecure Authentication Despite
-                channelBinding=require configuration. Fix channel binding
-                required handling to reject non-SASL authentication Previously,
-                when channel binding was set to "require", the driver
-                would silently ignore this requirement for non-SASL
-                authentication methods. This could lead to a false sense of
-                security when channel binding was explicitly requested but not
-                actually enforced. The fix ensures that when channel binding is
-                set to "require", the driver will reject connections that use
-                non-SASL authentication methods or when SASL authentication has
-                not completed properly.
-        </p>
+	Client Allows Fallback to Insecure Authentication Despite
+	channelBinding=require configuration. Fix channel binding
+	required handling to reject non-SASL authentication Previously,
+	when channel binding was set to "require", the driver
+	would silently ignore this requirement for non-SASL
+	authentication methods. This could lead to a false sense of
+	security when channel binding was explicitly requested but not
+	actually enforced. The fix ensures that when channel binding is
+	set to "require", the driver will reject connections that use
+	non-SASL authentication methods or when SASL authentication has
+	not completed properly.
+	</p>
 	</blockquote>
 	</body>
     </description>
@@ -95,7 +163,7 @@
 	<body xmlns="http://www.w3.org/1999/xhtml">
 	<p>security-advisories@github.com reports:</p>
 	<blockquote cite="https://github.com/owasp-modsecurity/ModSecurity/commit/3a54ccea62d3f7151bb08cb78d60c5e90b53ca2e">
-          <p>
+	<p>
 		ModSecurity is an open source, cross platform web
 		application firewall (WAF) engine for Apache, IIS
 		and Nginx. Versions prior to 2.9.10 contain a denial of
@@ -107,7 +175,7 @@
 		Version 2.9.10 fixes the issue. As a workaround, avoid
 		using rules that contain the `sanitiseArg` (or
 		`sanitizeArg`) action.
-          </p>
+	</p>
 	</blockquote>
 	</body>
     </description>
