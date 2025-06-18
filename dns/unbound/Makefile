@@ -35,7 +35,7 @@ PORTDOCS=	CNAME-basedRedirectionDesignNotes.pdf CREDITS Changelog \
 
 OPTIONS_DEFINE=		DEP-RSA1024 DNSCRYPT DNSTAP DOCS DYNLIB ECDSA EVAPI \
 			FILTER_AAAA GOST HIREDIS LIBEVENT MUNIN_PLUGIN PYTHON \
-			SUBNET TFOCL TFOSE THREADS
+			SUBNET TFOCL TFOSE THREADS IPSET
 OPTIONS_DEFAULT=	DNSCRYPT DYNLIB ECDSA EVAPI GOST LIBEVENT THREADS
 OPTIONS_SUB=		yes
 
@@ -48,6 +48,7 @@ EVAPI_DESC=		Pluggable event based libunbound API support
 FILTER_AAAA_DESC=	Build with AAAA filter functionality (contrib)
 GOST_DESC=		Enable GOST support (requires OpenSSL >= 1.0)
 HIREDIS_DESC=		Enable hiredis support for the cachedb module
+IPSET_DESC=		Enable ipset support
 LIBEVENT_DESC=		Build against libevent
 MUNIN_PLUGIN_DESC=	Install Munin plugin
 SUBNET_DESC=		Enable client subnet support
@@ -72,6 +73,7 @@ GOST_VARS=			DEPENDS_ARGS+=WITH_GOST=yes
 HIREDIS_LIB_DEPENDS=		libhiredis.so:databases/hiredis
 HIREDIS_CONFIGURE_ON=		--enable-cachedb \
 				--with-libhiredis
+IPSET_CONFIGURE_ENABLE=		ipset
 LIBEVENT_LIB_DEPENDS=		libevent.so:devel/libevent
 LIBEVENT_CONFIGURE_WITH=	libevent
 LIBEVENT_CPPFLAGS+=		$$(pkg-config libevent --cflags-only-I)
