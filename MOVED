@@ -4513,3 +4513,10 @@ net/rabbiteer|net/amqpcat|2025-06-10|No longer maintained, use net/amqpcat inste
 editors/gnome-latex|editors/enter-tex|2025-06-10|Renamed uspstream
 net/landrop||2025-06-14|Has expired: Unmaintained version and the newer version turned to close source
 lang/frawk||2025-06-15|Abandoned upstream; fails to build; was labeled broken for over a year
+science/R-cran-eco||2025-06-16|Has expired: Unsupported upstream
+devel/bugzilla44||2025-06-16|Has expired: Upstream support ended 20250103
+german/bugzilla44||2025-06-16|Removed, localized version of devel/bugzilla44
+japanese/bugzilla44||2025-06-16|Removed, localized version of devel/bugzilla44
+russian/bugzilla44||2025-06-16|Removed, localized version of devel/bugzilla44
+sysutils/plasma6-drkonqi||2025-06-17|Removed, requires Systemd
+devel/artifactory||2025-06-17|Has expired: Outdated with known vulnerabilities and marked as forbidden in 2023
