@@ -13,6 +13,7 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gmake
+MAKE_ARGS=	CFLAGS="${CFLAGS} -DTAYGA_CONF_PATH=\"/usr/local/etc/tayga.conf\""
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	apalrd
