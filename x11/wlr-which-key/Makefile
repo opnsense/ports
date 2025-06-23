@@ -1,10 +1,9 @@
 PORTNAME=	wlr-which-key
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.1.0
-PORTREVISION=	4
+DISTVERSION=	1.2.0
 CATEGORIES=	x11 wayland
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Keymap manager for wlroots-based compositors
 WWW=		https://github.com/MaxVerevkin/wlr-which-key
 

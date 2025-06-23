@@ -718,6 +718,7 @@
     SUBDIR += mkfwimage
     SUBDIR += mkjail
     SUBDIR += mkntpwd
+    SUBDIR += mkr
     SUBDIR += mmc-utils
     SUBDIR += mmve
     SUBDIR += modman
@@ -1330,6 +1331,7 @@
     SUBDIR += syngesture
     SUBDIR += sysctlbyname-improved-kmod
     SUBDIR += sysctlinfo-kmod
+    SUBDIR += sysctltui
     SUBDIR += sysgather
     SUBDIR += sysinfo
     SUBDIR += syslinux
@@ -1367,6 +1369,7 @@
     SUBDIR += tiramisu
     SUBDIR += titlefix
     SUBDIR += tkdvd
+    SUBDIR += tldr
     SUBDIR += tlsdate
     SUBDIR += tm
     SUBDIR += tmate
