@@ -4520,3 +4520,43 @@ japanese/bugzilla44||2025-06-16|Removed, localized version of devel/bugzilla44
 russian/bugzilla44||2025-06-16|Removed, localized version of devel/bugzilla44
 sysutils/plasma6-drkonqi||2025-06-17|Removed, requires Systemd
 devel/artifactory||2025-06-17|Has expired: Outdated with known vulnerabilities and marked as forbidden in 2023
+devel/m17n-inscript2||2025-06-23|Now included in devel/m17n-db
+devel/py-pytest4-cov||2025-06-23|Has expired: Depends on expiring devel/py-pytest4
+devel/py-spyder-unittest||2025-06-23|Has expired: Depends on expiring devel/spyder
+comms/py-pynitrokey||2025-06-23|Has expired: Depends on expiring comms/py-spsdk
+devel/bit||2025-06-23|Has expired: Upstream ceased development
+biology/py-orange3-single-cell||2025-06-23|Has expired: Depends on expired math/py-fastdtw and expiring misc/orange3
+biology/py-orange3-bioinformatics||2025-06-23|Has expired: Depends on expiring misc/orange3
+textproc/py-orange3-text||2025-06-23|Has expired: Depends on expiring misc/orange3
+misc/py-orange3-datafusion||2025-06-23|Has expired: Depends on expiring misc/orange3
+misc/py-orange3-timeseries||2025-06-23|Has expired: Depends on expiring misc/orange3
+misc/py-orange3-educational||2025-06-23|Has expired: Depends on expiring misc/orange3
+misc/py-orange3-associate||2025-06-23|Has expired: Depends on expiring misc/orange3
+misc/py-orange3-network||2025-06-23|Has expired: Depends on expiring misc/orange3
+www/onionshare||2025-06-23|Has expired: Depends on expired devel/py-atomicwrites
+deskutils/py-todoman||2025-06-23|Has expired: Depends on expired devel/py-atomicwrites
+deskutils/py-khard||2025-06-23|Has expired: Depends on expired devel/py-atomicwrites
+deskutils/py-khal||2025-06-23|Has expired: Depends on expired devel/py-atomicwrites
+devel/py-pytest-relaxed||2025-06-23|Has expired: Depends on expiring devel/py-pytest4
+devel/py-pytest4-flakes||2025-06-23|Has expired: Depends on expiring devel/py-pytest4
+devel/py-pytest-pep8||2025-06-23|Has expired: Depends on expiring devel/py-pytest4
+devel/py-pytest4-cache||2025-06-23|Has expired: Depends on expiring devel/py-pytest4
+devel/py-pytest4||2025-06-23|Has expired: Depends on expired devel/py-atomicwrites
+math/py-fastdtw||2025-06-23|Has expired: Depends on expired devel/py-pytest-runner
+devel/spyder||2025-06-23|Has expired: Depends on expired devel/py-atomicwrites
+misc/orange3||2025-06-23|Has expired: Depends on expiring devel/py-orange-canvas-core
+devel/py-orange-widget-base||2025-06-23|Has expired: Depends on expiring devel/py-orange-canvas-core
+devel/py-orange-canvas-core||2025-06-23|Has expired: Depends on expired misc/py-dictdiffer
+misc/py-dictdiffer||2025-06-23|Has expired: Depends on expired devel/py-pytest-runner
+net-im/biboumi||2025-06-23|Has expired: Depends on expired security/botan2
+sysutils/daggy||2025-06-23|Has expired: Depends on expired security/botan2
+java/jdom||2025-06-23|Has expired: Depends on exired java/jaxen
+java/jaxen||2025-06-23|Has expired: Outdated, unsupported upstream and unmaintained in tree for years
+devel/py-atomicwrites||2025-06-23|Has expired: Upstream repository has been archived on Jul 16, 2022. Upstream suggests os.replace and os.rename instead
+devel/py-pytest-runner||2025-06-23|Has expired: pytest-runner depends on deprecated features of setuptools
+x11-toolkits/scenefx03|x11-toolkits/scenefx04|2025-06-24|No consumers in ports
+net/ziina|net/zmate|2025-06-24|Renamed upstream
+security/py-gpgme|security/py-gpg|2025-06-24|Gpgme Python bindings have been split into a separate project
+security/gpgme-cpp|security/gpgmepp|2025-06-24|Gpgme C++ bindings have been split into a separate project
+security/gpgme-qt@qt5|security/qgpgme@qt5|2025-06-24|Gpgme Qt5 bindings have been split into a separate project
+security/gpgme-qt@qt6|security/qgpgme@qt6|2025-06-24|Gpgme Qt6 bindings have been split into a separate project
