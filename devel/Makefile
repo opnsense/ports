@@ -313,7 +313,6 @@
     SUBDIR += bingrep
     SUBDIR += binutils
     SUBDIR += bison
-    SUBDIR += bit
     SUBDIR += bitkeeper
     SUBDIR += bitsery
     SUBDIR += blame
@@ -868,6 +867,7 @@
     SUBDIR += git-svn
     SUBDIR += git-town
     SUBDIR += git-tui
+    SUBDIR += git-who
     SUBDIR += git-workspace
     SUBDIR += gitaly
     SUBDIR += gitea-act_runner
@@ -1659,7 +1659,6 @@
     SUBDIR += lyra
     SUBDIR += m17n-db
     SUBDIR += m17n-docs
-    SUBDIR += m17n-inscript2
     SUBDIR += m17n-lib
     SUBDIR += m4
     SUBDIR += mage
@@ -4453,7 +4452,6 @@
     SUBDIR += py-async_timeout
     SUBDIR += py-asynctest
     SUBDIR += py-atomiclong
-    SUBDIR += py-atomicwrites
     SUBDIR += py-atpublic
     SUBDIR += py-attr
     SUBDIR += py-attrdict
@@ -5354,8 +5352,6 @@
     SUBDIR += py-opster
     SUBDIR += py-optik
     SUBDIR += py-optree
-    SUBDIR += py-orange-canvas-core
-    SUBDIR += py-orange-widget-base
     SUBDIR += py-orca
     SUBDIR += py-ordered-set
     SUBDIR += py-ordereddict
@@ -5712,7 +5708,6 @@
     SUBDIR += py-pytest-nunit
     SUBDIR += py-pytest-order
     SUBDIR += py-pytest-parallel
-    SUBDIR += py-pytest-pep8
     SUBDIR += py-pytest-plus
     SUBDIR += py-pytest-pretty
     SUBDIR += py-pytest-profiling
@@ -5724,13 +5719,11 @@
     SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-regressions
     SUBDIR += py-pytest-regtest
-    SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-remotedata
     SUBDIR += py-pytest-repeat
     SUBDIR += py-pytest-rerunfailures
     SUBDIR += py-pytest-ruff
     SUBDIR += py-pytest-run-parallel
-    SUBDIR += py-pytest-runner
     SUBDIR += py-pytest-services
     SUBDIR += py-pytest-shutil
     SUBDIR += py-pytest-socket
@@ -5748,10 +5741,6 @@
     SUBDIR += py-pytest-watcher
     SUBDIR += py-pytest-xdist
     SUBDIR += py-pytest-xprocess
-    SUBDIR += py-pytest4
-    SUBDIR += py-pytest4-cache
-    SUBDIR += py-pytest4-cov
-    SUBDIR += py-pytest4-flakes
     SUBDIR += py-python-application
     SUBDIR += py-python-bugzilla
     SUBDIR += py-python-dateutil
@@ -5964,7 +5953,6 @@
     SUBDIR += py-speaklater
     SUBDIR += py-speg
     SUBDIR += py-spyder-kernels
-    SUBDIR += py-spyder-unittest
     SUBDIR += py-sqids
     SUBDIR += py-sqlfluff
     SUBDIR += py-squint
@@ -8247,7 +8235,6 @@
     SUBDIR += splint
     SUBDIR += spr
     SUBDIR += spread-sheet-widget
-    SUBDIR += spyder
     SUBDIR += srecord
     SUBDIR += sse2neon
     SUBDIR += st

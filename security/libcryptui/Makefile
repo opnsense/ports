@@ -1,6 +1,6 @@
 PORTNAME=	libcryptui
 PORTVERSION=	3.12.2
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	security gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -8,6 +8,10 @@ DIST_SUBDIR=	gnome
 MAINTAINER=	gnome@FreeBSD.org
 COMMENT=	GNOME application for managing encryption keys (PGP, SSH)
 WWW=		https://gitlab.gnome.org/GNOME/libcryptui
+
+DEPRECATED=	abandoned project
+EXPIRATION_DATE=2025-06-30
+BROKEN=		does not build with gpgme 2.x
 
 BUILD_DEPENDS=	seahorse>=3.0.0:security/seahorse \
 		gpg:security/gnupg

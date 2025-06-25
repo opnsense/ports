@@ -207,6 +207,7 @@
     SUBDIR += fcitx5-m17n
     SUBDIR += fcitx5-qt
     SUBDIR += fcitx5-qt-common
+    SUBDIR += feluda
     SUBDIR += fex
     SUBDIR += ffe
     SUBDIR += fi-aspell
@@ -1485,7 +1486,6 @@
     SUBDIR += py-opensearch-py
     SUBDIR += py-openstackdocstheme
     SUBDIR += py-openstep-plist
-    SUBDIR += py-orange3-text
     SUBDIR += py-os-api-ref
     SUBDIR += py-packageurl-python
     SUBDIR += py-pager

@@ -1,5 +1,6 @@
 PORTNAME=	kmail
 DISTVERSION=	${KDE_APPLICATIONS_VERSION}
+PORTREVISION=	1
 CATEGORIES=	deskutils kde kde-applications
 
 MAINTAINER=	kde@FreeBSD.org
@@ -11,8 +12,8 @@ LICENSE=	LGPL21
 LIB_DEPENDS=	libassuan.so:security/libassuan \
 		libgpg-error.so:security/libgpg-error \
 		libgpgme.so:security/gpgme \
-		libgpgmepp.so:security/gpgme-cpp \
-		libqgpgmeqt6.so:security/gpgme-qt@qt6 \
+		libgpgmepp.so:security/gpgmepp \
+		libqgpgmeqt6.so:security/qgpgme@qt6 \
 		libqt6keychain.so:security/qtkeychain@qt6
 
 RUN_DEPENDS=	accountwizard:deskutils/kmail-account-wizard \
