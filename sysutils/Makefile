@@ -462,6 +462,7 @@
     SUBDIR += gnome-settings-daemon
     SUBDIR += gnome-system-monitor
     SUBDIR += gnome_subr
+    SUBDIR += go-ntfy
     SUBDIR += go-wtf
     SUBDIR += goaccess
     SUBDIR += goawk
@@ -1032,6 +1033,7 @@
     SUBDIR += py-google-compute-engine
     SUBDIR += py-hared
     SUBDIR += py-hcloud
+    SUBDIR += py-healthchecks
     SUBDIR += py-honcho
     SUBDIR += py-howdoi
     SUBDIR += py-hpilo

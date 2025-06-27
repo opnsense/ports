@@ -4739,6 +4739,7 @@
     SUBDIR += py-crc32c
     SUBDIR += py-crcmod
     SUBDIR += py-crick
+    SUBDIR += py-cronsim
     SUBDIR += py-crontab
     SUBDIR += py-crosshair-tool
     SUBDIR += py-cson
@@ -4818,6 +4819,7 @@
     SUBDIR += py-django-rq
     SUBDIR += py-dm-tree
     SUBDIR += py-docformatter
+    SUBDIR += py-dockerfile-parse
     SUBDIR += py-dockerpty
     SUBDIR += py-docopt
     SUBDIR += py-doctest-ignore-unicode
@@ -5330,6 +5332,7 @@
     SUBDIR += py-olefile
     SUBDIR += py-omnijson
     SUBDIR += py-omniorb
+    SUBDIR += py-oncalendar
     SUBDIR += py-onigurumacffi
     SUBDIR += py-opcodes
     SUBDIR += py-openapi-codec
@@ -5719,6 +5722,7 @@
     SUBDIR += py-pytest-recording
     SUBDIR += py-pytest-regressions
     SUBDIR += py-pytest-regtest
+    SUBDIR += py-pytest-relaxed
     SUBDIR += py-pytest-remotedata
     SUBDIR += py-pytest-repeat
     SUBDIR += py-pytest-rerunfailures
@@ -6659,6 +6663,7 @@
     SUBDIR += rubygem-aws-sdk-emrserverless
     SUBDIR += rubygem-aws-sdk-entityresolution
     SUBDIR += rubygem-aws-sdk-eventbridge
+    SUBDIR += rubygem-aws-sdk-evs
     SUBDIR += rubygem-aws-sdk-finspace
     SUBDIR += rubygem-aws-sdk-finspacedata
     SUBDIR += rubygem-aws-sdk-firehose
@@ -7178,6 +7183,7 @@
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-wire
+    SUBDIR += rubygem-cucumber9
     SUBDIR += rubygem-curses
     SUBDIR += rubygem-cyoi
     SUBDIR += rubygem-daemon_controller
