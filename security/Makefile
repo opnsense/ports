@@ -287,7 +287,6 @@
     SUBDIR += libargon2
     SUBDIR += libassuan
     SUBDIR += libcaes
-    SUBDIR += libcryptui
     SUBDIR += libdecaf
     SUBDIR += libecc
     SUBDIR += libfcrypto
@@ -324,7 +323,6 @@
     SUBDIR += libscep
     SUBDIR += libscrypt
     SUBDIR += libsecret
-    SUBDIR += libsectok
     SUBDIR += libsodium
     SUBDIR += libssh
     SUBDIR += libssh2
@@ -458,6 +456,7 @@
     SUBDIR += openssl31-quictls
     SUBDIR += openssl32
     SUBDIR += openssl33
+    SUBDIR += openssl33-quictls
     SUBDIR += openssl34
     SUBDIR += openssl35
     SUBDIR += openvas
@@ -840,6 +839,8 @@
     SUBDIR += php83-sodium
     SUBDIR += php84-filter
     SUBDIR += php84-sodium
+    SUBDIR += php85-filter
+    SUBDIR += php85-sodium
     SUBDIR += picocrypt
     SUBDIR += picosha2
     SUBDIR += pidgin-encryption
@@ -1026,6 +1027,7 @@
     SUBDIR += py-pyelliptic
     SUBDIR += py-pyhanko
     SUBDIR += py-pyhanko-certvalidator
+    SUBDIR += py-pyhanko-cli
     SUBDIR += py-pykeepass
     SUBDIR += py-pykeepass-cache
     SUBDIR += py-pylibacl
@@ -1282,7 +1284,6 @@
     SUBDIR += seccure
     SUBDIR += seclists
     SUBDIR += secpanel
-    SUBDIR += sectok
     SUBDIR += secure_delete
     SUBDIR += sedutil
     SUBDIR += sequoia

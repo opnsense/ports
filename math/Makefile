@@ -471,7 +471,6 @@
     SUBDIR += librdata
     SUBDIR += librsb
     SUBDIR += libsemigroups
-    SUBDIR += libsharp2
     SUBDIR += libtexprintf
     SUBDIR += libtommath
     SUBDIR += libxls
@@ -491,7 +490,6 @@
     SUBDIR += ltl2ba
     SUBDIR += m4ri
     SUBDIR += m4rie
-    SUBDIR += manifold
     SUBDIR += mate-calc
     SUBDIR += math77
     SUBDIR += mathex
@@ -896,6 +894,8 @@
     SUBDIR += php83-gmp
     SUBDIR += php84-bcmath
     SUBDIR += php84-gmp
+    SUBDIR += php85-bcmath
+    SUBDIR += php85-gmp
     SUBDIR += physcalc
     SUBDIR += picosat
     SUBDIR += piranha
@@ -1082,6 +1082,7 @@
     SUBDIR += py-pyprobables
     SUBDIR += py-pyreadr
     SUBDIR += py-pyreadstat
+    SUBDIR += py-pyrfr
     SUBDIR += py-pyrr
     SUBDIR += py-pysmt
     SUBDIR += py-pysym
