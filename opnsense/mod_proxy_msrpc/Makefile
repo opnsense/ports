@@ -1,5 +1,6 @@
 PORTNAME=	mod_proxy_msrpc
 PORTVERSION=	0.6
+PORTREVISION=	1
 DISTVERSIONPREFIX=${PORTNAME}-
 PKGNAMEPREFIX=	${APACHE_PKGNAMEPREFIX}
 CATEGORIES=	www
@@ -11,7 +12,7 @@ LICENSE=	APACHE20
 
 BUILD_DEPENDS=	checkmk:devel/check
 LIB_DEPENDS=	libinotify.so:devel/libinotify \
-		libuuid.so:misc/e2fsprogs-libuuid
+		libuuid.so:misc/libuuid
 
 USES=		apache autoreconf localbase:ldflags pkgconfig
 USE_GITHUB=	yes
