@@ -239,12 +239,14 @@
     SUBDIR += py-term-background
     SUBDIR += py-trash-cli
     SUBDIR += py-vdirsyncer
+    SUBDIR += py-vit
     SUBDIR += py-vobject
     SUBDIR += py-vorta
     SUBDIR += qlipper
     SUBDIR += qmediamanager
     SUBDIR += qownnotes
     SUBDIR += qtfeedback
+    SUBDIR += readur
     SUBDIR += recoll
     SUBDIR += rednotebook
     SUBDIR += remind

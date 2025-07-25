@@ -131,7 +131,6 @@
     SUBDIR += libgda5-postgresql
     SUBDIR += libgda5-ui
     SUBDIR += libgda6
-    SUBDIR += libgdamm5
     SUBDIR += libhsclient
     SUBDIR += libiodbc
     SUBDIR += libmemcache
@@ -143,6 +142,7 @@
     SUBDIR += libpbl
     SUBDIR += libpg_query
     SUBDIR += libsdb
+    SUBDIR += libvalkey
     SUBDIR += libzdb
     SUBDIR += linux-c7-sqlite3
     SUBDIR += linux-c7-unixODBC
@@ -223,6 +223,8 @@
     SUBDIR += ods2sql
     SUBDIR += opendbviewer
     SUBDIR += opendbx
+    SUBDIR += openvoxdb-terminus8
+    SUBDIR += openvoxdb8
     SUBDIR += ora2pg
     SUBDIR += oracle8-client
     SUBDIR += p5-Amazon-SimpleDB
@@ -748,6 +750,7 @@
     SUBDIR += py-Pyrseas
     SUBDIR += py-aesqlapius
     SUBDIR += py-agate-sql
+    SUBDIR += py-aiodataloader
     SUBDIR += py-aiomcache
     SUBDIR += py-aiomysql
     SUBDIR += py-aiopg
@@ -764,6 +767,7 @@
     SUBDIR += py-couchdb
     SUBDIR += py-cymysql
     SUBDIR += py-databases
+    SUBDIR += py-datafusion
     SUBDIR += py-dbf
     SUBDIR += py-dbt-core
     SUBDIR += py-dbt-duckdb
@@ -867,6 +871,7 @@
     SUBDIR += py-tiledb
     SUBDIR += py-txredisapi
     SUBDIR += py-unqlite
+    SUBDIR += py-valkey
     SUBDIR += py-varstack
     SUBDIR += py-whisper
     SUBDIR += py-xapian
@@ -1076,6 +1081,7 @@
     SUBDIR += spatialite-tools
     SUBDIR += spatialite_gui
     SUBDIR += speedtables
+    SUBDIR += sq
     SUBDIR += sql-workbench
     SUBDIR += sqlcached
     SUBDIR += sqlcipher

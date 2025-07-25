@@ -267,8 +267,8 @@ libexec/pyenv-plugins/python-build/share/python-build/3.13.5
 libexec/pyenv-plugins/python-build/share/python-build/3.13.5t
 libexec/pyenv-plugins/python-build/share/python-build/3.14t-dev
 libexec/pyenv-plugins/python-build/share/python-build/3.14-dev
-libexec/pyenv-plugins/python-build/share/python-build/3.14.0b3
-libexec/pyenv-plugins/python-build/share/python-build/3.14.0b3t
+libexec/pyenv-plugins/python-build/share/python-build/3.14.0rc1
+libexec/pyenv-plugins/python-build/share/python-build/3.14.0rc1t
 libexec/pyenv-plugins/python-build/share/python-build/3.15t-dev
 libexec/pyenv-plugins/python-build/share/python-build/3.15-dev
 libexec/pyenv-plugins/python-build/share/python-build/activepython-2.7.14
@@ -376,6 +376,7 @@ libexec/pyenv-plugins/python-build/share/python-build/graalpy-24.1.1
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-24.1.2
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-24.2.0
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-24.2.1
+libexec/pyenv-plugins/python-build/share/python-build/graalpy-24.2.2
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-23.1.0
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-23.1.2
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-24.0.0
@@ -384,6 +385,7 @@ libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-24.1.1
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-24.1.2
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-24.2.0
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-24.2.1
+libexec/pyenv-plugins/python-build/share/python-build/graalpy-community-24.2.2
 libexec/pyenv-plugins/python-build/share/python-build/graalpy-dev
 libexec/pyenv-plugins/python-build/share/python-build/ironpython-2.7.4
 libexec/pyenv-plugins/python-build/share/python-build/ironpython-2.7.5
@@ -400,6 +402,7 @@ libexec/pyenv-plugins/python-build/share/python-build/jython-2.7.0
 libexec/pyenv-plugins/python-build/share/python-build/jython-2.7.1
 libexec/pyenv-plugins/python-build/share/python-build/jython-2.7.2
 libexec/pyenv-plugins/python-build/share/python-build/jython-2.7.3
+libexec/pyenv-plugins/python-build/share/python-build/jython-2.7.4
 libexec/pyenv-plugins/python-build/share/python-build/jython-dev
 libexec/pyenv-plugins/python-build/share/python-build/mambaforge
 libexec/pyenv-plugins/python-build/share/python-build/mambaforge-4.10.1-4
@@ -900,6 +903,7 @@ libexec/pyenv-plugins/python-build/share/python-build/patches/3.5.10/Python-3.5.
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.5.10/Python-3.5.10/0007-Port-ctypes-and-system-libffi-patch-for-arm64-macOS-.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.5.10/Python-3.5.10/0008-bpo-36231-Support-building-on-macOS-without-usr-incl.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.5.10/Python-3.5.10/0009-bpo-42351-Avoid-error-when-opening-header-with-non-U.patch
+libexec/pyenv-plugins/python-build/share/python-build/patches/3.5.10/Python-3.5.10/0010-bpo-36106-Resolve-sinpi-name-clash-with-libm-IEEE-75.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0001-Detect-arm64-in-configure.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0002-bpo-36231-Support-building-on-macOS-without-usr-incl.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0003-Fix-macOS-_tkinter-use-of-Tck-Tk-in-Library-Framewor.patch
@@ -910,6 +914,7 @@ libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0008-bpo-45405-Prevent-internal-configure-error-when-runn.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0009-bpo-27987-pymalloc-align-by-16bytes-on-64bit-platfor.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0010-bpo-27987-align-PyGC_Head-to-alignof-long-double-GH-.patch
+libexec/pyenv-plugins/python-build/share/python-build/patches/3.6.15/Python-3.6.15/0011-bpo-36106-Resolve-sinpi-name-clash-with-libm-IEEE-75.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.7.8/Python-3.7.8/0001-bpo-45405-Prevent-internal-configure-error-when-runn.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.7.9/Python-3.7.9/0001-bpo-45405-Prevent-internal-configure-error-when-runn.patch
 libexec/pyenv-plugins/python-build/share/python-build/patches/3.7.10/Python-3.7.10/0001-bpo-45405-Prevent-internal-configure-error-when-runn.patch
@@ -1032,6 +1037,8 @@ libexec/pyenv-plugins/python-build/share/python-build/pypy2.7-7.3.18
 libexec/pyenv-plugins/python-build/share/python-build/pypy2.7-7.3.18-src
 libexec/pyenv-plugins/python-build/share/python-build/pypy2.7-7.3.19
 libexec/pyenv-plugins/python-build/share/python-build/pypy2.7-7.3.19-src
+libexec/pyenv-plugins/python-build/share/python-build/pypy2.7-7.3.20
+libexec/pyenv-plugins/python-build/share/python-build/pypy2.7-7.3.20-src
 libexec/pyenv-plugins/python-build/share/python-build/pypy3-2.3.1
 libexec/pyenv-plugins/python-build/share/python-build/pypy3-2.3.1-src
 libexec/pyenv-plugins/python-build/share/python-build/pypy3-2.4.0
@@ -1140,6 +1147,8 @@ libexec/pyenv-plugins/python-build/share/python-build/pypy3.11-7.3.18
 libexec/pyenv-plugins/python-build/share/python-build/pypy3.11-7.3.18-src
 libexec/pyenv-plugins/python-build/share/python-build/pypy3.11-7.3.19
 libexec/pyenv-plugins/python-build/share/python-build/pypy3.11-7.3.19-src
+libexec/pyenv-plugins/python-build/share/python-build/pypy3.11-7.3.20
+libexec/pyenv-plugins/python-build/share/python-build/pypy3.11-7.3.20-src
 libexec/pyenv-plugins/python-build/share/python-build/pypy-1.5-src
 libexec/pyenv-plugins/python-build/share/python-build/pypy-1.6
 libexec/pyenv-plugins/python-build/share/python-build/pypy-1.7

@@ -316,6 +316,7 @@
     SUBDIR += osinfo-db
     SUBDIR += ossp-uuid
     SUBDIR += otter
+    SUBDIR += outside
     SUBDIR += owrep
     SUBDIR += p5-Acme-ButFirst
     SUBDIR += p5-Array-Compare
@@ -443,6 +444,7 @@
     SUBDIR += py-fleep
     SUBDIR += py-fuzzy
     SUBDIR += py-gguf
+    SUBDIR += py-google-ai-generativelanguage
     SUBDIR += py-gpiozero
     SUBDIR += py-halo
     SUBDIR += py-hf-xet
@@ -455,6 +457,16 @@
     SUBDIR += py-ipyfastscape
     SUBDIR += py-jiwer
     SUBDIR += py-kartograph
+    SUBDIR += py-langchain
+    SUBDIR += py-langchain-anthropic
+    SUBDIR += py-langchain-core
+    SUBDIR += py-langchain-google-genai
+    SUBDIR += py-langchain-openai
+    SUBDIR += py-langchain-tests
+    SUBDIR += py-langchain-text-splitters
+    SUBDIR += py-langgraph-checkpoint
+    SUBDIR += py-langgraph-sdk
+    SUBDIR += py-langsmith
     SUBDIR += py-laspy
     SUBDIR += py-lazrs
     SUBDIR += py-lightgbm
@@ -546,6 +558,7 @@
     SUBDIR += qbrew
     SUBDIR += qlas
     SUBDIR += qlcplus
+    SUBDIR += qman
     SUBDIR += qt5-doc
     SUBDIR += qt5-examples
     SUBDIR += qt5-l10n
@@ -605,6 +618,8 @@
     SUBDIR += snakemake
     SUBDIR += soapysdr
     SUBDIR += solarized
+    SUBDIR += spacenavd-devel
+    SUBDIR += spnavcfg-devel
     SUBDIR += sshbuddy
     SUBDIR += sssnips
     SUBDIR += star-history
