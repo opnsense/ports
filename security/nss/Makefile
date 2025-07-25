@@ -1,6 +1,5 @@
 PORTNAME=	nss
-PORTVERSION=	3.113.1
-PORTREVISION=	1	# XXX sqlite3 fail
+PORTVERSION=	3.114
 CATEGORIES=	security
 MASTER_SITES=	MOZILLA/security/${PORTNAME}/releases/${DISTNAME:tu:C/[-.]/_/g}_RTM/src
 
