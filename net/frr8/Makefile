@@ -1,6 +1,5 @@
 PORTNAME=	frr
 PORTVERSION=	8.5.7
-PORTREVISION=	2
 DISTVERSIONPREFIX=	frr-
 CATEGORIES=	net
 .if defined(PYTHONTOOLS)
@@ -36,7 +35,6 @@ do-install:
 	${INSTALL_DATA} ${WRKSRC}/tools/etc/frr/support_bundle_commands.conf ${STAGEDIR}${ETCDIR}/
 .else
 
-BUILD_DEPENDS=	gsed:textproc/gsed
 LIB_DEPENDS=	libcares.so:dns/c-ares \
 		libjson-c.so:devel/json-c \
 		libpcre2-8.so:devel/pcre2 \
@@ -45,7 +43,7 @@ LIB_DEPENDS=	libcares.so:dns/c-ares \
 USES=		autoreconf bison compiler:c++11-lang gmake libtool makeinfo \
 		pkgconfig python:build readline shebangfix
 
-BINARY_ALIAS=	python=${PYTHON_VERSION} sed=gsed
+BINARY_ALIAS=	python=${PYTHON_VERSION}
 
 CONFLICTS=	frr9 frr10 openbgpd openospfd quagga zebra
 
