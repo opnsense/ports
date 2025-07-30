@@ -378,7 +378,9 @@
     SUBDIR += cargo-hack
     SUBDIR += cargo-leptos
     SUBDIR += cargo-llvm-cov
+    SUBDIR += cargo-make
     SUBDIR += cargo-mutants
+    SUBDIR += cargo-readme
     SUBDIR += cargo-spellcheck
     SUBDIR += cargo-tarpaulin
     SUBDIR += cargo-udeps
@@ -876,6 +878,7 @@
     SUBDIR += gitlab-shell
     SUBDIR += gitleaks
     SUBDIR += gitlist
+    SUBDIR += gitmux
     SUBDIR += gitolite
     SUBDIR += gitolite2
     SUBDIR += gitoxide
@@ -1583,6 +1586,7 @@
     SUBDIR += llvm18
     SUBDIR += llvm19
     SUBDIR += llvm20
+    SUBDIR += llvm21
     SUBDIR += lm4tools
     SUBDIR += lmdbg
     SUBDIR += lndir
