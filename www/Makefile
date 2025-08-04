@@ -374,7 +374,6 @@
     SUBDIR += mattermost-server
     SUBDIR += mattermost-webapp
     SUBDIR += mediawiki139
-    SUBDIR += mediawiki142
     SUBDIR += mediawiki143
     SUBDIR += mediawiki144
     SUBDIR += mergelog
@@ -1441,7 +1440,6 @@
     SUBDIR += php84-opcache
     SUBDIR += php84-session
     SUBDIR += php84-tidy
-    SUBDIR += php85-opcache
     SUBDIR += php85-session
     SUBDIR += php85-tidy
     SUBDIR += phpbb3
@@ -2644,7 +2642,6 @@
     SUBDIR += web2ldap
     SUBDIR += webalizer
     SUBDIR += webbrowser
-    SUBDIR += webcopy
     SUBDIR += webcrawl
     SUBDIR += webfs
     SUBDIR += webgrind

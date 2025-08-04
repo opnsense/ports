@@ -174,7 +174,6 @@
     SUBDIR += activitymail
     SUBDIR += actor-framework
     SUBDIR += adacurses
-    SUBDIR += aegis
     SUBDIR += agar
     SUBDIR += aifad
     SUBDIR += air-go
@@ -239,7 +238,6 @@
     SUBDIR += arm-none-eabi-gcc
     SUBDIR += arm-none-eabi-newlib
     SUBDIR += aros-sdk
-    SUBDIR += arpc
     SUBDIR += art
     SUBDIR += asfml
     SUBDIR += asl
@@ -321,9 +319,7 @@
     SUBDIR += bloaty
     SUBDIR += bloomberg-bde
     SUBDIR += blueprint-compiler
-    SUBDIR += bmake
     SUBDIR += bmk
-    SUBDIR += bmkdep
     SUBDIR += bnf
     SUBDIR += boehm-gc
     SUBDIR += boehm-gc-threaded
@@ -922,7 +918,6 @@
     SUBDIR += godot
     SUBDIR += godot-tools
     SUBDIR += godot35
-    SUBDIR += godot35-tools
     SUBDIR += goffice
     SUBDIR += gogs
     SUBDIR += golangci-lint
@@ -1301,7 +1296,6 @@
     SUBDIR += libfixposix
     SUBDIR += libfmt
     SUBDIR += libfort
-    SUBDIR += libfortuna
     SUBDIR += libfreefare
     SUBDIR += libftdi
     SUBDIR += libftdi1
@@ -1312,7 +1306,6 @@
     SUBDIR += libgamepad
     SUBDIR += libgdata
     SUBDIR += libgee
-    SUBDIR += libgee06
     SUBDIR += libgetline
     SUBDIR += libgit2
     SUBDIR += libgit2-glib
@@ -1320,7 +1313,6 @@
     SUBDIR += libglademm24
     SUBDIR += libgnt
     SUBDIR += libgnuregex
-    SUBDIR += libgpc
     SUBDIR += libgpkg
     SUBDIR += libgpr
     SUBDIR += libgrading
@@ -1652,7 +1644,6 @@
     SUBDIR += magic_enum
     SUBDIR += magit
     SUBDIR += magit-devel
-    SUBDIR += make++
     SUBDIR += makedepend
     SUBDIR += malloy
     SUBDIR += marisa-trie
@@ -1712,7 +1703,6 @@
     SUBDIR += ncc
     SUBDIR += ncnf
     SUBDIR += ncurses
-    SUBDIR += netscape-java40
     SUBDIR += netsurf-buildsystem
     SUBDIR += newfile
     SUBDIR += newt
@@ -1836,18 +1826,12 @@
     SUBDIR += opendht
     SUBDIR += opengrok
     SUBDIR += openocd
+    SUBDIR += openocd-devel
     SUBDIR += opentelemetry-cpp
     SUBDIR += opentelemetry-proto
     SUBDIR += orc
     SUBDIR += orcania
     SUBDIR += osc
-    SUBDIR += ossp-al
-    SUBDIR += ossp-cfg
-    SUBDIR += ossp-ex
-    SUBDIR += ossp-l2
-    SUBDIR += ossp-val
-    SUBDIR += ossp-var
-    SUBDIR += ossp-xds
     SUBDIR += outcome
     SUBDIR += p4
     SUBDIR += p4.el
@@ -4354,13 +4338,10 @@
     SUBDIR += psimd
     SUBDIR += pstreams
     SUBDIR += psvn
-    SUBDIR += pth
-    SUBDIR += pth-hard
     SUBDIR += pthreadpool
     SUBDIR += pthsem
     SUBDIR += ptl
     SUBDIR += ptlib
-    SUBDIR += publib
     SUBDIR += purescript-language-server
     SUBDIR += pushmi
     SUBDIR += py-Automat
@@ -6331,7 +6312,6 @@
     SUBDIR += qgit
     SUBDIR += qjson
     SUBDIR += qlementine
-    SUBDIR += qmake
     SUBDIR += qschematic
     SUBDIR += qscintilla2
     SUBDIR += qscintilla2-designerplugin
@@ -6443,7 +6423,6 @@
     SUBDIR += ros-wstool
     SUBDIR += roswell
     SUBDIR += rote
-    SUBDIR += rpc2
     SUBDIR += rpclib
     SUBDIR += rsvndump
     SUBDIR += rttr
@@ -8185,7 +8164,6 @@
     SUBDIR += sasm
     SUBDIR += sbt
     SUBDIR += scalatest
-    SUBDIR += scandoc
     SUBDIR += scc
     SUBDIR += sccache
     SUBDIR += sccs
@@ -8229,7 +8207,6 @@
     SUBDIR += sigar
     SUBDIR += signal-sqlcipher-extension
     SUBDIR += sigslot
-    SUBDIR += silc-toolkit
     SUBDIR += silentbob
     SUBDIR += simavr
     SUBDIR += simde
@@ -8392,6 +8369,7 @@
     SUBDIR += transient-devel
     SUBDIR += transwarp
     SUBDIR += tree-sitter
+    SUBDIR += tree-sitter-cli
     SUBDIR += tree-sitter-graph
     SUBDIR += treefmt
     SUBDIR += treepy.el
@@ -8457,6 +8435,7 @@
     SUBDIR += wasi-libcxx20
     SUBDIR += wasm3
     SUBDIR += wasmer
+    SUBDIR += wasm-server-runner
     SUBDIR += websocketpp
     SUBDIR += websvn
     SUBDIR += wf-config
@@ -8464,7 +8443,6 @@
     SUBDIR += wizardkit
     SUBDIR += wizer
     SUBDIR += woff2
-    SUBDIR += wrangler
     SUBDIR += wxformbuilder
     SUBDIR += xa65
     SUBDIR += xbyak
