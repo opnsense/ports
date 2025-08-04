@@ -4663,3 +4663,45 @@ net/amneziawg-tools||2025-07-26|Port was committed prematurely
 www/novnc-websockify|devel/py-websockify|2025-07-30|Port is a duplicate
 databases/mongodb50|databases/mongodb60|2025-07-31|Has expired: EOL from October 2024, see https://www.mongodb.com/legal/support-policy/lifecycles, please use databases/mongodb60
 multimedia/svt-av1-psy|multimedia/svt-av1-hdr|2025-07-31|New upstream
+www/php85-opcache||2025-08-01|Part of default php85
+devel/rpc2||2025-08-02|Has expired: Outdated, unsupported upstream and unmaintained for years in tree
+devel/publib||2025-08-02|Has expired: Upstream is gone and last release around 2012
+devel/qmake||2025-08-02|Has expired: Obsolete and unsupported upstream
+devel/godot35-tools|devel/godot-tools|2025-08-02|Has expired: Fails to build and legacy, consider migrating to devel/godot-tools
+graphics/cosmoplayer||2025-08-02|Has expired: Abandonware
+devel/netscape-java40||2025-08-02|Has expired: Abandonware
+devel/aegis||2025-08-02|Has expired: Abandoned upstream, last release in 2012
+devel/wrangler||2025-08-02|Has expired: Deprecated upstream as of Aug 3, 2023
+devel/libgee06|devel/libgee|2025-08-02|Has expired: Legacy verision, unsupported upstream
+comms/hackrf-devel|comms/hackrf|2025-08-02|Has expired: Legacy version, consider migrating to comms/hackrf
+www/webcopy||2025-08-02|Has expired: Upstream is long gone and project not touched in decades, consider using ftp/wget
+finance/libstocks||2025-08-02|Has expired: Abandoned upstream, last release in 2000
+java/servingxml||2025-08-02|Has expired: Abandoned and obsolete, last release in 2010
+mail/lmtp2nntp||2025-08-02|Has expired: Obsolete, last release in 2005 and uses legacy Local Mail Transfer Protocol
+math/R-cran-RSvgDevice||2025-08-02|Has expired: Package RSvgDevice was removed from the CRAN repository
+net/flower||2025-08-02|Has expired: Unmaintained upstream
+net/linknx||2025-08-02|Has expired: Outdated and unsupported upstream
+www/mediawiki142||2025-08-02|Has expired: Upstream EOL
+devel/arpc||2025-08-02|Has expired: Unmaintained upstream
+devel/libgpc||2025-08-02|Has expired: No longer distributed by upstream as of August 2020
+devel/libfortuna||2025-08-02|Has expired: Legacy fortuna library, last upstream activity 10 years ago
+devel/pth-hard||2025-08-02|Has expired: Abandoned, last release in 2006
+devel/pth||2025-08-02|Has expired: Abandoned, last release in 2006
+databases/rrdtool12|databases/rrdtool|2025-08-02|Has expired: Legacy version that's unsupported upstream and unfetchable
+sysutils/memtest86+||2025-08-02|Has expired: ELF binary for BIOS boot has been broken for a long while
+textproc/xmlenc||2025-08-02|Has expired: Outdated and obsolete, last release in 2005
+devel/make++||2025-08-02|Has expired: Abandonware, last release in 2017
+devel/scandoc||2025-08-02|Has expired: Abandoned project, last release in in 2001
+devel/silc-toolkit||2025-08-02|Has expired: Protocol that never got any traction, last release in 2014
+devel/ossp-xds||2025-08-02|Has expired: Abandoned upstream, last release in 2005
+devel/ossp-al||2025-08-02|Has expired: Obsolete and abandoned upstream, last release in 2005
+devel/ossp-val||2025-08-02|Has expired: Abandoned upstream, last release in 2005
+devel/ossp-l2||2025-08-02|Has expired: Abandoned upstream, last release in 2007
+devel/ossp-var||2025-08-02|Has expired: Obsolete, last release in 2002
+devel/ossp-cfg||2025-08-02|Has expired: Abandoned upstream, last release in 2006
+net/ossp-sa||2025-08-02|Removed, depends on expired devel/ossp-ex
+devel/ossp-ex||2025-08-02|Has expired: Abandoned upstream, last release in 2007
+security/openiked-portable|security/openiked|2025-08-02|Merged into security/openiked
+devel/bmake||2025-08-03|Has expired: Outdated and redundant
+devel/bmkdep||2025-08-03|Has expired: Outdated and redundant
+astro/R-cran-maptools||2025-08-03|Has expired: Fails to build and upstream recommends using math/R-cran-sf or math/R-cran-terra instead
