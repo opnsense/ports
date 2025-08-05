@@ -30,6 +30,8 @@ OPTIONS_GROUP_LEGACY=	HTTP LZMA ZLIB
 OPTIONS_DEFAULT=	HTTP LZMA READLINE STATIC ZLIB
 OPTIONS_SUB=		yes
 
+LIB_DEPENDS=	libxml2.so.2:opnsense/libxml2-legacy # OPNsense workaround
+
 HTTP_DESC=		HTTP support
 LEGACY_DESC=		Enable legacy API compatibility
 READLINE_DESC=		History for xmllint
