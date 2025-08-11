@@ -3956,7 +3956,6 @@ sysutils/u-boot-duovero||2025-01-02|Unknown, port deleted long time ago, entry a
 sysutils/watchman450||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
 textproc/checkbashisms||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
 textproc/fmtlib||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
-textproc/logseq||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
 textproc/node-re2||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
 textproc/py-elasticsearch-curator-py||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
 textproc/rubygem-sassc-rails||2025-01-02|Unknown, port deleted long time ago, entry added to clean up portscout.freebsd.org
@@ -4711,3 +4710,9 @@ databases/pear-DoctrineDBAL||2025-08-04|Has expired: Upstream no longer serves t
 www/py-wsaccel||2025-08-04|Has expired: Upstream ceased development
 databases/pear-DoctrineCommon||2025-08-05|Has expired: Upstream no longer serves through PEAR channel and has been moved to Composer
 devel/tclthread|devel/tcl8-thread|2025-08-07|Use tcl8-thread with Tcl8 and tcl9-thread Tcl9
+graphics/libkexiv2@qt5||2025-08-08|Unflavorize; Qt5 flavor is not needed anymore
+graphics/libkexiv2@qt6|graphics/libkexiv2|2025-08-08|Unflavorize; Qt5 flavor is not needed anymore
+databases/mariadb105-server||2025-08-09|Has expired: Upstream End-of-Life, please switch to databases/mariadb118-server
+databases/mariadb105-client||2025-08-09|Has expired: Upstream End-of-Life, please switch to databases/mariadb118-client
+japanese/font-moralerspace-hwnf|japanese/font-moralerspace-hw|2025-08-09|Moralerspace variants now include Nerd Fonts by default
+japanese/font-moralerspace-nf|japanese/font-moralerspace|2025-08-09|Moralerspace variants now include Nerd Fonts by default
