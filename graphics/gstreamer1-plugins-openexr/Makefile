@@ -1,10 +1,9 @@
-PORTREVISION=	0
+PORTREVISION=	1
 CATEGORIES=	graphics
 
 COMMENT=	GStreamer OpenExr codec plugin
 
-LIB_DEPENDS=	libOpenEXR.so:graphics/openexr \
-		libImath-3_1.so:math/Imath
+LIB_DEPENDS=	libOpenEXR.so:graphics/openexr
 
 USES+=		compiler:c++11-lang
 
