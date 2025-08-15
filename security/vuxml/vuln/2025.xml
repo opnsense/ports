@@ -1,3 +1,207 @@
+  <vuln vid="a60e73e0-7942-11f0-b3f7-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>139.0.7258.127</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>139.0.7258.127</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/08/stable-channel-update-for-desktop_12.html">
+	 <p>This update includes 6 security fixes:</p>
+	 <ul>
+	    <li>[432035817] High CVE-2025-8879: Heap buffer overflow in libaom. Reported by Anonymous on 2025-07-15</li>
+	    <li>[433533359] High CVE-2025-8880: Race in V8. Reported by Seunghyun Lee (@0x10n) on 2025-07-23</li>
+	    <li>[435139154] High CVE-2025-8901: Out of bounds write in ANGLE. Reported by Google Big Sleep on 2025-07-30</li>
+	    <li>[433800617] Medium CVE-2025-8881: Inappropriate implementation in File Picker. Reported by Alesandro Ortiz on 2025-07-23</li>
+	    <li>[435623339] Medium CVE-2025-8882: Use after free in Aura. Reported by Umar Farooq on 2025-08-01</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-8579</cvename>
+      <cvename>CVE-2025-8580</cvename>
+      <cvename>CVE-2025-8901</cvename>
+      <cvename>CVE-2025-8881</cvename>
+      <cvename>CVE-2025-8882</cvename>
+      <url>https://chromereleases.googleblog.com/2025/08/stable-channel-update-for-desktop_12.html</url>
+    </references>
+    <dates>
+      <discovery>2025-08-12</discovery>
+      <entry>2025-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fc048b51-7909-11f0-90a2-6cc21735f730">
+    <topic>PostgreSQL -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>postgresql17-server</name>
+	<range><lt>17.6</lt></range>
+      </package>
+      <package>
+	<name>postgresql16-server</name>
+	<range><lt>16.10</lt></range>
+      </package>
+      <package>
+	<name>postgresql15-server</name>
+	<range><lt>14.14</lt></range>
+      </package>
+      <package>
+	<name>postgresql14-server</name>
+	<range><lt>14.19</lt></range>
+      </package>
+      <package>
+	<name>postgresql13-server</name>
+	<range><lt>13.22</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>PostgreSQL project reports:</p>
+	<blockquote cite="https://www.postgresql.org/about/news/postgresql-176-1610-1514-1419-1322-and-18-beta-3-released-3118/">
+	  <p>Tighten security checks in planner estimation functions.</p>
+	  <p>Prevent pg_dump scripts from being used to attack the user running the restore.</p>
+	  <p>Convert newlines to spaces in names included in comments in pg_dump output.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-8713</cvename>
+      <cvename>CVE-2025-8714</cvename>
+      <cvename>CVE-2025-8715</cvename>
+      <url>https://www.postgresql.org/about/news/postgresql-176-1610-1514-1419-1322-and-18-beta-3-released-3118/</url>
+    </references>
+    <dates>
+      <discovery>2025-08-11</discovery>
+      <entry>2025-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7bfe6f39-78be-11f0-9d03-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>18.2.0</ge><lt>18.2.2</lt></range>
+	<range><ge>18.1.0</ge><lt>18.1.4</lt></range>
+	<range><ge>8.14.0</ge><lt>18.0.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/08/13/patch-release-gitlab-18-2-2-released/">
+	  <p>Cross-site scripting issue in blob viewer impacts GitLab CE/EE</p>
+	  <p>Cross-site scripting issue in labels impacts GitLab CE/EE</p>
+	  <p>Cross-site scripting issue in Workitem impacts GitLab CE/EE</p>
+	  <p>Improper Handling of Permissions issue in project API impacts GitLab CE/EE</p>
+	  <p>Incorrect Privilege Assignment issue in delete issues operation impacts GitLab CE/EE</p>
+	  <p>Allocation of Resources Without Limits issue in release name creation impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in jobs API impacts GitLab CE/EE</p>
+	  <p>Authorization issue in Merge request approval policy impacts GitLab EE</p>
+	  <p>Inefficient Regular Expression Complexity issue in wiki impacts GitLab CE/EE</p>
+	  <p>Allocation of Resources Without Limits issue in Mattermost integration impacts GitLab CE/EE</p>
+	  <p>Incorrect Permission Assignment issue in ID token impacts GitLab CE/EE</p>
+	  <p>Insufficient Access Control issue in IP Restriction impacts GitLab EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-7734</cvename>
+      <cvename>CVE-2025-7739</cvename>
+      <cvename>CVE-2025-6186</cvename>
+      <cvename>CVE-2025-8094</cvename>
+      <cvename>CVE-2024-12303</cvename>
+      <cvename>CVE-2025-2614</cvename>
+      <cvename>CVE-2024-10219</cvename>
+      <cvename>CVE-2025-8770</cvename>
+      <cvename>CVE-2025-2937</cvename>
+      <cvename>CVE-2025-1477</cvename>
+      <cvename>CVE-2025-5819</cvename>
+      <cvename>CVE-2025-2498</cvename>
+      <url>https://about.gitlab.com/releases/2025/08/13/patch-release-gitlab-18-2-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-08-13</discovery>
+      <entry>2025-08-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e2d49973-785a-11f0-a1c0-0050569f0b83">
+    <topic>www/varnish7 -- Denial of Service in HTTP/2</topic>
+    <affects>
+      <package>
+	<name>varnish7</name>
+	<range><lt>7.7.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Varnish Development Team reports:</p>
+	<blockquote cite="https://varnish-cache.org/security/VSV00017.html#vsv00017">
+	    <p>A denial of service attack can be performed on Varnish Cache servers
+	       that have the HTTP/2 protocol turned on. An attacker can create a
+	       large number of streams and immediately reset them without ever
+	       reaching the maximum number of concurrent streams allowed for the
+	       session, causing the Varnish server to consume unnecessary
+	       resources processing requests for which the response will not be
+	       delivered.</p>
+	    <p>This attack is a variant of the HTTP/2 Rapid Reset Attack, which was
+	       partially handled as VSV00013.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-8671</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-8671</url>
+    </references>
+    <dates>
+      <discovery>2025-08-13</discovery>
+      <entry>2025-08-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="defe9a20-781e-11f0-97c4-40b034429ecf">
+    <topic>p5-Authen-SASL -- Insecure source of randomness</topic>
+    <affects>
+      <package>
+	<name>p5-Authen-SASL</name>
+	<range><lt>2.1900</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>p5-Authen-SASL project reports:</p>
+	<blockquote cite="https://github.com/advisories/GHSA-496q-8ph2-c4fj">
+	  <p>Authen::SASL::Perl::DIGEST_MD5 versions 2.04 through 2.1800 for Perl generates the cnonce insecurely.</p>
+	  <p>The cnonce (client nonce) is generated from an MD5 hash of the PID, the epoch time and the built-in rand function.
+	     The PID will come from a small set of numbers, and the epoch time may be guessed, if it is not leaked from the HTTP Date header.
+	     The built-in rand function is unsuitable for cryptographic usage.</p>
+	  <p>According to RFC 2831, The cnonce-value is an opaque quoted string value provided by the client and used by both client and server
+	     to avoid chosen plaintext attacks, and to provide mutual authentication. The security of the implementation depends on a good choice.
+	     It is RECOMMENDED that it contain at least 64 bits of entropy.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-40918</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-40918</url>
+    </references>
+    <dates>
+      <discovery>2025-07-16</discovery>
+      <entry>2025-08-13</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="15fd1321-768a-11f0-b3f7-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
