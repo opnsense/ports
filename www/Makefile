@@ -31,6 +31,7 @@
     SUBDIR += amfora
     SUBDIR += amphetadesk
     SUBDIR += analog
+    SUBDIR += angelfish
     SUBDIR += angie
     SUBDIR += angie-console-light
     SUBDIR += angie-module-auth-jwt
@@ -102,6 +103,7 @@
     SUBDIR += cgi-lib.pl
     SUBDIR += cgicc
     SUBDIR += cgiwrap
+    SUBDIR += chawan
     SUBDIR += checkbot
     SUBDIR += chisel
     SUBDIR += chpasswd
@@ -1834,6 +1836,7 @@
     SUBDIR += py-legacy-cgi
     SUBDIR += py-lektor
     SUBDIR += py-lesscpy
+    SUBDIR += py-lia-web
     SUBDIR += py-libsass
     SUBDIR += py-limits
     SUBDIR += py-livereload
