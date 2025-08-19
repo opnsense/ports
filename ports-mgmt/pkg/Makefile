@@ -1,10 +1,11 @@
 PORTNAME=	pkg
-DISTVERSION=	2.2.2
+DISTVERSION=	1.19.2
+PORTREVISION=	5
 _PKG_VERSION=	${DISTVERSION}
 CATEGORIES=	ports-mgmt
 
-PATCH_SITES=	https://github.com/opnsense/pkg/commit/
-PATCHFILES=	d8b24da.patch:-p1 db6cb5e.patch:-p1 3856e4a.patch:-p1
+PATCH_SITES=	https://github.com/freebsd/${PORTNAME}/commit/
+PATCHFILES=	fc09e75.patch:-p1 69e28e7.patch:-p1
 
 MAINTAINER=	pkg@FreeBSD.org
 COMMENT=	Package manager
@@ -19,13 +20,15 @@ USE_LDCONFIG=	${PREFIX}/lib/compat/pkg
 HAS_CONFIGURE=	yes
 PORTDOCS=	NEWS
 PORTSCOUT=	ignore:1
-CONFIGURE_ARGS=	--prefix="${PREFIX}"
+CONFIGURE_ARGS=	--mandir=${PREFIX}/man --prefix="${PREFIX}"
 CONFIGURE_ENV=	CC_FOR_BUILD="${CC}"
 
 # Use a submake as 'deinstall install' needs to reevaluate PKG_REGISTER
 # so that pkg-static is used from the wrkdir
 USE_SUBMAKE=	yes
 CFLAGS+=	-Wno-error
+CFLAGS_powerpc64le=	-DSQLITE_BYTEORDER=1234
+LDFLAGS+=	-Wl,--undefined-version
 
 OPTIONS_DEFINE=	DOCS
 
@@ -42,6 +45,30 @@ MAKE_ARGS+=	DEBUG_FLAGS="${DEBUG_FLAGS}"
 .if defined(WITH_PKG)
 .if ${WITH_PKG} == devel
 IGNORE=	WITH_PKG is defined to 'devel', this version is the stable one
+.endif
+.if exists(${LOCALBASE}/sbin/pkg_info) || exists(/usr/sbin/pkg_info)
+NB_OLDPKGS!=	pkg_info 2>/dev/null | wc -l
+.if exists(${PKG_BIN})
+NB_NEWPKGS!=	${PKG_INFO} -aq | wc -l
+.else
+NB_NEWPKGS=	0
+.endif
+# Only show the pre-everything notice if they have not already
+# converted any packages
+.if ${NB_OLDPKGS} > 0 && ${NB_NEWPKGS} == 0 && !defined(UPGRADEPKG)
+
+pre-everything::
+	@${ECHO_CMD} "You are about to convert your system to pkg while you have ports/packages"; \
+	 ${ECHO_CMD} "installed with the old pkg_install tools."; \
+	 ${ECHO_CMD} ""; \
+	 ${ECHO_CMD} "To switch to pkg:"; \
+	 ${ECHO_CMD} "    1) Install ports-mgmt/pkg"; \
+	 ${ECHO_CMD} "       cd ports-mgmt/pkg && make UPGRADEPKG=1 install clean"; \
+	 ${ECHO_CMD} "    2) Convert your package database by running pkg2ng"; \
+	 ${ECHO_CMD} ""; \
+	exit 1
+
+.endif
 .endif
 .endif
 
