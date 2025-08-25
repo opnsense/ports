@@ -1442,6 +1442,7 @@
     SUBDIR += py-langdetect
     SUBDIR += py-langid
     SUBDIR += py-language-data
+    SUBDIR += py-language-tags
     SUBDIR += py-laserhammer
     SUBDIR += py-latexcodec
     SUBDIR += py-license-expression
@@ -1595,10 +1596,12 @@
     SUBDIR += py-rich-rst
     SUBDIR += py-rnc2rng
     SUBDIR += py-roman-numerals-py
+    SUBDIR += py-rouge-score
     SUBDIR += py-rst2ansi
     SUBDIR += py-rst2html5
     SUBDIR += py-sacremoses
     SUBDIR += py-scour
+    SUBDIR += py-segments
     SUBDIR += py-segno
     SUBDIR += py-sense2vec
     SUBDIR += py-sentencepiece

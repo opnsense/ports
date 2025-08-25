@@ -1,6 +1,5 @@
 PORTNAME=	thrift
 PORTVERSION=	${THRIFT_PORTVERSION} # to keep in sync with thrift
-PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	devel
 MASTER_SITES=	APACHE/thrift/${PORTVERSION}
@@ -10,8 +9,6 @@ DISTNAME=	thrift-${PORTVERSION}
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	C++ interface to Thrift
 WWW=		https://thrift.apache.org/
-
-BROKEN_i386=	undefined reference to 'boost::atomics::detail::lockpool::scoped_lock::scoped_lock(void const volatile*)'
 
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libevent.so:devel/libevent
@@ -24,7 +21,6 @@ USE_LDCONFIG=		yes
 CMAKE_ON=		BUILD_CPP
 CMAKE_OFF=		BUILD_C_GLIB BUILD_JAVA BUILD_JAVASCRIPT BUILD_NODEJS BUILD_PYTHON BUILD_HASKELL BUILD_TESTING
 
-MAKE_JOBS_UNSAFE=	yes
 DISTINFO_FILE=		${.CURDIR}/../thrift/distinfo
 PLIST_SUB=		PORTVERSION="${THRIFT_PORTVERSION}"
 
