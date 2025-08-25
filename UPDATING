@@ -5,6 +5,14 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20250817:
+  AFFECTS: users of lang/perl5.*
+  AUTHOR: mat@FreeBSD.org
+
+  The default Perl version has been switched to 5.42.
+
+  See entry 20231017 for updating instructions.
+
 20250815:
   AFFECTS: users of net/syncthing
   AUTHOR: dvl@FreeBSD.org
@@ -15,14 +23,6 @@ you update your ports collection, before attempting any port upgrades.
   which can be lengthy for larger setups.
 
   More at https://github.com/syncthing/syncthing/releases/tag/v2.0.0
-
-20250813:
-  AFFECTS: users of security/py-fail2ban
-  AUTHOR: cy@FreeBSD.org
-
-  There has been some confusion which sshd filter to use on a FreeBSD system.
-  Only the bsd-sshd-session.conf should be used. The other sshd filters have
-  been removed.
 
 20250804:
   AFFECTS: users of databases/adminer
