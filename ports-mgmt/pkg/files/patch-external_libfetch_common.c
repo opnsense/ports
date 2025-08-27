@@ -36,7 +36,7 @@
  		if ((crl_file = getenv("SSL_CRL_FILE")) != NULL) {
  			if (verbose)
  				fetch_info("Using CRL file: %s", crl_file);
-@@ -1189,14 +1188,40 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
+@@ -1189,14 +1188,42 @@ fetch_ssl_cb_verify_crt(int verified, X509_STORE_CTX *
  	char *str;
  
  	str = NULL;
@@ -52,17 +52,19 @@
 +	 * are required to verify the certificate(s) in question.
 +	 */
 +	if (!verified && X509_STORE_CTX_get_error(ctx) == X509_V_ERR_UNABLE_TO_GET_CRL) {
-+		if ((crt = X509_STORE_CTX_get_current_cert(ctx)) != NULL &&
-+		    (name = X509_get_subject_name(crt)) != NULL) {
-+			if (X509_STORE_CTX_get_error_depth(ctx) != 0) {
++		if (X509_STORE_CTX_get_error_depth(ctx) != 0) {
++			if ((crt = X509_STORE_CTX_get_current_cert(ctx)) != NULL &&
++			    (name = X509_get_subject_name(crt)) != NULL)
 +				str = X509_NAME_oneline(name, 0, 0);
-+				fetch_info("No CRL was provided for CA %s", str);
-+				OPENSSL_free(str);
-+			}
++			fetch_info("No CRL was provided for CA %s",
++			    str != NULL ? str : "no relevant certificate");
++			OPENSSL_free(str);
 +		}
 +
 +		verified = 1;
 +	}
++
++	str = NULL;
 +
  	if (!verified) {
  		if ((crt = X509_STORE_CTX_get_current_cert(ctx)) != NULL &&
