@@ -1,3 +1,215 @@
+  <vuln vid="d7b7e505-8486-11f0-9d03-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>18.3.0</ge><lt>18.3.1</lt></range>
+	<range><ge>18.2.0</ge><lt>18.2.5</lt></range>
+	<range><ge>8.15.0</ge><lt>18.1.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/08/27/patch-release-gitlab-18-3-1-released/">
+	  <p>Allocation of Resources Without Limits issue in import function impacts GitLab CE/EE</p>
+	  <p>Missing authentication issue in GraphQL endpoint impacts GitLab CE/EE</p>
+	  <p>Allocation of Resources Without Limits issue in GraphQL impacts GitLab CE/EE</p>
+	  <p>Code injection issue in GitLab repositories impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-3601</cvename>
+      <cvename>CVE-2025-2246</cvename>
+      <cvename>CVE-2025-4225</cvename>
+      <cvename>CVE-2025-5101</cvename>
+      <url>https://about.gitlab.com/releases/2025/08/27/patch-release-gitlab-18-3-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-08-27</discovery>
+      <entry>2025-08-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f727fe60-8389-11f0-8438-001b217e4ee5">
+    <topic>ISC KEA -- kea-dhcp4 aborts if client sends a broadcast request with particular options</topic>
+    <affects>
+      <package>
+	<name>kea</name>
+	<range><ge>3.0.0</ge><lt>3.0.1</lt></range>
+      </package>
+      <package>
+	<name>kea-devel</name>
+	<range><ge>3.1.0</ge><lt>3.1.1</lt></range>
+	<range><ge>2.7.1</ge><le>2.7.9</le></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Internet Systems Consortium, Inc. reports:</p>
+	<blockquote cite="https://kb.isc.org/docs/">
+	<p>We corrected an issue in `kea-dhcp4` that caused
+	the server to abort if a client sent a broadcast request with particular
+	options, and Kea failed to find an appropriate subnet for that client.
+	This addresses CVE-2025-40779 [#4055, #4048].</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-40779</cvename>
+    </references>
+    <dates>
+      <discovery>2025-08-27</discovery>
+      <entry>2025-08-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2a11aa1e-83c7-11f0-b6e5-4ccc6adda413">
+    <topic>qt6-base -- DoS in QColorTransferGenericFunction</topic>
+    <affects>
+      <package>
+	<name>qt6-base</name>
+	<range><lt>6.9.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Andy Shaw reports:</p>
+	<blockquote cite="https://www.qt.io/blog/security-advisory-recently-reported-denial-of-service-issue-in-qcolortransfergenericfunction-impacts-qt">
+	  <p>When passing values outside of the expected range to QColorTransferGenericFunction
+	  it can cause a denial of service, for example, this can happen when passing a
+	  specifically crafted ICC profile to QColorSpace::fromICCProfile.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-5992</cvename>
+      <url>https://www.qt.io/blog/security-advisory-recently-reported-denial-of-service-issue-in-qcolortransfergenericfunction-impacts-qt</url>
+    </references>
+    <dates>
+      <discovery>2025-07-11</discovery>
+      <entry>2025-08-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="edf83c10-83b8-11f0-b6e5-4ccc6adda413">
+    <topic>qt6-webengine -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>qt6-pdf</name>
+	<name>qt6-webengine</name>
+	<range><lt>6.9.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Qt qtwebengine-chromium repo reports:</p>
+	<blockquote cite="https://code.qt.io/cgit/qt/qtwebengine-chromium.git/log/?h=130-based">
+	  <p>Backports for 25 security bugs in Chromium:</p>
+	  <ul>
+	    <li>CVE-2025-5063: Use after free in Compositing</li>
+	    <li>CVE-2025-5064: Inappropriate implementation in Background Fetch</li>
+	    <li>CVE-2025-5065: Inappropriate implementation in FileSystemAccess API</li>
+	    <li>CVE-2025-5068: Use after free in Blink</li>
+	    <li>CVE-2025-5280: Out of bounds write in V8</li>
+	    <li>CVE-2025-5281: Inappropriate implementation in BFCache</li>
+	    <li>CVE-2025-5283: Use after free in libvpx</li>
+	    <li>CVE-2025-5419: Out of bounds read and write in V8</li>
+	    <li>CVE-2025-6191: Integer overflow in V8</li>
+	    <li>CVE-2025-6192: Use after free in Profiler</li>
+	    <li>CVE-2025-6554: Type Confusion in V8</li>
+	    <li>CVE-2025-6556: Insufficient policy enforcement in Loader</li>
+	    <li>CVE-2025-6557: Insufficient data validation in DevTools</li>
+	    <li>CVE-2025-6558: Incorrect validation of untrusted input in ANGLE and GPU</li>
+	    <li>CVE-2025-7656: Integer overflow in V8</li>
+	    <li>CVE-2025-7657: Use after free in WebRTC</li>
+	    <li>CVE-2025-8010: Type Confusion in V8</li>
+	    <li>CVE-2025-8576: Use after free in Extensions</li>
+	    <li>CVE-2025-8578: Use after free in Cast</li>
+	    <li>CVE-2025-8580: Inappropriate implementation in Filesystems</li>
+	    <li>CVE-2025-8582: Insufficient validation of untrusted input in DOM</li>
+	    <li>CVE-2025-8879: Heap buffer overflow in libaom</li>
+	    <li>CVE-2025-8880: Race in V8</li>
+	    <li>CVE-2025-8881: Inappropriate implementation in File Picker</li>
+	    <li>CVE-2025-8901: Out of bounds write in ANGLE</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-5063</cvename>
+      <cvename>CVE-2025-5064</cvename>
+      <cvename>CVE-2025-5065</cvename>
+      <cvename>CVE-2025-5068</cvename>
+      <cvename>CVE-2025-5280</cvename>
+      <cvename>CVE-2025-5281</cvename>
+      <cvename>CVE-2025-5283</cvename>
+      <cvename>CVE-2025-5419</cvename>
+      <cvename>CVE-2025-6191</cvename>
+      <cvename>CVE-2025-6192</cvename>
+      <cvename>CVE-2025-6554</cvename>
+      <cvename>CVE-2025-6556</cvename>
+      <cvename>CVE-2025-6557</cvename>
+      <cvename>CVE-2025-6558</cvename>
+      <cvename>CVE-2025-7656</cvename>
+      <cvename>CVE-2025-7657</cvename>
+      <cvename>CVE-2025-8010</cvename>
+      <cvename>CVE-2025-8576</cvename>
+      <cvename>CVE-2025-8578</cvename>
+      <cvename>CVE-2025-8580</cvename>
+      <cvename>CVE-2025-8582</cvename>
+      <cvename>CVE-2025-8879</cvename>
+      <cvename>CVE-2025-8880</cvename>
+      <cvename>CVE-2025-8881</cvename>
+      <cvename>CVE-2025-8901</cvename>
+      <url>https://code.qt.io/cgit/qt/qtwebengine-chromium.git/log/?h=130-based</url>
+    </references>
+    <dates>
+      <discovery>2025-05-27</discovery>
+      <entry>2025-08-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6989312e-8366-11f0-9bc6-b42e991fc52e">
+    <topic>SQLite -- application crash</topic>
+    <affects>
+      <package>
+	<name>sqlite3</name>
+	<range><lt>3.49.1</lt></range>
+      </package>
+      <package>
+	<name>linux_base-rl9-9.6</name>
+	<range><lt>9.6</lt></range>
+      </package>
+      <package>
+	<name>linux-c7-sqlite</name>
+	<range><lt>3.7.17_2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="https://gist.github.com/ylwango613/d3883fb9f6ba8a78086356779ce88248">
+	  <p>In SQLite 3.49.0 before 3.49.1, certain argument values
+	  to sqlite3_db_config (in the C-language API) can cause a
+	  denial of service (application crash). An sz*nBig
+	  multiplication is not cast to a 64-bit integer, and
+	  consequently some memory allocations may be incorrect.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-29088</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-29088</url>
+    </references>
+    <dates>
+      <discovery>2025-04-10</discovery>
+      <entry>2025-08-27</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="c323bab5-80dd-11f0-97c4-40b034429ecf">
     <topic>p5-Catalyst-Authentication-Credential-HTTP -- Insecure source of randomness</topic>
     <affects>
@@ -10,10 +222,14 @@
 	<body xmlns="http://www.w3.org/1999/xhtml">
 	<p>perl-catalyst project reports:</p>
 	<blockquote cite="https://nvd.nist.gov/vuln/detail/CVE-2025-40920">
-	  <p>Catalyst::Authentication::Credential::HTTP versions 1.018 and earlier for Perl generate nonces using
-             the Perl Data::UUID library. * Data::UUID does not use a strong cryptographic source for generating
-             UUIDs.* Data::UUID returns v3 UUIDs, which are generated from known information and are unsuitable for
-             security, as per RFC 9562. * The nonces should be generated from a strong cryptographic source, as per RFC 7616.</p>
+	  <p>Catalyst::Authentication::Credential::HTTP versions 1.018
+	  and earlier for Perl generate nonces using
+	  the Perl Data::UUID library. * Data::UUID does not use a
+	  strong cryptographic source for generating
+	  UUIDs.* Data::UUID returns v3 UUIDs, which are generated
+	  from known information and are unsuitable for
+	  security, as per RFC 9562. * The nonces should be generated
+	  from a strong cryptographic source, as per RFC 7616.</p>
 	</blockquote>
 	</body>
     </description>
