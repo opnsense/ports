@@ -1228,6 +1228,7 @@
     SUBDIR += pdfresurrect
     SUBDIR += pdfsandwich
     SUBDIR += pdftohtml
+    SUBDIR += pdjson
     SUBDIR += pear-File_Fortune
     SUBDIR += pear-File_MARC
     SUBDIR += pear-Horde_CssMinify
@@ -1432,6 +1433,7 @@
     SUBDIR += py-jinjanator-plugins
     SUBDIR += py-jiter
     SUBDIR += py-jq
+    SUBDIR += py-json-repair
     SUBDIR += py-json2html
     SUBDIR += py-jsonslicer
     SUBDIR += py-jsx-lexer
@@ -1565,6 +1567,7 @@
     SUBDIR += py-python-bidi
     SUBDIR += py-python-docs-theme
     SUBDIR += py-python-docx
+    SUBDIR += py-python-frontmatter
     SUBDIR += py-python-gettext
     SUBDIR += py-python-lsp-black
     SUBDIR += py-python-lsp-jsonrpc
@@ -1690,6 +1693,7 @@
     SUBDIR += py-tiktoken
     SUBDIR += py-tinycss
     SUBDIR += py-tinycss2
+    SUBDIR += py-tokenizer
     SUBDIR += py-tokenizers
     SUBDIR += py-toml
     SUBDIR += py-tomli
@@ -1743,7 +1747,6 @@
     SUBDIR += quarto
     SUBDIR += quickwit
     SUBDIR += rand
-    SUBDIR += randlm
     SUBDIR += rapidxml
     SUBDIR += raptor2
     SUBDIR += rarian

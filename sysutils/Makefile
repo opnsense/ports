@@ -763,6 +763,7 @@
     SUBDIR += netevent
     SUBDIR += nfcutils
     SUBDIR += ngbuddy
+    SUBDIR += nitro
     SUBDIR += nitrogen
     SUBDIR += nix
     SUBDIR += nmdaemon
@@ -1203,6 +1204,7 @@
     SUBDIR += rubygem-license_scout
     SUBDIR += rubygem-log4r
     SUBDIR += rubygem-logify
+    SUBDIR += rubygem-mdless
     SUBDIR += rubygem-mogilefs-client
     SUBDIR += rubygem-mothra
     SUBDIR += rubygem-murder

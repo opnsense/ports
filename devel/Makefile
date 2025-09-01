@@ -4748,6 +4748,7 @@
     SUBDIR += py-cwcwidth
     SUBDIR += py-cxx
     SUBDIR += py-cycler
+    SUBDIR += py-cyclopts
     SUBDIR += py-cykhash
     SUBDIR += py-cymbal
     SUBDIR += py-cymem
@@ -5146,6 +5147,7 @@
     SUBDIR += py-jupyter-core
     SUBDIR += py-jupyter-docprovider
     SUBDIR += py-jupyter-events
+    SUBDIR += py-jupyter-kernel-gateway
     SUBDIR += py-jupyter-kernel-test
     SUBDIR += py-jupyter-lsp
     SUBDIR += py-jupyter-packaging
@@ -5336,6 +5338,7 @@
     SUBDIR += py-onigurumacffi
     SUBDIR += py-opcodes
     SUBDIR += py-openapi-core
+    SUBDIR += py-openapi-pydantic
     SUBDIR += py-openapi-schema-validator
     SUBDIR += py-openapi-spec-validator
     SUBDIR += py-opencensus
@@ -8298,6 +8301,7 @@
     SUBDIR += tailor
     SUBDIR += talloc
     SUBDIR += talloc242
+    SUBDIR += talloc243
     SUBDIR += task
     SUBDIR += taskctl
     SUBDIR += taskflow
@@ -8330,6 +8334,7 @@
     SUBDIR += test-drive
     SUBDIR += tevent
     SUBDIR += tevent016
+    SUBDIR += tevent017
     SUBDIR += tex-kpathsea
     SUBDIR += tex-libtexlua
     SUBDIR += tex-libtexluajit
@@ -8429,12 +8434,14 @@
     SUBDIR += wasi-compiler-rt18
     SUBDIR += wasi-compiler-rt19
     SUBDIR += wasi-compiler-rt20
+    SUBDIR += wasi-compiler-rt21
     SUBDIR += wasi-libc
     SUBDIR += wasi-libcxx
     SUBDIR += wasi-libcxx17
     SUBDIR += wasi-libcxx18
     SUBDIR += wasi-libcxx19
     SUBDIR += wasi-libcxx20
+    SUBDIR += wasi-libcxx21
     SUBDIR += wasm-server-runner
     SUBDIR += wasm3
     SUBDIR += wasmer

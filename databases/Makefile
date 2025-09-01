@@ -861,6 +861,7 @@
     SUBDIR += py-sqlite-migrate
     SUBDIR += py-sqlite-utils
     SUBDIR += py-sqlite3
+    SUBDIR += py-sqlmodel
     SUBDIR += py-sqlobject
     SUBDIR += py-sqloxide
     SUBDIR += py-sqlparse
@@ -1113,6 +1114,7 @@
     SUBDIR += tcl-sqlite3
     SUBDIR += tdb
     SUBDIR += tdb1410
+    SUBDIR += tdb1413
     SUBDIR += tdbc
     SUBDIR += tile38
     SUBDIR += tiledb
