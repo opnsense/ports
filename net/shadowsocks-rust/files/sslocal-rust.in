@@ -19,7 +19,7 @@ pidfile="/var/run/${name}.pid"
 logfile="/var/log/${name}.log"
 
 : ${sslocal_rust_enable="NO"}
-: ${sslocal_rust_args="-c %%ETCDIR%%/config.json"}
+: ${sslocal_rust_args="-c %%ETCDIR%%/local.json"}
 
 procname=%%PREFIX%%/bin/sslocal
 command="/usr/sbin/daemon"
