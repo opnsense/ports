@@ -331,7 +331,6 @@
     SUBDIR += libtasn1
     SUBDIR += libtatsu
     SUBDIR += libtomcrypt
-    SUBDIR += libu2f-host
     SUBDIR += libwhisker
     SUBDIR += libxcrypt
     SUBDIR += libyubikey
@@ -458,6 +457,7 @@
     SUBDIR += openssl33-quictls
     SUBDIR += openssl34
     SUBDIR += openssl35
+    SUBDIR += openssl36
     SUBDIR += openvas
     SUBDIR += openvpn
     SUBDIR += openvpn-admin
@@ -649,15 +649,10 @@
     SUBDIR += p5-Crypt-xDBM_File
     SUBDIR += p5-CryptX
     SUBDIR += p5-Dancer-Plugin-Auth-Extensible
-    SUBDIR += p5-Dancer-Plugin-Auth-Extensible-Provider-Usergroup
-    SUBDIR += p5-Dancer-Plugin-Passphrase
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-DBIC
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-Database
     SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-IMAP
-    SUBDIR += p5-Dancer2-Plugin-Auth-Extensible-Provider-Usergroup
-    SUBDIR += p5-Dancer2-Plugin-Passphrase
-    SUBDIR += p5-Data-Entropy
     SUBDIR += p5-Data-Password
     SUBDIR += p5-Digest
     SUBDIR += p5-Digest-Adler32
@@ -1002,7 +997,6 @@
     SUBDIR += py-nvdlib
     SUBDIR += py-oauthlib
     SUBDIR += py-omemo-dr
-    SUBDIR += py-onlykey
     SUBDIR += py-openssh-wrapper
     SUBDIR += py-openssl
     SUBDIR += py-oscrypto

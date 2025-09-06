@@ -190,6 +190,7 @@
     SUBDIR += ffproxy
     SUBDIR += fgallery
     SUBDIR += filebrowser
+    SUBDIR += filebrowser-quantum
     SUBDIR += filepizza
     SUBDIR += filtron
     SUBDIR += firedm
@@ -497,7 +498,6 @@
     SUBDIR += nginx-vts-exporter
     SUBDIR += nift
     SUBDIR += node
-    SUBDIR += node18
     SUBDIR += node20
     SUBDIR += node22
     SUBDIR += node24
@@ -505,7 +505,6 @@
     SUBDIR += novnc
     SUBDIR += npc
     SUBDIR += npm
-    SUBDIR += npm-node18
     SUBDIR += npm-node20
     SUBDIR += npm-node22
     SUBDIR += npm-node24
@@ -802,7 +801,6 @@
     SUBDIR += p5-Dancer2-Plugin-Ajax
     SUBDIR += p5-Dancer2-Plugin-Deferred
     SUBDIR += p5-Dancer2-Plugin-FormValidator
-    SUBDIR += p5-Dancer2-Plugin-Interchange6
     SUBDIR += p5-Dancer2-Plugin-Path-Class
     SUBDIR += p5-Data-TreeDumper-Renderer-DHTML
     SUBDIR += p5-Data-Validate-URI
@@ -1011,7 +1009,6 @@
     SUBDIR += p5-I18N-AcceptLanguage
     SUBDIR += p5-IMDB-Film
     SUBDIR += p5-Image-Delivery
-    SUBDIR += p5-Interchange6
     SUBDIR += p5-JE
     SUBDIR += p5-JSON-API
     SUBDIR += p5-JSON-WebToken
@@ -1546,6 +1543,7 @@
     SUBDIR += py-dj51-django-js-asset
     SUBDIR += py-dj51-django-mptt
     SUBDIR += py-dj51-django-multiselectfield
+    SUBDIR += py-dj51-django-netfields
     SUBDIR += py-dj51-django-prometheus
     SUBDIR += py-dj51-django-redis
     SUBDIR += py-dj51-django-rich
@@ -1862,6 +1860,7 @@
     SUBDIR += py-pecan
     SUBDIR += py-pelican
     SUBDIR += py-planet
+    SUBDIR += py-playwright
     SUBDIR += py-postorius
     SUBDIR += py-praw
     SUBDIR += py-prawcore
@@ -2542,6 +2541,7 @@
     SUBDIR += tinyproxy
     SUBDIR += tivoka
     SUBDIR += tntnet
+    SUBDIR += tocaia
     SUBDIR += tokyopromenade
     SUBDIR += tomcat-devel
     SUBDIR += tomcat-native
@@ -2686,7 +2686,6 @@
     SUBDIR += xurls
     SUBDIR += yabb
     SUBDIR += yarn
-    SUBDIR += yarn-node18
     SUBDIR += yarn-node20
     SUBDIR += yarn-node22
     SUBDIR += yarn-node24

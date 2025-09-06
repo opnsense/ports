@@ -1,7 +1,10 @@
 PORTNAME=	aws-lc
-PORTVERSION=	1.55.0
+PORTVERSION=	1.57.1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
+
+PATCH_SITES=	https://github.com/aws/aws-lc/commit/
+PATCHFILES=	125f94c2c26559ed93a22f1cc5880efe46f0b937.patch:-p1
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	AWS libcrypto
