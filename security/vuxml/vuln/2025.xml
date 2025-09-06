@@ -1,3 +1,169 @@
+  <vuln vid="340dc4c1-895a-11f0-b6e5-4ccc6adda413">
+    <topic>exiv2 -- Denial-of-service</topic>
+    <affects>
+      <package>
+	<name>exiv2</name>
+	<range><lt>0.28.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Kevin Backhouse reports:</p>
+	<blockquote cite="https://github.com/Exiv2/exiv2/security/advisories/GHSA-m54q-mm9w-fp6g">
+	  <p>A denial-of-service was found in Exiv2 version v0.28.5: a quadratic
+	  algorithm in the ICC profile parsing code in jpegBase::readMetadata()
+	  can cause Exiv2 to run for a long time. Exiv2 is a command-line utility
+	  and C++ library for reading, writing, deleting, and modifying the
+	  metadata of image files. The denial-of-service is triggered when Exiv2
+	  is used to read the metadata of a crafted jpg image file.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-55304</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-m54q-mm9w-fp6g</url>
+    </references>
+    <dates>
+      <discovery>2025-08-29</discovery>
+      <entry>2025-09-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="84a77710-8958-11f0-b6e5-4ccc6adda413">
+    <topic>exiv2 -- Out-of-bounds read in Exiv2::EpsImage::writeMetadata()</topic>
+    <affects>
+      <package>
+	<name>exiv2</name>
+	<range><lt>0.28.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Kevin Backhouse reports:</p>
+	<blockquote cite="https://github.com/Exiv2/exiv2/security/advisories/GHSA-496f-x7cq-cq39">
+	  <p>An out-of-bounds read was found in Exiv2 versions v0.28.5 and earlier.
+	  Exiv2 is a command-line utility and C++ library for reading, writing,
+	  deleting, and modifying the metadata of image files. The out-of-bounds
+	  read is triggered when Exiv2 is used to write metadata into a crafted
+	  image file. An attacker could potentially exploit the vulnerability to
+	  cause a denial of service by crashing Exiv2, if they can trick the victim
+	  into running Exiv2 on a crafted image file.</p>
+	  <p>Note that this bug is only triggered when writing the metadata, which
+	  is a less frequently used Exiv2 operation than reading the metadata. For
+	  example, to trigger the bug in the Exiv2 command-line application, you
+	  need to add an extra command-line argument such as delete.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-54080</cvename>
+      <url>https://github.com/Exiv2/exiv2/security/advisories/GHSA-496f-x7cq-cq39</url>
+    </references>
+    <dates>
+      <discovery>2025-08-29</discovery>
+      <entry>2025-09-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0db8684f-8938-11f0-8325-bc2411f8eb0b">
+    <topic>Django -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>py39-django42</name>
+	<name>py310-django42</name>
+	<name>py311-django42</name>
+	<range><lt>4.2.24</lt></range>
+      </package>
+      <package>
+	<name>py310-django51</name>
+	<name>py311-django51</name>
+	<range><lt>5.1.12</lt></range>
+      </package>
+      <package>
+	<name>py310-django52</name>
+	<name>py311-django52</name>
+	<range><lt>5.2.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Django reports:</p>
+	<blockquote cite="https://www.djangoproject.com/weblog/2025/sep/03/security-releases/">
+	  <p>CVE-2025-57833: Potential SQL injection in FilteredRelation column aliases.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-57833</cvename>
+      <url>https://www.djangoproject.com/weblog/2025/sep/03/security-releases/</url>
+    </references>
+    <dates>
+      <discovery>2025-09-01</discovery>
+      <entry>2025-09-04</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9f9b0b37-88fa-11f0-90a2-6cc21735f730">
+    <topic>Shibboleth Service Provider -- SQL injection vulnerability in ODBC plugin</topic>
+    <affects>
+      <package>
+	<name>shibboleth-sp</name>
+	<range><lt>3.5.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Internet2 reports:</p>
+	<blockquote cite="https://shibboleth.net/community/advisories/secadv_20250903.txt">
+	  <p>The Shibboleth Service Provider includes a storage API usable
+	  for a number of different use cases such as the session cache,
+	  replay cache, and relay state management. An ODBC extension
+	  plugin is provided with some distributions of the software
+	  (notably on Windows).</p>
+	  <p>A SQL injection vulnerability was identified in some of the
+	  queries issued by the plugin, and this can be creatively
+	  exploited through specially crafted inputs to exfiltrate
+	  information stored in the database used by the SP.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://shibboleth.net/community/advisories/secadv_20250903.txt</url>
+    </references>
+    <dates>
+      <discovery>2025-09-03</discovery>
+      <entry>2025-09-03</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="aaa060af-88d6-11f0-a294-b0416f0c4c67">
+    <topic>Vieb -- Remote Code Execution via Visiting Untrusted URLs</topic>
+    <affects>
+      <package>
+	<name>linux-vieb</name>
+	<range><lt>12.4.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Zhengyu Liu, Jianjia Yu, Jelmer van Arnhem report:</p>
+	<blockquote cite="https://github.com/Jelmerro/Vieb/security/advisories/GHSA-h2fq-667q-7gpm">
+    <p>We discovered a remote code execution (RCE) vulnerability in the latest
+      release of the Vieb browser (v12.3.0). By luring a user to visit a
+      malicious website, an attacker can achieve arbitrary code execution on the
+      victim’s machine.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/Jelmerro/Vieb/security/advisories/GHSA-h2fq-667q-7gpm</url>
+    </references>
+    <dates>
+      <discovery>2025-07-31</discovery>
+      <entry>2025-09-03</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="d7b7e505-8486-11f0-9d03-2cf05da270f3">
     <topic>Gitlab -- vulnerabilities</topic>
     <affects>
@@ -2067,7 +2233,7 @@
     <affects>
       <package>
 	<name>libxslt</name>
-	<range><lt>2</lt></range> <!-- adjust should libxslt ever be fixed -->
+	<range><lt>1.1.43_2</lt></range> <!-- adjust should libxslt ever be fixed -->
       </package>
       <package>
 	<name>linux-c7-libxslt</name>
