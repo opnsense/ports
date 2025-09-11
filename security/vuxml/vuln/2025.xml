@@ -1,3 +1,77 @@
+  <vuln vid="f50640fa-89a4-4795-a302-47b0dea8cee5">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>140.0.7339.127</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>140.0.7339.127</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/09/stable-channel-update-for-desktop_9.html">
+	 <p>This update includes 2 security fixes:</p>
+	 <ul>
+	    <li>[440454442] Critical CVE-2025-10200: Use after free in Serviceworker. Reported by Looben Yang on 2025-08-22</li>
+	    <li>[439305148] High CVE-2025-10201: Inappropriate implementation in Mojo. Reported by Sahan Fernando &amp; Anon on 2025-08-18</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10200</cvename>
+      <cvename>CVE-2025-10201</cvename>
+      <url>https://chromereleases.googleblog.com/2025/09/stable-channel-update-for-desktop_9.html</url>
+    </references>
+    <dates>
+      <discovery>2025-09-09</discovery>
+      <entry>2025-09-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="602fc0fa-8ece-11f0-9d03-2cf05da270f3">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>18.3.0</ge><lt>18.3.2</lt></range>
+	<range><ge>18.2.0</ge><lt>18.2.6</lt></range>
+	<range><ge>7.8.0</ge><lt>18.1.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/09/10/patch-release-gitlab-18-3-2-released/">
+	  <p>Denial of Service issue in SAML Responses impacts GitLab CE/EE</p>
+	  <p>Server-Side Request Forgery issue in Webhook custom header impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in User-Controllable Fields impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in endpoint file upload impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in token listing operations impacts GitLab CE/EE</p>
+	  <p>Information disclosure issue in runner endpoints impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-2256</cvename>
+      <cvename>CVE-2025-6454</cvename>
+      <cvename>CVE-2025-1250</cvename>
+      <cvename>CVE-2025-7337</cvename>
+      <cvename>CVE-2025-10094</cvename>
+      <cvename>CVE-2025-6769</cvename>
+      <url>https://about.gitlab.com/releases/2025/09/10/patch-release-gitlab-18-3-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-09-10</discovery>
+      <entry>2025-09-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="bda50cf1-8bcf-11f0-b3f7-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
