@@ -490,6 +490,7 @@
     SUBDIR += concurrencpp
     SUBDIR += concurrencykit
     SUBDIR += concurrentqueue
+    SUBDIR += cond-let
     SUBDIR += cons
     SUBDIR += cons-test
     SUBDIR += containers
@@ -4886,6 +4887,7 @@
     SUBDIR += py-fastjsonschema
     SUBDIR += py-fastnumbers
     SUBDIR += py-fastprogress
+    SUBDIR += py-fastuuid
     SUBDIR += py-fiddle
     SUBDIR += py-fields
     SUBDIR += py-filebytes
@@ -6148,6 +6150,7 @@
     SUBDIR += py-user_agents
     SUBDIR += py-userpath
     SUBDIR += py-usort
+    SUBDIR += py-uuid7
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
     SUBDIR += py-validate-pyproject
@@ -8195,7 +8198,6 @@
     SUBDIR += serd
     SUBDIR += serdisplib
     SUBDIR += sfml
-    SUBDIR += sfml1
     SUBDIR += sfsexp
     SUBDIR += sgb
     SUBDIR += shadered
