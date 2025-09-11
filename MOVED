@@ -4771,3 +4771,9 @@ www/rubygem-jwt29|www/rubygem-jwt|2025-09-07|Remove obsoleted port. Use www/ruby
 www/mod_wsgi4|www/mod_wsgi|2025-09-08|Was tied to only major version 4, now upgraded to 5
 net-mgmt/netdata-go|net-mgmt/netdata|2025-09-08|The netdata-go plugin is included in the main netdata port
 finance/myphpmoney||2025-09-08|Has expired: Unmaintained upstream and most probably does not work with modern PHP versions
+databases/adminerevo||2025-09-09|Has expired: Abandoned upstream, repo archived Jan 24, 2025
+databases/redisdesktopmanager||2025-09-09|Has expired: RedisDesktopManager is no longer maintained upstream as the project has been replaced by RedisInsight
+games/palomino||2025-09-11|Has expired: Obsolete and abandoneed, last release in 2013, not playable
+graphics/osg34||2025-09-11|Has expired: Obsolete version released in 2015
+games/motogt||2025-09-11|Has expired: Depends on obsolete devel/sfml1
+devel/sfml1|devel/sfml|2025-09-11|Has expired: Broken obsolete version
