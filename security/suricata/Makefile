@@ -1,5 +1,5 @@
 PORTNAME=	suricata
-DISTVERSION=	7.0.12
+DISTVERSION=	8.0.1
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
@@ -18,8 +18,7 @@ LIB_DEPENDS=	libjansson.so:devel/jansson \
 		libyaml.so:textproc/libyaml
 
 USES=		autoreconf cpe gmake iconv:translit libtool localbase pathfix \
-		pkgconfig shebangfix
-SHEBANG_FILES=	python/suricata/sc/suricatasc.py
+		pkgconfig
 
 CPE_VENDOR=	openinfosecfoundation
 
@@ -34,8 +33,6 @@ MAKE_ENV=		RUSTFLAGS="${RUSTFLAGS} -C linker=${CC:Q} ${LDFLAGS:C/.+/-C link-arg=
 
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
-
-CONFLICTS_INSTALL=	libhtp
 
 SUB_FILES=	pkg-message
 
