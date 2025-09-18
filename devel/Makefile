@@ -662,6 +662,7 @@
     SUBDIR += electron35
     SUBDIR += electron36
     SUBDIR += electron37
+    SUBDIR += electron38
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -6398,6 +6399,7 @@
     SUBDIR += recycle
     SUBDIR += redasm
     SUBDIR += redo
+    SUBDIR += reflect-cpp
     SUBDIR += reflection-cpp
     SUBDIR += regexx
     SUBDIR += regexxer

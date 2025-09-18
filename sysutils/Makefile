@@ -352,6 +352,7 @@
     SUBDIR += egress-monitor
     SUBDIR += eject
     SUBDIR += eksctl
+    SUBDIR += elephant
     SUBDIR += elfx86exts
     SUBDIR += endian
     SUBDIR += enteruser
@@ -1336,6 +1337,7 @@
     SUBDIR += ssd_report
     SUBDIR += sshsudo
     SUBDIR += ssync
+    SUBDIR += stackit
     SUBDIR += stalepid
     SUBDIR += stepsync
     SUBDIR += storcli
