@@ -426,6 +426,7 @@
     SUBDIR += py-apache-beam
     SUBDIR += py-ascii-magic
     SUBDIR += py-ast-comments
+    SUBDIR += py-bitsandbytes
     SUBDIR += py-boost-histogram
     SUBDIR += py-censys
     SUBDIR += py-cmap
@@ -483,6 +484,7 @@
     SUBDIR += py-lazrs
     SUBDIR += py-lightgbm
     SUBDIR += py-lightning-utilities
+    SUBDIR += py-lion-pytorch
     SUBDIR += py-litellm
     SUBDIR += py-litellm-proxy-extras
     SUBDIR += py-llama-cpp-python
@@ -515,6 +517,7 @@
     SUBDIR += py-palettable
     SUBDIR += py-papermill
     SUBDIR += py-pdd
+    SUBDIR += py-peft
     SUBDIR += py-pexpect
     SUBDIR += py-pkbar
     SUBDIR += py-placekey
@@ -543,6 +546,7 @@
     SUBDIR += py-schedulefree
     SUBDIR += py-scikit-fusion
     SUBDIR += py-scikit-quant
+    SUBDIR += py-sentence-transformers
     SUBDIR += py-serverfiles
     SUBDIR += py-shap2
     SUBDIR += py-shell-gpt
@@ -561,7 +565,10 @@
     SUBDIR += py-timm-vis
     SUBDIR += py-toil
     SUBDIR += py-torch-geometric
+    SUBDIR += py-torchao
+    SUBDIR += py-torchdata
     SUBDIR += py-torchmetrics
+    SUBDIR += py-torchsummary
     SUBDIR += py-torchvision
     SUBDIR += py-tqdm
     SUBDIR += py-transformers
@@ -627,6 +634,7 @@
     SUBDIR += sfm
     SUBDIR += shared-mime-info
     SUBDIR += shc
+    SUBDIR += shimmy
     SUBDIR += shuffle
     SUBDIR += shuffle-db
     SUBDIR += silicon

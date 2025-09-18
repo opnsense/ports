@@ -36,6 +36,7 @@
 %%MANPAGES%%share/man/man1/glab-cluster-agent-check_manifest_usage.1.gz
 %%MANPAGES%%share/man/man1/glab-cluster-agent-get-token.1.gz
 %%MANPAGES%%share/man/man1/glab-cluster-agent-list.1.gz
+%%MANPAGES%%share/man/man1/glab-cluster-agent-token-revoke.1.gz
 %%MANPAGES%%share/man/man1/glab-cluster-agent-update-kubeconfig.1.gz
 %%MANPAGES%%share/man/man1/glab-cluster-agent.1.gz
 %%MANPAGES%%share/man/man1/glab-cluster.1.gz
@@ -85,6 +86,8 @@
 %%MANPAGES%%share/man/man1/glab-label-list.1.gz
 %%MANPAGES%%share/man/man1/glab-label.1.gz
 %%MANPAGES%%share/man/man1/glab-mr-approve.1.gz
+%%MANPAGES%%share/man/man1/glab-mcp-serve.1.gz
+%%MANPAGES%%share/man/man1/glab-mcp.1.gz
 %%MANPAGES%%share/man/man1/glab-mr-approvers.1.gz
 %%MANPAGES%%share/man/man1/glab-mr-checkout.1.gz
 %%MANPAGES%%share/man/man1/glab-mr-close.1.gz
