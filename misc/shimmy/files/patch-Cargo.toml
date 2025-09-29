@@ -1,6 +1,6 @@
---- Cargo.toml.orig	2025-09-19 01:31:02 UTC
+--- Cargo.toml.orig	2025-09-23 13:26:34 UTC
 +++ Cargo.toml
-@@ -93,11 +93,11 @@ reqwest = { version = "0.11", features = ["json", "rus
+@@ -98,11 +98,11 @@ reqwest = { version = "0.11", features = ["json", "rus
  reqwest = { version = "0.11", features = ["json", "rustls-tls"], default-features = false }
  
  # llama.cpp bindings (optional) - using forked version with macOS ARM64 i8mm fix

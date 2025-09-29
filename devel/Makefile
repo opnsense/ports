@@ -385,6 +385,7 @@
     SUBDIR += cask
     SUBDIR += catch
     SUBDIR += catch2
+    SUBDIR += catppuccin-whiskers
     SUBDIR += cbang
     SUBDIR += cbfmt
     SUBDIR += cbmc
@@ -4840,6 +4841,7 @@
     SUBDIR += py-dukpy
     SUBDIR += py-dulwich
     SUBDIR += py-dunamai
+    SUBDIR += py-durationpy
     SUBDIR += py-durus
     SUBDIR += py-dynrules
     SUBDIR += py-e3-core
@@ -5240,6 +5242,7 @@
     SUBDIR += py-lxml5
     SUBDIR += py-mac-vendor-lookup
     SUBDIR += py-macholib
+    SUBDIR += py-madoka
     SUBDIR += py-magic
     SUBDIR += py-magnet2torrent
     SUBDIR += py-mailcap-fix
@@ -5520,6 +5523,7 @@
     SUBDIR += py-poetry-types
     SUBDIR += py-poetry2setup
     SUBDIR += py-polib
+    SUBDIR += py-pondpond
     SUBDIR += py-pooch
     SUBDIR += py-pop
     SUBDIR += py-pop-config
@@ -6086,6 +6090,7 @@
     SUBDIR += py-tree-format
     SUBDIR += py-tree-sitter
     SUBDIR += py-tree-sitter-languages
+    SUBDIR += py-tree-sitter023
     SUBDIR += py-treelib
     SUBDIR += py-trimesh
     SUBDIR += py-trove-classifiers
@@ -7918,6 +7923,7 @@
     SUBDIR += rubygem-scientist
     SUBDIR += rubygem-sd_notify
     SUBDIR += rubygem-sdoc
+    SUBDIR += rubygem-semantic_logger
     SUBDIR += rubygem-semantic_puppet
     SUBDIR += rubygem-semantic_range
     SUBDIR += rubygem-semi_semantic
@@ -8027,6 +8033,7 @@
     SUBDIR += rubygem-syntax_tree
     SUBDIR += rubygem-sysinfo
     SUBDIR += rubygem-syslog
+    SUBDIR += rubygem-syslog_protocol
     SUBDIR += rubygem-systemu
     SUBDIR += rubygem-table_print
     SUBDIR += rubygem-tdiff
@@ -8265,6 +8272,7 @@
     SUBDIR += spr
     SUBDIR += spread-sheet-widget
     SUBDIR += srecord
+    SUBDIR += srell
     SUBDIR += sse2neon
     SUBDIR += st
     SUBDIR += stack
@@ -8273,6 +8281,7 @@
     SUBDIR += statik
     SUBDIR += statsvn
     SUBDIR += stb
+    SUBDIR += stc
     SUBDIR += stdman
     SUBDIR += stdx-allocator
     SUBDIR += stfl

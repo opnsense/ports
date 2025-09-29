@@ -217,6 +217,7 @@
     SUBDIR += gallery2
     SUBDIR += garage
     SUBDIR += gatling
+    SUBDIR += gatus
     SUBDIR += gauche-makiki
     SUBDIR += geckodriver
     SUBDIR += geneweb
@@ -1526,6 +1527,7 @@
     SUBDIR += py-cssutils
     SUBDIR += py-daphne
     SUBDIR += py-dash
+    SUBDIR += py-ddgs
     SUBDIR += py-dj-database-url
     SUBDIR += py-dj51-channels
     SUBDIR += py-dj51-channels-redis
@@ -1812,6 +1814,7 @@
     SUBDIR += py-htmldate
     SUBDIR += py-httmock
     SUBDIR += py-http-parser
+    SUBDIR += py-http-sf
     SUBDIR += py-httpbin
     SUBDIR += py-httpcore
     SUBDIR += py-httpie
@@ -1871,6 +1874,7 @@
     SUBDIR += py-postorius
     SUBDIR += py-praw
     SUBDIR += py-prawcore
+    SUBDIR += py-primp
     SUBDIR += py-priority
     SUBDIR += py-priority1
     SUBDIR += py-protego
@@ -1934,6 +1938,7 @@
     SUBDIR += py-selenium-wire
     SUBDIR += py-semiphemeral
     SUBDIR += py-sentinelhub
+    SUBDIR += py-sherlock-project
     SUBDIR += py-simple-websocket
     SUBDIR += py-slimit
     SUBDIR += py-slumber
@@ -1952,6 +1957,7 @@
     SUBDIR += py-textile
     SUBDIR += py-ticketutil
     SUBDIR += py-tornado
+    SUBDIR += py-torrequest
     SUBDIR += py-treq
     SUBDIR += py-ttrv
     SUBDIR += py-tuir
