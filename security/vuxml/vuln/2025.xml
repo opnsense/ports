@@ -1,3 +1,356 @@
+  <vuln vid="4ccd6222-9c83-11f0-a337-b42e991fc52e">
+    <topic>goldendict -- dangerous method exposed</topic>
+    <affects>
+      <package>
+	<name>goldendict</name>
+	<range><lt>1.5.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cve@mitre.org reports:</p>
+	<blockquote cite="https://github.com/goldendict/goldendict/releases">
+	  <p>GoldenDict 1.5.0 and 1.5.1 has an exposed dangerous
+	  method that allows reading and modifying files when a user
+	  adds a crafted dictionary and then searches for any term
+	  included in that dictionary.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-53964</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-53964</url>
+    </references>
+    <dates>
+      <discovery>2025-07-17</discovery>
+      <entry>2025-09-28</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="3bf134f4-942d-11f0-95de-0800276af896">
+    <topic>libudisks -- Udisks: out-of-bounds read in udisks daemon</topic>
+    <affects>
+      <package>
+	<name>libudisks</name>
+	<range><lt>2.10.2</lt></range>
+	<range><ge>2.10.90</ge><lt>2.10.91</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>secalert@redhat.com reports:</p>
+	<blockquote cite="https://access.redhat.com/errata/RHSA-2025:15017">
+	  <p>A flaw was found in the Udisks daemon, where it allows unprivileged
+	users to create loop devices using the D-BUS system.  This is
+	achieved via the loop device handler, which handles requests sent
+	through the D-BUS interface.  As two of the parameters of this
+	handle, it receives the file descriptor list and index specifying
+	the file where the loop device should be backed.  The function
+	itself validates the index value to ensure it isn&apos;t bigger
+	than the maximum value allowed.  However, it fails to validate the
+	lower bound, allowing the index parameter to be a negative value.
+	Under these circumstances, an attacker can cause the UDisks daemon
+	to crash or perform a local privilege escalation by gaining access
+	to files owned by privileged users.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-8067</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-8067</url>
+    </references>
+    <dates>
+      <discovery>2025-08-28</discovery>
+      <entry>2025-09-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="32bdeb94-9958-11f0-b6e2-6805ca2fa271">
+    <topic>quiche -- Infinite loop triggered by connection ID retirement</topic>
+    <affects>
+      <package>
+	<name>quiche</name>
+	<range><lt>0.24.5</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Quiche Releases reports:</p>
+	<blockquote cite="https://github.com/cloudflare/quiche/releases/tag/0.24.5">
+	  <p>This update includes 1 security fix:</p>
+	  <ul>
+	    <li>High CVE-2025-7054: Infinite loop triggered by connection ID retirement. Reported by Catena cyber on 2025-08-07.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-7054</cvename>
+      <url>https://www.cve.org/CVERecord?id=CVE-2025-7054</url>
+    </references>
+    <dates>
+      <discovery>2025-08-07</discovery>
+      <entry>2025-09-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7b0cbc73-9955-11f0-b6e2-6805ca2fa271">
+    <topic>quiche -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>quiche</name>
+	<range><lt>0.24.4</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Quiche Releases reports:</p>
+	<blockquote cite="https://github.com/cloudflare/quiche/releases/tag/0.24.4">
+	  <p>This update includes 2 security fixes:</p>
+	  <ul>
+	    <li>Medium CVE-2025-4820: Incorrect congestion window growth by optimistic ACK. Reported by Louis Navarre on 2025-06-18.</li>
+	    <li>High CVE-2025-4821: Incorrect congestion window growth by invalid ACK ranges. Reported by Louis Navarre on 2025-06-18.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-4820</cvename>
+      <cvename>CVE-2025-4821</cvename>
+      <url>https://github.com/cloudflare/quiche/releases/tag/0.24.4</url>
+    </references>
+    <dates>
+      <discovery>2025-06-18</discovery>
+      <entry>2025-09-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="477fdc04-9aa2-11f0-961b-2cf05da270f3">
+    <topic>Gitlab -- Vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>18.4.0</ge><lt>18.4.1</lt></range>
+	<range><ge>18.3.0</ge><lt>18.3.3</lt></range>
+	<range><ge>11.10.0</ge><lt>18.2.7</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/09/25/patch-release-gitlab-18-4-1-released/">
+	  <p>Denial of Service issue when uploading specifically crafted JSON files impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue bypassing query complexity limits impacts GitLab CE/EE</p>
+	  <p>Information disclosure issue in virtual registery configuration for low privileged users impacts GitLab CE/EE</p>
+	  <p>Privilege Escalation issue from within the Developer role impacts GitLab EE</p>
+	  <p>Denial of Service issue in GraphQL API via Unbounded Array Parameters impacts GitLab CE/EE</p>
+	  <p>Improper Authorization issue for Project Maintainers when assigning roles impacts GitLab EE</p>
+	  <p>Denial of Service issue in GraphQL API blobSearch impacts GitLab CE/EE</p>
+	  <p>Incorrect ownership assignment via Move Issue drop-down impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue via string conversion methods impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10858</cvename>
+      <cvename>CVE-2025-8014</cvename>
+      <cvename>CVE-2025-9958</cvename>
+      <cvename>CVE-2025-7691</cvename>
+      <cvename>CVE-2025-10871</cvename>
+      <cvename>CVE-2025-10867</cvename>
+      <cvename>CVE-2025-5069</cvename>
+      <cvename>CVE-2025-10868</cvename>
+      <url>https://about.gitlab.com/releases/2025/09/25/patch-release-gitlab-18-4-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-09-25</discovery>
+      <entry>2025-09-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e5cf9f44-9a64-11f0-8241-93c889bb8de1">
+    <topic>openvpn-devel -- script injection vulnerability from trusted but malicious server</topic>
+    <affects>
+      <package>
+	<name>openvpn-devel</name>
+	<range><ge>g20250629,1</ge><lt>g20250925,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gert Doering reports:</p>
+	<blockquote cite="https://github.com/OpenVPN/openvpn/commit/0fb5a00549be6b065f9a4d61940ee06786d9fa61">
+	  <p>Notable changes beta1 -&gt;
+	    beta2 are: [...] add proper input sanitation to DNS strings to
+	    prevent an attack coming from a trusted-but-malicous OpenVPN server
+	    (CVE: 2025-10680, affects unixoid systems with --dns-updown scripts
+	    and windows using the built-in powershell call)
+	  </p>
+	</blockquote>
+	<p>Lev Stipakov writes:</p>
+	<blockquote cite="https://github.com/OpenVPN/openvpn/commit/3a66045b407321c9d1c096227db164df3955ab40">
+	  <p> On Linux (and similar platforms), those options are written to a tmp
+	    file, which is later sourced by a script running as root. Since
+	    options are controlled by the server, it is possible for a malicious
+	    server to execute script injection attack [...].</p>
+	</blockquote>
+	<p>The original report is credited to Stanislav Fort &lt;disclosure@aisle.com&gt;.</p>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10680</cvename>
+      <url>https://github.com/OpenVPN/openvpn/commit/0fb5a00549be6b065f9a4d61940ee06786d9fa61</url>
+      <url>https://github.com/OpenVPN/openvpn/commit/3a66045b407321c9d1c096227db164df3955ab40</url>
+    </references>
+    <dates>
+      <discovery>2025-09-24</discovery>
+      <entry>2025-09-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c2253bff-9952-11f0-b6e2-6805ca2fa271">
+    <topic>dnsdist -- Denial of service via crafted DoH exchange</topic>
+    <affects>
+      <package>
+	<name>dnsdist</name>
+	<range><lt>1.9.11</lt></range>
+	<range><ge>2.0.0</ge><lt>2.0.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@open-xchange.com reports:</p>
+	<blockquote cite="https://dnsdist.org/security-advisories/powerdns-advisory-for-dnsdist-2025-05.html">
+	  <p>In some circumstances, when DNSdist is configured to use the nghttp2
+	     library to process incoming DNS over HTTPS queries, an attacker
+	     might be able to cause a denial of service by crafting a DoH exchange
+	     that triggers an unbounded I/O read loop, causing an unexpected
+	     consumption of CPU resources. The offending code was introduced in
+	     DNSdist 1.9.0-alpha1 so previous versions are not affected.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-30187</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-30187</url>
+    </references>
+    <dates>
+      <discovery>2025-09-18</discovery>
+      <entry>2025-09-24</entry>
+      <modified>2025-09-26</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="57b54de1-85a5-439a-899e-75d19cbdff54">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>140.0.7339.207</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>140.0.7339.207</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/09/stable-channel-update-for-desktop_23.html">
+	 <p>This update includes 4 security fixes:</p>
+	 <ul>
+	    <li>[430336833] High CVE-2025-10890: Side-channel information leakage in V8. Reported by Mate Marjanović (SharpEdged) on 2025-07-09</li>
+	    <li>[443765373] High CVE-2025-10891: Integer overflow in V8. Reported by Google Big Sleep on 2025-09-09</li>
+	    <li>[444048019] High CVE-2025-10892: Integer overflow in V8. Reported by Google Big Sleep on 2025-09-10</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10890</cvename>
+      <cvename>CVE-2025-10891</cvename>
+      <cvename>CVE-2025-10892</cvename>
+      <url>https://chromereleases.googleblog.com/2025/09/stable-channel-update-for-desktop_23.html</url>
+    </references>
+    <dates>
+      <discovery>2025-09-23</discovery>
+      <entry>2025-09-23</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6904ba53-22ff-4478-bfae-059dc2eefee1">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>140.0.7339.185</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>140.0.7339.185</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/09/stable-channel-update-for-desktop_17.html">
+	 <p>This update includes 4 security fixes:</p>
+	 <ul>
+	    <li>[445380761] High CVE-2025-10585: Type Confusion in V8. Reported by Google Threat Analysis Group on 2025-09-16</li>
+	    <li>[435875050] High CVE-2025-10500: Use after free in Dawn. Reported by Giunash (Gyujeong Jin) on 2025-08-03</li>
+	    <li>[440737137] High CVE-2025-10501: Use after free in WebRTC. Reported by sherkito on 2025-08-23</li>
+	    <li>[438038775] High CVE-2025-10502: Heap buffer overflow in ANGLE. Reported by Google Big Sleep on 2025-08-12</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10585</cvename>
+      <cvename>CVE-2025-10500</cvename>
+      <cvename>CVE-2025-10501</cvename>
+      <cvename>CVE-2025-10502</cvename>
+      <url>https://chromereleases.googleblog.com/2025/09/stable-channel-update-for-desktop_17.html</url>
+    </references>
+    <dates>
+      <discovery>2025-09-17</discovery>
+      <entry>2025-09-22</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b51a4121-9607-11f0-becf-00a098b42aeb">
+    <topic>PCRE2: heap-buffer-overflow read in match_ref due to missing boundary restoration in SCS</topic>
+    <affects>
+      <package>
+	<name>pcre2</name>
+	<range><eq>10.45</eq></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security-advisories@github.com reports:</p>
+	<blockquote cite="https://github.com/PCRE2Project/pcre2/commit/a141712e5967d448c7ce13090ab530c8e3d82254">
+	  <p>The PCRE2 library is a set of C functions that implement regular
+	expression pattern matching.  In version 10.45, a heap-buffer-overflow
+	read vulnerability exists in the PCRE2 regular expression matching
+	engine, specifically within the handling of the (*scs:...) (Scan
+	SubString) verb when combined with (*ACCEPT) in src/pcre2_match.c.
+	This vulnerability may potentially lead to information disclosure
+	if the out-of-bounds data read during the memcmp affects the final
+	match result in a way observable by the attacker.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-58050</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-58050</url>
+    </references>
+    <dates>
+      <discovery>2025-08-27</discovery>
+      <entry>2025-09-20</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="744966b3-93d8-11f0-b8da-589cfc10a551">
     <topic>expat -- dynamic memory allocations issue</topic>
     <affects>
@@ -1316,8 +1669,6 @@
 	<name>sqlite3</name>
 	<range><ge>3.39.2,1</ge><lt>3.41.2,1</lt></range>
       </package>
-      <!-- as of 2025-08-01, sqlite in -c7 is 3.7.17 and matched by the <3.50.2 below,
-	   and -rl9 aka linux_base ships 3.34.1 which is outside this range. -->
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
@@ -2275,12 +2626,18 @@
 	<name>sqlite3</name>
 	<range><lt>3.50.2,1</lt></range>
       </package>
+      <!-- as of 2025-08-01, sqlite in -c7 is 3.7.17 and matched by the <3.50.2 below,
+	   and -rl9 aka linux_base ships 3.34.1 which is outside this range. -->
       <package>
 	<name>linux-c7-sqlite</name>
 	<range><lt>3.50.2</lt></range>
       </package>
       <package>
 	<name>linux_base-rl9</name>
+	<range><ge>9.5.14</ge><lt>9.6_1</lt></range>
+      </package>
+      <package>
+	<name>linux-rl9-sqlite3</name>
 	<range><ge>0</ge></range>
       </package>
     </affects>
@@ -2302,7 +2659,7 @@
     <dates>
       <discovery>2025-07-15</discovery>
       <entry>2025-07-23</entry>
-      <modified>2025-08-01</modified>
+      <modified>2025-09-07</modified>
     </dates>
   </vuln>
 
@@ -9295,7 +9652,7 @@
     </affects>
     <description>
 	<body xmlns="http://www.w3.org/1999/xhtml">
-	<p>SO-AND-SO reports:</p>
+	<p>The NGINX Unit team reports:</p>
 	<blockquote cite="https://mailman.nginx.org/pipermail/unit/2025-March/QVYLJKLBIDWOJ7OLYGT27VUWH7RGBRQM.html">
 	  <p>Unit 1.34.2 fixes two issues in the Java language module websocket code.</p>
 	    <ol>
