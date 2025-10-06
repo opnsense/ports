@@ -1,11 +1,14 @@
 PORTNAME=	acme.sh
 PORTVERSION=	3.1.1
-PORTREVISION=	1	
+PORTREVISION=	2
 CATEGORIES=	security
 
 MAINTAINER=	dvl@FreeBSD.org
 COMMENT=	ACME protocol client written in shell
 WWW=		https://github.com/Neilpang/acme.sh/
+
+PATCH_SITES=	https://github.com/acmesh-official/${PORTNAME}/commit/
+PATCHFILES=	d76f4b2.patch:-p1
 
 LICENSE=	GPLv3+
 
