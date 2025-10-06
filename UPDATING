@@ -5,6 +5,24 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20250930:
+  AFFECTS: users of x11/nvidia-driver*
+  AUTHOR: junchoon@dec.sakura.ne.jp
+
+  Because of splitting out kernel modules (kmod) part from x11/nvidia-driver*
+  into newly introduced x11/nvidia-kmod*, you need to deinstall currently
+  installed x11/nvidia-driver* and freshly install it again with new version.
+  This would pull in corresponding x11/nvidia-kmod* because x11/nvidia-driver*
+  explicitly depends on corresponding x11/nvidia-kmod*.
+
+20250918:
+  AFFECTS: users of sysutils/py-mitogen
+  AUTHOR: dch@FreeBSD.org
+
+  Ansible 12 is soft deprecating the ANSIBLE_STRATEGY functionality that
+  mitogen uses to integrate with Ansible. A future version of ansible-core
+  may remove this. See https://github.com/mitogen-hq/mitogen/issues/1278
+
 20250917:
   AFFECTS: users of mail/pflogsumm
   AUTHOR: flo@FreeBSD.org
@@ -28,7 +46,7 @@ you update your ports collection, before attempting any port upgrades.
   implement waitable atomics for FreeBSD.
   This patch is developed by me. It did not go through QA of MongoDB Inc.
   I don't have full QA in place and could only do limited testing. I
-  can't take any responsibilty for the quality of the patch.
+  can't take any responsibility for the quality of the patch.
   Make backups and test for yourself in your setup before upgrading
   any critical production environment.
 
@@ -115,7 +133,7 @@ you update your ports collection, before attempting any port upgrades.
   Auto-conversion handles most cases, please report bugs if issues occur during the
   transition.
 
-  Full release annoucement: https://github.com/BastilleBSD/bastille/releases/tag/1.0.20250714
+  Full release announcement: https://github.com/BastilleBSD/bastille/releases/tag/1.0.20250714
 
 20250708:
   AFFECTS: users of shells/bash

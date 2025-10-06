@@ -56,7 +56,7 @@ FPC_DEFAULT?=		3.3.1
 .  else
 FPC_DEFAULT?=		3.2.3
 .  endif
-# Possible values: 11, 12, 13, 14, 15, 16
+# Possible values: 12, 13, 14, 15, 16
 # (Any other version is completely unsupported and not meant for general use.)
 GCC_DEFAULT?=		13
 # Possible values: 10
@@ -152,7 +152,8 @@ RUST_DEFAULT?=		rust
 SAMBA_DEFAULT?=		4.16
 # When updating this, please also update the same list in ssl.mk and the checks
 # for USES=ssl in qa.sh!
-# Possible values: base, openssl, openssl111, openssl31, openssl32, openssl33, libressl, libressl-devel
+# Possible values: base, openssl, openssl111, openssl33, openssl34, openssl35,
+# openssl36, libressl, libressl-devel
 .  if !defined(SSL_DEFAULT)
 #	If no preference was set, check for an installed base version
 #	but give an installed port preference over it.

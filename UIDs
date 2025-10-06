@@ -321,14 +321,15 @@ reposilite:*:371:371::0:0:Reposilite user:/nonexistent:/usr/sbin/nologin
 beam:*:372:372::0:0:Erlang BEAM VM user:/nonexistent:/usr/sbin/nologin
 mautrix-whatsapp:*:373:373::0:0:Mautrix-Whatsapp Daemon:/nonexistent:/usr/sbin/nologin
 traccar:*:374:374::0:0:Traccar GPS Tracking Platform:/nonexistent:/usr/sbin/nologin
-# free: 375
-# free: 376
+unpackerr:*:375:375::0:0:Unpackerr Daemon:/nonexistent:/usr/sbin/nologin
+athens:*:376:376::0:0:Athens Go module registry:/nonexistent:/sbin/nologin
 hostd:*:377:377::0:0:hostd Daemon:/nonexistent:/usr/sbin/nologin
 walletd:*:378:378::0:0:walletd Daemon:/nonexistent:/usr/sbin/nologin
 renterd:*:379:379::0:0:renterd Daemon:/nonexistent:/usr/sbin/nologin
 spoofdpi:*:380:380::0:0:SpoofDPI Daemon:/nonexistent:/usr/sbin/nologin
 hydroxide:*:381:381::0:0:Hydroxide Daemon:/var/db/hydroxide:/usr/sbin/nologin
 _tlsrpt:*:382:382::0:0:TLSRPT Daemon:/nonexistent:/usr/sbin/nologin
+cascade:*:383:383::0:0:Cascade Daemon:/var/db/cascade:/usr/sbin/nologin
 # free: 383
 # free: 384
 # free: 385
