@@ -1,6 +1,5 @@
 PORTNAME=	node
 PORTVERSION=	${NODEJS_PORTVERSION}
-PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	www
 MASTER_SITES=	https://nodejs.org/dist/v${PORTVERSION}/
@@ -99,5 +98,8 @@ post-configure:
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/node
+
+post-install-BUNDLED_SSL-on:
+	cd ${STAGEDIR}${PREFIX} && ${FIND} include/node/openssl/ -type f >> ${TMPPLIST}
 
 .include <bsd.port.mk>

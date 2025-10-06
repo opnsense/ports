@@ -224,6 +224,7 @@
     SUBDIR += plasma6-sddm-kcm
     SUBDIR += plasma6-xdg-desktop-portal-kde
     SUBDIR += plopfolio
+    SUBDIR += podman-desktop
     SUBDIR += preferences
     SUBDIR += presage
     SUBDIR += projectlibre
@@ -279,6 +280,7 @@
     SUBDIR += tasksh
     SUBDIR += taskwarrior
     SUBDIR += taskwarrior-tui
+    SUBDIR += tatuin
     SUBDIR += teapot
     SUBDIR += terminal-image-viewer
     SUBDIR += thinkingrock
@@ -322,6 +324,7 @@
     SUBDIR += ydotool
     SUBDIR += zanshin
     SUBDIR += zim
+    SUBDIR += zk
     SUBDIR += znotes
     SUBDIR += zorro
 

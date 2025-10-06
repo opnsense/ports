@@ -643,13 +643,11 @@
     SUBDIR += lineak-defaultplugin
     SUBDIR += lineak-xosdplugin
     SUBDIR += lineakd
-    SUBDIR += linrename
     SUBDIR += linux-c7-lttng-ust
     SUBDIR += linux-c7-numactl-libs
     SUBDIR += linux-c7-userspace-rcu
     SUBDIR += linux-miniconda-installer
     SUBDIR += linux-rkbin
-    SUBDIR += linuxfdisk
     SUBDIR += littlejet
     SUBDIR += lmmon
     SUBDIR += lmon
@@ -1535,6 +1533,7 @@
     SUBDIR += userneu-devel
     SUBDIR += usrinfo
     SUBDIR += utcount
+    SUBDIR += util-linux
     SUBDIR += vagrant
     SUBDIR += vagrant-gitlab
     SUBDIR += vbetool

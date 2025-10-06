@@ -1831,6 +1831,7 @@
     SUBDIR += oniguruma
     SUBDIR += open-beagle
     SUBDIR += open62541
+    SUBDIR += openapi
     SUBDIR += openapi-tui
     SUBDIR += opencl
     SUBDIR += opencl-clang
@@ -4605,7 +4606,6 @@
     SUBDIR += py-buildbot-console-view
     SUBDIR += py-buildbot-grid-view
     SUBDIR += py-buildbot-pkg
-    SUBDIR += py-buildbot-react-console-view
     SUBDIR += py-buildbot-waterfall-view
     SUBDIR += py-buildbot-worker
     SUBDIR += py-buildbot-wsgi-dashboards
@@ -4646,6 +4646,7 @@
     SUBDIR += py-cfgv
     SUBDIR += py-cfn-lint
     SUBDIR += py-cftime
+    SUBDIR += py-cgen
     SUBDIR += py-chai
     SUBDIR += py-chainmap
     SUBDIR += py-characteristic
@@ -4863,6 +4864,7 @@
     SUBDIR += py-epc
     SUBDIR += py-epdb
     SUBDIR += py-epsilon
+    SUBDIR += py-essentials
     SUBDIR += py-etcd3gw
     SUBDIR += py-etils
     SUBDIR += py-etuples
@@ -5247,6 +5249,7 @@
     SUBDIR += py-magnet2torrent
     SUBDIR += py-mailcap-fix
     SUBDIR += py-makefun
+    SUBDIR += py-mando
     SUBDIR += py-manuel
     SUBDIR += py-marisa-trie
     SUBDIR += py-marrow.mailer
@@ -5263,6 +5266,7 @@
     SUBDIR += py-mediapy
     SUBDIR += py-medikit
     SUBDIR += py-memory-allocator
+    SUBDIR += py-memory-graph
     SUBDIR += py-memory-profiler
     SUBDIR += py-mergedeep
     SUBDIR += py-merossiot
@@ -5341,6 +5345,12 @@
     SUBDIR += py-objsize
     SUBDIR += py-oci
     SUBDIR += py-odfpy
+    SUBDIR += py-odoo-addon-openupgrade-framework16
+    SUBDIR += py-odoo-addon-openupgrade-framework17
+    SUBDIR += py-odoo-addon-openupgrade-framework18
+    SUBDIR += py-odoo-addon-openupgrade-scripts16
+    SUBDIR += py-odoo-addon-openupgrade-scripts17
+    SUBDIR += py-odoo-addon-openupgrade-scripts18
     SUBDIR += py-offtrac
     SUBDIR += py-olefile
     SUBDIR += py-omegaconf
@@ -5379,6 +5389,7 @@
     SUBDIR += py-opentelemetry-semantic-conventions
     SUBDIR += py-opentelemetry-util-http
     SUBDIR += py-opentracing
+    SUBDIR += py-openupgradelib
     SUBDIR += py-opster
     SUBDIR += py-optik
     SUBDIR += py-optree
@@ -5477,6 +5488,7 @@
     SUBDIR += py-phply
     SUBDIR += py-phpserialize
     SUBDIR += py-phx-class-registry
+    SUBDIR += py-pick
     SUBDIR += py-pid
     SUBDIR += py-pika
     SUBDIR += py-pika-pool
@@ -5901,6 +5913,7 @@
     SUBDIR += py-robotframework-seleniumlibrary
     SUBDIR += py-robotframework-stacktrace
     SUBDIR += py-robotremoteserver
+    SUBDIR += py-rodi
     SUBDIR += py-rope
     SUBDIR += py-rose
     SUBDIR += py-rpcq
@@ -7457,6 +7470,7 @@
     SUBDIR += rubygem-googleapis-common-protos
     SUBDIR += rubygem-googleapis-common-protos-gitlab
     SUBDIR += rubygem-googleapis-common-protos-types
+    SUBDIR += rubygem-googleapis-common-protos-types-gitlab
     SUBDIR += rubygem-graf
     SUBDIR += rubygem-grape
     SUBDIR += rubygem-grape-entity
@@ -7595,6 +7609,7 @@
     SUBDIR += rubygem-marcel
     SUBDIR += rubygem-memo_wise
     SUBDIR += rubygem-memoist
+    SUBDIR += rubygem-memoist3
     SUBDIR += rubygem-memoizable
     SUBDIR += rubygem-memoize
     SUBDIR += rubygem-memory_profiler
@@ -8428,7 +8443,6 @@
     SUBDIR += ut
     SUBDIR += utf8cpp
     SUBDIR += uthash
-    SUBDIR += util-linux
     SUBDIR += uv
     SUBDIR += uvwasi
     SUBDIR += valgrind

@@ -1,11 +1,11 @@
 PORTNAME=		ovhcloud-cli
 DISTVERSIONPREFIX=	v
-DISTVERSION=		0.4.0
+DISTVERSION=		0.5.0
 CATEGORIES=		net devel
 
 MAINTAINER=	bapt@FreeBSD.org
 COMMENT=	Command Line Interface to manage your OVHcloud services
-WWW=		https://github.com/ovh/ovhcloud-li
+WWW=		https://github.com/ovh/ovhcloud-cli
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
