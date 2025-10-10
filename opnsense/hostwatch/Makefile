@@ -1,18 +1,19 @@
-PORTNAME=hostwatch
-PORTVERSION=1.0.0
-CATEGORIES=security
+PORTNAME=	hostwatch
+PORTVERSION=	1.0.0
+CATEGORIES=	security
 DISTFILES=
-PKGNAMEPREFIX=	${GH_ACCOUNT}-
 
-MAINTAINER=ad@opnsense.org
-COMMENT= Host discovery
+MAINTAINER=	ad@opnsense.org
+COMMENT=	Host discovery daemon
 
-LICENSE=BSD2CLAUSE
+LICENSE=	BSD2CLAUSE
 
-USES=cargo
+USES=		cargo
 
-USE_GITHUB=yes
-GH_ACCOUNT=opnsense
-GH_TAGNAME=b010eab82
+PLIST_FILES=	bin/hostwatch
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	opnsense
+GH_TAGNAME=	b010eab82
 
 .include <bsd.port.mk>
