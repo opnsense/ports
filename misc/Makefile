@@ -166,6 +166,7 @@
     SUBDIR += ggml
     SUBDIR += gimp-help-en
     SUBDIR += github-copilot-cli
+    SUBDIR += github-copilot-language-server
     SUBDIR += gkrellm-gamma
     SUBDIR += gkrellm-xkb
     SUBDIR += gkrellmbgchg2
@@ -199,6 +200,7 @@
     SUBDIR += hulgalugha
     SUBDIR += hwdata
     SUBDIR += hxtools
+    SUBDIR += hyprqt6engine
     SUBDIR += ignition-fuel-tools
     SUBDIR += iio-oscilloscope
     SUBDIR += imerge
@@ -637,6 +639,7 @@
     SUBDIR += rubygem-rabbit
     SUBDIR += rubygem-vpim
     SUBDIR += rump
+    SUBDIR += rustlings
     SUBDIR += ruut
     SUBDIR += schilytools
     SUBDIR += sdformat
