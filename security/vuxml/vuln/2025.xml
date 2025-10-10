@@ -1,3 +1,253 @@
+  <vuln vid="0b5145e9-a500-11f0-a136-10ffe07f9334">
+    <topic>Mailpit -- Performance information disclosure</topic>
+    <affects>
+      <package>
+	<name>mailpit</name>
+	<range><lt>1.27.10</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Ralph Slooten (Mailpit developer) reports:</p>
+	<blockquote cite="https://github.com/axllent/mailpit/releases/tag/v1.27.10">
+	  <p>An HTTP endpoint was found which exposed expvar runtime
+	  information (memory usage, goroutine counts, GC behavior,
+	  uptime and potential runtime flags) due to the Prometheus
+	  client library dependency.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/axllent/mailpit/releases/tag/v1.27.10</url>
+    </references>
+    <dates>
+      <discovery>2025-10-09</discovery>
+      <entry>2025-10-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f60c790a-a394-11f0-9617-b42e991fc52e">
+    <topic>Mozilla -- Incorrect boundary conditions</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.3</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>143.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1979502">
+	  <p>The vulnerability has been assessed to have moderate
+	  impact on affected systems, potentially allowing attackers
+	  to exploit incorrect boundary conditions in the JavaScript
+	  Garbage Collection component. In Thunderbird specifically,
+	  these flaws cannot be exploited through email as scripting
+	  is disabled when reading mail, but remain potential risks in
+	  browser or browser-like contexts </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10532</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10532</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a240c31b-a394-11f0-9617-b42e991fc52e">
+    <topic>Mozilla -- mitigation bypass vulnerability</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0,2</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>143.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1978453">
+	  <p>The vulnerability has been rated as having moderate
+	  impact, affecting both confidentiality and integrity
+	  with low severity, while having no impact on
+	  availability. For Thunderbird specifically, the
+	  vulnerability cannot be exploited through email as
+	  scripting is disabled when reading mail, but remains a
+	  potential risk in browser or browser-like contexts </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10531</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10531</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-07</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f2de2f64-a2cc-11f0-8402-b42e991fc52e">
+    <topic>Mozilla -- Sandbox escape due to use-after-free</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.3.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>143.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1986185">
+	  <p>Sandbox escape due to use-after-free</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10527</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10527</url>
+      <cvename>CVE-2025-10528</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10528</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-06</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a5395e02-a2ca-11f0-8402-b42e991fc52e">
+    <topic>mongodb -- Malformed $group Query May Cause MongoDB Server to Crash</topic>
+    <affects>
+      <package>
+	<name>mongodb60</name>
+	<range><lt>6.0.25</lt></range>
+      </package>
+      <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.22</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cna@mongodb.com reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-99616">
+	  <p>An authorized user can cause a crash in the MongoDB Server through
+	a specially crafted $group query.  This vulnerability is related
+	to the incorrect handling of certain accumulator functions when
+	additional parameters are specified within the $group operation.
+	This vulnerability could lead to denial of service if triggered
+	repeatedly.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10061</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10061</url>
+    </references>
+    <dates>
+      <discovery>2025-09-05</discovery>
+      <entry>2025-10-06</entry>
+      <modified>2025-10-07</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="6d16b410-a2ca-11f0-8402-b42e991fc52e">
+    <topic>mongodb -- MongoDB may be susceptible to Invariant Failure in Transactions due Upsert Operation</topic>
+    <affects>
+      <package>
+	<name>mongodb60</name>
+	<range><lt>6.0.25</lt></range>
+      </package>
+      <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.22</lt></range>
+      </package>
+      <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.12</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cna@mongodb.com reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-95524">
+	  <p>MongoDB Server may allow upsert operations retried
+	  within a transaction to violate unique index constraints,
+	  potentially causing an invariant failure and server crash
+	  during commit. This issue may be triggered by improper
+	  WriteUnitOfWork state management.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10060</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10060</url>
+    </references>
+    <dates>
+      <discovery>2025-09-05</discovery>
+      <entry>2025-10-06</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4329e3bd-a2ca-11f0-8402-b42e991fc52e">
+    <topic>mongodb -- MongoDB Server router will crash when incorrect lsid is set on a sharded query</topic>
+    <affects>
+      <package>
+	<name>mongodb60</name>
+	<range><lt>6.0.24</lt></range>
+      </package>
+      <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.18</lt></range>
+      </package>
+      <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>cna@mongodb.com reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-100901">
+	  <p>An improper setting of the lsid field on any sharded query can cause
+	a crash in MongoDB routers.  This issue occurs when a generic
+	argument (lsid) is provided in a case when it is not applicable.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10059</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10059</url>
+    </references>
+    <dates>
+      <discovery>2025-09-05</discovery>
+      <entry>2025-10-06</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="a9dc3c61-a20f-11f0-91d8-b42e991fc52e">
     <topic>mongodb -- MongoDB Server access to non-initialized memory</topic>
     <affects>
