@@ -1,0 +1,2 @@
+A network monitoring application written in Rust that captures ARP
+and NDP packets to discover and track hosts on a local network.
