@@ -14,6 +14,6 @@ PLIST_FILES=	bin/hostwatch
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	b010eab82
+GH_TAGNAME=	1.0.0
 
 .include <bsd.port.mk>
