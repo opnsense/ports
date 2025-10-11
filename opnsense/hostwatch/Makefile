@@ -16,4 +16,6 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 GH_TAGNAME=	1.0.0
 
+USE_RC_SUBR=	${PORTNAME}
+
 .include <bsd.port.mk>
