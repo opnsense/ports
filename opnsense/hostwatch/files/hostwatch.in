@@ -6,22 +6,22 @@
 # KEYWORD: shutdown
 
 # Add the following lines to /etc/rc.conf to enable hostwatch discovery service:
-# hostwatch_enable (bool):			Set to YES to enable hostwatch
-# 									Default: NO
-# hostwatch_pidfile (str): 			Pidfile to store pid of hostwatch process
-#               					Default: /var/run/hostwatch.pid
-# hostwatch_skip_nets: 				list of networks to ignore
-#									Default: ""
-# hostwatch_flags (str):			extra flags passed to hostwatch
-#               					Default: "-c -S"
-# hostwatch_database (str):			location of the database (directory)
-#               					Default: "/var/db/hostwatch"
-# hostwatch_user (str):				username this service should use
-#               					Default: ""
-# hostwatch_group (str):			groupname this service should use
-#               					Default: ""
-# hostwatch_interfaces (str):		interfaces to bind to, all when not set
-#               					Default: ""
+# hostwatch_enable (bool):         Set to YES to enable hostwatch
+#                                  Default: NO
+# hostwatch_pidfile (str):         Pidfile to store pid of hostwatch process
+#                                  Default: /var/run/hostwatch.pid
+# hostwatch_skip_nets:             list of networks to ignore
+#                                  Default: ""
+# hostwatch_flags (str):           extra flags passed to hostwatch
+#                                  Default: "-c -S"
+# hostwatch_database (str):        location of the database (directory)
+#                                  Default: "/var/db/hostwatch"
+# hostwatch_user (str):            username this service should use
+#                                  Default: ""
+# hostwatch_group (str):           groupname this service should use
+#                                  Default: ""
+# hostwatch_interfaces (str):      interfaces to bind to, all when not set
+#                                  Default: ""
 
 
 . /etc/rc.subr
@@ -34,9 +34,9 @@ command="/usr/local/bin/hostwatch"
 
 load_rc_config $name
 
-[ -z "$hostwatch_enable" ]	&& hostwatch_enable="NO"
-[ -z "$hostwatch_pidfile" ]	&& hostwatch_pidfile="/var/run/hostwatch.pid"
-[ -z "$hostwatch_flags" ]	&& hostwatch_flags="-c -S"
+[ -z "$hostwatch_enable" ]    && hostwatch_enable="NO"
+[ -z "$hostwatch_pidfile" ]    && hostwatch_pidfile="/var/run/hostwatch.pid"
+[ -z "$hostwatch_flags" ]    && hostwatch_flags="-c -S"
 [ -z "$hostwatch_database" ] && hostwatch_database="/var/db/hostwatch"
 
 
@@ -44,31 +44,31 @@ pidfile=$hostwatch_pidfile
 hostwatch_flags="$hostwatch_flags -P $pidfile -d $hostwatch_database/hosts.db"
 
 if [ ! -z "$hostwatch_user" ]; then
-	hostwatch_flags="$hostwatch_flags -u $hostwatch_user"
+    hostwatch_flags="$hostwatch_flags -u $hostwatch_user"
 fi
 if [ ! -z "$hostwatch_group" ]; then
-	hostwatch_flags="$hostwatch_flags -g $hostwatch_group"
+    hostwatch_flags="$hostwatch_flags -g $hostwatch_group"
 fi
 for net in $hostwatch_skip_nets; do
-	hostwatch_flags="$hostwatch_flags -s $net"
+    hostwatch_flags="$hostwatch_flags -s $net"
 done
 for ifn in $hostwatch_interfaces; do
-	hostwatch_flags="$hostwatch_flags -i $ifn"
+    hostwatch_flags="$hostwatch_flags -i $ifn"
 done
 
 hostwatch_prestart()
 {
-	if ! run_rc_command status > /dev/null; then
-		rm -f "$pidfile"
-	fi
-	mkdir $hostwatch_database > /dev/null 2>&1
-	touch $hostwatch_database/hosts.db
-	if [ ! -z "$hostwatch_user" ]; then
-		chown -R $hostwatch_user $hostwatch_database
-	fi
-	if [ ! -z "$hostwatch_group" ]; then
-		chown -R :$hostwatch_group $hostwatch_database
-	fi
+    if ! run_rc_command status > /dev/null; then
+        rm -f "$pidfile"
+    fi
+    mkdir $hostwatch_database > /dev/null 2>&1
+    touch $hostwatch_database/hosts.db
+    if [ ! -z "$hostwatch_user" ]; then
+        chown -R $hostwatch_user $hostwatch_database
+    fi
+    if [ ! -z "$hostwatch_group" ]; then
+        chown -R :$hostwatch_group $hostwatch_database
+    fi
 }
 
 run_rc_command "$1"
