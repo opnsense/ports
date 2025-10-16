@@ -4,12 +4,15 @@ CATEGORIES=		devel
 MASTER_SITES=		https://github.com/Zirias/%SUBDIR%/
 MASTER_SITE_SUBDIR=	${PORTNAME}/releases/download/v${DISTVERSION}
 
-MAINTAINER=	zirias@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	C framework for POsix SERvices
 WWW=		https://zirias.github.io/poser/
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+DEPRECATED=	Unmaintained port
+EXPIRATION_DATE=2025-12-31
 
 USES=		compiler:c11 gmake pkgconfig tar:xz
 

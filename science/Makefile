@@ -313,7 +313,7 @@
     SUBDIR += py-cirq-google
     SUBDIR += py-cirq-ionq
     SUBDIR += py-cirq-pasqal
-    SUBDIR += py-cirq-rigetti
+    SUBDIR += py-cirq-web
     SUBDIR += py-coards
     SUBDIR += py-dftbplus
     SUBDIR += py-dftd4

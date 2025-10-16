@@ -3,12 +3,15 @@ DISTVERSION=	0.8
 CATEGORIES=	x11
 MASTER_SITES=	${WWW}/releases/download/v${DISTVERSION}/
 
-MAINTAINER=	zirias@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Plain X11 emoji keyboard
 WWW=		https://github.com/Zirias/xmoji
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+
+DEPRECATED=	Unmaintained port
+EXPIRATION_DATE=2025-12-31
 
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \

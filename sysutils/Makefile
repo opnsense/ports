@@ -432,6 +432,8 @@
     SUBDIR += ftwin
     SUBDIR += fvcool
     SUBDIR += fwup
+    SUBDIR += fwupd
+    SUBDIR += fwupd-efi
     SUBDIR += fx
     SUBDIR += g15daemon
     SUBDIR += gaffitter
@@ -733,7 +735,6 @@
     SUBDIR += monit
     SUBDIR += monitord
     SUBDIR += monitorix
-    SUBDIR += moor
     SUBDIR += moreutils
     SUBDIR += most
     SUBDIR += mountsmb2

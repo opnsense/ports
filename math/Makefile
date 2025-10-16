@@ -118,6 +118,7 @@
     SUBDIR += R-cran-pbkrtest
     SUBDIR += R-cran-plot3D
     SUBDIR += R-cran-pls
+    SUBDIR += R-cran-polyclip
     SUBDIR += R-cran-polycor
     SUBDIR += R-cran-polynom
     SUBDIR += R-cran-pracma
@@ -603,8 +604,10 @@
     SUBDIR += octave-forge-interval
     SUBDIR += octave-forge-io
     SUBDIR += octave-forge-irsa
+    SUBDIR += octave-forge-joystick
     SUBDIR += octave-forge-level-set
     SUBDIR += octave-forge-linear-algebra
+    SUBDIR += octave-forge-llms
     SUBDIR += octave-forge-lssa
     SUBDIR += octave-forge-ltfat
     SUBDIR += octave-forge-mapping
@@ -1015,6 +1018,7 @@
     SUBDIR += py-isosurfaces
     SUBDIR += py-jacobi
     SUBDIR += py-jax
+    SUBDIR += py-jij-cimod
     SUBDIR += py-kahip
     SUBDIR += py-keras
     SUBDIR += py-keras-applications
@@ -1291,7 +1295,6 @@
     SUBDIR += vinci
     SUBDIR += visualpolylib
     SUBDIR += vowpal_wabbit
-    SUBDIR += vtk8
     SUBDIR += vtk9
     SUBDIR += wavelib
     SUBDIR += wcalc

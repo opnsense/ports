@@ -1,6 +1,6 @@
 PORTNAME=	filebrowser-quantum
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.8.7-beta
+DISTVERSION=	0.8.8-beta
 PORTREVISION=	1
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/
@@ -42,7 +42,7 @@ FFMPEG_RUN_DEPENDS=	ffmpeg>=0:multimedia/ffmpeg
 
 # Run 'git checkout ${DISTVERSIONPREFIX}${DISTVERSION} && git rev-parse HEAD'
 # in the FileBrowser Quantum repository to get the value of GITID.
-GITID=		605ac44
+GITID=		2a3028e
 
 FILEBROWSER_QUANTUM_USER=	www
 FILEBROWSER_QUANTUM_GROUP=	${FILEBROWSER_QUANTUM_USER}
