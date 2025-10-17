@@ -4775,6 +4775,7 @@
     SUBDIR += py-daemon-runner
     SUBDIR += py-daemonize
     SUBDIR += py-daemons
+    SUBDIR += py-daiquiri
     SUBDIR += py-dal
     SUBDIR += py-darts.util.lru
     SUBDIR += py-dask
@@ -5077,6 +5078,7 @@
     SUBDIR += py-inline-snapshot
     SUBDIR += py-inotify-simple
     SUBDIR += py-inotifyrecursive
+    SUBDIR += py-inquirer
     SUBDIR += py-installer
     SUBDIR += py-intbitset
     SUBDIR += py-intelhex
@@ -5157,6 +5159,7 @@
     SUBDIR += py-jsonschema-specifications
     SUBDIR += py-jsonschema3
     SUBDIR += py-jsonsir
+    SUBDIR += py-jstyleson
     SUBDIR += py-junitparser
     SUBDIR += py-jupyter
     SUBDIR += py-jupyter-client
@@ -5935,6 +5938,7 @@
     SUBDIR += py-ruamel.yaml.clib
     SUBDIR += py-rubymarshal
     SUBDIR += py-ruff
+    SUBDIR += py-runs
     SUBDIR += py-rush
     SUBDIR += py-rx
     SUBDIR += py-rx1
@@ -6254,6 +6258,7 @@
     SUBDIR += py-xdoctest
     SUBDIR += py-xerox
     SUBDIR += py-xmltodict
+    SUBDIR += py-xmod
     SUBDIR += py-xsdata
     SUBDIR += py-xsdata-attrs
     SUBDIR += py-xsdata-plantuml

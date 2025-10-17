@@ -1517,6 +1517,7 @@
     SUBDIR += py-cachelib
     SUBDIR += py-caldav
     SUBDIR += py-calibreweb
+    SUBDIR += py-chalice
     SUBDIR += py-channels
     SUBDIR += py-channels-redis
     SUBDIR += py-cheroot
@@ -1731,6 +1732,7 @@
     SUBDIR += py-dtflickr
     SUBDIR += py-enmerkar
     SUBDIR += py-essentials-openapi
+    SUBDIR += py-extruct
     SUBDIR += py-fake-useragent
     SUBDIR += py-falcon
     SUBDIR += py-fastapi
