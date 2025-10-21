@@ -15,6 +15,7 @@
     SUBDIR += R-cran-miniUI
     SUBDIR += R-cran-pixture
     SUBDIR += R-cran-pkgdown
+    SUBDIR += R-cran-revealjs
     SUBDIR += R-cran-rvest
     SUBDIR += R-cran-scrapeR
     SUBDIR += R-cran-selectr
@@ -2340,6 +2341,7 @@
     SUBDIR += rubygem-protocol-rack
     SUBDIR += rubygem-protocol-websocket
     SUBDIR += rubygem-puma
+    SUBDIR += rubygem-puma-gitlab
     SUBDIR += rubygem-puma6
     SUBDIR += rubygem-puma_worker_killer
     SUBDIR += rubygem-pusher-client
@@ -2647,6 +2649,7 @@
     SUBDIR += unit-ruby
     SUBDIR += unit-wasm
     SUBDIR += unitc
+    SUBDIR += urlfinder
     SUBDIR += uwebsockets
     SUBDIR += uwsgi
     SUBDIR += uwsgitop

@@ -910,6 +910,7 @@
     SUBDIR += go-bindata
     SUBDIR += go-bindata-assetfs
     SUBDIR += go-git
+    SUBDIR += go-critic
     SUBDIR += go-mode.el
     SUBDIR += go-perf
     SUBDIR += go-tools
@@ -917,7 +918,6 @@
     SUBDIR += gob2
     SUBDIR += gobject-introspection
     SUBDIR += gocheese
-    SUBDIR += gocritic
     SUBDIR += godot
     SUBDIR += godot-tools
     SUBDIR += godot35
@@ -4745,6 +4745,7 @@
     SUBDIR += py-crc32c
     SUBDIR += py-crcmod
     SUBDIR += py-crick
+    SUBDIR += py-cron-converter
     SUBDIR += py-cronsim
     SUBDIR += py-crontab
     SUBDIR += py-crosshair-tool
@@ -6112,8 +6113,14 @@
     SUBDIR += py-transitions
     SUBDIR += py-tree-format
     SUBDIR += py-tree-sitter
+    SUBDIR += py-tree-sitter-bash
+    SUBDIR += py-tree-sitter-css
+    SUBDIR += py-tree-sitter-go
+    SUBDIR += py-tree-sitter-javascript
     SUBDIR += py-tree-sitter-languages
     SUBDIR += py-tree-sitter-python
+    SUBDIR += py-tree-sitter-regex
+    SUBDIR += py-tree-sitter-yaml
     SUBDIR += py-tree-sitter023
     SUBDIR += py-treelib
     SUBDIR += py-trimesh
@@ -6147,7 +6154,6 @@
     SUBDIR += py-types-setuptools
     SUBDIR += py-types-toml
     SUBDIR += py-types-ujson
-    SUBDIR += py-types-urllib3
     SUBDIR += py-typeshed-client
     SUBDIR += py-typing-extensions
     SUBDIR += py-typing-inspect
@@ -6187,6 +6193,7 @@
     SUBDIR += py-uuid7
     SUBDIR += py-uv
     SUBDIR += py-uv-build
+    SUBDIR += py-uv-build08
     SUBDIR += py-uv-bump
     SUBDIR += py-uv-dynamic-versioning
     SUBDIR += py-uvloop
@@ -6854,8 +6861,6 @@
     SUBDIR += rubygem-aws-sdk-omics
     SUBDIR += rubygem-aws-sdk-opensearchserverless
     SUBDIR += rubygem-aws-sdk-opensearchservice
-    SUBDIR += rubygem-aws-sdk-opsworks
-    SUBDIR += rubygem-aws-sdk-opsworkscm
     SUBDIR += rubygem-aws-sdk-organizations
     SUBDIR += rubygem-aws-sdk-osis
     SUBDIR += rubygem-aws-sdk-outposts
@@ -6938,7 +6943,6 @@
     SUBDIR += rubygem-aws-sdk-signer
     SUBDIR += rubygem-aws-sdk-simpledb
     SUBDIR += rubygem-aws-sdk-simspaceweaver
-    SUBDIR += rubygem-aws-sdk-sms
     SUBDIR += rubygem-aws-sdk-snowball
     SUBDIR += rubygem-aws-sdk-snowdevicemanagement
     SUBDIR += rubygem-aws-sdk-sns
@@ -7226,19 +7230,17 @@
     SUBDIR += rubygem-csv
     SUBDIR += rubygem-cucumber
     SUBDIR += rubygem-cucumber-ci-environment
+    SUBDIR += rubygem-cucumber-ci-environment10
     SUBDIR += rubygem-cucumber-core
-    SUBDIR += rubygem-cucumber-core13
     SUBDIR += rubygem-cucumber-cucumber-expressions
     SUBDIR += rubygem-cucumber-cucumber-expressions17
     SUBDIR += rubygem-cucumber-messages
-    SUBDIR += rubygem-cucumber-messages22
-    SUBDIR += rubygem-cucumber-messages24
-    SUBDIR += rubygem-cucumber-messages25
     SUBDIR += rubygem-cucumber-messages27
+    SUBDIR += rubygem-cucumber-messages28
+    SUBDIR += rubygem-cucumber-messages29
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-wire
-    SUBDIR += rubygem-cucumber9
     SUBDIR += rubygem-curses
     SUBDIR += rubygem-cyoi
     SUBDIR += rubygem-daemon_controller
@@ -7376,8 +7378,6 @@
     SUBDIR += rubygem-fog-core
     SUBDIR += rubygem-fog-core-gitlab
     SUBDIR += rubygem-fog-core1
-    SUBDIR += rubygem-fog-core210
-    SUBDIR += rubygem-fog-core250
     SUBDIR += rubygem-fog-json
     SUBDIR += rubygem-fog-json-gitlab
     SUBDIR += rubygem-font-awesome-rails
@@ -7579,7 +7579,6 @@
     SUBDIR += rubygem-json-gitlab
     SUBDIR += rubygem-json-schema
     SUBDIR += rubygem-json1
-    SUBDIR += rubygem-json27
     SUBDIR += rubygem-json_pure
     SUBDIR += rubygem-json_pure1
     SUBDIR += rubygem-json_schema

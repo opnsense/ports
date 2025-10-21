@@ -370,6 +370,7 @@
     SUBDIR += evtviewer
     SUBDIR += exa
     SUBDIR += extipl
+    SUBDIR += extrace
     SUBDIR += eza
     SUBDIR += ezjail
     SUBDIR += f-upgrade
@@ -414,6 +415,7 @@
     SUBDIR += fortunelock
     SUBDIR += fpart
     SUBDIR += framework-system
+    SUBDIR += framework-tool-tui
     SUBDIR += frand
     SUBDIR += freebsd-bsdlabel
     SUBDIR += freebsd-fdisk
