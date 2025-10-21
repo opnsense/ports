@@ -62,6 +62,7 @@ include/syslog-ng/control/control.h
 include/syslog-ng/control/control-command-thread.h
 include/syslog-ng/control/control-connection.h
 include/syslog-ng/control/control-server-unix.h
+include/syslog-ng/crypto-utils.h
 include/syslog-ng/crypto.h
 include/syslog-ng/debugger/debugger-main.h
 include/syslog-ng/debugger/debugger.h
