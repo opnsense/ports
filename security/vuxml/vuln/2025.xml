@@ -1,3 +1,500 @@
+  <vuln vid="4553e4b3-addf-11f0-9b8d-40a6b7c3b3b8">
+    <topic>Hidden/Protected custom variables are prone to filter enumeration</topic>
+    <affects>
+      <package>
+	<name>icingaweb2-module-icingadb-php81</name>
+	<range><lt>1.1.4</lt></range>
+	<range><ge>1.2</ge><lt>1.2.3,1</lt></range>
+      </package>
+      <package>
+	<name>icingaweb2-module-icingadb-php82</name>
+	<range><lt>1.1.4</lt></range>
+	<range><ge>1.2</ge><lt>1.2.3,1</lt></range>
+      </package>
+      <package>
+	<name>icingaweb2-module-icingadb-php83</name>
+	<range><lt>1.1.4</lt></range>
+	<range><ge>1.2</ge><lt>1.2.3,1</lt></range>
+      </package>
+      <package>
+	<name>icingaweb2-module-icingadb-php84</name>
+	<range><lt>1.1.4</lt></range>
+	<range><ge>1.2</ge><lt>1.2.3,1</lt></range>
+      </package>
+      <package>
+	<name>icingaweb2-module-icingadb-php85</name>
+	<range><lt>1.1.4</lt></range>
+	<range><ge>1.2</ge><lt>1.2.3,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Icinga reports:</p>
+	<blockquote cite="https://github.com/Icinga/icingadb-web/security/advisories/GHSA-w57j-28jc-8429">
+	  <p>An authorized user with access to Icinga DB Web, can use
+	  a custom variable in a filter that is either protected by
+	  icingadb/protect/variables or hidden by icingadb/denylist/variables,
+	  to guess values assigned to it.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-61789</cvename>
+      <url>https://github.com/Icinga/icingadb-web/security/advisories/GHSA-w57j-28jc-8429</url>
+    </references>
+    <dates>
+      <discovery>2025-10-16</discovery>
+      <entry>2025-10-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4355ce42-ad06-11f0-b2aa-b42e991fc52e">
+    <topic>Mozilla -- XSS in sites without content-type header</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1979536">
+	  <p>A malicious page could have used the type attribute of an OBJECT
+	tag to override the default browser behavior when encountering a
+	web resource served without a content-type.  This could have
+	contributed to an XSS on a site that unsafely serves files without
+	a content-type header.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11712</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11712</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fff839db-ad04-11f0-b2aa-b42e991fc52e">
+    <topic>Mozilla -- JavaScript Object property overriding</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1989978">
+	  <p>There was a way to change the value of JavaScript Object
+	  properties that were supposed to be non-writeable.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11711</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11711</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f7047dfc-ad02-11f0-b2aa-b42e991fc52e">
+    <topic>Mozilla -- Memory disclosure</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1989899">
+	  <p>A compromised web process using malicious IPC messages
+	  could have caused the privileged browser process to reveal
+	  blocks of its memory to the compromised process.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11710</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11710</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b760c618-ad02-11f0-b2aa-b42e991fc52e">
+    <topic>Mozilla -- Out-of-bounds reads and writes</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1989127">
+	  <p>A compromised web process was able to trigger out of
+	  bounds reads and writes in a more privileged process using
+	  manipulated WebGL textures.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11709</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11709</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="85c17eb8-ad02-11f0-b2aa-b42e991fc52e">
+    <topic>Mozilla -- Use-after-free</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1988931">
+	  <p>Use-after-free in MediaTrackGraphImpl::GetInstance()</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11708</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11708</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="247bc43f-ad02-11f0-b2aa-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1973699%2C1989945%2C1990970%2C1991040%2C1992113">
+	  <p>Memory safety bugs. Some of these bugs showed evidence of
+	  memory corruption and we presume that with enough effort
+	    some of these could have been exploited to run arbitrary
+	    code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11714</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11714</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="20840621-ab82-11f0-b961-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>140.4.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1983838%2C1987624%2C1988244%2C1988912%2C1989734%2C1990085%2C1991899">
+	  <p>Memory safety bugs. Some of these bugs showed evidence of
+	  memory corruption and we presume that with enough effort
+	    some of these could have been exploited to run arbitrary
+	    code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11715</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11715</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ed132d42-ab81-11f0-b961-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>144.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>144.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1986816">
+	  <p>Memory safety bug. This bug showed evidence of memory
+	  corruption and we presume that with enough effort this could
+	  have been exploited to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11721</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11721</url>
+    </references>
+    <dates>
+      <discovery>2025-10-14</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f3550d26-ab7d-11f0-b961-b42e991fc52e">
+    <topic>Firefox -- Sandbox escape</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0.3,2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1987246">
+	  <p>Sandbox excape due to integer overflow in the Graphics:
+	    Canvas2D component</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11152</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11152</url>
+    </references>
+    <dates>
+      <discovery>2025-09-30</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7b9a8247-ab7b-11f0-b961-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>142.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.2.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>142.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1938220%2C1980730%2C1981280%2C1981283%2C1984505%2C1985067">
+	  <p>Some of these bugs showed evidence of memory corruption
+	  and we presume that with enough effort some of these could
+	  have been exploited to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10537</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10537</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4fe6f98e-ab7b-11f0-b961-b42e991fc52e">
+    <topic>Mozilla -- Information disclosure</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>140.3.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>143.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1981502">
+	  <p>This vulnerability affects Firefox &lt; 143, Firefox ESR &lt; 140.3,
+	Thunderbird &lt; 143, and Thunderbird &lt; 140.3.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10536</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10536</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1e8a6581-ab7b-11f0-b961-b42e991fc52e">
+    <topic>Mozilla -- spoofing</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>143.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1665334">
+	  <p>Spoofing issue in the Site Permission component</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10534</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10534</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c7383de4-ab7a-11f0-b961-b42e991fc52e">
+    <topic>Mozilla -- integer overflow</topic>
+    <affects>
+      <package>
+	<name>firefox</name>
+	<range><lt>143.0.0,2</lt></range>
+      </package>
+      <package>
+	<name>firefox-esr</name>
+	<range><lt>115.28.0</lt></range>
+      </package>
+      <package>
+	<name>thunderbird</name>
+	<range><lt>143.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>security@mozilla.org reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1980788">
+	  <p>Integer overflow in the SVG component</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-10533</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-10533</url>
+    </references>
+    <dates>
+      <discovery>2025-09-16</discovery>
+      <entry>2025-10-17</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="511f5aac-ab46-11f0-9446-f02f7497ecda">
     <topic>minio -- Privilege Escalation via Session Policy Bypass in Service Accounts and STS</topic>
     <affects>
