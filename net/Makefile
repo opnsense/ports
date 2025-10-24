@@ -37,7 +37,6 @@
     SUBDIR += asio130
     SUBDIR += asterisk-chan_sccp
     SUBDIR += asterisk-g72x
-    SUBDIR += asterisk18
     SUBDIR += asterisk20
     SUBDIR += asterisk22
     SUBDIR += astron
@@ -1490,6 +1489,7 @@
     SUBDIR += samba416
     SUBDIR += samba419
     SUBDIR += samba420
+    SUBDIR += samba422
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbm

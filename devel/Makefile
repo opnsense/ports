@@ -98,6 +98,7 @@
     SUBDIR += R-cran-msm
     SUBDIR += R-cran-multicool
     SUBDIR += R-cran-optparse
+    SUBDIR += R-cran-otel
     SUBDIR += R-cran-pak
     SUBDIR += R-cran-parallelly
     SUBDIR += R-cran-parsedate
@@ -7894,6 +7895,7 @@
     SUBDIR += rubygem-redis-activesupport-rails60
     SUBDIR += rubygem-redis-activesupport-rails61
     SUBDIR += rubygem-redis-store
+    SUBDIR += rubygem-redis-store-gitlab
     SUBDIR += rubygem-redlock
     SUBDIR += rubygem-redlock1
     SUBDIR += rubygem-redmine_plugin_support
