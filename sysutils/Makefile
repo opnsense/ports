@@ -370,7 +370,7 @@
     SUBDIR += evtviewer
     SUBDIR += exa
     SUBDIR += extipl
-    SUBDIR += extrace
+    SUBDIR += extrace-freebsd
     SUBDIR += eza
     SUBDIR += ezjail
     SUBDIR += f-upgrade
@@ -612,6 +612,7 @@
     SUBDIR += kshutdown
     SUBDIR += ksystemlog
     SUBDIR += kubectl
+    SUBDIR += kubetail
     SUBDIR += kubie
     SUBDIR += kubo-go
     SUBDIR += kustomize
@@ -652,6 +653,7 @@
     SUBDIR += linux-c7-numactl-libs
     SUBDIR += linux-c7-userspace-rcu
     SUBDIR += linux-miniconda-installer
+    SUBDIR += linux-racadm
     SUBDIR += linux-rkbin
     SUBDIR += littlejet
     SUBDIR += lmmon
@@ -1255,6 +1257,7 @@
     SUBDIR += rubygem-win32-file-security
     SUBDIR += rubygem-win32-file-stat
     SUBDIR += rubygem-winrm
+    SUBDIR += rubygem-winrm-gitlab
     SUBDIR += rubygem-winrm-elevated
     SUBDIR += rubygem-winrm-elevated-gitlab
     SUBDIR += rubygem-yell
