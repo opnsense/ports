@@ -1,0 +1,83 @@
+.\" Copyright (c) 2025 Cedrik Pischem
+.\" SPDX-License-Identifier: BSD-2-Clause
+.Dd October 29, 2025
+.Dt NDP-PROXY-GO 8
+.Os
+.Sh NAME
+.Nm ndp-proxy-go
+.Nd IPv6 Neighbor Discovery Proxy daemon for FreeBSD
+.Sh SYNOPSIS
+.Nm
+.Op Fl -debug
+.Op Fl -no-ra
+.Op Fl -no-dad
+.Op Fl -no-routes
+.Op Fl -no-rewrite-lla
+.Op Fl -cache-ttl Ar duration
+.Op Fl -cache-max Ar n
+.Op Fl -route-qps Ar n
+.Op Fl -route-burst Ar n
+.Op Fl -pcap-timeout Ar duration
+.Ar upstream
+.Ar downstream ...
+.Sh DESCRIPTION
+The
+.Nm
+daemon bridges IPv6 Neighbor Discovery traffic between an upstream
+interface (ISP router) and one or more downstream interfaces (local clients).
+
+It is intended to run on a FreeBSD router that separates internal networks
+from the ISP uplink while allowing downstream clients to autoconfigure IPv6
+addresses as if directly connected to the provider.
+
+The upstream (WAN) interface must obtain a global SLAAC address and receive
+Router Advertisements from the provider. Downstream (LAN) interfaces must at least
+have a link-local address to participate in Neighbor Discovery forwarding.
+
+Useful when the ISP provides only a single /64 prefix and no DHCPv6-PD.
+
+The daemon must be run as root.
+.Sh OPTIONS
+.Bl -tag -width Ds
+.It Fl -debug
+Enable verbose packet logging.
+.It Fl -no-ra
+Disable forwarding of Router Advertisements.
+.It Fl -no-dad
+Disable Duplicate Address Detection proxying.
+.It Fl -no-routes
+Do not install per-host /128 routes.
+.It Fl -no-rewrite-lla
+Keep original SLLA/TLLA fields in forwarded packets.
+.It Fl -cache-ttl Ar duration
+Neighbor cache entry lifetime (default 10m).
+.It Fl -cache-max Ar n
+Maximum number of cached neighbors (default 4096).
+.It Fl -route-qps Ar n
+Limit route operations per second (default 50).
+.It Fl -route-burst Ar n
+Burst of route operations before rate limiting (default 50).
+.It Fl -pcap-timeout Ar duration
+Packet capture poll timeout, 25–250 ms recommended (default 50 ms).
+.El
+.Sh EXAMPLES
+.Bd -literal -offset indent
+ndp-proxy-go eth0 eth1
+.Ed
+
+Enable at boot via
+.Xr rc.conf 5 :
+.Bd -literal -offset indent
+ndp_proxy_go_enable="YES"
+ndp_proxy_go_upstream="eth0"
+ndp_proxy_go_downstream="eth1"
+ndp_proxy_go_flags="--debug"
+.Ed
+.Sh SEE ALSO
+.Xr rc 8 ,
+.Xr radvd 8 ,
+.Xr ifconfig 8 ,
+.Xr route 8
+.Sh AUTHORS
+.An Cedrik Pischem Aq Mt cedrik@pischem.com
+

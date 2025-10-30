@@ -1,0 +1,74 @@
+#!/bin/sh
+
+# PROVIDE: ndp-proxy-go
+# REQUIRE: NETWORKING
+# KEYWORD: shutdown
+
+# To enable ndp-proxy-go:
+#
+# - Configure interfaces in /etc/rc.conf:
+#   # sysrc ndp_proxy_go_enable="YES"
+#   # sysrc ndp_proxy_go_upstream="igc1"
+#   # sysrc ndp_proxy_go_downstream="igc0"
+#
+# - Optional flags:
+#   # sysrc ndp_proxy_go_flags="--debug"
+#
+# Optional settings:
+# ndp_proxy_go_enable (bool):       Enable service (NO)
+# ndp_proxy_go_upstream (string):   Upstream interface (required)
+# ndp_proxy_go_downstream (string): Downstream interface(s), space-separated (required)
+# ndp_proxy_go_flags (string):      Additional flags (e.g., --debug, --no-ra)
+
+. /etc/rc.subr
+
+name="ndp_proxy_go"
+rcvar="ndp_proxy_go_enable"
+desc="IPv6 Neighbor Discovery Proxy"
+
+load_rc_config $name
+
+# Defaults
+: ${ndp_proxy_go_enable:=NO}
+: ${ndp_proxy_go_upstream:=""}
+: ${ndp_proxy_go_downstream:=""}
+: ${ndp_proxy_go_flags:=""}
+
+command="/usr/local/sbin/ndp-proxy-go"
+pidfile="/var/run/${name}.pid"
+
+start_precmd="ndp_proxy_go_precmd"
+start_cmd="ndp_proxy_go_start"
+
+ndp_proxy_go_precmd()
+{
+    if [ -z "${ndp_proxy_go_upstream}" ]; then
+        warn "ndp_proxy_go_upstream not set in rc.conf"
+        return 1
+    fi
+    if [ -z "${ndp_proxy_go_downstream}" ]; then
+        warn "ndp_proxy_go_downstream not set in rc.conf"
+        return 1
+    fi
+
+    # Verify interfaces exist
+    if ! ifconfig ${ndp_proxy_go_upstream} > /dev/null 2>&1; then
+        warn "upstream interface ${ndp_proxy_go_upstream} does not exist"
+        return 1
+    fi
+    for iface in ${ndp_proxy_go_downstream}; do
+        if ! ifconfig ${iface} > /dev/null 2>&1; then
+            warn "downstream interface ${iface} does not exist"
+            return 1
+        fi
+    done
+}
+
+ndp_proxy_go_start()
+{
+    echo "Starting ${name}."
+    /usr/sbin/daemon -S -s notice -l daemon -T ndpproxy -m 3 -p ${pidfile} \
+        ${command} ${ndp_proxy_go_flags} ${ndp_proxy_go_upstream} ${ndp_proxy_go_downstream}
+}
+
+run_rc_command "$@"

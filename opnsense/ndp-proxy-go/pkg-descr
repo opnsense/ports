@@ -1,0 +1,9 @@
+ndp-proxy-go is an IPv6 Neighbor Discovery (ND) proxy daemon for FreeBSD.
+
+Features:
+- Use single /64 Prefix provided via SLAAC
+- ND, DAD and RA proxying
+- Host route management
+- Multi-interface downstream support
+
+WWW: https://github.com/Monviech/ndp-proxy-go
