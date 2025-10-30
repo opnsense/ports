@@ -5,5 +5,3 @@ Features:
 - ND, DAD and RA proxying
 - Host route management
 - Multi-interface downstream support
-
-WWW: https://github.com/Monviech/ndp-proxy-go
