@@ -1,0 +1,5 @@
+TIMESTAMP = 1761761759
+SHA256 (go/net_ndp-proxy-go/ndp-proxy-go-v0.1.3/v0.1.3.mod) = 32da8dd2f80211be289cca703fc05769ecf716286edf67435a9267ecb2198f90
+SIZE (go/net_ndp-proxy-go/ndp-proxy-go-v0.1.3/v0.1.3.mod) = 180
+SHA256 (go/net_ndp-proxy-go/ndp-proxy-go-v0.1.3/v0.1.3.zip) = e57f47a7de8bb577a02b210843f365a75d61d8b289fdb780b7ab30c5349be2aa
+SIZE (go/net_ndp-proxy-go/ndp-proxy-go-v0.1.3/v0.1.3.zip) = 23045
