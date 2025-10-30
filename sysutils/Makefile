@@ -466,6 +466,7 @@
     SUBDIR += glogg
     SUBDIR += glow
     SUBDIR += gnome-control-center
+    SUBDIR += gnome-firmware
     SUBDIR += gnome-power-manager
     SUBDIR += gnome-settings-daemon
     SUBDIR += gnome-system-monitor
@@ -975,6 +976,7 @@
     SUBDIR += plasma6-kde-cli-tools
     SUBDIR += plasma6-kinfocenter
     SUBDIR += plasma6-kmenuedit
+    SUBDIR += plasma6-knighttime
     SUBDIR += plasma6-ksystemstats
     SUBDIR += plasma6-libksysguard
     SUBDIR += plasma6-plasma-disks
@@ -1222,6 +1224,7 @@
     SUBDIR += rubygem-mothra
     SUBDIR += rubygem-murder
     SUBDIR += rubygem-ohai
+    SUBDIR += rubygem-openbolt
     SUBDIR += rubygem-openfact
     SUBDIR += rubygem-openvoxserver-ca
     SUBDIR += rubygem-parallel
@@ -1257,9 +1260,9 @@
     SUBDIR += rubygem-win32-file-security
     SUBDIR += rubygem-win32-file-stat
     SUBDIR += rubygem-winrm
-    SUBDIR += rubygem-winrm-gitlab
     SUBDIR += rubygem-winrm-elevated
     SUBDIR += rubygem-winrm-elevated-gitlab
+    SUBDIR += rubygem-winrm-gitlab
     SUBDIR += rubygem-yell
     SUBDIR += runas
     SUBDIR += rundeck
@@ -1551,6 +1554,7 @@
     SUBDIR += vii
     SUBDIR += vils
     SUBDIR += vimpager
+    SUBDIR += virt-firmware
     SUBDIR += virt-what
     SUBDIR += virtualmin
     SUBDIR += vivid

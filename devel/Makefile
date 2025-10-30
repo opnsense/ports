@@ -910,8 +910,8 @@
     SUBDIR += gnustep-make
     SUBDIR += go-bindata
     SUBDIR += go-bindata-assetfs
-    SUBDIR += go-git
     SUBDIR += go-critic
+    SUBDIR += go-git
     SUBDIR += go-mode.el
     SUBDIR += go-perf
     SUBDIR += go-tools
@@ -5616,6 +5616,7 @@
     SUBDIR += py-pycognito
     SUBDIR += py-pycompilation
     SUBDIR += py-pycomplete
+    SUBDIR += py-pycomposefile
     SUBDIR += py-pyconify
     SUBDIR += py-pycparser
     SUBDIR += py-pycrdt
@@ -6339,7 +6340,6 @@
     SUBDIR += pycanberra
     SUBDIR += pycdc
     SUBDIR += pycharm
-    SUBDIR += pycomposefile
     SUBDIR += pycos
     SUBDIR += pycount
     SUBDIR += pydbus-common
@@ -6915,6 +6915,7 @@
     SUBDIR += rubygem-aws-sdk-route53recoverycontrolconfig
     SUBDIR += rubygem-aws-sdk-route53recoveryreadiness
     SUBDIR += rubygem-aws-sdk-route53resolver
+    SUBDIR += rubygem-aws-sdk-rtbfabric
     SUBDIR += rubygem-aws-sdk-s3
     SUBDIR += rubygem-aws-sdk-s3-gitlab
     SUBDIR += rubygem-aws-sdk-s3control
@@ -7392,7 +7393,6 @@
     SUBDIR += rubygem-forwardable-extended
     SUBDIR += rubygem-fugit
     SUBDIR += rubygem-fugit-gitlab
-    SUBDIR += rubygem-fugit111
     SUBDIR += rubygem-fuubar
     SUBDIR += rubygem-fuzzy_match
     SUBDIR += rubygem-gapic-common
