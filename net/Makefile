@@ -194,7 +194,6 @@
     SUBDIR += gitup
     SUBDIR += glflow
     SUBDIR += glib-networking
-    SUBDIR += glusterfs
     SUBDIR += gmid
     SUBDIR += gnet2
     SUBDIR += gnetcat
@@ -591,6 +590,7 @@
     SUBDIR += openvswitch
     SUBDIR += ortp
     SUBDIR += osrtspproxy
+    SUBDIR += otelcol-contrib
     SUBDIR += ovhcloud-cli
     SUBDIR += owamp
     SUBDIR += p5-Acme-HTTP
@@ -1017,6 +1017,7 @@
     SUBDIR += pktanon
     SUBDIR += pload
     SUBDIR += plugdaemon
+    SUBDIR += pmix
     SUBDIR += poptop
     SUBDIR += portfwd
     SUBDIR += pptpclient
@@ -1026,6 +1027,7 @@
     SUBDIR += proxy-suite
     SUBDIR += proxychains
     SUBDIR += proxychains-ng
+    SUBDIR += prrte
     SUBDIR += prtunnel
     SUBDIR += ptpd2
     SUBDIR += ptunnel
@@ -1229,6 +1231,7 @@
     SUBDIR += rdesktop
     SUBDIR += rdist6
     SUBDIR += rdist7
+    SUBDIR += rdp2tcp
     SUBDIR += read_bbrlog
     SUBDIR += realtek-re-kmod
     SUBDIR += realtek-re-kmod198

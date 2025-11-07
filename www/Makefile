@@ -400,7 +400,6 @@
     SUBDIR += minio-client
     SUBDIR += miniserve
     SUBDIR += mirrorselect
-    SUBDIR += mitmproxy
     SUBDIR += mknmz-wwwoffle
     SUBDIR += mod_asn
     SUBDIR += mod_auth_cas
@@ -1457,7 +1456,6 @@
     SUBDIR += phpbb3
     SUBDIR += phpfpmtop
     SUBDIR += phpgroupware
-    SUBDIR += phpmustache
     SUBDIR += phpmyfaq
     SUBDIR += phprecipebook
     SUBDIR += phpsysinfo
@@ -1588,6 +1586,7 @@
     SUBDIR += py-dj52-django-js-asset
     SUBDIR += py-dj52-django-mptt
     SUBDIR += py-dj52-django-multiselectfield
+    SUBDIR += py-dj52-django-netfields
     SUBDIR += py-dj52-django-prometheus
     SUBDIR += py-dj52-django-redis
     SUBDIR += py-dj52-django-rich
