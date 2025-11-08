@@ -1,5 +1,5 @@
-TIMESTAMP = 1762156018
-SHA256 (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.4/v0.1.4.mod) = 32da8dd2f80211be289cca703fc05769ecf716286edf67435a9267ecb2198f90
-SIZE (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.4/v0.1.4.mod) = 180
-SHA256 (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.4/v0.1.4.zip) = 1805d4e6564a0573d335a754e690c5629e2de624ea5b8a17681b6aa561885480
-SIZE (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.4/v0.1.4.zip) = 23223
+TIMESTAMP = 1762624041
+SHA256 (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.5/v0.1.5.mod) = 32da8dd2f80211be289cca703fc05769ecf716286edf67435a9267ecb2198f90
+SIZE (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.5/v0.1.5.mod) = 180
+SHA256 (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.5/v0.1.5.zip) = 487ee9aeda72b55905914ef2cba64eb49808dd14542b78917c56ce53f107d10e
+SIZE (go/opnsense_ndp-proxy-go/ndp-proxy-go-v0.1.5/v0.1.5.zip) = 23117
