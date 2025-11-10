@@ -1521,6 +1521,7 @@
     SUBDIR += udfclient
     SUBDIR += ufetch
     SUBDIR += uhidd
+    SUBDIR += uhubctl
     SUBDIR += uif2iso
     SUBDIR += unetbootin
     SUBDIR += uniutils
@@ -1571,6 +1572,7 @@
     SUBDIR += vtm
     SUBDIR += vttest
     SUBDIR += wait_on
+    SUBDIR += waitforssh
     SUBDIR += walk
     SUBDIR += watchfolder
     SUBDIR += watchman
@@ -1595,6 +1597,7 @@
     SUBDIR += wmscript
     SUBDIR += wmtop
     SUBDIR += wmupmon
+    SUBDIR += work-tuimer
     SUBDIR += worldtools
     SUBDIR += wuzzah
     SUBDIR += xbatt

@@ -666,6 +666,7 @@
     SUBDIR += electron36
     SUBDIR += electron37
     SUBDIR += electron38
+    SUBDIR += electron39
     SUBDIR += elf
     SUBDIR += elf-dissector
     SUBDIR += elfcat
@@ -5045,6 +5046,7 @@
     SUBDIR += py-hgtools
     SUBDIR += py-hidraw
     SUBDIR += py-hishel
+    SUBDIR += py-hishel0
     SUBDIR += py-holidays
     SUBDIR += py-hologram
     SUBDIR += py-homebase
