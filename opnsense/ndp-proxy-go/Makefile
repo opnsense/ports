@@ -5,7 +5,7 @@ CATEGORIES=	net
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	cedrik@pischem.com
-COMMENT=	IPv6 Neighbor Discovery Protocol Proxy
+COMMENT=	IPv6 Neighbor Discovery Protocol (NDP) Proxy
 WWW=		https://github.com/Monviech/ndp-proxy-go
 
 LICENSE=	BSD2CLAUSE
