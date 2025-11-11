@@ -109,7 +109,7 @@ MONO_DEFAULT?=		5.20
 MYSQL_DEFAULT?=		8.0
 # Possible values: ninja, samurai
 NINJA_DEFAULT?=		ninja
-# Possible value: 20, 22, 24, 25, current, lts (Note: current = 24 and lts = 22)
+# Possible value: 20, 22, 24, 25, current, lts (Note: current = 25 and lts = 24)
 NODEJS_DEFAULT?=	lts
 # Possible value: 25, 26
 OPENLDAP_DEFAULT?=	26
@@ -189,6 +189,8 @@ check-makevars::
 # Make sure we have a default in the end
 SSL_DEFAULT?=	base
 .  endif
+# Possible values: default, sssd
+SUDO_DEFAULT?=		default
 # Possible values: 8.6, 9.0
 TCLTK_DEFAULT?=		8.6
 # Possible values: 6, 7
