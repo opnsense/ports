@@ -1,11 +1,11 @@
 PORTNAME=	ndp-proxy-go
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.1.4
+DISTVERSION=	0.1.5
 CATEGORIES=	net
 DIST_SUBDIR=	${PORTNAME}
 
 MAINTAINER=	cedrik@pischem.com
-COMMENT=	IPv6 Neighbor Discovery Proxy daemon for FreeBSD
+COMMENT=	IPv6 Neighbor Discovery Protocol (NDP) Proxy
 WWW=		https://github.com/Monviech/ndp-proxy-go
 
 LICENSE=	BSD2CLAUSE
