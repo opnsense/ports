@@ -24,13 +24,13 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hypothesis>=6.24.1:devel/py-hypothesis@${PY
 		${PYTHON_PKGNAMEPREFIX}pytest>=6.2.5:devel/py-pytest@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}typing-extensions>=4.2.0:devel/py-typing-extensions@${PY_FLAVOR}
 
-USES=		compiler:c11 cpe fortran pkgconfig python shebangfix
+USES=		compiler:c11 cpe pkgconfig python shebangfix
 USE_PYTHON=	autoplist concurrent cython pep517
 
 GCCLIBDIR_CMDS=	${FC} -print-file-name=libgfortran.so | ${SED} -e \
 		s/libgfortran.so//
-PYDISTUTILS_CONFIGUREARGS=	--fcompiler=gnu95
-PYDISTUTILS_BUILDARGS=	--fcompiler=gnu95
+PYDISTUTILS_CONFIGUREARGS=	${PYFARGS}
+PYDISTUTILS_BUILDARGS=	${PYFARGS}
 
 LDFLAGS+=	-s
 PIE_UNSAFE=	yes
@@ -39,28 +39,37 @@ PORTSCOUT=	limit:^1\.
 
 PORTDOCS=	*
 
-OPTIONS_DEFINE=		DOCS SUITESPARSE
-OPTIONS_DEFAULT=	OPENBLAS SUITESPARSE
+OPTIONS_DEFINE=		DOCS FORTRAN SUITESPARSE
+OPTIONS_DEFAULT=	FORTRAN OPENBLAS SUITESPARSE
 OPTIONS_SINGLE=		BLASLIB
-OPTIONS_SINGLE_BLASLIB=	ATLAS NETLIB OPENBLAS
+OPTIONS_SINGLE_BLASLIB=	ATLAS NETLIB NOBLAS OPENBLAS
+NOBLAS_DESC=		Internal NumPy fallback BLAS routines (slow!)
 SUITESPARSE_DESC=	Use AMD and UMFPACK in SuiteSparse
 
+ATLAS_IMPLIES=			FORTRAN
 ATLAS_USES=			blaslapack:atlas
 ATLAS_VARS=			BLASLIBS="ptf77blas, ptcblas" \
 				BLASNAME=atlas \
 				LAPACKLIBS=alapack \
 				LIBRARIES=atlas_libs
+FORTRAN_USES=			fortran
+FORTRAN_VARS=			PYFARGS=--fcompiler=gnu95
+NETLIB_IMPLIES=			FORTRAN
 NETLIB_LIB_DEPENDS=		libcblas.so:math/cblas
 NETLIB_USES=			blaslapack:netlib
 NETLIB_VARS=			BLASLIBS="blas, cblas" \
 				BLASNAME=atlas \
 				LAPACKLIBS=lapack \
 				LIBRARIES=atlas_libs
+NOBLAS_MAKE_ENV=		NPY_LAPACK_ORDER= \
+				PY_BLAS_ORDER=
+OPENBLAS_IMPLIES=		FORTRAN
 OPENBLAS_USES=			blaslapack:openblas
 OPENBLAS_VARS=			BLASLIBS="openblas, gfortran" \
 				BLASNAME=openblas \
 				LAPACKLIBS="openblas, gfortran" \
 				LIBRARIES=libraries
+SUITESPARSE_IMPLIES=		FORTRAN
 SUITESPARSE_LIB_DEPENDS=	libumfpack.so:math/suitesparse-umfpack
 
 SHEBANG_FILES=	numpy/f2py/crackfortran.py numpy/f2py/f2py2e.py \
@@ -75,11 +84,15 @@ post-extract:
 pre-configure:
 	@${REINPLACE_CMD} -e 's|%%FC%%|${FC}|' ${WRKSRC}/numpy/distutils/fcompiler/gnu.py
 	@${CP} ${FILESDIR}/site.cfg ${WRKSRC}/site.cfg
+
+pre-configure-FORTRAN-on:
+	@${REINPLACE_CMD} -e "s|%%GCCLIBDIR%%|$$(${GCCLIBDIR_CMDS})|" ${WRKSRC}/site.cfg ${WRKSRC}/numpy/distutils/system_info.py
+
+pre-configure-NOBLAS-off:
 	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' \
 		-e 's|%%BLASLIBS%%|${BLASLIBS}|; s|%%BLASNAME%%|${BLASNAME}|' \
 		-e 's|%%LAPACKLIBS%%|${LAPACKLIBS}|; s|%%LIBRARIES%%|${LIBRARIES}|' \
 			${WRKSRC}/site.cfg
-	@${REINPLACE_CMD} -e "s|%%GCCLIBDIR%%|$$(${GCCLIBDIR_CMDS})|" ${WRKSRC}/site.cfg ${WRKSRC}/numpy/distutils/system_info.py
 
 pre-configure-SUITESPARSE-off:
 	@${REINPLACE_CMD} -e 's|:%%LOCALBASE%%/include/suitesparse||' ${WRKSRC}/site.cfg
