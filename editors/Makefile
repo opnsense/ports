@@ -21,6 +21,7 @@
     SUBDIR += calligra
     SUBDIR += calligraplan
     SUBDIR += chexedit
+    SUBDIR += consult.el
     SUBDIR += cooledit
     SUBDIR += cpeditor
     SUBDIR += cream
@@ -201,6 +202,7 @@
     SUBDIR += linux-wps-office
     SUBDIR += lite
     SUBDIR += lite-xl
+    SUBDIR += marginalia.el
     SUBDIR += marker
     SUBDIR += mg
     SUBDIR += mickey
@@ -225,11 +227,13 @@
     SUBDIR += openoffice-4
     SUBDIR += openoffice-devel
     SUBDIR += orbiton
+    SUBDIR += orderless.el
     SUBDIR += ox
     SUBDIR += p5-Proc-InvokeEditor
     SUBDIR += p5-Vimana
     SUBDIR += paredit-mode.el
     SUBDIR += parinfer-rust
+    SUBDIR += perspective.el
     SUBDIR += pico-alpine
     SUBDIR += picpas
     SUBDIR += pluma
@@ -278,6 +282,7 @@
     SUBDIR += uhex
     SUBDIR += uzap
     SUBDIR += ved
+    SUBDIR += vertico.el
     SUBDIR += vigor
     SUBDIR += vile
     SUBDIR += vim
@@ -294,6 +299,7 @@
     SUBDIR += xmlcopyeditor
     SUBDIR += xvile
     SUBDIR += yudit
+    SUBDIR += zed
     SUBDIR += zile
 
 .include <bsd.port.subdir.mk>

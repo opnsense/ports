@@ -1,12 +1,12 @@
 PORTNAME=	clickhouse
 DISTVERSIONPREFIX=	v
-DISTVERSION=	23.5.2.7
+DISTVERSION=	25.10.2.65
 DISTVERSIONSUFFIX=-stable
 CATEGORIES=	databases
 DIST_SUBDIR=	${PORTNAME}
 
-# implicit-approval+: pi
-MAINTAINER=	bofh@FreeBSD.org
+# implicit-approval+: bofh
+MAINTAINER=	pi@FreeBSD.org
 COMMENT=	Fast open-source OLAP database management system
 WWW=		https://clickhouse.com/
 
@@ -22,7 +22,7 @@ RUN_DEPENDS=	bash:shells/bash
 RUN_DEPENDS+=	jq:textproc/jq
 .endif
 
-USES=		cmake cpe localbase perl5 python shebangfix
+USES=		cmake cpe localbase ninja perl5 python shebangfix
 CPE_VENDOR=	${PORTNAME}
 USE_GITHUB=	yes
 GH_ACCOUNT=	ClickHouse
@@ -33,7 +33,6 @@ USE_PERL5=	build
 USE_RC_SUBR=	${PORTNAME}
 
 SHEBANG_FILES=	tests/clickhouse-test \
-		tests/queries/0_stateless/01526_client_start_and_exit.expect-not-a-test-case \
 		tests/queries/0_stateless/02010_lc_native.python \
 		tests/queries/0_stateless/02203_shebang
 SHEBANG_GLOB=	*.expect *.py *.python *.sh
@@ -44,16 +43,16 @@ expect_OLD_CMD=	/usr/bin/expect
 expect_CMD=	${LOCALBASE}/bin/expect
 
 CMAKE_ARGS=	-DCMAKE_CXX_STANDARD=20 \
-		-DENABLE_EMBEDDED_COMPILER=OFF \
-		-DENABLE_THINLTO=OFF \
-		-DENABLE_PARQUET=OFF \
-		-DENABLE_UTILS=ON \
 		-DNO_WERROR=1 \
-		-DCOMPILER_CACHE=disabled
+		-DCOMPILER_CACHE=disabled \
+		-DPARALLEL_COMPILE_JOBS=${MAKE_JOBS_NUMBER} \
+		-DPARALLEL_LINK_JOBS=${MAKE_JOBS_NUMBER}
+CMAKE_OFF=	ENABLE_PARQUET ENABLE_THINLTO ENABLE_UTILS
+
 .if defined(WITH_DEBUG)
 CMAKE_BUILD_TYPE=Debug
 .else
-CMAKE_BUILD_TYPE=RelWithDebInfo
+CMAKE_BUILD_TYPE=Release
 .endif
 
 USERS=		clickhouse
@@ -62,16 +61,23 @@ GROUPS=		clickhouse
 # The version stamp of libclickhouse.so doesn't always match ${PORTVERSION}
 PLIST_SUB=	SOVERSION=${SOVERSION}
 
-OPTIONS_DEFINE=		TEST
+OPTIONS_DEFINE=		LLVM RUST TEST
 OPTIONS_SUB=		yes
 
+LLVM_DESC=		Build with support for JIT-compiling expressions
+RUST_DESC=		Build with Rust language support
+
+LLVM_BROKEN=		In tree LLVM is broken
+LLVM_CMAKE_BOOL=	ENABLE_DWARF_PARSER ENABLE_EMBEDDED_COMPILER
+RUST_BUILD_DEPENDS=	rustc:lang/rust
+RUST_CMAKE_BOOL=	ENABLE_RUST
 TEST_RUN_DEPENDS=	expect>0:lang/expect
-TEST_CMAKE_BOOL=	ENABLE_CLICKHOUSE_TEST ENABLE_TESTS
+TEST_CMAKE_BOOL=	ENABLE_TESTS
 
 .include <bsd.port.options.mk>
 
 .if ${OPSYS} == FreeBSD
-USES+=	llvm:15
+USES+=	llvm:min=21
 CFLAGS+=-Wno-error=int-conversion
 .endif
 
@@ -87,18 +93,10 @@ SOVERSION=	${PORTVERSION}
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|/var/lib/clickhouse|/var/db/clickhouse|;s|/var/log/clickhouse-server|/var/log/clickhouse|;s|/etc/clickhouse-server|${PREFIX}/etc/clickhouse-server|' ${WRKSRC}/programs/server/config.xml
-	@${REINPLACE_CMD} -e 's|%%OSREL%%|${OSREL:R}|' ${WRKSRC}/cmake/freebsd/toolchain-x86_64.cmake
 	cd ${WRKSRC}/contrib/openldap-cmake && ${LN} -s freebsd_x86_64 freebsd_aarch64
-
-do-install-TEST-on:
-	${FIND} -s ${STAGEDIR}${PREFIX}/tests -not -type d | ${SORT} | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${PREFIX}/tests -type d -empty | ${SORT} -r | \
-		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
 
 post-install:
 	@${RM} ${STAGEDIR}${PREFIX}/bin/config-processor
-	@${RM} ${STAGEDIR}${PREFIX}/bin/corrector_utf8
 	@${RM} -r ${STAGEDIR}${PREFIX}/include/gtest
 	@${RM} ${STAGEDIR}${PREFIX}/lib/libgtest*
 	@${RM} ${STAGEDIR}${PREFIX}/lib/libcxx.a
@@ -153,9 +151,12 @@ _make-touples:
 		  n=split(url, parts, "/"); org=parts[n-1]; repo=parts[n]; sub(/\.git$$/, "", repo); \
 		  org_repl=org; repo_repl=repo; gsub(/[-.]/, "_", org_repl); gsub(/[-.]/, "_", repo_repl); \
 		  printf("GH_TUPLE+=\t%s:%s:%s:%s_%s/%s\n", \
-		         org, repo, substr(sha,1,7), org_repl, repo_repl, path); }' \
+		         org, repo, substr(sha,1,8), org_repl, repo_repl, path); }' \
 		"$${_TMPDIR}/modules.txt" "$${_TMPDIR}/tree.txt" > "$${_OUTFILE}"; \
 	${ECHO_CMD} "===> Writing $${_OUTFILE} completed"
+	${REINPLACE_CMD} -e 's|unum-cloud:usearch|unum-cloud:USearch|' \
+		${.CURDIR}/Makefile.submodules
+	${RM} ${.CURDIR}/Makefile.submodules.bak
 .endif
 
 .include <bsd.port.mk>

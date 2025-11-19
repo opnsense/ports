@@ -476,6 +476,7 @@
     SUBDIR += goaccess
     SUBDIR += goawk
     SUBDIR += gobi_loader
+    SUBDIR += gol
     SUBDIR += gomi
     SUBDIR += gomplate
     SUBDIR += gonzo
@@ -1102,6 +1103,7 @@
     SUBDIR += py-rdiff-backup
     SUBDIR += py-resolve-march-native
     SUBDIR += py-salt
+    SUBDIR += py-salt-tower
     SUBDIR += py-scandir
     SUBDIR += py-scarab
     SUBDIR += py-supervisor

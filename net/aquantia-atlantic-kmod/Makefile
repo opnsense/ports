@@ -1,6 +1,6 @@
 PORTNAME=	aquantia-atlantic-kmod
 PORTVERSION=	0.0.5
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	net
 
 MAINTAINER=	ports@FreeBSD.org

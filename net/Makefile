@@ -460,6 +460,7 @@
     SUBDIR += mailcommon
     SUBDIR += mailimporter
     SUBDIR += malo-firmware-kmod
+    SUBDIR += mcast-bridge
     SUBDIR += mcjoin
     SUBDIR += mdns-bridge
     SUBDIR += mdns-repeater
@@ -1270,6 +1271,7 @@
     SUBDIR += rubygem-activestorage71
     SUBDIR += rubygem-activestorage72
     SUBDIR += rubygem-activestorage80
+    SUBDIR += rubygem-activestorage81
     SUBDIR += rubygem-amazon-ec2
     SUBDIR += rubygem-amq-protocol
     SUBDIR += rubygem-amqp

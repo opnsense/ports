@@ -181,6 +181,7 @@
     SUBDIR += git-remote-gcrypt
     SUBDIR += git-secret
     SUBDIR += gitjacker
+    SUBDIR += gitlab-analyzers-secrets
     SUBDIR += globalprotect-openconnect
     SUBDIR += gnome-keyring
     SUBDIR += gnupg
@@ -466,6 +467,7 @@
     SUBDIR += openvpn-devel
     SUBDIR += ophcrack
     SUBDIR += opie
+    SUBDIR += opkssh
     SUBDIR += ossec-hids
     SUBDIR += ossec-hids-agent
     SUBDIR += ossec-hids-agent-config
@@ -1111,6 +1113,7 @@
     SUBDIR += qt-sudo
     SUBDIR += qtkeychain
     SUBDIR += quantis-kmod
+    SUBDIR += radamsa
     SUBDIR += rage-encryption
     SUBDIR += ratify
     SUBDIR += ratproxy
@@ -1399,6 +1402,7 @@
     SUBDIR += unix-selfauth-helper
     SUBDIR += vanguards-tor
     SUBDIR += vault
+    SUBDIR += vault-medusa
     SUBDIR += vaultwarden
     SUBDIR += veracrypt
     SUBDIR += vigenere
