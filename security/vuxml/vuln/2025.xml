@@ -1,3 +1,561 @@
+  <vuln vid="ca5d4e87-c465-11f0-b3f7-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>142.0.7444.175</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>142.0.7444.175</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/11/stable-channel-update-for-desktop_17.html">
+	 <p>This update includes 2 security fixes:</p>
+	 <ul>
+	    <li>[460017370] High CVE-2025-13223: Type Confusion in V8. Reported by Clément Lecigne of Google's Threat Analysis Group on 2025-11-12</li>
+	    <li>[450328966] High CVE-2025-13224: Type Confusion in V8. Reported by Google Big Sleep on 2025-10-09</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13223</cvename>
+      <cvename>CVE-2025-13224</cvename>
+      <url>https://chromereleases.googleblog.com/2025/11/stable-channel-update-for-desktop_17.html</url>
+    </references>
+    <dates>
+      <discovery>2025-11-17</discovery>
+      <entry>2025-11-18</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1a46e84d-c406-11f0-b513-0da7be77c170">
+    <topic>pkcs11-helper -- deserialize buffer overflow</topic>
+    <affects>
+      <package>
+	<name>pkcs11-helper</name>
+	<range><lt>1.31.0</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Alon Bar-Lev reports:</p>
+	<blockquote cite="https://github.com/OpenSC/pkcs11-helper/releases/tag/pkcs11-helper-1.31.0">
+	  <p>util: fix deserialize buffer overflow. thanks to Aarnav Bos.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://github.com/OpenSC/pkcs11-helper/releases/tag/pkcs11-helper-1.31.0</url>
+    </references>
+    <dates>
+      <discovery>2025-11-10</discovery>
+      <entry>2025-11-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="50a0c266-c3ff-11f0-b513-0da7be77c170">
+    <topic>OpenVPN -- avoid buffer overread parsing routes or endpoints</topic>
+    <affects>
+      <package>
+	<name>openvpn-devel</name>
+	<range><lt>g20251117,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mikhail Khachaiants reports:</p>
+	<blockquote cite="https://github.com/OpenVPN/openvpn/commit/f1b851dae60eb1e277315dfe6265e3a58660b16a">
+	  <p>socket: reject mismatched address family in get_addr_generic.</p>
+	  <p>Add a family check to prevent copying address data of the wrong type,
+	    which could cause buffer over-read when parsing routes or endpoints.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-12106</cvename>
+      <url>https://github.com/OpenVPN/openvpn/commit/f1b851dae60eb1e277315dfe6265e3a58660b16a</url>
+    </references>
+    <dates>
+      <discovery>2025-10-18</discovery>
+      <entry>2025-11-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="17a40d76-c3fd-11f0-b513-0da7be77c170">
+    <topic>OpenVPN -- HMAC verification on source IP address ineffective</topic>
+    <affects>
+      <package>
+	<name>openvpn</name>
+	<range><lt>2.6.16</lt></range>
+      </package>
+      <package>
+	<name>openvpn-devel</name>
+	<range><lt>g20251117,1</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Arne Schwabe reports:</p>
+	<blockquote cite="https://github.com/OpenVPN/openvpn/commit/fa6a1824b0f37bff137204156a74ca28cf5b6f83">
+	  <p>Fix memcmp check for the hmac verification in the 3way handshake being inverted
+	  This is a stupid mistake but causes all hmac cookies to be accepted,
+	  thus breaking source IP address validation.	As a consequence, TLS
+	  sessions can be openend and state can be consumed in the server from
+	    IP addresses that did not initiate an initial connection.</p>
+	  <p>While at it, fix check to only allow [t-2;t] timeslots, disallowing
+	    HMACs coming in from a future timeslot.</p>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13086</cvename>
+      <url>https://github.com/OpenVPN/openvpn/commit/fa6a1824b0f37bff137204156a74ca28cf5b6f83</url>
+    </references>
+    <dates>
+      <discovery>2025-10-27</discovery>
+      <entry>2025-11-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fa433f05-c217-11f0-82ac-901b0edee044">
+    <topic>py-pdfminer.six -- Arbitrary Code Execution in pdfminer.six via Crafted PDF Input</topic>
+    <affects>
+     <package>
+       <name>py310-pdfminer.six</name>
+       <name>py311-pdfminer.six</name>
+       <name>py312-pdfminer.six</name>
+       <name>py313-pdfminer.six</name>
+       <name>py313t-pdfminer.six</name>
+       <name>py314-pdfminer.six</name>
+       <range><lt>20251107</lt></range>
+     </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Pieter Marsman reports:</p>
+	<blockquote cite="https://github.com/pdfminer/pdfminer.six/security/advisories/GHSA-wf5f-4jwr-ppcp">
+	  <p>pdfminer.six will execute arbitrary code from a malicious pickle file if provided with a malicious PDF file. The CMapDB._load_data() function in pdfminer.six uses pickle.loads() to deserialize pickle files. These pickle files are supposed to be part of the pdfminer.six distribution stored in the cmap/ directory, but a malicious PDF can specify an alternative directory and filename as long as the filename ends in .pickle.gz. A malicious, zipped pickle file can then contain code which will automatically execute when the PDF is processed.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-64512</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-64512</url>
+    </references>
+    <dates>
+      <discovery>2025-11-07</discovery>
+      <entry>2025-11-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bf6c9252-c2ec-11f0-8372-98b78501ef2a">
+    <topic>sudo-rs -- Authenticating user not recorded properly in timestamp</topic>
+    <affects>
+    <package>
+	<name>sudo-rs</name>
+	<range><ge>0.2.5</ge><lt>0.2.10</lt></range>
+	</package>
+	<package>
+	<name>sudo-rs-coexist</name>
+	<range><ge>0.2.5</ge><lt>0.2.10</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Trifecta Tech Foundation reports:</p>
+	<blockquote cite="https://github.com/trifectatechfoundation/sudo-rs/security/advisories/GHSA-q428-6v73-fc4q">
+	  <p>With Defaults targetpw (or Defaults rootpw) enabled, the password of the
+	  target account (or root account) instead of the invoking user is used for authentication.
+	  sudo-rs prior to 0.2.10 incorrectly recorded the invoking user’s UID instead of the
+	  authenticated-as user's UID in the authentication timestamp. Any later sudo invocation
+	  on the same terminal while the timestamp was still valid would use that timestamp,
+	  potentially bypassing new authentication even if the policy would have required it.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-64517</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-64517</url>
+    </references>
+    <dates>
+      <discovery>2025-11-12</discovery>
+      <entry>2025-11-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c1ceaaea-c2e7-11f0-8372-98b78501ef2a">
+    <topic>sudo-rs -- Partial password reveal when password timeout occurs</topic>
+    <affects>
+    <package>
+	<name>sudo-rs</name>
+	<range><ge>0.2.7</ge><lt>0.2.10</lt></range>
+    </package>
+    <package>
+	<name>sudo-rs-coexist</name>
+	<range><ge>0.2.7</ge><lt>0.2.10</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Trifecta Tech Foundation reports:</p>
+	<blockquote cite="https://github.com/trifectatechfoundation/sudo-rs/security/advisories/GHSA-c978-wq47-pvvw">
+	  <p>When typing partial passwords but not pressing return for a long time,
+	  a password timeout can occur. When this happens, the keys pressed are
+	  replayed onto the console.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-64170</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-64170</url>
+    </references>
+    <dates>
+      <discovery>2025-11-12</discovery>
+      <entry>2025-11-16</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="364e5fa4-c178-11f0-b614-b42e991fc52e">
+    <topic>PostgreSQL -- Multiple vulnerabilities</topic>
+    <affects>
+    <package>
+	<name>postgresql13-client</name>
+	<range><lt>13.23</lt></range>
+    </package>
+    <package>
+	<name>postgresql14-client</name>
+	<range><lt>14.20</lt></range>
+    </package>
+    <package>
+	<name>postgresql15-client</name>
+	<range><lt>15.15</lt></range>
+    </package>
+    <package>
+	<name>postgresql16-client</name>
+	<range><lt>16.11</lt></range>
+    </package>
+    <package>
+	<name>postgresql17-client</name>
+	<range><lt>17.7</lt></range>
+    </package>
+    <package>
+	<name>postgresql18-client</name>
+	<range><lt>18.1</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://www.postgresql.org/support/security/CVE-2025-12818/ reports:</p>
+	<blockquote cite="https://www.postgresql.org/support/security/CVE-2025-12818/">
+	  <ul>
+	  <li>Integer wraparound in multiple PostgreSQL libpq client
+	  library functions allows an application input provider or
+	  network peer to cause libpq to undersize an allocation and
+	  write out-of-bounds by hundreds of megabytes.  This results
+	  in a segmentation fault for the application using libpq.</li>
+	  <li>Missing authorization in PostgreSQL CREATE STATISTICS
+	  command allows a table owner to achieve denial of service
+	  against other CREATE STATISTICS users by creating in any
+	  schema.  A later CREATE STATISTICS for the same name, from a
+	  user having the CREATE privilege, would then fail.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-12818</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-12818</url>
+      <cvename>CVE-2025-12817</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-12817</url>
+    </references>
+    <dates>
+      <discovery>2025-11-13</discovery>
+      <entry>2025-11-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2063f110-c0b8-11f0-a633-8c164580114f">
+    <topic>lightdm-kde-greeter -- Privilege Escalation from lightdm Service User to root</topic>
+    <affects>
+    <package>
+	<name>lightdm-kde-greeter</name>
+	<range><lt>6.0.4</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>SUSE Security Team reports:</p>
+	<blockquote cite="https://security.opensuse.org/2025/11/13/lightdm-kde-greeter-auth-helper.html">
+	  <p>A Execution with Unnecessary Privileges vulnerability in
+	  lightdm-kde-greeter allows escalation from the service user to
+	  root. This issue affects lightdm-kde-greeter before 6.0.4.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-62876</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-62876</url>
+    </references>
+    <dates>
+      <discovery>2025-11-12</discovery>
+      <entry>2025-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bff06006-c0b7-11f0-ab42-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>145.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>145.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/buglist.cgi?bug_id=1987237%2C1990079%2C1991715%2C1994994 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1987237%2C1990079%2C1991715%2C1994994">
+	  <p>Memory safety bugs. Some of these bugs showed evidence of
+	  memory corruption and we presume that with enough effort
+	  some of these could have been exploited to run arbitrary
+	  code. </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13027</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13027</url>
+    </references>
+    <dates>
+      <discovery>2025-11-11</discovery>
+      <entry>2025-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a2a815c8-c0b7-11f0-ab42-b42e991fc52e">
+    <topic>Firefox -- Multiple vulnerabilities</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>145.0.0,2</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1994441 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1994441">
+	  <ul>
+	  <li>Sandbox escape due to incorrect boundary conditions in
+	    the Graphics: WebGPU component.</li>
+	  <li>Incorrect boundary conditions in the Graphics: WebGPU
+	    component.</li>
+	  <li>JIT miscompilation in the JavaScript Engine: JIT component.</li>
+	  <li>Sandbox escape due to incorrect boundary conditions in
+	    the Graphics: WebGPU component.</li>
+	  <li>Incorrect boundary conditions in the Graphics: WebGPU
+	    component.</li>
+	  <li>Incorrect boundary conditions in the Graphics: WebGPU
+	    component.</li>
+	  </ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13026</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13026</url>
+      <cvename>CVE-2025-13025</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13025</url>
+      <cvename>CVE-2025-13024</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13024</url>
+      <cvename>CVE-2025-13023</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13023</url>
+      <cvename>CVE-2025-13022</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13022</url>
+      <cvename>CVE-2025-13021</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13021</url>
+    </references>
+    <dates>
+      <discovery>2025-11-11</discovery>
+      <entry>2025-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c894635c-c0b6-11f0-ab42-b42e991fc52e">
+    <topic>firefox -- Use-after-free</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>145.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.5</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1995686 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1995686">
+	  <ul>
+	  <li>Use-after-free in the WebRTC: Audio/Video component.</li>
+	  <li>Same-origin policy bypass in the DOM: Workers component.</li>
+	  <li>Mitigation bypass in the DOM: Security component.</li>
+	  <li>Same-origin policy bypass in the DOM: Notifications
+	    component.</li>
+	  <li>Incorrect boundary conditions in the JavaScript:
+	    WebAssembly component.</li>
+	  <li>Spoofing issue in Firefox.</li>
+	  <li>Use-after-free in the Audio/Video component.</li>
+	  <li>Mitigation bypass in the DOM: Core and HTML component.</li>
+	  <li>Race condition in the Graphics component.</li>
+	</ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13020</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13020</url>
+      <cvename>CVE-2025-13019</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13019</url>
+      <cvename>CVE-2025-13018</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13018</url>
+      <cvename>CVE-2025-13017</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13017</url>
+      <cvename>CVE-2025-13016</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13016</url>
+      <cvename>CVE-2025-13015</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13015</url>
+      <cvename>CVE-2025-13014</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13014</url>
+      <cvename>CVE-2025-13013</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13013</url>
+      <cvename>CVE-2025-13012</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13012</url>
+    </references>
+    <dates>
+      <discovery>2025-11-11</discovery>
+      <entry>2025-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="5a1d6309-c04a-11f0-85d8-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>18.5.0</ge><lt>18.5.2</lt></range>
+	<range><ge>18.4.0</ge><lt>18.4.4</lt></range>
+	<range><ge>13.2.0</ge><lt>18.3.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/11/12/patch-release-gitlab-18-5-2-released/">
+	  <p>Cross-site scripting issue in k8s proxy impacts GitLab CE/EE</p>
+	  <p>Incorrect Authorization issue in workflows impacts GitLab EE</p>
+	  <p>Information Disclosure issue in GraphQL subscriptions impacts GitLab CE/EE</p>
+	  <p>Information Disclosure issue in access control impacts GitLab CE/EE</p>
+	  <p>Prompt Injection issue in GitLab Duo review impacts GitLab EE</p>
+	  <p>Client Side Path Traversal issue in branch names impacts GitLab EE</p>
+	  <p>Information Disclosure issue in packages API endpoint impacts GitLab CE/EE</p>
+	  <p>Improper Access Control issue in GitLab Pages impacts GitLab CE/EE</p>
+	  <p>Denial of service issue in markdown impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-11224</cvename>
+      <cvename>CVE-2025-11865</cvename>
+      <cvename>CVE-2025-2615</cvename>
+      <cvename>CVE-2025-7000</cvename>
+      <cvename>CVE-2025-6945</cvename>
+      <cvename>CVE-2025-11990</cvename>
+      <cvename>CVE-2025-6171</cvename>
+      <cvename>CVE-2025-7736</cvename>
+      <cvename>CVE-2025-12983</cvename>
+      <url>https://about.gitlab.com/releases/2025/11/12/patch-release-gitlab-18-5-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-11-12</discovery>
+      <entry>2025-11-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6e1105d8-bfc2-11f0-bb2b-ecf4bbefc954">
+    <topic>privatebin XSS</topic>
+    <affects>
+      <package>
+       <name>privatebin</name>
+       <range><lt>2.0.3</lt></range>
+       </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>privatebin reports:</p>
+	<blockquote cite="https://privatebin.info/reports/vulnerability-2025-11-12-drag-drop.html">
+	  <p>Dragging a file whose filename contains HTML is reflected verbatim
+	  into the page via the drag-and-drop helper, so any user who drops a
+	  crafted file on PrivateBin will execute arbitrary JavaScript within
+	  their own session (self-XSS). This allows an attacker who can entice
+	  a victim to drag or otherwise attach such a file to exfiltrate
+	  plaintext, encryption keys, or stored pastes before they are
+	  encrypted or sent.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-62796</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-62796</url>
+    </references>
+    <dates>
+      <discovery>2025-11-09</discovery>
+      <entry>2025-11-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6e05f716-bf9e-11f0-b3f7-a8a1599412c6">
+    <topic>chromium -- security fix</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>142.0.7444.162</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>142.0.7444.162</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/11/stable-channel-update-for-desktop_11.html">
+	 <p>This update includes 1 security fix:</p>
+	 <ul>
+	    <li>[457351015] High CVE-2025-13042: Inappropriate implementation in V8. Reported by 303f06e3 on 2025-11-03</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13042</cvename>
+      <url>https://chromereleases.googleblog.com/2025/11/stable-channel-update-for-desktop_11.html</url>
+    </references>
+    <dates>
+      <discovery>2025-11-11</discovery>
+      <entry>2025-11-12</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="93ff3ebe-bba8-11f0-b3f7-a8a1599412c6">
     <topic>chromium -- multiple security fixes</topic>
     <affects>
