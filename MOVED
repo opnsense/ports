@@ -1098,7 +1098,6 @@ security/webscarab||2022-03-31|Has expired: Deprecated by upstream in 2014
 security/pscan||2022-03-31|Has expired: Abandonware, last release in 2000
 security/vnccrack||2022-03-31|Has expired: Outdated and abandoned, last release in 2008. Upstream is at 2.1 while version in ports is 1.0.0
 security/doscan||2022-03-31|Has expired: Abandonware, last release in 2014. Please consider using security/masscan or sysutils/pnscan
-security/radamsa||2022-03-31|Has expired: Abandonware, last release in 2017 and marked as BROKEN in late 2020
 security/trinokiller||2022-03-31|Has expired: Abandonware, dead upstream
 security/spybye||2022-03-31|Has expired: Abandonware, last release in 2008 and no upstream development
 security/razorback-officeCat||2022-03-31|Has expired: Abandonware, last release in 2012 and listed as alpha quality by upstream
@@ -4861,3 +4860,11 @@ games/openlierox||2025-11-06|Remove broken port
 net/glusterfs||2025-11-06|Remove broken port
 games/pokerth||2025-11-06|Remove broken port
 security/py-openssl|security/py-pyopenssl|2025-11-11|Move security/py-openssl to security/py-pyopenssl
+graphics/converseen@qt6|graphics/converseen|2025-11-14|Unflavorize port, as it is now qt6 only
+www/rubygem-gon-rails60|www/rubygem-gon-rails-gitlab|2025-11-15|Obsolete, use www/rubygem-gon-rails-gitlab instead
+www/rubygem-gon-rails61|www/rubygem-gon-rails-gitlab|2025-11-15|Obsolete, use www/rubygem-gon-rails-gitlab instead
+www/rubygem-gon-rails70|www/rubygem-gon-rails-gitlab|2025-11-15|Obsolete, use www/rubygem-gon-rails-gitlab instead
+deskutils/fet@qt5|deskutils/fet|2025-11-16|Qt Flavorization has been removed. Qt 5.x is EOL and deskutils/fet now based on Qt 6.x
+deskutils/fet@qt6|deskutils/fet|2025-11-16|Qt Flavorization has been removed. Continue to enjoy deskutils/fet based on Qt 6.x as usual
+lang/ruby35|lang/ruby40|2025-11-18|Upstream changed version of master branch in their repository from 3.5 to 4.0
+lang/spidermonkey91||2025-11-18|Removed
