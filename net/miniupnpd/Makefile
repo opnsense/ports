@@ -35,7 +35,7 @@ PLIST_FILES=	etc/miniupnpd.conf.sample \
 		share/man/man8/miniupnpd.8.gz
 
 OPTIONS_DEFINE=			CHECK_PORTINUSE IPV6 LEASEFILE UPNP_IGDV2 \
-			UPNP_NOPPP UPNP_STRICT
+				UPNP_NOPPP UPNP_STRICT
 CHECK_PORTINUSE_DESC=		Check if ports are in use
 LEASEFILE_DESC=			Enable lease file
 UPNP_IGDV2_DESC=		Build support for UPnP IGDv2 and IPv6 with IGD into the daemon
