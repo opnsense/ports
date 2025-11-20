@@ -25,8 +25,8 @@ USE_RC_SUBR=	${PORTNAME}
 
 HAS_CONFIGURE=	yes
 # unconditionally use pf, ipfw does not work on FreeBSD
-CONFIGURE_ARGS=	--firewall=pf \
-		--libpfctl --vendorcfg
+CONFIGURE_ARGS=	--firewall=pf --libpfctl --vendorcfg
+
 MAKE_ENV=	MANPREFIX=${PREFIX}/share
 MAKE_JOBS_UNSAFE=	yes
 
