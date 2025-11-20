@@ -99,7 +99,7 @@ KDE_FRAMEWORKS5_VERSION?=	5.116.0
 KDE_FRAMEWORKS5_BRANCH?=	stable
 
 # Current KDE Frameworks (Qt6 based).
-KDE_FRAMEWORKS6_VERSION?=	6.19.0
+KDE_FRAMEWORKS6_VERSION?=	6.20.0
 KDE_FRAMEWORKS6_BRANCH?=	stable
 
 # Current KDE applications. Update _${PORTNAME}_PROJECT_VERSION for the following ports:
@@ -210,7 +210,7 @@ DESCR=			${.CURDIR:H:H}/x11/plasma6-plasma/pkg-descr
 .      elif ${_KDE_CATEGORY:Mkde-frameworks}
 PORTVERSION?=		${KDE_FRAMEWORKS_VERSION}
 PKGNAMEPREFIX?=		kf${_KDE_VERSION}-
-WWW?=			https://api.kde.org/frameworks/${PORTNAME}/html/index.html
+WWW?=			https://api.kde.org/${PORTNAME}-index.html
 # This is a slight duplication of _USE_PORTINGAIDS_ALL
 _PORTINGAIDS=		kjs kjsembed kdelibs4support kdesignerplugin khtml kmediaplayer kross kxmlrpcclient
 .        if ${_KDE_VERSION:M5}
