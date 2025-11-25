@@ -188,6 +188,7 @@
     SUBDIR += dangen
     SUBDIR += darkplaces
     SUBDIR += defendguin
+    SUBDIR += devd-controller-rules
     SUBDIR += devilutionX
     SUBDIR += dhewm3
     SUBDIR += diaspora
@@ -751,6 +752,7 @@
     SUBDIR += p5-Games-GuessWord
     SUBDIR += p5-Games-Tournament-RoundRobin
     SUBDIR += pachi
+    SUBDIR += pacman.c
     SUBDIR += pacmanarena
     SUBDIR += palapeli
     SUBDIR += pangzero

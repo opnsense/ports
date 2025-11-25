@@ -1,8 +1,9 @@
 PORTNAME=	kanidm
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.8.0
+DISTVERSION=	1.8.1
 CATEGORIES=	security net
 
+# implicit-approval+: dtxdf
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Simple and secure identity management platform ${${FLAVOR}_COMMENT}
 WWW=		https://kanidm.com \
