@@ -377,7 +377,7 @@ main(int argc, char **argv)
 		if (filterlog_pcap_file != NULL)
 			tap = pcap_open_offline(filterlog_pcap_file, errbuf);
 		else
-			tap = pcap_open_live(interface, MAXIMUM_SNAPLEN, 1, 1000, errbuf);
+			tap = pcap_open_live(interface, MAXIMUM_SNAPLEN, 0, 1000, errbuf);
 		if (tap == NULL) {
 			syslog(LOG_ERR, "Failed to initialize: %s(%m)", errbuf);
 			return (-1);
