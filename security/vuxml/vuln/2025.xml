@@ -1,3 +1,263 @@
+  <vuln vid="eda92945-ced4-11f0-a958-b42e991fc52e">
+    <topic>MongoDB -- Missing Authorization</topic>
+    <affects>
+    <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.14</lt></range>
+    </package>
+    <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.26</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://jira.mongodb.org/browse/SERVER-103582 reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-103582">
+	  <p>A user with access to the cluster with a limited set of
+	  privilege actions may be able to terminate queries that are
+	  being executed by other users.  This may cause a denial of
+	  service by preventing a fraction of queries from
+	  successfully completing.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13643</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13643</url>
+    </references>
+    <dates>
+      <discovery>2025-11-25</discovery>
+      <entry>2025-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ea64d2ec-ced4-11f0-a958-b42e991fc52e">
+    <topic>MongoDB -- Improper Validation of Specified Quantity in Input</topic>
+    <affects>
+    <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.16</lt></range>
+    </package>
+    <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.26</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://jira.mongodb.org/browse/SERVER-108565 reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-108565">
+	  <p>Inconsistent object size validation in time series
+	  processing logic may result in later processing of oversized
+	  BSON documents leading to an assert failing and process
+	  termination.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13507</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13507</url>
+    </references>
+    <dates>
+      <discovery>2025-11-25</discovery>
+      <entry>2025-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="e72ec9c1-ced4-11f0-a958-b42e991fc52e">
+    <topic>MongoDB -- Reachable Assertion</topic>
+    <affects>
+    <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.13</lt></range>
+    </package>
+    <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.26</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://jira.mongodb.org/browse/SERVER-101180 reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-101180">
+	  <p>MongoDB Server may experience an invariant failure during
+	  batched delete operations when handling documents.  The
+	  issue arises when the server mistakenly assumes the presence
+	  of multiple documents in a batch based solely on document
+	  size exceeding BSONObjMaxSize.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-13644</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-13644</url>
+    </references>
+    <dates>
+      <discovery>2025-11-25</discovery>
+      <entry>2025-12-01</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ba02dfb6-ce31-11f0-a327-589cfc01894a">
+    <topic>wolfssl -- multiple issues</topic>
+    <affects>
+      <package>
+      <name>wolfssl</name>
+	      <range><lt>5.8.4</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>wolfSSL blog  reports:</p>
+	<blockquote cite="https://www.wolfssl.com/wolfssl-5-8-4-now-available/">
+	  <p>This release includes multiple fixes across TLS 1.2, TLS 1.3, X25519,
+	  XChaCha20-Poly1305, and PSK processing. Highlights include:</p>
+    <ul>
+      <li>A timing-side-channel issue in X25519 specifically affecting
+      Xtensa-based ESP32 devices. Low-memory X25519 implementations are now
+      the default for Xtensa.</li>
+      <li>A medium-severity TLS 1.3 server-side DoS risk from repeated
+      KeyShareEntry values in malicious ClientHello messages.</li>
+      <li>Several TLS 1.3 downgrade-related issues (PFS downgrades, signature
+      algorithm downgrades, and duplicate extension parsing).</li>
+      <li>A memory leak risk in TLS 1.2 certificate digest handling.</li>
+      <li>XChaCha20-Poly1305 decryption bounds-check fix and constant-time
+      improvements in PSK binder verification.</li>
+    </ul>
+	</blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-12888</cvename>
+      <cvename>CVE-2025-11936</cvename>
+      <cvename>CVE-2025-11935</cvename>
+      <cvename>CVE-2025-11934</cvename>
+      <cvename>CVE-2025-11933</cvename>
+      <cvename>CVE-2025-11932</cvename>
+      <cvename>CVE-2025-11931</cvename>
+      <cvename>CVE-2025-12889</cvename>
+      <url>https://github.com/wolfSSL/wolfssl/releases/tag/v5.8.4-stable</url>
+    </references>
+    <dates>
+      <discovery>2025-11-20</discovery>
+      <entry>2025-11-30</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="d2f2c691-cd42-11f0-85d4-b42e991fc52e">
+    <topic>MongoDB Server -- Improper Certificate Validation</topic>
+    <affects>
+    <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.26</lt></range>
+    </package>
+    <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.16</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://jira.mongodb.org/browse/SERVER-105783 reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-105783">
+	<p>Clients may successfully perform a TLS handshake with a
+	MongoDB server despite presenting a client certificate not
+	aligning with the documented Extended Key Usage (EKU)
+	requirements.  A certificate that specifies extendedKeyUsage
+	but is missing extendedKeyUsage = clientAuth may still be
+	successfully authenticated via the TLS handshake as a
+	client.  This issue is specific to MongoDB servers running
+	on Windows or Apple as the expected validation behavior
+	functions correctly on Linux systems.  Additionally, MongoDB
+	servers may successfully establish egress TLS connections
+	with servers that present server certificates not aligning
+	with the documented Extended Key Usage (EKU) requirements.
+	A certificate that specifies extendedKeyUsage but is missing
+	extendedKeyUsage = serverAuth may still be successfully
+	authenticated via the TLS handshake as a server.  This issue
+	is specific to MongoDB servers running on Apple as the
+	expected validation behavior functions correctly on both
+	Linux and Windows systems.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-12893</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-12893</url>
+    </references>
+    <dates>
+      <discovery>2025-11-25</discovery>
+      <entry>2025-11-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="4b297f5a-cbad-11f0-ac9f-b42e991fc52e">
+    <topic>png -- Multiple vulnerabilities</topic>
+    <affects>
+    <package>
+	<name>png</name>
+	<range><lt>1.6.51</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://github.com/pnggroup/libpng/security/advisories/GHSA-7wv6-48j4-hj3g reports:</p>
+	<blockquote cite="https://github.com/pnggroup/libpng/security/advisories/GHSA-7wv6-48j4-hj3g">
+	<p>LIBPNG is a reference library for use in applications
+	that read, create, and manipulate PNG (Portable Network
+	Graphics) raster image files.
+	</p>
+	<ul>
+	<li>From version 1.6.0 to before 1.6.51, there is a heap
+	buffer overflow vulnerability in the libpng simplified API
+	function png_image_finish_read when processing 16-bit
+	interlaced PNGs with 8-bit output format.  Attacker-crafted
+	interlaced PNG files cause heap writes beyond allocated
+	buffer bounds.  This issue has been patched in version
+	1.6.51.</li>
+	<li>From version 1.6.0 to before 1.6.51, an out-of-bounds read
+	vulnerability exists in png_image_read_composite when
+	processing palette images with PNG_FLAG_OPTIMIZE_ALPHA
+	enabled.  The palette compositing code in
+	png_init_read_transformations incorrectly applies background
+	compositing during premultiplication, violating the invariant
+	component alpha 257 required by the simplified PNG API.</li>
+	<li>From version 1.6.0 to before 1.6.51, a heap buffer over-read
+	vulnerability exists in libpng's png_write_image_8bit function
+	when processing 8-bit images through the simplified write API
+	with convert_to_8bit enabled.  The vulnerability affects 8-bit
+	grayscale+alpha, RGB/RGBA, and images with incomplete row data.
+	A conditional guard incorrectly allows 8-bit input to enter code
+	expecting 16-bit input, causing reads up to 2 bytes beyond
+	allocated buffer boundaries.</li>
+	<li>Prior to version 1.6.51, a heap buffer over-read vulnerability
+	exists in libpng's png_do_quantize function when processing PNG
+	files with malformed palette indices.  The vulnerability occurs
+	when palette_lookup array bounds are not validated against
+	externally-supplied image data, allowing an attacker to craft a
+	PNG file with out-of-range palette indices that trigger
+	out-of-bounds memory access.</li>
+	</ul>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-65018</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-65018</url>
+      <cvename>CVE-2025-64720</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-64720</url>
+      <cvename>CVE-2025-64506</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-64506</url>
+      <cvename>CVE-2025-64505</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-64505</url>
+    </references>
+    <dates>
+      <discovery>2025-11-24</discovery>
+      <entry>2025-11-27</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="4530fc9f-cb47-11f0-85d8-2cf05da270f3">
     <topic>Gitlab -- vulnerabilities</topic>
     <affects>
@@ -1677,6 +1937,11 @@
        <name>unbound</name>
        <range><lt>1.24.1</lt></range>
       </package>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>14.3</ge><lt>14.3_6</lt></range>
+	<range><ge>13.5</ge><lt>13.5_7</lt></range>
+      </package>
     </affects>
     <description>
        <body xmlns="http://www.w3.org/1999/xhtml">
@@ -1702,10 +1967,12 @@
     <references>
       <cvename>CVE-2025-11411</cvename>
       <url>https://nvd.nist.gov/vuln/detail/CVE-2025-11411</url>
+      <freebsdsa>SA-25:10.unbound</freebsdsa>
     </references>
     <dates>
       <discovery>2025-10-22</discovery>
       <entry>2025-10-23</entry>
+      <modified>2025-11-27</modified>
     </dates>
   </vuln>
 
