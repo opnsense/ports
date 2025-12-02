@@ -4353,6 +4353,7 @@
     SUBDIR += protobuf3
     SUBDIR += protoc-gen-go-grpc
     SUBDIR += prototool
+    SUBDIR += protovalidate
     SUBDIR += protozero
     SUBDIR += pructl
     SUBDIR += psimd
@@ -4644,6 +4645,7 @@
     SUBDIR += py-cbor2
     SUBDIR += py-cclib
     SUBDIR += py-cdg
+    SUBDIR += py-cel-python
     SUBDIR += py-celery
     SUBDIR += py-celery-progress
     SUBDIR += py-celery-singleton
@@ -5550,6 +5552,7 @@
     SUBDIR += py-poetry-types
     SUBDIR += py-poetry2setup
     SUBDIR += py-polib
+    SUBDIR += py-polyfactory
     SUBDIR += py-pondpond
     SUBDIR += py-pooch
     SUBDIR += py-pop
@@ -5584,6 +5587,7 @@
     SUBDIR += py-proto-plus
     SUBDIR += py-protobuf
     SUBDIR += py-protobuf-compiler
+    SUBDIR += py-protovalidate
     SUBDIR += py-proxmoxer
     SUBDIR += py-psygnal
     SUBDIR += py-ptable
@@ -5836,6 +5840,7 @@
     SUBDIR += py-pythonfinder
     SUBDIR += py-pythran
     SUBDIR += py-pytimeparse
+    SUBDIR += py-pytokens
     SUBDIR += py-pytoolconfig
     SUBDIR += py-pytools
     SUBDIR += py-pytrie
@@ -6144,6 +6149,7 @@
     SUBDIR += py-typecode
     SUBDIR += py-typeguard
     SUBDIR += py-typer
+    SUBDIR += py-typer-slim
     SUBDIR += py-types-Pygments
     SUBDIR += py-types-decorator
     SUBDIR += py-types-docutils
@@ -6675,6 +6681,7 @@
     SUBDIR += rubygem-aws-sdk-comprehend
     SUBDIR += rubygem-aws-sdk-comprehendmedical
     SUBDIR += rubygem-aws-sdk-computeoptimizer
+    SUBDIR += rubygem-aws-sdk-computeoptimizerautomation
     SUBDIR += rubygem-aws-sdk-configservice
     SUBDIR += rubygem-aws-sdk-connect
     SUBDIR += rubygem-aws-sdk-connectcampaignservice
@@ -6851,6 +6858,7 @@
     SUBDIR += rubygem-aws-sdk-mq
     SUBDIR += rubygem-aws-sdk-mturk
     SUBDIR += rubygem-aws-sdk-mwaa
+    SUBDIR += rubygem-aws-sdk-mwaaserverless
     SUBDIR += rubygem-aws-sdk-neptune
     SUBDIR += rubygem-aws-sdk-neptunedata
     SUBDIR += rubygem-aws-sdk-neptunegraph
@@ -6870,6 +6878,7 @@
     SUBDIR += rubygem-aws-sdk-osis
     SUBDIR += rubygem-aws-sdk-outposts
     SUBDIR += rubygem-aws-sdk-panorama
+    SUBDIR += rubygem-aws-sdk-partnercentralchannel
     SUBDIR += rubygem-aws-sdk-partnercentralselling
     SUBDIR += rubygem-aws-sdk-paymentcryptography
     SUBDIR += rubygem-aws-sdk-paymentcryptographydata
@@ -6932,6 +6941,7 @@
     SUBDIR += rubygem-aws-sdk-sagemakergeospatial
     SUBDIR += rubygem-aws-sdk-sagemakermetrics
     SUBDIR += rubygem-aws-sdk-sagemakerruntime
+    SUBDIR += rubygem-aws-sdk-sagemakerruntimehttp2
     SUBDIR += rubygem-aws-sdk-savingsplans
     SUBDIR += rubygem-aws-sdk-scheduler
     SUBDIR += rubygem-aws-sdk-schemas
@@ -7162,6 +7172,7 @@
     SUBDIR += rubygem-blockenspiel
     SUBDIR += rubygem-bones
     SUBDIR += rubygem-bootsnap
+    SUBDIR += rubygem-bootsnap-gitlab
     SUBDIR += rubygem-bootstrap_form
     SUBDIR += rubygem-bson
     SUBDIR += rubygem-buftok
@@ -7244,6 +7255,7 @@
     SUBDIR += rubygem-cucumber-messages27
     SUBDIR += rubygem-cucumber-messages28
     SUBDIR += rubygem-cucumber-messages29
+    SUBDIR += rubygem-cucumber-messages30
     SUBDIR += rubygem-cucumber-rails
     SUBDIR += rubygem-cucumber-tag-expressions
     SUBDIR += rubygem-cucumber-wire
@@ -7500,6 +7512,7 @@
     SUBDIR += rubygem-grape-route-helpers
     SUBDIR += rubygem-grape-swagger
     SUBDIR += rubygem-grape-swagger-entity
+    SUBDIR += rubygem-grape-swagger-gitlab
     SUBDIR += rubygem-grape20
     SUBDIR += rubygem-grape_logging
     SUBDIR += rubygem-grape_logging-gitlab
@@ -8362,6 +8375,7 @@
     SUBDIR += stylua
     SUBDIR += styx
     SUBDIR += subprocess
+    SUBDIR += subprocess.h
     SUBDIR += subversion
     SUBDIR += subversion-book
     SUBDIR += subversion-lts

@@ -1133,6 +1133,7 @@
     SUBDIR += py-pysmb
     SUBDIR += py-pysocks
     SUBDIR += py-pystun
+    SUBDIR += py-pystun3
     SUBDIR += py-python-barbicanclient
     SUBDIR += py-python-bitcoinrpc
     SUBDIR += py-python-cinderclient
@@ -1237,6 +1238,7 @@
     SUBDIR += read_bbrlog
     SUBDIR += realtek-re-kmod
     SUBDIR += realtek-re-kmod198
+    SUBDIR += realtek-rge-kmod
     SUBDIR += reaver
     SUBDIR += recvnet
     SUBDIR += redir

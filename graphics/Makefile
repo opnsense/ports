@@ -925,6 +925,7 @@
     SUBDIR += py-dj52-sorl-thumbnail
     SUBDIR += py-django-easy-thumbnails
     SUBDIR += py-djvulibre
+    SUBDIR += py-easyocr
     SUBDIR += py-exifread
     SUBDIR += py-f3d
     SUBDIR += py-face_recognition
@@ -1030,8 +1031,8 @@
     SUBDIR += py-rasterstats
     SUBDIR += py-rawkit
     SUBDIR += py-rawpy
-    SUBDIR += py-rlpycairo
     SUBDIR += py-rich-pixels
+    SUBDIR += py-rlpycairo
     SUBDIR += py-s2
     SUBDIR += py-scikit-image
     SUBDIR += py-seqdiag
