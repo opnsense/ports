@@ -33,7 +33,7 @@ PLIST_FILES=	etc/miniupnpd.conf.sample \
 		sbin/miniupnpd
 
 OPTIONS_DEFINE=			CHECK_PORTINUSE IPV6 LEASEFILE UPNP_IGDV2 \
-				UPNP_NOPPP_DESC UPNP_STRICT
+				UPNP_NOPPP UPNP_STRICT
 CHECK_PORTINUSE_DESC=		Check if ports are in use
 LEASEFILE_DESC=			Enable lease file
 UPNP_IGDV2_DESC=		Build an IGDv2 instead of an IGDv1
