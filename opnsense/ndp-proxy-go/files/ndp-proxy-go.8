@@ -18,23 +18,26 @@
 .Op Fl -route-qps Ar n
 .Op Fl -route-burst Ar n
 .Op Fl -pcap-timeout Ar duration
+.Op Fl -pf Ar [interface]:table
 .Ar upstream
 .Ar downstream ...
 .Sh DESCRIPTION
 The
 .Nm
-daemon bridges IPv6 Neighbor Discovery traffic between an upstream
-interface (ISP router) and one or more downstream interfaces (local clients).
+userspace daemon bridges IPv6 Neighbor Discovery (NA/NS/DAD) and Router Advertisement (RS/RA) between
+an upstream interface (ISP router) and one or more downstream interfaces (local clients).
 
 It is intended to run on a FreeBSD router that separates internal networks
 from the ISP uplink while allowing downstream clients to autoconfigure IPv6
 addresses as if directly connected to the provider.
 
-The upstream (WAN) interface must obtain a global SLAAC address and receive
-Router Advertisements from the provider. Downstream (LAN) interfaces must at least
-have a link-local address to participate in Neighbor Discovery forwarding.
+The upstream (WAN) interface must be ethernet (preferred) or point-to-point (experimental),
+obtain a global SLAAC address and receive periodic Router Advertisements (RA) from the provider.
 
-Useful when the ISP provides only a single /64 prefix and no DHCPv6-PD.
+Downstream (LAN) interfaces must be ethernet and at least have a link-local
+address to participate in Neighbor Discovery forwarding.
+
+Useful when the ISP provides only a single /64 on-link prefix and no DHCPv6-PD.
 
 The daemon must be run as root.
 .Sh OPTIONS
@@ -59,6 +62,12 @@ Limit route operations per second (default 50).
 Burst of route operations before rate limiting (default 50).
 .It Fl -pcap-timeout Ar duration
 Packet capture poll timeout, 25–250 ms recommended (default 50 ms).
+.It Fl -pf= Ar [interface]:table
+Populate a PF table with learned IPv6 addresses.
+This option may be specified multiple times.
+If
+.Ar interface
+is omitted, the mapping applies globally to all interfaces.
 .El
 .Sh EXAMPLES
 .Bd -literal -offset indent
@@ -77,6 +86,7 @@ ndp_proxy_go_flags="--debug"
 .Xr rc 8 ,
 .Xr radvd 8 ,
 .Xr ifconfig 8 ,
-.Xr route 8
+.Xr route 8 ,
+.Xr pfctl 8
 .Sh AUTHORS
 .An Cedrik Pischem Aq Mt cedrik@pischem.com
