@@ -78,11 +78,12 @@ Enable at boot via
 .Xr rc.conf 5 :
 .Bd -literal -offset indent
 ndp_proxy_go_enable="YES"
-ndp_proxy_go_upstream="eth0"
-ndp_proxy_go_downstream="eth1"
-ndp_proxy_go_flags="--debug"
+ndp_proxy_go_upstream="eth0" or "pppoe0"
+ndp_proxy_go_downstream="eth1 eth2"
+ndp_proxy_go_flags="--debug --cache-ttl 60m --pf=eth1:table1 --pf=eth2:table2"
 .Ed
 .Sh SEE ALSO
+.Xr pcap 3 ,
 .Xr rc 8 ,
 .Xr radvd 8 ,
 .Xr ifconfig 8 ,
