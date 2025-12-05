@@ -1,6 +1,6 @@
 .\" Copyright (c) 2025 Cedrik Pischem
 .\" SPDX-License-Identifier: BSD-2-Clause
-.Dd October 29, 2025
+.Dd December 5, 2025
 .Dt NDP-PROXY-GO 8
 .Os
 .Sh NAME
@@ -18,24 +18,27 @@
 .Op Fl -route-qps Ar n
 .Op Fl -route-burst Ar n
 .Op Fl -pcap-timeout Ar duration
+.Op Fl -pf Ns = Ns Ar interface : Ns Ar table
 .Ar upstream
 .Ar downstream ...
 .Sh DESCRIPTION
 The
 .Nm
-daemon bridges IPv6 Neighbor Discovery traffic between an upstream
-interface (ISP router) and one or more downstream interfaces (local clients).
-
+userspace daemon bridges IPv6 Neighbor Discovery (NA/NS/DAD) and Router Advertisement (RS/RA) between
+an upstream interface (ISP router) and one or more downstream interfaces (local clients).
+.Pp
 It is intended to run on a FreeBSD router that separates internal networks
 from the ISP uplink while allowing downstream clients to autoconfigure IPv6
 addresses as if directly connected to the provider.
-
-The upstream (WAN) interface must obtain a global SLAAC address and receive
-Router Advertisements from the provider. Downstream (LAN) interfaces must at least
-have a link-local address to participate in Neighbor Discovery forwarding.
-
-Useful when the ISP provides only a single /64 prefix and no DHCPv6-PD.
-
+.Pp
+The upstream (WAN) interface must be ethernet (preferred) or point-to-point (experimental),
+obtain a global SLAAC address and receive periodic Router Advertisements (RA) from the provider.
+.Pp
+Downstream (LAN) interfaces must be ethernet and at least have a link-local
+address to participate in Neighbor Discovery forwarding.
+.Pp
+Useful when the ISP provides only a single /64 on-link prefix and no DHCPv6-PD.
+.Pp
 The daemon must be run as root.
 .Sh OPTIONS
 .Bl -tag -width Ds
@@ -59,24 +62,32 @@ Limit route operations per second (default 50).
 Burst of route operations before rate limiting (default 50).
 .It Fl -pcap-timeout Ar duration
 Packet capture poll timeout, 25–250 ms recommended (default 50 ms).
+.It Fl -pf Ns = Ns Ar interface : Ns Ar table
+Populate a PF table with learned IPv6 addresses.
+This option may be specified multiple times.
+If
+.Ar interface
+is omitted, the mapping applies globally to all interfaces.
 .El
 .Sh EXAMPLES
 .Bd -literal -offset indent
 ndp-proxy-go eth0 eth1
 .Ed
-
+.Pp
 Enable at boot via
 .Xr rc.conf 5 :
 .Bd -literal -offset indent
 ndp_proxy_go_enable="YES"
 ndp_proxy_go_upstream="eth0"
-ndp_proxy_go_downstream="eth1"
-ndp_proxy_go_flags="--debug"
+ndp_proxy_go_downstream="eth1 eth2"
+ndp_proxy_go_flags="--debug --cache-ttl 60m --pf=eth1:table1 --pf=eth2:table2"
 .Ed
 .Sh SEE ALSO
+.Xr pcap 3 ,
 .Xr rc 8 ,
 .Xr radvd 8 ,
 .Xr ifconfig 8 ,
-.Xr route 8
+.Xr route 8 ,
+.Xr pfctl 8
 .Sh AUTHORS
 .An Cedrik Pischem Aq Mt cedrik@pischem.com
