@@ -590,6 +590,7 @@
     SUBDIR += mapnik
     SUBDIR += mapserver
     SUBDIR += mapyrus
+    SUBDIR += materialx
     SUBDIR += matplotlib-cpp
     SUBDIR += matplotplusplus
     SUBDIR += meh
@@ -980,6 +981,7 @@
     SUBDIR += py-optimize-images
     SUBDIR += py-osmnet
     SUBDIR += py-pandana
+    SUBDIR += py-pandarm
     SUBDIR += py-pdf2image
     SUBDIR += py-photocollage
     SUBDIR += py-piexif
@@ -1009,6 +1011,7 @@
     SUBDIR += py-pymaging
     SUBDIR += py-pymaging-png
     SUBDIR += py-pyocr
+    SUBDIR += py-pyogrio
     SUBDIR += py-pypillowfight
     SUBDIR += py-pyproj
     SUBDIR += py-pyqrcode

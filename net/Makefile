@@ -1077,6 +1077,7 @@
     SUBDIR += py-haproxy-log-analysis
     SUBDIR += py-haproxyctl
     SUBDIR += py-httpstat
+    SUBDIR += py-icmplib
     SUBDIR += py-ifaddr
     SUBDIR += py-impacket
     SUBDIR += py-iplib
@@ -1098,7 +1099,6 @@
     SUBDIR += py-msrplib
     SUBDIR += py-ndg-httpsclient
     SUBDIR += py-netaddr
-    SUBDIR += py-netif
     SUBDIR += py-netifaces
     SUBDIR += py-netifaces-plus
     SUBDIR += py-netsnmpagent
