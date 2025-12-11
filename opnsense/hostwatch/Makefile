@@ -1,6 +1,5 @@
 PORTNAME=	hostwatch
-PORTVERSION=	1.0.2
-PORTREVISION=	1
+PORTVERSION=	1.0.3
 CATEGORIES=	security
 DISTFILES=
 
@@ -15,13 +14,11 @@ PLIST_FILES=	bin/hostwatch
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
-GH_TAGNAME=	1.0.2
 
 USE_RC_SUBR=	${PORTNAME}
 
-# use hostd as this user/group already has a port registration for another service we don't uses
-USERS= 		hostd
+# use this user/group as it already has a port registration
+USERS=		hostd
 GROUPS=		hostd
-
 
 .include <bsd.port.mk>
