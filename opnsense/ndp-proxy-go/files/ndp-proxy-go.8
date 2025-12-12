@@ -1,6 +1,6 @@
 .\" Copyright (c) 2025 Cedrik Pischem
 .\" SPDX-License-Identifier: BSD-2-Clause
-.Dd December 5, 2025
+.Dd December 12, 2025
 .Dt NDP-PROXY-GO 8
 .Os
 .Sh NAME
@@ -15,6 +15,7 @@
 .Op Fl -no-rewrite-lla
 .Op Fl -cache-ttl Ar duration
 .Op Fl -cache-max Ar n
+.Op Fl -cache-file Ar path
 .Op Fl -route-qps Ar n
 .Op Fl -route-burst Ar n
 .Op Fl -pcap-timeout Ar duration
@@ -24,21 +25,18 @@
 .Sh DESCRIPTION
 The
 .Nm
-userspace daemon bridges IPv6 Neighbor Discovery (NA/NS/DAD) and Router Advertisement (RS/RA) between
-an upstream interface (ISP router) and one or more downstream interfaces (local clients).
-.Pp
-It is intended to run on a FreeBSD router that separates internal networks
-from the ISP uplink while allowing downstream clients to autoconfigure IPv6
-addresses as if directly connected to the provider.
+userspace daemon bridges IPv6 Neighbor Discovery (NA/NS/DAD) and Router Advertisement (RS/RA)
+between an upstream interface (ISP router) and one or more downstream interfaces (local clients).
+It is intended to run on a FreeBSD router that separates internal networks from the ISP uplink
+while allowing downstream clients to autoconfigure IPv6 addresses as if directly connected
+to the provider.
 .Pp
 The upstream (WAN) interface must be ethernet (preferred) or point-to-point (experimental),
-obtain a global SLAAC address and receive periodic Router Advertisements (RA) from the provider.
+obtain a global SLAAC address, and receive periodic Router Advertisements (RA) from the provider.
+Downstream (LAN) interfaces must be ethernet and at least have a link-local address to
+participate in Neighbor Discovery forwarding.
 .Pp
-Downstream (LAN) interfaces must be ethernet and at least have a link-local
-address to participate in Neighbor Discovery forwarding.
-.Pp
-Useful when the ISP provides only a single /64 on-link prefix and no DHCPv6-PD.
-.Pp
+This daemon is useful when the ISP provides only a single /64 on-link prefix and no DHCPv6-PD.
 The daemon must be run as root.
 .Sh OPTIONS
 .Bl -tag -width Ds
@@ -56,6 +54,11 @@ Keep original SLLA/TLLA fields in forwarded packets.
 Neighbor cache entry lifetime (default 10m).
 .It Fl -cache-max Ar n
 Maximum number of cached neighbors (default 4096).
+.It Fl -cache-file Ar path
+Persist neighbor cache to a JSON file.
+The cache is loaded on startup if the file exists and written on receipt of
+.Dv SIGUSR1 .
+Expired entries are skipped on load.
 .It Fl -route-qps Ar n
 Limit route operations per second (default 50).
 .It Fl -route-burst Ar n
@@ -70,8 +73,9 @@ If
 is omitted, the mapping applies globally to all interfaces.
 .El
 .Sh EXAMPLES
+Single upstream with multiple downstream interfaces:
 .Bd -literal -offset indent
-ndp-proxy-go eth0 eth1
+ndp-proxy-go eth0 eth1 eth2
 .Ed
 .Pp
 Enable at boot via
@@ -80,6 +84,7 @@ Enable at boot via
 ndp_proxy_go_enable="YES"
 ndp_proxy_go_upstream="eth0"
 ndp_proxy_go_downstream="eth1 eth2"
+ndp_proxy_go_cache_file="/var/db/ndpproxy/cache.json"
 ndp_proxy_go_flags="--debug --cache-ttl 60m --pf=eth1:table1 --pf=eth2:table2"
 .Ed
 .Sh SEE ALSO
