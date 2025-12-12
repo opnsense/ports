@@ -64,10 +64,17 @@ index 82d8b63..d47accf 100644
  	} else {
  		RETURN_TRUE;
 diff --git radlib.c radlib.c
-index 3fe104d..763032e 100644
+index 3fe104d..59ad1d5 100644
 --- radlib.c
 +++ radlib.c
-@@ -49,6 +49,14 @@
+@@ -1,5 +1,6 @@
+ /*-
+  * Copyright 1998 Juniper Networks, Inc.
++ * Copyright 2025 Deciso B.V.
+  * All rights reserved.
+  *
+  * Redistribution and use in source and binary forms, with or without
+@@ -49,6 +50,14 @@
  #include <unistd.h>
  #endif
  
@@ -82,7 +89,7 @@ index 3fe104d..763032e 100644
  #include "radlib_compat.h"
  #include "radlib_md5.h"
  #include "radlib_private.h"
-@@ -78,6 +86,29 @@ clear_password(struct rad_handle *h)
+@@ -78,6 +87,29 @@ clear_password(struct rad_handle *h)
  	h->pass_pos = 0;
  }
  
@@ -112,7 +119,7 @@ index 3fe104d..763032e 100644
  static void
  generr(struct rad_handle *h, const char *format, ...)
  {
-@@ -149,8 +180,12 @@ is_valid_response(struct rad_handle *h, int srv,
+@@ -149,8 +181,12 @@ is_valid_response(struct rad_handle *h, int srv,
  {
  	MD5_CTX ctx;
  	unsigned char md5[16];
@@ -126,7 +133,7 @@ index 3fe104d..763032e 100644
  
  	srvp = &h->servers[srv];
  
-@@ -166,6 +201,8 @@ is_valid_response(struct rad_handle *h, int srv,
+@@ -166,6 +202,8 @@ is_valid_response(struct rad_handle *h, int srv,
  	len = h->response[POS_LENGTH] << 8 | h->response[POS_LENGTH+1];
  	if (len > h->resp_len)
  		return 0;
@@ -135,7 +142,7 @@ index 3fe104d..763032e 100644
  
  	/* Check the response authenticator */
  	MD5Init(&ctx);
-@@ -177,6 +214,39 @@ is_valid_response(struct rad_handle *h, int srv,
+@@ -177,6 +215,39 @@ is_valid_response(struct rad_handle *h, int srv,
  	if (memcmp(&h->response[POS_AUTH], md5, sizeof md5) != 0)
  		return 0;
  
@@ -175,7 +182,7 @@ index 3fe104d..763032e 100644
  	return 1;
  }
  
-@@ -541,10 +611,15 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
+@@ -541,10 +612,15 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
  	    || h->request[POS_CODE] == RAD_DISCONNECT_NAK)
  		/* Insert the request authenticator into the request */
  		insert_request_authenticator(h, h->srv);
@@ -192,7 +199,7 @@ index 3fe104d..763032e 100644
  
  	/* Send the request */
  	n = sendto(h->fd, h->request, h->req_len, 0,
-@@ -572,7 +647,7 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
+@@ -572,7 +648,7 @@ rad_continue_send_request(struct rad_handle *h, int selected, int *fd,
  }
  
  int
@@ -201,7 +208,7 @@ index 3fe104d..763032e 100644
  {
  	int i;
  
-@@ -588,6 +663,16 @@ rad_create_request(struct rad_handle *h, int code)
+@@ -588,6 +664,16 @@ rad_create_request(struct rad_handle *h, int code)
  	h->req_len = POS_ATTRS;
  	h->request_created = 1;    
  	clear_password(h);
