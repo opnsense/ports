@@ -1,3 +1,698 @@
+  <vuln vid="3a59024c-d8cf-11f0-af8c-8447094a420f">
+    <topic>Roundcube -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>roundcube</name>
+	<range><lt>1.6.12,1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The Roundcube project reports:</p>
+	<blockquote cite="https://roundcube.net/news/2025/12/13/security-updates-1.6.12-and-1.5.12">
+	  <p>Cross-Site-Scripting vulnerability via SVG’s animate tag</p>
+	  <p>Information Disclosure vulnerability in the HTML style sanitizer</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <url>https://roundcube.net/news/2025/12/13/security-updates-1.6.12-and-1.5.12</url>
+    </references>
+    <dates>
+      <discovery>2025-12-14</discovery>
+      <entry>2025-12-14</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="7a1bd1ca-cf40-41e2-9c5f-143a0d4b17af">
+    <topic>github-release-monitor -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>github-release-monitor</name>
+	<range><lt>1.4.1</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://nextjs.org/blog/security-update-2025-12-11 reports:</p>
+	<blockquote cite="https://nextjs.org/blog/security-update-2025-12-11">
+	  <h1>Description</h1>
+	  <h5>(Medium) Source Code Exposure: CVE-2025-55183</h5>
+	  <p>A specifically crafted HTTP request can cause a Server Function to
+	  return the compiled source code of other Server Functions in your
+	  application. This could reveal business logic. Secrets could also be exposed
+	  if they are defined directly in your code (rather than accessed via environment
+	  variables at runtime) and referenced within a Server Function.
+	  Depending on your bundler configuration, these values may be inlined into the
+	  compiled function output.</p>
+	  <h5>(High) Denial of Service: CVE-2025-55184</h5>
+	  <p>A specifically crafted HTTP request can be sent to any App Router endpoint
+	  that, when deserialized, can cause an infinite loop that hangs the server
+	  process and prevents future HTTP requests from being served.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-55183</cvename>
+      <cvename>CVE-2025-55184</cvename>
+      <url>https://nextjs.org/blog/security-update-2025-12-11</url>
+    </references>
+    <dates>
+      <discovery>2025-12-11</discovery>
+      <entry>2025-12-13</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="64bec4c7-d785-11f0-a1c0-0050569f0b83">
+    <topic>www/varnish-libvmod-digest -- base64 decoding vulnerability</topic>
+    <affects>
+      <package>
+      <name>varnish-libvmod-digest</name>
+      <range><lt>1.0.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>varnish developers report:</p>
+	<blockquote cite="https://vinyl-cache.org/security/VSV00012.html">
+	  <p>Common usage of vmod-digest is for basic HTTP authentication, in
+	  which case it may be possible for an attacker to circumvent the
+	  authentication check. If the decoded result string is somehow
+	  being made visible to the attacker (for example the result of
+	  the decoding is added to a response header), then there is the
+	  potential for information disclosure from reading out of band
+	  workspace data.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2023-41104</cvename>
+      <url>https://vinyl-cache.org/security/VSV00012.html</url>
+    </references>
+    <dates>
+      <discovery>2023-08-17</discovery>
+      <entry>2025-12-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2956aba3-1fcb-4c39-9cea-d88a46a3bf93">
+    <topic>jenkins -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>jenkins</name>
+	<range><lt>2.541</lt></range>
+      </package>
+      <package>
+	<name>jenkins-lts</name>
+	<range><lt>2.528.3</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Jenkins Security Advisory:</p>
+	<blockquote cite="https://www.jenkins.io/security/advisory/2025-12-10/">
+	  <h1>Description</h1>
+	  <h5>(High) SECURITY-3630 / CVE-2025-67635</h5>
+	  <p>Denial of service vulnerability in HTTP-based CLI</p>
+	  <h5>(Medium) SECURITY-1809 / CVE-2025-67636</h5>
+	  <p>Missing permission check on password fields</p>
+	  <h5>(Medium) SECURITY-783 / CVE-2025-67637 (storage), CVE-2025-67638 (masking)</h5>
+	  <p>Build authorization token stored and displayed in plain text</p>
+	  <h5>(Low) SECURITY-1166 / CVE-2025-67639</h5>
+	  <p>CSRF vulnerability on the login form</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-67635</cvename>
+      <cvename>CVE-2025-67636</cvename>
+      <cvename>CVE-2025-67637</cvename>
+      <cvename>CVE-2025-67638</cvename>
+      <cvename>CVE-2025-67639</cvename>
+      <url>https://www.jenkins.io/security/advisory/2025-12-10/</url>
+    </references>
+    <dates>
+      <discovery>2025-12-10</discovery>
+      <entry>2025-12-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1adf9ece-d4a3-11f0-83a2-843a4b343614">
+    <topic>c-ares -- Use After Free</topic>
+    <affects>
+    <package>
+	<name>c-ares</name>
+  <range><ge>1.32.3</ge><lt>1.34.6</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://github.com/c-ares/c-ares/security/advisories/GHSA-jq53-42q6-pqr5 reports:</p>
+	<blockquote cite="https://github.com/c-ares/c-ares/security/advisories/GHSA-jq53-42q6-pqr5">
+	  <p>c-ares is an asynchronous resolver library.  Versions
+	  1.32.3 through 1.34.5 terminate a query after maximum
+	  attempts when using read_answer() and process_answer(),
+	  which can cause a Denial of Service.  This issue is fixed in
+	  version 1.34.6.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-62408</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-62408</url>
+    </references>
+    <dates>
+      <discovery>2025-12-08</discovery>
+      <entry>2025-12-09</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ff25a369-d730-11f0-a15a-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>143.0.7499.109</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>143.0.7499.109</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/12/stable-channel-update-for-desktop_10.html">
+	 <p>This update includes 3 security fixes:</p>
+	 <ul>
+	    <li>[466192044] High: Under coordination.</li>
+	    <li>[460599518] Medium CVE-2025-14372: Use after free in Password Manager. Reported by Weipeng Jiang (@Krace) of VRI on 2025-11-14</li>
+	    <li>[461532432] Medium CVE-2025-14373: Inappropriate implementation in Toolbar. Reported by Khalil Zhani on 2025-11-18</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14372</cvename>
+      <cvename>CVE-2025-14373</cvename>
+      <url>https://chromereleases.googleblog.com/2025/12/stable-channel-update-for-desktop_10.html</url>
+    </references>
+    <dates>
+      <discovery>2025-12-10</discovery>
+      <entry>2025-12-12</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c11e0878-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>MongoDB Server -- Improper Locking</topic>
+    <affects>
+    <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.26</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://jira.mongodb.org/browse/SERVER-106075 reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-106075">
+	  <p>A post-authenticationflaw in the network two-phase commit
+	  protocol used for cross-shard transactions in MongoDB Server
+	  may lead to logical data inconsistencies under specific
+	  conditions which are not predictable and exist for a very
+	  short period of time.  This error can cause the transaction
+	  coordination logic to misinterpret the transaction as
+	  committed, resulting in inconsistent state on those shards.
+	  This may lead to low integrity and availability impact.
+	</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14345</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14345</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bb326db4-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/buglist.cgi?bug_id=1966501%2C1997639 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1966501%2C1997639">
+	  <p>Memory safety bugs. Some of these bugs showed evidence of
+	  memory corruption and we presume that with enough effort
+	  some of these could have been exploited to run arbitrary
+	  code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14333</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14333</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b6e19247-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Memory safety bugs</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/buglist.cgi?bug_id=1963153%2C1985058%2C1995637%2C1997118 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1963153%2C1985058%2C1995637%2C1997118">
+	  <p>Memory safety bugs. Some of these bugs showed evidence of
+	  memory corruption and we presume that with enough effort
+	  some of these could have been exploited to run arbitrary
+	  code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14332</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14332</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b463bded-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Same-origin policy bypass</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=2000218 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=2000218">
+	  <p>Same-origin policy bypass in the Request Handling
+	  component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14331</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14331</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b25f61b8-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- JIT miscompilation in the JavaScript Engine: JIT component</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1997503 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1997503">
+	  <p>JIT miscompilation in the JavaScript Engine: JIT
+	  component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14330</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14330</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="b06e1b9a-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Privilege escalation</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1997018 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1997018">
+	  <p>Privilege escalation in the Netmonitor component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14329</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14329</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="ae40f296-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Privilege escalation</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1996761 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1996761">
+	  <p>Privilege escalation in the Netmonitor component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14328</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14328</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="aad09be1-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Spoofing issue</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1970743 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1970743">
+	  <p>Spoofing issue in the Downloads Panel component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14327</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14327</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a74a1ffc-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Use-after-free</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1840666 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1840666">
+	  <p>Use-after-free in the Audio/Video: GMP component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14326</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14326</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a3c77387-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- JIT miscompilation</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1998050 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1998050">
+	  <p>JIT miscompilation in the JavaScript Engine: JIT
+	  component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14325</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14325</url>
+      <cvename>CVE-2025-14324</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14324</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9c923dc2-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Privilege escalation</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1996555 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1996555">
+	  <p>Privilege escalation in the DOM: Notifications
+	  component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14323</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14323</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9a9d50a6-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Sandbox escape</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>Thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1996473 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1996473">
+	  <p>Sandbox escape due to incorrect boundary conditions in
+	  the Graphics: CanvasWebGL component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14322</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14322</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="9525edbf-d6a8-11f0-8e1b-b42e991fc52e">
+    <topic>Mozilla -- Use-after-free</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.0,2</lt></range>
+    </package>
+    <package>
+	<name>firefox-esr</name>
+	<range><lt>140.6</lt></range>
+    </package>
+    <package>
+	<name>Thunderbird</name>
+	<range><lt>146.0.0</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=1992760 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=1992760">
+	  <p>Use-after-free in the WebRTC: Signaling component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14321</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14321</url>
+    </references>
+    <dates>
+      <discovery>2025-12-09</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c6c9306e-d645-11f0-8ce2-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>gitlab-ce</name>
+	<name>gitlab-ee</name>
+	<range><ge>18.6.0</ge><lt>18.6.2</lt></range>
+	<range><ge>18.5.0</ge><lt>18.5.4</lt></range>
+	<range><ge>6.3.0</ge><lt>18.4.6</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2025/12/10/patch-release-gitlab-18-6-2-released/">
+	  <p>Cross-site scripting issue in Wiki impacts GitLab CE/EE</p>
+	  <p>Improper encoding in vulnerability reports impacts GitLab CE/EE</p>
+	  <p>Cross-site scripting issue in Swagger UI impacts GitLab CE/EE</p>
+	  <p>Denial of service issue in GraphQL endpoints impacts GitLab CE/EE</p>
+	  <p>Authentication bypass issue for WebAuthn users impacts GitLab CE/EE</p>
+	  <p>Denial of service issue in ExifTool processing impacts GitLab CE/EE</p>
+	  <p>Denial of service issue in Commit API impacts GitLab CE/EE</p>
+	  <p>Information disclosure issue in compliance frameworks impacts GitLab EE</p>
+	  <p>Information disclosure through error messages impacts GitLab CE/EE</p>
+	  <p>HTML injection issue in merge request titles impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-12716</cvename>
+      <cvename>CVE-2025-8405</cvename>
+      <cvename>CVE-2025-12029</cvename>
+      <cvename>CVE-2025-12562</cvename>
+      <cvename>CVE-2025-11984</cvename>
+      <cvename>CVE-2025-4097</cvename>
+      <cvename>CVE-2025-14157</cvename>
+      <cvename>CVE-2025-11247</cvename>
+      <cvename>CVE-2025-13978</cvename>
+      <cvename>CVE-2025-12734</cvename>
+      <url>https://about.gitlab.com/releases/2025/12/10/patch-release-gitlab-18-6-2-released/</url>
+    </references>
+    <dates>
+      <discovery>2025-12-10</discovery>
+      <entry>2025-12-11</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="613d0f9e-d477-11f0-9e85-03ddfea11990">
     <topic>python -- several vulnerabilities</topic>
     <affects>
