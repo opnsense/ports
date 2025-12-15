@@ -1,5 +1,5 @@
 PORTNAME=	rge
-PORTVERSION=	20251129
+PORTVERSION=	20251211
 DISTVERSIONPREFIX=	v
 CATEGORIES=	net
 PKGNAMEPREFIX=	realtek-
@@ -9,14 +9,16 @@ MAINTAINER=	brnrd@FreeBSD.org
 COMMENT=	EXPERIMENTAL Kernel module for Realtek 8125/8126/8217 network cards
 WWW=		https://github.com/erikarn/if_rge_freebsd
 
-LICENSE=	BSD
+LICENSE=	BSD2CLAUSE
+
+IGNORE_FreeBSD_13=	Does not build on FreeBSD <=13
 
 USES=		kmod tar:tgz uidfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	erikarn
 GH_PROJECT=	if_rge_freebsd
-GH_TAGNAME=	d05b7b5
+GH_TAGNAME=	aa1c088
 
 WRKSRC_SUBDIR=	src
 
