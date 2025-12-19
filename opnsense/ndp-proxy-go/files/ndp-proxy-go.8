@@ -1,6 +1,6 @@
 .\" Copyright (c) 2025 Cedrik Pischem
 .\" SPDX-License-Identifier: BSD-2-Clause
-.Dd December 12, 2025
+.Dd December 19, 2025
 .Dt NDP-PROXY-GO 8
 .Os
 .Sh NAME
@@ -17,7 +17,7 @@
 .Op Fl -cache-max Ar n
 .Op Fl -cache-file Ar path
 .Op Fl -route-qps Ar n
-.Op Fl -route-burst Ar n
+.Op Fl -pf-qps Ar n
 .Op Fl -pcap-timeout Ar duration
 .Op Fl -pf Ns = Ns Ar interface : Ns Ar table
 .Ar upstream
@@ -61,8 +61,8 @@ The cache is loaded on startup if the file exists and written on receipt of
 Expired entries are skipped on load.
 .It Fl -route-qps Ar n
 Limit route operations per second (default 50).
-.It Fl -route-burst Ar n
-Burst of route operations before rate limiting (default 50).
+.It Fl -pf-qps Ar n
+Limit pfctl operations per second (default 50).
 .It Fl -pcap-timeout Ar duration
 Packet capture poll timeout, 25–250 ms recommended (default 50 ms).
 .It Fl -pf Ns = Ns Ar interface : Ns Ar table
