@@ -39,12 +39,18 @@ load_rc_config $name
 command="/usr/local/sbin/ndp-proxy-go"
 pidfile="/var/run/${name}.pid"
 
+rc_start_precmd="${start_precmd}"
 start_precmd="ndp_proxy_go_precmd"
 start_cmd="ndp_proxy_go_start"
 stop_precmd="ndp_proxy_go_prestop"
 
 ndp_proxy_go_precmd()
 {
+    # Run rc.conf supplied precmd first
+    if [ -n "${rc_start_precmd}" ]; then
+        sh -c "${rc_start_precmd}" || return 1
+    fi
+
     if [ -z "${ndp_proxy_go_upstream}" ]; then
         warn "ndp_proxy_go_upstream not set in rc.conf"
         return 1
