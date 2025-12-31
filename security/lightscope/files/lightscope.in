@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# LightScope entry point script
+# Forwards all commands to the Python daemon
+#
+exec %%PYTHON_CMD%% %%DATADIR%%/lightscope_daemon.py "$@"
