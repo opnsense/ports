@@ -1,7 +1,7 @@
 PORTNAME=	lightscope
 DISTVERSION=	1.0
 CATEGORIES=	security python
-MASTER_SITES=	https://github.com/Thelightscope/lightscope/releases/download/v${DISTVERSION}/
+MASTER_SITES=	https://github.com/Thelightscope/thelightscope/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	e@alumni.usc.edu
 COMMENT=	Network security telescope and honeypot for cybersecurity research
