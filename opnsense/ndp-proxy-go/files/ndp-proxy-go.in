@@ -14,18 +14,19 @@
 # - Optional flags:
 #   # sysrc ndp_proxy_go_flags="--debug"
 #
-# Optional settings:
-# ndp_proxy_go_enable (bool):       Enable service (NO)
-# ndp_proxy_go_upstream (string):   Upstream interface (required)
-# ndp_proxy_go_downstream (string): Downstream interface(s), space-separated (required)
+# Settings:
+# ndp_proxy_go_enable (bool):       Enable service
+# ndp_proxy_go_upstream (string):   Upstream interface
+# ndp_proxy_go_downstream (string): Downstream interface(s), space-separated
 # ndp_proxy_go_flags (string):      Additional flags (e.g., --debug, --no-ra)
-# ndp_proxy_go_cache_file (string): Path to persistent cache file (optional)
+# ndp_proxy_go_cache_file (string): Path to persistent cache file
+# ndp_proxy_go_check_carp (bool):   Check if CARP status is MASTER before starting
 
 . /etc/rc.subr
 
 name="ndp_proxy_go"
 rcvar="ndp_proxy_go_enable"
-desc="IPv6 Neighbor Discovery Proxy"
+desc="IPv6 Neighbor Discovery Protocol (NDP) Proxy"
 
 load_rc_config $name
 
@@ -35,20 +36,21 @@ load_rc_config $name
 : ${ndp_proxy_go_downstream:=""}
 : ${ndp_proxy_go_flags:=""}
 : ${ndp_proxy_go_cache_file:=""}
+: ${ndp_proxy_go_check_carp:=NO}
 
 command="/usr/local/sbin/ndp-proxy-go"
 pidfile="/var/run/${name}.pid"
 
-rc_start_precmd="${start_precmd}"
 start_precmd="ndp_proxy_go_precmd"
 start_cmd="ndp_proxy_go_start"
 stop_precmd="ndp_proxy_go_prestop"
 
 ndp_proxy_go_precmd()
 {
-    # Run rc.conf supplied precmd first
-    if [ -n "${rc_start_precmd}" ]; then
-        sh -c "${rc_start_precmd}" || return 1
+    if [ "${ndp_proxy_go_check_carp}" = "YES" ]; then
+        if ! ifconfig | grep -q 'carp: MASTER'; then
+            return 1
+        fi
     fi
 
     if [ -z "${ndp_proxy_go_upstream}" ]; then
