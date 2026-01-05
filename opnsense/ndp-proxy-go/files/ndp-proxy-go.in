@@ -36,7 +36,7 @@ load_rc_config $name
 : ${ndp_proxy_go_downstream:=""}
 : ${ndp_proxy_go_flags:=""}
 : ${ndp_proxy_go_cache_file:=""}
-: ${ndp_proxy_go_check_carp:=NO}
+: ${ndp_proxy_go_check_carp:=""}
 
 command="/usr/local/sbin/ndp-proxy-go"
 pidfile="/var/run/${name}.pid"
