@@ -47,7 +47,7 @@ stop_precmd="ndp_proxy_go_prestop"
 
 ndp_proxy_go_precmd()
 {
-    if [ "${ndp_proxy_go_check_carp}" = "YES" ]; then
+    if [ -n "${ndp_proxy_go_check_carp}" ]; then
         if ! ifconfig | grep -q 'carp: MASTER'; then
             return 1
         fi
