@@ -1,0 +1,3 @@
+opnsense-filterlog is a terminal-based viewer for OPNsense firewall logs. It
+works similarly to a pager like less, but with filtering/searching capabilities
+built specifically for firewall logs.
