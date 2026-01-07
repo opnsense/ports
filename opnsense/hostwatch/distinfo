@@ -1,4 +1,4 @@
-TIMESTAMP = 1765442579
+TIMESTAMP = 1767799449
 SHA256 (rust/crates/ahash-0.8.12.crate) = 5a15f179cd60c4584b8a8c596927aadc462e27f2ca70c04e0071964a73ba7a75
 SIZE (rust/crates/ahash-0.8.12.crate) = 43413
 SHA256 (rust/crates/aho-corasick-1.1.3.crate) = 8e60d3430d3a69478ad0993f19238d2df97c507009a52b3c10addcd7f6bcb916
@@ -229,5 +229,5 @@ SHA256 (rust/crates/zerocopy-0.8.27.crate) = 0894878a5fa3edfd6da3f88c4805f4c8558
 SIZE (rust/crates/zerocopy-0.8.27.crate) = 252663
 SHA256 (rust/crates/zerocopy-derive-0.8.27.crate) = 88d2b8d9c68ad2b9e4340d7832716a4d21a22a1154777ad56ea55c51a9cf3831
 SIZE (rust/crates/zerocopy-derive-0.8.27.crate) = 89827
-SHA256 (opnsense-hostwatch-1.0.3_GH0.tar.gz) = a51ba7cee2794e362b69b9ee21f5dc9afa7e8332c2f333a2cd5566a91289fea4
-SIZE (opnsense-hostwatch-1.0.3_GH0.tar.gz) = 11838
+SHA256 (opnsense-hostwatch-1.0.4_GH0.tar.gz) = a574263b5267796c3fc6c886f7f4f5b318bfaa1abef543cf30bd265a678ca2d6
+SIZE (opnsense-hostwatch-1.0.4_GH0.tar.gz) = 12254
