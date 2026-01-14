@@ -1,0 +1,5 @@
+TIMESTAMP = 1767738342
+SHA256 (go/opnsense_opnsense-filterlog/opnsense-filterlog-v0.7.2/v0.7.2.mod) = 42eca06f3ed4bcf2461370fb926b43a95f86aa10130223323a97e12d559ef2ab
+SIZE (go/opnsense_opnsense-filterlog/opnsense-filterlog-v0.7.2/v0.7.2.mod) = 1330
+SHA256 (go/opnsense_opnsense-filterlog/opnsense-filterlog-v0.7.2/v0.7.2.zip) = 4f68b631c8b47015b4262e47fd409c2fd91a51c96d2c2f088bc442950be7e43a
+SIZE (go/opnsense_opnsense-filterlog/opnsense-filterlog-v0.7.2/v0.7.2.zip) = 253446
