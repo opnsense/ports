@@ -1,0 +1,6 @@
+#!/bin/sh
+#
+# LightScope entry point script
+# Forwards all commands to the Python daemon
+#
+exec /usr/local/bin/python3.11 /usr/local/share/lightscope/lightscope_daemon.py "$@"
