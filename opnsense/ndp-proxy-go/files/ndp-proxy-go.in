@@ -83,7 +83,7 @@ ndp_proxy_go_precmd()
 ndp_proxy_go_start()
 {
     echo "Starting ${name}."
-    /usr/sbin/daemon -S -s notice -l daemon -T ndpproxy -m 3 -p ${pidfile} \
+    /usr/sbin/daemon -S -f -s notice -l daemon -T ndpproxy -m 3 -p ${pidfile} \
         ${command} ${ndp_proxy_go_flags} \
         ${ndp_proxy_go_cache_file:+--cache-file "${ndp_proxy_go_cache_file}"} \
         ${ndp_proxy_go_upstream} ${ndp_proxy_go_downstream}
