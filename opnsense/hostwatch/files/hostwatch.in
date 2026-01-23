@@ -16,59 +16,54 @@
 #                                  Default: "-c -S"
 # hostwatch_database (str):        location of the database (directory)
 #                                  Default: "/var/db/hostwatch"
-# hostwatch_user (str):            username this service should use
-#                                  Default: ""
-# hostwatch_group (str):           groupname this service should use
-#                                  Default: ""
 # hostwatch_interfaces (str):      interfaces to bind to, all when not set
 #                                  Default: ""
-
 
 . /etc/rc.subr
 
 name="hostwatch"
 rcvar=hostwatch_enable
 
+load_rc_config ${name}
+
+hostwatch_enable=${hostwatch_enable:-"NO"}
+hostwatch_pidfile=${hostwatch_pidfile:-"/var/run/hostwatch.pid"}
+hostwatch_flags=${hostwatch_flags:-"-c -S"}
+hostwatch_database=${hostwatch_database:-"/var/db/hostwatch"}
+
+# do not accept these as user input
+command="%%PREFIX%%/bin/hostwatch"
 start_precmd="hostwatch_prestart"
-command="/usr/local/bin/hostwatch"
+hostwatch_user="%%USER%%"
+hostwatch_group="%%GROUP%%"
 
-load_rc_config $name
+hostwatch_flags="${hostwatch_flags} -P ${hostwatch_pidfile}"
+hostwatch_flags="${hostwatch_flags} -d ${hostwatch_database}/hosts.db"
 
-[ -z "$hostwatch_enable" ]    && hostwatch_enable="NO"
-[ -z "$hostwatch_pidfile" ]    && hostwatch_pidfile="/var/run/hostwatch.pid"
-[ -z "$hostwatch_flags" ]    && hostwatch_flags="-c -S"
-[ -z "$hostwatch_database" ] && hostwatch_database="/var/db/hostwatch"
+[ -n "${hostwatch_user}" ] && hostwatch_flags="${hostwatch_flags} -u ${hostwatch_user}"
+[ -n "${hostwatch_group}" ] && hostwatch_flags="${hostwatch_flags} -g ${hostwatch_group}"
 
-
-pidfile=$hostwatch_pidfile
-hostwatch_flags="$hostwatch_flags -P $pidfile -d $hostwatch_database/hosts.db"
-
-if [ ! -z "$hostwatch_user" ]; then
-    hostwatch_flags="$hostwatch_flags -u $hostwatch_user"
-fi
-if [ ! -z "$hostwatch_group" ]; then
-    hostwatch_flags="$hostwatch_flags -g $hostwatch_group"
-fi
-for net in $hostwatch_skip_nets; do
-    hostwatch_flags="$hostwatch_flags -s $net"
+for net in ${hostwatch_skip_nets}; do
+    hostwatch_flags="${hostwatch_flags} -s ${net}"
 done
-for ifn in $hostwatch_interfaces; do
-    hostwatch_flags="$hostwatch_flags -i $ifn"
+
+for ifn in ${hostwatch_interfaces}; do
+    hostwatch_flags="${hostwatch_flags} -i ${ifn}"
 done
 
 hostwatch_prestart()
 {
     if ! run_rc_command status > /dev/null; then
-        rm -f "$pidfile"
+        rm -f "${hostwatch_pidfile}"
     fi
-    mkdir $hostwatch_database > /dev/null 2>&1
-    touch $hostwatch_database/hosts.db
-    if [ ! -z "$hostwatch_user" ]; then
-        chown -R $hostwatch_user $hostwatch_database
+    mkdir -p ${hostwatch_database}
+    touch ${hostwatch_database}/hosts.db
+    if [ -n "${hostwatch_user}" ]; then
+        chown -R ${hostwatch_user} ${hostwatch_database}
     fi
-    if [ ! -z "$hostwatch_group" ]; then
-        chown -R :$hostwatch_group $hostwatch_database
+    if [ -n "${hostwatch_group}" ]; then
+        chown -R :${hostwatch_group} ${hostwatch_database}
     fi
 }
 
-run_rc_command "$1"
+run_rc_command "${1}"
