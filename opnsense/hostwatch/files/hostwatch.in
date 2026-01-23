@@ -34,6 +34,7 @@ hostwatch_database=${hostwatch_database:-"/var/db/hostwatch"}
 # do not accept these as user input
 command="%%PREFIX%%/bin/hostwatch"
 start_precmd="hostwatch_prestart"
+pidfile=${hostwatch_pidfile}
 hostwatch_user="%%USER%%"
 hostwatch_group="%%GROUP%%"
 
