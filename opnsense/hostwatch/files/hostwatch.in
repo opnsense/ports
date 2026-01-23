@@ -35,14 +35,14 @@ hostwatch_database=${hostwatch_database:-"/var/db/hostwatch"}
 command="%%PREFIX%%/bin/hostwatch"
 start_precmd="hostwatch_prestart"
 pidfile=${hostwatch_pidfile}
-hostwatch_user="%%USER%%"
-hostwatch_group="%%GROUP%%"
+hostwatch_chuser="%%USER%%"
+hostwatch_chgroup="%%GROUP%%"
 
 hostwatch_flags="${hostwatch_flags} -P ${hostwatch_pidfile}"
 hostwatch_flags="${hostwatch_flags} -d ${hostwatch_database}/hosts.db"
 
-[ -n "${hostwatch_user}" ] && hostwatch_flags="${hostwatch_flags} -u ${hostwatch_user}"
-[ -n "${hostwatch_group}" ] && hostwatch_flags="${hostwatch_flags} -g ${hostwatch_group}"
+[ -n "${hostwatch_chuser}" ] && hostwatch_flags="${hostwatch_flags} -u ${hostwatch_chuser}"
+[ -n "${hostwatch_chgroup}" ] && hostwatch_flags="${hostwatch_flags} -g ${hostwatch_chgroup}"
 
 for net in ${hostwatch_skip_nets}; do
     hostwatch_flags="${hostwatch_flags} -s ${net}"
@@ -59,11 +59,11 @@ hostwatch_prestart()
     fi
     mkdir -p ${hostwatch_database}
     touch ${hostwatch_database}/hosts.db
-    if [ -n "${hostwatch_user}" ]; then
-        chown -R ${hostwatch_user} ${hostwatch_database}
+    if [ -n "${hostwatch_chuser}" ]; then
+        chown -R ${hostwatch_chuser} ${hostwatch_database}
     fi
-    if [ -n "${hostwatch_group}" ]; then
-        chown -R :${hostwatch_group} ${hostwatch_database}
+    if [ -n "${hostwatch_chgroup}" ]; then
+        chown -R :${hostwatch_chgroup} ${hostwatch_database}
     fi
 }
 
