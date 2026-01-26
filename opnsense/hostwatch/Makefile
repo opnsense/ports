@@ -15,10 +15,12 @@ PLIST_FILES=	bin/hostwatch
 USE_GITHUB=	yes
 GH_ACCOUNT=	opnsense
 
-USE_RC_SUBR=	${PORTNAME}
+USE_RC_SUBR=	hostwatch
 
 # use this user/group as it already has a port registration
 USERS=		hostd
 GROUPS=		hostd
+
+SUB_LIST+=	USER=${USERS} GROUP=${GROUPS}
 
 .include <bsd.port.mk>
