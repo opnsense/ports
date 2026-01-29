@@ -1,3 +1,397 @@
+  <vuln vid="963f4e9d-e4d5-11f0-984f-b42e991fc52e">
+    <topic>Forgejo -- Symbolic Link (Symlink) Following</topic>
+    <affects>
+    <package>
+	<name>forgejo</name>
+	<range><lt>13.0.2</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://codeberg.org/forgejo/forgejo/src/branch/forgejo/release-notes-published/13.0.2.md reports:</p>
+	<blockquote cite="https://codeberg.org/forgejo/forgejo/src/branch/forgejo/release-notes-published/13.0.2.md">
+	  <p>Forgejo before 13.0.2 allows attackers to write to
+	  unintended files, and possibly obtain server shell access,
+	  because of mishandling of out-of-repository symlink
+	  destinations for template repositories.  This is also fixed
+	  for 11 LTS in 11.0.7 and later.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-68937</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-68937</url>
+    </references>
+    <dates>
+      <discovery>2025-12-25</discovery>
+      <entry>2025-12-29</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="bf854a37-e180-11f0-ac0c-5404a68ad561">
+    <topic>fluidsynth -- Use after free when using DLS files</topic>
+    <affects>
+<package>
+<name>fluidsynth</name>
+<range><lt>2.5.2</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The fluidsynth authors report:</p>
+	<blockquote cite="https://github.com/FluidSynth/fluidsynth/security/advisories/GHSA-ffw2-xvvp-39ch">
+	  <p>A race condition during unloading of a DLS file can trigger
+	  a heap-based use-after-free. A concurrently running thread may
+	  be pending to unload a DLS file, leading to use of freed memory, if
+	  the synthesizer is being concurrently destroyed, or samples of
+	  the (unloaded) DLS file are concurrently used to synthesize audio.
+	  Realistically, both scenarios will result in a denial of service.
+	  In worst cases, it may result in arbitrary code execution in the
+	  context of an application using FluidSynth.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-68617</cvename>
+      <url>https://www.cve.org/CVERecord?id=CVE-2025-68617</url>
+    </references>
+    <dates>
+      <discovery>2025-12-23</discovery>
+      <entry>2025-12-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c1613867-df16-11f0-8870-b42e991fc52e">
+    <topic>MongoDB -- Improper Handling of Length Parameter Inconsistency</topic>
+    <affects>
+    <package>
+	<name>mongodb80</name>
+	<range><lt>8.0.17</lt></range>
+    </package>
+    <package>
+	<name>mongodb70</name>
+	<range><lt>7.0.28</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://jira.mongodb.org/browse/SERVER-115508 reports:</p>
+	<blockquote cite="https://jira.mongodb.org/browse/SERVER-115508">
+	<p>Mismatched length fields in Zlib compressed protocol
+	headers may allow a read of uninitialized heap memory by an
+	unauthenticated client.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14847</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14847</url>
+    </references>
+    <dates>
+      <discovery>2025-12-19</discovery>
+      <entry>2025-12-22</entry>
+      <modified>2025-12-28</modified>
+    </dates>
+  </vuln>
+
+  <vuln vid="dc7e30db-de67-11f0-b893-5404a68ad561">
+    <topic>traefik -- Inverted TLS Verification Logic in Kubernetes NGINX Provider</topic>
+    <affects>
+<package>
+<name>traefik</name>
+<range><lt>3.6.3</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The traefik project reports:</p>
+	<blockquote cite="https://github.com/traefik/traefik/security/advisories/GHSA-7vww-mvcr-x6vj">
+	  <p>
+	  There is a potential vulnerability in Traefik NGINX
+	  provider managing the
+	  nginx.ingress.kubernetes.io/proxy-ssl-verify annotation.
+	  The provider inverts the semantics of the
+	  nginx.ingress.kubernetes.io/proxy-ssl-verify annotation.
+	  Setting the annotation to "on" (intending to enable
+	  backend TLS certificate verification) actually disables
+	  verification, allowing man-in-the-middle attacks against
+	  HTTPS backends when operators believe they are
+	  protected.
+	  </p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-66491</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-66491</url>
+    </references>
+    <dates>
+      <discovery>2025-12-08</discovery>
+      <entry>2025-12-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="91b9790e-de65-11f0-b893-5404a68ad561">
+    <topic>traefik -- Bypassing security controls via special characters</topic>
+    <affects>
+<package>
+<name>traefik</name>
+<range><lt>3.6.3</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>The traefik project reports:</p>
+	<blockquote cite="https://github.com/traefik/traefik/security/advisories/GHSA-gm3x-23wp-hc2c">
+	  <p>There is a potential vulnerability in Traefik managing
+	  the requests using a PathPrefix, Path or PathRegex
+	  matcher.
+	  When Traefik is configured to route the requests to a
+	  backend using a matcher based on the path; if the
+	  request path contains an encoded restricted character
+	  from the following set ('/', '', 'Null', ';', '?', '#'),
+	  it is possible to target a backend, exposed using
+	  another router, by-passing the middlewares chain.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-66490</cvename>
+      <url>https://nvd.nist.gov/vuln/detail/CVE-2025-66490</url>
+    </references>
+    <dates>
+      <discovery>2025-12-08</discovery>
+      <entry>2025-12-21</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="c32cb4b7-ddcb-11f0-902c-b42e991fc52e">
+    <topic>smb4k -- Critical vulnerabilities in Mount Helper</topic>
+    <affects>
+<package>
+<name>smb4k</name>
+<range><lt>4.0.4</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>vulndb reports:</p>
+	<blockquote cite="https://vuldb.com/?id.336198">
+	  <p>A vulnerability, which was classified as critical, was
+	  found in smb4k up to 4.0.4. Affected is some unknown
+	  functionality of the component Mount Helper. The
+	  manipulation with an unknown input leads to a access control
+	  vulnerability. CWE is classifying the issue as CWE-284. The
+	  product does not restrict or incorrectly restricts access to
+	  a resource from an unauthorized actor. This is going to have
+	  an impact on integrity, and availability.  The advisory is
+	  available at seclists.org. The exploitability is told to be
+	  easy. Local access is required to approach this attack. The
+	  technical details are unknown and an exploit is not
+	  available.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-66002</cvename>
+      <url>https://vuldb.com/?id.336198</url>
+      <cvename>CVE-2025-66003</cvename>
+      <url>https://vuldb.com/?id.336199</url>
+    </references>
+    <dates>
+      <discovery>2025-12-20</discovery>
+      <entry>2025-12-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="2a33d28e-ddc0-11f0-902c-b42e991fc52e">
+    <topic>Firefox -- Use-after-free</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.1,2</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/show_bug.cgi?id=2000597 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/show_bug.cgi?id=2000597">
+	  <p>Use-after-free in the Disability Access APIs component.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14860</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14860</url>
+    </references>
+    <dates>
+      <discovery>2025-12-18</discovery>
+      <entry>2025-12-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="23437e07-ddc0-11f0-902c-b42e991fc52e">
+    <topic>Firefox -- Memory safety bugs</topic>
+    <affects>
+    <package>
+	<name>firefox</name>
+	<range><lt>146.0.1,2</lt></range>
+    </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>https://bugzilla.mozilla.org/buglist.cgi?bug_id=1996570%2C1999700 reports:</p>
+	<blockquote cite="https://bugzilla.mozilla.org/buglist.cgi?bug_id=1996570%2C1999700">
+	  <p>Memory safety bugs present in Firefox 146.  Some of these
+	  bugs showed evidence of memory corruption and we presume
+	  that with enough effort some of these could have been
+	  exploited to run arbitrary code.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14861</cvename>
+      <url>https://cveawg.mitre.org/api/cve/CVE-2025-14861</url>
+    </references>
+    <dates>
+      <discovery>2025-12-18</discovery>
+      <entry>2025-12-20</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="f99e70c2-dcb8-11f0-a15a-a8a1599412c6">
+    <topic>chromium -- multiple security fixes</topic>
+    <affects>
+      <package>
+       <name>chromium</name>
+       <range><lt>143.0.7499.146</lt></range>
+      </package>
+      <package>
+       <name>ungoogled-chromium</name>
+       <range><lt>143.0.7499.146</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+       <p>Chrome Releases reports:</p>
+       <blockquote cite="https://chromereleases.googleblog.com/2025/12/stable-channel-update-for-desktop_16.html">
+	 <p>This update includes 2 security fixes:</p>
+	 <ul>
+	    <li>[448294721] High CVE-2025-14765: Use after free in WebGPU. Reported by Anonymous on 2025-09-30</li>
+	    <li>[466786677] High CVE-2025-14766: Out of bounds read and write in V8. Reported by Shaheen Fazim on 2025-12-08</li>
+	 </ul>
+       </blockquote>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14765</cvename>
+      <cvename>CVE-2025-14766</cvename>
+      <url>https://chromereleases.googleblog.com/2025/12/stable-channel-update-for-desktop_16.html</url>
+    </references>
+    <dates>
+      <discovery>2025-12-16</discovery>
+      <entry>2025-12-19</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="eca46635-db51-11f0-9b8d-40a6b7c3b3b8">
+    <topic>step-certificates -- Authorization Bypass in ACME and SCEP Provisioners</topic>
+    <affects>
+<package>
+<name>step-certificates</name>
+<range><lt>0.29.0</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>smallstep reports:</p>
+	<blockquote cite="https://github.com/smallstep/certificates/security/advisories/GHSA-h8cp-697h-8c8p">
+	  <p>An attacker can bypass authorization checks and force a Step CA
+	  ACME or SCEP provisioner to create certificates without completing
+	  certain protocol authorization checks.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2025-44005</cvename>
+      <url>https://github.com/advisories/ghsa-h8cp-697h-8c8p</url>
+    </references>
+    <dates>
+      <discovery>2025-12-03</discovery>
+      <entry>2025-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="6c9318c7-dae9-11f0-80b8-bc241121aa0a">
+    <topic>FreeBSD -- Remote code execution via ND6 Router Advertisements</topic>
+    <affects>
+      <package>
+	<name>FreeBSD</name>
+	<range><ge>15.0</ge><lt>15.0_1</lt></range>
+	<range><ge>14.3</ge><lt>14.3_7</lt></range>
+	<range><ge>13.5</ge><lt>13.5_8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	  <p>The rtsol(8) and rtsold(8) programs do not validate the domain
+	  search list options provided in router advertisement messages; the
+	  option body is passed to resolvconf(8) unmodified.</p>
+	  <p>resolvconf(8) is a shell script which does not validate its input.
+	  A lack of quoting meant that shell commands pass as input to
+	  resolvconf(8) may be executed.</p>
+	<h1>Impact:</h1>
+	  <p>Systems running rtsol(8) or rtsold(8) are vulnerable to remote
+	  code execution from systems on the same network segment.  In
+	  particular, router advertisement messages are not routable and
+	  should be dropped by routers, so the attack does not cross network
+	  boundaries.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14558</cvename>
+      <freebsdsa>SA-25:12.rtsold</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2025-12-16</discovery>
+      <entry>2025-12-17</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="0b22e22a-dae9-11f0-80b8-bc241121aa0a">
+    <topic>FreeBSD -- ipfw denial of service</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>15.0</ge><lt>15.0_1</lt></range>
+	<range><ge>14.3</ge><lt>14.3_7</lt></range>
+	<range><ge>13.5</ge><lt>13.5_8</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	  <p>In some cases, the `tcp-setmss` handler may free the packet
+	  data and throw an error without halting the rule processing engine.
+	  A subsequent rule can then allow the traffic after the packet data
+	  is gone, resulting in a NULL pointer dereference.</p>
+	<h1>Impact:</h1>
+	  <p>Maliciously crafted packets sent from a remote host may result
+	  in a Denial of Service (DoS) if the `tcp-setmss` directive is used
+	  and a subsequent rule would allow the traffic to pass.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-14769</cvename>
+      <freebsdsa>SA-25:11.ipfw</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2025-12-16</discovery>
+      <entry>2025-12-17</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="3a59024c-d8cf-11f0-af8c-8447094a420f">
     <topic>Roundcube -- Multiple vulnerabilities</topic>
     <affects>
@@ -696,30 +1090,29 @@
   <vuln vid="613d0f9e-d477-11f0-9e85-03ddfea11990">
     <topic>python -- several vulnerabilities</topic>
     <affects>
-      <!-- someone please research the 3.10/3.11/3.12 vulnerable/fixed ranges and update this entry -->
       <package>
 	<name>python39</name>
 	<range><ge>0</ge></range>
       </package>
       <package>
 	<name>python310</name>
-	<range><ge>0</ge></range>
+	<range><lt>3.10.19_1</lt></range>
       </package>
       <package>
 	<name>python311</name>
-	<range><ge>0</ge></range>
+	<range><lt>3.11.14_1</lt></range>
       </package>
       <package>
 	<name>python312</name>
-	<range><ge>0</ge></range>
+	<range><lt>3.12.12_3</lt></range>
       </package>
       <package>
 	<name>python313</name>
-	<range><ge>3.13.0</ge><lt>3.13.11</lt></range>
+	<range><lt>3.13.11</lt></range>
       </package>
       <package>
 	<name>python314</name>
-	<range><ge>3.14.0</ge><lt>3.14.2</lt></range>
+	<range><lt>3.14.2</lt></range>
       </package>
     </affects>
     <description>
@@ -747,6 +1140,7 @@
     <dates>
       <discovery>2024-05-23</discovery>
       <entry>2025-12-08</entry>
+      <modified>2026-01-25</modified>
     </dates>
   </vuln>
 
@@ -1476,7 +1870,7 @@ This issue has been patched in version 2.25.2.</p>
        <name>py313-pdfminer.six</name>
        <name>py313t-pdfminer.six</name>
        <name>py314-pdfminer.six</name>
-       <range><lt>20251107</lt></range>
+       <range><lt>20251230</lt></range>
      </package>
     </affects>
     <description>
@@ -1494,6 +1888,7 @@ This issue has been patched in version 2.25.2.</p>
     <dates>
       <discovery>2025-11-07</discovery>
       <entry>2025-11-17</entry>
+      <modified>2025-12-30</modified>
     </dates>
   </vuln>
 
@@ -7488,11 +7883,11 @@ This issue has been patched in version 2.25.2.</p>
   </vuln>
 
   <vuln vid="b0a3466f-5efc-11f0-ae84-99047d0a6bcc">
-    <topic>libxslt -- unmaintained, with multiple unfixed vulnerabilities</topic>
+    <topic>libxslt -- multiple vulnerabilities</topic>
     <affects>
       <package>
 	<name>libxslt</name>
-	<range><lt>1.1.43_2</lt></range> <!-- adjust should libxslt ever be fixed -->
+	<range><lt>1.1.44</lt></range> <!-- may not fix all issues -->
       </package>
       <package>
 	<name>linux-c7-libxslt</name>
@@ -7529,11 +7924,18 @@ This issue has been patched in version 2.25.2.</p>
 	  <a href="https://gitlab.gnome.org/Teams/Releng/security/-/wikis/2025#libxml2-and-libxslt">
 	    https://gitlab.gnome.org/Teams/Releng/security/-/wikis/2025#libxml2-and-libxslt</a>
 	</p>
-	</body>
+	<p>Iván Chavero reports vs. v1.1.44:</p>
+	<blockquote cite="https://gitlab.gnome.org/GNOME/libxslt/-/blob/v1.1.45/NEWS?ref_type=tags#L23">
+	  <p>[CVE-2025-11731] Fix: End function node ancestor search at document</p>
+	</blockquote>
+      </body>
     </description>
     <references>
-      <cvename>CVE-2025-7424</cvename>
-      <cvename>CVE-2025-7425</cvename>
+      <cvename>CVE-2025-7424</cvename> <!-- fixed in libxslt 1.1.44 -->
+      <cvename>CVE-2025-7425</cvename> <!-- fixed in libxml2 2.15.0 -->
+      <cvename>CVE-2025-9714</cvename> <!-- false positive, .../issues/148 -->
+      <cvename>CVE-2025-11731</cvename> <!-- added 2026-01-02 -->
+      <url>https://gitlab.gnome.org/GNOME/libxslt/-/blob/v1.1.45/NEWS?ref_type=tags#L1</url>
       <url>https://gitlab.gnome.org/Teams/Releng/security/-/wikis/2025#libxml2-and-libxslt</url>
       <url>https://gitlab.gnome.org/GNOME/libxslt/-/issues/139</url>
       <url>https://gitlab.gnome.org/GNOME/libxslt/-/issues/140</url>
@@ -7544,6 +7946,7 @@ This issue has been patched in version 2.25.2.</p>
     <dates>
       <discovery>2025-04-10</discovery>
       <entry>2025-07-12</entry>
+      <modified>2026-01-02</modified>
     </dates>
   </vuln>
 
