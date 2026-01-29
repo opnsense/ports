@@ -327,6 +327,7 @@
 %%DATADIR%%/Math/Common/FiniteField/Integer.php
 %%DATADIR%%/Math/PrimeField.php
 %%DATADIR%%/Math/PrimeField/Integer.php
+%%DATADIR%%/Net/SCP.php
 %%DATADIR%%/Net/SFTP.php
 %%DATADIR%%/Net/SFTP/Stream.php
 %%DATADIR%%/Net/SSH2.php
