@@ -1,3 +1,3 @@
-TIMESTAMP = 1769518940
-SHA256 (opnsense-update-26.1_GH0.tar.gz) = ac8ce22ffadc36cd297ceb89a17892c220aaccec258c8ba636e45da53c4ca513
-SIZE (opnsense-update-26.1_GH0.tar.gz) = 29806
+TIMESTAMP = 1770105372
+SHA256 (opnsense-update-26.1.1-bf2da20_GH0.tar.gz) = fbdd077770715497e52d8a16410c6246760eac745b903896cc0b85cab8e7395a
+SIZE (opnsense-update-26.1.1-bf2da20_GH0.tar.gz) = 29888
