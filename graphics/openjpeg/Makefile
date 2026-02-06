@@ -1,7 +1,7 @@
 PORTNAME=	openjpeg
 PORTVERSION=	2.5.4
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 PATCH_SITES=	https://github.com/uclouvain/openjpeg/commit/
@@ -20,7 +20,7 @@ LIB_DEPENDS=	liblcms2.so:graphics/lcms2 \
 		libpng.so:graphics/png \
 		libtiff.so:graphics/tiff
 
-USES=		cmake cpe localbase:ldflags jpeg pathfix pkgconfig
+USES=		cmake cpe localbase:ldflags jpeg pkgconfig
 
 CMAKE_OFF=	BUILD_DOC \
 		BUILD_JAVA \
