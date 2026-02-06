@@ -1,5 +1,6 @@
 PORTNAME=	emacs
 DISTVERSION=	30.2
+PORTREVISION=	1
 PORTEPOCH=	3
 CATEGORIES=	editors
 MASTER_SITES=	GNU
@@ -204,7 +205,7 @@ MAILUTILS_CONFIGURE_ENV_OFF=	ac_cv_lib_lockfile_maillock=no \
 MODULES_CONFIGURE_WITH=		modules
 MOTIF_USES=			motif
 MOTIF_CONFIGURE_ON=		--with-x-toolkit=motif
-NATIVECOMP_USE=			GCC=yes
+NATIVECOMP_USE=			GCC=13
 NATIVECOMP_CONFIGURE_WITH=	native-compilation=aot
 OSS_CONFIGURE_ON=		--with-sound=oss
 OTF_LIB_DEPENDS=		libotf.so:print/libotf
