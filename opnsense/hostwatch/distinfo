@@ -1,4 +1,4 @@
-TIMESTAMP = 1769597369
+TIMESTAMP = 1770372809
 SHA256 (rust/crates/aho-corasick-1.1.4.crate) = ddd31a130427c27518df266943a5308ed92d4b226cc639f5a8f1002816174301
 SIZE (rust/crates/aho-corasick-1.1.4.crate) = 184015
 SHA256 (rust/crates/anstream-0.6.21.crate) = 43d5b281e737544384e969a5ccad3f1cdd24b48086a0fc1b2a5262a26b8f4f4a
@@ -205,5 +205,5 @@ SHA256 (rust/crates/windows_x86_64_gnu-0.36.1.crate) = 4dcd171b8776c41b97521e5da
 SIZE (rust/crates/windows_x86_64_gnu-0.36.1.crate) = 790934
 SHA256 (rust/crates/windows_x86_64_msvc-0.36.1.crate) = c811ca4a8c853ef420abd8592ba53ddbbac90410fab6903b3e79972a631f7680
 SIZE (rust/crates/windows_x86_64_msvc-0.36.1.crate) = 661999
-SHA256 (opnsense-hostwatch-1.0.11_GH0.tar.gz) = d0b1fca2fd3e96852f1babfc735da998f899a7173f8411831affbdae4ec4f90b
-SIZE (opnsense-hostwatch-1.0.11_GH0.tar.gz) = 12724
+SHA256 (opnsense-hostwatch-1.0.12_GH0.tar.gz) = 8c7ed09aa45d8c5670749c8ae7e1e6e9e78868b5babe31062d943717484d2e35
+SIZE (opnsense-hostwatch-1.0.12_GH0.tar.gz) = 13021
