@@ -1,6 +1,7 @@
 PORTNAME=	tailscale
-PORTVERSION=	1.92.2
+PORTVERSION=	1.94.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	1
 CATEGORIES=	security net-vpn
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -12,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 
 GO_MODULE=	github.com/tailscale/tailscale
 
