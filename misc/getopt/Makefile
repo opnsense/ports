@@ -1,5 +1,5 @@
 PORTNAME=	getopt
-PORTVERSION=	2.41.2
+PORTVERSION=	2.41.3
 CATEGORIES=	misc
 MASTER_SITES=	KERNEL_ORG/linux/utils/util-linux/v${PORTVERSION:R}/
 DISTNAME=	util-linux-${PORTVERSION}
@@ -11,7 +11,7 @@ WWW=		https://github.com/util-linux/util-linux
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake pkgconfig shebangfix tar:xz
+USES=		pkgconfig shebangfix tar:xz
 
 CONFIGURE_ARGS=	--disable-asciidoc \
 		--disable-all-programs \
