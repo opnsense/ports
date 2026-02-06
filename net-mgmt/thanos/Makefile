@@ -1,7 +1,7 @@
 PORTNAME=	thanos
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.40.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	alven@FreeBSD.org
@@ -12,7 +12,7 @@ WWW=		https://thanos.io/ \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 
 GO_MODULE=	github.com/thanos-io/thanos
 GO_TARGET=	./cmd/${PORTNAME}

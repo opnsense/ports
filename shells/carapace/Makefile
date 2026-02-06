@@ -1,6 +1,7 @@
 PORTNAME=	carapace
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.5.7
+DISTVERSION=	1.6.1
+PORTREVISION=	1
 CATEGORIES=	shells
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -23,7 +24,7 @@ OPTIONS_DEFINE=	DOCS
 
 pre-build:
 	cd ${GO_WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${GO_ENV} ${GO_CMD} generate ./cmd/...
+	${SETENV} ${MAKE_ENV} ${GO_ENV} ${GO_CMD} generate ./cmd/...
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

@@ -1,7 +1,7 @@
 PORTNAME=	opa
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.10.1
-PORTREVISION=	2
+PORTREVISION=	4
 CATEGORIES=	sysutils
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,7 +12,7 @@ WWW=		https://www.openpolicyagent.org/ \
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.24,modules
+USES=		go:1.24+,modules
 
 GO_MODULE=	github.com/open-policy-agent/opa
 

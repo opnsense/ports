@@ -1,6 +1,6 @@
 PORTNAME=	libzfs
 PORTVERSION=	1.1.2023020700
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	filesystems devel python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -18,12 +18,16 @@ GH_TAGNAME=	c1bd4a0
 
 HAS_CONFIGURE=	yes
 USES=		compiler:c11 python
-USE_PYTHON=	autoplist distutils cython
+USE_PYTHON=	autoplist cython0 distutils
 
 CONFIGURE_ENV=	freebsd_src=${SRC_BASE}
 MAKE_ENV=	freebsd_src=${SRC_BASE}
 
 .include <bsd.port.options.mk>
+
+.if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1600005
+EXTRA_PATCHES+=	${FILESDIR}/extra-libuutil.patch
+.endif
 
 .if ${OPSYS} == FreeBSD && ${OSVERSION} >= 1401000
 EXTRA_PATCHES+=	${FILESDIR}/extra-zpool-add.patch

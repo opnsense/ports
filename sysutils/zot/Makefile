@@ -1,6 +1,6 @@
 PORTNAME=	zot
 DISTVERSIONPREFIX=v
-DISTVERSION=	2.1.11
+DISTVERSION=	2.1.14
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://github.com/project-zot/zui/releases/download/commit-${ZUI_VERSION}/:ui
@@ -15,15 +15,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_i386=	modernc.org/libc does not compile on i386
 
-USES=		go:modules
+USES=		go:1.25+,modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	project-zot
 
-ZUI_VERSION=	f870292
+ZUI_VERSION=	7dfa6bf
 
 GO_MODULE=	zotproject.dev/zot
 GO_MOD_DIST=	https://raw.githubusercontent.com/project-zot/zot/refs/tags/v${DISTVERSION}/
 GO_TARGET=	./cmd/zot
+GO_ENV+=	GOEXPERIMENT=jsonv2
 GO_BUILDFLAGS=	-ldflags " \
 		-X zotregistry.dev/zot/pkg/api/config.ReleaseTag=${DISTVERSION} \
 		-X zotregistry.dev/zot/pkg/api/config.BinaryType=full \

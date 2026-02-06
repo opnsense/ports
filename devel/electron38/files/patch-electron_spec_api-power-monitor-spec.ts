@@ -1,4 +1,4 @@
---- electron/spec/api-power-monitor-spec.ts.orig	2024-10-09 13:53:06 UTC
+--- electron/spec/api-power-monitor-spec.ts.orig	2026-01-23 16:25:38 UTC
 +++ electron/spec/api-power-monitor-spec.ts
 @@ -18,7 +18,7 @@ describe('powerMonitor', () => {
  describe('powerMonitor', () => {

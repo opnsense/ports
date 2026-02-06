@@ -25,7 +25,6 @@
     SUBDIR += btavctpd
     SUBDIR += butt
     SUBDIR += ccextractor
-    SUBDIR += ccextractor-gui
     SUBDIR += celluloid
     SUBDIR += cheese
     SUBDIR += chilitags
@@ -37,7 +36,6 @@
     SUBDIR += cmrtlib
     SUBDIR += cx88
     SUBDIR += dav1d
-    SUBDIR += decord
     SUBDIR += deforaos-camera
     SUBDIR += deforaos-player
     SUBDIR += dovi_tool
@@ -71,8 +69,7 @@
     SUBDIR += get_iplayer
     SUBDIR += gmmlib
     SUBDIR += gmp-api
-    SUBDIR += gpac-libgpac
-    SUBDIR += gpac-mp4box
+    SUBDIR += gpac
     SUBDIR += gpodder
     SUBDIR += gst123
     SUBDIR += gstreamer1
@@ -120,6 +117,7 @@
     SUBDIR += haruna
     SUBDIR += harvid
     SUBDIR += helvum
+    SUBDIR += hyprpwcenter
     SUBDIR += intel-media-sdk
     SUBDIR += iso2mkv
     SUBDIR += jellyfin
@@ -301,7 +299,6 @@
     SUBDIR += pwcview
     SUBDIR += py-av
     SUBDIR += py-cec
-    SUBDIR += py-decord
     SUBDIR += py-enzyme
     SUBDIR += py-gstreamer1
     SUBDIR += py-guessit
@@ -322,6 +319,7 @@
     SUBDIR += py-srt
     SUBDIR += py-subliminal
     SUBDIR += py-tartube
+    SUBDIR += py-torchcodec
     SUBDIR += py-trakit
     SUBDIR += py-tvnamer
     SUBDIR += py-ustreamer
@@ -373,6 +371,7 @@
     SUBDIR += tivodecode
     SUBDIR += totem
     SUBDIR += totem-pl-parser
+    SUBDIR += tsduck
     SUBDIR += tvheadend
     SUBDIR += ustreamer
     SUBDIR += uvg266

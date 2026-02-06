@@ -1,5 +1,5 @@
-TIMESTAMP = 1762584597
-SHA256 (go/net-mgmt_alertmanager/alertmanager-v0.29.0/v0.29.0.mod) = 60c6ffa33fb66b8fdef81ef30a0c953df1c0776bf59a3376ec4d8fa8f250405a
-SIZE (go/net-mgmt_alertmanager/alertmanager-v0.29.0/v0.29.0.mod) = 5779
-SHA256 (go/net-mgmt_alertmanager/alertmanager-v0.29.0/v0.29.0.zip) = 3fa76af529268a74b5dd8e9651fdf0d16484b25539f2af3e07a0a196d4097793
-SIZE (go/net-mgmt_alertmanager/alertmanager-v0.29.0/v0.29.0.zip) = 3193645
+TIMESTAMP = 1769997528
+SHA256 (go/net-mgmt_alertmanager/alertmanager-v0.30.1/v0.30.1.mod) = 210b95157537c86b8762945241962e082d064a2eb4b58a34b390898b269c9dbf
+SIZE (go/net-mgmt_alertmanager/alertmanager-v0.30.1/v0.30.1.mod) = 6553
+SHA256 (go/net-mgmt_alertmanager/alertmanager-v0.30.1/v0.30.1.zip) = 4d60f88c65e5070cc3fcd428ad07277b528268335a5400262a4d68bed8d01a21
+SIZE (go/net-mgmt_alertmanager/alertmanager-v0.30.1/v0.30.1.zip) = 2622651

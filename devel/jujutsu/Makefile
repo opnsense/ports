@@ -1,6 +1,6 @@
 PORTNAME=	jujutsu
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.35.0
+DISTVERSION=	0.37.0
 PORTREVISION=	1
 CATEGORIES=	devel
 
@@ -15,6 +15,8 @@ USES=		cargo localbase shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	jj-vcs
 GH_PROJECT=	jj
+
+TEST_DEPENDS=	git:devel/git
 
 SHEBANG_FILES=	demos/*.sh
 

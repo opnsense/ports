@@ -1,7 +1,7 @@
 PORTNAME=	headscale
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.27.1
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	security net-vpn
 
 MAINTAINER=	m.muenz@gmail.com
@@ -19,7 +19,7 @@ NOT_FOR_ARCHS_REASON=	version 0.27 removed i386 support
 
 RUN_DEPENDS=	ca_root_nss>0:security/ca_root_nss
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 USE_RC_SUBR=	${PORTNAME}
 
 GO_MODULE=	github.com/juanfont/headscale

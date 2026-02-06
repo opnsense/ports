@@ -1,9 +1,10 @@
 PORTNAME=	skia
 DISTVERSIONPREFIX=	chrome/m
 DISTVERSION=	140
+PORTREVISION=	2
 CATEGORIES=	graphics
 
-MAINTAINER=	me@svmhdvn.name
+MAINTAINER=	siva@FreeBSD.org
 COMMENT=	Complete 2D graphic library for drawing Text, Geometries, and Images
 WWW=		https://skia.org/
 

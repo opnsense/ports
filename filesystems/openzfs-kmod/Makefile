@@ -1,5 +1,6 @@
 PORTNAME=	openzfs
-PORTVERSION=	2.3.5
+PORTVERSION=	2.4.0
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	filesystems sysutils
 MASTER_SITES=	https://github.com/openzfs/zfs/releases/download/zfs-${PORTVERSION}/
@@ -13,7 +14,7 @@ WWW=		https://github.com/openzfs/zfs
 LICENSE=	CDDL
 
 USES=		cpe kmod
-OPENZFS_TAGNAME=	ab38521f3
+OPENZFS_TAGNAME=	743334913
 KMODTARGET?=	openzfs.ko
 
 PLIST_FILES=	${KMODDIR}/${KMODTARGET}

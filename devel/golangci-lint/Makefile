@@ -1,6 +1,7 @@
 PORTNAME=	golangci-lint
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.7.1
+DISTVERSION=	2.8.0
+PORTREVISION=	2
 CATEGORIES=	devel
 
 MAINTAINER=	dutra@FreeBSD.org
@@ -10,10 +11,10 @@ WWW=		https://github.com/golangci/golangci-lint
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		gmake go:1.24,modules
+USES=		gmake go:1.24+,modules
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	a4b55eb
+_BUILD_COMMIT=	e2e4002
 _BUILD_DATE=	$$(date -u "+%Y-%m-%dT%H:%M:%SZ")
 
 GO_MODULE=	github.com/${PORTNAME:S/-lint//}/${PORTNAME}/v2

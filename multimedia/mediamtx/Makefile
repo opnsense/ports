@@ -1,6 +1,7 @@
 PORTNAME=	mediamtx
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.15.5
+DISTVERSION=	1.15.6
+PORTREVISION=	2
 CATEGORIES=	multimedia net
 MASTER_SITES+=	https://github.com/video-dev/hls.js/releases/download/v1.6.15/:hlsjs
 DISTFILES+=	release.zip:hlsjs
@@ -12,7 +13,7 @@ WWW=		https://github.com/bluenviron/mediamtx
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 GO_MODULE=	github.com/bluenviron/mediamtx
 
 USE_RC_SUBR=	mediamtx

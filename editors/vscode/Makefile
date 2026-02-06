@@ -1,5 +1,6 @@
 PORTNAME=	vscode
-DISTVERSION=	1.106.3
+DISTVERSION=	${VSCODE_VERSION}
+PORTREVISION=	3
 CATEGORIES=	editors
 MASTER_SITES=	https://github.com/tagattie/FreeBSD-VSCode/releases/download/${DISTVERSION}/:node_modules
 DISTFILES=	vscode-node-modules-${DISTVERSION}${EXTRACT_SUFX}:node_modules \
@@ -18,11 +19,8 @@ ONLY_FOR_ARCHS=	amd64
 EXTRACT_DEPENDS=jq:textproc/jq \
 		node${NODEJS_VERSION}>0:www/node${NODEJS_VERSION}
 BUILD_DEPENDS=	zip:archivers/zip \
-		electron${ELECTRON_VER_MAJOR}:devel/electron${ELECTRON_VER_MAJOR} \
-		tsgo:lang/typescript-go \
 		jq:textproc/jq \
-		rg:textproc/ripgrep \
-		npm${NODEJS_SUFFIX}>0:www/npm${NODEJS_SUFFIX}
+		rg:textproc/ripgrep
 LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
 		libatspi.so:accessibility/at-spi2-core \
 		libasound.so:audio/alsa-lib \
@@ -58,17 +56,14 @@ LIB_DEPENDS=	libatk-bridge-2.0.so:accessibility/at-spi2-core \
 		libfontconfig.so:x11-fonts/fontconfig
 RUN_DEPENDS=	xdg-open:devel/xdg-utils \
 		bash:shells/bash
-TEST_DEPENDS=	electron${ELECTRON_VER_MAJOR}:devel/electron${ELECTRON_VER_MAJOR} \
-		bash:shells/bash
+TEST_DEPENDS=	bash:shells/bash
 
-USES=		desktop-file-utils display:test gl gmake gnome gssapi:mit \
-		iconv:wchar_t jpeg localbase:ldflags nodejs:22,build pkgconfig \
-		python:build shebangfix xorg
+USES=		desktop-file-utils display:test electron:39,build,test gl \
+		gmake gnome gssapi:mit iconv:wchar_t jpeg localbase:ldflags \
+		nodejs:22,build pkgconfig python:build shebangfix xorg
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	microsoft
-
-SOURCE_COMMIT_HASH=	bf9252a2fb45be6893dd8870c0bf37e2e1766d61
 
 BINARY_ALIAS=	python=${PYTHON_CMD}
 
@@ -76,6 +71,7 @@ USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 		xrandr xrender xscrnsaver xtst
 USE_GL=		gbm gl glesv2
 USE_GNOME=	atk cairo pango gdkpixbuf gtk30 libxml2 libxslt
+USE_ELECTRON=	npm:npm
 
 SHEBANG_REGEX=	./(extensions|node_modules|resources|scripts|src)/.*(\.(pl|py|sh)|makeBlacker|makeFF)$$
 PATHFIX_FILES=	src/vs/workbench/contrib/debug/node/terminals.ts
@@ -85,24 +81,18 @@ TMPDIR=		${WRKDIR}
 BUNDLE_LIBS=	yes
 
 MAKE_ENV+=	BUILD_SOURCEVERSION=${SOURCE_COMMIT_HASH}
-# Don't download electron binary distribution on electron node_modules installation
-MAKE_ENV+=	ELECTRON_SKIP_BINARY_DOWNLOAD=1
-# Don't download browser binaries on playwright node_modules installation
-MAKE_ENV+=	PLAYWRIGHT_BROWSERS_PATH=${WRKDIR}/pw-browsers \
-		PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1
 # Don't create __pycache__ directory when executing node-gyp
 # This is a workaround to avoid filesystem violations during poudriere build
 MAKE_ENV+=	PYTHONDONTWRITEBYTECODE=1
 TEST_ENV=	${MAKE_ENV:C/TMPDIR=.*//}
 
-NODEJS_DIR=	${.CURDIR:H:H}/www/node22
-.include "${NODEJS_DIR}/Makefile.version"
-ELECTRON_DIR=	${.CURDIR:H:H}/devel/electron37
-.include "${ELECTRON_DIR}/Makefile.version"
+UPSTREAM_ELECTRON_VER=	${ELECTRON_VER}
 
-ELECTRON_DOWNLOAD_URL=	https://github.com/electron/electron/releases/download/v${ELECTRON_VER}
-ELECTRON_DOWNLOAD_URL_HASH!=	/sbin/sha256 -q -s ${ELECTRON_DOWNLOAD_URL}
-ELECTRON_ARCH=		${ARCH:S/aarch64/arm64/:S/amd64/x64/:S/i386/ia32/}
+.include "Makefile.version"
+.include <bsd.port.pre.mk>
+
+NODEJS_DIR=	${.CURDIR:H:H}/www/node${NODEJS_VERSION}
+.include "${NODEJS_DIR}/Makefile.version"
 
 pre-everything::
 	@${ECHO_MSG} ""
@@ -118,7 +108,7 @@ post-extract:
 		${WRKSRC}/build/.moduleignore.freebsd
 	@${ECHO_MSG} "===>  Installing node modules in ${WRKSRC}"
 	@${TAR} -xzf ${WRKDIR}/vscode-.-node-modules${EXTRACT_SUFX} -C ${WRKSRC}
-	@for dir in `node -p "JSON.stringify(require('${WRKSRC}/build/npm/dirs').dirs)" | jq -r '.[]'`; do \
+	@for dir in `node --input-type=module -e "console.log(JSON.stringify((await import('${WRKSRC}/build/npm/dirs.ts')).dirs))" | jq -r '.[]'`; do \
 		if [ -f ${WRKDIR}/vscode-`echo $${dir} | tr _ __ | tr / _`-node-modules${EXTRACT_SUFX} ]; then \
 			${ECHO_MSG} "===>  Installing node modules in ${WRKSRC}/$${dir}"; \
 			${TAR} -xzf ${WRKDIR}/vscode-`echo $${dir} | tr _ __ | tr / _`-node-modules${EXTRACT_SUFX} -C ${WRKSRC}/$${dir}; \
@@ -130,6 +120,9 @@ post-patch:
 		${WRKSRC}/.npmrc
 	@${REINPLACE_CMD} -E 's|^(target=").*(")$$|\1${NODEJS_PORTVERSION}\2|' \
 		${WRKSRC}/remote/.npmrc
+	@${REINPLACE_CMD} -e 's/%%DISTVERSION%%/${DISTVERSION}/g' \
+		${WRKSRC}/build/gulpfile.reh.ts \
+		${WRKSRC}/build/gulpfile.vscode.ts
 	@(cd ${WRKSRC} && \
 		${FIND} -E . -type f -iregex '${SHEBANG_REGEX}' \
 			-exec ${SED} -i '' -e "s|/usr/bin/pgrep|/bin/pgrep|g" {} ';')
@@ -156,6 +149,8 @@ post-patch:
 		${FIND} . -type f -name '*.sh' \
 			-exec ${SED} -i '' -e "s|/usr/bin/pgrep|/bin/pgrep|g" \
 					-e 's|#!/bin/bash|#!${LOCALBASE}/bin/bash|' {} ';')
+	@${SETENV} FILESDIR=${FILESDIR} \
+		${SH} ${FILESDIR}/update-product-json.sh ${WRKSRC}
 
 pre-build:
 # rebuild native node modules in top directory
@@ -169,7 +164,7 @@ pre-build:
 			node-gyp --userconfig=${WRKSRC}/.npmrc rebuild; \
 	done
 # rebuild native node modules in subdirectories
-	@for dir in `node -p "JSON.stringify(require('${WRKSRC}/build/npm/dirs').dirs)" | jq -r '.[]'`; do \
+	@for dir in `node --input-type=module -e "console.log(JSON.stringify((await import('${WRKSRC}/build/npm/dirs.ts')).dirs))" | jq -r '.[]'`; do \
 		for subdir in `${FIND} ${WRKSRC}/$${dir}/node_modules -type f -name binding.gyp -exec ${DIRNAME} {} ';' 2> /dev/null`; do \
 			${ECHO_MSG} "===>   Rebuilding native modules in $${subdir}"; \
 			if [ "`${ECHO_CMD} $${subdir} | ${GREP} /build/`" ]; then \
@@ -205,17 +200,9 @@ pre-build:
 	@${CP} ${LOCALBASE}/bin/rg ${WRKSRC}/remote/node_modules/@vscode/ripgrep/bin
 
 do-build:
-# setup download cache for gulp-atom-electron
-	@${MKDIR} ${WRKDIR}/.cache/electron/${ELECTRON_DOWNLOAD_URL_HASH}
-	@cd ${LOCALBASE}/share/electron${ELECTRON_VER_MAJOR} && \
-		zip -q -r ${WRKDIR}/.cache/electron/${ELECTRON_DOWNLOAD_URL_HASH}/electron-v${ELECTRON_VER}-linux-${ELECTRON_ARCH}.zip .
 # remove backup files so that they are not included in the package
-	@${FIND} ${WRKSRC} -type f \( -name '*.orig' -o -name '*~' \) -delete
+	@${FIND} ${WRKSRC} -type f \( -name '*.bak' -o -name '*.orig' -o -name '*~' \) -delete
 # build and package vscode
-	cd ${WRKSRC}/build && \
-		${SETENV} ${MAKE_ENV} npm run prebuild-ts
-	cd ${WRKSRC} && \
-		${SETENV} ${MAKE_ENV} tsgo -p build/tsconfig.build.json
 	cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} \
 			npm_config_runtime=electron \
@@ -299,7 +286,7 @@ make-node-modules-archive: extract patch-package-json
 	${SETENV} ${MAKE_ENV} npm install \
 		--ignore-scripts --no-progress --no-audit --no-fund --no-update-notifier && \
 	${TAR} -czf ${WRKDIR}/vscode-.-node-modules${EXTRACT_SUFX} node_modules
-	@for dir in `node -p "JSON.stringify(require('${WRKSRC}/build/npm/dirs').dirs)" | jq -r '.[]'`; do \
+	@for dir in `node --input-type=module -e "console.log(JSON.stringify((await import('${WRKSRC}/build/npm/dirs.ts')).dirs))" | jq -r '.[]'`; do \
 		cd ${WRKSRC}/$${dir} && \
 		${ECHO_MSG} "===>  Fetching and installing node modules in ${WRKSRC}/$${dir}" && \
 		${SETENV} ${MAKE_ENV} npm install \
@@ -317,4 +304,4 @@ make-marketplace-exts-archive: extract
 	${SETENV} ${MAKE_ENV} npm run download-builtin-extensions
 	@${TAR} -czf ${WRKDIR}/vscode-marketplace-exts-${DISTVERSION}${EXTRACT_SUFX} -C ${WRKSRC}/.build builtInExtensions
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

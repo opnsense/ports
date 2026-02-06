@@ -1,6 +1,6 @@
 PORTNAME=	soju
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.9.0
+DISTVERSION=	0.10.1
 PORTREVISION=	2
 CATEGORIES=	irc
 
@@ -11,12 +11,9 @@ WWW=		https://soju.im
 LICENSE=	AGPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.23,modules,no_targets sqlite:3
+USES=		go:modules,no_targets sqlite:3
 USE_GITHUB=	nodefault
-GH_TUPLE=	golang:sys:v0.30.0:sys
-
-DEPRECATED=	Uses old go, but try building without USES=go:someversion
-EXPIRATION_DATE=2026-01-01
+GH_TUPLE=	golang:sys:v0.35.0:sys
 
 OPTIONS_DEFAULT=	DOCS
 OPTIONS_DEFINE=		DOCS

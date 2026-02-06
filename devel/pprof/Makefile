@@ -1,6 +1,6 @@
 PORTNAME=	pprof
 DISTVERSION=	2024.12.09 # the upstream has no plans to make releases: https://github.com/google/pprof/issues/714#issuecomment-1192930097
-PORTREVISION=	3
+PORTREVISION=	5
 CATEGORIES=	devel
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -10,10 +10,7 @@ WWW=		https://github.com/google/pprof
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.22,modules
-
-DEPRECATED=	Uses old go, but try building without USES=go:someversion
-EXPIRATION_DATE=2026-01-01
+USES=		go:modules
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	google

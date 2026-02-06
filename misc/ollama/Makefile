@@ -1,7 +1,7 @@
 PORTNAME=	ollama
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.13.1-rc0
-PORTREVISION=	2
+DISTVERSION=	0.15.1
+PORTREVISION=	1
 CATEGORIES=	misc # machine-learning
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	bash:shells/bash \
 		${LOCALBASE}/include/nlohmann/json_fwd.hpp:devel/nlohmann-json \
 		${LOCALBASE}/include/stb/stb_image.h:devel/stb
 
-USES=		cmake:indirect go:1.24,modules localbase pkgconfig
+USES=		cmake:indirect go:1.24+,modules localbase pkgconfig
 
 GO_MODULE=	github.com/yurivict/${PORTNAME} # fork with FreeBSD patches
 GO_TARGET=	.
@@ -50,9 +50,12 @@ VULKAN_PLIST_FILES=	lib/ollama/libggml-vulkan.so
 
 _CMAKE_FLAGS=	-DCMAKE_BUILD_TYPE=Release -DGGML_BACKEND_DL=ON -DGGML_BACKEND_DIR=${PREFIX}/lib/ollama
 
-post-patch: # change import path to the fork
+post-patch:
+	# change import path to the fork
 	@cd ${WRKSRC} && \
 		(${GREP} -rl ollama/ollama | ${XARGS} ${REINPLACE_CMD} -i '' -e 's|ollama/ollama|yurivict/ollama|g')
+	@${REINPLACE_CMD} -e 's|var Version string = "0.0.0"|var Version string = "${PORTVERSION}"|g' \
+		${WRKSRC}/go.mod ${WRKSRC}/version/version.go
 
 pre-build-CPU-on:
 	@${MKDIR} ${WRKSRC}/build && \

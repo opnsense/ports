@@ -1,5 +1,5 @@
 PORTNAME=	dotnet
-DISTVERSION?=	${DOTNETVERSION}.10
+DISTVERSION?=	${DOTNETVERSION}.12
 PORTREVISION?=	0
 CATEGORIES=	lang devel
 MASTER_SITES=	${NO_RELEASE_JSON:Uhttps\://github.com/dotnet/dotnet/releases/download/${GH_TAGNAME}/release.json?dummy=/\:dotnetmanifest} \
@@ -48,9 +48,9 @@ BOOTSTRAP_SOURCEBUILT_ARTIFACTS_DISTNAME=	Private.SourceBuilt.Artifacts.${BOOTST
 BOOTSTRAP_SDK_DISTNAME=				dotnet-sdk-${BOOTSTRAP_SDKVERSION}-freebsd-${DOTNET_ARCH}
 
 DOTNETVERSION?=		9.0
-SDKVERSION?=		${DOTNETVERSION}.111
-SDKVERSIONSUFFIX?=	-servicing.25475.17
-SDKSERVICESUFFIX?=	-servicing.25476.1
+SDKVERSION?=		${DOTNETVERSION}.113
+SDKVERSIONSUFFIX?=	-servicing.25609.3
+SDKSERVICESUFFIX?=	-servicing.25610.1
 MANIFESTSUFFIX=		${DOTNETVERSION}.100
 DOTNET_ARCH=		${ARCH:S|amd64|x64|:C|aarch64|arm64|}
 SDK_DISTNAME?=		dotnet-sdk-${SDKVERSION}-${SDK_RID}
@@ -99,6 +99,13 @@ PLIST_SUB+=	VXSORT=
 PLIST_SUB+=	VXSORT="@comment "
 .endif
 
+# https://github.com/dotnet/dotnet/issues/4037
+.if !target(post-patch)
+post-patch:
+	${CP} ${PATCHDIR}/0002-Fix-assembly-version-calculation-in-2026.patch \
+		${WRKSRC}/src/source-build-externals/patches/azure-activedirectory-identitymodel-extensions-for-dotnet/
+.endif
+
 post-extract:
 .ifndef NO_RELEASE_JSON
 	${CP} ${DISTDIR}/${DIST_SUBDIR}/release.json-${PORTVERSION} ${WRKSRC}/release.json
@@ -126,6 +133,7 @@ do-build:
 		--with-packages ${WRKDIR}/packages \
 		${DOTNET_BUILD_SH_EXTRA_FLAGS} \
 		-- \
+		/p:MinimalConsoleLogOutput=false \
 		-maxcpucount:${MAKE_JOBS_NUMBER} \
 		${PORTABLE_BUILD_FLAG}
 

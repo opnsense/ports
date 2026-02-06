@@ -1,7 +1,7 @@
 PORTNAME=	zrepl
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.1.0
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	filesystems sysutils
 PKGNAMESUFFIX=	-${GH_ACCOUNT}
 
@@ -11,7 +11,7 @@ COMMENT=	ZFS dataset replication tool (fork with more features)
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25,modules ncurses
+USES=		go:1.25+,modules ncurses
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	dsh2dsh

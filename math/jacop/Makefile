@@ -17,6 +17,9 @@ BUILD_DEPENDS=	maven>0:devel/maven
 USES=		java
 USE_GITHUB=	yes
 GH_ACCOUNT=	radsz
+JAVA_VERSION=	8 11 17
+
+MAKE_ENV+=	JAVA_HOME=${JAVA_HOME}
 
 NO_ARCH=	yes
 

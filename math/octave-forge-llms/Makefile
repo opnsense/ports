@@ -1,6 +1,6 @@
 PORTNAME=	octave-forge-llms
 DISTVERSIONPREFIX=	release-
-DISTVERSION=	0.1.2
+DISTVERSION=	0.1.4
 CATEGORIES=	math
 
 MAINTAINER=	stephen@FreeBSD.org
@@ -17,7 +17,10 @@ USE_GITHUB=	yes
 GH_ACCOUNT=	pr0m1th3as
 GH_PROJECT=	octave-llms
 
-BROKEN_arm64=	does not build
+CXXFLAGS_amd64=	-mpclmul -msse4.1
+CXXFLAGS_i386=	-mpclmul -msse4.1
+
+IGNORE_arm64=	does not build
 
 OCTAVE_SRC=	${GH_PROJECT}-release-${DISTVERSION}
 

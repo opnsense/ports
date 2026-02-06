@@ -1,7 +1,7 @@
 PORTNAME=	tgpt
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.11.0
-PORTREVISION=	5
+DISTVERSION=	2.11.1
+PORTREVISION=	1
 CATEGORIES=	www
 
 MAINTAINER=	nxjoseph@protonmail.com
@@ -13,6 +13,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		go:modules
 GO_MODULE=	github.com/aandrew-me/tgpt/v2
+
+post-patch:
+	${CP} ${FILESDIR}/modules.txt ${WRKSRC}/vendor
 
 PLIST_FILES=	bin/tgpt
 

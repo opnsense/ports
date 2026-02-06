@@ -1,6 +1,7 @@
 PORTNAME=	chaoskube
 PORTVERSION=	0.37.1
 DISTVERSIONPREFIX=	v
+PORTREVISION=	2
 CATEGORIES=	sysutils
 
 MAINTAINER=	dutra@FreeBSD.org
@@ -10,7 +11,7 @@ WWW=		https://github.com/linki/chaoskube
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 GO_MODULE=	github.com/linki/chaoskube
 
 PLIST_FILES=	bin/${PORTNAME}

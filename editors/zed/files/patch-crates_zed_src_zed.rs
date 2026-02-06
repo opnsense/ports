@@ -1,4 +1,4 @@
---- crates/zed/src/zed.rs.orig	2025-12-03 16:43:47 UTC
+--- crates/zed/src/zed.rs.orig	2026-01-29 22:37:26 UTC
 +++ crates/zed/src/zed.rs
 @@ -385,6 +385,7 @@ pub fn initialize_workspace(
          if let Some(specs) = window.gpu_specs() {

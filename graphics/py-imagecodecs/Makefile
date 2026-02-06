@@ -1,6 +1,6 @@
 PORTNAME=	imagecodecs
-PORTVERSION=	2024.12.30
-PORTREVISION=	3
+PORTVERSION=	2025.11.11
+PORTREVISION=	2
 CATEGORIES=	graphics python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -45,11 +45,12 @@ LIB_DEPENDS=	libaec.so:science/libaec \
 		libzstd.so:archivers/zstd
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}numpy>=0,1:math/py-numpy@${PY_FLAVOR}
 
-USES=		jpeg localbase python
-USE_PYTHON=	autoplist concurrent cython3 pep517
+USES=		jpeg localbase python:3.11+
+USE_PYTHON=	autoplist concurrent cython pep517
 
 CPPFLAGS+=	-I${LOCALBASE}/include/jxrlib \
 		-I${LOCALBASE}/include/openjpeg-2.5
+MAKE_ENV=	CG_LIMITED_API=0
 
 OPTIONS_DEFINE=	ALL
 ALL_DESC=	All optional dependencies

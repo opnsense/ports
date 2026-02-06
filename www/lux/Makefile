@@ -1,7 +1,7 @@
 PORTNAME=	lux
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.23.0
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	www
 
 MAINTAINER=	lcook@FreeBSD.org
@@ -13,11 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	ffmpeg:multimedia/ffmpeg
 
-USES=		go:1.21,modules
+USES=		go:modules
 GO_MODULE=	github.com/iawia002/${PORTNAME}
-
-DEPRECATED=	Uses old go, but try building without USES=go:someversion
-EXPIRATION_DATE=2026-01-01
 
 PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	CONTRIBUTING.md README.md

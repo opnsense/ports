@@ -1,6 +1,6 @@
 PORTNAME=	thinc
 PORTVERSION=	9.1.1
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI \
 		https://github.com/explosion/thinc/releases/download/release-v${PORTVERSION}/

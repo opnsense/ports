@@ -1,7 +1,7 @@
 PORTNAME=	dendrite
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.14.1
-PORTREVISION=	4
+PORTREVISION=	6
 CATEGORIES=	net-im
 
 MAINTAINER=	ashish@FreeBSD.org
@@ -11,15 +11,12 @@ WWW=		https://github.com/element-hq/dendrite
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cpe go:1.23,modules
+USES=		cpe go:modules
 CPE_VENDOR=	matrix
 PLIST_SUB=	PORTNAME=${PORTNAME}
 USE_RC_SUBR=	${PORTNAME}
 USERS=		${PORTNAME}
 GROUPS=		${USERS}
-
-DEPRECATED=	Uses old go, but try building without USES=go:someversion
-EXPIRATION_DATE=2026-01-01
 
 DENDRITE_BINS=	create-account dendrite-demo-pinecone			\
 		dendrite-demo-yggdrasil dendrite			\

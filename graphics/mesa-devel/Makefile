@@ -1,11 +1,9 @@
 PORTNAME=	mesa
-DISTVERSION=	25.3-branchpoint-2226
-DISTVERSIONSUFFIX=	-g8ba197c9ef6
+DISTVERSION=	26.0-branchpoint-736
+DISTVERSIONSUFFIX=	-g124d550a943
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	-devel
 
-PATCH_SITES=	https://github.com/mesa3d/${GL_PROJECT}/commit/:github
-PATCHFILES+=	700efacda59c.patch:-p1:github
 PATCH_SITES+=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
 PATCHFILES+=	de5cf0a44b50.patch:-p1 # https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/22246
 
@@ -21,6 +19,7 @@ ONLY_FOR_ARCHS_REASON=	Limited scope: no old drivers and no software rendering. 
 			See also https://mesamatrix.net/
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR} \
 		libglvnd>=1.3.2:graphics/libglvnd \
 		${PYTHON_PKGNAMEPREFIX}mako>0:textproc/py-mako@${PY_FLAVOR}
 LIB_DEPENDS=	libdrm.so:graphics/libdrm \
@@ -38,6 +37,7 @@ MESON_DISABLED=	android-libbacktrace gallium-mediafoundation \
 MESON_TRUE=	unversion-libgallium
 MESON_ARGS=	-Dplatforms=${PLATFORMS:O:[-1..1]:ts,} -Dvideo-codecs=all
 LDFLAGS+=	-Wl,--undefined-version # https://gitlab.freedesktop.org/mesa/mesa/-/issues/8003
+FORTIFY_UNSAFE=	yes
 PLIST_SUB=	ARCH=${ARCH:S/amd/x86_/}
 
 OPTIONS_DEFINE=		DRM LLVM LTO OPENCL VAAPI VKLAYERS WAYLAND X11 ZSTD
@@ -68,8 +68,7 @@ crocus_DESC=		Broadwater, Eaglelake, Ironlake, Sandybridge, Ivybridge, Haswell
 iris_DESC=		Broadwell and newer (implies OPENCL)
 iris_IMPLIES=		OPENCL
 panfrost_DESC=		Midgard, Bifrost
-r600_DESC=		R600, R700, Evergreen, Northern Islands (implies LLVM)
-r600_IMPLIES=		LLVM
+r600_DESC=		R600, R700, Evergreen, Northern Islands
 radeonsi_DESC=		Southern Islands and newer
 
 VULKAN_DESC=		Vulkan drivers
@@ -101,7 +100,7 @@ LLVM_CONFIGURE_ENV=	LLVM_CONFIG=${LLVM_CONFIG}
 LLVM_MESON_ENABLED=	llvm
 LLVM_MESON_TRUE=	amd-use-llvm
 
-LTO_MESON_TRUE=		b_lto
+LTO_MESON_TRUE=		b_lto allow-broken-lto
 
 OPENCL_DESC=		Heterogeneous computing via OpenCL (implies LLVM)
 OPENCL_BUILD_DEPENDS=	bindgen:devel/rust-bindgen-cli \

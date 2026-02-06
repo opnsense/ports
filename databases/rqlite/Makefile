@@ -1,7 +1,7 @@
 PORTNAME=	rqlite
 DISTVERSIONPREFIX=	v
 DISTVERSION=	9.3.2
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	databases
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -12,7 +12,7 @@ WWW=		https://rqlite.io \
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 
 GO_MODULE=	github.com/rqlite/rqlite/v9
 GO_TARGET=	./cmd/rqbench \

@@ -1,6 +1,6 @@
 PORTNAME=	xpra
-PORTVERSION=	6.3.4
-PORTREVISION=	1
+PORTVERSION=	6.4
+PORTREVISION=	2
 CATEGORIES=	x11
 MASTER_SITES=	https://xpra.org/src/
 
@@ -11,7 +11,9 @@ WWW=		https://xpra.org/
 LICENSE=	GPLv2
 
 BUILD_DEPENDS=	pandoc:textproc/hs-pandoc
-LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
+LIB_DEPENDS=	libaom.so:multimedia/aom \
+		libavcodec.so:multimedia/ffmpeg \
+		libavif.so:graphics/libavif \
 		libbrotlidec.so:archivers/brotli \
 		libdrm.so:graphics/libdrm \
 		libharfbuzz.so:print/harfbuzz \
@@ -46,12 +48,15 @@ USES=		desktop-file-utils gettext-runtime gnome localbase pkgconfig \
 		python shared-mime-info shebangfix tar:xz xorg
 
 USE_GNOME=	cairo gdkpixbuf gtk30 pygobject3
-USE_PYTHON=	cryptography cython3 distutils noflavors
-USE_XORG=	x11 xcomposite xdamage xext xfixes xi xkbfile xrandr xres xtst
+USE_PYTHON=	cryptography cython distutils noflavors
+USE_XORG=	x11 xcomposite xcursor xdamage xext xfixes xi xkbfile xrandr \
+		xres xtst
 PLIST_SUB+=	PORTVERSION=${PORTVERSION} \
 		PYTHON_SUFFIX=${PYTHON_SUFFIX} \
 		PYTHON_VER=${PYTHON_VER}
-SHEBANG_FILES=	fs/lib/cups/backend/xpraforwarder fs/libexec/xpra/auth_dialog \
+SHEBANG_FILES=	fs/lib/cups/backend/xpraforwarder \
+		fs/libexec/xpra/auth_dialog \
+		fs/libexec/xpra/daemonizer \
 		fs/libexec/xpra/gnome-open fs/libexec/xpra/gvfs-open \
 		fs/libexec/xpra/xdg-open fs/libexec/xpra/xpra_signal_listener \
 		fs/libexec/xpra/xpra_udev_product_version \

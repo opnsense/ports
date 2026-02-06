@@ -1,7 +1,7 @@
 PORTNAME=	freenginx
 PORTVERSION=	${NGINX_VERSION}
 .include "version.mk"
-PORTREVISION=	4
+PORTREVISION=	16
 CATEGORIES=	www
 MASTER_SITES=	https://freenginx.org/download/ \
 		LOCAL/osa
@@ -19,7 +19,7 @@ CONFLICTS_INSTALL=	nginx
 
 PORTSCOUT=	limit:^1\.29\.[0-9]*
 
-USES=		cpe compiler:env
+USES=		cpe compiler:env localbase:ldflags
 
 CPE_VENDOR=	freenginx
 CPE_PRODUCT=	freenginx
@@ -48,8 +48,8 @@ SUB_LIST+=	WWWOWN=${WWWOWN} \
 
 HAS_CONFIGURE=	yes
 CONFIGURE_ARGS+=--prefix=${ETCDIR} \
-		--with-cc-opt="-I ${LOCALBASE}/include" \
-		--with-ld-opt="-L ${LOCALBASE}/lib" \
+		--with-cc-opt="${CFLAGS}" \
+		--with-ld-opt="${LDFLAGS}" \
 		--conf-path=${ETCDIR}/nginx.conf \
 		--sbin-path=${PREFIX}/sbin/nginx \
 		--pid-path=${NGINX_RUNDIR}/nginx.pid \
@@ -69,7 +69,7 @@ NO_OPTIONS_SORT=	yes
 OPTIONS_GROUP=	HTTPGRP MAILGRP STREAMGRP
 # Modules that are part of the base nginx distribution
 OPTIONS_GROUP_HTTPGRP=	GOOGLE_PERFTOOLS HTTP HTTP_ADDITION HTTP_AUTH_REQ \
-	HTTP_CACHE HTTP_DAV HTTP_DEGRADATION HTTP_FLV HTTP_GUNZIP_FILTER \
+	HTTP_CACHE HTTP_DAV HTTP_DEGRADATION HTTP_FLV HTTP_GEOIP HTTP_GUNZIP_FILTER \
 	HTTP_GZIP_STATIC HTTP_IMAGE_FILTER HTTP_MP4 HTTP_PERL \
 	HTTP_RANDOM_INDEX HTTP_REALIP HTTP_SECURE_LINK HTTP_SLICE HTTP_SSL \
 	HTTP_STATUS HTTP_SUB HTTP_XSLT HTTPV2 HTTPV3 HTTPV3_BORING HTTPV3_LSSL \
@@ -77,7 +77,7 @@ OPTIONS_GROUP_HTTPGRP=	GOOGLE_PERFTOOLS HTTP HTTP_ADDITION HTTP_AUTH_REQ \
 
 OPTIONS_GROUP_MAILGRP=	MAIL MAIL_IMAP MAIL_POP3 MAIL_SMTP MAIL_SSL
 
-OPTIONS_GROUP_STREAMGRP=	STREAM STREAM_REALIP STREAM_SSL \
+OPTIONS_GROUP_STREAMGRP=	STREAM STREAM_GEOIP STREAM_REALIP STREAM_SSL \
 	STREAM_SSL_PREREAD
 
 OPTIONS_DEFINE=		DEBUG DEBUGLOG DSO FILE_AIO IPV6 NJS OTEL THREADS WWW
@@ -146,6 +146,9 @@ HTTP_CACHE_CONFIGURE_OFF=	--without-http-cache
 HTTP_DAV_CONFIGURE_ON=		--with-http_dav_module
 HTTP_DEGRADATION_CONFIGURE_ON=	--with-http_degradation_module
 HTTP_FLV_CONFIGURE_ON=		--with-http_flv_module
+HTTP_GEOIP_CONFIGURE_ON=	--with-http_geoip_module
+HTTP_GEOIP_LIB_DEPENDS=		libmaxminddb.so:net/libmaxminddb
+HTTP_GEOIP_VARS=		DSO_BASEMODS+=http_geoip_module
 HTTP_GZIP_STATIC_CONFIGURE_ON=	--with-http_gzip_static_module
 HTTP_GUNZIP_FILTER_CONFIGURE_ON=--with-http_gunzip_module
 HTTP_IMAGE_FILTER_LIB_DEPENDS=	libgd.so:graphics/gd
@@ -191,6 +194,9 @@ MAIL_SSL_USES=			ssl
 MAIL_SSL_CONFIGURE_ON=		--with-mail_ssl_module
 STREAM_VARS=			DSO_BASEMODS+=stream
 STREAM_CONFIGURE_ON=		--with-stream
+STREAM_GEOIP_CONFIGURE_ON=	--with-stream_geoip_module
+STREAM_GEOIP_LIB_DEPENDS=	libmaxminddb.so:net/libmaxminddb
+STREAM_GEOIP_VARS=		DSO_BASEMODS+=stream_geoip_module
 STREAM_REALIP_CONFIGURE_ON=	--with-stream_realip_module
 STREAM_SSL_USES=		ssl
 STREAM_SSL_CONFIGURE_ON=	--with-stream_ssl_module
@@ -237,30 +243,8 @@ IGNORE=		required at least GSSAPI_HEIMDAL or \
 		'make config' again
 .endif
 
-.include "Makefile.ignore"
-
 .if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 191
 CFLAGS+=	-Wno-error=cast-function-type-mismatch
-.endif
-
-.if ${PORT_OPTIONS:MPASSENGER} && empty(PORT_OPTIONS:MDEBUG)
-CONFIGURE_ENV+=	OPTIMIZE="yes"
-CFLAGS+=	-DNDEBUG
-.endif
-
-.if ${PORT_OPTIONS:MPASSENGER}
-CONFIGURE_ENV+=	EXTRA_PRE_CXXFLAGS="-std=c++14"
-.endif
-
-.if (PORT_OPTIONS:MMODSECURITY3)
-CONFIGURE_ARGS+=	--with-ld-opt="-L ${LOCALBASE}/lib -lpcre"
-LIB_DEPENDS+=		libpcre.so:devel/pcre
-.endif
-
-.if ${PORT_OPTIONS:MNJS}
-NJS_CONFIGURE_ARGS=	--cc-opt="${CFLAGS} -I${LOCALBASE}/include/quickjs" \
-			--ld-opt="-L${LOCALBASE}/lib" \
-			--with-quickjs
 .endif
 
 pre-everything::
@@ -308,10 +292,6 @@ post-patch-HTTP_TARANTOOL-on:
 
 post-patch-ICONV-on:
 	@${REINPLACE_CMD} 's!%%PREFIX%%!${LOCALBASE}!g' ${WRKSRC_iconv}/config
-
-post-patch-NJS_QJS-on:
-	@${REINPLACE_CMD} 's!%%LOCALBASE%%!${LOCALBASE}!g' ${WRKSRC_njs}/auto/quickjs \
-		${WRKSRC_njs}/nginx/config
 
 post-patch-PASSENGER-on:
 	@${REINPLACE_CMD} \

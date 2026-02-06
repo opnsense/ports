@@ -1,7 +1,7 @@
 PORTNAME=	fabric
 DISTVERSIONPREFIX=	v
 DISTVERSION=	3.0.0
-PORTREVISION=	7
+PORTREVISION=	9
 CATEGORIES=	finance
 PKGNAMESUFFIX=	-hyperledger
 
@@ -14,12 +14,9 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 NOT_FOR_ARCHS=	armv6 armv7 i386 mips powerpc # compilation fails on non-64-bit systems: fabric-amcl/core/FP256BN/FP.go:111:19: cannot convert MConst (constant 30564559323915749 of type Chunk) to type int
 
-USES=		go:1.23,modules
+USES=		go:modules
 USE_GITHUB=	yes
 GH_ACCOUNT=	hyperledger
-
-DEPRECATED=	Uses old go, but try building without USES=go:someversion
-EXPIRATION_DATE=2026-01-01
 
 # the upstream claims that it is too difficult to add the /v2 suffix to the GoLang module URL: https://github.com/hyperledger/fabric/issues/2929
 GH_TUPLE=	\

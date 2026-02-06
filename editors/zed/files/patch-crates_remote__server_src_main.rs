@@ -1,6 +1,6 @@
---- crates/remote_server/src/main.rs.orig	2025-11-15 04:26:31 UTC
+--- crates/remote_server/src/main.rs.orig	2026-01-29 22:37:26 UTC
 +++ crates/remote_server/src/main.rs
-@@ -36,6 +36,7 @@ fn main() -> anyhow::Result<()> {
+@@ -29,6 +29,7 @@ fn main() -> anyhow::Result<()> {
          return Ok(());
      }
  

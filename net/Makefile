@@ -19,6 +19,7 @@
     SUBDIR += aluminum
     SUBDIR += amnezia-kmod
     SUBDIR += amnezia-tools
+    SUBDIR += amneziawg-go
     SUBDIR += amqpcat
     SUBDIR += aoe
     SUBDIR += apache-commons-net
@@ -82,6 +83,7 @@
     SUBDIR += chrony-lite
     SUBDIR += citrix_ica
     SUBDIR += cjdns
+    SUBDIR += claws
     SUBDIR += cloud-init
     SUBDIR += cloud-init-devel
     SUBDIR += cloudflared
@@ -237,7 +239,6 @@
     SUBDIR += gupnp-igd
     SUBDIR += gupnp-tools
     SUBDIR += gutenfetch
-    SUBDIR += gwhois
     SUBDIR += h323plus
     SUBDIR += hanstunnel
     SUBDIR += haproxy
@@ -306,7 +307,6 @@
     SUBDIR += jose
     SUBDIR += jotta-cli
     SUBDIR += jrdesktop
-    SUBDIR += jsch
     SUBDIR += jumpgate
     SUBDIR += jwhois
     SUBDIR += k6
@@ -577,6 +577,7 @@
     SUBDIR += open-isns
     SUBDIR += openbgpd7
     SUBDIR += openbgpd8
+    SUBDIR += openbgpd9
     SUBDIR += openldap25-client
     SUBDIR += openldap25-server
     SUBDIR += openldap26-client
@@ -995,9 +996,6 @@
     SUBDIR += pecl-smbclient
     SUBDIR += pecl-xmlrpc
     SUBDIR += pen
-    SUBDIR += php81-ldap
-    SUBDIR += php81-soap
-    SUBDIR += php81-sockets
     SUBDIR += php82-ldap
     SUBDIR += php82-soap
     SUBDIR += php82-sockets
@@ -1498,6 +1496,7 @@
     SUBDIR += samba419
     SUBDIR += samba420
     SUBDIR += samba422
+    SUBDIR += samba423
     SUBDIR += samplicator
     SUBDIR += savvycan
     SUBDIR += sbm
@@ -1657,6 +1656,7 @@
     SUBDIR += usbredir
     SUBDIR += usockets
     SUBDIR += utftpd
+    SUBDIR += uvgrtp
     SUBDIR += v2ray
     SUBDIR += vde
     SUBDIR += vde2
@@ -1728,6 +1728,7 @@
     SUBDIR += yggdrasil
     SUBDIR += yptransitd
     SUBDIR += zapret
+    SUBDIR += zapret2
     SUBDIR += zebra-server
     SUBDIR += zerotier
     SUBDIR += zmap

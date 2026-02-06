@@ -1,7 +1,7 @@
 PORTNAME=	gonic
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.19.0
-PORTREVISION=	3
+DISTVERSION=	0.20.1
+PORTREVISION=	1
 CATEGORIES=	audio net
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -14,7 +14,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 RUN_DEPENDS=	ffmpeg:multimedia/ffmpeg \
 		mpv:multimedia/mpv
 
-USES=		go:1.25,modules
+USES=		go:1.25+,modules
 
 USE_RC_SUBR=	${PORTNAME}
 

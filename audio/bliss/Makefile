@@ -13,6 +13,8 @@ WWW=		https://github.com/Polochon-street/bliss
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN=		Does not build with ffmpeg > 6, see https://github.com/Polochon-street/bliss/issues/164
+
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libfftw3.so:math/fftw3
 

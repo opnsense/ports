@@ -1,5 +1,6 @@
 PORTNAME=	difftastic
 DISTVERSION=	0.67.0
+PORTREVISION=	2
 CATEGORIES=	textproc
 
 MAINTAINER=	amdmi3@FreeBSD.org

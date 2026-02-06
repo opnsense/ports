@@ -1,7 +1,6 @@
 PORTNAME=	wangle
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2025.12.01.00
-PORTREVISION=	1
+DISTVERSION=	2026.02.02.00
 CATEGORIES=	net
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -38,7 +37,7 @@ CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	BUILD_TESTS
 CXXFLAGS+=	-DGLOG_USE_GLOG_EXPORT
 
-post-install: # https://github.com/facebook/wangle/issues/179
+xpost-install: # https://github.com/facebook/wangle/issues/179
 	cd ${STAGEDIR}${PREFIX} && \
 		${RMDIR} \
 			include/wangle/service/test \

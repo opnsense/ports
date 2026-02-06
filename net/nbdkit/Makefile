@@ -1,5 +1,5 @@
 PORTNAME=	nbdkit
-PORTVERSION=	1.44.4
+PORTVERSION=	1.46.1
 CATEGORIES=	net
 # XXX Although nbdkit uses github for its homepage, the release tarballs served
 # by github haven't been through autoconf.  So we must download the sources
@@ -42,6 +42,9 @@ CONFIGURE_ARGS+=	--disable-golang \
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
 
+# Workaround for "fetch: transfer timed out" due to Hetzner's IPv6
+FETCH_ARGS+=	--ipv4-only
+
 OPTIONS_DEFINE=	CURL GNUTLS LIBVIRT LZMA MANPAGES PERL PYTHON RUBY SSH ZLIB \
 		ZSTD
 
@@ -68,6 +71,8 @@ RUBY_CONFIGURE_ENABLE=		ruby
 SSH_LIB_DEPENDS=		libssh.so:security/libssh
 SSH_CONFIGURE_WITH=		ssh
 ZLIB_CONFIGURE_WITH=		zlib
+# Fix "WARNING: zlib-ng not found, zlib operations will run slower"
+ZLIB_LIB_DEPENDS=		libz-ng.so:archivers/zlib-ng
 ZSTD_LIB_DEPENDS=		libzstd.so:archivers/zstd
 ZSTD_CONFIGURE_WITH=		libzstd
 
