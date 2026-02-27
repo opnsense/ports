@@ -57,8 +57,8 @@ netbird_start_precmd() {
 netbird_start_postcmd() {
     # If CARP is enabled and we're not MASTER, ensure connection is down
     # This prevents HA sync from reactivating the connection on BACKUP
-    if [ -x /usr/local/opnsense/scripts/OPNsense/Netbird/carp_check.php ]; then
-        if ! /usr/local/opnsense/scripts/OPNsense/Netbird/carp_check.php > /dev/null 2>&1; then
+    if [ -x /usr/local/opnsense/scripts/netbird/carp_check.php ]; then
+        if ! /usr/local/opnsense/scripts/netbird/carp_check.php > /dev/null 2>&1; then
             logger -s -t netbird "CARP BACKUP detected, ensuring connection is down"
             /usr/local/bin/netbird down > /dev/null 2>&1 || true
         fi
