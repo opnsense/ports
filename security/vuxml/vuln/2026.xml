@@ -1,3 +1,276 @@
+  <vuln vid="10319b08-f050-4beb-95e3-fe025cdafd25">
+    <topic>oauth2-proxy -- multiple vulnerabilities</topic>
+    <affects>
+      <package>
+	<name>oauth2-proxy</name>
+	<range><lt>7.14.2</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>During session resumption in crypto/tls, if the underlying Config has its ClientCAs or RootCAs fields mutated between the initial handshake and the resumed handshake, the resumed handshake may succeed when it should have failed.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-68121</cvename>
+    </references>
+    <dates>
+      <discovery>2026-02-05</discovery>
+      <entry>2026-02-27</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="15f4e0f6-1338-11f1-a55d-b42e991fc52e">
+    <topic>Mozilla -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+      <name>firefox</name>
+      <range><lt>148.0.0,2</lt></range>
+      </package>
+      <package>
+      <name>firefox-esr</name>
+      <range><lt>140.8.0</lt></range>
+      </package>
+      <package>
+      <name>thunderbird</name>
+      <range><lt>148.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>CVE-2026-2809: Memory safety bug in the JavaScript: WebAssembly component.</p>
+	<p>CVE-2026-2808: Integer overflow in the JavaScript: Standard Library component.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-2809</cvename>
+      <cvename>CVE-2026-2808</cvename>
+    </references>
+    <dates>
+      <discovery>2026-02-24</discovery>
+      <entry>2026-02-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="1124a7b0-1338-11f1-a55d-b42e991fc52e">
+    <topic>Firefox -- Multiple vulnerabilities</topic>
+    <affects>
+      <package>
+      <name>firefox</name>
+      <range><lt>148.0.0,2</lt></range>
+      </package>
+      <package>
+      <name>thunderbird</name>
+      <range><lt>148.0.0</lt></range>
+      </package>
+    </affects>
+    <description>
+      <body xmlns="http://www.w3.org/1999/xhtml">
+	<p>CVE-2026-2807: Memory safety bugs present in Firefox 147 and Thunderbird 147</p>
+	<p>CVE-2026-2806: Uninitialized memory in the Graphics: Text component.</p>
+	<p>CVE-2026-2805: Invalid pointer in the DOM: Core &amp; HTML component.</p>
+	<p>CVE-2026-2804: Use-after-free in the JavaScript: WebAssembly component.</p>
+	<p>CVE-2026-2803: Information disclosure, mitigation bypass in the Settings
+      UI component.</p>
+	<p>CVE-2026-2802: Race condition in the JavaScript: GC component.</p>
+	<p>CVE-2026-2801: Incorrect boundary conditions in the JavaScript:
+      WebAssembly component.</p>
+	<p>CVE-2026-2799: Use-after-free in the DOM: Core &amp; HTML component.</p>
+	<p>CVE-2026-2798: Use-after-free in the DOM: Core &amp; HTML component.</p>
+	<p>CVE-2026-2797: Use-after-free in the JavaScript: GC component.</p>
+	<p>CVE-2026-2796: JIT miscompilation in the JavaScript: WebAssembly component</p>
+	<p>CVE-2026-2795: Use-after-free in the JavaScript: GC component.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-2807</cvename>
+      <cvename>CVE-2026-2806</cvename>
+      <cvename>CVE-2026-2805</cvename>
+      <cvename>CVE-2026-2804</cvename>
+      <cvename>CVE-2026-2803</cvename>
+      <cvename>CVE-2026-2802</cvename>
+      <cvename>CVE-2026-2801</cvename>
+      <cvename>CVE-2026-2799</cvename>
+      <cvename>CVE-2026-2798</cvename>
+      <cvename>CVE-2026-2797</cvename>
+      <cvename>CVE-2026-2796</cvename>
+      <cvename>CVE-2026-2795</cvename>
+    </references>
+    <dates>
+      <discovery>2026-02-24</discovery>
+      <entry>2026-02-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="102a03c9-1316-11f1-93ca-2cf05da270f3">
+    <topic>Gitlab -- vulnerabilities</topic>
+    <affects>
+<package>
+<name>gitlab-ce</name>
+<name>gitlab-ee</name>
+<range><ge>18.9.0</ge><lt>18.9.1</lt></range>
+<range><ge>18.8.0</ge><lt>18.8.5</lt></range>
+<range><ge>9.0.0</ge><lt>18.7.5</lt></range>
+</package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Gitlab reports:</p>
+	<blockquote cite="https://about.gitlab.com/releases/2026/02/25/patch-release-gitlab-18-9-1-released/">
+	  <p>Cross-site Scripting issue in Mermaid sandbox impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in container registry impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in Jira events endpoint impacts GitLab CE/EE</p>
+	  <p>Regular Expression Denial of Service issue in GitLab merge requests impacts GitLab CE/EE</p>
+	  <p>Missing rate limit in Bitbucket Server importer impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in CI trigger API impacts GitLab CE/EE</p>
+	  <p>Denial of Service issue in token decoder impacts GitLab CE/EE</p>
+	  <p>Improper Access Control issue in Conan package registry impacts GitLab EE</p>
+	  <p>Access Control issue in CI job mutation impacts GitLab CE/EE</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-0752</cvename>
+      <cvename>CVE-2025-14511</cvename>
+      <cvename>CVE-2026-1662</cvename>
+      <cvename>CVE-2026-1388</cvename>
+      <cvename>CVE-2026-2845</cvename>
+      <cvename>CVE-2025-3525</cvename>
+      <cvename>CVE-2026-1725</cvename>
+      <cvename>CVE-2026-1747</cvename>
+      <cvename>CVE-2025-14103</cvename>
+      <url>https://about.gitlab.com/releases/2026/02/25/patch-release-gitlab-18-9-1-released/</url>
+    </references>
+    <dates>
+      <discovery>2026-02-25</discovery>
+      <entry>2026-02-26</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fe6209a3-126c-11f1-8a62-0897988a1c07">
+    <topic>mail/mailpit -- Server-Side Request Forgery (SSRF) via Link Check API</topic>
+    <affects>
+      <package>
+	<name>mailpit</name>
+	<range><lt>1.29.2</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<p>Mailpit author reports:</p>
+	<blockquote cite="https://github.com/axllent/mailpit/security/advisories/GHSA-mpf7-p9x7-96r3">
+	  <p>The Link Check API (/api/v1/message/{ID}/link-check)
+	  is vulnerable to Server-Side Request Forgery (SSRF). The
+	  server performs HTTP HEAD requests to every URL found in
+	  an email without validating target hosts or filtering
+	  private/internal IP addresses. The response returns status
+	  codes and status text per link, making this a non-blind
+	  SSRF. In the default configuration (no authentication on
+	  SMTP or API), this is fully exploitable remotely with
+	  zero user interaction.</p>
+	</blockquote>
+	</body>
+    </description>
+    <references>
+      <cvename>CVE-2026-27808</cvename>
+      <url>https://github.com/axllent/mailpit/security/advisories/GHSA-mpf7-p9x7-96r3</url>
+    </references>
+    <dates>
+      <discovery>2026-02-25</discovery>
+      <entry>2026-02-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="fbc47390-11e9-11f1-8148-bc241121aa0a">
+    <topic>FreeBSD -- Local DoS and possible privilege escalation via routing sockets</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>15.0</ge><lt>15.0_4</lt></range>
+	<range><ge>14.3</ge><lt>14.3_9</lt></range>
+	<range><ge>13.5</ge><lt>13.5_10</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>The rtsock_msg_buffer() function serializes routing information
+	into a buffer.  As a part of this, it copies sockaddr structures
+	into a sockaddr_storage structure on the stack.  It assumes that
+	the source sockaddr length field had already been validated, but
+	this is not necessarily the case, and it's possible for a malicious
+	userspace program to craft a request which triggers a 127-byte
+	overflow.</p>
+	<p>In practice, this overflow immediately overwrites the canary for
+	the rtsock_msg_buffer() stack frame, resulting in a panic once the
+	function returns.</p>
+	<h1>Impact:</h1>
+	<p>The bug allows an unprivileged user to crash the kernel by
+	triggering a stack buffer overflow in rtsock_msg_buffer().  In
+	particular, the overflow will corrupt a stack canary value that is
+	verified when the function returns; this mitigates the impact of
+	the stack overflow by triggering a kernel panic.</p>
+	<p>Other kernel bugs may exist which allow userspace to find the canary
+	value and thus defeat the mitigation, at which point local privilege
+	escalation may be possible.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2026-3038</cvename>
+      <freebsdsa>SA-26:05.route</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2026-02-24</discovery>
+      <entry>2026-02-25</entry>
+    </dates>
+  </vuln>
+
+  <vuln vid="a88f5b2d-11e9-11f1-8148-bc241121aa0a">
+    <topic>FreeBSD -- Jail chroot escape via fd exchange with a different jail</topic>
+    <affects>
+      <package>
+	<name>FreeBSD-kernel</name>
+	<range><ge>14.3</ge><lt>14.3_9</lt></range>
+	<range><ge>13.5</ge><lt>13.5_10</lt></range>
+      </package>
+    </affects>
+    <description>
+	<body xmlns="http://www.w3.org/1999/xhtml">
+	<h1>Problem Description:</h1>
+	<p>If two sibling jails are restricted to separate filesystem
+	trees, which is to say that neither of the two jail root directories
+	is an ancestor of the other, jailed processes may nonetheless be
+	able to access a shared directory via a nullfs mount, if the
+	administrator has configured one.</p>
+	<p>In this case, cooperating processes in the two jails may establish
+	a connection using a unix domain socket and exchange directory
+	descriptors with each other.</p>
+	<p>When performing a filesystem name lookup, at each step of the lookup,
+	the kernel checks whether the lookup would descend below the jail
+	root of the current process.  If the jail root directory is not
+	encountered, the lookup continues.</p>
+	<h1>Impact:</h1>
+	<p>In a configuration where processes in two different jails are
+	able to exchange file descriptors using a unix domain socket, it
+	is possible for a jailed process to receive a directory for a
+	descriptor that is below that process' jail root.  This enables
+	full filesystem access for a jailed process, breaking the chroot.</p>
+	<p>Note that the system administrator is still responsible for ensuring
+	that an unprivileged user on the jail host is not able to pass
+	directory descriptors to a jailed process, even in a patched
+	kernel.</p>
+      </body>
+    </description>
+    <references>
+      <cvename>CVE-2025-15576</cvename>
+      <freebsdsa>SA-26:04.jail</freebsdsa>
+    </references>
+    <dates>
+      <discovery>2026-02-24</discovery>
+      <entry>2026-02-25</entry>
+    </dates>
+  </vuln>
+
   <vuln vid="4594110e-1151-11f1-b3f8-8447094a420f">
     <topic>Vaultwarden -- Multiple vulnerabilities</topic>
     <affects>
