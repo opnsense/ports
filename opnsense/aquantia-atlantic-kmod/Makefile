@@ -1,6 +1,5 @@
 PORTNAME=	aquantia-atlantic-kmod
-PORTVERSION=	0.0.5
-PORTREVISION=	6
+PORTVERSION=	0.2.0
 CATEGORIES=	net
 
 MAINTAINER=	franco@opnsense.org
