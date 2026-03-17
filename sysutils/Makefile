@@ -671,6 +671,7 @@
     SUBDIR += logstash8
     SUBDIR += logstash91
     SUBDIR += logstash92
+    SUBDIR += logstash93
     SUBDIR += logtool
     SUBDIR += logwatch
     SUBDIR += loki
@@ -1184,7 +1185,9 @@
     SUBDIR += rubygem-backup
     SUBDIR += rubygem-bolt
     SUBDIR += rubygem-bosh-gen
+    SUBDIR += rubygem-bundle-audit
     SUBDIR += rubygem-bundler
+    SUBDIR += rubygem-bundler-audit
     SUBDIR += rubygem-bundler_ext
     SUBDIR += rubygem-capistrano
     SUBDIR += rubygem-capistrano-ext
@@ -1193,9 +1196,11 @@
     SUBDIR += rubygem-chef-bin
     SUBDIR += rubygem-chef-cleanroom
     SUBDIR += rubygem-chef-config
+    SUBDIR += rubygem-chef-config18
     SUBDIR += rubygem-chef-licensing
     SUBDIR += rubygem-chef-telemetry
     SUBDIR += rubygem-chef-utils
+    SUBDIR += rubygem-chef-utils18
     SUBDIR += rubygem-chef-vault
     SUBDIR += rubygem-chef-winrm
     SUBDIR += rubygem-chef-winrm-elevated

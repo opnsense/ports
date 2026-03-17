@@ -452,6 +452,7 @@
     SUBDIR += openssl
     SUBDIR += openssl-agent
     SUBDIR += openssl-oqsprovider
+    SUBDIR += openssl-pkcs11provider
     SUBDIR += openssl-unsafe
     SUBDIR += openssl111
     SUBDIR += openssl33
@@ -459,6 +460,7 @@
     SUBDIR += openssl34
     SUBDIR += openssl35
     SUBDIR += openssl36
+    SUBDIR += openssl40
     SUBDIR += openvas
     SUBDIR += openvpn
     SUBDIR += openvpn-admin
@@ -1158,11 +1160,14 @@
     SUBDIR += rubygem-digest-crc
     SUBDIR += rubygem-doorkeeper
     SUBDIR += rubygem-doorkeeper-device_authorization_grant
+    SUBDIR += rubygem-doorkeeper-i18n
+    SUBDIR += rubygem-doorkeeper-i18n-rails72
     SUBDIR += rubygem-doorkeeper-openid_connect
     SUBDIR += rubygem-doorkeeper-rails-gitlab
     SUBDIR += rubygem-doorkeeper-rails5
     SUBDIR += rubygem-doorkeeper-rails50
     SUBDIR += rubygem-doorkeeper-rails70
+    SUBDIR += rubygem-doorkeeper-rails72
     SUBDIR += rubygem-doorkeeper57-rails70
     SUBDIR += rubygem-duo_api
     SUBDIR += rubygem-ed25519

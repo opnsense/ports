@@ -1,5 +1,5 @@
 PORTNAME=	yt-dlp-ejs
-DISTVERSION=	0.5.0
+DISTVERSION=	0.7.0
 CATEGORIES=	www
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,7 +15,8 @@ WWW=		https://github.com/yt-dlp/yt-dlp-ejs
 LICENSE=	UNLICENSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-FETCH_DEPENDS=	npm:www/npm
+FETCH_DEPENDS=	npm:www/npm \
+		${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 BUILD_DEPENDS=	deno:www/deno \
 		npm:www/npm \
 		${PYTHON_PKGNAMEPREFIX}hatch-vcs>=0:devel/py-hatch-vcs@${PY_FLAVOR} \
@@ -47,7 +48,7 @@ do-fetch: # this target (1) downloads the source tarball, (2) extracts it to a t
 			${ECHO_MSG} "====> Generating package-lock.json (it will be saved to ${FILESDIR})"; \
 		fi && \
 		cd ${WRKDIR}/${DISTNAME} && \
-			${SETENV} HOME=${WRKDIR} npm ci && \
+			${SETENV} NODE_EXTRA_CA_CERTS=${LOCALBASE}/share/certs/ca-root-nss.crt HOME=${WRKDIR} npm ci && \
 		if ! [ -f ${FILESDIR}/package-lock.json ]; then \
 			${ECHO_MSG} "====> Saving generated package-lock.json to ${FILESDIR}"; \
 			${CP} ${WRKDIR}/${DISTNAME}/package-lock.json ${FILESDIR}/; \

@@ -4,7 +4,7 @@ PORTREVISION=	5
 CATEGORIES=	cad science
 PKGNAMESUFFIX=	740
 
-MAINTAINER=	thierry@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Open CASCADE Technology, 3D modeling & numerical simulation
 WWW=		https://www.opencascade.org/
 
@@ -18,6 +18,9 @@ BUILD_DEPENDS=	${LOCALBASE}/lib/qt5/bin/qmake:devel/qt5-qmake	\
 LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig	\
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	bash:shells/bash
+
+DEPRECATED=	Depends on legacy ffmpeg4, consider migrating to multimedia/ffmpeg
+EXPIRATION_DATE=2026-06-30
 
 # Check ${WRKSRC}/dox/overview/overview.md
 # and ${WRKSRC}/dox/dev_guides/building

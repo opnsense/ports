@@ -50,7 +50,6 @@
     SUBDIR += chrono
     SUBDIR += cinnamon-translations
     SUBDIR += claude-code
-    SUBDIR += cldr-emoji-annotation
     SUBDIR += clex
     SUBDIR += clifm
     SUBDIR += cloc
@@ -456,6 +455,7 @@
     SUBDIR += py-einops
     SUBDIR += py-emoji
     SUBDIR += py-equinox
+    SUBDIR += py-evaluate
     SUBDIR += py-ezc3d
     SUBDIR += py-facenet-pytorch
     SUBDIR += py-fast-histogram
@@ -483,6 +483,7 @@
     SUBDIR += py-ipyfastscape
     SUBDIR += py-jiwer
     SUBDIR += py-kartograph
+    SUBDIR += py-kokoro
     SUBDIR += py-langchain
     SUBDIR += py-langchain-anthropic
     SUBDIR += py-langchain-core
@@ -509,6 +510,7 @@
     SUBDIR += py-mcp
     SUBDIR += py-mem0ai
     SUBDIR += py-mffpy
+    SUBDIR += py-misaki
     SUBDIR += py-mixpanel
     SUBDIR += py-ml-collections
     SUBDIR += py-mmcv

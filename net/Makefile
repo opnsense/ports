@@ -286,6 +286,7 @@
     SUBDIR += ip2location
     SUBDIR += ip2proxy
     SUBDIR += ip6_int
+    SUBDIR += ipaddr
     SUBDIR += ipdecap
     SUBDIR += ipgrab
     SUBDIR += ipinfo-cli
@@ -1485,6 +1486,7 @@
     SUBDIR += rubygem-x
     SUBDIR += rubygem-xmlrpc
     SUBDIR += rude
+    SUBDIR += rustconn
     SUBDIR += rustdesk-server
     SUBDIR += ryu
     SUBDIR += s3m
