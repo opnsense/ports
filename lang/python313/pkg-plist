@@ -1753,7 +1753,7 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/ensurepip/__pycache__/_uninstall%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/ensurepip/__pycache__/_uninstall%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/ensurepip/__pycache__/_uninstall%%PYTHON_TAG%%.pyc
-%%PYTHON_BASELIBDIR%%%%THREAD%%/ensurepip/_bundled/pip-25.3-py3-none-any.whl
+%%PYTHON_BASELIBDIR%%%%THREAD%%/ensurepip/_bundled/pip-26.0.1-py3-none-any.whl
 %%PYTHON_BASELIBDIR%%%%THREAD%%/ensurepip/_uninstall.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/enum.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/filecmp.py
@@ -2855,6 +2855,9 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_flush%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_flush%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_flush%%PYTHON_TAG%%.pyc
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_large_sysargv%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_large_sysargv%%PYTHON_TAG%%.opt-2.pyc
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_large_sysargv%%PYTHON_TAG%%.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_main%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_main%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/__pycache__/mp_preload_main%%PYTHON_TAG%%.pyc
@@ -4528,6 +4531,7 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/mp_fork_bomb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/mp_preload.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/mp_preload_flush.py
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/mp_preload_large_sysargv.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/mp_preload_main.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/mp_preload_sysargv.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/multibytecodec_support.py
@@ -6654,9 +6658,6 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/__main__%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/__main__%%PYTHON_TAG%%.pyc
-%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/eio_test_script%%PYTHON_TAG%%.opt-1.pyc
-%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/eio_test_script%%PYTHON_TAG%%.opt-2.pyc
-%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/eio_test_script%%PYTHON_TAG%%.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/support%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/support%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/support%%PYTHON_TAG%%.pyc
@@ -6687,7 +6688,6 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/test_windows_console%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/test_windows_console%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/__pycache__/test_windows_console%%PYTHON_TAG%%.pyc
-%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/eio_test_script.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/support.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/test_eventqueue.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_pyrepl/test_input.py
@@ -6994,6 +6994,9 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/__main__%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/__main__%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/__main__%%PYTHON_TAG%%.pyc
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/test_compute_changes%%PYTHON_TAG%%.opt-1.pyc
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/test_compute_changes%%PYTHON_TAG%%.opt-2.pyc
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/test_compute_changes%%PYTHON_TAG%%.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/test_freeze%%PYTHON_TAG%%.opt-1.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/test_freeze%%PYTHON_TAG%%.opt-2.pyc
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/__pycache__/test_freeze%%PYTHON_TAG%%.pyc
@@ -7042,6 +7045,7 @@ lib/libpython%%PYTHON_BASEVER%%%%THREAD%%%%ABI%%.so.1.0-gdb.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/msgfmt_data/general.json
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/msgfmt_data/general.mo
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/msgfmt_data/general.po
+%%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/test_compute_changes.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/test_freeze.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/test_i18n.py
 %%PYTHON_BASELIBDIR%%%%THREAD%%/test/test_tools/test_makefile.py
