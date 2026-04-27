@@ -1,6 +1,6 @@
 PORTNAME=	texinfo
 PORTVERSION=	7.2
-PORTREVISION=	5
+PORTREVISION=	6
 PORTEPOCH=	1
 CATEGORIES=	print
 MASTER_SITES=	GNU \
@@ -22,6 +22,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 BUILD_DEPENDS=	help2man:misc/help2man \
 		${RUN_DEPENDS}
+LIB_DEPENDS=	libunistring.so:devel/libunistring
 RUN_DEPENDS=	p5-Locale-libintl>=0:devel/p5-Locale-libintl \
 		p5-Text-Unidecode>=0:converters/p5-Text-Unidecode \
 		p5-Unicode-EastAsianWidth>=0:textproc/p5-Unicode-EastAsianWidth
