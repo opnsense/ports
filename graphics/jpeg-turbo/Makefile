@@ -1,5 +1,5 @@
 PORTNAME=	jpeg-turbo
-DISTVERSION=	3.1.3
+DISTVERSION=	3.1.4.1
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/lib${PORTNAME}/lib${PORTNAME}/releases/download/${DISTVERSION}/
 DISTNAME=	lib${PORTNAME}-${DISTVERSION}
