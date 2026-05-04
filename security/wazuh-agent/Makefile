@@ -1,8 +1,8 @@
 PORTNAME=	wazuh
-DISTVERSION=	4.14.3
+DISTVERSION=	4.14.5
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
-MASTER_SITES=	https://packages.wazuh.com/deps/49/libraries/sources/:wazuh_sources
+MASTER_SITES=	https://packages.wazuh.com/deps/51/libraries/sources/:wazuh_sources
 PKGNAMESUFFIX=	-agent
 DISTFILES=	${EXTERNAL_DISTFILES}
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
@@ -23,7 +23,7 @@ USES=		cmake:indirect cpe gmake perl5 readline shebangfix sqlite:3 uidfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	alonsobsd
 GH_PROJECT=	wazuh-freebsd
-GH_TAGNAME=	dd9bd1bb551141e15cde1399a0000c6a392511ad
+GH_TAGNAME=	22e254c6366d51a38792163162dd019a45a00c55
 
 USE_RC_SUBR=	${PORTNAME}${PKGNAMESUFFIX}
 
@@ -102,9 +102,7 @@ MAKE_ENV+=	OSSL_TARGET=BSD-riscv64
 
 .include <bsd.port.pre.mk>
 
-.if ${OSVERSION} >= 1300139 && ${OSVERSION} < 1400000
-FBSD_MAJOR_VERSION=13
-.elif ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
+.if ${OSVERSION} >= 1400000 && ${OSVERSION} < 1500000
 FBSD_MAJOR_VERSION=14
 .elif ${OSVERSION} >= 1500000 && ${OSVERSION} < 1600000
 FBSD_MAJOR_VERSION=15
