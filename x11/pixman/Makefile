@@ -1,5 +1,5 @@
 PORTNAME=	pixman
-DISTVERSION=	0.46.2
+DISTVERSION=	0.46.4
 CATEGORIES=	x11
 MASTER_SITES=	https://cairographics.org/releases/
 
