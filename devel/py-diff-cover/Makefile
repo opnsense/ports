@@ -1,5 +1,5 @@
 PORTNAME=	diff-cover
-DISTVERSION=	9.7.0
+DISTVERSION=	10.2.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -29,10 +29,13 @@ USES=		python
 USE_PYTHON=	pep517 autoplist pytest
 
 MAKE_ENV+=	GIT_DIR=${WRKDIR} # workaround for https://github.com/python-poetry/poetry/issues/5547
-TEST_ENV=	${MAKE_ENV} PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ENV=	${MAKE_ENV} \
+		PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
+		PYTHONPATH=${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}
+TEST_ARGS=	-p pytest_mock -p pytest_datadir.plugin tests
 
 NO_ARCH=	yes
 
-# tests as of 9.7.0: 338 passed in 21.61s
+# tests as of 10.2.0: 352 passed in 4.82s
 
 .include <bsd.port.mk>
