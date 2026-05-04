@@ -1,6 +1,6 @@
 PORTNAME=	emacs
 DISTVERSION=	30.2
-PORTREVISION=	1
+PORTREVISION=	3
 PORTEPOCH=	3
 CATEGORIES=	editors
 MASTER_SITES=	GNU
@@ -78,7 +78,7 @@ CONFIGURE_ENV=		ac_cv_header_sys_sysinfo_h=no
 CONFLICTS_INSTALL=	emacs-devel emacs-devel-nox
 
 BINARY_ALIAS=	makeinfo=true
-SUB_FILES=	pkg-message sources.el
+SUB_FILES=	default.el pkg-message site-start.el
 SUB_LIST=	EMACS_VER=${DISTVERSION} \
 		NATIVECOMP_COMMENT_END=${NATIVECOMP_COMMENT_END} \
 		NATIVECOMP_COMMENT_START=${NATIVECOMP_COMMENT_START}
@@ -296,6 +296,7 @@ post-patch:
 post-install:
 	@${RM} -r ${STAGEDIR}${PREFIX}/lib/systemd
 	@(cd ${STAGEDIR}${PREFIX} && ${FIND} libexec/emacs/${DISTVERSION}/${CONFIGURE_TARGET}/ -name emacs-*.pdmp >> ${TMPPLIST})
+	${INSTALL_DATA} ${WRKDIR}/default.el ${WRKDIR}/site-start.el ${STAGEDIR}${DATADIR}/site-lisp/
 
 post-install-MAILUTILS-on:
 	${LN} -sf ${PREFIX}/bin/movemail \
@@ -310,6 +311,5 @@ post-install-NATIVECOMP-on:
 post-install-SOURCES-on:
 	@${MKDIR} ${STAGEDIR}${DATADIR}/${DISTVERSION}/src
 	${INSTALL_DATA} ${WRKSRC}/src/*.[ch] ${STAGEDIR}${DATADIR}/${DISTVERSION}/src
-	${INSTALL_DATA} ${WRKDIR}/sources.el ${STAGEDIR}${DATADIR}/${DISTVERSION}/site-lisp/site-start.el
 
 .include <bsd.port.mk>
