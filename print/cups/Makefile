@@ -1,12 +1,8 @@
 PORTNAME=	cups
-DISTVERSION=	2.4.16
+DISTVERSION=	2.4.19
 CATEGORIES=	print
 MASTER_SITES=	https://github.com/OpenPrinting/${PORTNAME}/releases/download/v${DISTVERSION}/
 DISTNAME=	${PORTNAME}-${DISTVERSION}-source
-
-PATCH_SITES=	https://github.com/OpenPrinting/cups/commit/
-PATCHFILES=	f5813db4347630ecdbf3fe97dac28aaabf341eff.patch:-p1 \
-		398fc2cd3881d54ce3e6b5ca0bb1529bdf8d0b5d.patch:-p1
 
 MAINTAINER=	tijl@FreeBSD.org
 COMMENT=	Common UNIX Printing System
@@ -107,8 +103,8 @@ post-patch:
 post-patch-DOCS-off:
 # Link to online documentation.
 	@${FIND} ${WRKSRC}/doc ${WRKSRC}/templates -type f -exec ${SED} -i '' \
-		-e 's|[Hh][Rr][Ee][Ff]="/*help/{[^"]*"|href="https://openprinting.github.io/cups/#DOCUMENTATION|g' \
-		-e 's|[Hh][Rr][Ee][Ff]="/*help/"|href="https://openprinting.github.io/cups/#DOCUMENTATION|g' \
+		-e 's|[Hh][Rr][Ee][Ff]="/help/{[^"]*"|href="https://openprinting.github.io/cups/#DOCUMENTATION"|g' \
+		-e 's|[Hh][Rr][Ee][Ff]="/help/"|href="https://openprinting.github.io/cups/#DOCUMENTATION"|g' \
 		-e '/have_gssapi/s|[Hh][Rr][Ee][Ff]="/*help/|href="https\\://openprinting.github.io/cups/doc/|g' \
 		-e 's|[Hh][Rr][Ee][Ff]="/*help/|href="https://openprinting.github.io/cups/doc/|g' {} +
 
