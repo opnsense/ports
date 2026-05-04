@@ -236,11 +236,11 @@ CARGO_CRATES=	adler2-2.0.1 \
 		once_cell-1.21.3 \
 		once_cell_polyfill-1.70.2 \
 		opener-0.8.4 \
-		openssl-0.10.75 \
+		openssl-0.10.78 \
 		openssl-macros-0.1.1 \
 		openssl-probe-0.1.6 \
 		openssl-src-300.5.5+3.5.5 \
-		openssl-sys-0.9.111 \
+		openssl-sys-0.9.114 \
 		ordered-float-2.10.1 \
 		orion-0.17.13 \
 		os_info-3.14.0 \
