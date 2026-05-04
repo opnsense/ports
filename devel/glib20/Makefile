@@ -1,5 +1,5 @@
 PORTNAME=	glib
-DISTVERSION=	2.84.4
+DISTVERSION=	2.86.4
 PORTEPOCH=	2
 CATEGORIES=	devel
 MASTER_SITES=	GNOME
@@ -38,7 +38,6 @@ TRIGGERS=	gio-modules glib-schemas
 MESON_ARGS=	-Db_lundef=false \
 		-Ddefault_library=both \
 		-Dinstalled_tests=false \
-		-Dlibelf=disabled \
 		-Dlibmount=disabled \
 		-Druntime_dir=/var/run \
 		-Dselinux=disabled \
@@ -108,7 +107,7 @@ post-patch:
 	${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|' \
 		${WRKSRC}/gio/xdgmime/xdgmime.c \
 		${WRKSRC}/glib/gutils.c \
-		${WRKSRC}/glib/tests/utils.c
+		${WRKSRC}/glib/tests/utils-unisolated.c
 
 CODEGENDIR=	${PREFIX}/share/glib-2.0/codegen
 
