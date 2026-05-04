@@ -1,6 +1,6 @@
 PORTNAME=	openssh
-DISTVERSION=	10.2p1
-PORTREVISION=	1
+DISTVERSION=	10.3p1
+PORTREVISION=	0
 PORTEPOCH=	1
 CATEGORIES=	security
 MASTER_SITES=	OPENBSD/OpenSSH/portable
@@ -42,7 +42,7 @@ gssapi_PKGNAMESUFFIX=		-portable-gssapi
 
 OPTIONS_DEFINE=		DOCS PAM TCP_WRAPPERS LIBEDIT BSM \
 			HPN KERB_GSSAPI \
-			LDNS NONECIPHER XMSS FIDO_U2F BLACKLISTD
+			LDNS NONECIPHER FIDO_U2F BLACKLISTD
 OPTIONS_DEFAULT=	BLACKLISTD LIBEDIT PAM TCP_WRAPPERS LDNS FIDO_U2F
 .if ${FLAVOR:U} == hpn
 OPTIONS_DEFAULT+=	HPN NONECIPHER
@@ -61,7 +61,6 @@ HEIMDAL_DESC=		Heimdal Kerberos (security/heimdal)
 HEIMDAL_BASE_DESC=	Heimdal Kerberos (base)
 MIT_DESC=		MIT Kerberos (security/krb5)
 NONECIPHER_DESC=	NONE Cipher support
-XMSS_DESC=		XMSS key support (experimental)
 FIDO_U2F_DESC=		FIDO/U2F support (security/libfido2)
 BLACKLISTD_DESC=	FreeBSD blacklistd(8) support
 
@@ -116,13 +115,13 @@ EXTRA_PATCHES+=	${FILESDIR}/extra-patch-hpn-gss-glue
 .  endif
 # - See https://sources.debian.org/data/main/o/openssh/ for which subdir to
 # pull from.
-GSSAPI_DEBIAN_VERSION=	10.2p1
+GSSAPI_DEBIAN_VERSION=	10.3p1
 GSSAPI_DEBIAN_SUBDIR=	${GSSAPI_DEBIAN_VERSION:U${DISTVERSION}}-1
 # - Debian does not use a versioned filename so we trick fetch to make one for
 # us with the ?<anything>=/ trick.
 PATCH_SITES+=	https://sources.debian.org/data/main/o/openssh/1:${GSSAPI_DEBIAN_SUBDIR}/debian/patches/gssapi.patch?dummy=/:gsskex
 # Bump this when updating the patch location
-GSSAPI_DISTVERSION=	10.2p1
+GSSAPI_DISTVERSION=	10.3p1
 PATCHFILES+=	openssh-${GSSAPI_DISTVERSION:U${DISTVERSION}}-gsskex-all-debian-rh-${GSSAPI_DISTVERSION}.patch:-p1:gsskex
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgssc.c
 EXTRA_PATCHES+=	${FILESDIR}/extra-patch-gssapi-kexgsss.c
@@ -217,9 +216,6 @@ post-patch:
 	@${ECHO_CMD} '#define SSH_VERSION_FREEBSD_PORT	"${VERSION_ADDENDUM_DEFAULT}"' >> \
 		${WRKSRC}/version.h
 
-post-configure-XMSS-on:
-	@${ECHO_CMD} "#define WITH_XMSS 1" >> ${WRKSRC}/config.h
-
 post-configure-BLACKLISTD-on:
 	@${ECHO_CMD} "#define USE_BLACKLIST 1" >> ${WRKSRC}/config.h
 
@@ -237,15 +233,39 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/HPN-README ${STAGEDIR}${DOCSDIR}
 .endif
 
+# percent test does not work unless user's $HOME is set properly.
+SKIP_LTESTS= percent
+
+# A tempdir is used to avoid unix socket namelen issues.
+# TEST_SSH_UNSAFE_PERMISSIONS is because /tmp is world-writable, but
+# the actual test dir is not.
+# Some TEST_SSH_* paths are passed in because test-exec.sh defaults to base
+# versions for them due to being outside of PATH.
 test: build
-	cd ${WRKSRC} && ${SETENV} -i \
-		OBJ=${WRKDIR} ${MAKE_ENV:NHOME=*} \
+	@rtmp=$$(mktemp -dt ssh-regress); \
+	chmod o-rx "$${rtmp}"; \
+	trap "'${RM} $${rtmp}'; exit 1" 1 2 3 5 10 13 15; \
+	${TAR} -cf - -C ${WRKSRC} . | ${TAR} -xf - -C $${rtmp}; \
+	cd $${rtmp} && ${SETENV} -i \
+		${MAKE_ENV:NHOME=*:NPATH=*} \
 		TEST_SHELL=${SH} \
-		SUDO="${SUDO}" \
+		${SUDO:DSUDO="${SUDO}"} \
 		LOGNAME="${LOGNAME}" \
-		HOME="${HOME}" \
+		HOME="$${rtmp}" \
+		TEST_SSH_UNSAFE_PERMISSIONS=1 \
 		TEST_SSH_TRACE=yes \
-		PATH=${WRKSRC}:${PREFIX}/bin:${PREFIX}/sbin:${PATH} \
-		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} tests
+		TEST_SSH_FAIL_FATAL=yes \
+		TEST_SSH_SFTPSERVER=$${rtmp}/sftp-server \
+		TEST_SSH_SSHD_SESSION=$${rtmp}/sshd-session \
+		TEST_SSH_SSHD_AUTH=$${rtmp}/sshd-auth \
+		PATH=$${rtmp}:${PREFIX}/bin:${PREFIX}/sbin:${PATH} \
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} tests \
+		BUILDDIR="$${rtmp}" \
+		abs_top_srcdir="$${rtmp}" \
+		abs_top_builddir="$${rtmp}" \
+		.OBJDIR="$${rtmp}" \
+		${LTESTS:DLTESTS="${LTESTS}"} \
+		${SKIP_LTESTS:DSKIP_LTESTS="${SKIP_LTESTS}"}; \
+	${RM} -R "$${rtmp}"
 
 .include <bsd.port.post.mk>

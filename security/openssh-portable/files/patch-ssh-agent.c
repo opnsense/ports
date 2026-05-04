@@ -85,13 +85,13 @@ disconnected.
  		switch (ch) {
  		case 'E':
  			fingerprint_hash = ssh_digest_alg_by_name(optarg);
-@@ -2286,6 +2310,9 @@ main(int ac, char **av)
+@@ -2285,6 +2309,9 @@ main(int ac, char **av)
+ 				fprintf(stderr, "Invalid lifetime\n");
  				usage();
  			}
- 			break;
++			break;
 +		case 'x':
 +			xcount = 0;
-+			break;
+ 			break;
  		case 'T':
  			T_flag++;
- 			break;

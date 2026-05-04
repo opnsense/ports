@@ -22,15 +22,14 @@
  	if (options.gss_keyex) {
  		/* Add the GSSAPI mechanisms currently supported on this
  		 * client to the key exchange algorithm proposal */
---- readconf.c.orig	2025-10-08 15:36:47.220504000 -0700
-+++ readconf.c	2025-10-08 15:38:09.729314000 -0700
-@@ -60,11 +60,11 @@
+--- readconf.c.orig	2026-04-25 17:03:05.811011000 -0700
++++ readconf.c	2026-04-25 17:03:28.148581000 -0700
+@@ -53,10 +53,10 @@
  #include "readconf.h"
  #include "match.h"
  #include "kex.h"
 +#include "ssh-gss.h"
  #include "mac.h"
- #include "uidswap.h"
  #include "myproposal.h"
  #include "digest.h"
 -#include "ssh-gss.h"

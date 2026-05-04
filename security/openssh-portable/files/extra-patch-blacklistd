@@ -337,17 +337,17 @@
  	int	client_alive_interval;	/*
  					 * poke the client this often to
  					 * see if it's still there
---- sshd-session.c.orig	2025-10-02 12:00:00.000000000
-+++ sshd-session.c	2025-10-02 12:00:00.000000000
-@@ -102,6 +102,7 @@
+--- sshd-session.c.orig	2026-04-02 01:09:03.000000000 -0700
++++ sshd-session.c	2026-04-25 16:49:54.889134000 -0700
+@@ -95,6 +95,7 @@
  #include "sk-api.h"
  #include "srclimit.h"
  #include "dh.h"
 +#include "blacklist_client.h"
  
- #ifdef LIBWRAP
- #include <tcpd.h>
-@@ -1175,6 +1176,8 @@
+ /* Re-exec fds */
+ #define REEXEC_DEVCRYPTO_RESERVED_FD	(STDERR_FILENO + 1)
+@@ -1147,6 +1148,8 @@ main(int ac, char **av)
  	ssh_signal(SIGQUIT, SIG_DFL);
  	ssh_signal(SIGCHLD, SIG_DFL);
  	ssh_signal(SIGINT, SIG_DFL);
@@ -356,30 +356,19 @@
  
  	/*
  	 * Register our connection.  This turns encryption off because we do
-@@ -1249,8 +1271,10 @@
- 	}
- 
- 	if ((r = kex_exchange_identification(ssh, -1,
--	    options.version_addendum)) != 0)
-+	    options.version_addendum)) != 0) {
-+		BLACKLIST_NOTIFY(ssh, BLACKLIST_AUTH_FAIL, "Banner exchange");
- 		sshpkt_fatal(ssh, r, "banner exchange");
-+	}
- 
- 	ssh_packet_set_nonblocking(ssh);
- 
-@@ -1395,7 +1419,10 @@
+@@ -1361,8 +1364,11 @@ cleanup_exit(int i)
  		audit_event(the_active_state, SSH_CONNECTION_ABANDON);
  #endif
  	/* Override default fatal exit value when auth was attempted */
--	if (i == 255 && auth_attempted)
-+	if (i == 255 && auth_attempted) {
+-	if (i == 255 && monitor_auth_attempted())
++	if (i == 255 && monitor_auth_attempted()) {
 +		BLACKLIST_NOTIFY(the_active_state, BLACKLIST_AUTH_FAIL,
 +		    "Fatal exit");
  		_exit(EXIT_AUTH_ATTEMPTED);
 +	}
+ 	if (i == 255 && monitor_invalid_user())
+ 		_exit(EXIT_INVALID_USER);
  	_exit(i);
- }
 --- sshd_config.5.orig	2025-10-02 12:00:00.000000000
 +++ sshd_config.5	2025-10-02 12:00:00.000000000
 @@ -2009,6 +2009,20 @@
@@ -413,3 +402,25 @@
  #VersionAddendum none
  
  # no default banner path
+--- sshd-auth.c.orig	2026-04-25 16:47:09.675535000 -0700
++++ sshd-auth.c	2026-04-25 16:48:05.928839000 -0700
+@@ -96,6 +96,7 @@
+ #include "srclimit.h"
+ #include "ssh-sandbox.h"
+ #include "dh.h"
++#include "blacklist_client.h"
+ 
+ /* Privsep fds */
+ #define PRIVSEP_MONITOR_FD		(STDERR_FILENO + 1)
+@@ -812,8 +813,10 @@ do_ssh2_kex(struct ssh *ssh)
+ 	free(hkalgs);
+ 
+ 	if ((r = kex_exchange_identification(ssh, -1,
+-	    options.version_addendum)) != 0)
++	    options.version_addendum)) != 0) {
++		BLACKLIST_NOTIFY(ssh, BLACKLIST_AUTH_FAIL, "Banner exchange");
+ 		sshpkt_fatal(ssh, r, "banner exchange");
++	}
+ 	mm_sshkey_setcompat(ssh); /* tell monitor */
+ 
+ 	if ((ssh->compat & SSH_BUG_NOREKEY))
