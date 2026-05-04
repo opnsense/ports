@@ -1,5 +1,5 @@
 PORTNAME=	google-resumable-media
-PORTVERSION=	2.8.0
+PORTVERSION=	2.8.2
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -7,7 +7,8 @@ DISTNAME=	google_resumable_media-${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Utilities for Google Media Downloads and Resumable Uploads
-WWW=		https://github.com/googleapis/google-resumable-media-python
+WWW=		https://github.com/googleapis/google-cloud-python/tree/main/packages/google-resumable-media \
+		https://github.com/googleapis/google-cloud-python
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
