@@ -1,6 +1,6 @@
 PORTNAME=	tree-sitter
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.25.10
+DISTVERSION=	0.26.8
 CATEGORIES=	devel
 
 # When updating this port, make sure that editors/neovim can
@@ -15,6 +15,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		gmake
 USE_GITHUB=	yes
+USE_LDCONFIG=	yes
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libtree-sitter.so.*
