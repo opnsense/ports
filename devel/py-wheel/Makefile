@@ -1,6 +1,6 @@
 PORTNAME=	wheel
-PORTVERSION=	0.46.3
-PORTREVISION=	1
+PORTVERSION=	0.47.0
+PORTREVISION=	0
 CATEGORIES=	devel
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -17,6 +17,12 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}packaging>=24.0:devel/py-packaging@${PY_FLAV
 
 USES=		python
 USE_PYTHON=	allflavors autoplist concurrent pep517
+# tests: 62 passed
+USE_PYTHON+=	pytest
+
+.if make(test)
+TEST_ENV=	PYTHONPATH="${STAGEDIR}${PYTHON_SITELIBDIR}"
+.endif
 
 # see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=268500
 EXTRACT_CMD=	${SETENV} LC_ALL=en_US.UTF-8 ${TAR}
