@@ -1,6 +1,6 @@
 PORTNAME=	suricata
-DISTVERSION=	8.0.3
-PORTREVISION=	1
+DISTVERSION=	8.0.4
+PORTREVISION=	2
 CATEGORIES=	security
 MASTER_SITES=	https://www.openinfosecfoundation.org/download/
 
