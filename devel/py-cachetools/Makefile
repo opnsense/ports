@@ -1,12 +1,13 @@
 PORTNAME=	cachetools
-PORTVERSION=	7.0.1
+PORTVERSION=	7.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Extensible memoizing collections and decorators
-WWW=		https://github.com/tkem/cachetools
+WWW=		https://cachetools.readthedocs.io/en/stable/ \
+		https://github.com/tkem/cachetools
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
