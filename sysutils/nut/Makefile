@@ -1,5 +1,6 @@
 PORTNAME=	nut
-PORTVERSION=	2.8.3
+PORTVERSION=	2.8.5
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 
@@ -65,6 +66,7 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--program-transform-name="" \
 		--localstatedir=${STATEDIR} \
 		--datadir=${PREFIX}/etc/nut \
+		--mandir=${PREFIX}/share/man/nut \
 		--with-devd-dir=${PREFIX}/etc/devd \
 		--with-drvpath=${PREFIX}/libexec/nut \
 		--with-statepath=${STATEDIR} \
@@ -77,12 +79,13 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--without-python2 \
 		--with-python3=${PYTHON_CMD} \
 		--without-nut_monitor \
-		--with-ltdl --with-nut-scanner
+		--with-ltdl --with-nut-scanner \
+		--without-augeas-lenses-dir \
+		--enable-extapi-enphase=no
 
 GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -pthread
-CPPFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib
 LIB_DEPENDS+=	libltdl.so:devel/libltdl
 
 MANPAGES_CONFIGURE_ON=	--with-doc=man=auto
@@ -98,17 +101,18 @@ CGI_CONFIGURE_ON=	--with-cgipath=${CGIDIR} \
 SERIAL_CONFIGURE_WITH=	serial
 
 USB_CONFIGURE_WITH=	usb=auto
+USB_LIB_DEPENDS=	libgio-2.0.so:devel/glib20
 
 SNMP_LIB_DEPENDS=	libnetsnmp.so:net-mgmt/net-snmp
 SNMP_CONFIGURE_WITH=	snmp
 
-NEON_LIB_DEPENDS+=	libneon.so:www/neon
+NEON_LIB_DEPENDS=	libneon.so:www/neon
 NEON_CONFIGURE_WITH=	neon
 
-PDU_LIB_DEPENDS+=	libpowerman.so:sysutils/powerman
+PDU_LIB_DEPENDS=	libpowerman.so:sysutils/powerman
 PDU_CONFIGURE_WITH=	powerman
 
-MODBUS_LIB_DEPENDS+=	libmodbus.so:comms/libmodbus
+MODBUS_LIB_DEPENDS=	libmodbus.so:comms/libmodbus
 MODBUS_CONFIGURE_WITH=	modbus
 
 AVAHI_BUILD_DEPENDS=	${LOCALBASE}/include/avahi-ui/avahi-ui.h:net/avahi-header
@@ -154,7 +158,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/docs/cables/*.txt ${STAGEDIR}${DOCSDIR}/cables
 	${INSTALL_DATA} ${WRKSRC}/docs/*.txt ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${WRKSRC}/docs/FAQ.txt ${STAGEDIR}${DOCSDIR}
-.for file in AUTHORS COPYING ChangeLog INSTALL MAINTAINERS NEWS README
+.for file in AUTHORS COPYING INSTALL MAINTAINERS NEWS README
 	${INSTALL_DATA} ${WRKSRC}/${file} ${STAGEDIR}${DOCSDIR}
 .endfor
 .endif
