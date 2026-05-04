@@ -56,8 +56,7 @@ GUILE_CONFIGURE_WITH=	guile
 
 MH_CONFIGURE_ENV=	ac_cv_prog_EMACS=no
 MH_CONFIGURE_ENABLE=	mh
-MH_USES=		emacs:noflavors
-MH_VARS=		EMACS_NO_DEPENDS=yes
+MH_USES=		emacs
 
 NLS_USES=		gettext
 NLS_CONFIGURE_ENABLE=	nls
