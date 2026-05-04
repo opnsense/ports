@@ -54,6 +54,21 @@ NETLIB_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=blas -Csetup-arg
 OPENBLAS_USES=		blaslapack:openblas
 OPENBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas=openblas -Csetup-args=-Dlapack=openblas"
 
+# BEGIN OPNsense NOBLAS patching
+USES:=			${USES:Nfortran}
+OPTIONS_DEFINE+=	FORTRAN
+OPTIONS_SINGLE_BLASLIB+=NOBLAS
+OPTIONS_DEFAULT+=	FORTRAN
+
+BLIS_IMPLIES=		FORTRAN
+FLEXBLAS_IMPLIES=	FORTRAN
+FORTAN_USES=		FORTRAN
+NETLIB_IMPLIES=		FORTRAN
+NOBLAS_DESC=		Internal NumPy fallback BLAS routines
+NOBLAS_VARS=		PEP517_BUILD_CONFIG_SETTING+="-Csetup-args=-Dblas= -Csetup-args=-Dlapack="
+OPENBLAS_IMPLIES=	FORTRAN
+# END OPNsense NOBLAS patching
+
 .include <bsd.port.pre.mk>
 
 .if ${PYTHON_REL} >= 31200
