@@ -1,3 +1,5 @@
-TIMESTAMP = 1750188082
-SHA256 (openapi_spec_validator-0.7.2.tar.gz) = cc029309b5c5dbc7859df0372d55e9d1ff43e96d678b9ba087f7c56fc586f734
-SIZE (openapi_spec_validator-0.7.2.tar.gz) = 36855
+TIMESTAMP = 1777311652
+SHA256 (openapi_spec_validator-0.8.5.tar.gz) = 93b04ef5321d5866b2502371123d86333e5c1444f051d323e02525d9e83c7622
+SIZE (openapi_spec_validator-0.8.5.tar.gz) = 1756845
+SHA256 (3caa98099cab3e8fea292c71108c8a66d75d7cd1.patch) = 455c7d294a8a9e1f5d6b374d5df0c897e2bf234eb1296fbc7a13719b4503f0d2
+SIZE (3caa98099cab3e8fea292c71108c8a66d75d7cd1.patch) = 694
