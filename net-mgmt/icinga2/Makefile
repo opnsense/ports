@@ -1,16 +1,18 @@
 PORTNAME=	icinga2
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.15.1
+DISTVERSION=	2.16.0
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	flo@FreeBSD.org
 COMMENT=	Monitoring and management system for hosts, services and networks
 WWW=		https://www.icinga.org/icinga2/
 
-LICENSE=	GPLv2
-LICENSE_FILE=	${WRKSRC}/COPYING
+LICENSE=	GPLv3
+LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-LIB_DEPENDS=	libboost_thread.so:devel/boost-libs
+LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
+		libabsl_log_severity.so:devel/abseil \
+		libprotobuf-lite.so:devel/protobuf
 RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USES=		bison cmake:insource compiler:c++0x libedit ssl
