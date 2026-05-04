@@ -1,5 +1,5 @@
 PORTNAME=	harfbuzz
-DISTVERSION=	13.0.1
+DISTVERSION=	13.2.1
 PORTREVISION?=	0
 CATEGORIES=	print
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
@@ -12,7 +12,8 @@ LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 LIB_DEPENDS=	libfreetype.so:print/freetype2 \
-		libgraphite2.so:graphics/graphite2
+		libgraphite2.so:graphics/graphite2 \
+		libpng16.so:graphics/png
 
 USES=		compiler:c++11-lib cpe gnome meson \
 		pkgconfig python:build shebangfix tar:xz
@@ -25,7 +26,7 @@ MESON_ARGS=	-Dgraphite2=enabled \
 		-Dchafa=disabled \
 		-Dtests=disabled
 
-PLIST_SUB+=	LIBVER=0.61301.0
+PLIST_SUB+=	LIBVER=0.6${DISTVERSION:S|.||g}.0
 
 HARFBUZZ_SLAVE?=	no
 
