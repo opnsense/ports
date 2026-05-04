@@ -1,5 +1,5 @@
 PORTNAME=	lxml
-DISTVERSION=	6.0.2
+DISTVERSION=	6.1.0
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,6 +14,7 @@ LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
+TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}cssselect>0:www/py-cssselect@${PY_FLAVOR}
 
 USES=		compiler cpe gnome python
 USE_GNOME=	libxml2 libxslt
@@ -41,9 +42,8 @@ post-install-DOCS-on:
 # see upstream Makefile, test target
 # tests require compiled extensions in the source directories
 do-test:
-	cd ${BUILD_WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} build_ext --inplace && \
-		${PYTHON_CMD} test.py -p -v
+	${CP} -a ${BUILD_WRKSRC}/build/lib.*/lxml/ ${BUILD_WRKSRC}/src/lxml/
+	cd ${BUILD_WRKSRC} && ${PYTHON_CMD} test.py -p -v
 
 .include <bsd.port.pre.mk>
 
