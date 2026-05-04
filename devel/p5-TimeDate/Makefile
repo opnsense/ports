@@ -1,5 +1,5 @@
 PORTNAME=	TimeDate
-PORTVERSION=	2.34
+PORTVERSION=	2.35
 PORTEPOCH=	1
 CATEGORIES=	devel perl5
 MASTER_SITES=	CPAN
@@ -17,5 +17,7 @@ LICENSE_FILE=	${WRKSRC}/README
 USES=		perl5
 USE_PERL5=	configure
 NO_ARCH=	yes
+
+PORTSCOUT=	limit:^[\d.]+$$ # Stay with stable versions only
 
 .include <bsd.port.mk>
