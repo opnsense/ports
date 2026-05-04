@@ -144,25 +144,25 @@ RUBY?=			${LOCALBASE}/bin/ruby${RUBY_SUFFIX}
 #
 # Ruby 3.2
 #
-RUBY_DISTVERSION=	3.2.10
+RUBY_DISTVERSION=	3.2.11
 
 .      elif ${RUBY_VER} == 3.3
 #
 # Ruby 3.3
 #
-RUBY_DISTVERSION=	3.3.10
+RUBY_DISTVERSION=	3.3.11
 
 .      elif ${RUBY_VER} == 3.4
 #
 # Ruby 3.4
 #
-RUBY_DISTVERSION=	3.4.8
+RUBY_DISTVERSION=	3.4.9
 
 .      elif ${RUBY_VER} == 4.0
 #
 # Ruby 4.0
 #
-RUBY_DISTVERSION=	4.0.1
+RUBY_DISTVERSION=	4.0.3
 
 # When adding a version, please keep the comment in
 # Mk/bsd.default-versions.mk in sync.

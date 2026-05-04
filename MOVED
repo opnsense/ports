@@ -1943,7 +1943,6 @@ sysutils/etcupdate||2023-03-21|Part of the base system since FreeBSD 10.0
 devel/freebsd-gcc6||2023-03-22|No longer able to build base system, use GCC 9 or later instead
 net/rubygem-gitlab-omniauth-openid-connect|net/rubygem-omniauth_openid_connect|2023-03-22|Obsolete use net/rubygem-omniauth_openid_connect instead
 japanese/mutt-devel||2023-03-25|Has expired: Broken since 2019
-audio/amarok||2023-03-31|Has expired: No longer actively maintained upstream
 audio/cd2mp3||2023-03-31|Has expired: Depends on deprecated port audio/dagrab, consider using audio/abcde or audio/cyanrip
 audio/cmp3||2023-03-31|Has expired: Abandonware, no development in 20 years. Please consider using audio/cmus or audio/musicpd
 audio/cpige||2023-03-31|Has expired: Doesn't work, newer versions also fails
@@ -5168,4 +5167,100 @@ misc/unicode-cldr|textproc/CLDR|2026-03-14|Remove duplicate port. Use textproc/C
 emulators/ppsspp-qt5|emulators/ppsspp|2026-03-15|Qt5 is end of life, please use emulators/ppsspp
 devel/py-marshmallow-enum||2026-03-15|Has expired: Upstream repository has been archived on Oct 19, 2022
 java/openjdk20||2026-03-15|Has expired: No longer supported by upstream
-textproc/py-en-core-web-sm|textproc/py-en-core-web-sm|2026-03-17|Add py- prefix to match Python package name
+textproc/en-core-web-sm|textproc/py-en-core-web-sm|2026-03-17|Add py- prefix to match Python package name
+sysutils/beats9|sysutils/beats93|2026-03-20|Use Beats port with preferred major.minor number instead
+science/kst2|science/kst|2026-03-25|Rename to match upstream naming
+graphics/luminance-qt5||2026-03-29|Broken for more than a year
+sysutils/tmate-ssh-server||2026-03-31|Has expired: Upstream unmaintained
+editors/wordgrinder||2026-03-31|Has expired: broken since 2023, maintainer AWOL
+www/py-django-cron||2026-03-31|Has expired: Upstream inactive since 3+ years, not compatible with Django 5.2 or newer
+deskutils/py-paperless|deskutils/py-paperless-ngx|2026-03-31|Has expired: Upstream repository archived since 2021 and no compatibility for Django 5+. Please migrate to deskutils/py-paperless-ngx
+www/py-django-bleach||2026-03-31|Has expired: Upstream has been archived on November 5, 2024
+www/py-django-tagging|www/py-django-taggit|2026-03-31|Has expired: Upstream inactive since 5+ years, not compatible with Django 5+. Please use www/py-django-taggit instead
+www/py-django-star-ratings||2026-03-31|Has expired: Upstream repository has been archived on May 21, 2025
+ftp/ftpsesame||2026-03-31|Has expired: dead upstream, broken on FreeBSD 15
+devel/loki||2026-03-31|Has expired: dead upstream, sole consumer removed from tree long ago
+mail/missey||2026-03-31|Has expired: mail/missey has been abandoned for many years
+devel/jsl||2026-03-31|Has expired: No more upstream, use JSLint instead
+security/snortsam||2026-03-31|Has expired: dead upstream, broken on FreeBSD 15
+devel/py-graphene-django300|devel/py-graphene-django|2026-03-31|Has expired: Obsolete, was used as temporary solution due compatibility issues. Please use devel/py-graphene-django instead
+filesystems/moosefs2-chunkserver||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+filesystems/moosefs2-cgiserv||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+filesystems/moosefs2-cgi||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+filesystems/moosefs2-netdump||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+filesystems/moosefs2-metalogger||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+filesystems/moosefs2-cli||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+filesystems/moosefs2-client||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+multimedia/gstreamer1-plugins-svt-hevc||2026-03-31|Has expired: SVT-HEVC project discontinued by Intel on 2024-07-29
+filesystems/moosefs2-master||2026-03-31|Has expired: 2.x reached EoL 2017-12-31, use filesystems/moosefs-* 4.x instead
+games/xcubes|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xdino|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xhexagons|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xmball|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xmlink|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xoct|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xpanex|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xpyraminx|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xrubik|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xskewb|games/xpuzzles|2026-03-31|Merged into xpuzzles
+games/xtriangles|games/xpuzzles|2026-03-31|Merged into xpuzzles
+databases/mysql94-client||2026-03-31|Has expired: EOLed upstream, switch to newer version
+databases/mysql91-client||2026-03-31|Has expired: EOLed upstream, switch to newer version
+databases/mysql91-server||2026-03-31|Has expired: EOLed upstream, switch to newer version
+databases/mysql94-server||2026-03-31|Has expired: EOLed upstream, switch to newer version
+www/obhttpd||2026-03-31|Has expired: Depends on bundled version of LibreSSL which is unsupported upstream
+net/cloud-init-devel|net/cloud-init|2026-03-31|Has expired: Outdated and no longer maintained, consider migrating to net/cloud-init
+net/libzmq3|net/libzmq4|2026-03-31|Has expired: Upstream unmaintained version with multiple vulnerabilities
+sysutils/tmate||2026-03-31|Has expired: Upstream unmaintained
+x11/mrxvt||2026-03-31|Has expired: Upstream unmaintained and has known vulnerability
+www/glassfish4|www/glassfish|2026-03-31|Has expired: Very old version reached EoL, use www/glassfish instead
+devel/qjson||2026-03-31|Has expired: Deprecated upstream, not used by anything
+multimedia/gstreamer1-vaapi||2026-03-31|Has expired: Project discontinued
+databases/postgresql-cstore_fdw||2026-03-31|Has expired: Columnar storage is now part of databases/pg_citus. Please migrate
+sysutils/alfio||2026-03-31|Has expired: Upstream abandoned the project and does not distribute it anymore
+devel/py-absl|devel/py-absl-py|2026-03-31|Has expired: Use devel/py-absl-py
+security/openssl33-quictls||2026-03-31|Removed: Upstream project has been archived
+security/openssl33||2026-03-31|Has expired: Please use security/openssl35 (LTS)
+textproc/lexilla||2026-04-01|Has expired: No consumers left in the tree, the library is intended to be bundled
+x11-toolkits/scintilla||2026-04-01|Has expired: No consumers left in the tree, the library is intended to be bundled
+security/py-shodan|net/py-shodan|2026-04-03|Remove duplicate port. Use net/py-shodan instead
+devel/py-jsonschema-spec|devel/py-jsonschema-path|2026-04-05|Remove obsoleted port. Use devel/py-jsonschema-path instead
+devel/py-libcst03|devel/py-libcst|2026-04-05|Remove obsoleted port. Use devel/py-libcst instead
+devel/py-babi_grammars|devel/py-babi-grammars|2026-04-05|Rename to match upstream naming
+devel/capnproto1|devel/capnproto-tiledb|2026-04-05|Rename for better naming
+net-mgmt/argus3|net-mgmt/argus|2026-04-06|Update to latest version and remove version suffix
+net-mgmt/argus3-clients|net-mgmt/argus-clients|2026-04-06|Update to latest version and remove version suffix
+textproc/py-asciinema|textproc/asciinema|2026-04-06|No longer based on python, use textproc/asciinema instead
+multimedia/jellyfin-media-player|multimedia/jellyfin-desktop|2026-04-08|Project has been renamed
+databases/movine||2026-04-11|Remove: abandoned upstream
+java/openjdk22||2026-04-12|Has expired: No longer supported by upstream
+mail/py-offlineimap3|mail/py-offlineimap|2026-04-13|Project is now in PyPi as offlineimap
+textproc/jalingo||2026-04-13|Has expired: Last release in 2006. Does not compile in Java 9+
+science/colt||2026-04-13|Has expired: java 8 only, unmaintained, no users in the ports tree, latest release was 2004
+www/googler||2026-04-13|Has expired: Upstream repository archived on 2022-03-05; use www/ddgr as alternative
+misc/jbidwatcher||2026-04-14|Has expired: unmaintained, upstream website is gone, no users in the ports tree
+multimedia/py-tvnamer||2026-04-14|Has expired: Upstream project appears to be abandoned, last release was in 2021
+devel/prjpeppercorn111||2026-04-14|No longer supported by devel/nextpnr
+www/py-tvdb_api||2026-04-15|Has expired: Upstream project appears to be abandoned, last release was in 2021
+graphics/libkdcraw@qt5|graphics/libkdcraw-qt5|2026-04-16|Unflavorize; keep the last release with Qt5 support
+graphics/libkdcraw@qt6|graphics/libkdcraw|2026-04-16|Unflavorize; only Qt6 is supported from now
+audio/libkcompactdisc||2026-04-16|Development discontinued, not shipped with KDE Gear since 26.04
+multimedia/dvdstyler||2026-04-16|Dead upstream
+databases/py-sqlglotrs|databases/py-sqlglotc|2026-04-18|Remove obsoleted port. Use databases/py-sqlglotc instead
+devel/py-prettytable0|devel/py-prettytable|2026-04-18|Remove obsoleted port. Use devel/py-prettytable instead
+www/py-requests-cache0|www/py-requests-cache|2026-04-18|Remove obsoleted port. Use www/py-requests-cache instead
+sysutils/py-azure-cli-base||2026-04-21|Remove obsoleted port
+games/coronapoker||2026-04-25|Remove for security concerns: downloads closed source binary modules, should not be restored unless https://github.com/tonikelope/coronapoker/issues/7 is addressed
+sysutils/py-ioztat|filesystems/py-ioztat|2026-04-27|Move to more appropriate category
+misc/py-aider-chat||2026-04-27|Upstream project has stopped active releases and doesn't match ports dependencies
+emulators/virtualbox-ose-additions-nox11-legacy|emulators/virtualbox-ose-additions-legacy@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-additions-nox11|emulators/virtualbox-ose-additions@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-additions-nox11-70|emulators/virtualbox-ose-additions-70@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-additions-nox11-71|emulators/virtualbox-ose-additions-71@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-additions-nox11-72|emulators/virtualbox-ose-additions-72@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-nox11-legacy|emulators/virtualbox-ose-legacy@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-nox11|emulators/virtualbox-ose@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-nox11-70|emulators/virtualbox-ose-70@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-nox11-71|emulators/virtualbox-ose-71@nox11|2026-04-30|Converted to a flavorized port
+emulators/virtualbox-ose-nox11-72|emulators/virtualbox-ose-72@nox11|2026-04-30|Converted to a flavorized port
+databases/kuzu|databases/ladybug|2026-05-03|Upstream abandoned, project continuing under new name

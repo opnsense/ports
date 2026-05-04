@@ -5,6 +5,181 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20260425:
+  AFFECTS: Users of security/openssh-portable
+  AUTHOR: bdrewery@FreeBSD.org
+
+  Some defaults have changed to match src.
+
+  - X11Forwarding default has changed from "yes" to "no".
+  - PermitRootLogin default has changed from "prohibit-password" to "no".
+
+20260418:
+  AFFECTS: Users of net/rsync and net/rsync@python
+  AUTHOR: rodrigo@FreeBSD.org
+
+  Revert the introduction of two net/rsync flavours, the default  without
+  the rrsync script and the python flavour with rrsync and python as a dependency.
+  Restore the previous setup with a single net/rsync package that includes
+  the rrsync script but does not depend on Python.
+  Users who require the rrsync script must install Python separately,
+  as indicated in the install message.
+
+20260412:
+  AFFECTS: Users of sysutils/ansible
+  AUTHOR: cy@FreeBSD.org
+
+  An overhaul of the templating system and a new feature called Data Tagging
+  may affect existing roles resulting in problematic behaviours. Users should
+  review the Ansible 12 Porting Guide at
+  https://docs.ansible.com/projects/ansible/devel/porting_guides/porting_guide_12.html
+
+20260412:
+  AFFECTS: Users of sysutils/py-ansible-core
+  AUTHOR: cy@FreeBSD.org
+
+  A number of behavioural changes may affect existing playbooks and roles.
+  Users are encouraged to review the Ansible-core 2.19 Porting Guide at
+  https://docs.ansible.com/ansible/latest/porting_guides/porting_guide_core_2.19.html
+
+20260411:
+  AFFECTS: users of elisp (*-emacs_*) packages
+  AUTHOR: jrm@FreeBSD.org
+
+  Packages for different flavors of elisp ports have been removed.  For
+  example, the old and new packages for devel/tablist are:
+  |-------------------------+---------|
+  | Before                  | After   |
+  |-------------------------+---------|
+  | tablist                 | tablist |
+  | tablist-emacs_canna     |         |
+  | tablist-emacs_devel_nox |         |
+  | tablist-emacs_devel     |         |
+  | tablist-emacs_nox       |         |
+  | tablist-emacs_wayland   |         |
+  |-------------------------+---------|
+
+  If you have any -emacs_* packages installed, simply running `pkg upgrade`
+  will not upgrade and replace them with the new package.  Run these commands
+  under /bin/sh with superuser privileges before upgrading.
+
+  for i in $(pkg query -g %n *-emacs_*); do
+    if [ "$i" != "notmuch-emacs_*" ]; then
+      nn=$(echo "$i" | sed -e 's/-emacs_[a-z_]*//')
+    else
+      nn=$(echo "$i" | sed -e 's/-emacs_[a-z_]*/-emacs/')
+    fi
+    pkg set -yn "$i":"$nn"
+  done
+
+  If you are building ports in an unclean environment, you may have to specify
+  the Emacs build flavor to avoid conflicts.  For example, if you have the
+  default flavor of editors/emacs installed, add the following to
+  /etc/make.conf:
+
+  DEFAULT_VERSIONS+=emacs=full
+
+  Possible values are: full, canna, nox, wayland, devel_full, and devel_nox.
+  Values prefixed with devel_ select editors/emacs-devel; others select
+  editors/emacs.  The default is nox.
+
+20260401:
+  AFFECTS: users of security/openvpn
+  AUTHOR: mandree@FreeBSD.org
+
+  The openvpn 2.7 port update no longer installs the openvpn-client.up
+  and openvpn-client.down scripts into libexec/, but instead a
+  dns-updown script into libexec/openvpn/.
+  Review your configuration, and the openvpn man page for --dns-updown.
+
+20260329:
+  AFFECTS: users of java/openjdk25 and java/openjdk26 with the jre flavor
+  AUTHOR: jrm@FreeBSD.org
+
+  The openjdk-jre packages for versions 25 and 26 have been renamed.  Users with
+  the old package names installed should run the following /bin/sh script with
+  superuser privileges before upgrading.
+
+  jre=$(pkg query -g %n-%v "*openjdk-jre-25*" "*openjdk-jre-26*")
+  if echo "$jre" | grep -q "\-25"; then
+      on=$(pkg query -g %n "*openjdk-jre-25*")
+      nn="openjdk25-jre"
+  elif echo "$jre" | grep -q "\-26"; then
+      on=$(pkg query -g %n "*openjdk-jre-26*")
+      nn="openjdk26-jre"
+  fi
+  if [ -n "$nn" ]; then
+      pkg set -yn "$on":"$nn"
+  fi
+
+20260327:
+  AFFECTS: users of x11/nvidia-{driver, kmod}
+  AUTHOR: junchoon@dec.sakura.ne.jp
+
+  x11/nvidia-driver and x11/nvidia-kmod are upgraded to latest
+  Production Branch [PB] of upstream driver package.
+
+  Just as -devel variant upgraded 20260103, this version drops
+  support for a bunch of old (pre-Turing generations of
+  architecture) GPUs.
+
+  You can find still supported GPUs below.
+    https://us.download.nvidia.com/XFree86/FreeBSD-x86_64/595.58.03/README/supportedchips.html
+
+  So anyone using related ports
+    x11/nvidia-kmod
+    x11/nvidia-driver
+    graphics/nvidia-drm-{510|515|61|66|latest}-kmod
+    x11/linux-nvidia-libs
+  with dropped GPUs needs to switch to newly added legacy 580 ports.
+    x11/nvidia-kmod-580
+    x11/nvidia-driver-580
+    graphics/nvidia-drm-{510|515|61|66|latest}-kmod-580
+    x11/linux-nvidia-libs-580
+
+  Deinstalling master ports above and reinstalling -580 variant of
+  ports above would do the right things.
+
+  If any of above hesitates to upgrade with version conflicts
+  of graphics/eglexternalplatform, upgrade it first and retrying
+  failed ones should help.
+
+20260326:
+  AFFECTS: users of databases/mysql80-(server|client)
+  AUTHOR: joneum@FreeBSD.org
+
+  The default MySQL version has been updated from 8.0 to 8.4.
+
+  If you compile your own ports you may keep 8.0 as the default version by
+  adding the following lines to your /etc/make.conf file:
+
+  #
+  # Keep MySQL 8.0 as default version
+  #
+  DEFAULT_VERSIONS+=mysql=8.0
+
+  If you wish to update to the new default version, you need to first stop any
+  running server instance. Then, you will need to follow these steps, depending
+  on installed packages.
+
+  # pkg set -o databases/mysql80-client:databases/mysql84-client
+  # pkg set -o databases/mysql80-server:databases/mysql84-server
+  # pkg upgrade
+
+20260325:
+  AFFECTS: users of math/coq
+  AUTHOR: jrm@FreeBSD.org
+
+  Upstream no longer installs Emacs lisp, so the Emacs flavors have been
+  removed.  In order for a `pkg upgrade` to install new versions of coq,
+  any installed package for a non-default flavor must be renamed.  Do
+  this by running the commands below under /bin/sh with superuser
+  privileges:
+
+  on=$(pkg query -g %n coq-emacs_*)
+  nn=$(pkg query -g %n g coq-emacs_* | sed -e 's/-emacs_[a-z_]*//')
+  pkg set -n "$on":"$nn"
+
 20260304:
   AFFECTS: users of net-mgmt/netbox
   AUTHOR: kai@FreeBSD.org
@@ -23,6 +198,14 @@ you update your ports collection, before attempting any port upgrades.
      recommended to switch to Python 3.12 or newer in the near future.
 
   2. Please also check the pkg-message and the changelogs for further info.
+
+20260325:
+  AFFECTS: Users of net-mgmt/ping_exporter
+  AUTHOR: ivy@FreeBSD.org
+
+  The format of ping_exporter's configuration file has changed.
+  Refer to https://github.com/czerwonk/ping_exporter/releases/tag/v1.2.0
+  for upstream documentation on how to migrate.
 
 20260301:
   AFFECTS: users of databases/postgresql* and other software using PostgreSQL to run

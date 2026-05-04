@@ -332,7 +332,7 @@ _tlsrpt:*:382:382::0:0:TLSRPT Daemon:/nonexistent:/usr/sbin/nologin
 cascade:*:383:383::0:0:Cascade Daemon:/var/db/cascade:/usr/sbin/nologin
 omada:*:384:384::0:0:Omada Wireless Controller:/nonexistent:/usr/sbin/nologin
 mtail:*:385:385::0:0:mtail:/nonexistent:/usr/sbin/nologin
-# free: 386
+zoraxy:*:386:386::0:0:Zoraxy Service:/nonexistent:/usr/sbin/nologin
 # free: 387
 autopulse:*:388:388::0:0:Autopulse Daemon:/nonexistent:/usr/sbin/nologin
 ldap:*:389:389::0:0:OpenLDAP Server:/nonexistent:/usr/sbin/nologin
@@ -346,7 +346,7 @@ ldap:*:389:389::0:0:OpenLDAP Server:/nonexistent:/usr/sbin/nologin
 rtorrent:*:397:397::0:0:rtorrent Daemon User:/nonexistent:/usr/sbin/nologin
 tiarra:*:398:398::0:0:Tiarra IRC Proxy:/nonexistent:/usr/sbin/nologin
 # free: 399
-# free: 400
+evcc:*:400:400::0:0:evcc Daemon:/nonexistent:/usr/sbin/nologin
 # free: 401
 # free: 402
 # free: 403
@@ -377,8 +377,8 @@ drweb:*:426:426::0:0:Dr.Web Mail Scanner:/nonexistent:/usr/sbin/nologin
 # free: 428
 varnish:*:429:429::0:0:Varnish Cache User:/nonexistent:/usr/sbin/nologin
 varnishlog:*:430:429::0:0:Varnish Log User:/nonexistent:/usr/sbin/nologin
-# free: 431
-# free: 432
+vinyl:*:431:431::0:0:Vinyl Cache User:/nonexistent:/usr/sbin/nologin
+vinyllog:*:432:431::0:0:Vinyl Log User:/nonexistent:/usr/sbin/nologin
 # free: 433
 # free: 434
 # free: 435
@@ -429,7 +429,7 @@ alertmanager:*:479:479::0:0:Alertmanager Daemon:/var/tmp/alertmanager:/usr/sbin/
 datadog:*:480:480::0:0:DataDog Agent:/var/db/datadog:/usr/sbin/nologin
 promxy:*:481:481::0:0:Promxy Daemon:/nonexistent:/usr/sbin/nologin
 openbao:*:482:482:daemon:0:0:OpenBao Daemon:/nonexistent:/usr/sbin/nologin
-# free: 483
+garage:*:483:483::0:0:Garage Daemon:/var/db/garage:/usr/sbin/nologin
 stalwart:*:484:484::0:0:stalwart Mail Server Daemon:/nonexistent:/usr/sbin/nologin
 # free: 485
 # free: 486
@@ -803,7 +803,7 @@ p0f:*:852:852::0:0:p0f unprivileged user:/var/empty:/usr/sbin/nologin
 _geodns:*:853:853::0:0:GeoDNS User:/var/empty:/usr/sbin/nologin
 ebusd:*:854:854::0:0:eBUS Daemon user:/nonexistent:/usr/sbin/nologin
 opensearch:*:855:855::0:0:opensearch user:/nonexistent:/usr/sbin/nologin
-# free: 856
+lubelogger:*:856:856::0:0:LubeLogger webapp daemon:/var/db/lubelogger:/usr/sbin/nologin
 kanidmd:*:857:857::0:0:Kanidmd server:/nonexistent:/usr/sbin/nologin
 umurmur:*:858:858::0:0:uMurmur:/nonexistent:/usr/sbin/nologin
 kanidm:*:859:859::0:0:Kanidm client resolver:/nonexistent:/usr/sbin/nologin

@@ -42,7 +42,6 @@ MAINTAINER: yuri@FreeBSD.org
 - The latest released version of the software can be determined using the command '../../Tools/scripts/pypi-get-latest-version.sh {python project name}'
 - Dependencies need to be updated when the port is updated. They need to be compared with the dependency requirements set in the project.
 - setuptools build dependency should never be added to BUILD_DEPENDS, and instead the distutils element should be present in USE_PYTHON.
-- numpy dependency should be added as ${PYNUMPY} instead of the usual syntax. No version information should be added in this case.
 - pillow dependency should be added as ${PY_PILLOW} instead of the usual syntax. No version information should be added in this case.
 - The cython build dependency should never be added to BUILD_DEPENDS. Instead, the cython element should be added to USE_PYTHON for cython dependencies of versions 1.x or 2.x, and the cython3 element should be added to USE_PYTHON for cython dependencies of versions 3.x
 - Do not add upper version limits for Python based ports.

@@ -326,7 +326,7 @@ _tlsrpt:*:382:
 cascade:*:383:
 omada:*:384:
 mtail:*:385:
-# free: 386
+zoraxy:*:386:
 # free: 387
 autopulse:*:388:
 ldap:*:389:
@@ -340,7 +340,7 @@ ldap:*:389:
 rtorrent:*:397:
 tiarra:*:398:
 # free: 399
-# free: 400
+evcc:*:400:
 # free: 401
 # free: 402
 # free: 403
@@ -371,7 +371,7 @@ drweb:*:426:
 # free: 428
 varnish:*:429:
 # free: 430
-# free: 431
+vinyl:*:431:
 # free: 432
 # free: 433
 # free: 434
@@ -423,7 +423,7 @@ alertmanager:*:479:
 datadog:*:480:
 promxy:*:481:
 openbao:*:482:
-# free: 483
+garage:*:483:
 stalwart:*:484:
 # free: 485
 # free: 486
@@ -797,7 +797,7 @@ p0f:*:852:
 _geodns:*:853:
 ebusd:*:854:
 opensearch:*:855:
-# free: 856
+lubelogger:*:856:
 kanidmd:*:857:
 umurmur:*:858:
 kanidm:*:859:
