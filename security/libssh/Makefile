@@ -1,7 +1,9 @@
 PORTNAME=	libssh
-PORTVERSION=	0.11.4
+PORTVERSION=	0.12.0
+PORTREVISION=	1
 CATEGORIES=	security devel
-MASTER_SITES=	https://www.libssh.org/files/${PORTVERSION:R}/
+MASTER_SITES=	https://www.libssh.org/files/${PORTVERSION:R}/ \
+		LOCAL/sunpoet
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Library implementing the SSH2 protocol
@@ -66,6 +68,12 @@ GSSAPI_NONE_CMAKE_BOOL_OFF=	WITH_GSSAPI
 OPENSSL_CMAKE_BOOL_OFF=	CMAKE_DISABLE_FIND_PACKAGE_OpenSSL
 OPENSSL_USES=		ssl
 STATIC_CMAKE_BOOL=	BUILD_STATIC_LIB
+
+.include <bsd.port.options.mk>
+
+.if ${PORT_OPTIONS:MOPENSSL} && ${SSL_DEFAULT} == base && !exists(/usr/include/openssl/ml_kem.h)
+EXTRA_PATCHES+=	${PATCHDIR}/extra-patch-mlkem
+.endif
 
 post-install-STATIC-on:
 	${INSTALL_DATA} ${INSTALL_WRKSRC}/src/libssh.a ${STAGEDIR}${PREFIX}/lib/
